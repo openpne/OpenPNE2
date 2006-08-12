@@ -1,0 +1,54 @@
+<?php
+/**
+ * @copyright 2005-2006 OpenPNE Project
+ * @license   http://www.php.net/license/3_01.txt PHP License 3.01
+ */
+
+class pc_page_o_tologin extends OpenPNE_Action
+{
+    function isSecure()
+    {
+        return false;
+    }
+
+    function execute($requests)
+    {
+        // リダイレクト
+        header('Refresh: 3; URL=' . get_login_url());
+
+
+        //---- inc_ テンプレート用 変数 ----//
+        $this->set('inc_page_header', fetch_inc_page_header('public'));
+
+        $msg = '';
+        switch ($requests['msg_code']) {
+        case 'login_failed':
+            $msg = 'ログインに失敗しました。再度、ログイン操作を行ってください。';
+            break;
+        case 'logout':
+            $msg = 'ログアウトしました。';
+            break;
+        case 'password_query':
+            $msg = '新しいパスワードをメールで送信しました。';
+            break;
+        case 'change_mailaddress':
+            $msg = 'メールアドレスが変更されました。';
+            break;
+        case 'change_password':
+            $msg = 'パスワードを変更しました。新しいパスワードで再ログインしてください。';
+            break;
+        case 'taikai':
+            $msg = '退会完了しました。ご利用ありがとうございました。';
+            break;
+        case 'invalid_url':
+            $msg = 'このURLは既に無効になっています。';
+            break;
+        }
+        $this->set('msg', $msg);
+
+        $this->set('login_url', get_login_url());
+        return 'success';
+    }
+}
+
+?>

@@ -1,0 +1,160 @@
+@charset "UTF-8";
+
+/*基本設定*/
+
+body {
+	margin: 0px ;
+	padding: 0px ;
+	font-size: 10px ;
+	color: #333333 ;
+	/*
+	scrollbar-3dlight-color:	#D3B16D ;
+	scrollbar-arrow-color:		#D3B16D ;
+	scrollbar-darkshadow-color:	#D3B16D ;
+	scrollbar-face-color:		#F2DDB7 ;
+	scrollbar-highlight-color:	#FFF4E0 ;
+	scrollbar-shadow-color:		#FFF4E0 ;
+	*/
+}
+
+td { word-break : break-all; }
+
+img , a {
+	border: none 0px ;
+}
+
+hr {
+ 	width: 100% ;
+ 	height: 1px ;
+ 	border-top: 2px #CCCDCE solid ;
+ 	border-right: none 0px ;
+ 	border-bottom: none 0px ;
+ 	border-left: none 0px ;
+ 	color: #ffffff ;
+ 	background: transparent ;
+}
+
+/*行間設定*/
+
+.lh_120 { line-height: 120% }
+
+.lh_130 { line-height: 130% }
+
+.lh_140 { line-height: 140% }
+
+.lh_150 { line-height: 150% }
+
+.lh_200 { line-height: 200% }
+
+/*主要なパディングの一括指定*/
+
+.padding_ss {
+	padding: 2px ;
+}
+
+.padding_s {
+	padding: 5px ;
+}
+
+.padding_m {
+	padding: 9px ;
+}
+
+.padding_l {
+	padding: 14px ;
+}
+
+.padding_w_s {
+	padding: 10px 30px ;
+}
+
+.padding_w_m {
+	padding: 10px 60px ;
+}
+
+.padding_w_l {
+	padding: 20px 90px ;
+}
+
+/*サイドバナー用パディング*/
+.padding_side_banner {
+	padding-left: 5px ;
+}
+
+
+/*リンク関連*/
+
+a:link {
+	color: #4B9EF7 ;
+}
+
+a:visited {
+	color: #445F8D ;
+}
+
+a:hover ,
+a:active {
+	color: #88BEF8 ;
+}
+
+/*フォーム関連*/
+
+form {
+	margin:0px;
+	padding:0px;
+}
+
+input ,
+textarea ,
+select {
+	font-size: 10pt ;
+	color: #333333 ;
+	background-color: #F8F8F8 ;
+	border: 1px solid #C0C0C0 ;
+	vertical-align: middle ;
+}
+
+input.no_bg {
+	background-color: transparent ;
+	border: 0px none ;
+}
+
+/* パーツとパーツの間に空きを作る */
+
+img.v_spacer_s {
+	display: block ;
+	width: 100% ;
+	height: 3px ;
+}
+
+img.v_spacer_m {
+	display: block ;
+	width: 100% ;
+	height: 5px ;
+}
+
+img.v_spacer_l {
+	display: block ;
+	width: 100% ;
+	height: 8px ;
+}
+
+/* 空のセルに挿入するダミー画像 */
+
+img.dummy {
+	display: block ;
+}
+
+/*その他*/
+
+.w_screen {
+	display: block ;
+	position: relative ;
+	top: 0px ;
+	left: 0px ;
+	right: 0px ;
+	bottom: 0px ;
+	width: 100% ;
+	height: 100% ;
+	overflow: hidden ;
+}

@@ -1,0 +1,197 @@
+@charset "UTF-8";
+
+/*inc_navi矩形エリア位置情報*/
+
+td.inc_navi ,
+div.inc_navi {
+	width: 720px ;
+	height: 29px ;
+}
+
+td.inc_navi img.bg {
+	display: block ;
+	position: absolute ;
+	left: 0px ;
+	top: 0px ;
+	width: 720px ;
+	height: 29px ;
+	z-index: 0 ;
+}
+
+/***共通設定***/
+
+td.inc_navi a {
+	display: block ;
+	position: absolute ;
+	top: 0 ;
+	height: 29px ;
+}
+
+/**/
+
+td.inc_navi a img {
+	display: block ;
+	width: 100% ;
+	height: 29px ;
+}
+
+/** h系ボタン共通設定 **/
+
+td.inc_navi div.h a {
+}
+
+td.inc_navi div.h a.navi_h_1 {
+	left: 27px ;
+	width: 51px ;
+	z-index: 10 ;
+}
+
+td.inc_navi div.h a.navi_h_2 {
+	left: 78px ;
+	width: 83px ;
+	z-index: 20 ;
+}
+
+td.inc_navi div.h a.navi_h_3 {
+	left: 161px ;
+	width: 79px ;
+	z-index: 30 ;
+}
+
+td.inc_navi div.h a.navi_h_4 {
+	left: 240px ;
+	width: 76px ;
+	z-index: 40 ;
+}
+
+td.inc_navi div.h a.navi_h_5 {
+	left: 316px ;
+	width: 69px ;
+	z-index: 70 ;
+}
+
+td.inc_navi div.h a.navi_h_6 {
+	left: 385px ;
+	width: 80px ;
+	z-index: 60 ;
+}
+
+td.inc_navi div.h a.navi_h_7 {
+	left: 465px ;
+	width: 80px ;
+	z-index: 50 ;
+}
+
+td.inc_navi div.h a.navi_h_8 {
+	left: 545px ;
+	width: 87px ;
+	z-index: 80 ;
+}
+
+td.inc_navi div.h a.navi_h_9 {
+	left: 632px ;
+	width: 82px ;
+	z-index: 90 ;
+}
+
+
+/** f系ボタン共通設定 **/
+
+td.inc_navi div.f a {
+}
+
+td.inc_navi div.f a.navi_f_1 {
+	left: 24px ;
+	width: 45px ;
+	z-index: 10 ;
+}
+
+td.inc_navi div.f a.navi_f_2 {
+	left: 69px ;
+	width: 68px ;
+	z-index: 20 ;
+}
+
+td.inc_navi div.f a.navi_f_3 {
+	left: 137px ;
+	width: 99px ;
+	z-index: 30 ;
+}
+
+td.inc_navi div.f a.navi_f_4 {
+	left: 236px ;
+	width: 96px ;
+	z-index: 40 ;
+}
+
+td.inc_navi div.f a.navi_f_5 {
+	left: 332px ;
+	width: 95px ;
+	z-index: 90 ;
+}
+
+td.inc_navi div.f a.navi_f_6 {
+	left: 427px ;
+	width: 75px ;
+	z-index: 80 ;
+}
+
+td.inc_navi div.f a.navi_f_7 {
+	left: 502px ;
+	width: 56px ;
+	z-index: 60 ;
+}
+
+td.inc_navi div.f a.navi_f_8 {
+	left: 558px ;
+	width: 90px ;
+	z-index: 50 ;
+}
+
+td.inc_navi div.f a.navi_f_9 {
+	left: 648px ;
+	width: 67px ;
+	z-index: 70 ;
+}
+
+
+/** c系ボタン共通設定 **/
+
+td.inc_navi div.c a {
+}
+
+td.inc_navi div.c a.navi_c_1 {
+	left: 29px ;
+	width: 143px ;
+	z-index: 10 ;
+}
+
+td.inc_navi div.c a.navi_c_2 {
+	left: 172px ;
+	width: 61px ;
+	z-index: 20 ;
+}
+
+td.inc_navi div.c a.navi_c_3 {
+	left: 233px ;
+	width: 105px ;
+	z-index: 60 ;
+}
+
+td.inc_navi div.c a.navi_c_4 {
+	left: 338px ;
+	width: 125px ;
+	z-index: 30 ;
+}
+
+td.inc_navi div.c a.navi_c_5 {
+	left: 463px ;
+	width: 135px ;
+	z-index: 40 ;
+}
+
+td.inc_navi div.c a.navi_c_6 {
+	left: 598px ;
+	width: 111px ;
+	z-index: 50 ;
+}

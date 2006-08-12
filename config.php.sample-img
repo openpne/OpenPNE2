@@ -1,0 +1,63 @@
+<?php
+//// 画像サーバ用設定 ////
+define('OPENPNE_IS_IMG_SERVER', true);
+
+// SNSサーバのURL
+define('OPENPNE_URL', 'http://sns.example.com/');
+
+// 画像データ保存用DB
+$GLOBALS['_OPENPNE_DSN_LIST']['image'] = array(
+'dsn' => array(
+    'phptype'  => 'mysql',
+    'username' => '',
+    'password' => '',
+    'hostspec' => 'localhost',
+    'database' => '',
+    ),
+);
+
+///
+// パス設定
+///
+
+define('OPENPNE_LIB_DIR'    , OPENPNE_DIR . '/lib');
+define('OPENPNE_VAR_DIR'    , OPENPNE_DIR . '/var');
+define('OPENPNE_WEBAPP_DIR' , OPENPNE_DIR . '/webapp');
+define('OPENPNE_MODULES_DIR', OPENPNE_WEBAPP_DIR . '/modules');
+
+///
+// webapp_ext ディレクトリ使用設定
+///
+
+define('USE_EXT_DIR', false);
+define('OPENPNE_WEBAPP_EXT_DIR' , OPENPNE_DIR . '/webapp_ext');
+define('OPENPNE_MODULES_EXT_DIR', OPENPNE_WEBAPP_EXT_DIR . '/modules');
+
+///
+// 画像変換
+///
+
+// 画像キャッシュディレクトリ
+define('OPENPNE_IMG_CACHE_DIR', OPENPNE_VAR_DIR . '/img_cache');
+
+// 画像変換後のJPEGのQUALITY値
+define('OPENPNE_IMG_JPEG_QUALITY', 75);
+
+// ImageMagickを使う(ただし、GDも必要)
+//define('USE_IMAGEMAGICK', true);
+
+// ImageMagick の convertコマンドのパス
+//define('IMGMAGICK_APP', '/usr/bin/convert');
+//define('IMGMAGICK_APP', '"C:\Program Files\ImageMagick-6.2.5-Q16\convert"');
+
+// ImageMagick のオプション(デフォルトは -resize)
+//define('IMGMAGICK_OPT', '-resize');
+//define('IMGMAGICK_OPT', '-thumbnail');
+
+///
+// umask
+///
+
+umask(0);
+
+?>

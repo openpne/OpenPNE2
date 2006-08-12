@@ -1,0 +1,42 @@
+@charset "UTF-8";
+
+/*リンク色等全ページ共通基本要素*/
+@import url(./main_1_8/commons.css);
+
+/*ページ全体を構成する大きな骨格（レイアウトテーブル）用*/
+@import url(./main/mainframe.css);
+
+/*サイト内コンテンツパート専用CSS*/
+@import url(./main/font.css);/*フォント設定：フォント色、大きさ、フォントの設定全般*/
+
+/*ほぼ全ページ共通：ページ上部共通要素*/
+@import url(./main_1_8/inc_page_header.css?v=2.2.5);
+/*ほぼ全ページ共通：ページ上部検索部分*/
+@import url(./main/inc_search_box.css);
+/*ほぼ全ページ共通：ページ上部お知らせ部分*/
+@import url(./main/inc_info.css);
+/*ほぼ全ページ共通：各ページ共通メニューバー*/
+@import url(./main_1_8/inc_navi.css?v=2.2);
+/*ほぼ全ページ共通：ページ下部共通要素*/
+@import url(./main_1_8/inc_page_footer.css);
+
+/*ログインページ専用*/
+@import url(./main/page_login.css);
+
+/*
+スタイルシートルールのメモ：
+・幅や高さはhtml内で記述する(※inc_x系、専用ページなど一部例外あり)
+・alignはhtml属性使用
+・スタイルのmarginとpadding(横方向)はbox要素には使わない
+・配色（背景）や背景模様、フォント（サイズや太さや色）の管理はCSSで行う
+・各インクルードtplのプロパティは各同名cssに記述
+　例）　inc_page_header.tpl -> inc_page_header.css
+　　　　inc_info.tpl -> inc_info.css
+・特殊ページ用のCSSはxyz.tplに対応したpage_xyz.cssでおこなう
+　例）　login.tpl -> page_login.css
+
+
+その他課題
+・色彩設定は色が違うクラス名と被る場合の判別がしづらくなる。
+
+*/
