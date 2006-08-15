@@ -113,6 +113,12 @@ function db_bookmark_diary_list_with_pager($c_member_id, $page_size, $page)
     $bookmarks = db_bookmark_c_member_id_list($c_member_id, true);
     $ids = implode(',', array_map('intval', $bookmarks));
 
+    // 日記を全員に公開しているメンバーのみを取得
+    $sql = 'SELECT c_member_id FROM c_member WHERE c_member_id IN ('.$ids.')' .
+            ' AND public_flag_diary = \'public\'';
+    $public = db_get_col($sql);
+    $ids = implode(',', array_map('intval', $public));
+
     $sql = 'SELECT * FROM c_diary WHERE c_member_id IN (' . $ids . ') ORDER BY r_datetime DESC';
     $diary_list = db_get_all_page($sql, intval($page), intval($page_size));
     foreach($diary_list as $key => $value) {
