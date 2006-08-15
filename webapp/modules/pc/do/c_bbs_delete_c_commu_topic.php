@@ -32,7 +32,11 @@ class pc_do_c_bbs_delete_c_commu_topic extends OpenPNE_Action
         db_commu_delete_c_commu_topic($target_c_commu_topic_id);
 
         $p = array('target_c_commu_id' => $c_commu_topic['c_commu_id']);
-        openpne_redirect('pc', 'page_c_topic_list', $p);
+        if ($c_commu_topic['event_flag']) {
+            openpne_redirect('pc', 'page_c_event_list', $p);
+        } else {
+            openpne_redirect('pc', 'page_c_topic_list', $p);
+        }
     }
 }
 
