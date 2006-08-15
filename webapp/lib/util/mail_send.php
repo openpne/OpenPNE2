@@ -263,6 +263,7 @@ function send_bbs_info_mail($c_commu_topic_comment_id, $c_member_id)
         } else {
             $from = "t{$c_commu_topic_id}".'@'.MAIL_SERVER_DOMAIN;
         }
+        $from = MAIL_ADDRESS_PREFIX . $from;
         t_send_email($ktai_address, $subject, $body, true, $from);
     }
 }

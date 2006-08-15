@@ -18,6 +18,7 @@ class ktai_page_h_config_image extends OpenPNE_Action
         } else {
             $mail_address = "p{$u}"."@" . MAIL_SERVER_DOMAIN;
         }
+        $mail_address = MAIL_ADDRESS_PREFIX . $mail_address;
         $this->set('mail_address', $mail_address);
 
         return 'success';

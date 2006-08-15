@@ -56,6 +56,7 @@ class ktai_page_c_bbs extends OpenPNE_Action
         } else {
             $mail_address = "t{$target_c_commu_topic_id}"."@".MAIL_SERVER_DOMAIN;
         }
+        $mail_address = MAIL_ADDRESS_PREFIX . $mail_address;
         $this->set("mail_address", $mail_address);
 
         return 'success';

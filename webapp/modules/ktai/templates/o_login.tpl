@@ -53,7 +53,7 @@
 
 新規登録するには以下のリンクから、本文を入力せずにメールを送信してください。<br>
 <br>
-<a href="mailto:get@({$smarty.const.MAIL_SERVER_DOMAIN})">◆メールで登録！◆</a><br>
+<a href="mailto:({$smarty.const.MAIL_ADDRESS_PREFIX})get@({$smarty.const.MAIL_SERVER_DOMAIN})">◆メールで登録！◆</a><br>
 <br>
 ※かならず利用規約に同意してから登録をおこなってください。<br>
 ■<a href="({t_url m=ktai a=page_o_sns_kiyaku})">利用規約</a><br>

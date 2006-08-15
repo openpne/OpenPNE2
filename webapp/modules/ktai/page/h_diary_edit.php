@@ -28,6 +28,7 @@ class ktai_page_h_diary_edit extends OpenPNE_Action
         } else {
             $mail_address = "blog"."@".MAIL_SERVER_DOMAIN;;
         }
+        $mail_address = MAIL_ADDRESS_PREFIX . $mail_address;
         $this->set('blog_address', $mail_address);
 
         return 'success';

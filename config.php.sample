@@ -270,6 +270,9 @@ define('RSS_CACHE_LIMIT', 100);
 // 携帯メール投稿
 ///
 
+// 宛先アドレスのprefix
+//define('MAIL_ADDRESS_PREFIX', 'sns_');
+
 // 宛先アドレスをハッシュにするか
 define('MAIL_ADDRESS_HASHED', true);
 

@@ -33,6 +33,15 @@ class mail_sns
             return false;
         }
 
+        // check prefix
+        if (MAIL_ADDRESS_PREFIX) {
+            if (strpos($to_user, MAIL_ADDRESS_PREFIX) !== 0) {
+                m_debug_log('mail_sns::main() missing prefix');
+                return false;
+            }
+            $to_user = substr($to_user, strlen(MAIL_ADDRESS_PREFIX));
+        }
+
         if (!$this->c_member_id) {
             // 送信者がSNSメンバーでない場合
 

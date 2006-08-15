@@ -129,6 +129,7 @@ class OpenPNE_Config
             'IMAGE_MAX_FILESIZE' => 300,
             'IMAGE_MAX_WIDTH' => 0,
             'IMAGE_MAX_HEIGHT' => 0,
+            'MAIL_ADDRESS_PREFIX' => '',
             'MAIL_ADDRESS_HASHED' => true,
             'MAIL_HAN2ZEN' => true,
             'MAIL_HEADER_SEP' => 'LF',
