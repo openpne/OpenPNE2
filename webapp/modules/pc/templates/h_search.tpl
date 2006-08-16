@@ -59,6 +59,30 @@
 <td style="width:150px;" class="bg_05" align="left" valign="middle">
 <img src="./skin/dummy.gif" class="v_spacer_s">
 <span class="c_01" style="padding:5px;">
+ニックネーム
+</span>
+<img src="./skin/dummy.gif" class="v_spacer_s">
+</td>
+
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+
+<td style="width:421px;" class="bg_02" align="left" valign="middle">
+<div class="padding_s">
+
+<input name="nickname" size="30" type="text">
+
+</div>
+</td>
+</tr>
+({*********})
+<tr>
+<td style="width:564px;height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+</tr>
+({*********})
+<tr>
+<td style="width:150px;" class="bg_05" align="left" valign="middle">
+<img src="./skin/dummy.gif" class="v_spacer_s">
+<span class="c_01" style="padding:5px;">
 生年月日
 </span>
 <img src="./skin/dummy.gif" class="v_spacer_s">
@@ -136,28 +160,6 @@
 <td style="width:150px;" class="bg_05" align="left" valign="middle">
 <img src="./skin/dummy.gif" class="v_spacer_s">
 <span class="c_01" style="padding:5px;">
-項目の一覧
-</span>
-<img src="./skin/dummy.gif" class="v_spacer_s">
-</td>
-
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-
-<td style="width:421px;" class="bg_02" align="left" valign="middle">
-<div class="padding_s">
-検索項目を一覧表示します&nbsp;&nbsp;<a href="({t_url m=pc a=page_h_search_list})">一覧を見る</a>
-</div>
-</td>
-</tr>
-({*********})
-<tr>
-<td style="width:564px;height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-</tr>
-({*********})
-<tr>
-<td style="width:150px;" class="bg_05" align="left" valign="middle">
-<img src="./skin/dummy.gif" class="v_spacer_s">
-<span class="c_01" style="padding:5px;">
 写真の有無
 </span>
 <img src="./skin/dummy.gif" class="v_spacer_s">
@@ -229,99 +231,56 @@
 
 <img src="./skin/dummy.gif" class="v_spacer_l">
 
-<!-- ***************************** -->
-<!-- ******ここから：ニックネーム検索****** -->
-({t_form _method=get m=pc a=page_h_search_result})
-<input type="hidden" name="is_n" value="1">
-
-<table border="0" cellspacing="0" cellpadding="0" style="width:580px;margin:0px auto;" class="border_07">
+<!-- ************************* -->
+<!-- ******ここから：検索項目の一覧****** -->
+<table border="0" cellspacing="0" cellpadding="0" style="width:580px;;margin:0px auto;" class="border_07">
+({*********})
 <tr>
 <td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
 <td style="width:566px;" class="bg_00"><img src="./skin/dummy.gif" style="width:566px;height:7px;" class="dummy"></td>
 <td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
 </tr>
+({*********})
 <tr>
 <td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
 <td class="bg_01" align="center">
-<!-- *ここから：ニックネーム検索* -->
+<!-- *ここから：検索項目の一覧* -->
 ({*ここから：header*})
 <!-- 小タイトル -->
 <div class="border_01">
 <table border="0" cellspacing="0" cellpadding="0" style="width:564px;">
 <tr>
 <td style="width:36px;" class="bg_06"><img src="({t_img_url_skin filename=content_header_1})" style="width:30px;height:20px;" class="dummy"></td>
-<td style="width:150px;padding:2px 0px;" class="bg_06"><span class="b_b c_00">ニックネームで検索する</span></td>
+<td style="width:150px;padding:2px 0px;" class="bg_06"><span class="b_b c_00">検索項目の一覧</span></td>
 <td style="width:378px;" align="right" class="bg_06">&nbsp;</td>
 </tr>
 </table>
 </div>
 ({*ここまで：header*})
 ({*ここから：body*})
-<table border="0" cellspacing="0" cellpadding="0" style="width:564px;">
-<!-- ここから：主内容 -->
-<tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-<td style="width:564px;height:50px;" class="bg_03" align="center" valign="middle">
+<!-- ここから: 主内容 -->
 
-<!--  ここから： ニックネーム検索フォーム レイアウトテーブル -->
-<table border="0" cellspacing="0" cellpadding="0" style="width:564px;">
+<div class="border_01 bg_09" align="center">
 
-<tr>
-<td style="width:150px;" class="bg_05" align="left" valign="middle">
-<img src="./skin/dummy.gif" class="v_spacer_s">
-<span class="c_01" style="padding:5px;">ニックネーム</span>
-<img src="./skin/dummy.gif" class="v_spacer_s">
-</td>
+<img src="./skin/dummy.gif" class="v_spacer_l">
 
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-
-<td style="width:421px;" class="bg_02" align="left" valign="middle">
-<div class="padding_s">
-
-<input name="nickname" size="30" type="text">
-
-</div>
-</td>
-</tr>
-
-<tr>
-<td style="width:564px;height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-</tr>
-
-<tr>
-<td style="width:562px;" class="bg_03" align="center" valign="middle" colspan="3">
-<div style="padding:6px 100px;">
-
-<table border="0" cellspacing="0" cellpadding="0" style="width:200px;height:20px;">
-<tr><td>
-<div align="center" style="text-align:center;">
-<input type="submit" value="　　検　索　　">
-</div>
-</td></tr>
-</table>
-
-</div>
-</td>
-</tr>
-
+<div style="width:490px;padding:20px 10px;margin:0px auto;" class="border_01 bg_03">
+検索項目の一覧と各項目のメンバー数を表示します。<br>
+<img src="./skin/dummy.gif" class="v_spacer_m">
+({t_form _method=get m=pc a=page_h_search_list})
+<input type="submit" value="　一覧を見る　">
 </form>
+</div>
 
-</table>
-<!--  ここまで： ニックネーム検索フォーム レイアウトテーブル -->
+<img src="./skin/dummy.gif" class="v_spacer_l">
 
-</td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-</tr>
-<!-- ここまで：主内容 -->
-<tr>
-<td style="width:564px;height:1px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-</tr>
-</table>
+</div>
+<!-- ここまで: 主内容 -->
 ({*ここまで：body*})
 ({*ここから：footer*})
 <!-- 無し -->
 ({*ここまで：footer*})
-<!-- *ここまで：ニックネーム検索* -->
+<!-- *ここまで：検索項目の一覧* -->
 </td>
 <td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
 </tr>
@@ -332,10 +291,8 @@
 </tr>
 </table>
 
-</div>
-<!-- ******ここまで：ニックネーム検索****** -->
-<!-- *********************************************** -->
-
+<!-- ******ここまで：検索項目の一覧****** -->
+<!-- ************************* -->
 
 <img src="./skin/dummy.gif" class="v_spacer_l">
 

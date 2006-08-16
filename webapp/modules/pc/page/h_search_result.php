@@ -16,7 +16,6 @@ class pc_page_h_search_result extends OpenPNE_Action
         $birth_month = $requests['birth_month'];
         $birth_day = $requests['birth_day'];
         $image = $requests['image'];
-        $is_n = $requests['is_n'];
         $nickname = $requests['nickname'];
         // ----------
 
@@ -28,30 +27,15 @@ class pc_page_h_search_result extends OpenPNE_Action
         $limit = 20;
         $this->set("page", $page);
 
-        //nicknameが検索条件に含まれている
-        if( !empty($nickname) ){
-            $is_n = 1;
-        }
-
-        //検索デフォルト値表示用
-        if (!$is_n) {
-            $cond = array(
-                'birth_year' => $birth_year,
-                'birth_month' => $birth_month,
-                'birth_day' => $birth_day,
-                'image' => $image,
-            );
-            $cond_like = array(
-            );
-        }
-        else {
-            $cond = array();
-            $cond_like = array(
-                'nickname' => $nickname,
-            );
-        }
-        $this->set("cond", array_merge($cond, $cond_like));
-
+        $cond = array(
+            'birth_year' => $birth_year,
+            'birth_month' => $birth_month,
+            'birth_day' => $birth_day,
+            'image' => $image,
+        );
+        $cond_like = array(
+            'nickname' => $nickname,
+        );
 
         $result = p_h_search_result_search($cond, $cond_like, $limit, $page, $u, $profiles);
         $this->set("target_friend_list", $result[0]);
