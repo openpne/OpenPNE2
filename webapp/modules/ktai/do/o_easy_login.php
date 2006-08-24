@@ -21,11 +21,14 @@ class ktai_do_o_easy_login extends OpenPNE_Action
             openpne_redirect('ktai', 'page_o_login', $p);
         }
 
+        $c_member = db_common_c_member4c_member_id($c_member_id, true);
+
         @session_name('OpenPNEktai');
         @session_start();
         @session_regenerate_id();
 
         $_SESSION['c_member_id'] = $c_member_id;
+        $_SESSION['ktai_address'] = t_encrypt($c_member['secure']['ktai_address']);
         $_SESSION['timestamp'] = $_SESSION['idle'] = time();
 
         $p = array('ksid' => session_id());

@@ -46,6 +46,7 @@ class ktai_do_o_login extends OpenPNE_Action
         @session_regenerate_id();
 
         $_SESSION['c_member_id'] = $c_member_id;
+        $_SESSION['ktai_address'] = t_encrypt($requests['ktai_address']);
         $_SESSION['timestamp'] = $_SESSION['idle'] = time();
 
         $p = array('ksid' => session_id());

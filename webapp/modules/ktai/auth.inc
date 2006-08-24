@@ -18,6 +18,12 @@ if (   empty($_SESSION['c_member_id'])
     __logout(15);
 }
 
+// 携帯アドレスのチェック
+$c_member_id = _db_c_member_id4ktai_address_encrypted($_SESSION['ktai_address']);
+if ($c_member_id != $_SESSION['c_member_id']) {
+    __logout(15);
+}
+
 // セッションの有効期限
 $lifetime = $GLOBALS['OpenPNE']['ktai']['session_lifetime'];
 $idletime = $GLOBALS['OpenPNE']['ktai']['session_idletime'];

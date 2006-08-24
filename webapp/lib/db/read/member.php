@@ -147,6 +147,13 @@ function _db_c_member_id4pc_address_encrypted($pc_address_encoded)
     return db_get_one($sql, $params);
 }
 
+function _db_c_member_id4ktai_address_encrypted($ktai_address_encoded)
+{
+    $sql = 'SELECT c_member_id FROM c_member_secure WHERE ktai_address = ?';
+    $params = array($ktai_address_encoded);
+    return db_get_one($sql, $params);
+}
+
 /**
  * アクティブユーザーか？
  */
