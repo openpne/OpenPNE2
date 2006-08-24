@@ -64,6 +64,15 @@ function m_process_mail($raw_mail)
 
     list($to_user, $to_host) = explode("@", $to, 2);
 
+    // check prefix
+    if (MAIL_ADDRESS_PREFIX) {
+        if (strpos($to_user, MAIL_ADDRESS_PREFIX) !== 0) {
+            m_debug_log('mail_sns::main() missing prefix');
+            return false;
+        }
+        $to_user = substr($to_user, strlen(MAIL_ADDRESS_PREFIX));
+    }
+
     if ($to_host === MAIL_SERVER_DOMAIN) {
         $mail_sns =& new mail_sns($decoder);
         if (!$mail_sns->main()) {
