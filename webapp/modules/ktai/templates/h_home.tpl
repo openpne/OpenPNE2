@@ -52,7 +52,7 @@
 <font color="green">[({$WORD_FRIEND_HALF})最新日記]</font><br>
 ({foreach from=$c_diary_friend_list item=item})
 ({$item.r_date|date_format:"%m/%d"})(({$item.nickname|t_truncate:17:""}))<br>
-<a href="({t_url m=ktai a=page_fh_diary})&amp;target_c_diary_id=({$item.c_diary_id})&amp;({$tail})">({$item.subject|t_truncate:20:".."})</a>(({$item.comment_count}))({if $item.image_filename_1 || $item.image_filename_2 || $item.image_filename_3})({/if})<br>
+<a href="({t_url m=ktai a=page_fh_diary})&amp;target_c_diary_id=({$item.c_diary_id})&amp;({$tail})">({$item.subject|t_truncate:20:".."})</a>(({$item.count_comments}))({if $item.image_filename_1 || $item.image_filename_2 || $item.image_filename_3})({/if})<br>
 ({/foreach})
 <a href="({t_url m=ktai a=page_h_diary_list_friend})&amp;({$tail})">→もっと見る</a><br>
 

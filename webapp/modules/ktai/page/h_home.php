@@ -21,7 +21,7 @@ class ktai_page_h_home extends OpenPNE_Action
         //新着メッセージ数
         $this->set('c_message_unread_count', k_p_h_home_c_message_received_unread_all_count4c_member_id($u));
         //フレンドの最新日記
-        $this->set('c_diary_friend_list', k_p_h_home_c_diary_friend_list4c_member_id($u, 5));
+        $this->set('c_diary_friend_list', p_h_home_c_diary_friend_list4c_member_id($u, 5));
         //参加コミュニティリスト
         $this->set('c_commu_list', k_p_h_home_c_commu_list_lastupdate4c_member_id($u, 5));
         //フレンドリスト

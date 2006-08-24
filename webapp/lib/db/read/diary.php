@@ -614,36 +614,6 @@ function k_p_fh_diary_c_member4c_diary_id($c_diary_id)
 }
 
 /**
- * フレンド最新日記リスト取得
- */
-function k_p_h_home_c_diary_friend_list4c_member_id($c_member_id, $limit)
-{
-    $sql = "SELECT c_diary.*";
-    $sql .= " FROM c_diary, c_friend";
-    $sql .= " WHERE c_friend.c_member_id_from = ?";
-    $sql .= " AND c_diary.c_member_id=c_friend.c_member_id_to";
-    $sql .= " ORDER BY c_diary.r_datetime DESC";
-    $params = array(intval($c_member_id));
-    $c_diary_friend_list = db_get_all_limit($sql, 0, $limit, $params);
-
-    foreach ($c_diary_friend_list as $key => $value) {
-        $c_member = db_common_c_member4c_member_id_LIGHT($value['c_member_id']);
-        $c_diary_friend_list[$key]['nickname'] = $c_member['nickname'];
-    }
-
-    //コメント数を取得
-    foreach ($c_diary_friend_list as $key => $value){
-        $c_diary_id = $value['c_diary_id'];
-        $sql = "SELECT COUNT(*) ";
-        $sql .= "FROM c_diary_comment ";
-        $sql .= "WHERE c_diary_id = ?";
-        $params = array(intval($c_diary_id));
-        $c_diary_friend_list[$key]['comment_count'] = db_get_one($sql, $params);
-    }
-    return $c_diary_friend_list;
-}
-
-/**
  * フレンドの最新日記リスト
  */
 function k_p_h_diary_list_friend_h_diary_list_friend4c_member_id($c_member_id, $page_size, $page)
