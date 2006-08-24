@@ -34,6 +34,10 @@ define('MAIL_SERVER_DOMAIN', 'mail.example.com');
 // 2: on  ... 1 + Smartyデバッグコンソール 
 define('OPENPNE_DEBUGGING', 1);
 
+// ファンクションキャッシュ使用設定
+//有効にした場合は、最新情報の表示に遅延が起こることがあります
+define('OPENPNE_USE_FUNCTION_CACHE', false);
+
 // 無効にするモジュール
 //$GLOBALS['_OPENPNE_DISABLE_MODULES'] = array('admin', 'setup');
 
