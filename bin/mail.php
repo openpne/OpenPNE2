@@ -67,7 +67,7 @@ function m_process_mail($raw_mail)
     // check prefix
     if (MAIL_ADDRESS_PREFIX) {
         if (strpos($to_user, MAIL_ADDRESS_PREFIX) !== 0) {
-            m_debug_log('mail_sns::main() missing prefix');
+            m_debug_log('mail.php::m_process_mail() missing prefix');
             return false;
         }
         $to_user = substr($to_user, strlen(MAIL_ADDRESS_PREFIX));

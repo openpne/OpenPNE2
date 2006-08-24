@@ -33,6 +33,12 @@ class mail_sns
             return false;
         }
 
+        if (MAIL_ADDRESS_PREFIX) {
+            if (strpos($to_user, MAIL_ADDRESS_PREFIX) === 0) {
+                $to_user = substr($to_user, strlen(MAIL_ADDRESS_PREFIX));
+            }
+        }
+
         if (!$this->c_member_id) {
             // 送信者がSNSメンバーでない場合
 
