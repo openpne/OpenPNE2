@@ -36,9 +36,20 @@ class ktai_page_c_bbs extends OpenPNE_Action
 
         //コミュニティ
         $c_commu = k_p_c_bbs_c_commu4c_commu_topic_id($target_c_commu_topic_id);
+        $c_commu_id = $c_commu['c_commu_id'];
         $this->set("c_commu", $c_commu);
 
         //--- 権限チェック
+        //コミュニティの存在の有無
+        if (!$c_commu) {
+            handle_kengen_error();
+        }
+
+        //コミュニティ掲示板閲覧権限
+        if (!p_common_is_c_commu_view4c_commu_idAc_member_id($c_commu_id, $u)) {
+            handle_kengen_error();
+        }
+
         //掲示板の閲覧権限 tplでやっている
         $this->set("is_c_commu_view", p_common_is_c_commu_view4c_commu_idAc_member_id($c_commu['c_commu_id'], $u));
         $this->set("is_c_commu_member", _db_is_c_commu_member($c_commu['c_commu_id'], $u));
