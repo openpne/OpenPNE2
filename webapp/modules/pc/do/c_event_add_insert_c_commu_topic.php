@@ -77,8 +77,8 @@ class pc_do_c_event_add_insert_c_commu_topic extends OpenPNE_Action
 
         do_c_event_add_insert_c_event_member_as_admin($c_commu_topic_id, $u);
 
-        $p = array('target_c_commu_id' => $event['c_commu_id']);
-        openpne_redirect('pc', 'page_c_event_list', $p);
+        $p = array('target_c_commu_topic_id' => $c_commu_topic_id);
+        openpne_redirect('pc', 'page_c_event_detail', $p);
     }
 }
 

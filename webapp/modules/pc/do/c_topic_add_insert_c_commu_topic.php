@@ -64,8 +64,8 @@ class pc_do_c_topic_add_insert_c_commu_topic extends OpenPNE_Action
         //お知らせメール送信(PCへ)
         send_bbs_info_mail_pc($insert_id, $u);
 
-        $p = array('target_c_commu_id' => $c_commu_id);
-        openpne_redirect('pc', 'page_c_topic_list', $p);
+        $p = array('target_c_commu_topic_id' => $c_commu_topic_id);
+        openpne_redirect('pc', 'page_c_topic_detail', $p);
     }
 }
 
