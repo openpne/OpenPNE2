@@ -34,7 +34,7 @@ ID：<input type="text" name="target_c_commu_id" value="({$requests.target_c_com
 <td>({$item.c_commu_id})</td>
 <td><a href="({t_url _absolute=1 m=pc a=page_c_home})&amp;target_c_commu_id=({$item.c_commu_id})" target="_blank">({$item.name})</a></td>
 <td><a href="({t_url _absolute=1 m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id_admin})" target="_blank">({$item.c_member_admin.nickname})</a></td>
-<td><a href='?m=({$module_name})&amp;a=do_({$hash_tbl->hash('update_c_commu_is_regist_join')})&amp;target_c_commu_id=({$item.c_commu_id})&amp;value=0&amp;sessid=({$PHPSESSID})'>削除</a></td>
+<td><a href='?m=({$module_name})&amp;a=do_({$hash_tbl->hash('update_c_commu_is_regist_join','do')})&amp;target_c_commu_id=({$item.c_commu_id})&amp;value=0&amp;sessid=({$PHPSESSID})'>削除</a></td>
 </tr>
 ({/if})
 ({foreachelse})

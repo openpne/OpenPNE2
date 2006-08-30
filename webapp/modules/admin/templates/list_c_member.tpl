@@ -107,7 +107,7 @@ function clearAll(){
 <tr>
 <td>({if $item.c_member_id != 1})<input type="checkbox" name="c_member_ids[]" value="({$item.c_member_id})">({else})&nbsp;({/if})</td>
 <td>({if $item.c_member_id != 1})<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('delete_c_member_confirm')})&amp;target_c_member_id=({$item.c_member_id})">強制退会</a>({else})&nbsp;({/if})</td>
-<td><a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('update_is_login_rejected')})&amp;target_c_member_id=({$item.c_member_id})&amp;sessid=({$PHPSESSID})">
+<td><a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('update_is_login_rejected','do')})&amp;target_c_member_id=({$item.c_member_id})&amp;sessid=({$PHPSESSID})">
 ({if $item.is_login_rejected})
 <span class="caution">ログイン停止中</span>
 ({else})

@@ -71,7 +71,7 @@
 <td class="skin_image">
 ({assign var=skinname value=skin_login})
 <a href="({t_img_url_skin filename=$skinname})" target="_blank"><img src="({t_img_url_skin filename=$skinname w=180 h=180})" width="180"></a>
-({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
+({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
 </td>
 </tr>
 <tr>
@@ -103,7 +103,7 @@
 <td class="skin_image">
 ({assign var=skinname value=skin_after_header})
 <a href="({t_img_url_skin filename=$skinname})" target="_blank"><img src="({t_img_url_skin filename=$skinname w=180 h=180})" width="180"></a>
-({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
+({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
 </td>
 </tr>
 <tr>
@@ -129,17 +129,17 @@
 <td class="skin_image">
 ({assign var=skinname value=skin_navi_h})
 <a href="({t_img_url_skin filename=$skinname})" target="_blank"><img src="({t_img_url_skin filename=$skinname w=180 h=180})" width="180"></a>
-({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
+({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
 </td>
 <td class="skin_image">
 ({assign var=skinname value=skin_navi_f})
 <a href="({t_img_url_skin filename=$skinname})" target="_blank"><img src="({t_img_url_skin filename=$skinname w=180 h=180})" width="180"></a>
-({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
+({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
 </td>
 <td class="skin_image">
 ({assign var=skinname value=skin_navi_c})
 <a href="({t_img_url_skin filename=$skinname})" target="_blank"><img src="({t_img_url_skin filename=$skinname w=180 h=180})" width="180"></a>
-({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
+({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
 </td>
 </tr>
 <tr>
@@ -185,7 +185,7 @@
 <td class="skin_image">
 ({assign var=skinname value=icon_search})
 <img src="({t_img_url_skin filename=$skinname})" style="width:62px;height:20px;">
-({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
+({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
 </td>
 </tr>
 <tr>
@@ -209,17 +209,17 @@
 <td class="skin_image">
 ({assign var=skinname value=button_search_1})
 <img src="({t_img_url_skin filename=$skinname})" style="width:62px;height:20px;">
-({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
+({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
 </td>
 <td class="skin_image">
 ({assign var=skinname value=button_search_2})
 <img src="({t_img_url_skin filename=$skinname})" style="width:62px;height:20px;">
-({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
+({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
 </td>
 <td class="skin_image">
 ({assign var=skinname value=button_search_3})
 <img src="({t_img_url_skin filename=$skinname})" style="width:62px;height:20px;">
-({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
+({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
 </td>
 </tr>
 <tr>
@@ -274,17 +274,17 @@
 <td class="skin_image">
 ({assign var=skinname value=birthday_f})
 <a href="({t_img_url_skin filename=$skinname})" target="_blank"><img src="({t_img_url_skin filename=$skinname w=180 h=180})" width="180"></a>
-({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
+({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
 </td>
 <td class="skin_image">
 ({assign var=skinname value=birthday_f_2})
 <a href="({t_img_url_skin filename=$skinname})" target="_blank"><img src="({t_img_url_skin filename=$skinname w=180 h=180})" width="180"></a>
-({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
+({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
 </td>
 <td class="skin_image">
 ({assign var=skinname value=birthday_h})
 <a href="({t_img_url_skin filename=$skinname})" target="_blank"><img src="({t_img_url_skin filename=$skinname w=180 h=180})" width="180"></a>
-({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
+({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
 </td>
 </tr>
 <tr>
@@ -330,7 +330,7 @@
 <td class="skin_image">
 ({assign var=skinname value=icon_information})
 <img src="({t_img_url_skin filename=$skinname})">
-({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
+({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
 </td>
 </tr>
 <tr>
@@ -355,7 +355,7 @@
 <td class="skin_image">
 ({assign var=skinname value=skin_before_header})
 <a href="({t_img_url_skin filename=$skinname})" target="_blank"><img src="({t_img_url_skin filename=$skinname w=180 h=180})" width="180"></a>
-({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
+({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
 </td>
 </tr>
 <tr>
@@ -389,7 +389,7 @@
 <td class="skin_image">
 ({assign var=skinname value=skin_footer})
 <a href="({t_img_url_skin filename=$skinname})" target="_blank"><img src="({t_img_url_skin filename=$skinname w=180 h=180})" width="180"></a>
-({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
+({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
 </td>
 </tr>
 <tr>
@@ -487,17 +487,17 @@
 <td class="skin_image">
 ({assign var=skinname value=button_edit_photo})
 <img src="({t_img_url_skin filename=$skinname})">
-({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
+({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
 </td>
 <td class="skin_image">
 ({assign var=skinname value=button_prof_conf})
 <img src="({t_img_url_skin filename=$skinname})">
-({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
+({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
 </td>
 <td class="skin_image">
 ({assign var=skinname value=button_show_photo})
 <img src="({t_img_url_skin filename=$skinname})">
-({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
+({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
 </td>
 </tr>
 <tr>
@@ -544,17 +544,17 @@
 <td class="skin_image">
 ({assign var=skinname value=button_kyohi})
 <img src="({t_img_url_skin filename=$skinname})">
-({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
+({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
 </td>
 <td class="skin_image">
 ({assign var=skinname value=button_sakujo})
 <img src="({t_img_url_skin filename=$skinname})">
-({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
+({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
 </td>
 <td class="skin_image">
 ({assign var=skinname value=button_shonin})
 <img src="({t_img_url_skin filename=$skinname})">
-({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
+({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
 </td>
 </tr>
 <tr>
@@ -600,7 +600,7 @@
 <td class="skin_image">
 ({assign var=skinname value=button_shosai})
 <img src="({t_img_url_skin filename=$skinname})">
-({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
+({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
 </td>
 </tr>
 <tr>
@@ -634,17 +634,17 @@
 <td class="skin_image">
 ({assign var=skinname value=satisfaction_level_1})
 <img src="({t_img_url_skin filename=$skinname})">
-({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
+({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
 </td>
 <td class="skin_image">
 ({assign var=skinname value=satisfaction_level_2})
 <img src="({t_img_url_skin filename=$skinname})">
-({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
+({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
 </td>
 <td class="skin_image">
 ({assign var=skinname value=satisfaction_level_3})
 <img src="({t_img_url_skin filename=$skinname})">
-({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
+({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
 </td>
 </tr>
 <tr>
@@ -691,12 +691,12 @@
 <td class="skin_image">
 ({assign var=skinname value=satisfaction_level_4})
 <img src="({t_img_url_skin filename=$skinname})">
-({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
+({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
 </td>
 <td class="skin_image">
 ({assign var=skinname value=satisfaction_level_5})
 <img src="({t_img_url_skin filename=$skinname})">
-({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
+({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
 </td>
 </tr>
 <tr>
@@ -740,12 +740,12 @@
 <td class="skin_image">
 ({assign var=skinname value=icon_title_1})
 <img src="({t_img_url_skin filename=$skinname})" style="width:25px;height:19px;">
-({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
+({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
 </td>
 <td class="skin_image">
 ({assign var=skinname value=content_header_1})
 <img src="({t_img_url_skin filename=$skinname})" style="width:30px;height:20px;">
-({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
+({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
 </td>
 </tr>
 <tr>
@@ -780,12 +780,12 @@
 <td class="skin_image">
 ({assign var=skinname value=icon_arrow_1})
 <img src="({t_img_url_skin filename=$skinname})">
-({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
+({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
 </td>
 <td class="skin_image">
 ({assign var=skinname value=icon_arrow_2})
 <img src="({t_img_url_skin filename=$skinname})">
-({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
+({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
 </td>
 </tr>
 <tr>
@@ -822,17 +822,17 @@
 <td class="skin_image">
 ({assign var=skinname value=icon_1})
 <img src="({t_img_url_skin filename=$skinname})">
-({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
+({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
 </td>
 <td class="skin_image">
 ({assign var=skinname value=icon_2})
 <img src="({t_img_url_skin filename=$skinname})">
-({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
+({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
 </td>
 <td class="skin_image">
 ({assign var=skinname value=icon_3})
 <img src="({t_img_url_skin filename=$skinname})">
-({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
+({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
 </td>
 </tr>
 <tr>
@@ -886,17 +886,17 @@
 <td class="skin_image">
 ({assign var=skinname value=icon_alert_l})
 <img src="({t_img_url_skin filename=$skinname})">
-({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
+({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
 </td>
 <td class="skin_image">
 ({assign var=skinname value=icon_crown})
 <img src="({t_img_url_skin filename=$skinname})">
-({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
+({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
 </td>
 <td class="skin_image">
 ({assign var=skinname value=icon_camera})
 <img src="({t_img_url_skin filename=$skinname})">
-({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
+({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
 </td>
 </tr>
 <tr>
@@ -950,17 +950,17 @@
 <td class="skin_image">
 ({assign var=skinname value=icon_birthday})
 <img src="({t_img_url_skin filename=$skinname})">
-({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
+({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
 </td>
 <td class="skin_image">
 ({assign var=skinname value=icon_event_B})
 <img src="({t_img_url_skin filename=$skinname})">
-({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
+({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
 </td>
 <td class="skin_image">
 ({assign var=skinname value=icon_event_R})
 <img src="({t_img_url_skin filename=$skinname})">
-({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
+({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
 </td>
 </tr>
 <tr>
@@ -1007,17 +1007,17 @@
 <td class="skin_image">
 ({assign var=skinname value=icon_pen})
 <img src="({t_img_url_skin filename=$skinname})">
-({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
+({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
 </td>
 <td class="skin_image">
 ({assign var=skinname value=icon_weather_FC})
 <img src="({t_img_url_skin filename=$skinname})">
-({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
+({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
 </td>
 <td class="skin_image">
 ({assign var=skinname value=icon_schedule})
 <img src="({t_img_url_skin filename=$skinname})">
-({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
+({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
 </td>
 </tr>
 <tr>
@@ -1072,17 +1072,17 @@
 <td class="skin_image">
 ({assign var=skinname value=icon_mail_1})
 <img src="({t_img_url_skin filename=$skinname})">
-({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
+({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
 </td>
 <td class="skin_image">
 ({assign var=skinname value=icon_mail_2})
 <img src="({t_img_url_skin filename=$skinname})">
-({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
+({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
 </td>
 <td class="skin_image">
 ({assign var=skinname value=icon_mail_3})
 <img src="({t_img_url_skin filename=$skinname})">
-({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
+({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
 </td>
 </tr>
 <tr>
@@ -1125,7 +1125,7 @@
 <td class="skin_image">
 ({assign var=skinname value=icon_mail_4})
 <img src="({t_img_url_skin filename=$skinname})">
-({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
+({if $skin_list[$skinname]})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
 </td>
 </tr>
 <tr>
