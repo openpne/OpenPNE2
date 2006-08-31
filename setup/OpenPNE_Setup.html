@@ -220,7 +220,7 @@ $ chmod -R 777 var/*
 
 <p>レンタルサーバ等で設定済みの場合は読み飛ばしてください。</p>
 
-<h3 id="section3-1">3-1. Apacheの設定</h2>
+<h3 id="section3-1">3-1. Apacheの設定</h3>
 
 <p>httpd.confを修正し、</p>
 <ul>
@@ -309,8 +309,8 @@ CREATE DATABASE `DBNAME` DEFAULT CHARACTER SET utf8 ;
 <em>[実行例]</em>
 (MySQL4.0以下の場合は --default-character-set=utf8 は不要です)
 <pre>
-$ mysql -u username -p --default-character-set=utf8 DBNAME < install_2_2_create_tables.sql
-$ mysql -u username -p --default-character-set=utf8 DBNAME < install_2_2_insert_data.sql
+$ mysql -u username -p --default-character-set=utf8 DBNAME &lt; install_2_2_create_tables.sql
+$ mysql -u username -p --default-character-set=utf8 DBNAME &lt; install_2_2_insert_data.sql
 </pre>
 </div>
 
