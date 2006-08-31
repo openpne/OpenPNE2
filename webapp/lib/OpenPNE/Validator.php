@@ -314,22 +314,22 @@ class OpenPNE_Validator
         switch (strtolower($rule['type'])) {
         case 'int':
             if (!is_numeric($reqval)) {
-                if (isset($rule['type_error']))
+                if (isset($rule['type_error'])) {
                     $error = $rule['type_error'];
-                else
+                } else {
                     $error = "{$rule['caption']}は数値で入力してください";
-
+                }
                 $this->_setError($key, $error);
                 return false;
             }
             break;
         case 'bool':
             if ($reqval != '0' && $reqval != '1') {
-                if (isset($rule['type_error']))
+                if (isset($rule['type_error'])) {
                     $error = $rule['type_error'];
-                else
+                } else {
                     $error = "{$rule['caption']}の値が不正です";
-
+                }
                 $this->_setError($key, $error);
                 return false;
             }
@@ -338,11 +338,12 @@ class OpenPNE_Validator
             break;
         case 'regexp':
             if (isset($rule['regexp']) && !preg_match($rule['regexp'], $reqval)) {
-                if (isset($rule['type_error']))
+                if (isset($rule['type_error'])) {
                     $error = $rule['type_error'];
-                else
+                } else {
                     $error = "{$rule['caption']}を正しく入力してください";
-                    $this->_setError($key, $error);
+                }
+                $this->_setError($key, $error);
                 return false;
             }
             break;
@@ -357,21 +358,21 @@ class OpenPNE_Validator
         case 'int':
             // min
             if (isset($rule['min']) && $reqval < intval($rule['min'])) {
-                if (isset($rule['min_error']))
+                if (isset($rule['min_error'])) {
                     $error = $rule['min_error'];
-                else
+                } else {
                     $error = "{$rule['caption']}は{$rule['min']}以上の数値で入力してください";
-
+                }
                 $this->_setError($key, $error);
                 return false;
             }
             // max
             if (isset ($rule['max']) && $reqval > $rule['max']) {
-                if (isset($rule['max_error']))
+                if (isset($rule['max_error'])) {
                     $error = $rule['max_error'];
-                else
+                } else {
                     $error = "{$rule['caption']}は{$rule['max']}以下の数値で入力してください";
-
+                }
                 $this->_setError($key, $error);
                 return false;
             }
@@ -380,21 +381,21 @@ class OpenPNE_Validator
         case 'regexp':
             // min
             if (isset($rule['min']) && (mb_strwidth($reqval, 'UTF-8') < $rule['min'])) {
-                if (isset($rule['min_error']))
+                if (isset($rule['min_error'])) {
                     $error = $rule['min_error'];
-                else
+                } else {
                     $error = "{$rule['caption']}は半角{$rule['min']}文字以上で入力してください";
-
+                }
                 $this->_setError($key, $error);
                 return false;
             }
             // max
             if (isset($rule['max']) && (mb_strwidth($reqval, 'UTF-8') > $rule['max'])) {
-                if (isset($rule['max_error']))
+                if (isset($rule['max_error'])) {
                     $error = $rule['max_error'];
-                else
+                } else {
                     $error = "{$rule['caption']}は半角{$rule['max']}文字以内で入力してください";
-
+                }
                 $this->_setError($key, $error);
                 return false;
             }
