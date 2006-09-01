@@ -1202,7 +1202,7 @@
 <td class="border_01 bg_02 padding_s" style="width:332px;border-top:none;">
 
 ({foreach from=$c_blog_list item=item})
-<img src="./skin/dummy.gif" style="width:14px;height:14px;" class="icon icon_2">({$item.r_datetime|date_format:"%m月%d日"})…&nbsp;<a href="({$item.link})">({$item.subject|t_truncate:40})</a><br>
+<img src="./skin/dummy.gif" style="width:14px;height:14px;" class="icon icon_2">({$item.r_datetime|date_format:"%m月%d日"})…&nbsp;<a href="({$item.link})" target="_blank">({$item.subject|t_truncate:40})</a><br>
 ({/foreach})
 
 <!-- ここから：主内容＞最新Blog＞フッターメニュー -->
