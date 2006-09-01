@@ -1,0 +1,15 @@
+ALTER TABLE c_commu ADD INDEX(r_datetime);
+ALTER TABLE c_commu_member ADD INDEX c_commu_id_r_datetime(c_commu_id, r_datetime);
+ALTER TABLE c_diary ADD INDEX c_member_id_r_date(c_member_id, r_date);
+ALTER TABLE c_diary ADD INDEX c_member_id_r_datetime(c_member_id, r_datetime);
+ALTER TABLE c_diary_comment ADD INDEX c_diary_id_r_datetime(c_diary_id, r_datetime);
+ALTER TABLE c_friend ADD INDEX c_member_id_from_c_friend_id(c_member_id_from, c_friend_id);
+ALTER TABLE c_friend ADD INDEX c_member_id_from_r_datetime(c_member_id_from, r_datetime);
+ALTER TABLE c_friend ADD INDEX c_member_id_to_r_datetime_intro(c_member_id_to, r_datetime_intro);
+ALTER TABLE c_member ADD INDEX birth_year_c_member_id(birth_year, c_member_id);
+ALTER TABLE c_member_profile ADD INDEX c_profile_option_id_c_member_id(c_profile_option_id, c_member_id);
+ALTER TABLE c_member_profile ADD INDEX public_flag_c_profile_option_id(public_flag, c_profile_option_id);
+ALTER TABLE c_message ADD INDEX c_member_id_from_r_datetime(c_member_id_from, r_datetime);
+ALTER TABLE c_message ADD INDEX c_member_id_to_r_datetime(c_member_id_to, r_datetime);
+ALTER TABLE c_profile_option ADD INDEX c_profile_id_sort_order(c_profile_id, sort_order);
+ALTER TABLE c_rss_cache ADD INDEX c_member_id_r_datetime(c_member_id, r_datetime);
