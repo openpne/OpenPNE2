@@ -325,8 +325,8 @@
 <input name="c_password_query_answer" type="text" value="" size="20">
 
 <br>
-<font color=red>※保存されている値は表示しません</font><br>
-<font color=red>※値が空の場合は更新しません</font>
+<font color=red>※保存されている値は表示しません。</font><br>
+<font color=red>※値が空の場合は更新しません。</font>
 
 
 </div>

@@ -84,7 +84,7 @@
 <th>外部ログインページURL</th>
 <td><input name="LOGIN_URL_PC" type="text" class="text" value="({$smarty.const.LOGIN_URL_PC})" size="50"><br>
 <span class="caution">
-※通常のログインページを使用する場合は空欄にしておきます<br>
+※通常ログインページを使用する場合は空欄にしておきます<br>
 <br>
 ログアウトした場合やログインに失敗した場合、ここで指定したURLに遷移します<br>
 ここで指定するページには<a href="#form">ログインフォーム</a>を置いておく必要があります</span></td>
@@ -92,12 +92,12 @@
 <tr>
 <th>通常ログインページ<br>表示設定</th>
 <td><select name="DISPLAY_LOGIN">
-<option value="1"({if $smarty.const.DISPLAY_LOGIN}) selected="selected"({/if})>通常のログインページも表示する</option>
+<option value="1"({if $smarty.const.DISPLAY_LOGIN}) selected="selected"({/if})>通常ログインページも表示する</option>
 <option value="0"({if !$smarty.const.DISPLAY_LOGIN}) selected="selected"({/if})>外部ログインページへリダイレクトする</option>
 </select><br>
 <span class="caution">
 ※外部ログインページURLを指定している場合に、<br>
-通常のログインページを表示するかどうかを設定します
+通常ログインページを表示するかどうかを設定します
 </span></td>
 </tr>
 <tr>
@@ -239,7 +239,7 @@
 
 <h3><a name="form">外部ログインフォーム用HTML</a></h3>
 
-<p>通常のログインページ以外の外部ログインページを設定する場合は、<br>
+<p>通常ログインページ以外の外部ログインページを設定する場合は、<br>
 以下のHTMLを使ってログイン用フォームを作成してください。</p>
 
 ({capture name=html_form})

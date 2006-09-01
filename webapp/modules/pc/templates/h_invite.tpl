@@ -101,7 +101,7 @@
 
 <img src="./skin/dummy.gif" class="v_spacer_s">
 <span class="c_01" style="padding:5px;">
-相手のメールアドレス
+友人のメールアドレス
 </span>
 <img src="./skin/dummy.gif" class="v_spacer_s">
 
