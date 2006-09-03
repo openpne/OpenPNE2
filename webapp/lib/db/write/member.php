@@ -154,8 +154,8 @@ function do_h_config_3(
                 $c_password_query_id,
                 $c_password_query_answer,
                 $public_flag_diary,
-                $is_shinobiashi
-){
+                $is_shinobiashi)
+{
     $data = array(
         'is_receive_mail' => (bool)$is_receive_mail,
         'is_receive_daily_news' => intval($is_receive_daily_news),
@@ -225,8 +225,8 @@ function do_common_update_password($c_member_id, $password)
 
 function do_h_config_1(
                 $c_member_id,
-                $pc_address
-){
+                $pc_address)
+{
     $insert_id = 0;
     $session = create_hash();
 
@@ -269,7 +269,7 @@ function do_change_mail($sid,$password)
     $c_member_id = $c_pc_address_pre['c_member_id'];
     $pc_address = $c_pc_address_pre['pc_address'];
 
-    if(!db_common_authenticate_password($c_member_id, $password)) {
+    if (!db_common_authenticate_password($c_member_id, $password)) {
         return false;
     }
 

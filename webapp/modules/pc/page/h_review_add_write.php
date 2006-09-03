@@ -27,7 +27,7 @@ class pc_page_h_review_add_write extends OpenPNE_Action
             exit;
         }
 
-        $this->set('inc_navi',fetch_inc_navi("h"));
+        $this->set('inc_navi', fetch_inc_navi("h"));
         $satisfaction = array(
             "5" => "★★★★★ 5",
             "4" => "★★★★ 4",

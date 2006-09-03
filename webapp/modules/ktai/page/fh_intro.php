@@ -54,7 +54,7 @@ class ktai_page_fh_intro extends OpenPNE_Action
         $this->set('intro_list', $list[0]);
         $this->set('is_prev', $list[1]);
         $this->set('is_next', $list[2]);
-        $this->set('c_members_num',$list[3]);
+        $this->set('c_members_num', $list[3]);
         $this->set('page', $page);
         $pager_index = array(
             'displaying_first' => ($page - 1) * $page_size + 1,

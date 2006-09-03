@@ -20,19 +20,19 @@ class ktai_do_h_config_mail_insert_c_ktai_address_pre extends OpenPNE_Action
 
         //---
 
-        if(!db_common_is_mailaddress($ktai_address)){
+        if (!db_common_is_mailaddress($ktai_address)) {
             // メールアドレスを入力してください
             $p = array('msg' => 12);
             openpne_redirect('ktai', 'page_h_config_mail', $p);
         }
 
-        if(!is_ktai_mail_address($ktai_address)) {
+        if (!is_ktai_mail_address($ktai_address)) {
             // 携帯アドレス以外は指定できません
             $p = array('msg' => 16);
             openpne_redirect('ktai', 'page_h_config_mail', $p);
         }
 
-        if(p_is_sns_join4mail_address($ktai_address)){
+        if (p_is_sns_join4mail_address($ktai_address)) {
             // このアドレスはすでに登録されています
             $p = array('msg' => 17);
             openpne_redirect('ktai', 'page_h_config_mail', $p);

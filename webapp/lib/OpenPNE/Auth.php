@@ -10,7 +10,11 @@ require_once 'Auth.php';
 
 class OpenPNE_Auth
 {
+    /**
+     * @var Auth
+     */
     var $auth;
+
     var $storage;
     var $options;
     var $expire = 0;
@@ -136,16 +140,15 @@ class OpenPNE_Auth
         if (SESSION_SAVE_DB) {
             static $dbsess;
             if (is_null($dbsess)) {
-                require_once 'OpenPNE/DBSession.php';
+                include_once 'OpenPNE/DBSession.php';
                 $dbsess = new OpenPNE_DBSession(db_get_dsn('session'));
             }
-            session_set_save_handler(
-                array(&$dbsess, 'open'),
-                array(&$dbsess, 'close'),
-                array(&$dbsess, 'read'),
-                array(&$dbsess, 'write'),
-                array(&$dbsess, 'destroy'),
-                array(&$dbsess, 'gc'));
+            session_set_save_handler(array(&$dbsess, 'open'),
+                                     array(&$dbsess, 'close'),
+                                     array(&$dbsess, 'read'),
+                                     array(&$dbsess, 'write'),
+                                     array(&$dbsess, 'destroy'),
+                                     array(&$dbsess, 'gc'));
         }
     }
 }

@@ -20,7 +20,7 @@ class ktai_page_c_topic_add extends OpenPNE_Action
 
         //--- 権限チェック
         //コミュニティメンバー
-        if(!_db_is_c_commu_member($c_commu_id, $u)){
+        if (!_db_is_c_commu_member($c_commu_id, $u)) {
             handle_kengen_error();
         }
 

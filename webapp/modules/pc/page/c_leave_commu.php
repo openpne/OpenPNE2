@@ -17,17 +17,17 @@ class pc_page_c_leave_commu extends OpenPNE_Action
         $is_admin  = _db_is_c_commu_admin($target_c_commu_id, $u);
         $is_member = _db_is_c_commu_member($target_c_commu_id, $u);
 
-        if($is_admin){
+        if ($is_admin) {
             $p = array('target_c_commu_id' => $target_c_commu_id);
             openpne_redirect('pc', 'page_c_taikai_err_admin', $p);
         }
 
-        if(!$is_member){
+        if (!$is_member) {
             $p = array('target_c_commu_id' => $target_c_commu_id);
             openpne_redirect('pc', 'page_c_taikai_err_no_member', $p);
         }
 
-        $this->set('inc_navi',fetch_inc_navi("c",$target_c_commu_id));
+        $this->set('inc_navi', fetch_inc_navi("c", $target_c_commu_id));
         $this->set('c_commu', _db_c_commu4c_commu_id($target_c_commu_id));
 
         return 'success';

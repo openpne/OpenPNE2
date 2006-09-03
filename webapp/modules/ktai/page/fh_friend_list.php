@@ -29,12 +29,12 @@ class ktai_page_fh_friend_list extends OpenPNE_Action
         $page_size = 20;
         $page += $direc;
         //ターゲットの詳細な友達リスト
-        $list = k_p_fh_friend_list_friend_list4c_member_id($target_c_member_id,$page_size,$page);
+        $list = k_p_fh_friend_list_friend_list4c_member_id($target_c_member_id, $page_size, $page);
 
         $this->set("target_friend_list", $list[0]);
-        $this->set("page",$page);
-        $this->set("is_prev",$list[1]);
-        $this->set("is_next",$list[2]);
+        $this->set("page", $page);
+        $this->set("is_prev", $list[1]);
+        $this->set("is_next", $list[2]);
 
         $this->set("INC_NAVI_type", k_p_fh_common_get_type($target_c_member_id, $u));
 

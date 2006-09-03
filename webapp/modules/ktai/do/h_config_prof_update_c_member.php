@@ -37,8 +37,8 @@ class ktai_do_h_config_prof_update_c_member extends OpenPNE_Action
         foreach ($profile_list as $profile) {
             if ($profile['disp_config'] &&
                 $profile['is_required'] &&
-                !$c_member_profile_list[$profile['name']]['value'])
-            {
+                !$c_member_profile_list[$profile['name']]['value']
+            ) {
                 $errors[$profile['name']] = "{$profile['caption']}を入力してください";
                 break;
             }

@@ -17,12 +17,12 @@ function smarty_function_t_img_url($params, &$smarty)
     if (!OPENPNE_IMG_CACHE_PUBLIC) {
         $url .= 'img.php';
 
-        require_once 'PHP/Compat/Function/http_build_query.php';
+        include_once 'PHP/Compat/Function/http_build_query.php';
         if ($q = http_build_query($p)) {
             $url .= '?' . htmlspecialchars($q);
         }
     } else {
-        require_once 'OpenPNE/Img.php';
+        include_once 'OpenPNE/Img.php';
         if (!$p['f']) {
             $parts = explode('.', $p['filename']);
             $f = array_pop($parts);

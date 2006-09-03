@@ -24,7 +24,7 @@ function db_ashiato_insert_c_ashiato($c_member_id_to, $c_member_id_from)
     }
 
     // 忍び足
-    if (USE_SHINOBIASHI){
+    if (USE_SHINOBIASHI) {
         if (db_member_is_shinobiashi($c_member_id_from)) {
             return false;
         }

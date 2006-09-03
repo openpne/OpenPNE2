@@ -13,7 +13,7 @@ class ktai_page_o_password_query extends OpenPNE_Action
 
     function execute($requests)
     {
-        $this->set('password_query_list',p_common_c_password_query4null());
+        $this->set('password_query_list', p_common_c_password_query4null());
         return 'success';
     }
 }

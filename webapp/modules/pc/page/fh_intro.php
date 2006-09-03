@@ -28,7 +28,7 @@ class pc_page_fh_intro extends OpenPNE_Action
         } else {
             $type = "f";
         }
-        $this->set('inc_navi',fetch_inc_navi($type, $target_c_member_id));
+        $this->set('inc_navi', fetch_inc_navi($type, $target_c_member_id));
 
         //自分情報
         $this->set("member", db_common_c_member4c_member_id($u));

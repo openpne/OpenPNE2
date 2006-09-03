@@ -166,7 +166,7 @@ class OpenPNE_Img
 
         if ($mtime = filemtime($this->cache_fullpath)) {
             // Etag
-            require_once 'Etag.php';
+            include_once 'Etag.php';
             $etag = new Etag($this->cache_fullpath.$mtime, $mtime);
             if ($etag->etagCheck()) {
                 exit;
@@ -204,7 +204,7 @@ class OpenPNE_Img
      */
     function get_raw_img4db()
     {
-        require_once 'OpenPNE/DB.php';
+        include_once 'OpenPNE/DB.php';
         $db =& new OpenPNE_DB($this->dsn);
 
         $sql = 'SELECT bin, type FROM c_image WHERE filename = ?';

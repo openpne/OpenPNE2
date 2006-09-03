@@ -26,12 +26,12 @@ class pc_page_fh_friend_list extends OpenPNE_Action
         }
 
         // navi 振り分け用
-        if($target_c_member_id == $u) {
+        if ($target_c_member_id == $u) {
             $type = "h";
         } else {
             $type = "f";
         }
-        $this->set('inc_navi',fetch_inc_navi($type, $target_c_member_id));
+        $this->set('inc_navi', fetch_inc_navi($type, $target_c_member_id));
         $this->set("type", $type);
 
         //----------PC CONTENT#LEFT
@@ -53,34 +53,33 @@ class pc_page_fh_friend_list extends OpenPNE_Action
         $page += $direc;
 
         //ターゲットの詳細な友達リスト
-        $list = p_fh_friend_list_friend_list4c_member_id2($target_c_member_id,$page_size,$page,$order);
+        $list = p_fh_friend_list_friend_list4c_member_id2($target_c_member_id, $page_size, $page, $order);
         $this->set("order", $order);
 
         $this->set("target_friend_list_disp", $list[0]);
-        $this->set("page",$page);
-        $this->set("is_prev",$list[1]);
-        $this->set("is_next",$list[2]);
+        $this->set("page", $page);
+        $this->set("is_prev", $list[1]);
+        $this->set("is_next", $list[2]);
 
-        $this->set("start_num",($page-1)*$page_size+1);
+        $this->set("start_num", ($page-1) * $page_size + 1);
 
-        if (($page)*$page_size < $friend_num) {
-            $end_num=($page)*$page_size;
+        if (($page * $page_size) < $friend_num) {
+            $end_num = $page * $page_size;
         } else {
-            $end_num=$friend_num;
+            $end_num = $friend_num;
         }
-        $this->set("end_num",$end_num);
+        $this->set("end_num", $end_num);
 
-        for($i=1;$i<=$list[3];$i++){
-            $page_num[]=$i;
+        for ($i=1; $i <= $list[3]; $i++) {
+            $page_num[] = $i;
         }
-        $this->set("page_num",$page_num);
+        $this->set("page_num", $page_num);
 
         //あしあとをつける
         if ($target_c_member_id != $u) {
             db_ashiato_insert_c_ashiato($target_c_member_id, $u);
         }
 
-        //---- ページ表示 ----//
         return 'success';
     }
 }

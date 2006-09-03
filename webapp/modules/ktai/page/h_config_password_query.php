@@ -10,7 +10,7 @@ class ktai_page_h_config_password_query extends OpenPNE_Action
     {
         $u  = $GLOBALS['KTAI_C_MEMBER_ID'];
 
-        $this->set('password_query_list',p_common_c_password_query4null());
+        $this->set('password_query_list', p_common_c_password_query4null());
         return 'success';
     }
 }

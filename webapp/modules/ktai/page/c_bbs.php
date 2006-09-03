@@ -53,8 +53,8 @@ class ktai_page_c_bbs extends OpenPNE_Action
         //掲示板の閲覧権限 tplでやっている
         $this->set("is_c_commu_view", p_common_is_c_commu_view4c_commu_idAc_member_id($c_commu['c_commu_id'], $u));
         $this->set("is_c_commu_member", _db_is_c_commu_member($c_commu['c_commu_id'], $u));
-        $this->set("is_c_event_member", _db_is_c_event_member($target_c_commu_topic_id,$u));
-        $this->set("is_c_event_admin", _db_is_c_event_admin($target_c_commu_topic_id,$u));
+        $this->set("is_c_event_member", _db_is_c_event_member($target_c_commu_topic_id, $u));
+        $this->set("is_c_event_admin", _db_is_c_event_admin($target_c_commu_topic_id, $u));
 
 
         //ユーザーがコミュニティ管理者かどうか

@@ -54,7 +54,7 @@ class pc_page_fh_delete_comment extends OpenPNE_Action
             $is_diary_admin = false;
         }
 
-        $this->set('inc_navi',fetch_inc_navi($type, $target_c_member_id));
+        $this->set('inc_navi', fetch_inc_navi($type, $target_c_member_id));
         $this->set('is_diary_admin', $is_diary_admin);
 
         $this->set('member', db_common_c_member4c_member_id($u));

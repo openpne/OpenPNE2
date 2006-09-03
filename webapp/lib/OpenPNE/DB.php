@@ -12,8 +12,12 @@ require_once 'DB.php';
  */
 class OpenPNE_DB
 {
-    var $dsn;
+    /**
+     * @var DB_mysql
+     */
     var $db;
+
+    var $dsn;
 
     function OpenPNE_DB($dsn)
     {

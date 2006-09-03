@@ -38,7 +38,7 @@ class ktai_do_h_message_send_insert_message extends OpenPNE_Action
 
         $c_member_id_from = $u;
 
-        do_common_send_message($c_member_id_from, $target_c_member_id, $subject,$body);
+        do_common_send_message($c_member_id_from, $target_c_member_id, $subject, $body);
 
         openpne_redirect('ktai', 'page_h_message_box');
     }

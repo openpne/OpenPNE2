@@ -88,8 +88,7 @@ function _do_delete_c_message4c_message_id($c_message_id, $c_member_id)
         );
         db_update('c_message', $data, $where);
         return true;
-    }
-    elseif ($message['c_member_id_from'] == $c_member_id) {
+    } elseif ($message['c_member_id_from'] == $c_member_id) {
         // 送信メッセージ
         $data = array(
             'is_deleted_from' => 1,

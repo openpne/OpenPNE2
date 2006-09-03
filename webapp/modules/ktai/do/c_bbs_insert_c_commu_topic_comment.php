@@ -42,9 +42,9 @@ class ktai_do_c_bbs_insert_c_commu_topic_comment extends OpenPNE_Action
         $insert_id = do_c_bbs_insert_c_commu_topic_comment($u, $target_c_commu_topic_id, $body);
 
         //イベントのメンバーに追加
-        if($requests['join_event']){
+        if ($requests['join_event']) {
             do_c_event_add_insert_c_event_member($target_c_commu_topic_id, $u);
-        }elseif($requests['cancel_event']){
+        } elseif ($requests['cancel_event']) {
             do_c_event_add_delete_c_event_member($target_c_commu_topic_id, $u);
         }
 

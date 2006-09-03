@@ -42,7 +42,7 @@ class ktai_do_f_link_request_insert_c_friend_confirm extends OpenPNE_Action
             openpne_redirect('ktai', 'page_f_link_request', $p);
         }
 
-        db_friend_insert_c_friend_confirm($c_member_id_from,$target_c_member_id,$body);
+        db_friend_insert_c_friend_confirm($c_member_id_from, $target_c_member_id, $body);
 
 
         //メッセージ

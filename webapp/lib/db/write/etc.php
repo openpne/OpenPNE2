@@ -80,8 +80,7 @@ function db_common_delete_c_member($c_member_id)
         if (!_db_count_c_commu_member_list4c_commu_id($c_commu['c_commu_id'])) {
             // コミュニティ削除
             db_common_delete_c_commu($c_commu['c_commu_id']);
-        }
-        else {
+        } else {
             // 管理者交代
             // 参加日時が一番古い人
             $sql = 'SELECT c_member_id FROM c_commu_member WHERE c_commu_id = ?'.

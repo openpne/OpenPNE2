@@ -40,7 +40,7 @@ class pc_page_fh_comment_list extends OpenPNE_Action
                 openpne_redirect('pc', 'page_h_access_block');
             }
         }
-        $this->set('inc_navi',fetch_inc_navi($type, $target_c_member_id));
+        $this->set('inc_navi', fetch_inc_navi($type, $target_c_member_id));
 
         //c_member_id から自分の日記についてるコメントIDリストを取得
         $target_c_diary_comment_id = p_fh_diary_c_diary_comment_id_list4c_member_id($target_c_member_id);

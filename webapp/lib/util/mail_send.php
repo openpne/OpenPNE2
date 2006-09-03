@@ -257,7 +257,7 @@ function send_bbs_info_mail($c_commu_topic_comment_id, $c_member_id)
     list($subject, $body) = $tpl;
 
     $lst  = db_common_receive_ktai_address_list4c_commu_id($c_commu_id);
-    foreach($lst as $target_c_member_id => $ktai_address) {
+    foreach ($lst as $target_c_member_id => $ktai_address) {
         if (MAIL_ADDRESS_HASHED) {
             $from = "t{$c_commu_topic_id}-".t_get_user_hash($target_c_member_id).'@'.MAIL_SERVER_DOMAIN;
         } else {
@@ -312,8 +312,8 @@ function do_common_send_daily_news()
 
     foreach ($list as $key => $value) {
         if ($value['is_receive_daily_news'] == 1 ||
-            ($value['is_receive_daily_news']==2 && $send_2_flag))
-        {
+            ($value['is_receive_daily_news'] == 2 && $send_2_flag)) {
+
             $date = date("Y. n. j");
             $c_member_id = $value['c_member_id'];
             print "c_member_id=".$c_member_id."<br>\n";
@@ -325,7 +325,7 @@ function do_common_send_daily_news()
                 'c_member' => db_common_c_member4c_member_id($c_member_id),
                 'date'     => $date,
                 'ashiato_num' => p_h_ashiato_c_ashiato_num4c_member_id($c_member_id),
-                'diary_friend_list' => p_h_home_c_diary_friend_list4c_member_id($c_member_id,5),
+                'diary_friend_list' => p_h_home_c_diary_friend_list4c_member_id($c_member_id, 5),
                 'c_commu_topic_comment_list'
                                     => p_h_home_c_commu_topic_comment_list4c_member_id($c_member_id, 5),
                 'daily_news_head' => p_common_c_siteadmin4target_pagename('daily_news_head'),
@@ -341,10 +341,10 @@ function do_common_send_birthday_mail()
 {
     $birth_list = do_common_c_member_list4birthday_mail();
 
-    foreach($birth_list as $birth_member) {
+    foreach ($birth_list as $birth_member) {
         $friend_list = do_common_c_friend_list4c_member_id($birth_member['c_member_id']);
 
-        foreach($friend_list as $friend) {
+        foreach ($friend_list as $friend) {
             if ($friend['is_receive_mail']) {
 
                 $c_member_secure = db_common_c_member_secure4c_member_id($friend['c_member_id']);

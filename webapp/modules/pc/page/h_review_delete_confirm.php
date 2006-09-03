@@ -15,9 +15,10 @@ class pc_page_h_review_delete_confirm extends OpenPNE_Action
         $asin = $requests['asin'];
         // ----------
 
-        $this->set('inc_navi',fetch_inc_navi("h"));
+        $this->set('inc_navi', fetch_inc_navi("h"));
         $this->set('c_review_comment_id', $c_review_comment_id);
         $this->set('asin', $asin);
+
         return 'success';
     }
 }

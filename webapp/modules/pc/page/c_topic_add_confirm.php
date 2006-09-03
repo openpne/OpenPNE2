@@ -24,7 +24,7 @@ class pc_page_c_topic_add_confirm extends OpenPNE_Action
         // ----------
 
         //--- 権限チェック
-        if(!p_common_is_c_commu_view4c_commu_idAc_member_id($c_commu_id,$u)){
+        if (!p_common_is_c_commu_view4c_commu_idAc_member_id($c_commu_id, $u)) {
             handle_kengen_error();
         }
         //---
@@ -66,7 +66,7 @@ class pc_page_c_topic_add_confirm extends OpenPNE_Action
         $tmpfile2 = t_image_save2tmp($upfile_obj2, $sessid, "t_2");
         $tmpfile3 = t_image_save2tmp($upfile_obj3, $sessid, "t_3");
 
-        $this->set('inc_navi',fetch_inc_navi("c",$c_commu_id));
+        $this->set('inc_navi', fetch_inc_navi("c", $c_commu_id));
         $c_topic = array(
             'c_commu_id' => $c_commu_id,
             'title'      => $title,

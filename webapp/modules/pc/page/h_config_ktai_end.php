@@ -16,7 +16,7 @@ class pc_page_h_config_ktai_end extends OpenPNE_Action
 
         $u = $GLOBALS['AUTH']->uid();
 
-        $this->set('inc_navi',fetch_inc_navi("h"));
+        $this->set('inc_navi', fetch_inc_navi("h"));
 
         $this->set('SNS_NAME', SNS_NAME);
 

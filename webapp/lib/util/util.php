@@ -83,7 +83,7 @@ function openpne_gen_url($module, $action = '', $params = array(), $absolute = t
         unset($p['ssl_param']);
     }
 
-    require_once 'PHP/Compat/Function/http_build_query.php';
+    include_once 'PHP/Compat/Function/http_build_query.php';
     if ($q = http_build_query($p)) {
         $url .= '?' . $q;
     }
@@ -234,7 +234,7 @@ function &get_crypt_blowfish()
 {
     static $singleton;
     if (empty($singleton)) {
-        require_once 'Crypt/Blowfish.php';
+        include_once 'Crypt/Blowfish.php';
         $singleton = new Crypt_Blowfish(ENCRYPT_KEY);
     }
     return $singleton;
@@ -320,7 +320,6 @@ function util_get_c_navi($navi_type = 'h')
             array('url' => '?m=pc&a=page_h_diary_list_all', 'caption' => '最新日記'),
             array('url' => '?m=pc&a=page_h_ranking', 'caption' => 'ランキング'),
             array('url' => '?m=pc&a=page_h_config', 'caption' => '設定変更'),
-//            array('url' => '?m=pc&a=do_inc_page_header_logout', 'caption' => 'ログアウト'),
         );
         break;
     case 'h':
@@ -384,7 +383,7 @@ function t_checkdate($month, $day, $year)
  */
 function t_isFutureDate($day, $month, $year)
 {
-    require_once 'Date/Calc.php';
+    include_once 'Date/Calc.php';
     return Date_Calc::isFutureDate(intval($day), intval($month), intval($year));
 }
 
@@ -394,7 +393,7 @@ function &get_cache_lite_function()
 {
     static $instance;
     if (empty($instance)) {
-        require_once 'Cache/Lite/Function.php';
+        include_once 'Cache/Lite/Function.php';
         $options = array(
             'cacheDir' => OPENPNE_VAR_DIR . '/function_cache/',
             'hashedDirectoryLevel' => 2,

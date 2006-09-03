@@ -33,10 +33,10 @@ class ktai_page_fh_com_list extends OpenPNE_Action
 
         $list = k_p_fh_com_list_c_commu_list4c_member_id($target_c_member_id, $page_size, $page);
 
-        $this->set("c_commu_list",$list[0]);
+        $this->set("c_commu_list", $list[0]);
         $this->set("page", $page);
-        $this->set("is_prev",$list[1]);
-        $this->set("is_next",$list[2]);
+        $this->set("is_prev", $list[1]);
+        $this->set("is_next", $list[2]);
 
         // 参加コミュニティ数
         $this->set("count_commus", $list[3]);

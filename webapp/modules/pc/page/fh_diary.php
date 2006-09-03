@@ -54,7 +54,7 @@ class pc_page_fh_diary extends OpenPNE_Action
         }
         $this->set("type", $type);
 
-        $this->set('inc_navi',fetch_inc_navi($type, $target_c_member_id));
+        $this->set('inc_navi', fetch_inc_navi($type, $target_c_member_id));
 
         $this->set("member", db_common_c_member4c_member_id($u));
 
@@ -88,7 +88,7 @@ class pc_page_fh_diary extends OpenPNE_Action
         $this->set("ym", $calendar['ym']);
 
         //各月の日記
-        $this->set("date_list",p_fh_diary_list_date_list4c_member_id($target_c_member_id));
+        $this->set("date_list", p_fh_diary_list_date_list4c_member_id($target_c_member_id));
 
         return 'success';
     }

@@ -14,7 +14,7 @@ require_once 'OpenPNE/Validator.php';
 class OpenPNE_Validator_Common
 {
     /**
-     * @var object OpenPNE_Validator
+     * @var OpenPNE_Validator
      * @access public
      */
     var $validator;

@@ -15,15 +15,15 @@ class pc_page_h_diary_list_friend extends OpenPNE_Action
         $page = $requests['page'];
         // ----------
 
-        $this->set('inc_navi',fetch_inc_navi("h"));
+        $this->set('inc_navi', fetch_inc_navi("h"));
 
 
         //日記一覧
         $page = $page + $direc;
         $page_size = 50;
-        $this->set("page_size",$page_size);
+        $this->set("page_size", $page_size);
 
-        $lst = p_h_diary_list_friend_h_diary_list_friend4c_member_id($u,$page_size,$page,30);
+        $lst = p_h_diary_list_friend_h_diary_list_friend4c_member_id($u, $page_size, $page, 30);
         $this->set("h_diary_list_friend", $lst[0]);
         $this->set("is_prev", $lst[1]);
         $this->set("is_next", $lst[2]);

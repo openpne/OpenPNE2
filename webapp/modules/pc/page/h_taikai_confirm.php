@@ -14,7 +14,7 @@ class pc_page_h_taikai_confirm extends OpenPNE_Action
             openpne_redirect('pc', 'page_h_config');
         }
 
-        $this->set('inc_navi',fetch_inc_navi("h"));
+        $this->set('inc_navi', fetch_inc_navi("h"));
         return 'success';
     }
 }

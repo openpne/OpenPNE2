@@ -46,22 +46,22 @@ function p_h_home_c_friend_review_list_more4c_member_id($c_member_id, $page, $pa
             " and cf.c_member_id_from = ?";
     $total_num = db_get_one($sql, $params);
 
-    if($total_num != 0){
-        $total_page_num =  ceil($total_num / $page_size);
-        if($page >= $total_page_num){
+    if ($total_num != 0) {
+        $total_page_num = ceil($total_num / $page_size);
+        if ($page >= $total_page_num) {
             $next = false;
-        }else{
+        } else {
             $next = true;
         }
-        if($page <= 1){
+        if ($page <= 1) {
             $prev = false;
-        }else{
+        } else {
             $prev = true;
         }
     }
 
     $start_num = ($page - 1) * $page_size + 1 ;
-    $end_num =   ($page - 1) * $page_size + $page_size > $total_num ? $total_num : ($page - 1) * $page_size + $page_size ;
+    $end_num   = ($page - 1) * $page_size + $page_size > $total_num ? $total_num : ($page - 1) * $page_size + $page_size ;
 
     return array($list, $prev, $next, $total_num, $start_num, $end_num);
 }
@@ -91,8 +91,8 @@ function p_h_review_add_search_result($keyword, $category_id, $page)
         return null;
     }
 
-    require_once 'Services/Amazon.php';
-    $amazon =& new Services_Amazon(AMAZON_TOKEN, AMAZON_AFFID, AMAZON_LOCALE,AMAZON_BASEURL);
+    include_once 'Services/Amazon.php';
+    $amazon =& new Services_Amazon(AMAZON_TOKEN, AMAZON_AFFID, AMAZON_LOCALE, AMAZON_BASEURL);
     $products = $amazon->searchKeyword($keyword, $category, $page);
     if (PEAR::isError($products)) {
         return null;
@@ -125,15 +125,17 @@ function p_h_review_add_search_result($keyword, $category_id, $page)
 
 function p_h_review_write_product4asin($asin)
 {
-    require_once 'Services/Amazon.php';
-    $amazon =& new Services_Amazon(AMAZON_TOKEN, AMAZON_AFFID, AMAZON_LOCALE,AMAZON_BASEURL);
-    $keyword = mb_convert_encoding($keyword ,"UTF-8", "auto");
+    include_once 'Services/Amazon.php';
+    $amazon =& new Services_Amazon(AMAZON_TOKEN, AMAZON_AFFID, AMAZON_LOCALE, AMAZON_BASEURL);
+    $keyword = mb_convert_encoding($keyword, "UTF-8", "auto");
 
     $result = $amazon->searchAsin($asin);
     $product  =$result[1];
-    if($result[1]['authors']) $product['author'] = implode(',', $result[1]['authors']);
+    if ($result[1]['authors']) {
+        $product['author'] = implode(',', $result[1]['authors']);
+    }
 
-    foreach($product as $key => $value){
+    foreach ($product as $key => $value) {
         $product[$key] = mb_convert_encoding($value, 'UTF-8', 'auto');
     }
 
@@ -182,7 +184,7 @@ function p_h_review_search_result4keyword_category($keyword, $category_id , $ord
     $lst = db_get_all_page($sql, $page, $page_size, $params);
 
     //$lstに書き込み数を追加 + レビュー書き込み内容と日付を追加
-    foreach($lst as $key => $value){
+    foreach ($lst as $key => $value) {
         $sql = "SELECT body FROM c_review_comment" .
             " WHERE c_review_id = ?" .
             " ORDER BY r_datetime DESC";
@@ -195,20 +197,20 @@ function p_h_review_search_result4keyword_category($keyword, $category_id , $ord
 
     if ($total_num != 0) {
         $total_page_num =  ceil($total_num / $page_size);
-        if($page >= $total_page_num){
+        if ($page >= $total_page_num) {
             $next = false;
-        }else{
+        } else {
             $next = true;
         }
-        if($page <= 1){
+        if ($page <= 1) {
             $prev = false;
-        }else{
+        } else {
             $prev = true;
         }
     }
 
     $start_num = ($page - 1) * $page_size + 1 ;
-    $end_num =   ($page - 1) * $page_size + $page_size > $total_num ? $total_num : ($page - 1) * $page_size + $page_size ;
+    $end_num   = ($page - 1) * $page_size + $page_size > $total_num ? $total_num : ($page - 1) * $page_size + $page_size ;
 
     return array($lst, $prev, $next, $total_num, $start_num, $end_num);
 }
@@ -234,22 +236,22 @@ function p_h_review_list_product_c_review_list4c_review_id($c_review_id, $page, 
     $sql = "select count(*) from c_review_comment where c_review_id = ?";
     $total_num = db_get_one($sql, $params);
 
-    if($total_num != 0){
+    if ($total_num != 0) {
         $total_page_num =  ceil($total_num / $page_size);
-        if($page >= $total_page_num){
+        if ($page >= $total_page_num) {
             $next = false;
-        }else{
+        } else {
             $next = true;
         }
-        if($page <= 1){
+        if ($page <= 1) {
             $prev = false;
-        }else{
+        } else {
             $prev = true;
         }
     }
 
     $start_num = ($page - 1) * $page_size + 1 ;
-    $end_num =   ($page - 1) * $page_size + $page_size > $total_num ? $total_num : ($page - 1) * $page_size + $page_size ;
+    $end_num   = ($page - 1) * $page_size + $page_size > $total_num ? $total_num : ($page - 1) * $page_size + $page_size ;
 
     return array($list, $prev, $next, $total_num, $start_num, $end_num);
 }
@@ -270,12 +272,12 @@ function p_fh_review_list_product_c_review_list4c_member_id($c_member_id, $page,
             " group by c_review_id ";
     $temp = db_get_all($sql);
     $write_num = array();
-    foreach($temp as $key => $value){
+    foreach ($temp as $key => $value) {
         $write_num[$value['c_review_id']] = $value['num'];
     }
 
     //$lstに書き込み数を追加
-    foreach($list as $key => $value){
+    foreach ($list as $key => $value) {
         $list[$key]['write_num'] = $write_num[$value['c_review_id']];
     }
 
@@ -283,22 +285,22 @@ function p_fh_review_list_product_c_review_list4c_member_id($c_member_id, $page,
     $params = array(intval($c_member_id));
     $total_num = db_get_one($sql, $params);
 
-    if($total_num != 0){
+    if ($total_num != 0) {
         $total_page_num =  ceil($total_num / $page_size);
-        if($page >= $total_page_num){
+        if ($page >= $total_page_num) {
             $next = false;
-        }else{
+        } else {
             $next = true;
         }
-        if($page <= 1){
+        if ($page <= 1) {
             $prev = false;
-        }else{
+        } else {
             $prev = true;
         }
     }
 
     $start_num = ($page - 1) * $page_size + 1 ;
-    $end_num =   ($page - 1) * $page_size + $page_size > $total_num ? $total_num : ($page - 1) * $page_size + $page_size ;
+    $end_num   = ($page - 1) * $page_size + $page_size > $total_num ? $total_num : ($page - 1) * $page_size + $page_size ;
 
     return array($list, $prev, $next, $total_num, $start_num, $end_num);
 }
@@ -327,7 +329,7 @@ function p_h_review_clip_list_h_review_clip_list4c_member_id($c_member_id, $page
             " group by c_review_id ";
     $temp = db_get_all($sql);
     $write_num = array();
-    foreach($temp as $key => $value){
+    foreach ($temp as $key => $value) {
         $write_num[$value['c_review_id']] = $value['num'];
     }
 
@@ -335,7 +337,7 @@ function p_h_review_clip_list_h_review_clip_list4c_member_id($c_member_id, $page
     $category_disp = p_h_review_add_category_disp();
 
     //$lstに書き込み数 + カテゴリ名　を追加
-    foreach($list as $key => $value){
+    foreach ($list as $key => $value) {
         $list[$key]['write_num'] = $write_num[$value['c_review_id']];
         $list[$key]['category_disp'] = $category_disp[$value['c_review_category_id']];
     }
@@ -344,22 +346,22 @@ function p_h_review_clip_list_h_review_clip_list4c_member_id($c_member_id, $page
     $params = array(intval($c_member_id));
     $total_num = db_get_one($sql, $params);
 
-    if($total_num != 0){
+    if ($total_num != 0) {
         $total_page_num =  ceil($total_num / $page_size);
-        if($page >= $total_page_num){
+        if ($page >= $total_page_num) {
             $next = false;
-        }else{
+        } else {
             $next = true;
         }
-        if($page <= 1){
+        if ($page <= 1) {
             $prev = false;
-        }else{
+        } else {
             $prev = true;
         }
     }
 
     $start_num = ($page - 1) * $page_size + 1 ;
-    $end_num =   ($page - 1) * $page_size + $page_size > $total_num ? $total_num : ($page - 1) * $page_size + $page_size ;
+    $end_num   = ($page - 1) * $page_size + $page_size > $total_num ? $total_num : ($page - 1) * $page_size + $page_size ;
 
     return array($list, $prev, $next, $total_num, $start_num, $end_num);
 }
@@ -378,22 +380,22 @@ function p_c_member_review_c_member_review4c_commu_id($c_commu_id, $page, $page_
     $sql = "select count(*) from c_commu_review where c_commu_id = ?";
     $total_num = db_get_one($sql, $params);
 
-    if($total_num != 0){
-        $total_page_num =  ceil($total_num / $page_size);
-        if($page >= $total_page_num){
+    if ($total_num != 0) {
+        $total_page_num = ceil($total_num / $page_size);
+        if ($page >= $total_page_num) {
             $next = false;
-        }else{
+        } else {
             $next = true;
         }
-        if($page <= 1){
+        if ($page <= 1) {
             $prev = false;
-        }else{
+        } else {
             $prev = true;
         }
     }
 
     $start_num = ($page - 1) * $page_size + 1 ;
-    $end_num =   ($page - 1) * $page_size + $page_size > $total_num ? $total_num : ($page - 1) * $page_size + $page_size ;
+    $end_num   = ($page - 1) * $page_size + $page_size > $total_num ? $total_num : ($page - 1) * $page_size + $page_size ;
 
     return array($list, $prev, $next, $total_num, $start_num, $end_num);
 }

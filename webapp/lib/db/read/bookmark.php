@@ -14,7 +14,7 @@ function p_h_bookmark_list($c_member_id, $page, $page_size)
     $params = array(intval($c_member_id));
     $lst = db_get_all_page($sql, $page, $page_size, $params);
 
-    foreach($lst as $key => $value){
+    foreach ($lst as $key => $value) {
         $lst[$key]['profile'] = db_common_c_member_profile_list4c_member_id($value['c_member_id']);
         $lst[$key]['last_login'] = p_f_home_last_login4access_date($value['access_date']);
     }
@@ -121,7 +121,7 @@ function db_bookmark_diary_list_with_pager($c_member_id, $page_size, $page)
 
     $sql = 'SELECT * FROM c_diary WHERE c_member_id IN (' . $ids . ') ORDER BY r_datetime DESC';
     $diary_list = db_get_all_page($sql, intval($page), intval($page_size));
-    foreach($diary_list as $key => $value) {
+    foreach ($diary_list as $key => $value) {
         $diary_list[$key]['c_member'] = db_common_c_member4c_member_id_LIGHT($value['c_member_id']);
         $diary_list[$key]['count_comments'] = db_diary_count_c_diary_comment4c_diary_id($value['c_diary_id']);
     }
@@ -156,7 +156,7 @@ function db_bookmark_member_list($c_member_id, $limit = 0)
 
     if ($limit) {
         $result = db_get_all_limit($sql, 0, intval($limit), $params);
-    }else{
+    } else {
         $result = db_get_all($sql, $params);
     }
 

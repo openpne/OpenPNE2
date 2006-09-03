@@ -70,7 +70,7 @@ function p_h_message_box_c_message_received_list4c_member_id4range($c_member_id,
     $params = array(intval($c_member_id));
     $c_message_list = db_get_all_page($sql, $page, $page_size, $params);
 
-    foreach($c_message_list as $key => $value) {
+    foreach ($c_message_list as $key => $value) {
         $c_member = db_common_c_member4c_member_id_LIGHT($value['c_member_id_from']);
         $c_message_list[$key]['nickname'] = $c_member['nickname'];
         $c_message_list[$key]['image_filename'] = $c_member['image_filename'];
@@ -109,7 +109,7 @@ function p_h_message_box_c_message_sent_list4c_member_id4range($c_member_id, $pa
     $params = array(intval($c_member_id));
     $c_message_list = db_get_all_page($sql, $page, $page_size, $params);
 
-    foreach($c_message_list as $key => $value) {
+    foreach ($c_message_list as $key => $value) {
         $c_member = db_common_c_member4c_member_id_LIGHT($value['c_member_id_to']);
         $c_message_list[$key]['nickname'] = $c_member['nickname'];
         $c_message_list[$key]['image_filename'] = $c_member['image_filename'];
@@ -149,7 +149,7 @@ function p_h_message_box_c_message_save_list4c_member_id4range($c_member_id, $pa
     $params = array(intval($c_member_id));
     $c_message_list = db_get_all_page($sql, $page, $page_size, $params);
 
-    foreach($c_message_list as $key => $value) {
+    foreach ($c_message_list as $key => $value) {
         $c_member = db_common_c_member4c_member_id_LIGHT($value['c_member_id_to']);
         $c_message_list[$key]['nickname'] = $c_member['nickname'];
         $c_message_list[$key]['image_filename'] = $c_member['image_filename'];
@@ -165,14 +165,14 @@ function p_h_message_box_c_message_save_list4c_member_id4range($c_member_id, $pa
         } else {
             $next = true;
         }
-        if ($page <= 1){
+        if ($page <= 1) {
             $prev = false;
         } else {
             $prev = true;
         }
     }
 
-    return array($c_message_list , $prev , $next);
+    return array($c_message_list, $prev, $next);
 }
 
 /**
@@ -211,7 +211,7 @@ function p_h_message_box_c_message_trash_list4c_member_id4range($c_member_id, $p
         }
     }
 
-    foreach($c_message_list as $key => $value) {
+    foreach ($c_message_list as $key => $value) {
         if ($value['c_member_id_to'] == $c_member_id) {
             $c_member = db_common_c_member4c_member_id_LIGHT($value['c_member_id_from']);
         } else {
@@ -221,7 +221,7 @@ function p_h_message_box_c_message_trash_list4c_member_id4range($c_member_id, $p
         $c_message_list[$key]['image_filename'] = $c_member['image_filename'];
     }
 
-    return array($c_message_list , $prev , $next);
+    return array($c_message_list, $prev, $next);
 }
 
 /**
@@ -248,7 +248,7 @@ function k_p_h_message_box_c_message_received_list4c_member_id4range($c_member_i
     $params = array(intval($c_member_id));
     $c_message_list = db_get_all_page($sql, $page, $page_size, $params);
 
-    foreach($c_message_list as $key => $value) {
+    foreach ($c_message_list as $key => $value) {
         $c_member = db_common_c_member4c_member_id_LIGHT($value['c_member_id_from']);
         $c_message_list[$key]['nickname'] = $c_member['nickname'];
     }
@@ -259,21 +259,21 @@ function k_p_h_message_box_c_message_received_list4c_member_id4range($c_member_i
             " AND is_send = 1";
     $total_num = db_get_one($sql, $params);
 
-    if($total_num != 0){
-        $total_page_num =  ceil($total_num / $page_size);
-        if($page >= $total_page_num){
+    if ($total_num != 0) {
+        $total_page_num = ceil($total_num / $page_size);
+        if ($page >= $total_page_num) {
             $next = false;
-        }else{
+        } else {
             $next = true;
         }
-        if($page <= 1){
+        if ($page <= 1) {
             $prev = false;
-        }else{
+        } else {
             $prev = true;
         }
     }
 
-    return array($c_message_list , $prev , $next, $total_num);
+    return array($c_message_list, $prev, $next, $total_num);
 }
 
 function k_p_h_message_box_c_message_sent_list4c_member_id4range($c_member_id, $page_size, $page)
@@ -286,7 +286,7 @@ function k_p_h_message_box_c_message_sent_list4c_member_id4range($c_member_id, $
     $params = array(intval($c_member_id));
     $c_message_list = db_get_all_page($sql, $page, $page_size, $params);
 
-    foreach($c_message_list as $key => $value) {
+    foreach ($c_message_list as $key => $value) {
         $c_member = db_common_c_member4c_member_id_LIGHT($value['c_member_id_to']);
         $c_message_list[$key]['nickname'] = $c_member['nickname'];
     }
@@ -297,21 +297,21 @@ function k_p_h_message_box_c_message_sent_list4c_member_id4range($c_member_id, $
             " AND is_send = 1";
     $total_num = db_get_one($sql, $params);
 
-    if($total_num != 0){
+    if ($total_num != 0){
         $total_page_num =  ceil($total_num / $page_size);
-        if($page >= $total_page_num){
+        if ($page >= $total_page_num) {
             $next = false;
-        }else{
+        } else {
             $next = true;
         }
-        if($page <= 1){
+        if ($page <= 1) {
             $prev = false;
-        }else{
+        } else {
             $prev = true;
         }
     }
 
-    return array($c_message_list , $prev , $next, $total_num);
+    return array($c_message_list, $prev, $next, $total_num);
 }
 
 /**

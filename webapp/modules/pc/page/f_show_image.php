@@ -18,7 +18,7 @@ class pc_page_f_show_image extends OpenPNE_Action
             openpne_redirect('pc', 'page_h_access_block');
         }
 
-        $this->set('inc_navi',fetch_inc_navi("f", $target_c_member_id));
+        $this->set('inc_navi', fetch_inc_navi("f", $target_c_member_id));
         $this->set("u", $u);
 
         //メンバー情報

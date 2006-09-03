@@ -17,9 +17,9 @@ class ktai_page_h_com_comment_list extends OpenPNE_Action
 
         $page = $page + $direc;
         $page_size = 10;
-        $this->set("page_size",$page_size);
+        $this->set("page_size", $page_size);
 
-        $lst = k_p_h_home_c_commu_topic_comment_list4c_member_id($u,$page_size,$page);
+        $lst = k_p_h_home_c_commu_topic_comment_list4c_member_id($u, $page_size, $page);
         $this->set("h_com_comment_list", $lst[0]);
         $this->set("is_prev", $lst[1]);
         $this->set("is_next", $lst[2]);

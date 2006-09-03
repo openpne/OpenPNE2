@@ -48,7 +48,7 @@ class ktai_page_fh_diary extends OpenPNE_Action
         $c_diary = db_diary_get_c_diary4id($target_c_diary_id);
         $this->set("target_c_diary", $c_diary);
         //自分で日記を見たとき
-        if($c_diary['c_member_id'] == $u){
+        if ($c_diary['c_member_id'] == $u) {
             //日記を閲覧済みにする
             db_diary_update_c_diary_is_checked($target_c_diary_id, 1);
         }

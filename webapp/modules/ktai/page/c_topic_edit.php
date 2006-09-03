@@ -40,8 +40,8 @@ class ktai_page_c_topic_edit extends OpenPNE_Action
             $c_topic['name'] = $title;
             $c_topic['body'] = $body;
         }
-        $this->set('err_msg',$err_msg);
-        $this->set('c_topic',$c_topic);
+        $this->set('err_msg', $err_msg);
+        $this->set('c_topic', $c_topic);
         return 'success';
     }
 }

@@ -12,7 +12,9 @@ require_once 'OpenPNE/KtaiMail.php';
  */
 class OpenPNE_KtaiMail_RPC extends OpenPNE_KtaiMail
 {
-    /** @var assign XML_RPCが取得したパラメータ配列 */
+    /**
+     * @var array XML_RPCが取得したパラメータ配列
+     */
     var $rpc_value;
 
     /**

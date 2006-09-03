@@ -26,7 +26,7 @@ class ktai_page_h_com_category extends OpenPNE_Action
         $this->set("search_word", $search_word);
 
         //カテゴリ内のコミュニティリスト
-        $list= k_p_h_com_category_c_commu_list4c_commu_category_id_search($target_c_commu_category_id ,$page_size, $page, $search_word);
+        $list= k_p_h_com_category_c_commu_list4c_commu_category_id_search($target_c_commu_category_id, $page_size, $page, $search_word);
         $this->set("c_commu_list", $list[0]);
         $this->set("is_prev", $list[1]);
         $this->set("is_next", $list[2]);

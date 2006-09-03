@@ -45,7 +45,7 @@ class pc_page_fh_diary_list extends OpenPNE_Action
             //あしあとをつける
             db_ashiato_insert_c_ashiato($target_c_member_id, $u);
         }
-        $this->set('inc_navi',fetch_inc_navi($type, $target_c_member_id));
+        $this->set('inc_navi', fetch_inc_navi($type, $target_c_member_id));
         $this->set('type', $type);
 
         $page += $direc;

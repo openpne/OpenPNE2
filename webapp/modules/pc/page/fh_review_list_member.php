@@ -23,10 +23,10 @@ class pc_page_fh_review_list_member extends OpenPNE_Action
         $page_size = 30;
         $page = $page + $direc;
 
-        if(!$c_member_id){
+        if (!$c_member_id) {
             $c_member_id = $u;
             $type = "h";
-        } elseif($c_member_id == $u) {
+        } elseif ($c_member_id == $u) {
             $type = "h";
         } else {
             $type = "f";
@@ -45,7 +45,7 @@ class pc_page_fh_review_list_member extends OpenPNE_Action
         $this->set('end_num', $end_num);
         $this->set('type', $type);
 
-        $this->set('inc_navi',fetch_inc_navi($type,$c_member_id));
+        $this->set('inc_navi', fetch_inc_navi($type, $c_member_id));
         return 'success';
     }
 }

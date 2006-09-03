@@ -28,8 +28,8 @@ class ktai_do_c_topic_edit_update_c_commu_topic extends OpenPNE_Action
         $c_topic = c_topic_detail_c_topic4c_commu_topic_id($c_commu_topic_id);
         $c_commu_id = $c_topic['c_commu_id'];
 
-        if (!_db_is_c_topic_admin($c_commu_topic_id,$u) &&
-            !_db_is_c_commu_admin($c_commu_id, $u)){
+        if (!_db_is_c_topic_admin($c_commu_topic_id, $u) &&
+            !_db_is_c_commu_admin($c_commu_id, $u)) {
             handle_kengen_error();
         }
         //---
@@ -43,7 +43,7 @@ class ktai_do_c_topic_edit_update_c_commu_topic extends OpenPNE_Action
         $update_c_commu_topic_comment = array(
             'body' => $body,
         );
-        do_c_event_edit_update_c_commu_topic_comment($c_commu_topic_id,$update_c_commu_topic_comment);
+        do_c_event_edit_update_c_commu_topic_comment($c_commu_topic_id, $update_c_commu_topic_comment);
 
         $p = array('target_c_commu_topic_id' => $c_commu_topic_id);
         openpne_redirect('ktai', 'page_c_bbs', $p);

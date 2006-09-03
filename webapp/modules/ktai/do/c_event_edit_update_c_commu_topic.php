@@ -25,27 +25,39 @@ class ktai_do_c_event_edit_update_c_commu_topic extends OpenPNE_Action
         //--- 権限チェック
         //イベント管理者 or コミュニティ管理者
 
-        if(!_db_is_c_event_admin($c_commu_topic_id,$u) &&
-            !_db_is_c_commu_admin($event['c_commu_id'], $u)){
+        if (!_db_is_c_event_admin($c_commu_topic_id,$u) &&
+            !_db_is_c_commu_admin($event['c_commu_id'], $u)) {
             handle_kengen_error();
         }
         //---
 
         //エラーチェック
-        if (!trim($event['title']))  $err_msg[] = "タイトルを入力してください";
-        if(!trim($event['detail']))  $err_msg[] = "詳細を入力してください";
+        if (!trim($event['title'])) {
+            $err_msg[] = "タイトルを入力してください";
+        }
+        if (!trim($event['detail'])) {
+            $err_msg[] = "詳細を入力してください";
+        }
 
-        if(!$event['open_date_month'] || !$event['open_date_day'] || !$event['open_date_year'])  $err_msg[] = "開催日時を入力してください";
-        elseif(!t_checkdate($event['open_date_month'],$event['open_date_day'],$event['open_date_year'])) $err_msg[] = "開催日時は存在しません";
-        elseif(mktime(0,0,0,$event['open_date_month'],$event['open_date_day'],$event['open_date_year']) < mktime(0,0,0)) $err_msg[] = "開催日時は過去に指定できません";
+        if (!$event['open_date_month'] || !$event['open_date_day'] || !$event['open_date_year']) {
+            $err_msg[] = "開催日時を入力してください";
+        } elseif (!t_checkdate($event['open_date_month'], $event['open_date_day'], $event['open_date_year'])) {
+            $err_msg[] = "開催日時は存在しません";
+        } elseif (mktime(0, 0, 0, $event['open_date_month'], $event['open_date_day'], $event['open_date_year']) < mktime(0, 0, 0)) {
+            $err_msg[] = "開催日時は過去に指定できません";
+        }
 
-        if($event['invite_period_month'].$event['invite_period_day'].$event['invite_period_year'] != ""){
-            if(!$event['invite_period_month'] || !$event['invite_period_day'] || !$event['invite_period_year'])  $err_msg[] = "募集期限は存在しません";
-            elseif(!t_checkdate($event['invite_period_month'],$event['invite_period_day'],$event['invite_period_year'])) $err_msg[] = "募集期限は存在しません";
-            elseif(mktime (0,0,0,$event['invite_period_month'],$event['invite_period_day'],$event['invite_period_year']) < mktime(0,0,0)) $err_msg[] = "募集期限は過去に指定できません";
-            elseif(mktime (0,0,0,$event['open_date_month'],$event['open_date_day'],$event['open_date_year'])
-                    <mktime (0,0,0,$event['invite_period_month'],$event['invite_period_day'],$event['invite_period_year']))
-                    $err_msg[] = "募集期限は開催日時より未来に指定できません";
+        if ($event['invite_period_month'].$event['invite_period_day'].$event['invite_period_year'] != "") {
+            if (!$event['invite_period_month'] || !$event['invite_period_day'] || !$event['invite_period_year']) {
+                $err_msg[] = "募集期限は存在しません";
+            } elseif (!t_checkdate($event['invite_period_month'], $event['invite_period_day'], $event['invite_period_year'])) {
+                $err_msg[] = "募集期限は存在しません";
+            } elseif (mktime(0, 0, 0, $event['invite_period_month'], $event['invite_period_day'], $event['invite_period_year']) < mktime(0, 0, 0)) {
+                $err_msg[] = "募集期限は過去に指定できません";
+            } elseif (mktime(0, 0, 0, $event['open_date_month'], $event['open_date_day'], $event['open_date_year'])
+                      < mktime (0, 0, 0, $event['invite_period_month'], $event['invite_period_day'], $event['invite_period_year'])) {
+                $err_msg[] = "募集期限は開催日時より未来に指定できません";
+            }
         }
 
         if ($err_msg) {
@@ -71,7 +83,7 @@ class ktai_do_c_event_edit_update_c_commu_topic extends OpenPNE_Action
         $update_c_commu_topic_comment = array(
             'body' => $event['detail'],
         );
-        do_c_event_edit_update_c_commu_topic_comment($c_commu_topic_id,$update_c_commu_topic_comment);
+        do_c_event_edit_update_c_commu_topic_comment($c_commu_topic_id, $update_c_commu_topic_comment);
 
         $p = array('target_c_commu_topic_id' => $c_commu_topic_id);
         openpne_redirect('ktai', 'page_c_bbs', $p);

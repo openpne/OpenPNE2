@@ -18,9 +18,9 @@ class pc_page_f_link_request_err_already extends OpenPNE_Action
             openpne_redirect('pc', 'page_h_access_block');
         }
 
-        $this->set('inc_navi',fetch_inc_navi("f",$target_c_member_id));
+        $this->set('inc_navi', fetch_inc_navi("f", $target_c_member_id));
 
-        $this->set('target_member', db_common_c_member4c_member_id_LIGHT($target_c_member_id) );
+        $this->set('target_member', db_common_c_member4c_member_id_LIGHT($target_c_member_id));
 
         return 'success';
     }

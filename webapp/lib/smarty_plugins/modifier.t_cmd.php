@@ -19,7 +19,7 @@ function _smarty_modifier_t_cmd_make_js($matches)
     $args = $matches[2];
 
     $_args = explode(',', $args);
-    $arg_str = "'" . implode("','",$_args) . "'";
+    $arg_str = "'" . implode("','", $_args) . "'";
 
     $result = <<<EOD
 <script type="text/javascript" src="js/{$src}.js"></script>

@@ -29,7 +29,7 @@ function db_diary_get_c_diary_list4c_member_id($target_c_member_id, $count = 10)
     $sql = 'SELECT * FROM c_diary WHERE c_member_id = ? ORDER BY r_datetime DESC';
     $params = array(intval($target_c_member_id));
     $arr = db_get_all_limit($sql, 0, $count, $params);
-    foreach($arr as $key => $value) {
+    foreach ($arr as $key => $value) {
         $arr[$key]['comment_count'] = db_diary_count_c_diary_comment4c_diary_id($value['c_diary_id']);
     }
     return $arr;
@@ -93,17 +93,17 @@ function db_diary_get_c_diary_comment_list4id_list($id_list, $page = 1, $page_si
         ' WHERE c_diary_comment_id IN ('.$e_id_list.')';
     $total_num = db_get_one($sql);
 
-    if($total_num != 0){
-        $total_page_num =  ceil($total_num / $page_size);
-        if($page >= $total_page_num){
+    if ($total_num != 0) {
+        $total_page_num = ceil($total_num / $page_size);
+        if ($page >= $total_page_num) {
             $next = false;
-        }else{
+        } else {
             $next = true;
         }
 
-        if($page <= 1){
+        if ($page <= 1) {
             $prev = false;
-        }else{
+        } else {
             $prev = true;
         }
     }
@@ -139,28 +139,28 @@ function p_fh_diary_list_diary_list4c_member_id($c_member_id, $page_size, $page)
     $params = array(intval($c_member_id));
     $list = db_get_all_page($sql, $page, $page_size, $params);
 
-    foreach($list as $key => $c_diary) {
+    foreach ($list as $key => $c_diary) {
         $list[$key]['num_comment'] = db_diary_count_c_diary_comment4c_diary_id($c_diary['c_diary_id']);
     }
 
     $sql = 'SELECT COUNT(*) FROM c_diary WHERE c_member_id = ?';
     $total_num = db_get_one($sql, $params);
 
-    if($total_num != 0){
+    if ($total_num != 0) {
         $total_page_num =  ceil($total_num / $page_size);
-        if($page >= $total_page_num){
+        if ($page >= $total_page_num) {
             $next = false;
-        }else{
+        } else {
             $next = true;
         }
 
-        if($page <= 1){
+        if ($page <= 1) {
             $prev = false;
-        }else{
+        } else {
             $prev = true;
         }
     }
-    return array($list , $prev , $next);
+    return array($list, $prev, $next);
 }
 
 /**
@@ -175,11 +175,11 @@ function p_h_diary_list_friend_h_diary_list_friend4c_member_id($c_member_id, $pa
             " AND c_diary.r_datetime > ?";
     $params = array(intval($c_member_id), $last_week);
 
-    $sql = "SELECT c_diary.* FROM c_diary, c_friend WHERE {$where}" .
+    $sql = "SELECT c_diary.* FROM c_diary, c_friend WHERE " . $where .
             " ORDER BY c_diary.r_datetime DESC";
     $lst = db_get_all_page($sql, $page, $page_size, $params);
 
-    foreach($lst as $key=>$value) {
+    foreach ($lst as $key=>$value) {
         $lst[$key]['count_comments'] = db_diary_count_c_diary_comment4c_diary_id($value['c_diary_id']);
         $lst[$key]['c_member'] = db_common_c_member4c_member_id($value['c_member_id']);
     }
@@ -187,22 +187,22 @@ function p_h_diary_list_friend_h_diary_list_friend4c_member_id($c_member_id, $pa
     $sql = 'SELECT count(*) FROM c_diary, c_friend WHERE ' . $where;
     $total_num = db_get_one($sql, $params);
 
-    if($total_num != 0){
+    if ($total_num != 0) {
         $total_page_num =  ceil($total_num / $page_size);
-        if($page >= $total_page_num){
+        if ($page >= $total_page_num) {
             $next = false;
-        }else{
+        } else {
             $next = true;
         }
 
-        if($page <= 1){
+        if ($page <= 1) {
             $prev = false;
-        }else{
+        } else {
             $prev = true;
         }
     }
 
-    return array($lst , $prev , $next, $total_num);
+    return array($lst, $prev, $next, $total_num);
 }
 
 /**
@@ -247,7 +247,7 @@ function p_h_home_c_diary_friend_list4c_member_id($c_member_id, $limit)
             ' ORDER BY r_datetime DESC';
     $c_diary_friend_list = db_get_all_limit($sql, 0, $limit);
 
-    foreach($c_diary_friend_list as $key => $value) {
+    foreach ($c_diary_friend_list as $key => $value) {
         $c_member = db_common_c_member4c_member_id_LIGHT($value['c_member_id']);
         $c_diary_friend_list[$key]['nickname'] = $c_member['nickname'];
         $c_diary_friend_list[$key]['count_comments'] = db_diary_count_c_diary_comment4c_diary_id($value['c_diary_id']);
@@ -330,11 +330,11 @@ function p_h_diary_comment_list_c_diary_my_comment_list4c_member_id($c_member_id
 function p_fh_diary_list_diary_list_date4c_member_id($c_member_id, $year, $month, $day=0)
 {
     if ($day) {
-        $s_date = date('Y-m-d H:i:s', mktime(0,0,0,$month,$day,$year));
-        $e_date = date('Y-m-d H:i:s', mktime(0,0,0,$month,$day+1,$year));
+        $s_date = date('Y-m-d H:i:s', mktime(0, 0, 0, $month, $day, $year));
+        $e_date = date('Y-m-d H:i:s', mktime(0, 0, 0, $month, $day+1, $year));
     } else {
-        $s_date = date('Y-m-d H:i:s', mktime(0,0,0,$month,1,$year));
-        $e_date = date('Y-m-d H:i:s', mktime(0,0,0,$month+1,1,$year));
+        $s_date = date('Y-m-d H:i:s', mktime(0, 0, 0, $month, 1, $year));
+        $e_date = date('Y-m-d H:i:s', mktime(0, 0, 0, $month+1, 1, $year));
     }
 
     $sql = 'SELECT * FROM c_diary' .
@@ -371,7 +371,7 @@ function p_fh_diary_list_date_list4c_member_id($c_member_id)
     $date = array();
     $year = $start_date['year'];
     $month = $start_date['mon'];
-    while(1) {
+    while (1) {
         $date[] =  array(
             'year' => $year,
             'month' => $month,
@@ -383,7 +383,7 @@ function p_fh_diary_list_date_list4c_member_id($c_member_id)
         }
 
         $month++;
-        if($month > 12){
+        if ($month > 12) {
             $month = 1;
             $year++;
         }
@@ -575,7 +575,7 @@ function k_p_fh_diary_c_diary_comment_list4c_diary_id($c_diary_id, $page_size, $
     $params = array(intval($c_diary_id));
     $c_diary_comment_list = db_get_all_page($sql, $page, $page_size, $params);
 
-    foreach($c_diary_comment_list as $key => $value) {
+    foreach ($c_diary_comment_list as $key => $value) {
         $c_member = db_common_c_member4c_member_id_LIGHT($value['c_member_id']);
         $c_diary_comment_list[$key]['nickname'] = $c_member['nickname'];
     }
@@ -637,20 +637,20 @@ function k_p_h_diary_list_friend_h_diary_list_friend4c_member_id($c_member_id, $
 
     if ($total_num != 0) {
         $total_page_num =  ceil($total_num / $page_size);
-        if($page >= $total_page_num){
+        if ($page >= $total_page_num) {
             $next = false;
-        }else{
+        } else {
             $next = true;
         }
 
-        if($page <= 1){
+        if ($page <= 1) {
             $prev = false;
-        }else{
+        } else {
             $prev = true;
         }
     }
 
-    return array($lst , $prev , $next, $total_num);
+    return array($lst, $prev, $next, $total_num);
 }
 
 ?>

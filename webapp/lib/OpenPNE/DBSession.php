@@ -9,6 +9,9 @@ require_once 'OpenPNE/DB/Writer.php';
 
 class OpenPNE_DBSession
 {
+    /**
+     * @var OpenPNE_DB_Writer
+     */
     var $db;
 
     function OpenPNE_DBSession($dsn)

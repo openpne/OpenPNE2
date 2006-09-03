@@ -14,7 +14,7 @@ function db_friend_insert_c_friend($c_member_id_from, $c_member_id_to)
     if (($c_member_id_from < 1) || ($c_member_id_to < 1))
         return false;
 
-    if (db_friend_is_friend($c_member_id_from,$c_member_id_to))
+    if (db_friend_is_friend($c_member_id_from, $c_member_id_to))
         return false;
 
     $data = array(

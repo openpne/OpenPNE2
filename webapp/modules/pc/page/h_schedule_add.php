@@ -9,7 +9,7 @@ class pc_page_h_schedule_add extends OpenPNE_Action
     function execute($requests)
     {
         $u = $GLOBALS['AUTH']->uid();
-        $this->set('inc_navi',fetch_inc_navi('h'));
+        $this->set('inc_navi', fetch_inc_navi('h'));
 
         // --- リクエスト変数
         $year = $requests['year'];
@@ -46,13 +46,13 @@ class pc_page_h_schedule_add extends OpenPNE_Action
 
         $month_list = array();
         for ($i=1; $i <= 12; $i++) {
-           $month_list[$i] = $i;
+            $month_list[$i] = $i;
         }
         $this->set('month_list', $month_list);
 
         $day_list = array();
         for ($i=1; $i <= 31; $i++) {
-           $day_list[$i] = $i;
+            $day_list[$i] = $i;
         }
         $this->set('day_list', $day_list);
 

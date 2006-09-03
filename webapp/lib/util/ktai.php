@@ -62,7 +62,7 @@ function k_p_common_msg4msg_id($msg_id)
  */
 function isKtaiUserAgent()
 {
-    require_once 'OpenPNE/KtaiUA.php';
+    include_once 'OpenPNE/KtaiUA.php';
     $ktaiUA = new OpenPNE_KtaiUA();
     return $ktaiUA->is_ktai();
 }
@@ -98,7 +98,7 @@ function k_p_h_message_ktai_url4url($str, $tail)
         $str = preg_replace($pat, "", $str);
     }
     $pat = '|https?://.+page.php\?p=(f_home.+target_c_member_id=\d+)$|';
-    if (preg_match($pat, $str,$matches)) {
+    if (preg_match($pat, $str, $matches)) {
         if (!empty($matches[1])) {
             $friend_url = OPENPNE_URL."?m=ktai&a=page_".$matches[1]."&$tail";
         }
@@ -114,7 +114,7 @@ function k_p_h_message_ktai_url4url($str, $tail)
         $str = preg_replace($pat, "", $str);
     }
     $pat = '|https?://.+\?m=pc(&a=page_f_home.+target_c_member_id=\d+)$|';
-    if (preg_match($pat, $str,$matches)) {
+    if (preg_match($pat, $str, $matches)) {
         if (!empty($matches[1])) {
             $friend_url = OPENPNE_URL."?m=ktai".$matches[1]."&$tail";
         }

@@ -64,7 +64,7 @@ function get_request_var($key)
 /**
  * openpne_forward
  *
- * @param string $module a requested module neme.
+ * @param string $module a requested module name.
  * @param string $type request type. 'page' or 'do'
  * @param string $action requested page/command name.
  * @param array  $errors error message strings.

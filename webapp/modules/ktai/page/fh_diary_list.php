@@ -25,7 +25,7 @@ class ktai_page_fh_diary_list extends OpenPNE_Action
         $target_c_member = db_common_c_member4c_member_id($target_c_member_id);
         // フレンドにしか公開していない
         if ($target_c_member['public_flag_diary'] == "friend" &&
-            !db_friend_is_friend($u,$target_c_member_id) &&
+            !db_friend_is_friend($u, $target_c_member_id) &&
             $target_c_member_id != $u) {
 
             ktai_display_error('この日記にはアクセスできません');
@@ -38,12 +38,12 @@ class ktai_page_fh_diary_list extends OpenPNE_Action
         $page_size = 10;
         $page += $direc;
         //ターゲットの詳細な日記リスト
-        $list = k_p_fh_diary_list_c_diary_list4c_member_id($target_c_member_id,$page_size,$page);
+        $list = k_p_fh_diary_list_c_diary_list4c_member_id($target_c_member_id, $page_size, $page);
 
         $this->set("target_diary_list", $list[0]);
-        $this->set("page",$page);
-        $this->set("is_prev",$list[1]);
-        $this->set("is_next",$list[2]);
+        $this->set("page", $page);
+        $this->set("is_prev", $list[1]);
+        $this->set("is_next", $list[2]);
 
         //f or h
         $this->set("INC_NAVI_type", k_p_fh_common_get_type($target_c_member_id, $u));

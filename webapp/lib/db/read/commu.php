@@ -186,9 +186,9 @@ function p_common_is_c_commu_view4c_commu_idAc_member_id($c_commu_id,$c_member_i
         $ret = true;
         break;
     case "auth_commu_member":
-        if( $is_c_commu_member ){
+        if ($is_c_commu_member) {
             $ret = true;
-        }else{
+        } else {
             $ret = false;
         }
         break;
@@ -287,7 +287,7 @@ function p_fh_com_list_c_commu_list4c_member_id($c_member_id, $page, $page_size)
     $params = array(intval($c_member_id));
     $c_commu_list = db_get_all_page($sql, $page, $page_size, $params);
 
-    foreach($c_commu_list as $key => $value) {
+    foreach ($c_commu_list as $key => $value) {
         $c_commu_list[$key]['count_members'] =
             _db_count_c_commu_member_list4c_commu_id($value['c_commu_id']);
     }
@@ -349,7 +349,7 @@ function p_c_edit_member_c_member_list4c_commu_id($c_commu_id, $page_size, $page
     $list = db_get_all_page($sql, $page, $page_size, $params);
 
     $new_list = array();
-    foreach($list as $key => $value){
+    foreach ($list as $key => $value) {
         $new_list[] = $value;
     }
     $list = $new_list;
@@ -360,9 +360,9 @@ function p_c_edit_member_c_member_list4c_commu_id($c_commu_id, $page_size, $page
 
     if ($c_commu_admin_confirm) {
         foreach ($list as $key => $c_member) {
-            if( $list[$key]['c_member_id'] == $c_commu_admin_confirm['c_member_id_to']){
+            if ($list[$key]['c_member_id'] == $c_commu_admin_confirm['c_member_id_to']) {
                 $list[$key]['c_commu_admin_confirm_id'] = $c_commu_admin_confirm['c_commu_admin_confirm_id'];
-            }else{
+            } else {
                 $list[$key]['c_commu_admin_confirm_id'] = 0;
             }
         }
@@ -373,29 +373,29 @@ function p_c_edit_member_c_member_list4c_commu_id($c_commu_id, $page_size, $page
     }
 
     foreach ($list as $key => $c_member) {
-        $list[$key]['is_c_commu_admin'] = _db_is_c_commu_admin( $c_commu_id , $list[$key]['c_member_id'] );
+        $list[$key]['is_c_commu_admin'] = _db_is_c_commu_admin($c_commu_id, $list[$key]['c_member_id']);
     }
 
     $sql = "select count(*) from c_commu_member where c_commu_id = ?";
     $params = array(intval($c_commu_id));
     $total_num = db_get_one($sql, $params);
 
-       if($total_num != 0){
-           $total_page_num =  ceil($total_num / $page_size);
-           if($page >= $total_page_num){
-               $next = false;
-           }else{
-               $next = true;
-           }
+    if ($total_num != 0) {
+        $total_page_num = ceil($total_num / $page_size);
+        if ($page >= $total_page_num) {
+            $next = false;
+        } else {
+            $next = true;
+        }
 
-           if($page <= 1){
-               $prev = false;
-           }else{
-               $prev = true;
-           }
-       }
+        if ($page <= 1) {
+            $prev = false;
+        } else {
+            $prev = true;
+        }
+    }
 
-       return array($list , $prev , $next);
+    return array($list, $prev, $next);
 }
 
 /**
@@ -459,7 +459,7 @@ function p_c_invite_invite_list4c_member_id4c_commu_id($c_member_id, $c_commu_id
     if (empty($result)) {
         return null;
     } else {
-        $result = implode ( ",", $result);
+        $result = implode(",", $result);
 
         $sql = 'SELECT c_member_id, nickname '
             . ' FROM c_member'
@@ -486,15 +486,15 @@ function p_c_member_list_c_members4c_commu_id($c_commu_id, $page_size, $page)
     $sql = 'SELECT COUNT(*) FROM c_commu_member WHERE c_commu_id = ?';
     $total_num = db_get_one($sql, $params);
 
-    if($total_num != 0) {
-        $total_page_num =  ceil($total_num / $page_size);
-        if($page >= $total_page_num) {
+    if ($total_num != 0) {
+        $total_page_num = ceil($total_num / $page_size);
+        if ($page >= $total_page_num) {
             $next = false;
         } else {
             $next = true;
         }
 
-        if($page <= 1) {
+        if ($page <= 1) {
             $prev = false;
         } else {
             $prev = true;
@@ -502,7 +502,7 @@ function p_c_member_list_c_members4c_commu_id($c_commu_id, $page_size, $page)
     }
 
     $start_num = ($page - 1) * $page_size + 1 ;
-    $end_num =   ($page - 1) * $page_size + $page_size > $total_num ? $total_num : ($page - 1) * $page_size + $page_size ;
+    $end_num   = ($page - 1) * $page_size + $page_size > $total_num ? $total_num : ($page - 1) * $page_size + $page_size ;
 
     return array($list , $prev , $next, $total_num, $start_num, $end_num);
 }
@@ -517,7 +517,7 @@ function p_f_home_c_commu_list4c_member_id($c_member_id, $limit = 9)
     $params = array(intval($c_member_id));
     $lst = db_get_all_limit($sql, 0, $limit, $params);
 
-    foreach($lst as $key => $value) {
+    foreach ($lst as $key => $value) {
         $lst[$key]['count_commu_member'] = _db_count_c_commu_member_list4c_commu_id($value['c_commu_id']);
     }
     return $lst;
@@ -747,9 +747,9 @@ function p_h_home_c_commu_list4c_member_id($c_member_id, $limit)
     $params = array(intval($c_member_id));
     $c_commu_list = db_get_all_limit($sql, 0, $limit, $params);
 
-    foreach($c_commu_list as $key => $value) {
+    foreach ($c_commu_list as $key => $value) {
         $c_commu_list[$key]['count_commu_members'] =
-        _db_count_c_commu_member_list4c_commu_id($value['c_commu_id']);
+            _db_count_c_commu_member_list4c_commu_id($value['c_commu_id']);
     }
     return $c_commu_list;
 }
@@ -760,11 +760,11 @@ function p_c_topic_list_c_topic_list4target_c_commu_id($c_commu_id, $c_member_id
             " from c_commu_topic as cct, c_commu_topic_comment as cctc " .
             " where cct.c_commu_topic_id = cctc.c_commu_topic_id ";
 
-            if ($topic_with_event){
-                $sql .= " and cct.event_flag = $event_flag";
-            }
+    if ($topic_with_event) {
+        $sql .= " and cct.event_flag = $event_flag";
+    }
 
-            $sql .= " and cct.c_commu_id = ?" .
+    $sql .= " and cct.c_commu_id = ?" .
             " group by c_commu_topic_id " .
             " order by newest_write_datetime desc";
     $params = array(intval($c_commu_id));
@@ -786,13 +786,13 @@ function p_c_topic_list_c_topic_list4target_c_commu_id($c_commu_id, $c_member_id
             "group by c_commu_topic_id ";
     $lst2 = db_get_all($sql);
     $write_num = array();
-    foreach($lst2 as $key => $value){
+    foreach ($lst2 as $key => $value) {
         $write_num[$value['c_commu_topic_id']] = $value['num'];
     }
 
     foreach ($lst as $key => $value) {
-        $lst[$key]['is_c_event_member'] = _db_is_c_event_member($value['c_commu_topic_id'],$c_member_id);
-        $lst[$key]['is_c_topic_admin'] = _db_is_c_topic_admin($value['c_commu_topic_id'],$c_member_id);
+        $lst[$key]['is_c_event_member'] = _db_is_c_event_member($value['c_commu_topic_id'], $c_member_id);
+        $lst[$key]['is_c_topic_admin'] = _db_is_c_topic_admin($value['c_commu_topic_id'], $c_member_id);
         $lst[$key]['write_num'] = $write_num[$value['c_commu_topic_id']];
     }
 
@@ -805,21 +805,21 @@ function p_c_topic_list_c_topic_list4target_c_commu_id($c_commu_id, $c_member_id
     $params = array(intval($c_commu_id));
     $total_num = db_get_one($sql, $params);
 
-    if($total_num != 0){
-        $total_page_num =  ceil($total_num / $page_size);
-        if($page >= $total_page_num){
+    if ($total_num != 0) {
+        $total_page_num = ceil($total_num / $page_size);
+        if ($page >= $total_page_num) {
             $next = false;
-        }else{
+        } else {
             $next = true;
         }
-        if($page <= 1){
+        if ($page <= 1) {
             $prev = false;
-        }else{
+        } else {
             $prev = true;
         }
     }
     $start_num = ($page - 1) * $page_size + 1 ;
-    $end_num =   ($page - 1) * $page_size + $page_size > $total_num ? $total_num : ($page - 1) * $page_size + $page_size ;
+    $end_num   = ($page - 1) * $page_size + $page_size > $total_num ? $total_num : ($page - 1) * $page_size + $page_size ;
 
     return array($lst, $prev, $next, $total_num, $start_num, $end_num);
 }
@@ -951,33 +951,29 @@ function _do_c_commu_member_confirm4c_commu_member_confirm_id($c_commu_member_co
 }
 
 //TODO:constant
-define('STATUS_C_JOIN_REQUEST_FREE',    "1");//コミュニティ参加(承認必要なし)
-define('STATUS_C_JOIN_REQUEST_NEED',    "2");//コミュニティ参加(承認必要)
-define('STATUS_C_JOIN_WAIT',            "3");//コミュニティ参加(承認待ち)
-define('STATUS_C_JOIN_ALREADY',         "4");//コミュニティ参加(既に参加)
+define('STATUS_C_JOIN_REQUEST_FREE', "1"); //コミュニティ参加(承認必要なし)
+define('STATUS_C_JOIN_REQUEST_NEED', "2"); //コミュニティ参加(承認必要)
+define('STATUS_C_JOIN_WAIT', "3"); //コミュニティ参加(承認待ち)
+define('STATUS_C_JOIN_ALREADY', "4"); //コミュニティ参加(既に参加)
 
 function do_common_get_c_join_status($c_member_id,$c_commu_id)
 {
-    $is_c_commu_member      = _db_is_c_commu_member($c_commu_id, $c_member_id);
-    $is_wait                = do_common_is_c_commu_join_wait($c_commu_id, $c_member_id);
-    $c_commu                = _db_c_commu4c_commu_id($c_commu_id);
-    $is_join_request_free   = false;
-    if( $c_commu['public_flag'] == "public" ){
-        $is_join_request_free   = true;
+    $is_c_commu_member = _db_is_c_commu_member($c_commu_id, $c_member_id);
+    $is_wait = do_common_is_c_commu_join_wait($c_commu_id, $c_member_id);
+    $c_commu = _db_c_commu4c_commu_id($c_commu_id);
+    $is_join_request_free = false;
+    if ($c_commu['public_flag'] == "public") {
+        $is_join_request_free = true;
     }
 
     $ret = STATUS_C_JOIN_ALREADY;
-    //メンバーである
-    if( $is_c_commu_member == true ){
-    }
-    //メンバーで無い
-    else{
-        if($is_wait == true){
+    if (!$is_c_commu_member) { //メンバーで無い
+        if ($is_wait == true) {
             $ret = STATUS_C_JOIN_WAIT;
-        }else{
-            if( $is_join_request_free == true ){
+        } else {
+            if ($is_join_request_free) {
                 $ret = STATUS_C_JOIN_REQUEST_FREE;
-            }else{
+            } else {
                 $ret = STATUS_C_JOIN_REQUEST_NEED;
             }
         }
@@ -1021,7 +1017,7 @@ function k_p_h_home_c_commu_list_lastupdate4c_member_id($c_member_id, $limit)
     $params = array(intval($c_member_id));
     $c_commu_list = db_get_all_limit($sql, 0, $limit, $params);
 
-    foreach($c_commu_list as $key => $value) {
+    foreach ($c_commu_list as $key => $value) {
         $c_commu_list[$key]['count_members'] =
             _db_count_c_commu_member_list4c_commu_id($value['c_commu_id']);
     }
@@ -1074,8 +1070,8 @@ function k_p_c_bbs_c_commu_topic_comment_list4c_c_commu_topic_id($c_commu_topic_
     $params = array(intval($c_commu_topic_id));
     $list = db_get_all_page($sql, $page, $page_size, $params);
 
-    foreach($list as $key => $value){
-        if($list[$key]['c_member_id'] == $c_member_id){
+    foreach ($list as $key => $value) {
+        if ($list[$key]['c_member_id'] == $c_member_id) {
             $list[$key]['is_c_commu_topic_comment_admin'] = true;
         }
     }
@@ -1126,7 +1122,7 @@ function k_p_c_bbs_is_admin4c_member_id_c_commu_topic_id($c_member_id, $c_commu_
     $params = array(intval($c_commu_id));
     $c_commu_id_admin = db_get_one($sql, $params);
 
-    if($c_member_id == $c_commu_id_admin){
+    if ($c_member_id == $c_commu_id_admin) {
         return true;
     }
     return false;
@@ -1163,23 +1159,23 @@ function k_p_fh_com_list_c_commu_list4c_member_id($c_member_id, $page_size, $pag
     $params = array(intval($c_member_id));
     $c_commu_list = db_get_all_page($sql, $page, $page_size, $params);
 
-    foreach($c_commu_list as $key => $value) {
+    foreach ($c_commu_list as $key => $value) {
         $c_commu_list[$key]['count_members'] =
             _db_count_c_commu_member_list4c_commu_id($value['c_commu_id']);
     }
 
     $total_num = p_common_count_c_commu4c_member_id($c_member_id);
-    if($total_num != 0){
+    if ($total_num != 0) {
         $total_page_num =  ceil($total_num / $page_size);
-        if($page >= $total_page_num){
+        if ($page >= $total_page_num) {
             $next = false;
-        }else{
+        } else {
             $next = true;
         }
 
-        if($page <= 1){
+        if ($page <= 1) {
             $prev = false;
-        }else{
+        } else {
             $prev = true;
         }
     }
@@ -1213,13 +1209,10 @@ function k_p_c_home_relationship_between_member_commu($c_commu_id, $c_member_id)
     $sql .= "WHERE c_commu_id = ? AND c_member_id = ?";
     $params = array(intval($c_commu_id), intval($c_member_id));
     if (db_get_one($sql, $params)) {
-          //参加なら
-          $relation['join'] = true;
-          return $relation;
-      }
-
-      //参加も要請もしてない
-      return $relation;
+        //参加なら
+        $relation['join'] = true;
+    }
+    return $relation;
 }
 
 /**
@@ -1235,7 +1228,7 @@ function k_p_c_home_c_commu_member_list_random4c_commu_id($c_commu_id, $limit)
     $params = array(intval($c_commu_id));
     $c_commu_member_list = db_get_all_limit($sql, 0, $limit, $params);
 
-    foreach($c_commu_member_list as $key => $value) {
+    foreach ($c_commu_member_list as $key => $value) {
         $c_commu_member_list[$key]['count_friend'] =
             db_friend_count_friends($value['c_member_id']);
     }
@@ -1257,7 +1250,7 @@ function k_p_c_member_list_c_members_disp4c_commu_id($c_commu_id, $page_size, $p
     $params = array(intval($c_commu_id));
     $list = db_get_all_page($sql, $page, $page_size, $params);
 
-    foreach($list as $key => $value) {
+    foreach ($list as $key => $value) {
         $list[$key]['friend_count'] = db_friend_count_friends($value['c_member_id']);
     }
 
@@ -1265,15 +1258,15 @@ function k_p_c_member_list_c_members_disp4c_commu_id($c_commu_id, $page_size, $p
     $params = array(intval($c_commu_id));
     $total_num = db_get_one($sql, $params);
 
-    if($total_num != 0) {
-        $total_page_num =  ceil($total_num / $page_size);
-        if($page >= $total_page_num) {
+    if ($total_num != 0) {
+        $total_page_num = ceil($total_num / $page_size);
+        if ($page >= $total_page_num) {
             $next = false;
         } else {
             $next = true;
         }
 
-        if($page <= 1) {
+        if ($page <= 1) {
             $prev = false;
         } else {
             $prev = true;
@@ -1298,7 +1291,7 @@ function k_p_c_invite_c_friend_list_random4c_member_id4c_commu_id($c_member_id, 
     $member_list = db_get_col($sql, $params);
 
     //友達リストから参加者リストを引く
-    $result = array_diff($friend_list,$member_list);
+    $result = array_diff($friend_list, $member_list);
 
     if (!$result) {
         return null;
@@ -1330,7 +1323,7 @@ function k_p_h_home_c_commu_topic_comment_list4c_member_id($c_member_id, $page_s
     $params = array(intval($c_member_id));
     $c_commu_topic_list = db_get_all_page($sql, $page, $page_size, $params);
 
-    foreach($c_commu_topic_list as $key => $value) {
+    foreach ($c_commu_topic_list as $key => $value) {
         //最新の書き込み番号
         $sql = "SELECT MAX(number) FROM c_commu_topic_comment".
                " where c_commu_topic_id = ?";
@@ -1349,21 +1342,21 @@ function k_p_h_home_c_commu_topic_comment_list4c_member_id($c_member_id, $page_s
     $params = array(intval($c_member_id));
     $total_num = db_get_one($sql, $params);
 
-    if($total_num != 0){
+    if ($total_num != 0) {
         $total_page_num =  ceil($total_num / $page_size);
-        if($page >= $total_page_num){
+        if ($page >= $total_page_num) {
             $next = false;
-        }else{
+        } else {
             $next = true;
         }
 
-        if($page <= 1){
+        if ($page <= 1) {
             $prev = false;
-        }else{
+        } else {
             $prev = true;
         }
     }
-    return array($c_commu_topic_list , $prev , $next, $total_num);
+    return array($c_commu_topic_list, $prev, $next, $total_num);
 }
 
 /**
@@ -1569,7 +1562,7 @@ function p_h_com_find_all_search_c_commu4c_commu_category(
         if ($page >= $total_page_num) {
             $next = false;
         } else {
-          $next = true;
+            $next = true;
         }
         if ($page <= 1) {
             $prev = false;
@@ -1680,16 +1673,16 @@ function c_event_detail_c_topic_write4c_commu_topic_id($c_commu_topic_id,$page,$
         " WHERE c_commu_topic_id = ? AND number > 0";
     $total_num = db_get_one($sql, $params);
 
-    if($total_num != 0){
-        $total_page_num =  ceil($total_num / $page_size);
-        if($page >= $total_page_num){
+    if ($total_num != 0) {
+        $total_page_num = ceil($total_num / $page_size);
+        if ($page >= $total_page_num) {
             $next = false;
-        }else{
+        } else {
             $next = true;
         }
-        if($page <= 1){
+        if ($page <= 1) {
             $prev = false;
-        }else{
+        } else {
             $prev = true;
         }
     }
@@ -1801,14 +1794,16 @@ function k_p_c_event_member_list4c_commu_topic_id($c_commu_topic_id, $page_size,
     $params = array(intval($c_commu_topic_id));
     $list[0] = db_get_all_page($sql, $page, $page_size, $params);
 
-    $total_c_event_member=k_p_count_c_event_member_list4c_commu_topic_id($c_commu_topic_id);
-    $start_num=($page-1)*$page_size+1;
-    $end_num=($page)*$page_size;
-    if($end_num>$total_c_event_member)$end_num=$total_c_event_member;
-    $end_page=ceil($total_c_event_member/$page_size);
+    $total_c_event_member = k_p_count_c_event_member_list4c_commu_topic_id($c_commu_topic_id);
+    $start_num = ($page-1) * $page_size + 1;
+    $end_num   = $page * $page_size;
+    if ($end_num > $total_c_event_member) {
+        $end_num = $total_c_event_member;
+    }
+    $end_page = ceil($total_c_event_member / $page_size);
 
-    $list[1] = $start_num!=1;
-    $list[2] = $end_num!=$total_c_event_member;
+    $list[1] = ($start_num != 1);
+    $list[2] = ($end_num != $total_c_event_member);
 
     return $list;
 }
@@ -1834,8 +1829,7 @@ function db_c_commu4c_admin_invite_id($c_commu_id, $c_member_id_to)
     $result = db_get_one($sql, $params);
     if ($result) {
         return $result;
-    }
-    else {
+    } else {
         return false;
     }
 }

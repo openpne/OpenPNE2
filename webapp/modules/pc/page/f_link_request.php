@@ -40,7 +40,7 @@ class pc_page_f_link_request extends OpenPNE_Action
             openpne_redirect('pc', 'page_h_access_block');
         }
 
-        $this->set('inc_navi',fetch_inc_navi("f",$target_c_member_id));
+        $this->set('inc_navi', fetch_inc_navi("f", $target_c_member_id));
 
 
         //ターゲット情報
@@ -50,7 +50,7 @@ class pc_page_f_link_request extends OpenPNE_Action
         //$this->set("request_body",p_f_link_request_request_body4c_member_id($u, $target_c_member_id));
 
         //ターゲットのid
-        $this->set("target_c_member_id" ,$target_c_member_id);
+        $this->set("target_c_member_id", $target_c_member_id);
 
 
         $form_val=array(
@@ -58,7 +58,7 @@ class pc_page_f_link_request extends OpenPNE_Action
            'body' => $body,
         );
         //$this->set("form_val" ,$form_val);
-        $this->set("form" ,$form_val);
+        $this->set("form", $form_val);
 
         return 'success';
     }

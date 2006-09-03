@@ -31,7 +31,7 @@ class ktai_page_h_message extends OpenPNE_Action
 
         // メッセージデータ
         //コミュニティおすすめメッセージのURLを置換
-        list($c_message['body'],$com_url,$friend_url) = k_p_h_message_ktai_url4url($c_message['body'],$tail);
+        list($c_message['body'], $com_url, $friend_url) = k_p_h_message_ktai_url4url($c_message['body'], $tail);
 
         $this->set("c_message", $c_message);
         $this->set("com_url", $com_url);

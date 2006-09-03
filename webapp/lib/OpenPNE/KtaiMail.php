@@ -13,7 +13,10 @@ require_once 'Mail/mimeDecode.php';
  */
 class OpenPNE_KtaiMail
 {
-    /** @var object デコード結果 */
+    /**
+     * デコード結果
+     * @var stdClass
+     */ 
     var $mail;
 
     /** @var string 変換元文字エンコーディング(デフォルト値) */
@@ -143,9 +146,8 @@ class OpenPNE_KtaiMail
             foreach ($mail->parts as $part) {
                 if ($body = $this->_get_text_body($part)) break;
             }
-        }
-        elseif (strtolower($mail->ctype_primary) === 'text' &&
-                 strtolower($mail->ctype_secondary) === 'plain') {
+        } elseif (strtolower($mail->ctype_primary) === 'text' &&
+                  strtolower($mail->ctype_secondary) === 'plain') {
             $body = $mail->body;
             $charset = $mail->ctype_parameters['charset'];
 
@@ -177,9 +179,8 @@ class OpenPNE_KtaiMail
             foreach ($mail->parts as $part) {
                 $images = array_merge($images, $this->_get_images($part));
             }
-        }
-        elseif (strtolower($mail->ctype_primary) === 'image' &&
-                 in_array(strtolower($mail->ctype_secondary), $allowed_type)) {
+        } elseif (strtolower($mail->ctype_primary) === 'image' &&
+                  in_array(strtolower($mail->ctype_secondary), $allowed_type)) {
             $image_data = $mail->body;
 
              // 画像かどうかチェック
@@ -235,11 +236,13 @@ class OpenPNE_KtaiMail
      */
     function _get_mail_address($str)
     {
-        if (!$str) return false;
+        if (!$str) {
+            return false;
+        }
 
         // "(ダブルクォーテーション)を取り除く
         // "example"@docomo.ne.jp
-        $str = str_replace( '"', '', $str);
+        $str = str_replace('"', '', $str);
 
         // <example@docomo.ne.jp> というアドレスになることがある。
         //   日本語 <example@docomo.ne.jp>

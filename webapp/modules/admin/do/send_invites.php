@@ -32,16 +32,11 @@ class admin_do_send_invites extends OpenPNE_Action
                 continue;
             }
 
-            // 登録済み
-            if (p_is_sns_join4mail_address($mail)){
+            if (p_is_sns_join4mail_address($mail)) { // 登録済み
                 $errors[] = $mail;
-            }
-            // 携帯
-            elseif (is_ktai_mail_address($mail)) {
+            } elseif (is_ktai_mail_address($mail)) {
                 $ktais[] = $mail;
-            }
-            // PC
-            else {
+            } else {
                 $pcs[] = $mail;
             }
         }
@@ -88,9 +83,9 @@ class admin_do_send_invites extends OpenPNE_Action
 
                     // c_member_pre に追加
                     if (do_common_c_member_pre4pc_address($mail)) {
-                        do_h_invite_update_c_invite($c_member_id_invite,$mail,$requests['message'],$session);
+                        do_h_invite_update_c_invite($c_member_id_invite, $mail, $requests['message'], $session);
                     } else {
-                        do_h_invite_insert_c_invite($c_member_id_invite,$mail,$requests['message'],$session);
+                        do_h_invite_insert_c_invite($c_member_id_invite, $mail, $requests['message'], $session);
                     }
 
                     do_h_invite_insert_c_invite_mail_send($c_member_id_invite, $session, $requests['message'], $mail);

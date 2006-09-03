@@ -16,7 +16,7 @@ class ktai_page_h_com_find_all extends OpenPNE_Action
         //子カテゴリのリスト
         $this->set("c_commu_category_list", _db_c_commu_category4null());
         //親カテゴリのリスト
-        $this->set('c_commu_category_parent_list',_db_c_commu_category_parent_list4null());
+        $this->set('c_commu_category_parent_list', _db_c_commu_category_parent_list4null());
 
         return 'success';
     }

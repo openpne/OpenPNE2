@@ -30,7 +30,7 @@ class ktai_page_h_com_find_result extends OpenPNE_Action
         $this->set("search_word", $search_word);
 
         //検索に用いたカテゴリ
-        $this->set("target_c_commu_category_id" , $target_c_commu_category_id);
+        $this->set("target_c_commu_category_id", $target_c_commu_category_id);
 
         //カテゴリのリスト
         $this->set("c_commu_category_list", _db_c_commu_category4null());

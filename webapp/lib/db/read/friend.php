@@ -136,7 +136,7 @@ function p_fh_friend_list_friend_list4c_member_id2($c_member_id, $page_size, $pa
     $params = array(intval($c_member_id));
     $friend_list = db_get_all_page($sql, $page, $page_size, $params);
 
-    foreach($friend_list as $key => $value) {
+    foreach ($friend_list as $key => $value) {
         $friend_list[$key]['friend_count'] = db_friend_count_friends($value['c_member_id']);
     }
 
@@ -318,8 +318,8 @@ function p_h_manage_friend_c_friend_list_disp4c_member_id($c_member_id)
     $params = array(intval($c_member_id));
     $result = db_get_all($sql, $params);
 
-    foreach($result as $key=>$value) {
-        $c_friend = p_common_c_friend4c_member_id_from4c_member_id_to( $value['c_member_id_to'], $value['c_member_id_from'] );
+    foreach ($result as $key=>$value) {
+        $c_friend = p_common_c_friend4c_member_id_from4c_member_id_to($value['c_member_id_to'], $value['c_member_id_from']);
         $result[$key]['intro'] = $c_friend['intro'];
 
         $result[$key]['friend_count'] = db_friend_count_friends($value['c_member_id_from']);
@@ -380,21 +380,21 @@ function do_common_is_friend_link_wait($c_member_id_from, $c_member_id_to)
 }
 
 //TODO:constant
-define('STATUS_F_LINK_FLAT',    "1");//フレンドリクエスト(承認送信画面)
-define('STATUS_F_LINK_WAIT',    "2");//フレンドリクエスト(リンク承認待ち)
-define('STATUS_F_LINK_ALREADY', "3");//フレンドリクエスト(フレンドリンク済)
+define('STATUS_F_LINK_FLAT', "1");    // フレンドリクエスト(承認送信画面)
+define('STATUS_F_LINK_WAIT', "2");    // フレンドリクエスト(リンク承認待ち)
+define('STATUS_F_LINK_ALREADY', "3"); // フレンドリクエスト(フレンドリンク済)
+
 function do_common_get_f_link_status($c_member_id_from,$c_member_id_to)
 {
     $is_friend    = db_friend_is_friend($c_member_id_from, $c_member_id_to);
     $is_link_wait = do_common_is_friend_link_wait($c_member_id_from, $c_member_id_to);
 
     $ret = STATUS_F_LINK_ALREADY;
-    //友達でない＆リンク承認待ちでない
-    if( ($is_friend==false) && ($is_link_wait==false) ){
+    if (($is_friend == false) && ($is_link_wait == false)) {
+        // 友達でない＆リンク承認待ちでない
         $ret = STATUS_F_LINK_FLAT;
-    }
-    //友達でない＆リンク承認待ち
-    elseif( ($is_friend==false) && ($is_link_wait==true) ){
+    } elseif (($is_friend == false) && ($is_link_wait == true)) {
+        // 友達でない＆リンク承認待ち
         $ret = STATUS_F_LINK_WAIT;
     }
 
@@ -423,7 +423,7 @@ function k_p_h_home_c_friend_list_random4c_member_id($c_member_id, $limit)
     $params = array(intval($c_member_id));
     $c_friend_list = db_get_all_limit($sql, 0, $limit, $params);
 
-    foreach($c_friend_list as $key => $value){
+    foreach ($c_friend_list as $key => $value) {
         $c_friend_list[$key]['count_friend'] = db_friend_count_friends($value['c_member_id_to']);
     }
 
@@ -477,7 +477,7 @@ function k_p_fh_friend_list_friend_list4c_member_id($c_member_id,$page_size,$pag
     $params = array(intval($c_member_id));
     $c_friend_list = db_get_all_page($sql, $page, $page_size, $params);
 
-    foreach($c_friend_list as $key => $value) {
+    foreach ($c_friend_list as $key => $value) {
         $c_member = db_common_c_member4c_member_id($value['c_member_id_to']);
 
         $c_friend_list[$key]['image_filename'] = $c_member['image_filename'];
@@ -490,21 +490,21 @@ function k_p_fh_friend_list_friend_list4c_member_id($c_member_id,$page_size,$pag
 
     $total_num = db_friend_count_friends($c_member_id);
 
-    if($total_num != 0){
+    if ($total_num != 0) {
         $total_page_num =  ceil($total_num / $page_size);
-        if($page >= $total_page_num){
+        if ($page >= $total_page_num) {
             $next = false;
-        }else{
+        } else {
             $next = true;
         }
 
-        if($page <= 1){
+        if ($page <= 1) {
             $prev = false;
-        }else{
+        } else {
             $prev = true;
         }
     }
-    return array($c_friend_list , $prev , $next);
+    return array($c_friend_list, $prev, $next);
 }
 
 /**

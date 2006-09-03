@@ -56,8 +56,8 @@ function p_common_c_password_query4null()
 
 function check_search_word($search_word)
 {
-    $search_word = str_replace ( "_", "\_", $search_word);
-    $search_word = str_replace ( "%", "\%", $search_word);
+    $search_word = str_replace("_", "\_", $search_word);
+    $search_word = str_replace("%", "\%", $search_word);
     return $search_word;
 }
 
@@ -96,7 +96,7 @@ function db_common_authenticate_password($c_member_id, $password)
  */
 function db_common_diary_monthly_calendar($year, $month, $c_member_id)
 {
-    require_once 'Calendar/Month/Weekdays.php';
+    include_once 'Calendar/Month/Weekdays.php';
     $Month = new Calendar_Month_Weekdays($year, $month, 0);
     $Month->build();
 

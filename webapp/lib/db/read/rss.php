@@ -56,11 +56,11 @@ function p_fh_diary_list_c_rss_cache_list($c_member_id,$page_size, $page)
 function p_fh_diary_list_c_rss_cache_list_date($c_member_id, $year, $month, $day=0)
 {
     if ($day) {
-        $s_date = date('Y-m-d H:i:s', mktime(0,0,0,$month,$day,$year));
-        $e_date = date('Y-m-d H:i:s', mktime(0,0,0,$month,$day+1,$year));
+        $s_date = date('Y-m-d H:i:s', mktime(0, 0, 0, $month, $day, $year));
+        $e_date = date('Y-m-d H:i:s', mktime(0, 0, 0, $month, $day+1, $year));
     } else {
-        $s_date = date('Y-m-d H:i:s', mktime(0,0,0,$month,1,$year));
-        $e_date = date('Y-m-d H:i:s', mktime(0,0,0,$month+1,1,$year));
+        $s_date = date('Y-m-d H:i:s', mktime(0, 0, 0, $month, 1, $year));
+        $e_date = date('Y-m-d H:i:s', mktime(0, 0, 0, $month+1, 1, $year));
     }
 
     $sql = 'SELECT * FROM c_rss_cache WHERE c_member_id = ?' .

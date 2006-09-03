@@ -16,7 +16,7 @@ class pc_page_c_member_list extends OpenPNE_Action
         $page = $requests['page'];
         // ----------
 
-        $this->set('inc_navi',fetch_inc_navi("c",$target_c_commu_id));
+        $this->set('inc_navi', fetch_inc_navi("c", $target_c_commu_id));
 
         //メンバー情報
         $this->set("member", db_common_c_member4c_member_id($u));
@@ -39,15 +39,14 @@ class pc_page_c_member_list extends OpenPNE_Action
         $this->set("is_prev", $is_prev);
         $this->set("is_next", $is_next);
         $this->set("page", $page);
-        $this->set("total_num",$total_num);
+        $this->set("total_num", $total_num);
         $this->set('start_num', $start_num);
         $this->set('end_num', $end_num);
 
-        for($i=1;$i<=ceil($total_num / $page_size);$i++){
-            $page_num[]=$i;
+        for ($i=1; $i <= ceil($total_num / $page_size); $i++) {
+            $page_num[] = $i;
         }
-        $this->set("page_num",$page_num);
-
+        $this->set("page_num", $page_num);
 
         return 'success';
     }

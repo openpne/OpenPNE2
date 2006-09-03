@@ -20,7 +20,7 @@ class admin_do_insert_c_banner extends OpenPNE_Action
         //c_image delete && insert
 
         //c_banner update
-        db_admin_update_c_banner($c_banner_id,$c_banner);
+        db_admin_update_c_banner($c_banner_id, $c_banner);
         //c_banner update
 
         admin_client_redirect('edit_c_banner', 'バナーを追加しました');

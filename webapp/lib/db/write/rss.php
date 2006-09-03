@@ -42,7 +42,7 @@ function delete_rss_cache($c_member_id)
 
 function insert_rss_cache($rss_url, $c_member_id)
 {
-    require_once 'OpenPNE/RSS.php';
+    include_once 'OpenPNE/RSS.php';
     $rss = new OpenPNE_RSS();
     if (!$items = $rss->fetch($rss_url)) {
         return false;

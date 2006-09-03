@@ -9,7 +9,7 @@ class pc_page_h_schedule_edit_confirm extends OpenPNE_Action
     function execute($requests)
     {
         $u = $GLOBALS['AUTH']->uid();
-        $this->set('inc_navi',fetch_inc_navi('h'));
+        $this->set('inc_navi', fetch_inc_navi('h'));
 
         // --- リクエスト変数
         $target_c_schedule_id = $requests['target_c_schedule_id'];
@@ -35,7 +35,7 @@ class pc_page_h_schedule_edit_confirm extends OpenPNE_Action
         // validation
         $errors = array();
 
-        if(!$input['title']) {
+        if (!$input['title']) {
             $errors[] = "タイトルを入力してください";
         }
 

@@ -220,7 +220,7 @@ function p_h_search_result_search($cond, $cond_like, $page_size, $page, $c_membe
 
     foreach ($cond as $key => $value) {
         if ($value) {
-            if($key == 'image'){
+            if ($key == 'image') {
                 $where .= " AND image_filename <> ''";
             } else {
                 $where .= " AND ". db_escapeIdentifier($key) ." = ?";
@@ -252,12 +252,10 @@ function p_h_search_result_search($cond, $cond_like, $page_size, $page, $c_membe
         if ($value['form_type'] == "text" || $value['form_type'] == 'textarea') {
             $sql .= " AND value LIKE ?";
             $params[] = '%'.$value['value'].'%';
-        }
-        elseif (is_array($value['c_profile_option_id'])) {
+        } elseif (is_array($value['c_profile_option_id'])) {
             $values = implode(',', array_map('intval', $value['c_profile_option_id']));
             $sql .= " AND c_profile_option_id IN (". $values .")";
-        }
-        else {
+        } else {
             $sql .= " AND c_profile_option_id = ?";
             $params[] = intval($value['c_profile_option_id']);
         }
@@ -278,20 +276,20 @@ function p_h_search_result_search($cond, $cond_like, $page_size, $page, $c_membe
 
     $total_num = count($result_ids);
 
-    if($total_num != 0) {
+    if ($total_num != 0) {
         $total_page_num =  ceil($total_num / $page_size);
-        if($page >= $total_page_num){
+        if ($page >= $total_page_num) {
             $next = false;
-        }else{
+        } else {
             $next = $page + 1;
         }
-        if($page <= 1){
+        if ($page <= 1) {
             $prev = false;
-        }else{
+        } else {
             $prev = $page - 1;
         }
     }
-    return array($list , $prev , $next, $total_num);
+    return array($list, $prev, $next, $total_num);
 }
 
 function h_invite_inviting_member4c_member_id($c_member_id)
@@ -582,9 +580,9 @@ function p_is_sns_join4mail_address($mail_address)
     $k_array = db_get_row($sql, $params);
 
     //対象のアドレスが登録済み
-    if($array['c_member_id'] || $k_array['c_member_id']){
+    if ($array['c_member_id'] || $k_array['c_member_id']) {
         return true;
-    }else{
+    } else {
         return false;
     }
 }

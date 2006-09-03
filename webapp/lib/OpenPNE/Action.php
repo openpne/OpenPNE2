@@ -6,7 +6,11 @@
 
 class OpenPNE_Action
 {
+    /**
+     * @var OpenPNE_Smarty
+     */
     var $view;
+
     var $requests;
 
     function OpenPNE_Action()

@@ -29,15 +29,15 @@ class ktai_page_h_message_box extends OpenPNE_Action
         $list_r = k_p_h_message_box_c_message_received_list4c_member_id4range($u, $page_size, $page_r);
         $this->set("c_message_received_list", $list_r[0]);
         $this->set("page_r", $page_r);
-        $this->set("is_prev_r",$list_r[1]);
-        $this->set("is_next_r",$list_r[2]);
+        $this->set("is_prev_r", $list_r[1]);
+        $this->set("is_next_r", $list_r[2]);
         $this->set("count_messages_received", $list_r[3]);
 
         $list_s = k_p_h_message_box_c_message_sent_list4c_member_id4range($u, $page_size, $page_s);
         $this->set("c_message_sent_list", $list_s[0]);
         $this->set("page_s", $page_s);
-        $this->set("is_prev_s",$list_s[1]);
-        $this->set("is_next_s",$list_s[2]);
+        $this->set("is_prev_s", $list_s[1]);
+        $this->set("is_next_s", $list_s[2]);
         $this->set("count_messages_sent", $list_s[3]);
 
         return 'success';

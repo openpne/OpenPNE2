@@ -152,6 +152,9 @@ function db_affected_rows()
     return $db->affectedRows();
 }
 
-function db_now() { return date('Y-m-d H:i:s'); }
+function db_now()
+{
+    return date('Y-m-d H:i:s');
+}
 
 ?>

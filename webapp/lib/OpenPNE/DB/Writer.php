@@ -20,7 +20,8 @@ class OpenPNE_DB_Writer extends OpenPNE_DB
 
     function insert($table, $fields_values, $pkey = '')
     {
-        if ($pkey && ($id = $this->nextId("${table}_${pkey}"))) {
+        $seq_name = sprintf('%s_%s', $table, $pkey);
+        if ($pkey && ($id = $this->nextId($seq_name))) {
             $fields_values = array($pkey => $id) + $fields_values;
         }
 

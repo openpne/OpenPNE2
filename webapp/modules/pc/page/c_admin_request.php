@@ -22,14 +22,16 @@ class pc_page_c_admin_request extends OpenPNE_Action
         }
         //---
 
-        $this->set('inc_navi',fetch_inc_navi("c",$target_c_commu_id));
+        $this->set('inc_navi', fetch_inc_navi("c", $target_c_commu_id));
 
         $member = db_common_c_member_with_profile($target_c_member_id);
-        $member['last_login']=p_f_home_last_login4access_date($member['access_date']);
+        $member['last_login'] = p_f_home_last_login4access_date($member['access_date']);
 
         $this->set("member", $member);
         $this->set("c_commu", _db_c_commu4c_commu_id($target_c_commu_id));
+
         return 'success';
     }
 }
+
 ?>

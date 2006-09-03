@@ -25,12 +25,12 @@ class pc_page_fh_com_list extends OpenPNE_Action
         }
 
         // navi 振り分け用
-        if($target_c_member_id == $u) {
+        if ($target_c_member_id == $u) {
             $type = "h";
         } else {
             $type = "f";
         }
-        $this->set('inc_navi',fetch_inc_navi($type, $target_c_member_id));
+        $this->set('inc_navi', fetch_inc_navi($type, $target_c_member_id));
 
         $this->set("target_member", db_common_c_member4c_member_id($target_c_member_id));
 
@@ -44,10 +44,10 @@ class pc_page_fh_com_list extends OpenPNE_Action
         $this->set("fh_com_list_user", $c_commu_list);
         $this->set("pager", $pager);
 
-        for($i=1; $i <= $pager['total_page']; $i++){
+        for ($i=1; $i <= $pager['total_page']; $i++) {
             $page_list[] = $i;
         }
-        $this->set("page_list",$page_list);
+        $this->set("page_list", $page_list);
 
         return 'success';
     }

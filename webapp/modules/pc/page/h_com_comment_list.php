@@ -15,14 +15,14 @@ class pc_page_h_com_comment_list extends OpenPNE_Action
         $page = $requests['page'];
         // ----------
 
-        $this->set('inc_navi',fetch_inc_navi("h"));
+        $this->set('inc_navi', fetch_inc_navi("h"));
 
         //日記一覧
         $page = $page + $direc;
         $page_size = 50;
-        $this->set("page_size",$page_size);
+        $this->set("page_size", $page_size);
 
-        $lst = p_h_com_comment_list_c_commu_topic_comment_list4c_member_id($u,$page_size,$page);
+        $lst = p_h_com_comment_list_c_commu_topic_comment_list4c_member_id($u, $page_size, $page);
         $this->set("h_com_comment_list", $lst[0]);
 
         $this->set("is_prev", $lst[1]);

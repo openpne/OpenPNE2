@@ -20,8 +20,8 @@ class pc_page_h_review_search extends OpenPNE_Action
         $page_size=20;
         $page += $direc;
 
-        $this->set('inc_navi',fetch_inc_navi("h"));
-        $this->set('category_disp',p_h_review_add_category_disp());
+        $this->set('inc_navi', fetch_inc_navi("h"));
+        $this->set('category_disp', p_h_review_add_category_disp());
         $this->set('category', $category);
         $this->set('keyword', $keyword);
         $this->set('orderby', $orderby);

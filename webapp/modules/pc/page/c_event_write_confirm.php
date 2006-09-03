@@ -23,7 +23,7 @@ class pc_page_c_event_write_confirm extends OpenPNE_Action
         $c_commu_id = $c_topic['c_commu_id'];
 
         //--- 権限チェック
-        if(!p_common_is_c_commu_view4c_commu_idAc_member_id($c_commu_id,$u)){
+        if (!p_common_is_c_commu_view4c_commu_idAc_member_id($c_commu_id, $u)) {
             handle_kengen_error();
         }
         //---
@@ -62,21 +62,20 @@ class pc_page_c_event_write_confirm extends OpenPNE_Action
         $tmpfile2 = t_image_save2tmp($upfile_obj2, $sessid, "tc_2");
         $tmpfile3 = t_image_save2tmp($upfile_obj3, $sessid, "tc_3");
 
-        $this->set('inc_navi',fetch_inc_navi("c",$c_commu_id));
+        $this->set('inc_navi', fetch_inc_navi("c", $c_commu_id));
         $event_write['target_c_commu_id'] = $c_commu_id;
         $event_write['target_c_commu_topic_id'] = $c_commu_topic_id;
         $event_write['body'] = $body;
-        $event_write['image_filename1_tmpfile']=$tmpfile1;
-        $event_write['image_filename2_tmpfile']=$tmpfile2;
-        $event_write['image_filename3_tmpfile']=$tmpfile3;
-        $event_write['image_filename1']=$upfile_obj1["name"];
-        $event_write['image_filename2']=$upfile_obj2["name"];
-        $event_write['image_filename3']=$upfile_obj3["name"];
+        $event_write['image_filename1_tmpfile'] = $tmpfile1;
+        $event_write['image_filename2_tmpfile'] = $tmpfile2;
+        $event_write['image_filename3_tmpfile'] = $tmpfile3;
+        $event_write['image_filename1'] = $upfile_obj1["name"];
+        $event_write['image_filename2'] = $upfile_obj2["name"];
+        $event_write['image_filename3'] = $upfile_obj3["name"];
 
-        if($button=="イベントに参加する"){
+        if ($button == "イベントに参加する") {
             $event_write['add_event_member'] = 1;
-        }
-        elseif($button=="参加をキャンセルする"){
+        } elseif ($button == "参加をキャンセルする") {
             $event_write['add_event_member'] = -1;
         }
 

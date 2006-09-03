@@ -20,7 +20,7 @@ class pc_page_o_login2 extends OpenPNE_Action
         $this->set('sid', $sid);
 
         //---- inc_ テンプレート用 変数 ----//
-        $this->set('inc_page_header',fetch_inc_page_header('public') );
+        $this->set('inc_page_header', fetch_inc_page_header('public'));
 
         $c_pc_address_pre = do_common_c_pc_address_pre4sid($sid);
         if ($c_pc_address_pre) {

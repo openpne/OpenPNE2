@@ -27,7 +27,7 @@ class ktai_do_h_invite_insert_c_invite extends OpenPNE_Action
             $p = array('msg' => 12);
             openpne_redirect('ktai', 'page_h_invite', $p);
         }
-        if (!$body){
+        if (!$body) {
             $p = array('msg' => 1);
             openpne_redirect('ktai', 'page_h_invite', $p);
         }
@@ -36,7 +36,7 @@ class ktai_do_h_invite_insert_c_invite extends OpenPNE_Action
             $p = array('msg' => 31);
             openpne_redirect('ktai', 'page_h_invite', $p);
         }
-        if( p_is_sns_join4mail_address($mail) ){
+        if (p_is_sns_join4mail_address($mail)) {
             $p = array('msg' => 9);
             openpne_redirect('ktai', 'page_h_invite', $p);
         }

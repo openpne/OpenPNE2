@@ -26,7 +26,7 @@ class ktai_page_h_diary_list_all extends OpenPNE_Action
         $this->set('new_diary_list', $result[0]);
         $this->set('is_prev', $result[1]);
         $this->set('is_next', $result[2]);
-        $this->set('c_diary_search_list_count',$result[3]);
+        $this->set('c_diary_search_list_count', $result[3]);
 
         $pager = array();
         $pager['start'] = $page_size * ($page - 1) + 1;
@@ -39,7 +39,7 @@ class ktai_page_h_diary_list_all extends OpenPNE_Action
         // 半角空白を全角に統一
         $keyword = str_replace(' ', '　', $keyword);
 
-        $this->set('keyword',$keyword);
+        $this->set('keyword', $keyword);
 
         return 'success';
     }

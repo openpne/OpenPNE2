@@ -77,7 +77,7 @@ class pc_page_h_search_result extends OpenPNE_Action
         $search_condition = implode("&", $tmp);
         $this->set("search_condition", $search_condition);
 
-        $this->set('inc_navi',fetch_inc_navi("h"));
+        $this->set('inc_navi', fetch_inc_navi("h"));
 
         return 'success';
     }

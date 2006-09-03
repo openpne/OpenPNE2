@@ -43,7 +43,7 @@ function xmlrpc_smtp2pne($message)
     $mail_sns =& new mail_sns($decoder);
     if (!$mail_sns->main()) {
         //エラーの場合はfaultCodeを返す
-        return xmlrpc_get_fault_response(56,'Can\'t Receive Mail');
+        return xmlrpc_get_fault_response(56, 'Can\'t Receive Mail');
     }
 
     return xmlrpc_get_response(0);

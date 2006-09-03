@@ -46,7 +46,7 @@ class ktai_page_o_regist_input extends OpenPNE_Action
         );
         $this->set('public_flags', $public_flags);
 
-        $this->set('password_query_list',p_common_c_password_query4null());
+        $this->set('password_query_list', p_common_c_password_query4null());
         $this->set('profile_list', db_common_c_profile_list());
 
         $this->set($v);

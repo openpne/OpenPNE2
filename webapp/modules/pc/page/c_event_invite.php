@@ -26,7 +26,7 @@ class pc_page_c_event_invite extends OpenPNE_Action
 
         $this->set("host", OPENPNE_URL);
 
-        $this->set('inc_navi',fetch_inc_navi("c",$c_commu_id));
+        $this->set('inc_navi', fetch_inc_navi("c", $c_commu_id));
         $this->set("c_commu_id", $c_commu_id);
         $this->set("c_commu_topic_id", $c_commu_topic_id);
         //フレンドリストをアサインする

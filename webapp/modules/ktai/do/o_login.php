@@ -21,7 +21,7 @@ class ktai_do_o_login extends OpenPNE_Action
 
         if (LOGIN_CHECK_ENABLE) {
             // 不正ログインチェック
-            require_once 'OpenPNE/LoginChecker.php';
+            include_once 'OpenPNE/LoginChecker.php';
             $options = array(
                 'check_num'   => LOGIN_CHECK_NUM,
                 'check_time'  => LOGIN_CHECK_TIME,

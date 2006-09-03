@@ -32,13 +32,14 @@ class pc_page_c_topic_add extends OpenPNE_Action
             exit;
         }
 
-        $this->set('inc_navi',fetch_inc_navi("c", $c_commu_id));
-        $this->set("c_commu",p_c_home_c_commu4c_commu_id($c_commu_id));
+        $this->set('inc_navi', fetch_inc_navi("c", $c_commu_id));
+        $this->set("c_commu", p_c_home_c_commu4c_commu_id($c_commu_id));
 
         $this->set('err_msg', $err_msg);
 
         $this->set('title', $title);
         $this->set('body', $body);
+
         return 'success';
     }
 }

@@ -16,7 +16,7 @@ class pc_page_c_event_add_confirm extends OpenPNE_Action
 
         //--- 権限チェック
         //コミュニティメンバー
-        if(!_db_is_c_commu_member($target_c_commu_id,$u)){
+        if (!_db_is_c_commu_member($target_c_commu_id, $u)) {
             $_REQUEST['target_c_commu_id'] = $target_c_commu_id;
             $_REQUEST['msg'] = "イベント作成をおこなうにはコミュニティに参加する必要があります";
             openpne_forward('pc', 'page', "c_home");
@@ -31,20 +31,32 @@ class pc_page_c_event_add_confirm extends OpenPNE_Action
 
         // エラーチェック
         $err_msg = array();
-        if (trim($event['title']) == '')  $err_msg[] = "タイトルを入力してください";
-        if(trim($event['detail']) == '')  $err_msg[] = "詳細を入力してください";
+        if (trim($event['title']) == '') {
+            $err_msg[] = "タイトルを入力してください";
+        }
+        if (trim($event['detail']) == '') {
+            $err_msg[] = "詳細を入力してください";
+        }
 
-        if(!$event['open_date_month'] || !$event['open_date_day'] || !$event['open_date_year'])  $err_msg[] = "開催日時を入力してください";
-        elseif(!t_checkdate($event['open_date_month'],$event['open_date_day'],$event['open_date_year'])) $err_msg[] = "開催日時は存在しません";
-        elseif(mktime (0,0,0,$event['open_date_month'],$event['open_date_day'],$event['open_date_year']) < mktime(0,0,0)) $err_msg[] = "開催日時は過去に指定できません";
+        if (!$event['open_date_month'] || !$event['open_date_day'] || !$event['open_date_year']) {
+            $err_msg[] = "開催日時を入力してください";
+        } elseif (!t_checkdate($event['open_date_month'], $event['open_date_day'], $event['open_date_year'])) {
+            $err_msg[] = "開催日時は存在しません";
+        } elseif (mktime(0, 0, 0, $event['open_date_month'], $event['open_date_day'], $event['open_date_year']) < mktime(0, 0, 0)) {
+            $err_msg[] = "開催日時は過去に指定できません";
+        }
 
-        if($event['invite_period_month'].$event['invite_period_day'].$event['invite_period_year'] != ""){
-            if(!$event['invite_period_month'] || !$event['invite_period_day'] || !$event['invite_period_year'])  $err_msg[] = "募集期限は存在しません";
-            elseif(!t_checkdate($event['invite_period_month'],$event['invite_period_day'],$event['invite_period_year'])) $err_msg[] = "募集期限は存在しません";
-            elseif(mktime (0,0,0,$event['invite_period_month'],$event['invite_period_day'],$event['invite_period_year']) < mktime(0,0,0)) $err_msg[] = "募集期限は過去に指定できません";
-            elseif(mktime (0,0,0,$event['open_date_month'],$event['open_date_day'],$event['open_date_year'])
-                    < mktime (0,0,0,$event['invite_period_month'],$event['invite_period_day'],$event['invite_period_year']))
-                    $err_msg[] = "募集期限は開催日時より未来に指定できません";
+        if ($event['invite_period_month'].$event['invite_period_day'].$event['invite_period_year'] != "") {
+            if (!$event['invite_period_month'] || !$event['invite_period_day'] || !$event['invite_period_year']) {
+                $err_msg[] = "募集期限は存在しません";
+            } elseif (!t_checkdate($event['invite_period_month'], $event['invite_period_day'], $event['invite_period_year'])) {
+                $err_msg[] = "募集期限は存在しません";
+            } elseif (mktime(0, 0, 0, $event['invite_period_month'], $event['invite_period_day'], $event['invite_period_year']) < mktime(0, 0, 0)) {
+                $err_msg[] = "募集期限は過去に指定できません";
+            } elseif (mktime(0,0,0,$event['open_date_month'], $event['open_date_day'], $event['open_date_year'])
+                    < mktime(0,0,0,$event['invite_period_month'], $event['invite_period_day'], $event['invite_period_year'])) {
+                $err_msg[] = "募集期限は開催日時より未来に指定できません";
+            }
         }
 
         if ($upfile_obj1['error'] !== UPLOAD_ERR_NO_FILE) {
@@ -78,21 +90,21 @@ class pc_page_c_event_add_confirm extends OpenPNE_Action
         $tmpfile2 = t_image_save2tmp($upfile_obj2, $sessid, "t_2");
         $tmpfile3 = t_image_save2tmp($upfile_obj3, $sessid, "t_3");
 
-        $this->set('inc_navi',fetch_inc_navi("c",$target_c_commu_id));
+        $this->set('inc_navi', fetch_inc_navi("c", $target_c_commu_id));
 
-        $pref_list=p_regist_prof_c_profile_pref_list4null();
+        $pref_list = p_regist_prof_c_profile_pref_list4null();
         $event = p_c_event_add_confirm_event4request();
-        $event['open_pref_value']=$pref_list[$event['open_pref_id']];
-        $event['image_filename1_tmpfile']=$tmpfile1;
-        $event['image_filename2_tmpfile']=$tmpfile2;
-        $event['image_filename3_tmpfile']=$tmpfile3;
-        $event['image_filename1']=$upfile_obj1['name'];
-        $event['image_filename2']=$upfile_obj2['name'];
-        $event['image_filename3']=$upfile_obj3['name'];
-
+        $event['open_pref_value'] = $pref_list[$event['open_pref_id']];
+        $event['image_filename1_tmpfile'] = $tmpfile1;
+        $event['image_filename2_tmpfile'] = $tmpfile2;
+        $event['image_filename3_tmpfile'] = $tmpfile3;
+        $event['image_filename1'] = $upfile_obj1['name'];
+        $event['image_filename2'] = $upfile_obj2['name'];
+        $event['image_filename3'] = $upfile_obj3['name'];
         $this->set('event', $event);
-        return 'success';
 
+        return 'success';
     }
 }
+
 ?>

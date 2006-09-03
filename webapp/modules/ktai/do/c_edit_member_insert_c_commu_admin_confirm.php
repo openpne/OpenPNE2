@@ -27,7 +27,7 @@ class ktai_do_c_edit_member_insert_c_commu_admin_confirm extends OpenPNE_Action
 
 
         $target_c_commu_admin_confirm_id =
-            db_commu_insert_c_commu_admin_confirm($target_c_commu_id,$target_c_member_id,$body);
+            db_commu_insert_c_commu_admin_confirm($target_c_commu_id, $target_c_member_id, $body);
 
         //メッセージ
         $c_member_id_from = $u;

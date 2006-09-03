@@ -22,11 +22,9 @@ class pc_page_h_invite_confirm extends OpenPNE_Action
         $msg = "";
         if (!db_common_is_mailaddress($form_val['mail'])) {
             $msg = "メールアドレスを正しく入力してください";
-        }
-        elseif (p_is_sns_join4mail_address($form_val['mail'])) {
+        } elseif (p_is_sns_join4mail_address($form_val['mail'])) {
             $msg = "そのアドレスは既に登録済みです";
-        }
-        else {
+        } else {
             if(is_ktai_mail_address($form_val['mail'])) {
                 //<PCKTAI
                 if (defined('OPENPNE_REGIST_FROM') &&
@@ -34,8 +32,7 @@ class pc_page_h_invite_confirm extends OpenPNE_Action
                     $msg = "携帯アドレスには招待を送ることができません";
                 }
                 //>
-            }
-            else {
+            } else {
                 //<PCKTAI
                 if (defined('OPENPNE_REGIST_FROM') &&
                         !(OPENPNE_REGIST_FROM & OPENPNE_REGIST_FROM_PC)) {
@@ -56,7 +53,6 @@ class pc_page_h_invite_confirm extends OpenPNE_Action
         $this->set('form_val', $form_val);
         $this->set('SNS_NAME', SNS_NAME);
 
-        /////AA local var samples AA//////////////////////////
         return 'success';
     }
 }

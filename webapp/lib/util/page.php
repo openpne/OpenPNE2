@@ -196,10 +196,18 @@ function get_int_assoc($from, $to)
     }
     return $assoc;
 }
+
 /** 月リスト */
-function p_regist_prof_c_profile_month_list4null() { return get_int_assoc(1, 12); }
+function p_regist_prof_c_profile_month_list4null()
+{
+    return get_int_assoc(1, 12);
+}
+
 /** 日リスト */
-function p_regist_prof_c_profile_day_list4null() { return get_int_assoc(1, 31); }
+function p_regist_prof_c_profile_day_list4null()
+{
+    return get_int_assoc(1, 31);
+}
 
 //------------
 
@@ -288,36 +296,26 @@ function p_f_home_last_login4access_date($access_date)
     $d_diff = ceil($diff / (60*60*24)); //時間差:日
 
     if ($m_diff <= 60) {  // 1時間以内
-
         if ($m_diff<= 3) {
             $last_login = '3分以内';
-        }
-        elseif ($m_diff <= 5) {
+        } elseif ($m_diff <= 5) {
             $last_login = '5分以内';
-        }
-        elseif ($m_diff <= 10) {
+        } elseif ($m_diff <= 10) {
             $last_login = '10分以内';
-        }
-        elseif ($m_diff <= 15) {
+        } elseif ($m_diff <= 15) {
             $last_login = '15分以内';
-        }
-        elseif ($m_diff <= 30){
+        } elseif ($m_diff <= 30) {
             $last_login = '30分以内';
-        }
-        elseif ($m_diff <= 45) {
+        } elseif ($m_diff <= 45) {
             $last_login = '45分以内';
-        }
-        else {
+        } else {
             $last_login = '60分以内';
         }
-    }
-    elseif ($h_diff <= 24) {
+    } elseif ($h_diff <= 24) {
         $last_login = $h_diff . '時間以内';
-    }
-    elseif ($d_diff <= 3) {
+    } elseif ($d_diff <= 3) {
         $last_login = $d_diff . '日以内';
-    }
-    else {
+    } else {
         $last_login = '3日以上';
     }
 
