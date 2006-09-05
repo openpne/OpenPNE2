@@ -45,4 +45,14 @@ function db_admin_c_image_list($page, $page_size, &$pager)
     return $c_image_list;
 }
 
+/**
+ * ファイル名から一時保存ファイルを取得
+ */
+function c_tmp_image4filename($filename)
+{
+    $sql = 'SELECT * FROM c_tmp_image WHERE filename = ?';
+    $params = array($filename);
+    return db_get_row($sql, $params);
+}
+
 ?>

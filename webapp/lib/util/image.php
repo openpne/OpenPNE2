@@ -100,14 +100,24 @@ function t_image_save2tmp($upfile, $uid, $prefix='', $ext='')
     // 一時ファイル保存ディレクトリ
     $img_tmp_dir_path = OPENPNE_VAR_DIR . '/tmp/';
 
-    $filename = "{$prefix}_{$uid}.{$ext}";
+    $filename = sprintf('%s_%s.%s', $prefix, $uid, $ext);
     $filepath = $img_tmp_dir_path . $filename;
 
-    if (!file_exists($upfile['tmp_name']))  return false;
-    move_uploaded_file($upfile['tmp_name'], $filepath);
-    chmod($filepath, 0644);
+    if (!file_exists($upfile['tmp_name'])) {
+		return false;
+	}
 
-    if (!is_file($filepath)) return false;
+	if (OPENPNE_TMP_IMAGE_DB) {
+        if (!image_insert_c_tmp_image($upfile, $filename)) {
+            return false;
+        }
+    } else {
+        move_uploaded_file($upfile['tmp_name'], $filepath);
+        chmod($filepath, 0644);
+        if (!is_file($filepath)) {
+            return false;
+        }
+    }
 
     return $filename;
 }
@@ -117,12 +127,16 @@ function t_image_save2tmp($upfile, $uid, $prefix='', $ext='')
  */
 function t_image_clear_tmp($uid)
 {
-    $img_tmp_dir_path = OPENPNE_VAR_DIR . "/tmp/";
-    $files = glob($img_tmp_dir_path . "*_{$uid}.*");
-    if (is_array($files)) {
-        foreach ($files as $filename) {
-            unlink($filename);
+    if (!OPENPNE_TMP_IMAGE_DB) {
+        $img_tmp_dir_path = OPENPNE_VAR_DIR . "/tmp/";
+        $files = glob($img_tmp_dir_path . '*_' . $uid . '.*');
+        if (is_array($files)) {
+            foreach ($files as $filename) {
+                unlink($filename);
+            }
         }
+    } else {
+        t_image_clear_tmp_db($uid);
     }
 }
 

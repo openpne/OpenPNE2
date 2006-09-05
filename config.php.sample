@@ -58,6 +58,9 @@ define('WAIT_REDIRECT_TIME', 5);
 // (有効にする場合は、以下のDBサーバ設定も行ってください)
 define('SESSION_SAVE_DB', false);
 
+// 確認画面用の一時画像をDBに保存するかどうか
+define('OPENPNE_TMP_IMAGE_DB', false);
+
 ///
 // DBサーバ設定
 ///
