@@ -121,7 +121,9 @@ function openpne_gen_url_head($module, $action = '', $absolute = true)
  */
 function openpne_ssl_type($m, $a)
 {
-    if (in_array($a, (array)$GLOBALS['_OPENPNE_SSL_REQUIRED'][$m])) {
+    if (in_array($a, (array)$GLOBALS['_OPENPNE_SSL_REQUIRED'][$m]) ||
+        in_array($m, (array)$GLOBALS['_OPENPNE_SSL_REQUIRED_MODULES'])
+    ) {
         $type = 'SSL_REQUIRED';
     } elseif (in_array($a, (array)$GLOBALS['_OPENPNE_SSL_SELECTABLE'][$m])) {
         $type = 'SSL_SELECTABLE';
