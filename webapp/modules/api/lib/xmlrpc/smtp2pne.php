@@ -70,4 +70,3 @@ function m_debug_log($msg, $priority =  PEAR_LOG_WARNING)
 }
 
 ?>
-

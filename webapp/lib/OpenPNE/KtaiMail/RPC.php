@@ -148,4 +148,3 @@ class OpenPNE_KtaiMail_RPC extends OpenPNE_KtaiMail
 }
 
 ?>
-
