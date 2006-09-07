@@ -53,6 +53,27 @@ class PNE_SimplePie extends SimplePie
             return strtotime($date);
         }
     }
+
+    /**
+     * is_feed
+     * 
+     * RSS/Atom feeds don't contain '<html'
+     * Some HTML files contain '<rdf:RDF' and don't contain '<!DOCTYPE HTML'
+     */
+	function is_feed($data, $is_url = true) {
+		if ($is_url) {
+			$data = $this->get_file($data);
+		}
+		if (stristr($data, '<!DOCTYPE HTML')) {
+			return false;
+		} elseif (stristr($data, '<html')) {
+		    return false;
+        } elseif (stristr($data, '<rss') || stristr($data, '<rdf:RDF') || preg_match('/<([a-z0-9]+\:)?feed/mi', $data)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }
 
 ?>
