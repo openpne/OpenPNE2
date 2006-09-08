@@ -635,9 +635,9 @@
 <tr>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 <td style="width:520px;" class="bg_02" align="left" valign="middle">
-<div style="padding:4px 3px;" class="lh_120">
+<div style="padding:4px 4px;" class="lh_120">
 
-<textarea name="body" rows="5" cols="40" style="width:415px">({$body})</textarea>
+<textarea name="body" rows="10" style="width:512px">({$body})</textarea>
 
 <img src="./skin/dummy.gif" class="v_spacer_l">
 

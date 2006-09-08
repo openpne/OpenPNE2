@@ -33,6 +33,68 @@
 
 </td>
 </tr>
+({if !$is_c_commu_member})
+<tr>
+<td class="container c_join_commu_box" align="center">
+
+<img src="./skin/dummy.gif" class="v_spacer_s">
+
+<!-- ******************************************* -->
+<!-- ******ここから：このコミュニティに参加****** -->
+<table border="0" cellspacing="0" cellpadding="0" style="width:680px;margin:0px auto;" class="border_07">
+({*********})
+<tr>
+<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:666px;" class="bg_00"><img src="./skin/dummy.gif" style="width:666px;height:7px;" class="dummy"></td>
+<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+</tr>
+({*********})
+<tr>
+<td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_01">
+<!-- *ここから：主内容* -->
+
+<table class="container" border="0" cellspacing="0" cellpadding="0" style="width:666px;">
+<tr>
+<td style="height:1px;" class="bg_01" colspan="6"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+</tr>
+<tr>
+<td style="width:1px;" class="bg_01"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:300px;" class="bg_09 padding_s">
+<span class="c_01">&nbsp;・このコミュニティに参加しますか？</span>
+</td>
+<td style="width:1px;" class="bg_01"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:20px;padding-left:5px;" class="bg_02"><img src="./skin/dummy.gif" class="icon arrow_1"></td>
+<td style="width:343px;" class="bg_02">
+<a href="./?m=pc&amp;a=page_c_join_commu&amp;target_c_commu_id=({$c_commu.c_commu_id})">({$c_commu.name})に参加する</a>
+</td>
+<td style="width:1px;" class="bg_01"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+</tr>
+<tr>
+<td style="height:1px;" class="bg_01" colspan="6"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+</tr>
+</table>
+
+<!-- *ここまで：主内容* -->
+</td>
+<td class="bg_00"><img src="./skin/dummy.gif"></td>
+</tr>
+({*********})
+<tr>
+<td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" style="width:666px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+</tr>
+({*********})
+</table>
+<!-- ******ここまで：このコミュニティに参加****** -->
+<!-- ******************************************* -->
+
+<img src="./skin/dummy.gif" class="v_spacer_s">
+
+</td>
+</tr>
+({/if})
 <tr>
 <td class="container main_content">
 
