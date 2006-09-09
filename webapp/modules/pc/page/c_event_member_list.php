@@ -20,7 +20,7 @@ class pc_page_c_event_member_list extends OpenPNE_Action
         $c_commu_id = $c_topic['c_commu_id'];
 
         //--- 権限チェック
-        if(!p_common_is_c_commu_view4c_commu_idAc_member_id($c_commu_id,$u)){
+        if (!p_common_is_c_commu_view4c_commu_idAc_member_id($c_commu_id, $u)) {
             handle_kengen_error();
         }
         //---
@@ -28,28 +28,30 @@ class pc_page_c_event_member_list extends OpenPNE_Action
         $this->set('c_commu', _db_c_commu4c_commu_id($c_commu_id));
         $this->set('c_topic', $c_topic);
 
-        $this->set('inc_navi',fetch_inc_navi("c",$c_commu_id));
-        $page+=$direc;
+        $this->set('inc_navi', fetch_inc_navi('c', $c_commu_id));
+        $page += $direc;
         $this->set('page', $page);
         $page_size = 50;
         $c_event_member_list = c_event_member_list4c_commu_topic_id($c_commu_topic_id, $page, $page_size);
         $total_c_event_member = count_c_event_member_list4c_commu_topic_id($c_commu_topic_id);
 
-        $start_num=($page-1)*$page_size+1;
-        $end_num=($page)*$page_size;
-        if($end_num>$total_c_event_member)$end_num=$total_c_event_member;
-
-        $end_page=ceil($total_c_event_member/$page_size);
-        for($i=1;$i<=$end_page;$i++){
-            $page_num[]=$i;
+        $start_num = ($page-1) * $page_size + 1;
+        $end_num = $page * $page_size;
+        if ($end_num > $total_c_event_member) {
+            $end_num = $total_c_event_member;
         }
-        $this->set("page_num",$page_num);
+
+        $end_page = ceil($total_c_event_member / $page_size);
+        for ($i=1; $i <= $end_page; $i++) {
+            $page_num[] = $i;
+        }
+        $this->set("page_num", $page_num);
 
         $this->set('c_event_member_list', $c_event_member_list);
         $this->set('total_c_event_member', $total_c_event_member);
 
-        $this->set('is_prev', $start_num!=1);
-        $this->set('is_next', $end_num!=$total_c_event_member);
+        $this->set('is_prev', ($start_num != 1));
+        $this->set('is_next', ($end_num != $total_c_event_member));
 
         $this->set('start_num', $start_num);
         $this->set('end_num', $end_num);

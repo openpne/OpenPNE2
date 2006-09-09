@@ -16,7 +16,7 @@ class ktai_page_fh_friend_list extends OpenPNE_Action
         $page = $requests['page'];
         // ----------
 
-        if(!$target_c_member_id) $target_c_member_id = $u;
+        if (!$target_c_member_id) $target_c_member_id = $u;
 
         if (p_common_is_access_block($u, $target_c_member_id)) {
             openpne_redirect('ktai', 'page_h_access_block');

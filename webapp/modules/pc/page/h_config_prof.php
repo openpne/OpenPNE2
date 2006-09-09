@@ -14,7 +14,7 @@ class pc_page_h_config_prof extends OpenPNE_Action
         $prof = $_REQUEST['prof'];
         // ----------
 
-        $this->set('inc_navi',fetch_inc_navi("h"));
+        $this->set('inc_navi', fetch_inc_navi('h'));
 
         if (!$prof) {
             $prof = db_common_c_member_with_profile($u, 'private');

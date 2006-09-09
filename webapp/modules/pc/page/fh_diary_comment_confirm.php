@@ -29,7 +29,7 @@ class pc_page_fh_diary_comment_confirm extends OpenPNE_Action
             $target_c_member_id = $u;
         }
 
-        if($target_c_member_id == $u) {
+        if ($target_c_member_id == $u) {
             $type = 'h';
 
         } else {

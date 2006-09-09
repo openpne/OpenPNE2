@@ -23,7 +23,7 @@ class pc_page_c_edit_member extends OpenPNE_Action
         }
         //---
 
-        $this->set('inc_navi',fetch_inc_navi("c",$target_c_commu_id));
+        $this->set('inc_navi', fetch_inc_navi('c', $target_c_commu_id));
 
         //メンバー情報
         $this->set("member", db_common_c_member4c_member_id($u));

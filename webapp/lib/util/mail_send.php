@@ -296,7 +296,7 @@ function send_bbs_info_mail_pc($c_commu_topic_comment_id, $c_member_id)
     list($subject, $body) = $tpl;
 
     $lst  = db_common_receive_pc_address_list4c_commu_id($c_commu_id);
-    foreach($lst as $pc_address) {
+    foreach ($lst as $pc_address) {
         t_send_email($pc_address, $subject, $body, true);
     }
 }

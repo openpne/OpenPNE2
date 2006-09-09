@@ -17,7 +17,7 @@ class pc_page_c_home extends OpenPNE_Action
             openpne_redirect('pc', 'page_h_err_c_home');
         }
 
-        $this->set('inc_navi',fetch_inc_navi('c', $c_commu_id));
+        $this->set('inc_navi', fetch_inc_navi('c', $c_commu_id));
 
         $this->set('c_commu', $c_commu);
 

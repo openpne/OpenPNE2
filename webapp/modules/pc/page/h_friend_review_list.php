@@ -18,10 +18,10 @@ class pc_page_h_friend_review_list extends OpenPNE_Action
         $page_size = 30;
         $page = $page + $direc;
 
-        $this->set('inc_navi',fetch_inc_navi("h"));
+        $this->set('inc_navi', fetch_inc_navi('h'));
 
         list($c_friend_review_list, $is_prev, $is_next, $total_num, $start_num, $end_num)
-            =p_h_home_c_friend_review_list_more4c_member_id($u,$page, $page_size);
+            = p_h_home_c_friend_review_list_more4c_member_id($u, $page, $page_size);
         $this->set("is_prev", $is_prev);
         $this->set("is_next", $is_next);
         $this->set("page", $page);

@@ -31,7 +31,7 @@ class pc_page_c_event_write_confirm extends OpenPNE_Action
 
         //エラーチェック
         $err_msg = array();
-        if(trim($body) == '')  $err_msg[] = "本文を入力してください";
+        if (trim($body) == '')  $err_msg[] = "本文を入力してください";
 
         if ($upfile_obj1['error'] !== UPLOAD_ERR_NO_FILE) {
             if (!($image = t_check_image($upfile_obj1))) {

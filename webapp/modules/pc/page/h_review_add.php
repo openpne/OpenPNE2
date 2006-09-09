@@ -19,7 +19,7 @@ class pc_page_h_review_add extends OpenPNE_Action
         $page_size = 10; //固定
 
         $this->set('inc_navi', fetch_inc_navi("h"));
-        $this->set('category_disp',p_h_review_add_category_disp());
+        $this->set('category_disp', p_h_review_add_category_disp());
         $this->set('category_id', $category_id);
         $this->set('keyword', $keyword);
 

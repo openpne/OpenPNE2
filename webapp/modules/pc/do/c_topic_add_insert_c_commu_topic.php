@@ -22,7 +22,7 @@ class pc_do_c_topic_add_insert_c_commu_topic extends OpenPNE_Action
 
         $status = db_common_commu_status($u, $c_commu_id);
 
-        if(!$status['is_commu_member']) {
+        if (!$status['is_commu_member']) {
             handle_kengen_error();
         }
         //---

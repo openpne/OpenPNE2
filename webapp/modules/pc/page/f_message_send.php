@@ -28,7 +28,7 @@ class pc_page_f_message_send extends OpenPNE_Action
         }
 
         //メッセージIDから情報を取り出す
-        if($box == "savebox" && $form_val['target_c_message_id']){
+        if ($box == "savebox" && $form_val['target_c_message_id']) {
             $tmplist = _db_c_message4c_message_id($form_val['target_c_message_id']);
             $form_val['body'] = $tmplist['body'];
             $form_val['subject'] = $tmplist['subject'];
@@ -36,8 +36,7 @@ class pc_page_f_message_send extends OpenPNE_Action
             if (!$target_c_member_id) {
                 $target_c_member_id = $tmplist['c_member_id_to'];
             }
-        }
-        elseif (!$syusei && $form_val['target_c_message_id']) {
+        } elseif (!$syusei && $form_val['target_c_message_id']) {
             $tmplist = _db_c_message4c_message_id($form_val['target_c_message_id']);
             $form_val['body'] = message_body2inyou($tmplist['body']);
             $form_val['subject'] = "Re:".$tmplist['subject'];

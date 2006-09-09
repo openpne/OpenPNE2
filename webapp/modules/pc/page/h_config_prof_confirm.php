@@ -21,7 +21,7 @@ class pc_page_h_config_prof_confirm extends OpenPNE_Action
         $prof = $_REQUEST['prof'];// do:h_config_prof で値チェック済み
         // ----------
 
-        $this->set('inc_navi',fetch_inc_navi("h"));
+        $this->set('inc_navi', fetch_inc_navi('h'));
 
         $this->set('prof', $prof);
         $this->set('profile_list', db_common_c_profile_list4null());

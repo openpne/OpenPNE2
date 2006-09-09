@@ -21,7 +21,7 @@ class ktai_do_h_message_insert_message extends OpenPNE_Action
         $target_c_message_id = $requests['c_message_id'];
         // ----------
 
-        if (is_null($subject) || $subject === ''){
+        if (is_null($subject) || $subject === '') {
             $p = array('target_c_message_id' => $target_c_message_id, 'msg' => 2);
             openpne_redirect('ktai', 'page_h_message', $p);
         }

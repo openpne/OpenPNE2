@@ -24,7 +24,7 @@ $stdin = fopen('php://stdin', 'rb');
 $raw_mail = '';
 do {
     $data = fread($stdin, 8192);
-    if(strlen($data) == 0) {
+    if (strlen($data) == 0) {
         break;
     }
     $raw_mail .= $data;

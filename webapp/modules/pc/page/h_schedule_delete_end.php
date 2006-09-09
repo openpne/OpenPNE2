@@ -9,7 +9,7 @@ class pc_page_h_schedule_delete_end extends OpenPNE_Action
     function execute($requests)
     {
         $u = $GLOBALS['AUTH']->uid();
-        $this->set('inc_navi',fetch_inc_navi('h'));
+        $this->set('inc_navi', fetch_inc_navi('h'));
 
         return 'success';
     }

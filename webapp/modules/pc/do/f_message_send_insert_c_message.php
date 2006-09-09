@@ -25,7 +25,7 @@ class pc_do_f_message_send_insert_c_message extends OpenPNE_Action
         if (null == $subject) {
             $msg1 = "件名を入力してください";
         }
-        if (null == $body){
+        if (null == $body) {
             $msg2 = "メッセージを入力してください";
         }
 

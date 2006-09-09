@@ -45,7 +45,7 @@ function _do_insert_c_image($filename, $filepath)
 
 function image_data_delete($image_filename)
 {
-    if(!$image_filename) return false;
+    if (!$image_filename) return false;
 
     db_image_delete_c_image($image_filename);
 
@@ -94,7 +94,7 @@ function image_insert_c_image4tmp($prefix, $tmpfile)
 
 function image_insert_c_image($upfile_obj, $filename)
 {
-    if(!$upfile_obj) return false;
+    if (!$upfile_obj) return false;
 
     $filepath = $upfile_obj['tmp_name'];
 

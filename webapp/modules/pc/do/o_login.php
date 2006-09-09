@@ -32,7 +32,7 @@ class pc_do_o_login extends OpenPNE_Action
         $auth->logout();
 
         if (LOGIN_CHECK_ENABLE) {
-            require_once 'OpenPNE/LoginChecker.php';
+            include_once 'OpenPNE/LoginChecker.php';
             $options = array(
                 'check_num'   => LOGIN_CHECK_NUM,
                 'check_time'  => LOGIN_CHECK_TIME,

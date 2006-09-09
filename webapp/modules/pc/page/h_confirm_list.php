@@ -10,7 +10,7 @@ class pc_page_h_confirm_list extends OpenPNE_Action
     {
         $u = $GLOBALS['AUTH']->uid();
 
-        $this->set('inc_navi',fetch_inc_navi("h"));
+        $this->set('inc_navi', fetch_inc_navi('h'));
 
 
         // あなたにフレンドリンクを要請しているメンバー

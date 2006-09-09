@@ -18,7 +18,7 @@ class pc_page_c_event_add extends OpenPNE_Action
 
         //--- 権限チェック
         //コミュニティメンバー
-        if (!_db_is_c_commu_member($c_commu_id,$u)) {
+        if (!_db_is_c_commu_member($c_commu_id, $u)) {
             $_REQUEST['target_c_commu_id'] = $c_commu_id;
             $_REQUEST['msg'] = "イベント作成をおこなうにはコミュニティに参加する必要があります";
             openpne_forward('pc', 'page', "c_home");
@@ -26,9 +26,9 @@ class pc_page_c_event_add extends OpenPNE_Action
         }
         //---
 
-        $this->set('inc_navi',fetch_inc_navi("c",$c_commu_id));
+        $this->set('inc_navi', fetch_inc_navi('c', $c_commu_id));
 
-        $this->set("c_commu",p_c_home_c_commu4c_commu_id($c_commu_id));
+        $this->set("c_commu", p_c_home_c_commu4c_commu_id($c_commu_id));
         $this->set("year", p_c_event_add_year4null());
         $this->set('month', p_regist_prof_c_profile_month_list4null());
         $this->set('day', p_regist_prof_c_profile_day_list4null());

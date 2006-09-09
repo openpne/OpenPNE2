@@ -32,7 +32,7 @@ class pc_do_h_config_3 extends OpenPNE_Action
         $is_shinobiashi = $requests['is_shinobiashi'];
         // ----------
 
-        require_once 'OpenPNE/RSS.php';
+        include_once 'OpenPNE/RSS.php';
 
         if ($rss_url = OpenPNE_RSS::auto_discovery($rss)) {
             $c_member = db_common_c_member4c_member_id($u);
@@ -60,7 +60,7 @@ class pc_do_h_config_3 extends OpenPNE_Action
             $is_shinobiashi
         );
 
-        do_h_config_3_insert_c_access_block($u , $c_member_id_block);
+        do_h_config_3_insert_c_access_block($u, $c_member_id_block);
 
         openpne_redirect('pc', 'page_h_home');
     }

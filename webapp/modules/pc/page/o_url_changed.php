@@ -23,7 +23,7 @@ class pc_page_o_url_changed extends OpenPNE_Action
         }
         $this->set('inc_page_header', fetch_inc_page_header('public'));
         $this->set('wait', $wait);
-        $this->set('url' , $url);
+        $this->set('url', $url);
         return 'success';
     }
 }

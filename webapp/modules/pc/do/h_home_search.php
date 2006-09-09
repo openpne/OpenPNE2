@@ -13,12 +13,10 @@ class pc_do_h_home_search extends OpenPNE_Action
         if (!is_null($requests['community_x'])) {
             $p = array('keyword' => $requests['q']);
             openpne_redirect('pc', 'page_h_com_find_all', $p);
-        }
-        elseif (!is_null($requests['web_x'])) {
+        } elseif (!is_null($requests['web_x'])) {
             $q = urlencode($requests['q']);
             client_redirect_absolute('http://www.google.com/search?hl=ja&q='.$q);
-        }
-        else { // default
+        } else { // default
             $p = array('keyword' => $requests['q']);
             openpne_redirect('pc', 'page_h_diary_list_all', $p);
         }

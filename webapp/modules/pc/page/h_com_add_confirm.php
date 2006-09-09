@@ -43,7 +43,7 @@ class pc_page_h_com_add_confirm extends OpenPNE_Action
         }
         //-----
 
-        $this->set('inc_navi',fetch_inc_navi("h"));
+        $this->set('inc_navi', fetch_inc_navi('h'));
 
         $c_commu_category_list = _db_c_commu_category4null();
 
@@ -54,8 +54,8 @@ class pc_page_h_com_add_confirm extends OpenPNE_Action
             'auth_commu_member' =>'参加：管理者の承認が必要、掲示板：コミュニティ参加者にのみ公開',
         );
 
-        foreach($c_commu_category_list as $each_c_commu_categfory){
-            if($each_c_commu_categfory['c_commu_category_id']==$c_commu_category_id)$c_commu_category_value=$each_c_commu_categfory['name'];
+        foreach ($c_commu_category_list as $each_c_commu_categfory) {
+            if ($each_c_commu_categfory['c_commu_category_id']==$c_commu_category_id)$c_commu_category_value=$each_c_commu_categfory['name'];
         }
         $public_flag_value=$public_flag_list[$public_flag];
 
@@ -65,7 +65,9 @@ class pc_page_h_com_add_confirm extends OpenPNE_Action
         //画像をvar/tmpフォルダにコピー
         $sessid = session_id();
         t_image_clear_tmp($sessid);
-        if( file_exists($upfile_obj["tmp_name"]) ) $tmpfile = t_image_save2tmp($upfile_obj, $sessid, "c");
+        if (file_exists($upfile_obj["tmp_name"])) {
+            $tmpfile = t_image_save2tmp($upfile_obj, $sessid, "c");
+        }
 
         $form_val = array(
             'name'=>$name,

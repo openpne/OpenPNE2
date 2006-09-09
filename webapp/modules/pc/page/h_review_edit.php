@@ -15,7 +15,7 @@ class pc_page_h_review_edit extends OpenPNE_Action
         $err_msg = $requests['err_msg'];
         // ----------
 
-        $this->set('inc_navi',fetch_inc_navi("h"));
+        $this->set('inc_navi', fetch_inc_navi('h'));
         $this->set('err_msg', $err_msg);
         $satisfaction = array(
             "5" => "★★★★★ 5",

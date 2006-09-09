@@ -34,13 +34,13 @@ class pc_page_h_calendar extends OpenPNE_Action
             $this->set('add_schedule', true);
         }
 
-        $this->set('inc_navi',fetch_inc_navi("h"));
+        $this->set('inc_navi', fetch_inc_navi('h'));
         // イベント
         $event_list = p_h_calendar_event4c_member_id($year, $month, $u);
         // 誕生日
         $birth_list = p_h_calendar_birth4c_member_id($month, $u);
 
-        require_once 'Calendar/Month/Weekdays.php';
+        include_once 'Calendar/Month/Weekdays.php';
         $Month = new Calendar_Month_Weekdays($year, $month, 0);
         $Month->build();
 
@@ -52,20 +52,20 @@ class pc_page_h_calendar extends OpenPNE_Action
             if ($Day->isEmpty()) {
                 $calendar[$i][] = array();
             } else {
-              $day = $Day->thisDay();
-              $item = array(
-                'day' => $day,
-                'now' => false,
-                'birth' => $birth_list[$day],
-                'event' => $event_list[$day],
-                'schedule' => p_h_calendar_c_schedule_list4date($year, $month, $day, $u),
-              );
-              $item['day'] = $day;
-              if ($is_curr && $item['day'] == $curr_day) {
-                $item['now'] = true;
-              }
+                $day = $Day->thisDay();
+                $item = array(
+                    'day' => $day,
+                    'now' => false,
+                    'birth' => $birth_list[$day],
+                    'event' => $event_list[$day],
+                    'schedule' => p_h_calendar_c_schedule_list4date($year, $month, $day, $u),
+                );
+                $item['day'] = $day;
+                if ($is_curr && $item['day'] == $curr_day) {
+                    $item['now'] = true;
+                }
 
-              $calendar[$i][] = $item;
+                $calendar[$i][] = $item;
             }
         }
 

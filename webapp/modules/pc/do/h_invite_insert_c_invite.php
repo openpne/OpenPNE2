@@ -69,9 +69,9 @@ class pc_do_h_invite_insert_c_invite extends OpenPNE_Action
 
             // c_member_pre に追加
             if (do_common_c_member_pre4pc_address($mail)) {
-                do_h_invite_update_c_invite($c_member_id_invite,$mail,$message,$session);
+                do_h_invite_update_c_invite($c_member_id_invite, $mail, $message, $session);
             } else {
-                do_h_invite_insert_c_invite($c_member_id_invite,$mail,$message,$session);
+                do_h_invite_insert_c_invite($c_member_id_invite, $mail, $message, $session);
             }
 
             do_h_invite_insert_c_invite_mail_send($c_member_id_invite, $session, $message, $mail);

@@ -14,7 +14,7 @@ class pc_page_c_join_request extends OpenPNE_Action
         $target_c_commu_id = $requests['target_c_commu_id'];
         // ----------
 
-        $this->set('inc_navi',fetch_inc_navi("c",$target_c_commu_id));
+        $this->set('inc_navi', fetch_inc_navi('c', $target_c_commu_id));
 
 
         //メンバー情報

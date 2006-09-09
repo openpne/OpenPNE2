@@ -24,7 +24,7 @@ class pc_do_inc_join_c_commu extends OpenPNE_Action
             db_commu_delete_c_commu_admin_invite($admin_invite);
         }
 
-        switch($status){
+        switch($status) {
         //承認必要なし
         case STATUS_C_JOIN_REQUEST_FREE:
             do_inc_join_c_commu($target_c_commu_id, $u);

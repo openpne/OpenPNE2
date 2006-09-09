@@ -14,7 +14,7 @@ class pc_page_h_delete_diary extends OpenPNE_Action
         $target_c_diary_id = $requests['target_c_diary_id'];
         // ----------
 
-        $this->set('inc_navi',fetch_inc_navi("h"));
+        $this->set('inc_navi', fetch_inc_navi('h'));
         $this->set("target_c_diary", db_diary_get_c_diary4id($target_c_diary_id));
 
         return 'success';

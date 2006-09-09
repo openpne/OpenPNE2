@@ -22,7 +22,7 @@ class pc_page_f_bookmark_add extends OpenPNE_Action
             handle_kengen_error();
         }
 
-        $this->set('inc_navi',fetch_inc_navi("f", $target_c_member_id));
+        $this->set('inc_navi', fetch_inc_navi('f', $target_c_member_id));
         $c_member = db_common_c_member_with_profile($target_c_member_id);
         $c_member['last_login'] = p_f_home_last_login4access_date($c_member['access_date']);
         $this->set('c_member', $c_member);

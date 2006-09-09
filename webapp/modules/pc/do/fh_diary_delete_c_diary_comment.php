@@ -16,7 +16,7 @@ class pc_do_fh_diary_delete_c_diary_comment extends OpenPNE_Action
 
         $target_c_diary_comment_id =  $_REQUEST['target_c_diary_comment_id'];
 
-        foreach( $target_c_diary_comment_id as $val ) {
+        foreach ($target_c_diary_comment_id as $val) {
 
             //--- 権限チェック
             //日記作成者 or コメント作成者
@@ -33,7 +33,7 @@ class pc_do_fh_diary_delete_c_diary_comment extends OpenPNE_Action
             //---
 
             //コメント削除実行
-            db_diary_delete_c_diary_comment($val,$u);
+            db_diary_delete_c_diary_comment($val, $u);
         }
 
         $p = array('target_c_diary_id' => $target_c_diary_id);

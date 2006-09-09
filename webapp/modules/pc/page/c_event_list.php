@@ -25,26 +25,26 @@ class pc_page_c_event_list extends OpenPNE_Action
             openpne_redirect('pc', 'page_h_err_c_home');
         }
 
-        $this->set('inc_navi',fetch_inc_navi("c",$c_commu_id));
+        $this->set('inc_navi', fetch_inc_navi('c', $c_commu_id));
 
         $page += $direc;
 
-        $this->set("c_commu",$c_commu);
+        $this->set("c_commu", $c_commu);
         list($result, $is_prev, $is_next, $total_num, $start_num, $end_num)
             = p_c_topic_list_c_topic_list4target_c_commu_id($c_commu_id, $u, $page, $page_size, 1, 1);
-        $this->set("c_topic_list",$result);
+        $this->set("c_topic_list", $result);
         $this->set("is_prev", $is_prev);
         $this->set("is_next", $is_next);
         $this->set("page", $page);
-        $this->set("total_num",$total_num);
+        $this->set("total_num", $total_num);
         $this->set('start_num', $start_num);
         $this->set('end_num', $end_num);
 
 
         //--- 権限チェック
-        $is_c_commu_member = _db_is_c_commu_member($c_commu_id,$u);
+        $is_c_commu_member = _db_is_c_commu_member($c_commu_id, $u);
 
-        if(!$is_c_commu_member && $c_commu['public_flag'] == "auth_commu_member"){
+        if (!$is_c_commu_member && $c_commu['public_flag'] == "auth_commu_member") {
             $is_warning = true;
         }else{
             $is_warning = false;
@@ -52,7 +52,7 @@ class pc_page_c_event_list extends OpenPNE_Action
         $this->set("is_warning", $is_warning);
         //---
 
-        $this->set("is_c_commu_admin", _db_is_c_commu_admin($c_commu_id,$u));
+        $this->set("is_c_commu_admin", _db_is_c_commu_admin($c_commu_id, $u));
         $this->set("is_c_commu_member", $is_c_commu_member);
 
         return 'success';

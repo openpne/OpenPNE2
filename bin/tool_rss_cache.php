@@ -33,7 +33,7 @@ touch($log);
 // 前回最後にRSS取得したメンバのID取得
 if ($f = fopen($log, 'r+')) {
     rewind($f);
-    if (flock($f, LOCK_EX)){
+    if (flock($f, LOCK_EX)) {
         $start_id = intval(fread($f, 11));
     }
 }
@@ -150,7 +150,7 @@ function db_c_member_list4no_exists_rssAc_member_id($c_member_id_from, $c_member
 function db_delete_rss_cache4c_member_list($c_member_list)
 {
     $sql = "DELETE FROM c_rss_cache WHERE c_member_id IN (0";
-    foreach($c_member_list as $c_member){
+    foreach ($c_member_list as $c_member) {
         _log('delete', $c_member['c_member_id']);
         $sql .= "," . intval($c_member['c_member_id']);
     }

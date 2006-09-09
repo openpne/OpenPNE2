@@ -21,7 +21,7 @@ class pc_page_o_regist_end extends OpenPNE_Action
         //>
 
         //---- inc_ テンプレート用 変数 ----//
-        $this->set('inc_page_header',fetch_inc_page_header('regist'));
+        $this->set('inc_page_header', fetch_inc_page_header('regist'));
 
         //アフィリエイトタグ用変数
         $aftag = str_replace(array('({$ID})', '({$DATETIME})'),

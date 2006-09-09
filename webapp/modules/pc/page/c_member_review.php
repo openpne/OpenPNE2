@@ -18,7 +18,7 @@ class pc_page_c_member_review extends OpenPNE_Action
         $page_size=20;
         $page += $direc;
 
-        $this->set('inc_navi',fetch_inc_navi("c",$c_commu_id));
+        $this->set('inc_navi', fetch_inc_navi('c', $c_commu_id));
         list($c_member_review, $is_prev, $is_next, $total_num, $start_num, $end_num)
              = p_c_member_review_c_member_review4c_commu_id($c_commu_id, $page, $page_size);
         $this->set('c_member_review', $c_member_review);
@@ -31,7 +31,7 @@ class pc_page_c_member_review extends OpenPNE_Action
 
         $c_commu = _db_c_commu4c_commu_id($c_commu_id);
         $this->set('c_commu', $c_commu);
-        $this->set("is_c_commu_member", _db_is_c_commu_member($c_commu_id,$u) );
+        $this->set("is_c_commu_member", _db_is_c_commu_member($c_commu_id, $u));
 
         return 'success';
     }

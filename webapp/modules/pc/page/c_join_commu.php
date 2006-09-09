@@ -22,7 +22,7 @@ class pc_page_c_join_commu extends OpenPNE_Action
             $status = STATUS_C_JOIN_REQUEST_FREE;
         }
 
-        switch($status){
+        switch($status) {
         //承認必要なし
         case STATUS_C_JOIN_REQUEST_FREE:
             break;
@@ -43,7 +43,7 @@ class pc_page_c_join_commu extends OpenPNE_Action
             break;
         }
 
-        $this->set('inc_navi',fetch_inc_navi("c",$target_c_commu_id));
+        $this->set('inc_navi', fetch_inc_navi('c', $target_c_commu_id));
 
         $this->set('c_commu', _db_c_commu4c_commu_id($target_c_commu_id));
 

@@ -14,7 +14,7 @@ class pc_page_h_ranking extends OpenPNE_Action
         $kind = $requests['kind'];
         // ----------
 
-        $this->set('inc_navi',fetch_inc_navi("h"));
+        $this->set('inc_navi', fetch_inc_navi('h'));
 
         $this->set('kind', $kind);
 
@@ -55,7 +55,7 @@ class pc_page_h_ranking extends OpenPNE_Action
         if ($list) {
             $rank = 1;
             $current_count = null;
-            foreach($list as $item) {
+            foreach ($list as $item) {
                 if ($item['count'] != $current_count) {
                     $rank = $rank + count($rank_list[$rank]);
                     $current_count = $item['count'];

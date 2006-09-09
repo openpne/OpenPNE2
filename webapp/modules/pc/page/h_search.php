@@ -10,7 +10,7 @@ class pc_page_h_search extends OpenPNE_Action
     {
         $u = $GLOBALS['AUTH']->uid();
 
-        $this->set('inc_navi',fetch_inc_navi("h"));
+        $this->set('inc_navi', fetch_inc_navi('h'));
         $this->set('profile_list', db_common_c_profile_list());
 
         return 'success';

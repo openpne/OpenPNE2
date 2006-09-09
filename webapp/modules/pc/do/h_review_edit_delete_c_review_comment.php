@@ -17,7 +17,7 @@ class pc_do_h_review_edit_delete_c_review_comment extends OpenPNE_Action
         //--- 権限チェック
         //レビューコメント作者
 
-        if(!do_h_review_edit_c_review_comment4c_review_comment_id_c_member_id($c_review_comment_id, $u)){
+        if (!do_h_review_edit_c_review_comment4c_review_comment_id_c_member_id($c_review_comment_id, $u)) {
             handle_kengen_error();
         }
         //---

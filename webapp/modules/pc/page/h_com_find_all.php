@@ -24,7 +24,7 @@ class pc_page_h_com_find_all extends OpenPNE_Action
 
         do_common_insert_search_log($u, $keyword);
 
-        $this->set('inc_navi',fetch_inc_navi("h"));
+        $this->set('inc_navi', fetch_inc_navi('h'));
 
         $page_size = 20;
         $page = $page + $direc;
@@ -52,12 +52,11 @@ class pc_page_h_com_find_all extends OpenPNE_Action
             'val_order' => $val_order,
             'category_id' => $category_id,
         );
-        $this->set('search_val_list',$search_val_list);
+        $this->set('search_val_list', $search_val_list);
 
         $this->set('c_commu_category_list', p_h_com_find_all_c_commu_category_list4null());
-        $this->set('c_commu_category_parent_list',_db_c_commu_category_parent_list4null());
+        $this->set('c_commu_category_parent_list', _db_c_commu_category_parent_list4null());
 
-        /////AA local var samples AA//////////////////////////
         return 'success';
     }
 }

@@ -21,11 +21,11 @@ class pc_page_c_topic_edit extends OpenPNE_Action
         $c_commu_id = $c_topic['c_commu_id'];
 
         //--- 権限チェック
-        if(!p_common_is_c_commu_view4c_commu_idAc_member_id($c_commu_id,$u)){
+        if (!p_common_is_c_commu_view4c_commu_idAc_member_id($c_commu_id, $u)) {
             handle_kengen_error();
         }
-        if(!_db_is_c_topic_admin($c_commu_topic_id, $u) &&
-            !_db_is_c_commu_admin($c_commu_id, $u)){
+        if (!_db_is_c_topic_admin($c_commu_topic_id, $u) &&
+            !_db_is_c_commu_admin($c_commu_id, $u)) {
             handle_kengen_error();
         }
         //---
@@ -35,14 +35,14 @@ class pc_page_c_topic_edit extends OpenPNE_Action
             openpne_redirect('pc', 'page_c_event_edit', $p);
         }
 
-        $this->set('inc_navi',fetch_inc_navi("c",$c_commu_id));
-        if($err_msg){
-        $c_topic['name'] = $title;
+        $this->set('inc_navi', fetch_inc_navi('c', $c_commu_id));
+        if ($err_msg) {
+            $c_topic['name'] = $title;
             $c_topic['body'] = $body;
         }
 
-        $this->set('err_msg',$err_msg);
-        $this->set('c_topic',$c_topic);
+        $this->set('err_msg', $err_msg);
+        $this->set('c_topic', $c_topic);
         return 'success';
     }
 }

@@ -9,7 +9,7 @@ class pc_page_h_schedule_add_confirm extends OpenPNE_Action
     function execute($requests)
     {
         $u = $GLOBALS['AUTH']->uid();
-        $this->set('inc_navi',fetch_inc_navi('h'));
+        $this->set('inc_navi', fetch_inc_navi('h'));
 
         // --- リクエスト変数
         $input = $requests;
@@ -31,7 +31,7 @@ class pc_page_h_schedule_add_confirm extends OpenPNE_Action
         // validation
         $errors = array();
 
-        if(!$title) {
+        if (!$title) {
             $errors[] = "タイトルを入力してください";
         }
 

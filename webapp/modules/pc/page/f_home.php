@@ -33,7 +33,7 @@ class pc_page_f_home extends OpenPNE_Action
         db_ashiato_insert_c_ashiato($target_c_member_id, $u);
 
         $this->set('is_h_prof', 0);
-        $this->set('inc_navi',fetch_inc_navi('f',$target_c_member_id));
+        $this->set('inc_navi', fetch_inc_navi('f', $target_c_member_id));
 
         $is_friend = db_friend_is_friend($u, $target_c_member_id);
         if ($is_friend) {
@@ -52,7 +52,7 @@ class pc_page_f_home extends OpenPNE_Action
 
         // --- f_home, h_prof 共通処理
 
-        $this->set('target_c_member_id',$target_c_member_id);
+        $this->set('target_c_member_id', $target_c_member_id);
         $target_c_member['last_login'] = p_f_home_last_login4access_date($target_c_member['access_date']);
         if ($target_c_member['birth_year']) {
             $target_c_member['age'] = getAge($target_c_member['birth_year'], $target_c_member['birth_month'], $target_c_member['birth_day']);
@@ -65,7 +65,7 @@ class pc_page_f_home extends OpenPNE_Action
         $this->set('c_friend_list', p_f_home_c_friend_list4c_member_id($target_c_member_id, 9));
         $this->set('c_friend_count', db_friend_count_friends($target_c_member_id));
         $this->set('c_diary_list', db_diary_get_c_diary_list4c_member_id($target_c_member_id, 5));
-        $this->set('user_count',p_common_count_c_commu4c_member_id($target_c_member_id));
+        $this->set('user_count', p_common_count_c_commu4c_member_id($target_c_member_id));
         $this->set('c_commu_list', p_f_home_c_commu_list4c_member_id($target_c_member_id, 9));
         $this->set('c_review_list', db_review_c_review_list4member($target_c_member_id, 5));
 

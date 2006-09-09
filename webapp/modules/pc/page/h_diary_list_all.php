@@ -16,7 +16,7 @@ class pc_page_h_diary_list_all extends OpenPNE_Action
         $keyword = $requests['keyword'];
         // ----------
 
-        $this->set('inc_navi',fetch_inc_navi("h"));
+        $this->set('inc_navi', fetch_inc_navi('h'));
 
         //日記一覧
         $page = $page + $direc;
@@ -30,7 +30,7 @@ class pc_page_h_diary_list_all extends OpenPNE_Action
         $this->set('is_prev', $result[1]);
         $this->set('is_next', $result[2]);
         //検索に一致したコミュニティ数
-        $this->set('c_diary_search_list_count',$result[3]);
+        $this->set('c_diary_search_list_count', $result[3]);
 
         $pager = array();
         $pager['start'] = $page_size * ($page - 1) + 1;
@@ -41,14 +41,14 @@ class pc_page_h_diary_list_all extends OpenPNE_Action
         $this->set('pager', $pager);
 
         //バグ回避のため半角空白を全角に統一
-        $keyword = str_replace ( " ", "　", $keyword);
+        $keyword = str_replace(" ", "　", $keyword);
 
         $search_val_list = array('val_order'=> null, // $val_order,
                                  'search_word'=> null, // $search_word,
                                  'category_id'=> null, // $category_id,
                                  'c_commu_search_list_count'=>$result[3]);
 
-        $this->set('keyword',$keyword);
+        $this->set('keyword', $keyword);
 
         if (!$keyword) {
             // rss_cache

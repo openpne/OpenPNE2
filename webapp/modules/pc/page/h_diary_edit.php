@@ -44,9 +44,9 @@ class pc_page_h_diary_edit extends OpenPNE_Action
         if ($_REQUEST['del_img'] & 0x01 == 1)  $c_diary['image_filename_1'] = "";
         if ($_REQUEST['del_img'] & 0x02 == 1)  $c_diary['image_filename_2'] = "";
         if ($_REQUEST['del_img'] & 0x04 == 1)  $c_diary['image_filename_3'] = "";
-        $this->set('del_img',$_REQUEST['del_img']);
+        $this->set('del_img', $_REQUEST['del_img']);
 
-        $this->set('inc_navi',fetch_inc_navi("h"));
+        $this->set('inc_navi', fetch_inc_navi('h'));
 
         //プロフィール
         $this->set("target_member", db_common_c_member4c_member_id($u));
@@ -72,9 +72,8 @@ class pc_page_h_diary_edit extends OpenPNE_Action
         $this->set("ym", $calendar['ym']);
 
         //各月の日記
-        $this->set("date_list",p_fh_diary_list_date_list4c_member_id($u));
+        $this->set("date_list", p_fh_diary_list_date_list4c_member_id($u));
 
-        /////AA local var samples AA//////////////////////////
         return 'success';
     }
 }

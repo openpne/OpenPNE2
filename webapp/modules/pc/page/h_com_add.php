@@ -25,7 +25,7 @@ class pc_page_h_com_add extends OpenPNE_Action
             'public_flag'=>$public_flag,
         );
 
-        $this->set('inc_navi',fetch_inc_navi("h"));
+        $this->set('inc_navi', fetch_inc_navi('h'));
 
         $c_commu_category_list = _db_c_commu_category4null();
         $this->set("c_commu_category", $c_commu_category_list);

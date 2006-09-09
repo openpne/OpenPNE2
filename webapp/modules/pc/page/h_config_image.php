@@ -10,7 +10,7 @@ class pc_page_h_config_image extends OpenPNE_Action
     {
         $u = $GLOBALS['AUTH']->uid();
 
-        $this->set('inc_navi',fetch_inc_navi("h"));
+        $this->set('inc_navi', fetch_inc_navi('h'));
 
         //プロフィール
         $this->set("c_member", db_common_c_member4c_member_id($u));

@@ -46,9 +46,6 @@ class pc_page_f_link_request extends OpenPNE_Action
         //ターゲット情報
         $this->set("target_member", $c_member);
 
-        //紹介文の内容
-        //$this->set("request_body",p_f_link_request_request_body4c_member_id($u, $target_c_member_id));
-
         //ターゲットのid
         $this->set("target_c_member_id", $target_c_member_id);
 

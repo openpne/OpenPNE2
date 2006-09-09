@@ -18,12 +18,12 @@ class pc_page_h_bookmark_list extends OpenPNE_Action
         $page_size = 20;
         $page += $direc;
 
-        $this->set('inc_navi',fetch_inc_navi("h"));
-        $list = p_h_bookmark_list($u,$page,$page_size);
-        $this->set('c_members',$list[0]);
+        $this->set('inc_navi', fetch_inc_navi('h'));
+        $list = p_h_bookmark_list($u, $page, $page_size);
+        $this->set('c_members', $list[0]);
         $this->set("is_prev", $list[1]);
         $this->set("is_next", $list[2]);
-        $this->set('c_members_num',$list[3]);
+        $this->set('c_members_num', $list[3]);
         $this->set("page", $page);
         $pager_index = array(
             'displaying_first' => ($page - 1) * $page_size + 1,

@@ -26,19 +26,27 @@ class pc_page_c_edit extends OpenPNE_Action
         }
         //---
 
-        $this->set('inc_navi',fetch_inc_navi('c', $target_c_commu_id));
+        $this->set('inc_navi', fetch_inc_navi('c', $target_c_commu_id));
 
         //コミュニティデータ取得
         $c_commu = _db_c_commu4c_commu_id($target_c_commu_id);
 
-        if($name)$c_commu['name']=$name;
-        if($c_commu_category_id)$c_commu['c_commu_category_id']=$c_commu_category_id;
-        if($info)$c_commu['info']=$info;
-        if($public_flag)$c_commu['public_flag']=$public_flag;
+        if ($name) {
+            $c_commu['name'] = $name;
+        }
+        if ($c_commu_category_id) {
+            $c_commu['c_commu_category_id'] = $c_commu_category_id;
+        }
+        if ($info) {
+            $c_commu['info'] = $info;
+        }
+        if ($public_flag) {
+            $c_commu['public_flag'] = $public_flag;
+        }
 
         $this->set('target_c_commu_id', $target_c_commu_id);
 
-        if($err_msg){
+        if ($err_msg) {
             $c_commu['name'] = $name;
             $c_commu['info'] = $info;
         }

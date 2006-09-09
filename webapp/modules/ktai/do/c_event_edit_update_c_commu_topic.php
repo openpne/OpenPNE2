@@ -25,7 +25,7 @@ class ktai_do_c_event_edit_update_c_commu_topic extends OpenPNE_Action
         //--- 権限チェック
         //イベント管理者 or コミュニティ管理者
 
-        if (!_db_is_c_event_admin($c_commu_topic_id,$u) &&
+        if (!_db_is_c_event_admin($c_commu_topic_id, $u) &&
             !_db_is_c_commu_admin($event['c_commu_id'], $u)) {
             handle_kengen_error();
         }

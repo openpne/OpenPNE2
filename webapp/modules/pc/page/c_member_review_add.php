@@ -21,7 +21,7 @@ class pc_page_c_member_review_add extends OpenPNE_Action
 
         //--- 権限チェック
         //コミュニティメンバ
-        if(!_db_is_c_commu_member($c_commu_id, $u)){
+        if (!_db_is_c_commu_member($c_commu_id, $u)) {
             handle_kengen_error();
         }
         //---
@@ -40,7 +40,7 @@ class pc_page_c_member_review_add extends OpenPNE_Action
         $c_commu = _db_c_commu4c_commu_id($c_commu_id);
         $this->set('c_commu', $c_commu);
 
-        $this->set('inc_navi',fetch_inc_navi("c",$c_commu_id));
+        $this->set('inc_navi', fetch_inc_navi('c', $c_commu_id));
         return 'success';
     }
 }

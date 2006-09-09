@@ -32,8 +32,8 @@ class pc_do_h_message_box_delete_message extends OpenPNE_Action
         if ($box == "trash") {
 
             //ごみ箱から移動
-            if (!empty($requests['move']) ){
-                foreach($c_message_id as $val){
+            if (!empty($requests['move']) ) {
+                foreach ($c_message_id as $val) {
                     $c_message = _db_c_message4c_message_id($val);
                     if ($c_message['c_member_id_from'] != $u
                         && $c_message['c_member_id_to'] != $u) {
@@ -51,11 +51,9 @@ class pc_do_h_message_box_delete_message extends OpenPNE_Action
                     $c_message = _db_c_message4c_message_id($val);
                     if ($c_message['c_member_id_from'] == $u) {
                         do_delete_c_message_from_trash($val);
-                    }
-                    elseif ($c_message['c_member_id_to'] == $u) {
+                    } elseif ($c_message['c_member_id_to'] == $u) {
                         do_delete_c_message_to_trash($val);
-                    }
-                    else {
+                    } else {
                         handle_kengen_error();
                     }
                 }

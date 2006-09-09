@@ -32,7 +32,7 @@ class pc_do_h_message_insert_message extends OpenPNE_Action
         }
         //---
 
-        do_common_send_message($u, $target_c_member_id, $title,$body);
+        do_common_send_message($u, $target_c_member_id, $title, $body);
 
         openpne_redirect('pc', 'page_h_message_box');
     }

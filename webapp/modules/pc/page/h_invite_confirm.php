@@ -25,7 +25,7 @@ class pc_page_h_invite_confirm extends OpenPNE_Action
         } elseif (p_is_sns_join4mail_address($form_val['mail'])) {
             $msg = "そのアドレスは既に登録済みです";
         } else {
-            if(is_ktai_mail_address($form_val['mail'])) {
+            if (is_ktai_mail_address($form_val['mail'])) {
                 //<PCKTAI
                 if (defined('OPENPNE_REGIST_FROM') &&
                         !((OPENPNE_REGIST_FROM & OPENPNE_REGIST_FROM_KTAI) >> 1)) {

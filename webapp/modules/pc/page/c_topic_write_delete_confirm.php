@@ -20,7 +20,7 @@ class pc_page_c_topic_write_delete_confirm extends OpenPNE_Action
         $c_commu = _db_c_commu4c_commu_id($c_commu_id);
 
         //--- 権限チェック
-        if($c_commu_topic_comment['c_member_id']!=$u&&$c_commu['c_member_id_admin']!=$u){
+        if ($c_commu_topic_comment['c_member_id']!=$u&&$c_commu['c_member_id_admin']!=$u) {
             handle_kengen_error();
         }
         //---

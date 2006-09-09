@@ -18,12 +18,12 @@ class pc_page_c_event_invite_end extends OpenPNE_Action
         $c_commu_id = $c_topic['c_commu_id'];
 
         //--- 権限チェック
-        if(!p_common_is_c_commu_view4c_commu_idAc_member_id($c_commu_id,$u)){
+        if (!p_common_is_c_commu_view4c_commu_idAc_member_id($c_commu_id, $u)) {
             handle_kengen_error();
         }
         //---
 
-        $this->set('inc_navi',fetch_inc_navi("c",$c_commu_id));
+        $this->set('inc_navi', fetch_inc_navi('c', $c_commu_id));
         $this->set("c_commu_id", $c_commu_id);
         $this->set("c_commu_topic_id", $c_commu_topic_id);
 

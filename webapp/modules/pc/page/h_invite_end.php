@@ -15,7 +15,7 @@ class pc_page_h_invite_end extends OpenPNE_Action
             exit;
         }
 
-        $this->set('inc_navi',fetch_inc_navi("h"));
+        $this->set('inc_navi', fetch_inc_navi('h'));
         $this->set('SNS_NAME', SNS_NAME);
 
         return 'success';

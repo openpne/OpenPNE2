@@ -10,7 +10,7 @@ class pc_page_h_err_forbidden extends OpenPNE_Action
     {
         $u = $GLOBALS['AUTH']->uid();
 
-        $this->set('inc_navi',fetch_inc_navi("h"));
+        $this->set('inc_navi', fetch_inc_navi('h'));
         return 'success';
     }
 }

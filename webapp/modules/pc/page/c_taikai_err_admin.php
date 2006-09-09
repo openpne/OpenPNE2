@@ -14,7 +14,7 @@ class pc_page_c_taikai_err_admin extends OpenPNE_Action
         $target_c_commu_id = $requests['target_c_commu_id'];
         // ----------
 
-        $this->set('inc_navi',fetch_inc_navi("c",$target_c_commu_id));
+        $this->set('inc_navi', fetch_inc_navi('c', $target_c_commu_id));
         $this->set('c_commu', _db_c_commu4c_commu_id($target_c_commu_id));
 
         return 'success';

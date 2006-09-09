@@ -297,7 +297,7 @@ function k_p_h_message_box_c_message_sent_list4c_member_id4range($c_member_id, $
             " AND is_send = 1";
     $total_num = db_get_one($sql, $params);
 
-    if ($total_num != 0){
+    if ($total_num != 0) {
         $total_page_num =  ceil($total_num / $page_size);
         if ($page >= $total_page_num) {
             $next = false;

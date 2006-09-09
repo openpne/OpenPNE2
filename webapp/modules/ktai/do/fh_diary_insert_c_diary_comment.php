@@ -19,7 +19,7 @@ class ktai_do_fh_diary_insert_c_diary_comment extends OpenPNE_Action
         $body = $requests['body'];
         // ----------
 
-        if (is_null($body) || $body === ''){
+        if (is_null($body) || $body === '') {
             $p = array('target_c_diary_id' => $target_c_diary_id, 'msg' => 1);
             openpne_redirect('ktai', 'page_fh_diary', $p);
         }

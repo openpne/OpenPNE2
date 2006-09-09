@@ -10,14 +10,14 @@ class pc_page_h_config extends OpenPNE_Action
     {
         $u = $GLOBALS['AUTH']->uid();
 
-        $this->set('inc_navi',fetch_inc_navi("h"));
+        $this->set('inc_navi', fetch_inc_navi('h'));
 
         $c_member = db_common_c_member4c_member_id($u);
 
-        $this->set('password_query_list',p_common_c_password_query4null());
-        $this->set('c_member',$c_member);
+        $this->set('password_query_list', p_common_c_password_query4null());
+        $this->set('c_member', $c_member);
         $this->set('c_member_id_block', p_h_config_c_member_id_block4c_member_id($u));
-        $this->set('daily_news_day_str', str_replace(',','・',DAILY_NEWS_DAY));
+        $this->set('daily_news_day_str', str_replace(',', '・', DAILY_NEWS_DAY));
         if (DAILY_NEWS_DAY) {
             $this->set('daily_news_day_num', count(explode(',', DAILY_NEWS_DAY)));
         } else {
