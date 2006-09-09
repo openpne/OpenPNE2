@@ -197,15 +197,15 @@ function p_f_home_c_friend_comment4c_member_id($c_member_id, $limit = 5)
  */
 function p_common_c_friend4c_member_id_from4c_member_id_to($c_member_id_from,$c_member_id_to)
 {
-    $sql =  "select c_friend_id,".
+    $sql =  "SELECT c_friend_id,".
                 "c_member_id_from,".
                 "c_member_id_to,".
                 "intro,".
                 "r_datetime".
-            " from c_friend".
-            " where c_friend.c_member_id_from = ?" .
-                " and c_friend.c_member_id_to = ?" .
-                " AND intro <> '' ";
+            " FROM c_friend".
+            " WHERE c_friend.c_member_id_from = ?" .
+                " AND c_friend.c_member_id_to = ?" .
+                " AND intro <> ''";
     $params = array(intval($c_member_id_from), intval($c_member_id_to));
     return db_get_row($sql, $params);
 }
@@ -233,8 +233,8 @@ function p_f_home_c_friend_list4c_member_id($c_member_id, $limit = 0)
 
 function p_f_intro_edit_intro_body4c_member_id($u, $target_c_member_id)
 {
-    $sql = "select intro from c_friend" .
-            " where c_member_id_to = ? and c_member_id_from = ?";
+    $sql = "SELECT intro FROM c_friend" .
+            " WHERE c_member_id_to = ? AND c_member_id_from = ?";
     $params = array(intval($target_c_member_id), intval($u));
     return db_get_one($sql, $params);
 }

@@ -326,7 +326,7 @@ function p_fh_com_list_c_commu_list4c_member_id($c_member_id, $page, $page_size)
  */
 function p_c_bbs_c_commu_id4c_commu_topic_id($c_commu_topic_id)
 {
-    $sql = "select c_commu_id from c_commu_topic where c_commu_topic_id = ?";
+    $sql = "SELECT c_commu_id FROM c_commu_topic WHERE c_commu_topic_id = ?";
     $params = array(intval($c_commu_topic_id));
     return db_get_one($sql, $params);
 }
@@ -376,10 +376,7 @@ function p_c_edit_member_c_member_list4c_commu_id($c_commu_id, $page_size, $page
         $list[$key]['is_c_commu_admin'] = _db_is_c_commu_admin($c_commu_id, $list[$key]['c_member_id']);
     }
 
-    $sql = "select count(*) from c_commu_member where c_commu_id = ?";
-    $params = array(intval($c_commu_id));
-    $total_num = db_get_one($sql, $params);
-
+    $total_num = _db_count_c_commu_member_list4c_commu_id($c_commu_id);
     if ($total_num != 0) {
         $total_page_num = ceil($total_num / $page_size);
         if ($page >= $total_page_num) {
@@ -417,12 +414,12 @@ function p_c_home_c_commu_member_list4c_commu_id($c_commu_id ,$limit = 9)
 
 function p_c_home_new_topic_comment4c_commu_id($c_commu_id, $limit, $event_flag = 0)
 {
-    $sql = "select cct.c_commu_topic_id , cct.name, MAX(cctc.r_datetime) as r_datetime , cct.c_commu_id " .
+    $sql = "SELECT cct.c_commu_topic_id , cct.name, MAX(cctc.r_datetime) as r_datetime , cct.c_commu_id " .
             " , cctc.image_filename1, cctc.image_filename2, cctc.image_filename3 " .
-            " from c_commu_topic_comment as cctc , c_commu_topic as cct" .
-            " where cctc.c_commu_topic_id = cct.c_commu_topic_id " .
-            " and cct.event_flag = ?".
-            " and cct.c_commu_id = ?".
+            " FROM c_commu_topic_comment as cctc , c_commu_topic as cct" .
+            " WHERE cctc.c_commu_topic_id = cct.c_commu_topic_id " .
+            " AND cct.event_flag = ?".
+            " AND cct.c_commu_id = ?".
             " group by cct.c_commu_topic_id " .
             " order by r_datetime desc ";
     $params = array((bool)$event_flag, intval($c_commu_id));
@@ -444,12 +441,10 @@ function p_c_home_new_topic_comment4c_commu_id($c_commu_id, $limit, $event_flag 
 function p_c_invite_invite_list4c_member_id4c_commu_id($c_member_id, $c_commu_id)
 {
     //友達リスト
-    $sql = "select c_member_id_to from c_friend where c_member_id_from = ?";
-    $params = array(intval($c_member_id));
-    $friend_list = db_get_col($sql, $params);
+    $friend_list = db_friend_c_member_id_list($c_member_id);
 
     //参加者リスト
-    $sql = "select c_member_id from c_commu_member where c_commu_id = ?";
+    $sql = 'SELECT c_member_id FROM c_commu_member WHERE c_commu_id = ?';
     $params = array(intval($c_commu_id));
     $member_list = db_get_col($sql, $params);
 
@@ -644,7 +639,7 @@ function p_h_home_c_commu_topic_comment_list4c_member_id($c_member_id, $limit)
     $sql .= " AND c.c_commu_id=cm.c_commu_id";
     $sql .= " AND ct.c_commu_id=cm.c_commu_id";
     $sql .= " AND ct.c_commu_topic_id=cc.c_commu_topic_id";
-    $sql .= " group by c_commu_topic_id, c_commu_name, c_commu_topic_name ,c_member_id ";
+    $sql .= " GROUP BY c_commu_topic_id, c_commu_name, c_commu_topic_name ,c_member_id ";
     $sql .= " ORDER BY r_datetime DESC";
     $params = array(intval($c_member_id));
     $c_commu_topic_list = db_get_all_limit($sql, 0, $limit, $params);
@@ -653,9 +648,9 @@ function p_h_home_c_commu_topic_comment_list4c_member_id($c_member_id, $limit)
         $c_member = db_common_c_member4c_member_id_LIGHT($value['c_member_id']);
         $c_commu_topic_list[$key]['nickname'] = $c_member['nickname'];
 
-        $sql = " select number, image_filename1, image_filename2, image_filename3 from c_commu_topic_comment " .
-                " where c_commu_topic_id = ?" .
-                " and r_datetime = ?";
+        $sql = 'SELECT number, image_filename1, image_filename2, image_filename3' .
+               ' FROM c_commu_topic_comment' .
+               ' WHERE c_commu_topic_id = ? AND r_datetime = ?';
         $params = array(intval($value['c_commu_topic_id']), $value['r_datetime']);
         $temp = db_get_row($sql, $params);
 
@@ -690,9 +685,9 @@ function p_h_com_comment_list_c_commu_topic_comment_list4c_member_id($c_member_i
         $c_member = db_common_c_member4c_member_id_LIGHT($value['c_member_id']);
         $c_commu_topic_list[$key]['nickname'] = $c_member['nickname'];
 
-        $sql = " select number, image_filename1, image_filename2, image_filename3 from c_commu_topic_comment " .
-                " where c_commu_topic_id = ?" .
-                " and r_datetime = ?";
+        $sql = 'SELECT number, image_filename1, image_filename2, image_filename3' .
+               ' FROM c_commu_topic_comment ' .
+               ' WHERE c_commu_topic_id = ? AND r_datetime = ?';
         $params = array(intval($value['c_commu_topic_id']), $value['r_datetime']);
         $temp = db_get_row($sql, $params);
 
@@ -756,52 +751,40 @@ function p_h_home_c_commu_list4c_member_id($c_member_id, $limit)
 
 function p_c_topic_list_c_topic_list4target_c_commu_id($c_commu_id, $c_member_id, $page = 1, $page_size = 10, $event_flag = 0, $topic_with_event = 0)
 {
-    $sql = " select cct.c_commu_topic_id , max(cctc.r_datetime) as newest_write_datetime " .
-            " from c_commu_topic as cct, c_commu_topic_comment as cctc " .
-            " where cct.c_commu_topic_id = cctc.c_commu_topic_id ";
+    $sql = " SELECT cct.c_commu_topic_id, max(cctc.r_datetime) as newest_write_datetime " .
+            " FROM c_commu_topic as cct, c_commu_topic_comment as cctc " .
+            " WHERE cct.c_commu_topic_id = cctc.c_commu_topic_id ";
 
     if ($topic_with_event) {
-        $sql .= " and cct.event_flag = $event_flag";
+        $sql .= " AND cct.event_flag = $event_flag";
     }
 
-    $sql .= " and cct.c_commu_id = ?" .
-            " group by c_commu_topic_id " .
-            " order by newest_write_datetime desc";
+    $sql .= " AND cct.c_commu_id = ?" .
+            " GROUP BY c_commu_topic_id " .
+            " ORDER BY newest_write_datetime DESC";
     $params = array(intval($c_commu_id));
     $lst = db_get_all_page($sql, $page, $page_size, $params);
 
     foreach ($lst as $key => $value) {
-        $sql = "select cct.c_commu_topic_id, cct.name, cct.r_datetime, cctc.body , cctc.image_filename1, cctc.image_filename2, image_filename3 " .
-                " from c_commu_topic as cct, c_commu_topic_comment as cctc " .
-                " where cct.c_commu_topic_id = cctc.c_commu_topic_id" .
-                " and cctc.number = 0" .
-                " and cct.c_commu_topic_id = ?";
+        $sql = "SELECT cct.c_commu_topic_id, cct.name, cct.r_datetime, cctc.body , cctc.image_filename1, cctc.image_filename2, image_filename3" .
+               " FROM c_commu_topic as cct, c_commu_topic_comment as cctc" .
+               " WHERE cct.c_commu_topic_id = cctc.c_commu_topic_id" .
+               " AND cctc.number = 0" .
+               " AND cct.c_commu_topic_id = ?";
         $params = array(intval($value['c_commu_topic_id']));
         $lst[$key] = db_get_row($sql, $params);
-    }
-
-    //キーがc_commu_topic_id、値が書き込み数の配列をつくる
-    $sql = "select c_commu_topic_id , MAX(number) as num " .
-            "from c_commu_topic_comment " .
-            "group by c_commu_topic_id ";
-    $lst2 = db_get_all($sql);
-    $write_num = array();
-    foreach ($lst2 as $key => $value) {
-        $write_num[$value['c_commu_topic_id']] = $value['num'];
     }
 
     foreach ($lst as $key => $value) {
         $lst[$key]['is_c_event_member'] = _db_is_c_event_member($value['c_commu_topic_id'], $c_member_id);
         $lst[$key]['is_c_topic_admin'] = _db_is_c_topic_admin($value['c_commu_topic_id'], $c_member_id);
-        $lst[$key]['write_num'] = $write_num[$value['c_commu_topic_id']];
+        $lst[$key]['write_num'] = db_commu_get_max_number4topic($value['c_commu_topic_id']);
     }
 
-    $sql = "select count(*) from c_commu_topic where c_commu_id = ?";
-
+    $sql = 'SELECT COUNT(*) FROM c_commu_topic WHERE c_commu_id = ?';
     if ($topic_with_event) {
-        $sql .= " and event_flag = $event_flag";
+        $sql .= " AND event_flag = $event_flag";
     }
-
     $params = array(intval($c_commu_id));
     $total_num = db_get_one($sql, $params);
 
@@ -839,7 +822,7 @@ function c_topic_detail_c_topic4c_commu_topic_id($c_commu_topic_id)
 
 function p_c_edit_is_topic4c_commu_id($c_commu_id)
 {
-    $sql = "select c_commu_topic_id from c_commu_topic where c_commu_id = ?";
+    $sql = 'SELECT c_commu_topic_id FROM c_commu_topic WHERE c_commu_id = ?';
     $params = array(intval($c_commu_id));
     return db_get_one($sql, $params);
 }
@@ -1254,10 +1237,7 @@ function k_p_c_member_list_c_members_disp4c_commu_id($c_commu_id, $page_size, $p
         $list[$key]['friend_count'] = db_friend_count_friends($value['c_member_id']);
     }
 
-    $sql = "select count(*) from c_commu_member where c_commu_id = ?";
-    $params = array(intval($c_commu_id));
-    $total_num = db_get_one($sql, $params);
-
+    $total_num = _db_count_c_commu_member_list4c_commu_id($c_commu_id);
     if ($total_num != 0) {
         $total_page_num = ceil($total_num / $page_size);
         if ($page >= $total_page_num) {
@@ -1281,12 +1261,10 @@ function k_p_c_member_list_c_members_disp4c_commu_id($c_commu_id, $page_size, $p
 function k_p_c_invite_c_friend_list_random4c_member_id4c_commu_id($c_member_id, $c_commu_id, $limit)
 {
     //友達リスト
-    $sql = "select c_member_id_to from c_friend where c_member_id_from = ?";
-    $params = array(intval($c_member_id));
-    $friend_list = db_get_col($sql, $params);
+    $friend_list = db_friend_c_member_id_list($c_member_id);
 
     //参加者リスト
-    $sql = "select c_member_id from c_commu_member where c_commu_id = ?";
+    $sql = "SELECT c_member_id FROM c_commu_member WHERE c_commu_id = ?";
     $params = array(intval($c_commu_id));
     $member_list = db_get_col($sql, $params);
 
@@ -1324,13 +1302,7 @@ function k_p_h_home_c_commu_topic_comment_list4c_member_id($c_member_id, $page_s
     $c_commu_topic_list = db_get_all_page($sql, $page, $page_size, $params);
 
     foreach ($c_commu_topic_list as $key => $value) {
-        //最新の書き込み番号
-        $sql = "SELECT MAX(number) FROM c_commu_topic_comment".
-               " where c_commu_topic_id = ?";
-        $params = array(intval($value['c_commu_topic_id']));
-        $number = db_get_one($sql, $params);
-
-        $c_commu_topic_list[$key]['number'] = $number;
+        $c_commu_topic_list[$key]['number'] = db_commu_get_max_number4topic($value['c_commu_topic_id']);
     }
 
     $sql = "SELECT count(*) ";
@@ -1708,18 +1680,18 @@ function c_event_write_delete_confirm_c_commu_topic_comment4c_commu_topic_commen
 
 function c_event_member_list4c_commu_topic_id($c_commu_topic_id, $page, $page_size)
 {
-    $sql = "select cm.* from c_member as cm , c_event_member as cem " .
-            "where cm.c_member_id = cem.c_member_id " .
-            "and cem.c_commu_topic_id = ?";
+    $sql = "SELECT cm.* FROM c_member as cm, c_event_member as cem" .
+            " WHERE cm.c_member_id = cem.c_member_id" .
+            " AND cem.c_commu_topic_id = ?";
     $params = array(intval($c_commu_topic_id));
     return db_get_all_page($sql, $page, $page_size, $params);
 }
 
 function count_c_event_member_list4c_commu_topic_id($c_commu_topic_id)
 {
-    $sql = "select count(*) from c_member as cm , c_event_member as cem " .
-            "where cm.c_member_id = cem.c_member_id " .
-            "and cem.c_commu_topic_id = ?";
+    $sql = "SELECT COUNT(*) FROM c_member as cm, c_event_member as cem" .
+            " WHERE cm.c_member_id = cem.c_member_id" .
+            " AND cem.c_commu_topic_id = ?";
     $params = array(intval($c_commu_topic_id));
     return db_get_one($sql, $params);
 }
@@ -1788,9 +1760,9 @@ function p_h_home_event4c_member_id($year, $month, $day, $c_member_id)
 
 function k_p_c_event_member_list4c_commu_topic_id($c_commu_topic_id, $page_size, $page)
 {
-    $sql = "select cm.* from c_member as cm , c_event_member as cem " .
-            "where cm.c_member_id = cem.c_member_id " .
-            "and cem.c_commu_topic_id = ?";
+    $sql = "SELECT cm.* FROM c_member AS cm, c_event_member AS cem" .
+            " WHERE cm.c_member_id = cem.c_member_id " .
+            " AND cem.c_commu_topic_id = ?";
     $params = array(intval($c_commu_topic_id));
     $list[0] = db_get_all_page($sql, $page, $page_size, $params);
 
@@ -1810,9 +1782,9 @@ function k_p_c_event_member_list4c_commu_topic_id($c_commu_topic_id, $page_size,
 
 function k_p_count_c_event_member_list4c_commu_topic_id($c_commu_topic_id)
 {
-    $sql = "select count(*) from c_member as cm , c_event_member as cem " .
-            "where cm.c_member_id = cem.c_member_id " .
-            "and cem.c_commu_topic_id = ?";
+    $sql = "SELECT COUNT(*) FROM c_member AS cm, c_event_member AS cem" .
+            " WHERE cm.c_member_id = cem.c_member_id" .
+            " AND cem.c_commu_topic_id = ?";
     $params = array(intval($c_commu_topic_id));
     return db_get_one($sql, $params);
 }

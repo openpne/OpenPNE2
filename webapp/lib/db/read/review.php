@@ -30,20 +30,20 @@ function p_h_home_c_friend_review_list4c_member_id($c_member_id, $limit)
 
 function p_h_home_c_friend_review_list_more4c_member_id($c_member_id, $page, $page_size)
 {
-    $sql =  "select cm.nickname, cr.c_review_id, cr.title, crc.r_datetime " .
-            " from  c_member as cm, c_friend as cf, c_review as cr, c_review_comment as crc " .
-            " where cr.c_review_id = crc.c_review_id " .
-            " and cf.c_member_id_to = crc.c_member_id " .
-            " and cf.c_member_id_to = cm.c_member_id " .
-            " and cf.c_member_id_from = ?".
-            " order by crc.r_datetime desc";
+    $sql =  "SELECT cm.nickname, cr.c_review_id, cr.title, crc.r_datetime" .
+            " FROM  c_member AS cm, c_friend AS cf, c_review AS cr, c_review_comment AS crc" .
+            " WHERE cr.c_review_id = crc.c_review_id " .
+            " AND cf.c_member_id_to = crc.c_member_id " .
+            " AND cf.c_member_id_to = cm.c_member_id " .
+            " AND cf.c_member_id_from = ?".
+            " ORDER BY crc.r_datetime DESC";
     $params = array(intval($c_member_id));
     $list = db_get_all_page($sql, $page, $page_size, $params);
 
-    $sql =  "select count(*) " .
-            " from  c_friend as cf, c_review_comment as crc " .
-            " where cf.c_member_id_to = crc.c_member_id " .
-            " and cf.c_member_id_from = ?";
+    $sql =  "SELECT COUNT(*)" .
+            " FROM  c_friend AS cf, c_review_comment AS crc" .
+            " WHERE cf.c_member_id_to = crc.c_member_id" .
+            " AND cf.c_member_id_from = ?";
     $total_num = db_get_one($sql, $params);
 
     if ($total_num != 0) {
@@ -68,11 +68,11 @@ function p_h_home_c_friend_review_list_more4c_member_id($c_member_id, $page, $pa
 
 function p_c_home_new_commu_review4c_commu_id($c_commu_id , $limit)
 {
-    $sql = "select ccr.c_review_id, cr.title, ccr.r_datetime " .
-            " from c_commu_review as ccr , c_review as cr " .
-            " where ccr.c_review_id = cr.c_review_id " .
-            " and ccr.c_commu_id = ?".
-            " order by ccr.r_datetime desc";
+    $sql = "SELECT ccr.c_review_id, cr.title, ccr.r_datetime" .
+            " FROM c_commu_review AS ccr , c_review AS cr" .
+            " WHERE ccr.c_review_id = cr.c_review_id" .
+            " AND ccr.c_commu_id = ?".
+            " ORDER BY ccr.r_datetime DESC";
     $params = array(intval($c_commu_id));
     return db_get_all_limit($sql, 0, $limit, $params);
 }
@@ -217,25 +217,24 @@ function p_h_review_search_result4keyword_category($keyword, $category_id , $ord
 
 function p_h_review_list_product_c_review4c_review_id($c_review_id)
 {
-    $sql = "select * from c_review as cr, c_review_category as crc " .
-            " where cr.c_review_category_id = crc.c_review_category_id " .
-            " and c_review_id = ?";
+    $sql = 'SELECT * FROM c_review AS cr, c_review_category AS crc' .
+           ' WHERE cr.c_review_category_id = crc.c_review_category_id' .
+           ' AND c_review_id = ?';
     $params = array(intval($c_review_id));
     return db_get_row($sql, $params);
 }
 
 function p_h_review_list_product_c_review_list4c_review_id($c_review_id, $page, $page_size=30)
 {
-    $sql = "select crc.*, cm.c_member_id, cm.nickname, cm.image_filename from c_review_comment as crc , c_member as cm" .
-            " where crc.c_member_id = cm.c_member_id " .
-            " and c_review_id = ?" .
-            " order by r_datetime desc ";
+    $sql = "SELECT crc.*, cm.c_member_id, cm.nickname, cm.image_filename" .
+           " FROM c_review_comment AS crc, c_member AS cm" .
+           " WHERE crc.c_member_id = cm.c_member_id" .
+           " AND c_review_id = ?" .
+           " ORDER BY r_datetime desc";
     $params = array(intval($c_review_id));
     $list = db_get_all_page($sql, $page, $page_size, $params);
 
-    $sql = "select count(*) from c_review_comment where c_review_id = ?";
-    $total_num = db_get_one($sql, $params);
-
+    $total_num = do_common_count_c_review_comment4c_review_id(c_review_id);
     if ($total_num != 0) {
         $total_page_num =  ceil($total_num / $page_size);
         if ($page >= $total_page_num) {
@@ -258,30 +257,20 @@ function p_h_review_list_product_c_review_list4c_review_id($c_review_id, $page, 
 
 function p_fh_review_list_product_c_review_list4c_member_id($c_member_id, $page, $page_size=30)
 {
-    $sql = "select crc.*, cr.* , crc2.category_disp " .
-            " from c_review_comment as crc , c_review as cr , c_review_category as crc2 " .
-            " where crc.c_review_id = cr.c_review_id " .
-            " and cr.c_review_category_id = crc2.c_review_category_id " .
-            " and crc.c_member_id = ?" .
-            " order by crc.r_datetime desc";
+    $sql = "SELECT crc.*, cr.*, crc2.category_disp" .
+            " FROM c_review_comment AS crc, c_review AS cr, c_review_category AS crc2" .
+            " WHERE crc.c_review_id = cr.c_review_id" .
+            " AND cr.c_review_category_id = crc2.c_review_category_id" .
+            " AND crc.c_member_id = ?" .
+            " ORDER BY crc.r_datetime DESC";
     $params = array(intval($c_member_id));
     $list = db_get_all_page($sql, $page, $page_size, $params);
 
-    //それぞれのレビューの書き込み数を取得
-    $sql = "select c_review_id , count(*) as num from c_review_comment " .
-            " group by c_review_id ";
-    $temp = db_get_all($sql);
-    $write_num = array();
-    foreach ($temp as $key => $value) {
-        $write_num[$value['c_review_id']] = $value['num'];
-    }
-
-    //$lstに書き込み数を追加
     foreach ($list as $key => $value) {
-        $list[$key]['write_num'] = $write_num[$value['c_review_id']];
+        $list[$key]['write_num'] = do_common_count_c_review_comment4c_review_id($value['c_review_id']);
     }
 
-    $sql = "select count(*) from c_review_comment where c_member_id = ?";
+    $sql = "SELECT COUNT(*) FROM c_review_comment WHERE c_member_id = ?";
     $params = array(intval($c_member_id));
     $total_num = db_get_one($sql, $params);
 
@@ -307,42 +296,33 @@ function p_fh_review_list_product_c_review_list4c_member_id($c_member_id, $page,
 
 function p_h_review_add_write_c_review_comment4asin_c_member_id($asin, $c_member_id)
 {
-    $sql = "select * from c_review as cr, c_review_comment as crc " .
-            " where cr.c_review_id = crc.c_review_id " .
-            " and cr.asin = ?" .
-            " and crc.c_member_id = ?";
+    $sql = "SELECT * FROM c_review AS cr, c_review_comment AS crc" .
+            " WHERE cr.c_review_id = crc.c_review_id" .
+            " AND cr.asin = ?" .
+            " AND crc.c_member_id = ?";
     $params = array($asin, intval($c_member_id));
     return db_get_row($sql, $params);
 }
 
 function p_h_review_clip_list_h_review_clip_list4c_member_id($c_member_id, $page, $page_size=30)
 {
-    $sql = "select * from c_review_clip as crc , c_review as cr " .
-            " where crc.c_review_id = cr.c_review_id" .
-            " and c_member_id = ?" .
-            " order by crc.r_datetime";
+    $sql = "SELECT * FROM c_review_clip AS crc, c_review AS cr" .
+            " WHERE crc.c_review_id = cr.c_review_id" .
+            " AND c_member_id = ?" .
+            " ORDER BY crc.r_datetime";
     $params = array(intval($c_member_id));
     $list = db_get_all_page($sql, $page, $page_size, $params);
-
-    //それぞれのレビューの書き込み数を取得
-    $sql = "select c_review_id , count(*) as num from c_review_comment " .
-            " group by c_review_id ";
-    $temp = db_get_all($sql);
-    $write_num = array();
-    foreach ($temp as $key => $value) {
-        $write_num[$value['c_review_id']] = $value['num'];
-    }
 
     //カテゴリの表示名を取得
     $category_disp = p_h_review_add_category_disp();
 
     //$lstに書き込み数 + カテゴリ名　を追加
     foreach ($list as $key => $value) {
-        $list[$key]['write_num'] = $write_num[$value['c_review_id']];
+        $list[$key]['write_num'] = do_common_count_c_review_comment4c_review_id($value['c_review_id']);
         $list[$key]['category_disp'] = $category_disp[$value['c_review_category_id']];
     }
 
-    $sql = "select count(*) from c_review_clip where c_member_id = ?";
+    $sql = "SELECT COUNT(*) FROM c_review_clip WHERE c_member_id = ?";
     $params = array(intval($c_member_id));
     $total_num = db_get_one($sql, $params);
 
@@ -368,16 +348,16 @@ function p_h_review_clip_list_h_review_clip_list4c_member_id($c_member_id, $page
 
 function p_c_member_review_c_member_review4c_commu_id($c_commu_id, $page, $page_size=20)
 {
-    $sql = " select cr.*, ccr.*, crc.category_disp " .
-            " from c_commu_review as ccr, c_review as cr , c_review_category as crc" .
-            " where ccr.c_review_id = cr.c_review_id " .
-            " and cr.c_review_category_id = crc.c_review_category_id " .
-            " and ccr.c_commu_id =  ?" .
-            " order by ccr.r_datetime";
+    $sql = " SELECT cr.*, ccr.*, crc.category_disp " .
+            " FROM c_commu_review as ccr, c_review as cr, c_review_category as crc" .
+            " WHERE ccr.c_review_id = cr.c_review_id" .
+            " AND cr.c_review_category_id = crc.c_review_category_id" .
+            " AND ccr.c_commu_id =  ?" .
+            " ORDER BY ccr.r_datetime";
     $params = array(intval($c_commu_id));
     $list = db_get_all_page($sql, $page, $page_size, $params);
 
-    $sql = "select count(*) from c_commu_review where c_commu_id = ?";
+    $sql = "SELECT COUNT(*) FROM c_commu_review WHERE c_commu_id = ?";
     $total_num = db_get_one($sql, $params);
 
     if ($total_num != 0) {
@@ -403,46 +383,46 @@ function p_c_member_review_c_member_review4c_commu_id($c_commu_id, $page, $page_
 function c_member_review_add_confirm_c_member_review4c_review_id($c_review_id, $c_member_id)
 {
     $c_review_id_str = implode(',', array_map('intval', $c_review_id));
-    $sql = "select * from c_review as cr, c_review_comment as crc , c_review_category as crc2 " .
-            " where cr.c_review_id = crc.c_review_id " .
-            " and cr.c_review_category_id = crc2.c_review_category_id " .
-            " and crc.c_member_id = ?".
-            " and cr.c_review_id in (".$c_review_id_str.")";
+    $sql = "SELECT * FROM c_review as cr, c_review_comment as crc , c_review_category as crc2 " .
+            " WHERE cr.c_review_id = crc.c_review_id " .
+            " AND cr.c_review_category_id = crc2.c_review_category_id " .
+            " AND crc.c_member_id = ?".
+            " AND cr.c_review_id IN (".$c_review_id_str.")";
     $params = array(intval($c_member_id));
     return db_get_all($sql, $params);
 }
 
 function do_c_review_add_c_review_category_id4category($category)
 {
-    $sql = "select c_review_category_id from c_review_category where category = ?";
+    $sql = "SELECT c_review_category_id FROM c_review_category WHERE category = ?";
     $params = array($category);
     return db_get_one($sql, $params);
 }
 
 function do_h_review_edit_c_review_comment4c_review_comment_id_c_member_id($c_review_comment_id, $c_member_id)
 {
-    $sql = "select * from c_review_comment " .
-            " where c_review_comment_id = ?" .
-            " and c_member_id = ?";
+    $sql = "SELECT * FROM c_review_comment " .
+            " WHERE c_review_comment_id = ?" .
+            " AND c_member_id = ?";
     $params = array(intval($c_review_comment_id), intval($c_member_id));
     return db_get_row($sql, $params);
 }
 
 function do_h_review_clip_add_c_review_id4c_review_id_c_member_id($c_review_id, $c_member_id)
 {
-    $sql = "select c_review_clip_id from c_review_clip " .
-            " where c_review_id = ?" .
-            " and c_member_id = ?";
+    $sql = "SELECT c_review_clip_id FROM c_review_clip" .
+            " WHERE c_review_id = ?" .
+            " AND c_member_id = ?";
     $params = array(intval($c_review_id), intval($c_member_id));
     return db_get_one($sql, $params);
 }
 
 function do_c_member_review_c_review_id4c_review_id_c_member_id($c_review_id, $c_member_id, $c_commu_id)
 {
-    $sql = "select c_commu_review_id from c_commu_review " .
-            " where c_commu_id = ?" .
-            " and c_review_id = ?" .
-            " and c_member_id = ?";
+    $sql = "SELECT c_commu_review_id FROM c_commu_review" .
+            " WHERE c_commu_id = ?" .
+            " AND c_review_id = ?" .
+            " AND c_member_id = ?";
     $params = array(intval($c_commu_id), intval($c_review_id), intval($c_member_id));
     return db_get_one($sql, $params);
 }
