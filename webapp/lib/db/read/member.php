@@ -238,7 +238,8 @@ function p_h_search_result_search($cond, $cond_like, $page_size, $page, $c_membe
         }
     }
 
-    $from = " FROM c_member";
+    $hint = db_mysql_hint('FORCE INDEX (PRIMARY, birth_year_c_member_id');
+    $from = " FROM c_member" . $hint;
     $order = " ORDER BY c_member_id DESC";
     $sql = "SELECT c_member_id" . $from . $where . $order;
 
@@ -439,7 +440,8 @@ function db_c_member_list4no_exists_rss()
 
 function db_common_c_profile_list4null()
 {
-    $sql = 'SELECT * FROM c_profile ORDER BY sort_order';
+    $hint = db_mysql_hint('FORCE INDEX (sort_order)');
+    $sql = 'SELECT * FROM c_profile' . $hint . ' ORDER BY sort_order';
     return db_get_all($sql);
 }
 

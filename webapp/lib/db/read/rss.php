@@ -17,7 +17,8 @@ function p_h_home_h_blog_list_friend4c_member_id($c_member_id, $page_size = 5)
 
 function p_h_diary_list_all_c_rss_cache_list($limit)
 {
-    $sql = 'SELECT * FROM c_rss_cache ORDER BY r_datetime DESC';
+    $hint = db_mysql_hint('FORCE INDEX (r_datetime)');
+    $sql = 'SELECT * FROM c_rss_cache' . $hint . ' ORDER BY r_datetime DESC';
     $lst = db_get_all_limit($sql, 0, $limit);
 
     foreach ($lst as $key => $value) {
@@ -31,7 +32,9 @@ function p_h_diary_list_friend_c_rss_cache_list($c_member_id, $limit)
     $friends = db_friend_c_member_id_list($c_member_id);
     $ids = implode(',', array_map('intval', $friends));
 
-    $sql = 'SELECT * FROM c_rss_cache WHERE c_member_id IN ('.$ids.')' .
+    $hint = db_mysql_hint('USE INDEX (r_datetime_c_member_id, r_datetime)');
+    $sql = 'SELECT * FROM c_rss_cache' . $hint .
+            ' WHERE c_member_id IN (' . $ids . ')' .
             ' ORDER BY r_datetime DESC';
     $list = db_get_all_limit($sql, 0, $limit);
 

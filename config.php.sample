@@ -34,10 +34,6 @@ define('MAIL_SERVER_DOMAIN', 'mail.example.com');
 // 2: on  ... 1 + Smartyデバッグコンソール 
 define('OPENPNE_DEBUGGING', 1);
 
-// ファンクションキャッシュ使用設定
-//有効にした場合は、最新情報の表示に遅延が起こることがあります
-define('OPENPNE_USE_FUNCTION_CACHE', false);
-
 // 無効にするモジュール
 //$GLOBALS['_OPENPNE_DISABLE_MODULES'] = array('admin', 'setup');
 
@@ -48,11 +44,18 @@ define('OPENPNE_UNDER_MAINTENANCE', false);
 // メンテナンス中でも表示するモジュール名
 $GLOBALS['_OPENPNE_MAINTENANCE_MODULES'] = array('admin');
 
-// 旧形式のURLでアクセスした場合の動作設定
+// 1.8以前形式のURLでアクセスした場合の動作設定
 // 0    : 直接新URLへ移動する
 // n(>0): URL変更お知らせ画面を表示、n秒後に移動する
 // -1   : URL変更お知らせ画面を表示、自動的に移動しない
 define('WAIT_REDIRECT_TIME', 5);
+
+// ファンクションキャッシュ使用設定
+//有効にした場合は、最新情報の表示に遅延が起こることがあります
+define('OPENPNE_USE_FUNCTION_CACHE', false);
+
+// MySQL ヒント使用設定
+define('OPENPNE_USE_MYSQL_HINT', true);
 
 // セッション情報をDBに保存するかどうか
 // (有効にする場合は、以下のDBサーバ設定も行ってください)

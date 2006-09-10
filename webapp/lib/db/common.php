@@ -157,4 +157,16 @@ function db_now()
     return date('Y-m-d H:i:s');
 }
 
+/**
+ * MySQL hint
+ */
+function db_mysql_hint($hint)
+{
+    if (OPENPNE_USE_MYSQL_HINT) {
+        return ' /*! ' . $hint . ' */ ';
+    } else {
+        return '';
+    }
+}
+
 ?>

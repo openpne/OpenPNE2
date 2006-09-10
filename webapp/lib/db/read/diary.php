@@ -243,7 +243,9 @@ function p_h_home_c_diary_friend_list4c_member_id($c_member_id, $limit)
     $friends = db_friend_c_member_id_list($c_member_id);
     $ids = implode(',', array_map('intval', $friends));
 
-    $sql = 'SELECT * FROM c_diary WHERE c_member_id IN ('.$ids.')' .
+    $hint = db_mysql_hint('USE INDEX (r_datetime_c_member_id, r_datetime)');
+    $sql = 'SELECT * FROM c_diary' . $hint .
+            ' WHERE c_member_id IN (' . $ids . ')' .
             ' ORDER BY r_datetime DESC';
     $c_diary_friend_list = db_get_all_limit($sql, 0, $limit);
 
@@ -264,26 +266,37 @@ function p_h_home_c_diary_friend_list4c_member_id($c_member_id, $limit)
  */
 function p_h_home_c_diary_my_comment_list4c_member_id($c_member_id, $limit)
 {
-    $sql = 'SELECT d.c_diary_id' .
-            ', d.subject' .
-            ', d.c_member_id' .
-            ', MAX(dc.r_datetime) AS r_datetime' .
-            ', COUNT(DISTINCT dc.c_diary_comment_id) AS num_comment' .
-        ' FROM c_diary AS d' .
-            ' INNER JOIN c_diary_comment AS dc USING (c_diary_id)' .
-            ', c_diary_comment AS mydc' .
-        ' WHERE mydc.c_member_id = ?' .
-            ' AND mydc.c_diary_id = d.c_diary_id' .
-            ' AND mydc.c_member_id <> d.c_member_id' .
-            ' AND DATE_ADD(mydc.r_datetime, INTERVAL 15 DAY) > NOW()' .
-        ' GROUP BY dc.c_diary_id' .
-        ' ORDER BY r_datetime DESC';
-    $params = array(intval($c_member_id));
-    $list = db_get_all_limit($sql, 0, $limit, $params);
-    foreach ($list as $key => $value) {
-        $list[$key] += db_common_c_member4c_member_id_LIGHT($value['c_member_id']);
+    $date = date('Y-m-d 00:00:00', strtotime('-15 days'));
+
+    $sql = 'SELECT c_diary_comment.c_diary_id' .
+           ' FROM c_diary_comment INNER JOIN c_diary USING (c_diary_id)' .
+           ' WHERE c_diary_comment.c_member_id = ?' .
+           ' AND c_diary_comment.r_datetime > ?' .
+           ' AND c_diary.c_member_id <> ?';
+    $params = array(intval($c_member_id), $date, intval($c_member_id));
+    $c_diary_id_list = db_get_col($sql, $params);
+    $c_diary_id_list = array_unique($c_diary_id_list);
+    if (!$c_diary_id_list) {
+        return array();
     }
-    return $list;
+
+    $ids = implode(',', $c_diary_id_list);
+    $sql = 'SELECT c_diary_id, MAX(r_datetime) as maxdate' .
+           ' FROM c_diary_comment' .
+           ' WHERE c_diary_id IN (' . $ids . ')' .
+           ' GROUP BY c_diary_id' .
+           ' ORDER BY maxdate DESC';
+    $list = db_get_assoc_limit($sql, 0, $limit);
+
+    $result = array();
+    foreach ($list as $c_diary_id => $r_datetime) {
+        $item = db_diary_get_c_diary4id($c_diary_id);
+        $item += db_common_c_member4c_member_id_LIGHT($item['c_member_id']);
+        $item['r_datetime'] = $r_datetime;
+        $item['num_comment'] = db_diary_count_c_diary_comment4c_diary_id($c_diary_id);
+        $result[] = $item;
+    }
+    return $result;
 }
 
 function p_h_diary_comment_list_c_diary_my_comment_list4c_member_id($c_member_id, $page, $page_size)
@@ -475,17 +488,21 @@ function p_h_diary_list_all_search_c_diary4c_diary($keyword, $page_size, $page)
 
 /**
  * 指定された年月に日記を書いている日のリストを返す
- * 書いていれば      日記の数
- * 書いていなければ    0
- * を入れる
  */
 function p_h_diary_is_diary_written_list4date($year, $month, $c_member_id)
 {
-    $sql = 'SELECT DAYOFMONTH(r_datetime) as day, COUNT(*) FROM c_diary' .
-        ' WHERE c_member_id = ? AND YEAR(r_datetime) = ? AND MONTH(r_datetime) = ?' .
-        ' GROUP BY day';
-    $params = array(intval($c_member_id), intval($year), intval($month));
-    return db_get_assoc($sql, $params);
+    include_once 'Date/Calc.php';
+
+    $sql = 'SELECT DISTINCT DAYOFMONTH(r_datetime) FROM c_diary' .
+           ' WHERE c_member_id = ? AND r_datetime >= ? AND r_datetime < ?';
+
+    $date_format = '%Y-%m-%d 00:00:00';
+    $thismonth = Date_Calc::beginOfMonth($month, $year, $date_format);
+    $nextmonth = Date_Calc::beginOfNextMonth(0, $month, $year, $date_format);
+
+    $params = array(intval($c_member_id), $thismonth, $nextmonth);
+
+    return db_get_col($sql, $params);
 }
 
 /**

@@ -145,6 +145,7 @@ class OpenPNE_Config
             'SERVER_IP_KEY' => 'REMOTE_ADDR',
             'OPENPNE_USE_CMD_TAG' => true,
             'OPENPNE_USE_FUNCTION_CACHE' => false,
+            'OPENPNE_USE_MYSQL_HINT' => true,
         // 固定値
             'AMAZON_TOKEN'   => '1WZYY1W9YF49AGM0RTG2',
             'AMAZON_LOCALE'  => 'jp',

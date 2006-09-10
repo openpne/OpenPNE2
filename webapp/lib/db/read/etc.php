@@ -40,7 +40,9 @@ function p_common_c_siteadmin4target_pagename($target_pagename)
  */
 function p_regist_prof_c_profile_pref_list4null()
 {
-    $sql = 'SELECT c_profile_pref_id, pref FROM c_profile_pref ORDER BY sort_order';
+    $hint = db_mysql_hint('FORCE INDEX (sort_order)');
+    $sql = 'SELECT c_profile_pref_id, pref FROM c_profile_pref' . $hint .
+           ' ORDER BY sort_order';
     return db_get_assoc($sql);
 }
 
@@ -113,7 +115,7 @@ function db_common_diary_monthly_calendar($year, $month, $c_member_id)
             $day = $Day->thisDay();
             $item = array(
                 'day' => $day,
-                'is_diary' => isset($is_diary_list[$day]) ? $is_diary_list[$day] : 0,
+                'is_diary' => in_array($day, $is_diary_list),
             );
             $calendar['days'][$week][] = $item;
         }

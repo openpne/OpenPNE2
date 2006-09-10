@@ -1437,7 +1437,8 @@ function p_h_com_find_all_c_commu_category_list4null()
  */
 function _db_c_commu_category_parent_list4null()
 {
-    $sql = 'SELECT * FROM c_commu_category_parent ORDER BY sort_order';
+    $hint = db_mysql_hint('FORCE INDEX (sort_order)');
+    $sql = 'SELECT * FROM c_commu_category_parent' . $hint . ' ORDER BY sort_order';
     return db_get_all($sql);
 }
 
