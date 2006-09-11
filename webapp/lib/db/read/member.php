@@ -238,7 +238,6 @@ function p_h_search_result_search($cond, $cond_like, $page_size, $page, $c_membe
         }
     }
 
-    $hint = db_mysql_hint('FORCE INDEX (PRIMARY, birth_year_c_member_id');
     $from = " FROM c_member" . $hint;
     $order = " ORDER BY c_member_id DESC";
     $sql = "SELECT c_member_id" . $from . $where . $order;
