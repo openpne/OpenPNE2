@@ -53,8 +53,8 @@ class pc_page_c_event_add_confirm extends OpenPNE_Action
                 $err_msg[] = "募集期限は存在しません";
             } elseif (mktime(0, 0, 0, $event['invite_period_month'], $event['invite_period_day'], $event['invite_period_year']) < mktime(0, 0, 0)) {
                 $err_msg[] = "募集期限は過去に指定できません";
-            } elseif (mktime(0,0,0,$event['open_date_month'], $event['open_date_day'], $event['open_date_year'])
-                    < mktime(0,0,0,$event['invite_period_month'], $event['invite_period_day'], $event['invite_period_year'])) {
+            } elseif (mktime(0, 0, 0, $event['open_date_month'], $event['open_date_day'], $event['open_date_year'])
+                    < mktime(0, 0, 0, $event['invite_period_month'], $event['invite_period_day'], $event['invite_period_year'])) {
                 $err_msg[] = "募集期限は開催日時より未来に指定できません";
             }
         }

@@ -35,10 +35,10 @@ class pc_do_h_config_prof extends OpenPNE_Action
         // 必須項目チェック
         $profile_list = db_common_c_profile_list4null();
         foreach ($profile_list as $profile) {
-            if ($profile['disp_config'] &&
-                $profile['is_required'] &&
-                !$c_member_profile_list[$profile['name']]['value'])
-            {
+            if ($profile['disp_config']
+                && $profile['is_required']
+                && !$c_member_profile_list[$profile['name']]['value']
+            ) {
                 $errors[$profile['name']] = "{$profile['caption']}を入力してください";
                 break;
             }

@@ -37,7 +37,7 @@ class pc_do_h_schedule_add_insert_c_schedule extends OpenPNE_Action
             'end_year' => null,
             'end_month' => null,
             'end_day' => null,
-            'end_hour' => pnull,
+            'end_hour' => null,
             'end_minute' => null,
             'is_receive_mail' => 0,
         );

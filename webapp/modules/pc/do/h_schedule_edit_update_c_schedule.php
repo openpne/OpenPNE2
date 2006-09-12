@@ -49,7 +49,7 @@ class pc_do_h_schedule_edit_update_c_schedule extends OpenPNE_Action
             'end_year' => null,
             'end_month' => null,
             'end_day' => null,
-            'end_hour' => pnull,
+            'end_hour' => null,
             'end_minute' => null,
             'is_receive_mail' => 0,
         );
@@ -67,7 +67,7 @@ class pc_do_h_schedule_edit_update_c_schedule extends OpenPNE_Action
             $input['end_month'] = $input['start_month'];
         }
         if (is_null($input['end_day'])) {
-          $input['end_day'] = $input['start_day'];
+            $input['end_day'] = $input['start_day'];
         }
 
         $start_date = sprintf('%04d-%02d-%02d', $input['start_year'], $input['start_month'], $input['start_day']);
