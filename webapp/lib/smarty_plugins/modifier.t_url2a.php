@@ -18,10 +18,24 @@ function smarty_modifier_t_url2a($string)
     $string = str_replace($search, $replace, $string);
 
     $url_pattern = '/https?:\/\/[\w\-.,:;\~\^\/?\@&=+\$%#!]+/';
-    $replace = '<a href="${0}" target="_blank">${0}</a>';
-    $string = preg_replace($url_pattern, $replace, $string);
+    $string = preg_replace_callback($url_pattern, 'smarty_modifier_t_url2a_callback', $string);
 
     return $string;
+}
+
+function smarty_modifier_t_url2a_callback($matches)
+{
+    $url = $matches[0];
+    $length = 60;
+    $etc = '...';
+
+    if (strlen($url) > $length) {
+        $length -= strlen($etc);
+        $urlstr = substr($url, 0, $length) . $etc;
+    } else {
+        $urlstr = $url;
+    }
+    return sprintf('<a href="%s" target="_blank">%s</a>', $url, $urlstr);
 }
 
 ?>
