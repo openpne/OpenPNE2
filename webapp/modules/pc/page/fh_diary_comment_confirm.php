@@ -48,10 +48,42 @@ class pc_page_fh_diary_comment_confirm extends OpenPNE_Action
             }
         }
 
+        $sessid = session_id();
+        t_image_clear_tmp($sessid);
+
+        $upfiles = array(
+            1 => $_FILES['upfile_1'],
+            $_FILES['upfile_2'],
+            $_FILES['upfile_3'],
+        );
+        $tmpfiles = array(
+            1 => '',
+            '',
+            '',
+        );
+
+        foreach ($upfiles as $key => $upfile) {
+            if ($upfile['error'] !== UPLOAD_ERR_NO_FILE) {
+                if (!($image = t_check_image($upfile))) {
+                    $_REQUEST['msg'] = '画像は'.IMAGE_MAX_FILESIZE.'KB以内のGIF・JPEG・PNGにしてください';
+                    openpne_forward('pc', 'page', 'fh_diary');
+                    exit;
+                } else {
+                    $tmpfiles[$key] = t_image_save2tmp($upfile, $sessid, "dc_{$key}", $image['format']);
+                }
+            }
+        }
+
         $this->set('inc_navi', fetch_inc_navi($type, $target_c_member_id));
         $form_val = array(
             "target_c_diary_id" => $target_c_diary_id,
             "body" => $body,
+            "upfile_1" => $_FILES['upfile_1'],
+            "upfile_2" => $_FILES['upfile_2'],
+            "upfile_3" => $_FILES['upfile_3'],
+            "tmpfile_1" => $tmpfiles[1],
+            "tmpfile_2" => $tmpfiles[2],
+            "tmpfile_3" => $tmpfiles[3],
         );
 
         $this->set("form_val", $form_val);

@@ -12,6 +12,9 @@ class pc_do_fh_diary_insert_c_diary_comment extends OpenPNE_Action
 
         // --- リクエスト変数
         $target_c_diary_id = $requests['target_c_diary_id'];
+        $tmpfile_1 = $requests['tmpfile_1'];
+        $tmpfile_2 = $requests['tmpfile_2'];
+        $tmpfile_3 = $requests['tmpfile_3'];
         $body = $requests['body'];
         // ----------
 
@@ -41,9 +44,17 @@ class pc_do_fh_diary_insert_c_diary_comment extends OpenPNE_Action
         }
         //---
 
-
         //日記コメント書き込み
-        db_diary_insert_c_diary_comment($u, $target_c_diary_id, $body);
+        $c_diary_comment_id = db_diary_insert_c_diary_comment($u, $target_c_diary_id, $body);
+
+        $sessid = session_id();
+        $filename_1 = image_insert_c_image4tmp("dc_{$c_diary_comment_id}_1", $tmpfile_1);
+        $filename_2 = image_insert_c_image4tmp("dc_{$c_diary_comment_id}_2", $tmpfile_2);
+        $filename_3 = image_insert_c_image4tmp("dc_{$c_diary_comment_id}_3", $tmpfile_3);
+        t_image_clear_tmp($sessid);
+
+        db_diary_insert_c_diary_comment_images($c_diary_comment_id, $filename_1, $filename_2, $filename_3);
+
         //日記コメントが書き込まれたので日記自体を未読扱いにする
         db_diary_update_c_diary_is_checked($target_c_diary_id, 0);
 

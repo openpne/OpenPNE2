@@ -57,8 +57,17 @@ function db_diary_delete_c_diary($c_diary_id)
     image_data_delete($c_diary['image_filename_3']);
 
     // コメント
-    $sql = 'DELETE FROM c_diary_comment WHERE c_diary_id = ?';
+    $sql = 'SELECT image_filename_1, image_filename_2, image_filename_3 FROM c_diary_comment WHERE c_diary_id =?';
     $params = array(intval($c_diary_id));
+    $comment_images = db_get_all($sql, $params);
+
+    foreach ($comment_images as $value) {
+        image_data_delete($value['image_filename_1']);
+        image_data_delete($value['image_filename_2']);
+        image_data_delete($value['image_filename_3']);
+    }
+
+    $sql = 'DELETE FROM c_diary_comment WHERE c_diary_id = ?';
     db_query($sql, $params);
 
     // 日記
@@ -125,6 +134,22 @@ function db_diary_insert_c_diary_comment($c_member_id, $c_diary_id, $body)
 }
 
 /**
+ * 日記コメント用画像追加
+ */
+function db_diary_insert_c_diary_comment_images($c_diary_comment_id, $image_filename_1 = '', $image_filename_2 = '', $image_filename_3 = '')
+{
+    $data = array();
+    if ($image_filename_1) $data['image_filename_1'] = $image_filename_1;
+    if ($image_filename_2) $data['image_filename_2'] = $image_filename_2;
+    if ($image_filename_3) $data['image_filename_3'] = $image_filename_3;
+
+    $where = array(
+        'c_diary_comment_id' => intval($c_diary_comment_id),
+    );
+    return db_update('c_diary_comment', $data, $where);
+}
+
+/**
  * 日記コメント削除
  * 
  * @param   int $c_diary_comment_id
@@ -136,6 +161,10 @@ function db_diary_delete_c_diary_comment($c_diary_comment_id, $u)
     if ($dc['c_member_id'] != $u && $dc['c_member_id_author'] != $u) {
         return false;
     }
+
+    image_data_delete($dc['image_filename_1']);
+    image_data_delete($dc['image_filename_2']);
+    image_data_delete($dc['image_filename_3']);
 
     $sql = 'DELETE FROM c_diary_comment WHERE c_diary_comment_id = ?';
     $params = array(intval($c_diary_comment_id));

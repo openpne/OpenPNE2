@@ -19,8 +19,8 @@ include_once OPENPNE_WEBAPP_DIR . '/version.php';
 // include_path の設定
 include_once OPENPNE_LIB_DIR . '/include/PHP/Compat/Constant/PATH_SEPARATOR.php';
 $include_paths = array(
-    OPENPNE_WEBAPP_DIR . '/lib',
     OPENPNE_LIB_DIR . '/include',
+    OPENPNE_WEBAPP_DIR . '/lib',
     ini_get('include_path')
 );
 ini_set('include_path', implode(PATH_SEPARATOR, $include_paths));

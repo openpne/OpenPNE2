@@ -116,13 +116,21 @@ function db_common_delete_c_member($c_member_id)
     $sql = 'SELECT * FROM c_diary WHERE c_member_id = ?';
     $c_diary_list = db_get_all($sql, $single);
     foreach ($c_diary_list as $c_diary) {
-        image_data_delete($c_diary['image_filename1']);
-        image_data_delete($c_diary['image_filename2']);
-        image_data_delete($c_diary['image_filename3']);
+        image_data_delete($c_diary['image_filename_1']);
+        image_data_delete($c_diary['image_filename_2']);
+        image_data_delete($c_diary['image_filename_3']);
 
         // c_diary_comment
-        $sql = 'DELETE FROM c_diary_comment WHERE c_diary_id = ?';
+        $sql = 'SELECT * FROM c_diary_comment WHERE c_diary_id = ?';
         $params = array(intval($c_diary['c_diary_id']));
+        $c_diary_comment_list = db_get_all($sql, $params);
+        foreach ($c_diary_comment_list as $c_diary_comment) {
+            image_data_delete($c_diary_comment['image_filename_1']);
+            image_data_delete($c_diary_comment['image_filename_2']);
+            image_data_delete($c_diary_comment['image_filename_3']);
+        }
+
+        $sql = 'DELETE FROM c_diary_comment WHERE c_diary_id = ?';
         db_query($sql, $params);
     }
     $sql = 'DELETE FROM c_diary WHERE c_member_id = ?';

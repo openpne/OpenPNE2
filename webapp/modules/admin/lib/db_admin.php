@@ -430,6 +430,12 @@ function db_admin_delete_c_image_link4image_filename($image_filename)
     _db_admin_empty_image_filename($tbl, $image_filename, 'image_filename_2');
     _db_admin_empty_image_filename($tbl, $image_filename, 'image_filename_3');
 
+    // c_diary_comment
+    $tbl = 'c_diary_comment';
+    _db_admin_empty_image_filename($tbl, $image_filename, 'image_filename_1');
+    _db_admin_empty_image_filename($tbl, $image_filename, 'image_filename_2');
+    _db_admin_empty_image_filename($tbl, $image_filename, 'image_filename_3');
+
     // c_member
     $tbl = 'c_member';
     _db_admin_empty_image_filename($tbl, $image_filename);

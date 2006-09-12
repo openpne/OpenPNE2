@@ -62,7 +62,9 @@
 <td style="width:95px;" class="bg_05" align="left" valign="middle">
 
 <div style="padding:10px;">
-&nbsp;
+
+本　　文
+
 </div>
 
 </td>
@@ -75,6 +77,90 @@
 </div>
 </td>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+</tr>
+({*********})
+<tr>
+<td style="width:574px;height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+</tr>
+({*********})
+<tr>
+<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td class="bg_05" align="left" valign="middle">
+
+<div class="padding_s">
+
+写　真 1
+
+</div>
+
+</td>
+<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td class="bg_02" align="left" valign="middle">
+
+<div class="padding_s">
+
+({$form_val.upfile_1.name})
+
+</div>
+
+</td>
+<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+</tr>
+({*********})
+<tr>
+<td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+</tr>
+({*********})
+<tr>
+<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td class="bg_05" align="left" valign="middle">
+
+<div class="padding_s">
+
+写　真 2
+
+</div>
+
+</td>
+<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td class="bg_02" align="left" valign="middle">
+
+<div class="padding_s">
+
+({$form_val.upfile_2.name})
+
+</div>
+
+</td>
+<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+</tr>
+({*********})
+<tr>
+<td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+</tr>
+({*********})
+<tr>
+<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td class="bg_05" align="left" valign="middle">
+
+<div class="padding_s">
+
+写　真 3
+
+</div>
+
+</td>
+<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td class="bg_02" align="left" valign="middle">
+
+<div class="padding_s">
+
+({$form_val.upfile_3.name})
+
+</div>
+
+</td>
+<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({*********})
 <tr>
@@ -95,13 +181,16 @@
 <input type="hidden" name="sessid" value="({$PHPSESSID})">
 <input type="hidden" name="target_c_diary_id" value="({$form_val.target_c_diary_id})">
 <input type="hidden" name="body" value="({$form_val.body})">
+<input type="hidden" name="tmpfile_1" value="({$form_val.tmpfile_1})">
+<input type="hidden" name="tmpfile_2" value="({$form_val.tmpfile_2})">
+<input type="hidden" name="tmpfile_3" value="({$form_val.tmpfile_3})">
 <input type="submit" value="　書き込み　">&nbsp;
 </form>
 
 </td>
 <td style="width:50%;" align="left">
 
-({t_form m=pc a=page_fh_diary})
+({t_form _enctype=file m=pc a=page_fh_diary})
 <input type="hidden" name="target_c_diary_id" value="({$form_val.target_c_diary_id})">
 <input type="hidden" name="body" value="({$form_val.body})">
 &nbsp;<input type="submit" value="　修　 正　">
