@@ -99,7 +99,6 @@ function fetch_inc_page_header($type = null)
 
     $v['PHPSESSID'] = md5(session_id());
     $v['INC_PAGE_HEADER_type'] = $type;
-    $v['login_url'] = get_login_url();
     if ($type == 'public' || $type == 'regist') {
         $v['before_after'] = 'before';
         $v['INC_PAGE_HEADER'] = db_banner_get_top_banner(false);

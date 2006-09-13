@@ -31,11 +31,9 @@
 </div>
 ({/if})
 
-({if $before_after == "before"})
-<a class="logo_home" href="({$login_url})"><img src="./skin/dummy.gif" alt="({$smarty.const.SNS_NAME})"></a>
-({else})
 <a class="logo_home" href="({t_url})"><img src="./skin/dummy.gif" alt="({$smarty.const.SNS_NAME})"></a>
 
+({if $before_after == "after"})
 <div class="navi_global">
 ({foreach from=$navi key=key item=item})
 ({if $item.url})
