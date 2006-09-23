@@ -374,4 +374,7 @@ define('DISPLAY_VERSION', true);
 // 携帯版でUser-Agentのチェックをするかどうか
 define('CHECK_KTAI_UA', true);
 
+// フレンドリスト、コミュニティリスト、コミュニティメンバーリストをFLASHで表示
+define('OPENPNE_USE_FLASH_LIST', true);
+
 ?>

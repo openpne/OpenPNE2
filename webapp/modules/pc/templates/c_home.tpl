@@ -195,6 +195,39 @@
 ({*ここまで：header*})
 ({*ここから：body*})
 <!-- ここから：サムネイルと名前 -->
+({if $smarty.const.OPENPNE_USE_FLASH_LIST})
+<table border="0" cellspacing="0" cellpadding="0" style="width:266px;" class="bg_07">
+<tr>
+<td class="bg_07"><img src="./skin/dummy.gif" style="width:1px;"></td>
+<td class="bg_03" align="center">
+
+({capture assign=flashvars})({strip})
+({foreach from=$c_commu_member_list item=item key=key})
+({if $key > 0})&({/if})
+pne_item({$key+1})_id=({$item.c_member_id})
+&pne_item({$key+1})_name=({$item.nickname|escape:'url'})
+&pne_item({$key+1})_linkurl=({t_url m=pc a=page_f_home _urlencode=true _html=false})%26target_c_member_id=({$item.c_member_id})
+&pne_item({$key+1})_imageurl=({t_img_url filename=$item.image_filename w=76 h=76 noimg=no_image _urlencode=true _html=false})
+&pne_item({$key+1})_count=({$item.friend_count})
+({/foreach})
+({/strip})({/capture})
+<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000"
+ codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0"
+ width="266" height="330" style="margin:0;">
+<param name="movie" value="flash/list.swf">
+<param name="quality" value="high">
+<param name="bgcolor" value="#ffffff">
+<param name="flashvars" value="({$flashvars})">
+<embed src="flash/list.swf" quality="high" bgcolor="#ffffff" width="266" height="330"
+ type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer"
+ flashvars="({$flashvars})"></embed>
+</object>
+
+</td>
+<td class="bg_07"><img src="./skin/dummy.gif" style="width:1px;"></td>
+</tr>
+</table>
+({else})
 <table border="0" cellspacing="1" cellpadding="2" style="width:268px" class="bg_07">
 
 ({if $c_commu_member_list[0]})
@@ -313,6 +346,7 @@
 ({/if})
 
 </table>
+({/if})
 
 <!-- ここまで：サムネイルと名前 -->
 ({*ここまで：body*})

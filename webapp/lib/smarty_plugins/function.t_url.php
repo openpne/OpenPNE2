@@ -6,6 +6,12 @@
 
 function smarty_function_t_url($params, &$smarty)
 {
+    $urlencode = false;
+    if (isset($params['_urlencode'])) {
+        $urlencode = (bool)$params['_urlencode'];
+        unset($params['_urlencode']);
+    }
+    
     $absolute = false;
     if (isset($params['_absolute'])) {
         $absolute = (bool)$params['_absolute'];
@@ -25,6 +31,11 @@ function smarty_function_t_url($params, &$smarty)
     if ($html) {
         $url = htmlspecialchars($url, ENT_QUOTES, 'UTF-8');
     }
+    
+    if ($urlencode) {
+        $url = urlencode($url);
+    }
+    
     return $url;
 }
 

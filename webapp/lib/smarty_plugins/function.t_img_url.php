@@ -7,7 +7,17 @@
 function smarty_function_t_img_url($params, &$smarty)
 {
     $p = _smarty_function_t_img_url($params);
-
+    $html = true;
+    if (isset($params['_html'])) {
+        $html = (bool)$params['_html'];
+        unset($params['_html']);
+    }
+    $urlencode = false;
+    if (isset($params['_urlencode'])) {
+        $urlencode = (bool)$params['_urlencode'];
+        unset($params['_urlencode']);
+    }
+    
     if (OPENPNE_IMG_URL) {
         $url = OPENPNE_IMG_URL;
     } else {
@@ -19,7 +29,11 @@ function smarty_function_t_img_url($params, &$smarty)
 
         include_once 'PHP/Compat/Function/http_build_query.php';
         if ($q = http_build_query($p)) {
-            $url .= '?' . htmlspecialchars($q);
+            if ($html) {
+                $url .= '?' . htmlspecialchars($q);
+            } else {
+                $url .= '?' . $q;
+            }
         }
     } else {
         include_once 'OpenPNE/Img.php';
@@ -39,6 +53,10 @@ function smarty_function_t_img_url($params, &$smarty)
         }
         $path = OpenPNE_Img::get_cache_path($p['filename'], $p['w'], $p['h'], $p['f']);
         $url .= 'img/' . $path;
+    }
+    
+    if ($urlencode) {
+        $url = urlencode($url);
     }
 
     return $url;
