@@ -366,6 +366,11 @@ define('SERVER_IP_KEY', 'REMOTE_ADDR');
 
 umask(0);
 
+///
+// Google Maps API key
+///
+define('GOOGLE_MAPS_API_KEY', '');
+
 
 //// SNSアプリケーション設定 ////
 
@@ -384,5 +389,8 @@ define('CHECK_KTAI_UA', true);
 
 // フレンドリスト、コミュニティリスト、コミュニティメンバーリストをFLASHで表示
 define('OPENPNE_USE_FLASH_LIST', true);
+
+// コミュニティに地図を表示するかどうか
+define('OPENPNE_USE_COMMU_MAP', true);
 
 ?>

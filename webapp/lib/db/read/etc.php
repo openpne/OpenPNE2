@@ -47,6 +47,41 @@ function p_regist_prof_c_profile_pref_list4null()
 }
 
 /**
+ * 都道府県リスト(全データ)を取得
+ */
+function db_etc_c_profile_pref_list()
+{
+    $hint = db_mysql_hint('FORCE INDEX (sort_order)');
+    $sql = 'SELECT * FROM c_profile_pref' . $hint . ' ORDER BY sort_order';
+    return db_get_all($sql);
+}
+
+/**
+ * IDから都道府県リスト(全データ)を取得
+ */
+function db_etc_c_profile_pref4id($c_profile_pref_id)
+{
+    $sql = 'SELECT * FROM c_profile_pref WHERE c_profile_pref_id = ?';
+    $params = array(intval($c_profile_pref_id));
+    return db_get_row($sql, $params);
+}
+
+/**
+ * 特定の緯度経度の都道府県を取得
+ */
+function db_etc_c_profile_pref_id4latlng($lat, $lng)
+{
+    if (!$lat || !$lng) {
+        return false;
+    }
+
+    $sql = 'SELECT c_profile_pref_id FROM c_profile_pref' .
+        ' WHERE map_latitude = ? AND map_longitude = ?';
+    $params = array($lat, $lng);
+    return db_get_one($sql, $params);
+}
+
+/**
  * 秘密の質問を取得
  */
 function p_common_c_password_query4null()

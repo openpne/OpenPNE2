@@ -1,5 +1,34 @@
 ({$inc_html_header|smarty:nodefaults})
+
+({if $smarty.const.OPENPNE_USE_COMMU_MAP && $c_commu.is_display_map})
+<script src="http://maps.google.co.jp/maps?file=api&amp;v=2&amp;key=({$smarty.const.GOOGLE_MAPS_API_KEY})" type="text/javascript"></script>
+<script type="text/javascript">
+<!--
+function load() {
+    if (GBrowserIsCompatible()) {
+        var point = new GLatLng(({$c_commu.map_latitude}), ({$c_commu.map_longitude}));
+        var zoom = ({$c_commu.map_zoom});
+        var html = '<div><img src="({t_img_url filename=$c_commu.image_filename w=120 h=120 noimg=no_logo})" width="60" height="60" align="left" hspace="5">({$c_commu.name})</div>';
+
+        var map = new GMap2(document.getElementById("map"));
+        map.addControl(new GSmallMapControl());
+        map.addControl(new GMapTypeControl());
+        map.setCenter(point, zoom);
+
+        var marker = new GMarker(point);
+        map.addOverlay(marker);
+        GEvent.addListener(marker, "click", function() {
+            marker.openInfoWindowHtml(html);
+        });
+    }
+}
+//-->
+</script>
+<body onLoad="load()" onUnload="GUnload()">
+({else})
 <body>
+({/if})
+
 ({ext_include file="inc_extension_pagelayout_top.tpl"})
 <table class="mainframe" border="0" cellspacing="0" cellpadding="0">
 <tr>
@@ -402,6 +431,16 @@ pne_item({$key+1})_id=({$item.c_member_id})
 
 ({if $inc_entry_point[5]})
 ({$inc_entry_point[5]|smarty:nodefaults})
+({/if})
+
+({if $smarty.const.OPENPNE_USE_COMMU_MAP && $c_commu.is_display_map})
+<table border="0" cellspacing="0" cellpadding="10" style="width:270px;margin:0px auto;" class="border_07">
+<tr>
+<td style="width:270px;" class="bg_00">
+<div id="map" style="width: 250px; height: 300px"></div>
+</td>
+</tr>
+</table>
 ({/if})
 
 ({********************************})
