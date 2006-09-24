@@ -128,20 +128,18 @@ function fetch_inc_signature($smarty)
 function mail_ext_search($path, &$place)
 {
     $dft = OPENPNE_WEBAPP_DIR . '/' . $path;
-    if (!USE_EXT_DIR) {
-        if (is_readable($dft)) {
-            $place = 'dft';
-            return $dft;
-        }
-    } else {
-        $ext = OPENPNE_WEBAPP_EXT_DIR . '/' . $path;
-        if (is_readable($ext)) {
-            $place = 'ext';
-            return $ext;
-        } elseif (is_readable($dft)) {
-            $place = 'dft';
-            return $dft;
-        }
+    $ext = OPENPNE_WEBAPP_EXT_DIR . '/' . $path;
+    $biz = OPENPNE_WEBAPP_BIZ_DIR . '/' . $path;
+
+    if (USE_EXT_DIR && is_readable($ext)) {
+        $place = 'ext';
+        return $ext;
+    } elseif (USE_BIZ_DIR && is_readable($biz)) {
+        $place = 'biz';
+        return $biz;
+    } elseif (is_readable($dft)) {
+        $place = 'dft';
+        return $dft;
     }
 
     return false;

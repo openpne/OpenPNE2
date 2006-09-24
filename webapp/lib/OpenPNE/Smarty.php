@@ -56,20 +56,15 @@ class OpenPNE_Smarty extends Smarty
     function ext_search($path, &$place)
     {
         $dft = OPENPNE_MODULES_DIR . '/' . $path;
-        if (!USE_EXT_DIR) {
-            if (is_readable($dft)) {
-                $place = 'dft';
-                return $dft;
-            }
-        } else {
-            $ext = OPENPNE_MODULES_EXT_DIR . '/' . $path;
-            if (is_readable($ext)) {
-                $place = 'ext';
-                return $ext;
-            } elseif (is_readable($dft)) {
-                $place = 'dft';
-                return $dft;
-            }
+        $ext = OPENPNE_MODULES_EXT_DIR . '/' . $path;
+        $biz = OPENPNE_MODULES_BIZ_DIR . '/' . $path;
+
+        if (USE_EXT_DIR && is_readable($ext)) {
+            return $ext;
+        } elseif (USE_BIZ_DIR && is_readable($biz)) {
+            return $biz;
+        } elseif (is_readable($dft)) {
+            return $dft;
         }
 
         return false;

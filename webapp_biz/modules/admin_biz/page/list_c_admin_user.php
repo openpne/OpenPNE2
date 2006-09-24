@@ -1,0 +1,17 @@
+<?php
+/**
+ * @copyright 2005-2006 OpenPNE Project
+ * @license   http://www.php.net/license/3_0.txt PHP License 3.0
+ */
+
+// アカウント管理
+class admin_biz_page_list_c_admin_user extends OpenPNE_Action
+{
+    function execute($requests)
+    {
+        $this->set('user_list', db_admin_c_admin_user_list());
+        return 'success';
+    }
+}
+
+?>
