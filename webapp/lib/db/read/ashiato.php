@@ -50,7 +50,11 @@ function p_h_ashiato_c_ashiato_num4c_member_id($c_member_id)
 {
     $sql = 'SELECT COUNT(*) FROM c_ashiato WHERE c_member_id_to = ?';
     $params = array(intval($c_member_id));
-    return db_get_one($sql, $params);
+    $count = db_get_one($sql, $params);
+
+    $sql = 'SELECT ashiato_count_log FROM c_member WHERE c_member_id = ?';
+    $params = array(intval($c_member_id));
+    return $count + db_get_one($sql, $params);
 }
 
 /**

@@ -53,4 +53,38 @@ function db_ashiato_insert_c_ashiato($c_member_id_to, $c_member_id_from)
     return true;
 }
 
+/**
+ * Update c_member `ashiato_count_log` and delete c_ashiato rows
+ *
+ * @param int $limit
+ */
+function db_ashiato_update_log($limit = 30)
+{
+    $sql = 'SELECT c_member_id FROM c_member';
+    $c_member_id_list = db_get_col($sql);
+
+    foreach ($c_member_id_list as $c_member_id) {
+        $disp = p_h_ashiato_c_ashiato_list4c_member_id($c_member_id, $limit);
+        if (!$disp) continue;
+        $oldest_row = array_pop($disp);
+
+        $yesterday = date('Y-m-d 00:00:00', strtotime('-1 day'));
+        $cutline = min($oldest_row['r_datetime'], $yesterday);
+
+        // delete c_ashiato rows
+        $sql = 'DELETE FROM c_ashiato WHERE c_member_id_to = ? AND r_datetime < ?';
+        $params = array(intval($c_member_id), $cutline);
+        db_query($sql, $params);
+        $affected_rows = db_affected_rows();var_dump($affected_rows);
+
+        // update c_member `ashiato_count_log`
+        if ($affected_rows > 0) {
+            $sql = 'UPDATE c_member SET ashiato_count_log = ashiato_count_log + ?' .
+                   ' WHERE c_member_id = ?';
+            $params = array(intval($affected_rows), intval($c_member_id));
+            db_query($sql, $params);
+        }
+    }
+}
+
 ?>
