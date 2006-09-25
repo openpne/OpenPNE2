@@ -513,4 +513,96 @@ function db_admin_get_auth_type($c_admin_user_id)
     return db_get_one($sql, $params);
 }
 
+/**
+ * ユーザーIDリスト取得(絞り込み対応)
+ */
+function _db_admin_c_member_id_list($cond_list)
+{
+	$sql = 'SELECT c_member_id'.
+           ' FROM c_member'.
+           ' WHERE 1';
+
+    //開始年
+    if (!empty($cond_list['s_year'])) {
+        $sql .= ' AND birth_year >= ?';
+        $params[] = $cond_list['s_year'];
+    }
+    //終了年
+    if (!empty($cond_list['e_year'])) {
+        $sql .= ' AND birth_year <= ?';
+        $params[] = $cond_list['e_year'];
+    }
+    $sql .= ' ORDER BY c_member_id';
+
+    $ids = db_get_col($sql, $params);
+
+    //各プロフィールごとで絞り結果をマージする
+    $_sql = 'SELECT name FROM c_profile WHERE (form_type = ? OR form_type = ?)';
+    $profile = db_get_col($_sql, array('select', 'radio'));
+
+    if ( $profile ) {
+        foreach ($profile as $value) {
+            if (!empty($cond_list[$value])) {
+                $sql = 'SELECT c_member_id FROM c_member_profile WHERE c_profile_option_id = ?';
+                $params = array($cond_list[$value]);
+                $temp_ids = db_get_col($sql, $params);
+                $ids = array_intersect($ids, $temp_ids);
+            }
+        }
+    }
+    
+    return $ids;
+}
+
+/**
+ * ユーザーリスト取得
+ * 誕生年+プロフィール(select,radioのみ)
+ */
+function _db_admin_c_member_list($page, $page_size, &$pager, $cond_list)
+{
+    $ids = _db_admin_c_member_id_list($cond_list);
+    $total_num = count($ids);
+    $ids = array_slice( $ids, ($page - 1)*$page_size, $page_size);
+
+    $c_member_list = array();
+    foreach ($ids as $id) {
+        $c_member_list[] = db_common_c_member4c_member_id($id, true, true, 'private');
+    }
+
+    if ($total_num > 0) {
+        $pager = admin_make_pager($page, $page_size, $total_num);
+    }
+
+    return $c_member_list;
+}
+
+function db_c_profile_option4c_profile_option_id($c_profile_option_id)
+{
+	$sql = "SELECT * FROM c_profile_option" .
+            " WHERE c_profile_option_id = ? ";
+    
+    return db_get_row($sql,array($c_profile_option_id));
+}
+
+function validate_cond($requests)
+{
+    $cond_list = array();
+    //誕生年
+    if ( !empty($requests['s_year']) ) {
+        $cond_list['s_year'] = intval($requests['s_year']);
+    }
+    if ( !empty($requests['e_year']) ) {
+        $cond_list['e_year'] = intval($requests['e_year']);
+    }
+    //プロフィール
+    $profile_list = db_common_c_profile_list();
+    
+    foreach ($profile_list as $key => $value) {
+        if ( !empty($requests[$key]) ) {
+            $cond_list[$key] = intval($requests[$key]);
+        }
+    }
+    return $cond_list;
+}
+
 ?>

@@ -193,10 +193,12 @@ function update_message_to_is_save($c_message_id, $subject, $body, $is_send = 0)
 function do_common_send_message($c_member_id_from, $c_member_id_to, $subject, $body)
 {
     //メッセージ
-    _do_insert_c_message($c_member_id_from, $c_member_id_to, $subject, $body);
+    $c_message_id = _do_insert_c_message($c_member_id_from, $c_member_id_to, $subject, $body);
 
     do_common_send_message_mail_send($c_member_id_to, $c_member_id_from);
     do_common_send_message_mail_send_ktai($c_member_id_to, $c_member_id_from);
+    
+    return $c_message_id;
 }
 
 //◆承認依頼メッセージ受信メール
@@ -242,6 +244,23 @@ function do_common_send_message_event_message($c_member_id_from, $c_member_id_to
     _do_insert_c_message($c_member_id_from, $c_member_id_to, $subject, $body);
 
     do_common_send_message_event_message_mail_send($c_member_id_to, $c_member_id_from);
+}
+
+function db_update_c_message($c_message_id, $subject, $body,
+$image_filename_1 = '', $image_filename_2 = '', $image_filename_3 = '')
+{
+	$data = array(
+        'subject' => $subject,
+        'body' => $body,
+    );
+    if ($image_filename_1) $data['image_filename_1'] = $image_filename_1;
+    if ($image_filename_2) $data['image_filename_2'] = $image_filename_2;
+    if ($image_filename_3) $data['image_filename_3'] = $image_filename_3;
+
+    $where = array(
+        'c_message_id' => intval($c_message_id),
+    );
+    return db_update('c_message', $data, $where);
 }
 
 ?>

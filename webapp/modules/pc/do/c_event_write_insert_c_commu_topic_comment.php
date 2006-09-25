@@ -63,6 +63,12 @@ class pc_do_c_event_write_insert_c_commu_topic_comment extends OpenPNE_Action
         db_commu_update_c_commu_topic_comment_images($tc_id,
                 $filename1, $filename2, $filename3);
 
+        //お知らせメール送信(携帯へ)
+        send_bbs_info_mail($tc_id, $u);
+        //お知らせメール送信(PCへ)
+        send_bbs_info_mail_pc($tc_id, $u);
+
+
         $p = array('target_c_commu_topic_id' => $c_commu_topic_id);
         openpne_redirect('pc', 'page_c_event_detail', $p);
     }

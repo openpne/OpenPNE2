@@ -480,11 +480,13 @@ function db_commu_delete_c_commu_member($c_commu_id, $c_member_id)
 /**
  * コミュニティお知らせメール受信設定変更
  */
-function do_c_home_update_is_receive_mail($c_commu_id, $c_member_id, $is_receive_mail, $is_receive_mail_pc)
+function do_c_home_update_is_receive_mail($c_commu_id, $c_member_id, $is_receive_mail, $is_receive_mail_pc, $is_receive_message)
 {
     $data = array(
         'is_receive_mail' => (bool)$is_receive_mail,
         'is_receive_mail_pc' => (bool)$is_receive_mail_pc,
+        'is_receive_message' => (bool)$is_receive_message,
+        
     );
     $where = array(
         'c_commu_id'  => intval($c_commu_id),

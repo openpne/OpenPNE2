@@ -221,6 +221,17 @@ function db_commu_is_receive_mail_pc($c_commu_id, $c_member_id)
 }
 
 /**
+ * コミュニティメッセージ受信設定を取得
+ */
+function db_commu_is_receive_message($c_commu_id, $c_member_id)
+{
+    $sql = 'SELECT is_receive_message FROM c_commu_member' .
+            ' WHERE c_commu_id = ? AND c_member_id = ?';
+    $params = array(intval($c_commu_id), intval($c_member_id));
+    return db_get_one($sql, $params);
+}
+
+/**
  * コミュニティメールの受信アドレスリスト(携帯)
  */
 function db_common_receive_ktai_address_list4c_commu_id($c_commu_id)
@@ -1805,6 +1816,19 @@ function db_c_commu4c_admin_invite_id($c_commu_id, $c_member_id_to)
     } else {
         return false;
     }
+}
+
+/**
+ * コミュニティメンバーのリストを得る
+ */
+function p_c_commu_member_id_list4c_commu_id($c_commu_id)
+{
+    $sql = 'SELECT c_member_id FROM c_commu_member' .
+            ' WHERE c_commu_id = ? AND is_receive_message = 1';
+    
+    $params = array(intval($c_commu_id));
+    $lst = db_get_col($sql, $params);
+    return $lst;
 }
 
 ?>

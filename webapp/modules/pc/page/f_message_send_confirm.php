@@ -26,7 +26,39 @@ class pc_page_f_message_send_confirm extends OpenPNE_Action
         $form_val['jyusin_c_message_id'] = $requests['jyusin_c_message_id'];
         $save = $requests['save'];
         // ----------
+        $sessid = session_id();
+        t_image_clear_tmp($sessid);
 
+        $upfiles = array(
+            1 => $_FILES['upfile_1'],
+            $_FILES['upfile_2'],
+            $_FILES['upfile_3'],
+        );
+        $tmpfiles = array(
+            1 => '',
+            '',
+            '',
+        );
+
+        foreach ($upfiles as $key => $upfile) {
+            if ($upfile['error'] !== UPLOAD_ERR_NO_FILE) {
+                if (!($image = t_check_image($upfile))) {
+                    $_REQUEST['msg'] = '画像は'.IMAGE_MAX_FILESIZE.'KB以内のGIF・JPEG・PNGにしてください';
+                    openpne_forward('pc', 'page', 'f_message_send');
+                    exit;
+                } else {
+                    $tmpfiles[$key] = t_image_save2tmp($upfile, $sessid, "d_{$key}", $image['format']);
+                }
+            }
+        }
+        $form_val['upfile_1'] = $_FILES['upfile_1'];
+        $form_val['upfile_2'] = $_FILES['upfile_2'];
+        $form_val['upfile_3'] = $_FILES['upfile_3'];
+        $form_val['tmpfile_1'] = $tmpfiles[1];
+        $form_val['tmpfile_2'] = $tmpfiles[2];
+        $form_val['tmpfile_3'] = $tmpfiles[3];
+        
+        
         $target_c_member_id = $form_val['target_c_member_id'];
 
         if (p_common_is_access_block($u, $target_c_member_id)) {
