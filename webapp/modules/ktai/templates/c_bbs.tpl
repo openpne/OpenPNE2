@@ -62,13 +62,13 @@
 ({if $item.number != 0})
 ({$item.number}).({if $item.nickname})<a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})&amp;({$tail})">({$item.nickname})</a>({/if})
 <br>
-({$item.body|nl2br|default:"&nbsp;"})<br>
+s({$item.body|nl2br|default:"&nbsp;"})<br>
 ({if $item.image_filename1})画像：[<a href="({t_img_url filename=$item.image_filename1 w=120 h=120 f=jpg})">小</a>/<a href="({t_img_url filename=$item.image_filename1 f=jpg})">大</a>]<br>({/if})
 ({if $item.image_filename2})画像：[<a href="({t_img_url filename=$item.image_filename2 w=120 h=120 f=jpg})">小</a>/<a href="({t_img_url filename=$item.image_filename2 f=jpg})">大</a>]<br>({/if})
 ({if $item.image_filename3})画像：[<a href="({t_img_url filename=$item.image_filename3 w=120 h=120 f=jpg})">小</a>/<a href="({t_img_url filename=$item.image_filename3 f=jpg})">大</a>]<br>({/if})
 ({$item.r_datetime|date_format:"%m/%d %H:%M"})
 <br>
-({if ($item.c_member_id == $u || $target_diary_writer==$u) && $item.number != 0})
+({if ($item.c_member_id == $u || $target_diary_writer==$u || $is_admin) && $item.number != 0})
 [<a href="({t_url m=ktai a=page_c_bbs_delete_c_commu_topic_comment_confirm})&amp;c_commu_topic_comment_id=({$item.c_commu_topic_comment_id})&amp;target_c_commu_topic_id=({$c_commu_topic_id})&amp;({$tail})">削除</a>]<br>
 ({/if})
 <br>
