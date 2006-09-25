@@ -18,7 +18,6 @@ class ktai_do_c_home_update_is_receive_mail extends OpenPNE_Action
         $target_c_commu_id = $requests['target_c_commu_id'];
         $is_receive_mail = $requests['is_receive_mail'];
         $is_receive_mail_pc = $requests['is_receive_mail_pc'];
-        $is_receive_message = $requests['is_receive_message'];
         // ----------
 
         //--- 権限チェック
@@ -31,7 +30,7 @@ class ktai_do_c_home_update_is_receive_mail extends OpenPNE_Action
         //---
 
         //PC&ktaiの両方を一度に更新
-        do_c_home_update_is_receive_mail($target_c_commu_id, $u, $is_receive_mail, $is_receive_mail_pc, $is_receive_message);
+        do_c_home_update_is_receive_mail($target_c_commu_id, $u, $is_receive_mail, $is_receive_mail_pc);
 
         $p = array('target_c_commu_id' => $target_c_commu_id);
         openpne_redirect('ktai', 'page_c_home', $p);

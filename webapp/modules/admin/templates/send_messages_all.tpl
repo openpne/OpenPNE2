@@ -1,8 +1,8 @@
 ({$inc_header|smarty:nodefaults})
 
-<h2>メッセージ・メール送信</h2>
+<h2>メッセージ送信</h2>
 
-<p>すべてのユーザにメッセージもしくはEメールを送信します。タイトルと本文を入力してください。</p>
+<p>すべてのユーザにメッセージを送信します。タイトルと本文を入力してください。</p>
 <p class="caution">※このメッセージは、ID1番のユーザから送信されます。<br>
 ※全員にメッセージを送る場合、ユーザの数によっては大きな負荷がかかる可能性がありますのでご注意ください。</p>
 
@@ -19,13 +19,6 @@
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('send_messages_all','do')})">
 <input type="hidden" name="sessid" value="({$PHPSESSID})">
 <dl>
-<dt>送信種別</dt>
-<dd><select name="send_type">
-<option value="message"({if $send_type=='message'}) selected="selected"({/if})>メッセージ送信</option>
-<option value="mail"({if $send_type=='mail'}) selected="selected"({/if})>Eメール送信</option>
-</option>
-</select>
-</dd>
 <dt>タイトル</dt>
 <dd><input type="text" name="subject" size="50" value="({$requests.subject})"></dd>
 <dt>本文</dt>

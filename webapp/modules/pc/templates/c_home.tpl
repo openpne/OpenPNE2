@@ -403,16 +403,6 @@ pne_item({$key+1})_id=({$item.c_member_id})
 <td style="width:125px;" class="bg_02"><img src="./skin/dummy.gif" style="width:125px;height:1px;" class="dummy"></td>
 <td style="width:20px;" class="bg_02"><img src="./skin/dummy.gif" class="icon arrow_1"></td>
 <td align="left" style="width:116px;padding:2px 0px;" class="bg_02 lh_110">
-<a href="({t_url m=pc a=page_c_send_message})&amp;target_c_commu_id=({$c_commu.c_commu_id})">参加者にメッセージを送る</a>
-</td>
-<td style="width:5px;" class="bg_02"><img src="./skin/dummy.gif" style="width:5px;height:1px;" class="dummy"></td>
-<td style="width:1px;" class="bg_07"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-</tr>
-<tr>
-<td style="width:1px;" class="bg_07"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-<td style="width:125px;" class="bg_02"><img src="./skin/dummy.gif" style="width:125px;height:1px;" class="dummy"></td>
-<td style="width:20px;" class="bg_02"><img src="./skin/dummy.gif" class="icon arrow_1"></td>
-<td align="left" style="width:116px;padding:2px 0px;" class="bg_02 lh_110">
 <a href="({t_url m=pc a=page_c_edit_member})&amp;target_c_commu_id=({$c_commu.c_commu_id})">メンバー管理</a>
 </td>
 <td style="width:5px;" class="bg_02"><img src="./skin/dummy.gif" style="width:5px;height:1px;" class="dummy"></td>
@@ -768,21 +758,6 @@ pne_item({$key+1})_id=({$item.c_member_id})
 <input type="hidden" name="target_c_commu_id" value="({$c_commu.c_commu_id})">
 
 <table border="0" cellspacing="0" cellpadding="0" style="width:422px;">
-({if !$is_c_commu_admin})
-<tr>
-<td class="border_01 bg_09 padding_s" style="width:90px;border-right:none;border-top:none;">
-
-<span class="c_01">管理者からの<br>メッセージを</span>
-
-</td>
-<td class="border_01 bg_02 padding_s" style="width:332px;border-top:none;">
-
-<input type="radio" value="1" name="is_receive_message"({if $is_receive_message}) checked="checked"({/if}) class="no_bg">受け取る<br>
-<input type="radio" value="0" name="is_receive_message"({if !$is_receive_message}) checked="checked"({/if}) class="no_bg">受け取らない
-
-</td>
-</tr>
-({/if})
 ({if $smarty.const.OPENPNE_ENABLE_KTAI && !$is_unused_ktai_bbs})
 <tr>
 <td class="border_01 bg_09 padding_s" style="width:90px;border-right:none;border-top:none;">
