@@ -43,8 +43,7 @@ function db_commu_insert_c_commu($c_member_id, $name, $c_commu_category_id, $inf
  */
 function db_commu_update_c_commu($c_commu_id,
     $name, $c_commu_category_id, $info, $public_flag,
-    $image_filename = '', $is_send_join_mail = 1,
-    $is_display_map = null, $map_latitude = null, $map_longitude = null, $map_zoom = null)
+    $image_filename = '', $is_send_join_mail = 1)
 {
     $data = array(
         'name' => $name,
@@ -54,12 +53,6 @@ function db_commu_update_c_commu($c_commu_id,
         'is_send_join_mail' => (bool)$is_send_join_mail,
     );
     if ($image_filename) $data['image_filename'] = $image_filename;
-    if (!is_null($is_display_map)) {
-        $data['is_display_map'] = (bool)$is_display_map;
-        $data['map_latitude'] = $map_latitude;
-        $data['map_longitude'] = $map_longitude;
-        $data['map_zoom'] = intval($map_zoom);
-    }
 
     $where = array(
         'c_commu_id' => intval($c_commu_id),
@@ -480,11 +473,13 @@ function db_commu_delete_c_commu_member($c_commu_id, $c_member_id)
 /**
  * コミュニティお知らせメール受信設定変更
  */
-function do_c_home_update_is_receive_mail($c_commu_id, $c_member_id, $is_receive_mail, $is_receive_mail_pc)
+function do_c_home_update_is_receive_mail($c_commu_id, $c_member_id, $is_receive_mail, $is_receive_mail_pc, $is_receive_message)
 {
     $data = array(
         'is_receive_mail' => (bool)$is_receive_mail,
         'is_receive_mail_pc' => (bool)$is_receive_mail_pc,
+        'is_receive_message' => (bool)$is_receive_message,
+        
     );
     $where = array(
         'c_commu_id'  => intval($c_commu_id),

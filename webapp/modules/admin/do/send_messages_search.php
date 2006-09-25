@@ -5,28 +5,29 @@
  */
 
 // メッセージ一括送信
-class admin_do_send_messages extends OpenPNE_Action
+class admin_do_send_messages_search extends OpenPNE_Action
 {
     function execute($requests)
     {
         $module_name = ADMIN_MODULE_NAME;
         $send_type = $requests['send_type'];
 
-        if (empty($requests['c_member_ids'])) {
-            admin_client_redirect('list_c_member');
-        }
-
         if (empty($requests['subject'])) {
-            openpne_forward($module_name, 'page', 'send_messages');
+            openpne_forward($module_name, 'page', 'send_messages_search');
+            exit;
         }
         if (empty($requests['body'])) {
-            openpne_forward($module_name, 'page', 'send_messages');
+            openpne_forward($module_name, 'page', 'send_messages_search');
+            exit;
         }
-
+        
+        $cond_list = validate_cond($_REQUEST);
+        
         // 送信者はとりあえず1番で固定
         $c_member_id_from = 1;
-
-        foreach ($requests['c_member_ids'] as $c_member_id) {
+        $c_member_id_list = _db_admin_c_member_id_list($cond_list);
+        
+        foreach ($c_member_id_list as $c_member_id) {
             if ($c_member_id_from == $c_member_id) continue;
             switch ($send_type) {
                 case "mail":

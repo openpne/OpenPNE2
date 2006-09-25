@@ -632,5 +632,72 @@ function do_common_send_message_mail_send_ktai($c_member_id_to, $c_member_id_fro
     );
     return fetch_send_mail($ktai_address, 'm_ktai_message_zyushin', $params, $is_receive_ktai_mail);
 }
+function put_mail_queue($address, $subject, $body, $is_receive_mail=true, $from=ADMIN_EMAIL)
+{
+    if (!$is_receive_mail || !db_common_is_mailaddress($address)) {
+        return false;
+    }
+
+    // 改行コード
+    $cr = "\x0D";
+    $lf = "\x0A";
+    $crlf = "\x0D\x0A";
+
+    // header
+    $headers['MIME-Version'] = "1.0";
+    $headers['Content-Type'] = "text/plain; charset=iso-2022-jp";
+    $headers['From'] = $from;
+    $headers['To'] = $address;
+
+    // 半角カナを全角カナに変換
+    if (MAIL_HAN2ZEN) {
+        $subject = mb_convert_kana($subject, "KV");
+        $body = mb_convert_kana($body, "KV");
+    }
+    
+    // subject (改行コードを含んではならない)
+    $subject = str_replace(array($cr, $lf), "", $subject);
+    $subject = mb_convert_encoding($subject, "JIS");
+    $headers['Subject'] = '=?ISO-2022-JP?B?'.base64_encode($subject).'?=';
+    
+    // body (LF)
+    if (MAIL_WRAP_WIDTH) {
+        $body = t_wordwrap($body, MAIL_WRAP_WIDTH);
+    }
+    
+    $body = mb_convert_encoding($body, "JIS");
+    $body = str_replace($cr, $lf, str_replace($crlf, $lf, $body));
+    
+    require_once 'Queue.php';
+    
+    $db_opt = array(
+        "type"=>"db",
+        "dsn"=>$GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn'],
+        "mail_table"=>"mail_queue",
+    );
+    $mail_opt = array(
+        "driver"=>"mail",
+    );
+    $mail_mime = new Mail_mime();
+    $mail_mime->setTXTBody($body);
+    $body = $mail_mime->get(array("text_charset"=>"ISO-2022-JP"));
+    $body = addslashes($body);
+    $headers = $mail_mime->headers($headers);
+    
+    if (MAIL_SET_ENVFROM) {
+        if (MAIL_ENVFROM) {
+            $f = MAIL_ENVFROM;
+        } else {
+            $f = ADMIN_EMAIL;
+        }
+        $params = '-f' . escapeshellcmd($f);
+        $mail_opt['param']= $params;
+        $mail_queue  = new Mail_Queue($db_opt, $mail_opt);
+        return $mail_queue->put($from, $address, $headers, $body);
+    } else {
+        $mail_queue  = new Mail_Queue($db_opt, $mail_opt);
+        return $mail_queue->put($from, $address, $headers, $body);
+    }
+}
 
 ?>

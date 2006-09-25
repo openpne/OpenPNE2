@@ -237,8 +237,25 @@
 ({*********})
 <tr>
 <td align="left" valign="top" colspan="6" class="bg_02">
-
 <div class="padding_w_m">
+
+({if $c_message.image_filename_1})
+<a href="({t_img_url filename=$c_message.image_filename_1})" target="_blank">
+<img src="({t_img_url filename=$c_message.image_filename_1 w=120 h=120})"></a>
+({/if})
+
+({if $c_message.image_filename_2})
+<a href="({t_img_url filename=$c_message.image_filename_2})" target="_blank">
+<img src="({t_img_url filename=$c_message.image_filename_2 w=120 h=120})"></a>
+({/if})
+
+({if $c_message.image_filename_3})
+<a href="({t_img_url filename=$c_message.image_filename_3})" target="_blank">
+<img src="({t_img_url filename=$c_message.image_filename_3 w=120 h=120})"></a>
+({/if})
+({if $c_message.image_filename_1||$c_message.image_filename_2||$c_message.image_filename_3})
+<br><br>
+({/if})
 
 ({$c_message.body|t_url2a|nl2br})
 

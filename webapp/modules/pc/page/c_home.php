@@ -26,6 +26,7 @@ class pc_page_c_home extends OpenPNE_Action
         $this->set('is_c_commu_view', p_common_is_c_commu_view4c_commu_idAc_member_id($c_commu_id, $u));
         $this->set('is_receive_mail', db_commu_is_receive_mail_ktai($c_commu_id, $u));
         $this->set('is_receive_mail_pc', db_commu_is_receive_mail_pc($c_commu_id, $u));
+        $this->set('is_receive_message', db_commu_is_receive_message($c_commu_id, $u));
 
         //コミュニティメンバー
         $this->set('c_commu_member_list', p_c_home_c_commu_member_list4c_commu_id($c_commu_id, 9));
