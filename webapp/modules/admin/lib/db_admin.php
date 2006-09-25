@@ -584,6 +584,9 @@ function db_c_profile_option4c_profile_option_id($c_profile_option_id)
     return db_get_row($sql,array($c_profile_option_id));
 }
 
+/**
+ * メンバー絞込みパラメータ取得
+ */
 function validate_cond($requests)
 {
     $cond_list = array();
@@ -603,6 +606,88 @@ function validate_cond($requests)
         }
     }
     return $cond_list;
+}
+
+function do_admin_send_mail($c_member_id, $subject, $body)
+{
+    $c_member = db_common_c_member4c_member_id($c_member_id, true);
+    $pc_address = $c_member['secure']['pc_address'];
+    
+    if (OPENPNE_MAIL_QUEUE) {
+        //メールキューに蓄積
+        put_mail_queue($pc_address, $subject, $body);
+    } else {
+        t_send_email($pc_address, $subject, $body);
+    }
+}
+
+//メッセージ受信メール（メールキュー蓄積対応）
+function do_admin_send_message($c_member_id_from, $c_member_id_to, $subject, $body)
+{
+    //メッセージ
+    $c_message_id = _do_insert_c_message($c_member_id_from, $c_member_id_to, $subject, $body);
+
+    do_admin_send_message_mail_send($c_member_id_to, $c_member_id_from);
+    do_admin_send_message_mail_send_ktai($c_member_id_to, $c_member_id_from);
+    
+    return $c_message_id;
+}
+
+//メッセージ受信メール（メールキュー蓄積対応）
+function do_admin_send_message_mail_send($c_member_id_to, $c_member_id_from)
+{
+    $c_member_to = db_common_c_member4c_member_id($c_member_id_to, true);
+    $pc_address = $c_member_to['secure']['pc_address'];
+    $is_receive_mail = $c_member_to['is_receive_mail'];
+
+    $params = array(
+        "c_member_to"   => db_common_c_member4c_member_id($c_member_id_to),
+        "c_member_from" => db_common_c_member4c_member_id($c_member_id_from),
+    );
+    return admin_fetch_send_mail($pc_address, 'm_pc_message_zyushin', $params, $is_receive_mail);
+}
+
+//◆メッセージ受信メール(携帯)
+function do_admin_send_message_mail_send_ktai($c_member_id_to, $c_member_id_from)
+{
+    $c_member_to = db_common_c_member4c_member_id($c_member_id_to, true);
+    $ktai_address = $c_member_to['secure']['ktai_address'];
+    $is_receive_ktai_mail = $c_member_to['is_receive_ktai_mail'];
+    $p = array('kad' => t_encrypt($c_member_to['secure']['ktai_address']));
+    $login_url = openpne_gen_url('ktai', 'page_o_login', $p);
+
+    $params = array(
+        'c_member_to'   => db_common_c_member4c_member_id($c_member_id_to),
+        'c_member_from' => db_common_c_member4c_member_id($c_member_id_from),
+        'login_url' => $login_url,
+    );
+    return admin_fetch_send_mail($ktai_address, 'm_ktai_message_zyushin', $params, $is_receive_ktai_mail);
+}
+
+function admin_fetch_send_mail($address, $tpl_name, $params = array(), $force = true, $from = '')
+{
+    $tpl_name .= '.tpl';
+    if ($tpl = fetch_mail_m_tpl($tpl_name, $params)) {
+        list($subject, $body) = $tpl;
+        if ($from) {
+            if (OPENPNE_MAIL_QUEUE) {
+                //メールキューに蓄積
+                put_mail_queue($address, $subject, $body, $force, $from);
+            } else {
+                t_send_email($address, $subject, $body, $force, $from);
+            }
+        } else {
+            if (OPENPNE_MAIL_QUEUE) {
+                //メールキューに蓄積
+                put_mail_queue($address, $subject, $body, $force);
+            } else {
+                t_send_email($address, $subject, $body, $force);
+            }
+        }
+        return true;
+    } else {
+        return false;
+    }
 }
 
 ?>

@@ -13,6 +13,10 @@ class pc_page_o_login extends OpenPNE_Action
 
     function execute($requests)
     {
+        //ログイン後のページ情報
+        $login_params = $requests['login_params'];
+        $this->set('login_params', $login_params);
+
         if (LOGIN_URL_PC && !DISPLAY_LOGIN) {
             client_redirect_absolute(LOGIN_URL_PC);
         }

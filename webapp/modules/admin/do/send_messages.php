@@ -10,6 +10,7 @@ class admin_do_send_messages extends OpenPNE_Action
     function execute($requests)
     {
         $module_name = ADMIN_MODULE_NAME;
+        $send_type = $requests['send_type'];
 
         if (empty($requests['c_member_ids'])) {
             admin_client_redirect('list_c_member');
@@ -26,10 +27,30 @@ class admin_do_send_messages extends OpenPNE_Action
         $c_member_id_from = 1;
 
         foreach ($requests['c_member_ids'] as $c_member_id) {
-            do_common_send_message($c_member_id_from, $c_member_id, $requests['subject'], $requests['body']);
+            if ($c_member_id_from == $c_member_id) continue;
+            switch ($send_type) {
+                case "mail":
+                    do_admin_send_mail($c_member_id, $requests['subject'], $requests['body']);
+                break;
+                case "message":
+                    do_admin_send_message($c_member_id_from, $c_member_id, $requests['subject'], $requests['body']);
+                break;
+                default:
+                    openpne_forward($module_name, 'page', 'send_messages');
+                break;
+            }
         }
 
-        admin_client_redirect('top', 'メッセージを送信しました');
+        switch ($send_type) {
+            case "mail":
+                $sended_name = "メール";
+            break;
+            case "message":
+                $sended_name = "メッセージ";
+            break;
+        }
+        
+        admin_client_redirect('top', $sended_name.'を送信しました');
     }
 }
 

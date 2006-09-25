@@ -37,7 +37,7 @@ class admin_page_list_c_member extends OpenPNE_Action
         $v['years'] = get_int_assoc(1901, 2001);
 
         //絞り込みのドロップダウンを作る用
-        $v['profile_list'] = $profile_list;
+        $v['profile_list'] = db_common_c_profile_list();;
 
         //開始年が終了年より大きい
         if ( !empty($cond_list['s_year']) && !empty($cond_list['e_year']) && ($cond_list['s_year'] > $cond_list['e_year']) ) {

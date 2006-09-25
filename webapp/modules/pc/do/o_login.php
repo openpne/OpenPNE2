@@ -16,6 +16,7 @@ class pc_do_o_login extends OpenPNE_Action
 
     function execute($requests)
     {
+        $login_params = t_decrypt($requests['login_params']);
         $options = array(
             'dsn'         => db_get_dsn(),
             'table'       => 'c_member_secure',
@@ -50,8 +51,7 @@ class pc_do_o_login extends OpenPNE_Action
         }
 
         db_api_update_token($auth->uid());
-
-        openpne_redirect('pc', 'page_h_home');
+        client_redirect_absolute(OPENPNE_URL."?".$login_params);
     }
 
     function _fail_login()

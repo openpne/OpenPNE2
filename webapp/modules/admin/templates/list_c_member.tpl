@@ -209,25 +209,28 @@ function Link(linkLoc)
 <a href="#" onClick="return checkAll();" onKeyPress="return checkAll();">全てをチェック</a> / <a href="#" onClick="return clearAll();" onKeyPress="return clearAll();">全てのチェックをはずす</a>
 </p>
 メッセージ／Eメール送信<br>
-<input type="submit" class="submit" value="選択したメンバー">
+<input type="submit" class="submit" value="選択したメンバー　">
 </form>
-({if $cond})
+
 <form action="./" method="post" name="formSendMessagesSearch">
 <input type="hidden" name="m" value="({$module_name})">
-<input type="hidden" name="a" value="page_({$hash_tbl->hash('send_messages_search')})">
 <input type="hidden" name="sessid" value="({$PHPSESSID})">
+({if $cond})
+<input type="hidden" name="a" value="page_({$hash_tbl->hash('send_messages_search')})">
 ({foreach from=$cond_list key=key item=item})
 <input type="hidden" name="({$key})" value="({$item})">
 ({/foreach})
 <input type="hidden" name="cond" value="({$cond})">
+({else})
+<input type="hidden" name="a" value="page_({$hash_tbl->hash('send_messages_all')})">
+({/if})
 <input type="submit" class="submit" value="絞り込んだメンバー">
 </form>
-({/if})
 <form action="./" method="post" name="formSendMessagesAll">
 <input type="hidden" name="m" value="({$module_name})">
 <input type="hidden" name="a" value="page_({$hash_tbl->hash('send_messages_all')})">
 <input type="hidden" name="sessid" value="({$PHPSESSID})">
-<input type="submit" class="submit" value="すべてのメンバー">
+<input type="submit" class="submit" value="すべてのメンバー　">
 </form>
 
 ({if $pager})
