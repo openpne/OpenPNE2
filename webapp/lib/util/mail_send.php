@@ -239,13 +239,19 @@ function send_bbs_info_mail($c_commu_topic_comment_id, $c_member_id)
     $topic_name       = $comment['topic_name'];
     $commu_name       = $comment['commu_name'];
     $body             = $comment['body'];
+    $image_filename1  = $comment['image_filename1'];
+    $image_filename2  = $comment['image_filename2'];
+    $image_filename3  = $comment['image_filename3'];
     $nickname = $c_member['nickname'];
 
     $params = array(
-        "topic_name" => $topic_name,
-        "commu_name" => $commu_name,
-        "nickname"   => $nickname,
-        "body"       => $body,
+        "topic_name"      => $topic_name,
+        "commu_name"      => $commu_name,
+        "nickname"        => $nickname,
+        "body"            => $body,
+        "image_filename1" => $image_filename1,
+        "image_filename2" => $image_filename2,
+        "image_filename3" => $image_filename3,
     );
 
     $tpl = fetch_mail_m_tpl("m_ktai_bbs_info", $params);
