@@ -20,12 +20,18 @@ class pc_page_h_invite_confirm extends OpenPNE_Action
         // ----------
 
         $msg = "";
+        if(count($_POST)>0){
+            if(!(isset($_SESSION['captcha_keystring']) && $_SESSION['captcha_keystring'] ==  $form_val['captcha'])){
+                $msg = "確認キーワードが誤っています";
+            }
+        }
+        unset($_SESSION['captcha_keystring']);
         if (!db_common_is_mailaddress($form_val['mail'])) {
             $msg = "メールアドレスを正しく入力してください";
         } elseif (p_is_sns_join4mail_address($form_val['mail'])) {
             $msg = "そのアドレスは既に登録済みです";
         } else {
-            if (is_ktai_mail_address($form_val['mail'])) {
+            if(is_ktai_mail_address($form_val['mail'])) {
                 //<PCKTAI
                 if (defined('OPENPNE_REGIST_FROM') &&
                         !((OPENPNE_REGIST_FROM & OPENPNE_REGIST_FROM_KTAI) >> 1)) {
