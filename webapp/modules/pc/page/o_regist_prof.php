@@ -31,7 +31,9 @@ class pc_page_o_regist_prof extends OpenPNE_Action
         }
 
         $this->set('err_msg', $err_msg);
-        $this->set('profs', $_REQUEST['prof']);
+
+        session_start();
+        $this->set('profs', $_SESSION['prof']);
 
         //---- inc_ テンプレート用 変数 ----//
         $this->set('inc_page_header', fetch_inc_page_header('regist'));

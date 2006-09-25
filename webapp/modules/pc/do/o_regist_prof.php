@@ -32,11 +32,17 @@ class pc_do_o_regist_prof extends OpenPNE_Action
         $validator = new OpenPNE_Validator();
         $validator->addRequests($_REQUEST);
         $validator->addRules($this->_getValidateRules());
-        if (!$validator->validate()) {
+        if ($mode != 'register' && $validator->validate()) {
             $errors = $validator->getErrors();
         }
 
-        $prof = $validator->getParams();
+        if ($mode != 'register') {
+            $prof = $validator->getParams();
+        }else{
+            session_start();
+            $prof = $_SESSION['prof'];
+            unset($_SESSION['prof']);
+        }
 
         switch ($prof['public_flag_birth_year']) {
         case 'public':
@@ -48,7 +54,7 @@ class pc_do_o_regist_prof extends OpenPNE_Action
             break;
         }
 
-        if ($prof['password'] != $requests['password2']) {
+        if ($mode != 'register' && $prof['password'] != $requests['password2']) {
             $errors['password2'] = 'パスワードが一致していません';
         }
 
@@ -63,10 +69,11 @@ class pc_do_o_regist_prof extends OpenPNE_Action
         // 値の整合性をチェック(DB)
         $c_member_profile_list = do_config_prof_check_profile($validator->getParams(), $_REQUEST['public_flag']);
 
+
         // 必須項目チェック
         $profile_list = db_common_c_profile_list4null();
         foreach ($profile_list as $profile) {
-            if ($profile['disp_regist'] &&
+            if ( $profile['disp_regist'] &&
                 $profile['is_required'] &&
                 !$c_member_profile_list[$profile['name']]['value']
             ) {
@@ -93,12 +100,21 @@ class pc_do_o_regist_prof extends OpenPNE_Action
             unset($prof['password']);
             $prof['profile'] = $c_member_profile_list;
 
-            $_REQUEST['prof'] = $prof;
+            session_start();
+            if (!isset($_SESSION['prof'])) {
+                $_SESSION['prof'] = $prof;
+            }
+
             openpne_forward('pc', 'page', 'o_regist_prof');
             exit;
         case 'confirm':
         default:
             $prof['profile'] = $c_member_profile_list;
+
+            session_start();
+            if (!isset($_SESSION['prof'])) {
+                $_SESSION['prof'] = $prof;
+            }
 
             $_REQUEST['prof'] = $prof;
             openpne_forward('pc', 'page', 'o_regist_prof_confirm');

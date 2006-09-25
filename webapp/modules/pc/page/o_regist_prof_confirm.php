@@ -34,7 +34,8 @@ class pc_page_o_regist_prof_confirm extends OpenPNE_Action
         $this->set('inc_page_header', fetch_inc_page_header('regist'));
 
         $this->set('sid', $sid);
-        $this->set('prof', $_REQUEST['prof']);
+        session_start();
+        $this->set('prof', $_SESSION['prof']);
         $this->set('pc_address', $pre['pc_address']);
         $query_list = p_common_c_password_query4null();
         $query_id = $_REQUEST['c_password_query_id'];

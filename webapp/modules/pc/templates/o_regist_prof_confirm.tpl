@@ -363,60 +363,12 @@ PCアドレス <span class="caution">※</span>
 ({t_form m=pc a=do_o_regist_prof})
 <input type="hidden" name="mode" value="register">
 <input type="hidden" name="sid" value="({$sid})">
-<input type="hidden" name="nickname" value="({$prof.nickname})">
-<input type="hidden" name="birth_year" value="({$prof.birth_year})">
-<input type="hidden" name="birth_month" value="({$prof.birth_month})">
-<input type="hidden" name="birth_day" value="({$prof.birth_day})">
-<input type="hidden" name="public_flag_birth_year" value="({$prof.public_flag_birth_year})">
-<input type="hidden" name="password" value="({$prof.password})">
-<input type="hidden" name="password2" value="({$prof.password})">
-<input type="hidden" name="c_password_query_id" value="({$prof.c_password_query_id})">
-<input type="hidden" name="c_password_query_answer" value="({$prof.c_password_query_answer})">
-({strip})
-({foreach from=$prof.profile key=key item=item})
-({if is_array($item.c_profile_option_id)})
-    ({foreach from=$item.c_profile_option_id item=i})
-    ({if $i})
-    <input type="hidden" name="profile[({$key})][]" value="({$i})">
-    ({/if})
-    ({/foreach})
-({elseif $item.c_profile_option_id})
-    <input type="hidden" name="profile[({$key})]" value="({$item.c_profile_option_id})">
-({else})
-    <input type="hidden" name="profile[({$key})]" value="({$item.value})">
-({/if})
-<input type="hidden" name="public_flag[({$key})]" value="({$item.public_flag})">
-({/foreach})
-({/strip})
 <td><input type="submit" value="　登　録　"></td>
 </form>
 
 ({t_form m=pc a=do_o_regist_prof})
 <input type="hidden" name="mode" value="input">
 <input type="hidden" name="sid" value="({$sid})">
-<input type="hidden" name="nickname" value="({$prof.nickname})">
-<input type="hidden" name="birth_year" value="({$prof.birth_year})">
-<input type="hidden" name="birth_month" value="({$prof.birth_month})">
-<input type="hidden" name="birth_day" value="({$prof.birth_day})">
-<input type="hidden" name="public_flag_birth_year" value="({$prof.public_flag_birth_year})">
-<input type="hidden" name="c_password_query_id" value="({$prof.c_password_query_id})">
-<input type="hidden" name="c_password_query_answer" value="({$prof.c_password_query_answer})">
-({strip})
-({foreach from=$prof.profile key=key item=item})
-({if is_array($item.c_profile_option_id)})
-    ({foreach from=$item.c_profile_option_id item=i})
-    ({if $i})
-    <input type="hidden" name="profile[({$key})][]" value="({$i})">
-    ({/if})
-    ({/foreach})
-({elseif $item.c_profile_option_id})
-    <input type="hidden" name="profile[({$key})]" value="({$item.c_profile_option_id})">
-({else})
-    <input type="hidden" name="profile[({$key})]" value="({$item.value})">
-({/if})
-<input type="hidden" name="public_flag[({$key})]" value="({$item.public_flag})">
-({/foreach})
-({/strip})
 <td><input type="submit" value="　修　正　"></td>
 </form>
 
