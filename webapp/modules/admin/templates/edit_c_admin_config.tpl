@@ -114,6 +114,14 @@
 <option value="0"({if !$smarty.const.DISPLAY_SEARCH_HOME}) selected="selected"({/if})>表示しない</option>
 </select></td>
 </tr>
+<tr>
+<th>Flashリスト表示</th>
+<td><select name="OPENPNE_USE_FLASH_LIST">
+<option value="1"({if $smarty.const.OPENPNE_USE_FLASH_LIST}) selected="selected"({/if})>Flash版</option>
+<option value="0"({if !$smarty.const.OPENPNE_USE_FLASH_LIST}) selected="selected"({/if})>通常HTML版</option>
+</select><br>
+<span class="caution">※フレンドリスト、コミュニティリスト、コミュニティメンバーリストをFlashで表示するかどうか選択します</span></td>
+</tr>
 
 <tr>
 <th>デイリーニュース<br>受信頻度の設定</th>
@@ -125,7 +133,7 @@
 <input name="DAILY_NEWS_DAY[]" id="DAILY_NEWS_DAY_fri" type="checkbox" value="金"({if in_array("金", $DAILY_NEWS_DAY)}) checked="checked"({/if})><label for="DAILY_NEWS_DAY_fri">金</label>&nbsp;
 <input name="DAILY_NEWS_DAY[]" id="DAILY_NEWS_DAY_sat" type="checkbox" value="土"({if in_array("土", $DAILY_NEWS_DAY)}) checked="checked"({/if})><label for="DAILY_NEWS_DAY_sat">土</label>&nbsp;
 <input name="DAILY_NEWS_DAY[]" id="DAILY_NEWS_DAY_sun" type="checkbox" value="日"({if in_array("日", $DAILY_NEWS_DAY)}) checked="checked"({/if})><label for="DAILY_NEWS_DAY_sun">日</label><br>
-<span class="caution">※「毎日」「受信しない」以外の選択肢に設定したときの受信頻度を設定します
+<span class="caution">※「毎日」「受信しない」以外の選択肢に設定したときの受信頻度を設定します</span>
 </td>
 </tr>
 
