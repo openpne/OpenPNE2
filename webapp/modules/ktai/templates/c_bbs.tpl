@@ -62,7 +62,7 @@
 ({if $item.number != 0})
 ({$item.number}).({if $item.nickname})<a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})&amp;({$tail})">({$item.nickname})</a>({/if})
 <br>
-s({$item.body|nl2br|default:"&nbsp;"})<br>
+({$item.body|nl2br|default:"&nbsp;"})<br>
 ({if $item.image_filename1})画像：[<a href="({t_img_url filename=$item.image_filename1 w=120 h=120 f=jpg})">小</a>/<a href="({t_img_url filename=$item.image_filename1 f=jpg})">大</a>]<br>({/if})
 ({if $item.image_filename2})画像：[<a href="({t_img_url filename=$item.image_filename2 w=120 h=120 f=jpg})">小</a>/<a href="({t_img_url filename=$item.image_filename2 f=jpg})">大</a>]<br>({/if})
 ({if $item.image_filename3})画像：[<a href="({t_img_url filename=$item.image_filename3 w=120 h=120 f=jpg})">小</a>/<a href="({t_img_url filename=$item.image_filename3 f=jpg})">大</a>]<br>({/if})
