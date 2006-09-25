@@ -75,7 +75,7 @@ function db_ashiato_update_log($limit = 30)
         $sql = 'DELETE FROM c_ashiato WHERE c_member_id_to = ? AND r_datetime < ?';
         $params = array(intval($c_member_id), $cutline);
         db_query($sql, $params);
-        $affected_rows = db_affected_rows();var_dump($affected_rows);
+        $affected_rows = db_affected_rows();
 
         // update c_member `ashiato_count_log`
         if ($affected_rows > 0) {
