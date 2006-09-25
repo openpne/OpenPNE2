@@ -48,6 +48,11 @@ class OpenPNE_KtaiUA
             $this->is_vodafone = true;
             $this->is_ktai = true;
         }
+        // SoftBank
+        elseif (!strncmp($ua, 'SoftBank', 8)) {
+            $this->is_vodafone = true;
+            $this->is_ktai = true;
+        }
 
         // au
         elseif (!strncmp($ua, 'KDDI', 4)

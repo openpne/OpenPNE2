@@ -39,6 +39,7 @@ define('OPENPNE_REGIST_FROM_PCKTAI', 3); // PC携帯から登録可
 $GLOBALS['OpenPNE']['KTAI_DOMAINS'] = array(
     'docomo.ne.jp',
     'ezweb.ne.jp',
+    'softbank.ne.jp',
     'd.vodafone.ne.jp',
     'h.vodafone.ne.jp',
     't.vodafone.ne.jp',

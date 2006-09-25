@@ -74,6 +74,16 @@ class OpenPNE_KtaiID
                 $id = $sn;
             }
         }
+        // SoftBank
+        elseif (!strncmp($ua, 'SoftBank', 8)) {
+            $pieces = explode('/', $ua);
+            $piece_sn = explode(' ', $pieces[4]);
+            $sn = array_shift($piece_sn);
+
+            if (!strncmp($sn, 'SN', 2)) {
+                $id = $sn;
+            }
+        }
 
         // au
         elseif (!strncmp($ua, 'KDDI', 4)
