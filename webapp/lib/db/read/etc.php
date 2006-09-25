@@ -19,10 +19,19 @@ function db_admin_user_exists()
 /**
  * 配色設定を取得
  */
-function db_select_c_sns_config()
+function db_select_c_sns_config($target_id=1)
 {
-    $sql = 'SELECT * FROM c_sns_config WHERE c_sns_config_id = 1';
-    return db_get_row($sql);
+    $sql = 'SELECT * FROM c_sns_config WHERE c_sns_config_id = ?';
+    $params=array($target_id);
+    return db_get_row($sql,$params);
+}
+/**
+ * 配色設定を全て取得
+ */
+function db_select_c_sns_config_all()
+{
+    $sql = 'SELECT * FROM c_sns_config';
+    return db_get_all($sql);
 }
 
 /**
