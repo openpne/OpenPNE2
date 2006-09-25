@@ -27,10 +27,9 @@ function p_h_ashiato_c_ashiato_list4c_member_id($c_member_id_to, $count)
         $day_result = db_get_all_limit($sql, 0, $count, $params);
         $result = array_merge($result, $day_result);
 
-        if (count($result) >= $count) {
+        $count -= count($day_result);
+        if ($count <= 0) {
             break;
-        } else {
-            $count -= count($day_result);
         }
     }
 
