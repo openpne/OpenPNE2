@@ -1,4 +1,3 @@
-<<<<<<< .working
 <?php
 /**
  * @copyright 2005-2006 OpenPNE Project
