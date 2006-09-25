@@ -85,6 +85,9 @@ function fetch_inc_html_header()
     $inc_smarty->assign('bg_08', $c_sns_config['bg_08']);
     $inc_smarty->assign('bg_09', $c_sns_config['bg_09']);
     $inc_smarty->assign('bg_10', $c_sns_config['bg_10']);
+    $inc_smarty->assign('bg_11', $c_sns_config['bg_11']);
+    $inc_smarty->assign('bg_12', $c_sns_config['bg_12']);
+    $inc_smarty->assign('bg_13', $c_sns_config['bg_13']);
 
     return $inc_smarty->ext_fetch('inc_html_header.tpl');
 }

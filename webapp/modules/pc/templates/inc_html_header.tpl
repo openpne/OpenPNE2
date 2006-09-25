@@ -39,12 +39,12 @@
 .bg_08 { background-color: #({$bg_08}) ; }
 .bg_09 { background-color: #({$bg_09}) ; }
 .bg_10 { background-color: #({$bg_10}) ; }
-.bg_11 { background-color: #({$smarty.const.SKIN_BG_11}) ; }
-.bg_12 { background-color: #({$smarty.const.SKIN_BG_12}) ; }
-.bg_13 { background-color: #({$smarty.const.SKIN_BG_13}) ; }
+.bg_11 { background-color: #({$bg_11}) ; }
+.bg_12 { background-color: #({$bg_12}) ; }
+.bg_13 { background-color: #({$bg_13}) ; }
 
-body { background-color: #({$smarty.const.SKIN_BG_12}) ; }
-.container { background-color: #({$smarty.const.SKIN_BG_13}) ; }
+body { background-color: #({$bg_12}) ; }
+.container { background-color: #({$bg_13}) ; }
 
 .arrow_1 {
   width: 17px ;
