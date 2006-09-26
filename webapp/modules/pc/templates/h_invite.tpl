@@ -83,7 +83,7 @@
 
 <div class="c_01" style="padding:4px;text-align:center;">
 
-招待したい友人・知人のメールアドレスを記入してください。
+「({$smarty.const.SNS_NAME})」に招待したい方のメールアドレスを記入してください。 
 
 </div>
 
@@ -101,7 +101,7 @@
 
 <img src="./skin/dummy.gif" class="v_spacer_s">
 <span class="c_01" style="padding:5px;">
-相手のメールアドレス
+友人のメールアドレス 
 </span>
 <img src="./skin/dummy.gif" class="v_spacer_s">
 
@@ -112,9 +112,9 @@
 
 <input  name="mail" value="({$requests.mail})" size="30">
 ({if $smarty.const.OPENPNE_REGIST_FROM == $smarty.const.OPENPNE_REGIST_FROM_PC})
-<br>※携帯アドレスには招待できません
+<br>※携帯アドレスには招待を送ることができません
 ({elseif $smarty.const.OPENPNE_REGIST_FROM == $smarty.const.OPENPNE_REGIST_FROM_KTAI})
-<br>※PCアドレスには招待できません
+<br>※PCアドレスには招待を送ることができません
 ({/if})
 
 </div>
@@ -289,7 +289,7 @@
 <table border="0" cellspacing="0" cellpadding="0" style="width:574px;" class="border_01">
 <tr>
 <td style="width:36px;" class="bg_06"><img src="({t_img_url_skin filename=content_header_1})" style="width:30px;height:20px;" class="dummy"></td>
-<td style="width:398px;padding:2px 0px;" class="bg_06"><span class="b_b c_00">招待中一覧</span></td>
+<td style="width:398px;padding:2px 0px;" class="bg_06"><span class="b_b c_00">招待中メールアドレス一覧</span></td>
 <td style="width:140px;" align="right" class="bg_06">&nbsp;</td>
 </tr>
 </table>
