@@ -70,13 +70,8 @@ function db_bookmark_diary_list($c_member_id, $limit)
     $bookmarks = db_bookmark_c_member_id_list($c_member_id, true);
     $ids = implode(',', array_map('intval', $bookmarks));
 
-    // 日記を全員に公開しているメンバーのみを取得
-    $sql = 'SELECT c_member_id FROM c_member WHERE c_member_id IN ('.$ids.')' .
-            ' AND public_flag_diary = \'public\'';
-    $public = db_get_col($sql);
-    $ids = implode(',', array_map('intval', $public));
+    $sql = 'SELECT c_diary.* FROM c_diary, c_member WHERE c_diary.c_member_id IN ('.$ids.') AND ((c_diary.public_flag = \'public\') OR (c_diary.public_flag = \'default\' AND c_member.public_flag_diary = \'public\')) AND c_diary.c_member_id=c_member.c_member_id ORDER BY r_datetime DESC';
 
-    $sql = 'SELECT * FROM c_diary WHERE c_member_id IN (' . $ids . ') ORDER BY r_datetime DESC';
     $diary_list = db_get_all_limit($sql, 0, intval($limit));
 
     foreach ($diary_list as $key => $value) {
@@ -113,13 +108,8 @@ function db_bookmark_diary_list_with_pager($c_member_id, $page_size, $page)
     $bookmarks = db_bookmark_c_member_id_list($c_member_id, true);
     $ids = implode(',', array_map('intval', $bookmarks));
 
-    // 日記を全員に公開しているメンバーのみを取得
-    $sql = 'SELECT c_member_id FROM c_member WHERE c_member_id IN ('.$ids.')' .
-            ' AND public_flag_diary = \'public\'';
-    $public = db_get_col($sql);
-    $ids = implode(',', array_map('intval', $public));
+    $sql = 'SELECT c_diary.* FROM c_diary, c_member WHERE c_diary.c_member_id IN ('.$ids.') AND ((c_diary.public_flag = \'public\') OR (c_diary.public_flag = \'default\' AND c_member.public_flag_diary = \'public\')) AND c_diary.c_member_id=c_member.c_member_id ORDER BY r_datetime DESC';
 
-    $sql = 'SELECT * FROM c_diary WHERE c_member_id IN (' . $ids . ') ORDER BY r_datetime DESC';
     $diary_list = db_get_all_page($sql, intval($page), intval($page_size));
     foreach ($diary_list as $key => $value) {
         $diary_list[$key]['c_member'] = db_common_c_member4c_member_id_LIGHT($value['c_member_id']);

@@ -13,6 +13,7 @@ class pc_page_h_diary_add extends OpenPNE_Action
         // --- リクエスト変数
         $form_val['subject'] = $requests['subject'];
         $form_val['body'] = $requests['body'];
+        $form_val['public_flag'] = $requests['public_flag'];
         // ----------
 
         $sessid = session_id();

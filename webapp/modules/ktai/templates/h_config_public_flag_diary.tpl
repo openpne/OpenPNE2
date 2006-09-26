@@ -10,6 +10,8 @@
 全体に公開<br>
 <input type="radio" name="public_flag_diary" value="friend"({if $c_member.public_flag_diary=="friend"}) checked="checked"({/if})>
 ({$WORD_MY_FRIEND_HALF})まで公開<br>
+<input type="radio" name="public_flag_diary" value="close"({if $c_member.public_flag_diary == "close"}) checked="checked"({/if})>
+公開しない<br>
 <input type="submit" value="変更"><br>
 </form>
 

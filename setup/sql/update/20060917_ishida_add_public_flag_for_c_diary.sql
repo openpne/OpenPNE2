@@ -1,0 +1,2 @@
+ALTER TABLE `c_diary` ADD COLUMN `public_flag` enum('default', 'public','friend','close') NOT NULL default 'default';
+ALTER TABLE `c_member` CHANGE COLUMN `public_flag_diary` `public_flag_diary` enum('public','friend','close') NOT NULL default 'public';

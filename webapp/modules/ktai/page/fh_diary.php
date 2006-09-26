@@ -22,22 +22,30 @@ class ktai_page_fh_diary extends OpenPNE_Action
         //ページ
         $this->set("page", $page);
 
-        $target_c_member = k_p_fh_diary_c_member4c_diary_id($target_c_diary_id);
-        $target_c_member_id = $target_c_member['c_member_id'];
+        $c_diary = db_diary_get_c_diary4id($target_c_diary_id);
 
-        if (p_common_is_access_block($u, $target_c_member_id)) {
-            openpne_redirect('ktai', 'page_h_access_block');
+        $target_c_member = k_p_fh_diary_c_member4c_diary_id($target_c_diary_id);        $target_c_member_id = $target_c_member['c_member_id'];
+
+        //友達までの公開かどうか
+        $is_public_flag_friend = ($target_c_member['public_flag_diary'] == "friend" && $c_diary['public_flag'] == "default") || $c_diary['public_flag'] == "friend";
+        //公開しないかどうか
+        $is_public_flag_close = ($target_c_member['public_flag_diary'] == "close" && $c_diary['public_flag'] == "default") || $c_diary['public_flag'] == "close";
+        if ($u != $target_c_member_id) {
+
+            //日記の公開範囲設定
+            if ($is_public_flag_friend && !db_friend_is_friend($u, $target_c_member_id)) {
+                ktai_display_error('この日記にはアクセスできません');
+            }
+            if($is_public_flag_close)
+            {
+                ktai_display_error('この日記にはアクセスできません');
+            }
+
+            //アクセスブロック設定
+            if (p_common_is_access_block($u, $target_c_member_id)) {
+                openpne_redirect('ktai', 'page_h_access_block');
+            }
         }
-
-        $target_c_member = db_common_c_member4c_member_id($target_c_member_id);
-        // フレンドにしか公開していない
-        if ($target_c_member['public_flag_diary'] == "friend" &&
-            !db_friend_is_friend($u, $target_c_member_id) &&
-            $target_c_member_id != $u) {
-
-            ktai_display_error('この日記にはアクセスできません');
-        }
-
         //管理画面HTML
         $this->set('c_siteadmin', p_common_c_siteadmin4target_pagename('k_fh_diary'));
 
@@ -45,12 +53,13 @@ class ktai_page_fh_diary extends OpenPNE_Action
         $this->set("target_diary_writer", $target_c_member);
 
         //日記
-        $c_diary = db_diary_get_c_diary4id($target_c_diary_id);
         $this->set("target_c_diary", $c_diary);
         //自分で日記を見たとき
         if ($c_diary['c_member_id'] == $u) {
             //日記を閲覧済みにする
             db_diary_update_c_diary_is_checked($target_c_diary_id, 1);
+            $this->set("type", 'h');
+            
         }
         //コメント
         list ($c_diary_comment_list, $is_prev, $is_next, $total_num, $total_page_num)

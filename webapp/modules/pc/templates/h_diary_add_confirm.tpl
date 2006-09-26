@@ -197,6 +197,41 @@
 ({*********})
 <tr>
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td class="bg_05" align="left" valign="middle">
+
+<div class="padding_s">
+
+公開範囲
+
+</div>
+
+</td>
+<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td class="bg_02" align="left" valign="middle">
+
+<div class="padding_s">
+
+({if $form_val.public_flag == "default"})
+日記全体の設定に従う(({if $member.public_flag_diary == "public"})全員に公開({elseif $member.public_flag_diary == "friend"})({$WORD_FRIEND})まで公開({elseif $member.public_flag_diary == "close"})公開しない({/if}))
+({elseif $form_val.public_flag == "public"})
+全員に公開
+({elseif $form_val.public_flag == "friend"})
+({$WORD_FRIEND})まで公開
+({elseif $form_val.public_flag == "close"})
+公開しない
+({/if})
+</div>
+
+</td>
+<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+</tr>
+({*********})
+<tr>
+<td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+</tr>
+({*********})
+<tr>
+<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 <td class="bg_03" align="center" valign="middle" colspan="3">
 
 <div class="padding_w_m">
@@ -207,6 +242,7 @@
 <input type="hidden" name="sessid" value="({$PHPSESSID})">
 <input type="hidden" name="subject" value="({$form_val.subject})">
 <input type="hidden" name="body" value="({$form_val.body})">
+<input type="hidden" name="public_flag" value="({$form_val.public_flag})">
 <input type="hidden" name="tmpfile_1" value="({$form_val.tmpfile_1})">
 <input type="hidden" name="tmpfile_2" value="({$form_val.tmpfile_2})">
 <input type="hidden" name="tmpfile_3" value="({$form_val.tmpfile_3})">

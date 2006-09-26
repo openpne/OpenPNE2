@@ -17,6 +17,7 @@ class ktai_do_h_diary_edit_insert_c_diary extends OpenPNE_Action
         // --- リクエスト変数
         $subject = $requests['subject'];
         $body = $requests['body'];
+        $public_flag = $requests['public_flag'];
         $target_c_diary_id = $requests['target_c_diary_id'];
         // ----------
 
@@ -31,7 +32,7 @@ class ktai_do_h_diary_edit_insert_c_diary extends OpenPNE_Action
         }
 
         if (!$target_c_diary_id) {
-            $update_c_diary_id = db_diary_insert_c_diary($u, $subject, $body);
+            $update_c_diary_id = db_diary_insert_c_diary($u, $subject, $body, $public_flag);
         } else {
             $update_c_diary_id = $target_c_diary_id;
 
@@ -44,7 +45,7 @@ class ktai_do_h_diary_edit_insert_c_diary extends OpenPNE_Action
         /*
          * 携帯はWEBでは画像UPLOADなし
          */
-        db_diary_update_c_diary($update_c_diary_id, $subject, $body);
+        db_diary_update_c_diary($update_c_diary_id, $subject, $body, $public_flag);
 
         $p = array('target_c_member_id' => $u);
         openpne_redirect('ktai', 'page_fh_diary_list', $p);

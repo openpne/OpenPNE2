@@ -14,6 +14,11 @@
 <input size="14" name="subject" value="({$target_c_diary.subject})"><br>
 本文<br>
 <textarea name="body" rows="6" cols="14">({$target_c_diary.body})</textarea><br>
+<input type="radio" name="public_flag" value="default"({if $target_c_diary.public_flag == "default"}) checked="checked"({/if})>日記全体の設定に従う(({if $member.public_flag_diary == "public"})全員に公開({elseif $member.public_flag_diary == "friend"})({$WORD_FRIEND_HALF})まで公開({elseif $member.public_flag_diary == "close"})公開しない({/if}))<br>
+<input type="radio" name="public_flag" value="public"({if $target_c_diary.public_flag == "public"}) checked="checked"({/if})>全員に公開
+<input type="radio" name="public_flag" value="friend"({if $target_c_diary.public_flag == "friend"}) checked="checked"({/if})>({$WORD_FRIEND_HALF})まで公開
+<input type="radio" name="public_flag" value="close"({if $target_c_diary.public_flag == "close"}) checked="checked"({/if})>公開しない<br>
+
 <input type="submit" value="送信">
 </form>
 

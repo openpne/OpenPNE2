@@ -20,7 +20,8 @@ class ktai_page_h_diary_list_friend extends OpenPNE_Action
         $page_size = 10;
         $this->set("page_size", $page_size);
 
-        $lst = k_p_h_diary_list_friend_h_diary_list_friend4c_member_id($u, $page_size, $page);
+        //日付のリミットはとりあえず30
+        $lst = p_h_diary_list_friend_h_diary_list_friend4c_member_id($u, $page_size, $page, 30);
         $this->set("h_diary_list_friend", $lst[0]);
         $this->set("is_prev", $lst[1]);
         $this->set("is_next", $lst[2]);

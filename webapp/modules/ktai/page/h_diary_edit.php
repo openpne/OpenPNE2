@@ -21,6 +21,9 @@ class ktai_page_h_diary_edit extends OpenPNE_Action
             if ($c_diary['c_member_id'] != $u) {
                 handle_kengen_error();
             }
+        } else {
+            $c_diary['public_flag'] = 'default';
+            $this->set('target_c_diary', $c_diary);
         }
 
         if (MAIL_ADDRESS_HASHED) {
@@ -30,6 +33,10 @@ class ktai_page_h_diary_edit extends OpenPNE_Action
         }
         $mail_address = MAIL_ADDRESS_PREFIX . $mail_address;
         $this->set('blog_address', $mail_address);
+
+        //メンバ情報
+        $this->set('member', db_common_c_member4c_member_id($u));
+
 
         return 'success';
     }

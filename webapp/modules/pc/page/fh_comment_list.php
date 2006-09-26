@@ -29,11 +29,7 @@ class pc_page_fh_comment_list extends OpenPNE_Action
         } else {
             $type = "f";
 
-            //日記の公開範囲設定
-            if (($target_c_member['public_flag_diary'] == "friend" &&
-                 !db_friend_is_friend($u, $target_c_member_id))) {
-                openpne_redirect('pc', 'page_h_err_diary_access');
-            }
+            $is_friend = db_friend_is_friend($u, $target_c_member_id);
 
             // アクセスブロック
             if (p_common_is_access_block($u, $target_c_member_id)) {
@@ -43,7 +39,7 @@ class pc_page_fh_comment_list extends OpenPNE_Action
         $this->set('inc_navi', fetch_inc_navi($type, $target_c_member_id));
 
         //c_member_id から自分の日記についてるコメントIDリストを取得
-        $target_c_diary_comment_id = p_fh_diary_c_diary_comment_id_list4c_member_id($target_c_member_id);
+        $target_c_diary_comment_id = $this->_p_fh_diary_c_diary_comment_id_list4c_member_id($target_c_member_id, $is_friend, $type);
 
         $page_size = 50;
         list($c_diary_comment_list, $is_prev, $is_next, $total_num) =
@@ -63,6 +59,32 @@ class pc_page_fh_comment_list extends OpenPNE_Action
 
         return 'success';
     }
+
+
+    //c_member_id から自分の日記についてるコメントID(複数)を取得
+    //日記公開範囲を考慮
+    function _p_fh_diary_c_diary_comment_id_list4c_member_id($c_member_id, $is_friend, $type)
+    {
+        if ($type == 'h') {
+            return p_fh_diary_c_diary_comment_id_list4c_member_id($c_member_id);
+        }
+
+        $sql = "SELECT cdc.c_diary_comment_id FROM c_diary as cd,c_diary_comment as cdc, c_member as cm" .
+            " WHERE cd.c_member_id = ?".
+            " AND cd.c_diary_id = cdc.c_diary_id".
+            " AND cd.c_member_id = cm.c_member_id";
+
+        if ($is_friend) {
+            $sql .= ' AND ((cd.public_flag = \'public\') OR (cd.public_flag = \'default\' AND cm.public_flag_diary = \'public\') OR (cd.public_flag = \'friend\') OR (cd.public_flag = \'default\' AND cm.public_flag_diary = \'friend\'))';
+        } else {
+            $sql .= ' AND ((cd.public_flag = \'public\') OR (cd.public_flag = \'default\' AND cm.public_flag_diary = \'public\'))';
+        }
+
+        $params = array(intval($c_member_id));
+        return db_get_col($sql, $params);
+    }
+
+
 }
 
 ?>

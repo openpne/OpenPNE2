@@ -331,23 +331,7 @@
 <table border="0" cellspacing="0" cellpadding="0" style="width:524px;" class="border_01">
 <tr>
 <td style="width:36px;" class="bg_06"><img src="({t_img_url_skin filename=content_header_1})" style="width:30px;height:20px;" class="dummy"></td>
-<td style="width:486px;padding:2px 0px;" class="bg_06"><span class="b_b c_00"><span id="DOM_fh_diary_writer">({$target_member.nickname})</span>({if $type == "f"})さん({/if})の日記</span><span style="color: red">
-
-({if $type == "h"})
-(
-({if $target_diary.public_flag == "default"})
-日記全体の設定に従う(({if $target_member.public_flag_diary == "public"})全員に公開({elseif $target_member.public_flag_diary == "friend"})({$WORD_FRIEND})まで公開({elseif $target_member.public_flag_diary == "close"})公開しない({/if}))
-({elseif $target_diary.public_flag == "public"})
-全員に公開
-({elseif $target_diary.public_flag == "friend"})
-({$WORD_FRIEND})まで公開
-({elseif $target_diary.public_flag == "close"})
-公開しない
-({/if})
-)
-({/if})
-
-</span></td>
+<td style="width:486px;padding:2px 0px;" class="bg_06"><span class="b_b c_00"><span id="DOM_fh_diary_writer">({$target_member.nickname})</span>({if $type == "f"})さん({/if})の日記</span></td>
 </tr>
 </table>
 <!-- ここまで：小タイトル -->
@@ -374,7 +358,24 @@
 <td style="width:424px;" class="bg_02" align="left" valign="middle">
 <div style="padding:4px 3px;">
 
-<span id="DOM_fh_diary_title">({$target_diary.subject})</span>
+<span id="DOM_fh_diary_title">({$target_diary.subject})
+({if $type == "h"})
+<span style="color: red">
+(
+({if $target_diary.public_flag == "default"})
+日記全体の設定に従う(({if $target_member.public_flag_diary == "public"})全員に公開({elseif $target_member.public_flag_diary == "friend"})({$WORD_FRIEND})まで公開({elseif $target_member.public_flag_diary == "close"})公開しない({/if}))
+({elseif $target_diary.public_flag == "public"})
+全員に公開
+({elseif $target_diary.public_flag == "friend"})
+({$WORD_FRIEND})まで公開
+({elseif $target_diary.public_flag == "close"})
+公開しない
+({/if})
+)
+</span>
+({/if})
+
+</span>
 
 </div>
 </td>

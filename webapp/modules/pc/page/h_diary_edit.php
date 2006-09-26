@@ -14,6 +14,7 @@ class pc_page_h_diary_edit extends OpenPNE_Action
         $target_c_diary_id = $requests['target_c_diary_id'];
         $subject = $requests['subject'];
         $body = $requests['body'];
+        $public_flag = $requests['public_flag'];
         // ----------
 
         $c_diary = db_diary_get_c_diary4id($target_c_diary_id);

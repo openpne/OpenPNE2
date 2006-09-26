@@ -7,7 +7,24 @@
 <hr>
 ({/if})
 ({$target_c_diary.r_datetime|date_format:"%y/%m/%d %H:%M"})<br>
-({$target_c_diary.subject})<br>
+({$target_c_diary.subject})
+
+({if $type == "h"})
+<span style="color: red">
+(
+({if $target_c_diary.public_flag == "default"})
+日記全体の設定に従う(({if $target_diary_writer.public_flag_diary == "public"})全員に公開({elseif $target_diary_writer.public_flag_diary == "friend"})({$WORD_FRIEND_HALF})まで公開({elseif $target_diary_writer.public_flag_diary == "close"})公開しない({/if}))
+({elseif $target_c_diary.public_flag == "public"})
+全員に公開
+({elseif $target_c_diary.public_flag == "friend"})
+({$WORD_FRIEND_HALF})まで公開
+({elseif $target_c_diary.public_flag == "close"})
+公開しない
+({/if})
+)
+</span>
+({/if})
+<br>
 <br>
 ({$target_c_diary.body|nl2br})<br>
 <br>

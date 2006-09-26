@@ -21,6 +21,7 @@ class pc_page_h_diary_edit_confirm extends OpenPNE_Action
         $target_c_diary_id = $requests['target_c_diary_id'];
         $subject = $requests['subject'];
         $body = $requests['body'];
+        $public_flag = $requests['public_flag'];
         // ----------
 
         $sessid = session_id();
@@ -59,6 +60,7 @@ class pc_page_h_diary_edit_confirm extends OpenPNE_Action
             "del_img" => $_REQUEST['del_img'],
             "subject" => $subject,
             "body" => $body,
+            "public_flag" => $public_flag,
             "upfile_1" => $_FILES['upfile_1'],
             "upfile_2" => $_FILES['upfile_2'],
             "upfile_3" => $_FILES['upfile_3'],

@@ -172,10 +172,13 @@ function p_h_diary_list_friend_h_diary_list_friend4c_member_id($c_member_id, $pa
 
     $where = "c_friend.c_member_id_from = ?" .
             " AND c_diary.c_member_id = c_friend.c_member_id_to" .
+            " AND c_diary.c_member_id = c_member.c_member_id" .
+            ' AND ((c_diary.public_flag = \'public\') OR (c_diary.public_flag = \'default\' AND c_member.public_flag_diary = \'public\') OR (c_diary.public_flag = \'friend\') OR (c_diary.public_flag = \'default\' AND c_member.public_flag_diary = \'friend\'))' .
             " AND c_diary.r_datetime > ?";
+
     $params = array(intval($c_member_id), $last_week);
 
-    $sql = "SELECT c_diary.* FROM c_diary, c_friend WHERE " . $where .
+    $sql = "SELECT c_diary.* FROM c_diary, c_friend, c_member WHERE " . $where .
             " ORDER BY c_diary.r_datetime DESC";
     $lst = db_get_all_page($sql, $page, $page_size, $params);
 
@@ -184,7 +187,7 @@ function p_h_diary_list_friend_h_diary_list_friend4c_member_id($c_member_id, $pa
         $lst[$key]['c_member'] = db_common_c_member4c_member_id($value['c_member_id']);
     }
 
-    $sql = 'SELECT count(*) FROM c_diary, c_friend WHERE ' . $where;
+    $sql = 'SELECT count(*) FROM c_diary, c_friend, c_member WHERE ' . $where;
     $total_num = db_get_one($sql, $params);
 
     if ($total_num != 0) {
@@ -233,6 +236,7 @@ function p_h_diary_c_diary_first_diary_read4c_member_id($c_member_id)
 
 /**
  * フレンド最新日記リスト取得
+ * 日記公開範囲を考慮
  * 
  * @param   int $c_member_id
  * @param   int $limit
@@ -243,10 +247,13 @@ function p_h_home_c_diary_friend_list4c_member_id($c_member_id, $limit)
     $friends = db_friend_c_member_id_list($c_member_id);
     $ids = implode(',', array_map('intval', $friends));
 
-    $hint = db_mysql_hint('USE INDEX (r_datetime_c_member_id, r_datetime)');
-    $sql = 'SELECT * FROM c_diary' . $hint .
-            ' WHERE c_member_id IN (' . $ids . ')' .
-            ' ORDER BY r_datetime DESC';
+    $hint = db_mysql_hint('USE INDEX (c_diary.r_datetime_c_member_id, c_diary.r_datetime)');
+    $sql = 'SELECT c_diary.* FROM c_diary INNER JOIN c_member USING (c_member_id)' . $hint .
+            ' WHERE c_diary.c_member_id IN (' . $ids . ')' .
+            ' AND (((c_diary.public_flag = \'public\') OR (c_diary.public_flag = \'default\' AND c_member.public_flag_diary = \'public\'))' .
+            ' OR ((c_diary.public_flag = \'friend\') OR (c_diary.public_flag = \'default\' AND c_member.public_flag_diary = \'friend\')))' .
+            ' ORDER BY c_diary.r_datetime DESC';
+
     $c_diary_friend_list = db_get_all_limit($sql, 0, $limit);
 
     foreach ($c_diary_friend_list as $key => $value) {
@@ -266,14 +273,32 @@ function p_h_home_c_diary_friend_list4c_member_id($c_member_id, $limit)
  */
 function p_h_home_c_diary_my_comment_list4c_member_id($c_member_id, $limit)
 {
+
+    //アクセスブロック
+    $sql = 'SELECT c_member_id FROM c_access_block where c_member_id_block = ?';
+    $params = array(intval($c_member_id));
+    if( !$ids = implode(',', db_get_col($sql, $params)) ) {
+        $ids = 0;
+    }
+
+
     $date = date('Y-m-d 00:00:00', strtotime('-15 days'));
 
     $sql = 'SELECT c_diary_comment.c_diary_id' .
-           ' FROM c_diary_comment INNER JOIN c_diary USING (c_diary_id)' .
-           ' WHERE c_diary_comment.c_member_id = ?' .
-           ' AND c_diary_comment.r_datetime > ?' .
-           ' AND c_diary.c_member_id <> ?';
+            ' FROM c_diary_comment INNER JOIN c_diary USING (c_diary_id)' .
+            ' , c_member, c_friend' .
+            ' WHERE c_diary_comment.c_member_id = ?' .
+            ' AND c_diary_comment.r_datetime > ?' .
+            ' AND c_diary.c_member_id <> ?'.
+        //アクセスブロック
+            ' AND c_friend.c_member_id_from = c_diary_comment.c_member_id' .
+            ' AND c_diary.c_member_id not in('.$ids.')' .
+        //日記公開範囲絞り
+            ' AND c_diary.c_member_id = c_member.c_member_id' .
+            ' AND (((c_diary.public_flag = \'public\') OR (c_diary.public_flag = \'default\' AND c_member.public_flag_diary = \'public\')) OR(((c_diary.public_flag = \'friend\') OR (c_diary.public_flag = \'default\' AND c_member.public_flag_diary = \'friend\')) AND c_diary.c_member_id = c_friend.c_member_id_to))';
+
     $params = array(intval($c_member_id), $date, intval($c_member_id));
+
     $c_diary_id_list = db_get_col($sql, $params);
     $c_diary_id_list = array_unique($c_diary_id_list);
     if (!$c_diary_id_list) {
@@ -301,6 +326,13 @@ function p_h_home_c_diary_my_comment_list4c_member_id($c_member_id, $limit)
 
 function p_h_diary_comment_list_c_diary_my_comment_list4c_member_id($c_member_id, $page, $page_size)
 {
+
+    $sql = 'SELECT c_member_id FROM c_access_block where c_member_id_block = ?';
+    $params = array(intval($c_member_id));
+    if( !$ids = implode(',', db_get_col($sql, $params)) ) {
+        $ids = 0;
+    }
+
     $sql = 'SELECT d.c_diary_id' .
             ', d.subject' .
             ', d.c_member_id' .
@@ -309,13 +341,25 @@ function p_h_diary_comment_list_c_diary_my_comment_list4c_member_id($c_member_id
         ' FROM c_diary AS d' .
             ' INNER JOIN c_diary_comment AS dc USING (c_diary_id)' .
             ', c_diary_comment AS mydc' .
+            ', c_friend AS f' .
+            ', c_member AS m' .
+
         ' WHERE mydc.c_member_id = ?' .
             ' AND mydc.c_diary_id = d.c_diary_id' .
             ' AND mydc.c_member_id <> d.c_member_id' .
+        //アクセスブロック
+            ' AND f.c_member_id_from = mydc.c_member_id' .
+            ' AND d.c_member_id not in('.$ids.')' .
+        //日記公開範囲絞り
+            ' AND d.c_member_id = m.c_member_id' .
+            ' AND (((d.public_flag = \'public\') OR (d.public_flag = \'default\' AND m.public_flag_diary = \'public\')) OR(((d.public_flag = \'friend\') OR (d.public_flag = \'default\' AND m.public_flag_diary = \'friend\')) AND d.c_member_id = f.c_member_id_to))'.
+
         ' GROUP BY dc.c_diary_id' .
         ' ORDER BY r_datetime DESC';
+
     $params = array(intval($c_member_id));
     $list = db_get_all_page($sql, $page, $page_size, $params);
+
     foreach ($list as $key => $value) {
         $list[$key] += db_common_c_member4c_member_id_LIGHT($value['c_member_id']);
     }
@@ -453,7 +497,7 @@ function p_h_diary_list_all_search_c_diary4c_diary($keyword, $page_size, $page)
         }
     }
     $where .= " AND c_member.c_member_id = c_diary.c_member_id";
-    $where .= " AND c_member.public_flag_diary = 'public'";
+    $where .= " AND ((c_diary.public_flag = 'public') OR (c_diary.public_flag = 'default' AND c_member.public_flag_diary = 'public'))";
 
     $select = "SELECT c_diary.*";
     $from = " FROM c_diary, c_member";
@@ -618,11 +662,11 @@ function k_p_fh_diary_c_diary_comment_list4c_diary_id($c_diary_id, $page_size, $
 }
 
 /**
- * 日記ＩＤからその日記を書いたメンバＩＤとニックネームを得る
+ * 日記ＩＤからその日記を書いたメンバＩＤとニックネームと日記公開範囲を得る
  */
 function k_p_fh_diary_c_member4c_diary_id($c_diary_id)
 {
-    $sql = "SELECT cm.c_member_id, cm.nickname ";
+    $sql = "SELECT cm.c_member_id, cm.nickname,cm. public_flag_diary ";
     $sql .= " FROM c_member AS cm, c_diary AS cd ";
     $sql .= " WHERE cd.c_diary_id = ?";
     $sql .= " AND cm.c_member_id=cd.c_member_id";

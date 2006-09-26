@@ -64,7 +64,8 @@ class pc_page_f_home extends OpenPNE_Action
         $this->set('c_friend_comment_list', p_f_home_c_friend_comment4c_member_id($target_c_member_id));
         $this->set('c_friend_list', p_f_home_c_friend_list4c_member_id($target_c_member_id, 9));
         $this->set('c_friend_count', db_friend_count_friends($target_c_member_id));
-        $this->set('c_diary_list', db_diary_get_c_diary_list4c_member_id($target_c_member_id, 5));
+        $this->set('c_diary_list', $this->_db_diary_get_c_diary_list4c_member_id($target_c_member_id, $is_friend, 5));
+
         $this->set('user_count', p_common_count_c_commu4c_member_id($target_c_member_id));
         $this->set('c_commu_list', p_f_home_c_commu_list4c_member_id($target_c_member_id, 9));
         $this->set('c_review_list', db_review_c_review_list4member($target_c_member_id, 5));
@@ -81,6 +82,33 @@ class pc_page_f_home extends OpenPNE_Action
 
         return 'success';
     }
+
+    //f_home仕様　日記公開範囲を考慮する
+    function _db_diary_get_c_diary_list4c_member_id($target_c_member_id, $is_friend, $count = 10)
+    {
+        $sql = 'SELECT c_diary.* FROM c_diary' .
+            ' INNER JOIN c_member USING (c_member_id)'.
+            ' WHERE c_diary.c_member_id = ?';
+
+        if($is_friend)
+        {
+            $sql .= ' AND ((c_diary.public_flag = \'public\') OR (c_diary.public_flag = \'default\' AND c_member.public_flag_diary = \'public\') OR (c_diary.public_flag = \'friend\') OR (c_diary.public_flag = \'default\' AND c_member.public_flag_diary = \'friend\'))';
+        }
+        else
+        {
+            $sql .= ' AND ((c_diary.public_flag = \'public\') OR (c_diary.public_flag = \'default\' AND c_member.public_flag_diary = \'public\'))';
+        }
+
+        $sql .= ' ORDER BY c_diary.r_datetime DESC';
+
+        $params = array(intval($target_c_member_id));
+        $arr = db_get_all_limit($sql, 0, $count, $params);
+        foreach ($arr as $key => $value) {
+            $arr[$key]['comment_count'] = db_diary_count_c_diary_comment4c_diary_id($value['c_diary_id']);
+        }
+        return $arr;
+    }
+
 }
 
 ?>

@@ -16,6 +16,7 @@ class pc_do_h_diary_add_insert_c_diary extends OpenPNE_Action
         // --- リクエスト変数
         $subject = $requests['subject'];
         $body = $requests['body'];
+        $public_flag = $requests['public_flag'];
         $tmpfile_1 = $requests['tmpfile_1'];
         $tmpfile_2 = $requests['tmpfile_2'];
         $tmpfile_3 = $requests['tmpfile_3'];
@@ -38,14 +39,14 @@ class pc_do_h_diary_add_insert_c_diary extends OpenPNE_Action
         $sessid = session_id();
         $c_member_id = $u;
 
-        $c_diary_id = db_diary_insert_c_diary($c_member_id, $subject, $body);
+        $c_diary_id = db_diary_insert_c_diary($c_member_id, $subject, $body, $public_flag);
 
         $filename_1 = image_insert_c_image4tmp("d_{$c_diary_id}_1", $tmpfile_1);
         $filename_2 = image_insert_c_image4tmp("d_{$c_diary_id}_2", $tmpfile_2);
         $filename_3 = image_insert_c_image4tmp("d_{$c_diary_id}_3", $tmpfile_3);
         t_image_clear_tmp($sessid);
 
-        db_diary_update_c_diary($c_diary_id, $subject, $body, $filename_1, $filename_2, $filename_3);
+        db_diary_update_c_diary($c_diary_id, $subject, $body, $public_flag, $filename_1, $filename_2, $filename_3);
 
         $p = array('target_c_diary_id' => $c_diary_id);
         openpne_redirect('pc', 'page_fh_diary', $p);
