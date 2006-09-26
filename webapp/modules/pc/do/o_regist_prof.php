@@ -30,19 +30,20 @@ class pc_do_o_regist_prof extends OpenPNE_Action
         $errors = array();
 
         $validator = new OpenPNE_Validator();
-        $validator->addRequests($_REQUEST);
+        if ($mode == 'register') {
+            session_start();
+            $validator->addRequests($_SESSION['prof']);
+            $requests['password2'] = $_SESSION['prof']['password2'];
+            unset($_SESSION['prof']);
+        } else {
+            $validator->addRequests($_REQUEST);
+        }
         $validator->addRules($this->_getValidateRules());
-        if ($mode != 'register' && $validator->validate()) {
+        if ($validator->validate()) {
             $errors = $validator->getErrors();
         }
 
-        if ($mode != 'register') {
-            $prof = $validator->getParams();
-        }else{
-            session_start();
-            $prof = $_SESSION['prof'];
-            unset($_SESSION['prof']);
-        }
+        $prof = $validator->getParams();
 
         switch ($prof['public_flag_birth_year']) {
         case 'public':
@@ -54,7 +55,7 @@ class pc_do_o_regist_prof extends OpenPNE_Action
             break;
         }
 
-        if ($mode != 'register' && $prof['password'] != $requests['password2']) {
+        if ($prof['password'] != $requests['password2']) {
             $errors['password2'] = 'パスワードが一致していません';
         }
 
