@@ -35,16 +35,16 @@
  * @copyright  2005 Matthew Fonda
  * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
  * @link       http://pear.php.net/package/Crypt_Blowfish
- * @version    1.1.0RC1
+ * @version    1.0.1
  * @access     public
  */
-class Crypt_Blowfish_DefaultKey
+class Crypt_BlowfishOld_DefaultKey
 {
     var $P = array();
     
     var $S = array();
     
-    function Crypt_Blowfish_DefaultKey()
+    function Crypt_BlowfishOld_DefaultKey()
     {
         $this->P = array(
             0x243F6A88, 0x85A308D3, 0x13198A2E, 0x03707344,

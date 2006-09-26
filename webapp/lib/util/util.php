@@ -236,8 +236,13 @@ function &get_crypt_blowfish()
 {
     static $singleton;
     if (empty($singleton)) {
-        include_once 'Crypt/Blowfish.php';
-        $singleton = new Crypt_Blowfish(ENCRYPT_KEY);
+        if (OPENPNE_USE_OLD_CRYPT_BLOWFISH) {
+            include_once 'Crypt/BlowfishOld.php';
+            $singleton = new Crypt_BlowfishOld(ENCRYPT_KEY);
+        } else {
+            include_once 'Crypt/Blowfish.php';
+            $singleton = new Crypt_Blowfish(ENCRYPT_KEY);
+        }
     }
     return $singleton;
 }

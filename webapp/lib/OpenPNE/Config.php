@@ -148,6 +148,7 @@ class OpenPNE_Config
             'OPENPNE_USE_MYSQL_HINT' => false,
             'OPENPNE_USE_FLASH_LIST' => true,
             'OPENPNE_USE_COMMU_MAP' => true,
+            'OPENPNE_USE_OLD_CRYPT_BLOWFISH' => false,
         // 固定値
             'AMAZON_TOKEN'   => '1WZYY1W9YF49AGM0RTG2',
             'AMAZON_LOCALE'  => 'jp',
