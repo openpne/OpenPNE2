@@ -83,7 +83,7 @@
 
 <div class="c_01" style="padding:4px;text-align:center;">
 
-「({$smarty.const.SNS_NAME})」に招待したい方のメールアドレスを記入してください。
+招待したい友人・知人のメールアドレスを記入してください。
 
 </div>
 
@@ -101,7 +101,7 @@
 
 <img src="./skin/dummy.gif" class="v_spacer_s">
 <span class="c_01" style="padding:5px;">
-友人のメールアドレス
+相手のメールアドレス
 </span>
 <img src="./skin/dummy.gif" class="v_spacer_s">
 
@@ -110,11 +110,11 @@
 <td style="width:421px;" class="bg_02" align="left" valign="middle">
 <div class="padding_s">
 
-<input name="mail" value="({$requests.mail})" size="30">
+<input  name="mail" value="({$requests.mail})" size="30">
 ({if $smarty.const.OPENPNE_REGIST_FROM == $smarty.const.OPENPNE_REGIST_FROM_PC})
-<br>※携帯アドレスには招待を送ることができません
+<br>※携帯アドレスには招待できません
 ({elseif $smarty.const.OPENPNE_REGIST_FROM == $smarty.const.OPENPNE_REGIST_FROM_KTAI})
-<br>※PCアドレスには招待を送ることができません
+<br>※PCアドレスには招待できません
 ({/if})
 
 </div>
@@ -153,6 +153,80 @@
 <tr>
 <td style="width:574px;height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
+({*********})
+<tr>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:150px;" class="bg_05" align="left" valign="middle">
+
+<img src="./skin/dummy.gif" class="v_spacer_s">
+
+&nbsp;
+
+<img src="./skin/dummy.gif" class="v_spacer_s">
+
+</td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:421px;" class="bg_02" align="left" valign="middle">
+<div class="padding_s">
+
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top" class="s_ss">※例．</td>
+<td valign="top" class="s_ss">
+こんにちは、○○です。この前話したサイトの招待状を送ります。<br>
+</td>
+</tr>
+</table>
+
+</div>
+</td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+</tr>
+
+({*********})
+<tr>
+<td style="width:574px;height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+</tr>
+
+
+
+({*********})
+({* captcha *})
+({*********})
+
+<tr>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:150px;" class="bg_05" align="left" valign="middle">
+
+<div class="c_01" style="padding:5px;">
+
+確認キーワード  
+
+</div>
+
+</td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:421px;" class="bg_02" align="left" valign="middle">
+
+<div class="padding_s">
+
+<img src="./cap.php">
+<br>
+※上に表示されているキーワードをご記入下さい。
+<input  name="captcha" size="30">
+
+
+</td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+</tr>
+({*********})
+<tr>
+<td style="width:574px;height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+</tr>
+
+
+
+
 ({*********})
 <tr>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
@@ -215,7 +289,7 @@
 <table border="0" cellspacing="0" cellpadding="0" style="width:574px;" class="border_01">
 <tr>
 <td style="width:36px;" class="bg_06"><img src="({t_img_url_skin filename=content_header_1})" style="width:30px;height:20px;" class="dummy"></td>
-<td style="width:398px;padding:2px 0px;" class="bg_06"><span class="b_b c_00">招待中メールアドレス一覧</span></td>
+<td style="width:398px;padding:2px 0px;" class="bg_06"><span class="b_b c_00">招待中一覧</span></td>
 <td style="width:140px;" align="right" class="bg_06">&nbsp;</td>
 </tr>
 </table>
