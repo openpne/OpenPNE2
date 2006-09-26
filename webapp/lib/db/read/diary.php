@@ -264,9 +264,9 @@ function p_h_home_c_diary_friend_list4c_member_id($c_member_id, $limit)
         $access_ids = 0;
     }
 
-    $hint = db_mysql_hint('USE INDEX (c_diary.r_datetime_c_member_id, c_diary.r_datetime)');
-
-    $sql = 'SELECT c_diary.* FROM c_diary INNER JOIN c_member USING (c_member_id) ' . $hint .
+    $hint = db_mysql_hint('USE INDEX (r_datetime_c_member_id, r_datetime)');
+    $sql = 'SELECT c_diary.* FROM c_diary' . $hint .
+            ' INNER JOIN c_member USING (c_member_id) ' .
             ' WHERE c_diary.c_member_id IN (' . $ids . ')' .
         //アクセスブロック
             ' AND c_diary.c_member_id NOT IN ('.$access_ids.')' .
