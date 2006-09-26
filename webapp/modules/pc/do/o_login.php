@@ -16,7 +16,7 @@ class pc_do_o_login extends OpenPNE_Action
 
     function execute($requests)
     {
-        $login_params = t_decrypt($requests['login_params']);
+        $login_params = $requests['login_params'];
         $options = array(
             'dsn'         => db_get_dsn(),
             'table'       => 'c_member_secure',

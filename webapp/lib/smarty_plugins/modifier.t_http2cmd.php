@@ -23,6 +23,11 @@ function _smarty_modifier_t_cmd_make_url_js($matches)
     $url  = "'".$matches[0]."'";
     $src  = $matches[1];
 
+    //該当ファイルがない
+    if ( !is_file('./http2cmd/'.$src.'.js') ) {
+        return $matches[0];
+    }
+
     $result = <<<EOD
 <script type="text/javascript" src="http2cmd/{$src}.js"></script>
 <script type="text/javascript">

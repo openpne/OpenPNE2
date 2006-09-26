@@ -26,7 +26,14 @@ $GLOBALS['AUTH'] = $auth;
 function client_redirect_login_with_param($matches)
 {
     $params  = $matches[1];
-    client_redirect_absolute(get_login_url()."&login_params=".urlencode(t_encrypt($params)));
+
+    if (LOGIN_URL_PC) {
+        client_redirect_absolute(get_login_url());
+    } else {
+        $_REQUEST['login_params'] = $params;
+        openpne_forward('pc', 'page', "o_login");
+        exit;
+    }
 }
 
 ?>
