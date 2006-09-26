@@ -176,13 +176,13 @@ function Link(linkLoc)
 <td>({if $item.c_member_id != 1})<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('delete_c_member_confirm')})&amp;target_c_member_id=({$item.c_member_id})">強制退会</a>({else})&nbsp;({/if})</td>
 <td><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('passwd')})&amp;target_c_member_id=({$item.c_member_id})">パスワード再発行</a></td>
 <td class="idnumber">({$item.c_member_id})</td>
-<td><a href="({$smarty.const.OPENPNE_URL})?m=pc&amp;a=page_f_home&amp;target_c_member_id=({$item.c_member_id})" target="_blank">({$item.nickname})</a></td>
+<td><a href="({t_url _absolute=1 m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})" target="_blank">({$item.nickname})</a></td>
 <td>({if $item.access_date != '0000-00-00 00:00:00'})({$item.access_date|date_format:"%y-%m-%d %H:%M"})({else})未ログイン({/if})</td>
 <td>({if $item.r_date != '0000-00-00 00:00:00'})({$item.r_date|date_format:"%y-%m-%d"})({else})&nbsp;({/if})</td>
-<td>({if $item.c_member_id_invite})({$item.c_member_id_invite}):<a href="({$smarty.const.OPENPNE_URL})?m=pc&amp;a=page_f_home&amp;target_c_member_id=({$item.c_member_id_invite})" target="_blank">({$item.c_member_invite.nickname})</a>({else})&nbsp;({/if})</td>
-<td>({if $item.image_filename_1})<a href="({$IMG_URL})?filename=({$item.image_filename_1})" target="_blank">●</a>({else})×({/if})</td>
-<td>({if $item.image_filename_2})<a href="({$IMG_URL})?filename=({$item.image_filename_2})" target="_blank">●</a>({else})×({/if})</td>
-<td>({if $item.image_filename_3})<a href="({$IMG_URL})?filename=({$item.image_filename_3})" target="_blank">●</a>({else})×({/if})</td>
+<td>({if $item.c_member_id_invite})({$item.c_member_id_invite}):<a href="({t_url _absolute=1 m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id_invite})" target="_blank">({$item.c_member_invite.nickname})</a>({else})&nbsp;({/if})</td>
+<td>({if $item.image_filename_1})<a href="({t_img_url filename=$item.image_filename_1})" target="_blank">●</a>({else})×({/if})</td>
+<td>({if $item.image_filename_2})<a href="({t_img_url filename=$item.image_filename_2})" target="_blank">●</a>({else})×({/if})</td>
+<td>({if $item.image_filename_3})<a href="({t_img_url filename=$item.image_filename_3})" target="_blank">●</a>({else})×({/if})</td>
 <td class="number">({if $item.birth_year})({$item.birth_year})年({else})&nbsp;({/if})</td>
 <td class="number">({if $item.birth_month})({$item.birth_month})月({else})&nbsp;({/if})</td>
 <td class="number">({if $item.birth_day})({$item.birth_day})日({else})&nbsp;({/if})</td>
