@@ -170,9 +170,19 @@ function p_h_diary_list_friend_h_diary_list_friend4c_member_id($c_member_id, $pa
 {
     $last_week = date('Y-m-d H:i:s', strtotime(sprintf('-%d days', $limit_days)));
 
+    //アクセスブロック
+    $sql = 'SELECT c_member_id FROM c_access_block where c_member_id_block = ?';
+    $params = array(intval($c_member_id));
+    if( !$ids = implode(',', db_get_col($sql, $params)) ) {
+        $ids = 0;
+    }
+
     $where = "c_friend.c_member_id_from = ?" .
             " AND c_diary.c_member_id = c_friend.c_member_id_to" .
             " AND c_diary.c_member_id = c_member.c_member_id" .
+        //アクセスブロック
+            ' AND c_diary.c_member_id not in('.$ids.')' .
+        //公開範囲を考慮
             ' AND ((c_diary.public_flag = \'public\') OR (c_diary.public_flag = \'default\' AND c_member.public_flag_diary = \'public\') OR (c_diary.public_flag = \'friend\') OR (c_diary.public_flag = \'default\' AND c_member.public_flag_diary = \'friend\'))' .
             " AND c_diary.r_datetime > ?";
 
@@ -247,9 +257,20 @@ function p_h_home_c_diary_friend_list4c_member_id($c_member_id, $limit)
     $friends = db_friend_c_member_id_list($c_member_id);
     $ids = implode(',', array_map('intval', $friends));
 
+    //アクセスブロック
+    $sql = 'SELECT c_member_id FROM c_access_block where c_member_id_block = ?';
+    $params = array(intval($c_member_id));
+    if( !$access_ids = implode(',', db_get_col($sql, $params)) ) {
+        $access_ids = 0;
+    }
+
     $hint = db_mysql_hint('USE INDEX (c_diary.r_datetime_c_member_id, c_diary.r_datetime)');
-    $sql = 'SELECT c_diary.* FROM c_diary INNER JOIN c_member USING (c_member_id)' . $hint .
+
+    $sql = 'SELECT c_diary.* FROM c_diary INNER JOIN c_member USING (c_member_id) ' . $hint .
             ' WHERE c_diary.c_member_id IN (' . $ids . ')' .
+        //アクセスブロック
+            ' AND c_diary.c_member_id NOT IN ('.$access_ids.')' .
+        //日記公開範囲を考慮
             ' AND (((c_diary.public_flag = \'public\') OR (c_diary.public_flag = \'default\' AND c_member.public_flag_diary = \'public\'))' .
             ' OR ((c_diary.public_flag = \'friend\') OR (c_diary.public_flag = \'default\' AND c_member.public_flag_diary = \'friend\')))' .
             ' ORDER BY c_diary.r_datetime DESC';
