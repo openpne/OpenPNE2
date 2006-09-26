@@ -51,7 +51,11 @@ class pc_do_o_login extends OpenPNE_Action
         }
 
         db_api_update_token($auth->uid());
-        client_redirect_absolute(OPENPNE_URL."?".$login_params);
+        $url = OPENPNE_URL;
+        if ($login_params) {
+            $url .= '?' . $login_params;
+        }
+        client_redirect_absolute($url);
     }
 
     function _fail_login()
