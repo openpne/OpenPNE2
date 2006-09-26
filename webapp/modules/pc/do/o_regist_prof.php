@@ -33,7 +33,7 @@ class pc_do_o_regist_prof extends OpenPNE_Action
         if ($mode == 'register') {
             session_start();
             $validator->addRequests($_SESSION['prof']);
-            $requests['password2'] = $_SESSION['prof']['password2'];
+            $requests['password2'] = $_SESSION['prof']['password'];
             unset($_SESSION['prof']);
         } else {
             $validator->addRequests($_REQUEST);
@@ -98,13 +98,13 @@ class pc_do_o_regist_prof extends OpenPNE_Action
 
         switch ($mode) {
         case 'input':
-            unset($prof['password']);
             $prof['profile'] = $c_member_profile_list;
 
             session_start();
             if (!isset($_SESSION['prof'])) {
                 $_SESSION['prof'] = $prof;
             }
+            unset($prof['password']);
 
             openpne_forward('pc', 'page', 'o_regist_prof');
             exit;
