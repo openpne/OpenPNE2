@@ -1,6 +1,6 @@
 ({$inc_ktai_header|smarty:nodefaults})
 
-<center><font color="orange">({$target_c_member.nickname})さんのﾎｰﾑ</font></center>
+<center><font color="orange">({$target_c_member.nickname})さんのﾎｰﾑ(ID=({$target_c_member.c_member_id}))</font></center>
 <hr>
 
 ({if $days_birthday == 0})({* 誕生日当日 *})
