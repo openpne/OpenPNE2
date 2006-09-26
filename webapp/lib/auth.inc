@@ -15,17 +15,8 @@ if (   !$auth->auth()
     || db_member_is_login_rejected($u)) {
     $auth->logout();
 
-    $regexp = '/.*\/\?(.*)/i';
-    $string = preg_replace_callback($regexp, 'client_redirect_login_with_param', $_SERVER['REQUEST_URI']);
-}
-
-$auth->uid($u);
-$GLOBALS['AUTH'] = $auth;
-
-
-function client_redirect_login_with_param($matches)
-{
-    $params  = $matches[1];
+    $params = strstr($_SERVER['REQUEST_URI'], '/?');
+    $params = substr($params, 1);
 
     if (LOGIN_URL_PC) {
         client_redirect_absolute(get_login_url());
@@ -35,5 +26,8 @@ function client_redirect_login_with_param($matches)
         exit;
     }
 }
+
+$auth->uid($u);
+$GLOBALS['AUTH'] = $auth;
 
 ?>
