@@ -1,7 +1,7 @@
 <?php
 /**
  * @copyright 2005-2006 OpenPNE Project
- * @license   http://www.php.net/license/3_0.txt PHP License 3.0
+ * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
 class ktai_biz_page_fh_biz_schedule_view_member extends OpenPNE_Action

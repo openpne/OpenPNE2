@@ -1,7 +1,7 @@
 <?php
 /**
  * @copyright 2005-2006 OpenPNE Project
- * @license   http://www.php.net/license/3_0.txt PHP License 3.0
+ * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
 /**
@@ -36,9 +36,9 @@ class pc_do_h_config_3 extends OpenPNE_Action
 
         // ----------
 
-        require_once 'PNE/RSS.php';
+        include_once 'OpenPNE/RSS.php';
 
-        if ($rss_url = PNE_RSS::auto_discovery($rss)) {
+        if ($rss_url = OpenPNE_RSS::auto_discovery($rss)) {
             $c_member = db_common_c_member4c_member_id($u);
             if ($rss_url != $c_member['rss']) {
                 //異なるBlogを登録すると過去のrssは全て削除する

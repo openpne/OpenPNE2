@@ -1,7 +1,7 @@
 <?php
 /**
  * @copyright 2005-2006 OpenPNE Project
- * @license   http://www.php.net/license/3_0.txt PHP License 3.0
+ * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
 class pc_page_h_home extends OpenPNE_Action
@@ -157,7 +157,7 @@ class pc_page_h_home extends OpenPNE_Action
 
     function get_calendar($u, $week)
     {
-        require_once 'Calendar/Week.php';
+        include_once 'Calendar/Week.php';
         $w = intval($week);
         if (empty($w)) {
             $w = 0;

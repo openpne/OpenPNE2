@@ -1,7 +1,7 @@
 <?php
 /**
  * @copyright 2005-2006 OpenPNE Project
- * @license   http://www.php.net/license/3_0.txt PHP License 3.0
+ * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
 class pc_page_h_prof extends OpenPNE_Action
@@ -16,6 +16,7 @@ class pc_page_h_prof extends OpenPNE_Action
         $this->set('inc_navi',fetch_inc_navi('h'));
         $target_c_member = db_common_c_member_with_profile($u, 'friend');
         $this->set('is_friend', 0);
+        $this->set('c_diary_list', db_diary_get_c_diary_list4c_member_id($target_c_member_id, 5, null, 'friend'));
 
         // --- f_home, h_prof 共通処理
 
@@ -31,7 +32,6 @@ class pc_page_h_prof extends OpenPNE_Action
         $this->set('c_friend_comment_list', p_f_home_c_friend_comment4c_member_id($target_c_member_id));
         $this->set('c_friend_list', p_f_home_c_friend_list4c_member_id($target_c_member_id, 9));
         $this->set('c_friend_count', db_friend_count_friends($target_c_member_id));
-        $this->set('c_diary_list', db_diary_get_c_diary_list4c_member_id($target_c_member_id, 5));
         $this->set('user_count',p_common_count_c_commu4c_member_id($target_c_member_id));
         $this->set('c_commu_list', p_f_home_c_commu_list4c_member_id($target_c_member_id, 9));
         $this->set('c_review_list', db_review_c_review_list4member($target_c_member_id, 5));

@@ -1,10 +1,10 @@
 <?php
 /**
  * @copyright 2005-2006 OpenPNE Project
- * @license   http://www.php.net/license/3_0.txt PHP License 3.0
+ * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
-//�{�ݕύX
+//�{�ݕύX
 class admin_biz_page_biz_edit_shisetsu extends OpenPNE_Action
 {
     function execute($requests)

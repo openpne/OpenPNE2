@@ -128,11 +128,6 @@
 <input type="hidden" name="c_commu_topic_id" value="({$c_commu_topic_id})">
 <input type="hidden" name="c_member_ids" value="({$c_member_ids})">
 <input type="hidden" name="body" value="({$body})">
-<input type="hidden" name="event_member_id" value="118949">
-<input type="hidden" name="body" value="({$body})">
-<input type="hidden" name="c_member_ids" value="({$c_member_ids})">
-<input type="hidden" name="body" value="({$body})">
-<input type="hidden" name="event_member_id" value="118949">
 ({foreach from=$c_mail_member item=c_member})
 <input type="hidden" name="c_member_ids[]" value="({$c_member.c_member_id})">
 ({/foreach})

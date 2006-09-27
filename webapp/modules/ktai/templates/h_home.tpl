@@ -92,14 +92,12 @@
 <a href="({t_url m=ktai a=page_h_com_find_all})&amp;({$tail})">→ｺﾐｭﾆﾃｨ検索</a><br>
 <br>
 ({if $c_friend_list})
-<font color="green">[({$WORD_FRIEND_HALF})ﾘｽﾄ]</font><br>
+<font color="green">[({$WORD_MY_FRIEND_HALF})ﾘｽﾄ]</font><br>
 ({foreach from=$c_friend_list item=friend})
 <a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$friend.c_member_id_to})&amp;({$tail})">({$friend.nickname})</a>（({$friend.count_friend})）<br>
 ({/foreach})
 <a href="({t_url m=ktai a=page_fh_friend_list})&amp;({$tail})">→もっと見る</a><br>
-<a href="({t_url m=ktai a=page_h_manage_friend})&amp;({$tail})">→({$WORD_FRIEND_HALF})管理</a><br>
-({else})
-({$WORD_FRIEND_HALF})ﾘｽﾄなし<br>
+<a href="({t_url m=ktai a=page_h_manage_friend})&amp;({$tail})">→({$WORD_MY_FRIEND_HALF})管理</a><br>
 ({/if})
 <br>
 <a href="({t_url m=ktai a=page_h_friend_find_all})&amp;({$tail})">ﾒﾝﾊﾞｰ検索</a><br>

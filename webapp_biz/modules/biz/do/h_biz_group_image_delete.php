@@ -1,10 +1,10 @@
 <?php
 /**
  * @copyright 2005-2006 OpenPNE Project
- * @license   http://www.php.net/license/3_0.txt PHP License 3.0
+ * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
-//ƒOƒ‹[ƒv‰æ‘œ‚ðíœ
+//ï¿½Oï¿½ï¿½ï¿½[ï¿½vï¿½æ‘œï¿½ï¿½íœ
 class biz_do_h_biz_group_image_delete extends OpenPNE_Action
 {
     function execute($requests)
@@ -14,7 +14,7 @@ class biz_do_h_biz_group_image_delete extends OpenPNE_Action
 
         biz_deleteGroupImage($requests['id'], $requests['filename']);
 
-        client_redirect_absolute("?m=biz&a=page_h_biz_group_edit&target_id=".$request['id']).'&msg'.urlencode('ƒOƒ‹[ƒv‰æ‘œ‚ðíœ‚µ‚Ü‚µ‚½');
+        client_redirect_absolute("?m=biz&a=page_h_biz_group_edit&target_id=".$request['id']).'&msg'.urlencode('ï¿½Oï¿½ï¿½ï¿½[ï¿½vï¿½æ‘œï¿½ï¿½íœï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½');
     }
 }
 

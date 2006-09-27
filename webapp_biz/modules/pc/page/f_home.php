@@ -1,7 +1,7 @@
 <?php
 /**
  * @copyright 2005-2006 OpenPNE Project
- * @license   http://www.php.net/license/3_0.txt PHP License 3.0
+ * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
 class pc_page_f_home extends OpenPNE_Action
@@ -48,7 +48,7 @@ class pc_page_f_home extends OpenPNE_Action
 
         $this->set('is_friend', $is_friend);
         $this->set('c_member', db_common_c_member4c_member_id($u));
-
+        $this->set('c_diary_list', db_diary_get_c_diary_list4c_member_id($target_c_member_id, 5, $u));
 
         // --- f_home, h_prof 共通処理
 
@@ -64,7 +64,6 @@ class pc_page_f_home extends OpenPNE_Action
         $this->set('c_friend_comment_list', p_f_home_c_friend_comment4c_member_id($target_c_member_id));
         $this->set('c_friend_list', p_f_home_c_friend_list4c_member_id($target_c_member_id, 9));
         $this->set('c_friend_count', db_friend_count_friends($target_c_member_id));
-        $this->set('c_diary_list', db_diary_get_c_diary_list4c_member_id($target_c_member_id, 5));
         $this->set('user_count',p_common_count_c_commu4c_member_id($target_c_member_id));
         $this->set('c_commu_list', p_f_home_c_commu_list4c_member_id($target_c_member_id, 9));
         $this->set('c_review_list', db_review_c_review_list4member($target_c_member_id, 5));
@@ -79,7 +78,7 @@ class pc_page_f_home extends OpenPNE_Action
 
 
         // --- bizここから
-        //nak 20060217 バナーをBIZ用右部拡張領域下に表示させる為の仕掛け
+        // バナーをBIZ用右部拡張領域下に表示させる為の仕掛け
         $this->set('is_f_home', 1);
 
         $biz_dir = OPENPNE_MODULES_BIZ_DIR.'/biz/';  //bizモジュールディレクトリの定義
@@ -95,11 +94,9 @@ class pc_page_f_home extends OpenPNE_Action
         
         $group_list = biz_getHomeGroupList($target_c_member_id);
         $this->set('group_list', $group_list);
-
-    //  $stateform = biz_getStateForm($target_c_member_id);
-    //  $this->set("stateform", $stateform);
         // --- bizここまで
 
+        // ---
 
         return 'success';
     }

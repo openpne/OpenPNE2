@@ -1,7 +1,7 @@
 <?php
 /**
  * @copyright 2005-2006 OpenPNE Project
- * @license   http://www.php.net/license/3_0.txt PHP License 3.0
+ * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
 /**
@@ -17,6 +17,9 @@ class pc_do_f_message_send_insert_c_message extends OpenPNE_Action
         $c_member_id_to = $requests['c_member_id_to'];
         $subject = $requests['subject'];
         $body = $requests['body'];
+        $tmpfile_1 = $requests['tmpfile_1'];
+        $tmpfile_2 = $requests['tmpfile_2'];
+        $tmpfile_3 = $requests['tmpfile_3'];
         // ----------
 
         $msg1 = "";
@@ -74,10 +77,18 @@ class pc_do_f_message_send_insert_c_message extends OpenPNE_Action
 
         //下書き保存が存在しない
         if ($requests['target_c_message_id'] == $requests['jyusin_c_message_id']) {
-            do_common_send_message($u, $c_member_id_to, $subject, $body);
+            $c_message_id = do_common_send_message($u, $c_member_id_to, $subject, $body);
         } else {
+        	$c_message_id = $requests['target_c_message_id'];
             update_message_to_is_save($requests['target_c_message_id'], $subject, $body, 1);
         }
+        //画像挿入
+        $sessid = session_id();
+        $filename_1 = image_insert_c_image4tmp("ms_{$c_message_id}_1", $tmpfile_1);
+        $filename_2 = image_insert_c_image4tmp("ms_{$c_message_id}_2", $tmpfile_2);
+        $filename_3 = image_insert_c_image4tmp("ms_{$c_message_id}_3", $tmpfile_3);
+        t_image_clear_tmp($sessid);
+        db_update_c_message($c_message_id, $subject, $body, $filename_1, $filename_2, $filename_3);
 
         // ---bizここから
         $biz_dir = OPENPNE_MODULES_BIZ_DIR.'/biz/';  //bizモジュールディレクトリの定義

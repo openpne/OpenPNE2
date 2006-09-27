@@ -325,9 +325,7 @@
 <input name="c_password_query_answer" type="text" value="" size="20">
 
 <br>
-<font color=red>※保存されている値は表示しません。</font><br>
-<font color=red>※値が空の場合は更新しません。</font>
-
+※変更する場合のみ入力してください。
 
 </div>
 </td>
@@ -356,8 +354,8 @@ BlogのURL
 
 <input type="text" name="rss" value="({$c_member.rss})" size="60"><br>
 
-※外部に日記・Blogをお持ちの場合、URLをご記入ください。
-例：http://blog.example.com/
+※外部に日記・Blogをお持ちの場合、URLをご記入ください。<br>
+例： http://blog.example.com/
 
 </div>
 </td>

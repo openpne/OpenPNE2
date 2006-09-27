@@ -1,7 +1,7 @@
 <?php
 /**
  * @copyright 2005-2006 OpenPNE Project
- * @license   http://www.php.net/license/3_0.txt PHP License 3.0
+ * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
 class pc_do_c_invite_insert_c_message_commu_invite extends OpenPNE_Action
@@ -49,21 +49,19 @@ class pc_do_c_invite_insert_c_message_commu_invite extends OpenPNE_Action
         $c_member_id_admin = $commu['c_member_id_admin'];
         $public_flag = $commu['public_flag'];
 
-
-
         // ---bizここから
         $biz_dir = OPENPNE_MODULES_BIZ_DIR.'/biz/';  //bizモジュールディレクトリの定義
         include_once($biz_dir.'lib/mysql_functions.php');  //bizモジュールよりライブラリを拝借
         // ---bizここまで
 
-        foreach($c_member_id_list as $key => $value){
+        foreach ($c_member_id_list as $c_member_id) {
 
             // ---bizここから
-            if(biz_isKtaiMessage($value))
-                biz_sendKtaiMessageSyoukaiCommu($u, $value);
+            if(biz_isKtaiMessage($c_member_id))
+                biz_sendKtaiMessageSyoukaiCommu($u, $c_member_id);
             // ---bizここまで
 
-            do_common_send_message_syoukai_commu($u, $value, $msg_subject, $msg_body);
+            do_common_send_message_syoukai_commu($u, $c_member_id, $msg_subject, $msg_body);
             //招待者がコミュニティ管理者で、かつ非公開コミュニティの場合
             if (($c_member_id_admin == $u)&&($public_flag != 'public')) {
                 db_commu_insert_c_commu_admin_invite($target_c_commu_id, $c_member_id);

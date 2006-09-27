@@ -1,6 +1,6 @@
 ({$inc_ktai_header|smarty:nodefaults})
 
-<center><font color="orange">({$target_c_member.nickname})さんのﾎｰﾑ</font></center>
+<center><font color="orange">({$target_c_member.nickname})さんのﾎｰﾑ(ID=({$target_c_member.c_member_id}))</font></center>
 <hr>
 
 ({if $days_birthday == 0})({* 誕生日当日 *})
@@ -44,7 +44,7 @@
 ({/if})
 ({/if})
 
-({if $relation.friend||$target_c_member.public_flag_diary=="public"})
+({if $c_diary_list})
 ◆日記<br>
 ({foreach from=$c_diary_list item=c_diary})
 ({$c_diary.r_date|date_format:"%y/%m/%d"})-<a href="({t_url m=ktai a=page_fh_diary})&amp;target_c_diary_id=({$c_diary.c_diary_id})&amp;({$tail})">({$c_diary.subject})</a>(({$c_diary.count_comment}))<br>
