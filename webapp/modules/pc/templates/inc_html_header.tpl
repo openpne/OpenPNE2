@@ -70,6 +70,182 @@ body { background-color: #({$bg_12}) ; }
 * { font-family: "ＭＳ Ｐゴシック", "ヒラギノ角ゴ Pro W3", Osaka, sans-serif ; }
 
 ({$inc_custom_css|smarty:nodefaults})
+
+/*ボタンに対する背景画像の指定*/
+input[type=submit] ,
+input.submit {
+	background: #DADCE6 url(({t_img_url_skin filename=bg_button})) 50% 0 repeat-x ;
+}
+
+/*ページヘッダロールオーバー設定*/
+div.inc_page_header div.navi_global a.navi_global_1:active ,
+div.inc_page_header div.navi_global a.navi_global_1:hover {
+	background: url(({t_img_url_skin filename=skin_after_header_2})) 0 -70px no-repeat ;
+}
+
+div.inc_page_header div.navi_global a.navi_global_2:active ,
+div.inc_page_header div.navi_global a.navi_global_2:hover {
+	background: url(({t_img_url_skin filename=skin_after_header_2})) -90px -70px no-repeat ;
+}
+
+div.inc_page_header div.navi_global a.navi_global_3:active ,
+div.inc_page_header div.navi_global a.navi_global_3:hover {
+	background: url(({t_img_url_skin filename=skin_after_header_2})) -180px -70px no-repeat ;
+}
+
+div.inc_page_header div.navi_global a.navi_global_4:active ,
+div.inc_page_header div.navi_global a.navi_global_4:hover {
+	background: url(({t_img_url_skin filename=skin_after_header_2})) -288px -70px no-repeat ;
+}
+
+div.inc_page_header div.navi_global a.navi_global_5:active ,
+div.inc_page_header div.navi_global a.navi_global_5:hover {
+	background: url(({t_img_url_skin filename=skin_after_header_2})) -360px -70px no-repeat ;
+}
+
+div.inc_page_header div.navi_global a.navi_global_6:active ,
+div.inc_page_header div.navi_global a.navi_global_6:hover {
+	background: url(({t_img_url_skin filename=skin_after_header_2})) -432px -70px no-repeat ;
+}
+
+div.inc_page_header div.navi_global a.navi_global_7:active ,
+div.inc_page_header div.navi_global a.navi_global_7:hover {
+	background: url(({t_img_url_skin filename=skin_after_header_2})) -504px -70px no-repeat ;
+}
+
+div.inc_page_header div.navi_global a.navi_global_8:active ,
+div.inc_page_header div.navi_global a.navi_global_8:hover {
+	background: url(({t_img_url_skin filename=skin_after_header_2})) -576px -70px no-repeat ;
+}
+
+div.inc_page_header div.navi_global a.navi_global_9:active ,
+div.inc_page_header div.navi_global a.navi_global_9:hover {
+	background: url(({t_img_url_skin filename=skin_after_header_2})) -648px -70px no-repeat ;
+}
+
+/*h系ナビロールオーバー設定*/
+.inc_navi div.h a.navi_h_1:active ,
+.inc_navi div.h a.navi_h_1:hover {
+	background: url(({t_img_url_skin filename=skin_navi_h_2})) 0 0 no-repeat ;
+}
+
+.inc_navi div.h a.navi_h_2:active ,
+.inc_navi div.h a.navi_h_2:hover {
+	background: url(({t_img_url_skin filename=skin_navi_h_2})) -80px 0 no-repeat ;
+}
+
+.inc_navi div.h a.navi_h_3:active ,
+.inc_navi div.h a.navi_h_3:hover {
+	background: url(({t_img_url_skin filename=skin_navi_h_2})) -160px 0 no-repeat ;
+}
+
+.inc_navi div.h a.navi_h_4:active ,
+.inc_navi div.h a.navi_h_4:hover {
+	background: url(({t_img_url_skin filename=skin_navi_h_2})) -240px 0 no-repeat ;
+}
+
+.inc_navi div.h a.navi_h_5:active ,
+.inc_navi div.h a.navi_h_5:hover {
+	background: url(({t_img_url_skin filename=skin_navi_h_2})) -320px 0 no-repeat ;
+}
+
+.inc_navi div.h a.navi_h_6:active ,
+.inc_navi div.h a.navi_h_6:hover {
+	background: url(({t_img_url_skin filename=skin_navi_h_2})) -400px 0 no-repeat ;
+}
+
+.inc_navi div.h a.navi_h_7:active ,
+.inc_navi div.h a.navi_h_7:hover {
+	background: url(({t_img_url_skin filename=skin_navi_h_2})) -480px 0 no-repeat ;
+}
+
+.inc_navi div.h a.navi_h_8:active ,
+.inc_navi div.h a.navi_h_8:hover {
+	background: url(({t_img_url_skin filename=skin_navi_h_2})) -560px 0 no-repeat ;
+}
+
+.inc_navi div.h a.navi_h_9:active ,
+.inc_navi div.h a.navi_h_9:hover {
+	background: url(({t_img_url_skin filename=skin_navi_h_2})) -640px 0 no-repeat ;
+}
+
+/*f系ナビロールオーバー設定*/
+.inc_navi div.f a.navi_f_1:active ,
+.inc_navi div.f a.navi_f_1:hover {
+	background: url(({t_img_url_skin filename=skin_navi_f_2})) 0 0 no-repeat ;
+}
+
+.inc_navi div.f a.navi_f_2:active ,
+.inc_navi div.f a.navi_f_2:hover {
+	background: url(({t_img_url_skin filename=skin_navi_f_2})) -80px 0 no-repeat ;
+}
+
+.inc_navi div.f a.navi_f_3:active ,
+.inc_navi div.f a.navi_f_3:hover {
+	background: url(({t_img_url_skin filename=skin_navi_f_2})) -160px 0 no-repeat ;
+}
+
+.inc_navi div.f a.navi_f_4:active ,
+.inc_navi div.f a.navi_f_4:hover {
+	background: url(({t_img_url_skin filename=skin_navi_f_2})) -240px 0 no-repeat ;
+}
+
+.inc_navi div.f a.navi_f_5:active ,
+.inc_navi div.f a.navi_f_5:hover {
+	background: url(({t_img_url_skin filename=skin_navi_f_2})) -320px 0 no-repeat ;
+}
+
+.inc_navi div.f a.navi_f_6:active ,
+.inc_navi div.f a.navi_f_6:hover {
+	background: url(({t_img_url_skin filename=skin_navi_f_2})) -400px 0 no-repeat ;
+}
+
+.inc_navi div.f a.navi_f_7:active ,
+.inc_navi div.f a.navi_f_7:hover {
+	background: url(({t_img_url_skin filename=skin_navi_f_2})) -480px 0 no-repeat ;
+}
+
+.inc_navi div.f a.navi_f_8:active ,
+.inc_navi div.f a.navi_f_8:hover {
+	background: url(({t_img_url_skin filename=skin_navi_f_2})) -560px 0 no-repeat ;
+}
+
+.inc_navi div.f a.navi_f_9:active ,
+.inc_navi div.f a.navi_f_9:hover {
+	background: url(({t_img_url_skin filename=skin_navi_f_2})) -640px 0 no-repeat ;
+}
+
+/*c系ナビロールオーバー設定*/
+.inc_navi div.c a.navi_c_1:active ,
+.inc_navi div.c a.navi_c_1:hover {
+	background: url(({t_img_url_skin filename=skin_navi_c_2})) 0 0 no-repeat ;
+}
+
+.inc_navi div.c a.navi_c_2:active ,
+.inc_navi div.c a.navi_c_2:hover {
+	background: url(({t_img_url_skin filename=skin_navi_c_2})) -120px 0 no-repeat ;
+}
+
+.inc_navi div.c a.navi_c_3:active ,
+.inc_navi div.c a.navi_c_3:hover {
+	background: url(({t_img_url_skin filename=skin_navi_c_2})) -240px 0 no-repeat ;
+}
+
+.inc_navi div.c a.navi_c_4:active ,
+.inc_navi div.c a.navi_c_4:hover {
+	background: url(({t_img_url_skin filename=skin_navi_c_2})) -360px 0 no-repeat ;
+}
+
+.inc_navi div.c a.navi_c_5:active ,
+.inc_navi div.c a.navi_c_5:hover {
+	background: url(({t_img_url_skin filename=skin_navi_c_2})) -480px 0 no-repeat ;
+}
+
+.inc_navi div.c a.navi_c_6:active ,
+.inc_navi div.c a.navi_c_6:hover {
+	background: url(({t_img_url_skin filename=skin_navi_c_2})) -600px 0 no-repeat ;
+}
+
 -->
 </style>
 ({$inc_html_head|smarty:nodefaults})
