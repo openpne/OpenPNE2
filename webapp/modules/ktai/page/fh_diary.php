@@ -26,21 +26,12 @@ class ktai_page_fh_diary extends OpenPNE_Action
 
         $target_c_member = k_p_fh_diary_c_member4c_diary_id($target_c_diary_id);        $target_c_member_id = $target_c_member['c_member_id'];
 
-        //友達までの公開かどうか
-        $is_public_flag_friend = ($target_c_member['public_flag_diary'] == "friend" && $c_diary['public_flag'] == "default") || $c_diary['public_flag'] == "friend";
-        //公開しないかどうか
-        $is_public_flag_close = ($target_c_member['public_flag_diary'] == "close" && $c_diary['public_flag'] == "default") || $c_diary['public_flag'] == "close";
         if ($u != $target_c_member_id) {
 
-            //日記の公開範囲設定
-            if ($is_public_flag_friend && !db_friend_is_friend($u, $target_c_member_id)) {
-                ktai_display_error('この日記にはアクセスできません');
-            }
-            if($is_public_flag_close)
-            {
-                ktai_display_error('この日記にはアクセスできません');
-            }
-
+            // check public_flag
+	        if (!pne_check_diary_public_flag($target_c_diary_id, $u)) {
+	            ktai_display_error('この日記にはアクセスできません');
+	        }
             //アクセスブロック設定
             if (p_common_is_access_block($u, $target_c_member_id)) {
                 openpne_redirect('ktai', 'page_h_access_block');

@@ -432,10 +432,9 @@
 <td class="bg_02" align="left" valign="middle">
 <div style="padding:4px 3px;">
 
-<input type="radio" name="public_flag" value="default"({if $form_val.public_flag == "default"}) checked="checked"({/if}) class="no_bg" id="public_flag_default"><label for="public_flag_default">日記全体の設定に従う(({if $target_member.public_flag_diary == "public"})全員に公開({elseif $target_member.public_flag_diary == "friend"})({$WORD_FRIEND})まで公開({elseif $target_member.public_flag_diary == "close"})公開しない({/if}))</label><br>
-<input type="radio" name="public_flag" value="public"({if $form_val.public_flag == "public"}) checked="checked"({/if}) class="no_bg" id="public_flag_public"><label for="public_flag_public">全員に公開</label>
-<input type="radio" name="public_flag" value="friend"({if $form_val.public_flag == "friend"}) checked="checked"({/if}) class="no_bg" id="public_flag_friend"><label for="public_flag_friend">({$WORD_FRIEND})まで公開</label>
-<input type="radio" name="public_flag" value="close"({if $form_val.public_flag == "close"}) checked="checked"({/if}) class="no_bg" id="public_flag_close"><label for="public_flag_close">公開しない</label><br>
+<input type="radio" name="public_flag" value="public"({if $form_val.public_flag == "public"}) checked="checked"({/if}) class="no_bg" id="public_flag_public"><label for="public_flag_public">全員に公開</label><br>
+<input type="radio" name="public_flag" value="friend"({if $form_val.public_flag == "friend"}) checked="checked"({/if}) class="no_bg" id="public_flag_friend"><label for="public_flag_friend">({$WORD_MY_FRIEND})まで公開</label><br>
+<input type="radio" name="public_flag" value="private"({if $form_val.public_flag == "private"}) checked="checked"({/if}) class="no_bg" id="public_flag_private"><label for="public_flag_private">公開しない</label><br>
 
 </div>
 </td>

@@ -10,19 +10,18 @@
 ({$target_c_diary.subject})
 
 ({if $type == "h"})
-<span style="color: red">
+<br>
+({strip})
 (
-({if $target_c_diary.public_flag == "default"})
-日記全体の設定に従う(({if $target_diary_writer.public_flag_diary == "public"})全員に公開({elseif $target_diary_writer.public_flag_diary == "friend"})({$WORD_FRIEND_HALF})まで公開({elseif $target_diary_writer.public_flag_diary == "close"})公開しない({/if}))
-({elseif $target_c_diary.public_flag == "public"})
+({if $target_c_diary.public_flag == "public"})
 全員に公開
 ({elseif $target_c_diary.public_flag == "friend"})
-({$WORD_FRIEND_HALF})まで公開
-({elseif $target_c_diary.public_flag == "close"})
+({$WORD_MY_FRIEND_HALF})まで公開
+({elseif $target_c_diary.public_flag == "private"})
 公開しない
 ({/if})
 )
-</span>
+({/strip})
 ({/if})
 <br>
 <br>

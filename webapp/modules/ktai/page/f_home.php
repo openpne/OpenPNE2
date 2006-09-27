@@ -44,7 +44,7 @@ class ktai_page_f_home extends OpenPNE_Action
         $this->set("target_c_member", $target_c_member);
 
         //ターゲットの最新日記５件
-        $this->set("c_diary_list", $this->_db_diary_get_c_diary_list4c_member_id($target_c_member_id, $is_friend, 5) );
+        $this->set("c_diary_list", db_diary_get_c_diary_list4c_member_id($target_c_member_id, 5, $u));
 
         //フレンドランダム５人
         $this->set("c_friend_list", k_p_h_home_c_friend_list_random4c_member_id($target_c_member_id, 5));
@@ -65,34 +65,6 @@ class ktai_page_f_home extends OpenPNE_Action
 
         return 'success';
     }
-
-    //f_home仕様　日記公開範囲を考慮する
-    function _db_diary_get_c_diary_list4c_member_id($target_c_member_id, $is_friend, $count = 10)
-    {
-        $sql = 'SELECT c_diary.* FROM c_diary' .
-            ' INNER JOIN c_member USING (c_member_id)'.
-            ' WHERE c_diary.c_member_id = ?';
-
-        if($is_friend)
-        {
-            $sql .= ' AND ((c_diary.public_flag = \'public\') OR (c_diary.public_flag = \'default\' AND c_member.public_flag_diary = \'public\') OR (c_diary.public_flag = \'friend\') OR (c_diary.public_flag = \'default\' AND c_member.public_flag_diary = \'friend\'))';
-        }
-        else
-        {
-            $sql .= ' AND ((c_diary.public_flag = \'public\') OR (c_diary.public_flag = \'default\' AND c_member.public_flag_diary = \'public\'))';
-        }
-
-        $sql .= ' ORDER BY c_diary.r_datetime DESC';
-
-        $params = array(intval($target_c_member_id));
-        $arr = db_get_all_limit($sql, 0, $count, $params);
-        foreach ($arr as $key => $value) {
-            $arr[$key]['count_comment'] = db_diary_count_c_diary_comment4c_diary_id($value['c_diary_id']);
-        }
-        return $arr;
-    }
-
-
 }
 
 ?>

@@ -347,7 +347,7 @@
 ({*********})
 <tr>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-<td style="width:95px;" class="bg_05" align="center" valign="top" rowspan="3">
+<td style="width:95px;" class="bg_05" align="center" valign="top" rowspan="({if $type == "h"})5({else})3({/if})">
 <div style="padding:4px 3px;">
 
 ({$target_diary.r_datetime|date_format:"%Y年%m月%d日<br>%H:%M"})
@@ -358,29 +358,38 @@
 <td style="width:424px;" class="bg_02" align="left" valign="middle">
 <div style="padding:4px 3px;">
 
-<span id="DOM_fh_diary_title">({$target_diary.subject})
-({if $type == "h"})
-<span style="color: red">
-(
-({if $target_diary.public_flag == "default"})
-日記全体の設定に従う(({if $target_member.public_flag_diary == "public"})全員に公開({elseif $target_member.public_flag_diary == "friend"})({$WORD_FRIEND})まで公開({elseif $target_member.public_flag_diary == "close"})公開しない({/if}))
-({elseif $target_diary.public_flag == "public"})
-全員に公開
-({elseif $target_diary.public_flag == "friend"})
-({$WORD_FRIEND})まで公開
-({elseif $target_diary.public_flag == "close"})
-公開しない
-({/if})
-)
-</span>
-({/if})
-
-</span>
+<span id="DOM_fh_diary_title">({$target_diary.subject})</span>
 
 </div>
 </td>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
+({if $type == "h"})
+({*********})
+<tr>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:426px;height:1px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+</tr>
+({*********})
+<tr>
+<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td class="bg_02" align="right" valign="middle">
+<div style="padding:4px 3px;">
+
+({if $target_diary.public_flag == "public"})
+全員に公開
+({elseif $target_diary.public_flag == "friend"})
+({$WORD_MY_FRIEND})まで公開
+({elseif $target_diary.public_flag == "private"})
+公開しない
+({/if})
+
+</div>
+</td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+</tr>
+({/if})
 ({*********})
 <tr>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>

@@ -140,13 +140,13 @@ function db_common_authenticate_password($c_member_id, $password)
 /**
  * 日記ページのカレンダー生成
  */
-function db_common_diary_monthly_calendar($year, $month, $c_member_id)
+function db_common_diary_monthly_calendar($year, $month, $c_member_id, $u = null)
 {
     include_once 'Calendar/Month/Weekdays.php';
     $Month = new Calendar_Month_Weekdays($year, $month, 0);
     $Month->build();
 
-    $is_diary_list = p_h_diary_is_diary_written_list4date($year, $month, $c_member_id);
+    $is_diary_list = p_h_diary_is_diary_written_list4date($year, $month, $c_member_id, $u);
 
     $calendar = array();
     $week = 0;

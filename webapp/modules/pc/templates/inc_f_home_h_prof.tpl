@@ -990,20 +990,8 @@ pne_item({$key+1})_id=({$item.c_commu_id})
 <img src="./skin/dummy.gif" style="width:14px;height:14px;" class="icon icon_1">({$item.r_date|date_format:"%m月%d日"})…&nbsp;<a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$item.c_diary_id})">({$item.subject|default:"&nbsp;"}) (({$item.comment_count}))</a>
 ({if $item.image_filename_1 || $item.image_filename_2 || $item.image_filename_3})<img src="({t_img_url_skin filename=icon_camera})" class="icon">({/if})
 
-({if $is_h_prof})
-<span style="color: red">
-(
-({if $item.public_flag == "default"})
-日記全体の設定に従う(({if $target_c_member.public_flag_diary == "public"})全員に公開({elseif $target_c_member.public_flag_diary == "friend"})({$WORD_FRIEND})まで公開({elseif $target_c_member.public_flag_diary == "close"})公開しない({/if}))
-({elseif $item.public_flag == "public"})
-全員に公開
-({elseif $item.public_flag == "friend"})
-({$WORD_FRIEND})まで公開
-({elseif $item.public_flag == "close"})
-公開しない
-({/if})
-)
-</span>
+({if $is_h_prof && $item.public_flag == "friend"})
+<span class="caution">※({$WORD_MY_FRIEND})まで公開</span>
 ({/if})
 
 <br>

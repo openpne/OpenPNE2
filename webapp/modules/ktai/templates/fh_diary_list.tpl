@@ -3,26 +3,7 @@
 <center><font color="orange">({$target_c_member.nickname}) さんの日記リスト</font></center>
 <hr><br>
 ({foreach from=$target_diary_list item=target_diary})
-({$target_diary.r_date|date_format:"%y/%m/%d"})-<a href="({t_url m=ktai a=page_fh_diary})&amp;target_c_diary_id=({$target_diary.c_diary_id})&amp;({$tail})">({$target_diary.subject})</a> (({$target_diary.num_comment}))
-
-({if $type == "h"})
-<span style="color: red">
-(
-({if $target_diary.public_flag == "default"})
-日記全体の設定に従う(({if $target_c_member.public_flag_diary == "public"})全員に公開({elseif $target_c_member.public_flag_diary == "friend"})({$WORD_FRIEND_HALF})まで公開({elseif $target_c_member.public_flag_diary == "close"})公開しない({/if}))
-({elseif $target_diary.public_flag == "public"})
-全員に公開
-({elseif $target_diary.public_flag == "friend"})
-({$WORD_FRIEND_HALF})まで公開
-({elseif $target_diary.public_flag == "close"})
-公開しない
-({/if})
-)
-</span>
-({/if})
-
-
-<br>
+({$target_diary.r_date|date_format:"%y/%m/%d"})-<a href="({t_url m=ktai a=page_fh_diary})&amp;target_c_diary_id=({$target_diary.c_diary_id})&amp;({$tail})">({$target_diary.subject})</a>(({$target_diary.num_comment}))<br>
 ({/foreach})
 <br>
 ({if $is_prev || $is_next})

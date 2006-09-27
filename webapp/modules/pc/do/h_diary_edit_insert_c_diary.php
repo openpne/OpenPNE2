@@ -9,6 +9,15 @@
  */
 class pc_do_h_diary_edit_insert_c_diary extends OpenPNE_Action
 {
+    function handleError()
+    {
+        $_REQUEST['msg1'] = $errors['subject'];
+        $_REQUEST['msg2'] = $errors['body'];
+        $_REQUEST['msg3'] = $errors['public_flag'];
+        openpne_forward('pc', 'page', 'h_diary_edit', $errors);
+        exit;
+    }
+
     function execute($requests)
     {
         $u = $GLOBALS['AUTH']->uid();
@@ -22,20 +31,6 @@ class pc_do_h_diary_edit_insert_c_diary extends OpenPNE_Action
         $tmpfile_2 = $requests['tmpfile_2'];
         $tmpfile_3 = $requests['tmpfile_3'];
         // ----------
-
-        if (is_null($body) || $body === '') {
-            $_REQUEST['msg'] = "本文を入力してください";
-            $_REQUEST['subject'] = $subject;
-            openpne_forward('pc', 'page', "h_diary_edit");
-            exit;
-        }
-
-        if (is_null($subject) || $subject === '') {
-            $_REQUEST['msg'] = "タイトルを入力してください";
-            $_REQUEST['body'] = $body;
-            openpne_forward('pc', 'page', "h_diary_edit");
-            exit;
-        }
 
         //--- 権限チェック
         //日記作成者

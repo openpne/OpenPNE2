@@ -36,22 +36,10 @@ class pc_page_fh_diary_comment_confirm extends OpenPNE_Action
             $type = 'f';
             $target_c_member = db_common_c_member4c_member_id($target_c_member_id);
 
-            //友達までの公開かどうか
-            $is_public_flag_friend = ($target_c_member['public_flag_diary'] == "friend" && $target_diary['public_flag'] == "default") || $target_diary['public_flag'] == "friend";
-            //公開しないかどうか
-            $is_public_flag_close = ($target_c_member['public_flag_diary'] == "close" && $target_diary['public_flag'] == "default") || $target_diary['public_flag'] == "close";
-
-            //日記の公開範囲設定
-            if ($is_public_flag_friend &&
-                 !db_friend_is_friend($u, $target_c_member_id)) {
-                openpne_redirect('pc', 'page_h_err_diary_access');
-            }
-
-            if($is_public_flag_close)
-            {
-                openpne_redirect('pc', 'page_h_err_diary_access');
-            }
-
+            // check public_flag
+	        if (!pne_check_diary_public_flag($target_c_diary_id, $u)) {
+	            openpne_redirect('pc', 'page_h_err_diary_access');
+	        }
             // アクセスブロック
             if (p_common_is_access_block($u, $target_c_member_id)) {
                 openpne_redirect('pc', 'page_h_access_block');

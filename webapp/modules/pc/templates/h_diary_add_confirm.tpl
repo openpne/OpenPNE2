@@ -211,13 +211,11 @@
 
 <div class="padding_s">
 
-({if $form_val.public_flag == "default"})
-日記全体の設定に従う(({if $member.public_flag_diary == "public"})全員に公開({elseif $member.public_flag_diary == "friend"})({$WORD_FRIEND})まで公開({elseif $member.public_flag_diary == "close"})公開しない({/if}))
-({elseif $form_val.public_flag == "public"})
+({if $form_val.public_flag == "public"})
 全員に公開
 ({elseif $form_val.public_flag == "friend"})
-({$WORD_FRIEND})まで公開
-({elseif $form_val.public_flag == "close"})
+({$WORD_MY_FRIEND})まで公開
+({elseif $form_val.public_flag == "private"})
 公開しない
 ({/if})
 </div>
@@ -252,6 +250,7 @@
 ({t_form m=pc a=page_h_diary_add})
 <input type="hidden" name="subject" value="({$form_val.subject})">
 <input type="hidden" name="body" value="({$form_val.body})">
+<input type="hidden" name="public_flag" value="({$form_val.public_flag})">
 <td class="padding_s"><input type="submit" value="　修 　正　"></td>
 </form>
 </tr>

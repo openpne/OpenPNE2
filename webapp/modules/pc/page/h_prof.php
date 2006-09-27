@@ -31,7 +31,7 @@ class pc_page_h_prof extends OpenPNE_Action
         $this->set('c_friend_comment_list', p_f_home_c_friend_comment4c_member_id($target_c_member_id));
         $this->set('c_friend_list', p_f_home_c_friend_list4c_member_id($target_c_member_id, 9));
         $this->set('c_friend_count', db_friend_count_friends($target_c_member_id));
-        $this->set('c_diary_list', db_diary_get_c_diary_list4c_member_id($target_c_member_id, 5));
+        $this->set('c_diary_list', db_diary_get_c_diary_list4c_member_id($target_c_member_id, 5, null, 'friend'));
         $this->set('user_count', p_common_count_c_commu4c_member_id($target_c_member_id));
         $this->set('c_commu_list', p_f_home_c_commu_list4c_member_id($target_c_member_id, 9));
         $this->set('c_review_list', db_review_c_review_list4member($target_c_member_id, 5));

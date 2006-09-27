@@ -36,13 +36,20 @@ function db_friend_is_friend($c_member_id1, $c_member_id2)
  * 友達のメンバーIDリスト取得
  * 
  * @param  int $c_member_id
+ * @param  bool $except_blocked アクセスブロックされているメンバーを除外するか
  * @return array  友達のメンバーID配列
  */
-function db_friend_c_member_id_list($c_member_id)
+function db_friend_c_member_id_list($c_member_id, $except_blocked = false)
 {
     $sql = 'SELECT c_member_id_to FROM c_friend WHERE c_member_id_from = ? ORDER BY c_friend_id';
     $params = array(intval($c_member_id));
-    return db_get_col($sql, $params);
+    $friends = db_get_col($sql, $params);
+
+    if ($except_blocked) {
+        $blocked = db_member_access_block_list4c_member_id_to($c_member_id);
+        $friends = array_diff($friends, $blocked);
+    }
+    return $friends;
 }
 
 /**

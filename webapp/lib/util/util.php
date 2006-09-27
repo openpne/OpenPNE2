@@ -444,4 +444,36 @@ function pne_cache_drop()
     }
 }
 
+//---
+
+/**
+ * Check c_diary.public_flag
+ * 
+ * @param int $c_diary_id
+ * @param int $c_member_id
+ * @return bool allowed or not
+ */
+function pne_check_diary_public_flag($c_diary_id, $c_member_id)
+{
+    $c_diary = db_diary_get_c_diary4id($c_diary_id);
+    if ($c_diary['c_member_id'] == $c_member_id) {
+        return true;
+    }
+
+    switch ($c_diary['public_flag']) {
+    case 'public':
+        $allowed = true;
+        break;
+    case 'friend':
+        $allowed = db_friend_is_friend($c_diary['c_member_id'], $c_member_id);
+        break;
+    case 'private':
+    default:
+        $allowed = false;
+        break;
+    }
+
+    return $allowed;
+}
+
 ?>

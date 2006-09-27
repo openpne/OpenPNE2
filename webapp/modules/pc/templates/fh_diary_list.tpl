@@ -398,7 +398,7 @@
 ({foreach from=$target_diary_list item=item})
 <tr>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-<td style="width:66px;" class="bg_05" align="center" valign="top" rowspan="5">
+<td style="width:66px;" class="bg_05" align="center" valign="top" rowspan="({if $type == "h"})7({else})5({/if})">
 <div style="padding:4px 3px;">
 
 ({$item.r_datetime|date_format:"%m月%d日<br> %H:%M"})
@@ -411,27 +411,37 @@
 
 ({$item.subject})
 
+</div>
+</td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+</tr>
 ({if $type == "h"})
-<span style="color: red">
-(
-({if $item.public_flag == "default"})
-日記全体の設定に従う(({if $target_member.public_flag_diary == "public"})全員に公開({elseif $target_member.public_flag_diary == "friend"})({$WORD_FRIEND})まで公開({elseif $target_member.public_flag_diary == "close"})公開しない({/if}))
-({elseif $item.public_flag == "public"})
+({*********})
+<tr>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:455px;height:1px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+</tr>
+({*********})
+<tr>
+<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td class="bg_02" align="right" valign="middle">
+<div style="padding:4px 3px;">
+
+({if $item.public_flag == "public"})
 全員に公開
 ({elseif $item.public_flag == "friend"})
-({$WORD_FRIEND})まで公開
-({elseif $item.public_flag == "close"})
+({$WORD_MY_FRIEND})まで公開
+({elseif $item.public_flag == "private"})
 公開しない
 ({/if})
-)
-</span>
-({/if})
-
+</td>
 
 </div>
 </td>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
+({/if})
 ({*********})
 <tr>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>

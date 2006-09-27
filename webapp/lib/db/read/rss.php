@@ -29,7 +29,7 @@ function p_h_diary_list_all_c_rss_cache_list($limit)
 
 function p_h_diary_list_friend_c_rss_cache_list($c_member_id, $limit)
 {
-    $friends = db_friend_c_member_id_list($c_member_id);
+    $friends = db_friend_c_member_id_list($c_member_id, true);
     $ids = implode(',', array_map('intval', $friends));
 
     $hint = db_mysql_hint('USE INDEX (r_datetime_c_member_id, r_datetime)');

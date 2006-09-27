@@ -22,7 +22,11 @@ class pc_page_h_diary_add extends OpenPNE_Action
         $this->set('inc_navi', fetch_inc_navi("h"));
 
         //プロフィール
-        $this->set("target_member", db_common_c_member4c_member_id($u));
+        $c_member = db_common_c_member4c_member_id($u);
+        if (empty($form_val['public_flag'])) {
+            $form_val['public_flag'] = $c_member['public_flag_diary'];
+        }
+        $this->set("target_member", $c_member);
         $this->set("form_val", $form_val);
 
         //カレンダー関係

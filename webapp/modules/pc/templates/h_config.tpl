@@ -473,9 +473,11 @@ BlogのURL
 <div class="padding_s">
 
 <input type="radio" name="public_flag_diary" value="public"({if $c_member.public_flag_diary == "public"}) checked="checked"({/if}) class="no_bg" id="public_flag_diary_public"><label for="public_flag_diary_public">全員に公開</label>
-<input type="radio" name="public_flag_diary" value="friend"({if $c_member.public_flag_diary == "friend"}) checked="checked"({/if}) class="no_bg" id="public_flag_diary_friend"><label for="public_flag_diary_friend">({$WORD_FRIEND})まで公開</label>
-<input type="radio" name="public_flag_diary" value="close"({if $c_member.public_flag_diary == "close"}) checked="checked"({/if}) class="no_bg" id="public_flag_diary_close"><label for="public_flag_diary_close">公開しない</label><br>
+<input type="radio" name="public_flag_diary" value="friend"({if $c_member.public_flag_diary == "friend"}) checked="checked"({/if}) class="no_bg" id="public_flag_diary_friend"><label for="public_flag_diary_friend">({$WORD_MY_FRIEND})まで公開</label>
+<input type="radio" name="public_flag_diary" value="private"({if $c_member.public_flag_diary == "private"}) checked="checked"({/if}) class="no_bg" id="public_flag_diary_private"><label for="public_flag_diary_private">公開しない</label><br>
 
+※ここで指定した値が日記作成画面であらかじめ選択されている値となります。<br>
+これまでに書かれた日記の公開範囲は変更されません。
 </div>
 </td>
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>

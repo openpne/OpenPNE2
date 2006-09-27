@@ -167,7 +167,7 @@
 
 <div class="padding_s">
 
-過去30日分の({$WORD_MY_FRIEND})の日記を表示します。
+({$WORD_MY_FRIEND})の日記がありません。
 
 </div>
 
