@@ -487,6 +487,9 @@ function pne_url2a($url, $target = '_blank')
     } else {
         $urlstr = $url;
     }
+    if ($target) {
+        $target = sprintf(' target="%s"', $target);
+    }
     return sprintf('<a href="%s"%s>%s</a>', $url, $target, $urlstr);
 }
 
