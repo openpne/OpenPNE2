@@ -1,0 +1,1 @@
+INSERT INTO `c_admin_config` values ('OPENPNE_ENABLE_ROLLOVER',0);

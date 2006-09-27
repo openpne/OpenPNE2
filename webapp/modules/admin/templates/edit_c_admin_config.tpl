@@ -122,6 +122,15 @@
 </select><br>
 <span class="caution">※フレンドリスト、コミュニティリスト、コミュニティメンバーリストをFlashで表示するかどうか選択します</span></td>
 </tr>
+<tr>
+<th>メニューロールオーバー</th>
+<td>
+<select name="OPENPNE_ENABLE_ROLLOVER">
+<option value="1"({if $smarty.const.OPENPNE_ENABLE_ROLLOVER}) selected="selected"({/if})>使用する</option>
+<option value="0"({if !$smarty.const.OPENPNE_ENABLE_ROLLOVER}) selected="selected"({/if})>使用しない</option>
+</select>
+</td>
+</tr>
 
 <tr>
 <th>デイリーニュース<br>受信頻度の設定</th>

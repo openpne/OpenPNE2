@@ -77,6 +77,7 @@ input.submit {
 	background: #DADCE6 url(({t_img_url_skin filename=bg_button})) 50% 0 repeat-x ;
 }
 
+({if $smarty.const.OPENPNE_ENABLE_ROLLOVER})
 /*ページヘッダロールオーバー設定*/
 div.inc_page_header div.navi_global a.navi_global_1:active ,
 div.inc_page_header div.navi_global a.navi_global_1:hover {
@@ -245,6 +246,7 @@ div.inc_page_header div.navi_global a.navi_global_9:hover {
 .inc_navi div.c a.navi_c_6:hover {
 	background: url(({t_img_url_skin filename=skin_navi_c_2})) -600px 0 no-repeat ;
 }
+({/if})
 
 -->
 </style>
