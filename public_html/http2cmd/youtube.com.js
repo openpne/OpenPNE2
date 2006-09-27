@@ -1,8 +1,10 @@
 function http2cmd(url) {
-    url.match(/http:\/\/www.youtube.com\/watch\?v=([a-zA-Z0-9_-]+)/g);
-    var id = RegExp.$1;
-	var width = 200;
-	var height = parseInt(width * 14 / 17);
+    if (!url.match(/^http:\/\/(www.)?youtube\.com\/watch\?v=([a-zA-Z0-9_-]+)$/)) {
+        return;
+    }
+    var id = RegExp.$2;
+	var width = 425;
+	var height = 350;
 
 	var html = '<object width="'
 			+ width
