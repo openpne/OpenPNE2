@@ -494,22 +494,23 @@ function p_fh_diary_list_calendar_list4c_member_id($year, $month, $c_member_id)
 
 /**
  * 新着日記検索
- * 書き込まれてから１週間の全体に公開されている日記を検索
  * 検索ポイントはタイトル、本文
  * 空白（全角半角問わない）でand検索可
  */
 function p_h_diary_list_all_search_c_diary4c_diary($keyword, $page_size, $page)
 {
-    $where = ' WHERE 1';
-    $params = array();
+    $select = 'SELECT *';
+    $from = ' FROM c_diary';
+    $where = " WHERE public_flag = 'public'";
 
     //and検索を実装
     //subject,body を検索
+    $params = array();
     if ($keyword) {
         //全角空白を半角に統一
-        $keyword = str_replace("　", " ", $keyword);
+        $keyword = str_replace('　', ' ', $keyword);
 
-        $keyword_list = explode(" ", $keyword);
+        $keyword_list = explode(' ', $keyword);
         foreach ($keyword_list as $word) {
             $word = check_search_word($word);
 
@@ -518,10 +519,6 @@ function p_h_diary_list_all_search_c_diary4c_diary($keyword, $page_size, $page)
             $params[] = '%'.$word.'%';
         }
     }
-    $where .= " AND public_flag = 'public'";
-
-    $select = "SELECT *";
-    $from = " FROM c_diary";
     $order = " ORDER BY r_datetime DESC";
 
     $sql = $select . $from . $where . $order;
