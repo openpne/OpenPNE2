@@ -476,4 +476,18 @@ function pne_check_diary_public_flag($c_diary_id, $c_member_id)
     return $allowed;
 }
 
+function pne_url2a($url, $target = '_blank')
+{
+    $length = 60;
+    $etc = '...';
+
+    if (strlen($url) > $length) {
+        $length -= strlen($etc);
+        $urlstr = substr($url, 0, $length) . $etc;
+    } else {
+        $urlstr = $url;
+    }
+    return sprintf('<a href="%s"%s>%s</a>', $url, $target, $urlstr);
+}
+
 ?>

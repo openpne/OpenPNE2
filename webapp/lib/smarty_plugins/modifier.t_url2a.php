@@ -25,17 +25,7 @@ function smarty_modifier_t_url2a($string)
 
 function smarty_modifier_t_url2a_callback($matches)
 {
-    $url = $matches[0];
-    $length = 60;
-    $etc = '...';
-
-    if (strlen($url) > $length) {
-        $length -= strlen($etc);
-        $urlstr = substr($url, 0, $length) . $etc;
-    } else {
-        $urlstr = $url;
-    }
-    return sprintf('<a href="%s" target="_blank">%s</a>', $url, $urlstr);
+    return pne_url2a($matches[0]);
 }
 
 ?>

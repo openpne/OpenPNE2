@@ -116,7 +116,7 @@
 ({if $c_topic.image_filename3})<a href="({t_img_url filename=$c_topic.image_filename3})" target="_blank"><img src="({t_img_url filename=$c_topic.image_filename3 w=120 h=120})"></a>({/if})
 <br>
 ({/if})
-({$c_topic.body|nl2br|t_http2cmd|t_url2a|t_cmd})
+({$c_topic.body|nl2br|t_http2cmd|t_cmd})
 
 </div>
 </td>
@@ -253,7 +253,7 @@
 ({if $item.image_filename3})<a href="({t_img_url filename=$item.image_filename3})" target="_blank"><img src="({t_img_url filename=$item.image_filename3 w=120 h=120})"></a>({/if})
 <br>
 ({/if})
-({$item.body|nl2br|t_http2cmd|t_url2a|t_cmd})
+({$item.body|nl2br|t_http2cmd|t_cmd})
 
 </div>
 </td>
