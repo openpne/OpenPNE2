@@ -6,9 +6,10 @@
 
 function smarty_modifier_t_http2cmd($string)
 {
-    if (!OPENPNE_USE_CMD_TAG) {
-        return $string;
-    }
+    // "(&quot;) と '(&#039;) を元に戻す
+    $search = array('&quot;', '&#039;');
+    $replace = array('"', "'");
+    $string = str_replace($search, $replace, $string);
 
     $url_pattern = "/https?:\/\/([a-zA-Z0-9-.]+)\/[\w\-.,:;\~\^\/?\@&=+\$%#!()]+/";
     return preg_replace_callback($url_pattern, '_smarty_modifier_t_cmd_make_url_js', $string);
@@ -20,7 +21,7 @@ function _smarty_modifier_t_cmd_make_url_js($matches)
     $file = $matches[1] . '.js';
     $path = './http2cmd/' . $file;
 
-    if (!is_readable($path)) {
+    if (!OPENPNE_USE_CMD_TAG || !is_readable($path)) {
         // t_url2a
         return pne_url2a($url);
     }
