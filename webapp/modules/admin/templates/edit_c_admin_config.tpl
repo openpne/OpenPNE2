@@ -129,6 +129,7 @@
 <option value="1"({if $smarty.const.OPENPNE_ENABLE_ROLLOVER}) selected="selected"({/if})>使用する</option>
 <option value="0"({if !$smarty.const.OPENPNE_ENABLE_ROLLOVER}) selected="selected"({/if})>使用しない</option>
 </select>
+<span class="caution">※ナビゲーションバーなどにマウスカーソルを乗せた時に別の画像を表示するかどうか選択します</span>
 </td>
 </tr>
 
