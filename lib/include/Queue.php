@@ -488,7 +488,7 @@ class Mail_Queue extends PEAR
         } else {
             $err = PEAR::raiseError(sprintf("%s", $msg), $code, $mode);
         }
-        return $err;
+return $err;
     }
 */
 }

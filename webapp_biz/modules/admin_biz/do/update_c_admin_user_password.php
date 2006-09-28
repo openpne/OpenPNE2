@@ -22,7 +22,7 @@ class admin_biz_do_update_c_admin_user_password extends OpenPNE_Action
             strlen($password) < 6 ||
             strlen($password) > 12) {
             admin_biz_client_redirect('edit_admin_password',
-                'パスワードは6～12文字の半角英数で入力してください');
+                'パスワードは6〜12文字の半角英数で入力してください');
             exit;
         }
 
