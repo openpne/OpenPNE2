@@ -84,14 +84,14 @@ class pc_page_f_home extends OpenPNE_Action
         $biz_dir = OPENPNE_MODULES_BIZ_DIR.'/biz/';  //bizモジュールディレクトリの定義
         include_once($biz_dir.'lib/smarty_functions.php');  //bizモジュールよりライブラリを拝借
         include_once($biz_dir.'lib/mysql_functions.php');  //bizモジュールよりライブラリを拝借
-        
+
         $c_member = db_common_c_member4c_member_id($u);
-        
+
         $todolist = biz_getTodoList($target_c_member_id, "f", $c_member['nickname']);
         $this->set("todolist", $todolist);
 
         $this->set('calendar', biz_getScheduleWeek($target_c_member_id, $requests['w'], 'f', true, true, true, $target_c_member));
-        
+
         $group_list = biz_getHomeGroupList($target_c_member_id);
         $this->set('group_list', $group_list);
         // --- bizここまで

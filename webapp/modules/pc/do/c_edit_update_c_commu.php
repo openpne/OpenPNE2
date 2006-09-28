@@ -12,7 +12,7 @@ class pc_do_c_edit_update_c_commu extends OpenPNE_Action
     function execute($requests)
     {
         $u = $GLOBALS['AUTH']->uid();
-        
+
 
         // --- リクエスト変数
         $target_c_commu_id = $requests['target_c_commu_id'];
@@ -51,7 +51,7 @@ class pc_do_c_edit_update_c_commu extends OpenPNE_Action
                 if ($requests['map_pref_id'] > 0) {
                     $pref = db_etc_c_profile_pref4id($requests['map_pref_id']);
                 }
-    
+
                 if (!empty($pref['map_latitude']) && !empty($pref['map_longitude'])) {
                     $map_latitude = $pref['map_latitude'];
                     $map_longitude = $pref['map_longitude'];

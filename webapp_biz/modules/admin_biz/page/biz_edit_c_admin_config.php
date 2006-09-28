@@ -11,7 +11,7 @@ class admin_biz_page_biz_edit_c_admin_config extends OpenPNE_Action
     function execute($requests)
     {
         $v = array();
-        
+
         $v['c_admin_config'] = biz_admin_c_admin_config_all();
         $this->set($v);
 

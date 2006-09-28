@@ -20,7 +20,7 @@ class ktai_do_c_home_update_is_receive_mail extends OpenPNE_Action
         $is_receive_mail_pc = $requests['is_receive_mail_pc'];
         $is_receive_message = $requests['is_receive_message'];
         // ----------
-        
+
         //--- 権限チェック
         //コミュニティ参加者
 

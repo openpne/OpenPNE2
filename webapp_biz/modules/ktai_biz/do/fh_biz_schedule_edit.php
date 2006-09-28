@@ -17,11 +17,11 @@ class ktai_biz_do_fh_biz_schedule_edit extends OpenPNE_Action
         {
             $redirect_script = '?m=ktai_biz&a=page_fh_biz_schedule_edit&'.$tail;
             $msg = urlencode('存在しない日付が指定されました。');
-            
+
             $schedule = biz_getScheduleInfo($requests['schedule_id']);
-            
+
             $begin_date = $schedule['begin_date'];
-            
+
             //日付関連の引数は返さなくてもよい
             $url = $redirect_script.
                         '&msg='.$msg.
@@ -102,9 +102,9 @@ class ktai_biz_do_fh_biz_schedule_edit extends OpenPNE_Action
         //--------------------
 
         $mem = unserialize($requests['sc_j_mem']);
-        
+
         $requests['sc_j_mem'] = array();
-        
+
         $i = 0;
         if ( $mem ) {
             foreach($mem as $key => $value){
@@ -119,7 +119,7 @@ class ktai_biz_do_fh_biz_schedule_edit extends OpenPNE_Action
             $finish_time = null;
 
         $finish_date = $begin_date;  //当日中に終わる予定は、開始日と終了日は同一でなければならない
-            
+
 
         $finish_date = date("Y-m-d", strtotime($requests['sc_b_year'].'-'.$requests['sc_b_month'].'-'.($requests['sc_b_date']+($requests['sc_bn']-1))));
 
@@ -127,12 +127,12 @@ class ktai_biz_do_fh_biz_schedule_edit extends OpenPNE_Action
 
         biz_editSchedule($requests['sc_title'], $u, $begin_date, $finish_date, $begin_time, $finish_time, $requests['sc_memo'], $rp_rule, 0, $requests['sc_j_mem'], $requests['sc_j_plc'], $requests['schedule_id']);
         $schedule_id = $requests['schedule_id'];
-        
+
 
             $first_id = biz_getScheduleMax() + 1;  //登録される予定のプライマリキー
-            
+
             //$schedule_id = biz_getScheduleMax();
-        
+
         $week = date("W", abs(strtotime($begin_date)-strtotime(date("Y-m-d"))))-1;
         if(strtotime($begin_date)-strtotime(date('Y-m-d')) < 0){
             $week = $week - $week * 2;

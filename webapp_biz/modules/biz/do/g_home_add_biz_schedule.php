@@ -16,7 +16,7 @@ class biz_do_g_home_add_biz_schedule extends OpenPNE_Action
 
         //書式チェック
         preg_match("/([0-2][0-9].*?[0-5][0-9]).*?([0-2][0-9].*?[0-5][0-9])\s*(.*)/", $text, $matches);
-        
+
         if($matches)  //クイック入力に対応した書式
         {
             $title = $matches[3];

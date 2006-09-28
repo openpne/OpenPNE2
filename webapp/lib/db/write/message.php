@@ -197,7 +197,7 @@ function do_common_send_message($c_member_id_from, $c_member_id_to, $subject, $b
 
     do_common_send_message_mail_send($c_member_id_to, $c_member_id_from);
     do_common_send_message_mail_send_ktai($c_member_id_to, $c_member_id_from);
-    
+
     return $c_message_id;
 }
 

@@ -10,7 +10,7 @@ class admin_page_edit_c_sns_config extends OpenPNE_Action
     function execute($requests)
     {
         $v = array();
-        
+
         /*色設定名配列構造見本*/
         $v['bgcolor_scheme_names'] = array(//各値は配色設定名になります。
                 'border_01' ,
@@ -33,16 +33,16 @@ class admin_page_edit_c_sns_config extends OpenPNE_Action
        );
 
         $v['preset_bgcolors'] = db_select_c_sns_config_all();
-       
+
         $temp = db_select_c_sns_config(1);
         $v['c_sns_config']['c_sns_config_id'] = $temp['c_sns_config_id'];
-        
+
         $v['c_sns_config']['key_name'] = $temp['key_name'];
-        
+
         $v['c_sns_config']['border_01'] = $temp['border_01'];
         $v['c_sns_config']['border_07'] = $temp['border_07'];
         $v['c_sns_config']['border_10'] = $temp['border_10'];
-        
+
         $v['c_sns_config']['bg_00'] = $temp['bg_00'];
         $v['c_sns_config']['bg_01'] = $temp['bg_01'];
         $v['c_sns_config']['bg_02'] = $temp['bg_02'];

@@ -11,7 +11,7 @@ class admin_do_send_messages_all extends OpenPNE_Action
     {
         $module_name = ADMIN_MODULE_NAME;
         $send_type = $requests['send_type'];
-        
+
         if (empty($requests['subject'])) {
             openpne_forward($module_name, 'page', 'send_messages_all');
             exit;
@@ -39,7 +39,7 @@ class admin_do_send_messages_all extends OpenPNE_Action
                 break;
             }
         }
-        
+
         switch ($send_type) {
             case "mail":
                 $sended_name = "メール";
@@ -48,7 +48,7 @@ class admin_do_send_messages_all extends OpenPNE_Action
                 $sended_name = "メッセージ";
             break;
         }
-        
+
         admin_client_redirect('top', $sended_name.'を送信しました');
     }
 }

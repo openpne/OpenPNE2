@@ -36,7 +36,7 @@ function init_biz_page(&$smarty)
     $smarty->assign('WORD_MY_FRIEND', WORD_MY_FRIEND);
     $smarty->assign('WORD_FRIEND_HALF', WORD_FRIEND_HALF);
     $smarty->assign('WORD_MY_FRIEND_HALF', WORD_MY_FRIEND_HALF);
-    
+
     $is_secure = $GLOBALS['__Framework']['is_secure'];
 
     //---- inc_ テンプレート用 変数 ----//
@@ -66,7 +66,7 @@ function init_biz_page(&$smarty)
 function init_biz_do()
 {
     $is_secure = $GLOBALS['__Framework']['is_secure'];
-    
+
     if ($is_secure) {
         if ($_REQUEST['sessid'] !== md5(session_id())) {
             openpne_display_error('前の画面を再読み込みして、操作をやり直してください');

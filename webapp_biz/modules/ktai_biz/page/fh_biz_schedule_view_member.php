@@ -31,7 +31,7 @@ class ktai_biz_page_fh_biz_schedule_view_member extends OpenPNE_Action
             $jmembers[$target_member['c_member_id']] = $target_member['nickname'];
             $jmembers = array_unique($jmembers);
         }
-        
+
         $this->set('jmembers', $jmembers);
         $this->set('jmembers_enc', serialize($jmembers));
         $this->set('t_id', $target_id);

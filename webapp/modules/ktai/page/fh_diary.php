@@ -50,7 +50,7 @@ class ktai_page_fh_diary extends OpenPNE_Action
             //日記を閲覧済みにする
             db_diary_update_c_diary_is_checked($target_c_diary_id, 1);
             $this->set("type", 'h');
-            
+
         }
         //コメント
         list ($c_diary_comment_list, $is_prev, $is_next, $total_num, $total_page_num)

@@ -17,7 +17,7 @@ function smarty_function_t_img_url($params, &$smarty)
         $urlencode = (bool)$params['_urlencode'];
         unset($params['_urlencode']);
     }
-    
+
     if (OPENPNE_IMG_URL) {
         $url = OPENPNE_IMG_URL;
     } else {
@@ -54,7 +54,7 @@ function smarty_function_t_img_url($params, &$smarty)
         $path = OpenPNE_Img::get_cache_path($p['filename'], $p['w'], $p['h'], $p['f']);
         $url .= 'img/' . $path;
     }
-    
+
     if ($urlencode) {
         $url = urlencode($url);
     }

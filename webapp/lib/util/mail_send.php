@@ -661,22 +661,22 @@ function put_mail_queue($address, $subject, $body, $is_receive_mail=true, $from=
         $subject = mb_convert_kana($subject, "KV");
         $body = mb_convert_kana($body, "KV");
     }
-    
+
     // subject (改行コードを含んではならない)
     $subject = str_replace(array($cr, $lf), "", $subject);
     $subject = mb_convert_encoding($subject, "JIS");
     $headers['Subject'] = '=?ISO-2022-JP?B?'.base64_encode($subject).'?=';
-    
+
     // body (LF)
     if (MAIL_WRAP_WIDTH) {
         $body = t_wordwrap($body, MAIL_WRAP_WIDTH);
     }
-    
+
     $body = mb_convert_encoding($body, "JIS");
     $body = str_replace($cr, $lf, str_replace($crlf, $lf, $body));
-    
+
     require_once 'Mail/Queue.php';
-    
+
     $db_opt = array(
         "type"=>"db",
         "dsn"=>$GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn'],
@@ -690,7 +690,7 @@ function put_mail_queue($address, $subject, $body, $is_receive_mail=true, $from=
     $body = $mail_mime->get(array("text_charset"=>"ISO-2022-JP"));
     $body = addslashes($body);
     $headers = $mail_mime->headers($headers);
-    
+
     if (MAIL_SET_ENVFROM) {
         if (MAIL_ENVFROM) {
             $f = MAIL_ENVFROM;

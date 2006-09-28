@@ -550,7 +550,7 @@ function _db_admin_c_member_id_list($cond_list)
             }
         }
     }
-    
+
     return $ids;
 }
 
@@ -580,7 +580,7 @@ function db_c_profile_option4c_profile_option_id($c_profile_option_id)
 {
     $sql = "SELECT * FROM c_profile_option" .
             " WHERE c_profile_option_id = ? ";
-    
+
     return db_get_row($sql,array($c_profile_option_id));
 }
 
@@ -599,7 +599,7 @@ function validate_cond($requests)
     }
     //プロフィール
     $profile_list = db_common_c_profile_list();
-    
+
     foreach ($profile_list as $key => $value) {
         if ( !empty($requests[$key]) ) {
             $cond_list[$key] = intval($requests[$key]);
@@ -612,7 +612,7 @@ function do_admin_send_mail($c_member_id, $subject, $body)
 {
     $c_member = db_common_c_member4c_member_id($c_member_id, true);
     $pc_address = $c_member['secure']['pc_address'];
-    
+
     if (OPENPNE_MAIL_QUEUE) {
         //メールキューに蓄積
         put_mail_queue($pc_address, $subject, $body);
@@ -629,7 +629,7 @@ function do_admin_send_message($c_member_id_from, $c_member_id_to, $subject, $bo
 
     do_admin_send_message_mail_send($c_member_id_to, $c_member_id_from);
     do_admin_send_message_mail_send_ktai($c_member_id_to, $c_member_id_from);
-    
+
     return $c_message_id;
 }
 

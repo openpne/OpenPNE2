@@ -12,7 +12,7 @@ class admin_biz_do_biz_admin_delete_shisetsu extends OpenPNE_Action
         $id = $requests['biz_shisetsu_id'];
 
         biz_deleteShisetsu($id);
-        
+
         admin_biz_client_redirect('biz_shisetsu_list', "施設を削除しました。");
     }
 }

@@ -66,7 +66,7 @@ function init_ktai_biz_page(&$smarty)
     $smarty->assign('WORD_MY_FRIEND_HALF', WORD_MY_FRIEND_HALF);
 
     $is_secure = $GLOBALS['__Framework']['is_secure'];
-    
+
     if ($is_secure) {
         $smarty->assign('u', $GLOBALS['KTAI_C_MEMBER_ID']);
         $smarty->assign('tail', $GLOBALS['KTAI_URL_TAIL']);

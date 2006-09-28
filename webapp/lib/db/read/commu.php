@@ -1825,7 +1825,7 @@ function p_c_commu_member_id_list4c_commu_id($c_commu_id)
 {
     $sql = 'SELECT c_member_id FROM c_commu_member' .
             ' WHERE c_commu_id = ? AND is_receive_message = 1';
-    
+
     $params = array(intval($c_commu_id));
     $lst = db_get_col($sql, $params);
     return $lst;

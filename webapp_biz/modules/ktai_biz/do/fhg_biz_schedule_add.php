@@ -10,18 +10,18 @@ class ktai_biz_do_fhg_biz_schedule_add extends OpenPNE_Action
     {
         $u  = $GLOBALS['KTAI_C_MEMBER_ID'];
         $tail = $GLOBALS['KTAI_URL_TAIL'];
-        
+
         //target_idの指定
         if(!$requests['target_id'])
                 $requests['target_id'] = $u;
-        
+
         //ERROR----------------
         //存在しない日付
         if(!checkdate($requests['sc_b_month'], $requests['sc_b_date'], $requests['sc_b_year']))
         {
             $redirect_script = '?m=ktai_biz&a=page_fh_biz_schedule_add&'.$tail;
             $msg = '存在しない日付が指定されました。';
-            
+
             //日付関連の引数は返さなくてもよい
             $url = $redirect_script.
                         '&msg='.$msg.
@@ -32,7 +32,7 @@ class ktai_biz_do_fhg_biz_schedule_add extends OpenPNE_Action
                         '&sc_rwk_enc='.serialize($requests['sc_rwk_enc']).
                         '&sc_rcount='.$requests['sc_rcount'].
                         '&target_id='.$requests['target_id'];
-            
+
             $_REQUEST['sc_title'] = $requests['sc_title'];
             $_REQUEST['sc_rp'] = $requests['sc_rp'];
             $_REQUEST['sc_memo'] = $requests['sc_memo'];
@@ -83,27 +83,27 @@ class ktai_biz_do_fhg_biz_schedule_add extends OpenPNE_Action
             exit;
         }   
         //---------------------
-        
+
         //施設、参加者のチェック
-        
+
         if(!$requests['sc_j_mem']){     //「全員」が含まれている場合は、配列を空に
                 $requests['sc_j_mem'] = array();
-        
+
         }elseif($requests['sc_j_mem'] == "my"){     //本人またはフレンドのみの場合
                 $requests['sc_j_mem']=array($requests['target_id']);
-        
+
         }else{
             $join_group = biz_getGroupMember($requests['sc_j_mem']);
             $i = 0;
-            
+
             $requests['sc_j_mem'] = array();
             foreach($join_group as $key){
                     $requests['sc_j_mem'][$i] = $key['c_member_id'];
                     $i++;
             }
-            
+
         }
-        
+
         //日付のフォーマットを設定
         $begin_date = $requests['sc_b_year'].'-'.$requests['sc_b_month'].'-'.$requests['sc_b_date'];
 
@@ -144,9 +144,9 @@ class ktai_biz_do_fhg_biz_schedule_add extends OpenPNE_Action
 
         }
         //--------------------
-        
+
         $finish_date = $begin_date;
-        
+
         if(!($requests['sc_b_hour']||$requests['sc_b_minute']||$requests['sc_f_hour']||$requests['sc_f_minute']))  //時刻指定なし
             $begin_time = $finish_time = null;
         elseif(!($requests['sc_f_hour']||$requests['sc_f_minute']))

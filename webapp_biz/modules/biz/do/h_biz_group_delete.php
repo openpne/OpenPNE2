@@ -13,7 +13,7 @@ class biz_do_h_biz_group_delete extends OpenPNE_Action
         $sessid = session_id();
 
         biz_deleteGroup($requests['target_id']);
-        
+
         client_redirect_absolute("?m=biz&a=page_h_biz_group_find_all&msg=".urlencode('グループを削除しました'));
 
     }

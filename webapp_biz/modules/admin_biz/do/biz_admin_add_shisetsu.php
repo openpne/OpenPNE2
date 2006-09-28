@@ -28,7 +28,7 @@ class admin_biz_do_biz_admin_add_shisetsu extends OpenPNE_Action
         t_image_clear_tmp(session_id());
 
         biz_addShisetsu($requests['name'], $filename);
-        
+
         admin_biz_client_redirect('biz_shisetsu_list', "施設を追加しました。");
     }
 }

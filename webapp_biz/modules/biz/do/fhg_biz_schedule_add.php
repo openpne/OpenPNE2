@@ -17,7 +17,7 @@ class biz_do_fhg_biz_schedule_add extends OpenPNE_Action
         {
             $redirect_script = '?m=biz&a=page_fh_biz_schedule_add';
             $msg = urlencode('存在しない日付が指定されました。');
-            
+
             //日付関連の引数は返さなくてもよい
             $url = $redirect_script.
                         '&msg='.$msg.
@@ -27,7 +27,7 @@ class biz_do_fhg_biz_schedule_add extends OpenPNE_Action
                         '&sc_j_mem_enc='.serialize($requests['sc_j_mem']).
                         '&sc_rwk_enc='.serialize($requests['sc_rwk_enc']).
                         '&sc_rcount='.$requests['sc_rcount'];
-            
+
             client_redirect_absolute($url);
             exit();  //強制的にスクリプトを終了しなければいけない
         }
@@ -78,12 +78,12 @@ class biz_do_fhg_biz_schedule_add extends OpenPNE_Action
                         '&sc_j_mem_enc='.serialize($requests['sc_j_mem']).
                         '&sc_rwk_enc='.serialize($requests['sc_rwk_enc']).
                         '&sc_rcount='.$requests['sc_rcount'];
-            
+
             client_redirect_absolute($url);
             exit();  //強制的にスクリプトを終了しなければいけない
         }
         //--------------------
-        
+
         //施設、参加者のチェック
         if(in_array('0', $requests['sc_j_mem']))  //「全員」が含まれている場合は、配列を空に
             $requests['sc_j_mem'] = array();
@@ -123,7 +123,7 @@ class biz_do_fhg_biz_schedule_add extends OpenPNE_Action
             exit();  //強制的にスクリプトを終了しなければいけない
         }
         //--------------------
-        
+
         if((!$requests['sc_rp'])&&($requests['sc_bn'] == 1))  //当日中に終わる予定は、開始日と終了日は同一でなければならない
             $finish_date = $begin_date;
 
@@ -146,7 +146,7 @@ class biz_do_fhg_biz_schedule_add extends OpenPNE_Action
             foreach($requests['sc_rwk'] as $value)
                 $rp_rule += 1 << $value;
         }
-        
+
         else  //繰り返しなし
             $finish_date = date("Y-m-d", strtotime($requests['sc_b_year'].'-'.$requests['sc_b_month'].'-'.($requests['sc_b_date']+($requests['sc_bn']-1))));
 

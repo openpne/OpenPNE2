@@ -29,7 +29,7 @@ class biz_page_s_list extends OpenPNE_Action
         $i = 0;
 
         $schedule = array();
-        
+
         while ($Day = $Week->fetch()) {
 
             $y = sprintf("%02d",$Day->thisYear());
@@ -69,7 +69,7 @@ class biz_page_s_list extends OpenPNE_Action
         $this->set("hours", $hours);
 
         $config = biz_getConfig();
-        
+
         $this->set('is_closed_shisetsu', $config['IS_CLOSED_SHISETSU']);
 
         return 'success';

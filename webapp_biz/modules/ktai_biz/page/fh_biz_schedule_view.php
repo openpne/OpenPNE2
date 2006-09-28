@@ -40,7 +40,7 @@ class ktai_biz_page_fh_biz_schedule_view extends OpenPNE_Action
             'day' => null,
         );
         $this->set("date_val", $date_val);
-            
+
         //日記のカレンダー
         $calendar = db_common_diary_monthly_calendar($year, $month, $u);
 
@@ -48,7 +48,7 @@ class ktai_biz_page_fh_biz_schedule_view extends OpenPNE_Action
         $this->set("ym", $calendar['ym']);
 
         $list = biz_getScheduleInfo($requests['id']);
-        
+
         //繰り返しフラグのチェック
         $dayofweek = array('日','月','火','水','木','金', '土');
 
@@ -60,7 +60,7 @@ class ktai_biz_page_fh_biz_schedule_view extends OpenPNE_Action
 
         $list += array('rep_type_loc' => $tmp);
         $list += array('writer_name' => biz_getMemberNickname($list['c_member_id']));
-        
+
         $list['begin_time'] = substr($list['begin_time'], 0, 5);
         $list['finish_time'] = substr($list['finish_time'], 0, 5);
 
@@ -73,7 +73,7 @@ class ktai_biz_page_fh_biz_schedule_view extends OpenPNE_Action
         }
         $jshisetsu = biz_getJoinShisetsuSchedule($requests['id']);
 
-        
+
         //参加者は10人目まで表示
         if(count($jmembers) > 10){
             $jam = count($jmembers);
@@ -83,7 +83,7 @@ class ktai_biz_page_fh_biz_schedule_view extends OpenPNE_Action
             }
         }
         $this->set('jam', $jam);
-        
+
         $this->set('schedule', $list);
         $this->set('jmembers', $jmembers);
         $this->set('jmembers_enc', serialize($jmembers));
@@ -97,13 +97,13 @@ class ktai_biz_page_fh_biz_schedule_view extends OpenPNE_Action
             $repeat_begin = biz_getRepeatBegin($requests['id']);
             $repeat_finish = biz_getRepeatFinish($requests['id']);
             $repeat_term = strtotime($repeat_finish) - strtotime($repeat_begin);
-            
+
             $daycount = $repeat_term / (24 * 60 * 60) / 7;
-            
+
             $this->set('repeat_begin_date', $repeat_begin);
             $this->set('repeat_term', intval($daycount));
         }
-        
+
         if($list['rep_type'])  //繰り返し予定の場合はまとめて既読済みに
         {
             $rep_schedule = biz_getRepeatScheduleID($requests['id']);

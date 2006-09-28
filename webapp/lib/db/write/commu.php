@@ -486,7 +486,7 @@ function do_c_home_update_is_receive_mail($c_commu_id, $c_member_id, $is_receive
         'is_receive_mail' => (bool)$is_receive_mail,
         'is_receive_mail_pc' => (bool)$is_receive_mail_pc,
         'is_receive_message' => (bool)$is_receive_message,
-        
+
     );
     $where = array(
         'c_commu_id'  => intval($c_commu_id),

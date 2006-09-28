@@ -49,7 +49,7 @@ class admin_do_send_messages extends OpenPNE_Action
                 $sended_name = "メッセージ";
             break;
         }
-        
+
         admin_client_redirect('top', $sended_name.'を送信しました');
     }
 }

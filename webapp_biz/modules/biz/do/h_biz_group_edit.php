@@ -11,7 +11,7 @@ class biz_do_h_biz_group_edit extends OpenPNE_Action
     {
         $u = $GLOBALS['AUTH']->uid();
         $sessid = session_id();
-        
+
         $id = $requests['target_id'];
 
         if(!$requests['name'])
@@ -35,7 +35,7 @@ class biz_do_h_biz_group_edit extends OpenPNE_Action
         t_image_clear_tmp(session_id());
 
         biz_editGroup($id, $requests['name'], $u, $requests['info'], $filename, $requests['member_list']);
-        
+
         client_redirect_absolute("?m=biz&a=page_g_home&target_c_commu_id=".$id.'&msg='.urlencode('グループを編集しました'));
 
 

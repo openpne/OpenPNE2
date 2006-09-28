@@ -59,7 +59,7 @@ class biz_page_fh_biz_schedule_calendar extends OpenPNE_Action
 
                     $schedule = biz_getDateMemberSchedule($year,sprintf("%02d",$month),sprintf("%02d",$day),$target_id);
                     $banner = biz_isBannerSchedule($year, sprintf("%02d", $month), sprintf("%02d",$day), $target_id);
-                    
+
                     if(!empty($banner))
                         array_push($schedule, $banner);
 
@@ -74,7 +74,7 @@ class biz_page_fh_biz_schedule_calendar extends OpenPNE_Action
               if ($is_curr && $item['day'] == $curr_day) {
                 $item['now'] = true;
               }
-              
+
               $calendar[$i][] = $item;
             }
         }

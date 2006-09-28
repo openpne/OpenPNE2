@@ -20,7 +20,7 @@ class pc_page_c_send_message extends OpenPNE_Action
             handle_kengen_error();
         }
         //---
-        
+
         $this->set('inc_navi', fetch_inc_navi('c', $target_c_commu_id));
 
         //メンバー情報
@@ -29,7 +29,7 @@ class pc_page_c_send_message extends OpenPNE_Action
         $this->set("c_commu_id", $target_c_commu_id);
         //コミュニティ
         $this->set("c_commu", p_c_home_c_commu4c_commu_id($target_c_commu_id));
-        
+
         return 'success';
     }
 }

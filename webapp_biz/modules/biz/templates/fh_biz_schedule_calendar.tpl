@@ -138,7 +138,7 @@
 ({foreach from=$item.birth item=item_birth})
 <img src="./skin/icon_birthday.gif" class="icon"><a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item_birth.c_member_id})">({$item_birth.nickname})さん</a><br>
 ({/foreach})
-    
+
 ({* イベント *})
 ({foreach from=$item.event item=item_event})
 <img src="./skin/icon_event_({if $item_event.is_join})R({else})B({/if}).gif" class="icon"><a href="({t_url m=biz a=page_c_event_detail})&amp;target_c_commu_topic_id=({$item_event.c_commu_topic_id})">({$item_event.name})</a><br>

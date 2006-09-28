@@ -10,30 +10,30 @@ class ktai_biz_page_fh_biz_schedule_edit extends OpenPNE_Action
     {
         $u  = $GLOBALS['KTAI_C_MEMBER_ID'];
         $this->set('tail', $GLOBALS['KTAI_URL_TAIL']);
-        
-        
+
+
         if(empty($requests['target_id']) || ($requests['target_id'] == $u)) //自分自身
         {
                 $target_id = $u;
                 $this->set('is_h', true);   //判別フラグ
         }
-        
+
         else    //他人
         {
                 $target_id = $requests['target_id'];
                 $this->set('is_f', true);   //判別フラグ
         }
-        
+
         //日付・時刻を出す
         $begin_year = date("y", strtotime($requests['begin_date']));
         $begin_month = date("m", strtotime($requests['begin_date']));
         $begin_day = date("j", strtotime($requests['begin_date']));
-        
+
         $begin_hour = date("G", strtotime($requests['begin_time']));
         $begin_min = date("i", strtotime($requests['begin_time']));
         $finish_hour = date("G", strtotime($requests['finish_time']));
         $finish_min = date("i", strtotime($requests['finish_time']));
-        
+
         $j_members = unserialize($requests['members']);
 
         if ( $j_members ) {
@@ -47,12 +47,12 @@ class ktai_biz_page_fh_biz_schedule_edit extends OpenPNE_Action
             'hour' => $begin_hour,
             'min' => $begin_min,
             );
-        
+
         $finish = array(
             'hour' => $finish_hour,
             'min' => $finish_min,
         );
-        
+
         $this->set('begin', $begin);
         $this->set('finish', $finish);
         $this->set('title', $requests['title']);

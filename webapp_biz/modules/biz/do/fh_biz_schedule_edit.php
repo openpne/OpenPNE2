@@ -18,11 +18,11 @@ class biz_do_fh_biz_schedule_edit extends OpenPNE_Action
         {
             $redirect_script = '?m=biz&a=page_fh_biz_schedule_edit';
             $msg = urlencode('存在しない日付が指定されました。');
-            
+
             $schedule = biz_getScheduleInfo($requests['schedule_id']);
-            
+
             $begin_date = $schedule['begin_date'];
-            
+
             //日付関連の引数は返さなくてもよい
             $url = $redirect_script.
                         '&msg='.$msg.
@@ -34,7 +34,7 @@ class biz_do_fh_biz_schedule_edit extends OpenPNE_Action
                         '&sc_rwk_enc='.serialize($requests['sc_rwk_enc']).
                         '&sc_rcount='.$requests['sc_rcount'].
                         '&schedule_id='.$requests['schedule_id'];
-            
+
             client_redirect_absolute($url);
             exit();  //強制的にスクリプトを終了しなければいけない
         }
@@ -79,7 +79,7 @@ class biz_do_fh_biz_schedule_edit extends OpenPNE_Action
                         '&sc_rwk_enc='.serialize($requests['sc_rwk_enc']).
                         '&sc_rcount='.$requests['sc_rcount'].
                         '&schedule_id='.$requests['schedule_id'];
-            
+
             client_redirect_absolute($url);
             exit();  //強制的にスクリプトを終了しなければいけない
         }
@@ -142,7 +142,7 @@ class biz_do_fh_biz_schedule_edit extends OpenPNE_Action
             foreach($requests['sc_rwk'] as $value)
                 $rp_rule += 1 << $value;
         }
-        
+
         else  //繰り返しなし
             $finish_date = date("Y-m-d", strtotime($requests['sc_b_year'].'-'.$requests['sc_b_month'].'-'.($requests['sc_b_date']+($requests['sc_bn']-1))));
 
@@ -164,9 +164,9 @@ class biz_do_fh_biz_schedule_edit extends OpenPNE_Action
                 foreach($replist as $value)
                     biz_deleteSchedule($value);  //既存の繰り返し予定をすべて削除（予定日数の追加、削除のケースがありうるため）
             }
-            
+
             $first_id = biz_getScheduleMax() + 1;  //登録される予定のプライマリキー
-            
+
             for($i = 0; date("Ymd", strtotime($tmp)) < date("Ymd", strtotime($finish_date)); $i++)  //終了日に達するまで新規予定追加を繰り返す
             {
                 $nowday = strtotime($requests['sc_b_year'].'-'.$requests['sc_b_month'].'-'.($requests['sc_b_date']+$i));
@@ -175,7 +175,7 @@ class biz_do_fh_biz_schedule_edit extends OpenPNE_Action
                 if($rp_rule & (1 << date("w", $nowday)))
                     biz_insertSchedule($requests['sc_title'], $u, $tmp, $tmp, $begin_time, $finish_time, $requests['sc_memo'], $rp_rule, $first_id, $requests['sc_j_mem']);
             }
-            
+
             $schedule_id = biz_getScheduleMax();
         }
         $week = date("W", abs(strtotime($begin_date)-strtotime(date("Y-m-d"))))-1;

@@ -16,7 +16,7 @@ class biz_page_h_biz_group_add extends OpenPNE_Action
             intval($u),
         );
         $members = db_get_all($sql, $params);
-        
+
         $sql = 'SELECT c_member_id, nickname FROM c_member WHERE c_member_id = ?';
         $params = array(
             intval($u),

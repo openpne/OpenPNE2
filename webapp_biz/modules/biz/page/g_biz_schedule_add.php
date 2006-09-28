@@ -32,7 +32,7 @@ class biz_page_g_biz_schedule_add extends OpenPNE_Action
             'day' => null,
         );
         $this->set("date_val", $date_val);
-            
+
         //日記のカレンダー
         $calendar = db_common_diary_monthly_calendar($year, $month, $u);
 
@@ -52,7 +52,7 @@ class biz_page_g_biz_schedule_add extends OpenPNE_Action
                 $years .= '<option value="'.$i.'">';
             $years .= $i.'年';
         }
-        
+
         for($i = 1; $i <= 12; $i++)
         {
             $i_f = sprintf("%02d",$i);  //月は常に二桁
@@ -99,14 +99,14 @@ class biz_page_g_biz_schedule_add extends OpenPNE_Action
 
     //追加
         $members = array();
-        
+
         $sql = 'SELECT c_member_id, nickname FROM c_member WHERE c_member_id <>  ?';
         $params = array(
             intval($u),
         );
 
         $members = db_get_all($sql, $params);
-        
+
         $sql = 'SELECT c_member_id, nickname FROM c_member WHERE c_member_id = ?';
         $params = array(
             intval($u),
@@ -124,7 +124,7 @@ class biz_page_g_biz_schedule_add extends OpenPNE_Action
         }
 
         $this->set('member_list', $members);
-        
+
         $this->set('shisetsu', biz_getShisetsuList());
 
         return 'success';

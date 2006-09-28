@@ -10,7 +10,7 @@ class biz_do_h_biz_schedule_delete extends OpenPNE_Action
     {
         $u = $GLOBALS['AUTH']->uid();
         $sessid = session_id();
-        
+
         if($requests['is_rep'])
         {
             $rep_schedule = biz_getRepeatScheduleID($requests['schedule_id']);

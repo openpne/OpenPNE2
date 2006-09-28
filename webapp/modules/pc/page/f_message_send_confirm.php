@@ -57,8 +57,8 @@ class pc_page_f_message_send_confirm extends OpenPNE_Action
         $form_val['tmpfile_1'] = $tmpfiles[1];
         $form_val['tmpfile_2'] = $tmpfiles[2];
         $form_val['tmpfile_3'] = $tmpfiles[3];
-        
-        
+
+
         $target_c_member_id = $form_val['target_c_member_id'];
 
         if (p_common_is_access_block($u, $target_c_member_id)) {

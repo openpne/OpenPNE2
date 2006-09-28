@@ -38,7 +38,7 @@ class pc_do_c_send_message extends OpenPNE_Action
         }
         //---
         $c_member_id_list = p_c_commu_member_id_list4c_commu_id($target_c_commu_id);
-        
+
         foreach ($c_member_id_list as $c_member_id) {
             if ($c_member_id == $u)continue;
             do_common_send_message_syoukai_commu($u, $c_member_id, $subject, $body);

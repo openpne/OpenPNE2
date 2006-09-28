@@ -10,7 +10,7 @@ class admin_biz_do_biz_admin_edit_shisetsu extends OpenPNE_Action
 {
     function execute($requests)
     {
-    
+
         if(!$requests['name'])
         {
             admin_biz_client_redirect('biz_shisetsu_list', '施設名を入力してください。');
@@ -41,7 +41,7 @@ class admin_biz_do_biz_admin_edit_shisetsu extends OpenPNE_Action
 
 
         biz_editShisetsu($requests['biz_shisetsu_id'], $requests['name'], $filename);
-        
+
         admin_biz_client_redirect('biz_shisetsu_list', "施設を編集しました。");
     }
 }

@@ -11,7 +11,7 @@ class admin_biz_page_biz_shisetsu_list extends OpenPNE_Action
     function execute($requests)
     {
         $v = array();
-        
+
         $v['shisetsu_list'] = biz_admin_getShisetsuList();
         $this->set($v);
 

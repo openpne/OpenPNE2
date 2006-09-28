@@ -18,7 +18,7 @@ class admin_page_list_c_member extends OpenPNE_Action
 
         $v = array();
         $pager = array();
-        
+
 
         // ---管理画面絞り込み　ここから
 
@@ -32,7 +32,7 @@ class admin_page_list_c_member extends OpenPNE_Action
         }
 
         $v['cond'] = $cond;
-        
+
         //絞り込みのための年
         $v['years'] = get_int_assoc(1901, 2001);
 

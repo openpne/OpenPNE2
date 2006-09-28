@@ -20,7 +20,7 @@
 function biz_makeSerialArray($count, $begin=0, $increase = 1)
 {
     $tmp = array();
-    
+
     for($i = $begin; $i <= $count; $i += $increase)
         array_push($tmp, $i);
 

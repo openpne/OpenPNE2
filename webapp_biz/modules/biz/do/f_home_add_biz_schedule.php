@@ -16,7 +16,7 @@ class biz_do_f_home_add_biz_schedule extends OpenPNE_Action
 
         //書式チェック
         preg_match("/([0-2][0-9]:{0,1}[0-5][0-9]){0,1}(-{0,1})([0-2][0-9]:{0,1}[0-5][0-9]){0,1}\s*(.*)/", $text, $matches);
-        
+
         if($matches)  //クイック入力に対応した書式
         {
             $begin = $matches[1];
@@ -25,7 +25,7 @@ class biz_do_f_home_add_biz_schedule extends OpenPNE_Action
             $title = $matches[4];
 
             $begin_date = $finish_date = $start;
-            
+
             //書式パターンは以下の通り
             //  [開始時刻][時刻デリミタ][終了時刻][予定内容]
             //  [開始時刻][終了時刻][予定内容]
@@ -38,13 +38,13 @@ class biz_do_f_home_add_biz_schedule extends OpenPNE_Action
                 $begin_time = date("H:i", strtotime($begin));
                 $finish_time = date("H:i", strtotime($finish));
             }
-            
+
             elseif(!empty($begin) && !empty($delim))
             {
                 $begin_time = date("H:i", strtotime($begin));
                 $finish_time = null;
             }
-            
+
             elseif(!empty($finish) && !empty($delim))
             {
                 $begin_time = null;
@@ -70,7 +70,7 @@ class biz_do_f_home_add_biz_schedule extends OpenPNE_Action
             client_redirect_absolute("?m=pc&a=page_f_home&target_c_member_id=$target_id&msg=".urlencode('タイトルを入力してください。'));
             exit();
         }
-        
+
         if(empty($target_id))
         {
             client_redirect_absolute("?m=pc&a=page_f_home&target_c_member_id=$target_id&msg=".urlencode('不正な登録です。'));

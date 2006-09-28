@@ -16,7 +16,7 @@ class biz_do_h_home_edit_nickname extends OpenPNE_Action
         // ----------
 
         biz_changeNickname($member_id, $state);
-        
+
         client_redirect_absolute("?m=pc&a=page_h_home");
     }
 }

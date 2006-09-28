@@ -16,13 +16,13 @@ class biz_page_g_home extends OpenPNE_Action
         $target_id = $requests['target_c_commu_id'];
         // ----------
         $group = biz_getGroupData($target_id);
-        
+
         //コミュニティの存在の有無
         if (!$group) {
             client_redirect_absolute("?m=pc&a=page_h_err_c_home");
             exit;
         }
-        
+
         //コミュニティトップ
         $this->set("group", $group);
 
@@ -35,7 +35,7 @@ class biz_page_g_home extends OpenPNE_Action
             $member_list_full[$key] = db_common_c_member4c_member_id($value['c_member_id']);
             $member_list_full[$key]['last_login'] = p_f_home_last_login4access_date($member_list_full[$key]['access_date']);
         }
-        
+
         //コミュニティメンバー
         $this->set("member_list", $member_list);
         $this->set("member_count", count($member_list_full));
@@ -43,14 +43,14 @@ class biz_page_g_home extends OpenPNE_Action
 
     //biz_getScheduleWeek($member_id, $w, $cmd, $head = true, $value = true, $foot = true, $member_info = false)
         $this->set('calendar_head', biz_getScheduleWeek($target_id, $requests['w'], 'g', ture, false, false));
-        
+
         foreach($member_list_full as $key => $value)
             $calendar_value .= biz_getScheduleWeek($value['c_member_id'], $requests['w'], 'g', false, true, false, $value);
-        
+
         $this->set('calendar_value', $calendar_value);
         $this->set('calendar_foot', biz_getScheduleWeek($target_id, $requests['w'], 'g', false, false, true));
     //  $this->set('calendar', biz_getScheduleWeek($target_id, $requests['w'], 'g', $member_list));
-        
+
         if($u == $group['admin_id'])
             $this->set("is_admin", true);
 

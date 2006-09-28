@@ -13,11 +13,11 @@ class biz_page_s_edit_shisetsu extends OpenPNE_Action
         $sessid = session_id();
 
         $list = biz_getShisetsuData($id);
-        
+
         $this->set("list", $list);
         $this->set("id", $id);
         $config = biz_getConfig();
-        
+
         if($config['IS_CLOSED_SHISETSU'])
         {
             $p = array('msg' => '施設関連の操作は禁止されています。');

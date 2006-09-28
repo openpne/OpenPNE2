@@ -69,7 +69,7 @@ class pc_do_f_message_send_insert_c_message extends OpenPNE_Action
             openpne_redirect('pc', 'page_h_access_block');
         }
         //---
-        
+
         //返信済みにする
         if ($requests['jyusin_c_message_id']) {
             do_update_is_hensin($requests['jyusin_c_message_id']);
@@ -89,7 +89,7 @@ class pc_do_f_message_send_insert_c_message extends OpenPNE_Action
         $filename_3 = image_insert_c_image4tmp("ms_{$c_message_id}_3", $tmpfile_3);
         t_image_clear_tmp($sessid);
         db_update_c_message($c_message_id, $subject, $body, $filename_1, $filename_2, $filename_3);
-        
+
         $p = array('msg' => 1);
         openpne_redirect('pc', 'page_h_reply_message', $p);
     }
