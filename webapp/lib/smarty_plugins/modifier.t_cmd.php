@@ -9,7 +9,7 @@ function smarty_modifier_t_cmd($string)
     if (!OPENPNE_USE_CMD_TAG) {
         return $string;
     }
-    $regexp = '/&lt;cmd\s+src="(\w+)"\s+args="([\w-\+%]+(,[\w-\+%]+)*)"\s*&gt;/i';
+    $regexp = '/&lt;cmd\s+src="([\w\.]+)"\s+args="([\w-\+%]+(,[\w-\+%]+)*)"\s*&gt;/i';
     $string = preg_replace_callback($regexp, '_smarty_modifier_t_cmd_make_js', $string);
     return $string;
 
