@@ -40,9 +40,9 @@ class pc_page_fh_diary extends OpenPNE_Action
             $is_friend = db_friend_is_friend($u, $target_c_member_id);
 
             // check public_flag
-	        if (!pne_check_diary_public_flag($target_c_diary_id, $u)) {
-	            openpne_redirect('pc', 'page_h_err_diary_access');
-	        }
+            if (!pne_check_diary_public_flag($target_c_diary_id, $u)) {
+                openpne_redirect('pc', 'page_h_err_diary_access');
+            }
             // アクセスブロック
             if (p_common_is_access_block($u, $target_c_member_id)) {
                 openpne_redirect('pc', 'page_h_access_block');

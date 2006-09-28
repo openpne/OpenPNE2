@@ -518,7 +518,7 @@ function db_admin_get_auth_type($c_admin_user_id)
  */
 function _db_admin_c_member_id_list($cond_list)
 {
-	$sql = 'SELECT c_member_id'.
+    $sql = 'SELECT c_member_id'.
            ' FROM c_member'.
            ' WHERE 1';
 
@@ -578,7 +578,7 @@ function _db_admin_c_member_list($page, $page_size, &$pager, $cond_list)
 
 function db_c_profile_option4c_profile_option_id($c_profile_option_id)
 {
-	$sql = "SELECT * FROM c_profile_option" .
+    $sql = "SELECT * FROM c_profile_option" .
             " WHERE c_profile_option_id = ? ";
     
     return db_get_row($sql,array($c_profile_option_id));

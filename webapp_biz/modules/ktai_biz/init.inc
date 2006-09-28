@@ -41,9 +41,9 @@ function ktai_convert_emoji($arr)
 
 function ktai_convert($arr)
 {
-	$arr = ktai_convert_emoji($arr);
-	$arr = ktai_convert_encoding($arr);
-	return $arr;
+    $arr = ktai_convert_emoji($arr);
+    $arr = ktai_convert_encoding($arr);
+    return $arr;
 }
 
 $_GET     = ktai_convert($_GET);

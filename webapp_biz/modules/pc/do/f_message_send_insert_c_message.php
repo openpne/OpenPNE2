@@ -79,7 +79,7 @@ class pc_do_f_message_send_insert_c_message extends OpenPNE_Action
         if ($requests['target_c_message_id'] == $requests['jyusin_c_message_id']) {
             $c_message_id = do_common_send_message($u, $c_member_id_to, $subject, $body);
         } else {
-        	$c_message_id = $requests['target_c_message_id'];
+            $c_message_id = $requests['target_c_message_id'];
             update_message_to_is_save($requests['target_c_message_id'], $subject, $body, 1);
         }
         //画像挿入

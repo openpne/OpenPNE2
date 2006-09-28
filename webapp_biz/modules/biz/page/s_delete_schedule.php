@@ -9,12 +9,12 @@ class biz_page_s_delete_schedule extends OpenPNE_Action
 {
     function execute($requests)
     {
-		$u = $GLOBALS['AUTH']->uid();
+        $u = $GLOBALS['AUTH']->uid();
 
-		$this->set('target_id',$requests['target_id']);
+        $this->set('target_id',$requests['target_id']);
 
-		return 'success';
-	}
+        return 'success';
+    }
 }
 
 ?>

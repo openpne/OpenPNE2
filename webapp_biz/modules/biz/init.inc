@@ -16,20 +16,20 @@ $GLOBALS['__Framework']['default_normal'] = 'login_do_login';
 
 //<PCKTAI
 if (defined('OPENPNE_ENABLE_PC') && !OPENPNE_ENABLE_PC) {
-	// disable pc module
-	exit;
+    // disable pc module
+    exit;
 }
 //>
 
 
 function init_biz_page(&$smarty)
 {
-	$smarty->register_resource("pc",
-		array("pc_get_template",
-			"pc_get_timestamp",
-			"pc_get_secure",
-			"pc_get_trusted")
-	);
+    $smarty->register_resource("pc",
+        array("pc_get_template",
+            "pc_get_timestamp",
+            "pc_get_secure",
+            "pc_get_trusted")
+    );
 
     //文言系
     $smarty->assign('WORD_FRIEND', WORD_FRIEND);

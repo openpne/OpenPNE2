@@ -16,7 +16,7 @@ class admin_page_send_messages_search extends OpenPNE_Action
         foreach ($cond_list as $key=>$each_cond) {
             if (($key == "s_year") || ($key == "e_year"))continue;
             
-        	$c_profile_option = db_c_profile_option4c_profile_option_id($each_cond);
+            $c_profile_option = db_c_profile_option4c_profile_option_id($each_cond);
             $profile_value_list[$key]['value'] = $c_profile_option['value'];
             $profile_value_list[$key]['caption'] = $profile_list[$key]['caption'];
         }

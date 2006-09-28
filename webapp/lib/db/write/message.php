@@ -249,7 +249,7 @@ function do_common_send_message_event_message($c_member_id_from, $c_member_id_to
 function db_update_c_message($c_message_id, $subject, $body,
 $image_filename_1 = '', $image_filename_2 = '', $image_filename_3 = '')
 {
-	$data = array(
+    $data = array(
         'subject' => $subject,
         'body' => $body,
     );

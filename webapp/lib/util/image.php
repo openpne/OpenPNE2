@@ -104,10 +104,10 @@ function t_image_save2tmp($upfile, $uid, $prefix='', $ext='')
     $filepath = $img_tmp_dir_path . $filename;
 
     if (!file_exists($upfile['tmp_name'])) {
-		return false;
-	}
+        return false;
+    }
 
-	if (OPENPNE_TMP_IMAGE_DB) {
+    if (OPENPNE_TMP_IMAGE_DB) {
         if (!image_insert_c_tmp_image($upfile, $filename)) {
             return false;
         }
