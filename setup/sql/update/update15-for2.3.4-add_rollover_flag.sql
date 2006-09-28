@@ -1,1 +1,1 @@
-INSERT INTO `c_admin_config` values ('OPENPNE_ENABLE_ROLLOVER',0);
+INSERT INTO `c_admin_config` values (NULL,'OPENPNE_ENABLE_ROLLOVER',0);
