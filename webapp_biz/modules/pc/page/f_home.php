@@ -14,9 +14,9 @@ class pc_page_f_home extends OpenPNE_Action
         $target_c_member_id = $requests['target_c_member_id'];
         // ----------
 
-        // - IDが指定されていない場合
-        // - IDが自分の場合
-        // は h_home へリダイレクト
+        // - IDが指定されてぁE��ぁE��吁E
+        // - IDが�E刁E�E場吁E
+        // は h_home へリダイレクチE
         if (!$target_c_member_id || $target_c_member_id == $u) {
             openpne_redirect('pc', 'page_h_home');
         }
@@ -38,7 +38,7 @@ class pc_page_f_home extends OpenPNE_Action
         $is_friend = db_friend_is_friend($u, $target_c_member_id);
         if ($is_friend) {
             $target_c_member = db_common_c_member_with_profile($target_c_member_id, 'friend');
-            // 自分が書いた紹介文
+            // 自刁E��書ぁE��紹介文
             $this->set('my_friend_intro', p_f_home_c_friend_intro($u, $target_c_member_id));
         } else {
             $target_c_member = db_common_c_member_with_profile($target_c_member_id, 'public');
@@ -50,7 +50,7 @@ class pc_page_f_home extends OpenPNE_Action
         $this->set('c_member', db_common_c_member4c_member_id($u));
         $this->set('c_diary_list', db_diary_get_c_diary_list4c_member_id($target_c_member_id, 5, $u));
 
-        // --- f_home, h_prof 共通処理
+        // --- f_home, h_prof 共通�E琁E
 
         $this->set('target_c_member_id',$target_c_member_id);
         $target_c_member['last_login'] = p_f_home_last_login4access_date($target_c_member['access_date']);
@@ -70,7 +70,7 @@ class pc_page_f_home extends OpenPNE_Action
 
         $this->set('profile_list', db_common_c_profile_list());
 
-        // 誕生日まであと何日？
+        // 誕生日まであと何日�E�E
         $this->set('days_birthday', db_common_count_days_birthday4c_member_id($target_c_member_id));
 
         // inc_entry_point
@@ -78,12 +78,12 @@ class pc_page_f_home extends OpenPNE_Action
 
 
         // --- bizここから
-        // バナーをBIZ用右部拡張領域下に表示させる為の仕掛け
+        // バナーをBIZ用右部拡張領域下に表示させる為の仕掛ぁE
         $this->set('is_f_home', 1);
 
-        $biz_dir = OPENPNE_MODULES_BIZ_DIR.'/biz/';  //bizモジュールディレクトリの定義
-        include_once($biz_dir.'lib/smarty_functions.php');  //bizモジュールよりライブラリを拝借
-        include_once($biz_dir.'lib/mysql_functions.php');  //bizモジュールよりライブラリを拝借
+        $biz_dir = OPENPNE_MODULES_BIZ_DIR.'/biz/';  //bizモジュールチE��レクトリの定義
+        include_once($biz_dir.'lib/smarty_functions.php');  //bizモジュールよりライブラリを拝倁E
+        include_once($biz_dir.'lib/mysql_functions.php');  //bizモジュールよりライブラリを拝倁E
         
         $c_member = db_common_c_member4c_member_id($u);
         

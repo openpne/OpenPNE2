@@ -10,19 +10,19 @@
 <tr>
 <td class="container main_content" align="center">
 
-({ext_include file="inc_alert_box.tpl"})({* エラーメッセージコンテナ *})
+({ext_include file="inc_alert_box.tpl"})({* エラーメチE��ージコンチE�� *})
 
 <table class="container" border="0" cellspacing="0" cellpadding="0">({*BEGIN:container*})
 <tr>
 <td class="full_content" align="center">
 ({***************************})
-({**ここから：メインコンテンツ**})
+({**ここから�E�メインコンチE��チE*})
 ({***************************})
 
 <img src="./skin/dummy.gif" class="v_spacer_l">
 
 <!-- ********************************** -->
-<!-- ******ここから：新規登録****** -->
+<!-- ******ここから�E�新規登録****** -->
 ({t_form m=pc a=do_o_public_invite})
 <table border="0" cellspacing="0" cellpadding="0" style="width:650px;margin:0px auto;" class="border_07">
 <tr>
@@ -33,9 +33,9 @@
 <tr>
 <td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
 <td class="bg_01" align="center">
-<!-- *ここから：新規登録＞内容* -->
-({*ここから：header*})
-<!-- ここから：小タイトル -->
+<!-- *ここから�E�新規登録�E��E容* -->
+({*ここから�E�header*})
+<!-- ここから�E�小タイトル -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:636px;" class="border_01">
 <tr>
 <td style="width:36px;" class="bg_06"><img src="({t_img_url_skin filename=content_header_1})" style="width:30px;height:20px;" class="dummy"></td>
@@ -43,11 +43,11 @@
 <td style="width:140px;" align="right" class="bg_06">&nbsp;</td>
 </tr>
 </table>
-<!-- ここまで：小タイトル -->
-({*ここまで：header*})
-({*ここから：body*})
-<!-- ここから：主内容 -->
-<!-- ここから：主内容＞＞メッセージ欄 -->
+<!-- ここまで�E�小タイトル -->
+({*ここまで�E�header*})
+({*ここから�E�body*})
+<!-- ここから�E�主冁E�� -->
+<!-- ここから�E�主冁E���E�＞メチE��ージ欁E-->
 <table border="0" cellspacing="0" cellpadding="0" style="width:636px;">
 ({*********})
 <tr>
@@ -60,8 +60,8 @@
 
 <div style="padding:10px 30px;">
 
-メールアドレスと確認キーワードを入力してください。<br>
-入力されたメールアドレス宛に ({$SNS_NAME}) の招待状が送信されます。
+メールアドレスと確認キーワードを入力してください、Ebr>
+入力されたメールアドレス宛に ({$SNS_NAME}) の招征E��が送信されます、E
 
 </div>
 
@@ -74,8 +74,8 @@
 </tr>
 ({*********})
 </table>
-<!-- ここまで：主内容＞＞メッセージ欄 -->
-<!-- ここから：主内容＞＞変更入力欄 -->
+<!-- ここまで�E�主冁E���E�＞メチE��ージ欁E-->
+<!-- ここから�E�主冁E���E�＞変更入力欁E-->
 <table border="0" cellspacing="0" cellpadding="0" style="width:636px;">
 ({*********})
 <tr>
@@ -114,7 +114,7 @@
 
 <div class="padding_s">
 
-メールアドレス(確認)
+メールアドレス(確誁E
 
 </div>
 
@@ -143,7 +143,7 @@
 
 <div class="c_01" style="padding:5px;">
 
-確認キーワード 
+確認キーワーチE
 
 </div>
 
@@ -155,7 +155,7 @@
 
 <img src="./cap.php">
 <br>
-※上に表示されているキーワードをご記入下さい。<br>
+※上に表示されてぁE��キーワードをご記�E下さぁE��Ebr>
 <input name="captcha" size="30">
 
 </div>
@@ -189,13 +189,13 @@
 </tr>
 ({*********})
 </table>
-<!-- ここまで：主内容＞＞変更入力欄 -->
-<!-- ここまで：主内容 -->
-({*ここまで：body*})
-({*ここから：footer*})
-<!-- 無し -->
-({*ここまで：footer*})
-<!-- *ここまで：新規登録＞＞内容* -->
+<!-- ここまで�E�主冁E���E�＞変更入力欁E-->
+<!-- ここまで�E�主冁E�� -->
+({*ここまで�E�body*})
+({*ここから�E�footer*})
+<!-- 無ぁE-->
+({*ここまで�E�footer*})
+<!-- *ここまで�E�新規登録�E�＞�E容* -->
 </td>
 <td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
 </tr>
@@ -206,7 +206,7 @@
 </tr>
 </table>
 </form>
-<!-- ******ここまで：新規登録****** -->
+<!-- ******ここまで�E�新規登録****** -->
 <!-- ********************************** -->
 
 <img src="./skin/dummy.gif" class="v_spacer_l">
@@ -214,7 +214,7 @@
 <img src="./skin/dummy.gif" class="v_spacer_l">
 
 ({***************************})
-({**ここまで：メインコンテンツ**})
+({**ここまで�E�メインコンチE��チE*})
 ({***************************})
 </td>
 </tr>

@@ -4,7 +4,7 @@
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
-// アカウント管理
+// アカウント管琁E
 class admin_biz_page_list_c_admin_user extends OpenPNE_Action
 {
     function execute($requests)

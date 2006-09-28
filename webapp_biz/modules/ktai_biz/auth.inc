@@ -18,7 +18,7 @@ if (   empty($_SESSION['c_member_id'])
     __logout(15);
 }
 
-// セッションの有効期限
+// セチE��ョンの有効期限
 $lifetime = $GLOBALS['OpenPNE']['ktai']['session_lifetime'];
 $idletime = $GLOBALS['OpenPNE']['ktai']['session_idletime'];
 if (!isset($_SESSION['timestamp']) ||

@@ -18,8 +18,8 @@ class pc_do_f_link_request_insert_c_friend_confirm extends OpenPNE_Action
         $body = $requests['body'];
         // ----------
 
-        //--- 権限チェック
-        //フレンドでない or フレンド承認中でない
+        //--- 権限チェチE��
+        //フレンドでなぁEor フレンド承認中でなぁE
 
         $status = db_common_friend_status($u, $target_c_member_id);
         if ($status['is_friend']) {
@@ -30,7 +30,7 @@ class pc_do_f_link_request_insert_c_friend_confirm extends OpenPNE_Action
             openpne_redirect('pc', 'page_f_link_request_err_wait', $p);
         }
 
-        //アクセスブロック設定
+        //アクセスブロチE��設宁E
         if (p_common_is_access_block($u, $target_c_member_id)) {
             openpne_redirect('pc', 'page_h_access_block');
         }
@@ -41,22 +41,22 @@ class pc_do_f_link_request_insert_c_friend_confirm extends OpenPNE_Action
 
         db_friend_insert_c_friend_confirm($c_member_id_from,$target_c_member_id,$body);
 
-        //メッセージ
+        //メチE��ージ
         $c_member_to   = db_common_c_member4c_member_id($target_c_member_id);
         $c_member_from = db_common_c_member4c_member_id($c_member_id_from);
 
-        $subject =WORD_FRIEND."リンク要請メッセージ";
+        $subject =WORD_FRIEND."リンク要請メチE��ージ";
         $body_disp =
-            $c_member_from['nickname']." さんから".WORD_FRIEND."リンク要請のメッセージが届いています。\n".
+            $c_member_from['nickname']." さんから".WORD_FRIEND."リンク要請�EメチE��ージが届いてぁE��す、En".
             "\n".
-            "メッセージ：\n".
+            "メチE��ージ�E�\n".
             $body."\n".
             "\n".
-            "この要請について、承認待ちリストから承認または拒否を選択してください。\n";
+            "こ�E要請につぁE��、承認征E��リストから承認また�E拒否を選択してください、En";
 
         // ---bizここから
-        $biz_dir = OPENPNE_MODULES_BIZ_DIR.'/biz/';  //bizモジュールディレクトリの定義
-        include_once($biz_dir.'lib/mysql_functions.php');  //bizモジュールよりライブラリを拝借
+        $biz_dir = OPENPNE_MODULES_BIZ_DIR.'/biz/';  //bizモジュールチE��レクトリの定義
+        include_once($biz_dir.'lib/mysql_functions.php');  //bizモジュールよりライブラリを拝倁E
         if(biz_isKtaiMessage($target_c_member_id))
             biz_sendKtaiMessageSyoudakuMail($c_member_id_from, $target_c_member_id, $subject, $body_disp);
         // ---bizここまで

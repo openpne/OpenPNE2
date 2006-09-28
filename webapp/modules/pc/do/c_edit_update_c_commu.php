@@ -5,7 +5,7 @@
  */
 
 /**
- * コミュニティ情報の更新
+ * コミュニティ惁E��の更新
  */
 class pc_do_c_edit_update_c_commu extends OpenPNE_Action
 {
@@ -24,8 +24,8 @@ class pc_do_c_edit_update_c_commu extends OpenPNE_Action
         // ----------
         $upfile_obj = $_FILES['image_filename'];
 
-        //--- 権限チェック
-        //コミュニティ管理者
+        //--- 権限チェチE��
+        //コミュニティ管琁E��E
 
         $status = db_common_commu_status($u, $target_c_commu_id);
         if (!$status['is_commu_admin']) {
@@ -39,7 +39,7 @@ class pc_do_c_edit_update_c_commu extends OpenPNE_Action
 
         if ($upfile_obj['error'] !== UPLOAD_ERR_NO_FILE) {
             if (!($image = t_check_image($upfile_obj))) {
-                $err_msg[] = '画像は'.IMAGE_MAX_FILESIZE.'KB以内のGIF・JPEG・PNGにしてください';
+                $err_msg[] = '画像�E'.IMAGE_MAX_FILESIZE.'KB以冁E�EGIF・JPEG・PNGにしてください';
             }
         }
 
@@ -83,7 +83,7 @@ class pc_do_c_edit_update_c_commu extends OpenPNE_Action
             exit;
         }
 
-        //画像アップデート
+        //画像アチE�EチE�EチE
         $sessid = session_id();
         t_image_clear_tmp($sessid);
         if (file_exists($upfile_obj["tmp_name"])) {
