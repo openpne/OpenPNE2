@@ -14,9 +14,9 @@ class ktai_page_h_manage_friend extends OpenPNE_Action
         $page = $requests['page'];
         // ----------
 
-        // 1ペ�Eジ当たりに表示するフレンド�E数
+        // 1ページ当たりに表示するフレンドの数
         $page_size = 5;
-        //自刁E�E友達リスチE
+        //自分の友達リスト
         $list = k_p_fh_friend_list_friend_list4c_member_id($u, $page_size, $page);
 
         $this->set("friend_list", $list[0]);

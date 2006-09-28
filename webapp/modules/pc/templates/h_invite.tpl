@@ -15,19 +15,19 @@
 <tr>
 <td class="container main_content" align="center">
 
-({ext_include file="inc_alert_box.tpl"})({* エラーメチE��ージコンチE�� *})
+({ext_include file="inc_alert_box.tpl"})({* エラーメッセージコンテナ *})
 
 <table class="container" border="0" cellspacing="0" cellpadding="0">({*BEGIN:container*})
 <tr>
 <td class="full_content" align="center">
 ({***************************})
-({**ここから�E�メインコンチE��チE*})
+({**ここから：メインコンテンツ**})
 ({***************************})
 
 <img src="./skin/dummy.gif" class="v_spacer_l">
 
 <!-- ******************************************** -->
-<!-- ******ここから�E�招征E***** -->
+<!-- ******ここから：招待****** -->
 ({t_form m=pc a=page_h_invite_confirm})
 <table border="0" cellspacing="0" cellpadding="0" style="width:580px;" class="border_07">
 <tr>
@@ -38,19 +38,19 @@
 <tr>
 <td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
 <td class="bg_01" align="center">
-<!-- *ここから�E�招征E���E容* -->
-({*ここから�E�header*})
+<!-- *ここから：招待＞内容* -->
+({*ここから：header*})
 <table border="0" cellspacing="0" cellpadding="0" style="width:574px;" class="border_01">
 <tr>
 <td style="width:36px;" class="bg_06"><img src="({t_img_url_skin filename=content_header_1})" style="width:30px;height:20px;" class="dummy"></td>
-<td style="width:398px;padding:2px 0px;" class="bg_06"><span class="b_b c_00">友人めE{$smarty.const.SNS_NAME})に招征E��めE/span></td>
+<td style="width:398px;padding:2px 0px;" class="bg_06"><span class="b_b c_00">友人を({$smarty.const.SNS_NAME})に招待する</span></td>
 <td style="width:140px;" align="right" class="bg_06">&nbsp;</td>
 </tr>
 </table>
-<!-- ここまで�E�小タイトル -->
-({*ここまで�E�header*})
-({*ここから�E�body*})
-<!-- ここから�E�主冁E�� -->
+<!-- ここまで：小タイトル -->
+({*ここまで：header*})
+({*ここから：body*})
+<!-- ここから：主内容 -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:574px;">
 ({*********})
 <tr>
@@ -64,7 +64,7 @@
 
 <div class="c_01" style="padding:4px;text-align:center;">
 
-現在、新規登録を停止してぁE��す、E
+現在、新規登録を停止しています。
 
 </div>
 
@@ -83,7 +83,7 @@
 
 <div class="c_01" style="padding:4px;text-align:center;">
 
-、E{$smarty.const.SNS_NAME})」に招征E��たい方のメールアドレスを記�Eしてください、E
+「({$smarty.const.SNS_NAME})」に招待したい方のメールアドレスを記入してください。 
 
 </div>
 
@@ -112,9 +112,9 @@
 
 <input  name="mail" value="({$requests.mail})" size="30">
 ({if $smarty.const.OPENPNE_REGIST_FROM == $smarty.const.OPENPNE_REGIST_FROM_PC})
-<br>※携帯アドレスには招征E��送ることができません
+<br>※携帯アドレスには招待を送ることができません
 ({elseif $smarty.const.OPENPNE_REGIST_FROM == $smarty.const.OPENPNE_REGIST_FROM_KTAI})
-<br>※PCアドレスには招征E��送ることができません
+<br>※PCアドレスには招待を送ることができません
 ({/if})
 
 </div>
@@ -132,7 +132,7 @@
 
 <div class="c_01" style="padding:5px;">
 
-メチE��ージ (任愁E
+メッセージ (任意)
 
 </div>
 
@@ -171,9 +171,9 @@
 
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td valign="top" class="s_ss">※例！E/td>
+<td valign="top" class="s_ss">※例．</td>
 <td valign="top" class="s_ss">
-こんにちは、○○です。この前話したサイト�E招征E��を送ります、Ebr>
+こんにちは、○○です。この前話したサイトの招待状を送ります。<br>
 </td>
 </tr>
 </table>
@@ -200,7 +200,7 @@
 
 <div class="c_01" style="padding:5px;">
 
-確認キーワーチE 
+確認キーワード  
 
 </div>
 
@@ -212,7 +212,7 @@
 
 <img src="./cap.php">
 <br>
-※上に表示されてぁE��キーワードをご記�E下さぁE��E
+※上に表示されているキーワードをご記入下さい。
 <input  name="captcha" size="30">
 
 
@@ -248,12 +248,12 @@
 </tr>
 ({*********})
 </table>
-<!-- ここまで�E�主冁E�� -->
-({*ここまで�E�body*})
-({*ここから�E�footer*})
-<!-- 無ぁE-->
-({*ここまで�E�footer*})
-<!-- *ここまで�E�招征E��＞�E容* -->
+<!-- ここまで：主内容 -->
+({*ここまで：body*})
+({*ここから：footer*})
+<!-- 無し -->
+({*ここまで：footer*})
+<!-- *ここまで：招待＞＞内容* -->
 </td>
 <td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
 </tr>
@@ -264,7 +264,7 @@
 </tr>
 </table>
 </form>
-<!-- ******ここまで�E�招征E***** -->
+<!-- ******ここまで：招待****** -->
 <!-- ******************************************** -->
 
 <img src="./skin/dummy.gif" class="v_spacer_l">
@@ -272,7 +272,7 @@
 ({if $inviting_member || $k_inviting_member})
 
 <!-- ***************************** -->
-<!-- ******ここから�E�招征E��覧****** -->
+<!-- ******ここから：招待一覧****** -->
 ({t_form m=pc a=do_h_invite_delete_member})
 <input type="hidden" name="sessid" value="({$PHPSESSID})">
 <table border="0" cellspacing="0" cellpadding="0" style="width:580px;" class="border_07">
@@ -284,19 +284,19 @@
 <tr>
 <td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
 <td class="bg_01" align="center">
-<!-- *ここから�E�招征E��覧�E��E容* -->
-({*ここから�E�header*})
+<!-- *ここから：招待一覧＞内容* -->
+({*ここから：header*})
 <table border="0" cellspacing="0" cellpadding="0" style="width:574px;" class="border_01">
 <tr>
 <td style="width:36px;" class="bg_06"><img src="({t_img_url_skin filename=content_header_1})" style="width:30px;height:20px;" class="dummy"></td>
-<td style="width:398px;padding:2px 0px;" class="bg_06"><span class="b_b c_00">招征E��メールアドレス一覧</span></td>
+<td style="width:398px;padding:2px 0px;" class="bg_06"><span class="b_b c_00">招待中メールアドレス一覧</span></td>
 <td style="width:140px;" align="right" class="bg_06">&nbsp;</td>
 </tr>
 </table>
-<!-- ここまで�E�小タイトル -->
-({*ここまで�E�header*})
-({*ここから�E�body*})
-<!-- ここから�E�主冁E�� -->
+<!-- ここまで：小タイトル -->
+({*ここまで：header*})
+({*ここから：body*})
+<!-- ここから：主内容 -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:574px;">
 ({*********})
 <tr>
@@ -310,7 +310,7 @@
 
 <div class="c_01" style="padding:5px;">
 
-({$item.r_date|date_format:"%Y年%m朁Ed日"})
+({$item.r_date|date_format:"%Y年%m月%d日"})
 
 </div>
 
@@ -341,7 +341,7 @@
 
 <div class="c_01" style="padding:5px;">
 
-({$item.r_datetime|date_format:"%Y年%m朁Ed日"})
+({$item.r_datetime|date_format:"%Y年%m月%d日"})
 
 </div>
 
@@ -372,7 +372,7 @@
 
 <div style="padding:6px 100px;text-align:center;">
 
-<input type=submit value="　剁E 除　">
+<input type=submit value="　削  除　">
 
 </div>
 
@@ -385,12 +385,12 @@
 </tr>
 ({*********})
 </table>
-<!-- ここまで�E�主冁E�� -->
-({*ここまで�E�body*})
-({*ここから�E�footer*})
-<!-- 無ぁE-->
-({*ここまで�E�footer*})
-<!-- *ここまで�E�招征E��覧�E�＞�E容* -->
+<!-- ここまで：主内容 -->
+({*ここまで：body*})
+({*ここから：footer*})
+<!-- 無し -->
+({*ここまで：footer*})
+<!-- *ここまで：招待一覧＞＞内容* -->
 </td>
 <td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
 </tr>
@@ -401,7 +401,7 @@
 </tr>
 </table>
 </form>
-<!-- ******ここまで�E�招征E��覧****** -->
+<!-- ******ここまで：招待一覧****** -->
 <!-- ******************************************** -->
 
 <img src="./skin/dummy.gif" class="v_spacer_l">
@@ -410,7 +410,7 @@
 
 
 ({***************************})
-({**ここまで�E�メインコンチE��チE*})
+({**ここまで：メインコンテンツ**})
 ({***************************})
 </td>
 </tr>

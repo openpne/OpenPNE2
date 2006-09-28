@@ -5,7 +5,7 @@
  */
 
 /**
- * コミュニティ参加リクエスチE
+ * コミュニティ参加リクエスト
  */
 class pc_do_c_join_request_insert_c_commu_member_confirm extends OpenPNE_Action
 {
@@ -18,8 +18,8 @@ class pc_do_c_join_request_insert_c_commu_member_confirm extends OpenPNE_Action
         $body = $requests['body'];
         // ----------
 
-        //--- 権限チェチE��
-        //コミュニティメンバ�EでなぁEor 参加承認中でなぁE
+        //--- 権限チェック
+        //コミュニティメンバーでない or 参加承認中でない
 
         $status = db_common_commu_status($u, $target_c_commu_id);
         if ($status['is_commu_member'] ||
@@ -33,24 +33,24 @@ class pc_do_c_join_request_insert_c_commu_member_confirm extends OpenPNE_Action
 
         db_commu_insert_c_commu_member_confirm($target_c_commu_id, $c_member_id_from, $body);
 
-        //メチE��ージ
+        //メッセージ
         {
             $c_commu = _db_c_commu4c_commu_id($target_c_commu_id);
             $c_member_id_to = $c_commu['c_member_id_admin'];
             $c_member_from  = db_common_c_member4c_member_id($c_member_id_from);
 
-            $subject ="コミュニティ参加要請メチE��ージ";
+            $subject ="コミュニティ参加要請メッセージ";
             $body_disp =
-                $c_member_from['nickname']." さんから ".$c_commu['name']." コミュニティへの参加希望メチE��ージが届いてぁE��す、En".
+                $c_member_from['nickname']." さんから ".$c_commu['name']." コミュニティへの参加希望メッセージが届いています。\n".
                 "\n".
-                "メチE��ージ�E�\n".
+                "メッセージ：\n".
                 $body."\n".
                 "\n".
-                "こ�E要請につぁE��、承認征E��リストから承認また�E拒否を選択してください、En";
+                "この要請について、承認待ちリストから承認または拒否を選択してください。\n";
 
             // ---bizここから
-            $biz_dir = OPENPNE_MODULES_BIZ_DIR.'/biz/';  //bizモジュールチE��レクトリの定義
-            include_once($biz_dir.'lib/mysql_functions.php');  //bizモジュールよりライブラリを拝倁E
+            $biz_dir = OPENPNE_MODULES_BIZ_DIR.'/biz/';  //bizモジュールディレクトリの定義
+            include_once($biz_dir.'lib/mysql_functions.php');  //bizモジュールよりライブラリを拝借
 
             if(biz_isKtaiMessage($target_c_member_id))
                 biz_sendKtaiMessageSyoudakuMail($u, $target_c_member_id, $subject, $body);

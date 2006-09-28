@@ -4,15 +4,15 @@
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
-// c_sns_config を編雁E
+// c_sns_config を編集
 class admin_page_edit_c_sns_config extends OpenPNE_Action
 {
     function execute($requests)
     {
         $v = array();
         
-        /*色設定名配�E構造見本*/
-        $v['bgcolor_scheme_names'] = array(//吁E��は配色設定名になります、E
+        /*色設定名配列構造見本*/
+        $v['bgcolor_scheme_names'] = array(//各値は配色設定名になります。
                 'border_01' ,
                 'border_07' ,
                 'border_10' ,

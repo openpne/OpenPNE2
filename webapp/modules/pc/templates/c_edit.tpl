@@ -15,19 +15,19 @@
 <tr>
 <td class="container main_content" align="center">
 
-({ext_include file="inc_alert_box.tpl"})({* エラーメチE��ージコンチE�� *})
+({ext_include file="inc_alert_box.tpl"})({* エラーメッセージコンテナ *})
 
 <table class="container" border="0" cellspacing="0" cellpadding="0">({*BEGIN:container*})
 <tr>
 <td class="full_content" align="center">
 ({***************************})
-({**ここから�E�メインコンチE��チE*})
+({**ここから：メインコンテンツ**})
 ({***************************})
 
 <img src="./skin/dummy.gif" class="v_spacer_l">
 
 <!-- **************************************** -->
-<!-- ******ここから�E�コミュニティ設定変更****** -->
+<!-- ******ここから：コミュニティ設定変更****** -->
 ({t_form _enctype=file m=pc a=do_c_edit_update_c_commu})
 <input type="hidden" name="sessid" value="({$PHPSESSID})">
 <input type="hidden" name="target_c_commu_id" value="({$target_c_commu_id})">
@@ -41,9 +41,9 @@
 <tr>
 <td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
 <td class="bg_01" align="center">
-<!-- *ここから�E�コミュニティ設定変更�E��E容* -->
-({*ここから�E�header*})
-<!-- ここから�E�小タイトル -->
+<!-- *ここから：コミュニティ設定変更＞内容* -->
+({*ここから：header*})
+<!-- ここから：小タイトル -->
 <div class="border_01">
 <table border="0" cellspacing="0" cellpadding="0" style="width:644px;">
 <tr>
@@ -53,10 +53,10 @@
 </tr>
 </table>
 </div>
-<!-- ここまで�E�小タイトル -->
-({*ここまで�E�header*})
-({*ここから�E�body*})
-<!-- ここから�E�主冁E�� -->
+<!-- ここまで：小タイトル -->
+({*ここまで：header*})
+({*ここから：body*})
+<!-- ここから：主内容 -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:644px;">
 ({*********})
 <tr>
@@ -69,7 +69,7 @@
 
 <div class="padding_s">
 
-コミュニティ吁E
+コミュニティ名
 
 </div>
 
@@ -97,7 +97,7 @@
 
 <div class="padding_s">
 
-カチE��リ
+カテゴリ
 
 </div>
 
@@ -128,7 +128,7 @@
 
 <div class="padding_s">
 
-参加条件と<br>公開篁E��
+参加条件と<br>公開範囲
 
 </div>
 
@@ -184,7 +184,7 @@
 
 <div class="padding_s">
 
-冁Enbsp;省E
+写&nbsp;真
 
 </div>
 
@@ -227,7 +227,7 @@
 
 <div class="padding_s">
 <input name="is_display_map" type="radio" value="1"({if $c_commu.is_display_map}) checked="checked"({/if})>表示する<br>
-<input name="is_display_map" type="radio" value="0"({if !$c_commu.is_display_map}) checked="checked"({/if})>表示しなぁE
+<input name="is_display_map" type="radio" value="0"({if !$c_commu.is_display_map}) checked="checked"({/if})>表示しない
 </div>
 
 </td>
@@ -244,8 +244,8 @@
 
 <div class="padding_s">
 
-地図惁E��の設宁Ebr>
-�E��E道府県を選択！E
+地図情報の設定<br>
+（都道府県を選択）
 
 </div>
 
@@ -257,7 +257,7 @@
 
 <select name="map_pref_id">
 <option value="0">選択してください</option>
-<option value="-1"({if !$pref_id && $c_commu.is_display_map}) selected="selected"({/if})>そ�E他（手動設定！E/option>
+<option value="-1"({if !$pref_id && $c_commu.is_display_map}) selected="selected"({/if})>その他（手動設定）</option>
 ({foreach from=$pref_list item=item})
 <option value="({$item.c_profile_pref_id})"({if $pref_id == $item.c_profile_pref_id}) selected="selected"({/if})>({$item.pref})</option>
 ({/foreach})
@@ -279,8 +279,8 @@
 
 <div class="padding_s">
 
-地図惁E��の設宁Ebr>
-�E�手動設定！E
+地図情報の設定<br>
+（手動設定）
 
 </div>
 
@@ -289,11 +289,11 @@
 <td class="bg_02" align="left" valign="middle">
 
 <div class="padding_s">
-緯度�E�Einput name="map_latitude" type="text" size="14" value="({$c_commu.map_latitude})">&nbsp;
-経度�E�Einput name="map_longitude" type="text" size="14" value="({$c_commu.map_longitude})">&nbsp;
-拡大玁E��Einput name="map_zoom" type="text" size="4" value="({$c_commu.map_zoom})" maxlength="2"><br>
+緯度：<input name="map_latitude" type="text" size="14" value="({$c_commu.map_latitude})">&nbsp;
+経度：<input name="map_longitude" type="text" size="14" value="({$c_commu.map_longitude})">&nbsp;
+拡大率：<input name="map_zoom" type="text" size="4" value="({$c_commu.map_zoom})" maxlength="2"><br>
 
-※手動設定�E場合�E、E�E道府県の選択で「その他（手動設定）」を選んでください、E
+※手動設定の場合は、都道府県の選択で「その他（手動設定）」を選んでください。
 </div>
 
 </td>
@@ -313,7 +313,7 @@
 <div class="padding_s">
 
 参加お知らせ<br>
-メール受信設宁E
+メール受信設定
 
 </div>
 
@@ -324,8 +324,8 @@
 <div class="padding_s">
 
 <input type="radio" class="no_bg" name="is_send_join_mail" value="1"({if $c_commu.is_send_join_mail}) checked="checked"({/if})>受信する<br>
-<input type="radio" class="no_bg" name="is_send_join_mail" value="0"({if !$c_commu.is_send_join_mail}) checked="checked"({/if})>受信しなぁEbr>
-※コミュニティに新しく参加老E��加わった時に、管琁E��EあなぁEにメールを送ります、E
+<input type="radio" class="no_bg" name="is_send_join_mail" value="0"({if !$c_commu.is_send_join_mail}) checked="checked"({/if})>受信しない<br>
+※コミュニティに新しく参加者が加わった時に、管理者(あなた)にメールを送ります。
 
 </div>
 
@@ -359,12 +359,12 @@
 </tr>
 ({*********})
 </table>
-<!-- ここまで�E�主冁E�� -->
-({*ここまで�E�body*})
-({*ここから�E�footer*})
-<!-- 無ぁE-->
-({*ここまで�E�footer*})
-<!-- *ここまで�E�コミュニティ設定変更�E�＞�E容* -->
+<!-- ここまで：主内容 -->
+({*ここまで：body*})
+({*ここから：footer*})
+<!-- 無し -->
+({*ここまで：footer*})
+<!-- *ここまで：コミュニティ設定変更＞＞内容* -->
 </td>
 <td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
 </tr>
@@ -376,13 +376,13 @@
 </table>
 
 </form>
-<!-- ******ここまで�E�コミュニティ設定変更****** -->
+<!-- ******ここまで：コミュニティ設定変更****** -->
 <!-- **************************************** -->
 
 <img src="./skin/dummy.gif" class="v_spacer_l">
 
 <!-- ****************************************** -->
-<!-- ******ここから�E�コミュニティを削除する****** -->
+<!-- ******ここから：コミュニティを削除する****** -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:650px;margin:0px auto;" class="border_07">
 <tr>
 <td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
@@ -392,9 +392,9 @@
 <tr>
 <td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
 <td class="bg_01" align="center">
-<!-- *ここから�E�コミュニティを削除する�E��E容* -->
-({*ここから�E�header*})
-<!-- ここから�E�小タイトル -->
+<!-- *ここから：コミュニティを削除する＞内容* -->
+({*ここから：header*})
+<!-- ここから：小タイトル -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:644px;" class="border_01">
 <tr>
 <td style="width:36px;" class="bg_06"><img src="({t_img_url_skin filename=content_header_1})" style="width:30px;height:20px;" class="dummy"></td>
@@ -403,10 +403,10 @@
 </tr>
 </table>
 </div>
-<!-- ここまで�E�小タイトル -->
-({*ここまで�E�header*})
-({*ここから�E�body*})
-<!-- ここから�E�主冁E�� -->
+<!-- ここまで：小タイトル -->
+({*ここまで：header*})
+({*ここから：body*})
+<!-- ここから：主内容 -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:644px;">
 ({*********})
 <tr>
@@ -421,15 +421,15 @@
 
 ({if $is_topic})
 
-コミュニティを削除するには、トピックをすべて削除する忁E��があります、Ebr>
-トピチE��がある場合�E、それらを削除した後、このペ�Eジに再度アクセスしてください、Ebr>
-(削除ボタンが表示されまぁE<br>
+コミュニティを削除するには、トピックをすべて削除する必要があります。<br>
+トピックがある場合は、それらを削除した後、このページに再度アクセスしてください。<br>
+(削除ボタンが表示されます)<br>
 <br>
-削除の際�Eトラブル等を避けるため、あらかじめ参加老E��削除を告知してください、E
+削除の際はトラブル等を避けるため、あらかじめ参加者へ削除を告知してください。
 
 ({else})
 
-こ�Eコミュニティを削除します。削除の際�Eトラブル等を避けるため、あらかじめ参加老E��削除を告知してください、E
+このコミュニティを削除します。削除の際はトラブル等を避けるため、あらかじめ参加者へ削除を告知してください。
 
 <img src="./skin/dummy.gif" class="v_spacer_l">
 
@@ -455,12 +455,12 @@
 </tr>
 ({*********})
 </table>
-<!-- ここまで�E�主冁E�� -->
-({*ここまで�E�body*})
-({*ここから�E�footer*})
-<!-- 無ぁE-->
-({*ここまで�E�footer*})
-<!-- *ここまで�E�コミュニティを削除する�E�＞�E容* -->
+<!-- ここまで：主内容 -->
+({*ここまで：body*})
+({*ここから：footer*})
+<!-- 無し -->
+({*ここまで：footer*})
+<!-- *ここまで：コミュニティを削除する＞＞内容* -->
 </td>
 <td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
 </tr>
@@ -470,13 +470,13 @@
 <td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
 </tr>
 </table>
-<!-- ******ここまで�E�コミュニティを削除する****** -->
+<!-- ******ここまで：コミュニティを削除する****** -->
 <!-- ****************************************** -->
 
 <img src="./skin/dummy.gif" class="v_spacer_l">
 
 ({***************************})
-({**ここまで�E�メインコンチE��チE*})
+({**ここまで：メインコンテンツ**})
 ({***************************})
 </td>
 </tr>

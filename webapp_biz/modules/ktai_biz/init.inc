@@ -4,7 +4,7 @@
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
-//チE��ォルト�Eージ
+//デフォルトページ
 $GLOBALS['__Framework']['default_page'] = 'fh_calendar_week';
 
 //<PCKTAI
@@ -19,11 +19,11 @@ if (CHECK_KTAI_UA && !isKtaiUserAgent()) {
     openpne_redirect('pc');
 }
 
-$biz_dir = OPENPNE_MODULES_BIZ_DIR.'/biz/';  //bizモジュールチE��レクトリの定義
-include($biz_dir.'lib/smarty_functions.php');  //bizモジュールよりライブラリを拝倁E
-include($biz_dir.'lib/mysql_functions.php');  //bizモジュールよりライブラリを拝倁E
+$biz_dir = OPENPNE_MODULES_BIZ_DIR.'/biz/';  //bizモジュールディレクトリの定義
+include($biz_dir.'lib/smarty_functions.php');  //bizモジュールよりライブラリを拝借
+include($biz_dir.'lib/mysql_functions.php');  //bizモジュールよりライブラリを拝借
 
-// 斁E��コード変換
+// 文字コード変換
 function ktai_convert_encoding($arr)
 {
     return is_array($arr) ?
@@ -31,7 +31,7 @@ function ktai_convert_encoding($arr)
         mb_convert_encoding($arr, 'UTF-8', 'SJIS-win');
 }
 
-// 絵斁E��変換
+// 絵文字変換
 function ktai_convert_emoji($arr)
 {
     return is_array($arr) ?
@@ -54,11 +54,11 @@ ini_set('session.use_cookies', '0');
 
 function init_ktai_biz_page(&$smarty)
 {
-    //---- inc_ チE��プレート用 変数 ----//
+    //---- inc_ テンプレート用 変数 ----//
     $smarty->assign('inc_ktai_header', fetch_inc_ktai_header());
     $smarty->assign('inc_ktai_footer', fetch_inc_ktai_footer());
 
-    //全ペ�Eジ共通変数のアサイン
+    //全ページ共通変数のアサイン
     $smarty->assign('msg', k_p_common_msg4msg_id($_REQUEST['msg']));
     $smarty->assign('WORD_FRIEND', WORD_FRIEND);
     $smarty->assign('WORD_MY_FRIEND', WORD_MY_FRIEND);

@@ -10,19 +10,19 @@
 <tr>
 <td class="container main_content" align="center">
 
-({ext_include file="inc_alert_box.tpl"})({* エラーメチE��ージコンチE�� *})
+({ext_include file="inc_alert_box.tpl"})({* エラーメッセージコンテナ *})
 
 <table class="container" border="0" cellspacing="0" cellpadding="0">({*BEGIN:container*})
 <tr>
 <td class="full_content" align="center">
 ({***************************})
-({**ここから�E�メインコンチE��チE*})
+({**ここから：メインコンテンツ**})
 ({***************************})
 
 <img src="./skin/dummy.gif" class="v_spacer_l">
 
 <!-- ******************************** -->
-<!-- ******ここから�E�個人惁E��入劁E***** -->
+<!-- ******ここから：個人情報入力****** -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:580px;margin:0px auto;" class="border_07">
 <tr>
 <td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
@@ -32,21 +32,21 @@
 <tr>
 <td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
 <td class="bg_01" align="center">
-<!-- *ここから�E�個人惁E��入力＞�E容* -->
-({*ここから�E�header*})
-<!-- ここから�E�小タイトル -->
+<!-- *ここから：個人情報入力＞内容* -->
+({*ここから：header*})
+<!-- ここから：小タイトル -->
 <div class="border_01">
 <table border="0" cellspacing="0" cellpadding="0" style="width:564px;">
 <tr>
 <td style="width:36px;" class="bg_06"><img src="({t_img_url_skin filename=content_header_1})" style="width:30px;height:20px;" class="dummy"></td>
-<td style="width:528px;padding:2px 0px;" class="bg_06"><span class="b_b c_00">プロフィール確誁E/span>&nbsp;&nbsp;<span class="c_00">(以下�E冁E��で登録します。確認�EぁE��、登録ボタンをクリチE��してください、E</span></td>
+<td style="width:528px;padding:2px 0px;" class="bg_06"><span class="b_b c_00">プロフィール確認</span>&nbsp;&nbsp;<span class="c_00">(以下の内容で登録します。確認のうえ、登録ボタンをクリックしてください。)</span></td>
 </tr>
 </table>
 </div>
-<!-- ここまで�E�小タイトル -->
-({*ここまで�E�header*})
-({*ここから�E�body*})
-<!-- ここから�E�主冁E�� -->
+<!-- ここまで：小タイトル -->
+({*ここまで：header*})
+({*ここから：body*})
+<!-- ここから：主内容 -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:566px;">
 ({*********})
 <tr>
@@ -60,7 +60,7 @@
 
 <div class="padding_s">
 
-ニックネ�Eム <span class="caution">※</span>
+ニックネーム <span class="caution">※</span>
 
 </div>
 
@@ -103,9 +103,9 @@
 ({$prof.birth_year|default:"&nbsp;"})年
 
 ({if $prof.public_flag_birth_year == 'friend'})
-�E�E{$WORD_MY_FRIEND})まで公開！E
+（({$WORD_MY_FRIEND})まで公開）
 ({elseif $prof.public_flag_birth_year == 'private'})
-�E��E開しなぁE��E
+（公開しない）
 ({/if})
 
 </div>
@@ -134,7 +134,7 @@
 
 <div class="padding_s">
 
-({$prof.birth_month|default:"&nbsp;"})朁E{$prof.birth_day|default:"&nbsp;"})日
+({$prof.birth_month|default:"&nbsp;"})月({$prof.birth_day|default:"&nbsp;"})日
 
 </div>
 
@@ -206,9 +206,9 @@
 ({/if})
 
 ({if $prof.profile[$profile.name].public_flag == 'friend'})
-�E�E{$WORD_MY_FRIEND})まで公開！E
+（({$WORD_MY_FRIEND})まで公開）
 ({elseif $prof.profile[$profile.name].public_flag == 'private'})
-�E��E開しなぁE��E
+（公開しない）
 ({/if})
 
 ({/if})
@@ -273,7 +273,7 @@ PCアドレス <span class="caution">※</span>
 
 <div class="padding_s">
 
-パスワーチE<span class="caution">※</span>
+パスワード <span class="caution">※</span>
 
 </div>
 
@@ -283,7 +283,7 @@ PCアドレス <span class="caution">※</span>
 
 <div class="padding_s">
 
-�E�表示しません�E�E
+（表示しません）
 
 </div>
 
@@ -301,7 +301,7 @@ PCアドレス <span class="caution">※</span>
 
 <div class="padding_s">
 
-秘寁E�E質啁E<span class="caution">※</span>
+秘密の質問 <span class="caution">※</span>
 
 </div>
 
@@ -329,7 +329,7 @@ PCアドレス <span class="caution">※</span>
 
 <div class="padding_s">
 
-質問�E答え <span class="caution">※</span>
+質問の答え <span class="caution">※</span>
 
 </div>
 
@@ -386,12 +386,12 @@ PCアドレス <span class="caution">※</span>
 </tr>
 ({*********})
 </table>
-<!-- ここまで�E�主冁E�� -->
-({*ここまで�E�body*})
-({*ここから�E�footer*})
-<!-- 無ぁE-->
-({*ここまで�E�footer*})
-<!-- *ここまで�E�個人惁E��入力＞＞�E容* -->
+<!-- ここまで：主内容 -->
+({*ここまで：body*})
+({*ここから：footer*})
+<!-- 無し -->
+({*ここまで：footer*})
+<!-- *ここまで：個人情報入力＞＞内容* -->
 </td>
 <td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
 </tr>
@@ -401,7 +401,7 @@ PCアドレス <span class="caution">※</span>
 <td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
 </tr>
 </table>
-<!-- ******ここまで�E�個人惁E��入劁E***** -->
+<!-- ******ここまで：個人情報入力****** -->
 <!-- ******************************** -->
 
 <img src="./skin/dummy.gif" class="v_spacer_l">
@@ -411,7 +411,7 @@ PCアドレス <span class="caution">※</span>
 <img src="./skin/dummy.gif" class="v_spacer_l">
 
 ({***************************})
-({**ここまで�E�メインコンチE��チE*})
+({**ここまで：メインコンテンツ**})
 ({***************************})
 </td>
 </tr>

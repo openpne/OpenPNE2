@@ -1,6 +1,6 @@
 ({$inc_ktai_header|smarty:nodefaults})
 
-<center><font color="orange">({$WORD_MY_FRIEND_HALF})管琁E/font></center>
+<center><font color="orange">({$WORD_MY_FRIEND_HALF})管理</font></center>
 <hr>
 
 ({if $msg})
@@ -13,9 +13,9 @@
 ({foreach from=$friend_list item=friend})
 <!--*VV matrix_L VV*-->
 <a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$friend.c_member_id})&amp;({$tail})">({$friend.nickname})</a><br>
-<a href="({t_url m=ktai a=page_f_intro_edit})&amp;target_c_member_id=({$friend.c_member_id})&amp;({$tail})">→紹介文を書ぁE/a><br>
+<a href="({t_url m=ktai a=page_f_intro_edit})&amp;target_c_member_id=({$friend.c_member_id})&amp;({$tail})">→紹介文を書く</a><br>
 <a href="({t_url m=ktai a=page_fh_intro})&amp;target_c_member_id=({$friend.c_member_id})&amp;({$tail})">→紹介文を見る</a><br>
-<a href="({t_url m=ktai a=do_fh_friend_list_delete_c_friend})&amp;target_c_member_id=({$friend.c_member_id})&amp;({$tail})">ↁE{$WORD_MY_FRIEND_HALF})からはずす</a><br>
+<a href="({t_url m=ktai a=do_fh_friend_list_delete_c_friend})&amp;target_c_member_id=({$friend.c_member_id})&amp;({$tail})">→({$WORD_MY_FRIEND_HALF})からはずす</a><br>
 
 <br>
 ({/foreach})

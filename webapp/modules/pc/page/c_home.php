@@ -28,13 +28,13 @@ class pc_page_c_home extends OpenPNE_Action
         $this->set('is_receive_mail_pc', db_commu_is_receive_mail_pc($c_commu_id, $u));
         $this->set('is_receive_message', db_commu_is_receive_message($c_commu_id, $u));
 
-        //コミュニティメンバ�E
+        //コミュニティメンバー
         $this->set('c_commu_member_list', p_c_home_c_commu_member_list4c_commu_id($c_commu_id, 9));
 
-        //非�E開コミュニティに管琁E��E��ら招征E��れたかどぁE��
+        //非公開コミュニティに管理者から招待されたかどうか
         $this->set('admin_invite', db_c_commu4c_admin_invite_id($c_commu_id, $u));
 
-        //参加コミュニティの新着トピチE��書き込み
+        //参加コミュニティの新着トピック書き込み
         $this->set('new_topic_comment', p_c_home_new_topic_comment4c_commu_id($c_commu_id, 7));
         //参加コミュニティの新着イベント書き込み
         $this->set('new_topic_comment_event', p_c_home_new_topic_comment4c_commu_id($c_commu_id, 7, 1));

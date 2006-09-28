@@ -15,7 +15,7 @@ class pc_page_h_home extends OpenPNE_Action
     {
         $u = $GLOBALS['AUTH']->uid();
 
-        //bizライブラリを使ぁE
+        //bizライブラリを使う
         include_once(OPENPNE_MODULES_BIZ_DIR.'/biz/lib/smarty_functions.php');
         include_once(OPENPNE_MODULES_BIZ_DIR.'/biz/lib/mysql_functions.php');
 
@@ -24,30 +24,30 @@ class pc_page_h_home extends OpenPNE_Action
 
         /// infomation ///
 
-        // 運営老E��ら�Eおしらせ
+        // 運営者からのおしらせ
         $this->set('site_info', p_common_c_siteadmin4target_pagename('h_home'));
 
-        //未読メチE��ージの数をお知らせ
+        //未読メッセージの数をお知らせ
         $this->set('num_message_not_is_read',p_h_message_count_c_message_not_is_read4c_member_to_id($u));
-        //日記コメント�E未読の数をお知らせ
+        //日記コメントの未読の数をお知らせ
         $this->set('num_diary_not_is_read',p_h_diary_count_c_diary_not_is_read4c_member_id($u));
-        //日記コメント�E未読の中で、読ませるも�Eを送る
+        //日記コメントの未読の中で、読ませるものを送る
         $this->set('first_diary_read',p_h_diary_c_diary_first_diary_read4c_member_id($u));
 
-        //あなたにフレンド承認を求めてぁE��メンバ�EリスチE
+        //あなたにフレンド承認を求めているメンバーリスト
         $f_confirm_list = p_h_confirm_list_anatani_c_friend_confirm_list4c_member_id($u);
         $this->set('f_confirm_list', $f_confirm_list);
         $this->set('num_f_confirm_list', count($f_confirm_list));
-        //あなたにコミュニティ参加承認を求めてぁE��メンバ�EリスチE
+        //あなたにコミュニティ参加承認を求めているメンバーリスト
         $h_confirm_list = p_h_confirm_list_anatani_c_commu_member_confirm_list4c_member_id($u);
         $this->set('h_confirm_list', $h_confirm_list);
         $this->set('num_h_confirm_list', count($h_confirm_list) );
-        // あなたにコミュニティ管琁E��E��代を希望してぁE��メンバ�E
+        // あなたにコミュニティ管理者交代を希望しているメンバー
         $anatani_c_commu_admin_confirm_list = p_h_confirm_list_anatani_c_commu_admin_confirm_list4c_member_id($u);
         $this->set('anatani_c_commu_admin_confirm_list',$anatani_c_commu_admin_confirm_list);
         $this->set('num_anatani_c_commu_admin_confirm_list', count($anatani_c_commu_admin_confirm_list));
 
-        // 誕生日かどぁE��
+        // 誕生日かどうか
         $this->set('birthday_flag', p_h_home_birthday_flag4c_member_id($u));
 
         /// 左側 ///
@@ -55,43 +55,43 @@ class pc_page_h_home extends OpenPNE_Action
         $c_member = db_common_c_member4c_member_id($u);
         // メンバ情報
         $this->set('c_member', $c_member);
-        // フレンドリスチE
+        // フレンドリスト
         $this->set('c_friend_list', p_f_home_c_friend_list4c_member_id($u, 9));
         $this->set('c_friend_count', db_friend_count_friends($u));
         // 参加コミュニティ
         $this->set('c_commu_user_list', p_h_home_c_commu_list4c_member_id($u, 9));
         $this->set('fh_com_count_user',p_common_count_c_commu4c_member_id($u));
 
-        /// 最新惁E�� ///
+        /// 最新情報 ///
 
-        // フレンド最新日訁E
+        // フレンド最新日記
         $this->set('c_diary_friend_list', p_h_home_c_diary_friend_list4c_member_id($u, 5));
         // フレンド最新blog
         $this->set('c_rss_cache_list', p_h_diary_list_friend_c_rss_cache_list($u, 5));
-        // 日記コメント記�E履歴
+        // 日記コメント記入履歴
         $this->set('c_diary_my_comment_list', p_h_home_c_diary_my_comment_list4c_member_id($u, 5));
         // 参加コミュニティの新着書き込み
         $this->set('c_commu_topic_comment_list', p_h_home_c_commu_topic_comment_list4c_member_id($u, 5));
         // レビュー
         $this->set('c_friend_review_list', p_h_home_c_friend_review_list4c_member_id($u, 5));
 
-        /// 自刁E�E惁E�� ///
+        /// 自分の情報 ///
 
-        // 日訁E
+        // 日記
         $this->set('c_diary_list', db_diary_get_c_diary_list4c_member_id($u, 5));
         // 外部blog
         $this->set('c_blog_list', p_h_home_h_blog_list_friend4c_member_id($u, 5, 1));
         // レビュー
         $this->set('c_review_list', db_review_c_review_list4member($u, 5));
 
-        /// そ�E仁E///
+        /// その他 ///
 
         // 紹介文
         $this->set('c_friend_intro_list', p_h_home_c_friend_intro_list4c_member_id($u, 5));
 
         // 今日の日付、曜日
         $this->set('r_datetime', date('m/d'));
-        $date = array('日','朁E,'火','水','木','釁E,'圁E);
+        $date = array('日','月','火','水','木','金','土');
         $this->set('r_datetime_date', $date[date('w')]);
 
         /// 週間カレンダー
@@ -109,22 +109,22 @@ class pc_page_h_home extends OpenPNE_Action
         // inc_entry_point
         $this->set('inc_entry_point', fetch_inc_entry_point_h_home($this->getView()));
 
-        //お気に入りフィーチE
+        //お気に入りフィード
         if (USE_BOOKMARK_FEED) {
-            //お気に入り�E最新日訁E
+            //お気に入りの最新日記
             $this->set('bookmark_diary_list', db_bookmark_diary_list($u, 5));
 
-            //お気に入り�E最新ブログ
+            //お気に入りの最新ブログ
             $this->set('bookmark_blog_list', db_bookmark_blog_list($u, 5));
 
-            //お気に入り�EメンチE
+            //お気に入りのメンバ
             $this->set('bookmark_member_list', db_bookmark_member_list($u, 9));
             $this->set('bookmark_count', db_bookmark_count($u));
         }
 
 
         //--- biz ここから
-        //nak 20060217 バナーをBIZ用右部拡張領域下に表示させる為の仕掛ぁE
+        //nak 20060217 バナーをBIZ用右部拡張領域下に表示させる為の仕掛け
         $this->set('is_h_home', 1);
 
 //      list($ru_list) = p_h_message_box_c_message_received_user_list4c_member_id4range($u, 1, 20);
@@ -167,7 +167,7 @@ class pc_page_h_home extends OpenPNE_Action
         $Week = new Calendar_Week(date('Y', $time), date('m', $time), date('d', $time), 0);
         $Week->build();
         $calendar = array();
-        $dayofweek = array('日','朁E,'火','水','木','釁E,'圁E);
+        $dayofweek = array('日','月','火','水','木','金','土');
         $i = 0;
         while ($Day = $Week->fetch()) {
             $y = $Day->thisYear();

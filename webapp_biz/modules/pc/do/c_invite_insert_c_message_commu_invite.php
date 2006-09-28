@@ -19,7 +19,7 @@ class pc_do_c_invite_insert_c_message_commu_invite extends OpenPNE_Action
         if (!$c_member_id_list) {
             $p = array(
                 'target_c_commu_id' => $target_c_commu_id,
-                'msg' => '紹介�Eの'.WORD_MY_FRIEND.'を選択してださい',
+                'msg' => '紹介先の'.WORD_MY_FRIEND.'を選択してださい',
             );
             openpne_redirect('pc', 'page_c_invite', $p);
         }
@@ -27,13 +27,13 @@ class pc_do_c_invite_insert_c_message_commu_invite extends OpenPNE_Action
         if (is_null($body) || $body === '') {
             $p = array(
                 'target_c_commu_id' => $target_c_commu_id,
-                'msg' => 'メチE��ージを�E力してください',
+                'msg' => 'メッセージを入力してください',
             );
             openpne_redirect('pc', 'page_c_invite', $p);
         }
 
-        //--- 権限チェチE��
-        //フレンチE
+        //--- 権限チェック
+        //フレンド
 
         foreach ($c_member_id_list as $c_member_id) {
             if (!db_friend_is_friend($c_member_id, $u)) {
@@ -50,8 +50,8 @@ class pc_do_c_invite_insert_c_message_commu_invite extends OpenPNE_Action
         $public_flag = $commu['public_flag'];
 
         // ---bizここから
-        $biz_dir = OPENPNE_MODULES_BIZ_DIR.'/biz/';  //bizモジュールチE��レクトリの定義
-        include_once($biz_dir.'lib/mysql_functions.php');  //bizモジュールよりライブラリを拝倁E
+        $biz_dir = OPENPNE_MODULES_BIZ_DIR.'/biz/';  //bizモジュールディレクトリの定義
+        include_once($biz_dir.'lib/mysql_functions.php');  //bizモジュールよりライブラリを拝借
         // ---bizここまで
 
         foreach ($c_member_id_list as $c_member_id) {
@@ -62,7 +62,7 @@ class pc_do_c_invite_insert_c_message_commu_invite extends OpenPNE_Action
             // ---bizここまで
 
             do_common_send_message_syoukai_commu($u, $c_member_id, $msg_subject, $msg_body);
-            //招征E��E��コミュニティ管琁E��E��、かつ非�E開コミュニティの場吁E
+            //招待者がコミュニティ管理者で、かつ非公開コミュニティの場合
             if (($c_member_id_admin == $u)&&($public_flag != 'public')) {
                 db_commu_insert_c_commu_admin_invite($target_c_commu_id, $c_member_id);
             }
