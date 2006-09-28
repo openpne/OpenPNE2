@@ -675,7 +675,7 @@ function put_mail_queue($address, $subject, $body, $is_receive_mail=true, $from=
     $body = mb_convert_encoding($body, "JIS");
     $body = str_replace($cr, $lf, str_replace($crlf, $lf, $body));
     
-    require_once 'Queue.php';
+    require_once 'Mail/Queue.php';
     
     $db_opt = array(
         "type"=>"db",

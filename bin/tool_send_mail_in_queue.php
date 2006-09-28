@@ -7,8 +7,8 @@
 require_once './config.inc.php';
 require_once OPENPNE_WEBAPP_DIR . '/init.inc';
 
-require_once 'Queue.php';
-    
+require_once 'Mail/Queue.php';
+
 $db_opt = array(
     "type"=>"db",
     "dsn"=>$GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn'],
