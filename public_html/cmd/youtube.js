@@ -5,10 +5,10 @@ function main(id, width, height) {
     width = parseInt(width);
     height = parseInt(height);
     if (width <= 0 || width > 425) {
-        width = 200;
+        width = 425;
     }
     if (height <= 0 || height > 350) {
-        height = parseInt(width * 14 / 17);
+        height = 350;
     }
     var html = '<object width="'
             + width
