@@ -116,7 +116,7 @@ function assign_color_user_({$key})() {
 <th>&nbsp;</th>
 ({foreach from=$preset_bgcolors name="PB" item=item})
 ({/foreach})
-<th colspan="({$smarty.foreach.PB.total})">Preset Colors</th>
+<th colspan="({$smarty.foreach.PB.total})">プリセットカラー</th>
 
 ({if $user_save_bgcolors})
 ({foreach from=$user_save_bgcolors name="USB" item=item})
@@ -140,7 +140,7 @@ function assign_color_user_({$key})() {
 <tr>
 <th>&nbsp;</th>
 ({foreach from=$preset_bgcolors key=key item=item})
-<td style="background:#({$item.symbol|default:"FFFFFF"});"><input type="button" value="load" onclick="assign_color_({$key})()"></td>
+<td style="background:#({$item.symbol|default:"FFFFFF"});" align="center"><input type="button" value="設定" onclick="assign_color_({$key})()"></td>
 ({/foreach})
 ({if $user_save_bgcolors})
 ({foreach from=$user_save_bgcolors key=key item=item})
@@ -150,6 +150,8 @@ function assign_color_user_({$key})() {
 
 </tr>
 </table>
+
+<br>
 
 <table border="0" cellspacing="0" cellpadding="0" class="bgcolor_scheme-config">
 <tr>
