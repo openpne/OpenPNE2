@@ -1,3 +1,10 @@
+function url2cmd(url){
+    if (!url.match(/^http:\/\/www\.watchme\.tv\/v\/\?mid=([a-z0-9]+)$/)) {
+        return;
+    }
+    var id =  RegExp.$1;
+    main(id,425,350);
+}
 function main(id, width, height) {
 	if (!id.match(/^[a-zA-Z0-9_-]+$/)) {
 		return;
