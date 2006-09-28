@@ -66,7 +66,7 @@ class pc_do_h_config_3 extends OpenPNE_Action
 
         // ---bizここから
         $biz_dir = OPENPNE_MODULES_BIZ_DIR.'/biz/';  //bizモジュールディレクトリの定義
-        include_once($biz_dir.'lib/mysql_functions.php');  //bizモジュールよりライブラリを拝借
+        include_once $biz_dir . 'lib/mysql_functions.php';  //bizモジュールよりライブラリを拝借
 
         biz_changeIsKtaiMessage($u, $is_receive_ktai_mail);
         // ---bizここまで

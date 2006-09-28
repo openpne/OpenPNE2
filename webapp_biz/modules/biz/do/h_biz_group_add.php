@@ -13,18 +13,15 @@ class biz_do_h_biz_group_add extends OpenPNE_Action
 
         $member_list = serialize($requests['member_list']);
 
-        if(!$requests['name'])
-        {
+        if (!$requests['name']) {
             client_redirect_absolute('?m=biz&a=page_h_biz_group_add&m=biz&msg='.urlencode('グループ名を登録してください。').'&name='.$requests['name'].'&info='.$requests['info'].'&memberlist='.$member_list);
             exit();
         }
 
         $filename = '';
-        if($_FILES['image_filename']['name'])
-        {
+        if ($_FILES['image_filename']['name']) {
             $filename = biz_saveImage($_FILES['image_filename'], "g_".$sessid);
-            if(!$filename)
-            {
+            if (!$filename) {
                 $filename = $requests['image_filename'];
                 client_redirect_absolute('?m=biz&a=page_h_biz_group_add&msg='.urlencode('画像は300KB以内のGIF・JPEG・PNGにしてください。').'&m=biz&id='.$id);
                 exit();

@@ -46,7 +46,7 @@ class pc_page_c_event_list extends OpenPNE_Action
 
         if (!$is_c_commu_member && $c_commu['public_flag'] == "auth_commu_member") {
             $is_warning = true;
-        }else{
+        } else {
             $is_warning = false;
         }
         $this->set("is_warning", $is_warning);

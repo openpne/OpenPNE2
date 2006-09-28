@@ -19,9 +19,11 @@ if (CHECK_KTAI_UA && !isKtaiUserAgent()) {
     openpne_redirect('pc');
 }
 
-$biz_dir = OPENPNE_MODULES_BIZ_DIR.'/biz/';  //bizモジュールディレクトリの定義
-include($biz_dir.'lib/smarty_functions.php');  //bizモジュールよりライブラリを拝借
-include($biz_dir.'lib/mysql_functions.php');  //bizモジュールよりライブラリを拝借
+// bizモジュールディレクトリの定義
+$biz_dir = OPENPNE_MODULES_BIZ_DIR.'/biz/';
+// bizモジュールライブラリ
+require_once $biz_dir . 'lib/smarty_functions.php';
+require_once $biz_dir . 'lib/mysql_functions.php';
 
 // 文字コード変換
 function ktai_convert_encoding($arr)

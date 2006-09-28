@@ -562,7 +562,7 @@ function _db_admin_c_member_list($page, $page_size, &$pager, $cond_list)
 {
     $ids = _db_admin_c_member_id_list($cond_list);
     $total_num = count($ids);
-    $ids = array_slice( $ids, ($page - 1)*$page_size, $page_size);
+    $ids = array_slice($ids, ($page - 1) * $page_size, $page_size);
 
     $c_member_list = array();
     foreach ($ids as $id) {
@@ -578,10 +578,9 @@ function _db_admin_c_member_list($page, $page_size, &$pager, $cond_list)
 
 function db_c_profile_option4c_profile_option_id($c_profile_option_id)
 {
-    $sql = "SELECT * FROM c_profile_option" .
-            " WHERE c_profile_option_id = ? ";
-
-    return db_get_row($sql,array($c_profile_option_id));
+    $sql = "SELECT * FROM c_profile_option WHERE c_profile_option_id = ? ";
+    $params = array(intval($c_profile_option_id));
+    return db_get_row($sql, $params);
 }
 
 /**
@@ -591,17 +590,17 @@ function validate_cond($requests)
 {
     $cond_list = array();
     //誕生年
-    if ( !empty($requests['s_year']) ) {
+    if (!empty($requests['s_year'])) {
         $cond_list['s_year'] = intval($requests['s_year']);
     }
-    if ( !empty($requests['e_year']) ) {
+    if (!empty($requests['e_year'])) {
         $cond_list['e_year'] = intval($requests['e_year']);
     }
     //プロフィール
     $profile_list = db_common_c_profile_list();
 
     foreach ($profile_list as $key => $value) {
-        if ( !empty($requests[$key]) ) {
+        if (!empty($requests[$key])) {
             $cond_list[$key] = intval($requests[$key]);
         }
     }

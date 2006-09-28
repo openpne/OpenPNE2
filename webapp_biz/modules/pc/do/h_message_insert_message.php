@@ -34,12 +34,13 @@ class pc_do_h_message_insert_message extends OpenPNE_Action
 
         // ---bizここから
         $biz_dir = OPENPNE_MODULES_BIZ_DIR.'/biz/';  //bizモジュールディレクトリの定義
-        include_once($biz_dir.'lib/mysql_functions.php');  //bizモジュールよりライブラリを拝借
-        if(biz_isKtaiMessage($target_c_member_id))
+        include_once $biz_dir . 'lib/mysql_functions.php';  //bizモジュールよりライブラリを拝借
+        if (biz_isKtaiMessage($target_c_member_id)) {
             biz_sendKtaiMessage($u, $target_c_member_id, $title, $body);
+        }
         // ---bizここまで
 
-        do_common_send_message($u, $target_c_member_id, $title,$body);
+        do_common_send_message($u, $target_c_member_id, $title, $body);
 
         openpne_redirect('pc', 'page_h_message_box');
     }

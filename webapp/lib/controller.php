@@ -217,8 +217,7 @@ function openpne_forward($module, $type = '', $action = '', $errors = array())
         if ($GLOBALS['__Framework']['is_secure'] && $type == 'page') {
             if ($module == 'pc') {
                 p_access_log($GLOBALS['AUTH']->uid(), $action);
-            }
-            elseif ($module == 'ktai') {
+            } elseif ($module == 'ktai') {
                 p_access_log($GLOBALS['KTAI_C_MEMBER_ID'], $action, 1);
             }
         }

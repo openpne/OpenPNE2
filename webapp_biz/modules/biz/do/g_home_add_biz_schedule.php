@@ -17,19 +17,19 @@ class biz_do_g_home_add_biz_schedule extends OpenPNE_Action
         //書式チェック
         preg_match("/([0-2][0-9].*?[0-5][0-9]).*?([0-2][0-9].*?[0-5][0-9])\s*(.*)/", $text, $matches);
 
-        if($matches)  //クイック入力に対応した書式
-        {
+        if ($matches) {
+            //クイック入力に対応した書式
             $title = $matches[3];
             $begin_date = $finish_date = $start;
-            $begin_time = date("H:i",strtotime($matches[1]));
+            $begin_time = date("H:i", strtotime($matches[1]));
 
-            if(empty($matches[2]))
+            if (empty($matches[2])) {
                 $finish_time = null;
-            else
-                $finish_time = date("H:i",strtotime($matches[2]));
-        }
-        else  //通常の予定入力
-        {
+            } else {
+                $finish_time = date("H:i", strtotime($matches[2]));
+            }
+        } else {
+            //通常の予定入力
             $title = $text;
             $begin_date = $finish_date = $start;
             $begin_time = $finish_time = null;
@@ -37,10 +37,10 @@ class biz_do_g_home_add_biz_schedule extends OpenPNE_Action
 
         $members = biz_getGroupMember($target_id);
         $members_id = array();
-        foreach($members as $key => $values)
+        foreach ($members as $key => $values) {
             array_push($members_id, $values['c_member_id']);
-        if(empty($text))
-        {
+        }
+        if (empty($text)) {
             client_redirect_absolute("?m=biz&a=page_g_home&target_c_commu_id=$target_id&msg=".urlencode('タイトルを入力してください。'));
             exit();  //強制的にスクリプトを終了しなければいけない
         }

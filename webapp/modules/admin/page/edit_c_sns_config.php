@@ -13,24 +13,24 @@ class admin_page_edit_c_sns_config extends OpenPNE_Action
 
         /*色設定名配列構造見本*/
         $v['bgcolor_scheme_names'] = array(//各値は配色設定名になります。
-                'border_01' ,
-                'border_07' ,
-                'border_10' ,
-                'bg_00' ,
-                'bg_01' ,
-                'bg_02' ,
-                'bg_03' ,
-                'bg_04' ,
-                'bg_05' ,
-                'bg_06' ,
-                'bg_07' ,
-                'bg_08' ,
-                'bg_09' ,
-                'bg_10' ,
-                'bg_11' ,
-                'bg_12' ,
-                'bg_13'
-       );
+            'border_01',
+            'border_07',
+            'border_10',
+            'bg_00',
+            'bg_01',
+            'bg_02',
+            'bg_03',
+            'bg_04',
+            'bg_05',
+            'bg_06',
+            'bg_07',
+            'bg_08',
+            'bg_09',
+            'bg_10',
+            'bg_11',
+            'bg_12',
+            'bg_13',
+        );
 
         $v['preset_bgcolors'] = db_select_c_sns_config_all();
 

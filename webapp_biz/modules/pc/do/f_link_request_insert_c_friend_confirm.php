@@ -25,7 +25,7 @@ class pc_do_f_link_request_insert_c_friend_confirm extends OpenPNE_Action
         if ($status['is_friend']) {
             $p = array('target_c_member_id' => $target_c_member_id);
             openpne_redirect('pc', 'page_f_link_request_err_already', $p);
-        } elseif($status['is_friend_confirm']) {
+        } elseif ($status['is_friend_confirm']) {
             $p = array('target_c_member_id' => $target_c_member_id);
             openpne_redirect('pc', 'page_f_link_request_err_wait', $p);
         }
@@ -39,7 +39,7 @@ class pc_do_f_link_request_insert_c_friend_confirm extends OpenPNE_Action
 
         $c_member_id_from = $u;
 
-        db_friend_insert_c_friend_confirm($c_member_id_from,$target_c_member_id,$body);
+        db_friend_insert_c_friend_confirm($c_member_id_from, $target_c_member_id, $body);
 
         //メッセージ
         $c_member_to   = db_common_c_member4c_member_id($target_c_member_id);
@@ -56,9 +56,10 @@ class pc_do_f_link_request_insert_c_friend_confirm extends OpenPNE_Action
 
         // ---bizここから
         $biz_dir = OPENPNE_MODULES_BIZ_DIR.'/biz/';  //bizモジュールディレクトリの定義
-        include_once($biz_dir.'lib/mysql_functions.php');  //bizモジュールよりライブラリを拝借
-        if(biz_isKtaiMessage($target_c_member_id))
+        include_once $biz_dir . 'lib/mysql_functions.php';  //bizモジュールよりライブラリを拝借
+        if (biz_isKtaiMessage($target_c_member_id)) {
             biz_sendKtaiMessageSyoudakuMail($c_member_id_from, $target_c_member_id, $subject, $body_disp);
+        }
         // ---bizここまで
 
 

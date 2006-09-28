@@ -19,9 +19,6 @@ class admin_page_list_c_member extends OpenPNE_Action
         $v = array();
         $pager = array();
 
-
-        // ---管理画面絞り込み　ここから
-
         //絞り込み条件作成
         $cond_list = validate_cond($_REQUEST);
         $v['cond_list'] = $cond_list;
@@ -44,21 +41,12 @@ class admin_page_list_c_member extends OpenPNE_Action
             $v['msg'] = '※開始年は終了年より小さくして下さい';
         }
 
-        // ---管理画面絞り込み　ここまで
-
-
-
-
         $v['SNS_NAME'] = SNS_NAME;
         $v['c_profile_list'] = db_common_c_profile_list4null();
         if ($requests['mail_address']) {
             $v['c_member_list'] = db_admin_c_member4mail_address($requests['mail_address']);
         } else {
-
-        // ---管理画面絞り込み　ここから
             $v['c_member_list'] = _db_admin_c_member_list($requests['page'], $requests['page_size'], $pager, $cond_list);
-        // ---管理画面絞り込み　ここまで
-
         }
         foreach ($v['c_member_list'] as $key => $value) {
             $v['c_member_list'][$key]['c_member_invite'] =

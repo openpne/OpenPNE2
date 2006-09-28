@@ -28,7 +28,7 @@ class pc_do_f_message_send_insert_c_message extends OpenPNE_Action
         if (null == $subject) {
             $msg1 = "件名を入力してください";
         }
-        if (null == $body){
+        if (null == $body) {
             $msg2 = "メッセージを入力してください";
         }
 
@@ -92,7 +92,7 @@ class pc_do_f_message_send_insert_c_message extends OpenPNE_Action
 
         // ---bizここから
         $biz_dir = OPENPNE_MODULES_BIZ_DIR.'/biz/';  //bizモジュールディレクトリの定義
-        include_once($biz_dir.'lib/mysql_functions.php');  //bizモジュールよりライブラリを拝借
+        include_once $biz_dir.'lib/mysql_functions.php';  //bizモジュールよりライブラリを拝借
 
         if(biz_isKtaiMessage($c_member_id_to))
             biz_sendKtaiMessage($u, $c_member_id_to, $subject, $body);

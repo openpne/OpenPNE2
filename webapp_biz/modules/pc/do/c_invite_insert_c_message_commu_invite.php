@@ -51,14 +51,15 @@ class pc_do_c_invite_insert_c_message_commu_invite extends OpenPNE_Action
 
         // ---bizここから
         $biz_dir = OPENPNE_MODULES_BIZ_DIR.'/biz/';  //bizモジュールディレクトリの定義
-        include_once($biz_dir.'lib/mysql_functions.php');  //bizモジュールよりライブラリを拝借
+        include_once $biz_dir . 'lib/mysql_functions.php';  //bizモジュールよりライブラリを拝借
         // ---bizここまで
 
         foreach ($c_member_id_list as $c_member_id) {
 
             // ---bizここから
-            if(biz_isKtaiMessage($c_member_id))
+            if (biz_isKtaiMessage($c_member_id)) {
                 biz_sendKtaiMessageSyoukaiCommu($u, $c_member_id);
+            }
             // ---bizここまで
 
             do_common_send_message_syoukai_commu($u, $c_member_id, $msg_subject, $msg_body);

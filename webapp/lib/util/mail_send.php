@@ -675,12 +675,12 @@ function put_mail_queue($address, $subject, $body, $is_receive_mail=true, $from=
     $body = mb_convert_encoding($body, "JIS");
     $body = str_replace($cr, $lf, str_replace($crlf, $lf, $body));
 
-    require_once 'Mail/Queue.php';
+    include_once 'Mail/Queue.php';
 
     $db_opt = array(
-        "type"=>"db",
-        "dsn"=>$GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn'],
-        "mail_table"=>"mail_queue",
+        "type" => "db",
+        "dsn" => $GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn'],
+        "mail_table" => "mail_queue",
     );
     $mail_opt = array(
         "driver"=>"mail",

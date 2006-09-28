@@ -9,18 +9,15 @@ class admin_biz_do_biz_admin_add_shisetsu extends OpenPNE_Action
 {
     function execute($requests)
     {
-        if(!$requests['name'])
-        {
+        if (!$requests['name']) {
             admin_biz_client_redirect('biz_shisetsu_list', '施設名を入力してください。');
             exit();
         }
         $sessid = session_id();
         $filename = '';
-        if($_FILES['image_filename']['name'])
-        {
+        if ($_FILES['image_filename']['name']) {
             $filename = biz_saveImage($_FILES['image_filename'], "s_".$sessid);
-            if(!$filename)
-            {
+            if (!$filename) {
                 admin_biz_client_redirect('biz_shisetsu_list', '画像は300KB以内のGIF・JPEG・PNGにしてください。');
                 exit();
             }

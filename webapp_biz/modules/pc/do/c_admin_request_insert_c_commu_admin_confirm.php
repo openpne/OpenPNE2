@@ -50,7 +50,7 @@ class pc_do_c_admin_request_insert_c_commu_admin_confirm extends OpenPNE_Action
 
         // ---bizここから
         $biz_dir = OPENPNE_MODULES_BIZ_DIR.'/biz/';  //bizモジュールディレクトリの定義
-        include_once($biz_dir.'lib/mysql_functions.php');  //bizモジュールよりライブラリを拝借
+        include_once $biz_dir . 'lib/mysql_functions.php';  //bizモジュールよりライブラリを拝借
 
         if(biz_isKtaiMessage($target_c_member_id))
             biz_sendKtaiMessageSyoudakuMail($u, $target_c_member_id, $subject, $body);

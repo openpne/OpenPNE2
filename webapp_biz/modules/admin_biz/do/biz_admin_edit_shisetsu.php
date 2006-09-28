@@ -10,23 +10,20 @@ class admin_biz_do_biz_admin_edit_shisetsu extends OpenPNE_Action
 {
     function execute($requests)
     {
-
-        if(!$requests['name'])
-        {
+        if (!$requests['name']) {
             admin_biz_client_redirect('biz_shisetsu_list', '施設名を入力してください。');
             exit();
         }
 
-        if($requests['image_filename'])
+        if ($requests['image_filename']) {
             $filename = $requests['image_filename'];
-        else
+        } else {
             $filename = '';
+        }
 
-        if($_FILES['image_filename']['size'])
-        {
+        if ($_FILES['image_filename']['size']) {
             $filename = biz_saveImage($_FILES['image_filename'], "s_".$sessid);
-            if(!$filename)
-            {
+            if (!$filename) {
                 $filename = $requests['image_filename'];
                 admin_biz_client_redirect('biz_shisetsu_list', '画像は300KB以内のGIF・JPEG・PNGにしてください。');
                 exit();
@@ -35,7 +32,6 @@ class admin_biz_do_biz_admin_edit_shisetsu extends OpenPNE_Action
             //変更前の画像を削除
             $shisetsu = biz_getShisetsuData($requests['biz_shisetsu_id']);
             biz_deleteImage($shisetsu['image_filename']);
-
         }
         t_image_clear_tmp(session_id());
 
@@ -45,4 +41,5 @@ class admin_biz_do_biz_admin_edit_shisetsu extends OpenPNE_Action
         admin_biz_client_redirect('biz_shisetsu_list', "施設を編集しました。");
     }
 }
+
 ?>

@@ -52,7 +52,7 @@ class pc_page_h_prof extends OpenPNE_Action
         //カレンダー表示用
         $biz_dir = OPENPNE_MODULES_BIZ_DIR.'/biz/';  //bizモジュールディレクトリの定義
         include_once($biz_dir.'lib/smarty_functions.php');  //bizモジュールよりライブラリを拝借
-        include_once($biz_dir.'lib/mysql_functions.php');  //bizモジュールよりライブラリを拝借
+        include_once $biz_dir . 'lib/mysql_functions.php';  //bizモジュールよりライブラリを拝借
         $this->set('calendar', biz_getScheduleWeek($u, $requests['w'], 'p', true, true, true, $target_c_member));
 
         $todolist = biz_getTodoList($u, "h", $target_c_member['nickname']);

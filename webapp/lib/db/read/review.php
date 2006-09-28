@@ -234,7 +234,7 @@ function p_h_review_list_product_c_review_list4c_review_id($c_review_id, $page, 
     $params = array(intval($c_review_id));
     $list = db_get_all_page($sql, $page, $page_size, $params);
 
-    $total_num = do_common_count_c_review_comment4c_review_id(c_review_id);
+    $total_num = do_common_count_c_review_comment4c_review_id($c_review_id);
     if ($total_num != 0) {
         $total_page_num =  ceil($total_num / $page_size);
         if ($page >= $total_page_num) {

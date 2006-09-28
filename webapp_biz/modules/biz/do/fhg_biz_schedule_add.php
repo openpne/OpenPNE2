@@ -13,8 +13,7 @@ class biz_do_fhg_biz_schedule_add extends OpenPNE_Action
 
         //ERROR----------------
         //存在しない日付
-        if(!checkdate($requests['sc_b_month'], $requests['sc_b_date'], $requests['sc_b_year']))
-        {
+        if (!checkdate($requests['sc_b_month'], $requests['sc_b_date'], $requests['sc_b_year'])) {
             $redirect_script = '?m=biz&a=page_fh_biz_schedule_add';
             $msg = urlencode('存在しない日付が指定されました。');
 
@@ -35,8 +34,7 @@ class biz_do_fhg_biz_schedule_add extends OpenPNE_Action
 
         //ERROR----------------
         //タイトル未入力
-        if(empty($requests['sc_title']))
-        {
+        if (empty($requests['sc_title'])) {
             $redirect_script = '?m=biz&a=page_fh_biz_schedule_add';
             $msg = urlencode('タイトルを入力してください。');
             $begin_date = $requests['sc_b_year'].'-'.$requests['sc_b_month'].'-'.$requests['sc_b_date'];
@@ -60,8 +58,7 @@ class biz_do_fhg_biz_schedule_add extends OpenPNE_Action
 
         //ERROR----------------
         //繰り返し予定::曜日指定なし
-        if($requests['sc_rp'] && empty($requests['sc_rwk']))
-        {
+        if ($requests['sc_rp'] && empty($requests['sc_rwk'])) {
             $redirect_script = '?m=biz&a=page_fh_biz_schedule_add';
             $msg = urlencode('繰り返し予定を登録する場合は、曜日を指定してください。');
             $begin_date = $requests['sc_b_year'].'-'.$requests['sc_b_month'].'-'.$requests['sc_b_date'];
@@ -85,16 +82,21 @@ class biz_do_fhg_biz_schedule_add extends OpenPNE_Action
         //--------------------
 
         //施設、参加者のチェック
-        if(in_array('0', $requests['sc_j_mem']))  //「全員」が含まれている場合は、配列を空に
+        if (in_array('0', $requests['sc_j_mem'])) {
+            //「全員」が含まれている場合は、配列を空に
             $requests['sc_j_mem'] = array();
+        }
 
-        if(!$requests['sc_j_plc'])
+        if (!$requests['sc_j_plc']) {
             $requests['sc_j_plc'] = 0;
+        }
 
-        if(($requests['sc_b_hour']&&!$requests['sc_b_minute']))
+        if ($requests['sc_b_hour'] && !$requests['sc_b_minute']) {
             $requests['sc_b_minute'] = '00';
-        if(($requests['sc_f_hour']&&!$requests['sc_f_minute']))
+        }
+        if ($requests['sc_f_hour'] && !$requests['sc_f_minute']) {
             $requests['sc_f_minute'] = '00';
+        }
 
         //日付のフォーマットを設定
         $begin_date = $requests['sc_b_year'].'-'.$requests['sc_b_month'].'-'.$requests['sc_b_date'];
@@ -102,8 +104,8 @@ class biz_do_fhg_biz_schedule_add extends OpenPNE_Action
         $finish_time = $requests['sc_f_hour'].':'.$requests['sc_f_minute'];
 
         //ERROR---------------
-        if((strtotime($finish_time) < strtotime($begin_time))&&($finish_time != ':'))  //終了時間と開始時間が変
-        {
+        if ((strtotime($finish_time) < strtotime($begin_time)) && ($finish_time != ':')) {
+            //終了時間と開始時間が変
             $redirect_script = '?m=biz&a=page_fh_biz_schedule_add';
             $msg = urlencode('終了時刻が開始時刻より先です。');
             $begin_date = $requests['sc_b_year'].'-'.$requests['sc_b_month'].'-'.$requests['sc_b_date'];
@@ -124,48 +126,55 @@ class biz_do_fhg_biz_schedule_add extends OpenPNE_Action
         }
         //--------------------
 
-        if((!$requests['sc_rp'])&&($requests['sc_bn'] == 1))  //当日中に終わる予定は、開始日と終了日は同一でなければならない
+        if (!$requests['sc_rp'] && ($requests['sc_bn'] == 1)) {
+            //当日中に終わる予定は、開始日と終了日は同一でなければならない
             $finish_date = $begin_date;
+        }
 
-        if(!($requests['sc_b_hour']||$requests['sc_b_minute']||$requests['sc_f_hour']||$requests['sc_f_minute']))  //時刻指定なし
+        if (!($requests['sc_b_hour']||$requests['sc_b_minute']||$requests['sc_f_hour']||$requests['sc_f_minute'])) {
+            //時刻指定なし
             $begin_time = $finish_time = null;
-        elseif(!($requests['sc_f_hour']||$requests['sc_f_minute']))
+        } elseif (!($requests['sc_f_hour']||$requests['sc_f_minute'])) {
             $finish_time = null;
+        }
 
-        if($requests['sc_rp'])  //繰り返し予定
-        {
+        //繰り返し予定
+        if ($requests['sc_rp']) {
             //終了日の決定
             $finish_date = date("Y-m-d", strtotime($requests['sc_b_year'].'-'.$requests['sc_b_month'].'-'.($requests['sc_b_date']+($requests['sc_rcount'])*7)));
 
             //first_idの決定
             $first_id = biz_getScheduleMax() + 1;
-            if(!$first_id)
+            if (!$first_id) {
                 $first_id = 1;
+            }
 
             //繰り返しルールの決定
-            foreach($requests['sc_rwk'] as $value)
+            foreach ($requests['sc_rwk'] as $value) {
                 $rp_rule += 1 << $value;
+            }
+        } else {
+            //繰り返しなし
+            $finish_date = date("Y-m-d", strtotime($requests['sc_b_year'].'-'.$requests['sc_b_month'].'-'.($requests['sc_b_date']+($requests['sc_bn']-1))));
         }
 
-        else  //繰り返しなし
-            $finish_date = date("Y-m-d", strtotime($requests['sc_b_year'].'-'.$requests['sc_b_month'].'-'.($requests['sc_b_date']+($requests['sc_bn']-1))));
-
-        if(!$requests['sc_rp'])  //繰り返しをしない予定登録
+        if (!$requests['sc_rp']) {
+            //繰り返しをしない予定登録
             biz_insertSchedule($requests['sc_title'], $u, $begin_date, $finish_date, $begin_time, $finish_time, $requests['sc_memo'], $rp_rule, 0, $requests['sc_j_mem'], $requests['sc_j_plc']);
-        else  //繰り返し予定
-        {
+        } else {
+            //繰り返し予定
             $tmp = $begin_date;  //処理中の日付
 
-            for($i=0; date("Ymd", strtotime($tmp)) < date("Ymd", strtotime($finish_date)); $i++)
-            {
+            for ($i=0; date("Ymd", strtotime($tmp)) < date("Ymd", strtotime($finish_date)); $i++) {
                 $nowday = strtotime($requests['sc_b_year'].'-'.$requests['sc_b_month'].'-'.($requests['sc_b_date']+$i));
                 $tmp = date("Ymd", $nowday);
-                if($rp_rule & (1 << date("w",$nowday)))
+                if ($rp_rule & (1 << date("w",$nowday))) {
                     biz_insertSchedule($requests['sc_title'], $u, $tmp, $tmp, $begin_time, $finish_time, $requests['sc_memo'], $rp_rule, $first_id, $requests['sc_j_mem'], $requests['sc_j_plc']);
+                }
             }
         }
 
-        $week = date("W", abs(strtotime($begin_date)-strtotime(date("Y-m-d"))))-1;
+        $week = date("W", abs(strtotime($begin_date) - strtotime(date("Y-m-d")))) - 1;
         client_redirect_absolute("?m=biz&a=page_fh_biz_schedule_view&w=$week&msg=".urlencode('予定を追加しました。')."&id=".biz_getScheduleMax());
     }
 }
