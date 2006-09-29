@@ -5,7 +5,7 @@
  */
 
 /**
- * メッセージを送る
+ * メチE��ージを送る
  */
 class pc_do_h_message_insert_message extends OpenPNE_Action
 {
@@ -19,28 +19,27 @@ class pc_do_h_message_insert_message extends OpenPNE_Action
         $target_c_member_id = $requests['target_c_member_id'];
         // ----------
 
-        //--- 権限チェック
-        //自分以外
+        //--- 権限チェチE��
+        //自刁E��夁E
 
         if ($target_c_member_id == $u) {
             handle_kengen_error();
         }
 
-        //アクセスブロック設定
+        //アクセスブロチE��設宁E
         if (p_common_is_access_block($u, $target_c_member_id)) {
             openpne_redirect('pc', 'page_h_access_block');
         }
         //---
 
         // ---bizここから
-        $biz_dir = OPENPNE_MODULES_BIZ_DIR.'/biz/';  //bizモジュールディレクトリの定義
-        include_once $biz_dir . 'lib/mysql_functions.php';  //bizモジュールよりライブラリを拝借
-        if (biz_isKtaiMessage($target_c_member_id)) {
+        $biz_dir = OPENPNE_MODULES_BIZ_DIR.'/biz/';  //bizモジュールチE��レクトリの定義
+        include_once($biz_dir.'lib/mysql_functions.php');  //bizモジュールよりライブラリを拝倁E
+        if(biz_isKtaiMessage($target_c_member_id))
             biz_sendKtaiMessage($u, $target_c_member_id, $title, $body);
-        }
         // ---bizここまで
 
-        do_common_send_message($u, $target_c_member_id, $title, $body);
+        do_common_send_message($u, $target_c_member_id, $title,$body);
 
         openpne_redirect('pc', 'page_h_message_box');
     }

@@ -12,7 +12,7 @@ class admin_biz_do_update_hash_table extends OpenPNE_Action
         $hash_tbl =& AdminHashTable::singleton();
         $hash_tbl->updateTable();
 
-        admin_biz_client_redirect('top', '管理用ページ名を変更しました');
+        admin_biz_client_redirect('top', '管琁E��ペ�Eジ名を変更しました');
     }
 }
 

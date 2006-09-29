@@ -27,7 +27,7 @@ class admin_biz_do_login extends OpenPNE_Action
         $auth->setExpire($GLOBALS['OpenPNE']['admin']['session_lifetime']);
         $auth->setIdle($GLOBALS['OpenPNE']['admin']['session_idletime']);
 
-        // 現在のセッションを削除
+        // 現在のセチE��ョンを削除
         $auth->logout();
 
         if (!$auth->login($requests['is_save'])) {

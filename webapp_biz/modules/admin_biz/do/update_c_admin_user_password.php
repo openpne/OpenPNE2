@@ -4,7 +4,7 @@
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
-// パスワード再発行
+// パスワード�E発衁E
 class admin_biz_do_update_c_admin_user_password extends OpenPNE_Action
 {
     function execute($requests)
@@ -13,7 +13,7 @@ class admin_biz_do_update_c_admin_user_password extends OpenPNE_Action
                 $GLOBALS['AUTH']->uid(),
                 $requests['old_password'])) {
             admin_biz_client_redirect('edit_admin_password',
-                'パスワードが違います');
+                'パスワードが違いまぁE);
             exit;
         }
 
@@ -22,13 +22,13 @@ class admin_biz_do_update_c_admin_user_password extends OpenPNE_Action
             strlen($password) < 6 ||
             strlen($password) > 12) {
             admin_biz_client_redirect('edit_admin_password',
-                'パスワードは6〜12文字の半角英数で入力してください');
+                'パスワード�E6�E�E2斁E���E半角英数で入力してください');
             exit;
         }
 
         if ($requests['new_password'] !== $requests['new_password2']) {
             admin_biz_client_redirect('edit_admin_password',
-                'パスワードが一致していません');
+                'パスワードが一致してぁE��せん');
             exit;
         }
 
@@ -36,7 +36,7 @@ class admin_biz_do_update_c_admin_user_password extends OpenPNE_Action
         db_admin_update_c_admin_user_password($GLOBALS['AUTH']->uid(), $password);
 
         $GLOBALS['AUTH']->logout();
-        $msg = 'パスワードを変更しました。新しいパスワードでログインしなおしてください。';
+        $msg = 'パスワードを変更しました。新しいパスワードでログインしなおしてください、E;
         admin_biz_client_redirect('login', $msg);
     }
 }

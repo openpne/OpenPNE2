@@ -35,7 +35,7 @@ class pc_page_o_regist_prof extends OpenPNE_Action
         session_start();
         $this->set('profs', $_SESSION['prof']);
 
-        //---- inc_ テンプレート用 変数 ----//
+        //---- inc_ チE��プレート用 変数 ----//
         $this->set('inc_page_header', fetch_inc_page_header('regist'));
 
 
@@ -45,9 +45,9 @@ class pc_page_o_regist_prof extends OpenPNE_Action
         $this->set('pc_address', $c_member_pre['pc_address']);
 
         $public_flags = array(
-            'public' => '全員に公開',
-            'friend' => WORD_MY_FRIEND.'まで公開',
-            'private'=> '公開しない',
+            'public' => '全員に公閁E,
+            'friend' => WORD_MY_FRIEND.'まで公閁E,
+            'private'=> '公開しなぁE,
         );
         $this->set('public_flags', $public_flags);
 

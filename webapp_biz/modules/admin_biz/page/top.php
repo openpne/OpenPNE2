@@ -4,7 +4,7 @@
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
-// 管理画面トップページ 認証済み
+// 管琁E��面トップ�Eージ 認証済み
 class admin_biz_page_top extends OpenPNE_Action
 {
     function execute($requests)
