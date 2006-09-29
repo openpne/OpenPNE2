@@ -88,7 +88,7 @@
 
 <div class="padding_s">
 
-<a href="({t_url m=pc a=do_fh_friend_list_delete_c_friend})&amp;target_c_member_id=({$item.c_member_id})&amp;sessid=({$PHPSESSID})">({$WORD_MY_FRIEND})から外す</a>
+<a href="({t_url m=pc a=page_fh_friend_list_delete_c_friend_confilm})&amp;target_c_member_id=({$item.c_member_id})">({$WORD_MY_FRIEND})から外す</a>
 
 </div>
 
