@@ -1,6 +1,3 @@
-INSERT INTO `c_admin_config` VALUES (NULL,'OPENPNE_ENABLE_ROLLOVER','1');
-
--- --------------------------------------------------------
 
 INSERT INTO `c_commu_category` VALUES (1,'地域',100,1);
 INSERT INTO `c_commu_category` VALUES (2,'グルメ',200,1);
@@ -24,6 +21,9 @@ INSERT INTO `c_password_query` VALUES (2,'運転免許証番号の下 5 桁は?'
 INSERT INTO `c_password_query` VALUES (3,'初恋の人の名前は?');
 INSERT INTO `c_password_query` VALUES (4,'卒業した小学校の名前は？');
 INSERT INTO `c_password_query` VALUES (5,'本籍地の県名は？');
+
+-- --------------------------------------------------------
+
 INSERT INTO `c_profile` VALUES (1,'sex','性別',0,0,'public','select',200,0,1,1,'string','',0,0);
 INSERT INTO `c_profile` VALUES (2,'blood_type','血液型',0,1,'public','select',300,0,1,1,'string','',0,0);
 INSERT INTO `c_profile` VALUES (3,'pre_addr_pref','現住所',0,1,'public','select',400,0,1,1,'string','',0,0);

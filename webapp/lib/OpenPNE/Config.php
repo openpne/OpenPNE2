@@ -108,7 +108,7 @@ class OpenPNE_Config
             'WORD_MY_FRIEND_HALF' => 'ﾏｲﾌﾚﾝﾄﾞ',
             'SORT_ORDER_NICK'  => 0,
             'SORT_ORDER_BIRTH' => 0,
-            'OPENPNE_ENABLE_ROLLOVER' => false,
+            'OPENPNE_ENABLE_ROLLOVER' => true,
             'SKIN_VERSION' => '2.0',
             'AFFILIATE_TAG' => '',
             'UNUSED_MAILS' => '',
