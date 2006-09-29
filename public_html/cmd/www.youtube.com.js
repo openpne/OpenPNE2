@@ -5,8 +5,9 @@ function url2cmd(url) {
     var id = RegExp.$1;
     var width = 425;
     var height = 350;
-    main(id,width,height);
+    main(id, width, height);
 }
+
 function main(id, width, height) {
     if (!id.match(/^[a-zA-Z0-9_-]+$/)) {
         return;

@@ -23,38 +23,38 @@
 <!--
 
 function reflect_color (n) {
-	var str_1 = n.name ;
-	var color = document.forms["color"].elements[str_1].value ;
-	var str_2 = "({if $preset_bgcolors})preview_display_({else})bgcolor_({/if})"+str_1 ;
-	var str_3 = "#" + color ;
-	document.getElementById(str_2).style.backgroundColor = str_3 ;
-	
-	for (key in bgcolors) {
-		if (key == str_1) {
-			bgcolors[str_1] = color;
-		}
-	}
-	set_textarea_for_color_config ();
+    var str_1 = n.name ;
+    var color = document.forms["color"].elements[str_1].value ;
+    var str_2 = "({if $preset_bgcolors})preview_display_({else})bgcolor_({/if})"+str_1 ;
+    var str_3 = "#" + color ;
+    document.getElementById(str_2).style.backgroundColor = str_3 ;
+    
+    for (key in bgcolors) {
+        if (key == str_1) {
+            bgcolors[str_1] = color;
+        }
+    }
+    set_textarea_for_color_config ();
 }
 
 function set_preset_color (target,color) {
-	document.forms["color"].elements[target].value=color;
-	var str_1 = "({if $preset_bgcolors})preview_display_({else})bgcolor_({/if})"+target ;
-	var str_2 = "#" + color;
-	document.getElementById(str_1).style.backgroundColor=str_2;
-	
-	bgcolors[target] = color;
+    document.forms["color"].elements[target].value=color;
+    var str_1 = "({if $preset_bgcolors})preview_display_({else})bgcolor_({/if})"+target ;
+    var str_2 = "#" + color;
+    document.getElementById(str_1).style.backgroundColor=str_2;
+    
+    bgcolors[target] = color;
 }
 
 function set_textarea_for_color_config () {
-	var str_1 = "";
-	for (key in bgcolors) {
-		str_1 += key;
-		str_1 += ":#";
-		str_1 += bgcolors[key];
-		str_1 += "\n";
-	}
-	document.forms["color"].elements["copy_area"].value=str_1;
+    var str_1 = "";
+    for (key in bgcolors) {
+        str_1 += key;
+        str_1 += ":#";
+        str_1 += bgcolors[key];
+        str_1 += "\n";
+    }
+    document.forms["color"].elements["copy_area"].value=str_1;
 }
 
 bgcolors = new Array();
@@ -67,15 +67,15 @@ function hoge() {
 
 ({foreach from=$preset_bgcolors key=key item=item})
 function assign_color_({$key})() {
-	({foreach from=$item key=key_x item=item_x})
-		({foreach from=$bgcolor_scheme_names item=item_xx})
-		({if $key_x == $item_xx})
-		set_preset_color ("({$key_x})","({$item_x})");
-		({/if})
-		({/foreach})
-	({/foreach})
-	
-	set_textarea_for_color_config ();
+    ({foreach from=$item key=key_x item=item_x})
+        ({foreach from=$bgcolor_scheme_names item=item_xx})
+        ({if $key_x == $item_xx})
+        set_preset_color ("({$key_x})","({$item_x})");
+        ({/if})
+        ({/foreach})
+    ({/foreach})
+    
+    set_textarea_for_color_config ();
     return 0;
 }
 ({/foreach})
@@ -84,15 +84,15 @@ function assign_color_({$key})() {
 
 ({foreach from=$user_save_bgcolors key=key item=item})
 function assign_color_user_({$key})() {
-	({foreach from=$item key=key_x item=item_x})
-		({foreach from=$bgcolor_scheme_names item=item_xx})
-		({if $key_x == $item_xx})
-		set_preset_color ("({$key_x})","({$item_x})");
-		({/if})
-		({/foreach})
-	({/foreach})
+    ({foreach from=$item key=key_x item=item_x})
+        ({foreach from=$bgcolor_scheme_names item=item_xx})
+        ({if $key_x == $item_xx})
+        set_preset_color ("({$key_x})","({$item_x})");
+        ({/if})
+        ({/foreach})
+    ({/foreach})
 
-	set_textarea_for_color_config ();
+    set_textarea_for_color_config ();
     return 0;
 }
 ({/foreach})
