@@ -1,1 +1,1 @@
-<?php define('OPENPNE_VERSION', '2.3.4'); ?>
+<?php define('OPENPNE_VERSION', '2.4RC1'); ?>
