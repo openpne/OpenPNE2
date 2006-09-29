@@ -33,12 +33,11 @@ class pc_do_o_public_invite extends OpenPNE_Action
         $c_member_id_invite = 1;
 
         @session_start();
-        if (count($_POST) > 0) {
-            if (!(isset($_SESSION['captcha_keystring']) && $_SESSION['captcha_keystring'] ==  $requests['captcha'])) {
-                $msg = "確認キーワードが誤っています";
-                $p = array('msg' => $msg);
-                openpne_redirect('pc', 'page_o_public_invite', $p);
-            }
+        if (empty($_SESSION['captcha_keystring']) || $_SESSION['captcha_keystring'] !=  $requests['captcha']) {
+            unset($_SESSION['captcha_keystring']);
+            $msg = "確認キーワードが誤っています";
+            $p = array('msg' => $msg);
+            openpne_redirect('pc', 'page_o_public_invite', $p);
         }
         unset($_SESSION['captcha_keystring']);
         if (!db_common_is_mailaddress($pc_address)) {
