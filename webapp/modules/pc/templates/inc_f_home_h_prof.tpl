@@ -423,17 +423,12 @@ pne_item({$key+1})_id=({$item.c_member_id})
 &pne_item({$key+1})_count=({$item.friend_count})
 ({/foreach})
 ({/strip})({/capture})
-<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000"
- codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0"
- width="266" height="330" style="margin:0;">
-<param name="movie" value="flash/list.swf">
-<param name="quality" value="high">
-<param name="bgcolor" value="#ffffff">
-<param name="flashvars" value="({$flashvars})">
-<embed src="flash/list.swf" quality="high" bgcolor="#ffffff" width="266" height="330"
- type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer"
- flashvars="({$flashvars})"></embed>
-</object>
+<script type="text/javascript" src="js/show_flash.js"></script>
+<script type="text/javascript">
+<!--
+show_flash('flash/list.swf', '({$flashvars})');
+//-->
+</script>
 
 </td>
 <td class="bg_07"><img src="./skin/dummy.gif" style="width:1px;"></td>
@@ -634,17 +629,12 @@ pne_item({$key+1})_id=({$item.c_commu_id})
 &pne_item({$key+1})_count=({$item.count_commu_members})
 ({/foreach})
 ({/strip})({/capture})
-<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000"
- codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0"
- width="266" height="330" style="margin:0;">
-<param name="movie" value="flash/list.swf">
-<param name="quality" value="high">
-<param name="bgcolor" value="#ffffff">
-<param name="flashvars" value="({$flashvars})">
-<embed src="flash/list.swf" quality="high" bgcolor="#ffffff" width="266" height="330"
- type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer"
- flashvars="({$flashvars})"></embed>
-</object>
+<script type="text/javascript" src="js/show_flash.js"></script>
+<script type="text/javascript">
+<!--
+show_flash('flash/list.swf', '({$flashvars})');
+//-->
+</script>
 
 </td>
 <td class="bg_07"><img src="./skin/dummy.gif" style="width:1px;"></td>
