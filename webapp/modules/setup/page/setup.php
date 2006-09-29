@@ -32,6 +32,7 @@ class setup_page_setup extends OpenPNE_Action
             OPENPNE_IMG_CACHE_DIR . '/jpg',
             OPENPNE_IMG_CACHE_DIR . '/gif',
             OPENPNE_IMG_CACHE_DIR . '/png',
+            OPENPNE_VAR_DIR . '/function_cache',
             OPENPNE_VAR_DIR . '/log',
             OPENPNE_VAR_DIR . '/rss_cache',
             OPENPNE_VAR_DIR . '/templates_c',
