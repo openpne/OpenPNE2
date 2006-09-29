@@ -1,5 +1,5 @@
 function url2cmd(url) {
-    if (!url.match(/^http:\/\/(?:www\.|)youtube\.com\/watch\?v=([a-zA-Z0-9_-]+)$/)) {
+    if (!url.match(/^http:\/\/(?:www\.|)youtube\.com\/watch\?v=([a-zA-Z0-9_-]+)/)) {
         return;
     }
     var id = RegExp.$1;
