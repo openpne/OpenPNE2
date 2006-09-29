@@ -5,7 +5,7 @@
  */
 
 /**
- * adminモジュールのペ�Eジ名をハッシュ化するため�Eクラス
+ * adminモジュールのページ名をハッシュ化するためのクラス
  */
 class AdminHashTable
 {

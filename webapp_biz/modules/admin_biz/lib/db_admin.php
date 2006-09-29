@@ -5,7 +5,7 @@
  */
 
 /**
- * ユーザーリスト取征E
+ * ユーザーリスト取得
  */
 function db_admin_c_member_list($page, $page_size, &$pager)
 {
@@ -216,7 +216,7 @@ function db_admin_update_c_profile($c_profile_id
     $where = array('c_profile_id' => intval($c_profile_id));
     db_update('c_profile', $data, $where);
 
-    // 公開設定が固定�Eとき�Eユーザーの設定値を上書ぁE
+    // 公開設定が固定のときはユーザーの設定値を上書き
     if (!$public_flag_edit) {
         $data = array('public_flag' => $public_flag_default);
         db_update('c_member_profile', $data, $where);
@@ -227,15 +227,15 @@ function db_admin_delete_c_profile($c_profile_id)
 {
     $params = array(intval($c_profile_id));
 
-    // メンバ�Eのプロフィールから削除
+    // メンバーのプロフィールから削除
     $sql = 'DELETE FROM c_member_profile WHERE c_profile_id = ?';
     db_query($sql, $params);
 
-    // 選択肢頁E��を削除
+    // 選択肢項目を削除
     $sql = 'DELETE FROM c_profile_option WHERE c_profile_id = ?';
     db_query($sql, $params);
 
-    // プロフィール頁E��を削除
+    // プロフィール項目を削除
     $sql = 'DELETE FROM c_profile WHERE c_profile_id = ?';
     db_query($sql, $params);
 }
@@ -248,10 +248,10 @@ function db_admin_c_profile4c_profile_id($c_profile_id)
 }
 
 /**
- * 全バナー取征E
+ * 全バナー取得
  * 
  * @param  int $limit 取得最大件数
- * @return array_of_array  c_banner_list バナー配�E
+ * @return array_of_array  c_banner_list バナー配列
  */
 function db_admin_c_banner_list4null($type = '')
 {
@@ -307,11 +307,11 @@ function db_admin_delete_c_commu_category_parent($c_commu_category_parent_id)
 {
     $params = array(intval($c_commu_category_parent_id));
 
-    // 小カチE��リを削除
+    // 小カテゴリを削除
     $sql = 'DELETE FROM c_commu_category WHERE c_commu_category_parent_id = ?';
     db_query($sql, $params);
 
-    // 中カチE��リを削除
+    // 中カテゴリを削除
     $sql = 'DELETE FROM c_commu_category_parent WHERE c_commu_category_parent_id = ?';
     db_query($sql, $params);
 }
@@ -338,7 +338,7 @@ function db_admin_update_c_commu_category($c_commu_category_id, $name, $sort_ord
 
 function db_admin_delete_c_commu_category($c_commu_category_id)
 {
-    // 小カチE��リを削除
+    // 小カテゴリを削除
     $sql = 'DELETE FROM c_commu_category WHERE c_commu_category_id = ?';
     $params = array(intval($c_commu_category_id));
     db_query($sql, $params);

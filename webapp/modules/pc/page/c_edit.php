@@ -19,8 +19,8 @@ class pc_page_c_edit extends OpenPNE_Action
         $err_msg = $requests['err_msg'];
         // ----------
 
-        //--- 権限チェチE��
-        //コミュニティ管琁E��E
+        //--- 権限チェック
+        //コミュニティ管理者
         if (!_db_is_c_commu_admin($target_c_commu_id, $u)) {
             handle_kengen_error();
         }
@@ -28,7 +28,7 @@ class pc_page_c_edit extends OpenPNE_Action
 
         $this->set('inc_navi', fetch_inc_navi('c', $target_c_commu_id));
 
-        //コミュニティチE�Eタ取征E
+        //コミュニティデータ取得
         $c_commu = _db_c_commu4c_commu_id($target_c_commu_id);
 
         if ($name) {
@@ -55,9 +55,9 @@ class pc_page_c_edit extends OpenPNE_Action
         $this->set('c_commu_category_list', _db_c_commu_category4null());
         $public_flag_list=
         array(
-            'public' =>'参加�E�誰でも参加可能、掲示板�E��E員に公閁E,
-            'auth_sns' =>'参加�E�管琁E��E�E承認が忁E��、掲示板�E��E員に公閁E,
-            'auth_commu_member' =>'参加�E�管琁E��E�E承認が忁E��、掲示板�E�コミュニティ参加老E��のみ公閁E,
+            'public' =>'参加：誰でも参加可能、掲示板：全員に公開',
+            'auth_sns' =>'参加：管理者の承認が必要、掲示板：全員に公開',
+            'auth_commu_member' =>'参加：管理者の承認が必要、掲示板：コミュニティ参加者にのみ公開',
         );
         $this->set('public_flag_list', $public_flag_list);
         $this->set('is_topic', p_c_edit_is_topic4c_commu_id($target_c_commu_id));

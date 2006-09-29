@@ -4,12 +4,12 @@
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
-//モジュールネ�Eム
+//モジュールネーム
 define('ADMIN_BIZ_MODULE_NAME', 'admin_biz');
 
-// admin モジュール initialize 処琁E
+// admin モジュール initialize 処理
 
-// auth関連設宁E
+// auth関連設定
 session_name('OpenPNEadmin');
 isset($GLOBALS['OpenPNE']['admin']['session_lifetime'])
     or $GLOBALS['OpenPNE']['admin']['session_lifetime'] = 0;
@@ -23,19 +23,19 @@ require_once $module_lib_dir . '/etc_admin.php';
 require_once $module_lib_dir . '/hash_admin.php';
 require_once $module_lib_dir . '/biz_admin.php';
 
-$biz_dir = OPENPNE_MODULES_BIZ_DIR.'/biz/';  //bizモジュールチE��レクトリの定義
+$biz_dir = OPENPNE_MODULES_BIZ_DIR.'/biz/';  //bizモジュールディレクトリの定義
 include($biz_dir.'lib/mysql_functions.php');
 
-// チE��ォルト�Eージ
+// デフォルトページ
 $GLOBALS['__Framework']['default_page'] = 'top';
-// チE��ォルトタイチE
+// デフォルトタイプ
 $GLOBALS['__Framework']['default_type'] = 'page';
 
-// ハッシュから action名を取征E
+// ハッシュから action名を取得
 $hash_tbl =& AdminHashTable::singleton();
 $action = $hash_tbl->action($action, $type);
 
-//allでのみアクセス出来る�Eージ
+//allでのみアクセス出来るページ
 $GLOBALS['_OPENPNE_ADMIN_AUTH_ACTIONS'] = array(
 'page_insert_c_admin_user',
 'page_list_c_admin_user',
@@ -64,7 +64,7 @@ function init_admin_biz_page(&$smarty)
         $smarty->assign('auth_type', $auth_type);
         $act = sprintf('page_%s', $GLOBALS['__Framework']['current_action']);
         if ($auth_type != 'all' && in_array($act, $GLOBALS['_OPENPNE_ADMIN_AUTH_ACTIONS'])) {
-            admin_biz_client_redirect('top', '持E��されたペ�Eジにはアクセスできません');
+            admin_biz_client_redirect('top', '指定されたページにはアクセスできません');
         }
     }
 }
@@ -76,12 +76,12 @@ function init_admin_biz_do()
     if ($is_secure) {
         @session_start();
         if ($_REQUEST['sessid'] !== md5(session_id())) {
-            openpne_display_error('前�E画面を�E読み込みして、操作をめE��直してください');
+            openpne_display_error('前の画面を再読み込みして、操作をやり直してください');
         }
         $auth_type = admin_get_auth_type();
         $act = sprintf('do_%s', $GLOBALS['__Framework']['current_action']);
         if ($auth_type != 'all' && in_array($act, $GLOBALS['_OPENPNE_ADMIN_AUTH_ACTIONS'])) {
-            admin_biz_client_redirect('top', '持E��されたペ�Eジにはアクセスできません');
+            admin_biz_client_redirect('top', '指定されたページにはアクセスできません');
         }
     }
 }

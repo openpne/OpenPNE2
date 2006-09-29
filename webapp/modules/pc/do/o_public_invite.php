@@ -29,13 +29,13 @@ class pc_do_o_public_invite extends OpenPNE_Action
         $pc_address2 = $requests['pc_address2'];
         // ----------
 
-        //新規登録時�E招征E��E��E_member_id=1�E�E
+        //新規登録時の招待者（c_member_id=1）
         $c_member_id_invite = 1;
 
-        session_start();
-        if(count($_POST)>0){
-            if(!(isset($_SESSION['captcha_keystring']) && $_SESSION['captcha_keystring'] ==  $requests['captcha'])){
-                $msg = "確認キーワードが誤ってぁE��ぁE;
+        @session_start();
+        if (count($_POST) > 0) {
+            if (!(isset($_SESSION['captcha_keystring']) && $_SESSION['captcha_keystring'] ==  $requests['captcha'])) {
+                $msg = "確認キーワードが誤っています";
                 $p = array('msg' => $msg);
                 openpne_redirect('pc', 'page_o_public_invite', $p);
             }
@@ -52,12 +52,12 @@ class pc_do_o_public_invite extends OpenPNE_Action
             openpne_redirect('pc', 'page_o_public_invite', $p);
         }
         if ($pc_address != $pc_address2) {
-            $msg = 'メールアドレスが一致してぁE��せん';
+            $msg = 'メールアドレスが一致していません';
             $p = array('msg' => $msg);
             openpne_redirect('pc', 'page_o_public_invite', $p);
         }
         if (_db_c_member_id4pc_address($pc_address)) {
-            $msg = 'そ�Eアドレスは既に登録されてぁE��ぁE;
+            $msg = 'そのアドレスは既に登録されています';
             $p = array('msg' => $msg);
             openpne_redirect('pc', 'page_o_public_invite', $p);
         }

@@ -4,7 +4,7 @@
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
-// 管琁E��面ログイン
+// 管理画面ログイン
 class admin_biz_page_login extends OpenPNE_Action
 {
     function isSecure()

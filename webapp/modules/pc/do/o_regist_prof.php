@@ -56,10 +56,10 @@ class pc_do_o_regist_prof extends OpenPNE_Action
         }
 
         if ($prof['password'] != $requests['password2']) {
-            $errors['password2'] = 'パスワードが一致してぁE��せん';
+            $errors['password2'] = 'パスワードが一致していません';
         }
 
-        //--- c_profile の頁E��をチェチE��
+        //--- c_profile の項目をチェック
         $validator = new OpenPNE_Validator();
         $validator->addRequests($_REQUEST['profile']);
         $validator->addRules($this->_getValidateRulesProfile());
@@ -67,23 +67,23 @@ class pc_do_o_regist_prof extends OpenPNE_Action
             $errors = array_merge($errors, $validator->getErrors());
         }
 
-        // 値の整合性をチェチE��(DB)
+        // 値の整合性をチェック(DB)
         $c_member_profile_list = do_config_prof_check_profile($validator->getParams(), $_REQUEST['public_flag']);
 
 
-        // 忁E��頁E��チェチE��
+        // 必須項目チェック
         $profile_list = db_common_c_profile_list4null();
         foreach ($profile_list as $profile) {
             if ( $profile['disp_regist'] &&
                 $profile['is_required'] &&
                 !$c_member_profile_list[$profile['name']]['value']
             ) {
-                $errors[$profile['name']] = $profile['caption'] . 'を�E力してください';
+                $errors[$profile['name']] = $profile['caption'] . 'を入力してください';
                 break;
             }
         }
 
-        // 生年月日のチェチE��
+        // 生年月日のチェック
         if (!t_checkdate($prof['birth_month'], $prof['birth_day'], $prof['birth_year'])) {
             $errors[] = '生年月日を正しく入力してください';
         }
@@ -141,19 +141,19 @@ class pc_do_o_regist_prof extends OpenPNE_Action
             // c_member_profile
             do_config_prof_update_c_member_profile($u, $c_member_profile_list);
 
-            // 招征E��E��フレンドリンク
+            // 招待者とフレンドリンク
             db_friend_insert_c_friend($u, $pre['c_member_id_invite']);
 
-            //管琁E��面で持E��したコミュニティに強制参加
+            //管理画面で指定したコミュニティに強制参加
             $c_commu_id_list = db_commu_regist_join_list();
             foreach ($c_commu_id_list as $c_commu_id) {
                 do_inc_join_c_commu($c_commu_id, $u);
             }
 
-            // pre の冁E��を削除
+            // pre の内容を削除
             do_common_delete_c_member_pre4sid($sid);
 
-            // 登録完亁E��ール送信
+            // 登録完了メール送信
             do_regist_prof_do_regist2_mail_send($u);
 
             openpne_redirect('pc', 'page_o_regist_end', array('c_member_id' => $u));
@@ -166,7 +166,7 @@ class pc_do_o_regist_prof extends OpenPNE_Action
             'nickname' => array(
                 'type' => 'string',
                 'required' => '1',
-                'caption' => 'ニックネ�Eム',
+                'caption' => 'ニックネーム',
                 'max' => '40',
             ),
             'birth_year' => array(
@@ -178,7 +178,7 @@ class pc_do_o_regist_prof extends OpenPNE_Action
             'birth_month' => array(
                 'type' => 'int',
                 'required' => '1',
-                'caption' => '誕生朁E,
+                'caption' => '誕生月',
                 'min' => '1',
                 'max' => '12',
             ),
@@ -196,21 +196,21 @@ class pc_do_o_regist_prof extends OpenPNE_Action
                 'type' => 'regexp',
                 'regexp' => '/^[a-z0-9]+$/i',
                 'required' => '1',
-                'caption' => 'パスワーチE,
+                'caption' => 'パスワード',
                 'min' => '6',
                 'max' => '12',
             ),
             'c_password_query_id' => array(
                 'type' => 'int',
                 'required' => '1',
-                'caption' => '秘寁E�E質啁E,
-                'required_error' => '秘寁E�E質問を選択してください',
+                'caption' => '秘密の質問',
+                'required_error' => '秘密の質問を選択してください',
                 'min' => '1',
             ),
             'c_password_query_answer' => array(
                 'type' => 'string',
                 'required' => '1',
-                'caption' => '秘寁E�E質問�E答え',
+                'caption' => '秘密の質問の答え',
             ),
         );
     }

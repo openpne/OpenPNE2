@@ -18,7 +18,7 @@ class pc_page_h_prof extends OpenPNE_Action
         $this->set('is_friend', 0);
         $this->set('c_diary_list', db_diary_get_c_diary_list4c_member_id($target_c_member_id, 5, null, 'friend'));
 
-        // --- f_home, h_prof 共通�E琁E
+        // --- f_home, h_prof 共通処理
 
         $this->set('target_c_member_id',$target_c_member_id);
         $target_c_member['last_login'] = p_f_home_last_login4access_date($target_c_member['access_date']);
@@ -38,7 +38,7 @@ class pc_page_h_prof extends OpenPNE_Action
 
         $this->set('profile_list', db_common_c_profile_list());
 
-        // 誕生日まであと何日�E�E
+        // 誕生日まであと何日？
         $this->set('days_birthday', db_common_count_days_birthday4c_member_id($target_c_member_id));
 
         // inc_entry_point
@@ -46,13 +46,13 @@ class pc_page_h_prof extends OpenPNE_Action
 
         // ---bizここから
 
-        //nak 20060217 バナーをBIZ用右部拡張領域下に表示させる為の仕掛ぁE
+        //nak 20060217 バナーをBIZ用右部拡張領域下に表示させる為の仕掛け
         $this->set('is_h_prof', 1);
-        
+
         //カレンダー表示用
-        $biz_dir = OPENPNE_MODULES_BIZ_DIR.'/biz/';  //bizモジュールチE��レクトリの定義
-        include_once($biz_dir.'lib/smarty_functions.php');  //bizモジュールよりライブラリを拝倁E
-        include_once($biz_dir.'lib/mysql_functions.php');  //bizモジュールよりライブラリを拝倁E
+        $biz_dir = OPENPNE_MODULES_BIZ_DIR.'/biz/';  //bizモジュールディレクトリの定義
+        include_once($biz_dir.'lib/smarty_functions.php');  //bizモジュールよりライブラリを拝借
+        include_once $biz_dir . 'lib/mysql_functions.php';  //bizモジュールよりライブラリを拝借
         $this->set('calendar', biz_getScheduleWeek($u, $requests['w'], 'p', true, true, true, $target_c_member));
 
         $todolist = biz_getTodoList($u, "h", $target_c_member['nickname']);

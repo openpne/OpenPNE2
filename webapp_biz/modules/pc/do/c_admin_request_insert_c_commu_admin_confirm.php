@@ -5,7 +5,7 @@
  */
 
 /**
- * コミュニティ管琁E��E��代依頼メチE��ージ送信
+ * コミュニティ管理者交代依頼メッセージ送信
  */
 class pc_do_c_admin_request_insert_c_commu_admin_confirm extends OpenPNE_Action
 {
@@ -18,9 +18,9 @@ class pc_do_c_admin_request_insert_c_commu_admin_confirm extends OpenPNE_Action
         $target_c_commu_id = $requests['target_c_commu_id'];
         // ----------
 
-        //--- 権限チェチE��
-        //自刁E��コミュニティ管琁E��E
-        //targetがコミュニティメンバ�E
+        //--- 権限チェック
+        //自分がコミュニティ管理者
+        //targetがコミュニティメンバー
 
         $status = db_common_commu_status($u, $target_c_commu_id);
         if (!$status['is_commu_admin']) {
@@ -36,21 +36,21 @@ class pc_do_c_admin_request_insert_c_commu_admin_confirm extends OpenPNE_Action
         $target_c_commu_admin_confirm_id =
             db_commu_insert_c_commu_admin_confirm($target_c_commu_id, $target_c_member_id);
 
-        //メチE��ージ
+        //メッセージ
         $c_member_id_from = $u;
         $c_member_from    = db_common_c_member4c_member_id_LIGHT($c_member_id_from);
         $c_member_to      = $target_c_member_id;
         $c_commu          = _db_c_commu4c_commu_id($target_c_commu_id);
 
-        $subject ="コミュニティ管琁E��E��代要請メチE��ージ";
+        $subject ="コミュニティ管理者交代要請メッセージ";
         $body_disp =
-            $c_member_from['nickname']." さんから".$c_commu['name']." コミュニティの管琁E��E��代希望メチE��ージが届いてぁE��す、En".
+            $c_member_from['nickname']." さんから".$c_commu['name']." コミュニティの管理者交代希望メッセージが届いています。\n".
             "\n".
-            "こ�E要請につぁE��、承認征E��リストから承認また�E拒否を選択してください、En";
+            "この要請について、承認待ちリストから承認または拒否を選択してください。\n";
 
         // ---bizここから
-        $biz_dir = OPENPNE_MODULES_BIZ_DIR.'/biz/';  //bizモジュールチE��レクトリの定義
-        include_once($biz_dir.'lib/mysql_functions.php');  //bizモジュールよりライブラリを拝倁E
+        $biz_dir = OPENPNE_MODULES_BIZ_DIR.'/biz/';  //bizモジュールディレクトリの定義
+        include_once $biz_dir . 'lib/mysql_functions.php';  //bizモジュールよりライブラリを拝借
 
         if(biz_isKtaiMessage($target_c_member_id))
             biz_sendKtaiMessageSyoudakuMail($u, $target_c_member_id, $subject, $body);

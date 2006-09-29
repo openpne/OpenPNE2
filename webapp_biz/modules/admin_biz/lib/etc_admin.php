@@ -6,7 +6,7 @@
 
 function admin_fetch_inc_header($display_navi = true)
 {
-    $v['title'] = SNS_NAME . 'BIZ用管琁E�Eージ';
+    $v['title'] = SNS_NAME . 'BIZ用管理ページ';
     $v['display_navi'] = $display_navi;
     $v['PHPSESSID'] = md5(session_id());
     $v['module_name'] = ADMIN_BIZ_MODULE_NAME;
@@ -43,15 +43,15 @@ function admin_make_pager($page, $page_size, $total_num)
         'next_page' => 0,
     );
 
-    // 表示してぁE��最後�E番号
+    // 表示している最後の番号
     if ($pager['end_num'] > $pager['total_num'])
         $pager['end_num'] = $pager['total_num'];
 
-    // 前�Eージ
+    // 前ページ
     if ($pager['page'] > 1)
         $pager['prev_page'] = $page - 1;
 
-    // 次ペ�Eジ
+    // 次ページ
     if ($pager['end_num'] < $pager['total_num'])
         $pager['next_page'] = $page + 1;
 

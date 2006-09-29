@@ -4,7 +4,7 @@
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
-// パスワード�E発衁E
+// パスワード再発行
 class admin_biz_do_passwd extends OpenPNE_Action
 {
     function execute($requests)
@@ -16,14 +16,14 @@ class admin_biz_do_passwd extends OpenPNE_Action
             strlen($password) < 6 ||
             strlen($password) > 12) {
             admin_biz_client_redirect('passwd',
-                'パスワード�E6�E�E2斁E���E半角英数で入力してください',
+                'パスワードは6〜12文字の半角英数で入力してください',
                 'target_c_member_id='.$c_member_id);
             exit;
         }
 
         if ($requests['password'] !== $requests['password2']) {
             admin_biz_client_redirect('passwd',
-                'パスワードが一致してぁE��せん',
+                'パスワードが一致していません',
                 'target_c_member_id='.$c_member_id);
             exit;
         }

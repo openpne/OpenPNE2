@@ -12,7 +12,7 @@ class admin_biz_do_delete_hash_table extends OpenPNE_Action
         $hash_tbl =& AdminHashTable::singleton();
         $hash_tbl->deleteTable();
 
-        admin_biz_client_redirect('top', '管琁E��ペ�Eジ名を允E��戻しました');
+        admin_biz_client_redirect('top', '管理用ページ名を元に戻しました');
     }
 }
 
