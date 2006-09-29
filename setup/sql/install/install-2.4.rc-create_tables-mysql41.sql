@@ -4,7 +4,7 @@ CREATE TABLE `c_access_block` (
   `c_member_id_block` int(11) NOT NULL default '0',
   `r_datetime` datetime NOT NULL default '0000-00-00 00:00:00',
   PRIMARY KEY  (`c_access_block_id`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `c_access_log` (
   `c_access_log_id` int(11) NOT NULL auto_increment,
@@ -17,7 +17,7 @@ CREATE TABLE `c_access_log` (
   `ktai_flag` int(11) NOT NULL default '0',
   `r_datetime` datetime NOT NULL default '0000-00-00 00:00:00',
   PRIMARY KEY  (`c_access_log_id`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `c_admin_config` (
   `c_admin_config_id` int(11) NOT NULL auto_increment,
@@ -25,7 +25,7 @@ CREATE TABLE `c_admin_config` (
   `value` text NOT NULL,
   PRIMARY KEY  (`c_admin_config_id`),
   UNIQUE KEY `name` (`name`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `c_admin_user` (
   `c_admin_user_id` int(11) NOT NULL auto_increment,
@@ -34,7 +34,7 @@ CREATE TABLE `c_admin_user` (
   `auth_type` enum('all','normal') NOT NULL default 'all',
   PRIMARY KEY  (`c_admin_user_id`),
   UNIQUE KEY `username` (`username`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `c_api_member` (
   `c_api_member_id` int(11) NOT NULL auto_increment,
@@ -42,7 +42,7 @@ CREATE TABLE `c_api_member` (
   `token` varchar(64) NOT NULL default '',
   PRIMARY KEY  (`c_api_member_id`),
   UNIQUE KEY `c_member_id` (`c_member_id`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `c_ashiato` (
   `c_ashiato_id` int(11) NOT NULL auto_increment,
@@ -59,7 +59,7 @@ CREATE TABLE `c_ashiato` (
   KEY `c_ashiato_to_from_rdate_rdatetime` (`c_member_id_to`,`c_member_id_from`,`r_date`,`r_datetime`),
   KEY `c_ashiato_rdatetime` (`r_datetime`),
   KEY `c_ashiato_rdate` (`r_date`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `c_banner` (
   `c_banner_id` int(11) NOT NULL auto_increment,
@@ -70,7 +70,7 @@ CREATE TABLE `c_banner` (
   `is_hidden_before` tinyint(1) NOT NULL default '0',
   `is_hidden_after` tinyint(1) NOT NULL default '0',
   PRIMARY KEY  (`c_banner_id`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `c_banner_log` (
   `c_banner_log_id` int(11) NOT NULL auto_increment,
@@ -82,7 +82,7 @@ CREATE TABLE `c_banner_log` (
   PRIMARY KEY  (`c_banner_log_id`),
   KEY `c_banner_id` (`c_banner_id`),
   KEY `c_member_id` (`c_member_id`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `c_bookmark` (
   `c_bookmark_id` int(11) NOT NULL auto_increment,
@@ -90,7 +90,7 @@ CREATE TABLE `c_bookmark` (
   `c_member_id_to` int(11) NOT NULL default '0',
   `r_datetime` varchar(100) NOT NULL default '0000-00-00 00:00:00',
   PRIMARY KEY  (`c_bookmark_id`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `c_commu` (
   `c_commu_id` int(11) NOT NULL auto_increment,
@@ -104,11 +104,15 @@ CREATE TABLE `c_commu` (
   `public_flag` enum('public','auth_public','auth_sns','auth_commu_member') NOT NULL default 'public',
   `is_send_join_mail` tinyint(1) NOT NULL default '1',
   `is_regist_join` tinyint(1) NOT NULL default '0',
+  `is_display_map` tinyint(1) NOT NULL default '0',
+  `map_latitude` double NOT NULL default '0',
+  `map_longitude` double NOT NULL default '0',
+  `map_zoom` int(11) NOT NULL default '0',
   PRIMARY KEY  (`c_commu_id`),
   KEY `c_commu_category_id` (`c_commu_category_id`),
   KEY `c_member_id_admin` (`c_member_id_admin`),
   KEY `r_datetime` (`r_datetime`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `c_commu_admin_confirm` (
   `c_commu_admin_confirm_id` int(11) NOT NULL auto_increment,
@@ -119,7 +123,7 @@ CREATE TABLE `c_commu_admin_confirm` (
   PRIMARY KEY  (`c_commu_admin_confirm_id`),
   KEY `c_member_id_to` (`c_member_id_to`),
   KEY `c_commu_id` (`c_commu_id`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `c_commu_admin_invite` (
   `c_commu_admin_invite_id` int(11) NOT NULL auto_increment,
@@ -127,7 +131,7 @@ CREATE TABLE `c_commu_admin_invite` (
   `c_member_id_to` int(11) NOT NULL default '0',
   `r_datetime` datetime NOT NULL default '0000-00-00 00:00:00',
   PRIMARY KEY  (`c_commu_admin_invite_id`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `c_commu_category` (
   `c_commu_category_id` int(11) NOT NULL auto_increment,
@@ -136,7 +140,7 @@ CREATE TABLE `c_commu_category` (
   `c_commu_category_parent_id` int(11) NOT NULL default '0',
   PRIMARY KEY  (`c_commu_category_id`),
   KEY `c_commu_category_parent_id` (`c_commu_category_parent_id`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `c_commu_category_parent` (
   `c_commu_category_parent_id` int(11) NOT NULL auto_increment,
@@ -144,7 +148,7 @@ CREATE TABLE `c_commu_category_parent` (
   `sort_order` int(11) NOT NULL default '0',
   PRIMARY KEY  (`c_commu_category_parent_id`),
   KEY `sort_order` (`sort_order`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `c_commu_member` (
   `c_commu_member_id` int(11) NOT NULL auto_increment,
@@ -153,11 +157,12 @@ CREATE TABLE `c_commu_member` (
   `r_datetime` datetime NOT NULL default '0000-00-00 00:00:00',
   `is_receive_mail` tinyint(1) NOT NULL default '0',
   `is_receive_mail_pc` int(11) NOT NULL default '0',
+  `is_receive_message` int(11) NOT NULL default '1',
   PRIMARY KEY  (`c_commu_member_id`),
   KEY `c_commu_id` (`c_commu_id`),
   KEY `c_member_id` (`c_member_id`),
   KEY `c_commu_id_r_datetime` (`c_commu_id`,`r_datetime`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `c_commu_member_confirm` (
   `c_commu_member_confirm_id` int(11) NOT NULL auto_increment,
@@ -168,7 +173,7 @@ CREATE TABLE `c_commu_member_confirm` (
   PRIMARY KEY  (`c_commu_member_confirm_id`),
   KEY `c_member_id` (`c_member_id`),
   KEY `c_commu_id` (`c_commu_id`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `c_commu_review` (
   `c_commu_review_id` int(11) NOT NULL auto_increment,
@@ -178,7 +183,7 @@ CREATE TABLE `c_commu_review` (
   `r_datetime` datetime NOT NULL default '0000-00-00 00:00:00',
   PRIMARY KEY  (`c_commu_review_id`),
   KEY `c_commu_id` (`c_commu_id`,`c_review_id`,`c_member_id`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `c_commu_topic` (
   `c_commu_topic_id` int(11) NOT NULL auto_increment,
@@ -196,7 +201,7 @@ CREATE TABLE `c_commu_topic` (
   PRIMARY KEY  (`c_commu_topic_id`),
   KEY `c_member_id` (`c_member_id`),
   KEY `c_commu_id` (`c_commu_id`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `c_commu_topic_comment` (
   `c_commu_topic_comment_id` int(11) NOT NULL auto_increment,
@@ -214,7 +219,7 @@ CREATE TABLE `c_commu_topic_comment` (
   KEY `c_commu_topic_id` (`c_commu_topic_id`),
   KEY `c_commu_id` (`c_commu_id`),
   KEY `c_member_id` (`c_member_id`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `c_diary` (
   `c_diary_id` int(11) NOT NULL auto_increment,
@@ -227,13 +232,14 @@ CREATE TABLE `c_diary` (
   `image_filename_2` text NOT NULL,
   `image_filename_3` text NOT NULL,
   `is_checked` tinyint(1) NOT NULL default '0',
+  `public_flag` enum('public','friend','private') NOT NULL default 'public',
   PRIMARY KEY  (`c_diary_id`),
   KEY `c_member_id` (`c_member_id`),
   KEY `r_datetime_c_member_id` (`r_datetime`,`c_member_id`),
   KEY `c_member_id_r_date` (`c_member_id`,`r_date`),
   KEY `c_member_id_r_datetime` (`c_member_id`,`r_datetime`),
   KEY `r_datetime` (`r_datetime`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `c_diary_comment` (
   `c_diary_comment_id` int(11) NOT NULL auto_increment,
@@ -251,7 +257,7 @@ CREATE TABLE `c_diary_comment` (
   KEY `c_member_id_c_diary_id` (`c_member_id`,`c_diary_id`),
   KEY `c_diary_id_r_datetime` (`c_diary_id`,`r_datetime`),
   KEY `c_member_id_r_datetime_c_diary_id` (`c_member_id`,`r_datetime`,`c_diary_id`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `c_event_member` (
   `c_event_member_id` int(11) NOT NULL auto_increment,
@@ -262,7 +268,7 @@ CREATE TABLE `c_event_member` (
   PRIMARY KEY  (`c_event_member_id`),
   KEY `c_commu_topic_id` (`c_commu_topic_id`),
   KEY `c_member_id` (`c_member_id`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `c_friend` (
   `c_friend_id` int(11) NOT NULL auto_increment,
@@ -277,7 +283,7 @@ CREATE TABLE `c_friend` (
   KEY `c_member_id_from_c_friend_id` (`c_member_id_from`,`c_friend_id`),
   KEY `c_member_id_from_r_datetime` (`c_member_id_from`,`r_datetime`),
   KEY `c_member_id_to_r_datetime_intro` (`c_member_id_to`,`r_datetime_intro`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `c_friend_confirm` (
   `c_friend_confirm_id` int(11) NOT NULL auto_increment,
@@ -288,7 +294,7 @@ CREATE TABLE `c_friend_confirm` (
   PRIMARY KEY  (`c_friend_confirm_id`),
   KEY `c_member_id_to` (`c_member_id_to`),
   KEY `c_member_id_from` (`c_member_id_from`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `c_image` (
   `c_image_id` int(11) NOT NULL auto_increment,
@@ -298,7 +304,7 @@ CREATE TABLE `c_image` (
   `type` text,
   PRIMARY KEY  (`c_image_id`),
   KEY `filename` (`filename`(100))
-) TYPE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `c_ktai_address_pre` (
   `c_ktai_address_pre_id` int(11) NOT NULL auto_increment,
@@ -308,7 +314,7 @@ CREATE TABLE `c_ktai_address_pre` (
   `r_datetime` datetime NOT NULL default '0000-00-00 00:00:00',
   PRIMARY KEY  (`c_ktai_address_pre_id`),
   UNIQUE KEY `session` (`session`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `c_login_failure` (
   `c_login_failure_id` int(11) NOT NULL auto_increment,
@@ -316,7 +322,7 @@ CREATE TABLE `c_login_failure` (
   `r_datetime` datetime NOT NULL default '0000-00-00 00:00:00',
   PRIMARY KEY  (`c_login_failure_id`),
   KEY `ip_addr` (`ip_addr`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `c_login_reject` (
   `c_login_reject_id` int(11) NOT NULL auto_increment,
@@ -324,7 +330,7 @@ CREATE TABLE `c_login_reject` (
   `expired_at` datetime NOT NULL default '0000-00-00 00:00:00',
   PRIMARY KEY  (`c_login_reject_id`),
   UNIQUE KEY `ip_addr` (`ip_addr`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `c_member` (
   `c_member_id` int(11) NOT NULL auto_increment,
@@ -346,13 +352,13 @@ CREATE TABLE `c_member` (
   `is_receive_ktai_mail` tinyint(1) NOT NULL default '0',
   `c_member_id_invite` int(11) NOT NULL default '0',
   `c_password_query_id` int(11) NOT NULL default '0',
-  `public_flag_diary` enum('public','friend') NOT NULL default 'public',
+  `public_flag_diary` enum('public','friend','private') NOT NULL default 'public',
   `is_login_rejected` tinyint(1) NOT NULL default '0',
   `is_shinobiashi` tinyint(1) NOT NULL default '0',
   `ashiato_count_log` int(11) NOT NULL default '0',
   PRIMARY KEY  (`c_member_id`),
   KEY `birth_year_c_member_id` (`birth_year`,`c_member_id`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `c_member_ktai_pre` (
   `c_member_ktai_pre_id` int(11) NOT NULL auto_increment,
@@ -362,7 +368,7 @@ CREATE TABLE `c_member_ktai_pre` (
   `c_member_id_invite` int(11) NOT NULL default '0',
   PRIMARY KEY  (`c_member_ktai_pre_id`),
   UNIQUE KEY `session` (`session`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `c_member_pre` (
   `c_member_pre_id` int(11) NOT NULL auto_increment,
@@ -386,7 +392,7 @@ CREATE TABLE `c_member_pre` (
   `c_password_query_answer` text NOT NULL,
   PRIMARY KEY  (`c_member_pre_id`),
   UNIQUE KEY `session` (`session`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `c_member_pre_profile` (
   `c_member_pre_profile_id` int(11) NOT NULL auto_increment,
@@ -399,7 +405,7 @@ CREATE TABLE `c_member_pre_profile` (
   KEY `c_member_pre_id` (`c_member_pre_id`),
   KEY `c_profile_id` (`c_profile_id`),
   KEY `c_profile_option_id` (`c_profile_option_id`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `c_member_profile` (
   `c_member_profile_id` int(11) NOT NULL auto_increment,
@@ -414,7 +420,7 @@ CREATE TABLE `c_member_profile` (
   KEY `c_profile_option_id` (`c_profile_option_id`),
   KEY `c_profile_option_id_c_member_id` (`c_profile_option_id`,`c_member_id`),
   KEY `public_flag_c_profile_option_id` (`public_flag`,`c_profile_option_id`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `c_member_secure` (
   `c_member_secure_id` int(11) NOT NULL auto_increment,
@@ -427,7 +433,7 @@ CREATE TABLE `c_member_secure` (
   `easy_access_id` blob NOT NULL,
   PRIMARY KEY  (`c_member_secure_id`),
   UNIQUE KEY `c_member_id` (`c_member_id`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `c_message` (
   `c_message_id` int(11) NOT NULL auto_increment,
@@ -445,12 +451,15 @@ CREATE TABLE `c_message` (
   `hensinmoto_c_message_id` int(8) NOT NULL default '0',
   `is_kanzen_sakujo_from` tinyint(1) NOT NULL default '0',
   `is_kanzen_sakujo_to` tinyint(1) NOT NULL default '0',
+  `image_filename_1` text NOT NULL,
+  `image_filename_2` text NOT NULL,
+  `image_filename_3` text NOT NULL,
   PRIMARY KEY  (`c_message_id`),
   KEY `c_member_id_from` (`c_member_id_from`),
   KEY `c_member_id_to` (`c_member_id_to`),
   KEY `c_member_id_from_r_datetime` (`c_member_id_from`,`r_datetime`),
   KEY `c_member_id_to_r_datetime` (`c_member_id_to`,`r_datetime`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `c_navi` (
   `c_navi_id` int(11) NOT NULL auto_increment,
@@ -460,13 +469,13 @@ CREATE TABLE `c_navi` (
   `caption` text NOT NULL,
   PRIMARY KEY  (`c_navi_id`),
   KEY `type_sort` (`navi_type`,`sort_order`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `c_password_query` (
   `c_password_query_id` int(11) NOT NULL auto_increment,
   `c_password_query_question` text NOT NULL,
   PRIMARY KEY  (`c_password_query_id`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `c_pc_address_pre` (
   `c_pc_addess_pre_id` int(11) NOT NULL auto_increment,
@@ -476,7 +485,7 @@ CREATE TABLE `c_pc_address_pre` (
   `r_datetime` datetime NOT NULL default '0000-00-00 00:00:00',
   PRIMARY KEY  (`c_pc_addess_pre_id`),
   KEY `c_member_id` (`c_member_id`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `c_profile` (
   `c_profile_id` int(11) NOT NULL auto_increment,
@@ -496,7 +505,7 @@ CREATE TABLE `c_profile` (
   `val_max` int(11) NOT NULL default '0',
   PRIMARY KEY  (`c_profile_id`),
   KEY `sort_order` (`sort_order`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `c_profile_option` (
   `c_profile_option_id` int(11) NOT NULL auto_increment,
@@ -507,15 +516,19 @@ CREATE TABLE `c_profile_option` (
   KEY `c_profile_id` (`c_profile_id`),
   KEY `sort_order` (`sort_order`),
   KEY `c_profile_id_sort_order` (`c_profile_id`,`sort_order`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `c_profile_pref` (
   `c_profile_pref_id` int(11) NOT NULL auto_increment,
   `pref` text NOT NULL,
   `sort_order` int(11) NOT NULL default '0',
+  `map_latitude` double NOT NULL default '0',
+  `map_longitude` double NOT NULL default '0',
+  `map_zoom` int(11) NOT NULL default '0',
   PRIMARY KEY  (`c_profile_pref_id`),
-  KEY `sort_order` (`sort_order`)
-) TYPE=MyISAM;
+  KEY `sort_order` (`sort_order`),
+  KEY `map_latitude_map_longitude` (`map_latitude`,`map_longitude`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `c_review` (
   `c_review_id` int(11) NOT NULL auto_increment,
@@ -534,7 +547,7 @@ CREATE TABLE `c_review` (
   `r_datetime` datetime NOT NULL default '0000-00-00 00:00:00',
   PRIMARY KEY  (`c_review_id`),
   KEY `c_review_category_id` (`c_review_category_id`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `c_review_category` (
   `c_review_category_id` int(11) NOT NULL auto_increment,
@@ -542,7 +555,7 @@ CREATE TABLE `c_review_category` (
   `category_disp` varchar(100) NOT NULL default '',
   `sort_order` int(11) NOT NULL default '0',
   PRIMARY KEY  (`c_review_category_id`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `c_review_clip` (
   `c_review_clip_id` int(11) NOT NULL auto_increment,
@@ -551,7 +564,7 @@ CREATE TABLE `c_review_clip` (
   `r_datetime` datetime NOT NULL default '0000-00-00 00:00:00',
   PRIMARY KEY  (`c_review_clip_id`),
   KEY `c_member_id` (`c_member_id`,`c_review_id`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `c_review_comment` (
   `c_review_comment_id` int(11) NOT NULL auto_increment,
@@ -561,7 +574,7 @@ CREATE TABLE `c_review_comment` (
   `satisfaction_level` int(11) NOT NULL default '0',
   `r_datetime` datetime NOT NULL default '0000-00-00 00:00:00',
   PRIMARY KEY  (`c_review_comment_id`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `c_rss_cache` (
   `c_rss_cache_id` int(11) NOT NULL auto_increment,
@@ -576,7 +589,7 @@ CREATE TABLE `c_rss_cache` (
   KEY `c_member_id_r_datetime` (`c_member_id`,`r_datetime`),
   KEY `r_datetime` (`r_datetime`),
   KEY `r_datetime_c_member_id` (`r_datetime`,`c_member_id`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `c_schedule` (
   `c_schedule_id` int(11) NOT NULL auto_increment,
@@ -590,7 +603,7 @@ CREATE TABLE `c_schedule` (
   `is_receive_mail` tinyint(1) NOT NULL default '0',
   PRIMARY KEY  (`c_schedule_id`),
   KEY `c_member_id` (`c_member_id`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `c_searchlog` (
   `c_searchlog_id` int(11) NOT NULL auto_increment,
@@ -599,7 +612,7 @@ CREATE TABLE `c_searchlog` (
   `c_member_id` int(11) NOT NULL default '0',
   PRIMARY KEY  (`c_searchlog_id`),
   KEY `c_member_id` (`c_member_id`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `c_session` (
   `c_session_id` int(11) NOT NULL auto_increment,
@@ -609,7 +622,7 @@ CREATE TABLE `c_session` (
   `sess_data` text NOT NULL,
   PRIMARY KEY  (`c_session_id`),
   UNIQUE KEY `sess_name` (`sess_name`,`sess_id`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `c_siteadmin` (
   `c_siteadmin_id` int(11) NOT NULL auto_increment,
@@ -618,7 +631,7 @@ CREATE TABLE `c_siteadmin` (
   `r_date` date NOT NULL default '0000-00-00',
   PRIMARY KEY  (`c_siteadmin_id`),
   UNIQUE KEY `target` (`target`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `c_skin_filename` (
   `c_skin_filename_id` int(11) NOT NULL auto_increment,
@@ -626,7 +639,7 @@ CREATE TABLE `c_skin_filename` (
   `filename` text NOT NULL,
   PRIMARY KEY  (`c_skin_filename_id`),
   UNIQUE KEY `skinname` (`skinname`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `c_sns_config` (
   `c_sns_config_id` int(11) NOT NULL auto_increment,
@@ -653,8 +666,13 @@ CREATE TABLE `c_sns_config` (
   `bg_08` text NOT NULL,
   `bg_09` text NOT NULL,
   `bg_10` text NOT NULL,
+  `bg_11` text NOT NULL,
+  `bg_12` text NOT NULL,
+  `bg_13` text NOT NULL,
+  `caption` varchar(100) NOT NULL default '',
+  `symbol` text NOT NULL,
   PRIMARY KEY  (`c_sns_config_id`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `c_template` (
   `c_template_id` int(11) NOT NULL auto_increment,
@@ -663,7 +681,7 @@ CREATE TABLE `c_template` (
   `r_datetime` datetime NOT NULL default '0000-00-00 00:00:00',
   PRIMARY KEY  (`c_template_id`),
   UNIQUE KEY `name` (`name`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `c_tmp_image` (
   `c_tmp_image_id` int(11) NOT NULL auto_increment,
@@ -673,5 +691,29 @@ CREATE TABLE `c_tmp_image` (
   `type` text,
   PRIMARY KEY  (`c_tmp_image_id`),
   KEY `filename` (`filename`(100))
-) TYPE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `mail_queue` (
+  `id` bigint(20) NOT NULL default '0',
+  `create_time` datetime NOT NULL default '0000-00-00 00:00:00',
+  `time_to_send` datetime NOT NULL default '0000-00-00 00:00:00',
+  `sent_time` datetime default NULL,
+  `id_user` bigint(20) NOT NULL default '0',
+  `ip` varchar(20) NOT NULL default 'unknown',
+  `sender` varchar(50) NOT NULL default '',
+  `recipient` varchar(50) NOT NULL default '',
+  `headers` text NOT NULL,
+  `body` longtext NOT NULL,
+  `try_sent` tinyint(4) NOT NULL default '0',
+  `delete_after_send` tinyint(1) NOT NULL default '1',
+  PRIMARY KEY  (`id`),
+  KEY `id` (`id`),
+  KEY `time_to_send` (`time_to_send`),
+  KEY `id_user` (`id_user`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `mail_queue_seq` (
+  `id` int(10) unsigned NOT NULL auto_increment,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
