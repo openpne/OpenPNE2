@@ -94,7 +94,7 @@ function Link(linkLoc)
 
 ({capture name="table_header"})
 <tr>
-<th colspan="3">操作</th>
+<th colspan="4">操作</th>
 <th>ID</th>
 <th>ニックネーム</th>
 <th>最終ログイン</th>
@@ -174,6 +174,13 @@ function Link(linkLoc)
 <tr>
 <td>({if $item.c_member_id != 1})<input type="checkbox" name="c_member_ids[]" value="({$item.c_member_id})">({else})&nbsp;({/if})</td>
 <td>({if $item.c_member_id != 1})<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('delete_c_member_confirm')})&amp;target_c_member_id=({$item.c_member_id})">強制退会</a>({else})&nbsp;({/if})</td>
+<td><a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('update_is_login_rejected','do')})&amp;target_c_member_id=({$item.c_member_id})&amp;sessid=({$PHPSESSID})">
+({if $item.is_login_rejected})
+<span class="caution">ログイン停止中</span>
+({else})
+ログイン停止
+({/if})
+</a></td>
 <td><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('passwd')})&amp;target_c_member_id=({$item.c_member_id})">パスワード再発行</a></td>
 <td class="idnumber">({$item.c_member_id})</td>
 <td><a href="({t_url _absolute=1 m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})" target="_blank">({$item.nickname})</a></td>
