@@ -21,7 +21,7 @@ ALTER TABLE c_profile_option ADD INDEX c_profile_id_sort_order(c_profile_id, sor
 ALTER TABLE c_rss_cache ADD INDEX c_member_id_r_datetime(c_member_id, r_datetime);
 
 -- update03
-CREATE TABLE `c_session` (
+CREATE TABLE IF NOT EXISTS `c_session` (
   `c_session_id` int(11) NOT NULL auto_increment,
   `sess_name` varchar(64) NOT NULL default '',
   `sess_id` varchar(32) NOT NULL default '',
@@ -31,7 +31,7 @@ CREATE TABLE `c_session` (
   UNIQUE KEY `sess_name` (`sess_name`,`sess_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
-CREATE TABLE `c_tmp_image` (
+CREATE TABLE IF NOT EXISTS `c_tmp_image` (
   `c_tmp_image_id` int(11) NOT NULL auto_increment,
   `filename` text NOT NULL,
   `bin` longblob NOT NULL,
@@ -66,6 +66,7 @@ ADD `map_zoom` INT NOT NULL ;
 ALTER TABLE `c_profile_pref` ADD `map_latitude` DOUBLE NOT NULL ,
 ADD `map_longitude` DOUBLE NOT NULL ,
 ADD `map_zoom` INT NOT NULL ;
+ALTER TABLE `c_profile_pref` ADD INDEX `map_latitude_map_longitude` ( `map_latitude` , `map_longitude` ) ;
 
 UPDATE c_profile_pref SET map_latitude = '43.068612', map_longitude = '141.350768', map_zoom = 7 WHERE c_profile_pref_id = 1;
 UPDATE c_profile_pref SET map_latitude = '40.828668', map_longitude = '140.734738', map_zoom = 7 WHERE c_profile_pref_id = 2;
@@ -168,19 +169,12 @@ CREATE TABLE mail_queue_seq (
   id int(10) unsigned NOT NULL auto_increment,
   PRIMARY KEY  (id)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
 INSERT INTO mail_queue_seq (id) VALUES (1);
 
 -- update12
-ALTER TABLE `c_diary` ADD COLUMN `public_flag` enum('default', 'public','friend','close') NOT NULL default 'default';
-ALTER TABLE `c_member` CHANGE COLUMN `public_flag_diary` `public_flag_diary` enum('public','friend','close') NOT NULL default 'public';
-
--- update13
-ALTER TABLE `c_profile_pref` ADD INDEX `map_latitude_map_longitude` ( `map_latitude` , `map_longitude` ) ;
-
--- update14
-ALTER TABLE `c_diary` CHANGE COLUMN `public_flag` `public_flag` enum('public','friend','private') NOT NULL default 'public';
 ALTER TABLE `c_member` CHANGE COLUMN `public_flag_diary` `public_flag_diary` enum('public','friend','private') NOT NULL default 'public';
-
+ALTER TABLE `c_diary` ADD COLUMN `public_flag` enum('public','friend','private') NOT NULL default 'public';
 UPDATE c_diary INNER JOIN c_member USING (c_member_id) SET c_diary.public_flag = c_member.public_flag_diary ;
 
 -- update15
