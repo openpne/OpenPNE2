@@ -8,65 +8,50 @@
 
 //予期しない多重定義を避けるため、必ず関数名にはbiz_というprefixをつける
 
-//CONST-------------------------------------------
-
-//テーブルの構造を定義する定数群
-//  BIZ_DB_*
-define('BIZ_DB_SC', '`biz_schedule`(`biz_schedule_id`, `title`, `c_member_id`, `begin_date`, `finish_date`, `begin_time`, `finish_time`, `value`, `rep_type`, `rep_first`)');
-define('BIZ_DB_SCM', '`biz_schedule_member` ( `biz_schedule_member_id` , `c_member_id` , `biz_schedule_id` , `is_read` )');
-define('BIZ_DB_GP', '`biz_group` ( `biz_group_id` , `name` , `info` , `admin_id` , `image_filename` )');
-define('BIZ_DB_GPM', '`biz_group_member` ( `biz_group_member_id` , `c_member_id` , `biz_group_id` )');
-define('BIZ_DB_S', '`biz_shisetsu` ( `biz_shisetsu_id` , `name` , `image_filename` )');
-define('BIZ_DB_SSC', '`biz_shisetsu_schedule` ( `biz_shisetsu_schedule_id` , `c_member_id`, `biz_shisetsu_id` , `date` , `begin_time` , `finish_time`)');
-//define('BIZ_DB_SCS', '`biz_schedule_shisetsu` ( `biz_schedule_shisetsu_id` , `shisetsu_id` , `schedule_id`)');
-define('BIZ_DB_TODO', '`biz_todo` (`biz_todo_id`, `c_member_id`, `memo`, `is_check`, `writer_id`, `sort_order`, `r_datetime`)');
-//define('BIZ_DB_ST', '`biz_state` (`biz_state_id`, `member_id`, `state`)');
-
 //GET---------------------------------------------
 
 //schedule_idの最大値を得る関数
 function biz_getScheduleMax()
 {
     $sql = 'SELECT MAX(biz_schedule_id) FROM biz_schedule';
-
-    if($count = db_get_one($sql, $params))  //成功した場合、最大値を返す
+    if ($count = db_get_one($sql, $params)) {
         return $count;
-    else
-        return false;  //失敗した場合、偽を返す
+    } else {
+        return false;
+    }
 }
 
-//schedule_idの最大値を得る関数
+//group_idの最大値を得る関数
 function biz_getGroupMax()
 {
     $sql = 'SELECT MAX(biz_group_id) FROM biz_group';
-
-    if($count = db_get_one($sql))  //成功した場合、最大値を返す
+    if ($count = db_get_one($sql)) {
         return $count;
-    else
-        return false;  //失敗した場合、偽を返す
+    } else {
+        return false;
+    }
 }
 
 //member_idの最大値を得る関数
 function biz_getMenberMax()
 {
     $sql = 'SELECT MAX(c_member_id) FROM c_member';
-
-    if($count = db_get_one($sql, $params))  //成功した場合、最大値を返す
+    if ($count = db_get_one($sql, $params)) {
         return $count;
-    else
-        return false;  //失敗した場合、偽を返す
+    } else {
+        return false;
+    }
 }
 
 function biz_getShisetsuScheduleMax()
 {
     $sql = 'SELECT MAX(biz_shisetsu_schedule_id) FROM biz_shisetsu_schedule';
-
-    if($count = db_get_one($sql, $params))  //成功した場合、最大値を返す
+    if ($count = db_get_one($sql, $params)) {
         return $count;
-    else
-        return false;  //失敗した場合、偽を返す
+    } else {
+        return false;
+    }
 }
-
 
 //指定された日付に存在する予定IDを得る関数
 function biz_getDateSchedule($y,$m,$d)
@@ -208,9 +193,9 @@ function biz_getJoinIdNewSchedule($id)
 
     $schedule = array();
 
-    foreach($ids as $value)
-    {
-        $sql = 'SELECT * FROM biz_schedule WHERE biz_schedule_id = '.no_quote4db($value);
+    foreach ($ids as $value) {
+        $sql = 'SELECT * FROM biz_schedule WHERE biz_schedule_id = ?';
+        $params = array($value);
         $schedule[] = db_get_row($sql, $params);
     }
 
@@ -530,11 +515,10 @@ function biz_getBannerScheduleList($y, $m, $id)
 
     $tmp = array_unique($tmp);
 
-    foreach($contain as $key => $value)
-    {
-        if(!is_null($value))
-        {
-            $sql = 'SELECT * FROM biz_schedule WHERE biz_schedule_id = \''.no_quote4db($value).'\';';  //そのidの予定を得る
+    foreach($contain as $key => $value) {
+        if (!is_null($value)) {
+            $sql = 'SELECT * FROM biz_schedule WHERE biz_schedule_id = ?'; //そのidの予定を得る
+            $params = array(intval($value));
             $schedule += array($key => db_get_row($sql, $params));
         }
     }
@@ -723,63 +707,55 @@ function biz_insertSchedule($title, $member_id, $begin_date, $finish_date, $begi
         $rep_type = 0;
 
     //biz_scheduleにデータを追加する
-
-    $sql = 'INSERT INTO'.BIZ_DB_SC.' VALUES("", ?, ?, ?, ?, ?, ?, ?, ?, ?)';
-
-    $params = array(
-        $title,
-        $member_id,
-        $begin_date,
-        $finish_date,
-        $begin_time,
-        $finish_time,
-        $value,
-        $rep_type,
-        $first_id,
+    $data = array(
+        'title' => $title,
+        'c_member_id' => intval($member_id),
+        'begin_date' => $begin_date,
+        'finish_date' => $finish_date,
+        'begin_time' => $begin_time,
+        'finish_time' => $finish_time,
+        'value' => $value,
+        'rep_type' => $rep_type,
+        'rep_first' => $first_id,
     );
-
-
-    db_query($sql, $params);
+    db_insert('biz_schedule', $data);
 
     //biz_schedule_memberで予定とメンバーを関連づける
 
     $new_schedule_id = mysql_insert_id();
 
-    foreach($join_members as $value)
-    {
-        $sql = 'INSERT INTO'.BIZ_DB_SCM.' VALUES("", ?, ?, 0)';
-
-        $params = array(
-            $value,
-            $new_schedule_id,
+    foreach ($join_members as $value) {
+        $data = array(
+            'c_member_id' => $value,
+            'biz_schedule_id' => $new_schedule_id,
+            'is_read' => 0,
         );
-
-        db_query($sql, $params);
+        db_insert('biz_schedule_member', $data);
     }
-
 }
 
 //スケジュール削除
 function biz_deleteSchedule($id, $group = false)
 {
-    if($group)
-    {
-        $sql = 'SELECT first_id FROM biz_schedule WHERE biz_schedule_id = '.no_quote4db($id).';';
+    if ($group) {
+        $sql = 'SELECT first_id FROM biz_schedule WHERE biz_schedule_id = ?';
+        $params = array(intval($id));
         $firstid = db_get_one($sql, $params);
-        $sql = 'SELECT biz_schedule_id FROM biz_schedule WHERE first_id = '.no_quote4db($firstid).';';
+
+        $sql = 'SELECT biz_schedule_id FROM biz_schedule WHERE first_id = ?';
+        $params = array(intval($firstid));
         $schedules = db_get_col($sql, $params);
-        $sql = 'DELETE FROM biz_schedule WHERE first_id = '.no_quote4db($firstid).';';
+
+        $sql = 'DELETE FROM biz_schedule WHERE first_id = ?';
+        $params = array(intval($firstid));
         db_query($sql, $params);
 
-        foreach($schedules as $nowid)
-        {
-            $sql = 'DELETE FROM biz_schedule_member WHERE biz_schedule_id = '.no_quote4db($nowid).';';
+        foreach ($schedules as $nowid) {
+            $sql = 'DELETE FROM biz_schedule_member WHERE biz_schedule_id = ?';
+            $params = array(intval($nowid));
             db_query($sql, $params);
         }
-    }
-
-    else
-    {
+    } else {
         $sql = 'DELETE FROM biz_schedule WHERE biz_schedule_id = ?';
         $params = array(
             intval($id),
@@ -819,14 +795,13 @@ function biz_editSchedule($title, $member_id, $begin_date, $finish_date, $begin_
     );
     db_query($sql, $params);
 
-    foreach($join_members as $value)
-    {
-        $sql = 'INSERT INTO'.BIZ_DB_SCM.' VALUES("", ?, ?, 0)';
-        $params = array(
-            $value,
-            intval($id),
+    foreach ($join_members as $value) {
+        $data = array(
+            'c_member_id' => $value,
+            'biz_schedule_id' => intval($id),
+            'is_read' => 0,
         );
-        db_query($sql, $params);
+        db_insert('biz_schedule_member', $data);
     }
 }
 
@@ -851,39 +826,31 @@ function biz_readSchedule($member_id, $schedule_id)
 function biz_insertGroup($name, $member_id, $info, $image_name, $members = array())
 {   
     //登録値のセット、チェック
-
-    if(!$image_name) 
+    if (!$image_name) {
         $image_name = 0;
-
-    if(!$info)
+    }
+    if (!$info) {
         $info = "";
-
-    if(empty($members))
+    }
+    if (empty($members)) {
         $members = array($member_id);
+    }
 
     //biz_groupにデータを追加する
-
-    $sql = 'INSERT INTO'.BIZ_DB_GP.' VALUES("", ?, ?, ?, ?)';
-
-    $params = array(
-        $name,
-        $info,
-        intval($member_id),
-        $image_name,
+    $data = array(
+        'name' => $name,
+        'info' => $info,
+        'admin_id' => intval($member_id),
+        'image_filename' => $image_name,
     );
-
-    db_query($sql, $params);
-
-    $new_group_id = mysql_insert_id();
-
-    foreach($members as $key => $value)
-    {
-        $sql = 'INSERT INTO'.BIZ_DB_GPM.' VALUES("", ?, ?)';
-        $params = array(
-            $value,
-            $new_group_id,
+    $new_group_id = db_insert('biz_group', $data);
+    
+    foreach ($members as $key => $value) {
+        $data = array(
+            'c_member_id' => $value,
+            'biz_group_id' => $new_group_id,
         );
-        db_query($sql, $params);
+        db_insert('biz_group_member', $data);
     }
 }
 
@@ -917,14 +884,12 @@ function biz_editGroup($biz_group_id, $name, $member_id, $info, $image_name, $me
     );
     $result = db_query($sql, $params);
 
-    foreach($members as $key => $value)
-    {
-        $sql = 'INSERT INTO'.BIZ_DB_GPM.' VALUES("", ?, ?)';
-        $params = array(
-            $value,
-            intval($biz_group_id),
+    foreach ($members as $key => $value) {
+        $data = array(
+            'c_member_id' => $value,
+            'biz_group_id' => intval($biz_group_id),
         );
-        db_query($sql, $params);
+        db_insert('biz_group_member');
     }
 }
 
@@ -945,76 +910,60 @@ function biz_deleteGroup($group_id)
 //グループに参加
 function biz_joinGroup($member_id, $group_id)
 {
-    $sql = 'INSERT INTO'.BIZ_DB_GPM.' VALUES("", ?, ?)';
-    $params = array(
-        intval($member_id),
-        intval($biz_group_id),
+    $data = array(
+        'c_member_id' => intval($member_id),
+        'biz_group_id' => intval($group_id),
     );
-    db_query($sql, $params);
+    db_insert('biz_group_member', $data);
 }
 
 //施設追加
 function biz_addShisetsu($name, $image_name)
 {
-    if(!$image_name)
+    if (!$image_name) {
         $image_name = '0';
+    }
 
-    $sql = 'INSERT INTO'.BIZ_DB_S.' VALUES("", ?, ?)';
-
-    $params = array(
-        $name,
-        $image_name,
+    $data = array(
+        'name' => $name,
+        'image_filename' => $image_name,
     );
-
-    db_query($sql, $params);
+    db_insert('biz_shisetsu', $data);
 }
 
 //施設編集
 function biz_editShisetsu($id, $name, $image_name)
 {
-    if(!$image_name)
+    if (!$image_name) {
         $image_name = 0;
-    $sql = 'UPDATE `biz_shisetsu` SET `name` = ?,`image_filename` = ? WHERE `biz_shisetsu_id` = ?';
+    }
 
+    $sql = 'UPDATE `biz_shisetsu` SET `name` = ?,`image_filename` = ? WHERE `biz_shisetsu_id` = ?';
     $params = array(
         $name,
         $image_name,
         intval($id),
     );
-
-
     db_query($sql, $params);
 }
 
 //施設予定追加
 function biz_addShisetsuSchedule($shisetsu_id, $member_id, $date, $begin_time, $finish_time)
 {
-    $y = date("Y",strtotime($date));
-    $m = date("m",strtotime($date));
-    $d = date("d",strtotime($date));
-
-    $sql = 'INSERT INTO'.BIZ_DB_SSC.' VALUES("", ?, ?, ?, ?, ?)';
-
-    $params = array(
-        intval($member_id),
-        intval($shisetsu_id),
-        $date,
-        $begin_time,
-        $finish_time,
+    $data = array(
+        'c_member_id' => intval($member_id),
+        'biz_shisetsu_id' => intval($shisetsu_id),
+        'date' => $date,
+        'begin_time' => $begin_time,
+        'finish_time' => $finish_time,
     );
+    $insert_id = db_insert('biz_shisetsu_schedule', $data);
 
-    db_query($sql, $params);
-
-    $sql = 'INSERT INTO'.BIZ_DB_SCS.' VALUES("", ?, ?)';
-
-    $params = array(
-        $shisetsu_id,
-        mysql_insert_id(),
+    $data = array(
+        'shisetsu_id' => intval($shisetsu_id),
+        'schedule_id' => intval($insert_id),
     );
-
-    db_query($sql, $params);
-
-    return $sql;
+    db_insert('biz_schedule_shisetsu', $data);
 }
 
 //施設予定削除
@@ -1033,25 +982,22 @@ function biz_deleteShisetsuSchedule($shisetsu_id)
 //Todo登録
 function biz_insertTodo($member_id, $memo, $writer_id, $sort_order, $is_all)
 {
-    if($is_all)  //共有Todo
+    if ($is_all) {
+        //共有Todo
         $member_id = 0;
-    elseif($member_id == $writer_id)
+    } elseif ($member_id == $writer_id) {
         $writer_name = '';
-    $sql = 'INSERT INTO '.BIZ_DB_TODO.'VALUES ("", ?, ?, ?, ?, ?, ?)';
+    }
 
-    $params = array(
-        $member_id,
-        $memo,
-        0,
-        $writer_id,
-        $sort_order,
-        date("Y-m-d H:m"),
+    $data = array(
+        'c_member_id' => $member_id,
+        'memo' => $memo,
+        'is_check' => 0,
+        'writer_id' => $writer_id,
+        'sort_order' => $sort_order,
+        'r_datetime' => date("Y-m-d H:m"),
     );
-
-
-    $result = db_query($sql, $params);
-
-    return $result;
+    return db_insert('biz_todo', $data);
 }
 
 //Todo登録
@@ -1190,21 +1136,23 @@ function biz_deleteShisetsuImage($id, $filename)
 
 function biz_insertState($member_id, $state)
 {
-    $sql = 'INSERT INTO '.BIZ_DB_ST.'VALUES ("", '.quotearray4db($member_id, $state).');';
-    $result = db_query($sql, $params);
-
-    return $result;
+    $data = array(
+        'member_id' => intval($member_id),
+        'state' => $state,
+    );
+    return db_insert('biz_state', $data);
 }
 
 function biz_changeState($member_id, $new)
 {
     $state = biz_getState($member_id);
 
-    if(!$state)  //新規作成
+    if (!$state) {
+        //新規作成
         $result = biz_insertState($member_id, $new);
-    else
-    {
-        $sql = 'UPDATE `biz_state` SET `state` = \''.no_quote4db($new).'\' WHERE `member_id` = \''.no_quote4db($member_id).'\';';
+    } else {
+        $sql = 'UPDATE `biz_state` SET `state` = ? WHERE `member_id` = ?';
+        $params = array($new, intval($member_id));
         $result = db_query($sql, $params);
     }
 
@@ -1216,7 +1164,7 @@ function biz_changeNickname($member_id, $new)
     $sql = 'UPDATE `c_member` SET `nickname` = ? WHERE `c_member_id` = ?';
     $params = array(
         $new,
-        $member_id,
+        intval($member_id),
     );
     $result = db_query($sql, $params);
 
@@ -1256,18 +1204,21 @@ function biz_changeIsKtaiMessage($c_member_id, $is_ktai)
 
 function biz_isKtaiMessage($c_member_id)
 {
-    $sql = 'SELECT `is_receive_ktai_mail` FROM `c_member` WHERE `c_member_id` = '.no_quote4db($c_member_id).';';
+    $sql = 'SELECT `is_receive_ktai_mail` FROM `c_member` WHERE `c_member_id` = ?';
+    $params = array(intval($c_member_id));
     $is_receive_ktai_mail = db_get_one($sql, $params);
 
-    $sql = 'SELECT `ktai_address` FROM `c_member_secure` WHERE `c_member_id` = '.no_quote4db($c_member_id).';';
+    $sql = 'SELECT `ktai_address` FROM `c_member_secure` WHERE `c_member_id` = ?';
+    $params = array(intval($c_member_id));
     $is_ktai_mail_address = db_get_one($sql, $params);
 
-    if(!$is_receive_ktai_mail)
+    if (!$is_receive_ktai_mail) {
         return false;
-    elseif(!$is_ktai_mail_address)
+    } elseif(!$is_ktai_mail_address) {
         return false;
-    else
+    } else {
         return true;
+    }
 }
 
 //common message
