@@ -133,7 +133,7 @@ class Crypt_BlowfishOld
      */
     function _init()
     {
-        $defaults = new Crypt_Blowfish_DefaultKey();
+        $defaults = new Crypt_BlowfishOld_DefaultKey();
         $this->_P = $defaults->P;
         $this->_S = $defaults->S;
     }
