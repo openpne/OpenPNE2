@@ -46,7 +46,7 @@
 <table border="0" cellspacing="0" cellpadding="0" style="width:566px;" class="border_01">
 <tr>
 <td style="width:36px;" class="bg_06"><img src="({t_img_url_skin filename=content_header_1})" style="width:30px;height:20px;" class="dummy"></td>
-<td style="width:528px;padding:2px 0px;" class="bg_06"><span class="b_b c_00">携帯メールアドレス登録</span></td>
+<td style="width:528px;padding:2px 0px;" class="bg_06"><span class="b_b c_00">携帯メールアドレスを登録する</span></td>
 </tr>
 </table>
 <!-- ここまで：小タイトル -->
@@ -152,6 +152,72 @@
 
 <img src="./skin/dummy.gif" class="v_spacer_l">
 
+<!-- ******ここから：携帯アドレス削除****** -->
+<!-- ******************************************** -->
+
+({if $ktai})
+
+<table border="0" cellspacing="0" cellpadding="0" style="width:580px;" class="border_07">
+<tr>
+<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:566px;" class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+</tr>
+<tr>
+<td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_01" align="center">
+<!-- *ここから：日記を書く＞内容* -->
+({*ここから：header*})
+<!-- ここから：小タイトル -->
+<table border="0" cellspacing="0" cellpadding="0" style="width:566px;" class="border_01">
+<tr>
+<td style="width:36px;" class="bg_06"><img src="./skin/content_header_1.gif" style="width:30px;height:20px;" class="dummy"></td>
+<td style="width:528px;padding:2px 0px;" class="bg_06"><span class="b_b c_00">登録携帯メールアドレスを削除する</span></td>
+</tr>
+</table>
+<!-- ここまで：小タイトル -->
+({*ここまで：header*})
+({*ここから：body*})
+<!-- ここから：主内容 -->
+<div class="border_01 bg_09" align="center">
+
+<img src="./skin/dummy.gif" class="v_spacer_l">
+
+<div style="width:528px;padding:30px 10px;margin:0px auto;" class="border_01 bg_03">
+
+現在登録されている携帯メールアドレスを削除します
+
+
+({t_form m=pc a=page_h_delete_ktai})
+<input type="submit" value="　削除　">
+</form>
+</div>
+
+<img src="./skin/dummy.gif" class="v_spacer_l">
+
+</div>
+<!-- ここまで：主内容 -->
+({*ここまで：body*})
+({*ここから：footer*})
+<!-- 無し -->
+({*ここまで：footer*})
+<!-- *ここまで：日記を書く＞＞内容* -->
+</td>
+<td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+</tr>
+<tr>
+<td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+</tr>
+</table>
+
+
+
+({/if})
+
+<!-- ******ここまで：携帯アドレス削除****** -->
+<!-- ******************************************** -->
 
 ({***************************})
 ({**ここまで：メインコンテンツ**})

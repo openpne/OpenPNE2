@@ -257,7 +257,7 @@
 <td class="bg_02" align="left" valign="middle">
 <div class="padding_s">
 
-<a href="({t_url m=pc a=page_h_config_ktai})">携帯メールアドレス登録ページへ</a><br>
+<a href="({t_url m=pc a=page_h_config_ktai})">携帯メールアドレス設定ページへ</a><br>
 ※携帯メールアドレスを登録すると、携帯から「({$smarty.const.SNS_NAME})」を利用することができます。
 
 </div>
