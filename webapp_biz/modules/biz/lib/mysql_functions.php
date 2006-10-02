@@ -889,7 +889,7 @@ function biz_editGroup($biz_group_id, $name, $member_id, $info, $image_name, $me
             'c_member_id' => $value,
             'biz_group_id' => intval($biz_group_id),
         );
-        db_insert('biz_group_member');
+        db_insert('biz_group_member', $data);
     }
 }
 
