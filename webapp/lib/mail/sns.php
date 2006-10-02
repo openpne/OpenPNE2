@@ -233,7 +233,8 @@ class mail_sns
             return false;
         }
 
-        if (!$ins_id = db_diary_insert_c_diary($this->c_member_id, $subject, $body)) {
+        $c_member = db_common_c_member4c_member_id($this->c_member_id);
+        if (!$ins_id = db_diary_insert_c_diary($this->c_member_id, $subject, $body, $c_member['public_flag_diary'])) {
             return false;
         }
 
