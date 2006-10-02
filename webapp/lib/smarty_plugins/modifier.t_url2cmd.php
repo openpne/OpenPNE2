@@ -11,7 +11,7 @@ function smarty_modifier_t_url2cmd($string)
     $replace = array('"', "'");
     $string = str_replace($search, $replace, $string);
 
-    $url_pattern = "/https?:\/\/([a-zA-Z0-9-.]+)\/[\w\-.,:;\~\^\/?\@&=+\$%#!()]+/";
+    $url_pattern = "/https?:\/\/([a-zA-Z0-9-.]+)\/?[\w\-.,:;\~\^\/?\@&=+\$%#!()]*/";
     return preg_replace_callback($url_pattern, '_smarty_modifier_t_cmd_make_url_js', $string);
 }
 
