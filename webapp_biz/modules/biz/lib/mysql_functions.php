@@ -782,6 +782,7 @@ function biz_editSchedule($title, $member_id, $begin_date, $finish_date, $begin_
         $begin_date,
         $finish_date,
         $begin_time,
+        $finish_time,
         $value,
         $rep_type,
         $first_id,
