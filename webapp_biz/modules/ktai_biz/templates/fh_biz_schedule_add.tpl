@@ -43,5 +43,4 @@
 <hr>
 	
 <a href="({t_url m=ktai_biz a=page_fh_calendar_week})&amp;target_id=({$t_id})&amp;({$tail})">週間ｶﾚﾝﾀﾞｰ</a><br>
-<a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$t_id})&amp;({$tail})" accesskey="0">0.ﾎｰﾑ</a><br>
 ({$inc_ktai_footer|smarty:nodefaults})

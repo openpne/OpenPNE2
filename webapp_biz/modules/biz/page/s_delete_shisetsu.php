@@ -17,7 +17,8 @@ class biz_page_s_delete_shisetsu extends OpenPNE_Action
 
         if($config['IS_CLOSED_SHISETSU'])
         {
-            client_redirect_absolute('?m=biz&a=page_s_list&msg='.urlencode('施設関連の操作は禁止されています。'));
+            $p = array('msg' => '施設関連の操作は禁止されています。');
+            openpne_redirect('biz', 'page_s_list', $p);
             exit();
         }
         return 'success';

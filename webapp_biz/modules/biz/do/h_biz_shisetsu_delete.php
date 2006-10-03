@@ -12,7 +12,8 @@ class biz_do_h_biz_shisetsu_delete extends OpenPNE_Action
         $sessid = session_id();
         biz_deleteShisetsuIhige($requests['id'], $requests['filenihe']);
 
-        client_teditect("?m=biz&a=page_s_edit_shisetsu&id=".$requests['id']);
+        $p = array('id' => $requests['id']);
+        openpne_redirect('biz', 'page_s_edit_shisetsu', $p);
     }
 }
 

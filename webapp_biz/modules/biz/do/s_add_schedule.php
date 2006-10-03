@@ -27,9 +27,11 @@ class biz_do_s_add_schedule extends OpenPNE_Action
             openpne_redirect('biz', 'page_s_list', $p);
         }
 
-        $y = date("Y", $requests['start_date']);
-        $m = date("m", $requests['start_date']);
-        $d = date("d", $requests['start_date']);
+        $start_date = $requests['start_date'] . ' 00:00:00';
+
+        $y = date("Y", strtotime($start_date));
+        $m = date("m", strtotime($start_date));
+        $d = date("d", strtotime($start_date));
 
         if(!biz_isBatting($requests['shisetsu_id'], $y, $m, $d, $begin_time, $finish_time)) {
             $p = array('msg' => '施設予約がバッティングしたため、登録ができませんでした');

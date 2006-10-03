@@ -55,17 +55,16 @@
 <td style="width:468px;padding:2px 0px;" class="bg_05">
 &nbsp;<img src="./skin/icon_weather_FC.gif" class="icon">
 <a href="({$weather_url})" target="_blank">天気予報を見る</a>
-
 &nbsp;<img src="./skin/icon_schedule.gif" class="icon">
 <a href="({t_url m=biz a=page_fh_biz_schedule_add})">予定を追加</a>&nbsp;
 
 </td>
 <td style="width:200px;padding:2px 0px;" class="bg_05" align="right">
-<a href="({t_url m=biz a=page_fh_biz_schedule_calendar})&amp;year=({$ym.year_prev})&amp;month=({$ym.month_prev})">&lt;&lt;&nbsp;前の月</a>
+<a href="({t_url m=biz a=page_fh_biz_schedule_calendar})&amp;year=({$ym.year_prev})&amp;month=({$ym.month_prev})({if $is_f})&amp;target_id=({$target_id})({/if})">&lt;&lt;&nbsp;前の月</a>
 |
-<a href="({t_url m=biz a=page_fh_biz_schedule_calendar})">今月</a>
+<a href="({t_url m=biz a=page_fh_biz_schedule_calendar})({if $is_f})&amp;target_id=({$c_member.c_member_id})({/if})">今月</a>
 |
-<a href="({t_url m=biz a=page_fh_biz_schedule_calendar})&amp;year=({$ym.year_next})&amp;month=({$ym.month_next})">次の月&nbsp;&gt;&gt;</a>&nbsp;
+<a href="({t_url m=biz a=page_fh_biz_schedule_calendar})&amp;year=({$ym.year_next})&amp;month=({$ym.month_next})({if $is_f})&amp;target_id=({$c_member.c_member_id})({/if})">次の月&nbsp;&gt;&gt;</a>&nbsp;
 </td>
 </tr>
 </table>
@@ -105,8 +104,10 @@
 	({elseif $cmd == 's_list'})
 ({assign var="begin_time_H" value=$item_schedule.begin_time|date_format:"%H"})
 ({assign var="begin_time_M" value=$item_schedule.begin_time|date_format:"%M"})
-({assign var="finish_time_H" value=$item_schedule.finish_time|date_format:"%H"})
-({assign var="finish_time_M" value=$item_schedule.finish_time|date_format:"%M"})
+({if $item_schedule.finish_time})
+	({assign var="finish_time_H" value=$item_schedule.finish_time|date_format:"%H"})
+	({assign var="finish_time_M" value=$item_schedule.finish_time|date_format:"%M"})
+({/if})
 <a href="({t_url m=biz a=page_s_view_schedule})&amp;id=({$item_schedule.biz_shisetsu_schedule_id})">
 ({ext_include file="inc_biz_schedule_week_time.tpl"})
 <div class="padding_s" style="padding-top:0;">
@@ -115,8 +116,10 @@
 	({elseif $item_schedule.begin_date != $item_schedule.finish_date})  <!--バナー予定 -->
 ({assign var="begin_time_H" value=$item_schedule.begin_date|date_format:"%H"})
 ({assign var="begin_time_M" value=$item_schedule.begin_date|date_format:"%M"})
-({assign var="finish_time_H" value=$item_schedule.finish_date|date_format:"%H"})
-({assign var="finish_time_M" value=$item_schedule.finish_date|date_format:"%M"})
+({if $item_schedule.finish_time})
+	({assign var="finish_time_H" value=$item_schedule.finish_date|date_format:"%H"})
+	({assign var="finish_time_M" value=$item_schedule.finish_date|date_format:"%M"})
+({/if})
 ({ext_include file="inc_biz_schedule_week_time.tpl"})
 <div class="padding_s" style="padding-top:0;">
 <a href="({t_url m=biz a=page_fh_biz_schedule_view})&amp;id=({$item_schedule.biz_schedule_id})">({$item_schedule.title})</a>
@@ -124,8 +127,10 @@
 	({else})
 ({assign var="begin_time_H" value=$item_schedule.begin_time|date_format:"%H"})
 ({assign var="begin_time_M" value=$item_schedule.begin_time|date_format:"%M"})
-({assign var="finish_time_H" value=$item_schedule.finish_time|date_format:"%H"})
-({assign var="finish_time_M" value=$item_schedule.finish_time|date_format:"%M"})
+({if $item_schedule.finish_time})
+	({assign var="finish_time_H" value=$item_schedule.finish_time|date_format:"%H"})
+	({assign var="finish_time_M" value=$item_schedule.finish_time|date_format:"%M"})
+({/if})
 ({ext_include file="inc_biz_schedule_week_time.tpl"})
 <div class="padding_s" style="padding-top:0;">
 <a href="({t_url m=biz a=page_fh_biz_schedule_view})&amp;id=({$item_schedule.biz_schedule_id})">({$item_schedule.title})</a>
@@ -141,14 +146,14 @@
 
 ({* イベント *})
 ({foreach from=$item.event item=item_event})
-<img src="./skin/icon_event_({if $item_event.is_join})R({else})B({/if}).gif" class="icon"><a href="({t_url m=biz a=page_c_event_detail})&amp;target_c_commu_topic_id=({$item_event.c_commu_topic_id})">({$item_event.name})</a><br>
+<img src="./skin/icon_event_({if $item_event.is_join})R({else})B({/if}).gif" class="icon"><a href="({t_url m=pc a=page_c_event_detail})&amp;target_c_commu_topic_id=({$item_event.c_commu_topic_id})">({$item_event.name})</a><br>
 ({/foreach})
 
 ({if $item.schedule})
 ({foreach from=$item.schedule item=item_schedule name=schedule})
 	({if !$item_schedule.begin_time})  <!-- 時間指定なしの予定 -->
 <div class="padding_s">
-({*<img src="./skin/icon_pen.gif" class="icon">*})<a href="({t_url m=biz a=page_fh_biz_schedule_view})&amp;id=({$item_schedule.biz_schedule_id})({if $cmd=='f'})&amp;target_id=({$member_info.c_member_id})({/if})">({$item_schedule.title})</a>
+({*<img src="./skin/icon_pen.gif" class="icon">*})<a href="({t_url m=biz a=page_fh_biz_schedule_view})&amp;id=({$item_schedule.biz_schedule_id})({if $is_f})&amp;target_id=({$c_member.c_member_id})({/if})">({$item_schedule.title})</a>
 </div>
 	({else})
 &nbsp;
@@ -183,11 +188,11 @@
 <table border="0" cellspacing="0" cellpadding="0" style="width:670px;" class="border_01">
 <tr>
 <td style="width:668px;padding:2px 0px;" align="right" class="bg_05">
-<a href="({t_url m=biz a=page_fh_biz_schedule_calendar})&amp;year=({$ym.year_prev})&amp;month=({$ym.month_prev})">&lt;&lt;&nbsp;前の月</a>
+<a href="({t_url m=biz a=page_fh_biz_schedule_calendar})&amp;year=({$ym.year_prev})&amp;month=({$ym.month_prev})({if $is_f})&amp;target_id=({$c_member.c_member_id})({/if})">&lt;&lt;&nbsp;前の月</a>
 |
-<a href="({t_url m=biz a=page_fh_biz_schedule_calendar})">今月</a>
+<a href="({t_url m=biz a=page_fh_biz_schedule_calendar})({if $is_f})&amp;target_id=({$c_member.c_member_id})({/if})">今月</a>
 |
-<a href="({t_url m=biz a=page_fh_biz_schedule_calendar})&amp;year=({$ym.year_next})&amp;month=({$ym.month_next})">次の月&nbsp;&gt;&gt;</a>&nbsp;
+<a href="({t_url m=biz a=page_fh_biz_schedule_calendar})&amp;year=({$ym.year_next})&amp;month=({$ym.month_next})({if $is_f})&amp;target_id=({$c_member.c_member_id})({/if})">次の月&nbsp;&gt;&gt;</a>&nbsp;
 </td>
 </tr>
 </table>

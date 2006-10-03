@@ -45,14 +45,6 @@ function pc_get_trusted($tpl_name, &$smarty_obj)
 {
 }
 
-//CONST-------------------------------------------
-define('BIZ_DIR', OPENPNE_MODULES_BIZ_DIR.'/biz/');
-define('INC_SC_WK', 'file:'.BIZ_DIR.'templates/inc_biz_schedule_week.tpl');
-define('INC_TODO', 'file:'.BIZ_DIR.'templates/inc_biz_todo.tpl');
-define('INC_ST', 'file:'.BIZ_DIR.'templates/inc_biz_state.tpl');
-define('INC_NEWSC', 'file:'.BIZ_DIR.'templates/inc_biz_new_schedule.tpl');
-define('INC_PST_TODO', 'file:'.BIZ_DIR.'templates/inc_biz_posted_todo.tpl');
-define('INC_GRP_LIST', 'file:'.BIZ_DIR.'templates/inc_biz_home_group_list.tpl');
 //GET---------------------------------------------
 
 //スケジュール用カレンダーを得る
@@ -181,7 +173,7 @@ function biz_getScheduleWeek($member_id, $w, $cmd, $head = true, $value = true, 
         $inc_smarty->assign('stateform', $stateform);
     }
 
-    $content = $inc_smarty->fetch(INC_SC_WK);
+    $content = $inc_smarty->fetch('file:'.OPENPNE_MODULES_BIZ_DIR.'/biz/templates/inc_biz_schedule_week.tpl');
 
     return $content;
 }
@@ -212,7 +204,7 @@ function biz_getTodoList($member_id, $cmd, $nickname = null)
 
     $inc_smarty->assign("todolist", $todolist);
     $inc_smarty->assign("checkedlist", $checkedlist);
-    $content = $inc_smarty->fetch(INC_TODO);
+    $content = $inc_smarty->fetch('file:'.OPENPNE_MODULES_BIZ_DIR.'/biz/templates/inc_biz_todo.tpl');
     return $content;
 }
 
@@ -235,7 +227,7 @@ function biz_getStateForm($member_id, $is_form = false)
     //nickname用-----
 
     $inc_smarty->assign("state", $state);
-    $content = $inc_smarty->fetch(INC_ST);
+    $content = $inc_smarty->fetch('file:'.OPENPNE_MODULES_BIZ_DIR.'/biz/templates/inc_biz_state.tpl');
 
     return $content;
 }
@@ -249,7 +241,7 @@ function biz_getNewSchedule($member_id)
     $inc_smarty->templates_dir = 'pc/templates';;
     $inc_smarty->assign("newlist", $newschedule);
 
-    $content = $inc_smarty->fetch(INC_NEWSC);
+    $content = $inc_smarty->fetch('file:'.OPENPNE_MODULES_BIZ_DIR.'/biz/templates/inc_biz_new_schedule.tpl');
     return $content;
 }
 
@@ -261,7 +253,7 @@ function biz_getPostedTodoList($member_id)
     $inc_smarty->assign("PHPSESSID", md5(session_id()));
     $inc_smarty->templates_dir = 'pc/templates';;
     $inc_smarty->assign("posted_todo", $posted);
-    $content = $inc_smarty->fetch(INC_PST_TODO);
+    $content = $inc_smarty->fetch('file:'.OPENPNE_MODULES_BIZ_DIR.'/biz/templates/inc_biz_posted_todo.tpl');
     return $content;
 }
 
@@ -274,7 +266,7 @@ function biz_getHomeGroupList($c_member_id)
     $inc_smarty->assign("group_list", biz_getJoinGroup($c_member_id, 9));
     $inc_smarty->assign("group_count", biz_getGroupCount($c_member_id));
 
-    $content = $inc_smarty->fetch(INC_GRP_LIST);
+    $content = $inc_smarty->fetch('file:'.OPENPNE_MODULES_BIZ_DIR.'/biz/templates/inc_biz_home_group_list.tpl');
 
     return $content;
 }

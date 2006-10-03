@@ -16,8 +16,8 @@ class biz_do_h_home_delete_biz_todo extends OpenPNE_Action
 
         biz_deleteTodo($delid);
 
-        client_redirect_absolute("?m=pc&a=page_h_home");
-
+        $p = array();
+        openpne_redirect('pc', 'page_h_home', $p);
     }
 }
 

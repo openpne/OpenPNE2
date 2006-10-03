@@ -1190,108 +1190,6 @@ function biz_deleteShisetsu($id)
     db_query($sql, $params);
 }
 
-//携帯メール受信用
-
-function biz_changeIsKtaiMessage($c_member_id, $is_ktai)
-{
-    $sql = 'UPDATE c_member SET is_receive_ktai_mail = ? WHERE c_member_id = ?';
-   $params = array(
-        intval($is_ktai),
-        intval($c_member_id),
-    );
-
-    db_query($sql, $params);
-}
-
-function biz_isKtaiMessage($c_member_id)
-{
-    $sql = 'SELECT `is_receive_ktai_mail` FROM `c_member` WHERE `c_member_id` = ?';
-    $params = array(intval($c_member_id));
-    $is_receive_ktai_mail = db_get_one($sql, $params);
-
-    $sql = 'SELECT `ktai_address` FROM `c_member_secure` WHERE `c_member_id` = ?';
-    $params = array(intval($c_member_id));
-    $is_ktai_mail_address = db_get_one($sql, $params);
-
-    if (!$is_receive_ktai_mail) {
-        return false;
-    } elseif(!$is_ktai_mail_address) {
-        return false;
-    } else {
-        return true;
-    }
-}
-
-//common message
-function biz_sendKtaiMessage($c_member_id, $c_member_id_to, $subject, $body)
-{
-    $c_member_to = db_common_c_member4c_member_id($c_member_id_to, true);
-    $ktai_address = $c_member_to['secure']['ktai_address'];
-    $is_receive_mail = $c_member_to['is_receive_mail'];
-
-    $params = array(
-        "c_member_to"   => db_common_c_member4c_member_id($c_member_id_to),
-        "c_member_from" => db_common_c_member4c_member_id($c_member_id),
-    );
-
-    list($subject, $body) = fetch_mail_m_tpl("m_pc_message_zyushin.tpl", $params);
-
-    t_send_email($ktai_address,$subject,$body,$is_receive_mail);
-}
-
-//syoudaku mail
-function biz_sendKtaiMessageSyoudakuMail($c_member_id, $c_member_id_to, $subject, $body)
-{
-    $c_member_to = db_common_c_member4c_member_id($c_member_id_to, true);
-    $ktai_address = $c_member_to['secure']['ktai_address'];
-    $is_receive_mail = $c_member_to['is_receive_mail'];
-
-    $params = array(
-        "c_member_to"   => db_common_c_member4c_member_id($c_member_id_to),
-        "c_member_from" => db_common_c_member4c_member_id($c_member_id),
-    );
-
-    list($subject, $body) = fetch_mail_m_tpl("m_pc_message_syounin.tpl", $params);
-
-    t_send_email($ktai_address,$subject,$body,$is_receive_mail);
-}
-
-//syoukai commu mail
-function biz_sendKtaiMessageSyoukaiCommu($c_member_id, $c_member_id_to)
-{
-    //メール
-    $c_member_to = db_common_c_member4c_member_id($c_member_id_to, true);
-    $ktai_address = $c_member_to['secure']['ktai_address'];
-    $is_receive_mail = $c_member_to['is_receive_mail'];
-
-    $params = array(
-        "c_member_to"   =>db_common_c_member4c_member_id($c_member_id_to),
-        "c_member_from" =>db_common_c_member4c_member_id($c_member_id),
-    );
-
-    list($subject, $body) = fetch_mail_m_tpl("m_pc_message_syoukai_commu.tpl", $params);
-
-    t_send_email($ktai_address,$subject,$body,$is_receive_mail);
-}
-
-//syoukai member mail
-function biz_sendKtaiMessageSyoukaiMemberMail($c_member_id, $c_member_id_to)
-{
-    //メール
-    $c_member_to = db_common_c_member4c_member_id($c_member_id_to, true);
-    $ktai_address = $c_member_to['secure']['ktai_address'];
-    $is_receive_mail = $c_member_to['is_receive_mail'];
-
-    $params = array(
-        "c_member_to"   => db_common_c_member4c_member_id($c_member_id_to),
-        "c_member_from" => db_common_c_member4c_member_id($c_member_id),
-    );
-
-    list($subject, $body) = fetch_mail_m_tpl("m_pc_message_syoukai_member.tpl", $params);
-
-   t_send_email($ktai_address,$subject,$body,$is_receive_mail);
-}
-
 //-------------------------------
 //admin
 
@@ -1299,6 +1197,18 @@ function biz_getConfig()
 {
     $sql = "SELECT name, value FROM biz_admin_config";
     return db_get_assoc($sql);
+}
+
+
+function ktai_biz_openpne_redirect($module, $action = '', $params = array())
+{
+    if ($module == 'ktai_biz') {
+        if (session_id()) {
+            $params['ksid'] = session_id();
+        }
+    }
+    $url = openpne_gen_url($module, $action, $params);
+    client_redirect_absolute($url);
 }
 
 ?>

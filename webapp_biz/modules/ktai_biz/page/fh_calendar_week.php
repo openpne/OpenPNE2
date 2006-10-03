@@ -59,6 +59,8 @@ class ktai_biz_page_fh_calendar_week extends OpenPNE_Action
 
             //イベント
             $event_list = p_h_home_event4c_member_id($y, $m, $d, $target_id);
+            // 誕生日
+            $birth_list = p_h_calendar_birth4c_member_id($m, $target_id);
 
             //スケジュール
             $schedule = biz_getDateMemberSchedule($y,$m,$d,$target_id);
@@ -68,7 +70,6 @@ class ktai_biz_page_fh_calendar_week extends OpenPNE_Action
             if(!empty($banner))
                 array_push($schedule, $banner);
 
-
             $item = array(
                 'year'=> $y,
                 'month' => $m,
@@ -76,6 +77,7 @@ class ktai_biz_page_fh_calendar_week extends OpenPNE_Action
                 'dayofweek' => $dayofweek[$i++],
                 'now' => false,
                 'event' => $event_list,
+                'birth' => $birth_list[intval($d)],
                 'schedule' => $schedule,
             );
             if($w == 0 && $d == date('d')) {

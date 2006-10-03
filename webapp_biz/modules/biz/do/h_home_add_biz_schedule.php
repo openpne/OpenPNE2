@@ -70,14 +70,16 @@ class biz_do_h_home_add_biz_schedule extends OpenPNE_Action
 
         if(empty($title))
         {
-            client_redirect_absolute("?m=pc&a=page_h_home&msg=".urlencode('タイトルを入力してください。'));
+            $p = array('msg' => 'タイトルを入力してください。');
+            openpne_redirect('pc', 'page_h_home', $p);
             exit();
         }
 
         biz_insertSchedule($title, $u, $begin_date, $finish_date, $begin_time, $finish_time, '', 0, 0, array($u));  //予定の登録
         biz_readSchedule($u, biz_getScheduleMax());  //既読済みに
 
-        client_redirect_absolute("?m=pc&a=page_h_home");
+        $p = array();
+        openpne_redirect('pc', 'page_h_home', $p);
     }
 }
 

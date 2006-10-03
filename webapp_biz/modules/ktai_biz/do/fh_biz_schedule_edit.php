@@ -137,7 +137,6 @@ class ktai_biz_do_fh_biz_schedule_edit extends OpenPNE_Action
         if(strtotime($begin_date)-strtotime(date('Y-m-d')) < 0){
             $week = $week - $week * 2;
         }
-        client_redirect_absolute("?m=ktai_biz&a=page_fh_calendar_week&w=$week&$tail&msg=".urlencode('予定を編集しました。')."");
 
         $_REQUEST['msg'] = '予定を編集しました。';
         $_REQUEST['w'] = $week;

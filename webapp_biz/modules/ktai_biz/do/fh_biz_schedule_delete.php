@@ -21,7 +21,8 @@ class ktai_biz_do_fh_biz_schedule_delete extends OpenPNE_Action
         else
             biz_deleteSchedule($requests['schedule_id']);
 
-        client_redirect_absolute("?m=ktai_biz&a=page_fh_calendar_week&target_id=$target_id&$tail");
+        $p = array('target_id' => $requests['target_id']);
+        ktai_biz_openpne_redirect('ktai_biz', 'page_fh_calendar_week', $p);
 
     }
 }

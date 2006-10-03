@@ -16,7 +16,9 @@ class biz_do_h_home_check_biz_todo extends OpenPNE_Action
         // ----------
 
         biz_checkTodo($chid, $is_check);
-        client_redirect_absolute("?m=pc&a=page_h_home");
+
+        $p = array();
+        openpne_redirect('pc', 'page_h_home', $p);
     }
 }
 

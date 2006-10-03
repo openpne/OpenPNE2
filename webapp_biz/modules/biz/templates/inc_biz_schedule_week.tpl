@@ -205,8 +205,10 @@
 	({elseif $cmd == 's_list'})
 ({assign var="begin_time_H" value=$item_schedule.begin_time|date_format:"%H"})
 ({assign var="begin_time_M" value=$item_schedule.begin_time|date_format:"%M"})
+({if $item_schedule.finish_time})
 ({assign var="finish_time_H" value=$item_schedule.finish_time|date_format:"%H"})
 ({assign var="finish_time_M" value=$item_schedule.finish_time|date_format:"%M"})
+({/if})
 <a href="({t_url m=biz a=page_s_view_schedule})&amp;id=({$item_schedule.biz_shisetsu_schedule_id})">
 ({ext_include file="inc_biz_schedule_week_time.tpl"})
 <div class="padding_s" style="padding-top:0;">
@@ -215,8 +217,10 @@
 	({elseif $item_schedule.begin_date != $item_schedule.finish_date})  <!--バナー予定 -->
 ({assign var="begin_time_H" value=$item_schedule.begin_date|date_format:"%H"})
 ({assign var="begin_time_M" value=$item_schedule.begin_date|date_format:"%M"})
+({if $item_schedule.finish_time})
 ({assign var="finish_time_H" value=$item_schedule.finish_date|date_format:"%H"})
 ({assign var="finish_time_M" value=$item_schedule.finish_date|date_format:"%M"})
+({/if})
 ({ext_include file="inc_biz_schedule_week_time.tpl"})
 <div class="padding_s" style="padding-top:0;">
 <a href="({t_url m=biz a=page_fh_biz_schedule_view})&amp;id=({$item_schedule.biz_schedule_id})">({$item_schedule.title})</a>
@@ -224,8 +228,10 @@
 	({else})
 ({assign var="begin_time_H" value=$item_schedule.begin_time|date_format:"%H"})
 ({assign var="begin_time_M" value=$item_schedule.begin_time|date_format:"%M"})
+({if $item_schedule.finish_time})
 ({assign var="finish_time_H" value=$item_schedule.finish_time|date_format:"%H"})
 ({assign var="finish_time_M" value=$item_schedule.finish_time|date_format:"%M"})
+({/if})
 ({ext_include file="inc_biz_schedule_week_time.tpl"})
 <div class="padding_s" style="padding-top:0;">
 <a href="({t_url m=biz a=page_fh_biz_schedule_view})&amp;id=({$item_schedule.biz_schedule_id})">({$item_schedule.title})</a>
@@ -253,7 +259,7 @@
 
 ({* イベント *})
 ({foreach from=$item.event item=item_event})
-<div class="padding_s"><img src="./skin/icon_event_({if $item_event.is_join})R({else})B({/if}).gif" class="icon"><a href="({t_url m=biz a=page_c_event_detail})&amp;target_c_commu_topic_id=({$item_event.c_commu_topic_id})">({$item_event.name|t_truncate:20:".."})</a></div>
+<div class="padding_s"><img src="./skin/icon_event_({if $item_event.is_join})R({else})B({/if}).gif" class="icon"><a href="({t_url m=pc a=page_c_event_detail})&amp;target_c_commu_topic_id=({$item_event.c_commu_topic_id})">({$item_event.name|t_truncate:20:".."})</a></div>
 ({/foreach})
 ({else})
 &nbsp;

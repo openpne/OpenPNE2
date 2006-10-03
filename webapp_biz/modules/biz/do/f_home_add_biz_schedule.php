@@ -56,18 +56,20 @@ class biz_do_f_home_add_biz_schedule extends OpenPNE_Action
         }
 
         if (empty($title)) {
-            client_redirect_absolute("?m=pc&a=page_f_home&target_c_member_id=$target_id&msg=".urlencode('タイトルを入力してください。'));
+            $p = array('target_c_member_id' => $target_id, 'msg' => 'タイトルを入力してください。');
+            openpne_redirect('pc', 'page_f_home', $p);
             exit();
         }
 
         if (empty($target_id)) {
-            client_redirect_absolute("?m=pc&a=page_f_home&target_c_member_id=$target_id&msg=".urlencode('不正な登録です。'));
+            $p = array('target_c_member_id' => $target_id, 'msg' => '不正な登録です。');
+            openpne_redirect('pc', 'page_f_home', $p);
             exit();
         }
 
         biz_insertSchedule($title, $target_id, $begin_date, $finish_date, $begin_time, $finish_time, '', 0, 0, array($target_id));  //予定の登録
-
-        client_redirect_absolute("?m=pc&a=page_f_home&target_c_member_id=$target_id");
+        $p = array('target_c_member_id' => $target_id);
+        openpne_redirect('pc', 'page_f_home', $p);
     }
 }
 

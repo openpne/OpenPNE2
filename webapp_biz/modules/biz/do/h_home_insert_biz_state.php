@@ -17,7 +17,8 @@ class biz_do_h_home_insert_biz_state extends OpenPNE_Action
 
         biz_changeState($member_id, $state);
 
-        client_redirect("?m=pc&a=page_h_home");
+        $p = array();
+        openpne_redirect('pc', 'page_h_home', $p);
     }
 }
 

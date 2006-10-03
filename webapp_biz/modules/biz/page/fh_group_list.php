@@ -21,7 +21,8 @@ class biz_page_fh_group_list extends OpenPNE_Action
         }
 
         if(p_common_is_access_block($u, $target_c_member_id)){
-            client_redirect_absolute("?m=pc&a=page_h_access_block");
+            $p = array();
+            openpne_redirect('pc', 'page_h_access_block', $p);
             exit;
         }
 

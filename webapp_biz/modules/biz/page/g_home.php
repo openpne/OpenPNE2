@@ -19,7 +19,8 @@ class biz_page_g_home extends OpenPNE_Action
 
         //コミュニティの存在の有無
         if (!$group) {
-            client_redirect_absolute("?m=pc&a=page_h_err_c_home");
+            $p = array();
+            openpne_redirect('pc', 'page_h_err_c_home', $p);
             exit;
         }
 

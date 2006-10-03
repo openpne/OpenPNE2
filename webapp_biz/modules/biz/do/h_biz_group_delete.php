@@ -14,8 +14,8 @@ class biz_do_h_biz_group_delete extends OpenPNE_Action
 
         biz_deleteGroup($requests['target_id']);
 
-        client_redirect_absolute("?m=biz&a=page_h_biz_group_find_all&msg=".urlencode('グループを削除しました'));
-
+        $p = array('msg' => 'グループを削除しました。');
+        openpne_redirect('biz', 'page_h_biz_group_find_all', $p);
     }
 }
 

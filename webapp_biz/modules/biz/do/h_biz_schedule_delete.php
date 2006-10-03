@@ -20,8 +20,8 @@ class biz_do_h_biz_schedule_delete extends OpenPNE_Action
         else
             biz_deleteSchedule($requests['schedule_id']);
 
-        client_redirect_absolute("?m=pc&a=page_h_home");
-
+        $p = array();
+        openpne_redirect('pc', 'page_h_home', $p);
 
     }
 }

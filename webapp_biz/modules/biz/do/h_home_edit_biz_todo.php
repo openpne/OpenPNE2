@@ -22,9 +22,12 @@ class biz_do_h_home_edit_biz_todo extends OpenPNE_Action
 
         $member_info = db_common_c_member4c_member_id_LIGHT($writer_id);
 
-        biz_editTodo($u, $memo, $writer_id, $sort_order, $is_check, $id);
+        $todo_info = biz_getTodo($id);
 
-        client_redirect_absolute("?m=pc&a=page_h_home");
+        biz_editTodo($todo_info['c_member_id'], $memo, $writer_id, $sort_order, $is_check, $id);
+
+        $p = array('target_c_member_id' => $todo_info['c_member_id']);
+        openpne_redirect('pc', 'page_f_home', $p);
     }
 }
 

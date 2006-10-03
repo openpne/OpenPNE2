@@ -50,7 +50,6 @@
 ＊携帯からは繰り返し予定は編集・削除できません。
 <hr>
 <a href="({t_url m=ktai_biz a=page_fh_calendar_week})&amp;target_id=({$t_id})&amp;({$tail})">週間ｶﾚﾝﾀﾞｰ</a><br>
-<a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$t_id})&amp;({$tail})">ﾎｰﾑ</a><br>
 ({*END:container*})
 
 ({$inc_ktai_footer|smarty:nodefaults})

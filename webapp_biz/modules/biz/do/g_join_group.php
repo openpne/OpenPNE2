@@ -14,7 +14,8 @@ class biz_do_g_join_group extends OpenPNE_Action
 
         biz_joinGroup($u, $target_id);
 
-        client_redirect_absolute("?m=pc&a=page_h_home");
+        $p = array();
+        openpne_redirect('biz', 'page_h_home', $p);
     }
 }
 

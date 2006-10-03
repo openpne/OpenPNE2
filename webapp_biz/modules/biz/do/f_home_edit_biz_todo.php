@@ -21,7 +21,8 @@ class biz_do_f_home_edit_biz_todo extends OpenPNE_Action
         // ----------
         biz_editTodo($requests['target_id'], $memo, $writer_id, $sort_order, $is_check, $id);
 
-        client_redirect_absolute("?m=pc&a=pagef_home&target_c_member_id=".$requests['target_id']);
+        $p = array('target_c_member_id' => $requests['target_id']);
+        openpne_redirect('pc', 'page_f_home', $p);
 
     }
 }

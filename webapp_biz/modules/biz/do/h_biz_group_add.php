@@ -14,7 +14,9 @@ class biz_do_h_biz_group_add extends OpenPNE_Action
         $member_list = serialize($requests['member_list']);
 
         if (!$requests['name']) {
-            client_redirect_absolute('?m=biz&a=page_h_biz_group_add&m=biz&msg='.urlencode('グループ名を登録してください。').'&name='.$requests['name'].'&info='.$requests['info'].'&memberlist='.$member_list);
+            $p = array('msg' => 'グループ名を登録してください。', 'name' => $requests['name'],
+                'info' => $requests['info'], 'memberlist' => $member_list);
+            openpne_redirect('biz', 'page_h_biz_group_add', $p);
             exit();
         }
 
@@ -23,7 +25,8 @@ class biz_do_h_biz_group_add extends OpenPNE_Action
             $filename = biz_saveImage($_FILES['image_filename'], "g_".$sessid);
             if (!$filename) {
                 $filename = $requests['image_filename'];
-                client_redirect_absolute('?m=biz&a=page_h_biz_group_add&msg='.urlencode('画像は300KB以内のGIF・JPEG・PNGにしてください。').'&m=biz&id='.$id);
+                $p = array('msg' => '画像は300KB以内のGIF・JPEG・PNGにしてください。', 'id' => $id);
+                openpne_redirect('biz', 'page_h_biz_group_add', $p);
                 exit();
             }
         }
@@ -31,7 +34,8 @@ class biz_do_h_biz_group_add extends OpenPNE_Action
 
         biz_insertGroup($requests['name'], $u, $requests['info'], $filename, $requests['member_list']);
 
-        client_redirect_absolute("?m=biz&a=page_g_home&target_c_commu_id=".biz_getGroupMax());
+        $p = array('target_c_commu_id' => biz_getGroupMax());
+        openpne_redirect('biz', 'page_g_home', $p);
     }
 }
 

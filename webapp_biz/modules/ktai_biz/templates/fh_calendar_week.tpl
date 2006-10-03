@@ -43,6 +43,11 @@
 ({$item_event.name|truncate:13:"-":true})</a>&nbsp;
 ({/foreach})
 
+({* 誕生日 *})
+({foreach from=$item.birth item=item_birth})
+<a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$item_birthday.c_member_id})&amp;({$tail})">({$item_birth.nickname|truncate:13:"-":true})さん</a><br>
+({/foreach})
+
 ({* スケジュール *})
 ({foreach from=$item.schedule item=item_schedule})
 
@@ -72,5 +77,4 @@
 
 ({*END:container*})
 
-<a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$c_member.c_member_id})&amp;({$tail})" accesskey="0">0.ﾎｰﾑ</a>
 ({$inc_ktai_footer|smarty:nodefaults})

@@ -19,7 +19,8 @@ class biz_do_f_home_insert_biz_todo extends OpenPNE_Action
 
         biz_insertTodo($id, $todo, $u, 0, $is_all);
 
-        client_redirect_absolute("?m=pc&a=page_f_home&target_c_member_id=".$id);
+        $p = array('target_c_member_id' => $id);
+        openpne_redirect('pc', 'page_f_home', $p);
 
     }
 }

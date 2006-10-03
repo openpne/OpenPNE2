@@ -14,20 +14,12 @@ class biz_do_fhg_biz_schedule_add extends OpenPNE_Action
         //ERROR----------------
         //存在しない日付
         if (!checkdate($requests['sc_b_month'], $requests['sc_b_date'], $requests['sc_b_year'])) {
-            $redirect_script = '?m=biz&a=page_fh_biz_schedule_add';
-            $msg = urlencode('存在しない日付が指定されました。');
+            $msg = '存在しない日付が指定されました。';
 
-            //日付関連の引数は返さなくてもよい
-            $url = $redirect_script.
-                        '&msg='.$msg.
-                        '&title='.$requests['sc_title'].
-                        '&sc_rp='.$requests['sc_rp'].
-                        '&sc_memo='.$requests['sc_memo'].
-                        '&sc_j_mem_enc='.serialize($requests['sc_j_mem']).
-                        '&sc_rwk_enc='.serialize($requests['sc_rwk_enc']).
-                        '&sc_rcount='.$requests['sc_rcount'];
-
-            client_redirect_absolute($url);
+            $p = array('msg' => $msg, 'sc_title' => $requests['sc_title'], 'sc_rp' => $requests['sc_rp'],
+                'sc_memo' => $requests['sc_memo'], 'sc_j_mem_enc' => serialize($requests['sc_j_mem']),
+                'sc_rwk_enc' => serialize($requests['sc_rwk_enc']), 'sc_rcount' => $requests['sc_rcount']);
+            openpne_redirect('biz', 'page_fh_biz_schedule_add', $p);
             exit();  //強制的にスクリプトを終了しなければいけない
         }
         //---------------------
@@ -35,8 +27,7 @@ class biz_do_fhg_biz_schedule_add extends OpenPNE_Action
         //ERROR----------------
         //タイトル未入力
         if (empty($requests['sc_title'])) {
-            $redirect_script = '?m=biz&a=page_fh_biz_schedule_add';
-            $msg = urlencode('タイトルを入力してください。');
+            $msg = 'タイトルを入力してください。';
             $begin_date = $requests['sc_b_year'].'-'.$requests['sc_b_month'].'-'.$requests['sc_b_date'];
             $begin_time = $requests['sc_b_hour'].':'.$requests['sc_b_minute'];
             $finish_time = $requests['sc_f_hour'].':'.$requests['sc_f_minute'];
@@ -51,7 +42,11 @@ class biz_do_fhg_biz_schedule_add extends OpenPNE_Action
                         '&sc_rwk_enc='.serialize($requests['sc_rwk_enc']).
                         '&sc_rcount='.$requests['sc_rcount'];
 
-            client_redirect_absolute($url);
+            $p = array('msg' => $msg, 'begin_date' => $begin_date, 'begin_time' => $begin_time,
+                'finish_time' => $finish_time, 'sc_rp' => $requests['sc_rp'], 'sc_memo' => $requests['sc_memo'],
+                'sc_j_mem_enc' => serialize($requests['sc_j_mem']), 'sc_rwk_enc' => serialize($requests['sc_rwk_enc']),
+                'sc_rcount' => $requests['sc_rcount']);
+            openpne_redirect('biz', 'page_fh_biz_schedule_add', $p);
             exit();  //強制的にスクリプトを終了しなければいけない
         }   
         //---------------------
@@ -59,24 +54,16 @@ class biz_do_fhg_biz_schedule_add extends OpenPNE_Action
         //ERROR----------------
         //繰り返し予定::曜日指定なし
         if ($requests['sc_rp'] && empty($requests['sc_rwk'])) {
-            $redirect_script = '?m=biz&a=page_fh_biz_schedule_add';
-            $msg = urlencode('繰り返し予定を登録する場合は、曜日を指定してください。');
+            $msg = '繰り返し予定を登録する場合は、曜日を指定してください。';
             $begin_date = $requests['sc_b_year'].'-'.$requests['sc_b_month'].'-'.$requests['sc_b_date'];
             $begin_time = $requests['sc_b_hour'].':'.$requests['sc_b_minute'];
             $finish_time = $requests['sc_f_hour'].':'.$requests['sc_f_minute'];
-            $url = $redirect_script.
-                        '&msg='.$msg.
-                        '&begin_date='.$begin_date.
-                        '&begin_time='.$begin_time.
-                        '&finish_time='.$finish_time.
-                        '&sc_title='.$requests['sc_title'].
-                        '&sc_rp='.$requests['sc_rp'].
-                        '&sc_memo='.$requests['sc_memo'].
-                        '&sc_j_mem_enc='.serialize($requests['sc_j_mem']).
-                        '&sc_rwk_enc='.serialize($requests['sc_rwk_enc']).
-                        '&sc_rcount='.$requests['sc_rcount'];
 
-            client_redirect_absolute($url);
+            $p = array('msg' => $msg, 'begin_date' => $begin_date, 'begin_time' => $begin_time, 'sc_title' => $requests['sc_title'],
+                'finish_time' => $finish_time, 'sc_rp' => $requests['sc_rp'], 'sc_memo' => $requests['sc_memo'],
+                'sc_j_mem_enc' => serialize($requests['sc_j_mem']), 'sc_rwk_enc' => serialize($requests['sc_rwk_enc']),
+                'sc_rcount' => $requests['sc_rcount']);
+            openpne_redirect('biz', 'page_fh_biz_schedule_add', $p);
             exit();  //強制的にスクリプトを終了しなければいけない
         }
         //--------------------
@@ -106,8 +93,7 @@ class biz_do_fhg_biz_schedule_add extends OpenPNE_Action
         //ERROR---------------
         if ((strtotime($finish_time) < strtotime($begin_time)) && ($finish_time != ':')) {
             //終了時間と開始時間が変
-            $redirect_script = '?m=biz&a=page_fh_biz_schedule_add';
-            $msg = urlencode('終了時刻が開始時刻より先です。');
+            $msg = '終了時刻が開始時刻より先です。';
             $begin_date = $requests['sc_b_year'].'-'.$requests['sc_b_month'].'-'.$requests['sc_b_date'];
             $begin_time = $requests['sc_b_hour'].':'.$requests['sc_b_minute'];
             $finish_time = $requests['sc_f_hour'].':'.$requests['sc_f_minute'];
@@ -121,7 +107,10 @@ class biz_do_fhg_biz_schedule_add extends OpenPNE_Action
                         '&sc_rwk_enc='.serialize($requests['sc_rwk_enc']).
                         '&sc_rcount='.$requests['sc_rcount'];
 
-            client_redirect_absolute($url);
+            $p = array('msg' => $msg, 'begin_date' => $begin_date, 'sc_rp' => $requests['sc_rp'],
+                'sc_memo' => $requests['sc_memo'], 'sc_j_mem_enc' => serialize($requests['sc_j_mem']),
+                'sc_rwk_enc' => serialize($requests['sc_rwk_enc']), 'sc_rcount' => $requests['sc_rcount']);
+            openpne_redirect('biz', 'page_fh_biz_schedule_add', $p);
             exit();  //強制的にスクリプトを終了しなければいけない
         }
         //--------------------
@@ -175,7 +164,9 @@ class biz_do_fhg_biz_schedule_add extends OpenPNE_Action
         }
 
         $week = date("W", abs(strtotime($begin_date) - strtotime(date("Y-m-d")))) - 1;
-        client_redirect_absolute("?m=biz&a=page_fh_biz_schedule_view&w=$week&msg=".urlencode('予定を追加しました。')."&id=".biz_getScheduleMax());
+
+        $p = array('w' => $week, 'msg' => '予定を追加しました。', 'id' => biz_getScheduleMax());
+        openpne_redirect('biz', 'page_fh_biz_schedule_view', $p);
     }
 }
 
