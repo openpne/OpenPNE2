@@ -187,6 +187,9 @@ define('OPENPNE_MODULES_EXT_DIR', OPENPNE_WEBAPP_EXT_DIR . '/modules');
 
 ///
 // webapp_biz ディレクトリ使用設定
+// PNEBIZ機能を使用する場合は
+// setup/sql/install/option-pnebiz-mysql4X.sqlを実行した後
+// USE_BIZ_DIRをtrueにしてください
 ///
 
 define('USE_BIZ_DIR', false);
@@ -246,6 +249,8 @@ $GLOBALS['OpenPNE']['admin']['session_idletime'] = 86400; // 1 day
 
 // セッションにOPENPNE_URLを保存しておく
 // 同一サーバ上で複数のSNSを運用する場合のセッションの混同を防ぐ
+// falseからtrueにした場合、または2.4RC1以前のバージョンからアップデートした場合
+// それまでのセッションが無効になりログアウトされます
 define('OPENPNE_SESSION_CHECK_URL', true);
 
 ///
