@@ -20,10 +20,10 @@ $width = 120;
 $height = 60;
 
 # symbol's vertical fluctuation amplitude divided by 2
-$fluctuation_amplitude = 5;
+$fluctuation_amplitude = 2;
 
 # increase safety by prevention of spaces between symbols
-$no_spaces = true;
+$no_spaces = false;
 
 # show credits
 $show_credits = true; # set to false to remove credits line. Credits adds 12 pixels to image height
