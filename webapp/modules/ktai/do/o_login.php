@@ -48,6 +48,9 @@ class ktai_do_o_login extends OpenPNE_Action
         $_SESSION['c_member_id'] = $c_member_id;
         $_SESSION['ktai_address'] = t_encrypt($requests['ktai_address']);
         $_SESSION['timestamp'] = $_SESSION['idle'] = time();
+        if (OPENPNE_SESSION_CHECK_URL) {
+            $_SESSION['OPENPNE_URL'] = OPENPNE_URL;
+        }
 
         $p = array('ksid' => session_id());
         openpne_redirect('ktai', 'page_h_home', $p);

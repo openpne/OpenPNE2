@@ -12,6 +12,12 @@ session_name('OpenPNEktai');
 session_id($_REQUEST['ksid']);
 session_start();
 
+if (OPENPNE_SESSION_CHECK_URL) {
+    if (@$_SESSION['OPENPNE_URL'] != OPENPNE_URL) {
+        __logout(15);
+    }
+}
+
 if (   empty($_SESSION['c_member_id'])
     || !k_auth($_SESSION['c_member_id'])
     || db_member_is_login_rejected($_SESSION['c_member_id'])) {

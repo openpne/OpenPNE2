@@ -68,6 +68,10 @@ class OpenPNE_Auth
 
         $this->auth->start();
         if ($this->auth->getAuth()) {
+            if (OPENPNE_SESSION_CHECK_URL) {
+                $this->auth->setAuthData('OPENPNE_URL', OPENPNE_URL);
+            }
+
             $this->sess_id = session_id();
             if ($is_save_cookie) {
                 $expire = time() + 2592000; // 30 days
@@ -87,7 +91,7 @@ class OpenPNE_Auth
             return false;
         }
         $this->auth =& $this->factory();
-        return $this->auth->checkAuth();
+        return $this->checkAuth();
     }
 
     function logout()
@@ -150,6 +154,21 @@ class OpenPNE_Auth
                                      array(&$dbsess, 'destroy'),
                                      array(&$dbsess, 'gc'));
         }
+    }
+
+    function checkAuth()
+    {
+        if ($auth = $this->auth->checkAuth()) {
+            if (OPENPNE_SESSION_CHECK_URL) {
+                $openpne_url = $this->auth->getAuthData('OPENPNE_URL');
+                if ($openpne_url == OPENPNE_URL) {
+                    return true;
+                }
+            } else {
+                return true;
+            }
+        }
+        return false;
     }
 }
 

@@ -244,6 +244,10 @@ $GLOBALS['OpenPNE']['admin']['session_lifetime'] = 0;
 // セッションの有効期限(秒)
 $GLOBALS['OpenPNE']['admin']['session_idletime'] = 86400; // 1 day
 
+// セッションにOPENPNE_URLを保存しておく
+// 同一サーバ上で複数のSNSを運用する場合のセッションの混同を防ぐ
+define('OPENPNE_SESSION_CHECK_URL', true);
+
 ///
 // 画像
 ///
