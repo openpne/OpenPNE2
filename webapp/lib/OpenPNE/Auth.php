@@ -158,7 +158,7 @@ class OpenPNE_Auth
 
     function checkAuth()
     {
-        if ($auth = $this->auth->checkAuth()) {
+        if ($this->auth->checkAuth()) {
             if (OPENPNE_SESSION_CHECK_URL) {
                 $openpne_url = $this->auth->getAuthData('OPENPNE_URL');
                 if ($openpne_url == OPENPNE_URL) {
