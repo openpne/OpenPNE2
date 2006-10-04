@@ -6,7 +6,7 @@
 ({if $is_form})
 <input type="text" name="state" value="({$c_member.nickname})" style="width:112px;text-align:center;" class="bg_02">
 <img src="./skin/dummy.gif" class="v_spacer_s">
-<input type="submit" value="　名前変更　" style="width:112px;">
+<input type="submit" class="submit" value="　名前変更　" style="width:112px;">
 ({/if})
 </form>
 <!-- ******ここまで：名前変更****** -->

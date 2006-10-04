@@ -290,7 +290,7 @@
 <tr>
 <td class="padding_s" style="text-align:right;">
 
-<input type="submit" value="　修　正　">
+<input type="submit" class="submit" value="　修　正　">
 
 </form>
 
@@ -300,7 +300,7 @@
 ({t_form _enctype=file m=biz a=do_h_biz_group_delete})
 <input type="hidden" name="sessid" value="({$PHPSESSID})">
 <input name="target_id" type="hidden" value="({$group.biz_group_id})" />
-<input type="submit" value="　削　除　">
+<input type="submit" class="submit" value="　削　除　">
 </form>
 
 </td>

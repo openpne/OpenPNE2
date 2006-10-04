@@ -37,7 +37,7 @@
 
 だれかがTodo<input type="checkbox" name="is_all" value="1" class="no_bg">&nbsp;
 
-<input type="submit" value="追加">&nbsp;
+<input type="submit" class="submit" value="追加">&nbsp;
 
 </td>
 </tr>

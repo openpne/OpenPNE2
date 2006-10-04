@@ -282,8 +282,8 @@
 		</select>
 	</td>
 	<td>
-		<input value="← 追加" onclick="addMember(this.form, 'members', 'sc_j_mem[]')" type="button"><br>
-		<input value="削除 →" onclick="deleteMember(this.form, 'sc_j_mem[]')" type="button">
+		<input value="← 追加" onclick="addMember(this.form, 'members', 'sc_j_mem[]')" type="button" class="submit"><br>
+		<input value="削除 →" onclick="deleteMember(this.form, 'sc_j_mem[]')" type="button" class="submit">
 	<td>
 	<td>
 		<select name="members" size="5" multiple="multiple">

@@ -72,7 +72,6 @@ body { background-color: #({$bg_12}) ; }
 ({$inc_custom_css|smarty:nodefaults})
 
 /*ボタンに対する背景画像の指定*/
-input[type=submit] ,
 input.submit {
 	background: #DADCE6 url(({t_img_url_skin filename=bg_button})) 50% 0 repeat-x ;
 }

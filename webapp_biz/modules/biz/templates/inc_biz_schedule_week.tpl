@@ -51,7 +51,7 @@
 <option value="({$item.year})-({$item.month})-({$item.day})"({if $item.now}) selected="selected"({/if})>({$item.month})/({$item.day})(({$item.dayofweek}))</option>
 ({/foreach})
 </select>
-<input type="submit" value="追加">
+<input type="submit" class="submit" value="追加">
 
 &nbsp;
 <a href="({t_url m=biz a=page_`$cmd`_home})&amp;w=({$w-1})&amp;target_c_commu_id=({$target_id})" title="前の週">＜</a>
@@ -106,7 +106,7 @@
 	({/section})
 </select>
 まで
-<input type="submit" value="追加">
+<input type="submit" class="submit" value="追加">
 
 &nbsp;
 <a href="({t_url m=biz a=page_s_list})&amp;w=({$w-1})" title="前の週">＜</a>
@@ -159,11 +159,11 @@
 
 ({if $cmd == "s_list"})
 ({if !$is_closed_shisetsu})
-<input type="button" onClick="location.href='({t_url m=biz a=page_s_edit_shisetsu})&id=({$target_id})'" value="編　集" style="width:112px;">
+<input type="button" onClick="location.href='({t_url m=biz a=page_s_edit_shisetsu})&id=({$target_id})'" value="編　集" style="width:112px;" class="submit">
 
 <img src="./skin/dummy.gif" style="width:130px;height:3px;" class="dummy">
 
-<input type="button" onClick="location.href='({t_url m=biz a=page_s_delete_shisetsu})&target_id=({$target_id})&sessid=({$PHPSESSID})'" value="削　除" style="width:112px;">
+<input type="button" onClick="location.href='({t_url m=biz a=page_s_delete_shisetsu})&target_id=({$target_id})&sessid=({$PHPSESSID})'" value="削　除" style="width:112px;" class="submit">
 ({/if})
 <img src="./skin/dummy.gif" class="v_spacer_s">
 
@@ -184,11 +184,11 @@
 <img src="./skin/dummy.gif" class="v_spacer_m">
 
 ({if $cmd == "h"})
-<input type="button" onClick="location.href='({t_url m=pc a=page_h_config_image})'" value="写真を編集" style="width:112px;">
+<input type="button" onClick="location.href='({t_url m=pc a=page_h_config_image})'" value="写真を編集" style="width:112px;" class="submit">
 
 <img src="./skin/dummy.gif" class="v_spacer_s">
 
-<input type="button" onClick="location.href='({t_url m=pc a=page_h_prof})'" value="プロフィール変更" style="width:112px;">
+<input type="button" onClick="location.href='({t_url m=pc a=page_h_prof})'" value="プロフィール変更" style="width:112px;" class="submit">
 
 <img src="./skin/dummy.gif" class="v_spacer_s">
 <img src="./skin/dummy.gif" class="v_spacer_s">
@@ -315,7 +315,7 @@
 <option value="({$item.year})-({$item.month})-({$item.day})"({if $item.now}) selected="selected"({/if})>({$item.month})/({$item.day})(({$item.dayofweek}))</option>
 ({/foreach})
 </select>
-<input type="submit" value="追加">
+<input type="submit" class="submit" value="追加">
 
 &nbsp;
 <a href="({t_url m=pc a=page_`$cmd`_home})&amp;w=({$w-1})({if $target_id})&amp;target_c_member_id=({$target_id})({/if})" title="前の週">＜</a>

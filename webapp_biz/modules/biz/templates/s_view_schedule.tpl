@@ -151,7 +151,7 @@
 ({t_form m=biz a=do_s_delete_schedule})
 <input type="hidden" name="sessid" value="({$PHPSESSID})">
 <input type="hidden" name="shisetsu_id" value="({$schedule.biz_shisetsu_schedule_id})">
-<input value="削除する" type="submit">
+<input value="削除する" type="submit" class="submit">
 </form>
 
 </td>
@@ -160,7 +160,7 @@
 
 ({t_form m=biz a=page_s_list})
 <input type="hidden" name="w" value="({$w})">
-<input value="続けて新規の施設予定登録をする" type="submit">
+<input value="続けて新規の施設予定登録をする" type="submit" class="submit">
 </form>
 
 </td>
@@ -169,7 +169,7 @@
 <td class="padding_ss" align="center">
 
 ({t_form m=biz a=page_h_biz_schedule_add})
-<input value="続けて予定登録をする" type="submit">
+<input value="続けて予定登録をする" type="submit" class="submit">
 </form>
 
 </td>
@@ -178,7 +178,7 @@
 <td class="padding_ss" align="left">
 
 ({t_form m=biz a=page_s_list})
-<input value="施設一覧に戻る" type="submit">
+<input value="施設一覧に戻る" type="submit" class="submit">
 </form>
 
 </td>

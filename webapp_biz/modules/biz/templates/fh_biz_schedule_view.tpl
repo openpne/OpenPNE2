@@ -256,7 +256,7 @@
 <td class="padding_ss" align="left">
 
 ({t_form _method=get m=pc a=page_h_home})
-<input value="マイホームに戻る" type="submit">
+<input value="マイホームに戻る" type="submit" class="submit">
 </form>
 
 </td>
@@ -275,7 +275,7 @@
 <input type="hidden" name="schedule_id" value="({$schedule_id})">
 <input type="hidden" name="target_id" value="({$target_c_member.c_member_id})">
 
-<input value="修正する" type="submit">
+<input value="修正する" type="submit" class="submit">
 </form>
 
 </td>
@@ -287,7 +287,7 @@
 <td class="padding_ss" align="left">
 
 ({t_form _method=get m=pc a=page_h_home})
-<input value="マイページに戻る" type="submit">
+<input value="マイページに戻る" type="submit" class="submit">
 </form>
 
 </td>
@@ -304,7 +304,7 @@
 <input type="hidden" name="value" value="({$schedule.value})">
 <input type="hidden" name="members" value="({$jmembers_enc})">
 <input type="hidden" name="schedule_id" value="({$schedule_id})">
-<input value="修正する" type="submit">
+<input value="修正する" type="submit" class="submit">
 </form>
 
 </td>
@@ -313,7 +313,7 @@
 ({t_form m=biz a=page_h_biz_schedule_delete})
 <input type="hidden" name="sessid" value="({$PHPSESSID})">
 <input type="hidden" name="schedule_id" value="({$schedule_id})">
-<input value="削除する" type="submit">
+<input value="削除する" type="submit" class="submit">
 
 </td>
 </tr>
@@ -335,7 +335,7 @@
 <td class="padding_ss" align="right">
 
 ({t_form m=biz a=page_fh_biz_schedule_add})
-<input value="続けて新規の予定登録をする" type="submit">
+<input value="続けて新規の予定登録をする" type="submit" class="submit">
 </form>
 
 </td>
@@ -343,14 +343,14 @@
 
 ({t_form m=biz a=page_s_list})
 <input type="hidden" name="w" value="({$w})">
-<input value="続けて施設予約をする" type="submit">
+<input value="続けて施設予約をする" type="submit" class="submit">
 </form>
 
 </td>
 <td class="padding_ss" align="left">
 
 ({t_form _method=get m=pc a=page_h_home})
-<input value="マイページに戻る" type="submit">
+<input value="マイページに戻る" type="submit" class="submit">
 </form>
 
 </td>

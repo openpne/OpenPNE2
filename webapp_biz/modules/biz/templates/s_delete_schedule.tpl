@@ -71,7 +71,7 @@
 
 <td align="right">
 
-<input type="submit" value=" は い ">
+<input type="submit" class="submit" value=" は い ">
 
 </td>
 
@@ -81,7 +81,7 @@
 
 <td>
 
-<input type="submit" value="いいえ">
+<input type="submit" class="submit" value="いいえ">
 
 </td>
 

@@ -113,7 +113,7 @@ Todo
 <img src="./skin/dummy.gif" class="v_spacer_l">
 
 <div style="text-align:center;">
-<input type="submit" value="　編　集　">
+<input type="submit" class="submit" value="　編　集　">
 </div>
 
 </div>
