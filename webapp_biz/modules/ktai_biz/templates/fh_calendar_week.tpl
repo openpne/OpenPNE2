@@ -38,7 +38,7 @@
 
 ({* イベント *})
 ({foreach from=$item.event item=item_event})
-<a href="({t_url m=ktai_biz a=page_c_event_detail})&amp;target_c_commu_topic_id=({$item_event.c_commu_topic_id})&amp;target_id=({$c_member.c_member_id})&amp;({$tail})">
+<a href="({t_url m=ktai a=page_c_bbs})&amp;target_c_commu_topic_id=({$item_event.c_commu_topic_id})&amp;({$tail})">
 
 ({$item_event.name|truncate:13:"-":true})</a>&nbsp;
 ({/foreach})
