@@ -181,7 +181,7 @@
 
 <td>
 <div align="center" style="text-align:center;">
-<input type="submit" value="　書き込み　">
+<input type="submit" class="submit" value="　書き込み　">
 </div>
 </td>
 ({foreach from=$topic_write key=key item=item})
@@ -192,7 +192,7 @@
 ({t_form m=pc a=page_c_topic_detail})
 <td>
 <div align="center" style="text-align:center;">
-<input type="submit" value="　修　 正　">
+<input type="submit" class="submit" value="　修　 正　">
 </div>
 </td>
 ({foreach from=$topic_write key=key item=item})

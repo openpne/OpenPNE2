@@ -110,7 +110,7 @@
 
 <div class="padding_w_m">
 
-<input type="submit" value="　退会する　">
+<input type="submit" class="submit" value="　退会する　">
 
 </div>
 

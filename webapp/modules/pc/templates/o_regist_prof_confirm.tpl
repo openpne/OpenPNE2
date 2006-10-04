@@ -363,13 +363,13 @@ PCアドレス <span class="caution">※</span>
 ({t_form m=pc a=do_o_regist_prof})
 <input type="hidden" name="mode" value="register">
 <input type="hidden" name="sid" value="({$sid})">
-<td><input type="submit" value="　登　録　"></td>
+<td><input type="submit" class="submit" value="　登　録　"></td>
 </form>
 
 ({t_form m=pc a=do_o_regist_prof})
 <input type="hidden" name="mode" value="input">
 <input type="hidden" name="sid" value="({$sid})">
-<td><input type="submit" value="　修　正　"></td>
+<td><input type="submit" class="submit" value="　修　正　"></td>
 </form>
 
 </tr>

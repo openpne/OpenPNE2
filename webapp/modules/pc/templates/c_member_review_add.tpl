@@ -360,7 +360,7 @@
 <div style="text-align:center;" class="padding_w_s">
 
 
-<input type="submit" value="　掲　　載　">
+<input type="submit" class="submit" value="　掲　　載　">
 
 
 </div>

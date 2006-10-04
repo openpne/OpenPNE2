@@ -469,7 +469,7 @@
 <div style="text-align:left;padding:10px 90px;">
 
 <div style="text-align:center;">
-<input type="submit" value="　確認画面　">
+<input type="submit" class="submit" value="　確認画面　">
 </div>
 
 </div>

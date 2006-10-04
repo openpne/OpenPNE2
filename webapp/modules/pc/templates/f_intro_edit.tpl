@@ -125,7 +125,7 @@
 
 <img src="./skin/dummy.gif" class="v_spacer_l">
 <div align="center" style="text-align:center;">
-<input type="submit" value="　作　成　">
+<input type="submit" class="submit" value="　作　成　">
 </div>
 <img src="./skin/dummy.gif" class="v_spacer_l">
 

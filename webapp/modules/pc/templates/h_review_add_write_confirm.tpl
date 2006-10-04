@@ -121,7 +121,7 @@
 <input type="hidden" name="asin" value="({$asin})">
 <input type="hidden" name="body" value="({$body})">
 <input type="hidden" name="satisfaction_level" value="({$satisfaction_level})">
-<input type="submit" value="　作　成　">
+<input type="submit" class="submit" value="　作　成　">
 </form>
 
 </td>
@@ -132,7 +132,7 @@
 <input type="hidden" name="asin" value="({$asin})">
 <input type="hidden" name="body" value="({$body})">
 <input type="hidden" name="satisfaction_level" value="({$satisfaction_level})">
-<input type="submit" value="　修　正　">
+<input type="submit" class="submit" value="　修　正　">
 </form>
 
 </td>

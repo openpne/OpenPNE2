@@ -218,7 +218,7 @@
 <input type="hidden" name="end_hour" value="({$input.end_hour})">
 <input type="hidden" name="end_minute" value="({$input.end_minute})">
 <input type="hidden" name="is_receive_mail" value="({$input.is_receive_mail})">
-<td><input type="submit" value="　 完　　了 　">
+<td><input type="submit" class="submit" value="　 完　　了 　">
 </form>
 
 </td>
@@ -239,7 +239,7 @@
 <input type="hidden" name="end_hour" value="({$input.end_hour})">
 <input type="hidden" name="end_minute" value="({$input.end_minute})">
 <input type="hidden" name="is_receive_mail" value="({$input.is_receive_mail})">
-<td><input type="submit" value="　 修　　正 　"><br>
+<td><input type="submit" class="submit" value="　 修　　正 　"><br>
 </form>
 
 </td>

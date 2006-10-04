@@ -794,7 +794,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <option value="({$item.year})-({$item.month})-({$item.day})"({if $item.now}) selected="selected"({/if})>({$item.month})/({$item.day})(({$item.dayofweek}))</option>
 ({/foreach})
 </select>
-<input type="submit" value="追加">
+<input type="submit" class="submit" value="追加">
 
 &nbsp;
 <a href="({t_url m=pc a=page_h_home})&amp;w=({$w-1})" title="前の週">＜</a>

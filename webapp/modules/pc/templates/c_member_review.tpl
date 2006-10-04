@@ -89,7 +89,7 @@
 
 ({t_form _method=get m=pc a=page_c_member_review_add})
 <input type="hidden" name="target_c_commu_id" value="({$c_commu.c_commu_id})">
-<input type="submit" value="　レビューを掲載する　">
+<input type="submit" class="submit" value="　レビューを掲載する　">
 </form>
 
 <img src="./skin/dummy.gif" class="v_spacer_l">

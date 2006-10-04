@@ -69,7 +69,7 @@
 <tr>
 <td class="bg_02" colspan="2" align="center">
 
-<input type="submit" value="参加を希望する">
+<input type="submit" class="submit" value="参加を希望する">
 
 </td>
 

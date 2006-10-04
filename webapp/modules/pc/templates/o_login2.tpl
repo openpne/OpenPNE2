@@ -146,7 +146,7 @@
 
 <div class="padding_w_m">
 
-<input type="submit" value="　変　更　">
+<input type="submit" class="submit" value="　変　更　">
 
 </div>
 

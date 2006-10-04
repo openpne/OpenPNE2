@@ -243,7 +243,7 @@
 
 <div class="padding_w_m">
 
-<input type="submit" value="　 確認画面 　">
+<input type="submit" class="submit" value="　 確認画面 　">
 
 </div>
 

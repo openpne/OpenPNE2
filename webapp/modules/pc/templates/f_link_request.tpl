@@ -176,7 +176,7 @@
 
 <div align="center" style="text-align:center;">
 
-<input type="submit" value="送信">
+<input type="submit" class="submit" value="送信">
 
 </div>
 

@@ -71,14 +71,14 @@
 ({t_form m=pc a=do_c_bbs_delete_c_commu_topic})
 <input type="hidden" name="sessid" value="({$PHPSESSID})">
 <input type="hidden" name="target_c_commu_topic_id" value="({$c_commu_topic_id})">
-<input type="submit" value="　削　除　">&nbsp;
+<input type="submit" class="submit" value="　削　除　">&nbsp;
 </form>
 
 </td><td>
 
 ({t_form _method=get m=pc a=page_c_topic_edit})
 <input type="hidden" name="target_c_commu_topic_id" value="({$c_commu_topic_id})">
-&nbsp;<input type="submit" value="キャンセル">
+&nbsp;<input type="submit" class="submit" value="キャンセル">
 </form>
 
 </td>

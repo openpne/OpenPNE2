@@ -767,7 +767,7 @@
 <td class="bg_02" align="center" colspan="3">
 <div style="padding:4px 3px;">
 
-<input type="submit" value="　確認画面　">
+<input type="submit" class="submit" value="　確認画面　">
 
 </div>
 </td>

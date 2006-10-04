@@ -133,7 +133,7 @@
 
 <img src="./skin/dummy.gif" class="v_spacer_l">
 
-<input type="submit" name="submit" value="写真をアップロードする">
+<input type="submit" class="submit" name="submit" value="写真をアップロードする">
 
 </td>
 <td style="width:1em;" align="right" valign="top">・</td>

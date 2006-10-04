@@ -372,7 +372,7 @@
 <tr>
 <td style="width:50%;text-align:right;">
 
-<input type="submit" value="　編集を確定　">&nbsp;
+<input type="submit" class="submit" value="　編集を確定　">&nbsp;
 </form>
 
 </td>
@@ -380,7 +380,7 @@
 
 ({t_form _method=get m=pc a=page_c_event_detail})
 <input type="hidden" name="target_c_commu_topic_id" value="({$event.c_commu_topic_id})">
-&nbsp;<input type="submit" value="　キャンセル　">
+&nbsp;<input type="submit" class="submit" value="　キャンセル　">
 </form>
 
 </td>
@@ -461,7 +461,7 @@
 <div align="center" syyle="text-align:center;">
 ({t_form m=pc a=page_c_event_delete_confirm})
 <input type="hidden" name="target_c_commu_topic_id" value="({$event.c_commu_topic_id})">
-<input type="submit" value="　　削　除　　">
+<input type="submit" class="submit" value="　　削　除　　">
 </form>
 </div>
 

@@ -100,7 +100,7 @@
 ({t_form m=pc a=do_c_bbs_delete_c_commu_topic_comment})
 <input type="hidden" name="sessid" value="({$PHPSESSID})">
 <input type="hidden" name="target_c_commu_topic_comment_id" value="({$c_commu_topic_comment.c_commu_topic_comment_id})">
-&nbsp;<input type="submit" value=" は い ">&nbsp;
+&nbsp;<input type="submit" class="submit" value=" は い ">&nbsp;
 </form>
 
 </td>
@@ -108,7 +108,7 @@
 
 ({t_form _method=get m=pc a=page_c_topic_detail})
 <input type="hidden" name="target_c_commu_topic_id" value="({$c_commu_topic_id})">
-&nbsp;<input type="submit" value="いいえ">&nbsp;
+&nbsp;<input type="submit" class="submit" value="いいえ">&nbsp;
 </form>
 
 </td>

@@ -291,7 +291,7 @@
 
 <div style="width:490px;padding:30px 10px;margin:0px auto;" class="border_01 bg_03">
 ({t_form _method=get m=pc a=page_h_diary_add})
-<input type="submit" value="　日 記 を 書 く　">
+<input type="submit" class="submit" value="　日 記 を 書 く　">
 </form>
 </div>
 

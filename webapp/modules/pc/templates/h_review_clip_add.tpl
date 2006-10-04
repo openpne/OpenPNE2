@@ -167,12 +167,12 @@
 <input type="hidden" name="sessid" value="({$PHPSESSID})">
 <input type="hidden" name="c_review_id" value="({$c_review.c_review_id})">
 
-<td align="right"><input type="submit" value="　は　い　"></td>
+<td align="right"><input type="submit" class="submit" value="　は　い　"></td>
 </form>
 
 ({t_form _method=get m=pc a=page_h_review_list_product})
 <input type="hidden" name="c_review_id" value="({$c_review.c_review_id})">
-<td><input type="submit" value="  いいえ　"></td>
+<td><input type="submit" class="submit" value="  いいえ　"></td>
 </form>
 
 </tr>

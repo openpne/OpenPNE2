@@ -466,7 +466,7 @@
 
 <div class="padding_s">
 
-<input type="submit" value="　編　　集　">
+<input type="submit" class="submit" value="　編　　集　">
 
 </div>
 
@@ -825,13 +825,13 @@
 <div class="padding_w_m">
 
 ({if $is_c_event_admin})
-<input type="submit" name="button" value="コメントのみ書き込む">
+<input type="submit" class="submit" name="button" value="コメントのみ書き込む">
 ({elseif $is_c_event_member})
-<input type="submit" name="button" value="参加をキャンセルする">
-<input type="submit" name="button" value="コメントのみ書き込む">
+<input type="submit" class="submit" name="button" value="参加をキャンセルする">
+<input type="submit" class="submit" name="button" value="コメントのみ書き込む">
 ({elseif $is_c_commu_member})
-<input type="submit" name="button" value="イベントに参加する">
-<input type="submit" name="button" value="コメントのみ書き込む">
+<input type="submit" class="submit" name="button" value="イベントに参加する">
+<input type="submit" class="submit" name="button" value="コメントのみ書き込む">
 ({/if})
 
 </div>

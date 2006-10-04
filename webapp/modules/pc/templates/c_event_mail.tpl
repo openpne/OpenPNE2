@@ -90,7 +90,7 @@
 <td align="center" class="bg_02" colspan="2">
 
 <br>
-<input type="submit" value="　確認画面　">
+<input type="submit" class="submit" value="　確認画面　">
 <br><br>
 
 </td>

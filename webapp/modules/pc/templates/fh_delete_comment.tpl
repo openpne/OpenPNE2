@@ -114,7 +114,7 @@
 <input type="hidden" name="target_c_diary_comment_id[]" value="({$target_diary_comment.c_diary_comment_id})">
 ({/foreach})
 
-<input type="submit" value=" は い ">&nbsp;
+<input type="submit" class="submit" value=" は い ">&nbsp;
 </form>
 
 </td>
@@ -122,7 +122,7 @@
 
 ({t_form _method=get m=pc a=page_fh_diary})
 <input type="hidden" name="target_c_diary_id" value="({$target_diary.c_diary_id})">
-&nbsp;<input type="submit" value="いいえ">
+&nbsp;<input type="submit" class="submit" value="いいえ">
 </form>
 
 </td>

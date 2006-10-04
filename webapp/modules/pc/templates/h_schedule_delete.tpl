@@ -202,14 +202,14 @@
 ({t_form m=pc a=do_h_schedule_delete_delete_c_schedule})
 <input type="hidden" name="sessid" value="({$PHPSESSID})">
 <input type="hidden" name="target_c_schedule_id" value="({$c_schedule.c_schedule_id})">
-<input type="submit" value="　 削　　除 　"></form>
+<input type="submit" class="submit" value="　 削　　除 　"></form>
 
 </td>
 <td>
 
 ({t_form _method=get m=pc a=page_h_schedule})
 <input type="hidden" name="target_c_schedule_id" value="({$c_schedule.c_schedule_id})">
-<input type="submit" value="　キャンセル　"></form>
+<input type="submit" class="submit" value="　キャンセル　"></form>
 
 </td>
 </tr>

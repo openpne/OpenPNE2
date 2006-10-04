@@ -121,7 +121,7 @@
 
 <img src="./skin/dummy.gif" class="v_spacer_l">
 
-<input type="submit" value="　新 規 作 成　">
+<input type="submit" class="submit" value="　新 規 作 成　">
 
 </div>
 

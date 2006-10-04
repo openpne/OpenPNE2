@@ -234,7 +234,7 @@
 
 <div align="center" style="text-align:center;padding:6px;">
 
-<input type="submit" value="　確認画面　">
+<input type="submit" class="submit" value="　確認画面　">
 
 </div>
 

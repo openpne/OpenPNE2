@@ -63,7 +63,7 @@
 <input type="hidden" name="sessid" value="({$PHPSESSID})">
 <input type="hidden" name="target_c_commu_id" value="({$c_commu.c_commu_id})">
 
-<input type="submit" value=" は　い ">&nbsp;
+<input type="submit" class="submit" value=" は　い ">&nbsp;
 
 </form>
 
@@ -73,7 +73,7 @@
 ({t_form _method=get m=pc a=page_c_home})
 <input type="hidden" name="target_c_commu_id" value="({$c_commu.c_commu_id})">
 
-&nbsp;<input type="submit" value=" いいえ ">
+&nbsp;<input type="submit" class="submit" value=" いいえ ">
 
 </form>
 

@@ -131,7 +131,7 @@
 ({foreach from=$c_mail_member item=c_member})
 <input type="hidden" name="c_member_ids[]" value="({$c_member.c_member_id})">
 ({/foreach})
-<input type="submit" value="　送　　　信　">&nbsp;
+<input type="submit" class="submit" value="　送　　　信　">&nbsp;
 </form>
 
 </td>
@@ -139,7 +139,7 @@
 
 ({t_form _method=get m=pc a=page_c_event_mail})
 <input type="hidden" name="target_c_commu_topic_id" value="({$c_commu_topic_id})">
-&nbsp;<input type="submit" value="　キャンセル　">
+&nbsp;<input type="submit" class="submit" value="　キャンセル　">
 </form>
 
 </td>

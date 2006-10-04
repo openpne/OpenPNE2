@@ -108,7 +108,7 @@
 <option value="">指定なし</option>
 ({html_options options=$category_disp selected=$category})
 </select>
-<input type="submit" value="　検 索　">
+<input type="submit" class="submit" value="　検 索　">
 
 </div>
 

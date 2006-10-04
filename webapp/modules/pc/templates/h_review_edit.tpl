@@ -197,7 +197,7 @@
 
 <div align="center" style="text-align:center;">
 
-<input type="submit" value="　登　録　">
+<input type="submit" class="submit" value="　登　録　">
 
 </div>
 
@@ -273,7 +273,7 @@
 ({t_form m=pc a=page_h_review_delete_confirm})
 <input type="hidden" name="c_review_comment_id" value="({$c_review_comment.c_review_comment_id})">
 <input type="hidden" name="asin" value="({$c_review_comment.asin})">
-<input type="submit" value="　削　除　">
+<input type="submit" class="submit" value="　削　除　">
 </form>
 
 </div>

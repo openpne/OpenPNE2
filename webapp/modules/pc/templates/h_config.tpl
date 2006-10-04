@@ -122,7 +122,7 @@
 
 <img src="./skin/dummy.gif" class="v_spacer_s">
 
-<input type="submit" value="　変　更　">
+<input type="submit" class="submit" value="　変　更　">
 
 <img src="./skin/dummy.gif" class="v_spacer_s">
 
@@ -224,7 +224,7 @@
 
 <img src="./skin/dummy.gif" class="v_spacer_s">
 
-<input type="submit" value="　変　更　">
+<input type="submit" class="submit" value="　変　更　">
 
 <img src="./skin/dummy.gif" class="v_spacer_s">
 
@@ -559,7 +559,7 @@ ID <input type="text" name="c_member_id_block[]" value=""><br>
 
 <img src="./skin/dummy.gif" class="v_spacer_s">
 
-<input type="submit" value="　変　更　">
+<input type="submit" class="submit" value="　変　更　">
 
 <img src="./skin/dummy.gif" class="v_spacer_s">
 

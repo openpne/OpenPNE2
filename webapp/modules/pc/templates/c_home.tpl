@@ -816,7 +816,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 </td>
 <td class="border_01 bg_02 padding_s" style="width:332px;border-top:none;">
 
-<input type="submit" value="メール受信設定変更">
+<input type="submit" class="submit" value="メール受信設定変更">
 
 </td>
 </tr>

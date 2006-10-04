@@ -244,14 +244,14 @@
 <input type="hidden" name="tmpfile_1" value="({$form_val.tmpfile_1})">
 <input type="hidden" name="tmpfile_2" value="({$form_val.tmpfile_2})">
 <input type="hidden" name="tmpfile_3" value="({$form_val.tmpfile_3})">
-<td class="padding_s"><input type="submit" value="　作 　成　"></td>
+<td class="padding_s"><input type="submit" class="submit" value="　作 　成　"></td>
 </form>
 
 ({t_form m=pc a=page_h_diary_add})
 <input type="hidden" name="subject" value="({$form_val.subject})">
 <input type="hidden" name="body" value="({$form_val.body})">
 <input type="hidden" name="public_flag" value="({$form_val.public_flag})">
-<td class="padding_s"><input type="submit" value="　修 　正　"></td>
+<td class="padding_s"><input type="submit" class="submit" value="　修 　正　"></td>
 </form>
 </tr>
 </table>

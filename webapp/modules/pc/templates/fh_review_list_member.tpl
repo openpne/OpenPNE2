@@ -67,7 +67,7 @@
 <div style="text-align:center;" class="padding_w_s">
 
 ({t_form _method=get m=pc a=page_h_review_add})
-<input type="submit" value="　　レビューを書く　　">
+<input type="submit" class="submit" value="　　レビューを書く　　">
 
 <img src="./skin/dummy.gif" class="v_spacer_l">
 

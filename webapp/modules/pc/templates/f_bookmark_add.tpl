@@ -182,12 +182,12 @@
 ({t_form m=pc a=do_f_bookmark_add})
 <input type="hidden" name="sessid" value="({$PHPSESSID})">
 <input type="hidden" name="c_member_id" value="({$c_member.c_member_id})">
-<td><input type="submit" value="　は　い　"></td>
+<td><input type="submit" class="submit" value="　は　い　"></td>
 </form>
 
 ({t_form _method=get m=pc a=page_f_home})
 <input type="hidden" name="target_c_member_id" value="({$c_member.c_member_id})">
-<td><input type="submit" value="  いいえ　"></td>
+<td><input type="submit" class="submit" value="  いいえ　"></td>
 </form>
 
 </tr>

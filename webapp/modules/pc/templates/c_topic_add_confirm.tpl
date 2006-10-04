@@ -198,7 +198,7 @@
 
 <td>
 <div align="center" style="text-align:center;">
-<input type="submit" value="　作 　成　">
+<input type="submit" class="submit" value="　作 　成　">
 </div>
 </td>
 ({foreach from=$c_topic key=key item=item})
@@ -210,7 +210,7 @@
 <input type="hidden" name="target_c_commu_id" value="({$c_topic.c_commu_id})">
 <td>
 <div align="center" style="text-align:center;">
-<input type="submit" value="　修　 正　">
+<input type="submit" class="submit" value="　修　 正　">
 </div>
 </td>
 ({foreach from=$c_topic key=key item=item})

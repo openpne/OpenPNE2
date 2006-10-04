@@ -293,7 +293,7 @@
 <input type="hidden" name="target_c_message_id" value="({$form_val.target_c_message_id})">
 <input type="hidden" name="jyusin_c_message_id" value="({$form_val.jyusin_c_message_id})">
 
-<input name="yes" type="submit" value="　送　信　">&nbsp;
+<input name="yes" type="submit" class="submit" value="　送　信　">&nbsp;
 </form>
 
 </td>
@@ -307,7 +307,7 @@
 <input type="hidden" name="target_c_message_id" value="({$form_val.target_c_message_id})">
 <input type="hidden" name="jyusin_c_message_id" value="({$form_val.jyusin_c_message_id})">
 
-&nbsp;<input name="no" type="submit" value="　修  正　">
+&nbsp;<input name="no" type="submit" class="submit" value="　修  正　">
 </form>
 
 </td>

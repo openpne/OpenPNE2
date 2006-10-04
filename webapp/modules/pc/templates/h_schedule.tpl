@@ -201,14 +201,14 @@
 
 ({t_form m=pc a=page_h_schedule_edit})
 <input type="hidden" name="target_c_schedule_id" value="({$c_schedule.c_schedule_id})">
-<input type="submit" value="　 編　　集 　">
+<input type="submit" class="submit" value="　 編　　集 　">
 </form>
 </td>
 
 <td>
 ({t_form m=pc a=page_h_schedule_delete})
 <input type="hidden" name="target_c_schedule_id" value="({$c_schedule.c_schedule_id})">
-<input type="submit" value="　 削　　除 　">
+<input type="submit" class="submit" value="　 削　　除 　">
 </form>
 
 </td>

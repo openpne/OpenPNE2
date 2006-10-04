@@ -345,7 +345,7 @@
 <div class="padding_w_m">
 
 <div align="center" style="text-align:center;">
-<input type="submit" value="　　変　更　　">
+<input type="submit" class="submit" value="　　変　更　　">
 </div>
 
 </div>
@@ -437,7 +437,7 @@
 <input type="hidden" name="sessid" value="({$PHPSESSID})">
 <input type="hidden" name="target_c_commu_id" value="({$c_commu.c_commu_id})">
 <div align="center" syyle="text-align:center;">
-<input type="submit" value="　　削　除　　">
+<input type="submit" class="submit" value="　　削　除　　">
 </div>
 </form>
 

@@ -215,7 +215,7 @@
 
 <div style="text-align:center;" class="padding_w_s">
 
-<input type="submit" value="　編　集　">
+<input type="submit" class="submit" value="　編　集　">
 
 </div>
 
@@ -290,7 +290,7 @@
 
 ({t_form m=pc a=page_c_topic_delete_confirm})
 <input type="hidden" name="target_c_commu_topic_id" value="({$c_topic.c_commu_topic_id})">
-<input type="submit" value="　削　除　">
+<input type="submit" class="submit" value="　削　除　">
 </form>
 
 </div>

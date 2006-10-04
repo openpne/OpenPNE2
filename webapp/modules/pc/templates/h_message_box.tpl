@@ -274,7 +274,7 @@
 
 <div class="padding_s">
 <input type="hidden" name="box" value="({$box})">
-<input type="submit" value="削 除">
+<input type="submit" class="submit" value="削 除">
 
 </div>
 
@@ -400,7 +400,7 @@
 
 <div class="padding_s">
 <input type="hidden" name="box" value="({$box})">
-<input type="submit" value="削 除">
+<input type="submit" class="submit" value="削 除">
 
 </div>
 
@@ -528,7 +528,7 @@
 
 <div class="padding_s">
 <input type="hidden" name="box" value="savebox">
-<input type="submit" value="削 除">
+<input type="submit" class="submit" value="削 除">
 
 </div>
 
@@ -680,8 +680,8 @@
 <div class="padding_s">
 <input type="hidden" name="box" value="trash">
 
-<input type="submit" name="move" value="元に戻す">
-<input type="submit" name="remove" value="削除">
+<input type="submit" class="submit" name="move" value="元に戻す">
+<input type="submit" class="submit" name="remove" value="削除">
 
 </div>
 

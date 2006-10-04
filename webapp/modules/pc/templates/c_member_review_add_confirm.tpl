@@ -278,7 +278,7 @@
 ({foreach from=$c_review_id item=item})
 <input type="hidden" name="c_review_id[]" value="({$item})">
 ({/foreach})
-<input type="submit" value="　は　い　">
+<input type="submit" class="submit" value="　は　い　">
 </form>
 
 </td>
@@ -286,7 +286,7 @@
 
 ({t_form _method=get m=pc a=page_c_member_review_add})
 <input type="hidden" name="target_c_commu_id" value="({$c_commu.c_commu_id})">
-<input type="submit" value="　いいえ　">
+<input type="submit" class="submit" value="　いいえ　">
 </form>
 
 </td>

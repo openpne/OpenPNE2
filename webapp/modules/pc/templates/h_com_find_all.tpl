@@ -86,7 +86,7 @@
 ({/foreach})
 ({/foreach})
 </select>
-<input type="submit" value=" 検 索 ">
+<input type="submit" class="submit" value=" 検 索 ">
 
 <a href="({t_url m=pc a=page_h_diary_list_all})&amp;keyword=({$smarty.capture.keyword_url|smarty:nodefaults})">日記検索</a>
 |

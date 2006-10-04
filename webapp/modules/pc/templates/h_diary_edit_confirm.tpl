@@ -227,7 +227,7 @@
 <input type="hidden" name="tmpfile_1" value="({$form_val.tmpfile_1})">
 <input type="hidden" name="tmpfile_2" value="({$form_val.tmpfile_2})">
 <input type="hidden" name="tmpfile_3" value="({$form_val.tmpfile_3})">
-<td><input type="submit" value="　決 　定　"></td>
+<td><input type="submit" class="submit" value="　決 　定　"></td>
 </form>
 
 ({t_form m=pc a=page_h_diary_edit})
@@ -235,7 +235,7 @@
 <input type="hidden" name="del_img" value="({$form_val.del_img})">
 <input type="hidden" name="subject" value="({$form_val.subject})">
 <input type="hidden" name="body" value="({$form_val.body})">
-<td><input type="submit" value="　修 　正　"></td>
+<td><input type="submit" class="submit" value="　修 　正　"></td>
 </form>
 </tr>
 </table>

@@ -68,13 +68,13 @@
 ({t_form m=pc a=do_h_review_edit_delete_c_review_comment})
 <input type="hidden" name="sessid" value="({$PHPSESSID})">
 <input type="hidden" name="c_review_comment_id" value="({$c_review_comment_id})">
-<td align="right"><input type="submit" value=" は い "></td>
+<td align="right"><input type="submit" class="submit" value=" は い "></td>
 </form>
 
 ({t_form _method=get m=pc a=page_h_review_edit})
 <input type="hidden" name="c_review_comment_id" value="({$c_review_comment_id})">
 <input type="hidden" name="asin" value="({$asin})">
-<td align="left"><input type="submit" value="いいえ"></td>
+<td align="left"><input type="submit" class="submit" value="いいえ"></td>
 </form>
 
 </tr>

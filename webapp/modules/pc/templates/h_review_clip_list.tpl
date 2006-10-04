@@ -68,7 +68,7 @@
 <div style="padding:10px;">
 
 ({t_form _method=get m=pc a=page_h_review_add})
-<input type="submit" value="　　レビューを書く　　">
+<input type="submit" class="submit" value="　　レビューを書く　　">
 </form>
 
 <img src="./skin/dummy.gif" class="v_spacer_l">
@@ -387,7 +387,7 @@
 <div class="padding_s">
 
 <input type="hidden" name="post_key" value="f2e6dc7bcbcc05553aced92ad973913d">
-<input type="submit" value="　削　　除　">
+<input type="submit" class="submit" value="　削　　除　">
 
 </div>
 

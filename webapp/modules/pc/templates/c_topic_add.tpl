@@ -201,7 +201,7 @@
 
 <img src="./skin/dummy.gif" class="v_spacer_l">
 <div align="center" style="text-align:center;">
-<input type="submit" value="　確認画面　">
+<input type="submit" class="submit" value="　確認画面　">
 </div>
 <img src="./skin/dummy.gif" class="v_spacer_l">
 

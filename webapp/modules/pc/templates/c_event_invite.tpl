@@ -152,7 +152,7 @@
 
 <div class="padding_w_m">
 
-<input type="submit" value="　送　　信　">
+<input type="submit" class="submit" value="　送　　信　">
 
 </div>
 

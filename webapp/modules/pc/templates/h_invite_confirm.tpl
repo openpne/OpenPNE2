@@ -136,7 +136,7 @@
 ({t_form m=pc a=page_h_invite})
 <input type="hidden" name="mail" value="({$form_val.mail})">
 <input type="hidden" name="message" value="({$form_val.message})">
-&nbsp;<input type="submit" value="　修　正　">
+&nbsp;<input type="submit" class="submit" value="　修　正　">
 </form>
 
 </td>

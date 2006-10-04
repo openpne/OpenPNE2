@@ -329,7 +329,7 @@
 
 <div style="text-align:center;" class="padding_w_s">
 
-<input type="submit" value="　確認画面　">
+<input type="submit" class="submit" value="　確認画面　">
 
 </div>
 

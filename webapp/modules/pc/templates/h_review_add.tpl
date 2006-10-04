@@ -88,7 +88,7 @@
 <option value="" selected="selected">選択
 ({html_options options=$category_disp selected=$category_id})
 </select>
-&nbsp;<input type="submit" name="button" value="　検 索　">
+&nbsp;<input type="submit" class="submit" name="button" value="　検 索　">
 </form>
 
 </div>

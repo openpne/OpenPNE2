@@ -216,7 +216,7 @@
 ({foreach from=$form_val key=key item=item})
 <input type="hidden" name="({$key})" value="({$item})">
 ({/foreach})
-<input type="submit" value="　作 　成　">
+<input type="submit" class="submit" value="　作 　成　">
 </form>
 </td>
 <td style="height:20px;" align="center">
@@ -224,7 +224,7 @@
 ({foreach from=$form_val key=key item=item})
 <input type="hidden" name="({$key})" value="({$item})">
 ({/foreach})
-<input type="submit" value="　修 　正　">
+<input type="submit" class="submit" value="　修 　正　">
 </div>
 </td>
 </tr>

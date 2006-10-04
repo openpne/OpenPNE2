@@ -192,7 +192,7 @@
 
 <div align="center" style="text-align:center;">
 
-<input type="submit" value="　　検　索　　">
+<input type="submit" class="submit" value="　　検　索　　">
 
 </div>
 
@@ -268,7 +268,7 @@
 検索項目の一覧と各項目のメンバー数を表示します。<br>
 <img src="./skin/dummy.gif" class="v_spacer_m">
 ({t_form _method=get m=pc a=page_h_search_list})
-<input type="submit" value="　一覧を見る　">
+<input type="submit" class="submit" value="　一覧を見る　">
 </form>
 </div>
 

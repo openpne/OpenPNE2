@@ -284,8 +284,8 @@
 <div class="padding_w_m">
 
 <div align="center" style="text-align:center;">
-<input type="submit" value="　確認画面　">
-<input name="save" type="submit" value="　下書き保存　">
+<input type="submit" class="submit" value="　確認画面　">
+<input name="save" type="submit" class="submit" value="　下書き保存　">
 </div>
 
 </div>

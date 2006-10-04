@@ -329,7 +329,7 @@
 
 <div style="text-align:center;">
 
-<input type="submit" value="　変　更　">
+<input type="submit" class="submit" value="　変　更　">
 
 </div>
 

@@ -60,12 +60,12 @@
 ({t_form m=pc a=do_inc_join_c_commu})
 <input type="hidden" name="sessid" value="({$PHPSESSID})">
 <input type="hidden" name="target_c_commu_id" value="({$c_commu.c_commu_id})">
-<td align="right"><input type="submit" value="参加する"></td>
+<td align="right"><input type="submit" class="submit" value="参加する"></td>
 </form>
 
 ({t_form _method=get m=pc a=page_c_home})
 <input type="hidden" name="target_c_commu_id" value="({$c_commu.c_commu_id})">
-<td align="left"><input type="submit" value="参加しない"></td>
+<td align="left"><input type="submit" class="submit" value="参加しない"></td>
 </form>
 </tr></table>
 </td></tr>

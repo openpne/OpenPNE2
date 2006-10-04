@@ -184,7 +184,7 @@
 <input type="hidden" name="tmpfile_1" value="({$form_val.tmpfile_1})">
 <input type="hidden" name="tmpfile_2" value="({$form_val.tmpfile_2})">
 <input type="hidden" name="tmpfile_3" value="({$form_val.tmpfile_3})">
-<input type="submit" value="　書き込み　">&nbsp;
+<input type="submit" class="submit" value="　書き込み　">&nbsp;
 </form>
 
 </td>
@@ -193,7 +193,7 @@
 ({t_form _enctype=file m=pc a=page_fh_diary})
 <input type="hidden" name="target_c_diary_id" value="({$form_val.target_c_diary_id})">
 <input type="hidden" name="body" value="({$form_val.body})">
-&nbsp;<input type="submit" value="　修　 正　">
+&nbsp;<input type="submit" class="submit" value="　修　 正　">
 </form>
 
 </td>

@@ -239,7 +239,7 @@
 <tr>
 <td>
 
-<input type="submit" value="　 確認画面 　">
+<input type="submit" class="submit" value="　 確認画面 　">
 </form>
 
 </td>
@@ -249,7 +249,7 @@
 
 ({t_form _method=get m=pc a=page_h_schedule})
 <input type="hidden" name="target_c_schedule_id" value="({$target_c_schedule_id})">
-<input type="submit" value="　キャンセル　">
+<input type="submit" class="submit" value="　キャンセル　">
 </form>
 
 </td>
