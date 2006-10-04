@@ -61,7 +61,7 @@ em {
 
 <h1>OpenPNE セットアップガイド</h1>
 
-<p>最終更新日: 2006/09/05</p>
+<p>最終更新日: 2006/10/6</p>
 
 <h2>目次</h2>
 <ul>
@@ -87,7 +87,7 @@ em {
 
 <h2 id="section0">0. はじめに</h2>
 
-<p>この文書は、OpenPNE バージョン2.3.3 を基にして書かれています。</p>
+<p>この文書は、OpenPNE バージョン2.4.0 を基にして書かれています。</p>
 <p>OpenPNE は以下のようなサーバ環境で動作させることを想定しています。</p>
 <ul>
 <li>Apache 1.3.*/2.0.* 以上</li>
@@ -131,6 +131,7 @@ em {
   │ ├ templates_c [777]
   │ └ tmp [777]
   ├ webapp       &lt;--- <var>OPENPNE_WEBAPP_DIR</var>
+  ├ webapp_biz   &lt;--- <var>OPENPNE_WEBAPP_BIZ_DIR</var>
   └ webapp_ext   &lt;--- <var>OPENPNE_WEBAPP_EXT_DIR</var>
 
 (ブラウザから閲覧可能)
@@ -301,15 +302,15 @@ CREATE DATABASE `DBNAME` DEFAULT CHARACTER SET utf8 ;
 
 <p>準備したデータベース(例:DBNAME)上で、以下のSQL文を順番に実行してください。</p>
 <ol>
-<li><var>OPENPNE_DIR</var>/setup/sql/install/install-2.3.3-create_tables-mysql41.sql</li>
-<li><var>OPENPNE_DIR</var>/setup/sql/install/install-2.3.3-insert_data-mysql41.sql</li>
+<li><var>OPENPNE_DIR</var>/setup/sql/install/install-2.4.0-create_tables-mysql41.sql</li>
+<li><var>OPENPNE_DIR</var>/setup/sql/install/install-2.4.0-insert_data-mysql41.sql</li>
 </ol>
 
 <div>
 <em>[実行例]</em>
 <pre>
-$ mysql -u username -p --default-character-set=utf8 DBNAME &lt; install-2.3.3-create_tables-mysql41.sql
-$ mysql -u username -p --default-character-set=utf8 DBNAME &lt; install-2.3.3-insert_data-mysql41.sql
+$ mysql -u username -p --default-character-set=utf8 DBNAME &lt; install-2.4.0-create_tables-mysql41.sql
+$ mysql -u username -p --default-character-set=utf8 DBNAME &lt; install-2.4.0-insert_data-mysql41.sql
 </pre>
 </div>
 
@@ -322,15 +323,15 @@ CREATE DATABASE `DBNAME` ;
 
 <p>準備したデータベース(例:DBNAME)上で、以下のSQL文を順番に実行してください。</p>
 <ol>
-<li><var>OPENPNE_DIR</var>/setup/sql/install/install-2.3.3-create_tables-mysql40.sql</li>
-<li><var>OPENPNE_DIR</var>/setup/sql/install/install-2.3.3-insert_data-mysql40.sql</li>
+<li><var>OPENPNE_DIR</var>/setup/sql/install/install-2.4.0-create_tables-mysql40.sql</li>
+<li><var>OPENPNE_DIR</var>/setup/sql/install/install-2.4.0-insert_data-mysql40.sql</li>
 </ol>
 
 <div>
 <em>[実行例]</em>
 <pre>
-$ mysql -u username -p DBNAME &lt; install-2.3.3-create_tables-mysql40.sql
-$ mysql -u username -p DBNAME &lt; install-2.3.3-insert_data-mysql40.sql
+$ mysql -u username -p DBNAME &lt; install-2.4.0-create_tables-mysql40.sql
+$ mysql -u username -p DBNAME &lt; install-2.4.0-insert_data-mysql40.sql
 </pre>
 </div>
 

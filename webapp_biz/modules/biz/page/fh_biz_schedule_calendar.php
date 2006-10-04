@@ -20,12 +20,14 @@ class biz_page_fh_biz_schedule_calendar extends OpenPNE_Action
         {
             $target_id = $u;
             $this->set('is_h', true);  //判別フラグ
+            $this->set('inc_navi',fetch_inc_navi('h'));
         }
 
         else  //他人
         {
             $target_id = $requests['target_id'];
             $this->set('is_f', true);  //判別フラグ
+            $this->set('inc_navi',fetch_inc_navi('f'));
         }
 
         if (!$year) $year = date('Y');
@@ -36,7 +38,6 @@ class biz_page_fh_biz_schedule_calendar extends OpenPNE_Action
             $curr_day = date('d');
         }
 
-        $this->set('inc_navi',fetch_inc_navi("h"));
         // イベント
         $event_list = p_h_calendar_event4c_member_id($year, $month, $target_id);
         // 誕生日

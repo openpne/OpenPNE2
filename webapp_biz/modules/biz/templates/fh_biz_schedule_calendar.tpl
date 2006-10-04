@@ -60,7 +60,7 @@
 
 </td>
 <td style="width:200px;padding:2px 0px;" class="bg_05" align="right">
-<a href="({t_url m=biz a=page_fh_biz_schedule_calendar})&amp;year=({$ym.year_prev})&amp;month=({$ym.month_prev})({if $is_f})&amp;target_id=({$target_id})({/if})">&lt;&lt;&nbsp;前の月</a>
+<a href="({t_url m=biz a=page_fh_biz_schedule_calendar})&amp;year=({$ym.year_prev})&amp;month=({$ym.month_prev})({if $is_f})&amp;target_id=({$c_member.c_member_id})({/if})">&lt;&lt;&nbsp;前の月</a>
 |
 <a href="({t_url m=biz a=page_fh_biz_schedule_calendar})({if $is_f})&amp;target_id=({$c_member.c_member_id})({/if})">今月</a>
 |

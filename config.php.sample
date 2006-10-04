@@ -51,7 +51,8 @@ $GLOBALS['_OPENPNE_MAINTENANCE_MODULES'] = array('admin');
 define('WAIT_REDIRECT_TIME', 5);
 
 // Crypt_Blowfish ライブラリの旧バージョン使用設定
-//2.2以前からのアップグレードで暗号化まわりで不具合が起こった場合はtrueに設定
+// 2.2以前からのアップグレードでログインできないなどの
+//暗号化まわりの不具合が起こった場合はtrueに設定してください
 define('OPENPNE_USE_OLD_CRYPT_BLOWFISH', false);
 
 // ファンクションキャッシュ使用設定

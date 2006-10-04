@@ -18,18 +18,19 @@ class biz_page_fh_biz_schedule_add extends OpenPNE_Action
         {
             $target_id = $u;
             $this->set('is_h', true);  //判別フラグ
+            $this->set('inc_navi',fetch_inc_navi('h'));
         }
 
         else  //他人
         {
             $target_id = $requests['target_id'];
             $this->set('is_f', true);  //判別フラグ
+            $this->set('inc_navi',fetch_inc_navi('f'));
         }
 
 
         $sessid = session_id();
 
-        $this->set('inc_navi',fetch_inc_navi($cmd));
         $target_member = db_common_c_member4c_member_id($u);
         //プロフィール
         $this->set("target_member", $target_member);

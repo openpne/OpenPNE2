@@ -14,6 +14,7 @@ class biz_page_h_home_edit_biz_todo extends OpenPNE_Action
         $this->set("id", $requests['id']);
         $this->set("todo", biz_getTodo($requests['id']));
         $this->set("cmd", 'h');
+        $this->set('inc_navi',fetch_inc_navi('h'));
 
         return 'success';
     }

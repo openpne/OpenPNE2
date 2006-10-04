@@ -19,6 +19,7 @@ class biz_page_fh_home_edit_biz_todo extends OpenPNE_Action
             $target_id = $u;
             $this->set('is_h', true);  //判別フラグ
             $this->set("cmd", 'h');
+            $this->set('inc_navi',fetch_inc_navi('h'));
         }
 
         else  //他人
@@ -26,6 +27,7 @@ class biz_page_fh_home_edit_biz_todo extends OpenPNE_Action
             $target_id = $requests['target_id'];
             $this->set('is_f', true);  //判別フラグ
             $this->set("cmd", 'f');
+            $this->set('inc_navi',fetch_inc_navi('f'));
         }
 
         $this->set("target_id", $target_id);
