@@ -121,7 +121,7 @@ function Link(linkLoc)
 <tbody>
 
 <tr>
-<td colspan="3" align=center><br></td>
+<td colspan="4" align=center><br></td>
 <td></td>
 <td></td>
 <td></td>
@@ -130,7 +130,7 @@ function Link(linkLoc)
 <td></td>
 <td></td>
 <td></td>
-<td colspan="3">
+<td colspan="4">
 <select onChange="Link('?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page=({$pager.page})&amp;page_size=({$pager.page_size})({$cond})&amp;s_year='+this.options[this.selectedIndex].value);">
 <option value="">選択してください</option>
 ({foreach from=$years item=item})
