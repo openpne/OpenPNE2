@@ -24,8 +24,7 @@
 ({/if})
 
 ({t_form _attr='name="login" id="login"' m=pc a=do_o_login})
-<input type="hidden" name="login_params" value="({$login_params})">
-<input type="text" tabindex="1" name="username" id="username" class="text">
+<input type="hidden" name="login_params" value="({$requests.login_params})">
 <input type="text" tabindex="1" name="username" id="username" class="text">
 <input type="password" tabindex="2" name="password" id="password" class="text">
 <input type="image" tabindex="4" name="submit" src="./skin/dummy.gif" border="0" id="button_login" alt="ログイン">
