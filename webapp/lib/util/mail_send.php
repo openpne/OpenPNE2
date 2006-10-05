@@ -284,13 +284,24 @@ function send_bbs_info_mail_pc($c_commu_topic_comment_id, $c_member_id)
     $topic_name       = $comment['topic_name'];
     $commu_name       = $comment['commu_name'];
     $body             = $comment['body'];
-    $nickname = $c_member['nickname'];
+    $nickname         = $c_member['nickname'];
+    $p = array('target_c_commu_topic_id' => $c_commu_topic_id);
+    $url              = openpne_gen_url('pc', 'page_c_topic_detail', $p);
 
+    $image_filename1       = $comment['image_filename1'];
+    $image_filename2       = $comment['image_filename2'];
+    $image_filename3       = $comment['image_filename3'];
+
+    $image = $image_filename1 || $image_filename2 || $image_filename3;
     $params = array(
         "topic_name" => $topic_name,
         "commu_name" => $commu_name,
         "nickname"   => $nickname,
+        "url"        => $url,
         "body"       => $body,
+        "image_filename1" => $image_filename1,
+        "image_filename2" => $image_filename2,
+        "image_filename3" => $image_filename3,
     );
 
     $tpl = fetch_mail_m_tpl("m_pc_bbs_info", $params);
