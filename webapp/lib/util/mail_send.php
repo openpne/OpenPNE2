@@ -243,11 +243,14 @@ function send_bbs_info_mail($c_commu_topic_comment_id, $c_member_id)
     $image_filename2  = $comment['image_filename2'];
     $image_filename3  = $comment['image_filename3'];
     $nickname = $c_member['nickname'];
+    $p = array('target_c_commu_topic_id' => $c_commu_topic_id);
+    $url              = openpne_gen_url('pc', 'page_c_topic_detail', $p);
 
     $params = array(
         "topic_name"      => $topic_name,
         "commu_name"      => $commu_name,
         "nickname"        => $nickname,
+        "url"        => $url,
         "body"            => $body,
         "image_filename1" => $image_filename1,
         "image_filename2" => $image_filename2,
