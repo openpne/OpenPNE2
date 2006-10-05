@@ -34,8 +34,18 @@ class ktai_do_o_easy_login extends OpenPNE_Action
             $_SESSION['OPENPNE_URL'] = OPENPNE_URL;
         }
 
-        $p = array('ksid' => session_id());
-        openpne_redirect('ktai', 'page_h_home', $p);
+        $p = array();
+        if ($requests['login_params']) {
+            parse_str($requests['login_params'], $p);
+        }
+        $p['ksid'] = session_id();
+        if (!empty($p['a']) && $p['a'] != 'page_o_login') {
+            $a = $p['a'];
+            unset($p['a']);
+        } else {
+            $a = 'page_h_home';
+        }
+        openpne_redirect('ktai', $a, $p);
     }
 }
 

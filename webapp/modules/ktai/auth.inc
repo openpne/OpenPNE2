@@ -56,13 +56,19 @@ function __logout($msg = 0, $c_member_id = 0)
 
     $p = array();
     if ($msg) {
-        $p['msg'] = $msg;
+        $_REQUEST['msg'] = $msg;
     }
     if ($c_member_id) {
         $c_member_secure = db_common_c_member_secure4c_member_id($c_member_id);
-        $p['kad'] = t_encrypt($c_member_secure['ktai_address']);
+        $_REQUEST['kad'] = t_encrypt($c_member_secure['ktai_address']);
     }
-    openpne_redirect('ktai', 'page_o_login', $p);
+    $params = strstr($_SERVER['REQUEST_URI'], '/?');
+    $params = substr($params, 2);
+    $params = preg_replace('/ksid=[0-9a-zA-Z]+/', '', $params);
+    $_REQUEST['login_params'] = $params;
+
+    openpne_forward('ktai', 'page', 'o_login');
+    exit;
 }
 
 ?>

@@ -9,6 +9,7 @@
 <br>
 
 ({t_form m=ktai a=do_o_login})
+<input type="hidden" name="login_params" value="({$requests.login_params})">
 ({if $ktai_address})
 <input type="hidden" name="ktai_address" value="({$ktai_address})">
 ({else})
@@ -22,6 +23,7 @@
 <br>
 
 ({t_form _attr='utn' m=ktai a=do_o_easy_login})
+<input type="hidden" name="login_params" value="({$requests.login_params})">
 ({if $ktai_address})
 <input type="hidden" name="ktai_address" value="({$ktai_address})">
 ({/if})
