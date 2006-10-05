@@ -636,7 +636,7 @@ ID <input type="text" name="c_member_id_block[]" value=""><br>
 ({if $c_member.c_member_id==1})
 ID 1 のメンバーはSNSを退会することができません。
 ({else})
-<input type=submit value="退会確認ページへ">
+<input type=submit class="submit" value="退会確認ページへ">
 ({/if})
 
 </div>

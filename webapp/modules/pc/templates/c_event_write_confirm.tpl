@@ -162,14 +162,14 @@
 <input type="hidden" name="({$key})" value="({$item})">
 ({/foreach})
 
-<td><input type=submit value="　書き込み　"></td>
+<td><input type=submit class="submit" value="　書き込み　"></td>
 </form>
 
 ({t_form m=pc a=page_c_event_detail})
 ({foreach from=$event_write key=key item=item})
 <input type="hidden" name="({$key})" value="({$item})">
 ({/foreach})
-<td><input type=submit value="　修　 正　"></td>
+<td><input type=submit class="submit" value="　修　 正　"></td>
 <input type="hidden" name="body" value="({$event_write.body})">
 </form>
 

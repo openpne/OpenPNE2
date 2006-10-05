@@ -372,7 +372,7 @@
 
 <div style="padding:6px 100px;text-align:center;">
 
-<input type=submit value="　削  除　">
+<input type=submit class="submit" value="　削  除　">
 
 </div>
 
