@@ -13,8 +13,17 @@ class pc_page_o_tologin extends OpenPNE_Action
 
     function execute($requests)
     {
+        $url = get_login_url();
+        if ($requests['login_params']) {
+            if (strrpos($url, '?') !== false) {
+                $url .= '&';
+            } else {
+                $url .= '?';
+            }
+            $url .= 'login_params=' . urlencode($requests['login_params']);
+        }
         // リダイレクト
-        header('Refresh: 3; URL=' . get_login_url());
+        header('Refresh: 3; URL=' . $url);
 
 
         //---- inc_ テンプレート用 変数 ----//
@@ -46,7 +55,7 @@ class pc_page_o_tologin extends OpenPNE_Action
         }
         $this->set('msg', $msg);
 
-        $this->set('login_url', get_login_url());
+        $this->set('login_url', $url);
         return 'success';
     }
 }

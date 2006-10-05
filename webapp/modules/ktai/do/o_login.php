@@ -31,12 +31,12 @@ class ktai_do_o_login extends OpenPNE_Action
             if ($lc->is_rejected() || !$c_member_id = k_auth_login($ktai_address, $password)) {
                 // 認証エラー
                 $lc->fail_login();
-                $p = array('msg' => '0', 'kad' => t_encrypt($ktai_address));
+                $p = array('msg' => '0', 'kad' => t_encrypt($ktai_address), 'login_params' => $requests['login_params']);
                 openpne_redirect('ktai', 'page_o_login', $p);
             }
         } else {
             if (!$c_member_id = k_auth_login($ktai_address, $password)) {
-                $p = array('msg' => '0', 'kad' => t_encrypt($ktai_address));
+                $p = array('msg' => '0', 'kad' => t_encrypt($ktai_address), 'login_params' => $requests['login_params']);
                 openpne_redirect('ktai', 'page_o_login', $p);
             }
         }

@@ -8,6 +8,7 @@ class pc_do_o_login extends OpenPNE_Action
 {
     var $_auth;
     var $_lc;
+    var $_login_params;
 
     function isSecure()
     {
@@ -16,7 +17,7 @@ class pc_do_o_login extends OpenPNE_Action
 
     function execute($requests)
     {
-        $login_params = $requests['login_params'];
+        $this->_login_params = $requests['login_params'];
         $options = array(
             'dsn'         => db_get_dsn(),
             'table'       => 'c_member_secure',
@@ -52,8 +53,8 @@ class pc_do_o_login extends OpenPNE_Action
 
         db_api_update_token($auth->uid());
         $url = OPENPNE_URL;
-        if ($login_params) {
-            $url .= '?' . $login_params;
+        if ($this->_login_params) {
+            $url .= '?' . $this->_login_params;
         }
         client_redirect_absolute($url);
     }
@@ -64,7 +65,7 @@ class pc_do_o_login extends OpenPNE_Action
             $this->_lc->fail_login();
         }
         $this->_auth->logout();
-        $p = array('msg_code' => 'login_failed');
+        $p = array('msg_code' => 'login_failed', 'login_params' => $this->_login_params);
         openpne_redirect('pc', 'page_o_tologin', $p);
     }
 }

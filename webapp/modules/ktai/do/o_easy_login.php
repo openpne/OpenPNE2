@@ -17,7 +17,7 @@ class ktai_do_o_easy_login extends OpenPNE_Action
     {
         if (!$c_member_id = db_ktai_c_member_id4easy_access_id(OpenPNE_KtaiID::getID())) {
             // 認証エラー
-            $p = array('msg' => 14, 'kad' => t_encrypt($requests['ktai_address']));
+            $p = array('msg' => 14, 'kad' => t_encrypt($requests['ktai_address']), 'login_params' => $requests['login_params']);
             openpne_redirect('ktai', 'page_o_login', $p);
         }
 
