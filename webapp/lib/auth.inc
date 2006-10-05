@@ -16,7 +16,7 @@ if (   !$auth->auth()
     $auth->logout();
 
     $params = strstr($_SERVER['REQUEST_URI'], '/?');
-    $params = substr($params, 1);
+    $params = substr($params, 2);
 
     if (LOGIN_URL_PC) {
         client_redirect_absolute(get_login_url());
