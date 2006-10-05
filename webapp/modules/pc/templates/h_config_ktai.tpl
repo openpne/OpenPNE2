@@ -189,7 +189,7 @@
 
 
 ({t_form m=pc a=page_h_delete_ktai})
-<input type="submit" value="　削除　">
+<input type="submit"  class="submit" value="　削除　">
 </form>
 </div>
 

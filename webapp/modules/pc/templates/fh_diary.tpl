@@ -438,7 +438,7 @@
 
 ({t_form _method=get m=pc a=page_h_diary_edit})
 <input type="hidden" name="target_c_diary_id" value="({$target_diary.c_diary_id})">
-<input type="submit" value="編 集">
+<input type="submit"  class="submit" value="編 集">
 </form>
 
 </div>

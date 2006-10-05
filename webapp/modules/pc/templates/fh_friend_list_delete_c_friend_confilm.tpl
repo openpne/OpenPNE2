@@ -77,7 +77,7 @@
 </td><td>
 
 ({t_form _method=get m=pc a=page_h_manage_friend})
-&nbsp;<input type="submit" value="キャンセル">
+&nbsp;<input type="submit"  class="submit" value="キャンセル">
 </form>
 
 </td>

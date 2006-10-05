@@ -74,7 +74,7 @@
 <input type="hidden" name="sessid" value="({$PHPSESSID})">
 <input type="hidden" name="c_member_id" value="({$c_member_id})">
 
-<input type="submit" value=" 削除 ">
+<input type="submit"  class="submit" value=" 削除 ">
 
 </td>
 </form>
@@ -83,7 +83,7 @@
 
 ({t_form _method=get m=pc a=page_h_config_ktai})
 <td>
-<input type="submit" type="button" value="キャンセル">
+<input type="submit" type="button"  class="submit" value="キャンセル">
 </td>
 
 </form>
