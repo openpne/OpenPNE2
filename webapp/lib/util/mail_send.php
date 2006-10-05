@@ -244,8 +244,8 @@ function send_bbs_info_mail($c_commu_topic_comment_id, $c_member_id)
     $image_filename3  = $comment['image_filename3'];
     $nickname = $c_member['nickname'];
     $p = array('target_c_commu_topic_id' => $c_commu_topic_id);
-    $url              = openpne_gen_url('ktai', 'page_c_topic_detail', $p);
-
+    $url              = openpne_gen_url('ktai', 'page_c_bbs', $p);
+//http://tejimaya.pne.jp/?m=ktai&a=page_c_bbs&target_c_commu_topic_id=574&ksid=3f92856e053602733d3566e00af2c056
     $params = array(
         "topic_name"      => $topic_name,
         "commu_name"      => $commu_name,
