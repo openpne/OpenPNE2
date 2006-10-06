@@ -17,6 +17,7 @@ config.inc.php から読み込めるようにしてください。
   ├ var
   ├ webapp
   ├ webapp_ext
+  ├ webapp_biz
   └ config.php
 
 (http://sns.example.com/)
