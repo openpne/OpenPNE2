@@ -15,10 +15,10 @@
 <ul>
 ({foreach from=$admin_info item=item})
 <li><a href="({$item.link})">({$item.title})</a></li>
-</ul>
 ({/foreach})
+</ul>
 </dd>
-</dd>
+</dl>
 </div>
 ({/if})
 ({/if})
