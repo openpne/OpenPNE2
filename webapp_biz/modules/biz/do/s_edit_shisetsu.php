@@ -10,7 +10,8 @@ class biz_do_s_edit_shisetsu extends OpenPNE_Action
     function execute($requests)
     {
         if (!$requests['name']) {
-            $p = array('msg' => '施設名を入力してください');
+            $p = array('msg' => '施設名を入力してください',
+                       'id'  => $requests['target_id']);
             openpne_redirect('biz', 'page_s_edit_shisetsu', $p);
         }
 
