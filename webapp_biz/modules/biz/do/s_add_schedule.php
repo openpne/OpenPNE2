@@ -11,10 +11,9 @@ class biz_do_s_add_schedule extends OpenPNE_Action
         $u = $GLOBALS['AUTH']->uid();
         $sessid = session_id();
 
-        if(empty($requests['start_time'])) {
+        if (empty($requests['start_time'])) {
             $begin_time = date("H:00:00");
-        }
-        else {
+        } else {
             $begin_time = $requests['start_time'].':00:00';
         }
 
@@ -22,7 +21,7 @@ class biz_do_s_add_schedule extends OpenPNE_Action
         $finish_time = date("H:i:00", strtotime(date("Ymd H:".$term.":s", strtotime($begin_time))));
 
         //終了時間と開始時間が変
-        if(strtotime($finish_time) < strtotime($begin_time)) {
+        if (strtotime($finish_time) < strtotime($begin_time)) {
             $p = array('msg' => '日をまたがる施設予約はできません');
             openpne_redirect('biz', 'page_s_list', $p);
         }
@@ -33,13 +32,13 @@ class biz_do_s_add_schedule extends OpenPNE_Action
         $m = date("m", strtotime($start_date));
         $d = date("d", strtotime($start_date));
 
-        if(!biz_isBatting($requests['shisetsu_id'], $y, $m, $d, $begin_time, $finish_time)) {
+        if (!biz_isBatting($requests['shisetsu_id'], $y, $m, $d, $begin_time, $finish_time)) {
             $p = array('msg' => '施設予約がバッティングしたため、登録ができませんでした');
             openpne_redirect('biz', 'page_s_list', $p);
 
         }
 
-    //($shisetsu_id, $member_id, $date, $begin_time, $finish_time)
+        //($shisetsu_id, $member_id, $date, $begin_time, $finish_time)
         biz_addShisetsuSchedule($requests['shisetsu_id'], $u, $requests['start_date'], $begin_time, $finish_time);
 
         $p = array(

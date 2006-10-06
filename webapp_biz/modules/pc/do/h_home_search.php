@@ -18,8 +18,7 @@ class pc_do_h_home_search extends OpenPNE_Action
             client_redirect_absolute('http://www.google.com/search?hl=ja&q='.$q);
         }
         //--- bizここから
-        elseif(!is_null($requests['group_x']))
-        {
+        elseif (!is_null($requests['group_x'])) {
             $p = array('keyword' => urlencode($requests['q']));
             openpne_redirect('biz', 'page_h_biz_group_find_all', $p);
         }

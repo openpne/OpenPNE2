@@ -42,8 +42,9 @@ class biz_page_g_member_list extends OpenPNE_Action
 
         $c_member_list = biz_getGroupMember($target_c_commu_id, $page_size, $start);
 
-        foreach($c_member_list as $key => $value)
+        foreach ($c_member_list as $key => $value) {
             $c_member_list[$key] = db_common_c_member4c_member_id_LIGHT($value['member_id']);
+        }
 
         $total_num = count(biz_getGroupMember($target_c_commu_id));
 

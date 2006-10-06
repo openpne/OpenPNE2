@@ -12,16 +12,14 @@ class ktai_biz_page_fh_biz_schedule_edit extends OpenPNE_Action
         $this->set('tail', $GLOBALS['KTAI_URL_TAIL']);
 
 
-        if(empty($requests['target_id']) || ($requests['target_id'] == $u)) //自分自身
-        {
-                $target_id = $u;
-                $this->set('is_h', true);   //判別フラグ
-        }
-
-        else    //他人
-        {
-                $target_id = $requests['target_id'];
-                $this->set('is_f', true);   //判別フラグ
+        if (empty($requests['target_id']) || ($requests['target_id'] == $u)) {
+            //自分自身
+            $target_id = $u;
+            $this->set('is_h', true);   //判別フラグ
+        } else {
+            //他人
+            $target_id = $requests['target_id'];
+            $this->set('is_f', true);   //判別フラグ
         }
 
         //日付・時刻を出す
@@ -36,7 +34,7 @@ class ktai_biz_page_fh_biz_schedule_edit extends OpenPNE_Action
 
         $j_members = unserialize($requests['members']);
 
-        if ( $j_members ) {
+        if ($j_members) {
             sort($j_members);
         }
 

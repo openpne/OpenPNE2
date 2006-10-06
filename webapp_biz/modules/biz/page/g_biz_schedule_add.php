@@ -37,39 +37,39 @@ class biz_page_g_biz_schedule_add extends OpenPNE_Action
         $calendar = db_common_diary_monthly_calendar($year, $month, $u);
 
         $this->set("calendar", $calendar['days']);
-        $this->set("ym", $calendar['ym']);      
+        $this->set("ym", $calendar['ym']);
 
-    //日付関連
+        //日付関連
         $nowyear = date("Y");
         $nowmonth = date("m");
         $nowday = date("d");
 
-        for($i = $nowyear; $i <= $nowyear+10; $i++)
-        {
-            if($i == $nowyear)  //現在年をデフォルトに
+        for ($i = $nowyear; $i <= $nowyear+10; $i++) {
+            if ($i == $nowyear) {
                 $years = '<option value="'.$i.'" selected>';
-            else
+            } else {
                 $years .= '<option value="'.$i.'">';
+            }
             $years .= $i.'年';
         }
 
-        for($i = 1; $i <= 12; $i++)
-        {
+        for ($i = 1; $i <= 12; $i++) {
             $i_f = sprintf("%02d",$i);  //月は常に二桁
-            if($i == $nowmonth)  //現在月をデフォルトに
+            if ($i == $nowmonth) {
                 $monthes .= '<option value="'.$i_f.'" selected>';
-            else
+            } else {
                 $monthes .= '<option value="'.$i_f.'">';
+            }
             $monthes .= $i.'月';
         }
 
-        for($i = 1; $i <= 31; $i++)
-        {
+        for ($i = 1; $i <= 31; $i++) {
             $i_f = sprintf("%02d",$i);  //日は常に二桁
-            if($i == $nowday)
+            if ($i == $nowday) {
                 $days .= '<option value="'.$i_f.'" selected>';
-            else
+            } else {
                 $days .= '<option value="'.$i_f.'">';
+            }
             $days .= $i.'日';
         }
 
@@ -90,14 +90,15 @@ class biz_page_g_biz_schedule_add extends OpenPNE_Action
         $this->set('my_id', $u);
 
 
-    //データベースアクセス
+        //データベースアクセス
         $member_list = array();
         $this->set('target_id', $requests['target_id']);
-        foreach(biz_getGroupMember($requests['target_id']) as $key => $value)
+        foreach (biz_getGroupMember($requests['target_id']) as $key => $value) {
             $member_list[$value['c_member_id']] = 1;
+        }
         $this->set('member_list', biz_getGroupMember($requests['target_id']));
 
-    //追加
+        //追加
         $members = array();
 
         $sql = 'SELECT c_member_id, nickname FROM c_member WHERE c_member_id <>  ?';
@@ -115,12 +116,12 @@ class biz_page_g_biz_schedule_add extends OpenPNE_Action
 
         array_unshift($members, $my_info);
 
-        foreach($members as $key => $value)
-        {
-            if(isset($member_list[$value['c_member_id']]))
+        foreach ($members as $key => $value) {
+            if (isset($member_list[$value['c_member_id']])) {
                 $members[$key]['checkflag'] = 1;
-            else
+            } else {
                 $members[$key]['checkflag'] = 0;
+            }
         }
 
         $this->set('member_list', $members);

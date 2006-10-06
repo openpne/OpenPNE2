@@ -124,7 +124,6 @@ class pc_page_h_home extends OpenPNE_Action
 
 
         //--- biz ここから
-        //nak 20060217 バナーをBIZ用右部拡張領域下に表示させる為の仕掛け
         $this->set('is_h_home', 1);
 
 //      list($ru_list) = p_h_message_box_c_message_received_user_list4c_member_id4range($u, 1, 20);
@@ -188,7 +187,7 @@ class pc_page_h_home extends OpenPNE_Action
             }
             $calendar[] = $item;
         }
-        return $calendar;        
+        return $calendar;
     }
 }
 

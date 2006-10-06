@@ -20,14 +20,13 @@ class biz_page_fh_group_list extends OpenPNE_Action
             $target_c_member_id = $u;
         }
 
-        if(p_common_is_access_block($u, $target_c_member_id)){
+        if (p_common_is_access_block($u, $target_c_member_id)) {
             $p = array();
             openpne_redirect('pc', 'page_h_access_block', $p);
-            exit;
         }
 
         // navi 振り分け用
-        if($target_c_member_id == $u) {
+        if ($target_c_member_id == $u) {
             $type = "h";
         } else {
             $type = "f";

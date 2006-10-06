@@ -2,7 +2,7 @@
 
 <script type="text/javascript">
 <!--
-function checkAll(){
+function checkAll() {
     var sm = document.formSendMessages;
     var len = sm.elements.length;
     for (var i = 0; i < len; i++) {
@@ -11,7 +11,7 @@ function checkAll(){
     return false;
 }
 
-function clearAll(){
+function clearAll() {
     var sm = document.formSendMessages;
     var len = sm.elements.length;
     for (var i = 0; i < len; i++) {
@@ -20,8 +20,11 @@ function clearAll(){
     return false;
 }
 
-function Link(linkLoc)
-{ if(linkLoc !="") { window.location.href=linkLoc;} }
+function Link(linkLoc) {
+    if (linkLoc != "") {
+        window.location.href=linkLoc;
+    }
+}
 
 //-->
 </script>

@@ -11,18 +11,17 @@ class biz_do_h_biz_schedule_delete extends OpenPNE_Action
         $u = $GLOBALS['AUTH']->uid();
         $sessid = session_id();
 
-        if($requests['is_rep'])
-        {
+        if ($requests['is_rep']) {
             $rep_schedule = biz_getRepeatScheduleID($requests['schedule_id']);
-            foreach($rep_schedule as $value)
+            foreach ($rep_schedule as $value) {
                 biz_deleteSchedule($value);
-        }
-        else
+            }
+        } else {
             biz_deleteSchedule($requests['schedule_id']);
+        }
 
         $p = array();
         openpne_redirect('pc', 'page_h_home', $p);
-
     }
 }
 

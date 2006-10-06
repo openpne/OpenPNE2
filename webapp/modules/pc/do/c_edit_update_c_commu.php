@@ -45,7 +45,7 @@ class pc_do_c_edit_update_c_commu extends OpenPNE_Action
 
         ////GoogleMAP
         if (OPENPNE_USE_COMMU_MAP) {
-            $is_display_map = $requests['is_display_map']; 
+            $is_display_map = $requests['is_display_map'];
             if ($is_display_map) {
                 $pref = null;
                 if ($requests['map_pref_id'] > 0) {

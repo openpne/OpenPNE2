@@ -8,22 +8,13 @@
 
 //予期しない多重定義を避けるため、必ず関数名にはbiz_というprefixをつける
 
-//CONST-------------------------------------------
-
-
-//GET---------------------------------------------
-
-
-//SET---------------------------------------------
-
 //連番の配列を作る
 function biz_makeSerialArray($count, $begin=0, $increase = 1)
 {
     $tmp = array();
-
-    for($i = $begin; $i <= $count; $i += $increase)
-        array_push($tmp, $i);
-
+    for ($i = $begin; $i <= $count; $i += $increase) {
+        $tmp[] = $i;
+    }
     return $tmp;
 }
 

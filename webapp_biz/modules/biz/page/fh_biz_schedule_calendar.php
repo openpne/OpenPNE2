@@ -16,22 +16,24 @@ class biz_page_fh_biz_schedule_calendar extends OpenPNE_Action
         $pref_id = $requests['pref_id'];
         // ----------
 
-        if(empty($requests['target_id']) || ($requests['target_id'] == $u))  //自分自身
-        {
+        if (empty($requests['target_id']) || ($requests['target_id'] == $u)) {
+            //自分自身
             $target_id = $u;
             $this->set('is_h', true);  //判別フラグ
             $this->set('inc_navi',fetch_inc_navi('h'));
-        }
-
-        else  //他人
-        {
+        } else {
+            //他人
             $target_id = $requests['target_id'];
             $this->set('is_f', true);  //判別フラグ
             $this->set('inc_navi',fetch_inc_navi('f'));
         }
 
-        if (!$year) $year = date('Y');
-        if (!$month) $month = date('n');
+        if (!$year) {
+            $year = date('Y');
+        }
+        if (!$month) {
+            $month = date('n');
+        }
 
         if ($year == date('Y') && $month == date('n')) {
             $is_curr = true;
@@ -58,11 +60,12 @@ class biz_page_fh_biz_schedule_calendar extends OpenPNE_Action
             } else {
               $day = $Day->thisDay();
 
-                    $schedule = biz_getDateMemberSchedule($year,sprintf("%02d",$month),sprintf("%02d",$day),$target_id);
-                    $banner = biz_isBannerSchedule($year, sprintf("%02d", $month), sprintf("%02d",$day), $target_id);
+              $schedule = biz_getDateMemberSchedule($year, sprintf("%02d", $month), sprintf("%02d", $day), $target_id);
+              $banner = biz_isBannerSchedule($year, sprintf("%02d", $month), sprintf("%02d", $day), $target_id);
 
-                    if(!empty($banner))
-                        array_push($schedule, $banner);
+              if (!empty($banner)) {
+                  array_push($schedule, $banner);
+              }
 
               $item = array(
                 'day' => $day,
@@ -99,7 +102,6 @@ class biz_page_fh_biz_schedule_calendar extends OpenPNE_Action
         $this->set("c_member", $c_member);
 
         $this->set("weather_url", "http://weather.yahoo.co.jp/weather/");
-
 
         return 'success';
     }

@@ -28,7 +28,7 @@ function reflect_color (n) {
     var str_2 = "({if $preset_bgcolors})preview_display_({else})bgcolor_({/if})"+str_1 ;
     var str_3 = "#" + color ;
     document.getElementById(str_2).style.backgroundColor = str_3 ;
-    
+
     for (key in bgcolors) {
         if (key == str_1) {
             bgcolors[str_1] = color;
@@ -42,7 +42,7 @@ function set_preset_color (target,color) {
     var str_1 = "({if $preset_bgcolors})preview_display_({else})bgcolor_({/if})"+target ;
     var str_2 = "#" + color;
     document.getElementById(str_1).style.backgroundColor=str_2;
-    
+
     bgcolors[target] = color;
 }
 
@@ -74,7 +74,7 @@ function assign_color_({$key})() {
         ({/if})
         ({/foreach})
     ({/foreach})
-    
+
     set_textarea_for_color_config ();
     return 0;
 }

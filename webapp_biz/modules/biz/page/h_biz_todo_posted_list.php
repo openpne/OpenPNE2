@@ -12,7 +12,7 @@ class biz_page_h_biz_todo_posted_list extends OpenPNE_Action
 
         // --- リクエスト変数
         $direc = $requests['direc'];
-        $page = $requests['page'];    
+        $page = $requests['page'];
         // ----------
 
         $this->set('inc_navi',fetch_inc_navi("h"));

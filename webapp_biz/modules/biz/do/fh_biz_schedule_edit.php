@@ -119,8 +119,9 @@ class biz_do_fh_biz_schedule_edit extends OpenPNE_Action
             $finish_date = date("Y-m-d", strtotime($requests['sc_b_year'].'-'.$requests['sc_b_month'].'-'.($requests['sc_b_date']+($requests['sc_rcount'])*7)));
 
             //繰り返しルールの決定
-            foreach($requests['sc_rwk'] as $value)
+            foreach ($requests['sc_rwk'] as $value) {
                 $rp_rule += 1 << $value;
+            }
         } else {
             //繰り返しなし
             $finish_date = date("Y-m-d", strtotime($requests['sc_b_year'].'-'.$requests['sc_b_month'].'-'.($requests['sc_b_date']+($requests['sc_bn']-1))));

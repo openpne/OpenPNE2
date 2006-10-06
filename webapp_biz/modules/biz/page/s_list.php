@@ -58,12 +58,11 @@ class biz_page_s_list extends OpenPNE_Action
         $list= biz_getShisetsuList();
 
         $calendar = '';
-        foreach($list as $key => $value) {
+        foreach ($list as $key => $value) {
             $calendar .= biz_getScheduleWeek($value['biz_shisetsu_id'], $requests['w'], 's_list', true, true, true);
         }
 
         $this->set('calendar', $calendar);
-
 
         $hours = biz_makeSerialArray(23);  //時
         $this->set("hours", $hours);

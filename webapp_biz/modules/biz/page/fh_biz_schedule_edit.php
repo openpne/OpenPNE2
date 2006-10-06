@@ -16,15 +16,13 @@ class biz_page_fh_biz_schedule_edit extends OpenPNE_Action
 
         $sessid = session_id();
 
-        if(empty($requests['target_id']) || ($requests['target_id'] == $u))  //自分自身
-        {
+        if (empty($requests['target_id']) || ($requests['target_id'] == $u)) {
+            //自分自身
             $target_id = $u;
             $this->set('is_h', true);  //判別フラグ
             $this->set('inc_navi',fetch_inc_navi('h'));
-        }
-
-        else  //他人
-        {
+        } else {
+            //他人
             $target_id = $requests['target_id'];
             $this->set('is_f', true);  //判別フラグ
             $this->set('inc_navi',fetch_inc_navi('f'));
@@ -50,44 +48,45 @@ class biz_page_fh_biz_schedule_edit extends OpenPNE_Action
         $calendar = db_common_diary_monthly_calendar($year, $month, $u);
 
         $this->set("calendar", $calendar['days']);
-        $this->set("ym", $calendar['ym']);      
+        $this->set("ym", $calendar['ym']);
 
-    //日付関連
-        if($requests['rep_type'])
+        //日付関連
+        if ($requests['rep_type']) {
             $begin_date = biz_getRepeatBegin($requests['schedule_id']);
-        else
+        } else {
             $begin_date = $requests['begin_date'];
+        }
 
         $nowyear = date("Y", strtotime($begin_date));
         $nowmonth = date("m", strtotime($begin_date));
         $nowday = date("d", strtotime($begin_date));
 
-        for($i = $nowyear; $i <= $nowyear+10; $i++)
-        {
-            if($i == $nowyear)  //現在年をデフォルトに
+        for ($i = $nowyear; $i <= $nowyear+10; $i++) {
+            if ($i == $nowyear) {
                 $years = '<option value="'.$i.'" selected>';
-            else
+            } else {
                 $years .= '<option value="'.$i.'">';
+            }
             $years .= $i.'年';
         }
 
-        for($i = 1; $i <= 12; $i++)
-        {
+        for ($i = 1; $i <= 12; $i++) {
             $i_f = sprintf("%02d",$i);  //月は常に二桁
-            if($i == $nowmonth)  //現在月をデフォルトに
+            if ($i == $nowmonth) { 
                 $monthes .= '<option value="'.$i_f.'" selected>';
-            else
+            } else {
                 $monthes .= '<option value="'.$i_f.'">';
+            }
             $monthes .= $i.'月';
         }
 
-        for($i = 1; $i <= 31; $i++)
-        {
+        for ($i = 1; $i <= 31; $i++) {
             $i_f = sprintf("%02d",$i);  //日は常に二桁
-            if($i == $nowday)
+            if ($i == $nowday) {
                 $days .= '<option value="'.$i_f.'" selected>';
-            else
+            } else {
                 $days .= '<option value="'.$i_f.'">';
+            }
             $days .= $i.'日';
         }
 
@@ -108,46 +107,53 @@ class biz_page_fh_biz_schedule_edit extends OpenPNE_Action
 
         $this->set('title', $requests['title']);
         $this->set('value', $requests['value']);
-        if(!is_null($requests['begin_time']))
+        if (!is_null($requests['begin_time'])) {
             $this->set('begin_hour', date("G", strtotime($requests['begin_time'])));
-
-        if(!is_null($requests['begin_time']))
-        {
-            $begin_min = date("i", strtotime($requests['begin_time']));
-            if(substr($begin_min, 0, 1) == '0')
-                $begin_min = substr($begin_min, 1,1);
         }
 
-        if(!is_null($requests['begin_time']))
+        if (!is_null($requests['begin_time'])) {
+            $begin_min = date("i", strtotime($requests['begin_time']));
+            if (substr($begin_min, 0, 1) == '0') {
+                $begin_min = substr($begin_min, 1,1);
+            }
+        }
+
+        if (!is_null($requests['begin_time'])) {
             $this->set('begin_min', $begin_min);
-        if(!is_null($requests['finish_time']))
+        }
+        if (!is_null($requests['finish_time'])) {
             $this->set('finish_hour', date("G", strtotime($requests['finish_time'])));
-        else
+        } else {
             $this->set('finish_hour', null);
+        }
 
-        if(!is_null($requests['finish_time']))
+        if (!is_null($requests['finish_time'])) {
             $finish_min = date("i", strtotime($requests['finish_time']));
-        if(substr($begin_min, 0, 1) == '0')
+        }
+        if (substr($begin_min, 0, 1) == '0') {
             $finish_min = substr($finish_min, 1,1);
+        }
 
-        if(!is_null($requests['begin_time']))
+        if (!is_null($requests['begin_time'])) {
             $this->set('finish_min', $finish_min);
-        else
+        } else {
             $this->set('finish_min', null);
+        }
 
-        if($requests['rep_type'])
+        if ($requests['rep_type']) {
             $is_rep = true;
-        else
+        } else {
             $is_rep = false;
+        }
 
         $dayofweek = array();
 
-        for($i = 0; $i <= 6; $i++)
-        {
-            if($requests['rep_type'] & (1 << $i))
+        for ($i = 0; $i <= 6; $i++) {
+            if ($requests['rep_type'] & (1 << $i)) {
                 array_push($dayofweek, 1);
-            else
+            } else {
                 array_push($dayofweek, 0);
+            }
         }
 
         $this->set('rep_type', $dayofweek);
@@ -158,11 +164,9 @@ class biz_page_fh_biz_schedule_edit extends OpenPNE_Action
 
         $this->set('j_members', $j_members);
 
-    //  $this->set('banner', date("d", (strtotime($requests['finish_date']) - strtotime($requests['begin_date']))));
-
         $this->set('schedule_id', $requests['schedule_id']);
 
-    //追加
+        //追加
         $members = array();
 
         $sql = 'SELECT c_member_id, nickname FROM c_member WHERE c_member_id <> ?';
@@ -180,16 +184,15 @@ class biz_page_fh_biz_schedule_edit extends OpenPNE_Action
         array_unshift($members, $my_info);
         $i = 0;
 
-        foreach($members as $key => $value)
-        {
-            if($j_members[$i] == $value['c_member_id'])
-            {
+        foreach ($members as $key => $value) {
+            if ($j_members[$i] == $value['c_member_id']) {
                 $members[$key]['checkflag'] = 1;
                 $i++;
             }
 
-            if(count($j_members) < $i)
+            if (count($j_members) < $i) {
                 break;
+            }
         }
 
         $members[0]['checkflag'] = 1;
@@ -203,7 +206,6 @@ class biz_page_fh_biz_schedule_edit extends OpenPNE_Action
 
         $this->set('repeat_begin_date', $repeat_begin);
         $this->set('repeat_term', intval($daycount));
-
 
         return 'success';
     }

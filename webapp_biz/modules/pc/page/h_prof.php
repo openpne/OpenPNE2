@@ -46,7 +46,6 @@ class pc_page_h_prof extends OpenPNE_Action
 
         // ---bizここから
 
-        //nak 20060217 バナーをBIZ用右部拡張領域下に表示させる為の仕掛け
         $this->set('is_h_prof', 1);
 
         //カレンダー表示用

@@ -11,14 +11,12 @@ class ktai_biz_page_fh_biz_schedule_view extends OpenPNE_Action
         $u  = $GLOBALS['KTAI_C_MEMBER_ID'];
         $this->set('tail', $GLOBALS['KTAI_URL_TAIL']);
 
-        if(empty($requests['target_id']) || ($requests['target_id'] == $u))  //自分自身
-        {
+        if (empty($requests['target_id']) || ($requests['target_id'] == $u)) {
+            //自分自身
             $target_id = $u;
             $this->set('is_h', true);  //判別フラグ
-        }
-
-        else  //他人
-        {
+        } else {
+            //他人
             $target_id = $requests['target_id'];
             $this->set('is_f', true);  //判別フラグ
         }
@@ -52,10 +50,10 @@ class ktai_biz_page_fh_biz_schedule_view extends OpenPNE_Action
         //繰り返しフラグのチェック
         $dayofweek = array('日','月','火','水','木','金', '土');
 
-        foreach($dayofweek as $key => $value)
-        {
-            if($list['rep_type'] & (1 << $key))
+        foreach ($dayofweek as $key => $value) {
+            if ($list['rep_type'] & (1 << $key)) {
                 $tmp .= $value;
+            }
         }
 
         $list += array('rep_type_loc' => $tmp);
@@ -65,19 +63,16 @@ class ktai_biz_page_fh_biz_schedule_view extends OpenPNE_Action
         $list['finish_time'] = substr($list['finish_time'], 0, 5);
 
         $jmembers = biz_getJoinMemberSchedule($requests['id']);
-        if(array_search($target_member['nickname'], $jmembers))
-        {
-    //      array_unshift($jmembers, $target_member['nickname']);
+        if (array_search($target_member['nickname'], $jmembers)) {
             $jmembers[$target_member['c_member_id']] = $target_member['nickname'];
             $jmembers = array_unique($jmembers);
         }
         $jshisetsu = biz_getJoinShisetsuSchedule($requests['id']);
 
-
         //参加者は10人目まで表示
-        if(count($jmembers) > 10){
+        if (count($jmembers) > 10) {
             $jam = count($jmembers);
-            while ($jam != 10){
+            while ($jam != 10) {
                 array_pop($jmembers);
                 $jam--;
             }
@@ -92,8 +87,8 @@ class ktai_biz_page_fh_biz_schedule_view extends OpenPNE_Action
         $this->set('is_h', true);
         $this->set('t_id', $target_id);
 
-        if($list['rep_type'])  //繰り返し予定の場合は開始日と期間をセット
-        {
+        if ($list['rep_type']) {
+            //繰り返し予定の場合は開始日と期間をセット
             $repeat_begin = biz_getRepeatBegin($requests['id']);
             $repeat_finish = biz_getRepeatFinish($requests['id']);
             $repeat_term = strtotime($repeat_finish) - strtotime($repeat_begin);
@@ -104,14 +99,15 @@ class ktai_biz_page_fh_biz_schedule_view extends OpenPNE_Action
             $this->set('repeat_term', intval($daycount));
         }
 
-        if($list['rep_type'])  //繰り返し予定の場合はまとめて既読済みに
-        {
+        if ($list['rep_type']) {
+            //繰り返し予定の場合はまとめて既読済みに
             $rep_schedule = biz_getRepeatScheduleID($requests['id']);
-            foreach($rep_schedule as $value)
+            foreach ($rep_schedule as $value) {
                 biz_readSchedule($u, $value);
-        }
-        else
+            }
+        } else {
             biz_readSchedule($u, $requests['id']);
+        }
         return 'success';
     }
 }

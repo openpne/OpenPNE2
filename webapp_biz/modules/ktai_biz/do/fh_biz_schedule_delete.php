@@ -12,18 +12,18 @@ class ktai_biz_do_fh_biz_schedule_delete extends OpenPNE_Action
         $tail = $GLOBALS['KTAI_URL_TAIL'];
         $target_id = $requests['target_id'];
 
-        if($requests['is_rep'])
-        {
+        if ($requests['is_rep']) {
             $rep_schedule = biz_getRepeatScheduleID($requests['schedule_id']);
-            foreach($rep_schedule as $value)
+            foreach ($rep_schedule as $value) {
                 biz_deleteSchedule($value);
-        }
-        else
+            }
+        } else {
             biz_deleteSchedule($requests['schedule_id']);
+        }
 
         $p = array('target_id' => $requests['target_id']);
         ktai_biz_openpne_redirect('ktai_biz', 'page_fh_calendar_week', $p);
-
     }
 }
+
 ?>

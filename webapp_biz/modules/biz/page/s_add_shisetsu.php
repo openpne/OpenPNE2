@@ -11,8 +11,7 @@ class biz_page_s_add_shisetsu extends OpenPNE_Action
         $u = $GLOBALS['AUTH']->uid();
         $config = biz_getConfig();
 
-        if($config['IS_CLOSED_SHISETSU'])
-        {
+        if ($config['IS_CLOSED_SHISETSU']) {
             $p = array('msg' => '施設関連の操作は禁止されています。');
             openpne_redirect('biz', 'page_s_list', $p);
         }

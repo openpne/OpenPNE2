@@ -18,14 +18,12 @@ function pc_get_template($tpl_name, &$tpl_source, &$smarty_obj)
     $filename = PC_TPL_DIR.$tpl_name;
     $tpl = @file($filename);
 
-    if($tpl)
-    {
+    if ($tpl) {
         $tpl_source = join("\n", $tpl);
         return true;
-    }
-    else
+    } else {
         return false;
-
+    }
 }
 
 function pc_get_timestamp($tpl_name, &$tpl_timestamp, &$smarty_obj)
@@ -50,10 +48,12 @@ function pc_get_trusted($tpl_name, &$smarty_obj)
 //スケジュール用カレンダーを得る
 function biz_getScheduleWeek($member_id, $w, $cmd, $head = true, $value = true, $foot = true, $member_info = false)
 {
-    if($cmd != 'p')  //プロフィール確認かどうか
+    if ($cmd != 'p') {
+        //プロフィール確認かどうか
         $cmd_head = $cmd;
-    else
+    } else {
         $cmd_head = 'h';
+    }
 
     $inc_smarty = new OpenPNE_Smarty($GLOBALS['SMARTY']);
     $inc_smarty->assign("PHPSESSID", md5(session_id()));
@@ -64,8 +64,9 @@ function biz_getScheduleWeek($member_id, $w, $cmd, $head = true, $value = true, 
 
     require_once 'Calendar/Week.php';
     $w = intval($w);
-    if (empty($w))
+    if (empty($w)) {
         $w = 0;
+    }
     $inc_smarty->assign('w', $w);
     $time = strtotime($w . " week");
     $Week = new Calendar_Week(date('Y', $time), date('m', $time), date('d', $time), 0);
@@ -76,27 +77,24 @@ function biz_getScheduleWeek($member_id, $w, $cmd, $head = true, $value = true, 
 
     $schedule = array();
 
-    while ($Day = $Week->fetch())
-    {
+    while ($Day = $Week->fetch()) {
         $y = sprintf("%02d",$Day->thisYear());
         $m = sprintf("%02d",$Day->thisMonth());
         $d = sprintf("%02d",$Day->thisDay());
-        //060308 nak 日と月の二桁表示（0で埋める）をなくした変数を追加
         $m_disp = sprintf("%2d",$Day->thisMonth());
         $d_disp = sprintf("%2d",$Day->thisDay());
 
-        if($cmd != 's_list')
-        {
+        if ($cmd != 's_list') {
             $schedule = biz_getDateMemberSchedule($y, $m, $d, $member_id);
             $banner = biz_isBannerSchedule($y, $m, $d, $member_id);
 
-            if(!empty($banner))
+            if (!empty($banner)) {
                 array_push($schedule, $banner);
-        }
-        else {
+            }
+        } else {
             $schedule = biz_getShisetsuSchedule($y,$m,$d, $member_id);
         }
-//          $schedule = biz_getDateMemberSchedule($y, $m, $d, $member_id);
+
         $item = array(
                 'year'=> $y,
                 'month'=>$m,
@@ -110,24 +108,23 @@ function biz_getScheduleWeek($member_id, $w, $cmd, $head = true, $value = true, 
                 'schedule' => $schedule,
             );
 
-        if ($w == 0 && $d == date('d'))
+        if ($w == 0 && $d == date('d')) {
             $item['now'] = true;
+        }
 
         $calendar[] = $item;
     }
 
     $daylist = $calendar;  //コピー
 
-    for($i = 1; $i <= 2; $i++)
-    {
+    for ($i = 1; $i <= 2; $i++) {
         $j = 0;  //曜日ポインタを示す
 
         $time = strtotime($w+$i . " week");
         $Week = new Calendar_Week(date('Y', $time), date('m', $time), date('d', $time), 0);
         $Week->build();
 
-        while($Day = $Week->fetch())
-        {
+        while ($Day = $Week->fetch()) {
             $y = sprintf("%02d",$Day->thisYear());
             $m = sprintf("%02d",$Day->thisMonth());
             $d = sprintf("%02d",$Day->thisDay());
@@ -146,29 +143,26 @@ function biz_getScheduleWeek($member_id, $w, $cmd, $head = true, $value = true, 
     $inc_smarty->assign("daylist", $daylist);
 
 
-    if($cmd == 's_list')
-    {
+    if ($cmd == 's_list') {
         $hours = biz_makeSerialArray(23);  //時
         $inc_smarty->assign("hours", $hours);
         $mins = biz_makeSerialArray(300, 30, 30);  //分
         $inc_smarty->assign("mins", $mins);
         $inc_smarty->assign("list", biz_getShisetsuData($member_id));
-            $config = biz_getConfig();
+        $config = biz_getConfig();
 
         $inc_smarty->assign('is_closed_shisetsu', $config['IS_CLOSED_SHISETSU']);
-
     }
-
 
     $inc_smarty->assign('calendar', $calendar);
     $inc_smarty->assign('head', $head);
     $inc_smarty->assign('value', $value);
     $inc_smarty->assign('foot', $foot);
-    if($member_info)
+    if ($member_info) {
         $inc_smarty->assign('member_info', $member_info);
+    }
 
-    if($cmd == 'h')
-    {
+    if ($cmd == 'h') {
         $stateform = biz_getStateForm($member_id, true);
         $inc_smarty->assign('stateform', $stateform);
     }
@@ -187,16 +181,15 @@ function biz_getTodoList($member_id, $cmd, $nickname = null)
 
     $inc_smarty->assign("cmd", $cmd);  //操作の対象ページ
     $inc_smarty->assign("target_id", $member_id);  //予定登録者
-    if($nickname)
+    if ($nickname) {
         $inc_smarty->assign("nickname", $nickname);  //予定登録者
+    }
 
     $todolist = biz_getMemberTodo($member_id);
     $checkedlist = biz_getMemberTodo($member_id, 1);
 
-    foreach($todolist as $key => $value)
-    {
-        if($value['writer_name'])
-        {
+    foreach ($todolist as $key => $value) {
+        if ($value['writer_name']) {
             $writer_name = db_common_c_member4c_member_id($value['writer_id']);
             $todolist[$key]['writer_name'] = $writer_name['nickname'];
         }
@@ -213,7 +206,6 @@ function biz_getStateForm($member_id, $is_form = false)
 {
     $inc_smarty = new OpenPNE_Smarty($GLOBALS['SMARTY']);
     $inc_smarty->assign("PHPSESSID", md5(session_id()));
-//    $inc_smarty->templates_dir = 'pc/templates';;
     $inc_smarty->templates_dir = 'pc/templates';
 
     $inc_smarty->assign("target_id", $member_id);

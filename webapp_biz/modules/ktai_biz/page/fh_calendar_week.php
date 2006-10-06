@@ -16,13 +16,12 @@ class ktai_biz_page_fh_calendar_week extends OpenPNE_Action
         $prof_id = $requests['prof_id'];
         $w = $requests['w'];
 
-        if(empty($requests['target_id']) || ($requests['target_id'] == $u)) //自分自身
-        {
+        if (empty($requests['target_id']) || ($requests['target_id'] == $u)) {
+            //自分自身
             $target_id = $u;
             $this->set('is_h', true);//判別フラグ
-
-        }else{  //他人
-
+        } else {
+            //他人
             $target_id = $requests['target_id'];
             $this->set('is_f', true);//判別フラグ
         }
@@ -45,14 +44,13 @@ class ktai_biz_page_fh_calendar_week extends OpenPNE_Action
         $i = 0;
         $n = 0;
 
-
-        while ($Day = $Week->fetch()){
+        while ($Day = $Week->fetch()) {
             $y = sprintf("%02d", $Day->thisYear());
             $m = sprintf("%02d", $Day->thisMonth());
             $d = sprintf("%02d", $Day->thisDay());
             $m_disp = sprintf("%2d", $Day->thisMonth());
 
-            if($i == 0){
+            if ($i == 0) {
                 $this->set("y_disp", $y);
                 $this->set("m_disp", $m_disp);
             }
@@ -67,8 +65,9 @@ class ktai_biz_page_fh_calendar_week extends OpenPNE_Action
 
             $banner = biz_isBannerSchedule($y, $m, $d, $target_id);
 
-            if(!empty($banner))
+            if (!empty($banner)) {
                 array_push($schedule, $banner);
+            }
 
             $item = array(
                 'year'=> $y,
@@ -80,7 +79,7 @@ class ktai_biz_page_fh_calendar_week extends OpenPNE_Action
                 'birth' => $birth_list[intval($d)],
                 'schedule' => $schedule,
             );
-            if($w == 0 && $d == date('d')) {
+            if ($w == 0 && $d == date('d')) {
                 $item['now'] = true;
             }
 

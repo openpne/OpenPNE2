@@ -13,8 +13,7 @@ class ktai_biz_do_fh_biz_schedule_edit extends OpenPNE_Action
 
         //ERROR----------------
         //存在しない日付
-        if(!checkdate($requests['sc_b_month'], $requests['sc_b_date'], $requests['sc_b_year']))
-        {
+        if (!checkdate($requests['sc_b_month'], $requests['sc_b_date'], $requests['sc_b_year'])) {
             $redirect_script = '?m=ktai_biz&a=page_fh_biz_schedule_edit&'.$tail;
             $msg = urlencode('存在しない日付が指定されました。');
 
@@ -33,7 +32,7 @@ class ktai_biz_do_fh_biz_schedule_edit extends OpenPNE_Action
                         '&writer='.$requests['writer'].
                         '&schedule_id='.$requests['schedule_id'];
 
-            $_REQUEST['schedule_id'] = $requests['schedule_id'];            
+            $_REQUEST['schedule_id'] = $requests['schedule_id'];
             $_REQUEST['msg'] = '存在しない日付が指定されました。';
             openpne_forward('ktai_biz', 'page', "fh_biz_schedule_edit");
             exit;
@@ -42,8 +41,7 @@ class ktai_biz_do_fh_biz_schedule_edit extends OpenPNE_Action
 
         //ERROR----------------
         //タイトル未入力
-        if(empty($requests['sc_title']))
-        {
+        if (empty($requests['sc_title'])) {
             $redirect_script = '?m=ktai_biz&a=page_fh_biz_schedule_edit&id='.$requests['schedule_id'].'&'.$tail;
             $msg = urlencode('タイトルを入力してください。');
             $begin_date = $requests['sc_b_year'].'-'.$requests['sc_b_month'].'-'.$requests['sc_b_date'];
@@ -66,10 +64,12 @@ class ktai_biz_do_fh_biz_schedule_edit extends OpenPNE_Action
         //---------------------
 
 
-        if(($requests['sc_b_hour']&&!$requests['sc_b_minute']))
+        if (($requests['sc_b_hour'] && !$requests['sc_b_minute'])) {
             $requests['sc_b_minute'] = '00';
-        if(($requests['sc_f_hour']&&!$requests['sc_f_minute']))
+        }
+        if (($requests['sc_f_hour'] && !$requests['sc_f_minute'])) {
             $requests['sc_f_minute'] = '00';
+        }
 
         //日付のフォーマットを設定
         $begin_date = $requests['sc_b_year'].'-'.$requests['sc_b_month'].'-'.$requests['sc_b_date'];
@@ -77,8 +77,8 @@ class ktai_biz_do_fh_biz_schedule_edit extends OpenPNE_Action
         $finish_time = $requests['sc_f_hour'].':'.$requests['sc_f_minute'];
 
         //ERROR---------------
-        if((strtotime($finish_time) < strtotime($begin_time))&&($finish_time != ':'))  //終了時間と開始時間が変
-        {
+        if ((strtotime($finish_time) < strtotime($begin_time)) && ($finish_time != ':')) {
+            //終了時間と開始時間が変
             $redirect_script = '?m=ktai_biz&a=page_fh_biz_schedule_edit&id='.$requests['schedule_id'].'&'.$tail;
             $msg = urlencode('終了時刻が開始時刻より先です。');
             $begin_date = $requests['sc_b_year'].'-'.$requests['sc_b_month'].'-'.$requests['sc_b_date'];
@@ -106,17 +106,19 @@ class ktai_biz_do_fh_biz_schedule_edit extends OpenPNE_Action
         $requests['sc_j_mem'] = array();
 
         $i = 0;
-        if ( $mem ) {
-            foreach($mem as $key => $value){
-                    $requests['sc_j_mem'][$i] = $key;
-                    $i++;
+        if ($mem) {
+            foreach ($mem as $key => $value) {
+                $requests['sc_j_mem'][$i] = $key;
+                $i++;
             }
         }
 
-        if(!($requests['sc_b_hour']||$requests['sc_b_minute']||$requests['sc_f_hour']||$requests['sc_f_minute']))  //時刻指定なし
+        if (!($requests['sc_b_hour'] || $requests['sc_b_minute'] || $requests['sc_f_hour'] || $requests['sc_f_minute'])) {
+            //時刻指定なし
             $begin_time = $finish_time = null;
-        elseif(!($requests['sc_f_hour']||$requests['sc_f_minute']))
+        } elseif (!($requests['sc_f_hour'] || $requests['sc_f_minute'])) {
             $finish_time = null;
+        }
 
         $finish_date = $begin_date;  //当日中に終わる予定は、開始日と終了日は同一でなければならない
 
@@ -129,12 +131,10 @@ class ktai_biz_do_fh_biz_schedule_edit extends OpenPNE_Action
         $schedule_id = $requests['schedule_id'];
 
 
-            $first_id = biz_getScheduleMax() + 1;  //登録される予定のプライマリキー
-
-            //$schedule_id = biz_getScheduleMax();
+        $first_id = biz_getScheduleMax() + 1;  //登録される予定のプライマリキー
 
         $week = date("W", abs(strtotime($begin_date)-strtotime(date("Y-m-d"))))-1;
-        if(strtotime($begin_date)-strtotime(date('Y-m-d')) < 0){
+        if (strtotime($begin_date) - strtotime(date('Y-m-d')) < 0) {
             $week = $week - $week * 2;
         }
 
@@ -145,8 +145,6 @@ class ktai_biz_do_fh_biz_schedule_edit extends OpenPNE_Action
 
         openpne_forward('ktai_biz', 'page', "fh_calendar_week");
         exit;
-
-
     }
 }
 

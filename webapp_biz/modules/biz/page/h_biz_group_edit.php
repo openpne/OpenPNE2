@@ -30,15 +30,16 @@ class biz_page_h_biz_group_edit extends OpenPNE_Action
         $id = $requests['target_id'];
         $group = biz_getGroupData($id);
 
-        if($u != $group['admin_id'])
+        if ($u != $group['admin_id']) {
             die('アクセスできません。');
+        }
 
-        foreach($members as $key => $value)
-        {
-            if(biz_isGroupMember($value['c_member_id'], $id))
+        foreach ($members as $key => $value) {
+            if (biz_isGroupMember($value['c_member_id'], $id)) {
                 $members[$key]['joined'] = true;
-            else
+            } else {
                 $members[$key]['joined'] = false;
+            }
         }
         $this->set("c_invite_list", $members);
         $this->set("group", $group);
@@ -46,4 +47,5 @@ class biz_page_h_biz_group_edit extends OpenPNE_Action
         return 'success';
     }
 }
+
 ?>
