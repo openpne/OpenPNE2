@@ -14,7 +14,7 @@
 <dd>
 <ul>
 ({foreach from=$admin_info item=item})
-<li><a href="({$item.link})">({$item.title})</a></li>
+<li><a href="({$item.link})">({$item.date}) ({$item.title})</a></li>
 ({/foreach})
 </ul>
 </dd>
