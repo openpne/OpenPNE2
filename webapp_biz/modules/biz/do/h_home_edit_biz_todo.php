@@ -16,7 +16,6 @@ class biz_do_h_home_edit_biz_todo extends OpenPNE_Action
         $writer_name = $requests['writer_name'];
         $sort_order = $requests['sort_order'];
         $writer_id = $requests['writer_id'];
-    //  $member_id = $requests['member_id'];
         $memo = $requests['memo'];
         // ----------
 
@@ -26,8 +25,7 @@ class biz_do_h_home_edit_biz_todo extends OpenPNE_Action
 
         biz_editTodo($todo_info['c_member_id'], $memo, $writer_id, $sort_order, $is_check, $id);
 
-        $p = array('target_c_member_id' => $todo_info['c_member_id']);
-        openpne_redirect('pc', 'page_f_home', $p);
+        openpne_redirect('pc', 'page_h_home', $p);
     }
 }
 
