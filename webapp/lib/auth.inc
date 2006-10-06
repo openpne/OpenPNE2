@@ -15,13 +15,10 @@ if (   !$auth->auth()
     || db_member_is_login_rejected($u)) {
     $auth->logout();
 
-    $params = strstr($_SERVER['REQUEST_URI'], '/?');
-    $params = substr($params, 2);
-
     if (LOGIN_URL_PC) {
         client_redirect_absolute(get_login_url());
     } else {
-        $_REQUEST['login_params'] = $params;
+        $_REQUEST['login_params'] = $_SERVER['QUERY_STRING'];
         openpne_forward('pc', 'page', "o_login");
         exit;
     }
