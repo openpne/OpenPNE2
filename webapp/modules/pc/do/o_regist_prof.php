@@ -31,10 +31,9 @@ class pc_do_o_regist_prof extends OpenPNE_Action
 
         $validator = new OpenPNE_Validator();
         if ($mode == 'register') {
-            session_start();
+            @session_start();
             $validator->addRequests($_SESSION['prof']);
             $requests['password2'] = $_SESSION['prof']['password'];
-            unset($_SESSION['prof']);
         } else {
             $validator->addRequests($_REQUEST);
         }
@@ -61,14 +60,20 @@ class pc_do_o_regist_prof extends OpenPNE_Action
 
         //--- c_profile の項目をチェック
         $validator = new OpenPNE_Validator();
-        $validator->addRequests($_REQUEST['profile']);
+        if ($mode == 'register') {
+            $validator->addRequests($_SESSION['prof']['profile']);
+            $public_flag_list = $_SESSION['prof']['public_flag'];
+        } else {
+            $validator->addRequests($_REQUEST['profile']);
+            $public_flag_list = $_REQUEST['public_flag'];
+        }
         $validator->addRules($this->_getValidateRulesProfile());
         if (!$validator->validate()) {
             $errors = array_merge($errors, $validator->getErrors());
         }
 
         // 値の整合性をチェック(DB)
-        $c_member_profile_list = do_config_prof_check_profile($validator->getParams(), $_REQUEST['public_flag']);
+        $c_member_profile_list = do_config_prof_check_profile($validator->getParams(), $public_flag_list);
 
 
         // 必須項目チェック
@@ -99,11 +104,6 @@ class pc_do_o_regist_prof extends OpenPNE_Action
         switch ($mode) {
         case 'input':
             $prof['profile'] = $c_member_profile_list;
-
-            session_start();
-            if (!isset($_SESSION['prof'])) {
-                $_SESSION['prof'] = $prof;
-            }
             unset($prof['password']);
 
             openpne_forward('pc', 'page', 'o_regist_prof');
@@ -112,10 +112,8 @@ class pc_do_o_regist_prof extends OpenPNE_Action
         default:
             $prof['profile'] = $c_member_profile_list;
 
-            session_start();
-            if (!isset($_SESSION['prof'])) {
-                $_SESSION['prof'] = $prof;
-            }
+            @session_start();
+            $_SESSION['prof'] = $_REQUEST;
 
             $_REQUEST['prof'] = $prof;
             openpne_forward('pc', 'page', 'o_regist_prof_confirm');

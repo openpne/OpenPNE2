@@ -32,7 +32,7 @@ class pc_page_o_regist_prof extends OpenPNE_Action
 
         $this->set('err_msg', $err_msg);
 
-        session_start();
+        @session_start();
         $this->set('profs', $_SESSION['prof']);
 
         //---- inc_ テンプレート用 変数 ----//
