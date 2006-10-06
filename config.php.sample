@@ -398,6 +398,13 @@ define('ADMIN_INIT_CONFIG', true);
 // 管理画面にバージョン情報を表示するかどうか
 define('DISPLAY_VERSION', true);
 
+// 管理画面にOpenPNE更新情報(RSS)を表示するかどうか
+define('DISPLAY_OPENPNE_INFO', true);
+
+// OpenPNE更新情報のURL設定
+define('OPENPNE_INFO_URL', 'http://info.openpne.jp/?feed=rss2');
+
+
 // 携帯版でUser-Agentのチェックをするかどうか
 define('CHECK_KTAI_UA', true);
 
