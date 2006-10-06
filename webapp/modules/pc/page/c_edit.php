@@ -70,7 +70,7 @@ class pc_page_c_edit extends OpenPNE_Action
             $pref_list = db_etc_c_profile_pref_list();
 
             // get pref_id selected
-            $pref_id = db_etc_c_profile_pref_id4latlng($c_commu['map_latitude'], $c_commu['map_longitude']);
+            $pref_id = db_etc_c_profile_pref_id4latlng($c_commu['map_latitude'], $c_commu['map_longitude'], $c_commu['map_zoom']);
 
             $this->set('pref_list', $pref_list);
             $this->set('pref_id', $pref_id);

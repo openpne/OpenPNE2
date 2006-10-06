@@ -79,15 +79,15 @@ function db_etc_c_profile_pref4id($c_profile_pref_id)
 /**
  * 特定の緯度経度の都道府県を取得
  */
-function db_etc_c_profile_pref_id4latlng($lat, $lng)
+function db_etc_c_profile_pref_id4latlng($lat, $lng, $zoom)
 {
     if (!$lat || !$lng) {
         return false;
     }
 
     $sql = 'SELECT c_profile_pref_id FROM c_profile_pref' .
-        ' WHERE map_latitude = ? AND map_longitude = ?';
-    $params = array($lat, $lng);
+        ' WHERE map_latitude = ? AND map_longitude = ? AND map_zoom = ?';
+    $params = array($lat, $lng, intval($zoom));
     return db_get_one($sql, $params);
 }
 
