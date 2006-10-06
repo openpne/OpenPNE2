@@ -60,7 +60,7 @@
 </tr>
 <tr>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-<td style="width:562px;" class="bg_10" align="center">
+<td style="width:562px;" class="bg_05" align="center">
 [({foreach from=$page_list item=item})
 ({if $item == $page})
 ({$item})
@@ -79,11 +79,8 @@
 <!-- ここから：ページ切り替えメニュー：上 -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:564px;">
 <tr>
-<td style="width:564px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-</tr>
-<tr>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-<td style="width:562px;" class="bg_10" align="right">
+<td style="width:562px;" class="bg_05" align="right">
 ({if $pager.prev_page})
 <a href="({t_url m=biz a=page_fh_group_list})&amp;page=({$pager.prev_page})&amp;target_c_member_id=({$target_member.c_member_id})">前を表示</a>&nbsp;
 ({/if})
@@ -102,9 +99,6 @@
 <!-- ここまで：ページ切り替えメニュー：上 -->
 <!-- ここから：サムネイルと名前 -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:564px;">
-<tr>
-<td style="width:564px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-</tr>
 
 ({if $fh_com_list_user.0})
 <!-- ここから：サムネイル＞＞一段目 -->
@@ -561,11 +555,8 @@
 <!-- ここから：ページ切り替えタブ：下 -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:564px;">
 <tr>
-<td style="width:564px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-</tr>
-<tr>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-<td style="width:562px;" class="bg_10" align="center">
+<td style="width:562px;" class="bg_05" align="center">
 [({foreach from=$page_list item=item})
 ({if $item == $page})
 ({$item})
@@ -584,11 +575,8 @@
 <!-- ここから：ページ切り替えメニュー：下 -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:564px;">
 <tr>
-<td style="width:564px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-</tr>
-<tr>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-<td style="width:562px;" class="bg_10" align="right">
+<td style="width:562px;" class="bg_05" align="right">
 ({if $pager.prev_page})
 <a href="({t_url m=biz a=page_fh_group_list})&amp;page=({$pager.prev_page})&amp;target_c_member_id=({$target_member.c_member_id})">前を表示</a>&nbsp;
 ({/if})
@@ -599,6 +587,9 @@
 &nbsp;
 </td>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+</tr>
+<tr>
+<td style="width:564px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 <tr>
 <td style="width:564px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>

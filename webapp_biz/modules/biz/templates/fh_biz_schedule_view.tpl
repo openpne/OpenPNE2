@@ -15,6 +15,9 @@
 <tr>
 <td class="container main_content" align="center">
 
+({if $msg || $msg1 || $msg2 || $msg3 || $err_msg})
+({assign var=is_no_alert value=true})
+({/if})
 ({ext_include file="inc_alert_box.tpl"})({* エラーメッセージコンテナ *})
 
 

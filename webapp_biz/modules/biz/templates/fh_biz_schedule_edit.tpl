@@ -15,6 +15,7 @@
 <tr>
 <td class="container main_content" align="center">
 
+({assign var=is_no_alert value=true})
 ({ext_include file="inc_alert_box.tpl"})({* エラーメッセージコンテナ *})
 
 <table class="container" border="0" cellspacing="0" cellpadding="0">({*BEGIN:container*})
