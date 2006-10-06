@@ -402,7 +402,7 @@ define('DISPLAY_VERSION', true);
 define('DISPLAY_OPENPNE_INFO', true);
 
 // OpenPNE更新情報のURL設定
-define('OPENPNE_INFO_URL', 'http://info.openpne.jp/?feed=rss2');
+define('OPENPNE_INFO_URL', 'http://info.openpne.jp/rss');
 
 
 // 携帯版でUser-Agentのチェックをするかどうか
