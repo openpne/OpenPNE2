@@ -129,7 +129,7 @@
 ({if $add_schedule})
 ※<img src="({t_img_url_skin filename=icon_schedule})" class="icon">アイコンをクリックすると予定を入力することができます。予定は他の人には公開されません。<br>
 ({/if})
-※プレゼント箱は({$WORD_MY_FRIEND})の誕生日、<img src="({t_img_url_skin filename=icon_event_B})" class="icon">はイベント、<img src="({t_img_url_skin filename=icon_event_R})" class="icon">は参加イベントを意味します。
+※<img src="({t_img_url_skin filename=icon_birthday})" class="icon">は({$WORD_MY_FRIEND})の誕生日、<img src="({t_img_url_skin filename=icon_event_B})" class="icon">はイベント、<img src="({t_img_url_skin filename=icon_event_R})" class="icon">は参加イベントを意味します。
 </td>
 </tr>
 </table>
