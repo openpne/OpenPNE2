@@ -179,7 +179,7 @@
 <tr>
 <td style="width:668px;padding:2px 0px;" class="bg_09">
 ※<img src="./skin/icon_schedule.gif" class="icon">アイコンをクリックすると予定を入力することができます。予定は他の人にも公開されます。<br>
-※プレゼント箱は({$WORD_MY_FRIEND})の誕生日、青色の旗はイベント、赤色の旗は参加イベントを意味します。
+※プレゼント箱は({$WORD_MY_FRIEND})の誕生日、<img src="({t_img_url_skin filename=icon_event_B})" class="icon">はイベント、<img src="({t_img_url_skin filename=icon_event_R})" class="icon">は参加イベントを意味します。
 </td>
 </tr>
 </table>
