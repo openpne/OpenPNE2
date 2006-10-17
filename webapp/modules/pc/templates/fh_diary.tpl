@@ -596,7 +596,7 @@
 <img src="./skin/dummy.gif" class="v_spacer_l">
 
 <div style="text-align:center;">
-<input type="submit" value="　削 除　">
+<input type="submit" class="submit" value="　削 除　">
 </div>
 
 <img src="./skin/dummy.gif" class="v_spacer_l">
