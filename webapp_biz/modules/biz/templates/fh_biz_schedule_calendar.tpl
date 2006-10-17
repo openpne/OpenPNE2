@@ -141,12 +141,12 @@
 
 ({* 誕生日 *})
 ({foreach from=$item.birth item=item_birth})
-<img src="./skin/icon_birthday.gif" class="icon"><a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item_birth.c_member_id})">({$item_birth.nickname})さん</a><br>
+<img src="({t_img_url_skin filename=icon_birthday})" class="icon"><a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item_birth.c_member_id})">({$item_birth.nickname})さん</a><br>
 ({/foreach})
 
 ({* イベント *})
 ({foreach from=$item.event item=item_event})
-<img src="./skin/icon_event_({if $item_event.is_join})R({else})B({/if}).gif" class="icon"><a href="({t_url m=pc a=page_c_event_detail})&amp;target_c_commu_topic_id=({$item_event.c_commu_topic_id})">({$item_event.name})</a><br>
+<img src="({if $item_event.is_join})({t_img_url_skin filename=icon_event_R})({else})({t_img_url_skin filename=icon_event_B})({/if})" class="icon"><a href="({t_url m=pc a=page_c_event_detail})&amp;target_c_commu_topic_id=({$item_event.c_commu_topic_id})">({$item_event.name})</a><br>
 ({/foreach})
 
 ({if $item.schedule})
@@ -179,7 +179,7 @@
 <tr>
 <td style="width:668px;padding:2px 0px;" class="bg_09">
 ※<img src="./skin/icon_schedule.gif" class="icon">アイコンをクリックすると予定を入力することができます。予定は他の人にも公開されます。<br>
-※プレゼント箱は({$WORD_MY_FRIEND})の誕生日、<img src="({t_img_url_skin filename=icon_event_B})" class="icon">はイベント、<img src="({t_img_url_skin filename=icon_event_R})" class="icon">は参加イベントを意味します。
+※<img src="({t_img_url_skin filename=icon_birthday})" class="icon">は({$WORD_MY_FRIEND})の誕生日、<img src="({t_img_url_skin filename=icon_event_B})" class="icon">はイベント、<img src="({t_img_url_skin filename=icon_event_R})" class="icon">は参加イベントを意味します。
 </td>
 </tr>
 </table>
