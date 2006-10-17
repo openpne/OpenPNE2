@@ -25,6 +25,7 @@ class biz_do_h_home_edit_biz_todo extends OpenPNE_Action
 
         biz_editTodo($todo_info['c_member_id'], $memo, $writer_id, $sort_order, $is_check, $id);
 
+        $p = array('msg' => '');
         openpne_redirect('pc', 'page_h_home', $p);
     }
 }
