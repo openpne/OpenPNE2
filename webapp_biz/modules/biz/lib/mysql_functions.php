@@ -424,7 +424,7 @@ function biz_getShisetsuScheduleID($id)
 
     $sql = 'SELECT nickname FROM c_member WHERE c_member_id = ?';
     $params = array(
-        intval($list['member_id']),
+        intval($list['c_member_id']),
     );
     $list['member_name'] = db_get_one($sql, $params);
 
