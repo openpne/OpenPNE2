@@ -75,9 +75,9 @@ class pc_do_f_message_send_insert_c_message extends OpenPNE_Action
                 handle_kengen_error();
             }
         }
-        if ($requests['target_c_message_id']) {
+        if ($requests['target_c_message_id'] != $requests['jyusin_c_message_id']) {
             $c_message = _db_c_message4c_message_id($requests['target_c_message_id']);
-            if ($c_message['c_member_id_from'] != $u) {
+            if ($c_message['c_member_id_from'] != $u || $c_message['is_send']) {
                 handle_kengen_error();
             }
         }
