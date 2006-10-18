@@ -19,6 +19,17 @@ class pc_page_f_message_send extends OpenPNE_Action
         $form_val['target_c_message_id'] = $requests['target_c_message_id'];
         $form_val['jyusin_c_message_id'] = $requests['jyusin_c_message_id'];
         // ----------
+
+        // 権限チェック
+        if ($form_val['target_c_message_id']) {
+            $c_message = _db_c_message4c_message_id($form_val['target_c_message_id']);
+            if ($c_message['c_member_id_from'] != $u) {
+                if ($c_message['c_member_id_to'] != $u || !$c_message['is_send']) {
+                    handle_kengen_error();
+                }
+            }
+        }
+
         $syusei = 0;
         if ($form_val['subject'] && $form_val['body'])
             $syusei = 1;

@@ -68,6 +68,19 @@ class pc_do_f_message_send_insert_c_message extends OpenPNE_Action
         if (p_common_is_access_block($u, $c_member_id_to)) {
             openpne_redirect('pc', 'page_h_access_block');
         }
+
+        if ($requests['jyusin_c_message_id']) {
+            $c_message = _db_c_message4c_message_id($requests['jyusin_c_message_id']);
+            if ($c_message['c_member_id_to'] != $u || !$c_message['is_send']) {
+                handle_kengen_error();
+            }
+        }
+        if ($requests['target_c_message_id']) {
+            $c_message = _db_c_message4c_message_id($requests['target_c_message_id']);
+            if ($c_message['c_member_id_from'] != $u) {
+                handle_kengen_error();
+            }
+        }
         //---
 
         //返信済みにする

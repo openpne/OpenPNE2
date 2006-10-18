@@ -61,9 +61,10 @@ class pc_do_h_message_box_delete_message extends OpenPNE_Action
             // メッセージをごみ箱へ移動
             foreach ($c_message_id as $val) {
                 $c_message = _db_c_message4c_message_id($val);
-                if ($c_message['c_member_id_from'] != $u
-                    && $c_message['c_member_id_to'] != $u) {
-                    handle_kengen_error();
+                if ($c_message['c_member_id_from'] != $u) {
+                    if ($c_message['c_member_id_to'] != $u || !$c_message['is_send']) {
+                        handle_kengen_error();
+                    }
                 }
                 _do_delete_c_message4c_message_id($val, $u);
             }
