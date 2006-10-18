@@ -34,9 +34,10 @@ class pc_page_h_message extends OpenPNE_Action
             $form_val['subject'] = "Re:".$c_message['subject'];
 
         //--- 権限チェック
-        //メッセージ送信者 or メッセージ受信者
-        if ($c_message['c_member_id_to'] != $u && $c_message['c_member_id_from'] != $u) {
-            openpne_redirect('pc', 'page_h_home');
+        if ($c_message['c_member_id_from'] != $u) {
+            if ($c_message['c_member_id_to'] != $u || !$c_message['is_send']) {
+                handle_kengen_error();
+            }
         }
         //---
 

@@ -188,6 +188,7 @@ function p_h_message_box_c_message_trash_list4c_member_id4range($c_member_id, $p
             "c_member_id_to = ?" .
             " AND is_deleted_to = 1" .
             " AND is_kanzen_sakujo_to = 0" .
+            " AND is_send = 1" .
         ")";
 
     $sql = 'SELECT * FROM c_message WHERE '. $where . ' ORDER BY r_datetime DESC';
