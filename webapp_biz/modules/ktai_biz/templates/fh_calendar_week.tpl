@@ -45,7 +45,7 @@
 
 ({* 誕生日 *})
 ({foreach from=$item.birth item=item_birth})
-<a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$item_birthday.c_member_id})&amp;({$tail})">({$item_birth.nickname|truncate:13:"-":true})さん</a><br>
+<a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$item_birth.c_member_id})&amp;({$tail})">({$item_birth.nickname|truncate:13:"-":true})さん</a><br>
 ({/foreach})
 
 ({* スケジュール *})
