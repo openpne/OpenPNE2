@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title>OpenPNE アップグレードガイド</title>
+<style type="text/css">
+<!--
+body {
+  background-color: #fff;
+  color: #000;
+  margin: 0px;
+  padding: 1em;
+  padding-right: 2em;
+}
+h2 {
+  margin: 1em 0 1em;
+}
+p.caution {
+  margin: 1em;
+  padding: 0.8em;
+  border: solid 1px #f63;
+}
+pre {
+  margin: 0.5em;
+  padding: 1em 2em;
+  background-color: #eee;
+}
+dl {
+  margin: 1em;
+}
+dt {
+  font-weight: bold;
+}
+dd {
+  margin: 0 0 0.5em 1em;
+}
+table {
+  margin: 1em;
+  border-collapse: collapse;
+}
+th {
+  background-color: #ddd;
+}
+th, td {
+  padding: 5px 10px;
+  border: solid 1px #000;
+}
+var {
+  color: #c33;
+}
+-->
+</style>
+</head>
+
+<body>
+
+<h1>OpenPNE アップグレードガイド</h1>
+
+<p>最終更新日: 2006/10/25</p>
+
+<h2>目次</h2>
+<ul>
+<li><a href="#section0">0. はじめに</a></li>
+<li><a href="#section1">1. 手順</a></li>
+<li><a href="#section2">2. 作業方法</a>
+  <ul>
+  <li><a href="#section2-1">2-1. コンバートSQLの実行</a></li>
+  <li><a href="#section2-2">2-2. ソースコードの置き換え</a></li>
+  <li><a href="#section2-3">2-3. 設定ファイルの変更</a></li>
+  </ul></li>
+</ul>
+
+<hr>
+
+<h2 id="section0">0. はじめに</h2>
+
+<p>この文書は、OpenPNE バージョン2.2.* から バージョン2.4.* へのアップグレード手順を書いたものです。</p>
+
+<h2 id="section1">1. 手順</h2>
+
+<p>アップグレードは以下のような手順で進めます。</p>
+
+<ol>
+<li>コンバートSQLの実行</li>
+<li>ソースコードの置き換え</li>
+<li>設定ファイルの変更</li>
+</ol>
+
+
+<h2 id="section2">2. 作業方法</h2>
+
+<h3 id="section2-1">2-1. コンバートSQLの実行</h3>
+
+<p>
+setup/upgrade/upgrade-2.2to2.4-mysql4*.sql を実行します。<br>
+ご使用のMySQLにあったスクリプトを実行してください。
+
+</p>
+
+
+<h3 id="section2-2">2-2. ソースコードの置き換え</h3>
+
+<p>サーバ上に OpenPNE 2.4 のソースファイルを設置します。
+詳しくは、「<a href="./OpenPNE_Setup.html">OpenPNE セットアップガイド</a>」を参考にしてください。</p>
+
+<h3 id="section2-3">2-3. 設定ファイルの変更</h3>
+
+<p>OpenPNE 2.2 の設定ファイルを参考にして 2.4 用の設定ファイルを作成します。</p>
+
+<p class="caution">PHPの設定でセーフモードが有効な場合は、MAIL_SET_ENVFROM を false に設定してください。</p>
+
+
+<hr>
+<p>以上でアップグレード作業は完了です。</p>
+
+</body>
+</html>
