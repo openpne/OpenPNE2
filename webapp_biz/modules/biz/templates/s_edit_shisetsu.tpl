@@ -115,7 +115,7 @@
 <div class="padding_s">
 ({if $list.image_filename})
 <img src="({t_img_url filename=$list.image_filename w=76 h=76})"><br>
-<a href="({t_url m=biz a=do_h_biz_shisetsu_delete})&amp;id=({$list.biz_shisetsu_id})&amp;filename=({$liset.image_filename})&amp;sessid=({$PHPSESSID})">この画像を削除</a><br>
+<a href="({t_url m=biz a=do_h_biz_shisetsu_delete})&amp;id=({$list.biz_shisetsu_id})&amp;filename=({$list.image_filename})&amp;sessid=({$PHPSESSID})">この画像を削除</a><br>
 ({/if})
 
 <input type="file" size="40" name="image_filename"><br>
