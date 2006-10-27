@@ -55,7 +55,7 @@ function db_friend_c_member_id_list($c_member_id, $except_blocked = false)
 /**
  * 紹介文を取得
  */
-function p_f_home_c_friend_intro($c_member_id_from, $c_member_id_to)
+function db_friend_c_friend_intro($c_member_id_from, $c_member_id_to)
 {
     $sql = 'SELECT intro FROM c_friend WHERE c_member_id_from = ? AND c_member_id_to = ?';
     $params = array(intval($c_member_id_from), intval($c_member_id_to));
@@ -65,7 +65,7 @@ function p_f_home_c_friend_intro($c_member_id_from, $c_member_id_to)
 /**
  * メンバーと自分の中間のフレンドを得る
  */
-function p_f_home_friend_path4c_member_ids($my_id, $target_id)
+function db_friend_friend_path4c_member_ids($my_id, $target_id)
 {
     if (db_friend_is_friend($my_id, $target_id)) {
         return null;
@@ -93,7 +93,7 @@ function p_f_home_friend_path4c_member_ids($my_id, $target_id)
  * 自分のフレンドのうち、対象のメンバーと
  * フレンドリンクしていないフレンドのリストを取得
  */
-function p_f_invite_invite_list4c_member_ids($target_c_member_id, $u)
+function db_friend_invite_list4c_member_ids($target_c_member_id, $u)
 {
     // 自分の友達リスト
     $my_list = db_friend_c_member_id_list($u);
@@ -114,7 +114,7 @@ function p_f_invite_invite_list4c_member_ids($target_c_member_id, $u)
 
 //---
 
-function p_fh_friend_list_friend_list4c_member_id2($c_member_id, $page_size, $page, $orderby)
+function db_friend_friend_list4c_member_id2($c_member_id, $page_size, $page, $orderby)
 {
     switch ($orderby) {
     case "ld":
@@ -156,7 +156,7 @@ function p_fh_friend_list_friend_list4c_member_id2($c_member_id, $page_size, $pa
     return array($friend_list , $prev , $next, $total_page_num);
 }
 
-function p_fh_intro_intro_list4c_member_id($c_member_id)
+function db_friend_intro_list4c_member_id($c_member_id)
 {
     $sql = "SELECT c_member_id_from AS c_member_id, intro FROM c_friend" .
             " WHERE c_member_id_to = ? AND intro <> ''" .
@@ -170,7 +170,7 @@ function p_fh_intro_intro_list4c_member_id($c_member_id)
     return $list;
 }
 
-function p_fh_intro_intro_list_with_my_intro4c_member_id($c_member_id)
+function db_friend_intro_list_with_my_intro4c_member_id($c_member_id)
 {
     $list = p_fh_intro_intro_list4c_member_id($c_member_id);
 
@@ -185,7 +185,7 @@ function p_fh_intro_intro_list_with_my_intro4c_member_id($c_member_id)
 /**
  * フレンドからの紹介文リスト
  */
-function p_f_home_c_friend_comment4c_member_id($c_member_id, $limit = 5)
+function db_friend_c_friend_comment4c_member_id($c_member_id, $limit = 5)
 {
     $sql = "SELECT c_member_id_from AS c_member_id, intro FROM c_friend" .
             " WHERE c_member_id_to = ? AND intro <> ''" .
@@ -202,7 +202,7 @@ function p_f_home_c_friend_comment4c_member_id($c_member_id, $limit = 5)
 /**
  * c_friend取得
  */
-function p_common_c_friend4c_member_id_from4c_member_id_to($c_member_id_from,$c_member_id_to)
+function db_friend_c_friend4c_member_id_from4c_member_id_to($c_member_id_from,$c_member_id_to)
 {
     $sql =  "SELECT c_friend_id,".
                 "c_member_id_from,".
@@ -220,7 +220,7 @@ function p_common_c_friend4c_member_id_from4c_member_id_to($c_member_id_from,$c_
 /**
  * フレンドリスト
  */
-function p_f_home_c_friend_list4c_member_id($c_member_id, $limit = 0)
+function db_friend_c_friend_list4c_member_id($c_member_id, $limit = 0)
 {
     $sql = 'SELECT c_member_id_to AS c_member_id FROM c_friend' .
             ' WHERE c_member_id_from = ? ORDER BY RAND()';
@@ -238,7 +238,7 @@ function p_f_home_c_friend_list4c_member_id($c_member_id, $limit = 0)
     return $result;
 }
 
-function p_f_intro_edit_intro_body4c_member_id($u, $target_c_member_id)
+function db_friend_intro_body4c_member_id($u, $target_c_member_id)
 {
     $sql = "SELECT intro FROM c_friend" .
             " WHERE c_member_id_to = ? AND c_member_id_from = ?";
@@ -256,7 +256,7 @@ function p_f_intro_edit_intro_body4c_member_id($u, $target_c_member_id)
  *              image_filename  : 要請している人の画像
  * @see     h_confirm_list.php
  */
-function p_h_confirm_list_anatani_c_friend_confirm_list4c_member_id($c_member_id_to)
+function db_friend_anatani_c_friend_confirm_list4c_member_id($c_member_id_to)
 {
     $sql = 'SELECT * FROM c_friend_confirm WHERE c_member_id_to = ?' .
             ' ORDER BY r_datetime DESC';
@@ -281,7 +281,7 @@ function p_h_confirm_list_anatani_c_friend_confirm_list4c_member_id($c_member_id
  *              image_filename  : 要請されている人の画像
  * @see     h_confirm_list.php
  */
-function p_h_confirm_list_anataga_c_friend_confirm_list4c_member_id($c_member_id_from)
+function db_friend_anataga_c_friend_confirm_list4c_member_id($c_member_id_from)
 {
     $sql = 'SELECT * FROM c_friend_confirm WHERE c_member_id_from = ?' .
             ' ORDER BY r_datetime DESC';
@@ -296,7 +296,7 @@ function p_h_confirm_list_anataga_c_friend_confirm_list4c_member_id($c_member_id
     return $c_friend_confirm_list;
 }
 
-function p_h_home_c_friend_intro_list4c_member_id($c_member_id, $limit)
+function db_friend_c_friend_intro_list4c_member_id($c_member_id, $limit)
 {
     $sql = 'SELECT * FROM c_friend' .
             ' WHERE c_member_id_to = ? AND intro <> \'\' ORDER BY RAND()';
@@ -309,7 +309,7 @@ function p_h_home_c_friend_intro_list4c_member_id($c_member_id, $limit)
     return $list;
 }
 
-function p_h_manage_friend_c_friend_list_disp4c_member_id($c_member_id)
+function db_friend_c_friend_list_disp4c_member_id($c_member_id)
 {
     $sql =  "SELECT c_member_id,".
                 "image_filename,".
@@ -334,7 +334,7 @@ function p_h_manage_friend_c_friend_list_disp4c_member_id($c_member_id)
     return $result;
 }
 
-function db_common_friend_status($u, $target_c_member_id)
+function db_friend_status($u, $target_c_member_id)
 {
     $ret = array(
         'c_member'      => db_common_c_member4c_member_id($target_c_member_id),
@@ -354,14 +354,14 @@ function db_common_friend_status($u, $target_c_member_id)
  * @param   int $c_friend_confirm_id
  * @return  array c_friend_confirm.*
  */
-function _do_c_friend_confirm4c_friend_confirm_id($c_friend_confirm_id)
+function db_friend_c_friend_confirm4c_friend_confirm_id($c_friend_confirm_id)
 {
     $sql = 'SELECT * FROM c_friend_confirm WHERE c_friend_confirm_id = ?';
     $params = array(intval($c_friend_confirm_id));
     return db_get_row($sql, $params);
 }
 
-function do_common_is_friend_link_wait($c_member_id_from, $c_member_id_to)
+function db_friend_is_friend_link_wait($c_member_id_from, $c_member_id_to)
 {
     //from→to
     $sql = "SELECT count(*)";
@@ -386,12 +386,7 @@ function do_common_is_friend_link_wait($c_member_id_from, $c_member_id_to)
     }
 }
 
-//TODO:constant
-define('STATUS_F_LINK_FLAT', "1");    // フレンドリクエスト(承認送信画面)
-define('STATUS_F_LINK_WAIT', "2");    // フレンドリクエスト(リンク承認待ち)
-define('STATUS_F_LINK_ALREADY', "3"); // フレンドリクエスト(フレンドリンク済)
-
-function do_common_get_f_link_status($c_member_id_from,$c_member_id_to)
+function db_friend_f_link_status($c_member_id_from,$c_member_id_to)
 {
     $is_friend    = db_friend_is_friend($c_member_id_from, $c_member_id_to);
     $is_link_wait = do_common_is_friend_link_wait($c_member_id_from, $c_member_id_to);
@@ -408,7 +403,7 @@ function do_common_get_f_link_status($c_member_id_from,$c_member_id_to)
     return $ret;
 }
 
-function do_common_c_friend_list4c_member_id($c_member_id)
+function db_friend_c_friend_list4c_member_id2($c_member_id)
 {
     $sql = "SELECT c_member.* FROM c_friend, c_member" .
         " WHERE c_friend.c_member_id_from = ?".
@@ -420,7 +415,7 @@ function do_common_c_friend_list4c_member_id($c_member_id)
 /**
  * フレンドのランダムなリストを得る
  */
-function k_p_h_home_c_friend_list_random4c_member_id($c_member_id, $limit)
+function db_friend_c_friend_list_random4c_member_id($c_member_id, $limit)
 {
     $sql = "SELECT cf.* , cm.nickname";
     $sql .= " FROM c_friend AS cf, c_member AS cm";
@@ -440,7 +435,7 @@ function k_p_h_home_c_friend_list_random4c_member_id($c_member_id, $limit)
 /**
  * ２つのメンバＩＤからその２人の関係を返す。
  */
-function k_p_f_home_relationship4two_members($c_member_id, $target_c_member_id)
+function db_friend_relationship4two_members($c_member_id, $target_c_member_id)
 {
     $relation = array(
         'friend' => false,
@@ -470,7 +465,7 @@ function k_p_f_home_relationship4two_members($c_member_id, $target_c_member_id)
     return $relation;
 }
 
-function k_p_fh_friend_list_friend_list4c_member_id($c_member_id,$page_size,$page)
+function db_friend_friend_list4c_member_id($c_member_id,$page_size,$page)
 {
     $sql = "SELECT ".
             "c_friend_id,".
@@ -523,7 +518,7 @@ function k_p_fh_friend_list_friend_list4c_member_id($c_member_id,$page_size,$pag
  *              nickname        : 要請している人の名前
  *              message_disp    : 表示用メッセージ
  */
-function k_p_h_confirm_list_anatani_c_friend_confirm_list4c_member_id($c_member_id_to)
+function db_friend_ktai_anatani_c_friend_confirm_list4c_member_id($c_member_id_to)
 {
     $sql = "SELECT * FROM c_friend_confirm WHERE c_member_id_to = ?";
     $sql .= " ORDER BY r_datetime DESC";
@@ -546,7 +541,7 @@ function k_p_h_confirm_list_anatani_c_friend_confirm_list4c_member_id($c_member_
  *              nickname        : 要請されている人の名前
  *              message_disp    : 表示用メッセージ
  */
-function k_p_h_confirm_list_anataga_c_friend_confirm_list4c_member_id($c_member_id_from)
+function db_friend_ktai_anataga_c_friend_confirm_list4c_member_id($c_member_id_from)
 {
     $sql = "SELECT * FROM c_friend_confirm WHERE c_member_id_from = ?";
     $sql .= " ORDER BY r_datetime DESC";
@@ -563,7 +558,7 @@ function k_p_h_confirm_list_anataga_c_friend_confirm_list4c_member_id($c_member_
 /**
  * 友達ランダム５０人
  */
-function k_p_h_message_send_c_friend_list_random4c_member_id($c_member_id)
+function db_friend_ktai_c_friend_list_random4c_member_id($c_member_id)
 {
     $sql = "SELECT cf.c_member_id_to, cm.nickname";
     $sql .= " FROM c_friend AS cf, c_member AS cm";
@@ -574,7 +569,7 @@ function k_p_h_message_send_c_friend_list_random4c_member_id($c_member_id)
     return db_get_all_limit($sql, 0, 50, $params);
 }
 
-function p_fh_intro_list4c_friend_comment_list($c_friend_comment_list, $page, $page_size)
+function db_friend_intro_list4c_friend_comment_list($c_friend_comment_list, $page, $page_size)
 {
     $lst = array_slice($c_friend_comment_list, ($page - 1) * $page_size, $page_size);
     $total_num = count($c_friend_comment_list);
@@ -587,6 +582,124 @@ function p_fh_intro_list4c_friend_comment_list($c_friend_comment_list, $page, $p
         $prev = ($page > 1) ? true : false;
     }
     return array($lst, $prev, $next, $total_num);
+}
+
+/*** write ***/
+
+//--- c_friend
+
+/**
+ * フレンドリンクを追加
+ */
+function db_friend_insert_c_friend($c_member_id_from, $c_member_id_to)
+{
+    if (($c_member_id_from < 1) || ($c_member_id_to < 1))
+        return false;
+
+    if (db_friend_is_friend($c_member_id_from, $c_member_id_to))
+        return false;
+
+    $data = array(
+        'c_member_id_from' => intval($c_member_id_from),
+        'c_member_id_to' => intval($c_member_id_to),
+        'r_datetime' => db_now(),
+    );
+    db_insert('c_friend', $data);
+
+    $data = array(
+        'c_member_id_from' => intval($c_member_id_to),
+        'c_member_id_to' => intval($c_member_id_from),
+        'r_datetime' => db_now(),
+    );
+    db_insert('c_friend', $data);
+}
+
+/**
+ * リンク申請からフレンドリンクを追加
+ * 
+ * @param   int $c_friend_confirm_id
+ * @param   int $u  自分のc_member_id
+ */
+function db_friend_insert_c_friend4confirm($c_friend_confirm_id, $u)
+{
+    $confirm = _do_c_friend_confirm4c_friend_confirm_id($c_friend_confirm_id);
+    if ($confirm['c_member_id_to'] != $u) {
+        return false;
+    }
+    $c_member_id_from = $confirm['c_member_id_from'];
+    $c_member_id_to   = $confirm['c_member_id_to'];
+
+    // フレンドリンクを追加
+    db_friend_insert_c_friend($c_member_id_from, $c_member_id_to);
+
+    // フレンド申請を削除
+    db_friend_delete_c_friend_confirm($c_friend_confirm_id, $u);
+    return true;
+}
+
+/**
+ * フレンドリンクを削除
+ */
+function db_friend_delete_c_friend($c_member_id_from, $c_member_id_to)
+{
+    $sql = 'DELETE FROM c_friend' .
+            ' WHERE (c_member_id_from = ? AND c_member_id_to = ?)' .
+               ' OR (c_member_id_to = ? AND c_member_id_from = ?)';
+    $params = array(
+        intval($c_member_id_from), intval($c_member_id_to),
+        intval($c_member_id_from), intval($c_member_id_to));
+    db_query($sql, $params);
+}
+
+/**
+ * フレンド紹介文入力・編集
+ */
+function db_friend_update_c_friend_intro($c_member_id_from, $c_member_id_to, $intro)
+{
+    $data = array(
+        'intro' => $intro,
+        'r_datetime_intro' => db_now(),
+    );
+    $where = array(
+        'c_member_id_from' => intval($c_member_id_from),
+        'c_member_id_to' => intval($c_member_id_to),
+    );
+    db_update('c_friend', $data, $where);
+}
+
+//--- c_friend_confirm
+
+/**
+ * フレンド申請を追加
+ * 
+ * @param  int    $c_member_id_from
+ * @param  int    $c_member_id_to
+ * @param  string $message
+ * @return int insert_id
+ */
+function db_friend_insert_c_friend_confirm($c_member_id_from, $c_member_id_to, $message)
+{
+    $data = array(
+        'c_member_id_from' => intval($c_member_id_from),
+        'c_member_id_to'   => intval($c_member_id_to),
+        'message'          => $message,
+        'r_datetime'       => db_now(),
+    );
+    return db_insert('c_friend_confirm', $data);
+}
+
+/**
+ * フレンド申請を削除
+ * 
+ * @param  int  $c_friend_confirm_id
+ * @param  int  $u 自分のc_member_id
+ */
+function db_friend_delete_c_friend_confirm($c_friend_confirm_id, $u)
+{
+    $sql = 'DELETE FROM c_friend_confirm WHERE c_friend_confirm_id = ?' .
+            ' AND (c_member_id_from = ? OR c_member_id_to = ?)';
+    $params = array(intval($c_friend_confirm_id), intval($u), intval($u));
+    db_query($sql, $params);
 }
 
 ?>

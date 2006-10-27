@@ -4,7 +4,7 @@
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
-function p_h_home_h_blog_list_friend4c_member_id($c_member_id, $page_size = 5)
+function db_rss_h_blog_list_friend4c_member_id($c_member_id, $page_size = 5)
 {
     $sql = "SELECT c_rss_cache.*, c_member.nickname" .
         " FROM c_rss_cache, c_member" .
@@ -15,7 +15,7 @@ function p_h_home_h_blog_list_friend4c_member_id($c_member_id, $page_size = 5)
     return db_get_all_limit($sql, 0, $page_size, $params);
 }
 
-function p_h_diary_list_all_c_rss_cache_list($limit)
+function db_rss_list_all_c_rss_cache_list($limit)
 {
     $hint = db_mysql_hint('FORCE INDEX (r_datetime)');
     $sql = 'SELECT * FROM c_rss_cache' . $hint . ' ORDER BY r_datetime DESC';
@@ -27,7 +27,7 @@ function p_h_diary_list_all_c_rss_cache_list($limit)
     return $lst;
 }
 
-function p_h_diary_list_friend_c_rss_cache_list($c_member_id, $limit)
+function db_rss_list_friend_c_rss_cache_list($c_member_id, $limit)
 {
     $friends = db_friend_c_member_id_list($c_member_id, true);
     $ids = implode(',', array_map('intval', $friends));
@@ -44,7 +44,7 @@ function p_h_diary_list_friend_c_rss_cache_list($c_member_id, $limit)
     return $list;
 }
 
-function p_fh_diary_list_c_rss_cache_list($c_member_id,$page_size, $page)
+function db_rss_list_c_rss_cache_list($c_member_id,$page_size, $page)
 {
     $sql = 'SELECT * FROM c_rss_cache WHERE c_member_id = ? ORDER BY r_datetime DESC';
     $params = array(intval($c_member_id));
@@ -56,7 +56,7 @@ function p_fh_diary_list_c_rss_cache_list($c_member_id,$page_size, $page)
     return $lst;
 }
 
-function p_fh_diary_list_c_rss_cache_list_date($c_member_id, $year, $month, $day=0)
+function db_rss_list_c_rss_cache_list_date($c_member_id, $year, $month, $day=0)
 {
     if ($day) {
         $s_date = date('Y-m-d H:i:s', mktime(0, 0, 0, $month, $day, $year));
@@ -78,14 +78,14 @@ function p_fh_diary_list_c_rss_cache_list_date($c_member_id, $year, $month, $day
     return $lst;
 }
 
-function p_f_home_c_rss_cache_list4c_member_id($c_member_id, $limit = 5)
+function db_rss_c_rss_cache_list4c_member_id($c_member_id, $limit = 5)
 {
     $sql = 'SELECT * FROM c_rss_cache WHERE c_member_id = ? ORDER BY r_datetime DESC';
     $params = array(intval($c_member_id));
     return db_get_all_limit($sql, 0, $limit, $params);
 }
 
-function db_is_duplicated_rss_cache($c_member_id, $date, $link)
+function db_rss_is_duplicated_rss_cache($c_member_id, $date, $link)
 {
     $sql = 'SELECT c_rss_cache_id FROM c_rss_cache' .
             ' WHERE c_member_id = ? AND r_datetime = ? AND link = ?';
@@ -93,7 +93,7 @@ function db_is_duplicated_rss_cache($c_member_id, $date, $link)
     return (bool)db_get_one($sql, $params);
 }
 
-function db_is_updated_rss_cache($c_member_id, $link)
+function db_rss_is_updated_rss_cache($c_member_id, $link)
 {
     $sql = 'SELECT c_rss_cache_id FROM c_rss_cache' .
             ' WHERE c_member_id = ? AND link = ?';
@@ -101,10 +101,79 @@ function db_is_updated_rss_cache($c_member_id, $link)
     return db_get_one($sql, $params);
 }
 
-function db_is_future_rss_item($date)
+function db_rss_is_future_rss_item($date)
 {
     $item_timestamp = strtotime($date);
     return (bool)($item_timestamp > time());
+}
+
+?>
+<?php
+/**
+ * @copyright 2005-2006 OpenPNE Project
+ * @license   http://www.php.net/license/3_01.txt PHP License 3.01
+ */
+
+function db_rss_insert_c_rss_cache($c_member_id, $subject, $body, $date, $link)
+{
+    $data = array(
+        'c_member_id' => intval($c_member_id),
+        'subject'     => $subject,
+        'body'        => $body,
+        'r_datetime'  => $date,
+        'link'        => $link,
+        'cache_date'  => db_now(),
+    );
+    return db_insert('c_rss_cache', $data);
+}
+
+function db_rss_update_c_rss_cache($c_rss_cache_id, $subject, $body, $date, $link)
+{
+    $data = array(
+        'subject'     => $subject,
+        'body'        => $body,
+        'r_datetime'  => $date,
+        'link'        => $link,
+        'cache_date'  => db_now(),
+    );
+    $where = 'c_rss_cache_id = '.intval($c_rss_cache_id);
+    return db_update('c_rss_cache', $data, $where);
+}
+
+/**
+ * メンバーのRSSを削除する
+ */
+function db_rss_delete_rss_cache($c_member_id)
+{
+    $sql = 'DELETE FROM c_rss_cache WHERE c_member_id = ?';
+    $params = array(intval($c_member_id));
+    return db_query($sql, $params);
+}
+
+function db_rss_insert_rss_cache($rss_url, $c_member_id)
+{
+    include_once 'OpenPNE/RSS.php';
+    $rss = new OpenPNE_RSS();
+    if (!$items = $rss->fetch($rss_url)) {
+        return false;
+    }
+
+    foreach ($items as $item) {
+        // 最新のものと比較
+        if (!db_is_duplicated_rss_cache($c_member_id, $item['date'], $item['link']) &&
+            !db_is_future_rss_item($item['date'])) {
+
+            if ($id = db_is_updated_rss_cache($c_member_id, $item['link'])) {
+                // update
+                db_update_c_rss_cache($id,
+                    $item['title'], $item['body'], $item['date'], $item['link']);
+            } else {
+                // insert
+                db_insert_c_rss_cache($c_member_id,
+                    $item['title'], $item['body'], $item['date'], $item['link']);
+            }
+        }
+    }
 }
 
 ?>

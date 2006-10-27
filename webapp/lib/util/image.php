@@ -140,4 +140,73 @@ function t_image_clear_tmp($uid)
     }
 }
 
+function image_insert_c_image4tmp($prefix, $tmpfile)
+{
+    if (!$tmpfile || preg_match('/[^\.\w]/', $tmpfile)) return false;
+
+    $path_parts = pathinfo($tmpfile);
+    $ext = $path_parts['extension'];
+    $ext = strtolower($ext);
+
+    $allowed_ext = array('jpg', 'jpeg', 'gif', 'png');
+    if (!in_array($ext, $allowed_ext)) {
+        return false;
+    }
+
+    $filename = sprintf('%s_%s.%s', $prefix, time(), $ext);
+
+    if (!OPENPNE_TMP_IMAGE_DB) {
+        $img_tmp_dir_path = OPENPNE_VAR_DIR . '/tmp/';
+        $filepath = $img_tmp_dir_path . basename($tmpfile);
+
+        if (_do_insert_c_image($filename, $filepath)) {
+            return $filename;
+        }
+    } else {
+        $c_tmp_image = c_tmp_image4filename($tmpfile);
+
+        $params = array(
+            'filename' => $filename,
+            'bin' => $c_tmp_image['bin'],
+            'r_datetime' => db_now(),
+        );
+        if (db_insert("c_image", $params)) {
+            return $filename;
+        }
+    }
+    return false;
+}
+
+function image_insert_c_image($upfile_obj, $filename)
+{
+    if (!$upfile_obj) return false;
+
+    $filepath = $upfile_obj['tmp_name'];
+
+    $path_parts = pathinfo($upfile_obj['name']);
+    $ext = $path_parts['extension'];
+    $ext = strtolower($ext);
+    $filename = $filename . '_' . time() . '.' . $ext;
+
+    if (!_do_insert_c_image($filename, $filepath)) {
+        return false;
+    }
+    return $filename;
+}
+
+function image_insert_c_tmp_image($upfile_obj, $filename)
+{
+    if (!$upfile_obj) {
+        return false;
+    }
+
+    $filepath = $upfile_obj['tmp_name'];
+
+    $result = _do_insert_c_tmp_image($filename, $filepath);
+    if (!$result) {
+        return false;
+    }
+    return $filename;
+}
+
 ?>

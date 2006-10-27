@@ -35,6 +35,11 @@ define('OPENPNE_REGIST_FROM_PC'    , 1); // PCからのみ登録可
 define('OPENPNE_REGIST_FROM_KTAI'  , 2); // 携帯からのみ登録可
 define('OPENPNE_REGIST_FROM_PCKTAI', 3); // PC携帯から登録可
 
+// フレンド状態フラグ用定数(削除予定)
+define('STATUS_F_LINK_FLAT', "1");    // フレンドリクエスト(承認送信画面)
+define('STATUS_F_LINK_WAIT', "2");    // フレンドリクエスト(リンク承認待ち)
+define('STATUS_F_LINK_ALREADY', "3"); // フレンドリクエスト(フレンドリンク済)
+
 // 携帯メールのドメイン名
 $GLOBALS['OpenPNE']['KTAI_DOMAINS'] = array(
     'docomo.ne.jp',

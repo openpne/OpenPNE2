@@ -5,7 +5,7 @@
  */
 
 // 前日のアクセスランキング
-function p_h_ranking_c_ashiato_ranking($limit = 10)
+function db_ranking_c_ashiato_ranking($limit = 10)
 {
     $today = date('Y-m-d 00:00:00');
     $yesterday = date('Y-m-d 00:00:00', strtotime('-1 day'));
@@ -19,7 +19,7 @@ function p_h_ranking_c_ashiato_ranking($limit = 10)
     return db_get_all_limit($sql, 0, $limit, $params);
 }
 
-function p_h_ranking_c_friend_ranking($limit = 10)
+function db_ranking_c_friend_ranking($limit = 10)
 {
     $sql = 'SELECT c_member_id_to as c_member_id, count(*) as count' .
         ' FROM c_friend' .
@@ -28,7 +28,7 @@ function p_h_ranking_c_friend_ranking($limit = 10)
     return db_get_all_limit($sql, 0, $limit);
 }
 
-function p_h_ranking_c_commu_member_ranking($limit = 10)
+function db_ranking_c_commu_member_ranking($limit = 10)
 {
     $sql = 'SELECT c_commu_id, count(*) as count' .
         ' FROM c_commu_member' .
@@ -38,7 +38,7 @@ function p_h_ranking_c_commu_member_ranking($limit = 10)
 }
 
 // 前日のランキング
-function p_h_ranking_c_commu_topic_comment_ranking($limit = 10)
+function db_ranking_c_commu_topic_comment_ranking($limit = 10)
 {
     $today = date('Y-m-d 00:00:00');
     $yesterday = date('Y-m-d 00:00:00', strtotime('-1 day'));

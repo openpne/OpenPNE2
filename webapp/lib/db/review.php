@@ -13,7 +13,7 @@ function db_review_c_review_list4member($c_member_id, $count = 10)
     return db_get_all_limit($sql, 0, $count, $params);
 }
 
-function p_h_home_c_friend_review_list4c_member_id($c_member_id, $limit)
+function db_review_c_friend_review_list4c_member_id($c_member_id, $limit)
 {
     $friends = db_friend_c_member_id_list($c_member_id);
     $ids = implode(',', array_map('intval', $friends));
@@ -28,7 +28,7 @@ function p_h_home_c_friend_review_list4c_member_id($c_member_id, $limit)
     return $list;
 }
 
-function p_h_home_c_friend_review_list_more4c_member_id($c_member_id, $page, $page_size)
+function db_review_c_friend_review_list_more4c_member_id($c_member_id, $page, $page_size)
 {
     $sql =  "SELECT cm.nickname, cr.c_review_id, cr.title, crc.r_datetime" .
             " FROM  c_member AS cm, c_friend AS cf, c_review AS cr, c_review_comment AS crc" .
@@ -66,7 +66,7 @@ function p_h_home_c_friend_review_list_more4c_member_id($c_member_id, $page, $pa
     return array($list, $prev, $next, $total_num, $start_num, $end_num);
 }
 
-function p_c_home_new_commu_review4c_commu_id($c_commu_id , $limit)
+function db_review_new_commu_review4c_commu_id($c_commu_id , $limit)
 {
     $sql = "SELECT ccr.c_review_id, cr.title, ccr.r_datetime" .
             " FROM c_commu_review AS ccr , c_review AS cr" .
@@ -77,13 +77,13 @@ function p_c_home_new_commu_review4c_commu_id($c_commu_id , $limit)
     return db_get_all_limit($sql, 0, $limit, $params);
 }
 
-function p_h_review_add_category_disp()
+function do_review_review_add_category_disp()
 {
     $sql = 'SELECT c_review_category_id, category_disp FROM c_review_category';
     return db_get_assoc($sql);
 }
 
-function p_h_review_add_search_result($keyword, $category_id, $page)
+function do_review_add_search_result($keyword, $category_id, $page)
 {
     $sql = 'SELECT category FROM c_review_category WHERE c_review_category_id = ?';
     $params = array(intval($category_id));
@@ -123,7 +123,7 @@ function p_h_review_add_search_result($keyword, $category_id, $page)
     return array($products, $product_page, $product_pages, $total_num);
 }
 
-function p_h_review_write_product4asin($asin)
+function db_review_write_product4asin($asin)
 {
     include_once 'Services/Amazon.php';
     $amazon =& new Services_Amazon(AMAZON_TOKEN, AMAZON_AFFID, AMAZON_LOCALE, AMAZON_BASEURL);
@@ -147,7 +147,7 @@ function p_h_review_write_product4asin($asin)
  *      r_datetime  => 作成順
  *      r_num       => 登録数順
  */
-function p_h_review_search_result4keyword_category($keyword, $category_id , $orderby, $page = 1, $page_size = 30)
+function db_review_search_result4keyword_category($keyword, $category_id , $orderby, $page = 1, $page_size = 30)
 {
     $from = " FROM c_review INNER JOIN c_review_comment USING (c_review_id)";
 
@@ -215,7 +215,7 @@ function p_h_review_search_result4keyword_category($keyword, $category_id , $ord
     return array($lst, $prev, $next, $total_num, $start_num, $end_num);
 }
 
-function p_h_review_list_product_c_review4c_review_id($c_review_id)
+function db_review_list_product_c_review4c_review_id($c_review_id)
 {
     $sql = 'SELECT * FROM c_review AS cr, c_review_category AS crc' .
            ' WHERE cr.c_review_category_id = crc.c_review_category_id' .
@@ -224,7 +224,7 @@ function p_h_review_list_product_c_review4c_review_id($c_review_id)
     return db_get_row($sql, $params);
 }
 
-function p_h_review_list_product_c_review_list4c_review_id($c_review_id, $page, $page_size=30)
+function db_review_list_product_c_review_list4c_review_id($c_review_id, $page, $page_size=30)
 {
     $sql = "SELECT crc.*, cm.c_member_id, cm.nickname, cm.image_filename" .
            " FROM c_review_comment AS crc, c_member AS cm" .
@@ -255,7 +255,7 @@ function p_h_review_list_product_c_review_list4c_review_id($c_review_id, $page, 
     return array($list, $prev, $next, $total_num, $start_num, $end_num);
 }
 
-function p_fh_review_list_product_c_review_list4c_member_id($c_member_id, $page, $page_size=30)
+function db_review_list_product_c_review_list4c_member_id($c_member_id, $page, $page_size=30)
 {
     $sql = "SELECT crc.*, cr.*, crc2.category_disp" .
             " FROM c_review_comment AS crc, c_review AS cr, c_review_category AS crc2" .
@@ -294,7 +294,7 @@ function p_fh_review_list_product_c_review_list4c_member_id($c_member_id, $page,
     return array($list, $prev, $next, $total_num, $start_num, $end_num);
 }
 
-function p_h_review_add_write_c_review_comment4asin_c_member_id($asin, $c_member_id)
+function db_review_add_write_c_review_comment4asin_c_member_id($asin, $c_member_id)
 {
     $sql = "SELECT * FROM c_review AS cr, c_review_comment AS crc" .
             " WHERE cr.c_review_id = crc.c_review_id" .
@@ -304,7 +304,7 @@ function p_h_review_add_write_c_review_comment4asin_c_member_id($asin, $c_member
     return db_get_row($sql, $params);
 }
 
-function p_h_review_clip_list_h_review_clip_list4c_member_id($c_member_id, $page, $page_size=30)
+function db_review_clip_list_h_review_clip_list4c_member_id($c_member_id, $page, $page_size=30)
 {
     $sql = "SELECT * FROM c_review_clip AS crc, c_review AS cr" .
             " WHERE crc.c_review_id = cr.c_review_id" .
@@ -346,7 +346,7 @@ function p_h_review_clip_list_h_review_clip_list4c_member_id($c_member_id, $page
     return array($list, $prev, $next, $total_num, $start_num, $end_num);
 }
 
-function p_c_member_review_c_member_review4c_commu_id($c_commu_id, $page, $page_size=20)
+function db_review_c_member_review_c_member_review4c_commu_id($c_commu_id, $page, $page_size=20)
 {
     $sql = " SELECT cr.*, ccr.*, crc.category_disp " .
             " FROM c_commu_review as ccr, c_review as cr, c_review_category as crc" .
@@ -380,7 +380,7 @@ function p_c_member_review_c_member_review4c_commu_id($c_commu_id, $page, $page_
     return array($list, $prev, $next, $total_num, $start_num, $end_num);
 }
 
-function c_member_review_add_confirm_c_member_review4c_review_id($c_review_id, $c_member_id)
+function db_review_c_member_review_add_confirm_c_member_review4c_review_id($c_review_id, $c_member_id)
 {
     $c_review_id_str = implode(',', array_map('intval', $c_review_id));
     $sql = "SELECT * FROM c_review as cr, c_review_comment as crc , c_review_category as crc2 " .
@@ -392,14 +392,14 @@ function c_member_review_add_confirm_c_member_review4c_review_id($c_review_id, $
     return db_get_all($sql, $params);
 }
 
-function do_c_review_add_c_review_category_id4category($category)
+function db_review_c_review_add_c_review_category_id4category($category)
 {
     $sql = "SELECT c_review_category_id FROM c_review_category WHERE category = ?";
     $params = array($category);
     return db_get_one($sql, $params);
 }
 
-function do_h_review_edit_c_review_comment4c_review_comment_id_c_member_id($c_review_comment_id, $c_member_id)
+function db_review_edit_c_review_comment4c_review_comment_id_c_member_id($c_review_comment_id, $c_member_id)
 {
     $sql = "SELECT * FROM c_review_comment " .
             " WHERE c_review_comment_id = ?" .
@@ -408,7 +408,9 @@ function do_h_review_edit_c_review_comment4c_review_comment_id_c_member_id($c_re
     return db_get_row($sql, $params);
 }
 
-function do_h_review_clip_add_c_review_id4c_review_id_c_member_id($c_review_id, $c_member_id)
+
+
+function db_review_clip_add_c_review_id4c_review_id_c_member_id($c_review_id, $c_member_id)
 {
     $sql = "SELECT c_review_clip_id FROM c_review_clip" .
             " WHERE c_review_id = ?" .
@@ -417,7 +419,7 @@ function do_h_review_clip_add_c_review_id4c_review_id_c_member_id($c_review_id, 
     return db_get_one($sql, $params);
 }
 
-function do_c_member_review_c_review_id4c_review_id_c_member_id($c_review_id, $c_member_id, $c_commu_id)
+function db_review_c_member_review_c_review_id4c_review_id_c_member_id($c_review_id, $c_member_id, $c_commu_id)
 {
     $sql = "SELECT c_commu_review_id FROM c_commu_review" .
             " WHERE c_commu_id = ?" .
@@ -427,7 +429,7 @@ function do_c_member_review_c_review_id4c_review_id_c_member_id($c_review_id, $c
     return db_get_one($sql, $params);
 }
 
-function do_h_review_edit_c_review4c_review_comment_id($c_review_comment_id)
+function db_review_edit_c_review4c_review_comment_id($c_review_comment_id)
 {
     $sql = "SELECT c_review.* FROM c_review, c_review_comment" .
         " WHERE c_review_comment.c_review_comment_id=?".
@@ -436,18 +438,136 @@ function do_h_review_edit_c_review4c_review_comment_id($c_review_comment_id)
     return db_get_row($sql, $params);
 }
 
-function do_common_c_review_id4c_review_comment_id($c_review_comment_id)
+function db_review_common_c_review_id4c_review_comment_id($c_review_comment_id)
 {
     $sql = 'SELECT c_review_id FROM c_review_comment WHERE c_review_comment_id = ?';
     $params = array(intval($c_review_comment_id));
     return db_get_one($sql, $params);
 }
 
-function do_common_count_c_review_comment4c_review_id($c_review_id)
+function db_review_count_c_review_comment4c_review_id($c_review_id)
 {
     $sql = 'SELECT COUNT(*) FROM c_review_comment WHERE c_review_id = ?';
     $params = array(intval($c_review_id));
     return db_get_one($sql, $params);
+}
+
+
+/**
+ * @copyright 2005-2006 OpenPNE Project
+ * @license   http://www.php.net/license/3_01.txt PHP License 3.01
+ */
+
+function do_c_review_add_insert_c_review($product, $c_review_category_id)
+{
+    $sql = 'SELECT c_review_id FROM c_review WHERE asin = ?';
+    $params = array($product['asin']);
+    if ($c_review_id = db_get_one($sql, $params)) {
+        return $c_review_id;
+    }
+
+    $data = array(
+        'title'        => $product['name'],
+        'release_date' => $product['release'],
+        'manufacturer' => $product['manufacturer'],
+        'author'       => $product['author'],
+        'c_review_category_id' => intval($c_review_category_id),
+        'image_small'  => $product['imagesmall'],
+        'image_medium' => $product['imagemedium'],
+        'image_large'  => $product['imagelarge'],
+        'url'          => $product['url'],
+        'asin'         => $product['asin'],
+        'list_price'   => $product['listprice'],
+        'retail_price' => $product['ourprice'],
+        'r_datetime'   => db_now(),
+    );
+
+    //TODO:暫定処理
+    foreach ($data as $key => $value) {
+        if (is_null($value)) $data[$key] = '';
+    }
+    return db_insert('c_review', $data);
+}
+
+function do_c_review_add_insert_c_review_comment($c_review_id , $c_member_id, $body, $satisfaction_level)
+{
+    $data = array(
+        'c_review_id' => intval($c_review_id),
+        'c_member_id' => intval($c_member_id),
+        'body' => $body,
+        'satisfaction_level' => intval($satisfaction_level),
+        'r_datetime' => db_now(),
+    );
+    return db_insert('c_review_comment', $data);
+}
+
+function do_h_review_edit_update_c_review_comment($c_review_comment_id, $body, $satisfaction_level)
+{
+    $data = array(
+        'body' => $body,
+        'satisfaction_level' => intval($satisfaction_level),
+        'r_datetime' => db_now(),
+    );
+    $where = array('c_review_comment_id' => intval($c_review_comment_id));
+    return db_update('c_review_comment', $data, $where);
+}
+
+function do_h_review_edit_delete_c_review_comment($c_review_comment_id)
+{
+    $sql = 'DELETE FROM c_review_comment WHERE c_review_comment_id = ?';
+    $params = array(intval($c_review_comment_id));
+    db_query($sql, $params);
+}
+
+function do_h_review_clip_add_insert_c_review_clip($c_review_id, $c_member_id)
+{
+    $data = array(
+        'c_member_id' => intval($c_member_id),
+        'c_review_id' => intval($c_review_id),
+        'r_datetime' => db_now(),
+    );
+    return db_insert('c_review_clip', $data);
+}
+
+function do_c_member_review_insert_c_commu_review($c_review_id, $c_member_id, $c_commu_id)
+{
+    $data = array(
+        'c_commu_id' => intval($c_commu_id),
+        'c_review_id' => intval($c_review_id),
+        'c_member_id' => intval($c_member_id),
+        'r_datetime' => db_now(),
+    );
+    return db_insert('c_commu_review', $data);
+}
+
+function do_h_review_clip_list_delete_c_review_clip($c_member_id , $c_review_clips)
+{
+    if (!is_array($c_review_clips)) {
+        return false;
+    }
+    $ids = implode(',', array_map('intval', $c_review_clips));
+
+    $sql = 'DELETE FROM c_review_clip WHERE c_member_id = ?' .
+            ' AND c_review_id IN ('.$ids.')';
+    $params = array(intval($c_member_id));
+    return db_query($sql, $params);
+}
+
+function do_delete_c_review4c_review_id($c_review_id)
+{
+    $params = array(intval($c_review_id));
+
+    // c_review
+    $sql = 'DELETE FROM c_review WHERE c_review_id = ?';
+    db_query($sql, $params);
+
+    // c_review_clip
+    $sql = 'DELETE FROM c_review_clip WHERE c_review_id = ?';
+    db_query($sql, $params);
+
+    // c_commu_review
+    $sql = 'DELETE FROM c_commu_review WHERE c_review_id = ?';
+    db_query($sql, $params);
 }
 
 ?>
