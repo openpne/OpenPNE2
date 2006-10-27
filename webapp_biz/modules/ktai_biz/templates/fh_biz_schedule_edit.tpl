@@ -38,11 +38,13 @@
 <center>
 <input type='submit' name='entry' value='編集'>
 </form>
+</center>
 
+<center>
 ({t_form m=ktai_biz a=page_fh_calendar_week})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
 <input type="hidden" name="target_id" value="({$t_id})">
-<input type="submit" value="いいえ">
+<input type="submit" value="キャンセル">
 </form>
 </center>
 <hr>
