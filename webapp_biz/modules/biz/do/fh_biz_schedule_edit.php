@@ -113,8 +113,18 @@ class biz_do_fh_biz_schedule_edit extends OpenPNE_Action
             $finish_date = $begin_date;
         }
 
-        //繰り返し予定
-        if ($requests['sc_rp']) {
+        $schedule_id = '';
+
+        if (!$requests['sc_rp']) { 
+            //繰り返しなし
+            $finish_date = date("Y-m-d", strtotime($requests['sc_b_year'].'-'.$requests['sc_b_month'].'-'.($requests['sc_b_date']+($requests['sc_bn']-1))));
+            //繰り返しをしない予定登録
+            biz_editSchedule($requests['sc_title'], $u, $begin_date, $finish_date, $begin_time, $finish_time, $requests['sc_memo'], $rp_rule, 0, $requests['sc_j_mem'], $requests['sc_j_plc'], $requests['schedule_id']);
+            $schedule_id = $requests['schedule_id'];
+        } else {
+            $schedule_id = $requests['schedule_id'];
+            biz_deleteSchedule($schedule_id);
+
             //終了日の決定
             $finish_date = date("Y-m-d", strtotime($requests['sc_b_year'].'-'.$requests['sc_b_month'].'-'.($requests['sc_b_date']+($requests['sc_rcount'])*7)));
 
@@ -122,18 +132,7 @@ class biz_do_fh_biz_schedule_edit extends OpenPNE_Action
             foreach ($requests['sc_rwk'] as $value) {
                 $rp_rule += 1 << $value;
             }
-        } else {
-            //繰り返しなし
-            $finish_date = date("Y-m-d", strtotime($requests['sc_b_year'].'-'.$requests['sc_b_month'].'-'.($requests['sc_b_date']+($requests['sc_bn']-1))));
-        }
 
-        $schedule_id = '';
-
-        if (!$requests['sc_rp']) { 
-            //繰り返しをしない予定登録
-            biz_editSchedule($requests['sc_title'], $u, $begin_date, $finish_date, $begin_time, $finish_time, $requests['sc_memo'], $rp_rule, 0, $requests['sc_j_mem'], $requests['sc_j_plc'], $requests['schedule_id']);
-            $schedule_id = $requests['schedule_id'];
-        } else {
             //繰り返し予定
             $tmp = $begin_date;  //処理中の日付
 

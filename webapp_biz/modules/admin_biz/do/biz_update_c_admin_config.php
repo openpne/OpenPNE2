@@ -23,12 +23,7 @@ class admin_biz_do_biz_update_c_admin_config extends OpenPNE_Action
                 $value = implode(',', $value);
             }
 
-            if (is_null(biz_admin_c_admin_config4name($name))) {
-                biz_admin_insertConfig($name, $value);
-
-            } else {
-                biz_admin_updateConfig($name, $value);
-            }
+            biz_admin_updateConfig($name, $value);
         }
 
         admin_biz_client_redirect('biz_edit_c_admin_config', "設定を変更しました");
