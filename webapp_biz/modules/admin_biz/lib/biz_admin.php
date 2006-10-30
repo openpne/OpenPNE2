@@ -6,18 +6,6 @@
 
 // admin モジュール用 DB接続ライブラリ
 
-function biz_admin_insertConfig($name, $value)
-{
-    $sql = "INSERT INTO biz_admin_config (name, value)" .
-        " VALUES (?, ?)";
-    $params = array(
-        $name,
-        $value,
-    );
-
-    return db_insert($sql, $params);
-}
-
 function biz_admin_updateConfig($name, $value)
 {
     $sql = "UPDATE biz_admin_config" .

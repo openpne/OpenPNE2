@@ -24,14 +24,15 @@ class biz_page_fh_biz_schedule_view extends OpenPNE_Action
             //他人
             $target_id = $requests['target_id'];
             $this->set('is_f', true);  //判別フラグ
-            $this->set('inc_navi',fetch_inc_navi('f'));
+            $this->set('inc_navi',fetch_inc_navi('f',$requests['target_id']));
         }
 
         //プロフィール
         $target_member = db_common_c_member4c_member_id($u);
         $this->set("target_member", $target_member);
         $this->set("form_val", $form_val);
-
+        $this->set("target_c_member_id", $requests['target_id']);
+        
         //カレンダー関係
         //カレンダー開始用変数
         $year = date("Y");
