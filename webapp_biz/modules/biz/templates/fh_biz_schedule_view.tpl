@@ -290,7 +290,7 @@
 <td class="padding_ss" align="left">
 
 ({t_form _method=get m=pc a=page_h_home})
-<input value="マイページに戻る" type="submit" class="submit">
+<input value="マイホームに戻る" type="submit" class="submit">
 </form>
 
 </td>
@@ -338,7 +338,7 @@
 <td class="padding_ss" align="right">
 
 ({t_form m=biz a=page_fh_biz_schedule_add})
-<input value="続けて新規の予定登録をする" type="submit" class="submit">
+<input value="新規の予定登録をする" type="submit" class="submit">
 </form>
 
 </td>
@@ -346,14 +346,14 @@
 
 ({t_form m=biz a=page_s_list})
 <input type="hidden" name="w" value="({$w})">
-<input value="続けて施設予約をする" type="submit" class="submit">
+<input value="施設予約をする" type="submit" class="submit">
 </form>
 
 </td>
 <td class="padding_ss" align="left">
 
 ({t_form _method=get m=pc a=page_h_home})
-<input value="マイページに戻る" type="submit" class="submit">
+<input value="マイホームに戻る" type="submit" class="submit">
 </form>
 
 </td>
