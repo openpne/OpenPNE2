@@ -71,7 +71,6 @@ class biz_page_fh_biz_schedule_view extends OpenPNE_Action
         $jmembers = biz_getJoinMemberSchedule($requests['id']);
         if (array_search($target_member['nickname'], $jmembers)) {
             $jmembers[$target_member['c_member_id']] = $target_member['nickname'];
-            $jmembers = array_unique($jmembers);
         }
         $jshisetsu = biz_getJoinShisetsuSchedule($requests['id']);
 
