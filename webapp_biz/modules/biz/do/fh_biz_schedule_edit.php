@@ -160,7 +160,13 @@ class biz_do_fh_biz_schedule_edit extends OpenPNE_Action
         }
         $week = date("W", abs(strtotime($begin_date) - strtotime(date("Y-m-d")))) - 1;
 
-        $p = array('w' => $week, 'msg' => '予定を編集しました。', 'id' => $schedule_id);
+        if (in_array($u,$requests['sc_j_mem'])) {
+            $target_id = $u;
+        } else {
+            $target_id = $requests['sc_j_mem'][0];
+        }
+        $p = array('w' => $week, 'msg' => '予定を編集しました。',
+                   'id' => $schedule_id, 'target_id'  => $target_id);
         openpne_redirect('biz', 'page_fh_biz_schedule_view', $p);
     }
 }
