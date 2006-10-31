@@ -321,7 +321,7 @@
 
 <div style="padding:4px 3px;">
 
-<input type='submit' name='entry' value='登録する'>
+<input type='submit' class="submit" name='entry' value='登録する'>
 
 </div>
 
