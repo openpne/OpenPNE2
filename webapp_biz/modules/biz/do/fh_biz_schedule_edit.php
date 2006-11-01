@@ -122,9 +122,6 @@ class biz_do_fh_biz_schedule_edit extends OpenPNE_Action
             biz_editSchedule($requests['sc_title'], $u, $begin_date, $finish_date, $begin_time, $finish_time, $requests['sc_memo'], $rp_rule, 0, $requests['sc_j_mem'], $requests['sc_j_plc'], $requests['schedule_id']);
             $schedule_id = $requests['schedule_id'];
         } else {
-            $schedule_id = $requests['schedule_id'];
-            biz_deleteSchedule($schedule_id);
-
             //終了日の決定
             $finish_date = date("Y-m-d", strtotime($begindate . ' +' . (7 * $requests['sc_rcount']) . 'days')); 
             //繰り返しルールの決定
