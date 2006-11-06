@@ -62,16 +62,14 @@ class biz_page_fh_biz_schedule_view extends OpenPNE_Action
             }
         }
 
-        $list += array('rep_type_loc' => $tmp);
-        $list += array('writer_name' => biz_getMemberNickname($list['c_member_id']));
-
+        $list['rep_type_loc'] = $tmp;
+        $list['writer_name'] = biz_getMemberNickname($list['c_member_id']);
         $list['begin_time'] = substr($list['begin_time'], 0, 5);
         $list['finish_time'] = substr($list['finish_time'], 0, 5);
 
         $jmembers = biz_getJoinMemberSchedule($requests['id']);
         if (array_search($target_member['nickname'], $jmembers)) {
             $jmembers[$target_member['c_member_id']] = $target_member['nickname'];
-            $jmembers = array_unique($jmembers);
         }
         $jshisetsu = biz_getJoinShisetsuSchedule($requests['id']);
 
@@ -90,8 +88,10 @@ class biz_page_fh_biz_schedule_view extends OpenPNE_Action
             $repeat_finish = biz_getRepeatFinish($requests['id']);
             $repeat_term = strtotime($repeat_finish) - strtotime($repeat_begin);
 
-            $daycount = $repeat_term / (24 * 60 * 60) / 7;
-
+            $daycount = ceil($repeat_term / (24 * 60 * 60) / 7);
+            if ($repeat_finish == $repeat_begin) {
+                $daycount = 1;
+            }
             $this->set('repeat_begin_date', $repeat_begin);
             $this->set('repeat_term', intval($daycount));
         }

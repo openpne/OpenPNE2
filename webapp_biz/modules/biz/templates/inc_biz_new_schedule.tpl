@@ -24,7 +24,7 @@
 ({foreach key=i item=value from=$newlist})
 <tr>
 <td class="bg_02 border_01 padding_ss" style="width:60px;border-right:none;border-top:none;">({$value.begin_date|date_format:"%m月%d日"})</td>
-<td class="bg_02 border_01 padding_ss" style="width:168px;border-top:none;"><a href="({t_url m=biz a=page_fh_biz_schedule_view})&amp;id=({$value.biz_schedule_id})">({$value.title})</a></td>
+<td class="bg_02 border_01 padding_ss" style="width:168px;border-top:none;"><a href="({t_url m=biz a=page_fh_biz_schedule_view})&amp;id=({$value.biz_schedule_id})&amp;target_id=({$target_id})">({$value.title})</a></td>
 </tr>
 ({****})
 ({/foreach})

@@ -122,19 +122,15 @@ class biz_do_fh_biz_schedule_edit extends OpenPNE_Action
             biz_editSchedule($requests['sc_title'], $u, $begin_date, $finish_date, $begin_time, $finish_time, $requests['sc_memo'], $rp_rule, 0, $requests['sc_j_mem'], $requests['sc_j_plc'], $requests['schedule_id']);
             $schedule_id = $requests['schedule_id'];
         } else {
-            $schedule_id = $requests['schedule_id'];
-            biz_deleteSchedule($schedule_id);
-
             //終了日の決定
-            $finish_date = date("Y-m-d", strtotime($requests['sc_b_year'].'-'.$requests['sc_b_month'].'-'.($requests['sc_b_date']+($requests['sc_rcount'])*7)));
-
+            $finish_date = date("Y-m-d", strtotime($begindate . ' +' . (7 * $requests['sc_rcount']) . 'days')); 
             //繰り返しルールの決定
             foreach ($requests['sc_rwk'] as $value) {
                 $rp_rule += 1 << $value;
             }
 
             //繰り返し予定
-            $tmp = $begin_date;  //処理中の日付
+            $tmp = strtotime($begin_date);  //処理中の日付
 
             if ($requests['iskeep']) {
                 //繰り返し予定グループの維持（同予定から派生した繰り返し予定を一斉に編集）
@@ -146,13 +142,13 @@ class biz_do_fh_biz_schedule_edit extends OpenPNE_Action
 
             $first_id = biz_getScheduleMax() + 1;  //登録される予定のプライマリキー
 
-            for ($i = 0; date("Ymd", strtotime($tmp)) < date("Ymd", strtotime($finish_date)); $i++) {
+            for ($i = 0; $tmp < strtotime($finish_date); $i++) { 
                 //終了日に達するまで新規予定追加を繰り返す
-                $nowday = strtotime($requests['sc_b_year'].'-'.$requests['sc_b_month'].'-'.($requests['sc_b_date']+$i));
-                $tmp = date("Ymd", $nowday);
-
+                $nowday = strtotime($begin_date . ' +'.$i.'days'); 
+                $tmp = $nowday;
+                
                 if ($rp_rule & (1 << date("w", $nowday))) {
-                    biz_insertSchedule($requests['sc_title'], $u, $tmp, $tmp, $begin_time, $finish_time, $requests['sc_memo'], $rp_rule, $first_id, $requests['sc_j_mem']);
+                    biz_insertSchedule($requests['sc_title'], $u, date("Y-m-d", $tmp), date("Y-m-d", $tmp), $begin_time, $finish_time, $requests['sc_memo'], $rp_rule, $first_id, $requests['sc_j_mem']); 
                 }
             }
 
@@ -160,7 +156,13 @@ class biz_do_fh_biz_schedule_edit extends OpenPNE_Action
         }
         $week = date("W", abs(strtotime($begin_date) - strtotime(date("Y-m-d")))) - 1;
 
-        $p = array('w' => $week, 'msg' => '予定を編集しました。', 'id' => $schedule_id);
+        if (in_array($u,$requests['sc_j_mem'])) {
+            $target_id = $u;
+        } else {
+            $target_id = $requests['sc_j_mem'][0];
+        }
+        $p = array('w' => $week, 'msg' => '予定を編集しました。',
+                   'id' => $schedule_id, 'target_id'  => $target_id);
         openpne_redirect('biz', 'page_fh_biz_schedule_view', $p);
     }
 }
