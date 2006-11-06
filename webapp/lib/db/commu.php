@@ -2106,7 +2106,7 @@ function db_commu_update_c_commu_topic_comment_images($c_commu_topic_comment_id,
 }
 
 /**
- * 掲示板書き込みに画像を追加する
+ * 掲示板書き込みに画像を追加する(メールからの投稿)
  */
 function db_commu_update_c_commu_topic_comment_image($c_commu_topic_comment_id, $image_filename, $image_num)
 {

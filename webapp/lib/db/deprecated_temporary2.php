@@ -544,14 +544,6 @@ function do_c_bbs_insert_c_commu_topic_comment($c_member_id,$target_c_commu_topi
 	return db_commu_insert_c_commu_topic_comment_2($c_member_id,$target_c_commu_topic_id,$body);
 }
 
-/*
-
-function db_commu_update_c_commu_topic_comment_images($c_commu_topic_comment_id, $image_filename1, $image_filename2, $image_filename3)
-{
-	return db_commu_update_c_commu_topic_comment_images($c_commu_topic_comment_id, $image_filename1, $image_filename2, $image_filename3);
-}
-
-*/
 
 function mail_update_c_commu_topic_comment_image($c_commu_topic_comment_id, $image_filename, $image_num)
 {
@@ -560,12 +552,12 @@ function mail_update_c_commu_topic_comment_image($c_commu_topic_comment_id, $ima
 
 function do_c_bbs_delete_c_commu_topic_comment($c_commu_topic_comment_id)
 {
-	return db_commu_update_c_commu_topic($c_commu_topic_comment_id);
+	return db_commu_delete_c_commu_topic_comment($c_commu_topic_comment_id);
 }
 
 function do_c_event_edit_update_c_commu_topic($c_commu_topic_id, $topic)
 {
-	return db_commu_update_c_commu_topic_comment($c_commu_topic_id, $topic);
+	return db_commu_update_c_commu_topic($c_commu_topic_id, $topic);
 }
 
 
