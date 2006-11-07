@@ -33,22 +33,25 @@ class pc_page_f_home extends OpenPNE_Action
         db_ashiato_insert_c_ashiato($target_c_member_id, $u);
 
         $this->set('is_h_prof', 0);
-        $this->set('inc_navi', fetch_inc_navi('f', $target_c_member_id));
+        $inc_navi = pne_cache_call(OPENPNE_FUNCTION_CACHE_LIFETIME_LONG, 'fetch_inc_navi', 'f', $target_c_member_id);
+        $this->set('inc_navi', $inc_navi);
 
         $is_friend = db_friend_is_friend($u, $target_c_member_id);
         if ($is_friend) {
-            $target_c_member = db_common_c_member_with_profile($target_c_member_id, 'friend');
+            $target_c_member = pne_cache_call(OPENPNE_FUNCTION_CACHE_LIFETIME_LONG, 'db_common_c_member_with_profile', $target_c_member_id, 'friend');
             // 自分が書いた紹介文
             $this->set('my_friend_intro', p_f_home_c_friend_intro($u, $target_c_member_id));
         } else {
-            $target_c_member = db_common_c_member_with_profile($target_c_member_id, 'public');
+            $target_c_member = pne_cache_call(OPENPNE_FUNCTION_CACHE_LIFETIME_LONG, 'db_common_c_member_with_profile', $target_c_member_id, 'public');
             // 友達の友達
             $this->set('friend_path', p_f_home_friend_path4c_member_ids($u, $target_c_member_id));
         }
 
         $this->set('is_friend', $is_friend);
-        $this->set('c_member', db_common_c_member4c_member_id($u));
-        $this->set('c_diary_list', db_diary_get_c_diary_list4c_member_id($target_c_member_id, 5, $u));
+        $c_member = pne_cache_call(OPENPNE_FUNCTION_CACHE_LIFETIME_LONG, 'db_common_c_member4c_member_id', $u);
+        $this->set('c_member', $c_member);
+        $c_diary_list = pne_cache_call(OPENPNE_FUNCTION_CACHE_LIFETIME_LONG, 'db_diary_get_c_diary_list4c_member_id', $target_c_member_id, 5, $u);
+        $this->set('c_diary_list', $c_diary_list);
 
         // --- f_home, h_prof 共通処理
 
@@ -61,14 +64,18 @@ class pc_page_f_home extends OpenPNE_Action
 
         $this->set('c_rss_cache_list', p_f_home_c_rss_cache_list4c_member_id($target_c_member_id, 5));
 
-        $this->set('c_friend_comment_list', p_f_home_c_friend_comment4c_member_id($target_c_member_id));
-        $this->set('c_friend_list', p_f_home_c_friend_list4c_member_id($target_c_member_id, 9));
+        $c_friend_comment_list = pne_cache_call(OPENPNE_FUNCTION_CACHE_LIFETIME_LONG, 'p_f_home_c_friend_comment4c_member_id', $target_c_member_id);
+        $this->set('c_friend_comment_list', $c_friend_comment_list);
+        $c_friend_list = pne_cache_call(OPENPNE_FUNCTION_CACHE_LIFETIME_LONG, 'p_f_home_c_friend_list4c_member_id', $target_c_member_id, 9);
+        $this->set('c_friend_list', $c_friend_list);
         $this->set('c_friend_count', db_friend_count_friends($target_c_member_id));
         $this->set('user_count', p_common_count_c_commu4c_member_id($target_c_member_id));
-        $this->set('c_commu_list', p_f_home_c_commu_list4c_member_id($target_c_member_id, 9));
+        $c_commu_list = pne_cache_call(OPENPNE_FUNCTION_CACHE_LIFETIME_LONG, 'p_f_home_c_commu_list4c_member_id', $target_c_member_id, 9);
+        $this->set('c_commu_list', $c_commu_list);
         $this->set('c_review_list', db_review_c_review_list4member($target_c_member_id, 5));
 
-        $this->set('profile_list', db_common_c_profile_list());
+        $profile_list = pne_cache_call(OPENPNE_FUNCTION_CACHE_LIFETIME_LONG, 'db_common_c_profile_list');
+        $this->set('profile_list', $profile_list);
 
         // 誕生日まであと何日？
         $this->set('days_birthday', db_common_count_days_birthday4c_member_id($target_c_member_id));

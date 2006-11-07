@@ -179,6 +179,9 @@ function db_bookmark_count($c_member_id)
  */
 function db_bookmark_insert_c_bookmark($c_member_id_from, $c_member_id_to)
 {
+    //function cacheの削除
+    pne_cache_drop('db_bookmark_member_list', $c_member_id_from, 9);
+
     $data = array(
         'c_member_id_from' => intval($c_member_id_from),
         'c_member_id_to' => intval($c_member_id_to),
@@ -192,6 +195,9 @@ function db_bookmark_insert_c_bookmark($c_member_id_from, $c_member_id_to)
  */
 function db_bookmark_delete_c_bookmark($c_member_id_from, $c_member_id_to)
 {
+    //function cacheの削除
+    pne_cache_drop('db_bookmark_member_list', $c_member_id_from, 9);
+
     $sql = 'DELETE FROM c_bookmark' .
             ' WHERE c_member_id_from = ? AND c_member_id_to = ?';
     $params = array(intval($c_member_id_from), intval($c_member_id_to));

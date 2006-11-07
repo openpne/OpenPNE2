@@ -396,56 +396,6 @@ function t_isFutureDate($day, $month, $year)
 
 //---
 
-function &get_cache_lite_function()
-{
-    static $instance;
-    if (empty($instance)) {
-        include_once 'Cache/Lite/Function.php';
-        $options = array(
-            'cacheDir' => OPENPNE_VAR_DIR . '/function_cache/',
-            'hashedDirectoryLevel' => 2,
-            'hashedDirectoryUmask' => 0777,
-        );
-        $instance = new Cache_Lite_Function($options);
-    }
-    return $instance;
-}
-
-/**
- * call function cache
- */
-function pne_cache_call()
-{
-    $arg_list = func_get_args();
-    $lifetime = array_shift($arg_list);
-
-    if (OPENPNE_USE_FUNCTION_CACHE) {
-        $cache =& get_cache_lite_function();
-        $cache->setOption('lifetime', intval($lifetime));
-        return call_user_func_array(array(&$cache, 'call'), $arg_list);
-    } else {
-        $function = array_shift($arg_list);
-        return call_user_func_array($function, $arg_list);
-    }
-}
-
-/**
- * drop function cache
- */
-function pne_cache_drop()
-{
-    $arg_list = func_get_args();
-
-    if (OPENPNE_USE_FUNCITON_CACHE) {
-        $cache =& get_cache_lite_funcion();
-        return call_user_func_array(array(&$cache, 'drop'), $arg_list);
-    } else {
-        return true;
-    }
-}
-
-//---
-
 /**
  * Check c_diary.public_flag
  * 

@@ -15,7 +15,8 @@ class pc_page_h_home extends OpenPNE_Action
     {
         $u = $GLOBALS['AUTH']->uid();
 
-        $this->set('inc_navi', fetch_inc_navi('h'));
+        $inc_navi = pne_cache_call(OPENPNE_FUNCTION_CACHE_LIFETIME_LONG, 'fetch_inc_navi', 'h');
+        $this->set('inc_navi', $inc_navi);
 
         /// infomation ///
 
@@ -48,22 +49,27 @@ class pc_page_h_home extends OpenPNE_Action
         /// 左側 ///
 
         // メンバ情報
-        $this->set('c_member', db_common_c_member4c_member_id($u));
+        $c_member = pne_cache_call(OPENPNE_FUNCTION_CACHE_LIFETIME_LONG, 'db_common_c_member4c_member_id', $u);
+        $this->set('c_member', $c_member);
         // フレンドリスト
-        $this->set('c_friend_list', p_f_home_c_friend_list4c_member_id($u, 9));
+        $c_friend_list = pne_cache_call(OPENPNE_FUNCTION_CACHE_LIFETIME_LONG, 'p_f_home_c_friend_list4c_member_id', $u, 9);
+        $this->set('c_friend_list', $c_friend_list);
         $this->set('c_friend_count', db_friend_count_friends($u));
         // 参加コミュニティ
-        $this->set('c_commu_user_list', p_h_home_c_commu_list4c_member_id($u, 9));
+        $c_commu_user_list = pne_cache_call(OPENPNE_FUNCTION_CACHE_LIFETIME_LONG, 'p_h_home_c_commu_list4c_member_id', $u, 9);
+        $this->set('c_commu_user_list', $c_commu_user_list);
         $this->set('fh_com_count_user', p_common_count_c_commu4c_member_id($u));
 
         /// 最新情報 ///
 
         // フレンド最新日記
-        $this->set('c_diary_friend_list', p_h_home_c_diary_friend_list4c_member_id($u, 5));
+        $c_diary_friend_list = pne_cache_call(OPENPNE_FUNCTION_CACHE_LIFETIME_LONG, 'p_h_home_c_diary_friend_list4c_member_id', $u, 5);
+        $this->set('c_diary_friend_list', $c_diary_friend_list);
         // フレンド最新blog
         $this->set('c_rss_cache_list', p_h_diary_list_friend_c_rss_cache_list($u, 5));
         // 日記コメント記入履歴
-        $this->set('c_diary_my_comment_list', p_h_home_c_diary_my_comment_list4c_member_id($u, 5));
+        $c_diary_my_comment_list = pne_cache_call(OPENPNE_FUNCTION_CACHE_LIFETIME_LONG, 'p_h_home_c_diary_my_comment_list4c_member_id', $u, 5);
+        $this->set('c_diary_my_comment_list', $c_diary_my_comment_list);
         // 参加コミュニティの新着書き込み
         $this->set('c_commu_topic_comment_list', p_h_home_c_commu_topic_comment_list4c_member_id($u, 5));
         // レビュー
@@ -72,7 +78,8 @@ class pc_page_h_home extends OpenPNE_Action
         /// 自分の情報 ///
 
         // 日記
-        $this->set('c_diary_list', db_diary_get_c_diary_list4c_member_id($u, 5));
+        $c_diary_list = pne_cache_call(OPENPNE_FUNCTION_CACHE_LIFETIME_LONG, 'db_diary_get_c_diary_list4c_member_id', $u, 5);
+        $this->set('c_diary_list', $c_diary_list);
         // 外部blog
         $this->set('c_blog_list', p_h_home_h_blog_list_friend4c_member_id($u, 5, 1));
         // レビュー
@@ -81,7 +88,8 @@ class pc_page_h_home extends OpenPNE_Action
         /// その他 ///
 
         // 紹介文
-        $this->set('c_friend_intro_list', p_h_home_c_friend_intro_list4c_member_id($u, 5));
+        $c_friend_intro_list = pne_cache_call(OPENPNE_FUNCTION_CACHE_LIFETIME_LONG, 'p_h_home_c_friend_intro_list4c_member_id', $u, 5);
+        $this->set('c_friend_intro_list', $c_friend_intro_list);
 
         // 今日の日付、曜日
         $this->set('r_datetime', date('m/d'));
@@ -105,7 +113,8 @@ class pc_page_h_home extends OpenPNE_Action
             $this->set('bookmark_blog_list', db_bookmark_blog_list($u, 5));
 
             //お気に入りのメンバ
-            $this->set('bookmark_member_list', db_bookmark_member_list($u, 9));
+            $bookmark_member_list = pne_cache_call(OPENPNE_FUNCTION_CACHE_LIFETIME_LONG, 'db_bookmark_member_list', $u, 9);
+            $this->set('bookmark_member_list', $bookmark_member_list);
             $this->set('bookmark_count', db_bookmark_count($u));
         }
 
@@ -133,13 +142,14 @@ class pc_page_h_home extends OpenPNE_Action
             $y = $Day->thisYear();
             $m = $Day->thisMonth();
             $d = $Day->thisDay();
+            $birth = pne_cache_call(OPENPNE_FUNCTION_CACHE_LIFETIME_LONG, 'p_h_home_birth4c_member_id', $m, $d, $u);
             $item = array(
                 'year'=> $y,
                 'month'=>$m,
                 'day' => $d,
                 'dayofweek'=>$dayofweek[$i++],
                 'now' => false,
-                'birth' => p_h_home_birth4c_member_id($m, $d, $u),
+                'birth' => $birth,
                 'event' => p_h_home_event4c_member_id($y, $m, $d, $u),
                 'schedule' => p_h_calendar_c_schedule_list4date($y, $m, $d, $u),
             );

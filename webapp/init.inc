@@ -121,4 +121,9 @@ isset($GLOBALS['OpenPNE']['common']['session_idletime'])
 
 ini_set('arg_separator.output', '&');
 
+// ファンクションキャッシュ有効期限用定数
+define('OPENPNE_FUNCTION_CACHE_LIFETIME_SHORT' , 1200);
+define('OPENPNE_FUNCTION_CACHE_LIFETIME_LONG' , 3600);
+
+
 ?>

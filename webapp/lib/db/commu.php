@@ -1879,6 +1879,9 @@ function db_commu_update_c_commu($c_commu_id,
     $image_filename = '', $is_send_join_mail = 1,
     $is_display_map = null, $map_latitude = null, $map_longitude = null, $map_zoom = null)
 {
+    //function cacheの削除
+    cache_drop_c_commu($c_commu_id);
+
     $data = array(
         'name' => $name,
         'info' => $info,
@@ -1905,6 +1908,9 @@ function db_commu_update_c_commu($c_commu_id,
  */
 function db_commu_update_c_commu_image_filename($c_commu_id, $image_filename)
 {
+    //function cacheの削除
+    cache_drop_c_commu($c_commu_id);
+
     $data = array('image_filename' => $image_filename);
     $where = array('c_commu_id' => intval($c_commu_id));
     return db_update('c_commu', $data, $where);
@@ -1915,6 +1921,9 @@ function db_commu_update_c_commu_image_filename($c_commu_id, $image_filename)
  */
 function db_commu_delete_c_commu_image_filename($c_commu_id)
 {
+    //function cacheの削除
+    cache_drop_c_commu($c_commu_id);
+
     $data = array('image_filename' => '');
     $where = array('c_commu_id' => intval($c_commu_id));
     return db_update('c_commu', $data, $where);
@@ -2032,6 +2041,9 @@ function db_commu_delete_c_commu_admin_confirm4c_commu_id($c_commu_id)
  */
 function db_commu_delete_c_commu_topic($c_commu_topic_id)
 {
+    //function cacheの削除
+    cache_drop_c_commu_topic($c_commu_topic_id);
+
     // c_commu_topic_comment(画像)
     $sql = 'SELECT image_filename1, image_filename2, image_filename3' .
             ' FROM c_commu_topic_comment WHERE c_commu_topic_id = ?';
@@ -2193,6 +2205,9 @@ function db_commu_delete_c_commu_topic_comment_image($c_commu_topic_id, $image_n
 
 function db_commu_insert_c_commu_topic($topic)
 {
+    //function cacheの削除
+    cache_drop_c_commu_topic($topic['c_commu_id']);
+
     $data = array(
         'c_commu_id'  => intval($topic['c_commu_id']),
         'c_member_id' => intval($topic['c_member_id']),
@@ -2283,6 +2298,10 @@ function db_commu_delete_c_event_member($c_commu_topic_id, $c_member_id)
  */
 function db_commu_join_c_commu($c_commu_id, $c_member_id)
 {
+    //function cache削除
+    cache_drop_c_commu($c_commu_id);
+    cache_drop_c_commu_list4c_member_id($c_member_id);
+
     $data = array(
         'c_commu_id'  => intval($c_commu_id),
         'c_member_id' => intval($c_member_id),
@@ -2296,6 +2315,10 @@ function db_commu_join_c_commu($c_commu_id, $c_member_id)
  */
 function db_commu_delete_c_commu_member($c_commu_id, $c_member_id)
 {
+    //function cache削除
+    cache_drop_c_commu($c_commu_id);
+    cache_drop_c_commu_list4c_member_id($c_member_id);
+
     $sql = 'DELETE FROM c_commu_review' .
            ' WHERE c_commu_id = ? AND c_member_id = ?';
     $params = array(intval($c_commu_id), intval($c_member_id));

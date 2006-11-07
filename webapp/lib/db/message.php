@@ -180,22 +180,34 @@ function db_message_c_message_save_list4c_member_id4range($c_member_id, $page, $
  */
 function db_message_c_message_trash_list4c_member_id4range($c_member_id, $page, $page_size)
 {
-    $where = "(" .
-            "c_member_id_from = ?" .
+    $where_from = "c_member_id_from = ?" .
             " AND is_deleted_from = 1" .
-            " AND is_kanzen_sakujo_from = 0" .
-        ") OR (" .
-            "c_member_id_to = ?" .
+            " AND is_kanzen_sakujo_from = 0";
+
+    $sql = 'SELECT * FROM c_message WHERE '. $where_from . ' ORDER BY r_datetime DESC';
+    $sql_num = 'SELECT COUNT(*) FROM c_message WHERE '. $where_from;
+    $params = array(intval($c_member_id));
+    $c_message_list_from = db_get_all_page($sql, 1, ($page_size * ($page + 1)), $params);
+    $c_message_num_from = db_get_one($sql_num, $params);
+
+    $where_to = "c_member_id_to = ?" .
             " AND is_deleted_to = 1" .
-            " AND is_kanzen_sakujo_to = 0" .
-        ")";
+            " AND is_kanzen_sakujo_to = 0";
 
-    $sql = 'SELECT * FROM c_message WHERE '. $where . ' ORDER BY r_datetime DESC';
-    $params = array(intval($c_member_id), intval($c_member_id));
-    $c_message_list = db_get_all_page($sql, $page, $page_size, $params);
+    $sql = 'SELECT * FROM c_message WHERE '. $where_to . ' ORDER BY r_datetime DESC';
+    $sql_num = 'SELECT COUNT(*) FROM c_message WHERE '. $where_to;
+    $c_message_list_to = db_get_all_page($sql, 1, ($page_size * ($page + 1)), $params);
+    $c_message_num_to = db_get_one($sql_num, $params);
 
-    $sql = 'SELECT COUNT(*) FROM c_message WHERE ' . $where;
-    $total_num = db_get_one($sql, $params);
+    $c_message_list = array_merge($c_message_list_from, $c_message_list_to);
+
+    foreach ($c_message_list as $key => $row) {
+       $c_message_id[$key] = intval($row['c_message_id']);
+    }
+    array_multisort($c_message_id, SORT_DESC, $c_message_list);
+    $c_message_list = array_slice($c_message_list, ($page_size * ($page - 1) + 1), $page_size);
+
+    $total_num = $c_message_num_from + $c_message_num_to;
 
     if ($total_num != 0) {
         $total_page_num =  ceil($total_num / $page_size);

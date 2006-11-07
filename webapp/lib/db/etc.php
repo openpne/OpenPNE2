@@ -259,6 +259,9 @@ function db_get_c_navi($navi_type = 'h')
  */
 function db_common_delete_c_member($c_member_id)
 {
+    //function cache削除
+    cache_drop_c_member($c_member_id);
+
     //// --- 双方向パターン
     $double = array(intval($c_member_id), intval($c_member_id));
 
@@ -424,6 +427,9 @@ function db_common_delete_c_member($c_member_id)
  */
 function db_common_delete_c_commu($c_commu_id)
 {
+    //function cacheの削除
+    pne_cache_drop('p_c_home_c_commu4c_commu_id', $c_commu_id);
+
     $single = array(intval($c_commu_id));
 
     $sql = 'SELECT * FROM c_commu WHERE c_commu_id = ?';

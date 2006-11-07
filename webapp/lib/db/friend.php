@@ -593,6 +593,10 @@ function db_friend_intro_list4c_friend_comment_list($c_friend_comment_list, $pag
  */
 function db_friend_insert_c_friend($c_member_id_from, $c_member_id_to)
 {
+    //function cache削除
+    cache_drop_c_member($c_member_id_from);
+    cache_drop_c_member($c_member_id_to);
+
     if (($c_member_id_from < 1) || ($c_member_id_to < 1))
         return false;
 
@@ -642,6 +646,10 @@ function db_friend_insert_c_friend4confirm($c_friend_confirm_id, $u)
  */
 function db_friend_delete_c_friend($c_member_id_from, $c_member_id_to)
 {
+    //function cache削除
+    cache_drop_c_member($c_member_id_from);
+    cache_drop_c_member($c_member_id_to);
+
     $sql = 'DELETE FROM c_friend' .
             ' WHERE (c_member_id_from = ? AND c_member_id_to = ?)' .
                ' OR (c_member_id_to = ? AND c_member_id_from = ?)';
@@ -656,6 +664,10 @@ function db_friend_delete_c_friend($c_member_id_from, $c_member_id_to)
  */
 function db_friend_update_c_friend_intro($c_member_id_from, $c_member_id_to, $intro)
 {
+    //function cacheを削除
+    pne_cache_drop('p_h_home_c_friend_intro_list4c_member_id', $c_member_id_to, 5);
+    pne_cache_drop('p_f_home_c_friend_comment4c_member_id', $c_member_id_to);
+
     $data = array(
         'intro' => $intro,
         'r_datetime_intro' => db_now(),
