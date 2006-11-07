@@ -146,7 +146,7 @@ function db_admin_is_c_image4filename($filename)
 
 function db_admin_c_image_list($page, $page_size, &$pager)
 {
-    return db_image_c_image_list($page, $page_size, &$pager);
+    return db_image_c_image_list($page, $page_size, $pager);
 }
 
 function c_tmp_image4filename($filename)
