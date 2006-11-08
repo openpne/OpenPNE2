@@ -109,16 +109,19 @@
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 <td style="width:531px;height:50px;" class="bg_02" align="left" valign="middle">
-<div class="padding_s lh_120">
-({if $c_topic.image_filename1||$c_topic.image_filename2||$c_topic.image_filename3})
-({if $c_topic.image_filename1})<a href="({t_img_url filename=$c_topic.image_filename1})" target="_blank"><img src="({t_img_url filename=$c_topic.image_filename1 w=120 h=120})"></a>({/if})
-({if $c_topic.image_filename2})<a href="({t_img_url filename=$c_topic.image_filename2})" target="_blank"><img src="({t_img_url filename=$c_topic.image_filename2 w=120 h=120})"></a>({/if})
-({if $c_topic.image_filename3})<a href="({t_img_url filename=$c_topic.image_filename3})" target="_blank"><img src="({t_img_url filename=$c_topic.image_filename3 w=120 h=120})"></a>({/if})
-<br>
-({/if})
-({$c_topic.body|nl2br|t_url2cmd|t_cmd})
 
+({if $c_topic.image_filename1||$c_topic.image_filename2||$c_topic.image_filename3})
+<div class="padding_s">
+({if $c_topic.image_filename1})<span class="padding_s"><a href="({t_img_url filename=$c_topic.image_filename1})" target="_blank"><img src="({t_img_url filename=$c_topic.image_filename1 w=120 h=120})"></a></span>({/if})
+({if $c_topic.image_filename2})<span class="padding_s"><a href="({t_img_url filename=$c_topic.image_filename2})" target="_blank"><img src="({t_img_url filename=$c_topic.image_filename2 w=120 h=120})"></a></span>({/if})
+({if $c_topic.image_filename3})<span class="padding_s"><a href="({t_img_url filename=$c_topic.image_filename3})" target="_blank"><img src="({t_img_url filename=$c_topic.image_filename3 w=120 h=120})"></a></span>({/if})
 </div>
+({/if})
+
+<div class="padding_s lh_120">
+({$c_topic.body|nl2br|t_url2cmd|t_cmd})
+</div>
+
 </td>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
@@ -245,17 +248,19 @@
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 <td class="bg_02" align="left" valign="middle">
-<div class="padding_s lh_120">
 
-({if $item.image_filename1||$item.image_filename2||$item.image_filename3})
-({if $item.image_filename1})<a href="({t_img_url filename=$item.image_filename1})" target="_blank"><img src="({t_img_url filename=$item.image_filename1 w=120 h=120})"></a>({/if})
-({if $item.image_filename2})<a href="({t_img_url filename=$item.image_filename2})" target="_blank"><img src="({t_img_url filename=$item.image_filename2 w=120 h=120})"></a>({/if})
-({if $item.image_filename3})<a href="({t_img_url filename=$item.image_filename3})" target="_blank"><img src="({t_img_url filename=$item.image_filename3 w=120 h=120})"></a>({/if})
-<br>
-({/if})
-({$item.body|nl2br|t_url2cmd|t_cmd})
-
+({if $item.image_filename1 || $item.image_filename2 || $item.image_filename3})
+<div class="padding_s">
+({if $item.image_filename1})<span class="padding_s"><a href="({t_img_url filename=$item.image_filename1})" target="_blank"><img src="({t_img_url filename=$item.image_filename1 w=120 h=120})"></a></span>({/if})
+({if $item.image_filename2})<span class="padding_s"><a href="({t_img_url filename=$item.image_filename2})" target="_blank"><img src="({t_img_url filename=$item.image_filename2 w=120 h=120})"></a></span>({/if})
+({if $item.image_filename3})<span class="padding_s"><a href="({t_img_url filename=$item.image_filename3})" target="_blank"><img src="({t_img_url filename=$item.image_filename3 w=120 h=120})"></a></span>({/if})
 </div>
+({/if})
+
+<div class="padding_s lh_120">
+({$item.body|nl2br|t_url2cmd|t_cmd})
+</div>
+
 </td>
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 </tr>

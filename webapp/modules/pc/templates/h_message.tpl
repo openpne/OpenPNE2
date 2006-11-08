@@ -237,23 +237,13 @@
 ({*********})
 <tr>
 <td align="left" valign="top" colspan="6" class="bg_02">
+
 <div class="padding_w_m">
 
-({if $c_message.image_filename_1})
-<a href="({t_img_url filename=$c_message.image_filename_1})" target="_blank">
-<img src="({t_img_url filename=$c_message.image_filename_1 w=120 h=120})"></a>
-({/if})
-
-({if $c_message.image_filename_2})
-<a href="({t_img_url filename=$c_message.image_filename_2})" target="_blank">
-<img src="({t_img_url filename=$c_message.image_filename_2 w=120 h=120})"></a>
-({/if})
-
-({if $c_message.image_filename_3})
-<a href="({t_img_url filename=$c_message.image_filename_3})" target="_blank">
-<img src="({t_img_url filename=$c_message.image_filename_3 w=120 h=120})"></a>
-({/if})
 ({if $c_message.image_filename_1||$c_message.image_filename_2||$c_message.image_filename_3})
+({if $c_message.image_filename_1})<span class="padding_s"><a href="({t_img_url filename=$c_message.image_filename_1})" target="_blank"><img src="({t_img_url filename=$c_message.image_filename_1 w=120 h=120})"></a></span>({/if})
+({if $c_message.image_filename_2})<span class="padding_s"><a href="({t_img_url filename=$c_message.image_filename_2})" target="_blank"><img src="({t_img_url filename=$c_message.image_filename_2 w=120 h=120})"></a></span>({/if})
+({if $c_message.image_filename_3})<span class="padding_s"><a href="({t_img_url filename=$c_message.image_filename_3})" target="_blank"><img src="({t_img_url filename=$c_message.image_filename_3 w=120 h=120})"></a></span>({/if})
 <br><br>
 ({/if})
 

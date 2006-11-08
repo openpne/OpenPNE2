@@ -69,16 +69,27 @@
 </td>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 <td style="width:468px;" class="bg_02" align="left" valign="middle">
-<div style="padding:10px;">
+
+<div class="padding_s lh_120">
 
 <a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$c_member.c_member_id})">({$c_member.nickname})</a><br>
-({if $c_commu_topic_comment.image_filename1})<img src="({t_img_url filename=$c_commu_topic_comment.image_filename1 w=120 h=120})">({/if})
-({if $c_commu_topic_comment.image_filename2})<img src="({t_img_url filename=$c_commu_topic_comment.image_filename2 w=120 h=120})">({/if})
-({if $c_commu_topic_comment.image_filename3})<img src="({t_img_url filename=$c_commu_topic_comment.image_filename3 w=120 h=120})">({/if})
-<br>
-({$c_commu_topic_comment.body|nl2br})<br>
 
 </div>
+
+({if $c_commu_topic_comment.image_filename1 || $c_commu_topic_comment.image_filename2 || $c_commu_topic_comment.image_filename3 })
+<div class="padding_s">
+({if $c_commu_topic_comment.image_filename1})<span class="padding_s"><img src="({t_img_url filename=$c_commu_topic_comment.image_filename1 w=120 h=120})"></span>({/if})
+({if $c_commu_topic_comment.image_filename2})<span class="padding_s"><img src="({t_img_url filename=$c_commu_topic_comment.image_filename2 w=120 h=120})"></span>({/if})
+({if $c_commu_topic_comment.image_filename3})<span class="padding_s"><img src="({t_img_url filename=$c_commu_topic_comment.image_filename3 w=120 h=120})"></span>({/if})
+</div>
+({/if})
+
+<div class="padding_s lh_120">
+
+({$c_commu_topic_comment.body|nl2br})
+
+</div>
+
 </td>
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 </tr>

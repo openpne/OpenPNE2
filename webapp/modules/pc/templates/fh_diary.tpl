@@ -400,21 +400,15 @@
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 <td class="bg_02" align="left" valign="middle">
+
 <div style="padding:4px 3px;">
 
-({if $target_diary.image_filename_1})
-<a href="({t_img_url filename=$target_diary.image_filename_1})" target="_blank">
-<img src="({t_img_url filename=$target_diary.image_filename_1 w=120 h=120})"></a>
-({/if})
-
-({if $target_diary.image_filename_2})
-<a href="({t_img_url filename=$target_diary.image_filename_2})" target="_blank">
-<img src="({t_img_url filename=$target_diary.image_filename_2 w=120 h=120})"></a>
-({/if})
-
-({if $target_diary.image_filename_3})
-<a href="({t_img_url filename=$target_diary.image_filename_3})" target="_blank">
-<img src="({t_img_url filename=$target_diary.image_filename_3 w=120 h=120})"></a>
+({if $target_diary.image_filename_1 || $target_diary.image_filename_2 || $target_diary.image_filename_3})
+<div>
+({if $target_diary.image_filename_1})<span class="padding_s"><a href="({t_img_url filename=$target_diary.image_filename_1})" target="_blank"><img src="({t_img_url filename=$target_diary.image_filename_1 w=120 h=120})"></a></span>({/if})
+({if $target_diary.image_filename_2})<span class="padding_s"><a href="({t_img_url filename=$target_diary.image_filename_2})" target="_blank"><img src="({t_img_url filename=$target_diary.image_filename_2 w=120 h=120})"></a></span>({/if})
+({if $target_diary.image_filename_3})<span class="padding_s"><a href="({t_img_url filename=$target_diary.image_filename_3})" target="_blank"><img src="({t_img_url filename=$target_diary.image_filename_3 w=120 h=120})"></a></span>({/if})
+</div>
 ({/if})
 
 <div class="lh_120" id="DOM_fh_diary_body">
@@ -554,18 +548,21 @@
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 <td class="bg_02" align="left" valign="middle">
+
 <div style="padding:4px 3px;" class="lh_120 DOM_fh_diary_comment_body">
 
-({if $item.image_filename_1||$item.image_filename_2||$item.image_filename_3})
-({if $item.image_filename_1})<a href="({t_img_url filename=$item.image_filename_1})" target="_blank"><img src="({t_img_url filename=$item.image_filename_1 w=120 h=120})"></a>({/if})
-({if $item.image_filename_2})<a href="({t_img_url filename=$item.image_filename_2})" target="_blank"><img src="({t_img_url filename=$item.image_filename_2 w=120 h=120})"></a>({/if})
-({if $item.image_filename_3})<a href="({t_img_url filename=$item.image_filename_3})" target="_blank"><img src="({t_img_url filename=$item.image_filename_3 w=120 h=120})"></a>({/if})
+({if $item.image_filename_1 || $item.image_filename_2 || $item.image_filename_3})
+
+({if $item.image_filename_1})<span class="padding_s"><a href="({t_img_url filename=$item.image_filename_1})" target="_blank"><img src="({t_img_url filename=$item.image_filename_1 w=120 h=120})"></a></span>({/if})
+({if $item.image_filename_2})<span class="padding_s"><a href="({t_img_url filename=$item.image_filename_2})" target="_blank"><img src="({t_img_url filename=$item.image_filename_2 w=120 h=120})"></a></span>({/if})
+({if $item.image_filename_3})<span class="padding_s"><a href="({t_img_url filename=$item.image_filename_3})" target="_blank"><img src="({t_img_url filename=$item.image_filename_3 w=120 h=120})"></a></span>({/if})
 <br>
 ({/if})
 
 ({$item.body|nl2br|t_url2cmd|t_cmd})
 
 </div>
+
 </td>
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
@@ -582,7 +579,7 @@
 ({*ここから：footer*})
 ({if $type == "h"})
 <!-- ここから：削除 -->
-<table border="0" cellspacing="0" cellpadding="0" style="width:526px;" class="border_01">
+<table border="0" cellspacing="0" cellpadding="0" style="width:524px;" class="border_01">
 ({*********})
 <tr>
 <td style="height:1px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>

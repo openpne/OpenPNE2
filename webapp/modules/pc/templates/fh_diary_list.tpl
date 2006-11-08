@@ -351,7 +351,7 @@
 <!-- ここから：主内容 -->
 ({if $diary_list_count >= $page_size })
 <!-- ここから：主内容＞＞件数表示終わり -->
-<table border="0" cellspacing="0" cellpadding="0" style="width:526px;" class="border_01">
+<table border="0" cellspacing="0" cellpadding="0" style="width:524px;" class="border_01">
 ({*********})
 <tr>
 <td style="width:524px;height:1px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
@@ -452,27 +452,21 @@
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 <td class="bg_02" align="left" valign="middle">
-<div style="padding:4px 3px;">
 
-({if $item.image_filename_1})
-<a href="({t_img_url filename=$item.image_filename_1})" target="_blank">
-<img src="({t_img_url filename=$item.image_filename_1 w=120 h=120})"></a>
-({/if})
-({if $item.image_filename_2})
-<a href="({t_img_url filename=$item.image_filename_2})" target="_blank">
-<img src="({t_img_url filename=$item.image_filename_2 w=120 h=120})"></a>
-({/if})
-({if $item.image_filename_3})
-<a href="({t_img_url filename=$item.image_filename_3})" target="_blank">
-<img src="({t_img_url filename=$item.image_filename_3 w=120 h=120})"></a>
-({/if})
+<div style="padding:4px 3px;" class="lh_120">
+
 ({if $item.image_filename_1||$item.image_filename_2||$item.image_filename_3})
-<br>
+<div>
+({if $item.image_filename_1})<span class="padding_s"><a href="({t_img_url filename=$item.image_filename_1})" target="_blank"><img src="({t_img_url filename=$item.image_filename_1 w=120 h=120})"></a></span>({/if})
+({if $item.image_filename_2})<span class="padding_s"><a href="({t_img_url filename=$item.image_filename_2})" target="_blank"><img src="({t_img_url filename=$item.image_filename_2 w=120 h=120})"></a></span>({/if})
+({if $item.image_filename_3})<span class="padding_s"><a href="({t_img_url filename=$item.image_filename_3})" target="_blank"><img src="({t_img_url filename=$item.image_filename_3 w=120 h=120})"></a></span>({/if})
+</div>
 ({/if})
 
 ({$item.body|t_truncate:"120"})
 
 </div>
+
 </td>
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
@@ -511,15 +505,15 @@
 <!-- ここまで：主内容＞＞日記表示 -->
 ({if $diary_list_count >= $page_size })
 <!-- ここから：主内容＞＞件数表示終わり -->
-<table border="0" cellspacing="0" cellpadding="0" style="width:526px;" class="border_01">
+<table border="0" cellspacing="0" cellpadding="0" style="width:524px;" class="border_01">
 ({*********})
 <tr>
-<td style="width:524px;height:1px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:522px;height:1px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({*********})
 <tr>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-<td style="width:522px;" class="bg_06" align="right" valign="middle">
+<td style="width:520px;" class="bg_06" align="right" valign="middle">
 <div style="padding:4px 3px;">
 
 ({if $is_prev})
@@ -542,7 +536,7 @@
 </tr>
 ({*********})
 <tr>
-<td style="width:524px;height:1px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:522px;height:1px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({*********})
 </table>
@@ -584,10 +578,10 @@
 <!-- *ここから：Blog一覧＞内容* -->
 ({*ここから：header*})
 <!-- ここから：小タイトル -->
-<table border="0" cellspacing="0" cellpadding="0" style="width:526px;" class="border_01">
+<table border="0" cellspacing="0" cellpadding="0" style="width:524px;" class="border_01">
 <tr>
 <td style="width:36px;" class="bg_06"><img src="({t_img_url_skin filename=content_header_1})" style="width:30px;height:20px;" class="dummy"></td>
-<td style="width:488px;padding:2px 0px;" class="bg_06"><span class="b_b c_00">
+<td style="width:486px;padding:2px 0px;" class="bg_06"><span class="b_b c_00">
 <a name="blog">
 ({if !$all})
 ({$target_member.nickname})({if $type == "f"})さん({/if})({$date_val.year})年({$date_val.month})月({if $date_val.day})({$date_val.day})日({/if})のBlog

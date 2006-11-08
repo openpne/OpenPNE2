@@ -281,12 +281,17 @@
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 <td class="bg_03" align="center" valign="middle" colspan="3">
 
-<div class="padding_w_m">
+<div class="padding_w_m" align="center">
 
-<div align="center" style="text-align:center;">
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td align="right" style="padding-right:6px;">
 <input type="submit" class="submit" value="　確認画面　">
+</td>
+<td align="left" style="padding-left:6px;">
 <input name="save" type="submit" class="submit" value="　下書き保存　">
-</div>
+</td>
+</table>
 
 </div>
 
