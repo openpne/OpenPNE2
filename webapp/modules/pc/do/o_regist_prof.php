@@ -38,7 +38,7 @@ class pc_do_o_regist_prof extends OpenPNE_Action
             $validator->addRequests($_REQUEST);
         }
         $validator->addRules($this->_getValidateRules());
-        if ($validator->validate()) {
+        if (!$validator->validate()) {
             $errors = $validator->getErrors();
         }
 
