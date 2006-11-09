@@ -993,7 +993,7 @@ function biz_insertTodo($member_id, $memo, $writer_id, $sort_order, $is_all)
         'is_check' => 0,
         'writer_id' => $writer_id,
         'sort_order' => $sort_order,
-        'r_datetime' => date("Y-m-d H:m"),
+        'r_datetime' => date("Y-m-d H:i"),
     );
     return db_insert('biz_todo', $data);
 }
@@ -1014,7 +1014,7 @@ function biz_editTodo($member_id, $memo, $writer_id, $sort_order, $is_all, $targ
         intval($member_id),
         $memo,
         intval($writer_id),
-        date("Y-m-d H:m"),
+        date("Y-m-d H:i"),
         $target,
     );
 
