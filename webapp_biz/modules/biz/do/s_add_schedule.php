@@ -11,17 +11,23 @@ class biz_do_s_add_schedule extends OpenPNE_Action
         $u = $GLOBALS['AUTH']->uid();
         $sessid = session_id();
 
+
+        // start_timeが指定されていない場合
         if (empty($requests['start_time'])) {
-            $begin_time = date("H:00:00");
+            $begin_time_str = date("H:00:00");
         } else {
-            $begin_time = $requests['start_time'].':00:00';
+        // start_timeが指定されている場合
+            $begin_time_str = $requests['start_time'].':00:00';
         }
 
-        $term = date("i", $begin_time) + $requests['finish_time'];
-        $finish_time = date("H:i:00", strtotime(date("Ymd H:".$term.":s", strtotime($begin_time))));
+        $begin_time = strtotime($begin_time_str);
+        $begin_time_english = date("H:i d M Y", $begin_time);
+
+        $finish_time = strtotime($begin_time_english . " +" . $requests['finish_time'] . " minute");
+        $finish_time_str = date("H:i:00", $finish_time);
 
         //終了時間と開始時間が変
-        if (strtotime($finish_time) < strtotime($begin_time)) {
+        if ($finish_time < $begin_time) {
             $p = array('msg' => '日をまたがる施設予約はできません');
             openpne_redirect('biz', 'page_s_list', $p);
         }
@@ -32,14 +38,13 @@ class biz_do_s_add_schedule extends OpenPNE_Action
         $m = date("m", strtotime($start_date));
         $d = date("d", strtotime($start_date));
 
-        if (!biz_isBatting($requests['shisetsu_id'], $y, $m, $d, $begin_time, $finish_time)) {
+        if (!biz_isBatting($requests['shisetsu_id'], $y, $m, $d, $begin_time_str, $finish_time_str)) {
             $p = array('msg' => '施設予約がバッティングしたため、登録ができませんでした');
             openpne_redirect('biz', 'page_s_list', $p);
-
         }
 
         //($shisetsu_id, $member_id, $date, $begin_time, $finish_time)
-        biz_addShisetsuSchedule($requests['shisetsu_id'], $u, $requests['start_date'], $begin_time, $finish_time);
+        biz_addShisetsuSchedule($requests['shisetsu_id'], $u, $requests['start_date'], $begin_time_str, $finish_time_str);
 
         $p = array(
             'msg' => '施設予定を追加しました',
