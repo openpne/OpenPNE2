@@ -27,7 +27,7 @@ class biz_do_s_add_schedule extends OpenPNE_Action
         $finish_time_str = date("H:i:00", $finish_time);
 
         //終了時間と開始時間が変
-        if ($finish_time < $begin_time) {
+        if (date("H", $finish_time) < date("H", $begin_time)) {
             $p = array('msg' => '日をまたがる施設予約はできません');
             openpne_redirect('biz', 'page_s_list', $p);
         }
