@@ -428,7 +428,7 @@ function db_common_delete_c_member($c_member_id)
 function db_common_delete_c_commu($c_commu_id)
 {
     //function cacheの削除
-    pne_cache_drop('p_c_home_c_commu4c_commu_id', $c_commu_id);
+    cache_drop_c_commu($c_commu_id);
 
     $single = array(intval($c_commu_id));
 

@@ -59,6 +59,16 @@ function db_diary_get_c_diary4id($c_diary_id)
  */
 function db_diary_get_c_diary_list4c_member_id($target_c_member_id, $count = 10, $u = null, $force = null)
 {
+    static $is_recurred = false;  //再帰処理中かどうかの判定フラグ
+
+    if (!$is_recurred) {  //function cacheのために再帰処理を行う
+        $is_recurred = true;
+        $funcargs = func_get_args();
+        return pne_cache_recursive_call(OPENPNE_FUNCTION_CACHE_LIFETIME_LONG, __FUNCTION__, $funcargs);
+    }
+
+    $is_recurred = false;
+
     $pf_cond = db_diary_public_flag_condition($target_c_member_id, $u, $force);
     $sql = 'SELECT * FROM c_diary WHERE c_member_id = ?' . $pf_cond .
            ' ORDER BY r_datetime DESC';
@@ -281,6 +291,16 @@ function p_h_diary_c_diary_first_diary_read4c_member_id($c_member_id)
  */
 function p_h_home_c_diary_friend_list4c_member_id($c_member_id, $limit)
 {
+    static $is_recurred = false;  //再帰処理中かどうかの判定フラグ
+
+    if (!$is_recurred) {  //function cacheのために再帰処理を行う
+        $is_recurred = true;
+        $funcargs = func_get_args();
+        return pne_cache_recursive_call(OPENPNE_FUNCTION_CACHE_LIFETIME_LONG, __FUNCTION__, $funcargs);
+    }
+
+    $is_recurred = false;
+
     $friends = db_friend_c_member_id_list($c_member_id, true);
     $ids = implode(',', array_map('intval', $friends));
 
@@ -309,6 +329,16 @@ function p_h_home_c_diary_friend_list4c_member_id($c_member_id, $limit)
  */
 function p_h_home_c_diary_my_comment_list4c_member_id($c_member_id, $limit)
 {
+    static $is_recurred = false;  //再帰処理中かどうかの判定フラグ
+
+    if (!$is_recurred) {  //function cacheのために再帰処理を行う
+        $is_recurred = true;
+        $funcargs = func_get_args();
+        return pne_cache_recursive_call(OPENPNE_FUNCTION_CACHE_LIFETIME_LONG, __FUNCTION__, $funcargs);
+    }
+
+    $is_recurred = false;
+
     $date = date('Y-m-d 00:00:00', strtotime('-15 days'));
 
     $blocked = db_member_access_block_list4c_member_id_to($c_member_id);

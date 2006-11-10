@@ -187,6 +187,16 @@ function db_friend_intro_list_with_my_intro4c_member_id($c_member_id)
  */
 function db_friend_c_friend_comment4c_member_id($c_member_id, $limit = 5)
 {
+    static $is_recurred = false;  //再帰処理中かどうかの判定フラグ
+
+    if (!$is_recurred) {  //function cacheのために再帰処理を行う
+        $is_recurred = true;
+        $funcargs = func_get_args();
+        return pne_cache_recursive_call(OPENPNE_FUNCTION_CACHE_LIFETIME_LONG, __FUNCTION__, $funcargs);
+    }
+
+    $is_recurred = false;
+
     $sql = "SELECT c_member_id_from AS c_member_id, intro FROM c_friend" .
             " WHERE c_member_id_to = ? AND intro <> ''" .
             " ORDER BY r_datetime_intro DESC";
@@ -222,6 +232,16 @@ function db_friend_c_friend4c_member_id_from4c_member_id_to($c_member_id_from,$c
  */
 function db_friend_c_friend_list4c_member_id($c_member_id, $limit = 0)
 {
+    static $is_recurred = false;  //再帰処理中かどうかの判定フラグ
+
+    if (!$is_recurred) {  //function cacheのために再帰処理を行う
+        $is_recurred = true;
+        $funcargs = func_get_args();
+        return pne_cache_recursive_call(OPENPNE_FUNCTION_CACHE_LIFETIME_LONG, __FUNCTION__, $funcargs);
+    }
+
+    $is_recurred = false;
+
     $sql = 'SELECT c_member_id_to AS c_member_id FROM c_friend' .
             ' WHERE c_member_id_from = ? ORDER BY RAND()';
     $params = array(intval($c_member_id));
@@ -298,6 +318,16 @@ function db_friend_anataga_c_friend_confirm_list4c_member_id($c_member_id_from)
 
 function db_friend_c_friend_intro_list4c_member_id($c_member_id, $limit)
 {
+    static $is_recurred = false;  //再帰処理中かどうかの判定フラグ
+
+    if (!$is_recurred) {  //function cacheのために再帰処理を行う
+        $is_recurred = true;
+        $funcargs = func_get_args();
+        return pne_cache_recursive_call(OPENPNE_FUNCTION_CACHE_LIFETIME_LONG, __FUNCTION__, $funcargs);
+    }
+
+    $is_recurred = false;
+
     $sql = 'SELECT * FROM c_friend' .
             ' WHERE c_member_id_to = ? AND intro <> \'\' ORDER BY RAND()';
     $params = array(intval($c_member_id));
@@ -665,8 +695,7 @@ function db_friend_delete_c_friend($c_member_id_from, $c_member_id_to)
 function db_friend_update_c_friend_intro($c_member_id_from, $c_member_id_to, $intro)
 {
     //function cacheを削除
-    pne_cache_drop('p_h_home_c_friend_intro_list4c_member_id', $c_member_id_to, 5);
-    pne_cache_drop('p_f_home_c_friend_comment4c_member_id', $c_member_id_to);
+    cache_drop_c_friend_intro($c_member_id_to);
 
     $data = array(
         'intro' => $intro,

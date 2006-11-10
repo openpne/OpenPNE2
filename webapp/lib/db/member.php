@@ -15,6 +15,16 @@
  */
 function db_member_c_member4c_member_id($c_member_id, $is_secure = false, $with_profile = false, $public_flag = 'public')
 {
+    static $is_recurred = false;  //再帰処理中かどうかの判定フラグ
+
+    if (!$is_recurred) {  //function cacheのために再帰処理を行う
+        $is_recurred = true;
+        $funcargs = func_get_args();
+        return pne_cache_recursive_call(OPENPNE_FUNCTION_CACHE_LIFETIME_LONG, __FUNCTION__, $funcargs);
+    }
+
+    $is_recurred = false;
+
     $sql = 'SELECT * FROM c_member WHERE c_member_id = ?';
     $params = array(intval($c_member_id));
     if (!$c_member = db_get_row($sql, $params))
@@ -411,6 +421,17 @@ function db_member_count_c_member_profile()
 
 function db_member_birth4c_member_id($month, $day, $c_member_id)
 {
+    static $is_recurred = false;  //再帰処理中かどうかの判定フラグ
+
+    if (!$is_recurred) {  //function cacheのために再帰処理を行う
+        $is_recurred = true;
+        $funcargs = func_get_args();
+        return pne_cache_recursive_call(OPENPNE_FUNCTION_CACHE_LIFETIME_LONG, __FUNCTION__, $funcargs);
+    }
+
+    $is_recurred = false;
+
+
     $sql = "SELECT c_member_id_to FROM c_friend WHERE c_member_id_from = ?";
     $params = array(intval($c_member_id));
     $ids = db_get_col($sql, $params);
@@ -453,6 +474,16 @@ function db_member_c_profile_option_list4c_profile_id($c_profile_id)
 
 function db_member_c_profile_list()
 {
+    static $is_recurred = false;  //再帰処理中かどうかの判定フラグ
+
+    if (!$is_recurred) {  //function cacheのために再帰処理を行う
+        $is_recurred = true;
+        $funcargs = func_get_args();
+        return pne_cache_recursive_call(OPENPNE_FUNCTION_CACHE_LIFETIME_LONG, __FUNCTION__, $funcargs);
+    }
+
+    $is_recurred = false;
+
     $list = db_member_c_profile_list4null();
 
     $profile_list = array();
@@ -785,9 +816,7 @@ function db_member_is_shinobiashi($c_member_id)
 function db_member_config_prof_new($c_member_id, $prof_list)
 {
     //function cacheの削除
-    pne_cache_drop('db_common_c_member4c_member_id', $c_member_id);
-    pne_cache_drop('db_common_c_member_with_profile', $c_member_id, 'friend');
-    pne_cache_drop('db_common_c_member_with_profile', $c_member_id, 'public');
+    cache_drop_c_member_profile($c_member_id);
 
     $data = array(
         'nickname' => $prof_list['nickname'],
@@ -818,9 +847,7 @@ function db_member_do_access($c_member_id)
 function db_member_config_image_new($c_member_id, $image_filename, $img_num)
 {
     //function cacheの削除
-    pne_cache_drop('db_common_c_member4c_member_id', $c_member_id);
-    pne_cache_drop('db_common_c_member_with_profile', $c_member_id, 'friend');
-    pne_cache_drop('db_common_c_member_with_profile', $c_member_id, 'public');
+    cache_drop_c_member_profile($c_member_id);
 
     $data = array('image_filename_'.intval($img_num) => $image_filename);
     $where = array('c_member_id' => intval($c_member_id));
@@ -833,9 +860,7 @@ function db_member_config_image_new($c_member_id, $image_filename, $img_num)
 function db_member_delete_c_member_image_new($c_member_id, $img_num)
 {
     //function cacheの削除
-    pne_cache_drop('db_common_c_member4c_member_id', $c_member_id);
-    pne_cache_drop('db_common_c_member_with_profile', $c_member_id, 'friend');
-    pne_cache_drop('db_common_c_member_with_profile', $c_member_id, 'public');
+    cache_drop_c_member_profile($c_member_id);
 
     $sql = 'UPDATE c_member SET';
     if ($img_num == 1) {
@@ -856,9 +881,7 @@ function db_member_delete_c_member_image_new($c_member_id, $img_num)
 function db_member_change_c_member_main_image($c_member_id, $img_num)
 {
     //function cacheの削除
-    pne_cache_drop('db_common_c_member4c_member_id', $c_member_id);
-    pne_cache_drop('db_common_c_member_with_profile', $c_member_id, 'friend');
-    pne_cache_drop('db_common_c_member_with_profile', $c_member_id, 'public');
+    cache_drop_c_member_profile($c_member_id);
 
     $sql = 'UPDATE c_member SET image_filename = image_filename_'.intval($img_num).
         ' WHERE c_member_id = ?';
@@ -872,9 +895,7 @@ function db_member_change_c_member_main_image($c_member_id, $img_num)
 function db_member_update_c_member_image($c_member_id, $image_filename, $img_num)
 {
     //function cacheの削除
-    pne_cache_drop('db_common_c_member4c_member_id', $c_member_id);
-    pne_cache_drop('db_common_c_member_with_profile', $c_member_id, 'friend');
-    pne_cache_drop('db_common_c_member_with_profile', $c_member_id, 'public');
+    cache_drop_c_member_profile($c_member_id);
 
     $data = array(
         'image_filename' => $image_filename,
@@ -904,9 +925,7 @@ function db_member_insert_c_member($c_member, $c_member_secure)
     $c_member_id = db_insert('c_member', $data);
 
     //function cacheの削除
-    pne_cache_drop('db_common_c_member4c_member_id', $c_member_id);
-    pne_cache_drop('db_common_c_member_with_profile', $c_member_id, 'friend');
-    pne_cache_drop('db_common_c_member_with_profile', $c_member_id, 'public');
+    cache_drop_c_member_profile($c_member_id);
 
     $data = array(
         'c_member_id' => intval($c_member_id),
@@ -1220,7 +1239,7 @@ function db_member_insert_c_member_ktai_pre($session, $ktai_address, $c_member_i
 function db_member_update_c_member_profile($c_member_id, $c_member_profile_list)
 {
     //function cache削除
-    pne_cache_drop('db_common_c_profile_list');
+    cache_drop_c_member_profile($c_member_id);
 
     foreach ($c_member_profile_list as $item) {
         $sql = 'DELETE FROM c_member_profile' .
@@ -1243,7 +1262,7 @@ function db_member_update_c_member_profile($c_member_id, $c_member_profile_list)
 function db_member_insert_c_member_profile($c_member_id, $c_profile_id, $c_profile_option_id, $value, $public_flag)
 {
     //function cache削除
-    pne_cache_drop('db_common_c_profile_list');
+    cache_drop_c_member_profile($c_member_id);
 
     $data = array(
         'c_member_id' => intval($c_member_id),

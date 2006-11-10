@@ -11,13 +11,13 @@ class pc_page_c_home extends OpenPNE_Action
         $u = $GLOBALS['AUTH']->uid();
         $c_commu_id = $requests['target_c_commu_id'];
 
-        $c_commu = pne_cache_call(OPENPNE_FUNCTION_CACHE_LIFETIME_LONG, 'p_c_home_c_commu4c_commu_id', $c_commu_id);
+        $c_commu = p_c_home_c_commu4c_commu_id($c_commu_id);
         //コミュニティの存在の有無
         if (!$c_commu) {
             openpne_redirect('pc', 'page_h_err_c_home');
         }
 
-        $inc_navi = pne_cache_call(OPENPNE_FUNCTION_CACHE_LIFETIME_LONG, 'fetch_inc_navi', 'c', $c_commu_id);
+        $inc_navi = fetch_inc_navi('c', $c_commu_id);
         $this->set('inc_navi', $inc_navi);
 
         $this->set('c_commu', $c_commu);
@@ -30,17 +30,17 @@ class pc_page_c_home extends OpenPNE_Action
         $this->set('is_receive_message', db_commu_is_receive_message($c_commu_id, $u));
 
         //コミュニティメンバー
-        $c_commu_member_list = pne_cache_call(OPENPNE_FUNCTION_CACHE_LIFETIME_LONG, 'p_c_home_c_commu_member_list4c_commu_id', $c_commu_id, 9);
+        $c_commu_member_list = p_c_home_c_commu_member_list4c_commu_id($c_commu_id, 9);
         $this->set('c_commu_member_list', $c_commu_member_list);
 
         //非公開コミュニティに管理者から招待されたかどうか
         $this->set('admin_invite', db_c_commu4c_admin_invite_id($c_commu_id, $u));
 
         //参加コミュニティの新着トピック書き込み
-        $new_topic_comment = pne_cache_call(OPENPNE_FUNCTION_CACHE_LIFETIME_LONG, 'p_c_home_new_topic_comment4c_commu_id', $c_commu_id, 7);
+        $new_topic_comment = p_c_home_new_topic_comment4c_commu_id($c_commu_id, 7);
         $this->set('new_topic_comment', $new_topic_comment);
         //参加コミュニティの新着イベント書き込み
-        $new_topic_comment_event = pne_cache_call(OPENPNE_FUNCTION_CACHE_LIFETIME_LONG, 'p_c_home_new_topic_comment4c_commu_id', $c_commu_id, 7, 1);
+        $new_topic_comment_event = p_c_home_new_topic_comment4c_commu_id($c_commu_id, 7, 1);
         $this->set('new_topic_comment_event', $new_topic_comment_event);
         //参加コミュニティの新着おすすめレビュー
         $this->set('new_commu_review', p_c_home_new_commu_review4c_commu_id($c_commu_id, 7));
