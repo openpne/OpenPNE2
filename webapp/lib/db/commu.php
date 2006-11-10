@@ -52,6 +52,16 @@ function db_commu_c_commu4c_commu_id2($c_commu_id)
  */
 function db_commu_c_commu4c_commu_id_k($c_commu_id)
 {
+    static $is_recurred = false;  //再帰処理中かどうかの判定フラグ
+
+    if (!$is_recurred) {  //function cacheのために再帰処理を行う
+        $is_recurred = true;
+        $funcargs = func_get_args();
+        return pne_cache_recursive_call(OPENPNE_FUNCTION_CACHE_LIFETIME_LONG, __FUNCTION__, $funcargs);
+    }
+
+    $is_recurred = false;
+
     if ($c_commu = _db_c_commu4c_commu_id($c_commu_id)) {
         $c_commu['count_member'] = _db_count_c_commu_member_list4c_commu_id($c_commu_id);
     }
@@ -1054,6 +1064,16 @@ function db_commu_c_commu_topic4c_commu_topic_id_2($c_commu_topic_id, $c_member_
 
 function db_commu_c_commu_list_lastupdate4c_member_id($c_member_id, $limit)
 {
+    static $is_recurred = false;  //再帰処理中かどうかの判定フラグ
+
+    if (!$is_recurred) {  //function cacheのために再帰処理を行う
+        $is_recurred = true;
+        $funcargs = func_get_args();
+        return pne_cache_recursive_call(OPENPNE_FUNCTION_CACHE_LIFETIME_LONG, __FUNCTION__, $funcargs);
+    }
+
+    $is_recurred = false;
+
     $sql = 'SELECT DISTINCT c.* FROM c_commu_member AS cm, c_commu AS c' .
             ' WHERE cm.c_member_id = ? AND c.c_commu_id = cm.c_commu_id' .
             ' ORDER BY RAND()';
@@ -1263,6 +1283,16 @@ function db_commu_relationship_between_member_commu($c_commu_id, $c_member_id)
  */
 function db_commu_c_commu_member_list_random4c_commu_id($c_commu_id, $limit)
 {
+    static $is_recurred = false;  //再帰処理中かどうかの判定フラグ
+
+    if (!$is_recurred) {  //function cacheのために再帰処理を行う
+        $is_recurred = true;
+        $funcargs = func_get_args();
+        return pne_cache_recursive_call(OPENPNE_FUNCTION_CACHE_LIFETIME_LONG, __FUNCTION__, $funcargs);
+    }
+
+    $is_recurred = false;
+
     $sql = "SELECT cm.c_member_id, cm.nickname ";
     $sql .= "FROM c_member AS cm , c_commu_member AS ccm ";
     $sql .= "WHERE ccm.c_commu_id = ?" .

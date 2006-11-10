@@ -77,6 +77,7 @@ function pne_cache_recursive_call($lifetime, $function, $funcarg)
 function cache_drop_c_member($c_member_id)
 {
     pne_cache_drop('db_friend_c_friend_list4c_member_id', $c_member_id, 9);  //フレンドリスト
+	pne_cache_drop('db_friend_c_friend_list_random4c_member_id', $c_member_id, 5);
     pne_cache_drop('p_h_home_c_diary_friend_list4c_member_id', $c_member_id, 5);  //最新日記フィード
 
     //誕生日フィード
@@ -98,6 +99,8 @@ function cache_drop_c_member($c_member_id)
  */
 function cache_drop_c_commu($c_commu_id)
 {
+    pne_cache_drop('db_commu_c_commu4c_commu_id_k',$c_commu_id);
+    pne_cache_drop('db_commu_c_commu_member_list_random4c_commu_id', $c_commu_id, 5);
     pne_cache_drop('db_commu_c_commu_member_list4c_commu_id', $c_commu_id, 9);
     pne_cache_drop('db_commu_c_commu4c_commu_id2', $c_commu_id);
 
@@ -125,6 +128,7 @@ function cache_drop_c_commu_topic($c_commu_topic_id)
  */
 function cache_drop_c_commu_list4c_member_id($c_member_id)
 {
+    pne_cache_drop('db_commu_c_commu_list_lastupdate4c_member_id', $c_member_id, 5);
     pne_cache_drop('db_commu_c_commu_list4c_member_id_3', $c_member_id, 9);
     pne_cache_drop('db_commu_c_commu_list4c_member_id_2', $c_member_id, 9);
 }

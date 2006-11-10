@@ -447,6 +447,16 @@ function db_friend_c_friend_list4c_member_id2($c_member_id)
  */
 function db_friend_c_friend_list_random4c_member_id($c_member_id, $limit)
 {
+    static $is_recurred = false;  //再帰処理中かどうかの判定フラグ
+
+    if (!$is_recurred) {  //function cacheのために再帰処理を行う
+        $is_recurred = true;
+        $funcargs = func_get_args();
+        return pne_cache_recursive_call(OPENPNE_FUNCTION_CACHE_LIFETIME_LONG, __FUNCTION__, $funcargs);
+    }
+
+    $is_recurred = false;
+
     $sql = "SELECT cf.* , cm.nickname";
     $sql .= " FROM c_friend AS cf, c_member AS cm";
     $sql .= " WHERE cf.c_member_id_from = ?" .
