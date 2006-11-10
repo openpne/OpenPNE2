@@ -131,7 +131,7 @@ function p_c_invite_invite_list4c_member_id4c_commu_id($c_member_id, $c_commu_id
 
 function p_c_member_list_c_members4c_commu_id($c_commu_id, $page_size, $page)
 {
-	return db_commu_c_members4c_commu_id($c_member_id, $c_commu_id);
+	return db_commu_c_members4c_commu_id($c_commu_id, $page_size,$page);
 }
 
 function p_f_home_c_commu_list4c_member_id($c_member_id, $limit = 9)
@@ -164,7 +164,7 @@ function p_h_home_c_commu_topic_comment_list4c_member_id($c_member_id, $limit)
 	return db_commu_c_commu_topic_comment_list4c_member_id($c_member_id, $limit);
 }
 
-function p_h_com_comment_list_c_commu_topic_comment_list4c_member_id($c_member_id, $limit,$page)
+function p_h_com_comment_list_c_commu_topic_comment_list4c_member_id($c_member_id, $limit, $page)
 {
 	return db_commu_c_commu_topic_comment_list4c_member_id_2($c_member_id, $limit,$page);
 }
@@ -194,12 +194,6 @@ function _db_common_c_commu_topic_comment4c_commu_topic_comment_id($c_commu_topi
 	return db_commu_c_commu_topic_comment4c_commu_topic_comment_id($c_commu_topic_comment_id);
 }
 
-/*
-function db_common_commu_status($u, $target_c_commu_id)
-{
-	return db_common_commu_status($u, $target_c_commu_id);
-}
-*/
 function _db_is_c_commu_member_confirm($c_member_id, $c_commu_id)
 {
 	return db_commu_is_c_commu_member_confirm($c_member_id, $c_commu_id);
@@ -293,7 +287,6 @@ function k_p_c_invite_c_friend_list_random4c_member_id4c_commu_id($c_member_id, 
 {
 	return db_commu_c_friend_list_random4c_member_id4c_commu_id($c_member_id, $c_commu_id, $limit);
 }
-
 
 function k_p_h_home_c_commu_topic_comment_list4c_member_id($c_member_id, $page_size, $page)
 {
