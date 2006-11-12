@@ -78,16 +78,19 @@ function admin_insert_c_image($upfile_obj, $filename)
 
 function admin_client_redirect($p, $msg = '', $tail = '')
 {
+    if (OPENPNE_ADMIN_URL) {
+        $url = OPENPNE_ADMIN_URL;
+    } else {
+        $url = openpne_gen_url_head('admin', 'page_' . $p, true);
+    }
+    if (need_ssl_param('admin', 'page_' . $p)) {
+        $tail .= 'ssl_param=1';
+    }
+
     $hash_tbl =& AdminHashTable::singleton();
 
     $m = ADMIN_MODULE_NAME;
     $p = $hash_tbl->hash($p);
-
-    if (OPENPNE_ADMIN_URL) {
-        $url = OPENPNE_ADMIN_URL;
-    } else {
-        $url = OPENPNE_URL;
-    }
 
     $url .= "?m=$m&a=page_$p";
     if ($tail) $url .= "&$tail";
