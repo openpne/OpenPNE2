@@ -382,7 +382,7 @@ function p_h_diary_comment_list_c_diary_my_comment_list4c_member_id($c_member_id
         $list[$key] += db_common_c_member4c_member_id_LIGHT($value['c_member_id']);
     }
 
-    $sql = 'SELECT COUNT(*)' .
+    $sql = 'SELECT COUNT(DISTINCT d.c_diary_id)' .
         ' FROM c_diary AS d' .
             ' INNER JOIN c_diary_comment AS dc USING (c_diary_id)' .
             ', c_diary_comment AS mydc' .
