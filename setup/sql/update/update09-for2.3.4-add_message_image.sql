@@ -1,1 +1,0 @@
-ALTER TABLE c_commu_member add `is_receive_message` int(11) NOT NULL default '1';

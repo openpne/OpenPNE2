@@ -1,1 +1,0 @@
-ALTER TABLE `c_sns_config` CHANGE `c_sns_config_id` `c_sns_config_id` INT( 11 ) NOT NULL AUTO_INCREMENT;

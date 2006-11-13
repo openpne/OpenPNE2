@@ -1,1 +1,0 @@
-ALTER TABLE `c_profile_pref` ADD INDEX `map_latitude_map_longitude` ( `map_latitude` , `map_longitude` ) ;
