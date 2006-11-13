@@ -32,6 +32,7 @@ class pc_page_o_regist_prof extends OpenPNE_Action
 
         $this->set('err_msg', $err_msg);
 
+        session_name('OpenPNEpcregist');
         @session_start();
         $this->set('profs', $_SESSION['prof']);
 
