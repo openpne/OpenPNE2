@@ -610,13 +610,18 @@ function validate_cond($requests)
 function do_admin_send_mail($c_member_id, $subject, $body)
 {
     $c_member = db_common_c_member4c_member_id($c_member_id, true);
-    $pc_address = $c_member['secure']['pc_address'];
+
+    if ($pc_address != "") {
+        $send_address = $c_member['secure']['pc_address'];
+    } else {
+        $send_address = $c_member['secure']['ktai_address'];;
+    }
 
     if (OPENPNE_MAIL_QUEUE) {
         //メールキューに蓄積
-        put_mail_queue($pc_address, $subject, $body);
+        put_mail_queue($send_address, $subject, $body);
     } else {
-        t_send_email($pc_address, $subject, $body);
+        t_send_email($send_address, $subject, $body);
     }
 }
 
