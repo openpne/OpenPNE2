@@ -97,6 +97,12 @@ $config->bind_default();
 ini_set('session.use_cookies', '1');
 ini_set('session.use_only_cookies', '1');
 
+$url = parse_url(OPENPNE_URL);
+if (substr($url['path'], -1) != '/') {
+    $url['path'] .= '/';
+}
+ini_set('session.cookie_path', $url['path']);
+
 // セッション情報をDBに保存
 OpenPNE_Auth::set_session_save_handler();
 

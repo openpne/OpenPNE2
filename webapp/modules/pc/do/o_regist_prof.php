@@ -31,6 +31,7 @@ class pc_do_o_regist_prof extends OpenPNE_Action
 
         $validator = new OpenPNE_Validator();
         if ($mode == 'register') {
+            session_name('OpenPNEpcregist');
             @session_start();
             $validator->addRequests($_SESSION['prof']);
             $requests['password2'] = $_SESSION['prof']['password'];
@@ -112,6 +113,7 @@ class pc_do_o_regist_prof extends OpenPNE_Action
         default:
             $prof['profile'] = $c_member_profile_list;
 
+            session_name('OpenPNEpcregist');
             @session_start();
             $_SESSION['prof'] = $_REQUEST;
 
@@ -119,6 +121,9 @@ class pc_do_o_regist_prof extends OpenPNE_Action
             openpne_forward('pc', 'page', 'o_regist_prof_confirm');
             exit;
         case 'register':
+            // delete cookie
+            setcookie(session_name(), '', time() - 3600, ini_get('session.cookie_path'));
+
             $pre = do_common_c_member_pre4sid($sid);
 
             // c_member, c_member_secure
