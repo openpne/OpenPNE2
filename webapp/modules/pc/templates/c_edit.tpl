@@ -226,8 +226,8 @@
 <td class="bg_02" align="left" valign="middle">
 
 <div class="padding_s">
-<input name="is_display_map" type="radio" value="1"({if $c_commu.is_display_map}) checked="checked"({/if})>表示する<br>
-<input name="is_display_map" type="radio" value="0"({if !$c_commu.is_display_map}) checked="checked"({/if})>表示しない
+<input name="is_display_map" type="radio" class="no_bg" value="1"({if $c_commu.is_display_map}) checked="checked"({/if})>表示する<br>
+<input name="is_display_map" type="radio" class="no_bg" value="0"({if !$c_commu.is_display_map}) checked="checked"({/if})>表示しない
 </div>
 
 </td>
