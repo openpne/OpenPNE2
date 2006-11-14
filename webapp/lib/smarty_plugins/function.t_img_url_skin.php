@@ -11,7 +11,11 @@ function smarty_function_t_img_url_skin($params, &$smarty)
     if (OPENPNE_IMG_URL) {
         $url = OPENPNE_IMG_URL;
     } else {
-        $url = OPENPNE_URL;
+        if (OPENPNE_USE_PARTIAL_SSL && is_ssl()) {
+            $url = OPENPNE_SSL_URL;
+        } else {
+            $url = OPENPNE_URL;
+        }
     }
 
     if (!$filename = db_get_c_skin_filename4skinname($p['filename'])) {
