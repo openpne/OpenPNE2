@@ -1029,7 +1029,14 @@ function db_member_update_c_member_pc_address4c_member_id($c_member_id, $pc_addr
 
 function db_member_update_ktai_address($c_member_id, $ktai_address)
 {
-    $data = array('ktai_address' => t_encrypt($ktai_address));
+    if ($ktai_address == ''){
+        $data = array(
+            'ktai_address' => t_encrypt($ktai_address),
+            'easy_access_id' => t_encrypt(''),
+        );
+    } else {
+        $data = array('ktai_address' => t_encrypt($ktai_address));
+    }
     $where = array('c_member_id' => intval($c_member_id));
     return db_update('c_member_secure', $data, $where);
 }
