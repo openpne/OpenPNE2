@@ -8,15 +8,15 @@
 ({t_form m=ktai_biz a=do_fhg_biz_schedule_add})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
 
-予定日：<input type="text" name='sc_b_year' size="2" value="({$now.year})">年
-		<input type="text" name='sc_b_month' size="2" value="({$now.month})">月
-		<input type="text" name='sc_b_date' size="2" value="({$now.day})">日<br>
+予定日：<input type="text" name='sc_b_year' size="2" value="({$now.year})" istyle="4" mode="numeric">年
+		<input type="text" name='sc_b_month' size="2" value="({$now.month})" istyle="4" mode="numeric">月
+		<input type="text" name='sc_b_date' size="2" value="({$now.day})" istyle="4" mode="numeric">日<br>
 		
-時刻：<input type="text" name='sc_b_hour' size="2">時
-	<input type="text" name='sc_b_minute' size="2">分
+時刻：<input type="text" name='sc_b_hour' size="2" istyle="4" mode="numeric">時
+	<input type="text" name='sc_b_minute' size="2" istyle="4" mode="numeric">分
 	～
-	<input type="text" name='sc_f_hour' size="2">時
-	<input type="text" name='sc_f_minute' size="2">分<br>
+	<input type="text" name='sc_f_hour' size="2" istyle="4" mode="numeric">時
+	<input type="text" name='sc_f_minute' size="2" istyle="4" mode="numeric">分<br>
 	
 ﾀｲﾄﾙ：<input type="text" name='sc_title' size="30"><br>
 
