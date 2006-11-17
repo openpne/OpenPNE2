@@ -611,10 +611,10 @@ function do_admin_send_mail($c_member_id, $subject, $body)
 {
     $c_member = db_common_c_member4c_member_id($c_member_id, true);
 
-    if ($pc_address != "") {
+    if ($c_member['secure']['pc_address']) {
         $send_address = $c_member['secure']['pc_address'];
     } else {
-        $send_address = $c_member['secure']['ktai_address'];;
+        $send_address = $c_member['secure']['ktai_address'];
     }
 
     if (OPENPNE_MAIL_QUEUE) {
