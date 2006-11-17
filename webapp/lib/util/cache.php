@@ -145,10 +145,23 @@ function cache_drop_c_friend_intro($c_member_id)
 
 /**
  * プロフィール取得のfunction cacheを削除する
+ * 旧関数名を呼んでいる限り引数の省略はないのでこれで暫定的な対応とする
  */
 function cache_drop_c_member_profile($c_member_id)
 {
-    pne_cache_drop(db_member_c_member4c_member_id, $c_member_id);
+    pne_cache_drop('db_member_c_member4c_member_id', $c_member_id);
+    pne_cache_drop('db_member_c_member4c_member_id', $c_member_id, false, false, 'public');
+    pne_cache_drop('db_member_c_member4c_member_id', $c_member_id, false, false, 'friend');
+    pne_cache_drop('db_member_c_member4c_member_id', $c_member_id, false, false, 'private');
+    pne_cache_drop('db_member_c_member4c_member_id', $c_member_id, false, true, 'public');
+    pne_cache_drop('db_member_c_member4c_member_id', $c_member_id, false, true, 'friend');
+    pne_cache_drop('db_member_c_member4c_member_id', $c_member_id, false, true, 'private');
+    pne_cache_drop('db_member_c_member4c_member_id', $c_member_id, true, false, 'public');
+    pne_cache_drop('db_member_c_member4c_member_id', $c_member_id, true, false, 'friend');
+    pne_cache_drop('db_member_c_member4c_member_id', $c_member_id, true, false, 'private');
+    pne_cache_drop('db_member_c_member4c_member_id', $c_member_id, true, true, 'public');
+    pne_cache_drop('db_member_c_member4c_member_id', $c_member_id, true, true, 'friend');
+    pne_cache_drop('db_member_c_member4c_member_id', $c_member_id, true, true, 'private');
     pne_cache_drop('db_member_c_profile_list');
 }
 
