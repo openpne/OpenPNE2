@@ -29,7 +29,7 @@ function pne_cache_call()
 
     if (OPENPNE_USE_FUNCTION_CACHE) {
         $cache =& get_cache_lite_function();
-        $cache->setOption('lifetime', intval($lifetime));
+        $cache->setOption('lifeTime', intval($lifetime));
         return call_user_func_array(array(&$cache, 'call'), $arg_list);
     } else {
         $function = array_shift($arg_list);
@@ -57,12 +57,10 @@ function pne_cache_drop()
  */
 function pne_cache_recursive_call($lifetime, $function, $funcarg)
 {
-    $backtrace = debug_backtrace();
-
     if (OPENPNE_USE_FUNCTION_CACHE) {
         array_unshift($funcarg, $function);
         $cache =& get_cache_lite_function();
-        $cache->setOption('lifetime', intval($lifetime));
+        $cache->setOption('lifeTime', intval($lifetime));
         return call_user_func_array(array(&$cache, 'call'), $funcarg);
     } else {
         return call_user_func_array($function, $funcarg);

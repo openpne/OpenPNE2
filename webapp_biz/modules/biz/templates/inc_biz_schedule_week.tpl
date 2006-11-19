@@ -208,13 +208,6 @@
 
 ({* スケジュール(時間有) *})
 ({foreach from=$item.schedule item=item_schedule name=schedule})
-
-({* 時刻変数の初期化 *})
-({assign var="begin_time_H" value=null})
-({assign var="begin_time_M" value=null})
-({assign var="finish_time_H" value=null})
-({assign var="finish_time_M" value=null})
-
 	({if !$item_schedule.begin_time})  <!-- 時間指定なしの予定 -->
 	({elseif $cmd == 's_list'})
 ({assign var="begin_time_H" value=$item_schedule.begin_time|date_format:"%H"})
