@@ -1,0 +1,1 @@
+ALTER TABLE `biz_shisetsu` ADD `info` TEXT NOT NULL;
