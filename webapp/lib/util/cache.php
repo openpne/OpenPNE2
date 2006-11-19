@@ -119,8 +119,9 @@ function cache_drop_c_commu($c_commu_id)
  */
 function cache_drop_c_commu_topic($c_commu_topic_id)
 {
-    pne_cache_drop('p_c_home_new_topic_comment4c_commu_id', $c_commu_topic_id, 7);
-    pne_cache_drop('p_c_home_new_topic_comment4c_commu_id', $c_commu_topic_id, 7, 1);
+    pne_cache_drop('db_commu_new_topic_comment4c_commu_id', $c_commu_topic_id, 7);
+    pne_cache_drop('db_commu_new_topic_comment4c_commu_id', $c_commu_topic_id, 7, 0);
+    pne_cache_drop('db_commu_new_topic_comment4c_commu_id', $c_commu_topic_id, 7, 1);
 }
 
 /**
