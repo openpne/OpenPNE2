@@ -28,7 +28,7 @@ class biz_do_s_add_shisetsu extends OpenPNE_Action
 
         t_image_clear_tmp(session_id());
 
-        biz_addShisetsu($requests['name'], $filename);
+        biz_addShisetsu($requests['name'], $filename, $requests['info']);
 
         $p = array('msg' => '施設を追加しました');
         openpne_redirect('biz', 'page_s_list', $p);

@@ -916,7 +916,7 @@ function biz_joinGroup($member_id, $group_id)
 }
 
 //施設追加
-function biz_addShisetsu($name, $image_name)
+function biz_addShisetsu($name, $image_name, $info = '')
 {
     if (!$image_name) {
         $image_name = '0';
@@ -925,21 +925,23 @@ function biz_addShisetsu($name, $image_name)
     $data = array(
         'name' => $name,
         'image_filename' => $image_name,
+        'info' => $info,
     );
     db_insert('biz_shisetsu', $data);
 }
 
 //施設編集
-function biz_editShisetsu($id, $name, $image_name)
+function biz_editShisetsu($id, $name, $image_name, $info = '')
 {
     if (!$image_name) {
         $image_name = 0;
     }
 
-    $sql = 'UPDATE `biz_shisetsu` SET `name` = ?,`image_filename` = ? WHERE `biz_shisetsu_id` = ?';
+    $sql = 'UPDATE `biz_shisetsu` SET `name` = ?,`image_filename` = ?, `info` = ? WHERE `biz_shisetsu_id` = ?';
     $params = array(
         $name,
         $image_name,
+        $info,
         intval($id),
     );
     db_query($sql, $params);

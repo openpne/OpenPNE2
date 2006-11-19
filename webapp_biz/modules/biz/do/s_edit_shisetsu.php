@@ -37,7 +37,7 @@ class biz_do_s_edit_shisetsu extends OpenPNE_Action
 
         t_image_clear_tmp(session_id());
 
-        biz_editShisetsu($id, $requests['name'], $filename);
+        biz_editShisetsu($id, $requests['name'], $filename, $requests['info']);
 
         $p = array('msg' => '施設を編集しました');
         openpne_redirect('biz', 'page_s_list', $p);

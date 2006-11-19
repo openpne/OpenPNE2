@@ -77,6 +77,14 @@
 <td style="width:36px;" class="bg_06"><img src="./skin/content_header_1.gif" style="width:30px;height:20px;" class="dummy"></td>
 <td style="width:666px;padding:2px 0px;" class="bg_06"><span class="b_b c_00">({$list.name})</span></td>
 </tr>
+({if $list.info})
+<tr>
+<td class="border_01 bg_02" align="left" style="width:10px;border-right:none;"><img src="./skin/dummy.gif" style="width:9px;height:10px;" class="dummy"></td>
+<td class="border_01 bg_02 padding_ss" style="border-left:none;" align="left">
+({$list.info})
+</td>
+</tr>
+({/if})
 </table>
 </div>
 
