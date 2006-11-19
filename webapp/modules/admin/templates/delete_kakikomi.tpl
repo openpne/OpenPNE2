@@ -51,6 +51,45 @@ ID：<input type="text" name="target_c_diary_id" value="({$requests.target_c_dia
 
 <hr>
 
+({* 日記コメント *})
+<h3>日記コメント</h3>
+<div class="caution">
+日記コメントで表示しているIDを入力してください<br>
+</div>
+<form action="./" method="get">
+<p>
+<input type="hidden" name="m" value="({$module_name})">
+<input type="hidden" name="a" value="page_({$hash_tbl->hash('delete_kakikomi')})">
+ID：<input type="text" name="target_c_diary_comment_id" value="({$requests.target_c_diary_comment_id})" size="6">
+<input type="submit" class="submit" value="確認">
+</p>
+</form>
+
+({if $c_diary_comment})
+<table>
+<tr>
+<th>本文</th>
+<td style="width:360px">({$c_diary_comment.body|t_url2a|nl2br})</td>
+</tr>
+<tr>
+<th>URL</th>
+<td><a href="({t_url _absolute=1 m=pc a=page_fh_diary})&amp;target_c_diary_id=({$c_diary_comment.c_diary_id})" target="_blank">URL</a></td>
+</tr>
+<form action="./" method="post">
+<tr>
+<th><input type="hidden" name="sessid" value="({$PHPSESSID})">
+<input type="hidden" name="m" value="({$module_name})">
+<input type="hidden" name="a" value="do_({$hash_tbl->hash('delete_kakikomi_c_diary_comment','do')})">
+<input type="hidden" name="target_c_diary_comment_id" value="({$c_diary_comment.c_diary_id})">
+&nbsp;</th>
+<td><input type="submit" class="submit" value="削除する"></td>
+</tr>
+</form>
+</table>
+({/if})
+
+<hr>
+
 ({* コミュニティ *})
 <h3>コミュニティ</h3>
 <div class="caution">
@@ -137,5 +176,43 @@ ID：<input type="text" name="target_c_commu_topic_id" value="({$requests.target
 </form>
 </table>
 ({/if})
+<hr>
+({* トピックコメント *})
+<h3>トピックコメント</h3>
+<div class="caution">
+トピックコメントで表示しているIDを入力してください<br>
+</div>
+<form action="./" method="get">
+<p>
+<input type="hidden" name="m" value="({$module_name})">
+<input type="hidden" name="a" value="page_({$hash_tbl->hash('delete_kakikomi')})">
+ID：<input type="text" name="target_c_commu_topic_comment_id" value="({$requests.target_c_commu_topic_comment_id})" size="6">
+<input type="submit" class="submit" value="確認">
+</p>
+</form>
+
+({if $c_commu_topic_comment})
+<table>
+<tr>
+<th>本文</th>
+<td style="width:360px">({$c_commu_topic_comment.body|t_url2a|nl2br})</td>
+</tr>
+<tr>
+<th>URL</th>
+<td><a href="({t_url _absolute=1 m=pc a=page_c_topic_detail})&amp;target_c_commu_topic_id=({$c_commu_topic_comment.c_commu_topic_id})" target="_blank">URL</a></td>
+</tr>
+<form action="./" method="post">
+<tr>
+<th><input type="hidden" name="sessid" value="({$PHPSESSID})">
+<input type="hidden" name="m" value="({$module_name})">
+<input type="hidden" name="a" value="do_({$hash_tbl->hash('delete_kakikomi_c_commu_topic_comment','do')})">
+<input type="hidden" name="target_c_commu_topic_comment_id" value="({$c_commu_topic_comment.c_commu_topic_comment_id})">
+&nbsp;</th>
+<td><input type="submit" class="submit" value="削除する"></td>
+</tr>
+</form>
+</table>
+({/if})
+<br><br>
 
 ({$inc_footer|smarty:nodefaults})

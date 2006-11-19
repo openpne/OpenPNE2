@@ -1,0 +1,33 @@
+<?php
+/**
+ * @copyright 2005-2006 OpenPNE Project
+ * @license   http://www.php.net/license/3_01.txt PHP License 3.01
+ */
+
+class admin_page_access_analysis_day extends OpenPNE_Action
+{
+    function execute($requests)
+    {
+	//----------リクエスト変数-------------//
+	$ktai_flag = $requests['ktai_flag'];
+	$ymd = $requests['ymd'];
+	//----------リクエスト変数-------------//
+	
+	$this->set("inc_header" ,analysis_fetch_inc_header("TOP>>".SNS_NAME."管理ページ"));
+	$this->set("inc_footer" ,analysis_fetch_inc_footer());
+	$this->set('SNS_NAME', SNS_NAME);
+	
+	//-------------ここから元ソース---------------//
+	$this->set("ktai_flag" ,$ktai_flag);
+	$this->set("item_str", ($ktai_flag ? "携帯":"PC"));
+
+	$access_analysis_day = p_access_analysis_day_access_analysis_day($ymd, $ktai_flag);
+	$this->set("access_analysis_day", $access_analysis_day);
+	
+	//-------------ここまで元ソース---------------//
+
+        return 'success';
+    }
+}
+
+?>
