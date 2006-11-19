@@ -285,7 +285,7 @@ define('OPENPNE_IMG_JPEG_QUALITY', 75);
 define('USE_IMAGEMAGICK', false);
 
 // ImageMagick の convertコマンドのパス
-//define('IMGMAGICK_APP', '/usr/bin/convert');
+define('IMGMAGICK_APP', '/usr/bin/convert');
 //define('IMGMAGICK_APP', '"C:\Program Files\ImageMagick-6.2.5-Q16\convert"');
 
 // ImageMagick のオプション(デフォルトは -resize)
