@@ -22,8 +22,11 @@ function db_ranking_c_ashiato_ranking($limit = 10)
 function db_ranking_c_friend_ranking($limit = 10)
 {
     $sql = 'SELECT c_member_id_to as c_member_id, count(*) as count' .
-        ' FROM c_friend' .
-        ' GROUP BY c_member_id_to' .
+        ' FROM c_friend';
+    if (!IS_CLOSED_SNS) {
+      $sql .= ' WHERE c_member_id_to != 1';
+    }
+    $sql .= ' GROUP BY c_member_id_to' .
         ' ORDER BY count DESC';
     return db_get_all_limit($sql, 0, $limit);
 }
