@@ -556,7 +556,7 @@ function do_c_event_edit_update_c_commu_topic($c_commu_topic_id, $topic)
 
 function do_c_event_edit_update_c_commu_topic_comment($c_commu_topic_id, $topic_comment)
 {
-	return db_commu_update_c_commu_topic_comment($c_commu_topic_id, $topic);
+	return db_commu_update_c_commu_topic_comment($c_commu_topic_id, $topic_comment);
 }
 
 function do_c_event_edit_delete_c_commu_topic_comment_image($c_commu_topic_id, $image_num)
