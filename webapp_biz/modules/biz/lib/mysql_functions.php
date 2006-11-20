@@ -1139,31 +1139,6 @@ function biz_deleteShisetsuImage($id, $filename)
     biz_deleteImage($filename);
 }
 
-function biz_insertState($member_id, $state)
-{
-    $data = array(
-        'member_id' => intval($member_id),
-        'state' => $state,
-    );
-    return db_insert('biz_state', $data);
-}
-
-function biz_changeState($member_id, $new)
-{
-    $state = biz_getState($member_id);
-
-    if (!$state) {
-        //新規作成
-        $result = biz_insertState($member_id, $new);
-    } else {
-        $sql = 'UPDATE `biz_state` SET `state` = ? WHERE `member_id` = ?';
-        $params = array($new, intval($member_id));
-        $result = db_query($sql, $params);
-    }
-
-    return $result;
-}
-
 function biz_changeNickname($member_id, $new)
 {
     $sql = 'UPDATE `c_member` SET `nickname` = ? WHERE `c_member_id` = ?';

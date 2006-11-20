@@ -62,12 +62,6 @@ CREATE TABLE `biz_shisetsu_schedule` (
   PRIMARY KEY  (`biz_shisetsu_schedule_id`)
 ) TYPE=MyISAM ;
 
-CREATE TABLE `biz_state` (
-  `biz_state_id` int(11) NOT NULL auto_increment,
-  `member_id` int(11) NOT NULL,
-  `state` text,
-  PRIMARY KEY  (`biz_state_id`)
-) TYPE=MyISAM ;
 
 CREATE TABLE `biz_todo` (
   `biz_todo_id` int(11) NOT NULL auto_increment,
