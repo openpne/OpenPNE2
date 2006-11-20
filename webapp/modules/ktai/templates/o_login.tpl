@@ -8,6 +8,18 @@
 ({/if})
 <br>
 
+({t_form _attr='utn' m=ktai a=do_o_easy_login})
+<input type="hidden" name="login_params" value="({$requests.login_params})">
+({if $ktai_address})
+<input type="hidden" name="ktai_address" value="({$ktai_address})">
+({/if})
+★かんたんログイン<br>
+<input type="submit" value="ログイン"><br>
+<a href="({t_url m=ktai a=page_o_whatis_easy_login})">&gt;&gt;かんたんﾛｸﾞｲﾝとは</a>
+</form>
+
+<br>
+
 ({t_form m=ktai a=do_o_login})
 <input type="hidden" name="login_params" value="({$requests.login_params})">
 ({if $ktai_address})
@@ -19,17 +31,6 @@
 ★パスワード<br>
 <input name="password" type="text" istyle="3" mode="alphabet" value=""><br>
 <input name="submit" value="ログイン" type="submit"><br>
-</form>
-<br>
-
-({t_form _attr='utn' m=ktai a=do_o_easy_login})
-<input type="hidden" name="login_params" value="({$requests.login_params})">
-({if $ktai_address})
-<input type="hidden" name="ktai_address" value="({$ktai_address})">
-({/if})
-★かんたんログイン<br>
-<input type="submit" value="ログイン"><br>
-<a href="({t_url m=ktai a=page_o_whatis_easy_login})">&gt;&gt;かんたんﾛｸﾞｲﾝとは</a>
 </form>
 
 <br>

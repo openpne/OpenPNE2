@@ -24,8 +24,12 @@ class ktai_page_h_home extends OpenPNE_Action
         $this->set('c_diary_friend_list', p_h_home_c_diary_friend_list4c_member_id($u, 5));
         //参加コミュニティリスト
         $this->set('c_commu_list', k_p_h_home_c_commu_list_lastupdate4c_member_id($u, 5));
+        //参加コミュニティの数
+        $this->set('fh_com_count_user',p_common_count_c_commu4c_member_id($u));
         //フレンドリスト
         $this->set('c_friend_list', k_p_h_home_c_friend_list_random4c_member_id($u, 5));
+        //フレンドの数
+        $this->set('c_friend_count', db_friend_count_friends($u));
 
         //参加コミュニティの新着書き込み
         $this->set('c_commu_topic_list', p_h_home_c_commu_topic_comment_list4c_member_id($u, 5));
