@@ -49,7 +49,8 @@
 ◆<a href="({t_url m=ktai a=page_h_ranking})&amp;({$tail})">ﾗﾝｷﾝｸﾞ</a><br>
 ◆<a href="({t_url m=ktai a=page_fh_intro})&amp;({$tail})">紹介文</a><br>
 ◆<a href="({t_url m=ktai a=page_h_ashiato})&amp;({$tail})">あしあと</a><br>
-<hr id="news">
+<hr>
+<a name="news">新着ﾘｽﾄ</a>
 ({if $c_diary_friend_list})
 <font color="green">[({$WORD_FRIEND_HALF})最新日記]</font><br>
 ({foreach from=$c_diary_friend_list item=item})
@@ -102,8 +103,9 @@
 <a href="#top">→このﾍﾟｰｼﾞの先頭へ戻る</a><br>
 ({/if})
 
-<hr id="config">
-■設定変更<br>
+<hr>
+<a name="config">■設定変更</a>
+<br>
 ├<a href="({t_url m=ktai a=page_h_config_prof})&amp;({$tail})">ﾌﾟﾛﾌｨｰﾙ</a><br>
 ├<a href="({t_url m=ktai a=page_h_config_image})&amp;({$tail})">写真</a><br>
 └<a href="({t_url m=ktai a=page_h_config})&amp;({$tail})">その他</a><br>

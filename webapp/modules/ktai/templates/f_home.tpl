@@ -103,6 +103,7 @@
 
 <hr>
 <a name="news">新着リスト</a>
+<br>
 ({if $c_diary_list})
 <font color="green">[日記]</font><br>
 ({foreach from=$c_diary_list item=c_diary})

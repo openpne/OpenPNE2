@@ -26,7 +26,7 @@
 現在、({$WORD_FRIEND_HALF})承認待ちです<br>
 <br>
 ({/if})
-<a href="#menu" accesskey="1">1.ﾒﾆｭｰ</a>({if ($relation.friend||$target_c_member.public_flag_diary=="public")&&$c_diary_list})|<a href="#news" accesskey="2">2.新着リスト</a>({/if})|<a href="#intro">3.自己紹介</a>
+<a href="#menu" accesskey="1">1.ﾒﾆｭｰ</a>({if ($relation.friend||$target_c_member.public_flag_diary=="public")&&$c_diary_list})|<a href="#news" accesskey="2">2.新着リスト</a>({/if})|<a href="#intro" accesskey="3">3.ﾌﾟﾛﾌｨｰﾙ</a>
 <hr>
 ({strip})
 ({capture name="birth"})
@@ -85,7 +85,9 @@
 ({/if})
 ({/strip})
 
-<hr id="menu">
+<hr>
+<a name="menu">ﾒﾆｭｰ</a>
+<br>
 ◆<a href="({t_url m=ktai_biz a=page_fh_calendar_week})&amp;target_id=({$target_c_member.c_member_id})&amp;({$tail})">週間ｶﾚﾝﾀﾞｰ</a><br>
 ◆<a href="({t_url m=ktai a=page_f_message_send})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">ﾒｯｾｰｼﾞを送る</a><br>
 ◆<a href="({t_url m=ktai a=do_f_bookmark_add_insert_c_bookmark})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">お気に入りに追加</a><br>
@@ -100,7 +102,9 @@
 ({/if})
 ({/if})
 
-<hr id="news">
+<hr>
+<a name="news">新着リスト</a>
+<br>
 ({if $c_diary_list})
 <font color="green">[日記]</font><br>
 ({foreach from=$c_diary_list item=c_diary})
@@ -125,7 +129,9 @@
 <a href="({t_url m=ktai a=page_fh_com_list})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">→すべて表示</a><br>
 <a href="#top">→このﾍﾟｰｼﾞの先頭へ戻る</a>
 
-<hr id="intro">
+<hr>
+<a name="intro">ﾌﾟﾛﾌｨｰﾙ</a>
+<br>
 ({foreach from=$target_c_member.profile key=key item=item})
 ({if $item.form_type == 'textarea'})
 <font color="green">[({$item.caption})]</font><br>
