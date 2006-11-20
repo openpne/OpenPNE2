@@ -19,8 +19,8 @@ class admin_page_access_analysis_target_diary extends OpenPNE_Action
 		$orderby1 = $requests['orderby1'];
 	   	$orderby2 = $requests['orderby2'];
 		//----------リクエスト変数-------------//
-		$this->set("inc_header" ,analysis_fetch_inc_header("TOP>>".SNS_NAME."管理ページ"));
-		$this->set("inc_footer" ,analysis_fetch_inc_footer());
+		$this->set("inc_header" ,admin_fetch_inc_header("TOP>>".SNS_NAME."管理ページ"));
+		$this->set("inc_footer" ,admin_fetch_inc_footer());
 		$this->set('SNS_NAME', SNS_NAME);
 
         $v = array();
