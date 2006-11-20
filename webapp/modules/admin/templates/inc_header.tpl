@@ -33,18 +33,24 @@
 ({/if})
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('send_invites')})" title="SNS招待メール送信: 複数のメールアドレス宛に招待メールを送信">SNS招待メール送信</a></li>
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_image')})" title="画像リスト・管理: SNSに登録されている画像の一覧、登録、削除">画像リスト・管理</a></li>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('diary_list')})">日記管理</a></li>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('diary_comment_list')})">日記コメント管理</a></li>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('topic_list')})">トピック・イベント管理</a></li>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('topic_comment_list')})">トピック・イベントのコメント管理</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('diary_list')})" title="日記管理">日記管理</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('diary_comment_list')})" title="日記コメント管理">日記コメント管理</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('topic_list')})" title="トピック・イベント管理">トピック・イベント管理</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('topic_comment_list')})" title="トピック・イベントのコメント管理">トピック・イベントのコメント管理</a></li>
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('delete_kakikomi')})" title="書き込み管理: 日記、コミュニティ、コミュニティトピックの強制削除">書き込み削除</a></li>
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('manage_c_commu')})" title="初期コミュニティ管理: 新規登録時に参加させるコミュニティの設定">初期コミュニティ管理</a></li>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('user_analysis_generation')})">世代別ユーザー表示</a></li>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('user_analysis_date_month')})">登録日別ユーザー表示（月次集計）</a></li>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('user_analysis_date_day')})">登録日別ユーザー表示（日次集計）</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('user_analysis_generation')})" title="世代別ユーザー表示">世代別ユーザー表示</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('user_analysis_date_month')})" title="登録日別ユーザー表示（月次集計）">登録日別ユーザー表示（月次集計）</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('user_analysis_date_day')})" title="登録日別ユーザー表示（日次集計）">登録日別ユーザー表示（日次集計）</a></li>
 ({foreach from=$profile_list item=item})
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('user_analysis_profile')})&target_c_profile_id=({$item.c_profile_id})">({$item.caption})別ユーザー表示</a></li>
 ({/foreach})
+
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('access_analysis_month')})&ktai_flag=0" title="PCページ（月次集計）">PCページ月次集計</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('access_analysis_month')})&ktai_flag=1" title="携帯ページ（月次集計）">携帯ページ月次集計</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('user_analysis')})">ユーザ数解析</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('csv_download')})">CSVダウンロード</a></li>
+
 </ul>
 ({/if})
 
