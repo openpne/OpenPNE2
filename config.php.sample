@@ -281,8 +281,11 @@ define('OPENPNE_IMG_CACHE_PREFIX', 'img_cache_');
 // 画像変換後のJPEGのQUALITY値
 define('OPENPNE_IMG_JPEG_QUALITY', 75);
 
-// ImageMagickを使う(ただし、GDも必要)
-define('USE_IMAGEMAGICK', false);
+// ImageMagick使用設定
+// 0: off ... ImageMagickを使わない
+// 1: on  ... GIFのみImageMagickを使う
+// 2: on  ... JEPG,PNG,GIFにImageMagickを使う(ただし、GDも必要)
+define('USE_IMAGEMAGICK', 0);
 
 // ImageMagick の convertコマンドのパス
 define('IMGMAGICK_APP', '/usr/bin/convert');
