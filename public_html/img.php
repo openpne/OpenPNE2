@@ -35,7 +35,27 @@ $options = array(
     'jpeg_quality' => OPENPNE_IMG_JPEG_QUALITY,
 );
 
-if (defined('USE_IMAGEMAGICK') && USE_IMAGEMAGICK) {
+if (defined('USE_IMAGEMAGICK')) {
+    switch (USE_IMAGEMAGICK) {
+        case 0:
+        $use_IM = false;
+        break;
+        case 1:
+        $pieces = explode('.', $_GET['filename']);
+        $source_format = OpenPNE_Img::check_format(array_pop($pieces));
+        $use_IM = ($source_format == 'gif');
+        break;
+        case 2:
+        $use_IM = true;
+        break;
+        default:
+        exit;
+    }
+} else {
+	$use_IM = false;
+}
+
+if ($use_IM) {
     require_once 'OpenPNE/Img/ImageMagick.php';
     $img =& new OpenPNE_Img_ImageMagick($options);
 } else {
