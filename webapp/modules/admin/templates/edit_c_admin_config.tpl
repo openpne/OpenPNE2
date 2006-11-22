@@ -242,9 +242,17 @@
 ({/literal})
 </td>
 </tr>
-
 <tr><td colspan="2" style="padding:0;background:#000"><img src="skin/dummy.gif" height="1"></td></tr>
 
+<tr>
+<th>Yahoo天気／Googleの使用欄</th>
+<td>
+<input name="USE_EXTRA_SERVICE" type="radio" value="0"({if !$smarty.const.USE_EXTRA_SERVICE}) checked="checked"({/if})>使用しない<br>
+<input name="USE_EXTRA_SERVICE" type="radio" value="1"({if $smarty.const.USE_EXTRA_SERVICE}) checked="checked"({/if})>使用する<br>
+</td>
+</tr>
+
+<tr><td colspan="2" style="padding:0;background:#000"><img src="skin/dummy.gif" height="1"></td></tr>
 
 <tr>
 <th>&nbsp;</th>

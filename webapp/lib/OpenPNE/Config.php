@@ -37,6 +37,8 @@ class OpenPNE_Config
             'AFFILIATE_TAG',
             'UNUSED_MAILS',
             'DISPLAY_OPENPNE_INFO',
+            'USE_EXTRA_SERVICE',
+
         );
     }
 
