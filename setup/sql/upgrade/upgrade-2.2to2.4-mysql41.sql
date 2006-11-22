@@ -125,8 +125,13 @@ ADD `caption` varchar(100)  NOT NULL,
 ADD `symbol` TEXT NOT NULL;
 
 UPDATE `c_sns_config` SET 
-bg_11 = 'C1C6CF',bg_12 = 'FFFFFF',bg_13 = 'E9EAF0',caption = '戻す',symbol='E9EAF0'
+caption = '戻す',symbol='E9EAF0'
 WHERE c_sns_config_id=1;
+
+
+UPDATE c_sns_config SET `bg_11` = (SELECT value FROM `c_admin_config` WHERE name = 'SKIN_BG_11') WHERE  c_sns_config_id=1;
+UPDATE c_sns_config SET `bg_12` = (SELECT value FROM `c_admin_config` WHERE name = 'SKIN_BG_12') WHERE  c_sns_config_id=1;
+UPDATE c_sns_config SET `bg_13` = (SELECT value FROM `c_admin_config` WHERE name = 'SKIN_BG_13') WHERE  c_sns_config_id=1;
 
 INSERT INTO `c_sns_config` VALUES
 (2,'red',    'FFFFFF','DCAA9D','FFFFFF','FFFFFF','FFFFFF','FFFFFF','FFFFFF','DCAA9D','FFFFFF','FFFFFF','FFFFFF','FFFFFF','DCAA9D','FFFFFF','FFFFFF','DCAA9D','FFFFFF','DCAA9D','DCAA9D','FFFFFF','FFFFFF','DCAA9D','E5A6A6','FFFFFF','FAE1DB','赤','E66161'),
@@ -179,3 +184,5 @@ UPDATE c_diary INNER JOIN c_member USING (c_member_id) SET c_diary.public_flag =
 
 -- update15
 INSERT INTO `c_admin_config` values (NULL,'OPENPNE_ENABLE_ROLLOVER',0);
+
+INSERT INTO `c_admin_config` values (NULL,'OPENPNE_USE_FLASH_LIST',0);
