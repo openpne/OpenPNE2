@@ -63,7 +63,7 @@
 ({/if})
 <font color="green">[ｺﾐｭﾆﾃｨﾒﾝﾊﾞｰ](({$c_commu.count_member}))</font><br>
 ({foreach from=$c_commu_member_list item=c_commu_member })
-　<a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$c_commu_member.c_member_id})&amp;({$tail})">({$c_commu_member.nickname})<br>
+　<a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$c_commu_member.c_member_id})&amp;({$tail})">({$c_commu_member.nickname})</a><br>
 ({/foreach})
 <a href="({t_url m=ktai a=page_c_member_list})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">→全て表示</a><br>
 

@@ -70,6 +70,13 @@ class ktai_page_h_home extends OpenPNE_Action
         // 誕生日かどうか
         $this->set('birthday_flag', p_h_home_birthday_flag4c_member_id($u));
 
+        if (MAIL_ADDRESS_HASHED) {
+            $mail_address = "b{$u}-".t_get_user_hash($u)."@".MAIL_SERVER_DOMAIN;
+        } else {
+            $mail_address = "blog"."@".MAIL_SERVER_DOMAIN;
+        }
+        $this->set('blog_address', $mail_address);
+        
         return 'success';
     }
 }
