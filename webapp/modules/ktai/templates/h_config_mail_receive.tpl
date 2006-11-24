@@ -2,7 +2,7 @@
 
 <center><font color="orange">メール受信設定</font></center>
 <hr>
-新着メッセージの通知などを登録携帯メールアドレスにお知らせします。 <br>
+新着ﾒｯｾｰｼﾞの通知などを登録携帯メールアドレスにお知らせします。 <br>
 <br>
 ({t_form m=ktai a=do_h_config_mail_receive_update_mail_receive})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">

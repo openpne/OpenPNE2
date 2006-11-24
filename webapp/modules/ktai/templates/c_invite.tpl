@@ -19,13 +19,13 @@
 </select>
 <br>
 ﾒｯｾｰｼﾞ<br>
-<textarea name="body">「({$c_commu.name})」コミュニティに入ってみました。よかったら一緒にどうですか？</textarea><br>
+<textarea name="body">「({$c_commu.name})」ｺﾐｭﾆﾃｨに入ってみました。よかったら一緒にどうですか？</textarea><br>
 <input type="submit" value="送信">
 </form>
 
 ※ｺﾐｭﾆﾃｨ管理人から紹介した場合には、承認制のｺﾐｭﾆﾃｨにも承認無しで参加できます。<br>
 <br>
-※送信先の選択肢はランダムとなっています。送りたいﾒﾝﾊﾞｰがﾘｽﾄに表示されなかった場合、
+※送信先の選択肢はﾗﾝﾀﾞﾑとなっています。送りたいﾒﾝﾊﾞｰがﾘｽﾄに表示されなかった場合、
 <a href="({t_url m=ktai a=page_c_invite})&amp;target_c_commu_id=({$target_c_commu_id})&amp;({$tail})">ここ</a>を押して画面を更新してください
 ({else})
 紹介できる({$WORD_MY_FRIEND_HALF})がいません。

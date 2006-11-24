@@ -1,6 +1,6 @@
 ({$inc_ktai_header|smarty:nodefaults})
 
-メッセージBOX<br>
+ﾒｯｾｰｼﾞBOX<br>
 <hr>
 
 ({$c_message.r_datetime|date_format:"%y/%m/%d %H:%M"})<br>

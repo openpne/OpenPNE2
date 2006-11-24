@@ -42,9 +42,9 @@
 ({if $c_commu_topic.image_filename3})画像：[<a href="({t_img_url filename=$c_commu_topic.image_filename3 w=120 h=120 f=jpg})">小</a>/<a href="({t_img_url filename=$c_commu_topic.image_filename3 f=jpg})">大</a>]<br>({/if})
 ({$c_commu_topic.r_datetime|date_format:"%m/%d %H:%M"})<br>
 
-<a href="({t_url m=ktai a=page_c_event_member_list})&amp;target_c_commu_topic_id=({$c_commu_topic.c_commu_topic_id})&amp;({$tail})">参加者リスト</a><br>
+<a href="({t_url m=ktai a=page_c_event_member_list})&amp;target_c_commu_topic_id=({$c_commu_topic.c_commu_topic_id})&amp;({$tail})">参加者ﾘｽﾄ</a><br>
 ({if $is_c_event_admin})
-<a href="({t_url m=ktai a=page_c_event_mail})&amp;target_c_commu_topic_id=({$c_commu_topic.c_commu_topic_id})&amp;({$tail})">一括メッセージを送る</a><br>
+<a href="({t_url m=ktai a=page_c_event_mail})&amp;target_c_commu_topic_id=({$c_commu_topic.c_commu_topic_id})&amp;({$tail})">一括ﾒｯｾｰｼﾞを送る</a><br>
 ({/if})
 ({if $is_c_event_admin || $is_admin})
 <a href="({t_url m=ktai a=page_c_event_edit})&amp;target_c_commu_topic_id=({$c_commu_topic_id})&amp;({$tail})">編集</a><br>
@@ -96,17 +96,17 @@
 ({if $c_commu_topic.event_flag})
 ({if !$is_c_event_admin})
 ({if !$is_c_event_member})
-<input name="join_event" type="submit" value="イベントに参加する"><br>
+<input name="join_event" type="submit" value="ｲﾍﾞﾝﾄに参加する"><br>
 ({else})
-<input name="cancel_event" type="submit" value="参加をキャンセルする"><br>
+<input name="cancel_event" type="submit" value="参加をｷｬﾝｾﾙする"><br>
 ({/if})
 ({/if})
-<input name="write_comment" type="submit" value="コメントのみ書き込む">
+<input name="write_comment" type="submit" value="ｺﾒﾝﾄのみ書き込む">
 ({else})
 <input type="submit" value="書き込む">
 ({/if})
 </form>
-<a href="mailto:({$mail_address})">メール投稿</a><br>
+<a href="mailto:({$mail_address})">ﾒｰﾙ投稿</a><br>
 画像も添付できます。
 ({/if})
 ({/if})

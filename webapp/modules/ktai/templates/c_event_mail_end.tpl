@@ -1,6 +1,6 @@
 ({$inc_ktai_header|smarty:nodefaults})
 
-<center><font color="orange">一括メッセージ</font></center>
+<center><font color="orange">一括ﾒｯｾｰｼﾞ</font></center>
 <hr>
 
 送信が完了しました。

@@ -1,6 +1,6 @@
 ({$inc_ktai_header|smarty:nodefaults})
 
-<center><font color="orange">一括メッセージ</font></center>
+<center><font color="orange">一括ﾒｯｾｰｼﾞ</font></center>
 <hr>
 
 ({if $c_event_member_list})
@@ -12,12 +12,12 @@
 <input type="checkbox" name="c_member_id[]" value="({$c_member.c_member_id})" checked="checked">
 <a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$c_member.c_member_id})&amp;({$tail})">({$c_member.nickname})</a><br>
 ({/foreach})
-メッセージ<br>
+ﾒｯｾｰｼﾞ<br>
 <textarea name="body"></textarea><br>
 <input type="submit" value="確認画面">
 </form>
 ({else})
-送信するメンバーがいません。
+送信するﾒﾝﾊﾞｰがいません。
 ({/if})
 
 <hr>

@@ -102,7 +102,7 @@
 ({/if})
 
 <hr>
-<a name="news">新着リスト</a>
+<a name="news">新着ﾘｽﾄ</a>
 <br>
 ({if $c_diary_list})
 <font color="green">[日記]</font><br>

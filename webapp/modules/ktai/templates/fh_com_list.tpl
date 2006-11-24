@@ -1,6 +1,6 @@
 ({$inc_ktai_header|smarty:nodefaults})
 
-<center><font color="orange">参加コミュニティリスト(({$count_commus}))</font></center>
+<center><font color="orange">参加ｺﾐｭﾆﾃｨﾘｽﾄ(({$count_commus}))</font></center>
 <hr>
 
 ({foreach from=$c_commu_list item=c_commu})
