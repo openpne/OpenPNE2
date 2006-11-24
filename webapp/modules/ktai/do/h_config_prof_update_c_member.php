@@ -110,6 +110,7 @@ class ktai_do_h_config_prof_update_c_member extends OpenPNE_Action
                 );
                 switch ($profile['form_type']) {
                 case 'text':
+                case 'textlong':
                 case 'textarea':
                     $rule['type'] = $profile['val_type'];
                     $rule['regexp'] = $profile['val_regexp'];

@@ -63,9 +63,14 @@
 <label><input type="radio" name="disp_search" value="0"({if !$c_profile.disp_search}) checked="checked"({/if})>表示しない</label></td>
 </tr>
 <tr>
+<th>説明</th>
+<td><input type="text" name="info" value="({$c_profile.info})" size="30"></td>
+</tr>
+<tr>
 <th>フォームタイプ</th>
 <td><select name="form_type">
 <option value="text"({if $c_profile.form_type == 'text'}) selected="selected"({/if})>テキスト</option>
+<option value="textlong"({if $c_profile.form_type == 'textlong'}) selected="selected"({/if})>テキスト(長)</option>
 <option value="textarea"({if $c_profile.form_type == 'textarea'}) selected="selected"({/if})>テキスト(複数行)</option>
 <option value="select"({if $c_profile.form_type == 'select'}) selected="selected"({/if})>単一選択(プルダウン)</option>
 <option value="radio"({if $c_profile.form_type == 'radio'}) selected="selected"({/if})>単一選択(ラジオボタン)</option>
@@ -74,7 +79,7 @@
 </tr>
 <tr>
 <td colspan="2" class="caution" style="background-color:#ddd;color:#000;padding-left:1em;">以下の項目はフォームタイプが<br>
-「テキスト」、「テキスト(複数行)」の場合のみ有効です。</td>
+「テキスト」、「テキスト(長)」、「テキスト(複数行)」の場合のみ有効です。</td>
 </tr>
 <tr>
 <th>入力値タイプ</th>

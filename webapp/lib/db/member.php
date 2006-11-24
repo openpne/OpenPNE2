@@ -259,7 +259,7 @@ function db_member_search($cond, $cond_like, $page_size, $page, $c_member_id, $p
         $sql .= " WHERE c_profile_id = ? AND public_flag = 'public'";
         $params = array(intval($value['c_profile_id']));
 
-        if ($value['form_type'] == "text" || $value['form_type'] == 'textarea') {
+        if ($value['form_type'] == "text" || $value['form_type'] == "textlong" || $value['form_type'] == 'textarea') {
             $sql .= " AND value LIKE ?";
             $params[] = '%'.$value['value'].'%';
         } elseif (is_array($value['c_profile_option_id'])) {
@@ -724,6 +724,7 @@ function db_member_check_profile($profile_list, $public_flag_list)
 
         switch ($c_profile['form_type']) {
         case 'text':
+        case 'textlong':
         case 'textarea':
             $value = $v;
             $c_profile_option_id = 0;

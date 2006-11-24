@@ -24,6 +24,7 @@ class admin_do_update_c_profile extends OpenPNE_Action
         db_admin_update_c_profile($requests['c_profile_id'],
             $requests['name'],
             $requests['caption'],
+            $requests['info'],
             $requests['is_required'],
             $requests['public_flag_edit'],
             $requests['public_flag_default'],

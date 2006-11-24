@@ -21,6 +21,7 @@ class admin_do_insert_c_profile extends OpenPNE_Action
         db_admin_insert_c_profile(
             $requests['name'],
             $requests['caption'],
+            $requests['info'],
             $requests['is_required'],
             $requests['public_flag_edit'],
             $requests['public_flag_default'],

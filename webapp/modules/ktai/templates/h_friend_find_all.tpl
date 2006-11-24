@@ -60,7 +60,7 @@
     <option value="({$item.c_profile_option_id})"({if $item.c_profile_option_id == $profiles[$profile.name].c_profile_option_id}) selected({/if})>({$item.value})
     ({/foreach})
     </select>
-({elseif $profile.form_type == 'text' || $profile.form_type == 'textarea'})
+({elseif $profile.form_type == 'text' || $profile.form_type == 'textlong' || $profile.form_type == 'textarea'})
     <input name="profile[({$profile.name})]" type="text" value="({$profiles[$profile.name].value})">
 ({/if})
 <br>

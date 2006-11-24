@@ -235,6 +235,8 @@
 ({strip})
 ({if $profile.form_type == 'text'})
     <input type="text" size="30" name="profile[({$profile.name})]" value="({$c_member.profile[$profile.name].value})">
+({elseif $profile.form_type == 'textlong'})
+    <input type="text" size="60" name="profile[({$profile.name})]" value="({$c_member.profile[$profile.name].value})">
 ({elseif $profile.form_type == 'textarea'})
     <textarea name="profile[({$profile.name})]" rows="6" cols="50">({$c_member.profile[$profile.name].value})</textarea>
 ({elseif $profile.form_type == 'select'})
@@ -268,6 +270,9 @@
     ({/foreach})
     ({if $_cnt % 3 != 0})</tr>({/if})
     </table>
+({/if})
+({if $profile.info})
+<br><span class="caution">({$profile.info})</span>
 ({/if})
 ({/strip})
 

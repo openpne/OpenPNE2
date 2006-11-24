@@ -148,6 +148,7 @@ function db_admin_delete_c_image4c_banner_id($c_banner_id)
 function db_admin_insert_c_profile(
     $name
     , $caption
+    , $info
     , $is_required
     , $public_flag_edit
     , $public_flag_default
@@ -165,6 +166,7 @@ function db_admin_insert_c_profile(
     $data = array(
         'name' => $name,
         'caption' => $caption,
+        'info' => $info,
         'is_required' => (bool)$is_required,
         'public_flag_edit' => (bool)$public_flag_edit,
         'public_flag_default' => $public_flag_default,
@@ -184,6 +186,7 @@ function db_admin_insert_c_profile(
 function db_admin_update_c_profile($c_profile_id
     , $name
     , $caption
+    , $info
     , $is_required
     , $public_flag_edit
     , $public_flag_default
@@ -201,6 +204,7 @@ function db_admin_update_c_profile($c_profile_id
     $data = array(
         'name' => $name,
         'caption' => $caption,
+        'info' => $info,
         'is_required' => (bool)$is_required,
         'public_flag_edit' => (bool)$public_flag_edit,
         'public_flag_default' => $public_flag_default,
@@ -932,7 +936,6 @@ function p_access_analysis_target_commu_target_commu4ym_page_name
 function p_access_analysis_target_topic_target_topic4ym_page_name
 ($ymd, $month_flag, $page_name, $ktai_flag, $page, $page_size, $orderby=1)
 {
-    
     $start = ($page - 1) * $page_size;
     
     if ($orderby == 1) {
@@ -967,7 +970,7 @@ function p_access_analysis_target_topic_target_topic4ym_page_name
 
     $return = array();
     $sum = 0;
-    foreach($list as $key => $value) {
+    foreach ($list as $key => $value) {
         if ($value['target_c_commu_topic_id']) {
             $c_commu_topic = c_topic_detail_c_topic4c_commu_topic_id($value['target_c_commu_topic_id']);
             $c_commu_topic['topic_name'] = $c_commu_topic['name'];
@@ -982,19 +985,19 @@ function p_access_analysis_target_topic_target_topic4ym_page_name
         $total_page_num =  ceil($total_num / $page_size);
         if ($page >= $total_page_num) {
             $next = false;
-        }else{
+        } else {
             $next = true;
         }
         if ($page <= 1) {
             $prev = false;
-        }else{
+        } else {
             $prev = true;
         }
     }
     $start_num = ($page - 1) * $page_size + 1 ;
     $end_num =   ($page - 1) * $page_size + $page_size > $total_num ? $total_num : ($page - 1) * $page_size + $page_size ;
 
-    return array($return, $sum, $prev, $next, $total_num, $start_num, $end_num);    
+    return array($return, $sum, $prev, $next, $total_num, $start_num, $end_num);
 }
 
 function p_access_analysis_target_diary_target_diary4ym_page_name
@@ -1016,15 +1019,15 @@ function p_access_analysis_target_diary_target_diary4ym_page_name
     $sql = "select target_c_diary_id , count(*) as count from c_access_log where ktai_flag = ? ";
     $params = array(intval($ktai_flag));
     if ($month_flag) {
-            $sql .= " and left(r_datetime, 7) = ? ";
-            array_push($params,substr($ymd,0,7));
+        $sql .= " and left(r_datetime, 7) = ? ";
+        array_push($params,substr($ymd,0,7));
     } else {
-            $sql .= " and left(r_datetime,10) = ? ";
-            array_push($params,$ymd);
+        $sql .= " and left(r_datetime,10) = ? ";
+        array_push($params,$ymd);
     }
     if ($page_name!="all") {
-            $sql .= " and page_name = ? ";
-            array_push($params,$page_name);
+        $sql .= " and page_name = ? ";
+        array_push($params,$page_name);
     }
     $sql .= " and target_c_diary_id <> 0 ";
     $sql .= " group by target_c_diary_id " . $orderby_str. " limit $start, $page_size";

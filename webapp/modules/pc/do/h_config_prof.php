@@ -31,7 +31,6 @@ class pc_do_h_config_prof extends OpenPNE_Action
 
         // 値の整合性をチェック(DB)
         $c_member_profile_list = do_config_prof_check_profile($validator->getParams(), $_REQUEST['public_flag']);
-
         // 必須項目チェック
         $profile_list = db_common_c_profile_list4null();
         foreach ($profile_list as $profile) {
@@ -130,6 +129,7 @@ class pc_do_h_config_prof extends OpenPNE_Action
                 );
                 switch ($profile['form_type']) {
                 case 'text':
+                case 'textlong':
                 case 'textarea':
                     $rule['type'] = $profile['val_type'];
                     $rule['regexp'] = $profile['val_regexp'];

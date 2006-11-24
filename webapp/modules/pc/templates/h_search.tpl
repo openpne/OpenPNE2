@@ -141,7 +141,7 @@
     <input type="checkbox" name="profile[({$profile.name})][]" value="({$item.c_profile_option_id})">({$item.value})
     ({/foreach})
     *})
-({elseif $profile.form_type == 'text' || $profile.form_type == 'textarea'})
+({elseif $profile.form_type == 'text' || $profile.form_type == 'textlong' || $profile.form_type == 'textarea'})
     <input name="profile[({$profile.name})]" size="30" type="text">
 ({/if})
 
