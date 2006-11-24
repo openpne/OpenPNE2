@@ -39,7 +39,12 @@
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('topic_comment_list')})" title="トピック・イベントのコメント管理">トピック・イベントのコメント管理</a></li>
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('delete_kakikomi')})" title="書き込み管理: 日記、コミュニティ、コミュニティトピックの強制削除">書き込み削除</a></li>
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('manage_c_commu')})" title="初期コミュニティ管理: 新規登録時に参加させるコミュニティの設定">初期コミュニティ管理</a></li>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('user_analysis_generation')})" title="世代別ユーザー表示">世代別ユーザー表示</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('user_analysis_generation')})" title="世代別ユーザー表示"></ul>
+
+<p>SNS統計情報</p>
+
+<ul>
+世代別ユーザー表示</a></li>
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('user_analysis_date_month')})" title="登録日別ユーザー表示（月次集計）">登録日別ユーザー表示（月次集計）</a></li>
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('user_analysis_date_day')})" title="登録日別ユーザー表示（日次集計）">登録日別ユーザー表示（日次集計）</a></li>
 ({foreach from=$profile_list item=item})
@@ -48,7 +53,6 @@
 
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('access_analysis_month')})&ktai_flag=0" title="PCページ（月次集計）">PCページ月次集計</a></li>
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('access_analysis_month')})&ktai_flag=1" title="携帯ページ（月次集計）">携帯ページ月次集計</a></li>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('user_analysis')})">ユーザ数解析</a></li>
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('csv_download')})">CSVダウンロード</a></li>
 
 </ul>

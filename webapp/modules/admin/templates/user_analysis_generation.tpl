@@ -1,5 +1,4 @@
 ({$inc_header|smarty:nodefaults})
-({$inc_user_analysis_navi|smarty:nodefaults})
 <br>
 
 <h2>世代別ユーザー表示</h2>

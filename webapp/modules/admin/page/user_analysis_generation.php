@@ -15,9 +15,9 @@ class admin_page_user_analysis_generation extends OpenPNE_Action
         $v['SNS_NAME'] = SNS_NAME;
         $v['OPENPNE_VERSION'] = OPENPNE_VERSION;
         $this->set($v);
-	$analysis_generation = get_analysis_generation();
-	$this->set("analysis_generation", $analysis_generation);
-	$this->set("analysis_generation_sum", array_sum($analysis_generation));
+        $analysis_generation = get_analysis_generation();
+        $this->set("analysis_generation", $analysis_generation);
+        $this->set("analysis_generation_sum", array_sum($analysis_generation));
 
         return 'success';
     }
