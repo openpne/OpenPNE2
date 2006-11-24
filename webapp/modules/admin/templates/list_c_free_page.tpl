@@ -1,5 +1,5 @@
 ({$inc_header|smarty:nodefaults})
-<h2>フリーページ一覧</h2>
+<h2>フリーページ管理</h2>
 ({if $msg})
 <p class="caution">({$msg})</p>
 ({/if})
