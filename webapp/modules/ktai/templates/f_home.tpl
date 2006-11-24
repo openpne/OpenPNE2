@@ -5,11 +5,11 @@
 
 ({if $days_birthday == 0})({* 誕生日当日 *})
 <a href="({t_url m=ktai a=page_f_message_send})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">☆Happy Birthday☆
-<br>お誕生日にメッセージを送りましょう</a>
+<br>お誕生日にﾒｯｾｰｼﾞを送りましょう</a>
 <hr>
 ({elseif $days_birthday <= 3})({* 誕生日3日以内 *})
 <a href="({t_url m=ktai a=page_f_message_send})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">☆もうすぐ誕生日です！☆
-<br>お誕生日にはメッセージを送りましょう</a>
+<br>お誕生日にはﾒｯｾｰｼﾞを送りましょう</a>
 <hr>
 ({/if})
 
@@ -26,7 +26,7 @@
 現在、({$WORD_FRIEND_HALF})承認待ちです<br>
 <br>
 ({/if})
-<a href="#menu" accesskey="1">1.ﾒﾆｭｰ</a>({if ($relation.friend||$target_c_member.public_flag_diary=="public")&&$c_diary_list})|<a href="#news" accesskey="2">2.新着リスト</a>({/if})|<a href="#intro" accesskey="3">3.ﾌﾟﾛﾌｨｰﾙ</a>
+<a href="#menu" accesskey="1">1.ﾒﾆｭｰ</a>({if ($relation.friend||$target_c_member.public_flag_diary=="public")&&$c_diary_list})|<a href="#news" accesskey="2">2.新着ﾘｽﾄ</a>({/if})|<a href="#intro" accesskey="3">3.ﾌﾟﾛﾌｨｰﾙ</a>
 <hr>
 ({strip})
 ({capture name="birth"})
