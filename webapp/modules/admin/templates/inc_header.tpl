@@ -51,8 +51,10 @@
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('user_analysis_profile')})&target_c_profile_id=({$item.c_profile_id})">({$item.caption})別ユーザー表示</a></li>
 ({/foreach})
 
+({if $smarty.const.LOG_C_ACCESS_LOG})
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('access_analysis_month')})&ktai_flag=0" title="PCページ（月次集計）">PCページ月次集計</a></li>
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('access_analysis_month')})&ktai_flag=1" title="携帯ページ（月次集計）">携帯ページ月次集計</a></li>
+({/if})
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('csv_download')})">CSVダウンロード</a></li>
 
 </ul>
