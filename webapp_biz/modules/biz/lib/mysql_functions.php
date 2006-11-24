@@ -1190,4 +1190,36 @@ function ktai_biz_openpne_redirect($module, $action = '', $params = array())
     client_redirect_absolute($url);
 }
 
+//------------------------------
+//mail
+
+/**
+ * スケジュール通知メールを送信する
+ */
+function biz_do_common_send_schedule_mail()
+{
+    $y = date("Y");
+    $m = date("m");
+    $d = date("d");
+    $c_schedule_list = biz_getDateSchedule($y, $m, $d);
+
+    $send_list = array();
+    foreach ($c_schedule_list as $schedule_id) {
+        $value = biz_getScheduleInfo($schedule_id);
+        $c_member_id = $value['c_member_id'];
+        $send_list[$c_member_id][] = $value;
+    }
+
+    foreach ($send_list as $key => $value) {
+        $c_member_secure = db_common_c_member_secure4c_member_id($key);
+        $pc_address = $c_member_secure['pc_address'];
+
+        $params = array(
+            "c_member" => db_common_c_member4c_member_id_LIGHT($key),
+            "c_schedule_list" => $value,
+        );
+        var_dump($pc_address, $params);
+        fetch_send_mail($pc_address, 'm_pc_schedule_mail', $params);
+    }
+}
 ?>
