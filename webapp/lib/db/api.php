@@ -50,4 +50,17 @@ function db_api_update_token($c_member_id)
     return $token;
 }
 
+function get_api_sessionid($c_member_id)
+{
+    if (!$c_member_id) {
+        return;
+    }
+    // Session
+    $api_token = OPENPNE_API_TOKEN;
+    $c_member_token = db_api_get_member_token($c_member_id);
+    $datetime=date("YmdHis");
+    $api_session_id = md5($api_token . $c_member_id . $c_member_token . $datetime)."&mid=".$c_member_id."&dt=".$datetime;
+    return $api_session_id;
+}
+
 ?>

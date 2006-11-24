@@ -118,6 +118,9 @@ class pc_page_h_home extends OpenPNE_Action
             $this->set('bookmark_count', db_bookmark_count($u));
         }
 
+        // API用セッションID
+        $this->set('api_session_id', get_api_sessionid($u));
+
         // アクセス日時を記録
         p_common_do_access($u);
 
