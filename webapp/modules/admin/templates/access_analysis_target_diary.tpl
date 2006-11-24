@@ -1,8 +1,10 @@
 ({$inc_header|smarty:nodefaults})
 
-<b>({$item_str})<br>
-({if $month_flag})({$ymd|date_format:"%Y年%m月分"})({else})({$ymd|date_format:"%Y年%m月%d日分"})({/if})　
-({$page_name})</b>
+<h2>({$item_str}) 日記別アクセス数表示<br>
+({if $month_flag})({$ymd|date_format:"%Y年%m月分"})({else})({$ymd|date_format:"%Y年%m月%d日分"})({/if})
+</h2>
+<br>
+({$page_name})
 
 <br><br>
 
@@ -10,8 +12,6 @@
 &nbsp;&nbsp;({$start_num})件～({$end_num})件を表示&nbsp;&nbsp;
 ({if $is_next})<a href="?m=admin&a=page_access_analysis_target_diary&ktai_flag=({$ktai_flag})&ymd=({$ymd})&month_flag=({$month_flag})&page_name=({$page_name})&orderby=({$orderby})&direc=1&page=({$page})">次を表示＞</a>({/if})
 <br>
-({*---------target_diary-------------*})
-target_c_diary_id<br>
 <table border="1" cellspacing="0" cellpadding="5">
 <th><a href="?m=admin&a=page_access_analysis_target_diary&ktai_flag=({$ktai_flag})&ymd=({$ymd})&month_flag=({$month_flag})&page_name=({$page_name})&orderby1=({$orderby1})">ID</a></th>
 <th>タイトル</th>

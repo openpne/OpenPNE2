@@ -74,8 +74,9 @@ function db_admin_update_c_sns_config($data)
 
 function db_admin_delete_c_profile_option($c_profile_option_id)
 {
-    if (!$c_profile_option_id) return false;
-
+    if (!$c_profile_option_id) {
+        return false;
+    }
     $sql = 'DELETE FROM c_member_profile WHERE c_profile_option_id = ?';
     $params = array(intval($c_profile_option_id));
     db_query($sql, $params);
@@ -696,138 +697,151 @@ function admin_fetch_send_mail($address, $tpl_name, $params = array(), $force = 
 
 function db_access_analysis_c_admin_user_id4username($username)
 {
-	$sql = "SELECT c_admin_user_id FROM c_admin_user" .
-		" WHERE username = ?";
-	$params = array($username);
-	return db_get_one($sql,$params);
+    $sql = "SELECT c_admin_user_id FROM c_admin_user" .
+        " WHERE username = ?";
+    $params = array($username);
+    return db_get_one($sql,$params);
 }
 
-function p_access_analysis_month_access_analysis_month($ktai_flag){
-	$sql = "SELECT concat(left(r_datetime, 7), '-01') as ym, count(*) as count" .
-			" FROM c_access_log " .
-			" where ktai_flag = ?" .
-			" group by ym";
-	$params = array(intval($ktai_flag));			
-	$list = db_get_all($sql,$params);
-	return $list;
+function p_access_analysis_month_access_analysis_month($ktai_flag)
+{
+    $sql = "SELECT concat(left(r_datetime, 7), '-01') as ym, count(*) as count" .
+            " FROM c_access_log " .
+            " where ktai_flag = ?" .
+            " group by ym";
+    $params = array(intval($ktai_flag));            
+    $list = db_get_all($sql,$params);
+    return $list;
 }
 
 
-function p_access_analysis_day_access_analysis_day($ym, $ktai_flag){
-	$sql = "SELECT left(r_datetime,10) as ymd , count(*) as count" .
-			" FROM c_access_log " .
-			" where left(r_datetime, 7) = ?" .
-			" and ktai_flag = ? " .
-			" group by ymd";			
-	$params = array(intval(substr($ym,0,7)),intval($ktai_flag));
-	$list = db_get_all($sql,$params);
-	
-	$year = substr($ym, 0, 4);
-	$month = substr($ym, 5,2);
-	
-	$return = array();
-	$days_num = date("t", mktime (0,0,0,$month,1,$year));
-	for($i=1 ; $i<=$days_num; $i++){
-		$date = substr($ym,0,8) . substr("00".$i, -2, 2);
+function p_access_analysis_day_access_analysis_day($ym, $ktai_flag)
+{
+    $sql = "SELECT left(r_datetime,10) as ymd , count(*) as count" .
+            " FROM c_access_log " .
+            " where left(r_datetime, 7) = ?" .
+            " and ktai_flag = ? " .
+            " group by ymd";            
+    $params = array(intval(substr($ym,0,7)),intval($ktai_flag));
+    $list = db_get_all($sql,$params);
+    
+    $year = substr($ym, 0, 4);
+    $month = substr($ym, 5,2);
+    
+    $return = array();
+    $days_num = date("t", mktime (0,0,0,$month,1,$year));
+    for($i=1 ; $i<=$days_num; $i++) {
+        $date = substr($ym,0,8) . substr("00".$i, -2, 2);
 
-		$count = 0;
-		foreach($list as $value){
-			if($value['ymd'] == $date) $count = $value['count'];
-		}
-		$return[] = array("ymd"=>$date, "count"=>$count);
-	}
-	return $return;
+        $count = 0;
+        foreach($list as $value) {
+            if ($value['ymd'] == $date) {
+                $count = $value['count'];
+            }
+        }
+        $return[] = array("ymd"=>$date, "count"=>$count);
+    }
+    return $return;
 }
 
-function get_page_name($ktai_flag, $orderby=1){
-	if($orderby==1) $orderby_str = " order by page_name asc";
-	elseif($orderby==-1) $orderby_str = " order by page_name desc";
-
-	$sql = "select distinct page_name from c_access_log " .
-			" where ktai_flag = ? " .
-			$orderby_str;
-	$params = array(intval($ktai_flag));
-	return db_get_col($sql,$params);
+function get_page_name($ktai_flag, $orderby=1)
+{
+    if ($orderby == 1) {
+        $orderby_str = " order by page_name asc";
+    } elseif ($orderby == -1) {
+        $orderby_str = " order by page_name desc";
+    }
+    $sql = "select distinct page_name from c_access_log " .
+            " where ktai_flag = ? " .
+            $orderby_str;
+    $params = array(intval($ktai_flag));
+    return db_get_col($sql,$params);
 }
 
-function p_access_analysis_page_access_analysis_page4ym($ymd, $month_flag, $ktai_flag, $orderby){
+function p_access_analysis_page_access_analysis_page4ym($ymd, $month_flag, $ktai_flag, $orderby)
+{
 
+    if ($orderby == 1) {
+        $orderby_str = " order by page_name asc";
+    } elseif ($orderby == -1) {
+        $orderby_str = " order by page_name desc";
+    } elseif ($orderby == 2) {
+        $orderby_str = " order by count asc";
+    } elseif ($orderby == -2) {
+        $orderby_str = " order by count desc";
+    }
+    $sql = "select page_name , count(*) as count from c_access_log where ktai_flag = ? ";
+    $params = array(intval($ktai_flag));
+    if ($month_flag) {
+        $sql .= " and left(r_datetime, 7) = ? ";
+        array_push($params,substr($ymd,0,7));
+    } else {
+        $sql .= " and left(r_datetime,10) = ? ";
+        array_push($params,$ymd);
+    }
+    $sql .= " group by page_name ".    $orderby_str;
+    $list = db_get_all($sql,$params);
 
-	if($orderby==1) $orderby_str = " order by page_name asc";
-	elseif($orderby==-1) $orderby_str = " order by page_name desc";
-	elseif($orderby==2) $orderby_str = " order by count asc";
-	elseif($orderby==-2) $orderby_str = " order by count desc";
+    $sum = 0;
+    $return = array();
+    if (abs($orderby) == 1) {
+        $page_name = get_page_name($ktai_flag, $orderby);
+        foreach($page_name as $name) {
+            $count = 0;
+            foreach($list as $value) {
+                if ($value['page_name'] == $name) $count = $value['count'];
+            }
 
-	$sql = "select page_name , count(*) as count from c_access_log where ktai_flag = ? ";
-	$params = array(intval($ktai_flag));
-	if($month_flag){
-		$sql .= " and left(r_datetime, 7) = ? ";
-		array_push($params,substr($ymd,0,7));
-	} else {
-		$sql .= " and left(r_datetime,10) = ? ";
-		array_push($params,$ymd);
-	}
-	$sql .= " group by page_name ".	$orderby_str;
-	$list = db_get_all($sql,$params);
+                list($is_target_c_member_id,$is_target_c_commu_id,$is_target_c_topic_id,$is_target_c_diary_id,$is_c_member_id) = get_is_show($name);
 
-	$sum = 0;
-	$return = array();
-	if(abs($orderby)==1){
-		$page_name = get_page_name($ktai_flag, $orderby);
-		foreach($page_name as $name){
-			$count = 0;
-			foreach($list as $value){
-				if($value['page_name'] == $name) $count = $value['count'];
-			}
+            $return[] = array("page_name"=>$name, "count"=> $count, "is_target_c_member_id"=> $is_target_c_member_id, "is_target_c_commu_id"=> $is_target_c_commu_id, "is_target_c_topic_id"=> $is_target_c_topic_id, "is_target_c_diary_id"=> $is_target_c_diary_id, "is_c_member_id"=> $is_c_member_id);
+            $sum += $count;
+        }
+    } elseif (abs($orderby) == 2) {
+        $page_name = get_page_name($ktai_flag);
 
-				list($is_target_c_member_id,$is_target_c_commu_id,$is_target_c_topic_id,$is_target_c_diary_id,$is_c_member_id) = get_is_show($name);
+        $t_page_name = $page_name;
 
-			$return[] = array("page_name"=>$name, "count"=> $count, "is_target_c_member_id"=> $is_target_c_member_id, "is_target_c_commu_id"=> $is_target_c_commu_id, "is_target_c_topic_id"=> $is_target_c_topic_id, "is_target_c_diary_id"=> $is_target_c_diary_id, "is_c_member_id"=> $is_c_member_id);
-			$sum += $count;
-		}
-	}
-	elseif(abs($orderby)==2){
-		$page_name = get_page_name($ktai_flag);
+        //アクセスがゼロのページを取得する
+        foreach($page_name as $key=>$name) {
+            foreach($list as $value) {
+                if ($value['page_name'] == $name) {
+                    unset($page_name[$key]);//$listに含まれるページネームを削除
+                }
+            }
+        }
 
-		$t_page_name = $page_name;
+        foreach($page_name as $key=>$name) {
+            $page_name[$key] = array("page_name"=>$name, "count"=>0);
+        }
 
-		//アクセスがゼロのページを取得する
-		foreach($page_name as $key=>$name){
-			foreach($list as $value){
-				if($value['page_name']==$name) unset($page_name[$key]);//$listに含まれるページネームを削除
-			}
-		}
+        if ($orderby == 2) {
+            $return = array_merge($page_name , $list);
+        } elseif ($orderby == -2) {
+            $return = array_merge($list, $page_name);
+        }
+        foreach($list as $value) {
+            $sum += $value['count'];
+        }
 
-		foreach($page_name as $key=>$name){
-			$page_name[$key] = array("page_name"=>$name, "count"=>0);
-		}
+        foreach($return as $value) {
 
-	
-		if($orderby==2) $return = array_merge($page_name , $list);
-		elseif($orderby==-2) $return = array_merge($list, $page_name);
+            list($is_target_c_member_id,$is_target_c_commu_id,$is_target_c_topic_id,$is_target_c_diary_id,$is_c_member_id) = get_is_show($value['page_name']);
 
-		foreach($list as $value){
-			$sum += $value['count'];
-		}
+            $value['is_target_c_member_id'] = $is_target_c_member_id;
+            $value['is_target_c_commu_id'] = $is_target_c_commu_id;
+            $value['is_target_c_topic_id'] = $is_target_c_topic_id;
+            $value['is_target_c_diary_id'] = $is_target_c_diary_id;
+            $value['is_c_member_id'] = $is_c_member_id;
+            $t_return[] = $value;
 
-		foreach($return as $value){
+        }
 
-			list($is_target_c_member_id,$is_target_c_commu_id,$is_target_c_topic_id,$is_target_c_diary_id,$is_c_member_id) = get_is_show($value['page_name']);
+        $return = $t_return;
 
-			$value['is_target_c_member_id'] = $is_target_c_member_id;
-			$value['is_target_c_commu_id'] = $is_target_c_commu_id;
-			$value['is_target_c_topic_id'] = $is_target_c_topic_id;
-			$value['is_target_c_diary_id'] = $is_target_c_diary_id;
-			$value['is_c_member_id'] = $is_c_member_id;
-			$t_return[] = $value;
-
-		}
-
-		$return = $t_return;
-
-	}
-	
-	return array($return, $sum);
+    }
+    
+    return array($return, $sum);
 }
 
 
@@ -836,512 +850,499 @@ function p_access_analysis_page_access_analysis_page4ym($ymd, $month_flag, $ktai
  * 
  */
 function p_access_analysis_target_commu_target_commu4ym_page_name
-($ymd, $month_flag, $page_name, $ktai_flag, $page, $page_size, $orderby=1){
-	
+($ymd, $month_flag, $page_name, $ktai_flag, $page, $page_size, $orderby=1)
+{
+    
     $start = ($page - 1) * $page_size;
-	
-	if($orderby==1) $orderby_str = " order by target_c_commu_id asc";
-	elseif($orderby==-1) $orderby_str = " order by target_c_commu_id desc";
-	elseif($orderby==2) $orderby_str = " order by count asc";
-	elseif($orderby==-2) $orderby_str = " order by count desc";
-	
-	$sql = "select target_c_commu_id , count(*) as count from c_access_log  where ktai_flag = ? ";
-	$params = array(intval($ktai_flag));
-	if($month_flag){
-	        $sql .= " and left(r_datetime, 7) = ? ";
-	        array_push($params,substr($ymd,0,7));
-	} else {
-	        $sql .= " and left(r_datetime,10) = ? ";
-	        array_push($params,$ymd);
-	}
-	if($page_name!="all"){
-	        $sql .= " and page_name = ? ";
-	        array_push($params,$page_name);
-	}
-	$sql .= " and target_c_commu_id <> 0 ";
-	$sql .= " group by target_c_commu_id " .$orderby_str." limit $start, $page_size";
-	$list = db_get_all($sql,$params);
+    
+    if ($orderby == 1) {
+        $orderby_str = " order by target_c_commu_id asc";
+    } elseif ($orderby == -1) {
+        $orderby_str = " order by target_c_commu_id desc";
+    } elseif ($orderby == 2) {
+        $orderby_str = " order by count asc";
+    } elseif ($orderby == -2) {
+        $orderby_str = " order by count desc";
+    }
+    
+    $sql = "select target_c_commu_id , count(*) as count from c_access_log  where ktai_flag = ? ";
+    $params = array(intval($ktai_flag));
+    if ($month_flag) {
+            $sql .= " and left(r_datetime, 7) = ? ";
+            array_push($params,substr($ymd,0,7));
+    } else {
+            $sql .= " and left(r_datetime,10) = ? ";
+            array_push($params,$ymd);
+    }
+    if ($page_name!="all") {
+            $sql .= " and page_name = ? ";
+            array_push($params,$page_name);
+    }
+    $sql .= " and target_c_commu_id <> 0 ";
+    $sql .= " group by target_c_commu_id " .$orderby_str." limit $start, $page_size";
+    $list = db_get_all($sql,$params);
 
-	$return = array();
-	$sum = 0;
-	foreach($list as $key => $value){
-		if($value['target_c_commu_id']){
-			$c_commu = _db_c_commu4c_commu_id($value['target_c_commu_id']);
-			$return[] = array_merge($value, $c_commu);
-			$sum += $value['count'];
-		}
-	}
+    $return = array();
+    $sum = 0;
+    foreach($list as $key => $value) {
+        if ($value['target_c_commu_id']) {
+            $c_commu = _db_c_commu4c_commu_id($value['target_c_commu_id']);
+            $return[] = array_merge($value, $c_commu);
+            $sum += $value['count'];
+        }
+    }
 
-	$sql =   "select count(*) from c_access_log  where ktai_flag = ? ";
-	$params = array(intval($ktai_flag));
-	if($month_flag){
-	        $sql .= " and left(r_datetime, 7) = ? ";
-	        array_push($params,substr($ymd,0,7));
-	} else {
-	        $sql .= " and left(r_datetime,10) = ? ";
-	        array_push($params,$ymd);
-	}
-	if($page_name!="all"){
-	        $sql .= " and page_name = ? ";
-	        array_push($params,$page_name);
-	}
-	$sql .= " and target_c_commu_id <> 0 ";
-	$sql .= " group by target_c_commu_id ";
-	$result = db_get_all($sql,$params);
-	$total_num = count($result);
+    $sql =   "select count(*) from c_access_log  where ktai_flag = ? ";
+    $params = array(intval($ktai_flag));
+    if ($month_flag) {
+        $sql .= " and left(r_datetime, 7) = ? ";
+        array_push($params,substr($ymd,0,7));
+    } else {
+        $sql .= " and left(r_datetime,10) = ? ";
+        array_push($params,$ymd);
+    }
+    if ($page_name!="all") {
+        $sql .= " and page_name = ? ";
+        array_push($params,$page_name);
+    }
+    $sql .= " and target_c_commu_id <> 0 ";
+    $sql .= " group by target_c_commu_id ";
+    $result = db_get_all($sql,$params);
+    $total_num = count($result);
 
-	if($total_num != 0){
-		$total_page_num =  ceil($total_num / $page_size);
-		if($page >= $total_page_num){
-			$next = false;
-		}else{
-			$next = true;
-		}
-		if($page <= 1){
-			$prev = false;
-		}else{
-			$prev = true;
-		}
-	}
-	$start_num = ($page - 1) * $page_size + 1 ;
-	$end_num =   ($page - 1) * $page_size + $page_size > $total_num ? $total_num : ($page - 1) * $page_size + $page_size ;
+    if ($total_num != 0) {
+        $total_page_num =  ceil($total_num / $page_size);
+        if ($page >= $total_page_num) {
+            $next = false;
+        }else{
+            $next = true;
+        }
+        if ($page <= 1) {
+            $prev = false;
+        }else{
+            $prev = true;
+        }
+    }
+    $start_num = ($page - 1) * $page_size + 1 ;
+    $end_num =   ($page - 1) * $page_size + $page_size > $total_num ? $total_num : ($page - 1) * $page_size + $page_size ;
 
-	return array($return, $sum, $prev, $next, $total_num, $start_num, $end_num);	
+    return array($return, $sum, $prev, $next, $total_num, $start_num, $end_num);    
 }
 
 function p_access_analysis_target_topic_target_topic4ym_page_name
-($ymd, $month_flag, $page_name, $ktai_flag, $page, $page_size, $orderby=1){
-	
+($ymd, $month_flag, $page_name, $ktai_flag, $page, $page_size, $orderby=1)
+{
+    
     $start = ($page - 1) * $page_size;
-	
-	if($orderby==1) $orderby_str = " order by target_c_commu_topic_id asc";
-	elseif($orderby==-1) $orderby_str = " order by target_c_commu_topic_id desc";
-	elseif($orderby==2) $orderby_str = " order by count asc";
-	elseif($orderby==-2) $orderby_str = " order by count desc";
+    
+    if ($orderby == 1) {
+        $orderby_str = " order by target_c_commu_topic_id asc";
+    } elseif ($orderby == -1) {
+        $orderby_str = " order by target_c_commu_topic_id desc";
+    } elseif ($orderby == 2) {
+        $orderby_str = " order by count asc";
+    } elseif ($orderby == -2) {
+        $orderby_str = " order by count desc";
+    }
+    $where =" where ktai_flag = ? ";
+    $params = array(intval($ktai_flag));
+    if ($month_flag) {
+            $where .= " and left(r_datetime, 7) = ? ";
+            array_push($params,substr($ymd,0,7));
+    } else {
+            $where .= " and left(r_datetime,10) = ? ";
+            array_push($params,$ymd);
+    }
+    if ($page_name!="all") {
+            $where .= " and page_name = ? ";
+            array_push($params,$page_name);
+    }
+    $sql = "select target_c_commu_topic_id , count(*) as count from c_access_log ";
+    $sql .= $where." group by target_c_commu_topic_id " .$orderby_str." limit $start, $page_size";
+    $list = db_get_all($sql,$params);
+    $sql = "select count(*) from c_access_log ";
+    $sql .= $where ." group by target_c_commu_topic_id ";
+    $result = db_get_all($sql,$params);
+    $total_num = count($result);
 
-	$where =" where ktai_flag = ? ";
-	$params = array(intval($ktai_flag));
-	if($month_flag){
-	        $where .= " and left(r_datetime, 7) = ? ";
-	        array_push($params,substr($ymd,0,7));
-	} else {
-	        $where .= " and left(r_datetime,10) = ? ";
-	        array_push($params,$ymd);
-	}
-	if($page_name!="all"){
-	        $where .= " and page_name = ? ";
-	        array_push($params,$page_name);
-	}
-	$sql = "select target_c_commu_topic_id , count(*) as count from c_access_log ";
-	$sql .= $where." group by target_c_commu_topic_id " .$orderby_str." limit $start, $page_size";
-	$list = db_get_all($sql,$params);
-	$sql = "select count(*) from c_access_log ";
-	$sql .= $where ." group by target_c_commu_topic_id ";
-	$result = db_get_all($sql,$params);
-	$total_num = count($result);
+    $return = array();
+    $sum = 0;
+    foreach($list as $key => $value) {
+        if ($value['target_c_commu_topic_id']) {
+            $c_commu_topic = c_topic_detail_c_topic4c_commu_topic_id($value['target_c_commu_topic_id']);
+            $c_commu_topic['topic_name'] = $c_commu_topic['name'];
+            $c_commu = _db_c_commu4c_commu_id($c_commu_topic['c_commu_id']);
+            $c_commu_topic['commu_name'] = $c_commu['name'];
+            $return[] = array_merge($value, $c_commu_topic);
+            $sum += $value['count'];
+        }
+    }
 
-	$return = array();
-	$sum = 0;
-	foreach($list as $key => $value){
-		if($value['target_c_commu_topic_id']){
-			$c_commu_topic = c_topic_detail_c_topic4c_commu_topic_id($value['target_c_commu_topic_id']);
-			$c_commu_topic['topic_name'] = $c_commu_topic['name'];
-			$c_commu = _db_c_commu4c_commu_id($c_commu_topic['c_commu_id']);
-			$c_commu_topic['commu_name'] = $c_commu['name'];
-			$return[] = array_merge($value, $c_commu_topic);
-			$sum += $value['count'];
-		}
-	}
+    if ($total_num != 0) {
+        $total_page_num =  ceil($total_num / $page_size);
+        if ($page >= $total_page_num) {
+            $next = false;
+        }else{
+            $next = true;
+        }
+        if ($page <= 1) {
+            $prev = false;
+        }else{
+            $prev = true;
+        }
+    }
+    $start_num = ($page - 1) * $page_size + 1 ;
+    $end_num =   ($page - 1) * $page_size + $page_size > $total_num ? $total_num : ($page - 1) * $page_size + $page_size ;
 
-	if($total_num != 0){
-		$total_page_num =  ceil($total_num / $page_size);
-		if($page >= $total_page_num){
-			$next = false;
-		}else{
-			$next = true;
-		}
-		if($page <= 1){
-			$prev = false;
-		}else{
-			$prev = true;
-		}
-	}
-	$start_num = ($page - 1) * $page_size + 1 ;
-	$end_num =   ($page - 1) * $page_size + $page_size > $total_num ? $total_num : ($page - 1) * $page_size + $page_size ;
-
-	return array($return, $sum, $prev, $next, $total_num, $start_num, $end_num);	
+    return array($return, $sum, $prev, $next, $total_num, $start_num, $end_num);    
 }
 
 function p_access_analysis_target_diary_target_diary4ym_page_name
-($ymd, $month_flag, $page_name, $ktai_flag, $page, $page_size, $orderby=1){
-	
+($ymd, $month_flag, $page_name, $ktai_flag, $page, $page_size, $orderby=1)
+{
+    
     $start = ($page - 1) * $page_size;
-	
-	if($orderby==1) $orderby_str = " order by target_c_diary_id asc";
-	elseif($orderby==-1) $orderby_str = " order by target_c_diary_id desc";
-	elseif($orderby==2) $orderby_str = " order by count asc";
-	elseif($orderby==-2) $orderby_str = " order by count desc";
-	
-	$sql = "select target_c_diary_id , count(*) as count from c_access_log where ktai_flag = ? ";
-	$params = array(intval($ktai_flag));
-	if($month_flag){
-	        $sql .= " and left(r_datetime, 7) = ? ";
-	        array_push($params,substr($ymd,0,7));
-	} else {
-	        $sql .= " and left(r_datetime,10) = ? ";
-	        array_push($params,$ymd);
-	}
-	if($page_name!="all"){
-	        $sql .= " and page_name = ? ";
-	        array_push($params,$page_name);
-	}
-	$sql .= " and target_c_diary_id <> 0 ";
-	$sql .= " group by target_c_diary_id " . $orderby_str. " limit $start, $page_size";
-//print $sql;
-	$list = db_get_all($sql,$params);
-//print_r($list);
+    
+    if ($orderby == 1) {
+        $orderby_str = " order by target_c_diary_id asc";
+    } elseif ($orderby == -1) {
+        $orderby_str = " order by target_c_diary_id desc";
+    } elseif ($orderby == 2) {
+        $orderby_str = " order by count asc";
+    } elseif ($orderby == -2) {
+        $orderby_str = " order by count desc";
+    }
+    
+    $sql = "select target_c_diary_id , count(*) as count from c_access_log where ktai_flag = ? ";
+    $params = array(intval($ktai_flag));
+    if ($month_flag) {
+            $sql .= " and left(r_datetime, 7) = ? ";
+            array_push($params,substr($ymd,0,7));
+    } else {
+            $sql .= " and left(r_datetime,10) = ? ";
+            array_push($params,$ymd);
+    }
+    if ($page_name!="all") {
+            $sql .= " and page_name = ? ";
+            array_push($params,$page_name);
+    }
+    $sql .= " and target_c_diary_id <> 0 ";
+    $sql .= " group by target_c_diary_id " . $orderby_str. " limit $start, $page_size";
+    $list = db_get_all($sql,$params);
 
-	$return = array();
-	$sum = 0;
-	foreach($list as $key => $value){
-		if($value['target_c_diary_id']){
-			$c_diary = db_diary_get_c_diary4id($value['target_c_diary_id']);
-			$c_member = db_common_c_member4c_member_id($c_diary['c_member_id']);
-			$c_diary['nickname'] = $c_member['nickname'];
-			$return[] = array_merge($value, $c_diary);
-			$sum += $value['count'];
-		}
-	}
+    $return = array();
+    $sum = 0;
+    foreach ($list as $key => $value) {
+        if ($value['target_c_diary_id']) {
+            $c_diary = db_diary_get_c_diary4id($value['target_c_diary_id']);
+            $c_member = db_common_c_member4c_member_id($c_diary['c_member_id']);
+            $c_diary['nickname'] = $c_member['nickname'];
+            $return[] = array_merge($value, $c_diary);
+            $sum += $value['count'];
+        }
+    }
 
-	$sql =   "select count(*) from c_access_log where ktai_flag = ? ";
-	$params = array(intval($ktai_flag));
-	if($month_flag){
-	        $sql .= " and left(r_datetime, 7) = ? ";
-	        array_push($params,substr($ymd,0,7));
-	} else {
-	        $sql .= " and left(r_datetime,10) = ? ";
-	        array_push($params,$ymd);
-	}
-	$sql .= " and target_c_diary_id <> 0 ";
-	$sql .= " group by target_c_diary_id ";
-	$result = db_get_all($sql,$params);
-	$total_num = count($result);
+    $sql =   "select count(*) from c_access_log where ktai_flag = ? ";
+    $params = array(intval($ktai_flag));
+    if ($month_flag) {
+            $sql .= " and left(r_datetime, 7) = ? ";
+            array_push($params,substr($ymd,0,7));
+    } else {
+            $sql .= " and left(r_datetime,10) = ? ";
+            array_push($params,$ymd);
+    }
+    $sql .= " and target_c_diary_id <> 0 ";
+    $sql .= " group by target_c_diary_id ";
+    $result = db_get_all($sql,$params);
+    $total_num = count($result);
 
-	if($total_num != 0){
-		$total_page_num =  ceil($total_num / $page_size);
-		if($page >= $total_page_num){
-			$next = false;
-		}else{
-			$next = true;
-		}
-		if($page <= 1){
-			$prev = false;
-		}else{
-			$prev = true;
-		}
-	}
-	$start_num = ($page - 1) * $page_size + 1 ;
-	$end_num =   ($page - 1) * $page_size + $page_size > $total_num ? $total_num : ($page - 1) * $page_size + $page_size ;
+    if ($total_num != 0) {
+        $total_page_num =  ceil($total_num / $page_size);
+        if ($page >= $total_page_num) {
+            $next = false;
+        }else{
+            $next = true;
+        }
+        if ($page <= 1) {
+            $prev = false;
+        }else{
+            $prev = true;
+        }
+    }
+    $start_num = ($page - 1) * $page_size + 1 ;
+    $end_num =   ($page - 1) * $page_size + $page_size > $total_num ? $total_num : ($page - 1) * $page_size + $page_size ;
 
-	return array($return, $sum, $prev, $next, $total_num, $start_num, $end_num);	
+    return array($return, $sum, $prev, $next, $total_num, $start_num, $end_num);    
 }
 
 function p_access_analysis_member_access_member4ym_page_name
-($ymd, $month_flag, $page_name, $ktai_flag, $page, $page_size, $orderby=1){
-	
+($ymd, $month_flag, $page_name, $ktai_flag, $page, $page_size, $orderby=1)
+{
     $start = ($page - 1) * $page_size;
-	
-	if($orderby==1) $orderby_str = " order by target_c_member_id asc";
-	elseif($orderby==-1) $orderby_str = " order by target_c_member_id desc";
-	elseif($orderby==2) $orderby_str = " order by count asc";
-	elseif($orderby==-2) $orderby_str = " order by count desc";
-	
-	$where =" where ktai_flag = ? ";
-	$params = array(intval($ktai_flag));
-	if($month_flag){
-		$where .= " and left(r_datetime, 7) = ? ";
-		array_push($params,substr($ymd,0,7));
-	} else {
-		$where .= " and left(r_datetime,10) = ? ";
-		array_push($params,$ymd);
-	}
-	if($page_name!="all"){
-		$where .= " and page_name = ? ";
-		array_push($params,$page_name);
-	}
+    
+    if ($orderby == 1) {
+        $orderby_str = " order by target_c_member_id asc";
+    } elseif ($orderby == -1) {
+        $orderby_str = " order by target_c_member_id desc";
+    } elseif ($orderby == 2) {
+        $orderby_str = " order by count asc";
+    } elseif ($orderby == -2) {
+        $orderby_str = " order by count desc";
+    }
+    
+    $where =" where ktai_flag = ? ";
+    $params = array(intval($ktai_flag));
+    if ($month_flag) {
+        $where .= " and left(r_datetime, 7) = ? ";
+        array_push($params,substr($ymd,0,7));
+    } else {
+        $where .= " and left(r_datetime,10) = ? ";
+        array_push($params,$ymd);
+    }
+    if ($page_name!="all") {
+        $where .= " and page_name = ? ";
+        array_push($params,$page_name);
+    }
 
-	$sql = "select c_member_id , count(*) as count from c_access_log";
-	$sql .= $where." group by c_member_id $orderby_str limit $start, $page_size";
-	$list = db_get_all($sql,$params);
-	$sql = "select count(*) from c_access_log ";
-	$sql .=	$where ." group by c_member_id ";
-	$result = db_get_all($sql,$params);
-	$total_num = count($result);
+    $sql = "select c_member_id , count(*) as count from c_access_log";
+    $sql .= $where." group by c_member_id $orderby_str limit $start, $page_size";
+    $list = db_get_all($sql,$params);
+    $sql = "select count(*) from c_access_log ";
+    $sql .=    $where ." group by c_member_id ";
+    $result = db_get_all($sql,$params);
+    $total_num = count($result);
 
-	$return = array();
-	$sum = 0;
-	foreach($list as $key => $value){
-		if($value['c_member_id']){
-			$c_member = _db_c_member4c_member_id($value['c_member_id']);
-			$return[] = array_merge($value, $c_member);
-			$sum += $value['count'];
-		}
-	}
+    $return = array();
+    $sum = 0;
+    foreach($list as $key => $value) {
+        if ($value['c_member_id']) {
+            $c_member = _db_c_member4c_member_id($value['c_member_id']);
+            $return[] = array_merge($value, $c_member);
+            $sum += $value['count'];
+        }
+    }
 
 
-	if($total_num != 0){
-		$total_page_num =  ceil($total_num / $page_size);
-		if($page >= $total_page_num){
-			$next = false;
-		}else{
-			$next = true;
-		}
-		if($page <= 1){
-			$prev = false;
-		}else{
-			$prev = true;
-		}
-	}
-	$start_num = ($page - 1) * $page_size + 1 ;
-	$end_num =   ($page - 1) * $page_size + $page_size > $total_num ? $total_num : ($page - 1) * $page_size + $page_size ;
-	return array($return, $sum, $prev, $next, $total_num, $start_num, $end_num);	
+    if ($total_num != 0) {
+        $total_page_num =  ceil($total_num / $page_size);
+        if ($page >= $total_page_num) {
+            $next = false;
+        }else{
+            $next = true;
+        }
+        if ($page <= 1) {
+            $prev = false;
+        }else{
+            $prev = true;
+        }
+    }
+    $start_num = ($page - 1) * $page_size + 1 ;
+    $end_num =   ($page - 1) * $page_size + $page_size > $total_num ? $total_num : ($page - 1) * $page_size + $page_size ;
+    return array($return, $sum, $prev, $next, $total_num, $start_num, $end_num);    
 }
 
 function p_access_analysis_target_member_access_member4ym_page_name
-($ymd, $month_flag, $page_name, $ktai_flag, $page, $page_size, $orderby=1){
-	
+($ymd, $month_flag, $page_name, $ktai_flag, $page, $page_size, $orderby=1)
+{
     $start = ($page - 1) * $page_size;
-	
-	if($orderby==1) $orderby_str = " order by target_c_member_id asc";
-	elseif($orderby==-1) $orderby_str = " order by target_c_member_id desc";
-	elseif($orderby==2) $orderby_str = " order by count asc";
-	elseif($orderby==-2) $orderby_str = " order by count desc";
-	
-	$where =" where ktai_flag = ? ";
-	$params = array(intval($ktai_flag));
-        if($month_flag){
+    
+    if ($orderby == 1) {
+        $orderby_str = " order by target_c_member_id asc";
+    } elseif ($orderby == -1) {
+        $orderby_str = " order by target_c_member_id desc";
+    } elseif ($orderby == 2) {
+        $orderby_str = " order by count asc";
+    } elseif ($orderby == -2) {
+        $orderby_str = " order by count desc";
+    }
+    $where =" where ktai_flag = ? ";
+    $params = array(intval($ktai_flag));
+        if ($month_flag) {
                 $where .= " and left(r_datetime, 7) = ? ";
                 array_push($params,substr($ymd,0,7));
         } else {
                 $where .= " and left(r_datetime,10) = ? ";
                 array_push($params,$ymd);
         }
-        if($page_name!="all"){
+        if ($page_name!="all") {
                 $where .= " and page_name = ? ";
                 array_push($params,$page_name);
         }
-	$sql = "select target_c_member_id , count(*) as count from c_access_log ";
-	$sql .= $where;
-	$sql .= " AND target_c_member_id <> 0 ";
-	$sql .= " group by target_c_member_id " . $orderby_str. " limit $start, $page_size";
+    $sql = "select target_c_member_id , count(*) as count from c_access_log ";
+    $sql .= $where;
+    $sql .= " AND target_c_member_id <> 0 ";
+    $sql .= " group by target_c_member_id " . $orderby_str. " limit $start, $page_size";
 
-	$list = db_get_all($sql,$params);
+    $list = db_get_all($sql,$params);
 
-	$return = array();
-	$sum = 0;
-	foreach($list as $key => $value){
-		if($value['target_c_member_id']){
-			$c_member = db_common_c_member4c_member_id($value['target_c_member_id']);
-			$return[] = array_merge($value, $c_member);
-			$sum += $value['count'];
-		}
-	}
+    $return = array();
+    $sum = 0;
+    foreach($list as $key => $value) {
+        if ($value['target_c_member_id']) {
+            $c_member = db_common_c_member4c_member_id($value['target_c_member_id']);
+            $return[] = array_merge($value, $c_member);
+            $sum += $value['count'];
+        }
+    }
 
-	$where =" where ktai_flag = ? ";
-	$params = array(intval($ktai_flag));
-        if($month_flag){
+    $where =" where ktai_flag = ? ";
+    $params = array(intval($ktai_flag));
+        if ($month_flag) {
                 $where .= " and left(r_datetime, 7) = ? ";
                 array_push($params,substr($ymd,0,7));
         } else {
                 $where .= " and left(r_datetime,10) = ? ";
                 array_push($params,$ymd);
         }
-        if($page_name!="all"){
+        if ($page_name != "all") {
                 $where .= " and page_name = ? ";
                 array_push($params,$page_name);
         }
-	$sql = "select count(*) from c_access_log " ;
-	$sql .= $where;
-	$sql .= " AND target_c_member_id <> 0 ";
-	$sql .= " group by target_c_member_id ";
-	
-	$result = db_get_all($sql,$params);
-	$total_num = count($result);
+    $sql = "select count(*) from c_access_log " ;
+    $sql .= $where;
+    $sql .= " AND target_c_member_id <> 0 ";
+    $sql .= " group by target_c_member_id ";
+    
+    $result = db_get_all($sql,$params);
+    $total_num = count($result);
 
-	if($total_num != 0){
-		$total_page_num =  ceil($total_num / $page_size);
-		if($page >= $total_page_num){
-			$next = false;
-		}else{
-			$next = true;
-		}
-		if($page <= 1){
-			$prev = false;
-		}else{
-			$prev = true;
-		}
-	}
-	$start_num = ($page - 1) * $page_size + 1 ;
-	$end_num =   ($page - 1) * $page_size + $page_size > $total_num ? $total_num : ($page - 1) * $page_size + $page_size ;
+    if ($total_num != 0) {
+        $total_page_num =  ceil($total_num / $page_size);
+        if ($page >= $total_page_num) {
+            $next = false;
+        } else {
+            $next = true;
+        }
+        if ($page <= 1) {
+            $prev = false;
+        } else {
+            $prev = true;
+        }
+    }
+    $start_num = ($page - 1) * $page_size + 1 ;
+    $end_num =   ($page - 1) * $page_size + $page_size > $total_num ? $total_num : ($page - 1) * $page_size + $page_size ;
 
-	return array($return, $sum, $prev, $next, $total_num, $start_num, $end_num);	
+    return array($return, $sum, $prev, $next, $total_num, $start_num, $end_num);
 }
 
+function get_is_show($name)
+{
+    //必要のない詳細ボタンを消す
+    switch($name) {
+    case "h_home":
+        $is_target_c_member_id = 0;
+        $is_target_c_commu_id = 0;
+        $is_target_c_topic_id = 0;
+        $is_target_c_diary_id = 0;
+        $is_c_member_id = 1;
+        break;
 
-function get_is_show($name){
-	//必要のない詳細ボタンを消す
-	switch($name){
+    case "fh_friend_list":
+        $is_target_c_member_id = 0;
+        $is_target_c_commu_id = 0;
+        $is_target_c_topic_id = 0;
+        $is_target_c_diary_id = 0;
+        $is_c_member_id = 1;
+        break;
 
-		case "h_home":
-		{
-			$is_target_c_member_id = 0;
-			$is_target_c_commu_id = 0;
-			$is_target_c_topic_id = 0;
-			$is_target_c_diary_id = 0;
-			$is_c_member_id = 1;
-		}
-		break;
+    case "h_message":
+        $is_target_c_member_id = 0;
+        $is_target_c_commu_id = 0;
+        $is_target_c_topic_id = 0;
+        $is_target_c_diary_id = 0;
+        $is_c_member_id = 1;
+        break;
 
+    case "fh_diary_list":
+        $is_target_c_member_id = 0;
+        $is_target_c_commu_id = 0;
+        $is_target_c_topic_id = 0;
+        $is_target_c_diary_id = 0;
+        $is_c_member_id = 1;
+        break;
 
-		case "fh_friend_list":
-		{
-			$is_target_c_member_id = 0;
-			$is_target_c_commu_id = 0;
-			$is_target_c_topic_id = 0;
-			$is_target_c_diary_id = 0;
-			$is_c_member_id = 1;
-		}
-		break;
+    case "h_message_box":
+        $is_target_c_member_id = 0;
+        $is_target_c_commu_id = 0;
+        $is_target_c_topic_id = 0;
+        $is_target_c_diary_id = 0;
+        $is_c_member_id = 1;
+        break;
 
-		case "h_message":
-		{
-			$is_target_c_member_id = 0;
-			$is_target_c_commu_id = 0;
-			$is_target_c_topic_id = 0;
-			$is_target_c_diary_id = 0;
-			$is_c_member_id = 1;
-		}
-		break;
+    case "f_home":
+        $is_target_c_member_id = 1;
+        $is_target_c_commu_id = 0;
+        $is_target_c_topic_id = 0;
+        $is_target_c_diary_id = 0;
+        $is_c_member_id = 1;
+        break;
 
-		case "fh_diary_list":
-		{
-			$is_target_c_member_id = 0;
-			$is_target_c_commu_id = 0;
-			$is_target_c_topic_id = 0;
-			$is_target_c_diary_id = 0;
-			$is_c_member_id = 1;
-		}
-		break;
+    case "h_com_find_all":
+        $is_target_c_member_id = 0;
+        $is_target_c_commu_id = 0;
+        $is_target_c_topic_id = 0;
+        $is_target_c_diary_id = 0;
+        $is_c_member_id = 1;
+        break;
 
-		case "h_message_box":
-		{
-			$is_target_c_member_id = 0;
-			$is_target_c_commu_id = 0;
-			$is_target_c_topic_id = 0;
-			$is_target_c_diary_id = 0;
-			$is_c_member_id = 1;
-		}
-		break;
+    case "reply_message":
+        $is_target_c_member_id = 0;
+        $is_target_c_commu_id = 0;
+        $is_target_c_topic_id = 0;
+        $is_target_c_diary_id = 0;
+        $is_c_member_id = 1;
+        break;
 
-		case "f_home":
-		{
-			$is_target_c_member_id = 1;
-			$is_target_c_commu_id = 0;
-			$is_target_c_topic_id = 0;
-			$is_target_c_diary_id = 0;
-			$is_c_member_id = 1;
-		}
-		break;
+    case "f_message_send":
+        $is_target_c_member_id = 0;
+        $is_target_c_commu_id = 0;
+        $is_target_c_topic_id = 0;
+        $is_target_c_diary_id = 0;
+        $is_c_member_id = 1;
+        break;
 
+    case "f_message_send":
+        $is_target_c_member_id = 0;
+        $is_target_c_commu_id = 0;
+        $is_target_c_topic_id = 0;
+        $is_target_c_diary_id = 0;
+        $is_c_member_id = 1;
+        break;
+    
+    case "h_diary_list_all":
+        $is_target_c_member_id = 0;
+        $is_target_c_commu_id = 0;
+        $is_target_c_topic_id = 0;
+        $is_target_c_diary_id = 0;
+        $is_c_member_id = 1;
+        break;
 
-		case "h_com_find_all":
-		{
-			$is_target_c_member_id = 0;
-			$is_target_c_commu_id = 0;
-			$is_target_c_topic_id = 0;
-			$is_target_c_diary_id = 0;
-			$is_c_member_id = 1;
-		}
-		break;
+    case "h_search":
+        $is_target_c_member_id = 0;
+        $is_target_c_commu_id = 0;
+        $is_target_c_topic_id = 0;
+        $is_target_c_diary_id = 0;
+        $is_c_member_id = 1;
+        break;
 
+    case "f_message_send_confirm":
+        $is_target_c_member_id = 1;
+        $is_target_c_commu_id = 0;
+        $is_target_c_topic_id = 0;
+        $is_target_c_diary_id = 0;
+        $is_c_member_id = 1;
+        break;
 
-		case "reply_message":
-		{
-			$is_target_c_member_id = 0;
-			$is_target_c_commu_id = 0;
-			$is_target_c_topic_id = 0;
-			$is_target_c_diary_id = 0;
-			$is_c_member_id = 1;
-		}
-		break;
+    default:
+        $is_target_c_member_id = 1;
+        $is_target_c_commu_id = 1;
+        $is_target_c_topic_id = 1;
+        $is_target_c_diary_id = 1;
+        $is_c_member_id = 1;
+        break;
+    }
 
-
-		case "f_message_send":
-		{
-			$is_target_c_member_id = 0;
-			$is_target_c_commu_id = 0;
-			$is_target_c_topic_id = 0;
-			$is_target_c_diary_id = 0;
-			$is_c_member_id = 1;
-		}
-		break;
-
-		case "f_message_send":
-		{
-			$is_target_c_member_id = 0;
-			$is_target_c_commu_id = 0;
-			$is_target_c_topic_id = 0;
-			$is_target_c_diary_id = 0;
-			$is_c_member_id = 1;
-		}
-		break;
-
-
-		case "h_diary_list_all":
-		{
-			$is_target_c_member_id = 0;
-			$is_target_c_commu_id = 0;
-			$is_target_c_topic_id = 0;
-			$is_target_c_diary_id = 0;
-			$is_c_member_id = 1;
-		}
-		break;
-
-
-		case "h_search":
-		{
-			$is_target_c_member_id = 0;
-			$is_target_c_commu_id = 0;
-			$is_target_c_topic_id = 0;
-			$is_target_c_diary_id = 0;
-			$is_c_member_id = 1;
-		}
-		break;
-
-
-		case "f_message_send_confirm":
-		{
-			$is_target_c_member_id = 1;
-			$is_target_c_commu_id = 0;
-			$is_target_c_topic_id = 0;
-			$is_target_c_diary_id = 0;
-			$is_c_member_id = 1;
-		}
-		break;
-
-
-
-		default:
-		{
-			$is_target_c_member_id = 1;
-			$is_target_c_commu_id = 1;
-			$is_target_c_topic_id = 1;
-			$is_target_c_diary_id = 1;
-			$is_c_member_id = 1;
-		}
-	}
-
-	return array($is_target_c_member_id,$is_target_c_commu_id,$is_target_c_topic_id,$is_target_c_diary_id,$is_c_member_id);
+    return array($is_target_c_member_id,$is_target_c_commu_id,$is_target_c_topic_id,$is_target_c_diary_id,$is_c_member_id);
 
 }
 
@@ -1352,8 +1353,8 @@ function get_is_show($name){
 [引数]
 適時追加していく
 
-$s_access_date	最終ログイン時刻　開始年月日
-$e_access_date	最終ログイン時刻　終了年月日
+$s_access_date    最終ログイン時刻　開始年月日
+$e_access_date    最終ログイン時刻　終了年月日
 
 [返り値]
 c_member_list
@@ -1365,237 +1366,247 @@ function p_member_edit_c_member_list($page_size, $page,$s_access_date='', $e_acc
     $page = intval($page);
     $page_size = intval($page_size);
 
-	$limit = "";
+    $limit = "";
 
-	//page_sizeが0の時は全て表示(pagerなし)
-	if($page_size != 0){
+    //page_sizeが0の時は全て表示(pagerなし)
+    if ($page_size != 0) {
+        $limit = " LIMIT ".($page_size*($page-1)).",$page_size";
+    }
+    $where = " WHERE 1 ";
 
-		$limit = " LIMIT ".($page_size*($page-1)).",$page_size";
+    //指定された条件で絞っていく
+    if ($s_access_date != "") {
+        $where = $where . " and access_date >= ?";
+        $params = array($s_access_date);
+    }
 
-	}
-
-	$where = " WHERE 1 ";
-
-
-	//指定された条件で絞っていく
-	if($s_access_date != ""){
-		$where = $where . " and access_date >= ?";
-		$params = array($s_access_date);
-	}
-
-	if($e_access_date != ""){
-		$where = $where . " and access_date < ?";
-		$params = array($e_access_date);
-	}
+    if ($e_access_date != "") {
+        $where = $where . " and access_date < ?";
+        $params = array($e_access_date);
+    }
 
     $select = "SELECT * FROM c_member";
-	$order = " order by c_member_id";
+    $order = " order by c_member_id";
 
     $sql = $select . $where . $order . $limit;
     $list = db_get_all_limit($sql, 0, $limit, $params);
-	
+    
     $sql = "select count(*) from c_member".$where;
 
     $total_num = db_get_one($sql, $params);
     
-       if($total_num != 0 && $page_size != 0){
-           $total_page_num =  ceil($total_num / $page_size);
-           if($page >= $total_page_num){
-               $next = false;
-           }else{
-               $next = true;
-           }
-             
-           if($page <= 1){
-               $prev = false;
-           }else{
-               $prev = true;
-           }
-       }
+    if ($total_num != 0 && $page_size != 0) {
+        $total_page_num =  ceil($total_num / $page_size);
+        if ($page >= $total_page_num) {
+            $next = false;
+        } else {
+            $next = true;
+        }
+        if ($page <= 1) {
+            $prev = false;
+        } else {
+            $prev = true;
+        }
+    }
 
-    
-	return array($list , $prev , $next, $total_num);
+    return array($list , $prev , $next, $total_num);
 }
 
-function _db_c_member4c_member_id($c_member_id) {
-	$sql = "SELECT * FROM c_member WHERE c_member_id= ? ";
+function _db_c_member4c_member_id($c_member_id)
+{
+    $sql = "SELECT * FROM c_member WHERE c_member_id= ? ";
         $params = array(intval($c_member_id));
-	return db_get_row($sql,$params);
+    return db_get_row($sql,$params);
 }
 
 /**
  * 男と女の人数を取得
  */
-function get_analysis_sex(){
-	$sql = "select count(*) from c_member where sex = '男'";
-	$analysis_sex['male'] = get_one4db($sql);
-	$sql = "select count(*) from c_member where sex = '女'";
-	$analysis_sex['female'] = get_one4db($sql);
-	
-	return $analysis_sex;
-	
+function get_analysis_sex()
+{
+    $sql = "select count(*) from c_member where sex = '男'";
+    $analysis_sex['male'] = get_one4db($sql);
+    $sql = "select count(*) from c_member where sex = '女'";
+    $analysis_sex['female'] = get_one4db($sql);
+    
+    return $analysis_sex;
+    
 }
 
 /**
  * 世代の人数を取得
  */
-function get_analysis_generation(){
-	
-	$analysis_generation = array(
-			'0?9' => 0,
-			'10?19' => 0,
-			'20?29' => 0,
-			'30?39' => 0,
-			'40?49' => 0,
-			'50?59' => 0,
-			'60?69' => 0,
-			'70?79' => 0,
-			'80?' =>0
-	);
-	
-	$sql = "select ((year(curdate()) - birth_year)- (RIGHT(CURDATE(),5)<concat(birth_month,'-',birth_day))) as age from c_member;";
-	$lst = db_get_all($sql);
+function get_analysis_generation()
+{
+    $analysis_generation = array(
+            '0～9' => 0,
+            '10～19' => 0,
+            '20～29' => 0,
+            '30～39' => 0,
+            '40～49' => 0,
+            '50～59' => 0,
+            '60～69' => 0,
+            '70～79' => 0,
+            '80～' =>0
+    );
+    
+    $sql = "select ((year(curdate()) - birth_year)- (RIGHT(CURDATE(),5)<concat(birth_month,'-',birth_day))) as age from c_member;";
+    $lst = db_get_all($sql);
 
-	$temp = array_keys($analysis_generation);
-	foreach($lst as $value){
-		$key = (int)($value['age'] / 10);
-		if($key > count($analysis_generation)-1)
-			$analysis_generation[$temp[count($analysis_generation)-1]]++;
-		else
-			$analysis_generation[$temp[$key]]++;
-	}
+    $temp = array_keys($analysis_generation);
+    foreach($lst as $value) {
+        $key = (int)($value['age'] / 10);
+        if ($key > count($analysis_generation)-1) {
+            $analysis_generation[$temp[count($analysis_generation)-1]]++;
+        } else {
+            $analysis_generation[$temp[$key]]++;
+        }
+    }
 
-	return $analysis_generation;
-	
+    return $analysis_generation;
+    
 }
 
 /**
  * 地域別の人数を取得
  */
-function get_analysis_region(){
-	$pref = p_regist_prof_c_profile_pref_list4null();
-	$sql = "select pre_addr_c_profile_pref_id as pref_id from c_member";
-	$lst = get_array_list4db($sql);
+function get_analysis_region()
+{
+    $pref = p_regist_prof_c_profile_pref_list4null();
+    $sql = "select pre_addr_c_profile_pref_id as pref_id from c_member";
+    $lst = get_array_list4db($sql);
 
-	foreach($pref as $value){
-		$analysis_region[$value] = 0;	
-	}
+    foreach($pref as $value) {
+        $analysis_region[$value] = 0;    
+    }
 
-	foreach ($lst as $value){
-		if($value['pref_id'] == 0)
-			$analysis_region['その他']++;
-		else
-			$analysis_region[$pref[$value['pref_id']]]++;
-	}
+    foreach ($lst as $value) {
+        if ($value['pref_id'] == 0) {
+            $analysis_region['その他']++;
+        } else {
+            $analysis_region[$pref[$value['pref_id']]]++;
+        }
+    }
 
-	return $analysis_region;
-	
+    return $analysis_region;
+    
 }
 
 
-function get_analysis_date_month($year = "", $month = ""){
-	$sql = "select date_format(r_date,'%Y-%m') from c_member order by r_date";
-	$start_date = db_get_one($sql);
+function get_analysis_date_month($year = "", $month = "")
+{
+    $sql = "select date_format(r_date,'%Y-%m') from c_member order by r_date";
+    $start_date = db_get_one($sql);
 
-	$i = 0;
-	list($y, $m) = split("-",$start_date);
-	do{
-		$date = date("Y-m", mktime (0,0,0,$m+$i++,1,$y));
-		$analysis_date_month[$date] = 0;
-	}while($date < date("Y-m"));	
-	
-	$sql = "select date_format(r_date,'%Y-%m') as d from c_member";
-	$lst = db_get_all($sql);
-	foreach ($lst as $value){
-		$analysis_date_month[$value['d']]++;
-	}
-	return $analysis_date_month;
+    $i = 0;
+    list($y, $m) = split("-",$start_date);
+    do{
+        $date = date("Y-m", mktime (0,0,0,$m+$i++,1,$y));
+        $analysis_date_month[$date] = 0;
+    }while($date < date("Y-m"));    
+    
+    $sql = "select date_format(r_date,'%Y-%m') as d from c_member";
+    $lst = db_get_all($sql);
+    foreach ($lst as $value) {
+        $analysis_date_month[$value['d']]++;
+    }
+    return $analysis_date_month;
 }
 
-function get_analysis_date_day_d($date=""){
-	if($date=="") $date = date("Y-m-d");
-	return $date;
+function get_analysis_date_day_d($date="")
+{
+    if ($date == "") {
+       $date = date("Y-m-d");
+    }
+    return $date;
 }
 
 
-function get_analysis_date_day($date=""){
-	if($date=="") $date = date("Y-m");
+function get_analysis_date_day($date="")
+{
+    if ($date == "") {
+        $date = date("Y-m");
+    }
+    //一ヶ月の日数
+    $day_num = date("t");
 
-	//一ヶ月の日数
-	$day_num = date("t");
+    for($i=1 ; $i<=$day_num; $i++) {
+        //一桁の数を二桁にする
+        if ($i < 10) {
+            $i = "0".$i;
+        }
+        $analysis_date_day[$i] = 0;
+    }
 
-	for($i=1 ; $i<=$day_num; $i++){
-		//一桁の数を二桁にする
-		if($i < 10){
-			$i = "0".$i;
-		}
-		$analysis_date_day[$i] = 0;
-	}
+    
+    $sql = "select date_format(r_date,'%d') as d from c_member where date_format(r_date,'%Y-%m') = ?";
+    $params = array($date);
+    $lst = db_get_all($sql,$params);
 
-	
-	$sql = "select date_format(r_date,'%d') as d from c_member where date_format(r_date,'%Y-%m') = ?";
-	$params = array($date);
-	$lst = db_get_all($sql,$params);
-
-	foreach($lst as $value){
-		$analysis_date_day[$value['d']]++;
-	}
-	
-	return $analysis_date_day;
+    foreach($lst as $value) {
+        $analysis_date_day[$value['d']]++;
+    }
+    
+    return $analysis_date_day;
 }
 
-function p_access_analysis_select_profile_list(){
-	$sql = "SELECT * " .
-			" FROM c_profile " .
-			" where form_type = 'select' ";
-			
-	$list = db_get_all($sql);
-	return $list;
+function p_access_analysis_select_profile_list()
+{
+    $sql = "SELECT * " .
+            " FROM c_profile " .
+            " where form_type = 'select' ";
+            
+    $list = db_get_all($sql);
+    return $list;
 }
 
 /**
  * 指定されたIDのプロフィールの人数別一覧を作成
  */
-function get_analysis_profile($c_profile_id){
-	$sql = "select count(*) as count,value,c_profile.caption from c_member_profile " .
-		" LEFT JOIN c_profile ON c_profile.c_profile_id = c_member_profile.c_profile_id " .
-		" WHERE c_member_profile.c_profile_id = ? GROUP BY value ";
-	$params = array(intval($c_profile_id));
-	$analysis_profile = db_get_all($sql,$params);
-	
-	return $analysis_profile;
+function get_analysis_profile($c_profile_id)
+{
+    $sql = "select count(*) as count,value,c_profile.caption from c_member_profile " .
+        " LEFT JOIN c_profile ON c_profile.c_profile_id = c_member_profile.c_profile_id " .
+        " WHERE c_member_profile.c_profile_id = ? GROUP BY value ";
+    $params = array(intval($c_profile_id));
+    $analysis_profile = db_get_all($sql,$params);
+    
+    return $analysis_profile;
 }
 
-function get_analysis_count_profile_all($c_profile_id){
-	$sql = "select count(*) as count from c_member_profile " .
-		" WHERE c_profile_id = ? ";
-	$params = array(intval($c_profile_id));
-	$analysis_profile = db_get_one($sql,$params);
-	
-	return $analysis_profile;
+function get_analysis_count_profile_all($c_profile_id)
+{
+    $sql = "select count(*) as count from c_member_profile " .
+        " WHERE c_profile_id = ? ";
+    $params = array(intval($c_profile_id));
+    $analysis_profile = db_get_one($sql,$params);
+    
+    return $analysis_profile;
 }
 
-function analysis_profile4c_profile_id($c_profile_id){
-	$sql = "SELECT * FROM c_profile" .
-			" WHERE c_profile_id = ? ";
-	$params = array(intval($c_profile_id));
-	$profile = db_get_row($sql,$params);
-	
-	return $profile;
+function analysis_profile4c_profile_id($c_profile_id)
+{
+    $sql = "SELECT * FROM c_profile" .
+            " WHERE c_profile_id = ? ";
+    $params = array(intval($c_profile_id));
+    $profile = db_get_row($sql,$params);
+    
+    return $profile;
 }
-function monitor_diary_list($keyword,$page_size,$page){
+function monitor_diary_list($keyword,$page_size,$page)
+{
 
     $page = intval($page);
     $page_size = intval($page_size);
     
     $where = " where 1 ";
 
-    if($keyword){
+    if ($keyword) {
         //全角空白を半角に統一
         $keyword = str_replace("　", " ", $keyword);
         $keyword_list = explode(" ", $keyword);
             
-        for($i=0;$i < count($keyword_list);$i++){
+        for($i=0;$i < count($keyword_list);$i++) {
             $keyword = check_search_word( $keyword_list[$i] );
                 
             $where .= " and (c_diary.subject like ? ";
@@ -1629,19 +1640,20 @@ function monitor_diary_list($keyword,$page_size,$page){
     return array($list , $prev , $next, $total_num,$total_page_num);  
 }
 
-function monitor_diary_comment_list($keyword,$page_size,$page){
+function monitor_diary_comment_list($keyword,$page_size,$page)
+{
 
     $page = intval($page);
     $page_size = intval($page_size);
     
     $where = " where 1 ";
 
-    if($keyword){
+    if ($keyword) {
         //全角空白を半角に統一
         $keyword = str_replace("　", " ", $keyword);
         $keyword_list = explode(" ", $keyword);
             
-        for($i=0;$i < count($keyword_list);$i++){
+        for($i=0;$i < count($keyword_list);$i++) {
             $keyword = check_search_word( $keyword_list[$i] );
                 
             $where .= " and (c_diary_comment.body like ? ) ";
@@ -1675,18 +1687,19 @@ function monitor_diary_comment_list($keyword,$page_size,$page){
 }
 
 
-function monitor_topic_comment_list($keyword,$page_size,$page){
+function monitor_topic_comment_list($keyword,$page_size,$page)
+{
 
     $page = intval($page);
     $page_size = intval($page_size);
     
     $where = " where 1 ";
 
-    if($keyword){
+    if ($keyword) {
         $keyword = str_replace("?@", " ", $keyword);
         $keyword_list = explode(" ", $keyword);
             
-        for($i=0;$i < count($keyword_list);$i++){
+        for($i=0;$i < count($keyword_list);$i++) {
             $keyword = check_search_word( $keyword_list[$i] );
                 
             $where .= " AND (ctc.body like ? )";
@@ -1722,19 +1735,18 @@ function monitor_topic_comment_list($keyword,$page_size,$page){
     return array($list , $prev , $next, $total_num,$total_page_num);  
 }
 
-
-function monitor_topic_list($keyword,$page_size,$page){
-
+function monitor_topic_list($keyword,$page_size,$page)
+{
     $page = intval($page);
     $page_size = intval($page_size);
     
     $where = " where 1 ";
 
-    if($keyword){
+    if ($keyword) {
         $keyword = str_replace("?@", " ", $keyword);
         $keyword_list = explode(" ", $keyword);
             
-        for($i=0;$i < count($keyword_list);$i++){
+        for($i=0;$i < count($keyword_list);$i++) {
             $keyword = check_search_word( $keyword_list[$i] );
                 
             $where .= " AND (ctc.body like ? ";
@@ -1774,7 +1786,8 @@ function monitor_topic_list($keyword,$page_size,$page){
     return array($list , $prev , $next, $total_num,$total_page_num);  
 }
 
-function _db_count_c_commu_topic_comments4c_commu_topic_id($c_commu_topic_id){
+function _db_count_c_commu_topic_comments4c_commu_topic_id($c_commu_topic_id)
+{
     $sql = "SELECT count(*) FROM c_commu_topic_comment" .
         " WHERE c_commu_topic_id = ? AND number > 0";
     $params = array($c_commu_topic_id);

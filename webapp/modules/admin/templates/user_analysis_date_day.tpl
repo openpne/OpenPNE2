@@ -2,11 +2,19 @@
 ({$inc_user_analysis_navi|smarty:nodefaults})
 <br>
 
-<b>登録日別（日次集計）</b>
+<h2>登録日別ユーザー表示（日次集計）</h2>
 
 <br><br>
 ({$date})
 <table width="300" border="1" cellpadding="5" cellspacing="0">
+<tr>
+<th>
+日
+</th>
+<th>
+人数
+</th>
+</tr>
 ({foreach from=$analysis_date_day key=key item=item})
 <tr>
 	<td width="100">({$key})</td>

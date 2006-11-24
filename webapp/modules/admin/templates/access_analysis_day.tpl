@@ -1,13 +1,21 @@
 ({$inc_header|smarty:nodefaults})
 
-<b>({$item_str}) 日次集計</b>
+<h2>({$item_str}) 日次ページビュー集計</h2>
 <br>
+
+<table>
 ({foreach from=$access_analysis_day item=item})
+<tr>
 
-({$item.ymd|date_format:"%d日"})-->({$item.count}) &nbsp;&nbsp;
-<a href="?m=admin&a=page_access_analysis_page&ymd=({$item.ymd})&month_flag=0&ktai_flag=({$ktai_flag})">ページ毎の詳細</a>
-<br>
+<td>
+({$item.ymd|date_format:"%d日"})
+</td>
 
+<td>
+<a href="?m=admin&a=page_access_analysis_page&ymd=({$item.ymd})&month_flag=0&ktai_flag=({$ktai_flag})">({$item.count})</a>
+</td>
+
+</tr>
 ({/foreach})
-
+</table>
 ({$inc_footer|smarty:nodefaults})

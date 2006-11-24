@@ -1,8 +1,8 @@
 ({$inc_header|smarty:nodefaults})
 
-<b>({$item_str})<br>
+<h2>({$item_str})<br>
 ({if $month_flag})({$ymd|date_format:"%Y年%m月分"})({else})({$ymd|date_format:"%Y年%m月%d日分"})({/if})　
-ページ毎の集計</b>
+ページ毎の集計</h2>
 
 <br><br>
 

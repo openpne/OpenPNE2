@@ -8,7 +8,7 @@ class admin_page_user_analysis_generation extends OpenPNE_Action
 {
     function execute($requests)
     {
-	//----------リクエスト変数-------------//
+        //----------リクエスト変数-------------//
 
         $v = array();
 
