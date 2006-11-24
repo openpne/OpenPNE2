@@ -72,6 +72,10 @@
 </ul>
 ({/if})
 
+<ul>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_free_page')})" title="フリーページ一覧: フリーページの追加、編集、削除">フリーページ一覧</a></li>
+</ul>
+
 <p>管理ページ設定</p>
 <ul>
 ({if $auth_type == 'all'})

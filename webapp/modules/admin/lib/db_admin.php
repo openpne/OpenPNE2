@@ -1492,7 +1492,6 @@ function get_analysis_region()
     
 }
 
-
 function get_analysis_date_month($year = "", $month = "")
 {
     $sql = "select date_format(r_date,'%Y-%m') from c_member order by r_date";
@@ -1793,4 +1792,55 @@ function _db_count_c_commu_topic_comments4c_commu_topic_id($c_commu_topic_id)
     $params = array($c_commu_topic_id);
     return db_get_one($sql, $params);
 }
+//フリーページを追加
+function db_admin_insert_c_free_page($body)
+{
+    $data = array(
+        'body' => strval($body),
+    );
+    return db_insert('c_free_page', $data);
+}
+
+//フリーページを編集
+function db_admin_update_c_free_page($c_free_page_id, $body)
+{
+    $data = array(
+        'body' => strval($body),
+    );
+    $where = array('c_free_page_id' => intval($c_free_page_id));
+    return db_update('c_free_page', $data, $where);
+}
+
+//フリーページを削除
+function db_admin_delete_c_free_page($c_free_page_id)
+{
+    $sql = "DELETE FROM c_free_page WHERE c_free_page_id = ?";
+    $params = array(intval($c_free_page_id));
+    return db_query($sql, $params);
+}
+
+
+//フリーページを全て取得(ページャー付き)
+function db_admin_get_c_free_page_all($page, $page_size, &$pager)
+{
+    $sql = 'SELECT * FROM c_free_page ORDER BY c_free_page_id DESC';
+
+    $list = db_get_all_page($sql, $page, $page_size, $params);
+
+    $sql = 'SELECT count(*) FROM c_free_page';
+    $total_num = db_get_one($sql, $params);
+    $pager = admin_make_pager($page, $page_size, $total_num);
+
+    return $list;
+}
+
+//フリーページを一つ取得
+function db_admin_get_c_free_page_one($c_free_page_id)
+{
+    $sql = 'SELECT * FROM c_free_page WHERE c_free_page_id = ?';
+    $params = array(intval($c_free_page_id));
+
+    return db_get_row($sql, $params);
+}
+
 ?>
