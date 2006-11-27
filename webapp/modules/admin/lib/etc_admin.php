@@ -84,6 +84,9 @@ function admin_client_redirect($p, $msg = '', $tail = '')
         $url = openpne_gen_url_head('admin', 'page_' . $p, true);
     }
     if (need_ssl_param('admin', 'page_' . $p)) {
+        if ($tail) {
+            $tail .= '&';
+        }
         $tail .= 'ssl_param=1';
     }
 
