@@ -23,7 +23,7 @@ class biz_do_s_add_schedule extends OpenPNE_Action
         $begin_time = strtotime($begin_time_str);
         $begin_time_english = date("H:i d M Y", $begin_time);
 
-        $finish_time = strtotime($begin_time_english . " +" . $requests['finish_time'] . " minute");
+        $finish_time = $begin_time + $requests['finish_time'] * 60;
         $finish_time_str = date("H:i:00", $finish_time);
 
         //終了時間と開始時間が変
