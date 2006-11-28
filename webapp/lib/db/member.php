@@ -20,7 +20,7 @@ function db_member_c_member4c_member_id($c_member_id, $is_secure = false, $with_
     if (!$is_recurred) {  //function cacheのために再帰処理を行う
         $is_recurred = true;
         $funcargs = func_get_args();
-        return pne_cache_recursive_call(OPENPNE_FUNCTION_CACHE_LIFETIME_LONG, __FUNCTION__, $funcargs);
+        return pne_cache_recursive_call(OPENPNE_FUNCTION_CACHE_LIFETIME_FAST, __FUNCTION__, $funcargs);
     }
 
     $is_recurred = false;
@@ -1017,6 +1017,9 @@ function db_member_h_config_3(
                 $public_flag_diary,
                 $is_shinobiashi)
 {
+    //function cacheの削除
+    cache_drop_c_member_profile($c_member_id);
+    
     $data = array(
         'is_receive_mail' => (bool)$is_receive_mail,
         'is_receive_daily_news' => intval($is_receive_daily_news),

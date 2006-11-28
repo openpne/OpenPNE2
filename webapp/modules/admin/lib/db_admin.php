@@ -74,9 +74,13 @@ function db_admin_update_c_sns_config($data)
 
 function db_admin_delete_c_profile_option($c_profile_option_id)
 {
+    //function cache削除
+    pne_cache_drop('db_member_c_profile_list');
+
     if (!$c_profile_option_id) {
         return false;
     }
+
     $sql = 'DELETE FROM c_member_profile WHERE c_profile_option_id = ?';
     $params = array(intval($c_profile_option_id));
     db_query($sql, $params);
@@ -89,6 +93,9 @@ function db_admin_delete_c_profile_option($c_profile_option_id)
 
 function db_admin_insert_c_profile_option($c_profile_id, $value, $sort_order)
 {
+    //function cache削除
+    pne_cache_drop('db_member_c_profile_list');
+
     $data = array(
         'c_profile_id' => intval($c_profile_id),
         'value' => $value,
@@ -99,6 +106,9 @@ function db_admin_insert_c_profile_option($c_profile_id, $value, $sort_order)
 
 function db_admin_update_c_profile_option($c_profile_option_id, $value, $sort_order)
 {
+    //function cache削除
+    pne_cache_drop('db_member_c_profile_list');
+
     $data = array('value' => $value);
     $where = array('c_profile_option_id' => intval($c_profile_option_id));
     db_update('c_member_profile', $data, $where);
