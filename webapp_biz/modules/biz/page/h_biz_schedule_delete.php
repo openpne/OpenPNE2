@@ -12,6 +12,7 @@ class biz_page_h_biz_schedule_delete extends OpenPNE_Action
     {
         $u = $GLOBALS['AUTH']->uid();
 
+        $this->set('inc_navi', fetch_inc_navi("h"));
         $this->set('schedule_id',$requests['schedule_id']);
         $this->set("is_rep", $requests['is_rep']);
 

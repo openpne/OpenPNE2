@@ -59,7 +59,8 @@ class pc_page_h_prof extends OpenPNE_Action
         $stateform = biz_getStateForm($u);
         $this->set("stateform", $stateform);
 
-        $this->set("group_list", biz_getJoinGroup($u, 9));
+        $group_list = biz_getHomeGroupList($u);
+        $this->set('group_list', $group_list);
 
         // ---bizここまで
 
