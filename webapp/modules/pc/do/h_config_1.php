@@ -24,6 +24,8 @@ class pc_do_h_config_1 extends OpenPNE_Action
         if ($pc_address != $pc_address2) $msg_list[] = "メールアドレスが一致しません";
         if (!db_common_is_mailaddress($pc_address)) $msg_list[] = "メールアドレスを正しく入力してください";
 
+        if (!db_member_is_limit_domain4mail_address($pc_address)) $msg_list[] = "このメールアドレスでは登録できません";
+
         if ($msg_list) {
             $msg = array_shift($msg_list);
             $p = array('msg' => $msg);

@@ -16,7 +16,7 @@ class pc_do_h_home_insert_c_schedule extends OpenPNE_Action
         // ----------
 
         if (!$title) {
-            $msg = "タイトルを入力してください";
+            $msg = "予定を入力してください";
             $p = array('w' => $requests['w'], 'msg' => $msg);
             openpne_redirect('pc', 'page_h_home', $p);
         }

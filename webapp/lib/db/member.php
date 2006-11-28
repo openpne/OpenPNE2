@@ -619,6 +619,44 @@ function db_member_is_sns_join4mail_address($mail_address)
     }
 }
 
+//対象のアドレスが、ドメイン制限に合致しているかどうか
+function db_member_is_limit_domain4mail_address($mail_address)
+{
+    // メールアドレスとして正しくない
+    if (!db_common_is_mailaddress($mail_address)) {
+        return false;
+    }
+
+    // 携帯アドレスは制限しない
+    if (is_ktai_mail_address($mail_address)) {
+        return true;
+    }
+
+    //ドメイン未設定なら無条件でＯＫ
+    if (LIMIT_DOMAIN1 == '' &&
+        LIMIT_DOMAIN2 == '' &&
+        LIMIT_DOMAIN3 == '' &&
+        LIMIT_DOMAIN4 == '' &&
+        LIMIT_DOMAIN5 == '' 
+    ) {
+        return true;
+    }
+
+    $arr = explode('@', $mail_address);
+
+    $domains = array(LIMIT_DOMAIN1,
+                     LIMIT_DOMAIN2,
+                     LIMIT_DOMAIN3,
+                     LIMIT_DOMAIN4,
+                     LIMIT_DOMAIN5,
+               );
+
+    if (in_array($arr[1], $domains)) {
+        return true;
+    } else {
+        return false;
+    }
+}
 function db_member_c_member_ktai_pre4ktai_address($ktai_address)
 {
     $sql = 'SELECT * FROM c_member_ktai_pre WHERE ktai_address = ?';

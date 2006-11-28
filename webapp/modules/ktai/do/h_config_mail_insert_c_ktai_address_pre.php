@@ -38,6 +38,12 @@ class ktai_do_h_config_mail_insert_c_ktai_address_pre extends OpenPNE_Action
             openpne_redirect('ktai', 'page_h_config_mail', $p);
         }
 
+        if (!db_member_is_limit_domain4mail_address($ktai_address)) {
+            // このアドレスでは登録できません
+            $p = array('msg' => 37);
+            openpne_redirect('ktai', 'page_h_config_mail', $p);
+        }
+
         k_do_delete_c_member_ktai_pre4ktai_address($ktai_address);
         k_do_delete_c_ktai_address_pre4ktai_address($ktai_address);
 

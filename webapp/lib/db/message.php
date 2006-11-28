@@ -597,4 +597,55 @@ function db_message_update_c_message($c_message_id, $subject, $body, $image_file
     return db_update('c_message', $data, $where);
 }
 
+
+//メッセージの次のc_message_idを取得
+function db_message_get_c_message_next_id4c_message_id($c_member_id, $c_message_id, $box)
+{
+    if ($box == 'savebox' || $box == 'trash') {
+        return null;
+    } else if ($box == 'outbox'){   //送信箱
+        $where = " WHERE c_member_id_from = ?";
+    } else {                        //受信箱
+        $where = " WHERE c_member_id_to = ?";
+    }
+
+    $sql =  "SELECT c_message_id FROM c_message" .
+            $where.
+            " AND is_deleted_to = 0" .
+            " AND is_send = 1" .
+            " AND c_message_id > ?" .
+            " ORDER BY r_datetime";
+    $params = array(
+                intval($c_member_id),
+                intval($c_message_id)
+              );
+
+    return db_get_one($sql, $params);
+}
+
+//メッセージの前のc_message_idを取得
+function db_message_get_c_message_prev_id4c_message_id($c_member_id, $c_message_id, $box)
+{
+    if ($box == 'savebox' || $box == 'trash') {
+        return null;
+    } else if ($box == 'outbox'){   //送信箱
+        $where = " WHERE c_member_id_from = ?";
+    } else {                        //受信箱
+        $where = " WHERE c_member_id_to = ?";
+    }
+
+    $sql =  "SELECT c_message_id FROM c_message" .
+            $where.
+            " AND is_deleted_to = 0" .
+            " AND is_send = 1" .
+            " AND c_message_id < ?" .
+            " ORDER BY r_datetime DESC";
+    $params = array(
+                intval($c_member_id),
+                intval($c_message_id)
+              );
+
+    return db_get_one($sql, $params);
+}
+
 ?>

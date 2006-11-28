@@ -29,6 +29,8 @@ class pc_page_h_invite_confirm extends OpenPNE_Action
                 $msg = "メールアドレスを正しく入力してください";
             } elseif (p_is_sns_join4mail_address($form_val['mail'])) {
                 $msg = "そのアドレスは既に登録済みです";
+            } elseif (!db_member_is_limit_domain4mail_address($form_val['mail'])) {
+                $msg = "そのアドレスは登録できません";
             } else {
                 if (is_ktai_mail_address($form_val['mail'])) {
                     //<PCKTAI

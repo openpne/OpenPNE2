@@ -197,13 +197,15 @@ function Link(linkLoc) {
 <td class="number">({if $item.birth_month})({$item.birth_month})月({else})&nbsp;({/if})</td>
 <td class="number">({if $item.birth_day})({$item.birth_day})日({else})&nbsp;({/if})</td>
 ({foreach from=$c_profile_list item=prof})
-<td>({strip})
 ({if $prof.form_type == "checkbox"})
+<td title="({$item.profile[$prof.name].value|@t_implode:','})">({strip})
     ({$item.profile[$prof.name].value|@t_implode:","|t_truncate:30})
-({else})
-    ({$item.profile[$prof.name].value|t_truncate:30})
-({/if})
 ({/strip})</td>
+({else})
+<td>({strip})
+    ({$item.profile[$prof.name].value|t_truncate:30})
+({/strip})</td>
+({/if})
 ({/foreach})
 <td class="idnumber">({$item.c_member_id})</td>
 <td>({if $item.secure.pc_address})<a href="mailto:({$item.secure.pc_address|escape:"hexentity"})">({$item.secure.pc_address|t_truncate:"30"|escape:"hexentity"})</a>({else})&nbsp;({/if})</td>

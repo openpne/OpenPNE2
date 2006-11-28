@@ -35,6 +35,10 @@ class ktai_do_h_invite_insert_c_invite extends OpenPNE_Action
             $p = array('msg' => 9);
             openpne_redirect('ktai', 'page_h_invite', $p);
         }
+        if (!db_member_is_limit_domain4mail_address($mail)) {
+            $p = array('msg' => 37);
+            openpne_redirect('ktai', 'page_h_invite', $p);
+        }
 
         $session = create_hash();
 

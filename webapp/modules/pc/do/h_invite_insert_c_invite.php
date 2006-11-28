@@ -43,6 +43,12 @@ class pc_do_h_invite_insert_c_invite extends OpenPNE_Action
             openpne_redirect('pc', 'page_h_invite', $p);
         }
 
+        if (!db_member_is_limit_domain4mail_address($mail)) {
+            $msg = "そのアドレスでは登録できません";
+            $p = array('msg' => $msg);
+            openpne_redirect('pc', 'page_h_invite', $p);
+        }
+
         $session = create_hash();
         $c_member_id_invite = $u;
 

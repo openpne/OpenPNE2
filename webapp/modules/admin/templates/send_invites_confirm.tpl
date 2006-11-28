@@ -39,6 +39,15 @@ PCアドレス
 </ul>
 ({/if})
 
+({if $requests.limit_domain_mails})
+以下のメールアドレスでは登録できないため送信されません。
+<ul>
+({foreach from=$requests.limit_domain_mails item=item})
+<li>({$item})</li>
+({/foreach})
+</ul>
+({/if})
+
 ({if !$cannot_send})
 送信してもよろしいですか？
 ({/if})

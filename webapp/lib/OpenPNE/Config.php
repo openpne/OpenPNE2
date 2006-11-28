@@ -38,7 +38,11 @@ class OpenPNE_Config
             'UNUSED_MAILS',
             'DISPLAY_OPENPNE_INFO',
             'USE_EXTRA_SERVICE',
-
+            'LIMIT_DOMAIN1',
+            'LIMIT_DOMAIN2',
+            'LIMIT_DOMAIN3',
+            'LIMIT_DOMAIN4',
+            'LIMIT_DOMAIN5',
         );
     }
 
@@ -115,6 +119,13 @@ class OpenPNE_Config
             'SKIN_VERSION' => '2.0',
             'AFFILIATE_TAG' => '',
             'UNUSED_MAILS' => '',
+            'USE_EXTRA_SERVICE' => '1',
+            'LIMIT_DOMAIN1' => '',
+            'LIMIT_DOMAIN2' => '',
+            'LIMIT_DOMAIN3' => '',
+            'LIMIT_DOMAIN4' => '',
+            'LIMIT_DOMAIN5' => '',
+
         // config.php
             'OPENPNE_RSS_CACHE_DIR' => OPENPNE_VAR_DIR . '/rss_cache',
             'OPENPNE_UNDER_MAINTENANCE' => false,

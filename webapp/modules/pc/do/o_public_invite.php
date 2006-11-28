@@ -60,6 +60,11 @@ class pc_do_o_public_invite extends OpenPNE_Action
             $p = array('msg' => $msg);
             openpne_redirect('pc', 'page_o_public_invite', $p);
         }
+        if (!db_member_is_limit_domain4mail_address($pc_address)) {
+            $msg = 'そのアドレスでは登録できません';
+            $p = array('msg' => $msg);
+            openpne_redirect('pc', 'page_o_public_invite', $p);
+        }
 
         $session = create_hash();
 

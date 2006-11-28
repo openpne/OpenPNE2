@@ -67,6 +67,7 @@
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_navi')})" title="ナビゲーション変更: ナビゲーションボタンのリンク先、キャプションを変更">ナビゲーション変更</a></li>
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_admin_info')})" title="お知らせ変更・HTML挿入: お知らせ、利用規約変更、HTML挿入">お知らせ変更・HTML挿入</a></li>
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_banner')})" title="バナー管理: トップバナー、サイドバナー追加、任意HTML挿入">バナー管理</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('limit_domain')})" title="ドメイン制限: ドメイン制限追加、編集、削除">ドメイン制限</a></li>
 </ul>
 
 ({if $ADMIN_INIT_CONFIG})

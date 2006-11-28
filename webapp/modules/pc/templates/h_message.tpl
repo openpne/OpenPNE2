@@ -133,6 +133,26 @@
 ({*ここまで：header*})
 ({*ここから：body*})
 <!-- ここから：主内容 -->
+
+<table border="0" cellspacing="0" cellpadding="0" class="border_01" style="width: 504px;">
+<tr>
+<td style="width:340px;height:2em;" class="bg_03" align="left">
+<div class="padding_s">
+({if $prev_c_message_id})
+<a href="({t_url m=pc a=page_h_message})&amp;target_c_message_id=({$prev_c_message_id})&amp;({if $box == 'outbox'})box=({$box})({else})jyusin_c_message_id=({$prev_c_message_id})({/if})">前を表示</a>
+({/if})
+</div>
+</td>
+<td style="width:340px;height:2em;" class="bg_03" align="right">
+<div class="padding_s">
+({if $next_c_message_id})
+<a href="({t_url m=pc a=page_h_message})&amp;target_c_message_id=({$next_c_message_id})&amp;({if $box == 'outbox'})box=({$box})({else})jyusin_c_message_id=({$next_c_message_id})({/if})">次を表示</a>
+({/if})
+</div>
+</td>
+</tr>
+</table>
+
 <table border="0" cellspacing="0" cellpadding="0" style="width:504px;">
 ({*********})
 <tr>

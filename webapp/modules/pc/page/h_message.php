@@ -53,6 +53,10 @@ class pc_page_h_message extends OpenPNE_Action
         $this->set("form_val", $form_val);
         $this->set("jyusin_c_message_id", $jyusin_c_message_id);
 
+        $this->set("next_c_message_id", db_message_get_c_message_next_id4c_message_id($u, $target_c_message_id, $box));
+        $this->set("prev_c_message_id", db_message_get_c_message_prev_id4c_message_id($u, $target_c_message_id, $box));
+
+
         //ボックス判定
         $this->set("box", $box);
 
