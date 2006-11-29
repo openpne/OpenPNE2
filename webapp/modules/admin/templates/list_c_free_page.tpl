@@ -8,7 +8,7 @@
 ({if $pager && $pager.total_num > 0})
 <!-- pager_begin -->
 <div class="pager">
-({$pager.total_num}) 人中 ({$pager.start_num}) - ({$pager.end_num})人目を表示しています
+({$pager.total_num}) 件中 ({$pager.start_num}) - ({$pager.end_num})件目を表示しています
 <br>
 ({if $pager.prev_page})
 <a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_free_page')})&amp;page=({$pager.prev_page})&amp;page_size=({$pager.page_size})({$cond})">前へ</a>&nbsp;
