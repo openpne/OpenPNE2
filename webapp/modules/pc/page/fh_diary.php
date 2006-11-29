@@ -89,6 +89,14 @@ class pc_page_fh_diary extends OpenPNE_Action
         //各月の日記
         $this->set("date_list", p_fh_diary_list_date_list4c_member_id($target_c_member_id));
 
+        if (USE_DIARY_CATEGORY) {
+	        //カテゴリ一覧
+	        $this->set('category', db_diary_category_list4c_member_id($target_c_member_id));
+	
+	        //この日記のカテゴリリストを得る
+	        $this->set("category_list", db_diary_category_list4c_diary_id($target_c_diary_id));
+        }
+
         return 'success';
     }
 }

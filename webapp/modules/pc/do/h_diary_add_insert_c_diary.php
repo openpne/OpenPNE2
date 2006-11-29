@@ -29,12 +29,25 @@ class pc_do_h_diary_add_insert_c_diary extends OpenPNE_Action
         $tmpfile_1 = $requests['tmpfile_1'];
         $tmpfile_2 = $requests['tmpfile_2'];
         $tmpfile_3 = $requests['tmpfile_3'];
+        $category = explode(' ', trim($requests['category']));
         // ----------
 
         $sessid = session_id();
         $c_member_id = $u;
 
         $c_diary_id = db_diary_insert_c_diary($c_member_id, $subject, $body, $public_flag);
+
+        foreach($category as $value) {
+            if (empty($value)) {
+                break;
+            }
+
+            $c_category_id = db_diary_get_category_id4category_name($c_member_id, $value);
+            if (is_null($c_category_id)) {
+                $c_category_id = db_diary_category_insert_category($c_member_id, $value);
+            }
+            db_diary_category_insert_c_diary_category_diary($c_diary_id, $c_category_id);
+        }
 
         $filename_1 = image_insert_c_image4tmp("d_{$c_diary_id}_1", $tmpfile_1);
         $filename_2 = image_insert_c_image4tmp("d_{$c_diary_id}_2", $tmpfile_2);

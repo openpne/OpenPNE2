@@ -15,6 +15,7 @@ class pc_page_h_diary_edit extends OpenPNE_Action
         $subject = $requests['subject'];
         $body = $requests['body'];
         $public_flag = $requests['public_flag'];
+        $category = $requests['category'];
         // ----------
 
         $c_diary = db_diary_get_c_diary4id($target_c_diary_id);
@@ -74,6 +75,25 @@ class pc_page_h_diary_edit extends OpenPNE_Action
 
         //各月の日記
         $this->set("date_list", p_fh_diary_list_date_list4c_member_id($u));
+
+        if (USE_DIARY_CATEGORY) {
+	        //この日記のカテゴリリストを得る
+	        if ($category) {
+	            $category_list = array();
+	            foreach(explode(' ', $category) as $value) {
+	                if (empty($value)) {
+	                    break;
+	                }
+	                $category_list[] = array('c_diary_category_id' => 'dummy', 'category_name' => $value);
+	            }
+	            $this->set("category", $category_list);
+	        } else {
+	            $this->set("category", db_diary_category_list4c_diary_id($target_c_diary_id));
+	        }
+	        //ユーザのカテゴリリスト
+	        $this->set("category_list", db_diary_category_list4c_member_id($u));
+            $this->set("use_diary_category", true);
+        }
 
         return 'success';
     }

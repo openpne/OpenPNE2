@@ -195,12 +195,41 @@
 <td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({*********})
+({if $form_val.category})
 <tr>
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 <td class="bg_05" align="left" valign="middle">
 
 <div class="padding_s">
 
+カテゴリ
+
+</div>
+
+</td>
+<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td class="bg_02" align="left" valign="middle">
+
+<div class="padding_s">
+
+({$form_val.category})
+
+</div>
+
+</td>
+<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+</tr>
+({*********})
+<tr>
+<td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+</tr>
+({*********})
+({/if})
+<tr>
+<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td class="bg_05" align="left" valign="middle">
+
+<div class="padding_s">
 公開範囲
 
 </div>
@@ -244,6 +273,7 @@
 <input type="hidden" name="tmpfile_1" value="({$form_val.tmpfile_1})">
 <input type="hidden" name="tmpfile_2" value="({$form_val.tmpfile_2})">
 <input type="hidden" name="tmpfile_3" value="({$form_val.tmpfile_3})">
+<input type="hidden" name="category" value="({$form_val.category})">
 <td class="padding_s"><input type="submit" class="submit" value="　作 　成　"></td>
 </form>
 
@@ -251,6 +281,7 @@
 <input type="hidden" name="subject" value="({$form_val.subject})">
 <input type="hidden" name="body" value="({$form_val.body})">
 <input type="hidden" name="public_flag" value="({$form_val.public_flag})">
+<input type="hidden" name="category" value="({$form_val.category})">
 <td class="padding_s"><input type="submit" class="submit" value="　修 　正　"></td>
 </form>
 </tr>

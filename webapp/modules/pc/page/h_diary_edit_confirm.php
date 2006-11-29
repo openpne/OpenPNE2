@@ -22,6 +22,7 @@ class pc_page_h_diary_edit_confirm extends OpenPNE_Action
         $subject = $requests['subject'];
         $body = $requests['body'];
         $public_flag = $requests['public_flag'];
+        $category = trim($requests['category']);
         // ----------
 
         $sessid = session_id();
@@ -50,6 +51,20 @@ class pc_page_h_diary_edit_confirm extends OpenPNE_Action
             }
         }
 
+        $category_list = array_unique(explode(" ", rtrim($category)));
+        if (count($category_list) > 5) {
+            $_REQUEST['msg'] = 'カテゴリの指定は5個以下にしてください';
+            openpne_forward('pc', 'page', 'h_diary_add');
+            exit;
+        }
+        foreach ($category_list as $value) {
+            if(mb_strwidth($value) > 20) {
+                $_REQUEST['msg'] = 'カテゴリの文字数は半角20文字以内にしてください';
+                openpne_forward('pc', 'page', 'h_diary_add');
+                exit;
+            }
+        }
+
         $this->set('inc_navi', fetch_inc_navi("h"));
 
         //プロフィール
@@ -67,6 +82,7 @@ class pc_page_h_diary_edit_confirm extends OpenPNE_Action
             "tmpfile_1" => $tmpfiles[1],
             "tmpfile_2" => $tmpfiles[2],
             "tmpfile_3" => $tmpfiles[3],
+            "category" => join(" ", $category_list),
         );
         $this->set("form_val", $form_val);
 

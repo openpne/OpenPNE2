@@ -5,6 +5,148 @@
  */
 
 /**
+ * 指定メンバーの日記カテゴリリストを取得する
+ * 
+ * @param int $c_member_id
+ * @return array
+ */
+function db_diary_category_list4c_member_id($c_member_id)
+{
+    $sql = 'SELECT c_diary_category_id, category_name FROM c_diary_category ' .
+        'WHERE c_member_id = ?';
+    $result = db_get_all($sql, array(intval($c_member_id)));
+
+    return $result;
+}
+
+/**
+ * カテゴリ名からカテゴリIDを得る
+ * 
+ * @param int $c_member_id
+ * @param string $category_name
+ * @return bool
+ */
+function db_diary_get_category_id4category_name($c_member_id, $category_name)
+{
+    $sql = 'SELECT c_diary_category_id FROM c_diary_category ' .
+        'WHERE category_name LIKE ? AND c_member_id = ?';
+    return db_get_one($sql, array($category_name, intval($c_member_id)));
+}
+
+/**
+ * カテゴリIDからカテゴリ名を得る
+ */
+function db_diary_get_category_name4category_id($category_id)
+{
+    $sql = 'SELECT category_name FROM c_diary_category ' .
+        'WHERE c_diary_category_id = ?';
+    return db_get_one($sql, array($category_id));
+}
+
+/**
+ * 日記IDからカテゴリリストを得る
+ * 
+ * @param int $c_diary_id
+ * @return array
+ */
+function db_diary_category_list4c_diary_id($c_diary_id)
+{
+    $sql = 'SELECT c_diary_category_id FROM c_diary_category_diary WHERE c_diary_id = ?';
+    $category_list = db_get_col($sql, array(intval($c_diary_id)));
+    $ids = join(',', $category_list);
+
+    $sql = 'SELECT c_diary_category_id, category_name FROM c_diary_category' .
+        ' WHERE c_diary_category_id IN ('.$ids.')';
+    return db_get_all($sql);
+}
+
+/**
+ * カテゴリIDから日記を得る
+ * 
+ * @param int $c_diary_category_id
+ * @return array
+ */
+function db_diary_list4c_diary_category_id($c_member_id, $c_diary_category_id, $u = null)
+{
+    $sql = 'SELECT c_diary_id FROM c_diary_category_diary WHERE c_diary_category_id = ?';
+    $diary_list = db_get_col($sql, array(intval($c_diary_category_id)));
+    $ids = join(',', $diary_list);
+
+    $pf_cond = db_diary_public_flag_condition($c_member_id, $u);
+    $sql = 'SELECT * FROM c_diary' .
+        ' WHERE c_diary_id IN ('.$ids.')' . $pf_cond . ' ORDER BY r_datetime DESC';
+    $list = db_get_all($sql);
+
+    foreach ($list as $key => $c_diary) {
+        $list[$key]['num_comment'] = db_diary_count_c_diary_comment4c_diary_id($c_diary['c_diary_id']);
+    }
+
+    return array($list, false, false);
+}
+
+/**
+ * カテゴリを追加する
+ * 
+ * @param int $c_member_id
+ * @param int $category_name
+ */
+function db_diary_category_insert_category($c_member_id, $category_name)
+{
+    $data = array(
+        'c_member_id' => intval($c_member_id),
+        'category_name' => $category_name,
+        'r_datetime' => db_now(),
+    );
+    return db_insert('c_diary_category', $data);
+}
+
+/**
+ * カテゴリを削除する
+ * 
+ * @param int $c_diary_category_id
+ */
+function db_diary_category_delete_category($c_diary_category_id)
+{
+    $sql = 'DELETE FROM c_diary_category WHERE c_diary_category_id = ?';
+    db_query($sql, array($c_diary_category_id));    
+}
+/**
+ * カテゴリと日記を関連づける
+ * 
+ * @param int $c_diary_id
+ * @param int $c_diary_category_id
+ */
+function db_diary_category_insert_c_diary_category_diary($c_diary_id, $c_diary_category_id)
+{
+    $data = array(
+        'c_diary_id' => intval($c_diary_id),
+        'c_diary_category_id' => intval($c_diary_category_id),
+    );
+    db_insert('c_diary_category_diary', $data);
+}
+
+/**
+ * カテゴリと日記の関連づけを削除する
+ */
+function db_diary_category_delete_c_diary_category_diary($c_diary_id)
+{
+    $diary_category_list = db_diary_category_list4c_diary_id($c_diary_id);
+
+    $sql = 'DELETE FROM c_diary_category_diary WHERE c_diary_id = ?';
+    db_query($sql, array($c_diary_id));
+
+    foreach($diary_category_list as $value) {
+	    $sql = 'SELECT COUNT(*) FROM c_diary_category_diary'.
+	        ' WHERE c_diary_category_id = ?';
+        $c_diary_category_id = $value['c_diary_category_id'];
+        $is_diary = (bool)db_get_one($sql, array(intval($c_diary_category_id)));
+        if (!$is_diary) {  //カテゴリに関連付いた日記が存在しない
+            db_diary_category_delete_category($c_diary_category_id);
+        }
+    }
+}
+
+/**
  * db_diary_public_flag_condition
  * 
  * @param int $c_member_id target c_member_id
@@ -838,6 +980,9 @@ function db_diary_delete_c_diary($c_diary_id)
     $sql = 'SELECT image_filename_1, image_filename_2, image_filename_3 FROM c_diary_comment WHERE c_diary_id =?';
     $params = array(intval($c_diary_id));
     $comment_images = db_get_all($sql, $params);
+
+    //カテゴリ
+    db_diary_category_delete_c_diary_category_diary($c_diary_id);
 
     foreach ($comment_images as $value) {
         image_data_delete($value['image_filename_1']);

@@ -30,6 +30,7 @@ class pc_do_h_diary_edit_insert_c_diary extends OpenPNE_Action
         $tmpfile_1 = $requests['tmpfile_1'];
         $tmpfile_2 = $requests['tmpfile_2'];
         $tmpfile_3 = $requests['tmpfile_3'];
+        $category = explode(' ', trim($requests['category']));
         // ----------
 
         //--- 権限チェック
@@ -42,6 +43,19 @@ class pc_do_h_diary_edit_insert_c_diary extends OpenPNE_Action
         //---
 
         $sessid = session_id();
+
+        //カテゴリ登録しなおし
+        db_diary_category_delete_c_diary_category_diary($target_c_diary_id);
+        foreach($category as $value) {
+             if (empty($value)) {
+                break;
+            }
+           $c_category_id = db_diary_get_category_id4category_name($c_diary['c_member_id'], $value);
+            if (is_null($c_category_id)) {
+                $c_category_id = db_diary_category_insert_category($c_diary['c_member_id'], $value);
+            }
+            db_diary_category_insert_c_diary_category_diary($target_c_diary_id, $c_category_id);
+        }
 
         $filename_1 = $filename_2 = $filename_3 = '';
 

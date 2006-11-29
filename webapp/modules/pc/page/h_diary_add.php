@@ -14,6 +14,7 @@ class pc_page_h_diary_add extends OpenPNE_Action
         $form_val['subject'] = $requests['subject'];
         $form_val['body'] = $requests['body'];
         $form_val['public_flag'] = $requests['public_flag'];
+        $form_val['category'] = $requests['category'];
         // ----------
 
         $sessid = session_id();
@@ -49,6 +50,12 @@ class pc_page_h_diary_add extends OpenPNE_Action
 
         //各月の日記
         $this->set("date_list", p_fh_diary_list_date_list4c_member_id($u));
+
+        if (USE_DIARY_CATEGORY) {
+	        //カテゴリリスト
+	        $this->set("category_list", db_diary_category_list4c_member_id($u));
+            $this->set("use_diary_category", true);
+        }
 
         return 'success';
     }

@@ -165,6 +165,14 @@
 </select><br>
 <span class="caution">※忍び足機能(ユーザによるあしあとを残すかどうかの設定)を有効にするかどうかを設定します</span></td>
 </tr>
+<tr>
+<th>日記カテゴリ機能<br>使用設定</th>
+<td><select name="USE_DIARY_CATEGORY">
+<option value="1"({if $smarty.const.USE_DIARY_CATEGORY}) selected="selected"({/if})>使用する</option>
+<option value="0"({if !$smarty.const.USE_DIARY_CATEGORY}) selected="selected"({/if})>使用しない</option>
+</select><br>
+<span class="caution">※日記のカテゴリ機能を有効にするかどうかを設定します</span></td>
+</tr>
 
 <tr><td colspan="2" style="padding:0;background:#000"><img src="skin/dummy.gif" height="1"></td></tr>
 
