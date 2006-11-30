@@ -74,8 +74,8 @@ function db_diary_list4c_diary_category_id($c_member_id, $c_diary_category_id, $
 
     $pf_cond = db_diary_public_flag_condition($c_member_id, $u);
     $sql = 'SELECT * FROM c_diary' .
-        ' WHERE c_diary_id IN ('.$ids.')' . $pf_cond . ' ORDER BY r_datetime DESC';
-    $list = db_get_all($sql);
+        ' WHERE c_diary_id IN ('.$ids.') AND c_member_id = ? ' . $pf_cond . ' ORDER BY r_datetime DESC';
+    $list = db_get_all($sql, array($c_member_id));
 
     foreach ($list as $key => $c_diary) {
         $list[$key]['num_comment'] = db_diary_count_c_diary_comment4c_diary_id($c_diary['c_diary_id']);
