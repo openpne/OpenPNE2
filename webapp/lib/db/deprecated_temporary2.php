@@ -453,84 +453,6 @@ function p_c_commu_member_id_list4c_commu_id($c_commu_id)
 	return db_commu_c_commu_member_id_list4c_commu_id($c_commu_id);
 }
 
-/*
-function db_commu_insert_c_commu($c_member_id, $name, $c_commu_category_id, $info, $public_flag)
-{
-	return db_commu_insert_c_commu($c_member_id, $name, $c_commu_category_id, $info, $public_flag);
-}
-
-function function db_commu_update_c_commu($c_commu_id,
-    $name, $c_commu_category_id, $info, $public_flag,
-    $image_filename = '', $is_send_join_mail = 1,
-    $is_display_map = null, $map_latitude = null, $map_longitude = null, $map_zoom = null);
-{
-	return function db_commu_update_c_commu($c_commu_id,
-    $name, $c_commu_category_id, $info, $public_flag,
-    $image_filename = '', $is_send_join_mail = 1,
-    $is_display_map = null, $map_latitude = null, $map_longitude = null, $map_zoom = null);
-    
-}
-
-function db_commu_update_c_commu_image_filename($c_commu_id, $image_filename)
-{
-	return db_commu_update_c_commu_image_filename($c_commu_id, $image_filename);
-}
-
-function db_commu_delete_c_commu_image_filename($c_commu_id)
-{
-	return db_commu_delete_c_commu_image_filename($c_commu_id);
-}
-
-function db_commu_update_c_commu_c_member_id_admin($c_commu_id, $c_member_id)
-{
-	return db_commu_update_c_commu_c_member_id_admin($c_commu_id, $c_member_id);
-}
-
-function db_commu_update_is_regist_join($c_commu_id, $value = 0)
-{
-	return db_commu_update_is_regist_join($c_commu_id, $value = 0);
-}
-
-function db_commu_delete_c_commu_member_confirm($c_commu_member_confirm_id)
-{
-	return db_commu_delete_c_commu_member_confirm($c_commu_member_confirm_id);
-}
-
-function db_commu_insert_c_commu_member($c_commu_member_confirm_id)
-{
-	return db_commu_insert_c_commu_member($c_commu_member_confirm_id);
-}
-
-function db_commu_insert_c_commu_member_confirm($c_commu_id, $c_member_id, $message = '')
-{
-	return db_commu_insert_c_commu_member_confirm($c_commu_id, $c_member_id, $message = '');
-}
-
-function db_commu_insert_c_commu_admin_confirm($c_commu_id, $c_member_id, $message = '')
-{
-	return db_commu_insert_c_commu_admin_confirm($c_commu_id, $c_member_id, $message = '');
-}
-
-function db_commu_delete_c_commu_admin_confirm4id($c_commu_admin_confirm_id)
-{
-	return db_commu_delete_c_commu_admin_confirm4id($c_commu_admin_confirm_id);
-}
-
-function db_commu_delete_c_commu_admin_confirm4c_commu_id($c_commu_id)
-{
-	return db_commu_delete_c_commu_admin_confirm4c_commu_id($c_commu_id);
-}
-
-function db_commu_delete_c_commu_topic($c_commu_topic_id)
-{
-	return db_commu_delete_c_commu_topic($c_commu_topic_id);
-}
-
-function db_commu_insert_c_commu_topic_comment($c_commu_id, $c_commu_topic_id, $c_member_id, $body)
-{
-	return db_commu_insert_c_commu_topic_comment($c_commu_id, $c_commu_topic_id, $c_member_id, $body);
-}
-*/
 
 function do_c_bbs_insert_c_commu_topic_comment($c_member_id,$target_c_commu_topic_id,$body)
 {
@@ -599,28 +521,9 @@ function do_inc_join_c_commu($c_commu_id, $c_member_id)
 	return db_commu_join_c_commu($c_commu_id, $c_member_id);
 }
 
-/*
-function db_commu_delete_c_commu_member($c_commu_id, $c_member_id)
-{
-	return db_commu_delete_c_commu_member($c_commu_id, $c_member_id);
-}
-*/
-
 function do_c_home_update_is_receive_mail($c_commu_id, $c_member_id, $is_receive_mail, $is_receive_mail_pc, $is_receive_message)
 {
 	return db_commu_update_is_receive_mail($c_commu_id, $c_member_id, $is_receive_mail, $is_receive_mail_pc, $is_receive_message);
 }
 
-/*
-
-function db_commu_insert_c_commu_admin_invite($c_commu_id, $c_member_id_to)
-{
-	return do_c_home_update_is_receive_mail($c_commu_id, $c_member_id, $is_receive_mail, $is_receive_mail_pc, $is_receive_message);
-}
-
-function db_commu_delete_c_commu_admin_invite($c_commu_admin_invite_id)
-{
-	return do_c_home_update_is_receive_mail($c_commu_id, $c_member_id, $is_receive_mail, $is_receive_mail_pc, $is_receive_message);
-}
-*/
 ?>
