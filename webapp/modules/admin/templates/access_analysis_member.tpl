@@ -1,6 +1,6 @@
 ({$inc_header|smarty:nodefaults})
 
-<h2>({$item_str})版<br>
+<h2>({$item_str})<br>
 ({if $month_flag})({$ymd|date_format:"%Y年%m月"})({else})({$ymd|date_format:"%Y年%m月%d日"})({/if})　
 にアクセスしたメンバー
 </h2>

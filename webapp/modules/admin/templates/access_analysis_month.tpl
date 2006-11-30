@@ -1,7 +1,7 @@
 ({$inc_header|smarty:nodefaults})
 
 
-<h2>({$item_str})版ページ月次集計</h2>
+<h2>({$item_str})ページ月次集計</h2>
 
 <br>
 <br>

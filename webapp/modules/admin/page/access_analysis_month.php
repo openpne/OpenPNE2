@@ -20,7 +20,7 @@ class admin_page_access_analysis_month extends OpenPNE_Action
         $v['OPENPNE_VERSION'] = OPENPNE_VERSION;
         $this->set($v);
         $this->set("ktai_flag" ,$ktai_flag);
-        $this->set("item_str", ($ktai_flag ? "携帯":"PC"));
+        $this->set("item_str", ($ktai_flag ? "携帯版":"PC版"));
         $access_analysis_month = p_access_analysis_month_access_analysis_month($ktai_flag);
         $this->set("access_analysis_month", $access_analysis_month);
 
