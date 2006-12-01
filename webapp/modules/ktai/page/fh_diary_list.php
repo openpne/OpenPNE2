@@ -14,6 +14,7 @@ class ktai_page_fh_diary_list extends OpenPNE_Action
         $target_c_member_id = $requests['target_c_member_id'];
         $direc = $requests['direc'];
         $page = $requests['page'];
+        $keyword = $requests['keyword'];
         // ----------
 
         if (!$target_c_member_id) $target_c_member_id = $u;
@@ -38,18 +39,34 @@ class ktai_page_fh_diary_list extends OpenPNE_Action
         $page_size = 10;
         $page += $direc;
         //ターゲットの詳細な日記リスト
-        $list = p_fh_diary_list_diary_list4c_member_id($target_c_member_id, $page_size, $page, $u);
+        //検索する場合(自分の日記のみ)
+        if ($keyword) {
+            $list = p_h_diary_list_all_search_c_diary4c_diary($keyword, $page_size, $page, $u);
+        } else {
+            $list = p_fh_diary_list_diary_list4c_member_id($target_c_member_id, $page_size, $page, $u);
+        }
 
         $this->set("target_diary_list", $list[0]);
         $this->set("page", $page);
         $this->set("is_prev", $list[1]);
         $this->set("is_next", $list[2]);
+        $this->set("total_num", $list[3]);
+
+        $pager = array();
+        $pager['start'] = $page_size * ($page - 1) + 1;
+        if (($pager['end'] = $page_size * $page) > $list[3]) {
+            $pager['end'] = $list[3];
+        }
+        $this->set('pager', $pager);
 
         //f or h
         $this->set("INC_NAVI_type", k_p_fh_common_get_type($target_c_member_id, $u));
 
         //あしあとをつける
         db_ashiato_insert_c_ashiato($target_c_member_id, $u);
+
+        //検索ワード
+        $this->set('keyword', $keyword);
 
         return 'success';
     }

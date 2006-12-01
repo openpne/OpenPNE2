@@ -26,6 +26,8 @@ class ktai_page_h_diary_list_all extends OpenPNE_Action
         $this->set('new_diary_list', $result[0]);
         $this->set('is_prev', $result[1]);
         $this->set('is_next', $result[2]);
+        $this->set('total_num', $result[3]);
+
         $this->set('c_diary_search_list_count', $result[3]);
 
         $pager = array();

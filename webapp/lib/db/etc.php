@@ -196,6 +196,76 @@ function db_common_diary_monthly_calendar($year, $month, $c_member_id, $u = null
     return $calendar;
 }
 
+/**
+ * メッセージページのカレンダー生成
+ */
+function db_common_message_monthly_calendar($u, $year, $month, $c_member_id, $box)
+{
+    include_once 'Calendar/Month/Weekdays.php';
+    $Month = new Calendar_Month_Weekdays($year, $month, 0);
+    $Month->build();
+
+    $is_message_list = db_message_is_message_list4date($u, $year, $month, $box);
+
+    $calendar = array();
+    $week = 0;
+    while ($Day = $Month->fetch()) {
+        if ($Day->isFirst()) $week++;
+
+        if ($Day->isEmpty()) {
+            $calendar['days'][$week][] = array();
+        } else {
+            $day = $Day->thisDay();
+            $item = array(
+                'day' => $day,
+                'is_message' => @in_array($day, $is_message_list),
+            );
+            $calendar['days'][$week][] = $item;
+        }
+    }
+
+    if ($box == 'inbox' || !$box) {
+        $where = "c_member_id_to = ?".
+                 " AND is_deleted_to = 0" .
+                 " AND is_send = 1";
+    } elseif ($box == 'outbox') {
+        $where = "c_member_id_from = ?".
+                 " AND is_deleted_from = 0" .
+                 " AND is_send = 1";
+    } else {
+        return null;
+    }
+
+    // 最初にメッセージを書いた日
+    $sql = "SELECT r_datetime FROM c_message WHERE $where ORDER BY r_datetime";
+    $first_datetime = db_get_one($sql, array(intval($u)));
+
+    // 前の月、次の月
+    $prev_month = $Month->prevMonth('timestamp');
+    $this_month = $Month->thisMonth('timestamp');
+    $next_month = $Month->nextMonth('timestamp');
+
+    $ym = array(
+        'disp_year'  => $year,
+        'disp_month' => $month,
+        'prev_year'  => null,
+        'prev_month' => null,
+        'next_year'  => null,
+        'next_month' => null,
+    );
+    if ($first_datetime && strtotime($first_datetime) < $this_month) {
+        $ym['prev_year'] = date('Y', $prev_month);
+        $ym['prev_month'] = date('n', $prev_month);
+    }
+    if ($next_month < time()) {
+        $ym['next_year'] = date('Y', $next_month);
+        $ym['next_month'] = date('n', $next_month);
+    }
+    $calendar['ym'] = $ym;
+
+    return $calendar;
+}
+
 //---
 
 /**

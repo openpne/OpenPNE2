@@ -345,11 +345,23 @@
 <img src="./skin/dummy.gif" class="v_spacer_l">
 
 <div style="width:490px;padding:30px 10px;margin:0px auto;" class="border_01 bg_03">
-({t_form _method=get m=pc a=page_h_diary_add})
-<input type="submit" class="submit" value="　日 記 を 書 く　">
+<table>
+<tr>
+<td>
+({t_form _method=get m=pc a=page_fh_diary_list})
+キーワード<img src="({t_img_url_skin filename=icon_arrow_2})" class="icon">
+<input type="text" size="15" name="keyword" class="text border_01" value="({$keyword})">
+<input type="submit" class="submit" value="　検 索　">
 </form>
+</td>
+<td>
+({t_form _method=get m=pc a=page_h_diary_add})
+&nbsp;&nbsp;&nbsp;<input type="submit" class="submit" value="　日 記 を 書 く　">
+</form>
+</td>
+</tr>
+</table>
 </div>
-
 <img src="./skin/dummy.gif" class="v_spacer_l">
 
 </div>
@@ -421,8 +433,9 @@
 <div style="padding:4px 3px;">
 
 ({if $is_prev})
-<a href="({t_url m=pc a=page_fh_diary_list})&amp;target_c_member_id=({$target_member.c_member_id})&amp;direc=-1&amp;page=({$page})">前を表示</a>
+<a href="({t_url m=pc a=page_fh_diary_list})&amp;target_c_member_id=({$target_member.c_member_id})&amp;direc=-1&amp;page=({$page})({if $url_keyword})&amp;keyword=({$url_keyword})({/if})({if !$all})({if $date_val.year})&amp;year=({$date_val.year})({/if})({if $date_val.month})&amp;month=({$date_val.month})({/if})({if $date_val.day})&amp;day=({$date_val.day})({/if})({/if})">前を表示</a>
 ({/if})
+({$total_num})件中
 ({$page*$page_size-$page_size+1})件～
 ({if $page_size > $diary_list_count})
 ({$diary_list_count+$page*$page_size-$page_size})
@@ -431,7 +444,7 @@
 ({/if})
 件を表示
 ({if $is_next})
-<a href="({t_url m=pc a=page_fh_diary_list})&amp;target_c_member_id=({$target_member.c_member_id})&amp;direc=1&amp;page=({$page})">次を表示</a>
+<a href="({t_url m=pc a=page_fh_diary_list})&amp;target_c_member_id=({$target_member.c_member_id})&amp;direc=1&amp;page=({$page})({if $url_keyword})&amp;keyword=({$url_keyword})({/if})({if !$all})({if $date_val.year})&amp;year=({$date_val.year})({/if})({if $date_val.month})&amp;month=({$date_val.month})({/if})({if $date_val.day})&amp;day=({$date_val.day})({/if})({/if})">次を表示</a>
 ({/if})
 
 </div>
@@ -575,8 +588,9 @@
 <div style="padding:4px 3px;">
 
 ({if $is_prev})
-<a href="({t_url m=pc a=page_fh_diary_list})&amp;target_c_member_id=({$target_member.c_member_id})&amp;direc=-1&amp;page=({$page})">前を表示</a>
+<a href="({t_url m=pc a=page_fh_diary_list})&amp;target_c_member_id=({$target_member.c_member_id})&amp;direc=-1&amp;page=({$page})({if $url_keyword})&amp;keyword=({$url_keyword})({/if})({if !$all})({if $date_val.year})&amp;year=({$date_val.year})({/if})({if $date_val.month})&amp;month=({$date_val.month})({/if})({if $date_val.day})&amp;day=({$date_val.day})({/if})({/if})">前を表示</a>
 ({/if})
+({$total_num})件中
 ({$page*$page_size-$page_size+1})件～
 ({if $page_size > $diary_list_count})
 ({$diary_list_count+$page*$page_size-$page_size})
@@ -585,7 +599,7 @@
 ({/if})
 件を表示
 ({if $is_next})
-<a href="({t_url m=pc a=page_fh_diary_list})&amp;target_c_member_id=({$target_member.c_member_id})&amp;direc=1&amp;page=({$page})">次を表示</a>
+<a href="({t_url m=pc a=page_fh_diary_list})&amp;target_c_member_id=({$target_member.c_member_id})&amp;direc=1&amp;page=({$page})({if $url_keyword})&amp;keyword=({$url_keyword})({/if})({if !$all})({if $date_val.year})&amp;year=({$date_val.year})({/if})({if $date_val.month})&amp;month=({$date_val.month})({/if})({if $date_val.day})&amp;day=({$date_val.day})({/if})({/if})">次を表示</a>
 ({/if})
 
 </div>

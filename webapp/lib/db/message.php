@@ -57,17 +57,35 @@ function db_message_c_message4c_message_id2($c_message_id, $u)
 }
 
 /**
- * 受信メッセージリストを取得
+ * 受信メッセージリストを取得(年月日絞りに対応)
  */
-function db_message_c_message_received_list4c_member_id4range($c_member_id, $page, $page_size)
+function db_message_c_message_received_list4c_member_id4range($c_member_id, $page, $page_size, $year = '', $month = '', $day = '')
 {
+    $params = array();
+    $params[] = intval($c_member_id);
+
     $sql = "SELECT * FROM c_message";
     $where = "c_member_id_to = ?".
             " AND is_deleted_to = 0" .
             " AND is_send = 1";
+
+    //年月日で絞る
+    if ($year && $month) {
+        if ($day) {
+            $s_date = date('Y-m-d H:i:s', mktime(0, 0, 0, $month, $day, $year));
+            $e_date = date('Y-m-d H:i:s', mktime(0, 0, 0, $month, $day+1, $year));
+        } else {
+            $s_date = date('Y-m-d H:i:s', mktime(0, 0, 0, $month, 1, $year));
+            $e_date = date('Y-m-d H:i:s', mktime(0, 0, 0, $month+1, 1, $year));
+        }
+        $where .= ' AND r_datetime >= ? AND r_datetime < ?';
+        $params[] = $s_date;
+        $params[] = $e_date;
+    }
+
     $sql .= " WHERE $where";
     $sql .= " ORDER BY r_datetime DESC";
-    $params = array(intval($c_member_id));
+
     $c_message_list = db_get_all_page($sql, $page, $page_size, $params);
 
     foreach ($c_message_list as $key => $value) {
@@ -92,21 +110,38 @@ function db_message_c_message_received_list4c_member_id4range($c_member_id, $pag
             $prev = true;
         }
     }
-    return array($c_message_list , $prev , $next);
+    return array($c_message_list , $prev , $next, $total_num);
 }
 
 /**
  * 送信メッセージリストを取得
  */
-function db_message_c_message_sent_list4c_member_id4range($c_member_id, $page, $page_size)
+function db_message_c_message_sent_list4c_member_id4range($c_member_id, $page, $page_size, $year = '', $month = '', $day = '')
 {
+    $params = array(intval($c_member_id));
+
     $sql = "SELECT * FROM c_message";
     $where = "c_member_id_from = ?" .
             " AND is_deleted_from = 0" .
             " AND is_send = 1";
+
+
+    //年月日で絞る
+    if ($year && $month) {
+        if ($day) {
+            $s_date = date('Y-m-d H:i:s', mktime(0, 0, 0, $month, $day, $year));
+            $e_date = date('Y-m-d H:i:s', mktime(0, 0, 0, $month, $day+1, $year));
+        } else {
+            $s_date = date('Y-m-d H:i:s', mktime(0, 0, 0, $month, 1, $year));
+            $e_date = date('Y-m-d H:i:s', mktime(0, 0, 0, $month+1, 1, $year));
+        }
+        $where .= ' AND r_datetime >= ? AND r_datetime < ?';
+        $params[] = $s_date;
+        $params[] = $e_date;
+    }
+
     $sql .= " WHERE $where";
     $sql .= " ORDER BY r_datetime DESC";
-    $params = array(intval($c_member_id));
     $c_message_list = db_get_all_page($sql, $page, $page_size, $params);
 
     foreach ($c_message_list as $key => $value) {
@@ -132,7 +167,7 @@ function db_message_c_message_sent_list4c_member_id4range($c_member_id, $page, $
         }
     }
 
-    return array($c_message_list , $prev , $next);
+    return array($c_message_list , $prev , $next, $total_num);
 }
 
 /**
@@ -172,7 +207,7 @@ function db_message_c_message_save_list4c_member_id4range($c_member_id, $page, $
         }
     }
 
-    return array($c_message_list, $prev, $next);
+    return array($c_message_list, $prev, $next, $total_num);
 }
 
 /**
@@ -204,8 +239,8 @@ function db_message_c_message_trash_list4c_member_id4range($c_member_id, $page, 
     foreach ($c_message_list as $key => $row) {
        $c_message_id[$key] = intval($row['c_message_id']);
     }
-    array_multisort($c_message_id, SORT_DESC, $c_message_list);
-    $c_message_list = array_slice($c_message_list, ($page_size * ($page - 1) + 1), $page_size);
+    @array_multisort($c_message_id, SORT_DESC, $c_message_list);
+    $c_message_list = array_slice($c_message_list, $page_size * ($page - 1), $page_size);
 
     $total_num = $c_message_num_from + $c_message_num_to;
 
@@ -233,7 +268,7 @@ function db_message_c_message_trash_list4c_member_id4range($c_member_id, $page, 
         $c_message_list[$key]['image_filename'] = $c_member['image_filename'];
     }
 
-    return array($c_message_list, $prev, $next);
+    return array($c_message_list, $prev, $next, $total_num);
 }
 
 /**
@@ -646,6 +681,257 @@ function db_message_get_c_message_prev_id4c_message_id($c_member_id, $c_message_
               );
 
     return db_get_one($sql, $params);
+}
+
+
+//メッセージの次のc_message_idを取得
+function db_message_get_c_message_next_id4c_message_id($c_member_id, $c_message_id, $box)
+{
+    if ($box == 'savebox' || $box == 'trash') {
+        return null;
+    } else if ($box == 'outbox'){   //送信箱
+        $where = " WHERE c_member_id_from = ?";
+    } else {                        //受信箱
+        $where = " WHERE c_member_id_to = ?";
+    }
+
+    $sql =  "SELECT c_message_id FROM c_message" .
+            $where.
+            " AND is_deleted_to = 0" .
+            " AND is_send = 1" .
+            " AND c_message_id > ?" .
+            " ORDER BY r_datetime";
+    $params = array(
+                intval($c_member_id),
+                intval($c_message_id)
+              );
+
+    return db_get_one($sql, $params);
+}
+
+//メッセージの前のc_message_idを取得
+function db_message_get_c_message_prev_id4c_message_id($c_member_id, $c_message_id, $box)
+{
+    if ($box == 'savebox' || $box == 'trash') {
+        return null;
+    } else if ($box == 'outbox'){   //送信箱
+        $where = " WHERE c_member_id_from = ?" .
+                 " AND is_deleted_from = 0";
+    } else {                        //受信箱
+        $where = " WHERE c_member_id_to = ?" .
+                 " AND is_deleted_to = 0";
+    }
+
+    $sql =  "SELECT c_message_id FROM c_message" .
+            $where.
+            " AND is_send = 1" .
+            " AND c_message_id < ?" .
+            " ORDER BY r_datetime DESC";
+    $params = array(
+                intval($c_member_id),
+                intval($c_message_id)
+              );
+
+    return db_get_one($sql, $params);
+}
+
+//メッセージを検索
+//検索対象：subject,body
+
+function db_message_search_c_message($c_member_id, $page, $page_size, $keyword, $box, $target_c_member_id = null)
+{
+    $params = array();
+    $params[] = intval($c_member_id);
+
+    if ($box == 'inbox' || !$box) {
+        $where = "c_member_id_to = ?".
+                 " AND is_deleted_to = 0" .
+                 " AND is_send = 1";
+        if ($target_c_member_id) {
+            $where .= " AND c_member_id_from = ?";
+            $params[] = intval($target_c_member_id);
+        }
+    } elseif ($box == 'outbox') {
+        $where = "c_member_id_from = ?".
+                 " AND is_deleted_from = 0" .
+                 " AND is_send = 1";
+        if ($target_c_member_id) {
+            $where .= " AND c_member_id_to = ?";
+            $params[] = intval($target_c_member_id);
+        }
+    }
+
+    $where .= " AND ( subject like ? OR body like ?)";
+
+    $params[] = '%'.strval($keyword).'%';
+    $params[] = '%'.strval($keyword).'%';
+
+    $sql = "SELECT * FROM c_message";
+    $sql .= " WHERE $where";
+    $sql .= " ORDER BY r_datetime DESC";
+
+    $c_message_list = db_get_all_page($sql, $page, $page_size, $params);
+
+    foreach ($c_message_list as $key => $value) {
+        if ($box == 'inbox' || !$box) {
+            $c_member = db_common_c_member4c_member_id_LIGHT($value['c_member_id_from']);
+        } else {
+            $c_member = db_common_c_member4c_member_id_LIGHT($value['c_member_id_to']);
+        }
+        $c_message_list[$key]['nickname'] = $c_member['nickname'];
+        $c_message_list[$key]['image_filename'] = $c_member['image_filename'];
+    }
+
+    $sql = "SELECT COUNT(*) FROM c_message WHERE $where";
+    $total_num = db_get_one($sql, $params);
+
+    if ($total_num != 0) {
+        $total_page_num =  ceil($total_num / $page_size);
+        if ($page >= $total_page_num) {
+            $next = false;
+        } else {
+            $next = true;
+        }
+        if ($page <= 1) {
+            $prev = false;
+        } else {
+            $prev = true;
+        }
+    }
+    return array($c_message_list , $prev , $next, $total_num);
+
+}
+
+
+/**
+ * 受信メッセージの送信者リストを取得
+ */
+function db_message_c_message_sender_list4c_member_id($c_member_id)
+{
+    $sql = "SELECT distinct c_member_id_from FROM c_message";
+    $where = "c_member_id_to = ?".
+            " AND is_deleted_to = 0" .
+            " AND is_send = 1";
+    $sql .= " WHERE $where";
+    $sql .= " ORDER BY r_datetime DESC";
+    $params = array(intval($c_member_id));
+    $c_message_list = db_get_all($sql, $params);
+
+    foreach ($c_message_list as $key => $value) {
+        $c_member = db_common_c_member4c_member_id_LIGHT($value['c_member_id_from']);
+        $c_message_list[$key]['nickname'] = $c_member['nickname'];
+    }
+    return $c_message_list;
+}
+
+/**
+ * 受信メッセージの送信者リストを取得
+ */
+function db_message_c_message_receiver_list4c_member_id($c_member_id)
+{
+    $sql = "SELECT distinct c_member_id_to FROM c_message";
+    $where = "c_member_id_from = ?".
+            " AND is_deleted_from = 0" .
+            " AND is_send = 1";
+    $sql .= " WHERE $where";
+    $sql .= " ORDER BY r_datetime DESC";
+    $params = array(intval($c_member_id));
+    $c_message_list = db_get_all($sql, $params);
+
+    foreach ($c_message_list as $key => $value) {
+        $c_member = db_common_c_member4c_member_id_LIGHT($value['c_member_id_to']);
+        $c_message_list[$key]['nickname'] = $c_member['nickname'];
+    }
+    return $c_message_list;
+}
+
+
+/**
+ * メッセージページの「各月のメッセージ」用
+ * 
+ * メッセージを最初に書いた月からスタートしてみる
+ */
+function db_message_month_list4c_member_id($c_member_id, $box)
+{
+    if ($box == 'inbox' || !$box) {
+        $where = "c_member_id_to = ?".
+                 " AND is_deleted_to = 0" .
+                 " AND is_send = 1";
+    } elseif ($box == 'outbox') {
+        $where = "c_member_id_from = ?".
+                 " AND is_deleted_from = 0" .
+                 " AND is_send = 1";
+    } else {
+        return null;
+    }
+
+    $sql = "SELECT r_datetime FROM c_message" .
+        " WHERE $where" .
+        " ORDER BY r_datetime";
+
+    $params = array(intval($c_member_id));
+    if (!$first_datetime = db_get_one($sql, $params)) {
+        return array();
+    }
+
+    $start_date = getdate(strtotime($first_datetime));
+    $end_date =  getdate();
+
+    $date = array();
+    $year = $start_date['year'];
+    $month = $start_date['mon'];
+    while (1) {
+        $date[] =  array(
+            'year' => $year,
+            'month' => $month,
+        );
+
+        if ($end_date['year'] <= $year
+            && $end_date['mon'] <= $month) {
+            break;
+        }
+
+        $month++;
+        if ($month > 12) {
+            $month = 1;
+            $year++;
+        }
+    }
+    return array_reverse($date);
+}
+
+
+
+/**
+ * 指定された年月にメッセージを送受信した日のリストを返す
+ */
+function db_message_is_message_list4date($u, $year, $month, $box)
+{
+    include_once 'Date/Calc.php';
+
+    if ($box == 'inbox' || !$box) {
+        $where = "c_member_id_to = ?".
+                 " AND is_deleted_to = 0" .
+                 " AND is_send = 1";
+    } elseif ($box == 'outbox') {
+        $where = "c_member_id_from = ?".
+                 " AND is_deleted_from = 0" .
+                 " AND is_send = 1";
+    } else {
+        return null;
+    }
+
+    $sql = 'SELECT DISTINCT DAYOFMONTH(r_datetime) FROM c_message' .
+           " WHERE $where" .
+           ' AND is_send=1 AND r_datetime >= ? AND r_datetime < ?';
+
+    $date_format = '%Y-%m-%d 00:00:00';
+    $thismonth = Date_Calc::beginOfMonth($month, $year, $date_format);
+    $nextmonth = Date_Calc::beginOfNextMonth(0, $month, $year, $date_format);
+
+    $params = array(intval($u), $thismonth, $nextmonth);
+
+    return db_get_col($sql, $params);
 }
 
 ?>

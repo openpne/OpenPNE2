@@ -350,7 +350,7 @@ function p_fh_diary_list_diary_list4c_member_id($c_member_id, $page_size, $page,
             $prev = true;
         }
     }
-    return array($list, $prev, $next);
+    return array($list, $prev, $next, $total_num);
 }
 
 /**
@@ -577,7 +577,7 @@ function p_h_diary_comment_list_c_diary_my_comment_list4c_member_id($c_member_id
 /**
  * あるメンバーの指定された年月日の日記のリストを得る
  */
-function p_fh_diary_list_diary_list_date4c_member_id($c_member_id, $year, $month, $day=0, $u = null)
+function p_fh_diary_list_diary_list_date4c_member_id($c_member_id, $page_size, $page, $year, $month, $day=0 ,$u = null)
 {
     if ($day) {
         $s_date = date('Y-m-d H:i:s', mktime(0, 0, 0, $month, $day, $year));
@@ -588,17 +588,34 @@ function p_fh_diary_list_diary_list_date4c_member_id($c_member_id, $year, $month
     }
 
     $pf_cond = db_diary_public_flag_condition($c_member_id, $u);
+    $where = ' WHERE c_member_id = ? AND r_datetime >= ? AND r_datetime < ?';
     $sql = 'SELECT * FROM c_diary' .
-            ' WHERE c_member_id = ? AND r_datetime >= ? AND r_datetime < ?' . $pf_cond .
+            $where . $pf_cond .
             ' ORDER BY r_datetime DESC';
     $params = array(intval($c_member_id), $s_date, $e_date);
-    $list = db_get_all($sql, $params);
+    $list = db_get_all_limit($sql, $page, $page_size, $params);
 
     foreach ($list as $key => $c_diary) {
         $list[$key]['num_comment'] = db_diary_count_c_diary_comment4c_diary_id($c_diary['c_diary_id']);
     }
 
-    return array($list, false, false);
+    $sql = 'SELECT COUNT(*) FROM c_diary' . $where;
+    $total_num = db_get_one($sql, $params);
+
+    if ($total_num != 0) {
+        $total_page_num =  ceil($total_num / $page_size);
+        if ($page >= $total_page_num) {
+            $next = false;
+        } else {
+            $next = true;
+        }
+        if ($page <= 1) {
+            $prev = false;
+        } else {
+            $prev = true;
+        }
+    }
+    return array($list , $prev , $next, $total_num);
 }
 
 /**
@@ -669,15 +686,23 @@ function p_fh_diary_list_calendar_list4c_member_id($year, $month, $c_member_id)
  * 検索ポイントはタイトル、本文
  * 空白（全角半角問わない）でand検索可
  */
-function p_h_diary_list_all_search_c_diary4c_diary($keyword, $page_size, $page)
+function p_h_diary_list_all_search_c_diary4c_diary($keyword, $page_size, $page, $c_member_id = '')
 {
+    $params = array();
+
     $select = 'SELECT *';
     $from = ' FROM c_diary';
-    $where = " WHERE public_flag = 'public'";
+
+    //自分の日記だけを対象にする事も出来る
+    if ($c_member_id) {
+        $where = ' WHERE c_member_id = ?';
+        $params[] = intval($c_member_id);
+    } else {
+        $where = " WHERE public_flag = 'public'";
+    }
 
     //and検索を実装
     //subject,body を検索
-    $params = array();
     if ($keyword) {
         //全角空白を半角に統一
         $keyword = str_replace('　', ' ', $keyword);

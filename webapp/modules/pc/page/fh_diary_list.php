@@ -18,6 +18,7 @@ class pc_page_fh_diary_list extends OpenPNE_Action
         $month = $requests['month'];
         $day = $requests['day'];
         $category_id = $requests['category_id'];
+        $keyword = $requests['keyword'];
         // ----------
 
         if (!$target_c_member_id) {
@@ -45,13 +46,13 @@ class pc_page_fh_diary_list extends OpenPNE_Action
         $this->set('type', $type);
 
         $page += $direc;
-        $page_size = 30;
+        $page_size = 20;
 
         $target_member = db_common_c_member4c_member_id($target_c_member_id);
         $this->set('target_member', $target_member);
         //年月日で一覧表示、日記数に制限なし
         if ($year && $month) {
-            $list_set = p_fh_diary_list_diary_list_date4c_member_id($target_c_member_id, $year, $month, $day, $u);
+            $list_set = p_fh_diary_list_diary_list_date4c_member_id($target_c_member_id, $page_size, $page ,$year, $month, $day, $u);
             $rss_list = p_fh_diary_list_c_rss_cache_list_date($target_c_member_id, $year, $month, $day);
         } elseif($category_id) {
             $year = date('Y');
@@ -63,7 +64,13 @@ class pc_page_fh_diary_list extends OpenPNE_Action
             $month = date('n');
             $this->set('all', 1);
 
-            $list_set = p_fh_diary_list_diary_list4c_member_id($target_c_member_id, $page_size, $page, $u);
+            //検索する場合
+            if ($keyword) {
+                $list_set = p_h_diary_list_all_search_c_diary4c_diary($keyword, $page_size, $page, $u);
+            } else {
+                $list_set = p_fh_diary_list_diary_list4c_member_id($target_c_member_id, $page_size, $page, $u);
+            }
+
             $rss_list = p_fh_diary_list_c_rss_cache_list($target_c_member_id, $page_size, $page);
         }
 
@@ -74,6 +81,7 @@ class pc_page_fh_diary_list extends OpenPNE_Action
         $this->set('page_size', $page_size);
         $this->set('is_prev', $list_set[1]);
         $this->set('is_next', $list_set[2]);
+        $this->set("total_num", $list_set[3]);
 
         $this->set('diary_list_count', count($list_set[0]));
 
@@ -98,6 +106,10 @@ class pc_page_fh_diary_list extends OpenPNE_Action
 	        //カテゴリ一覧
 	        $this->set('category_list', db_diary_category_list4c_member_id($target_c_member_id));
         }
+
+        //検索ワード
+        $this->set('keyword', $keyword);
+        $this->set("url_keyword", urlencode($keyword));
 
         return 'success';
     }

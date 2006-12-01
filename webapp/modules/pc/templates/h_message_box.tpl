@@ -101,6 +101,189 @@
 <!-- ******ここまで：メッセージボックス左メニュー****** -->
 <!-- *********************************************** -->
 
+
+({if $calendar})
+<img src="./skin/dummy.gif" class="v_spacer_l">
+
+<!-- ******************************* -->
+<!-- ******ここから：カレンダー****** -->
+<table border="0" cellspacing="0" cellpadding="0" style="width:165px;margin:0px auto;" class="border_07">
+<tr>
+<td style="width:7px;" class="bg_10"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:149px;" class="bg_10"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:7px;" class="bg_10"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+</tr>
+<tr>
+<td class="bg_10"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_10" align="center">
+<!-- *ここから：カレンダー＞内容* -->
+({*ここから：header*})
+<!-- ここから：カレンダータイトル -->
+<table border="0" cellspacing="0" cellpadding="0" style="width:149px;margin:0px auto;">
+<tr>
+<td align="center" class="bg_03 padding_s">
+
+({strip})
+({if $ym.prev_month})
+<span class="b_b">
+<a href="({t_url m=pc a=page_h_message_box})
+    &amp;target_c_member_id=({$target_member.c_member_id})
+    &amp;box=({$box})
+    &amp;year=({$ym.prev_year})
+    &amp;month=({$ym.prev_month})">
+＜
+</a>
+</span>
+({/if})
+
+<span class="b_b">({$date_val.month})月のカレンダー</span>
+
+({if $ym.next_month})
+<span class="b_b">
+<a href="({t_url m=pc a=page_h_message_box})
+    &amp;target_c_member_id=({$target_member.c_member_id})
+    &amp;box=({$box})
+    &amp;year=({$ym.next_year})
+    &amp;month=({$ym.next_month})">
+＞
+</a>
+</span>
+({/if})
+({/strip})
+
+</td>
+</tr>
+</table>
+<!-- ここまで：カレンダータイトル -->
+({*ここまで：header*})
+({*ここから：body*})
+<!-- ここから：主内容 -->
+<table border="0" cellspacing="0" cellpadding="0" style="width:149px;margin:0px auto;">
+({****************})
+<tr>
+<td style="width:149px;" class="bg_10" colspan="13"><img src="./skin/dummy.gif" style="width:149px;height:1px;" class="dummy"></td>
+</tr>
+({****************})
+<tr>
+<td class="bg_09 s_ss padding_ss" align="right"><span class="c_02 s_ss">日</span></td>
+<td style="width:1px;" class="bg_10"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td class="bg_09 s_ss padding_ss" align="right">月</td>
+<td style="width:1px;" class="bg_10"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td class="bg_09 s_ss padding_ss" align="right">火</td>
+<td style="width:1px;" class="bg_10"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td class="bg_09 s_ss padding_ss" align="right">水</td>
+<td style="width:1px;" class="bg_10"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td class="bg_09 s_ss padding_ss" align="right">木</td>
+<td style="width:1px;" class="bg_10"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td class="bg_09 s_ss padding_ss" align="right">金</td>
+<td style="width:1px;" class="bg_10"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td class="bg_09 s_ss padding_ss" align="right"><span class="c_03 s_ss">土</span></td>
+</tr>
+({****************})
+<tr>
+<td style="width:149px;" class="bg_10" colspan="13"><img src="./skin/dummy.gif" style="width:149px;height:1px;" class="dummy"></td>
+</tr>
+({****************})
+({foreach from=$calendar item=week})
+<tr>
+({foreach from=$week item=item name="calendar_days"})
+<td style="width:({if $smarty.foreach.calendar_days.iteration%7 == 0 || $smarty.foreach.calendar_days.iteration%7 == 1})21({else})20({/if})px;height:18px;" valign="middle" align="right" class="bg_02 s_ss padding_ss">
+({if $item.day})
+({if $item.is_message})
+<a href="({t_url m=pc a=page_h_message_box})&amp;target_c_member_id=({$target_member.c_member_id})&amp;year=({$date_val.year})&amp;month=({$date_val.month})&amp;day=({$item.day})&amp;box=({$box})" class="s_ss">({$item.day})</a>
+({else})
+({$item.day})
+({/if})
+({else})
+&nbsp;({/if})
+</td>
+({if $smarty.foreach.calendar_days.iteration%7 != 0})
+<td style="width:1px;" class="bg_10"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+({/if})
+({/foreach})
+</tr>
+({****************})
+<tr>
+<td style="width:149px;" class="bg_10" colspan="13"><img src="./skin/dummy.gif" style="width:149px;height:1px;" class="dummy"></td>
+</tr>
+({****************})
+({/foreach})
+</table>
+<!-- ここまで：主内容 -->
+({*ここまで：body*})
+({*ここから：footer*})
+<!-- 無し -->
+({*ここまで：footer*})
+<!-- *ここまで：カレンダー＞＞内容* -->
+</td>
+<td class="bg_10"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+</tr>
+<tr>
+<td class="bg_10"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_10"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_10"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+</tr>
+</table>
+<!-- ******ここまで：カレンダー****** -->
+<!-- ****************************** -->
+
+<img src="./skin/dummy.gif" class="v_spacer_l">
+({/if})
+
+({if $date_list})
+<img src="./skin/dummy.gif" class="v_spacer_l">
+<!-- ********************************** -->
+<!-- ******ここから：各月のメッセージ一覧****** -->
+<table border="0" cellspacing="0" cellpadding="0" style="width:165px;margin:0px auto;" class="border_07">
+<tr>
+<td style="width:7px;" class="bg_10"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:149px;" class="bg_10"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:7px;" class="bg_10"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+</tr>
+<tr>
+<td class="bg_10"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_10" align="center">
+<!-- *ここから：各月のメッセージ一覧＞内容* -->
+({*ここから：header*})
+<!-- ここから：小タイトル -->
+<table border="0" cellspacing="0" cellpadding="0" style="width:149px;" class="border_01">
+<tr>
+<td style="width:36px;" class="bg_06"><img src="({t_img_url_skin filename=content_header_1})" style="width:30px;height:20px;" class="dummy"></td>
+<td style="width:111px;padding:2px 0px;" class="bg_06"><span class="b_b c_00">各月のメッセージ</span></td>
+</tr>
+</table>
+<!-- ここまで：小タイトル -->
+({*ここまで：header*})
+({*ここから：body*})
+<!-- ここから：主内容 -->
+<div align="left" class="bg_02 border_01 padding_ss">
+({foreach from=$date_list item=date})
+
+<div><a href="({t_url m=pc a=page_h_message_box})&amp;box=({$box})&amp;year=({$date.year})&amp;month=({$date.month})&amp;box=({$box})"><img src="./skin/dummy.gif" style="width:14px;height:14px;" class="icon icon_2">({$date.year})年({$date.month})月の一覧</a></div>
+
+({/foreach})
+</div>
+<!-- ここまで：主内容 -->
+({*ここまで：body*})
+({*ここから：footer*})
+<!-- 無し -->
+({*ここまで：footer*})
+<!-- *ここまで：各月のメッセージ一覧＞＞内容* -->
+</td>
+<td class="bg_10"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+</tr>
+<tr>
+<td class="bg_10"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_10"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_10"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+</tr>
+</table>
+<!-- ******ここまで：各月のメッセージ一覧****** -->
+<!-- ********************************** -->
+
+<img src="./skin/dummy.gif" class="v_spacer_l">
+({/if})
+
 <img src="./skin/dummy.gif" class="v_spacer_l">
 
 ({********************************})
@@ -143,6 +326,12 @@
 ごみ箱
 ({/if})
 </span></td>
+<td style="width:486px;padding:2px 0px;" class="bg_06"><span class="b_b c_00">
+({if !$all})
+&nbsp;({$date_val.year})年({$date_val.month})月({if $date_val.day})({$date_val.day})日({/if})
+({/if})
+</span>
+</td>
 </tr>
 </table>
 <!-- ここまで：小タイトル -->
@@ -158,10 +347,38 @@
 </div>
 <!-- ここまで：主内容＞＞メッセージ -->
 
-({t_form m=pc a=do_h_message_box_delete_message})
-<input type="hidden" name="sessid" value="({$PHPSESSID})">
-
 ({if $box == "inbox" || !$box })
+
+ <!-- ここから：主内容＞＞受信箱＞＞検索BOX -->
+({capture name="inbox_search_box"})
+<table style="width:504px;" border="0" cellspacing="0" cellpadding="0" style="width:auto;margin:0px auto;" class="border_01">
+({*********})
+<tr>
+<td style="width:50%;" class="bg_05" align="center">
+
+<div class="padding_s">
+({t_form _method=get m=pc a=page_h_message_box})
+<input type="hidden" name="box" value="({$box})">
+キーワード<img src="({t_img_url_skin filename=icon_arrow_2})" class="icon">
+<input type="text" size="15" name="keyword" class="text border_01" value="({$keyword})">
+送信者<img src="({t_img_url_skin filename=icon_arrow_2})" class="icon">
+<select name="target_c_member_id">
+<option value="">指定なし</option>
+({foreach from=$c_message_sender_list item=item})
+<option ({if $target_c_member_id==$item.c_member_id_from})selected({/if}) value="({$item.c_member_id_from})">({$item.nickname})</option>
+({/foreach})
+</select>
+<input type=submit  class="submit"  value="  検　索  ">
+</form>
+</div>
+
+</td>
+</tr>
+({*********})
+</table>
+({/capture})
+
+<!-- ここまで：主内容＞＞受信箱＞＞検索BOX -->
 
 ({if $count_c_message_ru_list})
 
@@ -181,10 +398,11 @@
 <td class="bg_05" align="right">
 
 <div class="padding_s">
-
+({capture name="ru_pager"})
 ({if $ru_data.is_ru_prev})
- <a href="({t_url m=pc a=page_h_message_box})&amp;ru_page=({$ru_data.ru_page-1})&amp;box=inbox">前を表示</a>
+ <a href="({t_url m=pc a=page_h_message_box})&amp;ru_page=({$ru_data.ru_page-1})&amp;box=inbox&amp;keyword=({$url_keyword})&amp;target_c_member_id=({$target_c_member_id})&amp;year=({$date_val.year})&amp;month=({$date_val.month})&amp;day=({$date_val.day})">前を表示</a>
 ({/if})
+({$total_num})件中
 ({$ru_data.ru_page*$page_size-$page_size+1})件～
 ({if $ru_data.ru_page*$page_size > $count_c_message_ru_list })
 ({$count_c_message_ru_list+$ru_data.ru_page*$page_size-$page_size })
@@ -193,8 +411,10 @@
 ({/if})
 件を表示
 ({if $ru_data.is_ru_next})
- <a href="({t_url m=pc a=page_h_message_box})&amp;ru_page=({$ru_data.ru_page+1})&amp;box=inbox">次を表示</a>
+ <a href="({t_url m=pc a=page_h_message_box})&amp;ru_page=({$ru_data.ru_page+1})&amp;box=inbox&amp;keyword=({$url_keyword})&amp;target_c_member_id=({$target_c_member_id})&amp;year=({$date_val.year})&amp;month=({$date_val.month})&amp;day=({$date_val.day})">次を表示</a>
 ({/if})
+({/capture})
+({$smarty.capture.ru_pager|smarty:nodefaults})
 
 </div>
 
@@ -203,6 +423,12 @@
 ({*********})
 </table>
 <!-- ここまで：主内容＞＞受信箱＞＞ページ切り替えタブ -->
+
+<!-- ここから：主内容＞＞受信箱＞＞検索BOX -->
+
+({$smarty.capture.inbox_search_box|smarty:nodefaults})
+
+<!-- ここまで：主内容＞＞受信箱＞＞検索BOX -->
 
 <!-- ここから：主内容＞＞受信箱＞＞メール内容リスト -->
 <table style="width:504px;" border="0" cellspacing="0" cellpadding="0" style="margin:0px auto;" class="border_01">
@@ -219,6 +445,10 @@
 <td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({*********})
+
+({t_form m=pc a=do_h_message_box_delete_message})
+<input type="hidden" name="sessid" value="({$PHPSESSID})">
+
 ({foreach from=$c_message_ru_list item=c_message_ru})
 <tr>
 <td class="bg_({if $c_message_ru.is_read})02({else})09({/if})" align="center"><img src="({if $c_message_ru.is_hensin})({t_img_url_skin filename=icon_mail_4})({elseif $c_message_ru.is_read})({t_img_url_skin filename=icon_mail_2})({else})({t_img_url_skin filename=icon_mail_1})({/if})" class="icon"></td>
@@ -244,19 +474,7 @@
 
 <div class="padding_s">
 
-({if $ru_data.is_ru_prev})
- <a href="({t_url m=pc a=page_h_message_box})&amp;ru_page=({$ru_data.ru_page-1})&amp;box=inbox">前を表示</a>
-({/if})
-({$ru_data.ru_page*$page_size-$page_size+1})件～
-({if $ru_data.ru_page*$page_size > $count_c_message_ru_list })
-({$count_c_message_ru_list+$ru_data.ru_page*$page_size-$page_size })
-({else})
-({$ru_data.ru_page*$page_size})
-({/if})
-件を表示
-({if $ru_data.is_ru_next})
- <a href="({t_url m=pc a=page_h_message_box})&amp;ru_page=({$ru_data.ru_page+1})&amp;box=inbox">次を表示</a>
-({/if})
+({$smarty.capture.ru_pager|smarty:nodefaults})
 
 </div>
 
@@ -275,6 +493,7 @@
 <div class="padding_s">
 <input type="hidden" name="box" value="({$box})">
 <input type="submit" class="submit" value="削 除">
+</form>
 
 </div>
 
@@ -287,6 +506,13 @@
 ({else})
 
 <!-- ここから：主内容＞＞受信箱＞＞メールナッシング -->
+
+<!-- ここから：主内容＞＞受信箱＞＞検索BOX -->
+
+({$smarty.capture.inbox_search_box|smarty:nodefaults})
+
+<!-- ここまで：主内容＞＞受信箱＞＞検索BOX -->
+
 <div align="center" style="padding:20px 30px;" class="bg_02 border_01">
 
 メッセージがありません。
@@ -300,6 +526,38 @@
 
 ({if $box == "outbox"})
 
+
+ <!-- ここから：主内容＞＞送信箱＞＞検索BOX -->
+({capture name="outbox_search_box"})
+<table style="width:504px;" border="0" cellspacing="0" cellpadding="0" style="width:auto;margin:0px auto;" class="border_01">
+({*********})
+<tr>
+<td style="width:50%;" class="bg_05" align="center">
+
+<div class="padding_s">
+({t_form _method=get m=pc a=page_h_message_box})
+<input type="hidden" name="box" value="({$box})">
+キーワード<img src="({t_img_url_skin filename=icon_arrow_2})" class="icon">
+<input type="text" size="15" name="keyword" class="text border_01" value="({$keyword})">
+宛先<img src="({t_img_url_skin filename=icon_arrow_2})" class="icon">
+<select name="target_c_member_id">
+<option value="">指定なし</option>
+({foreach from=$c_message_receiver_list item=item})
+<option ({if $target_c_member_id==$item.c_member_id_to})selected({/if}) value="({$item.c_member_id_to})">({$item.nickname})</option>
+({/foreach})
+</select>
+<input type=submit  class="submit"  value="  検　索  ">
+</form>
+</div>
+
+</td>
+</tr>
+({*********})
+</table>
+({/capture})
+
+<!-- ここまで：主内容＞＞送信箱＞＞検索BOX -->
+
 ({if $count_c_message_s_list})
 
 <!-- ここから：主内容＞＞送信済み箱＞＞ページ切り替えタブ -->
@@ -309,10 +567,11 @@
 <td style="width:100%;" class="bg_05" align="right">
 
 <div class="padding_s">
-
+({capture name="s_pager"})
 ({if $s_data.is_s_prev})
- <a href="({t_url m=pc a=page_h_message_box})&amp;s_page=({$s_data.s_page-1})&amp;box=outbox">前を表示</a>
+ <a href="({t_url m=pc a=page_h_message_box})&amp;s_page=({$s_data.s_page-1})&amp;box=outbox&amp;keyword=({$url_keyword})&amp;target_c_member_id=({$target_c_member_id})&amp;year=({$date_val.year})&amp;month=({$date_val.month})&amp;day=({$date_val.day})">前を表示</a>
 ({/if})
+({$total_num})件中
 ({$s_data.s_page*$page_size-$page_size+1})件～
 ({if $s_data.s_page*$page_size > $count_c_message_s_list })
 ({$count_c_message_s_list+$s_data.s_page*$page_size-$page_size })
@@ -321,8 +580,11 @@
 ({/if})
 件を表示
 ({if $s_data.is_s_next})
- <a href="({t_url m=pc a=page_h_message_box})&amp;s_page=({$s_data.s_page+1})&amp;box=outbox">次を表示</a>
+ <a href="({t_url m=pc a=page_h_message_box})&amp;s_page=({$s_data.s_page+1})&amp;box=outbox&amp;keyword=({$url_keyword})&amp;target_c_member_id=({$target_c_member_id})&amp;year=({$date_val.year})&amp;month=({$date_val.month})&amp;day=({$date_val.day})">次を表示</a>
 ({/if})
+({/capture})
+({$smarty.capture.s_pager|smarty:nodefaults})
+
 </div>
 
 </td>
@@ -330,6 +592,13 @@
 ({*********})
 </table>
 <!-- ここまで：主内容＞＞送信済み箱＞＞ページ切り替えタブ -->
+
+<!-- ここから：主内容＞＞送信箱＞＞検索BOX -->
+
+({$smarty.capture.outbox_search_box|smarty:nodefaults})
+
+<!-- ここまで：主内容＞＞送信箱＞＞検索BOX -->
+
 
 <!-- ここから：主内容＞＞送信済み箱＞＞メール内容リスト -->
 <table style="width:504px;" border="0" cellspacing="0" cellpadding="0" style="margin:0px auto;" class="border_01">
@@ -346,6 +615,10 @@
 <td style="height:1px;" class="bg_01" colspan="4"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({*********})
+
+({t_form m=pc a=do_h_message_box_delete_message})
+<input type="hidden" name="sessid" value="({$PHPSESSID})">
+
 ({foreach from=$c_message_s_list item=c_message_s})
 <tr>
 <td class="bg_02" align="center"><img src="({t_img_url_skin filename=icon_mail_3})" class="icon"></td>
@@ -371,19 +644,8 @@
 
 <div class="padding_s">
 
-({if $s_data.is_s_prev})
- <a href="({t_url m=pc a=page_h_message_box})&amp;s_page=({$s_data.s_page-1})&amp;box=outbox">前を表示</a>
-({/if})
-({$s_data.s_page*$page_size-$page_size+1})件～
-({if $s_data.s_page*$page_size > $count_c_message_s_list })
-({$count_c_message_s_list+$s_data.s_page*$page_size-$page_size })
-({else})
-({$s_data.s_page*$page_size})
-({/if})
-件を表示
-({if $s_data.is_s_next})
- <a href="({t_url m=pc a=page_h_message_box})&amp;s_page=({$s_data.s_page+1})&amp;box=outbox">次を表示</a>
-({/if})
+({$smarty.capture.s_pager|smarty:nodefaults})
+
 </div>
 
 </td>
@@ -401,7 +663,7 @@
 <div class="padding_s">
 <input type="hidden" name="box" value="({$box})">
 <input type="submit" class="submit" value="削 除">
-
+</form>
 </div>
 
 </td>
@@ -413,6 +675,13 @@
 ({else})
 
 <!-- ここから：主内容＞＞送信済み箱＞＞メールナッシング -->
+
+<!-- ここから：主内容＞＞受信箱＞＞検索BOX -->
+
+({$smarty.capture.outbox_search_box|smarty:nodefaults})
+
+<!-- ここまで：主内容＞＞受信箱＞＞検索BOX -->
+
 <div align="center" style="padding:20px 30px;" class="bg_02 border_01">
 
 メッセージがありません。
@@ -436,20 +705,23 @@
 
 <div class="padding_s">
 
+({capture name="save_pager"})
 ({if $save_data.is_save_prev})
  <a href="({t_url m=pc a=page_h_message_box})&amp;save_page=({$save_data.save_page-1})&amp;box=savebox">前を表示</a>
 ({/if})
-({$save_data.save_page*20-19})件～
-({if $save_data.save_page*20 > $count_c_message_save_list })
-({$count_c_message_save_list+$save_data.save_page*20-20 })
+({$total_num})件中
+({$save_data.save_page*$page_size-$page_size+1})件～
+({if $save_data.save_page*$page_size > $count_c_message_save_list })
+({$count_c_message_save_list+$save_data.save_page*$page_size-$page_size })
 ({else})
-({$save_data.save_page*20})
+({$save_data.save_page*$page_size})
 ({/if})
 件を表示
 ({if $save_data.is_save_next})
  <a href="({t_url m=pc a=page_h_message_box})&amp;save_page=({$save_data.save_page+1})&amp;box=savebox">次を表示</a>
 ({/if})
-
+({/capture})
+({$smarty.capture.save_pager|smarty:nodefaults})
 </div>
 
 </td>
@@ -473,6 +745,10 @@
 <td style="height:1px;" class="bg_01" colspan="4"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({*********})
+
+({t_form m=pc a=do_h_message_box_delete_message})
+<input type="hidden" name="sessid" value="({$PHPSESSID})">
+
 ({foreach from=$c_message_save_list item=c_message_save})
 <tr>
 <td class="bg_02" align="center"><img src="({t_img_url_skin filename=icon_mail_1})" class="icon"></td>
@@ -498,19 +774,7 @@
 
 <div class="padding_s">
 
-({if $save_data.is_save_prev})
- <a href="({t_url m=pc a=page_h_message_box})&amp;save_page=({$save_data.save_page-1})&amp;box=savebox">前を表示</a>
-({/if})
-({$save_data.save_page*20-19})件～
-({if $save_data.save_page*20 > $count_c_message_save_list })
-({$count_c_message_save_list+$save_data.save_page*20-20 })
-({else})
-({$save_data.save_page*20})
-({/if})
-件を表示
-({if $save_data.is_save_next})
- <a href="({t_url m=pc a=page_h_message_box})&amp;save_page=({$save_data.save_page+1})&amp;box=savebox">次を表示</a>
-({/if})
+({$smarty.capture.save_pager|smarty:nodefaults})
 
 </div>
 
@@ -529,6 +793,7 @@
 <div class="padding_s">
 <input type="hidden" name="box" value="savebox">
 <input type="submit" class="submit" value="削 除">
+</form>
 
 </div>
 
@@ -575,20 +840,25 @@
 
 <div class="padding_s">
 
+({capture name="trash_pager"})
 ({if $trash_data.is_trash_prev})
  <a href="({t_url m=pc a=page_h_message_box})&amp;trash_page=({$trash_data.trash_page-1})&amp;box=trash">前を表示</a>
 ({/if})
-({$trash_data.trash_page*20-19})件～
-({if $trash_data.trash_page*20 > $count_c_message_trash_list })
-({$count_c_message_trash_list+$trash_data.trash_page*20-20 })
+({$total_num})件中
+({$trash_data.trash_page*$page_size-$page_size+1})件～
+({if $trash_data.trash_page*$page_size > $count_c_message_trash_list })
+({$count_c_message_trash_list+$trash_data.trash_page*$page_size-$page_size })
 ({else})
-({$trash_data.trash_page*20})
+({$trash_data.trash_page*$page_size})
 ({/if})
 件を表示
 ({if $trash_data.is_trash_next})
 <a href="({t_url m=pc a=page_h_message_box})&amp;trash_page=({$trash_data.trash_page+1})&amp;box=trash">次を表示</a>
 ({/if})
-
+({/capture})
+<nobr>
+({$smarty.capture.trash_pager|smarty:nodefaults})
+</nobr>
 </div>
 
 </td>
@@ -612,6 +882,10 @@
 <td style="height:1px;" class="bg_01" colspan="4"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({*********})
+
+({t_form m=pc a=do_h_message_box_delete_message})
+<input type="hidden" name="sessid" value="({$PHPSESSID})">
+
 ({foreach from=$c_message_trash_list item=c_message_trash})
 <tr>
 ({strip})
@@ -649,19 +923,7 @@
 
 <div class="padding_s">
 
-({if $trash_data.is_trash_prev})
-<a href="({t_url m=pc a=page_h_message_box})&amp;trash_page=({$trash_data.trash_page-1})&amp;box=trash">前を表示</a>
-({/if})
-({$trash_data.trash_page*20-19})件～
-({if $trash_data.trash_page*20 > $count_c_message_trash_list })
-({$count_c_message_trash_list+$trash_data.trash_page*20-20 })
-({else})
-({$trash_data.trash_page*20})
-({/if})
-件を表示
-({if $trash_data.is_trash_next})
-<a href="({t_url m=pc a=page_h_message_box})&amp;trash_page=({$trash_data.trash_page+1})&amp;box=trash">次を表示</a>
-({/if})
+({$smarty.capture.trash_pager|smarty:nodefaults})
 
 </div>
 
@@ -682,6 +944,7 @@
 
 <input type="submit" class="submit" name="move" value="元に戻す">
 <input type="submit" class="submit" name="remove" value="削除">
+</form>
 
 </div>
 
@@ -705,7 +968,6 @@
 
 ({/if})
 
-</form>
 <!-- ここまで：主内容 -->
 ({*ここまで：body*})
 ({*ここから：footer*})

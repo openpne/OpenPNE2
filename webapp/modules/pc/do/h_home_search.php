@@ -16,8 +16,11 @@ class pc_do_h_home_search extends OpenPNE_Action
         } elseif (!is_null($requests['web_x'])) {
             $q = urlencode($requests['q']);
             client_redirect_absolute('http://www.google.com/search?hl=ja&q='.$q);
+        } elseif (!is_null($requests['message_x'])) {
+            $p = array('keyword' => $requests['q'],'box' => 'inbox');
+            openpne_redirect('pc', 'page_h_message_box', $p);
         } else { // default
-            $p = array('keyword' => $requests['q']);
+            $p = array('keyword'=> $requests['q']);
             openpne_redirect('pc', 'page_h_diary_list_all', $p);
         }
     }
