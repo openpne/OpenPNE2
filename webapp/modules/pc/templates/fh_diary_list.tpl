@@ -345,22 +345,22 @@
 <img src="./skin/dummy.gif" class="v_spacer_l">
 
 <div style="width:490px;padding:30px 10px;margin:0px auto;" class="border_01 bg_03">
-<table>
-<tr>
-<td>
-({t_form _method=get m=pc a=page_fh_diary_list})
-キーワード<img src="({t_img_url_skin filename=icon_arrow_2})" class="icon">
-<input type="text" size="15" name="keyword" class="text border_01" value="({$keyword})">
-<input type="submit" class="submit" value="　検 索　">
-</form>
-</td>
-<td>
+
 ({t_form _method=get m=pc a=page_h_diary_add})
 &nbsp;&nbsp;&nbsp;<input type="submit" class="submit" value="　日 記 を 書 く　">
 </form>
-</td>
-</tr>
-</table>
+
+</div>
+<img src="./skin/dummy.gif" class="v_spacer_l">
+
+<div style="width:500px;padding:5px;margin:0px auto;text-align:right;" class="border_01 bg_03">
+
+({t_form _method=get m=pc a=page_fh_diary_list})
+キーワード検索：<img src="({t_img_url_skin filename=icon_arrow_2})" class="icon">
+<input type="text" size="15" name="keyword" class="text border_01" value="({$keyword})">
+<input type="submit" class="submit" value="　検 索　">
+</form>
+
 </div>
 <img src="./skin/dummy.gif" class="v_spacer_l">
 
