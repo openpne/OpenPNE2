@@ -232,6 +232,20 @@ function db_friend_c_friend4c_member_id_from4c_member_id_to($c_member_id_from,$c
  */
 function db_friend_c_friend_list4c_member_id($c_member_id, $limit = 0)
 {
+    $result = db_friend_c_friend_id_list4c_member_id($c_member_id, $limit);
+
+    foreach ($result as $key => $value) {
+        $result[$key] = db_common_c_member4c_member_id_LIGHT($value['c_member_id']);
+        $result[$key]['friend_count'] = db_friend_count_friends($value['c_member_id']);
+    }
+    return $result;
+}
+
+/**
+ * フレンドリスト用IDリストを取得する関数
+ */
+function db_friend_c_friend_id_list4c_member_id($c_member_id, $limit)
+{
     static $is_recurred = false;  //再帰処理中かどうかの判定フラグ
 
     if (!$is_recurred) {  //function cacheのために再帰処理を行う
@@ -251,10 +265,6 @@ function db_friend_c_friend_list4c_member_id($c_member_id, $limit = 0)
         $result = db_get_all($sql, $params);
     }
 
-    foreach ($result as $key => $value) {
-        $result[$key] = db_common_c_member4c_member_id_LIGHT($value['c_member_id']);
-        $result[$key]['friend_count'] = db_friend_count_friends($value['c_member_id']);
-    }
     return $result;
 }
 

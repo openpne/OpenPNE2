@@ -74,7 +74,7 @@ function pne_cache_recursive_call($lifetime, $function, $funcarg)
  */
 function cache_drop_c_member($c_member_id)
 {
-    pne_cache_drop('db_friend_c_friend_list4c_member_id', $c_member_id, 9);  //フレンドリスト
+    pne_cache_drop('db_friend_c_friend_id_list4c_member_id', $c_member_id, 9);  //フレンドリスト
 	pne_cache_drop('db_friend_c_friend_list_random4c_member_id', $c_member_id, 5);
     pne_cache_drop('p_h_home_c_diary_friend_list4c_member_id', $c_member_id, 5);  //最新日記フィード
 
