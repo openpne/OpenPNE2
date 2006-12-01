@@ -489,11 +489,12 @@
 <td class="bg_02" align="left" valign="middle">
 <div style="padding:4px 3px;">
 <input type="text" name="category" id="category" size="40" value="({$form_val.category})">
-<script>
-    var category = new diaryCategoryForm("category",
-        [({foreach from=$category_list item=value})"({$value.category_name})",({/foreach})]);
-</script>
-
+<select onChange="if(selectedIndex){category.value += options[selectedIndex].value + ' '}">
+<option>カテゴリを選択してください
+({foreach from=$category_list item=value})
+<option value="({$value.category_name})">({$value.category_name})
+({/foreach})
+</select>
 </div>
 </td>
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
