@@ -930,13 +930,6 @@ function k_p_h_diary_list_friend_h_diary_list_friend4c_member_id($c_member_id, $
     return array($lst, $prev, $next, $total_num);
 }
 
-?>
-<?php
-/**
- * @copyright 2005-2006 OpenPNE Project
- * @license   http://www.php.net/license/3_01.txt PHP License 3.01
- */
-
 //--- diary
 
 /**
