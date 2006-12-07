@@ -33,6 +33,9 @@ function admin_fetch_inc_footer($is_secure = true)
 
 function admin_make_pager($page, $page_size, $total_num)
 {
+    if ($total_num == 0) {
+        return;
+    }
     $pager = array(
         'page' => $page,
         'page_size' => $page_size,
@@ -110,6 +113,24 @@ function admin_get_auth_type()
         return db_admin_get_auth_type($uid);
     } else {
         return false;
+    }
+}
+
+//IPアドレスとして正しいか
+//例：XXX.XXX.XXX.XXX
+function admin_is_ip($ip)
+{
+    return preg_match('/^([0-9]{1,3}\.){3}[0-9]{1,3}$/',$ip);
+}
+
+//APIを許容するIPアドレスとして正しいか
+//XXX.XXX.XXX.XXX or *(アスタリスク) or 空
+function admin_api_is_ip($ip)
+{
+    if (!$ip || $ip == '*') {
+        return true;
+    } else {
+        return admin_is_ip($ip);
     }
 }
 

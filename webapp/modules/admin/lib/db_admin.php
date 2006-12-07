@@ -1856,4 +1856,29 @@ function db_admin_get_c_free_page_one($c_free_page_id)
     return db_get_row($sql, $params);
 }
 
+//APIを全て取得(ページャー付き)
+function db_admin_get_c_api_all($page, $page_size, &$pager)
+{
+    $sql = 'SELECT * FROM c_api ORDER BY c_api_id';
+
+    $list = db_get_all_page($sql, $page, $page_size, $params);
+
+    $sql = 'SELECT count(*) FROM c_api';
+    $total_num = db_get_one($sql, $params);
+    $pager = admin_make_pager($page, $page_size, $total_num);
+
+    return $list;
+}
+
+//APIを編集
+function db_admin_update_c_api($c_api_id, $name, $ip)
+{
+    $data = array(
+        'name' => strval($name),
+        'ip' => strval($ip),
+    );
+    $where = array('c_api_id' => intval($c_api_id));
+    return db_update('c_api', $data, $where);
+}
+
 ?>
