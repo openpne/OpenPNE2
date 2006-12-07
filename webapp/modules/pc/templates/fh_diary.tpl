@@ -467,7 +467,7 @@
 ({/if})
 
 <div class="lh_120" id="DOM_fh_diary_body">
-({$target_diary.body|nl2br|t_url2cmd|t_cmd})
+({$target_diary.body|nl2br|t_url2cmd:'diary'|t_cmd:'diary'})
 </div>
 
 </div>
@@ -634,7 +634,7 @@
 <br>
 ({/if})
 
-({$item.body|nl2br|t_url2cmd|t_cmd})
+({$item.body|nl2br|t_url2cmd:'diary'|t_cmd:'diary'})
 
 </div>
 

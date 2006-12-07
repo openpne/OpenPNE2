@@ -936,7 +936,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <td class="border_01 bg_02 padding_s" style="width:332px;border-top:none;">
 
 ({if $item.form_type == 'textarea'})
-    ({$item.value|nl2br|t_url2cmd|t_cmd})
+    ({$item.value|nl2br|t_url2cmd:'profile'|t_cmd:'profile'})
 ({elseif $item.form_type == 'checkbox'})
     ({$item.value|@t_implode:", "})
 ({else})

@@ -1881,4 +1881,64 @@ function db_admin_update_c_api($c_api_id, $name, $ip)
     return db_update('c_api', $data, $where);
 }
 
+
+
+/*--------------------------------
+ここからCMD
+---------------------------------*/
+
+//CMDを追加
+function db_admin_insert_c_cmd($name, $permit)
+{
+    $data = array(
+        'name' => strval($name),
+        'permit' => intval($permit),
+    );
+    return db_insert('c_cmd', $data);
+}
+
+//CMDを編集
+function db_admin_update_c_cmd($c_cmd_id, $name, $permit)
+{
+    $data = array(
+        'name' => strval($name),
+        'permit' => intval($permit),
+    );
+    $where = array('c_cmd_id' => intval($c_cmd_id));
+    return db_update('c_cmd', $data, $where);
+}
+
+//CMDを削除
+function db_admin_delete_c_cmd($c_cmd_id)
+{
+    $sql = "DELETE FROM c_cmd WHERE c_cmd_id = ?";
+    $params = array(intval($c_cmd_id));
+    return db_query($sql, $params);
+}
+
+
+//CMDを全て取得(ページャー付き)
+function db_admin_get_c_cmd_all($page, $page_size, &$pager)
+{
+    $sql = 'SELECT * FROM c_cmd ORDER BY c_cmd_id';
+
+    $list = db_get_all_page($sql, $page, $page_size, $params);
+
+    $sql = 'SELECT count(*) FROM c_cmd';
+    $total_num = db_get_one($sql, $params);
+    $pager = admin_make_pager($page, $page_size, $total_num);
+
+    return $list;
+}
+
+//CMDを一つ取得
+function db_admin_get_c_cmd_one($c_cmd_id)
+{
+    $sql = 'SELECT * FROM c_cmd WHERE c_cmd_id = ?';
+    $params = array(intval($c_cmd_id));
+
+    return db_get_row($sql, $params);
+}
+
+
 ?>

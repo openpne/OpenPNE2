@@ -701,4 +701,34 @@ function db_replace_c_navi($navi_type, $sort_order, $url, $caption)
     return db_insert('c_navi', $data);
 }
 
+//小窓の使用範囲をチェック
+function db_is_use_cmd($src, $type)
+{
+    $sql = 'SELECT * FROM c_cmd WHERE name = ?';
+    $params = array(strval($src));
+    $c_cmd = db_get_row($sql, $params);
+
+    $permit_list = db_get_permit_list();
+
+    foreach ($permit_list as $key => $name) {
+        if (($c_cmd['permit'] & $key)
+         && preg_match('/'.$c_cmd['name'].'/', $src)
+         && $name == $type) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+//小窓の使用範囲のリスト
+function db_get_permit_list()
+{
+    return array(
+        '1' => 'community',
+        '2' => 'diary',
+        '4' => 'profile',
+    );
+}
+
 ?>
