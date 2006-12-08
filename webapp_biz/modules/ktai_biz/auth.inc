@@ -48,7 +48,7 @@ function __logout($msg = 0, $c_member_id = 0)
     }
     if ($c_member_id) {
         $c_member_secure = db_common_c_member_secure4c_member_id($c_member_id);
-        $p['kad'] = t_encrypt($c_member_secure['ktai_address']);
+        $p['kad'] = t_encrypt(db_member_username4c_member_id($c_member_id, true));
     }
     openpne_redirect('ktai', 'page_o_login', $p);
 }

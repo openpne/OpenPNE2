@@ -20,6 +20,7 @@ class pc_do_h_config_2 extends OpenPNE_Action
         // ----------
 
         $msg_list = array();
+        if (LOGIN_NAME_TYPE == 1) $msg_list[] = "パスワード変更はできません";
         if (!$new_password) $msg_list[] = "パスワードを入力してください";
         if (!$new_password2) $msg_list[] = "パスワード(確認)を入力してください";
 

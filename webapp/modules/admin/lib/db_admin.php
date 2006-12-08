@@ -672,7 +672,7 @@ function do_admin_send_message_mail_send_ktai($c_member_id_to, $c_member_id_from
     $c_member_to = db_common_c_member4c_member_id($c_member_id_to, true);
     $ktai_address = $c_member_to['secure']['ktai_address'];
     $is_receive_ktai_mail = $c_member_to['is_receive_ktai_mail'];
-    $p = array('kad' => t_encrypt($c_member_to['secure']['ktai_address']));
+    $p = array('kad' => t_encrypt(db_member_username4c_member_id($c_member_to['c_member_id'], true)));
     $login_url = openpne_gen_url('ktai', 'page_o_login', $p);
 
     $params = array(

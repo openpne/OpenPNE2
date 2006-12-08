@@ -37,7 +37,7 @@ class ktai_do_o_update_ktai_address extends OpenPNE_Action
         k_do_delete_ktai_address_pre($pre['c_ktai_address_pre_id']);
 
         // login ページへリダイレクト
-        $p = array('msg' => 19, 'kad' => t_encrypt($ktai_address));
+        $p = array('msg' => 19, 'kad' => t_encrypt(db_member_username4c_member_id($c_member_id, true)));
         openpne_redirect('ktai', 'page_o_login', $p);
     }
 }
