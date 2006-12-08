@@ -905,7 +905,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({/if})
 <div class="border_01 bg_02 padding_s" align="left">
 
-予定 <input type="text" name="title" value="" size="24">
+予定 <input type="text" class="text" name="title" value="" size="24">
 <select name="start_date">
 ({foreach from=$calendar item=item})
 <option value="({$item.year})-({$item.month})-({$item.day})"({if $item.now}) selected="selected"({/if})>({$item.month})/({$item.day})(({$item.dayofweek}))</option>

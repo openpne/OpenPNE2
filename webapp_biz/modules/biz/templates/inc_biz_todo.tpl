@@ -27,7 +27,7 @@
 <tr>
 <td class="bg_02 border_01 padding_ss" style="width:228px;border-top:none;border-bottom:none;" align="center">
 
-<textarea name="todo" value="" style="width:100%;height:3em;"></textarea>
+<textarea class="text" name="todo" value="" style="width:100%;height:3em;"></textarea>
 
 </td>
 </tr>

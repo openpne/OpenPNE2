@@ -90,7 +90,7 @@
 <td style="width:421px;" class="bg_02" align="left" valign="middle">
 <div class="padding_s">
 
-<input  name="mail" value="({$requests.mail})" size="30">
+<input type="text" class="text"  name="mail" value="({$requests.mail})" size="30">
 ({if $smarty.const.OPENPNE_REGIST_FROM == $smarty.const.OPENPNE_REGIST_FROM_PC})
 <br>※携帯アドレスには招待を送ることができません
 ({elseif $smarty.const.OPENPNE_REGIST_FROM == $smarty.const.OPENPNE_REGIST_FROM_KTAI})
@@ -122,7 +122,7 @@
 
 <div class="padding_s">
 
-<textarea name="message" rows="5" cols="40">({$requests.message})</textarea>
+<textarea class="text" name="message" rows="5" cols="40">({$requests.message})</textarea>
 
 </div>
 
@@ -193,7 +193,7 @@
 <img src="./cap.php">
 <br>
 ※上に表示されているキーワードをご記入下さい。
-<input  name="captcha" size="30">
+<input type="text" class="text"  name="captcha" size="30">
 
 
 </td>
@@ -352,7 +352,7 @@
 
 <div style="padding:6px 100px;text-align:center;">
 
-<input type=submit class="submit" value="　削  除　">
+<input type="submit" class="submit" value="　削  除　">
 
 </div>
 

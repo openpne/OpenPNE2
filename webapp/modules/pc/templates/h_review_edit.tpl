@@ -128,7 +128,7 @@
 
 <div class="padding_s">
 
-<textarea name="body" rows="10" cols="45">({$c_review_comment.body})</textarea>
+<textarea class="text" name="body" rows="10" cols="45">({$c_review_comment.body})</textarea>
 
 </div>
 

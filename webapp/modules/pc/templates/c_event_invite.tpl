@@ -115,7 +115,7 @@
 
 <div class="padding_s">
 
-<textarea name="body" cols="50" rows="6"></textarea>
+<textarea class="text" name="body" cols="50" rows="6"></textarea>
 
 </div>
 

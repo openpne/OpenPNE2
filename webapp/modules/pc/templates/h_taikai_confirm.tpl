@@ -73,7 +73,7 @@
 
 <div class="padding_s">
 
-<input type="password" name="password" value="">
+<input class="text" type="password" name="password" value="">
 
 </div>
 

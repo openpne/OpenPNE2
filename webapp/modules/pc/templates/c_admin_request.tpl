@@ -179,7 +179,7 @@
 <input type="hidden" name="sessid" value="({$PHPSESSID})">
 <input type="hidden" name="target_c_member_id" value="({$member.c_member_id})">
 <input type="hidden" name="target_c_commu_id" value="({$c_commu.c_commu_id})">
-<td align="right"><input type=submit class="submit" name="yes_button" value="　送　信　">
+<td align="right"><input type="submit" class="submit" name="yes_button" value="　送　信　">
 </td>
 </form>
 

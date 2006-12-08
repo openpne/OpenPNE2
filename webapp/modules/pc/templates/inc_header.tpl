@@ -15,6 +15,7 @@
 ({else})
 <link rel="stylesheet" href="./css/default.css?v=2.2.5" type="text/css">
 ({/if})
+<script type="text/javascript" src="./js/prototype.js"></script>
 <style type="text/css">
 <!--
 /*枠線要素*/
@@ -71,6 +72,12 @@ body { background-color: #({$INC_HEADER_color_config.bg_12}) ; }
 }
 
 * { font-family: "ＭＳ Ｐゴシック", "ヒラギノ角ゴ Pro W3", Osaka, sans-serif ; }
+
+/*テキスト入力欄のフォーカス時のクラス*/
+.text       { background-color:#FFFFFF; }
+.text_focus { background-color:#E3F9F6; }
+
+({$inc_custom_css|smarty:nodefaults})
 
 /*ボタンに対する背景画像の指定*/
 input.submit {

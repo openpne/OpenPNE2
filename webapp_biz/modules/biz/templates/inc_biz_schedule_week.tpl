@@ -45,7 +45,7 @@
 <td class="border_01 bg_02 padding_ss" style="border-left:none;" align="right">
 
 予定：
-<input type="text" name="title" value="" size="30">
+<input type="text" class="text" name="title" value="" size="30">
 <select name="start_date">
 ({foreach from=$daylist item=item})
 <option value="({$item.year})-({$item.month})-({$item.day})"({if $item.now}) selected="selected"({/if})>({$item.month})/({$item.day})(({$item.dayofweek}))</option>
@@ -316,7 +316,7 @@
 <input type="hidden" name="sessid" value="({$PHPSESSID})">
 <input type="hidden" name="target_id" value="({$target_id})">
 予定：
-<input type="text" name="title" value="" size="30">
+<input type="text" class="text" name="title" value="" size="30">
 <select name="start_date">
 ({foreach from=$daylist item=item})
 <option value="({$item.year})-({$item.month})-({$item.day})"({if $item.now}) selected="selected"({/if})>({$item.month})/({$item.day})(({$item.dayofweek}))</option>

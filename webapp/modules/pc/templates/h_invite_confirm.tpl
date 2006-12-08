@@ -108,7 +108,7 @@
 <input type="hidden" name="mail" value="({$form_val.mail})">
 <input type="hidden" name="message" value="({$form_val.message})">
 <input type="hidden" name="captcha_confirm" value="({$captcha_confirm})">
-<input type=submit  class="submit"  value="  送　信  ">&nbsp;
+<input type="submit"  class="submit"  value="  送　信  ">&nbsp;
 </form>
 
 </td>

@@ -86,7 +86,7 @@
 
 <div class="padding_s">
 
-<input type="text" name="keyword" value="({$keyword})" size="15">&nbsp;
+<input type="text" class="text" name="keyword" value="({$keyword})" size="15">&nbsp;
 &nbsp;カテゴリ&nbsp;<img src="({t_img_url_skin filename=icon_arrow_2})" class="icon">
 <select name="category">
 <option value="">指定なし</option>

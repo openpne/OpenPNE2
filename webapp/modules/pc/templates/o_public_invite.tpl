@@ -141,7 +141,7 @@
 <img src="./cap.php">
 <br>
 ※上に表示されているキーワードをご記入下さい。<br>
-<input name="captcha" size="30">
+<input type="text" class="text" name="captcha" size="30">
 
 </div>
 

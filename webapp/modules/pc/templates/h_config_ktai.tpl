@@ -80,7 +80,7 @@
 
 <div class="padding_s">
 
-<input name="ktai_address" value="({$form_val.mail})" size="30">
+<input type="text" class="text" name="ktai_address" value="({$form_val.mail})" size="30">
 
 </div>
 

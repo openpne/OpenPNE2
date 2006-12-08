@@ -63,7 +63,7 @@
 ({t_form m=pc a=page_h_review_add})
 <input type="hidden" name="search_flag" value="1">
 キーワード&nbsp;<img src="./skin/dummy.gif" style="width:14px;height:14px;" class="icon icon_1">
-<input name="keyword" size="15" value="({$keyword})">
+<input type="text" class="text" name="keyword" size="15" value="({$keyword})">
 &nbsp;カテゴリ&nbsp;<img src="./skin/dummy.gif" style="width:14px;height:14px;" class="icon icon_1">
 <select name="category_id">
 <option value="" selected="selected">選択

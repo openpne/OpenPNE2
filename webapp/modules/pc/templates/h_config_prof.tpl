@@ -64,7 +64,7 @@
 
 <div class="padding_s">
 
-<input name="nickname" value="({$c_member.nickname})" size="30"><br>
+<input type="text" class="text" name="nickname" value="({$c_member.nickname})" size="30"><br>
 
 </div>
 
@@ -98,7 +98,7 @@
 
 <div class="padding_s">
 
-<input name="birth_year" value="({$c_member.birth_year})" size="10" maxlength="4">年
+<input type="text" class="text" name="birth_year" value="({$c_member.birth_year})" size="10" maxlength="4">年
 
 </div>
 
@@ -215,11 +215,11 @@
 
 ({strip})
 ({if $profile.form_type == 'text'})
-    <input type="text" size="30" name="profile[({$profile.name})]" value="({$c_member.profile[$profile.name].value})">
+    <input type="text" class="text" size="30" name="profile[({$profile.name})]" value="({$c_member.profile[$profile.name].value})">
 ({elseif $profile.form_type == 'textlong'})
     <input type="text" size="60" name="profile[({$profile.name})]" value="({$c_member.profile[$profile.name].value})">
 ({elseif $profile.form_type == 'textarea'})
-    <textarea name="profile[({$profile.name})]" rows="6" cols="50">({$c_member.profile[$profile.name].value})</textarea>
+    <textarea class="text" name="profile[({$profile.name})]" rows="6" cols="50">({$c_member.profile[$profile.name].value})</textarea>
 ({elseif $profile.form_type == 'select'})
     <select name="profile[({$profile.name})]">
     <option value="">選択してください</option>

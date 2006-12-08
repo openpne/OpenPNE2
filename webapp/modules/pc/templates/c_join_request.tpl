@@ -45,7 +45,7 @@
 
 <td class="bg_02">
 
-<textarea name="body" rows="6" cols="50"></textarea>
+<textarea class="text" name="body" rows="6" cols="50"></textarea>
 
 </td>
 </tr>

@@ -62,7 +62,7 @@
 
 <div class="padding_s">
 
-<input type="text" name="title" value="({$event.name})" maxlength="120">
+<input type="text" class="text" name="title" value="({$event.name})" maxlength="120">
 
 </div>
 
@@ -105,7 +105,7 @@
 ({html_options values=$day selected=$event.open_date_day output=$day})
 </select>
 日
-(補足：<input type="text" name="open_date_comment" value="({$event.open_date_comment})" size="30">)
+(補足：<input type="text" class="text" name="open_date_comment" value="({$event.open_date_comment})" size="30">)
 
 </div>
 
@@ -137,7 +137,7 @@
 <option value=0>選択してください
 ({html_options options=$pref selected=$event.open_pref_id})
 </select>
-(補足：<input type="text" name="open_pref_comment" value="({$event.open_pref_comment})" size="30">)
+(補足：<input type="text" class="text" name="open_pref_comment" value="({$event.open_pref_comment})" size="30">)
 
 </div>
 
@@ -165,7 +165,7 @@
 
 <div class="padding_s">
 
-<textarea name="detail" rows="6" cols="50">({$event.body})</textarea>
+<textarea class="text" name="detail" rows="6" cols="50">({$event.body})</textarea>
 
 </div>
 

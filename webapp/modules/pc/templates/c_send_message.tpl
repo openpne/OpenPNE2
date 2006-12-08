@@ -114,7 +114,7 @@
 
 <div class="padding_s">
 
-<input type="text" name="subject" size="50">
+<input type="text" class="text" name="subject" size="50">
 
 </div>
 
@@ -143,7 +143,7 @@
 
 <div class="padding_s">
 
-<textarea name="body" rows="6" cols="50"></textarea>
+<textarea class="text" name="body" rows="6" cols="50"></textarea>
 
 </div>
 

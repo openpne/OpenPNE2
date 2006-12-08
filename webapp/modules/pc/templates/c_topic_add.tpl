@@ -57,7 +57,7 @@
 <td style="width:481px;" class="bg_02" align="left" valign="middle">
 <div class="padding_s">
 
-<input type="text" name="title" value="({$title})" size="50" maxlength="126">
+<input type="text" class="text" name="title" value="({$title})" size="50" maxlength="126">
 
 </div>
 </td>
@@ -83,7 +83,7 @@
 <td class="bg_02" align="left" valign="middle">
 <div class="padding_s">
 
-<textarea name="body" rows="10" cols="50" style="width:415px">({$body})</textarea>
+<textarea class="text" name="body" rows="10" cols="50" style="width:415px">({$body})</textarea>
 
 </div>
 </td>

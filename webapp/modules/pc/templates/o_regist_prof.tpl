@@ -58,7 +58,7 @@
 
 <div class="padding_s">
 
-<input name="nickname" type="text" value="({$profs.nickname})" size="30"><br>
+<input class="text" name="nickname" type="text" value="({$profs.nickname})" size="30"><br>
 
 </div>
 
@@ -92,7 +92,7 @@
 
 <div class="padding_s">
 
-<input name="birth_year" type="text" value="({$profs.birth_year})" size="10" maxlength="4">年
+<input class="text" name="birth_year" type="text" value="({$profs.birth_year})" size="10" maxlength="4">年
 
 </div>
 
@@ -210,11 +210,11 @@
 
 ({strip})
 ({if $profile.form_type == 'text'})
-    <input type="text" size="30" name="profile[({$profile.name})]" value="({$profs.profile[$profile.name]})">
+    <input type="text" class="text" size="30" name="profile[({$profile.name})]" value="({$profs.profile[$profile.name]})">
 ({elseif $profile.form_type == 'textlong'})
     <input type="text" size="60" name="profile[({$profile.name})]" value="({$profs.profile[$profile.name]})">
 ({elseif $profile.form_type == 'textarea'})
-    <textarea name="profile[({$profile.name})]" rows="6" cols="50">({$profs.profile[$profile.name]})</textarea>
+    <textarea class="text" name="profile[({$profile.name})]" rows="6" cols="50">({$profs.profile[$profile.name]})</textarea>
 ({elseif $profile.form_type == 'select'})
     <select name="profile[({$profile.name})]">
     <option value="">選択してください</option>
@@ -346,7 +346,7 @@ PCアドレス <span class="caution">※</span>
 
 <div class="padding_s">
 
-<input name="password" type="password"><br><span class="caution">※6～12文字の半角英数で入力してください</span>
+<input class="text" name="password" type="password"><br><span class="caution">※6～12文字の半角英数で入力してください</span>
 
 </div>
 
@@ -374,7 +374,7 @@ PCアドレス <span class="caution">※</span>
 
 <div class="padding_s">
 
-<input name="password2" type="password">
+<input class="text" name="password2" type="password">
 
 </div>
 
@@ -435,7 +435,7 @@ PCアドレス <span class="caution">※</span>
 
 <div class="padding_s">
 
-<input name="c_password_query_answer" type="text" value="({$profs.c_password_query_answer})" size="30">
+<input type="text" class="text" name="c_password_query_answer" type="text" value="({$profs.c_password_query_answer})" size="30">
 
 </div>
 

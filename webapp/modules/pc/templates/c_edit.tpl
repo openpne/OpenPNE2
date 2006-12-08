@@ -60,7 +60,7 @@
 
 <div class="padding_s">
 
-<input type="text" name="name" value="({$c_commu.name})" style="width:20em">
+<input type="text" class="text" name="name" value="({$c_commu.name})" style="width:20em">
 
 </div>
 
@@ -147,7 +147,7 @@
 
 <div class="padding_s">
 
-<textarea name="info" style="width:30em;height:6em;">({$c_commu.info})</textarea>
+<textarea class="text" name="info" style="width:30em;height:6em;">({$c_commu.info})</textarea>
 
 </div>
 
@@ -270,9 +270,9 @@
 <td class="bg_02" align="left" valign="middle">
 
 <div class="padding_s">
-緯度：<input name="map_latitude" type="text" size="14" value="({$c_commu.map_latitude})">&nbsp;
-経度：<input name="map_longitude" type="text" size="14" value="({$c_commu.map_longitude})">&nbsp;
-拡大率：<input name="map_zoom" type="text" size="4" value="({$c_commu.map_zoom})" maxlength="2"><br>
+緯度：<input class="text" name="map_latitude" type="text" size="14" value="({$c_commu.map_latitude})">&nbsp;
+経度：<input class="text" name="map_longitude" type="text" size="14" value="({$c_commu.map_longitude})">&nbsp;
+拡大率：<input class="text" name="map_zoom" type="text" size="4" value="({$c_commu.map_zoom})" maxlength="2"><br>
 
 ※手動設定の場合は、都道府県の選択で「その他（手動設定）」を選んでください。
 </div>

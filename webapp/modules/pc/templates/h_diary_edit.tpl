@@ -346,7 +346,7 @@
 <td style="width:439px;" class="bg_02" align="left" valign="middle">
 <div style="padding:4px 3px;">
 
-<input size="40" name="subject" value="({$diary.subject})">
+<input type="text" class="text" size="40" name="subject" value="({$diary.subject})">
 
 </div>
 </td>
@@ -370,7 +370,7 @@
 <td class="bg_02" align="left" valign="middle">
 <div style="padding:4px 3px;">
 
-<textarea name="body" rows="15" cols="50" style="width:415px">({$diary.body})</textarea>
+<textarea class="text" name="body" rows="15" cols="50" style="width:415px">({$diary.body})</textarea>
 
 </div>
 </td>

@@ -53,7 +53,7 @@
 <td style="width:421px;" class="bg_02" align="left" valign="middle">
 <div class="padding_s">
 
-<input name="nickname" size="30" type="text">
+<input class="text" name="nickname" size="30" type="text">
 
 </div>
 </td>
@@ -76,9 +76,9 @@
 
 <td style="width:421px;" class="bg_02" align="left" valign="middle">
 <div class="padding_s">
-<input name="birth_year" size="4" maxlength="4">年
-<input name="birth_month" size="2" maxlength="2">月
-<input name="birth_day" size="2" maxlength="2">日
+<input type="text" class="text" name="birth_year" size="4" maxlength="4">年
+<input type="text" class="text" name="birth_month" size="2" maxlength="2">月
+<input type="text" class="text" name="birth_day" size="2" maxlength="2">日
 </div>
 </td>
 </tr>
@@ -126,7 +126,7 @@
     ({/foreach})
     *})
 ({elseif $profile.form_type == 'text' || $profile.form_type == 'textlong' || $profile.form_type == 'textarea'})
-    <input name="profile[({$profile.name})]" size="30" type="text">
+    <input class="text" name="profile[({$profile.name})]" size="30" type="text">
 ({/if})
 
 </div>

@@ -57,7 +57,7 @@
 
 <div class="padding_s">
 
-<input type="text" name="title" value="({$c_topic.name})" size="50" maxlength="126">
+<input type="text" class="text" name="title" value="({$c_topic.name})" size="50" maxlength="126">
 
 </div>
 
@@ -85,7 +85,7 @@
 
 <div class="padding_s">
 
-<textarea name="body" rows="10" cols="50" style="width:415px">({$c_topic.body})</textarea>
+<textarea class="text" name="body" rows="10" cols="50" style="width:415px">({$c_topic.body})</textarea>
 
 </div>
 

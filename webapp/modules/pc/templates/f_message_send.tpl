@@ -133,7 +133,7 @@
 
 <div class="padding_s">
 
-<input name="subject" size="60" value="({$form_val.subject})">
+<input type="text" class="text" name="subject" size="60" value="({$form_val.subject})">
 
 </div>
 
@@ -162,7 +162,7 @@
 
 <div class="padding_s">
 
-<textarea name="body" rows="10" cols="60">({$form_val.body})</textarea>
+<textarea class="text" name="body" rows="10" cols="60">({$form_val.body})</textarea>
 
 </div>
 

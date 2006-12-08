@@ -64,9 +64,9 @@ Todo
 
 <div class="padding_s">
 
-<textarea name="memo" style="width:30em;height:6em;">({$todo.memo})</textarea>
+<textarea class="text" name="memo" style="width:30em;height:6em;">({$todo.memo})</textarea>
 
-({*<input type="text" name="memo" value="({$todo.memo})" size="90">*})
+({*<input type="text" class="text" name="memo" value="({$todo.memo})" size="90">*})
 
 </div>
 

@@ -86,7 +86,7 @@
 
 <div class="padding_s">
 
-<textarea name="body" rows="5" cols="50">({$intro_body})</textarea>
+<textarea class="text" name="body" rows="5" cols="50">({$intro_body})</textarea>
 
 </div>
 

@@ -213,7 +213,7 @@
 <td class="bg_02" align="left" valign="middle">
 <div style="padding:4px 3px;">
 
-<input type='text' name='sc_title' value="({$title})" size="60">
+<input class="text" type='text' name='sc_title' value="({$title})" size="60">
 </div>
 </td>
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
@@ -236,7 +236,7 @@
 <td class="bg_02" align="left" valign="middle">
 <div style="padding:4px 3px;">
 
-<textarea name='sc_memo' cols="50" rows="5">({$value})</textarea>
+<textarea class="text" name='sc_memo' cols="50" rows="5">({$value})</textarea>
 </div>
 </td>
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>

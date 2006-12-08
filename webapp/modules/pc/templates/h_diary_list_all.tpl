@@ -51,7 +51,7 @@
 ({t_form _method=get m=pc a=page_h_diary_list_all})
 
 キーワード&nbsp;<img src="({t_img_url_skin filename=icon_arrow_2})" class="icon">
-<input name="keyword" size="15" value="({$keyword})">
+<input type="text" class="text" name="keyword" size="15" value="({$keyword})">
 
 <input type="submit" class="submit" value=" 検 索 ">
 　<a href="({t_url m=pc a=page_h_com_find_all})&amp;keyword=({$keyword|escape:"url"})">コミュニティ検索</a>

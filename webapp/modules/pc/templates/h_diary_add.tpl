@@ -369,7 +369,7 @@
 <td class="bg_02" align="left" valign="middle">
 <div style="padding:4px 3px;">
 
-<textarea name="body" rows="15" cols="50" style="width:415px">({$form_val.body})</textarea>
+<textarea class="text" name="body" rows="15" cols="50" style="width:415px">({$form_val.body})</textarea>
 
 </div>
 </td>

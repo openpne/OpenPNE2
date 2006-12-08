@@ -728,7 +728,7 @@
 <td class="bg_02" align="left" valign="middle">
 <div style="padding:4px 3px;">
 
-<textarea name="body" rows="8" cols="40" style="width:419px">({$requests.body})</textarea>
+<textarea class="text" name="body" rows="8" cols="40" style="width:419px">({$requests.body})</textarea>
 
 </div>
 </td>

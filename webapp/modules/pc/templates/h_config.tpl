@@ -59,7 +59,7 @@
 <td style="width:501px;" class="bg_02" align="left" valign="middle">
 <div class="padding_s">
 
-<input name="pc_address" value="" size="40"><br>
+<input type="text" class="text" name="pc_address" value="" size="40"><br>
 <span class="caution">※メールアドレスは公開されません。</span>
 
 </div>
@@ -86,7 +86,7 @@
 <td class="bg_02" align="left" valign="middle">
 <div class="padding_s">
 
-<input name="pc_address2" value="" size="40">
+<input type="text" class="text" name="pc_address2" value="" size="40">
 
 </div>
 </td>
@@ -134,7 +134,7 @@
 <td class="bg_02" align="left" valign="middle">
 <div class="padding_s">
 
-<input name="old_password" type="password" value="" size="20">
+<input class="text" name="old_password" type="password" value="" size="20">
 
 </div>
 </td>
@@ -160,7 +160,7 @@
 <td class="bg_02" align="left" valign="middle">
 <div class="padding_s">
 
-<input name="new_password" type="password" value="" size="20"><br>
+<input class="text" name="new_password" type="password" value="" size="20"><br>
 <span class="caution">※パスワードは6～12文字の半角英数で入力してください。</span>
 
 </div>
@@ -187,7 +187,7 @@
 <td class="bg_02" align="left" valign="middle">
 <div class="padding_s">
 
-<input name="new_password2" type="password" value="" size="20">
+<input class="text" name="new_password2" type="password" value="" size="20">
 
 </div>
 </td>
@@ -303,7 +303,7 @@
 <td class="bg_02" align="left" valign="middle">
 <div style="padding:3px;">
 
-<input name="c_password_query_answer" type="text" value="" size="20">
+<input class="text" name="c_password_query_answer" type="text" value="" size="20">
 
 <br>
 ※変更する場合のみ入力してください。
@@ -333,7 +333,7 @@ BlogのURL
 <td class="bg_02" align="left" valign="middle">
 <div class="padding_s">
 
-<input type="text" name="rss" value="({$c_member.rss})" size="60"><br>
+<input type="text" class="text" name="rss" value="({$c_member.rss})" size="60"><br>
 
 ※外部に日記・Blogをお持ちの場合、URLをご記入ください。<br>
 例： http://blog.example.com/
@@ -422,7 +422,7 @@ BlogのURL
 <td class="bg_02" align="left" valign="middle">
 <div class="padding_s">
 
-<input type="text" name="ashiato_mail_num" value="({$c_member.ashiato_mail_num})">
+<input type="text" class="text" name="ashiato_mail_num" value="({$c_member.ashiato_mail_num})">
 アクセス目にメールを受け取る<br>
 ※ここで指定したアクセス数に達したとき、お知らせメールが届きます。
 
@@ -482,9 +482,9 @@ BlogのURL
 <div class="padding_s">
 
 ({foreach from=$c_member_id_block item=item})
-ID <input type="text" name="c_member_id_block[]" value="({$item})"><br>
+ID <input type="text" class="text" name="c_member_id_block[]" value="({$item})"><br>
 ({/foreach})
-ID <input type="text" name="c_member_id_block[]" value=""><br>
+ID <input type="text" class="text" name="c_member_id_block[]" value=""><br>
 
 ※特定のユーザーからのアクセスをブロックします。<br>
 相手トップページのURL末尾に表示されている数字がIDになります。<br>
@@ -617,7 +617,7 @@ ID <input type="text" name="c_member_id_block[]" value=""><br>
 ({if $c_member.c_member_id==1})
 ID 1 のメンバーはSNSを退会することができません。
 ({else})
-<input type=submit class="submit" value="退会確認ページへ">
+<input type="submit" class="submit" value="退会確認ページへ">
 ({/if})
 
 </div>
