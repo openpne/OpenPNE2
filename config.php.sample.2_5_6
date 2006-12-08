@@ -292,7 +292,7 @@ define('IMGMAGICK_APP', '/usr/bin/convert');
 //define('IMGMAGICK_APP', '"C:\Program Files\ImageMagick-6.2.5-Q16\convert"');
 
 // ImageMagick のオプション(デフォルトは -resize)
-//define('IMGMAGICK_OPT', '-thumbnail');
+//define('IMGMAGICK_OPT', '-deconstruct -coalesce -resize');
 
 // アップロード画像のファイルサイズ制限(KB)
 define('IMAGE_MAX_FILESIZE', 300);
