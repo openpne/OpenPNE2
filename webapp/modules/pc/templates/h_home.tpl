@@ -1,35 +1,47 @@
-({$inc_html_header|smarty:nodefaults})
-<body>
-({ext_include file="inc_extension_pagelayout_top.tpl"})
-<table class="mainframe" border="0" cellspacing="0" cellpadding="0">
-<tr>
-<td class="container inc_page_header">
-({$inc_page_header|smarty:nodefaults})
-</td>
-</tr>
-({if $inc_entry_point[1]})
-<tr>
-<td class="container">
-({$inc_entry_point[1]|smarty:nodefaults})
-</td>
-</tr>
-({/if})
-<tr>
-<td class="container inc_navi">
-({$inc_navi|smarty:nodefaults})
-</td>
-</tr>
-({if $inc_entry_point[2]})
-<tr>
-<td class="container">
-({$inc_entry_point[2]|smarty:nodefaults})
-</td>
-</tr>
-({/if})
+({ext_include file="inc_header.tpl"})
 ({if $smarty.const.DISPLAY_SEARCH_HOME})
 <tr>
 <td class="container inc_search_box">
-({ext_include file="inc_search_box.tpl"})
+({**************************************})
+({**ここから：旧inc_search_box.tplの内容**})
+({**************************************})
+<table border="0" cellspacing="0" cellpadding="0" style="width:720px;">
+<tr>
+<td style="width:720px;height:2px;"><img src="./skin/dummy.gif" style="width:720px;height:2px;" class="dummy"></td>
+</tr>
+<tr>
+<td align="center">
+
+({*ここから：本体*})
+<div class="bg_09" style="width:680px;height:24px;border-left:none 0px;border-right:none 0px;border-top:none 0px;">
+({t_form m=pc a=do_h_home_search})
+<input type="hidden" name="sessid" value="({$PHPSESSID})">
+
+<table border="0" cellspacing="0" cellpadding="0" class="search_bar" style="width:680px;height:24px;">
+<tr>
+<td align="center" style="height:24px;">
+<img src="({t_img_url_skin filename=icon_search})" alt="search" style="width:62px;height:20px;" class="icon">
+<input type="text" size="30" name="q" class="text border_01" value="" style="width:180px;">
+<input type="image" src="({t_img_url_skin filename=button_search_1})" value="diary" alt="日記" border="0" name="diary" class="button" style="width:62px;height:20px;">
+<input type="image" src="({t_img_url_skin filename=button_search_2})" value="community" alt="コミュニティ" border="0" name="community" class="button" style="width:62px;height:20px;">
+<input type="image" src="({t_img_url_skin filename=button_search_4})" value="message" alt="メッセージ" border="0" name="message" class="button" style="width:62px;height:20px;">
+({if $smarty.const.USE_EXTRA_SERVICE})
+<input type="image" src="({t_img_url_skin filename=button_search_3})" value="web" alt="web" border="0" name="web" class="button" style="width:62px;height:20px;">
+({/if})
+</td>
+</tr>
+</table>
+
+</form>
+</div>
+({*ここまで：本体*})
+
+</td>
+</tr>
+</table>
+({**************************************})
+({**ここまで：旧inc_search_box.tplの内容**})
+({**************************************})
 </td>
 </tr>
 ({/if})
@@ -48,7 +60,89 @@
 ({/if})
 <tr>
 <td class="container inc_info">
-({ext_include file="inc_info.tpl"})
+
+({********************************})
+({**ここから：旧inc_info.tplの内容**})
+({********************************})
+<!--　インフォメーション　＆　カレンダー　-->
+<table border="0" cellspacing="0" cellpadding="0" style="width:720px;" class="info">
+<tr>
+<td style="width:5px;"><img src="./skin/dummy.gif" style="width:5px;height:1px;" class="dummy"></td>
+<td style="width:715px;" align="center" valign="middle">
+
+<!--ここから：運営者からのお知らせ-->
+<table border="0" cellspacing="0" cellpadding="0" style="width:715px;" class="info_body">
+<tr>
+<td align="center" class="border_07 bg_11" style="width:105px;border-right:none;"><img src="({t_img_url_skin filename=icon_information})" alt="お知らせ"></td>
+<td class="border_07 bg_02" style="width:610px;">
+
+<table border="0" cellspacing="0" cellpadding="0" style="width:610px;">
+<tr>
+<td class="padding_s">
+
+({$site_info|smarty:nodefaults|default:"&nbsp;"})
+
+</td>
+</tr>
+({if $num_f_confirm_list})
+<tr>
+<td class="padding_s">
+
+★<span class="caution">承認待ちのメンバーが({$num_f_confirm_list})名います！</span>&nbsp;<a href="({t_url m=pc a=page_h_confirm_list})"><span class="b_b">承認・拒否</span></a>
+
+</td>
+</tr>
+({/if})
+({if $num_message_not_is_read})
+<tr>
+<td class="padding_s">
+
+★<span class="caution">新着メッセージが({$num_message_not_is_read})件あります！</span>&nbsp;<a href="({t_url m=pc a=page_h_message_box})"><span class="b_b">メッセージを読む</span></a>
+
+</td>
+</tr>
+({/if})
+({if $num_diary_not_is_read})
+<tr>
+<td class="padding_s">
+
+★<span class="caution">({$num_diary_not_is_read})件の日記に対して新着コメントがあります！</span>&nbsp;<a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$first_diary_read})"><span class="caution">日記を見る</span></a>
+
+</td>
+</tr>
+({/if})
+({if $num_h_confirm_list})
+<tr>
+<td class="padding_s">
+
+★<span class="caution">コミュニティ参加承認待ちのメンバーが({$num_h_confirm_list})名います！</span>&nbsp;<a href="({t_url m=pc a=page_h_confirm_list})"><span class="b_b">承認・拒否</span></a>
+
+</td>
+</tr>
+({/if})
+({if $anatani_c_commu_admin_confirm_list})
+<tr>
+<td class="padding_s">
+
+★<span class="caution">コミュニティ管理人交代依頼が({$num_anatani_c_commu_admin_confirm_list})件きています。</span>&nbsp;<a href="({t_url m=pc a=page_h_confirm_list})"><span class="b_b">承認・拒否</span></a>
+
+</td>
+</tr>
+({/if})
+</table>
+
+</td>
+</tr>
+</table>
+<!--ここまで：運営者からのお知らせ-->
+
+</td>
+</tr>
+</table>
+({********************************})
+({**ここまで：旧inc_info.tplの内容**})
+({********************************})
+
 </td>
 </tr>
 ({if $inc_entry_point[3]})
@@ -58,12 +152,8 @@
 </td>
 </tr>
 ({/if})
-<tr>
-<td class="container main_content">
-<table class="container" border="0" cellspacing="0" cellpadding="0">({*BEGIN:container*})
-<tr>
-<td style="width:5px;"><img src="./skin/dummy.gif" style="width:5px;" class="dummy"></td>({*<--spacer*})
-<td class="left_content" valign="top">
+({ext_include file="inc_layoutcolumn_top_270px.tpl"})
+
 ({********************************})
 ({**ここから：メインコンテンツ（左）**})
 ({********************************})
@@ -778,9 +868,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({********************************})
 ({**ここまで：メインコンテンツ（左）**})
 ({********************************})
-</td>
-<td style="width:5px;"><img src="./skin/dummy.gif" style="width:5px;" class="dummy"></td>({*<--spacer*})
-<td class="right_content" valign="top">
+({ext_include file="inc_layoutcolumn_middle_270px.tpl"})
 ({********************************})
 ({**ここから：メインコンテンツ（右）**})
 ({********************************})
@@ -939,7 +1027,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <td class="border_01 bg_02 padding_s" style="width:332px;border-top:none;">
 
 ({foreach from=$c_diary_friend_list item=item})
-<img src="./skin/dummy.gif" style="width:14px;height:14px;" class="icon icon_1">({$item.r_datetime|date_format:"%m月%d日"})…&nbsp;<a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$item.c_diary_id})&amp;comment_count=({$item.count_comments})">({$item.subject|default:"&nbsp;"}) (({$item.count_comments|default:0}))</a>
+<img src="./skin/dummy.gif" style="width:14px;height:14px;clear:both;" class="icon icon_1">({$item.r_datetime|date_format:"%m月%d日"})…&nbsp;<a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$item.c_diary_id})&amp;comment_count=({$item.count_comments})">({$item.subject|default:"&nbsp;"}) (({$item.count_comments|default:0}))</a>
 (({$item.nickname|default:"&nbsp;"}))
 ({if $item.image_filename_1 || $item.image_filename_2 || $item.image_filename_3})<img src="({t_img_url_skin filename=icon_camera})" class="icon">({/if})<br>
 ({/foreach})
@@ -1486,17 +1574,5 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({********************************})
 ({**ここまで：メインコンテンツ（右）**})
 ({********************************})
-</td>
-</tr>
-</table>({*END:container*})
-</td>
-</tr>
-<tr>
-<td class="container inc_page_footer">
-({$inc_page_footer|smarty:nodefaults})
-</td>
-</tr>
-</table>
-({ext_include file="inc_extension_pagelayout_bottom.tpl"})
-</body>
-</html>
+({ext_include file="inc_layoutcolumn_bottom_270px_165px_175px_720px.tpl"})
+({ext_include file="inc_footer.tpl"})

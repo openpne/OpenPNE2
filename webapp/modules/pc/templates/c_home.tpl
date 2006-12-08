@@ -1,67 +1,4 @@
-({$inc_html_header|smarty:nodefaults})
-
-({if $smarty.const.OPENPNE_USE_COMMU_MAP && $c_commu.is_display_map})
-<script src="http://maps.google.co.jp/maps?file=api&amp;v=2&amp;key=({$smarty.const.GOOGLE_MAPS_API_KEY})" type="text/javascript"></script>
-<script type="text/javascript">
-<!--
-function load() {
-    if (GBrowserIsCompatible()) {
-        var point = new GLatLng(({$c_commu.map_latitude}), ({$c_commu.map_longitude}));
-        var zoom = ({$c_commu.map_zoom});
-        var html = '<div><img src="({t_img_url filename=$c_commu.image_filename w=120 h=120 noimg=no_logo})" width="60" height="60" align="left" hspace="5">({$c_commu.name})</div>';
-
-        var map = new GMap2(document.getElementById("map"));
-        map.addControl(new GSmallMapControl());
-        map.addControl(new GMapTypeControl());
-        map.setCenter(point, zoom);
-
-        var marker = new GMarker(point);
-        map.addOverlay(marker);
-        GEvent.addListener(marker, "click", function() {
-            marker.openInfoWindowHtml(html);
-        });
-    }
-}
-//-->
-</script>
-<body onLoad="load()" onUnload="GUnload()">
-({else})
-<body>
-({/if})
-
-({ext_include file="inc_extension_pagelayout_top.tpl"})
-<table class="mainframe" border="0" cellspacing="0" cellpadding="0">
-<tr>
-<td class="container inc_page_header">
-({$inc_page_header|smarty:nodefaults})
-</td>
-</tr>
-({if $inc_entry_point[1]})
-<tr>
-<td class="container">
-({$inc_entry_point[1]|smarty:nodefaults})
-</td>
-</tr>
-({/if})
-<tr>
-<td class="container inc_navi">
-({$inc_navi|smarty:nodefaults})
-</td>
-</tr>
-({if $inc_entry_point[2]})
-<tr>
-<td class="container">
-({$inc_entry_point[2]|smarty:nodefaults})
-</td>
-</tr>
-({/if})
-<tr>
-<td class="container main_content" align="center">
-
-({ext_include file="inc_alert_box.tpl"})({* エラーメッセージコンテナ *})
-
-</td>
-</tr>
+({ext_include file="inc_header.tpl"})
 ({if !$is_c_commu_member})
 <tr>
 <td class="container c_join_commu_box" align="center">
@@ -124,13 +61,8 @@ function load() {
 </td>
 </tr>
 ({/if})
-<tr>
-<td class="container main_content">
+({ext_include file="inc_layoutcolumn_top_270px.tpl"})
 
-<table class="container" border="0" cellspacing="0" cellpadding="0">({*BEGIN:container*})
-<tr>
-<td style="width:5px;"><img src="./skin/dummy.gif" style="width:5px;" class="dummy"></td>({*<--spacer*})
-<td class="left_content" valign="top">
 ({********************************})
 ({**ここから：メインコンテンツ（左）**})
 ({********************************})
@@ -451,9 +383,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({********************************})
 ({**ここまで：メインコンテンツ（左）**})
 ({********************************})
-</td>
-<td style="width:5px;"><img src="./skin/dummy.gif" style="width:5px;" class="dummy"></td>({*<--spacer*})
-<td class="right_content" valign="top">
+({ext_include file="inc_layoutcolumn_middle_270px.tpl"})
 ({********************************})
 ({**ここから：メインコンテンツ（右）**})
 ({********************************})
@@ -855,17 +785,5 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({********************************})
 ({**ここまで：メインコンテンツ（右）**})
 ({********************************})
-</td>
-</tr>
-</table>({*END:container*})
-</td>
-</tr>
-<tr>
-<td class="container inc_page_footer">
-({$inc_page_footer|smarty:nodefaults})
-</td>
-</tr>
-</table>
-({ext_include file="inc_extension_pagelayout_bottom.tpl"})
-</body>
-</html>
+({ext_include file="inc_layoutcolumn_bottom_270px_165px_175px_720px.tpl"})
+({ext_include file="inc_footer.tpl"})

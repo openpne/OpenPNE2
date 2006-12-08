@@ -25,9 +25,13 @@ function smarty_function_ext_include($params, &$smarty)
     }
     $tpl = 'file:' . $tpl;
 
-    $params['smarty_include_tpl_file'] = $tpl;
-    $params['smarty_include_vars'] = array();
-    $smarty->_smarty_include($params);
+    $arg_list = $params;
+    unset($arg_list['file']);
+
+    $p = array();
+    $p['smarty_include_tpl_file'] = $tpl;
+    $p['smarty_include_vars'] = $arg_list;
+    $smarty->_smarty_include($p);
     return;
 }
 

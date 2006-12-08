@@ -1,32 +1,4 @@
-({$inc_html_header|smarty:nodefaults})
-<body>
-({ext_include file="inc_extension_pagelayout_top.tpl"})
-<table class="mainframe" border="0" cellspacing="0" cellpadding="0">
-<tr>
-<td class="container inc_page_header">
-({$inc_page_header|smarty:nodefaults})
-</td>
-</tr>
-({if $inc_entry_point[1]})
-<tr>
-<td class="container">
-({$inc_entry_point[1]|smarty:nodefaults})
-</td>
-</tr>
-({/if})
-<tr>
-<td class="container inc_navi">
-({$inc_navi|smarty:nodefaults})
-</td>
-</tr>
-({if $inc_entry_point[2]})
-<tr>
-<td class="container">
-({$inc_entry_point[2]|smarty:nodefaults})
-</td>
-</tr>
-({/if})
-
+({ext_include file="inc_header.tpl"})
 ({if $is_h_prof})({* -------- 自分のプロフィール確認時:ここから -------- *})
 
 <tr>
@@ -271,13 +243,8 @@
 
 ({/if})({* -------- 他メンバーのプロフィール:ここまで -------- *})
 
+({ext_include file="inc_layoutcolumn_top_270px.tpl"})
 
-<tr>
-<td class="container main_content">
-<table class="container" border="0" cellspacing="0" cellpadding="0">({*BEGIN:container*})
-<tr>
-<td style="width:5px;"><img src="./skin/dummy.gif" style="width:5px;" class="dummy"></td>({*<--spacer*})
-<td class="left_content" valign="top">
 ({********************************})
 ({**ここから：メインコンテンツ（左）**})
 ({********************************})
@@ -803,9 +770,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({********************************})
 ({**ここまで：メインコンテンツ（左）**})
 ({********************************})
-</td>
-<td style="width:5px;"><img src="./skin/dummy.gif" style="width:5px;" class="dummy"></td>({*<--spacer*})
-<td class="right_content" valign="top">
+({ext_include file="inc_layoutcolumn_middle_270px.tpl"})
 ({********************************})
 ({**ここから：メインコンテンツ（右）**})
 ({********************************})
@@ -1200,17 +1165,5 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({********************************})
 ({**ここまで：メインコンテンツ（右）**})
 ({********************************})
-</td>
-</tr>
-</table>({*END:container*})
-</td>
-</tr>
-<tr>
-<td class="container inc_page_footer">
-({$inc_page_footer|smarty:nodefaults})
-</td>
-</tr>
-</table>
-({ext_include file="inc_extension_pagelayout_bottom.tpl"})
-</body>
-</html>
+({ext_include file="inc_layoutcolumn_bottom_270px_165px_175px_720px.tpl"})
+({ext_include file="inc_footer.tpl"})

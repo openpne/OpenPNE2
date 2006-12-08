@@ -1,6 +1,5 @@
-({$inc_html_header|smarty:nodefaults})
-<body>
-({ext_include file="inc_extension_pagelayout_top.tpl"})
+({ext_include file="inc_header.tpl" INC_HEADER_is_login=true})
+
 <div id="container_login"><div class="w_screen">
 
 <img src="({t_img_url_skin filename=skin_login})" class="bg">
@@ -49,6 +48,4 @@
 
 </div></div>
 
-({ext_include file="inc_extension_pagelayout_bottom.tpl"})
-</body>
-</html>
+({ext_include file="inc_footer.tpl" INC_FOOTER_is_login=true})
