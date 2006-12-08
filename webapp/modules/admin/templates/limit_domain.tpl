@@ -1,5 +1,7 @@
 ({$inc_header|smarty:nodefaults})
 
+<h2>ドメイン制限</h2>
+
 ({if $msg})
 <p class="caution">({$msg})</p>
 ({/if})
