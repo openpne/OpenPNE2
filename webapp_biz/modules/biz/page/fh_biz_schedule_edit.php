@@ -11,10 +11,16 @@ class biz_page_fh_biz_schedule_edit extends OpenPNE_Action
 
         $u = $GLOBALS['AUTH']->uid();
 
+        if (!biz_isPermissionSchedule($u, $requests['schedule_id'])) {
+            handle_kengen_error();
+        }
+
         $form_val['subject'] = $requests['subject'];
         $form_val['body'] = $requests['body'];
 
         $sessid = session_id();
+
+        $schedule = biz_getScheduleInfo($requests['schedule_id']);
 
         if (empty($requests['target_id']) || ($requests['target_id'] == $u)) {
             //自分自身
@@ -159,44 +165,7 @@ class biz_page_fh_biz_schedule_edit extends OpenPNE_Action
         $this->set('rep_type', $dayofweek);
         $this->set('is_rep', $is_rep);
 
-        $j_members = array_keys(unserialize($requests['members']));
-        sort($j_members);
-
-        $this->set('j_members', $j_members);
-
         $this->set('schedule_id', $requests['schedule_id']);
-
-        //追加
-        $members = array();
-
-        $sql = 'SELECT c_member_id, nickname FROM c_member WHERE c_member_id <> ?';
-
-        $params = array(
-            intval($target_id),
-        );
-        $members = db_get_all($sql, $params);
-
-        $sql = 'SELECT c_member_id, nickname FROM c_member WHERE c_member_id = ?';
-        $params = array(
-            intval($target_id),
-        );
-        $my_info = db_get_row($sql, $params);
-        array_unshift($members, $my_info);
-        $i = 0;
-
-        foreach ($members as $key => $value) {
-            if ($j_members[$i] == $value['c_member_id']) {
-                $members[$key]['checkflag'] = 1;
-                $i++;
-            }
-
-            if (count($j_members) < $i) {
-                break;
-            }
-        }
-
-        $members[0]['checkflag'] = 1;
-        $this->set('members', $members);
 
         $repeat_begin = biz_getRepeatBegin($requests['schedule_id']);
         $repeat_finish = biz_getRepeatFinish($requests['schedule_id']);
@@ -206,6 +175,14 @@ class biz_page_fh_biz_schedule_edit extends OpenPNE_Action
 
         $this->set('repeat_begin_date', $repeat_begin);
         $this->set('repeat_term', intval($daycount));
+
+        $biz_group_count = biz_getGroupCount($target_id);
+        $biz_group_list = biz_getJoinGroupList($target_id, 1, $biz_group_count);
+
+        $this->set('biz_group_list', $biz_group_list[0]);
+        $this->set('target_biz_group_id', $schedule['biz_group_id']);
+
+        $this->set('public_flag', $schedule['public_flag']);
 
         return 'success';
     }

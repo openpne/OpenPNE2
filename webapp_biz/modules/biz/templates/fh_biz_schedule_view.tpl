@@ -172,13 +172,15 @@
 <td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({*********})
-({if $is_h})
 <tr>
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 <td class="bg_05" align="center" valign="middle">
 <div style="padding:4px 3px;">
-
+({if $schedule.biz_group_id})
 登録者
+({else})
+参加者
+({/if})
 </div>
 </td>
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
@@ -196,23 +198,46 @@
 <td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({*********})
-({/if})
+({if $schedule.biz_group_id})
 <tr>
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 <td class="bg_05" align="center" valign="middle">
 <div style="padding:4px 3px;">
-
-参加者
+グループ
 </div>
 </td>
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 <td class="bg_02" align="left" valign="middle">
 <div style="padding:4px 3px;">
-
-({foreach item=name key=id from=$jmembers})
-	<a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$id})">({$name})</a>	<br>
-({/foreach})
-
+	<a href="({t_url m=biz a=page_g_home})&amp;target_c_commu_id=({$schedule.biz_group_id})">({$schedule.biz_group_name})</a><br>
+</div>
+</td>
+<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+</tr>
+({*********})
+<tr>
+<td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+</tr>
+({*********})
+({/if})
+({*********})
+<tr>
+<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td class="bg_05" align="center" valign="middle">
+<div style="padding:4px 3px;">
+公開範囲
+</div>
+</td>
+<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td class="bg_02" align="left" valign="middle">
+<div style="padding:4px 3px;">
+({if $schedule.public_flag == "public"})
+全員に公開
+({elseif $schedule.public_flag == "group"})
+グループまで公開
+({elseif $schedule.public_flag == "private"})
+公開しない
+({/if})
 </div>
 </td>
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>

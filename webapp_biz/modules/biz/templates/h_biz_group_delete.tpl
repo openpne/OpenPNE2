@@ -45,7 +45,7 @@
 <table border="0" cellspacing="0" cellpadding="2" style="width:200px;height:2em;">
 <tr>
 
-({t_form m=biz a=do_h_biz_delete_group})
+({t_form m=biz a=do_h_biz_group_delete})
 <input type="hidden" name="sessid" value="({$PHPSESSID})">
 <input type="hidden" name="target_id" value="({$target_id})">
 

@@ -233,76 +233,13 @@
 <tr>
 <td class="bg_01" colspan="5"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
-<!--
-({*********})
-<script type="text/javascript" src="./modules/biz/schedule_member_form.js"></script>
-<tr>
-<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-<td class="bg_05" align="center" valign="middle">
-<div style="padding:4px 3px;">
-参加者<br>
-</div>
-</td>
-<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-<td class="bg_02" align="left" valign="middle">
-<div style="padding:4px 3px;">
-
-<table name="join">
-<tr>
-	<td>
-		<select id="groupSelect" onchange="">
-			<option value="0">(全員)</option>
-		</select>
-	</td>
-</tr>
-<tr>
-	<td>
-		<select name="sc_j_mem[]" size="5" multiple="multiple">
-		<option value='({$my_id})' selected>({$members[$my_id]})</option>
-		</select>
-	</td>
-	<td>
-		<input value="← 追加" onclick="addMember(this.form, 'members', 'sc_j_mem[]')" type="button" class="submit"><br>
-		<input value="削除 →" onclick="deleteMember(this.form, 'sc_j_mem[]')" type="button" class="submit">
-	<td>
-	<td>
-		<select name="members" size="5" multiple="multiple">
-			<option value='({$my_id})' selected>({$members[$my_id]})</option>
-		({section name=i start=1 loop=$members})
-			({if $smarty.section.i.index != $my_id})
-			<option value='({$smarty.section.i.index})' selected>({$members[i]})</option>
-			({/if})
-		({/section})
-		</select>
-	</td>
-</tr>
-</table>-->
-<!--	<input name='sc_j_mem[]' value='({$my_id})' type='checkbox' class='no_bg' checked>({$members[$my_id]})<br>
-	<input name='sc_j_mem[]' value='({$my_id})' type='checkbox' class='no_bg' checked>({$members[$my_id]})<br>
-	({section name=i start=1 loop=$members})
-		({if $smarty.section.i.index != $my_id})
-		<input name='sc_j_mem[]' value='({$smarty.section.i.index})' type='checkbox' class='no_bg' ({if $smarty.section.i.index == $my_id})checked({/if})>({$members[i]})<br>
-		({/if})
-	({/section})-->
-<!--</div>
-</td>
-<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-</tr>
-({*********})
-<tr>
-<td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-</tr>
-({*********})-->
-
-({*ここから：新規予定*})
-
 <tr>
 <td style="width:1px;" class="bg_01"><img src="./skin/dummy.gif" style="width:1px; height:1px;" class="dummy"></td>
 <td style="width:150px;" class="bg_05">
 
 <div class="padding_s" align="center">
 
-参加者<br>※未選択は全員
+グループ
 
 </div>
 
@@ -312,24 +249,14 @@
 
 <table border="0" cellspacing="0" cellpadding="0" style="width:100%;">
 <tr>
-({foreach from=$members item=item name=mem})
-({if $item})
-<td class="padding_ss" style="width:33%;" valign="top">
-
-<input name='sc_j_mem[]' value='({$item.c_member_id})' type='checkbox' class='no_bg'({if $item.checkflag}) checked="checked"({/if})>({$item.nickname})
-
-</td>
-({else})
-<td class="padding_ss" style="width:33%;">&nbsp;</td>
-({/if})
-
-
-({if $smarty.foreach.mem.last && ($smarty.foreach.mem.iteration%3 == 1 || $smarty.foreach.mem.iteration%3 == 2)})<td>&nbsp;</td>({/if})
-
-({if $smarty.foreach.mem.last && $smarty.foreach.mem.iteration%3 == 1})<td>&nbsp;</td>({/if})
-
-({if !$smarty.foreach.mem.last && $smarty.foreach.mem.iteration%3 == 0})</tr><tr>({/if})
+<td class="padding_ss">
+<select name="biz_group_id">
+	<option type="radio" value="0">指定なし
+({foreach from=$biz_group_list item=biz_group})
+	<option type="radio" value="({$biz_group.biz_group_id})">({$biz_group.name})
 ({/foreach})
+</select>
+</td>
 </tr>
 </table>
 
@@ -341,29 +268,27 @@
 <td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({*********})
-
-({*ここまで：新規予定*})
-
-
-<!--
 <tr>
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 <td class="bg_05" align="center" valign="middle">
 <div style="padding:4px 3px;">
-設備
+
+公開範囲
 </div>
 </td>
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 <td class="bg_02" align="left" valign="middle">
 <div style="padding:4px 3px;">
-	({foreach item=shisetsu name=i from=$shisetsu})
-		<input name='sc_j_plc[]' value='({$shisetsu.biz_shisetsu_id})' type='checkbox' class='no_bg'>({$shisetsu.name})<br>
-	({/foreach})
+
+<input type='radio' name='public_flag' value='public' checked class="no_bg">全体に公開<br>
+<input type='radio' name='public_flag' value='group' class="no_bg">グループまで公開<br>
+<input type='radio' name='public_flag' value='private' class="no_bg">公開しない<br>
+
 </div>
 </td>
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
-({*********})-->
+({*********})
 <tr>
 <td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 </tr>

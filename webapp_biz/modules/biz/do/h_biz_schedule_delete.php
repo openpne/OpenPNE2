@@ -11,6 +11,10 @@ class biz_do_h_biz_schedule_delete extends OpenPNE_Action
         $u = $GLOBALS['AUTH']->uid();
         $sessid = session_id();
 
+        if (!biz_isPermissionSchedule($u, $requests['schedule_id'])) {
+            handle_kengen_error();
+        }
+
         if ($requests['is_rep']) {
             $rep_schedule = biz_getRepeatScheduleID($requests['schedule_id']);
             foreach ($rep_schedule as $value) {

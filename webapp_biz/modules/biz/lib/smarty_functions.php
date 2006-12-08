@@ -46,7 +46,7 @@ function pc_get_trusted($tpl_name, &$smarty_obj)
 //GET---------------------------------------------
 
 //スケジュール用カレンダーを得る
-function biz_getScheduleWeek($member_id, $w, $cmd, $head = true, $value = true, $foot = true, $member_info = false)
+function biz_getScheduleWeek($member_id, $u, $w, $cmd, $head = true, $value = true, $foot = true, $member_info = false)
 {
     if ($cmd != 'p') {
         //プロフィール確認かどうか
@@ -85,7 +85,7 @@ function biz_getScheduleWeek($member_id, $w, $cmd, $head = true, $value = true, 
         $d_disp = sprintf("%2d",$Day->thisDay());
 
         if ($cmd != 's_list') {
-            $schedule = biz_getDateMemberSchedule($y, $m, $d, $member_id);
+            $schedule = biz_getDateMemberSchedule($y, $m, $d, $member_id, $u);
             $banner = biz_isBannerSchedule($y, $m, $d, $member_id);
 
             if (!empty($banner)) {

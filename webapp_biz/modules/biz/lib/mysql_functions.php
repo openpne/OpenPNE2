@@ -135,19 +135,57 @@ function biz_getRepeatFinish($schedule_id)
     return $schedule;
 }
 
+//指定された予定に関する権限があるかどうかをチェックする関数
+function biz_isPermissionSchedule($u, $biz_schedule_id)
+{
+    $biz_schedule = biz_getScheduleInfo($biz_schedule_id);
+    $public_flag = $biz_schedule['public_flag'];
+    $biz_group_id = $biz_schedule['biz_group_id'];
+    $target_c_member_id = $biz_schedule['c_member_id'];
+
+    switch ($public_flag) {
+    case 'group' :  //グループのメンバーにのみ権限が与えられる予定
+        if (biz_isGroupMember($u, $biz_group_id)) {
+            return true;
+        } else {
+            return false;
+        }
+        break;
+    case 'private' :  //予定作成者にのみ権限が与えられる予定
+        if ($target_c_member_id == $u) {
+            return true;
+        } else {
+            return false;
+        }
+        break;
+    default :  //すべてのユーザに権限が与えられる予定
+        return true;
+    }
+}
+
 //指定された日付に存在する特定ユーザの予定idのみを得る関数
-function biz_getDateMemberSchedule($y, $m, $d, $id)
+function biz_getDateMemberSchedule($y, $m, $d, $target_c_member_id, $u)
 {
     $schedule = array();
     $contain = array();
 
-    $tmp = biz_getDateSchedule($y,$m,$d);
+    $tmp = biz_getDateSchedule($y, $m, $d);
     $sc_list = array();
+    
+    $biz_group_id_list = array();
+    foreach(biz_getJoinGroup($target_c_member_id) as $value) {
+        $biz_group_id_list[] = $value['biz_group_id'];
+    }
 
-    foreach ($tmp as $value) {
-        $members = biz_getJoinIdSchedule($value);
-        if (in_array($id, $members)) {
-            $contain[] = $value;
+    foreach ($tmp as $biz_schedule_id) {
+        $biz_schedule = biz_getScheduleInfo($biz_schedule_id);
+
+        if (biz_isPermissionSchedule($u, $biz_schedule_id)) {
+	        if ($biz_schedule['c_member_id'] == $target_c_member_id) {
+	            $contain[] = $biz_schedule_id;
+	        } elseif(in_array($biz_schedule['biz_group_id'], $biz_group_id_list) && ($value['public_flag'] != 'private')) {
+	            $contain[] = $biz_schedule_id;
+	        }
         }
     }
 
@@ -155,6 +193,7 @@ function biz_getDateMemberSchedule($y, $m, $d, $id)
 
     foreach ($contain as $key => $value) {
         if (!is_null($value)) {
+            
             //そのidの予定を得る
             $sql = 'SELECT * FROM biz_schedule WHERE biz_schedule_id = ?';
             $params = array(
@@ -336,7 +375,7 @@ function biz_getJoinGroup($id, $limit = null)
     return $list;
 }
 
-//指定されたグループのメンバーを返す関数
+//指定メンバーがグループに所属しているかどうかを返す関数
 function biz_isGroupMember($member_id, $group_id)
 {
     $sql = 'SELECT * FROM biz_group_member WHERE c_member_id = ? AND biz_group_id = ?';
@@ -681,22 +720,13 @@ function biz_getJoinGroupList($c_member_id, $page, $page_size)
 //スケジュール登録
 function biz_insertSchedule($title, $member_id, $begin_date, $finish_date, $begin_time = null, $finish_time = null,
                                                         $value = '', $rep_type, $first_id = 0,
-                                                        $join_members = array(), $join_shisetsu = array())
+                                                        $biz_group_id = 0, $public_flag = "public")
 {
     //登録値のセット、チェック
     if (!$value) {
         $value = '';
     }
 
-    //参加者が指定されていない
-    if (empty($join_members)) {
-        $join_members = db_get_col('SELECT c_member_id FROM c_member');  //強制的に全員参加と見なす
-    }
-
-    if (empty($join_shisetsu)) {
-        $join_shisetsu = array();
-    }
-        
     if (!$rep_type) {
         $rep_type = 0;
     }
@@ -712,21 +742,10 @@ function biz_insertSchedule($title, $member_id, $begin_date, $finish_date, $begi
         'value' => $value,
         'rep_type' => $rep_type,
         'rep_first' => $first_id,
+        'biz_group_id' => $biz_group_id,
+        'public_flag' => $public_flag,
     );
     db_insert('biz_schedule', $data);
-
-    //biz_schedule_memberで予定とメンバーを関連づける
-
-    $new_schedule_id = mysql_insert_id();
-
-    foreach ($join_members as $value) {
-        $data = array(
-            'c_member_id' => $value,
-            'biz_schedule_id' => $new_schedule_id,
-            'is_read' => 0,
-        );
-        db_insert('biz_schedule_member', $data);
-    }
 }
 
 //スケジュール削除
@@ -767,10 +786,10 @@ function biz_deleteSchedule($id, $group = false)
 //スケジュール編集
 function biz_editSchedule($title, $member_id, $begin_date, $finish_date, $begin_time = null, $finish_time = null,
                                                     $value = '', $rep_type, $first_id = 0,
-                                                    $join_members = array(), $join_shisetsu,
+                                                    $biz_group_id = 0, $public_flag = "public",
                                                     $id)
 {
-    $sql = 'UPDATE `biz_schedule` SET `title` = ?,`c_member_id` = ?,`begin_date` = ?,`finish_date` = ?,`begin_time` = ?,`finish_time` = ?,`value` = ?,`rep_type` = ?,`rep_first` = ?,`is_read` = 0 WHERE `biz_schedule_id` = ?';
+    $sql = 'UPDATE `biz_schedule` SET `title` = ?,`c_member_id` = ?,`begin_date` = ?,`finish_date` = ?,`begin_time` = ?,`finish_time` = ?,`value` = ?,`rep_type` = ?,`rep_first` = ?, `biz_group_id` = ?, `public_flag` = ?, `is_read` = 0 WHERE `biz_schedule_id` = ?';
     $params = array(
         $title,
         $member_id,
@@ -781,24 +800,11 @@ function biz_editSchedule($title, $member_id, $begin_date, $finish_date, $begin_
         $value,
         $rep_type,
         $first_id,
+        $biz_group_id,
+        $public_flag,
         $id,
     );
     db_query($sql, $params);
-
-    $sql = 'DELETE FROM `biz_schedule_member` WHERE `biz_schedule_id` = ?';
-    $params = array(
-        intval($id),
-    );
-    db_query($sql, $params);
-
-    foreach ($join_members as $value) {
-        $data = array(
-            'c_member_id' => $value,
-            'biz_schedule_id' => intval($id),
-            'is_read' => 0,
-        );
-        db_insert('biz_schedule_member', $data);
-    }
 }
 
 //スケジュールを既読済みに
@@ -903,6 +909,9 @@ function biz_deleteGroup($group_id)
     $params = array(
         intval($group_id),
     );    $result = db_query($sql, $params);
+
+    $sql = 'UPDATE biz_schedule SET public_flag = "private", biz_group_id = NULL WHERE biz_group_id = ?';
+    db_query($sql, array(intval($group_id)));
 }
 
 //グループに参加

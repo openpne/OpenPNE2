@@ -100,7 +100,7 @@ class pc_page_h_home extends OpenPNE_Action
 //            $this->set('calendar', $this->get_calendar($u, $requests['w']));
 
             //--- biz ここから
-            $this->set('calendar_biz', biz_getScheduleWeek($u, $requests['w'], 'h', true, true, true, $c_member));
+            $this->set('calendar_biz', biz_getScheduleWeek($u, $u, $requests['w'], 'h', true, true, true, $c_member));
             //--- biz ここまで
 
 

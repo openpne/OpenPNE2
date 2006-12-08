@@ -10,6 +10,10 @@ class biz_page_fh_biz_schedule_view extends OpenPNE_Action
     {
         $u = $GLOBALS['AUTH']->uid();
 
+        if (!biz_isPermissionSchedule($u, $requests['id'])) {
+            handle_kengen_error();
+        }
+
         $form_val['subject'] = $requests['subject'];
         $form_val['body'] = $requests['body'];
 
@@ -66,18 +70,12 @@ class biz_page_fh_biz_schedule_view extends OpenPNE_Action
         $list['writer_name'] = biz_getMemberNickname($list['c_member_id']);
         $list['begin_time'] = substr($list['begin_time'], 0, 5);
         $list['finish_time'] = substr($list['finish_time'], 0, 5);
-
-        $jmembers = biz_getJoinMemberSchedule($requests['id']);
-        if (array_search($target_member['nickname'], $jmembers)) {
-            $jmembers[$target_member['c_member_id']] = $target_member['nickname'];
+        if($list['biz_group_id']) {
+	        $biz_group = biz_getGroupData($list['biz_group_id']);
+	        $list['biz_group_name'] = $biz_group['name'];
         }
-        $jshisetsu = biz_getJoinShisetsuSchedule($requests['id']);
 
         $this->set('schedule', $list);
-        $this->set('jmembers', $jmembers);
-        $this->set('jmembers_enc', serialize($jmembers));
-        $this->set('jshisetsu', $jshisetsu);
-        $this->set('jshisetsu_enc', serialize($jshisetsu));
         $this->set('schedule_id', $requests['id']);
         $this->set('w', $requests['w']);
         $this->set('is_h', true);

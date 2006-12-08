@@ -125,34 +125,10 @@ class biz_page_fh_biz_schedule_add extends OpenPNE_Action
         $this->set('my_id', $u);
         $this->set('is_h', true);
 
-        //追加
-        $members = array();
+        $biz_group_count = biz_getGroupCount($target_id);
+        $biz_group_list = biz_getJoinGroupList($target_id, 1, $biz_group_count);
 
-        $sql = 'SELECT c_member_id, nickname FROM c_member WHERE c_member_id != '.$target_id;
-        $members = db_get_all($sql);
-
-        $sql = 'SELECT c_member_id, nickname FROM c_member WHERE c_member_id = '.$target_id;
-        $my_info = db_get_row($sql);
-
-        array_unshift($members, $my_info);
-
-        $members[0]['checkflag'] = 1;
-
-        $jmembers = unserialize($requests['sc_j_mem_enc']);
-
-        $i = 0;
-
-        foreach ($members as $key => $value) {
-            if ($jmembers[$i] == $value['c_member_id']) {
-                $members[$key]['checkflag'] = 1;
-                $i++;
-            }
-
-            if (count($jmembers) < $i) {
-                break;
-            }
-        }
-        $this->set('members', $members);
+        $this->set('biz_group_list', $biz_group_list[0]);
 
         return 'success';
     }

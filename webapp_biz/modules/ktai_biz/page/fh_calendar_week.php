@@ -61,7 +61,7 @@ class ktai_biz_page_fh_calendar_week extends OpenPNE_Action
             $birth_list = p_h_calendar_birth4c_member_id($m, $target_id);
 
             //スケジュール
-            $schedule = biz_getDateMemberSchedule($y,$m,$d,$target_id);
+            $schedule = biz_getDateMemberSchedule($y,$m,$d,$target_id,$u);
 
             $banner = biz_isBannerSchedule($y, $m, $d, $target_id);
 
