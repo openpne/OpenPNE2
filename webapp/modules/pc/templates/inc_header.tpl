@@ -78,7 +78,6 @@ body { background-color: #({$INC_HEADER_color_config.bg_12}) ; }
 .text       { background-color:#FFFFFF; }
 .text_focus { background-color:#E3F9F6; }
 
-({$inc_custom_css|smarty:nodefaults})
 
 /*ボタンに対する背景画像の指定*/
 input.submit {
