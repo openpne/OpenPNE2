@@ -12,7 +12,7 @@
 </td>
 
 <td>
-<a href="?m=admin&a=page_access_analysis_page&ymd=({$item.ymd})&month_flag=0&ktai_flag=({$ktai_flag})">({$item.count})</a>
+<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('access_analysis_page')})&ymd=({$item.ymd})&month_flag=0&ktai_flag=({$ktai_flag})">({$item.count})</a>
 </td>
 
 </tr>
