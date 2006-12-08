@@ -133,18 +133,9 @@ function do_common_c_pc_address_pre4sid($sid)
  */
 function db_common_authenticate_password($c_member_id, $password)
 {
-    switch (LOGIN_NAME_TYPE) {
-        case 0:
-        $username = $c_member_id;
-        break;
-        default:
-        $username = db_member_username4c_member_id($c_member_id);
-        break;
-    }
-    
-    $auth_config = get_auth_config();
-    $storage = Auth::_factory($auth_config['storage'],$auth_config['options']);
-    return $storage->fetchData($username, $password, false);
+    $sql = 'SELECT c_member_secure_id FROM c_member_secure' .
+            ' WHERE c_member_id = ? AND hashed_password = ?';
+    return (bool)db_get_one($sql, array(intval($c_member_id), md5($password)));;
 }
 
 /**
@@ -495,9 +486,6 @@ function db_common_delete_c_member($c_member_id)
     image_data_delete($c_member['image_filename_3']);
 
     $sql = 'DELETE FROM c_member WHERE c_member_id = ?';
-    db_query($sql, $single);
-    
-    $sql = 'DELETE FROM c_username WHERE c_member_id = ?';
     db_query($sql, $single);
 }
 
