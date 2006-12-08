@@ -10,13 +10,13 @@
 <br>
 <br>
 今月最もアクセスのあった<br>
-<a href="?m=admin&a=page_access_analysis_target_diary&ktai_flag=({if $item_str=='PC'})0({else})1({/if})&ymd=({$nowtime})&month_flag=1&page_name=all&orderby2=-2">日記</a> 
-<a href="?m=admin&a=page_access_analysis_target_member&ktai_flag=({if $item_str=='PC'})0({else})1({/if})&ymd=({$nowtime})&month_flag=1&page_name=all&orderby2=-2">ユーザー</a> 
-<a href="?m=admin&a=page_access_analysis_target_commu&ktai_flag=({if $item_str=='PC'})0({else})1({/if})&ymd=({$nowtime})&month_flag=1&page_name=all&orderby2=-2">コミュニティ</a>
-<a href="?m=admin&a=page_access_analysis_target_topic&ktai_flag=({if $item_str=='PC'})0({else})1({/if})&ymd=({$nowtime})&month_flag=1&page_name=all&orderby2=-2">トピック</a>
+<a href="?m=admin&a=page_access_analysis_target_diary&ktai_flag=({if $item_str=='PC版'})0({else})1({/if})&ymd=({$nowtime})&month_flag=1&page_name=all&orderby2=-2">日記</a> 
+<a href="?m=admin&a=page_access_analysis_target_member&ktai_flag=({if $item_str=='PC版'})0({else})1({/if})&ymd=({$nowtime})&month_flag=1&page_name=all&orderby2=-2">ユーザー</a> 
+<a href="?m=admin&a=page_access_analysis_target_commu&ktai_flag=({if $item_str=='PC版'})0({else})1({/if})&ymd=({$nowtime})&month_flag=1&page_name=all&orderby2=-2">コミュニティ</a>
+<a href="?m=admin&a=page_access_analysis_target_topic&ktai_flag=({if $item_str=='PC版'})0({else})1({/if})&ymd=({$nowtime})&month_flag=1&page_name=all&orderby2=-2">トピック</a>
 <br><br>
 今月最もアクセスをした<br>
-<a href="?m=admin&a=page_access_analysis_member&ktai_flag=({if $item_str=='PC'})0({else})1({/if})&ymd=({$nowtime})&month_flag=1&page_name=all&orderby2=-2">ユーザー</a> 
+<a href="?m=admin&a=page_access_analysis_member&ktai_flag=({if $item_str=='PC版'})0({else})1({/if})&ymd=({$nowtime})&month_flag=1&page_name=all&orderby2=-2">ユーザー</a> 
 
 <br>
 <br>

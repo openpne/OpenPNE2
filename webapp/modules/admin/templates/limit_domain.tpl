@@ -5,6 +5,10 @@
 ({if $msg})
 <p class="caution">({$msg})</p>
 ({/if})
+<ul>
+<li class="caution">制限ドメインを登録するとそのドメインからのユーザー登録しかできなくなります。</li>
+<li class="caution">なにも登録しないと全てのドメインのユーザー登録を許容します。</li>
+</ul>
 
 <form action="./" method="post">
 <input type="hidden" name="m" value="({$module_name})">
