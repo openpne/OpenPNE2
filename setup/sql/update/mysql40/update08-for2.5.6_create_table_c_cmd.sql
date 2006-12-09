@@ -5,4 +5,4 @@ CREATE TABLE `c_cmd` (
   PRIMARY KEY  (`c_cmd_id`),
   KEY `name` (`name`(100)),
   UNIQUE KEY (`name`(100))
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM;

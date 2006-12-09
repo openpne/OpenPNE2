@@ -4,4 +4,4 @@ CREATE TABLE `c_api` (
   `ip` text,
   PRIMARY KEY  (`c_api_id`),
   KEY `name` (`name`(100))
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM;
