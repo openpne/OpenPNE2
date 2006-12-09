@@ -253,14 +253,16 @@
 
 <img src="./skin/dummy.gif" class="v_spacer_m">
 
-({if $is_f})
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 
 <td class="padding_ss" align="left">
 
-({t_form _method=get m=pc a=page_h_home})
-<input value="マイホームに戻る" type="submit" class="submit">
+({t_form _method=get m=biz a=page_fh_biz_schedule_calendar})
+<input type="hidden" name="target_id" value="({$target_c_member_id})">
+<input type="hidden" name="year" value="({$schedule.begin_date|date_format:'%Y'})">
+<input type="hidden" name="month" value="({$schedule.begin_date|date_format:'%m'})">
+<input value="月間カレンダーを表示する" type="submit" class="submit">
 </form>
 
 </td>
@@ -283,35 +285,7 @@
 </form>
 
 </td>
-</tr>
-</table>
-({elseif !$msg})
-<table border="0" cellspacing="0" cellpadding="0">
-<tr>
-<td class="padding_ss" align="left">
 
-({t_form _method=get m=pc a=page_h_home})
-<input value="マイホームに戻る" type="submit" class="submit">
-</form>
-
-</td>
-
-<td class="padding_ss" align="center">
-
-({t_form m=biz a=page_fh_biz_schedule_edit})
-<input type="hidden" name="rep_type" value="({$schedule.rep_type})">
-<input type="hidden" name="begin_date" value="({$schedule.begin_date})">
-<input type="hidden" name="begin_time" value="({$schedule.begin_time})">
-<input type="hidden" name="finish_date" value="({$schedule.finish_date})">
-<input type="hidden" name="finish_time" value="({$schedule.finish_time})">
-<input type="hidden" name="title" value="({$schedule.title})">
-<input type="hidden" name="value" value="({$schedule.value})">
-<input type="hidden" name="members" value="({$jmembers_enc})">
-<input type="hidden" name="schedule_id" value="({$schedule_id})">
-<input value="修正する" type="submit" class="submit">
-</form>
-
-</td>
 <td class="padding_ss" align="left">
 
 ({t_form m=biz a=page_h_biz_schedule_delete})
@@ -330,37 +304,8 @@
 </td>
 </tr>
 ({/if})
-
 </form>
 </table>
-({else})
-<table border="0" cellspacing="0" cellpadding="0">
-<tr>
-<td class="padding_ss" align="right">
-
-({t_form m=biz a=page_fh_biz_schedule_add})
-<input value="新規の予定登録をする" type="submit" class="submit">
-</form>
-
-</td>
-<td class="padding_ss" align="center">
-
-({t_form m=biz a=page_s_list})
-<input type="hidden" name="w" value="({$w})">
-<input value="施設予約をする" type="submit" class="submit">
-</form>
-
-</td>
-<td class="padding_ss" align="left">
-
-({t_form _method=get m=pc a=page_h_home})
-<input value="マイホームに戻る" type="submit" class="submit">
-</form>
-
-</td>
-</tr>
-</table>
-({/if})
 
 <img src="./skin/dummy.gif" class="v_spacer_m">
 
