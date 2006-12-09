@@ -400,14 +400,13 @@ function load() {
 </td>
 </tr>
 ({/if})
-({if !$no_use_alert})
+({if !$no_use_alert && ($msg || $msg1 || $msg2 || $msg3 || $err_msg)})
 <tr>
 <td class="container main_content" align="center">
 
 ({*************************************})
 ({**ここから：旧inc_alert_box.tplの内容**})
 ({*************************************})
-({if $msg || $msg1 || $msg2 || $msg3 || $err_msg})
 <img src="./skin/dummy.gif" class="v_spacer_l">
 
 <!-- ************************* -->
@@ -478,7 +477,6 @@ function load() {
 <!-- ******ここまで：警告****** -->
 <!-- ************************* -->
 
-({/if})
 ({*************************************})
 ({**ここまで：旧inc_alert_box.tplの内容**})
 ({*************************************})
