@@ -1,4 +1,4 @@
-({ext_include file="inc_header.tpl"})
+({ext_include file="inc_header.tpl" no_use_alert=true})
 ({if $smarty.const.DISPLAY_SEARCH_HOME})
 <tr>
 <td class="container inc_search_box">
