@@ -400,7 +400,7 @@ function load() {
 </td>
 </tr>
 ({/if})
-({if !$no_use_alert && $msg})
+({if !$no_use_alert})
 <tr>
 <td class="container main_content" align="center">
 
