@@ -13,6 +13,7 @@ class biz_page_h_biz_group_delete extends OpenPNE_Action
 
         $id = $requests['target_id'];
         $this->set("target_id", $id);
+        $this->set('inc_navi', fetch_inc_navi('h'));
 
         return 'success';
     }

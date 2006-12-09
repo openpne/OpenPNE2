@@ -35,10 +35,6 @@ class biz_page_g_member_list extends OpenPNE_Action
         //次ページへのインクリメント
         $page += $direc;
 
-        //コミュニティメンバリスト
-        //$list = p_c_member_list_c_members4c_commu_id($target_c_commu_id, $page_size, $page);
-/*    list($c_member_list, $is_prev, $is_next, $total_num, $start_num, $end_num)
-        = p_c_member_list_c_members4c_commu_id($target_c_commu_id, $page_size, $page);*/
 
         $c_member_list = biz_getGroupMember($target_c_commu_id, $page_size, $start);
 
@@ -48,9 +44,9 @@ class biz_page_g_member_list extends OpenPNE_Action
 
         $total_num = count(biz_getGroupMember($target_c_commu_id));
 
+        $this->set('inc_navi', fetch_inc_navi('h'));
+
         $this->set("c_member_list", $c_member_list);
-//        $this->set("is_prev", $is_prev);
-//        $this->set("is_next", $is_next);
         $this->set("page", $page);
         $this->set("total_num", $total_num);
         $this->set('start_num', $start);

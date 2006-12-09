@@ -25,6 +25,8 @@ class biz_page_h_biz_group_add extends OpenPNE_Action
 
         array_unshift($members, $my_info);
 
+        $this->set('inc_navi', fetch_inc_navi('h'));
+
         $this->set("c_invite_list", $members);
         $this->set("c_member_id", $u);
 

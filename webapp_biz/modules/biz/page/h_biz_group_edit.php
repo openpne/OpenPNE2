@@ -41,6 +41,7 @@ class biz_page_h_biz_group_edit extends OpenPNE_Action
                 $members[$key]['joined'] = false;
             }
         }
+        $this->set('inc_navi', fetch_inc_navi('h'));
         $this->set("c_invite_list", $members);
         $this->set("group", $group);
         $this->set("c_member_id", $u);

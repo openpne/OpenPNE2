@@ -16,14 +16,12 @@ class biz_page_g_home extends OpenPNE_Action
         // ----------
         $group = biz_getGroupData($target_id);
 
-        //コミュニティの存在の有無
         if (!$group) {
             $p = array();
             openpne_redirect('pc', 'page_h_err_c_home', $p);
             exit;
         }
 
-        //コミュニティトップ
         $this->set("group", $group);
 
         $member_list = biz_getGroupMember($target_id, 9);
@@ -36,7 +34,8 @@ class biz_page_g_home extends OpenPNE_Action
             $member_list_full[$key]['last_login'] = p_f_home_last_login4access_date($member_list_full[$key]['access_date']);
         }
 
-        //コミュニティメンバー
+        $this->set('inc_navi', fetch_inc_navi('h'));
+
         $this->set("member_list", $member_list);
         $this->set("member_count", count($member_list_full));
         $this->set("admin_data", db_common_c_member4c_member_id_LIGHT($group['admin_id']));

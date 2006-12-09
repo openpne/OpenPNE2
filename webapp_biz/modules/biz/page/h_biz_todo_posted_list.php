@@ -24,9 +24,7 @@ class biz_page_h_biz_todo_posted_list extends OpenPNE_Action
 
         $lst = biz_getPostedTodo($u);
         $this->set("posted_list", $lst);
-        /*
-        $this->set("is_prev", $lst[1]);
-        $this->set("is_next", $lst[2]);*/
+
         $this->set("total_num", count($lst));
 
         $this->set("page", $page);

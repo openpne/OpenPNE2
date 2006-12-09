@@ -11,7 +11,6 @@ class biz_page_s_list extends OpenPNE_Action
         $u = $GLOBALS['AUTH']->uid();
 
         // --- リクエスト変数
-        // ----------
 
         $this->set("list", biz_getShisetsuList());
         //カレンダー表示用
@@ -69,6 +68,7 @@ class biz_page_s_list extends OpenPNE_Action
 
         $config = biz_getConfig();
 
+        $this->set('inc_navi', fetch_inc_navi('h'));
         $this->set('is_closed_shisetsu', $config['IS_CLOSED_SHISETSU']);
 
         return 'success';
