@@ -307,9 +307,9 @@ function load() {
 }
 //-->
 </script>
-<body onLoad="load()" onUnload="GUnload()" class="({$INC_HEADER_type})">
+<body onLoad="load()" onUnload="GUnload()" id="pc_page_({$INC_HEADER_page_name})">
 ({else})
-<body class="({$INC_HEADER_type})">
+<body id="pc_page_({$INC_HEADER_page_name})">
 ({/if})
 <div align="left">
 
