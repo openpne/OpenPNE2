@@ -10,7 +10,7 @@ class admin_page_list_c_free_page extends OpenPNE_Action
     function execute($requests)
     {
         $pager = array();
-        $list  = db_admin_get_c_free_page_all($requests['page'], $requests['page_size'], &$pager);
+        $list  = db_admin_get_c_free_page_all($requests['page'], $requests['page_size'], $pager);
 
         $this->set("pager", $pager);
         $this->set("c_free_page_list", $list);
