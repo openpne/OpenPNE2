@@ -2,7 +2,7 @@
 
 <table>
 <tr>
-<td>
+<td style="vertical-align:top;">
 
 <p>お知らせ</p>
 <ul>
@@ -30,10 +30,10 @@
 PC版全ページ共通
 <ul>
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_admin_info')})&amp;target=inc_html_head">HTML挿入(HTML head内)</a></li>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_admin_info')})&amp;target=inc_page_top">HTML挿入(ページ上部)</a></li>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_admin_info')})&amp;target=inc_page_bottom">HTML挿入(ページ下部)</a></li>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_admin_info')})&amp;target=inc_page_top2">HTML挿入(ページ上部2)</a></li>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_admin_info')})&amp;target=inc_page_bottom2">HTML挿入(ページ下部2)</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_admin_info')})&amp;target=inc_page_top2">HTML挿入(ページ上部 A)</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_admin_info')})&amp;target=inc_page_top">HTML挿入(ページ上部 B)</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_admin_info')})&amp;target=inc_page_bottom2">HTML挿入(ページ下部 C)</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_admin_info')})&amp;target=inc_page_bottom">HTML挿入(ページ下部 D)</a></li>
 </ul>
 
 携帯版全ページ共通
@@ -72,10 +72,14 @@ PC版全ページ共通
 デイリーニュース下部
 ({elseif $requests.target == 'inc_html_head'})
 【PC版】HTML挿入(HTML head内)
+({elseif $requests.target == 'inc_page_top2'})
+【PC版】HTML挿入 A
 ({elseif $requests.target == 'inc_page_top'})
-【PC版】HTML挿入(ページ上部)
+【PC版】HTML挿入 B　旧：【PC版】HTML挿入(ページ上部)
+({elseif $requests.target == 'inc_page_bottom2'})
+【PC版】HTML挿入 C
 ({elseif $requests.target == 'inc_page_bottom'})
-【PC版】HTML挿入(ページ下部)
+【PC版】HTML挿入 D　旧：【PC版】HTML挿入(ページ下部)
 ({elseif $requests.target == 'inc_ktai_html_head'})
 【携帯】HTML挿入(HTML head内)
 ({elseif $requests.target == 'inc_ktai_header'})
@@ -104,6 +108,15 @@ PC版全ページ共通
 ({else})
 <p class="caution">※HTMLタグが使用できますが、タグの閉じ忘れ等がありますと表示が崩れるなどの<br>
 問題が起こることがありますのでご注意ください。</p>
+({/if})
+
+({if $requests.target == 'inc_page_top2' || $requests.target == 'inc_page_top' || $requests.target == 'inc_page_bottom2' || $requests.target == 'inc_page_bottom'})
+<p class="caution">※内容が空のときはHTML挿入部分が表示されないので各HTML挿入部分に該当する隙間は生じません。</p>
+
+<p>
+<img src="modules/admin/img/HTML_sounyu.gif" style="border: 2px solid #FF0000;">
+</p>
+
 ({/if})
 
 </td>
