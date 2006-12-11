@@ -29,6 +29,8 @@ function init_pc_page(&$smarty)
     $smarty->assign('inc_page_footer', fetch_inc_page_footer($is_secure));
     $smarty->assign('inc_extension_pagelayout_top', p_common_c_siteadmin4target_pagename('inc_page_top'));
     $smarty->assign('inc_extension_pagelayout_bottom', p_common_c_siteadmin4target_pagename('inc_page_bottom'));
+    $smarty->assign('inc_extension_pagelayout_top2', p_common_c_siteadmin4target_pagename('inc_page_top2'));
+    $smarty->assign('inc_extension_pagelayout_bottom2', p_common_c_siteadmin4target_pagename('inc_page_bottom2'));
     $smarty->assign('inc_side_banner', db_banner_get_side_banner($is_secure));
     $smarty->assign('side_banner_html_before', p_common_c_siteadmin4target_pagename('side_banner_html_before'));
     $smarty->assign('side_banner_html_after', p_common_c_siteadmin4target_pagename('side_banner_html_after'));

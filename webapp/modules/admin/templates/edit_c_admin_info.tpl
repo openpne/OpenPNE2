@@ -32,6 +32,8 @@ PC版全ページ共通
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_admin_info')})&amp;target=inc_html_head">HTML挿入(HTML head内)</a></li>
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_admin_info')})&amp;target=inc_page_top">HTML挿入(ページ上部)</a></li>
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_admin_info')})&amp;target=inc_page_bottom">HTML挿入(ページ下部)</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_admin_info')})&amp;target=inc_page_top2">HTML挿入(ページ上部2)</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_admin_info')})&amp;target=inc_page_bottom2">HTML挿入(ページ下部2)</a></li>
 </ul>
 
 携帯版全ページ共通
