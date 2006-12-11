@@ -1,3 +1,5 @@
+({$inc_extension_pagelayout_bottom2|smarty:nodefaults})
+
 </td>
 
 ({if $side_banner_html_before || $side_banner_html_after || $inc_side_banner})
