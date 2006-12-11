@@ -69,7 +69,6 @@ body { background-color: #({$bg_12}) ; }
 
 * { font-family: "ＭＳ Ｐゴシック", "ヒラギノ角ゴ Pro W3", Osaka, sans-serif ; }
 
-({$inc_custom_css|smarty:nodefaults})
 
 /*ボタンに対する背景画像の指定*/
 input.submit {
@@ -246,6 +245,9 @@ div.inc_page_header div.navi_global a.navi_global_9:hover {
 	background: url(({t_img_url_skin filename=skin_navi_c_2})) -600px 0 no-repeat ;
 }
 ({/if})
+
+({$inc_custom_css|smarty:nodefaults})
+
 
 -->
 </style>
