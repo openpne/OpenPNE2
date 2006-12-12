@@ -703,7 +703,7 @@ function p_h_message_update_c_message_is_read4c_message_id($c_message_id, $c_mem
 
 function update_message_to_is_save($c_message_id, $subject, $body, $is_send = 0)
 {
-    return db_message_update_message_to_is_save($c_message_id, $subject, $body, $is_send0);
+    return db_message_update_message_to_is_save($c_message_id, $subject, $body, $is_send);
 }
 
 function do_common_send_message($c_member_id_from, $c_member_id_to, $subject, $body)
