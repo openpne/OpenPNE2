@@ -259,7 +259,7 @@
 <input type="hidden" name="public_flag[({$key})]" value="({$item.public_flag})">
 ({/foreach})
 ({/strip})
-<input type="submit" class="submit" value="　変　更　">
+<input type="submit" class="submit" value="　更　新　">
 </form>
 
 </td>
@@ -290,7 +290,7 @@
 <input type="hidden" name="public_flag[({$key})]" value="({$item.public_flag})">
 ({/foreach})
 ({/strip})
-<input type="submit" class="submit" value="　修　正　">
+<input type="submit" class="submit" value="　戻　る　">
 </form>
 
 </td>
