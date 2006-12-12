@@ -138,7 +138,7 @@
 
 <div class="padding_s">
 
-<img src="./cap.php">
+<img src="./cap.php?rand=({math equation="rand(0,9999)"})">
 <br>
 ※上に表示されているキーワードをご記入下さい。<br>
 <input type="text" class="text" name="captcha" size="30">
