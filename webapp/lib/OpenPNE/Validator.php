@@ -242,6 +242,10 @@ class OpenPNE_Validator
             $rule['type'] = 'string';
         }
 
+        if ($ruls['type'] == 'int') {
+            $rule['pre_filter'] = $rule['pre_filter'] . ',intval';
+        }
+
         return $rule;
     }
 
@@ -291,6 +295,11 @@ class OpenPNE_Validator
                 case 'mysqltext':
                     if (is_string($value) && strlen($value) > 65535) {
                         $value = mb_strcut($value, 0, 65535);
+                    }
+                    break;
+                case 'intval':
+                    if (is_numeric($value)) {
+                        $value = (int)$value;
                     }
                     break;
                 }
