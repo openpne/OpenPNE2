@@ -4,6 +4,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
+({$INC_HEADER_inc_html_head|smarty:nodefaults})
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Cache-Control" content="no-cache">
 <meta http-equiv="Expires" content="Thu, 01 Dec 1994 16:00:00 GMT">
@@ -15,6 +16,7 @@
 ({else})
 <link rel="stylesheet" href="./css/default.css?v=2.2.5" type="text/css">
 ({/if})
+<script type="text/javascript" src="./js/prototype.js"></script>
 <style type="text/css">
 <!--
 /*枠線要素*/
@@ -71,6 +73,10 @@ body { background-color: #({$INC_HEADER_color_config.bg_12}) ; }
 }
 
 * { font-family: "ＭＳ Ｐゴシック", "ヒラギノ角ゴ Pro W3", Osaka, sans-serif ; }
+
+/*テキスト入力欄のフォーカス時のクラス*/
+.text       { background-color:#F8F8F8; }
+.text_focus { background-color:#FFFFFF; }
 
 /*ボタンに対する背景画像の指定*/
 input.submit {
@@ -252,7 +258,25 @@ div.inc_page_header div.navi_global a.navi_global_9:hover {
 
 -->
 </style>
-({$INC_HEADER_inc_html_head|smarty:nodefaults})
+<script type="text/javascript">
+<!--
+
+TextFiledClassName_normal = 'text';
+TextFiledClassName_focus  = 'text_focus';
+
+Event.observe(window, 'load', setFocusClass, false);
+function setFocusClass() {
+  var TFs = $A(document.getElementsByClassName(TextFiledClassName_normal));
+  TFs.each(function (node){
+    node.TFclass = node.className;
+    node.TFclass_onfocus = TextFiledClassName_focus;
+    node.onfocus = function() { this.className = this.TFclass_onfocus; };
+    node.onblur  = function() { this.className = this.TFclass; };
+  });
+}
+
+//-->
+</script>
 </head>
 ({***************************************})
 ({**ここまで：旧inc_html_header.tplの内容**})

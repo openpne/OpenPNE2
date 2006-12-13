@@ -90,7 +90,7 @@
 
 <div class="padding_s">
 
-<input name="info" size="50" value="({$list.info})">
+<input type="text" class="text" name="info" size="50" value="({$list.info})">
 
 </div>
 

@@ -465,7 +465,7 @@
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 <td class="bg_02" align="left" valign="middle">
 <div style="padding:4px 3px;">
-<input type="text" name="category" id="category" size="40" value="({$form_val.category})">
+<input type="text" class="text" name="category" id="category" size="40" value="({$form_val.category})">
 <select onChange="if(selectedIndex){category.value += options[selectedIndex].value + ' '}">
 <option>カテゴリを選択してください
 ({foreach from=$category_list item=value})

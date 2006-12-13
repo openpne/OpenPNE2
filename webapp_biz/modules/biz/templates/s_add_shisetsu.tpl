@@ -87,7 +87,7 @@
 
 <div class="padding_s">
 
-<input name="info" size="50">
+<input type="text" class="text"  name="info" size="50">
 
 </div>
 

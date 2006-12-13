@@ -311,6 +311,9 @@ function load() {
 ({else})
 <body id="pc_page_({$INC_HEADER_page_name})">
 ({/if})
+
+({$inc_extension_pagelayout_top2|smarty:nodefaults})
+
 <div align="left">
 
 <table class="ext_sub_container" border="0" cellspacing="0" cellpadding="0">
