@@ -137,6 +137,12 @@
 <img src="({if $item_event.is_join})({t_img_url_skin filename=icon_event_R})({else})({t_img_url_skin filename=icon_event_B})({/if})" class="icon"><a href="({t_url m=pc a=page_c_event_detail})&amp;target_c_commu_topic_id=({$item_event.c_commu_topic_id})">({$item_event.name})</a><br>
 ({/foreach})
 
+({* Todo *})
+({foreach from=$item.todo item=item_todo})
+<img src="./skin/biz/todo_icon.gif"  class="icon">
+<a href="({t_url m=biz a=page_fh_home_edit_biz_todo})&amp;id=({$item_todo.biz_todo_id})&target_id=({$c_member.c_member_id})">({$item_todo.memo|t_truncate:20:".."})</a>
+({/foreach})
+
 ({if $item.schedule})
 ({foreach from=$item.schedule item=item_schedule name=schedule})
 	({if !$item_schedule.begin_time})  <!-- 時間指定なしの予定 -->

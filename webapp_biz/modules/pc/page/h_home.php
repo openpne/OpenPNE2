@@ -130,7 +130,7 @@ class pc_page_h_home extends OpenPNE_Action
 
         $this->set("c_message_ru_list",$ru_list);
 
-        $todolist = biz_getTodoList($u, "h", $c_member['nickname']);
+        $todolist = biz_getTodoList($u, $u, "h", $c_member['nickname']);
         $this->set("todolist", $todolist);
 
         $stateform = biz_getStateForm($u, true);

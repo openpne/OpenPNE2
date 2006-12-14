@@ -51,7 +51,9 @@
         <img src="({t_img_url filename=$INC_FOOTER_inc_side_banner.image_filename})">
     </a>
     ({else})
-    <img src="({t_img_url filename=$INC_FOOTER_inc_side_banner.image_filename})">
+        ({if $INC_FOOTER_inc_side_banner.image_filename})
+            <img src="({t_img_url filename=$INC_FOOTER_inc_side_banner.image_filename})">
+        ({/if})
     ({/if})
 ({/if})
 ({/strip})

@@ -16,6 +16,10 @@ class biz_do_h_home_delete_biz_todo extends OpenPNE_Action
 
         biz_deleteTodo($delid);
 
+        if (!biz_isPermissionTodo($u, $delid)) {
+            handle_kengen_error();
+        }
+
         $p = array();
         openpne_redirect('pc', 'page_h_home', $p);
     }

@@ -582,16 +582,51 @@ function biz_isBannerSchedule($y, $m, $d, $id)
     return $schedule;
 }
 
+//指定されたTodoに関する権限があるかどうかをチェックする関数
+function biz_isPermissionTodo($u, $biz_todo_id)
+{
+    $biz_todo = biz_getTodo($biz_todo_id);
+    $public_flag = $biz_todo['public_flag'];
+    $biz_group_id = $biz_todo['biz_group_id'];
+    $target_c_member_id = $biz_todo['c_member_id'];
+
+    switch ($public_flag) {
+    case 'group' :  //グループのメンバーにのみ権限が与えられるTodo
+        if (biz_isGroupMember($u, $biz_group_id)) {
+            return true;
+        } else {
+            return false;
+        }
+        break;
+    case 'private' :  //投稿者にのみ権限が与えられるTodo
+        if ($target_c_member_id == $u) {
+            return true;
+        } else {
+            return false;
+        }
+        break;
+    default :  //すべてのユーザに権限が与えられるTodo
+        return true;
+    }
+}
+
 //指定メンバーのTodoを得る
-function biz_getMemberTodo($id, $cat = null)
+function biz_getMemberTodo($u, $target_c_member_id, $cat = null)
 {
     $sql = 'SELECT * FROM biz_todo WHERE c_member_id = ? AND is_check = ? ORDER BY biz_todo_id DESC;';  //メンバーが保有しているtodoid一覧
     $params = array(
-        intval($id),
+        intval($target_c_member_id),
         intval($cat),
     );
 
+    //priorityの高い順にソート
     $membertodo = db_get_all($sql, $params);
+	foreach ($membertodo as $key => $row) {
+	   $priority[$key]  = $row['priority'];
+	}
+    if(!is_null($priority)) {
+        array_multisort($priority, SORT_ASC, $membertodo);
+    }
 
     $sql = 'SELECT * FROM biz_todo WHERE c_member_id = 0 AND is_check = ? ORDER BY biz_todo_id DESC;';  //共有Todo
     $params = array(
@@ -599,14 +634,17 @@ function biz_getMemberTodo($id, $cat = null)
     );
     $sharetodo = db_get_all($sql, $params);
 
-    $list = array_merge($membertodo , $sharetodo);  //各Todoの連結処理
+    $list = array();  //各Todoの連結処理
 
-    foreach ($list as $key => $value) {
-        $sql = 'SELECT nickname FROM c_member WHERE c_member_id = ?';
-        $params = array(
-            ($list[$key]['writer_id']),
-        );
-        $list[$key]['writer_name'] = db_get_one($sql, $params);
+    foreach (array_merge($membertodo, $sharetodo) as $key => $value) {
+        if (biz_isPermissionTodo($u, $value['biz_todo_id'])) {
+	        $sql = 'SELECT nickname FROM c_member WHERE c_member_id = ?';
+	        $params = array(
+	            intval($value['writer_id']),
+	        );
+            $list[$key] = $value;
+	        $list[$key]['writer_name'] = db_get_one($sql, $params);
+        }
     }
 
     return $list;
@@ -623,6 +661,52 @@ function biz_getTodo($id)
     );
 
     return db_get_row($sql, $params);
+}
+
+//カレンダー表示用期限付きTodoリストの取得
+function biz_schedule_todo4c_member_id($u, $c_member_id, $year, $month, $day = null)
+{
+    $sql = 'SELECT biz_todo_id FROM biz_todo WHERE c_member_id = ?';
+    $params = array(intval($c_member_id));
+    $ids = db_get_col($sql, $params);
+    $ids = implode(', ', $ids);
+    if (!$ids) {
+        return array();
+    }
+
+    if (!is_null($day)) {
+	    $sql = 'SELECT * FROM biz_todo WHERE biz_todo_id IN ('.$ids.')' .
+	            ' AND due_datetime = ?';
+	    $params = array(
+	        sprintf('%04d-%02d-%02d', intval($year), intval($month), intval($day)) . ' 00:00:00',
+	    );
+
+        $list = array();
+	    foreach(db_get_all($sql, $params) as $key => $value) {
+            if(biz_isPermissionTodo($u, $value['biz_todo_id'])) {
+		        $list[$key] = $value;
+            }
+        }
+        
+        return $list;
+    } else {
+	    $sql = 'SELECT * FROM biz_todo WHERE biz_todo_id IN ('.$ids.')' .
+	            ' AND due_datetime > ? AND due_datetime <= ?';
+	    $params = array(
+	        sprintf('%04d-%02d', intval($year), intval($month)) . '-00 00:00:00',
+	        sprintf('%04d-%02d', intval($year), intval($month)) . '-31 23:59:59'
+	    );
+	    $list = db_get_all($sql, $params);
+
+	    $res = array();
+	    foreach ($list as $item) {
+            if(biz_isPermissionTodo($u, $item['biz_todo_id'])) {
+		        $day = date('j', strtotime($item['due_datetime']));
+		        $res[$day][] = $item;
+            }
+	    }
+	    return $res;
+    }
 }
 
 //自分が投稿したTodoの一覧を得る
@@ -910,8 +994,13 @@ function biz_deleteGroup($group_id)
         intval($group_id),
     );    $result = db_query($sql, $params);
 
+
     $sql = 'UPDATE biz_schedule SET public_flag = "private", biz_group_id = NULL WHERE biz_group_id = ?';
     db_query($sql, array(intval($group_id)));
+
+    $sql = 'DELETE FROM biz_todo WHERE biz_group_id = ?'; 
+    db_query($sql, array(intval($group_id))); 
+
 }
 
 //グループに参加
@@ -989,7 +1078,8 @@ function biz_deleteShisetsuSchedule($shisetsu_id)
 }
 
 //Todo登録
-function biz_insertTodo($member_id, $memo, $writer_id, $sort_order, $is_all)
+function biz_insertTodo($member_id, $memo, $writer_id, $sort_order, $is_all,
+    $due_datetime = '', $priority = 3, $biz_group_id = '', $public_flag = 'public')
 {
     if ($is_all) {
         //共有Todo
@@ -1005,13 +1095,19 @@ function biz_insertTodo($member_id, $memo, $writer_id, $sort_order, $is_all)
         'writer_id' => $writer_id,
         'sort_order' => $sort_order,
         'r_datetime' => date("Y-m-d H:i"),
+        'due_datetime' => $due_datetime,
+        'priority' => $priority,
+        'biz_group_id' => $biz_group_id,
+        'public_flag' => $public_flag,
     );
     return db_insert('biz_todo', $data);
 }
 
 //Todo登録
-function biz_editTodo($member_id, $memo, $writer_id, $sort_order, $is_all, $target)
+function biz_editTodo($member_id, $memo, $writer_id, $sort_order, $is_all, $biz_todo_id, $is_done, $due_datetime, $priority, $biz_group_id, $public_flag)
 {
+    $todo = biz_getTodo($biz_todo_id);
+
     if ($is_all) {
         //共有Todo
         $member_id = 0;
@@ -1019,14 +1115,24 @@ function biz_editTodo($member_id, $memo, $writer_id, $sort_order, $is_all, $targ
         $writer_name = '';
     }
 
-    $sql = 'UPDATE `biz_todo` SET `c_member_id` = ?, `memo` = ?, `writer_id` = ?, `r_datetime` = ? WHERE `biz_todo_id` = ?';
+    if ($is_done != $todo['is_check']) {
+        biz_checkTodo($biz_todo_id, $todo['is_check']);
+    }
+    
+    $sql = 'UPDATE `biz_todo` SET `c_member_id` = ?, `memo` = ?, `writer_id` = ?,'
+        .'`r_datetime` = ?, `due_datetime` = ?, `priority` = ?, `biz_group_id` = ?,'
+        .'`public_flag` = ? WHERE `biz_todo_id` = ?';
 
     $params = array(
         intval($member_id),
         $memo,
         intval($writer_id),
         date("Y-m-d H:i"),
-        $target,
+        $due_datetime,
+        intval($priority),
+        intval($biz_group_id),
+        $public_flag,
+        intval($biz_todo_id),
     );
 
     $result = db_query($sql, $params);

@@ -39,6 +39,7 @@
 
 <a href="#news" accesskey="1">1.新着ﾘｽﾄ</a>| <a href="#config" accesskey="2">2.設定変更</a>
 <hr>
+◆<a href="({t_url m=ktai_biz a=page_fh_biz_todo_list})&amp;({$tail})">Todoリスト</a><br>
 ◆<a href="({t_url m=ktai_biz a=page_fh_calendar_week})&amp;({$tail})">週間ｶﾚﾝﾀﾞｰ</a><br>
 ◆日記<br>
 ├<a href="({t_url m=ktai a=page_h_diary_edit})&amp;({$tail})">書く</a>|<a href="mailto:({$blog_address})">ﾒｰﾙ投稿</a><br>

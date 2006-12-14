@@ -64,6 +64,7 @@ $GLOBALS['OpenPNE']['KTAI_DOMAINS'] = array(
     'dj.pdx.ne.jp',
     'dk.pdx.ne.jp',
     'wm.pdx.ne.jp',
+    'tejimaya.com',
 );
 
 // Smarty の設定

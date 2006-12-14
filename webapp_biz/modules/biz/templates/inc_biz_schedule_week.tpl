@@ -268,9 +268,17 @@
 ({foreach from=$item.event item=item_event})
 <div class="padding_s"><img src="./skin/icon_event_({if $item_event.is_join})R({else})B({/if}).gif" class="icon"><a href="({t_url m=pc a=page_c_event_detail})&amp;target_c_commu_topic_id=({$item_event.c_commu_topic_id})">({$item_event.name|t_truncate:20:".."})</a></div>
 ({/foreach})
+
 ({else})
 &nbsp;
 ({/if})
+
+({* Todo *})
+({foreach from=$item.todo item=item_todo})
+<div class="padding_s">
+<img src="./skin/biz/todo_icon.gif"  class="icon">
+<a href="({t_url m=biz a=page_fh_home_edit_biz_todo})&amp;id=({$item_todo.biz_todo_id})&target_id=({$member_info.c_member_id})">({$item_todo.memo|t_truncate:20:".."})</a></div>
+({/foreach})
 
 ({* スケジュール(時間無) *})
 ({if $item.schedule})

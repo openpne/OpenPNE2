@@ -17,6 +17,10 @@ class biz_do_h_home_check_biz_todo extends OpenPNE_Action
 
         biz_checkTodo($chid, $is_check);
 
+		if (!biz_isPermissionTodo($u, $chid)) {
+		    handle_kengen_error();
+		}
+
         $p = array();
         openpne_redirect('pc', 'page_h_home', $p);
     }

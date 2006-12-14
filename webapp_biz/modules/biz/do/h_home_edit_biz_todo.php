@@ -17,13 +17,30 @@ class biz_do_h_home_edit_biz_todo extends OpenPNE_Action
         $sort_order = $requests['sort_order'];
         $writer_id = $requests['writer_id'];
         $memo = $requests['memo'];
+        $is_done = $requests['is_done'];
+        $due_year = $requests['due_year'];
+        $due_month = $requests['due_month'];
+        $due_day = $requests['due_day'];
+        $priority = $requests['priority'];
+        $biz_group_id = $requests['biz_group_id'];
+        $public_flag = $requests['public_flag'];
         // ----------
+
+		if (!biz_isPermissionTodo($u, $id)) {
+		    handle_kengen_error();
+		}
 
         $member_info = db_common_c_member4c_member_id_LIGHT($writer_id);
 
         $todo_info = biz_getTodo($id);
 
-        biz_editTodo($todo_info['c_member_id'], $memo, $writer_id, $sort_order, $is_check, $id);
+        $due_datetime = $due_year . '-' . $due_month . '-' . $due_day . ' 00:00:00';
+        if(!$todo_info['c_member_id'] && !$is_check) {
+            $todo_info['c_member_id'] = $writer_id;
+        }
+
+        biz_editTodo($todo_info['c_member_id'], $memo, $writer_id, $sort_order, $is_check, $id,
+            $is_done, $due_datetime, $priority, $biz_group_id, $public_flag);
 
         openpne_redirect('pc', 'page_h_home');
     }

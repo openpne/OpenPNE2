@@ -46,7 +46,7 @@ function pc_get_trusted($tpl_name, &$smarty_obj)
 //GET---------------------------------------------
 
 //スケジュール用カレンダーを得る
-function biz_getScheduleWeek($member_id, $u, $w, $cmd, $head = true, $value = true, $foot = true, $member_info = false)
+function biz_getScheduleWeek($u, $member_id, $w, $cmd, $head = true, $value = true, $foot = true, $member_info = false)
 {
     if ($cmd != 'p') {
         //プロフィール確認かどうか
@@ -106,6 +106,7 @@ function biz_getScheduleWeek($member_id, $u, $w, $cmd, $head = true, $value = tr
                 'birth' => p_h_home_birth4c_member_id($m, $d, $member_id),
                 'event' => p_h_home_event4c_member_id($y, $m, $d, $member_id),
                 'schedule' => $schedule,
+                'todo' => biz_schedule_todo4c_member_id($u, $member_id, $y, $m, $d),
             );
 
         if ($w == 0 && $d == date('d')) {
@@ -173,7 +174,7 @@ function biz_getScheduleWeek($member_id, $u, $w, $cmd, $head = true, $value = tr
 }
 
 //Todoリストを得る
-function biz_getTodoList($member_id, $cmd, $nickname = null)
+function biz_getTodoList($u, $member_id, $cmd, $nickname = null)
 {
     $inc_smarty = new OpenPNE_Smarty($GLOBALS['SMARTY']);
     $inc_smarty->assign("PHPSESSID", md5(session_id()));
@@ -185,8 +186,8 @@ function biz_getTodoList($member_id, $cmd, $nickname = null)
         $inc_smarty->assign("nickname", $nickname);  //予定登録者
     }
 
-    $todolist = biz_getMemberTodo($member_id);
-    $checkedlist = biz_getMemberTodo($member_id, 1);
+    $todolist = biz_getMemberTodo($u, $member_id);
+    $checkedlist = biz_getMemberTodo($u, $member_id, 1);
 
     foreach ($todolist as $key => $value) {
         if ($value['writer_name']) {

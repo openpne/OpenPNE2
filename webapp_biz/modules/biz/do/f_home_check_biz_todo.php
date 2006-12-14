@@ -16,6 +16,9 @@ class biz_do_f_home_check_biz_todo extends OpenPNE_Action
         $is_check = $requests['is_check'];
         // ----------
 
+		if (!biz_isPermissionTodo($u, $chid)) {
+		    handle_kengen_error();
+		}
         biz_checkTodo($chid, $is_check);
 
         $p = array('target_c_member_id' => $id);

@@ -44,6 +44,8 @@ class biz_page_fh_biz_schedule_calendar extends OpenPNE_Action
         $event_list = p_h_calendar_event4c_member_id($year, $month, $target_id);
         // 誕生日
         $birth_list = p_h_calendar_birth4c_member_id($month, $target_id);
+        // Todo
+        $todo_list = biz_schedule_todo4c_member_id($u, $target_id, $year, $month);
 
         require_once 'Calendar/Month/Weekdays.php';
         $Month = new Calendar_Month_Weekdays($year, $month, 0);
@@ -73,6 +75,7 @@ class biz_page_fh_biz_schedule_calendar extends OpenPNE_Action
                 'birth' => $birth_list[$day],
                 'event' => $event_list[$day],
                 'schedule' => $schedule,
+                'todo' => $todo_list[$day],
               );
               $item['day'] = $day;
               if ($is_curr && $item['day'] == $curr_day) {

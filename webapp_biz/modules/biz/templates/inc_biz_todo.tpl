@@ -57,13 +57,15 @@
 ({foreach key=i item=value from=$todolist})
 ({if $value.memo})
 <tr>
+<td class="border_01({if $value.writer_id != $target_id}) bg_09({else}) bg_02({/if})" style="width:4px;height:33px;border-top:none;border-right:none;">
+<img src="./skin/dummy.gif" style="width:4px;height:33px;({if $value.priority == 1})background-color:#f00;({elseif $value.priority == 2})background-color:#f88;({/if})">
+</td>
 <td class="border_01({if $value.writer_id != $target_id}) bg_09({else}) bg_02({/if})" style="width:35px;border-top:none;border-right:none;" valign="top">
-
 <a href="({t_url m=biz a=do_`$cmd`_home_check_biz_todo})&amp;sessid=({$PHPSESSID})&amp;chid=({$value.biz_todo_id})&amp;is_check=({$value.is_check})">
 <img src="./skin/biz/checkbox_nochecked_({if $value.c_member_id == 0})share_({/if})2.gif" style="width:34px;height:34px;display:block;"></a>
 
 </td>
-<td class="border_01({if $value.writer_id != $target_id}) bg_09({else}) bg_02({/if}) padding_ss" style="width:181px;border-top:none;border-left:none;border-right:none;padding-left:0;" valign="top">
+<td class="border_01({if $value.writer_id != $target_id}) bg_09({else}) bg_02({/if}) padding_ss" style="width:179px;border-top:none;border-left:none;border-right:none;padding-left:0;" valign="top">
 
 ({$value.memo|nl2br|t_url2a})
 ({if ($value.writer_id != $target_id) || ($value.c_member_id == 0)})
@@ -105,6 +107,9 @@
 ({foreach key=i item=value from=$checkedlist})
 ({if $value.memo})
 <tr>
+<td class="border_01({if $value.writer_id != $target_id}) bg_09({else}) bg_02({/if})" style="width:4px;height:33px;border-top:none;border-right:none;">
+<img src="./skin/dummy.gif" style="width:4px;height:33px;">
+</td>
 <td class="border_01({if $value.writer_id != $target_id}) bg_09({else}) bg_02({/if})" style="width:35px;border-top:none;border-right:none;" valign="top">
 
 <a href="({t_url m=biz a=do_`$cmd`_home_check_biz_todo})&amp;sessid=({$PHPSESSID})&amp;chid=({$value.biz_todo_id})&amp;is_check=({$value.is_check})">

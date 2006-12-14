@@ -54,7 +54,7 @@ class pc_page_h_prof extends OpenPNE_Action
         include_once $biz_dir . 'lib/mysql_functions.php';  //bizモジュールよりライブラリを拝借
         $this->set('calendar', biz_getScheduleWeek($u, $u, $requests['w'], 'p', true, true, true, $target_c_member));
 
-        $todolist = biz_getTodoList($u, "h", $target_c_member['nickname']);
+        $todolist = biz_getTodoList($u, $u, "h", $target_c_member['nickname']);
         $this->set("todolist", $todolist);
         $stateform = biz_getStateForm($u);
         $this->set("stateform", $stateform);

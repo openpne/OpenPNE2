@@ -19,6 +19,11 @@ class biz_do_f_home_edit_biz_todo extends OpenPNE_Action
         $member_id = $requests['member_id'];
         $memo = $requests['memo'];
         // ----------
+
+		if (!biz_isPermissionTodo($u, $id)) {
+		    handle_kengen_error();
+		}
+
         biz_editTodo($requests['target_id'], $memo, $writer_id, $sort_order, $is_check, $id);
 
         $p = array('target_c_member_id' => $requests['target_id']);

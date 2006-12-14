@@ -58,7 +58,7 @@ class biz_page_s_list extends OpenPNE_Action
 
         $calendar = '';
         foreach ($list as $key => $value) {
-            $calendar .= biz_getScheduleWeek($value['biz_shisetsu_id'], $u, $requests['w'], 's_list', true, true, true);
+            $calendar .= biz_getScheduleWeek($u, $value['biz_shisetsu_id'], $requests['w'], 's_list', true, true, true);
         }
 
         $this->set('calendar', $calendar);
