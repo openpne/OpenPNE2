@@ -100,6 +100,9 @@ class pc_do_o_regist_prof extends OpenPNE_Action
         if ($mode != 'input' && $errors) {
             $_REQUEST['err_msg'] = $errors;
             $mode = 'input';
+            @session_start();
+            $_SESSION['prof'] = $_REQUEST;
+            unset($_SESSION['password']);
         }
 
         switch ($mode) {

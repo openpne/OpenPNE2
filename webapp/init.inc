@@ -4,6 +4,11 @@
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
+// 認証タイプ
+if (!defined('LOGIN_NAME_TYPE')) {
+    define('LOGIN_NAME_TYPE', 0);
+}
+
 // 画像サーバの場合は強制リダイレクト
 if (defined('OPENPNE_IS_IMG_SERVER') && OPENPNE_IS_IMG_SERVER) {
     header('Location: ' . OPENPNE_URL);

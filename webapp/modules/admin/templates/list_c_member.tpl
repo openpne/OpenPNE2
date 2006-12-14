@@ -109,6 +109,9 @@ function Link(linkLoc) {
 <th>({$prof.caption})</th>
 ({/foreach})
 <th>ID</th>
+({if $smarty.const.LOGIN_NAME_TYPE == 1})
+<th>ユーザID</th>
+({/if})
 <th>PCアドレス</th>
 <th>携帯アドレス</th>
 <th>登録時アドレス</th>
@@ -208,6 +211,9 @@ function Link(linkLoc) {
 ({/if})
 ({/foreach})
 <td class="idnumber">({$item.c_member_id})</td>
+({if $smarty.const.LOGIN_NAME_TYPE == 1})
+<td>({if $item.username})({$item.username|t_truncate:"30"|escape:"hexentity"})({else})&nbsp;({/if})</td>
+({/if})
 <td>({if $item.secure.pc_address})<a href="mailto:({$item.secure.pc_address|escape:"hexentity"})">({$item.secure.pc_address|t_truncate:"30"|escape:"hexentity"})</a>({else})&nbsp;({/if})</td>
 <td>({if $item.secure.ktai_address})<a href="mailto:({$item.secure.ktai_address})">({$item.secure.ktai_address|t_truncate:"30"})</a>({else})&nbsp;({/if})</td>
 <td>({if $item.secure.regist_address})({$item.secure.regist_address})({else})&nbsp;({/if})</td>

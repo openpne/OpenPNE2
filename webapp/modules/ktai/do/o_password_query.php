@@ -13,6 +13,9 @@ class ktai_do_o_password_query extends OpenPNE_Action
 
     function execute($requests)
     {
+        if (LOGIN_NAME_TYPE == 1) {
+            exit;
+        }
         //--- 権限チェック
         //パスワード確認の質問と答えがあっている
 

@@ -22,13 +22,22 @@ class OpenPNE_Auth
     var $uid;
     var $sess_id;
     var $cookie_path;
+    var $is_ktai;
 
-    function OpenPNE_Auth($storageDriver = 'DB', $options = '')
+    function OpenPNE_Auth($storageDriver = 'DB', $options = '', $is_ktai = false)
     {
         ini_set('session.use_cookies', 0);
-        if (!empty($_COOKIE[session_name()])) {
-            $this->sess_id = $_COOKIE[session_name()];
-            session_id($this->sess_id);
+        $this->is_ktai = $is_ktai;
+        if ($this->is_ktai) {
+            if (!empty($_REQUEST['ksid'])) {
+                $this->sess_id = $_REQUEST['ksid'];
+                session_id($this->sess_id);
+            }
+        } else {
+            if (!empty($_COOKIE[session_name()])) {
+                $this->sess_id = $_COOKIE[session_name()];
+                session_id($this->sess_id);
+            }
         }
         $this->storage = $storageDriver;
         $this->options = $options;
@@ -58,12 +67,18 @@ class OpenPNE_Auth
         return $auth;
     }
 
-    function login($is_save_cookie = false, $is_encrypt_username = false)
+    function login($is_save_cookie = false, $is_encrypt_username = false, $is_ktai = false)
     {
         $this->auth =& $this->factory(true);
         if ($is_encrypt_username) {
-            $this->auth->post[$this->auth->_postUsername] =
-                t_encrypt($this->auth->post[$this->auth->_postUsername]);
+            switch (LOGIN_NAME_TYPE) {
+                case 0:
+                $this->auth->post[$this->auth->_postUsername] =
+                    db_member_c_member_id4username($this->auth->post[$this->auth->_postUsername], $is_ktai);
+                break;
+                default:
+                break;
+            }
         }
 
         $this->auth->start();
@@ -78,7 +93,9 @@ class OpenPNE_Auth
             } else {
                 $expire = 0;
             }
-            setcookie(session_name(), session_id(), $expire, $this->cookie_path);
+            if (!$this->is_ktai) {
+                setcookie(session_name(), session_id(), $expire, $this->cookie_path);
+            }
             return true;
         } else {
             return false;
@@ -104,7 +121,9 @@ class OpenPNE_Auth
         }
 
         if (isset($_COOKIE[session_name()])) {
-            setcookie(session_name(), '', time() - 3600, $this->cookie_path);
+            if (!$this->is_ktai) {
+                setcookie(session_name(), '', time() - 3600, $this->cookie_path);
+            }
         }
         $_SESSION = array();
         session_destroy();
@@ -131,9 +150,17 @@ class OpenPNE_Auth
         return $this->uid;
     }
 
-    function getUsername()
+    function getUsername($LOGIN_NAME_TYPE = 0)
     {
-        return $this->auth->getUsername();
+        $username = $this->auth->getUsername();
+        switch ($LOGIN_NAME_TYPE) {
+            case 1:
+            $username = db_member_c_member_id4username($username);
+            break;
+            default :
+            break;
+        }
+        return $username;
     }
 
     /**
