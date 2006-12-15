@@ -51,6 +51,9 @@
 ({if strpos($item.filename, 'skin_') !== 0 && strpos($item.filename, 'no_') !== 0})
 [<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('delete_c_image_confirm')})&amp;target_c_image_id=({$item.c_image_id})">削除</a>]
 ({/if})
+({if $item.param})
+&nbsp;[<a href="({t_url _absolute=1 m=pc})({$item.param})" target="_blank">リンク</a>]
+({/if})
 </td>
 
 ({if $smarty.foreach.c_image.iteration % 5 == 0})</tr>({/if})
