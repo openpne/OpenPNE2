@@ -43,6 +43,11 @@ class pc_page_h_home extends OpenPNE_Action
         $this->set('anatani_c_commu_admin_confirm_list', $anatani_c_commu_admin_confirm_list);
         $this->set('num_anatani_c_commu_admin_confirm_list', count($anatani_c_commu_admin_confirm_list));
 
+        // あなたにコミュニティ副管理者を希望しているメンバー
+        $anatani_c_commu_sub_admin_confirm_list = db_commu_anatani_c_commu_sub_admin_confirm_list4c_member_id($u);
+        $this->set('anatani_c_commu_sub_admin_confirm_list', $anatani_c_commu_sub_admin_confirm_list);
+        $this->set('num_anatani_c_commu_sub_admin_confirm_list', count($anatani_c_commu_sub_admin_confirm_list));
+
         // 誕生日かどうか
         $this->set('birthday_flag', p_h_home_birthday_flag4c_member_id($u));
 

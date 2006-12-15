@@ -32,6 +32,7 @@ class pc_page_c_member_review extends OpenPNE_Action
         $c_commu = _db_c_commu4c_commu_id($c_commu_id);
         $this->set('c_commu', $c_commu);
         $this->set("is_c_commu_member", _db_is_c_commu_member($c_commu_id, $u));
+        $this->set('u', $u);
 
         return 'success';
     }

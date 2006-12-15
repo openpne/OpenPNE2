@@ -17,10 +17,19 @@ class ktai_page_c_edit extends OpenPNE_Action
         $c_commu = _db_c_commu4c_commu_id($target_c_commu_id);
 
         //--- 権限チェック
-        if ($c_commu['c_member_id_admin'] != $u) {
+        if ($c_commu['c_member_id_admin']     != $u
+         && $c_commu['c_member_id_sub_admin'] != $u) {
             handle_kengen_error();
         }
+
         //---
+
+        $topic_authority_list=
+        array(
+            'public' =>'コミュニティ参加者全員が作成可能',
+            'admin_only' =>'コミュニティ管理者のみ作成可能',
+        );
+        $this->set('topic_authority_list', $topic_authority_list);
 
         //カテゴリのリスト
         $this->set('c_commu_category_list', _db_c_commu_category4null());
@@ -29,6 +38,9 @@ class ktai_page_c_edit extends OpenPNE_Action
 
         $this->set('c_commu', $c_commu);
 
+        if ($c_commu['c_member_id_sub_admin'] == $u) {
+            $this->set('is_sub_admin', 1);
+        }
 
         return 'success';
     }

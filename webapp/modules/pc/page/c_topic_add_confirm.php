@@ -27,6 +27,16 @@ class pc_page_c_topic_add_confirm extends OpenPNE_Action
         if (!p_common_is_c_commu_view4c_commu_idAc_member_id($c_commu_id, $u)) {
             handle_kengen_error();
         }
+
+        $c_commu = p_c_home_c_commu4c_commu_id($c_commu_id);
+
+        //トピック作成権限チェック
+        if ($c_commu['topic_authority'] == 'admin_only' && !db_commu_is_c_commu_admin($c_commu_id, $u)) {
+            $_REQUEST['target_c_commu_id'] = $c_commu_id;
+            $_REQUEST['msg'] = "トピックは管理者だけが作成できます";
+            openpne_forward('pc', 'page', "c_home");
+            exit;
+        }
         //---
 
         //TODO:画像バリデータ

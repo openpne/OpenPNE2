@@ -25,6 +25,11 @@ class ktai_do_c_edit_member_delete_c_commu_member extends OpenPNE_Action
             handle_kengen_error();
         }
 
+        $status = db_common_commu_status($target_c_member_id, $target_c_commu_id);
+        if ($status['is_commu_admin']) {
+            handle_kengen_error();
+        }
+
         if ($target_c_member_id == $u) {
             handle_kengen_error();
         }

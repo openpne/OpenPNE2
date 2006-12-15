@@ -17,7 +17,13 @@ class pc_page_c_admin_request extends OpenPNE_Action
 
         //--- 権限チェック
         //コミュニティ管理者
+        //コミュニティ副管理者ではない
+
         if (!_db_is_c_commu_admin($target_c_commu_id, $u)) {
+            handle_kengen_error();
+        }
+
+        if (db_commu_is_c_commu_sub_admin($target_c_commu_id, $u)) {
             handle_kengen_error();
         }
         //---

@@ -15,6 +15,25 @@ class ktai_page_c_edit_member_delete_c_commu_member_confirm extends OpenPNE_Acti
         $target_c_member_id = $requests['target_c_member_id'];
         // ----------
 
+        //--- 権限チェック
+        //コミュニティ管理者
+        //targetメンバーが管理者(＝自分)でない
+
+        $status = db_common_commu_status($u, $target_c_commu_id);
+        if (!$status['is_commu_admin']) {
+            handle_kengen_error();
+        }
+
+        $status = db_common_commu_status($target_c_member_id, $target_c_commu_id);
+        if ($status['is_commu_admin']) {
+            handle_kengen_error();
+        }
+
+        if ($target_c_member_id == $u) {
+            handle_kengen_error();
+        }
+        //---
+
         $this->set("target_c_commu_id", $target_c_commu_id);
         $this->set("target_c_member_id", $target_c_member_id);
 

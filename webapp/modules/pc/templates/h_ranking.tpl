@@ -312,7 +312,7 @@
 
 <div class="padding_s">
 
-管理人
+管理者
 
 </div>
 
@@ -499,7 +499,7 @@
 
 <div class="padding_s">
 
-管理人
+管理者
 
 </div>
 

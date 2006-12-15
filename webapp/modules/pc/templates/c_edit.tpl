@@ -137,6 +137,34 @@
 
 <div class="padding_s">
 
+トピック作成権限
+
+</div>
+
+</td>
+<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td class="bg_02" align="left" valign="middle">
+
+<div class="padding_s">
+
+({html_radios name="topic_authority" options=$topic_authority_list class="no_bg" selected=$c_commu.topic_authority separator="<br>"})
+
+</div>
+
+</td>
+<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+</tr>
+({*********})
+<tr>
+<td class="bg_01" colspan="5"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+</tr>
+({*********})
+<tr>
+<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td class="bg_05" align="center" valign="middle">
+
+<div class="padding_s">
+
 コミュニティ説明文
 
 </div>
@@ -360,6 +388,7 @@
 <!-- ******ここまで：コミュニティ設定変更****** -->
 <!-- **************************************** -->
 
+({if $c_commu.c_member_id_sub_admin != $u && $c_commu.c_member_id_admin == $u })
 <img src="./skin/dummy.gif" class="v_spacer_l">
 
 <!-- ****************************************** -->
@@ -414,8 +443,7 @@
 
 <img src="./skin/dummy.gif" class="v_spacer_l">
 
-({t_form m=pc a=do_c_edit_delete_c_commu})
-<input type="hidden" name="sessid" value="({$PHPSESSID})">
+({t_form m=pc a=page_c_edit_delete_c_commu_confirm})
 <input type="hidden" name="target_c_commu_id" value="({$c_commu.c_commu_id})">
 <div align="center" syyle="text-align:center;">
 <input type="submit" class="submit" value="　　削　除　　">
@@ -453,6 +481,8 @@
 </table>
 <!-- ******ここまで：コミュニティを削除する****** -->
 <!-- ****************************************** -->
+
+({/if})
 
 <img src="./skin/dummy.gif" class="v_spacer_l">
 

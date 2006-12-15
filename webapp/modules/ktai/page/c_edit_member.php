@@ -19,7 +19,7 @@ class ktai_page_c_edit_member extends OpenPNE_Action
         $c_commu = _db_c_commu4c_commu_id($target_c_commu_id);
 
         //--- 権限チェック
-        if ($c_commu['c_member_id_admin'] != $u) {
+        if ($c_commu['c_member_id_admin'] !=$u && $c_commu['c_member_id_sub_admin'] != $u) {
             ktai_display_error('閲覧権限がありません');
         }
         //---

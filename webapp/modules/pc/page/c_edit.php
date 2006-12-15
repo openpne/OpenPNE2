@@ -16,6 +16,7 @@ class pc_page_c_edit extends OpenPNE_Action
         $c_commu_category_id = $requests['c_commu_category_id'];
         $info = $requests['info'];
         $public_flag = $requests['public_flag'];
+        $topic_authority = $requests['topic_authority'];
         $err_msg = $requests['err_msg'];
         // ----------
 
@@ -27,10 +28,8 @@ class pc_page_c_edit extends OpenPNE_Action
         //---
 
         $this->set('inc_navi', fetch_inc_navi('c', $target_c_commu_id));
-
         //コミュニティデータ取得
         $c_commu = _db_c_commu4c_commu_id($target_c_commu_id);
-
         if ($name) {
             $c_commu['name'] = $name;
         }
@@ -60,10 +59,17 @@ class pc_page_c_edit extends OpenPNE_Action
             'auth_commu_member' =>'参加：管理者の承認が必要、掲示板：コミュニティ参加者にのみ公開',
         );
         $this->set('public_flag_list', $public_flag_list);
+        $topic_authority_list=
+        array(
+            'public' =>'コミュニティ参加者全員が作成可能',
+            'admin_only' =>'コミュニティ管理者のみ作成可能',
+        );
+        $this->set('topic_authority_list', $topic_authority_list);
         $this->set('is_topic', p_c_edit_is_topic4c_commu_id($target_c_commu_id));
         $this->set('err_msg', $err_msg);
 
         $this->set('is_unused_join_commu', util_is_unused_mail('m_pc_join_commu'));
+        $this->set('u', $u);
 
         //-- Google MAPs
         if (OPENPNE_USE_COMMU_MAP) {

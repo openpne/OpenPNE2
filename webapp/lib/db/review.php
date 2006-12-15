@@ -570,4 +570,28 @@ function do_delete_c_review4c_review_id($c_review_id)
     db_query($sql, $params);
 }
 
+//コミュニティのおすすめレビューを削除
+function db_review_delete_c_review4c_review_id($c_review_id)
+{
+    $sql = 'DELETE FROM c_review WHERE c_review_id = ?';
+    $params = array(intval($c_review_id));
+    db_query($sql, $params);
+}
+
+//コミュニティのおすすめレビューを削除
+function db_review_delete_c_commu_review4c_commu_review_id($c_commu_review_id)
+{
+    $sql = 'DELETE FROM c_commu_review WHERE c_commu_review_id = ?';
+    $params = array(intval($c_commu_review_id));
+    db_query($sql, $params);
+}
+
+//コミュニティのおすすめレビューを取得(一つ)
+function db_review_get_c_commu_review_one4c_commu_review_id($c_commu_review_id)
+{
+    $sql = 'SELECT * FROM c_commu_review WHERE c_commu_review_id = ?';
+    $params = array(intval($c_commu_review_id));
+    return db_get_row($sql, $params);
+}
+
 ?>

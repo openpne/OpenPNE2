@@ -452,11 +452,11 @@ show_flash('flash/list.swf', '({$flashvars})');
 </td>
 </tr>
 <!-- ここまで：主内容＞開設日 -->
-<!-- ここから：主内容＞管理人 -->
+<!-- ここから：主内容＞管理者 -->
 <tr>
 <td class="border_01 bg_09 padding_s" style="width:90px;border-right:none;border-top:none;">
 
-<span class="c_01">管理人</span>
+<span class="c_01">管理者</span>
 
 </td>
 <td class="border_01 bg_02 padding_s" style="width:332px;border-top:none;">
@@ -465,7 +465,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 
 </td>
 </tr>
-<!-- ここまで：主内容＞管理人 -->
+<!-- ここまで：主内容＞管理者 -->
 <!-- ここから：主内容＞カテゴリ -->
 <tr>
 <td class="border_01 bg_09 padding_s" style="width:90px;border-right:none;border-top:none;">
@@ -506,11 +506,11 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({if $c_commu.public_flag == 'public'})
 だれでも参加できる(公開)
 ({elseif $c_commu.public_flag == 'auth_public'})
-管理人の承認が必要(公開)
+管理者の承認が必要(公開)
 ({elseif $c_commu.public_flag == 'auth_sns'})
-管理人の承認が必要(公開)
+管理者の承認が必要(公開)
 ({elseif $c_commu.public_flag == 'auth_commu_member'})
-管理人の承認が必要(非公開)
+管理者の承認が必要(非公開)
 ({/if})
 
 </td>

@@ -24,7 +24,7 @@ class ktai_do_h_confirm_list_delete_c_commu_member_confirm extends OpenPNE_Actio
         $cmc = _do_c_commu_member_confirm4c_commu_member_confirm_id($target_c_commu_member_confirm_id);
 
         if ($cmc['c_member_id'] != $u
-            && $cmc['c_member_id_admin'] != $u) {
+            && ($cmc['c_member_id_admin'] != $u && $cmc['c_member_id_sub_admin'] != $u)) {
             handle_kengen_error();
         }
         //---

@@ -28,7 +28,12 @@ class pc_do_h_confirm_list_update_c_commu_admin_confirm extends OpenPNE_Action
         }
         // -----
 
+        //副管理者なら副管理者から昇格
+        if (db_commu_is_c_commu_sub_admin($admin_confirm['c_commu_id'], $u)) {
+            db_commu_update_c_commu_c_member_id_sub_admin($admin_confirm['c_commu_id'], 0);
+        }
 
+        db_commu_delete_c_commu_sub_admin_confirm4c_commu_id($admin_confirm['c_commu_id']);
         db_commu_update_c_commu_c_member_id_admin($admin_confirm['c_commu_id'], $u);
 
         $msg = '承認が完了しました';

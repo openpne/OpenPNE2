@@ -129,7 +129,15 @@
 </td>
 </tr>
 ({/if})
-</table>
+({if $anatani_c_commu_sub_admin_confirm_list})
+<tr>
+<td class="padding_s">
+
+★<span class="caution">コミュニティ副管理者依頼が({$num_anatani_c_commu_sub_admin_confirm_list})件きています。</span>&nbsp;<a href="({t_url m=pc a=page_h_confirm_list})"><span class="b_b">承認・拒否</span></a>
+
+</td>
+</tr>
+({/if})</table>
 
 </td>
 </tr>

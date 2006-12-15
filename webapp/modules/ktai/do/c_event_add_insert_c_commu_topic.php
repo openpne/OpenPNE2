@@ -20,6 +20,13 @@ class ktai_do_c_event_add_insert_c_commu_topic extends OpenPNE_Action
         if (!$status['is_commu_member']) {
             handle_kengen_error();
         }
+
+        $c_commu = p_c_home_c_commu4c_commu_id($event['c_commu_id']);
+
+        //トピック作成権限チェック
+        if ($c_commu['topic_authority'] == 'admin_only' && !db_commu_is_c_commu_admin($event['c_commu_id'], $u)) {
+            ktai_display_error("イベントは管理者だけが作成できます");
+        }
         //---
 
         //--- エラーチェック

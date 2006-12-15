@@ -20,6 +20,7 @@ class pc_do_c_edit_update_c_commu extends OpenPNE_Action
         $c_commu_category_id = $requests['c_commu_category_id'];
         $info = $requests['info'];
         $public_flag = $requests['public_flag'];
+        $topic_authority = $requests['topic_authority'];
         $is_send_join_mail = $requests['is_send_join_mail'];
         // ----------
         $upfile_obj = $_FILES['image_filename'];
@@ -103,6 +104,7 @@ class pc_do_c_edit_update_c_commu extends OpenPNE_Action
         db_commu_update_c_commu(
             $target_c_commu_id,
             $name,
+            $topic_authority,
             $c_commu_category_id,
             $info,
             $public_flag,

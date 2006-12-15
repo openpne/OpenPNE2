@@ -30,10 +30,14 @@
 ({/if})
 
 ({if $anatani_c_commu_admin_confirm_list})
-<a href="({t_url m=ktai a=page_h_confirm_list})&amp;({$tail})"><font color="red">★ｺﾐｭﾆﾃｨ管理人交代依頼({$num_anatani_c_commu_admin_confirm_list})件</font></a><br>
+<a href="({t_url m=ktai a=page_h_confirm_list})&amp;({$tail})"><font color="red">★ｺﾐｭﾆﾃｨ管理者交代依頼({$num_anatani_c_commu_admin_confirm_list})件</font></a><br>
 ({/if})
 
-({if $anatani_c_commu_admin_confirm_list||$num_f_confirm_list||$num_message_not_is_read||$num_diary_not_is_read||$num_h_confirm_list||$anatani_c_commu_admin_confirm_list})
+({if $anatani_c_commu_sub_admin_confirm_list})
+<a href="({t_url m=ktai a=page_h_confirm_list})&amp;({$tail})"><font color="red">★ｺﾐｭﾆﾃｨ副管理者依頼({$num_anatani_c_commu_sub_admin_confirm_list})件</font></a><br>
+({/if})
+
+({if $anatani_c_commu_admin_confirm_list||$num_f_confirm_list||$num_message_not_is_read||$num_diary_not_is_read||$num_h_confirm_list||$anatani_c_commu_admin_confirm_list||$anatani_c_commu_sub_admin_confirm_list})
 <br>
 ({/if})
 

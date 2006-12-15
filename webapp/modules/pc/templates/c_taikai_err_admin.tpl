@@ -36,7 +36,7 @@
 <td colspan="2" class="bg_02" align="center">
 
 <br><br>
-管理人は退会できません。<br>
+管理者は退会できません。<br>
 コミュニティを削除する場合は「<a href="({t_url m=pc a=page_c_edit})&amp;target_c_commu_id=({$c_commu.c_commu_id})">コミュニティ設定変更</a>」よりおこなってください。
 <br><br><br>
 

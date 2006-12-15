@@ -17,11 +17,14 @@
 <textarea name="info">({$c_commu.info})</textarea><br>
 参加・公開<br>
 <input type="radio" name="public_flag" value="public"({if $c_commu.public_flag=='public'}) checked({/if})>誰でも参加可能、掲示板は全員に公開<br>
-<input type="radio" name="public_flag" value="auth_public"({if $c_commu.public_flag=='auth_public'}) checked({/if})>参加には管理人の承認が必要、掲示板は全員に公開<br>
-<input type="radio" name="public_flag" value="auth_commu_member"({if $c_commu.public_flag=='auth_commu_member'}) checked({/if})>参加には管理人の承認が必要、掲示板はｺﾐｭﾆﾃｨﾒﾝﾊﾞｰにのみ公開<br>
+<input type="radio" name="public_flag" value="auth_public"({if $c_commu.public_flag=='auth_public'}) checked({/if})>参加には管理者の承認が必要、掲示板は全員に公開<br>
+<input type="radio" name="public_flag" value="auth_commu_member"({if $c_commu.public_flag=='auth_commu_member'}) checked({/if})>参加には管理者の承認が必要、掲示板はｺﾐｭﾆﾃｨﾒﾝﾊﾞｰにのみ公開<br>
+トピック作成権限<br>
+({html_radios name="topic_authority" options=$topic_authority_list class="no_bg" selected=$c_commu.topic_authority separator="<br>"})
 <input type="submit" value="編集">
 </form>
 
+({if !$is_sub_admin})
 <hr>
 ({if $is_topic})
 ｺﾐｭﾆﾃｨを削除するには、ﾄﾋﾟｯｸをすべて削除する必要があります。<br>
@@ -31,11 +34,13 @@
 削除の際はﾄﾗﾌﾞﾙ等を避けるため、あらかじめ参加者へ削除を告知してください。<br>
 ({else})
 このｺﾐｭﾆﾃｨを削除します。削除の際はﾄﾗﾌﾞﾙ等を避けるため、あらかじめ参加者へ削除を告知してください。<br>
-({t_form m=ktai a=do_c_edit_delete_c_commu})
+({t_form m=ktai a=page_c_edit_delete_c_commu_confirm})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
 <input type="hidden" name="target_c_commu_id" value="({$c_commu.c_commu_id})">
 <input type="submit" value="ｺﾐｭﾆﾃｨ削除">
 </form>
+({/if})
+
 ({/if})
 
 <hr>

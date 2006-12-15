@@ -20,10 +20,15 @@ class pc_do_c_admin_request_insert_c_commu_admin_confirm extends OpenPNE_Action
 
         //--- 権限チェック
         //自分がコミュニティ管理者
+        //自分がコミュニティ副管理者ではない
         //targetがコミュニティメンバー
+
 
         $status = db_common_commu_status($u, $target_c_commu_id);
         if (!$status['is_commu_admin']) {
+            handle_kengen_error();
+        }
+        if ($status['is_commu_sub_admin']) {
             handle_kengen_error();
         }
 

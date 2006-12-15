@@ -8,7 +8,7 @@
 <img src="./skin/dummy.gif" class="v_spacer_l">
 
 <!-- ******************************************** -->
-<!-- ******ここから：管理人交代依頼****** -->
+<!-- ******ここから：管理者交代依頼****** -->
 
 <table border="0" cellspacing="0" cellpadding="0" style="width:650px;margin:0px auto;" class="border_07">
 <tr>
@@ -19,14 +19,14 @@
 <tr>
 <td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
 <td class="bg_01" align="center">
-<!-- *ここから：管理人交代依頼＞内容* -->
+<!-- *ここから：管理者交代依頼＞内容* -->
 ({*ここから：header*})
 <!-- ここから：小タイトル -->
 <div class="border_01">
 <table border="0" cellspacing="0" cellpadding="0" style="width:634px;">
 <tr>
 <td style="width:36px;" class="bg_06"><img src="({t_img_url_skin filename=content_header_1})" style="width:30px;height:20px;" class="dummy"></td>
-<td style="width:468px;padding:2px 0px;" class="bg_06"><span class="b_b c_00">管理人交代依頼</span></td>
+<td style="width:468px;padding:2px 0px;" class="bg_06"><span class="b_b c_00">管理者交代依頼</span></td>
 <td style="width:140px;" align="right" class="bg_06">&nbsp;</td>
 </tr>
 </table>
@@ -47,7 +47,7 @@
 
 <div class="padding_w_m">
 
-この人に管理人交代依頼を送信します。よろしいですか。
+この人に管理者交代依頼を送信します。よろしいですか。
 
 </div>
 
@@ -225,7 +225,7 @@
 ({*ここから：footer*})
 <!-- 無し -->
 ({*ここまで：footer*})
-<!-- *ここまで：管理人交代依頼＞＞内容* -->
+<!-- *ここまで：管理者交代依頼＞＞内容* -->
 </td>
 <td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
 </tr>
@@ -235,7 +235,7 @@
 <td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
 </tr>
 </table>
-<!-- ******ここまで：管理人交代依頼****** -->
+<!-- ******ここまで：管理者交代依頼****** -->
 <!-- ******************************************** -->
 
 <img src="./skin/dummy.gif" class="v_spacer_l">

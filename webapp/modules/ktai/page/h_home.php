@@ -64,6 +64,12 @@ class ktai_page_h_home extends OpenPNE_Action
         //そのメンバーの人数
         $this->set("num_anatani_c_commu_admin_confirm_list", count($anatani_c_commu_admin_confirm_list));
 
+        // あなたにコミュニティ副管理者を希望しているメンバー
+        $anatani_c_commu_sub_admin_confirm_list = db_commu_anatani_c_commu_sub_admin_confirm_list4c_member_id($u);
+        $this->set("anatani_c_commu_sub_admin_confirm_list", $anatani_c_commu_sub_admin_confirm_list);
+        //そのメンバーの人数
+        $this->set("num_anatani_c_commu_sub_admin_confirm_list", count($anatani_c_commu_sub_admin_confirm_list));
+
         //日記コメント記入履歴
         $this->set("c_diary_my_comment_list", p_h_home_c_diary_my_comment_list4c_member_id($u, 5));
 

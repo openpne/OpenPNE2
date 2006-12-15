@@ -48,7 +48,8 @@ class pc_do_c_join_request_insert_c_commu_member_confirm extends OpenPNE_Action
                 "\n".
                 "この要請について、承認待ちリストから承認または拒否を選択してください。\n";
 
-            do_common_send_message_syoudaku($c_member_id_from, $c_member_id_to, $subject, $body_disp);
+            do_common_send_message_syoudaku($c_member_id_from, $c_commu['c_member_id_admin'], $subject, $body_disp);
+            do_common_send_message_syoudaku($c_member_id_from, $c_commu['c_member_id_sub_admin'], $subject, $body_disp);
         }
 
         $p = array('target_c_commu_id' => $target_c_commu_id);

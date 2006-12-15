@@ -61,6 +61,10 @@
 <hr>
 ({/if})
 ({/if})
+<br>
+
+管理者:<a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$c_commu.c_member_id_admin})&amp;({$tail})">({$c_commu.c_member_admin.nickname})</a><br>
+<br>
 <font color="green">[ｺﾐｭﾆﾃｨﾒﾝﾊﾞｰ](({$c_commu.count_member}))</font><br>
 ({foreach from=$c_commu_member_list item=c_commu_member })
 　<a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$c_commu_member.c_member_id})&amp;({$tail})">({$c_commu_member.nickname})</a><br>
@@ -76,13 +80,16 @@
 ({if !$relation_c_member_and_c_commu.join && !$relation_c_member_and_c_commu.wait})
 <a href="({t_url m=ktai a=do_inc_join_c_commu})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">このｺﾐｭﾆﾃｨに参加</a><br>
 ({/if})
+({if $relation_c_member_and_c_commu.join && ($c_commu.c_member_id_admin!=$u || $c_commu.c_member_id_sub_admin!=$u) })
+<a href="({t_url m=ktai a=do_inc_leave_c_commu})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">このｺﾐｭﾆﾃｨから退会</a><br>
+({/if})
 
 ({if $relation_c_member_and_c_commu.join && !($is_unused_pc_bbs && $is_unused_ktai_bbs)})
 <hr id="setting">
 ({t_form m=ktai a=do_c_home_update_is_receive_mail})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
 <input type="hidden" name="target_c_commu_id" value="({$c_commu.c_commu_id})">
-({if $c_commu.c_member_id_admin!=$u})
+({if ($c_commu.c_member_id_admin!=$u || $c_commu.c_member_id_sub_admin!=$u)})
 このｺﾐｭﾆﾃｨの管理者からのﾒｯｾｰｼﾞを<br>
 <input type="radio" value="1" name="is_receive_message"({if $is_receive_message}) checked="checked"({/if})>受け取る<br>
 <input type="radio" value="0" name="is_receive_message"({if !$is_receive_message}) checked="checked"({/if})>受け取らない<br>
@@ -102,7 +109,7 @@
 ({/if})
 
 <hr>
-({if $u == $c_commu.c_member_id_admin})
+({if ($c_commu.c_member_id_admin==$u || $c_commu.c_member_id_sub_admin==$u)})
 <a href="({t_url m=ktai a=page_c_edit})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">ｺﾐｭﾆﾃｨ編集</a><br>
 <a href="({t_url m=ktai a=page_c_edit_member})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">ｺﾐｭﾆﾃｨﾒﾝﾊﾞｰ編集</a><br>
 <br>
