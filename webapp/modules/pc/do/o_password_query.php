@@ -13,10 +13,6 @@ class pc_do_o_password_query extends OpenPNE_Action
 
     function execute($requests)
     {
-        if (LOGIN_NAME_TYPE == 1) {
-            exit;
-        }
-        
         // --- リクエスト変数
         $pc_address = $requests['pc_address'];
         $q_id = $requests['c_password_query_id'];

@@ -218,7 +218,7 @@ function db_mail_send_m_ktai_password_query($c_member_id, $new_password)
     $c_member = db_common_c_member4c_member_id($c_member_id, true);
     $ktai_address = $c_member['secure']['ktai_address'];
 
-    $p = array('kad' => t_encrypt(db_member_username4c_member_id($c_member_id, true)));
+    $p = array('kad' => t_encrypt($c_member['secure']['ktai_address']));
     $login_url = openpne_gen_url('ktai', 'page_o_login', $p);
     $params = array(
         'c_member'  => $c_member,
@@ -455,16 +455,6 @@ function do_h_config_1_mail_send($target_c_member_id, $session, $pc_address)
     return fetch_send_mail($pc_address, 'm_pc_change_mail', $params);
 }
 
-//メールアドレス変更メール
-function do_h_regist_mail_mail_send($target_c_member_id, $session, $pc_address)
-{
-    $params = array(
-        "c_member" => db_common_c_member4c_member_id($target_c_member_id),
-        "sid"      => $session,
-    );
-    return fetch_send_mail($pc_address, 'm_pc_regist_mail', $params);
-}
-
 //あしあとお知らせメール
 function do_common_send_ashiato_mail($c_member_to, $c_member_from)
 {
@@ -483,7 +473,7 @@ function do_common_send_ashiato_mail($c_member_to, $c_member_from)
     fetch_send_mail($pc_address, 'm_pc_ashiato', $params);
 
     //ktai
-    $p = array('kad' => t_encrypt(db_member_username4c_member_id($c_member_to['c_member_id'], true)));
+    $p = array('kad' => t_encrypt($c_member_to['secure']['ktai_address']));
     $params['login_url'] = openpne_gen_url('ktai', 'page_o_login', $p);
     fetch_send_mail($ktai_address, 'm_ktai_ashiato', $params);
 }
@@ -520,7 +510,7 @@ function do_common_send_message_syoudaku_mail_send($c_member_id_to, $c_member_id
 function do_insert_c_member_mail_send($c_member_id, $password, $ktai_address)
 {
     $c_member_secure = db_common_c_member_secure4c_member_id($c_member_id);
-    $p = array('kad' => t_encrypt(db_member_username4c_member_id($c_member_id, true)));
+    $p = array('kad' => t_encrypt($c_member_secure['ktai_address']));
     $params['url'] = openpne_gen_url('ktai', 'page_o_login', $p);
     return fetch_send_mail($ktai_address, 'm_ktai_login_regist_end', $params);
 }
@@ -550,7 +540,7 @@ function do_mail_sns_change_ktai_mail_send($c_member_id, $session, $ktai_address
 function do_mail_sns_login_get_mail_send($c_member_id, $sender)
 {
     $c_member_secure = db_common_c_member_secure4c_member_id($c_member_id);
-    $p = array('kad' => t_encrypt(db_member_username4c_member_id($c_member_id, true)));
+    $p = array('kad' => t_encrypt($c_member_secure['ktai_address']));
     $params['url'] = openpne_gen_url('ktai', 'page_o_login', $p);
     return fetch_send_mail($sender, 'm_ktai_login_get', $params);
 }
@@ -651,7 +641,7 @@ function do_common_send_message_mail_send_ktai($c_member_id_to, $c_member_id_fro
     $c_member_to = db_common_c_member4c_member_id($c_member_id_to, true);
     $ktai_address = $c_member_to['secure']['ktai_address'];
     $is_receive_ktai_mail = $c_member_to['is_receive_ktai_mail'];
-    $p = array('kad' => t_encrypt(db_member_username4c_member_id($c_member_to['c_member_id'], true)));
+    $p = array('kad' => t_encrypt($c_member_to['secure']['ktai_address']));
     $login_url = openpne_gen_url('ktai', 'page_o_login', $p);
 
     $params = array(

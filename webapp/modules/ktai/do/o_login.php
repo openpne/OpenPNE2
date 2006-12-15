@@ -6,8 +6,6 @@
 
 class ktai_do_o_login extends OpenPNE_Action
 {
-    var $_auth;
-    
     function isSecure()
     {
         return false;
@@ -20,18 +18,7 @@ class ktai_do_o_login extends OpenPNE_Action
         $ktai_address = $requests['ktai_address'];
         $password = $requests['password'];
         // ----------
-        
-        @session_name('OpenPNEktai');
-        @session_start();
-        @session_regenerate_id();
-        
-        $auth_config = get_auth_config();
-        $auth_config['options']['advancedsecurity'] = false;
-        $auth = new OpenPNE_Auth($auth_config['storage'], $auth_config['options'],true);
-        $this->_auth =& $auth;
-        $auth->setExpire($GLOBALS['OpenPNE']['common']['session_lifetime']);
-        $auth->setIdle($GLOBALS['OpenPNE']['common']['session_idletime']);
-        
+
         if (LOGIN_CHECK_ENABLE) {
             // 不正ログインチェック
             include_once 'OpenPNE/LoginChecker.php';
@@ -41,23 +28,30 @@ class ktai_do_o_login extends OpenPNE_Action
                 'reject_time' => LOGIN_REJECT_TIME,
             );
             $lc = new OpenPNE_LoginChecker($options);
-            if ($lc->is_rejected() || !$auth->login(false, true, true)) {
+            if ($lc->is_rejected() || !$c_member_id = k_auth_login($ktai_address, $password)) {
                 // 認証エラー
                 $lc->fail_login();
                 $p = array('msg' => '0', 'kad' => t_encrypt($ktai_address), 'login_params' => $requests['login_params']);
                 openpne_redirect('ktai', 'page_o_login', $p);
             }
         } else {
-            if (!$auth->login(false, true, true)) {
+            if (!$c_member_id = k_auth_login($ktai_address, $password)) {
                 $p = array('msg' => '0', 'kad' => t_encrypt($ktai_address), 'login_params' => $requests['login_params']);
                 openpne_redirect('ktai', 'page_o_login', $p);
             }
         }
-        if (!($c_member_id = $auth->getUsername(LOGIN_NAME_TYPE))) {
-            db_member_create_member($_POST['username']);
-        }
-        
+
+        @session_name('OpenPNEktai');
+        @session_start();
+        @session_regenerate_id();
+
         $_SESSION['c_member_id'] = $c_member_id;
+        $_SESSION['ktai_address'] = t_encrypt($requests['ktai_address']);
+        $_SESSION['timestamp'] = $_SESSION['idle'] = time();
+        if (OPENPNE_SESSION_CHECK_URL) {
+            $_SESSION['OPENPNE_URL'] = OPENPNE_URL;
+        }
+
         $p = array();
         if ($requests['login_params']) {
             parse_str($requests['login_params'], $p);

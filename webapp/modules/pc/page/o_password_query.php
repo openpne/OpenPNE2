@@ -13,10 +13,6 @@ class pc_page_o_password_query extends OpenPNE_Action
 
     function execute($requests)
     {
-        if (LOGIN_NAME_TYPE == 1) {
-            exit;
-        }
-        
         //---- inc_ テンプレート用 変数 ----//
         $this->set('inc_page_header', fetch_inc_page_header('public'));
 

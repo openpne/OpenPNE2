@@ -13,9 +13,6 @@ class ktai_page_o_password_query extends OpenPNE_Action
 
     function execute($requests)
     {
-        if (LOGIN_NAME_TYPE == 1) {
-            exit;
-        }
         $this->set('password_query_list', p_common_c_password_query4null());
         return 'success';
     }
