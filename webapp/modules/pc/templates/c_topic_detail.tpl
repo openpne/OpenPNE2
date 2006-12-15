@@ -6,8 +6,6 @@
 
 <img src="./skin/dummy.gif" class="v_spacer_l">
 
-({ext_include file="inc_alert_box.tpl"})({* エラーメッセージコンテナ *})
-
 ({if !$err_msg})
 
 <!-- ******************************** -->
