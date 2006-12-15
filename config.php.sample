@@ -419,4 +419,33 @@ define('OPENPNE_MAIL_QUEUE', false);
 // メールキューで一度に送信するメールの数
 define('SEND_MAIL_QUEUE_NUM', 10);
 
+// ログインネームに用いるパラメータの指定
+// メールアドレス      ：0
+// 指定したAuthの設定 :1
+define('LOGIN_NAME_TYPE', 0);
+if (LOGIN_NAME_TYPE == 1) {
+    define('IS_USER_INVITE', false);
+    define('IS_CLOSED_SNS', true);
+}
+
+// LOGIN_NAME_TYPEが1の場合のauthオプション
+$GLOBALS['_OPENPNE_AUTH_CONFIG'] = 
+array(
+'storage'=>"DB",
+'options'=>array(
+    'dsn'         => array(
+        'phptype'  => 'mysql',
+        'username' => 'root',
+        'password' => '',
+        'hostspec' => 'localhost',
+        'database' => '',
+        'new_link' => true,
+        ),
+    'table'       => 'auth',
+    'usernamecol' => 'username',
+    'passwordcol' => 'password',
+    'cryptType'   => 'none',
+    ),
+);
+
 ?>
