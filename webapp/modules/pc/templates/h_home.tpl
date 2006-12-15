@@ -922,7 +922,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <table border="0" cellspacing="0" cellpadding="0" style="width:424px;">
 <tr>
 ({foreach from=$calendar item=item name=calendar})
-<td style="width:({if $smarty.foreach.calendar.last})64({else})60({/if})px;({if !$smarty.foreach.calendar.last})border-right:none;({/if})" align="left" valign="top" class="border_01 bg_0({if $item.now})9({else})2({/if})({if $item.dayofweek == "日"}) c_02({elseif $item.dayofweek == "土"}) c_03({/if}) padding_s">
+<td style="width:({if $smarty.foreach.calendar.last})64({else})60({/if})px;({if !$smarty.foreach.calendar.last})border-right:none;({/if})" align="left" valign="top" class="border_01 bg_0({if $item.now})9({else})2({/if})({if $item.dayofweek == "日" || $item.holiday}) c_02({elseif $item.dayofweek == "土"}) c_03({/if}) padding_s">
 ({if $item.now})<span class="b_b">({/if})
 
 ({if $smarty.foreach.calendar.first || $item.day == 1})
@@ -934,6 +934,11 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({if $item.now})</span>({/if})
 
 <div>
+({* 祝日 *})
+({foreach from=$item.holiday item=item_holiday})
+({$item_holiday})<br>
+({/foreach})
+
 ({* 誕生日 *})
 ({foreach from=$item.birth item=item_birth})
 <img src="({t_img_url_skin filename=icon_birthday})" class="icon"><a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item_birth.c_member_id})">({$item_birth.nickname})さん</a><br>

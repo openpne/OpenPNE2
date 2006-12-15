@@ -139,7 +139,7 @@
 <tr>
 <td class="bg_05 border_01" style="width:131px;border-top:none;border-right:none;" align="center" valign="top"><img src="./skin/dummy.gif" style="width:130px;height:10px;" class="dummy"></td>
 ({foreach from=$calendar item=item name=calendar})
-<td class="({if $item.now})bg_09({else})bg_05({/if}) padding_ss border_01({if $item.dayofweek == "日"}) c_02({elseif $item.dayofweek == "土"}) c_03({else})({/if})" style="width:81px;border-top:none;({if !$smarty.foreach.calendar.last}) border-right:none;({/if})" align="center">
+<td class="({if $item.now})bg_09({else})bg_05({/if}) padding_ss border_01({if $item.dayofweek == "日" || $item.holiday}) c_02({elseif $item.dayofweek == "土"}) c_03({else})({/if})" style="width:81px;border-top:none;({if !$smarty.foreach.calendar.last}) border-right:none;({/if})" align="center">
 
 ({if $item.now})<span class="b_b">({/if})
 
@@ -204,7 +204,14 @@
 
 </td>
 ({foreach from=$calendar item=item name=calendar})
-<td class="({if $item.now})bg_09({else})bg_02({/if}) border_01({if $item.dayofweek == "日"}) c_02({elseif $item.dayofweek == "土"}) c_03({else})({/if})" style="width:81px;border-top:none;({if !$smarty.foreach.calendar.last}) border-right:none;({/if}) border-bottom:none;" align="left" valign="top">
+<td class="({if $item.now})bg_09({else})bg_02({/if}) border_01({if $item.dayofweek == "日" || $item.holiday}) c_02({elseif $item.dayofweek == "土"}) c_03({else})({/if})" style="width:81px;border-top:none;({if !$smarty.foreach.calendar.last}) border-right:none;({/if}) border-bottom:none;" align="left" valign="top">
+
+({* 祝日 *})
+<div class="padding_s">
+({foreach from=$item.holiday item=item_holiday})
+({$item_holiday})<br>
+({/foreach})
+</div>
 
 ({* スケジュール(時間有) *})
 ({foreach from=$item.schedule item=item_schedule name=schedule})
@@ -256,7 +263,7 @@
 <tr>
 
 ({foreach from=$calendar item=item name=calendar})
-<td class="({if $item.now})bg_09({else})bg_02({/if}) border_01({if $item.dayofweek == "日"}) c_02({elseif $item.dayofweek == "土"}) c_03({else})({/if})" style="width:81px;border-top:none;({if !$smarty.foreach.calendar.last}) border-right:none;({/if})" align="left" valign="top">
+<td class="({if $item.now})bg_09({else})bg_02({/if}) border_01({if $item.dayofweek == "日" || $item.holiday}) c_02({elseif $item.dayofweek == "土"}) c_03({else})({/if})" style="width:81px;border-top:none;({if !$smarty.foreach.calendar.last}) border-right:none;({/if})" align="left" valign="top">
 
 ({if $cmd == 'h'})
 ({* 誕生日 *})

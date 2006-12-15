@@ -65,9 +65,11 @@
 </tr>
 ({foreach from=$calendar item=week})
 <tr>
-({foreach from=$week item=item})
+({foreach from=$week item=item name=weekloop})
 ({if $item.now})
 <td style="height:65px;padding:2px;" align="left" valign="top" class="bg_09">
+({elseif $item.holiday || $smarty.foreach.weekloop.first})
+<td style="height:65px;padding:2px;" align="left" valign="top" class="bg_14">
 ({else})
 <td style="height:65px;padding:2px;" align="left" valign="top" class="bg_02">
 ({/if})
@@ -78,6 +80,11 @@
 ({$item.day})
 ({/if})<br>
 <a href="({t_url m=biz a=page_fh_biz_schedule_add})&amp;begin_date=({$year})({$month|string_format:'%02d'})({$item.day|string_format:'%02d'})"><img src="./skin/icon_schedule.gif" class="icon"></a><br>
+
+({* 祝日 *})
+({foreach from=$item.holiday item=item_holiday})
+<span class=" c_02">({$item_holiday})</span><br>
+({/foreach})
 
 ({* スケジュール *})
 ({foreach from=$item.schedule item=item_schedule name=schedule})

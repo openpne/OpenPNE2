@@ -70,6 +70,7 @@
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('limit_domain')})" title="ドメイン制限: ドメイン制限追加、編集、削除">ドメイン制限</a></li>
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_api')})" title="OpenPNE API設定: API通信を許可するIPアドレスの設定">OpenPNE API設定</a></li>
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_cmd')})" title="CMD設定: CMDを許可するページの設定">CMD設定</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_holiday')})" title="祝日設定: カレンダーに表示する休日の設定">祝日設定</a></li>
 </ul>
 
 ({if $ADMIN_INIT_CONFIG})

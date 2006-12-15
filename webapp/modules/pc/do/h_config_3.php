@@ -30,6 +30,7 @@ class pc_do_h_config_3 extends OpenPNE_Action
         $c_password_query_answer = $requests['c_password_query_answer'];
         $public_flag_diary = $requests['public_flag_diary'];
         $is_shinobiashi = $requests['is_shinobiashi'];
+        $schedule_start_day = $requests['schedule_start_day'];
         // ----------
 
         include_once 'OpenPNE/RSS.php';
@@ -57,7 +58,8 @@ class pc_do_h_config_3 extends OpenPNE_Action
             $c_password_query_id,
             $c_password_query_answer,
             $public_flag_diary,
-            $is_shinobiashi
+            $is_shinobiashi,
+            $schedule_start_day
         );
 
         do_h_config_3_insert_c_access_block($u, $c_member_id_block);

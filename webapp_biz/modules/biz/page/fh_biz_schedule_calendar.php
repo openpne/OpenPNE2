@@ -76,6 +76,7 @@ class biz_page_fh_biz_schedule_calendar extends OpenPNE_Action
                 'event' => $event_list[$day],
                 'schedule' => $schedule,
                 'todo' => $todo_list[$day],
+                'holiday' => db_c_holiday_list4date($month, $day),
               );
               $item['day'] = $day;
               if ($is_curr && $item['day'] == $curr_day) {

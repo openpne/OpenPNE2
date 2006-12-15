@@ -445,7 +445,8 @@ function do_h_config_3(
                 $c_password_query_id,
                 $c_password_query_answer,
                 $public_flag_diary,
-                $is_shinobiashi)
+                $is_shinobiashi,
+                $schedule_start_day)
 {
     return db_member_h_config_3(
                 $c_member_id,
@@ -456,7 +457,8 @@ function do_h_config_3(
                 $c_password_query_id,
                 $c_password_query_answer,
                 $public_flag_diary,
-                $is_shinobiashi);
+                $is_shinobiashi,
+                $schedule_start_day);
 }
 
 function db_ktai_update_easy_access_id($c_member_id, $easy_access_id)

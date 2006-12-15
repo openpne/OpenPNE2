@@ -47,6 +47,7 @@
 .bg_11 { background-color: #({$INC_HEADER_color_config.bg_11}) ; }
 .bg_12 { background-color: #({$INC_HEADER_color_config.bg_12}) ; }
 .bg_13 { background-color: #({$INC_HEADER_color_config.bg_13}) ; }
+.bg_14 { background-color: #({$INC_HEADER_color_config.bg_14}) ; }
 
 body { background-color: #({$INC_HEADER_color_config.bg_12}) ; }
 .container { background-color: #({$INC_HEADER_color_config.bg_13}) ; }

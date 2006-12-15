@@ -1,0 +1,1 @@
+ALTER TABLE `c_member` ADD `schedule_start_day` INT NOT NULL DEFAULT '0';

@@ -743,4 +743,13 @@ function db_get_permit_list()
     );
 }
 
+/**
+ * カレンダーの祝日を取得する
+ */
+function db_c_holiday_list4date($m, $d)
+{
+    $sql = 'SELECT name FROM c_holiday WHERE month = ? AND day = ?';
+    $params = array(intval($m), intval($d));
+    return db_get_col($sql, $params);
+}
 ?>

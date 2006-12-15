@@ -378,6 +378,36 @@ BlogのURL
 </tr>
 ({/if})
 ({*********})
+({if $smarty.const.DISPLAY_SCHEDULE_HOME})
+<tr>
+<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td class="bg_05" align="left" valign="middle">
+
+<div class="padding_s">
+
+週間カレンダー
+
+</div>
+
+</td>
+<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td class="bg_02" align="left" valign="middle">
+<div class="padding_s">
+
+<input type="radio" name="schedule_start_day" value="0" ({if $c_member.schedule_start_day == 0}) checked="checked"({/if})>日曜始まり
+<input type="radio" name="schedule_start_day" value="1" ({if $c_member.schedule_start_day == 1}) checked="checked"({/if})>月曜始まり
+<input type="radio" name="schedule_start_day" value="2" ({if $c_member.schedule_start_day == 2}) checked="checked"({/if})>本日始まり
+
+</div>
+</td>
+<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+</tr>
+({*********})
+<tr>
+<td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+</tr>
+({/if})
+({*********})
 <tr>
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 <td class="bg_05" align="left" valign="middle">

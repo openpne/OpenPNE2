@@ -98,7 +98,13 @@ class pc_page_h_home extends OpenPNE_Action
 
         /// 週間カレンダー
         if (DISPLAY_SCHEDULE_HOME) {
-            $this->set('calendar', $this->get_calendar($u, $requests['w']));
+			//開始曜日の設定
+			if ($c_member['schedule_start_day'] == 2) {
+                $start_day = date("w");
+            } else {
+                $start_day = $c_member['schedule_start_day'];
+            }
+            $this->set('calendar', $this->get_calendar($u, $requests['w'], $start_day));
         }
 
         // inc_entry_point
@@ -127,7 +133,7 @@ class pc_page_h_home extends OpenPNE_Action
         return 'success';
     }
 
-    function get_calendar($u, $week)
+    function get_calendar($u, $week, $start_day)
     {
         include_once 'Calendar/Week.php';
         $w = intval($week);
@@ -136,11 +142,13 @@ class pc_page_h_home extends OpenPNE_Action
         }
         $this->set('w', $w);
         $time = strtotime($w . ' week');
-        $Week = new Calendar_Week(date('Y', $time), date('m', $time), date('d', $time), 0);
+        $Week = new Calendar_Week(date('Y', $time), date('m', $time), date('d', $time), $start_day);
         $Week->build();
         $calendar = array();
         $dayofweek = array('日','月','火','水','木','金','土');
-        $i = 0;
+        $i = $start_day;
+        $dayofweek = array_merge($dayofweek,
+            array_slice($dayofweek, 0, ($start_day + 1)));
         while ($Day = $Week->fetch()) {
             $y = $Day->thisYear();
             $m = $Day->thisMonth();
@@ -155,6 +163,7 @@ class pc_page_h_home extends OpenPNE_Action
                 'birth' => $birth,
                 'event' => p_h_home_event4c_member_id($y, $m, $d, $u),
                 'schedule' => p_h_calendar_c_schedule_list4date($y, $m, $d, $u),
+                'holiday' => db_c_holiday_list4date($m, $d),
             );
             if ($w == 0 && $d == date('d')) {
                 $item['now'] = true;

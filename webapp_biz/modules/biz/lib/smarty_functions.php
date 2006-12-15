@@ -61,6 +61,12 @@ function biz_getScheduleWeek($u, $member_id, $w, $cmd, $head = true, $value = tr
 
     $inc_smarty->assign("cmd", $cmd_head);  //操作の対象ページ
     $inc_smarty->assign("target_id", $member_id);  //予定登録者
+    $schedule_start_day = biz_get_schedule_start_day($member_id);
+	if ($schedule_start_day == 2) {
+        $start_day = date("w");
+    } else {
+        $start_day = intval($schedule_start_day);
+    }
 
     require_once 'Calendar/Week.php';
     $w = intval($w);
@@ -69,12 +75,13 @@ function biz_getScheduleWeek($u, $member_id, $w, $cmd, $head = true, $value = tr
     }
     $inc_smarty->assign('w', $w);
     $time = strtotime($w . " week");
-    $Week = new Calendar_Week(date('Y', $time), date('m', $time), date('d', $time), 0);
+    $Week = new Calendar_Week(date('Y', $time), date('m', $time), date('d', $time), $start_day);
     $Week->build();
     $calendar = array();
     $dayofweek = array('日','月','火','水','木','金','土');
-    $i = 0;
-
+    $i = $start_day;
+    $dayofweek = array_merge($dayofweek,
+        array_slice($dayofweek, 0, ($start_day + 1)));
     $schedule = array();
 
     while ($Day = $Week->fetch()) {
@@ -107,6 +114,7 @@ function biz_getScheduleWeek($u, $member_id, $w, $cmd, $head = true, $value = tr
                 'event' => p_h_home_event4c_member_id($y, $m, $d, $member_id),
                 'schedule' => $schedule,
                 'todo' => biz_schedule_todo4c_member_id($u, $member_id, $y, $m, $d),
+                'holiday' => db_c_holiday_list4date($m, $d),
             );
 
         if ($w == 0 && $d == date('d')) {
@@ -122,7 +130,7 @@ function biz_getScheduleWeek($u, $member_id, $w, $cmd, $head = true, $value = tr
         $j = 0;  //曜日ポインタを示す
 
         $time = strtotime($w+$i . " week");
-        $Week = new Calendar_Week(date('Y', $time), date('m', $time), date('d', $time), 0);
+        $Week = new Calendar_Week(date('Y', $time), date('m', $time), date('d', $time));
         $Week->build();
 
         while ($Day = $Week->fetch()) {

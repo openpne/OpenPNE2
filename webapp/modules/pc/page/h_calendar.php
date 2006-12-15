@@ -59,6 +59,7 @@ class pc_page_h_calendar extends OpenPNE_Action
                     'birth' => $birth_list[$day],
                     'event' => $event_list[$day],
                     'schedule' => p_h_calendar_c_schedule_list4date($year, $month, $day, $u),
+                    'holiday' => db_c_holiday_list4date($month, $day),
                 );
                 $item['day'] = $day;
                 if ($is_curr && $item['day'] == $curr_day) {

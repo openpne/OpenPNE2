@@ -1940,5 +1940,52 @@ function db_admin_get_c_cmd_one($c_cmd_id)
     return db_get_row($sql, $params);
 }
 
+/**
+ * 祝日のリストを取得
+ */
+function db_admin_c_holiday_list()
+{
+    $sql = 'SELECT * FROM c_holiday ORDER BY month';
+    $holiday_list = db_get_all($sql);
+
+    return $holiday_list;
+}
+
+/**
+ * 休日を追加
+ */
+function db_admin_insert_c_holiday($name, $month, $day)
+{
+    $data = array(
+        'name' => strval($name),
+        'month' => intval($month),
+        'day' => intval($day),
+    );
+    return db_insert('c_holiday', $data);
+}
+
+/**
+ * 休日を編集
+ */
+function db_admin_update_c_holiday($c_holiday_id, $name, $month, $day)
+{
+    $data = array(
+        'name' => strval($name),
+        'month' => intval($month),
+        'day' => intval($day),
+    );
+    $where = array('c_holiday_id' => intval($c_holiday_id));
+    return db_update('c_holiday', $data, $where);
+}
+
+/**
+ * 休日を削除
+ */
+function db_admin_delete_c_holiday($c_holiday_id)
+{
+    $sql = "DELETE FROM c_holiday WHERE c_holiday_id = ?";
+    $params = array(intval($c_holiday_id));
+    return db_query($sql, $params);
+}
 
 ?>
