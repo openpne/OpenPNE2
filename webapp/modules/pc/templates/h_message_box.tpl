@@ -402,7 +402,7 @@ function clearAll() {
 <div class="padding_s">
 ({capture name="ru_pager"})
 ({if $ru_data.is_ru_prev})
- <a href="({t_url m=pc a=page_h_message_box})&amp;ru_page=({$ru_data.ru_page-1})&amp;box=inbox&amp;keyword=({$url_keyword})&amp;target_c_member_id=({$target_c_member_id})&amp;year=({$date_val.year})&amp;month=({$date_val.month})&amp;day=({$date_val.day})">前を表示</a>
+ <a href="({t_url m=pc a=page_h_message_box})&amp;ru_page=({$ru_data.ru_page-1})&amp;box=inbox&amp;keyword=({$url_keyword})&amp;target_c_member_id=({$target_c_member_id})&amp;year=({$requests.year})&amp;month=({$requests.month})&amp;day=({$requests.day})">前を表示</a>
 ({/if})
 ({$total_num})件中
 ({$ru_data.ru_page*$page_size-$page_size+1})件～
@@ -413,7 +413,7 @@ function clearAll() {
 ({/if})
 件を表示
 ({if $ru_data.is_ru_next})
- <a href="({t_url m=pc a=page_h_message_box})&amp;ru_page=({$ru_data.ru_page+1})&amp;box=inbox&amp;keyword=({$url_keyword})&amp;target_c_member_id=({$target_c_member_id})&amp;year=({$date_val.year})&amp;month=({$date_val.month})&amp;day=({$date_val.day})">次を表示</a>
+ <a href="({t_url m=pc a=page_h_message_box})&amp;ru_page=({$ru_data.ru_page+1})&amp;box=inbox&amp;keyword=({$url_keyword})&amp;target_c_member_id=({$target_c_member_id})&amp;year=({$requests.year})&amp;month=({$requests.month})&amp;day=({$requests.day})">次を表示</a>
 ({/if})
 ({/capture})
 ({$smarty.capture.ru_pager|smarty:nodefaults})
@@ -575,7 +575,7 @@ function clearAll() {
 <div class="padding_s">
 ({capture name="s_pager"})
 ({if $s_data.is_s_prev})
- <a href="({t_url m=pc a=page_h_message_box})&amp;s_page=({$s_data.s_page-1})&amp;box=outbox&amp;keyword=({$url_keyword})&amp;target_c_member_id=({$target_c_member_id})&amp;year=({$date_val.year})&amp;month=({$date_val.month})&amp;day=({$date_val.day})">前を表示</a>
+ <a href="({t_url m=pc a=page_h_message_box})&amp;s_page=({$s_data.s_page-1})&amp;box=outbox&amp;keyword=({$url_keyword})&amp;target_c_member_id=({$target_c_member_id})&amp;year=({$requests.year})&amp;month=({$requests.month})&amp;day=({$requests.day})">前を表示</a>
 ({/if})
 ({$total_num})件中
 ({$s_data.s_page*$page_size-$page_size+1})件～
@@ -586,7 +586,7 @@ function clearAll() {
 ({/if})
 件を表示
 ({if $s_data.is_s_next})
- <a href="({t_url m=pc a=page_h_message_box})&amp;s_page=({$s_data.s_page+1})&amp;box=outbox&amp;keyword=({$url_keyword})&amp;target_c_member_id=({$target_c_member_id})&amp;year=({$date_val.year})&amp;month=({$date_val.month})&amp;day=({$date_val.day})">次を表示</a>
+ <a href="({t_url m=pc a=page_h_message_box})&amp;s_page=({$s_data.s_page+1})&amp;box=outbox&amp;keyword=({$url_keyword})&amp;target_c_member_id=({$target_c_member_id})&amp;year=({$requests.year})&amp;month=({$requests.month})&amp;day=({$requests.day})">次を表示</a>
 ({/if})
 ({/capture})
 ({$smarty.capture.s_pager|smarty:nodefaults})
