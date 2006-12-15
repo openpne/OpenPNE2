@@ -1,5 +1,27 @@
 ({ext_include file="inc_header.tpl"})
 ({ext_include file="inc_layoutcolumn_top_175px.tpl"})
+<script type="text/javascript">
+<!--
+function checkAll() {
+    var sm = document.h_message_box_delete_message;
+    var len = sm.elements.length;
+    for (var i = 0; i < len; i++) {
+        sm.elements[i].checked = true;
+    }
+    return false;
+}
+
+function clearAll() {
+    var sm = document.h_message_box_delete_message;
+    var len = sm.elements.length;
+    for (var i = 0; i < len; i++) {
+        sm.elements[i].checked = false;
+    }
+    return false;
+}
+
+//-->
+</script>
 ({********************************})
 ({**ここから：メインコンテンツ（左）**})
 ({********************************})
@@ -426,7 +448,9 @@
 </tr>
 ({*********})
 
-({t_form m=pc a=do_h_message_box_delete_message})
+<form action="./" method="post" name="h_message_box_delete_message">
+<input type="hidden" name="m" value="pc">
+<input type="hidden" name="a" value="do_h_message_box_delete_message">
 <input type="hidden" name="sessid" value="({$PHPSESSID})">
 
 ({foreach from=$c_message_ru_list item=c_message_ru})
@@ -470,11 +494,13 @@
 <tr>
 <td style="width:100%;" class="bg_05" align="left">
 
+<br>
+&nbsp;<a href="#" onClick="return checkAll();" onKeyPress="return checkAll();">全てをチェック</a> / <a href="#" onClick="return clearAll();" onKeyPress="return clearAll();">全てのチェックをはずす</a>
+
 <div class="padding_s">
 <input type="hidden" name="box" value="({$box})">
 <input type="submit" class="submit" value="削 除">
 </form>
-
 </div>
 
 </td>
@@ -596,7 +622,9 @@
 </tr>
 ({*********})
 
-({t_form m=pc a=do_h_message_box_delete_message})
+<form action="./" method="post" name="h_message_box_delete_message">
+<input type="hidden" name="m" value="pc">
+<input type="hidden" name="a" value="do_h_message_box_delete_message">
 <input type="hidden" name="sessid" value="({$PHPSESSID})">
 
 ({foreach from=$c_message_s_list item=c_message_s})
@@ -639,6 +667,9 @@
 ({*********})
 <tr>
 <td style="width:100%;" class="bg_05" align="left">
+
+<br>
+&nbsp;<a href="#" onClick="return checkAll();" onKeyPress="return checkAll();">全てをチェック</a> / <a href="#" onClick="return clearAll();" onKeyPress="return clearAll();">全てのチェックをはずす</a>
 
 <div class="padding_s">
 <input type="hidden" name="box" value="({$box})">
@@ -726,7 +757,9 @@
 </tr>
 ({*********})
 
-({t_form m=pc a=do_h_message_box_delete_message})
+<form action="./" method="post" name="h_message_box_delete_message">
+<input type="hidden" name="m" value="pc">
+<input type="hidden" name="a" value="do_h_message_box_delete_message">
 <input type="hidden" name="sessid" value="({$PHPSESSID})">
 
 ({foreach from=$c_message_save_list item=c_message_save})
@@ -768,7 +801,10 @@
 <table style="width:504px;" border="0" cellspacing="0" cellpadding="0" style="width:auto;margin:0px auto;" class="border_01">
 ({*********})
 <tr>
+
 <td style="width:100%;" class="bg_05" align="left">
+<br>
+&nbsp;<a href="#" onClick="return checkAll();" onKeyPress="return checkAll();">全てをチェック</a> / <a href="#" onClick="return clearAll();" onKeyPress="return clearAll();">全てのチェックをはずす</a>
 
 <div class="padding_s">
 <input type="hidden" name="box" value="savebox">
@@ -863,7 +899,9 @@
 </tr>
 ({*********})
 
-({t_form m=pc a=do_h_message_box_delete_message})
+<form action="./" method="post" name="h_message_box_delete_message">
+<input type="hidden" name="m" value="pc">
+<input type="hidden" name="a" value="do_h_message_box_delete_message">
 <input type="hidden" name="sessid" value="({$PHPSESSID})">
 
 ({foreach from=$c_message_trash_list item=c_message_trash})
@@ -918,6 +956,9 @@
 ({*********})
 <tr>
 <td style="width:100%;" class="bg_05" align="left">
+
+<br>
+&nbsp;<a href="#" onClick="return checkAll();" onKeyPress="return checkAll();">全てをチェック</a> / <a href="#" onClick="return clearAll();" onKeyPress="return clearAll();">全てのチェックをはずす</a>
 
 <div class="padding_s">
 <input type="hidden" name="box" value="trash">
