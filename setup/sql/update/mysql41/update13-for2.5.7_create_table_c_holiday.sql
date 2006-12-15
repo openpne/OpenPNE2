@@ -5,3 +5,6 @@ CREATE TABLE `c_holiday` (
   `day` int(11) NOT NULL,
   PRIMARY KEY  (`c_holiday_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+alter table c_sns_config ADD COLUMN bg_14 text NOT NULL after bg_13;
+UPDATE c_sns_config SET bg_14 = 'FFFFFF';

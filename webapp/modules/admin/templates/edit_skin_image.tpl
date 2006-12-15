@@ -507,14 +507,17 @@
 <td class="skin_image">
 ({assign var=skinname value=no_image})
 <img src="({t_img_url_skin filename=$skinname w=180 h=180})">
+({if $skin_list[$skinname] != "skin_$skinname.gif"})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
 </td>
 <td class="skin_image">
 ({assign var=skinname value=no_logo})
 <img src="({t_img_url_skin filename=$skinname w=180 h=180})">
+({if $skin_list[$skinname] != "skin_$skinname.gif"})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
 </td>
 <td class="skin_image">
 ({assign var=skinname value=no_logo_small})
 <img src="({t_img_url_skin filename=$skinname w=76 h=76})">
+({if $skin_list[$skinname] != "skin_$skinname.gif"})<br><br>[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})
 </td>
 </tr>
 <tr>

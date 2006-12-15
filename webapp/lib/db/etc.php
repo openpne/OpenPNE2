@@ -660,6 +660,27 @@ function db_delete_c_skin_filename($skinname)
     }
 }
 
+/**
+ * デフォルト画像をマスター画像からコピー(デフォルトに戻すの一環)
+ */
+function db_master_copy_c_skin_filename($skinname)
+{
+
+    $data = array(
+        'skinname' => strval($skinname),
+        'filename' => 'skin_'.strval($skinname).'.gif',
+    );
+    db_insert('c_skin_filename', $data);
+
+    $sql = "INSERT INTO c_image (SELECT '', ?, bin, ?, type FROM c_image WHERE filename = ?)";
+    $params = array(
+        'skin_'.strval($skinname).'.gif',
+        db_now(),
+        'skin_'.strval($skinname).'_master.gif',
+    );
+    db_query($sql, $params);
+}
+
 //---
 
 /**
