@@ -7,7 +7,7 @@
 /**
  * コミュニティに参加
  */
-class pc_db_commu_join_c_commu extends OpenPNE_Action
+class pc_do_inc_join_c_commu extends OpenPNE_Action
 {
     function execute($requests)
     {
