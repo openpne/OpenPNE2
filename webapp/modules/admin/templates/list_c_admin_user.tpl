@@ -1,17 +1,21 @@
 ({$inc_header|smarty:nodefaults})
+({ext_include file="inc_subnavi_adminAdminConfig.tpl"})
+<div class="tree"><a href="?m=({$module_name})">管理画面TOP</a>&nbsp;＞&nbsp;セキュリティ管理：アカウント管理</div>
+</div>
 
+({*ここまで:navi*})
+
+({if $msg})<p class="actionMsg">({$msg})</p>({/if})
 <h2>アカウント管理</h2>
-
-<p>管理ページ用のアカウントを設定することができます。</p>
-
-({if $msg})<p class="caution">({$msg})</p>({/if})
+<div class="contents">
+<p class="info">管理ページ用のアカウントを設定します。</p>
+<p class="add"><strong class="item"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('insert_c_admin_user')})">アカウントを追加する</a></strong></p>
 
 <form action="./" method="post" name="formSendMessages">
 <input type="hidden" name="m" value="({$module_name})">
 <input type="hidden" name="a" value="page_({$hash_tbl->hash('send_messages')})">
 <input type="hidden" name="sessid" value="({$PHPSESSID})">
-<table style="font-size:small">
-
+<table class="basicType2">
 ({capture name="table_header"})
 <tr>
 <th>ID</th>
@@ -20,17 +24,13 @@
 <th>操作</th>
 </tr>
 ({/capture})
-
 <thead>
 ({$smarty.capture.table_header|smarty:nodefaults})
 </thead>
-<tfoot>
-({$smarty.capture.table_header|smarty:nodefaults})
-</tfoot>
 <tbody>
 ({foreach from=$user_list item=item})
-<tr>
-<td class="idnumber">({$item.c_admin_user_id})</td>
+<tr id="userID({$item.c_admin_user_id})">
+<td class="cell01">({$item.c_admin_user_id})</td>
 <td>({$item.username})</td>
 <td>
 ({if $item.auth_type=='all'})
@@ -45,9 +45,6 @@
 </tr>
 ({/foreach})
 </tbody>
-
 </table>
-
-<p><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('insert_c_admin_user')})">アカウント追加</a></p>
-
+</div>
 ({$inc_footer|smarty:nodefaults})

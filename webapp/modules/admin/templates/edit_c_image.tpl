@@ -1,61 +1,60 @@
 ({$inc_header|smarty:nodefaults})
+({ext_include file="inc_subnavi_adminImageKakikomi.tpl"})
+<div class="tree"><a href="?m=({$module_name})">管理画面TOP</a>&nbsp;＞&nbsp;画像・書き込み管理：画像アップロード・削除</div>
+</div>
 
-<h2>画像管理</h2>
+({*ここまで:navi*})
 
-({if $msg})
-<p class="caution">({$msg})</p>
-({/if})
+({if $msg})<p class="actionMsg">({$msg})</p>({/if})
+<h2 id="ttl01">画像のアップロード</h2>
 
-<h3>画像一覧</h3>
+<div class="contents">
 
-<p><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_image')})">画像リストへ</a></p>
-
-<h3>画像をデータベースに登録</h3>
-
-<p class="caution">※同じファイル名で既に登録されている画像がある場合、上書きされます。</p>
-
-<form action="./" method="post" enctype="multipart/form-data">
-<input type="hidden" name="m" value="({$module_name})">
-<input type="hidden" name="a" value="do_({$hash_tbl->hash('insert_c_image','do')})">
-<input type="hidden" name="sessid" value="({$PHPSESSID})">
+<p class="caution" id="c01">※同じファイル名で既に登録されている画像がある場合、上書きされます。</p>
+<form action="./" method="post" enctype="multipart/form-data" />
+<input type="hidden" name="m" value="({$module_name})" />
+<input type="hidden" name="a" value="do_({$hash_tbl->hash('insert_c_image','do')})" />
+<input type="hidden" name="sessid" value="({$PHPSESSID})" />
 <dl>
-<dt>ファイル名：</dd>
-<dd><input type="text" name="filename" value="" size="30"></dd>
-<dt>画像：</dt>
-<dd><input type="file" name="upfile"></dd>
-<dd><input type="submit" class="submit" value="登録"></dd>
+<dt class="filename"><strong class="item">ファイル名</strong></dt>
+<dd class="filename"><input type="text" name="filename" value="" size="30" /></dd>
+<dt class="upfile"><strong class="item">画像</strong></dt>
+<dd class="upfile"><input type="file" name="upfile" /><span>（GIF・JPG・PNG形式）</span></dd>
 </dl>
+<p class="textBtn"><input type="submit" value="登録" /></p>
 </form>
 
-<h3>データベース内の画像を表示</h3>
+</div>({*/div class="contents"*})
+
+
+
+<h2 id="ttl02">画像の表示・削除</h2>
+
+<div class="contents">
 
 <form action="./" method="post">
-<input type="hidden" name="m" value="({$module_name})">
-<input type="hidden" name="a" value="page_({$hash_tbl->hash('edit_c_image')})">
+<input type="hidden" name="m" value="({$module_name})" />
+<input type="hidden" name="a" value="page_({$hash_tbl->hash('edit_c_image')})" />
 <dl>
-<dt>ファイル名：</dt>
-<dd><input type="text" name="filename" value="({$requests.filename})" size="30"></dd>
-<dd><input type="submit" class="submit" value="表示"></dd>
+<dt class="filename"><strong class="item">ファイル名</strong></dt>
+<dd class="filename"><input type="text" name="filename" value="({$requests.filename})" size="30" /></dd>
 </dl>
+<p class="textBtn"><input type="submit" value="表示" /></p>
 </form>
-
 ({if $requests.filename})
 ({if $is_image})
 <form action="./" method="post">
-<input type="hidden" name="m" value="({$module_name})">
-<input type="hidden" name="a" value="do_({$hash_tbl->hash('delete_c_image','do')})">
-<input type="hidden" name="sessid" value="({$PHPSESSID})">
-<input type="hidden" name="filename" value="({$requests.filename})">
-<dl>
-<dd><a href="({t_img_url filename=$requests.filename})" target="_blank">
-<img src="({t_img_url filename=$requests.filename w=120 h=120})"></a></dd>
-<dd><input type="submit" class="submit" value="この画像を削除する"></dd>
-</dl>
-</div>
+<input type="hidden" name="m" value="({$module_name})" />
+<input type="hidden" name="a" value="do_({$hash_tbl->hash('delete_c_image','do')})" />
+<input type="hidden" name="sessid" value="({$PHPSESSID})" />
+<input type="hidden" name="filename" value="({$requests.filename})" />
+<p class="delImg"><a href="({t_img_url filename=$requests.filename})" target="_blank"><img src="({t_img_url filename=$requests.filename w=120 h=120})"></a></p>
+<p class="textBtn"><input type="submit" value="この画像を削除する"></p>
 </form>
 ({else})
-<em>({$requests.filename})</em> は登録されていません。
+<p class="caution" id="c02"><strong>({$requests.filename})</strong>は登録されていません。</p>
+<p class="groupLing"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_image')})">アップロード画像リストへ</a></p>
 ({/if})
 ({/if})
-
+</div>
 ({$inc_footer|smarty:nodefaults})

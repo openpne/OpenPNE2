@@ -1,9 +1,13 @@
 ({$inc_header|smarty:nodefaults})
-<h2>CMD一覧</h2>
+({ext_include file="inc_subnavi_adminSNSConfig.tpl"})
+<div class="tree"><a href="?m=({$module_name})">管理画面TOP</a>&nbsp;＞&nbsp;CMD一覧</div>
+</div>
 
-({if $msg})
-<p class="caution">({$msg})</p>
-({/if})
+({*ここまで:navi*})
+
+({if $msg})<p class="actionMsg">({$msg})</p>({/if})
+<h2>CMD一覧</h2>
+<div class="contents">
 
 ({if $pager && $pager.total_num > 0})
 <!-- pager_begin -->
@@ -116,4 +120,5 @@
 <!-- pager_end -->
 ({/if})
 
+</div>
 ({$inc_footer|smarty:nodefaults})

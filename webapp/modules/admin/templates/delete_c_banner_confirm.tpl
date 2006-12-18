@@ -1,15 +1,22 @@
 ({$inc_header|smarty:nodefaults})
+({ext_include file="inc_subnavi_adminInfoKiyaku.tpl"})
+<div class="tree"><a href="?m=({$module_name})">管理画面TOP</a>&nbsp;＞&nbsp;デザインカスタマイズ：<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_banner')})">バナー設定</a>&nbsp;＞&nbsp;バナー削除</div>
+</div>
+
+({*ここまで:navi*})
 
 <h2>バナー削除</h2>
+<div class="contents">
 
-<p>本当に削除してもよろしいですか？</p>
+<p class="caution" id="c01"><strong>本当に削除してもよろしいですか？</strong></p>
 
 <form action="./" method="post">
-<input type="hidden" name="m" value="({$module_name})">
-<input type="hidden" name="a" value="do_({$hash_tbl->hash('delete_c_banner','do')})">
-<input type="hidden" name="sessid" value="({$PHPSESSID})">
-<input type="hidden" name="c_banner_id" value="({$requests.c_banner_id})">
-<input type="submit" class="submit" value="削除">
+<input type="hidden" name="m" value="({$module_name})" />
+<input type="hidden" name="a" value="do_({$hash_tbl->hash('delete_c_banner','do')})" />
+<input type="hidden" name="sessid" value="({$PHPSESSID})" />
+<input type="hidden" name="c_banner_id" value="({$requests.c_banner_id})" />
+<p class="textBtn"><input type="submit" value="削除する" /></p>
 </form>
-
+<p class="groupLing"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_banner')})">バナー設定へ戻る</a></p>
+</div>
 ({$inc_footer|smarty:nodefaults})

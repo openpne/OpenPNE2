@@ -1,13 +1,24 @@
 ({$inc_header|smarty:nodefaults})
+({ext_include file="inc_subnavi_adminStatisticalInformation.tpl"})
+<div class="tree"><a href="?m=({$module_name})">管理画面TOP</a>&nbsp;＞&nbsp;セキュリティ管理：ページ名ランダム生成</div>
+</div>
+
+({*ここまで:navi*})
+
 
 <h2>({$item_str})<br>
 ({if $month_flag})({$ymd|date_format:"%Y年%m月"})({else})({$ymd|date_format:"%Y年%m月%d日"})({/if})　
 にアクセスしたメンバー
 </h2>
-<br>
+<div class="contents">
+
+({if $msg})
+<p class="actionMsg">({$msg})</p>
+({/if})
+
 [({$page_name})]
 
-<br><br>
+<br>
 
 ({if $is_prev})
 <a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('access_analysis_member')})&ktai_flag=({$ktai_flag})&ymd=({$ymd})&month_flag=({$month_flag})&page_name=({$page_name})&orderby=({$orderby})&direc=-1&page=({$page})">＜前を表示</a> 
@@ -35,8 +46,6 @@
 </tr>
 
 </table>
-<br><br>
 
-
-
+</div>
 ({$inc_footer|smarty:nodefaults})

@@ -1,6 +1,12 @@
 ({$inc_header|smarty:nodefaults})
+({ext_include file="inc_subnavi_adminSNSConfig.tpl"})
+<div class="tree"><a href="?m=({$module_name})">管理画面TOP</a>&nbsp;＞&nbsp;祝日設定</div>
+</div>
+
+({*ここまで:navi*})
 
 <h2>祝日設定</h2>
+<div class="contents">
 
 <p>祝日名称と祝日を設定してください</p>
 ({if $msg})<p class="caution">({$msg})</p>({/if})
@@ -65,4 +71,5 @@
 </tr>
 </table>
 
+</div>
 ({$inc_footer|smarty:nodefaults})

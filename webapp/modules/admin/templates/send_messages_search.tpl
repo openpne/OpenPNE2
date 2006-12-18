@@ -1,13 +1,19 @@
 ({$inc_header|smarty:nodefaults})
+({ext_include file="inc_subnavi_adminImageKakikomi.tpl"})
+<div class="tree"><a href="?m=({$module_name})">管理画面TOP</a>&nbsp;＞&nbsp;セキュリティ管理：ページ名ランダム生成</div>
+</div>
+
+({*ここまで:navi*})
 
 <h2>メッセージ・メール送信</h2>
+<div class="contents">
 
 <p>条件に合致するユーザにメッセージもしくはEメールを送信します。タイトルと本文を入力してください。</p>
 <p class="caution">※このメッセージは、ID1番のユーザから送信されます。<br>
 ※送るユーザの数によっては大きな負荷がかかる可能性がありますのでご注意ください。</p>
 
 <div id="page_navi">
-◆送信先
+<h3>◆送信先</h3>
 <ul>
 ({if $cond_list.s_year||$cond_list.e_year})
 生年月日<br>
@@ -29,20 +35,19 @@
 <input type="hidden" name="({$key})" value="({$item})">
 ({/foreach})
 <dl>
-<dt>送信種別</dt>
+<dt class="label">送信種別</dt>
 <dd><select name="send_type">
 <option value="message"({if $send_type=='message'}) selected="selected"({/if})>メッセージ送信</option>
 <option value="mail"({if $send_type=='mail'}) selected="selected"({/if})>Eメール送信</option>
 </option>
 </select>
 </dd>
-<dt>タイトル</dt>
+<dt class="label">タイトル</dt>
 <dd><input type="text" name="subject" size="50" value="({$requests.subject})"></dd>
-<dt>本文</dt>
+<dt class="label">本文</dt>
 <dd><textarea name="body" cols="50" rows="10">({$requests.body})</textarea></dd>
-<dd><input type="submit" class="submit" value="メッセージ送信"></dd>
+<dd><p class="textBtn"><input type="submit" class="submit" value="メッセージ送信"></p></dd>
 </dl>
 </form>
 </div>
-
 ({$inc_footer|smarty:nodefaults})

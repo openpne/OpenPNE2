@@ -1,5 +1,17 @@
 ({$inc_header|smarty:nodefaults})
+({ext_include file="inc_subnavi_adminInfoKiyaku.tpl"})
+<div class="tree"><a href="?m=({$module_name})">管理画面TOP</a>&nbsp;＞&nbsp;お知らせ・規約設定：フリーページ削除確認画面</div>
+</div>
+
+({*ここまで:navi*})
+
 <h2>フリーページ削除確認画面</h2>
+<div class="contents">
+
+({if $msg})
+<p class="actionMsg">({$msg})</p>
+({/if})
+
 
 ---<br>
 ({$c_free_page.body|smarty:nodefaults|nl2br})<br>
@@ -12,9 +24,10 @@
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('delete_c_free_page','do')})">
 <input type="hidden" name="sessid" value="({$PHPSESSID})">
 <input type="hidden" name="c_free_page_id" value="({$c_free_page.c_free_page_id})">
-<input type="submit" class="submit" value=" は　い ">
+<p class="textBtn"><input type="submit" class="submit" value=" は　い "></p>
 </form>
 <br>
 
 <a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_free_page')})">戻る</a>
+</div>
 ({$inc_footer|smarty:nodefaults})

@@ -1,23 +1,10 @@
 ({$inc_header|smarty:nodefaults})
+({ext_include file="inc_subnavi_adminDesign.tpl"})
+<div class="tree"><a href="?m=({$module_name})">管理画面TOP</a>&nbsp;＞&nbsp;デザインカスタマイズ：配色設定・CSS追加</div>
+</div>
 
-<h2>配色・CSS変更</h2>
+({*ここまで:navi*})
 
-({if $msg})
-<p class="caution">({$msg})</p>
-({/if})
-
-<ul>
-<li><a href="#color">配色設定</a></li>
-<li><a href="#css">カスタムCSS追加</a></li>
-</ul>
-
-<ul>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_skin_image')})">スキン画像設定</a> (別ページ)</li>
-</ul>
-
-<hr>
-
-<h3><a name="color">配色設定</a></h3>
 
 <script type="text/javascript">
 <!--
@@ -62,9 +49,6 @@ bgcolors = new Array();
 ({foreach from=$bgcolor_scheme_names item=item})bgcolors['({$item})']="({$c_sns_config[$item]})";
 ({/foreach})
 
-function hoge() {
-}
-
 ({foreach from=$preset_bgcolors key=key item=item})
 function assign_color_({$key})() {
     ({foreach from=$item key=key_x item=item_x})
@@ -102,29 +86,27 @@ function assign_color_user_({$key})() {
 // -->
 </script>
 
-<p class="caution">※色は16進数表記で指定してください。</p>
-<p class="caution">※色のプレビューが変更されてもそのままでは色設定は反映されません。必ず確定してください。</p>
 
-<form action="./" method="post" name="color">
-<input type="hidden" name="m" value="({$module_name})">
-<input type="hidden" name="a" value="do_({$hash_tbl->hash('update_c_sns_config','do')})">
-<input type="hidden" name="sessid" value="({$PHPSESSID})">
+({if $msg})<p class="actionMsg">({$msg})</p>({/if})
+<h2>配色設定</h2>
+<div class="contents">
 
-<table border="0" cellspacing="0" cellpadding="0" class="bgcolor_scheme-config preset_bgcolors">
-<tr>
+<div class="sampleColors">
+<h3 class="item" id="subttl01">プリセットカラー</h3>
+<p class="caution" id="c01">※初期設定色の呼出し後必ず『色変更を確定する』を押し配色の設定を確定してください。</p>
 
-<th>&nbsp;</th>
-({foreach from=$preset_bgcolors name="PB" item=item})
+({foreach from=$preset_bgcolors key=key item=item})
+<dl class="box">
+	<dt>({$item.caption|default:"&nbsp;"})</dt>
+	<dd style="background:#({$item.symbol|default:"FFFFFF"});"><p class="textBtn"><input type="button" value="この設定を呼び出す" onclick="assign_color_({$key})()"></p></dd>
+</dl>
 ({/foreach})
-<th colspan="({$smarty.foreach.PB.total})">プリセットカラー</th>
 
-({if $user_save_bgcolors})
-({foreach from=$user_save_bgcolors name="USB" item=item})
-({/foreach})
-<th colspan="({$smarty.foreach.USB.total})">Save Colors</th>
-({/if})
+<br class="clear" />
 
-</tr>
+</div>
+
+({*
 <tr>
 
 <th>セット名</th>
@@ -149,36 +131,67 @@ function assign_color_user_({$key})() {
 ({/if})
 
 </tr>
-</table>
+*})
 
-<br>
+<form action="./" method="post" name="color">
+<input type="hidden" name="m" value="({$module_name})">
+<input type="hidden" name="a" value="do_({$hash_tbl->hash('update_c_sns_config','do')})">
+<input type="hidden" name="sessid" value="({$PHPSESSID})">
 
-<table border="0" cellspacing="0" cellpadding="0" class="bgcolor_scheme-config">
-<tr>
-<th>&nbsp;</th>
-<th>カラーコード</th>
-<th>変更後</th>
-<th>変更前</th>
-</tr>
+
+
+
+<div class="bg">
+<h3 class="item" id="subttl02">カラーコードの設定</h3>
+
+<p class="caution" id="c02">※色の指定は16進数表記で行ってください。</p>
+<p class="caution" id="c03">※色のプレビューが変更されてもそのままでは色設定は反映されません。必ず確定してください。</p>
+
 ({foreach from=$bgcolor_scheme_names item=item})
-<tr>
-<th>({$item})</th>
-<td>#<input type="text" name="({$item})" value="({$c_sns_config[$item]})" onChange="reflect_color(this)" size="8" maxlength="6"></td>
-<td style="background-color:#({$c_sns_config[$item]});" id="preview_display_({$item})">&nbsp;</td>
-<td style="background-color:#({$c_sns_config[$item]});">&nbsp;</td>
-</tr>
+<dl class="box">
+	<dt>({$item})</dt>
+	<dd>#&nbsp;<input type="text" class="basic" name="({$item})" value="({$c_sns_config[$item]})" onChange="reflect_color(this)" size="8" maxlength="6"></dd>
+	<dd class="pre_color" style="background-color:#({$c_sns_config[$item]});"><div>&nbsp;変更前&nbsp;</div></dd>
+	<dd class="color" style="background-color:#({$c_sns_config[$item]});" id="preview_display_({$item})"><div>&nbsp;変更後&nbsp;</div></dd>
+</dl>
 ({/foreach})
-</table>
+<br class="clear" />
+</div>
+
+
+
+
+
+
+
+
+
+({*
+({foreach from=$bg_names item=item})
+<dl class="box">
+	<dt>({$item})</dt>
+	<dd class="color" style="background-color:#({$c_sns_config[$item]});"></dd>
+</dl>
+({/foreach})
+<br class="clear" />
+</div>
+*})
 
 ({if $user_save_bgcolors})
+<div class="border">
 <p>セット名：<input type="text" name="input_name" value="" onChange="reflect_color(this)" size="16"></p>
 
 <p>見本色　：#<input type="text" name="input_sample" value="" onChange="reflect_color(this)" size="8" maxlength="6"><span id="preview_display_input_sample" style="border:1px solid #000000;width:1.5em;height:1.5em;vertical-align:middle;">&nbsp;&nbsp;</span><span class="caution">&nbsp;指定しない場合は白になります。</span></p>
+</div>
 ({/if})
 
-<div style="margin: 5px;"><input type="submit" class="submit" value="色変更を確定する">({if $user_save_bgcolors})&nbsp;<input type="submit" class="submit" value="新規に設定を保存する">({/if})</div>
+<p class="textBtn" id="c04"><input type="submit" value="色変更を確定する"></p>
+({if $user_save_bgcolors})<p class="textBtns"><input type="submit" class="submit" value="新規に設定を保存する"></p>({/if})
 
-<p>配色設定をバックアップする場合は下記の内容をコピーしてテキストファイルなどに保存してください。</p>
+
+
+
+<p id="c05">配色設定をバックアップする場合は下記の内容をコピーしてテキストファイルなどに保存してください。</p>
 
 <textarea name="copy_area" style="width:40em;height:20em;">
 ({if $preset_bgcolors})
@@ -189,17 +202,21 @@ function assign_color_user_({$key})() {
 
 </form>
 
-<hr>
+</div>({*/div class="contents"*})
 
-<h3><a name="css">カスタムCSS追加</a></h3>
 
+
+
+<h2 id="ttl02">カスタムCSS追加</h2>
+<div class="contents">
+<p id="c06">標準設定されているスタイルは、ここで上書きすることもできます。</p>
 <form action="./" method="post">
-<input type="hidden" name="m" value="({$module_name})">
-<input type="hidden" name="a" value="do_({$hash_tbl->hash('update_c_siteadmin_css','do')})">
-<input type="hidden" name="sessid" value="({$PHPSESSID})">
-
-<textarea name="body" cols="72" rows="20">({$inc_custom_css})</textarea>
-<div style="margin: 5px;"><input type="submit" class="submit" value="変更"></div>
+<input type="hidden" name="m" value="({$module_name})"/>
+<input type="hidden" name="a" value="do_({$hash_tbl->hash('update_c_siteadmin_css','do')})" />
+<input type="hidden" name="sessid" value="({$PHPSESSID})" />
+<textarea id="customCss" name="body" cols="72" rows="20">({$inc_custom_css})</textarea>
+<p class="textBtn"><input type="submit" value="CSSを追加する"></p>
 </form>
 
+</div>
 ({$inc_footer|smarty:nodefaults})

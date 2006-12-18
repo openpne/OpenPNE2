@@ -1,14 +1,13 @@
 ({$inc_header|smarty:nodefaults})
+({ext_include file="inc_subnavi_adminSNSConfig.tpl"})
+<div class="tree"><a href="?m=({$module_name})">管理画面TOP</a>&nbsp;＞&nbsp;ドメイン制限</div>
+</div>
 
+({*ここまで:navi*})
+
+({if $msg})<p class="actionMsg">({$msg})</p>({/if})
 <h2>ドメイン制限</h2>
-
-({if $msg})
-<p class="caution">({$msg})</p>
-({/if})
-<ul>
-<li class="caution">制限ドメインを登録するとそのドメインからのユーザー登録しかできなくなります。</li>
-<li class="caution">なにも登録しないと全てのドメインのユーザー登録を許容します。</li>
-</ul>
+<div class="contents">
 
 <form action="./" method="post">
 <input type="hidden" name="m" value="({$module_name})">
@@ -46,9 +45,10 @@
 
 <tr>
 <th>&nbsp;</th>
-<td><input type="submit" class="submit" value=" 更　新 "></td>
+<td><p class="textBtn"><input type="submit" class="submit" value=" 更　新 "></p></td>
 </tr>
 </table>
 </form>
 
+</div>
 ({$inc_footer|smarty:nodefaults})

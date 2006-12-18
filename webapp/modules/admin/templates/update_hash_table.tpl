@@ -1,24 +1,28 @@
 ({$inc_header|smarty:nodefaults})
+({ext_include file="inc_subnavi_adminAdminConfig.tpl"})
+<div class="tree"><a href="?m=({$module_name})">管理画面TOP</a>&nbsp;＞&nbsp;セキュリティ管理：ページ名ランダム生成</div>
+</div>
 
-<h2>管理ページ名をランダム生成</h2>
+({*ここまで:navi*})
 
-<p>管理ページのページ名を推測できないようにランダム文字列で置換します。<br>
-ページ名が既にランダム文字列の状態で再度実行すると、別の文字列で置換されます。</p>
-
+<h2>ページ名ランダム生成</h2>
+<div class="contents">
+<p class="info">管理ページのページ名を推測できないようにランダム文字列で置換します。</p>
+<ul class="caution" id="c01">
+	<li>ページ名が既にランダム文字列の状態で再度ランダム生成を実行すると、別の文字列で置換されます。</li>
+	<li>ランダム生成したページ名を初期の状態に戻すには「ページ名を初期化する」ボタンを押してください。</li>
+</ul>
 <form action="./" method="post">
-<input type="hidden" name="m" value="({$module_name})">
-<input type="hidden" name="a" value="do_({$hash_tbl->hash('update_hash_table','do')})">
-<input type="hidden" name="sessid" value="({$PHPSESSID})">
-<input type="submit" class="submit" value="　実 行　">
+<input type="hidden" name="m" value="({$module_name})" />
+<input type="hidden" name="a" value="do_({$hash_tbl->hash('update_hash_table','do')})" />
+<input type="hidden" name="sessid" value="({$PHPSESSID})" />
+<p class="textBtn"><input type="submit" value="ランダム生成を実行する"></p>
 </form>
-
-<p>ページ名を元の状態に戻します。</p>
-
 <form action="./" method="post">
-<input type="hidden" name="m" value="({$module_name})">
-<input type="hidden" name="a" value="do_({$hash_tbl->hash('delete_hash_table','do')})">
-<input type="hidden" name="sessid" value="({$PHPSESSID})">
-<input type="submit" class="submit" value="　リセット　">
+<input type="hidden" name="m" value="({$module_name})" />
+<input type="hidden" name="a" value="do_({$hash_tbl->hash('delete_hash_table','do')})" />
+<input type="hidden" name="sessid" value="({$PHPSESSID})" />
+<p class="textBtnS" id="reset"><input type="submit" value="ページ名を初期化する"></p>
 </form>
-
+</div>
 ({$inc_footer|smarty:nodefaults})

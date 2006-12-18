@@ -1,46 +1,46 @@
 ({$inc_header|smarty:nodefaults})
+({ext_include file="inc_subnavi_adminAdminConfig.tpl"})
+<div class="tree"><a href="?m=({$module_name})">管理画面TOP</a>&nbsp;＞&nbsp;セキュリティ管理：<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_admin_user')})">アカウント管理</a>&nbsp;＞&nbsp;アカウント追加</div>
+</div>
 
+({*ここまで:navi*})
+
+
+({if $msg})<p class="actionMsg">({$msg})</p>({/if})
 <h2>アカウント追加</h2>
+<div class="contents">
 
 <p>管理画面用のアカウントを追加することができます。</p>
 
-({if $msg})
-<p class="caution">({$msg})</p>
-({/if})
-
 <form action="./" method="post">
-<table>
+<table class="basicType1">
 <tr>
 <th>
-<input type="hidden" name="m" value="({$module_name})">
-<input type="hidden" name="a" value="do_({$hash_tbl->hash('insert_c_admin_user','do')})">
-<input type="hidden" name="sessid" value="({$PHPSESSID})">
+<input type="hidden" name="m" value="({$module_name})" />
+<input type="hidden" name="a" value="do_({$hash_tbl->hash('insert_c_admin_user','do')})" />
+<input type="hidden" name="sessid" value="({$PHPSESSID})" />
 ユーザ名</th>
-<td><input type="text" name="username" value="" size="20"></td>
+<td><input class="basic" type="text" name="username" value="" size="20" /></td>
 </tr>
 <tr>
 <th>パスワード</th>
-<td><input type="password" name="password" value="" size="15"></td>
+<td><input class="basic" type="password" name="password" value="" size="15" /></td>
 </tr>
 <tr>
 <th>パスワード(確認)</th>
-<td><input type="password" name="password2" value="" size="15"></td>
+<td><input class="basic" type="password" name="password2" value="" size="15" /></td>
 </tr>
 <tr>
 <th>権限</th>
-<td><select name="auth_type">
+<td><select class="basic" name="auth_type">
 <option value="all">全権限</option>
 <option value="">メンバーリスト以外全て</option>
 <option value="normal">SNS設定のみ</option>
 </select></td>
 </tr>
-<tr>
-<th>&nbsp;</th>
-<td><input type="submit" class="submit" value="追加"></td>
-</tr>
 </table>
+<p class="textBtn"><input type="submit" value="追加する"></p>
 </form>
-
-<p><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_admin_user')})">アカウント管理へもどる</a></p>
-
+<p class="groupLing"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_admin_user')})">アカウント管理へ戻る</a></p>
+</div>
 ({$inc_footer|smarty:nodefaults})

@@ -1,5 +1,13 @@
 ({$inc_header|smarty:nodefaults})
+({ext_include file="inc_subnavi_adminSNSConfig.tpl"})
+<div class="tree"><a href="?m=({$module_name})">管理画面TOP</a>&nbsp;＞&nbsp;API設定一覧</div>
+</div>
+
+({*ここまで:navi*})
+
+({if $msg})<p class="actionMsg">({$msg})</p>({/if})
 <h2>CMD削除確認画面</h2>
+<div class="contents">
 
 <table>
 <tr>
@@ -33,4 +41,5 @@
 <br>
 
 <a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_cmd')})">戻る</a>
+</div>
 ({$inc_footer|smarty:nodefaults})
