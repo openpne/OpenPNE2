@@ -27,6 +27,10 @@ class pc_do_c_review_add extends OpenPNE_Action
             do_c_review_add_insert_c_review_comment($c_review_id, $u, $body, $satisfaction_level);
         }
 
+        //レビューを書いた人にポイント付与
+        $point = db_action_get_point4c_action_id(6);
+        db_point_add_point($u, $point);
+
         $p = array('c_review_id' => $c_review_id);
         openpne_redirect('pc', 'page_h_review_list_product', $p);
     }

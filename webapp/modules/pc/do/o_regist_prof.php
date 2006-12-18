@@ -144,6 +144,15 @@ class pc_do_o_regist_prof extends OpenPNE_Action
             );
             $u = db_member_insert_c_member($c_member, $c_member_secure);
 
+            //入会者にポイント加算
+            $point = db_action_get_point4c_action_id(1);
+            db_point_add_point($u, $point);
+
+            //メンバー招待をした人にポイント付与
+            $point = db_action_get_point4c_action_id(7);
+            db_point_add_point($pre['c_member_id_invite'], $point);
+
+
             // c_member_profile
             do_config_prof_update_c_member_profile($u, $c_member_profile_list);
 

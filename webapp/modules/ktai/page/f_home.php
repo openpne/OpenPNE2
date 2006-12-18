@@ -60,6 +60,13 @@ class ktai_page_f_home extends OpenPNE_Action
         // 誕生日まであと何日？
         $this->set('days_birthday', db_common_count_days_birthday4c_member_id($target_c_member_id));
 
+        //PNEPOINT
+        $point = db_point_get_point($target_c_member_id);
+        $this->set("point", $point);
+
+        //rank
+        $this->set("rank", db_point_get_rank4point($point));
+
         //あしあとをつける
         db_ashiato_insert_c_ashiato($target_c_member_id, $u);
 

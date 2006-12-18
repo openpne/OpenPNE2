@@ -26,8 +26,12 @@ class admin_do_send_messages extends OpenPNE_Action
         // 送信者はとりあえず1番で固定
         $c_member_id_from = 1;
 
-        foreach ($requests['c_member_ids'] as $c_member_id) {
-            if ($c_member_id_from == $c_member_id) continue;
+        $send_num = 0;
+        foreach ($requests['c_member_ids'] as $key => $c_member_id) {
+            if ($c_member_id_from == $c_member_id) {
+                $c_member_id_list[$key] = null;
+                continue;
+            }
             switch ($send_type) {
                 case "mail":
                     do_admin_send_mail($c_member_id, $requests['subject'], $requests['body']);
@@ -39,7 +43,17 @@ class admin_do_send_messages extends OpenPNE_Action
                     openpne_forward($module_name, 'page', 'send_messages');
                 break;
             }
+            $send_num++;
         }
+
+        //送信履歴登録
+        db_admin_insert_c_send_messages_history(
+            $requests['subject'], 
+            $requests['body'], 
+            $send_num,
+            $send_type, 
+            $requests['c_member_ids']
+        );
 
         switch ($send_type) {
             case "mail":

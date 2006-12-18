@@ -44,6 +44,13 @@ class pc_page_h_prof extends OpenPNE_Action
         // inc_entry_point
         $this->set('inc_entry_point', fetch_inc_entry_point_f_home($this->getView()));
 
+        //PNEPOINT
+        $point = db_point_get_point($u);
+        $this->set("point", $point);
+
+        //rank
+        $this->set("rank", db_point_get_rank4point($point));
+
         return 'success';
     }
 }

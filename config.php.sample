@@ -424,6 +424,16 @@ define('OPENPNE_MAIL_QUEUE', false);
 // メールキューで一度に送信するメールの数
 define('SEND_MAIL_QUEUE_NUM', 10);
 
+// メッセージ一斉送信のメッセージキューの使用
+define('OPENPNE_MESSAGE_QUEUE', false);
+// メッセージキューで一度に送信するメッセージの数
+define('SEND_MESSAGE_QUEUE_NUM', 10);
+
+// point表示設定
+define('OPENPNE_DISP_POINT', false);
+// rank表示設定
+define('OPENPNE_DISP_RANK', false);
+
 // ログインネームに用いるパラメータの指定
 // メールアドレス      ：0
 // 指定したAuthの設定 :1

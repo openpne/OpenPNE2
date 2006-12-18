@@ -640,16 +640,22 @@ function do_admin_send_mail($c_member_id, $subject, $body)
     }
 }
 
-//メッセージ受信メール（メールキュー蓄積対応）
+//メッセージ受信メール（メール＆メッセージキュー蓄積対応）
 function do_admin_send_message($c_member_id_from, $c_member_id_to, $subject, $body)
 {
     //メッセージ
-    $c_message_id = _do_insert_c_message($c_member_id_from, $c_member_id_to, $subject, $body);
+    if (OPENPNE_MESSAGE_QUEUE) {
+        //メッセージキューに蓄積
+        db_admin_insert_c_message_queue($c_member_id_from, $c_member_id_to, $subject, $body);
+        return true;
+    } else {
+        _do_insert_c_message($c_member_id_from, $c_member_id_to, $subject, $body);
+        do_admin_send_message_mail_send($c_member_id_to, $c_member_id_from);
+        do_admin_send_message_mail_send_ktai($c_member_id_to, $c_member_id_from);
+        return true;
+    }
 
-    do_admin_send_message_mail_send($c_member_id_to, $c_member_id_from);
-    do_admin_send_message_mail_send_ktai($c_member_id_to, $c_member_id_from);
-
-    return $c_message_id;
+    return false;
 }
 
 //メッセージ受信メール（メールキュー蓄積対応）
@@ -1881,12 +1887,6 @@ function db_admin_update_c_api($c_api_id, $name, $ip)
     return db_update('c_api', $data, $where);
 }
 
-
-
-/*--------------------------------
-ここからCMD
----------------------------------*/
-
 //CMDを追加
 function db_admin_insert_c_cmd($name, $permit)
 {
@@ -1988,4 +1988,163 @@ function db_admin_delete_c_holiday($c_holiday_id)
     return db_query($sql, $params);
 }
 
+//メッセージ送信履歴を挿入
+function db_admin_insert_c_send_messages_history($subject, $body, $send_num, $type, $c_member_ids)
+{
+
+    //配列を文字列に変換
+    if($c_member_ids) {
+        $c_member_ids = implode("-",$c_member_ids);
+    } else {
+        return;
+    }
+
+    $data = array(
+        'subject'       => strval($subject),
+        'body'          => strval($body),
+        'send_num'      => intval($send_num),
+        'type'          => strval($type),
+        'c_member_ids'  => strval($c_member_ids),
+        'r_datetime'    => db_now()
+    );
+
+    return db_insert('c_send_messages_history', $data);
+
+}
+
+//メッセージ送信履歴を全て取得(ページャー付き)
+function db_admin_get_c_send_messages_history_all($page, $page_size, &$pager)
+{
+
+    $sql = 'SELECT * FROM c_send_messages_history ORDER BY c_send_messages_history_id DESC';
+
+    $history_list = db_get_all_page($sql, $page, $page_size, $params);
+
+    foreach ($history_list as $key => $history) {
+        $history_list[$key]['c_member_ids'] = explode("-", $history['c_member_ids']);
+    }
+
+    $sql = 'SELECT count(*) FROM c_send_messages_history';
+    $total_num = db_get_one($sql, $params);
+    $pager = admin_make_pager($page, $page_size, $total_num);
+
+    return $history_list;
+}
+
+//メッセージ送信履歴を一つ取得
+function db_admin_get_c_send_messages_history($c_send_messages_history_id)
+{
+
+    $sql = 'SELECT * FROM c_send_messages_history WHERE c_send_messages_history_id = ?';
+
+    $params = array(intval($c_send_messages_history_id));
+
+    $history = db_get_row($sql, $params);
+
+    $history['c_member_ids'] = explode("-", $history['c_member_ids']);
+
+    return $history;
+}
+
+//メッセージをキューに入れる
+function db_admin_insert_c_message_queue($c_member_id_from, $c_member_id_to, $subject, $body)
+{
+    $data = array(
+        'c_member_id_from' => intval($c_member_id_from),
+        'c_member_id_to'   => intval($c_member_id_to),
+        'subject'          => strval($subject),
+        'body'             => strval($body),
+    );
+    return db_insert('c_message_queue', $data);
+}
+
+//メッセージをキューから削除
+function db_admin_delete_c_message_queue($c_message_queue_id)
+{
+
+    $sql = "DELETE FROM c_message_queue WHERE c_message_queue_id = ?";
+    $params = array(intval($c_message_queue_id));
+
+    return db_query($sql, $params);
+}
+
+//ランクを追加
+function db_admin_insert_c_rank($name, $image_filename, $point)
+{
+    $data = array(
+        'name' => strval($name),
+        'image_filename' => strval($image_filename),
+        'point' => intval($point),
+    );
+    return db_insert('c_rank', $data);
+}
+
+//ランクを編集
+function db_admin_update_c_rank($c_rank_id, $name, $image_filename, $point)
+{
+    $data = array(
+        'name' => strval($name),
+        'image_filename' => strval($image_filename),
+        'point' => intval($point),
+    );
+    $where = array('c_rank_id' => intval($c_rank_id));
+    return db_update('c_rank', $data, $where);
+}
+
+//ランクを削除
+function db_admin_delete_c_rank($c_rank_id)
+{
+    $sql = "DELETE FROM c_rank WHERE c_rank_id = ?";
+    $params = array(intval($c_rank_id));
+    return db_query($sql, $params);
+}
+
+
+//ランクを全て取得(ページャー付き)
+function db_admin_get_c_rank_all($page, $page_size, &$pager)
+{
+    $sql = 'SELECT * FROM c_rank ORDER BY point';
+
+    $list = db_get_all_page($sql, $page, $page_size, $params);
+
+    $sql = 'SELECT count(*) FROM c_rank';
+    $total_num = db_get_one($sql, $params);
+    $pager = admin_make_pager($page, $page_size, $total_num);
+
+    return $list;
+}
+
+//ランクを一つ取得
+function db_admin_get_c_rank_one($c_rank_id)
+{
+    $sql = 'SELECT * FROM c_rank WHERE c_rank_id = ?';
+    $params = array(intval($c_rank_id));
+
+    return db_get_row($sql, $params);
+}
+
+//アクションを編集
+function db_admin_update_c_action($c_action_id, $name, $point)
+{
+    $data = array(
+        'name' => strval($name),
+        'point' => intval($point),
+    );
+    $where = array('c_action_id' => intval($c_action_id));
+    return db_update('c_action', $data, $where);
+}
+
+//アクションを全て取得(ページャー付き)
+function db_admin_get_c_action_all($page, $page_size, &$pager)
+{
+    $sql = 'SELECT * FROM c_action ORDER BY c_action_id';
+
+    $list = db_get_all_page($sql, $page, $page_size, $params);
+
+    $sql = 'SELECT count(*) FROM c_action';
+    $total_num = db_get_one($sql, $params);
+    $pager = admin_make_pager($page, $page_size, $total_num);
+
+    return $list;
+}
 ?>

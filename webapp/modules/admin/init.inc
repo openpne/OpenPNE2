@@ -42,6 +42,8 @@ $GLOBALS['_OPENPNE_ADMIN_AUTH_ACTIONS'] = array(
     'page_send_invites',
     'page_send_messages_all',
     'page_send_messages',
+    'page_send_messages_history_detail',
+    'page_send_messages_history_list',
     'do_delete_c_admin_user',
     'do_delete_c_image',
     'do_delete_c_image4c_image_id',

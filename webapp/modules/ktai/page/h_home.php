@@ -86,6 +86,13 @@ class ktai_page_h_home extends OpenPNE_Action
         // inc_entry_point
         $this->set('inc_ktai_entry_point', fetch_ktai_inc_entry_point_h_home($this->getView()));
         
+        //PNEPOINT
+        $point = db_point_get_point($u);
+        $this->set("point", $point);
+
+        //rank
+        $this->set("rank", db_point_get_rank4point($point));
+
         return 'success';
     }
 }

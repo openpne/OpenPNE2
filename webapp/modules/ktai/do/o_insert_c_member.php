@@ -101,6 +101,15 @@ class ktai_do_o_insert_c_member extends OpenPNE_Action
         if (!$c_member_id = k_do_insert_c_member($prof)) {
             openpne_redirect('ktai', 'page_o_login');
         }
+
+        //入会者にポイント加算
+        $point = db_action_get_point4c_action_id(1);
+        db_point_add_point($c_member_id, $point);
+
+        //メンバー招待をした人にポイント付与
+        $point = db_action_get_point4c_action_id(7);
+        db_point_add_point($pre['c_member_id_invite'], $point);
+
         // insert c_member_profile
         do_config_prof_update_c_member_profile($c_member_id, $c_member_profile_list);
 
