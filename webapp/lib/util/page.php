@@ -194,6 +194,40 @@ function fetch_inc_entry_point_c_home(&$smarty)
     }
     return $contents;
 }
+function fetch_inc_entry_point_h_reply_message(&$smarty)
+{
+    $target = 'h_reply_message';
+
+    $contents = array();
+    for ($i = 1; $i <= 3; $i++) {
+        $tpl = sprintf('db:inc_entry_point_%s_%d', $target, $i);
+        $contents[$i] = fetch_from_db($tpl, $smarty);
+    }
+    return $contents;
+}
+
+function fetch_ktai_inc_entry_point_o_login(&$smarty)
+{
+    $target = 'ktai_o_login';
+
+    $contents = array();
+    for ($i = 1; $i <= 2; $i++) {
+        $tpl = sprintf('db:inc_entry_point_%s_%d', $target, $i);
+        $contents[$i] = fetch_from_db($tpl, $smarty);
+    }
+    return $contents;
+}
+function fetch_ktai_inc_entry_point_h_home(&$smarty)
+{
+    $target = 'ktai_h_home';
+
+    $contents = array();
+    for ($i = 1; $i <= 3; $i++) {
+        $tpl = sprintf('db:inc_entry_point_%s_%d', $target, $i);
+        $contents[$i] = fetch_from_db($tpl, $smarty);
+    }
+    return $contents;
+}
 
 //------------
 

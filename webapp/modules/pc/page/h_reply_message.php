@@ -11,6 +11,9 @@ class pc_page_h_reply_message extends OpenPNE_Action
         $u = $GLOBALS['AUTH']->uid();
 
         $this->set('inc_navi', fetch_inc_navi("h"));
+        // inc_entry_point
+        $this->set('inc_entry_point', fetch_inc_entry_point_h_reply_message($this->getView()));
+
         return 'success';
     }
 }

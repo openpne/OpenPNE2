@@ -1,5 +1,9 @@
 ({$inc_ktai_header|smarty:nodefaults})
 
+({if $inc_ktai_entry_point[1]})
+({$inc_ktai_entry_point[1]|smarty:nodefaults})
+({/if})
+
 <center><font color="orange">({$c_member.nickname})さんのﾎｰﾑ</font></center>
 <hr>
 ({if $birthday_flag})
@@ -11,6 +15,10 @@
 ({if $c_siteadmin})
 ({$c_siteadmin|smarty:nodefaults})
 <hr>
+({/if})
+
+({if $inc_ktai_entry_point[2]})
+({$inc_ktai_entry_point[2]|smarty:nodefaults})
 ({/if})
 
 ({if $num_f_confirm_list})
@@ -43,6 +51,9 @@
 
 <a href="#news" accesskey="1">1.新着ﾘｽﾄ</a>| <a href="#config" accesskey="2">2.設定変更</a>
 <hr>
+({if $inc_ktai_entry_point[3]})
+({$inc_ktai_entry_point[3]|smarty:nodefaults})
+({/if})
 ◆日記<br>
 ├<a href="({t_url m=ktai a=page_h_diary_edit})&amp;({$tail})">書く</a>|<a href="mailto:({$blog_address})">ﾒｰﾙ投稿</a><br>
 └読む[<a href="({t_url m=ktai a=page_fh_diary_list})&amp;({$tail})">自分</a>|<a href="({t_url m=ktai a=page_h_diary_list_friend})&amp;({$tail})">友達</a>|<a href="({t_url m=ktai a=page_h_diary_list_all})&amp;({$tail})">全体</a>]<br>

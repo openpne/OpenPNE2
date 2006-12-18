@@ -18,6 +18,9 @@ class ktai_page_o_login extends OpenPNE_Action
         $kad = $requests['kad'];
         // ----------
 
+        // inc_entry_point
+        $this->set('inc_ktai_entry_point', fetch_ktai_inc_entry_point_o_login($this->getView()));
+
         //メッセージ
         $this->set('msg', k_p_common_msg4msg_id($msg_id));
 

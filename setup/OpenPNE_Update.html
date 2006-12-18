@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="Content-Style-Type" content="text/css">
-<title>OpenPNE 2.5.6アップデートガイド</title>
+<title>OpenPNE 2.6RC1アップデートガイド</title>
 <style type="text/css">
 <!--
 body {
@@ -55,9 +55,9 @@ var {
 
 <body>
 
-<h1>OpenPNE2.5.6 アップデートガイド</h1>
+<h1>OpenPNE2.6RC1 アップデートガイド</h1>
 
-<p>作成日: 2006/12/9</p>
+<p>作成日: 2006/12/17</p>
 
 <h2>目次</h2>
 <ul>
@@ -69,7 +69,7 @@ var {
   <li><a href="#section2-2">2-2. ソースコードの置き換え</a></li>
   <li><a href="#section2-3">2-3. 設定ファイルの変更</a></li>
   <li><a href="#section2-4">2-4. BIZスケジュールコンバータ実行(BIZモード使用時)</a></li>
-  <li><a href="#section2-5">2-5. OpenPNE2.5.5からのアップデート</a></li>
+  <li><a href="#section2-5">2-5. OpenPNE2.5.8からのアップデート</a></li>
   </ul></li>
 </ul>
 
@@ -77,7 +77,7 @@ var {
 
 <h2 id="section0">0. はじめに</h2>
 
-<p>この文書は、OpenPNE バージョン2.4.*/2.5.5 から バージョン2.5.6 へのアップデート手順を書いたものです。</p>
+<p>この文書は、OpenPNE バージョン2.4.*/2.5.8 から バージョン2.6RC1 へのアップデート手順を書いたものです。</p>
 
 <h2 id="section1">1. 手順</h2>
 
@@ -105,13 +105,13 @@ BIZモードを使用しない場合はupdate02,update10は不要です。<br>
 
 <h3 id="section2-2">2-2. ソースコードの置き換え</h3>
 
-<p>サーバ上に OpenPNE 2.5.6 のソースファイルを設置します。<br>
+<p>サーバ上に OpenPNE 2.6RC1 のソースファイルを設置します。<br>
 ソースは部分的に入れ替えずに全て交換してください。<br>
 詳しくは、「<a href="./OpenPNE_Setup.html">OpenPNE セットアップガイド</a>」を参考にしてください。</p>
 
 <h3 id="section2-3">2-3. 設定ファイルの変更</h3>
 
-<p>OpenPNE 2.4 の設定ファイルを参考にして 2.5.6 用の設定ファイルを作成します。</p>
+<p>OpenPNE 2.4 の設定ファイルを参考にして 2.6RC1 用の設定ファイルを作成します。</p>
 
 <p class="caution">PHPの設定でセーフモードが有効な場合は、MAIL_SET_ENVFROM を false に設定してください。</p>
 
@@ -123,15 +123,13 @@ BIZモード使用時には、BIZスケジュールコンバータ setup/update/
 (2.5.6以降では共有スケジュールはグループに紐づけられることになります)
 </p>
 
-<h3 id="section2-5">2-5. OpenPNE2.5.5からのアップデート</h3>
+<h3 id="section2-5">2-5. OpenPNE2.5.8からのアップデート</h3>
 
 <p>
-OpenPNE2.5.5からのアップデート作業も2.4からのアップデートと基本的には同様な作業になります。
+OpenPNE2.5.8からのアップデート作業も2.4からのアップデートと基本的には同様な作業になります。
 <br>
-アップデートSQLのupdate06～update10を実行してください。
-BIZモードを使用しない場合はupdate10は不要です。<br>
-<br>
-2.5.5から2.5.6へのconfig.php追加項目はありません。そのままご利用いただけます。
+アップデートSQLのupdate18～を実行してください。
+BIZモードを使用しない場合はupdate10,12は不要です。<br>
 <br>
 ソースコードを全て置き換えてください。<br>
 BIZモード使用時には、BIZスケジュールコンバータ setup/update/new_biz_schedule_converter.php を実行します。<br>

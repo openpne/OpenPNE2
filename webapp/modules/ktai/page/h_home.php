@@ -82,6 +82,9 @@ class ktai_page_h_home extends OpenPNE_Action
             $mail_address = "blog"."@".MAIL_SERVER_DOMAIN;
         }
         $this->set('blog_address', $mail_address);
+
+        // inc_entry_point
+        $this->set('inc_ktai_entry_point', fetch_ktai_inc_entry_point_h_home($this->getView()));
         
         return 'success';
     }

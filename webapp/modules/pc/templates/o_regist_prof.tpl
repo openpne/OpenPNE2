@@ -240,7 +240,7 @@
     ({foreach item=item from=$profile.options name=check})
     ({counter name=$profile.name assign=_cnt})
     ({if $_cnt % 3 == 1})<tr>({/if})
-        <td><input type="checkbox" name="profile[({$profile.name})][]" value="({$item.c_profile_option_id})"({if $profs.profile[$profile.name] && in_array($item.value|smarty:nodefaults, $profs.profile[$profile.name])}) checked="checked"({/if})></td>
+        <td><input type="checkbox"  class="no_bg" name="profile[({$profile.name})][]" value="({$item.c_profile_option_id})"({if $profs.profile[$profile.name] && in_array($item.value|smarty:nodefaults, $profs.profile[$profile.name])}) checked="checked"({/if})></td>
         <td>({$item.value|default:"--"})</td>
     ({if $_cnt % 3 == 0})</tr>({/if})
     ({/foreach})

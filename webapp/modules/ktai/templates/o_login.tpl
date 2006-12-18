@@ -1,7 +1,15 @@
 ({$inc_ktai_header|smarty:nodefaults})
 
+({if $inc_ktai_entry_point[1]})
+({$inc_ktai_entry_point[1]|smarty:nodefaults})
+({/if})
+
 <center>({$SNS_NAME})ログイン</center>
 <hr>
+
+({if $inc_ktai_entry_point[2]})
+({$inc_ktai_entry_point[2]|smarty:nodefaults})
+({/if})
 
 ({if $msg})
 <font color="red">({$msg})</font><br>

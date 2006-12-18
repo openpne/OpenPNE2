@@ -59,6 +59,32 @@
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_entry_point')})&amp;target=c_home&amp;num=7">c_home 7</a></li>
 </ul>
 </dd>
+
+<dt><strong class="item">【PC版】 h_reply_message</strong></dt>
+<dd>
+<ul>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_entry_point')})&amp;target=h_reply_message&amp;num=1">h_reply_message 1</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_entry_point')})&amp;target=h_reply_message&amp;num=2">h_reply_message 2</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_entry_point')})&amp;target=h_reply_message&amp;num=3">h_reply_message 3</a></li>
+</ul>
+</dd>
+
+<dt><strong class="item">【携帯版】 o_login</strong></dt>
+<dd>
+<ul>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_entry_point')})&amp;target=ktai_o_login&amp;num=1">o_login 1</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_entry_point')})&amp;target=ktai_o_login&amp;num=2">o_login 2</a></li>
+</ul>
+</dd>
+
+<dt><strong class="item">【携帯版】 h_home</strong></dt>
+<dd>
+<ul>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_entry_point')})&amp;target=ktai_h_home&amp;num=1">h_home 1</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_entry_point')})&amp;target=ktai_h_home&amp;num=2">h_home 2</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_entry_point')})&amp;target=ktai_h_home&amp;num=3">h_home 3</a></li>
+</ul>
+</dd>
 </dl>
 </td>
 <td class="detail">

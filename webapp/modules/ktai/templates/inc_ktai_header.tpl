@@ -7,4 +7,5 @@
 </head>
 <body>
 ({/strip})
+
 ({$inc_ktai_header|smarty:nodefaults})

@@ -48,6 +48,9 @@
 <tr>
 <td class="bg_03" align="center">
 <div class="padding_s">送信完了しました。</div>
+({if $inc_entry_point[3]})
+({$inc_entry_point[3]|smarty:nodefaults})
+({/if})
 </td>
 </tr>
 
