@@ -15,7 +15,7 @@ class pc_page_h_schedule_delete extends OpenPNE_Action
         $target_c_schedule_id = $requests['target_c_schedule_id'];
         // ----------
 
-        $c_schedule = p_common_c_schedule4c_schedule_id($target_c_schedule_id);
+        $c_schedule = db_schedule_c_schedule4c_schedule_id($target_c_schedule_id);
         if ($c_schedule['c_member_id'] != $u) {
             handle_kengen_error();
         }

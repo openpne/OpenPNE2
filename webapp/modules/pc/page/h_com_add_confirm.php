@@ -27,7 +27,7 @@ class pc_page_h_com_add_confirm extends OpenPNE_Action
 
         //TODO:
         $err_msg = array();
-        if (p_c_com_add_is_commu4c_commu_name($name))
+        if (db_commu_is_commu4c_commu_name($name))
             $err_msg[] = "そのコミュニティはすでに存在します";
 
         if ($upfile_obj['error'] !== UPLOAD_ERR_NO_FILE) {
@@ -45,7 +45,7 @@ class pc_page_h_com_add_confirm extends OpenPNE_Action
 
         $this->set('inc_navi', fetch_inc_navi('h'));
 
-        $c_commu_category_list = _db_c_commu_category4null();
+        $c_commu_category_list = db_commu_c_commu_category4null();
 
         $public_flag_list=
         array(

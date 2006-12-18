@@ -25,7 +25,7 @@ class ktai_page_o_regist_pre extends OpenPNE_Action
         // ----------
 
         // セッションが有効かどうか
-        if (!$pre = c_member_ktai_pre4session($ses)) {
+        if (!$pre = db_member_c_member_ktai_pre4session($ses)) {
             // 無効の場合、login へリダイレクト
             openpne_redirect('ktai', 'page_o_login');
         }

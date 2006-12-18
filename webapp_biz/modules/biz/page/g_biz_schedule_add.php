@@ -18,7 +18,7 @@ class biz_page_g_biz_schedule_add extends OpenPNE_Action
         $this->set('inc_navi',fetch_inc_navi("h"));
 
         //プロフィール
-        $this->set("target_member", db_common_c_member4c_member_id($u));
+        $this->set("target_member", db_member_c_member4c_member_id($u));
         $this->set("form_val", $form_val);
 
         //カレンダー関係

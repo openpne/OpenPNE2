@@ -7,7 +7,7 @@
 /**
  * 招待メール送信
  */
-class pc_do_h_invite_insert_c_invite extends OpenPNE_Action
+class pc_db_member_insert_c_invite extends OpenPNE_Action
 {
     function execute($requests)
     {
@@ -37,7 +37,7 @@ class pc_do_h_invite_insert_c_invite extends OpenPNE_Action
             openpne_redirect('pc', 'page_h_invite', $p);
         }
 
-        if (p_is_sns_join4mail_address($mail)) {
+        if (db_member_is_sns_join4mail_address($mail)) {
             $msg = "そのアドレスは既に登録済みです";
             $p = array('msg' => $msg);
             openpne_redirect('pc', 'page_h_invite', $p);
@@ -63,10 +63,10 @@ class pc_do_h_invite_insert_c_invite extends OpenPNE_Action
             //>
 
             // c_member_ktai_pre に追加
-            if (do_common_c_member_ktai_pre4ktai_address($mail)) {
-                do_update_c_member_ktai_pre($session, $mail, $c_member_id_invite);
+            if (db_member_c_member_ktai_pre4ktai_address($mail)) {
+                db_member_update_c_member_ktai_pre($session, $mail, $c_member_id_invite);
             } else {
-                do_insert_c_member_ktai_pre($session, $mail, $c_member_id_invite);
+                db_member_insert_c_member_ktai_pre($session, $mail, $c_member_id_invite);
             }
 
             h_invite_insert_c_invite_mail_send($session, $c_member_id_invite, $mail, $message);
@@ -82,13 +82,13 @@ class pc_do_h_invite_insert_c_invite extends OpenPNE_Action
             //>
 
             // c_member_pre に追加
-            if (do_common_c_member_pre4pc_address($mail)) {
-                do_h_invite_update_c_invite($c_member_id_invite, $mail, $message, $session);
+            if (db_member_c_member_pre4pc_address($mail)) {
+                db_member_update_c_invite($c_member_id_invite, $mail, $message, $session);
             } else {
-                do_h_invite_insert_c_invite($c_member_id_invite, $mail, $message, $session);
+                db_member_insert_c_invite($c_member_id_invite, $mail, $message, $session);
             }
 
-            do_h_invite_insert_c_invite_mail_send($c_member_id_invite, $session, $message, $mail);
+            db_member_insert_c_invite_mail_send($c_member_id_invite, $session, $message, $mail);
         }
 
         openpne_redirect('pc', 'page_h_invite_end');

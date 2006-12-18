@@ -20,7 +20,7 @@ class pc_page_fh_com_list extends OpenPNE_Action
             $target_c_member_id = $u;
         }
 
-        if (p_common_is_access_block($u, $target_c_member_id)) {
+        if (db_member_is_access_block($u, $target_c_member_id)) {
             openpne_redirect('pc', 'page_h_access_block');
         }
 
@@ -32,14 +32,14 @@ class pc_page_fh_com_list extends OpenPNE_Action
         }
         $this->set('inc_navi', fetch_inc_navi($type, $target_c_member_id));
 
-        $this->set("target_member", db_common_c_member4c_member_id($target_c_member_id));
+        $this->set("target_member", db_member_c_member4c_member_id($target_c_member_id));
 
         $page_size = 50;
 
         $page += $direc;
         $this->set("page", $page);
 
-        list($c_commu_list, $pager) = p_fh_com_list_c_commu_list4c_member_id($target_c_member_id, $page, $page_size);
+        list($c_commu_list, $pager) = db_commu_c_commu_list4c_member_id($target_c_member_id, $page, $page_size);
 
         $this->set("fh_com_list_user", $c_commu_list);
         $this->set("pager", $pager);

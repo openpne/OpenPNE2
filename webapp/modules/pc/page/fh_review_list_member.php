@@ -16,7 +16,7 @@ class pc_page_fh_review_list_member extends OpenPNE_Action
         $page = $requests['page'];
         // ----------
 
-        if (p_common_is_access_block($u, $c_member_id)) {
+        if (db_member_is_access_block($u, $c_member_id)) {
             openpne_redirect('pc', 'page_h_access_block');
         }
 
@@ -32,10 +32,10 @@ class pc_page_fh_review_list_member extends OpenPNE_Action
             $type = "f";
         }
 
-        $this->set('c_member', db_common_c_member4c_member_id($c_member_id));
+        $this->set('c_member', db_member_c_member4c_member_id($c_member_id));
 
         list($c_review_list, $is_prev, $is_next, $total_num, $start_num, $end_num)
-            = p_fh_review_list_product_c_review_list4c_member_id($c_member_id, $page, $page_size);
+            = db_review_list_product_c_review_list4c_member_id($c_member_id, $page, $page_size);
         $this->set('c_review_list', $c_review_list);
         $this->set("is_prev", $is_prev);
         $this->set("is_next", $is_next);

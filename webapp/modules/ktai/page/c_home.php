@@ -14,7 +14,7 @@ class ktai_page_c_home extends OpenPNE_Action
         $target_c_commu_id = $requests['target_c_commu_id'];
         // ----------
 
-        $c_commu = _db_c_commu4c_commu_id($target_c_commu_id);
+        $c_commu = db_commu_c_commu4c_commu_id($target_c_commu_id);
 
         //コミュニティの存在の有無
         if (!$c_commu) {
@@ -25,24 +25,24 @@ class ktai_page_c_home extends OpenPNE_Action
         //--- 権限チェック
         //未処理
         //掲示板の閲覧権限チェック tplでやっている
-        $this->set("is_c_commu_view", p_common_is_c_commu_view4c_commu_idAc_member_id($target_c_commu_id, $u));
-        $this->set("is_c_commu_member", _db_is_c_commu_member($target_c_commu_id, $u));
+        $this->set("is_c_commu_view", db_commu_is_c_commu_view4c_commu_idAc_member_id($target_c_commu_id, $u));
+        $this->set("is_c_commu_member", db_commu_is_c_commu_member($target_c_commu_id, $u));
         //---
 
         //管理画面HTML
         $this->set('c_siteadmin', p_common_c_siteadmin4target_pagename('k_c_home'));
 
         //コミュニティ情報
-        $this->set("c_commu", k_p_c_home_c_commu4c_commu_id($target_c_commu_id));
+        $this->set("c_commu", k_db_commu_c_commu4c_commu_id2($target_c_commu_id));
 
         //コミュニティメンバリスト
         $this->set("c_commu_member_list",
             k_p_c_home_c_commu_member_list_random4c_commu_id($target_c_commu_id, 5));
 
         //参加コミュニティの新着トピック書き込み
-        $this->set("new_topic_comment", p_c_home_new_topic_comment4c_commu_id($target_c_commu_id, 5));
+        $this->set("new_topic_comment", db_commu_new_topic_comment4c_commu_id($target_c_commu_id, 5));
         //参加コミュニティの新着イベント書き込み
-        $this->set("new_topic_comment_event", p_c_home_new_topic_comment4c_commu_id($target_c_commu_id, 5, 1));
+        $this->set("new_topic_comment_event", db_commu_new_topic_comment4c_commu_id($target_c_commu_id, 5, 1));
 
         //自分($u)とこのコミュとの関係
         $this->set("relation_c_member_and_c_commu",

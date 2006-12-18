@@ -11,7 +11,7 @@ class admin_page_delete_c_image_confirm extends OpenPNE_Action
     {
         $v = array();
 
-        $v['c_image'] = db_admin_c_image4c_image_id($requests['target_c_image_id']);
+        $v['c_image'] = db_image_c_image4c_image_id($requests['target_c_image_id']);
 
         $this->set($v);
         return 'success';

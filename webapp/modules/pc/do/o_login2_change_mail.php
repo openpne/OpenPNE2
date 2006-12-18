@@ -22,7 +22,7 @@ class pc_do_o_login2_change_mail extends OpenPNE_Action
         //セッションが正しい
         //パスワードが正しい
 
-        if (!do_change_mail($sid, $password)) {
+        if (!db_member_change_mail($sid, $password)) {
             $msg = "パスワードが違います";
             $p = array('sid' => $sid, 'msg' => $msg);
             openpne_redirect('pc', 'page_o_login2', $p);

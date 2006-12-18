@@ -15,11 +15,11 @@ class pc_page_f_invite extends OpenPNE_Action
         $this->set('inc_navi', fetch_inc_navi("f", $target_c_member_id));
 
         //メンバー情報
-        $this->set("target_member", db_common_c_member4c_member_id($target_c_member_id));
+        $this->set("target_member", db_member_c_member4c_member_id($target_c_member_id));
 
         //招待する友達リスト
         $this->set("f_invite_list",
-            p_f_invite_invite_list4c_member_ids($target_c_member_id, $u));
+            db_friend_invite_list4c_member_ids($target_c_member_id, $u));
 
         return 'success';
     }

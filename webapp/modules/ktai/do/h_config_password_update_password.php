@@ -30,7 +30,7 @@ class ktai_do_h_config_password_update_password extends OpenPNE_Action
             openpne_redirect('ktai', 'page_h_config_password', $p);
         }
 
-        do_common_update_password($u, $new_password);
+        db_member_update_password($u, $new_password);
 
         $p = array('msg' => 21);
         openpne_redirect('ktai', 'page_h_config', $p);

@@ -1326,11 +1326,11 @@ function biz_do_common_send_schedule_mail()
     }
 
     foreach ($send_list as $key => $value) {
-        $c_member_secure = db_common_c_member_secure4c_member_id($key);
+        $c_member_secure = db_member_c_member_secure4c_member_id($key);
         $pc_address = $c_member_secure['pc_address'];
 
         $params = array(
-            "c_member" => db_common_c_member4c_member_id_LIGHT($key),
+            "c_member" => db_member_c_member4c_member_id_LIGHT($key),
             "c_schedule_list" => $value,
         );
         var_dump($pc_address, $params);

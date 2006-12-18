@@ -42,7 +42,7 @@ class ktai_do_c_invite_insert_c_message_commu_invite extends OpenPNE_Action
         //--- 権限チェック
         //フレンド
 
-        $status = db_common_friend_status($u, $target_c_member_id);
+        $status = db_friend_status($u, $target_c_member_id);
         if (!$status['is_friend']) {
             handle_kengen_error();
         }
@@ -51,9 +51,9 @@ class ktai_do_c_invite_insert_c_message_commu_invite extends OpenPNE_Action
         list($msg_subject, $msg_body) =
             create_message_commu_invite($u, $body, $target_c_commu_id);
 
-        do_common_send_message_syoukai_commu($u, $target_c_member_id, $msg_subject, $msg_body);
+        db_message_send_message_syoukai_commu($u, $target_c_member_id, $msg_subject, $msg_body);
 
-        $commu = _db_c_commu4c_commu_id($target_c_commu_id);
+        $commu = db_commu_c_commu4c_commu_id($target_c_commu_id);
         $c_member_id_admin = $commu['c_member_id_admin'];
         $public_flag = $commu['public_flag'];
         if (($c_member_id_admin == $u) && ($public_flag != 'public')) {

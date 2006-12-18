@@ -18,7 +18,7 @@ class ktai_do_h_confirm_list_insert_c_friend extends OpenPNE_Action
         $target_c_friend_confirm_id = $requests['target_c_friend_confirm_id'];
         // ----------
 
-        $cfc = _do_c_friend_confirm4c_friend_confirm_id($target_c_friend_confirm_id);
+        $cfc = db_friend_c_friend_confirm4c_friend_confirm_id($target_c_friend_confirm_id);
 
         //--- 権限チェック
         //リンク承認を受けている人

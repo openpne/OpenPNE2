@@ -12,7 +12,7 @@ class admin_page_passwd extends OpenPNE_Action
         $v = array();
 
         $v['SNS_NAME'] = SNS_NAME;
-        $v['c_member'] = db_common_c_member4c_member_id_LIGHT($requests['target_c_member_id']);
+        $v['c_member'] = db_member_c_member4c_member_id_LIGHT($requests['target_c_member_id']);
 
         $this->set($v);
         return 'success';

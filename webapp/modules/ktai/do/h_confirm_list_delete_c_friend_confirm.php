@@ -21,7 +21,7 @@ class ktai_do_h_confirm_list_delete_c_friend_confirm extends OpenPNE_Action
         //--- 権限チェック
         //リンク承認を受けている or 送った人
 
-        $cfc = _do_c_friend_confirm4c_friend_confirm_id($target_c_friend_confirm_id);
+        $cfc = db_friend_c_friend_confirm4c_friend_confirm_id($target_c_friend_confirm_id);
 
         if ($cfc['c_member_id_to'] != $u
             && $cfc['c_member_id_from'] != $u) {

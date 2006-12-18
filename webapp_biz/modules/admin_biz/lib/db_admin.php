@@ -14,7 +14,7 @@ function db_admin_c_member_list($page, $page_size, &$pager)
 
     $c_member_list = array();
     foreach ($ids as $id) {
-        $c_member_list[] = db_common_c_member4c_member_id($id, true, true, 'private');
+        $c_member_list[] = db_member_c_member4c_member_id($id, true, true, 'private');
     }
 
     $sql = 'SELECT COUNT(*) FROM c_member';
@@ -34,7 +34,7 @@ function db_admin_c_member4mail_address($mail_address)
 
     $c_member_list = array();
     foreach ($list as $c_member_id) {
-        $c_member_list[] = db_common_c_member4c_member_id($c_member_id, true, true, 'private');
+        $c_member_list[] = db_member_c_member4c_member_id($c_member_id, true, true, 'private');
     }
     return $c_member_list;
 }

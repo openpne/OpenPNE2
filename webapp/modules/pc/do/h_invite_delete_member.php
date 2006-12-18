@@ -15,11 +15,11 @@ class pc_do_h_invite_delete_member extends OpenPNE_Action
         // ----------
 
         if ($c_member_id) {
-            do_h_invite_delete_member_delete_c_member_pre($u, $c_member_id);
+            db_member_delete_c_member_pre($u, $c_member_id);
         }
         //携帯用
         if ($c_member_ktai_id) {
-            do_h_invite_delete_member_delete_c_member_ktai_pre($u, $c_member_ktai_id);
+            db_member_delete_c_member_ktai_pre($u, $c_member_ktai_id);
         }
 
         openpne_redirect('pc', 'page_h_invite');

@@ -7,7 +7,7 @@
 /**
  * 設定変更
  */
-class pc_do_h_config_3 extends OpenPNE_Action
+class pc_db_member_h_config_3 extends OpenPNE_Action
 {
     function handleError($errors)
     {
@@ -36,20 +36,20 @@ class pc_do_h_config_3 extends OpenPNE_Action
         include_once 'OpenPNE/RSS.php';
 
         if ($rss_url = OpenPNE_RSS::auto_discovery($rss)) {
-            $c_member = db_common_c_member4c_member_id($u);
+            $c_member = db_member_c_member4c_member_id($u);
             if ($rss_url != $c_member['rss']) {
                 //異なるBlogを登録すると過去のrssは全て削除する
-                delete_rss_cache($u);
+                db_rss_delete_rss_cache($u);
             }
 
             //c_rss_cacheへ登録
-            insert_rss_cache($rss_url, $u);
+            db_rss_insert_rss_cache($rss_url, $u);
         } else {
             $rss_url = '';
-            delete_rss_cache($u);
+            db_rss_delete_rss_cache($u);
         }
 
-        do_h_config_3(
+        db_member_h_config_3(
             $u,
             $is_receive_mail,
             $rss_url,
@@ -62,7 +62,7 @@ class pc_do_h_config_3 extends OpenPNE_Action
             $schedule_start_day
         );
 
-        do_h_config_3_insert_c_access_block($u, $c_member_id_block);
+        db_member_h_config_3_insert_c_access_block($u, $c_member_id_block);
 
         openpne_redirect('pc', 'page_h_home');
     }

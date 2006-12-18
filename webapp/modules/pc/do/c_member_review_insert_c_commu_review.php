@@ -25,7 +25,7 @@ class pc_do_c_member_review_insert_c_commu_review extends OpenPNE_Action
         //---
 
         foreach ($c_review_id as $value) {
-            if (!do_c_member_review_c_review_id4c_review_id_c_member_id($value, $u, $c_commu_id)) {
+            if (!db_review_c_member_review_c_review_id4c_review_id_c_member_id($value, $u, $c_commu_id)) {
                 do_c_member_review_insert_c_commu_review($value, $u, $c_commu_id);
             }
         }

@@ -14,7 +14,7 @@ class ktai_page_c_edit extends OpenPNE_Action
         $target_c_commu_id = $requests['target_c_commu_id'];
         // ----------
 
-        $c_commu = _db_c_commu4c_commu_id($target_c_commu_id);
+        $c_commu = db_commu_c_commu4c_commu_id($target_c_commu_id);
 
         //--- 権限チェック
         if ($c_commu['c_member_id_admin']     != $u
@@ -32,7 +32,7 @@ class ktai_page_c_edit extends OpenPNE_Action
         $this->set('topic_authority_list', $topic_authority_list);
 
         //カテゴリのリスト
-        $this->set('c_commu_category_list', _db_c_commu_category4null());
+        $this->set('c_commu_category_list', db_commu_c_commu_category4null());
 
         $this->set('is_topic', p_c_edit_is_topic4c_commu_id($target_c_commu_id));
 

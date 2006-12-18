@@ -16,7 +16,7 @@ class ktai_page_c_edit_member extends OpenPNE_Action
         $page = $requests['page'];
         // ----------
 
-        $c_commu = _db_c_commu4c_commu_id($target_c_commu_id);
+        $c_commu = db_commu_c_commu4c_commu_id($target_c_commu_id);
 
         //--- 権限チェック
         if ($c_commu['c_member_id_admin'] !=$u && $c_commu['c_member_id_sub_admin'] != $u) {
@@ -37,7 +37,7 @@ class ktai_page_c_edit_member extends OpenPNE_Action
         $this->set("is_next", $list[2]);
 
         //コミュニティのメンバ数
-        $this->set("count_member", _db_count_c_commu_member_list4c_commu_id($target_c_commu_id));
+        $this->set("count_member", db_commu_count_c_commu_member_list4c_commu_id($target_c_commu_id));
 
         $this->set("c_commu", $c_commu);
         return 'success';

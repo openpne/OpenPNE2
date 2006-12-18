@@ -65,7 +65,7 @@ class pc_do_h_home_insert_c_schedule extends OpenPNE_Action
 
         //---
 
-        do_h_schedule_add_insert_c_schedule($u, $title, $input['body'],
+        db_schedule_add_insert_c_schedule($u, $title, $input['body'],
             $start_date, $start_time, $end_date, $end_time,
             $input['is_receive_mail']);
 

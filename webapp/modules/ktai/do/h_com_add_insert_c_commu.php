@@ -28,7 +28,7 @@ class ktai_do_h_com_add_insert_c_commu extends OpenPNE_Action
         $c_commu_id = db_commu_insert_c_commu($c_member_id, $name, $c_commu_category_id, $info, $public_flag);
 
         //作成者をコミュメンバーにする
-        do_inc_join_c_commu($c_commu_id, $c_member_id);
+        db_commu_join_c_commu($c_commu_id, $c_member_id);
 
         $p = array('target_c_commu_id' => $c_commu_id);
         openpne_redirect('ktai', 'page_c_home', $p);

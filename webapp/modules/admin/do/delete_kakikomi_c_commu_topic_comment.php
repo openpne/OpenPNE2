@@ -9,7 +9,7 @@ class admin_do_delete_kakikomi_c_commu_topic_comment extends OpenPNE_Action
 {
     function execute($requests)
     {
-        do_c_bbs_delete_c_commu_topic_comment($requests['target_c_commu_topic_comment_id']);
+        db_commu_delete_c_commu_topic_comment($requests['target_c_commu_topic_comment_id']);
 
         module_client_redirect('delete_kakikomi', 'トピックコメントを削除しました');
     }

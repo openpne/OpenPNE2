@@ -17,7 +17,7 @@ class pc_do_h_review_clip_add_insert_c_review_clip extends OpenPNE_Action
         //--- 権限チェック
         //レビューコメント作者以外
 
-        if (do_h_review_clip_add_c_review_id4c_review_id_c_member_id($c_review_id, $u)) {
+        if (db_review_clip_add_c_review_id4c_review_id_c_member_id($c_review_id, $u)) {
             openpne_redirect('pc', 'page_h_review_clip_list');
         }
         //---

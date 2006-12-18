@@ -30,10 +30,10 @@ class ktai_do_h_config_prof_update_c_member extends OpenPNE_Action
         }
 
         // 値の整合性をチェック(DB)
-        $c_member_profile_list = do_config_prof_check_profile($validator->getParams(), $_REQUEST['public_flag']);
+        $c_member_profile_list = db_member_check_profile($validator->getParams(), $_REQUEST['public_flag']);
 
         // 必須項目チェック
-        $profile_list = db_common_c_profile_list4null();
+        $profile_list = db_member_c_profile_list4null();
         foreach ($profile_list as $profile) {
             if ($profile['disp_config'] &&
                 $profile['is_required'] &&
@@ -56,8 +56,8 @@ class ktai_do_h_config_prof_update_c_member extends OpenPNE_Action
             ktai_display_error($errors);
         }
 
-        do_config_prof_new($u, $prof);
-        do_config_prof_update_c_member_profile($u, $c_member_profile_list);
+        db_member_config_prof_new($u, $prof);
+        db_member_update_c_member_profile($u, $c_member_profile_list);
 
         openpne_redirect('ktai', 'page_h_home');
     }
@@ -100,7 +100,7 @@ class ktai_do_h_config_prof_update_c_member extends OpenPNE_Action
     function _getValidateRulesProfile()
     {
         $rules = array();
-        $profile_list = db_common_c_profile_list4null();
+        $profile_list = db_member_c_profile_list4null();
         foreach ($profile_list as $profile) {
             if ($profile['disp_config']) {
                 $rule = array(

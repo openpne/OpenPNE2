@@ -14,13 +14,13 @@ class pc_page_f_link_request_err_wait extends OpenPNE_Action
         $target_c_member_id = $requests['target_c_member_id'];
         // ----------
 
-        if (p_common_is_access_block($u, $target_c_member_id)) {
+        if (db_member_is_access_block($u, $target_c_member_id)) {
             openpne_redirect('pc', 'page_h_access_block');
         }
 
         $this->set('inc_navi', fetch_inc_navi("f", $target_c_member_id));
 
-        $this->set('target_c_member', db_common_c_member4c_member_id_LIGHT($target_c_member_id));
+        $this->set('target_c_member', db_member_c_member4c_member_id_LIGHT($target_c_member_id));
 
         return 'success';
     }

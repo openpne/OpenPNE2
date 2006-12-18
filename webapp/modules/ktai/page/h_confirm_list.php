@@ -11,7 +11,7 @@ class ktai_page_h_confirm_list extends OpenPNE_Action
         $u  = $GLOBALS['KTAI_C_MEMBER_ID'];
 
         //リンク承認待ちリスト
-        $this->set("anatani_c_friend_confirm_list", k_p_h_confirm_list_anatani_c_friend_confirm_list4c_member_id($u));
+        $this->set("anatani_c_friend_confirm_list", k_db_friend_anatani_c_friend_confirm_list4c_member_id($u));
 
         //コミュニティ参加承認待ちリスト
         $this->set("anatani_c_commu_member_confirm_list", db_commu_anatani_c_commu_member_confirm_list4c_member_id($u));
@@ -25,7 +25,7 @@ class ktai_page_h_confirm_list extends OpenPNE_Action
             db_commu_anatani_c_commu_sub_admin_confirm_list4c_member_id($u));
 
         //リンク申請出した人のリスト
-        $this->set("anataga_c_friend_confirm_list", k_p_h_confirm_list_anataga_c_friend_confirm_list4c_member_id($u));
+        $this->set("anataga_c_friend_confirm_list", k_db_friend_anataga_c_friend_confirm_list4c_member_id($u));
 
         //参加申請出したコミュニティに関するリスト
         $this->set("anataga_c_commu_member_confirm_list", db_commu_anataga_c_commu_member_confirm_list4c_member_id($u));

@@ -19,16 +19,16 @@ class pc_page_c_event_detail extends OpenPNE_Action
         $body = $requests['body'];
         // ----------
 
-        $c_topic = c_event_detail_c_topic4c_commu_topic_id($c_commu_topic_id);
+        $c_topic = db_commu_c_topic4c_commu_topic_id_2($c_commu_topic_id);
         $c_commu_id = $c_topic['c_commu_id'];
 
         //--- 権限チェック
-        if (!p_common_is_c_commu_view4c_commu_idAc_member_id($c_commu_id, $u)) {
+        if (!db_commu_is_c_commu_view4c_commu_idAc_member_id($c_commu_id, $u)) {
             handle_kengen_error();
         }
         //---
 
-        $c_commu = _db_c_commu4c_commu_id($c_commu_id);
+        $c_commu = db_commu_c_commu4c_commu_id($c_commu_id);
         if (!$c_commu) {
             openpne_redirect('pc', 'page_h_err_c_home');
         }
@@ -41,7 +41,7 @@ class pc_page_c_event_detail extends OpenPNE_Action
 
         //詳細部分
         $this->set("c_commu", $c_commu);
-        $c_topic = c_event_detail_c_topic4c_commu_topic_id($c_commu_topic_id);
+        $c_topic = db_commu_c_topic4c_commu_topic_id_2($c_commu_topic_id);
         $this->set("c_topic", $c_topic);
 
         //書き込み一覧部分
@@ -52,7 +52,7 @@ class pc_page_c_event_detail extends OpenPNE_Action
             $page_size = 10;
         }
 
-        $lst = c_event_detail_c_topic_write4c_commu_topic_id($c_commu_topic_id, $page, $page_size);
+        $lst = db_commu_c_topic_write4c_commu_topic_id($c_commu_topic_id, $page, $page_size);
         $this->set("c_topic_write", $lst[0]);
         $this->set("is_prev", $lst[1]);
         $this->set("is_next", $lst[2]);
@@ -63,10 +63,10 @@ class pc_page_c_event_detail extends OpenPNE_Action
         $this->set("start_num", $lst[4]);
         $this->set("end_num", $lst[5]);
 
-        $this->set("is_c_commu_admin", _db_is_c_commu_admin($c_commu_id, $u));
-        $this->set("is_c_commu_member", _db_is_c_commu_member($c_commu_id, $u));
-        $this->set("is_c_event_member", _db_is_c_event_member($c_commu_topic_id, $u));
-        $this->set("is_c_event_admin", _db_is_c_event_admin($c_commu_topic_id, $u));
+        $this->set("is_c_commu_admin", db_commu_is_c_commu_admin($c_commu_id, $u));
+        $this->set("is_c_commu_member", db_commu_is_c_commu_member($c_commu_id, $u));
+        $this->set("is_c_event_member", db_commu_is_c_event_member($c_commu_topic_id, $u));
+        $this->set("is_c_event_admin", db_commu_is_c_event_admin($c_commu_topic_id, $u));
 
         $this->set('err_msg', $err_msg);
         $this->set('body', $body);

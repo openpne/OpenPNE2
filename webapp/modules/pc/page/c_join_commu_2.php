@@ -17,7 +17,7 @@ class pc_page_c_join_commu_2 extends OpenPNE_Action
         $this->set('inc_navi', fetch_inc_navi('c', $target_c_commu_id));
 
         $this->set('target_c_commu_id', $target_c_commu_id);
-        $this->set('c_commu', _db_c_commu4c_commu_id($target_c_commu_id));
+        $this->set('c_commu', db_commu_c_commu4c_commu_id($target_c_commu_id));
 
         return 'success';
     }

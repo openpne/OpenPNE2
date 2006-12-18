@@ -11,7 +11,7 @@ class admin_page_edit_c_profile extends OpenPNE_Action
     {
         $v = array();
 
-        $v['c_profile_list'] = db_common_c_profile_list();
+        $v['c_profile_list'] = db_member_c_profile_list();
 
         $this->set($v);
         return 'success';

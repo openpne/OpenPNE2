@@ -110,8 +110,8 @@ function biz_getScheduleWeek($u, $member_id, $w, $cmd, $head = true, $value = tr
                 'day_disp' => $d_disp,
                 'dayofweek'=>$dayofweek[$i++], 
                 'now' => false,
-                'birth' => p_h_home_birth4c_member_id($m, $d, $member_id),
-                'event' => p_h_home_event4c_member_id($y, $m, $d, $member_id),
+                'birth' => db_member_birth4c_member_id($m, $d, $member_id),
+                'event' => db_commu_event4c_member_id($y, $m, $d, $member_id),
                 'schedule' => $schedule,
                 'todo' => biz_schedule_todo4c_member_id($u, $member_id, $y, $m, $d),
                 'holiday' => db_c_holiday_list4date($m, $d),
@@ -199,7 +199,7 @@ function biz_getTodoList($u, $member_id, $cmd, $nickname = null)
 
     foreach ($todolist as $key => $value) {
         if ($value['writer_name']) {
-            $writer_name = db_common_c_member4c_member_id($value['writer_id']);
+            $writer_name = db_member_c_member4c_member_id($value['writer_id']);
             $todolist[$key]['writer_name'] = $writer_name['nickname'];
         }
     }
@@ -223,7 +223,7 @@ function biz_getStateForm($member_id, $is_form = false)
     $inc_smarty->assign("is_form", $is_form);
 
     //nickname用-----
-    $c_member=db_common_c_member4c_member_id($member_id);
+    $c_member=db_member_c_member4c_member_id($member_id);
     $inc_smarty->assign("c_member", $c_member);
     //nickname用-----
 

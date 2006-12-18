@@ -18,18 +18,18 @@ class ktai_page_fh_friend_list extends OpenPNE_Action
 
         if (!$target_c_member_id) $target_c_member_id = $u;
 
-        if (p_common_is_access_block($u, $target_c_member_id)) {
+        if (db_member_is_access_block($u, $target_c_member_id)) {
             openpne_redirect('ktai', 'page_h_access_block');
         }
 
         //ターゲット情報
-        $this->set("target_c_member", db_common_c_member4c_member_id_LIGHT($target_c_member_id));
+        $this->set("target_c_member", db_member_c_member4c_member_id_LIGHT($target_c_member_id));
 
         // 1ページ当たりに表示するフレンドの数
         $page_size = 20;
         $page += $direc;
         //ターゲットの詳細な友達リスト
-        $list = k_p_fh_friend_list_friend_list4c_member_id($target_c_member_id, $page_size, $page);
+        $list = db_friend_friend_list4c_member_id($target_c_member_id, $page_size, $page);
 
         $this->set("target_friend_list", $list[0]);
         $this->set("page", $page);

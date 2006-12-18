@@ -43,7 +43,7 @@ class admin_do_csv_member extends OpenPNE_Action
         $c_member_list = array();
         foreach ($ids as $id) {
             $tmp_c_member = array();
-            $_tmp_c_member = db_common_c_member4c_member_id($id, false, false, 'private');
+            $_tmp_c_member = db_member_c_member4c_member_id($id, false, false, 'private');
             
             $tmp_c_member['c_member_id'] = $_tmp_c_member['c_member_id'];
             $tmp_c_member['nickname'] = $_tmp_c_member['nickname'];
@@ -57,8 +57,8 @@ class admin_do_csv_member extends OpenPNE_Action
             $tmp_c_member['birth_month'] = $_tmp_c_member['birth_month'];
             $tmp_c_member['birth_day'] = $_tmp_c_member['birth_day'];
             
-            $tmp_profile_list = db_common_c_member_profile_list4c_member_id($id, 'private');
-            $c_profile_list = db_common_c_profile_list4null();
+            $tmp_profile_list = db_member_c_member_profile_list4c_member_id($id, 'private');
+            $c_profile_list = db_member_c_profile_list4null();
             foreach($c_profile_list as $key=>$tmp_profile ){
                 if (is_array($tmp_profile_list[$tmp_profile['name']]['value'])){
                     foreach ($tmp_profile_list[$tmp_profile['name']]['value'] as $itm){
@@ -68,7 +68,7 @@ class admin_do_csv_member extends OpenPNE_Action
                     $tmp_c_member[$tmp_profile['name']] = $tmp_profile_list[$tmp_profile['name']]['value'];
                 }
             }            
-            $tmp_secure = db_common_c_member_secure4c_member_id($id);
+            $tmp_secure = db_member_c_member_secure4c_member_id($id);
             $tmp_c_member['pc_address'] = $tmp_secure['pc_address'];
             $tmp_c_member['ktai_address'] = $tmp_secure['ktai_address'];
             $tmp_c_member['regist_address'] = $tmp_secure['regist_address'];
@@ -80,7 +80,7 @@ class admin_do_csv_member extends OpenPNE_Action
     }
     
     function get_key_list(){
-        $c_profile_list = db_common_c_profile_list4null();
+        $c_profile_list = db_member_c_profile_list4null();
         
         $ley_list[]="メンバーID";
         $ley_list[]="ニックネーム";

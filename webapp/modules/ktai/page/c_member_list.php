@@ -31,7 +31,7 @@ class ktai_page_c_member_list extends OpenPNE_Action
         //コミュニティID
         $this->set("c_commu_id", $target_c_commu_id);
         //コミュニティのメンバ数
-        $this->set("count_member", _db_count_c_commu_member_list4c_commu_id($target_c_commu_id));
+        $this->set("count_member", db_commu_count_c_commu_member_list4c_commu_id($target_c_commu_id));
 
         return 'success';
     }

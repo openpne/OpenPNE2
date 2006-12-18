@@ -15,7 +15,7 @@ class pc_page_h_review_clip_add extends OpenPNE_Action
         // ----------
 
         $this->set('inc_navi', fetch_inc_navi('h'));
-        $this->set('c_review', p_h_review_list_product_c_review4c_review_id($c_review_id));
+        $this->set('c_review', db_review_list_product_c_review4c_review_id($c_review_id));
         return 'success';
     }
 }

@@ -25,8 +25,8 @@ class pc_do_c_topic_edit_update_c_commu_topic extends OpenPNE_Action
         $c_topic = c_topic_detail_c_topic4c_commu_topic_id($c_commu_topic_id);
         $c_commu_id = $c_topic['c_commu_id'];
 
-        if (!_db_is_c_topic_admin($c_commu_topic_id, $u) &&
-            !_db_is_c_commu_admin($c_commu_id, $u)) {
+        if (!db_commu_is_c_topic_admin($c_commu_topic_id, $u) &&
+            !db_commu_is_c_commu_admin($c_commu_id, $u)) {
             handle_kengen_error();
         }
         //---
@@ -84,7 +84,7 @@ class pc_do_c_topic_edit_update_c_commu_topic extends OpenPNE_Action
             'name'       => $title,
             'event_flag' => 0,
         );
-        do_c_event_edit_update_c_commu_topic($c_commu_topic_id, $update_c_commu_topic);
+        db_commu_update_c_commu_topic($c_commu_topic_id, $update_c_commu_topic);
 
 
         $update_c_commu_topic_comment = array(
@@ -103,7 +103,7 @@ class pc_do_c_topic_edit_update_c_commu_topic extends OpenPNE_Action
             $update_c_commu_topic_comment["image_filename3"] = $filename3;
             image_data_delete($c_topic['image_filename3']);
         }
-        do_c_event_edit_update_c_commu_topic_comment($c_commu_topic_id, $update_c_commu_topic_comment);
+        db_commu_update_c_commu_topic_comment($c_commu_topic_id, $update_c_commu_topic_comment);
 
         $p = array('target_c_commu_topic_id' => $c_commu_topic_id);
         openpne_redirect('pc', 'page_c_topic_detail', $p);

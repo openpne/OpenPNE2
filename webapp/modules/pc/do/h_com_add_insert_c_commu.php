@@ -36,7 +36,7 @@ class pc_do_h_com_add_insert_c_commu extends OpenPNE_Action
         }
 
         //作成者をコミュメンバーにする
-        do_inc_join_c_commu($c_commu_id, $u);
+        db_commu_join_c_commu($c_commu_id, $u);
 
         $p = array('target_c_commu_id' => $c_commu_id);
         openpne_redirect('pc', 'page_c_home', $p);

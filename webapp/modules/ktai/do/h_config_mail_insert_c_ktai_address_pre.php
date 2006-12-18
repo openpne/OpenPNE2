@@ -32,7 +32,7 @@ class ktai_do_h_config_mail_insert_c_ktai_address_pre extends OpenPNE_Action
             openpne_redirect('ktai', 'page_h_config_mail', $p);
         }
 
-        if (p_is_sns_join4mail_address($ktai_address)) {
+        if (db_member_is_sns_join4mail_address($ktai_address)) {
             // このアドレスはすでに登録されています
             $p = array('msg' => 17);
             openpne_redirect('ktai', 'page_h_config_mail', $p);
@@ -44,11 +44,11 @@ class ktai_do_h_config_mail_insert_c_ktai_address_pre extends OpenPNE_Action
             openpne_redirect('ktai', 'page_h_config_mail', $p);
         }
 
-        k_do_delete_c_member_ktai_pre4ktai_address($ktai_address);
-        k_do_delete_c_ktai_address_pre4ktai_address($ktai_address);
+        db_member_delete_c_member_ktai_pre4id4ktai_address($ktai_address);
+        db_member_delete_c_ktai_address_pre4ktai_address($ktai_address);
 
         $session = create_hash();
-        k_do_insert_c_ktai_address_pre($u, $session, $ktai_address);
+        db_member_insert_c_ktai_address_pre($u, $session, $ktai_address);
 
         do_mail_sns_change_ktai_mail_send($u, $session, $ktai_address);
 

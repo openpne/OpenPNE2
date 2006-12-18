@@ -35,7 +35,7 @@ class ktai_do_h_config_password_query_update_password_query extends OpenPNE_Acti
             openpne_redirect('ktai', 'page_h_config_password_query', $p);
         }
 
-        db_ktai_update_password_query($u, $requests['c_password_query_id'], $requests['password_query_answer']);
+        db_member_update_password_query($u, $requests['c_password_query_id'], $requests['password_query_answer']);
 
         $p = array('msg' => 24);
         openpne_redirect('ktai', 'page_h_config', $p);

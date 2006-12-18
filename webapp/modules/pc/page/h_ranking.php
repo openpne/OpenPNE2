@@ -22,28 +22,28 @@ class pc_page_h_ranking extends OpenPNE_Action
         $limit = 10;
         switch ($kind) {
         case "friend":
-            $list = pne_cache_call(3600, 'p_h_ranking_c_friend_ranking', $limit);
+            $list = pne_cache_call(3600, 'db_ranking_c_friend_ranking', $limit);
             foreach ($list as $key => $value) {
-                $list[$key]['c_member'] = db_common_c_member_with_profile($value['c_member_id']);
+                $list[$key]['c_member'] = db_member_c_member_with_profile($value['c_member_id']);
             }
             break;
         case "com_member":
-            $list = pne_cache_call(3600, 'p_h_ranking_c_commu_member_ranking', $limit);
+            $list = pne_cache_call(3600, 'db_ranking_c_commu_member_ranking', $limit);
             foreach ($list as $key => $value) {
-                $list[$key]['c_commu'] = _db_c_commu4c_commu_id($value['c_commu_id']);
+                $list[$key]['c_commu'] = db_commu_c_commu4c_commu_id($value['c_commu_id']);
             }
             break;
         case "com_comment":
-            $list = pne_cache_call(3600, 'p_h_ranking_c_commu_topic_comment_ranking', $limit);
+            $list = pne_cache_call(3600, 'db_ranking_c_commu_topic_comment_ranking', $limit);
             foreach ($list as $key => $value) {
-                $list[$key]['c_commu'] = _db_c_commu4c_commu_id($value['c_commu_id']);
+                $list[$key]['c_commu'] = db_commu_c_commu4c_commu_id($value['c_commu_id']);
             }
             break;
         case "ashiato":
         default:
             $list = pne_cache_call(3600, 'p_h_ranking_c_ashiato_ranking', $limit);
             foreach ($list as $key => $value) {
-                $list[$key]['c_member'] = db_common_c_member_with_profile($value['c_member_id']);
+                $list[$key]['c_member'] = db_member_c_member_with_profile($value['c_member_id']);
                 if (!$list[$key]['c_member']) {
                     unset($list[$key]);
                 }

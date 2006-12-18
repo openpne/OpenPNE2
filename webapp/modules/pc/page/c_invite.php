@@ -18,13 +18,13 @@ class pc_page_c_invite extends OpenPNE_Action
         $this->set('inc_navi', fetch_inc_navi('c', $target_c_commu_id));
 
         //メンバー情報
-        $this->set("member", db_common_c_member4c_member_id($u));
+        $this->set("member", db_member_c_member4c_member_id($u));
         //コミュニティID
         $this->set("c_commu_id", $target_c_commu_id);
         //コミュニティ
-        $this->set("c_commu", _db_c_commu4c_commu_id($target_c_commu_id));
+        $this->set("c_commu", db_commu_c_commu4c_commu_id($target_c_commu_id));
         //招待する友達リスト
-        $this->set("c_invite_list", p_c_invite_invite_list4c_member_id4c_commu_id($u, $target_c_commu_id));
+        $this->set("c_invite_list", db_commu_invite_list4c_member_id4c_commu_id($u, $target_c_commu_id));
 
         return 'success';
     }

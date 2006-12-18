@@ -31,11 +31,11 @@ class pc_page_fh_diary_list extends OpenPNE_Action
         } else {
             $type = 'f';
             $is_diary_admin = false;
-            $target_c_member = db_common_c_member4c_member_id($target_c_member_id);
+            $target_c_member = db_member_c_member4c_member_id($target_c_member_id);
             $is_friend = db_friend_is_friend($u, $target_c_member_id);
 
             // アクセスブロック
-            if (p_common_is_access_block($u, $target_c_member_id)) {
+            if (db_member_is_access_block($u, $target_c_member_id)) {
                 openpne_redirect('pc', 'page_h_access_block');
             }
 
@@ -48,12 +48,12 @@ class pc_page_fh_diary_list extends OpenPNE_Action
         $page += $direc;
         $page_size = 20;
 
-        $target_member = db_common_c_member4c_member_id($target_c_member_id);
+        $target_member = db_member_c_member4c_member_id($target_c_member_id);
         $this->set('target_member', $target_member);
         //年月日で一覧表示、日記数に制限なし
         if ($year && $month) {
             $list_set = p_fh_diary_list_diary_list_date4c_member_id($target_c_member_id, $page_size, $page ,$year, $month, $day, $u);
-            $rss_list = p_fh_diary_list_c_rss_cache_list_date($target_c_member_id, $year, $month, $day);
+            $rss_list = db_rss_list_c_rss_cache_list_date($target_c_member_id, $year, $month, $day);
         } elseif($category_id) {
             $year = date('Y');
             $month = date('n');
@@ -71,7 +71,7 @@ class pc_page_fh_diary_list extends OpenPNE_Action
                 $list_set = p_fh_diary_list_diary_list4c_member_id($target_c_member_id, $page_size, $page, $u);
             }
 
-            $rss_list = p_fh_diary_list_c_rss_cache_list($target_c_member_id, $page_size, $page);
+            $rss_list = db_rss_list_c_rss_cache_list($target_c_member_id, $page_size, $page);
         }
 
         $this->set('c_rss_cache_list', $rss_list);

@@ -23,7 +23,7 @@ class admin_do_send_messages_all extends OpenPNE_Action
 
         // 送信者はとりあえず1番で固定
         $c_member_id_from = 1;
-        $c_member_id_list = p_common_c_member_id_list4null();
+        $c_member_id_list = db_member_c_member_id_list4null();
 
         $send_num = 0;
         foreach ($c_member_id_list as $key => $c_member_id) {

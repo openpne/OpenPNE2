@@ -43,8 +43,8 @@ class biz_page_s_list extends OpenPNE_Action
                 'day' => $d,
                 'dayofweek'=>$dayofweek[$i++], 
                 'now' => false,
-                'birth' => p_h_home_birth4c_member_id($m, $d, $u),
-                'event' => p_h_home_event4c_member_id($y, $m, $d, $u),
+                'birth' => db_member_birth4c_member_id($m, $d, $u),
+                'event' => db_commu_event4c_member_id($y, $m, $d, $u),
                 'schedule' => $schedule,
             );
             if ($w == 0 && $d == date('d')) {

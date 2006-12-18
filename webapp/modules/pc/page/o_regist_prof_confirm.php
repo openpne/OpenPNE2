@@ -24,12 +24,12 @@ class pc_page_o_regist_prof_confirm extends OpenPNE_Action
         $sid = $requests['sid'];
         // ----------
 
-        if (!n_regist_intro_is_active_sid($sid)) {
+        if (!db_member_is_active_sid($sid)) {
             $p = array('msg_code' => 'invalid_url');
             openpne_redirect('pc', 'page_o_tologin', $p);
         }
 
-        $pre = do_common_c_member_pre4sid($sid);
+        $pre = db_member_c_member_pre4sid($sid);
 
         $this->set('inc_page_header', fetch_inc_page_header('regist'));
 
@@ -42,7 +42,7 @@ class pc_page_o_regist_prof_confirm extends OpenPNE_Action
         $query_id = $_REQUEST['c_password_query_id'];
         $this->set('password_query_name', $query_list[$query_id]);
 
-        $this->set('profile_list', db_common_c_profile_list4null());
+        $this->set('profile_list', db_member_c_profile_list4null());
 
         return 'success';
     }

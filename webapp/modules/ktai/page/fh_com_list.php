@@ -20,18 +20,18 @@ class ktai_page_fh_com_list extends OpenPNE_Action
             $target_c_member_id = $u;
         }
 
-        if (p_common_is_access_block($u, $target_c_member_id)) {
+        if (db_member_is_access_block($u, $target_c_member_id)) {
             openpne_redirect('ktai', 'page_h_access_block');
         }
 
         // メンバー情報
-        $this->set("target_c_member", db_common_c_member4c_member_id_LIGHT($target_c_member_id));
+        $this->set("target_c_member", db_member_c_member4c_member_id_LIGHT($target_c_member_id));
 
         // 参加コミュニティリスト
         $page_size = 10;
         $page += $direc;
 
-        $list = k_p_fh_com_list_c_commu_list4c_member_id($target_c_member_id, $page_size, $page);
+        $list = k_db_commu_c_commu_list4c_member_id($target_c_member_id, $page_size, $page);
 
         $this->set("c_commu_list", $list[0]);
         $this->set("page", $page);

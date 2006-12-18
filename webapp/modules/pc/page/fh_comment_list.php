@@ -21,7 +21,7 @@ class pc_page_fh_comment_list extends OpenPNE_Action
             $target_c_member_id = $u;
         }
 
-        $target_c_member = db_common_c_member4c_member_id($target_c_member_id);
+        $target_c_member = db_member_c_member4c_member_id($target_c_member_id);
         $this->set("target_member", $target_c_member);
 
         if ($target_c_member_id == $u) {
@@ -32,7 +32,7 @@ class pc_page_fh_comment_list extends OpenPNE_Action
             $is_friend = db_friend_is_friend($u, $target_c_member_id);
 
             // アクセスブロック
-            if (p_common_is_access_block($u, $target_c_member_id)) {
+            if (db_member_is_access_block($u, $target_c_member_id)) {
                 openpne_redirect('pc', 'page_h_access_block');
             }
         }

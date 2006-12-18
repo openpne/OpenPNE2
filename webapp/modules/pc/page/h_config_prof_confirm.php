@@ -24,7 +24,7 @@ class pc_page_h_config_prof_confirm extends OpenPNE_Action
         $this->set('inc_navi', fetch_inc_navi('h'));
 
         $this->set('prof', $prof);
-        $this->set('profile_list', db_common_c_profile_list4null());
+        $this->set('profile_list', db_member_c_profile_list4null());
 
         return 'success';
     }

@@ -47,7 +47,7 @@ class pc_do_f_invite_insert_c_message_friend_invite extends OpenPNE_Action
             create_message_friend_invite($u, $body, $target_c_member_id);
 
         foreach ($c_member_id_list as $key => $value) {
-            do_common_send_message_syoukai_member($u, $value, $msg_subject, $msg_body);
+            db_message_send_message_syoukai_member($u, $value, $msg_subject, $msg_body);
         }
 
         //メンバー紹介をした人にポイント付与

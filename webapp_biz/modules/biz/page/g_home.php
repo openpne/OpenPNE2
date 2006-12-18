@@ -27,10 +27,10 @@ class biz_page_g_home extends OpenPNE_Action
         $member_list = biz_getGroupMember($target_id, 9);
         $member_list_full = biz_getGroupMember($target_id);
         foreach ($member_list as $key => $value) {
-            $member_list[$key] = db_common_c_member4c_member_id_LIGHT($value['c_member_id']);
+            $member_list[$key] = db_member_c_member4c_member_id_LIGHT($value['c_member_id']);
         }
         foreach ($member_list_full as $key => $value) {
-            $member_list_full[$key] = db_common_c_member4c_member_id($value['c_member_id']);
+            $member_list_full[$key] = db_member_c_member4c_member_id($value['c_member_id']);
             $member_list_full[$key]['last_login'] = p_f_home_last_login4access_date($member_list_full[$key]['access_date']);
         }
 
@@ -38,7 +38,7 @@ class biz_page_g_home extends OpenPNE_Action
 
         $this->set("member_list", $member_list);
         $this->set("member_count", count($member_list_full));
-        $this->set("admin_data", db_common_c_member4c_member_id_LIGHT($group['admin_id']));
+        $this->set("admin_data", db_member_c_member4c_member_id_LIGHT($group['admin_id']));
 
         $this->set('calendar_head', biz_getScheduleWeek($u, $target_id, $requests['w'], 'g', ture, false, false));
 

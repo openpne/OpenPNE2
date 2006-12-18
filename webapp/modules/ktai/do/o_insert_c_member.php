@@ -28,7 +28,7 @@ class ktai_do_o_insert_c_member extends OpenPNE_Action
         //セッションが有効
 
         // セッションが有効かどうか
-        if (!$pre = c_member_ktai_pre4session($ses)) {
+        if (!$pre = db_member_c_member_ktai_pre4session($ses)) {
             // 無効の場合、login へリダイレクト
             openpne_redirect('ktai', 'page_o_login');
         }
@@ -54,10 +54,10 @@ class ktai_do_o_insert_c_member extends OpenPNE_Action
         }
 
         // 値の整合性をチェック(DB)
-        $c_member_profile_list = do_config_prof_check_profile($validator->getParams(), $_REQUEST['public_flag']);
+        $c_member_profile_list = db_member_check_profile($validator->getParams(), $_REQUEST['public_flag']);
 
         // 必須項目チェック
-        $profile_list = db_common_c_profile_list4null();
+        $profile_list = db_member_c_profile_list4null();
         foreach ($profile_list as $profile) {
             if ($profile['disp_regist'] &&
                 $profile['is_required'] &&
@@ -98,7 +98,7 @@ class ktai_do_o_insert_c_member extends OpenPNE_Action
             break;
         }
 
-        if (!$c_member_id = k_do_insert_c_member($prof)) {
+        if (!$c_member_id = db_member_ktai_insert_c_member($prof)) {
             openpne_redirect('ktai', 'page_o_login');
         }
 
@@ -111,7 +111,7 @@ class ktai_do_o_insert_c_member extends OpenPNE_Action
         db_point_add_point($pre['c_member_id_invite'], $point);
 
         // insert c_member_profile
-        do_config_prof_update_c_member_profile($c_member_id, $c_member_profile_list);
+        db_member_update_c_member_profile($c_member_id, $c_member_profile_list);
 
         // insert c_friend(紹介者)
         db_friend_insert_c_friend($c_member_id, $pre['c_member_id_invite']);
@@ -119,11 +119,11 @@ class ktai_do_o_insert_c_member extends OpenPNE_Action
         //管理画面で指定したコミュニティに強制参加
         $c_commu_id_list = db_commu_regist_join_list();
         foreach ($c_commu_id_list as $c_commu_id) {
-            do_inc_join_c_commu($c_commu_id, $c_member_id);
+            db_commu_join_c_commu($c_commu_id, $c_member_id);
         }
 
         // delete c_member_ktai_pre
-        k_do_delete_c_member_ktai_pre($pre['c_member_ktai_pre_id']);
+        db_member_delete_c_member_ktai_pre4id($pre['c_member_ktai_pre_id']);
 
 
         do_insert_c_member_mail_send($c_member_id, $prof['password'], $pre['ktai_address']);
@@ -189,7 +189,7 @@ class ktai_do_o_insert_c_member extends OpenPNE_Action
     function _getValidateRulesProfile()
     {
         $rules = array();
-        $profile_list = db_common_c_profile_list4null();
+        $profile_list = db_member_c_profile_list4null();
         foreach ($profile_list as $profile) {
             if ($profile['disp_regist']) {
                 $rule = array(

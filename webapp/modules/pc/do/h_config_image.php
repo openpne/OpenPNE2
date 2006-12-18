@@ -21,7 +21,7 @@ class pc_do_h_config_image extends OpenPNE_Action
             }
         }
 
-        $c_member = db_common_c_member4c_member_id($u);
+        $c_member = db_member_c_member4c_member_id($u);
 
         if (!$c_member['image_filename_1']) {
             $img_num = 1;
@@ -38,11 +38,11 @@ class pc_do_h_config_image extends OpenPNE_Action
         $image_filename = image_insert_c_image($upfile_obj, "m_{$u}");
 
         //c_memberのフィールドに登録
-        do_h_config_image_new($u, $image_filename, $img_num);
+        db_member_config_image_new($u, $image_filename, $img_num);
 
         //画像1の時（最初の画像）メイン画像に
         if ($img_num == 1) {
-            do_h_config_image_change_c_member_main_image($u, 1);
+            db_member_change_c_member_main_image($u, 1);
         }
 
         openpne_redirect('pc', 'page_h_config_image');

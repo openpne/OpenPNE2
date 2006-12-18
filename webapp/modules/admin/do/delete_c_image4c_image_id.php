@@ -9,7 +9,7 @@ class admin_do_delete_c_image4c_image_id extends OpenPNE_Action
 {
     function execute($requests)
     {
-        $c_image = db_admin_c_image4c_image_id($requests['target_c_image_id']);
+        $c_image = db_image_c_image4c_image_id($requests['target_c_image_id']);
         image_data_delete($c_image['filename']);
         db_admin_delete_c_image_link4image_filename($c_image['filename']);
 

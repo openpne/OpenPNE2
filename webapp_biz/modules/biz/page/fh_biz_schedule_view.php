@@ -32,7 +32,7 @@ class biz_page_fh_biz_schedule_view extends OpenPNE_Action
         }
 
         //プロフィール
-        $target_member = db_common_c_member4c_member_id($u);
+        $target_member = db_member_c_member4c_member_id($u);
         $this->set("target_member", $target_member);
         $this->set("form_val", $form_val);
         $this->set("target_c_member_id", $requests['target_id']);

@@ -26,7 +26,7 @@ class pc_do_c_topic_add_insert_c_commu_topic extends OpenPNE_Action
             handle_kengen_error();
         }
 
-        $c_commu = p_c_home_c_commu4c_commu_id($c_commu_id);
+        $c_commu = db_commu_c_commu4c_commu_id2($c_commu_id);
 
         //トピック作成権限チェック
         if ($c_commu['topic_authority'] == 'admin_only' && !db_commu_is_c_commu_admin($c_commu_id, $u)) {
@@ -44,7 +44,7 @@ class pc_do_c_topic_add_insert_c_commu_topic extends OpenPNE_Action
             "c_member_id" => $u,
             "event_flag"  => 0
         );
-        $c_commu_topic_id = do_c_event_add_insert_c_commu_topic($insert_c_commu_topic);
+        $c_commu_topic_id = db_commu_insert_c_commu_topic($insert_c_commu_topic);
 
         if ($image_filename1_tmpfile) {
             $filename1 = image_insert_c_image4tmp("t_{$c_commu_topic_id}_1", $image_filename1_tmpfile);
@@ -67,7 +67,7 @@ class pc_do_c_topic_add_insert_c_commu_topic extends OpenPNE_Action
             "image_filename2"  => !empty($filename2) ? $filename2 : '',
             "image_filename3"  => !empty($filename3) ? $filename3 : '',
         );
-        $insert_id = do_c_event_add_insert_c_commu_topic_comment($insert_c_commu_topic_comment);
+        $insert_id = db_commu_insert_c_commu_topic_comment_3($insert_c_commu_topic_comment);
 
         //お知らせメール送信(携帯へ)
         send_bbs_info_mail($insert_id, $u);

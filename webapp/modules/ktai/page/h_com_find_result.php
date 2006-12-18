@@ -33,10 +33,10 @@ class ktai_page_h_com_find_result extends OpenPNE_Action
         $this->set("target_c_commu_category_id", $target_c_commu_category_id);
 
         //カテゴリのリスト
-        $this->set("c_commu_category_list", _db_c_commu_category4null());
+        $this->set("c_commu_category_list", db_commu_c_commu_category4null());
 
         //検索結果
-        $list = k_p_h_com_category_c_commu_list4c_commu_category_id_search($target_c_commu_category_id, $page_size, $page, $search_word);
+        $list = db_commu_c_commu_list4c_commu_category_id_search($target_c_commu_category_id, $page_size, $page, $search_word);
 
         $this->set("c_commu_search_result", $list[0]);
         $this->set("count_total", $list[3]);

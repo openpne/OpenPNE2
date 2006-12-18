@@ -11,7 +11,7 @@ class ktai_do_h_config_public_flag_diary extends OpenPNE_Action
         $tail = $GLOBALS['KTAI_URL_TAIL'];
         $u = $GLOBALS['KTAI_C_MEMBER_ID'];
 
-        db_ktai_update_public_flag_diary($u, $requests['public_flag_diary']);
+        db_member_update_public_flag_diary($u, $requests['public_flag_diary']);
 
         $p = array('msg' => 35);
         openpne_redirect('ktai', 'page_h_config', $p);

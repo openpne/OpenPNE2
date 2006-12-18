@@ -23,7 +23,7 @@ function xmlrpc_001_get_c_member($message)
     $m_id = intval($params['my_c_member_id']);
 
     // my_c_member_id が不正
-    if (!db_common_c_member4c_member_id_LIGHT($m_id)) {
+    if (!db_member_c_member4c_member_id_LIGHT($m_id)) {
         return xmlrpc_get_fault_response(56);
     }
 
@@ -36,12 +36,12 @@ function xmlrpc_001_get_c_member($message)
     }
 
     // target_c_member_id が不正
-    if (!$c_member = db_common_c_member4c_member_id($t_id, false, true, $public_flag)) {
+    if (!$c_member = db_member_c_member4c_member_id($t_id, false, true, $public_flag)) {
         return xmlrpc_get_fault_response(56);
     }
 
     // アクセスブロック判定
-    if (p_common_is_access_block($m_id, $t_id)) {
+    if (db_member_is_access_block($m_id, $t_id)) {
         $result = array(
             'c_member_id' => $t_id,
             'nickname'    => $c_member['nickname'],

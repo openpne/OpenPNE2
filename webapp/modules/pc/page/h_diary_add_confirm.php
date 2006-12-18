@@ -69,7 +69,7 @@ class pc_page_h_diary_add_confirm extends OpenPNE_Action
         $this->set('inc_navi', fetch_inc_navi('h'));
 
         //プロフィール
-        $this->set("member", db_common_c_member4c_member_id($u));
+        $this->set("member", db_member_c_member4c_member_id($u));
 
         $form_val = array(
             "subject" => $subject,

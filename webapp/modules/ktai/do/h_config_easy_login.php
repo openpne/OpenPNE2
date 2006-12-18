@@ -26,12 +26,12 @@ class ktai_do_h_config_easy_login extends OpenPNE_Action
 
         if (!$requests['delete']) {
             // update
-            db_ktai_update_easy_access_id($u, $easy_access_id);
+            db_member_update_easy_access_id($u, $easy_access_id);
             $p = array('msg' => 28);
             openpne_redirect('ktai', 'page_h_config', $p);
         } else {
             // delete
-            db_ktai_update_easy_access_id($u, '');
+            db_member_update_easy_access_id($u, '');
             $p = array('msg' => 29);
             openpne_redirect('ktai', 'page_h_config', $p);
         }

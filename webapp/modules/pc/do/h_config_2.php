@@ -42,7 +42,7 @@ class pc_do_h_config_2 extends OpenPNE_Action
             exit;
         }
 
-        do_common_update_password($u, $new_password);
+        db_member_update_password($u, $new_password);
 
         $GLOBALS['AUTH']->logout();
 

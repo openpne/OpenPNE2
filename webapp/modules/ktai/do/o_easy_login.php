@@ -17,13 +17,13 @@ class ktai_do_o_easy_login extends OpenPNE_Action
 
     function execute($requests)
     {
-        if (!$c_member_id = db_ktai_c_member_id4easy_access_id(OpenPNE_KtaiID::getID())) {
+        if (!$c_member_id = db_member_c_member_id4easy_access_id(OpenPNE_KtaiID::getID())) {
             // 認証エラー
             $p = array('msg' => 14, 'kad' => t_encrypt($requests['ktai_address']), 'login_params' => $requests['login_params']);
             openpne_redirect('ktai', 'page_o_login', $p);
         }
 
-        $c_member = db_common_c_member4c_member_id($c_member_id, true);
+        $c_member = db_member_c_member4c_member_id($c_member_id, true);
 
         @session_name('OpenPNEktai');
         @session_start();

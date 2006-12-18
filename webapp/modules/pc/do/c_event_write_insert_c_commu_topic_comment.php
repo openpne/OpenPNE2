@@ -22,7 +22,7 @@ class pc_do_c_event_write_insert_c_commu_topic_comment extends OpenPNE_Action
         //-- 権限チェック
         //コミュニティ参加者
 
-        $c_topic = c_event_detail_c_topic4c_commu_topic_id($c_commu_topic_id);
+        $c_topic = db_commu_c_topic4c_commu_topic_id_2($c_commu_topic_id);
         $c_commu_id = $c_topic['c_commu_id'];
 
         $status = db_common_commu_status($u, $c_commu_id);
@@ -36,10 +36,10 @@ class pc_do_c_event_write_insert_c_commu_topic_comment extends OpenPNE_Action
         if ($add_event_member == 1) {
             do_c_event_add_insert_c_event_member($c_commu_topic_id, $u);
         } elseif ($add_event_member == -1) {
-            do_c_event_add_delete_c_event_member($c_commu_topic_id, $u);
+            db_commu_delete_c_event_member($c_commu_topic_id, $u);
         }
 
-        $number = _do_c_commu_topic_comment_number4c_commu_topic_id($c_commu_topic_id);
+        $number = db_commu_c_commu_topic_comment_number4c_commu_topic_id($c_commu_topic_id);
         $insert_c_commu_topic_comment = array(
             "c_commu_id"       => $c_commu_id,
             "c_member_id"      => $u,
@@ -47,7 +47,7 @@ class pc_do_c_event_write_insert_c_commu_topic_comment extends OpenPNE_Action
             "number"           => $number,
             "c_commu_topic_id" => $c_commu_topic_id,
         );
-        $tc_id = do_c_event_add_insert_c_commu_topic_comment($insert_c_commu_topic_comment);
+        $tc_id = db_commu_insert_c_commu_topic_comment_3($insert_c_commu_topic_comment);
 
         if ($tmpfile1) {
             $filename1 = image_insert_c_image4tmp("tc_{$tc_id}_1", $tmpfile1);

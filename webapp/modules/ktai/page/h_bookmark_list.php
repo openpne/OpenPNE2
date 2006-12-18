@@ -18,7 +18,7 @@ class ktai_page_h_bookmark_list extends OpenPNE_Action
         $page_size = 10;
         $page += $direc;
 
-        $list = p_h_bookmark_list($u, $page, $page_size);
+        $list = db_bookmark_list($u, $page, $page_size);
         $this->set('c_members', $list[0]);
         $this->set("is_prev", $list[1]);
         $this->set("is_next", $list[2]);

@@ -25,7 +25,7 @@ class ktai_page_o_regist_input extends OpenPNE_Action
         // ----------
 
         // セッションが有効かどうか
-        if (!$pre = c_member_ktai_pre4session($ses)) {
+        if (!$pre = db_member_c_member_ktai_pre4session($ses)) {
             // 無効の場合、login へリダイレクト
             openpne_redirect('ktai', 'page_o_login');
         }
@@ -47,7 +47,7 @@ class ktai_page_o_regist_input extends OpenPNE_Action
         $this->set('public_flags', $public_flags);
 
         $this->set('password_query_list', p_common_c_password_query4null());
-        $this->set('profile_list', db_common_c_profile_list());
+        $this->set('profile_list', db_member_c_profile_list());
 
         $this->set($v);
         return 'success';

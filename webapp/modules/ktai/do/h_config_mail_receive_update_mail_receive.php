@@ -15,7 +15,7 @@ class ktai_do_h_config_mail_receive_update_mail_receive extends OpenPNE_Action
         $is_receive_ktai_mail = $requests['is_receive_ktai_mail'];
         // ----------
 
-        db_ktai_update_mail_receive($u, $is_receive_ktai_mail);
+        db_member_update_mail_receive($u, $is_receive_ktai_mail);
 
         $p = array('msg' => 32);
         openpne_redirect('ktai', 'page_h_config', $p);

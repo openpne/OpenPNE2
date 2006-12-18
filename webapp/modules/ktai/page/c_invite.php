@@ -19,7 +19,7 @@ class ktai_page_c_invite extends OpenPNE_Action
 
         //コミュニティＩＤ
         $this->set("target_c_commu_id", $target_c_commu_id);
-        $this->set("c_commu", _db_c_commu4c_commu_id($target_c_commu_id));
+        $this->set("c_commu", db_commu_c_commu4c_commu_id($target_c_commu_id));
 
 
         return 'success';

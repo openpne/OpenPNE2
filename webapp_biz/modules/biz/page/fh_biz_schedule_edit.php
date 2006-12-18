@@ -35,7 +35,7 @@ class biz_page_fh_biz_schedule_edit extends OpenPNE_Action
         }
 
         //プロフィール
-        $this->set("target_member", db_common_c_member4c_member_id($u));
+        $this->set("target_member", db_member_c_member4c_member_id($u));
         $this->set("form_val", $form_val);
 
         //カレンダー関係

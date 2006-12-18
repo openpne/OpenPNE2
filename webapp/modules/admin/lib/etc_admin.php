@@ -72,7 +72,7 @@ function admin_insert_c_image($upfile_obj, $filename)
 {
     if ($upfile_obj &&
         is_uploaded_file($upfile_obj['tmp_name']) &&
-        _do_insert_c_image($filename, $upfile_obj['tmp_name']) > 0)
+        db_image_insert_c_image2($filename, $upfile_obj['tmp_name']) > 0)
     {
         return $filename;
     }

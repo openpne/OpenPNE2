@@ -17,7 +17,7 @@ class pc_do_c_review_add extends OpenPNE_Action
         $satisfaction_level = $requests['satisfaction_level'];
         // ----------
 
-        $product = p_h_review_write_product4asin($asin);
+        $product = db_review_write_product4asin($asin);
 
         //c_reviewへ登録
         $c_review_id = do_c_review_add_insert_c_review($product, $category_id);

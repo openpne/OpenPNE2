@@ -21,7 +21,7 @@ class pc_do_o_regist_prof extends OpenPNE_Action
         //>
 
         $sid = $requests['sid'];
-        if (!n_regist_intro_is_active_sid($sid)) {
+        if (!db_member_is_active_sid($sid)) {
             $p = array('msg_code' => 'invalid_url');
             openpne_redirect('pc', 'page_o_tologin', $p);
         }
@@ -74,11 +74,11 @@ class pc_do_o_regist_prof extends OpenPNE_Action
         }
 
         // 値の整合性をチェック(DB)
-        $c_member_profile_list = do_config_prof_check_profile($validator->getParams(), $public_flag_list);
+        $c_member_profile_list = db_member_check_profile($validator->getParams(), $public_flag_list);
 
 
         // 必須項目チェック
-        $profile_list = db_common_c_profile_list4null();
+        $profile_list = db_member_c_profile_list4null();
         foreach ($profile_list as $profile) {
             if ( $profile['disp_regist'] &&
                 $profile['is_required'] &&
@@ -127,7 +127,7 @@ class pc_do_o_regist_prof extends OpenPNE_Action
             // delete cookie
             setcookie(session_name(), '', time() - 3600, ini_get('session.cookie_path'));
 
-            $pre = do_common_c_member_pre4sid($sid);
+            $pre = db_member_c_member_pre4sid($sid);
 
             // c_member, c_member_secure
             $c_member = $prof;
@@ -154,7 +154,7 @@ class pc_do_o_regist_prof extends OpenPNE_Action
 
 
             // c_member_profile
-            do_config_prof_update_c_member_profile($u, $c_member_profile_list);
+            db_member_update_c_member_profile($u, $c_member_profile_list);
 
             // 招待者とフレンドリンク
             db_friend_insert_c_friend($u, $pre['c_member_id_invite']);
@@ -162,11 +162,11 @@ class pc_do_o_regist_prof extends OpenPNE_Action
             //管理画面で指定したコミュニティに強制参加
             $c_commu_id_list = db_commu_regist_join_list();
             foreach ($c_commu_id_list as $c_commu_id) {
-                do_inc_join_c_commu($c_commu_id, $u);
+                db_commu_join_c_commu($c_commu_id, $u);
             }
 
             // pre の内容を削除
-            do_common_delete_c_member_pre4sid($sid);
+            db_member_delete_c_member_pre4sid($sid);
 
             // 登録完了メール送信
             do_regist_prof_do_regist2_mail_send($u);
@@ -233,7 +233,7 @@ class pc_do_o_regist_prof extends OpenPNE_Action
     function _getValidateRulesProfile()
     {
         $rules = array();
-        $profile_list = db_common_c_profile_list4null();
+        $profile_list = db_member_c_profile_list4null();
         foreach ($profile_list as $profile) {
             if ($profile['disp_regist']) {
                 $rule = array(

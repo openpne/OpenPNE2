@@ -28,7 +28,7 @@ class ktai_do_fh_diary_insert_c_diary_comment extends OpenPNE_Action
 
         $c_diary = db_diary_get_c_diary4id($target_c_diary_id);
         $target_c_member_id = $c_diary['c_member_id'];
-        $target_c_member = db_common_c_member4c_member_id($target_c_member_id);
+        $target_c_member = db_member_c_member4c_member_id($target_c_member_id);
 
         if ($u != $target_c_member_id) {
             // check public_flag
@@ -36,7 +36,7 @@ class ktai_do_fh_diary_insert_c_diary_comment extends OpenPNE_Action
                 openpne_redirect('ktai', 'page_h_access_block');
             }
             //アクセスブロック設定
-            if (p_common_is_access_block($u, $target_c_member_id)) {
+            if (db_member_is_access_block($u, $target_c_member_id)) {
                 openpne_redirect('ktai', 'page_h_access_block');
             }
         }

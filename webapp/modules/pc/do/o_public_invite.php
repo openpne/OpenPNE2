@@ -55,7 +55,7 @@ class pc_do_o_public_invite extends OpenPNE_Action
             $p = array('msg' => $msg);
             openpne_redirect('pc', 'page_o_public_invite', $p);
         }
-        if (_db_c_member_id4pc_address($pc_address)) {
+        if (db_member_c_member_id4pc_address($pc_address)) {
             $msg = 'そのアドレスは既に登録されています';
             $p = array('msg' => $msg);
             openpne_redirect('pc', 'page_o_public_invite', $p);
@@ -68,13 +68,13 @@ class pc_do_o_public_invite extends OpenPNE_Action
 
         $session = create_hash();
 
-        if (do_common_c_member_pre4pc_address($pc_address)) {
-            do_h_invite_update_c_invite($c_member_id_invite, $pc_address, '', $session);
+        if (db_member_c_member_pre4pc_address($pc_address)) {
+            db_member_update_c_invite($c_member_id_invite, $pc_address, '', $session);
         } else {
-            do_h_invite_insert_c_invite($c_member_id_invite, $pc_address, '', $session);
+            db_member_insert_c_invite($c_member_id_invite, $pc_address, '', $session);
         }
 
-        do_h_invite_insert_c_invite_mail_send($c_member_id_invite, $session, '', $pc_address);
+        db_member_insert_c_invite_mail_send($c_member_id_invite, $session, '', $pc_address);
 
         // delete cookie
         setcookie(session_name(), '', time() - 3600, ini_get('session.cookie_path'));

@@ -90,7 +90,7 @@ class pc_page_h_message_box extends OpenPNE_Action
 
         //下書き保存リスト
         case 'savebox':
-            list($save_list,$is_save_prev,$is_save_next, $total_num) = p_h_message_box_c_message_save_list4c_member_id4range($u, $save_page, $page_size);
+            list($save_list,$is_save_prev,$is_save_next, $total_num) = db_message_c_message_save_list4c_member_id4range($u, $save_page, $page_size);
             $this->set("c_message_save_list", $save_list);
             $this->set("count_c_message_save_list", count($save_list));
 
@@ -101,7 +101,7 @@ class pc_page_h_message_box extends OpenPNE_Action
 
         //ごみ箱リスト
         case 'trash':
-            list($trash_list,$is_trash_prev,$is_trash_next, $total_num) = p_h_message_box_c_message_trash_list4c_member_id4range($u, $trash_page, $page_size);
+            list($trash_list,$is_trash_prev,$is_trash_next, $total_num) = db_message_c_message_trash_list4c_member_id4range($u, $trash_page, $page_size);
             $this->set("c_message_trash_list", $trash_list);
             $this->set("count_c_message_trash_list", count($trash_list));
 

@@ -16,7 +16,7 @@ class pc_page_c_edit_delete_c_commu_confirm extends OpenPNE_Action
 
         //--- 権限チェック
         //コミュニティ管理者
-        if (!_db_is_c_commu_admin($target_c_commu_id, $u)) {
+        if (!db_commu_is_c_commu_admin($target_c_commu_id, $u)) {
             handle_kengen_error();
         }
         //---

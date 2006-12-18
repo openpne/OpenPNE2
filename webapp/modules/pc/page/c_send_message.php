@@ -16,7 +16,7 @@ class pc_page_c_send_message extends OpenPNE_Action
         // ----------
         //--- 権限チェック
         //コミュニティ管理者
-        if (!_db_is_c_commu_admin($target_c_commu_id, $u)) {
+        if (!db_commu_is_c_commu_admin($target_c_commu_id, $u)) {
             handle_kengen_error();
         }
         //---
@@ -24,11 +24,11 @@ class pc_page_c_send_message extends OpenPNE_Action
         $this->set('inc_navi', fetch_inc_navi('c', $target_c_commu_id));
 
         //メンバー情報
-        $this->set("member", db_common_c_member4c_member_id($u));
+        $this->set("member", db_member_c_member4c_member_id($u));
         //コミュニティID
         $this->set("c_commu_id", $target_c_commu_id);
         //コミュニティ
-        $this->set("c_commu", p_c_home_c_commu4c_commu_id($target_c_commu_id));
+        $this->set("c_commu", db_commu_c_commu4c_commu_id2($target_c_commu_id));
 
         return 'success';
     }

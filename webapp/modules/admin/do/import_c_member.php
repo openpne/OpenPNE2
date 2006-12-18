@@ -129,7 +129,7 @@ class admin_do_import_c_member extends OpenPNE_Action
             //管理画面で指定したコミュニティに強制参加
             $c_commu_id_list = db_commu_regist_join_list();
             foreach ($c_commu_id_list as $c_commu_id) {
-                do_inc_join_c_commu($c_commu_id, $u);
+                db_commu_join_c_commu($c_commu_id, $u);
             }
 
             // --- データのインポート ここまで

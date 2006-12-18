@@ -21,7 +21,7 @@ class pc_page_o_regist_intro extends OpenPNE_Action
         //>
 
         $sid = $requests['sid'];
-        if (!n_regist_intro_is_active_sid($sid)) {
+        if (!db_member_is_active_sid($sid)) {
             $p = array('msg_code' => 'invalid_url');
             openpne_redirect('pc', 'page_o_tologin', $p);
         }

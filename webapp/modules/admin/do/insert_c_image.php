@@ -5,7 +5,7 @@
  */
 
 // スキン画像更新
-class admin_do_insert_c_image extends OpenPNE_Action
+class admindb_image_insert_c_image2 extends OpenPNE_Action
 {
     function execute($requests)
     {

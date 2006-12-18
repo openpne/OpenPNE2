@@ -33,7 +33,7 @@ class admin_do_send_invites extends OpenPNE_Action
                 continue;
             }
 
-            if (p_is_sns_join4mail_address($mail)) { // 登録済み
+            if (db_member_is_sns_join4mail_address($mail)) { // 登録済み
                 $errors[] = $mail;
             } elseif (!db_member_is_limit_domain4mail_address($mail)) { // ドメイン制限
                 $limits[] = $mail;
@@ -65,10 +65,10 @@ class admin_do_send_invites extends OpenPNE_Action
                     $session = create_hash();
 
                     // c_member_ktai_pre に追加
-                    if (do_common_c_member_ktai_pre4ktai_address($mail)) {
-                        do_update_c_member_ktai_pre($session, $mail, $c_member_id_invite);
+                    if (db_member_c_member_ktai_pre4ktai_address($mail)) {
+                        db_member_update_c_member_ktai_pre($session, $mail, $c_member_id_invite);
                     } else {
-                        do_insert_c_member_ktai_pre($session, $mail, $c_member_id_invite);
+                        db_member_insert_c_member_ktai_pre($session, $mail, $c_member_id_invite);
                     }
 
                     h_invite_insert_c_invite_mail_send($session, $c_member_id_invite, $mail, $requests['message']);
@@ -85,13 +85,13 @@ class admin_do_send_invites extends OpenPNE_Action
                     $session = create_hash();
 
                     // c_member_pre に追加
-                    if (do_common_c_member_pre4pc_address($mail)) {
-                        do_h_invite_update_c_invite($c_member_id_invite, $mail, $requests['message'], $session);
+                    if (db_member_c_member_pre4pc_address($mail)) {
+                        db_member_update_c_invite($c_member_id_invite, $mail, $requests['message'], $session);
                     } else {
-                        do_h_invite_insert_c_invite($c_member_id_invite, $mail, $requests['message'], $session);
+                        db_member_insert_c_invite($c_member_id_invite, $mail, $requests['message'], $session);
                     }
 
-                    do_h_invite_insert_c_invite_mail_send($c_member_id_invite, $session, $requests['message'], $mail);
+                    db_member_insert_c_invite_mail_send($c_member_id_invite, $session, $requests['message'], $mail);
                 }
             }
             //>

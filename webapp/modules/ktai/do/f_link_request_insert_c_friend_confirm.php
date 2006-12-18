@@ -24,7 +24,7 @@ class ktai_do_f_link_request_insert_c_friend_confirm extends OpenPNE_Action
         //--- 権限チェック
         //フレンドでない and フレンド承認待ちでない
 
-        $status = db_common_friend_status($u, $target_c_member_id);
+        $status = db_friend_status($u, $target_c_member_id);
         if ($status['is_friend']) {
             ktai_display_error('このメンバーは既に'.WORD_MY_FRIEND_HALF.'に登録されています。');
         } elseif ($status['is_friend_confirm']) {
@@ -32,7 +32,7 @@ class ktai_do_f_link_request_insert_c_friend_confirm extends OpenPNE_Action
         }
 
         // アクセスブロック
-        if (p_common_is_access_block($u, $target_c_member_id)) {
+        if (db_member_is_access_block($u, $target_c_member_id)) {
             openpne_redirect('ktai', 'page_h_access_block');
         }
         // -----
@@ -46,8 +46,8 @@ class ktai_do_f_link_request_insert_c_friend_confirm extends OpenPNE_Action
 
 
         //メッセージ
-        $c_member_to   = db_common_c_member4c_member_id($target_c_member_id);
-        $c_member_from = db_common_c_member4c_member_id($c_member_id_from);
+        $c_member_to   = db_member_c_member4c_member_id($target_c_member_id);
+        $c_member_from = db_member_c_member4c_member_id($c_member_id_from);
 
         $subject =WORD_FRIEND."リンク要請メッセージ";
         $body_disp =
@@ -58,7 +58,7 @@ class ktai_do_f_link_request_insert_c_friend_confirm extends OpenPNE_Action
             "\n".
             "この要請について、承認待ちリストから承認または拒否を選択してください。";
 
-        do_common_send_message_syoudaku($c_member_id_from, $target_c_member_id, $subject, $body_disp);
+        db_message_send_message_syoudaku($c_member_id_from, $target_c_member_id, $subject, $body_disp);
 
         $p = array('target_c_member_id' => $target_c_member_id);
         openpne_redirect('ktai', 'page_f_home', $p);

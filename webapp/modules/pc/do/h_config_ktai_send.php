@@ -27,18 +27,18 @@ class pc_do_h_config_ktai_send extends OpenPNE_Action
         }
 
         // 登録済みアドレスかどうかチェックする
-        if (($c_member_id = do_common_c_member_id4ktai_address($ktai_address)) &&
+        if (($c_member_id = db_member_c_member_id4ktai_address2($ktai_address)) &&
             $c_member_id != $u) {
             $msg = "入力されたアドレスは既に登録されています";
             $p = array('msg' => $msg);
             openpne_redirect('pc', 'page_h_config_ktai', $p);
         }
 
-        k_do_delete_c_member_ktai_pre4ktai_address($ktai_address);
-        k_do_delete_c_ktai_address_pre4ktai_address($ktai_address);
+        db_member_delete_c_member_ktai_pre4id4ktai_address($ktai_address);
+        db_member_delete_c_ktai_address_pre4ktai_address($ktai_address);
 
         $session = create_hash();
-        k_do_insert_c_ktai_address_pre($u, $session, $ktai_address);
+        db_member_insert_c_ktai_address_pre($u, $session, $ktai_address);
 
         do_mail_sns_change_ktai_mail_send($u, $session, $ktai_address);
 

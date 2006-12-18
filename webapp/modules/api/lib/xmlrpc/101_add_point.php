@@ -21,7 +21,7 @@ function xmlrpc_101_add_point($message)
     $c_member_id = intval($params['c_member_id']);
     $point = intval($params['point']);
 
-    if (!db_common_c_member4c_member_id_LIGHT($c_member_id)) {
+    if (!db_member_c_member4c_member_id_LIGHT($c_member_id)) {
         return xmlrpc_get_fault_response(56);
     }
 

@@ -22,7 +22,7 @@ class pc_page_f_message_send extends OpenPNE_Action
 
         // 権限チェック
         if ($form_val['target_c_message_id']) {
-            $c_message = _db_c_message4c_message_id($form_val['target_c_message_id']);
+            $c_message = db_message_c_message4c_message_id($form_val['target_c_message_id']);
             if ($c_message['c_member_id_from'] != $u) {
                 if ($c_message['c_member_id_to'] != $u || !$c_message['is_send']) {
                     handle_kengen_error();
@@ -34,13 +34,13 @@ class pc_page_f_message_send extends OpenPNE_Action
         if ($form_val['subject'] && $form_val['body'])
             $syusei = 1;
 
-        if (p_common_is_access_block($u, $target_c_member_id)) {
+        if (db_member_is_access_block($u, $target_c_member_id)) {
             openpne_redirect('pc', 'page_h_access_block');
         }
 
         //メッセージIDから情報を取り出す
         if ($box == "savebox" && $form_val['target_c_message_id']) {
-            $tmplist = _db_c_message4c_message_id($form_val['target_c_message_id']);
+            $tmplist = db_message_c_message4c_message_id($form_val['target_c_message_id']);
             $form_val['body'] = $tmplist['body'];
             $form_val['subject'] = $tmplist['subject'];
             $form_val['target_c_message_id'] = $form_val['target_c_message_id'];
@@ -48,7 +48,7 @@ class pc_page_f_message_send extends OpenPNE_Action
                 $target_c_member_id = $tmplist['c_member_id_to'];
             }
         } elseif (!$syusei && $form_val['target_c_message_id']) {
-            $tmplist = _db_c_message4c_message_id($form_val['target_c_message_id']);
+            $tmplist = db_message_c_message4c_message_id($form_val['target_c_message_id']);
             $form_val['body'] = message_body2inyou($tmplist['body']);
             $form_val['subject'] = "Re:".$tmplist['subject'];
             $form_val['target_c_message_id'] = $form_val['target_c_message_id'];
@@ -60,7 +60,7 @@ class pc_page_f_message_send extends OpenPNE_Action
         $this->set('inc_navi', fetch_inc_navi("f", $target_c_member_id));
 
         //ターゲット情報
-        $this->set("target_member", db_common_c_member4c_member_id($target_c_member_id));
+        $this->set("target_member", db_member_c_member4c_member_id($target_c_member_id));
 
         //ターゲットのid
         $this->set("target_c_member_id", $target_c_member_id);

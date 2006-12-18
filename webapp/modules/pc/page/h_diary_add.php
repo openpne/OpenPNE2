@@ -23,7 +23,7 @@ class pc_page_h_diary_add extends OpenPNE_Action
         $this->set('inc_navi', fetch_inc_navi("h"));
 
         //プロフィール
-        $c_member = db_common_c_member4c_member_id($u);
+        $c_member = db_member_c_member4c_member_id($u);
         if (empty($form_val['public_flag'])) {
             $form_val['public_flag'] = $c_member['public_flag_diary'];
         }

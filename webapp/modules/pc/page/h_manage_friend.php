@@ -11,7 +11,7 @@ class pc_page_h_manage_friend extends OpenPNE_Action
         $u = $GLOBALS['AUTH']->uid();
 
         $this->set('inc_navi', fetch_inc_navi('h'));
-        $this->set('c_friend_list', p_h_manage_friend_c_friend_list_disp4c_member_id($u));
+        $this->set('c_friend_list', db_friend_c_friend_list_disp4c_member_id($u));
 
         return 'success';
     }

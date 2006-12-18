@@ -14,7 +14,7 @@ function db_admin_c_member_list($page, $page_size, &$pager)
 
     $c_member_list = array();
     foreach ($ids as $id) {
-        $c_member_list[] = db_common_c_member4c_member_id($id, true, true, 'private');
+        $c_member_list[] = db_member_c_member4c_member_id($id, true, true, 'private');
     }
 
     $sql = 'SELECT COUNT(*) FROM c_member';
@@ -34,7 +34,7 @@ function db_admin_c_member4mail_address($mail_address)
 
     $c_member_list = array();
     foreach ($list as $c_member_id) {
-        $c_member_list[] = db_common_c_member4c_member_id($c_member_id, true, true, 'private');
+        $c_member_list[] = db_member_c_member4c_member_id($c_member_id, true, true, 'private');
     }
     return $c_member_list;
 }
@@ -581,7 +581,7 @@ function _db_admin_c_member_list($page, $page_size, &$pager, $cond_list)
 
     $c_member_list = array();
     foreach ($ids as $id) {
-        $c_member_list[] = db_common_c_member4c_member_id($id, true, true, 'private');
+        $c_member_list[] = db_member_c_member4c_member_id($id, true, true, 'private');
     }
 
     if ($total_num > 0) {
@@ -612,7 +612,7 @@ function validate_cond($requests)
         $cond_list['e_year'] = intval($requests['e_year']);
     }
     //プロフィール
-    $profile_list = db_common_c_profile_list();
+    $profile_list = db_member_c_profile_list();
 
     foreach ($profile_list as $key => $value) {
         if (!empty($requests[$key])) {
@@ -624,7 +624,7 @@ function validate_cond($requests)
 
 function do_admin_send_mail($c_member_id, $subject, $body)
 {
-    $c_member = db_common_c_member4c_member_id($c_member_id, true);
+    $c_member = db_member_c_member4c_member_id($c_member_id, true);
 
     if ($c_member['secure']['pc_address']) {
         $send_address = $c_member['secure']['pc_address'];
@@ -649,7 +649,7 @@ function do_admin_send_message($c_member_id_from, $c_member_id_to, $subject, $bo
         db_admin_insert_c_message_queue($c_member_id_from, $c_member_id_to, $subject, $body);
         return true;
     } else {
-        _do_insert_c_message($c_member_id_from, $c_member_id_to, $subject, $body);
+        db_message_insert_c_message($c_member_id_from, $c_member_id_to, $subject, $body);
         do_admin_send_message_mail_send($c_member_id_to, $c_member_id_from);
         do_admin_send_message_mail_send_ktai($c_member_id_to, $c_member_id_from);
         return true;
@@ -661,13 +661,13 @@ function do_admin_send_message($c_member_id_from, $c_member_id_to, $subject, $bo
 //メッセージ受信メール（メールキュー蓄積対応）
 function do_admin_send_message_mail_send($c_member_id_to, $c_member_id_from)
 {
-    $c_member_to = db_common_c_member4c_member_id($c_member_id_to, true);
+    $c_member_to = db_member_c_member4c_member_id($c_member_id_to, true);
     $pc_address = $c_member_to['secure']['pc_address'];
     $is_receive_mail = $c_member_to['is_receive_mail'];
 
     $params = array(
-        "c_member_to"   => db_common_c_member4c_member_id($c_member_id_to),
-        "c_member_from" => db_common_c_member4c_member_id($c_member_id_from),
+        "c_member_to"   => db_member_c_member4c_member_id($c_member_id_to),
+        "c_member_from" => db_member_c_member4c_member_id($c_member_id_from),
     );
     return admin_fetch_send_mail($pc_address, 'm_pc_message_zyushin', $params, $is_receive_mail);
 }
@@ -675,15 +675,15 @@ function do_admin_send_message_mail_send($c_member_id_to, $c_member_id_from)
 //◆メッセージ受信メール(携帯)
 function do_admin_send_message_mail_send_ktai($c_member_id_to, $c_member_id_from)
 {
-    $c_member_to = db_common_c_member4c_member_id($c_member_id_to, true);
+    $c_member_to = db_member_c_member4c_member_id($c_member_id_to, true);
     $ktai_address = $c_member_to['secure']['ktai_address'];
     $is_receive_ktai_mail = $c_member_to['is_receive_ktai_mail'];
     $p = array('kad' => t_encrypt(db_member_username4c_member_id($c_member_to['c_member_id'], true)));
     $login_url = openpne_gen_url('ktai', 'page_o_login', $p);
 
     $params = array(
-        'c_member_to'   => db_common_c_member4c_member_id($c_member_id_to),
-        'c_member_from' => db_common_c_member4c_member_id($c_member_id_from),
+        'c_member_to'   => db_member_c_member4c_member_id($c_member_id_to),
+        'c_member_from' => db_member_c_member4c_member_id($c_member_id_from),
         'login_url' => $login_url,
     );
     return admin_fetch_send_mail($ktai_address, 'm_ktai_message_zyushin', $params, $is_receive_ktai_mail);
@@ -906,7 +906,7 @@ function p_access_analysis_target_commu_target_commu4ym_page_name
     $sum = 0;
     foreach($list as $key => $value) {
         if ($value['target_c_commu_id']) {
-            $c_commu = _db_c_commu4c_commu_id($value['target_c_commu_id']);
+            $c_commu = db_commu_c_commu4c_commu_id($value['target_c_commu_id']);
             $return[] = array_merge($value, $c_commu);
             $sum += $value['count'];
         }
@@ -990,7 +990,7 @@ function p_access_analysis_target_topic_target_topic4ym_page_name
         if ($value['target_c_commu_topic_id']) {
             $c_commu_topic = c_topic_detail_c_topic4c_commu_topic_id($value['target_c_commu_topic_id']);
             $c_commu_topic['topic_name'] = $c_commu_topic['name'];
-            $c_commu = _db_c_commu4c_commu_id($c_commu_topic['c_commu_id']);
+            $c_commu = db_commu_c_commu4c_commu_id($c_commu_topic['c_commu_id']);
             $c_commu_topic['commu_name'] = $c_commu['name'];
             $return[] = array_merge($value, $c_commu_topic);
             $sum += $value['count'];
@@ -1054,7 +1054,7 @@ function p_access_analysis_target_diary_target_diary4ym_page_name
     foreach ($list as $key => $value) {
         if ($value['target_c_diary_id']) {
             $c_diary = db_diary_get_c_diary4id($value['target_c_diary_id']);
-            $c_member = db_common_c_member4c_member_id($c_diary['c_member_id']);
+            $c_member = db_member_c_member4c_member_id($c_diary['c_member_id']);
             $c_diary['nickname'] = $c_member['nickname'];
             $return[] = array_merge($value, $c_diary);
             $sum += $value['count'];
@@ -1198,7 +1198,7 @@ function p_access_analysis_target_member_access_member4ym_page_name
     $sum = 0;
     foreach($list as $key => $value) {
         if ($value['target_c_member_id']) {
-            $c_member = db_common_c_member4c_member_id($value['target_c_member_id']);
+            $c_member = db_member_c_member4c_member_id($value['target_c_member_id']);
             $return[] = array_merge($value, $c_member);
             $sum += $value['count'];
         }
@@ -1641,7 +1641,7 @@ function monitor_diary_list($keyword,$page_size,$page)
     $sql = $select . $from . $where . $order;
     $list = db_get_all_limit($sql,($page-1)*$page_size,$page_size,$params);
     foreach ($list as $key => $value) {
-        $list[$key]['c_member'] = db_common_c_member_with_profile($value['c_member_id']);
+        $list[$key]['c_member'] = db_member_c_member_with_profile($value['c_member_id']);
         $list[$key]['count_comments'] = db_diary_count_c_diary_comment4c_diary_id($value['c_diary_id']); 
     }
     
@@ -1687,7 +1687,7 @@ function monitor_diary_comment_list($keyword,$page_size,$page)
     $sql = $select . $from . $where . $order;
     $list = db_get_all_limit($sql,($page-1)*$page_size,$page_size,$params);
     foreach ($list as $key => $value) {
-        $list[$key]['c_member'] = db_common_c_member_with_profile($value['c_member_id']);
+        $list[$key]['c_member'] = db_member_c_member_with_profile($value['c_member_id']);
         $list[$key]['count_comments'] = db_diary_count_c_diary_comment4c_diary_id($value['c_diary_id']); 
     }
     

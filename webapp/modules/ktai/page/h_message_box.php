@@ -31,7 +31,7 @@ class ktai_page_h_message_box extends OpenPNE_Action
         if ($box == 'outbox') {
             $page_s += $direc_s;
             if (!$keyword) {
-                $list_s = k_p_h_message_box_c_message_sent_list4c_member_id4range($u, $page_size, $page_s);
+                $list_s = db_message_c_message_sent_list4c_member_id4range2($u, $page_size, $page_s);
             } else {
                 $list_s = db_message_search_c_message($u, $page_s, $page_size, $keyword, $box);
             }
@@ -53,7 +53,7 @@ class ktai_page_h_message_box extends OpenPNE_Action
             $page_r += $direc_r;
 
             if (!$keyword) {
-                $list_r = k_p_h_message_box_c_message_received_list4c_member_id4range($u, $page_size, $page_r);
+                $list_r = k_db_message_c_message_received_list4c_member_id4range($u, $page_size, $page_r);
             } else {
                 $list_r = db_message_search_c_message($u, $page_r, $page_size, $keyword, $box);
             }

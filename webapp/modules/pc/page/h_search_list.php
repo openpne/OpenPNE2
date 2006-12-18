@@ -12,8 +12,8 @@ class pc_page_h_search_list extends OpenPNE_Action
 
         $this->set('inc_navi', fetch_inc_navi('h'));
 
-        $this->set('profile_list', db_common_c_profile_list());
-        $this->set('count_list', p_h_search_list_count_c_member_profile());
+        $this->set('profile_list', db_member_c_profile_list());
+        $this->set('count_list', db_member_count_c_member_profile());
 
         return 'success';
     }

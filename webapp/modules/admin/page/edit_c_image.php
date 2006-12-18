@@ -12,7 +12,7 @@ class admin_page_edit_c_image extends OpenPNE_Action
         $v = array();
 
         $v['SNS_NAME'] = SNS_NAME;
-        $v['is_image'] = db_admin_is_c_image4filename($requests['filename']);
+        $v['is_image'] = db_image_is_c_image4filename($requests['filename']);
 
         $this->set($v);
         return 'success';

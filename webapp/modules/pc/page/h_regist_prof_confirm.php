@@ -16,7 +16,7 @@ class pc_page_h_regist_prof_confirm extends OpenPNE_Action
         $query_id = $_SESSION['prof']['c_password_query_id'];
         $this->set('password_query_name', $query_list[$query_id]);
 
-        $this->set('profile_list', db_common_c_profile_list4null());
+        $this->set('profile_list', db_member_c_profile_list4null());
 
         return 'success';
     }

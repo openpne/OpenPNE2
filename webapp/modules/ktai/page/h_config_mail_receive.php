@@ -10,7 +10,7 @@ class ktai_page_h_config_mail_receive extends OpenPNE_Action
     {
         $u = $GLOBALS['KTAI_C_MEMBER_ID'];
 
-        $c_member = db_common_c_member4c_member_id($u);
+        $c_member = db_member_c_member4c_member_id($u);
         //メンバ情報
         $this->set('c_member', $c_member);
 

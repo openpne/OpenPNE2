@@ -19,12 +19,12 @@ class pc_page_c_member_list extends OpenPNE_Action
         $this->set('inc_navi', fetch_inc_navi("c", $target_c_commu_id));
 
         //メンバー情報
-        $this->set("member", db_common_c_member4c_member_id($u));
+        $this->set("member", db_member_c_member4c_member_id($u));
 
         //コミュニティID
         $this->set("c_commu_id", $target_c_commu_id);
-        $this->set("c_commu", _db_c_commu4c_commu_id($target_c_commu_id));
-        $this->set("c_commu_num", _db_count_c_commu_member_list4c_commu_id($target_c_commu_id));
+        $this->set("c_commu", db_commu_c_commu4c_commu_id($target_c_commu_id));
+        $this->set("c_commu_num", db_commu_count_c_commu_member_list4c_commu_id($target_c_commu_id));
 
         $page_size = 50;
 
@@ -33,7 +33,7 @@ class pc_page_c_member_list extends OpenPNE_Action
 
         //コミュニティメンバリスト
         list($c_member_list, $is_prev, $is_next, $total_num, $start_num, $end_num)
-            = p_c_member_list_c_members4c_commu_id($target_c_commu_id, $page_size, $page);
+            = db_commu_c_members4c_commu_id($target_c_commu_id, $page_size, $page);
 
         $this->set("c_member_list", $c_member_list);
         $this->set("is_prev", $is_prev);

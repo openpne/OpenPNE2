@@ -45,9 +45,9 @@ class pc_do_c_sub_admin_request_insert_c_commu_sub_admin_confirm extends OpenPNE
 
         //メッセージ
         $c_member_id_from = $u;
-        $c_member_from    = db_common_c_member4c_member_id_LIGHT($c_member_id_from);
+        $c_member_from    = db_member_c_member4c_member_id_LIGHT($c_member_id_from);
         $c_member_to      = $target_c_member_id;
-        $c_commu          = _db_c_commu4c_commu_id($target_c_commu_id);
+        $c_commu          = db_commu_c_commu4c_commu_id($target_c_commu_id);
 
         $subject ="副管理者要請メッセージ";
         $body_disp =
@@ -55,7 +55,7 @@ class pc_do_c_sub_admin_request_insert_c_commu_sub_admin_confirm extends OpenPNE
             "\n".
             "この要請について、承認待ちリストから承認または拒否を選択してください。\n";
 
-        do_common_send_message_syoudaku($c_member_id_from, $target_c_member_id, $subject, $body_disp);
+        db_message_send_message_syoudaku($c_member_id_from, $target_c_member_id, $subject, $body_disp);
 
         $p = array('target_c_commu_id' => $target_c_commu_id);
         openpne_redirect('pc', 'page_c_edit_member', $p);

@@ -21,7 +21,7 @@ class ktai_do_h_confirm_list_update_c_commu_admin_confirm extends OpenPNE_Action
         //--- 権限チェック
         //コミュ管理交代を受けている
 
-        $admin_confirm = _db_c_commu_admin_confirm4c_commu_admin_confirm_id($target_c_commu_admin_confirm_id);
+        $admin_confirm = db_c_commu_admin_confirm4c_commu_admin_confirm_id($target_c_commu_admin_confirm_id);
 
         if ($admin_confirm['c_member_id_to'] != $u) {
             handle_kengen_error();

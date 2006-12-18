@@ -21,8 +21,8 @@ class ktai_do_inc_leave_c_commu extends OpenPNE_Action
         //--- 権限チェック
         //コミュニティメンバー and 管理者でない
 
-        $is_admin  = _db_is_c_commu_admin($target_c_commu_id, $u);
-        $is_member = _db_is_c_commu_member($target_c_commu_id, $u);
+        $is_admin  = db_commu_is_c_commu_admin($target_c_commu_id, $u);
+        $is_member = db_commu_is_c_commu_member($target_c_commu_id, $u);
 
         if ($is_admin) {
             ktai_display_error(k_p_common_msg4msg_id(10));

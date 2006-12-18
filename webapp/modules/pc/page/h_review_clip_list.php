@@ -19,7 +19,7 @@ class pc_page_h_review_clip_list extends OpenPNE_Action
 
         $this->set('inc_navi', fetch_inc_navi("h"));
         list($c_review_clip_list, $is_prev, $is_next, $total_num, $start_num, $end_num)
-            = p_h_review_clip_list_h_review_clip_list4c_member_id($u, $page, 20);
+            = db_review_clip_list_h_review_clip_list4c_member_id($u, $page, 20);
         $this->set('c_review_clip_list', $c_review_clip_list);
         $this->set("is_prev", $is_prev);
         $this->set("is_next", $is_next);

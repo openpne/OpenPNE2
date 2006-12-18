@@ -4,7 +4,7 @@
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
-class ktai_do_c_event_add_insert_c_commu_topic extends OpenPNE_Action
+class ktai_db_commu_insert_c_commu_topic extends OpenPNE_Action
 {
     function execute($requests)
     {
@@ -21,7 +21,7 @@ class ktai_do_c_event_add_insert_c_commu_topic extends OpenPNE_Action
             handle_kengen_error();
         }
 
-        $c_commu = p_c_home_c_commu4c_commu_id($event['c_commu_id']);
+        $c_commu = db_commu_c_commu4c_commu_id2($event['c_commu_id']);
 
         //トピック作成権限チェック
         if ($c_commu['topic_authority'] == 'admin_only' && !db_commu_is_c_commu_admin($event['c_commu_id'], $u)) {
@@ -81,7 +81,7 @@ class ktai_do_c_event_add_insert_c_commu_topic extends OpenPNE_Action
             "invite_period"     => $invite_period,
             "event_flag"        => 1,
         );
-        $c_commu_topic_id = do_c_event_add_insert_c_commu_topic($insert_c_commu_topic);
+        $c_commu_topic_id = db_commu_insert_c_commu_topic($insert_c_commu_topic);
 
         $insert_c_commu_topic_comment = array(
             "c_commu_id"       => $event['c_commu_id'],
@@ -93,14 +93,14 @@ class ktai_do_c_event_add_insert_c_commu_topic extends OpenPNE_Action
             "image_filename2"  => '',
             "image_filename3"  => '',
         );
-        $insert_id = do_c_event_add_insert_c_commu_topic_comment($insert_c_commu_topic_comment);
+        $insert_id = db_commu_insert_c_commu_topic_comment_3($insert_c_commu_topic_comment);
 
         //お知らせメール送信(携帯へ)
         send_bbs_info_mail($insert_id, $u);
         //お知らせメール送信(PCへ)
         send_bbs_info_mail_pc($insert_id, $u);
 
-        do_c_event_add_insert_c_event_member_as_admin($c_commu_topic_id, $u);
+        db_commu_insert_c_event_member_as_admin($c_commu_topic_id, $u);
 
         $p = array('target_c_commu_topic_id' => $c_commu_topic_id);
         openpne_redirect('ktai', 'page_c_bbs', $p);

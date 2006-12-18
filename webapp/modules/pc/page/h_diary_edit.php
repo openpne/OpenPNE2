@@ -51,7 +51,7 @@ class pc_page_h_diary_edit extends OpenPNE_Action
         $this->set('inc_navi', fetch_inc_navi('h'));
 
         //プロフィール
-        $this->set("target_member", db_common_c_member4c_member_id($u));
+        $this->set("target_member", db_member_c_member4c_member_id($u));
         $this->set("diary", $c_diary);
 
         //カレンダー関係

@@ -7,7 +7,7 @@
 /**
  * トピックコメント書き込み
  */
-class ktai_do_c_bbs_insert_c_commu_topic_comment extends OpenPNE_Action
+class ktai_db_commu_insert_c_commu_topic_comment_2 extends OpenPNE_Action
 {
     function execute($requests)
     {
@@ -39,13 +39,13 @@ class ktai_do_c_bbs_insert_c_commu_topic_comment extends OpenPNE_Action
             openpne_redirect('ktai', 'page_c_bbs', $p);
         }
 
-        $insert_id = do_c_bbs_insert_c_commu_topic_comment($u, $target_c_commu_topic_id, $body);
+        $insert_id = db_commu_insert_c_commu_topic_comment_2($u, $target_c_commu_topic_id, $body);
 
         //イベントのメンバーに追加
         if ($requests['join_event']) {
             do_c_event_add_insert_c_event_member($target_c_commu_topic_id, $u);
         } elseif ($requests['cancel_event']) {
-            do_c_event_add_delete_c_event_member($target_c_commu_topic_id, $u);
+            db_commu_delete_c_event_member($target_c_commu_topic_id, $u);
         }
 
         //お知らせメール送信(携帯へ)

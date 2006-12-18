@@ -19,7 +19,7 @@ class pc_do_h_review_edit_update_c_review_comment extends OpenPNE_Action
         //--- 権限チェック
         //レビューコメント作成者
 
-        if (!do_h_review_edit_c_review_comment4c_review_comment_id_c_member_id($c_review_comment_id, $u)) {
+        if (!db_review_edit_c_review_comment4c_review_comment_id_c_member_id($c_review_comment_id, $u)) {
             handle_kengen_error();
         }
         //---
@@ -32,7 +32,7 @@ class pc_do_h_review_edit_update_c_review_comment extends OpenPNE_Action
         }
 
         if ($err_msg) {
-            $c_review = do_h_review_edit_c_review4c_review_comment_id($c_review_comment_id);
+            $c_review = db_review_edit_c_review4c_review_comment_id($c_review_comment_id);
             $_REQUEST['asin'] = $c_review['asin'];
             $_REQUEST['err_msg'] = $err_msg;
 

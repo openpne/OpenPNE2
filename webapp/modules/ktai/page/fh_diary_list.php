@@ -26,14 +26,14 @@ class ktai_page_fh_diary_list extends OpenPNE_Action
             $this->set("type", $type);
         }
 
-        if (p_common_is_access_block($u, $target_c_member_id)) {
+        if (db_member_is_access_block($u, $target_c_member_id)) {
             openpne_redirect('ktai', 'page_h_access_block');
         }
 
-        $target_c_member = db_common_c_member4c_member_id($target_c_member_id);
+        $target_c_member = db_member_c_member4c_member_id($target_c_member_id);
 
         //ターゲット情報
-        $this->set("target_c_member", db_common_c_member4c_member_id($target_c_member_id));
+        $this->set("target_c_member", db_member_c_member4c_member_id($target_c_member_id));
 
         // 1ページ当たりに表示する日記の数
         $page_size = 10;

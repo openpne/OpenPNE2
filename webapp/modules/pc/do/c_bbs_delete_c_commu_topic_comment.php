@@ -7,7 +7,7 @@
 /**
  * コメント削除
  */
-class pc_do_c_bbs_delete_c_commu_topic_comment extends OpenPNE_Action
+class pc_db_commu_delete_c_commu_topic_comment extends OpenPNE_Action
 {
     function execute($requests)
     {
@@ -33,7 +33,7 @@ class pc_do_c_bbs_delete_c_commu_topic_comment extends OpenPNE_Action
         }
         //---
 
-        do_c_bbs_delete_c_commu_topic_comment($target_c_commu_topic_comment_id);
+        db_commu_delete_c_commu_topic_comment($target_c_commu_topic_comment_id);
 
         if ($c_commu_topic['event_flag']) {
             $action = 'page_c_event_detail';

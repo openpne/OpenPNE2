@@ -30,7 +30,7 @@ class pc_do_c_topic_write_insert_c_commu_topic_comment extends OpenPNE_Action
         }
         //---
 
-        $number = _do_c_commu_topic_comment_number4c_commu_topic_id($c_commu_topic_id);
+        $number = db_commu_c_commu_topic_comment_number4c_commu_topic_id($c_commu_topic_id);
         $insert_c_commu_topic_comment = array(
             "c_commu_id"        => $c_commu_id,
             "c_member_id"       => $u,
@@ -38,7 +38,7 @@ class pc_do_c_topic_write_insert_c_commu_topic_comment extends OpenPNE_Action
             "number"            => $number,
             "c_commu_topic_id"  => $c_commu_topic_id,
         );
-        $insert_id = do_c_event_add_insert_c_commu_topic_comment($insert_c_commu_topic_comment);
+        $insert_id = db_commu_insert_c_commu_topic_comment_3($insert_c_commu_topic_comment);
 
         if ($tmpfile1) {
             $filename1 = image_insert_c_image4tmp("tc_{$insert_id}_1", $tmpfile1);

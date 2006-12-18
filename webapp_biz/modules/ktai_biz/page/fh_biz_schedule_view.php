@@ -24,7 +24,7 @@ class ktai_biz_page_fh_biz_schedule_view extends OpenPNE_Action
         $this->set('inc_navi',fetch_inc_navi("h"));
 
         //プロフィール
-        $target_member = db_common_c_member4c_member_id($u);
+        $target_member = db_member_c_member4c_member_id($u);
         $this->set("target_member", $target_member);
 
         //カレンダー関係

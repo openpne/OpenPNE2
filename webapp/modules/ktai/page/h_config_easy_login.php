@@ -10,7 +10,7 @@ class ktai_page_h_config_easy_login extends OpenPNE_Action
     {
         $u  = $GLOBALS['KTAI_C_MEMBER_ID'];
 
-        $c_member_secure = db_common_c_member_secure4c_member_id($u);
+        $c_member_secure = db_member_c_member_secure4c_member_id($u);
 
         $this->set('is_registered', !empty($c_member_secure['easy_access_id']));
         return 'success';

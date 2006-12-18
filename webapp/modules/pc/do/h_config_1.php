@@ -7,7 +7,7 @@
 /**
  * メールアドレス変更
  */
-class pc_do_h_config_1 extends OpenPNE_Action
+class pc_db_member_h_config_1 extends OpenPNE_Action
 {
     function execute($requests)
     {
@@ -32,7 +32,7 @@ class pc_do_h_config_1 extends OpenPNE_Action
             openpne_redirect('pc', 'page_h_config', $p);
         }
 
-        $c_member_id = _db_c_member_id4pc_address($pc_address);
+        $c_member_id = db_member_c_member_id4pc_address($pc_address);
         if ($c_member_id == $u) {
             //自分のメールアドレス
             $p = array('msg' => "入力されたメールアドレスは既に登録されています");
@@ -48,7 +48,7 @@ class pc_do_h_config_1 extends OpenPNE_Action
             openpne_redirect('pc', 'page_h_config', $p);
         }
 
-        do_h_config_1($u, $pc_address);
+        db_member_h_config_1($u, $pc_address);
 
         $GLOBALS['AUTH']->logout();
         openpne_redirect('pc', 'page_o_h_config_mail');

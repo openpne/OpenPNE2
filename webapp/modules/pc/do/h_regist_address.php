@@ -30,7 +30,7 @@ class pc_do_h_regist_address extends OpenPNE_Action
             openpne_redirect('pc', 'page_h_regist_address', $p);
         }
 
-        $c_member_id = _db_c_member_id4pc_address($pc_address);
+        $c_member_id = db_member_c_member_id4pc_address($pc_address);
         if ($c_member_id == $u) {
             //自分のメールアドレス
             $p = array('msg' => "入力されたメールアドレスは既に登録されています");

@@ -17,7 +17,7 @@ class pc_page_h_config_prof extends OpenPNE_Action
         $this->set('inc_navi', fetch_inc_navi('h'));
 
         if (!$prof) {
-            $prof = db_common_c_member_with_profile($u, 'private');
+            $prof = db_member_c_member_with_profile($u, 'private');
         }
         $this->set('c_member', $prof);
 
@@ -31,7 +31,7 @@ class pc_page_h_config_prof extends OpenPNE_Action
         );
         $this->set('public_flags', $public_flags);
 
-        $this->set('profile_list', db_common_c_profile_list());
+        $this->set('profile_list', db_member_c_profile_list());
 
         return 'success';
     }

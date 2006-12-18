@@ -12,7 +12,7 @@ class admin_page_edit_c_banner extends OpenPNE_Action
         $v = array();
 
         $v['SNS_NAME'] = SNS_NAME;
-        $v['is_image'] = db_admin_is_c_image4filename($requests['filename']);
+        $v['is_image'] = db_image_is_c_image4filename($requests['filename']);
 
         $v['c_banner_top_list'] = db_admin_c_banner_list4null('TOP');
         $v['c_banner_side_list'] = db_admin_c_banner_list4null('SIDE');

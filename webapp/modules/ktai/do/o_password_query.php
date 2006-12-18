@@ -19,7 +19,7 @@ class ktai_do_o_password_query extends OpenPNE_Action
         //--- 権限チェック
         //パスワード確認の質問と答えがあっている
 
-        if (!$c_member_id = db_ktai_is_password_query_complete(
+        if (!$c_member_id = db_member_is_password_query_complete2(
                         $requests['ktai_address'],
                         $requests['c_password_query_id'],
                         $requests['password_query_answer'])) {
@@ -30,7 +30,7 @@ class ktai_do_o_password_query extends OpenPNE_Action
 
         // パスワード再発行
         $new_password = do_common_create_password();
-        do_common_update_password($c_member_id, $new_password);
+        db_member_update_password($c_member_id, $new_password);
 
         db_mail_send_m_ktai_password_query($c_member_id, $new_password);
 

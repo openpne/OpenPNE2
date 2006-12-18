@@ -10,7 +10,7 @@ class ktai_page_h_config_access_block extends OpenPNE_Action
     {
         $u = $GLOBALS['KTAI_C_MEMBER_ID'];
 
-        $this->set('c_member_id_block', p_h_config_c_member_id_block4c_member_id($u));
+        $this->set('c_member_id_block', db_member_c_member_id_block4c_member_id($u));
         return 'success';
     }
 }

@@ -28,7 +28,7 @@ function xmlrpc_000_auth($message)
     $c_member_id = $params['mid'];
     $datetime    = $params['dt'];
 
-    if (!db_common_c_member4c_member_id_LIGHT($c_member_id)) {
+    if (!db_member_c_member4c_member_id_LIGHT($c_member_id)) {
         return xmlrpc_get_fault_response(56);
     }
 

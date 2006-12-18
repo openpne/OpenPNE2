@@ -40,7 +40,7 @@ class pc_page_h_diary_list_friend extends OpenPNE_Action
         if ($page == 1) {
             // rss_cache
             $limit = 20;
-            $this->set('c_rss_cache_list', p_h_diary_list_friend_c_rss_cache_list($u, $limit));
+            $this->set('c_rss_cache_list', db_rss_list_friend_c_rss_cache_list($u, $limit));
         }
 
         return 'success';

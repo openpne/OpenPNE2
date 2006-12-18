@@ -34,7 +34,7 @@ class admin_page_list_c_member extends OpenPNE_Action
         $v['years'] = get_int_assoc(1901, 2001);
 
         //絞り込みのドロップダウンを作る用
-        $v['profile_list'] = db_common_c_profile_list();;
+        $v['profile_list'] = db_member_c_profile_list();;
 
         //開始年が終了年より大きい
         if ( !empty($cond_list['s_year']) && !empty($cond_list['e_year']) && ($cond_list['s_year'] > $cond_list['e_year']) ) {
@@ -42,7 +42,7 @@ class admin_page_list_c_member extends OpenPNE_Action
         }
 
         $v['SNS_NAME'] = SNS_NAME;
-        $v['c_profile_list'] = db_common_c_profile_list4null();
+        $v['c_profile_list'] = db_member_c_profile_list4null();
         if ($requests['mail_address']) {
             $v['c_member_list'] = db_admin_c_member4mail_address($requests['mail_address']);
         } else {
@@ -50,7 +50,7 @@ class admin_page_list_c_member extends OpenPNE_Action
         }
         foreach ($v['c_member_list'] as $key => $value) {
             $v['c_member_list'][$key]['c_member_invite'] =
-                db_common_c_member4c_member_id_LIGHT($value['c_member_id_invite']);
+                db_member_c_member4c_member_id_LIGHT($value['c_member_id_invite']);
         }
 
         $v['pager'] = $pager;

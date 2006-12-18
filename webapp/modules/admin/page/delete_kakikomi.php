@@ -20,7 +20,7 @@ class admin_page_delete_kakikomi extends OpenPNE_Action
         }
 
         if ($requests['target_c_commu_id']) {
-            $v['c_commu'] = _db_c_commu4c_commu_id($requests['target_c_commu_id']);
+            $v['c_commu'] = db_commu_c_commu4c_commu_id($requests['target_c_commu_id']);
         }
 
         if ($requests['target_c_commu_topic_id']) {

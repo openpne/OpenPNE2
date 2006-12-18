@@ -18,14 +18,14 @@ class ktai_page_c_event_list extends OpenPNE_Action
 
         //--- 権限チェック
         //掲示板閲覧権限
-        if (!p_common_is_c_commu_view4c_commu_idAc_member_id($c_commu_id, $u)) {
+        if (!db_commu_is_c_commu_view4c_commu_idAc_member_id($c_commu_id, $u)) {
             handle_kengen_error();
         }
 
         $page_size = 10;
         $page += $direc;
 
-        $this->set('c_commu', _db_c_commu4c_commu_id($c_commu_id));
+        $this->set('c_commu', db_commu_c_commu4c_commu_id($c_commu_id));
 
         list($result, $is_prev, $is_next, $total_num, $start_num, $end_num)
             = p_c_topic_list_c_topic_list4target_c_commu_id($c_commu_id, $u, $page, $page_size, 1, 1);
