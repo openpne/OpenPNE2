@@ -303,7 +303,7 @@
 
 <div class="padding_s lh_120">
 
-({$c_topic.body|nl2br|t_url2cmd:'community'|t_cmd:'community'})
+({$c_topic.body|nl2br|t_url2cmd|t_cmd})
 
 </div>
 
@@ -593,7 +593,7 @@
 ({/if})
 
 <div class="padding_s lh_120">
-({$item.body|nl2br|t_url2cmd:'community'|t_cmd:'community'})
+({$item.body|nl2br|t_url2cmd|t_cmd})
 </div>
 
 </td>
@@ -704,7 +704,7 @@
 
 <div class="padding_s">
 
-<textarea class="text" name="body" rows="10" cols="50" style="width:415px">({$body})</textarea>
+<textarea name="body" rows="10" cols="50" style="width:415px">({$body})</textarea>
 
 </div>
 

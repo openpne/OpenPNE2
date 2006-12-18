@@ -1793,8 +1793,8 @@ function db_commu_c_commu_list4c_commu_category_id_search($c_commu_category_id, 
 
 function db_commu_is_c_event_admin($c_commu_topic_id, $c_member_id)
 {
-    $sql = 'SELECT c_event_member_id FROM c_event_member' .
-            ' WHERE c_commu_topic_id = ? AND c_member_id = ? AND is_admin = 1';
+    $sql = 'SELECT c_member_id FROM c_commu_topic' .
+            ' WHERE c_commu_topic_id = ? AND c_member_id = ?';
     $params = array(intval($c_commu_topic_id), intval($c_member_id));
     return (bool)db_get_one($sql, $params);
 }

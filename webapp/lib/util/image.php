@@ -71,13 +71,25 @@ function t_check_image($file)
         return false;
     }
 
+    $need_resize = false;
+    $original_width = $width;
+    $original_height = $height;
+    //横のサイズが、指定されたサイズより大きい場合
     if (IMAGE_MAX_WIDTH && ($width > IMAGE_MAX_WIDTH)) {
-        return false;
+        $need_resize = true;
+        $height = $height * (IMAGE_MAX_WIDTH / $width);
+        $width = IMAGE_MAX_WIDTH;
     }
+    //縦サイズが、指定されたサイズより大きい場合
     if (IMAGE_MAX_HEIGHT && ($height > IMAGE_MAX_HEIGHT)) {
-        return false;
+        $need_resize = true;
+        $width = $width * (IMAGE_MAX_HEIGHT / $height);
+        $height = IMAGE_MAX_HEIGHT;
     }
-
+    if ($need_resize) {
+        resize_image($type, $file['tmp_name'], $file['tmp_name'], $original_width, $original_height,$width, $height );
+    }
+    
     $image = array(
         'format' => $format,
         'size'   => $file['size'],
@@ -85,6 +97,83 @@ function t_check_image($file)
         'height' => $height,
     );
     return $image;
+}
+/**
+ *画像をリサイズし、出力する。
+ *@param $type 画像タイプ
+ *@param $src_filename 変換元画像ファイル名
+ *@param $dst_filename 変換先画像ファイル名
+ *@param $original_width 変換元画像の画像幅
+ *@param $original_height 変換元画像の画像高さ
+ *@param $new_width 変換先画像の画像幅
+ *@param $new_height 変換先画像の画像高さ
+ */
+function resize_image( $type, $src_filename, $dst_filename, $original_width, $original_height, $new_width, $new_height)
+{
+    $src_img = NULL;
+    $dst_img = NULL;
+    
+    switch ($type) {
+        case IMAGETYPE_GIF:
+            $src_img = imagecreatefromgif ( $src_filename );
+            $transparentIndex = imagecolortransparent($src_img);
+            //透過GIFの場合
+            if($transparentIndex >= 0){
+                $dst_img = imagecreate ( $new_width, $new_height );
+                $transparentColor=imagecolorsforindex($src_img, $transparentIndex); 
+                $transparent=imagecolorallocate($dst_img, $transparentColor['red'], $transparentColor['green'], $transparentColor['blue']); 
+                imagecolortransparent($dst_img, $transparent); 
+                imagecopyresized ($dst_img,$src_img,0,0,0,0,$new_width,$new_height,$original_width,$original_height);
+            }
+            //透過GIFで無い場合
+            else{
+                $dst_img = imagecreatetruecolor( $new_width, $new_height );
+                imagecopyresampled ($dst_img,$src_img,0,0,0,0,$new_width,$new_height,$original_width,$original_height);
+                imagetruecolortopalette($dst_img, true, 256); 
+            }
+            imagegif ( $dst_img, $dst_filename ); 
+            break;
+        case IMAGETYPE_JPEG:
+               $src_img = imagecreatefromjpeg ( $src_filename ); 
+            $dst_img = imagecreatetruecolor ( $new_width, $new_height );
+            imagecopyresampled ($dst_img,$src_img,0,0,0,0,$new_width,$new_height,$original_width,$original_height);
+            imagejpeg ( $dst_img, $dst_filename );
+            break;
+        case IMAGETYPE_PNG:
+            $src_img = imagecreatefrompng ( $src_filename );
+            //TrueColor PNGの場合
+            if(imageistruecolor($src_img)) { 
+                $dst_img = imagecreatetruecolor ( $new_width, $new_height );
+                imagealphablending($dst_img, false);
+                imagecopyresampled ($dst_img,$src_img,0,0,0,0,$new_width,$new_height,$original_width,$original_height);
+                imagesavealpha($dst_img, true);
+            }
+            //TrueColor PNGで無い場合
+            else{
+                //透過PNGの場合
+                if($transparentIndex >= 0){
+                    $dst_img = imagecreate ( $new_width, $new_height );
+                    $transparentColor=imagecolorsforindex($src_img, $transparentIndex); 
+                    $transparent=imagecolorallocate($dst_img, $transparentColor['red'], $transparentColor['green'], $transparentColor['blue']); 
+                    imagecolortransparent($dst_img, $transparent); 
+                    imagecopyresized ($dst_img,$src_img,0,0,0,0,$new_width,$new_height,$original_width,$original_height);
+                }
+                //透過PNGで無い場合
+                    else{
+                        $dst_img = imagecreatetruecolor( $new_width, $new_height );
+                    imagecopyresampled ($dst_img,$src_img,0,0,0,0,$new_width,$new_height,$original_width,$original_height);
+                    imagetruecolortopalette($dst_img, true, 256); 
+                }
+            }
+            imagepng ( $dst_img, $dst_filename );
+            break;
+        default:
+            break;
+
+    }
+    //リリースを解放
+    imagedestroy ( $dst_img );
+    imagedestroy ( $src_img );
 }
 
 /**

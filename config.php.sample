@@ -297,6 +297,11 @@ define('IMGMAGICK_APP', '/usr/bin/convert');
 // アップロード画像のファイルサイズ制限(KB)
 define('IMAGE_MAX_FILESIZE', 300);
 
+// アップロード画像の大きさ制限(ピクセル)
+define('IMAGE_MAX_HEIGHT', 1024);
+define('IMAGE_MAX_WIDTH', 768);
+
+
 ///
 // 外部RSS取得
 ///
