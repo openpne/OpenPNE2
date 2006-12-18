@@ -11,31 +11,52 @@ if (empty($_REQUEST['ksid'])) {
 session_name('OpenPNEktai');
 session_id($_REQUEST['ksid']);
 session_start();
+require_once 'OpenPNE/Auth.php';
 
-if (   empty($_SESSION['c_member_id'])
-    || !k_auth($_SESSION['c_member_id'])
-    || db_member_is_login_rejected($_SESSION['c_member_id'])) {
-    __logout(15);
+$options = array("advancedsecurity"=>false);
+
+$auth = new OpenPNE_Auth('DB','',true);
+$auth->setExpire($GLOBALS['OpenPNE']['common']['session_lifetime']);
+$auth->setIdle($GLOBALS['OpenPNE']['common']['session_idletime']);
+
+if (   !$auth->auth()
+    || !($u = $auth->getUsername(LOGIN_NAME_TYPE))
+    || !(db_member_username4c_member_id($u, true))
+    || db_member_is_login_rejected($u)) {
+    $auth->logout();
+    
+    __logout();
 }
 
-// セッションの有効期限
-$lifetime = $GLOBALS['OpenPNE']['ktai']['session_lifetime'];
-$idletime = $GLOBALS['OpenPNE']['ktai']['session_idletime'];
-if (!isset($_SESSION['timestamp']) ||
-    ($liftime && ($_SESSION['timestamp'] + $lifetime) < time())
-   ) {
-    __logout(15, $_SESSION['c_member_id']);
-}
-if (!isset($_SESSION['idle']) ||
-    ($idletime && ($_SESSION['idle'] + $idletime) < time())
-   ) {
-    __logout(15, $_SESSION['c_member_id']);
-}
-
-$_SESSION['idle'] = time();
-
-$GLOBALS['KTAI_C_MEMBER_ID'] = $_SESSION['c_member_id'];
+$auth->uid($u);
+$GLOBALS['AUTH'] = $auth;
+$GLOBALS['KTAI_C_MEMBER_ID'] = $auth->uid();
 $GLOBALS['KTAI_URL_TAIL'] = "ksid=" . session_id();
+
+if ((LOGIN_NAME_TYPE == 1) && !$_SESSION['regist_step']) {
+    $check_param = db_member_check_param_inputed($u, true);
+    $_SESSION['regist_step'] = ($check_param == 0);
+    
+    //プロフィールが未登録の場合はリダイレクト
+    $prof_ext_page=array(
+    "do_h_regist_prof"=>true,
+    "page_h_regist_prof"=>true,
+    );
+    
+    if (($check_param==1) && !$prof_ext_page[$_REQUEST['a']]) {
+        openpne_redirect('ktai', 'page_h_regist_prof');
+    }
+    
+    //メールアドレスが未登録の場合はリダイレクト
+    $mail_ext_page=array(
+    "do_h_regist_address"=>true,
+    "page_h_regist_address"=>true,
+    );
+    
+    if (($check_param==2) && !$mail_ext_page[$_REQUEST['a']]) {
+        openpne_redirect('ktai', 'page_h_regist_address');
+    }
+}
 
 
 function __logout($msg = 0, $c_member_id = 0)
@@ -47,8 +68,7 @@ function __logout($msg = 0, $c_member_id = 0)
         $p['msg'] = $msg;
     }
     if ($c_member_id) {
-        $c_member_secure = db_common_c_member_secure4c_member_id($c_member_id);
-        $p['kad'] = t_encrypt(db_member_username4c_member_id($c_member_id, true));
+        $_REQUEST['kad'] = t_encrypt(db_member_username4c_member_id($c_member_id, true));
     }
     openpne_redirect('ktai', 'page_o_login', $p);
 }
