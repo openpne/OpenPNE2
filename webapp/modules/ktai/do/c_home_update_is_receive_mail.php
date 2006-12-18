@@ -7,7 +7,7 @@
 /**
  * コミュニティメール受信設定を変更
  */
-class ktai_db_commu_update_is_receive_mail extends OpenPNE_Action
+class ktai_do_c_home_update_is_receive_mail extends OpenPNE_Action
 {
     function execute($requests)
     {

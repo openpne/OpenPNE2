@@ -31,7 +31,7 @@ class ktai_page_fh_com_list extends OpenPNE_Action
         $page_size = 10;
         $page += $direc;
 
-        $list = k_db_commu_c_commu_list4c_member_id($target_c_member_id, $page_size, $page);
+        $list = db_commu_c_commu_list4c_member_id_4($target_c_member_id, $page_size, $page);
 
         $this->set("c_commu_list", $list[0]);
         $this->set("page", $page);
