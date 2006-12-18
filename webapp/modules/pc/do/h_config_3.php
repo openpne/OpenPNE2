@@ -62,7 +62,7 @@ class pc_do_h_config_3 extends OpenPNE_Action
             $schedule_start_day
         );
 
-        db_member_h_config_3_insert_c_access_block($u, $c_member_id_block);
+        db_member_insert_c_access_block($u, $c_member_id_block);
 
         openpne_redirect('pc', 'page_h_home');
     }
