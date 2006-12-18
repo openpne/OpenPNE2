@@ -7,7 +7,7 @@
 /**
  * コメント削除
  */
-class pc_db_commu_delete_c_commu_topic_comment extends OpenPNE_Action
+class pc_do_c_bbs_delete_c_commu_topic_comment extends OpenPNE_Action
 {
     function execute($requests)
     {

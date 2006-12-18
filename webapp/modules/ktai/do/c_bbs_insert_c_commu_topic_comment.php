@@ -7,7 +7,7 @@
 /**
  * トピックコメント書き込み
  */
-class ktai_db_commu_insert_c_commu_topic_comment_2 extends OpenPNE_Action
+class ktai_do_c_bbs_insert_c_commu_topic_comment extends OpenPNE_Action
 {
     function execute($requests)
     {

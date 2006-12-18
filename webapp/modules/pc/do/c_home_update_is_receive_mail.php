@@ -4,7 +4,7 @@
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
-class pc_db_commu_update_is_receive_mail extends OpenPNE_Action
+class pc_do_c_home_update_is_receive_mail extends OpenPNE_Action
 {
     function execute($requests)
     {
