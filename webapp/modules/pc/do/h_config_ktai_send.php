@@ -34,7 +34,7 @@ class pc_do_h_config_ktai_send extends OpenPNE_Action
             openpne_redirect('pc', 'page_h_config_ktai', $p);
         }
 
-        db_member_delete_c_member_ktai_pre4id4ktai_address($ktai_address);
+        db_member_delete_c_member_ktai_pre4ktai_address($ktai_address);
         db_member_delete_c_ktai_address_pre4ktai_address($ktai_address);
 
         $session = create_hash();
