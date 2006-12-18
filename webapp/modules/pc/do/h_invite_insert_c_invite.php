@@ -7,7 +7,7 @@
 /**
  * 招待メール送信
  */
-class pc_db_member_insert_c_invite extends OpenPNE_Action
+class pc_do_h_invite_insert_c_invite extends OpenPNE_Action
 {
     function execute($requests)
     {

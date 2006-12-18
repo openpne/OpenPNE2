@@ -7,7 +7,7 @@
 /**
  * 設定変更
  */
-class pc_db_member_h_config_3 extends OpenPNE_Action
+class pc_do_h_config_3 extends OpenPNE_Action
 {
     function handleError($errors)
     {

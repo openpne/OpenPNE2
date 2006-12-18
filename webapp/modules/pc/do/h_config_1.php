@@ -7,7 +7,7 @@
 /**
  * メールアドレス変更
  */
-class pc_db_member_h_config_1 extends OpenPNE_Action
+class pc_do_h_config_1 extends OpenPNE_Action
 {
     function execute($requests)
     {
