@@ -33,7 +33,7 @@ class ktai_page_c_home extends OpenPNE_Action
         $this->set('c_siteadmin', p_common_c_siteadmin4target_pagename('k_c_home'));
 
         //コミュニティ情報
-        $this->set("c_commu", k_db_commu_c_commu4c_commu_id2($target_c_commu_id));
+        $this->set("c_commu", db_commu_c_commu4c_commu_id_k($target_c_commu_id));
 
         //コミュニティメンバリスト
         $this->set("c_commu_member_list",
