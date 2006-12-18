@@ -443,4 +443,39 @@ function pne_url2a($url, $target = '_blank')
     return sprintf('<a href="%s"%s>%s</a>', $url, $target, $urlstr);
 }
 
+function get_auth_config()
+{
+    switch (LOGIN_NAME_TYPE) {
+        case 1:
+        $config = $GLOBALS['_OPENPNE_AUTH_CONFIG'];
+        break;
+        default :
+        $config['storage'] = 'DB';
+        $config['options'] = array(
+            'dsn'         => db_get_dsn(),
+            'table'       => 'c_member_secure',
+            'usernamecol' => 'c_member_id',
+            'passwordcol' => 'hashed_password',
+            'cryptType'   => 'md5',
+        );
+        break;
+    }
+    return $config;
+}
+
+function crypt_func($raw_value,$cryptType)
+{
+    if (   isset($cryptType) 
+        && $cryptType == 'none') {
+        $cryptFunction = 'strval';
+    } elseif (   isset($cryptType) 
+              && function_exists($cryptType)) {
+        $cryptFunction = $cryptType;
+    } else {
+        $cryptFunction = 'md5';
+    }
+    
+    return $cryptFunction($raw_value);
+}
+
 ?>

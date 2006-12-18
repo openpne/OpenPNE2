@@ -4,7 +4,7 @@
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
-class ktai_page_o_password_query extends OpenPNE_Action
+class pc_page_o_h_regist_mail extends OpenPNE_Action
 {
     function isSecure()
     {
@@ -13,10 +13,9 @@ class ktai_page_o_password_query extends OpenPNE_Action
 
     function execute($requests)
     {
-        if (LOGIN_NAME_TYPE == 1) {
-            exit;
-        }
-        $this->set('password_query_list', p_common_c_password_query4null());
+        //---- inc_ テンプレート用 変数 ----//
+        $this->set('inc_page_header', fetch_inc_page_header('public'));
+
         return 'success';
     }
 }

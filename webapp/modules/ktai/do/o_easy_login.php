@@ -8,6 +8,8 @@ require_once 'OpenPNE/KtaiID.php';
 
 class ktai_do_o_easy_login extends OpenPNE_Action
 {
+    var $_auth;
+    
     function isSecure()
     {
         return false;
@@ -26,13 +28,42 @@ class ktai_do_o_easy_login extends OpenPNE_Action
         @session_name('OpenPNEktai');
         @session_start();
         @session_regenerate_id();
-
-        $_SESSION['c_member_id'] = $c_member_id;
-        $_SESSION['ktai_address'] = t_encrypt($c_member['secure']['ktai_address']);
-        $_SESSION['timestamp'] = $_SESSION['idle'] = time();
-        if (OPENPNE_SESSION_CHECK_URL) {
-            $_SESSION['OPENPNE_URL'] = OPENPNE_URL;
+        
+        $auth_config = get_auth_config();
+        $auth_config['options']['advancedsecurity'] = false;
+        $auth = new OpenPNE_Auth($auth_config['storage'], $auth_config['options'],true);
+        $this->_auth =& $auth;
+        $auth->setExpire($GLOBALS['OpenPNE']['common']['session_lifetime']);
+        $auth->setIdle($GLOBALS['OpenPNE']['common']['session_idletime']);
+        
+        if (LOGIN_CHECK_ENABLE) {
+            // 不正ログインチェック
+            include_once 'OpenPNE/LoginChecker.php';
+            $options = array(
+                'check_num'   => LOGIN_CHECK_NUM,
+                'check_time'  => LOGIN_CHECK_TIME,
+                'reject_time' => LOGIN_REJECT_TIME,
+            );
+            $lc = new OpenPNE_LoginChecker($options);
+            if ($lc->is_rejected()) {
+                // 認証エラー
+                $lc->fail_login();
+                $p = array('msg' => '0', 'login_params' => $requests['login_params']);
+                openpne_redirect('ktai', 'page_o_login', $p);
+            }
+        } 
+        $auth->auth =& $auth->factory(true);
+        switch (LOGIN_NAME_TYPE) {
+            case 1:
+            $auth->auth->setAuth(db_member_username4c_member_id($c_member_id));
+            break;
+            default :
+            $auth->auth->setAuth($c_member_id);
+            break;
         }
+        $auth->auth->setAuthData('OPENPNE_URL', OPENPNE_URL);
+        
+        $_SESSION['c_member_id'] = $c_member_id;
 
         $p = array();
         if ($requests['login_params']) {

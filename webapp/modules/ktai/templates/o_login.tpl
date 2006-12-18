@@ -31,10 +31,14 @@
 ({t_form m=ktai a=do_o_login})
 <input type="hidden" name="login_params" value="({$requests.login_params})">
 ({if $ktai_address})
-<input type="hidden" name="ktai_address" value="({$ktai_address})">
+<input type="hidden" name="username" value="({$ktai_address})">
 ({else})
+({if $smarty.const.LOGIN_NAME_TYPE != 1})
 ★携帯アドレス<br>
-<textarea name="ktai_address" rows="1" istyle="3" mode="alphabet" maxlength="100"></textarea><br>
+({else})
+★ユーザID<br>
+({/if})
+<textarea name="username" rows="1" istyle="3" mode="alphabet" maxlength="100"></textarea><br>
 ({/if})
 ★パスワード<br>
 <input name="password" type="text" istyle="3" mode="alphabet" value=""><br>
@@ -48,7 +52,9 @@
 ({if $ktai_address})
 <a href="({t_url m=ktai a=page_o_login})">&gt;&gt;携帯アドレスを入力</a><br>
 ({/if})
+({if $smarty.const.LOGIN_NAME_TYPE != 1})
 <a href="({t_url m=ktai a=page_o_password_query})">&gt;&gt;パスワードを忘れた方</a><br>
+({/if})
 <hr>
 
 ({if $IS_CLOSED_SNS})
