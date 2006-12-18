@@ -18,7 +18,7 @@ class pc_page_h_invite extends OpenPNE_Action
         $this->set('inc_navi', fetch_inc_navi('h'));
 
         $this->set('inviting_member', db_member_inviting_member4c_member_id($u));
-        $this->set('k_inviting_member', k_db_member_inviting_member4c_member_id($u));
+        $this->set('k_inviting_member', db_member_inviting_member4c_member_id2($u));
 
         return 'success';
     }
