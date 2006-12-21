@@ -91,7 +91,7 @@ class admin_do_send_invites extends OpenPNE_Action
                         db_member_insert_c_invite($c_member_id_invite, $mail, $requests['message'], $session);
                     }
 
-                    db_member_insert_c_invite_mail_send($c_member_id_invite, $session, $requests['message'], $mail);
+                    do_h_invite_insert_c_invite_mail_send($c_member_id_invite, $session, $requests['message'], $mail);
                 }
             }
             //>
