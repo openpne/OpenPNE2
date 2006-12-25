@@ -69,9 +69,8 @@ class pc_page_fh_diary_list extends OpenPNE_Action
                 $list_set = p_h_diary_list_all_search_c_diary4c_diary($keyword, $page_size, $page, $u);
             } else {
                 $list_set = p_fh_diary_list_diary_list4c_member_id($target_c_member_id, $page_size, $page, $u);
+                $rss_list = db_rss_list_c_rss_cache_list($target_c_member_id, $page_size, $page);
             }
-
-            $rss_list = db_rss_list_c_rss_cache_list($target_c_member_id, $page_size, $page);
         }
 
         $this->set('c_rss_cache_list', $rss_list);

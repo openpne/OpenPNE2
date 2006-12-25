@@ -40,6 +40,11 @@ class pc_page_f_message_send_confirm extends OpenPNE_Action
             '',
         );
 
+        $target_member = db_member_c_member4c_member_id($form_val['target_c_member_id']);
+        if (empty($target_member)) {
+            handle_kengen_error();
+        }
+
         foreach ($upfiles as $key => $upfile) {
             if ($upfile['error'] !== UPLOAD_ERR_NO_FILE) {
                 if (!($image = t_check_image($upfile))) {
@@ -68,7 +73,7 @@ class pc_page_f_message_send_confirm extends OpenPNE_Action
         $this->set('inc_navi', fetch_inc_navi("f", $target_c_member_id));
 
         //ターゲット情報
-        $this->set("target_member", db_member_c_member4c_member_id($target_c_member_id));
+        $this->set("target_member", $target_member);
 
         //ターゲットのid
         $this->set("target_c_member_id", $form_val['target_c_member_id']);

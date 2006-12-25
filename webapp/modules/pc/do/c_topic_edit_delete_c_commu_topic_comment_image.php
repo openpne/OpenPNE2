@@ -24,6 +24,11 @@ class pc_do_c_topic_edit_delete_c_commu_topic_comment_image extends OpenPNE_Acti
             !db_commu_is_c_commu_admin($c_topic['c_commu_id'], $u)) {
             handle_kengen_error();
         }
+        $c_commu = db_commu_c_commu4c_commu_id2($c_topic['c_commu_id']);
+        if ($c_commu['topic_authority'] == 'admin_only' &&
+            !db_commu_is_c_commu_admin($c_topic['c_commu_id'], $u)) {
+            handle_kengen_error();
+        }
         //---
 
         image_data_delete($c_topic['image_filename'.$pic_delete]);

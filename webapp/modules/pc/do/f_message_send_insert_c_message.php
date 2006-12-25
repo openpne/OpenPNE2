@@ -64,6 +64,12 @@ class pc_do_f_message_send_insert_c_message extends OpenPNE_Action
             handle_kengen_error();
         }
 
+        //存在しないユーザ
+        $target_member = db_member_c_member4c_member_id($c_member_id_to);
+        if (empty($target_member)) {
+            handle_kengen_error();
+        }
+
         //アクセスブロック設定
         if (db_member_is_access_block($u, $c_member_id_to)) {
             openpne_redirect('pc', 'page_h_access_block');

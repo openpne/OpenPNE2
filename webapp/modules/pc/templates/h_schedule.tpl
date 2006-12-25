@@ -29,7 +29,7 @@
 ({*ここまで：header*})
 ({*ここから：body*})
 <!-- *ここから：主内容* -->
-<table border="0" cellspacing="0" align="center" cellpadding="0" style="width: 566px;" class="border_01">
+<table border="0" cellspacing="0" align="center" cellpadding="0" style="width: 566px;" class="border_01 bg_03">
 ({*********})
 <tr>
 <td align="center">

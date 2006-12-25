@@ -593,7 +593,7 @@ function p_fh_diary_list_diary_list_date4c_member_id($c_member_id, $page_size, $
             $where . $pf_cond .
             ' ORDER BY r_datetime DESC';
     $params = array(intval($c_member_id), $s_date, $e_date);
-    $list = db_get_all_limit($sql, $page, $page_size, $params);
+    $list = db_get_all_limit($sql, $page_size * ($page - 1), $page_size, $params);
 
     foreach ($list as $key => $c_diary) {
         $list[$key]['num_comment'] = db_diary_count_c_diary_comment4c_diary_id($c_diary['c_diary_id']);
@@ -723,7 +723,7 @@ function p_h_diary_list_all_search_c_diary4c_diary($keyword, $page_size, $page, 
     $list = db_get_all_page($sql, $page, $page_size, $params);
     foreach ($list as $key => $value) {
         $list[$key]['c_member'] = db_common_c_member_with_profile($value['c_member_id']);
-        $list[$key]['comment_count'] = db_diary_count_c_diary_comment4c_diary_id($value['c_diary_id']);
+        $list[$key]['num_comment'] = db_diary_count_c_diary_comment4c_diary_id($value['c_diary_id']);
     }
 
     $sql = 'SELECT COUNT(*)' . $from . $where;

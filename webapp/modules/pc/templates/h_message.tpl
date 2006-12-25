@@ -283,7 +283,7 @@
 
 <div class="padding_s">
 
-({if $box == 'inbox' || !$box })
+({if ($box == 'inbox' || !$box) && $c_message.c_member_nickname_from})
 ({t_form m=pc a=page_f_message_send})
 <input type="hidden" name="target_c_message_id" value="({$c_message.c_message_id})">
 <input type="hidden" name="jyusin_c_message_id" value="({$jyusin_c_message_id})">
