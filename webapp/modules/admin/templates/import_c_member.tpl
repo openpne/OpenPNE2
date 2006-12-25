@@ -1,6 +1,7 @@
 ({$inc_header|smarty:nodefaults})
 ({ext_include file="inc_subnavi_adminSiteMember.tpl"})
-<div class="tree"><a href="?m=({$module_name})">管理画面TOP</a>&nbsp;＞&nbsp;メンバー管理：メンバーリスト</div>
+({assign var="page_name" value="メンバー情報のインポート"})
+({ext_include file="inc_tree_adminSiteMember.tpl"})
 </div>
 
 ({*ここまで:navi*})
@@ -29,5 +30,4 @@
 <input type="submit" class="submit" name="member_file_submit" value="登録">
 </form>
 
-</div>
 ({$inc_footer|smarty:nodefaults})

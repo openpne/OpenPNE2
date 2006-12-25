@@ -1,6 +1,11 @@
 ({$inc_header|smarty:nodefaults})
 ({ext_include file="inc_subnavi_adminInfoKiyaku.tpl"})
-<div class="tree"><a href="?m=({$module_name})">管理画面TOP</a>&nbsp;＞&nbsp;デザインカスタマイズ：<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_profile')})">プロフィール項目設定</a>&nbsp;＞&nbsp;プロフィール項目編集</div>
+
+({assign var="parent_page_name" value="フリーページ管理"})
+({capture name=parent_page_url})?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_free_page')})({/capture})
+
+({assign var="page_name" value="フリーページ追加"})
+({ext_include file="inc_tree_adminInfoKiyaku.tpl"})
 </div>
 
 ({*ここまで:navi*})
@@ -18,5 +23,4 @@
 </form><br>
 
 <p class="groupLing"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_free_page')})">戻る</a></p>
-</div>
 ({$inc_footer|smarty:nodefaults})

@@ -1,6 +1,8 @@
 ({$inc_header|smarty:nodefaults})
 ({ext_include file="inc_subnavi_adminSNSConfig.tpl"})
-<div class="tree"><a href="?m=({$module_name})">管理画面TOP</a>&nbsp;＞&nbsp;SNS設定</div>
+
+({assign var="page_name" value="SNS設定"})
+({ext_include file="inc_tree_adminSNSConfig.tpl"})
 </div>
 
 ({*ここまで:navi*})
@@ -306,5 +308,4 @@
 </dl>
 
 ({/if})
-</div>
 ({$inc_footer|smarty:nodefaults})

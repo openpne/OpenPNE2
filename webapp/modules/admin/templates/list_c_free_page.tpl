@@ -1,6 +1,7 @@
 ({$inc_header|smarty:nodefaults})
 ({ext_include file="inc_subnavi_adminInfoKiyaku.tpl"})
-<div class="tree"><a href="?m=({$module_name})">管理画面TOP</a>&nbsp;＞&nbsp;お知らせ・規約設定：フリーページ管理</div>
+({assign var="page_name" value="フリーページ管理"})
+({ext_include file="inc_tree_adminInfoKiyaku.tpl"})
 </div>
 
 ({*ここまで:navi*})
@@ -18,6 +19,7 @@
 <tr>
 <td class="menu">
 
+({*
 <dl>
 <dt><strong class="item">新規追加</strong></dt>
 <dd>
@@ -26,7 +28,7 @@
 </dl>
 
 <p class="textBtn"><input type="button" value="フリーページ追加する" onClick="location.href='?m=({$module_name})&amp;a=page_({$hash_tbl->hash('insert_c_free_page')})'"></p>
-
+*})
 
 <dl>
 <dt><strong class="item">フリーページ操作</strong></dt>
@@ -75,7 +77,7 @@
 ({foreach from=$c_free_page_list item=item})
 ({if $item})
 <tr>
-<th><a href="({t_url _absolute=1 m=pc a=page_h_free_page})&amp;c_free_page_id=({$item.c_free_page_id})" target="_blank">({$item.c_free_page_id})</a></th>
+<td><a href="({t_url _absolute=1 m=pc a=page_h_free_page})&amp;c_free_page_id=({$item.c_free_page_id})" target="_blank">({$item.c_free_page_id})</a></td>
 <td><a href='?m=({$module_name})&amp;a=page_({$hash_tbl->hash('update_c_free_page','page')})&amp;c_free_page_id=({$item.c_free_page_id})'>編集</a></td>
 <td><a href='?m=({$module_name})&amp;a=page_({$hash_tbl->hash('delete_c_free_page_confirm','page')})&amp;c_free_page_id=({$item.c_free_page_id})'>削除</a></td>
 </tr>

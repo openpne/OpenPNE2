@@ -1,6 +1,7 @@
 ({$inc_header|smarty:nodefaults})
 ({ext_include file="inc_subnavi_adminSiteMember.tpl"})
-<div class="tree"><a href="?m=({$module_name})">管理画面TOP</a>&nbsp;＞&nbsp;CSVダウンロード</div>
+({assign var="page_name" value="CSVダウンロード"})
+({ext_include file="inc_tree_adminSiteMember.tpl"})
 </div>
 
 ({*ここまで:navi*})
@@ -27,5 +28,4 @@
 <input class="basic" type="text" name="start_id" value="" size="5">　～　<input class="basic" type="text" name="end_id" value="" size="5">
 <p class="textBtn"><input type="submit" value="ダウンロード"></p>
 </form>
-</div>
 ({$inc_footer|smarty:nodefaults})

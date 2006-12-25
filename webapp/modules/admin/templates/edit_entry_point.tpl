@@ -1,6 +1,7 @@
 ({$inc_header|smarty:nodefaults})
 ({ext_include file="inc_subnavi_adminDesign.tpl"})
-<div class="tree"><a href="?m=({$module_name})">管理画面TOP</a>&nbsp;＞&nbsp;デザインカスタマイズ：テンプレート挿入</div>
+({assign var="page_name" value="テンプレート挿入"})
+({ext_include file="inc_tree_adminDesign.tpl"})
 </div>
 
 ({*ここまで:navi*})
@@ -114,5 +115,4 @@
 </tr>
 </table>
 
-</div>
 ({$inc_footer|smarty:nodefaults})

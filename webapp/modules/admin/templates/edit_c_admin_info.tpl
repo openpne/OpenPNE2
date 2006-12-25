@@ -1,12 +1,13 @@
 ({$inc_header|smarty:nodefaults})
 ({ext_include file="inc_subnavi_adminInfoKiyaku.tpl"})
-<div class="tree"><a href="?m=({$module_name})">管理画面TOP</a>&nbsp;＞&nbsp;お知らせ・規約設定：お知らせ・規約設定</div>
+
+({assign var="page_name" value="お知らせ・規約設定"})
+({ext_include file="inc_tree_adminInfoKiyaku.tpl"})
 </div>
 
 ({*ここまで:navi*})
 
 <h2>お知らせ・規約設定</h2>
-<div class="contents">
 
 <table class="contents" cellpadding="0" cellspacing="0" border="0">
 <tr>
@@ -29,29 +30,6 @@
 <ul>
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_admin_info')})&amp;target=sns_kiyaku">利用規約</a></li>
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_admin_info')})&amp;target=sns_privacy">プライバシーポリシー</a></li>
-</ul>
-</dd>
-<dt><strong class="item">HTML挿入</strong></dt>
-<dd>
-<ul>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_admin_info')})&amp;target=inc_page_footer_before">ログイン前フッター</a></li>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_admin_info')})&amp;target=inc_page_footer_after">ログイン後フッター</a></li>
-</ul>
-</dd>
-<dt><strong class="item">PC版全ページ共通</strong></dt>
-<dd>
-<ul>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_admin_info')})&amp;target=inc_html_head">HTML挿入(HTML head内)</a></li>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_admin_info')})&amp;target=inc_page_top">HTML挿入(ページ上部)</a></li>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_admin_info')})&amp;target=inc_page_bottom">HTML挿入(ページ下部)</a></li>
-</ul>
-</dd>
-<dt><strong class="item">携帯版全ページ共通</strong></dt>
-<dd>
-<ul>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_admin_info')})&amp;target=inc_ktai_html_head">HTML挿入(HTML head内)</a></li>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_admin_info')})&amp;target=inc_ktai_header">HTML挿入(ページ上部)</a></li>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_admin_info')})&amp;target=inc_ktai_footer">HTML挿入(ページ下部)</a></li>
 </ul>
 </dd>
 </dl>
@@ -110,5 +88,5 @@
 </tr>
 </table>
 
-</div>({*/div class="contents"*})
+<div class="contents">
 ({$inc_footer|smarty:nodefaults})

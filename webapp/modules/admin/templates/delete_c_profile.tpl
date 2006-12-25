@@ -18,5 +18,4 @@
 <p class="textBtn"><input type="submit" value="削除する" /></p>
 </form>
 <p class="groupLing"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_profile')})">プロフィール項目設定へ戻る</a></p>
-</div>
 ({$inc_footer|smarty:nodefaults})

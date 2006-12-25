@@ -1,6 +1,11 @@
 ({$inc_header|smarty:nodefaults})
 ({ext_include file="inc_subnavi_adminAdminConfig.tpl"})
-<div class="tree"><a href="?m=({$module_name})">管理画面TOP</a>&nbsp;＞&nbsp;セキュリティ管理：<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_admin_user')})">アカウント管理</a>&nbsp;＞&nbsp;アカウント追加</div>
+
+({assign var="parent_page_name" value="アカウント管理"})
+({capture name=parent_page_url})?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_admin_user')})({/capture})
+
+({assign var="page_name" value="アカウント追加"})
+({ext_include file="inc_tree_adminAdminConfig.tpl"})
 </div>
 
 ({*ここまで:navi*})
@@ -42,5 +47,4 @@
 <p class="textBtn"><input type="submit" value="追加する"></p>
 </form>
 <p class="groupLing"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_admin_user')})">アカウント管理へ戻る</a></p>
-</div>
 ({$inc_footer|smarty:nodefaults})

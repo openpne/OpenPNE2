@@ -1,11 +1,12 @@
 ({$inc_header|smarty:nodefaults})
 ({ext_include file="inc_subnavi_adminImageKakikomi.tpl"})
-<div class="tree"><a href="?m=({$module_name})">TOP</a>&nbsp;＞&nbsp;セキュリティ管理：ページ名ランダム生成</div>
+({assign var="page_name" value="トピック・イベント管理"})
+({ext_include file="inc_tree_adminImageKakikomi.tpl"})
 </div>
 
 ({*ここまで:navi*})
 
-<h2>コミュニティのトピック・イベント管理</h2>
+<h2>トピック・イベント管理</h2>
 <div class="contents">
 
 ({if $msg})

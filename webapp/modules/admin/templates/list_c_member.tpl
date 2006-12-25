@@ -1,6 +1,7 @@
 ({$inc_header|smarty:nodefaults})
 ({ext_include file="inc_subnavi_adminSiteMember.tpl"})
-<div class="tree"><a href="?m=({$module_name})">管理画面TOP</a>&nbsp;＞&nbsp;メンバー管理：メンバーリスト</div>
+({assign var="page_name" value="メンバーリスト"})
+({ext_include file="inc_tree_adminSiteMember.tpl"})
 </div>
 
 ({*ここまで:navi*})
@@ -56,7 +57,7 @@
 <table class="userListTable">
 	<thead>
 		<tr>
-			<th class="cell01" rowspan="2">&nbsp;</th>
+			<th class="cell01" rowspan="3">&nbsp;</th>
 			<th class="cell02" colspan="3" rowspan="2">操作パネル</th>
 			<th class="cell03" rowspan="2">ID</th>
 			<th class="cell04" rowspan="2">ニックネーム</th>
@@ -68,6 +69,9 @@
 			({foreach from=$c_profile_list item=prof})
 			<th rowspan="2">({$prof.caption})</th>
 			({/foreach})
+			<th class="cell16" rowspan="2">PCアドレス</th>
+			<th class="cell17" rowspan="2">携帯アドレス</th>
+			<th class="cell18" rowspan="2">登録時アドレス</th>
 			<th class="cell15" rowspan="2">ID</th>
 		</tr>
 		<tr>
@@ -78,10 +82,54 @@
 			<th class="cell09B">月</th>
 			<th class="cell09C">日</th>
 		</tr>
+		<tr>
+			<th class="cell02" colspan="3">&nbsp;</th>
+			<th class="cell03">&nbsp;</th>
+			<th class="cell04">&nbsp;</th>
+			<th class="cell05">&nbsp;</th>
+			<th class="cell06">&nbsp;</th>
+			<th class="cell07">&nbsp;</th>
+			<th class="cell08A">&nbsp;</th>
+			<th class="cell08B">&nbsp;</th>
+			<th class="cell08C">&nbsp;</th>
+			<th class="cell09A" colspan="3">
+			<select onChange="Link('?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page=({$pager.page})&amp;page_size=({$pager.page_size})({$cond})&amp;s_year='+this.options[this.selectedIndex].value);">
+			<option value="">選択してください</option>
+			({foreach from=$years item=item})
+			<option ({if $cond_list.s_year==$item})selected({/if}) value="({$item})">({$item})</option>
+			({/foreach})
+			</select>
+			～
+			<select onChange="Link('?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page=({$pager.page})&amp;page_size=({$pager.page_size})({$cond})&amp;e_year='+this.options[this.selectedIndex].value);">
+			<option value="">選択してください</option>
+			({foreach from=$years item=item})
+			<option ({if $cond_list.e_year==$item})selected({/if}) value="({$item})">({$item})</option>
+			({/foreach})
+			</select>
+			</th>
+			({foreach from=$profile_list item=prof})
+			<th>
+			({if $prof.form_type == radio || $prof.form_type == select})
+			<select onChange="Link('?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page=({$pager.page})&amp;page_size=({$pager.page_size})({$cond})&amp;({$prof.name})='+this.options[this.selectedIndex].value);">
+			<option value="">選択してください</option>
+			({foreach item=item from=$prof.options})
+			<option ({if $cond_list[$prof.name]==$item.c_profile_option_id})selected({/if}) value="({$item.c_profile_option_id})"({if $c_member.profile[$profile.name].value == $item.value}) selected="selected"({/if})>({$item.value|default:"--"})</option>
+			({/foreach})
+			</select>
+			({else})
+			&nbsp;
+			({/if})
+			</th>
+			({/foreach})
+			<th class="cell16">&nbsp;</th>
+			<th class="cell17">&nbsp;</th>
+			<th class="cell18">&nbsp;</th>
+			<th class="cell15">&nbsp;</th>
+		</tr>
 	</thead>
 	<tfoot>
 		<tr>
-			<th class="cell01" rowspan="2">&nbsp;</th>
+			<th class="cell01" rowspan="3">&nbsp;</th>
 			<th class="cell02" colspan="3" rowspan="2">操作パネル</th>
 			<th class="cell03" rowspan="2">ID</th>
 			<th class="cell04" rowspan="2">ニックネーム</th>
@@ -97,6 +145,9 @@
 			({foreach from=$c_profile_list item=prof})
 			<th rowspan="2">({$prof.caption})</th>
 			({/foreach})
+			<th class="cell16" rowspan="2">PCアドレス</th>
+			<th class="cell17" rowspan="2">携帯アドレス</th>
+			<th class="cell18" rowspan="2">登録時アドレス</th>
 			<th class="cell15" rowspan="2">ID</th>
 		</tr>
 		<tr>
@@ -131,6 +182,9 @@
 			({/if})
 			({/strip})</td>
 			({/foreach})
+			<td class="cell16">({if $item.secure.pc_address})<a href="mailto:({$item.secure.pc_address|escape:"hexentity"})">({$item.secure.pc_address|t_truncate:"30"|escape:"hexentity"})</a>({else})&nbsp;({/if})</td>
+			<td class="cell17">({if $item.secure.ktai_address})<a href="mailto:({$item.secure.ktai_address})">({$item.secure.ktai_address|t_truncate:"30"})</a>({else})&nbsp;({/if})</td>
+			<td class="cell18">({if $item.secure.regist_address})({$item.secure.regist_address})({else})&nbsp;({/if})</td>
 			<td class="cell15">({$item.c_member_id})</td>
 		</tr>
 		({/foreach})
@@ -189,5 +243,4 @@
 </div>({*/div class="userList"*})
 
 <p class="caution">※パスワード、秘密の質問の答えは不可逆な暗号化を施してデータベースへ保存しているため、元の文字列を知ることができません。</p>
-</div>
 ({$inc_footer|smarty:nodefaults})

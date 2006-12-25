@@ -1,6 +1,8 @@
 ({$inc_header|smarty:nodefaults})
 ({ext_include file="inc_subnavi_adminImageKakikomi.tpl"})
-<div class="tree"><a href="?m=({$module_name})">管理画面TOP</a>&nbsp;＞&nbsp;画像・書き込み管理：日記管理</div>
+({assign var="page_name" value="日記管理"})
+({ext_include file="inc_tree_adminImageKakikomi.tpl"})
+</div>
 
 ({*ここまで:navi*})
 
@@ -83,5 +85,4 @@
 ({$smarty.capture.pager|smarty:nodefaults})
 </div>
 
-</div>
 ({$inc_footer|smarty:nodefaults})

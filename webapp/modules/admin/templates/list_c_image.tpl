@@ -1,6 +1,7 @@
 ({$inc_header|smarty:nodefaults})
 ({ext_include file="inc_subnavi_adminImageKakikomi.tpl"})
-<div class="tree"><a href="?m=({$module_name})">管理画面TOP</a>&nbsp;＞&nbsp;画像・書き込み管理：アップロード画像リスト</div>
+({assign var="page_name" value="アップロード画像リスト"})
+({ext_include file="inc_tree_adminImageKakikomi.tpl"})
 </div>
 
 ({*ここまで:navi*})
@@ -78,5 +79,4 @@
 <div class="otherControl">
 <p class="groupLing"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_image')})">画像のアップロード・削除ページへ</a></p>
 </div>({*/div class="otherControl"*})
-</div>
 ({$inc_footer|smarty:nodefaults})

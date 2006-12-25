@@ -1,6 +1,9 @@
 ({$inc_header|smarty:nodefaults})
 ({ext_include file="inc_subnavi_adminImageKakikomi.tpl"})
-<div class="tree"><a href="?m=({$module_name})">管理画面TOP</a>&nbsp;＞&nbsp;セキュリティ管理：ページ名ランダム生成</div>
+({assign var="page_name" value="メッセージ・メール送信"})
+({assign var="parent_page_name" value="メンバーリスト"})
+({capture name=parent_page_url})?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})({/capture})
+({ext_include file="inc_tree_adminSiteMember.tpl"})
 </div>
 
 ({*ここまで:navi*})
@@ -49,5 +52,4 @@
 <dd><p class="textBtn"><input type="submit" class="submit" value="メッセージ送信"></p></dd>
 </dl>
 </form>
-</div>
 ({$inc_footer|smarty:nodefaults})

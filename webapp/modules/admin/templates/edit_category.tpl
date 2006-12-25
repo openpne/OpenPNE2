@@ -1,6 +1,8 @@
 ({$inc_header|smarty:nodefaults})
 ({ext_include file="inc_subnavi_adminSNSConfig.tpl"})
-<div class="tree"><a href="?m=({$module_name})">管理画面TOP</a>&nbsp;＞&nbsp;コミュニティ管理：コミュニティカテゴリ設定</div>
+
+({assign var="page_name" value="コミュニティカテゴリ設定"})
+({ext_include file="inc_tree_adminSNSConfig.tpl"})
 </div>
 
 ({*ここまで:navi*})
@@ -114,5 +116,4 @@
 </td>
 </tr>
 </table>
-</div>
 ({$inc_footer|smarty:nodefaults})

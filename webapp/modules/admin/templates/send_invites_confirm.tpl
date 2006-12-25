@@ -1,6 +1,7 @@
 ({$inc_header|smarty:nodefaults})
 ({ext_include file="inc_subnavi_adminSiteMember.tpl"})
-<div class="tree"><a href="?m=({$module_name})">管理画面TOP</a>&nbsp;＞&nbsp;メール管理：招待メール送信</div>
+({assign var="page_name" value="招待メール送信"})
+({ext_include file="inc_tree_adminSiteMember.tpl"})
 </div>
 
 ({*ここまで:navi*})
@@ -74,5 +75,4 @@ PCからは登録できない設定になっています。<br>
 ({/if})
 ({/if})
 
-</div>
 ({$inc_footer|smarty:nodefaults})

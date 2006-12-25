@@ -1,7 +1,8 @@
 ({$inc_header|smarty:nodefaults})
 ({ext_include file="inc_subnavi_adminSNSConfig.tpl"})
-<div class="tree"><a href="?m=({$module_name})">管理画面TOP</a>&nbsp;＞&nbsp;メール管理：メール送信設定</div>
 
+({assign var="page_name" value="メール送信設定"})
+({ext_include file="inc_tree_adminSNSConfig.tpl"})
 </div>
 
 ({*ここまで：navi*})
@@ -41,5 +42,4 @@
 <p class="textBtn"><input type="submit" value="変更する"></p>
 </form>
 <p class="groupLing"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_mail')})" title="メール文言変更: SNSから送信する各種メールの文言変更">メール文言変更へ</a></p>
-</div>
 ({$inc_footer|smarty:nodefaults})

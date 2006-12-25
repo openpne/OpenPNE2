@@ -1,6 +1,9 @@
 ({$inc_header|smarty:nodefaults})
 ({ext_include file="inc_subnavi_adminImageKakikomi.tpl"})
-<div class="tree"><a href="?m=({$module_name})">管理画面TOP</a>&nbsp;＞&nbsp;画像・書き込み管理：<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_image')})" onClick="history.back(); return false;" onKeyPress="history.back(); return false;">アップロード画像リスト</a>&nbsp;＞&nbsp;画像削除の確認</div>
+({assign var="parent_page_name" value="アップロード画像リスト"})
+({capture name=parent_page_url})?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_image')})({/capture})
+({assign var="page_name" value="画像削除の確認"})
+({ext_include file="inc_tree_adminImageKakikomi.tpl"})
 </div>
 
 ({*ここまで:navi*})
@@ -19,5 +22,4 @@
 </form>
 <p class="caution" id="c02"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_image')})" onClick="history.back(); return false;" onKeyPress="history.back(); return false;">アップロード画像リストに戻る</a></p>
 
-</div>
 ({$inc_footer|smarty:nodefaults})

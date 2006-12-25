@@ -1,6 +1,7 @@
 ({$inc_header|smarty:nodefaults})
 ({ext_include file="inc_subnavi_adminStatisticalInformation.tpl"})
-<div class="tree"><a href="?m=({$module_name})">管理画面TOP</a>&nbsp;＞&nbsp;セキュリティ管理：ページ名ランダム生成</div>
+({assign var="page_name" value=$item_str})
+({ext_include file="inc_tree_adminStatisticalInformation.tpl"})
 </div>
 
 ({*ここまで:navi*})
@@ -63,5 +64,4 @@
 <td><a href="?m=admin&a=page_access_analysis_member&ktai_flag=({$ktai_flag})&ymd=({$ymd})&month_flag=({$month_flag})&page_name=all">詳細</a></td>
 </table>
 
-</div>
 ({$inc_footer|smarty:nodefaults})

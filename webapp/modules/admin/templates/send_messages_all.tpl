@@ -1,6 +1,9 @@
 ({$inc_header|smarty:nodefaults})
-({ext_include file="inc_subnavi_adminImageKakikomi.tpl"})
-<div class="tree"><a href="?m=({$module_name})">管理画面TOP</a>&nbsp;＞&nbsp;メンバー管理：<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})">メンバーリスト</a>&nbsp;＞&nbsp;メッセージ送信</div>
+({ext_include file="inc_subnavi_adminSiteMember.tpl"})
+({assign var="page_name" value="メッセージ送信"})
+({assign var="parent_page_name" value="メンバーリスト"})
+({capture name=parent_page_url})?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})({/capture})
+({ext_include file="inc_tree_adminSiteMember.tpl"})
 </div>
 
 ({*ここまで:navi*})
@@ -27,5 +30,4 @@
 </form>
 <p class="caution" id="c02"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})" onClick="history.back(); return false;" onKeyPress="history.back(); return false;">メンバーリストに戻る</a></p>
 
-</div>
 ({$inc_footer|smarty:nodefaults})

@@ -1,6 +1,8 @@
 ({$inc_header|smarty:nodefaults})
 ({ext_include file="inc_subnavi_adminAdminConfig.tpl"})
-<div class="tree"><a href="?m=({$module_name})">管理画面TOP</a>&nbsp;＞&nbsp;セキュリティ管理：パスワード変更</div>
+
+({assign var="page_name" value="パスワード変更"})
+({ext_include file="inc_tree_adminAdminConfig.tpl"})
 </div>
 
 ({*ここまで:navi*})
@@ -32,5 +34,4 @@
 <p class="textBtn"><input type="submit" value="変更する"></p>
 </form>
 
-</div>
 ({$inc_footer|smarty:nodefaults})

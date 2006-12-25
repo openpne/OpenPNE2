@@ -1,6 +1,7 @@
 ({$inc_header|smarty:nodefaults})
 ({ext_include file="inc_subnavi_adminImageKakikomi.tpl"})
-<div class="tree"><a href="?m=({$module_name})">管理画面TOP</a>&nbsp;＞&nbsp;画像・書き込み管理：投稿記事削除</div>
+({assign var="page_name" value="投稿記事削除"})
+({ext_include file="inc_tree_adminImageKakikomi.tpl"})
 </div>
 
 ({*ここまで:navi*})
@@ -129,5 +130,4 @@
 
 </div>({*/div class="deleteKakikomiCommuTopic"*})
 
-</div>
 ({$inc_footer|smarty:nodefaults})

@@ -1,12 +1,13 @@
 ({$inc_header|smarty:nodefaults})
 ({ext_include file="inc_subnavi_adminImageKakikomi.tpl"})
-<div class="tree"><a href="?m=({$module_name})">管理画面TOP</a>&nbsp;＞&nbsp;画像・書き込み管理：画像アップロード・削除</div>
+({assign var="page_name" value="画像のアップロード・削除"})
+({ext_include file="inc_tree_adminImageKakikomi.tpl"})
 </div>
 
 ({*ここまで:navi*})
 
 ({if $msg})<p class="actionMsg">({$msg})</p>({/if})
-<h2 id="ttl01">画像のアップロード</h2>
+<h2 id="ttl01">画像のアップロード・削除</h2>
 
 <div class="contents">
 
@@ -56,5 +57,4 @@
 <p class="groupLing"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_image')})">アップロード画像リストへ</a></p>
 ({/if})
 ({/if})
-</div>
 ({$inc_footer|smarty:nodefaults})

@@ -13,8 +13,8 @@
 <input type="hidden" name="m" value="({$module_name})">
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_limit_domain','do')})">
 <input type="hidden" name="sessid" value="({$PHPSESSID})">
-<table>
 
+<table class="basicType2">
 <tr>
 <th>ドメイン制限1</th>
 <td><input name="LIMIT_DOMAIN1" type="text" class="text" value="({$smarty.const.LIMIT_DOMAIN1})" size="30"><br>
@@ -40,9 +40,9 @@
 <td><input name="LIMIT_DOMAIN5" type="text" class="text" value="({$smarty.const.LIMIT_DOMAIN5})" size="30"><br>
 </td>
 </tr>
-
-<tr><td colspan="2" style="padding:0;background:#000"><img src="skin/dummy.gif" height="1"></td></tr>
-
+<tr>
+<td colspan="2" style="padding:0;background:#000"><img src="skin/dummy.gif" height="1"></td>
+</tr>
 <tr>
 <th>&nbsp;</th>
 <td><p class="textBtn"><input type="submit" class="submit" value=" 更　新 "></p></td>
@@ -50,5 +50,4 @@
 </table>
 </form>
 
-</div>
 ({$inc_footer|smarty:nodefaults})

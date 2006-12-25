@@ -1,6 +1,7 @@
 ({$inc_header|smarty:nodefaults})
 ({ext_include file="inc_subnavi_adminDesign.tpl"})
-<div class="tree"><a href="?m=({$module_name})">管理画面TOP</a>&nbsp;＞&nbsp;デザインカスタマイズ：バナー設定</div>
+({assign var="page_name" value="バナー設定"})
+({ext_include file="inc_tree_adminDesign.tpl"})
 </div>
 
 ({*ここまで:navi*})
@@ -93,6 +94,7 @@ window.onload = disableTextarea({if !$top_banner_html_before && !$top_banner_htm
 <h3 class="item" id="ttl02">サイドバナー</h3>
 <p class="caution" id="c02">※468 x 60 ピクセルの画像を設定してください。</p>
 <form action="./" method="post" name="form_side_banner">
+
 <table class="basicType2" id="sideBanner">
 <tr>
 <th class="radioBtn"><input type="hidden" name="m" value="({$module_name})" />
@@ -149,5 +151,4 @@ window.onload = disableTextarea({if !$top_banner_html_before && !$top_banner_htm
 <p class="textBtn"><input tabindex="8" type="submit" value="サイドバナー設定を確定する"></p>
 </form>
 
-</div>
 ({$inc_footer|smarty:nodefaults})

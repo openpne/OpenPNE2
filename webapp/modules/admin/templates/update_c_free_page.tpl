@@ -1,6 +1,7 @@
 ({$inc_header|smarty:nodefaults})
 ({ext_include file="inc_subnavi_adminInfoKiyaku.tpl"})
-<div class="tree"><a href="?m=({$module_name})">管理画面TOP</a>&nbsp;＞&nbsp;お知らせ・規約設定：フリーページ編集</div>
+({assign var="page_name" value="フリーページ編集"})
+({ext_include file="inc_tree_adminInfoKiyaku.tpl"})
 </div>
 
 ({*ここまで:navi*})
@@ -19,5 +20,4 @@
 </form>
 
 <p class="groupLing"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_free_page')})">戻る</a></p>
-</div>
 ({$inc_footer|smarty:nodefaults})

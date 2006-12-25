@@ -1,6 +1,7 @@
 ({$inc_header|smarty:nodefaults})
 ({ext_include file="inc_subnavi_adminStatisticalInformation.tpl"})
-<div class="tree"><a href="?m=({$module_name})">管理画面TOP</a>&nbsp;＞&nbsp;セキュリティ管理：ページ名ランダム生成</div>
+({assign var="page_name" value="世代別ユーザー数表示"})
+({ext_include file="inc_tree_adminStatisticalInformation.tpl"})
 </div>
 
 ({*ここまで:navi*})
@@ -42,5 +43,4 @@
 </tfoot>
 </table>
 
-</div>
 ({$inc_footer|smarty:nodefaults})

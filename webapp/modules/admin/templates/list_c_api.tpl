@@ -1,17 +1,27 @@
 ({$inc_header|smarty:nodefaults})
 ({ext_include file="inc_subnavi_adminSNSConfig.tpl"})
-<div class="tree"><a href="?m=({$module_name})">管理画面TOP</a>&nbsp;＞&nbsp;API設定一覧</div>
+
+({assign var="page_name" value="API設定"})
+({ext_include file="inc_tree_adminSNSConfig.tpl"})
 </div>
 
 ({*ここまで:navi*})
 
 ({if $msg})<p class="actionMsg">({$msg})</p>({/if})
-<h2>OPENPNE API設定</h2>
+<h2>API設定</h2>
 <div class="contents">
 
+<p class="caution">
+※許容IPアドレス記述例<br>
+10進のIPアドレス表記（1件）：XXX.XXX.XXX.XXX<br>
+半角アスタリスク（全てのサーバからのアクセスを許容）：*<br>
+API未使用：空
+</p>
+
+
 ({if $pager && $pager.total_num > 0})
-<!-- pager_begin -->
-<div class="pager">
+({capture name="pager"})
+<p class="listMove">
 ({$pager.total_num}) 件中 ({$pager.start_num}) - ({$pager.end_num})件目を表示しています
 <br>
 ({if $pager.prev_page})
@@ -27,18 +37,13 @@
 ({if $pager.next_page})
 &nbsp;<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_api')})&amp;page=({$pager.next_page})&amp;page_size=({$pager.page_size})({$cond})">次へ</a>
 ({/if})
-</div>
-<!-- pager_end -->
+</p>
+({/capture})
+
+({$smarty.capture.pager|smarty:nodefaults})
 ({/if})
 
-<p class="caution">
-※許容IPアドレス記述例<br>
-10進のIPアドレス表記（1件）：XXX.XXX.XXX.XXX<br>
-半角アスタリスク（全てのサーバからのアクセスを許容）：*<br>
-API未使用：空
-</p>
-
-<table>
+<table class="basicType2">
 <tr>
 <th>ID</th>
 <th>API名称</th>
@@ -70,33 +75,16 @@ API未使用：空
 ({/foreach})
 
 ({if $c_api_list})
-<td colspan=3 align=right><input type="submit" class="submit" value="変更"></td>
-</form>
+<tr>
+<td colspan=3 align=right><span class="textBtnS"><input type="submit" class="submit" value="変更"></span></td>
+</tr>
 ({/if})
+</form>
 
 </table>
 
 ({if $pager && $pager.total_num > 0})
-<!-- pager_begin -->
-<div class="pager">
-({$pager.total_num}) 件中 ({$pager.start_num}) - ({$pager.end_num})件目を表示しています
-<br>
-({if $pager.prev_page})
-<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_api')})&amp;page=({$pager.prev_page})&amp;page_size=({$pager.page_size})({$cond})">前へ</a>&nbsp;
-({/if})
-({foreach from=$pager.disp_pages item=i})
-({if $i == $pager.page})
-&nbsp;<strong>({$i})</strong>&nbsp;
-({else})
-<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_api')})&amp;page=({$i})&amp;page_size=({$pager.page_size})({$cond})">&nbsp;({$i})&nbsp;</a>
-({/if})
-({/foreach})
-({if $pager.next_page})
-&nbsp;<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_api')})&amp;page=({$pager.next_page})&amp;page_size=({$pager.page_size})({$cond})">次へ</a>
-({/if})
-</div>
-<!-- pager_end -->
+({$smarty.capture.pager|smarty:nodefaults})
 ({/if})
 
-</div>
 ({$inc_footer|smarty:nodefaults})

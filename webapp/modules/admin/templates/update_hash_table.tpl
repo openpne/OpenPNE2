@@ -1,6 +1,8 @@
 ({$inc_header|smarty:nodefaults})
 ({ext_include file="inc_subnavi_adminAdminConfig.tpl"})
-<div class="tree"><a href="?m=({$module_name})">管理画面TOP</a>&nbsp;＞&nbsp;セキュリティ管理：ページ名ランダム生成</div>
+
+({assign var="page_name" value="ページ名ランダム生成"})
+({ext_include file="inc_tree_adminAdminConfig.tpl"})
 </div>
 
 ({*ここまで:navi*})
@@ -24,5 +26,4 @@
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
 <p class="textBtnS" id="reset"><input type="submit" value="ページ名を初期化する"></p>
 </form>
-</div>
 ({$inc_footer|smarty:nodefaults})

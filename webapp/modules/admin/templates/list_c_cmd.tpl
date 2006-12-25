@@ -1,6 +1,8 @@
 ({$inc_header|smarty:nodefaults})
 ({ext_include file="inc_subnavi_adminSNSConfig.tpl"})
-<div class="tree"><a href="?m=({$module_name})">管理画面TOP</a>&nbsp;＞&nbsp;CMD一覧</div>
+
+({assign var="page_name" value="CMD一覧"})
+({ext_include file="inc_tree_adminSNSConfig.tpl"})
 </div>
 
 ({*ここまで:navi*})
@@ -9,9 +11,11 @@
 <h2>CMD一覧</h2>
 <div class="contents">
 
+<p class="caution">※URL記述例 : ファイル名から拡張子を取り除いたもの<br>youtube.js → youtube</p>
+
 ({if $pager && $pager.total_num > 0})
-<!-- pager_begin -->
-<div class="pager">
+({capture name="pager"})
+<p class="listMove">
 ({$pager.total_num}) 件中 ({$pager.start_num}) - ({$pager.end_num})件目を表示しています
 <br>
 ({if $pager.prev_page})
@@ -27,13 +31,13 @@
 ({if $pager.next_page})
 &nbsp;<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_cmd')})&amp;page=({$pager.next_page})&amp;page_size=({$pager.page_size})({$cond})">次へ</a>
 ({/if})
-</div>
-<!-- pager_end -->
+</p>
+({/capture})
+
+({$smarty.capture.pager|smarty:nodefaults})
 ({/if})
 
-<p class="caution">※URL記述例 : ファイル名から拡張子を取り除いたもの<br>youtube.js → youtube</p>
-
-<table>
+<table class="basicType2">
 <tr>
 <th>ID</th>
 <th>URL</th>
@@ -92,33 +96,14 @@
 <input name="permit[]" type="checkbox" value="({$key})" checked="checked">({$name})
 ({/foreach})
 </td>
-<td colspan='2' align='center'><input type="submit" class="submit" value="追加"></td>
+<td colspan='2' align='center'><span class="textBtnS"><input type="submit" class="submit" value="追加"></span></td>
 </tr>
 </form>
 
 </table>
 
 ({if $pager && $pager.total_num > 0})
-<!-- pager_begin -->
-<div class="pager">
-({$pager.total_num}) 件中 ({$pager.start_num}) - ({$pager.end_num})件目を表示しています
-<br>
-({if $pager.prev_page})
-<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_cmd')})&amp;page=({$pager.prev_page})&amp;page_size=({$pager.page_size})({$cond})">前へ</a>&nbsp;
-({/if})
-({foreach from=$pager.disp_pages item=i})
-({if $i == $pager.page})
-&nbsp;<strong>({$i})</strong>&nbsp;
-({else})
-<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_cmd')})&amp;page=({$i})&amp;page_size=({$pager.page_size})({$cond})">&nbsp;({$i})&nbsp;</a>
-({/if})
-({/foreach})
-({if $pager.next_page})
-&nbsp;<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_cmd')})&amp;page=({$pager.next_page})&amp;page_size=({$pager.page_size})({$cond})">次へ</a>
-({/if})
-</div>
-<!-- pager_end -->
+({$smarty.capture.pager|smarty:nodefaults})
 ({/if})
 
-</div>
 ({$inc_footer|smarty:nodefaults})

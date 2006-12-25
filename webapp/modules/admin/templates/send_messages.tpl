@@ -1,6 +1,9 @@
 ({$inc_header|smarty:nodefaults})
 ({ext_include file="inc_subnavi_adminSiteMember.tpl"})
-<div class="tree"><a href="?m=({$module_name})">管理画面TOP</a>&nbsp;＞&nbsp;メンバー管理：<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})">メンバーリスト</a>&nbsp;＞&nbsp;メッセージ送信</div>
+({assign var="page_name" value="メッセージ送信"})
+({assign var="parent_page_name" value="メンバーリスト"})
+({capture name=parent_page_url})?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})({/capture})
+({ext_include file="inc_tree_adminSiteMember.tpl"})
 </div>
 
 ({*ここまで:navi*})
@@ -12,7 +15,7 @@
 <p class="caution" id="c01">タイトルと本文を入力してください。<br /><strong>※このメッセージは、ID No.1のメンバー名にて送信されます。</strong></p>
 <dl>
 	<dt class="msgAdd"><strong>送信先</strong></dt>
-	<dd class="msgAdd">({foreach from=$c_member_list item=item})<strong><a href="({t_url _absolute=1 m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})" target="_blank">({$item.nickname})</a></strong>&nbsp;／&nbsp;({/foreach})</dd>
+	<dd class="msgAdd">({foreach from=$c_member_list item=item name=cml})<strong><a href="({t_url _absolute=1 m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})" target="_blank">({$item.nickname})</a></strong>({if !$smarty.foreach.cml.last})&nbsp;／&nbsp;({/if})({/foreach})</dd>
 </dl>
 <form action="./" method="post">
 <input type="hidden" name="m" value="({$module_name})" />
@@ -31,5 +34,4 @@
 </form>
 <p class="caution" id="c02"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})" onClick="history.back(); return false;" onKeyPress="history.back(); return false;">メンバーリストに戻る</a></p>
 
-</div>
 ({$inc_footer|smarty:nodefaults})

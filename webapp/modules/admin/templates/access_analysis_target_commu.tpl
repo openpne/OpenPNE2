@@ -1,6 +1,18 @@
 ({$inc_header|smarty:nodefaults})
 ({ext_include file="inc_subnavi_adminStatisticalInformation.tpl"})
-<div class="tree"><a href="?m=({$module_name})">管理画面TOP</a>&nbsp;＞&nbsp;セキュリティ管理：ページ名ランダム生成</div>
+
+({if $item_str == "PC版"})
+({assign var="parent_page_name" value="PCページ月次集計"})
+({capture name=parent_page_url})?m=({$module_name})&amp;a=page_({$hash_tbl->hash('access_analysis_month')})&ktai_flag=0({/capture})
+({else})
+({assign var="parent_page_name" value="携帯ページ月次集計"})
+({capture name=parent_page_url})?m=({$module_name})&amp;a=page_({$hash_tbl->hash('access_analysis_month')})&ktai_flag=1({/capture})
+({/if})
+
+({capture name=page_name_temp})({$item_str}) コミュニティ別アクセス数表示 ({if $month_flag})({$ymd|date_format:"%Y年%m月分"})({else})({$ymd|date_format:"%Y年%m月%d日分"})({/if})({/capture})
+({assign var="page_name" value=$smarty.capture.page_name_temp})
+
+({ext_include file="inc_tree_adminStatisticalInformation.tpl"})
 </div>
 
 ({*ここまで:navi*})
@@ -16,7 +28,7 @@
 &nbsp;&nbsp;({$start_num})件～({$end_num})件を表示&nbsp;&nbsp;
 ({if $is_next})<a href="?m=admin&a=page_access_analysis_target_commu&ktai_flag=({$ktai_flag})&ymd=({$ymd})&month_flag=({$month_flag})&page_name=({$page_name})&orderby=({$orderby})&direc=1&page=({$page})">次を表示＞</a>({/if})
 <br>
-<table border="1" cellspacing="0" cellpadding="5">
+<table cellspacing="0" cellpadding="5" class="basicType2">
 <th><a href="?m=admin&a=page_access_analysis_target_commu&ktai_flag=({$ktai_flag})&ymd=({$ymd})&month_flag=({$month_flag})&page_name=({$page_name})&orderby1=({$orderby1})">ID</a></th>
 <th>コミュニティ名</th>
 <th><a href="?m=admin&a=page_access_analysis_target_commu&ktai_flag=({$ktai_flag})&ymd=({$ymd})&month_flag=({$month_flag})&page_name=({$page_name})&orderby2=({$orderby2})">アクセス数</a></th>
@@ -38,5 +50,4 @@
 </table>
 
 
-</div>
 ({$inc_footer|smarty:nodefaults})
