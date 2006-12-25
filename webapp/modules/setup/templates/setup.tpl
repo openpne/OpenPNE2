@@ -2,8 +2,8 @@
 
 <p>必ず下記の設定をおこなってからセットアップを実行してください。</p>
 <ul>
-<li>setup/sql/install-2.4-create_tables-mysql4X.sql の実行</li>
-<li>setup/sql/install-2.4-insert_data.sql の実行</li>
+<li>setup/sql/install-2.6-create_tables-mysql4X.sql の実行</li>
+<li>setup/sql/install-2.6-insert_data.sql の実行</li>
 <li>config.php の設定</li>
 </ul>
 <p>一度、セットアップを実行した後でこのページを表示することはできません。<br>
