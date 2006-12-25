@@ -3,64 +3,72 @@ CREATE TABLE `biz_admin_config` (
   `name` text NOT NULL,
   `value` text NOT NULL,
   PRIMARY KEY  (`biz_admin_config_id`)
-) TYPE=MyISAM ;
+) TYPE=MyISAM;
 INSERT INTO `biz_admin_config` VALUES (1, 'IS_CLOSED_SHISETSU', '0');
 
 CREATE TABLE `biz_group` (
   `biz_group_id` int(11) NOT NULL auto_increment,
   `name` text NOT NULL,
   `info` text NOT NULL,
-  `admin_id` int(11) NOT NULL,
+  `admin_id` int(11) NOT NULL default '0',
   `image_filename` text NOT NULL,
   PRIMARY KEY  (`biz_group_id`)
-) TYPE=MyISAM ;
+) TYPE=MyISAM;
+
 
 CREATE TABLE `biz_group_member` (
   `biz_group_member_id` int(11) NOT NULL auto_increment,
-  `c_member_id` int(11) NOT NULL,
-  `biz_group_id` int(11) NOT NULL,
+  `c_member_id` int(11) NOT NULL default '0',
+  `biz_group_id` int(11) NOT NULL default '0',
   PRIMARY KEY  (`biz_group_member_id`)
-) TYPE=MyISAM ;
+) TYPE=MyISAM;
+
 
 CREATE TABLE `biz_schedule` (
   `biz_schedule_id` int(11) NOT NULL auto_increment,
   `title` mediumtext NOT NULL,
-  `c_member_id` int(11) NOT NULL,
-  `begin_date` date NOT NULL,
-  `finish_date` date NOT NULL,
+  `c_member_id` int(11) NOT NULL default '0',
+  `begin_date` date NOT NULL default '0000-00-00',
+  `finish_date` date NOT NULL default '0000-00-00',
   `begin_time` time default NULL,
   `finish_time` time default NULL,
   `value` mediumtext NOT NULL,
-  `rep_type` int(11) NOT NULL,
-  `rep_first` int(11) NOT NULL,
-  `is_read` int(11) NOT NULL,
+  `rep_type` int(11) NOT NULL default '0',
+  `rep_first` int(11) NOT NULL default '0',
+  `is_read` int(11) NOT NULL default '0',
+  `public_flag` enum('public','group','private') NOT NULL default 'public',
+  `biz_group_id` int(11) default NULL,
   PRIMARY KEY  (`biz_schedule_id`)
-) TYPE=MyISAM ;
+) TYPE=MyISAM;
+
 
 CREATE TABLE `biz_schedule_member` (
   `biz_schedule_member_id` int(11) NOT NULL auto_increment,
-  `c_member_id` int(11) NOT NULL,
-  `biz_schedule_id` int(11) NOT NULL,
-  `is_read` tinyint(4) NOT NULL,
+  `c_member_id` int(11) NOT NULL default '0',
+  `biz_schedule_id` int(11) NOT NULL default '0',
+  `is_read` tinyint(4) NOT NULL default '0',
   PRIMARY KEY  (`biz_schedule_member_id`)
-) TYPE=MyISAM ;
+) TYPE=MyISAM;
+
 
 CREATE TABLE `biz_shisetsu` (
   `biz_shisetsu_id` int(11) NOT NULL auto_increment,
   `name` text NOT NULL,
   `image_filename` text NOT NULL,
+  `info` text NOT NULL,
   PRIMARY KEY  (`biz_shisetsu_id`)
-) TYPE=MyISAM ;
+) TYPE=MyISAM;
+
 
 CREATE TABLE `biz_shisetsu_schedule` (
   `biz_shisetsu_schedule_id` int(11) NOT NULL auto_increment,
-  `biz_shisetsu_id` int(11) NOT NULL,
-  `c_member_id` int(11) NOT NULL,
-  `date` date NOT NULL,
-  `begin_time` time NOT NULL,
-  `finish_time` time NOT NULL,
+  `biz_shisetsu_id` int(11) NOT NULL default '0',
+  `c_member_id` int(11) NOT NULL default '0',
+  `date` date NOT NULL default '0000-00-00',
+  `begin_time` time NOT NULL default '00:00:00',
+  `finish_time` time NOT NULL default '00:00:00',
   PRIMARY KEY  (`biz_shisetsu_schedule_id`)
-) TYPE=MyISAM ;
+) TYPE=MyISAM;
 
 
 CREATE TABLE `biz_todo` (
@@ -69,9 +77,13 @@ CREATE TABLE `biz_todo` (
   `memo` text NOT NULL,
   `is_check` tinyint(1) NOT NULL default '0',
   `writer_id` int(11) NOT NULL default '0',
-  `sort_order` int(11) NOT NULL,
+  `sort_order` int(11) NOT NULL default '0',
   `r_datetime` datetime default NULL,
+  `due_datetime` datetime NOT NULL default '0000-00-00 00:00:00',
+  `finish_datetime` datetime NOT NULL default '0000-00-00 00:00:00',
+  `priority` int(11) NOT NULL default '3',
+  `public_flag` enum('public','group','private') NOT NULL default 'public',
+  `biz_group_id` int(11) NOT NULL default '0',
   PRIMARY KEY  (`biz_todo_id`)
 ) TYPE=MyISAM;
 
-REPLACE INTO `c_siteadmin` VALUES (NULL, 'inc_page_top', '<table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:0;">\n<tr>\n<td style="padding:3px 9px;" align="right" class="bg_13">\nグループウェア機能はこちら →\n　<a href="?m=biz&a=page_s_list">施設予約</a>\n　<a href="?m=biz&a=page_fh_biz_schedule_add">予定登録</a>\n　<a href="?m=biz&a=page_h_biz_group_find_all">グループ</a></td></tr>\n</table>', NOW());
