@@ -93,10 +93,21 @@ var {
 <h3 id="section2-1">2-1. コンバートSQLの実行</h3>
 
 <p>
-setup/upgrade/upgrade-2.4to2.6-mysql4*.sql を実行します。<br>
+<b>注意</b><br>
+PNEBIZ/PNEPOINTのテーブルを作成していなかった場合はこれらを作成するSQLを実行してください。<br>
+(これらの機能を使用しない場合でもテーブルは必須となります)<br>
+setup/upgrade/pnebiz-mysql4*.sql及びsetup/upgrade/pnepoint-mysql4*.sql<br>
 ご使用のMySQLにあったスクリプトを実行してください。<br>
-PNEBIZ/PNEPOINTのテーブルを作成していなかった場合は作成するSQLを実行してください。<br>
-(これらの機能を使用しない場合でも作成は必須となります)
+<pre>
+$ mysql -u username -p --default-character-set=utf8 DBNAME &lt; pnebiz-mysql4*.sql
+$ mysql -u username -p --default-character-set=utf8 DBNAME &lt; pnepoint-mysql4*.sql
+</pre>
+
+
+その後バージョン2.6へのアップグレードスクリプトsetup/upgrade/upgrade-2.4to2.6-mysql4*.sql を実行します。<br>
+<pre>
+$ mysql -u username -p --default-character-set=utf8 DBNAME &lt; upgrade-2.4to2.6-mysql4*.sql
+</pre>
 </p>
 
 
@@ -105,6 +116,7 @@ PNEBIZ/PNEPOINTのテーブルを作成していなかった場合は作成す�
 <p>サーバ上に OpenPNE 2.6 のソースファイルを設置します。<br>
 詳しくは、「<a href="./OpenPNE_Setup.html">OpenPNE セットアップガイド</a>」を参考にしてください。<br>
 ※新旧ソースファイル混在によるトラブルを防ぐため、ソースコード全てを交換してください。<br>
+交換後はvarディレクトリの書き込み権限を適切なものに変更してください。<br>
 </p>
 
 <h3 id="section2-3">2-3. 設定ファイルの変更</h3>
