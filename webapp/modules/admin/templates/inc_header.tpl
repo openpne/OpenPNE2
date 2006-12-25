@@ -115,6 +115,9 @@
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('manage_c_commu')})" title="初期コミュニティ管理: 新規登録時に参加させるコミュニティの設定">初期コミュニティ</a></li>
 ({/if})
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_holiday')})" title="カレンダーの祝日の設定">祝日設定</a></li>
+({if $smarty.const.OPENPNE_DISP_POINT})
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_rank')})" title="ランクの設定">ランク設定</a></li><li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_action')})" title="アクションの設定">アクション設定</a></li>
+({/if})
 </ul>
 </li>
 

@@ -1,31 +1,20 @@
 ({$inc_header|smarty:nodefaults})
+({ext_include file="inc_subnavi_adminSNSConfig.tpl"})
+
+({assign var="page_name" value="アクション一覧"})
+({ext_include file="inc_tree_adminSNSConfig.tpl"})
+</div>
+
+({*ここまで:navi*})
+
+({if $msg})<p class="actionMsg">({$msg})</p>({/if})
+
 <h2>アクション一覧</h2>
 
 ({if $msg})
 <p class="caution">({$msg})</p>
 ({/if})
 
-({if $pager && $pager.total_num > 0})
-<!-- pager_begin -->
-<div class="pager">
-({$pager.total_num}) 件中 ({$pager.start_num}) - ({$pager.end_num})件目を表示しています
-<br>
-({if $pager.prev_page})
-<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_action')})&amp;page=({$pager.prev_page})&amp;page_size=({$pager.page_size})({$cond})">前へ</a>&nbsp;
-({/if})
-({foreach from=$pager.disp_pages item=i})
-({if $i == $pager.page})
-&nbsp;<strong>({$i})</strong>&nbsp;
-({else})
-<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_action')})&amp;page=({$i})&amp;page_size=({$pager.page_size})({$cond})">&nbsp;({$i})&nbsp;</a>
-({/if})
-({/foreach})
-({if $pager.next_page})
-&nbsp;<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_action')})&amp;page=({$pager.next_page})&amp;page_size=({$pager.page_size})({$cond})">次へ</a>
-({/if})
-</div>
-<!-- pager_end -->
-({/if})
 
 <table>
 <tr>
@@ -56,27 +45,5 @@
 </tr>
 ({/foreach})
 </table>
-
-({if $pager && $pager.total_num > 0})
-<!-- pager_begin -->
-<div class="pager">
-({$pager.total_num}) 件中 ({$pager.start_num}) - ({$pager.end_num})件目を表示しています
-<br>
-({if $pager.prev_page})
-<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_action')})&amp;page=({$pager.prev_page})&amp;page_size=({$pager.page_size})({$cond})">前へ</a>&nbsp;
-({/if})
-({foreach from=$pager.disp_pages item=i})
-({if $i == $pager.page})
-&nbsp;<strong>({$i})</strong>&nbsp;
-({else})
-<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_action')})&amp;page=({$i})&amp;page_size=({$pager.page_size})({$cond})">&nbsp;({$i})&nbsp;</a>
-({/if})
-({/foreach})
-({if $pager.next_page})
-&nbsp;<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_action')})&amp;page=({$pager.next_page})&amp;page_size=({$pager.page_size})({$cond})">次へ</a>
-({/if})
-</div>
-<!-- pager_end -->
-({/if})
 
 ({$inc_footer|smarty:nodefaults})

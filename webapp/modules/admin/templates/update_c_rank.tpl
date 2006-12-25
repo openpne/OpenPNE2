@@ -1,4 +1,14 @@
 ({$inc_header|smarty:nodefaults})
+({ext_include file="inc_subnavi_adminSNSConfig.tpl"})
+
+({assign var="page_name" value="ランク編集"})
+({ext_include file="inc_tree_adminSNSConfig.tpl"})
+</div>
+
+({*ここまで:navi*})
+
+({if $msg})<p class="actionMsg">({$msg})</p>({/if})
+
 <h2>ランク編集</h2>
 
 <form action="./" method="post" enctype="multipart/form-data">
