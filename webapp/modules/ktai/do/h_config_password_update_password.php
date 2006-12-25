@@ -8,6 +8,9 @@ class ktai_do_h_config_password_update_password extends OpenPNE_Action
 {
     function execute($requests)
     {
+        //外部認証の場合はリダイレクト
+        check_action4pne_slave(true);
+        
         $tail = $GLOBALS['KTAI_URL_TAIL'];
         $u = $GLOBALS['KTAI_C_MEMBER_ID'];
 
@@ -17,7 +20,7 @@ class ktai_do_h_config_password_update_password extends OpenPNE_Action
         // ----------
 
         // 現在のパスワードが正しいか
-        if (!db_common_authenticate_password($u, $old_password)) {
+        if (!db_common_authenticate_password($u, $old_password, true)) {
             $p = array('msg' => 18);
             openpne_redirect('ktai', 'page_h_config_password', $p);
         }

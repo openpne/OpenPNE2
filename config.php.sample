@@ -434,16 +434,10 @@ define('OPENPNE_DISP_POINT', false);
 // rank表示設定
 define('OPENPNE_DISP_RANK', false);
 
-// ログインネームに用いるパラメータの指定
-// メールアドレス      ：0
-// 指定したAuthの設定 :1
-define('LOGIN_NAME_TYPE', 0);
-if (LOGIN_NAME_TYPE == 1) {
-    define('IS_USER_INVITE', false);
-    define('IS_CLOSED_SNS', true);
-}
+// 外部認証を使用するかどうか
+define('IS_SLAVEPNE' , false);
 
-// LOGIN_NAME_TYPEが1の場合のauthオプション
+// IS_SLAVEPNEがtrueの場合のauthオプション
 $GLOBALS['_OPENPNE_AUTH_CONFIG'] = 
 array(
 'storage'=>"DB",
@@ -456,7 +450,7 @@ array(
         'database' => '',
         'new_link' => true,
         ),
-    'table'       => 'auth',
+    'table'       => '',
     'usernamecol' => 'username',
     'passwordcol' => 'password',
     'cryptType'   => 'none',

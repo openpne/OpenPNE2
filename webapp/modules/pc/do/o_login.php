@@ -45,7 +45,7 @@ class pc_do_o_login extends OpenPNE_Action
             $this->_fail_login();
         }
         
-        if (!($u = $auth->getUsername(LOGIN_NAME_TYPE))) {
+        if (IS_SLAVEPNE && !($c_member_id = db_member_c_member_id4username_encrypted($auth->getUsername(), false))) {
             db_member_create_member($_POST['username']);
         }
 

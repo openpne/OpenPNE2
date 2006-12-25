@@ -443,22 +443,29 @@ function pne_url2a($url, $target = '_blank')
     return sprintf('<a href="%s"%s>%s</a>', $url, $target, $urlstr);
 }
 
-function get_auth_config()
+function get_auth_config($is_ktai = false)
 {
-    switch (LOGIN_NAME_TYPE) {
-        case 1:
-        $config = $GLOBALS['_OPENPNE_AUTH_CONFIG'];
-        break;
-        default :
-        $config['storage'] = 'DB';
-        $config['options'] = array(
-            'dsn'         => db_get_dsn(),
-            'table'       => 'c_member_secure',
-            'usernamecol' => 'c_member_id',
-            'passwordcol' => 'hashed_password',
-            'cryptType'   => 'md5',
-        );
-        break;
+    if (IS_SLAVEPNE) {
+    	$config = $GLOBALS['_OPENPNE_AUTH_CONFIG'];
+    } else {
+    	$config['storage'] = 'DB';
+        if ($is_ktai) {
+            $config['options'] = array(
+                'dsn'         => db_get_dsn(),
+                'table'       => 'c_member_secure',
+                'usernamecol' => 'ktai_address',
+                'passwordcol' => 'hashed_password',
+                'cryptType'   => 'md5',
+            );
+        } else {
+            $config['options'] = array(
+                'dsn'         => db_get_dsn(),
+                'table'       => 'c_member_secure',
+                'usernamecol' => 'pc_address',
+                'passwordcol' => 'hashed_password',
+                'cryptType'   => 'md5',
+            );
+        }
     }
     return $config;
 }
@@ -476,6 +483,17 @@ function crypt_func($raw_value,$cryptType)
     }
     
     return $cryptFunction($raw_value);
+}
+
+function check_action4pne_slave($is_ktai = false)
+{
+    if (IS_SLAVEPNE) {
+    	if ($is_ktai) {
+    		openpne_redirect('ktai');
+    	} else {
+    		openpne_redirect('pc');
+    	}
+    }
 }
 
 ?>

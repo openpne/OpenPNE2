@@ -50,7 +50,7 @@ function db_member_c_member4c_member_id($c_member_id, $is_secure = false, $with_
         }
     }
     
-    if ((LOGIN_NAME_TYPE == 1) && $is_secure) {
+    if (IS_SLAVEPNE && $is_secure) {
         $c_member['username'] = db_member_username4c_member_id($c_member_id);
     }
 
@@ -1451,25 +1451,34 @@ function db_member_insert_username($c_member_id, $username)
 }
 
 /**
- * c_member_idからログインIDを取得
+ * ログインIDからc_member_idを取得
  */
 function db_member_c_member_id4username($username, $is_ktai = false)
 {
-    switch (LOGIN_NAME_TYPE) {
-        case 0:
-        if ($is_ktai) {
-            $c_member_id = db_member_c_member_id4ktai_address_encrypted(t_encrypt($username));
-        } else {
-            $c_member_id = db_member_c_member_id4pc_address($username);
-        }
-        break;
-        default :
+    if (IS_SLAVEPNE) {
         $sql = 'SELECT c_member_id FROM c_username WHERE username = ?';
         $params = array($username);
         $c_member_id = db_get_one($sql, $params);
-        break;
+    } else {
+        if ($is_ktai) {
+            $c_member_id = db_member_c_member_id4ktai_address2($username);
+        } else {
+            $c_member_id = db_member_c_member_id4pc_address($username);
+        }
     }
     return $c_member_id;
+}
+
+/**
+ * ログインIDからc_member_idを取得
+ * 暗号化されたメールアドレスの場合は復号化する
+ */
+function db_member_c_member_id4username_encrypted($username, $is_ktai = false)
+{
+    if (!IS_SLAVEPNE) {
+        $username = t_decrypt($username);
+    }
+    return db_member_c_member_id4username($username, $is_ktai);
 }
 
 /**
@@ -1477,21 +1486,17 @@ function db_member_c_member_id4username($username, $is_ktai = false)
  */
 function db_member_username4c_member_id($c_member_id, $is_ktai = false)
 {
-    switch (LOGIN_NAME_TYPE) {
-        case 0:
-        $c_member_secure = db_member_c_member_secure4c_member_id($c_member_id);
-        if ($is_ktai) {
-            $username = t_decrypt($c_member_secure['ktai_address']);
-        } else {
-            $username = t_decrypt($c_member_secure['pc_address']);
-        }
-        break;
-        
-        default :
-        $sql = 'SELECT username FROM c_username WHERE c_member_id = ?';
+    if (IS_SLAVEPNE) {
+    	$sql = 'SELECT username FROM c_username WHERE c_member_id = ?';
         $params = array($c_member_id);
         $username = db_get_one($sql, $params);
-        break;
+    } else {
+    	$c_member_secure = db_member_c_member_secure4c_member_id($c_member_id);
+        if ($is_ktai) {
+            $username = $c_member_secure['ktai_address'];
+        } else {
+            $username = $c_member_secure['pc_address'];
+        }
     }
     return $username;
 }
@@ -1543,21 +1548,21 @@ function db_member_check_param_inputed($c_member_id, $is_ktai = false)
 {
     $c_member = db_member_c_member4c_member_id($c_member_id, true);
     
-    if (($c_member['nickname']=="")
-    ||($c_member['birth_year']=="")
-    ||($c_member['birth_month']=="")
-    ||($c_member['birth_day']=="")
-    ||($c_member['c_password_query_id']=="")
-    ||($c_member['secure']['hashed_password_query_answer']=="")
+    if (($c_member['nickname']==="")
+    ||($c_member['birth_year']==="")
+    ||($c_member['birth_month']==="")
+    ||($c_member['birth_day']==="")
+    ||($c_member['c_password_query_id']==="")
+    ||($c_member['secure']['hashed_password_query_answer']==="")
     ) {
         return 1;
     }
     
     
-    if ($c_member['secure']['pc_address']=="" && !$is_ktai) {
+    if ($c_member['secure']['pc_address']==="" && !$is_ktai) {
         return 2;
     }
-    if ($c_member['secure']['ktai_address']=="" && $is_ktai) {
+    if ($c_member['secure']['ktai_address']==="" && $is_ktai) {
         return 2;
     }
     

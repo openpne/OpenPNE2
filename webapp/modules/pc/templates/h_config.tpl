@@ -116,7 +116,7 @@
 </tr>
 </form>
 ({*********})
-({if $smarty.const.LOGIN_NAME_TYPE != 1})
+({if !$smarty.const.IS_SLAVEPNE})
 ({t_form m=pc a=do_h_config_2})
 <input type="hidden" name="sessid" value="({$PHPSESSID})">
 <tr>

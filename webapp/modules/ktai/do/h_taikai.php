@@ -19,7 +19,7 @@ class ktai_do_h_taikai extends OpenPNE_Action
         }
 
         $password = $requests['password'];
-        if (!db_common_authenticate_password($u, $password)) {
+        if (!db_common_authenticate_password($u, $password, true)) {
             $p = array('msg' => 18);
             openpne_redirect('ktai', 'page_h_taikai_confirm', $p);
         }

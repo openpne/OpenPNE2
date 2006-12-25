@@ -28,7 +28,7 @@ class ktai_do_o_update_ktai_address extends OpenPNE_Action
         $ktai_address = $pre['ktai_address'];
 
         // パスワードチェック
-        if (!db_common_authenticate_password($c_member_id, $password)) {
+        if (!db_common_authenticate_password($c_member_id, $password, true)) {
             $p = array('msg' => 18, 'ses' => $ses);
             openpne_redirect('ktai', 'page_o_login2', $p);
         }

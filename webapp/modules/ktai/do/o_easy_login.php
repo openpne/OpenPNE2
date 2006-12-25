@@ -53,14 +53,11 @@ class ktai_do_o_easy_login extends OpenPNE_Action
             }
         } 
         $auth->auth =& $auth->factory(true);
-        switch (LOGIN_NAME_TYPE) {
-            case 1:
-            $auth->auth->setAuth(db_member_username4c_member_id($c_member_id));
-            break;
-            default :
-            $auth->auth->setAuth($c_member_id);
-            break;
+        $username = db_member_username4c_member_id($c_member_id, true);
+        if (!IS_SLAVEPNE) {
+           $username = t_encrypt($username);
         }
+        $auth->auth->setAuth($username);
         $auth->auth->setAuthData('OPENPNE_URL', OPENPNE_URL);
         
         $_SESSION['c_member_id'] = $c_member_id;

@@ -25,7 +25,7 @@ class ktai_do_o_login extends OpenPNE_Action
         @session_start();
         @session_regenerate_id();
         
-        $auth_config = get_auth_config();
+        $auth_config = get_auth_config(true);
         $auth_config['options']['advancedsecurity'] = false;
         $auth = new OpenPNE_Auth($auth_config['storage'], $auth_config['options'],true);
         $this->_auth =& $auth;
@@ -53,7 +53,7 @@ class ktai_do_o_login extends OpenPNE_Action
                 openpne_redirect('ktai', 'page_o_login', $p);
             }
         }
-        if (!($c_member_id = $auth->getUsername(LOGIN_NAME_TYPE))) {
+        if (IS_SLAVEPNE && !($c_member_id = db_member_c_member_id4username_encrypted($auth->getUsername(), true))) {
             db_member_create_member($_POST['username']);
         }
         

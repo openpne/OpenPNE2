@@ -165,6 +165,7 @@ class OpenPNE_Config
             'OPENPNE_SESSION_CHECK_URL' => false,
             'OPENPNE_INFO_URL' => 'http://info.openpne.jp/rss',
             'DISPLAY_OPENPNE_INFO' => true,
+            'IS_SLAVEPNE' => false,
         // 固定値
             'AMAZON_TOKEN'   => '1WZYY1W9YF49AGM0RTG2',
             'AMAZON_LOCALE'  => 'jp',

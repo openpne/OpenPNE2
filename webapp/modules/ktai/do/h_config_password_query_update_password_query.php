@@ -21,7 +21,7 @@ class ktai_do_h_config_password_query_update_password_query extends OpenPNE_Acti
         //---
 
         // 現在のパスワードが正しいか
-        if (!db_common_authenticate_password($u, $password)) {
+        if (!db_common_authenticate_password($u, $password, true)) {
             $p = array('msg' => 18);
             openpne_redirect('ktai', 'page_h_config_password_query', $p);
         }

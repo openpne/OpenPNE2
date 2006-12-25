@@ -4,11 +4,6 @@
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
-// 認証タイプ
-if (!defined('LOGIN_NAME_TYPE')) {
-    define('LOGIN_NAME_TYPE', 0);
-}
-
 // 画像サーバの場合は強制リダイレクト
 if (defined('OPENPNE_IS_IMG_SERVER') && OPENPNE_IS_IMG_SERVER) {
     header('Location: ' . OPENPNE_URL);
@@ -83,6 +78,12 @@ $GLOBALS['SMARTY']['plugins_dir'] = array(
     OPENPNE_LIB_DIR . '/smarty_plugins/',
     'plugins'
 );
+
+// 外部認証の場合は招待・新規登録はできない
+if (defined('IS_SLAVEPNE') && IS_SLAVEPNE) {
+    define('IS_USER_INVITE', false);
+    define('IS_CLOSED_SNS', true);
+}
 
 // ライブラリ読み込み
 require_once 'util.inc.php';

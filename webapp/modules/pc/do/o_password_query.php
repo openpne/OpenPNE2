@@ -13,9 +13,8 @@ class pc_do_o_password_query extends OpenPNE_Action
 
     function execute($requests)
     {
-        if (LOGIN_NAME_TYPE == 1) {
-            exit;
-        }
+        //外部認証の場合はリダイレクト
+        check_action4pne_slave(false);
         
         // --- リクエスト変数
         $pc_address = $requests['pc_address'];

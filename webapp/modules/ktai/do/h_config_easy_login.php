@@ -14,7 +14,7 @@ class ktai_do_h_config_easy_login extends OpenPNE_Action
         $u = $GLOBALS['KTAI_C_MEMBER_ID'];
 
         // 現在のパスワードが正しいか
-        if (!db_common_authenticate_password($u, $requests['password'])) {
+        if (!db_common_authenticate_password($u, $requests['password'], true)) {
             $p = array('msg' => 18);
             openpne_redirect('ktai', 'page_h_config_easy_login', $p);
         }

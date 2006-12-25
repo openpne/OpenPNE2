@@ -131,18 +131,17 @@ function do_common_c_pc_address_pre4sid($sid)
  * @param string $password 平文のパスワード
  * @return bool パスワードが正しいかどうか
  */
-function db_common_authenticate_password($c_member_id, $password)
+function db_common_authenticate_password($c_member_id, $password, $is_ktai = false)
 {
-    switch (LOGIN_NAME_TYPE) {
-        case 0:
-        $username = $c_member_id;
-        break;
-        default:
-        $username = db_member_username4c_member_id($c_member_id);
-        break;
+    $auth_config = get_auth_config($is_ktai);
+    
+    if (IS_SLAVEPNE) {
+        $username = db_member_username4c_member_id($c_member_id, $is_ktai);
+    } else {
+        $auth_config['options']['usernamecol'] = 'c_member_id';
+    	$username = $c_member_id;
     }
     
-    $auth_config = get_auth_config();
     $storage = Auth::_factory($auth_config['storage'],$auth_config['options']);
     return $storage->fetchData($username, $password, false);
 }

@@ -33,7 +33,7 @@
 ({if $ktai_address})
 <input type="hidden" name="username" value="({$ktai_address})">
 ({else})
-({if $smarty.const.LOGIN_NAME_TYPE != 1})
+({if !$smarty.const.IS_SLAVEPNE})
 ★携帯アドレス<br>
 ({else})
 ★ユーザID<br>
@@ -52,7 +52,7 @@
 ({if $ktai_address})
 <a href="({t_url m=ktai a=page_o_login})">&gt;&gt;携帯アドレスを入力</a><br>
 ({/if})
-({if $smarty.const.LOGIN_NAME_TYPE != 1})
+({if !$smarty.const.IS_SLAVEPNE})
 <a href="({t_url m=ktai a=page_o_password_query})">&gt;&gt;パスワードを忘れた方</a><br>
 ({/if})
 <hr>
