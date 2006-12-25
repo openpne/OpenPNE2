@@ -27,7 +27,7 @@ class ktai_page_c_event_member_list extends OpenPNE_Action
         $this->set("page", $page);
 
         //メンバのリスト
-        $list = k_p_db_commu_c_event_member_list4c_commu_topic_id($target_c_commu_topic_id, $page_size, $page);
+        $list = db_commu_c_event_member_list4c_commu_topic_id_2($target_c_commu_topic_id, $page_size, $page);
         $this->set("c_event_member_list", $list[0]);
         $this->set('is_prev', $list[1]);
         $this->set('is_next', $list[2]);

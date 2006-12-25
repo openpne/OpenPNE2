@@ -76,7 +76,7 @@ class ktai_do_h_invite_insert_c_invite extends OpenPNE_Action
                 db_member_insert_c_invite($u, $mail, $body, $session);
             }
 
-            db_member_insert_c_invite_mail_send($u, $session, $body, $mail);
+            do_h_invite_insert_c_invite_mail_send($u, $session, $body, $mail);
         }
 
         $p = array('msg' => 30);
