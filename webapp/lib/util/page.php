@@ -228,6 +228,28 @@ function fetch_ktai_inc_entry_point_h_home(&$smarty)
     }
     return $contents;
 }
+function fetch_ktai_inc_entry_point_f_home(&$smarty)
+{
+    $target = 'ktai_f_home';
+
+    $contents = array();
+    for ($i = 1; $i <= 3; $i++) {
+        $tpl = sprintf('db:inc_entry_point_%s_%d', $target, $i);
+        $contents[$i] = fetch_from_db($tpl, $smarty);
+    }
+    return $contents;
+}
+function fetch_ktai_inc_entry_point_c_home(&$smarty)
+{
+    $target = 'ktai_c_home';
+
+    $contents = array();
+    for ($i = 1; $i <= 3; $i++) {
+        $tpl = sprintf('db:inc_entry_point_%s_%d', $target, $i);
+        $contents[$i] = fetch_from_db($tpl, $smarty);
+    }
+    return $contents;
+}
 
 //------------
 

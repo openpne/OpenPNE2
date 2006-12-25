@@ -1,13 +1,25 @@
 ({$inc_ktai_header|smarty:nodefaults})
 
+({if $inc_ktai_entry_point[1]})
+({$inc_ktai_entry_point[1]|smarty:nodefaults})
+({/if})
+
 <center><font color="orange">ｺﾐｭﾆﾃｨ：({$c_commu.name})</font></center>
 <hr>
 ({if $c_siteadmin})
 ({$c_siteadmin|smarty:nodefaults})
 <hr>
 ({/if})
+
+({if $inc_ktai_entry_point[2]})
+({$inc_ktai_entry_point[2]|smarty:nodefaults})
+({/if})
+
 <a href="#menu" accesskey="1">1.ﾒﾆｭｰ</a>({if $is_c_commu_view})|<a href="#news" accesskey="2">2.新着ﾘｽﾄ</a>({/if})|<a href="#intro" accesskey="3">3.説明文</a>|<a href="({t_url m=ktai a=page_h_home})&amp;({$tail})">ﾎｰﾑ</a>
 <hr>
+({if $inc_ktai_entry_point[3]})
+({$inc_ktai_entry_point[3]|smarty:nodefaults})
+({/if})
 管理人:<a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$c_commu.c_member_id_admin})&amp;({$tail})">({$c_commu.c_member_admin.nickname})</a><br>
 ｶﾃｺﾞﾘ:({$c_commu.c_commu_category.name})<br>
 ﾒﾝﾊﾞｰ数:({$c_commu.count_member|default:"0"})人

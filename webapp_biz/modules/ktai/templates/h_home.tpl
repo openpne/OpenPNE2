@@ -1,5 +1,9 @@
 ({$inc_ktai_header|smarty:nodefaults})
 
+({if $inc_ktai_entry_point[1]})
+({$inc_ktai_entry_point[1]|smarty:nodefaults})
+({/if})
+
 <center><font color="orange">({$c_member.nickname})さんのﾎｰﾑ</font></center>
 <hr>
 ({if $birthday_flag})
@@ -11,6 +15,10 @@
 ({if $c_siteadmin})
 ({$c_siteadmin|smarty:nodefaults})
 <hr>
+({/if})
+
+({if $inc_ktai_entry_point[2]})
+({$inc_ktai_entry_point[2]|smarty:nodefaults})
 ({/if})
 
 ({if $num_f_confirm_list})
@@ -30,10 +38,14 @@
 ({/if})
 
 ({if $anatani_c_commu_admin_confirm_list})
-<a href="({t_url m=ktai a=page_h_confirm_list})&amp;({$tail})"><font color="red">★ｺﾐｭﾆﾃｨ管理人交代依頼({$num_anatani_c_commu_admin_confirm_list})件</font></a><br>
+<a href="({t_url m=ktai a=page_h_confirm_list})&amp;({$tail})"><font color="red">★ｺﾐｭﾆﾃｨ管理者交代依頼({$num_anatani_c_commu_admin_confirm_list})件</font></a><br>
 ({/if})
 
-({if $anatani_c_commu_admin_confirm_list||$num_f_confirm_list||$num_message_not_is_read||$num_diary_not_is_read||$num_h_confirm_list||$anatani_c_commu_admin_confirm_list})
+({if $anatani_c_commu_sub_admin_confirm_list})
+<a href="({t_url m=ktai a=page_h_confirm_list})&amp;({$tail})"><font color="red">★ｺﾐｭﾆﾃｨ副管理者依頼({$num_anatani_c_commu_sub_admin_confirm_list})件</font></a><br>
+({/if})
+
+({if $anatani_c_commu_admin_confirm_list||$num_f_confirm_list||$num_message_not_is_read||$num_diary_not_is_read||$num_h_confirm_list||$anatani_c_commu_admin_confirm_list||$anatani_c_commu_sub_admin_confirm_list})
 <br>
 ({/if})
 
@@ -49,6 +61,9 @@
 ◆<a href="({t_url m=ktai a=page_h_message_box})&amp;({$tail})">ﾒｯｾｰｼﾞ</a><br>
 ◆<a href="({t_url m=ktai a=page_h_ranking})&amp;({$tail})">ﾗﾝｷﾝｸﾞ</a><br>
 ◆<a href="({t_url m=ktai a=page_fh_intro})&amp;({$tail})">紹介文</a><br>
+◆ﾒｯｾｰｼﾞBOX<br>
+∟<a href="({t_url m=ktai a=page_h_message_box})&amp;box=inbox&amp;({$tail})">受信箱</a><br>
+∟<a href="({t_url m=ktai a=page_h_message_box})&amp;box=outbox&amp;({$tail})">送信箱</a><br>
 ◆<a href="({t_url m=ktai a=page_h_ashiato})&amp;({$tail})">あしあと</a><br>
 <hr>
 <a name="news">新着ﾘｽﾄ</a>

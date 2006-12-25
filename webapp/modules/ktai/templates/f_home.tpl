@@ -1,6 +1,15 @@
 ({$inc_ktai_header|smarty:nodefaults})
 
-<center><font color="orange">({$target_c_member.nickname})さんのﾎｰﾑ(ID=({$target_c_member.c_member_id}))</font></center>
+({if $inc_ktai_entry_point[1]})
+({$inc_ktai_entry_point[1]|smarty:nodefaults})
+({/if})
+
+<center>
+<a name="top">
+<font color="orange">({$target_c_member.nickname})さんのﾎｰﾑ(ID=({$target_c_member.c_member_id}))</font>
+</a>
+</center>
+
 <hr>
 
 ({if $days_birthday == 0})({* 誕生日当日 *})
@@ -17,6 +26,11 @@
 ({$c_siteadmin|smarty:nodefaults})
 <hr>
 ({/if})
+
+({if $inc_ktai_entry_point[2]})
+({$inc_ktai_entry_point[2]|smarty:nodefaults})
+({/if})
+
 ({if $target_c_member.image_filename})
 ★<a href="({t_url m=ktai a=page_f_show_image})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">写真を見る</a><br>
 <br>
@@ -28,6 +42,9 @@
 ({/if})
 <a href="#menu" accesskey="1">1.ﾒﾆｭｰ</a>({if ($relation.friend||$target_c_member.public_flag_diary=="public")&&$c_diary_list})|<a href="#news" accesskey="2">2.新着ﾘｽﾄ</a>({/if})|<a href="#intro" accesskey="3">3.ﾌﾟﾛﾌｨｰﾙ</a>
 <hr>
+({if $inc_ktai_entry_point[3]})
+({$inc_ktai_entry_point[3]|smarty:nodefaults})
+({/if})
 ({strip})
 ({capture name="birth"})
 ({if $target_c_member.age !== NULL})年齢：({$target_c_member.age})歳<br>({/if})
@@ -110,7 +127,7 @@
 　({$c_diary.r_date|date_format:"%y/%m/%d"})-<a href="({t_url m=ktai a=page_fh_diary})&amp;target_c_diary_id=({$c_diary.c_diary_id})&amp;({$tail})">({$c_diary.subject})</a>(({$c_diary.comment_count}))<br>
 ({/foreach})
 <a href="({t_url m=ktai a=page_fh_diary_list})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">→もっと読む</a><br>
-<a href="#top">→このﾍﾟｰｼﾞの先頭へ戻る</a>
+<a href="#top">↑このﾍﾟｰｼﾞの先頭へ戻る</a>
 <hr>
 ({/if})
 <font color="green">[({$WORD_FRIEND_HALF})ﾘｽﾄ]</font><br>
@@ -119,14 +136,14 @@
 ({/foreach})
 <a href="({t_url m=ktai a=page_fh_friend_list})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">→すべて表示</a><br>
 <a href="({t_url m=ktai a=page_fh_intro})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">紹介文を見る</a><br>
-<a href="#top">→このﾍﾟｰｼﾞの先頭へ戻る</a>
+<a href="#top">↑このﾍﾟｰｼﾞの先頭へ戻る</a>
 <hr>
 <font color="green">[参加ｺﾐｭﾆﾃｨ]</font><br>
 ({foreach from=$c_commu_list item=c_commu})
 　<a href="({t_url m=ktai a=page_c_home})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">({$c_commu.name})</a>(({$c_commu.count_members}))<br>
 ({/foreach})
 <a href="({t_url m=ktai a=page_fh_com_list})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">→すべて表示</a><br>
-<a href="#top">→このﾍﾟｰｼﾞの先頭へ戻る</a>
+<a href="#top">↑このﾍﾟｰｼﾞの先頭へ戻る</a>
 
 <hr>
 <a name="intro">ﾌﾟﾛﾌｨｰﾙ</a>

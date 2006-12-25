@@ -86,6 +86,25 @@
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_entry_point')})&amp;target=ktai_h_home&amp;num=3">h_home 3</a></li>
 </ul>
 </dd>
+
+<dt><strong class="item">【携帯版】 f_home</strong></dt>
+<dd>
+<ul>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_entry_point')})&amp;target=ktai_f_home&amp;num=1">f_home 1</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_entry_point')})&amp;target=ktai_f_home&amp;num=2">f_home 2</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_entry_point')})&amp;target=ktai_f_home&amp;num=3">f_home 3</a></li>
+</ul>
+</dd>
+
+<dt><strong class="item">【携帯版】 c_home</strong></dt>
+<dd>
+<ul>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_entry_point')})&amp;target=ktai_c_home&amp;num=1">c_home 1</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_entry_point')})&amp;target=ktai_c_home&amp;num=2">c_home 2</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_entry_point')})&amp;target=ktai_c_home&amp;num=3">c_home 3</a></li>
+</ul>
+</dd>
+
 </dl>
 </td>
 <td class="detail">
