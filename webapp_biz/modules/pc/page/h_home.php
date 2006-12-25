@@ -19,7 +19,6 @@ class pc_page_h_home extends OpenPNE_Action
         include_once(OPENPNE_MODULES_BIZ_DIR.'/biz/lib/smarty_functions.php');
         include_once(OPENPNE_MODULES_BIZ_DIR.'/biz/lib/mysql_functions.php');
 
-
         $this->set('inc_navi', fetch_inc_navi('h'));
 
         /// infomation ///
@@ -46,6 +45,11 @@ class pc_page_h_home extends OpenPNE_Action
         $anatani_c_commu_admin_confirm_list = p_h_confirm_list_anatani_c_commu_admin_confirm_list4c_member_id($u);
         $this->set('anatani_c_commu_admin_confirm_list',$anatani_c_commu_admin_confirm_list);
         $this->set('num_anatani_c_commu_admin_confirm_list', count($anatani_c_commu_admin_confirm_list));
+
+        // あなたにコミュニティ副管理者を希望しているメンバー
+        $anatani_c_commu_sub_admin_confirm_list = db_commu_anatani_c_commu_sub_admin_confirm_list4c_member_id($u);
+        $this->set('anatani_c_commu_sub_admin_confirm_list', $anatani_c_commu_sub_admin_confirm_list);
+        $this->set('num_anatani_c_commu_sub_admin_confirm_list', count($anatani_c_commu_sub_admin_confirm_list));
 
         // 誕生日かどうか
         $this->set('birthday_flag', db_member_birthday_flag4c_member_id($u));
@@ -86,8 +90,16 @@ class pc_page_h_home extends OpenPNE_Action
 
         /// その他 ///
 
+        //PNEPOINT
+        $point = db_point_get_point($u);
+        $this->set("point", $point);
+
+        //rank
+        $this->set("rank", db_point_get_rank4point($point));
+
         // 紹介文
-        $this->set('c_friend_intro_list', db_friend_c_friend_intro_list4c_member_id($u, 5));
+        $c_friend_intro_list = db_friend_c_friend_intro_list4c_member_id($u, 5);
+        $this->set('c_friend_intro_list', $c_friend_intro_list);
 
         // 今日の日付、曜日
         $this->set('r_datetime', date('m/d'));
@@ -96,14 +108,13 @@ class pc_page_h_home extends OpenPNE_Action
 
         /// 週間カレンダー
         if (DISPLAY_SCHEDULE_HOME) {
-            //pne用
-//            $this->set('calendar', $this->get_calendar($u, $requests['w']));
-
-            //--- biz ここから
-            $this->set('calendar_biz', biz_getScheduleWeek($u, $u, $requests['w'], 'h', true, true, true, $c_member));
-            //--- biz ここまで
-
-
+            //開始曜日の設定
+            if ($c_member['schedule_start_day'] == 2) {
+                $start_day = date("w");
+            } else {
+                $start_day = $c_member['schedule_start_day'];
+            }
+            $this->set('calendar_biz', biz_getScheduleWeek($u, $u, $requests['w'], 'h', true, true, true, $c_member,$start_day));
         }
 
         // inc_entry_point
@@ -122,11 +133,8 @@ class pc_page_h_home extends OpenPNE_Action
             $this->set('bookmark_count', db_bookmark_count($u));
         }
 
-
         //--- biz ここから
         $this->set('is_h_home', 1);
-
-//      list($ru_list) = p_h_message_box_c_message_received_user_list4c_member_id4range($u, 1, 20);
 
         $this->set("c_message_ru_list",$ru_list);
 
@@ -146,49 +154,12 @@ class pc_page_h_home extends OpenPNE_Action
         $this->set('group_list', $group_list);
         //--- biz ここまで
 
-
-
         // アクセス日時を記録
         db_member_do_access($u);
 
         return 'success';
     }
 
-    function get_calendar($u, $week)
-    {
-        include_once 'Calendar/Week.php';
-        $w = intval($week);
-        if (empty($w)) {
-            $w = 0;
-        }
-        $this->set('w', $w);
-        $time = strtotime($w . ' week');
-        $Week = new Calendar_Week(date('Y', $time), date('m', $time), date('d', $time), 0);
-        $Week->build();
-        $calendar = array();
-        $dayofweek = array('日','月','火','水','木','金','土');
-        $i = 0;
-        while ($Day = $Week->fetch()) {
-            $y = $Day->thisYear();
-            $m = $Day->thisMonth();
-            $d = $Day->thisDay();
-            $item = array(
-                'year'=> $y,
-                'month'=>$m,
-                'day' => $d,
-                'dayofweek'=>$dayofweek[$i++],
-                'now' => false,
-                'birth' => db_member_birth4c_member_id($m, $d, $u),
-                'event' => db_commu_event4c_member_id($y, $m, $d, $u),
-                'schedule' => db_schedule_c_schedule_list4date($y, $m, $d, $u),
-            );
-            if ($w == 0 && $d == date('d')) {
-                $item['now'] = true;
-            }
-            $calendar[] = $item;
-        }
-        return $calendar;
-    }
 }
 
 ?>

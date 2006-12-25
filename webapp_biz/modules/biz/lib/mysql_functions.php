@@ -1337,14 +1337,4 @@ function biz_do_common_send_schedule_mail()
         fetch_send_mail($pc_address, 'm_pc_schedule_mail', $params);
     }
 }
-
-
-/**
- * 週間カレンダー開始曜日を取得
- */
-function biz_get_schedule_start_day($c_member_id)
-{
-    $sql = 'SELECT schedule_start_day FROM c_member WHERE c_member_id = ?';
-    return db_get_one($sql, array($c_member_id));
-}
 ?>

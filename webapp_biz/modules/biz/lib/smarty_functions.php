@@ -46,7 +46,7 @@ function pc_get_trusted($tpl_name, &$smarty_obj)
 //GET---------------------------------------------
 
 //スケジュール用カレンダーを得る
-function biz_getScheduleWeek($u, $member_id, $w, $cmd, $head = true, $value = true, $foot = true, $member_info = false)
+function biz_getScheduleWeek($u, $member_id, $w, $cmd, $head = true, $value = true, $foot = true, $member_info = false,$start_day )
 {
     if ($cmd != 'p') {
         //プロフィール確認かどうか
@@ -61,12 +61,6 @@ function biz_getScheduleWeek($u, $member_id, $w, $cmd, $head = true, $value = tr
 
     $inc_smarty->assign("cmd", $cmd_head);  //操作の対象ページ
     $inc_smarty->assign("target_id", $member_id);  //予定登録者
-    $schedule_start_day = biz_get_schedule_start_day($member_id);
-	if ($schedule_start_day == 2) {
-        $start_day = date("w");
-    } else {
-        $start_day = intval($schedule_start_day);
-    }
 
     require_once 'Calendar/Week.php';
     $w = intval($w);
@@ -130,7 +124,7 @@ function biz_getScheduleWeek($u, $member_id, $w, $cmd, $head = true, $value = tr
         $j = 0;  //曜日ポインタを示す
 
         $time = strtotime($w+$i . " week");
-        $Week = new Calendar_Week(date('Y', $time), date('m', $time), date('d', $time));
+        $Week = new Calendar_Week(date('Y', $time), date('m', $time), date('d', $time),$start_day);
         $Week->build();
 
         while ($Day = $Week->fetch()) {

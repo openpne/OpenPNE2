@@ -60,7 +60,7 @@
 <img src="./skin/dummy.gif" class="v_spacer_l">
 
 キーワード<img src="({t_img_url_skin filename=icon_arrow_2})" class="icon">
-<input class="text" name="keyword" size="15" value="({$keyword})">
+<input type="text" class="text" name="keyword" size="15" value="({$keyword})">
 &nbsp;カテゴリ<img src="({t_img_url_skin filename=icon_arrow_2})" class="icon">
 <select name="category_id">
 <option value="0">指定なし</option>
