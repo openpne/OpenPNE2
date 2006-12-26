@@ -90,3 +90,8 @@ function clearAll(){
     return false;
 }
 
+function Link(linkLoc) {
+    if (linkLoc != "") {
+        window.location.href=linkLoc;
+    }
+}
