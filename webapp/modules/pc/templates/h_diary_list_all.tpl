@@ -252,7 +252,7 @@
 
 <div class="padding_s">
 
-({$diary.subject}) (({$diary.comment_count}))
+({$diary.subject}) (({$diary.num_comment}))
 
 </div>
 

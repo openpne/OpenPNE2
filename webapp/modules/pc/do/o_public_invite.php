@@ -74,7 +74,7 @@ class pc_do_o_public_invite extends OpenPNE_Action
             db_member_insert_c_invite($c_member_id_invite, $pc_address, '', $session);
         }
 
-        db_member_insert_c_invite_mail_send($c_member_id_invite, $session, '', $pc_address);
+        do_h_invite_insert_c_invite_mail_send($c_member_id_invite, $session, '', $pc_address);
 
         // delete cookie
         setcookie(session_name(), '', time() - 3600, ini_get('session.cookie_path'));

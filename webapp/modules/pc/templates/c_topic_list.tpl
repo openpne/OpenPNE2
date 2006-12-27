@@ -69,7 +69,7 @@
 
 <!-- ************************************ -->
 <!-- ******ここから：新規トピック作成****** -->
-({if $c_commu.topic_authority == 'admin_only' && $is_c_commu_admin})
+({if ($c_commu.topic_authority == 'public')||($c_commu.topic_authority == 'admin_only' && $is_c_commu_admin)})
 ({t_form m=pc a=page_c_topic_add})
 <input type="hidden" name="target_c_commu_id" value="({$c_commu.c_commu_id})">
 
@@ -262,7 +262,7 @@
 <div style="text-align:right;" class="padding_s lh_120">
 
 ({if $item.is_c_topic_admin || $is_c_commu_admin})
-({if $c_commu.topic_authority == 'admin_only' && $is_c_commu_admin})
+({if ($c_commu.topic_authority == 'public')||($c_commu.topic_authority == 'admin_only' && $is_c_commu_admin)})
 <a href="({t_url m=pc a=page_c_topic_edit})&amp;target_c_commu_topic_id=({$item.c_commu_topic_id})">編集</a>&nbsp;
 ({/if})
 ({/if})

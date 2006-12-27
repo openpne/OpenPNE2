@@ -32,7 +32,7 @@
 
 ({foreach from=$new_diary_list item=item})
 ({$item.r_datetime|date_format:"%m/%d"})(({$item.c_member.nickname}))<br>
-<a href="({t_url m=ktai a=page_fh_diary})&amp;target_c_diary_id=({$item.c_diary_id})&amp;({$tail})">({$item.subject|t_truncate:36:".."})</a>(({$item.comment_count}))<br>
+<a href="({t_url m=ktai a=page_fh_diary})&amp;target_c_diary_id=({$item.c_diary_id})&amp;({$tail})">({$item.subject|t_truncate:36:".."})</a>(({$item.num_comment}))<br>
 ({/foreach})
 <br>
 
