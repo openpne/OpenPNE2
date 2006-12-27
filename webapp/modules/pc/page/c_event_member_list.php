@@ -33,7 +33,7 @@ class pc_page_c_event_member_list extends OpenPNE_Action
         $this->set('page', $page);
         $page_size = 50;
         $c_event_member_list = db_commu_c_event_member_list4c_commu_topic_id($c_commu_topic_id, $page, $page_size);
-        $total_c_event_member = count_db_commu_c_event_member_list4c_commu_topic_id($c_commu_topic_id);
+        $total_c_event_member = db_commu_count_c_event_member_list4c_commu_topic_id($c_commu_topic_id);
 
         $start_num = ($page-1) * $page_size + 1;
         $end_num = $page * $page_size;
