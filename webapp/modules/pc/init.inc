@@ -55,6 +55,7 @@ function init_pc_page(&$smarty)
 	    $smarty->assign('INC_HEADER_top_banner_html_before', p_common_c_siteadmin4target_pagename('top_banner_html_before'));
     }
     $smarty->assign('INC_HEADER_inc_page_top', p_common_c_siteadmin4target_pagename('inc_page_top'));
+    $smarty->assign('INC_HEADER_inc_page_top2', p_common_c_siteadmin4target_pagename('inc_page_top2'));
 
     // INC_FOOTER_* (inc_footer.tpl)
 
@@ -65,6 +66,7 @@ function init_pc_page(&$smarty)
     }
     $smarty->assign('INC_FOOTER_inc_page_footer', p_common_c_siteadmin4target_pagename($name));
     $smarty->assign('INC_FOOTER_inc_page_bottom', p_common_c_siteadmin4target_pagename('inc_page_bottom'));
+    $smarty->assign('INC_FOOTER_inc_page_bottom2', p_common_c_siteadmin4target_pagename('inc_page_bottom2'));
     $smarty->assign('INC_FOOTER_inc_side_banner', db_banner_get_side_banner($is_secure));
     $smarty->assign('INC_FOOTER_side_banner_html_before', p_common_c_siteadmin4target_pagename('side_banner_html_before'));
     $smarty->assign('INC_FOOTER_side_banner_html_after', p_common_c_siteadmin4target_pagename('side_banner_html_after'));
