@@ -134,7 +134,10 @@ function db_review_write_product4asin($asin)
     if ($result[1]['authors']) {
         $product['author'] = implode(',', $result[1]['authors']);
     }
-
+    
+    if (!is_array($product)) {
+    	return false;
+    }
     foreach ($product as $key => $value) {
         $product[$key] = mb_convert_encoding($value, 'UTF-8', 'auto');
     }

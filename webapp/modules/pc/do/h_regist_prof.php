@@ -87,6 +87,11 @@ class pc_do_h_regist_prof extends OpenPNE_Action
             db_member_config_prof_new($u, $prof);
             db_member_update_c_member_profile($u, $c_member_profile_list);
             db_member_update_password_query($u, $prof['password_query_id'], $prof['password_query_answer']);
+            //管理画面で指定したコミュニティに強制参加
+            $c_commu_id_list = db_commu_regist_join_list();
+            foreach ($c_commu_id_list as $c_commu_id) {
+                db_commu_join_c_commu($c_commu_id, $u);
+            }
             unset($_SESSION['prof']);
             
             openpne_redirect('pc', 'page_h_home');

@@ -23,7 +23,11 @@ class pc_page_h_review_add_write_confirm extends OpenPNE_Action
         $body = $requests['body'];
         $satisfaction_level = $requests['satisfaction_level'];
         // ----------
-
+        $product = db_review_write_product4asin($asin);
+        if (!$product) {
+            openpne_redirect('pc','page_h_home');
+        }
+        
         $this->set('inc_navi', fetch_inc_navi('h'));
         $this->set('category_id', $category_id);
         $this->set('asin', $asin);

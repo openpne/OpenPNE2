@@ -18,6 +18,9 @@ class pc_do_c_review_add extends OpenPNE_Action
         // ----------
 
         $product = db_review_write_product4asin($asin);
+        if (!$product) {
+            openpne_redirect('pc','page_h_home');
+        }
 
         //c_reviewへ登録
         $c_review_id = do_c_review_add_insert_c_review($product, $category_id);

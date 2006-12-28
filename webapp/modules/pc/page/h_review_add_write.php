@@ -44,6 +44,9 @@ class pc_page_h_review_add_write extends OpenPNE_Action
         $this->set('err_msg', $err_msg);
 
         $product = db_review_write_product4asin($asin);
+        if (!$product) {
+            openpne_redirect('pc','page_h_home');
+        }
 
         $this->set('product', $product);
         return 'success';
