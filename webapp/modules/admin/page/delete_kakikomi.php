@@ -7,6 +7,11 @@
 // 書き込み削除
 class admin_page_delete_kakikomi extends OpenPNE_Action
 {
+    function handleError($errors)
+    {
+        admin_client_redirect('delete_kakikomi', '正しく入力してください');
+    }
+
     function execute($requests)
     {
         $v = array();
