@@ -46,7 +46,7 @@ function pc_get_trusted($tpl_name, &$smarty_obj)
 //GET---------------------------------------------
 
 //スケジュール用カレンダーを得る
-function biz_getScheduleWeek($u, $member_id, $w, $cmd, $head = true, $value = true, $foot = true, $member_info = false,$start_day )
+function biz_getScheduleWeek($u, $member_id, $w, $cmd, $head = true, $value = true, $foot = true, $member_info = false, $start_day = 0 )
 {
     if ($cmd != 'p') {
         //プロフィール確認かどうか
