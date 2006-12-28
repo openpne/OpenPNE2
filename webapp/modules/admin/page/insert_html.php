@@ -11,7 +11,11 @@ class admin_page_insert_html extends OpenPNE_Action
     {
         $v = array();
 
+        if ($requests['target'] == 'h_home'){
+            $requests['target'] = 'inc_page_footer_before';
+        }
         $v['c_siteadmin'] = db_admin_c_siteadmin($requests['target']);
+        $v['title'] = $requests['target'];
 
         $this->set($v);
         return 'success';
