@@ -15,9 +15,11 @@
 
 ({if $pager && $pager.total_num > 0})
 ({capture name="pager"})
-<p class="listMove">
+<div class="listControl">
+<p class="display">
 ({$pager.total_num}) 件中 ({$pager.start_num}) - ({$pager.end_num})件目を表示しています
-<br>
+</p>
+<p class="listMove">
 ({if $pager.prev_page})
 <a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_cmd')})&amp;page=({$pager.prev_page})&amp;page_size=({$pager.page_size})({$cond})">前へ</a>&nbsp;
 ({/if})
@@ -32,22 +34,26 @@
 &nbsp;<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_cmd')})&amp;page=({$pager.next_page})&amp;page_size=({$pager.page_size})({$cond})">次へ</a>
 ({/if})
 </p>
+</div>({*/div class="listControl"*})
 ({/capture})
 
 ({$smarty.capture.pager|smarty:nodefaults})
 ({/if})
 
 <table class="basicType2">
+<thead>
 <tr>
 <th>ID</th>
 <th>URL</th>
 <th>使用範囲</th>
 <th colspan='2'>操作</th>
 </tr>
+</thead>
+<tbody>
 
 ({foreach from=$c_cmd_list item=c_cmd})
 <tr>
-<td class="idnumber">({$c_cmd.c_cmd_id})</td>
+<th>({$c_cmd.c_cmd_id})</th>
 
 <form action="./" method="post">
 <input type="hidden" name="m" value="({$module_name})">
@@ -56,7 +62,7 @@
 
 <input type="hidden" name="c_cmd_id" value="({$c_cmd.c_cmd_id})">
 
-<td><input type="text" name="name" value="({$c_cmd.name})"></td>
+<td><input type="text" class="basic" name="name" value="({$c_cmd.name})"></td>
 <td>
 
 ({foreach from=$permit_list key=key item=name})
@@ -64,7 +70,7 @@
 ({/foreach})
 
 </td>
-<td><input type="submit" class="submit" value="変更"></td>
+<td><span class="textBtnS"><input type="submit" class="submit" value="　変　更　"></span></td>
 </form>
 <td>
 
@@ -72,7 +78,7 @@
 <input type="hidden" name="m" value="({$module_name})">
 <input type="hidden" name="a" value="page_({$hash_tbl->hash('delete_c_cmd_confirm','page')})">
 <input type="hidden" name="c_cmd_id" value="({$c_cmd.c_cmd_id})">
-<input type="submit" class="submit" value="削除">
+<span class="textBtnS"><input type="submit" class="submit" value="　削　除　"></span>
 </form>
 
 </td>
@@ -82,6 +88,7 @@
 <td colspan="5">APIが登録されていません</td>
 </tr>
 ({/foreach})
+</tbody>
 
 <tr>
 <form action="./" method="post">
@@ -90,13 +97,13 @@
 <input type="hidden" name="sessid" value="({$PHPSESSID})">
 
 <td class="idnumber"></td>
-<td><input type="text" name="name"></td>
+<td><input type="text" class="basic" name="name"></td>
 <td>
 ({foreach from=$permit_list key=key item=name})
 <input name="permit[]" type="checkbox" value="({$key})" checked="checked">({$name})
 ({/foreach})
 </td>
-<td colspan='2' align='center'><span class="textBtnS"><input type="submit" class="submit" value="追加"></span></td>
+<td colspan='2' align='center'><span class="textBtnS"><input type="submit" class="submit" value="　追　加　"></span></td>
 </tr>
 </form>
 

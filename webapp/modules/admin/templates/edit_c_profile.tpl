@@ -48,7 +48,7 @@
 <td class="cell06">×</td>
 <td class="cell07">全員に公開</td>
 <td class="cell08">テキスト</td>
-<td class="cell09"><input type="text" name="sort_order_nick" size="5" value="({$smarty.const.SORT_ORDER_NICK})" /></td>
+<td class="cell09"><input type="text" class="basic" name="sort_order_nick" size="5" value="({$smarty.const.SORT_ORDER_NICK})" /></td>
 <td class="cell10">&nbsp;</td>
 <td class="cell11">○</td>
 <td class="cell12">○</td>
@@ -66,7 +66,7 @@
 <td class="cell06">○</td>
 <td class="cell07">全員に公開</td>
 <td class="cell08">テキスト</td>
-<td class="cell09" rowspan="2"><input type="text" name="sort_order_birth" size="5" value="({$smarty.const.SORT_ORDER_BIRTH})" /></td>
+<td class="cell09" rowspan="2"><input type="text" class="basic" name="sort_order_birth" size="5" value="({$smarty.const.SORT_ORDER_BIRTH})" /></td>
 <td class="cell10">&nbsp;</td>
 <td class="cell11">○</td>
 <td class="cell12">○</td>
@@ -180,8 +180,8 @@
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_c_profile_option','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
 <input type="hidden" name="c_profile_option_id" value="({$option.c_profile_option_id})" />
-<input type="text" name="value" value="({$option.value})" size="20" /></td>
-<td><input type="text" name="sort_order" value="({$option.sort_order})" size="5" /></td>
+<input type="text" class="basic" name="value" value="({$option.value})" size="20" /></td>
+<td><input type="text" class="basic" name="sort_order" value="({$option.sort_order})" size="5" /></td>
 <td><span class="textBtnS"><input type="submit" value="変更" /></span></td>
 </form>
 <form action="./" method="post">
@@ -203,8 +203,8 @@
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('insert_c_profile_option','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
 <input type="hidden" name="c_profile_id" value="({$item.c_profile_id})" />
-<input type="text" name="value" value="" size="20" /></td>
-<td><input type="text" name="sort_order" value="" size="5" /></td>
+<input type="text" class="basic" name="value" value="" size="20" /></td>
+<td><input type="text" class="basic" name="sort_order" value="" size="5" /></td>
 <td colspan="2"><span class="textBtnS"><input type="submit" value="項目追加" /></span></td>
 </form>
 </tr>

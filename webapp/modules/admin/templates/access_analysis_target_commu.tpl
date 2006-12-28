@@ -29,13 +29,15 @@
 ({if $is_next})<a href="?m=admin&a=page_access_analysis_target_commu&ktai_flag=({$ktai_flag})&ymd=({$ymd})&month_flag=({$month_flag})&page_name=({$page_name})&orderby=({$orderby})&direc=1&page=({$page})">次を表示＞</a>({/if})
 <br>
 <table cellspacing="0" cellpadding="5" class="basicType2">
+<thead>
 <th><a href="?m=admin&a=page_access_analysis_target_commu&ktai_flag=({$ktai_flag})&ymd=({$ymd})&month_flag=({$month_flag})&page_name=({$page_name})&orderby1=({$orderby1})">ID</a></th>
 <th>コミュニティ名</th>
 <th><a href="?m=admin&a=page_access_analysis_target_commu&ktai_flag=({$ktai_flag})&ymd=({$ymd})&month_flag=({$month_flag})&page_name=({$page_name})&orderby2=({$orderby2})">アクセス数</a></th>
-
+</thead>
+<tbody>
 ({foreach from=$target_commu item=item})
 <tr>
-<td>({$item.target_c_commu_id})</td>
+<th>({$item.target_c_commu_id})</th>
 <td>({$item.name})</td>
 <td>({$item.count})</td>
 </tr>
@@ -46,7 +48,7 @@
 <td colspan="2">合計</td>
 <td>({$sum})</td>
 </tr>
-
+</tbody>
 </table>
 
 

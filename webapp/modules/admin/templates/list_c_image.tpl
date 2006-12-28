@@ -13,7 +13,7 @@
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="page_({$hash_tbl->hash('list_c_image')})" />
 <strong>表示件数</strong>：
-<select name="page_size">
+<select class="basic" name="page_size">
 <option value="20"({if $pager.page_size==20}) selected="selected"({/if})>20件</option>
 <option value="50"({if $pager.page_size==50}) selected="selected"({/if})>50件</option>
 <option value="100"({if $pager.page_size==100}) selected="selected"({/if})>100件</option>

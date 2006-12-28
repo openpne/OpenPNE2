@@ -8,9 +8,10 @@
 ({*ここまで:navi*})
 
 
-({if $msg})<p class="actionMsg">({$msg})</p>({/if})
 <h2>初期コミュニティ設定</h2>
 <div class="contents">
+
+({if $msg})<p class="actionMsg">({$msg})</p>({/if})
 <p class="info">ユーザ新規登録時に以下で設定したコミュニティに自動的に参加させることができます。</p>
 <p class="caution" id="c01">参加させたいコミュニティのIDを入力して「追加」ボタンを押してください。</p>
 <form action="./" method="post">

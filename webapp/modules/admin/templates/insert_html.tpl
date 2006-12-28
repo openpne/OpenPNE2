@@ -12,39 +12,86 @@
 <table class="contents" cellpadding="0" cellspacing="0" border="0">
 <tr>
 <td class="menu">
+
 <dl>
-<dt><strong class="item">HTML挿入</strong></dt>
+<dt><strong class="item">フッター</strong></dt>
 <dd>
 <ul>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_admin_info')})&amp;target=inc_html_head">【PC版】HTML挿入(HTML head内)</a></li>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_admin_info')})&amp;target=inc_page_top">【PC版】HTML挿入(ページ上部)</a></li>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_admin_info')})&amp;target=inc_page_bottom">【PC版】HTML挿入(ページ下部)</a></li>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_admin_info')})&amp;target=inc_ktai_html_head">【携帯】HTML挿入(HTML head内)</a></li>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_admin_info')})&amp;target=inc_ktai_header">【携帯】HTML挿入(ページ上部)</a></li>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_admin_info')})&amp;target=inc_ktai_footer">【携帯】HTML挿入(ページ下部)</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('insert_html')})&amp;target=inc_page_footer_before">ログイン前フッター</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('insert_html')})&amp;target=inc_page_footer_after">ログイン後フッター</a></li>
+</ul>
+</dd>
+<dt><strong class="item">PC版全ページ共通</strong></dt>
+<dd>
+<ul>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('insert_html')})&amp;target=inc_html_head">HTML挿入(HTML head内)</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('insert_html')})&amp;target=inc_page_top2">HTML挿入&nbsp;A</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('insert_html')})&amp;target=inc_page_top">HTML挿入&nbsp;B</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('insert_html')})&amp;target=inc_page_bottom2">HTML挿入&nbsp;C</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('insert_html')})&amp;target=inc_page_bottom">HTML挿入&nbsp;D</a></li>
+</ul>
+</dd>
+<dt><strong class="item">携帯版全ページ共通</strong></dt>
+<dd>
+<ul>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('insert_html')})&amp;target=inc_ktai_html_head">HTML挿入(HTML head内)</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('insert_html')})&amp;target=inc_ktai_header">HTML挿入(ページ上部)</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('insert_html')})&amp;target=inc_ktai_footer">HTML挿入(ページ下部)</a></li>
 </ul>
 </dd>
 </dl>
+
 </td>
 <td class="detail">
 <h3>
+({if $title == 'inc_page_footer_before'})
+ログイン前フッター
+({elseif $title == 'inc_page_footer_after'})
+ログイン後フッター
+({elseif $title == 'inc_html_head'})
+【PC版】HTML挿入(HTML head内)
+({elseif $title == 'inc_page_top2'})
+【PC版】HTML挿入 A
+({elseif $title == 'inc_page_top'})
+【PC版】HTML挿入 B　（旧：【PC版】HTML挿入(ページ上部)）
+({elseif $title == 'inc_page_bottom2'})
+【PC版】HTML挿入 C
+({elseif $title == 'inc_page_bottom'})
+【PC版】HTML挿入 D　（旧：【PC版】HTML挿入(ページ下部)）
+({elseif $title == 'inc_ktai_html_head'})
+【携帯】HTML挿入(HTML head内)
+({elseif $title == 'inc_ktai_header'})
+【携帯】HTML挿入(ページ上部)
+({elseif $title == 'inc_ktai_footer'})
+【携帯】HTML挿入(ページ下部)
+({/if})
 </h3>
+({if $msg})<p class="actionMsg">({$msg})</p>({/if})
 ({if $requests.target == 'sns_kiyaku' || $requests.target == 'sns_privacy'})
 <p class="caution" id="c01">※HTMLタグは<strong>使用できません</strong>が、URLはリンクされます。</p>
 ({elseif $requests.target == 'daily_news_head' || $requests.target == 'daily_news_foot'})
 ({else})
 <p class="caution" id="c01">※HTMLタグが使用できますが、タグの閉じ忘れ等がありますと表示が崩れるなどの問題が起こることがありますのでご注意ください。</p>
 ({/if})
-({if $msg})<p class="actionMsg">({$msg})</p>({/if})
 
 <form action="./" method="post">
 <input type="hidden" name="m" value="({$module_name})" />
-<input type="hidden" name="a" value="do_({$hash_tbl->hash('edit_c_admin_info','do')})" />
+<input type="hidden" name="a" value="do_({$hash_tbl->hash('insert_html','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
 <input type="hidden" name="target" value="({$requests.target})" />
 <textarea name="body" cols="({$cols|default:60})" rows="({$rows|default:10})">({$c_siteadmin.body})</textarea>
-<p class="textBtn"><input type="submit" value="変更する" /></p>
+<p class="textBtn"><input type="submit" value="　変更する　" /></p>
 </form>
+
+({if $requests.target == 'inc_page_top2' || $requests.target == 'inc_page_top' || $requests.target == 'inc_page_bottom2' || $requests.target == 'inc_page_bottom'})
+<p class="caution" id="c02">※内容が空のときはHTML挿入部分が表示されないので各HTML挿入部分に該当する隙間はブラウザ内枠との間に生じません。</p>
+
+<p>
+<img src="modules/admin/img/insert_HTML.gif">
+</p>
+
+({/if})
+
 </td>
 </tr>
 </table>

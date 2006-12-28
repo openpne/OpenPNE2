@@ -21,7 +21,7 @@
 <h3>【日記】</h3>
 <dl class="sampleID">
 <dt>URL例：</dt>
-<dd>http://sonet-test.sosk.pne.jp/?m=pc&amp;a=page_fh_diary&amp;target_c_diary_id=<strong>***</strong></dd>
+<dd>({t_url _absolute=1 m=pc a=page_fh_diary})&amp;target_c_diary_id=<strong>***</strong></dd>
 </dl>
 <form action="./" method="get">
 <p>
@@ -59,7 +59,7 @@
 <h3>【コミュニティ】</h3>
 <dl class="sampleID">
 <dt>URL例：</dt>
-<dd>http://sonet-test.sosk.pne.jp/?m=pc&amp;a=page_c_home&amp;target_c_commu_id=<strong>***</strong></dd>
+<dd>({t_url _absolute=1 m=pc a=page_c_home})&amp;target_c_commu_id=<strong>***</strong></dd>
 </dl>
 <form action="./" method="get">
 <p>
@@ -98,7 +98,8 @@
 <h3>【コミュニティトピック・イベント】</h3>
 <dl class="sampleID">
 <dt>URL例：</dt>
-<dd>http://sonet-test.sosk.pne.jp/?m=pc&amp;a=page_c_topic_detail&amp;target_c_commu_topic_id=<strong>***</strong><br />http://sonet-test.sosk.pne.jp/?m=pc&amp;a=page_c_event_detail&amp;target_c_commu_topic_id=<strong>***</strong></dd>
+<dd>({t_url _absolute=1 m=pc a=page_c_topic_detail})&amp;target_c_commu_topic_id=<strong>***</strong></dd>
+<dd>({t_url _absolute=1 m=pc a=page_c_event_detail})&amp;target_c_commu_topic_id=<strong>***</strong></dd>
 </dl>
 <form action="./" method="post">
 <p>

@@ -33,8 +33,8 @@
 <input type="hidden" name="navi_type" value="global"/>
 <input type="hidden" name="sort_order" value="({$key+1})" />
 <td class="cell01">({$key+1})</td>
-<td class="cell02"><input type="text" name="url" value="({$item.url})" size="40" /></td>
-<td class="cell03"><input type="text" name="caption" value="({$item.caption})" size="20" /></td>
+<td class="cell02"><input type="text" class="basic" name="url" value="({$item.url})" size="40" /></td>
+<td class="cell03"><input type="text" class="basic" name="caption" value="({$item.caption})" size="20" /></td>
 <td class="cell04"><span class="textBtnS"><input type="submit" value="変更" /></span></td>
 </form>
 <form action="./" method="post">
@@ -77,8 +77,8 @@
 <input type="hidden" name="navi_type" value="h"/>
 <input type="hidden" name="sort_order" value="({$key+1})" />
 <td class="cell01">({$key+1})</td>
-<td class="cell02"><input type="text" name="url" value="({$item.url})" size="40" /></td>
-<td class="cell03"><input type="text" name="caption" value="({$item.caption})" size="20" /></td>
+<td class="cell02"><input type="text" class="basic" name="url" value="({$item.url})" size="40" /></td>
+<td class="cell03"><input type="text" class="basic" name="caption" value="({$item.caption})" size="20" /></td>
 <td class="cell04"><span class="textBtnS"><input type="submit" value="変更" /></span></td>
 </form>
 <form action="./" method="post">
@@ -115,8 +115,8 @@
 <input type="hidden" name="navi_type" value="f"/>
 <input type="hidden" name="sort_order" value="({$key+1})" />
 <td class="cell01">({$key+1})</td>
-<td class="cell02"><input type="text" name="url" value="({$item.url})" size="40" /></td>
-<td class="cell03"><input type="text" name="caption" value="({$item.caption})" size="20" /></td>
+<td class="cell02"><input type="text" class="basic" name="url" value="({$item.url})" size="40" /></td>
+<td class="cell03"><input type="text" class="basic" name="caption" value="({$item.caption})" size="20" /></td>
 <td class="cell04"><span class="textBtnS"><input type="submit" value="変更" /></span></td>
 </form>
 <form action="./" method="post">
@@ -153,8 +153,8 @@
 <input type="hidden" name="navi_type" value="c"/>
 <input type="hidden" name="sort_order" value="({$key+1})" />
 <td class="cell01">({$key+1})</td>
-<td class="cell02"><input type="text" name="url" value="({$item.url})" size="40" /></td>
-<td class="cell03"><input type="text" name="caption" value="({$item.caption})" size="20" /></td>
+<td class="cell02"><input type="text" class="basic" name="url" value="({$item.url})" size="40" /></td>
+<td class="cell03"><input type="text" class="basic" name="caption" value="({$item.caption})" size="20" /></td>
 <td class="cell04"><span class="textBtnS"><input type="submit" value="変更" /></span></td>
 </form>
 <form action="./" method="post">

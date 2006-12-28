@@ -11,10 +11,10 @@
 
 
 ({if $requests.msg})
-<p class="caution">({$requests.msg})</p>
+<p class="actionMsg">({$requests.msg})</p>
 ({/if})
 
-<h3>メンバー情報をデータベースに一括登録</h3>
+<h3 class="item">メンバー情報をデータベースに一括登録</h3>
 
 <p class="caution">※文字コード、ファイル形式、項目の順序を守ってください。この処理は10分以上かかる場合があります</p>
 
@@ -22,12 +22,12 @@
 <input type="hidden" name="m" value="({$module_name})">
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('import_c_member','do')})">
 <input type="hidden" name="sessid" value="({$PHPSESSID})">
-≪ユーザデータファイル≫<br>
+<p>≪ユーザデータファイル≫<br>
 文字コード：UTF-8<br>
-ファイル形式：csv<br>
-項目の順序「ニックネーム」「登録メールアドレス」「パスワード」<br>
-<input type="file" name="member_file"><br><br>
-<input type="submit" class="submit" name="member_file_submit" value="登録">
+ファイル形式：csv</p>
+<p>項目の順序「ニックネーム」「登録メールアドレス」「パスワード」</p>
+<p><input type="file" name="member_file" /></p>
+<p class="textBtn"><input type="submit" class="submit" name="member_file_submit" value="登録" /></p>
 </form>
 
 ({$inc_footer|smarty:nodefaults})

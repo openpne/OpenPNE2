@@ -18,13 +18,13 @@
 <table class="basicType2">
 <tr class="cell01">
 <th colspan="2">SNS名</th>
-<td><input class="basic" name="SNS_NAME" type="text" class="text" value="({$smarty.const.SNS_NAME})" size="30" /></td>
+<td><input class="basic" name="SNS_NAME" type="text" value="({$smarty.const.SNS_NAME})" size="30" /></td>
 </tr>
 <tr class="cell02">
 <th colspan="2">ページタイトル</th>
 <td>
 <span class="info">HTMLのtitle要素の内容になります</span><br />
-<input class="basic" name="SNS_TITLE" type="text" class="text" value="({$smarty.const.SNS_TITLE})" size="30" /><br />
+<input class="basic" name="SNS_TITLE" type="text" value="({$smarty.const.SNS_TITLE})" size="30" /><br />
 <span class="caution">※省略時はSNS名が使用されます</span>
 </td>
 </tr>
@@ -32,7 +32,7 @@
 <th colspan="2">管理用メールアドレス</th>
 <td>
 <span class="info">ユーザに送られるメールのFromに設定されます</span><br />
-<input class="basic" name="ADMIN_EMAIL" type="text" class="text" value="({$smarty.const.ADMIN_EMAIL})" size="40" /></td>
+<input class="basic" name="ADMIN_EMAIL" type="text" value="({$smarty.const.ADMIN_EMAIL})" size="40" /></td>
 </tr>
 <tr class="cell04">
 <th colspan="2">招待制/オープン制</th>
@@ -81,13 +81,13 @@
 </tr>
 <tr class="cell09">
 <th colspan="2">AmazonアソシエイトID</th>
-<td><input class="basic" name="AMAZON_AFFID" type="text" class="text" value="({$smarty.const.AMAZON_AFFID})" size="30" /><br /><span class="caution">※空にするとレビュー機能が正常に動作しません</span></td>
+<td><input class="basic" name="AMAZON_AFFID" type="text" value="({$smarty.const.AMAZON_AFFID})" size="30" /><br /><span class="caution">※空にするとレビュー機能が正常に動作しません</span></td>
 </tr>
 <tr class="cell10">
 <th colspan="2">外部ログインページURL</th>
 <td>
 <span class="info">ログアウトした場合やログインに失敗した場合、ここで指定したURLに遷移します</span><br />
-<input class="basic" name="LOGIN_URL_PC" type="text" class="text" value="({$smarty.const.LOGIN_URL_PC})" size="50" /><br />
+<input class="basic" name="LOGIN_URL_PC" type="text" value="({$smarty.const.LOGIN_URL_PC})" size="50" /><br />
 <span class="caution">※ここで指定するページには<a href="#form">ログインフォーム</a>を置いておく必要があります</span><br />
 <span class="caution">※通常のログインページを使用する場合は空欄にしておきます</span></td>
 </tr>
@@ -183,9 +183,9 @@
 <td>
 <input class="basicRadio" name="LOGIN_CHECK_ENABLE" type="radio" value="0"({if !$smarty.const.LOGIN_CHECK_ENABLE}) checked="checked"({/if}) />制限しない<br />
 <input class="basicRadio" name="LOGIN_CHECK_ENABLE" type="radio" value="1"({if $smarty.const.LOGIN_CHECK_ENABLE}) checked="checked"({/if}) />制限する<br />
-<input class="basic" name="LOGIN_CHECK_TIME" type="text" class="text" value="({$smarty.const.LOGIN_CHECK_TIME})" size="5" />分間に
-<input class="basic" name="LOGIN_CHECK_NUM" type="text" class="text" value="({$smarty.const.LOGIN_CHECK_NUM})" size="8" />回ログインに失敗したら
-<input class="basic" name="LOGIN_REJECT_TIME" type="text" class="text" value="({$smarty.const.LOGIN_REJECT_TIME})" size="5" />分間同一IPからのログインを制限する
+<input class="basic" name="LOGIN_CHECK_TIME" type="text" value="({$smarty.const.LOGIN_CHECK_TIME})" size="5" />分間に
+<input class="basic" name="LOGIN_CHECK_NUM" type="text" value="({$smarty.const.LOGIN_CHECK_NUM})" size="8" />回ログインに失敗したら
+<input class="basic" name="LOGIN_REJECT_TIME" type="text" value="({$smarty.const.LOGIN_REJECT_TIME})" size="5" />分間同一IPからのログインを制限する
 </td>
 </tr>
 <tr class="cell22A">
@@ -193,48 +193,48 @@
 <th>キャッチコピー</th>
 <td>
 <span class="info">SNSメンバーに送られるメールの署名に使用します</span><br />
-<input class="basic" name="CATCH_COPY" type="text" class="text" value="({$smarty.const.CATCH_COPY})" size="30" />
+<input class="basic" name="CATCH_COPY" type="text" value="({$smarty.const.CATCH_COPY})" size="30" />
 </td>
 </tr>
 <tr class="cell22B">
 <th>運営会社</th>
 <td>
 <span class="info">SNSメンバーに送られるメールの署名に使用します</span><br />
-<input class="basic" name="OPERATION_COMPANY" type="text" class="text" value="({$smarty.const.OPERATION_COMPANY})" size="30" /></td>
+<input class="basic" name="OPERATION_COMPANY" type="text" value="({$smarty.const.OPERATION_COMPANY})" size="30" /></td>
 </tr>
 <tr class="cell22C">
 <th>Copyright</th>
 <td>
 <span class="info">SNSメンバーに送られるメールの署名に使用します</span><br />
-<input class="basic" name="COPYRIGHT" type="text" class="text" value="({$smarty.const.COPYRIGHT})" size="30" /></td>
+<input class="basic" name="COPYRIGHT" type="text" value="({$smarty.const.COPYRIGHT})" size="30" /></td>
 </tr>
 <tr class="cell23A">
 <th rowspan="4">フレンド名称</th>
 <th>フレンド</th>
 <td>
 <span class="info">SNS内「フレンド」を他の名称に設定します</span><br />
-<input class="basic" name="WORD_FRIEND" type="text" class="text" value="({$smarty.const.WORD_FRIEND})" size="30" />
+<input class="basic" name="WORD_FRIEND" type="text" value="({$smarty.const.WORD_FRIEND})" size="30" />
 </td>
 </tr>
 <tr class="cell23B">
 <th>マイフレンド</th>
 <td>
 <span class="info">SNS内「フレンド」を他の名称に設定します</span><br />
-<input class="basic" name="WORD_MY_FRIEND" type="text" class="text" value="({$smarty.const.WORD_MY_FRIEND})" size="30" />
+<input class="basic" name="WORD_MY_FRIEND" type="text" value="({$smarty.const.WORD_MY_FRIEND})" size="30" />
 </td>
 </tr>
 <tr class="cell23C">
 <th>ﾌﾚﾝﾄﾞ(携帯)</th>
 <td>
 <span class="info">SNS内「フレンド」を他の名称に設定します</span><br />
-<input class="basic" name="WORD_FRIEND_HALF" type="text" class="text" value="({$smarty.const.WORD_FRIEND_HALF})" size="30" />
+<input class="basic" name="WORD_FRIEND_HALF" type="text" value="({$smarty.const.WORD_FRIEND_HALF})" size="30" />
 </td>
 </tr>
 <tr class="cell23D">
 <th>ﾏｲﾌﾚﾝﾄﾞ(携帯)</th>
 <td>
 <span class="info">SNS内「フレンド」を他の名称に設定します</span><br />
-<input class="basic" name="WORD_MY_FRIEND_HALF" type="text" class="text" value="({$smarty.const.WORD_MY_FRIEND_HALF})" size="30" />
+<input class="basic" name="WORD_MY_FRIEND_HALF" type="text" value="({$smarty.const.WORD_MY_FRIEND_HALF})" size="30" />
 </td>
 </tr>
 <tr class="cell24">

@@ -21,16 +21,20 @@
 <div class="contents">
 
 
-<br>
-[({$page_name})]
+<p>
+[({$page_name})]<br />
 
-<br>
+</p>
 
+<div class="listControl">
+<p class="listMove">
 ({if $is_prev})<a href="?m=admin&a=page_access_analysis_target_topic&ktai_flag=({$ktai_flag})&ymd=({$ymd})&month_flag=({$month_flag})&page_name=({$page_name})&orderby=({$orderby})&direc=-1&page=({$page})">＜前を表示</a> ({/if})
 &nbsp;&nbsp;({$start_num})件～({$end_num})件を表示&nbsp;&nbsp;
 ({if $is_next})<a href="?m=admin&a=page_access_analysis_target_topic&ktai_flag=({$ktai_flag})&ymd=({$ymd})&month_flag=({$month_flag})&page_name=({$page_name})&orderby=({$orderby})&direc=1&page=({$page})">次を表示＞</a>({/if})
-<br>
-<table cellspacing="0" cellpadding="5" class="basicType2">
+</p>
+</div>
+
+<table class="basicType2">
 	<thead>
 		<tr>
 		<th><a href="?m=admin&a=page_access_analysis_target_topic&ktai_flag=({$ktai_flag})&ymd=({$ymd})&month_flag=({$month_flag})&page_name=({$page_name})&orderby1=({$orderby1})">ID</a></th>
@@ -42,19 +46,17 @@
 	<tbody>
 ({foreach from=$target_topic item=item})
 		<tr>
-			<td>({$item.target_c_commu_topic_id})</td>
+			<th>({$item.target_c_commu_topic_id})</th>
 			<td>({$item.topic_name})</td>
 			<td>({$item.commu_name})</td>
 			<td>({$item.count})</td>
 		</tr>
 ({/foreach})
-	</tbody>
-	<tfoot>
 		<tr>
 			<td colspan="3">合計</td>
 			<td>({$sum})</td>
 		</tr>
-	</tfoot>
+	</tbody>
 </table>
 
 ({$inc_footer|smarty:nodefaults})

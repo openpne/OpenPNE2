@@ -42,7 +42,7 @@ function Link(linkLoc) {
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="page_({$hash_tbl->hash('list_c_member')})" />
 <strong>メールアドレス検索</strong>(完全一致)：
-<input type="text" name="mail_address" value="({$requests.mail_address})" size="30" />
+<input type="text" class="basic" name="mail_address" value="({$requests.mail_address})" size="30" />
 <span class="textBtnS"><input type="submit" value="検索" /></span>
 </p>
 </form>
@@ -53,7 +53,7 @@ function Link(linkLoc) {
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="page_({$hash_tbl->hash('list_c_member')})" />
 <strong>表示件数</strong>：
-<select name="page_size">
+<select class="basic" name="page_size">
 <option value="10"({if $pager.page_size==10}) selected="selected"({/if})>10件</option>
 <option value="20"({if $pager.page_size==20}) selected="selected"({/if})>20件</option>
 <option value="50"({if $pager.page_size==50}) selected="selected"({/if})>50件</option>
@@ -122,14 +122,14 @@ function Link(linkLoc) {
 			<th class="cell08B">&nbsp;</th>
 			<th class="cell08C">&nbsp;</th>
 			<th class="cell09A" colspan="3">
-			<select onChange="Link('?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page=({$pager.page})&amp;page_size=({$pager.page_size})({$cond})&amp;s_year='+this.options[this.selectedIndex].value);">
+			<select class="basic" onChange="Link('?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page=({$pager.page})&amp;page_size=({$pager.page_size})({$cond})&amp;s_year='+this.options[this.selectedIndex].value);">
 			<option value="">選択してください</option>
 			({foreach from=$years item=item})
 			<option ({if $cond_list.s_year==$item})selected({/if}) value="({$item})">({$item})</option>
 			({/foreach})
 			</select>
 			～
-			<select onChange="Link('?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page=({$pager.page})&amp;page_size=({$pager.page_size})({$cond})&amp;e_year='+this.options[this.selectedIndex].value);">
+			<select class="basic" onChange="Link('?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page=({$pager.page})&amp;page_size=({$pager.page_size})({$cond})&amp;e_year='+this.options[this.selectedIndex].value);">
 			<option value="">選択してください</option>
 			({foreach from=$years item=item})
 			<option ({if $cond_list.e_year==$item})selected({/if}) value="({$item})">({$item})</option>
@@ -139,7 +139,7 @@ function Link(linkLoc) {
 			({foreach from=$profile_list item=prof})
 			<th>
 			({if $prof.form_type == radio || $prof.form_type == select})
-			<select onChange="Link('?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page=({$pager.page})&amp;page_size=({$pager.page_size})({$cond})&amp;({$prof.name})='+this.options[this.selectedIndex].value);">
+			<select class="basic" onChange="Link('?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page=({$pager.page})&amp;page_size=({$pager.page_size})({$cond})&amp;({$prof.name})='+this.options[this.selectedIndex].value);">
 			<option value="">選択してください</option>
 			({foreach item=item from=$prof.options})
 			<option ({if $cond_list[$prof.name]==$item.c_profile_option_id})selected({/if}) value="({$item.c_profile_option_id})"({if $c_member.profile[$profile.name].value == $item.value}) selected="selected"({/if})>({$item.value|default:"--"})</option>

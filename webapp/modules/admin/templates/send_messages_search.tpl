@@ -39,7 +39,7 @@
 ({/foreach})
 <dl>
 <dt class="label">送信種別</dt>
-<dd><select name="send_type">
+<dd><select class="basic" name="send_type">
 <option value="message"({if $send_type=='message'}) selected="selected"({/if})>メッセージ送信</option>
 <option value="mail"({if $send_type=='mail'}) selected="selected"({/if})>Eメール送信</option>
 </option>

@@ -54,27 +54,15 @@
 デイリーニュース上部
 ({elseif $requests.target == 'daily_news_foot'})
 デイリーニュース下部
-({elseif $requests.target == 'inc_html_head'})
-【PC版】HTML挿入(HTML head内)
-({elseif $requests.target == 'inc_page_top'})
-【PC版】HTML挿入(ページ上部)
-({elseif $requests.target == 'inc_page_bottom'})
-【PC版】HTML挿入(ページ下部)
-({elseif $requests.target == 'inc_ktai_html_head'})
-【携帯】HTML挿入(HTML head内)
-({elseif $requests.target == 'inc_ktai_header'})
-【携帯】HTML挿入(ページ上部)
-({elseif $requests.target == 'inc_ktai_footer'})
-【携帯】HTML挿入(ページ下部)
 ({/if})
 </h3>
+({if $msg})<p class="actionMsg">({$msg})</p>({/if})
 ({if $requests.target == 'sns_kiyaku' || $requests.target == 'sns_privacy'})
 <p class="caution" id="c01">※HTMLタグは<strong>使用できません</strong>が、URLはリンクされます。</p>
 ({elseif $requests.target == 'daily_news_head' || $requests.target == 'daily_news_foot'})
 ({else})
 <p class="caution" id="c01">※HTMLタグが使用できますが、タグの閉じ忘れ等がありますと表示が崩れるなどの問題が起こることがありますのでご注意ください。</p>
 ({/if})
-({if $msg})<p class="actionMsg">({$msg})</p>({/if})
 
 <form action="./" method="post">
 <input type="hidden" name="m" value="({$module_name})" />

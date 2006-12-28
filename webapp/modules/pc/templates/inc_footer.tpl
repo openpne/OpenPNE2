@@ -25,7 +25,7 @@
 </table>
 </td>
 
-({$inc_extension_pagelayout_bottom2|smarty:nodefaults})
+({$INC_FOOTER_inc_page_bottom2|smarty:nodefaults})
 
 ({if $INC_FOOTER_side_banner_html_before || $INC_FOOTER_side_banner_html_after || $INC_FOOTER_inc_side_banner})
 

@@ -30,7 +30,7 @@
 <tr>
 <th>表示位置</th>
 <td>
-<select name="type">
+<select class="basic" name="type">
 <option value="TOP"({if $c_banner.type=="TOP"}) selected="selected"({/if})>トップ</option>
 <option value="SIDE"({if $c_banner.type=="SIDE"}) selected="selected"({/if})>サイド</option>
 </select>
@@ -43,7 +43,7 @@
 <tr>
 <th>表示設定（ログイン前）</th>
 <td>
-<select name="is_hidden_before">
+<select class="basic" name="is_hidden_before">
 <option value="0"({if !$c_banner.is_hidden_before}) selected="selected"({/if})>表示する</option>
 <option value="1"({if $c_banner.is_hidden_before}) selected="selected"({/if})>表示しない</option>
 </select>
@@ -51,7 +51,7 @@
 <tr>
 <th>表示設定（ログイン後）</th>
 <td>
-<select name="is_hidden_after">
+<select class="basic" name="is_hidden_after">
 <option value="0"({if !$c_banner.is_hidden_after}) selected="selected"({/if})>表示する</option>
 <option value="1"({if $c_banner.is_hidden_after}) selected="selected"({/if})>表示しない</option>
 </select>

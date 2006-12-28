@@ -33,9 +33,9 @@
 <tbody>
 ({foreach from=$access_analysis_month item=item})
 <tr>
-<td>
+<th>
 ({$item.ym|date_format:"%Y年%m月"})
-</td>
+</th>
 <td>
 <a href="?m=admin&a=page_access_analysis_page&ymd=({$item.ym})&month_flag=1&ktai_flag=({$ktai_flag})">
 ({$item.count})

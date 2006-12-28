@@ -17,7 +17,7 @@ PCからは登録できない設定になっています。<br>
 <dl class="invitesAdd">
 	<dt><strong>【PCアドレス】</strong></dt>
 ({/if})
-<dd>({foreach from=$requests.pc_mails item=item})<strong>({$item})</strong>&nbsp;／&nbsp;({/foreach})</dd>
+<dd>({foreach from=$requests.pc_mails item=item name=pm})<strong>({$item})</strong>({if !$smarty.foreach.pm.last})&nbsp;／&nbsp;({/if})({/foreach})</dd>
 </dl>
 ({/if})
 ({if $requests.ktai_mails})
@@ -28,13 +28,13 @@ PCからは登録できない設定になっています。<br>
 <dl class="invitesAdd">
 	<dt><strong>【携帯アドレス】</strong></dt>
 ({/if})
-	<dd>({foreach from=$requests.ktai_mails item=item})<strong>({$item})</strong>&nbsp;／&nbsp;({/foreach})</dd>
+	<dd>({foreach from=$requests.ktai_mails item=item name=km})<strong>({$item})</strong>({if !$smarty.foreach.km.last})&nbsp;／&nbsp;({/if})({/foreach})</dd>
 </dl>
 ({/if})
 ({if $requests.error_mails})
 <dl class="invitesAdd" id="warning">
 	<dt><strong>以下のアドレスは登録済みのため送信されません。</strong></dt>
-	<dd>({foreach from=$requests.error_mails item=item})<strong>({$item})</strong>&nbsp;／&nbsp;({/foreach})</dd>
+	<dd>({foreach from=$requests.error_mails item=item name=em})<strong>({$item})</strong>({if !$smarty.foreach.em.last})&nbsp;／&nbsp;({/if})({/foreach})</dd>
 </dl>
 ({/if})
 

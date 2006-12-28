@@ -313,7 +313,7 @@ function load() {
 <body id="pc_page_({$INC_HEADER_page_name})">
 ({/if})
 
-({$inc_extension_pagelayout_top2|smarty:nodefaults})
+({$INC_HEADER_inc_page_top2|smarty:nodefaults})
 
 <div align="left">
 

@@ -33,7 +33,7 @@
 </tr>
 <tr>
 <th>公開設定<br>デフォルト値</th>
-<td><select name="public_flag_default">
+<td><select class="basic" name="public_flag_default">
 <option value="public"({if $c_profile.public_flag_default == 'public'}) selected="selected"({/if})>全員に公開</option>
 <option value="friend"({if $c_profile.public_flag_default == 'friend'}) selected="selected"({/if})>({$smarty.const.WORD_MY_FRIEND})まで公開</option>
 <option value="private"({if $c_profile.public_flag_default == 'private'}) selected="selected"({/if})>公開しない</option>
@@ -63,7 +63,7 @@
 </tr>
 <tr>
 <th>フォームタイプ</th>
-<td><select name="form_type">
+<td><select class="basic" name="form_type">
 <option value="text"({if $c_profile.form_type == 'text'}) selected="selected"({/if})>テキスト</option>
 <option value="textarea"({if $c_profile.form_type == 'textarea'}) selected="selected"({/if})>テキスト(複数行)</option>
 <option value="select"({if $c_profile.form_type == 'select'}) selected="selected"({/if})>単一選択(プルダウン)</option>
@@ -76,7 +76,7 @@
 </tr>
 <tr>
 <th>入力値タイプ</th>
-<td><select name="val_type">
+<td><select class="basic" name="val_type">
 <option value="string"({if $c_profile.val_type == 'string'}) selected="selected"({/if})>文字列</option>
 <option value="int"({if $c_profile.val_type == 'int'}) selected="selected"({/if})>数値</option>
 <option value="regexp"({if $c_profile.val_type == 'regexp'}) selected="selected"({/if})>正規表現</option>

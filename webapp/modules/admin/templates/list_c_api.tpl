@@ -7,9 +7,10 @@
 
 ({*ここまで:navi*})
 
-({if $msg})<p class="actionMsg">({$msg})</p>({/if})
 <h2>API設定</h2>
 <div class="contents">
+
+({if $msg})<p class="actionMsg">({$msg})</p>({/if})
 
 <p class="caution">
 ※許容IPアドレス記述例<br>
@@ -21,9 +22,11 @@ API未使用：空
 
 ({if $pager && $pager.total_num > 0})
 ({capture name="pager"})
-<p class="listMove">
+<div class="listControl">
+<p class="display">
 ({$pager.total_num}) 件中 ({$pager.start_num}) - ({$pager.end_num})件目を表示しています
-<br>
+</p>
+<p class="listMove">
 ({if $pager.prev_page})
 <a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_api')})&amp;page=({$pager.prev_page})&amp;page_size=({$pager.page_size})({$cond})">前へ</a>&nbsp;
 ({/if})
@@ -38,17 +41,21 @@ API未使用：空
 &nbsp;<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_api')})&amp;page=({$pager.next_page})&amp;page_size=({$pager.page_size})({$cond})">次へ</a>
 ({/if})
 </p>
+</div>({*/div class="listControl"*})
 ({/capture})
 
 ({$smarty.capture.pager|smarty:nodefaults})
 ({/if})
 
 <table class="basicType2">
+<thead>
 <tr>
 <th>ID</th>
 <th>API名称</th>
 <th>許容IPアドレス</th>
 </tr>
+</thead>
+<tbody>
 
 ({if $c_api_list})
 <form action="./" method="post">
@@ -59,13 +66,13 @@ API未使用：空
 
 ({foreach from=$c_api_list item=c_api})
 <tr>
-<td class="idnumber">({$c_api.c_api_id})</td>
+<th>({$c_api.c_api_id})</th>
 <td>({$c_api.name})</td>
 
 <input type="hidden" name="c_api_id[]" value="({$c_api.c_api_id})">
 <input type="hidden" name="name[]" value="({$c_api.name})">
 
-<td><input type="text" name="ip[]" value="({$c_api.ip})" size="30"></td>
+<td><input type="text" class="basic" name="ip[]" value="({$c_api.ip})" size="30"></td>
 
 </tr>
 ({foreachelse})
@@ -76,11 +83,12 @@ API未使用：空
 
 ({if $c_api_list})
 <tr>
-<td colspan=3 align=right><span class="textBtnS"><input type="submit" class="submit" value="変更"></span></td>
+<td colspan="3" align="right"><span class="textBtnS"><input type="submit" class="submit" value="　変　更　"></span></td>
 </tr>
 ({/if})
 </form>
 
+</tbody>
 </table>
 
 ({if $pager && $pager.total_num > 0})

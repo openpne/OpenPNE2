@@ -32,7 +32,7 @@
 </tr>
 <tr>
 <th>公開設定<br>デフォルト値</th>
-<td><select name="public_flag_default">
+<td><select class="basic" name="public_flag_default">
 <option value="public">全員に公開</option>
 <option value="friend">({$smarty.const.WORD_MY_FRIEND})まで公開</option>
 <option value="private">公開しない</option>
@@ -62,7 +62,7 @@
 </tr>
 <tr>
 <th>フォームタイプ</th>
-<td><select name="form_type">
+<td><select class="basic" name="form_type">
 <option value="text" selected="selected">テキスト</option>
 <option value="textarea">テキスト(複数行)</option>
 <option value="select">単一選択(プルダウン)</option>
@@ -75,7 +75,7 @@
 </tr>
 <tr>
 <th>入力値タイプ</th>
-<td><select name="val_type">
+<td><select class="basic" name="val_type">
 <option value="string"({if $c_profile.val_type == 'string'}) selected="selected"({/if})>文字列</option>
 <option value="int"({if $c_profile.val_type == 'int'}) selected="selected"({/if})>数値</option>
 <option value="regexp"({if $c_profile.val_type == 'regexp'}) selected="selected"({/if})>正規表現</option>

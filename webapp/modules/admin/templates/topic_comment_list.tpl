@@ -13,7 +13,7 @@
 <p class="actionMsg">({$msg})</p>
 ({/if})
 
-
+<div id="c01">
 <form action="./" method="GET">
 <input type="hidden" name="m" value="({$module_name})">
 <input type="hidden" name="a" value="page_({$hash_tbl->hash('topic_comment_list','page')})">
@@ -21,21 +21,25 @@
 <input class="basic" type="text" name="keyword" value="({$keyword})">
 <span class="textBtnS"><input type="submit" value="検索"></span>
 </form>
+</div>
 
+({if $page_list})
 ({capture name="pager"})
-<p class="listMove">
-
+<div class="listControl">
+<p class="display">
 ({$total_num})件中 ({$start_num})-({$end_num})件目を表示しています 
-({if $page_list})<br>({foreach from=$page_list item=item})({if $page!=$item})<a href="?m=({$module_name})&a=page_({$hash_tbl->hash('topic_comment_list','page')})&page=({$item})&keyword=({$keyword_encode})">({$item})</a>({else})<b>({$item})</b>({/if})&nbsp;&nbsp;({/foreach})&nbsp;({/if})
+</p>
+<p class="listMove">
+({if $page_list})({foreach from=$page_list item=item})({if $page!=$item})<a href="?m=({$module_name})&a=page_({$hash_tbl->hash('topic_comment_list','page')})&page=({$item})&keyword=({$keyword_encode})">({$item})</a>({else})<b>({$item})</b>({/if})&nbsp;&nbsp;({/foreach})&nbsp;({/if})
 ({if $prev})<a href="?m=({$module_name})&a=page_({$hash_tbl->hash('topic_comment_list','page')})&page=({$page-1})&keyword=({$keyword_encode})">＜＜前</a>　({/if})
 ({if $next})<a href="?m=({$module_name})&a=page_({$hash_tbl->hash('topic_comment_list','page')})&page=({$page+1})&keyword=({$keyword_encode})">次＞＞</a>({/if})
-
 </p>
+</div>({*/div class="listControl"*})
 
 ({/capture})
 
 ({$smarty.capture.pager|smarty:nodefaults})
-
+({/if})
 
 <table class="basicType2">
 <tbody>
@@ -87,5 +91,8 @@
 </tbody>
 </table>
 
+({if $page_list})
 ({$smarty.capture.pager|smarty:nodefaults})
+({/if})
+
 ({$inc_footer|smarty:nodefaults})

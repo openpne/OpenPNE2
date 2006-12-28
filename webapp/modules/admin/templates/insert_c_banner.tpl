@@ -30,7 +30,7 @@
 <tr>
 <th>表示位置</th>
 <td>
-<select name="type">
+<select class="basic" name="type">
 <option value="TOP"({if $requests.type != 'side'}) selected="selected"({/if})>トップ</option>
 <option value="SIDE"({if $requests.type == 'side'}) selected="selected"({/if})>サイド</option>
 </select>

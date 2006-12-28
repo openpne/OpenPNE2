@@ -26,18 +26,17 @@
 
 
 <table class="basicType2">
+<tbody>
 ({foreach from=$access_analysis_day item=item})
 <tr>
-
-<td>
+<th>
 ({$item.ymd|date_format:"%d日"})
-</td>
-
+</th>
 <td>
 <a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('access_analysis_page')})&ymd=({$item.ymd})&month_flag=0&ktai_flag=({$ktai_flag})">({$item.count})</a>
 </td>
-
 </tr>
 ({/foreach})
+</tbody>
 </table>
 ({$inc_footer|smarty:nodefaults})

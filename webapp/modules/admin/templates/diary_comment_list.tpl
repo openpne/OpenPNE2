@@ -17,20 +17,23 @@
 <input type="hidden" name="m" value="({$module_name})">
 <input type="hidden" name="a" value="page_({$hash_tbl->hash('diary_comment_list','page')})">
 <h3 class="item">検索キーワード</h3>
+<p id="c01">
 <input class="basic" type="text" name="keyword" value="({$keyword})">
 <span class="textBtnS"><input type="submit" value="検索"></span>
+</p>
 </form>
 
 ({capture name="pager"})
-<p class="listMove">
-
+<div class="listControl">
+<p class="display">
 ({$total_num})件中 ({$start_num})-({$end_num})件目を表示しています 
+</p>
+<p class="listMove">
 ({if $page_list})({foreach from=$page_list item=item})({if $page!=$item})<a href="?m=({$module_name})&a=page_({$hash_tbl->hash('diary_comment_list','page')})&page=({$item})&keyword=({$keyword_encode})">({$item})</a>({else})<b>({$item})</b>({/if})&nbsp;&nbsp;({/foreach})&nbsp;({/if})
 ({if $prev})<a href="?m=({$module_name})&a=page_({$hash_tbl->hash('diary_comment_list','page')})&page=({$page-1})&keyword=({$keyword_encode})">＜＜前</a>　({/if})
 ({if $next})<a href="?m=({$module_name})&a=page_({$hash_tbl->hash('diary_comment_list','page')})&page=({$page+1})&keyword=({$keyword_encode})">次＞＞</a>({/if})
-
 </p>
-
+</div>({*/div class="listControl"*})
 ({/capture})
 
 ({$smarty.capture.pager|smarty:nodefaults})
