@@ -29,8 +29,8 @@ class ktai_do_o_login extends OpenPNE_Action
         $auth_config['options']['advancedsecurity'] = false;
         $auth = new OpenPNE_Auth($auth_config['storage'], $auth_config['options'],true);
         $this->_auth =& $auth;
-        $auth->setExpire($GLOBALS['OpenPNE']['common']['session_lifetime']);
-        $auth->setIdle($GLOBALS['OpenPNE']['common']['session_idletime']);
+        $auth->setExpire($GLOBALS['OpenPNE']['ktai']['session_lifetime']);
+        $auth->setIdle($GLOBALS['OpenPNE']['ktai']['session_idletime']);
         
         if (LOGIN_CHECK_ENABLE) {
             // 不正ログインチェック

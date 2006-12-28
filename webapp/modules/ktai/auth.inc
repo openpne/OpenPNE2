@@ -16,8 +16,8 @@ require_once 'OpenPNE/Auth.php';
 $options = array("advancedsecurity"=>false);
 
 $auth = new OpenPNE_Auth('DB','',true);
-$auth->setExpire($GLOBALS['OpenPNE']['common']['session_lifetime']);
-$auth->setIdle($GLOBALS['OpenPNE']['common']['session_idletime']);
+$auth->setExpire($GLOBALS['OpenPNE']['ktai']['session_lifetime']);
+$auth->setIdle($GLOBALS['OpenPNE']['ktai']['session_idletime']);
 
 if (   !$auth->auth()
     || !($u = db_member_c_member_id4username_encrypted($auth->getUsername(), true))
