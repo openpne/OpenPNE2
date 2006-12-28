@@ -10,6 +10,7 @@
 <h2>ランク一覧</h2>
 <div class="contents">
 ({if $msg})<p class="actionMsg">({$msg})</p>({/if})
+<p>貯めたポイントで到達するランクを設定します。</p>
 
 ({if $pager && $pager.total_num > 0})
 ({capture name="pager"})

@@ -12,8 +12,9 @@
 ({if $msg})
 <p class="actionMsg">({$msg})</p>
 ({/if})
-
-</div>({*/div class="contents"*})
+<p>
+フリーレイアウトのページを作成できます。
+</p>
 
 <table class="contents" cellpadding="0" cellspacing="0" border="0">
 <tr>
@@ -134,5 +135,4 @@
 </td>
 </table>
 
-</div>({*/div class="contents"*})
 ({$inc_footer|smarty:nodefaults})

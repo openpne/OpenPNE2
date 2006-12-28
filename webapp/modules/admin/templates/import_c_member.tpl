@@ -1,12 +1,12 @@
 ({$inc_header|smarty:nodefaults})
 ({ext_include file="inc_subnavi_adminSiteMember.tpl"})
-({assign var="page_name" value="メンバー情報のインポート"})
+({assign var="page_name" value="CSVインポート"})
 ({ext_include file="inc_tree_adminSiteMember.tpl"})
 </div>
 
 ({*ここまで:navi*})
 
-<h2>メンバー情報のインポート</h2>
+<h2>CSVインポート</h2>
 <div class="contents">
 
 

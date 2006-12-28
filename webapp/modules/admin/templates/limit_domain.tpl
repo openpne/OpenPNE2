@@ -1,6 +1,7 @@
 ({$inc_header|smarty:nodefaults})
-({ext_include file="inc_subnavi_adminSNSConfig.tpl"})
-<div class="tree"><a href="?m=({$module_name})">管理画面TOP</a>&nbsp;＞&nbsp;ドメイン制限</div>
+({ext_include file="inc_subnavi_adminDesign.tpl"})
+({assign var="page_name" value="ドメイン制限"})
+({ext_include file="inc_tree_adminDesign.tpl"})
 </div>
 
 ({*ここまで:navi*})
@@ -8,7 +9,7 @@
 ({if $msg})<p class="actionMsg">({$msg})</p>({/if})
 <h2>ドメイン制限</h2>
 <div class="contents">
-
+<p>ドメイン制限する場合は使用するドメインを入力してください。ドメイン制限をしない場合は何も入力しないでください</p>
 <form action="./" method="post">
 <input type="hidden" name="m" value="({$module_name})">
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_limit_domain','do')})">

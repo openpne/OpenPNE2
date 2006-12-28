@@ -13,6 +13,7 @@
 <p class="actionMsg">({$msg})</p>
 ({/if})
 
+<p>SNSユーザーの世代別ユーザー分布を表示します</p>
 <table class="basicType2">
 ({****})
 <thead>

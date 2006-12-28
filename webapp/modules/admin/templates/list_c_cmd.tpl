@@ -11,7 +11,7 @@
 <h2>CMD一覧</h2>
 <div class="contents">
 
-<p class="caution">※URL記述例 : ファイル名から拡張子を取り除いたもの<br>youtube.js → youtube</p>
+<p>※CMD名称記述例 : ファイル名から拡張子を取り除いたもの<br>youtube.js → youtube</p>
 
 ({if $pager && $pager.total_num > 0})
 ({capture name="pager"})
@@ -44,7 +44,7 @@
 <thead>
 <tr>
 <th>ID</th>
-<th>URL</th>
+<th>CMD名称</th>
 <th>使用範囲</th>
 <th colspan='2'>操作</th>
 </tr>
