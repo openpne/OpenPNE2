@@ -305,14 +305,14 @@ CREATE DATABASE `DBNAME` DEFAULT CHARACTER SET utf8 ;
 <p>準備したデータベース(例:DBNAME)上で、以下のSQL文を順番に実行してください。</p>
 <ol>
 <li><var>OPENPNE_DIR</var>/setup/sql/install/install-2.6-create_tables-mysql41.sql</li>
-<li><var>OPENPNE_DIR</var>/setup/sql/install/install-2.6-insert_data-mysql41.sql</li>
+<li><var>OPENPNE_DIR</var>/setup/sql/install/install-2.6-insert_data.sql</li>
 </ol>
 
 <div>
 <em>[実行例]</em>
 <pre>
 $ mysql -u username -p --default-character-set=utf8 DBNAME &lt; install-2.6-create_tables-mysql41.sql
-$ mysql -u username -p --default-character-set=utf8 DBNAME &lt; install-2.6-insert_data-mysql41.sql
+$ mysql -u username -p --default-character-set=utf8 DBNAME &lt; install-2.6-insert_data.sql
 </pre>
 </div>
 
@@ -326,14 +326,14 @@ CREATE DATABASE `DBNAME` ;
 <p>準備したデータベース(例:DBNAME)上で、以下のSQL文を順番に実行してください。</p>
 <ol>
 <li><var>OPENPNE_DIR</var>/setup/sql/install/install-2.6-create_tables-mysql40.sql</li>
-<li><var>OPENPNE_DIR</var>/setup/sql/install/install-2.6-insert_data-mysql40.sql</li>
+<li><var>OPENPNE_DIR</var>/setup/sql/install/install-2.6-insert_data.sql</li>
 </ol>
 
 <div>
 <em>[実行例]</em>
 <pre>
 $ mysql -u username -p DBNAME &lt; install-2.6-create_tables-mysql40.sql
-$ mysql -u username -p DBNAME &lt; install-2.6-insert_data-mysql40.sql
+$ mysql -u username -p DBNAME &lt; install-2.6-insert_data.sql
 </pre>
 </div>
 
