@@ -1,7 +1,7 @@
 ({$inc_header|smarty:nodefaults})
-({ext_include file="inc_subnavi_adminDesign.tpl"})
+({ext_include file="inc_subnavi_adminSNSConfig.tpl"})
 ({assign var="page_name" value="ドメイン制限"})
-({ext_include file="inc_tree_adminDesign.tpl"})
+({ext_include file="inc_tree_adminSNSConfig.tpl"})
 </div>
 
 ({*ここまで:navi*})
