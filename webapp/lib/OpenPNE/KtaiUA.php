@@ -63,6 +63,7 @@ class OpenPNE_KtaiUA
 
         // WILLCOM / DDIPOCKET
         elseif (strpos($ua, 'WILLCOM') !== false
+             || strpos($ua, 'SHARP/WS') !== false
              || strpos($ua, 'DDIPOCKET') !== false) {
             $this->is_ktai = true;
         }
