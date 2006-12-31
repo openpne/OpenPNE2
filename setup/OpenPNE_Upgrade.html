@@ -57,7 +57,7 @@ var {
 
 <h1>OpenPNE アップグレードガイド</h1>
 
-<p>最終更新日: 2006/12/25</p>
+<p>最終更新日: 2006/12/31</p>
 
 <h2>目次</h2>
 <ul>
@@ -75,7 +75,7 @@ var {
 
 <h2 id="section0">0. はじめに</h2>
 
-<p>この文書は、OpenPNE バージョン2.4.* から バージョン2.6RC2 へのアップグレード手順を書いたものです。</p>
+<p>この文書は、OpenPNE バージョン2.4.* から バージョン2.6へのアップグレード手順を書いたものです。</p>
 
 <h2 id="section1">1. 手順</h2>
 
@@ -96,7 +96,7 @@ var {
 <b>注意</b><br>
 PNEBIZ/PNEPOINTのテーブルを作成していなかった場合はこれらを作成するSQLを実行してください。<br>
 (これらの機能を使用しない場合でもテーブルは必須となります)<br>
-setup/upgrade/pnebiz-mysql4*.sql及びsetup/upgrade/pnepoint-mysql4*.sql<br>
+setup/sql/upgrade/pnebiz-mysql4*.sql及びsetup/sql/upgrade/pnepoint-mysql4*.sql<br>
 ご使用のMySQLにあったスクリプトを実行してください。<br>
 <pre>
 $ mysql -u username -p --default-character-set=utf8 DBNAME &lt; pnebiz-mysql4*.sql
@@ -104,7 +104,7 @@ $ mysql -u username -p --default-character-set=utf8 DBNAME &lt; pnepoint-mysql4*
 </pre>
 
 
-その後バージョン2.6へのアップグレードスクリプトsetup/upgrade/upgrade-2.4to2.6-mysql4*.sql を実行します。<br>
+その後バージョン2.6へのアップグレードスクリプトsetup/sql/upgrade/upgrade-2.4to2.6-mysql4*.sql を実行します。<br>
 <pre>
 $ mysql -u username -p --default-character-set=utf8 DBNAME &lt; upgrade-2.4to2.6-mysql4*.sql
 </pre>

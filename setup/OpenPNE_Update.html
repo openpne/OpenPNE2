@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="Content-Style-Type" content="text/css">
-<title>OpenPNE 2.6RC2アップデートガイド</title>
+<title>OpenPNE 2.6アップデートガイド</title>
 <style type="text/css">
 <!--
 body {
@@ -55,9 +55,9 @@ var {
 
 <body>
 
-<h1>OpenPNE2.6RC2 アップデートガイド</h1>
+<h1>OpenPNE2.6 アップデートガイド</h1>
 
-<p>作成日: 2006/12/25</p>
+<p>作成日: 2006/12/31</p>
 
 <h2>目次</h2>
 <ul>
@@ -71,6 +71,7 @@ var {
   <li><a href="#section2-4">2-4. BIZスケジュールコンバータ/キャップ書き換え実行(BIZモード使用時)</a></li>
   <li><a href="#section2-5">2-5. OpenPNE2.5.8からのアップデート</a></li>
   <li><a href="#section2-6">2-6. OpenPNE2.6RC1からのアップデート</a></li>
+  <li><a href="#section2-7">2-7. OpenPNE2.6RC2からのアップデート</a></li>
   </ul></li>
 </ul>
 
@@ -78,7 +79,7 @@ var {
 
 <h2 id="section0">0. はじめに</h2>
 
-<p>この文書は、OpenPNE バージョン2.4.*/2.5.8/2.6RC1 から バージョン2.6RC2 へのアップデート手順を書いたものです。</p>
+<p>この文書は、OpenPNE バージョン2.4.*/2.5.8/2.6RC1/RC2 から バージョン2.6  へのアップデート手順を書いたものです。</p>
 
 <h2 id="section1">1. 手順</h2>
 
@@ -110,13 +111,13 @@ MySQLのバージョン4.0/4.1でスクリプトが分かれています。<br>
 
 <h3 id="section2-2">2-2. ソースコードの置き換え</h3>
 
-<p>サーバ上に OpenPNE 2.6RC2 のソースファイルを設置します。<br>
+<p>サーバ上に OpenPNE 2.6 のソースファイルを設置します。<br>
 ソースは部分的に入れ替えずに全て交換してください。<br>
 詳しくは、「<a href="./OpenPNE_Setup.html">OpenPNE セットアップガイド</a>」を参考にしてください。</p>
 
 <h3 id="section2-3">2-3. 設定ファイルの変更</h3>
 
-<p>OpenPNE 2.4 の設定ファイルを参考にして 2.6RC2 用の設定ファイルを作成します。</p>
+<p>OpenPNE 2.4 の設定ファイルを参考にして 2.6 用の設定ファイルを作成します。</p>
 
 <p class="caution">PHPの設定でセーフモードが有効な場合は、MAIL_SET_ENVFROM を false に設定してください。</p>
 
@@ -184,6 +185,12 @@ BIZモード使用時には、その後キャップ書き換えSQLを実行し�
 <li><var>OPENPNE_DIR</var>/setup/sql/udpate/option-2.6-pnebiz-header.sql</li>
 </ol>
 
+<h3 id="section2-6">2-6. OpenPNE2.6RC2からのアップデート</h3>
+
+<p>
+ソースコードを全て置き換えてください。<br>
+アップデートSQLの実行は必要ありません。<br>
+</p>
 
 <hr>
 <p>以上でアップデート作業は完了です。</p>
