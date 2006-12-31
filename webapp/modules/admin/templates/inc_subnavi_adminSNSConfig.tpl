@@ -8,6 +8,6 @@
 <a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_profile')})" title="プロフィール項目変更: プロフィール項目の追加、編集、削除、並び替え">プロフィール項目設定</a>&nbsp;|&nbsp;
 <a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_category')})" title="コミュニティカテゴリ変更: コミュニティカテゴリの追加、編集、削除、並び替え">コミュニティカテゴリ設定</a>&nbsp;|&nbsp;
 ({if $auth_type == 'all' || $auth_type == ''})
-<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('manage_c_commu')})" title="初期コミュニティ管理: 新規登録時に参加させるコミュニティの設定">初期コミュニティ</a>
+<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('manage_c_commu')})" title="初期コミュニティ設定: 新規登録時に参加させるコミュニティの設定">初期コミュニティ設定</a>
 ({/if})
 </div>

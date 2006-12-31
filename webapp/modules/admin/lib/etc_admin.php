@@ -6,7 +6,6 @@
 
 function admin_fetch_inc_header($display_navi = true)
 {
-    $v['title'] = SNS_NAME . '管理ページ';
     $v['display_navi'] = $display_navi;
     $v['PHPSESSID'] = md5(session_id());
     $v['module_name'] = ADMIN_MODULE_NAME;
