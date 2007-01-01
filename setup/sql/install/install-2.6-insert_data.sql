@@ -27,6 +27,10 @@ INSERT INTO `c_cmd` VALUES (9,'kakaku.com',7);
 INSERT INTO `c_cmd` VALUES (10,'grouper.com',7);
 INSERT INTO `c_cmd` VALUES (11,'flipclip.net',7);
 INSERT INTO `c_cmd` VALUES (12,'youtube.com',7);
+INSERT INTO `c_cmd` VALUES (13,'blogcruiser',7);
+INSERT INTO `c_cmd` VALUES (14,'ppw',7);
+INSERT INTO `c_cmd` VALUES (15,'postpet',7);
+INSERT INTO `c_cmd` VALUES (16,'sonetphoto',7);
 
 INSERT INTO `c_commu_category` VALUES (1,'地域',100,1);
 INSERT INTO `c_commu_category` VALUES (2,'グルメ',200,1);
