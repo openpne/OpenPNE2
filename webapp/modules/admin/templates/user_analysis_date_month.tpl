@@ -34,7 +34,7 @@
 	({if $key eq "合計"})
 	<th>({$key})</th>	
 	({else})
-	<td><a href="?m=admin&a=page_user_analysis_date_day&date=({$key})">({$key})</a></td>	
+	<td><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('user_analysis_date_day')})&date=({$key})">({$key})</a></td>	
 	({/if})
 	<td>({$item})人</td>
 </tr>
