@@ -25,7 +25,7 @@
 </tr>
 <tr>
 <th>リンク先</th>
-<td><input type="text" name="a_href" value="" size="40" /></td>
+<td><input type="text" class="basic" name="a_href" value="" size="40" /></td>
 </tr>
 <tr>
 <th>表示位置</th>
@@ -38,7 +38,7 @@
 </tr>
 <tr>
 <th>バナー名</th>
-<td><input type="text" name="nickname" value="" size="20" /></td>
+<td><input type="text" class="basic" name="nickname" value="" size="20" /></td>
 </tr>
 </table>
 <p class="textBtn"><input type="submit" class="submit" value="バナーを追加する" /></p>

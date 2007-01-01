@@ -1,4 +1,3 @@
-({assign var="title" value="`$smarty.const.SNS_NAME`管理画面"})
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -7,7 +6,8 @@
 <meta content="text/css" http-equiv="content-style-type" />
 <meta http-equiv="Content-Script-Type" content="text/javascript" />
 <link href="modules/admin/default.css" rel="stylesheet" type="text/css" media="all" />
-<script src="modules/admin/default.js" type="text/javascript"></script>
+<script type="text/javascript" src="./js/prototype.js"></script>
+<script type="text/javascript" src="./modules/admin/default.js"></script>
 </head>
 <body id="admin_page_({$CURRENT_ACTION})">
 
@@ -113,7 +113,7 @@
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_profile')})" title="プロフィール項目変更: プロフィール項目の追加、編集、削除、並び替え">プロフィール項目設定</a></li>
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_category')})" title="コミュニティカテゴリ変更: コミュニティカテゴリの追加、編集、削除、並び替え">コミュニティカテゴリ設定</a></li>
 ({if $auth_type == 'all' || $auth_type == ''})
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('manage_c_commu')})" title="初期コミュニティ設定: 新規登録時に参加させるコミュニティの設定">初期コミュニティ設定</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('manage_c_commu')})" title="初期コミュニティ管理: 新規登録時に参加させるコミュニティの設定">初期コミュニティ</a></li>
 ({/if})
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_holiday')})" title="カレンダーの祝日の設定">祝日設定</a></li>
 ({if $smarty.const.OPENPNE_DISP_POINT})

@@ -180,14 +180,14 @@ function assign_color_user_({$key})() {
 
 ({if $user_save_bgcolors})
 <div class="border">
-<p>セット名：<input type="text" name="input_name" value="" onChange="reflect_color(this)" size="16"></p>
+<p>セット名：<input type="text" class="basic" name="input_name" value="" onChange="reflect_color(this)" size="16"></p>
 
-<p>見本色　：#<input type="text" name="input_sample" value="" onChange="reflect_color(this)" size="8" maxlength="6"><span id="preview_display_input_sample" style="border:1px solid #000000;width:1.5em;height:1.5em;vertical-align:middle;">&nbsp;&nbsp;</span><span class="caution">&nbsp;指定しない場合は白になります。</span></p>
+<p>見本色　：#<input type="text" class="basic" name="input_sample" value="" onChange="reflect_color(this)" size="8" maxlength="6"><span id="preview_display_input_sample" style="border:1px solid #000000;width:1.5em;height:1.5em;vertical-align:middle;">&nbsp;&nbsp;</span><span class="caution">&nbsp;指定しない場合は白になります。</span></p>
 </div>
 ({/if})
 
 <p class="textBtn" id="c04"><input type="submit" value="色変更を確定する"></p>
-({if $user_save_bgcolors})<p class="textBtns"><input type="submit" class="submit" value="新規に設定を保存する"></p>({/if})
+({if $user_save_bgcolors})<p class="textBtns"><input type="submit" value="新規に設定を保存する"></p>({/if})
 
 
 

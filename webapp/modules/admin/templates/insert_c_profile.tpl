@@ -14,11 +14,11 @@
 <table class="basicType2">
 <tr>
 <th><input type="hidden" name="m" value="({$module_name})" /><input type="hidden" name="a" value="do_({$hash_tbl->hash('insert_c_profile','do')})" /><input type="hidden" name="sessid" value="({$PHPSESSID})" />項目名</th>
-<td><input type="text" name="caption" value="" size="30" /></td>
+<td><input type="text" class="basic" name="caption" value="" size="30" /></td>
 </tr>
 <tr>
 <th>識別名</th>
-<td><input type="text" name="name" value="" size="20" />　<span class="caution">※半角英数 と _ のみ</span></td>
+<td><input type="text" class="basic" name="name" value="" size="20" />　<span class="caution">※半角英数 と _ のみ</span></td>
 </tr>
 <tr>
 <th>必須</th>
@@ -40,7 +40,7 @@
 </tr>
 <tr>
 <th>並び順</th>
-<td><input type="text" name="sort_order" value="" size="10" /></td>
+<td><input type="text" class="basic" name="sort_order" value="" size="10" /></td>
 </tr>
 <tr>
 <th>新規登録</th>
@@ -83,12 +83,12 @@
 </tr>
 <tr>
 <th>最小値&#xff5e;最大値</th>
-<td><input type="text" name="val_min" value="({if $c_profile.val_min != 0})({$c_profile.val_min})({/if})" size="10" />&#xff5e;<input type="text" name="val_max" value="({if $c_profile.val_max != 0})({$c_profile.val_max})({/if})" size="10" /><br />
+<td><input type="text" class="basic" name="val_min" value="({if $c_profile.val_min != 0})({$c_profile.val_min})({/if})" size="10" />&#xff5e;<input type="text" class="basic" name="val_max" value="({if $c_profile.val_max != 0})({$c_profile.val_max})({/if})" size="10" /><br />
 <span class="caution">※入力値タイプが「数値」の場合は数値の範囲、それ以外の場合は(半角の)文字数</span></td>
 </tr>
 <tr>
 <th>正規表現</th>
-<td><input type="text" name="val_regexp" value="({$c_profile.val_regexp})" size="30" /><br />
+<td><input type="text" class="basic" name="val_regexp" value="({$c_profile.val_regexp})" size="30" /><br />
 <span class="caution">※入力値タイプで「正規表現」を選んだ場合のみ有効(PHPのPerl互換(PCRE)正規表現関数を使用)<br />
 例： /^[a-c]\d+$/</span></td>
 </tr>

@@ -46,7 +46,7 @@
 </select>
 </dd>
 <dt class="label">タイトル</dt>
-<dd><input type="text" name="subject" size="50" value="({$requests.subject})"></dd>
+<dd><input type="text" class="basic" name="subject" size="50" value="({$requests.subject})"></dd>
 <dt class="label">本文</dt>
 <dd><textarea name="body" cols="50" rows="10">({$requests.body})</textarea></dd>
 <dd><p class="textBtn"><input type="submit" class="submit" value="メッセージ送信"></p></dd>

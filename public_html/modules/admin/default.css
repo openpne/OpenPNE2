@@ -500,6 +500,7 @@ div.listControl p.listMove {
 #admin_page_list_c_image div.listControl#pager01 {
 	margin-top: 5px;
 }
+/*
 #admin_page_list_c_image div.listControl p.display {
 	background-color: #75757A;
 	color: #FFFFFF;
@@ -507,6 +508,7 @@ div.listControl p.listMove {
 	text-align: right;
 	border: 1px #5F6067 solid;
 }
+*/
 #admin_page_list_c_image div.listControl p.listMove {
 	text-align: right;
 	padding: 3px 5px;

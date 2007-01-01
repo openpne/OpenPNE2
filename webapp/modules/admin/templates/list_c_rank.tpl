@@ -71,9 +71,9 @@
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('insert_c_rank','do')})">
 <input type="hidden" name="sessid" value="({$PHPSESSID})">
 </td>
-<td><input type="text" name="name" value="" size="5"></td>
+<td><input type="text" class="basic" name="name" value="" size="5"></td>
 <td><input type="file" name="image_upfile" value="" size="20"></td>
-<td><input type="text" name="point" value="" size="5"></td>
+<td><input type="text" class="basic" name="point" value="" size="5"></td>
 <td colspan="2"><span class="textBtnS"><input type="submit" class="submit" value="項目追加"></span></td>
 </form>
 </tr>

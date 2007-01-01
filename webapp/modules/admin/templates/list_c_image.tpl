@@ -19,13 +19,14 @@
 <option value="100"({if $pager.page_size==100}) selected="selected"({/if})>100件</option>
 <option value="500"({if $pager.page_size==500}) selected="selected"({/if})>500件</option>
 </select>
-<input type="submit" class="submit" value="変更"><span class="btnCaution">※表示件数を多くすると処理が重くなり、サーバーに負荷がかかります。</span>
+<span class="textBtnS"><input type="submit" value="変更"></span><span class="btnCaution">※表示件数を多くすると処理が重くなり、サーバーに負荷がかかります。</span>
 </p>
 </form>
 
 
 <div class="listControl" id="pager01">
-<p class="display">({$pager.total_num}) 件中 ({$pager.start_num}) - ({$pager.end_num})件目を表示しています</p>
+<p class="display">
+({$pager.total_num}) 件中 ({$pager.start_num}) - ({$pager.end_num})件目を表示しています</p>
 ({capture name="pager"})
 <p class="listMove">
 ({if $pager.prev_page})<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_image')})&amp;page=({$pager.prev_page})&amp;page_size=({$pager.page_size})">前へ</a>({/if})

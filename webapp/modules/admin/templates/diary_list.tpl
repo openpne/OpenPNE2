@@ -22,7 +22,7 @@
 </form>
 
 ({capture name="pager"})
-
+<div class="listControl">
 <p class="display">
 ({$total_num})件中 ({$start_num})-({$end_num})件目を表示しています
 </p>
@@ -31,7 +31,7 @@
 ({if $prev})<a href="?m=({$module_name})&a=page_({$hash_tbl->hash('diary_list','page')})&page=({$page-1})&keyword=({$keyword_encode})">＜＜前</a>　({/if})
 ({if $next})<a href="?m=({$module_name})&a=page_({$hash_tbl->hash('diary_list','page')})&page=({$page+1})&keyword=({$keyword_encode})">次＞＞</a>({/if})
 </p>
-
+</div>
 ({/capture})
 
 <div class="listControl" id="pager01">

@@ -25,7 +25,7 @@
 <tr>
 <th>
 リンク先</th>
-<td><input type="text" name="a_href" value="({$c_banner.a_href})" size="40" /></td>
+<td><input type="text" class="basic" name="a_href" value="({$c_banner.a_href})" size="40" /></td>
 </tr>
 <tr>
 <th>表示位置</th>
@@ -38,7 +38,7 @@
 </tr>
 <tr>
 <th>バナー名</th>
-<td><input type="text" name="nickname" value="({$c_banner.nickname})" size="20" /></td>
+<td><input type="text" class="basic" name="nickname" value="({$c_banner.nickname})" size="20" /></td>
 </tr>
 <tr>
 <th>表示設定（ログイン前）</th>
