@@ -491,7 +491,9 @@
 <option value="({$value.category_name})">({$value.category_name})
 ({/foreach})
 </select>
-
+<br>
+※ひとつのカテゴリにつき半角20文字以内で入力してください。<br>
+※カテゴリは5つまで登録できます。<br>
 </div>
 </td>
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
