@@ -17,7 +17,7 @@
 <textarea name="info">({$c_commu.info})</textarea><br>
 参加・公開<br>
 <input type="radio" name="public_flag" value="public"({if $c_commu.public_flag=='public'}) checked({/if})>誰でも参加可能、掲示板は全員に公開<br>
-<input type="radio" name="public_flag" value="auth_public"({if $c_commu.public_flag=='auth_public'}) checked({/if})>参加には管理者の承認が必要、掲示板は全員に公開<br>
+<input type="radio" name="public_flag" value="auth_sns"({if $c_commu.public_flag=='auth_sns'}) checked({/if})>参加には管理者の承認が必要、掲示板は全員に公開<br>
 <input type="radio" name="public_flag" value="auth_commu_member"({if $c_commu.public_flag=='auth_commu_member'}) checked({/if})>参加には管理者の承認が必要、掲示板はｺﾐｭﾆﾃｨﾒﾝﾊﾞｰにのみ公開<br>
 トピック作成権限<br>
 ({html_radios name="topic_authority" options=$topic_authority_list class="no_bg" selected=$c_commu.topic_authority separator="<br>"})
