@@ -1,72 +1,73 @@
-var menu_info = new Array();
+var menulist_num= 7;//ドロップダウンメニューの数
+var menulist= new Array(menulist_num);
+menulist['adminSiteMember']= {'count_mouseout':0,'display':false};
+menulist['adminImageKakikomi']= {'count_mouseout':0,'display':false};
+menulist['adminStatisticalInformation']= {'count_mouseout':0,'display':false};
+menulist['adminDesign']= {'count_mouseout':0,'display':false};
+menulist['adminSNSConfig']= {'count_mouseout':0,'display':false};
+menulist['adminInfoKiyaku']= {'count_mouseout':0,'display':false};
+menulist['adminAdminConfig']= {'count_mouseout':0,'display':false};
 
-function menu(host_object_id, visible_object_id){
-	if(document.all){
-		var visible_object = document.all[visible_object_id];
-		var host_object = document.all[host_object_id];
-	}else if(document.getElementById){
-		var visible_object = document.getElementById(visible_object_id);
-		var host_object = document.getElementById(host_object_id);
-	}
+var count= 0;//main関数の実行回数
+var count_limit= 1000000;//main関数の実行回数（100万でリセット）
 
-	if(visible_object.style.visibility == 'visible'){
-		visible_object.style.visibility="hidden";
-	}else{
-		if(document.all){
-			visible_object.style.left = host_object.offsetLeft;
-			visible_object.style.top = host_object.offsetTop + host_object.offsetHeight;	
-			visible_object.style.visibility="visible";
-		}else if(document.getElementById){
-			visible_object.style.left = host_object.offsetLeft + "px";
-			visible_object.style.top = host_object.offsetTop + host_object.offsetHeight + "px";
-			visible_object.style.visibility="visible";
-		}		
-	}
-}
+var delay= 1;//ドロップダウンメニューを非表示にするまでのディレイ
 
+function main() {
 
-/*----------------------------------------------------
-削除予定
-----------------------------------------------------*/
-
-function menu_ctrl(parent_object_id){
+	//メニューの制御
+	if (count > delay) {
 	
-	if(!document.hasChildNodes){
-		return false;
-	}
-	
-	var child_object = document.getElementById(parent_object_id).getElementsByTagName('ul');
-	var i_child_object = child_object.item(0);
-	
-	if (i_child_object.style.display == 'block'){
-		i_child_object.style.display = 'none';
-		for(i=0;i<child_object.length;i++){
-				child_object.item(i).style.display = 'none';
+	for (var key in menulist) {
+		var key_cont = key+"Cont";
+		if(document.getElementById){
+			var host_object = document.getElementById(key);
+			var visible_object = document.getElementById(key_cont);
+		}else if(document.all){
+			var host_object = document.all[key];
+			var visible_object = document.all[key_cont];
 		}
-	}else{
-		i_child_object.style.display = 'block';
-	}
 
+		////メニューを表示する
+		if ((count - menulist[key]['count_mouseout'] < delay) || menulist[key]['display']) {
+			
+			if(document.getElementById){
+				visible_object.style.left = host_object.offsetLeft + "px";
+				visible_object.style.top = host_object.offsetTop + host_object.offsetHeight + "px";
+			}else if(document.all){
+				visible_object.style.left = host_object.offsetLeft;
+				visible_object.style.top = host_object.offsetTop + host_object.offsetHeight;	
+			}
+			visible_object.style.visibility="visible";
+			
+		////メニューを隠す
+		} else {
+			if (menulist[key]['count_mouseout'] > 0) {
+				if (visible_object.style.visibility == "visible"){
+					visible_object.style.visibility="hidden";
+				}
+			}
+		}
+	}
+	
+	}
+	
+	count ++;
+	
 }
 
-function all_menu_ctrl(host_object_id){
-	
-	if(!document.hasChildNodes){
-		return false;
-	}
-	
-	if(menu_info[host_object_id]=='none' || !menu_info[host_object_id]){
-		menu_info[host_object_id]='block';
-	}else{
-		menu_info[host_object_id]='none';
-	}
-	
-	var child_object = document.getElementById(host_object_id).getElementsByTagName('ul');
-
-	for (i=0;i<child_object.length;i++){
-		child_object.item(i).style.display = menu_info[host_object_id];
-	}
+function menu(id) {
+	//onmouseover時の処理
+	menulist[id]['display']= true;
 }
+
+function menu_hide(id) {
+	//onmouseout時の処理
+	menulist[id]['count_mouseout']= count;
+	menulist[id]['display']= false;
+}
+
+main_timer_ID = setInterval('main()',100);//main関数の実行
 
 /*----------------------------------------------------
 メンバーリスト
@@ -89,6 +90,10 @@ function clearAll(){
     }
     return false;
 }
+
+/*----------------------------------------------------
+スクリプトリンク
+----------------------------------------------------*/
 
 function Link(linkLoc) {
     if (linkLoc != "") {

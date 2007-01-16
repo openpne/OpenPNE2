@@ -9,15 +9,11 @@
 <h2></h2>
 <div class="contents">
 
-
-
 ({$inc_user_analysis_navi|smarty:nodefaults})
-<br>
 
-<b>({$profile_caption})</b>
+<p>({$profile_caption})</p>
 
-<br><br>
-<table width="300" border="1" cellpadding="5" cellspacing="0">
+<table class="basicType2">
 ({foreach from=$analysis_profile item=item})
 <tr>
 	<td width="100">({$item.value})</td>

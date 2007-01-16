@@ -19,12 +19,12 @@ body {
 .container {
 	/*background: url(./img/bg_body_right.gif) 100% 100% repeat-y;*/
 	padding-right: 0;
-	min-width:980px;
+	min-width:1000px;
 }
 
 /*ここから：IE用擬似min-width*/
-* html body { padding-right:980px;}
-* html body div.container { float:left; position:relative; margin-right:-980px;}
+* html body { padding-right:1000px;}
+* html body div.container { float:left; position:relative; margin-right:-1000px;}
 /*ここまで：IE用擬似min-width*/
 
 a:link {
@@ -45,19 +45,19 @@ li { list-style-type: none;}
 .clear { clear:both; font-size: 1px; line-height: 1px;}
 .clear br { display: none;}
 .none { display: none;}
-select option { padding-right: 4px;}
+
 
 /*********** Header ***********/
 
 .header { height: 50px; background: url("img/bg_header.gif") no-repeat; border-bottom: #000000 1px solid;}
-.header div.ttl { float: left; padding: 0 0 0 24px; color: #FFFFFF;}
-.header div.ttl h1 { float: left; padding: 20px 15px 0 0; font-size: 22px; color: #FFFFFF;}
-.header div.ttl h1 a { color: #FFFFFF; text-decoration: none;}
+.header div.ttl { float: left; padding: 0 0 0 24px; line-height: 100%; color: #FFFFFF;}
+.header div.ttl h1 { float: left; padding: 24px 15px 0 0; font-size: 22px; color: #FFFFFF;}
+.header div.ttl h1 a { line-height: 16px; text-decoration: none;}
 .header div.ttl h1 a:link ,
 .header div.ttl h1 a:visited ,
 .header div.ttl h1 a:hover ,
 .header div.ttl h1 a:active { color: #FFFFFF;}
-.header div.ttl span { float: left; display: block; padding-top: 25px; color: #FFFFFF;}
+.header div.ttl span { float: left; display: block; padding-top: 27px; color: #FFFFFF;}
 .header div.ttl span a { margin: 0 3px; color: #FFFFFF;}
 .header div.naviHelp { float: right; padding-top: 25px; padding-right: 17px;}
 .header div.naviHelp a { margin: 0 3px;}
@@ -71,6 +71,7 @@ select option { padding-right: 4px;}
 /* 各ページ共通タブ型表示部分 */
 
 .navi { padding-top: 10px;clear: both; background-color: #585858;}
+.navi div.naviMain * { display: block;}
 .navi div.naviMain ul.admin,
 .navi div.naviMain ul.design,
 .navi div.naviMain ul.setup ,
@@ -158,7 +159,7 @@ h2#ttl03 { margin-top: 30px;}
 
 .contents { padding: 10px 17px 0 17px;}
 .contents h3.item,
-.contents strong.item { padding-left: 5px; border-left: .5em #75757A solid;}
+.contents strong.item { padding-left: 5px; border-left: .5em #58585C solid;}
 .contents p { padding-bottom: 0;}
 
 .contents .caution { color: #FF0000;}
@@ -220,7 +221,7 @@ div.listControl {
 	margin-bottom: 5px;
 }
 div.listControl p.display {
-	background-color: #75757A;
+	background-color: #58585C;
 	color: #FFFFFF;
 	padding: 3px 5px;
 	text-align: right;
@@ -241,7 +242,7 @@ div.listControl p.listMove {
 	padding: 5px;
 	border-left: 1px #5F6067 solid;
 	border-bottom: 1px #A3A3A6 solid;
-	background: #75757A url("img/tbl_line01.gif") repeat-x bottom;
+	background-color: #58585C;
 	font-weight: normal;
 	color: #fff;
 }
@@ -250,26 +251,30 @@ div.listControl p.listMove {
 	border-left: 1px #5F6067 solid;
 	border-bottom: 1px #A3A3A6 solid;
 	background-color: #FFFFFF;
-	background-image: url("img/tbl_line01.gif");
-	background-position: bottom;
-	background-repeat: repeat-x;
 }
 .contents table.basicType2 th {
 	padding: 5px;
 	border-right: 1px #A3A3A6 solid;
 	border-bottom: 1px #5F6067 solid;
-	background: #75757A url("img/tbl_line02.gif") repeat-y right;
+	background-color: #58585C;
 	font-weight: normal;
-	color: #fff;
+	color: #ffffff;
+}
+.contents table.basicType2 th a:link {
+	color: #3CBBFF;
+}
+.contents table.basicType2 th a:visited {
+	color: #2D9EDA;
+}
+.contents table.basicType2 th a:active ,
+.contents table.basicType2 th a:hover {
+	color: #7BD1FF;
 }
 .contents table.basicType2 td {
 	padding: 5px 10px;
 	border-right: 1px #A3A3A6 solid;
 	border-bottom: 1px #5F6067 solid;
 	background-color: #FFFFFF;
-	background-image: url("img/tbl_line02.gif");
-	background-position: right;
-	background-repeat: repeat-y;
 }
 
 .contents table.basicType2 td.type1 {
@@ -372,7 +377,7 @@ div.listControl p.listMove {
 #admin_page_list_c_member table.userListTable th { padding: 5px 2px;}
 #admin_page_list_c_member table.userListTable td { padding: 5px;}
 #admin_page_list_c_member table.userListTable thead th,
-#admin_page_list_c_member table.userListTable tfoot th { border-left: 1px #5F6067 solid; border-bottom: 1px #5F6067 solid; background-color: #75757A; font-weight: normal; color: #fff;}
+#admin_page_list_c_member table.userListTable tfoot th { border-left: 1px #5F6067 solid; border-bottom: 1px #5F6067 solid; background-color: #58585C; font-weight: normal; color: #fff;}
 #admin_page_list_c_member table.userListTable tbody td { border-left: 1px #5F6067 solid; border-bottom: 1px #A3A3A6 solid;}
 
 /* 改行無し幅詰め */
@@ -438,7 +443,7 @@ div.listControl p.listMove {
 #admin_page_list_c_member table.userListTable td.cell18 { text-align: right;}
 
 /* 個別指定 */
-#admin_page_list_c_member table.userListTable thead th.cell01 { background-color: #5F6067;}
+#admin_page_list_c_member table.userListTable thead th.cell01 { background-color: #58585C;}
 #admin_page_list_c_member table.userListTable tfoot th.cell01 { background-color: #FFCE80;}
 #admin_page_list_c_member table.userListTable th.cell08A,
 #admin_page_list_c_member table.userListTable th.cell08B,
@@ -455,13 +460,15 @@ div.listControl p.listMove {
 #admin_page_list_c_member table.userListTable td.cell03,
 #admin_page_list_c_member table.userListTable td.cell15 { background-color: #FFFFFF; font-weight: bold;}
 
+/****************************************/
+
 /** admin_page_delete_c_member_confirm **/
 #admin_page_delete_c_member_confirm p.caution#c01 strong { font-weight: bold; line-height: 170%;}
 #admin_page_delete_c_member_confirm p.caution#c02 { padding: 20px 0 10px 0;}
 #admin_page_delete_c_member_confirm p#userImg { padding: 20px 0 10px 0;}
 #admin_page_delete_c_member_confirm p#userImg img { margin: 0 10px;}
 #admin_page_delete_c_member_confirm table.userDetailTable { clear: both; width: 960px; border: 1px #5F6067 solid; border-collapse: collapse; line-height: 100%;}
-#admin_page_delete_c_member_confirm table.userDetailTable th { padding: 5px; width: 10%; border-left: 1px #5F6067 solid; background: #75757A url("img/tbl_line01.gif") repeat-x bottom; white-space: pre; text-align: right; font-weight: normal; color: #fff;}
+#admin_page_delete_c_member_confirm table.userDetailTable th { padding: 5px; width: 10%; border-left: 1px #5F6067 solid; background: #58585C url("img/tbl_line01.gif") repeat-x bottom; white-space: pre; text-align: right; font-weight: normal; color: #fff;}
 #admin_page_delete_c_member_confirm table.userDetailTable td { padding: 5px; border-left: 1px #5F6067 solid; background-image: url("img/tbl_line01.gif"); background-position: bottom; background-repeat: repeat-x;}
 
 /** admin_page_passwd **/
@@ -502,19 +509,19 @@ div.listControl p.listMove {
 }
 /*
 #admin_page_list_c_image div.listControl p.display {
-	background-color: #75757A;
+	background-color: #58585C;
 	color: #FFFFFF;
 	padding: 3px 5px;
 	text-align: right;
 	border: 1px #5F6067 solid;
 }
-*/
 #admin_page_list_c_image div.listControl p.listMove {
 	text-align: right;
 	padding: 3px 5px;
 	background-color: #FFFFFF;
 	border: 1px #5F6067 solid;
 }
+*/
 #admin_page_list_c_image div.listControl p.listMove a,
 #admin_page_list_c_image div.listControl p.listMove strong { padding: 0 3px;}
 #admin_page_list_c_image div.imageListTable div.cell {
@@ -541,7 +548,7 @@ div.listControl p.listMove {
 #admin_page_delete_c_image_confirm p.caution#c02 { padding: 20px 0 10px 0;}
 #admin_page_delete_c_image_confirm p#userImg { padding: 20px 0 10px 0;}
 
-/** 画像アップロード・削除|admin_page_edit_c_image **/
+/** admin_page_edit_c_image **/
 #admin_page_edit_c_image h2#ttl01 {}
 #admin_page_edit_c_image h2#ttl02 {}
 #admin_page_edit_c_image p.caution#c01 { padding: 0;}
@@ -570,7 +577,7 @@ div.listControl p.listMove {
 #admin_page_delete_kakikomi p.sampleID strong,
 #admin_page_delete_kakikomi dl.sampleID dd strong { margin: 0 3px; padding: 0 5px; background-color: #ff0000; font-weight: normal; color: #fff;}
 #admin_page_delete_kakikomi table.diaryDetailTable { clear: both; width: 100%; border: 1px #5F6067 solid; border-collapse: collapse; line-height: 100%;}
-#admin_page_delete_kakikomi table.diaryDetailTable th { padding: 5px 5px 5px 20px; width: 1%; border-left: 1px #5F6067 solid; background: #75757A; white-space: pre; text-align: right; font-weight: normal; color: #fff;}
+#admin_page_delete_kakikomi table.diaryDetailTable th { padding: 5px 5px 5px 20px; width: 1%; border-left: 1px #5F6067 solid; background: #58585C; white-space: pre; text-align: right; font-weight: normal; color: #fff;}
 #admin_page_delete_kakikomi table.diaryDetailTable td { padding: 5px; border-left: 1px #5F6067 solid; border-bottom: 1px #A3A3A6 solid; background-color: #ffffff; }
 
 /** admin_page_edit_mail_send **/
@@ -595,7 +602,7 @@ div.listControl p.listMove {
 
 #admin_page_edit_mail_send table td input { margin: 0 5px 0 15px;}
 
-/** メール管理|admin_page_edit_mail **/
+/** admin_page_edit_mail **/
 #admin_page_edit_mail p.caution#c01,
 #admin_page_edit_mail p.caution#c02 {}
 #admin_page_edit_mail p.caution#c01 { padding-bottom: 5px;}
@@ -607,7 +614,7 @@ div.listControl p.listMove {
 #admin_page_edit_mail td.menu dl dd { padding: 2px 0 20px 0;}
 #admin_page_edit_mail td.menu dl dd ul { padding-left: 18px;}
 #admin_page_edit_mail td.menu dl dd ul li { padding-top: 2px; list-style-type: disc; white-space: pre;}
-#admin_page_edit_mail td.detail h3 { padding-left: 20px; border-bottom: 1px #91afc1 solid; background-color: #5F6067; color: #FFFFFF; line-height: 200%; font-size: medium;}
+#admin_page_edit_mail td.detail h3 { padding-left: 20px; border-bottom: 1px #91afc1 solid; background-color: #58585C; color: #FFFFFF; line-height: 200%; font-size: medium;}
 #admin_page_edit_mail td.detail p#default { padding: 10px 0 0 20px;}
 #admin_page_edit_mail td.detail form { padding-left: 20px;}
 #admin_page_edit_mail td.detail form dt { padding: 10px 0 0 0;}
@@ -640,17 +647,16 @@ div.listControl p.listMove {
 #admin_page_send_invites_confirm h4 { padding-top: 15px; font-size: small;}
 
 /** admin_page_edit_category **/
-#admin_page_edit_category td.middle { padding-top: 5px; padding-right: 15px; vertical-align: top;}
-#admin_page_edit_category td.small { padding-top: 5px; padding-left: 15px; background: url("img/tbl_line02.gif") repeat-y; vertical-align: top;}
+#admin_page_edit_category td.middle { padding-top: 5px; padding-right: 20px; vertical-align: top;}
+#admin_page_edit_category td.small { padding-top: 5px; padding-left: 20px; background: url("img/tbl_line02.gif") repeat-y; vertical-align: top;}
 #admin_page_edit_category td.small table.basicType2 { margin-right: 10px;}
 #admin_page_edit_category td.middle table.basicType2 tr.smallCtgItem th,
-#admin_page_edit_category td.small table.basicType2 tr.smallCtgItem th { background-color: #5F6067; text-align: left; font-size: medium; font-weight: bold;}
+#admin_page_edit_category td.small table.basicType2 tr.smallCtgItem th { background-color: #58585C; text-align: left; font-size: medium; font-weight: bold;}
 #admin_page_edit_category td.small table.basicType2 tr.smallCtgItem th a:hover { color: #fff;}
 #admin_page_edit_category td.middle table.basicType2 tr.smallCtgTable th,
 #admin_page_edit_category td.small table.basicType2 tr.smallCtgTable th { white-space: pre;}
 #admin_page_edit_category td.middle table.basicType2 tr.add td,
 #admin_page_edit_category td.small table.basicType2 tr.add td { background-color: #C0C7D7;}
-#admin_page_edit_category div.contents span.textBtnS { padding: 0 0 0 1px; background: url("img/btn_common_l_s.gif") no-repeat 0 0;} 
 
 /** admin_page_manage_c_commu **/
 #admin_page_manage_c_commu p.add { padding: 5px 0;}
@@ -672,9 +678,9 @@ div.listControl p.listMove {
 #admin_page_update_hash_table p.textBtnS#reset input {}
 #admin_page_update_hash_table div.footer { margin-top: 50px;}
 
-/** デザインカスタマイズ|admin_page_edit_skin_image **/
+/** admin_page_edit_skin_image **/
 #admin_page_edit_skin_image p.pageNavi { padding-top: 20px;}
-#admin_page_edit_skin_image p.pageNavi a { white-space: nowrap; margin-right: 6px;}
+#admin_page_edit_skin_image p.pageNavi a { padding: 0 3px; white-space: nowrap;}
 #admin_page_edit_skin_image p.caution#c01 { padding-top: 10px;}
 #admin_page_edit_skin_image table { width: 100%;}
 #admin_page_edit_skin_image table th { padding-left: 10px; text-align: left; font-size: medium; font-weight: bold; border-right-color: #5F6067;}
@@ -696,7 +702,7 @@ div.listControl p.listMove {
 * html #admin_page_edit_skin_image dl.box dd span input { margin: 0; width: 50px;vertical-align: middle;}
 #admin_page_edit_skin_image p.detailLink { clear: both; margin-top: 10px; padding: 5px 10px 5px 0; border: #A3A3A6 solid 1px; background: #D5D5D7; text-align: right;}
 
-/** デザインカスタマイズ|admin_page_edit_c_sns_config **/
+/** admin_page_edit_c_sns_config **/
 #admin_page_edit_c_sns_config div.sampleColors p ,
 #admin_page_edit_c_sns_config div.bg p { padding: 0;}
 #admin_page_edit_c_sns_config div.contents p#c05 { padding: 10px 0 5px 0;}
@@ -713,7 +719,7 @@ div.listControl p.listMove {
 	margin-top: 10px;
 }
 #admin_page_edit_c_sns_config dl.box { float: left; margin: 5px 5px 0 0; width: 150px; border: 1px #5F6067 solid;}
-#admin_page_edit_c_sns_config dl.box dt { padding: 5px; background-color: #75757A; font-weight: bold; color: #fff;}
+#admin_page_edit_c_sns_config dl.box dt { padding: 5px; background-color: #58585C; font-weight: bold; color: #fff;}
 #admin_page_edit_c_sns_config dl.box dd { padding: 5px; background: #FFFFFF;}
 #admin_page_edit_c_sns_config dl.box dd.pre_color { padding: 0; height: 35px; border-top: #5F6067 1px solid; font-size: 1px; text-align: left;}
 #admin_page_edit_c_sns_config dl.box dd.color { padding: 0; height: 35px; border-top: #5F6067 1px solid; font-size: 1px; text-align: left;}
@@ -723,7 +729,7 @@ div.listControl p.listMove {
 #admin_page_edit_c_sns_config textarea#backgroundColors { width: 450px;}
 #admin_page_edit_c_sns_config textarea#customCss { width: 950px;}
 
-/** デザインカスタマイズ|admin_page_edit_c_navi **/
+/** admin_page_edit_c_navi **/
 #admin_page_edit_c_navi p.caution#c01 {}
 #admin_page_edit_c_navi p.pageNavi { padding: 5px 0 0 0;}
 #admin_page_edit_c_navi p.pageNavi a { padding: 0 3px; white-space: nowrap;}
@@ -734,7 +740,7 @@ div.listControl p.listMove {
 #admin_page_edit_c_navi td.cell01 { background-color: #FFFFFF; font-weight: bold; text-align: center;}
 #admin_page_edit_c_navi td.cell05 { background-color: #D5D5D7; text-align: center;}
 
-/** デザインカスタマイズ|admin_page_edit_entry_point **/
+/** admin_page_edit_entry_point **/
 #admin_page_edit_entry_point div.contents p { padding: 5px;}
 #admin_page_edit_entry_point p.caution#c01 ,
 #admin_page_edit_entry_point p.caution#c02 {}
@@ -747,7 +753,7 @@ div.listControl p.listMove {
 #admin_page_edit_entry_point td.menu dl dd { padding: 2px 0 20px 0;}
 #admin_page_edit_entry_point td.menu dl dd ul { padding-left: 18px;}
 #admin_page_edit_entry_point td.menu dl dd ul li { padding-top: 2px; list-style-type: disc; white-space: pre;}
-#admin_page_edit_entry_point td.detail h3 { padding-left: 20px; border-bottom: 1px #91afc1 solid; background-color: #5F6067; color: #FFFFFF; line-height: 200%; font-size: medium;}
+#admin_page_edit_entry_point td.detail h3 { padding-left: 20px; border-bottom: 1px #91afc1 solid; background-color: #58585C; color: #FFFFFF; line-height: 200%; font-size: medium;}
 #admin_page_edit_entry_point td.detail p#default { padding: 10px 0 0 20px;}
 #admin_page_edit_entry_point td.detail form { padding: 10px 0 0 20px;}
 #admin_page_edit_entry_point td.detail form textarea { width: 85%; height: 300px; padding-right: 0;}
@@ -757,7 +763,7 @@ div.listControl p.listMove {
 #admin_page_edit_entry_point td.detail p.textBtn { border-left: 5px solid #5F6067;}
 #admin_page_edit_entry_point p.actionMsg { margin: 10px 17px; border-color: #FFFFFF;}
 
-/** デザインカスタマイズ|admin_page_edit_c_banner **/
+/** admin_page_edit_c_banner **/
 #admin_page_edit_c_banner p.caution#c01,
 #admin_page_edit_c_banner p.caution#c02 { padding: 10px 0 0 0;}
 #admin_page_edit_c_banner h3#ttl01 { margin-top: 10px;}
@@ -797,13 +803,13 @@ div.listControl p.listMove {
 #admin_page_edit_c_banner table td.html dd { padding: 5px 0 0 10px;}
 #admin_page_edit_c_banner table td.html textarea { width: 850px;}
 
-/** デザインカスタマイズ|admin_page_update_c_banner **/
+/** admin_page_update_c_banner **/
 #admin_page_update_c_banner td img { margin-bottom: 10px;}
 
-/** デザインカスタマイズ|admin_page_delete_c_banner_confirm **/
+/** admin_page_delete_c_banner_confirm **/
 #admin_page_delete_c_banner_confirm p.caution#c01 { padding-top: 10px;}
 
-/** デザインカスタマイズ|admin_page_edit_c_profile **/
+/** admin_page_edit_c_profile **/
 #admin_page_edit_c_profile h3#ttl01 { margin-top:10px;}
 #admin_page_edit_c_profile h3#ttl02 { margin-top:20px;}
 #admin_page_edit_c_profile p#itemAdd { padding: 10px 0 5px 0; font-weight: bold;}
@@ -824,7 +830,7 @@ div.listControl p.listMove {
 #admin_page_edit_c_profile ul.caution#c01 { padding-top: 10px;}
 #admin_page_edit_c_profile h4 { margin: 0; padding: 0;}
 
-/** デザインカスタマイズ|admin_page_update_c_profile,admin_page_insert_c_profile **/
+/** admin_page_update_c_profile,admin_page_insert_c_profile **/
 #admin_page_update_c_profile table,
 #admin_page_insert_c_profile table { width: 960px;}
 #admin_page_update_c_profile table th,
@@ -834,10 +840,10 @@ div.listControl p.listMove {
 #admin_page_update_c_profile td span.caution,
 #admin_page_insert_c_profile td span.caution {}
 
-/** デザインカスタマイズ|admin_page_delete_c_profile **/
+/** admin_page_delete_c_profile **/
 #admin_page_delete_c_profile p.caution#c01 { padding-top: 10px;}
 
-/** HTML挿入|admin_page_insert_html **/
+/** admin_page_insert_html **/
 
 #admin_page_insert_html p.caution#c01 { padding: 10px 0 0 20px;}
 #admin_page_insert_html table.contents { padding: 20px 0 0 0;width: 100%;}
@@ -848,7 +854,7 @@ div.listControl p.listMove {
 #admin_page_insert_html td.menu dl dd { padding: 2px 0 20px 0;}
 #admin_page_insert_html td.menu dl dd ul { padding-left: 18px;}
 #admin_page_insert_html td.menu dl dd ul li { padding-top: 2px; list-style-type: disc; white-space: pre;}
-#admin_page_insert_html td.detail h3 { padding-left: 20px; border-bottom: 1px #91afc1 solid; background-color: #5F6067; color: #FFFFFF; line-height: 200%; font-size: medium;}
+#admin_page_insert_html td.detail h3 { padding-left: 20px; border-bottom: 1px #91afc1 solid; background-color: #58585C; color: #FFFFFF; line-height: 200%; font-size: medium;}
 #admin_page_insert_html td.detail form { padding: 10px 0 0 20px;}
 #admin_page_insert_html td.detail p.caution { padding-left: 17px;padding-bottom: 10px;}
 #admin_page_insert_html td.detail p.caution#c02 { padding-top: 10px;}
@@ -856,7 +862,7 @@ div.listControl p.listMove {
 #admin_page_insert_html form textarea { width: 85%; height: 400px;}
 #admin_page_insert_html p.actionMsg { margin: 10px 17px; border-color: #FFFFFF;}
 
-/** セキュリティ管理|admin_page_edit_c_admin_config **/
+/** admin_page_edit_c_admin_config **/
 #admin_page_edit_c_admin_config input.basic,
 #admin_page_edit_c_admin_config textarea { margin: 3px 3px 3px 0; vertical-align: middle;}
 #admin_page_edit_c_admin_config input.basicRadio { margin: 3px 3px 3px 0; vertical-align: middle;}
@@ -901,7 +907,7 @@ div.listControl p.listMove {
 	border-right: 1px #5F6067 solid;
 }
 
-/** お知らせ・規約設定|admin_page_edit_c_admin_info **/
+/** admin_page_edit_c_admin_info **/
 
 #admin_page_edit_c_admin_info p.caution#c01 { padding: 10px 0 0 20px;}
 #admin_page_edit_c_admin_info table.contents { padding: 20px 0 0 0;width: 100%;}
@@ -912,24 +918,24 @@ div.listControl p.listMove {
 #admin_page_edit_c_admin_info td.menu dl dd { padding: 2px 0 20px 0;}
 #admin_page_edit_c_admin_info td.menu dl dd ul { padding-left: 18px;}
 #admin_page_edit_c_admin_info td.menu dl dd ul li { padding-top: 2px; list-style-type: disc; white-space: pre;}
-#admin_page_edit_c_admin_info td.detail h3 { padding-left: 20px; border-bottom: 1px #91afc1 solid; background-color: #5F6067; color: #FFFFFF; line-height: 200%; font-size: medium;}
+#admin_page_edit_c_admin_info td.detail h3 { padding-left: 20px; border-bottom: 1px #91afc1 solid; background-color: #58585C; color: #FFFFFF; line-height: 200%; font-size: medium;}
 #admin_page_edit_c_admin_info td.detail form { padding: 10px 0 0 20px;}
 #admin_page_edit_c_admin_info form textarea { width: 85%; height: 400px;}
 #admin_page_edit_c_admin_info p.actionMsg { margin: 10px 17px; border-color: #FFFFFF;}
 
-/** トップページ|admin_page_top **/
+/** admin_page_top **/
 #admin_page_top p.actionMsg { margin-top: 10px; margin-bottom: 0;}
 #admin_page_top div.contents { padding: 10px 0 0 0;}
 #admin_page_top div.info { margin: 0 17px;}
 #admin_page_top div.topics { border: 1px #5F6067 solid;}
 #admin_page_top div.topics { float: left; margin-top: 10px; padding-bottom: 3px; margin: 0 17px;}
-#admin_page_top div.topics h2 { padding: 0 0 0 10px; margin-top: 0; border-bottom: 1px #5F6067 solid; background: #75757A; line-height: 150%; font-size: medium; color: #ffffff;}
+#admin_page_top div.topics h2 { padding: 0 0 0 10px; margin-top: 0; border-bottom: 1px #5F6067 solid; background: #58585C; line-height: 150%; font-size: medium; color: #ffffff;}
 #admin_page_top div.topics dl { padding: 3px 15px 0 15px;}
 #admin_page_top div.topics dt { float: left; padding: 4px 0;}
 #admin_page_top div.topics dd { padding: 4px 0; padding-left: 7em;}
 #admin_page_top div.topics dd span { padding-right: 5px; font-size: x-small; font-weight: bold; color: #ff0000;}
 
-/** ログインページ|admin_page_login **/
+/** admin_page_login **/
 #admin_page_login p.caution#c01 { padding-top: 15px;}
 #admin_page_login dl { padding: 15px 0 0 15px;}
 #admin_page_login dt { float: left; padding: 4px 0;}
@@ -937,7 +943,7 @@ div.listControl p.listMove {
 #admin_page_login dd#auto { padding-top: 15px; padding-bottom: 0;}
 #admin_page_login dd#btn { padding-top: 0; padding-bottom: 20px;}
 
-/** 日記管理|admin_page_diary_list **/
+/** admin_page_diary_list **/
 #admin_page_diary_list h3 {
 	margin-bottom: 5px;
 }
@@ -948,7 +954,7 @@ div.listControl p.listMove {
 	margin: 0;
 }
 
-/** 日記コメント管理|admin_page_diary_comment_list **/
+/** admin_page_diary_comment_list **/
 #admin_page_diary_comment_list h3 {
 	margin-bottom: 5px;
 }
@@ -957,35 +963,35 @@ div.listControl p.listMove {
 }
 
 
-/** コミュニティのトピック・イベント管理|admin_page_topic_list **/
+/** admin_page_topic_list **/
 #admin_page_topic_list h3 {
 	margin-bottom: 5px;
 }
 #admin_page_topic_list div#c01 { padding-bottom: 10px;}
 
-/** コミュニティのトピック・イベントコメント管理|admin_page_topic_comment_list **/
+/** admin_page_topic_comment_list **/
 #admin_page_topic_comment_list h3 {
 	margin-bottom: 5px;
 }
 #admin_page_topic_comment_list div#c01 { padding-bottom: 10px;}
 
-/** 世代別ユーザー数表示|admin_page_topic_comment_list **/
+/** admin_page_topic_comment_list **/
 #admin_page_user_analysis_generation table tbody th {
 	background-color: #FFFFFF;
 	color: #000000;
 }
 
-/** 世代別ユーザー数表示|admin_page_user_analysis_generation **/
+/** admin_page_user_analysis_generation **/
 #admin_page_user_analysis_generation table tfoot th ,
 #admin_page_user_analysis_generation table tfoot td {
 	background-color: #E4EBEF;
 	color: #000000;
 }
 
-/** 登録日別ユーザー数表示（日次集計）|admin_page_user_analysis_date_day **/
+/** admin_page_user_analysis_date_day **/
 
 #admin_page_user_analysis_date_day table thead th {
-	background-color: #75757A;
+	background-color: #58585C;
 	color: #FFFFFF;
 	font-weight: bold;
 }
@@ -1012,10 +1018,10 @@ div.listControl p.listMove {
 }
 
 
-/** 登録日別ユーザー数表示（月次集計）|admin_page_user_analysis_date_month **/
+/** admin_page_user_analysis_date_month **/
 
 #admin_page_user_analysis_date_month table thead th {
-	background-color: #75757A;
+	background-color: #58585C;
 	color: #FFFFFF;
 	font-weight: bold;
 }
@@ -1034,7 +1040,7 @@ div.listControl p.listMove {
 	border-color: #5F6067;
 }
 
-/** CSVダウンロード|admin_page_csv_download **/
+/** admin_page_csv_download **/
 
 #admin_page_csv_download h3 {
 	margin-bottom: 5px;
@@ -1045,7 +1051,7 @@ div.listControl p.listMove {
 	margin-bottom: 5px;
 }
 
-/** メンバー情報のインポート|admin_page_import_c_member **/
+/** admin_page_import_c_member **/
 
 #admin_page_import_c_member h3 {
 	margin-bottom: 5px;
@@ -1059,7 +1065,7 @@ div.listControl p.listMove {
 
 
 
-/** フリーページ管理|admin_page_list_c_free_page **/
+/** admin_page_list_c_free_page **/
 
 #admin_page_list_c_free_page p.actionMsg { margin: 10px 17px; border-color: #FFFFFF;}
 #admin_page_list_c_free_page table.contents { padding: 20px 0 0 0; width: 100%;}
@@ -1077,46 +1083,46 @@ div.listControl p.listMove {
 	padding-bottom: 10px;
 }
 #admin_page_list_c_free_page td.detail { padding-bottom: 10px; width: 100%; background: #FFFFFF url(./img/bg_body_right.gif) 0 0 repeat-y;border-top: 1px #A3A3A6 solid; border-bottom: 1px #A3A3A6 solid; vertical-align: top;}
-#admin_page_list_c_free_page td.detail h3 { padding-left: 20px; border-bottom: 1px #91afc1 solid; background-color: #5F6067; color: #FFFFFF; line-height: 200%; font-size: medium;}
+#admin_page_list_c_free_page td.detail h3 { padding-left: 20px; border-bottom: 1px #91afc1 solid; background-color: #58585C; color: #FFFFFF; line-height: 200%; font-size: medium;}
 #admin_page_list_c_free_page td.detail p.default { padding: 10px 0 10px 20px;}
 #admin_page_list_c_free_page td.detail form { padding-left: 20px;}
 #admin_page_list_c_free_page td.detail form textarea { width: 85%; height: 400px;}
 #admin_page_list_c_free_page td.detail p.actionMsg { margin: 10px 17px; border-color: #FFFFFF;}
 
 
-/** PC版（携帯版）ページ月次集計|admin_page_access_analysis_month **/
+/** admin_page_access_analysis_month **/
 
 #admin_page_access_analysis_month div.contents { padding: 0 17px;}
 #admin_page_access_analysis_month div.contents h3 { margin-top: 10px;}
 #admin_page_access_analysis_month div.contents ul { padding-top: 10px;}
 #admin_page_access_analysis_month div.contents ul li { padding: 3px 0 0 1em;}
 
-/** API設定|admin_page_list_c_api **/
+/** admin_page_list_c_api **/
 
 #admin_page_list_c_api div.contents p.caution { padding-bottom: 10px;}
 #admin_page_list_c_api div.contents div.listControl ,
 #admin_page_list_c_api div.contents table { width: 50%;}
 
-/** CMD一覧|admin_page_list_c_cmd **/
+/** admin_page_list_c_cmd **/
 
 #admin_page_list_c_cmd div.contents p.caution { padding-bottom: 10px;}
 #admin_page_list_c_cmd div.contents div.listControl ,
 #admin_page_list_c_cmd div.contents table { width: 50%;}
 
-/** アクション一覧|admin_page_list_c_action **/
+/** admin_page_list_c_action **/
 
 #admin_page_list_c_action div.contents div.listControl ,
 #admin_page_list_c_action div.contents table { width: 50%;}
 
-/** ランク一覧|admin_page_list_c_rank **/
+/** admin_page_list_c_rank **/
 
 #admin_page_list_c_rank div.contents div.listControl ,
 #admin_page_list_c_rank div.contents table { width: 50%;}
 
-/** ランク編集|admin_page_update_c_rank **/
+/** admin_page_update_c_rank **/
 #admin_page_update_c_rank div.contents table div { padding: 10px 0 0 0;}
 
-/** お知らせ・規約設定|admin_page_edit_c_admin_info **/
+/** admin_page_edit_c_admin_info **/
 
 #admin_page_edit_c_admin_info p.actionMsg { margin: 10px 17px; border-color: #FFFFFF;}
 #admin_page_edit_c_admin_info table.contents { padding: 20px 0 0 0; width: 100%;}
@@ -1134,7 +1140,7 @@ div.listControl p.listMove {
 	padding-bottom: 10px;
 }
 #admin_page_edit_c_admin_info td.detail { padding-bottom: 10px; width: 100%; background: #FFFFFF url(./img/bg_body_right.gif) 0 0 repeat-y;border-top: 1px #A3A3A6 solid; border-bottom: 1px #A3A3A6 solid; vertical-align: top;}
-#admin_page_edit_c_admin_info td.detail h3 { padding-left: 20px; border-bottom: 1px #91afc1 solid; background-color: #5F6067; color: #FFFFFF; line-height: 200%; font-size: medium;}
+#admin_page_edit_c_admin_info td.detail h3 { padding-left: 20px; border-bottom: 1px #91afc1 solid; background-color: #58585C; color: #FFFFFF; line-height: 200%; font-size: medium;}
 #admin_page_edit_c_admin_info td.detail p.default { padding: 10px 0 10px 20px;}
 #admin_page_edit_c_admin_info td.detail form { padding-left: 20px;}
 #admin_page_edit_c_admin_info td.detail form textarea { width: 85%; height: 400px;}
