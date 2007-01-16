@@ -58,6 +58,7 @@ var {
 <h1>OpenPNE2.6 アップデートガイド</h1>
 
 <p>作成日: 2006/12/31</p>
+<p>誤記修正: 2007/1/16</p>
 
 <h2>目次</h2>
 <ul>
@@ -103,8 +104,8 @@ MySQLのバージョン4.0/4.1でスクリプトが分かれています。<br>
 ご使用のMySQLにあったスクリプトを実行してください。<br>
 <b>PNEBIZ、PNEPOINTのテーブルを作成していない場合は以下のSQL文を順番に実行して作成してください(以後のバージョンでは作成されている事が必須となります)</b><br>
 <ol>
-<li><var>OPENPNE_DIR</var>/setup/sql/udpate/pnebiz-mysql4*.sql</li>
-<li><var>OPENPNE_DIR</var>/setup/sql/update/point-mysql4*.sql</li>
+<li><var>OPENPNE_DIR</var>/setup/sql/update/mysql4*/pnebiz-mysql4*.sql</li>
+<li><var>OPENPNE_DIR</var>/setup/sql/update/mysql4*/point-mysql4*.sql</li>
 </ol>
 
 </p>
@@ -135,7 +136,7 @@ php -f setup/update/new_biz_schedule_converter.php
 BIZモード使用時には、キャップ書き換えSQLを実行してください。
 </p>
 <ol>
-<li><var>OPENPNE_DIR</var>/setup/sql/udpate/option-2.6-pnebiz-header.sql</li>
+<li><var>OPENPNE_DIR</var>/setup/sql/update/mysql4*/option-2.6-pnebiz-header.sql</li>
 </ol>
 
 <h3 id="section2-5">2-5. OpenPNE2.5.8からのアップデート</h3>
@@ -159,7 +160,7 @@ php -f setup/update/new_biz_schedule_converter.php
 その後キャップ書き換えSQLを実行してください<br>
 </p>
 <ol>
-<li><var>OPENPNE_DIR</var>/setup/sql/udpate/option-2.6-pnebiz-header.sql</li>
+<li><var>OPENPNE_DIR</var>/setup/sql/update/mysql4*/option-2.6-pnebiz-header.sql</li>
 </ol>
 
 <h3 id="section2-6">2-6. OpenPNE2.6RC1からのアップデート</h3>
@@ -182,7 +183,7 @@ php -f setup/update/new_biz_schedule_converter.php
 BIZモード使用時には、その後キャップ書き換えSQLを実行してください<br>
 </p>
 <ol>
-<li><var>OPENPNE_DIR</var>/setup/sql/udpate/option-2.6-pnebiz-header.sql</li>
+<li><var>OPENPNE_DIR</var>/setup/sql/update/mysql4*/option-2.6-pnebiz-header.sql</li>
 </ol>
 
 <h3 id="section2-6">2-6. OpenPNE2.6RC2からのアップデート</h3>
