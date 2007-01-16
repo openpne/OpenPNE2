@@ -16,7 +16,7 @@ class admin_do_update_c_sns_config extends OpenPNE_Action
                 $sets[$name] = $requests[$name];
             }
         }
-        for ($i = 0; $i <= 13; $i++) {
+        for ($i = 0; $i <= 14; $i++) {
             $name = sprintf('bg_%02d', $i);
             if ($requests[$name]) {
                 $sets[$name] = $requests[$name];
