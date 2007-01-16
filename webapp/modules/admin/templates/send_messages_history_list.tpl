@@ -68,8 +68,5 @@
 ({$smarty.capture.pager|smarty:nodefaults})
 ({/if})
 
-<div class="otherControl">
-<p class="groupLing"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})">戻る</a></p>
-</div>
 
 ({$inc_footer|smarty:nodefaults})
