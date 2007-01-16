@@ -62,9 +62,14 @@
 <label><input type="radio" name="disp_search" value="0"({if !$c_profile.disp_search}) checked="checked"({/if}) />表示しない</label></td>
 </tr>
 <tr>
+<th>説明</th>
+<td><input type="text" name="info" value="({$c_profile.info})" size="30"></td>
+</tr>
+<tr>
 <th>フォームタイプ</th>
 <td><select class="basic" name="form_type">
 <option value="text"({if $c_profile.form_type == 'text'}) selected="selected"({/if})>テキスト</option>
+<option value="textlong"({if $c_profile.form_type == 'textlong'}) selected="selected"({/if})>テキスト(長)</option>
 <option value="textarea"({if $c_profile.form_type == 'textarea'}) selected="selected"({/if})>テキスト(複数行)</option>
 <option value="select"({if $c_profile.form_type == 'select'}) selected="selected"({/if})>単一選択(プルダウン)</option>
 <option value="radio"({if $c_profile.form_type == 'radio'}) selected="selected"({/if})>単一選択(ラジオボタン)</option>
