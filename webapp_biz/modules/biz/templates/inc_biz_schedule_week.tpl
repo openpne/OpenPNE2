@@ -39,7 +39,7 @@
 <td class="border_01 bg_02" align="right" style="width:130px;border-right:none;"><img src="./skin/dummy.gif" style="width:129px;height:10px;" class="dummy"></td>
 <td class="border_01 bg_02 padding_ss" align="left" style="width:100px;border-right:none;">
 
-<a href="({t_url m=biz a=page_g_biz_schedule_add})&amp;target_id=({$target_id})">新規予定登録</a>
+<a href="({t_url m=biz a=page_fh_biz_schedule_add})&amp;target_biz_group_id=({$target_id})">新規予定登録</a>
 
 </td>
 <td class="border_01 bg_02 padding_ss" style="border-left:none;" align="right">

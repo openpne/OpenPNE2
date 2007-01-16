@@ -253,7 +253,7 @@
 <select name="biz_group_id">
 	<option type="radio" value="0">指定なし
 ({foreach from=$biz_group_list item=biz_group})
-	<option type="radio" value="({$biz_group.biz_group_id})">({$biz_group.name})
+	<option type="radio" value="({$biz_group.biz_group_id})"({if $form_val.biz_group_id == $biz_group.biz_group_id}) selected({/if})>({$biz_group.name})
 ({/foreach})
 </select>
 </td>
