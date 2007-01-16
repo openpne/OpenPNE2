@@ -21,7 +21,7 @@ class admin_do_insert_c_image extends OpenPNE_Action
             admin_client_redirect('edit_c_image', '画像を登録しました', 'filename='.$requests['filename']);
         }
 
-        admin_client_redirect('edit_c_image');
+        admin_client_redirect('edit_c_image', 'ファイル名と画像ファイルを指定してください');
     }
 }
 
