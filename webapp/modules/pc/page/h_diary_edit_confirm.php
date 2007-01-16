@@ -54,13 +54,13 @@ class pc_page_h_diary_edit_confirm extends OpenPNE_Action
         $category_list = array_unique(explode(" ", rtrim($category)));
         if (count($category_list) > 5) {
             $_REQUEST['msg'] = 'カテゴリの指定は5個以下にしてください';
-            openpne_forward('pc', 'page', 'h_diary_add');
+            openpne_forward('pc', 'page', 'h_diary_edit');
             exit;
         }
         foreach ($category_list as $value) {
             if(mb_strwidth($value) > 20) {
                 $_REQUEST['msg'] = 'カテゴリの文字数は半角20文字以内にしてください';
-                openpne_forward('pc', 'page', 'h_diary_add');
+                openpne_forward('pc', 'page', 'h_diary_edit');
                 exit;
             }
         }
