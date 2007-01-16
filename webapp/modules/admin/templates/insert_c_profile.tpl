@@ -61,9 +61,14 @@
 <label><input type="radio" name="disp_search" value="0" />表示しない</label></td>
 </tr>
 <tr>
+<th>説明</th>
+<td><input type="text" name="info" value="({$c_profile.info})" size="30"></td>
+</tr>
+<tr>
 <th>フォームタイプ</th>
 <td><select class="basic" name="form_type">
 <option value="text" selected="selected">テキスト</option>
+<option value="textlong"({if $c_profile.form_type == 'textlong'}) selected="selected"({/if})>テキスト(長)</option>
 <option value="textarea">テキスト(複数行)</option>
 <option value="select">単一選択(プルダウン)</option>
 <option value="radio">単一選択(ラジオボタン)</option>
