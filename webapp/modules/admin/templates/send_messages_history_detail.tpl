@@ -1,6 +1,16 @@
 ({$inc_header|smarty:nodefaults})
+({ext_include file="inc_subnavi_adminInfoKiyaku.tpl"})
+({assign var="page_name" value="フリーページ管理"})
+({ext_include file="inc_tree_adminInfoKiyaku.tpl"})
+</div>
+
+({*ここまで:navi*})
 
 <h2>一括メッセージ送信履歴詳細</h2>
+
+({if $msg})
+<p class="actionMsg">({$msg})</p>
+({/if})
 
 ({if $history})
 <table>
