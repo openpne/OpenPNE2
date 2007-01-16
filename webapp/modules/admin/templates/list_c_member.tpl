@@ -249,6 +249,13 @@ function Link(linkLoc) {
 <input type="submit" id="btnAllTransmit" value="すべてのメンバーにメッセージを送る" />
 </form>
 
+<br>
+<form action="./" method="post" name="formSendMessagesHistory">
+<input type="hidden" name="m" value="({$module_name})">
+<input type="hidden" name="a" value="page_({$hash_tbl->hash('send_messages_history_list')})">
+<input type="submit" id="btnHistoryMessage" value="メッセージ／Eメール送信履歴">
+</form>
+
 </div>({*/div class="msgTransmitBtn"*})
 </div>({*/div class="msgTransmit"*})
 
