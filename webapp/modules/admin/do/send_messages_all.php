@@ -40,6 +40,7 @@ class admin_do_send_messages_all extends OpenPNE_Action
                 break;
                 default:
                     openpne_forward($module_name, 'page', 'send_messages');
+                    exit;
                 break;
             }
             $send_num++;

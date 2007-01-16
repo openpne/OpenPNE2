@@ -1,6 +1,6 @@
 ({$inc_header|smarty:nodefaults})
 ({ext_include file="inc_subnavi_adminSiteMember.tpl"})
-({assign var="page_name" value="メッセージ送信"})
+({assign var="page_name" value="メッセージ・メール送信"})
 ({assign var="parent_page_name" value="メンバーリスト"})
 ({capture name=parent_page_url})?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})({/capture})
 ({ext_include file="inc_tree_adminSiteMember.tpl"})
@@ -8,16 +8,23 @@
 
 ({*ここまで:navi*})
 
-
-<h2 id="ttl01">メッセージ送信</h2>
+<h2 id="ttl01">メッセージ・メール送信</h2>
 <div class="contents">
-<p class="info">選択したメンバーにメッセージを送信します。</p>
+<p class="info">選択したメンバーにメッセージもしくはEメールを送信します。</p>
 <p class="caution" id="c01">タイトルと本文を入力してください。<br /><strong>※このメッセージは、ID No.1のメンバー名にて送信されます。</strong></p>
+
 <dl>
-	<dt class="msgAdd"><strong>送信先</strong></dt>
-	<dd class="msgAdd">({foreach from=$c_member_list item=item name=cml})<strong><a href="({t_url _absolute=1 m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})" target="_blank">({$item.nickname})</a></strong>({if !$smarty.foreach.cml.last})&nbsp;／&nbsp;({/if})({/foreach})</dd>
-</dl>
 <form action="./" method="post">
+<dt class="msgAdd"><strong>送信種別</strong></dt>
+<dd><select class="basic" name="send_type">
+<option value="message"({if $send_type=='message'}) selected="selected"({/if})>メッセージ送信</option>
+<option value="mail"({if $send_type=='mail'}) selected="selected"({/if})>Eメール送信</option>
+</option>
+</select>
+</dd>
+<dt class="msgAdd"><strong>送信先</strong></dt>
+<dd class="msgAdd">({foreach from=$c_member_list item=item name=cml})<strong><a href="({t_url _absolute=1 m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})" target="_blank">({$item.nickname})</a></strong>({if !$smarty.foreach.cml.last})&nbsp;／&nbsp;({/if})({/foreach})</dd>
+</dl>
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('send_messages','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />

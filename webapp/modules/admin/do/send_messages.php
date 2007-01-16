@@ -18,9 +18,11 @@ class admin_do_send_messages extends OpenPNE_Action
 
         if (empty($requests['subject'])) {
             openpne_forward($module_name, 'page', 'send_messages');
+            exit;
         }
         if (empty($requests['body'])) {
             openpne_forward($module_name, 'page', 'send_messages');
+            exit;
         }
 
         // 送信者はとりあえず1番で固定
@@ -41,6 +43,7 @@ class admin_do_send_messages extends OpenPNE_Action
                 break;
                 default:
                     openpne_forward($module_name, 'page', 'send_messages');
+                    exit;
                 break;
             }
             $send_num++;
