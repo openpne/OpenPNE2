@@ -280,6 +280,11 @@ From偽装対策を(IP制限等により)メールサーバ側で行っている
 
 <p><em>[設定例]</em></p>
 
+<p>cronファイルに実行権限の付加。</p>
+<pre>
+chmod 755 bin/*.cron
+</pre>
+
 <p>/etc/crontab に以下を記述。</p>
 <div>
 <pre>
