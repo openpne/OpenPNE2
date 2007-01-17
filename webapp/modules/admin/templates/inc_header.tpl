@@ -35,7 +35,7 @@
 <ul class="admin">
 
 ({if $auth_type == 'all' || $auth_type == ''})
-<li id="adminSiteMember" onmouseover="menu('adminSiteMember', 'adminSiteMemberCont')" onmouseout="menu('adminSiteMember', 'adminSiteMemberCont')"><a href="({if $auth_type == 'all'})?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})({elseif $auth_type == 'all' || $auth_type == ''})?m=({$module_name})&amp;a=page_({$hash_tbl->hash('send_invites')})({else})?m=({$module_name})&amp;a=page_({$hash_tbl->hash('csv_download')})({/if})">メンバー管理</a>
+<li id="adminSiteMember" onmouseover="menu('adminSiteMember')" onmouseout="menu_hide('adminSiteMember')"><a href="({if $auth_type == 'all'})?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})({elseif $auth_type == 'all' || $auth_type == ''})?m=({$module_name})&amp;a=page_({$hash_tbl->hash('send_invites')})({else})?m=({$module_name})&amp;a=page_({$hash_tbl->hash('csv_download')})({/if})">メンバー管理</a>
 <ul id="adminSiteMemberCont" class="pull">
 ({if $auth_type == 'all'})
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})" title="メンバーリスト: ユーザ登録情報閲覧、メッセージ送信、強制退会">メンバーリスト</a></li>
@@ -51,7 +51,7 @@
 
 ({****})
 
-<li id="adminImageKakikomi" onmouseover="menu('adminImageKakikomi', 'adminImageKakikomiCont')" onmouseout="menu('adminImageKakikomi', 'adminImageKakikomiCont')"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_image')})">画像・書き込み管理</a>
+<li id="adminImageKakikomi" onmouseover="menu('adminImageKakikomi')" onmouseout="menu_hide('adminImageKakikomi')"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_image')})">画像・書き込み管理</a>
 <ul id="adminImageKakikomiCont" class="pull">
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_image')})" title="画像リスト・管理: SNSに登録されている画像の一覧、登録、削除">アップロード画像リスト</a></li>
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_image')})" title="未定">画像アップロード・削除</a></li>
@@ -65,7 +65,7 @@
 
 ({****})
 
-<li id="adminStatisticalInformation" onmouseover="menu('adminStatisticalInformation', 'adminStatisticalInformationCont')" onmouseout="menu('adminStatisticalInformation', 'adminStatisticalInformationCont')"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('user_analysis_generation')})">統計情報</a>
+<li id="adminStatisticalInformation" onmouseover="menu('adminStatisticalInformation')" onmouseout="menu_hide('adminStatisticalInformation')"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('user_analysis_generation')})">統計情報</a>
 <ul id="adminStatisticalInformationCont" class="pull">
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('user_analysis_generation')})">世代別ユーザー表示</a></li>
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('user_analysis_date_month')})">登録日別ユーザー表示（月次集計）</a></li>
@@ -85,7 +85,7 @@
 
 <ul class="design">
 
-<li id="adminDesign" onmouseover="menu('adminDesign', 'adminDesignCont')" onmouseout="menu('adminDesign', 'adminDesignCont')"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_skin_image')})">デザイン</a>
+<li id="adminDesign" onmouseover="menu('adminDesign')" onmouseout="menu_hide('adminDesign')"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_skin_image')})">デザイン</a>
 <ul id="adminDesignCont" class="pull">
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_skin_image')})" title="スキン画像変更: スキン画像変更、ナビゲーション互換設定">スキン画像変更</a></li>
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_sns_config')})" title="配色・CSS変更: 配色設定、カスタムCSS">配色・CSS変更</a></li>
@@ -103,7 +103,7 @@
 
 <ul class="config">
 
-<li id="adminSNSConfig" onmouseover="menu('adminSNSConfig', 'adminSNSConfigCont')" onmouseout="menu('adminSNSConfig', 'adminSNSConfigCont')"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_admin_config')})">SNS設定</a>
+<li id="adminSNSConfig" onmouseover="menu('adminSNSConfig')" onmouseout="menu_hide('adminSNSConfig')"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_admin_config')})">SNS設定</a>
 <ul id="adminSNSConfigCont" class="pull">
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_admin_config')})" title="SNS設定変更: SNSの動作に関する詳細設定">SNS設定</a></li>
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('limit_domain')})" title="登録できるドメインの設定">ドメイン制限</a></li>
@@ -125,7 +125,7 @@
 
 ({****})
 
-<li id="adminInfoKiyaku" onmouseover="menu('adminInfoKiyaku', 'adminInfoKiyakuCont')" onmouseout="menu('adminInfoKiyaku', 'adminInfoKiyakuCont')"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_admin_info')})">お知らせ・規約設定</a>
+<li id="adminInfoKiyaku" onmouseover="menu('adminInfoKiyaku')" onmouseout="menu_hide('adminInfoKiyaku')"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_admin_info')})">お知らせ・規約設定</a>
 <ul id="adminInfoKiyakuCont" class="pull">
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_admin_info')})" title="お知らせ変更・HTML挿入: お知らせ、利用規約変更、HTML挿入">お知らせ・規約設定</a></li>
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_free_page')})">フリーページ管理</a></li>
@@ -139,7 +139,7 @@
 
 <ul class="adminadmin">
 
-<li id="adminAdminConfig" onmouseover="menu('adminAdminConfig', 'adminAdminConfigCont')" onmouseout="menu('adminAdminConfig', 'adminAdminConfigCont')"><a href="({if $auth_type == 'all'})?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_admin_user')})({else})?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_admin_password')})({/if})">管理ページ設定</a>
+<li id="adminAdminConfig" onmouseover="menu('adminAdminConfig')" onmouseout="menu_hide('adminAdminConfig')"><a href="({if $auth_type == 'all'})?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_admin_user')})({else})?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_admin_password')})({/if})">管理ページ設定</a>
 <ul id="adminAdminConfigCont" class="pull">
 ({if $auth_type == 'all'})
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_admin_user')})" title="アカウント管理: 管理画面ログイン用アカウントの管理">アカウント管理</a></li>
