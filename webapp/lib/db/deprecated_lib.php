@@ -4,7 +4,7 @@
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
-//point.php�͕ύX�_�i�V
+//point.phpは変更点ナシ
 
 //ranking.php
 function p_h_ranking_c_ashiato_ranking($limit = 10)
@@ -61,8 +61,8 @@ function p_h_review_write_product4asin($asin)
 
 /**
  * orderby:
- *      r_datetime  => �쐬��
- *      r_num       => �o�^����
+ *      r_datetime  => 作成順
+ *      r_num       => 登録数順
  */
 function p_h_review_search_result4keyword_category($keyword, $category_id , $orderby, $page = 1, $page_size = 30)
 {
