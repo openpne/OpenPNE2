@@ -236,6 +236,8 @@ function db_admin_update_c_profile($c_profile_id
         $data = array('public_flag' => $public_flag_default);
         db_update('c_member_profile', $data, $where);
     }
+
+    pne_cache_drop('db_member_c_profile_list');
 }
 
 function db_admin_delete_c_profile($c_profile_id)
