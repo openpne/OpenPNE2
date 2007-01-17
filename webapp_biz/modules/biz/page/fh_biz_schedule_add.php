@@ -13,6 +13,7 @@ class biz_page_fh_biz_schedule_add extends OpenPNE_Action
 
         $form_val['subject'] = $requests['subject'];
         $form_val['body'] = $requests['body'];
+        $form_val['biz_group_id'] = $requests['target_biz_group_id'];
 
         if (empty($requests['target_id']) || ($requests['target_id'] == $u)) {
             //自分自身
