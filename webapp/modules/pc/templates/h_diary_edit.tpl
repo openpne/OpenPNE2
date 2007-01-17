@@ -1,8 +1,6 @@
 ({ext_include file="inc_header.tpl"})
 ({ext_include file="inc_layoutcolumn_top_165px.tpl"})
 
-<script type="text/javascript" src="modules/pc/diary_category_form.js"></script>
-
 ({********************************})
 ({**ここから：メインコンテンツ（左）**})
 ({********************************})
