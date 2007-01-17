@@ -30,6 +30,7 @@ class admin_page_edit_c_sns_config extends OpenPNE_Action
             'bg_11',
             'bg_12',
             'bg_13',
+            'bg_14',
         );
 
         $v['preset_bgcolors'] = db_select_c_sns_config_all();
@@ -57,12 +58,13 @@ class admin_page_edit_c_sns_config extends OpenPNE_Action
         $v['c_sns_config']['bg_11'] = $temp['bg_11'];
         $v['c_sns_config']['bg_12'] = $temp['bg_12'];
         $v['c_sns_config']['bg_13'] = $temp['bg_13'];
+        $v['c_sns_config']['bg_14'] = $temp['bg_14'];
 
         $v['c_sns_config']['symbol'] = $temp['symbol'];
 
         $v['border_names'] = array('border_01', 'border_07', 'border_10');
         $v['bg_names'] = array();
-        for ($i = 0; $i <= 13; $i++) {
+        for ($i = 0; $i <= 14; $i++) {
             $v['bg_names'][] = sprintf('bg_%02d', $i);
         }
 
