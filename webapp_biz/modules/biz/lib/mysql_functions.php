@@ -145,7 +145,10 @@ function biz_isPermissionSchedule($u, $biz_schedule_id)
 
     switch ($public_flag) {
     case 'group' :  //グループのメンバーにのみ権限が与えられる予定
+        $biz_group = biz_getGroupData($biz_group_id);
         if (biz_isGroupMember($u, $biz_group_id)) {
+            return true;
+        } elseif (empty($biz_group)) {  //グループが存在しない場合はTodoを公開する
             return true;
         } else {
             return false;
@@ -592,7 +595,10 @@ function biz_isPermissionTodo($u, $biz_todo_id)
 
     switch ($public_flag) {
     case 'group' :  //グループのメンバーにのみ権限が与えられるTodo
+        $biz_group = biz_getGroupData($biz_group_id);
         if (biz_isGroupMember($u, $biz_group_id)) {
+            return true;
+        } elseif (empty($biz_group)) {  //グループが存在しない場合はTodoを公開する
             return true;
         } else {
             return false;
