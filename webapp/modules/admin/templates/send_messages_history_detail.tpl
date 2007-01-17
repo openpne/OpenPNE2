@@ -1,9 +1,22 @@
 ({$inc_header|smarty:nodefaults})
+({ext_include file="inc_subnavi_adminSiteMember.tpl"})
+({assign var="page_name" value="メンバーリスト"})
+({ext_include file="inc_tree_adminSiteMember.tpl"})
+</div>
+
+({*ここまで:navi*})
 
 <h2>一括メッセージ送信履歴詳細</h2>
+<div class="contents">
+<p>
+管理画面から送信したメッセージ履歴を表示します</p>
+
+({if $msg})
+<p class="actionMsg">({$msg})</p>
+({/if})
 
 ({if $history})
-<table>
+<table class="basicType2">
 
 <tr>
 <th>送信日時</th>
@@ -39,9 +52,6 @@
 ({else})
 送信履歴がありません<br>
 ({/if})
-
-<br>
-<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('send_messages_history_list')})">戻る</a>
 
 <br>
 
