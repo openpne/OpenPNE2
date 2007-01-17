@@ -333,12 +333,13 @@ div.listControl p.listMove {
 	top: 0;
 	left: 0;
 	width: 260px;
-	height: 100px;
+	height: 120px;
 }
 
 #admin_page_list_c_member div.listControlBtm div.msgTransmit input#btnSelTransmit ,
 #admin_page_list_c_member div.listControlBtm div.msgTransmit input#btnNarrowTransmit ,
-#admin_page_list_c_member div.listControlBtm div.msgTransmit input#btnAllTransmit {
+#admin_page_list_c_member div.listControlBtm div.msgTransmit input#btnAllTransmit ,
+#admin_page_list_c_member div.listControlBtm div.msgTransmit input#btnHistoryMessage {
 	position: absolute;
 	left: 0;
 	width: 260px;
@@ -366,6 +367,11 @@ div.listControl p.listMove {
 }
 #admin_page_list_c_member div.listControlBtm div.msgTransmit input#btnAllTransmit {
 	top: 60px;
+	z-index: 3;
+}
+
+#admin_page_list_c_member div.listControlBtm div.msgTransmit input#btnHistoryMessage {
+	top: 90px;
 	z-index: 3;
 }
 
