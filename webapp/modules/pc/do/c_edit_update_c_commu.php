@@ -47,13 +47,14 @@ class pc_do_c_edit_update_c_commu extends OpenPNE_Action
         ////GoogleMAP
         if (OPENPNE_USE_COMMU_MAP) {
             $is_display_map = $requests['is_display_map'];
-            if ($is_display_map) {
+
+            if ($is_display_map && $requests['map_pref_id'] <> 50) {
                 $pref = null;
                 if ($requests['map_pref_id'] > 0) {
                     $pref = db_etc_c_profile_pref4id($requests['map_pref_id']);
                 }
 
-                if (!empty($pref['map_latitude']) && !empty($pref['map_longitude'])) {
+                if (!empty($pref['map_latitude']) && !empty($pref['map_longitude']) && $requests['map_pref_id'] <> -1) {
                     $map_latitude = $pref['map_latitude'];
                     $map_longitude = $pref['map_longitude'];
                     $map_zoom = $pref['map_zoom'];
