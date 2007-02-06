@@ -196,7 +196,7 @@
 <p class="msgCheck"><img src="modules/admin/img/icn_msgtransmit.gif" alt="" /><a href="#" onClick="return checkAll();" onKeyPress="return checkAll();">全てをチェック</a>&nbsp;|&nbsp;<a href="#" onClick="return clearAll();" onKeyPress="return clearAll();">全てのチェックをはずす</a></p>
 
 <div class="msgTransmitBtn">
-<input type="submit" id="btnSelTransmit" value="選択したメンバーにメッセージを送る" />
+<input type="submit" id="btnSelTransmit" value="選択したメンバーにメッセージ／Eメールを送る" />
 </form>
 
 <form action="./" method="post" name="formSendMessagesSearch">
@@ -218,7 +218,7 @@
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="page_({$hash_tbl->hash('send_messages_all')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
-<input type="submit" id="btnAllTransmit" value="すべてのメンバーにメッセージを送る" />
+<input type="submit" id="btnAllTransmit" value="すべてのメンバーにメッセージ／Eメールを送る" />
 </form>
 
 <br>
