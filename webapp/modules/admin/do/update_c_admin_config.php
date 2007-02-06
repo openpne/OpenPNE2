@@ -7,6 +7,10 @@
 // SNS設定変更
 class admin_do_update_c_admin_config extends OpenPNE_Action
 {
+    function handleError($errors)
+    {
+        admin_client_redirect('edit_c_admin_config', '正しく入力してください');
+    }
     function execute($requests)
     {
         $config =& OpenPNE_Config::getInstance();
