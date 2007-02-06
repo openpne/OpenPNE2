@@ -276,7 +276,7 @@ class OpenPNE_KtaiMail
         // 空白文字の削除
         $str = str_replace("\0", '', $str);
         if ($this->trim_doublebyte_space) {
-            $str = mb_ereg_replace('(\s|　)+$', '', $str);
+            $str = mb_ereg_replace('([\s　])+$', '', $str);
         } else {
             $str = rtrim($str);
         }
