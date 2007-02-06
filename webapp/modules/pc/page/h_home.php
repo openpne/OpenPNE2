@@ -61,7 +61,7 @@ class pc_page_h_home extends OpenPNE_Action
         $this->set('c_friend_list', $c_friend_list);
         $this->set('c_friend_count', db_friend_count_friends($u));
         // 参加コミュニティ
-        $c_commu_user_list = db_commu_c_commu_list4c_member_id_3($u, 9);
+        $c_commu_user_list = db_commu_c_commu_list4c_member_id_2($u, 9);
         $this->set('c_commu_user_list', $c_commu_user_list);
         $this->set('fh_com_count_user', db_commu_count_c_commu4c_member_id($u));
 
