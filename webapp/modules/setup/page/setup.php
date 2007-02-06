@@ -27,6 +27,12 @@ class setup_page_setup extends OpenPNE_Action
             $errors[] = 'ENCRYPT_KEYが適切に設定されていません。config.phpの設定を確認してください。';
         }
 
+        // database のチェック
+        if (!$GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['database'])
+        {
+            $errors[] = 'データベース名が空です。config.phpの設定を確認してください。';
+        }
+
         // ディレクトリの書き込み権限のチェック
         $dirs = array(
             OPENPNE_IMG_CACHE_DIR . '/jpg',
