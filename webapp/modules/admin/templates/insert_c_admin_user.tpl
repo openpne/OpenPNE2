@@ -16,6 +16,7 @@
 <div class="contents">
 
 <p>管理画面用のアカウントを追加することができます。</p>
+<p class="caution" id="c01">※6～12文字の半角英数で入力してください</p>
 
 <form action="./" method="post">
 <table class="basicType1">
