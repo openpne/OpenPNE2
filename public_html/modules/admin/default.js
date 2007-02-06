@@ -1,3 +1,7 @@
+/*----------------------------------------------------
+プルダウンメニュー
+----------------------------------------------------*/
+
 var menu_info = new Array();
 
 function menu(host_object_id, visible_object_id){
@@ -23,6 +27,22 @@ function menu(host_object_id, visible_object_id){
 		}		
 	}
 }
+/*----------------------------------------------------
+二度押し対策
+----------------------------------------------------*/
+
+Event.observe(window, 'load', setSubmitFunction, false);
+
+function setSubmitFunction() {
+	var SFs = $A(document.getElementsByTagName('form'));
+	SFs.each(function (node){
+		node.onsubmit = function() {
+			var obj= $A(node.elements);
+			obj.each( function(n){if(n.type== 'submit') n.disabled= true;})
+		};
+	});
+}
+
 /*----------------------------------------------------
 メンバーリスト
 ----------------------------------------------------*/

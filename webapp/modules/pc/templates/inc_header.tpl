@@ -263,18 +263,33 @@ div.inc_page_header div.navi_global a.navi_global_9:hover {
 <script type="text/javascript">
 <!--
 
+({*テキスト入力欄の背景色変更*})
 TextFiledClassName_normal = 'text';
 TextFiledClassName_focus  = 'text_focus';
 
 Event.observe(window, 'load', setFocusClass, false);
+
 function setFocusClass() {
-  var TFs = $A(document.getElementsByClassName(TextFiledClassName_normal));
-  TFs.each(function (node){
-    node.TFclass = node.className;
-    node.TFclass_onfocus = TextFiledClassName_focus;
-    node.onfocus = function() { this.className = this.TFclass_onfocus; };
-    node.onblur  = function() { this.className = this.TFclass; };
-  });
+	var TFs = $A(document.getElementsByClassName(TextFiledClassName_normal));
+	TFs.each(function (node){
+		node.TFclass = node.className;
+		node.TFclass_onfocus = TextFiledClassName_focus;
+		node.onfocus = function() { this.className = this.TFclass_onfocus; };
+		node.onblur  = function() { this.className = this.TFclass; };
+	});
+}
+
+({*二度押し対策*})
+Event.observe(window, 'load', setSubmitFunction, false);
+
+function setSubmitFunction() {
+	var SFs = $A(document.getElementsByTagName('form'));
+	SFs.each(function (node){
+		node.onsubmit = function() {
+			var obj= $A(node.elements);
+			obj.each( function(n){if(n.type== 'submit') n.disabled= true;})
+		};
+	});
 }
 
 //-->

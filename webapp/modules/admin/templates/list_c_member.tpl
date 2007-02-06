@@ -83,13 +83,13 @@
 			<th class="cell09B">月</th>
 			<th class="cell09C">日</th>
 		</tr>
-		<tr>
+		<tr class="min_width">
 			<th class="cell02" colspan="3">&nbsp;</th>
 			<th class="cell03">&nbsp;</th>
-			<th class="cell04">&nbsp;</th>
-			<th class="cell05">&nbsp;</th>
-			<th class="cell06">&nbsp;</th>
-			<th class="cell07">&nbsp;</th>
+			<th class="cell04"><img src="./modules/admin/img/dummy.gif" /></th>
+			<th class="cell05"><img src="./modules/admin/img/dummy.gif" /></th>
+			<th class="cell06"><img src="./modules/admin/img/dummy.gif" /></th>
+			<th class="cell07"><img src="./modules/admin/img/dummy.gif" /></th>
 			<th class="cell08A">&nbsp;</th>
 			<th class="cell08B">&nbsp;</th>
 			<th class="cell08C">&nbsp;</th>
@@ -117,9 +117,8 @@
 			<option ({if $cond_list[$prof.name]==$item.c_profile_option_id})selected({/if}) value="({$item.c_profile_option_id})"({if $c_member.profile[$profile.name].value == $item.value}) selected="selected"({/if})>({$item.value|default:"--"})</option>
 			({/foreach})
 			</select>
-			({else})
-			&nbsp;
 			({/if})
+			<img src="./modules/admin/img/dummy.gif" />
 			</th>
 			({/foreach})
 			<th class="cell16">&nbsp;</th>

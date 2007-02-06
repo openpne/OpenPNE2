@@ -487,6 +487,7 @@ div.listControl p.listMove a {
 #admin_page_list_c_member table.userListTable tbody td { border-left: 1px #5F6067 solid; border-bottom: 1px #A3A3A6 solid;}
 
 /* 改行無し幅詰め */
+#admin_page_list_c_member table.userListTable tr.min_width img { width: 80px;height: 1px; display: block;}
 #admin_page_list_c_member table.userListTable th.cell02,
 #admin_page_list_c_member table.userListTable th.cell03,
 #admin_page_list_c_member table.userListTable th.cell10,
