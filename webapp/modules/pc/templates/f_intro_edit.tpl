@@ -59,7 +59,7 @@
 <a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$target_member.c_member_id})">
 <img src="({t_img_url filename=$target_member.image_filename w=76 h=76 noimg=no_image})" class="pict"></a><br>
 
-<a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$target_member.c_member_id})">({$target_member.nickname})</a></td></tr>
+<a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$target_member.c_member_id})">({$target_member.nickname})</a>
 
 </div>
 </td>
@@ -86,7 +86,7 @@
 
 <div class="padding_s">
 
-<textarea class="text" name="body" rows="5" cols="50">({$intro_body})</textarea>
+<textarea class="text" name="body" rows="7" style="width:500px;">({$intro_body})</textarea>
 
 </div>
 

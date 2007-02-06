@@ -162,7 +162,7 @@
 
 <div class="padding_s">
 
-<textarea class="text" name="body" rows="10" cols="60">({$form_val.body})</textarea>
+<textarea class="text" name="body" rows="10" cols="60" style="width:502px;">({$form_val.body})</textarea>
 
 </div>
 

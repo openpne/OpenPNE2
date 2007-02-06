@@ -90,7 +90,7 @@
 <td style="width:421px;" class="bg_02" align="left" valign="middle">
 <div class="padding_s">
 
-<input type="text" class="text"  name="mail" value="({$requests.mail})" size="30">
+<input type="text" class="text"  name="mail" value="({$requests.mail})" size="40">
 ({if $smarty.const.OPENPNE_REGIST_FROM == $smarty.const.OPENPNE_REGIST_FROM_PC})
 <br>※携帯アドレスには招待を送ることができません
 ({elseif $smarty.const.OPENPNE_REGIST_FROM == $smarty.const.OPENPNE_REGIST_FROM_KTAI})
@@ -122,7 +122,7 @@
 
 <div class="padding_s">
 
-<textarea class="text" name="message" rows="5" cols="40">({$requests.message})</textarea>
+<textarea class="text" name="message" style="width: 410px;" rows="5" cols="40">({$requests.message})</textarea>
 
 </div>
 

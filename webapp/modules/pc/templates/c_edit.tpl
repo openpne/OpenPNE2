@@ -175,7 +175,7 @@
 
 <div class="padding_s">
 
-<textarea class="text" name="info" style="width:30em;height:6em;">({$c_commu.info})</textarea>
+<textarea class="text" name="info" style="width:480px;height:6em;">({$c_commu.info})</textarea>
 
 </div>
 
