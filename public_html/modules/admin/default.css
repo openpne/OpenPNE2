@@ -22,11 +22,6 @@ body {
 	min-width:1000px;
 }
 
-/*ここから：IE用擬似min-width*/
-* html body { padding-right:1000px;}
-* html body div.container { float:left; position:relative; margin-right:-1000px;}
-/*ここまで：IE用擬似min-width*/
-
 a:link {
 	color: #026CD1 ;
 }
@@ -50,7 +45,9 @@ li { list-style-type: none;}
 /*********** Header ***********/
 
 .header { height: 50px; background: url("img/bg_header.gif") no-repeat; border-bottom: #000000 1px solid;}
-.header div.ttl { float: left; padding: 0 0 0 24px; line-height: 100%; color: #FFFFFF;}
+/*ここから：IE用擬似min-width(_width: 1000px;)*/
+.header div.ttl { _width: 1000px; float: left; padding: 0 0 0 24px; line-height: 100%; color: #FFFFFF;}
+/*ここまで：IE用擬似min-width(_width: 1000px;)*/
 .header div.ttl h1 { float: left; padding: 24px 15px 0 0; font-size: 22px; color: #FFFFFF;}
 .header div.ttl h1 a { line-height: 16px; text-decoration: none;}
 .header div.ttl h1 a:link ,
@@ -81,37 +78,131 @@ li { list-style-type: none;}
 .navi div.naviMain ul.config,
 .navi div.naviMain ul.adminadmin { margin-left: 10px;}
 .navi div.naviMain ul li { float: left;}
-.navi div.naviMain ul li a { float: left; display: block; padding: 0 22px 0 18px; height: 30px; background: url("img/nv_tab_off.gif") repeat-x right top; line-height: 30px; text-decoration: none; font-weight: bold; cursor: default;}
-.navi div.naviMain ul li a:hover { background: url("img/nv_tab_on.gif") repeat-x right top; color: #5B91F3;}
-.navi div.naviMain p#logout { float: right; width: 105px; height: 30px; color: #5B91F3;}
+.navi div.naviMain ul li a { float: left; display: block; padding: 0 22px 0 18px; height: 30px; background: url("img/nv_tab_off.gif") repeat-x right top; line-height: 30px; text-decoration: none; font-weight: bold;}
+.navi div.naviMain ul li a:hover { background: #EEF0F2 url("img/nv_tab_on.gif") repeat-x right top; color: #5B91F3;}
+.navi div.naviMain p#logout { float: right; width: 105px; height: 30px;}
 .navi div.naviMain p#logout a { float: right; display: block; width: 105px; height: 30px; background: url("img/nv_tab_off.gif") repeat-x right top; line-height: 28px; text-align: center; text-decoration:underline; font-weight: bold;}
-.navi div.naviMain p#logout a:hover { background: url("img/nv_tab_on.gif") repeat-x right top; }
+.navi div.naviMain p#logout a:hover { background: #EEF0F2 url("img/nv_tab_on.gif") repeat-x right top; color: #5B91F3;}
 
 /* pullダウン部分 */
 
+.navi div.naviMain ul li ul * ,
+.navi div.naviMain ul li ul li a ,
+.navi div.naviMain ul li ul li a:hover  { background-image: none;}/*safari対策*/
+
 .navi div.naviMain ul li ul.pull { visibility: hidden; float: none; position: absolute; margin: 0; padding: 1px 2px 2px 0;}
-.navi div.naviMain ul li ul#adminSiteMemberCont             { width: 180px;}
-.navi div.naviMain ul li ul#adminImageKakikomiCont          { width: 180px;}
-.navi div.naviMain ul li ul#adminStatisticalInformationCont { width: 220px;}
-.navi div.naviMain ul li ul#adminDesignCont                 { width: 180px;}
-.navi div.naviMain ul li ul#adminSNSConfigCont              { width: 180px;}
-.navi div.naviMain ul li ul#adminInfoKiyakuCont             { width: 180px;}
-.navi div.naviMain ul li ul#adminAdminConfigCont            { width: 180px;}
-.navi div.naviMain ul li ul.pull li { float: none; padding: 1px; padding-top: 0; background: #CCCCCC;}
-.navi div.naviMain ul li ul.pull li a { float: none; padding: 0 0 0 10px; height: 23px; background: #FFFFFF; white-space: pre; line-height: 23px; font-size: 12px; text-decoration:underline; font-weight: normal; cursor: pointer; color: #5b5b5b;}
+.navi div.naviMain ul li ul#adminSiteMemberCont             { width: 180px; z-index: 10;}
+.navi div.naviMain ul li ul#adminImageKakikomiCont          { width: 180px; z-index: 20;}
+.navi div.naviMain ul li ul#adminStatisticalInformationCont { width: 220px; z-index: 30;}
+.navi div.naviMain ul li ul#adminDesignCont                 { width: 180px; z-index: 40;}
+.navi div.naviMain ul li ul#adminSNSConfigCont              { width: 180px; z-index: 50;}
+.navi div.naviMain ul li ul#adminInfoKiyakuCont             { width: 180px; z-index: 60;}
+.navi div.naviMain ul li ul#adminAdminConfigCont            { width: 180px; z-index: 70;}
+.navi div.naviMain ul li ul.pull li { float: none; padding: 0 1px; background: #CCCCCC;}
+.navi div.naviMain ul li ul.pull li a { float: none; padding: 0 0 0 10px; border-bottom: #CCCCCC 1px solid; height: 23px; background: #FFFFFF; white-space: pre; line-height: 23px; font-size: 12px; text-decoration:underline; font-weight: normal; cursor: pointer; color: #5b5b5b;}
 .navi div.naviMain ul li ul.pull li a.star { background: #FFFFFF url("img/icn_exclamation.gif") no-repeat 92% 50%;}
 .navi div.naviMain ul li ul.pull li a:hover { background: #5B91F3; color: #FFFFFF;}
 
-/*  
+/* (自ページのタブをアクティブにした上でプルダウンを表示しない:全ページ分指定しなければ機能しない) */
+#admin_page_list_c_member li#adminSiteMember a.tab ,
+#admin_page_send_invites li#adminSiteMember a.tab ,
+#admin_page_csv_download li#adminSiteMember a.tab ,
+#admin_page_import_c_member li#adminSiteMember a.tab ,
+ #admin_page_delete_c_member_confirm li#adminSiteMember a.tab ,
+ #admin_page_passwd li#adminSiteMember a.tab ,
+ #admin_page_send_invites_confirm li#adminSiteMember a.tab ,
+ #admin_page_send_messages li#adminSiteMember a.tab ,
+ #admin_page_send_messages_all li#adminSiteMember a.tab ,
+ #admin_page_send_messages_history_list li#adminSiteMember a.tab ,
 
-#admin_page_edit_c_admin_info div.navi div.naviMain ul li a {
-	background: url("img/nv_tab_on.gif") no-repeat right top;
-}
+#admin_page_list_c_image li#adminImageKakikomi a.tab ,
+#admin_page_edit_c_image li#adminImageKakikomi a.tab ,
+#admin_page_diary_list li#adminImageKakikomi a.tab ,
+#admin_page_diary_comment_list li#adminImageKakikomi a.tab ,
+#admin_page_topic_list li#adminImageKakikomi a.tab ,
+#admin_page_topic_comment_list li#adminImageKakikomi a.tab ,
+#admin_page_delete_kakikomi li#adminImageKakikomi a.tab ,
+ #admin_page_send_messages_search li#adminImageKakikomi a.tab ,
+ #admin_page_delete_c_image_confirm li#adminImageKakikomi a.tab ,
 
-#admin_page_edit_c_admin_info div.naviMain ul li#setupSns ul {
-	display: none;
-}
-*/
+#admin_page_user_analysis_generation li#adminStatisticalInformation a.tab ,
+#admin_page_user_analysis_date_month li#adminStatisticalInformation a.tab ,
+#admin_page_user_analysis_date_day li#adminStatisticalInformation a.tab ,
+#admin_page_access_analysis_month li#adminStatisticalInformation a.tab ,
+
+#admin_page_edit_skin_image li#adminDesign a.tab ,
+#admin_page_edit_c_sns_config li#adminDesign a.tab ,
+#admin_page_edit_c_navi li#adminDesign a.tab ,
+#admin_page_insert_html li#adminDesign a.tab ,
+#admin_page_edit_entry_point li#adminDesign a.tab ,
+#admin_page_edit_c_banner li#adminDesign a.tab ,
+
+#admin_page_edit_c_admin_config li#adminSNSConfig a.tab ,
+#admin_page_limit_domain li#adminSNSConfig a.tab ,
+#admin_page_list_c_api li#adminSNSConfig a.tab ,
+#admin_page_list_c_cmd li#adminSNSConfig a.tab ,
+#admin_page_edit_mail_send li#adminSNSConfig a.tab ,
+#admin_page_edit_mail li#adminSNSConfig a.tab ,
+#admin_page_edit_c_profile li#adminSNSConfig a.tab ,
+#admin_page_edit_category li#adminSNSConfig a.tab ,
+#admin_page_manage_c_commu li#adminSNSConfig a.tab ,
+#admin_page_edit_c_holiday li#adminSNSConfig a.tab ,
+#admin_page_list_c_rank li#adminSNSConfig a.tab ,
+#admin_page_list_c_action li#adminSNSConfig a.tab ,
+
+#admin_page_edit_c_admin_info li#adminInfoKiyaku a.tab ,
+#admin_page_list_c_free_page li#adminInfoKiyaku a.tab ,
+
+#admin_page_list_c_admin_user li#adminAdminConfig a.tab ,
+#admin_page_edit_admin_password li#adminAdminConfig a.tab ,
+#admin_page_update_hash_table li#adminAdminConfig a.tab { background: #EEF0F2 url("img/nv_tab_on.gif") repeat-x right top; color: #5B91F3;}
+
+
+#admin_page_list_c_member li#adminSiteMember ul.pull ,
+#admin_page_send_invites li#adminSiteMember ul.pull ,
+#admin_page_csv_download li#adminSiteMember ul.pull ,
+#admin_page_import_c_member li#adminSiteMember ul.pull ,
+
+#admin_page_list_c_image li#adminImageKakikomi ul.pull ,
+#admin_page_edit_c_image li#adminImageKakikomi ul.pull ,
+#admin_page_diary_list li#adminImageKakikomi ul.pull ,
+#admin_page_diary_comment_list li#adminImageKakikomi ul.pull ,
+#admin_page_topic_list li#adminImageKakikomi ul.pull ,
+#admin_page_topic_comment_list li#adminImageKakikomi ul.pull ,
+#admin_page_delete_kakikomi li#adminImageKakikomi ul.pull ,
+
+#admin_page_user_analysis_generation li#adminStatisticalInformation ul.pull ,
+#admin_page_user_analysis_date_month li#adminStatisticalInformation ul.pull ,
+#admin_page_user_analysis_date_day li#adminStatisticalInformation ul.pull ,
+#admin_page_access_analysis_month li#adminStatisticalInformation ul.pull ,
+
+#admin_page_edit_skin_image li#adminDesign ul.pull ,
+#admin_page_edit_c_sns_config li#adminDesign ul.pull ,
+#admin_page_edit_c_navi li#adminDesign ul.pull ,
+#admin_page_insert_html li#adminDesign ul.pull ,
+#admin_page_edit_entry_point li#adminDesign ul.pull ,
+#admin_page_edit_c_banner li#adminDesign ul.pull ,
+
+#admin_page_edit_c_admin_config li#adminSNSConfig ul.pull ,
+#admin_page_limit_domain li#adminSNSConfig ul.pull ,
+#admin_page_list_c_api li#adminSNSConfig ul.pull ,
+#admin_page_list_c_cmd li#adminSNSConfig ul.pull ,
+#admin_page_edit_mail_send li#adminSNSConfig ul.pull ,
+#admin_page_edit_mail li#adminSNSConfig ul.pull ,
+#admin_page_edit_c_profile li#adminSNSConfig ul.pull ,
+#admin_page_edit_category li#adminSNSConfig ul.pull ,
+#admin_page_manage_c_commu li#adminSNSConfig ul.pull ,
+#admin_page_edit_c_holiday li#adminSNSConfig ul.pull ,
+#admin_page_list_c_rank li#adminSNSConfig ul.pull ,
+#admin_page_list_c_action li#adminSNSConfig ul.pull ,
+
+#admin_page_edit_c_admin_info li#adminInfoKiyaku ul.pull ,
+#admin_page_list_c_free_page li#adminInfoKiyaku ul.pull ,
+
+#admin_page_list_c_admin_user li#adminAdminConfig ul.pull ,
+#admin_page_edit_admin_password li#adminAdminConfig ul.pull ,
+#admin_page_update_hash_table li#adminAdminConfig ul.pull { display: none;}
+
 /* 各ページのサブ部分 */
 
 .navi div.subNavi {
@@ -181,14 +272,6 @@ p.actionMsg {
 	margin-top: 10px;
 }
 
-p.listMove {
-	 text-align: right;
-	 padding-bottom: 1px;
-}
-
-p.listMove a {
-	 padding: 0 3px;
-}
 
 .contents p.groupLing { padding: 20px 0 0 0;}
 .contents span.btnCaution { padding-left: 5px; font-size: x-small; color: #ff0000;}
@@ -218,20 +301,21 @@ p.listMove a {
 /* ページャーの見た目 */
 
 div.listControl {
+	clear: both;
 	margin-bottom: 5px;
 }
 div.listControl p.display {
-	background-color: #58585C;
-	color: #FFFFFF;
-	padding: 3px 5px;
+	color: #666666;
+	padding: 3px 0;
 	text-align: right;
-	border: 1px #5F6067 solid;
 }
 div.listControl p.listMove {
 	text-align: right;
 	padding: 3px 5px;
-	background-color: #FFFFFF;
-	border: 1px #5F6067 solid;
+	border: #5F6067 1px solid;
+}
+div.listControl p.listMove a {
+	 padding: 0 3px;
 }
 
 /* テーブルの見た目 */
@@ -698,8 +782,7 @@ div.listControl p.listMove {
 #admin_page_edit_skin_image dl.box dd.image { overflow: hidden; background-color: #FFFFFF;}
 #admin_page_edit_skin_image tr.skin8 dl.box dd.image { height: 25px;}
 #admin_page_edit_skin_image tr.skin10 dl.box dd.image { height: 23px;}
-#admin_page_edit_skin_image dl.box dd.default { margin: 0; padding: 0; height: 30px; border-top: none; line-height: 50%; font-size: 12px; text-align: center; background-color: #FFFFFF;}
-* html body#admin_page_edit_skin_image dl.box dd.default { line-height: 35%;}
+#admin_page_edit_skin_image dl.box dd.default { margin: 0; padding: 10px 0 0 0; height: 30px; border-top: none; line-height: 100%; font-size: 12px; text-align: center; background-color: #FFFFFF;}
 #admin_page_edit_skin_image dl.box dd.default a { margin: 0;padding: 0;}
 #admin_page_edit_skin_image dl.box dd.submit { padding: 10px 0 10px 0; background-color: #E4EBEF; text-align: center;}
 #admin_page_edit_skin_image dl.box dd span input { margin: 0; vertical-align: middle;}
@@ -933,9 +1016,10 @@ div.listControl p.listMove {
 #admin_page_top p.actionMsg { margin-top: 10px; margin-bottom: 0;}
 #admin_page_top div.contents { padding: 10px 0 0 0;}
 #admin_page_top div.info { margin: 0 17px;}
+#admin_page_top div.info { padding-bottom: 10px;}
 #admin_page_top div.topics { border: 1px #5F6067 solid;}
 #admin_page_top div.topics { float: left; margin-top: 10px; padding-bottom: 3px; margin: 0 17px;}
-#admin_page_top div.topics h2 { padding: 0 0 0 10px; margin-top: 0; border-bottom: 1px #5F6067 solid; background: #58585C; line-height: 150%; font-size: medium; color: #ffffff;}
+#admin_page_top div.topics h2 { padding: 0 0 0 10px; margin-top: 0; border-bottom: 1px #5F6067 solid; background: #58585C; background-image: none; line-height: 150%; font-size: medium; color: #ffffff;}
 #admin_page_top div.topics dl { padding: 3px 15px 0 15px;}
 #admin_page_top div.topics dt { float: left; padding: 4px 0;}
 #admin_page_top div.topics dd { padding: 4px 0; padding-left: 7em;}
