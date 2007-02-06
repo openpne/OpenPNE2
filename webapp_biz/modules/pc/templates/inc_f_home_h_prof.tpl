@@ -619,7 +619,7 @@ pne_item({$key+1})_id=({$item.c_commu_id})
 &pne_item({$key+1})_name=({$item.name|t_truncate:12:'..'|escape:'url'})
 &pne_item({$key+1})_linkurl=({t_url m=pc a=page_c_home _urlencode=true _html=false})%26target_c_commu_id=({$item.c_commu_id})
 &pne_item({$key+1})_imageurl=({t_img_url filename=$item.image_filename w=76 h=76 noimg=no_logo_small _urlencode=true _html=false})
-&pne_item({$key+1})_count=({$item.count_commu_member})
+&pne_item({$key+1})_count=({$item.count_commu_members})
 ({/foreach})
 ({/strip})({/capture})
 <script type="text/javascript" src="js/show_flash.js"></script>
@@ -643,6 +643,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({t_loop from=$c_commu_list start=0 num=3})
 ({if $item})
 <td style="width:88px;" class="bg_03" align="center">
+({if $item.c_member_id_admin == $target_c_member.c_member_id })<img src="({t_img_url_skin filename=icon_crown})" class="icon"><br>({/if})
 <a href="({t_url m=pc a=page_c_home})&amp;target_c_commu_id=({$item.c_commu_id})">
 <img src="({t_img_url filename=$item.image_filename w=76 h=76 noimg=no_logo_small})" class="pict"></a>
 </td>
@@ -660,7 +661,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({if $item})
 <td class="bg_02" align="center">
 <a href="({t_url m=pc a=page_c_home})&amp;target_c_commu_id=({$item.c_commu_id})">
-({$item.name}) (({$item.count_commu_member}))
+({$item.name}) (({$item.count_commu_members}))
 </a>
 </td>
 ({else})
@@ -681,6 +682,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({t_loop from=$c_commu_list start=3 num=3})
 ({if $item})
 <td class="bg_03" align="center">
+({if $item.c_member_id_admin == $target_c_member.c_member_id })<img src="({t_img_url_skin filename=icon_crown})" class="icon"><br>({/if})
 <a href="({t_url m=pc a=page_c_home})&amp;target_c_commu_id=({$item.c_commu_id})">
 <img src="({t_img_url filename=$item.image_filename w=76 h=76 noimg=no_logo_small})" class="pict"></a>
 </td>
@@ -698,7 +700,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({if $item})
 <td class="bg_02" align="center">
 <a href="({t_url m=pc a=page_c_home})&amp;target_c_commu_id=({$item.c_commu_id})">
-({$item.name}) (({$item.count_commu_member}))
+({$item.name}) (({$item.count_commu_members}))
 </a>
 </td>
 ({else})
@@ -719,6 +721,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({t_loop from=$c_commu_list start=6 num=3})
 ({if $item})
 <td class="bg_03" align="center">
+({if $item.c_member_id_admin == $target_c_member.c_member_id })<img src="({t_img_url_skin filename=icon_crown})" class="icon"><br>({/if})
 <a href="({t_url m=pc a=page_c_home})&amp;target_c_commu_id=({$item.c_commu_id})">
 <img src="({t_img_url filename=$item.image_filename w=76 h=76 noimg=no_logo_small})" class="pict"></a>
 </td>
@@ -736,7 +739,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({if $item})
 <td class="bg_02" align="center">
 <a href="({t_url m=pc a=page_c_home})&amp;target_c_commu_id=({$item.c_commu_id})">
-({$item.name}) (({$item.count_commu_member}))
+({$item.name}) (({$item.count_commu_members}))
 </a>
 </td>
 ({else})
@@ -927,7 +930,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <td class="border_01 bg_02 padding_s" style="width:332px;border-top:none;">
 
 ({if $item.form_type == 'textarea'})
-    ({$item.value|nl2br|t_url2cmd|t_cmd})
+    ({$item.value|nl2br|t_url2cmd:'profile'|t_cmd:'profile'})
 ({elseif $item.form_type == 'checkbox'})
     ({$item.value|@t_implode:", "})
 ({else})
