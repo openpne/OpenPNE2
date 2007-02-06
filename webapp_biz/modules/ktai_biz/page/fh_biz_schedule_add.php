@@ -34,21 +34,16 @@ class ktai_biz_page_fh_biz_schedule_add extends OpenPNE_Action
             'month' => date("n"),
             'day' => date("d"));
 
-        //参加しているグループ
-        $jgroup = biz_getJoinGroup($target_id);
-
-        foreach ($jgroup as $value) {
-            $gname[$i] = $value['name'];
-            $gid[$i] = $value['biz_group_id'];
-            $i++;
-        }
-
         $this->set('now', $now);
-        $this->set('jgroup', $jgroup);
         $this->set('gname', $gname);
         $this->set('gid', $gid);
         $this->set('msg', $requests['msg']);
         $this->set('t_id', $target_id);
+
+        $biz_group_count = biz_getGroupCount($target_id);
+        $biz_group_list = biz_getJoinGroupList($target_id, 1, $biz_group_count);
+
+        $this->set('biz_group_list', $biz_group_list[0]);
 
         return 'success';
     }

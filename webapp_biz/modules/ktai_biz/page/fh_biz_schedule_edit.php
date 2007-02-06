@@ -11,6 +11,9 @@ class ktai_biz_page_fh_biz_schedule_edit extends OpenPNE_Action
         $u  = $GLOBALS['KTAI_C_MEMBER_ID'];
         $this->set('tail', $GLOBALS['KTAI_URL_TAIL']);
 
+        if (!biz_isPermissionSchedule($u, $requests['schedule_id'])) {
+            handle_kengen_error();
+        }
 
         if (empty($requests['target_id']) || ($requests['target_id'] == $u)) {
             //自分自身
@@ -61,6 +64,7 @@ class ktai_biz_page_fh_biz_schedule_edit extends OpenPNE_Action
         $this->set('writer', $requests['writer']);
         $this->set('t_id', $target_id);
         $this->set('msg', $requests['msg']);
+        $this->set('public_flag', $requests['public_flag']);
 
         return 'success';
     }
