@@ -169,7 +169,7 @@
 
 <div class="padding_s">
 
-<textarea class="text" name="detail" style="width:30em;height:6em;">({$event.detail})</textarea>
+<textarea class="text" name="detail" style="width:470px;height:6em;">({$event.detail})</textarea>
 
 </div>
 
