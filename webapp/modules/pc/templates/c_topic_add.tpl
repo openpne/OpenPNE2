@@ -83,7 +83,7 @@
 <td class="bg_02" align="left" valign="middle">
 <div class="padding_s">
 
-<textarea class="text" name="body" rows="10" cols="50" style="width:415px">({$body})</textarea>
+<textarea class="text" name="body" rows="10" cols="50" style="width:470px">({$body})</textarea>
 
 </div>
 </td>

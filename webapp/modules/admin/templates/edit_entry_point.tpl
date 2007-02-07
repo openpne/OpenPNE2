@@ -114,6 +114,10 @@
 【PC版】 f_home (h_prof) ({$requests.num})
 ({elseif $requests.target == 'c_home'})
 【PC版】 c_home ({$requests.num})
+({elseif $requests.target == 'h_reply_message'})
+【PC版】 h_reply_message ({$requests.num})
+({else})
+【携帯版】 ({$requests.target}) ({$requests.num})
 ({/if})</h3>
 
 ({if $msg})<p class="actionMsg">({$msg})</p>({/if})
@@ -126,10 +130,33 @@
 <textarea name="source" cols="({$cols|default:60})" rows="({$rows|default:10})">({$source})</textarea>
 <p class="textBtn"><input type="submit" value="変更する" /></p>
 </form>
-<dl class="image">
-<dt>テンプレート挿入場所対応図[ ({$requests.target}) ]</dt>
-<dd><img src="modules/admin/img/({$requests.target})_small.gif"></dd>
-</dl>
+<h4>テンプレート挿入場所対応図[ ({$requests.target}) ]</h4>
+({if $requests.target == 'h_home' || $requests.target == 'f_home' || $requests.target == 'c_home'})
+<p class="image">
+<img src="modules/admin/img/({$requests.target})_small.gif" />
+</p>
+({elseif $requests.target == 'h_reply_message'})
+<p class="image">
+<img src="modules/admin/img/entry_point_h_reply_message.gif" />
+</p>
+
+({elseif $requests.target == 'ktai_o_login'})
+<p class="image">
+<img src="modules/admin/img/entry_point_k-tai_o_login.gif" />
+</p>
+({elseif $requests.target == 'ktai_h_home'})
+<p class="image">
+<img src="modules/admin/img/entry_point_k-tai_h_home.gif" />
+</p>
+({elseif $requests.target == 'ktai_f_home'})
+<p class="image">
+<img src="modules/admin/img/entry_point_k-tai_f_home.gif" />
+</p>
+({elseif $requests.target == 'ktai_c_home'})
+<p class="image">
+<img src="modules/admin/img/entry_point_k-tai_c_home.gif" />
+</p>
+({/if})
 </td>
 </tr>
 </table>

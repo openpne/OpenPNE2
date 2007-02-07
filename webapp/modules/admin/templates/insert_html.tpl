@@ -83,11 +83,49 @@
 <p class="textBtn"><input type="submit" value="　変更する　" /></p>
 </form>
 
+<h4>テンプレート挿入場所対応図[({if $title == 'inc_page_footer_before'})
+ログイン前フッター
+({elseif $title == 'inc_page_footer_after'})
+ログイン後フッター
+({elseif $title == 'inc_html_head'})
+【PC版】HTML挿入(HTML head内)
+({elseif $title == 'inc_page_top2'})
+【PC版】HTML挿入 A
+({elseif $title == 'inc_page_top'})
+【PC版】HTML挿入 B　（旧：【PC版】HTML挿入(ページ上部)）
+({elseif $title == 'inc_page_bottom2'})
+【PC版】HTML挿入 C
+({elseif $title == 'inc_page_bottom'})
+【PC版】HTML挿入 D　（旧：【PC版】HTML挿入(ページ下部)）
+({elseif $title == 'inc_ktai_html_head'})
+【携帯】HTML挿入(HTML head内)
+({elseif $title == 'inc_ktai_header'})
+【携帯】HTML挿入(ページ上部)
+({elseif $title == 'inc_ktai_footer'})
+【携帯】HTML挿入(ページ下部)
+({/if})]</h4>
 ({if $requests.target == 'inc_page_top2' || $requests.target == 'inc_page_top' || $requests.target == 'inc_page_bottom2' || $requests.target == 'inc_page_bottom'})
 <p class="caution" id="c02">※内容が空のときはHTML挿入部分が表示されないので各HTML挿入部分に該当する隙間はブラウザ内枠との間に生じません。</p>
 
-<p>
-<img src="modules/admin/img/insert_HTML.gif">
+<p class="image">
+<img src="modules/admin/img/insert_HTML.gif" />
+</p>
+({elseif $title == 'inc_page_footer_before'})
+<p class="caution" id="c02">※ログイン画面下部にも反映されます。</p>
+
+<p class="image">
+<img src="modules/admin/img/insert_HTML_footer_before.gif" />
+</p>
+({elseif $title == 'inc_page_footer_after'})
+<p class="image">
+<img src="modules/admin/img/insert_HTML_footer.gif" />
+</p>
+({elseif $title == 'inc_html_head' || $title == 'inc_ktai_html_head'})
+<p class="caution" id="c02">※HEADタグ内に配置されるので、外観上の挿入ポイントはありません。</p>
+
+({elseif $title == 'inc_ktai_header' || $title == 'inc_ktai_footer'})
+<p class="image">
+<img src="modules/admin/img/insert_HTML_k-tai.gif" />
 </p>
 
 ({/if})

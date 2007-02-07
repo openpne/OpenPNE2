@@ -165,7 +165,7 @@
 
 <div class="padding_s">
 
-<textarea class="text" name="detail" rows="6" cols="50">({$event.body})</textarea>
+<textarea class="text" name="detail" rows="6" cols="50" style="width:480px;">({$event.body})</textarea>
 
 </div>
 
