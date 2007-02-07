@@ -22,6 +22,14 @@
 
 詳細：({$schedule.value})<br>
 登録者：<a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$schedule.c_member_id})&amp;({$tail})">({$schedule.writer_name})</a><br>
+公開範囲：
+({if $schedule.public_flag == "public"})
+全員に公開
+({elseif $schedule.public_flag == "group"})
+グループまで公開
+({elseif $schedule.public_flag == "private"})
+公開しない
+({/if})<br>
 参加者：
 ({foreach item=name key=id from=$jmembers})
 	<a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$id})&amp;({$tail})">({$name})</a>&nbsp;
@@ -44,6 +52,7 @@
 <input type="hidden" name="writer" value="({$schedule.writer_name})">
 <input type="hidden" name="members" value="({$jmembers_enc})">
 <input type="hidden" name="schedule_id" value="({$schedule_id})">
+<input type="hidden" name="public_flag" value="({$schedule.public_flag})">
 <input type="hidden" name="target_id" value="({$t_id})">
 <input value="編集" type="submit">
 </form>

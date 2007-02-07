@@ -28,6 +28,11 @@
 
 詳細：({$value})<br>
 登録者：({$writer})<br>
+公開範囲：<br>
+<input type='radio' name='public_flag' value='public' ({if $public_flag == 'public'})checked({/if})>全体に公開<br>
+<input type='radio' name='public_flag' value='group' ({if $public_flag == 'group'})checked({/if})>グループまで公開<br>
+<input type='radio' name='public_flag' value='private' ({if $public_flag == 'private'})checked({/if})>公開しない<br>
+<br>
 参加者：
 	({foreach item=name key=id from=$member})
 		({$name})&nbsp;

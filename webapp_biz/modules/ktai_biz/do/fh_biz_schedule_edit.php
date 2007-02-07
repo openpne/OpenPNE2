@@ -10,7 +10,11 @@ class ktai_biz_do_fh_biz_schedule_edit extends OpenPNE_Action
     {
         $u  = $GLOBALS['KTAI_C_MEMBER_ID'];
         $tail = $GLOBALS['KTAI_URL_TAIL'];
-
+        
+        if (!biz_isPermissionSchedule($u, $requests['schedule_id'])) {
+            handle_kengen_error();
+        }
+        
         //ERROR----------------
         //存在しない日付
         if (!checkdate($requests['sc_b_month'], $requests['sc_b_date'], $requests['sc_b_year'])) {
@@ -127,7 +131,7 @@ class ktai_biz_do_fh_biz_schedule_edit extends OpenPNE_Action
 
         $schedule_id = '';
 
-        biz_editSchedule($requests['sc_title'], $u, $begin_date, $finish_date, $begin_time, $finish_time, $requests['sc_memo'], $rp_rule, 0, $requests['sc_j_mem'], $requests['sc_j_plc'], $requests['schedule_id']);
+        biz_editSchedule($requests['sc_title'], $u, $begin_date, $finish_date, $begin_time, $finish_time, $requests['sc_memo'], $rp_rule, 0, $requests['sc_j_mem'], $requests['public_flag'], $requests['schedule_id']);
         $schedule_id = $requests['schedule_id'];
 
 
