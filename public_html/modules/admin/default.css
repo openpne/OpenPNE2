@@ -113,6 +113,7 @@ li { list-style-type: none;}
  #admin_page_send_invites_confirm li#adminSiteMember a.tab ,
  #admin_page_send_messages li#adminSiteMember a.tab ,
  #admin_page_send_messages_all li#adminSiteMember a.tab ,
+ #admin_page_send_messages_history_detail li#adminSiteMember a.tab ,
  #admin_page_send_messages_history_list li#adminSiteMember a.tab ,
 
 #admin_page_list_c_image li#adminImageKakikomi a.tab ,
@@ -129,6 +130,14 @@ li { list-style-type: none;}
 #admin_page_user_analysis_date_month li#adminStatisticalInformation a.tab ,
 #admin_page_user_analysis_date_day li#adminStatisticalInformation a.tab ,
 #admin_page_access_analysis_month li#adminStatisticalInformation a.tab ,
+ #admin_page_access_analysis_day li#adminStatisticalInformation a.tab ,
+ #admin_page_access_analysis_member li#adminStatisticalInformation a.tab ,
+ #admin_page_access_analysis_page li#adminStatisticalInformation a.tab ,
+ #admin_page_access_analysis_target_commu li#adminStatisticalInformation a.tab ,
+ #admin_page_access_analysis_target_diary li#adminStatisticalInformation a.tab ,
+ #admin_page_access_analysis_target_member li#adminStatisticalInformation a.tab ,
+ #admin_page_access_analysis_target_topic li#adminStatisticalInformation a.tab ,
+ #admin_page_user_analysis_profile li#adminStatisticalInformation a.tab ,
 
 #admin_page_edit_skin_image li#adminDesign a.tab ,
 #admin_page_edit_c_sns_config li#adminDesign a.tab ,
@@ -136,6 +145,9 @@ li { list-style-type: none;}
 #admin_page_insert_html li#adminDesign a.tab ,
 #admin_page_edit_entry_point li#adminDesign a.tab ,
 #admin_page_edit_c_banner li#adminDesign a.tab ,
+ #admin_page_delete_c_banner_confirm li#adminDesign a.tab ,
+ #admin_page_insert_c_banner li#adminDesign a.tab ,
+ #admin_page_update_c_banner li#adminDesign a.tab ,
 
 #admin_page_edit_c_admin_config li#adminSNSConfig a.tab ,
 #admin_page_limit_domain li#adminSNSConfig a.tab ,
@@ -152,10 +164,14 @@ li { list-style-type: none;}
 
 #admin_page_edit_c_admin_info li#adminInfoKiyaku a.tab ,
 #admin_page_list_c_free_page li#adminInfoKiyaku a.tab ,
+ #admin_page_delete_c_free_page_confirm li#adminInfoKiyaku a.tab ,
+ #admin_page_insert_c_free_page li#adminInfoKiyaku a.tab ,
+ #admin_page_update_c_free_page li#adminInfoKiyaku a.tab ,
 
 #admin_page_list_c_admin_user li#adminAdminConfig a.tab ,
 #admin_page_edit_admin_password li#adminAdminConfig a.tab ,
-#admin_page_update_hash_table li#adminAdminConfig a.tab { background: #EEF0F2 url("img/nv_tab_on.gif") repeat-x right top; color: #5B91F3;}
+#admin_page_update_hash_table li#adminAdminConfig a.tab ,
+ #admin_page_insert_c_admin_user li#adminAdminConfig a.tab { background: #EEF0F2 url("img/nv_tab_on.gif") repeat-x right top; color: #5B91F3;}
 
 
 #admin_page_list_c_member li#adminSiteMember ul.pull ,

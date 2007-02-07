@@ -49,7 +49,8 @@
 ({/if})
 
 ({****})
-<li id="adminImageKakikomi" onmouseover="menu('adminImageKakikomi','adminImageKakikomiCont')" onmouseout="menu('adminImageKakikomi','adminImageKakikomiCont')"><a class="tab" href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_image')})">画像・書き込み管理</a>
+<li id="adminImageKakikomi" onmouseover="menu('adminImageKakikomi','adminImageKakikomiCont')" onmouseout="menu('adminImageKakikomi','adminImageKakikomiCont')">
+<a class="tab" href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_image')})">画像・書き込み管理</a>
 <ul id="adminImageKakikomiCont" class="pull">
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_image')})" title="画像リスト・管理: SNSに登録されている画像の一覧、登録、削除">アップロード画像リスト</a></li>
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_image')})" title="未定">画像アップロード・削除</a></li>

@@ -23,7 +23,6 @@
 <table border="0" cellspacing="0" cellpadding="0" style="width:149px;margin:0px auto;">
 <tr>
 <td align="center" class="bg_03 padding_s">
-<div class="padding_s">
 
 ({strip})
 ({if $ym.prev_month})
@@ -51,7 +50,6 @@
 ({/if})
 ({/strip})
 
-</div>
 </td>
 </tr>
 </table>
@@ -66,19 +64,19 @@
 </tr>
 ({****************})
 <tr>
-<td class="bg_09 s_ss" align="center"><span class="c_02 s_ss">日</span></td>
+<td class="bg_09 s_ss padding_ss" align="right"><span class="c_02 s_ss">日</span></td>
 <td style="width:1px;" class="bg_10"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-<td class="bg_09 s_ss" align="center">月</td>
+<td class="bg_09 s_ss padding_ss" align="right">月</td>
 <td style="width:1px;" class="bg_10"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-<td class="bg_09 s_ss" align="center">火</td>
+<td class="bg_09 s_ss padding_ss" align="right">火</td>
 <td style="width:1px;" class="bg_10"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-<td class="bg_09 s_ss" align="center">水</td>
+<td class="bg_09 s_ss padding_ss" align="right">水</td>
 <td style="width:1px;" class="bg_10"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-<td class="bg_09 s_ss" align="center">木</td>
+<td class="bg_09 s_ss padding_ss" align="right">木</td>
 <td style="width:1px;" class="bg_10"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-<td class="bg_09 s_ss" align="center">金</td>
+<td class="bg_09 s_ss padding_ss" align="right">金</td>
 <td style="width:1px;" class="bg_10"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-<td class="bg_09 s_ss" align="center"><span class="c_03 s_ss">土</span></td>
+<td class="bg_09 s_ss padding_ss" align="right"><span class="c_03 s_ss">土</span></td>
 </tr>
 ({****************})
 <tr>
@@ -88,7 +86,7 @@
 ({foreach from=$calendar item=week})
 <tr>
 ({foreach from=$week item=item name="calendar_days"})
-<td style="width:({if $smarty.foreach.calendar_days.iteration%7 == 0 || $smarty.foreach.calendar_days.iteration%7 == 1})21({else})20({/if})px;height:18px;" valign="middle" align="right" class="bg_02 s_ss">
+<td style="width:({if $smarty.foreach.calendar_days.iteration%7 == 0 || $smarty.foreach.calendar_days.iteration%7 == 1})21({else})20({/if})px;height:18px;" valign="middle" align="right" class="bg_02 s_ss padding_ss">
 ({if $item.day})
 ({if $item.is_diary})
 <a href="({t_url m=pc a=page_fh_diary_list})&amp;target_c_member_id=({$target_member.c_member_id})&amp;year=({$date_val.year})&amp;month=({$date_val.month})&amp;day=({$item.day})" class="s_ss">({$item.day})</a>
