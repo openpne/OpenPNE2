@@ -42,7 +42,7 @@ class pc_page_h_home extends OpenPNE_Action
         $this->set('h_confirm_list', $h_confirm_list);
         $this->set('num_h_confirm_list', count($h_confirm_list) );
         // あなたにコミュニティ管理者交代を希望しているメンバー
-        $anatani_c_commu_admin_confirm_list = p_h_confirm_list_anatani_c_commu_admin_confirm_list4c_member_id($u);
+        $anatani_c_commu_admin_confirm_list = db_commu_anatani_c_commu_admin_confirm_list4c_member_id($u);
         $this->set('anatani_c_commu_admin_confirm_list',$anatani_c_commu_admin_confirm_list);
         $this->set('num_anatani_c_commu_admin_confirm_list', count($anatani_c_commu_admin_confirm_list));
 

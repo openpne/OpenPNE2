@@ -39,7 +39,7 @@ class pc_page_h_home extends OpenPNE_Action
         $this->set('h_confirm_list', $h_confirm_list);
         $this->set('num_h_confirm_list', count($h_confirm_list));
         // あなたにコミュニティ管理者交代を希望しているメンバー
-        $anatani_c_commu_admin_confirm_list = p_h_confirm_list_anatani_c_commu_admin_confirm_list4c_member_id($u);
+        $anatani_c_commu_admin_confirm_list = db_commu_anatani_c_commu_admin_confirm_list4c_member_id($u);
         $this->set('anatani_c_commu_admin_confirm_list', $anatani_c_commu_admin_confirm_list);
         $this->set('num_anatani_c_commu_admin_confirm_list', count($anatani_c_commu_admin_confirm_list));
 
@@ -61,7 +61,7 @@ class pc_page_h_home extends OpenPNE_Action
         $this->set('c_friend_list', $c_friend_list);
         $this->set('c_friend_count', db_friend_count_friends($u));
         // 参加コミュニティ
-        $c_commu_user_list = p_h_home_c_commu_list4c_member_id($u, 9);
+        $c_commu_user_list = db_commu_c_commu_list4c_member_id_3($u, 9);
         $this->set('c_commu_user_list', $c_commu_user_list);
         $this->set('fh_com_count_user', db_commu_count_c_commu4c_member_id($u));
 
@@ -76,7 +76,7 @@ class pc_page_h_home extends OpenPNE_Action
         $c_diary_my_comment_list = p_h_home_c_diary_my_comment_list4c_member_id($u, 5);
         $this->set('c_diary_my_comment_list', $c_diary_my_comment_list);
         // 参加コミュニティの新着書き込み
-        $this->set('c_commu_topic_comment_list', p_h_home_c_commu_topic_comment_list4c_member_id($u, 5));
+        $this->set('c_commu_topic_comment_list', db_commu_c_commu_topic_comment_list4c_member_id($u, 5));
         // レビュー
         $this->set('c_friend_review_list', db_review_c_friend_review_list4c_member_id($u, 5));
 
@@ -110,8 +110,8 @@ class pc_page_h_home extends OpenPNE_Action
 
         /// 週間カレンダー
         if (DISPLAY_SCHEDULE_HOME) {
-			//開始曜日の設定
-			if ($c_member['schedule_start_day'] == 2) {
+            //開始曜日の設定
+            if ($c_member['schedule_start_day'] == 2) {
                 $start_day = date("w");
             } else {
                 $start_day = $c_member['schedule_start_day'];
