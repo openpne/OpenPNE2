@@ -169,7 +169,7 @@
 
 <div class="padding_s">
 
-<textarea class="text" name="body" rows="5" cols="50">({$target_member.nickname})さんを紹介します。</textarea>
+<textarea class="text" name="body" rows="5" cols="50" style="width:389px;">({$target_member.nickname})さんを紹介します。</textarea>
 
 </div>
 

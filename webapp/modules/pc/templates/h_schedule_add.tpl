@@ -188,7 +188,7 @@
 ({if !$is_unused_schedule})
 <!-- ここから；スケジュールフォーム＞お知らせメール通知 -->
 <tr>
-<td align="center" class="border_01" style="border-width:0px 1px 1px 0px;">
+<td align="center" class="border_01 bg_05" style="border-width:0px 1px 1px 0px;">
 
 <div class="padding_s">お知らせメール</div>
 

@@ -125,7 +125,7 @@
 
 <div class="padding_s">
 
-<textarea class="text" name="body" rows="8" cols="40">({$body})</textarea>
+<textarea class="text" name="body" rows="8" cols="40" style="width:438px;">({$body})</textarea>
 
 </div>
 

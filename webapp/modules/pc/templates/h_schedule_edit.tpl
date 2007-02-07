@@ -38,7 +38,7 @@
 ({*********})
 <!-- スケジュールフォーム＞タイトル -->
 <tr>
-<td align="center" class="border_01" style="width:110px;border-width:0px 1px 1px 0px;">
+<td align="center" class="border_01 bg_05" style="width:110px;border-width:0px 1px 1px 0px;">
 
 <div class="padding_s">
 
@@ -47,7 +47,7 @@
 </div>
 
 </td>
-<td class="border_01" style="width:454px;border-width:0px 0px 1px 0px;">
+<td class="border_01 bg_02" style="width:454px;border-width:0px 0px 1px 0px;">
 
 <div class="padding_s">
 
@@ -60,7 +60,7 @@
 ({*********})
 <!-- スケジュールフォーム＞開始日時 -->
 <tr>
-<td align="center" class="border_01" style="border-width:0px 1px 1px 0px">
+<td align="center" class="border_01 bg_05" style="border-width:0px 1px 1px 0px">
 
 <div class="padding_s">
 
@@ -69,7 +69,7 @@
 </div>
 
 </td>
-<td class="border_01" style="border-width:0px 0px 1px 0px;">
+<td class="border_01 bg_02" style="border-width:0px 0px 1px 0px;">
 
 <div class="padding_s">
 
@@ -106,7 +106,7 @@
 ({*********})
 <!-- スケジュールフォーム＞終了日時 -->
 <tr>
-<td align="center" class="border_01" style="border-width:0px 1px 1px 0px;">
+<td align="center" class="border_01 bg_05" style="border-width:0px 1px 1px 0px;">
 
 <div class="padding_s">
 
@@ -115,7 +115,7 @@
 </div>
 
 </td>
-<td class="border_01" style="border-width:0px 0px 1px 0px;">
+<td class="border_01 bg_02" style="border-width:0px 0px 1px 0px;">
 
 <div class="padding_s">
 
@@ -152,7 +152,7 @@
 ({*********})
 <!-- スケジュールフォーム＞詳細テキスト -->
 <tr>
-<td align="center" class="border_01" style="border-width:0px 1px 1px 0px;">
+<td align="center" class="border_01 bg_05" style="border-width:0px 1px 1px 0px;">
 
 <div class="padding_s">
 
@@ -161,7 +161,7 @@
 </div>
 
 </td>
-<td class="border_01" style="border-width:0px 0px 1px 0px;">
+<td class="border_01 bg_02" style="border-width:0px 0px 1px 0px;">
 
 <div class="padding_s">
 
@@ -175,7 +175,7 @@
 ({if !$is_unused_schedule})
 <!-- スケジュールフォーム＞お知らせメール通知 -->
 <tr>
-<td align="center" class="border_01" style="border-width:0px 1px 1px 0px;">
+<td align="center" class="border_01 bg_05" style="border-width:0px 1px 1px 0px;">
 
 <div class="padding_s">
 
@@ -184,7 +184,7 @@
 </div>
 
 </td>
-<td class="border_01" style="border-width:0px 0px 1px 0px;">
+<td class="border_01 bg_02" style="border-width:0px 0px 1px 0px;">
 
 <div class="padding_s">
 

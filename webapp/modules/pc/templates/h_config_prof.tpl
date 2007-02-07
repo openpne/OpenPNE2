@@ -217,9 +217,9 @@
 ({if $profile.form_type == 'text'})
     <input type="text" class="text" size="30" name="profile[({$profile.name})]" value="({$c_member.profile[$profile.name].value})">
 ({elseif $profile.form_type == 'textlong'})
-    <input type="text" size="60" name="profile[({$profile.name})]" value="({$c_member.profile[$profile.name].value})">
+    <input type="text" class="text" size="60" name="profile[({$profile.name})]" value="({$c_member.profile[$profile.name].value})">
 ({elseif $profile.form_type == 'textarea'})
-    <textarea class="text" name="profile[({$profile.name})]" rows="6" cols="50">({$c_member.profile[$profile.name].value})</textarea>
+    <textarea class="text" name="profile[({$profile.name})]" rows="6" cols="50" style="width:470px;">({$c_member.profile[$profile.name].value})</textarea>
 ({elseif $profile.form_type == 'select'})
     <select name="profile[({$profile.name})]">
     <option value="">選択してください</option>
