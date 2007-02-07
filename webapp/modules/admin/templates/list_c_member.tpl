@@ -1,32 +1,4 @@
 ({$inc_header|smarty:nodefaults})
-<script type="text/javascript">
-<!--
-function checkAll() {
-    var sm = document.formSendMessages;
-    var len = sm.elements.length;
-    for (var i = 0; i < len; i++) {
-        sm.elements[i].checked = true;
-    }
-    return false;
-}
-
-function clearAll() {
-    var sm = document.formSendMessages;
-    var len = sm.elements.length;
-    for (var i = 0; i < len; i++) {
-        sm.elements[i].checked = false;
-    }
-    return false;
-}
-
-function Link(linkLoc) {
-    if (linkLoc != "") {
-        window.location.href=linkLoc;
-    }
-}
-
-//-->
-</script>
 
 ({ext_include file="inc_subnavi_adminSiteMember.tpl"})
 ({assign var="page_name" value="メンバーリスト"})

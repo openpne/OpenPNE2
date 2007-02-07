@@ -114,6 +114,10 @@ select {
 	vertical-align: middle ;
 }
 
+input.submit {
+	cursor: pointer;
+}
+
 input.no_bg {
 	background-color: transparent ;
 	border: 0px none ;
