@@ -477,7 +477,7 @@
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
-<input type="hidden" name="skinname" value="button_shosai" />
+<input type="hidden" name="skinname" value="bg_button" />
 <input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="変更" /></span>
 </form></dd>
 </dl>
