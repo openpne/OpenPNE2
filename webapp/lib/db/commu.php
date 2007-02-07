@@ -614,7 +614,7 @@ function db_commu_c_commu_list4c_member_id_2($c_member_id, $limit = 9)
 
     $is_recurred = false;
 
-    $sql = "SELECT c_commu.c_commu_id, c_commu.image_filename, c_commu.name" .
+    $sql = "SELECT c_commu.c_commu_id, c_commu.image_filename, c_commu.name, c_commu.c_member_id_admin" .
         " FROM c_commu ,c_commu_member " .
         " WHERE c_commu_member.c_member_id = ?".
         " AND c_commu.c_commu_id =  c_commu_member.c_commu_id" .
@@ -623,7 +623,7 @@ function db_commu_c_commu_list4c_member_id_2($c_member_id, $limit = 9)
     $lst = db_get_all_limit($sql, 0, $limit, $params);
 
     foreach ($lst as $key => $value) {
-        $lst[$key]['count_commu_member'] = _db_count_c_commu_member_list4c_commu_id($value['c_commu_id']);
+        $lst[$key]['count_commu_members'] = db_commu_count_c_commu_member_list4c_commu_id($value['c_commu_id']);
     }
     return $lst;
 }
@@ -892,7 +892,7 @@ function db_commu_c_commu_topic_comment_list4c_member_id_2($c_member_id, $limit,
 }
 
 /** 
- * 参加コミュニティのリスト
+ * 参加コミュニティのリスト(2.6.2以降は未使用)
  * 
  * @param int $c_member_id
  * @param int $limit
@@ -910,16 +910,15 @@ function db_commu_c_commu_list4c_member_id_3($c_member_id, $limit)
 
     $is_recurred = false;
 
-    $sql = "SELECT c.* FROM c_commu_member AS cm, c_commu AS c";
-    $sql .= " WHERE cm.c_member_id=?";
-    $sql .= " AND c.c_commu_id=cm.c_commu_id";
-    $sql .= " ORDER BY RAND()";
+    $sql = "SELECT c.* FROM c_commu_member AS cm, c_commu AS c" .
+       " WHERE cm.c_member_id=?" .
+       " AND c.c_commu_id=cm.c_commu_id" .
+       " ORDER BY RAND()";
     $params = array(intval($c_member_id));
     $c_commu_list = db_get_all_limit($sql, 0, $limit, $params);
 
     foreach ($c_commu_list as $key => $value) {
-        $c_commu_list[$key]['count_commu_members'] =
-            _db_count_c_commu_member_list4c_commu_id($value['c_commu_id']);
+        $c_commu_list[$key]['count_commu_members'] =  db_commu_count_c_commu_member_list4c_commu_id($value['c_commu_id']);
     }
     return $c_commu_list;
 }
@@ -1195,7 +1194,7 @@ function db_commu_c_commu_list_lastupdate4c_member_id($c_member_id, $limit)
 
     foreach ($c_commu_list as $key => $value) {
         $c_commu_list[$key]['count_members'] =
-            _db_count_c_commu_member_list4c_commu_id($value['c_commu_id']);
+            db_commu_count_c_commu_member_list4c_commu_id($value['c_commu_id']);
     }
 
     return $c_commu_list;
@@ -1328,7 +1327,7 @@ function db_commu_c_commu_list4c_member_id_4($c_member_id, $page_size, $page)
 
     foreach ($c_commu_list as $key => $value) {
         $c_commu_list[$key]['count_members'] =
-            _db_count_c_commu_member_list4c_commu_id($value['c_commu_id']);
+            db_commu_count_c_commu_member_list4c_commu_id($value['c_commu_id']);
     }
 
     $total_num = p_common_count_c_commu4c_member_id($c_member_id);
@@ -1431,7 +1430,7 @@ function db_commu_c_members_disp4c_commu_id($c_commu_id, $page_size, $page)
         $list[$key]['friend_count'] = db_friend_count_friends($value['c_member_id']);
     }
 
-    $total_num = _db_count_c_commu_member_list4c_commu_id($c_commu_id);
+    $total_num = db_commu_count_c_commu_member_list4c_commu_id($c_commu_id);
     if ($total_num != 0) {
         $total_page_num = ceil($total_num / $page_size);
         if ($page >= $total_page_num) {
@@ -1717,7 +1716,7 @@ function db_commu_search_c_commu4c_commu_category(
 
         if (!isset($value['count_commu_member'])) {
             $list[$key]['count_commu_member'] =
-                _db_count_c_commu_member_list4c_commu_id($value['c_commu_id']);
+                db_commu_count_c_commu_member_list4c_commu_id($value['c_commu_id']);
         }
     }
 
@@ -1765,7 +1764,7 @@ function db_commu_c_commu_list4c_commu_category_id_search($c_commu_category_id, 
 
     foreach ($list as $key => $value) {
         $list[$key]['count_commu_member'] =
-            _db_count_c_commu_member_list4c_commu_id($value['c_commu_id']);
+            db_commu_count_c_commu_member_list4c_commu_id($value['c_commu_id']);
     }
 
     $sql = 'SELECT COUNT(*) FROM c_commu' . $where;

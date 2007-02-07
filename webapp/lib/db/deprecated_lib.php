@@ -273,7 +273,7 @@ function p_h_com_comment_list_c_commu_topic_comment_list4c_member_id($c_member_i
 
 function p_h_home_c_commu_list4c_member_id($c_member_id, $limit)
 {
-    return db_commu_c_commu_list4c_member_id_3($c_member_id, $limit);
+    return db_commu_c_commu_list4c_member_id_2($c_member_id, $limit);
 }
 
 function p_c_topic_list_c_topic_list4target_c_commu_id($c_commu_id, $c_member_id, $page = 1, $page_size = 10, $event_flag = 0, $topic_with_event = 0)
