@@ -161,7 +161,7 @@
 <td class="bg_02" align="left" valign="middle">
 <div style="padding:4px 3px;">
 
-({$schedule.value})
+({$schedule.value|nl2br})
 
 </div>
 </td>
