@@ -426,23 +426,6 @@ function db_friend_is_friend_link_wait($c_member_id_from, $c_member_id_to)
     }
 }
 
-function db_friend_f_link_status($c_member_id_from,$c_member_id_to)
-{
-    $is_friend    = db_friend_is_friend($c_member_id_from, $c_member_id_to);
-    $is_link_wait = do_common_is_friend_link_wait($c_member_id_from, $c_member_id_to);
-
-    $ret = STATUS_F_LINK_ALREADY;
-    if (($is_friend == false) && ($is_link_wait == false)) {
-        // 友達でない＆リンク承認待ちでない
-        $ret = STATUS_F_LINK_FLAT;
-    } elseif (($is_friend == false) && ($is_link_wait == true)) {
-        // 友達でない＆リンク承認待ち
-        $ret = STATUS_F_LINK_WAIT;
-    }
-
-    return $ret;
-}
-
 function db_friend_c_friend_list4c_member_id2($c_member_id)
 {
     $sql = "SELECT c_member.* FROM c_friend, c_member" .

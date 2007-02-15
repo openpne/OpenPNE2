@@ -15,13 +15,14 @@ function &db_get_instance($name = 'main', $readonly = false)
             if ($name == 'main') {
                 return false;
             } else {
-                return db_get_instance();
+                $_OPENPNE_DB_LIST[$name] =& db_get_instance();
             }
-        }
-        if ($readonly) {
-            $_OPENPNE_DB_LIST[$name] =& new OpenPNE_DB($dsn);
         } else {
-            $_OPENPNE_DB_LIST[$name] =& new OpenPNE_DB_Writer($dsn);
+            if ($readonly) {
+                $_OPENPNE_DB_LIST[$name] =& new OpenPNE_DB($dsn);
+            } else {
+                $_OPENPNE_DB_LIST[$name] =& new OpenPNE_DB_Writer($dsn);
+            }
         }
     }
     return $_OPENPNE_DB_LIST[$name];

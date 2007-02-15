@@ -172,6 +172,13 @@ class OpenPNE_Config
             'AMAZON_TOKEN'   => '1WZYY1W9YF49AGM0RTG2',
             'AMAZON_LOCALE'  => 'jp',
             'AMAZON_BASEURL' => 'http://xml-jp.amznxslt.com/onca/xml3',
+            'OPENPNE_REGIST_FROM_NONE'   => 0,
+            'OPENPNE_REGIST_FROM_PC'     => 1,
+            'OPENPNE_REGIST_FROM_KTAI'   => 2,
+            'OPENPNE_REGIST_FROM_PCKTAI' => 3,
+            'OPENPNE_FUNCTION_CACHE_LIFETIME_FAST' => 300,
+            'OPENPNE_FUNCTION_CACHE_LIFETIME_SHORT' => 1200,
+            'OPENPNE_FUNCTION_CACHE_LIFETIME_LONG' => 3600,
         );
 
         foreach ($defaults as $key => $value) {

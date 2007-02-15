@@ -82,8 +82,6 @@ function openpne_gen_url($module, $action = '', $params = array(), $absolute = t
     } else {
         unset($p['ssl_param']);
     }
-
-    include_once 'PHP/Compat/Function/http_build_query.php';
     if ($q = http_build_query($p)) {
         $url .= '?' . $q;
     }
@@ -493,6 +491,29 @@ function check_action4pne_slave($is_ktai = false)
     	} else {
     		openpne_redirect('pc');
     	}
+    }
+}
+
+function util_include_php_files($dir)
+{
+    if (!is_dir($dir)) {
+        return;
+    }
+    if ($dh = opendir($dir)) {
+        while (($file = readdir($dh)) !== false) {
+            if ($file[0] === '.') {
+                continue;
+            }
+            $path = realpath($dir . '/' . $file);
+            if (is_dir($path)) {
+                util_include_php_files($path);
+            } else {
+                if (substr($file, -4, 4) === '.php') {
+                    include_once $path;
+                }
+            }
+        }
+        closedir($dh);
     }
 }
 
