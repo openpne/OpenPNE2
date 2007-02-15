@@ -140,6 +140,7 @@ function cache_drop_c_friend_intro($c_member_id)
 {
     pne_cache_drop('db_friend_c_friend_intro_list4c_member_id', $c_member_id, 5);
     pne_cache_drop('db_friend_c_friend_comment4c_member_id', $c_member_id);
+    pne_cache_drop('db_friend_c_friend_comment4c_member_id', $c_member_id, 5);
 }
 
 /**

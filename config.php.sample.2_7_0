@@ -227,6 +227,9 @@ define('LOG_C_ACCESS_LOG', true);
 // セッション・クッキー設定
 ///
 
+ini_set('session.gc_probability',1);
+ini_set('session.gc_divisor',10000);
+
 ini_set('session.gc_maxlifetime', 432000); // 5 days
 //session_save_path('/tmp');
 
@@ -260,6 +263,9 @@ define('OPENPNE_SESSION_CHECK_URL', true);
 
 // 画像を別サーバに設定する場合に指定する
 //define('OPENPNE_IMG_URL', 'http://img.example.com/');
+
+//// 画像サーバ用設定 ////
+//define('OPENPNE_IS_IMG_SERVER', false);
 
 // 画像キャッシュをpublic_html以下に置くかどうか(要mod_rewrite)
 define('OPENPNE_IMG_CACHE_PUBLIC', false);
@@ -300,7 +306,6 @@ define('IMAGE_MAX_FILESIZE', 300);
 // アップロード画像の大きさ制限(ピクセル)
 define('IMAGE_MAX_WIDTH', 1024);
 define('IMAGE_MAX_HEIGHT', 768);
-
 
 ///
 // 外部RSS取得
@@ -456,5 +461,4 @@ array(
     'cryptType'   => 'none',
     ),
 );
-
 ?>

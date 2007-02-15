@@ -31,6 +31,16 @@ function db_message_c_message4c_message_id($c_message_id)
  */
 function db_message_count_c_message_not_is_read4c_member_to_id($c_member_id_to)
 {
+    static $is_recurred = false;  //再帰処理中かどうかの判定フラグ
+
+    if (!$is_recurred) {  //function cacheのために再帰処理を行う
+        $is_recurred = true;
+        $funcargs = func_get_args();
+        return pne_cache_recursive_call(OPENPNE_FUNCTION_CACHE_LIFETIME_FAST, __FUNCTION__, $funcargs);
+    }
+
+    $is_recurred = false;
+
     $sql = 'SELECT COUNT(*) FROM c_message WHERE c_member_id_to = ?' .
             ' AND is_read = 0 AND is_send = 1';
     $params = array(intval($c_member_id_to));
@@ -539,6 +549,7 @@ function db_message_update_c_message_is_read4c_message_id($c_message_id, $c_memb
         'c_message_id' => intval($c_message_id),
         'c_member_id_to' => intval($c_member_id),
     );
+    pne_cache_drop('db_message_count_c_message_not_is_read4c_member_to_id', $c_member_id);
     return db_update('c_message', $data, $where);
 }
 
@@ -567,6 +578,7 @@ function db_message_send_message($c_member_id_from, $c_member_id_to, $subject, $
 
     do_common_send_message_mail_send($c_member_id_to, $c_member_id_from);
     do_common_send_message_mail_send_ktai($c_member_id_to, $c_member_id_from);
+    pne_cache_drop('db_message_count_c_message_not_is_read4c_member_to_id', $c_member_id_to);
 
     return $c_message_id;
 }
@@ -576,6 +588,7 @@ function db_message_send_message_syoudaku($c_member_id_from, $c_member_id_to, $s
 {
     //メッセージ
     db_message_insert_c_message_syoudaku($c_member_id_from, $c_member_id_to, $subject, $body);
+    pne_cache_drop('db_message_count_c_message_not_is_read4c_member_to_id', $c_member_id_to);
 
     do_common_send_message_syoudaku_mail_send($c_member_id_to, $c_member_id_from);
 }
@@ -585,6 +598,7 @@ function db_message_send_message_syoukai_commu($c_member_id_from, $c_member_id_t
 {
     //メッセージ
     db_message_insert_c_message($c_member_id_from, $c_member_id_to, $subject, $body);
+    pne_cache_drop('db_message_count_c_message_not_is_read4c_member_to_id', $c_member_id_to);
 
     do_common_send_message_syoukai_commu_mail_send($c_member_id_to, $c_member_id_from);
 }
@@ -594,6 +608,7 @@ function db_message_send_message_syoukai_member($c_member_id_from, $c_member_id_
 {
     //メッセージ
     db_message_insert_c_message($c_member_id_from, $c_member_id_to, $subject, $body);
+    pne_cache_drop('db_message_count_c_message_not_is_read4c_member_to_id', $c_member_id_to);
 
     do_common_send_message_syoukai_member_mail_send($c_member_id_to, $c_member_id_from);
 }
@@ -603,6 +618,7 @@ function db_message_send_message_event_invite($c_member_id_from, $c_member_id_to
 {
     //メッセージ
     db_message_insert_c_message($c_member_id_from, $c_member_id_to, $subject, $body);
+    pne_cache_drop('db_message_count_c_message_not_is_read4c_member_to_id', $c_member_id_to);
 
     do_common_send_message_event_invite_mail_send($c_member_id_to, $c_member_id_from);
 }
@@ -612,6 +628,7 @@ function db_message_send_message_event_message($c_member_id_from, $c_member_id_t
 {
     //メッセージ
     db_message_insert_c_message($c_member_id_from, $c_member_id_to, $subject, $body);
+    pne_cache_drop('db_message_count_c_message_not_is_read4c_member_to_id', $c_member_id_to);
 
     do_common_send_message_event_message_mail_send($c_member_id_to, $c_member_id_from);
 }
