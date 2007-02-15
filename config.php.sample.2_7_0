@@ -188,12 +188,9 @@ define('OPENPNE_MODULES_EXT_DIR', OPENPNE_WEBAPP_EXT_DIR . '/modules');
 
 ///
 // webapp_biz ディレクトリ使用設定
-// PNEBIZ機能を使用する場合は
-// setup/sql/install/option-pnebiz-mysql4X.sqlを実行した後
-// USE_BIZ_DIRをtrueにしてください
-///
-
-define('USE_BIZ_DIR', false);
+//
+// BIZ使用設定は管理画面に移動しました
+// define('USE_EXT_DIR', false);
 define('OPENPNE_WEBAPP_BIZ_DIR' , OPENPNE_DIR . '/webapp_biz');
 define('OPENPNE_MODULES_BIZ_DIR', OPENPNE_WEBAPP_BIZ_DIR . '/modules');
 
