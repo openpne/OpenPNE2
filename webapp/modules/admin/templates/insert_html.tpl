@@ -78,7 +78,7 @@
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('insert_html','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
-<input type="hidden" name="target" value="({$requests.target})" />
+<input type="hidden" name="target" value="({$title})" />
 <textarea name="body" cols="({$cols|default:60})" rows="({$rows|default:10})">({$c_siteadmin.body})</textarea>
 <p class="textBtn"><input type="submit" value="　変更する　" /></p>
 </form>
