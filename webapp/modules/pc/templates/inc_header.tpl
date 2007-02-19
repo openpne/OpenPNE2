@@ -280,6 +280,7 @@ function setFocusClass() {
 }
 
 ({*二度押し対策*})
+/*
 Event.observe(window, 'load', setSubmitFunction, false);
 
 function setSubmitFunction() {
@@ -291,7 +292,7 @@ function setSubmitFunction() {
 		};
 	});
 }
-
+*/
 //-->
 </script>
 </head>
