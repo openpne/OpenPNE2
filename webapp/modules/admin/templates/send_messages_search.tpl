@@ -27,9 +27,9 @@
 ({/foreach})
 のメンバー
 </ul>
-</div>
+</div>({*/div class="page_navi"*})
 
-<div style="float:left">
+<div class="edit_message">
 <form action="./" method="post">
 <input type="hidden" name="m" value="({$module_name})">
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('send_messages_search','do')})">

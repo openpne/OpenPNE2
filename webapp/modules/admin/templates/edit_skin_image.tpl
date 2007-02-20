@@ -168,7 +168,7 @@
 <br class="clear" />
 <dl class="box">
 <dt><strong>サーチアイコン</strong></dt>
-<dd class="image">({assign var=skinname value=icon_search})<img src="({t_img_url_skin filename=$skinname})" style="width:62px;height:20px;"></dd>
+<dd class="image">({assign var=skinname value=icon_search})<img src="({t_img_url_skin filename=$skinname})"></dd>
 <dd class="default">({if $skin_list[$skinname]})[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})</dd>
 <dd class="submit">
 <form action="./" method="post" enctype="multipart/form-data" />
@@ -181,7 +181,7 @@
 </dl>
 <dl class="box">
 <dt><strong>サーチボタン１</strong></dt>
-<dd class="image">({assign var=skinname value=button_search_1})<img src="({t_img_url_skin filename=$skinname})" style="width:62px;height:20px;"></dd>
+<dd class="image">({assign var=skinname value=button_search_1})<img src="({t_img_url_skin filename=$skinname})"></dd>
 <dd class="default">({if $skin_list[$skinname]})[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})</dd>
 <dd class="submit">
 <form action="./" method="post" enctype="multipart/form-data" />
@@ -194,7 +194,7 @@
 </dl>
 <dl class="box">
 <dt><strong>サーチボタン２</strong></dt>
-<dd class="image">({assign var=skinname value=button_search_2})<img src="({t_img_url_skin filename=$skinname})" style="width:62px;height:20px;"></dd>
+<dd class="image">({assign var=skinname value=button_search_2})<img src="({t_img_url_skin filename=$skinname})"></dd>
 <dd class="default">({if $skin_list[$skinname]})[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})</dd>
 <dd class="submit">
 <form action="./" method="post" enctype="multipart/form-data" />
@@ -207,7 +207,7 @@
 </dl>
 <dl class="box">
 <dt><strong>サーチボタン３</strong></dt>
-<dd class="image">({assign var=skinname value=button_search_3})<img src="({t_img_url_skin filename=$skinname})" style="width:62px;height:20px;"></dd>
+<dd class="image">({assign var=skinname value=button_search_3})<img src="({t_img_url_skin filename=$skinname})"></dd>
 <dd class="default">({if $skin_list[$skinname]})[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})</dd>
 <dd class="submit">
 <form action="./" method="post" enctype="multipart/form-data" />
@@ -581,7 +581,7 @@
 <td>
 <dl class="box">
 <dt><strong>見出し１</strong></dt>
-<dd class="image">({assign var=skinname value=icon_title_1})<img src="({t_img_url_skin filename=$skinname})" style="width:25px;height:19px;"></dd>
+<dd class="image">({assign var=skinname value=icon_title_1})<img src="({t_img_url_skin filename=$skinname})" class="c_10"></dd>
 <dd class="default">({if $skin_list[$skinname]})[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})</dd>
 <dd class="submit">
 <form action="./" method="post" enctype="multipart/form-data" />
@@ -594,7 +594,7 @@
 </dl>
 <dl class="box">
 <dt><strong>見出し２</strong></dt>
-<dd class="image">({assign var=skinname value=content_header_1})<img src="({t_img_url_skin filename=$skinname})" style="width:30px;height:20px;"></dd>
+<dd class="image">({assign var=skinname value=content_header_1})<img src="({t_img_url_skin filename=$skinname})" class="c_11"></dd>
 <dd class="default">({if $skin_list[$skinname]})[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})</dd>
 <dd class="submit">
 <form action="./" method="post" enctype="multipart/form-data" />
