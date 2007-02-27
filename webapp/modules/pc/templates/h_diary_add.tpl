@@ -349,6 +349,35 @@
 </td>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
+
+({*********})
+({if $inc_entry_point[3]})
+<tr>
+<td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" style="width
+:1px;height:1px;" class="dummy"></td>
+</tr>
+<tr>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="wid
+th:1px;height:1px;" class="dummy"></td>
+<td style="width:80px;" class="bg_05" align="center" valign="middle">
+<div style="padding:4px 3px;">
+</div>
+</td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="wid
+th:1px;height:1px;" class="dummy"></td>
+<td style="width:439px;" class="bg_02" align="left" valign="middle">
+<div style="padding:4px 3px;">
+
+({$inc_entry_point[3]|smarty:nodefaults})
+
+</div>
+</td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="wid
+th:1px;height:1px;" class="dummy"></td>
+</tr>
+
+
+({/if})
 ({*********})
 <tr>
 <td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>

@@ -70,6 +70,15 @@
 </ul>
 </dd>
 
+<dt><strong class="item">【PC版】 h_diary_add</strong></dt>
+<dd>
+<ul>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_entry_point')})&amp;target=h_diary_add&amp;num=1">h_diary_add 1</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_entry_point')})&amp;target=h_diary_add&amp;num=2">h_diary_add 2</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_entry_point')})&amp;target=h_diary_add&amp;num=3">h_diary_add 3</a></li>
+</ul>
+</dd>
+
 <dt><strong class="item">【携帯版】 o_login</strong></dt>
 <dd>
 <ul>

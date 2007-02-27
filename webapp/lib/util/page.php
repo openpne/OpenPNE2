@@ -205,6 +205,17 @@ function fetch_inc_entry_point_h_reply_message(&$smarty)
     }
     return $contents;
 }
+function fetch_inc_entry_point_h_diary_add(&$smarty)
+{
+    $target = 'h_diary_add';
+
+    $contents = array();
+    for ($i = 1; $i <= 3; $i++) {
+        $tpl = sprintf('db:inc_entry_point_%s_%d', $target, $i);
+        $contents[$i] = fetch_from_db($tpl, $smarty);
+    }
+    return $contents;
+}
 
 function fetch_ktai_inc_entry_point_o_login(&$smarty)
 {
