@@ -242,7 +242,7 @@ class OpenPNE_Validator
             $rule['type'] = 'string';
         }
 
-        if ($ruls['type'] == 'int') {
+        if ($rule['type'] == 'int') {
             $rule['pre_filter'] = $rule['pre_filter'] . ',intval';
         }
 
