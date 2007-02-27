@@ -17,7 +17,7 @@ class OpenPNE_Img_ImageMagick extends OpenPNE_Img
         if ($this->check_rawcache()) {
             $filename = $this->get_rawcache_filename();
 
-            $fd = fopen($filename, 'r');
+            $fd = fopen($filename, 'rb');
             $data = fread($fd, filesize($filename));
             fclose($fd);
 
