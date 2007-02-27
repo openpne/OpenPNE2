@@ -63,6 +63,7 @@
 ◆<a ({if $c_friend_count})href="({t_url m=ktai a=page_fh_friend_list})&amp;({$tail})" ({/if})name="menu">({$WORD_FRIEND_HALF})</a>(({$c_friend_count}))[({if $smarty.const.IS_USER_INVITE && ($smarty.const.OPENPNE_REGIST_FROM != $smarty.const.OPENPNE_REGIST_FROM_NONE)})<a href="({t_url m=ktai a=page_h_invite})&amp;({$tail})">誘う</a>|({/if})<a href="({t_url m=ktai a=page_h_friend_find_all})&amp;({$tail})">探す</a>]<br>
 ◆<a ({if $fh_com_count_user})href="({t_url m=ktai a=page_fh_com_list})&amp;({$tail})"({/if})>ｺﾐｭﾆﾃｨ</a>(({$fh_com_count_user}))[<a href="({t_url m=ktai a=page_h_com_find_all})&amp;({$tail})">探す</a>|<a href="({t_url m=ktai a=page_h_com_add})&amp;({$tail})">作る</a>]<br>
 ◆<a href="({t_url m=ktai a=page_h_message_box})&amp;({$tail})">ﾒｯｾｰｼﾞ</a><br>
+◆<a href="({t_url m=ktai a=page_h_bookmark_list})&amp;({$tail})">お気に入り</a><br>
 ◆<a href="({t_url m=ktai a=page_h_ranking})&amp;({$tail})">ﾗﾝｷﾝｸﾞ</a><br>
 ◆<a href="({t_url m=ktai a=page_fh_intro})&amp;({$tail})">紹介文</a><br>
 ◆ﾒｯｾｰｼﾞ[<a href="({t_url m=ktai a=page_h_message_box})&amp;box=inbox&amp;({$tail})">受信箱</a>|<a href="({t_url m=ktai a=page_h_message_box})&amp;box=outbox&amp;({$tail})">送信箱</a>]<br>
