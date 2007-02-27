@@ -26,10 +26,10 @@ function smarty_function_t_img_url_skin($params, &$smarty)
         }
         $url .= sprintf('skin/%s.%s', $p['filename'], $ext);
     } else {
-        $p['filename'] = $filename;
+        
 
         if (!OPENPNE_IMG_CACHE_PUBLIC) {
-            $url .= 'img.php';
+            $url .= 'img_skin.php';
             if ($q = http_build_query($p)) {
                 $url .= '?' . htmlspecialchars($q);
             }

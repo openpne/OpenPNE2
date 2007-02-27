@@ -6,23 +6,20 @@
 
 require_once './config.inc.php';
 
+// include_path の設定
+include_once OPENPNE_LIB_DIR . '/include/PHP/Compat/Constant/PATH_SEPARATOR.php';
+$include_paths = array(
+    OPENPNE_LIB_DIR . '/include',
+    OPENPNE_WEBAPP_DIR . '/lib',
+    ini_get('include_path')
+);
+ini_set('include_path', implode(PATH_SEPARATOR, $include_paths));
+require_once OPENPNE_WEBAPP_DIR . '/lib/OpenPNE/DB.php';
+require_once OPENPNE_WEBAPP_DIR . '/lib/OpenPNE/DB/Writer.php';
+require_once OPENPNE_WEBAPP_DIR . '/lib/db/common.php';
+require_once OPENPNE_WEBAPP_DIR . '/lib/db/etc.php';
 
-//SNSにログインしているかどうか
-if (CHECK_IMG_AUTH) {
-    require_once OPENPNE_WEBAPP_DIR . '/init.inc';
-    
-    $module = $_GET['m'];
-    // init
-    if ($init = openpne_ext_search("{$module}/init.inc")) {
-        require_once $init;
-    }
-    //auth
-    if ($auth = openpne_ext_search("{$module}/auth.inc")) {
-        require_once $auth;
-    } else {
-        require_once OPENPNE_WEBAPP_DIR . '/lib/auth.inc';
-    }
-}
+$_GET['filename'] = db_get_c_skin_filename4skinname($_GET['filename']);
 
 // エラー出力を抑制
 ini_set('display_errors', false);
