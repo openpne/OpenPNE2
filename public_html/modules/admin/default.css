@@ -122,6 +122,7 @@ li { list-style-type: none;}
 #admin_page_diary_comment_list li#adminImageKakikomi a.tab ,
 #admin_page_topic_list li#adminImageKakikomi a.tab ,
 #admin_page_topic_comment_list li#adminImageKakikomi a.tab ,
+#admin_page_review_list li#adminImageKakikomi a.tab ,
 #admin_page_delete_kakikomi li#adminImageKakikomi a.tab ,
  #admin_page_send_messages_search li#adminImageKakikomi a.tab ,
  #admin_page_delete_c_image_confirm li#adminImageKakikomi a.tab ,
@@ -185,6 +186,7 @@ li { list-style-type: none;}
 #admin_page_diary_comment_list li#adminImageKakikomi ul.pull ,
 #admin_page_topic_list li#adminImageKakikomi ul.pull ,
 #admin_page_topic_comment_list li#adminImageKakikomi ul.pull ,
+#admin_page_review_list li#adminImageKakikomi ul.pull ,
 #admin_page_delete_kakikomi li#adminImageKakikomi ul.pull ,
 
 #admin_page_user_analysis_generation li#adminStatisticalInformation ul.pull ,
@@ -669,11 +671,12 @@ div.listControl p.listMove a {
 
 /** admin_page_delete_kakikomi **/
 #admin_page_delete_kakikomi .deleteKakikomiDiary ,
-#admin_page_delete_kakikomi .deleteKakikomiCommu {
+#admin_page_delete_kakikomi .deleteKakikomiCommu ,
+#admin_page_delete_kakikomi .deleteKakikomiCommuTopic {
 	border-bottom: 1px #C3C3C3 solid;
 	padding-bottom: 5px;
 }
-#admin_page_delete_kakikomi .deleteKakikomiCommuTopic {}
+#admin_page_delete_kakikomi .deleteKakikomiReview {}
 
 #admin_page_delete_kakikomi p.info { padding: 0;}
 #admin_page_delete_kakikomi h3 { margin-top: 10px; padding-top: 10px; background: url("img/tbl_line01.gif") repeat-x;}
@@ -1093,6 +1096,20 @@ div.listControl p.listMove a {
 	background-color: #FFFFFF;
 	color: #000000;
 }
+
+/** admin_page_page_review_list **/
+#admin_page_page_review_list h3 {
+	margin-bottom: 5px;
+}
+#admin_page_page_review_list div#c01 { padding-bottom: 10px;}
+
+/** admin_page_page_review_list **/
+#admin_page_user_analysis_generation table tbody th {
+	background-color: #FFFFFF;
+	color: #000000;
+}
+
+
 
 /** admin_page_user_analysis_generation **/
 #admin_page_user_analysis_generation table tfoot th ,

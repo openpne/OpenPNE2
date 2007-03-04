@@ -131,4 +131,45 @@
 
 </div>({*/div class="deleteKakikomiCommuTopic"*})
 
+({* レビュー *})
+<div class="deleteKakikomiReview">
+
+<h3>【レビュー】</h3>
+<dl class="sampleID">
+<dt>URL例：</dt>
+<dd>({t_url _absolute=1 m=pc a=page_h_review_list_product})&amp;c_review_id=<strong>***</strong></dd>
+</dl>
+<form action="./" method="get">
+<p>
+<input type="hidden" name="m" value="({$module_name})" />
+<input type="hidden" name="a" value="page_({$hash_tbl->hash('delete_kakikomi')})" />
+<strong class="item">ID</strong>： <input class="basic" type="text" name="target_c_review_id" value="({$requests.target_c_review_id})" size="6" />
+<span class="textBtnS"><input type="submit" value="確認" /></span>
+</p>
+</form>
+({if $c_review})
+<table class="diaryDetailTable">
+	<tr>
+		<th>タイトル</th>
+		<td>({$c_review.title})　（<a href="({t_url _absolute=1 m=pc a=page_h_review_list_product})&amp;c_review_id=({$c_review.c_review_id})" target="_blank">この記事を開く</a>）</td>
+	</tr>
+	<tr>
+		<th>説明</th>
+		<td>({$c_review.release_date})<br>
+({$c_review.manufacturer})<br>
+({$c_review.artist})({$c_review.author})<br>
+</td>
+	</tr>
+</table>
+<form action="./" method="post">
+<input type="hidden" name="sessid" value="({$PHPSESSID})" />
+<input type="hidden" name="m" value="({$module_name})" />
+<input type="hidden" name="a" value="do_({$hash_tbl->hash('delete_kakikomi_c_review','do')})" />
+<input type="hidden" name="target_c_review_id" value="({$c_review.c_review_id})" />
+<p class="textBtn"><input type="submit" value="この記事を削除する" /></p>
+</form>
+({/if})
+
+</div>({*/div class="deleteKakikomiReview"*})
+
 ({$inc_footer|smarty:nodefaults})

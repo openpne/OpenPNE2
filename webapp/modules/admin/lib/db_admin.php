@@ -1806,6 +1806,53 @@ function monitor_topic_list($keyword,$page_size,$page)
     return array($list , $prev , $next, $total_num,$total_page_num);  
 }
 
+function monitor_review_list($keyword,$page_size,$page)
+{
+
+    $page = intval($page);
+    $page_size = intval($page_size);
+    
+    $where = " where 1 ";
+
+    if ($keyword) {
+        //全角空白を半角に統一
+        $keyword = str_replace("　", " ", $keyword);
+        $keyword_list = explode(" ", $keyword);
+            
+        for($i=0;$i < count($keyword_list);$i++) {
+            $keyword = check_search_word( $keyword_list[$i] );
+                
+            $where .= " and c_review_comment.body like ? ";
+            $params[]="%$keyword%";
+        }
+    }
+    
+    $select = " select c_review_comment.*";
+    $from = " FROM c_review_comment";
+    $order = " ORDER BY r_datetime desc";
+    
+    $sql = $select . $from . $where . $order;
+    $list = db_get_all_limit($sql,($page-1)*$page_size,$page_size,$params);
+    
+
+    foreach ($list as $key => $value) {
+        $list[$key]['c_member'] = db_common_c_member4c_member_id_LIGHT($value['c_member_id']);
+        $list[$key]['c_review'] = db_review_list_product_c_review4c_review_id($value['c_review_id']);
+    }
+
+    $sql = 
+        "SELECT count(*) "
+        . $from
+        . $where ;
+    $total_num = db_get_one($sql,$params);
+    
+    $total_page_num =  ceil($total_num / $page_size);
+    $next = ($page < $total_page_num);
+    $prev = ($page > 1);
+    
+    return array($list , $prev , $next, $total_num,$total_page_num);  
+}
+
 function _db_count_c_commu_topic_comments4c_commu_topic_id($c_commu_topic_id)
 {
     $sql = "SELECT count(*) FROM c_commu_topic_comment" .
