@@ -110,6 +110,7 @@
 　<a href="({t_url m=ktai a=page_c_home})&amp;target_c_commu_id=({$commu.c_commu_id})&amp;({$tail})">({$commu.name})</a>(({$commu.count_members}))<br>
 ({/foreach})
 <a href="({t_url m=ktai a=page_fh_com_list})&amp;({$tail})">→もっと見る</a><br>
+<a href="({t_url m=ktai a=page_h_com_find_all})&amp;({$tail})">→ｺﾐｭﾆﾃｨ検索</a><br>
 <a href="#top">↑このﾍﾟｰｼﾞの先頭へ戻る</a>
 <hr>
 ({/if})
