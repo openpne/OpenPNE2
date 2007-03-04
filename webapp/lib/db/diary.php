@@ -136,8 +136,8 @@ function db_diary_category_delete_c_diary_category_diary($c_diary_id)
     db_query($sql, array($c_diary_id));
 
     foreach($diary_category_list as $value) {
-	    $sql = 'SELECT COUNT(*) FROM c_diary_category_diary'.
-	        ' WHERE c_diary_category_id = ?';
+        $sql = 'SELECT COUNT(*) FROM c_diary_category_diary'.
+            ' WHERE c_diary_category_id = ?';
         $c_diary_category_id = $value['c_diary_category_id'];
         $is_diary = (bool)db_get_one($sql, array(intval($c_diary_category_id)));
         if (!$is_diary) {  //カテゴリに関連付いた日記が存在しない
@@ -1113,6 +1113,19 @@ function db_diary_delete_c_diary_comment($c_diary_comment_id, $u)
     $sql = 'DELETE FROM c_diary_comment WHERE c_diary_comment_id = ?';
     $params = array(intval($c_diary_comment_id));
     return db_query($sql, $params);
+}
+
+// 日記公開範囲の一括設定をする
+function db_diary_update_public_flag_diary_all($c_member_id, $public_flag)
+{
+    $data = array(
+        'public_flag' => $public_flag,
+    );
+
+    $where = array(
+        'c_member_id' => intval($c_member_id),
+    );
+    return db_update('c_diary', $data, $where);
 }
 
 ?>
