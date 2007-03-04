@@ -2058,7 +2058,8 @@ function db_commu_insert_c_commu($c_member_id, $name, $c_commu_category_id, $inf
 function db_commu_update_c_commu($c_commu_id,
     $name, $topic_authority, $c_commu_category_id, $info, $public_flag,
     $image_filename = '', $is_send_join_mail = 1,
-    $is_display_map = null, $map_latitude = null, $map_longitude = null, $map_zoom = null)
+    $is_display_map = null, $map_latitude = null, $map_longitude = null, $map_zoom = null,
+    $is_adult = 0)
 {
     //function cacheの削除
     cache_drop_c_commu($c_commu_id);
@@ -2070,6 +2071,7 @@ function db_commu_update_c_commu($c_commu_id,
         'c_commu_category_id' => intval($c_commu_category_id),
         'public_flag' => $public_flag,
         'is_send_join_mail' => (bool)$is_send_join_mail,
+        'is_adult' => (bool)$is_adult,
     );
 
     if ($image_filename) $data['image_filename'] = $image_filename;

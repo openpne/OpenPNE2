@@ -22,6 +22,7 @@ class pc_do_c_edit_update_c_commu extends OpenPNE_Action
         $public_flag = $requests['public_flag'];
         $topic_authority = $requests['topic_authority'];
         $is_send_join_mail = $requests['is_send_join_mail'];
+        $is_adult = $requests['is_adult'];
         // ----------
         $upfile_obj = $_FILES['image_filename'];
 
@@ -114,7 +115,8 @@ class pc_do_c_edit_update_c_commu extends OpenPNE_Action
             $is_display_map,
             $map_latitude,
             $map_longitude,
-            $map_zoom);
+            $map_zoom,
+            $is_adult);
 
         $p = array('target_c_commu_id' => $target_c_commu_id);
         openpne_redirect('pc', 'page_c_home', $p);
