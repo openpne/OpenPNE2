@@ -34,7 +34,7 @@
 <td colspan="2" class="bg_02" align="center">
 
 <br><br>
-入会できる年齢に達していません
+18歳未満の方はこのコミュニティに参加できません
 <br><br><br>
 
 </td>

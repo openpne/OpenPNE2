@@ -236,7 +236,7 @@
 
 <div class="padding_s">
 
-<input type="text" class="text" name="capacity" value="({$event.capacity})">
+<input type="text" class="text" name="capacity" ({if $event.capacity}) value="({$event.capacity})"({/if})>
 </div>
 
 </td>
