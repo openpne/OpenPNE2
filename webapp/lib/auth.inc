@@ -18,6 +18,7 @@ if (   !$auth->auth()
     if (LOGIN_URL_PC) {
         client_redirect_absolute(get_login_url());
     } else {
+        $_REQUEST['target_script'] = $_SERVER['SCRIPT_NAME'];
         $_REQUEST['login_params'] = $_SERVER['QUERY_STRING'];
         openpne_forward('pc', 'page', "o_login");
         exit;
