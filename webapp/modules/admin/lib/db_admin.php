@@ -1814,19 +1814,25 @@ function _db_count_c_commu_topic_comments4c_commu_topic_id($c_commu_topic_id)
     return db_get_one($sql, $params);
 }
 //フリーページを追加
-function db_admin_insert_c_free_page($body)
+function db_admin_insert_c_free_page($title, $body, $auth, $type)
 {
     $data = array(
-        'body' => strval($body),
+        'title' => strval($title),
+        'body'  => strval($body),
+        'auth'  => intval($auth),
+        'type'  => strval($type),
     );
     return db_insert('c_free_page', $data);
 }
 
 //フリーページを編集
-function db_admin_update_c_free_page($c_free_page_id, $body)
+function db_admin_update_c_free_page($c_free_page_id, $title, $body, $auth, $type)
 {
     $data = array(
-        'body' => strval($body),
+        'title' => strval($title),
+        'body'  => strval($body),
+        'auth'  => intval($auth),
+        'type'  => strval($type),
     );
     $where = array('c_free_page_id' => intval($c_free_page_id));
     return db_update('c_free_page', $data, $where);

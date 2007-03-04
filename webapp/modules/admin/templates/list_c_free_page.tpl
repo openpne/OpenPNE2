@@ -69,6 +69,9 @@
 ({****})
 <tr>
 <th>ID</th>
+<th>タイトル</th>
+<th>認証</th>
+<th>対象</th>
 <th colspan=2>操作</th>
 </tr>
 ({****})
@@ -78,7 +81,10 @@
 ({foreach from=$c_free_page_list item=item})
 ({if $item})
 <tr>
-<td><a href="({t_url _absolute=1 m=pc a=page_h_free_page})&amp;c_free_page_id=({$item.c_free_page_id})" target="_blank">({$item.c_free_page_id})</a></td>
+<td><a href="({if $item.auth})({t_url _absolute=1 m=$item.type a=page_h_free_page})({else})({t_url _absolute=1 m=$item.type a=page_o_free_page})({/if})&amp;c_free_page_id=({$item.c_free_page_id})" target="_blank">({$item.c_free_page_id})</a></td>
+<td>({$item.title})</td>
+<td>({if $item.auth})あり({else})なし({/if})</td>
+<td>({if $item.type == 'pc'})PC({else})携帯({/if})</td>
 <td><a href='?m=({$module_name})&amp;a=page_({$hash_tbl->hash('update_c_free_page','page')})&amp;c_free_page_id=({$item.c_free_page_id})'>編集</a></td>
 <td><a href='?m=({$module_name})&amp;a=page_({$hash_tbl->hash('delete_c_free_page_confirm','page')})&amp;c_free_page_id=({$item.c_free_page_id})'>削除</a></td>
 </tr>
@@ -102,17 +108,41 @@
 <td class="detail">
 <h3>({if $is_edit})フリーページの編集({else})フリーページの新規追加({/if})</h3>
 
+<form action="./" method="post">
+<input type="hidden" name="m" value="({$module_name})">
+<input type="hidden" name="a" value="do_({$hash_tbl->hash('insert_c_free_page','do')})">
+<input type="hidden" name="sessid" value="({$PHPSESSID})">
+
+タイトル<br>
+<input type="text" name="title" size="({$cols|default:72})">
+
 ({if $is_edit})
 <p class="default">ページをhtmlで記述してください</p>
 ({else})
 <p class="default">追加するページをhtmlで記述してください</p>
 ({/if})
 
-<form action="./" method="post">
-<input type="hidden" name="m" value="({$module_name})">
-<input type="hidden" name="a" value="do_({$hash_tbl->hash('insert_c_free_page','do')})">
-<input type="hidden" name="sessid" value="({$PHPSESSID})">
-<textarea name="body" cols="({$cols|default:72})" rows="({$rows|default:10})"></textarea>
+<textarea name="body" cols="({$cols|default:72})" rows="({$rows|default:10})"></textarea><br>
+
+<table>
+<tr>
+<td>
+<input type="radio" name="auth" value="1" checked="checked">認証あり
+</td>
+<td>
+<input type="radio" name="auth" value="0">認証なし(ログインしなくても見ることが出来ます)
+</td>
+</tr>
+<tr>
+<td>
+<input type="radio" name="type" value="pc" checked="checked">PC
+</td>
+<td>
+<input type="radio" name="type" value="ktai">携帯<br>
+</td>
+</tr>
+</table>
+
 ({if $is_edit})
 <p class="textBtn"><input type="submit" class="submit" value="変更する"></p>
 ({else})
