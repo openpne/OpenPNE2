@@ -19,8 +19,8 @@ class pc_page_h_com_find_all extends OpenPNE_Action
         $category_id = $requests['category_id'];
         // ----------
 
-        //バグ回避のため半角空白を全角に統一
-        $keyword = str_replace(" ", "　", $keyword);
+        //バグ回避のため全角空白を半角空白に統一
+        $keyword = str_replace("　", " ", $keyword);
 
         do_common_insert_search_log($u, $keyword);
 
@@ -40,12 +40,29 @@ class pc_page_h_com_find_all extends OpenPNE_Action
                 $val_order,
                 $category_id);
 
+        //トピックの検索結果
+        list($c_commu_topic_search_list, $topic_is_prev, $topic_is_next, $topic_total_num, $topic_start_num, $topic_end_num)
+            = db_commu_search_c_commu_topic(
+                $keyword,
+                $category_id,
+                $page,
+                $page_size
+              );
+
         $this->set('c_commu_search_list', $result);
         $this->set('is_prev', $is_prev);
         $this->set('is_next', $is_next);
         $this->set('total_num', $total_num);
         $this->set('start_num', $start_num);
         $this->set('end_num', $end_num);
+
+        $this->set('c_commu_topic_search_list', $c_commu_topic_search_list);
+        $this->set('topic_is_prev', $topic_is_prev);
+        $this->set('topic_is_next', $topic_is_next);
+        $this->set('topic_total_num', $topic_total_num);
+        $this->set('topic_start_num', $topic_start_num);
+        $this->set('topic_end_num', $topic_end_num);
+
 
         $this->set('keyword', $keyword);
         $search_val_list = array(

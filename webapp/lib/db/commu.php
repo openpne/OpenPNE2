@@ -802,7 +802,7 @@ function db_commu_c_commu_topic_comment_list4c_member_id($c_member_id, $limit)
 
     $hint = db_mysql_hint('USE INDEX (r_datetime_c_commu_id)');
     $sql = 'SELECT c_commu_id, c_commu_topic_id, name AS c_commu_topic_name, r_datetime, c_member_id'.
-    	' FROM c_commu_topic'. $hint . ' WHERE c_commu_id IN (' . $ids . ') ORDER BY r_datetime DESC';
+        ' FROM c_commu_topic'. $hint . ' WHERE c_commu_id IN (' . $ids . ') ORDER BY r_datetime DESC';
     $c_commu_topic_list = db_get_all_limit($sql, 0, $limit);
 
     foreach ($c_commu_topic_list as $key => $value) {
@@ -839,7 +839,7 @@ function db_commu_c_commu_topic_comment_list4c_member_id_2($c_member_id, $limit,
 
     $hint = db_mysql_hint('USE INDEX (r_datetime_c_commu_id)');
     $sql = 'SELECT c_commu_id, c_commu_topic_id, name AS c_commu_topic_name, r_datetime, c_member_id'.
-    	' FROM c_commu_topic'. $hint . ' WHERE c_commu_id IN (' . $ids . ') ORDER BY r_datetime DESC';
+        ' FROM c_commu_topic'. $hint . ' WHERE c_commu_id IN (' . $ids . ') ORDER BY r_datetime DESC';
     $c_commu_topic_list = db_get_all_limit($sql, ($page-1)*$limit, $limit);
 
     foreach ($c_commu_topic_list as $key => $value) {
@@ -1486,7 +1486,7 @@ function db_commu_c_commu_topic_comment_list4c_member_id_3($c_member_id, $page_s
 
     $hint = db_mysql_hint('USE INDEX (r_datetime_c_commu_id)');
     $sql = 'SELECT c_commu_id, c_commu_topic_id, name AS c_commu_topic_name, r_datetime, c_member_id'.
-    	' FROM c_commu_topic'. $hint . ' WHERE c_commu_id IN (' . $ids . ') ORDER BY r_datetime DESC';
+        ' FROM c_commu_topic'. $hint . ' WHERE c_commu_id IN (' . $ids . ') ORDER BY r_datetime DESC';
     $c_commu_topic_list = db_get_all_page($sql, $page, $page_size);
 
     foreach ($c_commu_topic_list as $key => $value) {
@@ -2632,6 +2632,79 @@ function db_commu_delete_c_commu_admin_invite($c_commu_admin_invite_id)
     $sql = 'DELETE FROM c_commu_admin_invite WHERE c_commu_admin_invite_id = ?';
     $params = array(intval($c_commu_admin_invite_id));
     db_query($sql, $params);
+}
+
+//トピックとトピックコメントの混在したリストを取得
+//keywordで検索
+//イベントはトピックと同列
+function db_commu_search_c_commu_topic($search_word, $category_id, $page, $page_size)
+{
+
+    if ($search_word) {
+
+        $params = array();
+        $from = ' FROM c_commu_topic_comment as ctc, c_commu_topic as ct';
+        $where = ' WHERE ct.c_commu_topic_id = ctc.c_commu_topic_id';
+
+        $words = explode(' ', $search_word);
+        foreach ($words as $word) {
+            $word = check_search_word($word);
+
+            $where .= ' AND (ct.name LIKE ? OR ctc.body LIKE ?)';
+            $params[] = '%'.$word.'%';
+            $params[] = '%'.$word.'%';
+        }
+
+        $sql = 'SELECT ctc.*' .
+               $from .
+               $where .
+               ' order by ctc.r_datetime DESC';
+    } else {
+        $from = ' FROM c_commu_topic_comment';
+        $where = '';
+        $sql = 'SELECT *' . $from . ' order by r_datetime DESC';
+    }
+
+    $result = db_get_all_page($sql, $page, $page_size, $params);
+    $sql = 'SELECT count(*)' .
+           $from .
+           $where;
+    $total_num = db_get_one($sql, $params);
+
+    foreach( $result as $key => $value ) {
+        $c_commu = db_commu_c_commu4c_commu_id(intval($value['c_commu_id']));
+        $c_commu_topic = db_commu_c_commu_topic4c_commu_topic_id(intval($value['c_commu_topic_id']));
+
+        if (!$category_id || $c_commu['c_commu_category_id'] == $category_id ) {
+            $result[$key]['commu_name'] = $c_commu['name'];
+            $result[$key]['image_filename'] = $c_commu['image_filename'];
+            $result[$key]['topic_name'] = $c_commu_topic['name'];
+            $result[$key]['c_commu_category'] = $c_commu['c_commu_category']['name'];
+        } else {
+            unset($result[$key]);
+            $total_num--;
+        }
+
+    }
+
+    if ($total_num > 0) {
+        $total_page_num =  ceil($total_num / $page_size);
+        if ($page >= $total_page_num) {
+            $next = false;
+        } else {
+            $next = true;
+        }
+        if ($page <= 1) {
+            $prev = false;
+        } else {
+            $prev = true;
+        }
+    }
+
+    $start_num = ($page - 1) * $page_size + 1;
+    $end_num   = $start_num + $page_size >= $total_num ? $total_num : $start_num + $page_size - 1;
+
+    return array($result, $prev, $next, $total_num, $start_num, $end_num);
 }
 
 ?>
