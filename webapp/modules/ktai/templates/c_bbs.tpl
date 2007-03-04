@@ -31,6 +31,15 @@
 ({$c_commu_topic.open_date|date_format:"%Y年%m月%d日"}) ({$c_commu_topic.open_date_comment})<br>
 開催場所：<br>
 ({$c_commu_topic.pref}) ({$c_commu_topic.open_pref_comment})<br>
+募集人数：<br>
+({if $c_commu_topic.capacity})
+({$c_commu_topic.capacity})人
+({else})
+無制限
+({/if})
+<br>
+参加者：<br>
+({$c_commu_topic.member_num})人<br>
 ({if $c_commu_topic.invite_period != '0000-00-00'})
 募集期限：<br>
 ({$c_commu_topic.invite_period|date_format:"%Y年%m月%d日"})<br>
@@ -96,7 +105,11 @@
 ({if $c_commu_topic.event_flag})
 ({if !$is_c_event_admin})
 ({if !$is_c_event_member})
+
+({if not $c_commu_topic.capacity or ($c_commu_topic.capacity gt $c_commu_topic.member_num) })
 <input name="join_event" type="submit" value="ｲﾍﾞﾝﾄに参加する"><br>
+({/if})
+
 ({else})
 <input name="cancel_event" type="submit" value="参加をｷｬﾝｾﾙする"><br>
 ({/if})

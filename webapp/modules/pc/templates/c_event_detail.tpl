@@ -66,7 +66,7 @@
 ({if $c_topic.image_filename1||$c_topic.image_filename2||$c_topic.image_filename3})
 <tr>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-<td style="width:110px;" class="bg_03" align="center" valign="top" rowspan="({if $is_c_event_admin})19({else})17({/if})">
+<td style="width:110px;" class="bg_03" align="center" valign="top" rowspan="({if $is_c_event_admin})21({else})19({/if})">
 
 <div class="padding_s">
 
@@ -128,7 +128,7 @@
 ({else})
 <tr>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-<td style="width:110px;" class="bg_03" align="center" valign="top" rowspan="({if $is_c_event_admin})17({else})15({/if})">
+<td style="width:110px;" class="bg_03" align="center" valign="top" rowspan="({if $is_c_event_admin})19({else})17({/if})">
 
 <div class="padding_s">
 
@@ -334,6 +334,41 @@
 <div class="padding_s">
 
 ({if $c_topic.invite_period != "0000-00-00"})({$c_topic.invite_period})({else})指定なし({/if})
+
+</div>
+
+</td>
+<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+</tr>
+({*********})
+<tr>
+<td style="height:1px;" class="bg_01"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+</tr>
+({*********})
+<tr>
+<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td class="bg_05" align="center" valign="middle">
+
+<div class="padding_s">
+
+募集人数
+
+</div>
+
+</td>
+<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td class="bg_02" align="left" valign="middle">
+
+<div class="padding_s">
+
+({if $c_topic.capacity})
+({$c_topic.capacity})人
+({else})
+無制限
+({/if})
+
 
 </div>
 
@@ -816,7 +851,11 @@
 <input type="submit" class="submit" name="button" value="参加をキャンセルする">
 <input type="submit" class="submit" name="button" value="コメントのみ書き込む">
 ({elseif $is_c_commu_member})
+
+({if not $c_topic.capacity or ($c_topic.capacity gt $c_topic.member_num) })
 <input type="submit" class="submit" name="button" value="イベントに参加する">
+({/if})
+
 <input type="submit" class="submit" name="button" value="コメントのみ書き込む">
 ({/if})
 

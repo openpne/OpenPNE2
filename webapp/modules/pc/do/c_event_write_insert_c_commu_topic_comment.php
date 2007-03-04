@@ -31,6 +31,12 @@ class pc_do_c_event_write_insert_c_commu_topic_comment extends OpenPNE_Action
         }
         //---
 
+        if ($add_event_member == 1 && $c_topic['capacity'] && $c_topic['capacity'] <= $c_topic['member_num'] ) {
+            $err_msg[] = 'イベントの参加者数制限を超えています';
+            $_REQUEST['err_msg'] = $err_msg;
+            openpne_forward('pc', 'page', "c_event_detail");
+            exit;
+        }
 
         //イベントのメンバーに追加
         if ($add_event_member == 1) {

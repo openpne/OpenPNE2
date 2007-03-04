@@ -2395,6 +2395,7 @@ function db_commu_update_c_commu_topic($c_commu_topic_id, $topic)
     $data = array(
         'name'       => $topic['name'],
         'event_flag' => (bool)$topic['event_flag'],
+        'capacity' => intval($topic['capacity']),
         'r_datetime' => db_now(),
         'r_date' => db_now(),
     );
@@ -2452,6 +2453,7 @@ function db_commu_insert_c_commu_topic($topic)
         'c_member_id' => intval($topic['c_member_id']),
         'name'        => $topic['name'],
         'event_flag'  => (bool)$topic['event_flag'],
+        'capacity'  => intval($topic['capacity']),
         'r_datetime'  => db_now(),
         'r_date'      => db_now(),
     );

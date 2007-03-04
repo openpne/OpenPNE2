@@ -127,6 +127,7 @@ class pc_do_c_event_edit_update_c_commu_topic extends OpenPNE_Action
             'open_pref_comment' => $event['open_pref_comment'],
             'invite_period'     => $invite_period,
             'event_flag'        => 1,
+            'capacity'        => $event['capacity'],
         );
         db_commu_update_c_commu_topic($c_commu_topic_id, $update_c_commu_topic);
 

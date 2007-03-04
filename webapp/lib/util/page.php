@@ -353,6 +353,10 @@ function p_c_event_add_confirm_event4request()
             'type' => 'string',
             'default' => '',
         ),
+        'capacity' => array(
+            'type' => 'int',
+            'default' => '0',
+        ),
     );
     $validator = new OpenPNE_Validator($rule, $_REQUEST);
     $validator->validate();

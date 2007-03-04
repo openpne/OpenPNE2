@@ -38,6 +38,8 @@
 (補足：<input type="text" name="open_pref_comment" value="({$event.open_pref_comment})">)<br>
 詳細 <font color="red">※</font><br>
 <textarea name="detail">({$event.body})</textarea><br>
+募集人数<br>
+<input type="text" name="capacity" value="({$event.capacity})"><br>
 募集期限<br>
 <select name="invite_period_year">
 <option value="">----</option>

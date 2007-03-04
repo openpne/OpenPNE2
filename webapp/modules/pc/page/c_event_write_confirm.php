@@ -31,6 +31,7 @@ class pc_page_c_event_write_confirm extends OpenPNE_Action
 
         //エラーチェック
         $err_msg = array();
+
         if (trim($body) == '')  $err_msg[] = "本文を入力してください";
 
         if ($upfile_obj1['error'] !== UPLOAD_ERR_NO_FILE) {
@@ -47,6 +48,10 @@ class pc_page_c_event_write_confirm extends OpenPNE_Action
             if (!($image = t_check_image($upfile_obj3))) {
                 $err_msg[] = '画像3は'.IMAGE_MAX_FILESIZE.'KB以内のGIF・JPEG・PNGにしてください';
             }
+        }
+
+        if ($button == "イベントに参加する" && $c_topic['capacity'] && $c_topic['capacity'] <= $c_topic['member_num'] ) {
+                $err_msg[] = 'イベントの参加者数制限を超えています';
         }
 
         if ($err_msg) {

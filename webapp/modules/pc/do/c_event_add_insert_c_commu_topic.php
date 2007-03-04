@@ -54,6 +54,7 @@ class pc_do_c_event_add_insert_c_commu_topic extends OpenPNE_Action
             "open_pref_comment" => $event['open_pref_comment'],
             "invite_period"     => $invite_period,
             "event_flag"        => 1,
+            "capacity"        => $event['capacity'],
         );
         $c_commu_topic_id = db_commu_insert_c_commu_topic($insert_c_commu_topic);
 
