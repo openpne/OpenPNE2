@@ -801,8 +801,10 @@ function db_commu_c_commu_topic_comment_list4c_member_id($c_member_id, $limit)
     $ids = implode(", ", $c_commu_id_list);
 
     $hint = db_mysql_hint('USE INDEX (r_datetime_c_commu_id)');
-    $sql = 'SELECT c_commu_id, c_commu_topic_id, name AS c_commu_topic_name, r_datetime, c_member_id'.
-        ' FROM c_commu_topic'. $hint . ' WHERE c_commu_id IN (' . $ids . ') ORDER BY r_datetime DESC';
+    $sql = 'SELECT cct.c_commu_topic_id, cct.c_commu_id, cct.name AS c_commu_topic_name, MAX(cctc.r_datetime) as r_datetime, cct.c_member_id'.
+        ' FROM c_commu_topic as cct, c_commu_topic_comment as cctc'. $hint . ' WHERE cct.c_commu_id IN (' . $ids . ') AND cctc.c_commu_topic_id = cct.c_commu_topic_id'.
+        ' GROUP BY cctc.c_commu_topic_id'.
+        ' ORDER BY r_datetime DESC';
     $c_commu_topic_list = db_get_all_limit($sql, 0, $limit);
 
     foreach ($c_commu_topic_list as $key => $value) {
@@ -838,8 +840,10 @@ function db_commu_c_commu_topic_comment_list4c_member_id_2($c_member_id, $limit,
     $ids = implode(", ", $c_commu_id_list);
 
     $hint = db_mysql_hint('USE INDEX (r_datetime_c_commu_id)');
-    $sql = 'SELECT c_commu_id, c_commu_topic_id, name AS c_commu_topic_name, r_datetime, c_member_id'.
-        ' FROM c_commu_topic'. $hint . ' WHERE c_commu_id IN (' . $ids . ') ORDER BY r_datetime DESC';
+    $sql = 'SELECT cct.c_commu_topic_id, cct.c_commu_id, cct.name AS c_commu_topic_name, MAX(cctc.r_datetime) as r_datetime, cct.c_member_id'.
+        ' FROM c_commu_topic as cct, c_commu_topic_comment as cctc'. $hint . ' WHERE cct.c_commu_id IN (' . $ids . ') AND cctc.c_commu_topic_id = cct.c_commu_topic_id'.
+        ' GROUP BY cctc.c_commu_topic_id'.
+        ' ORDER BY r_datetime DESC';
     $c_commu_topic_list = db_get_all_limit($sql, ($page-1)*$limit, $limit);
 
     foreach ($c_commu_topic_list as $key => $value) {
@@ -1485,8 +1489,10 @@ function db_commu_c_commu_topic_comment_list4c_member_id_3($c_member_id, $page_s
     $ids = implode(", ", $c_commu_id_list);
 
     $hint = db_mysql_hint('USE INDEX (r_datetime_c_commu_id)');
-    $sql = 'SELECT c_commu_id, c_commu_topic_id, name AS c_commu_topic_name, r_datetime, c_member_id'.
-        ' FROM c_commu_topic'. $hint . ' WHERE c_commu_id IN (' . $ids . ') ORDER BY r_datetime DESC';
+    $sql = 'SELECT cct.c_commu_topic_id, cct.c_commu_id, cct.name AS c_commu_topic_name, MAX(cctc.r_datetime) as r_datetime, cct.c_member_id'.
+        ' FROM c_commu_topic as cct, c_commu_topic_comment as cctc'. $hint . ' WHERE cct.c_commu_id IN (' . $ids . ') AND cctc.c_commu_topic_id = cct.c_commu_topic_id'.
+        ' GROUP BY cctc.c_commu_topic_id'.
+        ' ORDER BY r_datetime DESC';
     $c_commu_topic_list = db_get_all_page($sql, $page, $page_size);
 
     foreach ($c_commu_topic_list as $key => $value) {
