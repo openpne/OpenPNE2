@@ -483,6 +483,9 @@ function db_admin_c_profile_name_exists($name)
 
 function db_admin_update_is_login_rejected($c_member_id)
 {
+    // function cacheを削除
+    cache_drop_c_member_profile($c_member_id);
+
     $sql = 'SELECT is_login_rejected FROM c_member WHERE c_member_id = ?';
     $params = array(intval($c_member_id));
     $is_login_rejected = db_get_one($sql, $params);
