@@ -255,6 +255,8 @@ function db_admin_delete_c_profile($c_profile_id)
     // プロフィール項目を削除
     $sql = 'DELETE FROM c_profile WHERE c_profile_id = ?';
     db_query($sql, $params);
+
+    cache_drop_c_member_profile();
 }
 
 function db_admin_c_profile4c_profile_id($c_profile_id)
