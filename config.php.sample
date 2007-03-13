@@ -298,8 +298,8 @@ define('IMGMAGICK_APP', '/usr/bin/convert');
 define('IMAGE_MAX_FILESIZE', 300);
 
 // アップロード画像の大きさ制限(ピクセル)
-define('IMAGE_MAX_HEIGHT', 1024);
-define('IMAGE_MAX_WIDTH', 768);
+define('IMAGE_MAX_WIDTH', 1024);
+define('IMAGE_MAX_HEIGHT', 768);
 
 
 ///
