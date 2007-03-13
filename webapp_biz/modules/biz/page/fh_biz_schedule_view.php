@@ -73,8 +73,6 @@ class biz_page_fh_biz_schedule_view extends OpenPNE_Action
         if($list['biz_group_id']) {
 	        $biz_group = biz_getGroupData($list['biz_group_id']);
 	        $list['biz_group_name'] = $biz_group['name'];
-        } else {
-            $list['target_c_member_nickname'] = biz_getMemberNickname($requests['target_id']);
         }
 
         $this->set('schedule', $list);

@@ -11,7 +11,6 @@
 
 ({t_form _enctype=file m=biz a=do_fhg_biz_schedule_add})
 <input type="hidden" name="sessid" value="({$PHPSESSID})">
-<input type="hidden" name="target_c_member_id" value="({$target_c_member_id})">
 
 <table border="0" cellspacing="0" cellpadding="0" style="width:540px;margin:0px auto;" class="border_07">
 <tr>

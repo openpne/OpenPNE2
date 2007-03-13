@@ -130,7 +130,6 @@ class biz_page_fh_biz_schedule_add extends OpenPNE_Action
         $biz_group_list = biz_getJoinGroupList($target_id, 1, $biz_group_count);
 
         $this->set('biz_group_list', $biz_group_list[0]);
-        $this->set('target_c_member_id', $target_id);
 
         return 'success';
     }

@@ -60,7 +60,7 @@ function biz_getScheduleWeek($u, $member_id, $w, $cmd, $head = true, $value = tr
     $inc_smarty->templates_dir = 'biz/templates';
 
     $inc_smarty->assign("cmd", $cmd_head);  //操作の対象ページ
-    $inc_smarty->assign("target_id", $member_id);  //予定参加者
+    $inc_smarty->assign("target_id", $member_id);  //予定登録者
 
     require_once 'Calendar/Week.php';
     $w = intval($w);

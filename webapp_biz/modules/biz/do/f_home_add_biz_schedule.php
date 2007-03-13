@@ -67,7 +67,7 @@ class biz_do_f_home_add_biz_schedule extends OpenPNE_Action
             exit();
         }
 
-        biz_insertSchedule($title, $u, $begin_date, $finish_date, $begin_time, $finish_time, '', 0, 0, 0, "public", $target_id);  //予定の登録
+        biz_insertSchedule($title, $u, $begin_date, $finish_date, $begin_time, $finish_time, '', 0, 0, array($target_id));  //予定の登録
         $p = array('target_c_member_id' => $target_id);
         openpne_redirect('pc', 'page_f_home', $p);
     }
