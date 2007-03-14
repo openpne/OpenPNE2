@@ -4,7 +4,7 @@
 ({capture name=page_name_temp})
 ({$item_str}) ({if $month_flag})({$ymd|date_format:"%Y年%m月"})({else})({$ymd|date_format:"%Y年%m月%d日"})({/if})にアクセスしたメンバー
 ({/capture})
-({assign var="page_name" value=$smarty.capture.page_name_temp})
+({* ({assign var="page_name" value=$smarty.capture.page_name_temp}) *})
 ({ext_include file="inc_tree_adminStatisticalInformation.tpl"})
 </div>
 
