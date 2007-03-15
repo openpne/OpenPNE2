@@ -170,7 +170,7 @@
 ({/foreach})
 </form>
 
-({t_form m=pc a=page_c_topic_detail})
+({t_form _form_action=#write m=pc a=page_c_topic_detail})
 <td>
 <div align="center" style="text-align:center;">
 <input type="submit" class="submit" value="　修　 正　">

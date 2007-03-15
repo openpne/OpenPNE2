@@ -171,7 +171,7 @@
 </td>
 <td style="width:50%;" align="left">
 
-({t_form _enctype=file m=pc a=page_fh_diary})
+({t_form _form_action=#write _enctype=file m=pc a=page_fh_diary})
 <input type="hidden" name="target_c_diary_id" value="({$form_val.target_c_diary_id})">
 <input type="hidden" name="body" value="({$form_val.body})">
 &nbsp;<input type="submit" class="submit" value="　修　 正　">

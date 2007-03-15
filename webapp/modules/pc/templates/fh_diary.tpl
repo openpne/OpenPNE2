@@ -681,6 +681,9 @@
 
 <!-- ********************************** -->
 <!-- ******ここから：コメントを書く****** -->
+
+<a name="write"></a>
+
 ({t_form _enctype=file m=pc a=page_fh_diary_comment_confirm})
 <input type="hidden" name="target_c_diary_id" value="({$target_diary.c_diary_id})">
 

@@ -148,7 +148,7 @@
 <td><input type="submit" class="submit" value="　書き込み　"></td>
 </form>
 
-({t_form m=pc a=page_c_event_detail})
+({t_form _form_action=#write m=pc a=page_c_event_detail})
 ({foreach from=$event_write key=key item=item})
 <input type="hidden" name="({$key})" value="({$item})">
 ({/foreach})

@@ -30,6 +30,13 @@ function smarty_function_t_form($params, &$smarty)
     }
 
     $form_action = openpne_gen_url_head($params['m'], $params['a'], false);
+
+    if (isset($params['_form_action'])) {
+        $form_action .= $params['_form_action'];
+        unset($params['_form_action']);
+    }
+
+
     if (need_ssl_param($params['m'], $params['a'])) {
         $params['ssl_param'] = 1;
     }

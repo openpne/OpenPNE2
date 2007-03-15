@@ -305,7 +305,7 @@
 ({/if})
 
 ({if $is_c_commu_member})
-
+<a name="write"></a>
 <!-- ********************************** -->
 <!-- ******ここから：新しく書き込む****** -->
 ({t_form _enctype=file m=pc a=page_c_topic_write_confirm})

@@ -526,6 +526,9 @@
 ({if $c_topic_write.0})
 <!-- ********************************* -->
 <!-- ******ここから：書き込み一覧****** -->
+
+<a name="write"></a>
+
 <table border="0" cellspacing="0" cellpadding="0" style="width:650px;margin:0px auto;" class="border_07">
 <tr>
 <td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
