@@ -1147,9 +1147,9 @@ function p_access_analysis_member_access_member4ym_page_name
     $start = ($page - 1) * $page_size;
     
     if ($orderby == 1) {
-        $orderby_str = " order by target_c_member_id asc";
+        $orderby_str = " order by c_member_id asc";
     } elseif ($orderby == -1) {
-        $orderby_str = " order by target_c_member_id desc";
+        $orderby_str = " order by c_member_id desc";
     } elseif ($orderby == 2) {
         $orderby_str = " order by count asc";
     } elseif ($orderby == -2) {
@@ -1293,120 +1293,32 @@ function p_access_analysis_target_member_access_member4ym_page_name
 
 function get_is_show($name)
 {
+
+    $is_target_c_member_id = 0;
+    $is_target_c_commu_id  = 0;
+    $is_target_c_topic_id  = 0;
+    $is_target_c_diary_id  = 0;
+    $is_c_member_id        = 1;
+
+
     //必要のない詳細ボタンを消す
-    switch($name) {
-    case "h_home":
-        $is_target_c_member_id = 0;
-        $is_target_c_commu_id = 0;
-        $is_target_c_topic_id = 0;
-        $is_target_c_diary_id = 0;
-        $is_c_member_id = 1;
-        break;
+    $list = explode("_", $name);
+    $is_c_member_id = 1;
 
-    case "fh_friend_list":
-        $is_target_c_member_id = 0;
-        $is_target_c_commu_id = 0;
-        $is_target_c_topic_id = 0;
-        $is_target_c_diary_id = 0;
-        $is_c_member_id = 1;
-        break;
-
-    case "h_message":
-        $is_target_c_member_id = 0;
-        $is_target_c_commu_id = 0;
-        $is_target_c_topic_id = 0;
-        $is_target_c_diary_id = 0;
-        $is_c_member_id = 1;
-        break;
-
-    case "fh_diary_list":
-        $is_target_c_member_id = 0;
-        $is_target_c_commu_id = 0;
-        $is_target_c_topic_id = 0;
-        $is_target_c_diary_id = 0;
-        $is_c_member_id = 1;
-        break;
-
-    case "h_message_box":
-        $is_target_c_member_id = 0;
-        $is_target_c_commu_id = 0;
-        $is_target_c_topic_id = 0;
-        $is_target_c_diary_id = 0;
-        $is_c_member_id = 1;
-        break;
-
-    case "f_home":
+    if (strpos($list[0], 'f') !== false) {
         $is_target_c_member_id = 1;
-        $is_target_c_commu_id = 0;
-        $is_target_c_topic_id = 0;
-        $is_target_c_diary_id = 0;
-        $is_c_member_id = 1;
-        break;
-
-    case "h_com_find_all":
-        $is_target_c_member_id = 0;
-        $is_target_c_commu_id = 0;
-        $is_target_c_topic_id = 0;
-        $is_target_c_diary_id = 0;
-        $is_c_member_id = 1;
-        break;
-
-    case "reply_message":
-        $is_target_c_member_id = 0;
-        $is_target_c_commu_id = 0;
-        $is_target_c_topic_id = 0;
-        $is_target_c_diary_id = 0;
-        $is_c_member_id = 1;
-        break;
-
-    case "f_message_send":
-        $is_target_c_member_id = 0;
-        $is_target_c_commu_id = 0;
-        $is_target_c_topic_id = 0;
-        $is_target_c_diary_id = 0;
-        $is_c_member_id = 1;
-        break;
-
-    case "f_message_send":
-        $is_target_c_member_id = 0;
-        $is_target_c_commu_id = 0;
-        $is_target_c_topic_id = 0;
-        $is_target_c_diary_id = 0;
-        $is_c_member_id = 1;
-        break;
-    
-    case "h_diary_list_all":
-        $is_target_c_member_id = 0;
-        $is_target_c_commu_id = 0;
-        $is_target_c_topic_id = 0;
-        $is_target_c_diary_id = 0;
-        $is_c_member_id = 1;
-        break;
-
-    case "h_search":
-        $is_target_c_member_id = 0;
-        $is_target_c_commu_id = 0;
-        $is_target_c_topic_id = 0;
-        $is_target_c_diary_id = 0;
-        $is_c_member_id = 1;
-        break;
-
-    case "f_message_send_confirm":
-        $is_target_c_member_id = 1;
-        $is_target_c_commu_id = 0;
-        $is_target_c_topic_id = 0;
-        $is_target_c_diary_id = 0;
-        $is_c_member_id = 1;
-        break;
-
-    default:
-        $is_target_c_member_id = 1;
-        $is_target_c_commu_id = 1;
-        $is_target_c_topic_id = 1;
-        $is_target_c_diary_id = 1;
-        $is_c_member_id = 1;
-        break;
     }
+    if (strpos($list[0], 'c') !== false) {
+        $is_target_c_commu_id = 1;
+    }
+
+    if (strpos($name, 'topic') !== false || strpos($name, 'event') !== false) {
+        $is_target_c_topic_id = 1;
+    }
+    if (strpos($name, 'diary') !== false) {
+        $is_target_c_diary_id = 1;
+    }
+
 
     return array($is_target_c_member_id,$is_target_c_commu_id,$is_target_c_topic_id,$is_target_c_diary_id,$is_c_member_id);
 
