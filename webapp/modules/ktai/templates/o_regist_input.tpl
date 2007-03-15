@@ -5,7 +5,7 @@
 以下の項目を入力して、登録を完了してください。<br>
 <br>
 
-({t_form m=ktai a=do_o_insert_c_member})
+({t_form _attr='utn' m=ktai a=do_o_insert_c_member})
 <input type="hidden" name="ses" value="({$ses})">
 
 ({capture name="nick"})

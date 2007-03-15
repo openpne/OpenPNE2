@@ -4,6 +4,8 @@
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
+require_once 'OpenPNE/KtaiID.php';
+
 class ktai_do_o_insert_c_member extends OpenPNE_Action
 {
     function isSecure()
@@ -76,6 +78,13 @@ class ktai_do_o_insert_c_member extends OpenPNE_Action
             $errors[] = '生年月日を未来に設定することはできません';
         }
 
+        if (IS_GET_EASY_ACCESS_ID != 0) {
+            $easy_access_id = OpenPNE_KtaiID::getID();
+            if (!$easy_access_id && (IS_GET_EASY_ACCESS_ID == 2)) {
+                $errors[] = '携帯の個体識別番号を取得できませんでした';
+            }
+        }
+
         // 入力エラー
         if ($errors) {
             ktai_display_error($errors);
@@ -102,6 +111,11 @@ class ktai_do_o_insert_c_member extends OpenPNE_Action
             openpne_redirect('ktai', 'page_o_login');
         }
 
+        // 端末IDの登録
+        if ($easy_access_id) {
+            db_member_update_easy_access_id($c_member_id, $easy_access_id);
+        }
+
         //入会者にポイント加算
         $point = db_action_get_point4c_action_id(1);
         db_point_add_point($c_member_id, $point);
@@ -124,7 +138,6 @@ class ktai_do_o_insert_c_member extends OpenPNE_Action
 
         // delete c_member_ktai_pre
         db_member_delete_c_member_ktai_pre4id($pre['c_member_ktai_pre_id']);
-
 
         do_insert_c_member_mail_send($c_member_id, $prof['password'], $pre['ktai_address']);
 

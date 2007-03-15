@@ -4,6 +4,8 @@
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
+require_once 'OpenPNE/KtaiID.php';
+
 class ktai_do_o_update_ktai_address extends OpenPNE_Action
 {
     function isSecure()
@@ -32,6 +34,35 @@ class ktai_do_o_update_ktai_address extends OpenPNE_Action
             $p = array('msg' => 18, 'ses' => $ses);
             openpne_redirect('ktai', 'page_o_login2', $p);
         }
+
+
+        if (IS_GET_EASY_ACCESS_ID == 2) {
+
+        // 携帯の個体識別番号の取得が必須
+            if (!$easy_access_id = OpenPNE_KtaiID::getID()) {
+                // 携帯の個体識別番号を取得できませんでした
+                $p = array('msg' => 27, 'ses' => $ses);
+                openpne_redirect('ktai', 'page_o_login2', $p);
+            } else {
+                // update
+                db_member_update_easy_access_id($c_member_id, $easy_access_id);
+                db_member_update_ktai_address($c_member_id, $ktai_address);
+                db_member_delete_ktai_address_pre($pre['c_ktai_address_pre_id']);
+                openpne_redirect('ktai', 'do_o_easy_login');
+            }
+        } else if (IS_GET_EASY_ACCESS_ID == 1) {
+
+        // 携帯の個体識別番号の取得が任意
+            if ($easy_access_id = OpenPNE_KtaiID::getID()) {
+                // update
+                db_member_update_easy_access_id($c_member_id, $easy_access_id);
+                db_member_update_ktai_address($c_member_id, $ktai_address);
+                db_member_delete_ktai_address_pre($pre['c_ktai_address_pre_id']);
+                openpne_redirect('ktai', 'do_o_easy_login');
+            }
+        }
+
+        // 携帯の個体識別番号を取得しない
 
         db_member_update_ktai_address($c_member_id, $ktai_address);
         db_member_delete_ktai_address_pre($pre['c_ktai_address_pre_id']);
