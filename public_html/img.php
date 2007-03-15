@@ -8,7 +8,7 @@ require_once './config.inc.php';
 
 
 //SNSにログインしているかどうか
-if (CHECK_IMG_AUTH) {
+if (defined('CHECK_IMG_AUTH') && CHECK_IMG_AUTH) {
     require_once OPENPNE_WEBAPP_DIR . '/init.inc';
     
     $module = $_GET['m'];
