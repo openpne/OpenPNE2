@@ -402,7 +402,7 @@ function load() {
 ({if $inc_entry_point[1]})
 <tr>
 <td class="container">
-({$inc_entry_point[1]|smarty:nodefaults})
+({$inc_entry_point[1]|smarty:nodefaults|t_url2cmd:'entry_point'|t_cmd:'entry_point'})
 </td>
 </tr>
 ({/if})
@@ -416,7 +416,7 @@ function load() {
 ({if $inc_entry_point[2]})
 <tr>
 <td class="container">
-({$inc_entry_point[2]|smarty:nodefaults})
+({$inc_entry_point[2]|smarty:nodefaults|t_url2cmd:'entry_point'|t_cmd:'entry_point'})
 </td>
 </tr>
 ({/if})

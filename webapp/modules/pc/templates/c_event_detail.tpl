@@ -303,7 +303,7 @@
 
 <div class="padding_s lh_120">
 
-({$c_topic.body|nl2br|t_url2cmd|t_cmd})
+({$c_topic.body|nl2br|t_url2cmd:'community'|t_cmd:'community'})
 
 </div>
 
@@ -628,7 +628,7 @@
 ({/if})
 
 <div class="padding_s lh_120">
-({$item.body|nl2br|t_url2cmd|t_cmd})
+({$item.body|nl2br|t_url2cmd:'community'|t_cmd:'community'})
 </div>
 
 </td>

@@ -368,7 +368,7 @@ th:1px;height:1px;" class="dummy"></td>
 <td style="width:439px;" class="bg_02" align="left" valign="middle">
 <div style="padding:4px 3px;">
 
-({$inc_entry_point[3]|smarty:nodefaults})
+({$inc_entry_point[3]|smarty:nodefaults|t_url2cmd:'entry_point'|t_cmd:'entry_point'})
 
 </div>
 </td>

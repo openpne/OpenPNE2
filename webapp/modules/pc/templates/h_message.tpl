@@ -246,7 +246,7 @@
 <br><br>
 ({/if})
 
-({$c_message.body|t_url2a|nl2br})
+({$c_message.body|nl2br|t_url2cmd:'message'|t_cmd:'message'})
 
 </div>
 

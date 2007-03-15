@@ -139,7 +139,7 @@ function db_common_authenticate_password($c_member_id, $password, $is_ktai = fal
         $username = db_member_username4c_member_id($c_member_id, $is_ktai);
     } else {
         $auth_config['options']['usernamecol'] = 'c_member_id';
-    	$username = $c_member_id;
+        $username = $c_member_id;
     }
     
     $storage = Auth::_factory($auth_config['storage'],$auth_config['options']);
@@ -760,6 +760,10 @@ function db_get_permit_list()
         '1' => 'community',
         '2' => 'diary',
         '4' => 'profile',
+        '8' => 'side_banner',
+        '16' => 'info',
+        '32' => 'entry_point',
+        '64' => 'message',
     );
 }
 

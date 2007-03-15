@@ -250,7 +250,7 @@
 ({********************************})
 
 ({if $inc_entry_point[3]})
-({$inc_entry_point[3]|smarty:nodefaults})
+({$inc_entry_point[3]|smarty:nodefaults|t_url2cmd:'entry_point'|t_cmd:'entry_point'})
 ({/if})
 
 <!-- **************************************** -->
@@ -353,7 +353,7 @@
 <img src="./skin/dummy.gif" class="v_spacer_m">
 
 ({if $inc_entry_point[4]})
-({$inc_entry_point[4]|smarty:nodefaults})
+({$inc_entry_point[4]|smarty:nodefaults|t_url2cmd:'entry_point'|t_cmd:'entry_point'})
 ({/if})
 
 <!-- ********************************** -->
@@ -558,7 +558,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <img src="./skin/dummy.gif" class="v_spacer_m">
 
 ({if $inc_entry_point[5]})
-({$inc_entry_point[5]|smarty:nodefaults})
+({$inc_entry_point[5]|smarty:nodefaults|t_url2cmd:'entry_point'|t_cmd:'entry_point'})
 ({/if})
 
 <!-- ************************************ -->
@@ -767,7 +767,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <img src="./skin/dummy.gif" class="v_spacer_m">
 
 ({if $inc_entry_point[6]})
-({$inc_entry_point[6]|smarty:nodefaults})
+({$inc_entry_point[6]|smarty:nodefaults|t_url2cmd:'entry_point'|t_cmd:'entry_point'})
 ({/if})
 
 ({********************************})
@@ -779,7 +779,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({********************************})
 
 ({if $inc_entry_point[7]})
-({$inc_entry_point[7]|smarty:nodefaults})
+({$inc_entry_point[7]|smarty:nodefaults|t_url2cmd:'entry_point'|t_cmd:'entry_point'})
 ({/if})
 
 <!-- ************************************ -->
@@ -1070,7 +1070,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <img src="./skin/dummy.gif" class="v_spacer_m">
 
 ({if $inc_entry_point[8]})
-({$inc_entry_point[8]|smarty:nodefaults})
+({$inc_entry_point[8]|smarty:nodefaults|t_url2cmd:'entry_point'|t_cmd:'entry_point'})
 ({/if})
 
 <!-- ******************************** -->
@@ -1162,7 +1162,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <img src="./skin/dummy.gif" class="v_spacer_m">
 
 ({if $inc_entry_point[9]})
-({$inc_entry_point[9]|smarty:nodefaults})
+({$inc_entry_point[9]|smarty:nodefaults|t_url2cmd:'entry_point'|t_cmd:'entry_point'})
 ({/if})
 
 ({********************************})

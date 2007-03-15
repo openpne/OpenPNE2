@@ -80,7 +80,7 @@
 <tr>
 <td class="padding_s">
 
-({$site_info|smarty:nodefaults|default:"&nbsp;"})
+({$site_info|smarty:nodefaults|default:"&nbsp;"|t_url2cmd:'info'|t_cmd:'info'})
 
 </td>
 </tr>
@@ -156,7 +156,7 @@
 ({if $inc_entry_point[3]})
 <tr>
 <td class="container">
-({$inc_entry_point[3]|smarty:nodefaults})
+({$inc_entry_point[3]|smarty:nodefaults|t_url2cmd:'entry_point'|t_cmd:'entry_point'})
 </td>
 </tr>
 ({/if})
@@ -167,7 +167,7 @@
 ({********************************})
 
 ({if $inc_entry_point[4]})
-({$inc_entry_point[4]|smarty:nodefaults})
+({$inc_entry_point[4]|smarty:nodefaults|t_url2cmd:'entry_point'|t_cmd:'entry_point'})
 ({/if})
 
 <!-- **************************************** -->
@@ -249,7 +249,7 @@
 <img src="./skin/dummy.gif" class="v_spacer_m">
 
 ({if $inc_entry_point[5]})
-({$inc_entry_point[5]|smarty:nodefaults})
+({$inc_entry_point[5]|smarty:nodefaults|t_url2cmd:'entry_point'|t_cmd:'entry_point'})
 ({/if})
 
 ({if $c_friend_list})
@@ -460,7 +460,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({/if})
 
 ({if $inc_entry_point[6]})
-({$inc_entry_point[6]|smarty:nodefaults})
+({$inc_entry_point[6]|smarty:nodefaults|t_url2cmd:'entry_point'|t_cmd:'entry_point'})
 ({/if})
 
 <!-- ************************************ -->
@@ -870,7 +870,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <img src="./skin/dummy.gif" class="v_spacer_m">
 
 ({if $inc_entry_point[7]})
-({$inc_entry_point[7]|smarty:nodefaults})
+({$inc_entry_point[7]|smarty:nodefaults|t_url2cmd:'entry_point'|t_cmd:'entry_point'})
 ({/if})
 
 ({********************************})
@@ -882,7 +882,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({********************************})
 
 ({if $inc_entry_point[8]})
-({$inc_entry_point[8]|smarty:nodefaults})
+({$inc_entry_point[8]|smarty:nodefaults|t_url2cmd:'entry_point'|t_cmd:'entry_point'})
 ({/if})
 
 ({if $calendar})
@@ -995,7 +995,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({/if})
 
 ({if $inc_entry_point[9]})
-({$inc_entry_point[9]|smarty:nodefaults})
+({$inc_entry_point[9]|smarty:nodefaults|t_url2cmd:'entry_point'|t_cmd:'entry_point'})
 ({/if})
 
 <!-- ******************************** -->
@@ -1302,7 +1302,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <img src="./skin/dummy.gif" class="v_spacer_m">
 
 ({if $inc_entry_point[10]})
-({$inc_entry_point[10]|smarty:nodefaults})
+({$inc_entry_point[10]|smarty:nodefaults|t_url2cmd:'entry_point'|t_cmd:'entry_point'})
 ({/if})
 
 <!-- ******************************** -->
@@ -1486,7 +1486,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({/if})
 
 ({if $inc_entry_point[11]})
-({$inc_entry_point[11]|smarty:nodefaults})
+({$inc_entry_point[11]|smarty:nodefaults|t_url2cmd:'entry_point'|t_cmd:'entry_point'})
 ({/if})
 
 ({if $c_friend_intro_list})
@@ -1581,7 +1581,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({/if})
 
 ({if $inc_entry_point[12]})
-({$inc_entry_point[12]|smarty:nodefaults})
+({$inc_entry_point[12]|smarty:nodefaults|t_url2cmd:'entry_point'|t_cmd:'entry_point'})
 ({/if})
 
 ({********************************})
