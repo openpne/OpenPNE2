@@ -87,7 +87,14 @@
 			<th class="cell02" colspan="3">&nbsp;</th>
 			<th class="cell03">&nbsp;</th>
 			<th class="cell04"><img src="./modules/admin/img/dummy.gif" /></th>
-			<th class="cell05"><img src="./modules/admin/img/dummy.gif" /></th>
+			<th class="cell05">
+            <select class="basic" onChange="Link('?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page=({$pager.page})&amp;page_size=({$pager.page_size})({$cond})&amp;last_login='+this.options[this.selectedIndex].value);">
+            <option value="">選択して下さい</option>
+            ({foreach from=$select_last_login item=item key=key})
+            <option ({if $cond_list.last_login==$key})selected({/if}) value="({$key})">({$item})</option>
+            ({/foreach})
+            </select>
+            </th>
 			<th class="cell06"><img src="./modules/admin/img/dummy.gif" /></th>
 			<th class="cell07"><img src="./modules/admin/img/dummy.gif" /></th>
 			<th class="cell08A">&nbsp;</th>

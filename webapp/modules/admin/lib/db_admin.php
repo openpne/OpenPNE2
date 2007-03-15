@@ -554,6 +554,39 @@ function _db_admin_c_member_id_list($cond_list)
         $sql .= ' AND birth_year <= ?';
         $params[] = $cond_list['e_year'];
     }
+
+
+    //最終ログイン時間で絞り込み
+
+    if (isset($cond_list['last_login'])) {
+
+        //期間で分ける
+        switch($cond_list['last_login']) {
+            case 1: //3日以内
+                $sql .= ' AND access_date >= ?';
+                $params[] = date('Y-m-d', strtotime('-3 day'));
+            break;
+
+            case 2: //3～7日以内
+                $sql .= ' AND access_date >= ? AND access_date < ?';
+                $params[] = date('Y-m-d', strtotime('-7 day'));
+                $params[] = date('Y-m-d', strtotime('-3 day'));
+            break;
+
+            case 3: //7～30日以内
+                $sql .= ' AND access_date >= ? AND access_date < ?';
+                $params[] = date('Y-m-d', strtotime('-30 day'));
+                $params[] = date('Y-m-d', strtotime('-7 day'));
+            break;
+
+            case 4: //30～90日以内
+                $sql .= ' AND access_date >= ? AND access_date < ?';
+                $params[] = date('Y-m-d', strtotime('-90 day'));
+                $params[] = date('Y-m-d', strtotime('-30 day'));
+            break;
+        }
+    }
+
     $sql .= ' ORDER BY c_member_id';
 
     $ids = db_get_col($sql, $params);
@@ -626,6 +659,13 @@ function validate_cond($requests)
             $cond_list[$key] = intval($requests[$key]);
         }
     }
+
+    // 最終ログイン時間
+    if (!empty($requests['last_login'])) {
+        $cond_list['last_login'] = intval($requests['last_login']);
+    }
+
+
     return $cond_list;
 }
 

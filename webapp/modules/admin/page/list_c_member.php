@@ -36,6 +36,16 @@ class admin_page_list_c_member extends OpenPNE_Action
         //絞り込みのドロップダウンを作る用
         $v['profile_list'] = db_member_c_profile_list();;
 
+        //絞り込みのための最終ログイン時間
+        $select_last_login = array(
+            1 => "3日以内",
+            2 => "3～7日以内",
+            3 => "7～30日以内",
+            4 => "30～90日以内",
+        );
+        $v['select_last_login'] = $select_last_login;
+
+
         //開始年が終了年より大きい
         if ( !empty($cond_list['s_year']) && !empty($cond_list['e_year']) && ($cond_list['s_year'] > $cond_list['e_year']) ) {
             $v['msg'] = '※開始年は終了年より小さくして下さい';
