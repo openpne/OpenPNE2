@@ -43,7 +43,9 @@
 ({if $auth_type == 'all' || $auth_type == ''})
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('send_invites')})" title="招待メール送信: 複数のメールアドレス宛に招待メールを送信">招待メール送信</a></li>
 ({/if})
+({if $auth_type == 'all'})
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('csv_download')})">CSVダウンロード</a></li>
+({/if})
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('import_c_member')})">CSVインポート</a></li>
 </ul>
 </li>
