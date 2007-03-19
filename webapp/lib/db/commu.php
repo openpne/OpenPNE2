@@ -2653,8 +2653,11 @@ function db_commu_search_c_commu_topic($search_word, $category_id, $page, $page_
     if ($search_word) {
 
         $params = array();
-        $from = ' FROM c_commu_topic_comment as ctc, c_commu_topic as ct';
-        $where = ' WHERE ct.c_commu_topic_id = ctc.c_commu_topic_id';
+        $from = ' FROM c_commu_topic_comment as ctc, c_commu_topic as ct, c_commu as c';
+        $where = ' WHERE ct.c_commu_topic_id = ctc.c_commu_topic_id'.
+                 ' AND c.c_commu_id = ct.c_commu_id'.
+                 ' AND c.public_flag <> ?';
+        $params[] = 'auth_commu_member';
 
         $words = explode(' ', $search_word);
         foreach ($words as $word) {
@@ -2670,9 +2673,12 @@ function db_commu_search_c_commu_topic($search_word, $category_id, $page, $page_
                $where .
                ' order by ctc.r_datetime DESC';
     } else {
-        $from = ' FROM c_commu_topic_comment';
-        $where = '';
-        $sql = 'SELECT *' . $from . ' order by r_datetime DESC';
+        $from = ' FROM c_commu_topic_comment as ctc, c_commu as c';
+        $where = ' WHERE c.c_commu_id = ctc.c_commu_id'.
+                 ' AND c.public_flag <> ?';
+        $params[] = 'auth_commu_member';
+
+        $sql = 'SELECT ctc.*' . $from . $where . ' order by ctc.r_datetime DESC';
     }
 
     $result = db_get_all_page($sql, $page, $page_size, $params);
