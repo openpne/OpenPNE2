@@ -24,8 +24,13 @@ function _smarty_modifier_t_cmd_make_url_js($matches)
     $path = './cmd/' . $file;
 
     if (!OPENPNE_USE_CMD_TAG || !db_is_use_cmd($matches[1], $GLOBALS['_CMD']['type']) || !is_readable($path)) {
-        // t_url2a
-        return pne_url2a($url);
+        // t_url2aが無効
+        if ( in_array($GLOBALS['_CMD']['type'], db_get_url2a_denied_list()) ){
+            return $url;
+        } else {
+        // t_url2aが有効
+            return pne_url2a($url);
+        }
     }
 
     $result = <<<EOD

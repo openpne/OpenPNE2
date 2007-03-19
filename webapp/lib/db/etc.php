@@ -767,6 +767,16 @@ function db_get_permit_list()
     );
 }
 
+//小窓のurl2aを無効にするリスト
+function db_get_url2a_denied_list()
+{
+    return array(
+        'side_banner',
+        'info',
+        'entry_point',
+    );
+}
+
 /**
  * カレンダーの祝日を取得する
  */
