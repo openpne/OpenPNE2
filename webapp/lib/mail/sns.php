@@ -45,8 +45,11 @@ class mail_sns
             if (!IS_CLOSED_SNS) {
                 // get 新規登録
                 if ($to_user == 'get') {
+                    // アフィリエイトIDが付いている場合
+                    $body = $this->decoder->get_text_body();
+
                     m_debug_log('mail_sns::regist_get()', PEAR_LOG_INFO);
-                    return $this->regist_get();
+                    return $this->regist_get($body);
                 }
             }
 
@@ -146,7 +149,7 @@ class mail_sns
     /**
      * 新規登録のURL取得
      */
-    function regist_get()
+    function regist_get($aff_id)
     {
         // 招待者は c_member_id = 1 (固定)
         $c_member_id_invite = 1;
@@ -155,7 +158,7 @@ class mail_sns
         $session = create_hash();
         mail_insert_c_member_ktai_pre($session, $this->from, $c_member_id_invite);
 
-        do_common_send_mail_regist_get($session, $this->from);
+        do_common_send_mail_regist_get($session, $this->from, $aff_id);
         return true;
     }
 

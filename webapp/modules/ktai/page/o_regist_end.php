@@ -19,7 +19,11 @@ class ktai_page_o_regist_end extends OpenPNE_Action
             openpne_redirect('ktai', 'page_o_login');
         }
         //>
-
+        $aff_id = $requests['aff_id'];
+        
+        if ($aff_id) {
+            $this->set('aff_id', $aff_id);
+        }
         $this->set('SNS_NAME', SNS_NAME);
         return 'success';
     }

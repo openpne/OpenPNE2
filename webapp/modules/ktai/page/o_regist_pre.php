@@ -22,6 +22,7 @@ class ktai_page_o_regist_pre extends OpenPNE_Action
 
         // --- リクエスト変数
         $ses = $requests['ses'];
+        $aff_id = $requests['aff_id'];
         // ----------
 
         // セッションが有効かどうか
@@ -29,7 +30,9 @@ class ktai_page_o_regist_pre extends OpenPNE_Action
             // 無効の場合、login へリダイレクト
             openpne_redirect('ktai', 'page_o_login');
         }
-
+        if ($aff_id) {
+            $this->set('aff_id', $aff_id);
+        }
         // ブラックリストチェック
         if (db_is_c_black_list($pre['ktai_address'])) {
             // このアドレスでは登録できません

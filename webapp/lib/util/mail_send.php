@@ -615,10 +615,13 @@ function do_common_send_message_event_message_mail_send($c_member_id_to, $c_memb
     return fetch_send_mail($pc_address, 'm_pc_message_event_message', $params, $is_receive_mail);
 }
 
-function do_common_send_mail_regist_get($session, $sender)
+function do_common_send_mail_regist_get($session, $sender, $aff_id)
 {
     // メール送信
-    $p = array('ses' => $session);
+    $p = array(
+        'ses' => $session,
+        'aff_id' => $aff_id,
+    );
     $params['url'] = openpne_gen_url('ktai', 'page_o_regist_pre', $p);
     return fetch_send_mail($sender, 'm_ktai_regist_get', $params);
 }

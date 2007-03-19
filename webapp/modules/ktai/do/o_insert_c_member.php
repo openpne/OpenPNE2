@@ -24,6 +24,7 @@ class ktai_do_o_insert_c_member extends OpenPNE_Action
 
         // --- リクエスト変数
         $ses = $requests['ses'];
+        $aff_id = $requests['aff_id'];
         // ----------
 
         //--- 権限チェック
@@ -149,7 +150,11 @@ class ktai_do_o_insert_c_member extends OpenPNE_Action
 
         do_insert_c_member_mail_send($c_member_id, $prof['password'], $pre['ktai_address']);
 
-        openpne_redirect('ktai', 'page_o_regist_end');
+        if ($aff_id) {
+            $p = array('aff_id' => $aff_id);
+        }
+        
+        openpne_redirect('ktai', 'page_o_regist_end',$p);
     }
 
     function _getValidateRules()
