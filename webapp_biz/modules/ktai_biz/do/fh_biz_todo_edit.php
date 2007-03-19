@@ -21,6 +21,8 @@ class ktai_biz_do_fh_biz_todo_edit extends OpenPNE_Action
 
         if ($due_datetime_y && $due_datetime_m && $due_datetime_d) {
             $due_datetime = $due_datetime_y . '-' . $due_datetime_m . '-' . $due_datetime_d . ' 00:00:00';            
+        } else {
+            $due_datetime = '0000-00-00 00:00:00';
         }
 
         if (is_null($target_c_member_id)) {
@@ -30,7 +32,7 @@ class ktai_biz_do_fh_biz_todo_edit extends OpenPNE_Action
         $todo = biz_getTodo($target_biz_todo_id);
 
         $is_all = $todo['is_all'];
-        $is_done = $todo['is_done'];
+        $is_done = $todo['is_check'];
         $priority = $todo['priority'];
         $biz_group_id = $todo['biz_group_id'];
         $public_flag = $todo['public_flag'];
