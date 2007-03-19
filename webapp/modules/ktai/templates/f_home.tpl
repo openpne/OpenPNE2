@@ -143,6 +143,9 @@
 　<a href="({t_url m=ktai a=page_c_home})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">({$c_commu.name})</a>(({$c_commu.count_members}))<br>
 ({/foreach})
 <a href="({t_url m=ktai a=page_fh_com_list})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">→すべて表示</a><br>
+({if $common_commu_count})
+<a href="({t_url m=ktai a=page_f_com_list_common})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">→共通コミュニティ</a><br>
+({/if})
 <a href="#top">↑このﾍﾟｰｼﾞの先頭へ戻る</a>
 
 <hr>

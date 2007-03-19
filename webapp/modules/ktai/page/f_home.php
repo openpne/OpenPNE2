@@ -52,6 +52,9 @@ class ktai_page_f_home extends OpenPNE_Action
         //参加コミュニティ最新書き込み５件
         $this->set("c_commu_list", k_p_h_home_c_commu_list_lastupdate4c_member_id($target_c_member_id, 5));
 
+        //共通コミュニティ
+        $this->set('common_commu_count', count(db_common_commu_common_commu_id4c_member_id($target_c_member_id,$u)));
+
         //ターゲットと自分との関係
         $this->set("relation", db_friend_relationship4two_members($u, $target_c_member_id));
 

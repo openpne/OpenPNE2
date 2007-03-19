@@ -70,6 +70,9 @@ class pc_page_f_home extends OpenPNE_Action
         $this->set('c_friend_list', $c_friend_list);
         $this->set('c_friend_count', db_friend_count_friends($target_c_member_id));
         $this->set('user_count', db_commu_count_c_commu4c_member_id($target_c_member_id));
+
+        $this->set('common_commu_count', count(db_common_commu_common_commu_id4c_member_id($target_c_member_id,$u)));
+        
         $c_commu_list = db_commu_c_commu_list4c_member_id_2($target_c_member_id, 9);
         $this->set('c_commu_list', $c_commu_list);
         $this->set('c_review_list', db_review_c_review_list4member($target_c_member_id, 5));
@@ -80,15 +83,14 @@ class pc_page_f_home extends OpenPNE_Action
         // 誕生日まであと何日？
         $this->set('days_birthday', db_member_count_days_birthday4c_member_id($target_c_member_id));
 
+        // inc_entry_point
+        $this->set('inc_entry_point', fetch_inc_entry_point_f_home($this->getView()));
         //PNEPOINT
         $point = db_point_get_point($target_c_member_id);
         $this->set("point", $point);
 
         //rank
         $this->set("rank", db_point_get_rank4point($point));
-
-        // inc_entry_point
-        $this->set('inc_entry_point', fetch_inc_entry_point_f_home($this->getView()));
 
         // ---
 

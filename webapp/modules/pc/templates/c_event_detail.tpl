@@ -128,7 +128,7 @@
 ({else})
 <tr>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-<td style="width:110px;" class="bg_03" align="center" valign="top" rowspan="({if $is_c_event_admin})19({else})17({/if})">
+<td style="width:110px;" class="bg_03" align="center" valign="top" rowspan="({if $is_c_event_admin})17({else})15({/if})">
 
 <div class="padding_s">
 
@@ -527,7 +527,7 @@
 <!-- ********************************* -->
 <!-- ******ここから：書き込み一覧****** -->
 
-<a name="write"></a>
+<a name="write"></a> 
 
 <table border="0" cellspacing="0" cellpadding="0" style="width:650px;margin:0px auto;" class="border_07">
 <tr>
@@ -742,7 +742,7 @@
 
 <div class="padding_s">
 
-<textarea name="body" rows="10" cols="50" style="width:474px">({$body})</textarea>
+<textarea name="body" rows="10" cols="50" style="width:415px">({$body})</textarea>
 
 </div>
 
@@ -855,7 +855,7 @@
 <input type="submit" class="submit" name="button" value="コメントのみ書き込む">
 ({elseif $is_c_commu_member})
 
-({if not $c_topic.capacity or ($c_topic.capacity gt $c_topic.member_num) })
+({if not $c_topic.capacity or ($c_topic.capacity gt $c_topic.member_num) }) 
 <input type="submit" class="submit" name="button" value="イベントに参加する">
 ({/if})
 
