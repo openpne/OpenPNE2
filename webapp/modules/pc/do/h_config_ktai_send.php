@@ -26,6 +26,12 @@ class pc_do_h_config_ktai_send extends OpenPNE_Action
             openpne_redirect('pc', 'page_h_config_ktai', $p);
         }
 
+        if (db_is_c_black_list($ktai_address)) {
+            $msg = "このアドレスでは登録できません";
+            $p = array('msg' => $msg);
+            openpne_redirect('pc', 'page_h_config_ktai', $p);
+        }
+
         // 登録済みアドレスかどうかチェックする
         if (($c_member_id = db_member_c_member_id4ktai_address2($ktai_address)) &&
             $c_member_id != $u) {

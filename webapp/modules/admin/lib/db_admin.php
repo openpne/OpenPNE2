@@ -2159,4 +2159,67 @@ function db_admin_get_c_action_all($page, $page_size, &$pager)
 
     return $list;
 }
+
+
+//ブラックリストを追加
+function db_admin_insert_c_black_list($address, $memo)
+{
+    $data = array(
+        'address' => t_encrypt(strval($address)),
+        'memo' => strval($memo),
+        'r_datetime' => db_now()
+    );
+    return db_insert('c_black_list', $data);
+}
+
+//ブラックリストを編集
+function db_admin_update_c_black_list($c_black_list_id, $address, $memo)
+{
+    $data = array(
+        'address' => t_encrypt(strval($address)),
+        'memo' => strval($memo),
+        'r_datetime' => db_now()
+    );
+    $where = array('c_black_list_id' => intval($c_black_list_id));
+    return db_update('c_black_list', $data, $where);
+}
+
+//ブラックリストを削除
+function db_admin_delete_c_black_list($c_black_list_id)
+{
+    $sql = "DELETE FROM c_black_list WHERE c_black_list_id = ?";
+    $params = array(intval($c_black_list_id));
+    return db_query($sql, $params);
+}
+
+
+//ブラックリストを全て取得(ページャー付き)
+function db_admin_get_c_black_list_all($page, $page_size, &$pager)
+{
+    $sql = 'SELECT * FROM c_black_list ORDER BY c_black_list_id';
+
+    $list = db_get_all_page($sql, $page, $page_size, $params);
+
+    foreach ($list as $key => $item) {
+        $list[$key]['address'] = t_decrypt($item['address']);
+    }
+
+    $sql = 'SELECT count(*) FROM c_black_list';
+    $total_num = db_get_one($sql, $params);
+    $pager = admin_make_pager($page, $page_size, $total_num);
+
+    return $list;
+}
+
+//ブラックリストを一つ取得
+function db_admin_get_c_black_list_one($c_black_list_id)
+{
+    $sql = 'SELECT * FROM c_black_list WHERE c_black_list_id = ?';
+    $params = array(intval($c_black_list_id));
+    $list = db_get_row($sql, $params);
+    $list['address'] = t_decrypt($list['address']);
+
+    return $list;
+}
+
 ?>

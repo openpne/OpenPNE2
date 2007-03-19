@@ -30,6 +30,13 @@ class ktai_page_o_regist_pre extends OpenPNE_Action
             openpne_redirect('ktai', 'page_o_login');
         }
 
+        // ブラックリストチェック
+        if (db_is_c_black_list($pre['ktai_address'])) {
+            // このアドレスでは登録できません
+            $p = array('msg' => 37);
+            openpne_redirect('ktai', 'page_o_login', $p);
+        }
+
         $this->set('ses', $ses);
         $this->set('SNS_NAME', SNS_NAME);
         return 'success';

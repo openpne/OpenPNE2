@@ -36,6 +36,14 @@ class ktai_do_o_insert_c_member extends OpenPNE_Action
         }
         //---
 
+        // ブラックリストチェック
+        if (db_is_c_black_list($pre['ktai_address'])) {
+            // このアドレスでは登録できません
+            $p = array('msg' => 37);
+            openpne_redirect('ktai', 'page_o_login', $p);
+        }
+
+
         $errors = array();
 
         $validator = new OpenPNE_Validator();

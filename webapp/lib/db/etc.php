@@ -786,4 +786,14 @@ function db_c_holiday_list4date($m, $d)
     $params = array(intval($m), intval($d));
     return db_get_col($sql, $params);
 }
+
+
+//ブラックリストに載っているかチェック
+function db_is_c_black_list($address)
+{
+    $sql = 'SELECT c_black_list_id FROM c_black_list WHERE address = ?';
+    $params = array(t_encrypt(strval($address)));
+    return db_get_one($sql, $params);
+}
+
 ?>

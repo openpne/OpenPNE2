@@ -8,5 +8,8 @@
 ({if $auth_type == 'all'})
 <a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('csv_download')})" title="メンバー情報CSV形式でダウンロードします。">CSVダウンロード</a>&nbsp;|&nbsp;
 ({/if})
-<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('import_c_member')})" title="CSV形式のメンバー情報データをインポートします。">CSVインポート</a>
+<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('import_c_member')})" title="CSV形式のメンバー情報データをインポートします。">CSVインポート</a>&nbsp;|&nbsp;
+({if $auth_type == 'all'})
+<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_black_list')})">ブラックリスト</a>
+({/if})
 </div>

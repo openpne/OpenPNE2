@@ -26,6 +26,13 @@ class ktai_do_o_update_ktai_address extends OpenPNE_Action
             openpne_redirect('ktai', 'page_o_login');
         }
 
+        // ブラックリストチェック
+        if (db_is_c_black_list($pre['ktai_address'])) {
+            // このアドレスでは登録できません
+            $p = array('msg' => 37);
+            openpne_redirect('ktai', 'page_o_login', $p);
+        }
+
         $c_member_id = $pre['c_member_id'];
         $ktai_address = $pre['ktai_address'];
 

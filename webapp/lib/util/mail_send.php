@@ -623,6 +623,27 @@ function do_common_send_mail_regist_get($session, $sender)
     return fetch_send_mail($sender, 'm_ktai_regist_get', $params);
 }
 
+//退会完了メール(管理者宛)
+function do_common_send_mail_taikai4admin($c_member_id, $reason)
+{
+
+    $p_list = db_common_c_profile_list4null();
+    $c_profile_list = array();
+    foreach ($p_list as $key => $value) {
+         $c_profile_list[]=$p_list[$key];
+    }
+
+    $c_member = db_common_c_member4c_member_id($c_member_id, true, true, 'private');
+    $c_member['c_member_invite'] = db_common_c_member4c_member_id_LIGHT($c_member['c_member_id_invite']);
+
+    $params = array(
+        "c_member" => $c_member,
+        "c_profile_list" => $c_profile_list,
+        "reason" => $reason,
+    );
+    return fetch_send_mail(ADMIN_EMAIL, 'm_pc_taikai4admin', $params);
+}
+
 //退会完了メール(PC)
 function do_common_send_mail_taikai_end_pc($c_member_id)
 {

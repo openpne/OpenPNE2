@@ -297,6 +297,16 @@
 </select></td>
 </tr>
 
+<tr class="cell28">
+<th colspan="2">退会者のデータ</th>
+<td>
+<span class="info">退会者のデータを管理者のメールアドレスに転送するかどうかを設定します</span><br />
+<select class="basic" name="SEND_USER_DATA">
+<option value="1"({if $smarty.const.SEND_USER_DATA}) selected="selected"({/if})>転送する</option>
+<option value="0"({if !$smarty.const.SEND_USER_DATA}) selected="selected"({/if})>転送しない</option>
+</select></td>
+</tr>
+
 </table>
 <p class="textBtn"><input type="submit" value="設定変更する"></p>
 </form>

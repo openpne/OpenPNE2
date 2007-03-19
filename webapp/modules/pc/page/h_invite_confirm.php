@@ -31,7 +31,7 @@ class pc_page_h_invite_confirm extends OpenPNE_Action
                 $msg = "そのアドレスは既に登録済みです";
             } elseif (!db_member_is_limit_domain4mail_address($form_val['mail'])) {
                 $msg = "そのアドレスは登録できません";
-            } else {
+            } elseif (!db_is_c_black_list($form_val['mail'])) {
                 if (is_ktai_mail_address($form_val['mail'])) {
                     //<PCKTAI
                     if (defined('OPENPNE_REGIST_FROM') &&
@@ -47,6 +47,8 @@ class pc_page_h_invite_confirm extends OpenPNE_Action
                     }
                     //>
                 }
+            } else {
+                $msg = "このメールアドレスには招待状は送れません";
             }
         }
 

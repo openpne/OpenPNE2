@@ -37,6 +37,12 @@ PCからは登録できない設定になっています。<br>
 	<dd>({foreach from=$requests.error_mails item=item name=em})<strong>({$item})</strong>({if !$smarty.foreach.em.last})&nbsp;／&nbsp;({/if})({/foreach})</dd>
 </dl>
 ({/if})
+({if $requests.black_list_mails})
+<dl class="invitesAdd" id="warning">
+	<dt><strong>以下のアドレスはブラックリストに登録済みのため送信されません。</strong></dt>
+	<dd>({foreach from=$requests.black_list_mails item=item name=em})<strong>({$item})</strong>({if !$smarty.foreach.em.last})&nbsp;／&nbsp;({/if})({/foreach})</dd>
+</dl>
+({/if})
 
 
 ({if !$cannot_send})
