@@ -17,6 +17,10 @@ class pc_do_c_topic_add_insert_c_commu_topic extends OpenPNE_Action
         $image_filename3_tmpfile = $requests['image_filename3_tmpfile'];
         $body = $requests['body'];
 
+        //---添付ファイル
+        $filename4_tmpfile = $requests['filename4_tmpfile'];
+        $filename4_mime_type = $requests['filename4_mime_type'];
+
         //---権限チェック
         //コミュニティ参加者
 
@@ -37,13 +41,13 @@ class pc_do_c_topic_add_insert_c_commu_topic extends OpenPNE_Action
         }
         //---
 
-
         $insert_c_commu_topic = array(
             "name"        => $title,
             "c_commu_id"  => $c_commu_id,
             "c_member_id" => $u,
             "event_flag"  => 0
         );
+
         $c_commu_topic_id = db_commu_insert_c_commu_topic($insert_c_commu_topic);
 
         if ($image_filename1_tmpfile) {
@@ -55,6 +59,13 @@ class pc_do_c_topic_add_insert_c_commu_topic extends OpenPNE_Action
         if ($image_filename3_tmpfile) {
             $filename3 = image_insert_c_image4tmp("t_{$c_commu_topic_id}_3", $image_filename3_tmpfile);
         }
+
+        // 添付ファイルをDBに入れる
+        if ($filename4_tmpfile) {
+            $filename4 = file_insert_c_file4tmp("t_{$c_commu_topic_id}_4", $filename4_tmpfile, $filename4_mime_type);
+        }
+
+        //テンポラリファイルを削除(画像と同時)
         t_image_clear_tmp(session_id());
 
         $insert_c_commu_topic_comment = array(
@@ -66,6 +77,7 @@ class pc_do_c_topic_add_insert_c_commu_topic extends OpenPNE_Action
             "image_filename1"  => !empty($filename1) ? $filename1 : '',
             "image_filename2"  => !empty($filename2) ? $filename2 : '',
             "image_filename3"  => !empty($filename3) ? $filename3 : '',
+            "filename4"  => !empty($filename4) ? $filename4 : '',
         );
         $insert_id = db_commu_insert_c_commu_topic_comment_3($insert_c_commu_topic_comment);
 
@@ -75,6 +87,7 @@ class pc_do_c_topic_add_insert_c_commu_topic extends OpenPNE_Action
         send_bbs_info_mail_pc($insert_id, $u);
 
         $p = array('target_c_commu_topic_id' => $c_commu_topic_id);
+
         openpne_redirect('pc', 'page_c_topic_detail', $p);
     }
 }

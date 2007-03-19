@@ -37,12 +37,14 @@ class pc_page_c_topic_add_confirm extends OpenPNE_Action
             openpne_forward('pc', 'page', "c_home");
             exit;
         }
-        //---
 
-        //TODO:画像バリデータ
+        //画像ファイル
         $upfile_obj1 = $_FILES['image_filename1'];
         $upfile_obj2 = $_FILES['image_filename2'];
         $upfile_obj3 = $_FILES['image_filename3'];
+
+        //添付ファイル
+        $upfile_obj4 = $_FILES['uploadfile'];
 
         $err_msg = array();
 
@@ -62,19 +64,35 @@ class pc_page_c_topic_add_confirm extends OpenPNE_Action
             }
         }
 
+        if ($upfile_obj4['error'] !== UPLOAD_ERR_NO_FILE) {
+            $filesize = filesize($upfile_obj4['tmp_name']);
+            if ((!$filesize)  || ($filesize > IMAGE_MAX_FILESIZE * 1024)) {
+                $err_msg[] = '添付ファイルは'.IMAGE_MAX_FILESIZE.'KB以内のファイルにしてください';
+            }
+            // UPLOADファイルの拡張子のチェック
+/*
+            if (!($image = t_check_filename($upfile_obj3))) {
+                $err_msg[] = 'アップロードするファイルの拡張子が不正です';
+            }
+*/
+        }
+
         if ($err_msg) {
             $_REQUEST['err_msg'] = $err_msg;
             openpne_forward('pc', 'page', "c_topic_add");
             exit;
         }
+        $sessid = session_id();
+        
         //-----
 
         //画像をvar/tmpフォルダにコピー
-        $sessid = session_id();
         t_image_clear_tmp($sessid);
         $tmpfile1 = t_image_save2tmp($upfile_obj1, $sessid, "t_1");
         $tmpfile2 = t_image_save2tmp($upfile_obj2, $sessid, "t_2");
         $tmpfile3 = t_image_save2tmp($upfile_obj3, $sessid, "t_3");
+        // 一次ファイルをvar/tmpにコピー
+        $tmpfile4 = t_file_save2tmp($upfile_obj4, $sessid, "t_4");
 
         $this->set('inc_navi', fetch_inc_navi("c", $c_commu_id));
         $c_topic = array(
@@ -87,6 +105,12 @@ class pc_page_c_topic_add_confirm extends OpenPNE_Action
             'image_filename1'         => $upfile_obj1["name"],
             'image_filename2'         => $upfile_obj2["name"],
             'image_filename3'         => $upfile_obj3["name"],
+             // 添付ファイル
+            'filename4_tmpfile' => $tmpfile4,
+            'filename4'         => $upfile_obj4["name"],
+            // TODO : ここでMIMEタイプをhiddenで持たせないようにする
+            // TODO : このMIMEタイプの値は信用できないので別の手段でMIMEタイプを得る手段を模索する
+            'filename4_mime_type' => $upfile_obj4['type'],
         );
 
         $this->set('c_topic', $c_topic);

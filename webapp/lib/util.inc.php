@@ -13,5 +13,6 @@ require_once dirname(__FILE__) . '/util/api.php';
 require_once dirname(__FILE__) . '/util/message.php';
 require_once dirname(__FILE__) . '/util/emoji.php';
 require_once dirname(__FILE__) . '/util/cache.php';
+require_once dirname(__FILE__) . '/util/upload.php';
 
 ?>

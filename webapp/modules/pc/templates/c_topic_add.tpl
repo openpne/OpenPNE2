@@ -28,7 +28,7 @@
 <table border="0" cellspacing="0" cellpadding="0" style="width:634px;">
 <tr>
 <td style="width:36px;" class="bg_06"><img src="({t_img_url_skin filename=content_header_1})" style="width:30px;height:20px;" class="dummy"></td>
-<td style="width:598px;padding:2px 0px;" class="bg_06"><span class="b_b c_00">[({$c_commu.name})] 新規トピック作成</span></td>
+<td style="width:598px;padding:2px 0px;" class="bg_06"><span class="b_b c_00">[({$c_commu.name})] 新規トピック作成とアップロード</span></td>
 </tr>
 </table>
 </div>
@@ -167,6 +167,34 @@
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({*********})
+
+<tr>
+<td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+</tr>
+({*********})
+<tr>
+<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td class="bg_05" align="left" valign="middle">
+
+<div class="padding_s">
+
+ファイル
+
+</div>
+
+</td>
+<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td class="bg_02" align="left" valign="middle">
+<div class="padding_s">
+
+<input type="file" name="uploadfile" size="40">
+
+</div>
+</td>
+<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+</tr>
+({*********})
+
 <tr>
 <td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 </tr>

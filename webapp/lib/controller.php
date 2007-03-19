@@ -138,7 +138,6 @@ function openpne_forward($module, $type = '', $action = '', $errors = array())
     }
     list($result, $requests) = $validator->common_validate($files);
     $action_obj->requests = $requests;
-
     if ($result === false) {
         $errors = $validator->getErrors();
         $action_obj->handleError($errors);
