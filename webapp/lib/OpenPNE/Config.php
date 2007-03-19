@@ -33,6 +33,7 @@ class OpenPNE_Config
             'WORD_FRIEND_HALF','WORD_MY_FRIEND_HALF',
             'SORT_ORDER_NICK', 'SORT_ORDER_BIRTH',
             'OPENPNE_ENABLE_ROLLOVER',
+            'OPENPNE_DISP_POINT', 'OPENPNE_DISP_RANK',
             'SKIN_VERSION',
             'AFFILIATE_TAG',
             'UNUSED_MAILS',
@@ -168,6 +169,8 @@ class OpenPNE_Config
             'OPENPNE_SESSION_CHECK_URL' => false,
             'OPENPNE_INFO_URL' => 'http://info.openpne.jp/rss',
             'DISPLAY_OPENPNE_INFO' => true,
+            'OPENPNE_DISP_POINT' => false,
+            'OPENPNE_DISP_RANK' => false,
             'IS_SLAVEPNE' => false,
         // 固定値
             'AMAZON_TOKEN'   => '1WZYY1W9YF49AGM0RTG2',

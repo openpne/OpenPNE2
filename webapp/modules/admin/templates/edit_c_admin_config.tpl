@@ -186,6 +186,24 @@
 <option value="0"({if !$smarty.const.OPENPNE_USE_CMD_TAG}) selected="selected"({/if})>使用しない</option>
 </select></td>
 </tr>
+<tr class="cell28">
+<th colspan="2">ポイント表示設定</th>
+<td>
+<span class="info">ポイントをh_home等に表示するかどうかを設定します</span><br />
+<select class="basic" name="OPENPNE_DISP_POINT">
+<option value="1"({if $smarty.const.OPENPNE_DISP_POINT}) selected="selected"({/if})>表示する</option>
+<option value="0"({if !$smarty.const.OPENPNE_DISP_POINT}) selected="selected"({/if})>表示しない</option>
+</select></td>
+</tr>
+<tr class="cell29">
+<th colspan="2">ランク表示設定</th>
+<td>
+<span class="info">ランクをh_home等に表示するかどうかを設定します</span><br />
+<select class="basic" name="OPENPNE_DISP_RANK">
+<option value="1"({if $smarty.const.OPENPNE_DISP_RANK}) selected="selected"({/if})>表示する</option>
+<option value="0"({if !$smarty.const.OPENPNE_DISP_RANK}) selected="selected"({/if})>表示しない</option>
+</select></td>
+</tr>
 <tr class="cell21">
 <th colspan="2">ログイン制限</th>
 <td>
