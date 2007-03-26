@@ -222,7 +222,6 @@
 
 ({$diary.c_member.nickname})
 ({if $diary.c_member.profile.sex.value}) (({$diary.c_member.profile.sex.value}))({/if})
-({if $diary.image_filename_1 || $diary.image_filename_2 || $diary.image_filename_3}) <img src="({t_img_url_skin filename=icon_camera})" class="icon">({/if})
 
 </div>
 
@@ -253,6 +252,7 @@
 <div class="padding_s">
 
 ({$diary.subject}) (({$diary.num_comment}))
+({if $diary.image_filename_1 || $diary.image_filename_2 || $diary.image_filename_3}) <img src="({t_img_url_skin filename=icon_camera})" class="icon">({/if})
 
 </div>
 
