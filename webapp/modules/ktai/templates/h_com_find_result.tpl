@@ -1,6 +1,6 @@
 ({$inc_ktai_header|smarty:nodefaults})
 
-ｺﾐｭﾆﾃｨ検索結果<br>
+<center>ｺﾐｭﾆﾃｨ検索結果</center>
 <hr>
 ({if $search_word})
 「({$search_word})」の検索結果<br>

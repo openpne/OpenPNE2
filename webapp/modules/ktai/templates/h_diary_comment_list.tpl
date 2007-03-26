@@ -1,6 +1,6 @@
 ({$inc_ktai_header|smarty:nodefaults})
 
-日記ｺﾒﾝﾄ記入履歴<br>
+<center>日記ｺﾒﾝﾄ記入履歴</center>
 <hr>
 
 ({foreach from=$c_diary_my_comment_list item=each_diary})

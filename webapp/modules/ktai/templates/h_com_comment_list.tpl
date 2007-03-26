@@ -1,6 +1,6 @@
 ({$inc_ktai_header|smarty:nodefaults})
 
-ｺﾐｭﾆﾃｨ最新書き込み<br>
+<center>ｺﾐｭﾆﾃｨ最新書き込み</center>
 <hr>
 
 ({foreach from=$h_com_comment_list item=each_topic})

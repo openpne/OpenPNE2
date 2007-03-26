@@ -1,6 +1,6 @@
 ({$inc_ktai_header|smarty:nodefaults})
 
-ｺﾐｭﾆﾃｨ<br>
+<center>ｺﾐｭﾆﾃｨ</center>
 <hr>
 最新書き込み<br>
 ({foreach from=$c_commu_list_lastupdated item=item})

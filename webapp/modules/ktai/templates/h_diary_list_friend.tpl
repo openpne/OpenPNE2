@@ -1,6 +1,6 @@
 ({$inc_ktai_header|smarty:nodefaults})
 
-({$WORD_FRIEND_HALF})最新日記<br>
+<center>({$WORD_FRIEND_HALF})最新日記</center>
 <hr>
 
 ({foreach from=$h_diary_list_friend item=each_diary})
