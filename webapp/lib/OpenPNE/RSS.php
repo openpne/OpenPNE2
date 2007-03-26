@@ -91,13 +91,12 @@ class OpenPNE_RSS
             return false;
         }
 
-        // feedであれば、パラメタをそのまま返す
-        if ($feed->is_feed($data, false)) {
-            return $url;
+        $feed->feed_url($url);
+        if (!$feed->init()) {
+            return false;
         }
 
-        // Auto-Discovery に対応したURLを返す
-        return $feed->check_link_elements($data);
+        return $feed->subscribe_url();
     }
 }
 
