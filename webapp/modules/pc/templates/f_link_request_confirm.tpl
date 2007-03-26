@@ -9,10 +9,6 @@
 
 <!-- ******************************************** -->
 <!-- ******ここから：フレンド追加****** -->
-({t_form m=pc a=page_f_link_request_confirm})
-<input type="hidden" name="sessid" value="({$PHPSESSID})">
-<input type="hidden" name="target_c_member_id" value="({$target_member.c_member_id})">
-
 <table border="0" cellspacing="0" cellpadding="0" style="width:580px;" class="border_07">
 <tr>
 <td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
@@ -27,7 +23,7 @@
 <table border="0" cellspacing="0" cellpadding="0" style="width:566px;" class="border_01">
 <tr>
 <td style="width:36px;" class="bg_06"><img src="({t_img_url_skin filename=content_header_1})" style="width:30px;height:20px;" class="dummy"></td>
-<td style="width:528px;padding:2px 0px;" class="bg_06"><span class="b_b c_00">({$WORD_MY_FRIEND})に追加</span></td>
+<td style="width:528px;padding:2px 0px;" class="bg_06"><span class="b_b c_00">以下のメッセージを送信しますか？</span></td>
 </tr>
 </table>
 <!-- ここまで：小タイトル -->
@@ -133,7 +129,7 @@
 
 <div class="padding_s">
 
-<textarea class="text" name="body" rows="5" cols="40" style="width:410px;">({$form.body})</textarea>
+({$form.body|nl2br})
 
 </div>
 
@@ -157,8 +153,26 @@
 
 <div align="center" style="text-align:center;">
 
-<input type="submit" class="submit" value="確認画面">
-
+<table border="0" cellspacing="0" cellpadding="0" style="width:100%;height:2em;">
+<tr>
+<td style="width:50%;text-align:right;">
+({t_form m=pc a=do_f_link_request_insert_c_friend_confirm})
+<input type="hidden" name="sessid" value="({$PHPSESSID})">
+<input type="hidden" name="target_c_member_id" value="({$target_member.c_member_id})">
+<input type="hidden" name="body" value="({$form.body})">
+<input type="submit" class="submit" value="　送　信　">&nbsp;
+</form>
+</td>
+<td style="width:50%;text-align:left;">
+({t_form m=pc a=page_f_link_request})
+<input type="hidden" name="sessid" value="({$PHPSESSID})">
+<input type="hidden" name="target_c_member_id" value="({$target_member.c_member_id})">
+<input type="hidden" name="body" value="({$form.body})">
+&nbsp;<input type="submit" class="submit" value="　修　正　">
+</form>
+</td>
+</tr>
+</table>
 </div>
 
 </td>
@@ -192,7 +206,6 @@
 </tr>
 </table>
 
-</form>
 <!-- ******ここまで：フレンド追加****** -->
 <!-- ******************************************** -->
 
