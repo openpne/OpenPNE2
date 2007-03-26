@@ -801,8 +801,10 @@ function db_commu_c_commu_topic_comment_list4c_member_id($c_member_id, $limit)
     $ids = implode(", ", $c_commu_id_list);
 
     $hint = db_mysql_hint('USE INDEX (r_datetime_c_commu_id)');
-    $sql = 'SELECT c_commu_id, c_commu_topic_id, name AS c_commu_topic_name, r_datetime, c_member_id'.
-        ' FROM c_commu_topic'. $hint . ' WHERE c_commu_id IN (' . $ids . ') ORDER BY r_datetime DESC';
+    $sql = 'SELECT cct.c_commu_topic_id, cct.c_commu_id, MAX(cctc.r_datetime) as r_datetime, cct.c_member_id'.
+        ' FROM c_commu_topic as cct, c_commu_topic_comment as cctc'. $hint . ' WHERE cct.c_commu_id IN (' . $ids . ') AND cctc.c_commu_topic_id = cct.c_commu_topic_id'.
+        ' GROUP BY cctc.c_commu_topic_id'.
+        ' ORDER BY r_datetime DESC';
     $c_commu_topic_list = db_get_all_limit($sql, 0, $limit);
 
     foreach ($c_commu_topic_list as $key => $value) {
@@ -818,6 +820,9 @@ function db_commu_c_commu_topic_comment_list4c_member_id($c_member_id, $limit)
         $sql = 'SELECT name AS c_commu_name FROM c_commu WHERE c_commu_id = ?';
         $c_commu_name = db_get_one($sql, $value['c_commu_id']);
 
+        $sql = 'SELECT name FROM c_commu_topic WHERE c_commu_topic_id = ?';
+        $c_commu_topic_name = db_get_one($sql, $value['c_commu_topic_id']);
+
         //最新の書き込み番号
         $number = db_commu_get_max_number4topic($value['c_commu_topic_id']);
 
@@ -826,6 +831,7 @@ function db_commu_c_commu_topic_comment_list4c_member_id($c_member_id, $limit)
         $c_commu_topic_list[$key]['image_filename2'] = $temp['image_filename2'];
         $c_commu_topic_list[$key]['image_filename3'] = $temp['image_filename3'];
         $c_commu_topic_list[$key]['c_commu_name'] = $c_commu_name;
+        $c_commu_topic_list[$key]['c_commu_topic_name'] = $c_commu_topic_name;
     }
 
     return $c_commu_topic_list;
@@ -838,8 +844,10 @@ function db_commu_c_commu_topic_comment_list4c_member_id_2($c_member_id, $limit,
     $ids = implode(", ", $c_commu_id_list);
 
     $hint = db_mysql_hint('USE INDEX (r_datetime_c_commu_id)');
-    $sql = 'SELECT c_commu_id, c_commu_topic_id, name AS c_commu_topic_name, r_datetime, c_member_id'.
-        ' FROM c_commu_topic'. $hint . ' WHERE c_commu_id IN (' . $ids . ') ORDER BY r_datetime DESC';
+    $sql = 'SELECT cct.c_commu_topic_id, cct.c_commu_id, MAX(cctc.r_datetime) as r_datetime, cct.c_member_id'.
+        ' FROM c_commu_topic as cct, c_commu_topic_comment as cctc'. $hint . ' WHERE cct.c_commu_id IN (' . $ids . ') AND cctc.c_commu_topic_id = cct.c_commu_topic_id'.
+        ' GROUP BY cctc.c_commu_topic_id'.
+        ' ORDER BY r_datetime DESC';
     $c_commu_topic_list = db_get_all_limit($sql, ($page-1)*$limit, $limit);
 
     foreach ($c_commu_topic_list as $key => $value) {
@@ -855,6 +863,9 @@ function db_commu_c_commu_topic_comment_list4c_member_id_2($c_member_id, $limit,
         $sql = 'SELECT name AS c_commu_name FROM c_commu WHERE c_commu_id = ?';
         $c_commu_name = db_get_one($sql, $value['c_commu_id']);
 
+        $sql = 'SELECT name FROM c_commu_topic WHERE c_commu_topic_id = ?';
+        $c_commu_topic_name = db_get_one($sql, $value['c_commu_topic_id']);
+
         //最新の書き込み番号
         $number = db_commu_get_max_number4topic($value['c_commu_topic_id']);
 
@@ -863,6 +874,7 @@ function db_commu_c_commu_topic_comment_list4c_member_id_2($c_member_id, $limit,
         $c_commu_topic_list[$key]['image_filename2'] = $temp['image_filename2'];
         $c_commu_topic_list[$key]['image_filename3'] = $temp['image_filename3'];
         $c_commu_topic_list[$key]['c_commu_name'] = $c_commu_name;
+        $c_commu_topic_list[$key]['c_commu_topic_name'] = $c_commu_topic_name;
     }
 
     $sql = "SELECT count(DISTINCT ct.c_commu_topic_id)";
