@@ -91,7 +91,8 @@
 ({/if})
 
 ({if $relation_c_member_and_c_commu.join && !($is_unused_pc_bbs && $is_unused_ktai_bbs)})
-<hr id="setting">
+<hr>
+<a name="setting">メール受信設定</a><br>
 ({t_form m=ktai a=do_c_home_update_is_receive_mail})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
 <input type="hidden" name="target_c_commu_id" value="({$c_commu.c_commu_id})">
