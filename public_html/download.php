@@ -32,7 +32,8 @@ $include_paths = array(
 ini_set('include_path', implode(PATH_SEPARATOR, $include_paths));
 
 $file = db_file_c_file4filename($_GET['filename']);
-header('Content-Disposition: inline; filename="'.$file['original_filename'].'"');
+$original_filename = preg_replace("/\r|\n/", '', $file['original_filename']);
+header('Content-Disposition: inline; filename="' . $original_filename . '"');
 header('Content-Length: '. strlen($file['bin']));
 header('Content-Type: application/octet-stream');
 echo $file['bin'];

@@ -32,7 +32,7 @@ function t_file_save2tmp($upfile, $uid, $prefix='', $ext='')
     $filename = sprintf('%s_%s.%s', $prefix, $uid, $ext);
     $filepath = $tmp_dir_path . $filename;
 
-    if (!file_exists($upfile['tmp_name'])) {
+    if (!is_uploaded_file($upfile['tmp_name'])) {
         return false;
     }
 
