@@ -2296,7 +2296,7 @@ function db_commu_delete_c_commu_topic($c_commu_topic_id)
     cache_drop_c_commu_topic($c_commu_topic_id);
 
     // c_commu_topic_comment(画像)
-    $sql = 'SELECT image_filename1, image_filename2, image_filename3' .
+    $sql = 'SELECT image_filename1, image_filename2, image_filename3, filename' .
             ' FROM c_commu_topic_comment WHERE c_commu_topic_id = ?';
     $params = array(intval($c_commu_topic_id));
 
@@ -2305,6 +2305,7 @@ function db_commu_delete_c_commu_topic($c_commu_topic_id)
         image_data_delete($topic_comment['image_filename1']);
         image_data_delete($topic_comment['image_filename2']);
         image_data_delete($topic_comment['image_filename3']);
+        db_file_delete_c_file($topic_comment['filename']);
     }
 
     $sql = 'DELETE FROM c_commu_topic_comment WHERE c_commu_topic_id = ?';
@@ -2436,6 +2437,9 @@ function db_commu_update_c_commu_topic_comment($c_commu_topic_id, $topic_comment
             $data[$key] = $topic_comment[$key];
         }
     }
+    if (!empty($topic_comment['filename4'])) {
+        $data['filename'] = $topic_comment['filename4'];
+    }
     $where = array(
         'c_commu_topic_id' => intval($c_commu_topic_id),
         'number' => 0,
@@ -2447,6 +2451,18 @@ function db_commu_delete_c_commu_topic_comment_image($c_commu_topic_id, $image_n
 {
     $data = array(
         'image_filename'.intval($image_num) => '',
+    );
+    $where = array(
+        'c_commu_topic_id' => intval($c_commu_topic_id),
+        'number' => 0,
+    );
+    return db_update('c_commu_topic_comment', $data, $where);
+}
+
+function db_commu_delete_c_commu_topic_comment_file($c_commu_topic_id)
+{
+    $data = array(
+        'filename' => '',
     );
     $where = array(
         'c_commu_topic_id' => intval($c_commu_topic_id),

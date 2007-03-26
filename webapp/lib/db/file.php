@@ -5,6 +5,20 @@
  */
 
 /**
+ * IDからファイルの情報を取得する
+ * 
+ * @param int $c_file_id
+ */
+function db_file_c_file4c_file_id($c_file_id)
+{
+    $sql = 'SELECT * FROM c_file WHERE c_file_id = ?';
+    $params = array(intval($c_file_id));
+    $file = db_get_row($sql, $params);
+    $file['size'] = strlen($file['bin']);
+    return $file;
+}
+
+/**
  * 登録されているファイルをリストアップする
  * 
  * @param int $page

@@ -18,6 +18,7 @@ class pc_do_c_topic_edit_update_c_commu_topic extends OpenPNE_Action
         $upfile_obj1 = $_FILES['image_filename1'];
         $upfile_obj2 = $_FILES['image_filename2'];
         $upfile_obj3 = $_FILES['image_filename3'];
+        $upfile_obj4 = $_FILES['filename4'];
 
         //--- 権限チェック
         //トピック作成者 or コミュニティ管理者
@@ -56,6 +57,16 @@ class pc_do_c_topic_edit_update_c_commu_topic extends OpenPNE_Action
                 $err_msg[] = '画像3は'.IMAGE_MAX_FILESIZE.'KB以内のGIF・JPEG・PNGにしてください';
             }
         }
+        if ($upfile_obj4['error'] !== UPLOAD_ERR_NO_FILE) {
+            if (OPENPNE_USE_FILEUPLOAD) {
+                $filesize = $upfile_obj4['size'];
+                if ((!$filesize)  || ($filesize > IMAGE_MAX_FILESIZE * 1024)) {
+                    $err_msg[] = '添付ファイルは'.IMAGE_MAX_FILESIZE.'KB以内のファイルにしてください';
+                }
+            } else {
+                $err_msg[] = 'ファイルのアップロードはできません。';
+            }
+        }
 
         if ($err_msg) {
             $_REQUEST['err_msg'] = $err_msg;
@@ -72,6 +83,9 @@ class pc_do_c_topic_edit_update_c_commu_topic extends OpenPNE_Action
         $tmpfile1 = t_image_save2tmp($upfile_obj1, $sessid, "t_1");
         $tmpfile2 = t_image_save2tmp($upfile_obj2, $sessid, "t_2");
         $tmpfile3 = t_image_save2tmp($upfile_obj3, $sessid, "t_3");
+        if (OPENPNE_USE_FILEUPLOAD) {
+            $tmpfile4 = t_file_save2tmp($upfile_obj4, $sessid, "t_4");
+        }
 
         if ($tmpfile1) {
             $filename1 = image_insert_c_image4tmp("t_{$c_commu_topic_id}_1", $tmpfile1);
@@ -81,6 +95,9 @@ class pc_do_c_topic_edit_update_c_commu_topic extends OpenPNE_Action
         }
         if ($tmpfile3) {
             $filename3 = image_insert_c_image4tmp("t_{$c_commu_topic_id}_3", $tmpfile3);
+        }
+        if ($tmpfile4) {
+            $filename4 = file_insert_c_file4tmp("t_{$c_commu_topic_id}_4", $tmpfile4, $upfile_obj4['name']);
         }
         t_image_clear_tmp(session_id());
 
@@ -107,6 +124,10 @@ class pc_do_c_topic_edit_update_c_commu_topic extends OpenPNE_Action
         if ($filename3) {
             $update_c_commu_topic_comment["image_filename3"] = $filename3;
             image_data_delete($c_topic['image_filename3']);
+        }
+        if ($filename4) {
+            $update_c_commu_topic_comment['filename4'] = $filename4;
+            db_file_delete_c_file($c_topic['filename4']);
         }
         db_commu_update_c_commu_topic_comment($c_commu_topic_id, $update_c_commu_topic_comment);
 

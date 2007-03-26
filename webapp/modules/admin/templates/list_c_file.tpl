@@ -48,6 +48,7 @@
 	<th>元ファイル名</th>
 	<th>作成日</th>
 	<th>ファイルサイズ</th>
+	<th>&nbsp;</th>
 </tr>
 </thead>
 <tbody>
@@ -74,6 +75,10 @@
 ({****})
 <td>
 ({$item.size|number_format}) Bytes
+</td>
+({****})
+<td>
+<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('delete_c_file_confirm')})&amp;target_c_file_id=({$item.c_file_id})">削除</a>
 </td>
 ({****})
 ({/foreach})
