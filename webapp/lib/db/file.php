@@ -76,4 +76,18 @@ function db_file_original_filename4filename($filename)
     $params = array($filename);
     return db_get_one($sql, $params);
 }
+
+/**
+ * アップロードされたファイルを削除する
+ * 
+ * @param string $filename  削除したいファイル名
+ * @return mixed
+ */
+function db_file_delete_c_file($filename)
+{
+    $sql = 'DELETE FROM c_file WHERE filename = ?';
+    $params = array($filename);
+    return db_query($sql, $params);
+}
+
 ?>

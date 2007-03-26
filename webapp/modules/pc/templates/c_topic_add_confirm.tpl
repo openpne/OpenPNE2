@@ -163,6 +163,7 @@
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 
+({if $smarty.const.OPENPNE_USE_FILEUPLOAD})
 ({*********})
 <tr>
 <td style="width:574px;height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
@@ -189,7 +190,7 @@
 </td>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
-
+({/if})
 
 ({*********})
 <tr>

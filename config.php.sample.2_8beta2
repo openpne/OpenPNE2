@@ -472,4 +472,8 @@ array(
 //※画像静的化機能を用いている場合は利用できません
 define('CHECK_IMG_AUTH', false);
 
+// ファイルアップロード機能を使用するかどうか
+define('OPENPNE_USE_FILEUPLOAD', true);
+
+
 ?>

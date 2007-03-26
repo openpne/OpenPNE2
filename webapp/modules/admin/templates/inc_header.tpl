@@ -60,7 +60,9 @@
 <ul id="adminImageKakikomiCont" class="pull">
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_image')})" title="画像リスト・管理: SNSに登録されている画像の一覧、登録、削除">アップロード画像リスト</a></li>
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_image')})" title="未定">画像アップロード・削除</a></li>
+({if $smarty.const.OPENPNE_USE_FILEUPLOAD})
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_file')})" title="アップロードファイルリスト: SNSに登録されているファイルの一覧、削除">アップロードファイルリスト</a></li>
+({/if})
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('diary_list')})">日記管理</a></li>
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('diary_comment_list')})">日記コメント管理</a></li>
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('topic_list')})">トピック・イベント管理</a></li>

@@ -60,9 +60,11 @@ class pc_do_c_topic_add_insert_c_commu_topic extends OpenPNE_Action
             $filename3 = image_insert_c_image4tmp("t_{$c_commu_topic_id}_3", $image_filename3_tmpfile);
         }
 
-        // 添付ファイルをDBに入れる
-        if ($filename4_tmpfile) {
-            $filename4 = file_insert_c_file4tmp("t_{$c_commu_topic_id}_4", $filename4_tmpfile, $filename4_original_filename);
+        if (OPENPNE_USE_FILEUPLOAD) {
+            // 添付ファイルをDBに入れる
+            if ($filename4_tmpfile) {
+                $filename4 = file_insert_c_file4tmp("t_{$c_commu_topic_id}_4", $filename4_tmpfile, $filename4_original_filename);
+            }
         }
 
         //テンポラリファイルを削除(画像と同時)

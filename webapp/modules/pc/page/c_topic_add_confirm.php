@@ -65,9 +65,13 @@ class pc_page_c_topic_add_confirm extends OpenPNE_Action
         }
 
         if ($upfile_obj4['error'] !== UPLOAD_ERR_NO_FILE) {
-            $filesize = filesize($upfile_obj4['tmp_name']);
-            if ((!$filesize)  || ($filesize > IMAGE_MAX_FILESIZE * 1024)) {
-                $err_msg[] = '添付ファイルは'.IMAGE_MAX_FILESIZE.'KB以内のファイルにしてください';
+            if (OPENPNE_USE_FILEUPLOAD) {
+                $filesize = filesize($upfile_obj4['tmp_name']);
+                if ((!$filesize)  || ($filesize > IMAGE_MAX_FILESIZE * 1024)) {
+                    $err_msg[] = '添付ファイルは'.IMAGE_MAX_FILESIZE.'KB以内のファイルにしてください';
+                }
+            } else {
+                $err_msg[] = 'ファイルのアップロードはできません。';
             }
         }
 
@@ -85,8 +89,10 @@ class pc_page_c_topic_add_confirm extends OpenPNE_Action
         $tmpfile1 = t_image_save2tmp($upfile_obj1, $sessid, "t_1");
         $tmpfile2 = t_image_save2tmp($upfile_obj2, $sessid, "t_2");
         $tmpfile3 = t_image_save2tmp($upfile_obj3, $sessid, "t_3");
-        // 一次ファイルをvar/tmpにコピー
-        $tmpfile4 = t_file_save2tmp($upfile_obj4, $sessid, "t_4");
+        if (OPENPNE_USE_FILEUPLOAD) {
+            // 一次ファイルをvar/tmpにコピー
+            $tmpfile4 = t_file_save2tmp($upfile_obj4, $sessid, "t_4");
+        }
 
         $this->set('inc_navi', fetch_inc_navi("c", $c_commu_id));
         $c_topic = array(
