@@ -18,7 +18,7 @@ function db_file_c_file_list($page, $page_size, &$pager)
 
     $c_file_list = array();
     foreach ($id_list as $i => $c_file_id) {
-        $sql = 'SELECT c_file_id, filename, r_datetime, bin FROM c_file WHERE c_file_id = ?';
+        $sql = 'SELECT c_file_id, filename, original_filename, r_datetime, bin FROM c_file WHERE c_file_id = ?';
         $params = array(intval($c_file_id));
         $c_file_list[$i] = db_get_row($sql, $params);
         $c_file_list[$i]['size'] = strlen($c_file_list[$i]['bin']);

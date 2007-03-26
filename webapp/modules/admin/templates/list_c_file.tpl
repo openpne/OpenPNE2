@@ -45,6 +45,7 @@
 <tr>
 	<th>ID</th>
 	<th>ファイル名</th>
+	<th>元ファイル名</th>
 	<th>作成日</th>
 	<th>ファイルサイズ</th>
 </tr>
@@ -61,6 +62,10 @@
 <a href="({t_file_url filename=$item.filename})" target="_blank">
 ({$item.filename})
 </a>
+</td>
+({****})
+<td>
+({$item.original_filename})
 </td>
 ({****})
 <td>
