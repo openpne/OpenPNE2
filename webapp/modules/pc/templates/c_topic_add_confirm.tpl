@@ -183,7 +183,7 @@
 <td style="width:421px;" class="bg_02" align="left" valign="middle">
 <div class="padding_s">
 
-({$c_topic.filename4})
+({$c_topic.filename4_original_filename})
 
 </div>
 </td>

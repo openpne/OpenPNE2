@@ -37,15 +37,15 @@ function db_file_c_file_list($page, $page_size, &$pager)
  * 
  * @param string $filename
  * @param string $bin
- * @param string $type
+ * @param string $original_filename
  * @return mixed
  */
-function db_file_insert_c_file($filename, $bin, $type = '')
+function db_file_insert_c_file($filename, $bin, $original_filename)
 {
     $data = array(
         'filename'   => $filename,
         'bin'        => $bin,
-        'type'       => $type,
+        'original_filename' => $original_filename,
         'r_datetime' => db_now(),
     );
     return db_insert('c_file', $data, 'c_file_id');
@@ -64,4 +64,16 @@ function db_file_c_file4filename($filename)
     return db_get_row($sql, $params);
 }
 
+/**
+ * ファイル名からオリジナルのファイル名を取得
+ * 
+ * @param string $filename
+ * @return string
+ */
+function db_file_original_filename4filename($filename)
+{
+    $sql = 'SELECT original_filename FROM c_file WHERE filename = ?';
+    $params = array($filename);
+    return db_get_one($sql, $params);
+}
 ?>

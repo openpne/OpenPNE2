@@ -19,7 +19,7 @@ class pc_do_c_topic_add_insert_c_commu_topic extends OpenPNE_Action
 
         //---添付ファイル
         $filename4_tmpfile = $requests['filename4_tmpfile'];
-        $filename4_mime_type = $requests['filename4_mime_type'];
+        $filename4_original_filename = $requests['filename4_original_filename'];
 
         //---権限チェック
         //コミュニティ参加者
@@ -62,7 +62,7 @@ class pc_do_c_topic_add_insert_c_commu_topic extends OpenPNE_Action
 
         // 添付ファイルをDBに入れる
         if ($filename4_tmpfile) {
-            $filename4 = file_insert_c_file4tmp("t_{$c_commu_topic_id}_4", $filename4_tmpfile, $filename4_mime_type);
+            $filename4 = file_insert_c_file4tmp("t_{$c_commu_topic_id}_4", $filename4_tmpfile, $filename4_original_filename);
         }
 
         //テンポラリファイルを削除(画像と同時)

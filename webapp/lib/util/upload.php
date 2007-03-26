@@ -51,10 +51,10 @@ function t_file_save2tmp($upfile, $uid, $prefix='', $ext='')
  * 
  * @param string $prefix
  * @param string $tmpfile
- * @param string $type
+ * @param string $original_filename
  * @return mixed
  */
-function file_insert_c_file4tmp($prefix, $tmpfile, $type)
+function file_insert_c_file4tmp($prefix, $tmpfile, $original_filename)
 {
     if (!$tmpfile || preg_match('/[^\.\w]/', $tmpfile)) return false;
 
@@ -75,7 +75,7 @@ function file_insert_c_file4tmp($prefix, $tmpfile, $type)
     $fileData = fread($fp, filesize($filepath));
     fclose($fp);
 
-    if (db_file_insert_c_file($filename, $fileData, $type)) {
+    if (db_file_insert_c_file($filename, $fileData, $original_filename)) {
         return $filename;
     }
 
