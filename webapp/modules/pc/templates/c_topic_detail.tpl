@@ -43,7 +43,7 @@
 ({*********})
 <tr>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-<td style="width:110px;" class="bg_03" align="center" valign="middle" rowspan="7">
+<td style="width:110px;" class="bg_03" align="center" valign="middle" rowspan="({if $c_topic.filename})9({else})7({/if})">
 
 <div class="padding_s">
 
@@ -107,27 +107,28 @@
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({*********})
-<tr>
-<td style="width:634px;height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-</tr>
-
 ({if $c_topic.filename})
+<tr>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:533px;height:1px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+</tr>
+({*********})
+
 <tr>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 <td style="width:531px;height:50px;" class="bg_02" align="left" valign="middle">
 
 <div class="padding_s">
-<span class="padding_s">
 <a href="({t_file_url filename=$c_topic.filename})" target="_blank">
-({$c_topic.filename})
-</a>
-</span>
+({$c_topic.filename})</a>
 </div>
 
 </td>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
+({*********})
+
 ({/if})
 
 <tr>
