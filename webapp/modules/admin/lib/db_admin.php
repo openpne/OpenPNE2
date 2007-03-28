@@ -538,7 +538,7 @@ function db_admin_get_auth_type($c_admin_user_id)
 /**
  * ユーザーIDリスト取得(絞り込み対応)
  */
-function _db_admin_c_member_id_list($cond_list)
+function _db_admin_c_member_id_list($cond_list, $order = null)
 {
     $sql = 'SELECT c_member_id'.
            ' FROM c_member'.
@@ -587,22 +587,131 @@ function _db_admin_c_member_id_list($cond_list)
         }
     }
 
-    $sql .= ' ORDER BY c_member_id';
+    // --- ソートオーダーここから
+
+    // $orderの例：id_1 , id_2
+    // 「-」の前が項目名であとが1なら昇順 2なら降順
+    $type = explode("-",$order);
+
+    //ランクでソートとポイントでソートは同等
+    if ($type[0] == 'RANK') {
+        $type[0] = 'PNE_POINT';
+    }
+
+    $is_order = false;
+    if ($order) {
+        $is_order = true;
+
+        switch ($type[0]) {
+            case "c_member_id":
+                $sql .= ' ORDER BY c_member_id';
+            break;
+            case "nickname":
+                $sql .= ' ORDER BY nickname';
+            break;
+            case "image_filename":
+                $sql .= ' ORDER BY image_filename';
+            break;
+            case "c_member_id_invite":
+                $sql .= ' ORDER BY c_member_id_invite';
+            break;
+
+            case "access_date":
+                $sql .= ' ORDER BY access_date';
+            break;
+
+            case "r_date":
+                $sql .= ' ORDER BY r_date';
+            break;
+            case "birth":
+                //降順指定
+                if ($type[1] == "2") {
+                    $sql .= ' ORDER BY birth_year DESC, birth_month DESC, birth_day';
+                } else {
+                    $sql .= ' ORDER BY birth_year, birth_month, birth_day';
+                }
+            break;
+            default :
+                $is_order = false;
+
+        }
+
+        //降順指定
+        if ($is_order && $type[1] == "2") {
+            $sql .= ' DESC';
+        }
+
+    }
+    // --- ソートオーダーここまで
 
     $ids = db_get_col($sql, $params);
 
-    //各プロフィールごとで絞り結果をマージする
-    $_sql = 'SELECT name FROM c_profile WHERE (form_type = ? OR form_type = ?)';
-    $profile = db_get_col($_sql, array('select', 'radio'));
+    // --- ポイントで絞り込み ここから
+    if ( isset($cond_list['s_point']) || isset($cond_list['e_point'])) {
+
+        $sql = 'SELECT c_member_id'.
+               ' FROM c_member_profile '.
+               ' INNER JOIN c_profile USING (c_profile_id) '.
+               ' WHERE name = ? ';
+        $params = array(
+            'PNE_POINT',
+        );
+        //開始ポイント
+        if( isset($cond_list['s_point']) ){
+            $sql .= ' AND value >= ?';
+            $params[] = $cond_list['s_point'];
+        }
+        //終了ポイント
+        if( isset($cond_list['e_point']) ){
+            $sql .= ' AND value <= ?';
+            $params[] = $cond_list['e_point'];
+        }
+
+        $point_ids = db_get_col($sql, $params);
+
+        //ポイントで絞り込み
+        $ids = array_intersect($ids, $point_ids);
+
+    }
+    // --- ポイントで絞り込み ここまで
+
+    //各プロフィールごとで絞り結果をマージする(ソートオーダーつき)
+    $_sql = 'SELECT name, form_type, c_profile_id FROM c_profile';
+    $profile = db_get_all($_sql);
 
     if ( $profile ) {
         foreach ($profile as $value) {
-            if (!empty($cond_list[$value])) {
+            if(!empty($cond_list[$value['name']])
+           && ($value['form_type'] == 'radio' || $value['form_type'] == 'select')) {
                 $sql = 'SELECT c_member_id FROM c_member_profile WHERE c_profile_option_id = ?';
-                $params = array($cond_list[$value]);
+                $params = array($cond_list[$value['name']]);
                 $temp_ids = db_get_col($sql, $params);
                 $ids = array_intersect($ids, $temp_ids);
             }
+            if($value['name'] == $type[0]) {
+                $sql = 'SELECT c_member_id FROM c_member_profile WHERE c_profile_id = ?';
+
+                if ($value['form_type'] == 'radio'
+                 || $value['form_type'] == 'select'
+                 || $value['form_type'] == 'checkbox'
+                ) {
+                    $sql .= ' ORDER BY c_profile_option_id';
+                } else {
+                    if ($value['name'] == "PNE_POINT") {
+                        $sql .= ' ORDER BY cast(value as signed)';
+                    } else {
+                        $sql .= ' ORDER BY value';
+                    }
+                }
+
+                if ($type[1] == "2") {
+                    $sql .= ' DESC';
+                }
+                $params = array($value['c_profile_id']);
+                $temp_ids = db_get_col($sql, $params);
+                $ids = array_intersect($temp_ids, $ids);
+            }
+
         }
     }
 
@@ -613,9 +722,9 @@ function _db_admin_c_member_id_list($cond_list)
  * ユーザーリスト取得
  * 誕生年+プロフィール(select,radioのみ)
  */
-function _db_admin_c_member_list($page, $page_size, &$pager, $cond_list)
+function _db_admin_c_member_list($page, $page_size, &$pager, $cond_list, $order)
 {
-    $ids = _db_admin_c_member_id_list($cond_list);
+    $ids = _db_admin_c_member_id_list($cond_list, $order);
     $total_num = count($ids);
     $ids = array_slice($ids, ($page - 1) * $page_size, $page_size);
 
@@ -664,6 +773,16 @@ function validate_cond($requests)
     if (!empty($requests['last_login'])) {
         $cond_list['last_login'] = intval($requests['last_login']);
     }
+
+
+    //ポイント
+    if (!empty($requests['s_point'])) {
+        $cond_list['s_point'] = intval($requests['s_point']);
+    }
+    if (!empty($requests['e_point'])) {
+        $cond_list['e_point'] = intval($requests['e_point']);
+    }
+
 
 
     return $cond_list;

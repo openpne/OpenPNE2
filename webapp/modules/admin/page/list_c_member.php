@@ -9,6 +9,8 @@ class admin_page_list_c_member extends OpenPNE_Action
 {
     function execute($requests)
     {
+        $order = $requests['order'];
+
         $cond = substr($_REQUEST['cond'], 1);
         $temp_list = explode('&', $cond);
         foreach ($temp_list as $value) {
@@ -45,6 +47,8 @@ class admin_page_list_c_member extends OpenPNE_Action
         );
         $v['select_last_login'] = $select_last_login;
 
+        $v['rank_data'] = db_point_get_rank_all();
+
 
         //開始年が終了年より大きい
         if ( !empty($cond_list['s_year']) && !empty($cond_list['e_year']) && ($cond_list['s_year'] > $cond_list['e_year']) ) {
@@ -56,7 +60,7 @@ class admin_page_list_c_member extends OpenPNE_Action
         if ($requests['mail_address']) {
             $v['c_member_list'] = db_admin_c_member4mail_address($requests['mail_address']);
         } else {
-            $v['c_member_list'] = _db_admin_c_member_list($requests['page'], $requests['page_size'], $pager, $cond_list);
+            $v['c_member_list'] = _db_admin_c_member_list($requests['page'], $requests['page_size'], $pager, $cond_list, $order);
         }
         foreach ($v['c_member_list'] as $key => $value) {
             $v['c_member_list'][$key]['c_member_invite'] =

@@ -59,12 +59,21 @@ function db_point_add_point($c_member_id, $point)
         db_insert('c_member_profile',$data);
     }
 
+    $before_rank = db_point_get_rank4point($p);
+
     // ポイント加算
     $p = intval($p) + intval($point);
+
+    $after_rank = db_point_get_rank4point($p);
 
     $sql = 'DELETE FROM c_member_profile WHERE c_member_id = ? AND c_profile_id = ?';
     db_query($sql, $params);
     do_config_prof_insert_c_member_profile($c_member_id, $c_profile_id, 0, $p, $public_flag);
+
+    //ランクアップしたらメール送信
+    if ($before_rank['point'] != $after_rank['point']) {
+        send_mail_rankup2admin($c_member_id);
+    }
 
     return $p;
 }

@@ -22,6 +22,10 @@
 生年月日<br>
 ({$cond_list.s_year})年～({$cond_list.e_year})年<br>
 ({/if})
+({if $cond_list.s_point||$cond_list.e_point})
+ポイント<br>
+({$cond_list.s_point})～({$cond_list.e_point})<br>
+({/if})
 ({foreach from=$profile_value_list key=key item=item})
 ({$item.caption}):({$item.value})<br>
 ({/foreach})

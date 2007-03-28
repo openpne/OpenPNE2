@@ -754,4 +754,28 @@ function put_mail_queue($address, $subject, $body, $is_receive_mail=true, $from=
     }
 }
 
+// ランクアップしたら管理者にメール送信
+function send_mail_rankup2admin($target_c_member_id)
+{
+
+    $c_member = db_common_c_member4c_member_id_LIGHT($target_c_member_id);
+    $point = db_point_get_point($target_c_member_id);
+    $rank = db_point_get_rank4point($point);
+
+
+    $address = ADMIN_EMAIL;
+    $subject = $c_member['nickname']." さんがランクアップしました";
+    $now = db_now();
+
+    $body = <<<EOD
+ID：{$c_member['c_member_id']}
+ユーザ名：{$c_member['nickname']}
+{$rank['name']}にランクアップしました。
+ランクUP日：{$now}
+EOD;
+
+    t_send_email($address, $subject, $body);
+
+}
+
 ?>

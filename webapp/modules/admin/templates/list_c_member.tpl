@@ -60,20 +60,21 @@
 		<tr>
 			<th class="cell01" rowspan="3">&nbsp;</th>
 			<th class="cell02" colspan="3" rowspan="2">操作パネル</th>
-			<th class="cell03" rowspan="2">ID</th>
-			<th class="cell04" rowspan="2">ニックネーム</th>
-			<th class="cell05" rowspan="2">最終ログイン</th>
-			<th class="cell06" rowspan="2">登録日</th>
-			<th class="cell07" rowspan="2">招待者</th>
-			<th class="cell08" colspan="3">画像</th>
-			<th class="cell09" colspan="3">生年月日</th>
-			({foreach from=$c_profile_list item=prof})
-			<th rowspan="2">({$prof.caption})</th>
-			({/foreach})
+			<th class="cell03" rowspan="2"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;order=c_member_id-1">▲</a>ID<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;order=c_member_id-2">▼</a></th>
+			<th class="cell04" rowspan="2"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;order=nickname-1">▲</a>ニックネーム<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;order=nickname-2">▼</a></th>
+			<th class="cell05" rowspan="2"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;order=access_date-1">▲</a>最終ログイン<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;order=access_date-2">▼</a></th>
+			<th class="cell06" rowspan="2"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;order=r_date-1">▲</a>登録日<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;order=r_date-2">▼</a></th>
+			<th class="cell07" rowspan="2"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;order=c_member_id_invite-1">▲</a>招待者<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;order=c_member_id_invite-2">▼</a></th>
+			<th class="cell08" colspan="3"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;order=image_filename-1">▲</a>画像<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;order=image_filename-2">▼</a></th>
+			<th class="cell09" colspan="3"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;order=birth-1">▲</a>生年月日<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;order=birth-2">▼</a></th>
+({foreach from=$c_profile_list item=prof})
+			<th rowspan="2"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;order=({$prof.name})-1">▲</a>({$prof.caption})<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;order=({$prof.name})-2">▼</a></th>
+({/foreach})
 			<th class="cell16" rowspan="2">PCアドレス</th>
 			<th class="cell17" rowspan="2">携帯アドレス</th>
 			<th class="cell18" rowspan="2">登録時アドレス</th>
-			<th class="cell15" rowspan="2">ID</th>
+			<th class="cell15" rowspan="2"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;order=c_member_id-1">▲</a>ID<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;order=c_member_id-2">▼</a></th>
+
 		</tr>
 		<tr>
 			<th class="cell08A">1</th>
@@ -125,6 +126,21 @@
 			({/foreach})
 			</select>
 			({/if})
+
+            ({if $prof.name == PNE_POINT})
+				<select class="basic" onChange="Link('?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page=({$pager.page})&amp;page_size=({$pager.page_size})({$cond})&amp;s_point='+this.options[this.selectedIndex].value);">
+					<option value="">選択して下さい</option>
+({foreach from=$rank_data item=item})
+					<option ({if $cond_list.s_point == $item.point})selected({/if}) value="({$item.point})">({$item.point})</option>
+({/foreach})
+				</select>
+				～
+				<select onChange="Link('?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page=({$pager.page})&amp;page_size=({$pager.page_size})({$cond})&amp;e_point='+this.options[this.selectedIndex].value);"><option value="">選択して下さい</option>
+({foreach from=$rank_data item=item})
+					<option ({if $cond_list.e_point == $item.point})selected({/if}) value="({$item.point})">({$item.point})</option>
+({/foreach})
+				</select>
+            ({/if})
 			<img src="./modules/admin/img/dummy.gif" />
 			</th>
 			({/foreach})
@@ -217,7 +233,7 @@
 ({else})
 <input type="hidden" name="a" value="page_({$hash_tbl->hash('send_messages_all')})" />
 ({/if})
-<input type="submit" id="btnNarrowTransmit" value="絞り込んだメンバー" />
+<input type="submit" id="btnNarrowTransmit" value="絞り込んだメンバーにメッセージ／Eメールを送る" />
 </form>
 
 <form action="./" method="post" name="formSendMessagesAll" />
@@ -225,6 +241,12 @@
 <input type="hidden" name="a" value="page_({$hash_tbl->hash('send_messages_all')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
 <input type="submit" id="btnAllTransmit" value="すべてのメンバーにメッセージ／Eメールを送る" />
+</form>
+
+<form action="./" method="get" name="formSendMessagesIDList">
+<input type="hidden" name="m" value="({$module_name})">
+<input type="hidden" name="a" value="page_({$hash_tbl->hash('send_messages_id_list')})">
+<input type="submit" id="btnSelectUser" value="ユーザを指定してメッセージ／Eメールを送る">
 </form>
 
 <br>
