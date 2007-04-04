@@ -1,5 +1,5 @@
 ({$inc_header|smarty:nodefaults})
-({ext_include file="inc_subnavi_adminImageKakikomi.tpl"})
+({ext_include file="inc_subnavi_adminSiteMember.tpl"})
 ({assign var="page_name" value="メッセージ・メール送信"})
 ({assign var="parent_page_name" value="メンバーリスト"})
 ({capture name=parent_page_url})?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})({/capture})
@@ -52,4 +52,11 @@
 <dd><p class="textBtn"><input type="submit" class="submit" value="メッセージ送信"></p></dd>
 </dl>
 </form>
+<br>
+<p class="caution" id="c02"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})" onClick="history.back(); return false;" onKeyPress="history.back(); return false;">メンバーリストに戻る</a></p>
+
+</div>
+
+</div>
+
 ({$inc_footer|smarty:nodefaults})
