@@ -2183,6 +2183,12 @@ function db_commu_insert_c_commu_member($c_commu_member_confirm_id)
     );
     db_insert('c_commu_member', $data);
 
+    // 非公開コミュニティに管理者から招待されている場合は招待フラグ削除
+    $admin_invite = db_commu_c_commu4c_admin_invite_id($confirm['c_commu_id'], $confirm['c_member_id']);
+    if ($admin_invite) {
+        db_commu_delete_c_commu_admin_invite($admin_invite);
+    }
+
     return db_commu_delete_c_commu_member_confirm($c_commu_member_confirm_id);
 }
 
@@ -2633,6 +2639,16 @@ function db_commu_delete_c_commu_admin_invite($c_commu_admin_invite_id)
     $sql = 'DELETE FROM c_commu_admin_invite WHERE c_commu_admin_invite_id = ?';
     $params = array(intval($c_commu_admin_invite_id));
     db_query($sql, $params);
+}
+
+/** 
+ * コミュニティ参加要請IDを取得
+ */
+function db_commu_get_c_commu_member_confirm_id($c_member_id, $c_commu_id)
+{
+    $sql = 'SELECT c_commu_member_confirm_id FROM c_commu_member_confirm WHERE c_commu_id = ? AND  c_member_id = ?';
+    $params = array(intval($c_commu_id), intval($c_member_id));
+    return db_get_one($sql, $params);
 }
 
 ?>

@@ -18,7 +18,7 @@ class pc_page_c_join_commu extends OpenPNE_Action
 
         //非公開コミュニティに管理者から招待されている場合は強制的に承認を回避
         $admin_invite = db_commu_c_commu4c_admin_invite_id($target_c_commu_id, $u);
-        if ($admin_invite) {
+        if ($admin_invite && $status != STATUS_C_JOIN_ALREADY) {
             $status = STATUS_C_JOIN_REQUEST_FREE;
         }
 
