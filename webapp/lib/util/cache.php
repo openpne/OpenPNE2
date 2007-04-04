@@ -120,12 +120,16 @@ function cache_drop_c_commu($c_commu_id)
     $c_commu_event_list = db_commu_new_topic_comment4c_commu_id($c_commu_id, 7, 1);
     $c_commu_bbs_list = array_merge($c_commu_topic_list, $c_commu_event_list);
 
-    foreach ($c_commu_bbs_list as $c_commu_topic_id)
-    {
+    foreach ($c_commu_bbs_list as $c_commu_topic_id) {
         $c_commu_topic_id = (int)$c_commu_topic_id;
         cache_drop_c_commu_topic($c_commu_topic_id);
         $c_commu_topic_id = (string)$c_commu_topic_id;
         cache_drop_c_commu_topic($c_commu_topic_id);
+    }
+
+    $c_commu_member_list = db_commu_c_commu_member_list4c_commu_id($c_commu_id);
+    foreach ($c_commu_member_list as $c_member_id) {
+        cache_drop_c_commu_list4c_member_id($c_member_id);
     }
 }
 
