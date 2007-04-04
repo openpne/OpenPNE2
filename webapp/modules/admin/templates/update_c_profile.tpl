@@ -19,7 +19,7 @@
 </tr>
 <tr>
 <th>識別名</th>
-<td><input type="text" class="basic" name="name" value="({$c_profile.name})" size="20" />　<span class="caution">※半角英数 と _ のみ</span></td>
+<td><input type="text" class="basic" name="name" value="({$c_profile.name})" size="20" />　<span class="caution">※半角英数 と _ のみ（数値のみも不可）</span></td>
 </tr>
 <tr>
 <th>必須</th>

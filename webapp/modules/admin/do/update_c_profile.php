@@ -20,6 +20,10 @@ class admin_do_update_c_profile extends OpenPNE_Action
             admin_client_redirect('update_c_profile', 'その識別名は既に登録されています',
                 'c_profile_id='.$requests['c_profile_id']);
         }
+        if (is_numeric($requests['name'])) {
+            admin_client_redirect('update_c_profile', '識別名は数値のみには設定できません',
+                'c_profile_id='.$requests['c_profile_id']);
+        }
 
         db_admin_update_c_profile($requests['c_profile_id'],
             $requests['name'],

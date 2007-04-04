@@ -38,7 +38,7 @@ class ktai_do_h_regist_prof extends OpenPNE_Action
         foreach ($profile_list as $profile) {
             if ($profile['disp_regist'] &&
                 $profile['is_required'] &&
-                !$c_member_profile_list[$profile['name']]['value']
+                (is_null(!$c_member_profile_list[$profile['name']]['value']) || !$c_member_profile_list[$profile['name']]['value'] === '')
             ) {
                 $errors[$profile['name']] = "{$profile['caption']}を入力してください";
                 break;
