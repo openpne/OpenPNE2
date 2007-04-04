@@ -1,13 +1,13 @@
 ({$inc_header|smarty:nodefaults})
 ({ext_include file="inc_subnavi_adminImageKakikomi.tpl"})
-({assign var="page_name" value="画像のアップロード・削除"})
+({assign var="page_name" value="画像のアップロード"})
 ({ext_include file="inc_tree_adminImageKakikomi.tpl"})
 </div>
 
 ({*ここまで:navi*})
 
 ({if $msg})<p class="actionMsg">({$msg})</p>({/if})
-<h2 id="ttl01">画像のアップロード・削除</h2>
+<h2 id="ttl01">画像のアップロード</h2>
 
 <div class="contents">
 
