@@ -509,7 +509,7 @@
 
 <div class="padding_s">
 
-参加希望<br>コミュニティ
+コミュニティ
 
 </div>
 
@@ -721,7 +721,7 @@
 
 <div class="padding_s">
 
-参加希望<br>コミュニティ
+コミュニティ
 
 </div>
 
