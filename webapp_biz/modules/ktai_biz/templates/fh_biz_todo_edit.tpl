@@ -10,9 +10,9 @@
 Todo：<input type="text" name='value' size="30" value="({$todo.memo})"><br>
 
 目標期日:<br>
-<input type="text" name='due_datetime_y' size="2" value="({$now.year})" istyle="4" mode="numeric">年
-<input type="text" name='due_datetime_m' size="2" value="({$now.month})" istyle="4" mode="numeric">月
-<input type="text" name='due_datetime_d' size="2" value="({$now.day})" istyle="4" mode="numeric">日<br>
+<input type="text" name='due_datetime_y' size="2" value="({$todo.due_datetime|date_format:'%Y'})" istyle="4" mode="numeric">年
+<input type="text" name='due_datetime_m' size="2" value="({$todo.month|date_format:'%m'})" istyle="4" mode="numeric">月
+<input type="text" name='due_datetime_d' size="2" value="({$todo.day|date_format:'%d'})" istyle="4" mode="numeric">日<br>
 
 <center>
 <input type='submit' value='登録する'>
