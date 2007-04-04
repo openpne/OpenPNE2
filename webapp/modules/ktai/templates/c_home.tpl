@@ -20,7 +20,7 @@
 ({if $inc_ktai_entry_point[3]})
 ({$inc_ktai_entry_point[3]|smarty:nodefaults})
 ({/if})
-管理人:<a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$c_commu.c_member_id_admin})&amp;({$tail})">({$c_commu.c_member_admin.nickname})</a><br>
+管理者:<a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$c_commu.c_member_id_admin})&amp;({$tail})">({$c_commu.c_member_admin.nickname})</a><br>
 ｶﾃｺﾞﾘ:({$c_commu.c_commu_category.name})<br>
 ﾒﾝﾊﾞｰ数:({$c_commu.count_member|default:"0"})人
 

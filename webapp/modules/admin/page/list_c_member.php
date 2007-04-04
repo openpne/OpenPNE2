@@ -4,7 +4,7 @@
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
-// ユーザー情報のリスト表示・強制退会
+// メンバー情報のリスト表示・強制退会
 class admin_page_list_c_member extends OpenPNE_Action
 {
     function execute($requests)

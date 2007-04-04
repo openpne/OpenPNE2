@@ -109,7 +109,7 @@ function db_member_c_member_secure4c_member_id($c_member_id)
     if (is_array($c_member_secure)) {
         return array_map('t_decrypt', $c_member_secure);
     } else {
-    	return $c_member_secure;
+        return $c_member_secure;
     }
 }
 
@@ -173,7 +173,7 @@ function db_member_c_member_id4ktai_address_encrypted($ktai_address_encoded)
 }
 
 /**
- * アクティブユーザーか？
+ * アクティブメンバーか？
  */
 function db_member_is_active_c_member_id($c_member_id)
 {
@@ -1487,11 +1487,11 @@ function db_member_c_member_id4username_encrypted($username, $is_ktai = false)
 function db_member_username4c_member_id($c_member_id, $is_ktai = false)
 {
     if (IS_SLAVEPNE) {
-    	$sql = 'SELECT username FROM c_username WHERE c_member_id = ?';
+        $sql = 'SELECT username FROM c_username WHERE c_member_id = ?';
         $params = array($c_member_id);
         $username = db_get_one($sql, $params);
     } else {
-    	$c_member_secure = db_member_c_member_secure4c_member_id($c_member_id);
+        $c_member_secure = db_member_c_member_secure4c_member_id($c_member_id);
         if ($is_ktai) {
             $username = $c_member_secure['ktai_address'];
         } else {
@@ -1506,7 +1506,7 @@ function db_member_username4c_member_id($c_member_id, $is_ktai = false)
  */
 function db_member_create_member($username)
 {
-	$data = array(
+    $data = array(
         'nickname'    => "NO NAME",
         'birth_year'  => 0,
         'birth_month' => 0,

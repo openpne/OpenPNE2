@@ -537,7 +537,7 @@ function h_invite_insert_c_invite_mail_send($session, $c_member_id_invite, $mail
 }
 
 //メールアドレスの変更および
-//PCで今まで使っていたユーザーが新たに携帯アドレスを登録したときに送られるメール
+//PCで今まで使っていたメンバーが新たに携帯アドレスを登録したときに送られるメール
 function do_mail_sns_change_ktai_mail_send($c_member_id, $session, $ktai_address)
 {
     $params['SNS_NAME'] = SNS_NAME;

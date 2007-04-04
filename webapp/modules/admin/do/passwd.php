@@ -37,7 +37,7 @@ class admin_do_passwd extends OpenPNE_Action
             db_mail_send_m_ktai_password_query($c_member_id, $password);
         }
 
-        admin_client_redirect('top', 'ユーザーのパスワードを変更し、メールを送信しました');
+        admin_client_redirect('top', 'メンバーのパスワードを変更し、メールを送信しました');
     }
 }
 

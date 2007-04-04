@@ -5,7 +5,7 @@
  */
 
 /**
- * ユーザーリスト取得
+ * メンバーリスト取得
  */
 function db_admin_c_member_list($page, $page_size, &$pager)
 {
@@ -233,7 +233,7 @@ function db_admin_update_c_profile($c_profile_id
     $where = array('c_profile_id' => intval($c_profile_id));
     db_update('c_profile', $data, $where);
 
-    // 公開設定が固定のときはユーザーの設定値を上書き
+    // 公開設定が固定のときはメンバーの設定値を上書き
     if (!$public_flag_edit) {
         $data = array('public_flag' => $public_flag_default);
         db_update('c_member_profile', $data, $where);
@@ -538,7 +538,7 @@ function db_admin_get_auth_type($c_admin_user_id)
 }
 
 /**
- * ユーザーIDリスト取得(絞り込み対応)
+ * メンバーIDリスト取得(絞り込み対応)
  */
 function _db_admin_c_member_id_list($cond_list)
 {
@@ -579,7 +579,7 @@ function _db_admin_c_member_id_list($cond_list)
 }
 
 /**
- * ユーザーリスト取得
+ * メンバーリスト取得
  * 誕生年+プロフィール(select,radioのみ)
  */
 function _db_admin_c_member_list($page, $page_size, &$pager, $cond_list)

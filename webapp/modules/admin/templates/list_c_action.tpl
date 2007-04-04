@@ -13,7 +13,7 @@
 
 ({if $msg})<p class="actionMsg">({$msg})</p>({/if})
 <p>
-ユーザーの行動毎に加算されるポイントを設定します。
+メンバーの行動毎に加算されるポイントを設定します。
 </p>
 
 ({if $pager && $pager.total_num > 0})

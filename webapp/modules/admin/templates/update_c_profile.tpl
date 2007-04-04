@@ -29,7 +29,7 @@
 <th>公開設定の選択</th>
 <td>
 <label><input type="radio" name="public_flag_edit" value="0"({if !$c_profile.public_flag_edit}) checked="checked"({/if}) />固定</label>
-<label><input type="radio" name="public_flag_edit" value="1"({if $c_profile.public_flag_edit}) checked="checked"({/if}) />ユーザー選択</label></td>
+<label><input type="radio" name="public_flag_edit" value="1"({if $c_profile.public_flag_edit}) checked="checked"({/if}) />メンバー選択</label></td>
 </tr>
 <tr>
 <th>公開設定<br>デフォルト値</th>
