@@ -11,8 +11,6 @@
 <p class="caution" id="c01">※Smartyテンプレート形式で記述します。</p>
 <p class="caution" id="c02">誤った形式で記述すると、ページを正しく表示することができなくなってしまいます。<br />元に戻す場合は、内容を空にして変更してください。</p>
 
-</div>({*/div class="contents"*})
-
 <table class="contents" cellpadding="0" cellspacing="0" border="0">
 <tr>
 <td class="menu">
