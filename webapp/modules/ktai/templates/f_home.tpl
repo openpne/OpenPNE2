@@ -152,6 +152,7 @@
 ({if $item.form_type == 'textarea'})
 <font color="green">[({$item.caption})]</font><br>
 ({$item.value|nl2br})
+<br>
 ({/if})
 ({/foreach})
 <hr>
