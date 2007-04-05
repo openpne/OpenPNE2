@@ -300,7 +300,7 @@ function setSubmitFunction() {
 ({**ここまで：旧inc_html_header.tplの内容**})
 ({***************************************})
 
-({if $smarty.const.OPENPNE_USE_COMMU_MAP && $c_commu.is_display_map})
+({if $smarty.const.OPENPNE_USE_COMMU_MAP && $c_commu.is_display_map && $INC_HEADER_page_name == 'c_home'})
 <script src="http://maps.google.co.jp/maps?file=api&amp;v=2&amp;key=({$smarty.const.GOOGLE_MAPS_API_KEY})" type="text/javascript"></script>
 <script type="text/javascript">
 <!--
