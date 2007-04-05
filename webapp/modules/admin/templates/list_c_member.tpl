@@ -210,10 +210,10 @@
 ({else})
 <input type="hidden" name="a" value="page_({$hash_tbl->hash('send_messages_all')})" />
 ({/if})
-<input type="submit" id="btnNarrowTransmit" value="絞り込んだメンバー" />
+<input type="submit" id="btnNarrowTransmit" value="絞り込んだメンバーにメッセージ／Eメールを送る" />
 </form>
 
-<form action="./" method="post" name="formSendMessagesAll" />
+<form action="./" method="post" name="formSendMessagesAll">
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="page_({$hash_tbl->hash('send_messages_all')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
