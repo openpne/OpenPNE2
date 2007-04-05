@@ -61,6 +61,7 @@ $GLOBALS['_OPENPNE_ADMIN_AUTH_ACTIONS'] = array(
     'do_update_is_login_rejected',
 ),
 '_type' => array(
+    'page_csv_download',
     'page_delete_c_member_confirm',
     'page_insert_c_admin_user',
     'page_list_c_admin_user',
@@ -68,6 +69,7 @@ $GLOBALS['_OPENPNE_ADMIN_AUTH_ACTIONS'] = array(
     'page_passwd',
     'page_send_messages_all',
     'page_send_messages',
+    'do_csv_member',
     'do_delete_c_admin_user',
     'do_delete_c_member',
     'do_insert_c_admin_user',
