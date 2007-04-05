@@ -19,6 +19,11 @@ if (   !$auth->auth()
         client_redirect_absolute(get_login_url());
     } else {
         $_REQUEST['login_params'] = $_SERVER['QUERY_STRING'];
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $_POST = array('login_params' => $_SERVER['QUERY_STRING']);
+        } else {
+            $_GET = array('login_params' => $_SERVER['QUERY_STRING']);
+        }
         openpne_forward('pc', 'page', "o_login");
         exit;
     }

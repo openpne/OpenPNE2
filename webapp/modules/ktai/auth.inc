@@ -71,6 +71,11 @@ function __logout($msg = 0, $c_member_id = 0)
         $_REQUEST['kad'] = t_encrypt(db_member_username4c_member_id($c_member_id, true));
     }
     $_REQUEST['login_params'] = $_SERVER['QUERY_STRING'];
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $_POST = array('login_params' => $_SERVER['QUERY_STRING']);
+    } else {
+        $_GET = array('login_params' => $_SERVER['QUERY_STRING']);
+    }
     openpne_forward('ktai', 'page', 'o_login');
     exit;
 }
