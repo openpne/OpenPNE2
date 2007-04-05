@@ -1,6 +1,6 @@
 ({$inc_ktai_header|smarty:nodefaults})
 
-({$target_c_member.nickname}) さんの({$WORD_FRIEND_HALF})一覧<br>
+<center>({$target_c_member.nickname}) さんの({$WORD_FRIEND_HALF})一覧</center>
 <hr>
 
 ({foreach from=$target_friend_list item=target_friend})
