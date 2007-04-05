@@ -170,6 +170,7 @@
 <tr>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 <td style="width:572px;" class="bg_03" align="center" valign="middle" colspan="3">
+
 <div style="padding:20px 0px;">
 
 <table border="0" cellspacing="0" cellpadding="0" style="width:200px;height:20px;margin:0px auto;">
@@ -201,6 +202,7 @@
 </tr>
 </table>
 
+</div>
 
 </td>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>

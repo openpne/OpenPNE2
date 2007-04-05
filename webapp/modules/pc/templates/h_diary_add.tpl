@@ -465,9 +465,9 @@
 <div style="padding:4px 3px;">
 <input type="text" class="text" name="category" id="category" size="40" value="({$form_val.category})">
 <select onChange="if(selectedIndex){category.value += options[selectedIndex].value + ' '}">
-<option>カテゴリを選択してください
+<option>カテゴリを選択してください</option>
 ({foreach from=$category_list item=value})
-<option value="({$value.category_name})">({$value.category_name})
+<option value="({$value.category_name})">({$value.category_name})</option>
 ({/foreach})
 </select>
 <br>

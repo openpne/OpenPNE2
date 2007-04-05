@@ -207,8 +207,6 @@
 <td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
 </tr>
 </table>
-
-</form>
 <!-- ******ここまで：書き込み確認****** -->
 <!-- ******************************************** -->
 

@@ -138,6 +138,7 @@
 
 <table border="0" cellspacing="0" cellpadding="0" style="width:200px;height:20px;">
 <tr>
+<td>
 
 ({t_form m=pc a=do_c_event_write_insert_c_commu_topic_comment})
 <input type="hidden" name="sessid" value="({$PHPSESSID})">
@@ -145,21 +146,27 @@
 <input type="hidden" name="({$key})" value="({$item})">
 ({/foreach})
 
-<td><input type="submit" class="submit" value="　書き込み　"></td>
+<input type="submit" class="submit" value="　書き込み　">
+
 </form>
+
+</td>
+<td>
 
 ({t_form m=pc a=page_c_event_detail})
 ({foreach from=$event_write key=key item=item})
 <input type="hidden" name="({$key})" value="({$item})">
 ({/foreach})
-<td><input type="submit" class="submit" value="　修　 正　"></td>
+
+<input type="submit" class="submit" value="　修　 正　">
 <input type="hidden" name="body" value="({$event_write.body})">
 </form>
 
-
+</td>
 </tr>
 </table>
 
+</div>
 
 </td>
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
@@ -176,6 +183,7 @@
 ({*ここから：footer*})
 <!-- 無し -->
 ({*ここまで：footer*})
+</td>
 <td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
 </tr>
 <tr>
@@ -183,7 +191,6 @@
 <td style="width:566px;" class="bg_00"><img src="./skin/dummy.gif" style="width:566px;height:7px;" class="dummy"></td>
 <td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
 </tr>
-</form>
 </table>
 <!-- ******ここまで：メッセージテーブル****** -->
 <!-- ************************************ -->
