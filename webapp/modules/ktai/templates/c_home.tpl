@@ -27,9 +27,6 @@
 <hr>
 <a name="menu">ﾒﾆｭｰ</a>
 <br>
-({if !$relation_c_member_and_c_commu.join && !$relation_c_member_and_c_commu.wait})
-<a href="({t_url m=ktai a=do_inc_join_c_commu})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">このｺﾐｭﾆﾃｨに参加</a><br>
-({/if})
 ({if $relation_c_member_and_c_commu.join && !($is_unused_pc_bbs && $is_unused_ktai_bbs)})
 ◆設定変更<br>
 ({if $u == $c_commu.c_member_id_admin})
@@ -89,9 +86,6 @@
 ({$c_commu.info|nl2br})<br>
 ({if $c_commu.image_filename})
 ｺﾐｭﾆﾃｨ画像：[<a href="({t_img_url filename=$c_commu.image_filename w=120 h=120 f=jpg})">小</a>/<a href="({t_img_url filename=$c_commu.image_filename f=jpg})">大</a>]<br>({/if})
-({if !$relation_c_member_and_c_commu.join && !$relation_c_member_and_c_commu.wait})
-<a href="({t_url m=ktai a=do_inc_join_c_commu})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">このｺﾐｭﾆﾃｨに参加</a><br>
-({/if})
 ({if $relation_c_member_and_c_commu.join && ($c_commu.c_member_id_admin!=$u || $c_commu.c_member_id_sub_admin!=$u) })
 <a href="({t_url m=ktai a=do_inc_leave_c_commu})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">このｺﾐｭﾆﾃｨから退会</a><br>
 ({/if})
