@@ -45,7 +45,7 @@
 	({foreach from=$c_profile_list item=prof})
 	<tr>
 		<th>({$prof.caption})</th>
-		<td>({$c_member.profile[$prof.name].value|t_truncate:60|nl2br})</td>
+		<td>({if $prof.form_type == checkbox})({$c_member.profile[$prof.name].value|@t_implode:", "})({else})({$c_member.profile[$prof.name].value|t_truncate:60|nl2br})({/if})</td>
 	</tr>
 	({/foreach})
 	<tr>
