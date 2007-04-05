@@ -399,7 +399,6 @@
 ({*ここまで：header*})
 ({*ここから：body*})
 <!-- ここから：主内容 -->
-({if $diary_list_count >= $page_size })
 <!-- ここから：主内容＞＞件数表示終わり -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:524px;" class="border_01">
 ({*********})
@@ -438,7 +437,6 @@
 ({*********})
 </table>
 <!-- ここまで：主内容＞＞件数表示終わり -->
-({/if})
 <!-- ここから：主内容＞＞日記表示 -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:524px;" class="border_01">
 ({*********})
@@ -554,7 +552,6 @@
 ({*********})
 </table>
 <!-- ここまで：主内容＞＞日記表示 -->
-({if $diary_list_count >= $page_size })
 <!-- ここから：主内容＞＞件数表示終わり -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:524px;" class="border_01">
 ({*********})
@@ -593,7 +590,6 @@
 ({*********})
 </table>
 <!-- ここまで：主内容＞＞件数表示終わり -->
-({/if})
 <!-- ここまで：主内容 -->
 ({*ここまで：body*})
 ({*ここから：footer*})
