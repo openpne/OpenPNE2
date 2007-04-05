@@ -19,9 +19,9 @@
 <td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
 <td class="bg_01" align="center">
 <!-- *ここから：マイフレンド管理＞内容* -->
+<div class="border_01">
 ({*ここから：header*})
 <!-- ここから：小タイトル -->
-<div class="border_01">
 <table border="0" cellspacing="0" cellpadding="0" style="width:634px;">
 <tr>
 <td style="width:36px;" class="bg_06"><img src="({t_img_url_skin filename=content_header_1})" style="width:30px;height:20px;" class="dummy"></td>
@@ -90,6 +90,7 @@
 ({*ここから：footer*})
 <!-- 無し -->
 ({*ここまで：footer*})
+</div>
 <!-- *ここまで：マイフレンド管理＞＞内容* -->
 </td>
 <td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
@@ -111,3 +112,4 @@
 ({***************************})
 ({ext_include file="inc_layoutcolumn_bottom_270px_165px_175px_720px.tpl"})
 ({ext_include file="inc_footer.tpl"})
+
