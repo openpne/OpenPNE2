@@ -59,7 +59,7 @@
 ({$item.intro|t_truncate:"80"|nl2br})<br>
 <a href="({t_url m=pc a=page_f_intro_edit})&amp;target_c_member_id=({$item.c_member_id})">編集</a>
 
-<a href="({t_url m=pc a=do_f_intro_delete})&amp;target_c_member_id=({$item.c_member_id})&amp;sessid=({$PHPSESSID})">削除</a>
+<a href="({t_url m=pc a=page_f_intro_delete_confirm})&amp;target_c_member_id=({$item.c_member_id})&amp;sessid=({$PHPSESSID})">削除</a>
 ({else})
 <a href="({t_url m=pc a=page_f_intro_edit})&amp;target_c_member_id=({$item.c_member_id})">紹介文を書く</a>
 ({/if})
