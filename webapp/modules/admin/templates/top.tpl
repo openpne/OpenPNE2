@@ -26,7 +26,7 @@
 <dl>
 ({foreach from=$admin_info item=item})
 <dt>({$item.date|date_format:"%m/%d"})</dt>
-<dd><a href="({$item.link})">({$item.date|date_format:"%m/%d"}) ({$item.title})</a></dd>
+<dd><a href="({$item.link})">({$item.title})</a></dd>
 ({/foreach})
 </dl>
 </div>({*/div class="topics"*})
