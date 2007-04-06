@@ -38,6 +38,10 @@ class ktai_do_inc_join_c_commu extends OpenPNE_Action
         switch ($status) {
         //承認必要なし
         case STATUS_C_JOIN_REQUEST_FREE:
+            // 承認依頼があれば削除
+            if ($c_commu_member_confirm_id = db_commu_get_c_commu_member_confirm_id($u, $target_c_commu_id)) {
+                db_commu_delete_c_commu_member_confirm($c_commu_member_confirm_id);
+            }
             db_commu_join_c_commu($target_c_commu_id, $u);
             do_inc_join_c_commu_send_mail($target_c_commu_id, $u);
             openpne_redirect('ktai', 'page_c_home', $p);

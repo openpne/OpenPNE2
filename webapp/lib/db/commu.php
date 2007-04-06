@@ -2196,6 +2196,12 @@ function db_commu_insert_c_commu_member($c_commu_member_confirm_id)
     );
     db_insert('c_commu_member', $data);
 
+    // 非公開コミュニティに管理者から招待されている場合は招待フラグ削除
+    $admin_invite = db_commu_c_commu4c_admin_invite_id($confirm['c_commu_id'], $confirm['c_member_id']);
+    if ($admin_invite) {
+        db_commu_delete_c_commu_admin_invite($admin_invite);
+    }
+
     return db_commu_delete_c_commu_member_confirm($c_commu_member_confirm_id);
 }
 
@@ -2668,9 +2674,11 @@ function db_commu_delete_c_commu_admin_invite($c_commu_admin_invite_id)
     db_query($sql, $params);
 }
 
-//トピックとトピックコメントの混在したリストを取得
-//keywordで検索
-//イベントはトピックと同列
+/**
+ * トピックとトピックコメントの混在したリストを取得
+ * keywordで検索
+ * イベントはトピックと同列
+ */
 function db_commu_search_c_commu_topic($search_word, $category_id, $page, $page_size)
 {
 
@@ -2756,60 +2764,62 @@ function db_commu_search_c_commu_topic($search_word, $category_id, $page, $page_
 function db_common_commu_common_commu_id4c_member_id($target_c_member_id , $u)
 {
 
-	// 相手のコミュニティリスト
+    // 相手のコミュニティリスト
     $sql = 'SELECT c_commu_id FROM c_commu_member ' .
-    		' WHERE c_member_id = ?' .
-    		' ORDER BY c_commu_id DESC ' ;
+            ' WHERE c_member_id = ?' .
+            ' ORDER BY c_commu_id DESC ' ;
     
     $params = array(intval($target_c_member_id));
     $f_commu_id_list = db_get_col($sql, $params);
     
     if(is_null($f_commu_id_list)){
-    	return null;
+        return null;
     }
  
     // 自分のコミュニティリスト
     $sql = 'SELECT c_commu_id FROM c_commu_member ' .
-    		' WHERE c_member_id = ?' .
-    		' ORDER BY c_commu_id DESC ' ;    		
+            ' WHERE c_member_id = ?' .
+            ' ORDER BY c_commu_id DESC ' ;            
 
     $params = array(intval($u));
     $h_commu_id_list = db_get_col($sql, $params);
     
     if(is_null($h_commu_id_list)){
-    	return null;
+        return null;
     }
 
-	//共通コミュニティリスト
-	$common_commu_id_list = array_intersect($f_commu_id_list, $h_commu_id_list);
+    //共通コミュニティリスト
+    $common_commu_id_list = array_intersect($f_commu_id_list, $h_commu_id_list);
 
     if(is_null($common_commu_id_list)){
-    	return null;
+        return null;
     }
 
     return $common_commu_id_list;
-	
+    
 }
 
-// 共通参加コミュニティリスト
+/**
+ * 共通参加コミュニティリスト
+ */
 function db_common_commu_common_commu_list4c_member_id($target_c_member_id, $u, $page, $page_size)
 {
 
-	$common_commu_id_list = db_common_commu_common_commu_id4c_member_id($target_c_member_id, $u);
+    $common_commu_id_list = db_common_commu_common_commu_id4c_member_id($target_c_member_id, $u);
 
     if(is_null($common_commu_id_list)){
-    	return null;
+        return null;
     }
 
-	$common_commu_id_str_list = implode(",", $common_commu_id_list);
+    $common_commu_id_str_list = implode(",", $common_commu_id_list);
 
     $sql = "SELECT *" .
             " FROM c_commu" .
-    		" WHERE c_commu_id in (".$common_commu_id_str_list.")" .
-        	" ORDER BY c_commu_id DESC ";
-	
-	$common_commu_list = db_get_all_page($sql, $page, $page_size);
-	
+            " WHERE c_commu_id in (".$common_commu_id_str_list.")" .
+            " ORDER BY c_commu_id DESC ";
+    
+    $common_commu_list = db_get_all_page($sql, $page, $page_size);
+    
     foreach ($common_commu_list as $key => $value) {
         $common_commu_list[$key]['count_members'] =
             db_commu_count_c_commu_member_list4c_commu_id($value['c_commu_id']);
@@ -2845,5 +2855,14 @@ function db_common_commu_common_commu_list4c_member_id($target_c_member_id, $u, 
 
 }
 
+/** 
+ * コミュニティ参加要請IDを取得
+ */
+function db_commu_get_c_commu_member_confirm_id($c_member_id, $c_commu_id)
+{
+    $sql = 'SELECT c_commu_member_confirm_id FROM c_commu_member_confirm WHERE c_commu_id = ? AND  c_member_id = ?';
+    $params = array(intval($c_commu_id), intval($c_member_id));
+    return db_get_one($sql, $params);
+}
 
 ?>
