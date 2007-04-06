@@ -796,4 +796,22 @@ function db_is_c_black_list($address)
     return db_get_one($sql, $params);
 }
 
+
+//年齢チェック(規定の年齢以上かどうか)
+function db_is_adult($c_member_id)
+{
+    $c_member = db_member_c_member4c_member_id($c_member_id, false, true, 'private');
+    $c_member['age'] = getAge($c_member['birth_year'], $c_member['birth_month'], $c_member['birth_day']);
+
+    // 18歳以上かどうか
+    if ($c_member['age'] >= 18) {
+        return true;
+    } else {
+        return false;
+    }
+
+}
+
+
+
 ?>

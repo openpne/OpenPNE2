@@ -20,8 +20,8 @@ class ktai_do_inc_join_c_commu extends OpenPNE_Action
 
         //年齢制限チェック
         $c_commu = db_commu_c_commu4c_commu_id($target_c_commu_id);
-        $c_member = db_member_c_member4c_member_id($c_member_id, false, true, 'private');
-        if ($c_commu['is_adult'] && $c_member['age'] < 18) {
+
+        if ($c_commu['is_adult'] && !db_is_adult($u)) {
             ktai_display_error('入会できる年齢に達していません');
         }
 
