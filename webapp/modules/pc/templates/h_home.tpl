@@ -22,11 +22,11 @@
 <td align="center" style="height:24px;">
 <img src="({t_img_url_skin filename=icon_search})" alt="search" style="width:62px;height:20px;" class="icon">
 <input type="text" size="30" name="q" class="text border_01" value="" style="width:180px;">
-<input type="image" src="({t_img_url_skin filename=button_search_1})" value="diary" alt="日記" border="0" name="diary" class="button" style="width:62px;height:20px;">
-<input type="image" src="({t_img_url_skin filename=button_search_2})" value="community" alt="コミュニティ" border="0" name="community" class="button" style="width:62px;height:20px;">
-<input type="image" src="({t_img_url_skin filename=button_search_4})" value="message" alt="メッセージ" border="0" name="message" class="button" style="width:62px;height:20px;">
+<input type="image" src="({t_img_url_skin filename=button_search_1})" value="diary" alt="日記" name="diary" class="button" style="width:62px;height:20px;border:none;">
+<input type="image" src="({t_img_url_skin filename=button_search_2})" value="community" alt="コミュニティ" name="community" class="button" style="width:62px;height:20px;border:none;">
+<input type="image" src="({t_img_url_skin filename=button_search_4})" value="message" alt="メッセージ" name="message" class="button" style="width:62px;height:20px;border:none;">
 ({if $smarty.const.USE_EXTRA_SERVICE})
-<input type="image" src="({t_img_url_skin filename=button_search_3})" value="web" alt="web" border="0" name="web" class="button" style="width:62px;height:20px;">
+<input type="image" src="({t_img_url_skin filename=button_search_3})" value="web" alt="web" name="web" class="button" style="width:62px;height:20px;border:none;">
 ({/if})
 </td>
 </tr>

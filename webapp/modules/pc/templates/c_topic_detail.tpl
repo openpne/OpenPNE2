@@ -123,7 +123,6 @@
 <a href="({t_file_url filename=$c_topic.filename})" target="_blank">
 ({$c_topic.original_filename})
 </a>
-</span>
 </div>
 
 </td>

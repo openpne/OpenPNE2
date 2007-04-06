@@ -174,25 +174,28 @@
 
 <table border="0" style="width:240px;">
 <tr>
+<td align="right">
 
 ({t_form m=pc a=do_c_admin_request_insert_c_commu_admin_confirm})
 <input type="hidden" name="sessid" value="({$PHPSESSID})">
 <input type="hidden" name="target_c_member_id" value="({$member.c_member_id})">
 <input type="hidden" name="target_c_commu_id" value="({$c_commu.c_commu_id})">
-<td align="right"><input type="submit" class="submit" name="yes_button" value="　送　信　">
-</td>
+
+<input type="submit" class="submit" name="yes_button" value="　送　信　">
+
 </form>
+
+</td>
+<td>
 
 ({t_form _method=get m=pc a=page_c_edit_member})
 <input type="hidden" name="target_c_commu_id" value="({$c_commu.c_commu_id})">
-<td><input type="submit" class="submit" type="button" value="キャンセル">
-</td>
+<input type="submit" class="submit" value="キャンセル">
 </form>
 
+</td>
 </tr>
 </table>
-
-</div>
 
 </div>
 

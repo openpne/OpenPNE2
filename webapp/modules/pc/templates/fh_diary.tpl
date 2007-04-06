@@ -702,7 +702,7 @@
 <table border="0" cellspacing="0" cellpadding="0" style="width:524px;" class="border_01">
 <tr>
 <td style="width:36px;" class="bg_06"><img src="({t_img_url_skin filename=content_header_1})" style="width:30px;height:20px;" class="dummy"></td>
-<td style="width:486px;padding:2px 0px;" class="bg_06"><span class="b_b c_00">コメントを書く</a></span></td>
+<td style="width:486px;padding:2px 0px;" class="bg_06"><span class="b_b c_00">コメントを書く</span></td>
 </tr>
 </table>
 <!-- ここまで：小タイトル -->

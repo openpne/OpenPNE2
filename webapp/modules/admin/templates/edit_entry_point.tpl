@@ -148,6 +148,11 @@
 <p class="image">
 <img src="modules/admin/img/entry_point_h_reply_message.gif" />
 </p>
+({elseif $requests.target == 'h_diary_add'})
+<p class="image">
+<img src="modules/admin/img/entry_point_h_diary_add.gif" />
+</p>
+
 
 ({elseif $requests.target == 'ktai_o_login'})
 <p class="image">

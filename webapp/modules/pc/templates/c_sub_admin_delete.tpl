@@ -185,7 +185,7 @@
 
 ({t_form _method=get m=pc a=page_c_edit_member})
 <input type="hidden" name="target_c_commu_id" value="({$c_commu.c_commu_id})">
-<td><input type="submit" class="submit" type="button" value="キャンセル">
+<td><input type="submit" class="submit" value="キャンセル">
 </td>
 </form>
 

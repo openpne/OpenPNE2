@@ -468,7 +468,7 @@ function load() {
 ({if $msg2})({$msg2})<br>({/if})
 ({if $msg3})({$msg3})<br>({/if})
 ({foreach from=$err_msg item=item})
-({$item})</br>
+({$item})<br>
 ({/foreach})
 <!-- ここまで：主内容＞警告文本体 -->
 </div>
