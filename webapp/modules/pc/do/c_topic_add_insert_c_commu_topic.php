@@ -21,6 +21,14 @@ class pc_do_c_topic_add_insert_c_commu_topic extends OpenPNE_Action
         $filename4_tmpfile = $requests['filename4_tmpfile'];
         $filename4_original_filename = $requests['filename4_original_filename'];
 
+        // 添付ファイルの拡張子が許可されているか
+        if (!db_is_permit_file_type($filename4_original_filename)) {
+            $_REQUEST['target_c_commu_id'] = $c_commu_id;
+            $_REQUEST['err_msg'] = 'アップロードできるファイルの拡張子は('.FILE_TYPE.')です';
+            openpne_forward('pc', 'page', "c_topic_add");
+            exit;
+        }
+
         //---権限チェック
         //コミュニティ参加者
 

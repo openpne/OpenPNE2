@@ -307,6 +307,14 @@
 </select></td>
 </tr>
 
+<tr class="cell30">
+<th colspan="2">添付ファイル拡張子</th>
+<td>
+<span class="info">添付ファイルで使用できるファイルの拡張子をカンマ区切りで記述してください</span><br />
+<input class="basic" name="FILE_TYPE" type="text" value="({$smarty.const.FILE_TYPE})" size="30" />
+</td>
+</tr>
+
 </table>
 <p class="textBtn"><input type="submit" value="設定変更する"></p>
 </form>

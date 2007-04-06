@@ -70,6 +70,12 @@ class pc_page_c_topic_add_confirm extends OpenPNE_Action
                 if ((!$filesize)  || ($filesize > IMAGE_MAX_FILESIZE * 1024)) {
                     $err_msg[] = '添付ファイルは'.IMAGE_MAX_FILESIZE.'KB以内のファイルにしてください';
                 }
+
+                // 添付ファイルの拡張子が許可されているか
+                if (!db_is_permit_file_type($upfile_obj4["name"])) {
+                    $err_msg[] = 'アップロードできるファイルの拡張子は('.FILE_TYPE.')です';
+                }
+
             } else {
                 $err_msg[] = 'ファイルのアップロードはできません。';
             }

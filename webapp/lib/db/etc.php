@@ -812,6 +812,24 @@ function db_is_adult($c_member_id)
 
 }
 
+// 指定されたファイルの拡張子はアップロード許可があるのかどうか
+function db_is_permit_file_type($filename)
+{
+    $file_type = FILE_TYPE;
+    $permit_list = explode(',', $file_type);
 
+    // 指定がなければ全許容
+    if (empty($file_type)) {
+        return true;
+    }
+
+    $pieces = explode('.', $filename);
+
+    if (in_array(array_pop($pieces), $permit_list)) {
+        return true;
+    } else {
+        return false;
+    }
+}
 
 ?>
