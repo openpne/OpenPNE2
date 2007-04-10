@@ -6,9 +6,9 @@
 
 function smarty_modifier_t_url2cmd($string, $type = '')
 {
-    // "(&quot;) と '(&#039;) を元に戻す
-    $search = array('&quot;', '&#039;');
-    $replace = array('"', "'");
+    // "(&quot;) 、 '(&#039;) 、 <(&lt;) 、 >(&gt;) を元に戻す
+    $search = array('&quot;', '&#039;', '&lt;', '&gt;');
+    $replace = array('"', "'", "<", ">");
     $string = str_replace($search, $replace, $string);
 
     $url_pattern = "/https?:\/\/([a-zA-Z0-9-.]+)\/?[\w\-.,:;\~\^\/?\@&=+\$%#!()]*/";
