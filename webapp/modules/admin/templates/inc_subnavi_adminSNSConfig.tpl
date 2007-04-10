@@ -13,6 +13,6 @@
 <a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_holiday')})" title="カレンダーの祝日の設定：　カレンダーに表示させる祝日の設定">祝日設定</a>&nbsp;|&nbsp;
 ({if $smarty.const.OPENPNE_DISP_POINT})
 <a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_rank')})" title="ランクの設定：　貯めたポイントで到達するランクを設定">ランク設定</a>&nbsp;|&nbsp;
-<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_action')})" title="アクションの設定：　ユーザーの行動毎に加算されるポイントを設定">アクション設定</a>
+<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_action')})" title="アクションの設定：　メンバーの行動毎に加算されるポイントを設定">アクション設定</a>
 ({/if})
 </div>

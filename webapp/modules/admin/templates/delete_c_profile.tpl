@@ -8,7 +8,7 @@
 <h2>プロフィール項目削除</h2>
 <div class="contents">
 
-<p class="caution" id="c01"><strong>本当に削除してもよろしいですか？</strong><br />※この項目に対するユーザーの入力値も失われます。</p>
+<p class="caution" id="c01"><strong>本当に削除してもよろしいですか？</strong><br />※この項目に対するメンバーの入力値も失われます。</p>
 
 <form action="./" method="post">
 <input type="hidden" name="m" value="({$module_name})" />

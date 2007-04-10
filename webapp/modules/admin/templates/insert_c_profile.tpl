@@ -28,7 +28,7 @@
 <th>公開設定の選択</th>
 <td>
 <label><input type="radio" name="public_flag_edit" value="0" checked="checked" />固定</label>
-<label><input type="radio" name="public_flag_edit" value="1" />ユーザー選択</label></td>
+<label><input type="radio" name="public_flag_edit" value="1" />メンバー選択</label></td>
 </tr>
 <tr>
 <th>公開設定<br>デフォルト値</th>

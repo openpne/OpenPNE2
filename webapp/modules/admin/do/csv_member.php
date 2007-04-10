@@ -22,7 +22,7 @@ class admin_do_csv_member extends OpenPNE_Action
     }
     
     /**
-     * ユーザーリスト取得
+     * メンバーリスト取得
      */
     function db_get_c_member_list($start_id,$end_id)
     {
@@ -94,7 +94,7 @@ class admin_do_csv_member extends OpenPNE_Action
         $ley_list[]="誕生月";
         $ley_list[]="誕生日";
         foreach($c_profile_list as $profile){
-        	$ley_list[]= $profile['caption'];
+            $ley_list[]= $profile['caption'];
         }
         $ley_list[]="PCアドレス";
         $ley_list[]="携帯アドレス";
@@ -107,7 +107,7 @@ class admin_do_csv_member extends OpenPNE_Action
         $csv = "";
         foreach($key_string as $each_key){
             if($csv != "")$csv .= ",";
-        	$csv .= '"'.mb_convert_encoding($each_key ,"SJIS", "auto").'"';
+            $csv .= '"'.mb_convert_encoding($each_key ,"SJIS", "auto").'"';
         }
         $csv .= "\n";
         

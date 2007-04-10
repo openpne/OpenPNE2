@@ -1,19 +1,19 @@
 ({$inc_header|smarty:nodefaults})
 ({ext_include file="inc_subnavi_adminStatisticalInformation.tpl"})
-({assign var="page_name" value="世代別ユーザー数表示"})
+({assign var="page_name" value="世代別メンバー数表示"})
 ({ext_include file="inc_tree_adminStatisticalInformation.tpl"})
 </div>
 
 ({*ここまで:navi*})
 
-<h2>世代別ユーザー数表示</h2>
+<h2>世代別メンバー数表示</h2>
 <div class="contents">
 
 ({if $msg})
 <p class="actionMsg">({$msg})</p>
 ({/if})
 
-<p>SNSユーザーの世代別ユーザー分布を表示します</p>
+<p>SNSメンバーの世代別メンバー分布を表示します</p>
 <table class="basicType2">
 ({****})
 <thead>

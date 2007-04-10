@@ -117,16 +117,16 @@
 </td>
 </tr>
 <!-- ここまで：主内容＞コミュニティの名前 -->
-<!-- ここから：主内容＞管理人 -->
+<!-- ここから：主内容＞管理者 -->
 <tr>
-<td style="width:80px;" class="bg_09"><span class="c_01">管理人</span></td>
+<td style="width:80px;" class="bg_09"><span class="c_01">管理者</span></td>
 <td style="width:342px;" class="bg_02">
 
 <a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$admin_data.c_member_id})">({$admin_data.nickname})</a>
 
 </td>
 </tr>
-<!-- ここまで：主内容＞管理人 -->
+<!-- ここまで：主内容＞管理者 -->
 <!-- ここから：主内容＞メンバー数 -->
 <tr>
 <td style="width:80px;" class="bg_09"><span class="c_01">メンバー数</span></td>
