@@ -84,9 +84,6 @@ class ktai_page_h_home extends OpenPNE_Action
         $mail_address = MAIL_ADDRESS_PREFIX . $mail_address;
         $this->set('blog_address', $mail_address);
 
-        // inc_entry_point
-        $this->set('inc_ktai_entry_point', fetch_ktai_inc_entry_point_h_home($this->getView()));
-        
         //PNEPOINT
         $point = db_point_get_point($u);
         $this->set("point", $point);
@@ -94,6 +91,9 @@ class ktai_page_h_home extends OpenPNE_Action
         //rank
         $this->set("rank", db_point_get_rank4point($point));
 
+        // inc_entry_point
+        $this->set('inc_ktai_entry_point', fetch_ktai_inc_entry_point_h_home($this->getView()));
+        
         return 'success';
     }
 }
