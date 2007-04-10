@@ -549,7 +549,8 @@ function db_message_update_c_message_is_read4c_message_id($c_message_id, $c_memb
         'c_message_id' => intval($c_message_id),
         'c_member_id_to' => intval($c_member_id),
     );
-    pne_cache_drop('db_message_count_c_message_not_is_read4c_member_to_id', $c_member_id);
+    pne_cache_drop('db_message_count_c_message_not_is_read4c_member_to_id', (int)$c_member_id);
+    pne_cache_drop('db_message_count_c_message_not_is_read4c_member_to_id', (string)$c_member_id);
     return db_update('c_message', $data, $where);
 }
 
@@ -578,7 +579,8 @@ function db_message_send_message($c_member_id_from, $c_member_id_to, $subject, $
 
     do_common_send_message_mail_send($c_member_id_to, $c_member_id_from);
     do_common_send_message_mail_send_ktai($c_member_id_to, $c_member_id_from);
-    pne_cache_drop('db_message_count_c_message_not_is_read4c_member_to_id', $c_member_id_to);
+    pne_cache_drop('db_message_count_c_message_not_is_read4c_member_to_id', (int)$c_member_id_to);
+    pne_cache_drop('db_message_count_c_message_not_is_read4c_member_to_id', (string)$c_member_id_to);
 
     return $c_message_id;
 }
@@ -588,7 +590,8 @@ function db_message_send_message_syoudaku($c_member_id_from, $c_member_id_to, $s
 {
     //メッセージ
     db_message_insert_c_message_syoudaku($c_member_id_from, $c_member_id_to, $subject, $body);
-    pne_cache_drop('db_message_count_c_message_not_is_read4c_member_to_id', $c_member_id_to);
+    pne_cache_drop('db_message_count_c_message_not_is_read4c_member_to_id', (int)$c_member_id_to);
+    pne_cache_drop('db_message_count_c_message_not_is_read4c_member_to_id', (string)$c_member_id_to);
 
     do_common_send_message_syoudaku_mail_send($c_member_id_to, $c_member_id_from);
 }
@@ -598,7 +601,8 @@ function db_message_send_message_syoukai_commu($c_member_id_from, $c_member_id_t
 {
     //メッセージ
     db_message_insert_c_message($c_member_id_from, $c_member_id_to, $subject, $body);
-    pne_cache_drop('db_message_count_c_message_not_is_read4c_member_to_id', $c_member_id_to);
+    pne_cache_drop('db_message_count_c_message_not_is_read4c_member_to_id', (int)$c_member_id_to);
+    pne_cache_drop('db_message_count_c_message_not_is_read4c_member_to_id', (string)$c_member_id_to);
 
     do_common_send_message_syoukai_commu_mail_send($c_member_id_to, $c_member_id_from);
 }
@@ -608,7 +612,8 @@ function db_message_send_message_syoukai_member($c_member_id_from, $c_member_id_
 {
     //メッセージ
     db_message_insert_c_message($c_member_id_from, $c_member_id_to, $subject, $body);
-    pne_cache_drop('db_message_count_c_message_not_is_read4c_member_to_id', $c_member_id_to);
+    pne_cache_drop('db_message_count_c_message_not_is_read4c_member_to_id', (int)$c_member_id_to);
+    pne_cache_drop('db_message_count_c_message_not_is_read4c_member_to_id', (string)$c_member_id_to);
 
     do_common_send_message_syoukai_member_mail_send($c_member_id_to, $c_member_id_from);
 }
@@ -618,7 +623,8 @@ function db_message_send_message_event_invite($c_member_id_from, $c_member_id_to
 {
     //メッセージ
     db_message_insert_c_message($c_member_id_from, $c_member_id_to, $subject, $body);
-    pne_cache_drop('db_message_count_c_message_not_is_read4c_member_to_id', $c_member_id_to);
+    pne_cache_drop('db_message_count_c_message_not_is_read4c_member_to_id', (int)$c_member_id_to);
+    pne_cache_drop('db_message_count_c_message_not_is_read4c_member_to_id', (string)$c_member_id_to);
 
     do_common_send_message_event_invite_mail_send($c_member_id_to, $c_member_id_from);
 }
@@ -628,7 +634,8 @@ function db_message_send_message_event_message($c_member_id_from, $c_member_id_t
 {
     //メッセージ
     db_message_insert_c_message($c_member_id_from, $c_member_id_to, $subject, $body);
-    pne_cache_drop('db_message_count_c_message_not_is_read4c_member_to_id', $c_member_id_to);
+    pne_cache_drop('db_message_count_c_message_not_is_read4c_member_to_id', (int)$c_member_id_to);
+    pne_cache_drop('db_message_count_c_message_not_is_read4c_member_to_id', (string)$c_member_id_to);
 
     do_common_send_message_event_message_mail_send($c_member_id_to, $c_member_id_from);
 }
