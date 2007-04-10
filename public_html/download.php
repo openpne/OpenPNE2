@@ -31,6 +31,11 @@ $include_paths = array(
 );
 ini_set('include_path', implode(PATH_SEPARATOR, $include_paths));
 
+// ファイルアップロード機能がオフ
+if (!OPENPNE_USE_FILEUPLOAD) {
+    openpne_redirect('pc', 'page_h_home');
+}
+
 $file = db_file_c_file4filename($_GET['filename']);
 $original_filename = preg_replace("/\r|\n/", '', $file['original_filename']);
 header('Content-Disposition: attachment ; filename="' . $original_filename . '"');
