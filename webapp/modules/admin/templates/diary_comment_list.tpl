@@ -74,7 +74,8 @@
 <th width="150">日記コメント本文</th>
 <td width="500">
 ({$item.body|nl2br})
-<tr>
+</td>
+</tr>
 ({****})
 ({/foreach})
 </tbody>

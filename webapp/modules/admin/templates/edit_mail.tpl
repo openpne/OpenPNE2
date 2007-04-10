@@ -11,7 +11,6 @@
 <div class="contents">
 <p class="caution" id="c01">※Smartyテンプレート形式で記述します。</p>
 <p class="caution" id="c02">誤った形式で記述すると、メールを送信することができなくなってしまいます。<br />その場合は、「デフォルトに戻す」から元に戻してください。</p>
-</div>({*/div class="contents"*})
 
 <table class="contents" cellpadding="0" cellspacing="0" border="0">
 <tr>

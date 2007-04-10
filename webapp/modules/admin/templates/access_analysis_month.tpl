@@ -49,6 +49,5 @@
 ({/foreach})
 </tbody>
 </table>
-</div>
 
 ({$inc_footer|smarty:nodefaults})

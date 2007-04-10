@@ -19,4 +19,5 @@
 <dd id="btn"><p class="textBtn"><input tabindex="4" type="submit" value="ログイン" /></p></dd>
 </dl>
 </form>
+</div>
 ({$inc_footer|smarty:nodefaults})

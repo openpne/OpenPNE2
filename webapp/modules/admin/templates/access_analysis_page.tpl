@@ -21,6 +21,7 @@
 
 <table class="basicType2">
 <thead>
+<tr>
 <th>
 <a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('access_analysis_page')})&ktai_flag=({$ktai_flag})&ymd=({$ymd})&month_flag=({$month_flag})&orderby1=({$orderby1})">ページ</a></th>
 <th><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('access_analysis_page')})&ktai_flag=({$ktai_flag})&ymd=({$ymd})&month_flag=({$month_flag})&orderby2=({$orderby2})">アクセス数</a></th>
@@ -29,6 +30,7 @@
 <th>アクセスされた<br>トピック<br>(target_c_topic_id)</td>
 <th>アクセスされた<br>日記<br>(target_c_diary_id)</td>
 <th>アクセスした<br>メンバー<br>(c_member_id)</td>
+</tr>
 </thead>
 <tbody>
 ({foreach from=$access_analysis_month_page item=item})

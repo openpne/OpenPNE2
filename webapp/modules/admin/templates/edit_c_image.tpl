@@ -12,7 +12,7 @@
 <div class="contents">
 
 <p class="caution" id="c01">※同じファイル名で既に登録されている画像がある場合、上書きされます。</p>
-<form action="./" method="post" enctype="multipart/form-data" />
+<form action="./" method="post" enctype="multipart/form-data" >
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('insert_c_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
