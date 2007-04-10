@@ -39,7 +39,7 @@
 &nbsp;<img src="./skin/icon_weather_FC.gif" class="icon">
 <a href="({$weather_url})" target="_blank">天気予報を見る</a>
 &nbsp;<img src="./skin/icon_schedule.gif" class="icon">
-<a href="({t_url m=biz a=page_fh_biz_schedule_add})">予定を追加</a>&nbsp;
+<a href="({t_url m=biz a=page_fh_biz_schedule_add})&target_id=({$c_member.c_member_id})">予定を追加</a>&nbsp;
 
 </td>
 <td style="width:200px;padding:2px 0px;" class="bg_05" align="right">
@@ -79,7 +79,7 @@
 ({else})
 ({$item.day})
 ({/if})<br>
-<a href="({t_url m=biz a=page_fh_biz_schedule_add})&amp;begin_date=({$year})({$month|string_format:'%02d'})({$item.day|string_format:'%02d'})"><img src="./skin/icon_schedule.gif" class="icon"></a><br>
+<a href="({t_url m=biz a=page_fh_biz_schedule_add})&amp;begin_date=({$year})({$month|string_format:'%02d'})({$item.day|string_format:'%02d'})&target_id=({$c_member.c_member_id})"><img src="./skin/icon_schedule.gif" class="icon"></a><br>
 
 ({* 祝日 *})
 ({foreach from=$item.holiday item=item_holiday})

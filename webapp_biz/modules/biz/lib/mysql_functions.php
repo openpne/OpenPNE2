@@ -843,9 +843,9 @@ function biz_getJoinGroupList($c_member_id, $page, $page_size)
 //SET---------------------------------------------
 
 //スケジュール登録
-function biz_insertSchedule($title, $member_id, $begin_date, $finish_date, $begin_time = null, $finish_time = null,
-                                                        $value = '', $rep_type, $first_id = 0,
-                                                        $biz_group_id = 0, $public_flag = "public")
+function biz_insertSchedule($title, $c_member_id, $begin_date, $finish_date, $begin_time = null, $finish_time = null,
+    $value = '', $rep_type, $first_id = 0, $biz_group_id = 0,
+    $public_flag = "public", $target_c_member_id = null)
 {
     //登録値のセット、チェック
     if (!$value) {
@@ -859,7 +859,7 @@ function biz_insertSchedule($title, $member_id, $begin_date, $finish_date, $begi
     //biz_scheduleにデータを追加する
     $data = array(
         'title' => $title,
-        'c_member_id' => intval($member_id),
+        'c_member_id' => intval($c_member_id),
         'begin_date' => $begin_date,
         'finish_date' => $finish_date,
         'begin_time' => $begin_time,
@@ -870,7 +870,20 @@ function biz_insertSchedule($title, $member_id, $begin_date, $finish_date, $begi
         'biz_group_id' => $biz_group_id,
         'public_flag' => $public_flag,
     );
-    db_insert('biz_schedule', $data);
+    $biz_schedule_id = db_insert('biz_schedule', $data);
+
+    if (!$biz_group_id) {  //個人の予定
+        if (is_null($target_c_member_id)) {  //作成者自身の予定
+            $target_c_member_id = $c_member_id;
+        }
+
+        $param = array(
+            'biz_schedule_id' => $biz_schedule_id,
+            'c_member_id' => $target_c_member_id,
+            'is_read' => 1
+        );
+        db_insert('biz_schedule_member', $param);
+    }
 }
 
 //スケジュール削除
