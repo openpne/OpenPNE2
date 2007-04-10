@@ -173,6 +173,8 @@ function db_admin_insert_c_profile(
     , $val_max
     )
 {
+    pne_cache_drop('db_member_c_profile_list');
+
     $data = array(
         'name' => $name,
         'caption' => $caption,
@@ -256,7 +258,7 @@ function db_admin_delete_c_profile($c_profile_id)
     $sql = 'DELETE FROM c_profile WHERE c_profile_id = ?';
     db_query($sql, $params);
 
-    cache_drop_c_member_profile();
+    pne_cache_drop('db_member_c_profile_list');
 }
 
 function db_admin_c_profile4c_profile_id($c_profile_id)
