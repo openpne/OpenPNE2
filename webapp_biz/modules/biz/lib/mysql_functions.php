@@ -182,13 +182,17 @@ function biz_getDateMemberSchedule($y, $m, $d, $target_c_member_id, $u)
 
     foreach ($tmp as $biz_schedule_id) {
         $biz_schedule = biz_getScheduleInfo($biz_schedule_id);
+        $sql = 'SELECT c_member_id FROM biz_schedule_member WHERE biz_schedule_id = ?';
+        $biz_schedule_member_id_list = db_get_col($sql, array(intval($biz_schedule_id)));
 
         if (biz_isPermissionSchedule($u, $biz_schedule_id)) {
-	        if ($biz_schedule['c_member_id'] == $target_c_member_id) {
-	            $contain[] = $biz_schedule_id;
-	        } elseif(in_array($biz_schedule['biz_group_id'], $biz_group_id_list) && ($value['public_flag'] != 'private')) {
-	            $contain[] = $biz_schedule_id;
-	        }
+            if (in_array($target_c_member_id, $biz_schedule_member_id_list)) {
+                $contain[] = $biz_schedule_id;
+            } elseif(in_array($biz_schedule['biz_group_id'], $biz_group_id_list) && ($value['public_flag'] != 'private')) {
+                $contain[] = $biz_schedule_id;
+            } elseif (empty($biz_schedule_member_id_list) && !$biz_schedule['biz_group_id'] && ($biz_schedule['c_member_id'] == $u)) {
+                $contain[] = $biz_schedule_id;
+            }
         }
     }
 
@@ -391,27 +395,29 @@ function biz_isGroupMember($member_id, $group_id)
 }
 
 //指定された条件に見合うグループのリストを得る関数
-function biz_getGroupList($keyword='', $start=0, $num=20, $order='biz_group_id')
+function biz_getGroupList($keyword='', $page, $page_size=20, $order='biz_group_id')
 {
 
     //keywordあり
     if ($keyword) {
-        $sql = 'SELECT * FROM biz_group WHERE 1 AND (info LIKE ? OR name LIKE ?) ORDER BY ?';
+        $where = ' WHERE 1 AND (info LIKE ? OR name LIKE ?) ORDER BY ?';
+        $sql = 'SELECT * FROM biz_group'. $where;
 
         $params = array(
             '%'.$keyword.'%',
             '%'.$keyword.'%',
             $order,
         );
-        $list = db_get_all_limit($sql, $start, ($start + $num), $params);
+        $list = db_get_all_page($sql, $page, $page_size, $params);
     //keywordなし(全件表示)
     } else {
-        $sql = 'SELECT * FROM biz_group ORDER BY ?';
+        $where = '';
+        $sql = 'SELECT * FROM biz_group ORDER BY ? desc';
 
         $params = array(
             $order,
         );
-        $list = db_get_all_limit($sql, $start, ($start + $num), $params);
+        $list = db_get_all_page($sql, $page, $page_size, $params);
     }
 
     if (!$list) {
@@ -423,7 +429,36 @@ function biz_getGroupList($keyword='', $start=0, $num=20, $order='biz_group_id')
         $list[$key]['count'] = $count;
     }
 
-    return $list;
+    if ($keyword) {
+        $params = array(
+            '%'.$keyword.'%',
+            '%'.$keyword.'%',
+        );
+    } else {
+        $params = array();
+    }
+
+    $sql = 'SELECT COUNT(*) FROM biz_group' . $where;
+    $total_num = db_get_one($sql, $params);
+
+    if ($total_num != 0) {
+        $total_page_num =  ceil($total_num / $page_size);
+        if ($page >= $total_page_num) {
+            $next = false;
+        } else {
+            $next = true;
+        }
+        if ($page <= 1) {
+            $prev = false;
+        } else {
+            $prev = true;
+        }
+    }
+
+    $start_num = ($page - 1) * $page_size + 1;
+    $end_num   = $start_num + $page_size >= $total_num ? $total_num : $start_num + $page_size - 1;
+
+    return array($list, $prev, $next, $total_num, $start_num, $end_num);
 }
 
 //指定日の施設予定を得る関数
@@ -627,9 +662,9 @@ function biz_getMemberTodo($u, $target_c_member_id, $cat = null)
 
     //priorityの高い順にソート
     $membertodo = db_get_all($sql, $params);
-	foreach ($membertodo as $key => $row) {
-	   $priority[$key]  = $row['priority'];
-	}
+    foreach ($membertodo as $key => $row) {
+       $priority[$key]  = $row['priority'];
+    }
     if(!is_null($priority)) {
         array_multisort($priority, SORT_ASC, $membertodo);
     }
@@ -644,12 +679,12 @@ function biz_getMemberTodo($u, $target_c_member_id, $cat = null)
 
     foreach (array_merge($membertodo, $sharetodo) as $key => $value) {
         if (biz_isPermissionTodo($u, $value['biz_todo_id'])) {
-	        $sql = 'SELECT nickname FROM c_member WHERE c_member_id = ?';
-	        $params = array(
-	            intval($value['writer_id']),
-	        );
+            $sql = 'SELECT nickname FROM c_member WHERE c_member_id = ?';
+            $params = array(
+                intval($value['writer_id']),
+            );
             $list[$key] = $value;
-	        $list[$key]['writer_name'] = db_get_one($sql, $params);
+            $list[$key]['writer_name'] = db_get_one($sql, $params);
         }
     }
 
@@ -681,37 +716,37 @@ function biz_schedule_todo4c_member_id($u, $c_member_id, $year, $month, $day = n
     }
 
     if (!is_null($day)) {
-	    $sql = 'SELECT * FROM biz_todo WHERE biz_todo_id IN ('.$ids.')' .
-	            ' AND due_datetime = ?';
-	    $params = array(
-	        sprintf('%04d-%02d-%02d', intval($year), intval($month), intval($day)) . ' 00:00:00',
-	    );
+        $sql = 'SELECT * FROM biz_todo WHERE biz_todo_id IN ('.$ids.')' .
+                ' AND due_datetime = ?';
+        $params = array(
+            sprintf('%04d-%02d-%02d', intval($year), intval($month), intval($day)) . ' 00:00:00',
+        );
 
         $list = array();
-	    foreach(db_get_all($sql, $params) as $key => $value) {
+        foreach(db_get_all($sql, $params) as $key => $value) {
             if(biz_isPermissionTodo($u, $value['biz_todo_id'])) {
-		        $list[$key] = $value;
+                $list[$key] = $value;
             }
         }
         
         return $list;
     } else {
-	    $sql = 'SELECT * FROM biz_todo WHERE biz_todo_id IN ('.$ids.')' .
-	            ' AND due_datetime > ? AND due_datetime <= ?';
-	    $params = array(
-	        sprintf('%04d-%02d', intval($year), intval($month)) . '-00 00:00:00',
-	        sprintf('%04d-%02d', intval($year), intval($month)) . '-31 23:59:59'
-	    );
-	    $list = db_get_all($sql, $params);
+        $sql = 'SELECT * FROM biz_todo WHERE biz_todo_id IN ('.$ids.')' .
+                ' AND due_datetime > ? AND due_datetime <= ?';
+        $params = array(
+            sprintf('%04d-%02d', intval($year), intval($month)) . '-00 00:00:00',
+            sprintf('%04d-%02d', intval($year), intval($month)) . '-31 23:59:59'
+        );
+        $list = db_get_all($sql, $params);
 
-	    $res = array();
-	    foreach ($list as $item) {
+        $res = array();
+        foreach ($list as $item) {
             if(biz_isPermissionTodo($u, $item['biz_todo_id'])) {
-		        $day = date('j', strtotime($item['due_datetime']));
-		        $res[$day][] = $item;
+                $day = date('j', strtotime($item['due_datetime']));
+                $res[$day][] = $item;
             }
-	    }
-	    return $res;
+        }
+        return $res;
     }
 }
 
