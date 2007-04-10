@@ -43,7 +43,7 @@ class pc_page_f_message_send extends OpenPNE_Action
             $tmplist = db_message_c_message4c_message_id($form_val['target_c_message_id']);
             $form_val['body'] = $tmplist['body'];
             $form_val['subject'] = $tmplist['subject'];
-            $form_val['target_c_message_id'] = $tmplist['target_c_message_id'];
+            $form_val['target_c_message_id'] = $tmplist['c_message_id'];
             if ($tmplist['c_member_id_to']) {
                 $target_c_member_id = $tmplist['c_member_id_to'];
             }
@@ -51,7 +51,7 @@ class pc_page_f_message_send extends OpenPNE_Action
             $tmplist = db_message_c_message4c_message_id($form_val['target_c_message_id']);
             $form_val['body'] = message_body2inyou($tmplist['body']);
             $form_val['subject'] = "Re:".$tmplist['subject'];
-            $form_val['target_c_message_id'] = $tmplist['target_c_message_id'];
+            $form_val['target_c_message_id'] = $tmplist['c_message_id'];
             if ($tmplist['c_member_id_from']) {
                 $target_c_member_id = $tmplist['c_member_id_from'];
             }
