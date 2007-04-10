@@ -9,9 +9,9 @@ class admin_do_delete_c_member extends OpenPNE_Action
 {
     function execute($requests)
     {
-        // 管理者は強制退会できない
+        // ID 1 のメンバーは強制退会できない
         if ($requests['target_c_member_id'] == 1) {
-            admin_client_redirect('top', '管理者を強制退会させることはできません');
+            admin_client_redirect('top', 'ID 1 のメンバーを強制退会させることはできません');
         }
 
         if (SEND_USER_DATA) {
