@@ -38,7 +38,7 @@ if (!OPENPNE_USE_FILEUPLOAD) {
 
 $file = db_file_c_file4filename($_GET['filename']);
 $original_filename = preg_replace("/\r|\n/", '', $file['original_filename']);
-header('Content-Disposition: attachment ; filename="' . $original_filename . '"');
+header('Content-Disposition: attachment ; filename="' . mb_convert_encoding($original_filename, 'SJIS', 'UTF-8') . '"');
 header('Content-Length: '. strlen($file['bin']));
 header('Content-Type: application/octet-stream');
 echo $file['bin'];
