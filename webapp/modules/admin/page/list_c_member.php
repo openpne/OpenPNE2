@@ -33,7 +33,8 @@ class admin_page_list_c_member extends OpenPNE_Action
         $v['cond'] = $cond;
 
         //絞り込みのための年
-        $v['years'] = get_int_assoc(1901, 2001);
+        $year = date('Y');
+        $v['years'] = get_int_assoc($year - 100, $year);
 
         //絞り込みのドロップダウンを作る用
         $v['profile_list'] = db_member_c_profile_list();;
