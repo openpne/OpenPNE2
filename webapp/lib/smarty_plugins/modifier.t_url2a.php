@@ -12,9 +12,9 @@
  */
 function smarty_modifier_t_url2a($string)
 {
-    // "(&quot;) 、 '(&#039;) 、 <(&lt;) 、 >(&gt;) を元に戻す
-    $search = array('&quot;', '&#039;', '&lt;', '&gt;');
-    $replace = array('"', "'", "<", ">");
+    // "(&quot;) と '(&#039;) を元に戻す
+    $search = array('&quot;', '&#039;');
+    $replace = array('"', "'");
     $string = str_replace($search, $replace, $string);
 
     $url_pattern = '/https?:\/\/[\w\-.,:;\~\^\/?\@&=+\$%#!()]+/';
