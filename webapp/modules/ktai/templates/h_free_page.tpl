@@ -1,6 +1,6 @@
 ({$inc_ktai_header|smarty:nodefaults})
 
-<center>フリーページ</center>
+<center>({$c_free_page.title})</center>
 <hr>
 ({if $c_free_page})
 ({$c_free_page.body|smarty:nodefaults|nl2br})
