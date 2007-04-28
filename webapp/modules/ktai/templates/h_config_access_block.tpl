@@ -3,7 +3,7 @@
 <center><font color="orange">アクセスブロック設定</font></center>
 <hr>
 
-アクセスをブロックするユーザのIDを指定します。<br>
+アクセスをブロックするメンバーのIDを指定します。<br>
 <br>
 
 ({t_form m=ktai a=do_h_config_access_block_update})

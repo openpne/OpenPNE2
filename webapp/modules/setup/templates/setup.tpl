@@ -31,10 +31,10 @@
 <tr><td colspan="2" style="padding:0;background:#000"><img src="skin/dummy.gif" height="1"></td></tr>
 
 <tr>
-<th colspan="2">初期ユーザ</th>
+<th colspan="2">初期メンバー</th>
 </tr>
 <tr>
-<td colspan="2" style="background-color: #ffc">初期ユーザのログイン情報の設定をします。<br>
+<td colspan="2" style="background-color: #ffc">初期メンバーのログイン情報の設定をします。<br>
 プロフィールやその他の設定項目はログイン後に設定してください。</td>
 </tr>
 <tr>
@@ -59,7 +59,7 @@
 <td colspan="2" style="background-color: #ffc">管理画面へのログイン用アカウントの設定をします。</td>
 </tr>
 <tr>
-<th>ユーザ名</th>
+<th>メンバー名</th>
 <td><input type="text" name="admin_username" value="({$requests.admin_username})" size="20"></td>
 </tr>
 <tr>

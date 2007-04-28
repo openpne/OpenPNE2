@@ -31,7 +31,7 @@
 <tr class="cell03">
 <th colspan="2">管理用メールアドレス</th>
 <td>
-<span class="info">ユーザに送られるメールのFromに設定されます</span><br />
+<span class="info">メンバーに送られるメールのFromに設定されます</span><br />
 <input class="basic" name="ADMIN_EMAIL" type="text" value="({$smarty.const.ADMIN_EMAIL})" size="40" /></td>
 </tr>
 <tr class="cell04">
@@ -42,7 +42,7 @@
 </td>
 </tr>
 <tr class="cell05">
-<th colspan="2">ユーザ招待可否</th>
+<th colspan="2">メンバー招待可否</th>
 <td>
 <select class="basic" name="IS_USER_INVITE">
 <option value="1"({if $smarty.const.IS_USER_INVITE}) selected="selected"({/if})>招待可にする</option>
@@ -153,7 +153,7 @@
 <tr class="cell18">
 <th colspan="2">忍び足機能使用設定</th>
 <td>
-<span class="info">忍び足機能(ユーザによるあしあとを残すかどうかの設定)を有効にするかどうかを設定します</span><br />
+<span class="info">忍び足機能(メンバーによるあしあとを残すかどうかの設定)を有効にするかどうかを設定します</span><br />
 <select class="basic" name="USE_SHINOBIASHI">
 <option value="1"({if $smarty.const.USE_SHINOBIASHI}) selected="selected"({/if})>使用する</option>
 <option value="0"({if !$smarty.const.USE_SHINOBIASHI}) selected="selected"({/if})>使用しない</option>
@@ -172,7 +172,7 @@
 <tr class="cell20">
 <th colspan="2">cmdタグ使用設定</th>
 <td>
-<span class="info">独自タグ cmd をユーザが使えるようにするかどうかを設定します</span><br />
+<span class="info">独自タグ cmd をメンバーが使えるようにするかどうかを設定します</span><br />
 <select class="basic" name="OPENPNE_USE_CMD_TAG">
 <option value="1"({if $smarty.const.OPENPNE_USE_CMD_TAG}) selected="selected"({/if})>使用する</option>
 <option value="0"({if !$smarty.const.OPENPNE_USE_CMD_TAG}) selected="selected"({/if})>使用しない</option>

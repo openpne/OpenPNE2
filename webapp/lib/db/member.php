@@ -827,7 +827,7 @@ function db_member_check_profile($profile_list, $public_flag_list)
 }
 
 /**
- * すべてのメンバー（アクティブユーザ）のメンバーIDを取得
+ * すべてのメンバーのメンバーIDを取得
  */
 function db_member_c_member_id_list4null()
 {
@@ -1502,7 +1502,7 @@ function db_member_username4c_member_id($c_member_id, $is_ktai = false)
 }
 
 /**
- * ログインしたユーザのメンバー情報が存在しない場合自動で生成
+ * ログインしたメンバーの情報が存在しない場合自動で生成
  */
 function db_member_create_member($username)
 {

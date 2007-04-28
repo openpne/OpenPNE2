@@ -516,7 +516,7 @@ ID <input type="text" class="text" name="c_member_id_block[]" value="({$item})">
 ({/foreach})
 ID <input type="text" class="text" name="c_member_id_block[]" value=""><br>
 
-※特定のユーザーからのアクセスをブロックします。<br>
+※特定のメンバーからのアクセスをブロックします。<br>
 相手トップページのURL末尾に表示されている数字がIDになります。<br>
 例：(○の部分がID)<br>
 ({t_url _absolute=1 m=pc a=page_f_home})&amp;target_c_member_id=○
