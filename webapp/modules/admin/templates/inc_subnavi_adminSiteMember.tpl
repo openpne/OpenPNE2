@@ -1,6 +1,6 @@
 <div class="subNavi">
 ({if $auth_type == 'all'})
-<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})" title="メンバーリスト: ユーザ登録情報閲覧、メッセージ送信、強制退会">メンバーリスト</a>&nbsp;|&nbsp;
+<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})" title="メンバーリスト: メンバー登録情報閲覧、メッセージ送信、強制退会">メンバーリスト</a>&nbsp;|&nbsp;
 ({/if})
 ({if $auth_type == 'all' || $auth_type == ''})
 <a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('send_invites')})" title="招待メール送信: 複数のメールアドレス宛に招待メールを送信">招待メール送信</a>&nbsp;|&nbsp;

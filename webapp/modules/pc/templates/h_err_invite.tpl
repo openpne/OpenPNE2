@@ -25,7 +25,7 @@
 
 <div class="padding_s">
 
-({$smarty.const.SNS_NAME}) では、ユーザによる招待はおこなえません。
+({$smarty.const.SNS_NAME}) では、メンバーによる招待はおこなえません。
 
 </div>
 

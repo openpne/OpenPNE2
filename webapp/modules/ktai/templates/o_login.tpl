@@ -36,7 +36,7 @@
 ({if !$smarty.const.IS_SLAVEPNE})
 ★携帯アドレス<br>
 ({else})
-★ユーザID<br>
+★メンバーID<br>
 ({/if})
 <textarea name="username" rows="1" istyle="3" mode="alphabet" maxlength="100"></textarea><br>
 ({/if})

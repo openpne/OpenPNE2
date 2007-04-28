@@ -90,7 +90,7 @@ class pc_page_h_diary_edit extends OpenPNE_Action
 	        } else {
 	            $this->set("category", db_diary_category_list4c_diary_id($target_c_diary_id));
 	        }
-	        //ユーザのカテゴリリスト
+	        //メンバーのカテゴリリスト
 	        $this->set("category_list", db_diary_category_list4c_member_id($u));
             $this->set("use_diary_category", true);
         }

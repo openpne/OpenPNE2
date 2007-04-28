@@ -14,7 +14,7 @@
 <p class="actionMsg">({$msg})</p>
 ({/if})
 
-<h3 class="item">アクセスユーザ数（ＰＣ＋携帯の７日以内のログインユーザ数）：({$active_num}) 人</h3>
+<h3 class="item">アクセスメンバー数（ＰＣ＋携帯の７日以内のログインメンバー数）：({$active_num}) 人</h3>
 
 <ul>
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('access_analysis_target_diary')})&ktai_flag=({if $item_str=='PC版'})0({else})1({/if})&ymd=({$nowtime})&month_flag=1&page_name=all&orderby2=-2">今月最もアクセスのあった日記を表示する</a>
@@ -28,7 +28,7 @@
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('access_analysis_member')})&ktai_flag=({if $item_str=='PC版'})0({else})1({/if})&ymd=({$nowtime})&month_flag=1&page_name=all&orderby2=-2">今月最もアクセスをしたメンバーを表示する</a></li>
 </ul>
 
-<h3 class="item">月次別アクセスユーザ数</h3>
+<h3 class="item">月次別アクセスメンバー数</h3>
 
 <table class="basicType2">
 <tbody>
