@@ -188,12 +188,9 @@ define('OPENPNE_MODULES_EXT_DIR', OPENPNE_WEBAPP_EXT_DIR . '/modules');
 
 ///
 // webapp_biz ディレクトリ使用設定
-// PNEBIZ機能を使用する場合は
-// setup/sql/install/option-pnebiz-mysql4X.sqlを実行した後
-// USE_BIZ_DIRをtrueにしてください
-///
-
-define('USE_BIZ_DIR', false);
+//
+// BIZ使用設定は管理画面に移動しました
+// define('USE_EXT_DIR', false);
 define('OPENPNE_WEBAPP_BIZ_DIR' , OPENPNE_DIR . '/webapp_biz');
 define('OPENPNE_MODULES_BIZ_DIR', OPENPNE_WEBAPP_BIZ_DIR . '/modules');
 
@@ -226,6 +223,9 @@ define('LOG_C_ACCESS_LOG', true);
 ///
 // セッション・クッキー設定
 ///
+
+ini_set('session.gc_probability',1);
+ini_set('session.gc_divisor',10000);
 
 ini_set('session.gc_maxlifetime', 432000); // 5 days
 //session_save_path('/tmp');
@@ -260,6 +260,9 @@ define('OPENPNE_SESSION_CHECK_URL', true);
 
 // 画像を別サーバに設定する場合に指定する
 //define('OPENPNE_IMG_URL', 'http://img.example.com/');
+
+//// 画像サーバ用設定 ////
+//define('OPENPNE_IS_IMG_SERVER', false);
 
 // 画像キャッシュをpublic_html以下に置くかどうか(要mod_rewrite)
 define('OPENPNE_IMG_CACHE_PUBLIC', false);
@@ -300,7 +303,6 @@ define('IMAGE_MAX_FILESIZE', 300);
 // アップロード画像の大きさ制限(ピクセル)
 define('IMAGE_MAX_WIDTH', 1024);
 define('IMAGE_MAX_HEIGHT', 768);
-
 
 ///
 // 外部RSS取得
@@ -390,9 +392,15 @@ umask(0);
 
 ///
 // Google Maps API key
+// http://www.google.com/apis/maps/ から取得
 ///
 define('GOOGLE_MAPS_API_KEY', '');
 
+///
+// Google AJAX Search API key
+// http://code.google.com/apis/ajaxsearch/signup.html  から取得
+///
+define('GOOGLE_AJAX_SEARCH_API_KEY', '');
 
 //// SNSアプリケーション設定 ////
 
@@ -434,6 +442,9 @@ define('OPENPNE_DISP_POINT', false);
 // rank表示設定
 define('OPENPNE_DISP_RANK', false);
 
+// CAPTCHA（画像のなかの文字列をユーザに入力させる認証方式）を使用するかどうか
+define('OPENPNE_USE_CAPTCHA', true);
+
 // 外部認証を使用するかどうか
 define('IS_SLAVEPNE' , false);
 
@@ -456,5 +467,13 @@ array(
     'cryptType'   => 'none',
     ),
 );
+
+//画像へのアクセスをSNS認証する
+//※画像静的化機能を用いている場合は利用できません
+define('CHECK_IMG_AUTH', false);
+
+// ファイルアップロード機能を使用するかどうか
+define('OPENPNE_USE_FILEUPLOAD', true);
+
 
 ?>
