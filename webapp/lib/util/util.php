@@ -76,7 +76,7 @@ function openpne_gen_url($module, $action = '', $params = array(), $absolute = t
         break;
     }
 
-    $p = array('m' => $module, 'a' => $action) + $params;
+    $p = array('m' => $module, 'a' => $action) + (array)$params;
     if (need_ssl_param($module, $action, $force)) {
         $p['ssl_param'] = 1;
     } else {
