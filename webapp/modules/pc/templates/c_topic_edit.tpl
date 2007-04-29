@@ -209,7 +209,7 @@
 <div class="padding_s">
 
 ({if $c_topic.filename})
-({$c_topic.filename})<br>
+({$c_topic.original_filename})<br>
 <a href="({t_url m=pc a=do_c_topic_edit_delete_c_commu_topic_comment_file})&amp;target_c_commu_topic_id=({$c_topic.c_commu_topic_id})&amp;sessid=({$PHPSESSID})">削除</a><br>
 ({/if})
 <input type="file" name="filename4" size="40">

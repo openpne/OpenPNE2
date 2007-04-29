@@ -46,6 +46,11 @@ class pc_page_c_topic_edit extends OpenPNE_Action
             $c_topic['body'] = $body;
         }
 
+        if (!empty($c_topic['filename'])) {
+            $original_filename = db_file_original_filename4filename($c_topic['filename']);
+            $c_topic['original_filename'] = $original_filename;
+        }
+
         $this->set('err_msg', $err_msg);
         $this->set('c_topic', $c_topic);
         return 'success';
