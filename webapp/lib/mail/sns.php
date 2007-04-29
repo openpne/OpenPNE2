@@ -255,6 +255,10 @@ class mail_sns
             }
         }
 
+        //日記を書いた人にポイント付与
+        $point = db_action_get_point4c_action_id(4);
+        db_point_add_point($this->c_member_id, $point);
+
         return true;
     }
 
