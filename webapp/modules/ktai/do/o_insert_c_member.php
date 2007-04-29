@@ -152,6 +152,8 @@ class ktai_do_o_insert_c_member extends OpenPNE_Action
 
         if ($aff_id) {
             $p = array('aff_id' => $aff_id);
+        } else {
+            $p = array();
         }
         
         openpne_redirect('ktai', 'page_o_regist_end',$p);
