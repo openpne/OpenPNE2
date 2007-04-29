@@ -37,7 +37,7 @@ class pc_page_c_edit_member extends OpenPNE_Action
 
         $page += $direc;
 
-        //コミュニティメンバリスト
+        //コミュニティメンバーリスト
         $list = p_c_edit_member_c_member_list4c_commu_id($target_c_commu_id, $page_size, $page);
         $this->set("c_member_list", $list[0]);
         $this->set("is_prev", $list[1]);

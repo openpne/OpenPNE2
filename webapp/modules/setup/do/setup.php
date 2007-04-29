@@ -19,7 +19,7 @@ class setup_do_setup extends OpenPNE_Action
             $errors[] = 'パスワードが一致していません';
         }
         if ($requests['admin_password'] != $requests['admin_password2']) {
-            $errors[] = '管理者パスワードが一致していません';
+            $errors[] = '管理用パスワードが一致していません';
         }
         if ($errors) {
             $this->handleError($errors);

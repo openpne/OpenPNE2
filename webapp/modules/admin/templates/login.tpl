@@ -11,7 +11,7 @@
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('login','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
-<strong class="item"><label for="username">管理者名</label></strong></dt>
+<strong class="item"><label for="username">アカウント名</label></strong></dt>
 <dd><input tabindex="1" name="username" id="username" type="text" class="basic" size="20" /></dd>
 <dt><strong class="item"><label for="password">パスワード</label></strong></dt>
 <dd><input tabindex="2" name="password" id="password" type="password" class="basic" size="20" /></dd>

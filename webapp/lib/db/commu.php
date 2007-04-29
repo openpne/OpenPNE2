@@ -394,7 +394,7 @@ function db_commu_c_commu_id4c_commu_topic_id($c_commu_topic_id)
     return db_get_one($sql, $params);
 }
 
-// $c_commu_id の community に参加しているメンバを返す
+// $c_commu_id の community に参加しているメンバーを返す
 function db_commu_c_member_list4c_commu_id($c_commu_id, $page_size, $page)
 {
     $c_commu = _db_c_commu4c_commu_id($c_commu_id);
@@ -1244,7 +1244,7 @@ function db_commu_c_commu_topic_name4c_commu_topic_id($c_commu_topic_id)
 
 /**
  * トピックのコメントリストを取得
- * 引数のメンバＩＤが書き込んだコメントに対しては、
+ * 引数のメンバーIDが書き込んだコメントに対しては、
  * is_c_commu_topic_comment_admin=1が返る。
  */
 function db_commu_c_commu_topic_comment_list4c_c_commu_topic_id($c_commu_topic_id, $c_member_id, $page_size, $page)
@@ -1284,7 +1284,7 @@ function db_commu_c_commu_topic_comment_list4c_c_commu_topic_id($c_commu_topic_i
 }
 
 /**
- * トピックＩＤからコミュニティIDと名前を取得
+ * トピックIDからコミュニティIDと名前を取得
  */
 function db_commu_c_commu4c_commu_topic_id($c_commu_topic_id)
 {
@@ -1296,7 +1296,7 @@ function db_commu_c_commu4c_commu_topic_id($c_commu_topic_id)
 }
 
 /**
- * 指定したメンバがコミュニティ管理者かどうかを判定
+ * 指定したメンバーがコミュニティ管理者かどうかを判定
  */
 function db_commu_is_admin4c_member_id_c_commu_topic_id($c_member_id, $c_commu_topic_id)
 {
@@ -1325,7 +1325,7 @@ function db_commu_c_member_admin4c_commu_topic_id($c_commu_topic_id)
 /**
  * 参加コミュニティリストを取得
  * 範囲を指定できる
- * ＩＤが新しいもの順
+ * IDが新しいもの順
  */
 function db_commu_c_commu_list4c_member_id_4($c_member_id, $page_size, $page)
 {
@@ -1361,7 +1361,7 @@ function db_commu_c_commu_list4c_member_id_4($c_member_id, $page_size, $page)
 }
 
 /**
- * メンバＩＤのメンバと、コミュニティＩＤのコミュニティの関係を返す
+ * メンバーIDのメンバーと、コミュニティIDのコミュニティの関係を返す
  */
 function db_commu_relationship_between_member_commu($c_commu_id, $c_member_id)
 {
@@ -1394,7 +1394,7 @@ function db_commu_relationship_between_member_commu($c_commu_id, $c_member_id)
 }
 
 /**
- * コミュニティのメンバリストをランダムに取得
+ * コミュニティのメンバーリストをランダムに取得
  */
 function db_commu_c_commu_member_list_random4c_commu_id($c_commu_id, $limit)
 {
@@ -1425,7 +1425,7 @@ function db_commu_c_commu_member_list_random4c_commu_id($c_commu_id, $limit)
 }
 
 /**
- * コミュニティメンバのリストをID新しいもの順に取得する。
+ * コミュニティメンバーのリストをID新しいもの順に取得する。
  * 取得する範囲を指定できる。
  */
 function db_commu_c_members_disp4c_commu_id($c_commu_id, $page_size, $page)
@@ -1657,7 +1657,7 @@ function db_commu_get_c_commu_category4id($c_commu_category_id)
 }
 
 /** 
- * コミュニティの小カテゴリＩＤから小カテゴリ名を得る
+ * コミュニティの小カテゴリIDから小カテゴリ名を得る
  */
 function db_commu_c_commu_category_name4c_commu_category_id($c_commu_category_id)
 {

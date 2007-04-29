@@ -38,7 +38,7 @@ define('OPENPNE_DEBUGGING', 1);
 //$GLOBALS['_OPENPNE_DISABLE_MODULES'] = array('admin', 'setup');
 
 // メンテナンスモード
-// true: ユーザにメンテナンス画面を表示
+// true: ユーザーにメンテナンス画面を表示
 define('OPENPNE_UNDER_MAINTENANCE', false);
 
 // メンテナンス中でも表示するモジュール名
@@ -158,7 +158,7 @@ $GLOBALS['_OPENPNE_SSL_REQUIRED'] = array(
     'page_h_config_password', 'do_h_config_password_update_password',
 ));
 
-// SSLを使用するかどうかユーザが選択できるアクションリスト
+// SSLを使用するかどうかをユーザーが選択できるアクションリスト
 $GLOBALS['_OPENPNE_SSL_SELECTABLE'] = array(
 'pc' => array(
     'page_h_config', 'do_h_config_1', 'do_h_config_2', 'do_h_config_3',
@@ -437,7 +437,7 @@ define('OPENPNE_MESSAGE_QUEUE', false);
 // メッセージキューで一度に送信するメッセージの数
 define('SEND_MESSAGE_QUEUE_NUM', 10);
 
-// CAPTCHA（画像のなかの文字列をユーザに入力させる認証方式）を使用するかどうか
+// CAPTCHA（画像のなかの文字列をメンバーに入力させる認証方式）を使用するかどうか
 define('OPENPNE_USE_CAPTCHA', true);
 
 // 外部認証を使用するかどうか

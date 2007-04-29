@@ -35,7 +35,7 @@ class ktai_page_c_home extends OpenPNE_Action
         //コミュニティ情報
         $this->set("c_commu", db_commu_c_commu4c_commu_id_k($target_c_commu_id));
 
-        //コミュニティメンバリスト
+        //コミュニティメンバーリスト
         $this->set("c_commu_member_list",
             k_p_c_home_c_commu_member_list_random4c_commu_id($target_c_commu_id, 5));
 

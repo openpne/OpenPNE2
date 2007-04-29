@@ -81,7 +81,7 @@ class mail_sns
             if (MAIL_ADDRESS_HASHED) {
                 if (empty($matches[2])) return false;
 
-                // ユーザハッシュのチェック
+                // メンバーハッシュのチェック
                 if ($matches[2] != t_get_user_hash($this->c_member_id)) {
                     return false;
                 }
@@ -102,11 +102,11 @@ class mail_sns
             if (MAIL_ADDRESS_HASHED) {
                 if (empty($matches[1]) || empty($matches[2])) return false;
 
-                // ユーザIDのチェック
+                // メンバーIDのチェック
                 if ($matches[1] != $this->c_member_id) {
                     return false;
                 }
-                // ユーザハッシュのチェック
+                // メンバーハッシュのチェック
                 if ($matches[2] != t_get_user_hash($this->c_member_id)) {
                     return false;
                 }
@@ -124,7 +124,7 @@ class mail_sns
             preg_match('/^p(\d+)-([0-9a-f]{12})$/', $to_user, $matches)
         ) {
 
-            // ユーザIDのチェック
+            // メンバーIDのチェック
             if ($matches[1] != $this->c_member_id) {
                 return false;
             }
@@ -132,7 +132,7 @@ class mail_sns
             if (MAIL_ADDRESS_HASHED) {
                 if (empty($matches[2])) return false;
 
-                // ユーザハッシュのチェック
+                // メンバーハッシュのチェック
                 if ($matches[2] != t_get_user_hash($this->c_member_id)) {
                     return false;
                 }

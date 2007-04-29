@@ -53,7 +53,7 @@ class pc_page_h_home extends OpenPNE_Action
 
         /// 左側 ///
 
-        // メンバ情報
+        // メンバー情報
         $c_member = db_member_c_member4c_member_id($u);
         $this->set('c_member', $c_member);
         // フレンドリスト
@@ -127,7 +127,7 @@ class pc_page_h_home extends OpenPNE_Action
             //お気に入りの最新ブログ
             $this->set('bookmark_blog_list', db_bookmark_blog_list($u, 5));
 
-            //お気に入りのメンバ
+            //お気に入りのメンバー
             $bookmark_member_list = db_bookmark_member_list($u, 9);
             $this->set('bookmark_member_list', $bookmark_member_list);
             $this->set('bookmark_count', db_bookmark_count($u));

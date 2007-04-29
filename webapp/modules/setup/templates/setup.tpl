@@ -59,15 +59,15 @@
 <td colspan="2" style="background-color: #ffc">管理画面へのログイン用アカウントの設定をします。</td>
 </tr>
 <tr>
-<th>メンバー名</th>
+<th>管理用アカウント名</th>
 <td><input type="text" name="admin_username" value="({$requests.admin_username})" size="20"></td>
 </tr>
 <tr>
-<th>パスワード</th>
+<th>管理用パスワード</th>
 <td><input type="password" name="admin_password" value="" size="15"></td>
 </tr>
 <tr>
-<th>パスワード(確認)</th>
+<th>管理用パスワード(確認)</th>
 <td><input type="password" name="admin_password2" value="" size="15"></td>
 </tr>
 

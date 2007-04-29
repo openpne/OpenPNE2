@@ -784,7 +784,7 @@ function _do_c_diary_comment4c_diary_comment_id($c_diary_comment_id)
 }
 
 /**
- * ターゲットメンバの最新日記のリストを返す
+ * メンバーの最新日記のリストを返す
  */
 function k_p_f_home_c_diary_list4c_member_id($c_member_id, $limit)
 {
@@ -878,7 +878,7 @@ function k_p_fh_diary_c_diary_comment_list4c_diary_id($c_diary_id, $page_size, $
 }
 
 /**
- * 日記ＩＤからその日記を書いたメンバＩＤとニックネームと日記公開範囲を得る
+ * 日記IDからその日記を書いたメンバーIDとニックネームと日記公開範囲を得る
  */
 function k_p_fh_diary_c_member4c_diary_id($c_diary_id)
 {

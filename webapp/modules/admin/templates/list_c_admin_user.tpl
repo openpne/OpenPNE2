@@ -10,7 +10,7 @@
 ({if $msg})<p class="actionMsg">({$msg})</p>({/if})
 <h2>アカウント管理</h2>
 <div class="contents">
-<p class="info">管理ページ用のアカウントを設定します。</p>
+<p class="info">管理用アカウントを設定します。</p>
 <p class="add"><strong class="item"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('insert_c_admin_user')})">アカウントを追加する</a></strong></p>
 
 <form action="./" method="post" name="formSendMessages">
@@ -21,7 +21,7 @@
 ({capture name="table_header"})
 <tr>
 <th>ID</th>
-<th>ユーザ名</th>
+<th>アカウント名</th>
 <th>権限</th>
 <th>操作</th>
 </tr>

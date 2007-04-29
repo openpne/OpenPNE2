@@ -466,7 +466,7 @@ function db_friend_c_friend_list_random4c_member_id($c_member_id, $limit)
 }
 
 /**
- * ２つのメンバＩＤからその２人の関係を返す。
+ * ２つのメンバーIDからその２人の関係を返す。
  */
 function db_friend_relationship4two_members($c_member_id, $target_c_member_id)
 {

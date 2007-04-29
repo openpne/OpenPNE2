@@ -246,7 +246,7 @@
 <form action="./" method="get" name="formSendMessagesIDList">
 <input type="hidden" name="m" value="({$module_name})">
 <input type="hidden" name="a" value="page_({$hash_tbl->hash('send_messages_id_list')})">
-<input type="submit" id="btnSelectUser" value="ユーザを指定してメッセージ／Eメールを送る">
+<input type="submit" id="btnSelectUser" value="メンバーを指定してメッセージ／Eメールを送る">
 </form>
 
 <br>

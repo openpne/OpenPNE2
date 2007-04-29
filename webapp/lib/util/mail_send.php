@@ -570,7 +570,7 @@ function do_common_send_message_syoukai_commu_mail_send($c_member_id_to, $c_memb
     return fetch_send_mail($pc_address, 'm_pc_message_syoukai_commu', $params, $is_receive_mail);
 }
 
-// メンバ紹介
+// メンバー紹介
 function do_common_send_message_syoukai_member_mail_send($c_member_id_to, $c_member_id_from)
 {
     //メール
@@ -769,7 +769,7 @@ function send_mail_rankup2admin($target_c_member_id)
 
     $body = <<<EOD
 ID：{$c_member['c_member_id']}
-ユーザ名：{$c_member['nickname']}
+ニックネーム：{$c_member['nickname']}
 {$rank['name']}にランクアップしました。
 ランクUP日：{$now}
 EOD;

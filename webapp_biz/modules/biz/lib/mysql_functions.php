@@ -161,12 +161,12 @@ function biz_isPermissionSchedule($u, $biz_schedule_id)
             return false;
         }
         break;
-    default :  //すべてのユーザに権限が与えられる予定
+    default :  //すべてのメンバーに権限が与えられる予定
         return true;
     }
 }
 
-//指定された日付に存在する特定ユーザの予定idのみを得る関数
+//指定された日付に存在する特定メンバーの予定idのみを得る関数
 function biz_getDateMemberSchedule($y, $m, $d, $target_c_member_id, $u)
 {
     $schedule = array();
@@ -212,7 +212,7 @@ function biz_getDateMemberSchedule($y, $m, $d, $target_c_member_id, $u)
     return $schedule;
 }
 
-//指定された予定idの保持するユーザidを得る関数
+//指定された予定idの保持するメンバーIDを得る関数
 function biz_getJoinIdSchedule($id)
 {
     $sql = 'SELECT c_member_id FROM biz_schedule_member WHERE biz_schedule_id = ?';
@@ -225,7 +225,7 @@ function biz_getJoinIdSchedule($id)
     return $ids;
 }
 
-//指定されたユーザidと関連付いた未読予定idを得たうえに、予定のデータまでつけてしまう関数
+//指定されたメンバーIDと関連付いた未読予定idを得たうえに、予定のデータまでつけてしまう関数
 function biz_getJoinIdNewSchedule($id)
 {
     $sql = 'SELECT biz_schedule_id FROM biz_schedule_member WHERE c_member_id = ? AND is_read = 0;';
@@ -246,7 +246,7 @@ function biz_getJoinIdNewSchedule($id)
     return $schedule;
 }
 
-//指定された予定IDを保持しているユーザ名を得る関数
+//指定された予定IDを保持しているメンバー情報を得る関数
 function biz_getJoinMemberSchedule($id)
 {
     $sql = 'SELECT c_member_id FROM biz_schedule_member WHERE biz_schedule_id = ?';
@@ -646,7 +646,7 @@ function biz_isPermissionTodo($u, $biz_todo_id)
             return false;
         }
         break;
-    default :  //すべてのユーザに権限が与えられるTodo
+    default :  //すべてのメンバーに権限が与えられるTodo
         return true;
     }
 }
