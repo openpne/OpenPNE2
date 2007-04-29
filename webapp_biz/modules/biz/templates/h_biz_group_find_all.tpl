@@ -3,7 +3,7 @@
 ({***************************})
 ({**ここから：メインコンテンツ**})
 ({***************************})
-({capture name="keyword_url"})({$keyword|escape:url})({/capture})
+({capture name="keyword_url"})({$keyword|escape:url|smarty:nodefaults})({/capture})
 
 <img src="./skin/dummy.gif" class="v_spacer_l">
 

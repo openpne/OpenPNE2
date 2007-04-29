@@ -63,9 +63,9 @@
 
 <div class="padding_s">
 
-<a href="({t_url m=pc a=page_h_review_search})&amp;keyword=({$keyword|escape:"url"})&amp;category=({$category})&amp;orderby=r_num">登録数順</a>
+<a href="({t_url m=pc a=page_h_review_search})&amp;keyword=({$keyword|escape:url|smarty:nodefaults})&amp;category=({$category})&amp;orderby=r_num">登録数順</a>
 |
-<a href="({t_url m=pc a=page_h_review_search})&amp;keyword=({$keyword|escape:"url"})&amp;category=({$category})&amp;orderby=r_datetime">作成日順</a>
+<a href="({t_url m=pc a=page_h_review_search})&amp;keyword=({$keyword|escape:url|smarty:nodefaults})&amp;category=({$category})&amp;orderby=r_datetime">作成日順</a>
 
 </div>
 
