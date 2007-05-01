@@ -25,8 +25,9 @@
 ﾒﾝﾊﾞｰ<br>
 <select name="target_c_member_id">
 ({foreach from=$c_member_list item=item})
-({if $item.c_member_id != $u})
-<option value="({$item.c_member_id})">({$item.nickname})
+({if $item.c_member_id != $u
+ && $item.c_commu_admin_confirm_id le 0})
+ <option value="({$item.c_member_id})">({$item.nickname})
 ({/if})
 ({/foreach})
 </select><br>
@@ -43,7 +44,9 @@
 ﾒﾝﾊﾞｰ<br>
 <select name="target_c_member_id">
 ({foreach from=$c_member_list item=item})
-({if $item.c_member_id != $u && $item.c_member_id != $c_commu.c_member_id_sub_admin})
+({if $item.c_member_id != $u && $item.c_member_id != $c_commu.c_member_id_sub_admin
+ && $item.c_commu_sub_admin_confirm_id le 0})
+})
 <option value="({$item.c_member_id})">({$item.nickname})
 ({/if})
 ({/foreach})

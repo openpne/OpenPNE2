@@ -26,6 +26,16 @@ class pc_page_c_sub_admin_request extends OpenPNE_Action
         if (db_commu_is_c_commu_sub_admin($target_c_commu_id, $u)) {
             handle_kengen_error();
         }
+
+        $target_c_commu_sub_admin_confirm_list =
+            db_commu_anatani_c_commu_sub_admin_confirm_list4c_member_id($target_c_member_id);
+        if (!empty($target_c_commu_sub_admin_confirm_list)) {
+            foreach ($target_c_commu_sub_admin_confirm_list as $value) {
+                if ($value['c_commu_id'] == $target_c_commu_id) {
+                    handle_kengen_error();
+                }
+            }
+        }
         //---
 
         $this->set('inc_navi', fetch_inc_navi("c", $target_c_commu_id));
