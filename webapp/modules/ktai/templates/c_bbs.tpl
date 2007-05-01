@@ -42,7 +42,9 @@
 ({if $c_commu_topic.image_filename3})画像：[<a href="({t_img_url filename=$c_commu_topic.image_filename3 w=120 h=120 f=jpg})">小</a>/<a href="({t_img_url filename=$c_commu_topic.image_filename3 f=jpg})">大</a>]<br>({/if})
 ({$c_commu_topic.r_datetime|date_format:"%m/%d %H:%M"})<br>
 
+({if $c_commu_topic.member_num})
 <a href="({t_url m=ktai a=page_c_event_member_list})&amp;target_c_commu_topic_id=({$c_commu_topic.c_commu_topic_id})&amp;({$tail})">参加者ﾘｽﾄ</a><br>
+({/if})
 ({if $is_c_event_admin})
 <a href="({t_url m=ktai a=page_c_event_mail})&amp;target_c_commu_topic_id=({$c_commu_topic.c_commu_topic_id})&amp;({$tail})">一括ﾒｯｾｰｼﾞを送る</a><br>
 ({/if})
@@ -94,12 +96,10 @@
 <input type="hidden" name="target_c_commu_topic_id" value="({$c_commu_topic_id})">
 <textarea name="body"></textarea><br>
 ({if $c_commu_topic.event_flag})
-({if !$is_c_event_admin})
 ({if !$is_c_event_member})
 <input name="join_event" type="submit" value="ｲﾍﾞﾝﾄに参加する"><br>
 ({else})
 <input name="cancel_event" type="submit" value="参加をｷｬﾝｾﾙする"><br>
-({/if})
 ({/if})
 <input name="write_comment" type="submit" value="ｺﾒﾝﾄのみ書き込む">
 ({else})

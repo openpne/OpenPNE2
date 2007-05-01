@@ -375,9 +375,9 @@
 <td style="width:50%;text-align:right;">
 
 <div class="padding_s">
-
+({if $c_topic.member_num})
 <img src="./skin/dummy.gif" class="icon arrow_1"><a href="({t_url m=pc a=page_c_event_member_list})&amp;target_c_commu_topic_id=({$c_topic.c_commu_topic_id})">参加者一覧を見る</a>&nbsp;
-
+({/if})
 </div>
 
 </td>
@@ -810,9 +810,7 @@
 
 <div class="padding_w_m">
 
-({if $is_c_event_admin})
-<input type="submit" class="submit" name="button" value="コメントのみ書き込む">
-({elseif $is_c_event_member})
+({if $is_c_event_member})
 <input type="submit" class="submit" name="button" value="参加をキャンセルする">
 <input type="submit" class="submit" name="button" value="コメントのみ書き込む">
 ({elseif $is_c_commu_member})
