@@ -1,6 +1,6 @@
-INSERT INTO c_cmd VALUES ('','blog-apart.com',127);
-INSERT INTO c_cmd VALUES ('','livlyisland',127);
-INSERT INTO c_cmd VALUES ('','tagfriends',127);
-INSERT INTO c_cmd VALUES ('','www.blog-apart.com',127);
-INSERT INTO c_cmd VALUES ('','slurl.com',127);
-INSERT INTO c_cmd VALUES ('','www.netprice.co.jp',127);
+INSERT INTO c_cmd VALUES (NULL,'blog-apart.com',127);
+INSERT INTO c_cmd VALUES (NULL,'livlyisland',127);
+INSERT INTO c_cmd VALUES (NULL,'tagfriends',127);
+INSERT INTO c_cmd VALUES (NULL,'www.blog-apart.com',127);
+INSERT INTO c_cmd VALUES (NULL,'slurl.com',127);
+INSERT INTO c_cmd VALUES (NULL,'www.netprice.co.jp',127);
