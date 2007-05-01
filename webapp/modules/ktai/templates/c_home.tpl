@@ -45,7 +45,7 @@
 <hr>
 <a name="news">新着ﾘｽﾄ</a>
 ({if $is_c_commu_view})
-<font color="green">[ﾄﾋﾟｯｸﾘｽﾄ]</font><br>
+<br><font color="green">[ﾄﾋﾟｯｸﾘｽﾄ]</font><br>
 ({foreach from=$new_topic_comment item=item})
 　[({$item.r_datetime|date_format:"%m/%d"})]<a href="({t_url m=ktai a=page_c_bbs})&amp;target_c_commu_topic_id=({$item.c_commu_topic_id})&amp;({$tail})">({$item.name})</a>(({$item.count_comments}))<br>
 ({foreachelse})
