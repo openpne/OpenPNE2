@@ -90,8 +90,10 @@ class pc_page_c_topic_add_confirm extends OpenPNE_Action
         
         //-----
 
-        //画像をvar/tmpフォルダにコピー
         t_image_clear_tmp($sessid);
+        t_file_clear_tmp($sessid);
+
+        //画像をvar/tmpフォルダにコピー
         $tmpfile1 = t_image_save2tmp($upfile_obj1, $sessid, "t_1");
         $tmpfile2 = t_image_save2tmp($upfile_obj2, $sessid, "t_2");
         $tmpfile3 = t_image_save2tmp($upfile_obj3, $sessid, "t_3");
