@@ -31,7 +31,7 @@ class ktai_page_c_edit_member extends OpenPNE_Action
         $this->set("page", $page);
 
         //メンバーリスト
-        $list = k_p_c_member_list_c_members_disp4c_commu_id($target_c_commu_id, $page_size, $page);
+        $list = db_commu_c_member_list4c_commu_id($target_c_commu_id, $page_size, $page);
         $this->set("c_member_list", $list[0]);
         $this->set("is_prev", $list[1]);
         $this->set("is_next", $list[2]);
