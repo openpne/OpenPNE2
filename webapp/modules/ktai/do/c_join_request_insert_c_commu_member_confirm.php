@@ -44,13 +44,6 @@ class ktai_do_c_join_request_insert_c_commu_member_confirm extends OpenPNE_Actio
         }
         //---
 
-        //年齢制限チェック
-        $c_commu = db_commu_c_commu4c_commu_id($target_c_commu_id);
-
-        if ($c_commu['is_adult'] && !db_is_adult($u)) {
-            ktai_display_error('18歳未満の方はこのコミュニティに参加できません');
-        }
-
         db_commu_insert_c_commu_member_confirm($target_c_commu_id, $c_member_id_from, $body);
 
         //メッセージ

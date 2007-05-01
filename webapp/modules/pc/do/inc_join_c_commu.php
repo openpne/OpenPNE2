@@ -15,14 +15,6 @@ class pc_do_inc_join_c_commu extends OpenPNE_Action
 
         $target_c_commu_id = $requests['target_c_commu_id'];
 
-        //年齢制限チェック
-        $c_commu = db_commu_c_commu4c_commu_id($target_c_commu_id);
-
-        if ($c_commu['is_adult'] && !db_is_adult($u)) {
-            $p = array('target_c_commu_id' => $target_c_commu_id);
-            openpne_redirect('pc', 'page_c_join_err_age', $p);
-        }
-
         $status = do_common_get_c_join_status($u, $target_c_commu_id);
 
         //非公開コミュニティに管理者から招待されている場合は強制的に承認を回避
