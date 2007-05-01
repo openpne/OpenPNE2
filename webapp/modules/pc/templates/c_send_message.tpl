@@ -45,14 +45,12 @@
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 <td style="width:564px;" class="bg_09" align="left">
 
+({if $c_commu.member_count!=1})
+
 <div class="padding_w_s lh_120">
 
-({if $c_commu.member_count!=1})
 コミュニティ参加者にメッセージを送信します。<br>
 ※管理者からのメッセージ受信設定を「受け取らない」にしているメンバーには届きませんので注意してください。
-({else})
-メッセージを送信するメンバーがいません。
-({/if})
 
 </div>
 
@@ -175,6 +173,24 @@
 ({*********})
 </table>
 <!-- ここまで：主内容 -->
+
+({else})
+<div class="padding_w_s lh_120">
+
+メッセージを送信するメンバーがいません。
+
+</div>
+
+</td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+</tr>
+({*********})
+<tr>
+<td class="bg_01" colspan="3"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+</tr>
+({*********})
+</table>
+({/if})
 
 ({*ここまで：body*})
 ({*ここから：footer*})
