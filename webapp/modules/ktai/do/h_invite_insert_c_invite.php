@@ -16,8 +16,6 @@ class ktai_do_h_invite_insert_c_invite extends OpenPNE_Action
 
         if (!IS_USER_INVITE) {
             ktai_display_error(SNS_NAME . 'では、メンバーによる招待は行えません');
-        } elseif (db_is_c_black_list($requests['mail_address'])) {
-            ktai_display_error("このメールアドレスには招待状は送れません");
         }
 
         // --- リクエスト変数

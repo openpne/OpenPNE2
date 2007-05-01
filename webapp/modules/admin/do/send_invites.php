@@ -33,13 +33,10 @@ class admin_do_send_invites extends OpenPNE_Action
                 continue;
             }
 
-
             if (db_member_is_sns_join4mail_address($mail)) { // 登録済み
                 $errors[] = $mail;
             } elseif (!db_member_is_limit_domain4mail_address($mail)) { // ドメイン制限
                 $limits[] = $mail;
-            } elseif (db_is_c_black_list($mail)) {
-                $blacks[] = $mail;
             } elseif (is_ktai_mail_address($mail)) {
                 $ktais[] = $mail;
             } else {
@@ -53,7 +50,6 @@ class admin_do_send_invites extends OpenPNE_Action
             $_REQUEST['pc_mails'] = $pcs;
             $_REQUEST['ktai_mails'] = $ktais;
             $_REQUEST['limit_domain_mails'] = $limits;
-            $_REQUEST['black_list_mails'] = $blacks;
             openpne_forward($module_name, 'page', 'send_invites_confirm');
             exit;
 

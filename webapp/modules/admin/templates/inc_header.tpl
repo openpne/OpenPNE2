@@ -46,9 +46,6 @@
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('csv_download')})">CSVダウンロード</a></li>
 ({/if})
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('import_c_member')})">CSVインポート</a></li>
-({if $auth_type == 'all'})
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_black_list')})">ブラックリスト</a></li>
-({/if})
 
 </ul>
 </li>

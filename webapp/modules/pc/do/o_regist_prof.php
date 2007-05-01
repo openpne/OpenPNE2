@@ -129,12 +129,6 @@ class pc_do_o_regist_prof extends OpenPNE_Action
 
             $pre = db_member_c_member_pre4sid($sid);
 
-            // ブラックリストチェック
-            if (db_is_c_black_list($pre['pc_address'])) {
-                $p = array('msg' => "このメールアドレスでは登録できません");
-                openpne_redirect('pc', 'page_o_err_free_page', $p);
-            }
-
             // c_member, c_member_secure
             $c_member = $prof;
             $c_member['c_member_id_invite'] = $pre['c_member_id_invite'];

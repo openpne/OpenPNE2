@@ -787,16 +787,6 @@ function db_c_holiday_list4date($m, $d)
     return db_get_col($sql, $params);
 }
 
-
-//ブラックリストに載っているかチェック
-function db_is_c_black_list($address)
-{
-    $sql = 'SELECT c_black_list_id FROM c_black_list WHERE address = ?';
-    $params = array(t_encrypt(strval($address)));
-    return db_get_one($sql, $params);
-}
-
-
 //年齢チェック(規定の年齢以上かどうか)
 function db_is_adult($c_member_id)
 {
