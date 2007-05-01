@@ -10,7 +10,7 @@ function urllink(url) {
 }
 
 function url2cmd(url) {
-    if (!url.match(/^http:\/\/(?:www\.|)blog\-apart\.com\/([a-zA-Z0-9_-]+)\//)) {
+    if (!url.match(/^http:\/\/(?:www\.|)blog\-apart\.com\/([a-zA-Z0-9_\-]+)\//)) {
         urllink(url);
         return false;
     }
@@ -21,7 +21,7 @@ function url2cmd(url) {
 }
 
 function main(id) {
-    if (!id.match(/^[a-zA-Z0-9_-]+$/)) {
+    if (!id.match(/^[a-zA-Z0-9_\-]+$/)) {
         return false;
     }
     switch (id) {

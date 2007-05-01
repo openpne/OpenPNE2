@@ -1,6 +1,6 @@
 // cmd for www.netprice.co.jp
 function url2cmd(url) {
-    if (url.match(/^http:\/\/www\.netprice\.co.jp\/netprice\/.*\/([-0-9A-Za-z]+)\/?$/)) {
+    if (url.match(/^http:\/\/www\.netprice\.co.jp\/netprice\/.*\/([\-0-9A-Za-z]+)\/?$/)) {
     	goods(url);
     } else {
     	others(url);

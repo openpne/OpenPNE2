@@ -1,6 +1,6 @@
 //MASTER:flipclip.net.js SLAVE:www.flipclip.net.js
 function url2cmd(url) {
-    if (!url.match(/^http:\/\/(?:www\.|)flipclip\.net\/clips\/([a-zA-Z0-9_-]+)\/([a-zA-Z0-9_-]+)\/?$/)) {
+    if (!url.match(/^http:\/\/(?:www\.|)flipclip\.net\/clips\/([a-zA-Z0-9_\-]+)\/([a-zA-Z0-9_\-]+)\/?$/)) {
         return;
     }
     var userid = RegExp.$1
@@ -9,7 +9,7 @@ function url2cmd(url) {
 }
 
 function main(userid, clipid) {
-    if (!clipid.match(/^[a-zA-Z0-9_-]+$/) || !userid.match(/^[a-zA-Z0-9_-]+$/)) {
+    if (!clipid.match(/^[a-zA-Z0-9_\-]+$/) || !userid.match(/^[a-zA-Z0-9_\-]+$/)) {
         return;
     }
 

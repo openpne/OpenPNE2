@@ -1,5 +1,5 @@
 function main(id, width, height) {
-    if (!id.match(/^[a-zA-Z0-9_-]+$/)) {
+    if (!id.match(/^[a-zA-Z0-9_\-]+$/)) {
         return;
     }
     if (!width) width = 0; else width = parseInt(width);

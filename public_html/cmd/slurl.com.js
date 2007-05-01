@@ -7,7 +7,7 @@ function urllink(url) {
 }
 
 function url2cmd(url) {
-    if (!url.match(/^http:\/\/slurl\.com\/secondlife\/([a-zA-Z0-9_-]+)\/([0-9]+)\/([0-9]+)\/([0-9]+)/)) {
+    if (!url.match(/^http:\/\/slurl\.com\/secondlife\/([a-zA-Z0-9_\-]+)\/([0-9]+)\/([0-9]+)\/([0-9]+)/)) {
         urllink(url);
         return false;
     }
