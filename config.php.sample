@@ -69,6 +69,9 @@ define('SESSION_SAVE_DB', false);
 // 確認画面用の一時画像をDBに保存するかどうか
 define('OPENPNE_TMP_IMAGE_DB', false);
 
+// 確認画面用の一時ファイルをDBに保存するかどうか
+define('OPENPNE_TMP_FILE_DB', false);
+
 ///
 // DBサーバ設定
 ///

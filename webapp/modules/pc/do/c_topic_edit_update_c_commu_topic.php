@@ -106,6 +106,7 @@ class pc_do_c_topic_edit_update_c_commu_topic extends OpenPNE_Action
             $filename4 = file_insert_c_file4tmp("t_{$c_commu_topic_id}_4", $tmpfile4, $upfile_obj4['name']);
         }
         t_image_clear_tmp(session_id());
+        t_file_clear_tmp(session_id());
 
 
         $update_c_commu_topic = array(

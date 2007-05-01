@@ -77,6 +77,7 @@ class pc_do_c_topic_add_insert_c_commu_topic extends OpenPNE_Action
 
         //テンポラリファイルを削除(画像と同時)
         t_image_clear_tmp(session_id());
+        t_file_clear_tmp(session_id());
 
         $insert_c_commu_topic_comment = array(
             "c_commu_id"       => $c_commu_id,

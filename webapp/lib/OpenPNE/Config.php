@@ -143,6 +143,7 @@ class OpenPNE_Config
             'OPENPNE_USE_API' => false,
             'SESSION_SAVE_DB' => false,
             'OPENPNE_TMP_IMAGE_DB' => false,
+            'OPENPNE_TMP_FILE_DB' => false,
             'OPENPNE_USE_PARTIAL_SSL' => false,
             'OPENPNE_USE_SSL_PARAM' => false,
             'OPENPNE_IMG_URL' => '',
