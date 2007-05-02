@@ -159,6 +159,11 @@ function db_rss_insert_rss_cache($rss_url, $c_member_id)
     }
 
     foreach ($items as $item) {
+        // エスケープされた文字列を元に戻す
+        $trans_table = array_flip(get_html_translation_table());
+        $item['title'] = strtr($item['title'], $trans_table);
+        $item['body'] = strtr($item['body'], $trans_table);
+
         // 最新のものと比較
         if (!db_is_duplicated_rss_cache($c_member_id, $item['date'], $item['link']) &&
             !db_is_future_rss_item($item['date'])) {
