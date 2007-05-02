@@ -22,7 +22,7 @@ function fetch_inc_navi($type, $target_id = null)
     if (!$is_recurred) {  //function cacheのために再帰処理を行う
         $is_recurred = true;
         $funcargs = func_get_args();
-        return pne_cache_recursive_call(OPENPNE_FUNCTION_CACHE_LIFETIME_LONG, __FUNCTION__, $funcargs);
+        return pne_cache_recursive_call(OPENPNE_FUNCTION_CACHE_LIFETIME_FAST, __FUNCTION__, $funcargs);
     }
 
     $is_recurred = false;
