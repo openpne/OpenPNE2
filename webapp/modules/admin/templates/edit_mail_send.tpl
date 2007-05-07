@@ -41,5 +41,5 @@
 </table>
 <p class="textBtn"><input type="submit" value="変更する"></p>
 </form>
-<p class="groupLing"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_mail')})" title="メール文言変更: SNSから送信する各種メールの文言変更">メール文言変更へ</a></p>
+<p class="groupLing"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_mail')})">メール文言変更へ</a></p>
 ({$inc_footer|smarty:nodefaults})
