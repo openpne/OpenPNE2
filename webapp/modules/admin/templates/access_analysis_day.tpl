@@ -1,6 +1,5 @@
 ({$inc_header|smarty:nodefaults})
 ({ext_include file="inc_subnavi_adminStatisticalInformation.tpl"})
-({*<div class="tree"><a href="?m=({$module_name})">管理画面TOP</a>&nbsp;＞&nbsp;セキュリティ管理：ページ名ランダム生成</div>*})
 
 ({if $item_str == "PC版"})
 ({assign var="parent_page_name" value="PCページ月次集計"})

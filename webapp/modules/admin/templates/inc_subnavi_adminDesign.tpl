@@ -1,8 +1,9 @@
 <div class="subNavi">
-<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_skin_image')})">スキン画像変更</a>&nbsp;|&nbsp;
-<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_sns_config')})">配色・CSS変更</a>&nbsp;|&nbsp;
+({strip})
+<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_skin_image')})">スキン画像変更</a>&nbsp;|&nbsp;<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_sns_config')})">配色・CSS変更</a>&nbsp;|&nbsp;
 <a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_navi')})">ナビゲーション変更</a>&nbsp;|&nbsp;
 <a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('insert_html')})">HTML挿入</a>&nbsp;|&nbsp;
 <a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_entry_point')})">テンプレート挿入</a>&nbsp;|&nbsp;
-<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_banner')})">バナー設定</a>
+<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_banner')})">バナー設定</a>&nbsp;|&nbsp;
+({/strip})
 </div>
