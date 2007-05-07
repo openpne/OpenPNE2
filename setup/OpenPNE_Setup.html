@@ -81,7 +81,7 @@ em {
   <li><a href="#section4-3">4-3. PNEBIZを使用する場合</a></li>
   </ul></li>
 <li><a href="#section5">5. セットアップモジュールの実行</a></li>
-<li><a href="#section6">6. 管理ページへのアクセス</a></li>
+<li><a href="#section6">6. 管理画面へのアクセス</a></li>
 </ul>
 
 <hr>
@@ -368,7 +368,7 @@ $ mysql -u username -p DBNAME &lt; option-2.6-pnebiz-header.sql
 <p>ここでSNS名、管理用アカウント、初期ユーザの設定を行うことができます。</p>
 
 
-<h2 id="section6">6. 管理ページへのアクセス</h2>
+<h2 id="section6">6. 管理画面へのアクセス</h2>
 
 <p>セットアップ時に設定した管理用アカウントのユーザ名、パスワードを入力してログインしてください。ログイン後、管理メニューの「SNS設定変更」からSNSの基本情報の設定をすることができます。</p>
 
@@ -377,15 +377,15 @@ $ mysql -u username -p DBNAME &lt; option-2.6-pnebiz-header.sql
 (例) http://openpne.example.com/?m=admin
 </pre>
 
-<p>管理ページのURLを変更する場合は、設定ファイル config.php 内にある ADMIN_MODULE_NAME の値を変更してください。</p>
+<p>管理画面のURLを変更する場合は、設定ファイル config.php 内にある ADMIN_MODULE_NAME の値を変更してください。</p>
 <div>例えば、abcde に変更した場合、
 <pre>
 <var>OPENPNE_URL</var>?m=abcde
 (例) http://openpne.example.com/?m=abcde
 </pre>
-というURLから管理ページへアクセスすることができます。</div>
+というURLから管理画面へアクセスすることができます。</div>
 
-<p>また、管理メニューの「管理用ページ名をランダム生成」でページ名置換を実行すると管理ページ内部のページ名を変更することができるので、セキュリティ向上のためセットアップ後に必ず実行しておくことをおすすめします。</p>
+<p>また、管理メニューの「管理画面設定 ＞ ページ名ランダム生成」でランダム生成を実行すると管理画面内のページ名を変更することができるので、セキュリティ向上のためセットアップ後に必ず実行しておくことをおすすめします。</p>
 
 <hr>
 

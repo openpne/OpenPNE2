@@ -6,7 +6,7 @@
 
 function admin_fetch_inc_header($display_navi = true)
 {
-    $v['title'] = SNS_NAME . 'BIZ用管理ページ';
+    $v['title'] = SNS_NAME . 'BIZ用管理画面';
     $v['display_navi'] = $display_navi;
     $v['PHPSESSID'] = md5(session_id());
     $v['module_name'] = ADMIN_BIZ_MODULE_NAME;

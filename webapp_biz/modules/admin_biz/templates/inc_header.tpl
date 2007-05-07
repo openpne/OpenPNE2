@@ -31,7 +31,7 @@
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('biz_shisetsu_list')})" title="施設管理">施設管理</a><br>
 </ul>
 
-<p>管理ページ設定</p>
+<p>管理画面設定</p>
 <ul>
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_admin_password')})" title="パスワード変更: 管理画面ログイン用パスワードの変更">パスワード変更</a><br>
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('update_hash_table')})" title="ページ名ランダム生成: 管理画面のページ名を推測不可能なランダム文字列で置換">ページ名ランダム生成</a><br>
