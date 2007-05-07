@@ -11,7 +11,7 @@
 <div class="contents">
 <p class="info">ナビゲーション項目の「リンク先URL」と「説明(alt属性)」を変更することができます。</p>
 <p class="caution" id="c01">※「説明」を変更しても画像内の文字は自動的には変更されません。画像の変更は「<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_skin_image')})">スキン画像変更</a>」からおこなってください。</p>
-<p class="pageNavi"><a href="#navi_global">グローバルナビゲーション</a>|　<a href="#navi_h">h_系ナビゲーション</a>|　<a href="#navi_f">f_系ナビゲーション</a>|　<a href="#navi_c">c_系ナビゲーション</a></p>
+<p class="pageNavi"><a href="#navi_global">グローバルナビゲーション</a> | <a href="#navi_h">h_系ナビゲーション</a> | <a href="#navi_f">f_系ナビゲーション</a> | <a href="#navi_c">c_系ナビゲーション</a> | </p>
 <h3 class="item"><a name="navi_global">グローバルナビゲーション</a></h3>
 <p class="image"><img src="({t_img_url_skin filename=skin_after_header})"></p>
 <table class="basicType2">
