@@ -63,25 +63,47 @@ function db_diary_category_list4c_diary_id($c_diary_id)
 /**
  * カテゴリIDから日記を得る
  * 
+ * @param int $c_member_id
  * @param int $c_diary_category_id
+ * @param int $u
+ * @param int $page_size
+ * @param int $page
  * @return array
  */
-function db_diary_list4c_diary_category_id($c_member_id, $c_diary_category_id, $u = null)
+function db_diary_list4c_diary_category_id($c_member_id, $c_diary_category_id, $u = null, $page_size = 20, $page = 0)
 {
     $sql = 'SELECT c_diary_id FROM c_diary_category_diary WHERE c_diary_category_id = ?';
     $diary_list = db_get_col($sql, array(intval($c_diary_category_id)));
     $ids = join(',', $diary_list);
 
     $pf_cond = db_diary_public_flag_condition($c_member_id, $u);
-    $sql = 'SELECT * FROM c_diary' .
-        ' WHERE c_diary_id IN ('.$ids.') AND c_member_id = ? ' . $pf_cond . ' ORDER BY r_datetime DESC';
-    $list = db_get_all($sql, array($c_member_id));
+    $where = ' WHERE c_diary_id IN ('.$ids.') AND c_member_id = ? ' . $pf_cond . ' ORDER BY r_datetime DESC';
+    $sql = 'SELECT * FROM c_diary' . $where;
+    $params = array($c_member_id);
+    $list = db_get_all_limit($sql, $page_size * ($page - 1), $page_size, $params);
 
     foreach ($list as $key => $c_diary) {
         $list[$key]['num_comment'] = db_diary_count_c_diary_comment4c_diary_id($c_diary['c_diary_id']);
     }
 
-    return array($list, false, false);
+    $sql = 'SELECT COUNT(*) FROM c_diary' . $where;
+    $total_num = db_get_one($sql, $params);
+
+    if ($total_num != 0) {
+        $total_page_num =  ceil($total_num / $page_size);
+        if ($page >= $total_page_num) {
+            $next = false;
+        } else {
+            $next = true;
+        }
+        if ($page <= 1) {
+            $prev = false;
+        } else {
+            $prev = true;
+        }
+    }
+
+    return array($list, $prev, $next, $total_num);
 }
 
 /**
