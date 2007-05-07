@@ -10,7 +10,7 @@
 ({if $msg})<p class="actionMsg">({$msg})</p>({/if})
 <h2>パスワード変更</h2>
 <div class="contents">
-<p class="info">管理ページ用のパスワードを変更します。</p>
+<p class="info">管理画面用のパスワードを変更します。</p>
 <p class="caution" id="c01">※パスワードは6～12文字の半角英数で入力してください。</p>
 <form action="./" method="post">
 <table class="basicType1">
