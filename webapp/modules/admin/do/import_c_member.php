@@ -106,7 +106,7 @@ class admin_do_import_c_member extends OpenPNE_Action
             }
 
             $c_member['nickname'] = $nickname;
-            $c_member['birth_year'] = 1700;
+            $c_member['birth_year'] = 0;
             $c_member['birth_month'] = 1;
             $c_member['birth_day'] = 1;
             $c_member['c_password_query_id'] = 0;
