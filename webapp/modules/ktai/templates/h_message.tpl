@@ -21,7 +21,7 @@
 <br>
 ({$c_message.subject})<br>
 <br>
-({$c_message.body|nl2br})
+({$c_message.body|t_url2a_ktai|nl2br})
 <br>
 <br>
 ({if $c_message.image_filename_1})

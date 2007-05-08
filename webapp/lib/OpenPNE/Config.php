@@ -165,7 +165,6 @@ class OpenPNE_Config
             'ADMIN_MODULE_NAME' => 'admin',
             'ADMIN_INIT_CONFIG' => true,
             'SERVER_IP_KEY' => 'REMOTE_ADDR',
-            'OPENPNE_USE_CMD_TAG' => true,
             'OPENPNE_USE_FUNCTION_CACHE' => false,
             'OPENPNE_USE_MYSQL_HINT' => false,
             'OPENPNE_USE_FLASH_LIST' => true,

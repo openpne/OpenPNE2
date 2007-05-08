@@ -83,7 +83,7 @@
 <hr>
 <a name="intro">説明文</a>
 <br>
-({$c_commu.info|nl2br})<br>
+({$c_commu.info|t_url2a_ktai|nl2br})<br>
 ({if $c_commu.image_filename})
 ｺﾐｭﾆﾃｨ画像：[<a href="({t_img_url filename=$c_commu.image_filename w=120 h=120 f=jpg})">小</a>/<a href="({t_img_url filename=$c_commu.image_filename f=jpg})">大</a>]<br>({/if})
 ({if $relation_c_member_and_c_commu.join && ($c_commu.c_member_id_admin!=$u || $c_commu.c_member_id_sub_admin!=$u) })

@@ -438,6 +438,10 @@ function pne_url2a($url, $target = '_blank')
     if ($target) {
         $target = sprintf(' target="%s"', $target);
     }
+
+    $url = htmlspecialchars($url, ENT_QUOTES, 'UTF-8');
+    $urlstr = htmlspecialchars($urlstr, ENT_QUOTES, 'UTF-8');
+
     return sprintf('<a href="%s"%s>%s</a>', $url, $target, $urlstr);
 }
 

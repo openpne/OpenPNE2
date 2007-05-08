@@ -154,7 +154,7 @@
 ({foreach from=$target_c_member.profile key=key item=item})
 ({if $item.form_type == 'textarea'})
 <font color="green">[({$item.caption})]</font><br>
-({$item.value|nl2br})
+({$item.value|t_url2a_ktai|nl2br})
 <br>
 ({/if})
 ({/foreach})
