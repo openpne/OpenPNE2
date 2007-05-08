@@ -18,7 +18,7 @@
 <p class="actionMsg">({$msg})</p>
 ({/if})
 
-[({$page_name})]
+[({$item_str})&nbsp;({if $month_flag})({$ymd|date_format:"%Y年%m月"})({else})({$ymd|date_format:"%Y年%m月%d日"})({/if})にアクセスしたメンバー]
 
 <br>
 
