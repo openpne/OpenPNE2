@@ -395,7 +395,7 @@ function biz_isGroupMember($member_id, $group_id)
 }
 
 //指定された条件に見合うグループのリストを得る関数
-function biz_getGroupList($keyword='', $page, $page_size=20, $order='biz_group_id')
+function biz_getGroupList($keyword = '', $page = 0, $page_size = 20, $order = 'biz_group_id')
 {
 
     //keywordあり
@@ -433,6 +433,7 @@ function biz_getGroupList($keyword='', $page, $page_size=20, $order='biz_group_i
         $params = array(
             '%'.$keyword.'%',
             '%'.$keyword.'%',
+            $order,
         );
     } else {
         $params = array();
