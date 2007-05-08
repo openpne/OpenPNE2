@@ -495,8 +495,8 @@
 ({/foreach})
 </select>
 <br>
-※ひとつのカテゴリにつき全角10文字（半角20文字）以内で入力してください。<br>
-※カテゴリは5つまで指定できます。<br>
+※カテゴリはひとつにつき全角10文字（半角20文字）以内で入力してください。<br>
+※ひとつの日記にカテゴリは5つまで同時に指定することができます。<br>
 </div>
 </td>
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
