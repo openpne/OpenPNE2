@@ -81,7 +81,7 @@
 
 <select name='sc_rcount'>
 	({section name=i loop=$rp_count})
-		<option type='radio' value='({$rp_count[i]})' ({if ($repeat_term + 1) == $rp_count[i]})selected({/if})>({$rp_count[i]})週間
+		<option value='({$rp_count[i]})' ({if ($repeat_term + 1) == $rp_count[i]})selected({/if})>({$rp_count[i]})週間
 	({/section})
 </select>
 
