@@ -17,15 +17,18 @@
  */
 function fetch_inc_navi($type, $target_id = null)
 {
-    static $is_recurred = false;  //再帰処理中かどうかの判定フラグ
+    // $type が h の場合のみ function cache
+    if ($type == 'h') {
+        static $is_recurred = false;  //再帰処理中かどうかの判定フラグ
 
-    if (!$is_recurred) {  //function cacheのために再帰処理を行う
-        $is_recurred = true;
-        $funcargs = func_get_args();
-        return pne_cache_recursive_call(OPENPNE_FUNCTION_CACHE_LIFETIME_FAST, __FUNCTION__, $funcargs);
+        if (!$is_recurred) {  //function cacheのために再帰処理を行う
+            $is_recurred = true;
+            $funcargs = func_get_args();
+            return pne_cache_recursive_call(OPENPNE_FUNCTION_CACHE_LIFETIME_LONG, __FUNCTION__, $funcargs);
+        }
+
+        $is_recurred = false;
     }
-
-    $is_recurred = false;
 
     $inc_smarty = new OpenPNE_Smarty($GLOBALS['SMARTY']);
     $inc_smarty->templates_dir = 'pc/templates';
