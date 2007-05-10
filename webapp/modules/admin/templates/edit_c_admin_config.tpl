@@ -80,11 +80,11 @@
 </td>
 </tr>
 <tr class="cell27">
-<th colspan="2">端末IDの取得設定</th>
+<th colspan="2">個体識別番号の取得設定</th>
 <td>
-<input class="basicRadio" name="IS_GET_EASY_ACCESS_ID" id="IS_GET_EASY_ACCESS_ID_2" type="radio" value="2"({if $smarty.const.IS_GET_EASY_ACCESS_ID == 2}) checked="checked"({/if}) /><label for="IS_GET_EASY_ACCESS_ID_2">携帯登録時に端末IDを取得する(必須)</label><br />
-<input class="basicRadio" name="IS_GET_EASY_ACCESS_ID" id="IS_GET_EASY_ACCESS_ID_1" type="radio" value="1"({if $smarty.const.IS_GET_EASY_ACCESS_ID == 1}) checked="checked"({/if}) /><label for="IS_GET_EASY_ACCESS_ID_1">携帯登録時に端末IDを取得する(任意)</label><br />
-<input class="basicRadio" name="IS_GET_EASY_ACCESS_ID" id="IS_GET_EASY_ACCESS_ID_0" type="radio" value="0"({if $smarty.const.IS_GET_EASY_ACCESS_ID == 0}) checked="checked"({/if}) /><label for="IS_GET_EASY_ACCESS_ID_0">携帯登録時に端末IDを取得しない</label>
+<input class="basicRadio" name="IS_GET_EASY_ACCESS_ID" id="IS_GET_EASY_ACCESS_ID_2" type="radio" value="2"({if $smarty.const.IS_GET_EASY_ACCESS_ID == 2}) checked="checked"({/if}) /><label for="IS_GET_EASY_ACCESS_ID_2">携帯登録時に個体識別番号を取得する(必須)</label><br />
+<input class="basicRadio" name="IS_GET_EASY_ACCESS_ID" id="IS_GET_EASY_ACCESS_ID_1" type="radio" value="1"({if $smarty.const.IS_GET_EASY_ACCESS_ID == 1}) checked="checked"({/if}) /><label for="IS_GET_EASY_ACCESS_ID_1">携帯登録時に個体識別番号を取得する(任意)</label><br />
+<input class="basicRadio" name="IS_GET_EASY_ACCESS_ID" id="IS_GET_EASY_ACCESS_ID_0" type="radio" value="0"({if $smarty.const.IS_GET_EASY_ACCESS_ID == 0}) checked="checked"({/if}) /><label for="IS_GET_EASY_ACCESS_ID_0">携帯登録時に個体識別番号を取得しない</label>
 </td>
 </tr>
 <tr class="cell09">

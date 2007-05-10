@@ -84,6 +84,9 @@ class ktai_do_o_insert_c_member extends OpenPNE_Action
             if (!$easy_access_id && (IS_GET_EASY_ACCESS_ID == 2)) {
                 $errors[] = '携帯の個体識別番号を取得できませんでした';
             }
+            if (db_member_c_member_id4easy_access_id($easy_access_id)) {
+                $errors[] = 'この個体識別番号はすでに登録されています';
+            }
         }
 
         // 入力エラー
@@ -112,7 +115,7 @@ class ktai_do_o_insert_c_member extends OpenPNE_Action
             openpne_redirect('ktai', 'page_o_login');
         }
 
-        // 端末IDの登録
+        // 個体識別番号の登録
         if ($easy_access_id) {
             db_member_update_easy_access_id($c_member_id, $easy_access_id);
         }
