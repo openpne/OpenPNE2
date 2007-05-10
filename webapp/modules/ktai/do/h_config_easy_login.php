@@ -25,10 +25,16 @@ class ktai_do_h_config_easy_login extends OpenPNE_Action
         }
 
         if (!$requests['delete']) {
-            // update
-            db_member_update_easy_access_id($u, $easy_access_id);
-            $p = array('msg' => 28);
-            openpne_redirect('ktai', 'page_h_config', $p);
+            // 個体識別番号がすでに登録済み
+            if (db_member_c_member_id4easy_access_id($easy_access_id)) {
+                $p = array('msg' => 38);
+                openpne_redirect('ktai', 'page_h_config', $p);
+            } else {
+                // update
+                db_member_update_easy_access_id($u, $easy_access_id);
+                $p = array('msg' => 28);
+                openpne_redirect('ktai', 'page_h_config', $p);
+            }
         } else {
             // delete
             db_member_update_easy_access_id($u, '');
