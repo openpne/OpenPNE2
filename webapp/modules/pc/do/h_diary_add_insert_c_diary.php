@@ -29,7 +29,7 @@ class pc_do_h_diary_add_insert_c_diary extends OpenPNE_Action
         $tmpfile_1 = $requests['tmpfile_1'];
         $tmpfile_2 = $requests['tmpfile_2'];
         $tmpfile_3 = $requests['tmpfile_3'];
-        $category = explode(' ', trim($requests['category']));
+        $category = preg_split('/[\s]+/', trim($requests['category']));
         // ----------
 
         $sessid = session_id();
