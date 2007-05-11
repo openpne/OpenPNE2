@@ -253,7 +253,7 @@
 </td>
 </tr>
 <tr class="cell25">
-<th colspan="2">Yahoo天気／Googleの使用欄</th>
+<th colspan="2">天気リンク/検索窓の使用</th>
 <td>
 <span class="info">外部サービスを使用するかどうかを設定します</span><br />
 <select class="basic" name="USE_EXTRA_SERVICE">
