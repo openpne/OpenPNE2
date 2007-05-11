@@ -32,7 +32,7 @@
 	</tr>
 	<tr>
 		<th>最終ログイン</th>
-		<td>({$c_member.access_date|date_format:"%y-%m-%d %H:%M"})</td>
+		<td>({if $c_member.access_date != '0000-00-00 00:00:00'})({$item.access_date|date_format:"%y-%m-%d %H:%M"})({else})未ログイン({/if})</td>
 	</tr>
 	<tr>
 		<th>登録日</th>
