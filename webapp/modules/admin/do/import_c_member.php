@@ -107,8 +107,8 @@ class admin_do_import_c_member extends OpenPNE_Action
 
             $c_member['nickname'] = $nickname;
             $c_member['birth_year'] = 0;
-            $c_member['birth_month'] = 1;
-            $c_member['birth_day'] = 1;
+            $c_member['birth_month'] = 0;
+            $c_member['birth_day'] = 0;
             $c_member['c_password_query_id'] = 0;
             $c_member['c_member_id_invite'] = 1;
             $c_member['is_receive_mail'] = 1;

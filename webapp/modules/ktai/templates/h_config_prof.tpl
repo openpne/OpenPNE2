@@ -14,7 +14,7 @@
 
 ({capture name="birth"})
 <font color="red">*</font>生まれた年<br>
-<input type="text" name="birth_year" istyle="4" mode="numeric" value="({$c_member.birth_year})" size="4" maxlength="4"><br>
+<input type="text" name="birth_year" istyle="4" mode="numeric" value="({if $c_member.birth_year})({$c_member.birth_year})({/if})" size="4" maxlength="4"><br>
 <select name="public_flag_birth_year">
     ({foreach from=$public_flags key=key item=item})
     <option value="({$key})"({if $c_member.public_flag_birth_year == $key}) selected="selected"({/if})>({$item})
@@ -23,11 +23,13 @@
 
 <font color="red">*</font>誕生日<br>
 <select name="birth_month">
+    <option>--
     ({foreach from=$month item=item})
     <option value="({$item})"({if $item == $c_member.birth_month}) selected="selected"({/if})>({$item})
     ({/foreach})
 </select>
 <select name="birth_day">
+    <option>--
     ({foreach from=$day item=item})
     <option value="({$item})"({if $item == $c_member.birth_day}) selected="selected"({/if})>({$item})
     ({/foreach})

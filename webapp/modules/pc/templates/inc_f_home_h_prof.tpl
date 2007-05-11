@@ -852,6 +852,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({/if})
 <!-- ここまで：主内容＞年齢 -->
 <!-- ここから：主内容＞誕生日 -->
+({if $target_c_member.birth_month && $target_c_member.birth_day})
 <tr>
 <td class="border_01 bg_09 padding_s" style="width:90px;border-right:none;border-top:none;">
 
@@ -864,6 +865,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 
 </td>
 </tr>
+({/if})
 <!-- ここまで：主内容＞誕生日 -->
 ({/capture})
 ({foreach from=$target_c_member.profile key=key item=item})
