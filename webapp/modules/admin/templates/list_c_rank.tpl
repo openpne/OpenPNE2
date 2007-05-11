@@ -56,8 +56,8 @@
 <td>({$c_rank.name})</td>
 <td  align="center"><a href="({t_img_url filename=$c_rank.image_filename})" target="_blank"><img src="({t_img_url filename=$c_rank.image_filename w=180 h=180})"></a></td>
 <td>({$c_rank.point})</td>
-<td><a href="?m=({$module_name})&amp;a=({$hash_tbl->hash('page_update_c_rank')})&amp;c_rank_id=({$c_rank.c_rank_id})">変更</a></td>
-<td><a href="?m=({$module_name})&amp;a=({$hash_tbl->hash('page_delete_c_rank_confirm')})&amp;c_rank_id=({$c_rank.c_rank_id})">削除</a></td>
+<td><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('update_c_rank')})&amp;c_rank_id=({$c_rank.c_rank_id})">変更</a></td>
+<td><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('delete_c_rank_confirm')})&amp;c_rank_id=({$c_rank.c_rank_id})">削除</a></td>
 </tr>
 ({foreachelse})
 <tr>
