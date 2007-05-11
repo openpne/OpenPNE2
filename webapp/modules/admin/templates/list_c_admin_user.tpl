@@ -38,9 +38,9 @@
 ({if $item.auth_type=='all'})
 <option value="all">全権限</option>
 ({elseif $item.auth_type==''})
-<option value="">メンバーリスト以外全て</option>
+<option value="">メールアドレス参照不可</option>
 ({elseif $item.auth_type=='normal'})
-<option value="normal">SNS設定のみ</option>
+<option value="normal">メンバー管理機能利用不可</option>
 ({/if})
 </td>
 <td>({if $item.c_admin_user_id != 1})<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_c_admin_user','do')})&amp;target_id=({$item.c_admin_user_id})&amp;sessid=({$PHPSESSID})">削除</a>({else})&nbsp;({/if})</td>
