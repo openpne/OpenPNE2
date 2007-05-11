@@ -1,6 +1,6 @@
 ({$inc_header|smarty:nodefaults})
 ({ext_include file="inc_subnavi_adminDesign.tpl"})
-({assign var="page_name" value="配色設定・カスタムCSS追加"})
+({assign var="page_name" value="配色・CSS変更"})
 ({ext_include file="inc_tree_adminDesign.tpl"})
 </div>
 
