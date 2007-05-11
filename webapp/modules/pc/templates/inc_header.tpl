@@ -75,6 +75,10 @@ body { background-color: #({$INC_HEADER_color_config.bg_12}) ; }
 
 * { font-family: "ＭＳ Ｐゴシック", "ヒラギノ角ゴ Pro W3", Osaka, sans-serif ; }
 
+/*ここから：safari1.xパスワードフォーム非表示対策*/
+html:\66irst-child input[type="password"] { font-family: "Lucida Grande","HiraKakuPro-W3","ヒラギノ角ゴ Pro W3",sans-serif,"Osaka" ; }
+/*ここまで：safari1.xパスワードフォーム非表示対策*/
+
 /*テキスト入力欄のフォーカス時のクラス*/
 .text       { background-color:#F8F8F8; }
 .text_focus { background-color:#FFFFFF; }
