@@ -6,6 +6,11 @@
 
 class admin_do_csv_member extends OpenPNE_Action
 {
+    function handleError($errors)
+    {
+        admin_client_redirect('csv_download', array_shift($errors));
+    }
+
     function execute($requests)
     {
         $start_id = $requests['start_id'];
