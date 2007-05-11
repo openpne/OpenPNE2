@@ -59,11 +59,11 @@
 ({elseif $title == 'inc_page_bottom'})
 【PC版】HTML挿入 D　（旧：【PC版】HTML挿入(ページ下部)）
 ({elseif $title == 'inc_ktai_html_head'})
-【携帯】HTML挿入(HTML head内)
+【携帯版】HTML挿入(HTML head内)
 ({elseif $title == 'inc_ktai_header'})
-【携帯】HTML挿入(ページ上部)
+【携帯版】HTML挿入(ページ上部)
 ({elseif $title == 'inc_ktai_footer'})
-【携帯】HTML挿入(ページ下部)
+【携帯版】HTML挿入(ページ下部)
 ({/if})
 </h3>
 ({if $msg})<p class="actionMsg">({$msg})</p>({/if})
@@ -98,11 +98,11 @@
 ({elseif $title == 'inc_page_bottom'})
 【PC版】HTML挿入 D　（旧：【PC版】HTML挿入(ページ下部)）
 ({elseif $title == 'inc_ktai_html_head'})
-【携帯】HTML挿入(HTML head内)
+【携帯版】HTML挿入(HTML head内)
 ({elseif $title == 'inc_ktai_header'})
-【携帯】HTML挿入(ページ上部)
+【携帯版】HTML挿入(ページ上部)
 ({elseif $title == 'inc_ktai_footer'})
-【携帯】HTML挿入(ページ下部)
+【携帯版】HTML挿入(ページ下部)
 ({/if})]</h4>
 ({if $requests.target == 'inc_page_top2' || $requests.target == 'inc_page_top' || $requests.target == 'inc_page_bottom2' || $requests.target == 'inc_page_bottom'})
 <p class="caution" id="c02">※内容が空のときはHTML挿入部分が表示されないので各HTML挿入部分に該当する隙間はブラウザ内枠との間に生じません。</p>
