@@ -16,7 +16,7 @@
 
 <h3 class="item">メンバー情報をデータベースに一括登録</h3>
 
-<p class="caution">※文字コード、ファイル形式、項目の順序を守ってください。この処理は10分以上かかる場合があります</p>
+<p class="caution">※文字コード、ファイル形式、項目の順序を守ってください。この処理は10分以上かかる場合があります。</p>
 
 <form action="./" method="post" enctype="multipart/form-data">
 <input type="hidden" name="m" value="({$module_name})">
