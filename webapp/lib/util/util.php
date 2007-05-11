@@ -191,7 +191,7 @@ function is_ktai_mail_address($mail)
 
 function db_common_is_mailaddress($value)
 {
-    if (preg_match('/^[^:;@,\s]+@\w[\w\-.]*\.[a-zA-Z]+$/', $value)) {
+    if (preg_match('/^[^:;@,\s\x80-\xFF]+@\w[\w\-.]*\.[a-zA-Z]+$/', $value)) {
         return true;
     } else {
         return false;
