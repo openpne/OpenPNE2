@@ -15,9 +15,18 @@
 
 <p class="caution">※全件ダウンロードすると処理が重くなり、サーバーに負荷がかかる場合があります。</p>
 
+<form  action="./" method="get">
+<input type="hidden" name="m" value="({$module_name})">
+<input type="hidden" name="a" value="do_({$hash_tbl->hash('csv_member','do')})">
+<input type="hidden" name="sessid" value="({$PHPSESSID})">
 <h3 class="item">全件ダウンロード</h3>
 <p>全てのメンバー情報CSVをダウンロードします。</p>
-<p class="textBtn"><input type="button" value="ダウンロード" onClick="location.href='?m=({$module_name})&a=do_({$hash_tbl->hash('csv_member','do')})&sessid=({$PHPSESSID})'"></p>
+<p>メンバーIDの範囲を指定してCSVをダウンロードします。</p>
+<input type="hidden" name="start_id" value="0">
+<input type="hidden" name="end_id" value="0">
+<input type="hidden" name="allflag" value="1">
+<p class="textBtn"><input type="submit" value="ダウンロード"></p>
+</form>
 
 <form  action="./" method="get">
 <input type="hidden" name="m" value="({$module_name})">
@@ -26,6 +35,7 @@
 <h3 class="item">メンバーIDを指定してダウンロード</h3>
 <p>メンバーIDの範囲を指定してCSVをダウンロードします。</p>
 <input class="basic" type="text" name="start_id" value="" size="5">　～　<input class="basic" type="text" name="end_id" value="" size="5">
+<input type="hidden" name="allflag" value="0">
 <p class="textBtn"><input type="submit" value="ダウンロード"></p>
 </form>
 ({$inc_footer|smarty:nodefaults})
