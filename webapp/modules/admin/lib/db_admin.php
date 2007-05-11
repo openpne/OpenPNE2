@@ -557,6 +557,10 @@ function _db_admin_c_member_id_list($cond_list, $order = null)
         $params[] = $cond_list['e_year'];
     }
 
+    // 誕生日による絞り込みの場合は、誕生年が0のユーザを除外する
+    if (!empty($cond_list['s_year']) || !empty($cond_list['e_year'])) {
+        $sql .= ' AND birth_year <> 0';
+    }
 
     //最終ログイン時間で絞り込み
 
@@ -1551,7 +1555,9 @@ function get_analysis_generation()
             '80～' =>0
     );
     
-    $sql = "select ((year(curdate()) - birth_year)- (RIGHT(CURDATE(),5)<concat(birth_month,'-',birth_day))) as age from c_member;";
+    $sql = "SELECT ((YEAR(CURDATE()) - birth_year)- " .
+        "(RIGHT(CURDATE(),5)<CONCAT(birth_month,'-',birth_day))) " .
+        "AS age FROM c_member WHERE birth_year <> 0;";
     $lst = db_get_all($sql);
 
     $temp = array_keys($analysis_generation);
