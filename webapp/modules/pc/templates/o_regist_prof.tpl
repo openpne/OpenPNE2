@@ -234,8 +234,6 @@
     ({if $_cnt % 3 != 0})</tr>({/if})
     </table>
 ({elseif $profile.form_type == 'checkbox'})
-    <input type="hidden" name="profile[({$profile.name})][]" value="0">
-
     <table>
     ({foreach item=item from=$profile.options name=check})
     ({counter name=$profile.name assign=_cnt})
