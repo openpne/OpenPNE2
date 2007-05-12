@@ -6,6 +6,14 @@
 
 <center>
 <a name="top"><font color="orange">({$c_member.nickname})さんのﾎｰﾑ</font></a>
+({if $rank})
+<br>
+<img src="({t_img_url filename=$rank.image_filename})" alt="({$rank.name})">
+({/if})
+({if $point})
+<br>
+({$point}) Point
+({/if})
 </center>
 
 <hr>

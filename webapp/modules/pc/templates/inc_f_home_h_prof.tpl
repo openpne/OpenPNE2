@@ -352,18 +352,6 @@
 
 <img src="./skin/dummy.gif" class="v_spacer_m">
 
-({if $point}) 
-<p align=center> 
-({$point})pt<br> 
-</p> 
-({/if}) 
-({if $rank}) 
-<p align=center> 
-({$rank.name})<br> 
-<img src="({t_img_url filename=$rank.image_filename})" class="pict" alt=({$rank.name}) style="margin:2px"> 
-</p> 
-({/if}) 
-
 ({if $inc_entry_point[4]})
 ({$inc_entry_point[4]|smarty:nodefaults|t_url2cmd:'entry_point'|t_cmd:'entry_point'})
 ({/if})

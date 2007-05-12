@@ -226,8 +226,20 @@
 <table border="0" cellspacing="0" cellpadding="0" style="width:254px;">
 <tr>
 <td align="center" class="bg_05 c_04">
+
+({if $rank || $point})
+<img src="./skin/dummy.gif" class="v_spacer_m">
+({if $rank})
+<img src="({t_img_url filename=$rank.image_filename})" class="pict" alt="({$rank.name})" style="margin:2px"><br>
+({/if})
+({if $point})
+({$point}) Point<br>
+({/if})
+({/if})
+
 <img src="./skin/dummy.gif" class="v_spacer_m">
 ({$c_member.nickname})さん (({$c_friend_count}))
+
 </td>
 </tr>
 </table>
@@ -247,18 +259,6 @@
 <!-- **************************************** -->
 
 <img src="./skin/dummy.gif" class="v_spacer_m">
-
-({if $point})
-<p align=center>
-({$point})pt<br>
-</p>
-({/if})
-({if $rank})
-<p align=center>
-({$rank.name})<br>
-<img src="({t_img_url filename=$rank.image_filename})" class="pict" alt=({$rank.name}) style="margin:2px">
-</p>
-({/if})
 
 ({if $inc_entry_point[5]})
 ({$inc_entry_point[5]|smarty:nodefaults|t_url2cmd:'entry_point'|t_cmd:'entry_point'})
