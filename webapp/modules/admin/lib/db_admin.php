@@ -557,38 +557,37 @@ function _db_admin_c_member_id_list($cond_list, $order = null)
         $params[] = $cond_list['e_year'];
     }
 
-    // 誕生日による絞り込みの場合は、誕生年が0のユーザを除外する
+    // 誕生日による絞り込みの場合は、誕生年が0のメンバーを除外する
     if (!empty($cond_list['s_year']) || !empty($cond_list['e_year'])) {
         $sql .= ' AND birth_year <> 0';
     }
 
     //最終ログイン時間で絞り込み
-
     if (isset($cond_list['last_login'])) {
-
         //期間で分ける
         switch($cond_list['last_login']) {
-            case 1: //3日以内
-                $sql .= ' AND access_date >= ?';
-                $params[] = date('Y-m-d', strtotime('-3 day'));
+        case 1: //3日以内
+            $sql .= ' AND access_date >= ?';
+            $params[] = date('Y-m-d', strtotime('-3 day'));
             break;
-
-            case 2: //3～7日以内
-                $sql .= ' AND access_date >= ? AND access_date < ?';
-                $params[] = date('Y-m-d', strtotime('-7 day'));
-                $params[] = date('Y-m-d', strtotime('-3 day'));
+        case 2: //3～7日以内
+            $sql .= ' AND access_date >= ? AND access_date < ?';
+            $params[] = date('Y-m-d', strtotime('-7 day'));
+            $params[] = date('Y-m-d', strtotime('-3 day'));
             break;
-
-            case 3: //7～30日以内
-                $sql .= ' AND access_date >= ? AND access_date < ?';
-                $params[] = date('Y-m-d', strtotime('-30 day'));
-                $params[] = date('Y-m-d', strtotime('-7 day'));
+        case 3: //7～30日以内
+            $sql .= ' AND access_date >= ? AND access_date < ?';
+            $params[] = date('Y-m-d', strtotime('-30 day'));
+            $params[] = date('Y-m-d', strtotime('-7 day'));
             break;
-
-            case 4: //30～90日以内
-                $sql .= ' AND access_date >= ? AND access_date < ?';
-                $params[] = date('Y-m-d', strtotime('-90 day'));
-                $params[] = date('Y-m-d', strtotime('-30 day'));
+        case 4: //30日以上
+            $sql .= ' AND access_date > ? AND access_date < ?';
+            $params[] = '0000-00-00 00:00:00';
+            $params[] = date('Y-m-d', strtotime('-30 day'));
+            break;
+        case 5: //未ログイン
+            $sql .= ' AND access_date = ?';
+            $params[] = '0000-00-00 00:00:00';
             break;
         }
     }
@@ -663,12 +662,12 @@ function _db_admin_c_member_id_list($cond_list, $order = null)
             'PNE_POINT',
         );
         //開始ポイント
-        if( isset($cond_list['s_point']) ){
+        if (!empty($cond_list['s_point'])) {
             $sql .= ' AND value >= ?';
             $params[] = $cond_list['s_point'];
         }
         //終了ポイント
-        if( isset($cond_list['e_point']) ){
+        if (!empty($cond_list['e_point'])) {
             $sql .= ' AND value <= ?';
             $params[] = $cond_list['e_point'];
         }
@@ -782,16 +781,13 @@ function validate_cond($requests)
         $cond_list['last_login'] = intval($requests['last_login']);
     }
 
-
     //ポイント
-    if (!empty($requests['s_point'])) {
+    if (isset($requests['s_point']) && $requests['s_point'] !== '') {
         $cond_list['s_point'] = intval($requests['s_point']);
     }
-    if (!empty($requests['e_point'])) {
+    if (isset($requests['e_point']) && $requests['e_point'] !== '') {
         $cond_list['e_point'] = intval($requests['e_point']);
     }
-
-
 
     return $cond_list;
 }
@@ -2292,6 +2288,17 @@ function db_admin_delete_c_file_link4filename($filename)
     // c_commu_topic_comment
     $tbl = 'c_commu_topic_comment';
     _db_admin_empty_image_filename($tbl, $filename, 'filename');
+}
+
+function db_admin_get_c_member_profile_pnepoint($c_member_id)
+{
+    $sql = 'SELECT c_profile_id FROM c_profile where name = \'PNE_POINT\'';
+    $c_profile_id =  db_get_one($sql);
+    $params = array($c_member_id , $c_profile_id);
+    $sql = 'SELECT * FROM c_member_profile where c_member_id = ? and c_profile_id = ?';
+    $c_member_profile = db_get_row($sql, $params);
+
+    return  $c_member_profile;
 }
 
 ?>

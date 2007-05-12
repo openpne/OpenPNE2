@@ -30,7 +30,6 @@ function db_point_insert_tags($c_point_log_id, $tags)
 
 function db_point_add_point($c_member_id, $point)
 {
-
     // 管理者は加算しない
     if ($c_member_id == 1) {
         return false;

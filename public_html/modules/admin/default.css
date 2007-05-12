@@ -498,8 +498,6 @@ div.listControl p.listMove a {
 #admin_page_list_c_member table.userListTable tr.min_width img { width: 80px;height: 1px; display: block;}
 #admin_page_list_c_member table.userListTable th.cell02,
 #admin_page_list_c_member table.userListTable th.cell03,
-#admin_page_list_c_member table.userListTable th.cell10,
-#admin_page_list_c_member table.userListTable th.cell11,
 #admin_page_list_c_member table.userListTable th.cell15,
 #admin_page_list_c_member table.userListTable td.cell02A,
 #admin_page_list_c_member table.userListTable td.cell02B,
@@ -516,8 +514,6 @@ div.listControl p.listMove a {
 #admin_page_list_c_member table.userListTable td.cell18 { width: 1%; white-space: pre;}
 * html body#admin_page_list_c_member table.userListTable th.cell02,
 * html body#admin_page_list_c_member table.userListTable th.cell03,
-* html body#admin_page_list_c_member table.userListTable th.cell10,
-* html body#admin_page_list_c_member table.userListTable th.cell11,
 * html body#admin_page_list_c_member table.userListTable th.cell15,
 * html body#admin_page_list_c_member table.userListTable td.cell02A,
 * html body#admin_page_list_c_member table.userListTable td.cell02B,
@@ -543,15 +539,13 @@ div.listControl p.listMove a {
 #admin_page_list_c_member table.userListTable td.cell02C,
 #admin_page_list_c_member table.userListTable td.cell08A,
 #admin_page_list_c_member table.userListTable td.cell08B,
-#admin_page_list_c_member table.userListTable td.cell08C,
-#admin_page_list_c_member table.userListTable td.cell10,
-#admin_page_list_c_member table.userListTable td.cell11 { text-align: center;}
+#admin_page_list_c_member table.userListTable td.cell08C { text-align: center;}
 
 /* ライト揃え */
 #admin_page_list_c_member table.userListTable td.cell03,
-#admin_page_list_c_member table.userListTable td.cell09A,
 #admin_page_list_c_member table.userListTable td.cell09B,
 #admin_page_list_c_member table.userListTable td.cell09C,
+#admin_page_list_c_member table.userListTable td.cell11,
 #admin_page_list_c_member table.userListTable td.cell15,
 #admin_page_list_c_member table.userListTable td.cell16,
 #admin_page_list_c_member table.userListTable td.cell17,

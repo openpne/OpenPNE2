@@ -1354,6 +1354,12 @@ function db_member_insert_c_member_ktai_pre($session, $ktai_address, $c_member_i
 
 //--- profile関連
 
+function db_member_c_profile4name($name)
+{
+    $sql = 'SELECT * FROM c_profile WHERE name = ?';
+    return db_get_row($sql, array($name));
+}
+
 function db_member_update_c_member_profile($c_member_id, $c_member_profile_list)
 {
     //function cache削除
@@ -1365,7 +1371,7 @@ function db_member_update_c_member_profile($c_member_id, $c_member_profile_list)
         $params = array(intval($c_member_id), intval($item['c_profile_id']));
         db_query($sql, $params);
 
-        if ($item['value']) {
+        if (!(is_null($item['value']) || $item['value'] === '')) {
             if (is_array($item['value'])) {
                 foreach ($item['value'] as $key => $value) {
                     do_config_prof_insert_c_member_profile($c_member_id, $item['c_profile_id'], $key, $value, $item['public_flag']);
