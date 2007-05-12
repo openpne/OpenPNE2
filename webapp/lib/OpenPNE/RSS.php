@@ -29,13 +29,16 @@ class OpenPNE_RSS
         /*キャッシュディレクトリの設定*/
         $feed->cache_location(OPENPNE_RSS_CACHE_DIR);
 
-        /*フィード開始*/
         if (!$feed->init()) {
             return false;
         }
 
+        if (!($items = @$feed->get_items())) {
+            return false;
+        }
+
         $result = array();
-        foreach ($feed->get_items() as $item) {
+        foreach ($items as $item) {
             $title = $item->get_title();
             $links = $item->get_links();
             $description = $item->get_description();
