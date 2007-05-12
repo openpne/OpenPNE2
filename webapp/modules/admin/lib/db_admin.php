@@ -2058,18 +2058,11 @@ function db_admin_delete_c_cmd($c_cmd_id)
 }
 
 
-//CMDを全て取得(ページャー付き)
-function db_admin_get_c_cmd_all($page, $page_size, &$pager)
+//CMDを全て取得
+function db_admin_get_c_cmd_all()
 {
     $sql = 'SELECT * FROM c_cmd ORDER BY c_cmd_id';
-
-    $list = db_get_all_page($sql, $page, $page_size, $params);
-
-    $sql = 'SELECT count(*) FROM c_cmd';
-    $total_num = db_get_one($sql, $params);
-    $pager = admin_make_pager($page, $page_size, $total_num);
-
-    return $list;
+    return db_get_all($sql);
 }
 
 //CMDを一つ取得
