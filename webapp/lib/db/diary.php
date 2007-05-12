@@ -53,7 +53,10 @@ function db_diary_category_list4c_diary_id($c_diary_id)
 {
     $sql = 'SELECT c_diary_category_id FROM c_diary_category_diary WHERE c_diary_id = ?';
     $category_list = db_get_col($sql, array(intval($c_diary_id)));
-    $ids = join(',', $category_list);
+    if (!$category_list) {
+        return array();
+    }
+    $ids = implode(',', $category_list);
 
     $sql = 'SELECT c_diary_category_id, category_name FROM c_diary_category'
          . ' WHERE c_diary_category_id IN ('.$ids.') ORDER BY c_diary_category_id';
@@ -74,7 +77,10 @@ function db_diary_list4c_diary_category_id($c_member_id, $c_diary_category_id, $
 {
     $sql = 'SELECT c_diary_id FROM c_diary_category_diary WHERE c_diary_category_id = ?';
     $diary_list = db_get_col($sql, array(intval($c_diary_category_id)));
-    $ids = join(',', $diary_list);
+    if (!$diary_list) {
+        return array(array(), false, false, 0);
+    }
+    $ids = implode(',', $diary_list);
 
     $pf_cond = db_diary_public_flag_condition($c_member_id, $u);
     $where = ' WHERE c_diary_id IN ('.$ids.') AND c_member_id = ? ' . $pf_cond . ' ORDER BY r_datetime DESC';
@@ -381,6 +387,9 @@ function p_fh_diary_list_diary_list4c_member_id($c_member_id, $page_size, $page,
 function p_h_diary_list_friend_h_diary_list_friend4c_member_id($c_member_id, $page_size, $page)
 {
     $friends = db_friend_c_member_id_list($c_member_id, true);
+    if (!$friends) {
+        return array(array(), false, false, 0);
+    }
     $ids = implode(',', array_map('intval', $friends));
 
     $hint = db_mysql_hint('USE INDEX (r_datetime_c_member_id, r_datetime)');
@@ -466,6 +475,9 @@ function p_h_home_c_diary_friend_list4c_member_id($c_member_id, $limit)
     $is_recurred = false;
 
     $friends = db_friend_c_member_id_list($c_member_id, true);
+    if (!$friends) {
+        return array();
+    }
     $ids = implode(',', array_map('intval', $friends));
 
     $hint = db_mysql_hint('USE INDEX (r_datetime_c_member_id, r_datetime)');
@@ -551,6 +563,7 @@ function p_h_diary_comment_list_c_diary_my_comment_list4c_member_id($c_member_id
     $except_ids = implode(',', $blocked);
 
     $friends = db_friend_c_member_id_list($c_member_id);
+    $firends[] = 0;
     $friend_ids = implode(',', $friends);
 
     $sql = 'SELECT d.c_diary_id' .

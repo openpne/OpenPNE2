@@ -15,7 +15,7 @@ class ktai_page_c_invite extends OpenPNE_Action
         // ----------
 
         //ランダムフレンドリスト
-        $this->set("c_friend_list", k_p_c_invite_c_friend_list_random4c_member_id4c_commu_id($u, $target_c_commu_id, 50));
+        $this->set("c_friend_list", db_commu_c_friend_list_random4c_member_id4c_commu_id($u, $target_c_commu_id, 50));
 
         //コミュニティＩＤ
         $this->set("target_c_commu_id", $target_c_commu_id);

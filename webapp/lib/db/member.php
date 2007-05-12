@@ -1280,7 +1280,7 @@ function db_member_update_c_invite($c_member_id_invite, $pc_address, $message, $
 
 function db_member_delete_c_member_pre($c_member_id, $delete_c_member_ids)
 {
-    if (!is_array($delete_c_member_ids)) {
+    if (!(is_array($delete_c_member_ids) && $delete_c_member_ids)) {
         return false;
     }
     $ids = implode(',', array_map('intval', $delete_c_member_ids));
@@ -1302,7 +1302,7 @@ function db_member_delete_c_member_pre4sid($sid)
 
 function db_member_delete_c_member_ktai_pre($c_member_id, $delete_c_member_ids)
 {
-    if (!is_array($delete_c_member_ids)) {
+    if (!is_array($delete_c_member_ids) && $delete_c_member_ids) {
         return false;
     }
     $ids = implode(',', array_map('intval', $delete_c_member_ids));
@@ -1398,6 +1398,9 @@ function db_member_insert_c_access_block($c_member_id, $c_member_id_block)
 {
     // 存在するIDのみを抽出
     $c_member_id_block = array_unique(array_map('intval', $c_member_id_block));
+    if (!$c_member_id_block) {
+        return false;
+    }
     $ids = implode(',', $c_member_id_block);
     $sql = 'SELECT c_member_id FROM c_member WHERE c_member_id IN ('.$ids.')';
     $c_member_id_block = db_get_col($sql);

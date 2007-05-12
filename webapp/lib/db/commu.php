@@ -552,7 +552,7 @@ function db_commu_invite_list4c_member_id4c_commu_id($c_member_id, $c_commu_id)
     $result = array_diff($friend_list, $member_list);
 
     if (empty($result)) {
-        return null;
+        return array();
     } else {
         $result = implode(",", $result);
 
@@ -1465,7 +1465,7 @@ function db_commu_c_friend_list_random4c_member_id4c_commu_id($c_member_id, $c_c
     $result = array_diff($friend_list, $member_list);
 
     if (!$result) {
-        return null;
+        return array();
     }
 
     $result = implode(',', array_map('intval', $result));
@@ -1907,6 +1907,9 @@ function db_commu_c_event_mail_list4c_commu_topic_id($c_commu_topic_id, $excepte
 
 function db_commu_c_event_mail_confirm_list4c_member_ids($c_member_ids)
 {
+    if (!$c_member_ids) {
+        return array();
+    }
     $c_member_id_str = implode(',', array_map('intval', $c_member_ids));
     $sql = "SELECT * FROM c_member" .
             " WHERE c_member_id IN (".$c_member_id_str.")";
