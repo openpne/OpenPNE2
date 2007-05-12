@@ -12,8 +12,8 @@
  */
 function db_diary_category_list4c_member_id($c_member_id)
 {
-    $sql = 'SELECT c_diary_category_id, category_name FROM c_diary_category ' .
-        'WHERE c_member_id = ?';
+    $sql = 'SELECT c_diary_category_id, category_name FROM c_diary_category '
+         . 'WHERE c_member_id = ? ORDER BY c_diary_category_id';
     $result = db_get_all($sql, array(intval($c_member_id)));
 
     return $result;
@@ -29,7 +29,7 @@ function db_diary_category_list4c_member_id($c_member_id)
 function db_diary_get_category_id4category_name($c_member_id, $category_name)
 {
     $sql = 'SELECT c_diary_category_id FROM c_diary_category ' .
-        'WHERE category_name LIKE ? AND c_member_id = ?';
+        'WHERE category_name = ? AND c_member_id = ?';
     return db_get_one($sql, array($category_name, intval($c_member_id)));
 }
 
@@ -55,8 +55,8 @@ function db_diary_category_list4c_diary_id($c_diary_id)
     $category_list = db_get_col($sql, array(intval($c_diary_id)));
     $ids = join(',', $category_list);
 
-    $sql = 'SELECT c_diary_category_id, category_name FROM c_diary_category' .
-        ' WHERE c_diary_category_id IN ('.$ids.')';
+    $sql = 'SELECT c_diary_category_id, category_name FROM c_diary_category'
+         . ' WHERE c_diary_category_id IN ('.$ids.') ORDER BY c_diary_category_id';
     return db_get_all($sql);
 }
 

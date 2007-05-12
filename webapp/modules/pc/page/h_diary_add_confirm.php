@@ -23,7 +23,7 @@ class pc_page_h_diary_add_confirm extends OpenPNE_Action
         $subject = $requests['subject'];
         $body = $requests['body'];
         $public_flag = $requests['public_flag'];
-        $category = trim($requests['category']);
+        $category = $requests['category'];
         // ----------
 
         $sessid = session_id();
@@ -52,7 +52,7 @@ class pc_page_h_diary_add_confirm extends OpenPNE_Action
             }
         }
 
-        $category_list = array_unique(preg_split('/[\s]+/', rtrim($category)));
+        $category_list = array_unique(preg_split('/\s+/', $category));
         if (count($category_list) > 5) {
             $_REQUEST['msg'] = 'カテゴリは5つまでしか指定できません';
             openpne_forward('pc', 'page', 'h_diary_add');
