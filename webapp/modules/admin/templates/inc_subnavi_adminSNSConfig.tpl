@@ -13,8 +13,7 @@
 ({/if})
 <a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_holiday')})">祝日設定</a>&nbsp;|&nbsp;
 ({if $smarty.const.OPENPNE_DISP_POINT})
-<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_rank')})">ランク設定</a>&nbsp;|&nbsp;
-<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_action')})">アクション設定</a>&nbsp;|&nbsp;
+<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_rank')})">ポイント・ランク設定</a>&nbsp;|&nbsp;
 ({/if})
 ({/strip})
 </div>

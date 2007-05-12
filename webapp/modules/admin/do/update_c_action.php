@@ -11,7 +11,7 @@ class admin_do_update_c_action extends OpenPNE_Action
     {
         db_admin_update_c_action($requests['c_action_id'], $requests['name'], $requests['point']);
 
-        admin_client_redirect('list_c_action', 'アクションを編集しました');
+        admin_client_redirect('list_c_rank', '加算ポイントを変更しました');
     }
 }
 

@@ -1,50 +1,63 @@
 ({$inc_header|smarty:nodefaults})
 ({ext_include file="inc_subnavi_adminSNSConfig.tpl"})
 
-({assign var="page_name" value="ランク設定"})
+({assign var="page_name" value="ポイント・ランク設定"})
 ({ext_include file="inc_tree_adminSNSConfig.tpl"})
 </div>
 
 ({*ここまで:navi*})
 
-<h2>ランク一覧</h2>
-<div class="contents">
 ({if $msg})<p class="actionMsg">({$msg})</p>({/if})
-<p>貯めたポイントで到達するランクを設定します。</p>
+<h2>ポイント・ランク設定</h2>
+<div class="contents">
 
-({if $pager && $pager.total_num > 0})
-({capture name="pager"})
-<div class="listControl">
-<p class="display">
-({$pager.total_num}) 件中 ({$pager.start_num}) - ({$pager.end_num})件目を表示しています
-</p>
-<p class="listMove">
-({if $pager.prev_page})
-<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_rank')})&amp;page=({$pager.prev_page})&amp;page_size=({$pager.page_size})({$cond})">前へ</a>&nbsp;
-({/if})
-({foreach from=$pager.disp_pages item=i})
-({if $i == $pager.page})
-&nbsp;<strong>({$i})</strong>&nbsp;
-({else})
-<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_rank')})&amp;page=({$i})&amp;page_size=({$pager.page_size})({$cond})">&nbsp;({$i})&nbsp;</a>
-({/if})
-({/foreach})
-({if $pager.next_page})
-&nbsp;<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_rank')})&amp;page=({$pager.next_page})&amp;page_size=({$pager.page_size})({$cond})">次へ</a>
-({/if})
-</p>
-</div>({*/div class="listControl"*})
-({/capture})
-
-({$smarty.capture.pager|smarty:nodefaults})
-({/if})
+<h3 class="item">アクションポイント設定</h3>
+<p>メンバーのアクション毎に加算されるポイントを設定します。</p>
 
 <table class="basicType2">
 <thead>
 <tr>
 <th>ID</th>
-<th>項目名</th>
-<th>画像</th>
+<th>アクション</th>
+<th>加算ポイント</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody>
+({foreach from=$c_action_list item=c_action})
+<tr>
+<th>({$c_action.c_action_id})</th>
+<td>({$c_action.name})</td>
+
+<form action="./" method="post">
+<input type="hidden" name="m" value="({$module_name})">
+<input type="hidden" name="a" value="do_({$hash_tbl->hash('update_c_action','do')})">
+<input type="hidden" name="sessid" value="({$PHPSESSID})">
+<input type="hidden" name="c_action_id" value="({$c_action.c_action_id})">
+<input type="hidden" name="name" value="({$c_action.name})">
+<td><input type="text" class="basic" name="point" value="({$c_action.point})" size="30"></td>
+<td><span class="textBtnS"><input type="submit" class="submit" value="変更"></span></td>
+</form>
+
+</tr>
+({foreachelse})
+<tr>
+<td colspan="4">アクションが登録されていません</td>
+</tr>
+({/foreach})
+</tbody>
+</table>
+
+
+<h3 class="item">ランク設定</h3>
+<p>取得したポイントで到達するランクを設定します。</p>
+
+<table class="basicType2">
+<thead>
+<tr>
+<th>ID</th>
+<th>ランク名</th>
+<th>ランク画像</th>
 <th>到達ポイント</th>
 <th colspan="2">操作</th>
 </tr>
@@ -74,14 +87,10 @@
 <td><input type="text" class="basic" name="name" value="" size="5"></td>
 <td><input type="file" name="image_upfile" value="" size="20"></td>
 <td><input type="text" class="basic" name="point" value="" size="5"></td>
-<td colspan="2"><span class="textBtnS"><input type="submit" class="submit" value="項目追加"></span></td>
+<td colspan="2"><span class="textBtnS"><input type="submit" class="submit" value="ランク追加"></span></td>
 </form>
 </tr>
 </tbody>
 </table>
-
-({if $pager && $pager.total_num > 0})
-({$smarty.capture.pager|smarty:nodefaults})
-({/if})
 
 ({$inc_footer|smarty:nodefaults})

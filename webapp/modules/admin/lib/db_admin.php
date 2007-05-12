@@ -2229,19 +2229,11 @@ function db_admin_delete_c_rank($c_rank_id)
     return db_query($sql, $params);
 }
 
-
-//ランクを全て取得(ページャー付き)
-function db_admin_get_c_rank_all($page, $page_size, &$pager)
+//ランクを全て取得
+function db_admin_get_c_rank_all()
 {
     $sql = 'SELECT * FROM c_rank ORDER BY point';
-
-    $list = db_get_all_page($sql, $page, $page_size, $params);
-
-    $sql = 'SELECT count(*) FROM c_rank';
-    $total_num = db_get_one($sql, $params);
-    $pager = admin_make_pager($page, $page_size, $total_num);
-
-    return $list;
+    return db_get_all($sql);
 }
 
 //ランクを一つ取得
@@ -2264,18 +2256,11 @@ function db_admin_update_c_action($c_action_id, $name, $point)
     return db_update('c_action', $data, $where);
 }
 
-//アクションを全て取得(ページャー付き)
-function db_admin_get_c_action_all($page, $page_size, &$pager)
+//アクションを全て取得
+function db_admin_get_c_action_all()
 {
     $sql = 'SELECT * FROM c_action ORDER BY c_action_id';
-
-    $list = db_get_all_page($sql, $page, $page_size, $params);
-
-    $sql = 'SELECT count(*) FROM c_action';
-    $total_num = db_get_one($sql, $params);
-    $pager = admin_make_pager($page, $page_size, $total_num);
-
-    return $list;
+    return db_get_all($sql);
 }
 
 /**

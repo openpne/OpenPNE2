@@ -161,7 +161,6 @@ li { list-style-type: none;}
 #admin_page_manage_c_commu li#adminSNSConfig a.tab ,
 #admin_page_edit_c_holiday li#adminSNSConfig a.tab ,
 #admin_page_list_c_rank li#adminSNSConfig a.tab ,
-#admin_page_list_c_action li#adminSNSConfig a.tab ,
 
 #admin_page_edit_c_admin_info li#adminInfoKiyaku a.tab ,
 #admin_page_list_c_free_page li#adminInfoKiyaku a.tab ,
@@ -212,7 +211,6 @@ li { list-style-type: none;}
 #admin_page_manage_c_commu li#adminSNSConfig ul.pull ,
 #admin_page_edit_c_holiday li#adminSNSConfig ul.pull ,
 #admin_page_list_c_rank li#adminSNSConfig ul.pull ,
-#admin_page_list_c_action li#adminSNSConfig ul.pull ,
 
 #admin_page_edit_c_admin_info li#adminInfoKiyaku ul.pull ,
 #admin_page_list_c_free_page li#adminInfoKiyaku ul.pull ,
@@ -1237,11 +1235,6 @@ div.listControl p.listMove a {
 #admin_page_list_c_cmd div.contents p.caution { padding-bottom: 10px;}
 #admin_page_list_c_cmd div.contents div.listControl ,
 #admin_page_list_c_cmd div.contents table { width: 50%;}
-
-/** admin_page_list_c_action **/
-
-#admin_page_list_c_action div.contents div.listControl ,
-#admin_page_list_c_action div.contents table { width: 50%;}
 
 /** admin_page_list_c_rank **/
 
