@@ -1,13 +1,13 @@
 ({ext_include file="inc_header.tpl" INC_HEADER_is_no_alert=true})
 ({ext_include file="inc_layoutcolumn_top_720px.tpl"})
 ({***************************})
-({**ã“ã“ã‹ã‚‰ï¼šãƒ¡ã‚¤ãƒ³ã‚³ãƒ³ãƒ†ãƒ³ãƒ„**})
+({**‚±‚±‚©‚çFƒƒCƒ“ƒRƒ“ƒeƒ“ƒc**})
 ({***************************})
 
 <img src="./skin/dummy.gif" class="v_spacer_l">
 
 <!-- ********************************** -->
-<!-- ******ã“ã“ã‹ã‚‰ï¼šäºˆå®šã‚’ç·¨é›†ã™ã‚‹****** -->
+<!-- ******‚±‚±‚©‚çF—\’è‚ğ•ÒW‚·‚é****** -->
 
 <table border="0" cellspacing="0" cellpadding="0" style="width:640px;margin:0px auto;" class="border_07">
 <tr>
@@ -18,20 +18,20 @@
 <tr>
 <td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
 <td class="bg_01" align="center">
-<!-- *ã“ã“ã‹ã‚‰ï¼šäºˆå®šã‚’ç·¨é›†ã™ã‚‹ï¼å†…å®¹* -->
-({*ã“ã“ã‹ã‚‰ï¼šheader*})
-<!-- ã“ã“ã‹ã‚‰ï¼šå°ã‚¿ã‚¤ãƒˆãƒ« -->
+<!-- *‚±‚±‚©‚çF—\’è‚ğ•ÒW‚·‚é„“à—e* -->
+({*‚±‚±‚©‚çFheader*})
+<!-- ‚±‚±‚©‚çF¬ƒ^ƒCƒgƒ‹ -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:626px;" class="border_01">
 <tr>
 <td style="width:36px;" class="bg_06"><img src="./skin/content_header_1.gif" style="width:30px;height:20px;" class="dummy"></td>
-<td style="width:588px;padding:2px 0px;" class="bg_06"><span class="b_b c_00">äºˆå®šã®è©³ç´°</span></td>
+<td style="width:588px;padding:2px 0px;" class="bg_06"><span class="b_b c_00">—\’è‚ÌÚ×</span></td>
 </tr>
 </table>
-<!-- ã“ã“ã¾ã§ï¼šå°ã‚¿ã‚¤ãƒˆãƒ« -->
-({*ã“ã“ã¾ã§ï¼šheader*})
-({*ã“ã“ã‹ã‚‰ï¼šbody*})
-<!-- ã“ã“ã‹ã‚‰ï¼šä¸»å†…å®¹ -->
-<!-- ã“ã“ã‹ã‚‰ï¼šä¸»å†…å®¹ï¼ï¼äºˆå®šè¡¨ç¤º -->
+<!-- ‚±‚±‚Ü‚ÅF¬ƒ^ƒCƒgƒ‹ -->
+({*‚±‚±‚Ü‚ÅFheader*})
+({*‚±‚±‚©‚çFbody*})
+<!-- ‚±‚±‚©‚çFå“à—e -->
+<!-- ‚±‚±‚©‚çFå“à—e„„—\’è•\¦ -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:626px;" class="border_01">
 ({*********})
 <tr>
@@ -40,7 +40,7 @@
 
 <div style="padding:4px 3px;">
 
-ã‚¿ã‚¤ãƒˆãƒ«
+ƒ^ƒCƒgƒ‹
 
 </div>
 
@@ -67,7 +67,7 @@
 <td class="bg_05" align="center" valign="middle">
 <div style="padding:4px 3px;">
 
-æ—¥æ™‚
+“ú
 
 </div>
 </td>
@@ -76,12 +76,12 @@
 <div style="padding:4px 3px;">
 
 ({if $schedule.rep_type_loc})
-	æ¯é€± ({$schedule.rep_type_loc})æ›œæ—¥
+	–ˆT ({$schedule.rep_type_loc})—j“ú
 ({else})
 	({$schedule.begin_date})
 ({/if})
 
-({$schedule.begin_time}) ({if $schedule.begin_time})ï½({/if})
+({$schedule.begin_time}) ({if $schedule.begin_time})`({/if})
 
 ({if $schedule.begin_date != $schedule.finish_date})
 	({$schedule.finish_date})
@@ -104,7 +104,7 @@
 <td class="bg_05" align="center" valign="middle">
 <div style="padding:4px 3px;">
 
-é–‹å§‹æ—¥
+ŠJn“ú
 
 </div>
 </td>
@@ -112,7 +112,7 @@
 <td class="bg_02" align="left" valign="middle">
 <div style="padding:4px 3px;">
 
-({$repeat_begin_date|date_format:"%Yå¹´%mæœˆ%dæ—¥"})
+({$repeat_begin_date|date_format:"%Y”N%mŒ%d“ú"})
 
 </div>
 </td>
@@ -128,7 +128,7 @@
 <td class="bg_05" align="center" valign="middle">
 <div style="padding:4px 3px;">
 
-æœŸé–“
+ŠúŠÔ
 
 </div>
 </td>
@@ -136,7 +136,7 @@
 <td class="bg_02" align="left" valign="middle">
 <div style="padding:4px 3px;">
 
-({$repeat_term})é€±é–“
+({$repeat_term})TŠÔ
 
 </div>
 </td>
@@ -153,7 +153,7 @@
 <td class="bg_05" align="center" valign="middle">
 <div style="padding:4px 3px;">
 
-å†…å®¹
+“à—e
 
 </div>
 </td>
@@ -176,7 +176,7 @@
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 <td class="bg_05" align="center" valign="middle">
 <div style="padding:4px 3px;">
-ç™»éŒ²è€…
+“o˜^Ò
 </div>
 </td>
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
@@ -197,9 +197,9 @@
 <td class="bg_05" align="center" valign="middle">
 <div style="padding:4px 3px;">
 ({if $schedule.biz_group_id})
-ã‚°ãƒ«ãƒ¼ãƒ—
+ƒOƒ‹[ƒv
 ({else})
-å‚åŠ è€…
+Q‰ÁÒ
 ({/if})
 </div>
 </td>
@@ -226,19 +226,48 @@
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 <td class="bg_05" align="center" valign="middle">
 <div style="padding:4px 3px;">
-å…¬é–‹ç¯„å›²
+
+Q‰ÁÒ
 </div>
 </td>
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 <td class="bg_02" align="left" valign="middle">
 <div style="padding:4px 3px;">
 ({if $schedule.public_flag == "public"})
-å…¨å“¡ã«å…¬é–‹
+‘Sˆõ‚ÉŒöŠJ
 ({elseif $schedule.public_flag == "group"})
-ã‚°ãƒ«ãƒ¼ãƒ—ã¾ã§å…¬é–‹
+ƒOƒ‹[ƒv‚Ü‚ÅŒöŠJ
 ({elseif $schedule.public_flag == "private"})
-å…¬é–‹ã—ãªã„
+ŒöŠJ‚µ‚È‚¢
 ({/if})
+</div>
+</td>
+<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+</tr>
+({*********})
+<tr>
+<td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+</tr>
+({*********})
+<tr>
+<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td class="bg_05" align="center" valign="middle">
+<div style="padding:4px 3px;">
+
+ŒöŠJ”ÍˆÍ
+
+</div>
+</td>
+<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td class="bg_02" align="left" valign="middle">
+<div style="padding:4px 3px;">
+
+({if $schedule.public_flag == 'private'})
+Q‰ÁÒ‚Ì‚İ‚ÉŒöŠJ
+({else})
+‘S‘Ì‚ÉŒöŠJ
+({/if})
+
 </div>
 </td>
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
@@ -263,7 +292,7 @@
 <input type="hidden" name="target_id" value="({$target_c_member_id})">
 <input type="hidden" name="year" value="({$schedule.begin_date|date_format:'%Y'})">
 <input type="hidden" name="month" value="({$schedule.begin_date|date_format:'%m'})">
-<input value="æœˆé–“ã‚«ãƒ¬ãƒ³ãƒ€ãƒ¼ã‚’è¡¨ç¤ºã™ã‚‹" type="submit" class="submit">
+<input value="ŒŠÔƒJƒŒƒ“ƒ_[‚ğ•\¦‚·‚é" type="submit" class="submit">
 </form>
 
 </td>
@@ -282,7 +311,7 @@
 <input type="hidden" name="schedule_id" value="({$schedule_id})">
 <input type="hidden" name="target_id" value="({$target_c_member_id})">
 
-<input value="ä¿®æ­£ã™ã‚‹" type="submit" class="submit">
+<input value="C³‚·‚é" type="submit" class="submit">
 </form>
 
 </td>
@@ -292,7 +321,7 @@
 ({t_form m=biz a=page_h_biz_schedule_delete})
 <input type="hidden" name="sessid" value="({$PHPSESSID})">
 <input type="hidden" name="schedule_id" value="({$schedule_id})">
-<input value="å‰Šé™¤ã™ã‚‹" type="submit" class="submit">
+<input value="íœ‚·‚é" type="submit" class="submit">
 
 </td>
 </tr>
@@ -300,7 +329,7 @@
 <tr>
 <td class="padding_ss" align="center" colspan="2">
 
-<input value="1" type="checkbox" name="is_rep" checked class="no_bg">ã»ã‹ã®ç¹°ã‚Šè¿”ã—äºˆå®šã‚‚ä¸€ç·’ã«å‰Šé™¤ã™ã‚‹
+<input value="1" type="checkbox" name="is_rep" checked class="no_bg">‚Ù‚©‚ÌŒJ‚è•Ô‚µ—\’è‚àˆê‚Éíœ‚·‚é
 
 </td>
 </tr>
@@ -319,13 +348,13 @@
 </tr>
 ({*********})
 </table>
-<!-- ã“ã“ã¾ã§ï¼šä¸»å†…å®¹ï¼ï¼äºˆå®šè¡¨ç¤º -->
-<!-- ã“ã“ã¾ã§ï¼šä¸»å†…å®¹ -->
-({*ã“ã“ã¾ã§ï¼šbody*})
-({*ã“ã“ã‹ã‚‰ï¼šfooter*})
-<!-- ç„¡ã— -->
-({*ã“ã“ã¾ã§ï¼šfooter*})
-<!-- *ã“ã“ã¾ã§ï¼šäºˆå®šã‚’ç·¨é›†ã™ã‚‹ï¼ï¼å†…å®¹* -->
+<!-- ‚±‚±‚Ü‚ÅFå“à—e„„—\’è•\¦ -->
+<!-- ‚±‚±‚Ü‚ÅFå“à—e -->
+({*‚±‚±‚Ü‚ÅFbody*})
+({*‚±‚±‚©‚çFfooter*})
+<!-- –³‚µ -->
+({*‚±‚±‚Ü‚ÅFfooter*})
+<!-- *‚±‚±‚Ü‚ÅF—\’è‚ğ•ÒW‚·‚é„„“à—e* -->
 </td>
 <td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
 </tr>
@@ -337,13 +366,13 @@
 </table>
 
 <!--/form-->
-<!-- ******ã“ã“ã¾ã§ï¼šäºˆå®šã‚’ç·¨é›†ã™ã‚‹****** -->
+<!-- ******‚±‚±‚Ü‚ÅF—\’è‚ğ•ÒW‚·‚é****** -->
 <!-- ********************************** -->
 
 <img src="./skin/dummy.gif" class="v_spacer_l">
 
 ({***************************})
-({**ã“ã“ã¾ã§ï¼šãƒ¡ã‚¤ãƒ³ã‚³ãƒ³ãƒ†ãƒ³ãƒ„**})
+({**‚±‚±‚Ü‚ÅFƒƒCƒ“ƒRƒ“ƒeƒ“ƒc**})
 ({***************************})
 ({ext_include file="inc_layoutcolumn_bottom_270px_165px_175px_720px.tpl"})
 ({ext_include file="inc_footer.tpl"})

@@ -20,18 +20,20 @@
 	
 ﾀｲﾄﾙ：<input type="text" name='sc_title' size="30"><br>
 
-グループ：<select name="biz_group_id">
-	<option value="0">指定なし
-({foreach from=$biz_group_list item=biz_group})
-	<option value="({$biz_group.biz_group_id})"({if $form_val.biz_group_id == $biz_group.biz_group_id}) selected({/if})>({$biz_group.name})
-({/foreach})
-</select><br>
+<input type="hidden" name="biz_group_id" value="0">
+<input type="hidden" name="public_flag" value="public">
+参加者：<select name='sc_j_mem'>
+		<option value="my">({if $is_f})ﾌﾚﾝﾄﾞ({else})自分({/if})のみ</option>
+		<option value="">全ﾕｰｻﾞｰ</option>
+		({foreach item=nm from=$jgroup name=join})
+		<option value="({$nm.biz_group_id})">({$nm.name})
+		({/foreach})
+		
+		</select><br>
 公開範囲：<br>
 <input type='radio' name='public_flag' value='public' checked>全体に公開<br>
-<input type='radio' name='public_flag' value='group'>グループまで公開<br>
-<input type='radio' name='public_flag' value='private'>公開しない<br><br>
+<input type='radio' name='public_flag' value='private'>参加者のみに公開<br><br>
 <center>
-
 
 <input type="hidden" name="target_id" value="({$t_id})">
 <input type='submit' name='entry' value='登録する'>

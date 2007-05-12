@@ -139,29 +139,21 @@ function biz_getRepeatFinish($schedule_id)
 function biz_isPermissionSchedule($u, $biz_schedule_id)
 {
     $biz_schedule = biz_getScheduleInfo($biz_schedule_id);
+    $biz_schedule_member = biz_getJoinIdSchedule($biz_schedule_id);
     $public_flag = $biz_schedule['public_flag'];
     $biz_group_id = $biz_schedule['biz_group_id'];
     $target_c_member_id = $biz_schedule['c_member_id'];
 
     switch ($public_flag) {
-    case 'group' :  //グループのメンバーにのみ権限が与えられる予定
-        $biz_group = biz_getGroupData($biz_group_id);
-        if (biz_isGroupMember($u, $biz_group_id)) {
+    case 'private' :  // 予定参加者にのみ権限が与えられる予定
+        if ($target_c_member_id == $u) {  // 自分が予定作成者
             return true;
-        } elseif (empty($biz_group)) {  //グループが存在しない場合はTodoを公開する
-            return true;
-        } else {
-            return false;
-        }
-        break;
-    case 'private' :  //予定作成者にのみ権限が与えられる予定
-        if ($target_c_member_id == $u) {
+        } elseif(in_array($u, $biz_schedule_member)) {
             return true;
         } else {
             return false;
         }
-        break;
-    default :  //すべてのメンバーに権限が与えられる予定
+    default :  // すべてのメンバーに権限が与えられる予定
         return true;
     }
 }
@@ -845,8 +837,8 @@ function biz_getJoinGroupList($c_member_id, $page, $page_size)
 
 //スケジュール登録
 function biz_insertSchedule($title, $c_member_id, $begin_date, $finish_date, $begin_time = null, $finish_time = null,
-    $value = '', $rep_type, $first_id = 0, $biz_group_id = 0,
-    $public_flag = "public", $target_c_member_id = null)
+                                                        $value = '', $rep_type, $first_id = 0,
+                                                        $biz_group_id = 0, $public_flag = "public", $join_members = array())
 {
     //登録値のセット、チェック
     if (!$value) {

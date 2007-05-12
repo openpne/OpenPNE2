@@ -23,12 +23,10 @@
 詳細：({$schedule.value})<br>
 登録者：<a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$schedule.c_member_id})&amp;({$tail})">({$schedule.writer_name})</a><br>
 公開範囲：
-({if $schedule.public_flag == "public"})
-全員に公開
-({elseif $schedule.public_flag == "group"})
-グループまで公開
-({elseif $schedule.public_flag == "private"})
-公開しない
+({if $schedule.public_flag == "private"})
+参加者のみに公開
+({else})
+全体に公開
 ({/if})<br>
 参加者：
 ({foreach item=name key=id from=$jmembers})

@@ -14,7 +14,9 @@ class ktai_biz_do_fh_biz_schedule_edit extends OpenPNE_Action
         if (!biz_isPermissionSchedule($u, $requests['schedule_id'])) {
             handle_kengen_error();
         }
-        
+        $schedule = biz_getScheduleInfo($requests['schedule_id']);
+        $requests['sc_b_year'] = $requests['sc_b_year'] + 2000;
+
         //ERROR----------------
         //存在しない日付
         if (!checkdate($requests['sc_b_month'], $requests['sc_b_date'], $requests['sc_b_year'])) {
@@ -126,12 +128,11 @@ class ktai_biz_do_fh_biz_schedule_edit extends OpenPNE_Action
 
         $finish_date = $begin_date;  //当日中に終わる予定は、開始日と終了日は同一でなければならない
 
-
-        $finish_date = date("Y-m-d", strtotime($requests['sc_b_year'].'-'.$requests['sc_b_month'].'-'.($requests['sc_b_date']+($requests['sc_bn']-1))));
-
         $schedule_id = '';
 
-        biz_editSchedule($requests['sc_title'], $u, $begin_date, $finish_date, $begin_time, $finish_time, $requests['sc_memo'], $rp_rule, 0, $requests['sc_j_mem'], $requests['public_flag'], $requests['schedule_id']);
+        $biz_schedule_member = biz_getJoinIdSchedule($requests['schedule_id']);
+
+        biz_editSchedule($requests['sc_title'], $schedule['c_member_id'], $begin_date, $finish_date, $begin_time, $finish_time, $requests['sc_memo'], $rp_rule, 0, $requests['sc_j_mem'], $requests['public_flag'], $requests['schedule_id'], $biz_schedule_member);
         $schedule_id = $requests['schedule_id'];
 
 
