@@ -107,10 +107,11 @@ function db_member_c_member_secure4c_member_id($c_member_id)
     $c_member_secure = db_get_row($sql, array(intval($c_member_id)));
     
     if (is_array($c_member_secure)) {
-        return array_map('t_decrypt', $c_member_secure);
-    } else {
-        return $c_member_secure;
+        $c_member_secure['pc_address'] = t_decrypt($c_member_secure['pc_address']);
+        $c_member_secure['ktai_address'] = t_decrypt($c_member_secure['ktai_address']);
+        $c_member_secure['regist_address'] = t_decrypt($c_member_secure['regist_address']);
     }
+    return $c_member_secure;
 }
 
 /**
