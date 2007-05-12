@@ -123,6 +123,8 @@
 【PC版】 c_home ({$requests.num})
 ({elseif $requests.target == 'h_reply_message'})
 【PC版】 h_reply_message ({$requests.num})
+({elseif $requests.target == 'h_diary_add'})
+【PC版】 h_diary_add ({$requests.num})
 ({else})
 【携帯版】 ({$requests.target}) ({$requests.num})
 ({/if})</h3>
