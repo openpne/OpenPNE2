@@ -13,11 +13,12 @@ class pc_do_h_set_public_flag_all extends OpenPNE_Action
     {
         $u = $GLOBALS['AUTH']->uid();
 
-        if ($_REQUEST['ok']) {
+        if ($requests['ok']) {
             db_diary_update_public_flag_diary_all($u, $requests['public_flag_diary_all']);
+            openpne_redirect('pc', 'page_h_home');
+        } else {
+            openpne_redirect('pc', 'page_h_config');
         }
-
-        openpne_redirect('pc', 'page_h_home');
     }
 }
 

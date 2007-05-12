@@ -644,9 +644,9 @@ ID <input type="text" class="text" name="c_member_id_block[]" value=""><br>
 
 <div align="center" style="text-align:center;">
 
-<input type="radio" name="public_flag_diary_all" value="public" checked="checked" class="no_bg" id="public_flag_diary_public"><label for="public_flag_diary_public">全員に公開</label>
-<input type="radio" name="public_flag_diary_all" value="friend" class="no_bg" id="public_flag_diary_friend"><label for="public_flag_diary_friend">マイフレンドまで公開</label>
-<input type="radio" name="public_flag_diary_all" value="private" class="no_bg" id="public_flag_diary_private"><label for="public_flag_diary_private">公開しない</label><br>
+<input type="radio" name="public_flag_diary_all" value="public" checked="checked" class="no_bg" id="public_flag_diary_all_public"><label for="public_flag_diary_all_public">全員に公開</label>
+<input type="radio" name="public_flag_diary_all" value="friend" class="no_bg" id="public_flag_diary_all_friend"><label for="public_flag_diary_all_friend">マイフレンドまで公開</label>
+<input type="radio" name="public_flag_diary_all" value="private" class="no_bg" id="public_flag_diary_all_private"><label for="public_flag_diary_all_private">公開しない</label><br>
 <input type="submit" class="submit" value="　変　更　">
 
 </div>
