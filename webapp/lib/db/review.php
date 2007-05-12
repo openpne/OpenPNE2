@@ -16,6 +16,9 @@ function db_review_c_review_list4member($c_member_id, $count = 10)
 function db_review_c_friend_review_list4c_member_id($c_member_id, $limit)
 {
     $friends = db_friend_c_member_id_list($c_member_id);
+    if (!$friends) {
+        return array();
+    }
     $ids = implode(',', array_map('intval', $friends));
 
     $sql = 'SELECT * FROM c_review INNER JOIN c_review_comment USING (c_review_id)' .
@@ -385,6 +388,9 @@ function db_review_c_member_review_c_member_review4c_commu_id($c_commu_id, $page
 
 function db_review_c_member_review_add_confirm_c_member_review4c_review_id($c_review_id, $c_member_id)
 {
+    if (!$c_review_id) {
+        return array();
+    }
     $c_review_id_str = implode(',', array_map('intval', $c_review_id));
     $sql = "SELECT * FROM c_review as cr, c_review_comment as crc , c_review_category as crc2 " .
             " WHERE cr.c_review_id = crc.c_review_id " .
