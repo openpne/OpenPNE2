@@ -80,7 +80,7 @@ class pc_page_h_diary_edit extends OpenPNE_Action
 	        //この日記のカテゴリリストを得る
 	        if ($category) {
 	            $category_list = array();
-	            foreach(preg_split('/[\s]+/', $category) as $value) {
+	            foreach(preg_split('/\s+/', $category) as $value) {
 	                if (empty($value)) {
 	                    break;
 	                }
