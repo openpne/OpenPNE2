@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="./css/default.css?v=2.2.5" type="text/css">
 ({/if})
 <script type="text/javascript" src="./js/prototype.js"></script>
+<script type="text/javascript" src="./js/pne.js"></script>
 <style type="text/css">
 <!--
 /*枠線要素*/

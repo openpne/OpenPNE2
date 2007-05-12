@@ -1,5 +1,6 @@
 function url2cmd(url) {
     if (!url.match(/^http:\/\/www\.watchme\.tv\/v\/\?mid=([a-z0-9]+)$/)) {
+        pne_url2a(url);
         return;
     }
     var id =  RegExp.$1;

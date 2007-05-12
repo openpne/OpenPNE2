@@ -4,20 +4,17 @@ document.write('<script type="text/javascript" src="http://blog-apart.com/OX/ox.
 document.write('<script type="text/javascript" src="http://blog-apart.com/SWEEPER/sweeper.js"></sc' + 'ript>');
 document.write('<script type="text/javascript" src="http://blog-apart.com/PAINT_BIT/paint_bit.js"></sc' + 'ript>');
 
-function urllink(url) {
-    var link = '<a href="' + url + '" target="_blank">' + url + '</a>';
-    document.write(link);
-}
-
 function url2cmd(url) {
     if (!url.match(/^http:\/\/(?:www\.|)blog\-apart\.com\/([a-zA-Z0-9_\-]+)\//)) {
-        urllink(url);
+        pne_url2a(url);
         return false;
     }
     var id = RegExp.$1;
     if (!main(id)) {
-        urllink(url);
+        pne_url2a(url);
+        return false;
     }
+    return true;
 }
 
 function main(id) {

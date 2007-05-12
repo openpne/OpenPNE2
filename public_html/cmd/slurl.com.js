@@ -1,14 +1,9 @@
 document.write("<script type='text/javascript' src='http://secondlife.com/apps/mapapi/'" + "></sc" + "ript>");
 document.write('<div id="map-container" style="height:440px; width:400px; position:relative;"></d' + 'iv>');
 
-function urllink(url) {
-    var link = '<a href="' + url + '" target="_blank">' + url + '</a>';
-    document.write(link);
-}
-
 function url2cmd(url) {
     if (!url.match(/^http:\/\/slurl\.com\/secondlife\/([a-zA-Z0-9_\-]+)\/([0-9]+)\/([0-9]+)\/([0-9]+)/)) {
-        urllink(url);
+        pne_url2a(url);
         return false;
     }
     var name = RegExp.$1;

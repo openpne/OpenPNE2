@@ -1,5 +1,6 @@
 function main(id, width, height) {
     if (!id.match(/^[a-zA-Z0-9_\-]+$/)) {
+        pne_url2a(url);
         return;
     }
     if (!width) width = 0; else width = parseInt(width);
