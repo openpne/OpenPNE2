@@ -50,9 +50,11 @@ class pc_do_f_invite_insert_c_message_friend_invite extends OpenPNE_Action
             db_message_send_message_syoukai_member($u, $value, $msg_subject, $msg_body);
         }
 
-        //メンバー紹介をした人にポイント付与
-        $point = db_action_get_point4c_action_id(8);
-        db_point_add_point($u, $point);
+        if (OPENPNE_USE_POINT_RANK) {
+            //メンバー紹介をした人にポイント付与
+            $point = db_action_get_point4c_action_id(8);
+            db_point_add_point($u, $point);
+        }
 
         $p = array('target_c_member_id' => $target_c_member_id);
         openpne_redirect('pc', 'page_f_home', $p);

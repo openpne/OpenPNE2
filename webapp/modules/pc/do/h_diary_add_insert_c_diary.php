@@ -69,9 +69,11 @@ class pc_do_h_diary_add_insert_c_diary extends OpenPNE_Action
 
         db_diary_update_c_diary($c_diary_id, $subject, $body, $public_flag, $filename_1, $filename_2, $filename_3);
 
-        //日記を書いた人にポイント付与
-        $point = db_action_get_point4c_action_id(4);
-        db_point_add_point($u, $point);
+        if (OPENPNE_USE_POINT_RANK) {
+            //日記を書いた人にポイント付与
+            $point = db_action_get_point4c_action_id(4);
+            db_point_add_point($u, $point);
+        }
 
         $p = array('target_c_diary_id' => $c_diary_id);
         openpne_redirect('pc', 'page_fh_diary', $p);

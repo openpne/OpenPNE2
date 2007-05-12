@@ -123,7 +123,7 @@
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('manage_c_commu')})">初期コミュニティ</a></li>
 ({/if})
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_holiday')})">祝日設定</a></li>
-({if $smarty.const.OPENPNE_DISP_POINT})
+({if $smarty.const.OPENPNE_USE_POINT_RANK})
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_rank')})">ポイント・ランク設定</a></li>
 ({/if})
 </ul>

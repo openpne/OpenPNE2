@@ -186,23 +186,34 @@
 <option value="0"({if !$smarty.const.OPENPNE_USE_CMD_TAG}) selected="selected"({/if})>使用しない</option>
 </select></td>
 </tr>
-<tr class="cell28">
+<tr class="cell31">
+<th colspan="2">ポイント・ランク使用設定</th>
+<td>
+<span class="info">ポイント・ランク機能を使用するかどうかを設定します</span><br />
+<select class="basic" name="OPENPNE_USE_POINT_RANK">
+<option value="1"({if $smarty.const.OPENPNE_USE_POINT_RANK}) selected="selected"({/if})>使用する</option>
+<option value="0"({if !$smarty.const.OPENPNE_USE_POINT_RANK}) selected="selected"({/if})>使用しない</option>
+</select></td>
+</tr>
+<tr class="cell32">
 <th colspan="2">ポイント表示設定</th>
 <td>
-<span class="info">ポイントをh_home等に表示するかどうかを設定します</span><br />
+<span class="info">ポイントをPC・携帯版ホームに表示するかどうかを設定します</span><br />
 <select class="basic" name="OPENPNE_DISP_POINT">
 <option value="1"({if $smarty.const.OPENPNE_DISP_POINT}) selected="selected"({/if})>表示する</option>
 <option value="0"({if !$smarty.const.OPENPNE_DISP_POINT}) selected="selected"({/if})>表示しない</option>
-</select></td>
+</select><br />
+<span class="caution">※ポイント・ランク使用設定が「使用しない」に設定されている場合は表示されません</span></td>
 </tr>
-<tr class="cell29">
+<tr class="cell33">
 <th colspan="2">ランク表示設定</th>
 <td>
-<span class="info">ランクをh_home等に表示するかどうかを設定します</span><br />
+<span class="info">ランクをPC・携帯版ホームに表示するかどうかを設定します</span><br />
 <select class="basic" name="OPENPNE_DISP_RANK">
 <option value="1"({if $smarty.const.OPENPNE_DISP_RANK}) selected="selected"({/if})>表示する</option>
 <option value="0"({if !$smarty.const.OPENPNE_DISP_RANK}) selected="selected"({/if})>表示しない</option>
-</select></td>
+</select><br />
+<span class="caution">※ポイント・ランク使用設定が「使用しない」に設定されている場合は表示されません</span></td>
 </tr>
 <tr class="cell21">
 <th colspan="2">ログイン制限</th>

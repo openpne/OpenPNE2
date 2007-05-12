@@ -92,12 +92,14 @@ class pc_page_h_home extends OpenPNE_Action
 
         /// その他 ///
 
-        //PNEPOINT
-        $point = db_point_get_point($u);
-        $this->set("point", $point);
+        if (OPENPNE_USE_POINT_RANK) {
+            // ポイント
+            $point = db_point_get_point($u);
+            $this->set("point", $point);
 
-        //rank
-        $this->set("rank", db_point_get_rank4point($point));
+            // ランク
+            $this->set("rank", db_point_get_rank4point($point));
+        }
 
         // 紹介文
         $c_friend_intro_list = db_friend_c_friend_intro_list4c_member_id($u, 5);

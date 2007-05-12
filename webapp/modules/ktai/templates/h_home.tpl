@@ -6,11 +6,11 @@
 
 <center>
 <a name="top"><font color="orange">({$c_member.nickname})さんのﾎｰﾑ</font></a>
-({if $rank})
+({if $smarty.const.OPENPNE_DISP_RANK && $rank})
 <br>
 <img src="({t_img_url filename=$rank.image_filename})" alt="({$rank.name})">
 ({/if})
-({if $point})
+({if $smarty.const.OPENPNE_DISP_POINT && $point})
 <br>
 ({$point}) Point
 ({/if})

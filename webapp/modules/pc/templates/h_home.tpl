@@ -227,12 +227,12 @@
 <tr>
 <td align="center" class="bg_05 c_04">
 
-({if $rank || $point})
+({if ($smarty.const.OPENPNE_DISP_RANK && $rank) || ($smarty.const.OPENPNE_DISP_POINT && $point)})
 <img src="./skin/dummy.gif" class="v_spacer_m">
-({if $rank})
+({if $smarty.const.OPENPNE_DISP_RANK && $rank})
 <img src="({t_img_url filename=$rank.image_filename})" class="pict" alt="({$rank.name})" style="margin:2px"><br>
 ({/if})
-({if $point})
+({if $smarty.const.OPENPNE_DISP_POINT && $point})
 ({$point}) Point<br>
 ({/if})
 ({/if})

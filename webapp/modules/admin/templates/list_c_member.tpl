@@ -64,7 +64,9 @@
 			<th class="cell02" colspan="3" rowspan="3">操作パネル</th>
 			<th class="cell03" rowspan="3"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=c_member_id-1">▲</a>ID<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=c_member_id-2">▼</a></th>
 			<th class="cell04" rowspan="3"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=nickname-1">▲</a>ニックネーム<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=nickname-2">▼</a></th>
+			({if $smarty.const.OPENPNE_USE_POINT_RANK})
 			<th class="cell10" colspan="2" rowspan="2"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=PNE_POINT-1">▲</a>ポイント・ランク<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=PNE_POINT-2">▼</a></th>
+			({/if})
 			<th class="cell05" rowspan="2"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=access_date-1">▲</a>最終ログイン<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=access_date-2">▼</a></th>
 			<th class="cell06" rowspan="3"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=r_date-1">▲</a>登録日<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=r_date-2">▼</a></th>
 			<th class="cell07" rowspan="3"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=c_member_id_invite-1">▲</a>招待者<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=c_member_id_invite-2">▼</a></th>
@@ -90,6 +92,7 @@
 			<th class="cell09C">日</th>
 		</tr>
 		<tr class="min_width">
+			({if $smarty.const.OPENPNE_USE_POINT_RANK})
 			<th class="cell10" colspan="2">
             <select class="basic" onChange="Link('?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page=({$pager.page})&amp;page_size=({$pager.page_size})({$cond})&amp;s_point='+this.options[this.selectedIndex].value);">
 			<option value="">▼選択</option>
@@ -107,6 +110,7 @@
 			({if $pre_name})<option({if $cond_list.e_point === 0}) selected({/if}) value="0">({$pre_name})</option>({/if})
 			</select>
 			</th>
+			({/if})
 			<th class="cell05">
             <select class="basic" onChange="Link('?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page=({$pager.page})&amp;page_size=({$pager.page_size})({$cond})&amp;last_login='+this.options[this.selectedIndex].value);">
             <option value="">▼選択</option>
@@ -154,8 +158,10 @@
 			<th class="cell02" colspan="3" rowspan="2">操作パネル</th>
 			<th class="cell03" rowspan="2">ID</th>
 			<th class="cell04" rowspan="2">ニックネーム</th>
+			({if $smarty.const.OPENPNE_USE_POINT_RANK})
 			<th class="cell10" rowspan="2">ランク</th>
 			<th class="cell11" rowspan="2">ポイント</th>
+			({/if})
 			<th class="cell05" rowspan="2">最終ログイン</th>
 			<th class="cell06" rowspan="2">登録日</th>
 			<th class="cell07" rowspan="2">招待者</th>
@@ -189,8 +195,10 @@
 			<td class="cell02C"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('passwd')})&amp;target_c_member_id=({$item.c_member_id})"><img src="modules/admin/img/icn_passwd.gif" alt="パスワード再発行" /></a></td>
 			<td class="cell03">({$item.c_member_id})</td>
 			<td class="cell04"><a href="({t_url _absolute=1 m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})" target="_blank">({$item.nickname})</a></td>
+			({if $smarty.const.OPENPNE_USE_POINT_RANK})
 			<td class="cell10">({if $item.c_member_id == 1})-({else})({$item.c_rank.name})({/if})</td>
 			<td class="cell11">({if $item.c_member_id == 1})-({else})<a href="?m=({$module_name})&amp;a=({$hash_tbl->hash('page_edit_point')})&amp;target_c_member_id=({$item.c_member_id})">({$item.profile.PNE_POINT.value|default:0})</a>({/if})</td>
+			({/if})
 			<td class="cell05">({if $item.access_date != '0000-00-00 00:00:00'})({$item.access_date|date_format:"%y-%m-%d %H:%M"})({else})未ログイン({/if})</td>
 			<td class="cell06">({if $item.r_date != '0000-00-00 00:00:00'})({$item.r_date|date_format:"%y-%m-%d"})({else})&nbsp;({/if})</td>
 			<td class="cell07">({if $item.c_member_id_invite})({$item.c_member_id_invite}):<a href="({t_url _absolute=1 m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id_invite})" target="_blank">({$item.c_member_invite.nickname})</a>({else})&nbsp;({/if})</td>

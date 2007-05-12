@@ -47,6 +47,7 @@ class OpenPNE_Config
             'LIMIT_DOMAIN3',
             'LIMIT_DOMAIN4',
             'LIMIT_DOMAIN5',
+            'OPENPNE_USE_POINT_RANK',
         );
     }
 
@@ -134,7 +135,9 @@ class OpenPNE_Config
             'LIMIT_DOMAIN3' => '',
             'LIMIT_DOMAIN4' => '',
             'LIMIT_DOMAIN5' => '',
-
+            'OPENPNE_USE_POINT_RANK' => 1,
+            'OPENPNE_DISP_POINT' => 1,
+            'OPENPNE_DISP_RANK' => 1,
         // config.php
             'OPENPNE_RSS_CACHE_DIR' => OPENPNE_VAR_DIR . '/rss_cache',
             'OPENPNE_UNDER_MAINTENANCE' => false,
@@ -173,8 +176,6 @@ class OpenPNE_Config
             'OPENPNE_SESSION_CHECK_URL' => false,
             'OPENPNE_INFO_URL' => 'http://info.openpne.jp/rss',
             'DISPLAY_OPENPNE_INFO' => true,
-            'OPENPNE_DISP_POINT' => false,
-            'OPENPNE_DISP_RANK' => false,
             'IS_SLAVEPNE' => false,
         // 固定値
             'AMAZON_TOKEN'   => '1WZYY1W9YF49AGM0RTG2',
