@@ -163,7 +163,8 @@ function db_rss_insert_rss_cache($rss_url, $c_member_id)
 
     foreach ($items as $item) {
         // エスケープされた文字列を元に戻す
-        $trans_table = array_flip(get_html_translation_table());
+        $trans_table = array_flip(get_html_translation_table(HTML_SPECIALCHARS, ENT_QUOTES));
+        $trans_table['&#039;'] = "'";
         $item['title'] = strtr($item['title'], $trans_table);
         $item['body'] = strtr($item['body'], $trans_table);
 
