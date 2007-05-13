@@ -177,12 +177,10 @@ function biz_getDateMemberSchedule($y, $m, $d, $target_c_member_id, $u)
         $sql = 'SELECT c_member_id FROM biz_schedule_member WHERE biz_schedule_id = ?';
         $biz_schedule_member_id_list = db_get_col($sql, array(intval($biz_schedule_id)));
 
+        // スケジュールに参加しているメンバー
+        $members = biz_getJoinIdSchedule($biz_schedule_id);
         if (biz_isPermissionSchedule($u, $biz_schedule_id)) {
-            if (in_array($target_c_member_id, $biz_schedule_member_id_list)) {
-                $contain[] = $biz_schedule_id;
-            } elseif(in_array($biz_schedule['biz_group_id'], $biz_group_id_list) && ($value['public_flag'] != 'private')) {
-                $contain[] = $biz_schedule_id;
-            } elseif (empty($biz_schedule_member_id_list) && !$biz_schedule['biz_group_id'] && ($biz_schedule['c_member_id'] == $u)) {
+            if (in_array($target_c_member_id, $members)) {
                 $contain[] = $biz_schedule_id;
             }
         }
@@ -863,19 +861,20 @@ function biz_insertSchedule($title, $c_member_id, $begin_date, $finish_date, $be
         'biz_group_id' => $biz_group_id,
         'public_flag' => $public_flag,
     );
-    $biz_schedule_id = db_insert('biz_schedule', $data);
+    $new_schedule_id = db_insert('biz_schedule', $data);
 
-    if (!$biz_group_id) {  //個人の予定
-        if (is_null($target_c_member_id)) {  //作成者自身の予定
-            $target_c_member_id = $c_member_id;
-        }
-
-        $param = array(
-            'biz_schedule_id' => $biz_schedule_id,
-            'c_member_id' => $target_c_member_id,
-            'is_read' => 1
+    // 参加者が指定されていない場合は、c_memberすべてが予定の参加者に
+    if (empty($join_members)) {
+        $sql = 'SELECT c_member_id FROM c_member';
+        $join_members = db_get_col($sql);
+    }
+    foreach ($join_members as $value) {
+        $data = array(
+            'c_member_id' => $value,
+            'biz_schedule_id' => $new_schedule_id,
+            'is_read' => 0,
         );
-        db_insert('biz_schedule_member', $param);
+        db_insert('biz_schedule_member', $data);
     }
 }
 
@@ -918,7 +917,7 @@ function biz_deleteSchedule($id, $group = false)
 function biz_editSchedule($title, $member_id, $begin_date, $finish_date, $begin_time = null, $finish_time = null,
                                                     $value = '', $rep_type, $first_id = 0,
                                                     $biz_group_id = 0, $public_flag = "public",
-                                                    $id)
+                                                    $id, $join_members = array())
 {
     $sql = 'UPDATE `biz_schedule` SET `title` = ?,`c_member_id` = ?,`begin_date` = ?,`finish_date` = ?,`begin_time` = ?,`finish_time` = ?,`value` = ?,`rep_type` = ?,`rep_first` = ?, `biz_group_id` = ?, `public_flag` = ?, `is_read` = 0 WHERE `biz_schedule_id` = ?';
     $params = array(
@@ -936,6 +935,22 @@ function biz_editSchedule($title, $member_id, $begin_date, $finish_date, $begin_
         $id,
     );
     db_query($sql, $params);
+    
+    $sql = 'DELETE FROM `biz_schedule_member` WHERE `biz_schedule_id` = ?';
+    $params = array(
+        intval($id),
+    );
+    db_query($sql, $params);
+
+    foreach ($join_members as $value) {
+        $data = array(
+            'c_member_id' => $value,
+            'biz_schedule_id' => intval($id),
+            'is_read' => 0,
+        );
+        
+        db_insert('biz_schedule_member', $data);
+    }
 }
 
 //スケジュールを既読済みに

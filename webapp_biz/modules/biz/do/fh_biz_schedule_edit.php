@@ -15,14 +15,13 @@ class biz_do_fh_biz_schedule_edit extends OpenPNE_Action
         if (!biz_isPermissionSchedule($u, $requests['schedule_id'])) {
             handle_kengen_error();
         }
-
+        $schedule = biz_getScheduleInfo($requests['schedule_id']);
+        
         //ERROR----------------
         //存在しない日付
         if (!checkdate($requests['sc_b_month'], $requests['sc_b_date'], $requests['sc_b_year'])) {
             $redirect_script = '?m=biz&a=page_fh_biz_schedule_edit';
             $msg = '存在しない日付が指定されました。';
-
-            $schedule = biz_getScheduleInfo($requests['schedule_id']);
 
             $begin_date = $schedule['begin_date'];
 
@@ -109,7 +108,13 @@ class biz_do_fh_biz_schedule_edit extends OpenPNE_Action
 
             exit();  //強制的にスクリプトを終了しなければいけない
         }
-
+        
+        //施設、参加者のチェック
+        if (in_array('0', $requests['sc_j_mem'])) {
+            //「全員」が含まれている場合は、配列を空に
+            $requests['sc_j_mem'] = array();
+        }
+        
         if (!($requests['sc_b_hour'] || $requests['sc_b_minute'] || $requests['sc_f_hour'] || $requests['sc_f_minute'])) {
             //時刻指定なし
             $begin_time = $finish_time = null;
@@ -128,7 +133,7 @@ class biz_do_fh_biz_schedule_edit extends OpenPNE_Action
             //繰り返しなし
             $finish_date = date("Y-m-d", strtotime($requests['sc_b_year'].'-'.$requests['sc_b_month'].'-'.($requests['sc_b_date']+($requests['sc_bn']-1))));
             //繰り返しをしない予定登録
-            biz_editSchedule($requests['sc_title'], $u, $begin_date, $finish_date, $begin_time, $finish_time, $requests['sc_memo'], $rp_rule, 0, $requests['biz_group_id'], $requests['public_flag'], $requests['schedule_id']);
+            biz_editSchedule($requests['sc_title'], $schedule['c_member_id'], $begin_date, $finish_date, $begin_time, $finish_time, $requests['sc_memo'], $rp_rule, 0, $requests['biz_group_id'], $requests['public_flag'], $requests['schedule_id'], $requests['sc_j_mem']);
             $schedule_id = $requests['schedule_id'];
         } else {
             //終了日の決定
@@ -157,7 +162,7 @@ class biz_do_fh_biz_schedule_edit extends OpenPNE_Action
                 $tmp = $nowday;
                 
                 if ($rp_rule & (1 << date("w", $nowday))) {
-                    biz_insertSchedule($requests['sc_title'], $u, date("Y-m-d", $tmp), date("Y-m-d", $tmp), $begin_time, $finish_time, $requests['sc_memo'], $rp_rule, $first_id, $requests['biz_group_id'], $requests['public_flag']); 
+                    biz_insertSchedule($requests['sc_title'], $schedule['c_member_id'], date("Y-m-d", $tmp), date("Y-m-d", $tmp), $begin_time, $finish_time, $requests['sc_memo'], $rp_rule, $first_id, $requests['biz_group_id'], $requests['public_flag'], $requests['sc_j_mem']); 
                 }
             }
 

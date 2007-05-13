@@ -257,7 +257,33 @@
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 <td class="bg_02" align="left" valign="middle">
 
+<table border="0" cellspacing="0" cellpadding="0">
 <tr>
+({foreach name=i from=$members item=item})
+({if $item})
+<td class="padding_ss" style="width:33%;" valign="top">
+<input name='sc_j_mem[]' value='({$item.c_member_id})' type='checkbox' class='no_bg'({if $item.checkflag}) checked="checked"({/if})>({$item.nickname})
+</td>
+({else})
+<td class="padding_ss" style="width:33%;">&nbsp;</td>
+({/if})
+
+({if $smarty.foreach.i.last && ($smarty.foreach.i.iteration%3==1 || $smarty.foreach.i.iteration%3==2)})
+<td class="padding_ss" style="width:33%;">&nbsp;</td>
+({/if})
+({if $smarty.foreach.i.last && $smarty.foreach.i.iteration%3==1 })
+<td class="padding_ss" style="width:33%;">&nbsp;</td>
+({/if})
+({if !$smarty.foreach.i.last && $smarty.foreach.i.iteration%3==0})
+</tr><tr>
+({/if})
+({/foreach})
+</tr>
+</table>
+
+({*ここまで：新規予定*})
+
+</td>
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({*********})

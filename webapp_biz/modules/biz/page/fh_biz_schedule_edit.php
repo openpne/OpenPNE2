@@ -22,7 +22,7 @@ class biz_page_fh_biz_schedule_edit extends OpenPNE_Action
 
         $schedule = biz_getScheduleInfo($requests['schedule_id']);
 
-        if (empty($requests['target_id']) || ($requests['target_id'] == $u)) {
+        if ($schedule['c_member_id'] == $u) {
             //自分自身
             $target_id = $u;
             $this->set('is_h', true);  //判別フラグ
@@ -183,6 +183,32 @@ class biz_page_fh_biz_schedule_edit extends OpenPNE_Action
         $this->set('target_biz_group_id', $schedule['biz_group_id']);
 
         $this->set('public_flag', $schedule['public_flag']);
+        
+        //追加
+        if ($requests['members']) {
+            $j_members = array_keys(unserialize($requests['members']));
+            sort($j_members);
+        } else {
+        	$j_members = biz_getJoinMemberSchedule($requests['schedule_id']);
+        }
+        $this->set('j_members', $j_members);
+        $members = array();
+
+        $sql = 'SELECT c_member_id, nickname FROM c_member';
+        $members = db_get_all($sql, $params);
+        $i = 0;
+        foreach ($members as $key => $value) {
+            if (in_array($value['c_member_id'], $j_members)) {
+                $members[$key]['checkflag'] = 1;
+                $i++;
+            }
+
+            if (count($j_members) < $i) {
+                break;
+            }
+        }
+        
+        $this->set('members', $members);
 
         return 'success';
     }

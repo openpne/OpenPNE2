@@ -129,6 +129,11 @@ class biz_do_fhg_biz_schedule_add extends OpenPNE_Action
             openpne_redirect('biz', 'page_fh_biz_schedule_add', $p);
             exit();  //強制的にスクリプトを終了しなければいけない
         }
+        //参加者のチェック
+        if (in_array('0', $requests['sc_j_mem'])) {
+            //「全員」が含まれている場合は、配列を空に
+            $requests['sc_j_mem'] = array();
+        }
 
         if (!$requests['sc_rp'] && ($requests['sc_bn'] == 1)) {
             //当日中に終わる予定は、開始日と終了日は同一でなければならない
@@ -145,7 +150,7 @@ class biz_do_fhg_biz_schedule_add extends OpenPNE_Action
         //繰り返し予定
         if ($requests['sc_rp']) {
             //終了日の決定
-            $finish_date = date("Y-m-d", strtotime($requests['sc_b_year'].'-'.$requests['sc_b_month'].'-'.($requests['sc_b_date']+($requests['sc_rcount'])*7)));
+            $finish_date = date("Y-m-d", strtotime($requests['sc_b_year'].'-'.$requests['sc_b_month'].'-'.$requests['sc_b_date'].' + ' . ($requests['sc_rcount'])*7 . 'days'));
 
             //first_idの決定
             $first_id = biz_getScheduleMax() + 1;
@@ -164,18 +169,16 @@ class biz_do_fhg_biz_schedule_add extends OpenPNE_Action
 
         if (!$requests['sc_rp']) {
             //繰り返しをしない予定登録
-            biz_insertSchedule($requests['sc_title'], $u, $begin_date, $finish_date, $begin_time, $finish_time,
-                $requests['sc_memo'], $rp_rule, 0, $requests['biz_group_id'], $requests['public_flag'], $requests['target_c_member_id']);
+            biz_insertSchedule($requests['sc_title'], $u, $begin_date, $finish_date, $begin_time, $finish_time, $requests['sc_memo'], $rp_rule, 0, $requests['biz_group_id'], $requests['public_flag'], $requests['sc_j_mem']);
         } else {
             //繰り返し予定
             $tmp = $begin_date;  //処理中の日付
 
-            for ($i=0; date("Ymd", strtotime($tmp)) < date("Ymd", strtotime($finish_date)); $i++) {
-                $nowday = strtotime($requests['sc_b_year'].'-'.$requests['sc_b_month'].'-'.($requests['sc_b_date']+$i));
-                $tmp = date("Ymd", $nowday);
+            for ($i=0; strtotime($tmp) < strtotime($finish_date); $i++) {
+                $nowday = strtotime($begin_date . ' + ' . $i . 'days');
+                $tmp = date("Y-m-d", $nowday);
                 if ($rp_rule & (1 << date("w",$nowday))) {
-                    biz_insertSchedule($requests['sc_title'], $u, $tmp, $tmp, $begin_time, $finish_time,
-                        $requests['sc_memo'], $rp_rule, $first_id, $requests['biz_group_id'], $requests['public_flag'], $requests['target_c_member_id']);
+                    biz_insertSchedule($requests['sc_title'], $u, $tmp, $tmp, $begin_time, $finish_time, $requests['sc_memo'], $rp_rule, $first_id, $requests['biz_group_id'], $requests['public_flag'], $requests['sc_j_mem']);
                 }
             }
         }

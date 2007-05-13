@@ -11,18 +11,27 @@ class ktai_biz_do_fhg_biz_schedule_add extends OpenPNE_Action
         $u  = $GLOBALS['KTAI_C_MEMBER_ID'];
         $tail = $GLOBALS['KTAI_URL_TAIL'];
 
-        //target_idの指定
+        //target_idの持E�
         if (!$requests['target_id']) {
             $requests['target_id'] = $u;
         }
+        
+        $requests['sc_b_year'] = $requests['sc_b_year'] + 2000;
+
+        $biz_schedule_member = array();
+ 
+        // 自刁E�E予定�E場合�E自刁E�Eみを参加老E��する
+        if ($requests['sc_j_mem'] == 'my') {
+            $biz_schedule_member = array($requests['target_id']);
+        }
 
         //ERROR----------------
-        //存在しない日付
+        //存在しなぁE���
         if (!checkdate($requests['sc_b_month'], $requests['sc_b_date'], $requests['sc_b_year'])) {
             $redirect_script = '?m=ktai_biz&a=page_fh_biz_schedule_add&'.$tail;
-            $msg = '存在しない日付が指定されました。';
+            $msg = '存在しなぁE��付が持E��されました、E;
 
-            //日付関連の引数は返さなくてもよい
+            //日付関連の引数は返さなくてもよ�
             $url = $redirect_script.
                         '&msg='.$msg.
                         '&title='.$requests['sc_title'].
@@ -42,17 +51,17 @@ class ktai_biz_do_fhg_biz_schedule_add extends OpenPNE_Action
             $_REQUEST['target_id'] = $requests['target_id'];
 
 
-            $_REQUEST['msg'] = '存在しない日付が指定されました。';
+            $_REQUEST['msg'] = '存在しなぁE��付が持E��されました、E;
             openpne_forward('ktai_biz', 'page', "fh_biz_schedule_add");
             exit;
         }
         //---------------------
 
         //ERROR----------------
-        //タイトル未入力
+        //タイトル未入�
         if (empty($requests['sc_title'])) {
             $redirect_script = '?m=ktai_biz&a=page_fh_biz_schedule_add&'.$tail;
-            $msg = 'タイトルを入力してください。';
+            $msg = 'タイトルを�E力してください、E;
             $begin_date = $requests['sc_b_year'].'-'.$requests['sc_b_month'].'-'.$requests['sc_b_date'];
             $begin_time = $requests['sc_b_hour'].':'.$requests['sc_b_minute'];
             $finish_time = $requests['sc_f_hour'].':'.$requests['sc_f_minute'];
@@ -77,13 +86,13 @@ class ktai_biz_do_fhg_biz_schedule_add extends OpenPNE_Action
             $_REQUEST['sc_rwk_enc'] = serialize($requests['sc_rwk_enc']);
             $_REQUEST['sc_rcount'] = $requests['sc_rcount'];
             $_REQUEST['target_id'] = $requests['target_id'];
-            $_REQUEST['msg'] = 'タイトルを入力してください。';
+            $_REQUEST['msg'] = 'タイトルを�E力してください、E;
             openpne_forward('ktai_biz', 'page', "fh_biz_schedule_add");
             exit;
         }   
         //---------------------
 
-        //日付のフォーマットを設定
+        //日付�Eフォーマットを設�
         $begin_date = $requests['sc_b_year'].'-'.$requests['sc_b_month'].'-'.$requests['sc_b_date'];
 
         $begin_time = $requests['sc_b_hour'].':'.$requests['sc_b_minute'];
@@ -91,9 +100,9 @@ class ktai_biz_do_fhg_biz_schedule_add extends OpenPNE_Action
 
         //ERROR---------------
         if ((strtotime($finish_time) < strtotime($begin_time)) && ($finish_time != ':')) {
-            //終了時間と開始時間が変
+            //終亁E��間と開始時間が�
             $redirect_script = '?m=ktai_biz&a=page_fh_biz_schedule_add&'.$tail;
-            $msg = '終了時刻が開始時刻より先です。';
+            $msg = '終亁E��刻が開始時刻より先です、E;
             $begin_date = $requests['sc_b_year'].'-'.$requests['sc_b_month'].'-'.$requests['sc_b_date'];
             $begin_time = $requests['sc_b_hour'].':'.$requests['sc_b_minute'];
             $finish_time = $requests['sc_f_hour'].':'.$requests['sc_f_minute'];
@@ -117,7 +126,7 @@ class ktai_biz_do_fhg_biz_schedule_add extends OpenPNE_Action
             $_REQUEST['sc_rcount'] = $requests['sc_rcount'];
             $_REQUEST['target_id'] = $requests['target_id'];
 
-            $_REQUEST['msg'] = '終了時刻が開始時刻より先です。';
+            $_REQUEST['msg'] = '終亁E��刻が開始時刻より先です、E;
             openpne_forward('ktai_biz', 'page', "fh_biz_schedule_add");
             exit;
         }
@@ -126,18 +135,18 @@ class ktai_biz_do_fhg_biz_schedule_add extends OpenPNE_Action
         $finish_date = $begin_date;
 
         if (!($requests['sc_b_hour'] || $requests['sc_b_minute'] || $requests['sc_f_hour'] || $requests['sc_f_minute'])) {
-            //時刻指定なし
+            //時刻持E��な�
             $begin_time = $finish_time = null;
         } elseif (!($requests['sc_f_hour'] || $requests['sc_f_minute'])) {
             $finish_time = null;
         }
 
         if (!$requests['sc_rp']) {
-            //繰り返しをしない予定登録
+            //繰り返しをしなぁE��定登録
             biz_insertSchedule($requests['sc_title'], $u, $begin_date, $finish_date, $begin_time, $finish_time, $requests['sc_memo'], $rp_rule, 0, $requests['biz_group_id'], $requests['public_flag'], $biz_schedule_member);
         } else {
-            //繰り返し予定
-            $tmp = $begin_date;  //処理中の日付
+            //繰り返し予�
+            $tmp = $begin_date;  //処琁E��の日�
 
             for ($i=0; date("Ymd", strtotime($tmp)) < date("Ymd", strtotime($finish_date)); $i++) {
                 $nowday = strtotime($requests['sc_b_year'].'-'.$requests['sc_b_month'].'-'.($requests['sc_b_date']+$i));
@@ -150,7 +159,7 @@ class ktai_biz_do_fhg_biz_schedule_add extends OpenPNE_Action
 
         $week = date("W", abs(strtotime($begin_date)-strtotime(date("Y-m-d"))))-1;
         $target_id = $requests['target_id'];
-        $_REQUEST['msg'] = '予定を追加しました。';
+        $_REQUEST['msg'] = '予定を追加しました、E;
         $_REQUEST['w'] = $week;
         $_REQUEST['target_id'] = $target_id;
         $_REQUEST['id'] = biz_getScheduleMax();
