@@ -26,6 +26,7 @@
 <p id="numberDisplays">
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="page_({$hash_tbl->hash('list_c_member')})" />
+<input type="hidden" name="order" value="({$requests.order})" />
 <strong>表示件数</strong>：
 <select class="basic" name="page_size">
 <option value="10"({if $pager.page_size==10}) selected="selected"({/if})>10件</option>
@@ -43,11 +44,11 @@
 <p class="display">({$pager.total_num}) 人中 ({$pager.start_num}) - ({$pager.end_num})人目を表示しています</p>
 <p id="controlIcon"><img src="./modules/admin/img/icn_withdrawal.gif" alt="強制退会のアイコン" class="withdraw" />：強制退会　<img src="modules/admin/img/icn_rejected.gif" alt="ログイン停止のアイコン" />：ログイン停止　<img src="modules/admin/img/icn_permit.gif" alt="ログイン停止解除" />：ログイン停止解除　<img src="modules/admin/img/icn_passwd.gif" alt="パスワード再発行のアイコン" />：パスワード再発行</p>
 <p class="listMove">
-({if $pager.prev_page})<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page=({$pager.prev_page})&amp;page_size=({$pager.page_size})({$cond})">前へ</a>({/if})
+({if $pager.prev_page})<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page=({$pager.prev_page})&amp;page_size=({$pager.page_size})&amp;order=({$requests.order})({$cond})">前へ</a>({/if})
 ({foreach from=$pager.disp_pages item=i})
-({if $i == $pager.page})&nbsp;|&nbsp;<strong>({$i})</strong>({else})&nbsp;|&nbsp;<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page=({$i})&amp;page_size=({$pager.page_size})({$cond})">({$i})</a>({/if})
+({if $i == $pager.page})&nbsp;|&nbsp;<strong>({$i})</strong>({else})&nbsp;|&nbsp;<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page=({$i})&amp;page_size=({$pager.page_size})&amp;order=({$requests.order})({$cond})">({$i})</a>({/if})
 ({/foreach})
-({if $pager.next_page})&nbsp;|&nbsp;<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page=({$pager.next_page})&amp;page_size=({$pager.page_size})({$cond})">次へ</a>
+({if $pager.next_page})&nbsp;|&nbsp;<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page=({$pager.next_page})&amp;page_size=({$pager.page_size})&amp;order=({$requests.order})({$cond})">次へ</a>
 ({/if})
 </p>
 </div>({*/div class="listControlTop"*})
@@ -94,14 +95,14 @@
 		<tr class="min_width">
 			({if $smarty.const.OPENPNE_USE_POINT_RANK})
 			<th class="cell10" colspan="2">
-            <select class="basic" onChange="Link('?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page=({$pager.page})&amp;page_size=({$pager.page_size})({$cond})&amp;s_point='+this.options[this.selectedIndex].value);">
+            <select class="basic" onChange="Link('?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page=({$pager.page})&amp;page_size=({$pager.page_size})&amp;order=({$requests.order})({$cond})&amp;s_point='+this.options[this.selectedIndex].value);">
 			<option value="">▼選択</option>
 			({foreach from=$rank_data item=item})
 			<option({if $cond_list.s_point == $item.point}) selected({/if}) value="({$item.point})">({$item.name})</option>
 			({/foreach})
 			</select>
 			～
-			<select class="basic" onChange="Link('?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page=({$pager.page})&amp;page_size=({$pager.page_size})({$cond})&amp;e_point='+this.options[this.selectedIndex].value);">
+			<select class="basic" onChange="Link('?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page=({$pager.page})&amp;page_size=({$pager.page_size})&amp;order=({$requests.order})({$cond})&amp;e_point='+this.options[this.selectedIndex].value);">
 			<option value="">▼選択</option>
 			({foreach from=$rank_data item=item})
 			({if $pre_name})<option({if $cond_list.e_point == $item.point}) selected({/if}) value="({$item.point})">({$pre_name})</option>({/if})
@@ -112,7 +113,7 @@
 			</th>
 			({/if})
 			<th class="cell05">
-            <select class="basic" onChange="Link('?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page=({$pager.page})&amp;page_size=({$pager.page_size})({$cond})&amp;last_login='+this.options[this.selectedIndex].value);">
+            <select class="basic" onChange="Link('?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page=({$pager.page})&amp;page_size=({$pager.page_size})&amp;order=({$requests.order})({$cond})&amp;last_login='+this.options[this.selectedIndex].value);">
             <option value="">▼選択</option>
             ({foreach from=$select_last_login item=item key=key})
             <option ({if $cond_list.last_login==$key})selected({/if}) value="({$key})">({$item})</option>
@@ -120,14 +121,14 @@
             </select>
             </th>
 			<th class="cell09A" colspan="3">
-			<select class="basic" onChange="Link('?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page=({$pager.page})&amp;page_size=({$pager.page_size})({$cond})&amp;s_year='+this.options[this.selectedIndex].value);">
+			<select class="basic" onChange="Link('?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page=({$pager.page})&amp;page_size=({$pager.page_size})&amp;order=({$requests.order})({$cond})&amp;s_year='+this.options[this.selectedIndex].value);">
 			<option value="">▼選択</option>
 			({foreach from=$years item=item})
 			<option ({if $cond_list.s_year==$item})selected({/if}) value="({$item})">({$item})</option>
 			({/foreach})
 			</select>
 			～
-			<select class="basic" onChange="Link('?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page=({$pager.page})&amp;page_size=({$pager.page_size})({$cond})&amp;e_year='+this.options[this.selectedIndex].value);">
+			<select class="basic" onChange="Link('?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page=({$pager.page})&amp;page_size=({$pager.page_size})&amp;order=({$requests.order})({$cond})&amp;e_year='+this.options[this.selectedIndex].value);">
 			<option value="">▼選択</option>
 			({foreach from=$years item=item})
 			<option ({if $cond_list.e_year==$item})selected({/if}) value="({$item})">({$item})</option>
@@ -138,7 +139,7 @@
 			({if $prof.name !== 'PNE_POINT'})
 			<th>
 			({if $prof.form_type == 'radio' || $prof.form_type == 'select'})
-			<select class="basic" onChange="Link('?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page=({$pager.page})&amp;page_size=({$pager.page_size})({$cond})&amp;({$prof.name})='+this.options[this.selectedIndex].value);">
+			<select class="basic" onChange="Link('?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page=({$pager.page})&amp;page_size=({$pager.page_size})&amp;order=({$requests.order})({$cond})&amp;({$prof.name})='+this.options[this.selectedIndex].value);">
 			<option value="">▼選択</option>
 			({foreach item=item from=$prof.options})
 			<option ({if $cond_list[$prof.name]==$item.c_profile_option_id})selected({/if}) value="({$item.c_profile_option_id})"({if $c_member.profile[$profile.name].value == $item.value}) selected="selected"({/if})>({$item.value|default:"--"})</option>
@@ -277,11 +278,11 @@
 ({if $pager})
 <div class="listNavi">
 <p class="listMove">
-({if $pager.prev_page})<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page=({$pager.prev_page})&amp;page_size=({$pager.page_size})({$cond})">前へ</a>({/if})
+({if $pager.prev_page})<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page=({$pager.prev_page})&amp;page_size=({$pager.page_size})&amp;order=({$requests.order})({$cond})">前へ</a>({/if})
 ({foreach from=$pager.disp_pages item=i})
-({if $i == $pager.page})&nbsp;|&nbsp;<strong>({$i})</strong>({else})&nbsp;|&nbsp;<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page=({$i})&amp;page_size=({$pager.page_size})({$cond})">({$i})</a>({/if})
+({if $i == $pager.page})&nbsp;|&nbsp;<strong>({$i})</strong>({else})&nbsp;|&nbsp;<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page=({$i})&amp;page_size=({$pager.page_size})&amp;order=({$requests.order})({$cond})">({$i})</a>({/if})
 ({/foreach})
-({if $pager.next_page})&nbsp;|&nbsp;<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page=({$pager.next_page})&amp;page_size=({$pager.page_size})({$cond})">次へ</a>
+({if $pager.next_page})&nbsp;|&nbsp;<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page=({$pager.next_page})&amp;page_size=({$pager.page_size})&amp;order=({$requests.order})({$cond})">次へ</a>
 ({/if})
 </p>
 <p class="display">({$pager.total_num}) 人中 ({$pager.start_num}) - ({$pager.end_num})人目を表示しています</p>
