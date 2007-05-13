@@ -25,15 +25,16 @@ class pc_do_c_event_edit_update_c_commu_topic extends OpenPNE_Action
         } else {
             $invite_period = "";
         }
+        $c_commu_id = $event['c_commu_id'];
 
         //--- 権限チェック
         //イベント管理者 or コミュニティ管理者
 
         if (!db_commu_is_c_event_admin($c_commu_topic_id, $u) &&
-            !db_commu_is_c_commu_admin($event['c_commu_id'], $u)) {
+            !db_commu_is_c_commu_admin($c_commu_id, $u)) {
             handle_kengen_error();
         }
-        $c_commu = db_commu_c_commu4c_commu_id2($event['c_commu_id']);
+        $c_commu = db_commu_c_commu4c_commu_id2($c_commu_id);
         if ($c_commu['topic_authority'] == 'admin_only' &&
             !db_commu_is_c_commu_admin($c_commu_id, $u)) {
             handle_kengen_error();
