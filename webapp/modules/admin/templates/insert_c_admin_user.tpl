@@ -40,8 +40,8 @@
 <th>権限</th>
 <td><select class="basic" name="auth_type">
 <option value="all">全権限</option>
-<option value="">メールアドレス参照不可</option>
-<option value="normal">メンバー管理機能利用不可</option>
+<option value="">「メンバーリスト関連部分」以外全て</option>
+<option value="normal">「メンバーリスト関連部分」「SNS内データ閲覧部分」以外全て</option>
 </select></td>
 </tr>
 </table>
