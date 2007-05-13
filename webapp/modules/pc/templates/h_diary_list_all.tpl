@@ -56,9 +56,11 @@
 <input type="submit" class="submit" value=" 検 索 ">
 　<a href="({t_url m=pc a=page_h_com_find_all})&amp;keyword=({$keyword|escape:url|smarty:nodefaults})">コミュニティ検索</a>
 
+({if $smarty.const.USE_EXTRA_SERVICE})
 |
 
 <a href="http://www.google.com/search?hl=ja&amp;lr=lang_ja&amp;q=({$keyword|escape:url|smarty:nodefaults})" target="_blank">ウェブ検索</a>
+({/if})
 
 <img src="./skin/dummy.gif" class="v_spacer_m">
 
