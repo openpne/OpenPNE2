@@ -111,4 +111,11 @@ function db_point_get_rank_all()
     return db_get_all($sql);
 }
 
+//引数で指定したポイントのランクが存在するかどうか
+function db_point_is_rank4point($point)
+{
+    $sql = 'SELECT c_rank_id FROM c_rank WHERE point = ?';
+    return (bool)db_get_one($sql, array(intval($point)));
+}
+
 ?>

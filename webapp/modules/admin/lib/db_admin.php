@@ -2246,10 +2246,9 @@ function db_admin_get_c_rank_one($c_rank_id)
 }
 
 //アクションを編集
-function db_admin_update_c_action($c_action_id, $name, $point)
+function db_admin_update_c_action($c_action_id, $point)
 {
     $data = array(
-        'name' => strval($name),
         'point' => intval($point),
     );
     $where = array('c_action_id' => intval($c_action_id));

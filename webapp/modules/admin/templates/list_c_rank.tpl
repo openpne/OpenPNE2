@@ -30,12 +30,11 @@
 <td>({$c_action.name})</td>
 
 <form action="./" method="post">
-<input type="hidden" name="m" value="({$module_name})">
-<input type="hidden" name="a" value="do_({$hash_tbl->hash('update_c_action','do')})">
-<input type="hidden" name="sessid" value="({$PHPSESSID})">
-<input type="hidden" name="c_action_id" value="({$c_action.c_action_id})">
-<input type="hidden" name="name" value="({$c_action.name})">
-<td><input type="text" class="basic" name="point" value="({$c_action.point})" size="10"></td>
+<input type="hidden" name="m" value="({$module_name})" />
+<input type="hidden" name="a" value="do_({$hash_tbl->hash('update_c_action','do')})" />
+<input type="hidden" name="sessid" value="({$PHPSESSID})" />
+<input type="hidden" name="c_action_id" value="({$c_action.c_action_id})" />
+<td><input type="text" class="basic" name="point" value="({$c_action.point})" size="10" /></td>
 <td><span class="textBtnS"><input type="submit" class="submit" value="変更"></span></td>
 </form>
 
@@ -80,14 +79,14 @@
 <tr>
 <form action="./" method="post" enctype="multipart/form-data">
 <td>
-<input type="hidden" name="m" value="({$module_name})">
-<input type="hidden" name="a" value="do_({$hash_tbl->hash('insert_c_rank','do')})">
-<input type="hidden" name="sessid" value="({$PHPSESSID})">
+<input type="hidden" name="m" value="({$module_name})" />
+<input type="hidden" name="a" value="do_({$hash_tbl->hash('insert_c_rank','do')})" />
+<input type="hidden" name="sessid" value="({$PHPSESSID})" />
 </td>
-<td><input type="text" class="basic" name="name" value="" size="5"></td>
-<td><input type="file" name="image_upfile" value="" size="20"></td>
-<td><input type="text" class="basic" name="point" value="" size="5"></td>
-<td colspan="2"><span class="textBtnS"><input type="submit" class="submit" value="ランク追加"></span></td>
+<td><input type="text" class="basic" name="name" value="" size="5" /></td>
+<td><input type="file" name="image_upfile" value="" size="20" /></td>
+<td><input type="text" class="basic" name="point" value="" size="5" /></td>
+<td colspan="2"><span class="textBtnS"><input type="submit" class="submit" value="ランク追加" /></span></td>
 </form>
 </tr>
 </tbody>

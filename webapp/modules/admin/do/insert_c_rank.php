@@ -7,10 +7,19 @@
 // ランク追加
 class admin_do_insert_c_rank extends OpenPNE_Action
 {
+    function handleError($errors)
+    {
+        admin_client_redirect('list_c_rank', array_shift($errors));
+    }
+
     function execute($requests)
     {
         if (!OPENPNE_USE_POINT_RANK) {
             admin_client_redirect('top', '指定されたページにはアクセスできません');
+        }
+
+        if (db_point_is_rank4point($requests['point'])) {
+            admin_client_redirect('list_c_rank', '同一の到達ポイントのランクが既に存在します');
         }
 
         $c_rank_id = db_admin_insert_c_rank($requests['name'], '', $requests['point']);
