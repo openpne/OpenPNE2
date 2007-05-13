@@ -368,6 +368,10 @@
 <td class="bg_02" align="left" valign="middle">
 <div style="padding:4px 3px;">
 
+({if $inc_entry_point[3]})
+<div>({$inc_entry_point[3]|smarty:nodefaults|t_url2cmd:'entry_point'|t_cmd:'entry_point'})</div>
+({/if})
+
 <textarea class="text" name="body" rows="15" cols="50" style="width:415px">({$diary.body})</textarea>
 
 </div>

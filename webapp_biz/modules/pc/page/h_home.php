@@ -117,9 +117,6 @@ class pc_page_h_home extends OpenPNE_Action
             $this->set('calendar_biz', biz_getScheduleWeek($u, $u, $requests['w'], 'h', true, true, true, $c_member,$start_day));
         }
 
-        // inc_entry_point
-        $this->set('inc_entry_point', fetch_inc_entry_point_h_home($this->getView()));
-
         //お気に入りフィード
         if (USE_BOOKMARK_FEED) {
             //お気に入りの最新日記
@@ -153,6 +150,9 @@ class pc_page_h_home extends OpenPNE_Action
         $group_list = biz_getHomeGroupList($u);
         $this->set('group_list', $group_list);
         //--- biz ここまで
+
+        // inc_entry_point
+        $this->set('inc_entry_point', fetch_inc_entry_point($this->getView(), 'h_home'));
 
         // アクセス日時を記録
         db_member_do_access($u);

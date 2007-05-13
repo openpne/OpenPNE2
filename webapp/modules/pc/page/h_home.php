@@ -142,7 +142,7 @@ class pc_page_h_home extends OpenPNE_Action
         db_member_do_access($u);
 
         // inc_entry_point
-        $this->set('inc_entry_point', fetch_inc_entry_point_h_home($this->getView()));
+        $this->set('inc_entry_point', fetch_inc_entry_point($this->getView(), 'h_home'));
 
         return 'success';
     }

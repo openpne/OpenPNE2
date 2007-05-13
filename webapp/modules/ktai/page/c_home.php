@@ -55,11 +55,11 @@ class ktai_page_c_home extends OpenPNE_Action
         //管理者からのメッセージ受信設定
         $this->set("is_receive_message", db_commu_is_receive_message($target_c_commu_id, $u));
 
-        // inc_entry_point
-        $this->set('inc_ktai_entry_point', fetch_ktai_inc_entry_point_c_home($this->getView()));
-
         $this->set('is_unused_pc_bbs', util_is_unused_mail('m_pc_bbs_info'));
         $this->set('is_unused_ktai_bbs', util_is_unused_mail('m_ktai_bbs_info'));
+
+        // inc_entry_point
+        $this->set('inc_ktai_entry_point', fetch_inc_entry_point($this->getView(), 'ktai_c_home'));
 
         return 'success';
     }

@@ -162,107 +162,37 @@ function fetch_from_db($tpl_name, &$smarty)
     return $content;
 }
 
-function fetch_inc_entry_point_h_home(&$smarty)
+function fetch_inc_entry_point(&$smarty, $target)
 {
-    $target = 'h_home';
-
+    $list = get_inc_entry_point_list();
+    if (empty($list[$target])) {
+        return false;
+    }
+    list($start, $end, $caption) = $list[$target];
+    
     $contents = array();
-    for ($i = 1; $i <= 12; $i++) {
+    for ($i = (int)$start; $i <= (int)$end; $i++) {
         $tpl = sprintf('db:inc_entry_point_%s_%d', $target, $i);
         $contents[$i] = fetch_from_db($tpl, $smarty);
     }
     return $contents;
 }
 
-function fetch_inc_entry_point_f_home(&$smarty)
+function get_inc_entry_point_list()
 {
-    $target = 'f_home';
-
-    $contents = array();
-    for ($i = 1; $i <= 9; $i++) {
-        $tpl = sprintf('db:inc_entry_point_%s_%d', $target, $i);
-        $contents[$i] = fetch_from_db($tpl, $smarty);
-    }
-    return $contents;
-}
-
-function fetch_inc_entry_point_c_home(&$smarty)
-{
-    $target = 'c_home';
-
-    $contents = array();
-    for ($i = 1; $i <= 7; $i++) {
-        $tpl = sprintf('db:inc_entry_point_%s_%d', $target, $i);
-        $contents[$i] = fetch_from_db($tpl, $smarty);
-    }
-    return $contents;
-}
-function fetch_inc_entry_point_h_reply_message(&$smarty)
-{
-    $target = 'h_reply_message';
-
-    $contents = array();
-    for ($i = 1; $i <= 3; $i++) {
-        $tpl = sprintf('db:inc_entry_point_%s_%d', $target, $i);
-        $contents[$i] = fetch_from_db($tpl, $smarty);
-    }
-    return $contents;
-}
-function fetch_inc_entry_point_h_diary_add(&$smarty)
-{
-    $target = 'h_diary_add';
-
-    $contents = array();
-    for ($i = 1; $i <= 3; $i++) {
-        $tpl = sprintf('db:inc_entry_point_%s_%d', $target, $i);
-        $contents[$i] = fetch_from_db($tpl, $smarty);
-    }
-    return $contents;
-}
-
-function fetch_ktai_inc_entry_point_o_login(&$smarty)
-{
-    $target = 'ktai_o_login';
-
-    $contents = array();
-    for ($i = 1; $i <= 2; $i++) {
-        $tpl = sprintf('db:inc_entry_point_%s_%d', $target, $i);
-        $contents[$i] = fetch_from_db($tpl, $smarty);
-    }
-    return $contents;
-}
-function fetch_ktai_inc_entry_point_h_home(&$smarty)
-{
-    $target = 'ktai_h_home';
-
-    $contents = array();
-    for ($i = 1; $i <= 3; $i++) {
-        $tpl = sprintf('db:inc_entry_point_%s_%d', $target, $i);
-        $contents[$i] = fetch_from_db($tpl, $smarty);
-    }
-    return $contents;
-}
-function fetch_ktai_inc_entry_point_f_home(&$smarty)
-{
-    $target = 'ktai_f_home';
-
-    $contents = array();
-    for ($i = 1; $i <= 3; $i++) {
-        $tpl = sprintf('db:inc_entry_point_%s_%d', $target, $i);
-        $contents[$i] = fetch_from_db($tpl, $smarty);
-    }
-    return $contents;
-}
-function fetch_ktai_inc_entry_point_c_home(&$smarty)
-{
-    $target = 'ktai_c_home';
-
-    $contents = array();
-    for ($i = 1; $i <= 3; $i++) {
-        $tpl = sprintf('db:inc_entry_point_%s_%d', $target, $i);
-        $contents[$i] = fetch_from_db($tpl, $smarty);
-    }
-    return $contents;
+    $list = array(
+        'h_home' => array(1, 12, '【PC版】 h_home'),
+        'f_home' => array(1, 9, '【PC版】 f_home (h_prof)'),
+        'c_home' => array(1, 7, '【PC版】 c_home'),
+        'h_reply_message' => array(1, 3, '【PC版】 h_reply_message'),
+        'h_diary_add' => array(1, 3, '【PC版】 h_diary_add'),
+        'h_diary_edit' => array(1, 3, '【PC版】 h_diary_edit'),
+        'ktai_o_login' => array(1, 2, '【携帯版】 o_login'),
+        'ktai_h_home' => array(1, 3, '【携帯版】 h_home'),
+        'ktai_f_home' => array(1, 3, '【携帯版】 f_home'),
+        'ktai_c_home' => array(1, 3, '【携帯版】 c_home'),
+    );
+    return $list;
 }
 
 //------------

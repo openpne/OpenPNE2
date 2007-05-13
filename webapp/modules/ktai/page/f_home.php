@@ -73,7 +73,7 @@ class ktai_page_f_home extends OpenPNE_Action
         }
 
         // inc_entry_point
-        $this->set('inc_ktai_entry_point', fetch_ktai_inc_entry_point_f_home($this->getView()));
+        $this->set('inc_ktai_entry_point', fetch_inc_entry_point($this->getView(), 'ktai_f_home'));
 
         //あしあとをつける
         db_ashiato_insert_c_ashiato($target_c_member_id, $u);

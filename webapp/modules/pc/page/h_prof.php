@@ -51,7 +51,7 @@ class pc_page_h_prof extends OpenPNE_Action
         }
 
         // inc_entry_point
-        $this->set('inc_entry_point', fetch_inc_entry_point_f_home($this->getView()));
+        $this->set('inc_entry_point', fetch_inc_entry_point($this->getView(), 'f_home'));
 
         return 'success';
     }

@@ -73,10 +73,6 @@ class pc_page_f_home extends OpenPNE_Action
         // 誕生日まであと何日？
         $this->set('days_birthday', db_member_count_days_birthday4c_member_id($target_c_member_id));
 
-        // inc_entry_point
-        $this->set('inc_entry_point', fetch_inc_entry_point_f_home($this->getView()));
-
-
         // --- bizここから
         // バナーをBIZ用右部拡張領域下に表示させる為の仕掛け
         $this->set('is_f_home', 1);
@@ -95,6 +91,9 @@ class pc_page_f_home extends OpenPNE_Action
         $group_list = biz_getHomeGroupList($target_c_member_id);
         $this->set('group_list', $group_list);
         // --- bizここまで
+
+        // inc_entry_point
+        $this->set('inc_entry_point', fetch_inc_entry_point($this->getView(), 'f_home'));
 
         // ---
 

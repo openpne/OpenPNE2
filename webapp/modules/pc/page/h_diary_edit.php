@@ -95,6 +95,9 @@ class pc_page_h_diary_edit extends OpenPNE_Action
             $this->set("use_diary_category", true);
         }
 
+        // inc_entry_point
+        $this->set('inc_entry_point', fetch_inc_entry_point($this->getView(), 'h_diary_edit'));
+
         return 'success';
     }
 }
