@@ -32,9 +32,8 @@
 ({****************})
 ({****************})
 
-<ul class="admin">
-
 ({if $auth_type == 'all' || $auth_type == ''})
+<ul class="admin">
 
 <li id="adminSiteMember" onmouseover="menu('adminSiteMember','adminSiteMemberCont')" onmouseout="menu('adminSiteMember','adminSiteMemberCont')"><a class="tab" href="({if $auth_type == 'all'})?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})({elseif $auth_type == 'all' || $auth_type == ''})?m=({$module_name})&amp;a=page_({$hash_tbl->hash('send_invites')})({else})?m=({$module_name})&amp;a=page_({$hash_tbl->hash('csv_download')})({/if})">メンバー管理</a>
 <ul id="adminSiteMemberCont" class="pull">
@@ -49,9 +48,9 @@
 
 </ul>
 </li>
-({/if})
 
 ({****})
+
 <li id="adminImageKakikomi" onmouseover="menu('adminImageKakikomi','adminImageKakikomiCont')" onmouseout="menu('adminImageKakikomi','adminImageKakikomiCont')">
 <a class="tab" href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_image')})">画像・書き込み管理</a>
 <ul id="adminImageKakikomiCont" class="pull">
@@ -85,6 +84,7 @@
 </li>
 
 </ul>
+({/if})
 
 ({****************})
 ({****************})
@@ -151,10 +151,11 @@
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_admin_user')})">アカウント管理</a></li>
 ({/if})
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_admin_password')})">パスワード変更</a></li>
+({if $auth_type == 'all'})
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('update_hash_table')})">ページ名ランダム生成</a></li>
+({/if})
 </ul>
 </li>
-
 
 </ul>
 
