@@ -33,6 +33,14 @@
 ({/foreach})
 </ul>
 </dd>
+<dt><strong class="item">管理用メールアドレス向け</strong></dt>
+<dd>
+<ul>
+({foreach from=$admin key=key item=item})
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_mail')})&amp;target=({$key})">({$item})</a></li>
+({/foreach})
+</ul>
+</dd>
 </dl>
 </td>
 <td class="detail">
@@ -42,6 +50,8 @@
 ({$pc[$requests.target]})
 ({elseif $ktai[$requests.target]})
 ({$ktai[$requests.target]})
+({elseif $admin[$requests.target]})
+({$admin[$requests.target]})
 ({/if})</h3>
 ({if $msg})<p class="actionMsg">({$msg})</p>({/if})
 <p id="default"><a href="./?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_mail','do')})&amp;target=({$requests.target})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a></p>

@@ -691,6 +691,7 @@ div.listControl p.listMove a {
 /** admin_page_edit_mail_send **/
 #admin_page_edit_mail_send h3 { padding-left: 5px; border-left: 3px #75757A solid;}
 #admin_page_edit_mail_send h3#ttl02 { margin-top: 20px;}
+#admin_page_edit_mail_send h3#ttl03 { margin-top: 20px;}
 #admin_page_edit_mail_send table { width: 960px; margin: 10px 0; border: 1px #5F6067 solid; border-collapse: collapse; line-height: 100%;}
 #admin_page_edit_mail_send table th {
 	padding: 5px 5px 5px 20px;
