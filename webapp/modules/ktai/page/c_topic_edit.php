@@ -42,6 +42,8 @@ class ktai_page_c_topic_edit extends OpenPNE_Action
         }
         $this->set('err_msg', $err_msg);
         $this->set('c_topic', $c_topic);
+        $this->set("c_commu", db_commu_c_commu4c_commu_id2($c_commu_id));
+
         return 'success';
     }
 }

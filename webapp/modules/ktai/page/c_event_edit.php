@@ -33,6 +33,7 @@ class ktai_page_c_event_edit extends OpenPNE_Action
                 array('target_c_commu_topic_id'=>$c_topic['c_commu_topic_id']));
         }
 
+        $this->set("c_commu", db_commu_c_commu4c_commu_id2($c_commu_id));
         $this->set("year", db_commu_year4null());
         $this->set('month', p_regist_prof_c_profile_month_list4null());
         $this->set('day', p_regist_prof_c_profile_day_list4null());
