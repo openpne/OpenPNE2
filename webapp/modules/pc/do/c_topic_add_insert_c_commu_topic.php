@@ -97,8 +97,13 @@ class pc_do_c_topic_add_insert_c_commu_topic extends OpenPNE_Action
         //お知らせメール送信(PCへ)
         send_bbs_info_mail_pc($insert_id, $u);
 
-        $p = array('target_c_commu_topic_id' => $c_commu_topic_id);
+        if (OPENPNE_USE_POINT_RANK) {
+            //トピックを作成した人にポイント付与
+            $point = db_action_get_point4c_action_id(9);
+            db_point_add_point($u, $point);
+        }
 
+        $p = array('target_c_commu_topic_id' => $c_commu_topic_id);
         openpne_redirect('pc', 'page_c_topic_detail', $p);
     }
 }

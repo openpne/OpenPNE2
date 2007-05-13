@@ -74,6 +74,11 @@ class pc_do_c_event_write_insert_c_commu_topic_comment extends OpenPNE_Action
         //お知らせメール送信(PCへ)
         send_bbs_info_mail_pc($tc_id, $u);
 
+        if (OPENPNE_USE_POINT_RANK) {
+            //トピック・イベントにコメントした人にポイント付与
+            $point = db_action_get_point4c_action_id(11);
+            db_point_add_point($u, $point);
+        }
 
         $p = array('target_c_commu_topic_id' => $c_commu_topic_id);
         openpne_redirect('pc', 'page_c_event_detail', $p);
