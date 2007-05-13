@@ -12,7 +12,7 @@ class admin_page_delete_c_cmd_confirm extends OpenPNE_Action
         $c_cmd = db_admin_get_c_cmd_one($requests['c_cmd_id']);
 
         if (!$c_cmd) {
-            admin_client_redirect('list_c_cmd', array("msg" => "指定されたc_cmd_idは無効です"));
+            admin_client_redirect('list_c_cmd', '指定されたIDは無効です');
         }
 
         $permit_list = array(
