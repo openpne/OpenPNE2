@@ -10,7 +10,7 @@ class admin_page_list_c_rank extends OpenPNE_Action
     function execute($requests)
     {
         if (!OPENPNE_USE_POINT_RANK) {
-            admin_client_redirect('top');
+            admin_client_redirect('top', '指定されたページにはアクセスできません');
         }
 
         $c_action_list = db_admin_get_c_action_all();

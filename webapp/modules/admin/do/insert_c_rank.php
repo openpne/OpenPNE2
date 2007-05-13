@@ -9,6 +9,10 @@ class admin_do_insert_c_rank extends OpenPNE_Action
 {
     function execute($requests)
     {
+        if (!OPENPNE_USE_POINT_RANK) {
+            admin_client_redirect('top', '指定されたページにはアクセスできません');
+        }
+
         $c_rank_id = db_admin_insert_c_rank($requests['name'], '', $requests['point']);
         if ($_FILES['image_upfile']['name']) {
             $ext = t_check_image_format($_FILES['image_upfile']);

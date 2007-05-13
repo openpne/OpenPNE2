@@ -9,6 +9,10 @@ class admin_do_delete_c_rank extends OpenPNE_Action
 {
     function execute($requests)
     {
+        if (!OPENPNE_USE_POINT_RANK) {
+            admin_client_redirect('top', '指定されたページにはアクセスできません');
+        }
+
         //以前のイメージを削除
         $c_rank = db_admin_get_c_rank_one($requests['c_rank_id']);
         image_data_delete($c_rank['image_filename']);

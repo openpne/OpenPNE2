@@ -9,6 +9,10 @@ class admin_do_update_c_rank extends OpenPNE_Action
 {
     function execute($requests)
     {
+        if (!OPENPNE_USE_POINT_RANK) {
+            admin_client_redirect('top', '指定されたページにはアクセスできません');
+        }
+
         $c_rank_id      = $requests['c_rank_id'];
         $c_rank = db_admin_get_c_rank_one($c_rank_id);
         $image_filename = $c_rank['image_filename'];

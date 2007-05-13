@@ -14,6 +14,10 @@ class admin_do_update_point extends OpenPNE_Action
 
     function execute($requests)
     {
+        if (!OPENPNE_USE_POINT_RANK) {
+            admin_client_redirect('top', '指定されたページにはアクセスできません');
+        }
+
         $target_c_member_id = $requests['target_c_member_id'];
         $update_point = $requests['point'];
 
