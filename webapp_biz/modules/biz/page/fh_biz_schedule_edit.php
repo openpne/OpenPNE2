@@ -171,10 +171,10 @@ class biz_page_fh_biz_schedule_edit extends OpenPNE_Action
         $repeat_finish = biz_getRepeatFinish($requests['schedule_id']);
         $repeat_term = strtotime($repeat_finish) - strtotime($repeat_begin);
 
-        $daycount = $repeat_term / (24 * 60 * 60) / 7;
+        $daycount = $repeat_term / (24 * 60 * 60) / 6;
 
         $this->set('repeat_begin_date', $repeat_begin);
-        $this->set('repeat_term', intval($daycount));
+        $this->set('repeat_term', ceil($daycount));
 
         $biz_group_count = biz_getGroupCount($target_id);
         $biz_group_list = biz_getJoinGroupList($target_id, 1, $biz_group_count);
