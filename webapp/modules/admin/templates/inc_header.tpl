@@ -32,26 +32,24 @@
 ({****************})
 ({****************})
 
+({if $auth_type == 'all' || $auth_type == ''})
 <ul class="admin">
 
-({if $auth_type == 'all' || $auth_type == ''})
 <li id="adminSiteMember" onmouseover="menu('adminSiteMember','adminSiteMemberCont')" onmouseout="menu('adminSiteMember','adminSiteMemberCont')"><a class="tab" href="({if $auth_type == 'all'})?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})({elseif $auth_type == 'all' || $auth_type == ''})?m=({$module_name})&amp;a=page_({$hash_tbl->hash('send_invites')})({else})?m=({$module_name})&amp;a=page_({$hash_tbl->hash('csv_download')})({/if})">メンバー管理</a>
 <ul id="adminSiteMemberCont" class="pull">
 ({if $auth_type == 'all'})
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})">メンバーリスト</a></li>
 ({/if})
-({if $auth_type == 'all' || $auth_type == ''})
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('send_invites')})">招待メール送信</a></li>
-({/if})
 ({if $auth_type == 'all'})
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('csv_download')})">CSVダウンロード</a></li>
 ({/if})
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('import_c_member')})">CSVインポート</a></li>
 </ul>
 </li>
-({/if})
 
 ({****})
+
 <li id="adminImageKakikomi" onmouseover="menu('adminImageKakikomi','adminImageKakikomiCont')" onmouseout="menu('adminImageKakikomi','adminImageKakikomiCont')">
 <a class="tab" href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_image')})">画像・書き込み管理</a>
 <ul id="adminImageKakikomiCont" class="pull">
@@ -81,6 +79,7 @@
 </li>
 
 </ul>
+({/if})
 
 ({****************})
 ({****************})
@@ -115,9 +114,7 @@
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_mail')})">メール文言変更</a></li>
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_profile')})">プロフィール項目設定</a></li>
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_category')})">コミュニティカテゴリ設定</a></li>
-({if $auth_type == 'all' || $auth_type == ''})
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('manage_c_commu')})">初期コミュニティ</a></li>
-({/if})
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_holiday')})">祝日設定</a></li>
 ({if $smarty.const.OPENPNE_DISP_POINT})
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_rank')})">ランク設定</a></li>
@@ -148,10 +145,11 @@
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_admin_user')})">アカウント管理</a></li>
 ({/if})
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_admin_password')})">パスワード変更</a></li>
+({if $auth_type == 'all'})
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('update_hash_table')})">ページ名ランダム生成</a></li>
+({/if})
 </ul>
 </li>
-
 
 </ul>
 
