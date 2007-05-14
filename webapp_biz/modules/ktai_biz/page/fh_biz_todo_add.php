@@ -12,15 +12,17 @@ class ktai_biz_page_fh_biz_todo_add extends OpenPNE_Action
         $u  = $GLOBALS['KTAI_C_MEMBER_ID'];
         $this->set('tail', $GLOBALS['KTAI_URL_TAIL']);
 
-        if (empty($requests['target_id']) || ($requests['target_id'] == $u)) {
+        if (empty($requests['target_c_member_id']) || ($requests['target_c_member_id'] == $u)) {
             //自分
-            $target_id = $u;
+            $target_c_member_id = $u;
             $this->set('is_h', true);       //判別フラグ
         } else {
             //他人
-            $target_id = $requests['target_id'];
+            $target_c_member_id = $requests['target_c_member_id'];
             $this->set('is_f', true);       //判別フラグ
         }
+
+        $this->set('target_c_member_id', $target_c_member_id);
 
         return 'success';
     }
