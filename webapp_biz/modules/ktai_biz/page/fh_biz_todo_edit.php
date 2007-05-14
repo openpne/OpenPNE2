@@ -22,16 +22,18 @@ class ktai_biz_page_fh_biz_todo_edit extends OpenPNE_Action
         $todo = biz_getTodo($requests['target_biz_todo_id']);
         $this->set("todo", $todo);
 
-        if (empty($requests['target_id']) || ($requests['target_id'] == $u)) {
+        if (empty($requests['target_c_member_id']) || ($requests['target_c_member_id'] == $u)) {
             //自分
-            $target_id = $u;
+            $target_c_member_id = $u;
             $this->set('is_h', true);       //判別フラグ
         } else {
             //他人
-            $target_id = $requests['target_id'];
+            $target_c_member_id = $requests['target_c_member_id'];
             $this->set('is_f', true);       //判別フラグ
         }
 
+        $this->set('target_c_member_id', $target_c_member_id);
+        
         return 'success';
     }
 }
