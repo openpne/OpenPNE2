@@ -14,7 +14,9 @@ class ktai_biz_do_fh_biz_schedule_edit extends OpenPNE_Action
         if (!biz_isPermissionSchedule($u, $requests['schedule_id'])) {
             handle_kengen_error();
         }
-        
+
+        $requests['sc_b_year'] = $requests['sc_b_year'] + 2000;
+
         //ERROR----------------
         //存在しない日付
         if (!checkdate($requests['sc_b_month'], $requests['sc_b_date'], $requests['sc_b_year'])) {

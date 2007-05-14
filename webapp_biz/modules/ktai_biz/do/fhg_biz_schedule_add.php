@@ -16,9 +16,12 @@ class ktai_biz_do_fhg_biz_schedule_add extends OpenPNE_Action
             $requests['target_id'] = $u;
         }
 
+        $requests['sc_b_year'] = $requests['sc_b_year'] + 2000;
+
         //ERROR----------------
         //存在しない日付
         if (!checkdate($requests['sc_b_month'], $requests['sc_b_date'], $requests['sc_b_year'])) {
+
             $redirect_script = '?m=ktai_biz&a=page_fh_biz_schedule_add&'.$tail;
             $msg = '存在しない日付が指定されました。';
 
