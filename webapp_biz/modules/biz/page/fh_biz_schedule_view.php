@@ -93,12 +93,12 @@ class biz_page_fh_biz_schedule_view extends OpenPNE_Action
             $repeat_finish = biz_getRepeatFinish($requests['id']);
             $repeat_term = strtotime($repeat_finish) - strtotime($repeat_begin);
 
-            $daycount = ceil($repeat_term / (24 * 60 * 60) / 7);
+            $daycount = ceil($repeat_term / (24 * 60 * 60) / 6);
             if ($repeat_finish == $repeat_begin) {
                 $daycount = 1;
             }
             $this->set('repeat_begin_date', $repeat_begin);
-            $this->set('repeat_term', intval($daycount));
+            $this->set('repeat_term', ceil($daycount));
         }
 
         if ($list['rep_type']) {
