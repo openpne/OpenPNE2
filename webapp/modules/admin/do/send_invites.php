@@ -58,10 +58,9 @@ class admin_do_send_invites extends OpenPNE_Action
             $c_member_id_invite = 1;
 
             //<PCKTAI
-            if (!defined('OPENPNE_REGIST_FROM') ||
-                    (OPENPNE_REGIST_FROM & OPENPNE_REGIST_FROM_KTAI) >> 1) {
+            if ((OPENPNE_REGIST_FROM & OPENPNE_REGIST_FROM_KTAI) >> 1) {
+                // 携帯へ招待メール
                 foreach ($ktais as $mail) {
-                    // 携帯へ招待メール
                     $session = create_hash();
 
                     // c_member_ktai_pre に追加
@@ -77,9 +76,7 @@ class admin_do_send_invites extends OpenPNE_Action
             //>
 
             //<PCKTAI
-            if (!defined('OPENPNE_REGIST_FROM') ||
-                    (OPENPNE_REGIST_FROM & OPENPNE_REGIST_FROM_PC)) {
-
+            if ((OPENPNE_REGIST_FROM & OPENPNE_REGIST_FROM_PC)) {
                 // PCへ招待メール
                 foreach ($pcs as $mail) {
                     $session = create_hash();

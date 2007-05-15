@@ -34,15 +34,13 @@ class pc_page_h_invite_confirm extends OpenPNE_Action
             } else {
                 if (is_ktai_mail_address($form_val['mail'])) {
                     //<PCKTAI
-                    if (defined('OPENPNE_REGIST_FROM') &&
-                            !((OPENPNE_REGIST_FROM & OPENPNE_REGIST_FROM_KTAI) >> 1)) {
+                    if (!((OPENPNE_REGIST_FROM & OPENPNE_REGIST_FROM_KTAI) >> 1)) {
                         $msg = "携帯アドレスには招待を送ることができません";
                     }
                     //>
                 } else {
                     //<PCKTAI
-                    if (defined('OPENPNE_REGIST_FROM') &&
-                            !(OPENPNE_REGIST_FROM & OPENPNE_REGIST_FROM_PC)) {
+                    if (!(OPENPNE_REGIST_FROM & OPENPNE_REGIST_FROM_PC)) {
                         $msg = "PCアドレスには招待を送ることができません";
                     }
                     //>

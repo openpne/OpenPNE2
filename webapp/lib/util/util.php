@@ -510,4 +510,24 @@ function util_cast_public_flag_diary($public_flag, $default = 'public')
     return $public_flag;
 }
 
+/**
+ * 登録してもよいメールアドレスかどうか
+ */
+function util_is_regist_mail_address($mail_address)
+{
+    if (!db_common_is_mailaddress($mail_address)) {
+        return false;
+    }
+    
+    if (db_member_is_sns_join4mail_address($mail_address)) {
+        return false;
+    }
+    
+    if (!db_member_is_limit_domain4mail_address($mail_address)) {
+        return false;
+    }
+    
+    return true;
+}
+
 ?>

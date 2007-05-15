@@ -54,8 +54,7 @@ class pc_do_h_invite_insert_c_invite extends OpenPNE_Action
 
         if (is_ktai_mail_address($mail)) {
             //<PCKTAI
-            if (defined('OPENPNE_REGIST_FROM') &&
-                    !((OPENPNE_REGIST_FROM & OPENPNE_REGIST_FROM_KTAI) >> 1)) {
+            if (!((OPENPNE_REGIST_FROM & OPENPNE_REGIST_FROM_KTAI) >> 1)) {
                 $msg = '携帯アドレスには招待を送ることができません';
                 $p = array('msg' => $msg);
                 openpne_redirect('pc', 'page_h_invite', $p);
@@ -73,8 +72,7 @@ class pc_do_h_invite_insert_c_invite extends OpenPNE_Action
 
         } else {
             //<PCKTAI
-            if (defined('OPENPNE_REGIST_FROM') &&
-                    !(OPENPNE_REGIST_FROM & OPENPNE_REGIST_FROM_PC)) {
+            if (!(OPENPNE_REGIST_FROM & OPENPNE_REGIST_FROM_PC)) {
                 $msg = 'PCアドレスには招待を送ることができません';
                 $p = array('msg' => $msg);
                 openpne_redirect('pc', 'page_h_invite', $p);

@@ -24,6 +24,11 @@ class ktai_do_o_update_ktai_address extends OpenPNE_Action
             openpne_redirect('ktai', 'page_o_login');
         }
 
+        // メールアドレスが登録できるかどうか
+        if (!util_is_regist_mail_address($pre['ktai_address'])) {
+            openpne_redirect('ktai', 'page_o_login', array('msg' => 42));
+        }
+
         $c_member_id = $pre['c_member_id'];
         $ktai_address = $pre['ktai_address'];
 

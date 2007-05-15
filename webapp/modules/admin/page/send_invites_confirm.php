@@ -16,9 +16,7 @@ class admin_page_send_invites_confirm extends OpenPNE_Action
         $v['cannot_send'] = true;
         $c_member_id_invite = 1;
 
-        if ($requests['pc_mails'] &&
-            (!defined('OPENPNE_REGIST_FROM') || (OPENPNE_REGIST_FROM & OPENPNE_REGIST_FROM_PC))
-            ) {
+        if ($requests['pc_mails'] && (OPENPNE_REGIST_FROM & OPENPNE_REGIST_FROM_PC)) {
             $params = array(
                 'c_member'       => db_member_c_member4c_member_id($c_member_id_invite),
                 'sid'            => 'xxxxxxxxxx',
@@ -30,9 +28,7 @@ class admin_page_send_invites_confirm extends OpenPNE_Action
             $v['cannot_send'] = false;
         }
 
-        if ($requests['ktai_mails'] &&
-            (!defined('OPENPNE_REGIST_FROM') || ((OPENPNE_REGIST_FROM & OPENPNE_REGIST_FROM_KTAI) >> 1))
-            ) {
+        if ($requests['ktai_mails'] && ((OPENPNE_REGIST_FROM & OPENPNE_REGIST_FROM_KTAI) >> 1)) {
             $params['SNS_NAME'] = SNS_NAME;
             $params['url'] = openpne_gen_url('ktai', 'page_o_regist_pre') . '&ses=xxxxxxxxxx';
             $params['c_member'] = db_member_c_member4c_member_id($c_member_id_invite);

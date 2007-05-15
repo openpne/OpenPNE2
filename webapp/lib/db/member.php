@@ -959,6 +959,16 @@ function db_member_update_c_member_image($c_member_id, $image_filename, $img_num
 
 function db_member_insert_c_member($c_member, $c_member_secure)
 {
+    if ($c_member_secure['pc_address'] && !util_is_regist_mail_address($c_member_secure['pc_address'])) {
+        return false;
+    }
+    if ($c_member_secure['ktai_address'] && !util_is_regist_mail_address($c_member_secure['ktai_address'])) {
+        return false;
+    }
+    if (!util_is_regist_mail_address($c_member_secure['regist_address'])) {
+        return false;
+    }
+
     $data = array(
         'nickname'    => $c_member['nickname'],
         'birth_year'  => $c_member['birth_year'],
@@ -992,6 +1002,10 @@ function db_member_insert_c_member($c_member, $c_member_secure)
 
 function db_member_ktai_insert_c_member($profs)
 {
+    if (!util_is_regist_mail_address($profs['ktai_address'])) {
+        return false;
+    }
+
     $data = array(
         'nickname' => $profs['nickname'],
         'birth_year' => intval($profs['birth_year']),
