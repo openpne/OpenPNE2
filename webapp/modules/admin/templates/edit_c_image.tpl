@@ -50,7 +50,9 @@
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
 <input type="hidden" name="filename" value="({$requests.filename})" />
 <p class="delImg"><a href="({t_img_url filename=$requests.filename})" target="_blank"><img src="({t_img_url filename=$requests.filename w=120 h=120})"></a></p>
+({if strpos($requests.filename, 'skin_') !== 0 && strpos($requests.filename, 'no_') !== 0})
 <p class="textBtn"><input type="submit" value="この画像を削除する"></p>
+({/if})
 </form>
 ({else})
 <p class="caution" id="c02"><strong>({$requests.filename})</strong>は登録されていません。</p>
