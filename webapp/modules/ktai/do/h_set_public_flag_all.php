@@ -14,18 +14,7 @@ class ktai_do_h_set_public_flag_all extends OpenPNE_Action
         $tail = $GLOBALS['KTAI_URL_TAIL'];
         $u = $GLOBALS['KTAI_C_MEMBER_ID'];
 
-        switch ($requests['public_flag_diary_all']) {
-        case 'public':
-        default:
-            $public_flag = 'public';
-            break;
-        case 'friend':
-            $public_flag = 'friend';
-            break;
-        case 'private':
-            $public_flag = 'private';
-            break;
-        }
+        $public_flag = util_cast_public_flag_diary($requests['public_flag_diary_all']);
         
         db_diary_update_public_flag_diary_all($u, $public_flag);
 

@@ -21,7 +21,7 @@ class pc_page_h_diary_edit_confirm extends OpenPNE_Action
         $target_c_diary_id = $requests['target_c_diary_id'];
         $subject = $requests['subject'];
         $body = $requests['body'];
-        $public_flag = $requests['public_flag'];
+        $public_flag = util_cast_public_flag_diary($requests['public_flag']);
         $category = $requests['category'];
         // ----------
 
