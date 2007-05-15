@@ -1404,21 +1404,13 @@ function db_member_insert_c_member_profile($c_member_id, $c_profile_id, $c_profi
 function db_member_insert_c_access_block($c_member_id, $c_member_id_block)
 {
     // 存在するIDのみを抽出
-    $c_member_id_block = array_unique(array_map('intval', $c_member_id_block));
-    if (!$c_member_id_block) {
-        return false;
-    }
-    $ids = implode(',', $c_member_id_block);
-    $sql = 'SELECT c_member_id FROM c_member WHERE c_member_id IN ('.$ids.')';
-    $c_member_id_block = db_get_col($sql);
+    $c_member_id_block = db_member_filter_c_access_block_id($c_member_id, $c_member_id_block);
 
     $sql = 'DELETE FROM c_access_block WHERE c_member_id = ?';
     $params = array(intval($c_member_id));
     db_query($sql, $params);
 
     foreach ($c_member_id_block as $id) {
-        if ($id == $c_member_id) continue;
-
         $data = array(
             'c_member_id' => intval($c_member_id),
             'c_member_id_block' => intval($id),
@@ -1426,6 +1418,17 @@ function db_member_insert_c_access_block($c_member_id, $c_member_id_block)
         );
         db_insert('c_access_block', $data);
     }
+}
+
+function db_member_filter_c_access_block_id($c_member_id, $c_member_id_block)
+{
+    $c_member_id_block = array_unique(array_map('intval', $c_member_id_block));
+    if (!$c_member_id_block) {
+        return array();
+    }
+    $ids = implode(',', $c_member_id_block);
+    $sql = 'SELECT c_member_id FROM c_member WHERE (c_member_id IN ('.$ids.')) AND (c_member_id <> ?) ';
+    return db_get_col($sql, array($c_member_id));
 }
 
 //---
