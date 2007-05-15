@@ -19,10 +19,6 @@ class pc_page_h_diary_edit extends OpenPNE_Action
         // ----------
 
         $c_diary = db_diary_get_c_diary4id($target_c_diary_id);
-        if (!(is_null($subject) || is_null($body))) {
-            $c_diary['subject'] = $subject;
-            $c_diary['body'] = $body;
-        }
 
         // target が指定されていない
         // 新規作成
@@ -52,7 +48,6 @@ class pc_page_h_diary_edit extends OpenPNE_Action
 
         //プロフィール
         $this->set("target_member", db_member_c_member4c_member_id($u));
-        $this->set("diary", $c_diary);
 
         //カレンダー関係
         //カレンダー開始用変数
@@ -94,6 +89,15 @@ class pc_page_h_diary_edit extends OpenPNE_Action
 	        $this->set("category_list", db_diary_category_list4c_member_id($u));
             $this->set("use_diary_category", true);
         }
+
+        if (!(is_null($subject) || is_null($body))) {
+            $c_diary['subject'] = $subject;
+            $c_diary['body'] = $body;
+        }
+        if ($public_flag) {
+            $c_diary['public_flag'] = util_cast_public_flag_diary($public_flag);
+        }
+        $this->set("diary", $c_diary);
 
         // inc_entry_point
         $this->set('inc_entry_point', fetch_inc_entry_point($this->getView(), 'h_diary_edit'));
