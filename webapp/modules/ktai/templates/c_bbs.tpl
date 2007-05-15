@@ -96,10 +96,12 @@
 <input type="hidden" name="target_c_commu_topic_id" value="({$c_commu_topic_id})">
 <textarea name="body"></textarea><br>
 ({if $c_commu_topic.event_flag})
+({if $is_event_join_date})
 ({if !$is_c_event_member})
 <input name="join_event" type="submit" value="ｲﾍﾞﾝﾄに参加する"><br>
 ({else})
 <input name="cancel_event" type="submit" value="参加をｷｬﾝｾﾙする"><br>
+({/if})
 ({/if})
 <input name="write_comment" type="submit" value="ｺﾒﾝﾄのみ書き込む">
 ({else})

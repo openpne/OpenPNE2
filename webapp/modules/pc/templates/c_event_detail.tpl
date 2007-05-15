@@ -810,11 +810,14 @@
 
 <div class="padding_w_m">
 
+({if $is_event_join_date})
 ({if $is_c_event_member})
 <input type="submit" class="submit" name="button" value="参加をキャンセルする">
-<input type="submit" class="submit" name="button" value="コメントのみ書き込む">
 ({elseif $is_c_commu_member})
 <input type="submit" class="submit" name="button" value="イベントに参加する">
+({/if})
+({/if})
+({if $is_c_commu_member})
 <input type="submit" class="submit" name="button" value="コメントのみ書き込む">
 ({/if})
 

@@ -39,6 +39,12 @@ class ktai_do_c_bbs_insert_c_commu_topic_comment extends OpenPNE_Action
             openpne_redirect('ktai', 'page_c_bbs', $p);
         }
 
+        if ($requests['join_event'] || $requests['cancel_event']) {
+            if (!db_commu_is_event_join_date($target_c_commu_topic_id)) {
+                handle_kengen_error();
+            }
+        }
+
         $insert_id = db_commu_insert_c_commu_topic_comment_2($u, $target_c_commu_topic_id, $body);
 
         //イベントのメンバーに追加

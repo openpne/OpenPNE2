@@ -2538,6 +2538,20 @@ function db_commu_delete_c_event_member($c_commu_topic_id, $c_member_id)
     db_query($sql, $params);
 }
 
+/**
+ * 現在イベントに参加できるかどうか
+ */
+function db_commu_is_event_join_date($c_commu_topic_id)
+{
+    $sql = 'SELECT c_commu_topic_id FROM c_commu_topic'
+         . ' WHERE c_commu_topic_id = ?'
+         . ' AND (open_date >= ? OR open_date = \'0000-00-00\')'
+         . ' AND (invite_period >= ? OR invite_period = \'0000-00-00\')';
+    $now = date('Y-m-d');
+    $params = array(intval($c_commu_topic_id), $now, $now);
+    return (bool)db_get_row($sql, $params);
+}
+
 //--- commu_member
 
 /**

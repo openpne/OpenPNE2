@@ -28,6 +28,11 @@ class pc_page_c_event_write_confirm extends OpenPNE_Action
         }
         //---
 
+        if ($button == "イベントに参加する") {
+            $event_write['add_event_member'] = 1;
+        } elseif ($button == "参加をキャンセルする") {
+            $event_write['add_event_member'] = -1;
+        }
 
         //エラーチェック
         $err_msg = array();
@@ -46,6 +51,12 @@ class pc_page_c_event_write_confirm extends OpenPNE_Action
         if ($upfile_obj3['error'] !== UPLOAD_ERR_NO_FILE) {
             if (!($image = t_check_image($upfile_obj3))) {
                 $err_msg[] = '画像3は'.IMAGE_MAX_FILESIZE.'KB以内のGIF・JPEG・PNGにしてください';
+            }
+        }
+
+        if ($event_write['add_event_member']) {
+            if (!db_commu_is_event_join_date($c_commu_topic_id)) {
+                $err_msg[] = '現在このイベントへの参加・キャンセルの変更はできません';
             }
         }
 
@@ -72,12 +83,6 @@ class pc_page_c_event_write_confirm extends OpenPNE_Action
         $event_write['image_filename1'] = $upfile_obj1["name"];
         $event_write['image_filename2'] = $upfile_obj2["name"];
         $event_write['image_filename3'] = $upfile_obj3["name"];
-
-        if ($button == "イベントに参加する") {
-            $event_write['add_event_member'] = 1;
-        } elseif ($button == "参加をキャンセルする") {
-            $event_write['add_event_member'] = -1;
-        }
 
         $this->set('event_write', $event_write);
         return 'success';
