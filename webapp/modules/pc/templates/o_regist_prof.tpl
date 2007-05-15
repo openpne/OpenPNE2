@@ -219,7 +219,7 @@
     <select name="profile[({$profile.name})]">
     <option value="">選択してください</option>
     ({foreach item=item from=$profile.options})
-    <option value="({$item.c_profile_option_id})"({if $profs.profile[$profile.name] == $item.value}) selected="selected"({/if})>({$item.value|default:"--"})</option>
+    <option value="({$item.c_profile_option_id})"({if $profs.profile[$profile.name] == $item.c_profile_option_id}) selected="selected"({/if})>({$item.value|default:"--"})</option>
     ({/foreach})
     </select>
 ({elseif $profile.form_type == 'radio'})
@@ -227,7 +227,7 @@
     ({foreach item=item from=$profile.options})
     ({counter name=$profile.name assign=_cnt})
     ({if $_cnt % 3 == 1})<tr>({/if})
-        <td><input type="radio" name="profile[({$profile.name})]" value="({$item.c_profile_option_id})"({if $profs.profile[$profile.name] == $item.value}) checked="checked"({/if})></td>
+        <td><input type="radio" name="profile[({$profile.name})]" value="({$item.c_profile_option_id})"({if $profs.profile[$profile.name] == $item.c_profile_option_id}) checked="checked"({/if})></td>
         <td>({$item.value|default:"--"})</td>
     ({if $_cnt % 3 == 0})</tr>({/if})
     ({/foreach})
@@ -238,7 +238,7 @@
     ({foreach item=item from=$profile.options name=check})
     ({counter name=$profile.name assign=_cnt})
     ({if $_cnt % 3 == 1})<tr>({/if})
-        <td><input type="checkbox"  class="no_bg" name="profile[({$profile.name})][]" value="({$item.c_profile_option_id})"({if $profs.profile[$profile.name] && in_array($item.value|smarty:nodefaults, $profs.profile[$profile.name])}) checked="checked"({/if})></td>
+        <td><input type="checkbox"  class="no_bg" name="profile[({$profile.name})][]" value="({$item.c_profile_option_id})"({if $profs.profile[$profile.name] && in_array($item.c_profile_option_id|smarty:nodefaults, $profs.profile[$profile.name])}) checked="checked"({/if})></td>
         <td>({$item.value|default:"--"})</td>
     ({if $_cnt % 3 == 0})</tr>({/if})
     ({/foreach})
