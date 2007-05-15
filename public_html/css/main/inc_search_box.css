@@ -1,0 +1,25 @@
+@charset "UTF-8";
+
+td.inc_search_box {
+	width: 720px ;
+	height: auto ;
+}
+
+/*背景パターン*/
+
+td.inc_search_box div.bg_search {
+	border-bottom: solid #CBCBCB 1px ;
+}
+
+/************* 検索ボックス *************/
+
+td.inc_search_box table.search_bar img ,
+td.inc_search_box table.search_bar input {
+	vertical-align: middle;
+}
+
+td.inc_search_box table.search_bar input.button {
+	border: none ;
+	border-width: 0px;
+	margin-left: 2px;
+}

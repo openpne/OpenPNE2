@@ -1,0 +1,96 @@
+<?php
+//// 画像サーバ用設定 ////
+define('OPENPNE_IS_IMG_SERVER', true);
+
+// SNSサーバのURL
+define('OPENPNE_URL', 'http://sns.example.com/');
+
+// 画像データ保存用DB
+$GLOBALS['_OPENPNE_DSN_LIST']['main'] = array(
+'dsn'  => array(
+    'phptype'  => 'mysql',
+    'username' => '',
+    'password' => '',
+    'hostspec' => 'localhost',
+    'database' => '',
+    'new_link' => false,
+    ),
+);
+
+///
+// パス設定
+///
+
+define('OPENPNE_LIB_DIR'    , OPENPNE_DIR . '/lib');
+define('OPENPNE_VAR_DIR'    , OPENPNE_DIR . '/var');
+define('OPENPNE_WEBAPP_DIR' , OPENPNE_DIR . '/webapp');
+define('OPENPNE_MODULES_DIR', OPENPNE_WEBAPP_DIR . '/modules');
+define('OPENPNE_RSS_CACHE_DIR', OPENPNE_VAR_DIR . '/rss_cache');
+
+///
+// webapp_ext ディレクトリ使用設定
+///
+
+define('USE_EXT_DIR', false);
+define('OPENPNE_WEBAPP_EXT_DIR' , OPENPNE_DIR . '/webapp_ext');
+define('OPENPNE_MODULES_EXT_DIR', OPENPNE_WEBAPP_EXT_DIR . '/modules');
+
+///
+// 画像
+///
+
+// 画像を別サーバに設定する場合に指定する
+define('OPENPNE_IMG_URL', 'http://img.example.com/');
+
+// 画像キャッシュをpublic_html以下に置くかどうか(要mod_rewrite)
+define('OPENPNE_IMG_CACHE_PUBLIC', true);
+
+// 画像キャッシュディレクトリ(要書き込み権限)
+if (OPENPNE_IMG_CACHE_PUBLIC) {
+    define('OPENPNE_IMG_CACHE_DIR', OPENPNE_DIR . '/public_html/img');
+} else {
+    define('OPENPNE_IMG_CACHE_DIR', OPENPNE_VAR_DIR . '/img_cache');
+}
+
+// 画像変換時に許可する解像度のリスト (幅x高さ)
+// (空の配列を指定すると無制限になります)
+$GLOBALS['_OPENPNE_IMG_ALLOWED_SIZE'] = array('76x76', '120x120', '180x180');
+
+// 画像キャッシュのファイル名のprefix
+define('OPENPNE_IMG_CACHE_PREFIX', 'img_cache_');
+
+// 画像変換後のJPEGのQUALITY値
+define('OPENPNE_IMG_JPEG_QUALITY', 75);
+
+// ImageMagick使用設定
+// 0: off ... ImageMagickを使わない
+// 1: on  ... GIFのみImageMagickを使う
+// 2: on  ... JEPG,PNG,GIFにImageMagickを使う(ただし、GDも必要)
+define('USE_IMAGEMAGICK', 0);
+
+// ImageMagick の convertコマンドのパス
+define('IMGMAGICK_APP', '/usr/bin/convert');
+//define('IMGMAGICK_APP', '"C:\Program Files\ImageMagick-6.2.5-Q16\convert"');
+
+// ImageMagick のオプション(デフォルトは -resize)
+//define('IMGMAGICK_OPT', '-thumbnail');
+
+// アップロード画像のファイルサイズ制限(KB)
+define('IMAGE_MAX_FILESIZE', 300);
+
+// アップロード画像の大きさ制限(ピクセル)
+define('IMAGE_MAX_WIDTH', 1024);
+define('IMAGE_MAX_HEIGHT', 768);
+
+///
+// umask設定
+///
+
+umask(0);
+
+
+//画像へのアクセスをSNS認証する
+//※画像静的化機能を用いている場合は利用できません
+define('CHECK_IMG_AUTH', false);
+
+?>

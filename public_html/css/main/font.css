@@ -1,0 +1,76 @@
+@charset "UTF-8";
+
+/*フォントに適用するカラーの設定*/
+
+.c_00 {
+	color: #595E62 ;
+}
+
+.c_01 {
+	color: #595E62 ;
+}
+
+.c_02 {
+	color: #D92C49 ;
+}
+
+.c_03 {
+	color: #2C65D9 ;
+}
+
+
+/*フォントに適用するサイズの設定*/
+
+/*ミドルサイズ：全体（*）の設定もここで行う。*/
+
+* ,
+.s_m {
+	font-size : 10pt ;
+}
+
+/*極小サイズ*/
+
+.s_ss {
+	font-size : 8pt ;
+}
+
+/*小サイズ*/
+
+.s_s {
+	font-size : 9pt ;
+}
+
+/*大サイズ*/
+
+.s_l {
+	font-size : 11pt ;
+}
+
+/*極大サイズ*/
+
+.s_ll {
+	font-size : 12pt ;
+}
+
+/*フォントに適用する太さの設定*/
+
+.b_n {
+	font-weight: normal ;
+}
+
+.b_b {
+	font-weight: bold ;
+}
+
+/*その他汎用font関連*/
+
+.caution {
+	color: #ff0000 ;
+}
+
+.impact {
+	font-size: 110% ;
+	font-weight: bold ;
+}
+
+

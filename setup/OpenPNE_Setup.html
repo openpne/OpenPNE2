@@ -1,0 +1,395 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title>OpenPNE セットアップガイド</title>
+<style type="text/css">
+<!--
+body {
+  background-color: #fff;
+  color: #000;
+  margin: 0px;
+  padding: 1em;
+  padding-right: 2em;
+}
+h2 {
+  margin: 1em 0 1em;
+}
+p.caution {
+  margin: 1em;
+  padding: 0.8em;
+  border: solid 1px #f63;
+}
+pre {
+  margin: 0.5em;
+  padding: 1em 2em;
+  background-color: #eee;
+}
+dl {
+  margin: 1em;
+}
+dt {
+  font-weight: bold;
+}
+dd {
+  margin: 0 0 0.5em 1em;
+}
+table {
+  margin: 1em;
+  border-collapse: collapse;
+}
+th {
+  background-color: #ddd;
+}
+th, td {
+  padding: 5px 10px;
+  border: solid 1px #000;
+}
+var {
+  color: #922;
+}
+em {
+  font-weight: bold;
+  font-style: normal;
+}
+-->
+</style>
+</head>
+
+<body>
+
+<h1>OpenPNE セットアップガイド</h1>
+
+<p>最終更新日: 2006/12/31</p>
+
+<h2>目次</h2>
+<ul>
+<li><a href="#section0">0. はじめに</a></li>
+<li><a href="#section1">1. ファイルの設置</a></li>
+<li><a href="#section2">2. 設定ファイルの変更</a></li>
+<li><a href="#section3">3. サーバ設定</a>
+  <ul>
+  <li><a href="#section3-1">3-1. Apacheの設定</a></li>
+  <li><a href="#section3-2">3-2. メールサーバの設定</a></li>
+  <li><a href="#section3-3">3-3. cronの設定</a></li>
+  </ul></li>
+<li><a href="#section4">4. OpenPNE用データベースの作成</a>
+  <ul>
+  <li><a href="#section4-1">4-1. MySQL 4.1 の場合</a></li>
+  <li><a href="#section4-2">4-2. MySQL 4.0 の場合</a></li>
+  <li><a href="#section4-3">4-3. PNEBIZを使用する場合</a></li>
+  </ul></li>
+<li><a href="#section5">5. セットアップモジュールの実行</a></li>
+<li><a href="#section6">6. 管理画面へのアクセス</a></li>
+</ul>
+
+<hr>
+
+<h2 id="section0">0. はじめに</h2>
+
+<p>この文書は、OpenPNE バージョン2.6 を基にして書かれています。</p>
+<p>OpenPNE は以下のようなサーバ環境で動作させることを想定しています。</p>
+<ul>
+<li>Apache 1.3.*/2.0.* 以上</li>
+<li>PHP 4.3.*/5.0.* (ASPI版を推奨)
+	<ul>
+	<li>PHP の mbstring 拡張モジュールを使用可能</li>
+	<li>PHP から GD ライブラリを使用可能 (JPEG/GIF/PNG サポート)</li>
+	<li>PHP の mcrypt 拡張モジュールの使用を推奨</li>
+	</ul></li>
+<li>MySQL 4.0/4.1</li>
+<li>メールサーバ(携帯からメール投稿する場合)
+	<ul>
+	<li>Postfix 2.1.* を推奨</li>
+	</ul></li>
+</ul>
+
+<h2 id="section1">1. ファイルの設置</h2>
+
+<p>OpenPNE に含まれるディレクトリ、ファイルを以下のようにWebサーバ上に設置してください。</p>
+
+<pre>
+- <var>OPENPNE_DIR</var>
+  ├ bin
+  ├ lib          &lt;--- <var>OPENPNE_LIB_DIR</var>
+  ├ var          &lt;--- <var>OPENPNE_VAR_DIR</var>
+  │ ├ img_cache
+  │ │ ├ gif [777]
+  │ │ │ ├ w_h [777]
+  │ │ │ ├ w_h_raw [777]
+  │ │ │ ├ w76_h76 [777]
+  │ │ │ ├ w120_h120 [777]
+  │ │ │ └ w180_h180 [777]
+  │ │ ├ jpg [777]
+  │ │ │ ├ w_h [777]  
+  │ │ │    ... [777]
+  │ │ └ png [777]
+  │ │    ├ w_h [777]
+  │ │       ... [777]
+  │ ├ log [777]
+  │ ├ rss_cache [777]
+  │ ├ templates_c [777]
+  │ └ tmp [777]
+  ├ webapp       &lt;--- <var>OPENPNE_WEBAPP_DIR</var>
+  ├ webapp_biz   &lt;--- <var>OPENPNE_WEBAPP_BIZ_DIR</var>
+  └ webapp_ext   &lt;--- <var>OPENPNE_WEBAPP_EXT_DIR</var>
+
+(ブラウザから閲覧可能)
+- <var>public_html</var> (ディレクトリ名は変更可能)
+  ├ config.inc.php (<var>OPENPNE_DIR</var> ディレクトリを指定)
+  ├ index.php
+     ...
+
+※[777]は例です。環境に合わせて適切な値に読み替えてください。
+</pre>
+
+<p><var>public_html</var> のパスとディレクトリ名は変更することができます。</p>
+<p><var>public_html</var> のパスを <var>OPENPNE_DIR</var> ディレクトリの直下(デフォルト配置)以外に変更した場合は、
+<var>public_html</var> 直下にある config.inc.php の内容を書き換えてください。</p>
+
+<p>また、<var>OPENPNE_DIR</var>/var 以下の<strong>全ディレクトリ</strong>にウェブサーバからの書き込み権限(例えば 777)を与えてください。</p>
+<pre>
+$ chmod -R 777 var/*
+</pre>
+
+<hr>
+
+<p>OpenPNE 2.2 からは画像のキャッシュディレクトリを <var>public_html</var> 以下に置き、Apache から直接読み込みを行うようにすることもできます。
+(OpenPNE の設定ファイル config.php で、OPENPNE_IMG_CACHE_PUBLIC を true にしてください)</p>
+
+<p>この機能を有効にする場合、Apache の設定で mod_rewrite を有効にし、.htaccess を使用可能にするかもしくは同様の内容を httpd.conf に記述する必要があります。</p>
+
+<pre>
+- <var>OPENPNE_DIR</var>
+  ├ bin
+  ├ lib          &lt;--- <var>OPENPNE_LIB_DIR</var>
+  ├ var          &lt;--- <var>OPENPNE_VAR_DIR</var>
+  │ ├ log [777]
+  │ ├ rss_cache [777]
+  │ ├ templates_c [777]
+  │ └ tmp [777]
+  ├ webapp       &lt;--- <var>OPENPNE_WEBAPP_DIR</var>
+  ├ webapp_biz   &lt;--- <var>OPENPNE_WEBAPP_BIZ_DIR</var>
+  └ webapp_ext   &lt;--- <var>OPENPNE_WEBAPP_EXT_DIR</var>
+
+(ブラウザから閲覧可能)
+- <var>public_html</var> (ディレクトリ名は変更可能)
+  ├ config.inc.php (<var>OPENPNE_DIR</var> ディレクトリを指定)
+  ├ index.php
+  ├ img
+  │ ├ .htaccess
+  │ ├ index.php
+  │ ├ gif [777]
+  │ │ ├ w_h [777]
+  │ │ ├ w_h_raw [777]
+  │ │ ├ w76_h76 [777]
+  │ │ ├ w120_h120 [777]
+  │ │ └ w180_h180 [777]
+  │ ├ jpg [777]
+  │ │ ├ w_h [777]
+  │ │    ... [777]
+  │ └ png [777]
+  │    ├ w_h [777]
+  │       ... [777]
+     ...
+
+※[777]は例です。環境に合わせて適切な値に読み替えてください。
+</pre>
+
+
+<h2 id="section2">2. 設定ファイルの変更</h2>
+
+<p>
+<var>OPENPNE_DIR</var>/config.php.sample を
+<var>OPENPNE_DIR</var>/config.php にコピーして config.php の方を環境に合わせて編集します。</p>
+
+<dl>
+<dt>OPENPNE_URL</dt>
+	<dd>ベースURL(絶対パス)</dd>
+<dt>DSN</dt>
+	<dd>(MySQLの)データベースへ接続するための情報です。<br>
+	接続用ユーザー名、パスワード、サーバホスト名、データベース名を設定します。</dd>
+<dt>ENCRYPT_KEY</dt>
+	<dd>会員ログイン情報の暗号キー(56バイト以内のASCII文字)<br>
+	他人に推測されにくい文字列にしてください。</dd>
+<dt>MAIL_SERVER_DOMAIN</dt>
+	<dd>メールサーバのドメイン名(携帯版でメール投稿をする場合に使います)</dd>
+</dl>
+
+<p>必要に応じて、オプション設定も書き換えてください。
+デバッグモードの設定は、本番運用に移行する際には 0 にしておくことをおすすめします。</p>
+
+<p class="caution">PHPの設定でセーフモードが有効な場合は、MAIL_SET_ENVFROM を false に設定してください。</p>
+
+
+<h2 id="section3">3. サーバ設定</h2>
+
+<p>レンタルサーバ等で設定済みの場合は読み飛ばしてください。</p>
+
+<h3 id="section3-1">3-1. Apacheの設定</h3>
+
+<p>httpd.confを修正し、</p>
+<ul>
+<li>DirectoryIndex に index.php を追加します。</li>
+<li><var>public_html</var> にアクセスできるようにドキュメントパスを通します。</li>
+</ul>
+
+<p><em>[設定例]</em></p>
+<div>
+バーチャルホストを使ったhttpd.confの設定
+<pre>
+&lt;VirtualHost *:80&gt;
+    ServerName        openpne.example.com
+    DocumentRoot      /home/username/OpenPNE/public_html/
+    DirectoryIndex    index.html index.php
+&lt;/VirtualHost&gt;
+</pre>
+</div>
+
+<p>httpd.confを修正したら、Apacheを再起動してください。</p>
+
+<h3 id="section3-2">3-2. メールサーバの設定</h3>
+
+<p>携帯版を使用しない場合は以下の設定は不要です。</p>
+
+<p>MAIL_SERVER_DOMAIN に届くメールで、以下のアドレスはシステムで利用されます。</p>
+
+<table>
+<tr><th>項目</th><th>新形式</th><th>旧形式</th></tr>
+<tr><td>新規登録 / ログインURL取得</td><td>get@MAIL_SERVER_DOMAIN</td><td>get@MAIL_SERVER_DOMAIN</td></tr>
+<tr><td>プロフィール画像変更</td><td>p<var>XXX</var>-<var>YYY</var>@MAIL_SERVER_DOMAIN</td><td>p<var>XXX</var>@MAIL_SERVER_DOMAIN</td></tr>
+<tr><td>コミュニティ掲示板メール投稿</td><td>t<var>XXX</var>-<var>YYY</var>@MAIL_SERVER_DOMAIN</td><td>t<var>XXX</var>@MAIL_SERVER_DOMAIN</td></tr>
+<tr><td>日記メール投稿</td><td>b<var>XXX</var>-<var>YYY</var>@MAIL_SERVER_DOMAIN</td><td>blog@MAIL_SERVER_DOMAIN</td></tr>
+</table>
+<ul>
+<li><var>XXX</var> には数字。</li>
+<li><var>YYY</var> には12バイトの英数字([0-9a-f]{12})。</li>
+</ul>
+
+<p>新形式、旧形式のどちらのアドレスで受け付けるかは config.phpの設定(MAIL_ADDRESS_HASHED)によって切り替えることができます。</p>
+<p>新形式はメール投稿の際のFromアドレス偽装へのセキュリティ対策のために導入されたものです。
+From偽装対策を(IP制限等により)メールサーバ側で行っている場合には旧形式での運用も問題ありません。</p>
+
+<p>メールサーバの転送設定を利用して、これらのアドレスへのメールが、以下のコマンドにわたるように設定します。</p>
+<pre>
+"|/usr/local/bin/php <var>OPENPNE_DIR</var>/bin/mail.php"
+</pre>
+
+<h3 id="section3-3">3-3. cronの設定</h3>
+
+<p><em>[設定例]</em></p>
+
+<p>cronファイルに実行権限の付加。</p>
+<pre>
+chmod 755 bin/*.cron
+</pre>
+
+<p>/etc/crontab に以下を記述。</p>
+<div>
+<pre>
+# 6時にメールを送信＆20分毎にRSS更新
+00   6 * * * root sh <var>OPENPNE_DIR</var>/bin/tool_send_dairy_news.cron     <var>OPENPNE_DIR</var>/bin/ [bin_path]/php
+00   6 * * * root sh <var>OPENPNE_DIR</var>/bin/tool_send_birthday_mail.cron  <var>OPENPNE_DIR</var>/bin/ [bin_path]/php
+00   6 * * * root sh <var>OPENPNE_DIR</var>/bin/tool_send_schedule_mail.cron  <var>OPENPNE_DIR</var>/bin/ [bin_path]/php
+*/20 * * * * root sh <var>OPENPNE_DIR</var>/bin/tool_rss_cache.cron           <var>OPENPNE_DIR</var>/bin/ [bin_path]/php
+</pre>
+[bin_path]はphpをインストールしたbinディレクトリ(例えば、/usr/local/bin)です。
+</div>
+
+<h2 id="section4">4. OpenPNE用データベースの作成</h2>
+
+<h3 id="section4-1">4-1. MySQL 4.1 の場合</h3>
+
+<p>新しくデータベースを作成する場合、以下のようなSQLクエリを実行してデータベースを作成します。</p>
+
+<pre>
+CREATE DATABASE `DBNAME` DEFAULT CHARACTER SET utf8 ;
+</pre>
+
+<p>準備したデータベース(例:DBNAME)上で、以下のSQL文を順番に実行してください。</p>
+<ol>
+<li><var>OPENPNE_DIR</var>/setup/sql/install/install-2.6-create_tables-mysql41.sql</li>
+<li><var>OPENPNE_DIR</var>/setup/sql/install/install-2.6-insert_data.sql</li>
+</ol>
+
+<div>
+<em>[実行例]</em>
+<pre>
+$ mysql -u username -p --default-character-set=utf8 DBNAME &lt; install-2.6-create_tables-mysql41.sql
+$ mysql -u username -p --default-character-set=utf8 DBNAME &lt; install-2.6-insert_data.sql
+</pre>
+</div>
+
+<h3 id="section4-2">4-2. MySQL 4.0 の場合</h3>
+<p>新しくデータベースを作成する場合、以下のようなSQLクエリを実行してデータベースを作成します。</p>
+
+<pre>
+CREATE DATABASE `DBNAME` ;
+</pre>
+
+<p>準備したデータベース(例:DBNAME)上で、以下のSQL文を順番に実行してください。</p>
+<ol>
+<li><var>OPENPNE_DIR</var>/setup/sql/install/install-2.6-create_tables-mysql40.sql</li>
+<li><var>OPENPNE_DIR</var>/setup/sql/install/install-2.6-insert_data.sql</li>
+</ol>
+
+<div>
+<em>[実行例]</em>
+<pre>
+$ mysql -u username -p DBNAME &lt; install-2.6-create_tables-mysql40.sql
+$ mysql -u username -p DBNAME &lt; install-2.6-insert_data.sql
+</pre>
+</div>
+
+
+<h3 id="section4-3">4-3. PNEBIZを使用する場合</h3>
+<p>PNEBIZを使用する場合は4-1(または4-2)実行後、以下のSQL文を実行してください。</p>
+<ol>
+<li><var>OPENPNE_DIR</var>/setup/sql/install/option-2.6-pnebiz-header.sql</li>
+</ol>
+
+<div>
+<em>[実行例]</em>
+<pre>
+$ mysql -u username -p DBNAME &lt; option-2.6-pnebiz-header.sql
+</pre>
+</div>
+
+<h2 id="section5">5. セットアップモジュールの実行</h2>
+
+<p>ブラウザから以下のアドレスへアクセスしてください。(セットアップ完了後はアクセスすることができません)</p>
+
+<pre>
+<var>OPENPNE_URL</var>?m=setup
+(例) http://openpne.example.com/?m=setup
+</pre>
+
+<p>ここでSNS名、初期メンバー、管理用アカウントの設定を行うことができます。</p>
+
+
+<h2 id="section6">6. 管理画面へのアクセス</h2>
+
+<p>セットアップ時に設定した管理用アカウント名、パスワードを入力してログインしてください。ログイン後、管理メニューの「SNS設定変更」からSNSの基本情報の設定をすることができます。</p>
+
+<pre>
+<var>OPENPNE_URL</var>?m=admin
+(例) http://openpne.example.com/?m=admin
+</pre>
+
+<p>管理画面のURLを変更する場合は、設定ファイル config.php 内にある ADMIN_MODULE_NAME の値を変更してください。</p>
+<div>例えば、abcde に変更した場合、
+<pre>
+<var>OPENPNE_URL</var>?m=abcde
+(例) http://openpne.example.com/?m=abcde
+</pre>
+というURLから管理画面へアクセスすることができます。</div>
+
+<p>また、管理メニューの「管理画面設定 ＞ ページ名ランダム生成」でランダム生成を実行すると管理画面内のページ名を変更することができるので、セキュリティ向上のためセットアップ後に必ず実行しておくことをおすすめします。</p>
+
+<hr>
+
+<p>これでセットアップは完了です。友達を招待してみたり、日記を書いたり、あなただけのSNSを作り上げてください！</p>
+
+</body>
+</html>
