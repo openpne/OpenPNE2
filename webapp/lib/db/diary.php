@@ -979,7 +979,7 @@ function db_diary_insert_c_diary($c_member_id, $subject, $body, $public_flag)
         'c_member_id' => intval($c_member_id),
         'subject' => $subject,
         'body' => $body,
-        'public_flag' => $public_flag,
+        'public_flag' => util_cast_public_flag_diary($public_flag),
         'r_datetime' => db_now(),
         'r_date' => db_now(),
         'is_checked' => 1,
@@ -1000,7 +1000,7 @@ function db_diary_update_c_diary($c_diary_id, $subject, $body, $public_flag,
     $data = array(
         'subject' => $subject,
         'body' => $body,
-        'public_flag' => $public_flag,
+        'public_flag' => util_cast_public_flag_diary($public_flag),
     );
     if ($image_filename_1) $data['image_filename_1'] = $image_filename_1;
     if ($image_filename_2) $data['image_filename_2'] = $image_filename_2;

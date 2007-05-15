@@ -17,7 +17,7 @@ class ktai_do_h_diary_edit_insert_c_diary extends OpenPNE_Action
         // --- リクエスト変数
         $subject = $requests['subject'];
         $body = $requests['body'];
-        $public_flag = $requests['public_flag'];
+        $public_flag = util_cast_public_flag_diary($requests['public_flag']);
         $target_c_diary_id = $requests['target_c_diary_id'];
         // ----------
 

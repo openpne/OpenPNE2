@@ -25,7 +25,7 @@ class pc_do_h_diary_add_insert_c_diary extends OpenPNE_Action
         // --- リクエスト変数
         $subject = $requests['subject'];
         $body = $requests['body'];
-        $public_flag = $requests['public_flag'];
+        $public_flag = util_cast_public_flag_diary($requests['public_flag']);
         $tmpfile_1 = $requests['tmpfile_1'];
         $tmpfile_2 = $requests['tmpfile_2'];
         $tmpfile_3 = $requests['tmpfile_3'];

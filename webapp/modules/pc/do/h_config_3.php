@@ -28,7 +28,7 @@ class pc_do_h_config_3 extends OpenPNE_Action
         $c_member_id_block = $requests['c_member_id_block'];
         $c_password_query_id = $requests['c_password_query_id'];
         $c_password_query_answer = $requests['c_password_query_answer'];
-        $public_flag_diary = $requests['public_flag_diary'];
+        $public_flag_diary = util_cast_public_flag_diary($requests['public_flag_diary']);
         $is_shinobiashi = $requests['is_shinobiashi'];
         $schedule_start_day = $requests['schedule_start_day'];
         // ----------

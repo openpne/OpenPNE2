@@ -22,7 +22,7 @@ class pc_page_h_diary_add_confirm extends OpenPNE_Action
         // --- リクエスト変数
         $subject = $requests['subject'];
         $body = $requests['body'];
-        $public_flag = $requests['public_flag'];
+        $public_flag = util_cast_public_flag_diary($requests['public_flag']);
         $category = $requests['category'];
         // ----------
 

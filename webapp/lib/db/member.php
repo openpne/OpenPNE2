@@ -1038,7 +1038,7 @@ function db_member_h_config_3(
         'rss' => $rss,
         'ashiato_mail_num' => intval($ashiato_mail_num),
         'c_password_query_id' => intval($c_password_query_id),
-        'public_flag_diary' => $public_flag_diary,
+        'public_flag_diary' => util_cast_public_flag_diary($public_flag_diary),
         'is_shinobiashi' => $is_shinobiashi,
         'schedule_start_day' => $schedule_start_day,
     );
@@ -1442,7 +1442,7 @@ function db_member_update_ashiato_mail_num($c_member_id, $ashiato_mail_num)
 
 function db_member_update_public_flag_diary($c_member_id, $public_flag_diary)
 {
-    $data = array('public_flag_diary' => strval($public_flag_diary));
+    $data = array('public_flag_diary' => util_cast_public_flag_diary($public_flag_diary));
     $where = array('c_member_id' => intval($c_member_id));
     db_update('c_member', $data, $where);
 }
