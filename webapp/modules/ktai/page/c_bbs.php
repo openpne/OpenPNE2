@@ -55,7 +55,7 @@ class ktai_page_c_bbs extends OpenPNE_Action
         $this->set("is_c_commu_member", db_commu_is_c_commu_member($c_commu['c_commu_id'], $u));
         $this->set("is_c_event_member", db_commu_is_c_event_member($target_c_commu_topic_id, $u));
         $this->set("is_c_event_admin", db_commu_is_c_event_admin($target_c_commu_topic_id, $u));
-
+        $this->set('is_event_join_date', db_commu_is_event_join_date($target_c_commu_topic_id));
 
         //メンバーがコミュニティ管理者かどうか
         $this->set("is_admin", k_p_c_bbs_is_admin4c_member_id_c_commu_topic_id($u, $target_c_commu_topic_id));

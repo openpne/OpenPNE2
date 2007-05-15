@@ -38,6 +38,12 @@ class pc_do_c_event_write_insert_c_commu_topic_comment extends OpenPNE_Action
             exit;
         }
 
+        if ($add_event_member) {
+            if (!db_commu_is_event_join_date($c_commu_topic_id)) {
+                handle_kengen_error();
+            }
+        }
+
         //イベントのメンバーに追加
         if ($add_event_member == 1) {
             do_c_event_add_insert_c_event_member($c_commu_topic_id, $u);
