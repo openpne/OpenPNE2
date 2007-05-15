@@ -14,6 +14,10 @@ class pc_page_h_config extends OpenPNE_Action
 
         $c_member = db_member_c_member4c_member_id($u);
 
+        if ($requests['rss']) {
+            $c_member['rss'] = $requests['rss'];
+        }
+
         $this->set('password_query_list', p_common_c_password_query4null());
         $this->set('c_member', $c_member);
         $this->set('c_member_id_block', db_member_c_member_id_block4c_member_id($u));

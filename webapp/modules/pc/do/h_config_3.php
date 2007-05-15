@@ -33,24 +33,31 @@ class pc_do_h_config_3 extends OpenPNE_Action
         $schedule_start_day = $requests['schedule_start_day'];
         // ----------
 
-        include_once 'OpenPNE/RSS.php';
-        
-        $rss_url = OpenPNE_RSS::auto_discovery($rss);
-        
-        $msg_list = array();
-        if ($rss && !$rss_url) $msg_list[] = "BlogのURLが有効な値ではありません";
+        $error_messages = array();
+
+        if ($rss) {
+            if (!preg_match('|^https?://|', $rss)) {
+                $error_messages[] = 'BlogのURLを正しく入力してください';
+            } else {
+                include_once 'OpenPNE/RSS.php';
+                if (!($rss_url = OpenPNE_RSS::auto_discovery($rss))) {
+                    $error_messages[] = 'BlogのURLが無効です';
+                }
+            }
+        }
+
         $filtered_id = db_member_filter_c_access_block_id($u, $c_member_id_block);
         foreach ($c_member_id_block as $each_id) {
-            if (!in_array($each_id,$filtered_id)) {
-            	$msg_list[] = "アクセスブロックIDが有効な値ではありません";
+            if (!in_array($each_id, $filtered_id)) {
+                $error_messages[] = 'アクセスブロックに無効なメンバーIDが含まれています';
                 break;
             }
         }
         
         // error
-        if ($msg_list) {
-            $_REQUEST['msg'] = array_shift($msg_list);
-            openpne_forward('pc', 'page', "h_config");
+        if ($error_messages) {
+            $_REQUEST['msg'] = array_shift($error_messages);
+            openpne_forward('pc', 'page', 'h_config');
             exit;
         }
         
