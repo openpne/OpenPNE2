@@ -14,9 +14,8 @@ class ktai_page_o_regist_pre extends OpenPNE_Action
     function execute($requests)
     {
         //<PCKTAI
-        if (defined('OPENPNE_REGIST_FROM') &&
-                !((OPENPNE_REGIST_FROM & OPENPNE_REGIST_FROM_KTAI) >> 1)) {
-            openpne_redirect('ktai', 'page_o_login');
+        if (!((OPENPNE_REGIST_FROM & OPENPNE_REGIST_FROM_KTAI) >> 1)) {
+            openpne_redirect('ktai', 'page_o_login', array('msg' => 42));
         }
         //>
 
@@ -28,8 +27,14 @@ class ktai_page_o_regist_pre extends OpenPNE_Action
         // セッションが有効かどうか
         if (!$pre = db_member_c_member_ktai_pre4session($ses)) {
             // 無効の場合、login へリダイレクト
-            openpne_redirect('ktai', 'page_o_login');
+            openpne_redirect('ktai', 'page_o_login', array('msg' => 42));
         }
+        
+        // メールアドレスが登録できるかどうか
+        if (!util_is_regist_mail_address($pre['ktai_address'])) {
+            openpne_redirect('ktai', 'page_o_login', array('msg' => 42));
+        }
+
         if ($aff_id) {
             $this->set('aff_id', $aff_id);
         }

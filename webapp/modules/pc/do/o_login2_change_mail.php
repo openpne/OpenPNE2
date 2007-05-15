@@ -22,6 +22,13 @@ class pc_do_o_login2_change_mail extends OpenPNE_Action
         //セッションが正しい
         //パスワードが正しい
 
+        // メールアドレスが登録できるかどうか
+        $c_pc_address_pre = do_common_c_pc_address_pre4sid($sid);
+        if (!util_is_regist_mail_address($c_pc_address_pre['pc_address'])) {
+            $p = array('msg_code' => 'invalid_url');
+            openpne_redirect('pc', 'page_o_tologin', $p);
+        }
+
         if (!db_member_change_mail($sid, $password)) {
             $msg = "パスワードが違います";
             $p = array('sid' => $sid, 'msg' => $msg);
