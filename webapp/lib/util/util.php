@@ -521,4 +521,18 @@ function util_include_php_files($dir)
     }
 }
 
+function util_cast_public_flag_diary($public_flag, $default = 'public')
+{
+    switch ($public_flag) {
+    case 'public':
+    case 'friend':
+    case 'private':
+        break;
+    default:
+        $public_flag = $default;
+        break;
+    }
+    return $public_flag;
+}
+
 ?>
