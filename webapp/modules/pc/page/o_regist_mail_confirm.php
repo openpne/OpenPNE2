@@ -24,7 +24,7 @@ class pc_page_o_regist_mail_confirm extends OpenPNE_Action
 
         // メールアドレスが登録できるかどうか
         $c_pc_address_pre = do_common_c_pc_address_pre4sid($sid);
-        if (!util_is_regist_mail_address($c_pc_address_pre['pc_address'])) {
+        if (!util_is_regist_mail_address($c_pc_address_pre['pc_address'], $c_pc_address_pre['c_member_id'])) {
             $p = array('msg_code' => 'invalid_url');
             openpne_redirect('pc', 'page_o_tologin', $p);
         }
