@@ -120,7 +120,7 @@
 <td style="width:531px;height:50px;" class="bg_02" align="left" valign="middle">
 
 <div class="padding_s">
-<a href="({t_file_url filename=$c_topic.filename})" target="_blank">
+<a href="({t_file_url filename=$c_topic.filename})">
 ({$c_topic.original_filename})
 </a>
 </div>
