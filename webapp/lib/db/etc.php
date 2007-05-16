@@ -550,6 +550,7 @@ function db_common_delete_c_commu($c_commu_id)
             image_data_delete($topic_comment['image_filename2']);
             image_data_delete($topic_comment['image_filename3']);
         }
+        db_file_delete_c_file($topic['filename']);
         $sql = 'DELETE FROM c_commu_topic_comment WHERE c_commu_topic_id = ?';
         db_query($sql, $params);
 
