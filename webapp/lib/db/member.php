@@ -609,15 +609,20 @@ function db_member_inviting_member4c_member_id2($c_member_id)
     return db_get_all($sql, $params);
 }
 
-//対象のアドレスが、登録されてるか否か
-function db_member_is_sns_join4mail_address($mail_address)
+/**
+ * 対象のアドレスが、登録されてるか否か
+ * 
+ * @param string $mail_address
+ * @param int $c_member_id チェックから除外するメンバーID
+ */
+function db_member_is_sns_join4mail_address($mail_address, $c_member_id = 0)
 {
-    $params = array(t_encrypt($mail_address));
+    $params = array(t_encrypt($mail_address), intval($c_member_id));
 
-    $sql = "SELECT c_member_id FROM c_member_secure WHERE pc_address = ?";
+    $sql = "SELECT c_member_id FROM c_member_secure WHERE pc_address = ? AND c_member_id <> ?";
     $array = db_get_row($sql, $params);
 
-    $sql = "SELECT c_member_id FROM c_member_secure WHERE ktai_address = ?";
+    $sql = "SELECT c_member_id FROM c_member_secure WHERE ktai_address = ? AND c_member_id <> ?";
     $k_array = db_get_row($sql, $params);
 
     //対象のアドレスが登録済み

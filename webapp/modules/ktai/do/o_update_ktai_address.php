@@ -27,7 +27,7 @@ class ktai_do_o_update_ktai_address extends OpenPNE_Action
         }
 
         // メールアドレスが登録できるかどうか
-        if (!util_is_regist_mail_address($pre['ktai_address'])) {
+        if (!util_is_regist_mail_address($pre['ktai_address'], $pre['c_member_id'])) {
             openpne_redirect('ktai', 'page_o_login', array('msg' => 42));
         }
 
@@ -62,7 +62,8 @@ class ktai_do_o_update_ktai_address extends OpenPNE_Action
 
         // 携帯の個体識別番号の取得が任意
             if ($easy_access_id = OpenPNE_KtaiID::getID()) {
-                if ($c_member_id != db_member_c_member_id4easy_access_id($easy_access_id)) {
+                $id = db_member_c_member_id4easy_access_id($easy_access_id);
+                if ($id && $c_member_id != $id) {
                     $p = array('msg' => 39, 'ses' => $ses);
                     openpne_redirect('ktai', 'page_o_login2', $p);
                 }
