@@ -57,20 +57,22 @@ class pc_do_c_topic_edit_update_c_commu_topic extends OpenPNE_Action
                 $err_msg[] = '画像3は'.IMAGE_MAX_FILESIZE.'KB以内のGIF・JPEG・PNGにしてください';
             }
         }
-        if ($upfile_obj4['error'] !== UPLOAD_ERR_NO_FILE) {
-            if (OPENPNE_USE_FILEUPLOAD) {
-                $filesize = $upfile_obj4['size'];
-                if ((!$filesize)  || ($filesize > IMAGE_MAX_FILESIZE * 1024)) {
-                    $err_msg[] = '添付ファイルは'.IMAGE_MAX_FILESIZE.'KB以内のファイルにしてください';
+
+        if (OPENPNE_USE_FILEUPLOAD) {
+            if ($upfile_obj4['error'] !== UPLOAD_ERR_NO_FILE) {
+                // ファイルサイズ制限
+                if ($upfile_obj4['size'] === 0) {
+                    $err_msg[] = '空のファイルはアップロードできません';
                 }
 
-                // 添付ファイルの拡張子が許可されているか
-                if (!db_is_permit_file_type($upfile_obj4["name"])) {
-                    $err_msg[] = 'アップロードできるファイルの拡張子は('.FILE_TYPE.')です';
+                if ($upfile_obj4['size'] > FILE_MAX_FILESIZE * 1024) {
+                    $err_msg[] = 'ファイルは' . FILE_MAX_FILESIZE . 'KB以内のファイルにしてください';
                 }
 
-            } else {
-                $err_msg[] = 'ファイルのアップロードはできません。';
+                // 拡張子制限
+                if (!util_check_file_extention($upfile_obj4['name'])) {
+                    $err_msg[] = sprintf('アップロードできるファイルの種類は(%s)です', util_get_file_allowed_extensions('string'));
+                }
             }
         }
 
@@ -119,7 +121,7 @@ class pc_do_c_topic_edit_update_c_commu_topic extends OpenPNE_Action
         $update_c_commu_topic_comment = array(
             'body' => $body,
         );
-        $c_topic = c_topic_detail_c_topic4c_commu_topic_id($c_commu_topic_id);
+        $c_topic = db_commu_c_topic4c_commu_topic_id($c_commu_topic_id);
         if ($filename1) {
             $update_c_commu_topic_comment["image_filename1"] = $filename1;
             image_data_delete($c_topic['image_filename1']);
@@ -134,7 +136,7 @@ class pc_do_c_topic_edit_update_c_commu_topic extends OpenPNE_Action
         }
         if ($filename4) {
             $update_c_commu_topic_comment['filename4'] = $filename4;
-            db_file_delete_c_file($c_topic['filename4']);
+            db_file_delete_c_file($c_topic['filename']);
         }
         db_commu_update_c_commu_topic_comment($c_commu_topic_id, $update_c_commu_topic_comment);
 

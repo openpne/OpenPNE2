@@ -555,4 +555,41 @@ function util_is_regist_mail_address($mail_address)
     return true;
 }
 
+/**
+ * アップロード可能な拡張子のリストを取得
+ */
+function util_get_file_allowed_extensions($format = null)
+{
+    $list = array();
+    if (FILE_ALLOWED_EXTENTIONS) {
+        $exts = explode(',', FILE_ALLOWED_EXTENTIONS);
+        foreach ((array)$exts as $ext) {
+            if (trim($ext) !== '') {
+                $list[] = trim($ext);
+            }
+        }
+    }
+    if ($format === 'string') {
+        if ($list) {
+            foreach ($list as $key => $value) {
+                $list[$key] = '*.' . $value;
+            }
+            $list = implode('; ', $list);
+        } else {
+            $list = '';
+        }
+    }
+    return $list;
+}
+
+/**
+ * アップロード可能な拡張子かどうか
+ */
+function util_check_file_extention($filename)
+{
+    $extension = pathinfo($filename, PATHINFO_EXTENSION);
+    $list = util_get_file_allowed_extensions();
+    return (!$list || in_array($extension, $list));
+}
+
 ?>

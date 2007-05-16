@@ -18,7 +18,7 @@ function smarty_function_t_form($params, &$smarty)
     if (isset($params['_enctype'])) {
         if ($params['_enctype'] == 'file' || $params['_enctype'] == 'multipart') {
             $enctype = 'multipart/form-data';
-            $params['MAX_FILE_SIZE'] = IMAGE_MAX_FILESIZE * 1024;
+            $params['MAX_FILE_SIZE'] = max(IMAGE_MAX_FILESIZE * 1024, FILE_MAX_FILESIZE * 1024);
         }
         unset($params['_enctype']);
     }

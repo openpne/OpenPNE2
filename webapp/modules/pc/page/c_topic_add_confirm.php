@@ -64,20 +64,21 @@ class pc_page_c_topic_add_confirm extends OpenPNE_Action
             }
         }
 
-        if ($upfile_obj4['error'] !== UPLOAD_ERR_NO_FILE) {
-            if (OPENPNE_USE_FILEUPLOAD) {
-                $filesize = filesize($upfile_obj4['tmp_name']);
-                if ((!$filesize)  || ($filesize > IMAGE_MAX_FILESIZE * 1024)) {
-                    $err_msg[] = '添付ファイルは'.IMAGE_MAX_FILESIZE.'KB以内のファイルにしてください';
+        if (OPENPNE_USE_FILEUPLOAD) {
+            if ($upfile_obj4['error'] !== UPLOAD_ERR_NO_FILE) {
+                // ファイルサイズ制限
+                if ($upfile_obj4['size'] === 0) {
+                    $err_msg[] = '空のファイルはアップロードできません';
                 }
 
-                // 添付ファイルの拡張子が許可されているか
-                if (!db_is_permit_file_type($upfile_obj4["name"])) {
-                    $err_msg[] = 'アップロードできるファイルの拡張子は('.FILE_TYPE.')です';
+                if ($upfile_obj4['size'] > FILE_MAX_FILESIZE * 1024) {
+                    $err_msg[] = 'ファイルは' . FILE_MAX_FILESIZE . 'KB以内のファイルにしてください';
                 }
 
-            } else {
-                $err_msg[] = 'ファイルのアップロードはできません。';
+                // 拡張子制限
+                if (!util_check_file_extention($upfile_obj4['name'])) {
+                    $err_msg[] = sprintf('アップロードできるファイルの種類は(%s)です', util_get_file_allowed_extensions('string'));
+                }
             }
         }
 
