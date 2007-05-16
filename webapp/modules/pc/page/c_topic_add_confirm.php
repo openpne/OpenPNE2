@@ -67,12 +67,8 @@ class pc_page_c_topic_add_confirm extends OpenPNE_Action
         if (OPENPNE_USE_FILEUPLOAD) {
             if ($upfile_obj4['error'] !== UPLOAD_ERR_NO_FILE) {
                 // ファイルサイズ制限
-                if ($upfile_obj4['size'] === 0) {
-                    $err_msg[] = '空のファイルはアップロードできません';
-                }
-
-                if ($upfile_obj4['size'] > FILE_MAX_FILESIZE * 1024) {
-                    $err_msg[] = 'ファイルは' . FILE_MAX_FILESIZE . 'KB以内のファイルにしてください';
+                if ($upfile_obj4['size'] === 0 || $upfile_obj4['size'] > FILE_MAX_FILESIZE * 1024) {
+                    $err_msg[] = 'ファイルは' . FILE_MAX_FILESIZE . 'KB以内のファイルにしてください（ただし空のファイルはアップロードできません）';
                 }
 
                 // 拡張子制限
