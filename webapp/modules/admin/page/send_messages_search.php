@@ -13,11 +13,12 @@ class admin_page_send_messages_search extends OpenPNE_Action
 
         $profile_list = db_member_c_profile_list();
         $profile_value_list = array();
-        foreach ($cond_list as $key=>$each_cond) {
-            if (
-                ($key == "s_year") || ($key == "e_year")
-             || ($key == "s_point") || ($key == "e_point")
-            ) {
+
+        $special_keys = array('s_year', 'e_year',
+                              's_point', 'e_point',
+                              'last_login');
+        foreach ($cond_list as $key => $each_cond) {
+            if (in_array($key, $special_keys)) {
                 continue;
             }
             $c_profile_option = db_c_profile_option4c_profile_option_id($each_cond);
@@ -26,6 +27,17 @@ class admin_page_send_messages_search extends OpenPNE_Action
         }
         $v['cond_list'] = $cond_list;
         $v['profile_value_list'] = $profile_value_list;
+
+        //絞り込みのための最終ログイン時間
+        $select_last_login = array(
+            1 => "3日以内",
+            2 => "3～7日以内",
+            3 => "7～30日以内",
+            4 => "30日以上",
+            5 => "未ログイン",
+        );
+        $v['select_last_login'] = $select_last_login;
+        
         $this->set($v);
 
         return 'success';

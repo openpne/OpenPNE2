@@ -22,6 +22,10 @@
 生年月日<br>
 ({$cond_list.s_year})年～({$cond_list.e_year})年<br>
 ({/if})
+({if $cond_list.last_login})
+最終ログイン<br>
+({$select_last_login[$cond_list.last_login]})<br>
+({/if})
 ({if $cond_list.s_point||$cond_list.e_point})
 ポイント<br>
 ({$cond_list.s_point})～({$cond_list.e_point})<br>
@@ -58,8 +62,6 @@
 </form>
 <br>
 <p class="caution" id="c02"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})" onClick="history.back(); return false;" onKeyPress="history.back(); return false;">メンバーリストに戻る</a></p>
-
-</div>
 
 </div>
 
