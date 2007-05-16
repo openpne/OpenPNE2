@@ -308,6 +308,21 @@ define('IMAGE_MAX_WIDTH', 1024);
 define('IMAGE_MAX_HEIGHT', 768);
 
 ///
+// ファイルアップロード機能
+///
+
+// ファイルアップロード機能を使用するかどうか
+define('OPENPNE_USE_FILEUPLOAD', true);
+
+// アップロードファイルのファイルサイズ制限(KB)
+define('FILE_MAX_FILESIZE', 300);
+
+// 許可する拡張子のリスト(カンマ(,)区切り)
+// 未指定の場合は全て許可
+//define('FILE_ALLOWED_EXTENTIONS', 'pdf,xls,ppt,zip');
+define('FILE_ALLOWED_EXTENTIONS', '');
+
+///
 // 外部RSS取得
 ///
 
@@ -469,9 +484,5 @@ array(
 //画像へのアクセスをSNS認証する
 //※画像静的化機能を用いている場合は利用できません
 define('CHECK_IMG_AUTH', false);
-
-// ファイルアップロード機能を使用するかどうか
-define('OPENPNE_USE_FILEUPLOAD', true);
-
 
 ?>

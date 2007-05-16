@@ -18,15 +18,19 @@ class pc_do_c_topic_add_insert_c_commu_topic extends OpenPNE_Action
         $body = $requests['body'];
 
         //---添付ファイル
-        $filename4_tmpfile = $requests['filename4_tmpfile'];
-        $filename4_original_filename = $requests['filename4_original_filename'];
-
-        // 添付ファイルの拡張子が許可されているか
-        if (!db_is_permit_file_type($filename4_original_filename)) {
-            $_REQUEST['target_c_commu_id'] = $c_commu_id;
-            $_REQUEST['err_msg'] = 'アップロードできるファイルの拡張子は('.FILE_TYPE.')です';
-            openpne_forward('pc', 'page', "c_topic_add");
-            exit;
+        if (OPENPNE_USE_FILEUPLOAD) {
+            $filename4_tmpfile = $requests['filename4_tmpfile'];
+            $filename4_original_filename = $requests['filename4_original_filename'];
+            
+            if ($filename4_tmpfile) {
+                // 拡張子制限
+                if (!util_check_file_extention($filename4_original_filename)) {
+                    $_REQUEST['target_c_commu_id'] = $c_commu_id;
+                    $_REQUEST['err_msg'] = sprintf('アップロードできるファイルの種類は(%s)です', util_get_file_allowed_extensions('string'));
+                    openpne_forward('pc', 'page', "c_topic_add");
+                    exit;
+                }
+            }
         }
 
         //---権限チェック
