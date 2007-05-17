@@ -1273,6 +1273,20 @@ div.listControl p.listMove a {
 
 #admin_page_send_messages_search div#page_navi { padding: 10px 0; }
 
+/** admin_page_list_c_free_page **/
+
+#admin_page_list_c_free_page h3.item { margin-top: 20px; }
+#admin_page_list_c_free_page input.basic,
+#admin_page_list_c_free_page textarea { margin: 3px 3px 3px 0; vertical-align: middle;}
+#admin_page_list_c_free_page input.basicRadio { margin: 3px 3px 3px 0; vertical-align: middle;}
+
+/** admin_page_update_c_free_page **/
+
+#admin_page_update_c_free_page input.basic,
+#admin_page_update_c_free_page textarea { margin: 3px 3px 3px 0; vertical-align: middle;}
+#admin_page_update_c_free_page input.basicRadio { margin: 3px 3px 3px 0; vertical-align: middle;}
+
+
 /*********** footer ***********/
 .footer { margin-top: 20px; padding: 10px 0; text-align: center;}
 .footer div.declaration a { margin: 0 3px;}
