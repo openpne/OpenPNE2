@@ -27,6 +27,9 @@
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="page_({$hash_tbl->hash('list_c_member')})" />
 <input type="hidden" name="order" value="({$requests.order})" />
+({foreach from=$cond_list key=key item=item})
+<input type="hidden" name="({$key})" value="({$item})" />
+({/foreach})
 <strong>表示件数</strong>：
 <select class="basic" name="page_size">
 <option value="10"({if $pager.page_size==10}) selected="selected"({/if})>10件</option>
@@ -63,26 +66,25 @@
 		<tr>
 			<th class="cell01" rowspan="3">&nbsp;</th>
 			<th class="cell02" colspan="3" rowspan="3">操作パネル</th>
-			<th class="cell03" rowspan="3"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=c_member_id-1">▲</a>ID<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=c_member_id-2">▼</a></th>
-			<th class="cell04" rowspan="3"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=nickname-1">▲</a>ニックネーム<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=nickname-2">▼</a></th>
+			<th class="cell03" rowspan="3"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=c_member_id-1({$cond})">▲</a>ID<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=c_member_id-2({$cond})">▼</a></th>
+			<th class="cell04" rowspan="3"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=nickname-1({$cond})">▲</a>ニックネーム<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=nickname-2({$cond})">▼</a></th>
 			({if $smarty.const.OPENPNE_USE_POINT_RANK})
-			<th class="cell10" colspan="2" rowspan="2"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=PNE_POINT-1">▲</a>ポイント・ランク<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=PNE_POINT-2">▼</a></th>
+			<th class="cell10" colspan="2" rowspan="2"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=PNE_POINT-1({$cond})">▲</a>ポイント・ランク<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=PNE_POINT-2({$cond})">▼</a></th>
 			({/if})
-			<th class="cell05" rowspan="2"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=access_date-1">▲</a>最終ログイン<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=access_date-2">▼</a></th>
-			<th class="cell06" rowspan="3"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=r_date-1">▲</a>登録日<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=r_date-2">▼</a></th>
-			<th class="cell07" rowspan="3"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=c_member_id_invite-1">▲</a>招待者<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=c_member_id_invite-2">▼</a></th>
-			<th class="cell08" colspan="3"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=image_filename-1">▲</a>画像<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=image_filename-2">▼</a></th>
-			<th class="cell09" colspan="3"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=birth-1">▲</a>生年月日<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=birth-2">▼</a></th>
+			<th class="cell05" rowspan="2"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=access_date-1({$cond})">▲</a>最終ログイン<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=access_date-2({$cond})">▼</a></th>
+			<th class="cell06" rowspan="3"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=r_date-1({$cond})">▲</a>登録日<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=r_date-2({$cond})">▼</a></th>
+			<th class="cell07" rowspan="3"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=c_member_id_invite-1({$cond})">▲</a>招待者<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=c_member_id_invite-2({$cond})">▼</a></th>
+			<th class="cell08" colspan="3"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=image_filename-1({$cond})">▲</a>画像<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=image_filename-2({$cond})">▼</a></th>
+			<th class="cell09" colspan="3"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=birth-1({$cond})">▲</a>生年月日<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=birth-2({$cond})">▼</a></th>
 			({foreach from=$c_profile_list item=prof})
 			({if $prof.name !== 'PNE_POINT'})
-			<th rowspan="2"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=({$prof.name})-1">▲</a>({$prof.caption})<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=({$prof.name})-2">▼</a></th>
+			<th rowspan="2"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=({$prof.name})-1({$cond})">▲</a>({$prof.caption})<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=({$prof.name})-2({$cond})">▼</a></th>
 			({/if})
 			({/foreach})
 			<th class="cell16" rowspan="3">PCアドレス</th>
 			<th class="cell17" rowspan="3">携帯アドレス</th>
 			<th class="cell18" rowspan="3">登録時アドレス</th>
-			<th class="cell15" rowspan="3"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;order=c_member_id-1">▲</a>ID<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;order=c_member_id-2">▼</a></th>
-
+			<th class="cell15" rowspan="3"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;order=c_member_id-1({$cond})">▲</a>ID<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;order=c_member_id-2({$cond})">▼</a></th>
 		</tr>
 		<tr>
 			<th class="cell08A" rowspan="2">1</th>
