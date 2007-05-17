@@ -764,12 +764,17 @@ function biz_getPostedTodo($id, $limit = null)
     );
 
     if ($limit) {
-        $list = db_get_all_limit($sql, 0, intval($limit), $params);
+        $tmp = db_get_all_limit($sql, 0, intval($limit), $params);
     } else {
-        $list = db_get_all($sql, $params);
+        $tmp = db_get_all($sql, $params);
     }
 
-    foreach ($list as $key => $value) {
+    $list = array();
+    foreach ($tmp as $key => $value) {
+        if (!biz_isPermissionTodo($id, $value['biz_todo_id'])) {
+            continue;
+        }
+        $list[$key] = $value;
         $sql = 'SELECT nickname FROM c_member WHERE c_member_id = ?';
         $params = array(
             intval($list[$key]['c_member_id']),
