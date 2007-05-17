@@ -909,38 +909,6 @@ function db_commu_c_commu_topic_comment_list4c_member_id_2($c_member_id, $limit,
     return array($c_commu_topic_list , $prev , $next,$total_num);
 }
 
-/** 
- * 参加コミュニティのリスト(2.6.2以降は未使用)
- * 
- * @param int $c_member_id
- * @param int $limit
- * @return  array コミュニティ情報
- */
-function db_commu_c_commu_list4c_member_id_3($c_member_id, $limit)
-{
-    static $is_recurred = false;  //再帰処理中かどうかの判定フラグ
-
-    if (!$is_recurred) {  //function cacheのために再帰処理を行う
-        $is_recurred = true;
-        $funcargs = func_get_args();
-        return pne_cache_recursive_call(OPENPNE_FUNCTION_CACHE_LIFETIME_LONG, __FUNCTION__, $funcargs);
-    }
-
-    $is_recurred = false;
-
-    $sql = "SELECT c.* FROM c_commu_member AS cm, c_commu AS c" .
-       " WHERE cm.c_member_id=?" .
-       " AND c.c_commu_id=cm.c_commu_id" .
-       " ORDER BY RAND()";
-    $params = array(intval($c_member_id));
-    $c_commu_list = db_get_all_limit($sql, 0, $limit, $params);
-
-    foreach ($c_commu_list as $key => $value) {
-        $c_commu_list[$key]['count_commu_members'] =  db_commu_count_c_commu_member_list4c_commu_id($value['c_commu_id']);
-    }
-    return $c_commu_list;
-}
-
 function db_commu_c_topic_list4target_c_commu_id($c_commu_id, $c_member_id, $page = 1, $page_size = 10, $event_flag = 0, $topic_with_event = 0)
 {
     $sql = " SELECT cct.c_commu_topic_id, max(cctc.r_datetime) as newest_write_datetime " .
