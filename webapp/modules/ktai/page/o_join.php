@@ -13,6 +13,11 @@ class ktai_page_o_join extends OpenPNE_Action
 
     function execute($requests)
     {
+        // 携帯から新規登録できない場合はログインページへ
+        if (IS_CLOSED_SNS || !((OPENPNE_REGIST_FROM & OPENPNE_REGIST_FROM_KTAI) >> 1)) {
+            openpne_redirect('ktai', 'page_o_login');
+        }
+        
         // --- リクエスト変数
         $aff_id = $requests['aff_id'];
 
