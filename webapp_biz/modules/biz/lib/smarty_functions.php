@@ -168,6 +168,15 @@ function biz_getScheduleWeek($u, $member_id, $w, $cmd, $head = true, $value = tr
     if ($cmd == 'h') {
         $stateform = biz_getStateForm($member_id, true);
         $inc_smarty->assign('stateform', $stateform);
+
+        if (OPENPNE_USE_POINT_RANK) {
+            // ポイント
+            $point = db_point_get_point($member_id);
+            $inc_smarty->assign("point", $point);
+
+            // ランク
+            $inc_smarty->assign("rank", db_point_get_rank4point($point));
+        }
     }
 
     $content = $inc_smarty->fetch('file:'.OPENPNE_MODULES_BIZ_DIR.'/biz/templates/inc_biz_schedule_week.tpl');

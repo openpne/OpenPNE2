@@ -183,6 +183,17 @@
 最終ログインは<br>({$member_info.last_login})<br>
 ({else})
 <div class="border_01 bg_02" style="padding:4px 0;display:block;border-left:none;border-right:none;">
+
+({if ($smarty.const.OPENPNE_DISP_RANK && $rank) || ($smarty.const.OPENPNE_DISP_POINT && $point)})
+({if $smarty.const.OPENPNE_DISP_RANK && $rank})
+<img src="({t_img_url filename=$rank.image_filename})" class="pict" alt="({$rank.name})" style="margin:2px"><br>
+({/if})
+({if $smarty.const.OPENPNE_DISP_POINT && $point})
+({$point}) Point<br>
+({/if})
+<img src="./skin/dummy.gif" class="v_spacer_m">
+({/if})
+
 ({$stateform|smarty:nodefaults})
 </div>
 ({/if})
