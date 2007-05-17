@@ -275,9 +275,10 @@
 </td>
 </tr>
 <tr class="cell24">
-<th colspan="2">アフィリエイト用タグ</th>
+<th rowspan="2">アフィリエイト用タグ</th>
+<th>PC用</th>
 <td>
-<span class="info">PC版登録完了ページに挿入されます</span><br />
+<span class="info">PC版の登録完了ページに挿入されます</span><br />
 <textarea class="basic" name="AFFILIATE_TAG" cols="60" rows="3">({$smarty.const.AFFILIATE_TAG})</textarea>
 <dl class="caution">
 	({literal})
@@ -285,6 +286,21 @@
 	<dd>&lt;img src="https://px.a8.net/cgi-bin/a8fly/sales?pid=s0001&amp;so=<strong>({$ID})</strong>&amp;si=000.000.A8&amp;ts=<strong>({$DATETIME})</strong>"&nbsp;width="1" height="1"&gt;</dd>
 	<dt>【タグ内で利用可能な変数】</dt>
 	<dd>({$ID})：メンバーID<br />({$DATETIME})：日時（YYYYMMDDHHMMSS形式）</dd>
+	({/literal})
+</dl>
+</td>
+</tr>
+<tr class="cell24B">
+<th>携帯用</th>
+<td>
+<span class="info">携帯版の登録完了ページに挿入されます</span><br />
+<textarea class="basic" name="AFFILIATE_KTAI_TAG" cols="60" rows="3">({$smarty.const.AFFILIATE_KTAI_TAG})</textarea>
+<dl class="caution">
+	({literal})
+	<dt>【記入例】</dt>
+	<dd>&lt;img src="https://px.a8.net/cgi-bin/a8fly/sales?pid=s0001&amp;so=<strong>({$ID})</strong>&amp;si=000.000.A8&amp;ts=<strong>({$DATETIME})</strong>"&nbsp;width="1" height="1"&gt;</dd>
+	<dt>【タグ内で利用可能な変数】</dt>
+	<dd>({$ID})：メンバーID<br />({$DATETIME})：日時（YYYYMMDDHHMMSS形式）<br />({$AFF_ID})：アフィリエイトID（アフィリエイト用登録ページから引き継がれる）</dd>
 	({/literal})
 </dl>
 </td>

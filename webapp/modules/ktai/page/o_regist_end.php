@@ -19,11 +19,14 @@ class ktai_page_o_regist_end extends OpenPNE_Action
         }
         //>
         $aff_id = $requests['aff_id'];
-        
+
         if ($aff_id) {
-            $this->set('aff_id', $aff_id);
+            //アフィリエイトタグ用変数
+            $aff_tag = str_replace(array('({$ID})', '({$DATETIME})', '({$AFF_ID})'),
+                array($requests['c_member_id'], date("YmdHis"), $aff_id), AFFILIATE_KTAI_TAG);
+            $this->set('aff_tag', $aff_tag);
         }
-        $this->set('SNS_NAME', SNS_NAME);
+
         return 'success';
     }
 }
