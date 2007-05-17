@@ -89,11 +89,15 @@ function biz_getRepeatScheduleID($schedule_id)
     );
     $first_id = db_get_one($sql, $params);
 
-    $sql = 'SELECT biz_schedule_id FROM biz_schedule WHERE rep_first = ? ORDER BY begin_date';
-    $params = array(
-        intval($first_id),
-    );
-    $schedule = db_get_col($sql, $params);
+    if (!$first_id) {  // 削除しようとした繰り返し予定が存在しない
+        return array();
+    } else {
+        $sql = 'SELECT biz_schedule_id FROM biz_schedule WHERE rep_first = ? ORDER BY begin_date';
+        $params = array(
+            intval($first_id),
+        );
+        $schedule = db_get_col($sql, $params);
+    }
 
     return $schedule;
 }
