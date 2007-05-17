@@ -138,7 +138,11 @@ class biz_do_fhg_biz_schedule_add extends OpenPNE_Action
         //繰り返し予定
         if ($requests['sc_rp']) {
             //終了日の決定
-            $finish_date = date("Y-m-d", strtotime($requests['sc_b_year'].'-'.$requests['sc_b_month'].'-'.($requests['sc_b_date']+($requests['sc_rcount'])*7)));
+            if (in_array(date('w', strtotime($begin_date)), $requests['sc_rwk'])) {
+                $finish_date = date("Y-m-d", strtotime($begin_date . ' + ' . ($requests['sc_rcount'] - 1) * 7 . 'days'));
+            } else {
+                $finish_date = date("Y-m-d", strtotime($begin_date . ' + ' . ($requests['sc_rcount']) * 7 . 'days'));
+            }
 
             //first_idの決定
             $first_id = biz_getScheduleMax() + 1;
