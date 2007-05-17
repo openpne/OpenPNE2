@@ -22,9 +22,12 @@ class OpenPNE_RSS
 
     function fetch($rss_url)
     {
-        $feed = new SimplePie($rss_url, OPENPNE_RSS_CACHE_DIR);
+        $feed = new SimplePie();
 
-        if (!$feed->init()) {
+        $feed->feed_url($rss_url);
+        $feed->cache_location(OPENPNE_RSS_CACHE_DIR);
+
+        if (!(@$feed->init())) {
             return false;
         }
 
