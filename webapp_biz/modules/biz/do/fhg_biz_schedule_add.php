@@ -182,7 +182,7 @@ class biz_do_fhg_biz_schedule_add extends OpenPNE_Action
 
         $week = date("W", abs(strtotime($begin_date) - strtotime(date("Y-m-d")))) - 1;
 
-        $p = array('w' => $week, 'msg' => '予定を追加しました。', 'id' => biz_getScheduleMax());
+        $p = array('w' => $week, 'msg' => '予定を追加しました。', 'id' => biz_getScheduleMax(), 'target_id' => $requests['target_c_member_id']);
         openpne_redirect('biz', 'page_fh_biz_schedule_view', $p);
     }
 }
