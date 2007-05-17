@@ -2289,10 +2289,8 @@ function db_commu_delete_c_commu_topic($c_commu_topic_id)
         image_data_delete($topic_comment['image_filename1']);
         image_data_delete($topic_comment['image_filename2']);
         image_data_delete($topic_comment['image_filename3']);
+        db_file_delete_c_file($topic_comment['filename']);
     }
-
-    $sql = 'SELECT filename FROM c_commu_topic WHERE c_commu_topic_id = ?';
-    db_file_delete_c_file(db_get_one($sql, $params));
 
     $sql = 'DELETE FROM c_commu_topic_comment WHERE c_commu_topic_id = ?';
     db_query($sql, $params);
