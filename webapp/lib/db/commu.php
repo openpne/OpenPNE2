@@ -2280,7 +2280,7 @@ function db_commu_delete_c_commu_topic($c_commu_topic_id)
     cache_drop_c_commu_topic($c_commu_topic_id);
 
     // c_commu_topic_comment(画像)
-    $sql = 'SELECT image_filename1, image_filename2, image_filename3' .
+    $sql = 'SELECT image_filename1, image_filename2, image_filename3, filename' .
             ' FROM c_commu_topic_comment WHERE c_commu_topic_id = ?';
     $params = array(intval($c_commu_topic_id));
 
