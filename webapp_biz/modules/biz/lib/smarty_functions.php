@@ -121,7 +121,7 @@ function biz_getScheduleWeek($u, $member_id, $w, $cmd, $head = true, $value = tr
     $daylist = $calendar;  //コピー
 
     for ($i = 1; $i <= 2; $i++) {
-        $j = 0;  //曜日ポインタを示す
+        $j = $start_day;  //曜日ポインタを示す
 
         $time = strtotime($w+$i . " week");
         $Week = new Calendar_Week(date('Y', $time), date('m', $time), date('d', $time),$start_day);
