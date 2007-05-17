@@ -22,7 +22,7 @@ class pc_page_h_com_comment_list extends OpenPNE_Action
         $page_size = 50;
         $this->set("page_size", $page_size);
 
-        $lst = p_h_com_comment_list_c_commu_topic_comment_list4c_member_id($u, $page_size, $page);
+        $lst = db_commu_c_commu_topic_comment_list4c_member_id_2($u, $page_size, $page);
         $this->set("h_com_comment_list", $lst[0]);
 
         $this->set("is_prev", $lst[1]);
