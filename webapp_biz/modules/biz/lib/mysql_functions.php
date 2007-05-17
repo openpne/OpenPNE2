@@ -883,38 +883,18 @@ function biz_insertSchedule($title, $c_member_id, $begin_date, $finish_date, $be
 }
 
 //スケジュール削除
-function biz_deleteSchedule($id, $group = false)
+function biz_deleteSchedule($id)
 {
-    if ($group) {
-        $sql = 'SELECT first_id FROM biz_schedule WHERE biz_schedule_id = ?';
-        $params = array(intval($id));
-        $firstid = db_get_one($sql, $params);
-
-        $sql = 'SELECT biz_schedule_id FROM biz_schedule WHERE first_id = ?';
-        $params = array(intval($firstid));
-        $schedules = db_get_col($sql, $params);
-
-        $sql = 'DELETE FROM biz_schedule WHERE first_id = ?';
-        $params = array(intval($firstid));
-        db_query($sql, $params);
-
-        foreach ($schedules as $nowid) {
-            $sql = 'DELETE FROM biz_schedule_member WHERE biz_schedule_id = ?';
-            $params = array(intval($nowid));
-            db_query($sql, $params);
-        }
-    } else {
-        $sql = 'DELETE FROM biz_schedule WHERE biz_schedule_id = ?';
-        $params = array(
-            intval($id),
-        );
-        db_query($sql, $params);
-        $sql = 'DELETE FROM biz_schedule_member WHERE biz_schedule_id = ?';
-        $params = array(
-            intval($id),
-        );
-        db_query($sql, $params);
-    }
+    $sql = 'DELETE FROM biz_schedule WHERE biz_schedule_id = ?';
+    $params = array(
+        intval($id),
+    );
+    db_query($sql, $params);
+    $sql = 'DELETE FROM biz_schedule_member WHERE biz_schedule_id = ?';
+    $params = array(
+        intval($id),
+    );
+    db_query($sql, $params);
 }
 
 //スケジュール編集
