@@ -541,7 +541,7 @@ function db_common_delete_c_commu($c_commu_id)
 
     foreach ($topic_list as $topic) {
         // c_commu_topic_comment(画像)
-        $sql = 'SELECT image_filename1, image_filename2, image_filename3' .
+        $sql = 'SELECT image_filename1, image_filename2, image_filename3, filename' .
             ' FROM c_commu_topic_comment WHERE c_commu_topic_id = ?';
         $params = array(intval($topic['c_commu_topic_id']));
         $topic_comment_list = db_get_all($sql, $params);
@@ -549,8 +549,9 @@ function db_common_delete_c_commu($c_commu_id)
             image_data_delete($topic_comment['image_filename1']);
             image_data_delete($topic_comment['image_filename2']);
             image_data_delete($topic_comment['image_filename3']);
+            db_file_delete_c_file($topic_comment['filename']);
         }
-        db_file_delete_c_file($topic['filename']);
+
         $sql = 'DELETE FROM c_commu_topic_comment WHERE c_commu_topic_id = ?';
         db_query($sql, $params);
 
