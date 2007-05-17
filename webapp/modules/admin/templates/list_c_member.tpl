@@ -24,6 +24,9 @@
 <p id="numberDisplays">
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="page_({$hash_tbl->hash('list_c_member')})" />
+({foreach from=$cond_list key=key item=item})
+<input type="hidden" name="({$key})" value="({$item})" />
+({/foreach})
 <strong>表示件数</strong>：
 <select class="basic" name="page_size">
 <option value="10"({if $pager.page_size==10}) selected="selected"({/if})>10件</option>
