@@ -137,7 +137,11 @@ class biz_do_fh_biz_schedule_edit extends OpenPNE_Action
             $schedule_id = $requests['schedule_id'];
         } else {
             //終了日の決定
-            $finish_date = date("Y-m-d", strtotime($begindate . ' +' . (7 * $requests['sc_rcount']) . 'days')); 
+            if (in_array(date('w', $begin_date), $requests['sc_rwk'])) {
+                $finish_date = date("Y-m-d", strtotime($begin_date . ' + ' . ($requests['sc_rcount'] - 1) * 7 . 'days'));
+            } else {
+                $finish_date = date("Y-m-d", strtotime($begin_date . ' + ' . ($requests['sc_rcount']) * 7 . 'days'));
+            }
             //繰り返しルールの決定
             foreach ($requests['sc_rwk'] as $value) {
                 $rp_rule += 1 << $value;
