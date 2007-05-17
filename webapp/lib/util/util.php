@@ -448,9 +448,9 @@ function pne_url2a($url, $target = '_blank')
 function get_auth_config($is_ktai = false)
 {
     if (IS_SLAVEPNE) {
-    	$config = $GLOBALS['_OPENPNE_AUTH_CONFIG'];
+        $config = $GLOBALS['_OPENPNE_AUTH_CONFIG'];
     } else {
-    	$config['storage'] = 'DB';
+        $config['storage'] = 'DB';
         if ($is_ktai) {
             $config['options'] = array(
                 'dsn'         => db_get_dsn(),
@@ -490,11 +490,11 @@ function crypt_func($raw_value,$cryptType)
 function check_action4pne_slave($is_ktai = false)
 {
     if (IS_SLAVEPNE) {
-    	if ($is_ktai) {
-    		openpne_redirect('ktai');
-    	} else {
-    		openpne_redirect('pc');
-    	}
+        if ($is_ktai) {
+            openpne_redirect('ktai');
+        } else {
+            openpne_redirect('pc');
+        }
     }
 }
 

@@ -189,7 +189,7 @@ class biz_page_fh_biz_schedule_edit extends OpenPNE_Action
             $j_members = array_keys(unserialize($requests['members']));
             sort($j_members);
         } else {
-        	$j_members = biz_getJoinMemberSchedule($requests['schedule_id']);
+            $j_members = biz_getJoinMemberSchedule($requests['schedule_id']);
         }
         $this->set('j_members', $j_members);
         $members = array();

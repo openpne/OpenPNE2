@@ -31,11 +31,11 @@ foreach ($biz_schedule_id_list as $biz_schedule_id) {
         db_insert('biz_schedule', $schedule);
     }
 
-	//既存のスケジュールの削除
+    //既存のスケジュールの削除
     if (!empty($schedule_member_list))
     {
-	    $sql = 'DELETE FROM biz_schedule WHERE biz_schedule_id = ?';
-	    db_query($sql, array($biz_schedule_id));
+        $sql = 'DELETE FROM biz_schedule WHERE biz_schedule_id = ?';
+        db_query($sql, array($biz_schedule_id));
     }
 }
 ?>

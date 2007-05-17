@@ -69,7 +69,7 @@ class ktai_page_f_home extends OpenPNE_Action
             $this->set("point", $point);
 
             // ランク
-	        $this->set("rank", db_point_get_rank4point($point));
+            $this->set("rank", db_point_get_rank4point($point));
         }
 
         // inc_entry_point

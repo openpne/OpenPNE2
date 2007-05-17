@@ -20,9 +20,9 @@ class ktai_biz_do_fh_biz_todo_delete extends OpenPNE_Action
             $target_c_member_id = $u;
         }
 
-		if (!biz_isPermissionTodo($u, $target_biz_todo_id)) {
-		    handle_kengen_error();
-		}
+        if (!biz_isPermissionTodo($u, $target_biz_todo_id)) {
+            handle_kengen_error();
+        }
         biz_deleteTodo($target_biz_todo_id);
 
         $p = array('target_c_member_id' => $target_c_member_id,
