@@ -147,6 +147,10 @@ function biz_isPermissionSchedule($u, $biz_schedule_id)
     $biz_group_id = $biz_schedule['biz_group_id'];
     $target_c_member_id = $biz_schedule['c_member_id'];
 
+    if (empty($biz_schedule)) {  // 存在しない予定には表示権限がない
+        return false;
+    }
+
     switch ($public_flag) {
     case 'group' :  //グループのメンバーにのみ権限が与えられる予定
         $biz_group = biz_getGroupData($biz_group_id);
