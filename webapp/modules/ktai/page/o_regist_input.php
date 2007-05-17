@@ -21,6 +21,7 @@ class ktai_page_o_regist_input extends OpenPNE_Action
 
         // --- リクエスト変数
         $ses = $requests['ses'];
+        $aff_id = $requests['aff_id'];
         // ----------
 
         // セッションが有効かどうか
@@ -52,6 +53,7 @@ class ktai_page_o_regist_input extends OpenPNE_Action
 
         $this->set('password_query_list', p_common_c_password_query4null());
         $this->set('profile_list', db_member_c_profile_list());
+        $this->set('aff_id', $aff_id);
 
         $this->set($v);
         return 'success';
