@@ -73,6 +73,15 @@ class pc_page_f_home extends OpenPNE_Action
         // 誕生日まであと何日？
         $this->set('days_birthday', db_member_count_days_birthday4c_member_id($target_c_member_id));
 
+        if (OPENPNE_USE_POINT_RANK) {
+            // ポイント
+            $point = db_point_get_point($target_c_member_id);
+            $this->set("point", $point);
+
+            // ランク
+            $this->set("rank", db_point_get_rank4point($point));
+        }
+
         // --- bizここから
         // バナーをBIZ用右部拡張領域下に表示させる為の仕掛け
         $this->set('is_f_home', 1);
