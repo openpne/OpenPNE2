@@ -20,6 +20,9 @@ class ktai_biz_page_fh_biz_todo_edit extends OpenPNE_Action
 
         $this->set("target_biz_todo_id", $requests['target_biz_todo_id']);
         $todo = biz_getTodo($requests['target_biz_todo_id']);
+        if (!strncmp($todo['due_datetime'], '0000', 4)) {
+            $todo['due_datetime'] = null;
+        }
         $this->set("todo", $todo);
 
         if (empty($requests['target_c_member_id']) || ($requests['target_c_member_id'] == $u)) {
