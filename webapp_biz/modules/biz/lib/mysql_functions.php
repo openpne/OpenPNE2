@@ -1130,7 +1130,7 @@ function biz_deleteShisetsuSchedule($shisetsu_id)
 
 //Todo登録
 function biz_insertTodo($member_id, $memo, $writer_id, $sort_order, $is_all,
-    $due_datetime = '', $priority = 3, $biz_group_id = '', $public_flag = 'public')
+    $due_datetime = null, $priority = 3, $biz_group_id = '', $public_flag = 'public')
 {
     if ($is_all) {
         //共有Todo
