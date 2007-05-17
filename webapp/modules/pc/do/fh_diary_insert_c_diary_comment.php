@@ -60,15 +60,15 @@ class pc_do_fh_diary_insert_c_diary_comment extends OpenPNE_Action
 
         if (OPENPNE_USE_POINT_RANK) {
             // コメント者と被コメント者が違う場合にポイント加算
-	        if ($u != $target_c_member_id) {
-	            //書いた人にポイント付与
-	            $point = db_action_get_point4c_action_id(3);
-	            db_point_add_point($u, $point);
+            if ($u != $target_c_member_id) {
+                //書いた人にポイント付与
+                $point = db_action_get_point4c_action_id(3);
+                db_point_add_point($u, $point);
 
-	            //書かれた人にポイント付与
-	            $point = db_action_get_point4c_action_id(2);
-	            db_point_add_point($target_c_member_id, $point);
-	        }
+                //書かれた人にポイント付与
+                $point = db_action_get_point4c_action_id(2);
+                db_point_add_point($target_c_member_id, $point);
+            }
         }
 
         $p = array(

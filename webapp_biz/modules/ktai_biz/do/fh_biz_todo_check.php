@@ -21,9 +21,9 @@ class ktai_biz_do_fh_biz_todo_check extends OpenPNE_Action
             $target_c_member_id = $u;
         }
 
-		if (!biz_isPermissionTodo($u, $target_biz_todo_id)) {
-		    handle_kengen_error();
-		}
+        if (!biz_isPermissionTodo($u, $target_biz_todo_id)) {
+            handle_kengen_error();
+        }
         biz_checkTodo($target_biz_todo_id, $is_checked);
 
         $p = array('target_c_member_id' => $target_c_member_id,

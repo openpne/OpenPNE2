@@ -741,7 +741,7 @@ function _db_admin_c_member_list($page, $page_size, &$pager, $cond_list, $order)
     if ($total_num > 0) {
         $pager = admin_make_pager($page, $page_size, $total_num);
     } else {
-    	$pager = array('page_size' => $page_size);
+        $pager = array('page_size' => $page_size);
     }
 
     return $c_member_list;

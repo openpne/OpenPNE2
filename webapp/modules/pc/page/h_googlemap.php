@@ -30,7 +30,7 @@ class pc_page_h_googlemap extends OpenPNE_Action
         {
             $MapType = 'G_MAP_TYPE';
             switch($t){
-            	case 'k':
+                case 'k':
                     $MapType = 'G_SATELLITE_TYPE';
                     break;
                 case 'h':

@@ -139,7 +139,7 @@ function db_review_write_product4asin($asin)
     }
     
     if (!is_array($product)) {
-    	return false;
+        return false;
     }
     foreach ($product as $key => $value) {
         $product[$key] = mb_convert_encoding($value, 'UTF-8', 'auto');
