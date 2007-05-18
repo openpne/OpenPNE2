@@ -2,6 +2,11 @@
 <center><font color="orange">Todo登録</font></center>
 <hr>
 
+({if $msg})
+<a name="comment"><font color="red">({$msg})</font></a><br>
+<br>
+({/if})
+
 ({t_form m=ktai_biz a=do_fh_biz_todo_add})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
 <input type="hidden" name="target_c_member_id" value="({$target_c_member_id})">
