@@ -14,7 +14,7 @@ class ktai_do_c_event_add_insert_c_commu_topic extends OpenPNE_Action
         //--- 権限チェック
         //コミュニティ参加者
 
-        $event = p_c_event_add_confirm_event4request();
+        list($event, $errors) = p_c_event_add_confirm_event4request(true);
 
         $status = db_common_commu_status($u, $event['c_commu_id']);
         if (!$status['is_commu_member']) {
@@ -30,9 +30,7 @@ class ktai_do_c_event_add_insert_c_commu_topic extends OpenPNE_Action
         //---
 
         //--- エラーチェック
-        $err_msg = array();
-        if (trim($event['title']) == '')  $err_msg[] = "タイトルを入力してください";
-        if (trim($event['detail']) == '')  $err_msg[] = "詳細を入力してください";
+        $err_msg = $errors;
 
         if (!$event['open_date_month'] || !$event['open_date_day'] || !$event['open_date_year']) {
             $err_msg[] = "開催日時を入力してください";
