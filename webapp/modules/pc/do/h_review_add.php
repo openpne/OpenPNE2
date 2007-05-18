@@ -4,7 +4,7 @@
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
-class pc_do_c_review_add extends OpenPNE_Action
+class pc_do_h_review_add extends OpenPNE_Action
 {
     function execute($requests)
     {
@@ -19,7 +19,7 @@ class pc_do_c_review_add extends OpenPNE_Action
 
         $product = db_review_write_product4asin($asin);
         if (!$product) {
-            openpne_redirect('pc','page_h_home');
+            handle_kengen_error();
         }
 
         //c_reviewへ登録

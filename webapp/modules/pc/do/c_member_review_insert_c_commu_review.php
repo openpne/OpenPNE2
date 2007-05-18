@@ -25,9 +25,17 @@ class pc_do_c_member_review_insert_c_commu_review extends OpenPNE_Action
         //---
 
         foreach ($c_review_id as $value) {
-            if (!db_review_c_member_review_c_review_id4c_review_id_c_member_id($value, $u, $c_commu_id)) {
-                do_c_member_review_insert_c_commu_review($value, $u, $c_commu_id);
+            // レビューの存在を確認
+            if (!db_review_list_product_c_review4c_review_id($c_review_id)) {
+                continue;
             }
+
+            // 重複登録の禁止
+            if (!db_review_c_member_review_c_review_id4c_review_id_c_member_id($value, $u, $c_commu_id)) {
+                continue;
+            }
+
+            do_c_member_review_insert_c_commu_review($value, $u, $c_commu_id);
         }
 
         $p = array('target_c_commu_id' => $c_commu_id);
