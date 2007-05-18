@@ -16,16 +16,12 @@ class ktai_biz_do_fh_biz_todo_add extends OpenPNE_Action
         // ----------
 
 		if (!biz_isPermissionTodo($u, $id)) {
-		    handle_kengen_error();
+            handle_kengen_error();
 		}
 
         if (empty($value)) {
             $p = array('msg' => 1);
             ktai_biz_openpne_redirect('ktai_biz', 'page_fh_biz_todo_add', $p);
-        }
-
-        if (!ctype_digit($due_datetime_y . $due_datetime_m .$due_datetime_d)) {
-            ktai_display_error('目標期日は数字で入力してください。');
         }
 
         if ($due_datetime_y && $due_datetime_m && $due_datetime_d) {
