@@ -26,7 +26,7 @@ class pc_do_c_member_review_insert_c_commu_review extends OpenPNE_Action
 
         foreach ($c_review_id as $value) {
             // レビューの存在を確認
-            if (!db_review_list_product_c_review4c_review_id($c_review_id)) {
+            if (!db_review_list_product_c_review4c_review_id($value)) {
                 continue;
             }
 
