@@ -223,7 +223,7 @@ function p_regist_prof_c_profile_day_list4null()
 
 //------------
 
-function p_c_event_add_confirm_event4request()
+function p_c_event_add_confirm_event4request($get_errors = false)
 {
     $rule = array(
         'target_c_commu_id' => array(
@@ -232,7 +232,8 @@ function p_c_event_add_confirm_event4request()
         ),
         'title' => array(
             'type' => 'string',
-            'default' => '',
+            'required' => '1',
+            'caption' => 'タイトル',
         ),
         'open_date_year' => array(
             'type' => 'int',
@@ -260,7 +261,8 @@ function p_c_event_add_confirm_event4request()
         ),
         'detail' => array(
             'type' => 'string',
-            'default' => '',
+            'required' => '1',
+            'caption' => '詳細',
         ),
         'invite_period_year' => array(
             'type' => 'int',
@@ -289,14 +291,24 @@ function p_c_event_add_confirm_event4request()
         'capacity' => array(
             'type' => 'int',
             'default' => '0',
+            'caption' => '募集人数',
         ),
     );
     $validator = new OpenPNE_Validator($rule, $_REQUEST);
-    $validator->validate();
 
+    $errors = array();
+    if (!$validator->validate()) {
+        
+        $errors = $validator->getErrors();
+    }
     $result = $validator->getParams();
     $result['c_commu_id'] = $result['target_c_commu_id'];
-    return $result;
+
+    if ($get_errors) {
+        return array($result, $errors);
+    } else {
+        return $result;
+    }
 }
 
 function p_f_home_last_login4access_date($access_date)
