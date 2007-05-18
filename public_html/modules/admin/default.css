@@ -22,6 +22,17 @@ body {
 	min-width:1000px;
 }
 
+/*ここから：IE用擬似min-width(_width: 1000px;)*/
+* html body {
+	padding-right: 1000px;
+}
+* html body div.container {
+	float: left;
+	position: relative;
+	margin-right: -1000px;
+}
+/*ここまで：IE用擬似min-width(_width: 1000px;)*/
+
 a:link {
 	color: #026CD1 ;
 }
@@ -44,7 +55,7 @@ li { list-style-type: none;}
 
 /*********** Header ***********/
 
-.header { height: 50px; background: url("img/bg_header.gif") no-repeat; border-bottom: #000000 1px solid;}
+.header { height: 50px; background: url("img/bg_header.gif") no-repeat; border-bottom: #000000 1px solid; overflow: hidden;}
 /*ここから：IE用擬似min-width(_width: 1000px;)*/
 .header div.ttl { _width: 1000px; float: left; padding: 0 0 0 24px; line-height: 100%; color: #FFFFFF;}
 /*ここまで：IE用擬似min-width(_width: 1000px;)*/
@@ -67,7 +78,8 @@ li { list-style-type: none;}
 
 /* 各ページ共通タブ型表示部分 */
 
-.navi { padding-top: 10px;clear: both; background-color: #585858;}
+.navi { clear: both;}
+.navi div.naviMain { padding-top: 10px; background-color: #585858; height: 30px;}
 .navi div.naviMain * { display: block;}
 .navi div.naviMain ul.admin,
 .navi div.naviMain ul.design,
