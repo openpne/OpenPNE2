@@ -7,6 +7,11 @@
 // 休日変更
 class admin_do_update_c_holiday extends OpenPNE_Action
 {
+    function handleError($errors)
+    {
+        admin_client_redirect('edit_c_holiday', array_shift($errors));
+    }
+
     function execute($requests)
     {
         db_admin_update_c_holiday(
