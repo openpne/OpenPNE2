@@ -52,7 +52,7 @@ function biz_getScheduleWeek($u, $member_id, $w, $cmd, $head = true, $value = tr
         //プロフィール確認かどうか
         $cmd_head = $cmd;
     } else {
-        $cmd_head = 'h';
+        $cmd_head = 'f';
     }
 
     $inc_smarty = new OpenPNE_Smarty($GLOBALS['SMARTY']);
