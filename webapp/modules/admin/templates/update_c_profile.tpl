@@ -1,6 +1,9 @@
 ({$inc_header|smarty:nodefaults})
 ({ext_include file="inc_subnavi_adminSNSConfig.tpl"})
 
+({assign var="parent_page_name" value="プロフィール項目設定"})
+({capture name=parent_page_url})?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_profile')})({/capture})
+
 ({assign var="page_name" value="プロフィール項目編集"})
 ({ext_include file="inc_tree_adminSNSConfig.tpl"})
 </div>
