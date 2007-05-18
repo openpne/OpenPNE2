@@ -24,10 +24,6 @@ class ktai_biz_do_fh_biz_todo_edit extends OpenPNE_Action
             ktai_biz_openpne_redirect('ktai_biz', 'page_fh_biz_todo_edit', $p);
         }
 
-        if (!ctype_digit($due_datetime_y . $due_datetime_m .$due_datetime_d)) {
-            ktai_display_error('目標期日は数字で入力してください。');
-        }
-
         if ($due_datetime_y && $due_datetime_m && $due_datetime_d) {
             $due_datetime = $due_datetime_y . '-' . $due_datetime_m . '-' . $due_datetime_d . ' 00:00:00';            
         } else {
