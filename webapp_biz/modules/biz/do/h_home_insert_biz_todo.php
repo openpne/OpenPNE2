@@ -16,10 +16,14 @@ class biz_do_h_home_insert_biz_todo extends OpenPNE_Action
         $nickname = $requests['nickname'];
         // ----------
 
+        if (empty($todo)) {
+            $p = array('msg' => 'Todoの内容を入力してください。');
+            openpne_redirect('pc', 'page_h_home', $p);
+        }
+
         biz_insertTodo($u, $todo, $u, 0, $is_all);
 
-        $p = array();
-        openpne_redirect('pc', 'page_h_home', $p);
+        openpne_redirect('pc', 'page_h_home');
     }
 }
 ?>
