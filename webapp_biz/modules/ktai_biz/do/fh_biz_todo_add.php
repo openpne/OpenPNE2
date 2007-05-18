@@ -1,6 +1,11 @@
 <?php
 class ktai_biz_do_fh_biz_todo_add extends OpenPNE_Action
 {
+    function handleError($errors)
+    {
+        ktai_display_error($errors);
+    }
+
     function execute($requests)
     {
         $u  = $GLOBALS['KTAI_C_MEMBER_ID'];
