@@ -9,7 +9,7 @@
 ({if $msg})<p class="actionMsg">({$msg})</p>({/if})
 <h2>ドメイン制限</h2>
 <div class="contents">
-<p>ドメイン制限する場合は使用するドメインを入力してください。ドメイン制限をしない場合は何も入力しないでください</p>
+<p>ドメイン制限する場合は使用するドメインを入力してください。ドメイン制限をしない場合は何も入力しないでください。</p>
 <form action="./" method="post">
 <input type="hidden" name="m" value="({$module_name})">
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_limit_domain','do')})">
