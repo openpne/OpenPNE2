@@ -133,6 +133,10 @@ function db_review_write_product4asin($asin)
     $keyword = mb_convert_encoding($keyword, "UTF-8", "auto");
 
     $result = $amazon->searchAsin($asin);
+    if (PEAR::isError($result)) {
+        return false;
+    }
+
     $product  =$result[1];
     if ($result[1]['authors']) {
         $product['author'] = implode(',', $result[1]['authors']);

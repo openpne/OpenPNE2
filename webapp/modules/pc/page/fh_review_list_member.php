@@ -31,8 +31,13 @@ class pc_page_fh_review_list_member extends OpenPNE_Action
         } else {
             $type = "f";
         }
+        
+        $c_member = db_member_c_member4c_member_id($c_member_id);
+        if (!$c_member) {
+            handle_kengen_error();
+        }
 
-        $this->set('c_member', db_member_c_member4c_member_id($c_member_id));
+        $this->set('c_member', $c_member);
 
         list($c_review_list, $is_prev, $is_next, $total_num, $start_num, $end_num)
             = db_review_list_product_c_review_list4c_member_id($c_member_id, $page, $page_size);
