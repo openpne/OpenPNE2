@@ -18,6 +18,18 @@ class biz_page_fh_biz_schedule_edit extends OpenPNE_Action
         $form_val['subject'] = $requests['subject'];
         $form_val['body'] = $requests['body'];
 
+        if ($requests['sc_b_year'] && $requests['sc_b_month'] && $requests['sc_b_date']) {
+            $requests['begin_date'] = $requests['sc_b_year'].'-'.$requests['sc_b_month'].'-'.$requests['sc_b_date'];
+        }
+
+        if ($requests['sc_b_hour'] && $requests['sc_b_minute']) {
+            $requests['begin_time'] = $requests['sc_b_hour'].':'.$requests['sc_b_minute'];
+        }
+
+        if ($requests['sc_f_hour'] && $requests['sc_f_minute']) {
+            $requests['finish_time'] = $requests['sc_f_hour'].':'.$requests['sc_f_minute'];
+        }
+
         $sessid = session_id();
 
         $schedule = biz_getScheduleInfo($requests['schedule_id']);
