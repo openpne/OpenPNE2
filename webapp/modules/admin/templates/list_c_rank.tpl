@@ -43,7 +43,7 @@
 <thead>
 <tr>
 <th>ID</th>
-<th>項目名</th>
+<th>ランク名</th>
 <th>画像</th>
 <th>到達ポイント</th>
 <th colspan="2">操作</th>

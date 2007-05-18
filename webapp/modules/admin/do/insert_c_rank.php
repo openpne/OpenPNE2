@@ -7,6 +7,11 @@
 // ランク追加
 class admin_do_insert_c_rank extends OpenPNE_Action
 {
+    function handleError($errors)
+    {
+        admin_client_redirect('list_c_rank', array_shift($errors));
+    }
+
     function execute($requests)
     {
         $c_rank_id = db_admin_insert_c_rank($requests['name'], '', $requests['point']);

@@ -25,7 +25,7 @@
 <td>({$c_rank.c_rank_id})</td>
 </tr>
 <tr>
-<th>項目名</th>
+<th>ランク名</th>
 <td><input type="text" class="basic" name="name" value="({$c_rank.name})" size="20"></td>
 </tr>
 <tr>

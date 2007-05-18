@@ -7,6 +7,11 @@
 // ランク編集
 class admin_do_update_c_rank extends OpenPNE_Action
 {
+    function handleError($errors)
+    {
+        admin_client_redirect('update_c_rank', array_shift($errors), 'c_rank_id='.$this->requests['c_rank_id']);
+    }
+
     function execute($requests)
     {
         $c_rank_id      = $requests['c_rank_id'];
