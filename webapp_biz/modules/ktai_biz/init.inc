@@ -25,33 +25,6 @@ $biz_dir = OPENPNE_MODULES_BIZ_DIR.'/biz/';
 require_once $biz_dir . 'lib/smarty_functions.php';
 require_once $biz_dir . 'lib/mysql_functions.php';
 
-// 文字コード変換
-function ktai_convert_encoding($arr)
-{
-    return is_array($arr) ?
-        array_map('ktai_convert_encoding', $arr) :
-        mb_convert_encoding($arr, 'UTF-8', 'SJIS-win');
-}
-
-// 絵文字変換
-function ktai_convert_emoji($arr)
-{
-    return is_array($arr) ?
-        array_map('ktai_convert_emoji', $arr) :
-        emoji_escape($arr);
-}
-
-function ktai_convert($arr)
-{
-    $arr = ktai_convert_emoji($arr);
-    $arr = ktai_convert_encoding($arr);
-    return $arr;
-}
-
-$_GET     = ktai_convert($_GET);
-$_POST    = ktai_convert($_POST);
-$_REQUEST = ktai_convert($_REQUEST);
-
 ini_set('session.use_cookies', '0');
 
 function init_ktai_biz_page(&$smarty)
