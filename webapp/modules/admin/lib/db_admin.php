@@ -1076,9 +1076,10 @@ function p_access_analysis_target_commu_target_commu4ym_page_name
     $sum = 0;
     foreach($list as $key => $value) {
         if ($value['target_c_commu_id']) {
-            $c_commu = db_commu_c_commu4c_commu_id($value['target_c_commu_id']);
-            $return[] = array_merge($value, $c_commu);
-            $sum += $value['count'];
+            if ($c_commu = db_commu_c_commu4c_commu_id($value['target_c_commu_id'])) {
+                $return[] = array_merge($value, $c_commu);
+                $sum += $value['count'];
+            }
         }
     }
 
@@ -1158,12 +1159,13 @@ function p_access_analysis_target_topic_target_topic4ym_page_name
     $sum = 0;
     foreach ($list as $key => $value) {
         if ($value['target_c_commu_topic_id']) {
-            $c_commu_topic = c_topic_detail_c_topic4c_commu_topic_id($value['target_c_commu_topic_id']);
-            $c_commu_topic['topic_name'] = $c_commu_topic['name'];
-            $c_commu = db_commu_c_commu4c_commu_id($c_commu_topic['c_commu_id']);
-            $c_commu_topic['commu_name'] = $c_commu['name'];
-            $return[] = array_merge($value, $c_commu_topic);
-            $sum += $value['count'];
+            if ($c_commu_topic = c_topic_detail_c_topic4c_commu_topic_id($value['target_c_commu_topic_id'])) {
+                $c_commu_topic['topic_name'] = $c_commu_topic['name'];
+                $c_commu = db_commu_c_commu4c_commu_id($c_commu_topic['c_commu_id']);
+                $c_commu_topic['commu_name'] = $c_commu['name'];
+                $return[] = array_merge($value, $c_commu_topic);
+                $sum += $value['count'];
+            }
         }
     }
 
@@ -1223,11 +1225,12 @@ function p_access_analysis_target_diary_target_diary4ym_page_name
     $sum = 0;
     foreach ($list as $key => $value) {
         if ($value['target_c_diary_id']) {
-            $c_diary = db_diary_get_c_diary4id($value['target_c_diary_id']);
-            $c_member = db_member_c_member4c_member_id($c_diary['c_member_id']);
-            $c_diary['nickname'] = $c_member['nickname'];
-            $return[] = array_merge($value, $c_diary);
-            $sum += $value['count'];
+            if ($c_diary = db_diary_get_c_diary4id($value['target_c_diary_id'])) {
+                $c_member = db_member_c_member4c_member_id($c_diary['c_member_id']);
+                $c_diary['nickname'] = $c_member['nickname'];
+                $return[] = array_merge($value, $c_diary);
+                $sum += $value['count'];
+            }
         }
     }
 
@@ -1305,9 +1308,10 @@ function p_access_analysis_member_access_member4ym_page_name
     $sum = 0;
     foreach($list as $key => $value) {
         if ($value['c_member_id']) {
-            $c_member = _db_c_member4c_member_id($value['c_member_id']);
-            $return[] = array_merge($value, $c_member);
-            $sum += $value['count'];
+            if ($c_member = _db_c_member4c_member_id($value['c_member_id'])) {
+                $return[] = array_merge($value, $c_member);
+                $sum += $value['count'];
+            }
         }
     }
 
@@ -1368,9 +1372,10 @@ function p_access_analysis_target_member_access_member4ym_page_name
     $sum = 0;
     foreach($list as $key => $value) {
         if ($value['target_c_member_id']) {
-            $c_member = db_member_c_member4c_member_id($value['target_c_member_id']);
-            $return[] = array_merge($value, $c_member);
-            $sum += $value['count'];
+            if ($c_member = db_member_c_member4c_member_id($value['target_c_member_id'])) {
+                $return[] = array_merge($value, $c_member);
+                $sum += $value['count'];
+            }
         }
     }
 
