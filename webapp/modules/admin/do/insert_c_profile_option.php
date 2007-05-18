@@ -7,6 +7,11 @@
 // プロフィール選択肢追加
 class admin_do_insert_c_profile_option extends OpenPNE_Action
 {
+    function handleError($errors)
+    {
+        admin_client_redirect('edit_c_profile', array_shift($errors));
+    }
+
     function execute($requests)
     {
         if ($requests['c_profile_id'] && $requests['value']) {
