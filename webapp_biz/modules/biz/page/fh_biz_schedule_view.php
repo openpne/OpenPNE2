@@ -35,7 +35,6 @@ class biz_page_fh_biz_schedule_view extends OpenPNE_Action
         $target_member = db_member_c_member4c_member_id($u);
         $this->set("target_member", $target_member);
         $this->set("form_val", $form_val);
-        $this->set("target_c_member_id", $requests['target_id']);
         
         //カレンダー関係
         //カレンダー開始用変数
@@ -56,6 +55,11 @@ class biz_page_fh_biz_schedule_view extends OpenPNE_Action
         $this->set("ym", $calendar['ym']);
 
         $list = biz_getScheduleInfo($requests['id']);
+        $target_c_member_id = array_shift(biz_getJoinIdSchedule($requests['id']));
+        if (is_null($target_c_member_id)) {
+            $target_c_member_id = $u;
+        }
+        $this->set("target_c_member_id", $target_c_member_id);
 
         //繰り返しフラグのチェック
         $dayofweek = array('日','月','火','水','木','金', '土');
@@ -73,8 +77,10 @@ class biz_page_fh_biz_schedule_view extends OpenPNE_Action
         if($list['biz_group_id']) {
 	        $biz_group = biz_getGroupData($list['biz_group_id']);
 	        $list['biz_group_name'] = $biz_group['name'];
+        } elseif ($u != $target_c_member_id) {
+            $list['target_c_member_nickname'] = biz_getMemberNickname($target_c_member_id);
         } else {
-            $list['target_c_member_nickname'] = biz_getMemberNickname($requests['target_id']);
+            $list['target_c_member_nickname'] = biz_getMemberNickname($u);
         }
 
         $this->set('schedule', $list);
