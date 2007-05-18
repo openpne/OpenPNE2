@@ -408,7 +408,7 @@
 ({*********})
 <tr>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-<td style="width:522px;" class="bg_06" align="right" valign="middle">
+<td style="width:522px;" class="bg_02" align="right" valign="middle">
 <div style="padding:4px 3px;">
 
 ({if $is_prev})
@@ -431,20 +431,12 @@
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({*********})
-<tr>
-<td style="width:524px;height:1px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-</tr>
-({*********})
 </table>
 <!-- ここまで：主内容＞＞件数表示終わり -->
 <!-- ここから：主内容＞＞日記表示 -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:524px;" class="border_01">
 ({*********})
-<tr>
-<td style="width:522px;height:1px;" class="bg_01" colspan="7"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-</tr>
-({*********})
-({foreach from=$target_diary_list item=item})
+({foreach from=$target_diary_list item=item name=tdl})
 <tr>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 <td style="width:66px;" class="bg_05" align="center" valign="top" rowspan="({if $type == "h"})7({else})5({/if})">
@@ -544,10 +536,12 @@
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({*********})
+({if !$smarty.foreach.tdl.last})
 <tr>
 <td style="height:1px;" class="bg_01" colspan="7"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({*********})
+({/if})
 ({/foreach})
 ({*********})
 </table>
@@ -556,12 +550,8 @@
 <table border="0" cellspacing="0" cellpadding="0" style="width:524px;" class="border_01">
 ({*********})
 <tr>
-<td style="width:522px;height:1px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-</tr>
-({*********})
-<tr>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-<td style="width:520px;" class="bg_06" align="right" valign="middle">
+<td style="width:520px;" class="bg_02" align="right" valign="middle">
 <div style="padding:4px 3px;">
 
 ({if $is_prev})
