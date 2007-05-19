@@ -313,7 +313,7 @@ define('IMAGE_MAX_HEIGHT', 0);
 ///
 
 // ファイルアップロード機能を使用するかどうか
-define('OPENPNE_USE_FILEUPLOAD', true);
+define('OPENPNE_USE_FILEUPLOAD', false);
 
 // アップロードファイルのファイルサイズ制限(KB)
 define('FILE_MAX_FILESIZE', 300);
