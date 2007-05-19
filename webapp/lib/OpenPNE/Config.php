@@ -155,7 +155,7 @@ class OpenPNE_Config
             'IMAGE_MAX_FILESIZE' => 300,
             'IMAGE_MAX_WIDTH' => 0,
             'IMAGE_MAX_HEIGHT' => 0,
-            'OPENPNE_USE_FILEUPLOAD' => true,
+            'OPENPNE_USE_FILEUPLOAD' => false,
             'FILE_MAX_FILESIZE' => 300,
             'FILE_ALLOWED_EXTENTIONS' => '',
             'MAIL_ADDRESS_PREFIX' => '',
