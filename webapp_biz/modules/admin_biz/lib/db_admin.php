@@ -117,6 +117,7 @@ function db_admin_insert_c_banner($a_href, $type, $nickname)
         'nickname' => $nickname,
         'is_hidden_after' => 0,
         'is_hidden_before' => 0,
+        'image_filename' => '',
     );
     return db_insert('c_banner', $data);
 }
@@ -164,6 +165,7 @@ function db_admin_insert_c_profile(
     $data = array(
         'name' => $name,
         'caption' => $caption,
+        'info' => '',
         'is_required' => (bool)$is_required,
         'public_flag_edit' => (bool)$public_flag_edit,
         'public_flag_default' => $public_flag_default,

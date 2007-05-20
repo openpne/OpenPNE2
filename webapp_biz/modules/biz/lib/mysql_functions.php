@@ -267,31 +267,6 @@ function biz_getJoinMemberSchedule($id)
     return $members;
 }
 
-//指定された予定IDを保持している施設名を得る関数
-function biz_getJoinShisetsuSchedule($id)
-{
-    $sql = 'SELECT * FROM biz_schedule_shisetsu WHERE biz_schedule_id = ?';
-    $params = array(
-        intval($id),
-    );
-    $tmp = db_get_all($sql, $params);
-    $shisetsu = array();
-
-    if (!is_array($tmp)) {
-        $tmp = array();
-    }
-
-    foreach ($tmp as $key=> $value) {
-        $sql = 'SELECT name FROM biz_shisetsu WHERE biz_shisetsu_id = ?';
-        $params = array(
-            intval($value['shisetsu_id']),
-        );
-        $shisetsu += array($key => db_get_one($sql, $params));
-    }
-
-    return $shisetsu;
-}
-
 function biz_getJoinShisetsuScheduleID($id)
 {
     $sql = 'SELECT biz_shisetsu_id FROM biz_shisetsu_schedule WHERE biz_shisetsu_schedule_id = ?';
@@ -1110,13 +1085,7 @@ function biz_addShisetsuSchedule($shisetsu_id, $member_id, $date, $begin_time, $
         'begin_time' => $begin_time,
         'finish_time' => $finish_time,
     );
-    $insert_id = db_insert('biz_shisetsu_schedule', $data);
-
-    $data = array(
-        'shisetsu_id' => intval($shisetsu_id),
-        'schedule_id' => intval($insert_id),
-    );
-    db_insert('biz_schedule_shisetsu', $data);
+    return db_insert('biz_shisetsu_schedule', $data);
 }
 
 //施設予定削除

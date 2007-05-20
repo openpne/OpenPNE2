@@ -987,6 +987,11 @@ function db_member_insert_c_member($c_member, $c_member_secure)
         'is_receive_ktai_mail'  => (bool)$c_member['is_receive_ktai_mail'],
         'is_receive_daily_news' => intval($c_member['is_receive_daily_news']),
         'r_date' => db_now(),
+        'image_filename' => '',
+        'image_filename_1' => '',
+        'image_filename_2' => '',
+        'image_filename_3' => '',
+        'rss' => '',
     );
     $c_member_id = db_insert('c_member', $data);
 
@@ -1000,6 +1005,7 @@ function db_member_insert_c_member($c_member, $c_member_secure)
         'pc_address'     => t_encrypt($c_member_secure['pc_address']),
         'ktai_address'   => t_encrypt($c_member_secure['ktai_address']),
         'regist_address' => t_encrypt($c_member_secure['regist_address']),
+        'easy_access_id' => '',
     );
     db_insert('c_member_secure', $data);
 
@@ -1022,6 +1028,11 @@ function db_member_ktai_insert_c_member($profs)
         'is_receive_ktai_mail' => 1,
         'c_member_id_invite' => intval($profs['c_member_id_invite']),
         'c_password_query_id' => intval($profs['c_password_query_id']),
+        'image_filename' => '',
+        'image_filename_1' => '',
+        'image_filename_2' => '',
+        'image_filename_3' => '',
+        'rss' => '',
     );
     $c_member_id_new = db_insert('c_member', $data);
 
@@ -1029,8 +1040,10 @@ function db_member_ktai_insert_c_member($profs)
         'c_member_id' => intval($c_member_id_new),
         'hashed_password' => md5($profs['password']),
         'hashed_password_query_answer' => md5($profs['password_query_answer']),
-        'ktai_address'     => t_encrypt($profs['ktai_address']),
+        'pc_address' => '',
+        'ktai_address' => t_encrypt($profs['ktai_address']),
         'regist_address' => t_encrypt($profs['ktai_address']),
+        'easy_access_id' => '',
     );
     db_insert('c_member_secure', $data);
 
@@ -1279,6 +1292,11 @@ function db_member_insert_c_invite($c_member_id_invite, $pc_address, $message, $
         'c_member_id_invite' => intval($c_member_id_invite),
         'session' => $session,
         'r_date' => db_now(),
+        'nickname' => '',
+        'password' => '',
+        'ktai_address' => '',
+        'easy_access_id' => '',
+        'c_password_query_answer' => '',
     );
     return db_insert('c_member_pre', $data);
 }
@@ -1550,6 +1568,11 @@ function db_member_create_member($username)
         'is_receive_ktai_mail'  => true,
         'is_receive_daily_news' => true,
         'r_date' => db_now(),
+        'image_filename' => '',
+        'image_filename_1' => '',
+        'image_filename_2' => '',
+        'image_filename_3' => '',
+        'rss' => '',
     );
     $c_member_id = db_insert('c_member', $data);
     
@@ -1560,6 +1583,7 @@ function db_member_create_member($username)
         'pc_address'     => "",
         'ktai_address'   => "",
         'regist_address' => "",
+        'easy_access_id' => '',
     );
     db_insert('c_member_secure', $data);
     

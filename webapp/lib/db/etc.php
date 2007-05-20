@@ -608,10 +608,10 @@ function p_access_log($c_member_id, $page_name, $ktai_flag = "0")
     $data = array(
         'c_member_id'             => intval($c_member_id),
         'page_name'               => $page_name,
-        'target_c_member_id'      => '',
-        'target_c_commu_id'       => '',
-        'target_c_commu_topic_id' => '',
-        'target_c_diary_id'       => '',
+        'target_c_member_id'      => 0,
+        'target_c_commu_id'       => 0,
+        'target_c_commu_topic_id' => 0,
+        'target_c_diary_id'       => 0,
         'ktai_flag'               => (bool)$ktai_flag,
         'r_datetime' => db_now(),
     );

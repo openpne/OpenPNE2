@@ -56,7 +56,7 @@ function db_point_add_point($c_member_id, $point)
             'c_member_id' => intval($c_member_id),
             'c_profile_id'   => intval($c_profile_id),
             'c_profile_option_id' => 0,
-            'value' => 0,
+            'value' => '0',
             'public_flag' => $public_flag,
         );
         db_insert('c_member_profile',$data);
