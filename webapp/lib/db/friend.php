@@ -640,6 +640,7 @@ function db_friend_insert_c_friend($c_member_id_from, $c_member_id_to)
         'c_member_id_from' => intval($c_member_id_from),
         'c_member_id_to' => intval($c_member_id_to),
         'r_datetime' => db_now(),
+        'intro' => '',
     );
     db_insert('c_friend', $data);
 
@@ -647,6 +648,7 @@ function db_friend_insert_c_friend($c_member_id_from, $c_member_id_to)
         'c_member_id_from' => intval($c_member_id_to),
         'c_member_id_to' => intval($c_member_id_from),
         'r_datetime' => db_now(),
+        'intro' => '',
     );
     db_insert('c_friend', $data);
 }

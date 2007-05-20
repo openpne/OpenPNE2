@@ -401,6 +401,9 @@ function db_message_insert_c_message($c_member_id_from, $c_member_id_to, $subjec
         'body'             => $body,
         'r_datetime'       => db_now(),
         'is_send'          => 1,
+        'image_filename_1' => '',
+        'image_filename_2' => '',
+        'image_filename_3' => '',
     );
     return db_insert('c_message', $data);
 }
@@ -425,6 +428,9 @@ function db_message_insert_c_message_syoudaku($c_member_id_from, $c_member_id_to
         'is_send'          => 1,
         'is_syoudaku'      => 1,
         'is_read'          => 1,
+        'image_filename_1' => '',
+        'image_filename_2' => '',
+        'image_filename_3' => '',
     );
     return db_insert('c_message', $data);
 }
@@ -442,6 +448,9 @@ function db_message_insert_message_to_is_save($c_member_id_to,$c_member_id_from,
         'r_datetime'       => db_now(),
         'is_send'          => 0,
         'hensinmoto_c_message_id' => intval($jyusin_message_id),
+        'image_filename_1' => '',
+        'image_filename_2' => '',
+        'image_filename_3' => '',
     );
     return db_insert('c_message', $data);
 }

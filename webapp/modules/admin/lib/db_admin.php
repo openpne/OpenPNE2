@@ -128,6 +128,7 @@ function db_admin_insert_c_banner($a_href, $type, $nickname)
         'nickname' => $nickname,
         'is_hidden_after' => 0,
         'is_hidden_before' => 0,
+        'image_filename' => '',
     );
     return db_insert('c_banner', $data);
 }

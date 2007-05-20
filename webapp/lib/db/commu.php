@@ -2032,6 +2032,7 @@ function db_commu_insert_c_commu($c_member_id, $name, $c_commu_category_id, $inf
         'public_flag' => $public_flag,
         'r_datetime' => db_now(),
         'r_date' => db_now(),
+        'image_filename' => '',
     );
     return db_insert('c_commu', $data);
 }
@@ -2325,6 +2326,10 @@ function db_commu_insert_c_commu_topic_comment($c_commu_id, $c_commu_topic_id, $
         'body' => $body,
         'r_datetime' => db_now(),
         'r_date' => db_now(),
+        'image_filename1' => '',
+        'image_filename2' => '',
+        'image_filename3' => '',
+        'filename' => '',
     );
     return db_insert('c_commu_topic_comment', $data);
 }

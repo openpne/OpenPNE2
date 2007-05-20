@@ -983,6 +983,9 @@ function db_diary_insert_c_diary($c_member_id, $subject, $body, $public_flag)
         'r_datetime' => db_now(),
         'r_date' => db_now(),
         'is_checked' => 1,
+        'image_filename_1' => '',
+        'image_filename_2' => '',
+        'image_filename_3' => '',
     );
     return db_insert('c_diary', $data);
 }
@@ -1108,6 +1111,9 @@ function db_diary_insert_c_diary_comment($c_member_id, $c_diary_id, $body)
         'c_diary_id' => intval($c_diary_id),
         'body' => $body,
         'r_datetime' => db_now(),
+        'image_filename_1' => '',
+        'image_filename_2' => '',
+        'image_filename_3' => '',
     );
     return db_insert('c_diary_comment', $data);
 }
