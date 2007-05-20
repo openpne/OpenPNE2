@@ -8,3 +8,4 @@ UPDATE `c_action` SET name = '友人を招待する' WHERE c_action_id = 7;
 UPDATE `c_action` SET name = 'マイフレンドにメンバーを紹介する' WHERE c_action_id = 8;
 INSERT INTO `c_action` VALUES (9,'コミュニティにトピックを立てる',0);
 INSERT INTO `c_action` VALUES (10,'コミュニティのトピックに書き込む',0);
+INSERT INTO `c_action` VALUES (11,'コミュニティのトピック・イベントにコメントする',0);
