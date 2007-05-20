@@ -1,3 +1,5 @@
+/*!40101 SET NAMES utf8 */;
+
 INSERT INTO c_cmd VALUES (NULL,'r.tabelog.com',127);
 INSERT INTO c_cmd VALUES (NULL,'maps.google.com',127);
 INSERT INTO c_cmd VALUES (NULL,'maps.google.co.jp',127);

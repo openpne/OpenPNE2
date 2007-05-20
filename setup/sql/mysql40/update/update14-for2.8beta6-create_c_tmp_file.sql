@@ -6,5 +6,5 @@ CREATE TABLE `c_tmp_file` (
   `original_filename` text,
   PRIMARY KEY  (`c_tmp_file_id`),
   KEY `filename` (`filename`(100))
-) ENGINE=MyISAM;
+) TYPE=MyISAM;
 

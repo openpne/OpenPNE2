@@ -1,3 +1,5 @@
+/*!40101 SET NAMES utf8 */;
+
 UPDATE `c_action` SET name = '入会する' WHERE c_action_id = 1;
 UPDATE `c_action` SET name = '自分の日記にコメントされる' WHERE c_action_id = 2;
 UPDATE `c_action` SET name = '他人の日記にコメントする' WHERE c_action_id = 3;
