@@ -135,7 +135,7 @@ class OpenPNE_Config
             'LIMIT_DOMAIN3' => '',
             'LIMIT_DOMAIN4' => '',
             'LIMIT_DOMAIN5' => '',
-            'OPENPNE_USE_POINT_RANK' => 1,
+            'OPENPNE_USE_POINT_RANK' => 0,
             'OPENPNE_DISP_POINT' => 1,
             'OPENPNE_DISP_RANK' => 1,
         // config.php
