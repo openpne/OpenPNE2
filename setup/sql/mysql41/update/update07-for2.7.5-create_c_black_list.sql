@@ -1,3 +1,5 @@
+/*!40101 SET NAMES utf8 */;
+
 CREATE TABLE `c_black_list` (
  `c_black_list_id` int(11) NOT NULL auto_increment,
  `address` blob NOT NULL,

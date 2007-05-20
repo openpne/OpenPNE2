@@ -1,3 +1,5 @@
+/*!40101 SET NAMES utf8 */;
+
 CREATE TABLE `c_tmp_file` (
   `c_tmp_file_id` int(11) NOT NULL auto_increment,
   `filename` text NOT NULL,
@@ -7,4 +9,3 @@ CREATE TABLE `c_tmp_file` (
   PRIMARY KEY  (`c_tmp_file_id`),
   KEY `filename` (`filename`(100))
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-

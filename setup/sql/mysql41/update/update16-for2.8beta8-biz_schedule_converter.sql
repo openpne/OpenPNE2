@@ -1,3 +1,5 @@
+/*!40101 SET NAMES utf8 */;
+
 DELETE FROM biz_schedule_member
   USING biz_schedule_member, biz_schedule
   WHERE biz_schedule.biz_group_id > 0
