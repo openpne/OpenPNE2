@@ -7,7 +7,7 @@
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
 <input type="hidden" name="target_c_commu_topic_id" value="({$c_topic.c_commu_topic_id})">
 タイトル<br>
-<input type="text" name="title" value="({$c_topic.name})"><br>
+<input type="text" name="title" value="({$c_topic.name})" maxlength="126"><br>
 本文<br>
 <textarea name="body">({$c_topic.body})</textarea><br>
 <input type="submit" value="編集">
