@@ -29,7 +29,7 @@ function xmlrpc_901_o_search($message)
         $diary = p_h_diary_list_all_search_c_diary4c_diary($searchword, 0, 1);
         $number += (int)$diary[3];
         break;
-    case 'COMMYNITY':
+    case 'COMMUNITY':
         $commu = db_commu_search_c_commu4c_commu_category($searchword, 0, 0, 1);
         $number += (int)$commu[3];
         break;
