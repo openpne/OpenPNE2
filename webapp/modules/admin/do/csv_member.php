@@ -27,7 +27,7 @@ class admin_do_csv_member extends OpenPNE_Action
         $member_key_string = $this->get_key_list();
         $c_member_list = $this->db_get_c_member_list($start_id,$end_id);
         $member_csv_data = $this->create_csv_data($member_key_string, $c_member_list);
-        
+
         header("Content-Type: application/octet-stream");
         header("Content-Disposition: attachment; filename=member.csv");
         echo $member_csv_data;
@@ -80,7 +80,13 @@ class admin_do_csv_member extends OpenPNE_Action
                 } else {
                     $tmp_c_member[$tmp_profile['name']] = $tmp_profile_list[$tmp_profile['name']]['value'];
                 }
-            }            
+            }
+            if (array_key_exists('PNE_POINT', $tmp_c_member)) {
+                $tmp_c_member['PNE_POINT'] = (int)$tmp_c_member['PNE_POINT'];
+                $rank = db_point_get_rank4point($tmp_c_member['PNE_POINT']);
+                $tmp_c_member['rank'] = $rank['name'];
+            }
+
             $tmp_secure = db_member_c_member_secure4c_member_id($id);
             $tmp_c_member['pc_address'] = $tmp_secure['pc_address'];
             $tmp_c_member['ktai_address'] = $tmp_secure['ktai_address'];
@@ -109,6 +115,9 @@ class admin_do_csv_member extends OpenPNE_Action
         $ley_list[]="誕生日";
         foreach ($c_profile_list as $profile) {
             $ley_list[]= $profile['caption'];
+        }
+        if (in_array('ポイント', $ley_list)) {
+            $ley_list[] = 'ランク';
         }
         $ley_list[]="PCアドレス";
         $ley_list[]="携帯アドレス";
