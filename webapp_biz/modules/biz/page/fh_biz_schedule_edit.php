@@ -18,6 +18,12 @@ class biz_page_fh_biz_schedule_edit extends OpenPNE_Action
         $form_val['subject'] = $requests['subject'];
         $form_val['body'] = $requests['body'];
 
+        $this->set('banner', $requests['sc_bn']);
+
+        if ($requests['sc_memo']) {
+            $requests['value'] = $requests['sc_memo'];
+        }
+
         if ($requests['sc_b_year'] && $requests['sc_b_month'] && $requests['sc_b_date']) {
             $requests['begin_date'] = $requests['sc_b_year'].'-'.$requests['sc_b_month'].'-'.$requests['sc_b_date'];
         }
@@ -194,7 +200,11 @@ class biz_page_fh_biz_schedule_edit extends OpenPNE_Action
         $this->set('biz_group_list', $biz_group_list[0]);
         $this->set('target_biz_group_id', $schedule['biz_group_id']);
 
-        $this->set('public_flag', $schedule['public_flag']);
+        if ($requests['public_flag']) {
+            $this->set('public_flag', $requests['public_flag']);
+        } else {
+            $this->set('public_flag', $schedule['public_flag']);
+        }
 
         return 'success';
     }
