@@ -773,6 +773,16 @@ show_flash('flash/list.swf', '({$flashvars})');
 </td>
 <td style="width:5px;" class="bg_02"><img src="./skin/dummy.gif" style="width:5px;height:1px;" class="dummy"></td>
 </tr>
+({if $common_commu_count})
+<tr>
+<td style="width:125px;" class="bg_02"><img src="./skin/dummy.gif" style="width:125px;height:1px;" class="dummy"></td>
+<td style="width:20px;" class="bg_02"><img src="./skin/dummy.gif" class="icon arrow_1"></td>
+<td align="left" style="width:116px;padding:2px 0px;" class="bg_02 lh_110">
+<a href="({t_url m=pc a=page_f_com_list_common})&amp;target_c_member_id=({$target_c_member_id})">共通コミュニティ(({$common_commu_count}))</a>
+</td>
+<td style="width:5px;" class="bg_02"><img src="./skin/dummy.gif" style="width:5px;height:1px;" class="dummy"></td>
+</tr>
+({/if})
 <tr>
 <td style="width:266px;" class="bg_02" colspan="4"><img src="./skin/dummy.gif" style="width:266px;height:5px;" class="dummy"></td>
 </tr>
