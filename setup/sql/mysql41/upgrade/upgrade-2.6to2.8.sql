@@ -123,3 +123,10 @@ INSERT INTO biz_schedule_member(c_member_id, biz_schedule_id)
 
 UPDATE biz_schedule SET public_flag = 'private'
   WHERE public_flag = 'group';
+
+-- misc
+
+DELETE FROM `c_admin_config` WHERE name IN ('OPENPNE_USE_POINT_RANK', 'OPENPNE_DISP_POINT', 'OPENPNE_DISP_RANK');
+INSERT INTO `c_admin_config` VALUES (NULL, 'OPENPNE_USE_POINT_RANK', '1');
+INSERT INTO `c_admin_config` VALUES (NULL, 'OPENPNE_DISP_POINT', '0');
+INSERT INTO `c_admin_config` VALUES (NULL, 'OPENPNE_DISP_RANK', '0');
