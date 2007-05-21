@@ -124,7 +124,7 @@ class admin_do_csv_member extends OpenPNE_Action
         $ley_list[]="誕生月";
         $ley_list[]="誕生日";
         foreach ($c_profile_list as $profile) {
-            if ($profile['caption'] != 'ポイント') {
+            if ($profile['name'] != 'PNE_POINT') {
                 $ley_list[]= $profile['caption'];
             }
         }
