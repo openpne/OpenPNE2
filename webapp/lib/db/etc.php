@@ -762,10 +762,10 @@ function db_get_permit_list()
         '1' => 'community',
         '2' => 'diary',
         '4' => 'profile',
+        '64' => 'message',
         '8' => 'side_banner',
         '16' => 'info',
         '32' => 'entry_point',
-        '64' => 'message',
     );
 }
 

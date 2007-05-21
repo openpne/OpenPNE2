@@ -15,11 +15,7 @@ class admin_page_delete_c_cmd_confirm extends OpenPNE_Action
             admin_client_redirect('list_c_cmd', '指定されたIDは無効です');
         }
 
-        $permit_list = array(
-            '1' => 'community',
-            '2' => 'diary',
-            '4' => 'profile',
-        );
+        $permit_list = db_get_permit_list();
         $this->set("permit_list", $permit_list);
 
         $permit = $c_cmd['permit'];
