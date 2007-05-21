@@ -60,6 +60,10 @@ class admin_do_csv_member extends OpenPNE_Action
             
             $tmp_c_member['c_member_id'] = $_tmp_c_member['c_member_id'];
             $tmp_c_member['nickname'] = $_tmp_c_member['nickname'];
+            if (OPENPNE_USE_POINT_RANK) {
+                $tmp_c_member['rank'] = '';
+                $tmp_c_member['PNE_POINT'] = '';
+            }
             $tmp_c_member['access_date'] = $_tmp_c_member['access_date'];
             $tmp_c_member['r_date'] = $_tmp_c_member['r_date'];
             $tmp_c_member['c_member_id_invite'] = $_tmp_c_member['c_member_id_invite'];
@@ -81,10 +85,12 @@ class admin_do_csv_member extends OpenPNE_Action
                     $tmp_c_member[$tmp_profile['name']] = $tmp_profile_list[$tmp_profile['name']]['value'];
                 }
             }
-            if (array_key_exists('PNE_POINT', $tmp_c_member)) {
+            if (OPENPNE_USE_POINT_RANK) {
                 $tmp_c_member['PNE_POINT'] = (int)$tmp_c_member['PNE_POINT'];
                 $rank = db_point_get_rank4point($tmp_c_member['PNE_POINT']);
                 $tmp_c_member['rank'] = $rank['name'];
+            } else {
+                unset($tmp_c_member['PNE_POINT']);
             }
 
             $tmp_secure = db_member_c_member_secure4c_member_id($id);
@@ -104,6 +110,10 @@ class admin_do_csv_member extends OpenPNE_Action
         
         $ley_list[]="メンバーID";
         $ley_list[]="ニックネーム";
+        if (OPENPNE_USE_POINT_RANK) {
+            $ley_list[] = 'ランク';
+            $ley_list[] = 'ポイント';
+        }
         $ley_list[]="最終ログイン";
         $ley_list[]="登録日";
         $ley_list[]="招待者ID";
@@ -114,10 +124,9 @@ class admin_do_csv_member extends OpenPNE_Action
         $ley_list[]="誕生月";
         $ley_list[]="誕生日";
         foreach ($c_profile_list as $profile) {
-            $ley_list[]= $profile['caption'];
-        }
-        if (in_array('ポイント', $ley_list)) {
-            $ley_list[] = 'ランク';
+            if ($profile['caption'] != 'ポイント') {
+                $ley_list[]= $profile['caption'];
+            }
         }
         $ley_list[]="PCアドレス";
         $ley_list[]="携帯アドレス";
