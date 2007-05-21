@@ -74,7 +74,7 @@
 ({/if})
 ({foreachelse})
 <tr>
-<td colspan="3" class="empty">フリーページが登録されていません</td>
+<td colspan="6" class="empty">フリーページが登録されていません</td>
 </tr>
 ({****})
 ({/foreach})

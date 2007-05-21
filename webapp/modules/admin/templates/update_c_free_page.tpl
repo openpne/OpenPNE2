@@ -24,12 +24,12 @@
 <tbody>
 <tr>
 <th>ページタイトル</th>
-<td><input type="text" name="title" value="({$c_free_page.title})" size="({$cols|default:72})" /></td>
+<td><input class="basic" type="text" name="title" value="({$c_free_page.title})" size="({$cols|default:72})" /></td>
 </tr>
 <tr>
 <th>ページ内容</th>
 <td>
-<textarea name="body" cols="({$cols|default:60})" rows="({$rows|default:10})">({$c_free_page.body})</textarea>
+<textarea class="basic" name="body" cols="({$cols|default:60})" rows="({$rows|default:10})">({$c_free_page.body})</textarea>
 </td>
 </tr>
 <tr>
