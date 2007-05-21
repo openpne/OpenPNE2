@@ -122,6 +122,10 @@ INSERT INTO biz_schedule_member(c_member_id, biz_schedule_id)
 UPDATE biz_schedule SET public_flag = 'private'
   WHERE public_flag = 'group';
 
+-- update17
+
+INSERT INTO `c_api` VALUES (NULL,'901_o_search','');
+
 -- misc
 
 DELETE FROM `c_admin_config` WHERE name IN ('OPENPNE_USE_POINT_RANK', 'OPENPNE_DISP_POINT', 'OPENPNE_DISP_RANK');
