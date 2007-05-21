@@ -12,14 +12,18 @@ function xmlrpc_901_o_search($message)
     }
     $params = XML_RPC_decode($param);
 
-    if (empty($params['searchword'])) {
+    if (!array_key_exists('searchword', $params)) {
         return false;
     }
+
     if (empty($params['type'])) {
         return false;
     }
 
     $searchword = $params['searchword'];
+    if (empty($searchword)) {
+        $searchword = '';
+    }
     $type = $params['type'];
 
     $number = 0;
