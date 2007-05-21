@@ -12,7 +12,7 @@
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
 <input type="hidden" name="target_c_commu_id" value="({$c_commu.c_commu_id})">
 トピック名<br>
-<input type="text" name="title" value=""><br>
+<input type="text" name="title" value="" maxlength="126"><br>
 本文<br>
 <textarea name="body"></textarea><br>
 <input type="submit" value="トピック作成">

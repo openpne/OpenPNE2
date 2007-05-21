@@ -14,7 +14,7 @@
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
 <input type="hidden" name="target_c_commu_id" value="({$c_commu.c_commu_id})">
 タイトル<font color="red">※</font><br>
-<input type="text" name="title" value="({$event.title})"><br>
+<input type="text" name="title" value="({$event.title})" maxlength="126"><br>
 開催日時<font color="red">※</font><br>
 <select name="open_date_year">
 <option value="">----</option>
