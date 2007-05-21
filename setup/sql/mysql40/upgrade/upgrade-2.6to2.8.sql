@@ -132,3 +132,5 @@ DELETE FROM `c_admin_config` WHERE name IN ('OPENPNE_USE_POINT_RANK', 'OPENPNE_D
 INSERT INTO `c_admin_config` VALUES (NULL, 'OPENPNE_USE_POINT_RANK', '1');
 INSERT INTO `c_admin_config` VALUES (NULL, 'OPENPNE_DISP_POINT', '0');
 INSERT INTO `c_admin_config` VALUES (NULL, 'OPENPNE_DISP_RANK', '0');
+
+UPDATE c_cmd SET permit = permit + 120 WHERE permit < 8;
