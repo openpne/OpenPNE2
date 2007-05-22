@@ -69,7 +69,7 @@
 
 <div class="padding_s">
 
-<input type="text" class="text" name="title" value="({$event.title})" size="40" maxlength="126">
+<input type="text" class="text" name="title" value="({$event.title})" size="40">
 
 </div>
 

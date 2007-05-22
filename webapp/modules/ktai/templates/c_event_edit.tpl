@@ -15,7 +15,7 @@
 <input type="hidden" name="target_c_commu_id" value="({$event.c_commu_id})">
 <input type="hidden" name="target_c_commu_topic_id" value="({$event.c_commu_topic_id})">
 タイトル <font color="red">※</font><br>
-<input type="text" name="title" value="({$event.name})" maxlength="126"><br>
+<input type="text" name="title" value="({$event.name})"><br>
 開催日時 <font color="red">※</font><br>
 <select name="open_date_year">
 <option value=0>----
