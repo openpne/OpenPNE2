@@ -10,7 +10,7 @@
 
 <h2 id="ttl01">強制退会の確認</h2>
 <div class="contents">
-<p class="caution" id="c01">本当にこのユーザーを強制退会させてもよろしいですか？<br /><strong>※強制退会させると、このユーザーに関する情報は削除され元に戻すことはできません。</strong></p>
+<p class="caution" id="c01">本当にこのメンバーを強制退会させてもよろしいですか？<br /><strong>※強制退会させると、このメンバーに関する情報は削除され元に戻すことはできません。</strong></p>
 
 <form action="./" method="post">
 <input type="hidden" name="m" value="({$module_name})" />
@@ -32,7 +32,7 @@
 	</tr>
 	<tr>
 		<th>最終ログイン</th>
-		<td>({$c_member.access_date|date_format:"%y-%m-%d %H:%M"})</td>
+		<td>({if $c_member.access_date != '0000-00-00 00:00:00'})({$item.access_date|date_format:"%y-%m-%d %H:%M"})({else})未ログイン({/if})</td>
 	</tr>
 	<tr>
 		<th>登録日</th>
@@ -45,7 +45,7 @@
 	({foreach from=$c_profile_list item=prof})
 	<tr>
 		<th>({$prof.caption})</th>
-		<td>({$c_member.profile[$prof.name].value|t_truncate:60|nl2br})</td>
+		<td>({if $prof.form_type == checkbox})({$c_member.profile[$prof.name].value|@t_implode:", "})({else})({$c_member.profile[$prof.name].value|t_truncate:60|nl2br})({/if})</td>
 	</tr>
 	({/foreach})
 	<tr>

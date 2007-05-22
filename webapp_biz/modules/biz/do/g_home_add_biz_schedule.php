@@ -35,13 +35,18 @@ class biz_do_g_home_add_biz_schedule extends OpenPNE_Action
             $begin_time = $finish_time = null;
         }
 
+        $members = biz_getGroupMember($target_id);
+        $members_id = array();
+        foreach ($members as $key => $values) {
+            array_push($members_id, $values['c_member_id']);
+        }
         if (empty($text)) {
             $p = array('target_c_commu_id' => $target_id, 'msg' => 'タイトルを入力してください。');
             openpne_redirect('biz', 'page_g_home', $p);
             exit();  //強制的にスクリプトを終了しなければいけない
         }
 
-        biz_insertSchedule($title, $u, $begin_date, $finish_date, $begin_time, $finish_time, '', 0, 0, $target_id, 'group');  //予定の登録
+        biz_insertSchedule($title, $u, $begin_date, $finish_date, $begin_time, $finish_time, '', 0, 0, $target_id, 'group', $members_id);  //予定の登録
         biz_readSchedule($u, biz_getScheduleMax());  //既読済みに
 
         $p = array('target_c_commu_id' => $target_id);

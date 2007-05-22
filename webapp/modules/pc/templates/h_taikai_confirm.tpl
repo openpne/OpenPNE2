@@ -68,6 +68,8 @@
 パスワード
 
 </div>
+
+</td>
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 <td style="width:381px;" class="bg_02" align="left" valign="middle">
 
@@ -94,6 +96,8 @@
 退会理由 <span class="caution">※</span>
 
 </div>
+
+</td>
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 <td style="width:381px;" class="bg_02" align="left" valign="middle">
 

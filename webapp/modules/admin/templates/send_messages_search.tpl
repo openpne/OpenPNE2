@@ -1,5 +1,5 @@
 ({$inc_header|smarty:nodefaults})
-({ext_include file="inc_subnavi_adminImageKakikomi.tpl"})
+({ext_include file="inc_subnavi_adminSiteMember.tpl"})
 ({assign var="page_name" value="メッセージ・メール送信"})
 ({assign var="parent_page_name" value="メンバーリスト"})
 ({capture name=parent_page_url})?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})({/capture})
@@ -11,9 +11,9 @@
 <h2>メッセージ・メール送信</h2>
 <div class="contents">
 
-<p>条件に合致するユーザにメッセージもしくはEメールを送信します。タイトルと本文を入力してください。</p>
-<p class="caution">※このメッセージは、ID1番のユーザから送信されます。<br>
-※送るユーザの数によっては大きな負荷がかかる可能性がありますのでご注意ください。</p>
+<p>条件に合致するメンバーにメッセージもしくはEメールを送信します。タイトルと本文を入力してください。</p>
+<p class="caution">※このメッセージは、ID1番のメンバーから送信されます。<br>
+※送るメンバーの数によっては大きな負荷がかかる可能性がありますのでご注意ください。</p>
 
 <div id="page_navi">
 <h3>◆送信先</h3>
@@ -21,6 +21,10 @@
 ({if $cond_list.s_year||$cond_list.e_year})
 生年月日<br>
 ({$cond_list.s_year})年～({$cond_list.e_year})年<br>
+({/if})
+({if $cond_list.last_login})
+最終ログイン<br>
+({$select_last_login[$cond_list.last_login]})<br>
 ({/if})
 ({if $cond_list.s_point||$cond_list.e_point})
 ポイント<br>
@@ -56,4 +60,9 @@
 <dd><p class="textBtn"><input type="submit" class="submit" value="メッセージ送信"></p></dd>
 </dl>
 </form>
+<br>
+<p class="caution" id="c02"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})" onClick="history.back(); return false;" onKeyPress="history.back(); return false;">メンバーリストに戻る</a></p>
+
+</div>
+
 ({$inc_footer|smarty:nodefaults})

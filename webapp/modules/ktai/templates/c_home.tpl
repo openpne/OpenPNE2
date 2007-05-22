@@ -20,7 +20,7 @@
 ({if $inc_ktai_entry_point[3]})
 ({$inc_ktai_entry_point[3]|smarty:nodefaults})
 ({/if})
-管理人:<a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$c_commu.c_member_id_admin})&amp;({$tail})">({$c_commu.c_member_admin.nickname})</a><br>
+管理者:<a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$c_commu.c_member_id_admin})&amp;({$tail})">({$c_commu.c_member_admin.nickname})</a><br>
 ｶﾃｺﾞﾘ:({$c_commu.c_commu_category.name})<br>
 ﾒﾝﾊﾞｰ数:({$c_commu.count_member|default:"0"})人
 
@@ -45,7 +45,7 @@
 <hr>
 <a name="news">新着ﾘｽﾄ</a>
 ({if $is_c_commu_view})
-<font color="green">[ﾄﾋﾟｯｸﾘｽﾄ]</font><br>
+<br><font color="green">[ﾄﾋﾟｯｸﾘｽﾄ]</font><br>
 ({foreach from=$new_topic_comment item=item})
 　[({$item.r_datetime|date_format:"%m/%d"})]<a href="({t_url m=ktai a=page_c_bbs})&amp;target_c_commu_topic_id=({$item.c_commu_topic_id})&amp;({$tail})">({$item.name})</a>(({$item.count_comments}))<br>
 ({foreachelse})
@@ -83,7 +83,7 @@
 <hr>
 <a name="intro">説明文</a>
 <br>
-({$c_commu.info|nl2br})<br>
+({$c_commu.info|t_url2a_ktai|nl2br})<br>
 ({if $c_commu.image_filename})
 ｺﾐｭﾆﾃｨ画像：[<a href="({t_img_url filename=$c_commu.image_filename w=120 h=120 f=jpg})">小</a>/<a href="({t_img_url filename=$c_commu.image_filename f=jpg})">大</a>]<br>({/if})
 ({if $relation_c_member_and_c_commu.join && ($c_commu.c_member_id_admin!=$u || $c_commu.c_member_id_sub_admin!=$u) })

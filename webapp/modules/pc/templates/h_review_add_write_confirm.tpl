@@ -96,7 +96,7 @@
 <tr>
 <td>
 
-({t_form m=pc a=do_c_review_add})
+({t_form m=pc a=do_h_review_add})
 <input type="hidden" name="sessid" value="({$PHPSESSID})">
 <input type="hidden" name="category_id" value="({$category_id})">
 <input type="hidden" name="asin" value="({$asin})">

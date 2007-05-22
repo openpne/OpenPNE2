@@ -18,15 +18,15 @@ class ktai_page_o_login extends OpenPNE_Action
         $kad = $requests['kad'];
         // ----------
 
-        // inc_entry_point
-        $this->set('inc_ktai_entry_point', fetch_ktai_inc_entry_point_o_login($this->getView()));
-
         //メッセージ
         $this->set('msg', k_p_common_msg4msg_id($msg_id));
 
         $this->set('ktai_address', t_decrypt($kad));
         $this->set('SNS_NAME', SNS_NAME);
         $this->set('IS_CLOSED_SNS', IS_CLOSED_SNS);
+
+        // inc_entry_point
+        $this->set('inc_ktai_entry_point', fetch_inc_entry_point($this->getView(), 'ktai_o_login'));
 
         return 'success';
     }

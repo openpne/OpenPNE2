@@ -69,7 +69,7 @@
 
 <div class="padding_s">
 
-<input type="text" class="text" name="title" value="({$event.title})" size="40" maxlength="126">
+<input type="text" class="text" name="title" value="({$event.title})" size="40">
 
 </div>
 
@@ -138,7 +138,7 @@
 <div class="padding_s">
 
 <select name="open_pref_id">
-<option value=0>選択してください
+<option value=0>選択してください</option>
 ({html_options options=$pref selected=$event.open_pref_id})
 </select>
 (補足：<input type="text" class="text" name="open_pref_comment" value="({$event.open_pref_comment})" style="width:15em;">)
@@ -236,7 +236,7 @@
 
 <div class="padding_s">
 
-<input type="text" class="text" name="capacity" ({if $event.capacity}) value="({$event.capacity})"({/if})>
+<input type="text" class="text" name="capacity" value="({if $event.capacity})({$event.capacity})({/if})">
 </div>
 
 </td>

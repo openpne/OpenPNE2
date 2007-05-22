@@ -18,8 +18,20 @@ class pc_do_c_topic_add_insert_c_commu_topic extends OpenPNE_Action
         $body = $requests['body'];
 
         //---添付ファイル
-        $filename4_tmpfile = $requests['filename4_tmpfile'];
-        $filename4_original_filename = $requests['filename4_original_filename'];
+        if (OPENPNE_USE_FILEUPLOAD) {
+            $filename4_tmpfile = $requests['filename4_tmpfile'];
+            $filename4_original_filename = $requests['filename4_original_filename'];
+            
+            if ($filename4_tmpfile) {
+                // 拡張子制限
+                if (!util_check_file_extention($filename4_original_filename)) {
+                    $_REQUEST['target_c_commu_id'] = $c_commu_id;
+                    $_REQUEST['err_msg'] = sprintf('アップロードできるファイルの種類は(%s)です', util_get_file_allowed_extensions('string'));
+                    openpne_forward('pc', 'page', "c_topic_add");
+                    exit;
+                }
+            }
+        }
 
         //---権限チェック
         //コミュニティ参加者
@@ -69,6 +81,7 @@ class pc_do_c_topic_add_insert_c_commu_topic extends OpenPNE_Action
 
         //テンポラリファイルを削除(画像と同時)
         t_image_clear_tmp(session_id());
+        t_file_clear_tmp(session_id());
 
         $insert_c_commu_topic_comment = array(
             "c_commu_id"       => $c_commu_id,
@@ -88,8 +101,13 @@ class pc_do_c_topic_add_insert_c_commu_topic extends OpenPNE_Action
         //お知らせメール送信(PCへ)
         send_bbs_info_mail_pc($insert_id, $u);
 
-        $p = array('target_c_commu_topic_id' => $c_commu_topic_id);
+        if (OPENPNE_USE_POINT_RANK) {
+            //トピックを作成した人にポイント付与
+            $point = db_action_get_point4c_action_id(9);
+            db_point_add_point($u, $point);
+        }
 
+        $p = array('target_c_commu_topic_id' => $c_commu_topic_id);
         openpne_redirect('pc', 'page_c_topic_detail', $p);
     }
 }

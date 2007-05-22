@@ -204,34 +204,40 @@
 
 <table border="0" cellspacing="0" cellpadding="0" style="width:200px;height:20px;margin:0px auto;">
 <tr>
+<td>
+
 ({t_form m=pc a=do_c_topic_add_insert_c_commu_topic})
 <input type="hidden" name="sessid" value="({$PHPSESSID})">
 
-<td>
 <div align="center" style="text-align:center;">
 <input type="submit" class="submit" value="　作 　成　">
 </div>
-</td>
+
 ({foreach from=$c_topic key=key item=item})
 <input type="hidden" name="({$key})" value="({$item})">
 ({/foreach})
 </form>
+
+</td>
+<td>
 
 ({t_form m=pc a=page_c_topic_add})
 <input type="hidden" name="target_c_commu_id" value="({$c_topic.c_commu_id})">
-<td>
+
 <div align="center" style="text-align:center;">
 <input type="submit" class="submit" value="　修　 正　">
 </div>
-</td>
+
 ({foreach from=$c_topic key=key item=item})
 <input type="hidden" name="({$key})" value="({$item})">
 ({/foreach})
 </form>
+
+</td>
 </tr>
 </table>
 
-
+</div>
 </td>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 </tr>

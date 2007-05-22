@@ -4,7 +4,7 @@
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
-// ユーザー情報のリスト表示・強制退会
+// メンバー情報のリスト表示・強制退会
 class admin_page_list_c_member extends OpenPNE_Action
 {
     function execute($requests)
@@ -33,7 +33,8 @@ class admin_page_list_c_member extends OpenPNE_Action
         $v['cond'] = $cond;
 
         //絞り込みのための年
-        $v['years'] = get_int_assoc(1901, 2001);
+        $year = date('Y');
+        $v['years'] = get_int_assoc($year - 100, $year);
 
         //絞り込みのドロップダウンを作る用
         $v['profile_list'] = db_member_c_profile_list();;
@@ -43,7 +44,8 @@ class admin_page_list_c_member extends OpenPNE_Action
             1 => "3日以内",
             2 => "3～7日以内",
             3 => "7～30日以内",
-            4 => "30～90日以内",
+            4 => "30日以上",
+            5 => "未ログイン",
         );
         $v['select_last_login'] = $select_last_login;
 
@@ -65,6 +67,8 @@ class admin_page_list_c_member extends OpenPNE_Action
         foreach ($v['c_member_list'] as $key => $value) {
             $v['c_member_list'][$key]['c_member_invite'] =
                 db_member_c_member4c_member_id_LIGHT($value['c_member_id_invite']);
+            $v['c_member_list'][$key]['c_rank'] =
+                db_point_get_rank4point($value['profile']['PNE_POINT']['value']);
         }
 
         $v['pager'] = $pager;

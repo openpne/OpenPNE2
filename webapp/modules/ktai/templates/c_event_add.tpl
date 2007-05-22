@@ -38,7 +38,7 @@
 詳細<font color="red">※</font><br>
 <textarea name="detail">({$event.detail})</textarea><br>
 募集人数<br>
-<input type="text" name="capacity" value="({$event.capacity})"><br>
+<input type="text" name="capacity" value="({if $event.capacity})({$event.capacity})({/if})"><br>
 募集期限<br>
 <select name="invite_period_year">
 <option value="">----</option>

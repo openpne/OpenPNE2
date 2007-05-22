@@ -54,12 +54,12 @@
 <input type="text" class="text" name="keyword" size="15" value="({$keyword})">
 
 <input type="submit" class="submit" value=" 検 索 ">
-　<a href="({t_url m=pc a=page_h_com_find_all})&amp;keyword=({$keyword|escape:"url"})">コミュニティ検索</a>
-
+　<a href="({t_url m=pc a=page_h_com_find_all})&amp;keyword=({$keyword|escape:url|smarty:nodefaults})">コミュニティ検索</a>
+({if $smarty.const.USE_EXTRA_SERVICE})
 |
 
-<a href="http://www.google.com/search?hl=ja&amp;lr=lang_ja&amp;q=({$keyword|escape:"url"})" target="_blank">ウェブ検索</a>
-
+<a href="http://www.google.com/search?hl=ja&amp;lr=lang_ja&amp;q=({$keyword|escape:url|smarty:nodefaults})" target="_blank">ウェブ検索</a>
+({/if})
 <img src="./skin/dummy.gif" class="v_spacer_m">
 
 ※タイトル、本文より検索をおこないます。スペースで区切ると複数キーワードでの検索ができます。
@@ -157,13 +157,13 @@
 <div style="padding:4px 3px;">
 
 ({if $is_prev})
-<a href="({t_url m=pc a=page_h_diary_list_all})&amp;keyword=({$keyword|escape:"url"})&amp;page=({$page})&amp;direc=-1">前を表示</a>&nbsp;&nbsp;
+<a href="({t_url m=pc a=page_h_diary_list_all})&amp;keyword=({$keyword|escape:url|smarty:nodefaults})&amp;page=({$page})&amp;direc=-1">前を表示</a>&nbsp;&nbsp;
 ({/if})
 ({if $c_diary_search_list_count})
 ({$pager.start})件～({$pager.end})件を表示
 ({/if})
 ({if $is_next})
-&nbsp;&nbsp;<a href="({t_url m=pc a=page_h_diary_list_all})&amp;keyword=({$keyword|escape:"url"})&amp;page=({$page})&amp;direc=1">次を表示</a>
+&nbsp;&nbsp;<a href="({t_url m=pc a=page_h_diary_list_all})&amp;keyword=({$keyword|escape:url|smarty:nodefaults})&amp;page=({$page})&amp;direc=1">次を表示</a>
 ({/if})
 
 </div>
@@ -366,13 +366,13 @@
 <div style="padding:4px 3px;">
 
 ({if $is_prev})
-<a href="({t_url m=pc a=page_h_diary_list_all})&amp;keyword=({$keyword|escape:"url"})&amp;page=({$page})&amp;direc=-1">前を表示</a>&nbsp;&nbsp;
+<a href="({t_url m=pc a=page_h_diary_list_all})&amp;keyword=({$keyword|escape:url|smarty:nodefaults})&amp;page=({$page})&amp;direc=-1">前を表示</a>&nbsp;&nbsp;
 ({/if})
 ({if $c_diary_search_list_count})
 ({$pager.start})件～({$pager.end})件を表示
 ({/if})
 ({if $is_next})
-&nbsp;&nbsp;<a href="({t_url m=pc a=page_h_diary_list_all})&amp;keyword=({$keyword|escape:"url"})&amp;page=({$page})&amp;direc=1">次を表示</a>
+&nbsp;&nbsp;<a href="({t_url m=pc a=page_h_diary_list_all})&amp;keyword=({$keyword|escape:url|smarty:nodefaults})&amp;page=({$page})&amp;direc=1">次を表示</a>
 ({/if})
 
 </div>
@@ -455,11 +455,11 @@
 <div style="padding:4px 3px;">
 
 ({if $is_prev})
-<a href="({t_url m=pc a=page_h_diary_list_all})&amp;keyword=({$keyword|escape:"url"})&amp;page=({$page})&amp;direc=-1">前を表示</a>&nbsp;&nbsp;
+<a href="({t_url m=pc a=page_h_diary_list_all})&amp;keyword=({$keyword|escape:url|smarty:nodefaults})&amp;page=({$page})&amp;direc=-1">前を表示</a>&nbsp;&nbsp;
 ({/if})
 ({$pager.start})件～({$pager.end})件を表示
 ({if $is_next})
-&nbsp;&nbsp;<a href="({t_url m=pc a=page_h_diary_list_all})&amp;keyword=({$keyword|escape:"url"})&amp;page=({$page})&amp;direc=1">次を表示</a>
+&nbsp;&nbsp;<a href="({t_url m=pc a=page_h_diary_list_all})&amp;keyword=({$keyword|escape:url|smarty:nodefaults})&amp;page=({$page})&amp;direc=1">次を表示</a>
 ({/if})
 
 </div>

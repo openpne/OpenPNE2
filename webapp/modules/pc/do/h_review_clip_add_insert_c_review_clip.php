@@ -22,6 +22,11 @@ class pc_do_h_review_clip_add_insert_c_review_clip extends OpenPNE_Action
         }
         //---
 
+        $c_review = db_review_list_product_c_review4c_review_id($c_review_id);
+        if (!$c_review) {
+            handle_kengen_error();
+        }
+
         do_h_review_clip_add_insert_c_review_clip($c_review_id, $u);
 
         openpne_redirect('pc', 'page_h_review_clip_list');

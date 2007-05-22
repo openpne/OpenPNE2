@@ -3,7 +3,7 @@
 ({***************************})
 ({**ここから：メインコンテンツ**})
 ({***************************})
-({capture name="keyword_url"})({$keyword|escape:url})({/capture})
+({capture name="keyword_url"})({$keyword|escape:url|smarty:nodefaults})({/capture})
 
 <img src="./skin/dummy.gif" class="v_spacer_l">
 
@@ -57,9 +57,10 @@
 <a href="({t_url m=pc a=page_h_diary_list_all})&amp;keyword=({$smarty.capture.keyword_url|smarty:nodefaults})">日記検索</a>
 |
 <a href="({t_url m=pc a=page_h_com_find_all})&amp;keyword=({$smarty.capture.keyword_url|smarty:nodefaults})">コミュニティ 検索</a>
+({if $smarty.const.USE_EXTRA_SERVICE})
 |
 <a href="http://www.google.com/search?hl=ja&amp;lr=lang_ja&amp;ie=Shift_JIS&amp;oe=Shift_JIS&amp;q=({$smarty.capture.keyword_url|smarty:nodefaults})" target="_blank">Web 検索</a>
-
+({/if})
 </form>
 
 <!-- ここまで：主内容＞＞並び替え・カテゴリ・検索 -->

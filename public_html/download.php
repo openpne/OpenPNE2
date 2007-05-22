@@ -5,6 +5,11 @@
  */
 
 require_once './config.inc.php';
+
+// エラー出力を抑制
+ini_set('display_errors', false);
+ob_start();
+
 require_once OPENPNE_WEBAPP_DIR . '/init.inc';
 
 //SNSにログインしているかどうか
@@ -31,11 +36,27 @@ $include_paths = array(
 );
 ini_set('include_path', implode(PATH_SEPARATOR, $include_paths));
 
+// ファイルアップロード機能がオフ
+if (!OPENPNE_USE_FILEUPLOAD) {
+    openpne_redirect('pc', 'page_h_home');
+}
+
 $file = db_file_c_file4filename($_GET['filename']);
-$original_filename = preg_replace("/\r|\n/", '', $file['original_filename']);
-header('Content-Disposition: attachment ; filename="' . $original_filename . '"');
+
+// オリジナルファイル名
+$original_filename = $file['original_filename'];
+if (strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE') !== false) {
+    // IE の場合のみ、ファイル名を SJIS に変換
+    $original_filename = mb_convert_encoding($original_filename, 'SJIS', 'UTF-8');
+}
+$original_filename = str_replace(array("\r", "\n"), '', $original_filename);
+
+while (@ob_end_clean());
+
+header('Content-Disposition: attachment; filename="' . $original_filename . '"');
 header('Content-Length: '. strlen($file['bin']));
 header('Content-Type: application/octet-stream');
 echo $file['bin'];
+exit;
 
 ?>

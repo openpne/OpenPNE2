@@ -56,8 +56,6 @@ function get_api_sessionid($c_member_id)
     return $api_session_id;
 }
 
-
-//APIを一つ取得
 function db_api_get_c_api_one($name)
 {
     $sql = 'SELECT * FROM c_api WHERE name = ?';
@@ -66,7 +64,6 @@ function db_api_get_c_api_one($name)
     return db_get_row($sql, $params);
 }
 
-//APIが許可しているIPかどうかチェックする
 function db_api_check_ip($name, $ip)
 {
     $api = db_api_get_c_api_one($name);
@@ -76,7 +73,5 @@ function db_api_check_ip($name, $ip)
         return false;
     }
 }
-
-
 
 ?>

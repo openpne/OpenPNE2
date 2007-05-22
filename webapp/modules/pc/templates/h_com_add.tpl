@@ -187,7 +187,6 @@
 <div class="padding_s">
 
 <input type="file" size="40" name="image_filename"><br>
-({*<span>写真のアップロードに関するヘルプは <a href="" target="_blank">こちら</span></a>*})
 
 </div>
 

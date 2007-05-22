@@ -1,6 +1,6 @@
 ({$inc_header|smarty:nodefaults})
 ({ext_include file="inc_subnavi_adminDesign.tpl"})
-({assign var="page_name" value="バナー変更"})
+({assign var="page_name" value="バナー設定 ＞ バナー変更"})
 ({ext_include file="inc_tree_adminDesign.tpl"})
 </div>
 

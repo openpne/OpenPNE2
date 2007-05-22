@@ -73,7 +73,11 @@ body { background-color: #({$INC_HEADER_color_config.bg_12}) ; }
   background: url(({t_img_url_skin filename=icon_3})) 50% 70%  no-repeat ;
 }
 
-* { font-family: "ＭＳ Ｐゴシック", "ヒラギノ角ゴ Pro W3", Osaka, sans-serif ; }
+* { font-family: "Hiragino Kaku Gothic Pro", "Hiragino Kaku Ghothic Pro W3", "ヒラギノ角ゴ Pro W3",({* "メイリオ", Meiryo,*}) "ＭＳ Ｐゴシック", Osaka, sans-serif ; }
+
+/*ここから：safari1.xパスワードフォーム非表示対策*/
+html:\66irst-child input[type="password"] { font-family: "Lucida Grande", "Hiragino Kaku Gothic Pro", "Hiragino Kaku Ghothic Pro W3", "ヒラギノ角ゴ Pro W3",sans-serif,"Osaka" ; }
+/*ここまで：safari1.xパスワードフォーム非表示対策*/
 
 /*テキスト入力欄のフォーカス時のクラス*/
 .text       { background-color:#F8F8F8; }

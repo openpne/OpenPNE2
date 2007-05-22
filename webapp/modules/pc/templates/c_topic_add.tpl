@@ -28,7 +28,7 @@
 <table border="0" cellspacing="0" cellpadding="0" style="width:634px;">
 <tr>
 <td style="width:36px;" class="bg_06"><img src="({t_img_url_skin filename=content_header_1})" style="width:30px;height:20px;" class="dummy"></td>
-<td style="width:598px;padding:2px 0px;" class="bg_06"><span class="b_b c_00">[({$c_commu.name})] 新規トピック作成とアップロード</span></td>
+<td style="width:598px;padding:2px 0px;" class="bg_06"><span class="b_b c_00">[({$c_commu.name})] 新規トピック作成</span></td>
 </tr>
 </table>
 </div>
@@ -44,7 +44,7 @@
 ({*********})
 <tr>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-<td style="width:150px;" class="bg_05" align="left" valign="middle">
+<td style="width:150px;" class="bg_05" align="center" valign="middle">
 
 <div class="padding_s">
 
@@ -57,7 +57,7 @@
 <td style="width:481px;" class="bg_02" align="left" valign="middle">
 <div class="padding_s">
 
-<input type="text" class="text" name="title" value="({$title})" size="50" maxlength="126">
+<input type="text" class="text" name="title" value="({$title})" size="50">
 
 </div>
 </td>
@@ -70,7 +70,7 @@
 ({*********})
 <tr>
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-<td class="bg_05" align="left" valign="middle">
+<td class="bg_05" align="center" valign="middle">
 
 <div class="padding_s">
 
@@ -96,7 +96,7 @@
 ({*********})
 <tr>
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-<td class="bg_05" align="left" valign="middle">
+<td class="bg_05" align="center" valign="middle">
 
 <div class="padding_s">
 
@@ -122,7 +122,7 @@
 ({*********})
 <tr>
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-<td class="bg_05" align="left" valign="middle">
+<td class="bg_05" align="center" valign="middle">
 
 <div class="padding_s">
 
@@ -133,9 +133,12 @@
 </td>
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 <td class="bg_02" align="left" valign="middle">
+
 <div class="padding_s">
 
 <input type="file" name="image_filename2" size="40">
+
+</div>
 
 </td>
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
@@ -147,7 +150,7 @@
 ({*********})
 <tr>
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-<td class="bg_05" align="left" valign="middle">
+<td class="bg_05" align="center" valign="middle">
 
 <div class="padding_s">
 
@@ -175,7 +178,7 @@
 ({*********})
 <tr>
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-<td class="bg_05" align="left" valign="middle">
+<td class="bg_05" align="center" valign="middle">
 
 <div class="padding_s">
 
@@ -188,7 +191,9 @@
 <td class="bg_02" align="left" valign="middle">
 <div class="padding_s">
 
-<input type="file" name="uploadfile" size="40">
+<input type="file" name="uploadfile" size="40"><br>
+
+※ファイルサイズは({$smarty.const.FILE_MAX_FILESIZE})KB以内({if $allowed_extensions})、ファイルの種類は(({$allowed_extensions}))({/if})のファイルがアップロードできます。
 
 </div>
 </td>

@@ -64,7 +64,7 @@ class pc_do_f_message_send_insert_c_message extends OpenPNE_Action
             handle_kengen_error();
         }
 
-        //存在しないユーザ
+        //存在しないメンバー
         $target_member = db_member_c_member4c_member_id($c_member_id_to);
         if (empty($target_member)) {
             handle_kengen_error();

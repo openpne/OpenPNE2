@@ -1,5 +1,6 @@
 function url2cmd(url) {
-    if (!url.match(/^http:\/\/video\.google\.com\/videoplay\?docid=([0-9-]+).*?$/)) {
+    if (!url.match(/^http:\/\/video\.google\.com\/videoplay\?docid=([0-9\-]+).*?$/)) {
+        pne_url2a(url);
         return;
     }
 
@@ -8,7 +9,7 @@ function url2cmd(url) {
 }
 
 function main(docid) {
-    if (!docid.match(/^[-0-9]+$/)) {
+    if (!docid.match(/^[0-9\-]+$/)) {
         return;
     }
 

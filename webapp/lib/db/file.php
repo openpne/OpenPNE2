@@ -104,4 +104,53 @@ function db_file_delete_c_file($filename)
     return db_query($sql, $params);
 }
 
+/**
+ * 管理画面用に一時ファイル情報をDBに挿入する
+ * 
+ * @param string $filename
+ * @param string $filepath
+ * @param string $original_filename
+ */
+function db_file_insert_c_tmp_file($filename, $filepath, $original_filename)
+{
+    if (!is_readable($filepath)) {
+        return false;
+    }
+
+    $fp = fopen($filepath, 'rb');
+    $file_data = fread($fp, filesize($filepath));
+    fclose($fp);
+
+    $sql = 'DELETE FROM c_tmp_file WHERE filename = ?';
+    $params = array($filename);
+    db_query($sql, $params);
+
+    $data = array(
+        'filename'   => $filename,
+        'bin'        => $file_data,
+        'original_filename' => $original_filename,
+        'r_datetime' => db_now(),
+    );
+    return db_insert('c_tmp_file', $data);
+}
+
+/**
+ * DBから管理画面用の一時ファイル情報を削除する
+ */
+function db_file_clear_tmp_db($uid)
+{
+    $sql = 'DELETE FROM c_tmp_file WHERE filename LIKE ?';
+    $params = array('%_' . $uid . '.%');
+    db_query($sql, $params);
+}
+
+/**
+ * ファイル名から一時保存ファイルを取得
+ */
+function db_file_c_tmp_file4filename($filename)
+{
+    $sql = 'SELECT * FROM c_tmp_file WHERE filename = ?';
+    $params = array($filename);
+    return db_get_row($sql, $params);
+}
 ?>

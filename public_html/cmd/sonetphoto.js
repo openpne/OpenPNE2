@@ -1,5 +1,5 @@
 function main(member_name, type, sort) {
-    if (!member_name.match(/^[a-zA-Z0-9_-]+$/)) {
+    if (!member_name.match(/^[a-zA-Z0-9_\-]+$/)) {
         return;
     }
     if (type == "t" || type == "thumbnail") {

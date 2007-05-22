@@ -60,7 +60,7 @@
 </td>
 ({****})
 <td>
-<a href="({t_file_url filename=$item.filename})" target="_blank">
+<a href="({t_file_url filename=$item.filename})">
 ({$item.filename})
 </a>
 </td>

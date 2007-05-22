@@ -30,13 +30,13 @@ class ktai_page_c_edit_member extends OpenPNE_Action
         //ページ
         $this->set("page", $page);
 
-        //メンバのリスト
-        $list = k_p_c_member_list_c_members_disp4c_commu_id($target_c_commu_id, $page_size, $page);
+        //メンバーリスト
+        $list = db_commu_c_member_list4c_commu_id($target_c_commu_id, $page_size, $page);
         $this->set("c_member_list", $list[0]);
         $this->set("is_prev", $list[1]);
         $this->set("is_next", $list[2]);
 
-        //コミュニティのメンバ数
+        //コミュニティのメンバー数
         $this->set("count_member", db_commu_count_c_commu_member_list4c_commu_id($target_c_commu_id));
 
         $this->set("c_commu", $c_commu);

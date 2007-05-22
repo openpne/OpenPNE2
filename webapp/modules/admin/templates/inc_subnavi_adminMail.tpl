@@ -1,1 +1,0 @@
-<div class="subNavi"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_mail_send')})">メール送信設定</a>&nbsp;|&nbsp;({if $auth_type == 'all' || $auth_type == ''})<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('send_invites')})">招待メール送信</a>&nbsp;|&nbsp;({/if})<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_mail')})">メール文言変更</a></div>

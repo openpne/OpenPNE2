@@ -1,6 +1,9 @@
 ({$inc_header|smarty:nodefaults})
 ({ext_include file="inc_subnavi_adminSNSConfig.tpl"})
 
+({assign var="parent_page_name" value="プロフィール項目設定"})
+({capture name=parent_page_url})?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_profile')})({/capture})
+
 ({assign var="page_name" value="プロフィール項目編集"})
 ({ext_include file="inc_tree_adminSNSConfig.tpl"})
 </div>
@@ -19,7 +22,7 @@
 </tr>
 <tr>
 <th>識別名</th>
-<td><input type="text" class="basic" name="name" value="({$c_profile.name})" size="20" />　<span class="caution">※半角英数 と _ のみ</span></td>
+<td><input type="text" class="basic" name="name" value="({$c_profile.name})" size="20" />　<span class="caution">※半角英数 と _ のみ（数値のみも不可）</span></td>
 </tr>
 <tr>
 <th>必須</th>
@@ -29,7 +32,7 @@
 <th>公開設定の選択</th>
 <td>
 <label><input type="radio" name="public_flag_edit" value="0"({if !$c_profile.public_flag_edit}) checked="checked"({/if}) />固定</label>
-<label><input type="radio" name="public_flag_edit" value="1"({if $c_profile.public_flag_edit}) checked="checked"({/if}) />ユーザー選択</label></td>
+<label><input type="radio" name="public_flag_edit" value="1"({if $c_profile.public_flag_edit}) checked="checked"({/if}) />メンバー選択</label></td>
 </tr>
 <tr>
 <th>公開設定<br>デフォルト値</th>

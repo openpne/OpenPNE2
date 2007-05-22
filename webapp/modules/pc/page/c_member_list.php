@@ -31,7 +31,7 @@ class pc_page_c_member_list extends OpenPNE_Action
         //次ページへのインクリメント
         $page += $direc;
 
-        //コミュニティメンバリスト
+        //コミュニティメンバーリスト
         list($c_member_list, $is_prev, $is_next, $total_num, $start_num, $end_num)
             = db_commu_c_members4c_commu_id($target_c_commu_id, $page_size, $page);
 

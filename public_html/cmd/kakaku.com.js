@@ -1,6 +1,7 @@
 //created by yasuda.
 function url2cmd(url) {
     if (!url.match(/^http:\/\/kakaku\.com\/item\/([0-9A-Z]+)\/?$/)) {
+        pne_url2a(url);
         return;
     }
     var productID = RegExp.$1;

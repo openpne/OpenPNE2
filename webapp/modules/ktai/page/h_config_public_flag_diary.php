@@ -11,7 +11,7 @@ class ktai_page_h_config_public_flag_diary extends OpenPNE_Action
         $u = $GLOBALS['KTAI_C_MEMBER_ID'];
 
         $c_member = db_member_c_member4c_member_id($u);
-        //メンバ情報
+        //メンバー情報
         $this->set('c_member', $c_member);
 
         return 'success';

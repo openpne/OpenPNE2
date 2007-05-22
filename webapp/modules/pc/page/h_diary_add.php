@@ -52,12 +52,13 @@ class pc_page_h_diary_add extends OpenPNE_Action
         $this->set("date_list", p_fh_diary_list_date_list4c_member_id($u));
 
         if (USE_DIARY_CATEGORY) {
-	        //カテゴリリスト
-	        $this->set("category_list", db_diary_category_list4c_member_id($u));
+            //カテゴリリスト
+            $this->set("category_list", db_diary_category_list4c_member_id($u));
             $this->set("use_diary_category", true);
         }
+
         // inc_entry_point
-        $this->set('inc_entry_point', fetch_inc_entry_point_h_diary_add($this->getView()));
+        $this->set('inc_entry_point', fetch_inc_entry_point($this->getView(), 'h_diary_add'));
 
         return 'success';
     }

@@ -140,13 +140,13 @@
 ({*********})
 <tr>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-<td style="width:634px;" class="bg_05" align="right">
+<td style="width:634px;" class="bg_02" align="right">
 
 <div class="padding_s">
 
-({if $is_prev}) <a href="({t_url m=pc a=page_h_review_add})&amp;keyword=({$keyword|escape:"url"})&amp;search_flag=1&amp;category_id=({$category_id})&amp;page=({$page-1})">前を表示</a>&nbsp;&nbsp;({/if})
+({if $is_prev}) <a href="({t_url m=pc a=page_h_review_add})&amp;keyword=({$keyword|escape:url|smarty:nodefaults})&amp;search_flag=1&amp;category_id=({$category_id})&amp;page=({$page-1})">前を表示</a>&nbsp;&nbsp;({/if})
 ({$start_num})件～({$end_num})件を表示&nbsp;&nbsp;
-({if $is_next}) <a href="({t_url m=pc a=page_h_review_add})&amp;keyword=({$keyword|escape:"url"})&amp;search_flag=1&amp;category_id=({$category_id})&amp;page=({$page+1})">次を表示</a>({/if})
+({if $is_next}) <a href="({t_url m=pc a=page_h_review_add})&amp;keyword=({$keyword|escape:url|smarty:nodefaults})&amp;search_flag=1&amp;category_id=({$category_id})&amp;page=({$page+1})">次を表示</a>({/if})
 
 </div>
 
@@ -288,13 +288,13 @@
 ({*********})
 <tr>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-<td style="width:634px;" class="bg_05" align="right">
+<td style="width:634px;" class="bg_02" align="right">
 
 <div class="padding_s">
 
-({if $is_prev}) <a href="({t_url m=pc a=page_h_review_add})&amp;keyword=({$keyword|escape:"url"})&amp;search_flag=1&amp;category_id=({$category_id})&amp;page=({$page-1})">前を表示</a>&nbsp;&nbsp;({/if})
+({if $is_prev}) <a href="({t_url m=pc a=page_h_review_add})&amp;keyword=({$keyword|escape:url|smarty:nodefaults})&amp;search_flag=1&amp;category_id=({$category_id})&amp;page=({$page-1})">前を表示</a>&nbsp;&nbsp;({/if})
 ({$start_num})件～({$end_num})件を表示&nbsp;&nbsp;
-({if $is_next}) <a href="({t_url m=pc a=page_h_review_add})&amp;keyword=({$keyword|escape:"url"})&amp;search_flag=1&amp;category_id=({$category_id})&amp;page=({$page+1})">次を表示</a>({/if})
+({if $is_next}) <a href="({t_url m=pc a=page_h_review_add})&amp;keyword=({$keyword|escape:url|smarty:nodefaults})&amp;search_flag=1&amp;category_id=({$category_id})&amp;page=({$page+1})">次を表示</a>({/if})
 
 </div>
 

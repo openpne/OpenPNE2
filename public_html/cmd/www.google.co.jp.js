@@ -1,13 +1,11 @@
 function url2cmd(url) {
-
 	var www_google_co_jp_maps = url.match(/^http:\/\/www\.google\.co\.jp\/maps\?(.+)/);
 		
 	if (www_google_co_jp_maps) {
 	   var id = RegExp.$1;
 	   main(id);
-    }else{
-       document.write('<a href="'+url+'">'+url+'</a>');
-       return;    
+    } else {
+       pne_url2a(url);
     }
 }
 

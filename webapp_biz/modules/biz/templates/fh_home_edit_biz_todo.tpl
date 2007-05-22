@@ -173,9 +173,9 @@ Todo
 
 <div class="padding_s">
 <select name="biz_group_id">
-	<option type="radio" value="0">指定なし
+	<option value="0">指定なし
 ({foreach from=$biz_group_list item=biz_group})
-	<option type="radio" value="({$biz_group.biz_group_id})"
+	<option value="({$biz_group.biz_group_id})"
 	({if $biz_group.biz_group_id == $todo.biz_group_id})
 	 selected
 	({/if})

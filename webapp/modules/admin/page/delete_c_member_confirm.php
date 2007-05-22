@@ -4,11 +4,17 @@
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
-// ユーザー強制退会 確認画面
+// メンバー強制退会 確認画面
 class admin_page_delete_c_member_confirm extends OpenPNE_Action
 {
     function execute($requests)
     {
+
+        // ID 1 のメンバーは強制退会できない
+        if ($requests['target_c_member_id'] == 1) {
+            admin_client_redirect('top', 'ID 1 のメンバーを強制退会させることはできません');
+        }
+
         $v = array();
 
         $v['c_profile_list'] = db_member_c_profile_list4null();
