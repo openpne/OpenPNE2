@@ -60,6 +60,12 @@ class OpenPNE_RSS
                 $date = '';
             }
 
+            // エスケープされた文字列を元に戻す
+            $trans_table = array_flip(get_html_translation_table(HTML_SPECIALCHARS, ENT_QUOTES));
+            $trans_table['&#039;'] = "'";
+            $title = strtr($title, $trans_table);
+            $description = strtr($description, $trans_table);
+
             $f_item = array(
                 'title' => $this->convert_encoding($title),
                 'body'  => $this->convert_encoding($description),
