@@ -13,7 +13,9 @@ class ktai_biz_do_fhg_biz_schedule_add extends OpenPNE_Action
 
         //target_idの指定
         if (!$requests['target_id']) {
-            $requests['target_id'] = $u;
+            $target_c_member_id = $u;
+        } else {
+            $target_c_member_id = $requests['target_id'];
         }
 
         $requests['sc_b_year'] = $requests['sc_b_year'] + 2000;
@@ -137,7 +139,7 @@ class ktai_biz_do_fhg_biz_schedule_add extends OpenPNE_Action
 
         if (!$requests['sc_rp']) {
             //繰り返しをしない予定登録
-            biz_insertSchedule($requests['sc_title'], $u, $begin_date, $finish_date, $begin_time, $finish_time, $requests['sc_memo'], $rp_rule, 0, $requests['biz_group_id'], $requests['public_flag']);
+            biz_insertSchedule($requests['sc_title'], $u, $begin_date, $finish_date, $begin_time, $finish_time, $requests['sc_memo'], $rp_rule, 0, $requests['biz_group_id'], $requests['public_flag'], $target_c_member_id);
         } else {
             //繰り返し予定
             $tmp = $begin_date;  //処理中の日付
@@ -146,7 +148,7 @@ class ktai_biz_do_fhg_biz_schedule_add extends OpenPNE_Action
                 $nowday = strtotime($requests['sc_b_year'].'-'.$requests['sc_b_month'].'-'.($requests['sc_b_date']+$i));
                 $tmp = date("Ymd", $nowday);
                 if ($rp_rule & (1 << date("w",$nowday))) {
-                    biz_insertSchedule($requests['sc_title'], $u, $tmp, $tmp, $begin_time, $finish_time, $requests['sc_memo'], $rp_rule, $first_id, $requests['biz_group_id'], $requests['public_flag']);
+                    biz_insertSchedule($requests['sc_title'], $u, $tmp, $tmp, $begin_time, $finish_time, $requests['sc_memo'], $rp_rule, $first_id, $requests['biz_group_id'], $requests['public_flag'], $target_c_member_id);
                 }
             }
         }
@@ -155,7 +157,7 @@ class ktai_biz_do_fhg_biz_schedule_add extends OpenPNE_Action
         $target_id = $requests['target_id'];
         $_REQUEST['msg'] = '予定を追加しました。';
         $_REQUEST['w'] = $week;
-        $_REQUEST['target_id'] = $target_id;
+        $_REQUEST['target_id'] = $target_c_member_id;
         $_REQUEST['id'] = biz_getScheduleMax();
         openpne_forward('ktai_biz', 'page', "fh_calendar_week");
         exit;
