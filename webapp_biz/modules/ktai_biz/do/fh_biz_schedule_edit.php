@@ -146,7 +146,7 @@ class ktai_biz_do_fh_biz_schedule_edit extends OpenPNE_Action
 
         $_REQUEST['msg'] = '予定を編集しました。';
         $_REQUEST['w'] = $week;
-        $_REQUEST['target_id'] = $target_id;
+        $_REQUEST['target_id'] = $requests['target_id'];
         $_REQUEST['id'] = biz_getScheduleMax();
 
         openpne_forward('ktai_biz', 'page', "fh_calendar_week");

@@ -13,6 +13,7 @@
 <input type="hidden" name="sc_title" value="({$title})">
 <input type="hidden" name="sc_memo" value="({$value})">
 <input type="hidden" name="writer" value="({$writer})">
+<input type="hidden" name="target_id" value="({$t_id})">
 
 予定日：<input type="text" name='sc_b_year' size="2" value="({$begin.year})">年
 		<input type="text" name='sc_b_month' size="2" value="({$begin.month})">月
