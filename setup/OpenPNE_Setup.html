@@ -61,7 +61,7 @@ em {
 
 <h1>OpenPNE セットアップガイド</h1>
 
-<p>最終更新日: 2007/05/20</p>
+<p>最終更新日: 2007/05/24</p>
 
 <h2>目次</h2>
 <ul>
@@ -80,7 +80,12 @@ em {
   <li><a href="#section4-3">4-3. cronの設定</a></li>
   </ul></li>
 <li><a href="#section5">5. セットアップモジュールの実行</a></li>
-<li><a href="#section6">6. 管理画面へのアクセス</a></li>
+<li><a href="#section6">6. 管理画面の設定</a>
+  <ul>
+  <li><a href="#section6-1">6-1. 管理画面へのアクセス</a></li>
+  <li><a href="#section6-2">6-2. 管理画面のモジュール名を変更</a></li>
+  <li><a href="#section6-3">6-3. 管理画面を別ドメインで運用</a></li>
+  </ul></li>
 </ul>
 
 <hr>
@@ -393,12 +398,18 @@ $ chmod 0755 bin/*.cron
 
 <h2 id="section6">6. 管理画面へのアクセス</h2>
 
+<h3 id="section6-1">6-1. 管理画面へのアクセス</h3>
+
 <p>以下のURLへアクセスし、セットアップモジュールで設定した管理用アカウント名、パスワードを入力してログインしてください。ログイン後、管理メニューの「SNS設定」からSNSの基本情報の設定をすることができます。</p>
 
 <pre>
 <var>OPENPNE_URL</var>?m=admin
 (例) http://openpne.example.com/?m=admin
 </pre>
+
+<p>また、管理メニューの「管理画面設定 ＞ ページ名ランダム生成」でランダム生成を実行すると管理画面内のページ名を変更することができるので、セキュリティ向上のためセットアップ後に必ず実行しておくことをおすすめします。</p>
+
+<h3 id="section6-2">6-2. 管理画面のモジュール名を変更する</h3>
 
 <p>管理画面のURLを変更する場合は、設定ファイル config.php 内にある <em>ADMIN_MODULE_NAME</em> の値を変更してください。</p>
 <div>例えば、abcde に変更した場合、
@@ -408,7 +419,47 @@ $ chmod 0755 bin/*.cron
 </pre>
 というURLから管理画面へアクセスすることができます。</div>
 
-<p>また、管理メニューの「管理画面設定 ＞ ページ名ランダム生成」でランダム生成を実行すると管理画面内のページ名を変更することができるので、セキュリティ向上のためセットアップ後に必ず実行しておくことをおすすめします。</p>
+<h3 id="section6-3">6-3. 管理画面を別ドメインで運用する</h3>
+
+<p>管理画面を別ドメインで運用する場合は、setup/admin/public_html 以下のファイル、ディレクトリを管理画面用の公開ディレクトリにコピーし、config.inc.php の内容を環境に合わせて書き換えてください。</p>
+
+<div>
+例えば、以下のようなURLになります。
+<pre>
+<var>OPENPNE_ADMIN_URL</var>?m=<var>ADMIN_MODULE_NAME</var>
+（例）http://admin.example.com/?m=admin
+</pre>
+</div>
+
+<p>SNSのメンバー画面と管理画面を別サーバで運用する場合は、以下のようなディレクトリ構成にし、メンバー画面用の設定ファイル(config.php)と同内容のファイルをconfig.inc.php から読み込めるようにしてください。</p>
+
+<pre>
+- <var>OPENPNE_DIR</var>
+  ├ bin
+  ├ lib
+  ├ var
+  ├ webapp
+  ├ webapp_ext
+  ├ webapp_biz
+  └ config.php
+
+(http://sns.example.com/)
+- <var>public_html </var>(ディレクトリ名は変更可能)
+  ├ config.inc.php (<var>OPENPNE_DIR</var> ディレクトリを指定)
+  ├ index.php
+     ...
+
+(http://admin.example.com/)
+- <var>admin_public_html</var> (ディレクトリ名は変更可能)
+  ├ config.inc.php (<var>OPENPNE_DIR</var> ディレクトリを指定)
+  ├ index.php
+  ├ modules
+  │ └ admin
+  │     └ default.css
+  └ skin
+      └ dummy.gif
+</pre>
+
 
 <hr>
 
