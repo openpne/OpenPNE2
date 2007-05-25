@@ -59,7 +59,7 @@
 <a href="({t_url m=pc a=page_h_com_find_all})&amp;keyword=({$smarty.capture.keyword_url|smarty:nodefaults})">コミュニティ 検索</a>
 ({if $smarty.const.USE_EXTRA_SERVICE})
 |
-<a href="http://www.google.com/search?hl=ja&amp;lr=lang_ja&amp;ie=Shift_JIS&amp;oe=Shift_JIS&amp;q=({$smarty.capture.keyword_url|smarty:nodefaults})" target="_blank">Web 検索</a>
+<a href="http://www.google.com/search?hl=ja&amp;lr=lang_ja&amp;q=({$smarty.capture.keyword_url|smarty:nodefaults})" target="_blank">ウェブ検索</a>
 ({/if})
 
 </form>
