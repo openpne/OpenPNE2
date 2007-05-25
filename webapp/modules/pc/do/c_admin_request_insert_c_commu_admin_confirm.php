@@ -59,6 +59,9 @@ class pc_do_c_admin_request_insert_c_commu_admin_confirm extends OpenPNE_Action
         }
         //---
 
+        // 以前に送られた管理者交代要請を削除
+        db_commu_delete_c_commu_admin_confirm4c_commu_id($target_c_commu_id);
+
         $target_c_commu_admin_confirm_id =
             db_commu_insert_c_commu_admin_confirm($target_c_commu_id, $target_c_member_id);
 
