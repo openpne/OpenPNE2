@@ -35,7 +35,7 @@
 ({**ここから：サイドコンテンツ領域**})
 ({**********************************})
 
-({if $INC_FOOTER_inc_side_banner})
+({if $INC_FOOTER_side_banner_html_before || $INC_FOOTER_side_banner_html_after || $INC_FOOTER_inc_side_banner})
 
 ({strip})
 ({if $INC_FOOTER_side_banner_html_before || $INC_FOOTER_side_banner_html_after})
