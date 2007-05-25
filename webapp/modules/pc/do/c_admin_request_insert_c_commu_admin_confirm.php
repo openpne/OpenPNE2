@@ -22,7 +22,8 @@ class pc_do_c_admin_request_insert_c_commu_admin_confirm extends OpenPNE_Action
         //自分がコミュニティ管理者
         //自分がコミュニティ副管理者ではない
         //targetがコミュニティメンバー
-
+        // すでに管理者交代依頼メッセージ送信済みではない
+        // すでに副管理者要請メッセージを送信済みでない
 
         $status = db_common_commu_status($u, $target_c_commu_id);
         if (!$status['is_commu_admin']) {
@@ -36,7 +37,30 @@ class pc_do_c_admin_request_insert_c_commu_admin_confirm extends OpenPNE_Action
         if (!$status['is_commu_member']) {
             handle_kengen_error();
         }
+
+        $target_c_commu_admin_confirm_list =
+            db_commu_anatani_c_commu_admin_confirm_list4c_member_id($target_c_member_id);
+        if (!empty($target_c_commu_admin_confirm_list)) {
+            foreach ($target_c_commu_admin_confirm_list as $value) {
+                if ($value['c_commu_id'] == $target_c_commu_id) {
+                    handle_kengen_error();
+                }
+            }
+        }
+
+        $target_c_commu_sub_admin_confirm_list =
+        db_commu_anatani_c_commu_sub_admin_confirm_list4c_member_id($target_c_member_id);
+        if (!empty($target_c_commu_sub_admin_confirm_list)) {
+            foreach ($target_c_commu_sub_admin_confirm_list as $value) {
+                if ($value['c_commu_id'] == $target_c_commu_id) {
+                    handle_kengen_error();
+                }
+            }
+        }
         //---
+
+        // 以前に送られた管理者交代要請を削除
+        db_commu_delete_c_commu_admin_confirm4c_commu_id($target_c_commu_id);
 
         $target_c_commu_admin_confirm_id =
             db_commu_insert_c_commu_admin_confirm($target_c_commu_id, $target_c_member_id);

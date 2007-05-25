@@ -352,18 +352,6 @@
 
 <img src="./skin/dummy.gif" class="v_spacer_m">
 
-({if $point}) 
-<p align=center> 
-({$point})pt<br> 
-</p> 
-({/if}) 
-({if $rank}) 
-<p align=center> 
-({$rank.name})<br> 
-<img src="({t_img_url filename=$rank.image_filename})" class="pict" alt=({$rank.name}) style="margin:2px"> 
-</p> 
-({/if}) 
-
 ({if $inc_entry_point[4]})
 ({$inc_entry_point[4]|smarty:nodefaults|t_url2cmd:'entry_point'|t_cmd:'entry_point'})
 ({/if})
@@ -396,7 +384,7 @@
 ({foreach from=$c_friend_list item=item key=key})
 ({if $key > 0})&({/if})
 pne_item({$key+1})_id=({$item.c_member_id})
-&pne_item({$key+1})_name=({$item.nickname|t_truncate:12:'..'|escape:'url'})
+&pne_item({$key+1})_name=({$item.nickname|t_truncate:12:'..'|escape:url|smarty:nodefaults})
 &pne_item({$key+1})_linkurl=({t_url m=pc a=page_f_home _urlencode=true _html=false})%26target_c_member_id=({$item.c_member_id})
 &pne_item({$key+1})_imageurl=({t_img_url filename=$item.image_filename w=76 h=76 noimg=no_image _urlencode=true _html=false})
 &pne_item({$key+1})_count=({$item.friend_count})
@@ -602,7 +590,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({foreach from=$c_commu_list item=item key=key})
 ({if $key > 0})&({/if})
 pne_item({$key+1})_id=({$item.c_commu_id})
-&pne_item({$key+1})_name=({$item.name|t_truncate:12:'..'|escape:'url'})
+&pne_item({$key+1})_name=({$item.name|t_truncate:12:'..'|escape:url|smarty:nodefaults})
 &pne_item({$key+1})_linkurl=({t_url m=pc a=page_c_home _urlencode=true _html=false})%26target_c_commu_id=({$item.c_commu_id})
 &pne_item({$key+1})_imageurl=({t_img_url filename=$item.image_filename w=76 h=76 noimg=no_logo_small _urlencode=true _html=false})
 &pne_item({$key+1})_count=({$item.count_commu_members})
@@ -746,9 +734,9 @@ show_flash('flash/list.swf', '({$flashvars})');
 <!-- ここから：小メニュー -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:268px">
 <tr>
-<td style="width:1px;" class="bg_07" rowspan="3"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_07" rowspan="({if $common_commu_count})4({else})3({/if})"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 <td style="width:266px;" class="bg_02" colspan="4"><img src="./skin/dummy.gif" style="width:266px;height:5px;" class="dummy"></td>
-<td style="width:1px;" class="bg_07" rowspan="3"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_07" rowspan="({if $common_commu_count})4({else})3({/if})"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 <tr>
 <td style="width:125px;" class="bg_02"><img src="./skin/dummy.gif" style="width:125px;height:1px;" class="dummy"></td>
@@ -873,6 +861,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({/if})
 <!-- ここまで：主内容＞年齢 -->
 <!-- ここから：主内容＞誕生日 -->
+({if $target_c_member.birth_month && $target_c_member.birth_day})
 <tr>
 <td class="border_01 bg_09 padding_s" style="width:90px;border-right:none;border-top:none;">
 
@@ -885,6 +874,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 
 </td>
 </tr>
+({/if})
 <!-- ここまで：主内容＞誕生日 -->
 ({/capture})
 ({foreach from=$target_c_member.profile key=key item=item})

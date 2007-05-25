@@ -64,17 +64,18 @@ class pc_page_c_topic_add_confirm extends OpenPNE_Action
             }
         }
 
-        if ($upfile_obj4['error'] !== UPLOAD_ERR_NO_FILE) {
-            $filesize = filesize($upfile_obj4['tmp_name']);
-            if ((!$filesize)  || ($filesize > IMAGE_MAX_FILESIZE * 1024)) {
-                $err_msg[] = '添付ファイルは'.IMAGE_MAX_FILESIZE.'KB以内のファイルにしてください';
+        if (OPENPNE_USE_FILEUPLOAD) {
+            if ($upfile_obj4['error'] !== UPLOAD_ERR_NO_FILE) {
+                // ファイルサイズ制限
+                if ($upfile_obj4['size'] === 0 || $upfile_obj4['size'] > FILE_MAX_FILESIZE * 1024) {
+                    $err_msg[] = 'ファイルは' . FILE_MAX_FILESIZE . 'KB以内のファイルにしてください（ただし空のファイルはアップロードできません）';
+                }
+
+                // 拡張子制限
+                if (!util_check_file_extention($upfile_obj4['name'])) {
+                    $err_msg[] = sprintf('アップロードできるファイルの種類は(%s)です', util_get_file_allowed_extensions('string'));
+                }
             }
-            // UPLOADファイルの拡張子のチェック
-/*
-            if (!($image = t_check_filename($upfile_obj3))) {
-                $err_msg[] = 'アップロードするファイルの拡張子が不正です';
-            }
-*/
         }
 
         if ($err_msg) {
@@ -86,13 +87,17 @@ class pc_page_c_topic_add_confirm extends OpenPNE_Action
         
         //-----
 
-        //画像をvar/tmpフォルダにコピー
         t_image_clear_tmp($sessid);
+        t_file_clear_tmp($sessid);
+
+        //画像をvar/tmpフォルダにコピー
         $tmpfile1 = t_image_save2tmp($upfile_obj1, $sessid, "t_1");
         $tmpfile2 = t_image_save2tmp($upfile_obj2, $sessid, "t_2");
         $tmpfile3 = t_image_save2tmp($upfile_obj3, $sessid, "t_3");
-        // 一次ファイルをvar/tmpにコピー
-        $tmpfile4 = t_file_save2tmp($upfile_obj4, $sessid, "t_4");
+        if (OPENPNE_USE_FILEUPLOAD) {
+            // 一次ファイルをvar/tmpにコピー
+            $tmpfile4 = t_file_save2tmp($upfile_obj4, $sessid, "t_4");
+        }
 
         $this->set('inc_navi', fetch_inc_navi("c", $c_commu_id));
         $c_topic = array(
@@ -107,10 +112,7 @@ class pc_page_c_topic_add_confirm extends OpenPNE_Action
             'image_filename3'         => $upfile_obj3["name"],
              // 添付ファイル
             'filename4_tmpfile' => $tmpfile4,
-            'filename4'         => $upfile_obj4["name"],
-            // TODO : ここでMIMEタイプをhiddenで持たせないようにする
-            // TODO : このMIMEタイプの値は信用できないので別の手段でMIMEタイプを得る手段を模索する
-            'filename4_mime_type' => $upfile_obj4['type'],
+            'filename4_original_filename' => $upfile_obj4["name"],
         );
 
         $this->set('c_topic', $c_topic);

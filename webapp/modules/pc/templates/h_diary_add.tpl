@@ -349,35 +349,6 @@
 </td>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
-
-({*********})
-({if $inc_entry_point[3]})
-<tr>
-<td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" style="width
-:1px;height:1px;" class="dummy"></td>
-</tr>
-<tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="wid
-th:1px;height:1px;" class="dummy"></td>
-<td style="width:80px;" class="bg_05" align="center" valign="middle">
-<div style="padding:4px 3px;">
-</div>
-</td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="wid
-th:1px;height:1px;" class="dummy"></td>
-<td style="width:439px;" class="bg_02" align="left" valign="middle">
-<div style="padding:4px 3px;">
-
-({$inc_entry_point[3]|smarty:nodefaults|t_url2cmd:'entry_point'|t_cmd:'entry_point'})
-
-</div>
-</td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="wid
-th:1px;height:1px;" class="dummy"></td>
-</tr>
-
-
-({/if})
 ({*********})
 <tr>
 <td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
@@ -395,6 +366,10 @@ th:1px;height:1px;" class="dummy"></td>
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 <td class="bg_02" align="left" valign="middle">
 <div style="padding:4px 3px;">
+
+({if $inc_entry_point[3]})
+<div>({$inc_entry_point[3]|smarty:nodefaults|t_url2cmd:'entry_point'|t_cmd:'entry_point'})</div>
+({/if})
 
 <textarea class="text" name="body" rows="15" cols="50" style="width:415px">({$form_val.body})</textarea>
 
@@ -494,14 +469,14 @@ th:1px;height:1px;" class="dummy"></td>
 <div style="padding:4px 3px;">
 <input type="text" class="text" name="category" id="category" size="40" value="({$form_val.category})">
 <select onChange="if(selectedIndex){category.value += options[selectedIndex].value + ' '}">
-<option>カテゴリを選択してください
+<option>カテゴリを選択してください</option>
 ({foreach from=$category_list item=value})
-<option value="({$value.category_name})">({$value.category_name})
+<option value="({$value.category_name})">({$value.category_name})</option>
 ({/foreach})
 </select>
 <br>
-※ひとつのカテゴリにつき半角20文字以内で入力してください。<br>
-※カテゴリは5つまで登録できます。<br>
+※カテゴリはひとつにつき全角10文字（半角20文字）以内で入力してください。<br>
+※ひとつの日記にカテゴリは5つまで同時に指定することができます。<br>
 </div>
 </td>
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>

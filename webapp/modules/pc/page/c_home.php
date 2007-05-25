@@ -45,11 +45,11 @@ class pc_page_c_home extends OpenPNE_Action
         //参加コミュニティの新着おすすめレビュー
         $this->set('new_commu_review', db_review_new_commu_review4c_commu_id($c_commu_id, 7));
 
-        // inc_entry_point
-        $this->set('inc_entry_point', fetch_inc_entry_point_c_home($this->getView()));
-
         $this->set('is_unused_pc_bbs', util_is_unused_mail('m_pc_bbs_info'));
         $this->set('is_unused_ktai_bbs', util_is_unused_mail('m_ktai_bbs_info'));
+
+        // inc_entry_point
+        $this->set('inc_entry_point', fetch_inc_entry_point($this->getView(), 'c_home'));
 
         return 'success';
     }

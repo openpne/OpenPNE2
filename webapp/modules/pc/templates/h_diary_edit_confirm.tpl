@@ -246,6 +246,7 @@
 <input type="hidden" name="del_img" value="({$form_val.del_img})">
 <input type="hidden" name="subject" value="({$form_val.subject})">
 <input type="hidden" name="body" value="({$form_val.body})">
+<input type="hidden" name="public_flag" value="({$form_val.public_flag})">
 <input type="hidden" name="category" value="({$form_val.category})">
 <td><input type="submit" class="submit" value="　修 　正　"></td>
 </form>

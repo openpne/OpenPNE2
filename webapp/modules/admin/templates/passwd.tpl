@@ -18,7 +18,7 @@
 <p class="info"><a href="({t_url _absolute=1 m=pc a=page_f_home})&amp;target_c_member_id=({$c_member.c_member_id})" target="_blank">({$c_member.nickname})</a>さんのパスワードを変更します。</p>
 <ul class="caution">
 <li>パスワードは6～12文字の半角英数で入力してください。</li>
-<li>パスワード変更ボタンを押すと、ユーザに新しいパスワードの書かれたメールが送信されます。</li>
+<li>パスワード変更ボタンを押すと、メンバーに新しいパスワードの書かれたメールが送信されます。</li>
 </ul>
 
 <form action="./" method="post">

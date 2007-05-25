@@ -9,11 +9,16 @@ class admin_page_list_c_rank extends OpenPNE_Action
 {
     function execute($requests)
     {
-        $pager = array();
-        $c_rank_list = db_admin_get_c_rank_all($requests['page'], $requests['page_size'], $pager);
+        if (!OPENPNE_USE_POINT_RANK) {
+            admin_client_redirect('top', '指定されたページにはアクセスできません');
+        }
 
-        $this->set("pager", $pager);
+        $c_action_list = db_admin_get_c_action_all();
+        $this->set("c_action_list", $c_action_list);
+        
+        $c_rank_list = db_admin_get_c_rank_all();
         $this->set("c_rank_list", $c_rank_list);
+        
         return 'success';
     }
 }

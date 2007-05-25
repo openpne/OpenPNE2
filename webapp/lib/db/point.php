@@ -30,7 +30,10 @@ function db_point_insert_tags($c_point_log_id, $tags)
 
 function db_point_add_point($c_member_id, $point)
 {
-
+    if (!OPENPNE_USE_POINT_RANK) {
+        return false;
+    }
+    
     // 管理者は加算しない
     if ($c_member_id == 1) {
         return false;
@@ -53,18 +56,28 @@ function db_point_add_point($c_member_id, $point)
             'c_member_id' => intval($c_member_id),
             'c_profile_id'   => intval($c_profile_id),
             'c_profile_option_id' => 0,
-            'value' => 0,
+            'value' => '0',
             'public_flag' => $public_flag,
         );
         db_insert('c_member_profile',$data);
     }
 
+    $before_rank = db_point_get_rank4point($p);
+
     // ポイント加算
     $p = intval($p) + intval($point);
+
+    $after_rank = db_point_get_rank4point($p);
 
     $sql = 'DELETE FROM c_member_profile WHERE c_member_id = ? AND c_profile_id = ?';
     db_query($sql, $params);
     do_config_prof_insert_c_member_profile($c_member_id, $c_profile_id, 0, $p, $public_flag);
+
+    //ランクアップしたらメール送信
+    if ($before_rank['point'] != $after_rank['point']) {
+        send_mail_pcktai_rank_up($c_member_id, $before_rank, $after_rank);
+        send_mail_admin_rank_up($c_member_id, $before_rank, $after_rank);
+    }
 
     return $p;
 }
@@ -81,6 +94,28 @@ function db_point_get_point($c_member_id)
     $sql = 'SELECT value FROM c_member_profile WHERE c_member_id = ? AND c_profile_id = ?';
     $params = array(intval($c_member_id), intval($c_profile_id));
     return db_get_one($sql, $params);
+}
+
+//ポイントからランクを取得
+function db_point_get_rank4point($point)
+{
+    $sql = "SELECT * FROM c_rank WHERE point <= ? ORDER BY point DESC";
+    $params = array(intval($point));
+    return db_get_row($sql, $params);
+}
+
+//ランク情報を全部取得
+function db_point_get_rank_all()
+{
+    $sql = "SELECT * FROM c_rank ORDER BY point";
+    return db_get_all($sql);
+}
+
+//引数で指定したポイントのランクが存在するかどうか
+function db_point_is_rank4point($point)
+{
+    $sql = 'SELECT c_rank_id FROM c_rank WHERE point = ?';
+    return (bool)db_get_one($sql, array(intval($point)));
 }
 
 ?>

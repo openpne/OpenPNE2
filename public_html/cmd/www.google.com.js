@@ -1,13 +1,11 @@
 function url2cmd(url) {
-
 	var www_google_com_maps = url.match(/^http:\/\/www\.google\.com\/maps\?(.+)/);
 		
 	if (www_google_com_maps) {
 	   var id = RegExp.$1;
 	   main(id);
-    }else{
-       document.write('<a href="'+url+'">'+url+'</a>');
-       return;    
+    } else {
+       pne_url2a(url);
     }
 }
 

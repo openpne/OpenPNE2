@@ -17,7 +17,7 @@ class ktai_do_h_diary_edit_insert_c_diary extends OpenPNE_Action
         // --- リクエスト変数
         $subject = $requests['subject'];
         $body = $requests['body'];
-        $public_flag = $requests['public_flag'];
+        $public_flag = util_cast_public_flag_diary($requests['public_flag']);
         $target_c_diary_id = $requests['target_c_diary_id'];
         // ----------
 
@@ -47,9 +47,11 @@ class ktai_do_h_diary_edit_insert_c_diary extends OpenPNE_Action
          */
         db_diary_update_c_diary($update_c_diary_id, $subject, $body, $public_flag);
 
-        //日記を書いた人にポイント付与
-        $point = db_action_get_point4c_action_id(4);
-        db_point_add_point($u, $point);
+        if (OPENPNE_USE_POINT_RANK) {
+            //日記を書いた人にポイント付与
+            $point = db_action_get_point4c_action_id(4);
+            db_point_add_point($u, $point);
+        }
 
         $p = array('target_c_member_id' => $u);
         openpne_redirect('ktai', 'page_fh_diary_list', $p);

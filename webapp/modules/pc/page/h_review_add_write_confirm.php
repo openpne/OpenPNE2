@@ -25,7 +25,7 @@ class pc_page_h_review_add_write_confirm extends OpenPNE_Action
         // ----------
         $product = db_review_write_product4asin($asin);
         if (!$product) {
-            openpne_redirect('pc','page_h_home');
+            handle_kengen_error();
         }
         
         $this->set('inc_navi', fetch_inc_navi('h'));

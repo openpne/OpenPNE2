@@ -28,14 +28,40 @@ class pc_do_h_config_3 extends OpenPNE_Action
         $c_member_id_block = $requests['c_member_id_block'];
         $c_password_query_id = $requests['c_password_query_id'];
         $c_password_query_answer = $requests['c_password_query_answer'];
-        $public_flag_diary = $requests['public_flag_diary'];
+        $public_flag_diary = util_cast_public_flag_diary($requests['public_flag_diary']);
         $is_shinobiashi = $requests['is_shinobiashi'];
         $schedule_start_day = $requests['schedule_start_day'];
         // ----------
 
-        include_once 'OpenPNE/RSS.php';
+        $error_messages = array();
 
-        if ($rss_url = OpenPNE_RSS::auto_discovery($rss)) {
+        if ($rss) {
+            if (!preg_match('|^https?://|', $rss)) {
+                $error_messages[] = 'BlogのURLを正しく入力してください';
+            } else {
+                include_once 'OpenPNE/RSS.php';
+                if (!($rss_url = OpenPNE_RSS::auto_discovery($rss))) {
+                    $error_messages[] = 'BlogのURLが無効です';
+                }
+            }
+        }
+
+        $filtered_id = db_member_filter_c_access_block_id($u, $c_member_id_block);
+        foreach ($c_member_id_block as $each_id) {
+            if (!in_array($each_id, $filtered_id)) {
+                $error_messages[] = 'アクセスブロックに無効なメンバーIDが含まれています';
+                break;
+            }
+        }
+        
+        // error
+        if ($error_messages) {
+            $_REQUEST['msg'] = array_shift($error_messages);
+            openpne_forward('pc', 'page', 'h_config');
+            exit;
+        }
+        
+        if ($rss_url) {
             $c_member = db_member_c_member4c_member_id($u);
             if ($rss_url != $c_member['rss']) {
                 //異なるBlogを登録すると過去のrssは全て削除する

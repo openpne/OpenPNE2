@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="./css/default.css?v=2.2.5" type="text/css">
 ({/if})
 <script type="text/javascript" src="./js/prototype.js"></script>
+<script type="text/javascript" src="./js/pne.js"></script>
 <style type="text/css">
 <!--
 /*枠線要素*/
@@ -73,11 +74,16 @@ body { background-color: #({$INC_HEADER_color_config.bg_12}) ; }
   background: url(({t_img_url_skin filename=icon_3})) 50% 70%  no-repeat ;
 }
 
-* { font-family: "ＭＳ Ｐゴシック", "ヒラギノ角ゴ Pro W3", Osaka, sans-serif ; }
+* { font-family: "Hiragino Kaku Gothic Pro", "Hiragino Kaku Ghothic Pro W3", "ヒラギノ角ゴ Pro W3",({* "メイリオ", Meiryo,*}) "ＭＳ Ｐゴシック", Osaka, sans-serif ; }
+
+/*ここから：safari1.xパスワードフォーム非表示対策*/
+html:\66irst-child input[type="password"] { font-family: "Lucida Grande", "Hiragino Kaku Gothic Pro", "Hiragino Kaku Ghothic Pro W3", "ヒラギノ角ゴ Pro W3",sans-serif,"Osaka" ; }
+/*ここまで：safari1.xパスワードフォーム非表示対策*/
 
 /*テキスト入力欄のフォーカス時のクラス*/
 .text       { background-color:#F8F8F8; }
 .text_focus { background-color:#FFFFFF; }
+
 
 /*ボタンに対する背景画像の指定*/
 input.submit {
@@ -262,20 +268,36 @@ div.inc_page_header div.navi_global a.navi_global_9:hover {
 <script type="text/javascript">
 <!--
 
+({*テキスト入力欄の背景色変更*})
 TextFiledClassName_normal = 'text';
 TextFiledClassName_focus  = 'text_focus';
 
 Event.observe(window, 'load', setFocusClass, false);
+
 function setFocusClass() {
-  var TFs = $A(document.getElementsByClassName(TextFiledClassName_normal));
-  TFs.each(function (node){
-    node.TFclass = node.className;
-    node.TFclass_onfocus = TextFiledClassName_focus;
-    node.onfocus = function() { this.className = this.TFclass_onfocus; };
-    node.onblur  = function() { this.className = this.TFclass; };
-  });
+	var TFs = $A(document.getElementsByClassName(TextFiledClassName_normal));
+	TFs.each(function (node){
+		node.TFclass = node.className;
+		node.TFclass_onfocus = TextFiledClassName_focus;
+		node.onfocus = function() { this.className = this.TFclass_onfocus; };
+		node.onblur  = function() { this.className = this.TFclass; };
+	});
 }
 
+({*二度押し対策*})
+/*
+Event.observe(window, 'load', setSubmitFunction, false);
+
+function setSubmitFunction() {
+	var SFs = $A(document.getElementsByTagName('form'));
+	SFs.each(function (node){
+		node.onsubmit = function() {
+			var obj= $A(node.elements);
+			obj.each( function(n){if(n.type== 'submit') n.disabled= true;})
+		};
+	});
+}
+*/
 //-->
 </script>
 </head>
@@ -283,8 +305,8 @@ function setFocusClass() {
 ({**ここまで：旧inc_html_header.tplの内容**})
 ({***************************************})
 
-({if $smarty.const.OPENPNE_USE_COMMU_MAP && $c_commu.is_display_map})
-<script src="http://maps.google.co.jp/maps?file=api&amp;v=2&amp;key=({$smarty.const.GOOGLE_MAPS_API_KEY})" type="text/javascript"></script>
+({if $smarty.const.OPENPNE_USE_COMMU_MAP && $c_commu.is_display_map && $INC_HEADER_page_name == 'c_home'})
+<script src="http://maps.google.co.jp/maps?file=api&amp;v=2.x&amp;key=({$smarty.const.GOOGLE_MAPS_API_KEY})" type="text/javascript"></script>
 <script type="text/javascript">
 <!--
 function load() {
@@ -307,10 +329,13 @@ function load() {
 }
 //-->
 </script>
-<body onLoad="load()" onUnload="GUnload()" class="({$INC_HEADER_type})">
+<body onLoad="load()" onUnload="GUnload()" id="pc_page_({$INC_HEADER_page_name})">
 ({else})
-<body class="({$INC_HEADER_type})">
+<body id="pc_page_({$INC_HEADER_page_name})">
 ({/if})
+
+({$INC_HEADER_inc_page_top2|smarty:nodefaults})
+
 <div align="left">
 
 <table class="ext_sub_container" border="0" cellspacing="0" cellpadding="0">
@@ -382,7 +407,7 @@ function load() {
 ({if $inc_entry_point[1]})
 <tr>
 <td class="container">
-({$inc_entry_point[1]|smarty:nodefaults})
+({$inc_entry_point[1]|smarty:nodefaults|t_url2cmd:'entry_point'|t_cmd:'entry_point'})
 </td>
 </tr>
 ({/if})
@@ -396,18 +421,17 @@ function load() {
 ({if $inc_entry_point[2]})
 <tr>
 <td class="container">
-({$inc_entry_point[2]|smarty:nodefaults})
+({$inc_entry_point[2]|smarty:nodefaults|t_url2cmd:'entry_point'|t_cmd:'entry_point'})
 </td>
 </tr>
 ({/if})
-({if !$no_use_alert && $msg})
+({if !$no_use_alert && ($msg || $msg1 || $msg2 || $msg3 || $err_msg)})
 <tr>
 <td class="container main_content" align="center">
 
 ({*************************************})
 ({**ここから：旧inc_alert_box.tplの内容**})
 ({*************************************})
-({if $msg || $msg1 || $msg2 || $msg3 || $err_msg})
 <img src="./skin/dummy.gif" class="v_spacer_l">
 
 <!-- ************************* -->
@@ -427,7 +451,6 @@ function load() {
 ({*ここまで：header*})
 ({*ここから：body*})
 <!-- ここから：主内容 -->
-({if !INC_HEADER_is_no_alert})
 <table border="0" cellspacing="0" cellpadding="0" style="width:({if $width})({$width-16})({else})564({/if})px;">
 <tr>
 <td style="width:({if $width})({$width-16})({else})564({/if})px;height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
@@ -450,7 +473,7 @@ function load() {
 ({if $msg2})({$msg2})<br>({/if})
 ({if $msg3})({$msg3})<br>({/if})
 ({foreach from=$err_msg item=item})
-({$item})</br>
+({$item})<br>
 ({/foreach})
 <!-- ここまで：主内容＞警告文本体 -->
 </div>
@@ -461,33 +484,6 @@ function load() {
 <td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 </table>
-({else})
-<table border="0" cellspacing="0" cellpadding="0" style="width:({if $width})({$width-16})({else})564({/if})px;">
-<tr>
-<td style="width:({if $width})({$width-16})({else})564({/if})px;height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-</tr>
-<tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-<td style="width:({if $width})({$width-18})({else})562({/if})px;height:50px;" class="bg_02" align="left" valign="middle">
-<div style="padding:8px 30px;">
-<!-- ここから：主内容＞メッセージ文本体 -->
-({if $msg})({$msg})<br>({/if})
-({if $msg1})({$msg1})<br>({/if})
-({if $msg2})({$msg2})<br>({/if})
-({if $msg3})({$msg3})<br>({/if})
-({foreach from=$err_msg item=item})
-({$item})</br>
-({/foreach})
-<!-- ここまで：主内容＞メッセージ文本体 -->
-</div>
-</td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-</tr>
-<tr>
-<td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-</tr>
-</table>
-({/if})
 <!-- ここまで：主内容 -->
 ({*ここまで：body*})
 ({*ここから：footer*})
@@ -506,7 +502,6 @@ function load() {
 <!-- ******ここまで：警告****** -->
 <!-- ************************* -->
 
-({/if})
 ({*************************************})
 ({**ここまで：旧inc_alert_box.tplの内容**})
 ({*************************************})

@@ -15,7 +15,7 @@
 <input type="hidden" name="target_c_commu_id" value="({$event.c_commu_id})">
 <input type="hidden" name="target_c_commu_topic_id" value="({$event.c_commu_topic_id})">
 タイトル <font color="red">※</font><br>
-<input type="text" name="title" value="({$event.name})" maxlength="120"><br>
+<input type="text" name="title" value="({$event.name})"><br>
 開催日時 <font color="red">※</font><br>
 <select name="open_date_year">
 <option value=0>----
@@ -39,7 +39,7 @@
 詳細 <font color="red">※</font><br>
 <textarea name="detail">({$event.body})</textarea><br>
 募集人数<br>
-<input type="text" name="capacity" value="({$event.capacity})"><br>
+<input type="text" name="capacity" value="({if $event.capacity})({$event.capacity})({/if})"><br>
 募集期限<br>
 <select name="invite_period_year">
 <option value="">----</option>

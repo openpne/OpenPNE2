@@ -14,7 +14,7 @@
 
 <a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$c_commu_topic.c_member_id})&amp;({$tail})">({$c_commu_topic.nickname|default:"&nbsp;"})</a>
 <br>
-({$c_commu_topic.body|nl2br|default:"&nbsp;"})<br>
+({$c_commu_topic.body|t_url2a_ktai|nl2br})<br>
 ({if $c_commu_topic.image_filename1})画像：[<a href="({t_img_url filename=$c_commu_topic.image_filename1 w=120 h=120 f=jpg})">小</a>/<a href="({t_img_url filename=$c_commu_topic.image_filename1 f=jpg})">大</a>]<br>({/if})
 ({if $c_commu_topic.image_filename2})画像：[<a href="({t_img_url filename=$c_commu_topic.image_filename2 w=120 h=120 f=jpg})">小</a>/<a href="({t_img_url filename=$c_commu_topic.image_filename2 f=jpg})">大</a>]<br>({/if})
 ({if $c_commu_topic.image_filename3})画像：[<a href="({t_img_url filename=$c_commu_topic.image_filename3 w=120 h=120 f=jpg})">小</a>/<a href="({t_img_url filename=$c_commu_topic.image_filename3 f=jpg})">大</a>]<br>({/if})
@@ -45,13 +45,15 @@
 ({$c_commu_topic.invite_period|date_format:"%Y年%m月%d日"})<br>
 ({/if})
 詳細：<br>
-({$c_commu_topic.body|nl2br|default:"&nbsp;"})<br>
+({$c_commu_topic.body|t_url2a_ktai|nl2br})<br>
 ({if $c_commu_topic.image_filename1})画像：[<a href="({t_img_url filename=$c_commu_topic.image_filename1 w=120 h=120 f=jpg})">小</a>/<a href="({t_img_url filename=$c_commu_topic.image_filename1 f=jpg})">大</a>]<br>({/if})
 ({if $c_commu_topic.image_filename2})画像：[<a href="({t_img_url filename=$c_commu_topic.image_filename2 w=120 h=120 f=jpg})">小</a>/<a href="({t_img_url filename=$c_commu_topic.image_filename2 f=jpg})">大</a>]<br>({/if})
 ({if $c_commu_topic.image_filename3})画像：[<a href="({t_img_url filename=$c_commu_topic.image_filename3 w=120 h=120 f=jpg})">小</a>/<a href="({t_img_url filename=$c_commu_topic.image_filename3 f=jpg})">大</a>]<br>({/if})
 ({$c_commu_topic.r_datetime|date_format:"%m/%d %H:%M"})<br>
 
+({if $c_commu_topic.member_num})
 <a href="({t_url m=ktai a=page_c_event_member_list})&amp;target_c_commu_topic_id=({$c_commu_topic.c_commu_topic_id})&amp;({$tail})">参加者ﾘｽﾄ</a><br>
+({/if})
 ({if $is_c_event_admin})
 <a href="({t_url m=ktai a=page_c_event_mail})&amp;target_c_commu_topic_id=({$c_commu_topic.c_commu_topic_id})&amp;({$tail})">一括ﾒｯｾｰｼﾞを送る</a><br>
 ({/if})
@@ -71,7 +73,7 @@
 ({if $item.number != 0})
 ({$item.number}).({if $item.nickname})<a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})&amp;({$tail})">({$item.nickname})</a>({/if})
 <br>
-({$item.body|nl2br|default:"&nbsp;"})<br>
+({$item.body|t_url2a_ktai|nl2br})<br>
 ({if $item.image_filename1})画像：[<a href="({t_img_url filename=$item.image_filename1 w=120 h=120 f=jpg})">小</a>/<a href="({t_img_url filename=$item.image_filename1 f=jpg})">大</a>]<br>({/if})
 ({if $item.image_filename2})画像：[<a href="({t_img_url filename=$item.image_filename2 w=120 h=120 f=jpg})">小</a>/<a href="({t_img_url filename=$item.image_filename2 f=jpg})">大</a>]<br>({/if})
 ({if $item.image_filename3})画像：[<a href="({t_img_url filename=$item.image_filename3 w=120 h=120 f=jpg})">小</a>/<a href="({t_img_url filename=$item.image_filename3 f=jpg})">大</a>]<br>({/if})
@@ -103,7 +105,7 @@
 <input type="hidden" name="target_c_commu_topic_id" value="({$c_commu_topic_id})">
 <textarea name="body"></textarea><br>
 ({if $c_commu_topic.event_flag})
-({if !$is_c_event_admin})
+({if $is_event_join_date})
 ({if !$is_c_event_member})
 
 ({if not $c_commu_topic.capacity or ($c_commu_topic.capacity gt $c_commu_topic.member_num) })

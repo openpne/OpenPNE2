@@ -1,6 +1,6 @@
 ({$inc_header|smarty:nodefaults})
 ({ext_include file="inc_subnavi_adminDesign.tpl"})
-({assign var="page_name" value="配色設定・カスタムCSS追加"})
+({assign var="page_name" value="配色・CSS変更"})
 ({ext_include file="inc_tree_adminDesign.tpl"})
 </div>
 
@@ -37,6 +37,9 @@ function set_preset_color (target,color) {
 function set_textarea_for_color_config () {
     var str_1 = "";
     for (key in bgcolors) {
+        if (key.indexOf("border") == -1 &&  key.indexOf("bg") == -1) {
+            continue;
+        }
         str_1 += key;
         str_1 += ":#";
         str_1 += bgcolors[key];

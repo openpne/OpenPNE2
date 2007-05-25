@@ -1,8 +1,8 @@
 ({$inc_header|smarty:nodefaults})
 ({ext_include file="inc_subnavi_adminSNSConfig.tpl"})
 
-({assign var="parent_page_name" value="ランク設定"})
-({capture name=parent_page_url})?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_rank')})'({/capture})
+({assign var="parent_page_name" value="ポイント・ランク設定"})
+({capture name=parent_page_url})?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_rank')})({/capture})
 
 ({assign var="page_name" value="ランク削除確認画面"})
 ({ext_include file="inc_tree_adminSNSConfig.tpl"})
@@ -19,11 +19,11 @@
 <td>({$c_rank.c_rank_id})</td>
 </tr>
 <tr>
-<th>項目名</th>
+<th>ランク名</th>
 <td>({$c_rank.name})</td>
 </tr>
 <tr>
-<th>画像</th>
+<th>ランク画像</th>
 <td><a href="({t_img_url filename=$c_rank.image_filename})" target="_blank"><img src="({t_img_url filename=$c_rank.image_filename w=180 h=180})"></a></td>
 </tr>
 <tr>

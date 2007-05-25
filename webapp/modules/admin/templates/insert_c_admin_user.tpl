@@ -15,7 +15,7 @@
 <h2>アカウント追加</h2>
 <div class="contents">
 
-<p>管理画面用のアカウントを追加することができます。</p>
+<p>管理用アカウントを追加することができます。</p>
 <p class="caution" id="c01">※パスワードは6～12文字の半角英数で入力してください</p>
 
 <form action="./" method="post">
@@ -25,7 +25,7 @@
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('insert_c_admin_user','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
-ユーザ名</th>
+アカウント名</th>
 <td><input class="basic" type="text" name="username" value="" size="20" /></td>
 </tr>
 <tr>
@@ -40,8 +40,8 @@
 <th>権限</th>
 <td><select class="basic" name="auth_type">
 <option value="all">全権限</option>
-<option value="">メンバーリスト以外全て</option>
-<option value="normal">SNS設定のみ</option>
+<option value="">「メンバーリスト関連部分」以外全て</option>
+<option value="normal">「メンバーリスト関連部分」「SNS内データ閲覧部分」以外全て</option>
 </select></td>
 </tr>
 </table>

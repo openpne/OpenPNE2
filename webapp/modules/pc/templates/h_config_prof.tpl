@@ -98,7 +98,7 @@
 
 <div class="padding_s">
 
-<input type="text" class="text" name="birth_year" value="({$c_member.birth_year})" size="10" maxlength="4">年
+<input type="text" class="text" name="birth_year" value="({if $c_member.birth_year})({$c_member.birth_year})({/if})" size="10" maxlength="4">年
 
 </div>
 
@@ -239,8 +239,6 @@
     ({if $_cnt % 3 != 0})</tr>({/if})
     </table>
 ({elseif $profile.form_type == 'checkbox'})
-    <input type="hidden" name="profile[({$profile.name})][]" value="0">
-
     <table>
     ({foreach item=item from=$profile.options name=check})
     ({counter name=$profile.name assign=_cnt})
