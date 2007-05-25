@@ -409,7 +409,7 @@ $ chmod 0755 bin/*.cron
 
 <p>また、管理メニューの「管理画面設定 ＞ ページ名ランダム生成」でランダム生成を実行すると管理画面内のページ名を変更することができるので、セキュリティ向上のためセットアップ後に必ず実行しておくことをおすすめします。</p>
 
-<h3 id="section6-2">6-2. 管理画面のモジュール名を変更する</h3>
+<h3 id="section6-2">6-2. 管理画面のモジュール名を変更する (オプション)</h3>
 
 <p>管理画面のURLを変更する場合は、設定ファイル config.php 内にある <em>ADMIN_MODULE_NAME</em> の値を変更してください。</p>
 <div>例えば、abcde に変更した場合、
@@ -419,20 +419,15 @@ $ chmod 0755 bin/*.cron
 </pre>
 というURLから管理画面へアクセスすることができます。</div>
 
-<h3 id="section6-3">6-3. 管理画面を別ドメインで運用する</h3>
+<h3 id="section6-3">6-3. 管理画面を別ドメインで運用する (オプション)</h3>
 
-<p>管理画面を別ドメインで運用する場合は、setup/admin/public_html 以下のファイル、ディレクトリを管理画面用の公開ディレクトリにコピーし、config.inc.php の内容を環境に合わせて書き換えてください。</p>
+<p>管理画面を通常とは別のドメインで運用したい場合やBasic認証を使用してアクセス制限したい場合など、
+Webサーバから読み込まれる公開ディレクトリを分けて運用したい場合があります。</p>
+
+<p>OpenPNEでは、public_html 以下のファイルを管理画面用の公開ディレクトリにコピーし、config.inc.php の内容を書き換えることによりこれを実現することができます。</p>
 
 <div>
-例えば、以下のようなURLになります。
-<pre>
-<var>OPENPNE_ADMIN_URL</var>?m=<var>ADMIN_MODULE_NAME</var>
-（例）http://admin.example.com/?m=admin
-</pre>
-</div>
-
-<p>SNSのメンバー画面と管理画面を別サーバで運用する場合は、以下のようなディレクトリ構成にし、メンバー画面用の設定ファイル(config.php)と同内容のファイルをconfig.inc.php から読み込めるようにしてください。</p>
-
+ディレクトリ構成
 <pre>
 - <var>OPENPNE_DIR</var>
   ├ bin
@@ -443,23 +438,54 @@ $ chmod 0755 bin/*.cron
   ├ webapp_biz
   └ config.php
 
-(http://sns.example.com/)
+[http://sns.example.com/]
 - <var>public_html </var>(ディレクトリ名は変更可能)
-  ├ config.inc.php (<var>OPENPNE_DIR</var> ディレクトリを指定)
+  ├ config.inc.php
   ├ index.php
      ...
+    <em>↓コピー</em>
 
-(http://admin.example.com/)
+[http://admin.example.com/]
 - <var>admin_public_html</var> (ディレクトリ名は変更可能)
-  ├ config.inc.php (<var>OPENPNE_DIR</var> ディレクトリを指定)
+  ├ <em>config.inc.php (←このファイルを書き換える)</em>
   ├ index.php
-  ├ modules
-  │ └ admin
-  │     └ default.css
-  └ skin
-      └ dummy.gif
+     ...
 </pre>
+</div>
 
+<div>
+config.inc.php (<em>強調部分</em>の2項目を追加します)
+<pre>
+&lt;?php
+/**
+ * @copyright 2005-2007 OpenPNE Project
+ * @license   http://www.php.net/license/3_01.txt PHP License 3.01
+ */
+
+define('OPENPNE_DIR', realpath('../'));
+require_once OPENPNE_DIR . '/config.php';
+
+// 管理画面のベースURL設定
+<em>define('OPENPNE_ADMIN_URL', 'http://admin.example.com/');</em>
+
+// 無効にするモジュール
+<em>$GLOBALS['_OPENPNE_DISABLE_MODULES'] = array('pc', 'ktai');</em>
+?&gt;
+</pre>
+</div>
+
+<p>以上で、管理画面用のURL(例：http://admin.example.com/) でアクセスするための設定は完了です。</p>
+
+<p>一方、通常のURL(例：http://sns.example.com/?m=admin) では管理画面へのアクセスができないようにするために、
+config.php で以下の設定をしておきます。</p>
+
+<div>
+config.php
+<pre>
+// 無効にするモジュール
+$GLOBALS['_OPENPNE_DISABLE_MODULES'] = array('admin', 'setup');
+</pre>
+</div>
 
 <hr>
 
