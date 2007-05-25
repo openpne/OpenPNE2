@@ -52,7 +52,7 @@ function biz_getScheduleWeek($u, $member_id, $w, $cmd, $head = true, $value = tr
         //プロフィール確認かどうか
         $cmd_head = $cmd;
     } else {
-        $cmd_head = 'h';
+        $cmd_head = 'f';
     }
 
     $inc_smarty = new OpenPNE_Smarty($GLOBALS['SMARTY']);
@@ -60,7 +60,7 @@ function biz_getScheduleWeek($u, $member_id, $w, $cmd, $head = true, $value = tr
     $inc_smarty->templates_dir = 'biz/templates';
 
     $inc_smarty->assign("cmd", $cmd_head);  //操作の対象ページ
-    $inc_smarty->assign("target_id", $member_id);  //予定登録者
+    $inc_smarty->assign("target_id", $member_id);  //予定参加者
 
     require_once 'Calendar/Week.php';
     $w = intval($w);
@@ -121,7 +121,7 @@ function biz_getScheduleWeek($u, $member_id, $w, $cmd, $head = true, $value = tr
     $daylist = $calendar;  //コピー
 
     for ($i = 1; $i <= 2; $i++) {
-        $j = 0;  //曜日ポインタを示す
+        $j = $start_day;  //曜日ポインタを示す
 
         $time = strtotime($w+$i . " week");
         $Week = new Calendar_Week(date('Y', $time), date('m', $time), date('d', $time),$start_day);
@@ -168,6 +168,15 @@ function biz_getScheduleWeek($u, $member_id, $w, $cmd, $head = true, $value = tr
     if ($cmd == 'h') {
         $stateform = biz_getStateForm($member_id, true);
         $inc_smarty->assign('stateform', $stateform);
+
+        if (OPENPNE_USE_POINT_RANK) {
+            // ポイント
+            $point = db_point_get_point($member_id);
+            $inc_smarty->assign("point", $point);
+
+            // ランク
+            $inc_smarty->assign("rank", db_point_get_rank4point($point));
+        }
     }
 
     $content = $inc_smarty->fetch('file:'.OPENPNE_MODULES_BIZ_DIR.'/biz/templates/inc_biz_schedule_week.tpl');

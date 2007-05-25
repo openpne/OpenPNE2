@@ -1,6 +1,11 @@
 <?php
 class ktai_biz_do_fh_biz_todo_add extends OpenPNE_Action
 {
+    function handleError($errors)
+    {
+        ktai_display_error($errors);
+    }
+
     function execute($requests)
     {
         $u  = $GLOBALS['KTAI_C_MEMBER_ID'];
@@ -15,9 +20,14 @@ class ktai_biz_do_fh_biz_todo_add extends OpenPNE_Action
         $is_all = $requests['is_all'];
         // ----------
 
-		if (!biz_isPermissionTodo($u, $id)) {
-		    handle_kengen_error();
-		}
+        if (!biz_isPermissionTodo($u, $id)) {
+            handle_kengen_error();
+        }
+
+        if (empty($value)) {
+            $p = array('msg' => 1);
+            ktai_biz_openpne_redirect('ktai_biz', 'page_fh_biz_todo_add', $p);
+        }
 
         if ($due_datetime_y && $due_datetime_m && $due_datetime_d) {
             $due_datetime = $due_datetime_y . '-' . $due_datetime_m . '-' . $due_datetime_d . ' 00:00:00';            

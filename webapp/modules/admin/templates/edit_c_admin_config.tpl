@@ -31,7 +31,7 @@
 <tr class="cell03">
 <th colspan="2">管理用メールアドレス</th>
 <td>
-<span class="info">ユーザに送られるメールのFromに設定されます</span><br />
+<span class="info">メンバーに送られるメールのFromに設定されます</span><br />
 <input class="basic" name="ADMIN_EMAIL" type="text" value="({$smarty.const.ADMIN_EMAIL})" size="40" /></td>
 </tr>
 <tr class="cell04">
@@ -42,7 +42,7 @@
 </td>
 </tr>
 <tr class="cell05">
-<th colspan="2">ユーザ招待可否</th>
+<th colspan="2">メンバー招待可否</th>
 <td>
 <select class="basic" name="IS_USER_INVITE">
 <option value="1"({if $smarty.const.IS_USER_INVITE}) selected="selected"({/if})>招待可にする</option>
@@ -80,11 +80,11 @@
 </td>
 </tr>
 <tr class="cell27">
-<th colspan="2">端末IDの取得設定</th>
+<th colspan="2">個体識別番号の取得設定</th>
 <td>
-<input class="basicRadio" name="IS_GET_EASY_ACCESS_ID" id="IS_GET_EASY_ACCESS_ID_2" type="radio" value="2"({if $smarty.const.IS_GET_EASY_ACCESS_ID == 2}) checked="checked"({/if}) /><label for="IS_GET_EASY_ACCESS_ID_2">携帯登録時に端末IDを取得する(必須)</label><br />
-<input class="basicRadio" name="IS_GET_EASY_ACCESS_ID" id="IS_GET_EASY_ACCESS_ID_1" type="radio" value="1"({if $smarty.const.IS_GET_EASY_ACCESS_ID == 1}) checked="checked"({/if}) /><label for="IS_GET_EASY_ACCESS_ID_1">携帯登録時に端末IDを取得する(任意)</label><br />
-<input class="basicRadio" name="IS_GET_EASY_ACCESS_ID" id="IS_GET_EASY_ACCESS_ID_0" type="radio" value="0"({if $smarty.const.IS_GET_EASY_ACCESS_ID == 0}) checked="checked"({/if}) /><label for="IS_GET_EASY_ACCESS_ID_0">携帯登録時に端末IDを取得しない</label>
+<input class="basicRadio" name="IS_GET_EASY_ACCESS_ID" id="IS_GET_EASY_ACCESS_ID_2" type="radio" value="2"({if $smarty.const.IS_GET_EASY_ACCESS_ID == 2}) checked="checked"({/if}) /><label for="IS_GET_EASY_ACCESS_ID_2">携帯登録時に個体識別番号を取得する(必須)</label><br />
+<input class="basicRadio" name="IS_GET_EASY_ACCESS_ID" id="IS_GET_EASY_ACCESS_ID_1" type="radio" value="1"({if $smarty.const.IS_GET_EASY_ACCESS_ID == 1}) checked="checked"({/if}) /><label for="IS_GET_EASY_ACCESS_ID_1">携帯登録時に個体識別番号を取得する(任意)</label><br />
+<input class="basicRadio" name="IS_GET_EASY_ACCESS_ID" id="IS_GET_EASY_ACCESS_ID_0" type="radio" value="0"({if $smarty.const.IS_GET_EASY_ACCESS_ID == 0}) checked="checked"({/if}) /><label for="IS_GET_EASY_ACCESS_ID_0">携帯登録時に個体識別番号を取得しない</label>
 </td>
 </tr>
 <tr class="cell09">
@@ -161,7 +161,7 @@
 <tr class="cell18">
 <th colspan="2">忍び足機能使用設定</th>
 <td>
-<span class="info">忍び足機能(ユーザによるあしあとを残すかどうかの設定)を有効にするかどうかを設定します</span><br />
+<span class="info">忍び足機能(メンバーによるあしあとを残すかどうかの設定)を有効にするかどうかを設定します</span><br />
 <select class="basic" name="USE_SHINOBIASHI">
 <option value="1"({if $smarty.const.USE_SHINOBIASHI}) selected="selected"({/if})>使用する</option>
 <option value="0"({if !$smarty.const.USE_SHINOBIASHI}) selected="selected"({/if})>使用しない</option>
@@ -180,29 +180,40 @@
 <tr class="cell20">
 <th colspan="2">cmdタグ使用設定</th>
 <td>
-<span class="info">独自タグ cmd をユーザが使えるようにするかどうかを設定します</span><br />
+<span class="info">独自タグ cmd をメンバーが使えるようにするかどうかを設定します</span><br />
 <select class="basic" name="OPENPNE_USE_CMD_TAG">
 <option value="1"({if $smarty.const.OPENPNE_USE_CMD_TAG}) selected="selected"({/if})>使用する</option>
 <option value="0"({if !$smarty.const.OPENPNE_USE_CMD_TAG}) selected="selected"({/if})>使用しない</option>
 </select></td>
 </tr>
-<tr class="cell28">
+<tr class="cell31">
+<th colspan="2">ポイント・ランク使用設定</th>
+<td>
+<span class="info">ポイント・ランク機能を使用するかどうかを設定します</span><br />
+<select class="basic" name="OPENPNE_USE_POINT_RANK">
+<option value="1"({if $smarty.const.OPENPNE_USE_POINT_RANK}) selected="selected"({/if})>使用する</option>
+<option value="0"({if !$smarty.const.OPENPNE_USE_POINT_RANK}) selected="selected"({/if})>使用しない</option>
+</select></td>
+</tr>
+<tr class="cell32">
 <th colspan="2">ポイント表示設定</th>
 <td>
-<span class="info">ポイントをh_home等に表示するかどうかを設定します</span><br />
+<span class="info">ポイントをPC・携帯版ホームに表示するかどうかを設定します</span><br />
 <select class="basic" name="OPENPNE_DISP_POINT">
 <option value="1"({if $smarty.const.OPENPNE_DISP_POINT}) selected="selected"({/if})>表示する</option>
 <option value="0"({if !$smarty.const.OPENPNE_DISP_POINT}) selected="selected"({/if})>表示しない</option>
-</select></td>
+</select><br />
+<span class="caution">※ポイント・ランク使用設定が「使用しない」に設定されている場合は表示されません</span></td>
 </tr>
-<tr class="cell29">
+<tr class="cell33">
 <th colspan="2">ランク表示設定</th>
 <td>
-<span class="info">ランクをh_home等に表示するかどうかを設定します</span><br />
+<span class="info">ランクをPC・携帯版ホームに表示するかどうかを設定します</span><br />
 <select class="basic" name="OPENPNE_DISP_RANK">
 <option value="1"({if $smarty.const.OPENPNE_DISP_RANK}) selected="selected"({/if})>表示する</option>
 <option value="0"({if !$smarty.const.OPENPNE_DISP_RANK}) selected="selected"({/if})>表示しない</option>
-</select></td>
+</select><br />
+<span class="caution">※ポイント・ランク使用設定が「使用しない」に設定されている場合は表示されません</span></td>
 </tr>
 <tr class="cell21">
 <th colspan="2">ログイン制限</th>
@@ -264,9 +275,10 @@
 </td>
 </tr>
 <tr class="cell24">
-<th colspan="2">アフィリエイト用タグ</th>
+<th rowspan="2">アフィリエイト用タグ</th>
+<th>PC用</th>
 <td>
-<span class="info">PC版登録完了ページに挿入されます</span><br />
+<span class="info">PC版の登録完了ページに挿入されます</span><br />
 <textarea class="basic" name="AFFILIATE_TAG" cols="60" rows="3">({$smarty.const.AFFILIATE_TAG})</textarea>
 <dl class="caution">
 	({literal})
@@ -278,8 +290,23 @@
 </dl>
 </td>
 </tr>
+<tr class="cell24B">
+<th>携帯用</th>
+<td>
+<span class="info">携帯版の登録完了ページに挿入されます</span><br />
+<textarea class="basic" name="AFFILIATE_KTAI_TAG" cols="60" rows="3">({$smarty.const.AFFILIATE_KTAI_TAG})</textarea>
+<dl class="caution">
+	({literal})
+	<dt>【記入例】</dt>
+	<dd>&lt;img src="https://px.a8.net/cgi-bin/a8fly/sales?pid=s0001&amp;so=<strong>({$ID})</strong>&amp;si=000.000.A8&amp;ts=<strong>({$DATETIME})</strong>"&nbsp;width="1" height="1"&gt;</dd>
+	<dt>【タグ内で利用可能な変数】</dt>
+	<dd>({$ID})：メンバーID<br />({$DATETIME})：日時（YYYYMMDDHHMMSS形式）<br />({$AFF_ID})：アフィリエイトID（アフィリエイト用登録ページから引き継がれる）</dd>
+	({/literal})
+</dl>
+</td>
+</tr>
 <tr class="cell25">
-<th colspan="2">Yahoo天気／Googleの使用欄</th>
+<th colspan="2">天気リンク/検索窓の使用</th>
 <td>
 <span class="info">外部サービスを使用するかどうかを設定します</span><br />
 <select class="basic" name="USE_EXTRA_SERVICE">
@@ -296,7 +323,6 @@
 <option value="0"({if !$smarty.const.USE_BIZ_DIR}) selected="selected"({/if})>使用しない</option>
 </select></td>
 </tr>
-
 <tr class="cell28">
 <th colspan="2">退会者のデータ</th>
 <td>
@@ -306,7 +332,6 @@
 <option value="0"({if !$smarty.const.SEND_USER_DATA}) selected="selected"({/if})>転送しない</option>
 </select></td>
 </tr>
-
 </table>
 <p class="textBtn"><input type="submit" value="設定変更する"></p>
 </form>

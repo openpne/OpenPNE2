@@ -36,6 +36,7 @@ class OpenPNE_Config
             'OPENPNE_DISP_POINT', 'OPENPNE_DISP_RANK',
             'SKIN_VERSION',
             'AFFILIATE_TAG',
+            'AFFILIATE_KTAI_TAG',
             'UNUSED_MAILS',
             'DISPLAY_OPENPNE_INFO',
             'USE_EXTRA_SERVICE',
@@ -46,6 +47,7 @@ class OpenPNE_Config
             'LIMIT_DOMAIN3',
             'LIMIT_DOMAIN4',
             'LIMIT_DOMAIN5',
+            'OPENPNE_USE_POINT_RANK',
         );
     }
 
@@ -123,6 +125,7 @@ class OpenPNE_Config
             'OPENPNE_ENABLE_ROLLOVER' => true,
             'SKIN_VERSION' => '2.0',
             'AFFILIATE_TAG' => '',
+            'AFFILIATE_KTAI_TAG' => '',
             'UNUSED_MAILS' => '',
             'USE_EXTRA_SERVICE' => '1',
             'USE_BIZ_DIR' => '0',
@@ -132,7 +135,9 @@ class OpenPNE_Config
             'LIMIT_DOMAIN3' => '',
             'LIMIT_DOMAIN4' => '',
             'LIMIT_DOMAIN5' => '',
-
+            'OPENPNE_USE_POINT_RANK' => 0,
+            'OPENPNE_DISP_POINT' => 1,
+            'OPENPNE_DISP_RANK' => 1,
         // config.php
             'OPENPNE_RSS_CACHE_DIR' => OPENPNE_VAR_DIR . '/rss_cache',
             'OPENPNE_UNDER_MAINTENANCE' => false,
@@ -141,6 +146,7 @@ class OpenPNE_Config
             'OPENPNE_USE_API' => false,
             'SESSION_SAVE_DB' => false,
             'OPENPNE_TMP_IMAGE_DB' => false,
+            'OPENPNE_TMP_FILE_DB' => false,
             'OPENPNE_USE_PARTIAL_SSL' => false,
             'OPENPNE_USE_SSL_PARAM' => false,
             'OPENPNE_IMG_URL' => '',
@@ -149,6 +155,9 @@ class OpenPNE_Config
             'IMAGE_MAX_FILESIZE' => 300,
             'IMAGE_MAX_WIDTH' => 0,
             'IMAGE_MAX_HEIGHT' => 0,
+            'OPENPNE_USE_FILEUPLOAD' => false,
+            'FILE_MAX_FILESIZE' => 300,
+            'FILE_ALLOWED_EXTENTIONS' => '',
             'MAIL_ADDRESS_PREFIX' => '',
             'MAIL_ADDRESS_HASHED' => true,
             'MAIL_HAN2ZEN' => true,
@@ -162,7 +171,6 @@ class OpenPNE_Config
             'ADMIN_MODULE_NAME' => 'admin',
             'ADMIN_INIT_CONFIG' => true,
             'SERVER_IP_KEY' => 'REMOTE_ADDR',
-            'OPENPNE_USE_CMD_TAG' => true,
             'OPENPNE_USE_FUNCTION_CACHE' => false,
             'OPENPNE_USE_MYSQL_HINT' => false,
             'OPENPNE_USE_FLASH_LIST' => true,
@@ -171,8 +179,6 @@ class OpenPNE_Config
             'OPENPNE_SESSION_CHECK_URL' => false,
             'OPENPNE_INFO_URL' => 'http://info.openpne.jp/rss',
             'DISPLAY_OPENPNE_INFO' => true,
-            'OPENPNE_DISP_POINT' => false,
-            'OPENPNE_DISP_RANK' => false,
             'IS_SLAVEPNE' => false,
         // 固定値
             'AMAZON_TOKEN'   => '1WZYY1W9YF49AGM0RTG2',

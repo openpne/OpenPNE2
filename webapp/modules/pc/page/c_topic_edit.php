@@ -46,8 +46,17 @@ class pc_page_c_topic_edit extends OpenPNE_Action
             $c_topic['body'] = $body;
         }
 
+        if (!empty($c_topic['filename'])) {
+            $original_filename = db_file_original_filename4filename($c_topic['filename']);
+            $c_topic['original_filename'] = $original_filename;
+        }
+
         $this->set('err_msg', $err_msg);
         $this->set('c_topic', $c_topic);
+
+        // 許可されている拡張子のリスト
+        $this->set('allowed_extensions', util_get_file_allowed_extensions('string'));
+
         return 'success';
     }
 }

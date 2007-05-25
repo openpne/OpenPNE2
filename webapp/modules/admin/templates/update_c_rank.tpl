@@ -1,14 +1,14 @@
 ({$inc_header|smarty:nodefaults})
 ({ext_include file="inc_subnavi_adminSNSConfig.tpl"})
 
-({assign var="parent_page_name" value="ランク設定"})
-({capture name=parent_page_url})?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_rank')})'({/capture})
+({assign var="parent_page_name" value="ポイント・ランク設定"})
+({capture name=parent_page_url})?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_rank')})({/capture})
 
-({assign var="page_name" value="ランク編集"})
+({assign var="page_name" value="ランク変更"})
 ({ext_include file="inc_tree_adminSNSConfig.tpl"})
 </div>
 
-<h2>ランク編集</h2>
+<h2>ランク変更</h2>
 <div class="contents">
 ({if $msg})<p class="actionMsg">({$msg})</p>({/if})
 
@@ -25,11 +25,11 @@
 <td>({$c_rank.c_rank_id})</td>
 </tr>
 <tr>
-<th>項目名</th>
+<th>ランク名</th>
 <td><input type="text" class="basic" name="name" value="({$c_rank.name})" size="20"></td>
 </tr>
 <tr>
-<th>画像</th>
+<th>ランク画像</th>
 <td><a href="({t_img_url filename=$c_rank.image_filename})" target="_blank"><img src="({t_img_url filename=$c_rank.image_filename w=180 h=180})"></a><br>
 <div><input type="file" name="image_upfile" size="20"></div></td>
 </tr>

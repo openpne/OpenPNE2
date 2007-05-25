@@ -56,6 +56,7 @@
 ({*ここから：footer*})
 <!-- 無し -->
 ({*ここまで：footer*})
+</td>
 <td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
 </tr>
 <tr>

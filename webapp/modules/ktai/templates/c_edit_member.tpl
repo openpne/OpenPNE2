@@ -15,7 +15,8 @@
 <br>
 ({/if})
 
-({if count($c_member_list) > 1 && $c_commu.c_member_id_sub_admin != $u})
+({if $count_member > 1 && $c_commu.c_member_id_sub_admin != $u})
+({if $admin_list})
 <hr>
 
 ◆管理者交代の要請
@@ -24,16 +25,16 @@
 <input type="hidden" name="target_c_commu_id" value="({$c_commu.c_commu_id})">
 ﾒﾝﾊﾞｰ<br>
 <select name="target_c_member_id">
-({foreach from=$c_member_list item=item})
-({if $item.c_member_id != $u})
+({foreach from=$admin_list item=item})
 <option value="({$item.c_member_id})">({$item.nickname})
-({/if})
 ({/foreach})
 </select><br>
 ﾒｯｾｰｼﾞ<br>
 <textarea name="body"></textarea><br>
 <input type="submit" value="送信">
 </form>
+({/if})
+({if $subadmin_list})
 <hr>
 
 ◆副管理者の要請
@@ -42,16 +43,15 @@
 <input type="hidden" name="target_c_commu_id" value="({$c_commu.c_commu_id})">
 ﾒﾝﾊﾞｰ<br>
 <select name="target_c_member_id">
-({foreach from=$c_member_list item=item})
-({if $item.c_member_id != $u && $item.c_member_id != $c_commu.c_member_id_sub_admin})
+({foreach from=$subadmin_list item=item})
 <option value="({$item.c_member_id})">({$item.nickname})
-({/if})
 ({/foreach})
 </select><br>
 ﾒｯｾｰｼﾞ<br>
 <textarea name="body"></textarea><br>
 <input type="submit" value="送信">
 </form>
+({/if})
 
 ({/if})
 

@@ -25,7 +25,7 @@ class biz_page_fh_biz_schedule_calendar extends OpenPNE_Action
             //他人
             $target_id = $requests['target_id'];
             $this->set('is_f', true);  //判別フラグ
-            $this->set('inc_navi',fetch_inc_navi('f'));
+            $this->set('inc_navi',fetch_inc_navi('f', $target_id));
         }
 
         if (!$year) {

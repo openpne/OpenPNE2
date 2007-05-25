@@ -16,7 +16,7 @@ class pc_page_c_member_review_add_confirm extends OpenPNE_Action
         // ----------
 
         //--- 権限チェック
-        //コミュニティメンバ
+        //コミュニティメンバー
         if (!db_commu_is_c_commu_member($c_commu_id, $u)) {
             handle_kengen_error();
         }
@@ -29,6 +29,10 @@ class pc_page_c_member_review_add_confirm extends OpenPNE_Action
         }
 
         $c_member_review = db_review_c_member_review_add_confirm_c_member_review4c_review_id($c_review_id, $u);
+        if (!$c_member_review) {
+            handle_kengen_error();
+        }
+        
         $this->set('c_member_review', $c_member_review);
         $this->set('c_commu', db_commu_c_commu4c_commu_id($c_commu_id));
         $this->set('c_review_id', $c_review_id);

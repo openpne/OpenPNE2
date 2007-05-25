@@ -350,37 +350,6 @@
 
 <tr>
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-<td class="bg_05" align="center" valign="middle">
-
-<div class="padding_s">
-
-年齢制限
-
-</div>
-
-</td>
-<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-<td class="bg_02" align="left" valign="middle">
-
-<div class="padding_s">
-
-<input type="radio" class="no_bg" name="is_adult" value="0"({if !$c_commu.is_adult}) checked="checked"({/if})>全年齢対象<br>
-<input type="radio" class="no_bg" name="is_adult" value="1"({if $c_commu.is_adult}) checked="checked"({/if})>18歳以上<br>
-
-</div>
-
-</td>
-<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-</tr>
-({*********})
-<tr>
-<td class="bg_01" colspan="5"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-</tr>
-({*********})
-
-
-<tr>
-<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 <td class="bg_03" align="center" valign="middle" colspan="3">
 
 <div class="padding_w_m">

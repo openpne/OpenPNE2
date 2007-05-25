@@ -399,7 +399,6 @@
 ({*ここまで：header*})
 ({*ここから：body*})
 <!-- ここから：主内容 -->
-({if $diary_list_count >= $page_size })
 <!-- ここから：主内容＞＞件数表示終わり -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:524px;" class="border_01">
 ({*********})
@@ -409,11 +408,11 @@
 ({*********})
 <tr>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-<td style="width:522px;" class="bg_06" align="right" valign="middle">
+<td style="width:522px;" class="bg_02" align="right" valign="middle">
 <div style="padding:4px 3px;">
 
 ({if $is_prev})
-<a href="({t_url m=pc a=page_fh_diary_list})&amp;target_c_member_id=({$target_member.c_member_id})&amp;direc=-1&amp;page=({$page})({if $url_keyword})&amp;keyword=({$url_keyword})({/if})({if !$all})({if $date_val.year})&amp;year=({$date_val.year})({/if})({if $date_val.month})&amp;month=({$date_val.month})({/if})({if $date_val.day})&amp;day=({$date_val.day})({/if})({/if})">前を表示</a>
+<a href="({t_url m=pc a=page_fh_diary_list})&amp;target_c_member_id=({$target_member.c_member_id})&amp;direc=-1&amp;page=({$page})({if $url_keyword})&amp;keyword=({$url_keyword})({/if})({if $category_id})&amp;category_id=({$category_id})({elseif !$all})({if $date_val.year})&amp;year=({$date_val.year})({/if})({if $date_val.month})&amp;month=({$date_val.month})({/if})({if $date_val.day})&amp;day=({$date_val.day})({/if})({/if})">前を表示</a>
 ({/if})
 ({$total_num})件中
 ({$page*$page_size-$page_size+1})件～
@@ -424,7 +423,7 @@
 ({/if})
 件を表示
 ({if $is_next})
-<a href="({t_url m=pc a=page_fh_diary_list})&amp;target_c_member_id=({$target_member.c_member_id})&amp;direc=1&amp;page=({$page})({if $url_keyword})&amp;keyword=({$url_keyword})({/if})({if !$all})({if $date_val.year})&amp;year=({$date_val.year})({/if})({if $date_val.month})&amp;month=({$date_val.month})({/if})({if $date_val.day})&amp;day=({$date_val.day})({/if})({/if})">次を表示</a>
+<a href="({t_url m=pc a=page_fh_diary_list})&amp;target_c_member_id=({$target_member.c_member_id})&amp;direc=1&amp;page=({$page})({if $url_keyword})&amp;keyword=({$url_keyword})({/if})({if $category_id})&amp;category_id=({$category_id})({elseif !$all})({if $date_val.year})&amp;year=({$date_val.year})({/if})({if $date_val.month})&amp;month=({$date_val.month})({/if})({if $date_val.day})&amp;day=({$date_val.day})({/if})({/if})">次を表示</a>
 ({/if})
 
 </div>
@@ -432,21 +431,12 @@
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({*********})
-<tr>
-<td style="width:524px;height:1px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-</tr>
-({*********})
 </table>
 <!-- ここまで：主内容＞＞件数表示終わり -->
-({/if})
 <!-- ここから：主内容＞＞日記表示 -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:524px;" class="border_01">
 ({*********})
-<tr>
-<td style="width:522px;height:1px;" class="bg_01" colspan="7"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-</tr>
-({*********})
-({foreach from=$target_diary_list item=item})
+({foreach from=$target_diary_list item=item name=tdl})
 <tr>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 <td style="width:66px;" class="bg_05" align="center" valign="top" rowspan="({if $type == "h"})7({else})5({/if})">
@@ -546,29 +536,26 @@
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({*********})
+({if !$smarty.foreach.tdl.last})
 <tr>
 <td style="height:1px;" class="bg_01" colspan="7"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({*********})
+({/if})
 ({/foreach})
 ({*********})
 </table>
 <!-- ここまで：主内容＞＞日記表示 -->
-({if $diary_list_count >= $page_size })
 <!-- ここから：主内容＞＞件数表示終わり -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:524px;" class="border_01">
 ({*********})
 <tr>
-<td style="width:522px;height:1px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-</tr>
-({*********})
-<tr>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-<td style="width:520px;" class="bg_06" align="right" valign="middle">
+<td style="width:520px;" class="bg_02" align="right" valign="middle">
 <div style="padding:4px 3px;">
 
 ({if $is_prev})
-<a href="({t_url m=pc a=page_fh_diary_list})&amp;target_c_member_id=({$target_member.c_member_id})&amp;direc=-1&amp;page=({$page})({if $url_keyword})&amp;keyword=({$url_keyword})({/if})({if !$all})({if $date_val.year})&amp;year=({$date_val.year})({/if})({if $date_val.month})&amp;month=({$date_val.month})({/if})({if $date_val.day})&amp;day=({$date_val.day})({/if})({/if})">前を表示</a>
+<a href="({t_url m=pc a=page_fh_diary_list})&amp;target_c_member_id=({$target_member.c_member_id})&amp;direc=-1&amp;page=({$page})({if $url_keyword})&amp;keyword=({$url_keyword})({/if})({if $category_id})&amp;category_id=({$category_id})({elseif !$all})({if $date_val.year})&amp;year=({$date_val.year})({/if})({if $date_val.month})&amp;month=({$date_val.month})({/if})({if $date_val.day})&amp;day=({$date_val.day})({/if})({/if})">前を表示</a>
 ({/if})
 ({$total_num})件中
 ({$page*$page_size-$page_size+1})件～
@@ -579,7 +566,7 @@
 ({/if})
 件を表示
 ({if $is_next})
-<a href="({t_url m=pc a=page_fh_diary_list})&amp;target_c_member_id=({$target_member.c_member_id})&amp;direc=1&amp;page=({$page})({if $url_keyword})&amp;keyword=({$url_keyword})({/if})({if !$all})({if $date_val.year})&amp;year=({$date_val.year})({/if})({if $date_val.month})&amp;month=({$date_val.month})({/if})({if $date_val.day})&amp;day=({$date_val.day})({/if})({/if})">次を表示</a>
+<a href="({t_url m=pc a=page_fh_diary_list})&amp;target_c_member_id=({$target_member.c_member_id})&amp;direc=1&amp;page=({$page})({if $url_keyword})&amp;keyword=({$url_keyword})({/if})({if $category_id})&amp;category_id=({$category_id})({elseif !$all})({if $date_val.year})&amp;year=({$date_val.year})({/if})({if $date_val.month})&amp;month=({$date_val.month})({/if})({if $date_val.day})&amp;day=({$date_val.day})({/if})({/if})">次を表示</a>
 ({/if})
 
 </div>
@@ -593,7 +580,6 @@
 ({*********})
 </table>
 <!-- ここまで：主内容＞＞件数表示終わり -->
-({/if})
 <!-- ここまで：主内容 -->
 ({*ここまで：body*})
 ({*ここから：footer*})

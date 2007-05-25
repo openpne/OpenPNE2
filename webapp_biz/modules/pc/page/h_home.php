@@ -57,7 +57,7 @@ class pc_page_h_home extends OpenPNE_Action
         /// 左側 ///
 
         $c_member = db_member_c_member4c_member_id($u);
-        // メンバ情報
+        // メンバー情報
         $this->set('c_member', $c_member);
         // フレンドリスト
         $this->set('c_friend_list', db_friend_c_friend_list4c_member_id($u, 9));
@@ -90,12 +90,14 @@ class pc_page_h_home extends OpenPNE_Action
 
         /// その他 ///
 
-        //PNEPOINT
-        $point = db_point_get_point($u);
-        $this->set("point", $point);
+        if (OPENPNE_USE_POINT_RANK) {
+            // ポイント
+            $point = db_point_get_point($u);
+            $this->set("point", $point);
 
-        //rank
-        $this->set("rank", db_point_get_rank4point($point));
+            // ランク
+            $this->set("rank", db_point_get_rank4point($point));
+        }
 
         // 紹介文
         $c_friend_intro_list = db_friend_c_friend_intro_list4c_member_id($u, 5);
@@ -117,9 +119,6 @@ class pc_page_h_home extends OpenPNE_Action
             $this->set('calendar_biz', biz_getScheduleWeek($u, $u, $requests['w'], 'h', true, true, true, $c_member,$start_day));
         }
 
-        // inc_entry_point
-        $this->set('inc_entry_point', fetch_inc_entry_point_h_home($this->getView()));
-
         //お気に入りフィード
         if (USE_BOOKMARK_FEED) {
             //お気に入りの最新日記
@@ -128,7 +127,7 @@ class pc_page_h_home extends OpenPNE_Action
             //お気に入りの最新ブログ
             $this->set('bookmark_blog_list', db_bookmark_blog_list($u, 5));
 
-            //お気に入りのメンバ
+            //お気に入りのメンバー
             $this->set('bookmark_member_list', db_bookmark_member_list($u, 9));
             $this->set('bookmark_count', db_bookmark_count($u));
         }
@@ -153,6 +152,9 @@ class pc_page_h_home extends OpenPNE_Action
         $group_list = biz_getHomeGroupList($u);
         $this->set('group_list', $group_list);
         //--- biz ここまで
+
+        // inc_entry_point
+        $this->set('inc_entry_point', fetch_inc_entry_point($this->getView(), 'h_home'));
 
         // アクセス日時を記録
         db_member_do_access($u);

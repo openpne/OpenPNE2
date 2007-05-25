@@ -62,7 +62,7 @@
 
 <div class="padding_s">
 
-<input type="text" class="text" name="title" value="({$event.name})" maxlength="120">
+<input type="text" class="text" name="title" value="({$event.name})">
 
 </div>
 
@@ -193,7 +193,7 @@
 
 <div class="padding_s">
 
-<input type="text" class="text" name="capacity" ({if $event.capacity}) value="({$event.capacity})"({/if})>
+<input type="text" class="text" name="capacity" value="({if $event.capacity})({$event.capacity})({/if})">
 
 </div>
 

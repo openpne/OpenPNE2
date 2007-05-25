@@ -9,6 +9,7 @@ require_once OPENPNE_WEBAPP_DIR . '/init.inc';
 
 require_once 'kcaptcha/kcaptcha.php';
 
+session_cache_limiter('none');
 @session_start();
 $captcha = new KCAPTCHA();
 $_SESSION['captcha_keystring'] = $captcha->getKeyString();

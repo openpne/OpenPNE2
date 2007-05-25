@@ -11,6 +11,7 @@
 
 ({t_form _enctype=file m=biz a=do_fhg_biz_schedule_add})
 <input type="hidden" name="sessid" value="({$PHPSESSID})">
+<input type="hidden" name="target_c_member_id" value="({$target_c_member_id})">
 
 <table border="0" cellspacing="0" cellpadding="0" style="width:540px;margin:0px auto;" class="border_07">
 <tr>
@@ -80,7 +81,7 @@
 
 <select name='sc_rcount'>
 	({section name=i loop=$rp_count})
-		<option type='radio' value='({$rp_count[i]})'>({$rp_count[i]})週間
+		<option value='({$rp_count[i]})'>({$rp_count[i]})週間
 	({/section})
 </select>　　
 
@@ -233,13 +234,14 @@
 <tr>
 <td class="bg_01" colspan="5"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
+({*********})
 <tr>
 <td style="width:1px;" class="bg_01"><img src="./skin/dummy.gif" style="width:1px; height:1px;" class="dummy"></td>
 <td style="width:150px;" class="bg_05">
 
 <div class="padding_s" align="center">
 
-グループ
+参加者<br>※未選択は全員
 
 </div>
 
@@ -249,14 +251,24 @@
 
 <table border="0" cellspacing="0" cellpadding="0" style="width:100%;">
 <tr>
-<td class="padding_ss">
-<select name="biz_group_id">
-	<option type="radio" value="0">指定なし
-({foreach from=$biz_group_list item=biz_group})
-	<option type="radio" value="({$biz_group.biz_group_id})"({if $form_val.biz_group_id == $biz_group.biz_group_id}) selected({/if})>({$biz_group.name})
-({/foreach})
-</select>
+({foreach from=$members item=item name=mem})
+({if $item})
+<td class="padding_ss" style="width:33%;" valign="top">
+
+<input name='sc_j_mem[]' value='({$item.c_member_id})' type='checkbox' class='no_bg'({if $item.checkflag}) checked="checked"({/if})>({$item.nickname})
+
 </td>
+({else})
+<td class="padding_ss" style="width:33%;">&nbsp;</td>
+({/if})
+
+
+({if $smarty.foreach.mem.last && ($smarty.foreach.mem.iteration%3 == 1 || $smarty.foreach.mem.iteration%3 == 2)})<td>&nbsp;</td>({/if})
+
+({if $smarty.foreach.mem.last && $smarty.foreach.mem.iteration%3 == 1})<td>&nbsp;</td>({/if})
+
+({if !$smarty.foreach.mem.last && $smarty.foreach.mem.iteration%3 == 0})</tr><tr>({/if})
+({/foreach})
 </tr>
 </table>
 
@@ -268,6 +280,8 @@
 <td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({*********})
+<input type="hidden" name="biz_group_id" value="0">
+
 <tr>
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 <td class="bg_05" align="center" valign="middle">
@@ -281,8 +295,7 @@
 <div style="padding:4px 3px;">
 
 <input type='radio' name='public_flag' value='public' checked class="no_bg">全体に公開<br>
-<input type='radio' name='public_flag' value='group' class="no_bg">グループまで公開<br>
-<input type='radio' name='public_flag' value='private' class="no_bg">公開しない<br>
+<input type='radio' name='public_flag' value='private' class="no_bg">参加者のみに公開<br>
 
 </div>
 </td>
@@ -293,6 +306,7 @@
 <td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({*********})
+
 <tr>
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 <td class="bg_02" align="center" colspan="3">

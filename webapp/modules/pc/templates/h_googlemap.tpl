@@ -5,7 +5,7 @@
 <title>h_googlemap</title>
 <script src="http://www.google.com/uds/api?file=uds.js&amp;v=1.0&amp;key=({$smarty.const.GOOGLE_AJAX_SEARCH_API_KEY})" type="text/javascript"></script
 >
-<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=({$smarty.const.GOOGLE_MAPS_API_KEY})" type="text/javascript"></script>
+<script src="http://maps.google.com/maps?file=api&amp;v=2.x&amp;key=({$smarty.const.GOOGLE_MAPS_API_KEY})" type="text/javascript"></script>
 <script type="text/javascript">
 <!--
 

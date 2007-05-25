@@ -1,6 +1,6 @@
 ({$inc_ktai_header|smarty:nodefaults})
 
-<center><font color="orange">トピック編集</font></center>
+<center><font color="orange">ｺﾐｭﾆﾃｨ：({$c_commu.name})</font></center>
 <hr>
 
 ({t_form m=ktai a=do_c_topic_edit_update_c_commu_topic})

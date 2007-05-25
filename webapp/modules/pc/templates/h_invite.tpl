@@ -169,7 +169,7 @@
 </tr>
 
 
-
+({if $smarty.const.OPENPNE_USE_CAPTCHA})
 ({*********})
 ({* captcha *})
 ({*********})
@@ -190,16 +190,18 @@
 
 <div class="padding_s">
 
-<img src="./cap.php?rand=({math equation="rand(0,9999)"})">
+<img src="./cap.php?rand=({math equation="rand(0,99999999)"})">
 <br>
 ※上に表示されているキーワードをご記入下さい。
 <input type="text" class="text"  name="captcha" size="30">
 
+</div>
 
 </td>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({*********})
+({/if})
 <tr>
 <td style="width:574px;height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 </tr>

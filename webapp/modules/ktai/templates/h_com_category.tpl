@@ -11,8 +11,8 @@
 <a href="({t_url m=ktai a=page_c_home})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">({$c_commu.name})</a>(({$c_commu.count_commu_member}))<br>
 ({/foreach})
 <br>
-({if $is_prev})<a href="({t_url m=ktai a=page_h_com_category})&amp;target_c_commu_category_id=({$c_commu_category_id})&amp;page=({$page-1})&amp;({$tail})&amp;search_word=({$search_word|to_sjis|escape:"url"})">前へ</a> ({/if})
-({if $is_next})<a href="({t_url m=ktai a=page_h_com_category})&amp;target_c_commu_category_id=({$c_commu_category_id})&amp;page=({$page+1})&amp;({$tail})&amp;search_word=({$search_word|to_sjis|escape:"url"})">次へ</a>({/if})
+({if $is_prev})<a href="({t_url m=ktai a=page_h_com_category})&amp;target_c_commu_category_id=({$c_commu_category_id})&amp;page=({$page-1})&amp;({$tail})&amp;search_word=({$search_word|to_sjis|escape:url|smarty:nodefaults})">前へ</a> ({/if})
+({if $is_next})<a href="({t_url m=ktai a=page_h_com_category})&amp;target_c_commu_category_id=({$c_commu_category_id})&amp;page=({$page+1})&amp;({$tail})&amp;search_word=({$search_word|to_sjis|escape:url|smarty:nodefaults})">次へ</a>({/if})
 
 <br>
 

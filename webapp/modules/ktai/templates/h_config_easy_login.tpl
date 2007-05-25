@@ -22,7 +22,10 @@
 <input type="text" name="password" istyle="3" mode="alphabet" value=""><br>
 ({if $is_registered})
 <input type="submit" name="update" value="変更">
-<input type="submit" name="delete" value="削除"><br>
+({if $smarty.const.IS_GET_EASY_ACCESS_ID != 2})
+<input type="submit" name="delete" value="削除">
+({/if})
+<br>
 ({else})
 <input type="submit" name="update" value="ケータイ情報送信"><br>
 ({/if})

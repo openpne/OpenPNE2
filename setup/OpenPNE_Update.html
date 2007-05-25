@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="Content-Style-Type" content="text/css">
-<title>OpenPNE 2.7.5アップデートガイド</title>
+<title>OpenPNE 2.8beta3ップデートガイド</title>
 <style type="text/css">
 <!--
 body {
@@ -55,9 +55,9 @@ var {
 
 <body>
 
-<h1>OpenPNE2.7.5 アップデートガイド</h1>
+<h1>OpenPNE2.8beta3 アップデートガイド</h1>
 
-<p>作成日: 2007/3/19</p>
+<p>作成日: 2007/3/28</p>
 
 <h2>目次</h2>
 <ul>
@@ -74,6 +74,8 @@ var {
   <li><a href="#section2-7">2-7. OpenPNE2.7.2からのアップデート</a></li>
   <li><a href="#section2-8">2-8. OpenPNE2.7.3からのアップデート</a></li>
   <li><a href="#section2-9">2-9. OpenPNE2.7.4からのアップデート</a></li>
+  <li><a href="#section2-10">2-10. OpenPNE2.7.5(2.8beta)からのアップデート</a></li>
+  <li><a href="#section2-11">2-11. 2.8beta2からのアップデート</a></li>
   </ul></li>
 </ul>
 
@@ -81,8 +83,8 @@ var {
 
 <h2 id="section0">0. はじめに</h2>
 
-<p>この文書は、OpenPNE バージョン2.6.*/2.7.* から バージョン2.7.5 へのアップデート手順を書いたものです。</p>
-<p>本バージョン(OpenPNE2.7.5)をインストールする場合は、一度2.6.*/2.7.*をインストールした後、2.7.5へアップデートしてください。</p>
+<p>この文書は、OpenPNE バージョン2.6.*/2.7.* から バージョン2.8beta3 へのアップデート手順を書いたものです。</p>
+<p>本バージョン(OpenPNE2.7.5)をインストールする場合は、一度2.6.*/2.7.*をインストールした後、2.8beta3へアップデートしてください。</p>
 
 <h2 id="section1">1. 手順</h2>
 
@@ -125,13 +127,13 @@ MySQLのバージョン4.0/4.1でスクリプトが分かれています。<br>
 
 <h3 id="section2-3">2-3. ソースコードの置き換え</h3>
 
-<p>サーバ上に OpenPNE 2.7.5 のソースファイルを設置します。<br>
+<p>サーバ上に OpenPNE 2.8beta3 のソースファイルを設置します。<br>
 ソースは部分的に入れ替えずに全て交換してください。<br>
 詳しくは、「<a href="./OpenPNE_Setup.html">OpenPNE セットアップガイド</a>」を参考にしてください。</p>
 
 <h3 id="section2-4">2-4. 設定ファイルの変更</h3>
 
-<p>OpenPNE2.6からアップデートする場合、OpenPNE 2.6 の設定ファイルを参考にして 2.7.5 用の設定ファイルを作成します。</p>
+<p>OpenPNE2.6からアップデートする場合、OpenPNE 2.6 の設定ファイルを参考にして 2.8beta3 用の設定ファイルを作成します。</p>
 
 <p class="caution">PHPの設定でセーフモードが有効な場合は、MAIL_SET_ENVFROM を false に設定してください。</p>
 
@@ -147,7 +149,7 @@ OpenPNE2.7.5にて、Google AJAX Search API key設定が追加されています
 
 <p>
 <br>
-アップデートSQLのupdate02～update09を実行してください。<br>
+アップデートSQLのupdate02～update10を実行してください。<br>
 ソースコードを全て置き換えてください。<br>
 画像アクセスへの認証機能有効設定を記述してください<br>
 GoogleMapsを使用する場合は設定ファイルのGoogle AJAX Search API key項目を記述してください。<br>
@@ -157,7 +159,7 @@ GoogleMapsを使用する場合は設定ファイルのGoogle AJAX Search API ke
 
 <p>
 <br>
-アップデートSQLのupdate03～update09を実行してください。<br>
+アップデートSQLのupdate03～update10を実行してください。<br>
 ソースコードを全て置き換えてください。<br>
 GoogleMapsを使用する場合は設定ファイルのGoogle AJAX Search API key項目を記述してください。<br>
 </p>
@@ -166,7 +168,7 @@ GoogleMapsを使用する場合は設定ファイルのGoogle AJAX Search API ke
 
 <p>
 <br>
-アップデートSQLのupdate06～update09を実行してください。<br>
+アップデートSQLのupdate06～update10を実行してください。<br>
 ソースコードを全て置き換えてください。<br>
 GoogleMapsを使用する場合は設定ファイルのGoogle AJAX Search API key項目を記述してください。<br>
 </p>
@@ -175,7 +177,7 @@ GoogleMapsを使用する場合は設定ファイルのGoogle AJAX Search API ke
 
 <p>
 <br>
-アップデートSQLのupdate07～update09を実行してください。<br>
+アップデートSQLのupdate07～update10を実行してください。<br>
 ソースコードを全て置き換えてください。<br>
 GoogleMapsを使用する場合は設定ファイルのGoogle AJAX Search API key項目を記述してください。<br>
 </p>
@@ -184,11 +186,24 @@ GoogleMapsを使用する場合は設定ファイルのGoogle AJAX Search API ke
 
 <p>
 <br>
-アップデートSQLのupdate07～update09を実行してください。<br>
+アップデートSQLのupdate07～update10を実行してください。<br>
 ソースコードを全て置き換えてください。<br>
 GoogleMapsを使用する場合は設定ファイルのGoogle AJAX Search API key項目を記述してください。<br>
 </p>
 
+<h3 id="section2-10">2-10 OpenPNE2.7.5(2.8beta)からのアップデート手順</h3>
+
+<p>
+<br>
+アップデートSQLのupdate10を実行してください。<br>
+ソースコードを全て置き換えてください。<br>
+</p>
+
+<h3 id="section2-11">2-11 OpenPNE2.8beta2からのアップデート手順</h3>
+
+<p>
+ソースコードを全て置き換えてください。<br>
+</p>
 <hr>
 <p>以上でアップデート作業は完了です。</p>
 

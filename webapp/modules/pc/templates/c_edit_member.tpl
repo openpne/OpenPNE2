@@ -108,6 +108,7 @@
 
 ({if !($c_member.is_c_commu_admin && !$c_member.is_c_commu_sub_admin)
  &&   $c_member.c_commu_admin_confirm_id le 0
+ &&   $c_member.c_commu_sub_admin_confirm_id le 0
  &&   $c_commu.c_member_id_sub_admin != $u
 })
 <a href="({t_url m=pc a=page_c_admin_request})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;target_c_member_id=({$c_member.c_member_id})">管理権を渡す</a>

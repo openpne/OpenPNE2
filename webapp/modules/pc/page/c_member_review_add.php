@@ -20,7 +20,7 @@ class pc_page_c_member_review_add extends OpenPNE_Action
         $c_member_id= $u;
 
         //--- 権限チェック
-        //コミュニティメンバ
+        //コミュニティメンバー
         if (!db_commu_is_c_commu_member($c_commu_id, $u)) {
             handle_kengen_error();
         }

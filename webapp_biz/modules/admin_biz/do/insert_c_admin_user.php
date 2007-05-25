@@ -4,7 +4,7 @@
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
-// プロフィール項目追加
+// 管理用アカウント追加
 class admin_biz_do_insert_c_admin_user extends OpenPNE_Action
 {
     function handleError($errors)
@@ -16,7 +16,7 @@ class admin_biz_do_insert_c_admin_user extends OpenPNE_Action
     {
         $errors = array();
         if (db_admin_exists_c_admin_username($requests['username'])) {
-            $errors[] = 'そのユーザ名は既に登録されています';
+            $errors[] = 'そのアカウント名は既に登録されています';
         }
         if ($requests['password'] != $requests['password2']) {
             $errors[] = 'パスワードが一致していません';

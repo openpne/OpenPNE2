@@ -1,5 +1,6 @@
 function url2cmd(url) {
     if (!url.match(/^http:\/\/www\.watchme\.tv\/v\/\?mid=([a-z0-9]+)$/)) {
+        pne_url2a(url);
         return;
     }
     var id =  RegExp.$1;
@@ -7,7 +8,7 @@ function url2cmd(url) {
 }
 
 function main(id, width, height) {
-    if (!id.match(/^[a-zA-Z0-9_-]+$/)) {
+    if (!id.match(/^[a-zA-Z0-9_\-]+$/)) {
         return;
     }
     if (!width) width = 0; else width = parseInt(width);

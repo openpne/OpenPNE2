@@ -78,6 +78,6 @@
 <div class="contents">
 
 <div class="otherControl">
-<p class="groupLing"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_image')})">画像のアップロード・削除ページへ</a></p>
+<p class="groupLing"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_image')})">画像のアップロードページへ</a></p>
 </div>({*/div class="otherControl"*})
 ({$inc_footer|smarty:nodefaults})
