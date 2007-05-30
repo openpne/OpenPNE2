@@ -200,7 +200,7 @@
 			<td class="cell04"><a href="({t_url _absolute=1 m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})" target="_blank">({$item.nickname})</a></td>
 			({if $smarty.const.OPENPNE_USE_POINT_RANK})
 			<td class="cell10">({if $item.c_member_id == 1})-({else})({$item.c_rank.name})({/if})</td>
-			<td class="cell11">({if $item.c_member_id == 1})-({else})<a href="?m=({$module_name})&amp;a=({$hash_tbl->hash('page_edit_point')})&amp;target_c_member_id=({$item.c_member_id})">({$item.profile.PNE_POINT.value|default:0})</a>({/if})</td>
+			<td class="cell11">({if $item.c_member_id == 1})-({else})<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_point')})&amp;target_c_member_id=({$item.c_member_id})">({$item.profile.PNE_POINT.value|default:0})</a>({/if})</td>
 			({/if})
 			<td class="cell05">({if $item.access_date != '0000-00-00 00:00:00'})({$item.access_date|date_format:"%y-%m-%d %H:%M"})({else})未ログイン({/if})</td>
 			<td class="cell06">({if $item.r_date != '0000-00-00 00:00:00'})({$item.r_date|date_format:"%y-%m-%d"})({else})&nbsp;({/if})</td>
