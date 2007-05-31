@@ -9,8 +9,10 @@
 <a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_category')})">コミュニティカテゴリ設定</a>&nbsp;|&nbsp;
 <a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('manage_c_commu')})">初期コミュニティ設定</a>&nbsp;|&nbsp;
 <a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_holiday')})">祝日設定</a>&nbsp;|&nbsp;
-({if $smarty.const.OPENPNE_DISP_POINT})
+({if $smarty.const.OPENPNE_DISP_RANK})
 <a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_rank')})">ランク設定</a>&nbsp;|&nbsp;
+({/if})
+({if $smarty.const.OPENPNE_DISP_POINT})
 <a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_action')})">アクション設定</a>
 ({/if})
 </div>

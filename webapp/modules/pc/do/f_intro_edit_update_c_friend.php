@@ -35,11 +35,13 @@ class pc_do_f_intro_edit_update_c_friend extends OpenPNE_Action
             handle_kengen_error();
         }
         //---
-
-        if(!db_friend_intro_body4c_member_id($u, $target_c_member_id)){
-            //紹介文を書いた人にポイント付与
-            $point = db_action_get_point4c_action_id(5);
-            db_point_add_point($u, $point);
+        
+        if (OPENPNE_DISP_POINT) {
+            if(!db_friend_intro_body4c_member_id($u, $target_c_member_id)){
+                //紹介文を書いた人にポイント付与
+                $point = db_action_get_point4c_action_id(5);
+                db_point_add_point($u, $point);
+            }
         }
 
         db_friend_update_c_friend_intro($u, $target_c_member_id, $body);

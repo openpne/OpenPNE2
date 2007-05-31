@@ -14,7 +14,7 @@
 変更するには
 ({/if})
 
-パスワードを入力して、設定ボタンを押してください。
+パスワードを入力して、設定ボタンを押してください。<br>
 
 ({t_form _attr='utn' m=ktai a=do_h_config_easy_login})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
