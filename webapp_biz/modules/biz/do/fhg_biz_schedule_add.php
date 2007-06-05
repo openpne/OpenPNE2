@@ -87,7 +87,7 @@ class biz_do_fhg_biz_schedule_add extends OpenPNE_Action
         //--------------------
 
         //ERROR---------------
-        if ((strtotime($finish_time) < strtotime($begin_time)) && ($finish_time != ':')) {
+        if ((strtotime($finish_time) < strtotime($begin_time)) && isset($finish_time)) {
             //終了時間と開始時間が変
             $msg = '終了時刻が開始時刻より先です。';
             $url = $redirect_script.

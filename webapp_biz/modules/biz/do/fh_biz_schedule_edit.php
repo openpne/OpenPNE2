@@ -57,7 +57,7 @@ class biz_do_fh_biz_schedule_edit extends OpenPNE_Action
             exit();
         }
 
-        if ((strtotime($finish_time) < strtotime($begin_time)) && ($finish_time != ':')) {
+        if ((strtotime($finish_time) < strtotime($begin_time)) && isset($finish_time)) {
             $_REQUEST['msg'] = '終了時刻が開始時刻より先です。';
             openpne_forward('biz', 'page', 'fh_biz_schedule_edit');
             exit();
