@@ -20,6 +20,10 @@ class biz_page_fh_biz_schedule_edit extends OpenPNE_Action
 
         $this->set('banner', $requests['sc_bn']);
 
+        if ($requests['sc_title']) {
+            $requests['title'] = $requests['sc_title'];
+        }
+
         if ($requests['sc_memo']) {
             $requests['value'] = $requests['sc_memo'];
         }
