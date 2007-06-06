@@ -83,9 +83,6 @@
 
 ({$schedule.begin_time}) ({if $schedule.begin_time})～({/if})
 
-({if $schedule.begin_date != $schedule.finish_date})
-	({$schedule.finish_date})
-({/if})
 ({if $schedule.finish_time})
 	({$schedule.finish_time})
 ({/if})
