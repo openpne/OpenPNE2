@@ -13,7 +13,7 @@
 ({else})
 	({$schedule.begin_date})
 	
-	({$schedule.begin_time}) ({if $schedule.begin_time})～({/if})
+	({$schedule.begin_time}) ({if $schedule.begin_time || $schedule.begin_date < $schedule.finish_date || $schedule.finish_time})～({/if})
 	({if $schedule.begin_date < $schedule.finish_date}) 
 		({$schedule.finish_date}) 
 	({/if})

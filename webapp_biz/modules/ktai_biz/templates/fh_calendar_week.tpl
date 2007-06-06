@@ -55,7 +55,7 @@
 ({if $item_schedule.begin_time})
 ({$item_schedule.begin_time|date_format:"%H:%M"})
 ({/if})
-({if $item_schedule.finish_time})
+({if $item_schedule.finish_time && !($item_schedule.begin_date < $item_schedule.finish_date)})
 -
 ({$item_schedule.finish_time|date_format:"%H:%M"})
 ({/if})
