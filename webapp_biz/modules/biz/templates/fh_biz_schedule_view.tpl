@@ -86,8 +86,9 @@
 ({if $schedule.begin_date != $schedule.finish_date})
 	({$schedule.finish_date})
 ({/if})
-
-({$schedule.finish_time}) 
+({if $schedule.finish_time})
+	({$schedule.finish_time})
+({/if})
 
 </div>
 </td>

@@ -110,17 +110,6 @@
 <div class="padding_s" style="padding-top:0;">
 ({$item_schedule.c_member_name})
 </div></a>
-	({elseif $item_schedule.begin_date != $item_schedule.finish_date})  <!--バナー予定 -->
-({assign var="begin_time_H" value=$item_schedule.begin_date|date_format:"%H"})
-({assign var="begin_time_M" value=$item_schedule.begin_date|date_format:"%M"})
-({if $item_schedule.finish_time})
-	({assign var="finish_time_H" value=$item_schedule.finish_date|date_format:"%H"})
-	({assign var="finish_time_M" value=$item_schedule.finish_date|date_format:"%M"})
-({/if})
-({ext_include file="inc_biz_schedule_week_time.tpl"})
-<div class="padding_s" style="padding-top:0;">
-<a href="({t_url m=biz a=page_fh_biz_schedule_view})&amp;id=({$item_schedule.biz_schedule_id})">({$item_schedule.title})</a>
-</div>
 	({else})
 ({assign var="begin_time_H" value=$item_schedule.begin_time|date_format:"%H"})
 ({assign var="begin_time_M" value=$item_schedule.begin_time|date_format:"%M"})
