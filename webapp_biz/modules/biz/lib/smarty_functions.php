@@ -90,7 +90,9 @@ function biz_getScheduleWeek($u, $member_id, $w, $cmd, $head = true, $value = tr
             $banner = biz_isBannerSchedule($y, $m, $d, $member_id);
 
             if (!empty($banner)) {
-                array_push($schedule, $banner);
+                foreach ($banner as $value) {
+                    array_push($schedule, $value);
+                }
             }
         } else {
             $schedule = biz_getShisetsuSchedule($y,$m,$d, $member_id);

@@ -66,7 +66,9 @@ class biz_page_fh_biz_schedule_calendar extends OpenPNE_Action
               $banner = biz_isBannerSchedule($year, sprintf("%02d", $month), sprintf("%02d", $day), $target_id);
 
               if (!empty($banner)) {
-                  array_push($schedule, $banner);
+                    foreach($banner as $value) {
+                        array_push($schedule, $value);
+                    }
               }
 
               $item = array(
