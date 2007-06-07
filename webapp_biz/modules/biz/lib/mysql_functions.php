@@ -547,16 +547,18 @@ function biz_getBannerScheduleList($y, $m, $id)
     $contain = array();
 
     $sql = 'SELECT biz_schedule_id FROM biz_schedule WHERE 1 AND (begin_date LIKE \''.$y.'-'.$m.'%\' OR finish_date LIKE \''.$y.'-'.$m.'%\') AND begin_date != finish_date';
-    $tmp = db_get_row($sql, $params);
+    $tmp = db_get_all($sql, $params);
 
     if (!$tmp) {
         return false;
     }
 
-    foreach ($tmp as $value) {
-        $members = biz_getJoinIdSchedule($value);
-        if (in_array($id, $members)) {
-            $contain[] = $value;
+    foreach ($tmp as $index) {
+        foreach ($index as $value) {
+            $members = biz_getJoinIdSchedule($value);
+            if (in_array($id, $members)) {
+                $contain[] = $value;
+            }
         }
     }
 
@@ -585,8 +587,8 @@ function biz_isBannerSchedule($y, $m, $d, $id)
             $begin_date = strtotime($value['begin_date'].' 00:00:00');
             $finish_date = strtotime($value['finish_date'].' 00:00:00');
 
-            if (($begin_date < $testing) && ($finish_date > $testing)) {
-                $schedule += biz_getScheduleInfo($value['biz_schedule_id']);
+            if (($begin_date < $testing) && ($finish_date >= $testing)) {
+                $schedule[] = biz_getScheduleInfo($value['biz_schedule_id']);
             }
         }
     }
