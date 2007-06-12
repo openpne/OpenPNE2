@@ -195,7 +195,7 @@
 
 <img src="./skin/dummy.gif" class="v_spacer_s">
 
-<input type="button" onClick="location.href='({t_url m=pc a=page_h_prof})'" value="プロフィール変更" style="width:112px;" class="submit">
+<input type="button" onClick="location.href='({t_url m=pc a=page_h_config_prof})'" value="プロフィール変更" style="width:112px;" class="submit">
 
 <img src="./skin/dummy.gif" class="v_spacer_s">
 <img src="./skin/dummy.gif" class="v_spacer_s">
