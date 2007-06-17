@@ -215,6 +215,15 @@
 </select><br />
 <span class="caution">※ポイント・ランク使用設定が「使用しない」に設定されている場合は表示されません</span></td>
 </tr>
+<tr class="cell34">
+<th colspan="2">管理者ポイント加算設定</th>
+<td>
+<span class="info">ID No.1のメンバーにポイントを加算するかどうかを設定します</span><br />
+<select class="basic" name="OPENPNE_IS_POINT_ADMIN">
+<option value="1"({if $smarty.const.OPENPNE_IS_POINT_ADMIN}) selected="selected"({/if})>加算する</option>
+<option value="0"({if !$smarty.const.OPENPNE_IS_POINT_ADMIN}) selected="selected"({/if})>加算しない</option>
+</select></td>
+</tr>
 <tr class="cell21">
 <th colspan="2">ログイン制限</th>
 <td>
