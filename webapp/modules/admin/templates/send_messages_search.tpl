@@ -19,22 +19,25 @@
 <h3>◆送信先</h3>
 <ul>
 ({if $cond_list.s_year||$cond_list.e_year})
-生年月日<br>
-({$cond_list.s_year})年～({$cond_list.e_year})年<br>
+<li>生年月日 : ({if $cond_list.s_year})({$cond_list.s_year})年({/if})～({if $cond_list.e_year})({$cond_list.e_year})年({/if})</li>
 ({/if})
 ({if $cond_list.last_login})
-最終ログイン<br>
-({$select_last_login[$cond_list.last_login]})<br>
+<li>最終ログイン : ({$select_last_login[$cond_list.last_login]})</li>
 ({/if})
 ({if $cond_list.s_point||$cond_list.e_point})
-ポイント<br>
-({$cond_list.s_point})～({$cond_list.e_point})<br>
+<li>ポイント : ({$cond_list.s_point})～({$cond_list.e_point})</li>
+({/if})
+({if $cond_list.is_pc_address})
+<li>PCアドレス : ({if $cond_list.is_pc_address == 1})登録している({else})登録していない({/if})</li>
+({/if})
+({if $cond_list.is_ktai_address})
+<li>携帯アドレス : ({if $cond_list.is_ktai_address == 1})登録している({else})登録していない({/if})</li>
 ({/if})
 ({foreach from=$profile_value_list key=key item=item})
-({$item.caption}):({$item.value})<br>
+<li>({$item.caption}) : ({$item.value})</li>
 ({/foreach})
-のメンバー
 </ul>
+のメンバー
 </div>({*/div class="page_navi"*})
 
 <div class="edit_message">
