@@ -68,6 +68,7 @@ class ktai_biz_page_fh_calendar_week extends OpenPNE_Action
             if (!empty($banner)) {
                 foreach ($banner as $value) {
                     array_push($schedule, $value);
+                }
             }
 
             $item = array(
