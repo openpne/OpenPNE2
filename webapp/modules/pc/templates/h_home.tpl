@@ -227,6 +227,7 @@
 <tr>
 <td align="center" class="bg_05 c_04">
 
+({if $smarty.const.OPENPNE_IS_POINT_ADMIN || $c_member.c_member_id != 1})
 ({if ($smarty.const.OPENPNE_DISP_RANK && $rank) || ($smarty.const.OPENPNE_DISP_POINT && $point)})
 <img src="./skin/dummy.gif" class="v_spacer_m">
 ({if $smarty.const.OPENPNE_DISP_RANK && $rank})
@@ -234,6 +235,7 @@
 ({/if})
 ({if $smarty.const.OPENPNE_DISP_POINT && $point})
 ({$point}) Point<br>
+({/if})
 ({/if})
 ({/if})
 
