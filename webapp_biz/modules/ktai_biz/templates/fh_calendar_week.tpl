@@ -52,13 +52,20 @@
 ({foreach from=$item.schedule item=item_schedule})
 
 <a href="({t_url m=ktai_biz a=page_fh_biz_schedule_view})&amp;target_id=({$c_member.c_member_id})&amp;id=({$item_schedule.biz_schedule_id})&amp;({$tail})">
+({strip})
 ({if $item_schedule.begin_time})
 ({$item_schedule.begin_time|date_format:"%H:%M"})
 ({/if})
-({if $item_schedule.finish_time && !($item_schedule.begin_date < $item_schedule.finish_date)})
+
+({if $item_schedule.begin_time || $item_schedule.finish_time})
 -
+({/if})
+
+({if $item_schedule.finish_time})
 ({$item_schedule.finish_time|date_format:"%H:%M"})
 ({/if})
+({/strip})
+
 ({$item_schedule.title|truncate:13:"-":true})</a>&nbsp;
 
 ({/foreach})
