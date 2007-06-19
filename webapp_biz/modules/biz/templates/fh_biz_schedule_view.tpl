@@ -75,19 +75,23 @@
 <td class="bg_02" align="left" valign="middle">
 <div style="padding:4px 3px;">
 
+({strip})
 ({if $schedule.rep_type_loc})
 	毎週 ({$schedule.rep_type_loc})曜日
 ({else})
 	({$schedule.begin_date})
 ({/if})
 
-({$schedule.begin_time}) ({if $schedule.begin_time})～({/if})
-
 ({if $schedule.begin_date != $schedule.finish_date})
-	({$schedule.finish_date})
+	～({$schedule.finish_date})
 ({/if})
+({/strip})
 
+({strip})
+({$schedule.begin_time})
+({if $schedule.begin_time || $schedule.finish_time})～({/if})
 ({$schedule.finish_time}) 
+({/strip})
 
 </div>
 </td>

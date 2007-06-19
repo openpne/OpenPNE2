@@ -11,13 +11,19 @@
 開始日：({$repeat_begin_date|date_format:"%Y年%m月%d日"})<br>
 期間：({$repeat_term})週間<br>
 ({else})
+({strip})
 	({$schedule.begin_date})
 	
-	({$schedule.begin_time}) ({if $schedule.begin_time})～({/if})
 ({if $schedule.begin_date != $schedule.finish_date})
-	({$schedule.finish_date})
+	～({$schedule.finish_date})
 ({/if})
+({/strip})
+
+({strip})
+({$schedule.begin_time})
+({if $schedule.begin_time || $schedule.finish_time})～({/if})
 ({$schedule.finish_time}) <br>
+({/strip})
 ({/if})
 
 詳細：({$schedule.value})<br>
