@@ -20,7 +20,7 @@ class pc_page_h_invite_confirm extends OpenPNE_Action
         // ----------
 
         $msg = "";
-        if (OPENPNE_USE_CAPTCHA && empty($_SESSION['captcha_keystring']) || $_SESSION['captcha_keystring'] !=  $requests['captcha']) {
+        if (OPENPNE_USE_CAPTCHA && (empty($_SESSION['captcha_keystring']) || $_SESSION['captcha_keystring'] !=  $requests['captcha'])) {
             unset($_SESSION['captcha_keystring']);
             $msg = "確認キーワードが誤っています";
         } else {
