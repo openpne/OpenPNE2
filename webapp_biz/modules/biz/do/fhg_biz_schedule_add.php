@@ -42,7 +42,7 @@ class biz_do_fhg_biz_schedule_add extends OpenPNE_Action
 
             $p = array('msg' => $msg, 'sc_title' => $requests['sc_title'], 'sc_rp' => $requests['sc_rp'],
                 'sc_memo' => $requests['sc_memo'], 'sc_j_mem_enc' => serialize($requests['sc_j_mem']),
-                'sc_rwk_enc' => serialize($requests['sc_rwk_enc']), 'sc_rcount' => $requests['sc_rcount']);
+                'sc_rwk_enc' => serialize($requests['sc_rwk']), 'sc_rcount' => $requests['sc_rcount'], 'sc_bn' => $requests['sc_bn']);
             openpne_redirect('biz', 'page_fh_biz_schedule_add', $p);
             exit();  //強制的にスクリプトを終了しなければいけない
         }
@@ -60,13 +60,14 @@ class biz_do_fhg_biz_schedule_add extends OpenPNE_Action
                         '&sc_rp='.$requests['sc_rp'].
                         '&sc_memo='.$requests['sc_memo'].
                         '&sc_j_mem_enc='.serialize($requests['sc_j_mem']).
-                        '&sc_rwk_enc='.serialize($requests['sc_rwk_enc']).
-                        '&sc_rcount='.$requests['sc_rcount'];
-
-            $p = array('msg' => $msg, 'begin_date' => $begin_date, 'begin_time' => $begin_time,
+                        '&sc_rwk_enc='.serialize($requests['sc_rwk']).
+                        '&sc_rcount='.$requests['sc_rcount'].
+                        '&sc_bn='.$requests['sc_bn'];
+            
+                $p = array('msg' => $msg, 'begin_date' => $begin_date, 'begin_time' => $begin_time,
                 'finish_time' => $finish_time, 'sc_rp' => $requests['sc_rp'], 'sc_memo' => $requests['sc_memo'],
-                'sc_j_mem_enc' => serialize($requests['sc_j_mem']), 'sc_rwk_enc' => serialize($requests['sc_rwk_enc']),
-                'sc_rcount' => $requests['sc_rcount']);
+                'sc_j_mem_enc' => serialize($requests['sc_j_mem']), 'sc_rwk_enc' => serialize($requests['sc_rwk']),
+                'sc_rcount' => $requests['sc_rcount'], 'sc_bn' => $requests['sc_bn']);
             openpne_redirect('biz', 'page_fh_biz_schedule_add', $p);
             exit();  //強制的にスクリプトを終了しなければいけない
         }   
@@ -79,8 +80,8 @@ class biz_do_fhg_biz_schedule_add extends OpenPNE_Action
 
             $p = array('msg' => $msg, 'begin_date' => $begin_date, 'begin_time' => $begin_time, 'sc_title' => $requests['sc_title'],
                 'finish_time' => $finish_time, 'sc_rp' => $requests['sc_rp'], 'sc_memo' => $requests['sc_memo'],
-                'sc_j_mem_enc' => serialize($requests['sc_j_mem']), 'sc_rwk_enc' => serialize($requests['sc_rwk_enc']),
-                'sc_rcount' => $requests['sc_rcount']);
+                'sc_j_mem_enc' => serialize($requests['sc_j_mem']), 'sc_rwk_enc' => serialize($requests['sc_rwk']),
+                'sc_rcount' => $requests['sc_rcount'], 'sc_bn' => $requests['sc_bn']);
             openpne_redirect('biz', 'page_fh_biz_schedule_add', $p);
             exit();  //強制的にスクリプトを終了しなければいけない
         }
@@ -97,12 +98,13 @@ class biz_do_fhg_biz_schedule_add extends OpenPNE_Action
                         '&sc_rp='.$requests['sc_rp'].
                         '&sc_memo='.$requests['sc_memo'].
                         '&sc_j_mem_enc='.serialize($requests['sc_j_mem']).
-                        '&sc_rwk_enc='.serialize($requests['sc_rwk_enc']).
-                        '&sc_rcount='.$requests['sc_rcount'];
+                        '&sc_rwk_enc='.serialize($requests['sc_rwk']).
+                        '&sc_rcount='.$requests['sc_rcount'].
+                        '&sc_bn='.$requests['sc_bn'];
 
             $p = array('msg' => $msg, 'begin_date' => $begin_date, 'sc_rp' => $requests['sc_rp'], 'sc_title' => $requests['sc_title'],
                 'sc_memo' => $requests['sc_memo'], 'sc_j_mem_enc' => serialize($requests['sc_j_mem']),
-                'sc_rwk_enc' => serialize($requests['sc_rwk_enc']), 'sc_rcount' => $requests['sc_rcount']);
+                'sc_rwk_enc' => serialize($requests['sc_rwk']), 'sc_rcount' => $requests['sc_rcount'], 'sc_bn' => $requests['sc_bn']);
             openpne_redirect('biz', 'page_fh_biz_schedule_add', $p);
             exit();  //強制的にスクリプトを終了しなければいけない
         }
@@ -120,12 +122,13 @@ class biz_do_fhg_biz_schedule_add extends OpenPNE_Action
                         '&sc_rp='.$requests['sc_rp'].
                         '&sc_memo='.$requests['sc_memo'].
                         '&sc_j_mem_enc='.serialize($requests['sc_j_mem']).
-                        '&sc_rwk_enc='.serialize($requests['sc_rwk_enc']).
-                        '&sc_rcount='.$requests['sc_rcount'];
+                        '&sc_rwk_enc='.serialize($requests['sc_rwk']).
+                        '&sc_rcount='.$requests['sc_rcount'].
+                        '&sc_bn='.$requests['sc_bn'];
 
             $p = array('msg' => $msg, 'begin_date' => $begin_date, 'sc_rp' => $requests['sc_rp'],
                 'sc_memo' => $requests['sc_memo'], 'sc_j_mem_enc' => serialize($requests['sc_j_mem']),
-                'sc_rwk_enc' => serialize($requests['sc_rwk_enc']), 'sc_rcount' => $requests['sc_rcount']);
+                'sc_rwk_enc' => serialize($requests['sc_rwk']), 'sc_rcount' => $requests['sc_rcount'], 'sc_bn' => $requests['sc_bn']);
             openpne_redirect('biz', 'page_fh_biz_schedule_add', $p);
             exit();  //強制的にスクリプトを終了しなければいけない
         }
