@@ -171,10 +171,21 @@ class biz_page_fh_biz_schedule_edit extends OpenPNE_Action
         if ($requests['rep_type']) {
             $is_rep = true;
         } else {
-            $is_rep = false;
+            if ($requests['sc_rp']) {
+                $is_rep = true;
+            } else {
+                $is_rep = false;
+            }
         }
 
         $dayofweek = array();
+
+        if (empty($requests['rep_type'])) {
+            foreach ($requests['sc_rwk'] as $value) {
+                $rp_rule += 1 << $value;
+            }
+            $requests['rep_type'] = $rp_rule;
+        }
 
         for ($i = 0; $i <= 6; $i++) {
             if ($requests['rep_type'] & (1 << $i)) {
@@ -196,6 +207,9 @@ class biz_page_fh_biz_schedule_edit extends OpenPNE_Action
         $daycount = $repeat_term / (24 * 60 * 60) / 6;
 
         $this->set('repeat_begin_date', $repeat_begin);
+        if (isset($requests["sc_rcount"])) {
+            $daycount = $requests["sc_rcount"];
+        }
         $this->set('repeat_term', ceil($daycount));
 
         $biz_group_count = biz_getGroupCount($target_id);
