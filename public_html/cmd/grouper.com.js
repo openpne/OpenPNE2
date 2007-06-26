@@ -1,6 +1,7 @@
 //MASTER:grouper.com.js SLAVE:www.grouper.com.js
 function url2cmd(url) {
-    if (!url.match(/^http:\/\/(?:www\.|)grouper\.com\/video\/MediaDetails\.aspx\?id=([0-9]+)$/)) {
+    if (!url.match(/^http:\/\/(?:www\.|)grouper\.com\/video\/MediaDetails\.aspx\?id=([0-9]+)(.*)$/)) {
+        pne_url2a(url);
         return;
     }
     var id = RegExp.$1;

@@ -388,7 +388,7 @@ function clearAll() {
 <table style="width:504px;" border="0" cellspacing="0" cellpadding="0" style="width:auto;margin:0px auto;" class="border_01">
 ({*********})
 <tr>
-<td style="width:50%;" class="bg_05" align="left">
+<td style="width:50%;" class="bg_02" align="left">
 
 <div class="padding_s">
 
@@ -397,7 +397,7 @@ function clearAll() {
 </div>
 
 </td>
-<td class="bg_05" align="right">
+<td class="bg_02" align="right">
 
 <div class="padding_s">
 ({capture name="ru_pager"})
@@ -474,7 +474,7 @@ function clearAll() {
 <table style="width:504px;" border="0" cellspacing="0" cellpadding="0" style="width:auto;margin:0px auto;" class="border_01">
 ({*********})
 <tr>
-<td style="width:100%;" class="bg_05" align="right">
+<td style="width:100%;" class="bg_02" align="right">
 
 <div class="padding_s">
 
@@ -570,7 +570,7 @@ function clearAll() {
 <table style="width:504px;" border="0" cellspacing="0" cellpadding="0" style="width:auto;margin:0px auto;" class="border_01">
 ({*********})
 <tr>
-<td style="width:100%;" class="bg_05" align="right">
+<td style="width:100%;" class="bg_02" align="right">
 
 <div class="padding_s">
 ({capture name="s_pager"})
@@ -648,7 +648,7 @@ function clearAll() {
 <table style="width:504px;" border="0" cellspacing="0" cellpadding="0" style="width:auto;margin:0px auto;" class="border_01">
 ({*********})
 <tr>
-<td style="width:100%;" class="bg_05" align="right">
+<td style="width:100%;" class="bg_02" align="right">
 
 <div class="padding_s">
 
@@ -712,7 +712,7 @@ function clearAll() {
 <table style="width:504px;" border="0" cellspacing="0" cellpadding="0" style="width:auto;margin:0px auto;" class="border_01">
 ({*********})
 <tr>
-<td style="width:100%;" class="bg_05" align="right">
+<td style="width:100%;" class="bg_02" align="right">
 
 <div class="padding_s">
 
@@ -783,7 +783,7 @@ function clearAll() {
 <table style="width:504px;" border="0" cellspacing="0" cellpadding="0" style="width:auto;margin:0px auto;" class="border_01">
 ({*********})
 <tr>
-<td style="width:100%;" class="bg_05" align="right">
+<td style="width:100%;" class="bg_02" align="right">
 
 <div class="padding_s">
 
@@ -852,7 +852,7 @@ function clearAll() {
 </div>
 
 </td>
-<td class="bg_05" align="right">
+<td class="bg_02" align="right">
 
 <div class="padding_s">
 
@@ -937,7 +937,7 @@ function clearAll() {
 <table style="width:504px;" border="0" cellspacing="0" cellpadding="0" style="width:auto;margin:0px auto;" class="border_01">
 ({*********})
 <tr>
-<td style="width:100%;" class="bg_05" align="right">
+<td style="width:100%;" class="bg_02" align="right">
 
 <div class="padding_s">
 

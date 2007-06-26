@@ -27,10 +27,16 @@ class pc_do_h_confirm_list_insert_c_commu_member extends OpenPNE_Action
         }
         // -----
 
+        $status = do_common_get_c_join_status($cmc['c_member_id'], $cmc['c_commu_id']);
 
-        db_commu_insert_c_commu_member($target_c_commu_member_confirm_id);
+        if ($status != STATUS_C_JOIN_ALREADY) {
+            db_commu_insert_c_commu_member($target_c_commu_member_confirm_id);
+            $msg = '承認が完了しました';
+        } else {
+            db_commu_delete_c_commu_member_confirm($target_c_commu_member_confirm_id);
+            $msg = '既にこのコミュニティに参加しています。';
+        }
 
-        $msg = '承認が完了しました';
         $p = array('msg' => $msg);
         openpne_redirect('pc', 'page_h_confirm_list', $p);
     }

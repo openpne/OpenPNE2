@@ -100,6 +100,12 @@ function _smarty_function_t_img_url($params)
             break;
         }
     }
+    
+    $result['m'] = $GLOBALS['__Framework']['current_module'];
+    
+    if ($GLOBALS['KTAI_URL_TAIL']) {
+        $result['ksid'] = session_id();
+    }
 
     return $result;
 }

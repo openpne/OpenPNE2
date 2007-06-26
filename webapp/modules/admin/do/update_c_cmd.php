@@ -10,7 +10,7 @@ class admin_do_update_c_cmd extends OpenPNE_Action
     function execute($requests)
     {
         if (!$requests['name']) {
-            admin_client_redirect('list_c_cmd', 'URLを入力して下さい');
+            admin_client_redirect('list_c_cmd', 'CMD名称を入力して下さい');
         }
 
         $permit = 0;

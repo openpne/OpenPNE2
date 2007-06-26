@@ -7,11 +7,11 @@
 
 ({*ここまで:navi*})
 
+({if $msg})<p class="actionMsg">({$msg})</p>({/if})
 <h2>祝日設定</h2>
 <div class="contents">
 
 <p>祝日名称と祝日を設定してください。</p>
-({if $msg})<p class="caution">({$msg})</p>({/if})
 
 <table class="basicType2">
 <thead>

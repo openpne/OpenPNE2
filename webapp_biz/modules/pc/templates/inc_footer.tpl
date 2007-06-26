@@ -23,9 +23,10 @@
 </tr>
 ({/if})
 </table>
-</td>
 
-({$inc_extension_pagelayout_bottom2|smarty:nodefaults})
+({$INC_FOOTER_inc_page_bottom2|smarty:nodefaults})
+
+</td>
 
 ({if $INC_FOOTER_side_banner_html_before || $INC_FOOTER_side_banner_html_after || $INC_FOOTER_inc_side_banner || $newschedule || $todolist })
 
@@ -34,12 +35,14 @@
 ({**ここから：サイドコンテンツ領域**})
 ({**********************************})
 
+({if $INC_FOOTER_side_banner_html_before || $INC_FOOTER_side_banner_html_after || $INC_FOOTER_inc_side_banner})
+
 ({strip})
 ({if $INC_FOOTER_side_banner_html_before || $INC_FOOTER_side_banner_html_after})
     ({if $before_after == 'before'})
-        ({$INC_FOOTER_side_banner_html_before|smarty:nodefaults})
+        ({$INC_FOOTER_side_banner_html_before|smarty:nodefaults|t_url2cmd:'side_banner'|t_cmd:'side_banner'})
     ({else})
-        ({$INC_FOOTER_side_banner_html_after|smarty:nodefaults})
+        ({$INC_FOOTER_side_banner_html_after|smarty:nodefaults|t_url2cmd:'side_banner'|t_cmd:'side_banner'})
     ({/if})
 ({else})
     ({if $INC_FOOTER_inc_side_banner.a_href})
@@ -51,18 +54,18 @@
         <img src="({t_img_url filename=$INC_FOOTER_inc_side_banner.image_filename})">
     </a>
     ({else})
-        ({if $INC_FOOTER_inc_side_banner.image_filename})
-            <img src="({t_img_url filename=$INC_FOOTER_inc_side_banner.image_filename})">
-        ({/if})
+    <img src="({t_img_url filename=$INC_FOOTER_inc_side_banner.image_filename})">
     ({/if})
 ({/if})
 ({/strip})
 
-({if $newschedule })
+({/if})
+
+({if $newschedule})
 ({$newschedule|smarty:nodefaults})
 ({/if})
 
-({if $todolist })
+({if $todolist})
 ({$todolist|smarty:nodefaults})
 ({/if})
 

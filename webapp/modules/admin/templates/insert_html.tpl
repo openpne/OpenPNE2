@@ -59,11 +59,11 @@
 ({elseif $title == 'inc_page_bottom'})
 【PC版】HTML挿入 D　（旧：【PC版】HTML挿入(ページ下部)）
 ({elseif $title == 'inc_ktai_html_head'})
-【携帯】HTML挿入(HTML head内)
+【携帯版】HTML挿入(HTML head内)
 ({elseif $title == 'inc_ktai_header'})
-【携帯】HTML挿入(ページ上部)
+【携帯版】HTML挿入(ページ上部)
 ({elseif $title == 'inc_ktai_footer'})
-【携帯】HTML挿入(ページ下部)
+【携帯版】HTML挿入(ページ下部)
 ({/if})
 </h3>
 ({if $msg})<p class="actionMsg">({$msg})</p>({/if})
@@ -78,7 +78,7 @@
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('insert_html','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
-<input type="hidden" name="target" value="({$requests.target})" />
+<input type="hidden" name="target" value="({$title})" />
 <textarea name="body" cols="({$cols|default:60})" rows="({$rows|default:10})">({$c_siteadmin.body})</textarea>
 <p class="textBtn"><input type="submit" value="　変更する　" /></p>
 </form>
@@ -98,11 +98,11 @@
 ({elseif $title == 'inc_page_bottom'})
 【PC版】HTML挿入 D　（旧：【PC版】HTML挿入(ページ下部)）
 ({elseif $title == 'inc_ktai_html_head'})
-【携帯】HTML挿入(HTML head内)
+【携帯版】HTML挿入(HTML head内)
 ({elseif $title == 'inc_ktai_header'})
-【携帯】HTML挿入(ページ上部)
+【携帯版】HTML挿入(ページ上部)
 ({elseif $title == 'inc_ktai_footer'})
-【携帯】HTML挿入(ページ下部)
+【携帯版】HTML挿入(ページ下部)
 ({/if})]</h4>
 ({if $requests.target == 'inc_page_top2' || $requests.target == 'inc_page_top' || $requests.target == 'inc_page_bottom2' || $requests.target == 'inc_page_bottom'})
 <p class="caution" id="c02">※内容が空のときはHTML挿入部分が表示されないので各HTML挿入部分に該当する隙間はブラウザ内枠との間に生じません。</p>

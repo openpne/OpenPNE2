@@ -12,8 +12,8 @@
  */
 function db_diary_category_list4c_member_id($c_member_id)
 {
-    $sql = 'SELECT c_diary_category_id, category_name FROM c_diary_category ' .
-        'WHERE c_member_id = ?';
+    $sql = 'SELECT c_diary_category_id, category_name FROM c_diary_category '
+         . 'WHERE c_member_id = ? ORDER BY c_diary_category_id';
     $result = db_get_all($sql, array(intval($c_member_id)));
 
     return $result;
@@ -29,7 +29,7 @@ function db_diary_category_list4c_member_id($c_member_id)
 function db_diary_get_category_id4category_name($c_member_id, $category_name)
 {
     $sql = 'SELECT c_diary_category_id FROM c_diary_category ' .
-        'WHERE category_name LIKE ? AND c_member_id = ?';
+        'WHERE category_name = ? AND c_member_id = ?';
     return db_get_one($sql, array($category_name, intval($c_member_id)));
 }
 
@@ -53,35 +53,63 @@ function db_diary_category_list4c_diary_id($c_diary_id)
 {
     $sql = 'SELECT c_diary_category_id FROM c_diary_category_diary WHERE c_diary_id = ?';
     $category_list = db_get_col($sql, array(intval($c_diary_id)));
-    $ids = join(',', $category_list);
+    if (!$category_list) {
+        return array();
+    }
+    $ids = implode(',', $category_list);
 
-    $sql = 'SELECT c_diary_category_id, category_name FROM c_diary_category' .
-        ' WHERE c_diary_category_id IN ('.$ids.')';
+    $sql = 'SELECT c_diary_category_id, category_name FROM c_diary_category'
+         . ' WHERE c_diary_category_id IN ('.$ids.') ORDER BY c_diary_category_id';
     return db_get_all($sql);
 }
 
 /**
  * カテゴリIDから日記を得る
  * 
+ * @param int $c_member_id
  * @param int $c_diary_category_id
+ * @param int $u
+ * @param int $page_size
+ * @param int $page
  * @return array
  */
-function db_diary_list4c_diary_category_id($c_member_id, $c_diary_category_id, $u = null)
+function db_diary_list4c_diary_category_id($c_member_id, $c_diary_category_id, $u = null, $page_size = 20, $page = 0)
 {
     $sql = 'SELECT c_diary_id FROM c_diary_category_diary WHERE c_diary_category_id = ?';
     $diary_list = db_get_col($sql, array(intval($c_diary_category_id)));
-    $ids = join(',', $diary_list);
+    if (!$diary_list) {
+        return array(array(), false, false, 0);
+    }
+    $ids = implode(',', $diary_list);
 
     $pf_cond = db_diary_public_flag_condition($c_member_id, $u);
-    $sql = 'SELECT * FROM c_diary' .
-        ' WHERE c_diary_id IN ('.$ids.') AND c_member_id = ? ' . $pf_cond . ' ORDER BY r_datetime DESC';
-    $list = db_get_all($sql, array($c_member_id));
+    $where = ' WHERE c_diary_id IN ('.$ids.') AND c_member_id = ? ' . $pf_cond . ' ORDER BY r_datetime DESC';
+    $sql = 'SELECT * FROM c_diary' . $where;
+    $params = array($c_member_id);
+    $list = db_get_all_limit($sql, $page_size * ($page - 1), $page_size, $params);
 
     foreach ($list as $key => $c_diary) {
         $list[$key]['num_comment'] = db_diary_count_c_diary_comment4c_diary_id($c_diary['c_diary_id']);
     }
 
-    return array($list, false, false);
+    $sql = 'SELECT COUNT(*) FROM c_diary' . $where;
+    $total_num = db_get_one($sql, $params);
+
+    if ($total_num != 0) {
+        $total_page_num =  ceil($total_num / $page_size);
+        if ($page >= $total_page_num) {
+            $next = false;
+        } else {
+            $next = true;
+        }
+        if ($page <= 1) {
+            $prev = false;
+        } else {
+            $prev = true;
+        }
+    }
+
+    return array($list, $prev, $next, $total_num);
 }
 
 /**
@@ -136,8 +164,8 @@ function db_diary_category_delete_c_diary_category_diary($c_diary_id)
     db_query($sql, array($c_diary_id));
 
     foreach($diary_category_list as $value) {
-	    $sql = 'SELECT COUNT(*) FROM c_diary_category_diary'.
-	        ' WHERE c_diary_category_id = ?';
+        $sql = 'SELECT COUNT(*) FROM c_diary_category_diary'.
+            ' WHERE c_diary_category_id = ?';
         $c_diary_category_id = $value['c_diary_category_id'];
         $is_diary = (bool)db_get_one($sql, array(intval($c_diary_category_id)));
         if (!$is_diary) {  //カテゴリに関連付いた日記が存在しない
@@ -359,6 +387,9 @@ function p_fh_diary_list_diary_list4c_member_id($c_member_id, $page_size, $page,
 function p_h_diary_list_friend_h_diary_list_friend4c_member_id($c_member_id, $page_size, $page)
 {
     $friends = db_friend_c_member_id_list($c_member_id, true);
+    if (!$friends) {
+        return array(array(), false, false, 0);
+    }
     $ids = implode(',', array_map('intval', $friends));
 
     $hint = db_mysql_hint('USE INDEX (r_datetime_c_member_id, r_datetime)');
@@ -444,6 +475,9 @@ function p_h_home_c_diary_friend_list4c_member_id($c_member_id, $limit)
     $is_recurred = false;
 
     $friends = db_friend_c_member_id_list($c_member_id, true);
+    if (!$friends) {
+        return array();
+    }
     $ids = implode(',', array_map('intval', $friends));
 
     $hint = db_mysql_hint('USE INDEX (r_datetime_c_member_id, r_datetime)');
@@ -529,6 +563,7 @@ function p_h_diary_comment_list_c_diary_my_comment_list4c_member_id($c_member_id
     $except_ids = implode(',', $blocked);
 
     $friends = db_friend_c_member_id_list($c_member_id);
+    $firends[] = 0;
     $friend_ids = implode(',', $friends);
 
     $sql = 'SELECT d.c_diary_id' .
@@ -784,7 +819,7 @@ function _do_c_diary_comment4c_diary_comment_id($c_diary_comment_id)
 }
 
 /**
- * ターゲットメンバの最新日記のリストを返す
+ * メンバーの最新日記のリストを返す
  */
 function k_p_f_home_c_diary_list4c_member_id($c_member_id, $limit)
 {
@@ -878,7 +913,7 @@ function k_p_fh_diary_c_diary_comment_list4c_diary_id($c_diary_id, $page_size, $
 }
 
 /**
- * 日記ＩＤからその日記を書いたメンバＩＤとニックネームと日記公開範囲を得る
+ * 日記IDからその日記を書いたメンバーIDとニックネームと日記公開範囲を得る
  */
 function k_p_fh_diary_c_member4c_diary_id($c_diary_id)
 {
@@ -944,10 +979,13 @@ function db_diary_insert_c_diary($c_member_id, $subject, $body, $public_flag)
         'c_member_id' => intval($c_member_id),
         'subject' => $subject,
         'body' => $body,
-        'public_flag' => $public_flag,
+        'public_flag' => util_cast_public_flag_diary($public_flag),
         'r_datetime' => db_now(),
         'r_date' => db_now(),
         'is_checked' => 1,
+        'image_filename_1' => '',
+        'image_filename_2' => '',
+        'image_filename_3' => '',
     );
     return db_insert('c_diary', $data);
 }
@@ -965,7 +1003,7 @@ function db_diary_update_c_diary($c_diary_id, $subject, $body, $public_flag,
     $data = array(
         'subject' => $subject,
         'body' => $body,
-        'public_flag' => $public_flag,
+        'public_flag' => util_cast_public_flag_diary($public_flag),
     );
     if ($image_filename_1) $data['image_filename_1'] = $image_filename_1;
     if ($image_filename_2) $data['image_filename_2'] = $image_filename_2;
@@ -1073,6 +1111,9 @@ function db_diary_insert_c_diary_comment($c_member_id, $c_diary_id, $body)
         'c_diary_id' => intval($c_diary_id),
         'body' => $body,
         'r_datetime' => db_now(),
+        'image_filename_1' => '',
+        'image_filename_2' => '',
+        'image_filename_3' => '',
     );
     return db_insert('c_diary_comment', $data);
 }
@@ -1113,6 +1154,19 @@ function db_diary_delete_c_diary_comment($c_diary_comment_id, $u)
     $sql = 'DELETE FROM c_diary_comment WHERE c_diary_comment_id = ?';
     $params = array(intval($c_diary_comment_id));
     return db_query($sql, $params);
+}
+
+// 日記公開範囲の一括設定をする
+function db_diary_update_public_flag_diary_all($c_member_id, $public_flag)
+{
+    $data = array(
+        'public_flag' => util_cast_public_flag_diary($public_flag),
+    );
+
+    $where = array(
+        'c_member_id' => intval($c_member_id),
+    );
+    return db_update('c_diary', $data, $where);
 }
 
 ?>

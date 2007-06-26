@@ -35,7 +35,7 @@ class pc_page_fh_friend_list extends OpenPNE_Action
         $this->set("type", $type);
 
         //----------PC CONTENT#LEFT
-        //ユーザ情報
+        //メンバー情報
         $this->set("member", db_member_c_member4c_member_id($u));
 
         //ターゲット情報

@@ -68,7 +68,7 @@
 ({********************************})
 
 ({if $inc_entry_point[3]})
-({$inc_entry_point[3]|smarty:nodefaults})
+({$inc_entry_point[3]|smarty:nodefaults|t_url2cmd:'entry_point'|t_cmd:'entry_point'})
 ({/if})
 
 <!-- *********************************************** -->
@@ -135,7 +135,7 @@
 <img src="./skin/dummy.gif" class="v_spacer_m">
 
 ({if $inc_entry_point[4]})
-({$inc_entry_point[4]|smarty:nodefaults})
+({$inc_entry_point[4]|smarty:nodefaults|t_url2cmd:'entry_point'|t_cmd:'entry_point'})
 ({/if})
 
 <!-- ******************************** -->
@@ -166,7 +166,7 @@
 ({foreach from=$c_commu_member_list item=item key=key})
 ({if $key > 0})&({/if})
 pne_item({$key+1})_id=({$item.c_member_id})
-&pne_item({$key+1})_name=({$item.nickname|t_truncate:12:'..'|escape:'url'})
+&pne_item({$key+1})_name=({$item.nickname|t_truncate:12:'..'|escape:url|smarty:nodefaults})
 &pne_item({$key+1})_linkurl=({t_url m=pc a=page_f_home _urlencode=true _html=false})%26target_c_member_id=({$item.c_member_id})
 &pne_item({$key+1})_imageurl=({t_img_url filename=$item.image_filename w=76 h=76 noimg=no_image _urlencode=true _html=false})
 &pne_item({$key+1})_count=({$item.friend_count})
@@ -325,6 +325,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <td style="width:1px;" class="bg_07"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({if $is_c_commu_admin})
+({if $c_commu.member_count != 1})
 <tr>
 <td style="width:1px;" class="bg_07"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 <td style="width:125px;" class="bg_02"><img src="./skin/dummy.gif" style="width:125px;height:1px;" class="dummy"></td>
@@ -335,6 +336,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <td style="width:5px;" class="bg_02"><img src="./skin/dummy.gif" style="width:5px;height:1px;" class="dummy"></td>
 <td style="width:1px;" class="bg_07"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
+({/if})
 <tr>
 <td style="width:1px;" class="bg_07"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 <td style="width:125px;" class="bg_02"><img src="./skin/dummy.gif" style="width:125px;height:1px;" class="dummy"></td>
@@ -367,7 +369,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <img src="./skin/dummy.gif" class="v_spacer_m">
 
 ({if $inc_entry_point[5]})
-({$inc_entry_point[5]|smarty:nodefaults})
+({$inc_entry_point[5]|smarty:nodefaults|t_url2cmd:'entry_point'|t_cmd:'entry_point'})
 ({/if})
 
 ({if $smarty.const.OPENPNE_USE_COMMU_MAP && $c_commu.is_display_map}) 
@@ -389,7 +391,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({********************************})
 
 ({if $inc_entry_point[6]})
-({$inc_entry_point[6]|smarty:nodefaults})
+({$inc_entry_point[6]|smarty:nodefaults|t_url2cmd:'entry_point'|t_cmd:'entry_point'})
 ({/if})
 
 <!-- **************************************** -->
@@ -542,7 +544,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <td class="border_01 bg_02 padding_s" style="width:332px;border-top:none;">
 
 ({foreach from=$new_topic_comment item=item})
-<img src="./skin/dummy.gif" style="width:14px;height:14px;" class="icon icon_1">({$item.r_datetime|date_format:"%m月%d日"})…&nbsp;<a href="({t_url m=pc a=page_c_topic_detail})&amp;target_c_commu_topic_id=({$item.c_commu_topic_id})">({$item.name})</a>
+<img src="./skin/dummy.gif" style="width:14px;height:14px;" class="icon icon_1">({$item.r_datetime|date_format:"%m月%d日"})…&nbsp;<a href="({t_url m=pc a=page_c_topic_detail})&amp;target_c_commu_topic_id=({$item.c_commu_topic_id})">({$item.name})(({$item.count_comments}))</a>
 ({if $item.image_filename1 || $item.image_filename2 || $item.image_filename3})<img src="({t_img_url_skin filename=icon_camera})" class="icon">({/if})<br>
 ({/foreach})
 
@@ -582,7 +584,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <td class="border_01 bg_02 padding_s" style="width:332px;border-top:none;">
 
 ({foreach from=$new_topic_comment_event item=item})
-<img src="./skin/dummy.gif" style="width:14px;height:14px;" class="icon icon_1">({$item.r_datetime|date_format:"%m月%d日"})…&nbsp;<a href="({t_url m=pc a=page_c_event_detail})&amp;target_c_commu_topic_id=({$item.c_commu_topic_id})">({$item.name})</a>
+<img src="./skin/dummy.gif" style="width:14px;height:14px;" class="icon icon_1">({$item.r_datetime|date_format:"%m月%d日"})…&nbsp;<a href="({t_url m=pc a=page_c_event_detail})&amp;target_c_commu_topic_id=({$item.c_commu_topic_id})">({$item.name})(({$item.count_comments}))</a>
 ({if $item.image_filename1 || $item.image_filename2 || $item.image_filename3})<img src="({t_img_url_skin filename=icon_camera})" class="icon">({/if})<br>
 ({/foreach})
 
@@ -785,7 +787,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <img src="./skin/dummy.gif" class="v_spacer_m">
 
 ({if $inc_entry_point[7]})
-({$inc_entry_point[7]|smarty:nodefaults})
+({$inc_entry_point[7]|smarty:nodefaults|t_url2cmd:'entry_point'|t_cmd:'entry_point'})
 ({/if})
 
 ({********************************})

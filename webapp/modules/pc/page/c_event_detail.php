@@ -67,6 +67,7 @@ class pc_page_c_event_detail extends OpenPNE_Action
         $this->set("is_c_commu_member", db_commu_is_c_commu_member($c_commu_id, $u));
         $this->set("is_c_event_member", db_commu_is_c_event_member($c_commu_topic_id, $u));
         $this->set("is_c_event_admin", db_commu_is_c_event_admin($c_commu_topic_id, $u));
+        $this->set('is_event_join_date', db_commu_is_event_join_date($c_commu_topic_id));
 
         $this->set('err_msg', $err_msg);
         $this->set('body', $body);

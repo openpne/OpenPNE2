@@ -68,12 +68,42 @@
 パスワード
 
 </div>
+
+</td>
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 <td style="width:381px;" class="bg_02" align="left" valign="middle">
 
 <div class="padding_s">
 
 <input class="text" type="password" name="password" value="">
+
+</div>
+
+</td>
+<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+</tr>
+({*********})
+<tr>
+<td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+</tr>
+({*********})
+<tr>
+<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:180px;" class="bg_05" align="left" valign="middle">
+
+<div class="padding_s">
+
+退会理由 <span class="caution">※</span>
+
+</div>
+
+</td>
+<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:381px;" class="bg_02" align="left" valign="middle">
+
+<div class="padding_s">
+
+<textarea name="reason" rows="15" cols="50" style="width:415px"></textarea>
 
 </div>
 

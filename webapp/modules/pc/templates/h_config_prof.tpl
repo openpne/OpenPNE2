@@ -98,7 +98,7 @@
 
 <div class="padding_s">
 
-<input type="text" class="text" name="birth_year" value="({$c_member.birth_year})" size="10" maxlength="4">年
+<input type="text" class="text" name="birth_year" value="({if $c_member.birth_year})({$c_member.birth_year})({/if})" size="10" maxlength="4">年
 
 </div>
 
@@ -219,7 +219,7 @@
 ({elseif $profile.form_type == 'textlong'})
     <input type="text" class="text" size="60" name="profile[({$profile.name})]" value="({$c_member.profile[$profile.name].value})">
 ({elseif $profile.form_type == 'textarea'})
-    <textarea class="text" name="profile[({$profile.name})]" rows="6" cols="50" style="width:470px;">({$c_member.profile[$profile.name].value})</textarea>
+    <textarea class="text" name="profile[({$profile.name})]" rows="6" cols="50" style="width:({if $profile.public_flag_edit})310({else})470({/if})px;">({$c_member.profile[$profile.name].value})</textarea>
 ({elseif $profile.form_type == 'select'})
     <select name="profile[({$profile.name})]">
     <option value="">選択してください</option>
@@ -239,8 +239,6 @@
     ({if $_cnt % 3 != 0})</tr>({/if})
     </table>
 ({elseif $profile.form_type == 'checkbox'})
-    <input type="hidden" name="profile[({$profile.name})][]" value="0">
-
     <table>
     ({foreach item=item from=$profile.options name=check})
     ({counter name=$profile.name assign=_cnt})

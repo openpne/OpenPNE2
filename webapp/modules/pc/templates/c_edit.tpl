@@ -347,6 +347,7 @@
 </tr>
 ({/if})
 ({*********})
+
 <tr>
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 <td class="bg_03" align="center" valign="middle" colspan="3">

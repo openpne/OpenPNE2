@@ -22,11 +22,11 @@
 <td align="center" style="height:24px;">
 <img src="({t_img_url_skin filename=icon_search})" alt="search" style="width:62px;height:20px;" class="icon">
 <input type="text" size="30" name="q" class="text border_01" value="" style="width:180px;">
-<input type="image" src="({t_img_url_skin filename=button_search_1})" value="diary" alt="日記" border="0" name="diary" class="button" style="width:62px;height:20px;">
-<input type="image" src="({t_img_url_skin filename=button_search_2})" value="community" alt="コミュニティ" border="0" name="community" class="button" style="width:62px;height:20px;">
-<input type="image" src="({t_img_url_skin filename=button_search_4})" value="message" alt="メッセージ" border="0" name="message" class="button" style="width:62px;height:20px;">
+<input type="image" src="({t_img_url_skin filename=button_search_1})" value="diary" alt="日記" name="diary" class="button" style="width:62px;height:20px;border:none;">
+<input type="image" src="({t_img_url_skin filename=button_search_2})" value="community" alt="コミュニティ" name="community" class="button" style="width:62px;height:20px;border:none;">
+<input type="image" src="({t_img_url_skin filename=button_search_4})" value="message" alt="メッセージ" name="message" class="button" style="width:62px;height:20px;border:none;">
 ({if $smarty.const.USE_EXTRA_SERVICE})
-<input type="image" src="({t_img_url_skin filename=button_search_3})" value="web" alt="web" border="0" name="web" class="button" style="width:62px;height:20px;">
+<input type="image" src="({t_img_url_skin filename=button_search_3})" value="web" alt="web" name="web" class="button" style="width:62px;height:20px;border:none;">
 ({/if})
 </td>
 </tr>
@@ -80,7 +80,7 @@
 <tr>
 <td class="padding_s">
 
-({$site_info|smarty:nodefaults|default:"&nbsp;"})
+({$site_info|smarty:nodefaults|default:"&nbsp;"|t_url2cmd:'info'|t_cmd:'info'})
 
 </td>
 </tr>
@@ -124,7 +124,7 @@
 <tr>
 <td class="padding_s">
 
-★<span class="caution">コミュニティ管理人交代依頼が({$num_anatani_c_commu_admin_confirm_list})件きています。</span>&nbsp;<a href="({t_url m=pc a=page_h_confirm_list})"><span class="b_b">承認・拒否</span></a>
+★<span class="caution">コミュニティ管理者交代依頼が({$num_anatani_c_commu_admin_confirm_list})件きています。</span>&nbsp;<a href="({t_url m=pc a=page_h_confirm_list})"><span class="b_b">承認・拒否</span></a>
 
 </td>
 </tr>
@@ -156,7 +156,7 @@
 ({if $inc_entry_point[3]})
 <tr>
 <td class="container">
-({$inc_entry_point[3]|smarty:nodefaults})
+({$inc_entry_point[3]|smarty:nodefaults|t_url2cmd:'entry_point'|t_cmd:'entry_point'})
 </td>
 </tr>
 ({/if})
@@ -167,7 +167,7 @@
 ({********************************})
 
 ({if $inc_entry_point[4]})
-({$inc_entry_point[4]|smarty:nodefaults})
+({$inc_entry_point[4]|smarty:nodefaults|t_url2cmd:'entry_point'|t_cmd:'entry_point'})
 ({/if})
 
 <!-- **************************************** -->
@@ -226,8 +226,22 @@
 <table border="0" cellspacing="0" cellpadding="0" style="width:254px;">
 <tr>
 <td align="center" class="bg_05 c_04">
+
+({if $smarty.const.OPENPNE_IS_POINT_ADMIN || $c_member.c_member_id != 1})
+({if ($smarty.const.OPENPNE_DISP_RANK && $rank) || ($smarty.const.OPENPNE_DISP_POINT && $point)})
+<img src="./skin/dummy.gif" class="v_spacer_m">
+({if $smarty.const.OPENPNE_DISP_RANK && $rank})
+<img src="({t_img_url filename=$rank.image_filename})" class="pict" alt="({$rank.name})" style="margin:2px"><br>
+({/if})
+({if $smarty.const.OPENPNE_DISP_POINT && $point})
+({$point}) Point<br>
+({/if})
+({/if})
+({/if})
+
 <img src="./skin/dummy.gif" class="v_spacer_m">
 ({$c_member.nickname})さん (({$c_friend_count}))
+
 </td>
 </tr>
 </table>
@@ -249,7 +263,7 @@
 <img src="./skin/dummy.gif" class="v_spacer_m">
 
 ({if $inc_entry_point[5]})
-({$inc_entry_point[5]|smarty:nodefaults})
+({$inc_entry_point[5]|smarty:nodefaults|t_url2cmd:'entry_point'|t_cmd:'entry_point'})
 ({/if})
 
 ({if $c_friend_list})
@@ -281,7 +295,7 @@
 ({foreach from=$c_friend_list item=item key=key})
 ({if $key > 0})&({/if})
 pne_item({$key+1})_id=({$item.c_member_id})
-&pne_item({$key+1})_name=({$item.nickname|t_truncate:12:'..'|escape:'url'})
+&pne_item({$key+1})_name=({$item.nickname|t_truncate:12:'..'|escape:url|smarty:nodefaults})
 &pne_item({$key+1})_linkurl=({t_url m=pc a=page_f_home _urlencode=true _html=false})%26target_c_member_id=({$item.c_member_id})
 &pne_item({$key+1})_imageurl=({t_img_url filename=$item.image_filename w=76 h=76 noimg=no_image _urlencode=true _html=false})
 &pne_item({$key+1})_count=({$item.friend_count})
@@ -460,7 +474,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({/if})
 
 ({if $inc_entry_point[6]})
-({$inc_entry_point[6]|smarty:nodefaults})
+({$inc_entry_point[6]|smarty:nodefaults|t_url2cmd:'entry_point'|t_cmd:'entry_point'})
 ({/if})
 
 <!-- ************************************ -->
@@ -492,7 +506,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({foreach from=$c_commu_user_list item=item key=key})
 ({if $key > 0})&({/if})
 pne_item({$key+1})_id=({$item.c_commu_id})
-&pne_item({$key+1})_name=({$item.name|t_truncate:12:'..'|escape:'url'})
+&pne_item({$key+1})_name=({$item.name|t_truncate:12:'..'|escape:url|smarty:nodefaults})
 &pne_item({$key+1})_linkurl=({t_url m=pc a=page_c_home _urlencode=true _html=false})%26target_c_commu_id=({$item.c_commu_id})
 &pne_item({$key+1})_imageurl=({t_img_url filename=$item.image_filename w=76 h=76 noimg=no_logo_small _urlencode=true _html=false})
 &pne_item({$key+1})_count=({$item.count_commu_members})
@@ -696,7 +710,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({foreach from=$bookmark_member_list item=item key=key})
 ({if $key > 0})&({/if})
 pne_item({$key+1})_id=({$item.c_member_id})
-&pne_item({$key+1})_name=({$item.nickname|t_truncate:12:'..'|escape:'url'})
+&pne_item({$key+1})_name=({$item.nickname|t_truncate:12:'..'|escape:url|smarty:nodefaults})
 &pne_item({$key+1})_linkurl=({t_url m=pc a=page_f_home _urlencode=true _html=false})%26target_c_member_id=({$item.c_member_id})
 &pne_item({$key+1})_imageurl=({t_img_url filename=$item.image_filename w=76 h=76 noimg=no_image _urlencode=true _html=false})
 &pne_item({$key+1})_count=({$item.friend_count})
@@ -870,7 +884,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <img src="./skin/dummy.gif" class="v_spacer_m">
 
 ({if $inc_entry_point[7]})
-({$inc_entry_point[7]|smarty:nodefaults})
+({$inc_entry_point[7]|smarty:nodefaults|t_url2cmd:'entry_point'|t_cmd:'entry_point'})
 ({/if})
 
 ({********************************})
@@ -882,7 +896,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({********************************})
 
 ({if $inc_entry_point[8]})
-({$inc_entry_point[8]|smarty:nodefaults})
+({$inc_entry_point[8]|smarty:nodefaults|t_url2cmd:'entry_point'|t_cmd:'entry_point'})
 ({/if})
 
 ({if $calendar})
@@ -995,7 +1009,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({/if})
 
 ({if $inc_entry_point[9]})
-({$inc_entry_point[9]|smarty:nodefaults})
+({$inc_entry_point[9]|smarty:nodefaults|t_url2cmd:'entry_point'|t_cmd:'entry_point'})
 ({/if})
 
 <!-- ******************************** -->
@@ -1302,7 +1316,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <img src="./skin/dummy.gif" class="v_spacer_m">
 
 ({if $inc_entry_point[10]})
-({$inc_entry_point[10]|smarty:nodefaults})
+({$inc_entry_point[10]|smarty:nodefaults|t_url2cmd:'entry_point'|t_cmd:'entry_point'})
 ({/if})
 
 <!-- ******************************** -->
@@ -1486,7 +1500,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({/if})
 
 ({if $inc_entry_point[11]})
-({$inc_entry_point[11]|smarty:nodefaults})
+({$inc_entry_point[11]|smarty:nodefaults|t_url2cmd:'entry_point'|t_cmd:'entry_point'})
 ({/if})
 
 ({if $c_friend_intro_list})
@@ -1581,7 +1595,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({/if})
 
 ({if $inc_entry_point[12]})
-({$inc_entry_point[12]|smarty:nodefaults})
+({$inc_entry_point[12]|smarty:nodefaults|t_url2cmd:'entry_point'|t_cmd:'entry_point'})
 ({/if})
 
 ({********************************})

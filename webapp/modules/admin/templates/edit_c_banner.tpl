@@ -86,13 +86,9 @@ window.onload = disableTextarea({if !$top_banner_html_before && !$top_banner_htm
 </tr>
 
 </table>
-</td>
-</tr>
-</table>
 <p class="textBtn"><input tabindex="4" type="submit" value="トップバナー設定を確定する"></p>
 </form>
 <h3 class="item" id="ttl02">サイドバナー</h3>
-<p class="caution" id="c02">※468 x 60 ピクセルの画像を設定してください。</p>
 <form action="./" method="post" name="form_side_banner">
 
 <table class="basicType2" id="sideBanner">
@@ -142,9 +138,6 @@ window.onload = disableTextarea({if !$top_banner_html_before && !$top_banner_htm
 <dd>ログイン前<br /><textarea tabindex="7" cols="72" rows="5" name="side_banner_html_before">({$side_banner_html_before})</textarea></dd>
 <dd>ログイン後<br /><textarea tabindex="7" cols="72" rows="5" name="side_banner_html_after">({$side_banner_html_after})</textarea></dd>
 </dl>
-</td>
-</tr>
-</table>
 </td>
 </tr>
 </table>

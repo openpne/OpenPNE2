@@ -11,7 +11,7 @@
 パスワードを入力してください。<br>
 <br>
 
-({t_form m=ktai a=do_o_update_ktai_address})
+({t_form _attr='utn' m=ktai a=do_o_update_ktai_address})
 <input type="hidden" name="ses" value="({$ses})">
 携帯ﾒｰﾙｱﾄﾞﾚｽ<br>
 ({$pre.ktai_address})<br>

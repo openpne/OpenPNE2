@@ -9,7 +9,7 @@
 ({if $fh_com_list_user})
 
 <!-- ************************************************* -->
-<!-- ******ここから：グループ一覧（メンバ有り）****** -->
+<!-- ******ここから：グループ一覧（メンバー有り）****** -->
 <div id="commu_list" class="border_07" style="width:580px;margin:0px auto;">
 
 <table border="0" cellspacing="0" cellpadding="0" style="width:580px;">
@@ -43,7 +43,7 @@
 </tr>
 <tr>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-<td style="width:562px;" class="bg_05" align="center">
+<td style="width:562px;" class="bg_02" align="center">
 [({foreach from=$page_list item=item})
 ({if $item == $page})
 ({$item})
@@ -63,7 +63,7 @@
 <table border="0" cellspacing="0" cellpadding="0" style="width:564px;">
 <tr>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-<td style="width:562px;" class="bg_05" align="right">
+<td style="width:562px;" class="bg_02" align="right">
 ({if $pager.prev_page})
 <a href="({t_url m=biz a=page_fh_group_list})&amp;page=({$pager.prev_page})&amp;target_c_member_id=({$target_member.c_member_id})">前を表示</a>&nbsp;
 ({/if})
@@ -539,7 +539,7 @@
 <table border="0" cellspacing="0" cellpadding="0" style="width:564px;">
 <tr>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-<td style="width:562px;" class="bg_05" align="center">
+<td style="width:562px;" class="bg_02" align="center">
 [({foreach from=$page_list item=item})
 ({if $item == $page})
 ({$item})
@@ -559,7 +559,7 @@
 <table border="0" cellspacing="0" cellpadding="0" style="width:564px;">
 <tr>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-<td style="width:562px;" class="bg_05" align="right">
+<td style="width:562px;" class="bg_02" align="right">
 ({if $pager.prev_page})
 <a href="({t_url m=biz a=page_fh_group_list})&amp;page=({$pager.prev_page})&amp;target_c_member_id=({$target_member.c_member_id})">前を表示</a>&nbsp;
 ({/if})
@@ -596,13 +596,13 @@
 </table>
 
 </div>
-<!-- ******ここまで：グループ一覧（メンバ有り）****** -->
+<!-- ******ここまで：グループ一覧（メンバー有り）****** -->
 <!-- ************************************************* -->
 
 ({else})
 
 <!-- ************************************************* -->
-<!-- ******ここから：グループ一覧（メンバ無し）****** -->
+<!-- ******ここから：グループ一覧（メンバー無し）****** -->
 <div id="no_commu_list" class="border_07" style="width:580px;margin:0px auto;">
 
 <table border="0" cellspacing="0" cellpadding="0" style="width:580px;">
@@ -663,7 +663,7 @@
 </table>
 
 </div>
-<!-- ******ここまで：グループ一覧（メンバ無し）****** -->
+<!-- ******ここまで：グループ一覧（メンバー無し）****** -->
 <!-- ************************************************* -->
 
 ({/if})

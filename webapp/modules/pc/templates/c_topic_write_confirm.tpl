@@ -157,29 +157,40 @@
 
 <table border="0" cellspacing="0" cellpadding="0" style="width:200px;height:20px;">
 <tr>
+<td>
+
+<div align="center" style="text-align:center;">
+
 ({t_form m=pc a=do_c_topic_write_insert_c_commu_topic_comment})
 <input type="hidden" name="sessid" value="({$PHPSESSID})">
 
-<td>
-<div align="center" style="text-align:center;">
+
 <input type="submit" class="submit" value="　書き込み　">
-</div>
-</td>
+
 ({foreach from=$topic_write key=key item=item})
 <input type="hidden" name="({$key})" value="({$item})">
 ({/foreach})
 </form>
 
-({t_form m=pc a=page_c_topic_detail})
-<td>
-<div align="center" style="text-align:center;">
-<input type="submit" class="submit" value="　修　 正　">
 </div>
+
 </td>
+<td>
+
+<div align="center" style="text-align:center;">
+
+({t_form _form_action=#write m=pc a=page_c_topic_detail})
+
+<input type="submit" class="submit" value="　修　 正　">
+
 ({foreach from=$topic_write key=key item=item})
 <input type="hidden" name="({$key})" value="({$item})">
 ({/foreach})
 </form>
+
+</div>
+
+</td>
 </tr>
 </table>
 

@@ -57,8 +57,9 @@ class pc_page_fh_diary_list extends OpenPNE_Action
         } elseif($category_id) {
             $year = date('Y');
             $month = date('n');
-            $list_set = db_diary_list4c_diary_category_id($target_c_member_id, $category_id, $u);
+            $list_set = db_diary_list4c_diary_category_id($target_c_member_id, $category_id, $u, $page_size, $page);
             $this->set('category_name', db_diary_get_category_name4category_id($category_id));
+            $this->set('category_id', $category_id);
         } else {
             $year = date('Y');
             $month = date('n');
@@ -102,8 +103,8 @@ class pc_page_fh_diary_list extends OpenPNE_Action
         $this->set('date_list', p_fh_diary_list_date_list4c_member_id($target_c_member_id));
         
         if (USE_DIARY_CATEGORY) {
-	        //カテゴリ一覧
-	        $this->set('category_list', db_diary_category_list4c_member_id($target_c_member_id));
+            //カテゴリ一覧
+            $this->set('category_list', db_diary_category_list4c_member_id($target_c_member_id));
         }
 
         //検索ワード

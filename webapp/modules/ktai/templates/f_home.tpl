@@ -48,7 +48,9 @@
 ({strip})
 ({capture name="birth"})
 ({if $target_c_member.age !== NULL})年齢：({$target_c_member.age})歳<br>({/if})
+({if $target_c_member.birth_month && $target_c_member.birth_day})
 誕生日：({$target_c_member.birth_month})月({$target_c_member.birth_day})日<br>
+({/if})
 ({/capture})
 
 ({foreach from=$target_c_member.profile key=key item=item})
@@ -143,6 +145,9 @@
 　<a href="({t_url m=ktai a=page_c_home})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">({$c_commu.name})</a>(({$c_commu.count_members}))<br>
 ({/foreach})
 <a href="({t_url m=ktai a=page_fh_com_list})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">→すべて表示</a><br>
+({if $common_commu_count})
+<a href="({t_url m=ktai a=page_f_com_list_common})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">→共通コミュニティ</a><br>
+({/if})
 <a href="#top">↑このﾍﾟｰｼﾞの先頭へ戻る</a>
 
 <hr>
@@ -151,7 +156,8 @@
 ({foreach from=$target_c_member.profile key=key item=item})
 ({if $item.form_type == 'textarea'})
 <font color="green">[({$item.caption})]</font><br>
-({$item.value|nl2br})
+({$item.value|t_url2a_ktai|nl2br})
+<br>
 ({/if})
 ({/foreach})
 <hr>

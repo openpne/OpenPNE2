@@ -40,7 +40,7 @@
 
 
 <tr>
-<th>送信先<br>ユーザーID</th>
+<th>送信先<br>メンバーID</th>
 <td>
 <textarea name="body" cols="6" rows="10" readonly="readonly">({foreach from=$history.c_member_ids item=c_member_id})({$c_member_id})
 ({/foreach})</textarea>

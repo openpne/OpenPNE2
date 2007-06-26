@@ -46,7 +46,7 @@
 ({*********})
 <tr>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-<td style="width:562px;" class="bg_05" align="center">
+<td style="width:562px;" class="bg_02" align="center">
 
 <div class="padding_s">
 
@@ -79,7 +79,7 @@
 ({*********})
 <tr>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-<td style="width:562px;" class="bg_05" align="right">
+<td style="width:562px;" class="bg_02" align="right">
 
 <div class="padding_s">
 
@@ -581,7 +581,7 @@
 ({*********})
 <tr>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-<td style="width:562px;" class="bg_05" align="center">
+<td style="width:562px;" class="bg_02" align="center">
 
 <div class="padding_s">
 
@@ -614,7 +614,7 @@
 ({*********})
 <tr>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-<td style="width:562px;" class="bg_05" align="right">
+<td style="width:562px;" class="bg_02" align="right">
 
 <div class="padding_s">
 

@@ -34,19 +34,13 @@ class pc_page_c_event_add_confirm extends OpenPNE_Action
         }
         //---
 
-        $event = p_c_event_add_confirm_event4request();
+        list($event, $errors) = p_c_event_add_confirm_event4request(true);
         $upfile_obj1 = $_FILES['image_filename1'];
         $upfile_obj2 = $_FILES['image_filename2'];
         $upfile_obj3 = $_FILES['image_filename3'];
 
         // エラーチェック
-        $err_msg = array();
-        if (trim($event['title']) == '') {
-            $err_msg[] = "タイトルを入力してください";
-        }
-        if (trim($event['detail']) == '') {
-            $err_msg[] = "詳細を入力してください";
-        }
+        $err_msg = $errors;
 
         if (!$event['open_date_month'] || !$event['open_date_day'] || !$event['open_date_year']) {
             $err_msg[] = "開催日時を入力してください";

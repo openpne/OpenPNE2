@@ -23,13 +23,15 @@ class pc_do_h_invite_insert_c_invite extends OpenPNE_Action
         $message = $requests['message'];
         // ----------
 
-        if (empty($_SESSION['captcha_confirm']) || $requests['captcha_confirm'] != md5($_SESSION['captcha_confirm'])) {
+        if (OPENPNE_USE_CAPTCHA) {
+            if (empty($_SESSION['captcha_confirm']) || $requests['captcha_confirm'] != md5($_SESSION['captcha_confirm'])) {
+                unset($_SESSION['captcha_confirm']);
+                $msg = "確認キーワードが誤っています";
+                $p = array('msg' => $msg);
+                openpne_redirect('pc', 'page_h_invite', $p);
+            }
             unset($_SESSION['captcha_confirm']);
-            $msg = "確認キーワードが誤っています";
-            $p = array('msg' => $msg);
-            openpne_redirect('pc', 'page_h_invite', $p);
         }
-        unset($_SESSION['captcha_confirm']);
 
         if (!db_common_is_mailaddress($mail)) {
             $msg = "メールアドレスを入力してください";
@@ -54,8 +56,7 @@ class pc_do_h_invite_insert_c_invite extends OpenPNE_Action
 
         if (is_ktai_mail_address($mail)) {
             //<PCKTAI
-            if (defined('OPENPNE_REGIST_FROM') &&
-                    !((OPENPNE_REGIST_FROM & OPENPNE_REGIST_FROM_KTAI) >> 1)) {
+            if (!((OPENPNE_REGIST_FROM & OPENPNE_REGIST_FROM_KTAI) >> 1)) {
                 $msg = '携帯アドレスには招待を送ることができません';
                 $p = array('msg' => $msg);
                 openpne_redirect('pc', 'page_h_invite', $p);
@@ -73,8 +74,7 @@ class pc_do_h_invite_insert_c_invite extends OpenPNE_Action
 
         } else {
             //<PCKTAI
-            if (defined('OPENPNE_REGIST_FROM') &&
-                    !(OPENPNE_REGIST_FROM & OPENPNE_REGIST_FROM_PC)) {
+            if (!(OPENPNE_REGIST_FROM & OPENPNE_REGIST_FROM_PC)) {
                 $msg = 'PCアドレスには招待を送ることができません';
                 $p = array('msg' => $msg);
                 openpne_redirect('pc', 'page_h_invite', $p);

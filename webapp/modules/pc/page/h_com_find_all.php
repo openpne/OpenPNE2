@@ -19,8 +19,8 @@ class pc_page_h_com_find_all extends OpenPNE_Action
         $category_id = $requests['category_id'];
         // ----------
 
-        //バグ回避のため半角空白を全角に統一
-        $keyword = str_replace(" ", "　", $keyword);
+        //バグ回避のため全角空白を半角空白に統一
+        $keyword = str_replace("　", " ", $keyword);
 
         do_common_insert_search_log($u, $keyword);
 

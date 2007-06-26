@@ -31,6 +31,18 @@ class pc_do_c_event_write_insert_c_commu_topic_comment extends OpenPNE_Action
         }
         //---
 
+        if ($add_event_member == 1 && $c_topic['capacity'] && $c_topic['capacity'] <= $c_topic['member_num'] ) {
+            $err_msg[] = 'イベントの参加者数制限を超えています';
+            $_REQUEST['err_msg'] = $err_msg;
+            openpne_forward('pc', 'page', "c_event_detail");
+            exit;
+        }
+
+        if ($add_event_member) {
+            if (!db_commu_is_event_join_date($c_commu_topic_id)) {
+                handle_kengen_error();
+            }
+        }
 
         //イベントのメンバーに追加
         if ($add_event_member == 1) {
@@ -68,6 +80,11 @@ class pc_do_c_event_write_insert_c_commu_topic_comment extends OpenPNE_Action
         //お知らせメール送信(PCへ)
         send_bbs_info_mail_pc($tc_id, $u);
 
+        if (OPENPNE_USE_POINT_RANK) {
+            //トピック・イベントにコメントした人にポイント付与
+            $point = db_action_get_point4c_action_id(11);
+            db_point_add_point($u, $point);
+        }
 
         $p = array('target_c_commu_topic_id' => $c_commu_topic_id);
         openpne_redirect('pc', 'page_c_event_detail', $p);

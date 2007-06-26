@@ -119,12 +119,6 @@
     <option value="({$item.c_profile_option_id})">({$item.value})</option>
     ({/foreach})
     </select>
-({* 複数選択パターン *})
-    ({*
-    ({foreach from=$profile_list[$profile.name].options item=item})
-    <input type="checkbox" name="profile[({$profile.name})][]" value="({$item.c_profile_option_id})">({$item.value})
-    ({/foreach})
-    *})
 ({elseif $profile.form_type == 'text' || $profile.form_type == 'textlong' || $profile.form_type == 'textarea'})
     <input class="text" name="profile[({$profile.name})]" size="30" type="text">
 ({/if})

@@ -62,7 +62,7 @@
 
 <div class="padding_s">
 
-<input type="text" class="text" name="title" value="({$event.name})" maxlength="120">
+<input type="text" class="text" name="title" value="({$event.name})">
 
 </div>
 
@@ -166,6 +166,34 @@
 <div class="padding_s">
 
 <textarea class="text" name="detail" rows="6" cols="50" style="width:480px;">({$event.body})</textarea>
+
+</div>
+
+</td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+</tr>
+({*********})
+<tr>
+<td style="width:644px;height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+</tr>
+({*********})
+<tr>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:150px;" class="bg_05" align="center" valign="middle">
+
+<div class="padding_s">
+
+募集人数
+
+</div>
+
+</td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:491px;" class="bg_02" align="left" valign="middle">
+
+<div class="padding_s">
+
+<input type="text" class="text" name="capacity" value="({if $event.capacity})({$event.capacity})({/if})">
 
 </div>
 

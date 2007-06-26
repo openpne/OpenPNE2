@@ -66,10 +66,10 @@
 ◆昨日のランキングNo1は？◆
 ―――――――――――――――――――――――――――――
 
-◇昨日のアクセス数No1ユーザーは？
+◇昨日のアクセス数No1メンバーは？
 　→　({t_url_mail m=pc a=page_h_ranking})&kind=ashiato
 
-◇昨日の({$WORD_MY_FRIEND})数No1ユーザーは？
+◇昨日の({$WORD_MY_FRIEND})数No1メンバーは？
 　→　({t_url_mail m=pc a=page_h_ranking})&kind=friend
 
 ◇昨日の参加人数No1コミュニティは？

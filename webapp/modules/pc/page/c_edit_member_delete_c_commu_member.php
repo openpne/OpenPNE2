@@ -22,6 +22,12 @@ class pc_page_c_edit_member_delete_c_commu_member extends OpenPNE_Action
         }
         //---
 
+        // 削除対象がコミュニティ管理者
+        if (db_commu_is_c_commu_admin($target_c_commu_id, $target_c_member_id)) {
+            handle_kengen_error();
+        }
+
+
         $this->set('inc_navi', fetch_inc_navi("c", $target_c_commu_id));
 
         $member = db_member_c_member_with_profile($target_c_member_id);

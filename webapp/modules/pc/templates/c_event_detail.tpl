@@ -66,7 +66,7 @@
 ({if $c_topic.image_filename1||$c_topic.image_filename2||$c_topic.image_filename3})
 <tr>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-<td style="width:110px;" class="bg_03" align="center" valign="top" rowspan="({if $is_c_event_admin})19({else})17({/if})">
+<td style="width:110px;" class="bg_03" align="center" valign="top" rowspan="({if $is_c_event_admin})21({else})19({/if})">
 
 <div class="padding_s">
 
@@ -128,7 +128,7 @@
 ({else})
 <tr>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-<td style="width:110px;" class="bg_03" align="center" valign="top" rowspan="({if $is_c_event_admin})17({else})15({/if})">
+<td style="width:110px;" class="bg_03" align="center" valign="top" rowspan="({if $is_c_event_admin})19({else})17({/if})">
 
 <div class="padding_s">
 
@@ -303,7 +303,7 @@
 
 <div class="padding_s lh_120">
 
-({$c_topic.body|nl2br|t_url2cmd|t_cmd})
+({$c_topic.body|nl2br|t_url2cmd:'community'|t_cmd:'community'})
 
 </div>
 
@@ -353,6 +353,41 @@
 
 <div class="padding_s">
 
+募集人数
+
+</div>
+
+</td>
+<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td class="bg_02" align="left" valign="middle">
+
+<div class="padding_s">
+
+({if $c_topic.capacity})
+({$c_topic.capacity})人
+({else})
+無制限
+({/if})
+
+
+</div>
+
+</td>
+<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+</tr>
+({*********})
+<tr>
+<td style="height:1px;" class="bg_01"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+</tr>
+({*********})
+<tr>
+<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td class="bg_05" align="center" valign="middle">
+
+<div class="padding_s">
+
 参加者
 
 </div>
@@ -375,9 +410,9 @@
 <td style="width:50%;text-align:right;">
 
 <div class="padding_s">
-
+({if $c_topic.member_num})
 <img src="./skin/dummy.gif" class="icon arrow_1"><a href="({t_url m=pc a=page_c_event_member_list})&amp;target_c_commu_topic_id=({$c_topic.c_commu_topic_id})">参加者一覧を見る</a>&nbsp;
-
+({/if})
 </div>
 
 </td>
@@ -491,6 +526,9 @@
 ({if $c_topic_write.0})
 <!-- ********************************* -->
 <!-- ******ここから：書き込み一覧****** -->
+
+<a name="write"></a> 
+
 <table border="0" cellspacing="0" cellpadding="0" style="width:650px;margin:0px auto;" class="border_07">
 <tr>
 <td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
@@ -593,7 +631,7 @@
 ({/if})
 
 <div class="padding_s lh_120">
-({$item.body|nl2br|t_url2cmd|t_cmd})
+({$item.body|nl2br|t_url2cmd:'community'|t_cmd:'community'})
 </div>
 
 </td>
@@ -704,7 +742,7 @@
 
 <div class="padding_s">
 
-<textarea name="body" rows="10" cols="50" style="width:474px">({$body})</textarea>
+<textarea name="body" rows="10" cols="50" style="width:415px">({$body})</textarea>
 
 </div>
 
@@ -810,13 +848,16 @@
 
 <div class="padding_w_m">
 
-({if $is_c_event_admin})
-<input type="submit" class="submit" name="button" value="コメントのみ書き込む">
-({elseif $is_c_event_member})
+({if $is_event_join_date})
+({if $is_c_event_member})
 <input type="submit" class="submit" name="button" value="参加をキャンセルする">
-<input type="submit" class="submit" name="button" value="コメントのみ書き込む">
 ({elseif $is_c_commu_member})
+({if not $c_topic.capacity or ($c_topic.capacity gt $c_topic.member_num) }) 
 <input type="submit" class="submit" name="button" value="イベントに参加する">
+({/if})
+({/if})
+({/if})
+({if $is_c_commu_member})
 <input type="submit" class="submit" name="button" value="コメントのみ書き込む">
 ({/if})
 
