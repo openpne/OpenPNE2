@@ -6,6 +6,7 @@
 
 <center>
 <a name="top"><font color="orange">({$c_member.nickname})さんのﾎｰﾑ</font></a>
+({if $smarty.const.OPENPNE_IS_POINT_ADMIN || $c_member.c_member_id != 1})
 ({if $smarty.const.OPENPNE_DISP_RANK && $rank})
 <br>
 <img src="({t_img_url filename=$rank.image_filename})" alt="({$rank.name})">
@@ -13,6 +14,7 @@
 ({if $smarty.const.OPENPNE_DISP_POINT && $point})
 <br>
 ({$point}) Point
+({/if})
 ({/if})
 </center>
 

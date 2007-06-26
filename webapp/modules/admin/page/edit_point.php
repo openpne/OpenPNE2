@@ -13,7 +13,7 @@ class admin_page_edit_point extends OpenPNE_Action
 
     function execute($requests)
     {
-        if (!OPENPNE_USE_POINT_RANK) {
+        if (!OPENPNE_USE_POINT_RANK || (!OPENPNE_IS_POINT_ADMIN && $requests['target_c_member_id'] == 1)) {
             admin_client_redirect('top', '指定されたページにはアクセスできません');
         }
         

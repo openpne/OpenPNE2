@@ -87,7 +87,7 @@ class biz_do_fhg_biz_schedule_add extends OpenPNE_Action
         //--------------------
 
         //ERROR---------------
-        if ((strtotime($finish_time) < strtotime($begin_time)) && ($finish_time != ':')) {
+        if ((strtotime($finish_time) < strtotime($begin_time)) && isset($finish_time)) {
             //終了時間と開始時間が変
             $msg = '終了時刻が開始時刻より先です。';
             $url = $redirect_script.
@@ -100,7 +100,7 @@ class biz_do_fhg_biz_schedule_add extends OpenPNE_Action
                         '&sc_rwk_enc='.serialize($requests['sc_rwk_enc']).
                         '&sc_rcount='.$requests['sc_rcount'];
 
-            $p = array('msg' => $msg, 'begin_date' => $begin_date, 'sc_rp' => $requests['sc_rp'],
+            $p = array('msg' => $msg, 'begin_date' => $begin_date, 'sc_rp' => $requests['sc_rp'], 'sc_title' => $requests['sc_title'],
                 'sc_memo' => $requests['sc_memo'], 'sc_j_mem_enc' => serialize($requests['sc_j_mem']),
                 'sc_rwk_enc' => serialize($requests['sc_rwk_enc']), 'sc_rcount' => $requests['sc_rcount']);
             openpne_redirect('biz', 'page_fh_biz_schedule_add', $p);

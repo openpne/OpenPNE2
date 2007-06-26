@@ -681,6 +681,33 @@ function _db_admin_c_member_id_list($cond_list, $order = null)
     }
     // --- ポイントで絞り込み ここまで
 
+    // --- メールアドレスで絞り込み ここから
+    if (!empty($cond_list['is_pc_address']) || !empty($cond_list['is_ktai_address'])) {
+
+        $sql = 'SELECT c_member_id FROM c_member_secure WHERE 1';
+
+        //PCアドレスの有無で絞る
+        if ($cond_list['is_pc_address'] == 1) {
+            $sql .= " AND pc_address <> '' ";
+        } else if ($cond_list['is_pc_address'] == 2) {
+            $sql .= " AND pc_address = '' ";
+        }
+
+        //携帯アドレスの有無で絞る
+        if ($cond_list['is_ktai_address'] == 1) {
+            $sql .= " AND ktai_address <> '' ";
+        } else if ($cond_list['is_ktai_address'] == 2) {
+            $sql .= " AND ktai_address = '' ";
+        }
+
+        $temp_ids = db_get_col($sql);
+
+        //メールアドレスで絞り込み
+        $ids = array_intersect($ids, $temp_ids);
+
+    }
+    // --- メールアドレスで絞り込み ここまで
+
     //各プロフィールごとで絞り結果をマージする(ソートオーダーつき)
     $_sql = 'SELECT name, form_type, c_profile_id FROM c_profile';
     $profile = db_get_all($_sql);
@@ -780,6 +807,15 @@ function validate_cond($requests)
     // 最終ログイン時間
     if (!empty($requests['last_login'])) {
         $cond_list['last_login'] = intval($requests['last_login']);
+    }
+
+    //PCアドレスの有無
+    if (!empty($requests['is_pc_address'])) {
+        $cond_list['is_pc_address'] = intval($requests['is_pc_address']);
+    }
+    //携帯アドレスの有無
+    if (!empty($requests['is_ktai_address'])) {
+        $cond_list['is_ktai_address'] = intval($requests['is_ktai_address']);
     }
 
     //ポイント

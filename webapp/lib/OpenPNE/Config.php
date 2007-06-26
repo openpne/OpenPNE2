@@ -34,6 +34,7 @@ class OpenPNE_Config
             'SORT_ORDER_NICK', 'SORT_ORDER_BIRTH',
             'OPENPNE_ENABLE_ROLLOVER',
             'OPENPNE_DISP_POINT', 'OPENPNE_DISP_RANK',
+            'OPENPNE_IS_POINT_ADMIN',
             'SKIN_VERSION',
             'AFFILIATE_TAG',
             'AFFILIATE_KTAI_TAG',
@@ -138,6 +139,7 @@ class OpenPNE_Config
             'OPENPNE_USE_POINT_RANK' => 0,
             'OPENPNE_DISP_POINT' => 1,
             'OPENPNE_DISP_RANK' => 1,
+            'OPENPNE_IS_POINT_ADMIN' => 1,
         // config.php
             'OPENPNE_RSS_CACHE_DIR' => OPENPNE_VAR_DIR . '/rss_cache',
             'OPENPNE_UNDER_MAINTENANCE' => false,

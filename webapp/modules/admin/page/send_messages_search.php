@@ -16,7 +16,8 @@ class admin_page_send_messages_search extends OpenPNE_Action
 
         $special_keys = array('s_year', 'e_year',
                               's_point', 'e_point',
-                              'last_login');
+                              'last_login',
+                              'is_pc_address', 'is_ktai_address');
         foreach ($cond_list as $key => $each_cond) {
             if (in_array($key, $special_keys)) {
                 continue;

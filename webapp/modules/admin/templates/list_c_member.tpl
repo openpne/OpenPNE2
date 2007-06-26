@@ -81,8 +81,8 @@
 			<th rowspan="2"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=({$prof.name})-1({$cond})">▲</a>({$prof.caption})<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=({$prof.name})-2({$cond})">▼</a></th>
 			({/if})
 			({/foreach})
-			<th class="cell16" rowspan="3">PCアドレス</th>
-			<th class="cell17" rowspan="3">携帯アドレス</th>
+			<th class="cell16" rowspan="2">PCアドレス</th>
+			<th class="cell17" rowspan="2">携帯アドレス</th>
 			<th class="cell18" rowspan="3">登録時アドレス</th>
 			<th class="cell15" rowspan="3"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;order=c_member_id-1({$cond})">▲</a>ID<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;order=c_member_id-2({$cond})">▼</a></th>
 		</tr>
@@ -153,6 +153,20 @@
 			</th>
 			({/if})
 			({/foreach})
+			<th class="cell05">
+            <select class="basic" onChange="Link('?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page=({$pager.page})&amp;page_size=({$pager.page_size})&amp;order=({$requests.order})({$cond})&amp;is_pc_address='+this.options[this.selectedIndex].value);">
+            <option value="">▼選択</option>
+			<option value="1"({if $cond_list.is_pc_address == 1}) selected="selected"({/if})>登録している</option>
+			<option value="2"({if $cond_list.is_pc_address == 2}) selected="selected"({/if})>登録していない</option>
+            </select>
+            </th>
+			<th class="cell05">
+            <select class="basic" onChange="Link('?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page=({$pager.page})&amp;page_size=({$pager.page_size})&amp;order=({$requests.order})({$cond})&amp;is_ktai_address='+this.options[this.selectedIndex].value);">
+            <option value="">▼選択</option>
+			<option value="1"({if $cond_list.is_ktai_address == 1}) selected="selected"({/if})>登録している</option>
+			<option value="2"({if $cond_list.is_ktai_address == 2}) selected="selected"({/if})>登録していない</option>
+            </select>
+            </th>
 		</tr>
 	</thead>
 	<tfoot>
@@ -199,8 +213,8 @@
 			<td class="cell03">({$item.c_member_id})</td>
 			<td class="cell04"><a href="({t_url _absolute=1 m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})" target="_blank">({$item.nickname})</a></td>
 			({if $smarty.const.OPENPNE_USE_POINT_RANK})
-			<td class="cell10">({if $item.c_member_id == 1})-({else})({$item.c_rank.name})({/if})</td>
-			<td class="cell11">({if $item.c_member_id == 1})-({else})<a href="?m=({$module_name})&amp;a=({$hash_tbl->hash('page_edit_point')})&amp;target_c_member_id=({$item.c_member_id})">({$item.profile.PNE_POINT.value|default:0})</a>({/if})</td>
+			<td class="cell10">({if !$smarty.const.OPENPNE_IS_POINT_ADMIN && $item.c_member_id == 1})-({else})({$item.c_rank.name})({/if})</td>
+			<td class="cell11">({if !$smarty.const.OPENPNE_IS_POINT_ADMIN && $item.c_member_id == 1})-({else})<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_point')})&amp;target_c_member_id=({$item.c_member_id})">({$item.profile.PNE_POINT.value|default:0})</a>({/if})</td>
 			({/if})
 			<td class="cell05">({if $item.access_date != '0000-00-00 00:00:00'})({$item.access_date|date_format:"%y-%m-%d %H:%M"})({else})未ログイン({/if})</td>
 			<td class="cell06">({if $item.r_date != '0000-00-00 00:00:00'})({$item.r_date|date_format:"%y-%m-%d"})({else})&nbsp;({/if})</td>

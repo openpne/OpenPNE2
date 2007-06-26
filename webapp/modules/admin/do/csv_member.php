@@ -86,9 +86,14 @@ class admin_do_csv_member extends OpenPNE_Action
                 }
             }
             if (OPENPNE_USE_POINT_RANK) {
-                $tmp_c_member['PNE_POINT'] = (int)$tmp_c_member['PNE_POINT'];
-                $rank = db_point_get_rank4point($tmp_c_member['PNE_POINT']);
-                $tmp_c_member['rank'] = $rank['name'];
+                if (!OPENPNE_IS_POINT_ADMIN && $id == 1) {
+                    $tmp_c_member['PNE_POINT'] = '-';
+                    $tmp_c_member['rank'] = '-';
+                } else {
+                    $tmp_c_member['PNE_POINT'] = (int)$tmp_c_member['PNE_POINT'];
+                    $rank = db_point_get_rank4point($tmp_c_member['PNE_POINT']);
+                    $tmp_c_member['rank'] = $rank['name'];
+                }
             } else {
                 unset($tmp_c_member['PNE_POINT']);
             }
