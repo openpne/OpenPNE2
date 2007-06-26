@@ -151,9 +151,9 @@
 
 <div class="padding_s">
 
-({if $is_prev})<a href="({t_url m=pc a=page_fh_review_list_member})&amp;c_member_id=({$c_member.c_member_id})&amp;direc=-1&amp;page=({$page})">＜前</a> ({/if})
+({if $is_prev})<a href="({t_url m=pc a=page_fh_review_list_member})&amp;target_c_member_id=({$c_member.c_member_id})&amp;direc=-1&amp;page=({$page})">＜前</a> ({/if})
 ({$start_num})件～({$end_num})件を表示
-({if $is_next})<a href="({t_url m=pc a=page_fh_review_list_member})&amp;c_member_id=({$c_member.c_member_id})&amp;direc=1&amp;page=({$page})">次＞</a>({/if})
+({if $is_next})<a href="({t_url m=pc a=page_fh_review_list_member})&amp;target_c_member_id=({$c_member.c_member_id})&amp;direc=1&amp;page=({$page})">次＞</a>({/if})
 
 </div>
 
@@ -315,7 +315,7 @@
 
 <div class="padding_s">
 
-({$review.r_datetime|date_format:"%m月%d日 %H:%M"})
+({$review.r_datetime|date_format:"%Y年%m月%d日 %H:%M"})
 
 </div>
 
@@ -403,9 +403,9 @@
 
 <div class="padding_s">
 
-({if $is_prev})<a href="({t_url m=pc a=page_fh_review_list_member})&amp;c_member_id=({$c_member.c_member_id})&amp;direc=-1&amp;page=({$page})">＜前</a> ({/if})
+({if $is_prev})<a href="({t_url m=pc a=page_fh_review_list_member})&amp;target_c_member_id=({$c_member.c_member_id})&amp;direc=-1&amp;page=({$page})">＜前</a> ({/if})
 ({$start_num})件～({$end_num})件を表示
-({if $is_next})<a href="({t_url m=pc a=page_fh_review_list_member})&amp;c_member_id=({$c_member.c_member_id})&amp;direc=1&amp;page=({$page})">次＞</a>({/if})
+({if $is_next})<a href="({t_url m=pc a=page_fh_review_list_member})&amp;target_c_member_id=({$c_member.c_member_id})&amp;direc=1&amp;page=({$page})">次＞</a>({/if})
 
 </div>
 

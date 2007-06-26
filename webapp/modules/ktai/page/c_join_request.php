@@ -14,7 +14,7 @@ class ktai_page_c_join_request extends OpenPNE_Action
         $target_c_commu_id = $requests['target_c_commu_id'];
         // ----------
 
-        //コミュニティＩＤ
+        //コミュニティID
         $this->set("target_c_commu_id", $target_c_commu_id);
 
         return 'success';

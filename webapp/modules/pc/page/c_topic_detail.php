@@ -43,6 +43,8 @@ class pc_page_c_topic_detail extends OpenPNE_Action
 
         $this->set('inc_navi', fetch_inc_navi('c', $c_commu_id));
 
+        $c_topic['original_filename'] = db_file_original_filename4filename($c_topic['filename']);
+
         //詳細部分
         $this->set("c_commu", $c_commu);
         $this->set("c_topic", $c_topic);

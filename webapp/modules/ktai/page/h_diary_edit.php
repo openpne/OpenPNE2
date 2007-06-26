@@ -35,7 +35,7 @@ class ktai_page_h_diary_edit extends OpenPNE_Action
         $mail_address = MAIL_ADDRESS_PREFIX . $mail_address;
         $this->set('blog_address', $mail_address);
 
-        //メンバ情報
+        //メンバー情報
         $this->set('member', $c_member);
 
 

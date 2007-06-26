@@ -14,14 +14,20 @@ class pc_do_o_regist_prof extends OpenPNE_Action
     function execute($requests)
     {
         //<PCKTAI
-        if (defined('OPENPNE_REGIST_FROM') &&
-                !(OPENPNE_REGIST_FROM & OPENPNE_REGIST_FROM_PC)) {
+        if (!(OPENPNE_REGIST_FROM & OPENPNE_REGIST_FROM_PC)) {
             client_redirect_login();
         }
         //>
 
         $sid = $requests['sid'];
         if (!db_member_is_active_sid($sid)) {
+            $p = array('msg_code' => 'invalid_url');
+            openpne_redirect('pc', 'page_o_tologin', $p);
+        }
+
+        // メールアドレスが登録できるかどうか
+        $pre = db_member_c_member_pre4sid($sid);
+        if (!util_is_regist_mail_address($pre['pc_address'])) {
             $p = array('msg_code' => 'invalid_url');
             openpne_redirect('pc', 'page_o_tologin', $p);
         }
@@ -82,7 +88,7 @@ class pc_do_o_regist_prof extends OpenPNE_Action
         foreach ($profile_list as $profile) {
             if ( $profile['disp_regist'] &&
                 $profile['is_required'] &&
-                !$c_member_profile_list[$profile['name']]['value']
+                (is_null(!$c_member_profile_list[$profile['name']]['value']) || !$c_member_profile_list[$profile['name']]['value'] === '')
             ) {
                 $errors[$profile['name']] = $profile['caption'] . 'を入力してください';
                 break;
@@ -144,14 +150,15 @@ class pc_do_o_regist_prof extends OpenPNE_Action
             );
             $u = db_member_insert_c_member($c_member, $c_member_secure);
 
-            //入会者にポイント加算
-            $point = db_action_get_point4c_action_id(1);
-            db_point_add_point($u, $point);
+            if (OPENPNE_USE_POINT_RANK) {
+                //入会者にポイント加算
+                $point = db_action_get_point4c_action_id(1);
+                db_point_add_point($u, $point);
 
-            //メンバー招待をした人にポイント付与
-            $point = db_action_get_point4c_action_id(7);
-            db_point_add_point($pre['c_member_id_invite'], $point);
-
+                //メンバー招待をした人にポイント付与
+                $point = db_action_get_point4c_action_id(7);
+                db_point_add_point($pre['c_member_id_invite'], $point);
+            }
 
             // c_member_profile
             db_member_update_c_member_profile($u, $c_member_profile_list);

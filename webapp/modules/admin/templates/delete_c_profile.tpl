@@ -1,6 +1,8 @@
 ({$inc_header|smarty:nodefaults})
-({ext_include file="inc_subnavi_designCustomize.tpl"})
-<div class="tree"><a href="?m=({$module_name})">管理画面TOP</a>&nbsp;＞&nbsp;デザインカスタマイズ：<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_profile')})">プロフィール項目設定</a>&nbsp;＞&nbsp;プロフィール項目削除</div>
+({ext_include file="inc_subnavi_adminSNSConfig.tpl"})
+
+({assign var="page_name" value="プロフィール項目削除"})
+({ext_include file="inc_tree_adminSNSConfig.tpl"})
 </div>
 
 ({*ここまで:navi*})
@@ -8,7 +10,7 @@
 <h2>プロフィール項目削除</h2>
 <div class="contents">
 
-<p class="caution" id="c01"><strong>本当に削除してもよろしいですか？</strong><br />※この項目に対するユーザーの入力値も失われます。</p>
+<p class="caution" id="c01"><strong>本当に削除してもよろしいですか？</strong><br />※この項目に対するメンバーの入力値も失われます。</p>
 
 <form action="./" method="post">
 <input type="hidden" name="m" value="({$module_name})" />

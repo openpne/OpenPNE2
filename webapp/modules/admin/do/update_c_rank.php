@@ -7,8 +7,17 @@
 // ランク編集
 class admin_do_update_c_rank extends OpenPNE_Action
 {
+    function handleError($errors)
+    {
+        admin_client_redirect('update_c_rank', array_shift($errors), 'c_rank_id='.$this->requests['c_rank_id']);
+    }
+
     function execute($requests)
     {
+        if (!OPENPNE_USE_POINT_RANK) {
+            admin_client_redirect('top', '指定されたページにはアクセスできません');
+        }
+
         $c_rank_id      = $requests['c_rank_id'];
         $c_rank = db_admin_get_c_rank_one($c_rank_id);
         $image_filename = $c_rank['image_filename'];

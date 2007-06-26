@@ -45,8 +45,11 @@ class mail_sns
             if (!IS_CLOSED_SNS) {
                 // get 新規登録
                 if ($to_user == 'get') {
+                    // アフィリエイトIDが付いている場合
+                    $body = $this->decoder->get_text_body();
+
                     m_debug_log('mail_sns::regist_get()', PEAR_LOG_INFO);
-                    return $this->regist_get();
+                    return $this->regist_get($body);
                 }
             }
 
@@ -78,7 +81,7 @@ class mail_sns
             if (MAIL_ADDRESS_HASHED) {
                 if (empty($matches[2])) return false;
 
-                // ユーザハッシュのチェック
+                // メンバーハッシュのチェック
                 if ($matches[2] != t_get_user_hash($this->c_member_id)) {
                     return false;
                 }
@@ -99,11 +102,11 @@ class mail_sns
             if (MAIL_ADDRESS_HASHED) {
                 if (empty($matches[1]) || empty($matches[2])) return false;
 
-                // ユーザIDのチェック
+                // メンバーIDのチェック
                 if ($matches[1] != $this->c_member_id) {
                     return false;
                 }
-                // ユーザハッシュのチェック
+                // メンバーハッシュのチェック
                 if ($matches[2] != t_get_user_hash($this->c_member_id)) {
                     return false;
                 }
@@ -121,7 +124,7 @@ class mail_sns
             preg_match('/^p(\d+)-([0-9a-f]{12})$/', $to_user, $matches)
         ) {
 
-            // ユーザIDのチェック
+            // メンバーIDのチェック
             if ($matches[1] != $this->c_member_id) {
                 return false;
             }
@@ -129,7 +132,7 @@ class mail_sns
             if (MAIL_ADDRESS_HASHED) {
                 if (empty($matches[2])) return false;
 
-                // ユーザハッシュのチェック
+                // メンバーハッシュのチェック
                 if ($matches[2] != t_get_user_hash($this->c_member_id)) {
                     return false;
                 }
@@ -146,7 +149,7 @@ class mail_sns
     /**
      * 新規登録のURL取得
      */
-    function regist_get()
+    function regist_get($aff_id)
     {
         // 招待者は c_member_id = 1 (固定)
         $c_member_id_invite = 1;
@@ -155,7 +158,7 @@ class mail_sns
         $session = create_hash();
         mail_insert_c_member_ktai_pre($session, $this->from, $c_member_id_invite);
 
-        do_common_send_mail_regist_get($session, $this->from);
+        do_common_send_mail_regist_get($session, $this->from, $aff_id);
         return true;
     }
 
@@ -213,6 +216,12 @@ class mail_sns
         //お知らせメール送信(PCへ)
         send_bbs_info_mail_pc($ins_id, $this->c_member_id);
 
+        if (OPENPNE_USE_POINT_RANK) {
+            //トピック・イベントにコメントした人にポイント付与
+            $point = db_action_get_point4c_action_id(11);
+            db_point_add_point($u, $point);
+        }
+
         return true;
     }
 
@@ -250,6 +259,12 @@ class mail_sns
             if ($image_num > 3) {
                 break;
             }
+        }
+
+        if (OPENPNE_USE_POINT_RANK) {
+            //日記を書いた人にポイント付与
+            $point = db_action_get_point4c_action_id(4);
+            db_point_add_point($this->c_member_id, $point);
         }
 
         return true;

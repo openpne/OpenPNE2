@@ -250,7 +250,7 @@
 ({********************************})
 
 ({if $inc_entry_point[3]})
-({$inc_entry_point[3]|smarty:nodefaults|t_url2cmd:'entry_point'|t_cmd:'entry_point'})
+({$inc_entry_point[3]|smarty:nodefaults|t_url2cmd:'entry_point'|t_cmd:'entry_point'}) 
 ({/if})
 
 <!-- **************************************** -->
@@ -384,7 +384,7 @@
 ({foreach from=$c_friend_list item=item key=key})
 ({if $key > 0})&({/if})
 pne_item({$key+1})_id=({$item.c_member_id})
-&pne_item({$key+1})_name=({$item.nickname|t_truncate:12:'..'|escape:'url'})
+&pne_item({$key+1})_name=({$item.nickname|t_truncate:12:'..'|escape:url|smarty:nodefaults})
 &pne_item({$key+1})_linkurl=({t_url m=pc a=page_f_home _urlencode=true _html=false})%26target_c_member_id=({$item.c_member_id})
 &pne_item({$key+1})_imageurl=({t_img_url filename=$item.image_filename w=76 h=76 noimg=no_image _urlencode=true _html=false})
 &pne_item({$key+1})_count=({$item.friend_count})
@@ -558,7 +558,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <img src="./skin/dummy.gif" class="v_spacer_m">
 
 ({if $inc_entry_point[5]})
-({$inc_entry_point[5]|smarty:nodefaults|t_url2cmd:'entry_point'|t_cmd:'entry_point'})
+({$inc_entry_point[5]|smarty:nodefaults|t_url2cmd:'entry_point'|t_cmd:'entry_point'}) 
 ({/if})
 
 <!-- ************************************ -->
@@ -590,7 +590,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({foreach from=$c_commu_list item=item key=key})
 ({if $key > 0})&({/if})
 pne_item({$key+1})_id=({$item.c_commu_id})
-&pne_item({$key+1})_name=({$item.name|t_truncate:12:'..'|escape:'url'})
+&pne_item({$key+1})_name=({$item.name|t_truncate:12:'..'|escape:url|smarty:nodefaults})
 &pne_item({$key+1})_linkurl=({t_url m=pc a=page_c_home _urlencode=true _html=false})%26target_c_commu_id=({$item.c_commu_id})
 &pne_item({$key+1})_imageurl=({t_img_url filename=$item.image_filename w=76 h=76 noimg=no_logo_small _urlencode=true _html=false})
 &pne_item({$key+1})_count=({$item.count_commu_members})
@@ -617,7 +617,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({t_loop from=$c_commu_list start=0 num=3})
 ({if $item})
 <td style="width:88px;" class="bg_03" align="center">
-({if $item.c_member_id_admin == $target_c_member.c_member_id })<img src="({t_img_url_skin filename=icon_crown})" class="icon"><br>({/if})
+({if $item.c_member_id_admin == $target_c_member.c_member_id })<img src="({t_img_url_skin filename=icon_crown})" class="icon"><br>({/if}) 
 <a href="({t_url m=pc a=page_c_home})&amp;target_c_commu_id=({$item.c_commu_id})">
 <img src="({t_img_url filename=$item.image_filename w=76 h=76 noimg=no_logo_small})" class="pict"></a>
 </td>
@@ -656,7 +656,6 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({t_loop from=$c_commu_list start=3 num=3})
 ({if $item})
 <td class="bg_03" align="center">
-({if $item.c_member_id_admin == $target_c_member.c_member_id })<img src="({t_img_url_skin filename=icon_crown})" class="icon"><br>({/if})
 <a href="({t_url m=pc a=page_c_home})&amp;target_c_commu_id=({$item.c_commu_id})">
 <img src="({t_img_url filename=$item.image_filename w=76 h=76 noimg=no_logo_small})" class="pict"></a>
 </td>
@@ -735,9 +734,9 @@ show_flash('flash/list.swf', '({$flashvars})');
 <!-- ここから：小メニュー -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:268px">
 <tr>
-<td style="width:1px;" class="bg_07" rowspan="3"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_07" rowspan="({if $common_commu_count})4({else})3({/if})"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 <td style="width:266px;" class="bg_02" colspan="4"><img src="./skin/dummy.gif" style="width:266px;height:5px;" class="dummy"></td>
-<td style="width:1px;" class="bg_07" rowspan="3"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_07" rowspan="({if $common_commu_count})4({else})3({/if})"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 <tr>
 <td style="width:125px;" class="bg_02"><img src="./skin/dummy.gif" style="width:125px;height:1px;" class="dummy"></td>
@@ -747,6 +746,16 @@ show_flash('flash/list.swf', '({$flashvars})');
 </td>
 <td style="width:5px;" class="bg_02"><img src="./skin/dummy.gif" style="width:5px;height:1px;" class="dummy"></td>
 </tr>
+({if $common_commu_count})
+<tr>
+<td style="width:125px;" class="bg_02"><img src="./skin/dummy.gif" style="width:125px;height:1px;" class="dummy"></td>
+<td style="width:20px;" class="bg_02"><img src="./skin/dummy.gif" class="icon arrow_1"></td>
+<td align="left" style="width:116px;padding:2px 0px;" class="bg_02 lh_110">
+<a href="({t_url m=pc a=page_f_com_list_common})&amp;target_c_member_id=({$target_c_member_id})">共通コミュニティ(({$common_commu_count}))</a>
+</td>
+<td style="width:5px;" class="bg_02"><img src="./skin/dummy.gif" style="width:5px;height:1px;" class="dummy"></td>
+</tr>
+({/if})
 <tr>
 <td style="width:266px;" class="bg_02" colspan="4"><img src="./skin/dummy.gif" style="width:266px;height:5px;" class="dummy"></td>
 </tr>
@@ -767,7 +776,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <img src="./skin/dummy.gif" class="v_spacer_m">
 
 ({if $inc_entry_point[6]})
-({$inc_entry_point[6]|smarty:nodefaults|t_url2cmd:'entry_point'|t_cmd:'entry_point'})
+({$inc_entry_point[6]|smarty:nodefaults|t_url2cmd:'entry_point'|t_cmd:'entry_point'}) 
 ({/if})
 
 ({********************************})
@@ -779,7 +788,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({********************************})
 
 ({if $inc_entry_point[7]})
-({$inc_entry_point[7]|smarty:nodefaults|t_url2cmd:'entry_point'|t_cmd:'entry_point'})
+({$inc_entry_point[7]|smarty:nodefaults|t_url2cmd:'entry_point'|t_cmd:'entry_point'}) 
 ({/if})
 
 <!-- ************************************ -->
@@ -852,6 +861,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({/if})
 <!-- ここまで：主内容＞年齢 -->
 <!-- ここから：主内容＞誕生日 -->
+({if $target_c_member.birth_month && $target_c_member.birth_day})
 <tr>
 <td class="border_01 bg_09 padding_s" style="width:90px;border-right:none;border-top:none;">
 
@@ -864,6 +874,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 
 </td>
 </tr>
+({/if})
 <!-- ここまで：主内容＞誕生日 -->
 ({/capture})
 ({foreach from=$target_c_member.profile key=key item=item})
@@ -1070,7 +1081,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <img src="./skin/dummy.gif" class="v_spacer_m">
 
 ({if $inc_entry_point[8]})
-({$inc_entry_point[8]|smarty:nodefaults|t_url2cmd:'entry_point'|t_cmd:'entry_point'})
+({$inc_entry_point[8]|smarty:nodefaults|t_url2cmd:'entry_point'|t_cmd:'entry_point'}) 
 ({/if})
 
 <!-- ******************************** -->

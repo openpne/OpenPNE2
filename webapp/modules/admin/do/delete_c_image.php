@@ -9,6 +9,10 @@ class admin_do_delete_c_image extends OpenPNE_Action
 {
     function execute($requests)
     {
+        if (strpos($requests['filename'], 'skin_') === 0 || strpos($requests['filename'], 'no_') === 0) {
+            admin_client_redirect('edit_c_image', 'この画像は削除できません');
+        }
+
         image_data_delete($requests['filename']);
         db_admin_delete_c_image_link4image_filename($requests['filename']);
 

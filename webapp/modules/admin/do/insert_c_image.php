@@ -14,14 +14,22 @@ class admin_do_insert_c_image extends OpenPNE_Action
 
     function execute($requests)
     {
-        if (!empty($_FILES['upfile']) && $_FILES['upfile']['error'] !== UPLOAD_ERR_NO_FILE && !empty($requests['filename'])) {
-            image_data_delete($requests['filename']);
-            admin_insert_c_image($_FILES['upfile'], $requests['filename']);
+        $file = $_FILES['upfile'];
 
-            admin_client_redirect('edit_c_image', '画像を登録しました', 'filename='.$requests['filename']);
+        if (empty($file) || $file['error'] === UPLOAD_ERR_NO_FILE) {
+            admin_client_redirect('edit_c_image', '画像ファイルを指定してください');
         }
 
-        admin_client_redirect('edit_c_image', 'ファイル名と画像ファイルを指定してください');
+        if (!t_check_image($file)) {
+            admin_client_redirect('edit_c_image', '画像は'.IMAGE_MAX_FILESIZE.'KB以内のGIF・JPEG・PNGにしてください');
+        }
+
+        image_data_delete($requests['filename']);
+        if (!admin_insert_c_image($_FILES['upfile'], $requests['filename'])) {
+            admin_client_redirect('edit_c_image', '画像が登録できませんでした');
+        }
+
+        admin_client_redirect('edit_c_image', '画像を登録しました', 'filename='.$requests['filename']);
     }
 }
 

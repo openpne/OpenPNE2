@@ -11,7 +11,7 @@ class ktai_page_h_invite extends OpenPNE_Action
         $u  = $GLOBALS['KTAI_C_MEMBER_ID'];
 
         if (!IS_USER_INVITE) {
-            ktai_display_error(SNS_NAME . 'では、ユーザによる招待は行えません');
+            ktai_display_error(SNS_NAME . 'では、メンバーによる招待は行えません');
         }
 
         return 'success';

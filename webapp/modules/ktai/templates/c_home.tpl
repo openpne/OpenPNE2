@@ -20,16 +20,13 @@
 ({if $inc_ktai_entry_point[3]})
 ({$inc_ktai_entry_point[3]|smarty:nodefaults})
 ({/if})
-管理人:<a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$c_commu.c_member_id_admin})&amp;({$tail})">({$c_commu.c_member_admin.nickname})</a><br>
+管理者:<a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$c_commu.c_member_id_admin})&amp;({$tail})">({$c_commu.c_member_admin.nickname})</a><br>
 ｶﾃｺﾞﾘ:({$c_commu.c_commu_category.name})<br>
 ﾒﾝﾊﾞｰ数:({$c_commu.count_member|default:"0"})人
 
 <hr>
 <a name="menu">ﾒﾆｭｰ</a>
 <br>
-({if !$relation_c_member_and_c_commu.join && !$relation_c_member_and_c_commu.wait})
-<a href="({t_url m=ktai a=do_inc_join_c_commu})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">このｺﾐｭﾆﾃｨに参加</a><br>
-({/if})
 ({if $relation_c_member_and_c_commu.join && !($is_unused_pc_bbs && $is_unused_ktai_bbs)})
 ◆設定変更<br>
 ({if $u == $c_commu.c_member_id_admin})
@@ -48,7 +45,7 @@
 <hr>
 <a name="news">新着ﾘｽﾄ</a>
 ({if $is_c_commu_view})
-<font color="green">[ﾄﾋﾟｯｸﾘｽﾄ]</font><br>
+<br><font color="green">[ﾄﾋﾟｯｸﾘｽﾄ]</font><br>
 ({foreach from=$new_topic_comment item=item})
 　[({$item.r_datetime|date_format:"%m/%d"})]<a href="({t_url m=ktai a=page_c_bbs})&amp;target_c_commu_topic_id=({$item.c_commu_topic_id})&amp;({$tail})">({$item.name})</a>(({$item.count_comments}))<br>
 ({foreachelse})
@@ -86,18 +83,16 @@
 <hr>
 <a name="intro">説明文</a>
 <br>
-({$c_commu.info|nl2br})<br>
+({$c_commu.info|t_url2a_ktai|nl2br})<br>
 ({if $c_commu.image_filename})
 ｺﾐｭﾆﾃｨ画像：[<a href="({t_img_url filename=$c_commu.image_filename w=120 h=120 f=jpg})">小</a>/<a href="({t_img_url filename=$c_commu.image_filename f=jpg})">大</a>]<br>({/if})
-({if !$relation_c_member_and_c_commu.join && !$relation_c_member_and_c_commu.wait})
-<a href="({t_url m=ktai a=do_inc_join_c_commu})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">このｺﾐｭﾆﾃｨに参加</a><br>
-({/if})
 ({if $relation_c_member_and_c_commu.join && ($c_commu.c_member_id_admin!=$u || $c_commu.c_member_id_sub_admin!=$u) })
 <a href="({t_url m=ktai a=do_inc_leave_c_commu})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">このｺﾐｭﾆﾃｨから退会</a><br>
 ({/if})
 
 ({if $relation_c_member_and_c_commu.join && !($is_unused_pc_bbs && $is_unused_ktai_bbs)})
-<hr id="setting">
+<hr>
+<a name="setting">メール受信設定</a><br>
 ({t_form m=ktai a=do_c_home_update_is_receive_mail})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
 <input type="hidden" name="target_c_commu_id" value="({$c_commu.c_commu_id})">

@@ -1,5 +1,6 @@
 function url2cmd(url) {
     if (!url.match(/^http:\/\/www\.ebitv\.jp\/video.php\?id=([0-9]+)$/)) {
+        pne_url2a(url);
         return;
     }
     var id = RegExp.$1;

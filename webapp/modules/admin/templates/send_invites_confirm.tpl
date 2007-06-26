@@ -38,7 +38,6 @@ PCからは登録できない設定になっています。<br>
 </dl>
 ({/if})
 
-
 ({if !$cannot_send})
 <p class="caution" id="c02">送信してもよろしいですか？</p>
 ({/if})

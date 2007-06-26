@@ -231,7 +231,7 @@
 <td class="bg_02" align="left" valign="middle">
 <div class="padding_s">
 
-({$review.r_datetime|date_format:"%m月%d日 %H:%M"})
+({$review.r_datetime|date_format:"%Y年%m月%d日 %H:%M"})
 
 </div>
 </td>

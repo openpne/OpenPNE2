@@ -41,8 +41,14 @@ class pc_page_h_prof extends OpenPNE_Action
         // 誕生日まであと何日？
         $this->set('days_birthday', db_member_count_days_birthday4c_member_id($target_c_member_id));
 
-        // inc_entry_point
-        $this->set('inc_entry_point', fetch_inc_entry_point_f_home($this->getView()));
+        if (OPENPNE_USE_POINT_RANK) {
+            // ポイント
+            $point = db_point_get_point($target_c_member_id);
+            $this->set("point", $point);
+
+            // ランク
+            $this->set("rank", db_point_get_rank4point($point));
+        }
 
         // ---bizここから
 
@@ -63,6 +69,9 @@ class pc_page_h_prof extends OpenPNE_Action
         $this->set('group_list', $group_list);
 
         // ---bizここまで
+
+        // inc_entry_point
+        $this->set('inc_entry_point', fetch_inc_entry_point($this->getView(), 'f_home'));
 
         return 'success';
     }

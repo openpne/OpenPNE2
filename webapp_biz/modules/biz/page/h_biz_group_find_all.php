@@ -13,6 +13,7 @@ class biz_page_h_biz_group_find_all extends OpenPNE_Action
         // --- リクエスト変数
         $keyword = $requests['keyword'];
         $page = $requests['page'];
+        $direc = $requests['direc'];
         // ----------
 
         //バグ回避のため半角空白を全角に統一
@@ -25,13 +26,15 @@ class biz_page_h_biz_group_find_all extends OpenPNE_Action
         $page_size = 20;
         $page = $page + $direc;
         $this->set('page', $page);
+        list($result, $is_prev, $is_next, $total_num, $start_num, $end_num)
+            = biz_getGroupList($keyword, $page, $page_size);
 
-        $list = biz_getGroupList($keyword, $page, $page_size);
-
-        $this->set('c_commu_search_list', $list);
-        $this->set('start_num', $page);
-        $this->set('end_num', ($page+$page_size));
-        $this->set('total_num', count($list));
+        $this->set('c_commu_search_list', $result);
+        $this->set('is_prev', $is_prev);
+        $this->set('is_next', $is_next);
+        $this->set('total_num', $total_num);
+        $this->set('start_num', $start_num);
+        $this->set('end_num', $end_num);
 
         $this->set('keyword', $keyword);
 

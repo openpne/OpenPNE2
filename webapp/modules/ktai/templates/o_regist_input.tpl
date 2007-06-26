@@ -7,6 +7,9 @@
 
 ({t_form _attr='utn' m=ktai a=do_o_insert_c_member})
 <input type="hidden" name="ses" value="({$ses})">
+({if $aff_id})
+<input type="hidden" name="aff_id" value="({$aff_id})">
+({/if})
 
 ({capture name="nick"})
 <font color="red">*</font>ニックネーム<br>
@@ -80,7 +83,6 @@
             ({/foreach})
         </select>
     ({elseif $profile.form_type == 'checkbox'})
-        <input type="hidden" name="profile[({$profile.name})][]" value="0">
         ({foreach item=item from=$profile.options name=check})
         <input type="checkbox" name="profile[({$profile.name})][]" value="({$item.c_profile_option_id})"({if $c_member.profile[$profile.name].value && in_array($item.value|smarty:nodefaults, $c_member.profile[$profile.name].value)}) checked="checked"({/if})>({$item.value|default:"--"})
         ({/foreach})

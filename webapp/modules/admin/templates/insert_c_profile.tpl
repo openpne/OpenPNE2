@@ -18,7 +18,7 @@
 </tr>
 <tr>
 <th>識別名</th>
-<td><input type="text" class="basic" name="name" value="" size="20" />　<span class="caution">※半角英数 と _ のみ</span></td>
+<td><input type="text" class="basic" name="name" value="" size="20" />　<span class="caution">※半角英数 と _ の組み合わせのみ（数値だけの入力は許容されません）</span></td>
 </tr>
 <tr>
 <th>必須</th>
@@ -28,7 +28,7 @@
 <th>公開設定の選択</th>
 <td>
 <label><input type="radio" name="public_flag_edit" value="0" checked="checked" />固定</label>
-<label><input type="radio" name="public_flag_edit" value="1" />ユーザー選択</label></td>
+<label><input type="radio" name="public_flag_edit" value="1" />メンバー選択</label></td>
 </tr>
 <tr>
 <th>公開設定<br>デフォルト値</th>

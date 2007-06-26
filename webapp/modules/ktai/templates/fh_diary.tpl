@@ -25,7 +25,7 @@
 ({/if})
 <br>
 <br>
-({$target_c_diary.body|nl2br})<br>
+({$target_c_diary.body|t_url2a_ktai|nl2br})<br>
 <br>
 ({if $target_c_diary.image_filename_1})
 画像1を見る:[<a href="({t_img_url filename=$target_c_diary.image_filename_1 w=120 h=120 f=jpg})">小</a>/<a href="({t_img_url filename=$target_c_diary.image_filename_1 f=jpg})">大</a>]<br>
@@ -49,7 +49,7 @@
 ({if $c_diary_comment_.nickname})<a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$c_diary_comment_.c_member_id})&amp;({$tail})">({$c_diary_comment_.nickname})</a>({/if}) ({if $c_diary_comment_.c_member_id == $u || $target_diary_writer.c_member_id==$u})
 [<a href="({t_url m=ktai a=page_fh_diary_delete_c_diary_comment_confirm})&amp;target_c_diary_comment_id=({$c_diary_comment_.c_diary_comment_id})&amp;({$tail})&amp;target_c_diary_id=({$target_c_diary.c_diary_id})">削除</a>]
 ({/if})<br>
-({$c_diary_comment_.body|nl2br|default:"&nbsp;"})<br>
+({$c_diary_comment_.body|t_url2a_ktai|nl2br})<br>
 <br>
 ({if $c_diary_comment_.image_filename_1})
 画像1を見る:[<a href="({t_img_url filename=$c_diary_comment_.image_filename_1 w=120 h=120 f=jpg})">小</a>/<a href="({t_img_url filename=$c_diary_comment_.image_filename_1 f=jpg})">大</a>]<br>

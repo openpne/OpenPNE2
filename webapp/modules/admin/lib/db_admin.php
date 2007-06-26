@@ -5,7 +5,7 @@
  */
 
 /**
- * ユーザーリスト取得
+ * メンバーリスト取得
  */
 function db_admin_c_member_list($page, $page_size, &$pager)
 {
@@ -128,6 +128,7 @@ function db_admin_insert_c_banner($a_href, $type, $nickname)
         'nickname' => $nickname,
         'is_hidden_after' => 0,
         'is_hidden_before' => 0,
+        'image_filename' => '',
     );
     return db_insert('c_banner', $data);
 }
@@ -173,6 +174,8 @@ function db_admin_insert_c_profile(
     , $val_max
     )
 {
+    pne_cache_drop('db_member_c_profile_list');
+
     $data = array(
         'name' => $name,
         'caption' => $caption,
@@ -231,7 +234,7 @@ function db_admin_update_c_profile($c_profile_id
     $where = array('c_profile_id' => intval($c_profile_id));
     db_update('c_profile', $data, $where);
 
-    // 公開設定が固定のときはユーザーの設定値を上書き
+    // 公開設定が固定のときはメンバーの設定値を上書き
     if (!$public_flag_edit) {
         $data = array('public_flag' => $public_flag_default);
         db_update('c_member_profile', $data, $where);
@@ -256,7 +259,7 @@ function db_admin_delete_c_profile($c_profile_id)
     $sql = 'DELETE FROM c_profile WHERE c_profile_id = ?';
     db_query($sql, $params);
 
-    cache_drop_c_member_profile();
+    pne_cache_drop('db_member_c_profile_list');
 }
 
 function db_admin_c_profile4c_profile_id($c_profile_id)
@@ -536,9 +539,9 @@ function db_admin_get_auth_type($c_admin_user_id)
 }
 
 /**
- * ユーザーIDリスト取得(絞り込み対応)
+ * メンバーIDリスト取得(絞り込み対応)
  */
-function _db_admin_c_member_id_list($cond_list)
+function _db_admin_c_member_id_list($cond_list, $order = null)
 {
     $sql = 'SELECT c_member_id'.
            ' FROM c_member'.
@@ -555,54 +558,193 @@ function _db_admin_c_member_id_list($cond_list)
         $params[] = $cond_list['e_year'];
     }
 
+    // 誕生日による絞り込みの場合は、誕生年が0のメンバーを除外する
+    if (!empty($cond_list['s_year']) || !empty($cond_list['e_year'])) {
+        $sql .= ' AND birth_year <> 0';
+    }
 
     //最終ログイン時間で絞り込み
-
     if (isset($cond_list['last_login'])) {
-
         //期間で分ける
         switch($cond_list['last_login']) {
-            case 1: //3日以内
-                $sql .= ' AND access_date >= ?';
-                $params[] = date('Y-m-d', strtotime('-3 day'));
+        case 1: //3日以内
+            $sql .= ' AND access_date >= ?';
+            $params[] = date('Y-m-d', strtotime('-3 day'));
             break;
-
-            case 2: //3～7日以内
-                $sql .= ' AND access_date >= ? AND access_date < ?';
-                $params[] = date('Y-m-d', strtotime('-7 day'));
-                $params[] = date('Y-m-d', strtotime('-3 day'));
+        case 2: //3～7日以内
+            $sql .= ' AND access_date >= ? AND access_date < ?';
+            $params[] = date('Y-m-d', strtotime('-7 day'));
+            $params[] = date('Y-m-d', strtotime('-3 day'));
             break;
-
-            case 3: //7～30日以内
-                $sql .= ' AND access_date >= ? AND access_date < ?';
-                $params[] = date('Y-m-d', strtotime('-30 day'));
-                $params[] = date('Y-m-d', strtotime('-7 day'));
+        case 3: //7～30日以内
+            $sql .= ' AND access_date >= ? AND access_date < ?';
+            $params[] = date('Y-m-d', strtotime('-30 day'));
+            $params[] = date('Y-m-d', strtotime('-7 day'));
             break;
-
-            case 4: //30～90日以内
-                $sql .= ' AND access_date >= ? AND access_date < ?';
-                $params[] = date('Y-m-d', strtotime('-90 day'));
-                $params[] = date('Y-m-d', strtotime('-30 day'));
+        case 4: //30日以上
+            $sql .= ' AND access_date > ? AND access_date < ?';
+            $params[] = '0000-00-00 00:00:00';
+            $params[] = date('Y-m-d', strtotime('-30 day'));
+            break;
+        case 5: //未ログイン
+            $sql .= ' AND access_date = ?';
+            $params[] = '0000-00-00 00:00:00';
             break;
         }
     }
 
-    $sql .= ' ORDER BY c_member_id';
+    // --- ソートオーダーここから
+
+    // $orderの例：id_1 , id_2
+    // 「-」の前が項目名であとが1なら昇順 2なら降順
+    $type = explode("-",$order);
+
+    //ランクでソートとポイントでソートは同等
+    if ($type[0] == 'RANK') {
+        $type[0] = 'PNE_POINT';
+    }
+
+    $is_order = false;
+    if ($order) {
+        $is_order = true;
+
+        switch ($type[0]) {
+            case "c_member_id":
+                $sql .= ' ORDER BY c_member_id';
+            break;
+            case "nickname":
+                $sql .= ' ORDER BY nickname';
+            break;
+            case "image_filename":
+                $sql .= ' ORDER BY image_filename';
+            break;
+            case "c_member_id_invite":
+                $sql .= ' ORDER BY c_member_id_invite';
+            break;
+
+            case "access_date":
+                $sql .= ' ORDER BY access_date';
+            break;
+
+            case "r_date":
+                $sql .= ' ORDER BY r_date';
+            break;
+            case "birth":
+                //降順指定
+                if ($type[1] == "2") {
+                    $sql .= ' ORDER BY birth_year DESC, birth_month DESC, birth_day';
+                } else {
+                    $sql .= ' ORDER BY birth_year, birth_month, birth_day';
+                }
+            break;
+            default :
+                $is_order = false;
+
+        }
+
+        //降順指定
+        if ($is_order && $type[1] == "2") {
+            $sql .= ' DESC';
+        }
+
+    }
+    // --- ソートオーダーここまで
 
     $ids = db_get_col($sql, $params);
 
-    //各プロフィールごとで絞り結果をマージする
-    $_sql = 'SELECT name FROM c_profile WHERE (form_type = ? OR form_type = ?)';
-    $profile = db_get_col($_sql, array('select', 'radio'));
+    // --- ポイントで絞り込み ここから
+    if ( isset($cond_list['s_point']) || isset($cond_list['e_point'])) {
+
+        $sql = 'SELECT c_member_id'.
+               ' FROM c_member_profile '.
+               ' INNER JOIN c_profile USING (c_profile_id) '.
+               ' WHERE name = ? ';
+        $params = array(
+            'PNE_POINT',
+        );
+        //開始ポイント
+        if (!empty($cond_list['s_point'])) {
+            $sql .= ' AND value >= ?';
+            $params[] = $cond_list['s_point'];
+        }
+        //終了ポイント
+        if (!empty($cond_list['e_point'])) {
+            $sql .= ' AND value <= ?';
+            $params[] = $cond_list['e_point'];
+        }
+
+        $point_ids = db_get_col($sql, $params);
+
+        //ポイントで絞り込み
+        $ids = array_intersect($ids, $point_ids);
+
+    }
+    // --- ポイントで絞り込み ここまで
+
+    // --- メールアドレスで絞り込み ここから
+    if (!empty($cond_list['is_pc_address']) || !empty($cond_list['is_ktai_address'])) {
+
+        $sql = 'SELECT c_member_id FROM c_member_secure WHERE 1';
+
+        //PCアドレスの有無で絞る
+        if ($cond_list['is_pc_address'] == 1) {
+            $sql .= " AND pc_address <> '' ";
+        } else if ($cond_list['is_pc_address'] == 2) {
+            $sql .= " AND pc_address = '' ";
+        }
+
+        //携帯アドレスの有無で絞る
+        if ($cond_list['is_ktai_address'] == 1) {
+            $sql .= " AND ktai_address <> '' ";
+        } else if ($cond_list['is_ktai_address'] == 2) {
+            $sql .= " AND ktai_address = '' ";
+        }
+
+        $temp_ids = db_get_col($sql);
+
+        //メールアドレスで絞り込み
+        $ids = array_intersect($ids, $temp_ids);
+
+    }
+    // --- メールアドレスで絞り込み ここまで
+
+    //各プロフィールごとで絞り結果をマージする(ソートオーダーつき)
+    $_sql = 'SELECT name, form_type, c_profile_id FROM c_profile';
+    $profile = db_get_all($_sql);
 
     if ( $profile ) {
         foreach ($profile as $value) {
-            if (!empty($cond_list[$value])) {
+            if(!empty($cond_list[$value['name']])
+           && ($value['form_type'] == 'radio' || $value['form_type'] == 'select')) {
                 $sql = 'SELECT c_member_id FROM c_member_profile WHERE c_profile_option_id = ?';
-                $params = array($cond_list[$value]);
+                $params = array($cond_list[$value['name']]);
                 $temp_ids = db_get_col($sql, $params);
                 $ids = array_intersect($ids, $temp_ids);
             }
+            if($value['name'] == $type[0]) {
+                $sql = 'SELECT c_member_id FROM c_member_profile WHERE c_profile_id = ?';
+
+                if ($value['form_type'] == 'radio'
+                 || $value['form_type'] == 'select'
+                 || $value['form_type'] == 'checkbox'
+                ) {
+                    $sql .= ' ORDER BY c_profile_option_id';
+                } else {
+                    if ($value['name'] == "PNE_POINT") {
+                        $sql .= ' ORDER BY cast(value as signed)';
+                    } else {
+                        $sql .= ' ORDER BY value';
+                    }
+                }
+
+                if ($type[1] == "2") {
+                    $sql .= ' DESC';
+                }
+                $params = array($value['c_profile_id']);
+                $temp_ids = db_get_col($sql, $params);
+                $ids = array_intersect($temp_ids, $ids);
+            }
+
         }
     }
 
@@ -610,12 +752,12 @@ function _db_admin_c_member_id_list($cond_list)
 }
 
 /**
- * ユーザーリスト取得
+ * メンバーリスト取得
  * 誕生年+プロフィール(select,radioのみ)
  */
-function _db_admin_c_member_list($page, $page_size, &$pager, $cond_list)
+function _db_admin_c_member_list($page, $page_size, &$pager, $cond_list, $order)
 {
-    $ids = _db_admin_c_member_id_list($cond_list);
+    $ids = _db_admin_c_member_id_list($cond_list, $order);
     $total_num = count($ids);
     $ids = array_slice($ids, ($page - 1) * $page_size, $page_size);
 
@@ -626,6 +768,8 @@ function _db_admin_c_member_list($page, $page_size, &$pager, $cond_list)
 
     if ($total_num > 0) {
         $pager = admin_make_pager($page, $page_size, $total_num);
+    } else {
+        $pager = array('page_size' => $page_size);
     }
 
     return $c_member_list;
@@ -665,6 +809,22 @@ function validate_cond($requests)
         $cond_list['last_login'] = intval($requests['last_login']);
     }
 
+    //PCアドレスの有無
+    if (!empty($requests['is_pc_address'])) {
+        $cond_list['is_pc_address'] = intval($requests['is_pc_address']);
+    }
+    //携帯アドレスの有無
+    if (!empty($requests['is_ktai_address'])) {
+        $cond_list['is_ktai_address'] = intval($requests['is_ktai_address']);
+    }
+
+    //ポイント
+    if (isset($requests['s_point']) && $requests['s_point'] !== '') {
+        $cond_list['s_point'] = intval($requests['s_point']);
+    }
+    if (isset($requests['e_point']) && $requests['e_point'] !== '') {
+        $cond_list['e_point'] = intval($requests['e_point']);
+    }
 
     return $cond_list;
 }
@@ -953,9 +1113,10 @@ function p_access_analysis_target_commu_target_commu4ym_page_name
     $sum = 0;
     foreach($list as $key => $value) {
         if ($value['target_c_commu_id']) {
-            $c_commu = db_commu_c_commu4c_commu_id($value['target_c_commu_id']);
-            $return[] = array_merge($value, $c_commu);
-            $sum += $value['count'];
+            if ($c_commu = db_commu_c_commu4c_commu_id($value['target_c_commu_id'])) {
+                $return[] = array_merge($value, $c_commu);
+                $sum += $value['count'];
+            }
         }
     }
 
@@ -1035,12 +1196,13 @@ function p_access_analysis_target_topic_target_topic4ym_page_name
     $sum = 0;
     foreach ($list as $key => $value) {
         if ($value['target_c_commu_topic_id']) {
-            $c_commu_topic = c_topic_detail_c_topic4c_commu_topic_id($value['target_c_commu_topic_id']);
-            $c_commu_topic['topic_name'] = $c_commu_topic['name'];
-            $c_commu = db_commu_c_commu4c_commu_id($c_commu_topic['c_commu_id']);
-            $c_commu_topic['commu_name'] = $c_commu['name'];
-            $return[] = array_merge($value, $c_commu_topic);
-            $sum += $value['count'];
+            if ($c_commu_topic = c_topic_detail_c_topic4c_commu_topic_id($value['target_c_commu_topic_id'])) {
+                $c_commu_topic['topic_name'] = $c_commu_topic['name'];
+                $c_commu = db_commu_c_commu4c_commu_id($c_commu_topic['c_commu_id']);
+                $c_commu_topic['commu_name'] = $c_commu['name'];
+                $return[] = array_merge($value, $c_commu_topic);
+                $sum += $value['count'];
+            }
         }
     }
 
@@ -1100,11 +1262,12 @@ function p_access_analysis_target_diary_target_diary4ym_page_name
     $sum = 0;
     foreach ($list as $key => $value) {
         if ($value['target_c_diary_id']) {
-            $c_diary = db_diary_get_c_diary4id($value['target_c_diary_id']);
-            $c_member = db_member_c_member4c_member_id($c_diary['c_member_id']);
-            $c_diary['nickname'] = $c_member['nickname'];
-            $return[] = array_merge($value, $c_diary);
-            $sum += $value['count'];
+            if ($c_diary = db_diary_get_c_diary4id($value['target_c_diary_id'])) {
+                $c_member = db_member_c_member4c_member_id($c_diary['c_member_id']);
+                $c_diary['nickname'] = $c_member['nickname'];
+                $return[] = array_merge($value, $c_diary);
+                $sum += $value['count'];
+            }
         }
     }
 
@@ -1182,9 +1345,10 @@ function p_access_analysis_member_access_member4ym_page_name
     $sum = 0;
     foreach($list as $key => $value) {
         if ($value['c_member_id']) {
-            $c_member = _db_c_member4c_member_id($value['c_member_id']);
-            $return[] = array_merge($value, $c_member);
-            $sum += $value['count'];
+            if ($c_member = _db_c_member4c_member_id($value['c_member_id'])) {
+                $return[] = array_merge($value, $c_member);
+                $sum += $value['count'];
+            }
         }
     }
 
@@ -1245,9 +1409,10 @@ function p_access_analysis_target_member_access_member4ym_page_name
     $sum = 0;
     foreach($list as $key => $value) {
         if ($value['target_c_member_id']) {
-            $c_member = db_member_c_member4c_member_id($value['target_c_member_id']);
-            $return[] = array_merge($value, $c_member);
-            $sum += $value['count'];
+            if ($c_member = db_member_c_member4c_member_id($value['target_c_member_id'])) {
+                $return[] = array_merge($value, $c_member);
+                $sum += $value['count'];
+            }
         }
     }
 
@@ -1428,7 +1593,9 @@ function get_analysis_generation()
             '80～' =>0
     );
     
-    $sql = "select ((year(curdate()) - birth_year)- (RIGHT(CURDATE(),5)<concat(birth_month,'-',birth_day))) as age from c_member;";
+    $sql = "SELECT ((YEAR(CURDATE()) - birth_year)- " .
+        "(RIGHT(CURDATE(),5)<CONCAT(birth_month,'-',birth_day))) " .
+        "AS age FROM c_member WHERE birth_year <> 0;";
     $lst = db_get_all($sql);
 
     $temp = array_keys($analysis_generation);
@@ -1929,18 +2096,11 @@ function db_admin_delete_c_cmd($c_cmd_id)
 }
 
 
-//CMDを全て取得(ページャー付き)
-function db_admin_get_c_cmd_all($page, $page_size, &$pager)
+//CMDを全て取得
+function db_admin_get_c_cmd_all()
 {
     $sql = 'SELECT * FROM c_cmd ORDER BY c_cmd_id';
-
-    $list = db_get_all_page($sql, $page, $page_size, $params);
-
-    $sql = 'SELECT count(*) FROM c_cmd';
-    $total_num = db_get_one($sql, $params);
-    $pager = admin_make_pager($page, $page_size, $total_num);
-
-    return $list;
+    return db_get_all($sql);
 }
 
 //CMDを一つ取得
@@ -2111,19 +2271,11 @@ function db_admin_delete_c_rank($c_rank_id)
     return db_query($sql, $params);
 }
 
-
-//ランクを全て取得(ページャー付き)
-function db_admin_get_c_rank_all($page, $page_size, &$pager)
+//ランクを全て取得
+function db_admin_get_c_rank_all()
 {
     $sql = 'SELECT * FROM c_rank ORDER BY point';
-
-    $list = db_get_all_page($sql, $page, $page_size, $params);
-
-    $sql = 'SELECT count(*) FROM c_rank';
-    $total_num = db_get_one($sql, $params);
-    $pager = admin_make_pager($page, $page_size, $total_num);
-
-    return $list;
+    return db_get_all($sql);
 }
 
 //ランクを一つ取得
@@ -2136,27 +2288,43 @@ function db_admin_get_c_rank_one($c_rank_id)
 }
 
 //アクションを編集
-function db_admin_update_c_action($c_action_id, $name, $point)
+function db_admin_update_c_action($c_action_id, $point)
 {
     $data = array(
-        'name' => strval($name),
         'point' => intval($point),
     );
     $where = array('c_action_id' => intval($c_action_id));
     return db_update('c_action', $data, $where);
 }
 
-//アクションを全て取得(ページャー付き)
-function db_admin_get_c_action_all($page, $page_size, &$pager)
+//アクションを全て取得
+function db_admin_get_c_action_all()
 {
     $sql = 'SELECT * FROM c_action ORDER BY c_action_id';
-
-    $list = db_get_all_page($sql, $page, $page_size, $params);
-
-    $sql = 'SELECT count(*) FROM c_action';
-    $total_num = db_get_one($sql, $params);
-    $pager = admin_make_pager($page, $page_size, $total_num);
-
-    return $list;
+    return db_get_all($sql);
 }
+
+/**
+ * 指定したファイル名のファイルへのリンクを削除する
+ * 
+ * @param string $filename
+ */
+function db_admin_delete_c_file_link4filename($filename)
+{
+    // c_commu_topic_comment
+    $tbl = 'c_commu_topic_comment';
+    _db_admin_empty_image_filename($tbl, $filename, 'filename');
+}
+
+function db_admin_get_c_member_profile_pnepoint($c_member_id)
+{
+    $sql = 'SELECT c_profile_id FROM c_profile where name = \'PNE_POINT\'';
+    $c_profile_id =  db_get_one($sql);
+    $params = array($c_member_id , $c_profile_id);
+    $sql = 'SELECT * FROM c_member_profile where c_member_id = ? and c_profile_id = ?';
+    $c_member_profile = db_get_row($sql, $params);
+
+    return  $c_member_profile;
+}
+
 ?>

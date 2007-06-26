@@ -22,12 +22,12 @@
 <td align="center" style="height:24px;">
 <img src="({t_img_url_skin filename=icon_search})" alt="search" style="width:62px;height:20px;" class="icon">
 <input type="text" size="30" name="q" class="text border_01" value="" style="width:180px;">
-<input type="image" src="({t_img_url_skin filename=button_search_1})" value="diary" alt="日記" border="0" name="diary" class="button" style="width:62px;height:20px;">
-<input type="image" src="({t_img_url_skin filename=button_search_2})" value="community" alt="コミュニティ" border="0" name="community" class="button" style="width:62px;height:20px;">
-<input type="image" src="({t_img_url_skin filename=button_search_4})" value="message" alt="メッセージ" border="0" name="message" class="button" style="width:62px;height:20px;">
-<input type="image" src="./skin/biz/button_search_4.gif" value="group" alt="グループ" border="0" name="group" class="button" style="width:62px;height:20px;">
+<input type="image" src="({t_img_url_skin filename=button_search_1})" value="diary" alt="日記" name="diary" class="button" style="width:62px;height:20px;border:none;">
+<input type="image" src="({t_img_url_skin filename=button_search_2})" value="community" alt="コミュニティ" name="community" class="button" style="width:62px;height:20px;border:none;">
+<input type="image" src="({t_img_url_skin filename=button_search_4})" value="message" alt="メッセージ" name="message" class="button" style="width:62px;height:20px;border:none;">
+<input type="image" src="./skin/biz/button_search_4.gif" value="group" alt="グループ" name="group" class="button" style="width:62px;height:20px;border:none;">
 ({if $smarty.const.USE_EXTRA_SERVICE})
-<input type="image" src="({t_img_url_skin filename=button_search_3})" value="web" alt="web" border="0" name="web" class="button" style="width:62px;height:20px;">
+<input type="image" src="({t_img_url_skin filename=button_search_3})" value="web" alt="web" name="web" class="button" style="width:62px;height:20px;border:none;">
 ({/if})
 </td>
 </tr>
@@ -81,7 +81,7 @@
 <tr>
 <td class="padding_s">
 
-({$site_info|smarty:nodefaults|default:"&nbsp;"})
+({$site_info|smarty:nodefaults|default:"&nbsp;"|t_url2cmd:'info'|t_cmd:'info'})
 
 </td>
 </tr>
@@ -125,7 +125,7 @@
 <tr>
 <td class="padding_s">
 
-★<span class="caution">コミュニティ管理人交代依頼が({$num_anatani_c_commu_admin_confirm_list})件きています。</span>&nbsp;<a href="({t_url m=pc a=page_h_confirm_list})"><span class="b_b">承認・拒否</span></a>
+★<span class="caution">コミュニティ管理者交代依頼が({$num_anatani_c_commu_admin_confirm_list})件きています。</span>&nbsp;<a href="({t_url m=pc a=page_h_confirm_list})"><span class="b_b">承認・拒否</span></a>
 
 </td>
 </tr>
@@ -138,8 +138,7 @@
 
 </td>
 </tr>
-({/if})
-</table>
+({/if})</table>
 
 </td>
 </tr>
@@ -158,7 +157,7 @@
 ({if $inc_entry_point[3]})
 <tr>
 <td class="container">
-({$inc_entry_point[3]|smarty:nodefaults})
+({$inc_entry_point[3]|smarty:nodefaults|t_url2cmd:'entry_point'|t_cmd:'entry_point'})
 </td>
 </tr>
 ({/if})
@@ -182,7 +181,7 @@
 ({********************************})
 
 ({if $inc_entry_point[4]})
-({$inc_entry_point[4]|smarty:nodefaults})
+({$inc_entry_point[4]|smarty:nodefaults|t_url2cmd:'entry_point'|t_cmd:'entry_point'})
 ({/if})
 
 ({capture name=mydata})
@@ -266,7 +265,7 @@
 <img src="./skin/dummy.gif" class="v_spacer_m">
 
 ({if $inc_entry_point[5]})
-({$inc_entry_point[5]|smarty:nodefaults})
+({$inc_entry_point[5]|smarty:nodefaults|t_url2cmd:'entry_point'|t_cmd:'entry_point'})
 ({/if})
 
 ({if $c_friend_list})
@@ -298,7 +297,7 @@
 ({foreach from=$c_friend_list item=item key=key})
 ({if $key > 0})&({/if})
 pne_item({$key+1})_id=({$item.c_member_id})
-&pne_item({$key+1})_name=({$item.nickname|t_truncate:12:'..'|escape:'url'})
+&pne_item({$key+1})_name=({$item.nickname|t_truncate:12:'..'|escape:url|smarty:nodefaults})
 &pne_item({$key+1})_linkurl=({t_url m=pc a=page_f_home _urlencode=true _html=false})%26target_c_member_id=({$item.c_member_id})
 &pne_item({$key+1})_imageurl=({t_img_url filename=$item.image_filename w=76 h=76 noimg=no_image _urlencode=true _html=false})
 &pne_item({$key+1})_count=({$item.friend_count})
@@ -477,7 +476,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({/if})
 
 ({if $inc_entry_point[6]})
-({$inc_entry_point[6]|smarty:nodefaults})
+({$inc_entry_point[6]|smarty:nodefaults|t_url2cmd:'entry_point'|t_cmd:'entry_point'})
 ({/if})
 
 <!-- ********************************** -->
@@ -517,7 +516,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({foreach from=$c_commu_user_list item=item key=key})
 ({if $key > 0})&({/if})
 pne_item({$key+1})_id=({$item.c_commu_id})
-&pne_item({$key+1})_name=({$item.name|t_truncate:12:'..'|escape:'url'})
+&pne_item({$key+1})_name=({$item.name|t_truncate:12:'..'|escape:url|smarty:nodefaults})
 &pne_item({$key+1})_linkurl=({t_url m=pc a=page_c_home _urlencode=true _html=false})%26target_c_commu_id=({$item.c_commu_id})
 &pne_item({$key+1})_imageurl=({t_img_url filename=$item.image_filename w=76 h=76 noimg=no_logo_small _urlencode=true _html=false})
 &pne_item({$key+1})_count=({$item.count_commu_members})
@@ -721,7 +720,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({foreach from=$bookmark_member_list item=item key=key})
 ({if $key > 0})&({/if})
 pne_item({$key+1})_id=({$item.c_member_id})
-&pne_item({$key+1})_name=({$item.nickname|t_truncate:12:'..'|escape:'url'})
+&pne_item({$key+1})_name=({$item.nickname|t_truncate:12:'..'|escape:url|smarty:nodefaults})
 &pne_item({$key+1})_linkurl=({t_url m=pc a=page_f_home _urlencode=true _html=false})%26target_c_member_id=({$item.c_member_id})
 &pne_item({$key+1})_imageurl=({t_img_url filename=$item.image_filename w=76 h=76 noimg=no_image _urlencode=true _html=false})
 &pne_item({$key+1})_count=({$item.friend_count})
@@ -895,7 +894,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <img src="./skin/dummy.gif" class="v_spacer_m">
 
 ({if $inc_entry_point[7]})
-({$inc_entry_point[7]|smarty:nodefaults})
+({$inc_entry_point[7]|smarty:nodefaults|t_url2cmd:'entry_point'|t_cmd:'entry_point'})
 ({/if})
 
 ({********************************})
@@ -907,7 +906,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({********************************})
 
 ({if $inc_entry_point[8]})
-({$inc_entry_point[8]|smarty:nodefaults})
+({$inc_entry_point[8]|smarty:nodefaults|t_url2cmd:'entry_point'|t_cmd:'entry_point'})
 ({/if})
 
 ({if $calendar})
@@ -938,7 +937,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({/if})
 <div class="border_01 bg_02 padding_s" align="left">
 
-予定 <input class="text" type="text" name="title" value="" size="24">
+予定 <input type="text" class="text" name="title" value="" size="24">
 <select name="start_date">
 ({foreach from=$calendar item=item})
 <option value="({$item.year})-({$item.month})-({$item.day})"({if $item.now}) selected="selected"({/if})>({$item.month})/({$item.day})(({$item.dayofweek}))</option>
@@ -955,7 +954,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <table border="0" cellspacing="0" cellpadding="0" style="width:424px;">
 <tr>
 ({foreach from=$calendar item=item name=calendar})
-<td style="width:({if $smarty.foreach.calendar.last})64({else})60({/if})px;({if !$smarty.foreach.calendar.last})border-right:none;({/if})" align="left" valign="top" class="border_01 bg_0({if $item.now})9({else})2({/if})({if $item.dayofweek == "日"}) c_02({elseif $item.dayofweek == "土"}) c_03({/if}) padding_s">
+<td style="width:({if $smarty.foreach.calendar.last})64({else})60({/if})px;({if !$smarty.foreach.calendar.last})border-right:none;({/if})" align="left" valign="top" class="border_01 bg_0({if $item.now})9({else})2({/if})({if $item.dayofweek == "日" || $item.holiday}) c_02({elseif $item.dayofweek == "土"}) c_03({/if}) padding_s">
 ({if $item.now})<span class="b_b">({/if})
 
 ({if $smarty.foreach.calendar.first || $item.day == 1})
@@ -967,6 +966,11 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({if $item.now})</span>({/if})
 
 <div>
+({* 祝日 *})
+({foreach from=$item.holiday item=item_holiday})
+({$item_holiday})<br>
+({/foreach})
+
 ({* 誕生日 *})
 ({foreach from=$item.birth item=item_birth})
 <img src="({t_img_url_skin filename=icon_birthday})" class="icon"><a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item_birth.c_member_id})">({$item_birth.nickname})さん</a><br>
@@ -1015,7 +1019,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({/if})
 
 ({if $inc_entry_point[9]})
-({$inc_entry_point[9]|smarty:nodefaults})
+({$inc_entry_point[9]|smarty:nodefaults|t_url2cmd:'entry_point'|t_cmd:'entry_point'})
 ({/if})
 
 <!-- ******************************** -->
@@ -1331,7 +1335,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <img src="./skin/dummy.gif" class="v_spacer_m">
 
 ({if $inc_entry_point[10]})
-({$inc_entry_point[10]|smarty:nodefaults})
+({$inc_entry_point[10]|smarty:nodefaults|t_url2cmd:'entry_point'|t_cmd:'entry_point'})
 ({/if})
 
 <!-- ******************************** -->
@@ -1515,7 +1519,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({/if})
 
 ({if $inc_entry_point[11]})
-({$inc_entry_point[11]|smarty:nodefaults})
+({$inc_entry_point[11]|smarty:nodefaults|t_url2cmd:'entry_point'|t_cmd:'entry_point'})
 ({/if})
 
 ({if $c_friend_intro_list})
@@ -1610,7 +1614,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({/if})
 
 ({if $inc_entry_point[12]})
-({$inc_entry_point[12]|smarty:nodefaults})
+({$inc_entry_point[12]|smarty:nodefaults|t_url2cmd:'entry_point'|t_cmd:'entry_point'})
 ({/if})
 
 ({********************************})

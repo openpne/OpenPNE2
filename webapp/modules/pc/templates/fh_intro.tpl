@@ -67,6 +67,7 @@
 ({/if})
 ({if $item.c_member_id==$member.c_member_id})
 <br><a href="({t_url m=pc a=page_f_intro_edit})&amp;target_c_member_id=({$target_member.c_member_id})">編集</a>
+<br><a href="({t_url m=pc a=page_f_intro_delete_confirm})&amp;target_c_member_id=({$target_member.c_member_id})&amp;sessid=({$PHPSESSID})">削除</a>
 ({/if})
 
 </div>

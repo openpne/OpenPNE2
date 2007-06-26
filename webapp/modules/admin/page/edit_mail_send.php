@@ -29,6 +29,7 @@ class admin_page_edit_mail_send extends OpenPNE_Action
             'm_pc_syounin_friend' => 'フレンドリンク承認完了メール',
 //            'm_pc_syoutai_mail' => 'SNS招待メール',
 //            'm_pc_taikai_end' => '退会完了メール',
+            'm_pc_rank_up' => 'ランクアップお知らせメール',
         );
         $ktai = array(
             'm_ktai_ashiato' => 'あしあとお知らせメール',
@@ -41,10 +42,17 @@ class admin_page_edit_mail_send extends OpenPNE_Action
 //            'm_ktai_regist_get' => '新規登録メール(オープン制)',
 //            'm_ktai_regist_invite' => '招待メール',
 //            'm_ktai_taikai_end' => '退会完了メール',
+            'm_ktai_rank_up' => 'ランクアップお知らせメール',
+        );
+        $admin = array(
+// →SNS設定から変更できる
+//            'm_admin_taikai' => '退会メンバー情報メール',
+            'm_admin_rank_up' => 'ランクアップお知らせメール',
         );
 
         $this->set('pc', $pc);
         $this->set('ktai', $ktai);
+        $this->set('admin', $admin);
         $this->set('unused', explode(',', UNUSED_MAILS));
         return 'success';
     }

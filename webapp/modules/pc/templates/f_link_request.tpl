@@ -9,7 +9,7 @@
 
 <!-- ******************************************** -->
 <!-- ******ここから：フレンド追加****** -->
-({t_form m=pc a=do_f_link_request_insert_c_friend_confirm})
+({t_form m=pc a=page_f_link_request_confirm})
 <input type="hidden" name="sessid" value="({$PHPSESSID})">
 <input type="hidden" name="target_c_member_id" value="({$target_member.c_member_id})">
 
@@ -133,7 +133,7 @@
 
 <div class="padding_s">
 
-<textarea class="text" name="body" rows="5" cols="40" style="width:410px;"></textarea>
+<textarea class="text" name="body" rows="5" cols="40" style="width:410px;">({$form.body})</textarea>
 
 </div>
 
@@ -157,7 +157,7 @@
 
 <div align="center" style="text-align:center;">
 
-<input type="submit" class="submit" value="送信">
+<input type="submit" class="submit" value="確認画面">
 
 </div>
 
