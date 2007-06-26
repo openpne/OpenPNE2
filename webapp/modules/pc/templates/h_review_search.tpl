@@ -63,9 +63,9 @@
 
 <div class="padding_s">
 
-<a href="({t_url m=pc a=page_h_review_search})&amp;keyword=({$keyword|escape:"url"})&amp;category=({$category})&amp;orderby=r_num">登録数順</a>
+<a href="({t_url m=pc a=page_h_review_search})&amp;keyword=({$keyword|escape:url|smarty:nodefaults})&amp;category=({$category})&amp;orderby=r_num">登録数順</a>
 |
-<a href="({t_url m=pc a=page_h_review_search})&amp;keyword=({$keyword|escape:"url"})&amp;category=({$category})&amp;orderby=r_datetime">作成日順</a>
+<a href="({t_url m=pc a=page_h_review_search})&amp;keyword=({$keyword|escape:url|smarty:nodefaults})&amp;category=({$category})&amp;orderby=r_datetime">作成日順</a>
 
 </div>
 
@@ -221,7 +221,7 @@
 ({*********})
 <tr>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-<td style="width:634px;" class="bg_05" align="right">
+<td style="width:634px;" class="bg_02" align="right">
 
 <div class="padding_s">
 
@@ -353,7 +353,7 @@
 
 <div class="padding_s">
 
-({$item.r_datetime|date_format:"%m月%d日 %H:%M"})
+({$item.r_datetime|date_format:"%Y年%m月%d日 %H:%M"})
 </div>
 
 </td>
@@ -400,7 +400,7 @@
 ({*********})
 <tr>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-<td style="width:634px;" class="bg_05" align="right">
+<td style="width:634px;" class="bg_02" align="right">
 
 <div class="padding_s">
 

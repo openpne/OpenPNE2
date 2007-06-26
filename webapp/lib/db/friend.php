@@ -466,7 +466,7 @@ function db_friend_c_friend_list_random4c_member_id($c_member_id, $limit)
 }
 
 /**
- * ２つのメンバＩＤからその２人の関係を返す。
+ * ２つのメンバーIDからその２人の関係を返す。
  */
 function db_friend_relationship4two_members($c_member_id, $target_c_member_id)
 {
@@ -640,6 +640,7 @@ function db_friend_insert_c_friend($c_member_id_from, $c_member_id_to)
         'c_member_id_from' => intval($c_member_id_from),
         'c_member_id_to' => intval($c_member_id_to),
         'r_datetime' => db_now(),
+        'intro' => '',
     );
     db_insert('c_friend', $data);
 
@@ -647,6 +648,7 @@ function db_friend_insert_c_friend($c_member_id_from, $c_member_id_to)
         'c_member_id_from' => intval($c_member_id_to),
         'c_member_id_to' => intval($c_member_id_from),
         'r_datetime' => db_now(),
+        'intro' => '',
     );
     db_insert('c_friend', $data);
 }

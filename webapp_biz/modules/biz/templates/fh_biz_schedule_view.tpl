@@ -75,19 +75,23 @@
 <td class="bg_02" align="left" valign="middle">
 <div style="padding:4px 3px;">
 
+({strip})
 ({if $schedule.rep_type_loc})
 	毎週 ({$schedule.rep_type_loc})曜日
 ({else})
 	({$schedule.begin_date})
 ({/if})
 
-({$schedule.begin_time}) ({if $schedule.begin_time})～({/if})
-
 ({if $schedule.begin_date != $schedule.finish_date})
-	({$schedule.finish_date})
+	～({$schedule.finish_date})
 ({/if})
+({/strip})
 
+({strip})
+({$schedule.begin_time})
+({if $schedule.begin_time || $schedule.finish_time})～({/if})
 ({$schedule.finish_time}) 
+({/strip})
 
 </div>
 </td>
@@ -172,22 +176,44 @@
 <td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({*********})
+({if $is_h})
 <tr>
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 <td class="bg_05" align="center" valign="middle">
 <div style="padding:4px 3px;">
-({if $schedule.biz_group_id})
+
 登録者
-({else})
-参加者
-({/if})
 </div>
 </td>
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 <td class="bg_02" align="left" valign="middle">
 <div style="padding:4px 3px;">
-
 	<a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$schedule.c_member_id})">({$schedule.writer_name})</a>	<br>
+</div>
+</td>
+<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+</tr>
+({*********})
+<tr>
+<td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+</tr>
+({*********})
+({/if})
+<tr>
+<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td class="bg_05" align="center" valign="middle">
+<div style="padding:4px 3px;">
+
+参加者
+</div>
+</td>
+<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td class="bg_02" align="left" valign="middle">
+<div style="padding:4px 3px;">
+
+({foreach item=name key=id from=$jmembers})
+	<a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$id})">({$name})</a>	<br>
+({/foreach})
 
 </div>
 </td>
@@ -198,46 +224,25 @@
 <td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({*********})
-({if $schedule.biz_group_id})
 <tr>
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 <td class="bg_05" align="center" valign="middle">
 <div style="padding:4px 3px;">
-グループ
-</div>
-</td>
-<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-<td class="bg_02" align="left" valign="middle">
-<div style="padding:4px 3px;">
-	<a href="({t_url m=biz a=page_g_home})&amp;target_c_commu_id=({$schedule.biz_group_id})">({$schedule.biz_group_name})</a><br>
-</div>
-</td>
-<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-</tr>
-({*********})
-<tr>
-<td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-</tr>
-({*********})
-({/if})
-({*********})
-<tr>
-<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-<td class="bg_05" align="center" valign="middle">
-<div style="padding:4px 3px;">
+
 公開範囲
+
 </div>
 </td>
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 <td class="bg_02" align="left" valign="middle">
 <div style="padding:4px 3px;">
-({if $schedule.public_flag == "public"})
-全員に公開
-({elseif $schedule.public_flag == "group"})
-グループまで公開
-({elseif $schedule.public_flag == "private"})
-公開しない
+
+({if $schedule.public_flag == 'private'})
+参加者のみに公開
+({else})
+全体に公開
 ({/if})
+
 </div>
 </td>
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
@@ -295,6 +300,7 @@
 
 </td>
 </tr>
+
 ({if $schedule.rep_first})
 <tr>
 <td class="padding_ss" align="center" colspan="2">

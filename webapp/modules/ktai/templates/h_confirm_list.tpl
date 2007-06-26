@@ -1,6 +1,6 @@
 ({$inc_ktai_header|smarty:nodefaults})
 
-承認待ちﾘｽﾄ<br>
+<center>承認待ちﾘｽﾄ</center>
 <hr>
 ({if $msg})
 <font color="red">({$msg})</font><br>

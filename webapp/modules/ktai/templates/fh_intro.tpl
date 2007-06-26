@@ -4,7 +4,7 @@
 
 ({foreach from=$intro_list item=item})
 <a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})&amp;({$tail})">({$item.nickname})</a><br>
-({$item.intro|nl2br})<br>
+({$item.intro|t_url2a_ktai|nl2br})<br>
 
 ({if $target_member.c_member_id==$member.c_member_id})
 ({if !$item.has_intro_by_me})

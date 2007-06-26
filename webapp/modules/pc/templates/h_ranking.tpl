@@ -164,9 +164,9 @@
 
 <span class="b_b">
 ({if $kind == "ashiato"})
-アクセス数No1ユーザー
+アクセス数No1メンバー
 ({elseif $kind == "friend"})
-({$WORD_MY_FRIEND})数No1ユーザー
+({$WORD_MY_FRIEND})数No1メンバー
 ({elseif $kind == "com_member"})
 参加人数No１コミュニティ
 ({elseif $kind == "com_comment"})

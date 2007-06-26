@@ -9,6 +9,10 @@ class admin_page_list_c_file extends OpenPNE_Action
 {
     function execute($requests)
     {
+        if (!OPENPNE_USE_FILEUPLOAD) {
+            admin_client_redirect('top', '指定されたページにはアクセスできません');
+        }
+
         $v = array();
         $pager = array();
 

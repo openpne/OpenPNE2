@@ -76,11 +76,11 @@ function cache_drop_c_member($c_member_id)
 {
     $c_member_id = (int)$c_member_id;
     pne_cache_drop('db_friend_c_friend_id_list4c_member_id', $c_member_id, 9);  //フレンドリスト
-	pne_cache_drop('db_friend_c_friend_list_random4c_member_id', $c_member_id, 5);
+    pne_cache_drop('db_friend_c_friend_list_random4c_member_id', $c_member_id, 5);
     pne_cache_drop('p_h_home_c_diary_friend_list4c_member_id', $c_member_id, 5);  //最新日記フィード
     $c_member_id = (string)$c_member_id;
     pne_cache_drop('db_friend_c_friend_id_list4c_member_id', $c_member_id, 9);  //フレンドリスト
-	pne_cache_drop('db_friend_c_friend_list_random4c_member_id', $c_member_id, 5);
+    pne_cache_drop('db_friend_c_friend_list_random4c_member_id', $c_member_id, 5);
     pne_cache_drop('p_h_home_c_diary_friend_list4c_member_id', $c_member_id, 5);  //最新日記フィード
 
     //誕生日フィード
@@ -120,12 +120,17 @@ function cache_drop_c_commu($c_commu_id)
     $c_commu_event_list = db_commu_new_topic_comment4c_commu_id($c_commu_id, 7, 1);
     $c_commu_bbs_list = array_merge($c_commu_topic_list, $c_commu_event_list);
 
-    foreach ($c_commu_bbs_list as $c_commu_topic_id)
-    {
+    foreach ($c_commu_bbs_list as $c_commu_topic_id) {
         $c_commu_topic_id = (int)$c_commu_topic_id;
         cache_drop_c_commu_topic($c_commu_topic_id);
         $c_commu_topic_id = (string)$c_commu_topic_id;
         cache_drop_c_commu_topic($c_commu_topic_id);
+    }
+
+    $c_commu_member_total_num = _db_count_c_commu_member_list4c_commu_id($c_commu_id);
+    $c_commu_member_list = db_commu_c_member_list4c_commu_id($c_commu_id, 1, $c_commu_member_total_num);
+    foreach ($c_commu_member_list[0] as $c_member) {
+        cache_drop_c_commu_list4c_member_id($c_member['c_member_id']);
     }
 }
 
@@ -151,11 +156,9 @@ function cache_drop_c_commu_list4c_member_id($c_member_id)
 {
     $c_member_id = (int)$c_member_id;
     pne_cache_drop('db_commu_c_commu_list_lastupdate4c_member_id', $c_member_id, 5);
-    pne_cache_drop('db_commu_c_commu_list4c_member_id_3', $c_member_id, 9);
     pne_cache_drop('db_commu_c_commu_list4c_member_id_2', $c_member_id, 9);
     $c_member_id = (string)$c_member_id;
     pne_cache_drop('db_commu_c_commu_list_lastupdate4c_member_id', $c_member_id, 5);
-    pne_cache_drop('db_commu_c_commu_list4c_member_id_3', $c_member_id, 9);
     pne_cache_drop('db_commu_c_commu_list4c_member_id_2', $c_member_id, 9);
 }
 

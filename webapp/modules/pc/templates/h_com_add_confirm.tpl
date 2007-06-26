@@ -169,7 +169,6 @@
 <div class="padding_s">
 
 ({$form_val.image_filename})<br>
-({*<span>写真のアップロードに関するヘルプは <a href="" target="_blank">こちら</span></a>*})
 
 </div>
 

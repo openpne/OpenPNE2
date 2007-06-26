@@ -26,14 +26,21 @@ class ktai_biz_page_fh_biz_schedule_edit extends OpenPNE_Action
         }
 
         //日付・時刻を出す
-        $begin_year = date("y", strtotime($requests['begin_date']));
-        $begin_month = date("m", strtotime($requests['begin_date']));
-        $begin_day = date("j", strtotime($requests['begin_date']));
+        if (!is_null($requests['begin_date'])) {
+            $begin_year = date("y", strtotime($requests['begin_date']));
+            $begin_month = date("m", strtotime($requests['begin_date']));
+            $begin_day = date("d", strtotime($requests['begin_date']));
+        }
 
-        $begin_hour = date("G", strtotime($requests['begin_time']));
-        $begin_min = date("i", strtotime($requests['begin_time']));
-        $finish_hour = date("G", strtotime($requests['finish_time']));
-        $finish_min = date("i", strtotime($requests['finish_time']));
+        if (!is_null($requests['begin_time'])) {
+            $begin_hour = date("H", strtotime($requests['begin_time']));
+            $begin_min = date("i", strtotime($requests['begin_time']));
+        }
+
+        if (!is_null($requests['finish_time'])) {
+            $finish_hour = date("H", strtotime($requests['finish_time']));
+            $finish_min = date("i", strtotime($requests['finish_time']));
+        }
 
         $j_members = unserialize($requests['members']);
 

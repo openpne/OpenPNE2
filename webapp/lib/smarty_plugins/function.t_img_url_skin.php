@@ -34,6 +34,7 @@ function smarty_function_t_img_url_skin($params, &$smarty)
                 $url .= '?' . htmlspecialchars($q);
             }
         } else {
+            $p['filename'] = $filename;
             include_once 'OpenPNE/Img.php';
             if (!$p['f']) {
                 $parts = explode('.', $p['filename']);

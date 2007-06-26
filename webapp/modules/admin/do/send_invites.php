@@ -33,13 +33,10 @@ class admin_do_send_invites extends OpenPNE_Action
                 continue;
             }
 
-
             if (db_member_is_sns_join4mail_address($mail)) { // 登録済み
                 $errors[] = $mail;
             } elseif (!db_member_is_limit_domain4mail_address($mail)) { // ドメイン制限
                 $limits[] = $mail;
-            } elseif (db_is_c_black_list($mail)) {
-                $blacks[] = $mail;
             } elseif (is_ktai_mail_address($mail)) {
                 $ktais[] = $mail;
             } else {
@@ -53,7 +50,6 @@ class admin_do_send_invites extends OpenPNE_Action
             $_REQUEST['pc_mails'] = $pcs;
             $_REQUEST['ktai_mails'] = $ktais;
             $_REQUEST['limit_domain_mails'] = $limits;
-            $_REQUEST['black_list_mails'] = $blacks;
             openpne_forward($module_name, 'page', 'send_invites_confirm');
             exit;
 
@@ -62,10 +58,9 @@ class admin_do_send_invites extends OpenPNE_Action
             $c_member_id_invite = 1;
 
             //<PCKTAI
-            if (!defined('OPENPNE_REGIST_FROM') ||
-                    (OPENPNE_REGIST_FROM & OPENPNE_REGIST_FROM_KTAI) >> 1) {
+            if ((OPENPNE_REGIST_FROM & OPENPNE_REGIST_FROM_KTAI) >> 1) {
+                // 携帯へ招待メール
                 foreach ($ktais as $mail) {
-                    // 携帯へ招待メール
                     $session = create_hash();
 
                     // c_member_ktai_pre に追加
@@ -81,9 +76,7 @@ class admin_do_send_invites extends OpenPNE_Action
             //>
 
             //<PCKTAI
-            if (!defined('OPENPNE_REGIST_FROM') ||
-                    (OPENPNE_REGIST_FROM & OPENPNE_REGIST_FROM_PC)) {
-
+            if ((OPENPNE_REGIST_FROM & OPENPNE_REGIST_FROM_PC)) {
                 // PCへ招待メール
                 foreach ($pcs as $mail) {
                     $session = create_hash();

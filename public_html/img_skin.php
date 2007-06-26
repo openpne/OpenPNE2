@@ -67,7 +67,7 @@ if (defined('USE_IMAGEMAGICK')) {
         exit;
     }
 } else {
-	$use_IM = false;
+    $use_IM = false;
 }
 
 if ($use_IM) {

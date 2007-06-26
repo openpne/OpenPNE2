@@ -10,7 +10,9 @@ class pc_page_h_set_public_flag_all_confirm extends OpenPNE_Action
     {
         $u = $GLOBALS['AUTH']->uid();
 
-        $this->set('public_flag_diary_all', $requests['public_flag_diary_all']);
+        $public_flag = util_cast_public_flag_diary($requests['public_flag_diary_all']);
+
+        $this->set('public_flag_diary_all', $public_flag);
         $this->set('inc_navi', fetch_inc_navi("h"));
         return 'success';
     }

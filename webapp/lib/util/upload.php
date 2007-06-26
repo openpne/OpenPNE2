@@ -32,18 +32,35 @@ function t_file_save2tmp($upfile, $uid, $prefix='', $ext='')
     $filename = sprintf('%s_%s.%s', $prefix, $uid, $ext);
     $filepath = $tmp_dir_path . $filename;
 
-    if (!file_exists($upfile['tmp_name'])) {
+    if (!is_uploaded_file($upfile['tmp_name'])) {
         return false;
     }
 
-    // var/tmp/ディレクトリにファイルを移動する
-    move_uploaded_file($upfile['tmp_name'], $filepath);
-    chmod($filepath, 0644);
-    if (!is_file($filepath)) {
-        return false;
+    if (OPENPNE_TMP_FILE_DB) {
+        // 一時ファイルをDBに保存する
+        if (!db_file_insert_c_tmp_file($filename, $upfile['tmp_name'], $upfile['name'])) {
+            return false;
+        }
+    } else {
+        // var/tmp/ディレクトリにファイルを移動する
+        move_uploaded_file($upfile['tmp_name'], $filepath);
+        chmod($filepath, 0644);
+        if (!is_file($filepath)) {
+            return false;
+        }
     }
 
     return $filename;
+}
+
+/**
+ * 確認画面用の一時ファイルを削除する
+ */
+function t_file_clear_tmp($uid)
+{
+    if (OPENPNE_TMP_FILE_DB) {
+        db_file_clear_tmp_db($uid);
+    }
 }
 
 /**
@@ -51,10 +68,10 @@ function t_file_save2tmp($upfile, $uid, $prefix='', $ext='')
  * 
  * @param string $prefix
  * @param string $tmpfile
- * @param string $type
+ * @param string $original_filename
  * @return mixed
  */
-function file_insert_c_file4tmp($prefix, $tmpfile, $type)
+function file_insert_c_file4tmp($prefix, $tmpfile, $original_filename)
 {
     if (!$tmpfile || preg_match('/[^\.\w]/', $tmpfile)) return false;
 
@@ -64,18 +81,24 @@ function file_insert_c_file4tmp($prefix, $tmpfile, $type)
 
     $filename = sprintf('%s_%s.%s', $prefix, time(), $ext);
 
-    $tmp_dir_path = OPENPNE_VAR_DIR . '/tmp/';
-    $filepath = $tmp_dir_path . basename($tmpfile);
+    if (OPENPNE_TMP_FILE_DB) {
+        $tmpfile_name = basename($tmpfile);
+        $c_tmp_file = db_file_c_tmp_file4filename($tmpfile_name);
+        $fileData = $c_tmp_file['bin'];
+    } else {
+        $tmp_dir_path = OPENPNE_VAR_DIR . '/tmp/';
+        $filepath = $tmp_dir_path . basename($tmpfile);
 
-    if (!is_readable($filepath)) {
-        return false;
+        if (!is_readable($filepath)) {
+            return false;
+        }
+
+        $fp = fopen($filepath, 'rb');
+        $fileData = fread($fp, filesize($filepath));
+        fclose($fp);
     }
 
-    $fp = fopen($filepath, 'rb');
-    $fileData = fread($fp, filesize($filepath));
-    fclose($fp);
-
-    if (db_file_insert_c_file($filename, $fileData, $type)) {
+    if (db_file_insert_c_file($filename, $fileData, $original_filename)) {
         return $filename;
     }
 

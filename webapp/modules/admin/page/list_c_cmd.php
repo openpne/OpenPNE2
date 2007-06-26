@@ -9,8 +9,7 @@ class admin_page_list_c_cmd extends OpenPNE_Action
 {
     function execute($requests)
     {
-        $pager = array();
-        $c_cmd_list = db_admin_get_c_cmd_all($requests['page'], $requests['page_size'], $pager);
+        $c_cmd_list = db_admin_get_c_cmd_all();
 
         $permit_list = db_get_permit_list();
 
@@ -24,7 +23,6 @@ class admin_page_list_c_cmd extends OpenPNE_Action
             $c_cmd_list[$key1]['permit'] = $is_permit;
         }
 
-        $this->set("pager", $pager);
         $this->set("c_cmd_list", $c_cmd_list);
         return 'success';
     }

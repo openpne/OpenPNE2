@@ -25,6 +25,7 @@ class ktai_biz_page_fh_biz_todo_list extends OpenPNE_Action
 
         $this->set('todolist', $todolist);
         $this->set('is_checked', $is_checked);
+        $this->set('target_c_member_id', $target_c_member_id);
 
         return 'success';
     }

@@ -26,14 +26,20 @@ class biz_do_h_home_edit_biz_todo extends OpenPNE_Action
         $public_flag = $requests['public_flag'];
         // ----------
 
-		if (!biz_isPermissionTodo($u, $id)) {
-		    handle_kengen_error();
-		}
+        if (!biz_isPermissionTodo($u, $id)) {
+            handle_kengen_error();
+        }
+
+        if (empty($memo)) {
+            $_REQUEST['msg'] = 'Todoの内容を入力してください';
+            openpne_forward('biz', 'page', 'fh_home_edit_biz_todo');
+            exit;            
+        }
 
         if (!$biz_group_id && $public_flag == 'group') {
-                $_REQUEST['msg'] = '「グループまで公開」Todoの場合はグループを指定してください';
-                openpne_forward('biz', 'page', 'fh_home_edit_biz_todo');
-                exit;
+            $_REQUEST['msg'] = '「グループまで公開」Todoの場合はグループを指定してください';
+            openpne_forward('biz', 'page', 'fh_home_edit_biz_todo');
+            exit;
         }
 
         $member_info = db_member_c_member4c_member_id_LIGHT($writer_id);

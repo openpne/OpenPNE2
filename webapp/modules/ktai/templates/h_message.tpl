@@ -1,6 +1,6 @@
 ({$inc_ktai_header|smarty:nodefaults})
 
-ﾒｯｾｰｼﾞBOX<br>
+<center>ﾒｯｾｰｼﾞBOX</center>
 <hr>
 ({if $prev_c_message_id})
 <a href="({t_url m=ktai a=page_h_message})&amp;target_c_message_id=({$prev_c_message_id})&amp;({$tail})">前を表示</a>
@@ -21,7 +21,7 @@
 <br>
 ({$c_message.subject})<br>
 <br>
-({$c_message.body|nl2br})
+({$c_message.body|t_url2a_ktai|nl2br})
 <br>
 <br>
 ({if $c_message.image_filename_1})

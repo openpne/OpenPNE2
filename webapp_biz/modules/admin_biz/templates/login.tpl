@@ -13,7 +13,7 @@
 <input type="hidden" name="m" value="({$module_name})">
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('login','do')})">
 <input type="hidden" name="sessid" value="({$PHPSESSID})">
-<label for="username">管理者名</label></th>
+<label for="username">アカウント名</label></th>
 <td><input tabindex="1" name="username" id="username" type="text" size="20"></td>
 </tr>
 <tr>

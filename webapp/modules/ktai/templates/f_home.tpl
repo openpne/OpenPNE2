@@ -48,7 +48,9 @@
 ({strip})
 ({capture name="birth"})
 ({if $target_c_member.age !== NULL})年齢：({$target_c_member.age})歳<br>({/if})
+({if $target_c_member.birth_month && $target_c_member.birth_day})
 誕生日：({$target_c_member.birth_month})月({$target_c_member.birth_day})日<br>
+({/if})
 ({/capture})
 
 ({foreach from=$target_c_member.profile key=key item=item})
@@ -154,7 +156,8 @@
 ({foreach from=$target_c_member.profile key=key item=item})
 ({if $item.form_type == 'textarea'})
 <font color="green">[({$item.caption})]</font><br>
-({$item.value|nl2br})
+({$item.value|t_url2a_ktai|nl2br})
+<br>
 ({/if})
 ({/foreach})
 <hr>

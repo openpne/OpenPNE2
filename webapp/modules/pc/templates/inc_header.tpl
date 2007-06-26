@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="./css/default.css?v=2.2.5" type="text/css">
 ({/if})
 <script type="text/javascript" src="./js/prototype.js"></script>
+<script type="text/javascript" src="./js/pne.js"></script>
 <style type="text/css">
 <!--
 /*枠線要素*/
@@ -73,7 +74,11 @@ body { background-color: #({$INC_HEADER_color_config.bg_12}) ; }
   background: url(({t_img_url_skin filename=icon_3})) 50% 70%  no-repeat ;
 }
 
-* { font-family: "ＭＳ Ｐゴシック", "ヒラギノ角ゴ Pro W3", Osaka, sans-serif ; }
+* { font-family: "Hiragino Kaku Gothic Pro", "Hiragino Kaku Ghothic Pro W3", "ヒラギノ角ゴ Pro W3",({* "メイリオ", Meiryo,*}) "ＭＳ Ｐゴシック", Osaka, sans-serif ; }
+
+/*ここから：safari1.xパスワードフォーム非表示対策*/
+html:\66irst-child input[type="password"] { font-family: "Lucida Grande", "Hiragino Kaku Gothic Pro", "Hiragino Kaku Ghothic Pro W3", "ヒラギノ角ゴ Pro W3",sans-serif,"Osaka" ; }
+/*ここまで：safari1.xパスワードフォーム非表示対策*/
 
 /*テキスト入力欄のフォーカス時のクラス*/
 .text       { background-color:#F8F8F8; }
@@ -300,8 +305,8 @@ function setSubmitFunction() {
 ({**ここまで：旧inc_html_header.tplの内容**})
 ({***************************************})
 
-({if $smarty.const.OPENPNE_USE_COMMU_MAP && $c_commu.is_display_map})
-<script src="http://maps.google.co.jp/maps?file=api&amp;v=2&amp;key=({$smarty.const.GOOGLE_MAPS_API_KEY})" type="text/javascript"></script>
+({if $smarty.const.OPENPNE_USE_COMMU_MAP && $c_commu.is_display_map && $INC_HEADER_page_name == 'c_home'})
+<script src="http://maps.google.co.jp/maps?file=api&amp;v=2.x&amp;key=({$smarty.const.GOOGLE_MAPS_API_KEY})" type="text/javascript"></script>
 <script type="text/javascript">
 <!--
 function load() {
@@ -468,7 +473,7 @@ function load() {
 ({if $msg2})({$msg2})<br>({/if})
 ({if $msg3})({$msg3})<br>({/if})
 ({foreach from=$err_msg item=item})
-({$item})</br>
+({$item})<br>
 ({/foreach})
 <!-- ここまで：主内容＞警告文本体 -->
 </div>

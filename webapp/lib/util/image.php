@@ -258,6 +258,7 @@ function image_insert_c_image4tmp($prefix, $tmpfile)
             'filename' => $filename,
             'bin' => $c_tmp_image['bin'],
             'r_datetime' => db_now(),
+            'type' => '',
         );
         if (db_insert("c_image", $params)) {
             return $filename;

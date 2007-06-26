@@ -8,7 +8,6 @@ class biz_page_fh_biz_schedule_edit extends OpenPNE_Action
 {
     function execute($requests)
     {
-
         $u = $GLOBALS['AUTH']->uid();
 
         if (!biz_isPermissionSchedule($u, $requests['schedule_id'])) {
@@ -18,11 +17,33 @@ class biz_page_fh_biz_schedule_edit extends OpenPNE_Action
         $form_val['subject'] = $requests['subject'];
         $form_val['body'] = $requests['body'];
 
+        $this->set('banner', $requests['sc_bn']);
+
+        if ($requests['sc_title']) {
+            $requests['title'] = $requests['sc_title'];
+        }
+
+        if ($requests['sc_memo']) {
+            $requests['value'] = $requests['sc_memo'];
+        }
+
+        if ($requests['sc_b_year'] && $requests['sc_b_month'] && $requests['sc_b_date']) {
+            $requests['begin_date'] = $requests['sc_b_year'].'-'.$requests['sc_b_month'].'-'.$requests['sc_b_date'];
+        }
+
+        if ($requests['sc_b_hour'] && $requests['sc_b_minute']) {
+            $requests['begin_time'] = $requests['sc_b_hour'].':'.$requests['sc_b_minute'];
+        }
+
+        if ($requests['sc_f_hour'] && $requests['sc_f_minute']) {
+            $requests['finish_time'] = $requests['sc_f_hour'].':'.$requests['sc_f_minute'];
+        }
+
         $sessid = session_id();
 
         $schedule = biz_getScheduleInfo($requests['schedule_id']);
 
-        if (empty($requests['target_id']) || ($requests['target_id'] == $u)) {
+        if ($schedule['c_member_id'] == $u) {
             //自分自身
             $target_id = $u;
             $this->set('is_h', true);  //判別フラグ
@@ -171,10 +192,10 @@ class biz_page_fh_biz_schedule_edit extends OpenPNE_Action
         $repeat_finish = biz_getRepeatFinish($requests['schedule_id']);
         $repeat_term = strtotime($repeat_finish) - strtotime($repeat_begin);
 
-        $daycount = $repeat_term / (24 * 60 * 60) / 7;
+        $daycount = $repeat_term / (24 * 60 * 60) / 6;
 
         $this->set('repeat_begin_date', $repeat_begin);
-        $this->set('repeat_term', intval($daycount));
+        $this->set('repeat_term', ceil($daycount));
 
         $biz_group_count = biz_getGroupCount($target_id);
         $biz_group_list = biz_getJoinGroupList($target_id, 1, $biz_group_count);
@@ -182,7 +203,39 @@ class biz_page_fh_biz_schedule_edit extends OpenPNE_Action
         $this->set('biz_group_list', $biz_group_list[0]);
         $this->set('target_biz_group_id', $schedule['biz_group_id']);
 
-        $this->set('public_flag', $schedule['public_flag']);
+        if ($requests['public_flag']) {
+            $this->set('public_flag', $requests['public_flag']);
+        } else {
+            $this->set('public_flag', $schedule['public_flag']);
+        }
+        
+        //追加
+        if ($requests['members']) {
+            $j_members = array_keys(unserialize($requests['members']));
+            sort($j_members);
+        } elseif($requests['sc_j_mem']) {
+            $j_members = $requests['sc_j_mem'];
+        } else {
+            $j_members = biz_getJoinMemberSchedule($requests['schedule_id']);
+        }
+        $this->set('j_members', $j_members);
+        $members = array();
+
+        $sql = 'SELECT c_member_id, nickname FROM c_member';
+        $members = db_get_all($sql, $params);
+        $i = 0;
+        foreach ($members as $key => $value) {
+            if (in_array($value['c_member_id'], $j_members)) {
+                $members[$key]['checkflag'] = 1;
+                $i++;
+            }
+
+            if (count($j_members) < $i) {
+                break;
+            }
+        }
+        
+        $this->set('members', $members);
 
         return 'success';
     }

@@ -3,9 +3,12 @@
 <center><font color="orange">アクセスブロック設定</font></center>
 <hr>
 
-アクセスをブロックするユーザのIDを指定します。<br>
+アクセスをブロックするメンバーのIDを指定します。<br>
 <br>
-
+({if $msg})
+<font color="red">({$msg})</font><br>
+<br>
+({/if})
 ({t_form m=ktai a=do_h_config_access_block_update})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
 ({foreach from=$c_member_id_block item=item})
