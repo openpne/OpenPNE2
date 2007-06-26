@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -14,8 +14,7 @@ class pc_page_o_regist_end extends OpenPNE_Action
     function execute($requests)
     {
         //<PCKTAI
-        if (defined('OPENPNE_REGIST_FROM') &&
-                !(OPENPNE_REGIST_FROM & OPENPNE_REGIST_FROM_PC)) {
+        if (!(OPENPNE_REGIST_FROM & OPENPNE_REGIST_FROM_PC)) {
             client_redirect_login();
         }
         //>

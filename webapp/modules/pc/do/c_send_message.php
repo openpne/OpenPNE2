@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -33,15 +33,19 @@ class pc_do_c_send_message extends OpenPNE_Action
 
         //--- 権限チェック
         //コミュニティ管理者
-        if (!_db_is_c_commu_admin($target_c_commu_id, $u)) {
+        if (!db_commu_is_c_commu_admin($target_c_commu_id, $u)) {
             handle_kengen_error();
         }
         //---
-        $c_member_id_list = p_c_commu_member_id_list4c_commu_id($target_c_commu_id);
+        $c_member_id_list = db_commu_c_commu_member_id_list4c_commu_id($target_c_commu_id);
+
+        if (count($c_member_id_list) === 1) {
+            handle_kengen_error();
+        }
 
         foreach ($c_member_id_list as $c_member_id) {
             if ($c_member_id == $u)continue;
-            do_common_send_message_syoukai_commu($u, $c_member_id, $subject, $body);
+            db_message_send_message_syoukai_commu($u, $c_member_id, $subject, $body);
         }
         $p = array('target_c_commu_id' => $target_c_commu_id);
         openpne_redirect('pc', 'page_c_home', $p);

@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -9,6 +9,10 @@ class biz_page_fh_biz_schedule_view extends OpenPNE_Action
     function execute($requests)
     {
         $u = $GLOBALS['AUTH']->uid();
+
+        if (!biz_isPermissionSchedule($u, $requests['id'])) {
+            handle_kengen_error();
+        }
 
         $form_val['subject'] = $requests['subject'];
         $form_val['body'] = $requests['body'];
@@ -28,7 +32,7 @@ class biz_page_fh_biz_schedule_view extends OpenPNE_Action
         }
 
         //プロフィール
-        $target_member = db_common_c_member4c_member_id($u);
+        $target_member = db_member_c_member4c_member_id($u);
         $this->set("target_member", $target_member);
         $this->set("form_val", $form_val);
         $this->set("target_c_member_id", $requests['target_id']);
@@ -70,14 +74,15 @@ class biz_page_fh_biz_schedule_view extends OpenPNE_Action
         $jmembers = biz_getJoinMemberSchedule($requests['id']);
         if (array_search($target_member['nickname'], $jmembers)) {
             $jmembers[$target_member['c_member_id']] = $target_member['nickname'];
+        } else {
+            $list['target_c_member_nickname'] = biz_getMemberNickname($requests['target_id']);
         }
-        $jshisetsu = biz_getJoinShisetsuSchedule($requests['id']);
+        $this->set('jmembers', $jmembers);
 
         $this->set('schedule', $list);
         $this->set('jmembers', $jmembers);
         $this->set('jmembers_enc', serialize($jmembers));
-        $this->set('jshisetsu', $jshisetsu);
-        $this->set('jshisetsu_enc', serialize($jshisetsu));
+
         $this->set('schedule_id', $requests['id']);
         $this->set('w', $requests['w']);
         $this->set('is_h', true);
@@ -88,12 +93,12 @@ class biz_page_fh_biz_schedule_view extends OpenPNE_Action
             $repeat_finish = biz_getRepeatFinish($requests['id']);
             $repeat_term = strtotime($repeat_finish) - strtotime($repeat_begin);
 
-            $daycount = ceil($repeat_term / (24 * 60 * 60) / 7);
+            $daycount = ceil($repeat_term / (24 * 60 * 60) / 6);
             if ($repeat_finish == $repeat_begin) {
                 $daycount = 1;
             }
             $this->set('repeat_begin_date', $repeat_begin);
-            $this->set('repeat_term', intval($daycount));
+            $this->set('repeat_term', ceil($daycount));
         }
 
         if ($list['rep_type']) {

@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -25,7 +25,7 @@ class biz_page_fh_biz_schedule_calendar extends OpenPNE_Action
             //他人
             $target_id = $requests['target_id'];
             $this->set('is_f', true);  //判別フラグ
-            $this->set('inc_navi',fetch_inc_navi('f'));
+            $this->set('inc_navi',fetch_inc_navi('f', $target_id));
         }
 
         if (!$year) {
@@ -41,9 +41,11 @@ class biz_page_fh_biz_schedule_calendar extends OpenPNE_Action
         }
 
         // イベント
-        $event_list = p_h_calendar_event4c_member_id($year, $month, $target_id);
+        $event_list = db_schedule_event4c_member_id($year, $month, $target_id);
         // 誕生日
-        $birth_list = p_h_calendar_birth4c_member_id($month, $target_id);
+        $birth_list = db_schedule_birth4c_member_id($month, $target_id);
+        // Todo
+        $todo_list = biz_schedule_todo4c_member_id($u, $target_id, $year, $month);
 
         require_once 'Calendar/Month/Weekdays.php';
         $Month = new Calendar_Month_Weekdays($year, $month, 0);
@@ -60,11 +62,13 @@ class biz_page_fh_biz_schedule_calendar extends OpenPNE_Action
             } else {
               $day = $Day->thisDay();
 
-              $schedule = biz_getDateMemberSchedule($year, sprintf("%02d", $month), sprintf("%02d", $day), $target_id);
+              $schedule = biz_getDateMemberSchedule($year, sprintf("%02d", $month), sprintf("%02d", $day), $target_id, $u);
               $banner = biz_isBannerSchedule($year, sprintf("%02d", $month), sprintf("%02d", $day), $target_id);
 
               if (!empty($banner)) {
-                  array_push($schedule, $banner);
+                    foreach($banner as $value) {
+                        array_push($schedule, $value);
+                    }
               }
 
               $item = array(
@@ -73,6 +77,8 @@ class biz_page_fh_biz_schedule_calendar extends OpenPNE_Action
                 'birth' => $birth_list[$day],
                 'event' => $event_list[$day],
                 'schedule' => $schedule,
+                'todo' => $todo_list[$day],
+                'holiday' => db_c_holiday_list4date($month, $day),
               );
               $item['day'] = $day;
               if ($is_curr && $item['day'] == $curr_day) {
@@ -97,7 +103,7 @@ class biz_page_fh_biz_schedule_calendar extends OpenPNE_Action
         $this->set("month", $month);
         $this->set("calendar", $calendar);
 
-        $c_member = db_common_c_member4c_member_id($target_id);
+        $c_member = db_member_c_member4c_member_id($target_id);
         $this->set("pref_list", p_regist_prof_c_profile_pref_list4null());
         $this->set("c_member", $c_member);
 

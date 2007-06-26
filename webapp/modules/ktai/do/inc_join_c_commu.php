@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -22,7 +22,7 @@ class ktai_do_inc_join_c_commu extends OpenPNE_Action
         $p = array('target_c_commu_id' => $target_c_commu_id);
 
         //非公開コミュニティに管理者から招待されている場合は強制的に承認を回避
-        $admin_invite = db_c_commu4c_admin_invite_id($target_c_commu_id, $u);
+        $admin_invite = db_commu_c_commu4c_admin_invite_id($target_c_commu_id, $u);
         if ($admin_invite) {
             $status = STATUS_C_JOIN_REQUEST_FREE;
             db_commu_delete_c_commu_admin_invite($admin_invite);
@@ -31,7 +31,11 @@ class ktai_do_inc_join_c_commu extends OpenPNE_Action
         switch ($status) {
         //承認必要なし
         case STATUS_C_JOIN_REQUEST_FREE:
-            do_inc_join_c_commu($target_c_commu_id, $u);
+            // 承認依頼があれば削除
+            if ($c_commu_member_confirm_id = db_commu_get_c_commu_member_confirm_id($u, $target_c_commu_id)) {
+                db_commu_delete_c_commu_member_confirm($c_commu_member_confirm_id);
+            }
+            db_commu_join_c_commu($target_c_commu_id, $u);
             do_inc_join_c_commu_send_mail($target_c_commu_id, $u);
             openpne_redirect('ktai', 'page_c_home', $p);
             break;

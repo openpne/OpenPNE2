@@ -1,25 +1,6 @@
-({$inc_html_header|smarty:nodefaults})
-<body>
-({ext_include file="inc_extension_pagelayout_top.tpl"})
-<table class="mainframe" border="0" cellspacing="0" cellpadding="0">
-<tr>
-<td class="container inc_page_header">
-({$inc_page_header|smarty:nodefaults})
-</td>
-</tr>
-<tr>
-<td class="container inc_navi">
-({$inc_navi|smarty:nodefaults})
-</td>
-</tr>
-<tr>
-<td class="container main_content" align="center">
+({ext_include file="inc_header.tpl"})
+({ext_include file="inc_layoutcolumn_top_720px.tpl"})
 
-({ext_include file="inc_alert_box.tpl"})({* エラーメッセージコンテナ *})
-
-<table class="container" border="0" cellspacing="0" cellpadding="0">({*BEGIN:container*})
-<tr>
-<td class="full_content" align="center">
 ({***************************})
 ({**ここから：メインコンテンツ**})
 ({***************************})
@@ -85,7 +66,7 @@
 ({if $c_topic.image_filename1||$c_topic.image_filename2||$c_topic.image_filename3})
 <tr>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-<td style="width:110px;" class="bg_03" align="center" valign="top" rowspan="({if $is_c_event_admin})19({else})17({/if})">
+<td style="width:110px;" class="bg_03" align="center" valign="top" rowspan="({if $is_c_event_admin})21({else})19({/if})">
 
 <div class="padding_s">
 
@@ -147,7 +128,7 @@
 ({else})
 <tr>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-<td style="width:110px;" class="bg_03" align="center" valign="top" rowspan="({if $is_c_event_admin})17({else})15({/if})">
+<td style="width:110px;" class="bg_03" align="center" valign="top" rowspan="({if $is_c_event_admin})19({else})17({/if})">
 
 <div class="padding_s">
 
@@ -322,7 +303,7 @@
 
 <div class="padding_s lh_120">
 
-({$c_topic.body|nl2br|t_url2cmd|t_cmd})
+({$c_topic.body|nl2br|t_url2cmd:'community'|t_cmd:'community'})
 
 </div>
 
@@ -372,6 +353,41 @@
 
 <div class="padding_s">
 
+募集人数
+
+</div>
+
+</td>
+<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td class="bg_02" align="left" valign="middle">
+
+<div class="padding_s">
+
+({if $c_topic.capacity})
+({$c_topic.capacity})人
+({else})
+無制限
+({/if})
+
+
+</div>
+
+</td>
+<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+</tr>
+({*********})
+<tr>
+<td style="height:1px;" class="bg_01"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+</tr>
+({*********})
+<tr>
+<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td class="bg_05" align="center" valign="middle">
+
+<div class="padding_s">
+
 参加者
 
 </div>
@@ -394,9 +410,9 @@
 <td style="width:50%;text-align:right;">
 
 <div class="padding_s">
-
+({if $c_topic.member_num})
 <img src="./skin/dummy.gif" class="icon arrow_1"><a href="({t_url m=pc a=page_c_event_member_list})&amp;target_c_commu_topic_id=({$c_topic.c_commu_topic_id})">参加者一覧を見る</a>&nbsp;
-
+({/if})
 </div>
 
 </td>
@@ -510,6 +526,9 @@
 ({if $c_topic_write.0})
 <!-- ********************************* -->
 <!-- ******ここから：書き込み一覧****** -->
+
+<a name="write"></a> 
+
 <table border="0" cellspacing="0" cellpadding="0" style="width:650px;margin:0px auto;" class="border_07">
 <tr>
 <td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
@@ -612,7 +631,7 @@
 ({/if})
 
 <div class="padding_s lh_120">
-({$item.body|nl2br|t_url2cmd|t_cmd})
+({$item.body|nl2br|t_url2cmd:'community'|t_cmd:'community'})
 </div>
 
 </td>
@@ -829,13 +848,16 @@
 
 <div class="padding_w_m">
 
-({if $is_c_event_admin})
-<input type="submit" class="submit" name="button" value="コメントのみ書き込む">
-({elseif $is_c_event_member})
+({if $is_event_join_date})
+({if $is_c_event_member})
 <input type="submit" class="submit" name="button" value="参加をキャンセルする">
-<input type="submit" class="submit" name="button" value="コメントのみ書き込む">
 ({elseif $is_c_commu_member})
+({if not $c_topic.capacity or ($c_topic.capacity gt $c_topic.member_num) }) 
 <input type="submit" class="submit" name="button" value="イベントに参加する">
+({/if})
+({/if})
+({/if})
+({if $is_c_commu_member})
 <input type="submit" class="submit" name="button" value="コメントのみ書き込む">
 ({/if})
 
@@ -889,17 +911,5 @@
 ({***************************})
 ({**ここまで：メインコンテンツ**})
 ({***************************})
-</td>
-</tr>
-</table>({*END:container*})
-</td>
-</tr>
-<tr>
-<td class="container inc_page_footer">
-({$inc_page_footer|smarty:nodefaults})
-</td>
-</tr>
-</table>
-({ext_include file="inc_extension_pagelayout_bottom.tpl"})
-</body>
-</html>
+({ext_include file="inc_layoutcolumn_bottom_270px_165px_175px_720px.tpl"})
+({ext_include file="inc_footer.tpl"})

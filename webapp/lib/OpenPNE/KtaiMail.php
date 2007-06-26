@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -249,7 +249,7 @@ class OpenPNE_KtaiMail
         // のような場合に複数マッチする可能性があるので、
         // マッチした最後のものを取ってくるように変更
         $matches = array();
-        $regx = '/([\.\w!#$%&\'*+-\/=?^`{|}~]+@[\w!#$%&\'*+-\/=?^`{|}~]+(\.[\w!#$%&\'*+-\/=?^`{|}~]+)*)/';
+        $regx = '/([\.\w!#$%&\'*+\-\/=?^`{|}~]+@[\w!#$%&\'*+\-\/=?^`{|}~]+(\.[\w!#$%&\'*+\-\/=?^`{|}~]+)*)/';
         if (preg_match_all($regx, $str, $matches)) {
             return array_pop($matches[1]);
         }
@@ -276,7 +276,7 @@ class OpenPNE_KtaiMail
         // 空白文字の削除
         $str = str_replace("\0", '', $str);
         if ($this->trim_doublebyte_space) {
-            $str = mb_ereg_replace('(\s|　)+$', '', $str);
+            $str = mb_ereg_replace('([\s　])+$', '', $str);
         } else {
             $str = rtrim($str);
         }

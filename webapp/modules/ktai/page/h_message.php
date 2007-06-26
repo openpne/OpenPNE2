@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -17,7 +17,7 @@ class ktai_page_h_message extends OpenPNE_Action
         // ----------
 
         // メッセージデータ取得
-        $c_message = _db_c_message4c_message_id($target_c_message_id);
+        $c_message = db_message_c_message4c_message_id($target_c_message_id);
 
         //--- 権限チェック
         if ($c_message['c_member_id_from'] != $u) {
@@ -28,7 +28,7 @@ class ktai_page_h_message extends OpenPNE_Action
         //---
 
         // 既読にする
-        p_h_message_update_c_message_is_read4c_message_id($target_c_message_id, $u);
+        db_message_update_c_message_is_read4c_message_id($target_c_message_id, $u);
 
         // メッセージデータ
         //コミュニティおすすめメッセージのURLを置換

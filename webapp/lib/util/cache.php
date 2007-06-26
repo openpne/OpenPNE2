@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -43,7 +43,7 @@ function pne_cache_call()
 function pne_cache_drop()
 {
     $arg_list = func_get_args();
-
+    
     if (OPENPNE_USE_FUNCITON_CACHE) {
         $cache =& get_cache_lite_function();
         return call_user_func_array(array(&$cache, 'drop'), $arg_list);
@@ -74,8 +74,13 @@ function pne_cache_recursive_call($lifetime, $function, $funcarg)
  */
 function cache_drop_c_member($c_member_id)
 {
-    pne_cache_drop('db_friend_c_friend_list4c_member_id', $c_member_id, 9);  //フレンドリスト
-	pne_cache_drop('db_friend_c_friend_list_random4c_member_id', $c_member_id, 5);
+    $c_member_id = (int)$c_member_id;
+    pne_cache_drop('db_friend_c_friend_id_list4c_member_id', $c_member_id, 9);  //フレンドリスト
+    pne_cache_drop('db_friend_c_friend_list_random4c_member_id', $c_member_id, 5);
+    pne_cache_drop('p_h_home_c_diary_friend_list4c_member_id', $c_member_id, 5);  //最新日記フィード
+    $c_member_id = (string)$c_member_id;
+    pne_cache_drop('db_friend_c_friend_id_list4c_member_id', $c_member_id, 9);  //フレンドリスト
+    pne_cache_drop('db_friend_c_friend_list_random4c_member_id', $c_member_id, 5);
     pne_cache_drop('p_h_home_c_diary_friend_list4c_member_id', $c_member_id, 5);  //最新日記フィード
 
     //誕生日フィード
@@ -86,6 +91,9 @@ function cache_drop_c_member($c_member_id)
     while ($Day = $Week->fetch()) {
         $m = $Day->thisMonth();
         $d = $Day->thisDay();
+        $c_member_id = (int)$c_member_id;
+        pne_cache_drop('db_member_birth4c_member_id', $m, $d, $c_member_id);
+        $c_member_id = (string)$c_member_id;
         pne_cache_drop('db_member_birth4c_member_id', $m, $d, $c_member_id);
     }
 
@@ -97,6 +105,12 @@ function cache_drop_c_member($c_member_id)
  */
 function cache_drop_c_commu($c_commu_id)
 {
+    $c_commu_id = (int)$c_commu_id;
+    pne_cache_drop('db_commu_c_commu4c_commu_id_k',$c_commu_id);
+    pne_cache_drop('db_commu_c_commu_member_list_random4c_commu_id', $c_commu_id, 5);
+    pne_cache_drop('db_commu_c_commu_member_list4c_commu_id', $c_commu_id, 9);
+    pne_cache_drop('db_commu_c_commu4c_commu_id2', $c_commu_id);
+    $c_commu_id = (string)$c_commu_id;
     pne_cache_drop('db_commu_c_commu4c_commu_id_k',$c_commu_id);
     pne_cache_drop('db_commu_c_commu_member_list_random4c_commu_id', $c_commu_id, 5);
     pne_cache_drop('db_commu_c_commu_member_list4c_commu_id', $c_commu_id, 9);
@@ -106,9 +120,17 @@ function cache_drop_c_commu($c_commu_id)
     $c_commu_event_list = db_commu_new_topic_comment4c_commu_id($c_commu_id, 7, 1);
     $c_commu_bbs_list = array_merge($c_commu_topic_list, $c_commu_event_list);
 
-    foreach ($c_commu_bbs_list as $c_commu_topic_id)
-    {
+    foreach ($c_commu_bbs_list as $c_commu_topic_id) {
+        $c_commu_topic_id = (int)$c_commu_topic_id;
         cache_drop_c_commu_topic($c_commu_topic_id);
+        $c_commu_topic_id = (string)$c_commu_topic_id;
+        cache_drop_c_commu_topic($c_commu_topic_id);
+    }
+
+    $c_commu_member_total_num = _db_count_c_commu_member_list4c_commu_id($c_commu_id);
+    $c_commu_member_list = db_commu_c_member_list4c_commu_id($c_commu_id, 1, $c_commu_member_total_num);
+    foreach ($c_commu_member_list[0] as $c_member) {
+        cache_drop_c_commu_list4c_member_id($c_member['c_member_id']);
     }
 }
 
@@ -117,6 +139,11 @@ function cache_drop_c_commu($c_commu_id)
  */
 function cache_drop_c_commu_topic($c_commu_topic_id)
 {
+    $c_commu_topic_id = (int)$c_commu_topic_id;
+    pne_cache_drop('db_commu_new_topic_comment4c_commu_id', $c_commu_topic_id, 7);
+    pne_cache_drop('db_commu_new_topic_comment4c_commu_id', $c_commu_topic_id, 7, 0);
+    pne_cache_drop('db_commu_new_topic_comment4c_commu_id', $c_commu_topic_id, 7, 1);
+    $c_commu_topic_id = (string)$c_commu_topic_id;
     pne_cache_drop('db_commu_new_topic_comment4c_commu_id', $c_commu_topic_id, 7);
     pne_cache_drop('db_commu_new_topic_comment4c_commu_id', $c_commu_topic_id, 7, 0);
     pne_cache_drop('db_commu_new_topic_comment4c_commu_id', $c_commu_topic_id, 7, 1);
@@ -127,8 +154,11 @@ function cache_drop_c_commu_topic($c_commu_topic_id)
  */
 function cache_drop_c_commu_list4c_member_id($c_member_id)
 {
+    $c_member_id = (int)$c_member_id;
     pne_cache_drop('db_commu_c_commu_list_lastupdate4c_member_id', $c_member_id, 5);
-    pne_cache_drop('db_commu_c_commu_list4c_member_id_3', $c_member_id, 9);
+    pne_cache_drop('db_commu_c_commu_list4c_member_id_2', $c_member_id, 9);
+    $c_member_id = (string)$c_member_id;
+    pne_cache_drop('db_commu_c_commu_list_lastupdate4c_member_id', $c_member_id, 5);
     pne_cache_drop('db_commu_c_commu_list4c_member_id_2', $c_member_id, 9);
 }
 
@@ -138,6 +168,10 @@ function cache_drop_c_commu_list4c_member_id($c_member_id)
  */
 function cache_drop_c_friend_intro($c_member_id)
 {
+    $c_member_id = (int)$c_member_id;
+    pne_cache_drop('db_friend_c_friend_intro_list4c_member_id', $c_member_id, 5);
+    pne_cache_drop('db_friend_c_friend_comment4c_member_id', $c_member_id);
+    $c_member_id = (string)$c_member_id;
     pne_cache_drop('db_friend_c_friend_intro_list4c_member_id', $c_member_id, 5);
     pne_cache_drop('db_friend_c_friend_comment4c_member_id', $c_member_id);
 }
@@ -148,6 +182,7 @@ function cache_drop_c_friend_intro($c_member_id)
  */
 function cache_drop_c_member_profile($c_member_id)
 {
+    $c_member_id = (int)$c_member_id;
     pne_cache_drop('db_member_c_member4c_member_id', $c_member_id);
     pne_cache_drop('db_member_c_member4c_member_id', $c_member_id, false, false, 'public');
     pne_cache_drop('db_member_c_member4c_member_id', $c_member_id, false, false, 'friend');
@@ -162,6 +197,20 @@ function cache_drop_c_member_profile($c_member_id)
     pne_cache_drop('db_member_c_member4c_member_id', $c_member_id, true, true, 'friend');
     pne_cache_drop('db_member_c_member4c_member_id', $c_member_id, true, true, 'private');
     pne_cache_drop('db_member_c_profile_list');
+    $c_member_id = (string)$c_member_id;
+    pne_cache_drop('db_member_c_member4c_member_id', $c_member_id);
+    pne_cache_drop('db_member_c_member4c_member_id', $c_member_id, false, false, 'public');
+    pne_cache_drop('db_member_c_member4c_member_id', $c_member_id, false, false, 'friend');
+    pne_cache_drop('db_member_c_member4c_member_id', $c_member_id, false, false, 'private');
+    pne_cache_drop('db_member_c_member4c_member_id', $c_member_id, false, true, 'public');
+    pne_cache_drop('db_member_c_member4c_member_id', $c_member_id, false, true, 'friend');
+    pne_cache_drop('db_member_c_member4c_member_id', $c_member_id, false, true, 'private');
+    pne_cache_drop('db_member_c_member4c_member_id', $c_member_id, true, false, 'public');
+    pne_cache_drop('db_member_c_member4c_member_id', $c_member_id, true, false, 'friend');
+    pne_cache_drop('db_member_c_member4c_member_id', $c_member_id, true, false, 'private');
+    pne_cache_drop('db_member_c_member4c_member_id', $c_member_id, true, true, 'public');
+    pne_cache_drop('db_member_c_member4c_member_id', $c_member_id, true, true, 'friend');
+    pne_cache_drop('db_member_c_member4c_member_id', $c_member_id, true, true, 'private');
 }
 
 /**
@@ -169,6 +218,9 @@ function cache_drop_c_member_profile($c_member_id)
  */
 function cache_drop_c_bookmark($c_member_id)
 {
+    $c_member_id = (int)$c_member_id;
+    pne_cache_drop('db_bookmark_member_list', $c_member_id, 9);
+    $c_member_id = (string)$c_member_id;
     pne_cache_drop('db_bookmark_member_list', $c_member_id, 9);
 }
 ?>

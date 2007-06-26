@@ -1,25 +1,6 @@
-({$inc_html_header|smarty:nodefaults})
-<body>
-({ext_include file="inc_extension_pagelayout_top.tpl"})
-<table class="mainframe" border="0" cellspacing="0" cellpadding="0">
-<tr>
-<td class="container inc_page_header">
-({$inc_page_header|smarty:nodefaults})
-</td>
-</tr>
-<tr>
-<td class="container inc_navi">
-({$inc_navi|smarty:nodefaults})
-</td>
-</tr>
-<tr>
-<td class="container main_content" align="center">
+({ext_include file="inc_header.tpl"})
+({ext_include file="inc_layoutcolumn_top_720px.tpl"})
 
-({ext_include file="inc_alert_box.tpl"})({* エラーメッセージコンテナ *})
-
-<table class="container" border="0" cellspacing="0" cellpadding="0">({*BEGIN:container*})
-<tr>
-<td class="full_content" align="center">
 ({***************************})
 ({**ここから：メインコンテンツ**})
 ({***************************})
@@ -87,12 +68,42 @@
 パスワード
 
 </div>
+
+</td>
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 <td style="width:381px;" class="bg_02" align="left" valign="middle">
 
 <div class="padding_s">
 
-<input type="password" name="password" value="">
+<input class="text" type="password" name="password" value="">
+
+</div>
+
+</td>
+<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+</tr>
+({*********})
+<tr>
+<td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+</tr>
+({*********})
+<tr>
+<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:180px;" class="bg_05" align="left" valign="middle">
+
+<div class="padding_s">
+
+退会理由 <span class="caution">※</span>
+
+</div>
+
+</td>
+<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:381px;" class="bg_02" align="left" valign="middle">
+
+<div class="padding_s">
+
+<textarea name="reason" rows="15" cols="50" style="width:415px"></textarea>
 
 </div>
 
@@ -159,17 +170,5 @@
 ({***************************})
 ({**ここまで：メインコンテンツ**})
 ({***************************})
-</td>
-</tr>
-</table>({*END:container*})
-</td>
-</tr>
-<tr>
-<td class="container inc_page_footer">
-({$inc_page_footer|smarty:nodefaults})
-</td>
-</tr>
-</table>
-({ext_include file="inc_extension_pagelayout_bottom.tpl"})
-</body>
-</html>
+({ext_include file="inc_layoutcolumn_bottom_270px_165px_175px_720px.tpl"})
+({ext_include file="inc_footer.tpl"})

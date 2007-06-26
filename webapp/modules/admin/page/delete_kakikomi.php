@@ -1,12 +1,17 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
 // 書き込み削除
 class admin_page_delete_kakikomi extends OpenPNE_Action
 {
+    function handleError($errors)
+    {
+        admin_client_redirect('delete_kakikomi', '正しく入力してください');
+    }
+
     function execute($requests)
     {
         $v = array();
@@ -20,7 +25,7 @@ class admin_page_delete_kakikomi extends OpenPNE_Action
         }
 
         if ($requests['target_c_commu_id']) {
-            $v['c_commu'] = _db_c_commu4c_commu_id($requests['target_c_commu_id']);
+            $v['c_commu'] = db_commu_c_commu4c_commu_id($requests['target_c_commu_id']);
         }
 
         if ($requests['target_c_commu_topic_id']) {
@@ -29,6 +34,10 @@ class admin_page_delete_kakikomi extends OpenPNE_Action
         
         if ($requests['target_c_commu_topic_comment_id']) {
             $v['c_commu_topic_comment'] = _db_common_c_commu_topic_comment4c_commu_topic_comment_id($requests['target_c_commu_topic_comment_id']);
+        }
+
+        if ($requests['target_c_review_id']) {
+            $v['c_review'] = db_review_list_product_c_review4c_review_id($requests['target_c_review_id']);
         }
 
         $this->set($v);

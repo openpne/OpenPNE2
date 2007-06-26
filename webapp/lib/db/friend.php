@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -232,6 +232,20 @@ function db_friend_c_friend4c_member_id_from4c_member_id_to($c_member_id_from,$c
  */
 function db_friend_c_friend_list4c_member_id($c_member_id, $limit = 0)
 {
+    $result = db_friend_c_friend_id_list4c_member_id($c_member_id, $limit);
+
+    foreach ($result as $key => $value) {
+        $result[$key] = db_common_c_member4c_member_id_LIGHT($value['c_member_id']);
+        $result[$key]['friend_count'] = db_friend_count_friends($value['c_member_id']);
+    }
+    return $result;
+}
+
+/**
+ * フレンドリスト用IDリストを取得する関数
+ */
+function db_friend_c_friend_id_list4c_member_id($c_member_id, $limit)
+{
     static $is_recurred = false;  //再帰処理中かどうかの判定フラグ
 
     if (!$is_recurred) {  //function cacheのために再帰処理を行う
@@ -251,10 +265,6 @@ function db_friend_c_friend_list4c_member_id($c_member_id, $limit = 0)
         $result = db_get_all($sql, $params);
     }
 
-    foreach ($result as $key => $value) {
-        $result[$key] = db_common_c_member4c_member_id_LIGHT($value['c_member_id']);
-        $result[$key]['friend_count'] = db_friend_count_friends($value['c_member_id']);
-    }
     return $result;
 }
 
@@ -416,23 +426,6 @@ function db_friend_is_friend_link_wait($c_member_id_from, $c_member_id_to)
     }
 }
 
-function db_friend_f_link_status($c_member_id_from,$c_member_id_to)
-{
-    $is_friend    = db_friend_is_friend($c_member_id_from, $c_member_id_to);
-    $is_link_wait = do_common_is_friend_link_wait($c_member_id_from, $c_member_id_to);
-
-    $ret = STATUS_F_LINK_ALREADY;
-    if (($is_friend == false) && ($is_link_wait == false)) {
-        // 友達でない＆リンク承認待ちでない
-        $ret = STATUS_F_LINK_FLAT;
-    } elseif (($is_friend == false) && ($is_link_wait == true)) {
-        // 友達でない＆リンク承認待ち
-        $ret = STATUS_F_LINK_WAIT;
-    }
-
-    return $ret;
-}
-
 function db_friend_c_friend_list4c_member_id2($c_member_id)
 {
     $sql = "SELECT c_member.* FROM c_friend, c_member" .
@@ -473,7 +466,7 @@ function db_friend_c_friend_list_random4c_member_id($c_member_id, $limit)
 }
 
 /**
- * ２つのメンバＩＤからその２人の関係を返す。
+ * ２つのメンバーIDからその２人の関係を返す。
  */
 function db_friend_relationship4two_members($c_member_id, $target_c_member_id)
 {
@@ -647,6 +640,7 @@ function db_friend_insert_c_friend($c_member_id_from, $c_member_id_to)
         'c_member_id_from' => intval($c_member_id_from),
         'c_member_id_to' => intval($c_member_id_to),
         'r_datetime' => db_now(),
+        'intro' => '',
     );
     db_insert('c_friend', $data);
 
@@ -654,6 +648,7 @@ function db_friend_insert_c_friend($c_member_id_from, $c_member_id_to)
         'c_member_id_from' => intval($c_member_id_to),
         'c_member_id_to' => intval($c_member_id_from),
         'r_datetime' => db_now(),
+        'intro' => '',
     );
     db_insert('c_friend', $data);
 }

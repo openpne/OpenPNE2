@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -11,46 +11,68 @@ if (empty($_REQUEST['ksid'])) {
 session_name('OpenPNEktai');
 session_id($_REQUEST['ksid']);
 session_start();
+require_once 'OpenPNE/Auth.php';
 
-if (   empty($_SESSION['c_member_id'])
-    || !k_auth($_SESSION['c_member_id'])
-    || db_member_is_login_rejected($_SESSION['c_member_id'])) {
-    __logout(15);
+$options = array("advancedsecurity"=>false);
+
+$auth = new OpenPNE_Auth('DB','',true);
+$auth->setExpire($GLOBALS['OpenPNE']['ktai']['session_lifetime']);
+$auth->setIdle($GLOBALS['OpenPNE']['ktai']['session_idletime']);
+
+if (   !$auth->auth()
+    || !($u = db_member_c_member_id4username_encrypted($auth->getUsername(), true))
+    || db_member_is_login_rejected($u)) {
+    $auth->logout();
+    
+    __logout();
 }
 
-// セッションの有効期限
-$lifetime = $GLOBALS['OpenPNE']['ktai']['session_lifetime'];
-$idletime = $GLOBALS['OpenPNE']['ktai']['session_idletime'];
-if (!isset($_SESSION['timestamp']) ||
-    ($liftime && ($_SESSION['timestamp'] + $lifetime) < time())
-   ) {
-    __logout(15, $_SESSION['c_member_id']);
-}
-if (!isset($_SESSION['idle']) ||
-    ($idletime && ($_SESSION['idle'] + $idletime) < time())
-   ) {
-    __logout(15, $_SESSION['c_member_id']);
-}
+$auth->uid($u);
+$GLOBALS['AUTH'] = $auth;
 
-$_SESSION['idle'] = time();
-
-$GLOBALS['KTAI_C_MEMBER_ID'] = $_SESSION['c_member_id'];
+$GLOBALS['KTAI_C_MEMBER_ID'] = $auth->uid();
 $GLOBALS['KTAI_URL_TAIL'] = "ksid=" . session_id();
 
+
+if (IS_SLAVEPNE && (empty($_SESSION['regist_step']) || !$_SESSION['regist_step'])) {
+    $check_param = db_member_check_param_inputed($u, true);
+    $_SESSION['regist_step'] = ($check_param == 0);
+    $current_page = $GLOBALS['__Framework']['current_type']."_".$GLOBALS['__Framework']['current_action'];
+    
+    //プロフィールが未登録の場合はリダイレクト
+    $prof_ext_page=array(
+    'do_h_regist_prof'=>true,
+    'page_h_regist_prof'=>true,
+    );
+    
+    if (($check_param==1) && !$prof_ext_page[$current_page]) {
+        openpne_redirect('ktai', 'page_h_regist_prof');
+    }
+    
+    //メールアドレスが未登録の場合はリダイレクト
+    $mail_ext_page=array(
+    'do_h_regist_address'=>true,
+    'page_h_regist_address'=>true,
+    );
+    
+    if (($check_param==2) && !$mail_ext_page[$current_page]) {
+        openpne_redirect('ktai', 'page_h_regist_address');
+    }
+}
 
 function __logout($msg = 0, $c_member_id = 0)
 {
     @session_destroy();
 
-    $p = array();
     if ($msg) {
-        $p['msg'] = $msg;
+        $_REQUEST['msg'] = $msg;
     }
     if ($c_member_id) {
-        $c_member_secure = db_common_c_member_secure4c_member_id($c_member_id);
-        $p['kad'] = t_encrypt($c_member_secure['ktai_address']);
+        $_REQUEST['kad'] = t_encrypt(db_member_username4c_member_id($c_member_id, true));
     }
-    openpne_redirect('ktai', 'page_o_login', $p);
+    $_REQUEST['login_params'] = $_SERVER['QUERY_STRING'];
+    openpne_forward('ktai', 'page', 'o_login');
+    exit;
 }
 
 ?>

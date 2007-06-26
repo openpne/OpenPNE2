@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -57,8 +57,8 @@ class pc_page_fh_delete_comment extends OpenPNE_Action
         $this->set('inc_navi', fetch_inc_navi($type, $target_c_member_id));
         $this->set('is_diary_admin', $is_diary_admin);
 
-        $this->set('member', db_common_c_member4c_member_id($u));
-        $this->set('target_member', db_common_c_member4c_member_id($target_c_member_id));
+        $this->set('member', db_member_c_member4c_member_id($u));
+        $this->set('target_member', db_member_c_member4c_member_id($target_c_member_id));
         $this->set('target_diary', $target_diary);
 
         //削除するコメント一覧

@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -17,7 +17,7 @@ class OpenPNE_Img_ImageMagick extends OpenPNE_Img
         if ($this->check_rawcache()) {
             $filename = $this->get_rawcache_filename();
 
-            $fd = fopen($filename, 'r');
+            $fd = fopen($filename, 'rb');
             $data = fread($fd, filesize($filename));
             fclose($fd);
 

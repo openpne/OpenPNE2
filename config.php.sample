@@ -38,7 +38,7 @@ define('OPENPNE_DEBUGGING', 1);
 //$GLOBALS['_OPENPNE_DISABLE_MODULES'] = array('admin', 'setup');
 
 // メンテナンスモード
-// true: ユーザにメンテナンス画面を表示
+// true: ユーザーにメンテナンス画面を表示
 define('OPENPNE_UNDER_MAINTENANCE', false);
 
 // メンテナンス中でも表示するモジュール名
@@ -68,6 +68,9 @@ define('SESSION_SAVE_DB', false);
 
 // 確認画面用の一時画像をDBに保存するかどうか
 define('OPENPNE_TMP_IMAGE_DB', false);
+
+// 確認画面用の一時ファイルをDBに保存するかどうか
+define('OPENPNE_TMP_FILE_DB', false);
 
 ///
 // DBサーバ設定
@@ -158,7 +161,7 @@ $GLOBALS['_OPENPNE_SSL_REQUIRED'] = array(
     'page_h_config_password', 'do_h_config_password_update_password',
 ));
 
-// SSLを使用するかどうかユーザが選択できるアクションリスト
+// SSLを使用するかどうかをユーザーが選択できるアクションリスト
 $GLOBALS['_OPENPNE_SSL_SELECTABLE'] = array(
 'pc' => array(
     'page_h_config', 'do_h_config_1', 'do_h_config_2', 'do_h_config_3',
@@ -188,12 +191,9 @@ define('OPENPNE_MODULES_EXT_DIR', OPENPNE_WEBAPP_EXT_DIR . '/modules');
 
 ///
 // webapp_biz ディレクトリ使用設定
-// PNEBIZ機能を使用する場合は
-// setup/sql/install/option-pnebiz-mysql4X.sqlを実行した後
-// USE_BIZ_DIRをtrueにしてください
-///
-
-define('USE_BIZ_DIR', false);
+//
+// BIZ使用設定は管理画面に移動しました
+// define('USE_EXT_DIR', false);
 define('OPENPNE_WEBAPP_BIZ_DIR' , OPENPNE_DIR . '/webapp_biz');
 define('OPENPNE_MODULES_BIZ_DIR', OPENPNE_WEBAPP_BIZ_DIR . '/modules');
 
@@ -226,6 +226,9 @@ define('LOG_C_ACCESS_LOG', true);
 ///
 // セッション・クッキー設定
 ///
+
+ini_set('session.gc_probability',1);
+ini_set('session.gc_divisor',10000);
 
 ini_set('session.gc_maxlifetime', 432000); // 5 days
 //session_save_path('/tmp');
@@ -260,6 +263,9 @@ define('OPENPNE_SESSION_CHECK_URL', true);
 
 // 画像を別サーバに設定する場合に指定する
 //define('OPENPNE_IMG_URL', 'http://img.example.com/');
+
+//// 画像サーバ用設定 ////
+//define('OPENPNE_IS_IMG_SERVER', false);
 
 // 画像キャッシュをpublic_html以下に置くかどうか(要mod_rewrite)
 define('OPENPNE_IMG_CACHE_PUBLIC', false);
@@ -296,6 +302,26 @@ define('IMGMAGICK_APP', '/usr/bin/convert');
 
 // アップロード画像のファイルサイズ制限(KB)
 define('IMAGE_MAX_FILESIZE', 300);
+
+// アップロード画像の大きさ制限(ピクセル)
+// 0 を指定した場合は無制限
+define('IMAGE_MAX_WIDTH', 0);
+define('IMAGE_MAX_HEIGHT', 0);
+
+///
+// ファイルアップロード機能
+///
+
+// ファイルアップロード機能を使用するかどうか
+define('OPENPNE_USE_FILEUPLOAD', false);
+
+// アップロードファイルのファイルサイズ制限(KB)
+define('FILE_MAX_FILESIZE', 300);
+
+// 許可する拡張子のリスト(カンマ(,)区切り)
+// 未指定の場合は全て許可
+//define('FILE_ALLOWED_EXTENTIONS', 'pdf,xls,ppt,zip');
+define('FILE_ALLOWED_EXTENTIONS', '');
 
 ///
 // 外部RSS取得
@@ -385,9 +411,15 @@ umask(0);
 
 ///
 // Google Maps API key
+// http://www.google.com/apis/maps/ から取得
 ///
 define('GOOGLE_MAPS_API_KEY', '');
 
+///
+// Google AJAX Search API key
+// http://code.google.com/apis/ajaxsearch/signup.html  から取得
+///
+define('GOOGLE_AJAX_SEARCH_API_KEY', '');
 
 //// SNSアプリケーション設定 ////
 
@@ -418,5 +450,40 @@ define('OPENPNE_USE_COMMU_MAP', true);
 define('OPENPNE_MAIL_QUEUE', false);
 // メールキューで一度に送信するメールの数
 define('SEND_MAIL_QUEUE_NUM', 10);
+
+// メッセージ一斉送信のメッセージキューの使用
+define('OPENPNE_MESSAGE_QUEUE', false);
+// メッセージキューで一度に送信するメッセージの数
+define('SEND_MESSAGE_QUEUE_NUM', 10);
+
+// CAPTCHA（画像のなかの文字列をメンバーに入力させる認証方式）を使用するかどうか
+define('OPENPNE_USE_CAPTCHA', true);
+
+// 外部認証を使用するかどうか
+define('IS_SLAVEPNE' , false);
+
+// IS_SLAVEPNEがtrueの場合のauthオプション
+$GLOBALS['_OPENPNE_AUTH_CONFIG'] = 
+array(
+'storage'=>"DB",
+'options'=>array(
+    'dsn'         => array(
+        'phptype'  => 'mysql',
+        'username' => 'root',
+        'password' => '',
+        'hostspec' => 'localhost',
+        'database' => '',
+        'new_link' => true,
+        ),
+    'table'       => '',
+    'usernamecol' => 'username',
+    'passwordcol' => 'password',
+    'cryptType'   => 'none',
+    ),
+);
+
+//画像へのアクセスをSNS認証する
+//※画像静的化機能を用いている場合は利用できません
+define('CHECK_IMG_AUTH', false);
 
 ?>

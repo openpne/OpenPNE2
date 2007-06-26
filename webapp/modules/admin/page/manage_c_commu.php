@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -12,7 +12,7 @@ class admin_page_manage_c_commu extends OpenPNE_Action
         $c_commu_list = array();
         $list = db_commu_regist_join_list();
         foreach ($list as $c_commu_id) {
-            $c_commu_list[] = _db_c_commu4c_commu_id($c_commu_id);
+            $c_commu_list[] = db_commu_c_commu4c_commu_id($c_commu_id);
         }
         $this->set('c_commu_list', $c_commu_list);
         return 'success';

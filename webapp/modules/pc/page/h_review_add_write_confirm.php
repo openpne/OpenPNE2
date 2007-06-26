@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -23,7 +23,11 @@ class pc_page_h_review_add_write_confirm extends OpenPNE_Action
         $body = $requests['body'];
         $satisfaction_level = $requests['satisfaction_level'];
         // ----------
-
+        $product = db_review_write_product4asin($asin);
+        if (!$product) {
+            handle_kengen_error();
+        }
+        
         $this->set('inc_navi', fetch_inc_navi('h'));
         $this->set('category_id', $category_id);
         $this->set('asin', $asin);

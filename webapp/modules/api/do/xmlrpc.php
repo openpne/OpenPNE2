@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -26,7 +26,11 @@ class api_do_xmlrpc extends OpenPNE_Action
                     if (substr($file, -4, 4) != '.php') continue;
                     include_once realpath("$dir/$file");
                     $name = substr($file, 0, -4);
-                    $dispMap[$name] = array('function' => 'xmlrpc_' . $name);
+                    if (db_api_check_ip($name,$_SERVER[SERVER_IP_KEY])) {
+                        $dispMap[$name] = array('function' => 'xmlrpc_' . $name);
+                    } else {
+                        $dispMap[$name] = array('function' => 'xmlrpc_deny');
+                    }
                 }
                 closedir($dh);
             }

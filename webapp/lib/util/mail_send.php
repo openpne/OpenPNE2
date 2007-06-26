@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -218,7 +218,7 @@ function db_mail_send_m_ktai_password_query($c_member_id, $new_password)
     $c_member = db_common_c_member4c_member_id($c_member_id, true);
     $ktai_address = $c_member['secure']['ktai_address'];
 
-    $p = array('kad' => t_encrypt($c_member['secure']['ktai_address']));
+    $p = array('kad' => t_encrypt(db_member_username4c_member_id($c_member_id, true)));
     $login_url = openpne_gen_url('ktai', 'page_o_login', $p);
     $params = array(
         'c_member'  => $c_member,
@@ -455,6 +455,16 @@ function do_h_config_1_mail_send($target_c_member_id, $session, $pc_address)
     return fetch_send_mail($pc_address, 'm_pc_change_mail', $params);
 }
 
+//メールアドレス変更メール
+function do_h_regist_mail_mail_send($target_c_member_id, $session, $pc_address)
+{
+    $params = array(
+        "c_member" => db_common_c_member4c_member_id($target_c_member_id),
+        "sid"      => $session,
+    );
+    return fetch_send_mail($pc_address, 'm_pc_regist_mail', $params);
+}
+
 //あしあとお知らせメール
 function do_common_send_ashiato_mail($c_member_to, $c_member_from)
 {
@@ -473,7 +483,7 @@ function do_common_send_ashiato_mail($c_member_to, $c_member_from)
     fetch_send_mail($pc_address, 'm_pc_ashiato', $params);
 
     //ktai
-    $p = array('kad' => t_encrypt($c_member_to['secure']['ktai_address']));
+    $p = array('kad' => t_encrypt(db_member_username4c_member_id($c_member_to['c_member_id'], true)));
     $params['login_url'] = openpne_gen_url('ktai', 'page_o_login', $p);
     fetch_send_mail($ktai_address, 'm_ktai_ashiato', $params);
 }
@@ -510,7 +520,7 @@ function do_common_send_message_syoudaku_mail_send($c_member_id_to, $c_member_id
 function do_insert_c_member_mail_send($c_member_id, $password, $ktai_address)
 {
     $c_member_secure = db_common_c_member_secure4c_member_id($c_member_id);
-    $p = array('kad' => t_encrypt($c_member_secure['ktai_address']));
+    $p = array('kad' => t_encrypt(db_member_username4c_member_id($c_member_id, true)));
     $params['url'] = openpne_gen_url('ktai', 'page_o_login', $p);
     return fetch_send_mail($ktai_address, 'm_ktai_login_regist_end', $params);
 }
@@ -527,7 +537,7 @@ function h_invite_insert_c_invite_mail_send($session, $c_member_id_invite, $mail
 }
 
 //メールアドレスの変更および
-//PCで今まで使っていたユーザーが新たに携帯アドレスを登録したときに送られるメール
+//PCで今まで使っていたメンバーが新たに携帯アドレスを登録したときに送られるメール
 function do_mail_sns_change_ktai_mail_send($c_member_id, $session, $ktai_address)
 {
     $params['SNS_NAME'] = SNS_NAME;
@@ -540,7 +550,7 @@ function do_mail_sns_change_ktai_mail_send($c_member_id, $session, $ktai_address
 function do_mail_sns_login_get_mail_send($c_member_id, $sender)
 {
     $c_member_secure = db_common_c_member_secure4c_member_id($c_member_id);
-    $p = array('kad' => t_encrypt($c_member_secure['ktai_address']));
+    $p = array('kad' => t_encrypt(db_member_username4c_member_id($c_member_id, true)));
     $params['url'] = openpne_gen_url('ktai', 'page_o_login', $p);
     return fetch_send_mail($sender, 'm_ktai_login_get', $params);
 }
@@ -560,7 +570,7 @@ function do_common_send_message_syoukai_commu_mail_send($c_member_id_to, $c_memb
     return fetch_send_mail($pc_address, 'm_pc_message_syoukai_commu', $params, $is_receive_mail);
 }
 
-// メンバ紹介
+// メンバー紹介
 function do_common_send_message_syoukai_member_mail_send($c_member_id_to, $c_member_id_from)
 {
     //メール
@@ -605,12 +615,39 @@ function do_common_send_message_event_message_mail_send($c_member_id_to, $c_memb
     return fetch_send_mail($pc_address, 'm_pc_message_event_message', $params, $is_receive_mail);
 }
 
-function do_common_send_mail_regist_get($session, $sender)
+function do_common_send_mail_regist_get($session, $sender, $aff_id)
 {
     // メール送信
-    $p = array('ses' => $session);
+    $p = array(
+        'ses' => $session,
+        'aff_id' => $aff_id,
+    );
     $params['url'] = openpne_gen_url('ktai', 'page_o_regist_pre', $p);
     return fetch_send_mail($sender, 'm_ktai_regist_get', $params);
+}
+
+//退会完了メール(管理者宛)
+function do_common_send_mail_taikai4admin($c_member_id, $reason)
+{
+    $p_list = db_common_c_profile_list4null();
+    $c_profile_list = array();
+    foreach ($p_list as $key => $value) {
+         $c_profile_list[]=$p_list[$key];
+    }
+
+    $c_member = db_common_c_member4c_member_id($c_member_id, true, true, 'private');
+    $c_member['c_member_invite'] = db_common_c_member4c_member_id_LIGHT($c_member['c_member_id_invite']);
+    if (OPENPNE_USE_POINT_RANK) {
+        $c_member['point'] = db_point_get_point($c_member_id);
+        $c_member['rank'] = db_point_get_rank4point($c_member['point']);
+    }
+
+    $params = array(
+        "c_member" => $c_member,
+        "c_profile_list" => $c_profile_list,
+        "reason" => $reason,
+    );
+    return fetch_send_mail(ADMIN_EMAIL, 'm_admin_taikai', $params);
 }
 
 //退会完了メール(PC)
@@ -641,7 +678,7 @@ function do_common_send_message_mail_send_ktai($c_member_id_to, $c_member_id_fro
     $c_member_to = db_common_c_member4c_member_id($c_member_id_to, true);
     $ktai_address = $c_member_to['secure']['ktai_address'];
     $is_receive_ktai_mail = $c_member_to['is_receive_ktai_mail'];
-    $p = array('kad' => t_encrypt($c_member_to['secure']['ktai_address']));
+    $p = array('kad' => t_encrypt(db_member_username4c_member_id($c_member_to['c_member_id'], true)));
     $login_url = openpne_gen_url('ktai', 'page_o_login', $p);
 
     $params = array(
@@ -718,6 +755,51 @@ function put_mail_queue($address, $subject, $body, $is_receive_mail=true, $from=
         $mail_queue  = new Mail_Queue($db_opt, $mail_opt);
         return $mail_queue->put($from, $address, $headers, $body);
     }
+}
+
+// ランクアップしたメンバーにメール送信(PC/ktai)
+function send_mail_pcktai_rank_up($c_member_id, $before_rank, $after_rank)
+{
+    $c_member = db_member_c_member4c_member_id($c_member_id, true);
+
+    if (!empty($c_member['secure']['pc_address'])) {
+        // PCアドレスがある場合は、PCのみ送信
+        $to = $c_member['secure']['pc_address'];
+        
+        $params = array(
+            'c_member'    => $c_member,
+            'before_rank' => $before_rank,
+            'after_rank'  => $after_rank,
+        );
+        return fetch_send_mail($to, 'm_pc_rank_up', $params);
+    } else {
+        // PCアドレスがない場合は、携帯のみ送信
+        $to = $c_member['secure']['ktai_address'];
+        $p = array('kad' => t_encrypt(db_member_username4c_member_id($c_member['c_member_id'], true)));
+        $login_url = openpne_gen_url('ktai', 'page_o_login', $p);
+        
+        $params = array(
+            'c_member'    => $c_member,
+            'before_rank' => $before_rank,
+            'after_rank'  => $after_rank,
+            'login_url'   => $login_url,
+        );
+        return fetch_send_mail($to, 'm_ktai_rank_up', $params);
+    }
+}
+
+// ランクアップしたら管理者にメール送信
+function send_mail_admin_rank_up($c_member_id, $before_rank, $after_rank)
+{
+    $c_member = db_member_c_member4c_member_id_LIGHT($c_member_id);
+
+    $params = array(
+        'c_member'    => $c_member,
+        'before_rank' => $before_rank,
+        'after_rank'  => $after_rank,
+        'now' => date('Y-m-d H:i:s'),
+    );
+    return fetch_send_mail(ADMIN_EMAIL, 'm_admin_rank_up', $params);
 }
 
 ?>

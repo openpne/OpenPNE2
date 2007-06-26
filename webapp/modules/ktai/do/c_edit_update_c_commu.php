@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -22,6 +22,7 @@ class ktai_do_c_edit_update_c_commu extends OpenPNE_Action
         $c_commu_category_id = $requests['c_commu_category_id'];
         $info = $requests['info'];
         $public_flag = $requests['public_flag'];
+        $topic_authority = $requests['topic_authority'];
         // ----------
 
         //--- 権限チェック
@@ -33,7 +34,7 @@ class ktai_do_c_edit_update_c_commu extends OpenPNE_Action
         }
         //---
 
-        db_commu_update_c_commu($target_c_commu_id, $name, $c_commu_category_id, $info, $public_flag);
+        db_commu_update_c_commu($target_c_commu_id, $name, $topic_authority, $c_commu_category_id, $info, $public_flag);
 
         $p = array('target_c_commu_id' => $target_c_commu_id);
         openpne_redirect('ktai', 'page_c_home', $p);

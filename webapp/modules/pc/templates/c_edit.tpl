@@ -1,25 +1,6 @@
-({$inc_html_header|smarty:nodefaults})
-<body>
-({ext_include file="inc_extension_pagelayout_top.tpl"})
-<table class="mainframe" border="0" cellspacing="0" cellpadding="0">
-<tr>
-<td class="container inc_page_header">
-({$inc_page_header|smarty:nodefaults})
-</td>
-</tr>
-<tr>
-<td class="container inc_navi">
-({$inc_navi|smarty:nodefaults})
-</td>
-</tr>
-<tr>
-<td class="container main_content" align="center">
+({ext_include file="inc_header.tpl"})
+({ext_include file="inc_layoutcolumn_top_720px.tpl"})
 
-({ext_include file="inc_alert_box.tpl"})({* エラーメッセージコンテナ *})
-
-<table class="container" border="0" cellspacing="0" cellpadding="0">({*BEGIN:container*})
-<tr>
-<td class="full_content" align="center">
 ({***************************})
 ({**ここから：メインコンテンツ**})
 ({***************************})
@@ -79,7 +60,7 @@
 
 <div class="padding_s">
 
-<input type="text" name="name" value="({$c_commu.name})" style="width:20em">
+<input type="text" class="text" name="name" value="({$c_commu.name})" style="width:20em">
 
 </div>
 
@@ -156,6 +137,34 @@
 
 <div class="padding_s">
 
+トピック作成権限
+
+</div>
+
+</td>
+<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td class="bg_02" align="left" valign="middle">
+
+<div class="padding_s">
+
+({html_radios name="topic_authority" options=$topic_authority_list class="no_bg" selected=$c_commu.topic_authority separator="<br>"})
+
+</div>
+
+</td>
+<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+</tr>
+({*********})
+<tr>
+<td class="bg_01" colspan="5"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+</tr>
+({*********})
+<tr>
+<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td class="bg_05" align="center" valign="middle">
+
+<div class="padding_s">
+
 コミュニティ説明文
 
 </div>
@@ -166,7 +175,7 @@
 
 <div class="padding_s">
 
-<textarea name="info" style="width:30em;height:6em;">({$c_commu.info})</textarea>
+<textarea class="text" name="info" style="width:480px;height:6em;">({$c_commu.info})</textarea>
 
 </div>
 
@@ -289,9 +298,9 @@
 <td class="bg_02" align="left" valign="middle">
 
 <div class="padding_s">
-緯度：<input name="map_latitude" type="text" size="14" value="({$c_commu.map_latitude})">&nbsp;
-経度：<input name="map_longitude" type="text" size="14" value="({$c_commu.map_longitude})">&nbsp;
-拡大率：<input name="map_zoom" type="text" size="4" value="({$c_commu.map_zoom})" maxlength="2"><br>
+緯度：<input class="text" name="map_latitude" type="text" size="14" value="({$c_commu.map_latitude})">&nbsp;
+経度：<input class="text" name="map_longitude" type="text" size="14" value="({$c_commu.map_longitude})">&nbsp;
+拡大率：<input class="text" name="map_zoom" type="text" size="4" value="({$c_commu.map_zoom})" maxlength="2"><br>
 
 ※手動設定の場合は、都道府県の選択で「その他（手動設定）」を選んでください。
 </div>
@@ -338,6 +347,7 @@
 </tr>
 ({/if})
 ({*********})
+
 <tr>
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 <td class="bg_03" align="center" valign="middle" colspan="3">
@@ -379,6 +389,7 @@
 <!-- ******ここまで：コミュニティ設定変更****** -->
 <!-- **************************************** -->
 
+({if $c_commu.c_member_id_sub_admin != $u && $c_commu.c_member_id_admin == $u })
 <img src="./skin/dummy.gif" class="v_spacer_l">
 
 <!-- ****************************************** -->
@@ -433,8 +444,7 @@
 
 <img src="./skin/dummy.gif" class="v_spacer_l">
 
-({t_form m=pc a=do_c_edit_delete_c_commu})
-<input type="hidden" name="sessid" value="({$PHPSESSID})">
+({t_form m=pc a=page_c_edit_delete_c_commu_confirm})
 <input type="hidden" name="target_c_commu_id" value="({$c_commu.c_commu_id})">
 <div align="center" syyle="text-align:center;">
 <input type="submit" class="submit" value="　　削　除　　">
@@ -473,22 +483,12 @@
 <!-- ******ここまで：コミュニティを削除する****** -->
 <!-- ****************************************** -->
 
+({/if})
+
 <img src="./skin/dummy.gif" class="v_spacer_l">
 
 ({***************************})
 ({**ここまで：メインコンテンツ**})
 ({***************************})
-</td>
-</tr>
-</table>({*END:container*})
-</td>
-</tr>
-<tr>
-<td class="container inc_page_footer">
-({$inc_page_footer|smarty:nodefaults})
-</td>
-</tr>
-</table>
-({ext_include file="inc_extension_pagelayout_bottom.tpl"})
-</body>
-</html>
+({ext_include file="inc_layoutcolumn_bottom_270px_165px_175px_720px.tpl"})
+({ext_include file="inc_footer.tpl"})

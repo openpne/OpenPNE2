@@ -1,20 +1,5 @@
-({$inc_html_header|smarty:nodefaults})
-<body>
-({ext_include file="inc_extension_pagelayout_top.tpl"})
-<table class="mainframe" border="0" cellspacing="0" cellpadding="0">
-<tr>
-<td class="container inc_page_header">
-({$inc_page_header|smarty:nodefaults})
-</td>
-</tr>
-<tr>
-<td class="container main_content" align="center">
-
-({ext_include file="inc_alert_box.tpl"})({* エラーメッセージコンテナ *})
-
-<table class="container" border="0" cellspacing="0" cellpadding="0">({*BEGIN:container*})
-<tr>
-<td class="full_content" align="center">
+({ext_include file="inc_header.tpl"})
+({ext_include file="inc_layoutcolumn_top_720px.tpl"})
 ({***************************})
 ({**ここから：メインコンテンツ**})
 ({***************************})
@@ -60,7 +45,7 @@
 
 <div style="padding:10px 30px;">
 
-メールアドレスと確認キーワードを入力してください。<br>
+メールアドレス({if $smarty.const.OPENPNE_USE_CAPTCHA})と確認キーワード({/if})を入力してください。<br>
 入力されたメールアドレス宛に ({$SNS_NAME}) の招待状が送信されます。
 
 </div>
@@ -131,11 +116,11 @@
 </td>
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
+({if $smarty.const.OPENPNE_USE_CAPTCHA})
 ({*********})
 <tr>
 <td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
-
 
 <tr>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
@@ -153,10 +138,10 @@
 
 <div class="padding_s">
 
-<img src="./cap.php">
+<img src="./cap.php?rand=({math equation="rand(0,99999999)"})">
 <br>
 ※上に表示されているキーワードをご記入下さい。<br>
-<input name="captcha" size="30">
+<input type="text" class="text" name="captcha" size="30">
 
 </div>
 
@@ -164,6 +149,7 @@
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({*********})
+({/if})
 <tr>
 <td style="width:574px;height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
@@ -216,17 +202,5 @@
 ({***************************})
 ({**ここまで：メインコンテンツ**})
 ({***************************})
-</td>
-</tr>
-</table>({*END:container*})
-</td>
-</tr>
-<tr>
-<td class="container inc_page_footer">
-({$inc_page_footer|smarty:nodefaults})
-</td>
-</tr>
-</table>
-({ext_include file="inc_extension_pagelayout_bottom.tpl"})
-</body>
-</html>
+({ext_include file="inc_layoutcolumn_bottom_270px_165px_175px_720px.tpl"})
+({ext_include file="inc_footer.tpl"})

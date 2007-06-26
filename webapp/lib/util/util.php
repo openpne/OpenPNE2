@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -76,14 +76,12 @@ function openpne_gen_url($module, $action = '', $params = array(), $absolute = t
         break;
     }
 
-    $p = array('m' => $module, 'a' => $action) + $params;
+    $p = array('m' => $module, 'a' => $action) + (array)$params;
     if (need_ssl_param($module, $action, $force)) {
         $p['ssl_param'] = 1;
     } else {
         unset($p['ssl_param']);
     }
-
-    include_once 'PHP/Compat/Function/http_build_query.php';
     if ($q = http_build_query($p)) {
         $url .= '?' . $q;
     }
@@ -191,7 +189,7 @@ function is_ktai_mail_address($mail)
 
 function db_common_is_mailaddress($value)
 {
-    if (preg_match('/^[^:;@,\s]+@\w[\w-.]*\.[a-zA-Z]+$/', $value)) {
+    if (preg_match('/^[^:;@,\s\x80-\xFF]+@\w[\w\-.]*\.[a-zA-Z]+$/', $value)) {
         return true;
     } else {
         return false;
@@ -440,7 +438,158 @@ function pne_url2a($url, $target = '_blank')
     if ($target) {
         $target = sprintf(' target="%s"', $target);
     }
+
+    $url = htmlspecialchars($url, ENT_QUOTES, 'UTF-8');
+    $urlstr = htmlspecialchars($urlstr, ENT_QUOTES, 'UTF-8');
+
     return sprintf('<a href="%s"%s>%s</a>', $url, $target, $urlstr);
+}
+
+function get_auth_config($is_ktai = false)
+{
+    if (IS_SLAVEPNE) {
+        $config = $GLOBALS['_OPENPNE_AUTH_CONFIG'];
+    } else {
+        $config['storage'] = 'DB';
+        if ($is_ktai) {
+            $config['options'] = array(
+                'dsn'         => db_get_dsn(),
+                'table'       => 'c_member_secure',
+                'usernamecol' => 'ktai_address',
+                'passwordcol' => 'hashed_password',
+                'cryptType'   => 'md5',
+            );
+        } else {
+            $config['options'] = array(
+                'dsn'         => db_get_dsn(),
+                'table'       => 'c_member_secure',
+                'usernamecol' => 'pc_address',
+                'passwordcol' => 'hashed_password',
+                'cryptType'   => 'md5',
+            );
+        }
+    }
+    return $config;
+}
+
+function crypt_func($raw_value,$cryptType)
+{
+    if (   isset($cryptType) 
+        && $cryptType == 'none') {
+        $cryptFunction = 'strval';
+    } elseif (   isset($cryptType) 
+              && function_exists($cryptType)) {
+        $cryptFunction = $cryptType;
+    } else {
+        $cryptFunction = 'md5';
+    }
+    
+    return $cryptFunction($raw_value);
+}
+
+function check_action4pne_slave($is_ktai = false)
+{
+    if (IS_SLAVEPNE) {
+        if ($is_ktai) {
+            openpne_redirect('ktai');
+        } else {
+            openpne_redirect('pc');
+        }
+    }
+}
+
+function util_include_php_files($dir)
+{
+    if (!is_dir($dir)) {
+        return;
+    }
+    if ($dh = opendir($dir)) {
+        while (($file = readdir($dh)) !== false) {
+            if ($file[0] === '.') {
+                continue;
+            }
+            $path = realpath($dir . '/' . $file);
+            if (is_dir($path)) {
+                util_include_php_files($path);
+            } else {
+                if (substr($file, -4, 4) === '.php') {
+                    include_once $path;
+                }
+            }
+        }
+        closedir($dh);
+    }
+}
+
+function util_cast_public_flag_diary($public_flag, $default = 'public')
+{
+    switch ($public_flag) {
+    case 'public':
+    case 'friend':
+    case 'private':
+        break;
+    default:
+        $public_flag = $default;
+        break;
+    }
+    return $public_flag;
+}
+
+/**
+ * 登録してもよいメールアドレスかどうか
+ */
+function util_is_regist_mail_address($mail_address, $c_member_id = 0)
+{
+    if (!db_common_is_mailaddress($mail_address)) {
+        return false;
+    }
+    
+    if (db_member_is_sns_join4mail_address($mail_address, $c_member_id)) {
+        return false;
+    }
+    
+    if (!db_member_is_limit_domain4mail_address($mail_address)) {
+        return false;
+    }
+    
+    return true;
+}
+
+/**
+ * アップロード可能な拡張子のリストを取得
+ */
+function util_get_file_allowed_extensions($format = null)
+{
+    $list = array();
+    if (FILE_ALLOWED_EXTENTIONS) {
+        $exts = explode(',', FILE_ALLOWED_EXTENTIONS);
+        foreach ((array)$exts as $ext) {
+            if (trim($ext) !== '') {
+                $list[] = trim($ext);
+            }
+        }
+    }
+    if ($format === 'string') {
+        if ($list) {
+            foreach ($list as $key => $value) {
+                $list[$key] = '*.' . $value;
+            }
+            $list = implode('; ', $list);
+        } else {
+            $list = '';
+        }
+    }
+    return $list;
+}
+
+/**
+ * アップロード可能な拡張子かどうか
+ */
+function util_check_file_extention($filename)
+{
+    $extension = pathinfo($filename, PATHINFO_EXTENSION);
+    $list = util_get_file_allowed_extensions();
+    return (!$list || in_array($extension, $list));
 }
 
 ?>

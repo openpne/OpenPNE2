@@ -5,7 +5,7 @@
 ﾒﾝﾊﾞｰ数：({$count_member|default:"0"})人<br>
 ({foreach from=$c_member_list item=item})
 ({$item.nickname})
-({if $item.c_member_id==$u})☆({else})<a href="({t_url m=ktai a=page_c_edit_member_delete_c_commu_member_confirm})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;target_c_member_id=({$item.c_member_id})&amp;({$tail})">削除</a>({/if})<br>
+({if $item.c_member_id == $u})☆({elseif $c_commu.c_member_id_admin != $item.c_member_id})<a href="({t_url m=ktai a=page_c_edit_member_delete_c_commu_member_confirm})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;target_c_member_id=({$item.c_member_id})&amp;({$tail})">削除</a>({/if})<br>
 ({/foreach})
 
 ({if $is_prev || $is_next})
@@ -15,25 +15,46 @@
 <br>
 ({/if})
 
-({if count($c_member_list) > 1})
+({if $count_member > 1 && $c_commu.c_member_id_sub_admin != $u})
+({if $admin_list})
 <hr>
 
-◆管理人交代の要請
+◆管理者交代の要請<br>
+<br>
 ({t_form m=ktai a=do_c_edit_member_insert_c_commu_admin_confirm})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
 <input type="hidden" name="target_c_commu_id" value="({$c_commu.c_commu_id})">
 ﾒﾝﾊﾞｰ<br>
 <select name="target_c_member_id">
-({foreach from=$c_member_list item=item})
-({if $item.c_member_id != $u})
+({foreach from=$admin_list item=item})
 <option value="({$item.c_member_id})">({$item.nickname})
-({/if})
 ({/foreach})
 </select><br>
 ﾒｯｾｰｼﾞ<br>
 <textarea name="body"></textarea><br>
 <input type="submit" value="送信">
 </form>
+({/if})
+({if $subadmin_list})
+<hr>
+
+◆副管理者の要請<br>
+<br>
+({t_form m=ktai a=do_c_edit_member_insert_c_commu_sub_admin_confirm})
+<input type="hidden" name="ksid" value="({$PHPSESSID})">
+<input type="hidden" name="target_c_commu_id" value="({$c_commu.c_commu_id})">
+ﾒﾝﾊﾞｰ<br>
+<select name="target_c_member_id">
+({foreach from=$subadmin_list item=item})
+<option value="({$item.c_member_id})">({$item.nickname})
+({/foreach})
+</select><br>
+ﾒｯｾｰｼﾞ<br>
+<textarea name="body"></textarea><br>
+<input type="submit" value="送信">
+</form>
+({/if})
+
 ({/if})
 
 <hr>

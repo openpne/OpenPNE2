@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -25,6 +25,12 @@ class setup_page_setup extends OpenPNE_Action
             strlen(ENCRYPT_KEY) > 56)
         {
             $errors[] = 'ENCRYPT_KEYが適切に設定されていません。config.phpの設定を確認してください。';
+        }
+
+        // database のチェック
+        if (!$GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['database'])
+        {
+            $errors[] = 'データベース名が空です。config.phpの設定を確認してください。';
         }
 
         // ディレクトリの書き込み権限のチェック

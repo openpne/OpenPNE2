@@ -1,23 +1,27 @@
-({$inc_html_header|smarty:nodefaults})
-<body>
-({ext_include file="inc_extension_pagelayout_top.tpl"})
-<table class="mainframe" border="0" cellspacing="0" cellpadding="0">
-<tr>
-<td class="container inc_page_header">
-({$inc_page_header|smarty:nodefaults})
-</td>
-</tr>
-<tr>
-<td class="container inc_navi">
-({$inc_navi|smarty:nodefaults})
-</td>
-</tr>
-<tr>
-<td class="container main_content">
-<table class="container" border="0" cellspacing="0" cellpadding="0">({*BEGIN:container*})
-<tr>
-<td style="width:5px;"><img src="./skin/dummy.gif" style="width:5px;" class="dummy"></td>({*<--spacer*})
-<td class="left_content_175" align="center" valign="top">
+({ext_include file="inc_header.tpl"})
+({ext_include file="inc_layoutcolumn_top_175px.tpl"})
+<script type="text/javascript">
+<!--
+function checkAll() {
+    var sm = document.h_message_box_delete_message;
+    var len = sm.elements.length;
+    for (var i = 0; i < len; i++) {
+        sm.elements[i].checked = true;
+    }
+    return false;
+}
+
+function clearAll() {
+    var sm = document.h_message_box_delete_message;
+    var len = sm.elements.length;
+    for (var i = 0; i < len; i++) {
+        sm.elements[i].checked = false;
+    }
+    return false;
+}
+
+//-->
+</script>
 ({********************************})
 ({**ここから：メインコンテンツ（左）**})
 ({********************************})
@@ -289,9 +293,7 @@
 ({********************************})
 ({**ここまで：メインコンテンツ（左）**})
 ({********************************})
-</td>
-<td style="width:5px;"><img src="./skin/dummy.gif" style="width:5px;" class="dummy"></td>({*<--spacer*})
-<td class="right_content_535" align="center" valign="top">
+({ext_include file="inc_layoutcolumn_middle_175px.tpl"})
 ({********************************})
 ({**ここから：メインコンテンツ（右）**})
 ({********************************})
@@ -386,7 +388,7 @@
 <table style="width:504px;" border="0" cellspacing="0" cellpadding="0" style="width:auto;margin:0px auto;" class="border_01">
 ({*********})
 <tr>
-<td style="width:50%;" class="bg_05" align="left">
+<td style="width:50%;" class="bg_02" align="left">
 
 <div class="padding_s">
 
@@ -395,12 +397,12 @@
 </div>
 
 </td>
-<td class="bg_05" align="right">
+<td class="bg_02" align="right">
 
 <div class="padding_s">
 ({capture name="ru_pager"})
 ({if $ru_data.is_ru_prev})
- <a href="({t_url m=pc a=page_h_message_box})&amp;ru_page=({$ru_data.ru_page-1})&amp;box=inbox&amp;keyword=({$url_keyword})&amp;target_c_member_id=({$target_c_member_id})&amp;year=({$date_val.year})&amp;month=({$date_val.month})&amp;day=({$date_val.day})">前を表示</a>
+ <a href="({t_url m=pc a=page_h_message_box})&amp;ru_page=({$ru_data.ru_page-1})&amp;box=inbox&amp;keyword=({$url_keyword})&amp;target_c_member_id=({$target_c_member_id})&amp;year=({$requests.year})&amp;month=({$requests.month})&amp;day=({$requests.day})">前を表示</a>
 ({/if})
 ({$total_num})件中
 ({$ru_data.ru_page*$page_size-$page_size+1})件～
@@ -411,7 +413,7 @@
 ({/if})
 件を表示
 ({if $ru_data.is_ru_next})
- <a href="({t_url m=pc a=page_h_message_box})&amp;ru_page=({$ru_data.ru_page+1})&amp;box=inbox&amp;keyword=({$url_keyword})&amp;target_c_member_id=({$target_c_member_id})&amp;year=({$date_val.year})&amp;month=({$date_val.month})&amp;day=({$date_val.day})">次を表示</a>
+ <a href="({t_url m=pc a=page_h_message_box})&amp;ru_page=({$ru_data.ru_page+1})&amp;box=inbox&amp;keyword=({$url_keyword})&amp;target_c_member_id=({$target_c_member_id})&amp;year=({$requests.year})&amp;month=({$requests.month})&amp;day=({$requests.day})">次を表示</a>
 ({/if})
 ({/capture})
 ({$smarty.capture.ru_pager|smarty:nodefaults})
@@ -446,7 +448,9 @@
 </tr>
 ({*********})
 
-({t_form m=pc a=do_h_message_box_delete_message})
+<form action="./" method="post" name="h_message_box_delete_message">
+<input type="hidden" name="m" value="pc">
+<input type="hidden" name="a" value="do_h_message_box_delete_message">
 <input type="hidden" name="sessid" value="({$PHPSESSID})">
 
 ({foreach from=$c_message_ru_list item=c_message_ru})
@@ -470,7 +474,7 @@
 <table style="width:504px;" border="0" cellspacing="0" cellpadding="0" style="width:auto;margin:0px auto;" class="border_01">
 ({*********})
 <tr>
-<td style="width:100%;" class="bg_05" align="right">
+<td style="width:100%;" class="bg_02" align="right">
 
 <div class="padding_s">
 
@@ -490,11 +494,13 @@
 <tr>
 <td style="width:100%;" class="bg_05" align="left">
 
+<br>
+&nbsp;<a href="#" onClick="return checkAll();" onKeyPress="return checkAll();">全てをチェック</a> / <a href="#" onClick="return clearAll();" onKeyPress="return clearAll();">全てのチェックをはずす</a>
+
 <div class="padding_s">
 <input type="hidden" name="box" value="({$box})">
 <input type="submit" class="submit" value="削 除">
 </form>
-
 </div>
 
 </td>
@@ -564,12 +570,12 @@
 <table style="width:504px;" border="0" cellspacing="0" cellpadding="0" style="width:auto;margin:0px auto;" class="border_01">
 ({*********})
 <tr>
-<td style="width:100%;" class="bg_05" align="right">
+<td style="width:100%;" class="bg_02" align="right">
 
 <div class="padding_s">
 ({capture name="s_pager"})
 ({if $s_data.is_s_prev})
- <a href="({t_url m=pc a=page_h_message_box})&amp;s_page=({$s_data.s_page-1})&amp;box=outbox&amp;keyword=({$url_keyword})&amp;target_c_member_id=({$target_c_member_id})&amp;year=({$date_val.year})&amp;month=({$date_val.month})&amp;day=({$date_val.day})">前を表示</a>
+ <a href="({t_url m=pc a=page_h_message_box})&amp;s_page=({$s_data.s_page-1})&amp;box=outbox&amp;keyword=({$url_keyword})&amp;target_c_member_id=({$target_c_member_id})&amp;year=({$requests.year})&amp;month=({$requests.month})&amp;day=({$requests.day})">前を表示</a>
 ({/if})
 ({$total_num})件中
 ({$s_data.s_page*$page_size-$page_size+1})件～
@@ -580,7 +586,7 @@
 ({/if})
 件を表示
 ({if $s_data.is_s_next})
- <a href="({t_url m=pc a=page_h_message_box})&amp;s_page=({$s_data.s_page+1})&amp;box=outbox&amp;keyword=({$url_keyword})&amp;target_c_member_id=({$target_c_member_id})&amp;year=({$date_val.year})&amp;month=({$date_val.month})&amp;day=({$date_val.day})">次を表示</a>
+ <a href="({t_url m=pc a=page_h_message_box})&amp;s_page=({$s_data.s_page+1})&amp;box=outbox&amp;keyword=({$url_keyword})&amp;target_c_member_id=({$target_c_member_id})&amp;year=({$requests.year})&amp;month=({$requests.month})&amp;day=({$requests.day})">次を表示</a>
 ({/if})
 ({/capture})
 ({$smarty.capture.s_pager|smarty:nodefaults})
@@ -616,7 +622,9 @@
 </tr>
 ({*********})
 
-({t_form m=pc a=do_h_message_box_delete_message})
+<form action="./" method="post" name="h_message_box_delete_message">
+<input type="hidden" name="m" value="pc">
+<input type="hidden" name="a" value="do_h_message_box_delete_message">
 <input type="hidden" name="sessid" value="({$PHPSESSID})">
 
 ({foreach from=$c_message_s_list item=c_message_s})
@@ -640,7 +648,7 @@
 <table style="width:504px;" border="0" cellspacing="0" cellpadding="0" style="width:auto;margin:0px auto;" class="border_01">
 ({*********})
 <tr>
-<td style="width:100%;" class="bg_05" align="right">
+<td style="width:100%;" class="bg_02" align="right">
 
 <div class="padding_s">
 
@@ -659,6 +667,9 @@
 ({*********})
 <tr>
 <td style="width:100%;" class="bg_05" align="left">
+
+<br>
+&nbsp;<a href="#" onClick="return checkAll();" onKeyPress="return checkAll();">全てをチェック</a> / <a href="#" onClick="return clearAll();" onKeyPress="return clearAll();">全てのチェックをはずす</a>
 
 <div class="padding_s">
 <input type="hidden" name="box" value="({$box})">
@@ -701,7 +712,7 @@
 <table style="width:504px;" border="0" cellspacing="0" cellpadding="0" style="width:auto;margin:0px auto;" class="border_01">
 ({*********})
 <tr>
-<td style="width:100%;" class="bg_05" align="right">
+<td style="width:100%;" class="bg_02" align="right">
 
 <div class="padding_s">
 
@@ -746,7 +757,9 @@
 </tr>
 ({*********})
 
-({t_form m=pc a=do_h_message_box_delete_message})
+<form action="./" method="post" name="h_message_box_delete_message">
+<input type="hidden" name="m" value="pc">
+<input type="hidden" name="a" value="do_h_message_box_delete_message">
 <input type="hidden" name="sessid" value="({$PHPSESSID})">
 
 ({foreach from=$c_message_save_list item=c_message_save})
@@ -770,7 +783,7 @@
 <table style="width:504px;" border="0" cellspacing="0" cellpadding="0" style="width:auto;margin:0px auto;" class="border_01">
 ({*********})
 <tr>
-<td style="width:100%;" class="bg_05" align="right">
+<td style="width:100%;" class="bg_02" align="right">
 
 <div class="padding_s">
 
@@ -788,7 +801,10 @@
 <table style="width:504px;" border="0" cellspacing="0" cellpadding="0" style="width:auto;margin:0px auto;" class="border_01">
 ({*********})
 <tr>
+
 <td style="width:100%;" class="bg_05" align="left">
+<br>
+&nbsp;<a href="#" onClick="return checkAll();" onKeyPress="return checkAll();">全てをチェック</a> / <a href="#" onClick="return clearAll();" onKeyPress="return clearAll();">全てのチェックをはずす</a>
 
 <div class="padding_s">
 <input type="hidden" name="box" value="savebox">
@@ -836,7 +852,7 @@
 </div>
 
 </td>
-<td class="bg_05" align="right">
+<td class="bg_02" align="right">
 
 <div class="padding_s">
 
@@ -883,7 +899,9 @@
 </tr>
 ({*********})
 
-({t_form m=pc a=do_h_message_box_delete_message})
+<form action="./" method="post" name="h_message_box_delete_message">
+<input type="hidden" name="m" value="pc">
+<input type="hidden" name="a" value="do_h_message_box_delete_message">
 <input type="hidden" name="sessid" value="({$PHPSESSID})">
 
 ({foreach from=$c_message_trash_list item=c_message_trash})
@@ -919,7 +937,7 @@
 <table style="width:504px;" border="0" cellspacing="0" cellpadding="0" style="width:auto;margin:0px auto;" class="border_01">
 ({*********})
 <tr>
-<td style="width:100%;" class="bg_05" align="right">
+<td style="width:100%;" class="bg_02" align="right">
 
 <div class="padding_s">
 
@@ -938,6 +956,9 @@
 ({*********})
 <tr>
 <td style="width:100%;" class="bg_05" align="left">
+
+<br>
+&nbsp;<a href="#" onClick="return checkAll();" onKeyPress="return checkAll();">全てをチェック</a> / <a href="#" onClick="return clearAll();" onKeyPress="return clearAll();">全てのチェックをはずす</a>
 
 <div class="padding_s">
 <input type="hidden" name="box" value="trash">
@@ -991,17 +1012,5 @@
 ({********************************})
 ({**ここまで：メインコンテンツ（右）**})
 ({********************************})
-</td>
-</tr>
-</table>({*END:container*})
-</td>
-</tr>
-<tr>
-<td class="container inc_page_footer">
-({$inc_page_footer|smarty:nodefaults})
-</td>
-</tr>
-</table>
-({ext_include file="inc_extension_pagelayout_bottom.tpl"})
-</body>
-</html>
+({ext_include file="inc_layoutcolumn_bottom_270px_165px_175px_720px.tpl"})
+({ext_include file="inc_footer.tpl"})

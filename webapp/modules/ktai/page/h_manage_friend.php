@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -17,7 +17,7 @@ class ktai_page_h_manage_friend extends OpenPNE_Action
         // 1ページ当たりに表示するフレンドの数
         $page_size = 5;
         //自分の友達リスト
-        $list = k_p_fh_friend_list_friend_list4c_member_id($u, $page_size, $page);
+        $list = db_friend_friend_list4c_member_id($u, $page_size, $page);
 
         $this->set("friend_list", $list[0]);
         $this->set("page", $page);

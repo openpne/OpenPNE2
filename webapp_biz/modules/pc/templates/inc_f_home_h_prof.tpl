@@ -1,32 +1,4 @@
-({$inc_html_header|smarty:nodefaults})
-<body>
-({ext_include file="inc_extension_pagelayout_top.tpl"})
-<table class="mainframe" border="0" cellspacing="0" cellpadding="0">
-<tr>
-<td class="container inc_page_header">
-({$inc_page_header|smarty:nodefaults})
-</td>
-</tr>
-({if $inc_entry_point[1]})
-<tr>
-<td class="container">
-({$inc_entry_point[1]|smarty:nodefaults})
-</td>
-</tr>
-({/if})
-<tr>
-<td class="container inc_navi">
-({$inc_navi|smarty:nodefaults})
-</td>
-</tr>
-({if $inc_entry_point[2]})
-<tr>
-<td class="container">
-({$inc_entry_point[2]|smarty:nodefaults})
-</td>
-</tr>
-({/if})
-
+({ext_include file="inc_header.tpl"})
 ({if $is_h_prof})({* -------- 自分のプロフィール確認時:ここから -------- *})
 
 <tr>
@@ -271,7 +243,6 @@
 
 ({/if})({* -------- 他メンバーのプロフィール:ここまで -------- *})
 
-
 ({if $calendar})
 <tr>
 <td class="container" align="center">
@@ -288,13 +259,8 @@
 </tr>
 ({/if})
 
+({ext_include file="inc_layoutcolumn_top_270px.tpl"})
 
-<tr>
-<td class="container main_content">
-<table class="container" border="0" cellspacing="0" cellpadding="0">({*BEGIN:container*})
-<tr>
-<td style="width:5px;"><img src="./skin/dummy.gif" style="width:5px;" class="dummy"></td>({*<--spacer*})
-<td class="left_content" valign="top">
 ({********************************})
 ({**ここから：メインコンテンツ（左）**})
 ({********************************})
@@ -436,7 +402,7 @@
 ({foreach from=$c_friend_list item=item key=key})
 ({if $key > 0})&({/if})
 pne_item({$key+1})_id=({$item.c_member_id})
-&pne_item({$key+1})_name=({$item.nickname|t_truncate:12:'..'|escape:'url'})
+&pne_item({$key+1})_name=({$item.nickname|t_truncate:12:'..'|escape:url|smarty:nodefaults})
 &pne_item({$key+1})_linkurl=({t_url m=pc a=page_f_home _urlencode=true _html=false})%26target_c_member_id=({$item.c_member_id})
 &pne_item({$key+1})_imageurl=({t_img_url filename=$item.image_filename w=76 h=76 noimg=no_image _urlencode=true _html=false})
 &pne_item({$key+1})_count=({$item.friend_count})
@@ -650,10 +616,10 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({foreach from=$c_commu_list item=item key=key})
 ({if $key > 0})&({/if})
 pne_item({$key+1})_id=({$item.c_commu_id})
-&pne_item({$key+1})_name=({$item.name|t_truncate:12:'..'|escape:'url'})
+&pne_item({$key+1})_name=({$item.name|t_truncate:12:'..'|escape:url|smarty:nodefaults})
 &pne_item({$key+1})_linkurl=({t_url m=pc a=page_c_home _urlencode=true _html=false})%26target_c_commu_id=({$item.c_commu_id})
 &pne_item({$key+1})_imageurl=({t_img_url filename=$item.image_filename w=76 h=76 noimg=no_logo_small _urlencode=true _html=false})
-&pne_item({$key+1})_count=({$item.count_commu_member})
+&pne_item({$key+1})_count=({$item.count_commu_members})
 ({/foreach})
 ({/strip})({/capture})
 <script type="text/javascript" src="js/show_flash.js"></script>
@@ -677,6 +643,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({t_loop from=$c_commu_list start=0 num=3})
 ({if $item})
 <td style="width:88px;" class="bg_03" align="center">
+({if $item.c_member_id_admin == $target_c_member.c_member_id })<img src="({t_img_url_skin filename=icon_crown})" class="icon"><br>({/if})
 <a href="({t_url m=pc a=page_c_home})&amp;target_c_commu_id=({$item.c_commu_id})">
 <img src="({t_img_url filename=$item.image_filename w=76 h=76 noimg=no_logo_small})" class="pict"></a>
 </td>
@@ -694,7 +661,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({if $item})
 <td class="bg_02" align="center">
 <a href="({t_url m=pc a=page_c_home})&amp;target_c_commu_id=({$item.c_commu_id})">
-({$item.name}) (({$item.count_commu_member}))
+({$item.name}) (({$item.count_commu_members}))
 </a>
 </td>
 ({else})
@@ -715,6 +682,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({t_loop from=$c_commu_list start=3 num=3})
 ({if $item})
 <td class="bg_03" align="center">
+({if $item.c_member_id_admin == $target_c_member.c_member_id })<img src="({t_img_url_skin filename=icon_crown})" class="icon"><br>({/if})
 <a href="({t_url m=pc a=page_c_home})&amp;target_c_commu_id=({$item.c_commu_id})">
 <img src="({t_img_url filename=$item.image_filename w=76 h=76 noimg=no_logo_small})" class="pict"></a>
 </td>
@@ -732,7 +700,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({if $item})
 <td class="bg_02" align="center">
 <a href="({t_url m=pc a=page_c_home})&amp;target_c_commu_id=({$item.c_commu_id})">
-({$item.name}) (({$item.count_commu_member}))
+({$item.name}) (({$item.count_commu_members}))
 </a>
 </td>
 ({else})
@@ -753,6 +721,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({t_loop from=$c_commu_list start=6 num=3})
 ({if $item})
 <td class="bg_03" align="center">
+({if $item.c_member_id_admin == $target_c_member.c_member_id })<img src="({t_img_url_skin filename=icon_crown})" class="icon"><br>({/if})
 <a href="({t_url m=pc a=page_c_home})&amp;target_c_commu_id=({$item.c_commu_id})">
 <img src="({t_img_url filename=$item.image_filename w=76 h=76 noimg=no_logo_small})" class="pict"></a>
 </td>
@@ -770,7 +739,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({if $item})
 <td class="bg_02" align="center">
 <a href="({t_url m=pc a=page_c_home})&amp;target_c_commu_id=({$item.c_commu_id})">
-({$item.name}) (({$item.count_commu_member}))
+({$item.name}) (({$item.count_commu_members}))
 </a>
 </td>
 ({else})
@@ -792,9 +761,9 @@ show_flash('flash/list.swf', '({$flashvars})');
 <!-- ここから：小メニュー -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:268px">
 <tr>
-<td style="width:1px;" class="bg_07" rowspan="3"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_07" rowspan="({if $common_commu_count})4({else})3({/if})"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 <td style="width:266px;" class="bg_02" colspan="4"><img src="./skin/dummy.gif" style="width:266px;height:5px;" class="dummy"></td>
-<td style="width:1px;" class="bg_07" rowspan="3"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_07" rowspan="({if $common_commu_count})4({else})3({/if})"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 <tr>
 <td style="width:125px;" class="bg_02"><img src="./skin/dummy.gif" style="width:125px;height:1px;" class="dummy"></td>
@@ -804,6 +773,16 @@ show_flash('flash/list.swf', '({$flashvars})');
 </td>
 <td style="width:5px;" class="bg_02"><img src="./skin/dummy.gif" style="width:5px;height:1px;" class="dummy"></td>
 </tr>
+({if $common_commu_count})
+<tr>
+<td style="width:125px;" class="bg_02"><img src="./skin/dummy.gif" style="width:125px;height:1px;" class="dummy"></td>
+<td style="width:20px;" class="bg_02"><img src="./skin/dummy.gif" class="icon arrow_1"></td>
+<td align="left" style="width:116px;padding:2px 0px;" class="bg_02 lh_110">
+<a href="({t_url m=pc a=page_f_com_list_common})&amp;target_c_member_id=({$target_c_member_id})">共通コミュニティ(({$common_commu_count}))</a>
+</td>
+<td style="width:5px;" class="bg_02"><img src="./skin/dummy.gif" style="width:5px;height:1px;" class="dummy"></td>
+</tr>
+({/if})
 <tr>
 <td style="width:266px;" class="bg_02" colspan="4"><img src="./skin/dummy.gif" style="width:266px;height:5px;" class="dummy"></td>
 </tr>
@@ -830,9 +809,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({********************************})
 ({**ここまで：メインコンテンツ（左）**})
 ({********************************})
-</td>
-<td style="width:5px;"><img src="./skin/dummy.gif" style="width:5px;" class="dummy"></td>({*<--spacer*})
-<td class="right_content" valign="top">
+({ext_include file="inc_layoutcolumn_middle_270px.tpl"})
 ({********************************})
 ({**ここから：メインコンテンツ（右）**})
 ({********************************})
@@ -963,7 +940,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <td class="border_01 bg_02 padding_s" style="width:332px;border-top:none;">
 
 ({if $item.form_type == 'textarea'})
-    ({$item.value|t_url2a|nl2br})
+    ({$item.value|nl2br|t_url2cmd:'profile'|t_cmd:'profile'})
 ({elseif $item.form_type == 'checkbox'})
     ({$item.value|@t_implode:", "})
 ({else})
@@ -1227,17 +1204,5 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({********************************})
 ({**ここまで：メインコンテンツ（右）**})
 ({********************************})
-</td>
-</tr>
-</table>({*END:container*})
-</td>
-</tr>
-<tr>
-<td class="container inc_page_footer">
-({$inc_page_footer|smarty:nodefaults})
-</td>
-</tr>
-</table>
-({ext_include file="inc_extension_pagelayout_bottom.tpl"})
-</body>
-</html>
+({ext_include file="inc_layoutcolumn_bottom_270px_165px_175px_720px.tpl"})
+({ext_include file="inc_footer.tpl"})

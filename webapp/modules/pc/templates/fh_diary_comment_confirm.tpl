@@ -1,25 +1,6 @@
-({$inc_html_header|smarty:nodefaults})
-<body>
-({ext_include file="inc_extension_pagelayout_top.tpl"})
-<table class="mainframe" border="0" cellspacing="0" cellpadding="0">
-<tr>
-<td class="container inc_page_header">
-({$inc_page_header|smarty:nodefaults})
-</td>
-</tr>
-<tr>
-<td class="container inc_navi">
-({$inc_navi|smarty:nodefaults})
-</td>
-</tr>
-<tr>
-<td class="container main_content" align="center">
+({ext_include file="inc_header.tpl"})
+({ext_include file="inc_layoutcolumn_top_720px.tpl"})
 
-({ext_include file="inc_alert_box.tpl"})({* エラーメッセージコンテナ *})
-
-<table class="container" border="0" cellspacing="0" cellpadding="0">({*BEGIN:container*})
-<tr>
-<td class="full_content" align="center">
 ({***************************})
 ({**ここから：メインコンテンツ**})
 ({***************************})
@@ -190,7 +171,7 @@
 </td>
 <td style="width:50%;" align="left">
 
-({t_form _enctype=file m=pc a=page_fh_diary})
+({t_form _form_action=#write _enctype=file m=pc a=page_fh_diary})
 <input type="hidden" name="target_c_diary_id" value="({$form_val.target_c_diary_id})">
 <input type="hidden" name="body" value="({$form_val.body})">
 &nbsp;<input type="submit" class="submit" value="　修　 正　">
@@ -227,7 +208,6 @@
 </tr>
 </table>
 
-</form>
 <!-- ******ここまで：書き込み確認****** -->
 <!-- ******************************************** -->
 
@@ -237,17 +217,5 @@
 ({***************************})
 ({**ここまで：メインコンテンツ**})
 ({***************************})
-</td>
-</tr>
-</table>({*END:container*})
-</td>
-</tr>
-<tr>
-<td class="container inc_page_footer">
-({$inc_page_footer|smarty:nodefaults})
-</td>
-</tr>
-</table>
-({ext_include file="inc_extension_pagelayout_bottom.tpl"})
-</body>
-</html>
+({ext_include file="inc_layoutcolumn_bottom_270px_165px_175px_720px.tpl"})
+({ext_include file="inc_footer.tpl"})

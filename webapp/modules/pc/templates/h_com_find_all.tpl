@@ -1,26 +1,10 @@
-({$inc_html_header|smarty:nodefaults})
-<body>
-({ext_include file="inc_extension_pagelayout_top.tpl"})
-<table class="mainframe" border="0" cellspacing="0" cellpadding="0">
-<tr>
-<td class="container inc_page_header">
-({$inc_page_header|smarty:nodefaults})
-</td>
-</tr>
-<tr>
-<td class="container inc_navi">
-({$inc_navi|smarty:nodefaults})
-</td>
-</tr>
-<tr>
-<td class="container main_content">
-<table class="container" border="0" cellspacing="0" cellpadding="0">({*BEGIN:container*})
-<tr>
-<td class="full_content" align="center">
+({ext_include file="inc_header.tpl"})
+({ext_include file="inc_layoutcolumn_top_720px.tpl"})
+
 ({***************************})
 ({**ここから：メインコンテンツ**})
 ({***************************})
-({capture name="keyword_url"})({$keyword|escape:url})({/capture})
+({capture name="keyword_url"})({$keyword|escape:url|smarty:nodefaults})({/capture})
 
 <img src="./skin/dummy.gif" class="v_spacer_l">
 
@@ -76,7 +60,7 @@
 <img src="./skin/dummy.gif" class="v_spacer_l">
 
 キーワード<img src="({t_img_url_skin filename=icon_arrow_2})" class="icon">
-<input name="keyword" size="15" value="({$keyword})">
+<input type="text" class="text" name="keyword" size="15" value="({$keyword})">
 &nbsp;カテゴリ<img src="({t_img_url_skin filename=icon_arrow_2})" class="icon">
 <select name="category_id">
 <option value="0">指定なし</option>
@@ -87,10 +71,6 @@
 ({/foreach})
 </select>
 <input type="submit" class="submit" value=" 検 索 ">
-
-<a href="({t_url m=pc a=page_h_diary_list_all})&amp;keyword=({$smarty.capture.keyword_url|smarty:nodefaults})">日記検索</a>
-|
-<a href="http://www.google.com/search?hl=ja&amp;lr=lang_ja&amp;q=({$smarty.capture.keyword_url|smarty:nodefaults})" target="_blank">ウェブ検索</a>
 
 </form>
 
@@ -168,6 +148,8 @@
 </table>
 <!-- ******ここまで：コミュニティ検索****** -->
 <!-- ************************************ -->
+
+({if $c_commu_search_list})
 
 <img src="./skin/dummy.gif" class="v_spacer_l">
 
@@ -463,22 +445,12 @@
 <!-- ******ここまで：コミュニティ一覧****** -->
 <!-- ************************************ -->
 
+({/if})
+
 <img src="./skin/dummy.gif" class="v_spacer_l">
 
 ({***************************})
 ({**ここまで：メインコンテンツ**})
 ({***************************})
-</td>
-</tr>
-</table>({*END:container*})
-</td>
-</tr>
-<tr>
-<td class="container inc_page_footer">
-({$inc_page_footer|smarty:nodefaults})
-</td>
-</tr>
-</table>
-({ext_include file="inc_extension_pagelayout_bottom.tpl"})
-</body>
-</html>
+({ext_include file="inc_layoutcolumn_bottom_270px_165px_175px_720px.tpl"})
+({ext_include file="inc_footer.tpl"})

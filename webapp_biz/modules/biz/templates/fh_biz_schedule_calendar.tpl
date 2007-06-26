@@ -1,22 +1,5 @@
-({$inc_html_header|smarty:nodefaults})
-<body>
-({ext_include file="inc_extension_pagelayout_top.tpl"})
-<table class="mainframe" border="0" cellspacing="0" cellpadding="0">
-<tr>
-<td class="container inc_page_header">
-({$inc_page_header|smarty:nodefaults})
-</td>
-</tr>
-<tr>
-<td class="container inc_navi">
-({$inc_navi|smarty:nodefaults})
-</td>
-</tr>
-<tr>
-<td class="container main_content">
-<table class="container" border="0" cellspacing="0" cellpadding="0">({*BEGIN:container*})
-<tr>
-<td class="full_content" align="center">
+({ext_include file="inc_header.tpl"})
+({ext_include file="inc_layoutcolumn_top_720px.tpl"})
 ({***************************})
 ({**ここから：メインコンテンツ**})
 ({***************************})
@@ -56,7 +39,7 @@
 &nbsp;<img src="./skin/icon_weather_FC.gif" class="icon">
 <a href="({$weather_url})" target="_blank">天気予報を見る</a>
 &nbsp;<img src="./skin/icon_schedule.gif" class="icon">
-<a href="({t_url m=biz a=page_fh_biz_schedule_add})">予定を追加</a>&nbsp;
+<a href="({t_url m=biz a=page_fh_biz_schedule_add})&target_id=({$c_member.c_member_id})">予定を追加</a>&nbsp;
 
 </td>
 <td style="width:200px;padding:2px 0px;" class="bg_05" align="right">
@@ -82,9 +65,11 @@
 </tr>
 ({foreach from=$calendar item=week})
 <tr>
-({foreach from=$week item=item})
+({foreach from=$week item=item name=weekloop})
 ({if $item.now})
 <td style="height:65px;padding:2px;" align="left" valign="top" class="bg_09">
+({elseif $item.holiday || $smarty.foreach.weekloop.first})
+<td style="height:65px;padding:2px;" align="left" valign="top" class="bg_14">
 ({else})
 <td style="height:65px;padding:2px;" align="left" valign="top" class="bg_02">
 ({/if})
@@ -94,7 +79,12 @@
 ({else})
 ({$item.day})
 ({/if})<br>
-<a href="({t_url m=biz a=page_fh_biz_schedule_add})&amp;begin_date=({$year})({$month|string_format:'%02d'})({$item.day|string_format:'%02d'})"><img src="./skin/icon_schedule.gif" class="icon"></a><br>
+<a href="({t_url m=biz a=page_fh_biz_schedule_add})&amp;begin_date=({$year})({$month|string_format:'%02d'})({$item.day|string_format:'%02d'})&target_id=({$c_member.c_member_id})"><img src="./skin/icon_schedule.gif" class="icon"></a><br>
+
+({* 祝日 *})
+({foreach from=$item.holiday item=item_holiday})
+<span class=" c_02">({$item_holiday})</span><br>
+({/foreach})
 
 ({* スケジュール *})
 ({foreach from=$item.schedule item=item_schedule name=schedule})
@@ -119,11 +109,11 @@
 ({$item_schedule.c_member_name})
 </div></a>
 	({elseif $item_schedule.begin_date != $item_schedule.finish_date})  <!--バナー予定 -->
-({assign var="begin_time_H" value=$item_schedule.begin_date|date_format:"%H"})
-({assign var="begin_time_M" value=$item_schedule.begin_date|date_format:"%M"})
+({assign var="begin_time_H" value=$item_schedule.begin_time|date_format:"%H"})
+({assign var="begin_time_M" value=$item_schedule.begin_time|date_format:"%M"})
 ({if $item_schedule.finish_time})
-	({assign var="finish_time_H" value=$item_schedule.finish_date|date_format:"%H"})
-	({assign var="finish_time_M" value=$item_schedule.finish_date|date_format:"%M"})
+	({assign var="finish_time_H" value=$item_schedule.finish_time|date_format:"%H"})
+	({assign var="finish_time_M" value=$item_schedule.finish_time|date_format:"%M"})
 ({/if})
 ({ext_include file="inc_biz_schedule_week_time.tpl"})
 <div class="padding_s" style="padding-top:0;">
@@ -152,6 +142,12 @@
 ({* イベント *})
 ({foreach from=$item.event item=item_event})
 <img src="({if $item_event.is_join})({t_img_url_skin filename=icon_event_R})({else})({t_img_url_skin filename=icon_event_B})({/if})" class="icon"><a href="({t_url m=pc a=page_c_event_detail})&amp;target_c_commu_topic_id=({$item_event.c_commu_topic_id})">({$item_event.name})</a><br>
+({/foreach})
+
+({* Todo *})
+({foreach from=$item.todo item=item_todo})
+<img src="./skin/biz/todo_icon.gif"  class="icon">
+<a href="({t_url m=biz a=page_fh_home_edit_biz_todo})&amp;id=({$item_todo.biz_todo_id})&target_id=({$c_member.c_member_id})">({$item_todo.memo|t_truncate:20:".."})</a>
 ({/foreach})
 
 ({if $item.schedule})
@@ -226,17 +222,5 @@
 ({***************************})
 ({**ここまで：メインコンテンツ**})
 ({***************************})
-</td>
-</tr>
-</table>({*END:container*})
-</td>
-</tr>
-<tr>
-<td class="container inc_page_footer">
-({$inc_page_footer|smarty:nodefaults})
-</td>
-</tr>
-</table>
-({ext_include file="inc_extension_pagelayout_bottom.tpl"})
-</body>
-</html>
+({ext_include file="inc_layoutcolumn_bottom_270px_165px_175px_720px.tpl"})
+({ext_include file="inc_footer.tpl"})

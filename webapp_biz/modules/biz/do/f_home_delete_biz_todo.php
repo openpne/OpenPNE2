@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -15,6 +15,9 @@ class biz_do_f_home_delete_biz_todo extends OpenPNE_Action
         $id = $requests['target_id'];
         // ----------
 
+        if (!biz_isPermissionTodo($u, $delid)) {
+            handle_kengen_error();
+        }
         biz_deleteTodo($delid);
 
         $p = array('target_c_member_id' => $id);

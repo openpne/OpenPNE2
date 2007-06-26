@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -25,9 +25,13 @@ function smarty_function_ext_include($params, &$smarty)
     }
     $tpl = 'file:' . $tpl;
 
-    $params['smarty_include_tpl_file'] = $tpl;
-    $params['smarty_include_vars'] = array();
-    $smarty->_smarty_include($params);
+    $arg_list = $params;
+    unset($arg_list['file']);
+
+    $p = array();
+    $p['smarty_include_tpl_file'] = $tpl;
+    $p['smarty_include_vars'] = $arg_list;
+    $smarty->_smarty_include($p);
     return;
 }
 

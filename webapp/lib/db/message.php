@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -31,6 +31,16 @@ function db_message_c_message4c_message_id($c_message_id)
  */
 function db_message_count_c_message_not_is_read4c_member_to_id($c_member_id_to)
 {
+    static $is_recurred = false;  //再帰処理中かどうかの判定フラグ
+
+    if (!$is_recurred) {  //function cacheのために再帰処理を行う
+        $is_recurred = true;
+        $funcargs = func_get_args();
+        return pne_cache_recursive_call(OPENPNE_FUNCTION_CACHE_LIFETIME_FAST, __FUNCTION__, $funcargs);
+    }
+
+    $is_recurred = false;
+
     $sql = 'SELECT COUNT(*) FROM c_message WHERE c_member_id_to = ?' .
             ' AND is_read = 0 AND is_send = 1';
     $params = array(intval($c_member_id_to));
@@ -391,6 +401,9 @@ function db_message_insert_c_message($c_member_id_from, $c_member_id_to, $subjec
         'body'             => $body,
         'r_datetime'       => db_now(),
         'is_send'          => 1,
+        'image_filename_1' => '',
+        'image_filename_2' => '',
+        'image_filename_3' => '',
     );
     return db_insert('c_message', $data);
 }
@@ -415,6 +428,9 @@ function db_message_insert_c_message_syoudaku($c_member_id_from, $c_member_id_to
         'is_send'          => 1,
         'is_syoudaku'      => 1,
         'is_read'          => 1,
+        'image_filename_1' => '',
+        'image_filename_2' => '',
+        'image_filename_3' => '',
     );
     return db_insert('c_message', $data);
 }
@@ -432,6 +448,9 @@ function db_message_insert_message_to_is_save($c_member_id_to,$c_member_id_from,
         'r_datetime'       => db_now(),
         'is_send'          => 0,
         'hensinmoto_c_message_id' => intval($jyusin_message_id),
+        'image_filename_1' => '',
+        'image_filename_2' => '',
+        'image_filename_3' => '',
     );
     return db_insert('c_message', $data);
 }
@@ -539,6 +558,8 @@ function db_message_update_c_message_is_read4c_message_id($c_message_id, $c_memb
         'c_message_id' => intval($c_message_id),
         'c_member_id_to' => intval($c_member_id),
     );
+    pne_cache_drop('db_message_count_c_message_not_is_read4c_member_to_id', (int)$c_member_id);
+    pne_cache_drop('db_message_count_c_message_not_is_read4c_member_to_id', (string)$c_member_id);
     return db_update('c_message', $data, $where);
 }
 
@@ -567,6 +588,8 @@ function db_message_send_message($c_member_id_from, $c_member_id_to, $subject, $
 
     do_common_send_message_mail_send($c_member_id_to, $c_member_id_from);
     do_common_send_message_mail_send_ktai($c_member_id_to, $c_member_id_from);
+    pne_cache_drop('db_message_count_c_message_not_is_read4c_member_to_id', (int)$c_member_id_to);
+    pne_cache_drop('db_message_count_c_message_not_is_read4c_member_to_id', (string)$c_member_id_to);
 
     return $c_message_id;
 }
@@ -576,6 +599,8 @@ function db_message_send_message_syoudaku($c_member_id_from, $c_member_id_to, $s
 {
     //メッセージ
     db_message_insert_c_message_syoudaku($c_member_id_from, $c_member_id_to, $subject, $body);
+    pne_cache_drop('db_message_count_c_message_not_is_read4c_member_to_id', (int)$c_member_id_to);
+    pne_cache_drop('db_message_count_c_message_not_is_read4c_member_to_id', (string)$c_member_id_to);
 
     do_common_send_message_syoudaku_mail_send($c_member_id_to, $c_member_id_from);
 }
@@ -585,6 +610,8 @@ function db_message_send_message_syoukai_commu($c_member_id_from, $c_member_id_t
 {
     //メッセージ
     db_message_insert_c_message($c_member_id_from, $c_member_id_to, $subject, $body);
+    pne_cache_drop('db_message_count_c_message_not_is_read4c_member_to_id', (int)$c_member_id_to);
+    pne_cache_drop('db_message_count_c_message_not_is_read4c_member_to_id', (string)$c_member_id_to);
 
     do_common_send_message_syoukai_commu_mail_send($c_member_id_to, $c_member_id_from);
 }
@@ -594,6 +621,8 @@ function db_message_send_message_syoukai_member($c_member_id_from, $c_member_id_
 {
     //メッセージ
     db_message_insert_c_message($c_member_id_from, $c_member_id_to, $subject, $body);
+    pne_cache_drop('db_message_count_c_message_not_is_read4c_member_to_id', (int)$c_member_id_to);
+    pne_cache_drop('db_message_count_c_message_not_is_read4c_member_to_id', (string)$c_member_id_to);
 
     do_common_send_message_syoukai_member_mail_send($c_member_id_to, $c_member_id_from);
 }
@@ -603,6 +632,8 @@ function db_message_send_message_event_invite($c_member_id_from, $c_member_id_to
 {
     //メッセージ
     db_message_insert_c_message($c_member_id_from, $c_member_id_to, $subject, $body);
+    pne_cache_drop('db_message_count_c_message_not_is_read4c_member_to_id', (int)$c_member_id_to);
+    pne_cache_drop('db_message_count_c_message_not_is_read4c_member_to_id', (string)$c_member_id_to);
 
     do_common_send_message_event_invite_mail_send($c_member_id_to, $c_member_id_from);
 }
@@ -612,6 +643,8 @@ function db_message_send_message_event_message($c_member_id_from, $c_member_id_t
 {
     //メッセージ
     db_message_insert_c_message($c_member_id_from, $c_member_id_to, $subject, $body);
+    pne_cache_drop('db_message_count_c_message_not_is_read4c_member_to_id', (int)$c_member_id_to);
+    pne_cache_drop('db_message_count_c_message_not_is_read4c_member_to_id', (string)$c_member_id_to);
 
     do_common_send_message_event_message_mail_send($c_member_id_to, $c_member_id_from);
 }
@@ -672,58 +705,6 @@ function db_message_get_c_message_prev_id4c_message_id($c_member_id, $c_message_
     $sql =  "SELECT c_message_id FROM c_message" .
             $where.
             " AND is_deleted_to = 0" .
-            " AND is_send = 1" .
-            " AND c_message_id < ?" .
-            " ORDER BY r_datetime DESC";
-    $params = array(
-                intval($c_member_id),
-                intval($c_message_id)
-              );
-
-    return db_get_one($sql, $params);
-}
-
-
-//メッセージの次のc_message_idを取得
-function db_message_get_c_message_next_id4c_message_id($c_member_id, $c_message_id, $box)
-{
-    if ($box == 'savebox' || $box == 'trash') {
-        return null;
-    } else if ($box == 'outbox'){   //送信箱
-        $where = " WHERE c_member_id_from = ?";
-    } else {                        //受信箱
-        $where = " WHERE c_member_id_to = ?";
-    }
-
-    $sql =  "SELECT c_message_id FROM c_message" .
-            $where.
-            " AND is_deleted_to = 0" .
-            " AND is_send = 1" .
-            " AND c_message_id > ?" .
-            " ORDER BY r_datetime";
-    $params = array(
-                intval($c_member_id),
-                intval($c_message_id)
-              );
-
-    return db_get_one($sql, $params);
-}
-
-//メッセージの前のc_message_idを取得
-function db_message_get_c_message_prev_id4c_message_id($c_member_id, $c_message_id, $box)
-{
-    if ($box == 'savebox' || $box == 'trash') {
-        return null;
-    } else if ($box == 'outbox'){   //送信箱
-        $where = " WHERE c_member_id_from = ?" .
-                 " AND is_deleted_from = 0";
-    } else {                        //受信箱
-        $where = " WHERE c_member_id_to = ?" .
-                 " AND is_deleted_to = 0";
-    }
-
-    $sql =  "SELECT c_message_id FROM c_message" .
-            $where.
             " AND is_send = 1" .
             " AND c_message_id < ?" .
             " ORDER BY r_datetime DESC";

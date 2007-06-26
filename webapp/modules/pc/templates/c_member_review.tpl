@@ -1,22 +1,6 @@
-({$inc_html_header|smarty:nodefaults})
-<body>
-({ext_include file="inc_extension_pagelayout_top.tpl"})
-<table class="mainframe" border="0" cellspacing="0" cellpadding="0">
-<tr>
-<td class="container inc_page_header">
-({$inc_page_header|smarty:nodefaults})
-</td>
-</tr>
-<tr>
-<td class="container inc_navi">
-({$inc_navi|smarty:nodefaults})
-</td>
-</tr>
-<tr>
-<td class="container main_content">
-<table class="container" border="0" cellspacing="0" cellpadding="0">({*BEGIN:container*})
-<tr>
-<td class="full_content" align="center">
+({ext_include file="inc_header.tpl"})
+({ext_include file="inc_layoutcolumn_top_720px.tpl"})
+
 ({***************************})
 ({**ここから：メインコンテンツ**})
 ({***************************})
@@ -345,7 +329,7 @@
 <td style="width:286px;" class="bg_02" align="left" valign="middle">
 <div class="padding_s">
 
-({$review.r_datetime|date_format:"%m月%d日 %H:%M"})
+({$review.r_datetime|date_format:"%Y年%m月%d日 %H:%M"})
 
 </div>
 </td>
@@ -392,6 +376,12 @@
 
 <div class="padding_s">
 
+({if $c_commu.c_member_id_admin     == $u
+||   $c_commu.c_member_id_sub_admin == $u
+||   $review.c_member_id            == $u
+})
+<a href="({t_url m=pc a=page_c_member_review_delete_confirm})&amp;target_c_commu_review_id=({$review.c_commu_review_id})&amp;target_c_commu_id=({$c_commu.c_commu_id})">削除</a>&nbsp;
+({/if})
 <a href="({t_url m=pc a=page_h_review_list_product})&amp;c_review_id=({$review.c_review_id})">他メンバーのレビューを見る</a>&nbsp;
 
 </div>
@@ -495,17 +485,5 @@
 ({***************************})
 ({**ここまで：メインコンテンツ**})
 ({***************************})
-</td>
-</tr>
-</table>({*END:container*})
-</td>
-</tr>
-<tr>
-<td class="container inc_page_footer">
-({$inc_page_footer|smarty:nodefaults})
-</td>
-</tr>
-</table>
-({ext_include file="inc_extension_pagelayout_bottom.tpl"})
-</body>
-</html>
+({ext_include file="inc_layoutcolumn_bottom_270px_165px_175px_720px.tpl"})
+({ext_include file="inc_footer.tpl"})

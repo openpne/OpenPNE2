@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -15,7 +15,7 @@ class pc_do_c_event_invite extends OpenPNE_Action
         $c_member_ids = $requests['c_member_id'];
         $body = $requests['body'];
         // ----------
-        $c_topic = c_event_detail_c_topic4c_commu_topic_id($c_commu_topic_id);
+        $c_topic = db_commu_c_topic4c_commu_topic_id_2($c_commu_topic_id);
         $c_commu_id = $c_topic['c_commu_id'];
 
         if (!$c_member_ids) {
@@ -29,7 +29,7 @@ class pc_do_c_event_invite extends OpenPNE_Action
         //--- 権限チェック
 
         //イベント参加者でないと送信できない
-        if (!_db_is_c_event_member($c_commu_topic_id, $u)) {
+        if (!db_commu_is_c_event_member($c_commu_topic_id, $u)) {
             handle_kengen_error();
         }
         //---
@@ -38,7 +38,7 @@ class pc_do_c_event_invite extends OpenPNE_Action
             create_message_event_invite($u, $body, $c_commu_topic_id);
 
         foreach ($c_member_ids as $key => $value) {
-            do_common_send_message_event_invite($u, $value, $msg_subject, $msg_body);
+            db_message_send_message_event_invite($u, $value, $msg_subject, $msg_body);
         }
 
         $p = array('target_c_commu_topic_id' => $c_commu_topic_id);

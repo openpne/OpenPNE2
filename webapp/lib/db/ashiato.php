@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -69,13 +69,6 @@ function db_ashiato_ashiato_mail_num4c_member_id($c_member_id)
     $params = array(intval($c_member_id));
     return db_get_one($sql, $params);
 }
-
-?>
-<?php
-/**
- * @copyright 2005-2006 OpenPNE Project
- * @license   http://www.php.net/license/3_01.txt PHP License 3.01
- */
 
 /**
  * あしあとを付ける

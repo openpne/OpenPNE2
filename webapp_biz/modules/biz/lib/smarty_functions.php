@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -46,13 +46,13 @@ function pc_get_trusted($tpl_name, &$smarty_obj)
 //GET---------------------------------------------
 
 //スケジュール用カレンダーを得る
-function biz_getScheduleWeek($member_id, $w, $cmd, $head = true, $value = true, $foot = true, $member_info = false)
+function biz_getScheduleWeek($u, $member_id, $w, $cmd, $head = true, $value = true, $foot = true, $member_info = false, $start_day = 0 )
 {
     if ($cmd != 'p') {
         //プロフィール確認かどうか
         $cmd_head = $cmd;
     } else {
-        $cmd_head = 'h';
+        $cmd_head = 'f';
     }
 
     $inc_smarty = new OpenPNE_Smarty($GLOBALS['SMARTY']);
@@ -60,7 +60,7 @@ function biz_getScheduleWeek($member_id, $w, $cmd, $head = true, $value = true, 
     $inc_smarty->templates_dir = 'biz/templates';
 
     $inc_smarty->assign("cmd", $cmd_head);  //操作の対象ページ
-    $inc_smarty->assign("target_id", $member_id);  //予定登録者
+    $inc_smarty->assign("target_id", $member_id);  //予定参加者
 
     require_once 'Calendar/Week.php';
     $w = intval($w);
@@ -69,12 +69,13 @@ function biz_getScheduleWeek($member_id, $w, $cmd, $head = true, $value = true, 
     }
     $inc_smarty->assign('w', $w);
     $time = strtotime($w . " week");
-    $Week = new Calendar_Week(date('Y', $time), date('m', $time), date('d', $time), 0);
+    $Week = new Calendar_Week(date('Y', $time), date('m', $time), date('d', $time), $start_day);
     $Week->build();
     $calendar = array();
     $dayofweek = array('日','月','火','水','木','金','土');
-    $i = 0;
-
+    $i = $start_day;
+    $dayofweek = array_merge($dayofweek,
+        array_slice($dayofweek, 0, ($start_day + 1)));
     $schedule = array();
 
     while ($Day = $Week->fetch()) {
@@ -85,11 +86,13 @@ function biz_getScheduleWeek($member_id, $w, $cmd, $head = true, $value = true, 
         $d_disp = sprintf("%2d",$Day->thisDay());
 
         if ($cmd != 's_list') {
-            $schedule = biz_getDateMemberSchedule($y, $m, $d, $member_id);
+            $schedule = biz_getDateMemberSchedule($y, $m, $d, $member_id, $u);
             $banner = biz_isBannerSchedule($y, $m, $d, $member_id);
 
             if (!empty($banner)) {
-                array_push($schedule, $banner);
+                foreach ($banner as $value) {
+                    array_push($schedule, $value);
+                }
             }
         } else {
             $schedule = biz_getShisetsuSchedule($y,$m,$d, $member_id);
@@ -103,9 +106,11 @@ function biz_getScheduleWeek($member_id, $w, $cmd, $head = true, $value = true, 
                 'day_disp' => $d_disp,
                 'dayofweek'=>$dayofweek[$i++], 
                 'now' => false,
-                'birth' => p_h_home_birth4c_member_id($m, $d, $member_id),
-                'event' => p_h_home_event4c_member_id($y, $m, $d, $member_id),
+                'birth' => db_member_birth4c_member_id($m, $d, $member_id),
+                'event' => db_commu_event4c_member_id($y, $m, $d, $member_id),
                 'schedule' => $schedule,
+                'todo' => biz_schedule_todo4c_member_id($u, $member_id, $y, $m, $d),
+                'holiday' => db_c_holiday_list4date($m, $d),
             );
 
         if ($w == 0 && $d == date('d')) {
@@ -118,10 +123,10 @@ function biz_getScheduleWeek($member_id, $w, $cmd, $head = true, $value = true, 
     $daylist = $calendar;  //コピー
 
     for ($i = 1; $i <= 2; $i++) {
-        $j = 0;  //曜日ポインタを示す
+        $j = $start_day;  //曜日ポインタを示す
 
         $time = strtotime($w+$i . " week");
-        $Week = new Calendar_Week(date('Y', $time), date('m', $time), date('d', $time), 0);
+        $Week = new Calendar_Week(date('Y', $time), date('m', $time), date('d', $time),$start_day);
         $Week->build();
 
         while ($Day = $Week->fetch()) {
@@ -165,6 +170,15 @@ function biz_getScheduleWeek($member_id, $w, $cmd, $head = true, $value = true, 
     if ($cmd == 'h') {
         $stateform = biz_getStateForm($member_id, true);
         $inc_smarty->assign('stateform', $stateform);
+
+        if (OPENPNE_USE_POINT_RANK) {
+            // ポイント
+            $point = db_point_get_point($member_id);
+            $inc_smarty->assign("point", $point);
+
+            // ランク
+            $inc_smarty->assign("rank", db_point_get_rank4point($point));
+        }
     }
 
     $content = $inc_smarty->fetch('file:'.OPENPNE_MODULES_BIZ_DIR.'/biz/templates/inc_biz_schedule_week.tpl');
@@ -173,7 +187,7 @@ function biz_getScheduleWeek($member_id, $w, $cmd, $head = true, $value = true, 
 }
 
 //Todoリストを得る
-function biz_getTodoList($member_id, $cmd, $nickname = null)
+function biz_getTodoList($u, $member_id, $cmd, $nickname = null)
 {
     $inc_smarty = new OpenPNE_Smarty($GLOBALS['SMARTY']);
     $inc_smarty->assign("PHPSESSID", md5(session_id()));
@@ -185,12 +199,12 @@ function biz_getTodoList($member_id, $cmd, $nickname = null)
         $inc_smarty->assign("nickname", $nickname);  //予定登録者
     }
 
-    $todolist = biz_getMemberTodo($member_id);
-    $checkedlist = biz_getMemberTodo($member_id, 1);
+    $todolist = biz_getMemberTodo($u, $member_id);
+    $checkedlist = biz_getMemberTodo($u, $member_id, 1);
 
     foreach ($todolist as $key => $value) {
         if ($value['writer_name']) {
-            $writer_name = db_common_c_member4c_member_id($value['writer_id']);
+            $writer_name = db_member_c_member4c_member_id($value['writer_id']);
             $todolist[$key]['writer_name'] = $writer_name['nickname'];
         }
     }
@@ -214,7 +228,7 @@ function biz_getStateForm($member_id, $is_form = false)
     $inc_smarty->assign("is_form", $is_form);
 
     //nickname用-----
-    $c_member=db_common_c_member4c_member_id($member_id);
+    $c_member=db_member_c_member4c_member_id($member_id);
     $inc_smarty->assign("c_member", $c_member);
     //nickname用-----
 

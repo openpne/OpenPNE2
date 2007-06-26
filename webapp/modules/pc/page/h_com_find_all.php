@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -19,8 +19,8 @@ class pc_page_h_com_find_all extends OpenPNE_Action
         $category_id = $requests['category_id'];
         // ----------
 
-        //バグ回避のため半角空白を全角に統一
-        $keyword = str_replace(" ", "　", $keyword);
+        //バグ回避のため全角空白を半角空白に統一
+        $keyword = str_replace("　", " ", $keyword);
 
         do_common_insert_search_log($u, $keyword);
 
@@ -32,7 +32,7 @@ class pc_page_h_com_find_all extends OpenPNE_Action
 
         //検索結果
         list($result, $is_prev, $is_next, $total_num, $start_num, $end_num)
-            = p_h_com_find_all_search_c_commu4c_commu_category(
+            = db_commu_search_c_commu4c_commu_category(
                 $keyword,
                 $target_c_commu_category_parent_id,
                 $page_size,
@@ -54,8 +54,8 @@ class pc_page_h_com_find_all extends OpenPNE_Action
         );
         $this->set('search_val_list', $search_val_list);
 
-        $this->set('c_commu_category_list', p_h_com_find_all_c_commu_category_list4null());
-        $this->set('c_commu_category_parent_list', _db_c_commu_category_parent_list4null());
+        $this->set('c_commu_category_list', db_commu_c_commu_category_list4null());
+        $this->set('c_commu_category_parent_list', db_commu_c_commu_category_parent_list4null());
 
         return 'success';
     }

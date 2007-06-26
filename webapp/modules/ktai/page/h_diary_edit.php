@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -14,7 +14,7 @@ class ktai_page_h_diary_edit extends OpenPNE_Action
         $target_c_diary_id = $requests['target_c_diary_id'];
         // ----------
 
-        $c_member = db_common_c_member4c_member_id($u);
+        $c_member = db_member_c_member4c_member_id($u);
         if ($target_c_diary_id) {
             $c_diary = db_diary_get_c_diary4id($target_c_diary_id);
             $this->set('target_c_diary', $c_diary);
@@ -35,7 +35,7 @@ class ktai_page_h_diary_edit extends OpenPNE_Action
         $mail_address = MAIL_ADDRESS_PREFIX . $mail_address;
         $this->set('blog_address', $mail_address);
 
-        //メンバ情報
+        //メンバー情報
         $this->set('member', $c_member);
 
 

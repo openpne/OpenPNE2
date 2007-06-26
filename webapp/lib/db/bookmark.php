@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -68,6 +68,9 @@ function db_bookmark_c_member_id_list($c_member_id_from, $block = false)
 function db_bookmark_diary_list($c_member_id, $limit)
 {
     $bookmarks = db_bookmark_c_member_id_list($c_member_id, true);
+    if (!$bookmarks) {
+        return array();
+    }
     $ids = implode(',', array_map('intval', $bookmarks));
 
     $sql = 'SELECT c_diary.* FROM c_diary, c_member WHERE c_diary.c_member_id IN ('.$ids.') AND ((c_diary.public_flag = \'public\') OR (c_diary.public_flag = \'default\' AND c_member.public_flag_diary = \'public\')) AND c_diary.c_member_id=c_member.c_member_id ORDER BY r_datetime DESC';
@@ -88,6 +91,9 @@ function db_bookmark_diary_list($c_member_id, $limit)
 function db_bookmark_blog_list($c_member_id, $limit)
 {
     $bookmarks = db_bookmark_c_member_id_list($c_member_id, true);
+    if (!$bookmarks) {
+        return array();
+    }
     $ids = implode(',', array_map('intval', $bookmarks));
 
     $sql = 'SELECT * FROM c_rss_cache WHERE c_member_id IN (' . $ids . ') ORDER BY r_datetime DESC';
@@ -106,6 +112,9 @@ function db_bookmark_blog_list($c_member_id, $limit)
 function db_bookmark_diary_list_with_pager($c_member_id, $page_size, $page)
 {
     $bookmarks = db_bookmark_c_member_id_list($c_member_id, true);
+    if (!$bookmarks) {
+        return array(array(), false, false, 0);
+    }
     $ids = implode(',', array_map('intval', $bookmarks));
 
     $sql = 'SELECT c_diary.* FROM c_diary, c_member WHERE c_diary.c_member_id IN ('.$ids.') AND ((c_diary.public_flag = \'public\') OR (c_diary.public_flag = \'default\' AND c_member.public_flag_diary = \'public\')) AND c_diary.c_member_id=c_member.c_member_id ORDER BY r_datetime DESC';
@@ -176,13 +185,6 @@ function db_bookmark_count($c_member_id)
     $params = array(intval($c_member_id));
     return db_get_one($sql, $params);
 }
-
-?>
-<?php
-/**
- * @copyright 2005-2006 OpenPNE Project
- * @license   http://www.php.net/license/3_01.txt PHP License 3.01
- */
 
 /**
  * お気に入り追加

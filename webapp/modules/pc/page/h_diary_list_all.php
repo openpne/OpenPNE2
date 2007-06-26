@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -53,7 +53,7 @@ class pc_page_h_diary_list_all extends OpenPNE_Action
         if (!$keyword) {
             // rss_cache
             $limit = 20;
-            $this->set('c_rss_cache_list', p_h_diary_list_all_c_rss_cache_list($limit));
+            $this->set('c_rss_cache_list', db_rss_list_all_c_rss_cache_list($limit));
         }
 
         //---- ページ表示 ----//

@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -14,13 +14,6 @@ function db_api_get_member_token($c_member_id)
         return db_api_insert_token($c_member_id);
     }
 }
-
-?>
-<?php
-/**
- * @copyright 2005-2006 OpenPNE Project
- * @license   http://www.php.net/license/3_01.txt PHP License 3.01
- */
 
 function db_api_insert_token($c_member_id, $token = '')
 {
@@ -61,6 +54,24 @@ function get_api_sessionid($c_member_id)
     $datetime=date("YmdHis");
     $api_session_id = md5($api_token . $c_member_id . $c_member_token . $datetime)."&mid=".$c_member_id."&dt=".$datetime;
     return $api_session_id;
+}
+
+function db_api_get_c_api_one($name)
+{
+    $sql = 'SELECT * FROM c_api WHERE name = ?';
+    $params = array(strval($name));
+
+    return db_get_row($sql, $params);
+}
+
+function db_api_check_ip($name, $ip)
+{
+    $api = db_api_get_c_api_one($name);
+    if ($api['ip'] == '*' || $api['ip'] == $ip) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
 ?>

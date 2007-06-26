@@ -1,25 +1,6 @@
-({$inc_html_header|smarty:nodefaults})
-<body>
-({ext_include file="inc_extension_pagelayout_top.tpl"})
-<table class="mainframe" border="0" cellspacing="0" cellpadding="0">
-<tr>
-<td class="container inc_page_header">
-({$inc_page_header|smarty:nodefaults})
-</td>
-</tr>
-<tr>
-<td class="container inc_navi">
-({$inc_navi|smarty:nodefaults})
-</td>
-</tr>
-<tr>
-<td class="container main_content" align="center">
+({ext_include file="inc_header.tpl"})
+({ext_include file="inc_layoutcolumn_top_720px.tpl"})
 
-({ext_include file="inc_alert_box.tpl"})({* エラーメッセージコンテナ *})
-
-<table class="container" border="0" cellspacing="0" cellpadding="0">({*BEGIN:container*})
-<tr>
-<td class="full_content" align="center">
 ({***************************})
 ({**ここから：メインコンテンツ**})
 ({***************************})
@@ -28,7 +9,7 @@
 
 <!-- ******************************************** -->
 <!-- ******ここから：フレンド追加****** -->
-({t_form m=pc a=do_f_link_request_insert_c_friend_confirm})
+({t_form m=pc a=page_f_link_request_confirm})
 <input type="hidden" name="sessid" value="({$PHPSESSID})">
 <input type="hidden" name="target_c_member_id" value="({$target_member.c_member_id})">
 
@@ -152,7 +133,7 @@
 
 <div class="padding_s">
 
-<textarea name="body" rows="5" cols="40"></textarea>
+<textarea class="text" name="body" rows="5" cols="40" style="width:410px;">({$form.body})</textarea>
 
 </div>
 
@@ -176,7 +157,7 @@
 
 <div align="center" style="text-align:center;">
 
-<input type="submit" class="submit" value="送信">
+<input type="submit" class="submit" value="確認画面">
 
 </div>
 
@@ -221,17 +202,5 @@
 ({***************************})
 ({**ここまで：メインコンテンツ**})
 ({***************************})
-</td>
-</tr>
-</table>({*END:container*})
-</td>
-</tr>
-<tr>
-<td class="container inc_page_footer">
-({$inc_page_footer|smarty:nodefaults})
-</td>
-</tr>
-</table>
-({ext_include file="inc_extension_pagelayout_bottom.tpl"})
-</body>
-</html>
+({ext_include file="inc_layoutcolumn_bottom_270px_165px_175px_720px.tpl"})
+({ext_include file="inc_footer.tpl"})

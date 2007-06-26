@@ -1,25 +1,5 @@
-({$inc_html_header|smarty:nodefaults})
-<body>
-({ext_include file="inc_extension_pagelayout_top.tpl"})
-<table class="mainframe" border="0" cellspacing="0" cellpadding="0">
-<tr>
-<td class="container inc_page_header">
-({$inc_page_header|smarty:nodefaults})
-</td>
-</tr>
-<tr>
-<td class="container inc_navi">
-({$inc_navi|smarty:nodefaults})
-</td>
-</tr>
-<tr>
-<td class="container main_content" align="center">
-
-({ext_include file="inc_alert_box.tpl"})({* エラーメッセージコンテナ *})
-
-<table class="container" border="0" cellspacing="0" cellpadding="0">({*BEGIN:container*})
-<tr>
-<td class="full_content" align="center">
+({ext_include file="inc_header.tpl"})
+({ext_include file="inc_layoutcolumn_top_720px.tpl"})
 ({***************************})
 ({**ここから：メインコンテンツ**})
 ({***************************})
@@ -110,7 +90,7 @@
 <td style="width:421px;" class="bg_02" align="left" valign="middle">
 <div class="padding_s">
 
-<input  name="mail" value="({$requests.mail})" size="30">
+<input type="text" class="text"  name="mail" value="({$requests.mail})" size="40">
 ({if $smarty.const.OPENPNE_REGIST_FROM == $smarty.const.OPENPNE_REGIST_FROM_PC})
 <br>※携帯アドレスには招待を送ることができません
 ({elseif $smarty.const.OPENPNE_REGIST_FROM == $smarty.const.OPENPNE_REGIST_FROM_KTAI})
@@ -142,7 +122,7 @@
 
 <div class="padding_s">
 
-<textarea name="message" rows="5" cols="40">({$requests.message})</textarea>
+<textarea class="text" name="message" style="width: 410px;" rows="5" cols="40">({$requests.message})</textarea>
 
 </div>
 
@@ -189,7 +169,7 @@
 </tr>
 
 
-
+({if $smarty.const.OPENPNE_USE_CAPTCHA})
 ({*********})
 ({* captcha *})
 ({*********})
@@ -210,16 +190,18 @@
 
 <div class="padding_s">
 
-<img src="./cap.php">
+<img src="./cap.php?rand=({math equation="rand(0,99999999)"})">
 <br>
 ※上に表示されているキーワードをご記入下さい。
-<input  name="captcha" size="30">
+<input type="text" class="text"  name="captcha" size="30">
 
+</div>
 
 </td>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({*********})
+({/if})
 <tr>
 <td style="width:574px;height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
@@ -372,7 +354,7 @@
 
 <div style="padding:6px 100px;text-align:center;">
 
-<input type=submit class="submit" value="　削  除　">
+<input type="submit" class="submit" value="　削  除　">
 
 </div>
 
@@ -412,18 +394,5 @@
 ({***************************})
 ({**ここまで：メインコンテンツ**})
 ({***************************})
-</td>
-</tr>
-</table>({*END:container*})
-</td>
-</tr>
-<tr>
-<td class="container inc_page_footer">
-({$inc_page_footer|smarty:nodefaults})
-</td>
-</tr>
-</table>
-({ext_include file="inc_extension_pagelayout_bottom.tpl"})
-</body>
-</html>
-
+({ext_include file="inc_layoutcolumn_bottom_270px_165px_175px_720px.tpl"})
+({ext_include file="inc_footer.tpl"})

@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -10,7 +10,7 @@ class ktai_page_h_config_image extends OpenPNE_Action
     {
         $u  = $GLOBALS['KTAI_C_MEMBER_ID'];
 
-        $prof = db_common_c_member_with_profile($u);
+        $prof = db_member_c_member_with_profile($u);
         $this->set('c_member', $prof);
 
         if (MAIL_ADDRESS_HASHED) {

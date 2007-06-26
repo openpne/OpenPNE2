@@ -1,12 +1,12 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
 /**
  * OpenPNE_KtaiID
- * 端末IDを取得する
+ * 個体識別番号を取得する
  */
 class OpenPNE_KtaiID
 {
@@ -20,10 +20,10 @@ class OpenPNE_KtaiID
     }
 
     /**
-     * IDを取得する (static)
+     * 個体識別番号を取得する (static)
      * 
      * @access public
-     * @return string 端末ID(取得できなかった場合は空文字列)
+     * @return string 個体識別番号(取得できなかった場合は空文字列)
      */
     function getID()
     {

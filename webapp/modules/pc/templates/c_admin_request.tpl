@@ -1,25 +1,6 @@
-({$inc_html_header|smarty:nodefaults})
-<body>
-({ext_include file="inc_extension_pagelayout_top.tpl"})
-<table class="mainframe" border="0" cellspacing="0" cellpadding="0">
-<tr>
-<td class="container inc_page_header">
-({$inc_page_header|smarty:nodefaults})
-</td>
-</tr>
-<tr>
-<td class="container inc_navi">
-({$inc_navi|smarty:nodefaults})
-</td>
-</tr>
-<tr>
-<td class="container main_content" align="center">
+({ext_include file="inc_header.tpl"})
+({ext_include file="inc_layoutcolumn_top_720px.tpl"})
 
-({ext_include file="inc_alert_box.tpl"})({* エラーメッセージコンテナ *})
-
-<table class="container" border="0" cellspacing="0" cellpadding="0">({*BEGIN:container*})
-<tr>
-<td class="full_content" align="center">
 ({***************************})
 ({**ここから：メインコンテンツ**})
 ({***************************})
@@ -27,7 +8,7 @@
 <img src="./skin/dummy.gif" class="v_spacer_l">
 
 <!-- ******************************************** -->
-<!-- ******ここから：管理人交代依頼****** -->
+<!-- ******ここから：管理者交代依頼****** -->
 
 <table border="0" cellspacing="0" cellpadding="0" style="width:650px;margin:0px auto;" class="border_07">
 <tr>
@@ -38,14 +19,14 @@
 <tr>
 <td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
 <td class="bg_01" align="center">
-<!-- *ここから：管理人交代依頼＞内容* -->
+<!-- *ここから：管理者交代依頼＞内容* -->
 ({*ここから：header*})
 <!-- ここから：小タイトル -->
 <div class="border_01">
 <table border="0" cellspacing="0" cellpadding="0" style="width:634px;">
 <tr>
 <td style="width:36px;" class="bg_06"><img src="({t_img_url_skin filename=content_header_1})" style="width:30px;height:20px;" class="dummy"></td>
-<td style="width:468px;padding:2px 0px;" class="bg_06"><span class="b_b c_00">管理人交代依頼</span></td>
+<td style="width:468px;padding:2px 0px;" class="bg_06"><span class="b_b c_00">管理者交代依頼</span></td>
 <td style="width:140px;" align="right" class="bg_06">&nbsp;</td>
 </tr>
 </table>
@@ -66,7 +47,7 @@
 
 <div class="padding_w_m">
 
-この人に管理人交代依頼を送信します。よろしいですか。
+この人に管理者交代依頼を送信します。よろしいですか。
 
 </div>
 
@@ -193,25 +174,28 @@
 
 <table border="0" style="width:240px;">
 <tr>
+<td align="right">
 
 ({t_form m=pc a=do_c_admin_request_insert_c_commu_admin_confirm})
 <input type="hidden" name="sessid" value="({$PHPSESSID})">
 <input type="hidden" name="target_c_member_id" value="({$member.c_member_id})">
 <input type="hidden" name="target_c_commu_id" value="({$c_commu.c_commu_id})">
-<td align="right"><input type=submit class="submit" name="yes_button" value="　送　信　">
-</td>
+
+<input type="submit" class="submit" name="yes_button" value="　送　信　">
+
 </form>
+
+</td>
+<td>
 
 ({t_form _method=get m=pc a=page_c_edit_member})
 <input type="hidden" name="target_c_commu_id" value="({$c_commu.c_commu_id})">
-<td><input type="submit" class="submit" type="button" value="キャンセル">
-</td>
+<input type="submit" class="submit" value="キャンセル">
 </form>
 
+</td>
 </tr>
 </table>
-
-</div>
 
 </div>
 
@@ -244,7 +228,7 @@
 ({*ここから：footer*})
 <!-- 無し -->
 ({*ここまで：footer*})
-<!-- *ここまで：管理人交代依頼＞＞内容* -->
+<!-- *ここまで：管理者交代依頼＞＞内容* -->
 </td>
 <td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
 </tr>
@@ -254,7 +238,7 @@
 <td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
 </tr>
 </table>
-<!-- ******ここまで：管理人交代依頼****** -->
+<!-- ******ここまで：管理者交代依頼****** -->
 <!-- ******************************************** -->
 
 <img src="./skin/dummy.gif" class="v_spacer_l">
@@ -262,17 +246,5 @@
 ({***************************})
 ({**ここまで：メインコンテンツ**})
 ({***************************})
-</td>
-</tr>
-</table>({*END:container*})
-</td>
-</tr>
-<tr>
-<td class="container inc_page_footer">
-({$inc_page_footer|smarty:nodefaults})
-</td>
-</tr>
-</table>
-({ext_include file="inc_extension_pagelayout_bottom.tpl"})
-</body>
-</html>
+({ext_include file="inc_layoutcolumn_bottom_270px_165px_175px_720px.tpl"})
+({ext_include file="inc_footer.tpl"})

@@ -1,10 +1,10 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
-// 管理アカウント削除
+// 管理用アカウント削除
 class admin_do_delete_c_admin_user extends OpenPNE_Action
 {
     function execute($requests)

@@ -1,25 +1,5 @@
-({$inc_html_header|smarty:nodefaults})
-<body>
-({ext_include file="inc_extension_pagelayout_top.tpl"})
-<table class="mainframe" border="0" cellspacing="0" cellpadding="0">
-<tr>
-<td class="container inc_page_header">
-({$inc_page_header|smarty:nodefaults})
-</td>
-</tr>
-<tr>
-<td class="container inc_navi">
-({$inc_navi|smarty:nodefaults})
-</td>
-</tr>
-<tr>
-<td class="container main_content" align="center">
-
-({ext_include file="inc_alert_box.tpl"})({* エラーメッセージコンテナ *})
-
-<table class="container" border="0" cellspacing="0" cellpadding="0">({*BEGIN:container*})
-<tr>
-<td class="full_content" align="center">
+({ext_include file="inc_header.tpl"})
+({ext_include file="inc_layoutcolumn_top_720px.tpl"})
 ({***************************})
 ({**ここから：メインコンテンツ**})
 ({***************************})
@@ -100,7 +80,7 @@
 
 <select name='sc_rcount'>
 	({section name=i loop=$rp_count})
-		<option type='radio' value='({$rp_count[i]})'>({$rp_count[i]})週間
+		<option value='({$rp_count[i]})'>({$rp_count[i]})週間
 	({/section})
 </select>
 
@@ -232,7 +212,7 @@
 <td class="bg_02" align="left" valign="middle">
 <div style="padding:4px 3px;">
 
-<input type='text' name='sc_title' value="({$title})" size="60">
+<input class="text" type='text' name='sc_title' value="({$title})" size="60">
 </div>
 </td>
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
@@ -255,7 +235,7 @@
 <td class="bg_02" align="left" valign="middle">
 <div style="padding:4px 3px;">
 
-<textarea name='sc_memo' cols="50" rows="5">({$value})</textarea>
+<textarea class="text" name='sc_memo' cols="50" rows="5">({$value})</textarea>
 </div>
 </td>
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
@@ -362,17 +342,5 @@
 ({***************************})
 ({**ここまで：メインコンテンツ**})
 ({***************************})
-</td>
-</tr>
-</table>({*END:container*})
-</td>
-</tr>
-<tr>
-<td class="container inc_page_footer">
-({$inc_page_footer|smarty:nodefaults})
-</td>
-</tr>
-</table>
-({ext_include file="inc_extension_pagelayout_bottom.tpl"})
-</body>
-</html>
+({ext_include file="inc_layoutcolumn_bottom_270px_165px_175px_720px.tpl"})
+({ext_include file="inc_footer.tpl"})

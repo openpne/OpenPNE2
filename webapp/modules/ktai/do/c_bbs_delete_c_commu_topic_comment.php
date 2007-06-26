@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -33,7 +33,7 @@ class ktai_do_c_bbs_delete_c_commu_topic_comment extends OpenPNE_Action
         }
         //---
 
-        do_c_bbs_delete_c_commu_topic_comment($target_c_commu_topic_comment_id);
+        db_commu_delete_c_commu_topic_comment($target_c_commu_topic_comment_id);
 
         $p = array('target_c_commu_topic_id' => $c_commu_topic_comment['c_commu_topic_id']);
         openpne_redirect('ktai', 'page_c_bbs', $p);

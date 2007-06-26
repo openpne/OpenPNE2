@@ -1,20 +1,5 @@
-({$inc_html_header|smarty:nodefaults})
-<body>
-({ext_include file="inc_extension_pagelayout_top.tpl"})
-<table class="mainframe" border="0" cellspacing="0" cellpadding="0">
-<tr>
-<td class="container inc_page_header">
-({$inc_page_header|smarty:nodefaults})
-</td>
-</tr>
-<tr>
-<td class="container main_content" align="center">
-
-({ext_include file="inc_alert_box.tpl"})({* エラーメッセージコンテナ *})
-
-<table class="container" border="0" cellspacing="0" cellpadding="0">({*BEGIN:container*})
-<tr>
-<td class="full_content" align="center">
+({ext_include file="inc_header.tpl"})
+({ext_include file="inc_layoutcolumn_top_720px.tpl"})
 ({***************************})
 ({**ここから：メインコンテンツ**})
 ({***************************})
@@ -73,7 +58,7 @@
 
 <div class="padding_s">
 
-<input name="nickname" type="text" value="({$profs.nickname})" size="30"><br>
+<input class="text" name="nickname" type="text" value="({$profs.nickname})" size="30"><br>
 
 </div>
 
@@ -107,7 +92,7 @@
 
 <div class="padding_s">
 
-<input name="birth_year" type="text" value="({$profs.birth_year})" size="10" maxlength="4">年
+<input class="text" name="birth_year" type="text" value="({$profs.birth_year})" size="10" maxlength="4">年
 
 </div>
 
@@ -225,16 +210,16 @@
 
 ({strip})
 ({if $profile.form_type == 'text'})
-    <input type="text" size="30" name="profile[({$profile.name})]" value="({$profs.profile[$profile.name]})">
+    <input type="text" class="text" size="30" name="profile[({$profile.name})]" value="({$profs.profile[$profile.name]})">
 ({elseif $profile.form_type == 'textlong'})
     <input type="text" size="60" name="profile[({$profile.name})]" value="({$profs.profile[$profile.name]})">
 ({elseif $profile.form_type == 'textarea'})
-    <textarea name="profile[({$profile.name})]" rows="6" cols="50">({$profs.profile[$profile.name]})</textarea>
+    <textarea class="text" name="profile[({$profile.name})]" rows="6" cols="50">({$profs.profile[$profile.name]})</textarea>
 ({elseif $profile.form_type == 'select'})
     <select name="profile[({$profile.name})]">
     <option value="">選択してください</option>
     ({foreach item=item from=$profile.options})
-    <option value="({$item.c_profile_option_id})"({if $profs.profile[$profile.name] == $item.value}) selected="selected"({/if})>({$item.value|default:"--"})</option>
+    <option value="({$item.c_profile_option_id})"({if $profs.profile[$profile.name] == $item.c_profile_option_id}) selected="selected"({/if})>({$item.value|default:"--"})</option>
     ({/foreach})
     </select>
 ({elseif $profile.form_type == 'radio'})
@@ -242,20 +227,18 @@
     ({foreach item=item from=$profile.options})
     ({counter name=$profile.name assign=_cnt})
     ({if $_cnt % 3 == 1})<tr>({/if})
-        <td><input type="radio" name="profile[({$profile.name})]" value="({$item.c_profile_option_id})"({if $profs.profile[$profile.name] == $item.value}) checked="checked"({/if})></td>
+        <td><input type="radio" name="profile[({$profile.name})]" value="({$item.c_profile_option_id})"({if $profs.profile[$profile.name] == $item.c_profile_option_id}) checked="checked"({/if})></td>
         <td>({$item.value|default:"--"})</td>
     ({if $_cnt % 3 == 0})</tr>({/if})
     ({/foreach})
     ({if $_cnt % 3 != 0})</tr>({/if})
     </table>
 ({elseif $profile.form_type == 'checkbox'})
-    <input type="hidden" name="profile[({$profile.name})][]" value="0">
-
     <table>
     ({foreach item=item from=$profile.options name=check})
     ({counter name=$profile.name assign=_cnt})
     ({if $_cnt % 3 == 1})<tr>({/if})
-        <td><input type="checkbox" name="profile[({$profile.name})][]" value="({$item.c_profile_option_id})"({if $profs.profile[$profile.name] && in_array($item.value|smarty:nodefaults, $profs.profile[$profile.name])}) checked="checked"({/if})></td>
+        <td><input type="checkbox"  class="no_bg" name="profile[({$profile.name})][]" value="({$item.c_profile_option_id})"({if $profs.profile[$profile.name] && in_array($item.c_profile_option_id|smarty:nodefaults, $profs.profile[$profile.name])}) checked="checked"({/if})></td>
         <td>({$item.value|default:"--"})</td>
     ({if $_cnt % 3 == 0})</tr>({/if})
     ({/foreach})
@@ -361,7 +344,7 @@ PCアドレス <span class="caution">※</span>
 
 <div class="padding_s">
 
-<input name="password" type="password"><br><span class="caution">※6～12文字の半角英数で入力してください</span>
+<input class="text" name="password" type="password"><br><span class="caution">※6～12文字の半角英数で入力してください</span>
 
 </div>
 
@@ -389,7 +372,7 @@ PCアドレス <span class="caution">※</span>
 
 <div class="padding_s">
 
-<input name="password2" type="password">
+<input class="text" name="password2" type="password">
 
 </div>
 
@@ -450,7 +433,7 @@ PCアドレス <span class="caution">※</span>
 
 <div class="padding_s">
 
-<input name="c_password_query_answer" type="text" value="({$profs.c_password_query_answer})" size="30">
+<input type="text" class="text" name="c_password_query_answer" type="text" value="({$profs.c_password_query_answer})" size="30">
 
 </div>
 
@@ -509,17 +492,5 @@ PCアドレス <span class="caution">※</span>
 ({***************************})
 ({**ここまで：メインコンテンツ**})
 ({***************************})
-</td>
-</tr>
-</table>({*END:container*})
-</td>
-</tr>
-<tr>
-<td class="container inc_page_footer">
-({$inc_page_footer|smarty:nodefaults})
-</td>
-</tr>
-</table>
-({ext_include file="inc_extension_pagelayout_bottom.tpl"})
-</body>
-</html>
+({ext_include file="inc_layoutcolumn_bottom_270px_165px_175px_720px.tpl"})
+({ext_include file="inc_footer.tpl"})

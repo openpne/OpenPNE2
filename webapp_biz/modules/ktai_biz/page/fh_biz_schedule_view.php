@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -10,6 +10,10 @@ class ktai_biz_page_fh_biz_schedule_view extends OpenPNE_Action
     {
         $u  = $GLOBALS['KTAI_C_MEMBER_ID'];
         $this->set('tail', $GLOBALS['KTAI_URL_TAIL']);
+
+        if (!biz_isPermissionSchedule($u, $requests['id'])) {
+            handle_kengen_error();
+        }
 
         if (empty($requests['target_id']) || ($requests['target_id'] == $u)) {
             //自分自身
@@ -24,7 +28,7 @@ class ktai_biz_page_fh_biz_schedule_view extends OpenPNE_Action
         $this->set('inc_navi',fetch_inc_navi("h"));
 
         //プロフィール
-        $target_member = db_common_c_member4c_member_id($u);
+        $target_member = db_member_c_member4c_member_id($u);
         $this->set("target_member", $target_member);
 
         //カレンダー関係
@@ -67,7 +71,6 @@ class ktai_biz_page_fh_biz_schedule_view extends OpenPNE_Action
             $jmembers[$target_member['c_member_id']] = $target_member['nickname'];
             $jmembers = array_unique($jmembers);
         }
-        $jshisetsu = biz_getJoinShisetsuSchedule($requests['id']);
 
         //参加者は10人目まで表示
         if (count($jmembers) > 10) {

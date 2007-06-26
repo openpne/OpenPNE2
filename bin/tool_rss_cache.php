@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -30,7 +30,7 @@ $start_id = $end_id = 0;
 
 touch($log);
 
-// 前回最後にRSS取得したメンバのID取得
+// 前回最後にRSS取得したメンバーのID取得
 if ($f = fopen($log, 'r+')) {
     rewind($f);
     if (flock($f, LOCK_EX)) {
@@ -49,7 +49,7 @@ if ($c_member_list) {
     }
 }
 
-// 今回取得する最後のメンバIDを記録
+// 今回取得する最後のメンバーIDを記録
 if ($f) {
     rewind($f);
     ftruncate($f, fwrite($f, $end_id));

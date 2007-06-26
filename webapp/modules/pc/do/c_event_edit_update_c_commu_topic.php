@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -19,29 +19,30 @@ class pc_do_c_event_edit_update_c_commu_topic extends OpenPNE_Action
         $upfile_obj3 = $_FILES['image_filename3'];
 
 
-        $event = p_c_event_add_confirm_event4request();
+        list($event, $errors) = p_c_event_add_confirm_event4request(true);
         if ($event['invite_period_year'].$event['invite_period_month'].$event['invite_period_day'] != '') {
             $invite_period = $event['invite_period_year']."-".$event['invite_period_month']."-".$event['invite_period_day'];
         } else {
             $invite_period = "";
         }
+        $c_commu_id = $event['c_commu_id'];
 
         //--- 権限チェック
         //イベント管理者 or コミュニティ管理者
 
-        if (!_db_is_c_event_admin($c_commu_topic_id, $u) &&
-            !_db_is_c_commu_admin($event['c_commu_id'], $u)) {
+        if (!db_commu_is_c_event_admin($c_commu_topic_id, $u) &&
+            !db_commu_is_c_commu_admin($c_commu_id, $u)) {
+            handle_kengen_error();
+        }
+        $c_commu = db_commu_c_commu4c_commu_id2($c_commu_id);
+        if ($c_commu['topic_authority'] == 'admin_only' &&
+            !db_commu_is_c_commu_admin($c_commu_id, $u)) {
             handle_kengen_error();
         }
         //---
 
         //エラーチェック
-        if (!trim($event['title'])) {
-            $err_msg[] = "タイトルを入力してください";
-        }
-        if (!trim($event['detail'])) {
-            $err_msg[] = "詳細を入力してください";
-        }
+        $err_msg = $errors;
 
         if (!$event['open_date_month'] || !$event['open_date_day'] || !$event['open_date_year']) {
             $err_msg[] = "開催日時を入力してください";
@@ -88,7 +89,6 @@ class pc_do_c_event_edit_update_c_commu_topic extends OpenPNE_Action
             exit;
         }
 
-
         //画像コピー
         $sessid = session_id();
         t_image_clear_tmp($sessid);
@@ -122,14 +122,15 @@ class pc_do_c_event_edit_update_c_commu_topic extends OpenPNE_Action
             'open_pref_comment' => $event['open_pref_comment'],
             'invite_period'     => $invite_period,
             'event_flag'        => 1,
+            'capacity'        => $event['capacity'],
         );
-        do_c_event_edit_update_c_commu_topic($c_commu_topic_id, $update_c_commu_topic);
+        db_commu_update_c_commu_topic($c_commu_topic_id, $update_c_commu_topic);
 
 
         $update_c_commu_topic_comment = array(
             'body' => $event['detail'],
         );
-        $c_topic = c_event_detail_c_topic4c_commu_topic_id($c_commu_topic_id);
+        $c_topic = db_commu_c_topic4c_commu_topic_id_2($c_commu_topic_id);
         if ($filename1) {
             $update_c_commu_topic_comment["image_filename1"] = $filename1;
             image_data_delete($c_topic['image_filename1']);
@@ -142,7 +143,7 @@ class pc_do_c_event_edit_update_c_commu_topic extends OpenPNE_Action
             $update_c_commu_topic_comment["image_filename3"] = $filename3;
             image_data_delete($c_topic['image_filename3']);
         }
-        do_c_event_edit_update_c_commu_topic_comment($c_commu_topic_id, $update_c_commu_topic_comment);
+        db_commu_update_c_commu_topic_comment($c_commu_topic_id, $update_c_commu_topic_comment);
 
         $p = array('target_c_commu_topic_id' => $c_commu_topic_id);
         openpne_redirect('pc', 'page_c_event_detail', $p);

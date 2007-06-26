@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -20,7 +20,7 @@ class pc_do_h_confirm_list_insert_c_friend extends OpenPNE_Action
         //--- 権限チェック
         //リンク承認を受けているメンバー
 
-        $cfc = _do_c_friend_confirm4c_friend_confirm_id($target_c_friend_confirm_id);
+        $cfc = db_friend_c_friend_confirm4c_friend_confirm_id($target_c_friend_confirm_id);
 
         if ($cfc['c_member_id_to'] != $u) {
             handle_kengen_error();

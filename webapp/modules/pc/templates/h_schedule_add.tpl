@@ -1,25 +1,6 @@
-({$inc_html_header|smarty:nodefaults})
-<body>
-({ext_include file="inc_extension_pagelayout_top.tpl"})
-<table class="mainframe" border="0" cellspacing="0" cellpadding="0">
-<tr>
-<td class="container inc_page_header">
-({$inc_page_header|smarty:nodefaults})
-</td>
-</tr>
-<tr>
-<td class="container inc_navi">
-({$inc_navi|smarty:nodefaults})
-</td>
-</tr>
-<tr>
-<td class="container main_content" align="center">
+({ext_include file="inc_header.tpl"})
+({ext_include file="inc_layoutcolumn_top_720px.tpl"})
 
-({ext_include file="inc_alert_box.tpl"})({* エラーメッセージコンテナ *})
-
-<table class="container" border="0" cellspacing="0" cellpadding="0">({*BEGIN:container*})
-<tr>
-<td class="full_content" align="center">
 ({***************************})
 ({**ここから：メインコンテンツ**})
 ({***************************})
@@ -79,7 +60,7 @@
 
 <div class="padding_s">
 
-<input name="title" value="({$input.title})" style="width: 400">
+<input type="text" class="text" name="title" value="({$input.title})" style="width:400px">
 
 </div>
 
@@ -196,7 +177,7 @@
 
 <div class="padding_s">
 
-<textarea name="body" style="width:400;height:150">({$input.body})</textarea>
+<textarea class="text" name="body" style="width:400px;height:150px">({$input.body})</textarea>
 
 </div>
 
@@ -207,7 +188,7 @@
 ({if !$is_unused_schedule})
 <!-- ここから；スケジュールフォーム＞お知らせメール通知 -->
 <tr>
-<td align="center" class="border_01" style="border-width:0px 1px 1px 0px;">
+<td align="center" class="border_01 bg_05" style="border-width:0px 1px 1px 0px;">
 
 <div class="padding_s">お知らせメール</div>
 
@@ -279,17 +260,5 @@
 ({***************************})
 ({**ここまで：メインコンテンツ**})
 ({***************************})
-</td>
-</tr>
-</table>({*END:container*})
-</td>
-</tr>
-<tr>
-<td class="container inc_page_footer">
-({$inc_page_footer|smarty:nodefaults})
-</td>
-</tr>
-</table>
-({ext_include file="inc_extension_pagelayout_bottom.tpl"})
-</body>
-</html>
+({ext_include file="inc_layoutcolumn_bottom_270px_165px_175px_720px.tpl"})
+({ext_include file="inc_footer.tpl"})

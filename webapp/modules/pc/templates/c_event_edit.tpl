@@ -1,25 +1,6 @@
-({$inc_html_header|smarty:nodefaults})
-<body>
-({ext_include file="inc_extension_pagelayout_top.tpl"})
-<table class="mainframe" border="0" cellspacing="0" cellpadding="0">
-<tr>
-<td class="container inc_page_header">
-({$inc_page_header|smarty:nodefaults})
-</td>
-</tr>
-<tr>
-<td class="container inc_navi">
-({$inc_navi|smarty:nodefaults})
-</td>
-</tr>
-<tr>
-<td class="container main_content" align="center">
+({ext_include file="inc_header.tpl"})
+({ext_include file="inc_layoutcolumn_top_720px.tpl"})
 
-({ext_include file="inc_alert_box.tpl"})({* エラーメッセージコンテナ *})
-
-<table class="container" border="0" cellspacing="0" cellpadding="0">({*BEGIN:container*})
-<tr>
-<td class="full_content" align="center">
 ({***************************})
 ({**ここから：メインコンテンツ**})
 ({***************************})
@@ -81,7 +62,7 @@
 
 <div class="padding_s">
 
-<input type="text" name="title" value="({$event.name})" maxlength="120">
+<input type="text" class="text" name="title" value="({$event.name})">
 
 </div>
 
@@ -124,7 +105,7 @@
 ({html_options values=$day selected=$event.open_date_day output=$day})
 </select>
 日
-(補足：<input type="text" name="open_date_comment" value="({$event.open_date_comment})" size="30">)
+(補足：<input type="text" class="text" name="open_date_comment" value="({$event.open_date_comment})" size="30">)
 
 </div>
 
@@ -156,7 +137,7 @@
 <option value=0>選択してください
 ({html_options options=$pref selected=$event.open_pref_id})
 </select>
-(補足：<input type="text" name="open_pref_comment" value="({$event.open_pref_comment})" size="30">)
+(補足：<input type="text" class="text" name="open_pref_comment" value="({$event.open_pref_comment})" size="30">)
 
 </div>
 
@@ -184,7 +165,35 @@
 
 <div class="padding_s">
 
-<textarea name="detail" rows="6" cols="50">({$event.body})</textarea>
+<textarea class="text" name="detail" rows="6" cols="50" style="width:480px;">({$event.body})</textarea>
+
+</div>
+
+</td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+</tr>
+({*********})
+<tr>
+<td style="width:644px;height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+</tr>
+({*********})
+<tr>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:150px;" class="bg_05" align="center" valign="middle">
+
+<div class="padding_s">
+
+募集人数
+
+</div>
+
+</td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:491px;" class="bg_02" align="left" valign="middle">
+
+<div class="padding_s">
+
+<input type="text" class="text" name="capacity" value="({if $event.capacity})({$event.capacity})({/if})">
 
 </div>
 
@@ -499,17 +508,5 @@
 ({***************************})
 ({**ここまで：メインコンテンツ**})
 ({***************************})
-</td>
-</tr>
-</table>({*END:container*})
-</td>
-</tr>
-<tr>
-<td class="container inc_page_footer">
-({$inc_page_footer|smarty:nodefaults})
-</td>
-</tr>
-</table>
-({ext_include file="inc_extension_pagelayout_bottom.tpl"})
-</body>
-</html>
+({ext_include file="inc_layoutcolumn_bottom_270px_165px_175px_720px.tpl"})
+({ext_include file="inc_footer.tpl"})

@@ -1,22 +1,6 @@
-({$inc_html_header|smarty:nodefaults})
-<body>
-({ext_include file="inc_extension_pagelayout_top.tpl"})
-<table class="mainframe" border="0" cellspacing="0" cellpadding="0">
-<tr>
-<td class="container inc_page_header">
-({$inc_page_header|smarty:nodefaults})
-</td>
-</tr>
-<tr>
-<td class="container inc_navi">
-({$inc_navi|smarty:nodefaults})
-</td>
-</tr>
-<tr>
-<td class="container main_content">
-<table class="container" border="0" cellspacing="0" cellpadding="0">({*BEGIN:container*})
-<tr>
-<td class="full_content" align="center">
+({ext_include file="inc_header.tpl"})
+({ext_include file="inc_layoutcolumn_top_720px.tpl"})
+
 ({***************************})
 ({**ここから：メインコンテンツ**})
 ({***************************})
@@ -69,7 +53,7 @@
 <td style="width:421px;" class="bg_02" align="left" valign="middle">
 <div class="padding_s">
 
-<input name="nickname" size="30" type="text">
+<input class="text" name="nickname" size="30" type="text">
 
 </div>
 </td>
@@ -92,9 +76,9 @@
 
 <td style="width:421px;" class="bg_02" align="left" valign="middle">
 <div class="padding_s">
-<input name="birth_year" size="4" maxlength="4">年
-<input name="birth_month" size="2" maxlength="2">月
-<input name="birth_day" size="2" maxlength="2">日
+<input type="text" class="text" name="birth_year" size="4" maxlength="4">年
+<input type="text" class="text" name="birth_month" size="2" maxlength="2">月
+<input type="text" class="text" name="birth_day" size="2" maxlength="2">日
 </div>
 </td>
 </tr>
@@ -135,14 +119,8 @@
     <option value="({$item.c_profile_option_id})">({$item.value})</option>
     ({/foreach})
     </select>
-({* 複数選択パターン *})
-    ({*
-    ({foreach from=$profile_list[$profile.name].options item=item})
-    <input type="checkbox" name="profile[({$profile.name})][]" value="({$item.c_profile_option_id})">({$item.value})
-    ({/foreach})
-    *})
 ({elseif $profile.form_type == 'text' || $profile.form_type == 'textlong' || $profile.form_type == 'textarea'})
-    <input name="profile[({$profile.name})]" size="30" type="text">
+    <input class="text" name="profile[({$profile.name})]" size="30" type="text">
 ({/if})
 
 </div>
@@ -299,17 +277,5 @@
 ({***************************})
 ({**ここまで：メインコンテンツ**})
 ({***************************})
-</td>
-</tr>
-</table>({*END:container*})
-</td>
-</tr>
-<tr>
-<td class="container inc_page_footer">
-({$inc_page_footer|smarty:nodefaults})
-</td>
-</tr>
-</table>
-({ext_include file="inc_extension_pagelayout_bottom.tpl"})
-</body>
-</html>
+({ext_include file="inc_layoutcolumn_bottom_270px_165px_175px_720px.tpl"})
+({ext_include file="inc_footer.tpl"})

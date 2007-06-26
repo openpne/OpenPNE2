@@ -1,11 +1,11 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
 /**
- * 管理画面用アカウントが存在するかどうか
+ * 管理用アカウントが存在するかどうか
  * setup が完了しているかどうかの判定に使う
  * 
  * @return bool 存在するかどうか
@@ -131,11 +131,19 @@ function do_common_c_pc_address_pre4sid($sid)
  * @param string $password 平文のパスワード
  * @return bool パスワードが正しいかどうか
  */
-function db_common_authenticate_password($c_member_id, $password)
+function db_common_authenticate_password($c_member_id, $password, $is_ktai = false)
 {
-    $sql = 'SELECT c_member_secure_id FROM c_member_secure' .
-            ' WHERE c_member_id = ? AND hashed_password = ?';
-    return (bool)db_get_one($sql, array(intval($c_member_id), md5($password)));;
+    $auth_config = get_auth_config($is_ktai);
+    
+    if (IS_SLAVEPNE) {
+        $username = db_member_username4c_member_id($c_member_id, $is_ktai);
+    } else {
+        $auth_config['options']['usernamecol'] = 'c_member_id';
+        $username = $c_member_id;
+    }
+    
+    $storage = Auth::_factory($auth_config['storage'],$auth_config['options']);
+    return $storage->fetchData($username, $password, false);
 }
 
 /**
@@ -316,7 +324,7 @@ function db_get_c_navi($navi_type = 'h')
 ?>
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -487,6 +495,9 @@ function db_common_delete_c_member($c_member_id)
 
     $sql = 'DELETE FROM c_member WHERE c_member_id = ?';
     db_query($sql, $single);
+    
+    $sql = 'DELETE FROM c_username WHERE c_member_id = ?';
+    db_query($sql, $single);
 }
 
 /**
@@ -530,7 +541,7 @@ function db_common_delete_c_commu($c_commu_id)
 
     foreach ($topic_list as $topic) {
         // c_commu_topic_comment(画像)
-        $sql = 'SELECT image_filename1, image_filename2, image_filename3' .
+        $sql = 'SELECT image_filename1, image_filename2, image_filename3, filename' .
             ' FROM c_commu_topic_comment WHERE c_commu_topic_id = ?';
         $params = array(intval($topic['c_commu_topic_id']));
         $topic_comment_list = db_get_all($sql, $params);
@@ -538,7 +549,9 @@ function db_common_delete_c_commu($c_commu_id)
             image_data_delete($topic_comment['image_filename1']);
             image_data_delete($topic_comment['image_filename2']);
             image_data_delete($topic_comment['image_filename3']);
+            db_file_delete_c_file($topic_comment['filename']);
         }
+
         $sql = 'DELETE FROM c_commu_topic_comment WHERE c_commu_topic_id = ?';
         db_query($sql, $params);
 
@@ -595,10 +608,10 @@ function p_access_log($c_member_id, $page_name, $ktai_flag = "0")
     $data = array(
         'c_member_id'             => intval($c_member_id),
         'page_name'               => $page_name,
-        'target_c_member_id'      => '',
-        'target_c_commu_id'       => '',
-        'target_c_commu_topic_id' => '',
-        'target_c_diary_id'       => '',
+        'target_c_member_id'      => 0,
+        'target_c_commu_id'       => 0,
+        'target_c_commu_topic_id' => 0,
+        'target_c_diary_id'       => 0,
         'ktai_flag'               => (bool)$ktai_flag,
         'r_datetime' => db_now(),
     );
@@ -646,6 +659,27 @@ function db_delete_c_skin_filename($skinname)
     } else {
         return false;
     }
+}
+
+/**
+ * デフォルト画像をマスター画像からコピー(デフォルトに戻すの一環)
+ */
+function db_master_copy_c_skin_filename($skinname)
+{
+
+    $data = array(
+        'skinname' => strval($skinname),
+        'filename' => 'skin_'.strval($skinname).'.gif',
+    );
+    db_insert('c_skin_filename', $data);
+
+    $sql = "INSERT INTO c_image (SELECT '', ?, bin, ?, type FROM c_image WHERE filename = ?)";
+    $params = array(
+        'skin_'.strval($skinname).'.gif',
+        db_now(),
+        'skin_'.strval($skinname).'_master.gif',
+    );
+    db_query($sql, $params);
 }
 
 //---
@@ -699,6 +733,60 @@ function db_replace_c_navi($navi_type, $sort_order, $url, $caption)
         'caption' => strval($caption),
     );
     return db_insert('c_navi', $data);
+}
+
+//小窓の使用範囲をチェック
+function db_is_use_cmd($src, $type)
+{
+    $sql = 'SELECT * FROM c_cmd WHERE name = ?';
+    $params = array(strval($src));
+    $c_cmd = db_get_row($sql, $params);
+
+    $permit_list = db_get_permit_list();
+
+    foreach ($permit_list as $key => $name) {
+        if (($c_cmd['permit'] & $key)
+         && preg_match('/'.$c_cmd['name'].'/', $src)
+         && $name == $type) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+//小窓の使用範囲のリスト
+function db_get_permit_list()
+{
+    return array(
+        '1' => 'community',
+        '2' => 'diary',
+        '4' => 'profile',
+        '64' => 'message',
+        '8' => 'side_banner',
+        '16' => 'info',
+        '32' => 'entry_point',
+    );
+}
+
+//小窓のurl2aを無効にするリスト
+function db_get_url2a_denied_list()
+{
+    return array(
+        'side_banner',
+        'info',
+        'entry_point',
+    );
+}
+
+/**
+ * カレンダーの祝日を取得する
+ */
+function db_c_holiday_list4date($m, $d)
+{
+    $sql = 'SELECT name FROM c_holiday WHERE month = ? AND day = ?';
+    $params = array(intval($m), intval($d));
+    return db_get_col($sql, $params);
 }
 
 ?>

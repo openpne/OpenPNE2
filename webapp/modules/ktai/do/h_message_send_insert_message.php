@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -38,7 +38,7 @@ class ktai_do_h_message_send_insert_message extends OpenPNE_Action
 
         $c_member_id_from = $u;
 
-        do_common_send_message($c_member_id_from, $target_c_member_id, $subject, $body);
+        db_message_send_message($c_member_id_from, $target_c_member_id, $subject, $body);
 
         openpne_redirect('ktai', 'page_h_message_box');
     }

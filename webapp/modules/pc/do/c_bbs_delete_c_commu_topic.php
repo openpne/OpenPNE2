@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -25,6 +25,11 @@ class pc_do_c_bbs_delete_c_commu_topic extends OpenPNE_Action
         $status = db_common_commu_status($u, $c_commu_id);
         if (!$status['is_commu_admin']
             && $c_commu_topic['c_member_id'] != $u) {
+            handle_kengen_error();
+        }
+        $c_commu = db_commu_c_commu4c_commu_id2($c_commu_id);
+        if ($c_commu['topic_authority'] == 'admin_only' &&
+            !db_commu_is_c_commu_admin($c_commu_id, $u)) {
             handle_kengen_error();
         }
         //---

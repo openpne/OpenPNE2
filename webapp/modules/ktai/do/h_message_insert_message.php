@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -38,21 +38,21 @@ class ktai_do_h_message_insert_message extends OpenPNE_Action
         }
 
         //target_c_messageが自分宛
-        $target_c_message = _db_c_message4c_message_id($target_c_message_id);
+        $target_c_message = db_message_c_message4c_message_id($target_c_message_id);
         if ($target_c_message['c_member_id_to'] != $u) {
             handle_kengen_error();
         }
 
         // アクセスブロック
-        if (p_common_is_access_block($u, $target_c_member_id)) {
+        if (db_member_is_access_block($u, $target_c_member_id)) {
             openpne_redirect('ktai', 'page_h_access_block');
         }
         //---
 
         //返信済みにする
-        do_update_is_hensin($target_c_message_id);
+        db_message_update_is_hensin($target_c_message_id);
 
-        do_common_send_message($u, $target_c_member_id, $subject, $body);
+        db_message_send_message($u, $target_c_member_id, $subject, $body);
 
         openpne_redirect('ktai', 'page_h_message_box');
     }

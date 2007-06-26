@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -11,7 +11,7 @@ class ktai_biz_page_fh_calendar_week extends OpenPNE_Action
         $u  = $GLOBALS['KTAI_C_MEMBER_ID'];
         $this->set('tail', $GLOBALS['KTAI_URL_TAIL']);
 
-        $c_member_secure = db_common_c_member_secure4c_member_id($u);
+        $c_member_secure = db_member_c_member_secure4c_member_id($u);
 
         $prof_id = $requests['prof_id'];
         $w = $requests['w'];
@@ -56,17 +56,19 @@ class ktai_biz_page_fh_calendar_week extends OpenPNE_Action
             }
 
             //イベント
-            $event_list = p_h_home_event4c_member_id($y, $m, $d, $target_id);
+            $event_list = db_commu_event4c_member_id($y, $m, $d, $target_id);
             // 誕生日
-            $birth_list = p_h_calendar_birth4c_member_id($m, $target_id);
+            $birth_list = db_schedule_birth4c_member_id($m, $target_id);
 
             //スケジュール
-            $schedule = biz_getDateMemberSchedule($y,$m,$d,$target_id);
+            $schedule = biz_getDateMemberSchedule($y,$m,$d,$target_id,$u);
 
             $banner = biz_isBannerSchedule($y, $m, $d, $target_id);
 
             if (!empty($banner)) {
-                array_push($schedule, $banner);
+                foreach ($banner as $value) {
+                    array_push($schedule, $value);
+                }
             }
 
             $item = array(
@@ -89,7 +91,7 @@ class ktai_biz_page_fh_calendar_week extends OpenPNE_Action
         $this->set("calendar", $calendar);
 
 
-        $c_member = db_common_c_member4c_member_id($target_id);
+        $c_member = db_member_c_member4c_member_id($target_id);
         $this->set("pref_list", p_regist_prof_c_profile_pref_list4null());
         $this->set("c_member", $c_member);
         $this->set("msg", $requests['msg']);

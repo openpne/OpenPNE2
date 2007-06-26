@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -14,7 +14,7 @@ class ktai_do_h_config_image_change_main_image extends OpenPNE_Action
         $img_num = $requests['img_num'];
 
         //メイン画像変更
-        do_h_config_image_change_c_member_main_image($u, $img_num);
+        db_member_change_c_member_main_image($u, $img_num);
 
         openpne_redirect('ktai', 'page_h_config_image');
     }

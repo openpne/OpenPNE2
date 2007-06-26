@@ -1,29 +1,10 @@
-({$inc_html_header|smarty:nodefaults})
-<body>
-({ext_include file="inc_extension_pagelayout_top.tpl"})
-<table class="mainframe" border="0" cellspacing="0" cellpadding="0">
-<tr>
-<td class="container inc_page_header">
-({$inc_page_header|smarty:nodefaults})
-</td>
-</tr>
-<tr>
-<td class="container inc_navi">
-({$inc_navi|smarty:nodefaults})
-</td>
-</tr>
-<tr>
-<td class="container main_content" align="center">
-<table class="container" border="0" cellspacing="0" cellpadding="0">({*BEGIN:container*})
-<tr>
-<td class="full_content" align="center">
+({ext_include file="inc_header.tpl"})
+({ext_include file="inc_layoutcolumn_top_720px.tpl"})
 ({***************************})
 ({**ここから：メインコンテンツ**})
 ({***************************})
 
 <img src="./skin/dummy.gif" class="v_spacer_l">
-
-({ext_include file="inc_alert_box.tpl"})({* エラーメッセージコンテナ *})
 
 ({if !$err_msg})
 
@@ -62,7 +43,7 @@
 ({*********})
 <tr>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-<td style="width:110px;" class="bg_03" align="center" valign="middle" rowspan="5">
+<td style="width:110px;" class="bg_03" align="center" valign="middle" rowspan="({if $c_topic.filename && $smarty.const.OPENPNE_USE_FILEUPLOAD})9({else})7({/if})">
 
 <div class="padding_s">
 
@@ -119,13 +100,41 @@
 ({/if})
 
 <div class="padding_s lh_120">
-({$c_topic.body|nl2br|t_url2cmd|t_cmd})
+({$c_topic.body|nl2br|t_url2cmd:'community'|t_cmd:'community'})
 </div>
 
 </td>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({*********})
+({if $c_topic.filename && $smarty.const.OPENPNE_USE_FILEUPLOAD})
+<tr>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:533px;height:1px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+</tr>
+({*********})
+
+<tr>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:531px;height:50px;" class="bg_02" align="left" valign="middle">
+
+<div class="padding_s">
+<a href="({t_file_url filename=$c_topic.filename})">
+({$c_topic.original_filename})
+</a>
+</div>
+
+</td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+</tr>
+({*********})
+<tr>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:533px;height:1px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+</tr>
+({/if})
+
 <tr>
 <td style="width:634px;height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
@@ -134,7 +143,40 @@
 <!-- ここまで：主内容 -->
 ({*ここまで：body*})
 ({*ここから：footer*})
-<!-- 無し -->
+({if $is_c_topic_admin || $is_c_commu_admin})
+({if ($c_commu.topic_authority == 'public')||($c_commu.topic_authority == 'admin_only' && $is_c_commu_admin)})
+<!-- ここから：トピック編集 -->
+<table border="0" cellspacing="0" cellpadding="0" style="width:634px;">
+({*********})
+<tr>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:632px;" class="bg_05" align="center" valign="middle">
+
+<div style="text-align:left;padding:10px 90px;">
+
+<div style="text-align:center;">
+({t_form _method=get m=pc a=page_c_topic_edit})
+<input type="hidden" name="target_c_commu_topic_id" value="({$c_topic.c_commu_topic_id})">
+<input type="submit"  class="submit" value="編 集">
+</form>
+</div>
+
+</div>
+
+</td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+</tr>
+({*********})
+<tr>
+<td style="width:634px;height:1px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+</tr>
+({*********})
+</table>
+({*********})
+<!-- ここまで：トピック編集 -->
+({/if})
+({/if})
+
 ({*ここまで：footer*})
 <!-- *ここまで：トピック表示＞＞内容* -->
 </td>
@@ -258,7 +300,7 @@
 ({/if})
 
 <div class="padding_s lh_120">
-({$item.body|nl2br|t_url2cmd|t_cmd})
+({$item.body|nl2br|t_url2cmd:'community'|t_cmd:'community'})
 </div>
 
 </td>
@@ -324,7 +366,7 @@
 ({/if})
 
 ({if $is_c_commu_member})
-
+<a name="write"></a>
 <!-- ********************************** -->
 <!-- ******ここから：新しく書き込む****** -->
 ({t_form _enctype=file m=pc a=page_c_topic_write_confirm})
@@ -371,7 +413,7 @@
 <td style="width:521px;" class="bg_02" align="left" valign="middle">
 <div class="padding_s">
 
-<textarea name="body" rows="10" cols="50" style="width: 415px">({$body})</textarea>
+<textarea class="text" name="body" rows="10" cols="50" style="width: 510px">({$body})</textarea>
 
 </div>
 </td>
@@ -526,17 +568,5 @@
 ({***************************})
 ({**ここまで：メインコンテンツ**})
 ({***************************})
-</td>
-</tr>
-</table>({*END:container*})
-</td>
-</tr>
-<tr>
-<td class="container inc_page_footer">
-({$inc_page_footer|smarty:nodefaults})
-</td>
-</tr>
-</table>
-({ext_include file="inc_extension_pagelayout_bottom.tpl"})
-</body>
-</html>
+({ext_include file="inc_layoutcolumn_bottom_270px_165px_175px_720px.tpl"})
+({ext_include file="inc_footer.tpl"})

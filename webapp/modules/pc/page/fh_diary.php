@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -36,7 +36,7 @@ class pc_page_fh_diary extends OpenPNE_Action
 
         } else {
             $type = 'f';
-            $target_c_member = db_common_c_member4c_member_id($target_c_member_id);
+            $target_c_member = db_member_c_member4c_member_id($target_c_member_id);
             $is_friend = db_friend_is_friend($u, $target_c_member_id);
 
             // check public_flag
@@ -44,7 +44,7 @@ class pc_page_fh_diary extends OpenPNE_Action
                 openpne_redirect('pc', 'page_h_err_diary_access');
             }
             // アクセスブロック
-            if (p_common_is_access_block($u, $target_c_member_id)) {
+            if (db_member_is_access_block($u, $target_c_member_id)) {
                 openpne_redirect('pc', 'page_h_access_block');
             }
 
@@ -55,9 +55,9 @@ class pc_page_fh_diary extends OpenPNE_Action
 
         $this->set('inc_navi', fetch_inc_navi($type, $target_c_member_id));
 
-        $this->set("member", db_common_c_member4c_member_id($u));
+        $this->set("member", db_member_c_member4c_member_id($u));
 
-        $this->set("target_member", db_common_c_member4c_member_id($target_c_member_id));
+        $this->set("target_member", db_member_c_member4c_member_id($target_c_member_id));
         $this->set("target_diary", $target_c_diary);
         $this->set("target_diary_comment_list", db_diary_get_c_diary_comment_list4c_diary_id($target_c_diary_id));
 
@@ -90,11 +90,11 @@ class pc_page_fh_diary extends OpenPNE_Action
         $this->set("date_list", p_fh_diary_list_date_list4c_member_id($target_c_member_id));
 
         if (USE_DIARY_CATEGORY) {
-	        //カテゴリ一覧
-	        $this->set('category', db_diary_category_list4c_member_id($target_c_member_id));
-	
-	        //この日記のカテゴリリストを得る
-	        $this->set("category_list", db_diary_category_list4c_diary_id($target_c_diary_id));
+            //カテゴリ一覧
+            $this->set('category', db_diary_category_list4c_member_id($target_c_member_id));
+    
+            //この日記のカテゴリリストを得る
+            $this->set("category_list", db_diary_category_list4c_diary_id($target_c_diary_id));
         }
 
         return 'success';

@@ -13,10 +13,10 @@
 ({capture name="pager"})
 ({if $is_prev || $is_next})
 ({if $is_prev})
-<a href="({t_url m=ktai a=page_h_diary_list_all})&amp;keyword=({$keyword|to_sjis|escape:"url"})&amp;page=({$page})&amp;direc=-1&amp;({$tail})">前へ</a>&nbsp;
+<a href="({t_url m=ktai a=page_h_diary_list_all})&amp;keyword=({$keyword|to_sjis|escape:url|smarty:nodefaults})&amp;page=({$page})&amp;direc=-1&amp;({$tail})">前へ</a>&nbsp;
 ({/if})
 ({if $is_next})
-<a href="({t_url m=ktai a=page_h_diary_list_all})&amp;keyword=({$keyword|to_sjis|escape:"url"})&amp;page=({$page})&amp;direc=1&amp;({$tail})">次へ</a>
+<a href="({t_url m=ktai a=page_h_diary_list_all})&amp;keyword=({$keyword|to_sjis|escape:url|smarty:nodefaults})&amp;page=({$page})&amp;direc=1&amp;({$tail})">次へ</a>
 ({/if})
 <br>
 ({/if})
@@ -32,7 +32,7 @@
 
 ({foreach from=$new_diary_list item=item})
 ({$item.r_datetime|date_format:"%m/%d"})(({$item.c_member.nickname}))<br>
-<a href="({t_url m=ktai a=page_fh_diary})&amp;target_c_diary_id=({$item.c_diary_id})&amp;({$tail})">({$item.subject|t_truncate:36:".."})</a>(({$item.comment_count}))<br>
+<a href="({t_url m=ktai a=page_fh_diary})&amp;target_c_diary_id=({$item.c_diary_id})&amp;({$tail})">({$item.subject|t_truncate:36:".."})</a>(({$item.num_comment}))<br>
 ({/foreach})
 <br>
 

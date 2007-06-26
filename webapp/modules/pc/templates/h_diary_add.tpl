@@ -1,29 +1,6 @@
-({$inc_html_header|smarty:nodefaults})
-<body>
-({ext_include file="inc_extension_pagelayout_top.tpl"})
+({ext_include file="inc_header.tpl"})
+({ext_include file="inc_layoutcolumn_top_165px.tpl"})
 
-<script type="text/javascript" src="modules/pc/diary_category_form.js"></script>
-
-<table class="mainframe" border="0" cellspacing="0" cellpadding="0">
-<tr>
-<td class="container inc_page_header">
-({$inc_page_header|smarty:nodefaults})
-</td>
-</tr>
-<tr>
-<td class="container inc_navi">
-({$inc_navi|smarty:nodefaults})
-</td>
-</tr>
-<tr>
-<td class="container main_content" align="center">
-
-({ext_include file="inc_alert_box.tpl"})({* エラーメッセージコンテナ *})
-
-<table class="container" border="0" cellspacing="0" cellpadding="0">({*BEGIN:container*})
-<tr>
-<td style="width:7px;"><img src="./skin/dummy.gif" style="width:7px;" class="dummy"></td>({*<--spacer*})
-<td class="left_content_165" align="center" valign="top">
 ({********************************})
 ({**ここから：メインコンテンツ（左）**})
 ({********************************})
@@ -313,9 +290,7 @@
 ({********************************})
 ({**ここまで：メインコンテンツ（左）**})
 ({********************************})
-</td>
-<td style="width:8px;"><img src="./skin/dummy.gif" style="width:8px;" class="dummy"></td>({*<--spacer*})
-<td class="right_content_540" align="center" valign="top">
+({ext_include file="inc_layoutcolumn_middle_165px.tpl"})
 ({********************************})
 ({**ここから：メインコンテンツ（右）**})
 ({********************************})
@@ -392,7 +367,11 @@
 <td class="bg_02" align="left" valign="middle">
 <div style="padding:4px 3px;">
 
-<textarea name="body" rows="15" cols="50" style="width:415px">({$form_val.body})</textarea>
+({if $inc_entry_point[3]})
+<div>({$inc_entry_point[3]|smarty:nodefaults|t_url2cmd:'entry_point'|t_cmd:'entry_point'})</div>
+({/if})
+
+<textarea class="text" name="body" rows="15" cols="50" style="width:415px">({$form_val.body})</textarea>
 
 </div>
 </td>
@@ -488,12 +467,16 @@
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 <td class="bg_02" align="left" valign="middle">
 <div style="padding:4px 3px;">
-<input type="text" name="category" id="category" size="40" value="({$form_val.category})">
-<script>
-    var category = new diaryCategoryForm("category",
-        [({foreach from=$category_list item=value})"({$value.category_name})",({/foreach})]);
-</script>
-
+<input type="text" class="text" name="category" id="category" size="40" value="({$form_val.category})">
+<select onChange="if(selectedIndex){category.value += options[selectedIndex].value + ' '}">
+<option>カテゴリを選択してください</option>
+({foreach from=$category_list item=value})
+<option value="({$value.category_name})">({$value.category_name})</option>
+({/foreach})
+</select>
+<br>
+※カテゴリはひとつにつき全角10文字（半角20文字）以内で入力してください。<br>
+※ひとつの日記にカテゴリは5つまで同時に指定することができます。<br>
 </div>
 </td>
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
@@ -576,17 +559,5 @@
 ({********************************})
 ({**ここまで：メインコンテンツ（右）**})
 ({********************************})
-</td>
-</tr>
-</table>({*END:container*})
-</td>
-</tr>
-<tr>
-<td class="container inc_page_footer">
-({$inc_page_footer|smarty:nodefaults})
-</td>
-</tr>
-</table>
-({ext_include file="inc_extension_pagelayout_bottom.tpl"})
-</body>
-</html>
+({ext_include file="inc_layoutcolumn_bottom_270px_165px_175px_720px.tpl"})
+({ext_include file="inc_footer.tpl"})

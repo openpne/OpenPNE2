@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -26,11 +26,11 @@ class pc_do_h_diary_edit_insert_c_diary extends OpenPNE_Action
         $target_c_diary_id = $requests['target_c_diary_id'];
         $subject = $requests['subject'];
         $body = $requests['body'];
-        $public_flag = $requests['public_flag'];
+        $public_flag = util_cast_public_flag_diary($requests['public_flag']);
         $tmpfile_1 = $requests['tmpfile_1'];
         $tmpfile_2 = $requests['tmpfile_2'];
         $tmpfile_3 = $requests['tmpfile_3'];
-        $category = explode(' ', trim($requests['category']));
+        $category = preg_split('/\s+/', $requests['category']);
         // ----------
 
         //--- 権限チェック
@@ -44,13 +44,25 @@ class pc_do_h_diary_edit_insert_c_diary extends OpenPNE_Action
 
         $sessid = session_id();
 
+        if (count($category) > 5) {
+            $_REQUEST['msg'] = 'カテゴリは5つまでしか指定できません';
+            openpne_forward('pc', 'page', 'h_diary_edit');
+            exit;
+        }
+        foreach($category as $value) {
+            if (mb_strwidth($value) > 20) {
+                $_REQUEST['msg'] = 'カテゴリはひとつにつき全角10文字（半角20文字）以内で入力してください';
+                openpne_forward('pc', 'page', 'h_diary_edit');
+                exit;
+            }
+        }
         //カテゴリ登録しなおし
         db_diary_category_delete_c_diary_category_diary($target_c_diary_id);
         foreach($category as $value) {
-             if (empty($value)) {
+            if (empty($value)) {
                 break;
             }
-           $c_category_id = db_diary_get_category_id4category_name($c_diary['c_member_id'], $value);
+            $c_category_id = db_diary_get_category_id4category_name($c_diary['c_member_id'], $value);
             if (is_null($c_category_id)) {
                 $c_category_id = db_diary_category_insert_category($c_diary['c_member_id'], $value);
             }

@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -21,7 +21,7 @@ class OpenPNE_Config
             'SNS_NAME', 'SNS_TITLE',
             'ADMIN_EMAIL', 'AMAZON_AFFID',
             'CATCH_COPY', 'OPERATION_COMPANY', 'COPYRIGHT',
-            'IS_CLOSED_SNS', 'IS_USER_INVITE',
+            'IS_CLOSED_SNS', 'IS_USER_INVITE', 'IS_GET_EASY_ACCESS_ID',
             'OPENPNE_ENABLE_PC', 'OPENPNE_ENABLE_KTAI',
             'OPENPNE_REGIST_FROM',
             'LOGIN_CHECK_ENABLE','LOGIN_CHECK_TIME','LOGIN_CHECK_NUM','LOGIN_REJECT_TIME',
@@ -33,16 +33,22 @@ class OpenPNE_Config
             'WORD_FRIEND_HALF','WORD_MY_FRIEND_HALF',
             'SORT_ORDER_NICK', 'SORT_ORDER_BIRTH',
             'OPENPNE_ENABLE_ROLLOVER',
+            'OPENPNE_DISP_POINT', 'OPENPNE_DISP_RANK',
+            'OPENPNE_IS_POINT_ADMIN',
             'SKIN_VERSION',
             'AFFILIATE_TAG',
+            'AFFILIATE_KTAI_TAG',
             'UNUSED_MAILS',
             'DISPLAY_OPENPNE_INFO',
             'USE_EXTRA_SERVICE',
+            'USE_BIZ_DIR',
+            'SEND_USER_DATA',
             'LIMIT_DOMAIN1',
             'LIMIT_DOMAIN2',
             'LIMIT_DOMAIN3',
             'LIMIT_DOMAIN4',
             'LIMIT_DOMAIN5',
+            'OPENPNE_USE_POINT_RANK',
         );
     }
 
@@ -90,6 +96,7 @@ class OpenPNE_Config
             'ADMIN_EMAIL' => 'sns@' . MAIL_SERVER_DOMAIN,
             'IS_CLOSED_SNS' => true,
             'IS_USER_INVITE' => true,
+            'IS_GET_EASY_ACCESS_ID' => 1,
             'OPENPNE_ENABLE_PC' => true,
             'OPENPNE_ENABLE_KTAI' => true,
             'OPENPNE_REGIST_FROM' => 3,
@@ -119,14 +126,20 @@ class OpenPNE_Config
             'OPENPNE_ENABLE_ROLLOVER' => true,
             'SKIN_VERSION' => '2.0',
             'AFFILIATE_TAG' => '',
+            'AFFILIATE_KTAI_TAG' => '',
             'UNUSED_MAILS' => '',
             'USE_EXTRA_SERVICE' => '1',
+            'USE_BIZ_DIR' => '0',
+            'SEND_USER_DATA' => '0',
             'LIMIT_DOMAIN1' => '',
             'LIMIT_DOMAIN2' => '',
             'LIMIT_DOMAIN3' => '',
             'LIMIT_DOMAIN4' => '',
             'LIMIT_DOMAIN5' => '',
-
+            'OPENPNE_USE_POINT_RANK' => 0,
+            'OPENPNE_DISP_POINT' => 1,
+            'OPENPNE_DISP_RANK' => 1,
+            'OPENPNE_IS_POINT_ADMIN' => 1,
         // config.php
             'OPENPNE_RSS_CACHE_DIR' => OPENPNE_VAR_DIR . '/rss_cache',
             'OPENPNE_UNDER_MAINTENANCE' => false,
@@ -135,6 +148,7 @@ class OpenPNE_Config
             'OPENPNE_USE_API' => false,
             'SESSION_SAVE_DB' => false,
             'OPENPNE_TMP_IMAGE_DB' => false,
+            'OPENPNE_TMP_FILE_DB' => false,
             'OPENPNE_USE_PARTIAL_SSL' => false,
             'OPENPNE_USE_SSL_PARAM' => false,
             'OPENPNE_IMG_URL' => '',
@@ -143,6 +157,9 @@ class OpenPNE_Config
             'IMAGE_MAX_FILESIZE' => 300,
             'IMAGE_MAX_WIDTH' => 0,
             'IMAGE_MAX_HEIGHT' => 0,
+            'OPENPNE_USE_FILEUPLOAD' => false,
+            'FILE_MAX_FILESIZE' => 300,
+            'FILE_ALLOWED_EXTENTIONS' => '',
             'MAIL_ADDRESS_PREFIX' => '',
             'MAIL_ADDRESS_HASHED' => true,
             'MAIL_HAN2ZEN' => true,
@@ -156,7 +173,6 @@ class OpenPNE_Config
             'ADMIN_MODULE_NAME' => 'admin',
             'ADMIN_INIT_CONFIG' => true,
             'SERVER_IP_KEY' => 'REMOTE_ADDR',
-            'OPENPNE_USE_CMD_TAG' => true,
             'OPENPNE_USE_FUNCTION_CACHE' => false,
             'OPENPNE_USE_MYSQL_HINT' => false,
             'OPENPNE_USE_FLASH_LIST' => true,
@@ -165,10 +181,18 @@ class OpenPNE_Config
             'OPENPNE_SESSION_CHECK_URL' => false,
             'OPENPNE_INFO_URL' => 'http://info.openpne.jp/rss',
             'DISPLAY_OPENPNE_INFO' => true,
+            'IS_SLAVEPNE' => false,
         // 固定値
             'AMAZON_TOKEN'   => '1WZYY1W9YF49AGM0RTG2',
             'AMAZON_LOCALE'  => 'jp',
             'AMAZON_BASEURL' => 'http://xml-jp.amznxslt.com/onca/xml3',
+            'OPENPNE_REGIST_FROM_NONE'   => 0,
+            'OPENPNE_REGIST_FROM_PC'     => 1,
+            'OPENPNE_REGIST_FROM_KTAI'   => 2,
+            'OPENPNE_REGIST_FROM_PCKTAI' => 3,
+            'OPENPNE_FUNCTION_CACHE_LIFETIME_FAST' => 300,
+            'OPENPNE_FUNCTION_CACHE_LIFETIME_SHORT' => 1200,
+            'OPENPNE_FUNCTION_CACHE_LIFETIME_LONG' => 3600,
         );
 
         foreach ($defaults as $key => $value) {

@@ -1,12 +1,11 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
 function admin_fetch_inc_header($display_navi = true)
 {
-    $v['title'] = SNS_NAME . '管理ページ';
     $v['display_navi'] = $display_navi;
     $v['PHPSESSID'] = md5(session_id());
     $v['module_name'] = ADMIN_MODULE_NAME;
@@ -33,6 +32,9 @@ function admin_fetch_inc_footer($is_secure = true)
 
 function admin_make_pager($page, $page_size, $total_num)
 {
+    if ($total_num == 0) {
+        return;
+    }
     $pager = array(
         'page' => $page,
         'page_size' => $page_size,
@@ -69,7 +71,7 @@ function admin_insert_c_image($upfile_obj, $filename)
 {
     if ($upfile_obj &&
         is_uploaded_file($upfile_obj['tmp_name']) &&
-        _do_insert_c_image($filename, $upfile_obj['tmp_name']) > 0)
+        db_image_insert_c_image2($filename, $upfile_obj['tmp_name']) > 0)
     {
         return $filename;
     }
@@ -110,6 +112,24 @@ function admin_get_auth_type()
         return db_admin_get_auth_type($uid);
     } else {
         return false;
+    }
+}
+
+//IPアドレスとして正しいか
+//例：XXX.XXX.XXX.XXX
+function admin_is_ip($ip)
+{
+    return preg_match('/^([0-9]{1,3}\.){3}[0-9]{1,3}$/',$ip);
+}
+
+//APIを許容するIPアドレスとして正しいか
+//XXX.XXX.XXX.XXX or *(アスタリスク) or 空
+function admin_api_is_ip($ip)
+{
+    if (!$ip || $ip == '*') {
+        return true;
+    } else {
+        return admin_is_ip($ip);
     }
 }
 

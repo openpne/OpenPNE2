@@ -1,12 +1,17 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
 // プロフィール選択肢追加
 class admin_do_insert_c_profile_option extends OpenPNE_Action
 {
+    function handleError($errors)
+    {
+        admin_client_redirect('edit_c_profile', array_shift($errors));
+    }
+
     function execute($requests)
     {
         if ($requests['c_profile_id'] && $requests['value']) {

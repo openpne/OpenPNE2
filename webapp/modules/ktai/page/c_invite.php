@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -15,11 +15,11 @@ class ktai_page_c_invite extends OpenPNE_Action
         // ----------
 
         //ランダムフレンドリスト
-        $this->set("c_friend_list", k_p_c_invite_c_friend_list_random4c_member_id4c_commu_id($u, $target_c_commu_id, 50));
+        $this->set("c_friend_list", db_commu_c_friend_list_random4c_member_id4c_commu_id($u, $target_c_commu_id, 50));
 
-        //コミュニティＩＤ
+        //コミュニティID
         $this->set("target_c_commu_id", $target_c_commu_id);
-        $this->set("c_commu", _db_c_commu4c_commu_id($target_c_commu_id));
+        $this->set("c_commu", db_commu_c_commu4c_commu_id($target_c_commu_id));
 
 
         return 'success';

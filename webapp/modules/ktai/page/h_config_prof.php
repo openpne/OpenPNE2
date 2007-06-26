@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -10,9 +10,9 @@ class ktai_page_h_config_prof extends OpenPNE_Action
     {
         $u  = $GLOBALS['KTAI_C_MEMBER_ID'];
 
-        $this->set("c_member", db_common_c_member4c_member_id($u));
+        $this->set("c_member", db_member_c_member4c_member_id($u));
 
-        $prof = db_common_c_member_with_profile($u, 'private');
+        $prof = db_member_c_member_with_profile($u, 'private');
         $this->set('c_member', $prof);
 
         $public_flags = array(
@@ -22,7 +22,7 @@ class ktai_page_h_config_prof extends OpenPNE_Action
         );
         $this->set('public_flags', $public_flags);
 
-        $this->set('profile_list', db_common_c_profile_list());
+        $this->set('profile_list', db_member_c_profile_list());
 
         $this->set('month', p_regist_prof_c_profile_month_list4null());
         $this->set('day', p_regist_prof_c_profile_day_list4null());

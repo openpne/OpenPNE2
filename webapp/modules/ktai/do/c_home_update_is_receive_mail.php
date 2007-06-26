@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -31,7 +31,7 @@ class ktai_do_c_home_update_is_receive_mail extends OpenPNE_Action
         //---
 
         //PC&ktaiの両方を一度に更新
-        do_c_home_update_is_receive_mail($target_c_commu_id, $u, $is_receive_mail, $is_receive_mail_pc, $is_receive_message);
+        db_commu_update_is_receive_mail($target_c_commu_id, $u, $is_receive_mail, $is_receive_mail_pc, $is_receive_message);
 
         $p = array('target_c_commu_id' => $target_c_commu_id);
         openpne_redirect('ktai', 'page_c_home', $p);

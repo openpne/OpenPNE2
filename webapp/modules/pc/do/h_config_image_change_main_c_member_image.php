@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -17,7 +17,7 @@ class pc_do_h_config_image_change_main_c_member_image extends OpenPNE_Action
         $img_num = $requests['img_num'];
         // ----------
 
-        do_h_config_image_change_c_member_main_image($u, $img_num);
+        db_member_change_c_member_main_image($u, $img_num);
 
         openpne_redirect('pc', 'page_h_config_image');
     }

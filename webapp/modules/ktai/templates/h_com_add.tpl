@@ -16,8 +16,8 @@
 <textarea name="info"></textarea><br>
 参加・公開<br>
 <input type="radio" name="public_flag" value="public" checked>誰でも参加可能、掲示板は全員に公開<br>
-<input type="radio" name="public_flag" value="auth_public">参加には管理人の承認が必要、掲示板は全員に公開<br>
-<input type="radio" name="public_flag" value="auth_commu_member">参加には管理人の承認が必要、掲示板はｺﾐｭﾆﾃｨﾒﾝﾊﾞｰにのみ公開<br>
+<input type="radio" name="public_flag" value="auth_sns">参加には管理者の承認が必要、掲示板は全員に公開<br>
+<input type="radio" name="public_flag" value="auth_commu_member">参加には管理者の承認が必要、掲示板はｺﾐｭﾆﾃｨﾒﾝﾊﾞｰにのみ公開<br>
 <input type="submit" value="送信">
 </form>
 

@@ -2,7 +2,7 @@
 
 <h2>アカウント管理</h2>
 
-<p>管理ページ用のアカウントを設定することができます。</p>
+<p>管理用アカウントを設定することができます。</p>
 
 ({if $msg})<p class="caution">({$msg})</p>({/if})
 
@@ -15,7 +15,7 @@
 ({capture name="table_header"})
 <tr>
 <th>ID</th>
-<th>ユーザ名</th>
+<th>アカウント名</th>
 <th>権限</th>
 <th>操作</th>
 </tr>
@@ -33,10 +33,6 @@
 <td class="idnumber">({$item.c_admin_user_id})</td>
 <td>({$item.username})</td>
 <td>({$item.auth_type})</td>
-({*
-<td>ユーザ名変更</td>
-<td>パスワード変更</td>
-*})
 <td>({if $item.c_admin_user_id != 1})<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_c_admin_user','do')})&amp;target_id=({$item.c_admin_user_id})&amp;sessid=({$PHPSESSID})">削除</a>({else})&nbsp;({/if})</td>
 </tr>
 ({/foreach})

@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -19,7 +19,7 @@ class pc_page_h_review_add extends OpenPNE_Action
         $page_size = 10; //固定
 
         $this->set('inc_navi', fetch_inc_navi("h"));
-        $this->set('category_disp', p_h_review_add_category_disp());
+        $this->set('category_disp', do_review_review_add_category_disp());
         $this->set('category_id', $category_id);
         $this->set('keyword', $keyword);
 
@@ -29,7 +29,7 @@ class pc_page_h_review_add extends OpenPNE_Action
                 if (empty($category_id)) $err_msg[] = 'カテゴリを選択してください';
             } else {
                 list($search_result, $page, $pages, $total_num)
-                    = p_h_review_add_search_result($keyword, $category_id, $page);
+                    = do_review_add_search_result($keyword, $category_id, $page);
             }
         }
 

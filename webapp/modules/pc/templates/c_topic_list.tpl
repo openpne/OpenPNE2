@@ -1,22 +1,6 @@
-({$inc_html_header|smarty:nodefaults})
-<body>
-({ext_include file="inc_extension_pagelayout_top.tpl"})
-<table class="mainframe" border="0" cellspacing="0" cellpadding="0">
-<tr>
-<td class="container inc_page_header">
-({$inc_page_header|smarty:nodefaults})
-</td>
-</tr>
-<tr>
-<td class="container inc_navi">
-({$inc_navi|smarty:nodefaults})
-</td>
-</tr>
-<tr>
-<td class="container main_content">
-<table class="container" border="0" cellspacing="0" cellpadding="0">({*BEGIN:container*})
-<tr>
-<td class="full_content" align="center">
+({ext_include file="inc_header.tpl"})
+({ext_include file="inc_layoutcolumn_top_720px.tpl"})
+
 ({***************************})
 ({**ここから：メインコンテンツ**})
 ({***************************})
@@ -85,6 +69,7 @@
 
 <!-- ************************************ -->
 <!-- ******ここから：新規トピック作成****** -->
+({if ($c_commu.topic_authority == 'public')||($c_commu.topic_authority == 'admin_only' && $is_c_commu_admin)})
 ({t_form m=pc a=page_c_topic_add})
 <input type="hidden" name="target_c_commu_id" value="({$c_commu.c_commu_id})">
 
@@ -147,7 +132,7 @@
 </form>
 <!-- ******ここまで：新規トピック作成****** -->
 <!-- ************************************ -->
-
+({/if})
 <img src="./skin/dummy.gif" class="v_spacer_l">
 
 ({if $c_topic_list })
@@ -277,7 +262,9 @@
 <div style="text-align:right;" class="padding_s lh_120">
 
 ({if $item.is_c_topic_admin || $is_c_commu_admin})
+({if ($c_commu.topic_authority == 'public')||($c_commu.topic_authority == 'admin_only' && $is_c_commu_admin)})
 <a href="({t_url m=pc a=page_c_topic_edit})&amp;target_c_commu_topic_id=({$item.c_commu_topic_id})">編集</a>&nbsp;
+({/if})
 ({/if})
 <a href="({t_url m=pc a=page_c_topic_detail})&amp;target_c_commu_topic_id=({$item.c_commu_topic_id})">もっと見る(({$item.write_num}))</a>
 
@@ -343,17 +330,5 @@
 ({***************************})
 ({**ここまで：メインコンテンツ**})
 ({***************************})
-</td>
-</tr>
-</table>({*END:container*})
-</td>
-</tr>
-<tr>
-<td class="container inc_page_footer">
-({$inc_page_footer|smarty:nodefaults})
-</td>
-</tr>
-</table>
-({ext_include file="inc_extension_pagelayout_bottom.tpl"})
-</body>
-</html>
+({ext_include file="inc_layoutcolumn_bottom_270px_165px_175px_720px.tpl"})
+({ext_include file="inc_footer.tpl"})

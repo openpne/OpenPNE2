@@ -39,13 +39,13 @@
 <td class="border_01 bg_02" align="right" style="width:130px;border-right:none;"><img src="./skin/dummy.gif" style="width:129px;height:10px;" class="dummy"></td>
 <td class="border_01 bg_02 padding_ss" align="left" style="width:100px;border-right:none;">
 
-<a href="({t_url m=biz a=page_g_biz_schedule_add})&amp;target_id=({$target_id})">新規予定登録</a>
+<a href="({t_url m=biz a=page_fh_biz_schedule_add})&amp;target_biz_group_id=({$target_id})">新規予定登録</a>
 
 </td>
 <td class="border_01 bg_02 padding_ss" style="border-left:none;" align="right">
 
 予定：
-<input type="text" name="title" value="" size="30">
+<input type="text" class="text" name="title" value="" size="30">
 <select name="start_date">
 ({foreach from=$daylist item=item})
 <option value="({$item.year})-({$item.month})-({$item.day})"({if $item.now}) selected="selected"({/if})>({$item.month})/({$item.day})(({$item.dayofweek}))</option>
@@ -139,7 +139,7 @@
 <tr>
 <td class="bg_05 border_01" style="width:131px;border-top:none;border-right:none;" align="center" valign="top"><img src="./skin/dummy.gif" style="width:130px;height:10px;" class="dummy"></td>
 ({foreach from=$calendar item=item name=calendar})
-<td class="({if $item.now})bg_09({else})bg_05({/if}) padding_ss border_01({if $item.dayofweek == "日"}) c_02({elseif $item.dayofweek == "土"}) c_03({else})({/if})" style="width:81px;border-top:none;({if !$smarty.foreach.calendar.last}) border-right:none;({/if})" align="center">
+<td class="({if $item.now})bg_09({else})bg_05({/if}) padding_ss border_01({if $item.dayofweek == "日" || $item.holiday}) c_02({elseif $item.dayofweek == "土"}) c_03({else})({/if})" style="width:81px;border-top:none;({if !$smarty.foreach.calendar.last}) border-right:none;({/if})" align="center">
 
 ({if $item.now})<span class="b_b">({/if})
 
@@ -183,6 +183,19 @@
 最終ログインは<br>({$member_info.last_login})<br>
 ({else})
 <div class="border_01 bg_02" style="padding:4px 0;display:block;border-left:none;border-right:none;">
+
+({if $smarty.const.OPENPNE_IS_POINT_ADMIN || $member_info.c_member_id != 1})
+({if ($smarty.const.OPENPNE_DISP_RANK && $rank) || ($smarty.const.OPENPNE_DISP_POINT && $point)})
+({if $smarty.const.OPENPNE_DISP_RANK && $rank})
+<img src="({t_img_url filename=$rank.image_filename})" class="pict" alt="({$rank.name})" style="margin:2px"><br>
+({/if})
+({if $smarty.const.OPENPNE_DISP_POINT && $point})
+({$point}) Point<br>
+({/if})
+<img src="./skin/dummy.gif" class="v_spacer_m">
+({/if})
+({/if})
+
 ({$stateform|smarty:nodefaults})
 </div>
 ({/if})
@@ -195,7 +208,7 @@
 
 <img src="./skin/dummy.gif" class="v_spacer_s">
 
-<input type="button" onClick="location.href='({t_url m=pc a=page_h_prof})'" value="プロフィール変更" style="width:112px;" class="submit">
+<input type="button" onClick="location.href='({t_url m=pc a=page_h_config_prof})'" value="プロフィール変更" style="width:112px;" class="submit">
 
 <img src="./skin/dummy.gif" class="v_spacer_s">
 <img src="./skin/dummy.gif" class="v_spacer_s">
@@ -204,7 +217,14 @@
 
 </td>
 ({foreach from=$calendar item=item name=calendar})
-<td class="({if $item.now})bg_09({else})bg_02({/if}) border_01({if $item.dayofweek == "日"}) c_02({elseif $item.dayofweek == "土"}) c_03({else})({/if})" style="width:81px;border-top:none;({if !$smarty.foreach.calendar.last}) border-right:none;({/if}) border-bottom:none;" align="left" valign="top">
+<td class="({if $item.now})bg_09({else})bg_02({/if}) border_01({if $item.dayofweek == "日" || $item.holiday}) c_02({elseif $item.dayofweek == "土"}) c_03({else})({/if})" style="width:81px;border-top:none;({if !$smarty.foreach.calendar.last}) border-right:none;({/if}) border-bottom:none;" align="left" valign="top">
+
+({* 祝日 *})
+<div class="padding_s">
+({foreach from=$item.holiday item=item_holiday})
+({$item_holiday})<br>
+({/foreach})
+</div>
 
 ({* スケジュール(時間有) *})
 ({foreach from=$item.schedule item=item_schedule name=schedule})
@@ -222,11 +242,11 @@
 ({$item_schedule.c_member_name})
 </div></a>
 	({elseif $item_schedule.begin_date != $item_schedule.finish_date})  <!--バナー予定 -->
-({assign var="begin_time_H" value=$item_schedule.begin_date|date_format:"%H"})
-({assign var="begin_time_M" value=$item_schedule.begin_date|date_format:"%M"})
+({assign var="begin_time_H" value=$item_schedule.begin_time|date_format:"%H"})
+({assign var="begin_time_M" value=$item_schedule.begin_time|date_format:"%M"})
 ({if $item_schedule.finish_time})
-({assign var="finish_time_H" value=$item_schedule.finish_date|date_format:"%H"})
-({assign var="finish_time_M" value=$item_schedule.finish_date|date_format:"%M"})
+({assign var="finish_time_H" value=$item_schedule.finish_time|date_format:"%H"})
+({assign var="finish_time_M" value=$item_schedule.finish_time|date_format:"%M"})
 ({/if})
 ({ext_include file="inc_biz_schedule_week_time.tpl"})
 <div class="padding_s" style="padding-top:0;">
@@ -256,7 +276,7 @@
 <tr>
 
 ({foreach from=$calendar item=item name=calendar})
-<td class="({if $item.now})bg_09({else})bg_02({/if}) border_01({if $item.dayofweek == "日"}) c_02({elseif $item.dayofweek == "土"}) c_03({else})({/if})" style="width:81px;border-top:none;({if !$smarty.foreach.calendar.last}) border-right:none;({/if})" align="left" valign="top">
+<td class="({if $item.now})bg_09({else})bg_02({/if}) border_01({if $item.dayofweek == "日" || $item.holiday}) c_02({elseif $item.dayofweek == "土"}) c_03({else})({/if})" style="width:81px;border-top:none;({if !$smarty.foreach.calendar.last}) border-right:none;({/if})" align="left" valign="top">
 
 ({if $cmd == 'h'})
 ({* 誕生日 *})
@@ -268,9 +288,17 @@
 ({foreach from=$item.event item=item_event})
 <div class="padding_s"><img src="./skin/icon_event_({if $item_event.is_join})R({else})B({/if}).gif" class="icon"><a href="({t_url m=pc a=page_c_event_detail})&amp;target_c_commu_topic_id=({$item_event.c_commu_topic_id})">({$item_event.name|t_truncate:20:".."})</a></div>
 ({/foreach})
+
 ({else})
 &nbsp;
 ({/if})
+
+({* Todo *})
+({foreach from=$item.todo item=item_todo})
+<div class="padding_s">
+<img src="./skin/biz/todo_icon.gif"  class="icon">
+<a href="({t_url m=biz a=page_fh_home_edit_biz_todo})&amp;id=({$item_todo.biz_todo_id})&target_id=({$member_info.c_member_id})">({$item_todo.memo|t_truncate:20:".."})</a></div>
+({/foreach})
 
 ({* スケジュール(時間無) *})
 ({if $item.schedule})
@@ -316,7 +344,7 @@
 <input type="hidden" name="sessid" value="({$PHPSESSID})">
 <input type="hidden" name="target_id" value="({$target_id})">
 予定：
-<input type="text" name="title" value="" size="30">
+<input type="text" class="text" name="title" value="" size="30">
 <select name="start_date">
 ({foreach from=$daylist item=item})
 <option value="({$item.year})-({$item.month})-({$item.day})"({if $item.now}) selected="selected"({/if})>({$item.month})/({$item.day})(({$item.dayofweek}))</option>

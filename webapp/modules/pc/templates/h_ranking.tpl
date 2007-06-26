@@ -1,23 +1,5 @@
-({$inc_html_header|smarty:nodefaults})
-<body>
-({ext_include file="inc_extension_pagelayout_top.tpl"})
-<table class="mainframe" border="0" cellspacing="0" cellpadding="0">
-<tr>
-<td class="container inc_page_header">
-({$inc_page_header|smarty:nodefaults})
-</td>
-</tr>
-<tr>
-<td class="container inc_navi">
-({$inc_navi|smarty:nodefaults})
-</td>
-</tr>
-<tr>
-<td class="container main_content">
-<table class="container" border="0" cellspacing="0" cellpadding="0">({*BEGIN:container*})
-<tr>
-<td style="width:7px;"><img src="./skin/dummy.gif" style="width:7px;" class="dummy"></td>({*<--spacer*})
-<td class="left_content_165" align="center" valign="top">
+({ext_include file="inc_header.tpl"})
+({ext_include file="inc_layoutcolumn_top_165px.tpl"})
 ({********************************})
 ({**ここから：メインコンテンツ（左）**})
 ({********************************})
@@ -150,9 +132,7 @@
 ({********************************})
 ({**ここまで：メインコンテンツ（左）**})
 ({********************************})
-</td>
-<td style="width:8px;"><img src="./skin/dummy.gif" style="width:8px;" class="dummy"></td>({*<--spacer*})
-<td class="right_content_540" align="center" valign="top">
+({ext_include file="inc_layoutcolumn_middle_165px.tpl"})
 ({********************************})
 ({**ここから：メインコンテンツ（右）**})
 ({********************************})
@@ -184,9 +164,9 @@
 
 <span class="b_b">
 ({if $kind == "ashiato"})
-アクセス数No1ユーザー
+アクセス数No1メンバー
 ({elseif $kind == "friend"})
-({$WORD_MY_FRIEND})数No1ユーザー
+({$WORD_MY_FRIEND})数No1メンバー
 ({elseif $kind == "com_member"})
 参加人数No１コミュニティ
 ({elseif $kind == "com_comment"})
@@ -332,7 +312,7 @@
 
 <div class="padding_s">
 
-管理人
+管理者
 
 </div>
 
@@ -519,7 +499,7 @@
 
 <div class="padding_s">
 
-管理人
+管理者
 
 </div>
 
@@ -617,17 +597,5 @@
 ({********************************})
 ({**ここまで：メインコンテンツ（右）**})
 ({********************************})
-</td>
-</tr>
-</table>({*END:container*})
-</td>
-</tr>
-<tr>
-<td class="container inc_page_footer">
-({$inc_page_footer|smarty:nodefaults})
-</td>
-</tr>
-</table>
-({ext_include file="inc_extension_pagelayout_bottom.tpl"})
-</body>
-</html>
+({ext_include file="inc_layoutcolumn_bottom_270px_165px_175px_720px.tpl"})
+({ext_include file="inc_footer.tpl"})

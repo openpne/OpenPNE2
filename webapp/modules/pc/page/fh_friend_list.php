@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -21,7 +21,7 @@ class pc_page_fh_friend_list extends OpenPNE_Action
             $target_c_member_id = $u;
         }
 
-        if (p_common_is_access_block($u, $target_c_member_id)) {
+        if (db_member_is_access_block($u, $target_c_member_id)) {
             openpne_redirect('pc', 'page_h_access_block');
         }
 
@@ -35,11 +35,11 @@ class pc_page_fh_friend_list extends OpenPNE_Action
         $this->set("type", $type);
 
         //----------PC CONTENT#LEFT
-        //ユーザ情報
-        $this->set("member", db_common_c_member4c_member_id($u));
+        //メンバー情報
+        $this->set("member", db_member_c_member4c_member_id($u));
 
         //ターゲット情報
-        $this->set("target_member", db_common_c_member4c_member_id($target_c_member_id));
+        $this->set("target_member", db_member_c_member4c_member_id($target_c_member_id));
 
         //ターゲットの友達数
         $friend_num = db_friend_count_friends($target_c_member_id);
@@ -53,7 +53,7 @@ class pc_page_fh_friend_list extends OpenPNE_Action
         $page += $direc;
 
         //ターゲットの詳細な友達リスト
-        $list = p_fh_friend_list_friend_list4c_member_id2($target_c_member_id, $page_size, $page, $order);
+        $list = db_friend_friend_list4c_member_id2($target_c_member_id, $page_size, $page, $order);
         $this->set("order", $order);
 
         $this->set("target_friend_list_disp", $list[0]);

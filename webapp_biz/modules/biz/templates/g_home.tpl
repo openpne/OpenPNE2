@@ -1,32 +1,5 @@
-({$inc_html_header|smarty:nodefaults})
-<body>
-({ext_include file="inc_extension_pagelayout_top.tpl"})
-<table class="mainframe" border="0" cellspacing="0" cellpadding="0">
-<tr>
-<td class="container inc_page_header">
-({$inc_page_header|smarty:nodefaults})
-</td>
-</tr>
-<tr>
-<td class="container inc_navi">
-({$inc_navi|smarty:nodefaults})
-</td>
-</tr>
-<tr>
-<td class="container main_content" align="center">
-
-({assign var=is_no_alert value=true})
-({ext_include file="inc_alert_box.tpl"})({* エラーメッセージコンテナ *})
-
-</td>
-</tr>
-<tr>
-<td class="container main_content">
-
-<table class="container" border="0" cellspacing="0" cellpadding="0">({*BEGIN:container*})
-<tr>
-<td style="width:5px;"><img src="./skin/dummy.gif" style="width:5px;" class="dummy"></td>({*<--spacer*})
-<td class="left_content" valign="top">
+({ext_include file="inc_header.tpl"})
+({ext_include file="inc_layoutcolumn_top_270px.tpl"})
 ({********************************})
 ({**ここから：メインコンテンツ（左）**})
 ({********************************})
@@ -97,9 +70,7 @@
 ({********************************})
 ({**ここまで：メインコンテンツ（左）**})
 ({********************************})
-</td>
-<td style="width:5px;"><img src="./skin/dummy.gif" style="width:5px;" class="dummy"></td>({*<--spacer*})
-<td class="right_content" valign="top">
+({ext_include file="inc_layoutcolumn_middle_270px.tpl"})
 ({********************************})
 ({**ここから：メインコンテンツ（右）**})
 ({********************************})
@@ -146,16 +117,16 @@
 </td>
 </tr>
 <!-- ここまで：主内容＞コミュニティの名前 -->
-<!-- ここから：主内容＞管理人 -->
+<!-- ここから：主内容＞管理者 -->
 <tr>
-<td style="width:80px;" class="bg_09"><span class="c_01">管理人</span></td>
+<td style="width:80px;" class="bg_09"><span class="c_01">管理者</span></td>
 <td style="width:342px;" class="bg_02">
 
 <a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$admin_data.c_member_id})">({$admin_data.nickname})</a>
 
 </td>
 </tr>
-<!-- ここまで：主内容＞管理人 -->
+<!-- ここまで：主内容＞管理者 -->
 <!-- ここから：主内容＞メンバー数 -->
 <tr>
 <td style="width:80px;" class="bg_09"><span class="c_01">メンバー数</span></td>
@@ -223,32 +194,22 @@
 ({********************************})
 ({**ここまで：メインコンテンツ（右）**})
 ({********************************})
-</td>
-</tr>
-</table>({*END:container*})
-</td>
-</tr>
+({ext_include file="inc_layoutcolumn_bottom_270px_165px_175px_720px.tpl"})
+
 <tr>
 <td class="container main_content" align="center">
 
 ({if $calendar_head})
 <!-- ******************************** -->
 <!-- ******ここから：bizモジュール::スケジュール****** -->
-	({$calendar_head|smarty:nodefaults})
-	({$calendar_value|smarty:nodefaults})
-	({$calendar_foot|smarty:nodefaults})
+        ({$calendar_head|smarty:nodefaults})
+        ({$calendar_value|smarty:nodefaults})
+        ({$calendar_foot|smarty:nodefaults})
 <!-- ******ここまで：bizモジュール::スケジュール****** -->
 <!-- ******************************** -->
 ({/if})
 
 </td>
 </tr>
-<tr>
-<td class="container inc_page_footer">
-({$inc_page_footer|smarty:nodefaults})
-</td>
-</tr>
-</table>
-({ext_include file="inc_extension_pagelayout_bottom.tpl"})
-</body>
-</html>
+
+({ext_include file="inc_footer.tpl"})

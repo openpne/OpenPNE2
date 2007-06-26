@@ -4,7 +4,7 @@
 <input type="hidden" name="sessid" value="({$PHPSESSID})">
 <input type="hidden" name="member_id" value="({$target_id})">
 ({if $is_form})
-<input type="text" name="state" value="({$c_member.nickname})" style="width:112px;text-align:center;" class="bg_02">
+<input type="text" class="text" name="state" value="({$c_member.nickname})" style="width:112px;text-align:center;">
 <img src="./skin/dummy.gif" class="v_spacer_s">
 <input type="submit" class="submit" value="　名前変更　" style="width:112px;">
 ({/if})

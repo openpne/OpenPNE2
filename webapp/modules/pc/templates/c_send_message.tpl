@@ -1,25 +1,6 @@
-({$inc_html_header|smarty:nodefaults})
-<body>
-({ext_include file="inc_extension_pagelayout_top.tpl"})
-<table class="mainframe" border="0" cellspacing="0" cellpadding="0">
-<tr>
-<td class="container inc_page_header">
-({$inc_page_header|smarty:nodefaults})
-</td>
-</tr>
-<tr>
-<td class="container inc_navi">
-({$inc_navi|smarty:nodefaults})
-</td>
-</tr>
-<tr>
-<td class="container main_content" align="center">
+({ext_include file="inc_header.tpl"})
+({ext_include file="inc_layoutcolumn_top_720px.tpl"})
 
-({ext_include file="inc_alert_box.tpl"})({* エラーメッセージコンテナ *})
-
-<table class="container" border="0" cellspacing="0" cellpadding="0">({*BEGIN:container*})
-<tr>
-<td class="full_content" align="center">
 ({***************************})
 ({**ここから：メインコンテンツ**})
 ({***************************})
@@ -64,14 +45,11 @@
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 <td style="width:564px;" class="bg_09" align="left">
 
+({if $c_commu.member_count!=1})
 <div class="padding_w_s lh_120">
 
-({if $c_commu.member_count!=1})
 コミュニティ参加者にメッセージを送信します。<br>
 ※管理者からのメッセージ受信設定を「受け取らない」にしているメンバーには届きませんので注意してください。
-({else})
-メッセージを送信するメンバーがいません。
-({/if})
 
 </div>
 
@@ -133,7 +111,7 @@
 
 <div class="padding_s">
 
-<input type="text" name="subject" size="50">
+<input type="text" class="text" name="subject" size="50">
 
 </div>
 
@@ -162,7 +140,7 @@
 
 <div class="padding_s">
 
-<textarea name="body" rows="6" cols="50"></textarea>
+<textarea class="text" name="body" rows="6" cols="50" style="width:400px;"></textarea>
 
 </div>
 
@@ -195,6 +173,23 @@
 </table>
 <!-- ここまで：主内容 -->
 
+({else})
+<div class="padding_w_s lh_120">
+
+メッセージを送信するメンバーがいません。
+
+</div>
+</td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+</tr>
+({*********})
+<tr>
+<td class="bg_01" colspan="3"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+</tr>
+({*********})
+</table>
+({/if})
+
 ({*ここまで：body*})
 ({*ここから：footer*})
 <!-- 無し -->
@@ -221,19 +216,5 @@
 ({***************************})
 ({**ここまで：メインコンテンツ**})
 ({***************************})
-</td>
-</tr>
-</table>({*END:container*})
-</td>
-</tr>
-<tr>
-<td class="container inc_page_footer">
-({$inc_page_footer|smarty:nodefaults})
-</td>
-</tr>
-</table>
-
-
-({ext_include file="inc_extension_pagelayout_bottom.tpl"})
-</body>
-</html>
+({ext_include file="inc_layoutcolumn_bottom_270px_165px_175px_720px.tpl"})
+({ext_include file="inc_footer.tpl"})

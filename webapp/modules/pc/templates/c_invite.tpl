@@ -1,25 +1,6 @@
-({$inc_html_header|smarty:nodefaults})
-<body>
-({ext_include file="inc_extension_pagelayout_top.tpl"})
-<table class="mainframe" border="0" cellspacing="0" cellpadding="0">
-<tr>
-<td class="container inc_page_header">
-({$inc_page_header|smarty:nodefaults})
-</td>
-</tr>
-<tr>
-<td class="container inc_navi">
-({$inc_navi|smarty:nodefaults})
-</td>
-</tr>
-<tr>
-<td class="container main_content" align="center">
+({ext_include file="inc_header.tpl"})
+({ext_include file="inc_layoutcolumn_top_720px.tpl"})
 
-({ext_include file="inc_alert_box.tpl"})({* エラーメッセージコンテナ *})
-
-<table class="container" border="0" cellspacing="0" cellpadding="0">({*BEGIN:container*})
-<tr>
-<td class="full_content" align="center">
 ({***************************})
 ({**ここから：メインコンテンツ**})
 ({***************************})
@@ -68,7 +49,7 @@
 
 ({if $c_invite_list})
 このコミュニティを紹介したい({$WORD_MY_FRIEND})を一覧から選び、紹介するメッセージを書いてください。
-<br>なお、コミュニティ管理人から紹介した場合には、承認制のコミュニティにも承認無しで参加できます。
+<br>なお、コミュニティ管理者から紹介した場合には、承認制のコミュニティにも承認無しで参加できます。
 ({else})
 紹介できる({$WORD_MY_FRIEND})がいません。
 ({/if})
@@ -171,7 +152,7 @@
 
 <div class="padding_s">
 
-<textarea name="body" rows="6" cols="50"></textarea>
+<textarea class="text" name="body" rows="6" cols="50"></textarea>
 
 </div>
 
@@ -230,19 +211,5 @@
 ({***************************})
 ({**ここまで：メインコンテンツ**})
 ({***************************})
-</td>
-</tr>
-</table>({*END:container*})
-</td>
-</tr>
-<tr>
-<td class="container inc_page_footer">
-({$inc_page_footer|smarty:nodefaults})
-</td>
-</tr>
-</table>
-
-
-({ext_include file="inc_extension_pagelayout_bottom.tpl"})
-</body>
-</html>
+({ext_include file="inc_layoutcolumn_bottom_270px_165px_175px_720px.tpl"})
+({ext_include file="inc_footer.tpl"})

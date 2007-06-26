@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -39,19 +39,31 @@ class ktai_do_c_bbs_insert_c_commu_topic_comment extends OpenPNE_Action
             openpne_redirect('ktai', 'page_c_bbs', $p);
         }
 
-        $insert_id = do_c_bbs_insert_c_commu_topic_comment($u, $target_c_commu_topic_id, $body);
+        if ($requests['join_event'] || $requests['cancel_event']) {
+            if (!db_commu_is_event_join_date($target_c_commu_topic_id)) {
+                handle_kengen_error();
+            }
+        }
+
+        $insert_id = db_commu_insert_c_commu_topic_comment_2($u, $target_c_commu_topic_id, $body);
 
         //イベントのメンバーに追加
         if ($requests['join_event']) {
             do_c_event_add_insert_c_event_member($target_c_commu_topic_id, $u);
         } elseif ($requests['cancel_event']) {
-            do_c_event_add_delete_c_event_member($target_c_commu_topic_id, $u);
+            db_commu_delete_c_event_member($target_c_commu_topic_id, $u);
         }
 
         //お知らせメール送信(携帯へ)
         send_bbs_info_mail($insert_id, $u);
         //お知らせメール送信(PCへ)
         send_bbs_info_mail_pc($insert_id, $u);
+
+        if (OPENPNE_USE_POINT_RANK) {
+            //トピック・イベントにコメントした人にポイント付与
+            $point = db_action_get_point4c_action_id(11);
+            db_point_add_point($u, $point);
+        }
 
         $p = array('target_c_commu_topic_id' => $target_c_commu_topic_id);
         openpne_redirect('ktai', 'page_c_bbs', $p);

@@ -1,22 +1,6 @@
-({$inc_html_header|smarty:nodefaults})
-<body>
-({ext_include file="inc_extension_pagelayout_top.tpl"})
-<table class="mainframe" border="0" cellspacing="0" cellpadding="0">
-<tr>
-<td class="container inc_page_header">
-({$inc_page_header|smarty:nodefaults})
-</td>
-</tr>
-<tr>
-<td class="container inc_navi">
-({$inc_navi|smarty:nodefaults})
-</td>
-</tr>
-<tr>
-<td class="container main_content">
-<table class="container" border="0" cellspacing="0" cellpadding="0">({*BEGIN:container*})
-<tr>
-<td class="full_content" align="center">
+({ext_include file="inc_header.tpl"})
+({ext_include file="inc_layoutcolumn_top_720px.tpl"})
+
 ({***************************})
 ({**ここから：メインコンテンツ**})
 ({***************************})
@@ -79,9 +63,9 @@
 
 <div class="padding_s">
 
-<a href="({t_url m=pc a=page_h_review_search})&amp;keyword=({$keyword|escape:"url"})&amp;category=({$category})&amp;orderby=r_num">登録数順</a>
+<a href="({t_url m=pc a=page_h_review_search})&amp;keyword=({$keyword|escape:url|smarty:nodefaults})&amp;category=({$category})&amp;orderby=r_num">登録数順</a>
 |
-<a href="({t_url m=pc a=page_h_review_search})&amp;keyword=({$keyword|escape:"url"})&amp;category=({$category})&amp;orderby=r_datetime">作成日順</a>
+<a href="({t_url m=pc a=page_h_review_search})&amp;keyword=({$keyword|escape:url|smarty:nodefaults})&amp;category=({$category})&amp;orderby=r_datetime">作成日順</a>
 
 </div>
 
@@ -102,7 +86,7 @@
 
 <div class="padding_s">
 
-<input type="text" name="keyword" value="({$keyword})" size="15">&nbsp;
+<input type="text" class="text" name="keyword" value="({$keyword})" size="15">&nbsp;
 &nbsp;カテゴリ&nbsp;<img src="({t_img_url_skin filename=icon_arrow_2})" class="icon">
 <select name="category">
 <option value="">指定なし</option>
@@ -237,7 +221,7 @@
 ({*********})
 <tr>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-<td style="width:634px;" class="bg_05" align="right">
+<td style="width:634px;" class="bg_02" align="right">
 
 <div class="padding_s">
 
@@ -369,7 +353,7 @@
 
 <div class="padding_s">
 
-({$item.r_datetime|date_format:"%m月%d日 %H:%M"})
+({$item.r_datetime|date_format:"%Y年%m月%d日 %H:%M"})
 </div>
 
 </td>
@@ -416,7 +400,7 @@
 ({*********})
 <tr>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-<td style="width:634px;" class="bg_05" align="right">
+<td style="width:634px;" class="bg_02" align="right">
 
 <div class="padding_s">
 
@@ -460,17 +444,5 @@
 ({***************************})
 ({**ここまで：メインコンテンツ**})
 ({***************************})
-</td>
-</tr>
-</table>({*END:container*})
-</td>
-</tr>
-<tr>
-<td class="container inc_page_footer">
-({$inc_page_footer|smarty:nodefaults})
-</td>
-</tr>
-</table>
-({ext_include file="inc_extension_pagelayout_bottom.tpl"})
-</body>
-</html>
+({ext_include file="inc_layoutcolumn_bottom_270px_165px_175px_720px.tpl"})
+({ext_include file="inc_footer.tpl"})

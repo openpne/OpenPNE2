@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -24,7 +24,7 @@ class ktai_page_fh_intro extends OpenPNE_Action
             $target_c_member_id = $u;
         }
 
-        if (p_common_is_access_block($u, $target_c_member_id)) {
+        if (db_member_is_access_block($u, $target_c_member_id)) {
             openpne_redirect('ktai', 'page_h_access_block');
         }
 
@@ -36,19 +36,19 @@ class ktai_page_fh_intro extends OpenPNE_Action
         $this->set('type', $type);
 
         //自分情報
-        $this->set('member', db_common_c_member4c_member_id($u));
+        $this->set('member', db_member_c_member4c_member_id($u));
 
         //ターゲット情報
-        $this->set('target_member', db_common_c_member4c_member_id($target_c_member_id));
+        $this->set('target_member', db_member_c_member4c_member_id($target_c_member_id));
 
         if ($target_c_member_id == $u) {
-            $raw_c_friend_comment_list = p_fh_intro_intro_list_with_my_intro4c_member_id($target_c_member_id);
+            $raw_c_friend_comment_list = db_friend_intro_list_with_my_intro4c_member_id($target_c_member_id);
         } else {
-            $raw_c_friend_comment_list = p_fh_intro_intro_list4c_member_id($target_c_member_id);
+            $raw_c_friend_comment_list = db_friend_intro_list4c_member_id($target_c_member_id);
         }
         $c_friend_comment_list = $raw_c_friend_comment_list;
 
-        $list = p_fh_intro_list4c_friend_comment_list($c_friend_comment_list, $page, $page_size);
+        $list = db_friend_intro_list4c_friend_comment_list($c_friend_comment_list, $page, $page_size);
 
         //紹介文
         $this->set('intro_list', $list[0]);

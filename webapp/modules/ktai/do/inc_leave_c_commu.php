@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -21,16 +21,14 @@ class ktai_do_inc_leave_c_commu extends OpenPNE_Action
         //--- 権限チェック
         //コミュニティメンバー and 管理者でない
 
-        $is_admin  = _db_is_c_commu_admin($target_c_commu_id, $u);
-        $is_member = _db_is_c_commu_member($target_c_commu_id, $u);
+        $is_admin  = db_commu_is_c_commu_admin($target_c_commu_id, $u);
+        $is_member = db_commu_is_c_commu_member($target_c_commu_id, $u);
 
         if ($is_admin) {
-            $p = array('target_c_commu_id' => $target_c_commu_id, 'msg' => 10);
-            openpne_redirect('ktai', 'page_c_taikai_err_admin', $p);
+            ktai_display_error(k_p_common_msg4msg_id(10));
         }
         if (!$is_member) {
-            $p = array('target_c_commu_id' => $target_c_commu_id, 'msg' => 11);
-            openpne_redirect('ktai', 'page_c_taikai_err_no_member', $p);
+            ktai_display_error(k_p_common_msg4msg_id(11));
         }
         //---
 

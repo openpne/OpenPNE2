@@ -1,26 +1,5 @@
-({$inc_html_header|smarty:nodefaults})
-<body>
-({ext_include file="inc_extension_pagelayout_top.tpl"})
-<table class="mainframe" border="0" cellspacing="0" cellpadding="0">
-<tr>
-<td class="container inc_page_header">
-({$inc_page_header|smarty:nodefaults})
-</td>
-</tr>
-<tr>
-<td class="container inc_navi">
-({$inc_navi|smarty:nodefaults})
-</td>
-</tr>
-<tr>
-<td class="container main_content" align="center">
-
-({ext_include file="inc_alert_box.tpl"})({* エラーメッセージコンテナ *})
-
-<table class="container" border="0" cellspacing="0" cellpadding="0">({*BEGIN:container*})
-<tr>
-<td style="width:7px;"><img src="./skin/dummy.gif" style="width:7px;" class="dummy"></td>({*<--spacer*})
-<td class="left_content_165" align="center" valign="top">
+({ext_include file="inc_header.tpl"})
+({ext_include file="inc_layoutcolumn_top_165px.tpl"})
 ({********************************})
 ({**ここから：メインコンテンツ（左）**})
 ({********************************})
@@ -44,7 +23,6 @@
 <table border="0" cellspacing="0" cellpadding="0" style="width:149px;margin:0px auto;">
 <tr>
 <td align="center" class="bg_03 padding_s">
-<div class="padding_s">
 
 ({strip})
 ({if $ym.prev_month})
@@ -72,7 +50,6 @@
 ({/if})
 ({/strip})
 
-</div>
 </td>
 </tr>
 </table>
@@ -87,19 +64,19 @@
 </tr>
 ({****************})
 <tr>
-<td class="bg_09 s_ss" align="center"><span class="c_02 s_ss">日</span></td>
+<td class="bg_09 s_ss padding_ss" align="right"><span class="c_02 s_ss">日</span></td>
 <td style="width:1px;" class="bg_10"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-<td class="bg_09 s_ss" align="center">月</td>
+<td class="bg_09 s_ss padding_ss" align="right">月</td>
 <td style="width:1px;" class="bg_10"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-<td class="bg_09 s_ss" align="center">火</td>
+<td class="bg_09 s_ss padding_ss" align="right">火</td>
 <td style="width:1px;" class="bg_10"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-<td class="bg_09 s_ss" align="center">水</td>
+<td class="bg_09 s_ss padding_ss" align="right">水</td>
 <td style="width:1px;" class="bg_10"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-<td class="bg_09 s_ss" align="center">木</td>
+<td class="bg_09 s_ss padding_ss" align="right">木</td>
 <td style="width:1px;" class="bg_10"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-<td class="bg_09 s_ss" align="center">金</td>
+<td class="bg_09 s_ss padding_ss" align="right">金</td>
 <td style="width:1px;" class="bg_10"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-<td class="bg_09 s_ss" align="center"><span class="c_03 s_ss">土</span></td>
+<td class="bg_09 s_ss padding_ss" align="right"><span class="c_03 s_ss">土</span></td>
 </tr>
 ({****************})
 <tr>
@@ -109,7 +86,7 @@
 ({foreach from=$calendar item=week})
 <tr>
 ({foreach from=$week item=item name="calendar_days"})
-<td style="width:({if $smarty.foreach.calendar_days.iteration%7 == 0 || $smarty.foreach.calendar_days.iteration%7 == 1})21({else})20({/if})px;height:18px;" valign="middle" align="right" class="bg_02 s_ss">
+<td style="width:({if $smarty.foreach.calendar_days.iteration%7 == 0 || $smarty.foreach.calendar_days.iteration%7 == 1})21({else})20({/if})px;height:18px;" valign="middle" align="right" class="bg_02 s_ss padding_ss">
 ({if $item.day})
 ({if $item.is_diary})
 <a href="({t_url m=pc a=page_fh_diary_list})&amp;target_c_member_id=({$target_member.c_member_id})&amp;year=({$date_val.year})&amp;month=({$date_val.month})&amp;day=({$item.day})" class="s_ss">({$item.day})</a>
@@ -360,9 +337,7 @@
 ({********************************})
 ({**ここまで：メインコンテンツ（左）**})
 ({********************************})
-</td>
-<td style="width:8px;"><img src="./skin/dummy.gif" style="width:8px;" class="dummy"></td>({*<--spacer*})
-<td class="right_content_540" align="left" valign="top">
+({ext_include file="inc_layoutcolumn_middle_165px.tpl"})
 ({********************************})
 ({**ここから：メインコンテンツ（右）**})
 ({********************************})
@@ -467,7 +442,7 @@
 ({/if})
 
 <div class="lh_120" id="DOM_fh_diary_body">
-({$target_diary.body|nl2br|t_url2cmd|t_cmd})
+({$target_diary.body|nl2br|t_url2cmd:'diary'|t_cmd:'diary'})
 </div>
 
 </div>
@@ -634,7 +609,7 @@
 <br>
 ({/if})
 
-({$item.body|nl2br|t_url2cmd|t_cmd})
+({$item.body|nl2br|t_url2cmd:'diary'|t_cmd:'diary'})
 
 </div>
 
@@ -706,6 +681,9 @@
 
 <!-- ********************************** -->
 <!-- ******ここから：コメントを書く****** -->
+
+<a name="write"></a>
+
 ({t_form _enctype=file m=pc a=page_fh_diary_comment_confirm})
 <input type="hidden" name="target_c_diary_id" value="({$target_diary.c_diary_id})">
 
@@ -724,7 +702,7 @@
 <table border="0" cellspacing="0" cellpadding="0" style="width:524px;" class="border_01">
 <tr>
 <td style="width:36px;" class="bg_06"><img src="({t_img_url_skin filename=content_header_1})" style="width:30px;height:20px;" class="dummy"></td>
-<td style="width:486px;padding:2px 0px;" class="bg_06"><span class="b_b c_00">コメントを書く</a></span></td>
+<td style="width:486px;padding:2px 0px;" class="bg_06"><span class="b_b c_00">コメントを書く</span></td>
 </tr>
 </table>
 <!-- ここまで：小タイトル -->
@@ -751,7 +729,7 @@
 <td class="bg_02" align="left" valign="middle">
 <div style="padding:4px 3px;">
 
-<textarea name="body" rows="8" cols="40" style="width:419px">({$requests.body})</textarea>
+<textarea class="text" name="body" rows="8" cols="40" style="width:419px">({$requests.body})</textarea>
 
 </div>
 </td>
@@ -875,17 +853,5 @@
 ({********************************})
 ({**ここまで：メインコンテンツ（右）**})
 ({********************************})
-</td>
-</tr>
-</table>({*END:container*})
-</td>
-</tr>
-<tr>
-<td class="container inc_page_footer">
-({$inc_page_footer|smarty:nodefaults})
-</td>
-</tr>
-</table>
-({ext_include file="inc_extension_pagelayout_bottom.tpl"})
-</body>
-</html>
+({ext_include file="inc_layoutcolumn_bottom_270px_165px_175px_720px.tpl"})
+({ext_include file="inc_footer.tpl"})

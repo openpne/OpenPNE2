@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -30,6 +30,11 @@ class pc_do_c_edit_member_delete_c_commu_member extends OpenPNE_Action
         if ($target_c_member_id == $u) {
             $p = array('target_c_commu_id' => $target_c_commu_id);
             openpne_redirect('pc', 'page_c_taikai_err_admin', $p);
+        }
+
+        // 削除対象がコミュニティ管理者
+        if (db_commu_is_c_commu_admin($target_c_commu_id, $target_c_member_id)) {
+            handle_kengen_error();
         }
         //---
 

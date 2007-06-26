@@ -1,22 +1,6 @@
-({$inc_html_header|smarty:nodefaults})
-<body>
-({ext_include file="inc_extension_pagelayout_top.tpl"})
-<table class="mainframe" border="0" cellspacing="0" cellpadding="0">
-<tr>
-<td class="container inc_page_header">
-({$inc_page_header|smarty:nodefaults})
-</td>
-</tr>
-<tr>
-<td class="container inc_navi">
-({$inc_navi|smarty:nodefaults})
-</td>
-</tr>
-<tr>
-<td class="container main_content">
-<table class="container" border="0" cellspacing="0" cellpadding="0">({*BEGIN:container*})
-<tr>
-<td class="full_content" align="center">
+({ext_include file="inc_header.tpl"})
+({ext_include file="inc_layoutcolumn_top_720px.tpl"})
+
 ({***************************})
 ({**ここから：メインコンテンツ**})
 ({***************************})
@@ -84,9 +68,11 @@
 </tr>
 ({foreach from=$calendar item=week})
 <tr>
-({foreach from=$week item=item})
+({foreach from=$week item=item name=weekloop})
 ({if $item.now})
 <td style="height:65px;padding:2px;" align="left" valign="top" class="bg_09">
+({elseif $item.holiday || $smarty.foreach.weekloop.first})
+<td style="height:65px;padding:2px;" align="left" valign="top" class="bg_14">
 ({else})
 <td style="height:65px;padding:2px;" align="left" valign="top" class="bg_02">
 ({/if})
@@ -96,8 +82,16 @@
 ({else})
 ({$item.day})
 ({/if})<br>
+
 ({if $add_schedule})
 <a href="({t_url m=pc a=page_h_schedule_add})&amp;year=({$ym.year_disp})&amp;month=({$ym.month_disp})&amp;day=({$item.day})"><img src="({t_img_url_skin filename=icon_schedule})" class="icon"></a><br>
+({/if})
+
+({* 祝日 *})
+({if $item.holiday})
+({foreach from=$item.holiday item=item_holiday})
+<span class=" c_02">({$item_holiday})</span><br>
+({/foreach})
 ({/if})
 
 ({* 誕生日 *})
@@ -171,17 +165,5 @@
 ({***************************})
 ({**ここまで：メインコンテンツ**})
 ({***************************})
-</td>
-</tr>
-</table>({*END:container*})
-</td>
-</tr>
-<tr>
-<td class="container inc_page_footer">
-({$inc_page_footer|smarty:nodefaults})
-</td>
-</tr>
-</table>
-({ext_include file="inc_extension_pagelayout_bottom.tpl"})
-</body>
-</html>
+({ext_include file="inc_layoutcolumn_bottom_270px_165px_175px_720px.tpl"})
+({ext_include file="inc_footer.tpl"})

@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -16,10 +16,14 @@ class biz_do_h_home_insert_biz_todo extends OpenPNE_Action
         $nickname = $requests['nickname'];
         // ----------
 
+        if (empty($todo)) {
+            $p = array('msg' => 'Todoの内容を入力してください。');
+            openpne_redirect('pc', 'page_h_home', $p);
+        }
+
         biz_insertTodo($u, $todo, $u, 0, $is_all);
 
-        $p = array();
-        openpne_redirect('pc', 'page_h_home', $p);
+        openpne_redirect('pc', 'page_h_home');
     }
 }
 ?>

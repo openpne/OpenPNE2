@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -28,27 +28,54 @@ class pc_do_h_config_3 extends OpenPNE_Action
         $c_member_id_block = $requests['c_member_id_block'];
         $c_password_query_id = $requests['c_password_query_id'];
         $c_password_query_answer = $requests['c_password_query_answer'];
-        $public_flag_diary = $requests['public_flag_diary'];
+        $public_flag_diary = util_cast_public_flag_diary($requests['public_flag_diary']);
         $is_shinobiashi = $requests['is_shinobiashi'];
+        $schedule_start_day = $requests['schedule_start_day'];
         // ----------
 
-        include_once 'OpenPNE/RSS.php';
+        $error_messages = array();
 
-        if ($rss_url = OpenPNE_RSS::auto_discovery($rss)) {
-            $c_member = db_common_c_member4c_member_id($u);
+        if ($rss) {
+            if (!preg_match('|^https?://|', $rss)) {
+                $error_messages[] = 'BlogのURLを正しく入力してください';
+            } else {
+                include_once 'OpenPNE/RSS.php';
+                if (!($rss_url = OpenPNE_RSS::auto_discovery($rss))) {
+                    $error_messages[] = 'BlogのURLが無効です';
+                }
+            }
+        }
+
+        $filtered_id = db_member_filter_c_access_block_id($u, $c_member_id_block);
+        foreach ($c_member_id_block as $each_id) {
+            if (!in_array($each_id, $filtered_id)) {
+                $error_messages[] = 'アクセスブロックに無効なメンバーIDが含まれています';
+                break;
+            }
+        }
+        
+        // error
+        if ($error_messages) {
+            $_REQUEST['msg'] = array_shift($error_messages);
+            openpne_forward('pc', 'page', 'h_config');
+            exit;
+        }
+        
+        if ($rss_url) {
+            $c_member = db_member_c_member4c_member_id($u);
             if ($rss_url != $c_member['rss']) {
                 //異なるBlogを登録すると過去のrssは全て削除する
-                delete_rss_cache($u);
+                db_rss_delete_rss_cache($u);
             }
 
             //c_rss_cacheへ登録
-            insert_rss_cache($rss_url, $u);
+            db_rss_insert_rss_cache($rss_url, $u);
         } else {
             $rss_url = '';
-            delete_rss_cache($u);
+            db_rss_delete_rss_cache($u);
         }
 
-        do_h_config_3(
+        db_member_h_config_3(
             $u,
             $is_receive_mail,
             $rss_url,
@@ -57,10 +84,11 @@ class pc_do_h_config_3 extends OpenPNE_Action
             $c_password_query_id,
             $c_password_query_answer,
             $public_flag_diary,
-            $is_shinobiashi
+            $is_shinobiashi,
+            $schedule_start_day
         );
 
-        do_h_config_3_insert_c_access_block($u, $c_member_id_block);
+        db_member_insert_c_access_block($u, $c_member_id_block);
 
         openpne_redirect('pc', 'page_h_home');
     }

@@ -1,67 +1,4 @@
-({$inc_html_header|smarty:nodefaults})
-
-({if $smarty.const.OPENPNE_USE_COMMU_MAP && $c_commu.is_display_map})
-<script src="http://maps.google.co.jp/maps?file=api&amp;v=2&amp;key=({$smarty.const.GOOGLE_MAPS_API_KEY})" type="text/javascript"></script>
-<script type="text/javascript">
-<!--
-function load() {
-    if (GBrowserIsCompatible()) {
-        var point = new GLatLng(({$c_commu.map_latitude}), ({$c_commu.map_longitude}));
-        var zoom = ({$c_commu.map_zoom});
-        var html = '<div><img src="({t_img_url filename=$c_commu.image_filename w=120 h=120 noimg=no_logo})" width="60" height="60" align="left" hspace="5">({$c_commu.name})</div>';
-
-        var map = new GMap2(document.getElementById("map"));
-        map.addControl(new GSmallMapControl());
-        map.addControl(new GMapTypeControl());
-        map.setCenter(point, zoom);
-
-        var marker = new GMarker(point);
-        map.addOverlay(marker);
-        GEvent.addListener(marker, "click", function() {
-            marker.openInfoWindowHtml(html);
-        });
-    }
-}
-//-->
-</script>
-<body onLoad="load()" onUnload="GUnload()">
-({else})
-<body>
-({/if})
-
-({ext_include file="inc_extension_pagelayout_top.tpl"})
-<table class="mainframe" border="0" cellspacing="0" cellpadding="0">
-<tr>
-<td class="container inc_page_header">
-({$inc_page_header|smarty:nodefaults})
-</td>
-</tr>
-({if $inc_entry_point[1]})
-<tr>
-<td class="container">
-({$inc_entry_point[1]|smarty:nodefaults})
-</td>
-</tr>
-({/if})
-<tr>
-<td class="container inc_navi">
-({$inc_navi|smarty:nodefaults})
-</td>
-</tr>
-({if $inc_entry_point[2]})
-<tr>
-<td class="container">
-({$inc_entry_point[2]|smarty:nodefaults})
-</td>
-</tr>
-({/if})
-<tr>
-<td class="container main_content" align="center">
-
-({ext_include file="inc_alert_box.tpl"})({* エラーメッセージコンテナ *})
-
-</td>
-</tr>
+({ext_include file="inc_header.tpl"})
 ({if !$is_c_commu_member})
 <tr>
 <td class="container c_join_commu_box" align="center">
@@ -124,19 +61,14 @@ function load() {
 </td>
 </tr>
 ({/if})
-<tr>
-<td class="container main_content">
+({ext_include file="inc_layoutcolumn_top_270px.tpl"})
 
-<table class="container" border="0" cellspacing="0" cellpadding="0">({*BEGIN:container*})
-<tr>
-<td style="width:5px;"><img src="./skin/dummy.gif" style="width:5px;" class="dummy"></td>({*<--spacer*})
-<td class="left_content" valign="top">
 ({********************************})
 ({**ここから：メインコンテンツ（左）**})
 ({********************************})
 
 ({if $inc_entry_point[3]})
-({$inc_entry_point[3]|smarty:nodefaults})
+({$inc_entry_point[3]|smarty:nodefaults|t_url2cmd:'entry_point'|t_cmd:'entry_point'})
 ({/if})
 
 <!-- *********************************************** -->
@@ -203,7 +135,7 @@ function load() {
 <img src="./skin/dummy.gif" class="v_spacer_m">
 
 ({if $inc_entry_point[4]})
-({$inc_entry_point[4]|smarty:nodefaults})
+({$inc_entry_point[4]|smarty:nodefaults|t_url2cmd:'entry_point'|t_cmd:'entry_point'})
 ({/if})
 
 <!-- ******************************** -->
@@ -234,7 +166,7 @@ function load() {
 ({foreach from=$c_commu_member_list item=item key=key})
 ({if $key > 0})&({/if})
 pne_item({$key+1})_id=({$item.c_member_id})
-&pne_item({$key+1})_name=({$item.nickname|t_truncate:12:'..'|escape:'url'})
+&pne_item({$key+1})_name=({$item.nickname|t_truncate:12:'..'|escape:url|smarty:nodefaults})
 &pne_item({$key+1})_linkurl=({t_url m=pc a=page_f_home _urlencode=true _html=false})%26target_c_member_id=({$item.c_member_id})
 &pne_item({$key+1})_imageurl=({t_img_url filename=$item.image_filename w=76 h=76 noimg=no_image _urlencode=true _html=false})
 &pne_item({$key+1})_count=({$item.friend_count})
@@ -393,6 +325,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <td style="width:1px;" class="bg_07"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({if $is_c_commu_admin})
+({if $c_commu.member_count != 1})
 <tr>
 <td style="width:1px;" class="bg_07"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 <td style="width:125px;" class="bg_02"><img src="./skin/dummy.gif" style="width:125px;height:1px;" class="dummy"></td>
@@ -403,6 +336,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <td style="width:5px;" class="bg_02"><img src="./skin/dummy.gif" style="width:5px;height:1px;" class="dummy"></td>
 <td style="width:1px;" class="bg_07"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
+({/if})
 <tr>
 <td style="width:1px;" class="bg_07"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 <td style="width:125px;" class="bg_02"><img src="./skin/dummy.gif" style="width:125px;height:1px;" class="dummy"></td>
@@ -435,14 +369,14 @@ show_flash('flash/list.swf', '({$flashvars})');
 <img src="./skin/dummy.gif" class="v_spacer_m">
 
 ({if $inc_entry_point[5]})
-({$inc_entry_point[5]|smarty:nodefaults})
+({$inc_entry_point[5]|smarty:nodefaults|t_url2cmd:'entry_point'|t_cmd:'entry_point'})
 ({/if})
 
-({if $smarty.const.OPENPNE_USE_COMMU_MAP && $c_commu.is_display_map})
+({if $smarty.const.OPENPNE_USE_COMMU_MAP && $c_commu.is_display_map}) 
 <table border="0" cellspacing="0" cellpadding="10" style="width:270px;margin:0px auto;" class="border_07">
 <tr>
-<td style="width:270px;" class="bg_00">
-<div id="map" style="width: 250px; height: 300px"></div>
+<td style="width:268px;" class="bg_00">
+<div id="map" style="width: 248px; height: 300px"></div>
 </td>
 </tr>
 </table>
@@ -451,15 +385,13 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({********************************})
 ({**ここまで：メインコンテンツ（左）**})
 ({********************************})
-</td>
-<td style="width:5px;"><img src="./skin/dummy.gif" style="width:5px;" class="dummy"></td>({*<--spacer*})
-<td class="right_content" valign="top">
+({ext_include file="inc_layoutcolumn_middle_270px.tpl"})
 ({********************************})
 ({**ここから：メインコンテンツ（右）**})
 ({********************************})
 
 ({if $inc_entry_point[6]})
-({$inc_entry_point[6]|smarty:nodefaults})
+({$inc_entry_point[6]|smarty:nodefaults|t_url2cmd:'entry_point'|t_cmd:'entry_point'})
 ({/if})
 
 <!-- **************************************** -->
@@ -522,11 +454,11 @@ show_flash('flash/list.swf', '({$flashvars})');
 </td>
 </tr>
 <!-- ここまで：主内容＞開設日 -->
-<!-- ここから：主内容＞管理人 -->
+<!-- ここから：主内容＞管理者 -->
 <tr>
 <td class="border_01 bg_09 padding_s" style="width:90px;border-right:none;border-top:none;">
 
-<span class="c_01">管理人</span>
+<span class="c_01">管理者</span>
 
 </td>
 <td class="border_01 bg_02 padding_s" style="width:332px;border-top:none;">
@@ -535,7 +467,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 
 </td>
 </tr>
-<!-- ここまで：主内容＞管理人 -->
+<!-- ここまで：主内容＞管理者 -->
 <!-- ここから：主内容＞カテゴリ -->
 <tr>
 <td class="border_01 bg_09 padding_s" style="width:90px;border-right:none;border-top:none;">
@@ -576,11 +508,11 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({if $c_commu.public_flag == 'public'})
 だれでも参加できる(公開)
 ({elseif $c_commu.public_flag == 'auth_public'})
-管理人の承認が必要(公開)
+管理者の承認が必要(公開)
 ({elseif $c_commu.public_flag == 'auth_sns'})
-管理人の承認が必要(公開)
+管理者の承認が必要(公開)
 ({elseif $c_commu.public_flag == 'auth_commu_member'})
-管理人の承認が必要(非公開)
+管理者の承認が必要(非公開)
 ({/if})
 
 </td>
@@ -612,7 +544,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <td class="border_01 bg_02 padding_s" style="width:332px;border-top:none;">
 
 ({foreach from=$new_topic_comment item=item})
-<img src="./skin/dummy.gif" style="width:14px;height:14px;" class="icon icon_1">({$item.r_datetime|date_format:"%m月%d日"})…&nbsp;<a href="({t_url m=pc a=page_c_topic_detail})&amp;target_c_commu_topic_id=({$item.c_commu_topic_id})">({$item.name})</a>
+<img src="./skin/dummy.gif" style="width:14px;height:14px;" class="icon icon_1">({$item.r_datetime|date_format:"%m月%d日"})…&nbsp;<a href="({t_url m=pc a=page_c_topic_detail})&amp;target_c_commu_topic_id=({$item.c_commu_topic_id})">({$item.name})(({$item.count_comments}))</a>
 ({if $item.image_filename1 || $item.image_filename2 || $item.image_filename3})<img src="({t_img_url_skin filename=icon_camera})" class="icon">({/if})<br>
 ({/foreach})
 
@@ -625,12 +557,14 @@ show_flash('flash/list.swf', '({$flashvars})');
 <a href="({t_url m=pc a=page_c_topic_list})&amp;target_c_commu_id=({$c_commu.c_commu_id})">もっと読む</a>
 </td>
 </tr>
+({if ($c_commu.topic_authority == 'public')||($c_commu.topic_authority == 'admin_only' && $is_c_commu_admin)})
 <tr>
 <td style="width:130px;text-align:left;padding:1px 0px;">
 <img src="./skin/dummy.gif" class="icon arrow_1">
 <a href="({t_url m=pc a=page_c_topic_add})&amp;target_c_commu_id=({$c_commu.c_commu_id})">トピックを作成</a>
 </td>
 </tr>
+({/if})
 </table>
 </div>
 <!-- ここまで：主内容＞新着のトピック書き込み＞フッターメニュー -->
@@ -650,7 +584,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <td class="border_01 bg_02 padding_s" style="width:332px;border-top:none;">
 
 ({foreach from=$new_topic_comment_event item=item})
-<img src="./skin/dummy.gif" style="width:14px;height:14px;" class="icon icon_1">({$item.r_datetime|date_format:"%m月%d日"})…&nbsp;<a href="({t_url m=pc a=page_c_event_detail})&amp;target_c_commu_topic_id=({$item.c_commu_topic_id})">({$item.name})</a>
+<img src="./skin/dummy.gif" style="width:14px;height:14px;" class="icon icon_1">({$item.r_datetime|date_format:"%m月%d日"})…&nbsp;<a href="({t_url m=pc a=page_c_event_detail})&amp;target_c_commu_topic_id=({$item.c_commu_topic_id})">({$item.name})(({$item.count_comments}))</a>
 ({if $item.image_filename1 || $item.image_filename2 || $item.image_filename3})<img src="({t_img_url_skin filename=icon_camera})" class="icon">({/if})<br>
 ({/foreach})
 
@@ -663,12 +597,14 @@ show_flash('flash/list.swf', '({$flashvars})');
 <a href="({t_url m=pc a=page_c_event_list})&amp;target_c_commu_id=({$c_commu.c_commu_id})">もっと読む</a>
 </td>
 </tr>
+({if ($c_commu.topic_authority == 'public')||($c_commu.topic_authority == 'admin_only' && $is_c_commu_admin)})
 <tr>
 <td style="width:130px;text-align:left;padding:1px 0px;">
 <img src="./skin/dummy.gif" class="icon arrow_1">
 <a href="({t_url m=pc a=page_c_event_add})&amp;target_c_commu_id=({$c_commu.c_commu_id})">イベントを作成</a>
 </td>
 </tr>
+({/if})
 </table>
 </div>
 <!-- ここまで：主内容＞新着のイベント書き込み＞フッターメニュー -->
@@ -727,6 +663,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <td style="width:260px;" class="bg_02"><img src="./skin/dummy.gif" style="width:260px;height:1px;" class="dummy"></td>
 <td style="width:160px;padding:5px 0px;" class="bg_02 lh_140">
 ({if $is_c_commu_member || $c_commu.public_flag neq "auth_commu_member"})
+({if ($c_commu.topic_authority == 'public')||($c_commu.topic_authority == 'admin_only' && $is_c_commu_admin)})
 ({if !$new_topic_comment})
 <img src="./skin/dummy.gif" class="icon arrow_1">
 <a href="({t_url m=pc a=page_c_topic_add})&amp;target_c_commu_id=({$c_commu.c_commu_id})">トピックを作成</a>
@@ -736,6 +673,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <img src="./skin/dummy.gif" class="icon arrow_1">
 <a href="({t_url m=pc a=page_c_event_add})&amp;target_c_commu_id=({$c_commu.c_commu_id})">イベントを作成</a>
 <br>
+({/if})
 ({/if})
 ({/if})
 ({if $is_c_commu_admin})
@@ -849,23 +787,11 @@ show_flash('flash/list.swf', '({$flashvars})');
 <img src="./skin/dummy.gif" class="v_spacer_m">
 
 ({if $inc_entry_point[7]})
-({$inc_entry_point[7]|smarty:nodefaults})
+({$inc_entry_point[7]|smarty:nodefaults|t_url2cmd:'entry_point'|t_cmd:'entry_point'})
 ({/if})
 
 ({********************************})
 ({**ここまで：メインコンテンツ（右）**})
 ({********************************})
-</td>
-</tr>
-</table>({*END:container*})
-</td>
-</tr>
-<tr>
-<td class="container inc_page_footer">
-({$inc_page_footer|smarty:nodefaults})
-</td>
-</tr>
-</table>
-({ext_include file="inc_extension_pagelayout_bottom.tpl"})
-</body>
-</html>
+({ext_include file="inc_layoutcolumn_bottom_270px_165px_175px_720px.tpl"})
+({ext_include file="inc_footer.tpl"})

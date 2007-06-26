@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -19,7 +19,7 @@ class ktai_page_h_com_comment_list extends OpenPNE_Action
         $page_size = 10;
         $this->set("page_size", $page_size);
 
-        $lst = k_p_h_home_c_commu_topic_comment_list4c_member_id($u, $page_size, $page);
+        $lst = db_commu_c_commu_topic_comment_list4c_member_id_2($u, $page_size, $page);
         $this->set("h_com_comment_list", $lst[0]);
         $this->set("is_prev", $lst[1]);
         $this->set("is_next", $lst[2]);

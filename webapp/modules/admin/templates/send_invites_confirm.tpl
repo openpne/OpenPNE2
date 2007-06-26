@@ -1,97 +1,76 @@
 ({$inc_header|smarty:nodefaults})
+({ext_include file="inc_subnavi_adminSiteMember.tpl"})
+({assign var="page_name" value="招待メール送信"})
+({ext_include file="inc_tree_adminSiteMember.tpl"})
+</div>
 
-<h2>新規ユーザー招待メール送信</h2>
+({*ここまで:navi*})
+
+<h2>招待メール送信確認</h2>
+<div class="contents">
 
 ({if $requests.pc_mails})
 ({if !(($smarty.const.OPENPNE_REGIST_FROM) & ($smarty.const.OPENPNE_REGIST_FROM_PC))})
 PCからは登録できない設定になっています。<br>
 <div class="caution">※以下のアドレスには送信されません</div>
 ({else})
-PCアドレス
+<dl class="invitesAdd">
+	<dt><strong>【PCアドレス】</strong></dt>
 ({/if})
-<ul>
-({foreach from=$requests.pc_mails item=item})
-<li>({$item})</li>
-({/foreach})
-</ul>
+<dd>({foreach from=$requests.pc_mails item=item name=pm})<strong>({$item})</strong>({if !$smarty.foreach.pm.last})&nbsp;／&nbsp;({/if})({/foreach})</dd>
+</dl>
 ({/if})
-
 ({if $requests.ktai_mails})
 ({if !(($smarty.const.OPENPNE_REGIST_FROM) & ($smarty.const.OPENPNE_REGIST_FROM_KTAI))})
 携帯からは登録できない設定になっています。<br>
 <div class="caution">※以下のアドレスには送信されません</div>
 ({else})
-携帯アドレス
+<dl class="invitesAdd">
+	<dt><strong>【携帯アドレス】</strong></dt>
 ({/if})
-<ul>
-({foreach from=$requests.ktai_mails item=item})
-<li>({$item})</li>
-({/foreach})
-</ul>
+	<dd>({foreach from=$requests.ktai_mails item=item name=km})<strong>({$item})</strong>({if !$smarty.foreach.km.last})&nbsp;／&nbsp;({/if})({/foreach})</dd>
+</dl>
 ({/if})
-
 ({if $requests.error_mails})
-以下のアドレスは登録済みのため送信されません。
-<ul>
-({foreach from=$requests.error_mails item=item})
-<li>({$item})</li>
-({/foreach})
-</ul>
-({/if})
-
-({if $requests.limit_domain_mails})
-以下のメールアドレスでは登録できないため送信されません。
-<ul>
-({foreach from=$requests.limit_domain_mails item=item})
-<li>({$item})</li>
-({/foreach})
-</ul>
+<dl class="invitesAdd" id="warning">
+	<dt><strong>以下のアドレスは登録済みのため送信されません。</strong></dt>
+	<dd>({foreach from=$requests.error_mails item=item name=em})<strong>({$item})</strong>({if !$smarty.foreach.em.last})&nbsp;／&nbsp;({/if})({/foreach})</dd>
+</dl>
 ({/if})
 
 ({if !$cannot_send})
-送信してもよろしいですか？
+<p class="caution" id="c02">送信してもよろしいですか？</p>
 ({/if})
 <form action="./" method="post">
-<input type="hidden" name="m" value="({$module_name})">
-<input type="hidden" name="a" value="do_({$hash_tbl->hash('send_invites','do')})">
-<input type="hidden" name="sessid" value="({$PHPSESSID})">
-<input type="hidden" name="mails" value="({$requests.mails})">
-<input type="hidden" name="message" value="({$requests.message})">
-({if !$cannot_send})<input type="submit" name="complete" class="submit" value="送信">&nbsp;({/if})
-<input type="submit" name="input" class="submit" value="修正">
+<input type="hidden" name="m" value="({$module_name})" />
+<input type="hidden" name="a" value="do_({$hash_tbl->hash('send_invites','do')})" />
+<input type="hidden" name="sessid" value="({$PHPSESSID})" />
+<input type="hidden" name="mails" value="({$requests.mails})" />
+<input type="hidden" name="message" value="({$requests.message})" />
+({if !$cannot_send})<p class="textBtn"><input name="complete" type="submit" value="送信する"></p>({/if})<p class="textBtn"><input name="input" type="submit" value="修正する"></p>
 </form>
-
-<hr>
-
+<br class="clear" />
 ({if $pc_subject || $ktai_subject})
-<h3>招待メール内容確認(※変更はできません)</h3>
+<h3>招待メール内容確認<span>(※変更はできません)</span></h3>
 
 ({if $pc_subject})
-<h4>PC向け</h4>
-<table>
-<tr>
-<th>件名</th>
-<td>({$pc_subject})</td>
-</tr>
-<tr>
-<th>本文</th>
-<td><textarea rows="10" cols="72" readonly="readonly">({$pc_body})</textarea></td>
-</tr>
-</table>
+<h4>【PC向け】</h4>
+<dl class="invitesDetail">
+<dt><strong>件名</strong></dt>
+<dd>({$pc_subject})</dd>
+<dt><strong>本文</strong></dt>
+<dd><textarea rows="10" cols="72" readonly="readonly">({$pc_body})</textarea></dd>
+</dl>
 ({/if})
-
 ({if $ktai_subject})
-<h4>携帯向け</h4>
-<table>
-<tr>
-<th>件名</th>
-<td>({$ktai_subject})</td>
-</tr>
-<tr>
-<th>本文</th>
-<td><textarea rows="10" cols="72" readonly="readonly">({$ktai_body})</textarea></td>
-</tr>
-</table>
+<h4>【携帯向け】</h4>
+<dl class="invitesDetail">
+<dt><strong>件名</strong></dt>
+<dd>({$ktai_subject})</dd>
+<dt><strong>本文</strong></dt>
+<dd><textarea rows="10" cols="72" readonly="readonly">({$ktai_body})</textarea></dd>
+</dl>
+
 ({/if})
 ({/if})
 

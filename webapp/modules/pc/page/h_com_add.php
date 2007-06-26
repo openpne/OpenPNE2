@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -27,7 +27,7 @@ class pc_page_h_com_add extends OpenPNE_Action
 
         $this->set('inc_navi', fetch_inc_navi('h'));
 
-        $c_commu_category_list = _db_c_commu_category4null();
+        $c_commu_category_list = db_commu_c_commu_category4null();
         $this->set("c_commu_category", $c_commu_category_list);
 
         $public_flag_list=

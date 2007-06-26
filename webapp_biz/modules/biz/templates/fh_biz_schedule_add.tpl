@@ -1,28 +1,5 @@
-({$inc_html_header|smarty:nodefaults})
-<body>
-({ext_include file="inc_extension_pagelayout_top.tpl"})
-<table class="mainframe" border="0" cellspacing="0" cellpadding="0">
-<tr>
-<td class="container inc_page_header">
-({$inc_page_header|smarty:nodefaults})
-</td>
-</tr>
-<tr>
-<td class="container inc_navi">
-({$inc_navi|smarty:nodefaults})
-</td>
-</tr>
-<tr>
-<td class="container main_content" align="center">
-
-({if $msg || $msg1 || $msg2 || $msg3 || $err_msg})
-({assign var=is_no_alert value=true})
-({/if})
-({ext_include file="inc_alert_box.tpl"})({* エラーメッセージコンテナ *})
-
-<table class="container" border="0" cellspacing="0" cellpadding="0">({*BEGIN:container*})
-<tr>
-<td class="full_content" align="center">
+({ext_include file="inc_header.tpl"})
+({ext_include file="inc_layoutcolumn_top_720px.tpl"})
 ({***************************})
 ({**ここから：メインコンテンツ**})
 ({***************************})
@@ -34,6 +11,7 @@
 
 ({t_form _enctype=file m=biz a=do_fhg_biz_schedule_add})
 <input type="hidden" name="sessid" value="({$PHPSESSID})">
+<input type="hidden" name="target_c_member_id" value="({$target_c_member_id})">
 
 <table border="0" cellspacing="0" cellpadding="0" style="width:540px;margin:0px auto;" class="border_07">
 <tr>
@@ -103,7 +81,7 @@
 
 <select name='sc_rcount'>
 	({section name=i loop=$rp_count})
-		<option type='radio' value='({$rp_count[i]})'>({$rp_count[i]})週間
+		<option value='({$rp_count[i]})'>({$rp_count[i]})週間
 	({/section})
 </select>　　
 
@@ -223,7 +201,7 @@
 <td class="bg_02" align="left" valign="middle">
 <div style="padding:4px 3px;">
 
-<input type='text' name='sc_title' size="60" value="({$sc_title})">
+<input class="text" type='text' name='sc_title' size="60" value="({$sc_title})">
 
 </div>
 </td>
@@ -247,7 +225,7 @@
 <td class="bg_02" align="left" valign="middle">
 <div style="padding:4px 3px;">
 
-<textarea name='sc_memo' cols="50" rows="5">({$sc_memo})</textarea>
+<textarea class="text" name='sc_memo' cols="50" rows="5">({$sc_memo})</textarea>
 </div>
 </td>
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
@@ -256,69 +234,7 @@
 <tr>
 <td class="bg_01" colspan="5"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
-<!--
 ({*********})
-<script type="text/javascript" src="./modules/biz/schedule_member_form.js"></script>
-<tr>
-<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-<td class="bg_05" align="center" valign="middle">
-<div style="padding:4px 3px;">
-参加者<br>
-</div>
-</td>
-<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-<td class="bg_02" align="left" valign="middle">
-<div style="padding:4px 3px;">
-
-<table name="join">
-<tr>
-	<td>
-		<select id="groupSelect" onchange="">
-			<option value="0">(全員)</option>
-		</select>
-	</td>
-</tr>
-<tr>
-	<td>
-		<select name="sc_j_mem[]" size="5" multiple="multiple">
-		<option value='({$my_id})' selected>({$members[$my_id]})</option>
-		</select>
-	</td>
-	<td>
-		<input value="← 追加" onclick="addMember(this.form, 'members', 'sc_j_mem[]')" type="button" class="submit"><br>
-		<input value="削除 →" onclick="deleteMember(this.form, 'sc_j_mem[]')" type="button" class="submit">
-	<td>
-	<td>
-		<select name="members" size="5" multiple="multiple">
-			<option value='({$my_id})' selected>({$members[$my_id]})</option>
-		({section name=i start=1 loop=$members})
-			({if $smarty.section.i.index != $my_id})
-			<option value='({$smarty.section.i.index})' selected>({$members[i]})</option>
-			({/if})
-		({/section})
-		</select>
-	</td>
-</tr>
-</table>-->
-<!--	<input name='sc_j_mem[]' value='({$my_id})' type='checkbox' class='no_bg' checked>({$members[$my_id]})<br>
-	<input name='sc_j_mem[]' value='({$my_id})' type='checkbox' class='no_bg' checked>({$members[$my_id]})<br>
-	({section name=i start=1 loop=$members})
-		({if $smarty.section.i.index != $my_id})
-		<input name='sc_j_mem[]' value='({$smarty.section.i.index})' type='checkbox' class='no_bg' ({if $smarty.section.i.index == $my_id})checked({/if})>({$members[i]})<br>
-		({/if})
-	({/section})-->
-<!--</div>
-</td>
-<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-</tr>
-({*********})
-<tr>
-<td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-</tr>
-({*********})-->
-
-({*ここから：新規予定*})
-
 <tr>
 <td style="width:1px;" class="bg_01"><img src="./skin/dummy.gif" style="width:1px; height:1px;" class="dummy"></td>
 <td style="width:150px;" class="bg_05">
@@ -364,33 +280,33 @@
 <td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({*********})
+<input type="hidden" name="biz_group_id" value="0">
 
-({*ここまで：新規予定*})
-
-
-<!--
 <tr>
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 <td class="bg_05" align="center" valign="middle">
 <div style="padding:4px 3px;">
-設備
+
+公開範囲
 </div>
 </td>
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 <td class="bg_02" align="left" valign="middle">
 <div style="padding:4px 3px;">
-	({foreach item=shisetsu name=i from=$shisetsu})
-		<input name='sc_j_plc[]' value='({$shisetsu.biz_shisetsu_id})' type='checkbox' class='no_bg'>({$shisetsu.name})<br>
-	({/foreach})
+
+<input type='radio' name='public_flag' value='public' checked class="no_bg">全体に公開<br>
+<input type='radio' name='public_flag' value='private' class="no_bg">参加者のみに公開<br>
+
 </div>
 </td>
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
-({*********})-->
+({*********})
 <tr>
 <td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({*********})
+
 <tr>
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 <td class="bg_02" align="center" colspan="3">
@@ -440,17 +356,5 @@
 ({***************************})
 ({**ここまで：メインコンテンツ**})
 ({***************************})
-</td>
-</tr>
-</table>({*END:container*})
-</td>
-</tr>
-<tr>
-<td class="container inc_page_footer">
-({$inc_page_footer|smarty:nodefaults})
-</td>
-</tr>
-</table>
-({ext_include file="inc_extension_pagelayout_bottom.tpl"})
-</body>
-</html>
+({ext_include file="inc_layoutcolumn_bottom_270px_165px_175px_720px.tpl"})
+({ext_include file="inc_footer.tpl"})

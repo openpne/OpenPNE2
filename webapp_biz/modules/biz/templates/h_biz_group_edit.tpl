@@ -1,25 +1,5 @@
-({$inc_html_header|smarty:nodefaults})
-<body>
-({ext_include file="inc_extension_pagelayout_top.tpl"})
-<table class="mainframe" border="0" cellspacing="0" cellpadding="0">
-<tr>
-<td class="container inc_page_header">
-({$inc_page_header|smarty:nodefaults})
-</td>
-</tr>
-<tr>
-<td class="container inc_navi">
-({$inc_navi|smarty:nodefaults})
-</td>
-</tr>
-<tr>
-<td class="container main_content" align="center">
-
-({ext_include file="inc_alert_box.tpl"})({* エラーメッセージコンテナ *})
-
-<table class="container" border="0" cellspacing="0" cellpadding="0">({*BEGIN:container*})
-<tr>
-<td class="full_content" align="center">
+({ext_include file="inc_header.tpl"})
+({ext_include file="inc_layoutcolumn_top_720px.tpl"})
 ({***************************})
 ({**ここから：メインコンテンツ**})
 ({***************************})
@@ -100,7 +80,7 @@
 
 <div class="padding_s">
 
-<input name="name" size="50" value="({$group.name})">
+<input type="text" class="text" name="name" size="50" value="({$group.name})">
 
 </div>
 
@@ -128,7 +108,7 @@
 
 <div class="padding_s">
 
-<textarea name="info" rows="6" cols="50">({$group.info})</textarea>
+<textarea class="text" name="info" rows="6" cols="50">({$group.info})</textarea>
 
 </div>
 
@@ -160,7 +140,6 @@
 ({/if})
 <div class="padding_s">
 <input type="file" size="40" name="image_filename"><br>
-({*<span>写真のアップロードに関するヘルプは <a href="" target="_blank">こちら</span></a>*})
 
 </div>
 
@@ -301,7 +280,7 @@
 </td>
 <td class="padding_s" style="text-align:left;">
 
-({t_form _enctype=file m=biz a=do_h_biz_group_delete})
+({t_form _enctype=file m=biz a=page_h_biz_group_delete})
 <input type="hidden" name="sessid" value="({$PHPSESSID})">
 <input name="target_id" type="hidden" value="({$group.biz_group_id})" />
 <input type="submit" class="submit" value="　削　除　">
@@ -347,17 +326,5 @@
 ({***************************})
 ({**ここまで：メインコンテンツ**})
 ({***************************})
-</td>
-</tr>
-</table>({*END:container*})
-</td>
-</tr>
-<tr>
-<td class="container inc_page_footer">
-({$inc_page_footer|smarty:nodefaults})
-</td>
-</tr>
-</table>
-({ext_include file="inc_extension_pagelayout_bottom.tpl"})
-</body>
-</html>
+({ext_include file="inc_layoutcolumn_bottom_270px_165px_175px_720px.tpl"})
+({ext_include file="inc_footer.tpl"})

@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -138,7 +138,6 @@ function openpne_forward($module, $type = '', $action = '', $errors = array())
     }
     list($result, $requests) = $validator->common_validate($files);
     $action_obj->requests = $requests;
-
     if ($result === false) {
         $errors = $validator->getErrors();
         $action_obj->handleError($errors);

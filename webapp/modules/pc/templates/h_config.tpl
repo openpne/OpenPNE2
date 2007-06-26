@@ -1,25 +1,6 @@
-({$inc_html_header|smarty:nodefaults})
-<body>
-({ext_include file="inc_extension_pagelayout_top.tpl"})
-<table class="mainframe" border="0" cellspacing="0" cellpadding="0">
-<tr>
-<td class="container inc_page_header">
-({$inc_page_header|smarty:nodefaults})
-</td>
-</tr>
-<tr>
-<td class="container inc_navi">
-({$inc_navi|smarty:nodefaults})
-</td>
-</tr>
-<tr>
-<td class="container main_content" align="center">
+({ext_include file="inc_header.tpl"})
+({ext_include file="inc_layoutcolumn_top_720px.tpl"})
 
-({ext_include file="inc_alert_box.tpl"})({* エラーメッセージコンテナ *})
-
-<table class="container" border="0" cellspacing="0" cellpadding="0">({*BEGIN:container*})
-<tr>
-<td class="full_content" align="center">
 ({***************************})
 ({**ここから：メインコンテンツ**})
 ({***************************})
@@ -78,7 +59,7 @@
 <td style="width:501px;" class="bg_02" align="left" valign="middle">
 <div class="padding_s">
 
-<input name="pc_address" value="" size="40"><br>
+<input type="text" class="text" name="pc_address" value="" size="40"><br>
 <span class="caution">※メールアドレスは公開されません。</span>
 
 </div>
@@ -105,7 +86,7 @@
 <td class="bg_02" align="left" valign="middle">
 <div class="padding_s">
 
-<input name="pc_address2" value="" size="40">
+<input type="text" class="text" name="pc_address2" value="" size="40">
 
 </div>
 </td>
@@ -135,7 +116,7 @@
 </tr>
 </form>
 ({*********})
-
+({if !$smarty.const.IS_SLAVEPNE})
 ({t_form m=pc a=do_h_config_2})
 <input type="hidden" name="sessid" value="({$PHPSESSID})">
 <tr>
@@ -153,7 +134,7 @@
 <td class="bg_02" align="left" valign="middle">
 <div class="padding_s">
 
-<input name="old_password" type="password" value="" size="20">
+<input class="text" name="old_password" type="password" value="" size="20">
 
 </div>
 </td>
@@ -179,7 +160,7 @@
 <td class="bg_02" align="left" valign="middle">
 <div class="padding_s">
 
-<input name="new_password" type="password" value="" size="20"><br>
+<input class="text" name="new_password" type="password" value="" size="20"><br>
 <span class="caution">※パスワードは6～12文字の半角英数で入力してください。</span>
 
 </div>
@@ -206,7 +187,7 @@
 <td class="bg_02" align="left" valign="middle">
 <div class="padding_s">
 
-<input name="new_password2" type="password" value="" size="20">
+<input class="text" name="new_password2" type="password" value="" size="20">
 
 </div>
 </td>
@@ -237,7 +218,7 @@
 </tr>
 </form>
 ({*********})
-
+({/if})
 ({t_form m=pc a=do_h_config_3})
 <input type="hidden" name="sessid" value="({$PHPSESSID})">
 
@@ -322,7 +303,7 @@
 <td class="bg_02" align="left" valign="middle">
 <div style="padding:3px;">
 
-<input name="c_password_query_answer" type="text" value="" size="20">
+<input class="text" name="c_password_query_answer" type="text" value="" size="20">
 
 <br>
 ※変更する場合のみ入力してください。
@@ -352,7 +333,7 @@ BlogのURL
 <td class="bg_02" align="left" valign="middle">
 <div class="padding_s">
 
-<input type="text" name="rss" value="({$c_member.rss})" size="60"><br>
+<input type="text" class="text" name="rss" value="({$c_member.rss})" size="60"><br>
 
 ※外部に日記・Blogをお持ちの場合、URLをご記入ください。<br>
 例： http://blog.example.com/
@@ -386,6 +367,36 @@ BlogのURL
 ({if $daily_news_day_num})<input type="radio" name="is_receive_daily_news" value="2" ({if $c_member.is_receive_daily_news eq 2}) checked="checked"({/if}) class="no_bg">週({$daily_news_day_num})回 (({$daily_news_day_str}))({/if})
 <input type="radio" name="is_receive_daily_news" value="0" ({if $c_member.is_receive_daily_news eq 0}) checked="checked"({/if}) class="no_bg">受け取らない<br>
 <span>※({$SNS_NAME})の最新情報をお届けします。</span>
+
+</div>
+</td>
+<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+</tr>
+({*********})
+<tr>
+<td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+</tr>
+({/if})
+({*********})
+({if $smarty.const.DISPLAY_SCHEDULE_HOME})
+<tr>
+<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td class="bg_05" align="left" valign="middle">
+
+<div class="padding_s">
+
+週間カレンダー
+
+</div>
+
+</td>
+<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td class="bg_02" align="left" valign="middle">
+<div class="padding_s">
+
+<input type="radio" name="schedule_start_day" value="0" ({if $c_member.schedule_start_day == 0}) checked="checked"({/if})>日曜始まり
+<input type="radio" name="schedule_start_day" value="1" ({if $c_member.schedule_start_day == 1}) checked="checked"({/if})>月曜始まり
+<input type="radio" name="schedule_start_day" value="2" ({if $c_member.schedule_start_day == 2}) checked="checked"({/if})>本日始まり
 
 </div>
 </td>
@@ -441,7 +452,7 @@ BlogのURL
 <td class="bg_02" align="left" valign="middle">
 <div class="padding_s">
 
-<input type="text" name="ashiato_mail_num" value="({$c_member.ashiato_mail_num})">
+<input type="text" class="text" name="ashiato_mail_num" value="({$c_member.ashiato_mail_num})">
 アクセス目にメールを受け取る<br>
 ※ここで指定したアクセス数に達したとき、お知らせメールが届きます。
 
@@ -501,11 +512,11 @@ BlogのURL
 <div class="padding_s">
 
 ({foreach from=$c_member_id_block item=item})
-ID <input type="text" name="c_member_id_block[]" value="({$item})"><br>
+ID <input type="text" class="text" name="c_member_id_block[]" value="({$item})"><br>
 ({/foreach})
-ID <input type="text" name="c_member_id_block[]" value=""><br>
+ID <input type="text" class="text" name="c_member_id_block[]" value=""><br>
 
-※特定のユーザーからのアクセスをブロックします。<br>
+※特定のメンバーからのアクセスをブロックします。<br>
 相手トップページのURL末尾に表示されている数字がIDになります。<br>
 例：(○の部分がID)<br>
 ({t_url _absolute=1 m=pc a=page_f_home})&amp;target_c_member_id=○
@@ -594,6 +605,86 @@ ID <input type="text" name="c_member_id_block[]" value=""><br>
 <img src="./skin/dummy.gif" class="v_spacer_l">
 
 <!-- ************************* -->
+<!-- ******ここから：日記公開範囲の一括設定****** -->
+({t_form m=pc a=page_h_set_public_flag_all_confirm})
+
+<table border="0" cellspacing="0" cellpadding="0" style="width:650px;margin:0px auto;" class="border_07">
+({*********})
+<tr>
+<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:636px;" class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+</tr>
+({*********})
+<tr>
+<td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_01" align="center">
+<!-- *ここから：日記公開範囲の一括設定＞内容* -->
+({*ここから：header*})
+<!-- ここから：小タイトル -->
+<div class="border_01">
+<table border="0" cellspacing="0" cellpadding="0" style="width:634px;">
+<tr>
+<td style="width:36px;" class="bg_06"><img src="({t_img_url_skin filename=content_header_1})" style="width:30px;height:20px;" class="dummy"></td>
+<td style="width:598px;padding:2px 0px;" class="bg_06"><span class="b_b c_00">日記公開範囲の一括設定</span></td>
+</tr>
+</table>
+</div>
+<!-- ここまで：小タイトル -->
+({*ここまで：header*})
+({*ここから：body*})
+<!-- ここから：主内容 -->
+<table border="0" cellspacing="0" cellpadding="0" style="width:636px;">
+({*********})
+<tr>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:634px;" class="bg_03" align="left" valign="middle" colspan="3">
+
+<div style="padding:10px 90px;">
+
+<div align="center" style="text-align:center;">
+
+<input type="radio" name="public_flag_diary_all" value="public" checked="checked" class="no_bg" id="public_flag_diary_all_public"><label for="public_flag_diary_all_public">全員に公開</label>
+<input type="radio" name="public_flag_diary_all" value="friend" class="no_bg" id="public_flag_diary_all_friend"><label for="public_flag_diary_all_friend">マイフレンドまで公開</label>
+<input type="radio" name="public_flag_diary_all" value="private" class="no_bg" id="public_flag_diary_all_private"><label for="public_flag_diary_all_private">公開しない</label><br>
+<input type="submit" class="submit" value="　変　更　">
+
+</div>
+
+</div>
+
+</td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+</tr>
+({*********})
+<tr>
+<td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+</tr>
+({*********})
+</table>
+<!-- ここまで：主内容 -->
+({*ここまで：body*})
+({*ここから：footer*})
+<!-- 無し -->
+({*ここまで：footer*})
+<!-- *ここまで：日記公開範囲の一括設定＞＞内容* -->
+</td>
+<td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+</tr>
+<tr>
+<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+</tr>
+</table>
+
+</form>
+<!-- ******ここまで：日記公開範囲の一括設定****** -->
+<!-- ************************* -->
+
+<img src="./skin/dummy.gif" class="v_spacer_l">
+
+<!-- ************************* -->
 <!-- ******ここから：退会****** -->
 ({t_form m=pc a=page_h_taikai_confirm})
 
@@ -636,7 +727,7 @@ ID <input type="text" name="c_member_id_block[]" value=""><br>
 ({if $c_member.c_member_id==1})
 ID 1 のメンバーはSNSを退会することができません。
 ({else})
-<input type=submit class="submit" value="退会確認ページへ">
+<input type="submit" class="submit" value="退会確認ページへ">
 ({/if})
 
 </div>
@@ -677,17 +768,5 @@ ID 1 のメンバーはSNSを退会することができません。
 ({***************************})
 ({**ここまで：メインコンテンツ**})
 ({***************************})
-</td>
-</tr>
-</table>({*END:container*})
-</td>
-</tr>
-<tr>
-<td class="container inc_page_footer">
-({$inc_page_footer|smarty:nodefaults})
-</td>
-</tr>
-</table>
-({ext_include file="inc_extension_pagelayout_bottom.tpl"})
-</body>
-</html>
+({ext_include file="inc_layoutcolumn_bottom_270px_165px_175px_720px.tpl"})
+({ext_include file="inc_footer.tpl"})

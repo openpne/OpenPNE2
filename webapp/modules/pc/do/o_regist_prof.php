@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -14,14 +14,20 @@ class pc_do_o_regist_prof extends OpenPNE_Action
     function execute($requests)
     {
         //<PCKTAI
-        if (defined('OPENPNE_REGIST_FROM') &&
-                !(OPENPNE_REGIST_FROM & OPENPNE_REGIST_FROM_PC)) {
+        if (!(OPENPNE_REGIST_FROM & OPENPNE_REGIST_FROM_PC)) {
             client_redirect_login();
         }
         //>
 
         $sid = $requests['sid'];
-        if (!n_regist_intro_is_active_sid($sid)) {
+        if (!db_member_is_active_sid($sid)) {
+            $p = array('msg_code' => 'invalid_url');
+            openpne_redirect('pc', 'page_o_tologin', $p);
+        }
+
+        // メールアドレスが登録できるかどうか
+        $pre = db_member_c_member_pre4sid($sid);
+        if (!util_is_regist_mail_address($pre['pc_address'])) {
             $p = array('msg_code' => 'invalid_url');
             openpne_redirect('pc', 'page_o_tologin', $p);
         }
@@ -74,15 +80,15 @@ class pc_do_o_regist_prof extends OpenPNE_Action
         }
 
         // 値の整合性をチェック(DB)
-        $c_member_profile_list = do_config_prof_check_profile($validator->getParams(), $public_flag_list);
+        $c_member_profile_list = db_member_check_profile($validator->getParams(), $public_flag_list);
 
 
         // 必須項目チェック
-        $profile_list = db_common_c_profile_list4null();
+        $profile_list = db_member_c_profile_list4null();
         foreach ($profile_list as $profile) {
             if ( $profile['disp_regist'] &&
                 $profile['is_required'] &&
-                !$c_member_profile_list[$profile['name']]['value']
+                (is_null(!$c_member_profile_list[$profile['name']]['value']) || !$c_member_profile_list[$profile['name']]['value'] === '')
             ) {
                 $errors[$profile['name']] = $profile['caption'] . 'を入力してください';
                 break;
@@ -100,6 +106,9 @@ class pc_do_o_regist_prof extends OpenPNE_Action
         if ($mode != 'input' && $errors) {
             $_REQUEST['err_msg'] = $errors;
             $mode = 'input';
+            @session_start();
+            $_SESSION['prof'] = $_REQUEST;
+            unset($_SESSION['password']);
         }
 
         switch ($mode) {
@@ -124,7 +133,7 @@ class pc_do_o_regist_prof extends OpenPNE_Action
             // delete cookie
             setcookie(session_name(), '', time() - 3600, ini_get('session.cookie_path'));
 
-            $pre = do_common_c_member_pre4sid($sid);
+            $pre = db_member_c_member_pre4sid($sid);
 
             // c_member, c_member_secure
             $c_member = $prof;
@@ -141,8 +150,18 @@ class pc_do_o_regist_prof extends OpenPNE_Action
             );
             $u = db_member_insert_c_member($c_member, $c_member_secure);
 
+            if (OPENPNE_USE_POINT_RANK) {
+                //入会者にポイント加算
+                $point = db_action_get_point4c_action_id(1);
+                db_point_add_point($u, $point);
+
+                //メンバー招待をした人にポイント付与
+                $point = db_action_get_point4c_action_id(7);
+                db_point_add_point($pre['c_member_id_invite'], $point);
+            }
+
             // c_member_profile
-            do_config_prof_update_c_member_profile($u, $c_member_profile_list);
+            db_member_update_c_member_profile($u, $c_member_profile_list);
 
             // 招待者とフレンドリンク
             db_friend_insert_c_friend($u, $pre['c_member_id_invite']);
@@ -150,11 +169,11 @@ class pc_do_o_regist_prof extends OpenPNE_Action
             //管理画面で指定したコミュニティに強制参加
             $c_commu_id_list = db_commu_regist_join_list();
             foreach ($c_commu_id_list as $c_commu_id) {
-                do_inc_join_c_commu($c_commu_id, $u);
+                db_commu_join_c_commu($c_commu_id, $u);
             }
 
             // pre の内容を削除
-            do_common_delete_c_member_pre4sid($sid);
+            db_member_delete_c_member_pre4sid($sid);
 
             // 登録完了メール送信
             do_regist_prof_do_regist2_mail_send($u);
@@ -221,7 +240,7 @@ class pc_do_o_regist_prof extends OpenPNE_Action
     function _getValidateRulesProfile()
     {
         $rules = array();
-        $profile_list = db_common_c_profile_list4null();
+        $profile_list = db_member_c_profile_list4null();
         foreach ($profile_list as $profile) {
             if ($profile['disp_regist']) {
                 $rule = array(

@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -13,6 +13,7 @@ class biz_page_fh_biz_schedule_add extends OpenPNE_Action
 
         $form_val['subject'] = $requests['subject'];
         $form_val['body'] = $requests['body'];
+        $form_val['biz_group_id'] = $requests['target_biz_group_id'];
 
         if (empty($requests['target_id']) || ($requests['target_id'] == $u)) {
             //自分自身
@@ -28,7 +29,7 @@ class biz_page_fh_biz_schedule_add extends OpenPNE_Action
 
         $sessid = session_id();
 
-        $target_member = db_common_c_member4c_member_id($u);
+        $target_member = db_member_c_member4c_member_id($u);
         //プロフィール
         $this->set("target_member", $target_member);
         $this->set("form_val", $form_val);
@@ -125,6 +126,19 @@ class biz_page_fh_biz_schedule_add extends OpenPNE_Action
         $this->set('my_id', $u);
         $this->set('is_h', true);
 
+        $biz_group_count = biz_getGroupCount($target_id);
+        $biz_group_list = biz_getJoinGroupList($target_id, 1, $biz_group_count);
+
+        $this->set('biz_group_list', $biz_group_list[0]);
+        $this->set('target_c_member_id', $target_id);
+
+        // グループのメンバーリストを取得
+        $biz_group_member_list = biz_getGroupMember($form_val['biz_group_id']);
+        $biz_group_member_id_list = array();
+        foreach ($biz_group_member_list as $biz_group_member) {
+            $biz_group_member_id_list[] = $biz_group_member['c_member_id'];
+        }
+
         //追加
         $members = array();
 
@@ -133,7 +147,7 @@ class biz_page_fh_biz_schedule_add extends OpenPNE_Action
 
         $sql = 'SELECT c_member_id, nickname FROM c_member WHERE c_member_id = '.$target_id;
         $my_info = db_get_row($sql);
-
+        
         array_unshift($members, $my_info);
 
         $members[0]['checkflag'] = 1;
@@ -142,18 +156,26 @@ class biz_page_fh_biz_schedule_add extends OpenPNE_Action
 
         $i = 0;
 
-        foreach ($members as $key => $value) {
-            if ($jmembers[$i] == $value['c_member_id']) {
-                $members[$key]['checkflag'] = 1;
-                $i++;
+        if (empty($jmembers)) {
+            foreach ($members as $key => $value) {
+                if (in_array($value['c_member_id'], $biz_group_member_id_list)) {
+                    $members[$key]['checkflag'] = 1;
+                }
             }
+        } else {
+            foreach ($members as $key => $value) {
+                if ($jmembers[$i] == $value['c_member_id']) {
+                    $members[$key]['checkflag'] = 1;
+                    $i++;
+                }
 
-            if (count($jmembers) < $i) {
-                break;
+                if (count($jmembers) < $i) {
+                    break;
+                }
             }
         }
         $this->set('members', $members);
-
+        
         return 'success';
     }
 }

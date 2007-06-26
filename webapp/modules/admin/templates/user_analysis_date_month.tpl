@@ -1,10 +1,22 @@
 ({$inc_header|smarty:nodefaults})
-<br>
+({ext_include file="inc_subnavi_adminStatisticalInformation.tpl"})
+({assign var="page_name" value="登録日別メンバー数表示（月次集計）"})
+({ext_include file="inc_tree_adminStatisticalInformation.tpl"})
+</div>
 
-<h2>登録日別ユーザー表示（月次集計）</h2>
+({*ここまで:navi*})
 
-<br><br>
-<table width="300" border="1" cellpadding="5" cellspacing="0">
+<h2>登録日別メンバー数表示（月次集計）</h2>
+<div class="contents">
+
+({if $msg})
+<p class="actionMsg">({$msg})</p>
+({/if})
+
+({$date})
+<table class="basicType2">
+<thead>
+({****})
 <tr>
 <th>
 月
@@ -13,19 +25,30 @@
 人数
 </th>
 </tr>
+({****})
+</thead>
+<tbody>
+({****})
 ({foreach from=$analysis_date_month key=key item=item})
 <tr>
 	({if $key eq "合計"})
-	<td width="100">({$key})</td>	
+	<th>({$key})</th>	
 	({else})
-	<td width="100"><a href="?m=admin&a=page_user_analysis_date_day&date=({$key})">({$key})</a></td>	
+	<td><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('user_analysis_date_day')})&date=({$key})">({$key})</a></td>	
 	({/if})
 	<td>({$item})人</td>
 </tr>
 ({/foreach})
+({****})
+</tbody>
+<tfoot>
+({****})
 <tr>
-	<td width="100">合計</td>
+	<th>合計</th>
 	<td>({$analysis_date_month_sum})人</td>
 </tr>
+({****})
+</tfoot>
 </table>
+
 ({$inc_footer|smarty:nodefaults})

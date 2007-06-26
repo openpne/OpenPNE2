@@ -1,5 +1,6 @@
 function url2cmd(url) {
     if (!url.match(/^http:\/\/www\.watchme\.tv\/v\/\?mid=([a-z0-9]+)$/)) {
+        pne_url2a(url);
         return;
     }
     var id =  RegExp.$1;
@@ -7,16 +8,16 @@ function url2cmd(url) {
 }
 
 function main(id, width, height) {
-    if (!id.match(/^[a-zA-Z0-9_-]+$/)) {
+    if (!id.match(/^[a-zA-Z0-9_\-]+$/)) {
         return;
     }
-    width = parseInt(width);
-    height = parseInt(height);
+    if (!width) width = 0; else width = parseInt(width);
+    if (!height) height = 0; else height = parseInt(height);
     if (width <= 0 || width > 425) {
-        width = 400;
+        width = 425;
     }
     if (height <= 0 || height > 350) {
-        height = 330;
+        height = 350;
     }
 
     var html =

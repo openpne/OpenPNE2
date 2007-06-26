@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -28,17 +28,6 @@ ini_set('include_path', implode(PATH_SEPARATOR, $include_paths));
 // 定数定義
 include_once 'PHP/Compat/Constant/UPLOAD_ERR.php';
 include_once 'PHP/Compat/Function/image_type_to_mime_type.php';
-
-// 新規登録フラグ用定数
-define('OPENPNE_REGIST_FROM_NONE'  , 0); // 新規登録不可
-define('OPENPNE_REGIST_FROM_PC'    , 1); // PCからのみ登録可
-define('OPENPNE_REGIST_FROM_KTAI'  , 2); // 携帯からのみ登録可
-define('OPENPNE_REGIST_FROM_PCKTAI', 3); // PC携帯から登録可
-
-// フレンド状態フラグ用定数(削除予定)
-define('STATUS_F_LINK_FLAT', "1");    // フレンドリクエスト(承認送信画面)
-define('STATUS_F_LINK_WAIT', "2");    // フレンドリクエスト(リンク承認待ち)
-define('STATUS_F_LINK_ALREADY', "3"); // フレンドリクエスト(フレンドリンク済)
 
 // 携帯メールのドメイン名
 $GLOBALS['OpenPNE']['KTAI_DOMAINS'] = array(
@@ -79,6 +68,12 @@ $GLOBALS['SMARTY']['plugins_dir'] = array(
     'plugins'
 );
 
+// 外部認証の場合は招待・新規登録はできない
+if (defined('IS_SLAVEPNE') && IS_SLAVEPNE) {
+    define('IS_USER_INVITE', false);
+    define('IS_CLOSED_SNS', true);
+}
+
 // ライブラリ読み込み
 require_once 'util.inc.php';
 require_once 'db.inc.php';
@@ -93,7 +88,7 @@ $config->db_load_config();
 // 設定のデフォルト値を適用
 $config->bind_default();
 
-// cookie 設定
+// session/cookie 設定
 ini_set('session.use_cookies', '1');
 ini_set('session.use_only_cookies', '1');
 
@@ -103,7 +98,6 @@ if (substr($url['path'], -1) != '/') {
 }
 ini_set('session.cookie_path', $url['path']);
 
-// セッション情報をDBに保存
 OpenPNE_Auth::set_session_save_handler();
 
 // magic_quotes_gpc = On の場合の対策
@@ -120,17 +114,8 @@ if (get_magic_quotes_gpc()) {
     $_REQUEST = strip_magic_slashes($_REQUEST);
 }
 
-isset($GLOBALS['OpenPNE']['common']['session_lifetime'])
-    or $GLOBALS['OpenPNE']['common']['session_lifetime'] = 0;
-isset($GLOBALS['OpenPNE']['common']['session_idletime'])
-    or $GLOBALS['OpenPNE']['common']['session_idletime'] = 0;
-
+// http_build_query()
 ini_set('arg_separator.output', '&');
-
-// ファンクションキャッシュ有効期限用定数
-define('OPENPNE_FUNCTION_CACHE_LIFETIME_FAST', 300);
-define('OPENPNE_FUNCTION_CACHE_LIFETIME_SHORT' , 1200);
-define('OPENPNE_FUNCTION_CACHE_LIFETIME_LONG' , 3600);
-
+include_once 'PHP/Compat/Function/http_build_query.php';
 
 ?>

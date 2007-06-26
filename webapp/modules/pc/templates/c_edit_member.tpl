@@ -1,23 +1,5 @@
-({$inc_html_header|smarty:nodefaults})
-<body>
-({ext_include file="inc_extension_pagelayout_top.tpl"})
-<table class="mainframe" border="0" cellspacing="0" cellpadding="0">
-<tr>
-<td class="container inc_page_header">
-({$inc_page_header|smarty:nodefaults})
-</td>
-</tr>
-<tr>
-<td class="container inc_navi">
-({$inc_navi|smarty:nodefaults})
-</td>
-</tr>
-<tr>
-<td class="container main_content">
-
-<table class="container" border="0" cellspacing="0" cellpadding="0">
-<tr>
-<td class="full_content" align="center">
+({ext_include file="inc_header.tpl"})
+({ext_include file="inc_layoutcolumn_top_720px.tpl"})
 ({***************************})
 ({**ここから：メインコンテンツ**})
 ({***************************})
@@ -52,12 +34,12 @@
 <table border="0" cellspacing="0" cellpadding="0" style="width:644px;">
 ({*********})
 <tr>
-<td style="width:634px;height:1px;" class="bg_01" colspan="4"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:644px;height:1px;" class="bg_01" colspan="4"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({*********})
 <tr>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-<td style="width:634px;" class="bg_02" align="right" valign="middle">
+<td style="width:642px;" class="bg_02" align="right" valign="middle">
 
 <div class="padding_s">
 
@@ -74,37 +56,72 @@
 </tr>
 ({*********})
 </table>
+<table border="0" cellspacing="0" cellpadding="0" style="width:644px;">
 ({*********})
-<table border="0" cellspacing="1" cellpadding="4" style="width:644px;">
+<tr>
+<td style="width:644px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+</tr>
+({*********})
 ({foreach from=$c_member_list item=c_member})
 <tr>
-<td style="width:180px;" class="bg_03">
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:178px;" class="bg_03 padding_s">
 
 <span class="c_01">({$c_member.r_datetime|date_format:"%Y年%m月%d日 %H:%M"})</span>
 
 </td>
-<td class="bg_02">
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:220px;" class="bg_02 padding_s">
 
 <a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$c_member.c_member_id})">({$c_member.nickname})</a>
 
 </td>
-<td class="bg_02">
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:80px;" class="bg_02 padding_s">
 
 ({if !$c_member.is_c_commu_admin})
-<a href="({t_url m=pc a=do_c_edit_member_delete_c_commu_member})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;target_c_member_id=({$c_member.c_member_id})&amp;sessid=({$PHPSESSID})">コミュニティから退会させる</a>
+<a href="({t_url m=pc a=page_c_edit_member_delete_c_commu_member})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;target_c_member_id=({$c_member.c_member_id})">コミュニティから退会させる</a>
 ({else})
 &nbsp;
 ({/if})
 
-<td class="bg_02">
+</td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:80px;" class="bg_02 padding_s">
 
-({if !$c_member.is_c_commu_admin && $c_member.c_commu_admin_confirm_id le 0})
+({if !$c_member.is_c_commu_admin
+ &&  !$c_member.is_c_commu_sub_admin
+ &&   $c_member.c_commu_admin_confirm_id le 0
+ &&   $c_member.c_commu_sub_admin_confirm_id le 0
+ &&   $c_commu.c_member_id_sub_admin != $u
+})
+<a href="({t_url m=pc a=page_c_sub_admin_request})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;target_c_member_id=({$c_member.c_member_id})">副管理者に指名</a>
+({elseif $c_member.is_c_commu_sub_admin && $c_commu.c_member_id_sub_admin != $u })
+<a href="({t_url m=pc a=page_c_sub_admin_delete})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;target_c_member_id=({$c_member.c_member_id})">副管理者から降格</a>
+({else})
+&nbsp;
+({/if})
+
+</td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:80px;" class="bg_02 padding_s">
+
+({if !($c_member.is_c_commu_admin && !$c_member.is_c_commu_sub_admin)
+ &&   $c_member.c_commu_admin_confirm_id le 0
+ &&   $c_member.c_commu_sub_admin_confirm_id le 0
+ &&   $c_commu.c_member_id_sub_admin != $u
+})
 <a href="({t_url m=pc a=page_c_admin_request})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;target_c_member_id=({$c_member.c_member_id})">管理権を渡す</a>
 ({else})
 &nbsp;
 ({/if})
 
 </td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+</tr>
+({*********})
+<tr>
+<td style="width:644px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({*********})
 ({/foreach})
@@ -114,7 +131,7 @@
 ({*********})
 <tr>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-<td style="width:634px;" class="bg_02" align="right" valign="middle">
+<td style="width:642px;" class="bg_02" align="right" valign="middle">
 
 <div class="padding_s">
 
@@ -131,7 +148,7 @@
 </tr>
 ({*********})
 <tr>
-<td style="width:634px;height:1px;" class="bg_01" colspan="4"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:644px;height:1px;" class="bg_01" colspan="4"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 </table>
 
@@ -163,17 +180,6 @@
 ({***************************})
 ({**ここまで：メインコンテンツ**})
 ({***************************})
-</td></tr>
-</table>({*END:container*})
-</td>
-</tr>
-<tr>
-<td class="container inc_page_footer">
-({$inc_page_footer|smarty:nodefaults})
-</td>
-</tr>
-</table>
-({ext_include file="inc_extension_pagelayout_bottom.tpl"})
-</body>
-</html>
+({ext_include file="inc_layoutcolumn_bottom_270px_165px_175px_720px.tpl"})
+({ext_include file="inc_footer.tpl"})
 

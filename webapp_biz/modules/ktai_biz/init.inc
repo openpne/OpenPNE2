@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -26,31 +26,31 @@ require_once $biz_dir . 'lib/smarty_functions.php';
 require_once $biz_dir . 'lib/mysql_functions.php';
 
 // 文字コード変換
-function ktai_convert_encoding($arr)
+function ktai_biz_convert_encoding($arr)
 {
     return is_array($arr) ?
-        array_map('ktai_convert_encoding', $arr) :
+        array_map('ktai_biz_convert_encoding', $arr) :
         mb_convert_encoding($arr, 'UTF-8', 'SJIS-win');
 }
 
 // 絵文字変換
-function ktai_convert_emoji($arr)
+function ktai_biz_convert_emoji($arr)
 {
     return is_array($arr) ?
-        array_map('ktai_convert_emoji', $arr) :
+        array_map('ktai_biz_convert_emoji', $arr) :
         emoji_escape($arr);
 }
 
-function ktai_convert($arr)
+function ktai_biz_convert($arr)
 {
-    $arr = ktai_convert_emoji($arr);
-    $arr = ktai_convert_encoding($arr);
+    $arr = ktai_biz_convert_emoji($arr);
+    $arr = ktai_biz_convert_encoding($arr);
     return $arr;
 }
 
-$_GET     = ktai_convert($_GET);
-$_POST    = ktai_convert($_POST);
-$_REQUEST = ktai_convert($_REQUEST);
+$_GET     = ktai_biz_convert($_GET);
+$_POST    = ktai_biz_convert($_POST);
+$_REQUEST = ktai_biz_convert($_REQUEST);
 
 ini_set('session.use_cookies', '0');
 

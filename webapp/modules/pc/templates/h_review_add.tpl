@@ -1,25 +1,6 @@
-({$inc_html_header|smarty:nodefaults})
-<body>
-({ext_include file="inc_extension_pagelayout_top.tpl"})
-<table class="mainframe" border="0" cellspacing="0" cellpadding="0">
-<tr>
-<td class="container inc_page_header">
-({$inc_page_header|smarty:nodefaults})
-</td>
-</tr>
-<tr>
-<td class="container inc_navi">
-({$inc_navi|smarty:nodefaults})
-</td>
-</tr>
-<tr>
-<td class="container main_content" align="center">
+({ext_include file="inc_header.tpl"})
+({ext_include file="inc_layoutcolumn_top_720px.tpl"})
 
-({ext_include file="inc_alert_box.tpl"})({* エラーメッセージコンテナ *})
-
-<table class="container" border="0" cellspacing="0" cellpadding="0">({*BEGIN:container*})
-<tr>
-<td class="full_content" align="center">
 ({***************************})
 ({**ここから：メインコンテンツ**})
 ({***************************})
@@ -82,7 +63,7 @@
 ({t_form m=pc a=page_h_review_add})
 <input type="hidden" name="search_flag" value="1">
 キーワード&nbsp;<img src="./skin/dummy.gif" style="width:14px;height:14px;" class="icon icon_1">
-<input name="keyword" size="15" value="({$keyword})">
+<input type="text" class="text" name="keyword" size="15" value="({$keyword})">
 &nbsp;カテゴリ&nbsp;<img src="./skin/dummy.gif" style="width:14px;height:14px;" class="icon icon_1">
 <select name="category_id">
 <option value="" selected="selected">選択
@@ -159,13 +140,13 @@
 ({*********})
 <tr>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-<td style="width:634px;" class="bg_05" align="right">
+<td style="width:634px;" class="bg_02" align="right">
 
 <div class="padding_s">
 
-({if $is_prev}) <a href="({t_url m=pc a=page_h_review_add})&amp;keyword=({$keyword|escape:"url"})&amp;search_flag=1&amp;category_id=({$category_id})&amp;page=({$page-1})">前を表示</a>&nbsp;&nbsp;({/if})
+({if $is_prev}) <a href="({t_url m=pc a=page_h_review_add})&amp;keyword=({$keyword|escape:url|smarty:nodefaults})&amp;search_flag=1&amp;category_id=({$category_id})&amp;page=({$page-1})">前を表示</a>&nbsp;&nbsp;({/if})
 ({$start_num})件～({$end_num})件を表示&nbsp;&nbsp;
-({if $is_next}) <a href="({t_url m=pc a=page_h_review_add})&amp;keyword=({$keyword|escape:"url"})&amp;search_flag=1&amp;category_id=({$category_id})&amp;page=({$page+1})">次を表示</a>({/if})
+({if $is_next}) <a href="({t_url m=pc a=page_h_review_add})&amp;keyword=({$keyword|escape:url|smarty:nodefaults})&amp;search_flag=1&amp;category_id=({$category_id})&amp;page=({$page+1})">次を表示</a>({/if})
 
 </div>
 
@@ -307,13 +288,13 @@
 ({*********})
 <tr>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-<td style="width:634px;" class="bg_05" align="right">
+<td style="width:634px;" class="bg_02" align="right">
 
 <div class="padding_s">
 
-({if $is_prev}) <a href="({t_url m=pc a=page_h_review_add})&amp;keyword=({$keyword|escape:"url"})&amp;search_flag=1&amp;category_id=({$category_id})&amp;page=({$page-1})">前を表示</a>&nbsp;&nbsp;({/if})
+({if $is_prev}) <a href="({t_url m=pc a=page_h_review_add})&amp;keyword=({$keyword|escape:url|smarty:nodefaults})&amp;search_flag=1&amp;category_id=({$category_id})&amp;page=({$page-1})">前を表示</a>&nbsp;&nbsp;({/if})
 ({$start_num})件～({$end_num})件を表示&nbsp;&nbsp;
-({if $is_next}) <a href="({t_url m=pc a=page_h_review_add})&amp;keyword=({$keyword|escape:"url"})&amp;search_flag=1&amp;category_id=({$category_id})&amp;page=({$page+1})">次を表示</a>({/if})
+({if $is_next}) <a href="({t_url m=pc a=page_h_review_add})&amp;keyword=({$keyword|escape:url|smarty:nodefaults})&amp;search_flag=1&amp;category_id=({$category_id})&amp;page=({$page+1})">次を表示</a>({/if})
 
 </div>
 
@@ -349,17 +330,5 @@
 ({***************************})
 ({**ここまで：メインコンテンツ**})
 ({***************************})
-</td>
-</tr>
-</table>({*END:container*})
-</td>
-</tr>
-<tr>
-<td class="container inc_page_footer">
-({$inc_page_footer|smarty:nodefaults})
-</td>
-</tr>
-</table>
-({ext_include file="inc_extension_pagelayout_bottom.tpl"})
-</body>
-</html>
+({ext_include file="inc_layoutcolumn_bottom_270px_165px_175px_720px.tpl"})
+({ext_include file="inc_footer.tpl"})

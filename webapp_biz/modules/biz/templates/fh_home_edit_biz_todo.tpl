@@ -1,25 +1,5 @@
-({$inc_html_header|smarty:nodefaults})
-<body>
-({ext_include file="inc_extension_pagelayout_top.tpl"})
-<table class="mainframe" border="0" cellspacing="0" cellpadding="0">
-<tr>
-<td class="container inc_page_header">
-({$inc_page_header|smarty:nodefaults})
-</td>
-</tr>
-<tr>
-<td class="container inc_navi">
-({$inc_navi|smarty:nodefaults})
-</td>
-</tr>
-<tr>
-<td class="container main_content" align="center">
-
-({ext_include file="inc_alert_box.tpl"})({* エラーメッセージコンテナ *})
-
-<table class="container" border="0" cellspacing="0" cellpadding="0">({*BEGIN:container*})
-<tr>
-<td class="full_content" align="center">
+({ext_include file="inc_header.tpl"})
+({ext_include file="inc_layoutcolumn_top_720px.tpl"})
 ({***************************})
 ({**ここから：メインコンテンツ**})
 ({***************************})
@@ -84,15 +64,160 @@ Todo
 
 <div class="padding_s">
 
-<textarea name="memo" style="width:30em;height:6em;">({$todo.memo})</textarea>
-
-({*<input type="text" name="memo" value="({$todo.memo})" size="90">*})
+<textarea class="text" name="memo" style="width:30em;height:6em;">({$todo.memo})</textarea>
 
 </div>
 
 <div class="padding_s">
 
-<input type="checkbox" name="is_check" value="1"({if $todo.c_member_id == 0}) checked({/if}) class="no_bg">この予定を全員で共有する<br>
+<input type="checkbox" name="is_done" value="1"({if $todo.is_check}) checked({/if}) class="no_bg">このTodoを完了済みにする<br>
+
+</div>
+
+</td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+</tr>
+({*********})
+<tr>
+<td style="width:636px;height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+</tr>
+({*********})
+<tr>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:130px;" class="bg_05" align="center" valign="middle">
+
+<div class="padding_s">
+
+目標期日
+
+</div>
+
+</td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:503px;" class="bg_02" align="left" valign="middle">
+
+<div class="padding_s">
+
+<select name="due_year">
+<option>--
+({foreach from=$year_list item=item})
+<option value="({$item})"({if $item==$todo_date.0}) selected({/if})>({$item})
+({/foreach})
+</select>年
+<select name="due_month">
+<option>--
+({foreach from=$month_list item=item})
+<option value="({$item})"({if $item==$todo_date.1}) selected({/if})>({$item})
+({/foreach})
+</select>月
+<select name="due_day">
+<option>--
+({foreach from=$day_list item=item})
+<option value="({$item})"({if $item==$todo_date.2}) selected({/if})>({$item})
+({/foreach})
+</select>日
+
+</div>
+
+</td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+</tr>
+({*********})
+<tr>
+<td style="width:636px;height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+</tr>
+({*********})
+<tr>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:130px;" class="bg_05" align="center" valign="middle">
+
+<div class="padding_s">
+
+重要度
+
+</div>
+
+</td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:503px;" class="bg_02" align="left" valign="middle">
+
+<div class="padding_s">
+<select name="priority">
+	<option value="1"({if $todo.priority == 1}) selected({/if})>高
+	<option value="2"({if $todo.priority == 2}) selected({/if})>中
+	<option value="3"({if $todo.priority == 3}) selected({/if})>低
+</select>
+</div>
+
+</td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+</tr>
+({*********})
+<tr>
+<td style="width:636px;height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+</tr>
+({*********})
+<tr>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:130px;" class="bg_05" align="center" valign="middle">
+
+<div class="padding_s">
+
+グループ
+
+</div>
+
+</td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:503px;" class="bg_02" align="left" valign="middle">
+
+<div class="padding_s">
+<select name="biz_group_id">
+	<option value="0">指定なし
+({foreach from=$biz_group_list item=biz_group})
+	<option value="({$biz_group.biz_group_id})"
+	({if $biz_group.biz_group_id == $todo.biz_group_id})
+	 selected
+	({/if})
+	>({$biz_group.name})
+({/foreach})
+</select>
+</div>
+
+</td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+</tr>
+({*********})
+<tr>
+<td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+</tr>
+({*********})
+<tr>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:130px;" class="bg_05" align="center" valign="middle">
+
+<div class="padding_s">
+
+公開範囲
+
+</div>
+
+</td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:503px;" class="bg_02" align="left" valign="middle">
+
+<div class="padding_s">
+
+<input type="radio" name="public_flag" value="public"({if $todo.public_flag == "public"}) checked="checked"({/if}) class="no_bg" id="public_flag_public"><label for="public_flag_public">全員に公開</label><br>
+<input type="radio" name="public_flag" value="group"({if $todo.public_flag == "group"}) checked="checked"({/if}) class="no_bg" id="public_flag_group"><label for="public_flag_group">グループまで公開</label><br>
+({if $is_h})
+<input type="radio" name="public_flag" value="private"({if $todo.public_flag == "private"}) checked="checked"({/if}) class="no_bg" id="public_flag_private"><label for="public_flag_private">公開しない</label><br>
+({/if})
+</div>
+
+<div class="padding_s">
+
+<input type="checkbox" name="is_check" value="1"({if $todo.c_member_id == 0}) checked({/if}) class="no_bg">だれかがTodo<br>
 
 </div>
 
@@ -152,17 +277,5 @@ Todo
 ({***************************})
 ({**ここまで：メインコンテンツ**})
 ({***************************})
-</td>
-</tr>
-</table>({*END:container*})
-</td>
-</tr>
-<tr>
-<td class="container inc_page_footer">
-({$inc_page_footer|smarty:nodefaults})
-</td>
-</tr>
-</table>
-({ext_include file="inc_extension_pagelayout_bottom.tpl"})
-</body>
-</html>
+({ext_include file="inc_layoutcolumn_bottom_270px_165px_175px_720px.tpl"})
+({ext_include file="inc_footer.tpl"})

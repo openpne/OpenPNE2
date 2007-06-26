@@ -1,10 +1,10 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
-require_once 'PNE/SimplePie.php';
+require_once 'simplepie.inc';
 
 /**
  * OpenPNE_RSS
@@ -22,20 +22,21 @@ class OpenPNE_RSS
 
     function fetch($rss_url)
     {
-        $feed = new PNE_SimplePie();
+        $feed = new SimplePie();
 
-        /*フィードURLの設定*/
         $feed->feed_url($rss_url);
-        /*キャッシュディレクトリの設定*/
         $feed->cache_location(OPENPNE_RSS_CACHE_DIR);
 
-        /*フィード開始*/
-        if (!$feed->init()) {
+        if (!(@$feed->init())) {
+            return false;
+        }
+
+        if (!($items = $feed->get_items())) {
             return false;
         }
 
         $result = array();
-        foreach ($feed->get_items() as $item) {
+        foreach ($items as $item) {
             $title = $item->get_title();
             $links = $item->get_links();
             $description = $item->get_description();
@@ -58,6 +59,12 @@ class OpenPNE_RSS
             if (!$date) {
                 $date = '';
             }
+
+            // エスケープされた文字列を元に戻す
+            $trans_table = array_flip(get_html_translation_table(HTML_SPECIALCHARS, ENT_QUOTES));
+            $trans_table['&#039;'] = "'";
+            $title = strtr($title, $trans_table);
+            $description = strtr($description, $trans_table);
 
             $f_item = array(
                 'title' => $this->convert_encoding($title),
@@ -83,21 +90,15 @@ class OpenPNE_RSS
      */
     function auto_discovery($url)
     {
-        $feed = new PNE_SimplePie();
-        $data = @$feed->get_file($url);
-
-        // htmlを取得できたか調べる
-        if (!$data) {
-            return false;
+        // path 未指定の場合は「/」に設定する
+        $parts = parse_url($url);
+        if (empty($parts['path'])) {
+            $url .= '/';
         }
 
-        // feedであれば、パラメタをそのまま返す
-        if ($feed->is_feed($data, false)) {
-            return $url;
-        }
-
-        // Auto-Discovery に対応したURLを返す
-        return $feed->check_link_elements($data);
+        $file = @new SimplePie_File($url);
+        $locator = new SimplePie_Locator($file);
+        return $locator->find();
     }
 }
 

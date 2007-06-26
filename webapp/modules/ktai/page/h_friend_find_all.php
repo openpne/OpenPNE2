@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -20,7 +20,7 @@ class ktai_page_h_friend_find_all extends OpenPNE_Action
 
         $profiles = array();
         if ($_REQUEST['profile']) {
-            $profiles = p_h_search_result_check_profile($_REQUEST['profile']);
+            $profiles = db_member_search_check_profile($_REQUEST['profile']);
         }
         $this->set('profiles', $profiles);
 
@@ -39,7 +39,7 @@ class ktai_page_h_friend_find_all extends OpenPNE_Action
         $this->set("cond", array_merge($cond, $cond_like));
 
 
-        $result = p_h_search_result_search($cond, $cond_like, $limit, $page, $u, $profiles);
+        $result = db_member_search($cond, $cond_like, $limit, $page, $u, $profiles);
         $this->set("target_friend_list", $result[0]);
         $pager = array(
             "page_prev" => $result[1],
@@ -72,7 +72,7 @@ class ktai_page_h_friend_find_all extends OpenPNE_Action
             if ($value['c_profile_option_id']) {
                 $v = $value['c_profile_option_id'];
             } else {
-                $v = urlencode(mb_convert_encoding($value, 'SJIS-win', 'UTF-8'));
+                $v = urlencode(mb_convert_encoding($value['value'], 'SJIS-win', 'UTF-8'));
             }
             $tmp[] = urlencode("profile[{$key}]") . '=' . $v;
         }
@@ -80,7 +80,7 @@ class ktai_page_h_friend_find_all extends OpenPNE_Action
         $this->set("search_condition", $search_condition);
 
 
-        $this->set('profile_list', db_common_c_profile_list());
+        $this->set('profile_list', db_member_c_profile_list());
         return 'success';
     }
 }

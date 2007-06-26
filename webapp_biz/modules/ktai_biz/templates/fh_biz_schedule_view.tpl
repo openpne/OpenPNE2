@@ -11,17 +11,29 @@
 開始日：({$repeat_begin_date|date_format:"%Y年%m月%d日"})<br>
 期間：({$repeat_term})週間<br>
 ({else})
+({strip})
 	({$schedule.begin_date})
 	
-	({$schedule.begin_time}) ({if $schedule.begin_time})～({/if})
 ({if $schedule.begin_date != $schedule.finish_date})
-	({$schedule.finish_date})
+	～({$schedule.finish_date})
 ({/if})
+({/strip})
+
+({strip})
+({$schedule.begin_time})
+({if $schedule.begin_time || $schedule.finish_time})～({/if})
 ({$schedule.finish_time}) <br>
+({/strip})
 ({/if})
 
 詳細：({$schedule.value})<br>
 登録者：<a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$schedule.c_member_id})&amp;({$tail})">({$schedule.writer_name})</a><br>
+公開範囲：
+({if $schedule.public_flag == "private"})
+参加者のみに公開
+({else})
+全体に公開
+({/if})<br>
 参加者：
 ({foreach item=name key=id from=$jmembers})
 	<a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$id})&amp;({$tail})">({$name})</a>&nbsp;
@@ -44,6 +56,7 @@
 <input type="hidden" name="writer" value="({$schedule.writer_name})">
 <input type="hidden" name="members" value="({$jmembers_enc})">
 <input type="hidden" name="schedule_id" value="({$schedule_id})">
+<input type="hidden" name="public_flag" value="({$schedule.public_flag})">
 <input type="hidden" name="target_id" value="({$t_id})">
 <input value="編集" type="submit">
 </form>

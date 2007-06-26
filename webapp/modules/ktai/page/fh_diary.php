@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -33,7 +33,7 @@ class ktai_page_fh_diary extends OpenPNE_Action
                 ktai_display_error('この日記にはアクセスできません');
             }
             //アクセスブロック設定
-            if (p_common_is_access_block($u, $target_c_member_id)) {
+            if (db_member_is_access_block($u, $target_c_member_id)) {
                 openpne_redirect('ktai', 'page_h_access_block');
             }
         }

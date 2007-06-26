@@ -1,22 +1,5 @@
-({$inc_html_header|smarty:nodefaults})
-<body>
-({ext_include file="inc_extension_pagelayout_top.tpl"})
-<table class="mainframe" border="0" cellspacing="0" cellpadding="0">
-<tr>
-<td class="container inc_page_header">
-({$inc_page_header|smarty:nodefaults})
-</td>
-</tr>
-<tr>
-<td class="container inc_navi">
-({$inc_navi|smarty:nodefaults})
-</td>
-</tr>
-<tr>
-<td class="container main_content">
-
-<table class="container" border="0" cellspacing="0" cellpadding="0">
-<tr><td class="full_content" align="center">
+({ext_include file="inc_header.tpl"})
+({ext_include file="inc_layoutcolumn_top_720px.tpl"})
 ({***************************})
 ({**ここから：メインコンテンツ**})
 ({***************************})
@@ -69,14 +52,14 @@
 ({t_form m=pc a=do_c_bbs_delete_c_commu_topic_comment})
 <input type="hidden" name="sessid" value="({$PHPSESSID})">
 <input type="hidden" name="target_c_commu_topic_comment_id" value="({$c_commu_topic_comment.c_commu_topic_comment_id})">
-<input type=submit class="submit" value=" は い ">
+<input type="submit" class="submit" value=" は い ">
 </form>
 
 </td><td>
 
 ({t_form _method=get m=pc a=page_c_event_detail})
 <input type="hidden" name="target_c_commu_topic_id" value="({$c_commu_topic_id})">
-<input type=submit class="submit" value="いいえ">
+<input type="submit" class="submit" value="いいえ">
 </form>
 </td></tr>
 </table>
@@ -111,19 +94,8 @@
 ({***************************})
 ({**ここまで：メインコンテンツ**})
 ({***************************})
-</td></tr>
-</table>({*END:container*})
-</td>
-</tr>
-<tr>
-<td class="container inc_page_footer">
-({$inc_page_footer|smarty:nodefaults})
-</td>
-</tr>
-</table>
-({ext_include file="inc_extension_pagelayout_bottom.tpl"})
-</body>
-</html>
+({ext_include file="inc_layoutcolumn_bottom_270px_165px_175px_720px.tpl"})
+({ext_include file="inc_footer.tpl"})
 
 
 
