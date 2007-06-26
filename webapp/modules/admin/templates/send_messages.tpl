@@ -11,7 +11,7 @@
 <h2 id="ttl01">メッセージ・メール送信</h2>
 <div class="contents">
 <p class="info">選択したメンバーにメッセージもしくはEメールを送信します。</p>
-<p class="caution" id="c01">タイトルと本文を入力してください。<br /><strong>※このメッセージは、ID No.1のメンバー名にて送信されます。</strong></p>
+<p class="caution" id="c01">タイトルと本文を入力してください。<br /><strong>※このメッセージは、ID No.1のメンバーから送信されます。</strong></p>
 
 <dl>
 <form action="./" method="post">

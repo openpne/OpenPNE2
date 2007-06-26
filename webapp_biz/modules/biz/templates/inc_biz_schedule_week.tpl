@@ -184,6 +184,7 @@
 ({else})
 <div class="border_01 bg_02" style="padding:4px 0;display:block;border-left:none;border-right:none;">
 
+({if $smarty.const.OPENPNE_IS_POINT_ADMIN || $member_info.c_member_id != 1})
 ({if ($smarty.const.OPENPNE_DISP_RANK && $rank) || ($smarty.const.OPENPNE_DISP_POINT && $point)})
 ({if $smarty.const.OPENPNE_DISP_RANK && $rank})
 <img src="({t_img_url filename=$rank.image_filename})" class="pict" alt="({$rank.name})" style="margin:2px"><br>
@@ -192,6 +193,7 @@
 ({$point}) Point<br>
 ({/if})
 <img src="./skin/dummy.gif" class="v_spacer_m">
+({/if})
 ({/if})
 
 ({$stateform|smarty:nodefaults})
@@ -206,7 +208,7 @@
 
 <img src="./skin/dummy.gif" class="v_spacer_s">
 
-<input type="button" onClick="location.href='({t_url m=pc a=page_h_prof})'" value="プロフィール変更" style="width:112px;" class="submit">
+<input type="button" onClick="location.href='({t_url m=pc a=page_h_config_prof})'" value="プロフィール変更" style="width:112px;" class="submit">
 
 <img src="./skin/dummy.gif" class="v_spacer_s">
 <img src="./skin/dummy.gif" class="v_spacer_s">
@@ -240,11 +242,11 @@
 ({$item_schedule.c_member_name})
 </div></a>
 	({elseif $item_schedule.begin_date != $item_schedule.finish_date})  <!--バナー予定 -->
-({assign var="begin_time_H" value=$item_schedule.begin_date|date_format:"%H"})
-({assign var="begin_time_M" value=$item_schedule.begin_date|date_format:"%M"})
+({assign var="begin_time_H" value=$item_schedule.begin_time|date_format:"%H"})
+({assign var="begin_time_M" value=$item_schedule.begin_time|date_format:"%M"})
 ({if $item_schedule.finish_time})
-({assign var="finish_time_H" value=$item_schedule.finish_date|date_format:"%H"})
-({assign var="finish_time_M" value=$item_schedule.finish_date|date_format:"%M"})
+({assign var="finish_time_H" value=$item_schedule.finish_time|date_format:"%H"})
+({assign var="finish_time_M" value=$item_schedule.finish_time|date_format:"%M"})
 ({/if})
 ({ext_include file="inc_biz_schedule_week_time.tpl"})
 <div class="padding_s" style="padding-top:0;">

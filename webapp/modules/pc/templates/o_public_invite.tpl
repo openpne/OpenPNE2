@@ -45,7 +45,7 @@
 
 <div style="padding:10px 30px;">
 
-メールアドレスと確認キーワードを入力してください。<br>
+メールアドレス({if $smarty.const.OPENPNE_USE_CAPTCHA})と確認キーワード({/if})を入力してください。<br>
 入力されたメールアドレス宛に ({$SNS_NAME}) の招待状が送信されます。
 
 </div>

@@ -19,7 +19,8 @@
 ({if $admin_list})
 <hr>
 
-◆管理者交代の要請
+◆管理者交代の要請<br>
+<br>
 ({t_form m=ktai a=do_c_edit_member_insert_c_commu_admin_confirm})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
 <input type="hidden" name="target_c_commu_id" value="({$c_commu.c_commu_id})">
@@ -37,7 +38,8 @@
 ({if $subadmin_list})
 <hr>
 
-◆副管理者の要請
+◆副管理者の要請<br>
+<br>
 ({t_form m=ktai a=do_c_edit_member_insert_c_commu_sub_admin_confirm})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
 <input type="hidden" name="target_c_commu_id" value="({$c_commu.c_commu_id})">
