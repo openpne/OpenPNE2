@@ -57,13 +57,13 @@ li { list-style-type: none;}
 
 .header { height: 50px; background: url("img/bg_header.gif") no-repeat; border-bottom: #000000 1px solid; overflow: hidden;}
 .header div.ttl { float: left; padding: 0 0 0 24px; line-height: 100%; color: #FFFFFF;}
-.header div.ttl h1 { float: left; padding: 24px 15px 0 0; font-size: 22px; color: #FFFFFF;}
-.header div.ttl h1 a { line-height: 16px; text-decoration: none;}
+.header div.ttl h1 { float: left; padding: 18px 15px 0 0; line-height: 22px; font-size: 22px; color: #FFFFFF;}
+.header div.ttl h1 a { text-decoration: none;}
 .header div.ttl h1 a:link ,
 .header div.ttl h1 a:visited ,
 .header div.ttl h1 a:hover ,
 .header div.ttl h1 a:active { color: #FFFFFF;}
-.header div.ttl span { float: left; display: block; padding-top: 27px; color: #FFFFFF;}
+.header div.ttl span { float: left; display: block; padding-top: 25px; color: #FFFFFF;}
 .header div.ttl span a { margin: 0 3px; color: #FFFFFF;}
 .header div.naviHelp { float: right; padding-top: 25px; padding-right: 17px;}
 .header div.naviHelp a { margin: 0 3px;}
