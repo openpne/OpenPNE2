@@ -1,7 +1,8 @@
 ({ext_include file="inc_header.tpl"})
+({ext_include file="inc_c_com_topic_find.tpl"})
 ({if !$is_c_commu_member})
 <tr>
-<td class="container c_join_commu_box" align="center">
+<td class="container inc_c_join_commu_box" align="center">
 
 <img src="./skin/dummy.gif" class="v_spacer_s">
 
@@ -61,30 +62,6 @@
 </td>
 </tr>
 ({/if})
-<tr><td>
-({*ここから：本体*})
-<div class="bg_09" style="width:680px;height:24px;border-left:none 0px;border-right:none 0px;border-top:none 0px;">
-({t_form _method=get m=pc a=page_c_com_topic_find})
-<input type="hidden" name="c_commu_id" value="({$c_commu.c_commu_id})">
-
-<table border="0" cellspacing="0" cellpadding="0" class="search_bar" style="width:680px;height:24px;">
-<tr>
-<td align="center" style="height:24px;">
-<img src="({t_img_url_skin filename=icon_search})" alt="search" style="width:62px;height:20px;" class="icon">
-<input type="text" size="30" name="keyword" class="text border_01" value="" style="width:180px;">
-<select name="target_commu">
-<option value="in_commu">コミュニティ内</option>
-<option value="all">コミュニティ全体</option>
-</select>
-<input type="submit" class="submit" value=" 検 索 ">
-
-</td>
-</tr>
-</table>
-
-</form>
-</div>
-({*ここまで：本体*})
 ({ext_include file="inc_layoutcolumn_top_270px.tpl"})
 
 ({********************************})

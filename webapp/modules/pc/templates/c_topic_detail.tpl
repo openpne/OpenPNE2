@@ -1,4 +1,5 @@
 ({ext_include file="inc_header.tpl"})
+({ext_include file="inc_c_com_topic_find.tpl"})
 ({ext_include file="inc_layoutcolumn_top_720px.tpl"})
 ({***************************})
 ({**ここから：メインコンテンツ**})
