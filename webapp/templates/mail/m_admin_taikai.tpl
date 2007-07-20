@@ -15,7 +15,11 @@
 
 ({foreach from=$c_profile_list item=prof})
 ({if $prof.name != 'PNE_POINT'})
+({if $prof.form_type == "checkbox"})
+({$prof.caption}) : ({$c_member.profile[$prof.name].value|@t_implode:", "})
+({else})
 ({$prof.caption}) : ({$c_member.profile[$prof.name].value})
+({/if})
 ({/if})
 ({/foreach})
 
