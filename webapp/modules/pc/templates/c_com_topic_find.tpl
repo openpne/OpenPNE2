@@ -351,13 +351,13 @@
 <div style="padding:4px 3px;">
 
 ({if $is_prev})
-<a href="({t_url m=pc a=page_ch_topic_find_all})&amp;target_commu=in_commu&amp;c_commu_id=({$c_commu_id})&amp;direc=-1&amp;page=({$page})&amp;type=({$search_val_list.type})&amp;keyword=({$smarty.capture.keyword_url|smarty:nodefaults})">前を表示</a>&nbsp;&nbsp;
+<a href="({t_url m=pc a=page_c_com_topic_find})&amp;target_commu=in_commu&amp;c_commu_id=({$c_commu_id})&amp;direc=-1&amp;page=({$page})&amp;type=({$search_val_list.type})&amp;keyword=({$smarty.capture.keyword_url|smarty:nodefaults})">前を表示</a>&nbsp;&nbsp;
 ({/if})
 ({if $total_num})
 ({$start_num})件～({$end_num})件を表示
 ({/if})
 ({if $is_next})
-&nbsp;&nbsp;<a href="({t_url m=pc a=page_ch_topic_find_all})&amp;target_commu=in_commu&amp;c_commu_id=({$c_commu_id})&amp;direc=1&amp;page=({$page})&amp;type=({$search_val_list.type})&amp;keyword=({$smarty.capture.keyword_url|smarty:nodefaults})">次を表示</a>
+&nbsp;&nbsp;<a href="({t_url m=pc a=page_c_com_topic_find})&amp;target_commu=in_commu&amp;c_commu_id=({$c_commu_id})&amp;direc=1&amp;page=({$page})&amp;type=({$search_val_list.type})&amp;keyword=({$smarty.capture.keyword_url|smarty:nodefaults})">次を表示</a>
 ({/if})
 
 </div>
