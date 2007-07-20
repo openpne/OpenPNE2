@@ -2791,15 +2791,18 @@ function db_commu_search_c_commu_topic(
             $type = 'all',
             $c_commu_id = 0)
 {
-    $select = 'SELECT ct.*, MAX(ctc2.r_datetime) AS last_datetime, MAX(ctc2.number) as max_number';
-    $from = ' FROM c_commu_topic AS ct, c_commu_topic_comment AS ctc, c_commu_topic_comment AS ctc2';
+    $select = 'SELECT c.name AS commu_name, ct.*, MAX(ctc2.r_datetime) AS last_datetime, MAX(ctc2.number) as max_number';
+    $from = ' FROM c_commu AS c, c_commu_topic AS ct, c_commu_topic_comment AS ctc, c_commu_topic_comment AS ctc2';
 
     $params = array();
     $where = ' WHERE ct.c_commu_topic_id = ctc.c_commu_topic_id'
-           . ' AND ct.c_commu_topic_id = ctc2.c_commu_topic_id';
+           . ' AND ct.c_commu_topic_id = ctc2.c_commu_topic_id'
+           . ' AND c.c_commu_id = ct.c_commu_id';
     if ($c_commu_id) {
         $where .= ' AND ct.c_commu_id = ?';
         $params[] = $c_commu_id;
+    } else {
+        $where .= " AND c.public_flag IN ('public', 'auth_sns')";
     }
     if ($search_word) {
         $words = explode(' ', $search_word);
@@ -2829,10 +2832,6 @@ function db_commu_search_c_commu_topic(
     $list = db_get_all_page($sql, $page, $page_size, $params);
     
     foreach ($list as $key => $value) {
-        $p = array((int)$value['c_commu_id']);
-        $sql = 'SELECT name FROM c_commu WHERE c_commu_id = ?';
-        $list[$key]['commu_name'] = db_get_one($sql, $p);
-        
         $p = array((int)$value['c_commu_topic_id']);
         $sql = 'SELECT body FROM c_commu_topic_comment WHERE number = 0 AND c_commu_topic_id = ?';
         $list[$key]['body'] = db_get_one($sql, $p);
