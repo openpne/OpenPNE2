@@ -18,7 +18,6 @@ class biz_do_fh_biz_schedule_edit extends OpenPNE_Action
 
         $u = $GLOBALS['AUTH']->uid();
         $sessid = session_id();
-
         if (!biz_isPermissionSchedule($u, $requests['schedule_id'])) {
             handle_kengen_error();
         }

@@ -58,14 +58,14 @@
 <tr>
 <td class="padding_ss" style="width:100px;">
 
-<input type='radio' name='sc_rp' value='0' checked class="no_bg">繰り返さない
+<input type='radio' name='sc_rp' value='0'  class="no_bg" ({if !$sc_rp})checked({/if})>繰り返さない
 
 </td>
 <td class="padding_ss">
 
 <select name='sc_bn'>
 	({section name=i loop=$bn_num})
-		<option value="({$bn_num[i]})">({$bn_num[i]})日間
+		<option value="({$bn_num[i]})" ({if $bn_num[i]==$sc_bn}) selected({/if})>({$bn_num[i]})日間
 	({/section})
 </select>
 
@@ -74,14 +74,14 @@
 <tr>
 <td class="padding_ss">
 
-<input type='radio' name='sc_rp' value='true'class="no_bg">繰り返す
+<input type='radio' name='sc_rp' value='true'class="no_bg" ({if $sc_rp})checked({/if})>繰り返す
 
 </td>
 <td class="padding_ss">
 
 <select name='sc_rcount'>
 	({section name=i loop=$rp_count})
-		<option value='({$rp_count[i]})'>({$rp_count[i]})週間
+		<option value='({$rp_count[i]})' ({if $rp_count[i]==$sc_rcount}) selected({/if})>({$rp_count[i]})週間
 	({/section})
 </select>　　
 
@@ -96,7 +96,7 @@
 <td class="padding_ss">
 
 ({section name=i loop=$wk})
-<input type='checkbox' name="sc_rwk[]" value='({$smarty.section.i.index})' class="no_bg">({$wk[i]})
+<input type='checkbox' name="sc_rwk[]" value='({$smarty.section.i.index})' ({if $sc_rwk_chk[i].checkflag}) checked({/if}) class="no_bg">({$wk[i]})
 ({/section})
 
 </td>

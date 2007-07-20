@@ -285,6 +285,7 @@
 <input type="hidden" name="members" value="({$jmembers_enc})">
 <input type="hidden" name="schedule_id" value="({$schedule_id})">
 <input type="hidden" name="target_id" value="({$target_c_member_id})">
+<input type="hidden" name="sc_bn" value="({$sc_bn})">
 
 <input value="修正する" type="submit" class="submit">
 </form>
