@@ -11,7 +11,6 @@ class pc_page_c_com_topic_find extends OpenPNE_Action
         $u = $GLOBALS['AUTH']->uid();
 
         // --- リクエスト変数
-        $target_c_commu_category_parent_id = $requests['target_c_commu_category_parent_id'];
         $keyword = $requests['keyword'];
         $direc = $requests['direc'];
         $page = $requests['page'];
@@ -24,17 +23,18 @@ class pc_page_c_com_topic_find extends OpenPNE_Action
             exit;
         }
 
+        //--- 権限チェック
+        //掲示板閲覧権限
+        if (!db_commu_is_c_commu_view4c_commu_idAc_member_id($c_commu_id, $u)) {
+            handle_kengen_error();
+        }
+        
         //バグ回避のため全角空白を半角空白に統一
         $keyword = str_replace("　", " ", $keyword);
 
         do_common_insert_search_log($u, $keyword);
 
-        if ($c_commu_id) {
-            $this->set('inc_navi', fetch_inc_navi('c', $c_commu_id));
-        } else {
-            $this->set('inc_navi', fetch_inc_navi('h'));
-        }
-        
+        $this->set('inc_navi', fetch_inc_navi('c', $c_commu_id));
 
         $page_size = 20;
         $page = $page + $direc;
@@ -53,14 +53,11 @@ class pc_page_c_com_topic_find extends OpenPNE_Action
 
         $this->set('keyword', $keyword);
         $search_val_list = array(
-            'val_order' => $val_order,
             'type' => $type,
         );
         $this->set('search_val_list', $search_val_list);
         $this->set('c_commu_id', $c_commu_id);
-        if ($c_commu_id) {
-            $this->set('c_commu', db_commu_c_commu4c_commu_id($c_commu_id));
-        }
+        $this->set('c_commu', db_commu_c_commu4c_commu_id($c_commu_id));
 
         return 'success';
     }
