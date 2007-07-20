@@ -2781,4 +2781,76 @@ function db_commu_get_c_commu_member_confirm_id($c_member_id, $c_commu_id)
     return db_get_one($sql, $params);
 }
 
+/** 
+ * トピック検索
+ */
+function db_commu_search_c_commu_topic(
+            $search_word,
+            $page_size,
+            $page,
+            $type = 'all',
+            $c_commu_id = 0)
+{
+    $select = 'SELECT ct.*, MAX(ctc2.r_datetime) AS last_datetime, MAX(ctc2.number) as max_number';
+    $from = ' FROM c_commu_topic AS ct, c_commu_topic_comment AS ctc, c_commu_topic_comment AS ctc2';
+
+    $params = array();
+    $where = ' WHERE ct.c_commu_topic_id = ctc.c_commu_topic_id'
+           . ' AND ct.c_commu_topic_id = ctc2.c_commu_topic_id';
+    if ($c_commu_id) {
+        $where .= ' AND ct.c_commu_id = ?';
+        $params[] = $c_commu_id;
+    }
+    if ($search_word) {
+        $words = explode(' ', $search_word);
+        foreach ($words as $word) {
+            $word = check_search_word($word);
+
+            $where .= ' AND ((ct.name LIKE ?) OR (ctc.body LIKE ?))';
+            $params[] = '%'.$word.'%';
+            $params[] = '%'.$word.'%';
+        }
+    }
+    switch ($type) {
+    case 'topic':
+        $where .= ' AND event_flag = 0';
+        break;
+    case 'event':
+        $where .= ' AND event_flag = 1';
+        break;
+    case 'all':
+    default:
+        break;
+    }
+    $group = ' GROUP BY ct.c_commu_topic_id';
+    $order = ' ORDER BY last_datetime DESC';
+
+    $sql = $select . $from . $where . $group . $order;
+    $list = db_get_all_page($sql, $page, $page_size, $params);
+    
+    foreach ($list as $key => $value) {
+        $p = array((int)$value['c_commu_id']);
+        $sql = 'SELECT name FROM c_commu WHERE c_commu_id = ?';
+        $list[$key]['commu_name'] = db_get_one($sql, $p);
+        
+        $p = array((int)$value['c_commu_topic_id']);
+        $sql = 'SELECT body FROM c_commu_topic_comment WHERE number = 0 AND c_commu_topic_id = ?';
+        $list[$key]['body'] = db_get_one($sql, $p);
+    }
+
+    $sql = 'SELECT COUNT(DISTINCT ct.c_commu_topic_id)' . $from . $where;
+    $total_num = db_get_one($sql, $params);
+
+    if ($total_num != 0) {
+        $total_page_num =  ceil($total_num / $page_size);
+        $next = ($page < $total_page_num);
+        $prev = ($page > 1);
+    }
+
+    $start_num = ($page - 1) * $page_size + 1;
+    $end_num   = $start_num + $page_size - 1 >= $total_num ? $total_num : $start_num + $page_size - 1;
+
+    return array($list, $prev, $next, $total_num, $start_num, $end_num);
+}
+
 ?>
