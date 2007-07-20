@@ -14,7 +14,10 @@ td.inc_search_box div.bg_search {
 /************* 検索ボックス *************/
 
 td.inc_search_box table.search_bar img ,
-td.inc_search_box table.search_bar input {
+td.inc_search_box table.search_bar input ,
+td.inc_c_com_topic_find table.search_bar img ,
+td.inc_c_com_topic_find table.search_bar input ,
+td.inc_c_com_topic_find table.search_bar select {
 	vertical-align: middle;
 }
 

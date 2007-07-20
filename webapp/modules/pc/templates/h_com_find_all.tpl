@@ -76,8 +76,12 @@
 
 <!-- ここまで：主内容＞＞並び替え・カテゴリ・検索 -->
 
-<div style="text-align:right;padding:3px;">
+<div style="text-align:left;padding:3px;padding-left:160px;">
 <img src="./skin/dummy.gif" class="icon arrow_1"><a href="({t_url m=pc a=page_h_com_add})">新規作成</a>&nbsp;(作成の前に、似たコミュニティがないかご確認ください)&nbsp;&nbsp;
+</div>
+
+<div style="text-align:left;padding:3px;padding-left:160px;">
+<img src="./skin/dummy.gif" class="icon arrow_1"><a href="({t_url m=pc a=page_h_com_topic_find_all})">トピック検索</a>
 </div>
 
 <hr>
