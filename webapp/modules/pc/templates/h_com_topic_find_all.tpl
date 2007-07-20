@@ -25,7 +25,7 @@
 <table border="0" cellspacing="0" cellpadding="0" style="width:636px;" class="border_01">
 <tr>
 <td style="width:36px;" class="bg_06"><img src="({t_img_url_skin filename=content_header_1})" style="width:30px;height:20px;" class="dummy"></td>
-<td style="width:600px;padding:2px 0px;" class="bg_06"><span class="b_b c_00">トピック検索・並び替え</span></td>
+<td style="width:600px;padding:2px 0px;" class="bg_06"><span class="b_b c_00">トピック検索</span></td>
 </tr>
 </table>
 <!-- ここまで：小タイトル -->
@@ -47,7 +47,7 @@
 <td style="width:560px;" class="bg_02" align="left" valign="middle">
 <div style="padding:4px 3px;">
 
-<!-- ここから：主内容＞＞並び替え・カテゴリ・検索 -->
+<!-- ここから：主内容＞＞検索 -->
 
 ({t_form _method=get m=pc a=page_h_com_topic_find_all})
 
@@ -69,7 +69,7 @@
 
 </form>
 
-<!-- ここまで：主内容＞＞並び替え・カテゴリ・検索 -->
+<!-- ここまで：主内容＞＞検索 -->
 
 </div>
 </td>
