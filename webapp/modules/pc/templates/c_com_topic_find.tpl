@@ -47,7 +47,7 @@
 <td style="width:560px;" class="bg_02" align="left" valign="middle">
 <div style="padding:4px 3px;">
 
-<!-- ここから：主内容＞＞並び替え・カテゴリ・検索 -->
+<!-- ここから：主内容＞＞検索 -->
 
 ({t_form _method=get m=pc a=page_c_com_topic_find})
 
@@ -76,7 +76,7 @@
 
 </form>
 
-<!-- ここまで：主内容＞＞並び替え・カテゴリ・検索 -->
+<!-- ここまで：主内容＞＞検索 -->
 
 </div>
 </td>
