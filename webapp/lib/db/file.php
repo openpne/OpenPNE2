@@ -14,7 +14,9 @@ function db_file_c_file4c_file_id($c_file_id)
     $sql = 'SELECT * FROM c_file WHERE c_file_id = ?';
     $params = array(intval($c_file_id));
     $file = db_get_row($sql, $params);
-    $file['size'] = strlen($file['bin']);
+    if ($file) {
+        $file['size'] = strlen($file['bin']);
+    }
     return $file;
 }
 
