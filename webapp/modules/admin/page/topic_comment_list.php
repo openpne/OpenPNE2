@@ -14,18 +14,23 @@ class admin_page_topic_comment_list extends OpenPNE_Action
         
         $page = $requests['page'];
         $keyword = $requests['keyword'];
+        $target_c_commu_topic_comment_id = $requests['target_c_commu_topic_comment_id'];
         $page_size = 20;
         
-        $v = array();
-        
-        list($topic_comment_list,$prev,$next,$total_num,$total_page_num) 
+        if ($target_c_commu_topic_comment_id) {
+            list($topic_comment_list,$prev,$next,$total_num,$total_page_num) 
+            = monitor_topic_comment_list4c_commu_topic_comment_id($target_c_commu_topic_comment_id,$page_size,$page);
+        } else {
+            list($topic_comment_list,$prev,$next,$total_num,$total_page_num) 
             = monitor_topic_comment_list($keyword,$page_size,$page);
+        }
         $this->set('topic_comment_list', $topic_comment_list);
         $this->set('page', $page);
         $this->set('prev', $prev);
         $this->set('next', $next);
         $this->set('keyword_encode', urlencode($keyword));
         $this->set('keyword', $keyword);
+        $this->set('target_c_commu_topic_comment_id', $target_c_commu_topic_comment_id);
         $this->set('total_num', $total_num);
         
         for($i = $page-10<1 ? 1 : $page-10 ;($i<=$total_page_num)&&($i<$page+10);$i++)

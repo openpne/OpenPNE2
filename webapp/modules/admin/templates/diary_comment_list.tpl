@@ -13,16 +13,23 @@
 <p class="actionMsg">({$msg})</p>
 ({/if})
 
-<form action="./" method="GET">
-<input type="hidden" name="m" value="({$module_name})">
-<input type="hidden" name="a" value="page_({$hash_tbl->hash('diary_comment_list','page')})">
+<form action="./" method="get">
+<input type="hidden" name="m" value="({$module_name})" />
+<input type="hidden" name="a" value="page_({$hash_tbl->hash('diary_comment_list','page')})" />
 <h3 class="item">検索キーワード</h3>
 <p id="c01">
-<input class="basic" type="text" name="keyword" value="({$keyword})">
-<span class="textBtnS"><input type="submit" value="検索"></span>
+<input class="basic" type="text" name="keyword" value="({$keyword})" />
+<span class="textBtnS"><input type="submit" value="検索" /></span>
 </p>
 </form>
 
+<form action="./" method="get">
+<input type="hidden" name="m" value="({$module_name})" />
+<input type="hidden" name="a" value="page_({$hash_tbl->hash('diary_comment_list','page')})" />
+<h3 class="item">ID検索</h3>
+<input class="basic" type="text" name="target_c_diary_comment_id" value="({$target_c_diary_comment_id})" />
+<span class="textBtnS"><input type="submit" value="検索" /></span>
+</form>
 ({capture name="pager"})
 <div class="listControl">
 <p class="display">
@@ -38,15 +45,21 @@
 
 ({$smarty.capture.pager|smarty:nodefaults})
 
+({foreach from=$diary_comment_list item=item})
 <table class="basicType2">
 <tbody>
-({foreach from=$diary_comment_list item=item})
 ({****})
 <tr>
 <th>ID</th>
+<form action="./" method="get">
 <td class="type1">
 ({$item.c_diary_comment_id})
+<input type="hidden" name="m" value="({$module_name})" />
+<input type="hidden" name="a" value="page_({$hash_tbl->hash('delete_diary_comment')})" />
+<input type="hidden" name="target_c_diary_comment_id" value="({$item.c_diary_comment_id})" />
+<span class="textBtnS"><input type="submit" value="削除" /></span>
 </td>
+</form>
 </tr>
 ({****})
 <tr>
@@ -77,9 +90,10 @@
 </td>
 </tr>
 ({****})
-({/foreach})
 </tbody>
 </table>
+<br />
+({/foreach})
 
 ({$smarty.capture.pager|smarty:nodefaults})
 ({$inc_footer|smarty:nodefaults})
