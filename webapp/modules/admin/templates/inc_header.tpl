@@ -61,10 +61,10 @@
 ({/if})
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('diary_list')})">日記管理</a></li>
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('diary_comment_list')})">日記コメント管理</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('commu_list')})">コミュニティ管理</a></li>
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('topic_list')})">トピック・イベント管理</a></li>
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('topic_comment_list')})">トピック・イベントのコメント管理</a></li>
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('review_list')})">レビュー管理</a></li>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('delete_kakikomi')})">書き込み削除</a></li>
 </ul>
 </li>
 
@@ -76,10 +76,10 @@
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('user_analysis_date_month')})">登録日別メンバー数表示（月次集計）</a></li>
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('user_analysis_date_day')})">登録日別メンバー数表示（日次集計）</a></li>
 ({foreach from=$profile_list item=item})
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('user_analysis_profile')})&target_c_profile_id=({$item.c_profile_id})">({$item.caption})別メンバー数表示</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('user_analysis_profile')})&amp;target_c_profile_id=({$item.c_profile_id})">({$item.caption})別メンバー数表示</a></li>
 ({/foreach})
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('access_analysis_month')})&ktai_flag=0">PCページ月次集計</a></li>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('access_analysis_month')})&ktai_flag=1">携帯ページ月次集計</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('access_analysis_month')})&amp;ktai_flag=0">PCページ月次集計</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('access_analysis_month')})&amp;ktai_flag=1">携帯ページ月次集計</a></li>
 </ul>
 </li>
 
