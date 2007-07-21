@@ -13,12 +13,20 @@
 <p class="actionMsg">({$msg})</p>
 ({/if})
 
-<form action="./" method="GET">
-<input type="hidden" name="m" value="({$module_name})">
-<input type="hidden" name="a" value="page_({$hash_tbl->hash('diary_list','page')})">
+<form action="./" method="get">
+<input type="hidden" name="m" value="({$module_name})" />
+<input type="hidden" name="a" value="page_({$hash_tbl->hash('diary_list','page')})" />
 <h3 class="item">検索キーワード</h3>
-<input class="basic" type="text" name="keyword" value="({$keyword})">
-<span class="textBtnS"><input type="submit" value="検索"></span>
+<input class="basic" type="text" name="keyword" value="({$keyword})" />
+<span class="textBtnS"><input type="submit" value="検索" /></span>
+</form>
+
+<form action="./" method="get">
+<input type="hidden" name="m" value="({$module_name})" />
+<input type="hidden" name="a" value="page_({$hash_tbl->hash('diary_list','page')})" />
+<h3 class="item">ID検索</h3>
+<input class="basic" type="text" name="target_c_diary_id" value="({$target_c_diary_id})" />
+<span class="textBtnS"><input type="submit" value="検索" /></span>
 </form>
 
 ({capture name="pager"})
@@ -38,15 +46,21 @@
 ({$smarty.capture.pager|smarty:nodefaults})
 </div>
 
+({foreach from=$diary_list item=item})
 <table class="basicType2">
 <tbody>
-({foreach from=$diary_list item=item})
 ({****})
 <tr>
 <th>ID</th>
+<form action="./" method="get">
 <td class="type1">
 ({$item.c_diary_id})
+<input type="hidden" name="m" value="({$module_name})" />
+<input type="hidden" name="a" value="page_({$hash_tbl->hash('delete_diary')})" />
+<input type="hidden" name="target_c_diary_id" value="({$item.c_diary_id})" />
+<span class="textBtnS"><input type="submit" value="削除" /></span>
 </td>
+</form>
 </tr>
 ({****})
 <tr>
@@ -73,13 +87,22 @@
 <tr>
 <th>日記本文</th>
 <td width="500">
-({$item.body|nl2br})
+({if $item.image_filename_1 || $item.image_filename_2 || $item.image_filename_3})
+<div>
+({if $item.image_filename_1})<span class="padding_s"><a href="({t_img_url filename=$item.image_filename_1})" target="_blank"><img src="({t_img_url filename=$item.image_filename_1 w=120 h=120})"></a></span>({/if})
+({if $item.image_filename_2})<span class="padding_s"><a href="({t_img_url filename=$item.image_filename_2})" target="_blank"><img src="({t_img_url filename=$item.image_filename_2 w=120 h=120})"></a></span>({/if})
+({if $item.image_filename_3})<span class="padding_s"><a href="({t_img_url filename=$item.image_filename_3})" target="_blank"><img src="({t_img_url filename=$item.image_filename_3 w=120 h=120})"></a></span>({/if})
+</div>
+({/if})
+({$item.body|t_truncate:"120"|nl2br})
 </td>
 </tr>
 ({****})
-({/foreach})
 </tbody>
 </table>
+<br />
+({/foreach})
+
 
 <div class="listControl" id="pager02">
 ({$smarty.capture.pager|smarty:nodefaults})

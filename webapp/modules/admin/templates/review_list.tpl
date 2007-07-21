@@ -13,12 +13,19 @@
 <p class="actionMsg">({$msg})</p>
 ({/if})
 
-<form action="./" method="GET">
-<input type="hidden" name="m" value="({$module_name})">
-<input type="hidden" name="a" value="page_({$hash_tbl->hash('review_list','page')})">
+<form action="./" method="get">
+<input type="hidden" name="m" value="({$module_name})" />
+<input type="hidden" name="a" value="page_({$hash_tbl->hash('review_list','page')})" />
 <h3 class="item">検索キーワード</h3>
-<input class="basic" type="text" name="keyword" value="({$keyword})">
-<span class="textBtnS"><input type="submit" value="検索"></span>
+<input class="basic" type="text" name="keyword" value="({$keyword})" />
+<span class="textBtnS"><input type="submit" value="検索" /></span>
+</form>
+<form action="./" method="get">
+<input type="hidden" name="m" value="({$module_name})" />
+<input type="hidden" name="a" value="page_({$hash_tbl->hash('review_list','page')})" />
+<h3 class="item">ID検索</h3>
+<input class="basic" type="text" name="target_c_review_comment_id" value="({$target_c_review_comment_id})" />
+<span class="textBtnS"><input type="submit" value="検索" /></span>
 </form>
 
 ({capture name="pager"})
@@ -38,15 +45,21 @@
 ({$smarty.capture.pager|smarty:nodefaults})
 </div>
 
+({foreach from=$review_list item=item})
 <table class="basicType2">
 <tbody>
-({foreach from=$review_list item=item})
 ({****})
 <tr>
 <th>ID</th>
+<form action="./" method="get">
 <td class="type1">
-<a href="({t_url _absolute=1 m=pc a=page_h_review_list_product})&c_review_id=({$item.c_review_id})" target="_blank">({$item.c_review_id})</a>
+<a href="({t_url _absolute=1 m=pc a=page_h_review_list_product})&c_review_id=({$item.c_review_id})" target="_blank">({$item.c_review_comment_id})</a>
+<input type="hidden" name="m" value="({$module_name})" />
+<input type="hidden" name="a" value="page_({$hash_tbl->hash('delete_review')})" />
+<input type="hidden" name="target_c_review_comment_id" value="({$item.c_review_comment_id})" />
+<span class="textBtnS"><input type="submit" value="削除" /></span>
 </td>
+</form>
 </tr>
 ({****})
 <tr>
@@ -59,9 +72,9 @@
 <tr>
 <th>説明</th>
 <td>
-({$item.c_review.release_date})<br>
-({$item.c_review.manufacturer})<br>
-({$item.c_review.artist})({$item.c_review.author})<br>
+({$item.c_review.release_date})<br />
+({$item.c_review.manufacturer})<br />
+({$item.c_review.artist})({$item.c_review.author})
 </td>
 </tr>
 ({****})
@@ -86,9 +99,9 @@
 </td>
 </tr>
 ({****})
-({/foreach})
 </tbody>
 </table>
+({/foreach})
 
 <div class="listControl" id="pager02">
 ({$smarty.capture.pager|smarty:nodefaults})

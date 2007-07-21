@@ -14,18 +14,23 @@ class admin_page_diary_list extends OpenPNE_Action
         
         $page = $requests['page'];
         $keyword = $requests['keyword'];
+        $target_c_diary_id = $requests['target_c_diary_id'];
         $page_size = 20;
         
-        $v = array();
-        
-        list($diary_list,$prev,$next,$total_num,$total_page_num) 
+        if ($target_c_diary_id) {
+        	list($diary_list,$prev,$next,$total_num,$total_page_num) 
+            = monitor_diary_list4c_diary_id($target_c_diary_id,$page_size,$page);
+        } else {
+        	list($diary_list,$prev,$next,$total_num,$total_page_num) 
             = monitor_diary_list($keyword,$page_size,$page);
+        }
         $this->set('diary_list', $diary_list);
         $this->set('page', $page);
         $this->set('prev', $prev);
         $this->set('next', $next);
         $this->set('keyword_encode', urlencode($keyword));
         $this->set('keyword', $keyword);
+        $this->set('target_c_diary_id', $target_c_diary_id);
         $this->set('total_num', $total_num);
         
         for($i = $page-10<1 ? 1 : $page-10 ;($i<=$total_page_num)&&($i<$page+10);$i++)
