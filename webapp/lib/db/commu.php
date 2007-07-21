@@ -2791,7 +2791,8 @@ function db_commu_search_c_commu_topic(
             $type = 'all',
             $c_commu_id = 0)
 {
-    $select = 'SELECT c.name AS commu_name, ct.*, MAX(ctc2.r_datetime) AS last_datetime, MAX(ctc2.number) as max_number';
+    $select = 'SELECT c.name AS commu_name, c.image_filename AS commu_image'
+            . ', ct.*, MAX(ctc2.r_datetime) AS last_datetime, MAX(ctc2.number) as max_number';
     $from = ' FROM c_commu AS c, c_commu_topic AS ct, c_commu_topic_comment AS ctc, c_commu_topic_comment AS ctc2';
 
     $params = array();
