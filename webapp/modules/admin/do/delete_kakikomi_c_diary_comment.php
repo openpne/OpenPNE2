@@ -12,7 +12,7 @@ class admin_do_delete_kakikomi_c_diary_comment extends OpenPNE_Action
         $diary_comment = _do_c_diary_comment4c_diary_comment_id($requests['target_c_diary_comment_id']);
         db_diary_delete_c_diary_comment($diary_comment['c_diary_comment_id'],$diary_comment['c_member_id']);
 
-        module_client_redirect('delete_kakikomi', '日記コメントを削除しました');
+        admin_client_redirect('diary_comment_list', '日記コメントを削除しました');
     }
 }
 

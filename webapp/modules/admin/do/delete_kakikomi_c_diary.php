@@ -11,7 +11,7 @@ class admin_do_delete_kakikomi_c_diary extends OpenPNE_Action
     {
         db_diary_delete_c_diary($requests['target_c_diary_id']);
 
-        admin_client_redirect('delete_kakikomi', '日記を削除しました');
+        admin_client_redirect('diary_list', '日記を削除しました');
     }
 }
 
