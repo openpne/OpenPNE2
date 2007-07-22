@@ -8,6 +8,11 @@
 
 class admin_page_topic_list extends OpenPNE_Action
 {
+    function handleError($errors)
+    {
+        admin_client_redirect('topic_list', array_shift($errors));
+    }
+
     function execute($requests)
     {
         $v = array();
