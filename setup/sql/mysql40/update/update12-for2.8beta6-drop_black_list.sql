@@ -1,1 +1,0 @@
-DROP TABLE `c_black_list`;
