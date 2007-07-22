@@ -8,6 +8,11 @@
 
 class admin_page_diary_list extends OpenPNE_Action
 {
+    function handleError($errors)
+    {
+        admin_client_redirect('diary_list', array_shift($errors));
+    }
+
     function execute($requests)
     {
         $v = array();
