@@ -657,6 +657,7 @@ function db_member_is_limit_domain4mail_address($mail_address)
     }
 
     $arr = explode('@', $mail_address);
+    $mail_domain = $arr[1];
 
     $domains = array(LIMIT_DOMAIN1,
                      LIMIT_DOMAIN2,
@@ -665,11 +666,15 @@ function db_member_is_limit_domain4mail_address($mail_address)
                      LIMIT_DOMAIN5,
                );
 
-    if (in_array($arr[1], $domains)) {
-        return true;
-    } else {
-        return false;
+    foreach ($domains as $domain) {
+        if ($domain) {
+            $regexp = str_replace('\*', '.*', preg_quote($domain, '/'));
+            if (preg_match(sprintf('/%s/', $regexp), $mail_domain)) {
+                return true;
+            }
+        }
     }
+    return false;
 }
 function db_member_c_member_ktai_pre4ktai_address($ktai_address)
 {
