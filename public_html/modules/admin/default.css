@@ -1396,6 +1396,10 @@ div.listControl p.listMove a {
 #admin_page_update_c_free_page textarea { margin: 3px 3px 3px 0; vertical-align: middle;}
 #admin_page_update_c_free_page input.basicRadio { margin: 3px 3px 3px 0; vertical-align: middle;}
 
+/** admin_page_limit_domain **/
+
+#admin_page_limit_domain div.contents ul.description { padding-left: 20px;}
+#admin_page_limit_domain div.contents ul.description li { list-style-type: disc;}
 
 /*********** footer ***********/
 .footer { margin-top: 20px; padding: 10px 0; text-align: center;}
