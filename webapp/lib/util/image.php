@@ -86,6 +86,12 @@ function t_check_image($file)
         $width = $width * (IMAGE_MAX_HEIGHT / $height);
         $height = IMAGE_MAX_HEIGHT;
     }
+    if ($height < 1.) {
+        $height = 1;
+    }
+    if ($width < 1.) {
+        $width = 1;
+    }
     if ($need_resize) {
         resize_image($type, $file['tmp_name'], $file['tmp_name'], $original_width, $original_height,$width, $height );
     }
