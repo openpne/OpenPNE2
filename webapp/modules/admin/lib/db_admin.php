@@ -1593,10 +1593,12 @@ function get_analysis_generation()
             '80～' =>0
     );
     
-    $sql = "SELECT ((YEAR(CURDATE()) - birth_year)- " .
-        "(RIGHT(CURDATE(),5)<CONCAT(birth_month,'-',birth_day))) " .
+    $today = getdate();
+    $cur = $today['mon']*100 + $today['mday'];
+    $sql = "SELECT ((YEAR(CURDATE()) - birth_year) " .
+        "- ( ? < (birth_month*100 + birth_day))) " .
         "AS age FROM c_member WHERE birth_year <> 0;";
-    $lst = db_get_all($sql);
+    $lst = db_get_all($sql, array($cur));
 
     $temp = array_keys($analysis_generation);
     foreach($lst as $value) {
