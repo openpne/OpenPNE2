@@ -96,7 +96,7 @@
 ({t_form m=ktai a=do_c_home_update_is_receive_mail})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
 <input type="hidden" name="target_c_commu_id" value="({$c_commu.c_commu_id})">
-({if ($c_commu.c_member_id_admin!=$u || $c_commu.c_member_id_sub_admin!=$u)})
+({if ($c_commu.c_member_id_admin!=$u && $c_commu.c_member_id_sub_admin!=$u)})
 このｺﾐｭﾆﾃｨの管理者からのﾒｯｾｰｼﾞを<br>
 <input type="radio" value="1" name="is_receive_message"({if $is_receive_message}) checked="checked"({/if})>受け取る<br>
 <input type="radio" value="0" name="is_receive_message"({if !$is_receive_message}) checked="checked"({/if})>受け取らない<br>
