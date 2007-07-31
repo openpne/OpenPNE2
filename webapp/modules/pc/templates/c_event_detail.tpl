@@ -853,7 +853,7 @@
 ({if $is_c_event_member})
 <input type="submit" class="submit" name="button" value="参加をキャンセルする">
 ({elseif $is_c_commu_member})
-({if not $c_topic.capacity or ($c_topic.capacity gt $c_topic.member_num) }) 
+({if !$c_topic.capacity || ($c_topic.capacity > $c_topic.member_num)}) 
 <input type="submit" class="submit" name="button" value="イベントに参加する">
 ({/if})
 ({/if})

@@ -108,7 +108,7 @@
 ({if $is_event_join_date})
 ({if !$is_c_event_member})
 
-({if not $c_commu_topic.capacity or ($c_commu_topic.capacity gt $c_commu_topic.member_num) })
+({if !$c_commu_topic.capacity || ($c_commu_topic.capacity > $c_commu_topic.member_num)})
 <input name="join_event" type="submit" value="ｲﾍﾞﾝﾄに参加する"><br>
 ({/if})
 
