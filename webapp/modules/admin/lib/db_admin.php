@@ -1512,18 +1512,11 @@ $e_access_date    最終ログイン時刻　終了年月日
 c_member_list
 
 */
-function p_member_edit_c_member_list($page_size, $page,$s_access_date='', $e_access_date='')
+function p_member_edit_c_member_list($page_size, $page, $s_access_date='', $e_access_date='')
 {
-
     $page = intval($page);
     $page_size = intval($page_size);
 
-    $limit = "";
-
-    //page_sizeが0の時は全て表示(pagerなし)
-    if ($page_size != 0) {
-        $limit = " OFFSET ".($page_size*($page-1))." LIMIT ".$page_size;
-    }
     $where = " WHERE true ";
 
     //指定された条件で絞っていく
@@ -1539,9 +1532,12 @@ function p_member_edit_c_member_list($page_size, $page,$s_access_date='', $e_acc
 
     $select = "SELECT * FROM c_member";
     $order = " order by c_member_id";
-
     $sql = $select . $where . $order;
-    $list = db_get_all_limit($sql, 0, $limit, $params);
+    if ($page_size > 0) {
+        $list = db_get_all_page($sql, $page, $page_size, $params);
+    } else {
+        $list = db_get_all($sql, $params);
+    }
     
     $sql = "select count(*) from c_member".$where;
 
