@@ -920,7 +920,7 @@ function db_commu_c_topic_list4target_c_commu_id($c_commu_id, $c_member_id, $pag
     }
 
     $sql .= " AND cct.c_commu_id = ?" .
-            " GROUP BY c_commu_topic_id " .
+            " GROUP BY cct.c_commu_topic_id " .
             " ORDER BY newest_write_datetime DESC";
     $params = array(intval($c_commu_id));
     $lst = db_get_all_page($sql, $page, $page_size, $params);
@@ -1659,7 +1659,7 @@ function db_commu_search_c_commu4c_commu_category(
 {
     $select = 'SELECT c_commu.*';
 
-    $where = ' WHERE 1';
+    $where = ' WHERE true';
     $params = array();
     if ($c_commu_category_id) {
         $where .= ' AND c_commu.c_commu_category_id = ?';
@@ -1735,7 +1735,7 @@ function db_commu_c_commu_list4c_commu_category_id_search($c_commu_category_id, 
 {
     $sql = 'SELECT * FROM c_commu';
 
-    $where = ' WHERE 1';
+    $where = ' WHERE true';
     $params = array();
     if ($search_word) {
         $where .= ' AND (name LIKE ? OR info LIKE ?)';
