@@ -7,7 +7,7 @@
 
 <img src="./skin/dummy.gif" class="v_spacer_l">
 
-({if $type eq "h"})
+({if $type == "h"})
 <!-- ********************************** -->
 <!-- ******ここから：レビューを書く****** -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:650px;margin:0px auto;" class="border_07">
@@ -283,7 +283,7 @@
 
 <a href="({t_url m=pc a=page_h_review_list_product})&amp;c_review_id=({$review.c_review_id})">全てのレビューを見る(({$review.write_num}))</a>
 
-({if $type eq "h"})|<a href="({t_url m=pc a=page_h_review_add_write})&amp;category_id=({$review.c_review_category_id})&amp;asin=({$review.asin})">編集</a><br>({/if})
+({if $type == "h"})|<a href="({t_url m=pc a=page_h_review_add_write})&amp;category_id=({$review.c_review_category_id})&amp;asin=({$review.asin})">編集</a><br>({/if})
 
 </div>
 
