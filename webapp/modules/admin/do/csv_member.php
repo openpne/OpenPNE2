@@ -41,7 +41,7 @@ class admin_do_csv_member extends OpenPNE_Action
     {
         $params = array();
         $sql = 'SELECT c_member_id FROM c_member ';
-        $sql .= ' WHERE 1 ' ;
+        $sql .= ' WHERE true ' ;
         if ($start_id > 1) {
             $sql .= ' AND c_member_id >= ? ';
             $params[] = $start_id;
