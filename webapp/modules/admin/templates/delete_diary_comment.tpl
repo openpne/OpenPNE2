@@ -49,6 +49,13 @@
 <tr>
 <th>日記コメント本文</th>
 <td width="500">
+({if $diary_comment.image_filename_1 || $diary_comment.image_filename_2 || $diary_comment.image_filename_3})
+<div>
+({if $diary_comment.image_filename_1})<span class="padding_s"><a href="({t_img_url filename=$diary_comment.image_filename_1})" target="_blank"><img src="({t_img_url filename=$diary_comment.image_filename_1 w=120 h=120})"></a></span>({/if})
+({if $diary_comment.image_filename_2})<span class="padding_s"><a href="({t_img_url filename=$diary_comment.image_filename_2})" target="_blank"><img src="({t_img_url filename=$diary_comment.image_filename_2 w=120 h=120})"></a></span>({/if})
+({if $diary_comment.image_filename_3})<span class="padding_s"><a href="({t_img_url filename=$diary_comment.image_filename_3})" target="_blank"><img src="({t_img_url filename=$diary_comment.image_filename_3 w=120 h=120})"></a></span>({/if})
+</div>
+({/if})
 ({$diary_comment.body|nl2br})
 </td>
 </tr>
