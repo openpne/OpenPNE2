@@ -176,6 +176,10 @@ function db_admin_insert_c_profile(
 {
     pne_cache_drop('db_member_c_profile_list');
 
+    if (empty($info) || is_null($info)) {
+        $info = '';
+    }
+
     $data = array(
         'name' => $name,
         'caption' => $caption,
@@ -214,6 +218,10 @@ function db_admin_update_c_profile($c_profile_id
     , $val_max
     )
 {
+    if (empty($info) || is_null($info)) {
+        $info = '';
+    }
+
     $data = array(
         'name' => $name,
         'caption' => $caption,
@@ -545,7 +553,7 @@ function _db_admin_c_member_id_list($cond_list, $order = null)
 {
     $sql = 'SELECT c_member_id'.
            ' FROM c_member'.
-           ' WHERE 1';
+           ' WHERE true';
 
     //開始年
     if (!empty($cond_list['s_year'])) {
@@ -684,7 +692,7 @@ function _db_admin_c_member_id_list($cond_list, $order = null)
     // --- メールアドレスで絞り込み ここから
     if (!empty($cond_list['is_pc_address']) || !empty($cond_list['is_ktai_address'])) {
 
-        $sql = 'SELECT c_member_id FROM c_member_secure WHERE 1';
+        $sql = 'SELECT c_member_id FROM c_member_secure WHERE true';
 
         //PCアドレスの有無で絞る
         if ($cond_list['is_pc_address'] == 1) {
@@ -932,7 +940,7 @@ function db_access_analysis_c_admin_user_id4username($username)
 
 function p_access_analysis_month_access_analysis_month($ktai_flag)
 {
-    $sql = "SELECT concat(left(r_datetime, 7), '-01') as ym, count(*) as count" .
+    $sql = "SELECT date_format(r_datetime, '%Y-%m-01') as ym, count(*) as count" .
             " FROM c_access_log " .
             " where ktai_flag = ?" .
             " group by ym";
@@ -1106,8 +1114,9 @@ function p_access_analysis_target_commu_target_commu4ym_page_name
             array_push($params,$page_name);
     }
     $sql .= " and target_c_commu_id <> 0 ";
-    $sql .= " group by target_c_commu_id " .$orderby_str." limit $start, $page_size";
-    $list = db_get_all($sql,$params);
+
+    $sql .= " group by target_c_commu_id " .$orderby_str;
+    $list = db_get_all_limit($sql, $start, $page_size, $params);
 
     $return = array();
     $sum = 0;
@@ -1185,8 +1194,8 @@ function p_access_analysis_target_topic_target_topic4ym_page_name
             array_push($params,$page_name);
     }
     $sql = "select target_c_commu_topic_id , count(*) as count from c_access_log ";
-    $sql .= $where." group by target_c_commu_topic_id " .$orderby_str." limit $start, $page_size";
-    $list = db_get_all($sql,$params);
+    $sql .= $where." group by target_c_commu_topic_id " .$orderby_str;
+    $list = db_get_all_limit($sql, $start, $page_size, $params);
     $sql = "select count(*) from c_access_log ";
     $sql .= $where ." group by target_c_commu_topic_id ";
     $result = db_get_all($sql,$params);
@@ -1255,8 +1264,8 @@ function p_access_analysis_target_diary_target_diary4ym_page_name
         array_push($params,$page_name);
     }
     $sql .= " and target_c_diary_id <> 0 ";
-    $sql .= " group by target_c_diary_id " . $orderby_str. " limit $start, $page_size";
-    $list = db_get_all($sql,$params);
+    $sql .= " group by target_c_diary_id " . $orderby_str;
+    $list = db_get_all_limit($sql, $start, $page_size, $params);
 
     $return = array();
     $sum = 0;
@@ -1334,8 +1343,8 @@ function p_access_analysis_member_access_member4ym_page_name
     }
 
     $sql = "select c_member_id , count(*) as count from c_access_log";
-    $sql .= $where." group by c_member_id $orderby_str limit $start, $page_size";
-    $list = db_get_all($sql,$params);
+    $sql .= $where." group by c_member_id $orderby_str";
+    $list = db_get_all_limit($sql, $start, $page_size, $params);
     $sql = "select count(*) from c_access_log ";
     $sql .=    $where ." group by c_member_id ";
     $result = db_get_all($sql,$params);
@@ -1401,9 +1410,9 @@ function p_access_analysis_target_member_access_member4ym_page_name
     $sql = "select target_c_member_id , count(*) as count from c_access_log ";
     $sql .= $where;
     $sql .= " AND target_c_member_id <> 0 ";
-    $sql .= " group by target_c_member_id " . $orderby_str. " limit $start, $page_size";
+    $sql .= " group by target_c_member_id " . $orderby_str;
 
-    $list = db_get_all($sql,$params);
+    $list = db_get_all_limit($sql, $start, $page_size, $params);
 
     $return = array();
     $sum = 0;
@@ -1513,9 +1522,9 @@ function p_member_edit_c_member_list($page_size, $page,$s_access_date='', $e_acc
 
     //page_sizeが0の時は全て表示(pagerなし)
     if ($page_size != 0) {
-        $limit = " LIMIT ".($page_size*($page-1)).",$page_size";
+        $limit = " OFFSET ".($page_size*($page-1))." LIMIT ".$page_size;
     }
-    $where = " WHERE 1 ";
+    $where = " WHERE true ";
 
     //指定された条件で絞っていく
     if ($s_access_date != "") {
@@ -1531,7 +1540,7 @@ function p_member_edit_c_member_list($page_size, $page,$s_access_date='', $e_acc
     $select = "SELECT * FROM c_member";
     $order = " order by c_member_id";
 
-    $sql = $select . $where . $order . $limit;
+    $sql = $select . $where . $order;
     $list = db_get_all_limit($sql, 0, $limit, $params);
     
     $sql = "select count(*) from c_member".$where;
@@ -1743,7 +1752,7 @@ function monitor_diary_list($keyword,$page_size,$page)
     $page = intval($page);
     $page_size = intval($page_size);
     
-    $where = " where 1 ";
+    $where = " where true ";
 
     if ($keyword) {
         //全角空白を半角に統一
@@ -1823,7 +1832,7 @@ function monitor_diary_comment_list($keyword,$page_size,$page)
     $page = intval($page);
     $page_size = intval($page_size);
     
-    $where = " where 1 ";
+    $where = " where true ";
 
     if ($keyword) {
         //全角空白を半角に統一
@@ -1902,7 +1911,7 @@ function monitor_commu_list($keyword,$page_size,$page)
     $page = intval($page);
     $page_size = intval($page_size);
     
-    $where = " where 1 ";
+    $where = " where true ";
 
     if ($keyword) {
         $keyword = str_replace("?@", " ", $keyword);
@@ -1983,7 +1992,7 @@ function monitor_topic_comment_list($keyword,$page_size,$page)
     $page = intval($page);
     $page_size = intval($page_size);
     
-    $where = " where 1 ";
+    $where = " where true ";
 
     if ($keyword) {
         $keyword = str_replace("?@", " ", $keyword);
@@ -2066,7 +2075,7 @@ function monitor_topic_list($keyword,$page_size,$page)
     $page = intval($page);
     $page_size = intval($page_size);
     
-    $where = " where 1 ";
+    $where = " where true ";
 
     if ($keyword) {
         $keyword = str_replace("?@", " ", $keyword);
@@ -2153,7 +2162,7 @@ function monitor_review_list($keyword,$page_size,$page)
     $page = intval($page);
     $page_size = intval($page_size);
     
-    $where = " where 1 ";
+    $where = " where true ";
 
     if ($keyword) {
         //全角空白を半角に統一
