@@ -533,7 +533,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 </td>
 </tr>
 <!-- ここまで：主内容＞コミュニティの説明 -->
-({if $is_c_commu_member || $c_commu.public_flag neq "auth_commu_member"})
+({if $is_c_commu_member || $c_commu.public_flag != "auth_commu_member"})
 <!-- ここから：主内容＞新着のトピック書き込み -->
 ({if $new_topic_comment})
 <tr>
@@ -663,7 +663,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <td style="width:1px;" class="bg_01"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 <td style="width:260px;" class="bg_02"><img src="./skin/dummy.gif" style="width:260px;height:1px;" class="dummy"></td>
 <td style="width:160px;padding:5px 0px;" class="bg_02 lh_140">
-({if $is_c_commu_member || $c_commu.public_flag neq "auth_commu_member"})
+({if $is_c_commu_member || $c_commu.public_flag != "auth_commu_member"})
 ({if ($c_commu.topic_authority == 'public')||($c_commu.topic_authority == 'admin_only' && $is_c_commu_admin)})
 ({if !$new_topic_comment})
 <img src="./skin/dummy.gif" class="icon arrow_1">

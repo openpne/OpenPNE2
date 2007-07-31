@@ -363,9 +363,9 @@ BlogのURL
 <td class="bg_02" align="left" valign="middle">
 <div class="padding_s">
 
-<input type="radio" name="is_receive_daily_news" value="1" ({if $c_member.is_receive_daily_news eq 1}) checked="checked"({/if}) class="no_bg">毎日
-({if $daily_news_day_num})<input type="radio" name="is_receive_daily_news" value="2" ({if $c_member.is_receive_daily_news eq 2}) checked="checked"({/if}) class="no_bg">週({$daily_news_day_num})回 (({$daily_news_day_str}))({/if})
-<input type="radio" name="is_receive_daily_news" value="0" ({if $c_member.is_receive_daily_news eq 0}) checked="checked"({/if}) class="no_bg">受け取らない<br>
+<input type="radio" name="is_receive_daily_news" value="1" ({if $c_member.is_receive_daily_news == 1}) checked="checked"({/if}) class="no_bg">毎日
+({if $daily_news_day_num})<input type="radio" name="is_receive_daily_news" value="2" ({if $c_member.is_receive_daily_news == 2}) checked="checked"({/if}) class="no_bg">週({$daily_news_day_num})回 (({$daily_news_day_str}))({/if})
+<input type="radio" name="is_receive_daily_news" value="0" ({if $c_member.is_receive_daily_news == 0}) checked="checked"({/if}) class="no_bg">受け取らない<br>
 <span>※({$SNS_NAME})の最新情報をお届けします。</span>
 
 </div>
@@ -546,8 +546,8 @@ ID <input type="text" class="text" name="c_member_id_block[]" value=""><br>
 <td class="bg_02" align="left" valign="middle">
 <div class="padding_s">
 
-<input type="radio" name="is_shinobiashi" value="0"({if $is_shinobiashi eq 0}) checked="checked"({/if}) class="no_bg" id="is_shinobiashi_0"><label for="is_shinobiashi_0">あしあとを残す</label>
-<input type="radio" name="is_shinobiashi" value="1"({if $is_shinobiashi eq 1}) checked="checked"({/if}) class="no_bg" id="is_shinobiashi_1"><label for="is_shinobiashi_1">あしあとを残さない</label>
+<input type="radio" name="is_shinobiashi" value="0"({if $is_shinobiashi == 0}) checked="checked"({/if}) class="no_bg" id="is_shinobiashi_0"><label for="is_shinobiashi_0">あしあとを残す</label>
+<input type="radio" name="is_shinobiashi" value="1"({if $is_shinobiashi == 1}) checked="checked"({/if}) class="no_bg" id="is_shinobiashi_1"><label for="is_shinobiashi_1">あしあとを残さない</label>
 <br>
 ※他人のページを見たときに、あしあとを残すかどうかを設定することができます。
 
