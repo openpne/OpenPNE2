@@ -161,7 +161,7 @@ function db_review_search_result4keyword_category($keyword, $category_id , $orde
 {
     $from = " FROM c_review INNER JOIN c_review_comment USING (c_review_id)";
 
-    $where = ' WHERE 1';
+    $where = ' WHERE true';
     $params = array();
     if ($keyword) {
         $where .= ' AND c_review.title LIKE ?';
@@ -175,7 +175,7 @@ function db_review_search_result4keyword_category($keyword, $category_id , $orde
     switch ($orderby) {
     case "r_datetime":
     default:
-        $order = " ORDER BY r_datetime DESC";
+        $order = " ORDER BY r_datetime2 DESC";
         break;
     case "r_num":
         $order = " ORDER BY write_num DESC, r_datetime DESC";
@@ -184,7 +184,7 @@ function db_review_search_result4keyword_category($keyword, $category_id , $orde
 
     $sql = "SELECT" .
             " c_review.*" .
-            ", MAX(c_review_comment.r_datetime) as r_datetime" .
+            ", MAX(c_review_comment.r_datetime) as r_datetime2" .
             ", COUNT(c_review_comment.c_review_comment_id) AS write_num" .
         $from .
         $where .

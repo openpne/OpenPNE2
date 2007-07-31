@@ -234,7 +234,7 @@ function db_member_search($cond, $cond_like, $page_size, $page, $c_member_id, $p
     $page = intval($page);
     $page_size = intval($page_size);
 
-    $where = " WHERE 1";
+    $where = " WHERE true";
     $params = array();
 
     foreach ($cond as $key => $value) {
