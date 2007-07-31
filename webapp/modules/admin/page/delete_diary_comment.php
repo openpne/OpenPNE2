@@ -16,6 +16,11 @@ class admin_page_delete_diary_comment extends OpenPNE_Action
         
         $v = array();
         $diary_comment = _do_c_diary_comment4c_diary_comment_id($target_c_diary_comment_id);
+        
+        if (!$diary_comment) {
+            admin_client_redirect('diary_comment_list', '指定された日記のコメントは存在しません');
+        }
+        
         $diary = db_diary_get_c_diary4id($diary_comment['c_diary_id']);
         $diary_comment['subject'] = $diary['subject'];
         $diary_comment['count_comments'] = db_diary_count_c_diary_comment4c_diary_id($diary_comment['c_diary_id']); 
