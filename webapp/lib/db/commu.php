@@ -2792,12 +2792,11 @@ function db_commu_search_c_commu_topic(
             $c_commu_id = 0)
 {
     $select = 'SELECT c.name AS commu_name, c.image_filename AS commu_image'
-            . ', ct.*, MAX(ctc2.r_datetime) AS last_datetime, MAX(ctc2.number) as max_number';
-    $from = ' FROM c_commu AS c, c_commu_topic AS ct, c_commu_topic_comment AS ctc, c_commu_topic_comment AS ctc2';
+            . ', ct.*, ctc.r_datetime';
+    $from = ' FROM c_commu AS c, c_commu_topic AS ct, c_commu_topic_comment AS ctc';
 
     $params = array();
     $where = ' WHERE ct.c_commu_topic_id = ctc.c_commu_topic_id'
-           . ' AND ct.c_commu_topic_id = ctc2.c_commu_topic_id'
            . ' AND c.c_commu_id = ct.c_commu_id';
     if ($c_commu_id) {
         $where .= ' AND ct.c_commu_id = ?';
@@ -2827,15 +2826,19 @@ function db_commu_search_c_commu_topic(
         break;
     }
     $group = ' GROUP BY ct.c_commu_topic_id';
-    $order = ' ORDER BY last_datetime DESC';
+    $order = ' ORDER BY ctc.r_datetime DESC';
 
     $sql = $select . $from . $where . $group . $order;
     $list = db_get_all_page($sql, $page, $page_size, $params);
-    
+
     foreach ($list as $key => $value) {
         $p = array((int)$value['c_commu_topic_id']);
         $sql = 'SELECT body FROM c_commu_topic_comment WHERE number = 0 AND c_commu_topic_id = ?';
         $list[$key]['body'] = db_get_one($sql, $p);
+        $sql = 'SELECT MAX(number) FROM c_commu_topic_comment WHERE c_commu_topic_id = ?';
+        $list[$key]['max_number'] = db_get_one($sql, $p);
+        $sql = 'SELECT MAX(r_datetime) FROM c_commu_topic_comment WHERE c_commu_topic_id = ?';
+        $list[$key]['last_datetime'] = db_get_one($sql, $p);
     }
 
     $sql = 'SELECT COUNT(DISTINCT ct.c_commu_topic_id)' . $from . $where;
