@@ -139,6 +139,9 @@ class ktai_do_o_insert_c_member extends OpenPNE_Action
 
         // insert c_friend(紹介者)
         db_friend_insert_c_friend($c_member_id, $pre['c_member_id_invite']);
+        // 招待者に参加通知
+        do_common_member_joined_mail_send($c_member_id, $pre['c_member_id_invite']);
+        do_common_member_joined_mail_send_ktai($c_member_id, $pre['c_member_id_invite']);
 
         //管理画面で指定したコミュニティに強制参加
         $c_commu_id_list = db_commu_regist_join_list();
