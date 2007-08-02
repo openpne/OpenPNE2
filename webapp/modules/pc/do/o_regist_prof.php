@@ -165,6 +165,9 @@ class pc_do_o_regist_prof extends OpenPNE_Action
 
             // 招待者とフレンドリンク
             db_friend_insert_c_friend($u, $pre['c_member_id_invite']);
+            // 招待者に参加通知
+            do_common_member_joined_mail_send($u, $pre['c_member_id_invite']);
+            do_common_member_joined_mail_send_ktai($u, $pre['c_member_id_invite']);
 
             //管理画面で指定したコミュニティに強制参加
             $c_commu_id_list = db_commu_regist_join_list();
