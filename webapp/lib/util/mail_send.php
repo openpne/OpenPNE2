@@ -802,4 +802,36 @@ function send_mail_admin_rank_up($c_member_id, $before_rank, $after_rank)
     return fetch_send_mail(ADMIN_EMAIL, 'm_admin_rank_up', $params);
 }
 
+//招待したメンバーの登録通知
+function do_common_member_joined_mail_send($c_member_id_join, $c_member_id_invite)
+{
+    $c_member_invite = db_common_c_member4c_member_id($c_member_id_invite, true);
+    $pc_address = $c_member_invite['secure']['pc_address'];
+    $is_receive_mail = $c_member_invite['is_receive_mail'];
+
+    $params = array(
+        'c_member_invite'   => db_common_c_member4c_member_id($c_member_id_invite),
+        'c_member_join'     => db_common_c_member4c_member_id($c_member_id_join),
+    );
+    return fetch_send_mail($pc_address, 'm_pc_member_joined', $params, $is_receive_mail);
+}
+
+//招待したメンバーの登録通知(携帯)
+function do_common_member_joined_mail_send_ktai($c_member_id_join, $c_member_id_invite)
+{
+    $c_member_invite = db_common_c_member4c_member_id($c_member_id_invite, true);
+    $ktai_address = $c_member_invite['secure']['ktai_address'];
+    $is_receive_ktai_mail = $c_member_invite['is_receive_ktai_mail'];
+    
+    $p = array('kad' => t_encrypt(db_member_username4c_member_id($c_member_invite['c_member_id'], true)));
+    $login_url = openpne_gen_url('ktai', 'page_o_login', $p);
+
+    $params = array(
+        'c_member_invite'   => db_common_c_member4c_member_id($c_member_id_invite),
+        'c_member_join'     => db_common_c_member4c_member_id($c_member_id_join),
+        'login_url'         => $login_url,
+    );
+    return fetch_send_mail($ktai_address, 'm_ktai_member_joined', $params, $is_receive_ktai_mail);
+}
+
 ?>
