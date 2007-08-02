@@ -10,7 +10,7 @@
 ({/if})
 
 ({if $box == 'trash'})
-[削除済ﾒｯｾｰｼﾞﾞ（({if $total_num})({$total_num})({else})0({/if})）]
+[削除済ﾒｯｾｰｼﾞ（({if $total_num})({$total_num})({else})0({/if})）]
 
 ({capture name="pager"})
 ({if $is_prev_t || $is_next_t})
@@ -39,7 +39,7 @@
 ※送信済ﾒｯｾｰｼﾞ…（★）
 <br>
 ({else})
-ﾒｯｾｰｼﾞはありません<br><br>
+<br>ﾒｯｾｰｼﾞはありません<br><br>
 ({/if})
 
 ({$smarty.capture.pager|smarty:nodefaults})
