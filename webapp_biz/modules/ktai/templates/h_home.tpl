@@ -77,7 +77,7 @@
 ◆<a href="({t_url m=ktai a=page_h_bookmark_list})&amp;({$tail})">お気に入り</a><br>
 ◆<a href="({t_url m=ktai a=page_h_ranking})&amp;({$tail})">ﾗﾝｷﾝｸﾞ</a><br>
 ◆<a href="({t_url m=ktai a=page_fh_intro})&amp;({$tail})">紹介文</a><br>
-◆ﾒｯｾｰｼﾞ[<a href="({t_url m=ktai a=page_h_message_box})&amp;box=inbox&amp;({$tail})">受信箱</a>|<a href="({t_url m=ktai a=page_h_message_box})&amp;box=outbox&amp;({$tail})">送信箱</a>]<br>
+◆ﾒｯｾｰｼﾞ[<a href="({t_url m=ktai a=page_h_message_box})&amp;box=inbox&amp;({$tail})">受信箱</a>|<a href="({t_url m=ktai a=page_h_message_box})&amp;box=outbox&amp;({$tail})">送信箱</a>|<a href="({t_url m=ktai a=page_h_message_box})&amp;box=trash&amp;({$tail})">ごみ箱</a>]<br>
 ◆<a href="({t_url m=ktai a=page_h_ashiato})&amp;({$tail})">あしあと</a><br>
 <hr>
 <a name="news">新着ﾘｽﾄ</a>
