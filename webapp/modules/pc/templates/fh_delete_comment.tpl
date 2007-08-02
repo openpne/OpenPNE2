@@ -58,6 +58,7 @@
 
 <div style="padding:10px;" class="lh_120">
 
+<span class="b_b">({$target_diary_comment.number})</span>:
 ({if $target_diary_comment.nickname})
 <a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$target_diary_comment.c_member_id})">({$target_diary_comment.nickname|default:"&nbsp;"})</a>
 ({else})

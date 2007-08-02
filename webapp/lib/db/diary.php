@@ -1114,6 +1114,7 @@ function db_diary_insert_c_diary_comment($c_member_id, $c_diary_id, $body)
         'image_filename_1' => '',
         'image_filename_2' => '',
         'image_filename_3' => '',
+        'number' => db_diary_get_max_number4diary($c_diary_id)+1,
     );
     return db_insert('c_diary_comment', $data);
 }
@@ -1167,6 +1168,16 @@ function db_diary_update_public_flag_diary_all($c_member_id, $public_flag)
         'c_member_id' => intval($c_member_id),
     );
     return db_update('c_diary', $data, $where);
+}
+
+/**
+ * 現在の日記へのコメントのナンバーの最大値を返す
+ */
+function db_diary_get_max_number4diary($c_diary_id)
+{
+    $sql = 'SELECT MAX(number) FROM c_diary_comment WHERE c_diary_id = ?';
+    $params = array(intval($c_diary_id));
+    return db_get_one($sql, $params);
 }
 
 ?>
