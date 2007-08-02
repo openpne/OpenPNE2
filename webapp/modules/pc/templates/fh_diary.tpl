@@ -574,6 +574,7 @@
 <td style="width:424px;" class="bg_02" align="left" valign="middle">
 <div style="padding:4px 3px;">
 
+<span class="b_b">({$item.number})</span>:
 ({if $item.nickname})
 <a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})"><span class="DOM_fh_diary_comment_writer">({$item.nickname|default:"&nbsp;"})</span></a>
 ({else})
