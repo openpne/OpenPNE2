@@ -108,6 +108,17 @@
 </td>
 </tr>
 ({****})
+({if $item.filename && $smarty.const.OPENPNE_USE_FILEUPLOAD})
+<tr>
+<th>ファイル</th>
+<td class="textbody">
+<a href="({t_file_url filename=$item.filename})">
+({$item.original_filename})
+</a>
+</td>
+</tr>
+({****})
+({/if})
 <tr>
 <td class="formbutton" colspan="2">
 <form action="./" method="get">
