@@ -2089,11 +2089,19 @@ function monitor_topic_list($keyword,$page_size,$page)
         }
     }
     
-    $select = " SELECT ct.*,ct.name as topic_name,c.name as commu_name,m.nickname,ctc.body as body,ctc.image_filename1 as image_filename1,ctc.image_filename2 as image_filename2,ctc.image_filename3 as image_filename3";
+    $select = " SELECT ct.*," .
+            "ct.name as topic_name,c.name as commu_name," .
+            "m.nickname,ctc.body as body," .
+            "ctc.image_filename1 as image_filename1,ctc.image_filename2 as image_filename2,ctc.image_filename3 as image_filename3," .
+            "ctc.filename as filename,f.original_filename as original_filename";
+    
     $from = " FROM c_commu_topic as ct"
             ." LEFT JOIN c_member as m ON ct.c_member_id = m.c_member_id "
             ." LEFT JOIN c_commu as c ON c.c_commu_id = ct.c_commu_id "
-            ." LEFT JOIN c_commu_topic_comment as ctc ON (ctc.c_commu_topic_id = ct.c_commu_topic_id AND ctc.number = 0)";
+            ." LEFT JOIN c_commu_topic_comment as ctc ON (ctc.c_commu_topic_id = ct.c_commu_topic_id AND ctc.number = 0)"
+            ." LEFT JOIN c_file as f ON f.filename = ctc.filename "
+            ;
+    
     $order = " ORDER BY r_datetime desc";
     
     $sql = $select . $from . $where . $order;
@@ -2122,14 +2130,21 @@ function monitor_topic_list4target_c_commu_topic_id($c_commu_topic_id,$page_size
     $page = intval($page);
     $page_size = intval($page_size);
     
-    $where = " where c_commu_topic_id = ? ";
+    $where = " where ct.c_commu_topic_id = ? ";
     $params[] = $c_commu_topic_id;
     
-    $select = " SELECT ct.*,ct.name as topic_name,c.name as commu_name,m.nickname,ctc.body as body,ctc.image_filename1 as image_filename1,ctc.image_filename2 as image_filename2,ctc.image_filename3 as image_filename3";
+    $select = " SELECT ct.*," .
+            "ct.name as topic_name,c.name as commu_name," .
+            "m.nickname,ctc.body as body," .
+            "ctc.image_filename1 as image_filename1,ctc.image_filename2 as image_filename2,ctc.image_filename3 as image_filename3," .
+            "ctc.filename as filename,f.original_filename as original_filename";
+    
     $from = " FROM c_commu_topic as ct"
             ." LEFT JOIN c_member as m ON ct.c_member_id = m.c_member_id "
             ." LEFT JOIN c_commu as c ON c.c_commu_id = ct.c_commu_id "
-            ." LEFT JOIN c_commu_topic_comment as ctc ON (ctc.c_commu_topic_id = ct.c_commu_topic_id AND ctc.number = 0)";
+            ." LEFT JOIN c_commu_topic_comment as ctc ON (ctc.c_commu_topic_id = ct.c_commu_topic_id AND ctc.number = 0)"
+            ." LEFT JOIN c_file as f ON f.filename = ctc.filename "
+            ;
     $order = " ORDER BY r_datetime desc";
     
     $sql = $select . $from . $where . $order;

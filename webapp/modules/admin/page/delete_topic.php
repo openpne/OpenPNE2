@@ -26,6 +26,7 @@ class admin_page_delete_topic extends OpenPNE_Action
         $commu = db_commu_c_commu4c_commu_id($topic['c_commu_id']);
         $topic['commu_name'] = $commu['name'];
         $topic['c_member'] = $member;
+        $topic['original_filename'] = db_file_original_filename4filename($topic['filename']);
         $this->set('topic', $topic);
         
         $v['SNS_NAME'] = SNS_NAME;
