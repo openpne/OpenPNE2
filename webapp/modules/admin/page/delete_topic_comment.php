@@ -20,6 +20,9 @@ class admin_page_delete_topic_comment extends OpenPNE_Action
         if (!$topic_comment) {
             admin_client_redirect('topic_comment_list', '指定されたトピック・イベントのコメントは存在しません');
         }
+        if ($topic_comment['number'] == 0) {
+            admin_client_redirect('topic_comment_list', '指定されたコメントはトピック本文のためトピック削除にて削除してください');
+        }
         
         $member = db_member_c_member4c_member_id($topic_comment['c_member_id']);
         $topic_comment['nickname'] = $member['nickname'];
