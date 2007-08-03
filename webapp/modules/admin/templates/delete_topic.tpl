@@ -68,6 +68,17 @@
 </td>
 </tr>
 ({****})
+({if $topic.filename && $smarty.const.OPENPNE_USE_FILEUPLOAD})
+<tr>
+<th>ファイル</th>
+<td class="textbody">
+<a href="({t_file_url filename=$topic.filename})">
+({$topic.original_filename})
+</a>
+</td>
+</tr>
+({/if})
+({****})
 </tbody>
 </table>
 
