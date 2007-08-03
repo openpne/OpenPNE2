@@ -1988,7 +1988,7 @@ function monitor_topic_comment_list($keyword,$page_size,$page)
     $page = intval($page);
     $page_size = intval($page_size);
     
-    $where = " where true ";
+    $where = " where ctc.number <> 0  ";
 
     if ($keyword) {
         $keyword = str_replace("?@", " ", $keyword);
@@ -2035,7 +2035,7 @@ function monitor_topic_comment_list4c_commu_topic_comment_id($c_commu_topic_comm
     $page = intval($page);
     $page_size = intval($page_size);
     
-    $where = " where c_commu_topic_comment_id = ? ";
+    $where = " where ctc.number <> 0 AND ctc.c_commu_topic_comment_id = ? ";
     $params[] = $c_commu_topic_comment_id;
     
     $select = " SELECT ctc.*,ct.name as topic_name,c.name as commu_name,m.nickname";
