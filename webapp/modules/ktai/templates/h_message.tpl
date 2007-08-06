@@ -46,6 +46,8 @@
 ({if $c_message.is_deleted_to})
 [<a href="({t_url m=ktai a=do_h_message_update_c_message_is_deleted})&amp;c_message_id=({$c_message.c_message_id})&amp;({$tail})">元に戻す</a>]
 [<a href="({t_url m=ktai a=page_h_message_delete_confirm})&amp;c_message_id=({$c_message.c_message_id})&amp;({$tail})">削除する</a>]
+<hr>
+<a href="({t_url m=ktai a=page_h_message_box})&amp;box=trash&amp;({$tail})">ﾒｯｾｰｼﾞﾎﾞｯｸｽ</a><br>
 ({else})
 [<a href="({t_url m=ktai a=page_h_message_trash_confirm})&amp;c_message_id=({$c_message.c_message_id})&amp;({$tail})">削除する</a>]
 ({/if})
@@ -65,16 +67,19 @@
 <br>
 <input type="submit" value="送信">
 </form>
+<hr>
+<a href="({t_url m=ktai a=page_h_message_box})&amp;box=inbox&amp;({$tail})">ﾒｯｾｰｼﾞﾎﾞｯｸｽ</a><br>
 ({/if})
 ({else})
 ({if $c_message.is_deleted_from})
 [<a href="({t_url m=ktai a=do_h_message_update_c_message_is_deleted})&amp;c_message_id=({$c_message.c_message_id})&amp;({$tail})">元に戻す</a>]
 [<a href="({t_url m=ktai a=page_h_message_delete_confirm})&amp;c_message_id=({$c_message.c_message_id})&amp;({$tail})">削除する</a>]
+<hr>
+<a href="({t_url m=ktai a=page_h_message_box})&amp;box=trash&amp;({$tail})">ﾒｯｾｰｼﾞﾎﾞｯｸｽ</a><br>
 ({else})
 [<a href="({t_url m=ktai a=page_h_message_trash_confirm})&amp;c_message_id=({$c_message.c_message_id})&amp;({$tail})">削除する</a>]
-({/if})
-({/if})
 <hr>
-<a href="({t_url m=ktai a=page_h_message_box})&amp;({$tail})">ﾒｯｾｰｼﾞﾎﾞｯｸｽ</a><br>
-
+<a href="({t_url m=ktai a=page_h_message_box})&amp;box=outbox&amp;({$tail})">ﾒｯｾｰｼﾞﾎﾞｯｸｽ</a><br>
+({/if})
+({/if})
 ({$inc_ktai_footer|smarty:nodefaults})
