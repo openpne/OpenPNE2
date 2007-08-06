@@ -1,4 +1,39 @@
 ({ext_include file="inc_header.tpl"})
+<tr>
+<td class="container inc_c_com_topic_find" align="center">
+<table border="0" cellspacing="0" cellpadding="0" style="width:720px;">
+<tr>
+<td style="width:720px;height:2px;"><img src="./skin/dummy.gif" style="width:720px;height:2px;" class="dummy"></td>
+</tr>
+<tr>
+<td align="center">
+
+({*ここから：本体*})
+
+<div class="bg_09" style="width:680px;height:24px;border-left:none 0px;border-right:none 0px;border-top:none 0px;">
+({t_form _method=get m=pc a=page_fh_diary_list})
+<input type="hidden" name="c_commu_id" value="({$c_commu.c_commu_id})">
+
+<table border="0" cellspacing="0" cellpadding="0" class="search_bar" style="width:680px;height:24px;">
+<tr>
+<td align="center" style="height:24px;">
+<img src="({t_img_url_skin filename=icon_search})" alt="search" style="width:62px;height:20px;" class="icon">
+<input type="text" size="30" name="keyword" class="text border_01" value="({$keyword})" style="width:180px;">
+<input type="submit" class="submit" value="日記検索" style="width:80px;height:20px;">
+
+</td>
+</tr>
+</table>
+
+</form>
+</div>
+
+({*ここまで：本体*})
+</td>
+</tr>
+</table>
+</td>
+</tr>
 ({ext_include file="inc_layoutcolumn_top_165px.tpl"})
 ({********************************})
 ({**ここから：メインコンテンツ（左）**})
@@ -331,17 +366,7 @@
 </form>
 
 </div>
-<img src="./skin/dummy.gif" class="v_spacer_l">
 
-<div style="width:500px;padding:5px;margin:0px auto;text-align:right;" class="border_01 bg_03">
-
-({t_form _method=get m=pc a=page_fh_diary_list})
-キーワード検索：<img src="({t_img_url_skin filename=icon_arrow_2})" class="icon">
-<input type="text" size="15" name="keyword" class="text border_01" value="({$keyword})">
-<input type="submit" class="submit" value="　検 索　">
-</form>
-
-</div>
 <img src="./skin/dummy.gif" class="v_spacer_l">
 
 </div>
@@ -476,7 +501,6 @@
 ({elseif $item.public_flag == "private"})
 公開しない
 ({/if})
-</td>
 
 </div>
 </td>
