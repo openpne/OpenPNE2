@@ -7,10 +7,11 @@
 <br><br>
 
 <a href="({t_url m=ktai a=page_h_message_send})&amp;({$tail})">ﾒｯｾｰｼﾞを書く</a><br>
+<br>
 ({/if})
 
 ({if $box == 'trash'})
-<br>
+
 [削除済ﾒｯｾｰｼﾞ（({if $total_num})({$total_num})({else})0({/if})）]<br>
 
 ({capture name="pager"})
@@ -42,8 +43,8 @@
 
 ({$smarty.capture.pager|smarty:nodefaults})
 
-({elseif $box != 'outbox' })
-<br>
+({elseif $box != 'outbox'})
+
 [受信ﾒｯｾｰｼﾞ（({if $total_num})({$total_num})({else})0({/if})）]<br>
 
 ({capture name="pager"})
@@ -73,7 +74,6 @@
 
 ({else})
 
-<br>
 [送信済ﾒｯｾｰｼﾞ（({if $total_num})({$total_num})({else})0({/if})）]<br>
 
 ({capture name="pager"})
