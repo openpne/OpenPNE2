@@ -6,20 +6,14 @@ CREATE TABLE `tmp_c_diary_comment` (
   PRIMARY KEY  (`c_diary_comment_id`)
 ) TYPE=MyISAM;
 
-INSERT INTO tmp_c_diary_comment
-(c_diary_comment_id,
-number)
-(SELECT
-dc1.c_diary_comment_id,
-count(*) AS number
- FROM c_diary_comment AS dc1,c_diary_comment AS dc2
-WHERE dc1.c_diary_id =dc2.c_diary_id
- AND dc1.c_diary_comment_id >= dc2.c_diary_comment_id
-GROUP BY dc1.c_diary_comment_id
-);
+INSERT INTO tmp_c_diary_comment (c_diary_comment_id, number)
+  (SELECT dc1.c_diary_comment_id, COUNT(*)
+     FROM c_diary_comment AS dc1, c_diary_comment AS dc2
+     WHERE dc1.c_diary_id = dc2.c_diary_id
+       AND dc1.c_diary_comment_id >= dc2.c_diary_comment_id
+     GROUP BY dc1.c_diary_comment_id);
 
-UPDATE c_diary_comment AS dc1,tmp_c_diary_comment AS dc2
- SET dc1.number=dc2.number
- WHERE dc1.c_diary_comment_id = dc2.c_diary_comment_id;
+UPDATE c_diary_comment INNER JOIN tmp_c_diary_comment USING (c_diary_comment_id)
+ SET c_diary_comment.number = tmp_c_diary_comment.number;
 
 DROP TABLE tmp_c_diary_comment;
