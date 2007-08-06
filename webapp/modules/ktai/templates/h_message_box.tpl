@@ -10,7 +10,8 @@
 ({/if})
 
 ({if $box == 'trash'})
-[削除済ﾒｯｾｰｼﾞ（({if $total_num})({$total_num})({else})0({/if})）]
+<br>
+[削除済ﾒｯｾｰｼﾞ（({if $total_num})({$total_num})({else})0({/if})）]<br>
 
 ({capture name="pager"})
 ({if $is_prev_t || $is_next_t})
@@ -27,16 +28,13 @@
 
 ({if $total_num})
 ({foreach from=$c_message_trash_list item=c_message_trash})
-<tr>
 ({$c_message_trash.r_datetime|date_format:"%y/%m/%d"})-({$c_message_trash.nickname|default:"&nbsp;"})さん<br>
 <a href="({t_url m=ktai a=page_h_message})&amp;target_c_message_id=({$c_message_trash.c_message_id})&amp;({$tail})">({$c_message_trash.subject|default:"&nbsp;"})</a>
-({if $c_message_trash.c_member_id_to != $u})
-（★）
-({/if})
+({if $c_message_trash.c_member_id_to != $u}) (★)({/if})
 <br>
 ({/foreach})
 <br>
-※送信済ﾒｯｾｰｼﾞ…（★）
+※送信済ﾒｯｾｰｼﾞ…(★)
 <br>
 ({else})
 <br>ﾒｯｾｰｼﾞはありません<br><br>
