@@ -1,4 +1,95 @@
 ({ext_include file="inc_header.tpl"})
+({if $box == "inbox" || !$box })
+<tr>
+<td class="container inc_c_com_topic_find" align="center">
+<table border="0" cellspacing="0" cellpadding="0" style="width:720px;">
+<tr>
+<td style="width:720px;height:2px;"><img src="./skin/dummy.gif" style="width:720px;height:2px;" class="dummy"></td>
+</tr>
+<tr>
+<td align="center">
+
+({*ここから：本体*})
+
+<div class="bg_09" style="width:680px;height:24px;border-left:none 0px;border-right:none 0px;border-top:none 0px;">
+({t_form _method=get m=pc a=page_h_message_box})
+<input type="hidden" name="box" value="({$box})">
+
+<table border="0" cellspacing="0" cellpadding="0" class="search_bar" style="width:680px;height:24px;">
+<tr>
+<td align="center" style="height:24px;">
+<img src="({t_img_url_skin filename=icon_search})" alt="search" style="width:62px;height:20px;" class="icon">
+キーワード<img src="({t_img_url_skin filename=icon_arrow_2})" class="icon">
+<input type="text" size="20" name="keyword" class="text border_01" value="({$keyword})" style="width:150px;">
+送信者<img src="({t_img_url_skin filename=icon_arrow_2})" class="icon">
+<select name="target_c_member_id">
+<option value="">指定なし</option>
+({foreach from=$c_message_sender_list item=item})
+<option ({if $target_c_member_id==$item.c_member_id_from})selected({/if}) value="({$item.c_member_id_from})">({$item.nickname})</option>
+({/foreach})
+</select>
+
+<input type="submit" class="submit" value=" 検 索 " style="width:62px;height:20px;">
+
+</td>
+</tr>
+</table>
+
+</form>
+</div>
+
+({*ここまで：本体*})
+</td>
+</tr>
+</table>
+</td>
+</tr>
+({elseif $box == "outbox"})
+<tr>
+<td class="container inc_c_com_topic_find" align="center">
+<table border="0" cellspacing="0" cellpadding="0" style="width:720px;">
+<tr>
+<td style="width:720px;height:2px;"><img src="./skin/dummy.gif" style="width:720px;height:2px;" class="dummy"></td>
+</tr>
+<tr>
+<td align="center">
+
+({*ここから：本体*})
+
+<div class="bg_09" style="width:680px;height:24px;border-left:none 0px;border-right:none 0px;border-top:none 0px;">
+({t_form _method=get m=pc a=page_h_message_box})
+<input type="hidden" name="box" value="({$box})">
+
+<table border="0" cellspacing="0" cellpadding="0" class="search_bar" style="width:680px;height:24px;">
+<tr>
+<td align="center" style="height:24px;">
+<img src="({t_img_url_skin filename=icon_search})" alt="search" style="width:62px;height:20px;" class="icon">
+キーワード<img src="({t_img_url_skin filename=icon_arrow_2})" class="icon">
+<input type="text" size="20" name="keyword" class="text border_01" value="({$keyword})" style="width:150px;">
+宛先<img src="({t_img_url_skin filename=icon_arrow_2})" class="icon">
+<select name="target_c_member_id">
+<option value="">指定なし</option>
+({foreach from=$c_message_receiver_list item=item})
+<option ({if $target_c_member_id==$item.c_member_id_to})selected({/if}) value="({$item.c_member_id_to})">({$item.nickname})</option>
+({/foreach})
+</select>
+
+<input type="submit" class="submit" value=" 検 索 " style="width:62px;height:20px;">
+
+</td>
+</tr>
+</table>
+
+</form>
+</div>
+
+({*ここまで：本体*})
+</td>
+</tr>
+</table>
+</td>
+</tr>
+({/if})
 ({ext_include file="inc_layoutcolumn_top_175px.tpl"})
 <script type="text/javascript">
 <!--
@@ -351,37 +442,6 @@ function clearAll() {
 
 ({if $box == "inbox" || !$box })
 
- <!-- ここから：主内容＞＞受信箱＞＞検索BOX -->
-({capture name="inbox_search_box"})
-<table style="width:504px;" border="0" cellspacing="0" cellpadding="0" style="width:auto;margin:0px auto;" class="border_01">
-({*********})
-<tr>
-<td style="width:50%;" class="bg_05" align="center">
-
-<div class="padding_s">
-({t_form _method=get m=pc a=page_h_message_box})
-<input type="hidden" name="box" value="({$box})">
-キーワード<img src="({t_img_url_skin filename=icon_arrow_2})" class="icon">
-<input type="text" size="15" name="keyword" class="text border_01" value="({$keyword})">
-送信者<img src="({t_img_url_skin filename=icon_arrow_2})" class="icon">
-<select name="target_c_member_id">
-<option value="">指定なし</option>
-({foreach from=$c_message_sender_list item=item})
-<option ({if $target_c_member_id==$item.c_member_id_from})selected({/if}) value="({$item.c_member_id_from})">({$item.nickname})</option>
-({/foreach})
-</select>
-<input type=submit  class="submit"  value="  検　索  ">
-</form>
-</div>
-
-</td>
-</tr>
-({*********})
-</table>
-({/capture})
-
-<!-- ここまで：主内容＞＞受信箱＞＞検索BOX -->
-
 ({if $count_c_message_ru_list})
 
 <!-- ここから：主内容＞＞受信箱＞＞ページ切り替えタブ -->
@@ -405,6 +465,7 @@ function clearAll() {
  <a href="({t_url m=pc a=page_h_message_box})&amp;ru_page=({$ru_data.ru_page-1})&amp;box=inbox&amp;keyword=({$url_keyword})&amp;target_c_member_id=({$target_c_member_id})&amp;year=({$requests.year})&amp;month=({$requests.month})&amp;day=({$requests.day})">前を表示</a>
 ({/if})
 ({$total_num})件中
+({strip})
 ({$ru_data.ru_page*$page_size-$page_size+1})件～
 ({if $ru_data.ru_page*$page_size > $count_c_message_ru_list })
 ({$count_c_message_ru_list+$ru_data.ru_page*$page_size-$page_size })
@@ -412,6 +473,7 @@ function clearAll() {
 ({$ru_data.ru_page*$page_size})
 ({/if})
 件を表示
+({/strip})
 ({if $ru_data.is_ru_next})
  <a href="({t_url m=pc a=page_h_message_box})&amp;ru_page=({$ru_data.ru_page+1})&amp;box=inbox&amp;keyword=({$url_keyword})&amp;target_c_member_id=({$target_c_member_id})&amp;year=({$requests.year})&amp;month=({$requests.month})&amp;day=({$requests.day})">次を表示</a>
 ({/if})
@@ -532,38 +594,6 @@ function clearAll() {
 
 ({if $box == "outbox"})
 
-
- <!-- ここから：主内容＞＞送信箱＞＞検索BOX -->
-({capture name="outbox_search_box"})
-<table style="width:504px;" border="0" cellspacing="0" cellpadding="0" style="width:auto;margin:0px auto;" class="border_01">
-({*********})
-<tr>
-<td style="width:50%;" class="bg_05" align="center">
-
-<div class="padding_s">
-({t_form _method=get m=pc a=page_h_message_box})
-<input type="hidden" name="box" value="({$box})">
-キーワード<img src="({t_img_url_skin filename=icon_arrow_2})" class="icon">
-<input type="text" size="15" name="keyword" class="text border_01" value="({$keyword})">
-宛先<img src="({t_img_url_skin filename=icon_arrow_2})" class="icon">
-<select name="target_c_member_id">
-<option value="">指定なし</option>
-({foreach from=$c_message_receiver_list item=item})
-<option ({if $target_c_member_id==$item.c_member_id_to})selected({/if}) value="({$item.c_member_id_to})">({$item.nickname})</option>
-({/foreach})
-</select>
-<input type=submit  class="submit"  value="  検　索  ">
-</form>
-</div>
-
-</td>
-</tr>
-({*********})
-</table>
-({/capture})
-
-<!-- ここまで：主内容＞＞送信箱＞＞検索BOX -->
-
 ({if $count_c_message_s_list})
 
 <!-- ここから：主内容＞＞送信済み箱＞＞ページ切り替えタブ -->
@@ -578,6 +608,7 @@ function clearAll() {
  <a href="({t_url m=pc a=page_h_message_box})&amp;s_page=({$s_data.s_page-1})&amp;box=outbox&amp;keyword=({$url_keyword})&amp;target_c_member_id=({$target_c_member_id})&amp;year=({$requests.year})&amp;month=({$requests.month})&amp;day=({$requests.day})">前を表示</a>
 ({/if})
 ({$total_num})件中
+({strip})
 ({$s_data.s_page*$page_size-$page_size+1})件～
 ({if $s_data.s_page*$page_size > $count_c_message_s_list })
 ({$count_c_message_s_list+$s_data.s_page*$page_size-$page_size })
@@ -585,6 +616,7 @@ function clearAll() {
 ({$s_data.s_page*$page_size})
 ({/if})
 件を表示
+({/strip})
 ({if $s_data.is_s_next})
  <a href="({t_url m=pc a=page_h_message_box})&amp;s_page=({$s_data.s_page+1})&amp;box=outbox&amp;keyword=({$url_keyword})&amp;target_c_member_id=({$target_c_member_id})&amp;year=({$requests.year})&amp;month=({$requests.month})&amp;day=({$requests.day})">次を表示</a>
 ({/if})
@@ -721,6 +753,7 @@ function clearAll() {
  <a href="({t_url m=pc a=page_h_message_box})&amp;save_page=({$save_data.save_page-1})&amp;box=savebox">前を表示</a>
 ({/if})
 ({$total_num})件中
+({strip})
 ({$save_data.save_page*$page_size-$page_size+1})件～
 ({if $save_data.save_page*$page_size > $count_c_message_save_list })
 ({$count_c_message_save_list+$save_data.save_page*$page_size-$page_size })
@@ -728,6 +761,7 @@ function clearAll() {
 ({$save_data.save_page*$page_size})
 ({/if})
 件を表示
+({/strip})
 ({if $save_data.is_save_next})
  <a href="({t_url m=pc a=page_h_message_box})&amp;save_page=({$save_data.save_page+1})&amp;box=savebox">次を表示</a>
 ({/if})
@@ -861,6 +895,7 @@ function clearAll() {
  <a href="({t_url m=pc a=page_h_message_box})&amp;trash_page=({$trash_data.trash_page-1})&amp;box=trash">前を表示</a>
 ({/if})
 ({$total_num})件中
+({strip})
 ({$trash_data.trash_page*$page_size-$page_size+1})件～
 ({if $trash_data.trash_page*$page_size > $count_c_message_trash_list })
 ({$count_c_message_trash_list+$trash_data.trash_page*$page_size-$page_size })
@@ -868,6 +903,7 @@ function clearAll() {
 ({$trash_data.trash_page*$page_size})
 ({/if})
 件を表示
+({/strip})
 ({if $trash_data.is_trash_next})
 <a href="({t_url m=pc a=page_h_message_box})&amp;trash_page=({$trash_data.trash_page+1})&amp;box=trash">次を表示</a>
 ({/if})
