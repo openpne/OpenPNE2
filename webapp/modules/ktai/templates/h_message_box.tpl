@@ -104,9 +104,15 @@
 ({/if})
 
 ({if $box != 'trash'})
-<a href="({t_url m=ktai a=page_h_message_send})&amp;({$tail})">ﾒｯｾｰｼﾞを書く</a><br><br>
+<a href="({t_url m=ktai a=page_h_message_send})&amp;({$tail})">ﾒｯｾｰｼﾞを書く</a><br>
 
-<a name="search"></a>
+<hr>
+({if $box != 'outbox'})
+<a name="search">受信ﾒｯｾｰｼﾞ検索</a>
+({else})
+<a name="search">送信済ﾒｯｾｰｼﾞ検索</a>
+({/if})
+<br>
 ({t_form _method=get m=ktai a=page_h_message_box})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
 <input type="hidden" name="box" value="({$box})">
