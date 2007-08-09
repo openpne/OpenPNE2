@@ -23,7 +23,7 @@
 <!-- ここから：小タイトル -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:636px;" class="border_01">
 <tr>
-<td style="width:36px;" class="bg_06"><img src="./skin/content_header_1.gif" style="width:30px;height:20px;" class="dummy"></td>
+<td style="width:36px;" class="bg_06"><img src="({t_img_url_skin filename=content_header_1})" style="width:30px;height:20px;" class="dummy"></td>
 <td style="width:600px;padding:2px 0px;" class="bg_06"><span class="b_b c_00">グループ検索</span></td>
 </tr>
 </table>
@@ -50,7 +50,7 @@
 
 ({t_form _method=get m=biz a=page_h_biz_group_find_all})
 
-キーワード<img src="./skin/icon_arrow_2.gif" class="icon">
+キーワード<img src="({t_img_url_skin filename=icon_arrow_2})" class="icon">
 <input type="text" class="text" name="keyword" size="15" value="({$keyword})">
 <input type="submit" class="submit" value=" 検 索 ">
 
@@ -119,7 +119,7 @@
 <!-- ここから：小タイトル -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:636px;" class="border_01">
 <tr>
-<td style="width:36px;" class="bg_06"><img src="./skin/content_header_1.gif" style="width:30px;height:20px;" class="dummy"></td>
+<td style="width:36px;" class="bg_06"><img src="({t_img_url_skin filename=content_header_1})" style="width:30px;height:20px;" class="dummy"></td>
 <td style="width:600px;padding:2px 0px;" class="bg_06"><span class="c_00"><span class="b_b">グループ一覧</span>&nbsp;&nbsp;***&nbsp;
 
 ({if $total_num})
@@ -299,7 +299,7 @@
 
 <div class="padding_s">
 
-<a href="({t_url m=biz a=page_g_home})&amp;target_c_commu_id=({$c_commu_search.biz_group_id})"><img src="./skin/button_shosai.gif" class="icon"></a>
+<a href="({t_url m=biz a=page_g_home})&amp;target_c_commu_id=({$c_commu_search.biz_group_id})"><img src="({t_img_url_skin filename=button_shosai})" class="icon"></a>
 
 </div>
 
