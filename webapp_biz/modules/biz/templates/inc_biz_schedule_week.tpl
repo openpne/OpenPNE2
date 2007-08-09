@@ -74,7 +74,7 @@
 <div class="border_01">
 <table border="0" cellspacing="0" cellpadding="0" style="width:697px;">
 <tr>
-<td style="width:36px;" class="bg_06"><img src="./skin/content_header_1.gif" style="width:30px;height:20px;" class="dummy"></td>
+<td style="width:36px;" class="bg_06"><img src="({t_img_url_skin filename=content_header_1})" style="width:30px;height:20px;" class="dummy"></td>
 <td style="width:666px;padding:2px 0px;" class="bg_06"><span class="b_b c_00">({$list.name})</span></td>
 </tr>
 ({if $list.info})
@@ -281,12 +281,12 @@
 ({if $cmd == 'h'})
 ({* 誕生日 *})
 ({foreach from=$item.birth item=item_birth})
-<div class="padding_s"><img src="./skin/icon_birthday.gif" class="icon"><a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item_birth.c_member_id})">({$item_birth.nickname})さん</a></div>
+<div class="padding_s"><img src="({t_img_url_skin filename=icon_birthday})" class="icon"><a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item_birth.c_member_id})">({$item_birth.nickname})さん</a></div>
 ({/foreach})
 
 ({* イベント *})
 ({foreach from=$item.event item=item_event})
-<div class="padding_s"><img src="./skin/icon_event_({if $item_event.is_join})R({else})B({/if}).gif" class="icon"><a href="({t_url m=pc a=page_c_event_detail})&amp;target_c_commu_topic_id=({$item_event.c_commu_topic_id})">({$item_event.name|t_truncate:20:".."})</a></div>
+<div class="padding_s"><img src="({if $item_event.is_join})({t_img_url_skin filename=icon_event_R})({else})({t_img_url_skin filename=icon_event_B})({/if})" class="icon"><a href="({t_url m=pc a=page_c_event_detail})&amp;target_c_commu_topic_id=({$item_event.c_commu_topic_id})">({$item_event.name|t_truncate:20:".."})</a></div>
 ({/foreach})
 
 ({else})
@@ -305,7 +305,7 @@
 ({foreach from=$item.schedule item=item_schedule name=schedule})
 	({if !$item_schedule.begin_time})  <!-- 時間指定なしの予定 -->
 <div class="padding_s">
-({*<img src="./skin/icon_pen.gif" class="icon">*})<a href="({t_url m=biz a=page_fh_biz_schedule_view})&amp;id=({$item_schedule.biz_schedule_id})({if $cmd=='f'})&target_id=({$member_info.c_member_id})({/if})">({$item_schedule.title})</a>
+({*<img src="({t_img_url_skin filename=icon_pen})" class="icon">*})<a href="({t_url m=biz a=page_fh_biz_schedule_view})&amp;id=({$item_schedule.biz_schedule_id})({if $cmd=='f'})&target_id=({$member_info.c_member_id})({/if})">({$item_schedule.title})</a>
 </div>
 	({else})
 &nbsp;
