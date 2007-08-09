@@ -1594,11 +1594,11 @@ function get_analysis_generation()
     );
     
     $today = getdate();
-    $cur = $today['mon']*100 + $today['mday'];
-    $sql = "SELECT ((YEAR(CURDATE()) - birth_year) " .
-        "- ( ? < (birth_month*100 + birth_day))) " .
-        "AS age FROM c_member WHERE birth_year <> 0;";
-    $lst = db_get_all($sql, array($cur));
+    $mmdd = $today['mon'] * 100 + $today['mday'];
+    $sql = 'SELECT ' . $today['year'] . ' - birth_year'
+         . ' - (' . $mmdd . ' < (birth_month * 100 + birth_day))'
+         . ' AS age FROM c_member WHERE birth_year <> 0';
+    $lst = db_get_all($sql);
 
     $temp = array_keys($analysis_generation);
     foreach($lst as $value) {
