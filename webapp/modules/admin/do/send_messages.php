@@ -7,6 +7,13 @@
 // メッセージ一括送信
 class admin_do_send_messages extends OpenPNE_Action
 {
+    function handleError($errors)
+    {
+        $_REQUEST['msg'] = array_shift($errors);
+        openpne_forward(ADMIN_MODULE_NAME, 'page', 'send_messages');
+        exit;
+    }
+
     function execute($requests)
     {
         $module_name = ADMIN_MODULE_NAME;
@@ -14,15 +21,6 @@ class admin_do_send_messages extends OpenPNE_Action
 
         if (empty($requests['c_member_ids'])) {
             admin_client_redirect('list_c_member');
-        }
-
-        if (empty($requests['subject'])) {
-            openpne_forward($module_name, 'page', 'send_messages');
-            exit;
-        }
-        if (empty($requests['body'])) {
-            openpne_forward($module_name, 'page', 'send_messages');
-            exit;
         }
 
         // 送信者はとりあえず1番で固定
