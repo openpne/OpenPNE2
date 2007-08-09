@@ -578,6 +578,7 @@ function db_message_send_message_syoudaku($c_member_id_from, $c_member_id_to, $s
     db_message_insert_c_message_syoudaku($c_member_id_from, $c_member_id_to, $subject, $body);
 
     do_common_send_message_syoudaku_mail_send($c_member_id_to, $c_member_id_from);
+    do_common_send_message_mail_send_ktai($c_member_id_to, $c_member_id_from);
 }
 
 // コミュニティ紹介
@@ -587,6 +588,7 @@ function db_message_send_message_syoukai_commu($c_member_id_from, $c_member_id_t
     db_message_insert_c_message($c_member_id_from, $c_member_id_to, $subject, $body);
 
     do_common_send_message_syoukai_commu_mail_send($c_member_id_to, $c_member_id_from);
+    do_common_send_message_mail_send_ktai($c_member_id_to, $c_member_id_from);
 }
 
 // メンバー紹介
@@ -596,6 +598,7 @@ function db_message_send_message_syoukai_member($c_member_id_from, $c_member_id_
     db_message_insert_c_message($c_member_id_from, $c_member_id_to, $subject, $body);
 
     do_common_send_message_syoukai_member_mail_send($c_member_id_to, $c_member_id_from);
+    do_common_send_message_mail_send_ktai($c_member_id_to, $c_member_id_from);
 }
 
 //イベント紹介
@@ -605,6 +608,7 @@ function db_message_send_message_event_invite($c_member_id_from, $c_member_id_to
     db_message_insert_c_message($c_member_id_from, $c_member_id_to, $subject, $body);
 
     do_common_send_message_event_invite_mail_send($c_member_id_to, $c_member_id_from);
+    do_common_send_message_mail_send_ktai($c_member_id_to, $c_member_id_from);
 }
 
 //イベントメッセージ
@@ -614,6 +618,7 @@ function db_message_send_message_event_message($c_member_id_from, $c_member_id_t
     db_message_insert_c_message($c_member_id_from, $c_member_id_to, $subject, $body);
 
     do_common_send_message_event_message_mail_send($c_member_id_to, $c_member_id_from);
+    do_common_send_message_mail_send_ktai($c_member_id_to, $c_member_id_from);
 }
 
 function db_message_update_c_message($c_message_id, $subject, $body, $image_filename_1 = '', $image_filename_2 = '', $image_filename_3 = '')
