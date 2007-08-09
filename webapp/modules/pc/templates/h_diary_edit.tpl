@@ -487,7 +487,7 @@
 <td class="bg_02" align="left" valign="middle">
 <div style="padding:4px 3px;">
 <input type="text" name="category" id="category" size="40" value="({foreach from=$category item=item})({$item.category_name}) ({/foreach})">
-<select onChange="if(selectedIndex){category.value += options[selectedIndex].value + ' '}">
+<select onChange="if(selectedIndex){if(!category.value.match(/\s$/)){category.value += ' '}category.value += options[selectedIndex].value + ' ';}">
 <option>カテゴリを選択してください
 ({foreach from=$category_list item=value})
 <option value="({$value.category_name})">({$value.category_name})
