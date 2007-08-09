@@ -22,7 +22,7 @@
 <div class="border_01">
 <table border="0" cellspacing="0" cellpadding="0" style="width:559px;">
 <tr>
-<td style="width:36px;" class="bg_06"><img src="./skin/content_header_1.gif" style="width:30px;height:20px;" class="dummy"></td>
+<td style="width:36px;" class="bg_06"><img src="({t_img_url_skin filename=content_header_1})" style="width:30px;height:20px;" class="dummy"></td>
 <td style="width:523px;padding:2px 0px;" class="bg_06"><span class="b_b c_00">グループメンバー</span></td>
 </tr>
 </table>
@@ -86,7 +86,7 @@
 
 <img src="./skin/dummy.gif" class="v_spacer_m">
 ({if $item})
-({if $item.c_member_id == $c_commu.c_member_id_admin})<img src="./skin/icon_crown.gif" class="icon"><br>({/if})
+({if $item.c_member_id == $c_commu.c_member_id_admin})<img src="({t_img_url_skin filename=icon_crown})" class="icon"><br>({/if})
 <a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})"><img src="({t_img_url filename=$item.image_filename w=72 h=72 noimg=no_image})" class="pict"></a>
 ({else})
 <img src="./skin/dummy.gif" class="dummy" style="width:72px;height:72px;">
@@ -136,7 +136,7 @@
 
 <img src="./skin/dummy.gif" class="v_spacer_m">
 ({if $item})
-({if $item.c_member_id == $c_commu.c_member_id_admin})<img src="./skin/icon_crown.gif" class="icon"><br>({/if})
+({if $item.c_member_id == $c_commu.c_member_id_admin})<img src="({t_img_url_skin filename=icon_crown})" class="icon"><br>({/if})
 <a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})"><img src="({t_img_url filename=$item.image_filename w=72 h=72 noimg=no_image})" class="pict"></a>
 ({else})
 <img src="./skin/dummy.gif" class="dummy" style="width:72px;height:72px;">
@@ -187,7 +187,7 @@
 
 <img src="./skin/dummy.gif" class="v_spacer_m">
 ({if $item})
-({if $item.c_member_id == $c_commu.c_member_id_admin})<img src="./skin/icon_crown.gif" class="icon"><br>({/if})
+({if $item.c_member_id == $c_commu.c_member_id_admin})<img src="({t_img_url_skin filename=icon_crown})" class="icon"><br>({/if})
 <a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})"><img src="({t_img_url filename=$item.image_filename w=72 h=72 noimg=no_image})" class="pict"></a>
 ({else})
 <img src="./skin/dummy.gif" class="dummy" style="width:72px;height:72px;">
@@ -238,7 +238,7 @@
 
 <img src="./skin/dummy.gif" class="v_spacer_m">
 ({if $item})
-({if $item.c_member_id == $c_commu.c_member_id_admin})<img src="./skin/icon_crown.gif" class="icon"><br>({/if})
+({if $item.c_member_id == $c_commu.c_member_id_admin})<img src="({t_img_url_skin filename=icon_crown})" class="icon"><br>({/if})
 <a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})"><img src="({t_img_url filename=$item.image_filename w=72 h=72 noimg=no_image})" class="pict"></a>
 ({else})
 <img src="./skin/dummy.gif" class="dummy" style="width:72px;height:72px;">
@@ -289,7 +289,7 @@
 
 <img src="./skin/dummy.gif" class="v_spacer_m">
 ({if $item})
-({if $item.c_member_id == $c_commu.c_member_id_admin})<img src="./skin/icon_crown.gif" class="icon"><br>({/if})
+({if $item.c_member_id == $c_commu.c_member_id_admin})<img src="({t_img_url_skin filename=icon_crown})" class="icon"><br>({/if})
 <a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})"><img src="({t_img_url filename=$item.image_filename w=72 h=72 noimg=no_image})" class="pict"></a>
 ({else})
 <img src="./skin/dummy.gif" class="dummy" style="width:72px;height:72px;">
@@ -340,7 +340,7 @@
 
 <img src="./skin/dummy.gif" class="v_spacer_m">
 ({if $item})
-({if $item.c_member_id == $c_commu.c_member_id_admin})<img src="./skin/icon_crown.gif" class="icon"><br>({/if})
+({if $item.c_member_id == $c_commu.c_member_id_admin})<img src="({t_img_url_skin filename=icon_crown})" class="icon"><br>({/if})
 <a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})"><img src="({t_img_url filename=$item.image_filename w=72 h=72 noimg=no_image})" class="pict"></a>
 ({else})
 <img src="./skin/dummy.gif" class="dummy" style="width:72px;height:72px;">
@@ -391,7 +391,7 @@
 
 <img src="./skin/dummy.gif" class="v_spacer_m">
 ({if $item})
-({if $item.c_member_id == $c_commu.c_member_id_admin})<img src="./skin/icon_crown.gif" class="icon"><br>({/if})
+({if $item.c_member_id == $c_commu.c_member_id_admin})<img src="({t_img_url_skin filename=icon_crown})" class="icon"><br>({/if})
 <a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})"><img src="({t_img_url filename=$item.image_filename w=72 h=72 noimg=no_image})" class="pict"></a>
 ({else})
 <img src="./skin/dummy.gif" class="dummy" style="width:72px;height:72px;">
@@ -442,7 +442,7 @@
 
 <img src="./skin/dummy.gif" class="v_spacer_m">
 ({if $item})
-({if $item.c_member_id == $c_commu.c_member_id_admin})<img src="./skin/icon_crown.gif" class="icon"><br>({/if})
+({if $item.c_member_id == $c_commu.c_member_id_admin})<img src="({t_img_url_skin filename=icon_crown})" class="icon"><br>({/if})
 <a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})"><img src="({t_img_url filename=$item.image_filename w=72 h=72 noimg=no_image})" class="pict"></a>
 ({else})
 <img src="./skin/dummy.gif" class="dummy" style="width:72px;height:72px;">
@@ -493,7 +493,7 @@
 
 <img src="./skin/dummy.gif" class="v_spacer_m">
 ({if $item})
-({if $item.c_member_id == $c_commu.c_member_id_admin})<img src="./skin/icon_crown.gif" class="icon"><br>({/if})
+({if $item.c_member_id == $c_commu.c_member_id_admin})<img src="({t_img_url_skin filename=icon_crown})" class="icon"><br>({/if})
 <a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})"><img src="({t_img_url filename=$item.image_filename w=72 h=72 noimg=no_image})" class="pict"></a>
 ({else})
 <img src="./skin/dummy.gif" class="dummy" style="width:72px;height:72px;">
@@ -544,7 +544,7 @@
 
 <img src="./skin/dummy.gif" class="v_spacer_m">
 ({if $item})
-({if $item.c_member_id == $c_commu.c_member_id_admin})<img src="./skin/icon_crown.gif" class="icon"><br>({/if})
+({if $item.c_member_id == $c_commu.c_member_id_admin})<img src="({t_img_url_skin filename=icon_crown})" class="icon"><br>({/if})
 <a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})"><img src="({t_img_url filename=$item.image_filename w=72 h=72 noimg=no_image})" class="pict"></a>
 ({else})
 <img src="./skin/dummy.gif" class="dummy" style="width:72px;height:72px;">

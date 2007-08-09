@@ -27,7 +27,7 @@
 <div class="border_01">
 <table border="0" cellspacing="0" cellpadding="0" style="width:564px;">
 <tr>
-<td style="width:36px;" class="bg_06"><img src="./skin/content_header_1.gif" style="width:30px;height:20px;" class="dummy"></td>
+<td style="width:36px;" class="bg_06"><img src="({t_img_url_skin filename=content_header_1})" style="width:30px;height:20px;" class="dummy"></td>
 <td style="width:150px;padding:2px 0px;" class="bg_06"><span class="b_b c_00">グループリスト</span></td>
 <td style="width:378px;" align="right" class="bg_06">&nbsp;</td>
 </tr>
@@ -91,7 +91,7 @@
 <td style="width:111px;" class="bg_03" align="center">
 <img src="./skin/dummy.gif" class="v_spacer_l">
 ({if $item})
-({if $item.c_member_id_admin == $target_member.c_member_id })<img src="./skin/icon_crown.gif" class="icon"><br>({/if})
+({if $item.c_member_id_admin == $target_member.c_member_id })<img src="({t_img_url_skin filename=icon_crown})" class="icon"><br>({/if})
 <a href="({t_url m=biz a=page_g_home})&amp;target_c_commu_id=({$item.biz_group_id})">
 <img src="({t_img_url filename=$item.image_filename w=76 h=76 noimg=no_image})" class="pict"></a>
 ({else})
@@ -136,7 +136,7 @@
 <td style="width:111px;" class="bg_03" align="center">
 <img src="./skin/dummy.gif" class="v_spacer_l">
 ({if $item})
-({if $item.c_member_id_admin == $target_member.c_member_id })<img src="./skin/icon_crown.gif" class="icon"><br>({/if})
+({if $item.c_member_id_admin == $target_member.c_member_id })<img src="({t_img_url_skin filename=icon_crown})" class="icon"><br>({/if})
 <a href="({t_url m=biz a=page_g_home})&amp;target_c_commu_id=({$item.biz_group_id})">
 <img src="({t_img_url filename=$item.image_filename w=76 h=76 noimg=no_image})" class="pict"></a>
 ({else})
@@ -181,7 +181,7 @@
 <td style="width:111px;" class="bg_03" align="center">
 <img src="./skin/dummy.gif" class="v_spacer_l">
 ({if $item})
-({if $item.c_member_id_admin == $target_member.c_member_id })<img src="./skin/icon_crown.gif" class="icon"><br>({/if})
+({if $item.c_member_id_admin == $target_member.c_member_id })<img src="({t_img_url_skin filename=icon_crown})" class="icon"><br>({/if})
 <a href="({t_url m=biz a=page_g_home})&amp;target_c_commu_id=({$item.biz_group_id})">
 <img src="({t_img_url filename=$item.image_filename w=76 h=76 noimg=no_image})" class="pict"></a>
 ({else})
@@ -226,7 +226,7 @@
 <td style="width:111px;" class="bg_03" align="center">
 <img src="./skin/dummy.gif" class="v_spacer_l">
 ({if $item})
-({if $item.c_member_id_admin == $target_member.c_member_id })<img src="./skin/icon_crown.gif" class="icon"><br>({/if})
+({if $item.c_member_id_admin == $target_member.c_member_id })<img src="({t_img_url_skin filename=icon_crown})" class="icon"><br>({/if})
 <a href="({t_url m=biz a=page_g_home})&amp;target_c_commu_id=({$item.biz_group_id})">
 <img src="({t_img_url filename=$item.image_filename w=76 h=76 noimg=no_image})" class="pict"></a>
 ({else})
@@ -271,7 +271,7 @@
 <td style="width:111px;" class="bg_03" align="center">
 <img src="./skin/dummy.gif" class="v_spacer_l">
 ({if $item})
-({if $item.c_member_id_admin == $target_member.c_member_id })<img src="./skin/icon_crown.gif" class="icon"><br>({/if})
+({if $item.c_member_id_admin == $target_member.c_member_id })<img src="({t_img_url_skin filename=icon_crown})" class="icon"><br>({/if})
 <a href="({t_url m=biz a=page_g_home})&amp;target_c_commu_id=({$item.biz_group_id})">
 <img src="({t_img_url filename=$item.image_filename w=76 h=76 noimg=no_image})" class="pict"></a>
 ({else})
@@ -316,7 +316,7 @@
 <td style="width:111px;" class="bg_03" align="center">
 <img src="./skin/dummy.gif" class="v_spacer_l">
 ({if $item})
-({if $item.c_member_id_admin == $target_member.c_member_id })<img src="./skin/icon_crown.gif" class="icon"><br>({/if})
+({if $item.c_member_id_admin == $target_member.c_member_id })<img src="({t_img_url_skin filename=icon_crown})" class="icon"><br>({/if})
 <a href="({t_url m=biz a=page_g_home})&amp;target_c_commu_id=({$item.biz_group_id})">
 <img src="({t_img_url filename=$item.image_filename w=76 h=76 noimg=no_image})" class="pict"></a>
 ({else})
@@ -361,7 +361,7 @@
 <td style="width:111px;" class="bg_03" align="center">
 <img src="./skin/dummy.gif" class="v_spacer_l">
 ({if $item})
-({if $item.c_member_id_admin == $target_member.c_member_id })<img src="./skin/icon_crown.gif" class="icon"><br>({/if})
+({if $item.c_member_id_admin == $target_member.c_member_id })<img src="({t_img_url_skin filename=icon_crown})" class="icon"><br>({/if})
 <a href="({t_url m=biz a=page_g_home})&amp;target_c_commu_id=({$item.biz_group_id})">
 <img src="({t_img_url filename=$item.image_filename w=76 h=76 noimg=no_image})" class="pict"></a>
 ({else})
@@ -406,7 +406,7 @@
 <td style="width:111px;" class="bg_03" align="center">
 <img src="./skin/dummy.gif" class="v_spacer_l">
 ({if $item})
-({if $item.c_member_id_admin == $target_member.c_member_id })<img src="./skin/icon_crown.gif" class="icon"><br>({/if})
+({if $item.c_member_id_admin == $target_member.c_member_id })<img src="({t_img_url_skin filename=icon_crown})" class="icon"><br>({/if})
 <a href="({t_url m=biz a=page_g_home})&amp;target_c_commu_id=({$item.biz_group_id})">
 <img src="({t_img_url filename=$item.image_filename w=76 h=76 noimg=no_image})" class="pict"></a>
 ({else})
@@ -451,7 +451,7 @@
 <td style="width:111px;" class="bg_03" align="center">
 <img src="./skin/dummy.gif" class="v_spacer_l">
 ({if $item})
-({if $item.c_member_id_admin == $target_member.c_member_id })<img src="./skin/icon_crown.gif" class="icon"><br>({/if})
+({if $item.c_member_id_admin == $target_member.c_member_id })<img src="({t_img_url_skin filename=icon_crown})" class="icon"><br>({/if})
 <a href="({t_url m=biz a=page_g_home})&amp;target_c_commu_id=({$item.biz_group_id})">
 <img src="({t_img_url filename=$item.image_filename w=76 h=76 noimg=no_image})" class="pict"></a>
 ({else})
@@ -496,7 +496,7 @@
 <td style="width:111px;" class="bg_03" align="center">
 <img src="./skin/dummy.gif" class="v_spacer_l">
 ({if $item})
-({if $item.c_member_id_admin == $target_member.c_member_id })<img src="./skin/icon_crown.gif" class="icon"><br>({/if})
+({if $item.c_member_id_admin == $target_member.c_member_id })<img src="({t_img_url_skin filename=icon_crown})" class="icon"><br>({/if})
 <a href="({t_url m=biz a=page_g_home})&amp;target_c_commu_id=({$item.biz_group_id})">
 <img src="({t_img_url filename=$item.image_filename w=76 h=76 noimg=no_image})" class="pict"></a>
 ({else})
@@ -620,7 +620,7 @@
 <div class="border_01">
 <table border="0" cellspacing="0" cellpadding="0" style="width:564px;">
 <tr>
-<td style="width:36px;" class="bg_06"><img src="./skin/content_header_1.gif" style="width:30px;height:20px;" class="dummy"></td>
+<td style="width:36px;" class="bg_06"><img src="({t_img_url_skin filename=content_header_1})" style="width:30px;height:20px;" class="dummy"></td>
 <td style="width:150px;padding:2px 0px;" class="bg_06"><span class="b_b c_00">グループ一覧</span></td>
 <td style="width:378px;" align="right" class="bg_06">&nbsp;</td>
 </tr>
