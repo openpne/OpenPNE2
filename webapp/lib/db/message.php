@@ -603,6 +603,7 @@ function db_message_send_message_syoudaku($c_member_id_from, $c_member_id_to, $s
     pne_cache_drop('db_message_count_c_message_not_is_read4c_member_to_id', (string)$c_member_id_to);
 
     do_common_send_message_syoudaku_mail_send($c_member_id_to, $c_member_id_from);
+    do_common_send_message_mail_send_ktai($c_member_id_to, $c_member_id_from);
 }
 
 // コミュニティ紹介
@@ -614,6 +615,7 @@ function db_message_send_message_syoukai_commu($c_member_id_from, $c_member_id_t
     pne_cache_drop('db_message_count_c_message_not_is_read4c_member_to_id', (string)$c_member_id_to);
 
     do_common_send_message_syoukai_commu_mail_send($c_member_id_to, $c_member_id_from);
+    do_common_send_message_mail_send_ktai($c_member_id_to, $c_member_id_from);
 }
 
 // メンバー紹介
@@ -625,6 +627,7 @@ function db_message_send_message_syoukai_member($c_member_id_from, $c_member_id_
     pne_cache_drop('db_message_count_c_message_not_is_read4c_member_to_id', (string)$c_member_id_to);
 
     do_common_send_message_syoukai_member_mail_send($c_member_id_to, $c_member_id_from);
+    do_common_send_message_mail_send_ktai($c_member_id_to, $c_member_id_from);
 }
 
 //イベント紹介
@@ -636,6 +639,7 @@ function db_message_send_message_event_invite($c_member_id_from, $c_member_id_to
     pne_cache_drop('db_message_count_c_message_not_is_read4c_member_to_id', (string)$c_member_id_to);
 
     do_common_send_message_event_invite_mail_send($c_member_id_to, $c_member_id_from);
+    do_common_send_message_mail_send_ktai($c_member_id_to, $c_member_id_from);
 }
 
 //イベントメッセージ
@@ -647,6 +651,7 @@ function db_message_send_message_event_message($c_member_id_from, $c_member_id_t
     pne_cache_drop('db_message_count_c_message_not_is_read4c_member_to_id', (string)$c_member_id_to);
 
     do_common_send_message_event_message_mail_send($c_member_id_to, $c_member_id_from);
+    do_common_send_message_mail_send_ktai($c_member_id_to, $c_member_id_from);
 }
 
 function db_message_update_c_message($c_message_id, $subject, $body, $image_filename_1 = '', $image_filename_2 = '', $image_filename_3 = '')
