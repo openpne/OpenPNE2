@@ -22,7 +22,7 @@
 <!-- ここから：小タイトル -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:670px;" class="border_01">
 <tr>
-<td style="width:36px;" class="bg_06"><img src="./skin/content_header_1.gif" style="width:30px;height:20px;" class="dummy"></td>
+<td style="width:36px;" class="bg_06"><img src="({t_img_url_skin filename=content_header_1})" style="width:30px;height:20px;" class="dummy"></td>
 <td style="width:622px;padding:2px 0px;" class="bg_06"><span class="b_b c_00">
 ({$ym.year_disp})年({$ym.month_disp})月のカレンダー
 </span></td>
@@ -37,10 +37,10 @@
 <tr>
 <td style="width:468px;padding:2px 0px;" class="bg_05">
 ({if $smarty.const.USE_EXTRA_SERVICE})
-&nbsp;<img src="./skin/icon_weather_FC.gif" class="icon">
+&nbsp;<img src="({t_img_url_skin filename=icon_weather_FC})" class="icon">
 <a href="({$weather_url})" target="_blank">天気予報を見る</a>
 ({/if})
-&nbsp;<img src="./skin/icon_schedule.gif" class="icon">
+&nbsp;<img src="({t_img_url_skin filename=icon_schedule})" class="icon">
 <a href="({t_url m=biz a=page_fh_biz_schedule_add})&target_id=({$c_member.c_member_id})">予定を追加</a>&nbsp;
 
 </td>
@@ -81,7 +81,7 @@
 ({else})
 ({$item.day})
 ({/if})<br>
-<a href="({t_url m=biz a=page_fh_biz_schedule_add})&amp;begin_date=({$year})({$month|string_format:'%02d'})({$item.day|string_format:'%02d'})&target_id=({$c_member.c_member_id})"><img src="./skin/icon_schedule.gif" class="icon"></a><br>
+<a href="({t_url m=biz a=page_fh_biz_schedule_add})&amp;begin_date=({$year})({$month|string_format:'%02d'})({$item.day|string_format:'%02d'})&target_id=({$c_member.c_member_id})"><img src="({t_img_url_skin filename=icon_schedule})" class="icon"></a><br>
 
 ({* 祝日 *})
 ({foreach from=$item.holiday item=item_holiday})
@@ -156,7 +156,7 @@
 ({foreach from=$item.schedule item=item_schedule name=schedule})
 	({if !$item_schedule.begin_time})  <!-- 時間指定なしの予定 -->
 <div class="padding_s">
-({*<img src="./skin/icon_pen.gif" class="icon">*})<a href="({t_url m=biz a=page_fh_biz_schedule_view})&amp;id=({$item_schedule.biz_schedule_id})({if $is_f})&amp;target_id=({$c_member.c_member_id})({/if})">({$item_schedule.title})</a>
+({*<img src="({t_img_url_skin filename=icon_pen})" class="icon">*})<a href="({t_url m=biz a=page_fh_biz_schedule_view})&amp;id=({$item_schedule.biz_schedule_id})({if $is_f})&amp;target_id=({$c_member.c_member_id})({/if})">({$item_schedule.title})</a>
 </div>
 	({else})
 &nbsp;
@@ -181,7 +181,7 @@
 <table border="0" cellspacing="0" cellpadding="0" style="width:670px;" class="border_01">
 <tr>
 <td style="width:668px;padding:2px 0px;" class="bg_09">
-※<img src="./skin/icon_schedule.gif" class="icon">アイコンをクリックすると予定を入力することができます。予定は他の人にも公開されます。<br>
+※<img src="({t_img_url_skin filename=icon_schedule})" class="icon">アイコンをクリックすると予定を入力することができます。予定は他の人にも公開されます。<br>
 ※<img src="({t_img_url_skin filename=icon_birthday})" class="icon">は({$WORD_MY_FRIEND})の誕生日、<img src="({t_img_url_skin filename=icon_event_B})" class="icon">はイベント、<img src="({t_img_url_skin filename=icon_event_R})" class="icon">は参加イベントを意味します。
 </td>
 </tr>
