@@ -11,6 +11,7 @@
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
 パスワード<br>
 <input type="text" name="password" istyle="3" mode="alphabet" maxlength="12"><br>
+退会理由<br>
 <textarea name="reason"></textarea><br>
 
 <input type="submit" value="退会する"><br>
