@@ -32,25 +32,20 @@ class ktai_do_h_diary_edit_insert_c_diary extends OpenPNE_Action
         }
 
         if (!$target_c_diary_id) {
-            $update_c_diary_id = db_diary_insert_c_diary($u, $subject, $body, $public_flag);
+            // 新規作成
+            $target_c_diary_id = db_diary_insert_c_diary($u, $subject, $body, $public_flag);
+            if (OPENPNE_USE_POINT_RANK) {
+                //日記を書いた人にポイント付与
+                $point = db_action_get_point4c_action_id(4);
+                db_point_add_point($u, $point);
+            }
         } else {
-            $update_c_diary_id = $target_c_diary_id;
-
+            // 編集
             $c_diary = db_diary_get_c_diary4id($target_c_diary_id);
             if ($c_diary['c_member_id'] != $u) {
                 handle_kengen_error();
             }
-        }
-
-        /*
-         * 携帯はWEBでは画像UPLOADなし
-         */
-        db_diary_update_c_diary($update_c_diary_id, $subject, $body, $public_flag);
-
-        if (OPENPNE_USE_POINT_RANK) {
-            //日記を書いた人にポイント付与
-            $point = db_action_get_point4c_action_id(4);
-            db_point_add_point($u, $point);
+            db_diary_update_c_diary($target_c_diary_id, $subject, $body, $public_flag);
         }
 
         $p = array('target_c_member_id' => $u);
