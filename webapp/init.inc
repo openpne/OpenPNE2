@@ -118,4 +118,13 @@ if (get_magic_quotes_gpc()) {
 ini_set('arg_separator.output', '&');
 include_once 'PHP/Compat/Function/http_build_query.php';
 
+//PC版URLを携帯版に変換して自動リンクするアクション
+$GLOBALS['_OPENPNE_PC2KTAI_LINK_ACTION_LIST'] = array(
+    'page_fh_diary'         => 'page_fh_diary',
+    'page_c_home'           => 'page_c_home',
+    'page_c_topic_detail'   => 'page_c_bbs',
+    'page_c_event_detail'   => 'page_c_bbs',
+    'page_f_home'           => 'page_f_home',
+);
+
 ?>
