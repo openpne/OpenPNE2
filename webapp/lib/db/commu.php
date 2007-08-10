@@ -2792,7 +2792,7 @@ function db_commu_search_c_commu_topic(
             $c_commu_id = 0)
 {
     $select = 'SELECT c.name AS commu_name, c.image_filename AS commu_image'
-            . ', ct.*, ctc.r_datetime';
+            . ', ct.*, MAX(ctc.r_datetime) AS max_datetime';
     $from = ' FROM c_commu AS c, c_commu_topic AS ct, c_commu_topic_comment AS ctc';
 
     $params = array();
@@ -2826,7 +2826,7 @@ function db_commu_search_c_commu_topic(
         break;
     }
     $group = ' GROUP BY ct.c_commu_topic_id';
-    $order = ' ORDER BY ctc.r_datetime DESC';
+    $order = ' ORDER BY max_datetime DESC';
 
     $sql = $select . $from . $where . $group . $order;
     $list = db_get_all_page($sql, $page, $page_size, $params);
@@ -2837,8 +2837,6 @@ function db_commu_search_c_commu_topic(
         $list[$key]['body'] = db_get_one($sql, $p);
         $sql = 'SELECT MAX(number) FROM c_commu_topic_comment WHERE c_commu_topic_id = ?';
         $list[$key]['max_number'] = db_get_one($sql, $p);
-        $sql = 'SELECT MAX(r_datetime) FROM c_commu_topic_comment WHERE c_commu_topic_id = ?';
-        $list[$key]['last_datetime'] = db_get_one($sql, $p);
     }
 
     $sql = 'SELECT COUNT(DISTINCT ct.c_commu_topic_id)' . $from . $where;
