@@ -296,7 +296,7 @@
 
 <div class="padding_s">
 
-最終更新日
+投稿日
 
 </div>
 
@@ -305,7 +305,7 @@
 <td style="width:249px;" class="bg_02" align="left">
 <div class="padding_s">
 
-({$c_topic_search.last_datetime|date_format:"%m月%d日 %H:%M"})
+({$c_topic_search.max_datetime|date_format:"%m月%d日 %H:%M"})
 
 </div>
 </td>
