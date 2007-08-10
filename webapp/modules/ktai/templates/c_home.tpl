@@ -43,6 +43,20 @@
 ({/if})
 ◆<a href="({t_url m=ktai a=page_c_invite})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">({$WORD_MY_FRIEND_HALF})に紹介</a><br>
 <hr>
+ﾄﾋﾟｯｸ検索
+({t_form _method=get m=ktai a=page_c_com_topic_find})
+<input type="hidden" name="ksid" value="({$PHPSESSID})">
+<input type="text" name="keyword" value="({$search_word})">
+<br>
+<select name="target_commu">
+<option value="in_commu">コミュニティ内</option>
+<option value="all">全てのコミュニティ</option>
+</select>
+<input type="hidden" name="c_commu_id" value="({$c_commu.c_commu_id})">
+<br>
+<input type="submit" value="検索">
+</form>
+<hr>
 <a name="news">新着ﾘｽﾄ</a>
 ({if $is_c_commu_view})
 <br><font color="green">[ﾄﾋﾟｯｸﾘｽﾄ]</font><br>

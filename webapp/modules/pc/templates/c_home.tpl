@@ -1,7 +1,8 @@
 ({ext_include file="inc_header.tpl"})
+({ext_include file="inc_c_com_topic_find.tpl"})
 ({if !$is_c_commu_member})
 <tr>
-<td class="container c_join_commu_box" align="center">
+<td class="container inc_c_join_commu_box" align="center">
 
 <img src="./skin/dummy.gif" class="v_spacer_s">
 
