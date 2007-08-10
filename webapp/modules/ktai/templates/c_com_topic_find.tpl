@@ -9,7 +9,7 @@
 <br>
 
 ({foreach from=$c_commu_topic_search_list item=topic})
-({$topic.last_datetime|date_format:"%m/%d"})
+({$topic.max_datetime|date_format:"%m/%d"})
 <a href="({t_url m=ktai a=page_c_bbs})&amp;target_c_commu_topic_id=({$topic.c_commu_topic_id})&amp;({$tail})">({$topic.name})</a>(({$topic.max_number}))<br>
 ({/foreach})
 
