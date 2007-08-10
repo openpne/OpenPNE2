@@ -8,26 +8,35 @@
 
 class admin_page_diary_comment_list extends OpenPNE_Action
 {
+    function handleError($errors)
+    {
+        admin_client_redirect('diary_comment_list', array_shift($errors));
+    }
+
     function execute($requests)
     {
         $v = array();
         
-        //----------???N?G?X?g???-------------//
         $page = $requests['page'];
         $keyword = $requests['keyword'];
-        //----------???N?G?X?g???-------------//
+        $target_c_diary_comment_id = $requests['target_c_diary_comment_id'];
+
         $page_size = 20;
         
-        $v = array();
-        
-        list($diary_comment_list,$prev,$next,$total_num,$total_page_num) 
+        if ($target_c_diary_comment_id) {
+            list($diary_comment_list,$prev,$next,$total_num,$total_page_num) 
+            = monitor_diary_comment_list4c_diary_comment_id($target_c_diary_comment_id,$page_size,$page);
+        } else {
+            list($diary_comment_list,$prev,$next,$total_num,$total_page_num) 
             = monitor_diary_comment_list($keyword,$page_size,$page);
+        }
         $this->set('diary_comment_list', $diary_comment_list);
         $this->set('page', $page);
         $this->set('prev', $prev);
         $this->set('next', $next);
         $this->set('keyword_encode', urlencode($keyword));
         $this->set('keyword', $keyword);
+        $this->set('target_c_diary_comment_id', $target_c_diary_comment_id);
         $this->set('total_num', $total_num);
         
         for($i = $page-10<1 ? 1 : $page-10 ;($i<=$total_page_num)&&($i<$page+10);$i++)
