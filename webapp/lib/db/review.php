@@ -421,7 +421,12 @@ function db_review_edit_c_review_comment4c_review_comment_id_c_member_id($c_revi
     return db_get_row($sql, $params);
 }
 
-
+function db_review_edit_c_review_comment4c_review_comment_id($c_review_comment_id)
+{
+    $sql = 'SELECT * FROM c_review_comment WHERE c_review_comment_id = ?';
+    $params = array(intval($c_review_comment_id));
+    return db_get_row($sql, $params);
+}
 
 function db_review_clip_add_c_review_id4c_review_id_c_member_id($c_review_id, $c_member_id)
 {
