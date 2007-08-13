@@ -16,7 +16,7 @@
 
 <form action="./" method="post">
 <input type="hidden" name="m" value="({$module_name})" />
-<input type="hidden" name="a" value="do_({$hash_tbl->hash('send_messages_id_list')})" />
+<input type="hidden" name="a" value="do_({$hash_tbl->hash('send_messages_id_list','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
 <p>
 <select class="basic" name="specify_type">
