@@ -64,7 +64,7 @@
 <form action="./" method="post">
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
 <input type="hidden" name="m" value="({$module_name})" />
-<input type="hidden" name="a" value="do_({$hash_tbl->hash('delete_kakikomi_c_commu')})" />
+<input type="hidden" name="a" value="do_({$hash_tbl->hash('delete_kakikomi_c_commu','do')})" />
 <input type="hidden" name="target_c_commu_id" value="({$commu.c_commu_id})" />
 <span class="textBtnS"><input type="submit" value="削除する" /></span>
 </form>

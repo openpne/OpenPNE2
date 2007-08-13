@@ -66,7 +66,7 @@
 <form action="./" method="post">
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
 <input type="hidden" name="m" value="({$module_name})" />
-<input type="hidden" name="a" value="do_({$hash_tbl->hash('delete_kakikomi_c_diary_comment')})" />
+<input type="hidden" name="a" value="do_({$hash_tbl->hash('delete_kakikomi_c_diary_comment','do')})" />
 <input type="hidden" name="target_c_diary_comment_id" value="({$diary_comment.c_diary_comment_id})" />
 <span class="textBtnS"><input type="submit" value="削除する" /></span>
 </form>
