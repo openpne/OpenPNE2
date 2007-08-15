@@ -99,6 +99,7 @@ function db_schedule_add_insert_c_schedule(
         'start_time' => $start_time,
         'end_date' => $end_date,
         'end_time' => $end_time,
+        'u_datetime' => db_now(),
         'is_receive_mail' => (bool)$is_receive_mail,
     );
     return db_insert('c_schedule', $data);
@@ -119,6 +120,7 @@ function db_schedule_edit_update_c_schedule(
         'start_time' => $start_time,
         'end_date' => $end_date,
         'end_time' => $end_time,
+        'u_datetime' => db_now(),
         'is_receive_mail' => (bool)$is_receive_mail,
     );
     $where = array('c_schedule_id' => intval($c_schedule_id));

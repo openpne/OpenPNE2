@@ -2032,6 +2032,7 @@ function db_commu_insert_c_commu($c_member_id, $name, $c_commu_category_id, $inf
         'public_flag' => $public_flag,
         'r_datetime' => db_now(),
         'r_date' => db_now(),
+        'u_datetime' => db_now(),
         'image_filename' => '',
     );
     return db_insert('c_commu', $data);
@@ -2063,6 +2064,7 @@ function db_commu_update_c_commu($c_commu_id,
         'c_commu_category_id' => intval($c_commu_category_id),
         'public_flag' => $public_flag,
         'is_send_join_mail' => (bool)$is_send_join_mail,
+        'u_datetime' => db_now(),
     );
 
     if ($image_filename) $data['image_filename'] = $image_filename;
