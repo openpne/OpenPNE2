@@ -885,6 +885,7 @@ function db_member_config_prof_new($c_member_id, $prof_list)
         'birth_month' => intval($prof_list['birth_month']),
         'birth_day'   => intval($prof_list['birth_day']),
         'public_flag_birth_year' => $prof_list['public_flag_birth_year'],
+        'u_datetime' => db_now(),
     );
     $where = array('c_member_id' => intval($c_member_id));
     return db_update('c_member', $data, $where);
@@ -992,6 +993,7 @@ function db_member_insert_c_member($c_member, $c_member_secure)
         'is_receive_ktai_mail'  => (bool)$c_member['is_receive_ktai_mail'],
         'is_receive_daily_news' => intval($c_member['is_receive_daily_news']),
         'r_date' => db_now(),
+        'u_datetime' => db_now(),
         'image_filename' => '',
         'image_filename_1' => '',
         'image_filename_2' => '',
@@ -1079,6 +1081,7 @@ function db_member_h_config_3(
         'public_flag_diary' => util_cast_public_flag_diary($public_flag_diary),
         'is_shinobiashi' => $is_shinobiashi,
         'schedule_start_day' => $schedule_start_day,
+        'u_datetime' => db_now(),
     );
     $where = array('c_member_id' => intval($c_member_id));
     db_update('c_member', $data, $where);
@@ -1573,6 +1576,7 @@ function db_member_create_member($username)
         'is_receive_ktai_mail'  => true,
         'is_receive_daily_news' => true,
         'r_date' => db_now(),
+        'u_datetime' => db_now(),
         'image_filename' => '',
         'image_filename_1' => '',
         'image_filename_2' => '',
