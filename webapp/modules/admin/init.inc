@@ -113,7 +113,6 @@ $GLOBALS['_OPENPNE_ADMIN_AUTH_ACTIONS'] = array(
 'do_update_profile_sort_order',
 'do_update_side_banner_html',
 'do_update_skin_image',
-'do_update_skin_version',
 'do_update_top_banner_html',
 ),
 
@@ -244,7 +243,6 @@ $GLOBALS['_OPENPNE_ADMIN_AUTH_ACTIONS'] = array(
 'do_update_profile_sort_order',
 'do_update_side_banner_html',
 'do_update_skin_image',
-'do_update_skin_version',
 'do_update_top_banner_html',
 ),
 );

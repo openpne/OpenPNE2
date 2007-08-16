@@ -10,23 +10,8 @@
 <h2>スキン画像変更</h2>
 <div class="contents">
 
-<a name="skin"></a>
-<p>ナビゲーションボタンの位置を旧バージョンのものに変更できます。<br />
-1.8.x 以前のスキン画像をそのまま使いたい場合は、1.8形式を選択してください。<br />
-<form action="./" method="post">
-<input type="hidden" name="m" value="({$module_name})" />
-<input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_version','do')})" />
-<input type="hidden" name="sessid" value="({$PHPSESSID})" />
-<select class="basic" name="version">
-<option value="2.0"({if $smarty.const.SKIN_VERSION=='2.0'}) selected="selected"({/if})>2.0形式を使用する(デフォルト)</option>
-<option value="1.8"({if $smarty.const.SKIN_VERSION=='1.8'}) selected="selected"({/if})>1.8形式を使用する</option>
-</select>
-<span class="textBtnS"><input type="submit" value="変更" /></span>
-</form>
-</p>
 <p class="pageNavi"><a href="#skin1">ログインページ</a> | <a href="#skin2">メニュー等、画面上部画像&nbsp;[1]</a> | <a href="#skin3">メニュー等、画面上部画像&nbsp;[2]</a> | <a href="#skin4">画面下部画像</a> | <a href="#skin5">NoImage画像</a> | <a href="#skin6">画像ボタン</a> | <a href="#skin7">レビュー用画像</a> | <a href="#skin8">小物画像&nbsp;[1]</a> | <a href="#skin9">小物画像&nbsp;[2]</a> | <a href="#skin10">小物画像&nbsp;[3]</a> | <a href="#skin11">小物画像&nbsp;[4]</a> | </p>
 <p class="caution" id="c01">※規定のサイズと異なる画像を設定した場合、レイアウトが崩れてしまう可能性があります。</p>
-
 
 <table class="basicType2">
 ({*******})
