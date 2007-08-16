@@ -11,11 +11,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="Content-Style-Type" content="text/css">
 <title>({$INC_HEADER_title})</title>
-({if $smarty.const.SKIN_VERSION=='1.8'})
-<link rel="stylesheet" href="./css/default_1_8.css?v=2.2.5" type="text/css">
-({else})
-<link rel="stylesheet" href="./css/default.css?v=2.2.5" type="text/css">
-({/if})
+<link rel="stylesheet" href="./css/default.css" type="text/css">
 <script type="text/javascript" src="./js/prototype.js"></script>
 <script type="text/javascript" src="./js/pne.js"></script>
 <style type="text/css">
