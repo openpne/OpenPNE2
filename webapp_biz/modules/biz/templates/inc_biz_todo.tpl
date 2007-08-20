@@ -62,7 +62,7 @@
 </td>
 <td class="border_01({if $value.writer_id != $target_id}) bg_09({else}) bg_02({/if})" style="width:35px;border-top:none;border-right:none;" valign="top">
 <a href="({t_url m=biz a=do_`$cmd`_home_check_biz_todo})&amp;sessid=({$PHPSESSID})&amp;chid=({$value.biz_todo_id})&amp;is_check=({$value.is_check})">
-<img src="./skin/biz/checkbox_nochecked_({if $value.c_member_id == 0})share_({/if})2.gif" style="width:34px;height:34px;display:block;"></a>
+<img src="./skin/default/img/biz/checkbox_nochecked_({if $value.c_member_id == 0})share_({/if})2.gif" style="width:34px;height:34px;display:block;"></a>
 
 </td>
 <td class="border_01({if $value.writer_id != $target_id}) bg_09({else}) bg_02({/if}) padding_ss" style="width:179px;border-top:none;border-left:none;border-right:none;padding-left:0;" valign="top">
@@ -80,7 +80,7 @@
 <tr>
 <td style="width:16px;height:16px;" valign="bottom" align="right">
 
-<a href="({t_url m=biz a=page_fh_home_edit_biz_todo})&amp;id=({$value.biz_todo_id})&amp;target_id=({$target_id})"><img src="./skin/biz/edit_2.gif" style="width:14px;height:14px;display:block;"></a>
+<a href="({t_url m=biz a=page_fh_home_edit_biz_todo})&amp;id=({$value.biz_todo_id})&amp;target_id=({$target_id})"><img src="./skin/default/img/biz/edit_2.gif" style="width:14px;height:14px;display:block;"></a>
 
 </td>
 </tr>
@@ -90,7 +90,7 @@
 <tr>
 <td style="height:16px;" valign="top" align="right">
 
-<a href="({t_url m=biz a=do_`$cmd`_home_delete_biz_todo})&amp;sessid=({$PHPSESSID})&amp;delid=({$value.biz_todo_id})&amp;target_id=({$target_id})"><img src="./skin/biz/delete_2.gif" style="width:14px;height:14px;display:block;"></a>
+<a href="({t_url m=biz a=do_`$cmd`_home_delete_biz_todo})&amp;sessid=({$PHPSESSID})&amp;delid=({$value.biz_todo_id})&amp;target_id=({$target_id})"><img src="./skin/default/img/biz/delete_2.gif" style="width:14px;height:14px;display:block;"></a>
 
 </td>
 </tr>
@@ -113,7 +113,7 @@
 <td class="border_01({if $value.writer_id != $target_id}) bg_09({else}) bg_02({/if})" style="width:35px;border-top:none;border-right:none;" valign="top">
 
 <a href="({t_url m=biz a=do_`$cmd`_home_check_biz_todo})&amp;sessid=({$PHPSESSID})&amp;chid=({$value.biz_todo_id})&amp;is_check=({$value.is_check})">
-<img src="./skin/biz/checkbox_checked_({if !$value.member_id == 0})share_({/if})2.gif" style="width:34px;height:34px;display:block;"></a>
+<img src="./skin/default/img/biz/checkbox_checked_({if !$value.member_id == 0})share_({/if})2.gif" style="width:34px;height:34px;display:block;"></a>
 
 </td>
 <td class="border_01({if $value.writer_id != $target_id}) bg_09({else}) bg_02({/if}) padding_ss" style="width:181px;border-top:none;border-left:none;border-right:none;padding-left:0;color:#999999;" valign="top">
@@ -131,7 +131,7 @@
 <tr>
 <td style="width:16px;height:16px;" valign="bottom" align="right">
 
-<a href="({t_url m=biz a=page_fh_home_edit_biz_todo})&amp;id=({$value.biz_todo_id})"><img src="./skin/biz/edit_2.gif" style="width:14px;height:14px;display:block;"></a>
+<a href="({t_url m=biz a=page_fh_home_edit_biz_todo})&amp;id=({$value.biz_todo_id})"><img src="./skin/default/img/biz/edit_2.gif" style="width:14px;height:14px;display:block;"></a>
 
 </td>
 </tr>
@@ -141,7 +141,7 @@
 <tr>
 <td style="height:16px;" valign="top" align="right">
 
-<a href="({t_url m=biz a=do_`$cmd`_home_delete_biz_todo})&amp;sessid=({$PHPSESSID})&amp;delid=({$value.biz_todo_id})"><img src="./skin/biz/delete_2.gif" style="width:14px;height:14px;display:block;"></a>
+<a href="({t_url m=biz a=do_`$cmd`_home_delete_biz_todo})&amp;sessid=({$PHPSESSID})&amp;delid=({$value.biz_todo_id})"><img src="./skin/default/img/biz/delete_2.gif" style="width:14px;height:14px;display:block;"></a>
 
 </td>
 </tr>
