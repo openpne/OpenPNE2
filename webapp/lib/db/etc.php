@@ -321,13 +321,6 @@ function db_get_c_navi($navi_type = 'h')
     return db_get_all($sql, $params);
 }
 
-?>
-<?php
-/**
- * @copyright 2005-2007 OpenPNE Project
- * @license   http://www.php.net/license/3_01.txt PHP License 3.01
- */
-
 //--- 退会
 
 /**
@@ -662,24 +655,39 @@ function db_delete_c_skin_filename($skinname)
 }
 
 /**
- * デフォルト画像をマスター画像からコピー(デフォルトに戻すの一環)
+ * スキン画像全削除（デフォルトに戻す）
  */
-function db_master_copy_c_skin_filename($skinname)
+function db_delete_all_c_skin_filename()
 {
+    $list = db_get_c_skin_filename_list();
+    foreach ($list as $filename) {
+        db_image_data_delete($filename);
+    }
+    $sql = 'DELETE FROM c_skin_filename';
+    db_query($sql);
+    
+    db_insert_c_image4skin_filename('no_image');
+    db_insert_c_image4skin_filename('no_logo');
+    db_insert_c_image4skin_filename('no_logo_small');
+}
 
-    $data = array(
-        'skinname' => strval($skinname),
-        'filename' => 'skin_'.strval($skinname).'.gif',
-    );
-    db_insert('c_skin_filename', $data);
+/**
+ * スキンファイルから画像をDB登録（no_imageをデフォルトに戻す）
+ */
+function db_insert_c_image4skin_filename($skinname)
+{
+    if (!$skinname || preg_match('/[^\.\w]/', $skinname)) {
+        return false;
+    }
+    $filename = $skinname . '.gif';
 
-    $sql = "INSERT INTO c_image (SELECT '', ?, bin, ?, type FROM c_image WHERE filename = ?)";
-    $params = array(
-        'skin_'.strval($skinname).'.gif',
-        db_now(),
-        'skin_'.strval($skinname).'_master.gif',
-    );
-    db_query($sql, $params);
+    $path = sprintf('%s/skin/%s/img/%s', OPENPNE_PUBLIC_HTML_DIR, OPENPNE_SKIN_THEME, $filename);
+    if (!is_readable($path)) {
+        $path = sprintf('%s/skin/default/img/%s', OPENPNE_PUBLIC_HTML_DIR, $filename);
+    }
+    $filename = 'skin_' . $filename;
+    $res = db_image_insert_c_image2($filename, $path);
+    return db_replace_c_skin_filename($skinname, $filename);
 }
 
 //---

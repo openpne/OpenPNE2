@@ -799,6 +799,8 @@ div.listControl p.listMove a {
 #admin_page_update_hash_table div.footer { margin-top: 50px;}
 
 /** admin_page_edit_skin_image **/
+#admin_page_edit_skin_image h3#subttl01 { margin-top: 10px;}
+#admin_page_edit_skin_image h3#subttl02 { margin-top: 30px;}
 #admin_page_edit_skin_image p.pageNavi { padding-top: 20px;}
 #admin_page_edit_skin_image p.pageNavi a { padding: 0 3px; white-space: nowrap;}
 #admin_page_edit_skin_image p.caution#c01 { padding-top: 10px;}
@@ -822,6 +824,7 @@ div.listControl p.listMove a {
 * html #admin_page_edit_skin_image dl.box dd span { margin: 0; padding: 0; padding-left: 10px;}
 * html #admin_page_edit_skin_image dl.box dd span input { margin: 0; width: 50px;vertical-align: middle;}
 #admin_page_edit_skin_image p.detailLink { clear: both; margin-top: 10px; padding: 5px 10px 5px 0; border: #A3A3A6 solid 1px; background: #D5D5D7; text-align: right;}
+#admin_page_edit_skin_image div.submitTheme { clear: both; margin-top: 10px;}
 
 /** admin_page_edit_c_sns_config **/
 #admin_page_edit_c_sns_config div.sampleColors p ,
