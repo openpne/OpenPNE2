@@ -10,6 +10,37 @@
 <h2>スキン画像変更</h2>
 <div class="contents">
 
+<h3 class="item" id="subttl01">プリセットデザインから設定</h3>
+<p class="caution" id="c01">※プリセットデザインから設定をおこなうと、カスタマイズ設定で変更された内容がすべて上書きされてしまいます。</p>
+
+<form action="./" method="post">
+<table class="basicType2">
+<tr>
+<td>
+({foreach from=$theme_list item=item})
+<dl class="box">
+<dd>
+<a href="./skin/({$item.name})/({$item.link})" target="_blank"><img src="./skin/({$item.name})/({$item.thumbnail})" width="180" /></a><br />
+<br />
+<input type="radio" name="value" value="({$item.name})"({if $item.name == $smarty.const.OPENPNE_SKIN_THEME}) checked="checked"({/if})> ({$item.caption})
+</dd>
+</dl>
+({/foreach})
+
+<br class="clear" />
+<div class="submitTheme">
+<input type="hidden" name="m" value="({$module_name})" />
+<input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_theme','do')})" />
+<input type="hidden" name="sessid" value="({$PHPSESSID})"/>
+<span class="textBtnS"><input type="submit" value="変更" /></span>
+</div>
+
+</td>
+</tr>
+</table>
+</form>
+
+<h3 class="item" id="subttl02">カスタマイズ設定</h3>
 <p class="pageNavi"><a href="#skin1">ログインページ</a> | <a href="#skin2">メニュー等、画面上部画像&nbsp;[1]</a> | <a href="#skin3">メニュー等、画面上部画像&nbsp;[2]</a> | <a href="#skin4">画面下部画像</a> | <a href="#skin5">NoImage画像</a> | <a href="#skin6">画像ボタン</a> | <a href="#skin7">レビュー用画像</a> | <a href="#skin8">小物画像&nbsp;[1]</a> | <a href="#skin9">小物画像&nbsp;[2]</a> | <a href="#skin10">小物画像&nbsp;[3]</a> | <a href="#skin11">小物画像&nbsp;[4]</a> | </p>
 <p class="caution" id="c01">※規定のサイズと異なる画像を設定した場合、レイアウトが崩れてしまう可能性があります。</p>
 
