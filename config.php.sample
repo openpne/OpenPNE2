@@ -180,6 +180,7 @@ define('OPENPNE_VAR_DIR'    , OPENPNE_DIR . '/var');
 define('OPENPNE_WEBAPP_DIR' , OPENPNE_DIR . '/webapp');
 define('OPENPNE_MODULES_DIR', OPENPNE_WEBAPP_DIR . '/modules');
 define('OPENPNE_RSS_CACHE_DIR', OPENPNE_VAR_DIR . '/rss_cache');
+define('OPENPNE_PUBLIC_HTML_DIR', OPENPNE_DIR . '/public_html');
 
 ///
 // webapp_ext ディレクトリ使用設定

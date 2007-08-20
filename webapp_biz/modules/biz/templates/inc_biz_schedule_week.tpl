@@ -296,7 +296,7 @@
 ({* Todo *})
 ({foreach from=$item.todo item=item_todo})
 <div class="padding_s">
-<img src="./skin/biz/todo_icon.gif"  class="icon">
+<img src="./skin/default/img/biz/todo_icon.gif"  class="icon">
 <a href="({t_url m=biz a=page_fh_home_edit_biz_todo})&amp;id=({$item_todo.biz_todo_id})&target_id=({$member_info.c_member_id})">({$item_todo.memo|t_truncate:20:".."})</a></div>
 ({/foreach})
 
