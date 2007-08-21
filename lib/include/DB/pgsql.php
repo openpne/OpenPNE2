@@ -495,7 +495,8 @@ class DB_pgsql extends DB_common
         if (is_int($in) || is_double($in)) {
             return $in;
         } elseif (is_bool($in)) {
-            return $in ? 'TRUE' : 'FALSE';
+//            return $in ? 'TRUE' : 'FALSE';
+            return $in ? 1 : 0;
         } elseif (is_null($in)) {
             return 'NULL';
         } else {

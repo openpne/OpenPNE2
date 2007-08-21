@@ -58,6 +58,10 @@ function db_file_c_file_list($page, $page_size, &$pager)
  */
 function db_file_insert_c_file($filename, $bin, $original_filename)
 {
+    if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
+        $bin = base64_encode($bin);
+    }
+
     $data = array(
         'filename'   => $filename,
         'bin'        => $bin,
@@ -77,7 +81,14 @@ function db_file_c_file4filename($filename)
 {
     $sql = 'SELECT * FROM c_file WHERE filename = ?';
     $params = array($filename);
-    return db_get_row($sql, $params);
+    
+    if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
+        $lst = db_get_row($sql, $params);
+        $lst['bin'] = base64_decode($lst['bin']);
+        return $lst;
+    } else {
+        return db_get_row($sql, $params);
+    }
 }
 
 /**
