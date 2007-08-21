@@ -739,7 +739,11 @@ function _db_admin_c_member_id_list($cond_list, $order = null)
                     $sql .= ' ORDER BY c_profile_option_id';
                 } else {
                     if ($value['name'] == "PNE_POINT") {
-                        $sql .= ' ORDER BY cast(value as signed)';
+                        if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
+                            $sql .= ' ORDER BY cast(value as integer)';
+                        } else {
+                            $sql .= ' ORDER BY cast(value as signed)';
+                        }
                     } else {
                         $sql .= ' ORDER BY value';
                     }
@@ -940,10 +944,18 @@ function db_access_analysis_c_admin_user_id4username($username)
 
 function p_access_analysis_month_access_analysis_month($ktai_flag)
 {
-    $sql = "SELECT date_format(r_datetime, '%Y-%m-01') as ym, count(*) as count" .
-            " FROM c_access_log " .
-            " where ktai_flag = ?" .
-            " group by ym";
+    if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
+        $sql = "SELECT to_char(r_datetime, 'YYYY-MM-01') as ym, count(*) as count" .
+                " FROM c_access_log " .
+                " where ktai_flag = ?" .
+                " group by ym";
+    } else {
+        $sql = "SELECT date_format(r_datetime, '%Y-%m-01') as ym, count(*) as count" .
+                " FROM c_access_log " .
+                " where ktai_flag = ?" .
+                " group by ym";
+    }
+
     $params = array(intval($ktai_flag));            
     $list = db_get_all($sql,$params);
     return $list;
@@ -952,11 +964,19 @@ function p_access_analysis_month_access_analysis_month($ktai_flag)
 
 function p_access_analysis_day_access_analysis_day($ym, $ktai_flag)
 {
-    $sql = "SELECT left(r_datetime,10) as ymd , count(*) as count" .
+    if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
+        $sql = "SELECT substr(r_datetime,1,10) as ymd , count(*) as count" .
             " FROM c_access_log " .
-            " where left(r_datetime, 7) = ?" .
+            " where substr(r_datetime,1,7) = ?" .
             " and ktai_flag = ? " .
             " group by ymd";            
+    } else {
+        $sql = "SELECT left(r_datetime,10) as ymd , count(*) as count" .
+                " FROM c_access_log " .
+                " where left(r_datetime, 7) = ?" .
+                " and ktai_flag = ? " .
+                " group by ymd";
+    }
     $params = array(intval(substr($ym,0,7)),intval($ktai_flag));
     $list = db_get_all($sql,$params);
     
@@ -1008,10 +1028,19 @@ function p_access_analysis_page_access_analysis_page4ym($ymd, $month_flag, $ktai
     $sql = "select page_name , count(*) as count from c_access_log where ktai_flag = ? ";
     $params = array(intval($ktai_flag));
     if ($month_flag) {
-        $sql .= " and left(r_datetime, 7) = ? ";
+        if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
+            $sql .= " and substr(r_datetime,1,7) = ? ";
+        } else {
+            $sql .= " and left(r_datetime, 7) = ? ";
+        }
+
         array_push($params,substr($ymd,0,7));
     } else {
-        $sql .= " and left(r_datetime,10) = ? ";
+        if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
+            $sql .= " and substr(r_datetime,1,10) = ? ";
+        } else {
+            $sql .= " and left(r_datetime,10) = ? ";
+        }
         array_push($params,$ymd);
     }
     $sql .= " group by page_name ".    $orderby_str;
@@ -1103,11 +1132,19 @@ function p_access_analysis_target_commu_target_commu4ym_page_name
     $sql = "select target_c_commu_id , count(*) as count from c_access_log  where ktai_flag = ? ";
     $params = array(intval($ktai_flag));
     if ($month_flag) {
+        if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
+            $sql .= " and substr(r_datetime,1,7) = ? ";
+        } else {
             $sql .= " and left(r_datetime, 7) = ? ";
-            array_push($params,substr($ymd,0,7));
+        }
+        array_push($params,substr($ymd,0,7));
     } else {
+        if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
+            $sql .= " and substr(r_datetime,1,10) = ? ";
+        } else {
             $sql .= " and left(r_datetime,10) = ? ";
-            array_push($params,$ymd);
+        }
+        array_push($params,$ymd);
     }
     if ($page_name!="all") {
             $sql .= " and page_name = ? ";
@@ -1132,10 +1169,18 @@ function p_access_analysis_target_commu_target_commu4ym_page_name
     $sql =   "select count(*) from c_access_log  where ktai_flag = ? ";
     $params = array(intval($ktai_flag));
     if ($month_flag) {
-        $sql .= " and left(r_datetime, 7) = ? ";
+        if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
+            $sql .= " and substr(r_datetime,1,7) = ? ";
+        } else {
+            $sql .= " and left(r_datetime, 7) = ? ";
+        }
         array_push($params,substr($ymd,0,7));
     } else {
-        $sql .= " and left(r_datetime,10) = ? ";
+        if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
+            $sql .= " and substr(r_datetime,1,10) = ? ";
+        } else {
+            $sql .= " and left(r_datetime,10) = ? ";
+        }
         array_push($params,$ymd);
     }
     if ($page_name!="all") {
@@ -1183,11 +1228,19 @@ function p_access_analysis_target_topic_target_topic4ym_page_name
     $where =" where ktai_flag = ? ";
     $params = array(intval($ktai_flag));
     if ($month_flag) {
+        if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
+            $where .= " and substr(r_datetime,1, 7) = ? ";
+        } else {
             $where .= " and left(r_datetime, 7) = ? ";
-            array_push($params,substr($ymd,0,7));
+        }
+        array_push($params,substr($ymd,0,7));
     } else {
+        if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
+            $where .= " and substr(r_datetime,1,10) = ? ";
+        } else {
             $where .= " and left(r_datetime,10) = ? ";
-            array_push($params,$ymd);
+        }
+        array_push($params,$ymd);
     }
     if ($page_name!="all") {
             $where .= " and page_name = ? ";
@@ -1253,10 +1306,18 @@ function p_access_analysis_target_diary_target_diary4ym_page_name
     $sql = "select target_c_diary_id , count(*) as count from c_access_log where ktai_flag = ? ";
     $params = array(intval($ktai_flag));
     if ($month_flag) {
-        $sql .= " and left(r_datetime, 7) = ? ";
+        if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
+            $sql .= " and substr(r_datetime,1,7) = ? ";
+        } else {
+            $sql .= " and left(r_datetime, 7) = ? ";
+        }
         array_push($params,substr($ymd,0,7));
     } else {
-        $sql .= " and left(r_datetime,10) = ? ";
+        if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
+            $sql .= " and substr(r_datetime,1,10) = ? ";
+        } else {
+            $sql .= " and left(r_datetime,10) = ? ";
+        }
         array_push($params,$ymd);
     }
     if ($page_name!="all") {
@@ -1283,11 +1344,19 @@ function p_access_analysis_target_diary_target_diary4ym_page_name
     $sql =   "select count(*) from c_access_log where ktai_flag = ? ";
     $params = array(intval($ktai_flag));
     if ($month_flag) {
+        if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
+            $sql .= " and substr(r_datetime,1,7) = ? ";
+        } else {
             $sql .= " and left(r_datetime, 7) = ? ";
-            array_push($params,substr($ymd,0,7));
+        }
+        array_push($params,substr($ymd,0,7));
     } else {
+        if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
+            $sql .= " and substr(r_datetime,1,10) = ? ";
+        } else {
             $sql .= " and left(r_datetime,10) = ? ";
-            array_push($params,$ymd);
+        }
+        array_push($params,$ymd);
     }
     $sql .= " and target_c_diary_id <> 0 ";
     $sql .= " group by target_c_diary_id ";
@@ -1331,10 +1400,18 @@ function p_access_analysis_member_access_member4ym_page_name
     $where =" where ktai_flag = ? ";
     $params = array(intval($ktai_flag));
     if ($month_flag) {
-        $where .= " and left(r_datetime, 7) = ? ";
+        if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
+            $where .= " and substr(r_datetime,1,7) = ? ";
+        } else {
+            $where .= " and left(r_datetime, 7) = ? ";
+        }
         array_push($params,substr($ymd,0,7));
     } else {
-        $where .= " and left(r_datetime,10) = ? ";
+        if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
+            $where .= " and substr(r_datetime,1,10) = ? ";
+        } else {
+            $where .= " and left(r_datetime,10) = ? ";
+        }
         array_push($params,$ymd);
     }
     if ($page_name!="all") {
@@ -1396,17 +1473,25 @@ function p_access_analysis_target_member_access_member4ym_page_name
     }
     $where =" where ktai_flag = ? ";
     $params = array(intval($ktai_flag));
-        if ($month_flag) {
-                $where .= " and left(r_datetime, 7) = ? ";
-                array_push($params,substr($ymd,0,7));
+    if ($month_flag) {
+        if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
+            $where .= " and substr(r_datetime,1,7) = ? ";
         } else {
-                $where .= " and left(r_datetime,10) = ? ";
-                array_push($params,$ymd);
+            $where .= " and left(r_datetime, 7) = ? ";
         }
-        if ($page_name!="all") {
-                $where .= " and page_name = ? ";
-                array_push($params,$page_name);
+        array_push($params,substr($ymd,0,7));
+    } else {
+        if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
+            $where .= " and substr(r_datetime,1,10) = ? ";
+        } else {
+            $where .= " and left(r_datetime,10) = ? ";
         }
+        array_push($params,$ymd);
+    }
+    if ($page_name != "all") {
+        $where .= " and page_name = ? ";
+        array_push($params,$page_name);
+    }
     $sql = "select target_c_member_id , count(*) as count from c_access_log ";
     $sql .= $where;
     $sql .= " AND target_c_member_id <> 0 ";
@@ -1427,17 +1512,25 @@ function p_access_analysis_target_member_access_member4ym_page_name
 
     $where =" where ktai_flag = ? ";
     $params = array(intval($ktai_flag));
-        if ($month_flag) {
-                $where .= " and left(r_datetime, 7) = ? ";
-                array_push($params,substr($ymd,0,7));
+    if ($month_flag) {
+        if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
+            $where .= " and substr(r_datetime,1,7) = ? ";
         } else {
-                $where .= " and left(r_datetime,10) = ? ";
-                array_push($params,$ymd);
+            $where .= " and left(r_datetime, 7) = ? ";
         }
-        if ($page_name != "all") {
-                $where .= " and page_name = ? ";
-                array_push($params,$page_name);
+        array_push($params,substr($ymd,0,7));
+    } else {
+        if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
+            $where .= " and substr(r_datetime,1,10) = ? ";
+        } else {
+            $where .= " and left(r_datetime,10) = ? ";
         }
+        array_push($params,$ymd);
+    }
+    if ($page_name != "all") {
+        $where .= " and page_name = ? ";
+        array_push($params,$page_name);
+    }
     $sql = "select count(*) from c_access_log " ;
     $sql .= $where;
     $sql .= " AND target_c_member_id <> 0 ";
@@ -1598,11 +1691,17 @@ function get_analysis_generation()
             '80～' =>0
     );
     
-    $today = getdate();
-    $mmdd = $today['mon'] * 100 + $today['mday'];
-    $sql = 'SELECT ' . $today['year'] . ' - birth_year'
-         . ' - (' . $mmdd . ' < (birth_month * 100 + birth_day))'
-         . ' AS age FROM c_member WHERE birth_year <> 0';
+    if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
+        $sql = "SELECT ((date_part('year', now()) - birth_year)- " .
+            "cast(substring(CURRENT_DATE,'.....$')<(to_char(birth_month, '00') || '-' || to_char(birth_day, '00')) as int)) " .
+            "AS age FROM c_member WHERE birth_year <> 0;";
+    } else {
+        $today = getdate();
+        $mmdd = $today['mon'] * 100 + $today['mday'];
+        $sql = 'SELECT ' . $today['year'] . ' - birth_year'
+             . ' - (' . $mmdd . ' < (birth_month * 100 + birth_day))'
+             . ' AS age FROM c_member WHERE birth_year <> 0';
+    }
     $lst = db_get_all($sql);
 
     $temp = array_keys($analysis_generation);
@@ -1646,7 +1745,11 @@ function get_analysis_region()
 
 function get_analysis_date_month($year = "", $month = "")
 {
-    $sql = "select date_format(r_date,'%Y-%m') from c_member order by r_date";
+    if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
+        $sql = "select to_char(r_date,'YYYY-MM') from c_member order by r_date";
+    } else {
+        $sql = "select date_format(r_date,'%Y-%m') from c_member order by r_date";
+    }
     $start_date = db_get_one($sql);
 
     $i = 0;
@@ -1656,7 +1759,11 @@ function get_analysis_date_month($year = "", $month = "")
         $analysis_date_month[$date] = 0;
     }while($date < date("Y-m"));    
     
-    $sql = "select date_format(r_date,'%Y-%m') as d from c_member";
+    if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
+        $sql = "select to_char(r_date,'YYYY-MM') as d from c_member";
+    } else {
+        $sql = "select date_format(r_date,'%Y-%m') as d from c_member";
+    }
     $lst = db_get_all($sql);
     foreach ($lst as $value) {
         $analysis_date_month[$value['d']]++;
@@ -1689,8 +1796,11 @@ function get_analysis_date_day($date="")
         $analysis_date_day[$i] = 0;
     }
 
-    
-    $sql = "select date_format(r_date,'%d') as d from c_member where date_format(r_date,'%Y-%m') = ?";
+    if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
+        $sql = "select to_char(r_date,'DD') as d from c_member where to_char(r_date,'YYYY-MM') = ?";
+    } else {
+        $sql = "select date_format(r_date,'%d') as d from c_member where date_format(r_date,'%Y-%m') = ?";
+    }
     $params = array($date);
     $lst = db_get_all($sql,$params);
 

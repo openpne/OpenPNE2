@@ -178,17 +178,35 @@ function db_review_search_result4keyword_category($keyword, $category_id , $orde
         $order = " ORDER BY r_datetime2 DESC";
         break;
     case "r_num":
-        $order = " ORDER BY write_num DESC, r_datetime DESC";
+        $order = " ORDER BY write_num DESC, r_datetime2 DESC";
         break;
     }
 
+    if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
+        $group = " GROUP BY c_review.c_review_id" .
+                ", c_review.title" .
+                ", c_review.release_date" .
+                ", c_review.manufacturer" .
+                ", c_review.author" .
+                ", c_review.c_review_category_id" .
+                ", c_review.image_small" .
+                ", c_review.image_medium" .
+                ", c_review.image_large" .
+                ", c_review.url" .
+                ", c_review.asin" .
+                ", c_review.list_price" .
+                ", c_review.retail_price" .
+                ", c_review.r_datetime";
+    } else {
+        $group = " GROUP BY c_review.c_review_id";
+    }
     $sql = "SELECT" .
             " c_review.*" .
             ", MAX(c_review_comment.r_datetime) as r_datetime2" .
             ", COUNT(c_review_comment.c_review_comment_id) AS write_num" .
         $from .
         $where .
-        " GROUP BY c_review.c_review_id" .
+        $group .
         $order;
 
     $lst = db_get_all_page($sql, $page, $page_size, $params);
