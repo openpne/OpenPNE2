@@ -25,7 +25,13 @@ function db_member_c_member4c_member_id($c_member_id, $is_secure = false, $with_
 
     $is_recurred = false;
 
-    $sql = 'SELECT * FROM c_member WHERE c_member_id = ?';
+    if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
+        $sql = "SELECT *,case when access_date = '0001-01-01 00:00:00 BC' THEN '0000-00-00 00:00:00' ELSE to_char(access_date,'YYYY-MM-DD HH24:MI:SS') END as access_date" .
+             " FROM c_member WHERE c_member_id = ?";
+    } else {
+        $sql = 'SELECT * FROM c_member WHERE c_member_id = ?';
+    }
+
     $params = array(intval($c_member_id));
     if (!$c_member = db_get_row($sql, $params))
         return array();
