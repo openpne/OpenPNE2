@@ -566,21 +566,46 @@ function p_h_diary_comment_list_c_diary_my_comment_list4c_member_id($c_member_id
     $firends[] = 0;
     $friend_ids = implode(',', $friends);
 
-    $sql = 'SELECT d.c_diary_id' .
-            ', d.subject' .
-            ', d.c_member_id' .
-            ', MAX(dc.r_datetime) AS r_datetime' .
-            ', COUNT(DISTINCT dc.c_diary_comment_id) AS num_comment' .
-        ' FROM c_diary AS d' .
-            ' INNER JOIN c_diary_comment AS dc USING (c_diary_id)' .
-            ', c_diary_comment AS mydc' .
-        ' WHERE mydc.c_member_id = ?' .
-            ' AND mydc.c_diary_id = d.c_diary_id' .
-            ' AND mydc.c_member_id <> d.c_member_id' .
-            ' AND d.c_member_id NOT IN (' . $except_ids . ')' .
-            ' AND (d.public_flag = \'public\' OR (d.public_flag = \'friend\' AND d.c_member_id IN (' . $friend_ids . ')))' .
-        ' GROUP BY dc.c_diary_id' .
-        ' ORDER BY r_datetime DESC';
+    if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
+        $sql = 'SELECT d.c_diary_id' .
+                ', d.subject' .
+                ', d.c_member_id' .
+                ', sub_diary_tbl.r_datetime' .
+                ', sub_diary_tbl.num_comment' .
+            ' FROM c_diary AS d' .
+                ', ( SELECT dc.c_diary_id' .
+                        ', MAX(dc.r_datetime) AS r_datetime' .
+                        ', COUNT(DISTINCT dc.c_diary_comment_id) AS num_comment' .
+                    ' FROM c_diary AS d' .
+                        ' INNER JOIN c_diary_comment AS dc USING (c_diary_id)' .
+                        ', c_diary_comment AS mydc' .
+                    ' WHERE mydc.c_member_id = ?' .
+                        ' AND mydc.c_diary_id = d.c_diary_id' .
+                        ' AND mydc.c_member_id <> d.c_member_id' .
+                        ' AND d.c_member_id NOT IN (' . $except_ids . ')' .
+                        ' AND (d.public_flag = \'public\' OR (d.public_flag = \'friend\' AND d.c_member_id IN (' . $friend_ids . ')))' .
+                    ' GROUP BY dc.c_diary_id' .
+                ') as sub_diary_tbl' .
+            ' WHERE' .
+                ' sub_diary_tbl.c_diary_id = d.c_diary_id' .
+            ' ORDER BY r_datetime DESC';
+    } else {
+        $sql = 'SELECT d.c_diary_id' .
+                ', d.subject' .
+                ', d.c_member_id' .
+                ', MAX(dc.r_datetime) AS r_datetime' .
+                ', COUNT(DISTINCT dc.c_diary_comment_id) AS num_comment' .
+            ' FROM c_diary AS d' .
+                ' INNER JOIN c_diary_comment AS dc USING (c_diary_id)' .
+                ', c_diary_comment AS mydc' .
+            ' WHERE mydc.c_member_id = ?' .
+                ' AND mydc.c_diary_id = d.c_diary_id' .
+                ' AND mydc.c_member_id <> d.c_member_id' .
+                ' AND d.c_member_id NOT IN (' . $except_ids . ')' .
+                ' AND (d.public_flag = \'public\' OR (d.public_flag = \'friend\' AND d.c_member_id IN (' . $friend_ids . ')))' .
+            ' GROUP BY dc.c_diary_id' .
+            ' ORDER BY r_datetime DESC';
+    }
 
     $params = array(intval($c_member_id));
     $list = db_get_all_page($sql, $page, $page_size, $params);
@@ -788,8 +813,14 @@ function p_h_diary_is_diary_written_list4date($year, $month, $c_member_id, $u = 
     include_once 'Date/Calc.php';
 
     $pf_cond = db_diary_public_flag_condition($c_member_id, $u);
-    $sql = 'SELECT DISTINCT DAYOFMONTH(r_datetime) FROM c_diary' .
-           ' WHERE c_member_id = ? AND r_datetime >= ? AND r_datetime < ?' . $pf_cond;
+    
+    if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
+        $sql = "SELECT DISTINCT date_part('day', r_datetime) FROM c_diary" .
+               " WHERE c_member_id = ? AND r_datetime >= ? AND r_datetime < ?" . $pf_cond;
+    } else {
+        $sql = 'SELECT DISTINCT DAYOFMONTH(r_datetime) FROM c_diary' .
+               ' WHERE c_member_id = ? AND r_datetime >= ? AND r_datetime < ?' . $pf_cond;
+    }
 
     $date_format = '%Y-%m-%d 00:00:00';
     $thismonth = Date_Calc::beginOfMonth($month, $year, $date_format);

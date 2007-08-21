@@ -170,4 +170,18 @@ function db_mysql_hint($hint)
     }
 }
 
+/**
+ * MySQL: ORDER BY RAND()
+ * PgSQL: ORDER BY RANDOM()
+ */
+function db_order_by_rand()
+{
+    if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
+        $order = ' ORDER BY RANDOM()';
+    } else {
+        $order = ' ORDER BY RAND()';
+    }
+    return $order;
+}
+
 ?>

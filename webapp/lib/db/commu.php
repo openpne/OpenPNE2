@@ -492,7 +492,7 @@ function db_commu_c_commu_member_list4c_commu_id($c_commu_id ,$limit = 9)
     $is_recurred = false;
     $sql = 'SELECT c_member.* FROM c_member, c_commu_member' .
             ' WHERE c_member.c_member_id = c_commu_member.c_member_id' .
-            ' AND c_commu_id = ? ORDER BY RAND()';
+            ' AND c_commu_id = ?' . db_order_by_rand();
     $params = array(intval($c_commu_id));
     $lst = db_get_all_limit($sql, 0, $limit, $params);
 
@@ -514,14 +514,25 @@ function db_commu_new_topic_comment4c_commu_id($c_commu_id, $limit, $event_flag 
 
     $is_recurred = false;
 
-    $sql = "SELECT cct.c_commu_topic_id , cct.name, MAX(cctc.r_datetime) as r_datetime , cct.c_commu_id " .
-            " , cctc.image_filename1, cctc.image_filename2, cctc.image_filename3 " .
-            " FROM c_commu_topic_comment as cctc , c_commu_topic as cct" .
-            " WHERE cctc.c_commu_topic_id = cct.c_commu_topic_id " .
-            " AND cct.event_flag = ?".
-            " AND cct.c_commu_id = ?".
-            " group by cct.c_commu_topic_id " .
-            " order by r_datetime desc ";
+    if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
+        $sql = "SELECT cct.c_commu_topic_id , cct.name, MAX(cctc.r_datetime) as r_datetime , cct.c_commu_id" .
+                " , max(cctc.image_filename1) as image_filename1, max(cctc.image_filename2) as image_filename2, max(cctc.image_filename3) as image_filename3 " .
+                " FROM c_commu_topic_comment as cctc , c_commu_topic as cct" .
+                " WHERE cctc.c_commu_topic_id = cct.c_commu_topic_id " .
+                " AND cct.event_flag = ?".
+                " AND cct.c_commu_id = ?".
+                " group by cct.c_commu_topic_id, cct.name, cct.c_commu_id " .
+                " order by r_datetime desc ";
+    } else {
+        $sql = "SELECT cct.c_commu_topic_id , cct.name, MAX(cctc.r_datetime) as r_datetime , cct.c_commu_id " .
+                " , cctc.image_filename1, cctc.image_filename2, cctc.image_filename3 " .
+                " FROM c_commu_topic_comment as cctc , c_commu_topic as cct" .
+                " WHERE cctc.c_commu_topic_id = cct.c_commu_topic_id " .
+                " AND cct.event_flag = ?".
+                " AND cct.c_commu_id = ?".
+                " group by cct.c_commu_topic_id " .
+                " order by r_datetime desc ";
+    }
     $params = array((bool)$event_flag, intval($c_commu_id));
     $list = db_get_all_limit($sql, 0, $limit, $params);
 
@@ -618,7 +629,7 @@ function db_commu_c_commu_list4c_member_id_2($c_member_id, $limit = 9)
         " FROM c_commu ,c_commu_member " .
         " WHERE c_commu_member.c_member_id = ?".
         " AND c_commu.c_commu_id =  c_commu_member.c_commu_id" .
-        " ORDER BY RAND()";
+        db_order_by_rand();
     $params = array(intval($c_member_id));
     $lst = db_get_all_limit($sql, 0, $limit, $params);
 
@@ -804,10 +815,27 @@ function db_commu_c_commu_topic_comment_list4c_member_id($c_member_id, $limit)
     $ids = implode(", ", $c_commu_id_list);
 
     $hint = db_mysql_hint('USE INDEX (r_datetime_c_commu_id)');
-    $sql = 'SELECT cct.c_commu_topic_id, cct.c_commu_id, MAX(cctc.r_datetime) as r_datetime, cct.c_member_id'.
-        ' FROM c_commu_topic as cct, c_commu_topic_comment as cctc'. $hint . ' WHERE cct.c_commu_id IN (' . $ids . ') AND cctc.c_commu_topic_id = cct.c_commu_topic_id'.
-        ' GROUP BY cctc.c_commu_topic_id'.
-        ' ORDER BY r_datetime DESC';
+    if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
+        $sql = 'SELECT sub_cct_tbl.c_commu_topic_id, cct.c_commu_id, sub_cct_tbl.r_datetime, cct.c_member_id'.
+            ' FROM (' .
+                    ' SELECT cct.c_commu_topic_id, MAX(cctc.r_datetime) as r_datetime' .
+                    ' FROM' .
+                        ' c_commu_topic as cct, c_commu_topic_comment as cctc'. $hint . 
+                    ' WHERE ' .
+                        ' cct.c_commu_id IN (' . $ids . ') AND cctc.c_commu_topic_id = cct.c_commu_topic_id'.
+                    ' GROUP BY cct.c_commu_topic_id' .
+                    ') as sub_cct_tbl, c_commu_topic_comment as cctc , c_commu_topic as cct' .
+            ' WHERE' .
+                ' cct.c_commu_topic_id=sub_cct_tbl.c_commu_topic_id' .
+                ' AND cctc.c_commu_topic_id = cct.c_commu_topic_id ' .
+                ' AND cctc.r_datetime=sub_cct_tbl.r_datetime' .
+            ' ORDER BY r_datetime DESC';
+    } else {
+        $sql = 'SELECT cct.c_commu_topic_id, cct.c_commu_id, MAX(cctc.r_datetime) as r_datetime, cct.c_member_id'.
+            ' FROM c_commu_topic as cct, c_commu_topic_comment as cctc'. $hint . ' WHERE cct.c_commu_id IN (' . $ids . ') AND cctc.c_commu_topic_id = cct.c_commu_topic_id'.
+            ' GROUP BY cctc.c_commu_topic_id'.
+            ' ORDER BY r_datetime DESC';
+    }
     $c_commu_topic_list = db_get_all_limit($sql, 0, $limit);
 
     foreach ($c_commu_topic_list as $key => $value) {
@@ -850,10 +878,27 @@ function db_commu_c_commu_topic_comment_list4c_member_id_2($c_member_id, $limit,
     $ids = implode(", ", $c_commu_id_list);
 
     $hint = db_mysql_hint('USE INDEX (r_datetime_c_commu_id)');
-    $sql = 'SELECT cct.c_commu_topic_id, cct.c_commu_id, MAX(cctc.r_datetime) as r_datetime, cct.c_member_id'.
-        ' FROM c_commu_topic as cct, c_commu_topic_comment as cctc'. $hint . ' WHERE cct.c_commu_id IN (' . $ids . ') AND cctc.c_commu_topic_id = cct.c_commu_topic_id'.
-        ' GROUP BY cctc.c_commu_topic_id'.
-        ' ORDER BY r_datetime DESC';
+    if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
+        $sql = 'SELECT sub_cct_tbl.c_commu_topic_id, cct.c_commu_id, sub_cct_tbl.r_datetime, cct.c_member_id'.
+            ' FROM (' .
+                    ' SELECT cct.c_commu_topic_id, MAX(cctc.r_datetime) as r_datetime' .
+                    ' FROM' .
+                        ' c_commu_topic as cct, c_commu_topic_comment as cctc'. $hint . 
+                    ' WHERE ' .
+                        ' cct.c_commu_id IN (' . $ids . ') AND cctc.c_commu_topic_id = cct.c_commu_topic_id'.
+                    ' GROUP BY cct.c_commu_topic_id' .
+                    ') as sub_cct_tbl, c_commu_topic_comment as cctc , c_commu_topic as cct' .
+            ' WHERE' .
+                ' cct.c_commu_topic_id=sub_cct_tbl.c_commu_topic_id' .
+                ' AND cctc.c_commu_topic_id = cct.c_commu_topic_id ' .
+                ' AND cctc.r_datetime=sub_cct_tbl.r_datetime' .
+            ' ORDER BY r_datetime DESC';
+    } else {
+        $sql = 'SELECT cct.c_commu_topic_id, cct.c_commu_id, MAX(cctc.r_datetime) as r_datetime, cct.c_member_id'.
+            ' FROM c_commu_topic as cct, c_commu_topic_comment as cctc'. $hint . ' WHERE cct.c_commu_id IN (' . $ids . ') AND cctc.c_commu_topic_id = cct.c_commu_topic_id'.
+            ' GROUP BY cctc.c_commu_topic_id'.
+            ' ORDER BY r_datetime DESC';
+    }
     $c_commu_topic_list = db_get_all_limit($sql, ($page-1)*$limit, $limit);
 
     foreach ($c_commu_topic_list as $key => $value) {
@@ -1172,9 +1217,14 @@ function db_commu_c_commu_list_lastupdate4c_member_id($c_member_id, $limit)
 
     $is_recurred = false;
 
-    $sql = 'SELECT DISTINCT c.* FROM c_commu_member AS cm, c_commu AS c' .
-            ' WHERE cm.c_member_id = ? AND c.c_commu_id = cm.c_commu_id' .
-            ' ORDER BY RAND()';
+    if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
+        $sql = 'SELECT DISTINCT c.*, RANDOM() FROM c_commu_member AS cm, c_commu AS c' .
+                ' WHERE cm.c_member_id = ? AND c.c_commu_id = cm.c_commu_id';
+    } else {
+        $sql = 'SELECT DISTINCT c.* FROM c_commu_member AS cm, c_commu AS c' .
+                ' WHERE cm.c_member_id = ? AND c.c_commu_id = cm.c_commu_id';
+    }
+    $sql .= db_order_by_rand();
     $params = array(intval($c_member_id));
     $c_commu_list = db_get_all_limit($sql, 0, $limit, $params);
 
@@ -1386,7 +1436,7 @@ function db_commu_c_commu_member_list_random4c_commu_id($c_commu_id, $limit)
     $sql .= "FROM c_member AS cm , c_commu_member AS ccm ";
     $sql .= "WHERE ccm.c_commu_id = ?" .
             " AND ccm.c_member_id = cm.c_member_id";
-    $sql .= " ORDER BY RAND()";
+    $sql .= db_order_by_rand();
     $params = array(intval($c_commu_id));
     $c_commu_member_list = db_get_all_limit($sql, 0, $limit, $params);
 
@@ -1457,7 +1507,7 @@ function db_commu_c_friend_list_random4c_member_id4c_commu_id($c_member_id, $c_c
     $result = implode(',', array_map('intval', $result));
     $sql = 'SELECT c_member_id, nickname FROM c_member' .
             ' WHERE c_member_id IN ( '. $result . ') ' .
-            ' ORDER BY RAND()';
+            db_order_by_rand();
     return db_get_all_limit($sql, 0, $limit);
 }
 
@@ -1687,12 +1737,25 @@ function db_commu_search_c_commu4c_commu_category(
     case 'count':
         $from  = ' FROM c_commu, c_commu_member';
         $order = ' ORDER BY count_commu_member DESC';
-        $group = ' GROUP BY c_commu_member.c_commu_id';
-        $sql = $select . ', COUNT(c_commu_member.c_member_id) AS count_commu_member' .
-            $from .
-            $where . ' AND c_commu_member.c_commu_id = c_commu.c_commu_id' .
-            $group .
-            $order;
+        if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
+            $sub_tbl = ' (' .
+                            'SELECT c_commu_member.c_commu_id, count(c_commu_member.c_commu_member_id) as count_commu_member' .
+                            $from .
+                            $where . ' AND c_commu_member.c_commu_id = c_commu.c_commu_id' .
+                            ' GROUP BY c_commu_member.c_commu_id' .
+                        ') as sub_commu_tbl';
+            $sql = $select .
+                    ' FROM' . $sub_tbl . ', c_commu' .
+                    ' WHERE c_commu.c_commu_id = sub_commu_tbl.c_commu_id' .
+                    $order;
+        } else {
+            $group = ' GROUP BY c_commu_member.c_commu_id';
+            $sql = $select . ', COUNT(c_commu_member.c_member_id) AS count_commu_member' .
+                $from .
+                $where . ' AND c_commu_member.c_commu_id = c_commu.c_commu_id' .
+                $group .
+                $order;
+        }
         break;
     }
 
@@ -1796,13 +1859,23 @@ function db_commu_is_c_event_member($c_commu_topic_id, $c_member_id)
 
 function db_commu_c_topic4c_commu_topic_id_2($c_commu_topic_id)
 {
-    $sql = "SELECT cct.*, cctc.*, cm.nickname, cpp.pref" .
-        " FROM c_commu_topic as cct" .
-        " LEFT JOIN c_commu_topic_comment as cctc ON cct.c_commu_topic_id = cctc.c_commu_topic_id" .
-        " LEFT JOIN c_member as cm ON cct.c_member_id = cm.c_member_id" .
-        " LEFT JOIN c_profile_pref as cpp ON cct.open_pref_id = cpp.c_profile_pref_id" .
-        " WHERE cct.c_commu_topic_id = ?".
-            " AND cctc.number = 0";
+    if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
+        $sql = "SELECT cct.*, cctc.*, cm.nickname, cpp.pref, case when cct.invite_period = '0001-01-01 BC' THEN '0000-00-00' ELSE to_char(cct.invite_period,'YYYY-MM-DD') END as invite_period" .
+            " FROM c_commu_topic as cct" .
+            " LEFT JOIN c_commu_topic_comment as cctc ON cct.c_commu_topic_id = cctc.c_commu_topic_id" .
+            " LEFT JOIN c_member as cm ON cct.c_member_id = cm.c_member_id" .
+            " LEFT JOIN c_profile_pref as cpp ON cct.open_pref_id = cpp.c_profile_pref_id" .
+            " WHERE cct.c_commu_topic_id = ?".
+                " AND cctc.number = 0";
+    } else {
+        $sql = "SELECT cct.*, cctc.*, cm.nickname, cpp.pref" .
+            " FROM c_commu_topic as cct" .
+            " LEFT JOIN c_commu_topic_comment as cctc ON cct.c_commu_topic_id = cctc.c_commu_topic_id" .
+            " LEFT JOIN c_member as cm ON cct.c_member_id = cm.c_member_id" .
+            " LEFT JOIN c_profile_pref as cpp ON cct.open_pref_id = cpp.c_profile_pref_id" .
+            " WHERE cct.c_commu_topic_id = ?".
+                " AND cctc.number = 0";
+    }
     $params = array(intval($c_commu_topic_id));
     $lst = db_get_row($sql, $params);
 
@@ -2403,13 +2476,27 @@ function db_commu_update_c_commu_topic($c_commu_topic_id, $topic)
         'r_datetime' => db_now(),
         'r_date' => db_now(),
     );
+    if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
+        $open_date = '0000-01-01';
+        $invite_period = '0000-01-01';
+        if (isset($topic['open_date']) && $topic['open_date'] != '') {
+            $open_date = $topic['open_date'];
+        }
+        
+        if (isset($topic['invite_period']) && $topic['invite_period'] != '') {
+            $invite_period = $topic['invite_period'];
+        }
+    } else {
+        $open_date = $topic['open_date'];
+        $invete_period = $topic['invite_period'];
+    }
     if ($data['event_flag']) {
         $data += array(
-            'open_date'         => $topic['open_date'],
+            'open_date'         => $open_date,
             'open_date_comment' => $topic['open_date_comment'],
             'open_pref_id'      => intval($topic['open_pref_id']),
             'open_pref_comment' => $topic['open_pref_comment'],
-            'invite_period'     => $topic['invite_period'],
+            'invite_period'     => $invite_period,
         );
     }
     $where = array('c_commu_topic_id' => intval($c_commu_topic_id));
@@ -2476,13 +2563,27 @@ function db_commu_insert_c_commu_topic($topic)
         'r_datetime'  => db_now(),
         'r_date'      => db_now(),
     );
+    if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
+        $open_date = '0000-01-01';
+        $invite_period = '0000-01-01';
+        if (isset($topic['open_date']) && $topic['open_date'] != '') {
+            $open_date = $topic['open_date'];
+        }
+        
+        if (isset($topic['invite_period']) && $topic['invite_period'] != '') {
+            $invite_period = $topic['invite_period'];
+        }
+    } else {
+        $open_date = $topic['open_date'];
+        $invete_period = $topic['invite_period'];
+    }
     if ($data['event_flag']) {
         $data += array(
-            'open_date'         => $topic['open_date'],
+            'open_date'         => $open_date,
             'open_date_comment' => $topic['open_date_comment'],
             'open_pref_id'      => intval($topic['open_pref_id']),
             'open_pref_comment' => $topic['open_pref_comment'],
-            'invite_period'     => $topic['invite_period'],
+            'invite_period'     => $invite_period,
         );
     }
     return db_insert('c_commu_topic', $data);
@@ -2558,10 +2659,17 @@ function db_commu_delete_c_event_member($c_commu_topic_id, $c_member_id)
  */
 function db_commu_is_event_join_date($c_commu_topic_id)
 {
-    $sql = 'SELECT c_commu_topic_id FROM c_commu_topic'
-         . ' WHERE c_commu_topic_id = ?'
-         . ' AND (open_date >= ? OR open_date = \'0000-00-00\')'
-         . ' AND (invite_period >= ? OR invite_period = \'0000-00-00\')';
+    if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
+        $sql = 'SELECT c_commu_topic_id FROM c_commu_topic'
+             . ' WHERE c_commu_topic_id = ?'
+             . ' AND (open_date >= ? OR open_date = \'0000-01-01\')'
+             . ' AND (invite_period >= ? OR invite_period = \'0000-01-01\')';
+    } else {
+        $sql = 'SELECT c_commu_topic_id FROM c_commu_topic'
+             . ' WHERE c_commu_topic_id = ?'
+             . ' AND (open_date >= ? OR open_date = \'0000-00-00\')'
+             . ' AND (invite_period >= ? OR invite_period = \'0000-00-00\')';
+    }
     $now = date('Y-m-d');
     $params = array(intval($c_commu_topic_id), $now, $now);
     return (bool)db_get_row($sql, $params);
@@ -2793,13 +2901,30 @@ function db_commu_search_c_commu_topic(
             $type = 'all',
             $c_commu_id = 0)
 {
-    $select = 'SELECT c.name AS commu_name, c.image_filename AS commu_image'
-            . ', ct.*, MAX(ctc.r_datetime) AS max_datetime';
+    if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
+        $select = 'SELECT distinct on (ct.c_commu_topic_id) c.name AS commu_name, c.image_filename AS commu_image'
+                . ', ct.*, ctc2.max_datetime';
+    } else {
+        $select = 'SELECT c.name AS commu_name, c.image_filename AS commu_image'
+                . ', ct.*, MAX(ctc.r_datetime) AS max_datetime';
+    }
+
     $from = ' FROM c_commu AS c, c_commu_topic AS ct, c_commu_topic_comment AS ctc';
+    if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
+        $from .= ', (SELECT c_commu_topic_id, max(r_datetime) as max_datetime' .
+                    ' FROM c_commu_topic_comment' .
+                    ' GROUP BY c_commu_topic_id' .
+                    ') AS ctc2';
+    }
 
     $params = array();
     $where = ' WHERE ct.c_commu_topic_id = ctc.c_commu_topic_id'
            . ' AND c.c_commu_id = ct.c_commu_id';
+
+    if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
+        $where .= ' AND ct.c_commu_topic_id = ctc2.c_commu_topic_id';
+    }
+
     if ($c_commu_id) {
         $where .= ' AND ct.c_commu_id = ?';
         $params[] = $c_commu_id;
@@ -2830,7 +2955,11 @@ function db_commu_search_c_commu_topic(
     $group = ' GROUP BY ct.c_commu_topic_id';
     $order = ' ORDER BY max_datetime DESC';
 
-    $sql = $select . $from . $where . $group . $order;
+    if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
+        $sql = "SELECT sub_tbl.* FROM (" . $select . $from . $where . ") as sub_tbl " . $order;
+    } else {
+        $sql = $select . $from . $where . $group . $order;
+    }
     $list = db_get_all_page($sql, $page, $page_size, $params);
 
     foreach ($list as $key => $value) {
