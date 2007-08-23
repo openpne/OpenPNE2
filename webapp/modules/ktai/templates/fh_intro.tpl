@@ -48,16 +48,16 @@
 ({if $is_prev || $is_next})
 <hr color="#b3ceef">
 <center>
-({if $is_prev})<a href="({t_url m=ktai a=page_fh_intro})&amp;target_c_member_id=({$requests.target_c_member_id})&amp;page=({$page-1})&amp;({$tail})" accesskey="4">&#xE6E5;前を表示</a>({/if})
+({if $is_prev})<a href="({t_url m=ktai a=page_fh_intro})&amp;target_c_member_id=({$requests.target_c_member_id})&amp;page=({$page-1})&amp;({$tail})" accesskey="4">%%i128%%前を表示</a>({/if})
 ({if $is_prev && $is_next})&nbsp;({/if})
-({if $is_next})<a href="({t_url m=ktai a=page_fh_intro})&amp;target_c_member_id=({$requests.target_c_member_id})&amp;page=({$page+1})&amp;({$tail})" accesskey="6">&#xE6E7;次を表示</a>({/if})
+({if $is_next})<a href="({t_url m=ktai a=page_fh_intro})&amp;target_c_member_id=({$requests.target_c_member_id})&amp;page=({$page+1})&amp;({$tail})" accesskey="6">%%i130%%次を表示</a>({/if})
 <br>
 </center>
 ({/if})
 
 <hr color="#0d6ddf">
 ({if $type=="f"})
-&#xE6DA;<a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$target_member.c_member_id})&amp;({$tail})">({$target_member.nickname})さんのﾄｯﾌﾟ</a><br>
+%%i117%%<a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$target_member.c_member_id})&amp;({$tail})">({$target_member.nickname})さんのﾄｯﾌﾟ</a><br>
 ({/if})
 
 ({$inc_ktai_footer|smarty:nodefaults})

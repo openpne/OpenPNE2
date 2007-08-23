@@ -18,6 +18,6 @@
 </form>
 </center>
 <br>
-&#xE663;<a href="({t_url m=ktai a=page_o_login})">すでに登録済みの方はこちら</a>
+%%i38%%<a href="({t_url m=ktai a=page_o_login})">すでに登録済みの方はこちら</a>
 
 ({$inc_ktai_footer|smarty:nodefaults})

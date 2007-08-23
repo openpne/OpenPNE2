@@ -15,7 +15,7 @@
 </table>
 <br>
 <center>
-&#xE730;このﾍﾟｰｼﾞをﾌﾞｯｸﾏｰｸしてください&#xE730;<br>
+%%i1037%%このﾍﾟｰｼﾞをﾌﾞｯｸﾏｰｸしてください%%i1037%%<br>
 ({if $msg})
 <br>
 <font color="#ff0000">({$msg})</font><br>
@@ -23,7 +23,7 @@
 </center>
 <br>
 <table width="100%"><tr><td bgcolor="#0d6ddf">
-&#xE688;<font color="#eeeeee">かんたんﾛｸﾞｲﾝ</font><br>
+%%i75%%<font color="#eeeeee">かんたんﾛｸﾞｲﾝ</font><br>
 </td></tr>
 <tr><td bgcolor="#e0eaef">
 <br>
@@ -42,7 +42,7 @@
 <br>
 
 <table width="100%"><tr><td bgcolor="#0d6ddf">
-<font color="#eeeeee">&#xE6D9;ﾊﾟｽﾜｰﾄﾞﾛｸﾞｲﾝ</font><br>
+<font color="#eeeeee">%%i116%%ﾊﾟｽﾜｰﾄﾞﾛｸﾞｲﾝ</font><br>
 </td></tr>
 <tr><td bgcolor="#e0eaef">
 ({t_form m=ktai a=do_o_login})
@@ -84,7 +84,7 @@
 
 新規登録するには以下のﾘﾝｸから、本文を入力せずにﾒｰﾙを送信してください。<br>
 <br>
-<a href="mailto:({$smarty.const.MAIL_ADDRESS_PREFIX})get@({$smarty.const.MAIL_SERVER_DOMAIN})">&#xE6CF;ﾒｰﾙで登録!</a><br>
+<a href="mailto:({$smarty.const.MAIL_ADDRESS_PREFIX})get@({$smarty.const.MAIL_SERVER_DOMAIN})">%%i106%%ﾒｰﾙで登録!</a><br>
 <br>
 ※かならず利用規約に同意してから登録をおこなってください。<br>
 

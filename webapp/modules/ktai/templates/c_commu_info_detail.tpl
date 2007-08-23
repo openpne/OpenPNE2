@@ -50,8 +50,8 @@
 ({$c_commu.info|t_url2a_ktai})<br>
 <br>
 <hr color="#0d6ddf">
-&#xE6DA;<a href="({t_url m=ktai a=page_c_home})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">ｺﾐｭﾆﾃｨに戻る</a><br>
+%%i117%%<a href="({t_url m=ktai a=page_c_home})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">ｺﾐｭﾆﾃｨに戻る</a><br>
 ({if $c_commu.c_member_id_admin == $u})
-&#xE718;<a href="({t_url m=ktai a=page_c_edit})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">ｺﾐｭﾆﾃｨ設定を変更する</a><br>
+%%i1013%%<a href="({t_url m=ktai a=page_c_edit})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">ｺﾐｭﾆﾃｨ設定を変更する</a><br>
 ({/if})
 ({$inc_ktai_footer|smarty:nodefaults})
