@@ -8,7 +8,7 @@
 <hr color="#0d6ddf">
 総ｱｸｾｽ数: ({$c_ashiato_num})ｱｸｾｽ
 <hr color="#0d6ddf">
-&#xE698;最近のあしあと<br>
+%%i91%%最近のあしあと<br>
 <table width="100%">
 ({foreach from=$c_ashiato_list item=item})
 <tr><td bgcolor="({cycle values="#e0eaef,#ffffff"})">

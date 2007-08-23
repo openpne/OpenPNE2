@@ -16,7 +16,7 @@
 ﾗﾝｷﾝｸﾞ<br>
 </td></tr></table>
 
-&#xE6FA;
+%%i150%%
 ({if $kind == "ashiato"})
 昨日のｱｸｾｽ数が多かったﾒﾝﾊﾞｰのﾗﾝｷﾝｸﾞです。<br>
 ({elseif $kind == "friend"})
@@ -33,7 +33,7 @@
 ({if $rank == 1})
 ({foreach from=$list item=item})
 <tr><td bgcolor="({cycle values="#e0eaef,#ffffff"})">
-&#xE71A;<font color="#999966">第({$rank})位</font>
+%%i1015%%<font color="#999966">第({$rank})位</font>
 ({strip})
 ({if $kind == "ashiato" || $kind == "friend"})
 <a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})&amp;({$tail})">({$item.c_member.nickname})</a>さん
@@ -92,9 +92,9 @@
 ({/foreach})
 </table>
 
-&#xE71A;<a href="({t_url m=ktai a=page_h_ranking})&amp;kind=ashiato&amp;({$tail})">ｱｸｾｽ数No1</a><br>
-&#xE71A;<a href="({t_url m=ktai a=page_h_ranking})&amp;kind=friend&amp;({$tail})">({$WORD_MY_FRIEND_HALF})数No1</a><br>
-&#xE71A;<a href="({t_url m=ktai a=page_h_ranking})&amp;kind=com_member&amp;({$tail})">参加人数No1ｺﾐｭﾆﾃｨ</a><br>
-&#xE71A;<a href="({t_url m=ktai a=page_h_ranking})&amp;kind=com_comment&amp;({$tail})">盛り上がり度No1ｺﾐｭﾆﾃｨ</a><br>
+%%i1015%%<a href="({t_url m=ktai a=page_h_ranking})&amp;kind=ashiato&amp;({$tail})">ｱｸｾｽ数No1</a><br>
+%%i1015%%<a href="({t_url m=ktai a=page_h_ranking})&amp;kind=friend&amp;({$tail})">({$WORD_MY_FRIEND_HALF})数No1</a><br>
+%%i1015%%<a href="({t_url m=ktai a=page_h_ranking})&amp;kind=com_member&amp;({$tail})">参加人数No1ｺﾐｭﾆﾃｨ</a><br>
+%%i1015%%<a href="({t_url m=ktai a=page_h_ranking})&amp;kind=com_comment&amp;({$tail})">盛り上がり度No1ｺﾐｭﾆﾃｨ</a><br>
 
 ({$inc_ktai_footer|smarty:nodefaults})
