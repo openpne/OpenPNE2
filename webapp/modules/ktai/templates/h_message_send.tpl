@@ -28,6 +28,6 @@
 </center>
 </form>
 <hr color="#0d6ddf">
-&#xE697;<a href="({t_url m=ktai a=page_h_message_box})&amp;({$tail})">ﾒｯｾｰｼﾞﾎﾞｯｸｽ</a><br>
+%%i90%%<a href="({t_url m=ktai a=page_h_message_box})&amp;({$tail})">ﾒｯｾｰｼﾞﾎﾞｯｸｽ</a><br>
 
 ({$inc_ktai_footer|smarty:nodefaults})
