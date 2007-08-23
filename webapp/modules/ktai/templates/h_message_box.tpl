@@ -16,8 +16,8 @@
 ({capture name="pager"})
 ({if $is_prev_t || $is_next_t})
 <center>
-({if $is_prev_t})<a href="({t_url m=ktai a=page_h_message_box})&amp;box=trash&amp;page_t=({$page_t-1})&amp;({$tail})" accesskey="4">&#xE6E5;前を表示</a> ({/if})
-({if $is_next_t})<a href="({t_url m=ktai a=page_h_message_box})&amp;box=trash&amp;page_t=({$page_t+1})&amp;({$tail})" accesskey="6">&#xE6E7;次を表示</a>({/if})
+({if $is_prev_t})<a href="({t_url m=ktai a=page_h_message_box})&amp;box=trash&amp;page_t=({$page_t-1})&amp;({$tail})" accesskey="4">%%i128%%前を表示</a> ({/if})
+({if $is_next_t})<a href="({t_url m=ktai a=page_h_message_box})&amp;box=trash&amp;page_t=({$page_t+1})&amp;({$tail})" accesskey="6">%%i130%%次を表示</a>({/if})
 ({/if})
 </center>
 ({/capture})
@@ -48,8 +48,8 @@
 ({capture name="pager"})
 ({if $is_prev_r || $is_next_r})
 <center>
-({if $is_prev_r})<a href="({t_url m=ktai a=page_h_message_box})&amp;box=inbox&amp;page_r=({$page_r-1})({if $keyword})&amp;keyword=({$keyword})({/if})&amp;({$tail})" accesskey="4">&#xE6E5;前を表示</a> ({/if})
-({if $is_next_r})<a href="({t_url m=ktai a=page_h_message_box})&amp;box=inbox&amp;page_r=({$page_r+1})({if $keyword})&amp;keyword=({$keyword})({/if})&amp;({$tail})" accesskey="6">&#xE6E7;次を表示</a>({/if})
+({if $is_prev_r})<a href="({t_url m=ktai a=page_h_message_box})&amp;box=inbox&amp;page_r=({$page_r-1})({if $keyword})&amp;keyword=({$keyword})({/if})&amp;({$tail})" accesskey="4">%%i128%%前を表示</a> ({/if})
+({if $is_next_r})<a href="({t_url m=ktai a=page_h_message_box})&amp;box=inbox&amp;page_r=({$page_r+1})({if $keyword})&amp;keyword=({$keyword})({/if})&amp;({$tail})" accesskey="6">%%i130%%次を表示</a>({/if})
 ({/if})
 </center>
 ({/capture})
@@ -77,8 +77,8 @@
 ({capture name="pager"})
 ({if $is_prev_s || $is_next_s})
 <center>
-({if $is_prev_s})<a href="({t_url m=ktai a=page_h_message_box})&amp;box=outbox&amp;page_s=({$page_s-1})({if $keyword})&amp;keyword=({$keyword})({/if})&amp;({$tail})" accesskey="4">&#xE6E5;前を表示</a> ({/if})
-({if $is_next_s})<a href="({t_url m=ktai a=page_h_message_box})&amp;box=outbox&amp;page_s=({$page_s+1})({if $keyword})&amp;keyword=({$keyword})({/if})&amp;({$tail})" accesskey="6">&#xE6E7;次を表示</a>({/if})
+({if $is_prev_s})<a href="({t_url m=ktai a=page_h_message_box})&amp;box=outbox&amp;page_s=({$page_s-1})({if $keyword})&amp;keyword=({$keyword})({/if})&amp;({$tail})" accesskey="4">%%i128%%前を表示</a> ({/if})
+({if $is_next_s})<a href="({t_url m=ktai a=page_h_message_box})&amp;box=outbox&amp;page_s=({$page_s+1})({if $keyword})&amp;keyword=({$keyword})({/if})&amp;({$tail})" accesskey="6">%%i130%%次を表示</a>({/if})
 </center>
 ({/if})
 ({/capture})
@@ -130,5 +130,5 @@
 <a href="({t_url m=ktai a=page_h_message_box})&amp;box=inbox&amp;({$tail})">受信箱</a><br>
 <a href="({t_url m=ktai a=page_h_message_box})&amp;box=trash&amp;({$tail})">ごみ箱</a><br>
 ({/if})
-&#xE719;<a href="({t_url m=ktai a=page_h_message_send})&amp;({$tail})">ﾒｯｾｰｼﾞを書く</a><br>
+%%i1014%%<a href="({t_url m=ktai a=page_h_message_send})&amp;({$tail})">ﾒｯｾｰｼﾞを書く</a><br>
 ({$inc_ktai_footer|smarty:nodefaults})
