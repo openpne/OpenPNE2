@@ -19,15 +19,19 @@ class ktai_page_h_diary_list_friend extends OpenPNE_Action
         $page = $page + $direc;
         $page_size = 10;
         $this->set("page_size", $page_size);
+        $this->set("page", $page);
 
         //日付のリミットはとりあえず30
-        $lst = p_h_diary_list_friend_h_diary_list_friend4c_member_id($u, $page_size, $page, 30);
-        $this->set("h_diary_list_friend", $lst[0]);
-        $this->set("is_prev", $lst[1]);
-        $this->set("is_next", $lst[2]);
-        $this->set("total_num", $lst[3]);
+        $list = p_h_diary_list_friend_h_diary_list_friend4c_member_id($u, $page_size, $page, 30);
+        $this->set("h_diary_list_friend", $list[0]);
+        $this->set("is_prev", $list[1]);
+        $this->set("is_next", $list[2]);
+        $this->set("total_num", $list[3]);
 
-        $this->set("page", $page);
+        $pager = array();
+        $pager['start'] = ($page_size * ($page - 1)) + 1;
+        $pager['end'] = $pager['start'] + count($list[0]) - 1;
+        $this->set('pager', $pager);
 
         return 'success';
     }

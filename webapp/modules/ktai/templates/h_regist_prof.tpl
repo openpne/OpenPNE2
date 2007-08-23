@@ -1,27 +1,27 @@
 ({$inc_ktai_header|smarty:nodefaults})({strip})
-
-<center>({$SNS_NAME})登録</center>
-<hr>
-以下の項目を入力してください。<br>
-<br>
-
+<table width="100%"><tr><td align="center" bgcolor="#0d6ddf">
+<font color="#eeeeee"><a name="top">({$SNS_NAME})新規登録</a></font><br>
+</td></tr></table>
+以下の項目を入力して、登録を完了してください。<font color="#ff0000">*</font>の項目は必須です。
+<hr color="#0d6ddf">
 ({t_form m=ktai a=do_h_regist_prof})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
-
 ({capture name="nick"})
-<font color="red">*</font>ニックネーム<br>
+<font color="#999966">ﾆｯｸﾈｰﾑ：</font><font color="#ff0000">*</font><br>
 <input type="text" name="nickname"><br>
+<br>
 ({/capture})
 ({capture name="birth"})
-<font color="red">*</font>生まれた年<br>
+<font color="#999966">生まれた年：</font><font color="#ff0000">*</font><br>
 <input type="text" name="birth_year" size="4" maxlength="4" istyle="4" mode="numeric">年<br>
 <select name="public_flag_birth_year">
     ({foreach from=$public_flags key=key item=item})
     <option value="({$key})"({if $c_member.public_flag_birth_year == $key}) selected="selected"({/if})>({$item})
     ({/foreach})
 </select><br>
+<br>
 
-<font color="red">*</font>誕生日<br>
+<font color="#999966">誕生日：</font><font color="#ff0000">*</font><br>
 <select name="birth_month">
     <option value="" selected="selected">--
     ({foreach from=$month_list item=item})
@@ -62,10 +62,9 @@
 ({/if})
 
 ({if $profile.disp_regist})
-
-    ({if $profile.is_required})<font color="red">*</font>({/if})
-    ({$profile.caption})<br>
-
+    <font color="#999966">({$profile.caption})：</font>
+    ({if $profile.is_required})<font color="#ff0000">*</font>({/if})<br>
+    
     ({if $profile.form_type == 'text'})
         <input type="text" name="profile[({$profile.name})]" value="({$c_member.profile[$profile.name].value})">
     ({elseif $profile.form_type == 'textarea'})
@@ -110,20 +109,21 @@
 ({/if})
 
 <br>
-<font color="red">*</font>秘密の質問<br>
+<font color="#999966">秘密の質問：</font><font color="#ff0000">*</font><br>
 <select name="c_password_query_id">
     <option value="0">選択してください
     ({foreach from=$password_query_list key=key item=item})
     <option value="({$key})">({$item})
     ({/foreach})
 </select><br>
-
-<font color="red">*</font>秘密の質問の答え<br>
-<input type="text" name="password_query_answer" value=""><br>
-※パスワードを忘れた場合の確認に使用します。<br>
-
 <br>
+<font color="#999966">秘密の質問の答え：</font><font color="#ff0000">*</font><br>
+<input type="text" name="password_query_answer" value=""><br>
+<font color="#ff0000">※ﾊﾟｽﾜｰﾄﾞを忘れた場合の確認に使用します。</font>
+<hr color="#0d6ddf">
+<center>
 <input type="submit" value=" 登録 ">
+</center>
 </form>
 
 ({/strip})({$inc_ktai_footer|smarty:nodefaults})

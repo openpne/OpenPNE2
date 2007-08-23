@@ -22,7 +22,7 @@
 <input type="submit" value="検索">
 </form>
 <hr>
-カテゴリ別<br>
+ｶﾃｺﾞﾘ別<br>
 
 ({foreach from=$c_commu_category_parent_list item=ccpl})
 <hr>

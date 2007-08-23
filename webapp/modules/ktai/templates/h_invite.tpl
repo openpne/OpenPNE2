@@ -1,32 +1,33 @@
 ({$inc_ktai_header|smarty:nodefaults})
 
-<center>友人を招待する</center>
-<hr>
+<table width="100%"><tr><td align="center" bgcolor="#0d6ddf">
+<font color="#eeeeee"><a name="top">友人を招待</a></font><br>
+</td></tr></table>
 ({if $msg})
-<font color=red>({$msg})</font><br>
+<font color="#ff0000">({$msg})</font><br>
 <br>
 ({/if})
 
 ({if $smarty.const.OPENPNE_REGIST_FROM == $smarty.const.OPENPNE_REGIST_FROM_NONE})
 現在、新規登録を停止しています。
 ({else})
-({$smarty.const.SNS_NAME})に招待したい方のメールアドレスを記入してください。<br>
+({$smarty.const.SNS_NAME})に招待したい方のﾒｰﾙｱﾄﾞﾚｽを記入してください。<br>
 ({if $smarty.const.OPENPNE_REGIST_FROM == $smarty.const.OPENPNE_REGIST_FROM_PC})
-※携帯アドレスには招待を送ることができません。<br>
+※携帯ｱﾄﾞﾚｽには招待を送ることができません。<br>
 ({elseif $smarty.const.OPENPNE_REGIST_FROM == $smarty.const.OPENPNE_REGIST_FROM_KTAI})
-※PCアドレスには招待を送ることができません。<br>
+※PCｱﾄﾞﾚｽには招待を送ることができません。<br>
 ({/if})
 
 ({t_form m=ktai a=do_h_invite_insert_c_invite})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
-ﾒｰﾙｱﾄﾞﾚｽ<br>
+<font color="#999966">ﾒｰﾙｱﾄﾞﾚｽ：</font><br>
 <input type="text" name="mail_address" istyle="3" mode="alphabet" maxlength="100"><br>
-ﾒｯｾｰｼﾞ<br>
+<br>
+<font color="#999966">ﾒｯｾｰｼ：</font><br>
 <textarea name="body" cols="15"></textarea><br>
+<center>
 <input type="submit" value="送信">
+</center>
 </form>
 ({/if})
-
-<hr>
-
 ({$inc_ktai_footer|smarty:nodefaults})
