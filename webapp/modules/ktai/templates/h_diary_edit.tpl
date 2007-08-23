@@ -11,7 +11,7 @@
 ({/if})
 </td></tr></table>
 
-&#xE6CF;<a href="mailto:({$blog_address})">ﾒｰﾙで投稿</a><br>
+%%i106%%<a href="mailto:({$blog_address})">ﾒｰﾙで投稿</a><br>
 画像を添付すると写真付き日記になります。
 
 <hr color="#0d6ddf">
@@ -56,6 +56,6 @@
 ({/if})
 
 <hr color="#0d6ddf">
-&#xE697;<a href="({t_url m=ktai a=page_fh_diary_list})&amp;({$tail})">日記ﾘｽﾄ</a><br>
+%%i90%%<a href="({t_url m=ktai a=page_fh_diary_list})&amp;({$tail})">日記ﾘｽﾄ</a><br>
 
 ({$inc_ktai_footer|smarty:nodefaults})

@@ -53,6 +53,6 @@
 新しく登録する場合は登録画像を削除してください。<br>
 ({else})
 以下のｱﾄﾞﾚｽに写真を添付して送信してください。<br>
-&#xE681;<a href="mailto:({$mail_address})">ﾒｰﾙ送信</a><br>
+%%i68%%<a href="mailto:({$mail_address})">ﾒｰﾙ送信</a><br>
 ({/if})
 ({$inc_ktai_footer|smarty:nodefaults})

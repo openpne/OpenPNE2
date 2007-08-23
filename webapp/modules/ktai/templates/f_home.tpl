@@ -124,21 +124,21 @@
 <tr><td align="right" colspan="2">
 <font color="#0c5f0f">⇒</font><a href="({t_url m=ktai a=page_f_profile_detail})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">もっと見る</a>
 <hr color="#0d6ddf"></td></tr></table>
-&#xE6D3;<a href="({t_url m=ktai a=page_f_message_send})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">ﾒｯｾｰｼﾞを送る</a><br>
+%%i110%%<a href="({t_url m=ktai a=page_f_message_send})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">ﾒｯｾｰｼﾞを送る</a><br>
 ({if $relation.friend==0})
 ({if $relation.wait==0})
-&#xE6B1;<a href="({t_url m=ktai a=page_f_link_request})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">({$WORD_MY_FRIEND_HALF})に加える</a><br>
+%%i170%%<a href="({t_url m=ktai a=page_f_link_request})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">({$WORD_MY_FRIEND_HALF})に加える</a><br>
 ({/if})
 ({/if})
-&#xE6EC;<a href="({t_url m=ktai a=do_f_bookmark_add_insert_c_bookmark})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">お気に入りに追加</a><br>
-&#xE717;<a href="({t_url m=ktai a=page_fh_intro})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">紹介文を読む</a>
+%%i136%%<a href="({t_url m=ktai a=do_f_bookmark_add_insert_c_bookmark})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">お気に入りに追加</a><br>
+%%i1012%%<a href="({t_url m=ktai a=page_fh_intro})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">紹介文を読む</a>
 ({if $relation.friend})
  / <a href="({t_url m=ktai a=page_f_intro_edit})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">書く</a><br>
 ({/if})
 <br>
 <table width="100%">
 <tr><td bgcolor="#7ddadf">
-<a accesskey="1" name="a1" href="#a1">&#xE6E2;</a>新着日記<br>
+<a accesskey="1" name="a1" href="#a1">%%i125%%</a>新着日記<br>
 </td></tr>
 ({if $c_diary_list})
 ({foreach from=$c_diary_list item=c_diary})
@@ -157,7 +157,7 @@
 <br>
 <table width="100%">
 <tr><td bgcolor="#c49fff">
-<a accesskey="2" name="a2" href="#a2">&#xE6E3;</a>({$WORD_FRIEND_HALF})ﾘｽﾄ<br>
+<a accesskey="2" name="a2" href="#a2">%%i126%%</a>({$WORD_FRIEND_HALF})ﾘｽﾄ<br>
 </td></tr>
 ({foreach from=$c_friend_list item=c_friend})
 <tr><td bgcolor="({cycle values="#dcd1ef,#ffffff"})">
@@ -174,7 +174,7 @@
 <br>
 
 <table width="100%">
-<tr><td bgcolor="#7ddadf"><a accesskey="3" name="a3" href="#a3">&#xE6E4;</a>参加ｺﾐｭﾆﾃｨ<br>
+<tr><td bgcolor="#7ddadf"><a accesskey="3" name="a3" href="#a3">%%i127%%</a>参加ｺﾐｭﾆﾃｨ<br>
 </td></tr>
 ({foreach from=$c_commu_list item=c_commu})
 <tr><td bgcolor="({cycle values="#e0eaef,#ffffff"})">

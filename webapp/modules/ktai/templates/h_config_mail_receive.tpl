@@ -20,6 +20,6 @@
 </form>
 
 <hr color="#0d6ddf">
-&#xE6DA;<a href="({t_url m=ktai a=page_h_config})&amp;({$tail})">設定変更</a><br>
+%%i117%%<a href="({t_url m=ktai a=page_h_config})&amp;({$tail})">設定変更</a><br>
 
 ({$inc_ktai_footer|smarty:nodefaults})
