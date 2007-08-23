@@ -24,11 +24,11 @@ class ktai_page_h_bookmark_list extends OpenPNE_Action
         $this->set("is_next", $list[2]);
         $this->set('c_members_num', $list[3]);
         $this->set("page", $page);
-        $pager_index = array(
-            'displaying_first' => ($page - 1) * $page_size + 1,
-            'displaying_last' => ($page - 1) * $page_size + count($list[0]),
-        );
-        $this->set("pager_index", $pager_index);
+
+        $pager = array();
+        $pager['start'] = ($page_size * ($page - 1)) + 1;
+        $pager['end'] = $pager['start'] + count($list[0]) - 1;
+        $this->set('pager', $pager);
 
         return 'success';
     }

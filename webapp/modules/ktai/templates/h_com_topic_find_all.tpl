@@ -15,8 +15,12 @@
 
 ({if $is_prev || $is_next})
 <br>
-({if $is_prev})<a href="({t_url m=ktai a=page_h_com_topic_find_all})&amp;c_commu_id=({$c_commu_id})&amp;type=({$search_val_list.type})&amp;page=({$page-1})&amp;keyword=({$keyword|to_sjis|escape:url|smarty:nodefaults})&amp;({$tail})">前へ</a> ({/if})
-({if $is_next})<a href="({t_url m=ktai a=page_h_com_topic_find_all})&amp;c_commu_id=({$c_commu_id})&amp;type=({$search_val_list.type})&amp;page=({$page+1})&amp;keyword=({$keyword|to_sjis|escape:url|smarty:nodefaults})&amp;({$tail})">次へ</a>({/if})
+<center>
+({if $is_prev})<a href="({t_url m=ktai a=page_h_com_topic_find_all})&amp;c_commu_id=({$c_commu_id})&amp;type=({$search_val_list.type})&amp;page=({$page-1})&amp;keyword=({$keyword|to_sjis|escape:url|smarty:nodefaults})&amp;({$tail})" accesskey="4">&#xE6E5;前を表示</a>({/if})
+({if $is_prev && $is_next})&nbsp;({/if})
+({if $is_next})<a href="({t_url m=ktai a=page_h_com_topic_find_all})&amp;c_commu_id=({$c_commu_id})&amp;type=({$search_val_list.type})&amp;page=({$page+1})&amp;keyword=({$keyword|to_sjis|escape:url|smarty:nodefaults})&amp;({$tail})" accesskey="6">&#xE6E7;次を表示</a>({/if})
+<br>
+</center>
 ({/if})
 
 <hr>
@@ -27,8 +31,8 @@
 <input type="text" name="keyword" value="({$keyword})"><br>
 <select name="type">
 <option value="all"({if $requests.type == 'all'}) selected({/if})>すべて
-<option value="topic"({if $requests.type == 'topic'}) selected({/if})>トピック
-<option value="event"({if $requests.type == 'event'}) selected({/if})>イベント
+<option value="topic"({if $requests.type == 'topic'}) selected({/if})>ﾄﾋﾟｯｸ
+<option value="event"({if $requests.type == 'event'}) selected({/if})>ｲﾍﾞﾝﾄ
 </select><br>
 <input type="submit" value="検索">
 </form>

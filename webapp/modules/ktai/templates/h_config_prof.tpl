@@ -1,27 +1,35 @@
 ({$inc_ktai_header|smarty:nodefaults})({strip})
+<table width="100%"><tr><td align="center" bgcolor="#0d6ddf">
+<font color="#eeeeee"><a name="top">設定変更</a></font><br>
+</td></tr>
+<tr><td bgcolor="#dddddd" align="center">
+ﾌﾟﾛﾌｨｰﾙ変更<br>
+</td></tr></table>
 
-<center>ﾌﾟﾛﾌｨｰﾙ変更</center>
-<hr>
-<font color="red">*</font>は必須項目。<br>
+<font color="#ff0000">*</font>は必須項目。<br>
+
+<hr color="#0d6ddf">
 
 ({t_form m=ktai a=do_h_config_prof_update_c_member})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
 
 ({capture name="nick"})
-<font color="red">*</font>ﾆｯｸﾈｰﾑ<br>
+<font color="#ff0000">*</font>
+<font color="#999966">ﾆｯｸﾈｰﾑ：</font><br>
 <input type="text" name="nickname" value="({$c_member.nickname})"><br>
+<br>
 ({/capture})
-
 ({capture name="birth"})
-<font color="red">*</font>生まれた年<br>
+<font color="#ff0000">*</font><font color="#999966">生まれた年：</font><br>
 <input type="text" name="birth_year" istyle="4" mode="numeric" value="({if $c_member.birth_year})({$c_member.birth_year})({/if})" size="4" maxlength="4"><br>
 <select name="public_flag_birth_year">
     ({foreach from=$public_flags key=key item=item})
     <option value="({$key})"({if $c_member.public_flag_birth_year == $key}) selected="selected"({/if})>({$item})
     ({/foreach})
 </select><br>
+<br>
 
-<font color="red">*</font>誕生日<br>
+<font color="#ff0000">*</font><font color="#999966">誕生日：</font><br>
 <select name="birth_month">
     <option>--
     ({foreach from=$month item=item})
@@ -63,8 +71,8 @@
 
 ({if $profile.disp_config})
 
-    ({if $profile.is_required})<font color="red">*</font>({/if})
-    ({$profile.caption})<br>
+    ({if $profile.is_required})<font color="#ff0000">*</font>({/if})
+    <font color="#999966">({$profile.caption})：</font><br>
 
     ({if $profile.form_type == 'text'})
         <input type="text" name="profile[({$profile.name})]" value="({$c_member.profile[$profile.name].value})">
@@ -85,7 +93,7 @@
         ({/foreach})
     ({/if})
     ({if $profile.info})
-    <br><font color="red">({$profile.info})</font>
+    <br><font color="#999966">({$profile.info})</font>
     ({/if})
     <br>
 
@@ -102,7 +110,7 @@
     </select>
     <br>
     ({/if})
-
+	<br>
 ({/if})
 ({/foreach})
 
@@ -120,9 +128,9 @@
 ({/if})
 
 <br>
+<center>
 <input type="submit" value="変更する">
+</center>
 </form>
-
-<hr>
 
 ({/strip})({$inc_ktai_footer|smarty:nodefaults})

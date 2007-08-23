@@ -29,6 +29,7 @@ class ktai_page_c_topic_delete_confirm extends OpenPNE_Action
         //---
 
         $this->set('c_commu_id', $c_commu_id);
+        $this->set('c_commu_topic', $c_topic);
         $this->set('c_commu_topic_id', $c_commu_topic_id);
         return 'success';
     }

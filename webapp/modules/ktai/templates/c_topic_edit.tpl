@@ -1,27 +1,37 @@
 ({$inc_ktai_header|smarty:nodefaults})
 
-<center><font color="orange">ｺﾐｭﾆﾃｨ：({$c_commu.name})</font></center>
-<hr>
+<table width="100%"><tr><td align="center" bgcolor="#0d6ddf">
+<font color="#eeeeee"><a name="top">({$c_commu.name})</a></font><br>
+</td></tr>
+<tr><td bgcolor="#dddddd" align="center">
+ﾄﾋﾟｯｸの編集<br>
+</td></tr></table>
 
 ({t_form m=ktai a=do_c_topic_edit_update_c_commu_topic})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
 <input type="hidden" name="target_c_commu_topic_id" value="({$c_topic.c_commu_topic_id})">
-タイトル<br>
+<font color="#999966">ﾄﾋﾟｯｸ名：</font><br>
 <input type="text" name="title" value="({$c_topic.name})"><br>
-本文<br>
+<br>
+<font color="#999966">本文：</font><br>
 <textarea name="body">({$c_topic.body})</textarea><br>
-<input type="submit" value="編集">
+<hr color="#0d6ddf">
+<center>
+<input type="submit" value="ﾄﾋﾟｯｸを編集する">
+</center>
 </form>
 
-<hr>
-■ﾄﾋﾟｯｸ削除<br>
+<table width="100%"><tr><td align="center" bgcolor="#0d6ddf">
+<font color="#eeeeee"><a name="top">ﾄﾋﾟｯｸの削除</a></font><br>
+</td></tr></table>
+このﾄﾋﾟｯｸと書き込みを削除します。
+<hr color="#0d6ddf">
 ({t_form m=ktai a=page_c_topic_delete_confirm})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
 <input type="hidden" name="target_c_commu_topic_id" value="({$c_topic.c_commu_topic_id})">
-<input type="submit" value="削除">
+<center>
+<input type="submit" value="ﾄﾋﾟｯｸを削除する">
+</center>
 </form>
-
-<hr>
-<a href="({t_url m=ktai a=page_c_bbs})&amp;target_c_commu_topic_id=({$c_topic.c_commu_topic_id})&amp;({$tail})">ﾄﾋﾟｯｸに戻る</a><br>
 
 ({$inc_ktai_footer|smarty:nodefaults})
