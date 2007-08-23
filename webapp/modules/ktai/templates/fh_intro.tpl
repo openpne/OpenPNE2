@@ -57,7 +57,7 @@
 
 <hr color="#0d6ddf">
 ({if $type=="f"})
-%%i117%%<a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$target_member.c_member_id})&amp;({$tail})">({$target_member.nickname})さんのﾄｯﾌﾟ</a><br>
+%%i90%%<a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$target_member.c_member_id})&amp;({$tail})">({$target_member.nickname})さんのﾄｯﾌﾟ</a><br>
 ({/if})
 
 ({$inc_ktai_footer|smarty:nodefaults})

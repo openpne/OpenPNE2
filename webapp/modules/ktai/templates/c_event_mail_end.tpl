@@ -10,6 +10,6 @@
 ﾒｯｾｰｼﾞを送信しました。
 
 <hr color="#0d6ddf">
-%%i117%%<a href="({t_url m=ktai a=page_c_home})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">ｺﾐｭﾆﾃｨﾄｯﾌﾟ</a><br>
+%%i90%%<a href="({t_url m=ktai a=page_c_home})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">ｺﾐｭﾆﾃｨﾄｯﾌﾟ</a><br>
 
 ({$inc_ktai_footer|smarty:nodefaults})
