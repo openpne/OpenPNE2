@@ -33,9 +33,9 @@
 ({/if})
 <hr color="#0d6ddf">
 ({if $INC_NAVI_type=="f"})
-%%i117%%<a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">({$target_c_member.nickname})さんのﾄｯﾌﾟ</a><br>
+%%i90%%<a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">({$target_c_member.nickname})さんのﾄｯﾌﾟ</a><br>
 ({else})
-%%i170%%<a href="({t_url m=ktai a=page_h_manage_friend})&amp;({$tail})">({$WORD_MY_FRIEND_HALF})管理</a><br>
+%%i140%%<a href="({t_url m=ktai a=page_h_manage_friend})&amp;({$tail})">({$WORD_MY_FRIEND_HALF})管理</a><br>
 ({/if})
 
 ({$inc_ktai_footer|smarty:nodefaults})
