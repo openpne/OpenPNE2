@@ -4,13 +4,19 @@
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
+require_once(OPENPNE_WEBAPP_DIR .'/lib/OpenPNE/KtaiEmoji.php');
 function emoji_escape($str, $remove = false)
 {
     $result = '';
     for ($i = 0; $i < strlen($str); $i++) {
         $emoji = '';
         $c1 = ord($str[$i]);
-        if ($c1 == 0xF8 || $c1 == 0xF9) {
+        if ($GLOBALS['__Framework']['carrier'] == 's') {
+        	if ($c1 == 0xF7 || $c1 == 0xF9 || $c1 == 0xFB) {
+                $bin = substr($str, $i, 2);
+                $emoji = emoji_escape_sb($bin);
+            }
+        } elseif ($c1 == 0xF8 || $c1 == 0xF9) {
             $bin = substr($str, $i, 2);
             $emoji = emoji_escape_i($bin);
         } elseif (0xF3 <= $c1 && $c1 <= 0xF7) {
@@ -38,7 +44,9 @@ function emoji_escape_i($bin)
     $iemoji = '\xF8[\x9F-\xFC]|\xF9[\x40-\xFC]';
     if (preg_match('/'.$iemoji.'/', $bin)) {
         $unicode = mb_convert_encoding($bin, 'UCS2', 'SJIS-win');
-        return sprintf('&#x%02X%02X;', ord($unicode[0]), ord($unicode[1]));
+        $emoji_code = OpenPNE_KtaiEmoji::getInstance();
+        $code = $emoji_code->get_emoji_code4emoji(sprintf('&#x%02X%02X;', ord($unicode[0]), ord($unicode[1])), 'i');
+        return '%%'.$code.'%%';
     } else {
         return '';
     }
@@ -78,7 +86,59 @@ function emoji_escape_ez($bin)
     } else {
         return '';
     }
-    return sprintf('&#x%04X;', $unicode);
+    $emoji_code = OpenPNE_KtaiEmoji::getInstance();
+    $code = $emoji_code->get_emoji_code4emoji(sprintf('&#x%04X;', $unicode), 'e');
+    return '%%'.$code.'%%';
+}
+
+function emoji_escape_sb($bin)
+{
+    $sjis1 = ord($bin[0]);
+    $sjis2 = ord($bin[1]);
+    $web1 = $web2 = 0;
+    switch ($sjis1) {
+        case 0xF9:
+            if ($sjis2 >= 0x41 && $sjis2 <= 0x7E) {
+                $web1 = ord('G');
+                $web2 = $sjis2 - 0x20;
+            } elseif($sjis2 >= 0x80 && $sjis2 <= 0x9B) {
+                $web1 = ord('G');
+                $web2 = $sjis2 - 0x21;
+            } elseif ($sjis2 >= 0xA1 && $sjis2 <= 0xED) {
+                $web1 = ord('O');
+                $web2 = $sjis2 - 0x80;
+            }
+            break;
+        case 0xF7:
+            if ($sjis2 >= 0x41 && $sjis2 <= 0x7E) {
+                $web1 = ord('E');
+                $web2 = $sjis2 - 0x20;
+            } elseif ($sjis2 >= 0x80 && $sjis2 <= 0x9B) {
+                $web1 = ord('E');
+                $web2 = $sjis2 - 0x21;
+            } elseif ($sjis2 >= 0xA1 && $sjis2 <= 0xF3) {
+                $web1 = ord('F');
+                $web2 = $sjis2 - 0x80;
+            }
+            break;
+        case 0xFB:
+            if ($sjis2 >= 0x41 && $sjis2 <= 0x7E) {
+                $web1 = ord('P');
+                $web2 = $sjis2 - 0x20;
+            } elseif ($sjis2 >= 0x80 && $sjis2 <= 0x8D) {
+                $web1 = ord('P');
+                $web2 = $sjis2 - 0x21;
+            } elseif ($sjis2 >= 0xA1 && $sjis2 <= 0xD7) {
+                $web1 = ord('Q');
+                $web2 = $sjis2 - 0x80;
+            }
+            break;
+        default:
+        return '';
+    }
+    $emoji_code = OpenPNE_KtaiEmoji::getInstance();
+    $code = $emoji_code->get_emoji_code4emoji(pack('c5', 0x1b, 0x24, $web1, $web2, 0x0f), 's');
+    return '%%'.$code.'%%';
 }
 
 function emoji_unescape($str, $amp_escaped = false)
@@ -139,6 +199,39 @@ function emoji_unescape4ez($unicode)
         }
     }
     return pack('H4', dechex($sjis));
+}
+
+function emoji_convert($str)
+{
+    $moji_pattern = '/%%([a-z][0-9]+)%%/i';
+    return preg_replace_callback($moji_pattern, '_emoji_convert', $str);
+}
+
+function _emoji_convert($matches)
+{
+    $o_code = $matches[1];
+    
+    switch ($GLOBALS['__Framework']['carrier']) {
+        case 'i':
+        $carrior = 'i';
+        break;
+        case 's':
+        $carrior = 's';
+        break;
+        case 'e':
+        $carrior = 'e';
+        break;
+        default:
+        return '〓';
+    }
+    
+    $emoji_code = OpenPNE_KtaiEmoji::getInstance();
+    $c_emoji = $emoji_code->convert_emoji($o_code, $carrior);
+    if ($c_emoji) {
+        return $c_emoji;
+    } else {
+        return '〓';
+    }
 }
 
 ?>
