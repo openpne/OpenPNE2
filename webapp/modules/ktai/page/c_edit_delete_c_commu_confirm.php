@@ -23,6 +23,9 @@ class ktai_page_c_edit_delete_c_commu_confirm extends OpenPNE_Action
 
         $this->set('inc_navi', fetch_inc_navi("c", $target_c_commu_id));
 
+        //コミュニティ
+        $c_commu = db_commu_c_commu4c_commu_id_k($target_c_commu_id);
+        $this->set("c_commu", $c_commu);
         $this->set("c_commu_id", $target_c_commu_id);
 
         return 'success';
