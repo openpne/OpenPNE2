@@ -539,7 +539,7 @@ function db_friend_friend_list4c_member_id($c_member_id,$page_size,$page)
             $prev = true;
         }
     }
-    return array($c_friend_list, $prev, $next);
+    return array($c_friend_list, $prev, $next, $total_num);
 }
 
 /**

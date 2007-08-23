@@ -1,6 +1,6 @@
 ({$inc_ktai_header|smarty:nodefaults})
 
-<center><font color="red">エラー</font></center>
+<center><font color="#ff0000">ｴﾗｰ</font></center>
 <hr>
 ({foreach from=$errors item=item})
 ({$item|smarty:nodefaults})<br>
