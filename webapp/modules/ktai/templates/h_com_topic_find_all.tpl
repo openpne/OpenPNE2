@@ -16,9 +16,9 @@
 ({if $is_prev || $is_next})
 <br>
 <center>
-({if $is_prev})<a href="({t_url m=ktai a=page_h_com_topic_find_all})&amp;c_commu_id=({$c_commu_id})&amp;type=({$search_val_list.type})&amp;page=({$page-1})&amp;keyword=({$keyword|to_sjis|escape:url|smarty:nodefaults})&amp;({$tail})" accesskey="4">&#xE6E5;前を表示</a>({/if})
+({if $is_prev})<a href="({t_url m=ktai a=page_h_com_topic_find_all})&amp;c_commu_id=({$c_commu_id})&amp;type=({$search_val_list.type})&amp;page=({$page-1})&amp;keyword=({$keyword|to_sjis|escape:url|smarty:nodefaults})&amp;({$tail})" accesskey="4">%%i128%%前を表示</a>({/if})
 ({if $is_prev && $is_next})&nbsp;({/if})
-({if $is_next})<a href="({t_url m=ktai a=page_h_com_topic_find_all})&amp;c_commu_id=({$c_commu_id})&amp;type=({$search_val_list.type})&amp;page=({$page+1})&amp;keyword=({$keyword|to_sjis|escape:url|smarty:nodefaults})&amp;({$tail})" accesskey="6">&#xE6E7;次を表示</a>({/if})
+({if $is_next})<a href="({t_url m=ktai a=page_h_com_topic_find_all})&amp;c_commu_id=({$c_commu_id})&amp;type=({$search_val_list.type})&amp;page=({$page+1})&amp;keyword=({$keyword|to_sjis|escape:url|smarty:nodefaults})&amp;({$tail})" accesskey="6">%%i130%%次を表示</a>({/if})
 <br>
 </center>
 ({/if})

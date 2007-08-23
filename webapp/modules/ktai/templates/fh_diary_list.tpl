@@ -8,7 +8,7 @@
 </td></tr></table>
 
 ({if $INC_NAVI_type=="h"})
-&#xE719;<a href="({t_url m=ktai a=page_h_diary_edit})&amp;({$tail})">日記を書く</a>
+%%i1014%%<a href="({t_url m=ktai a=page_h_diary_edit})&amp;({$tail})">日記を書く</a>
 <hr color="#0d6ddf">
 ({/if})
 
@@ -30,15 +30,15 @@
 </table>
 ({if $is_prev || $is_next})
 <center>
-({if $is_prev})<a href="({t_url m=ktai a=page_fh_diary_list})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;page=({$page-1})({if $keyword})&amp;keyword=({$keyword})({/if})&amp;({$tail})" accesskey="4">&#xE6E5;前を表示</a>({/if})
+({if $is_prev})<a href="({t_url m=ktai a=page_fh_diary_list})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;page=({$page-1})({if $keyword})&amp;keyword=({$keyword})({/if})&amp;({$tail})" accesskey="4">%%i128%%前を表示</a>({/if})
 ({if $is_prev && $is_next})&nbsp;({/if})
-({if $is_next})<a href="({t_url m=ktai a=page_fh_diary_list})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;page=({$page+1})({if $keyword})&amp;keyword=({$keyword})({/if})&amp;({$tail})" accesskey="6">&#xE6E7;次を表示</a>({/if})
+({if $is_next})<a href="({t_url m=ktai a=page_fh_diary_list})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;page=({$page+1})({if $keyword})&amp;keyword=({$keyword})({/if})&amp;({$tail})" accesskey="6">%%i130%%次を表示</a>({/if})
 <br>
 </center>
 ({/if})
 <hr color="#0d6ddf">
 ({if $INC_NAVI_type=="h"})
-&#xE719;<a href="({t_url m=ktai a=page_h_diary_edit})&amp;({$tail})">日記を書く</a><br>
+%%i1014%%<a href="({t_url m=ktai a=page_h_diary_edit})&amp;({$tail})">日記を書く</a><br>
 <table width="100%"><tr><td align="center" bgcolor="#0d6ddf">
 <font color="#eeeeee">日記検索</font><br>
 </td></tr>

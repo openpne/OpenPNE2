@@ -62,26 +62,26 @@
 </td>
 
 <td valign="top">
-&#xE719;<a href="({t_url m=ktai a=page_h_diary_edit})&amp;({$tail})">日記を書く</a><br>
-&#xE683;<a href="({t_url m=ktai a=page_fh_diary_list})&amp;({$tail})">日記を読む</a><br>
-&#xE6D3;<a href="({t_url m=ktai a=page_h_message_box})&amp;({$tail})">ﾒｯｾｰｼﾞ</a><br>
-&#xE698;<a href="({t_url m=ktai a=page_h_ashiato})&amp;({$tail})">あしあと</a><br>
-({if $smarty.const.IS_USER_INVITE && ($smarty.const.OPENPNE_REGIST_FROM != $smarty.const.OPENPNE_REGIST_FROM_NONE)})&#xE6B1;<a href="({t_url m=ktai a=page_h_invite})&amp;({$tail})">友人を誘う</a><br>({/if})
+%%i1014%%<a href="({t_url m=ktai a=page_h_diary_edit})&amp;({$tail})">日記を書く</a><br>
+%%i70%%<a href="({t_url m=ktai a=page_fh_diary_list})&amp;({$tail})">日記を読む</a><br>
+%%i110%%<a href="({t_url m=ktai a=page_h_message_box})&amp;({$tail})">ﾒｯｾｰｼﾞ</a><br>
+%%i91%%<a href="({t_url m=ktai a=page_h_ashiato})&amp;({$tail})">あしあと</a><br>
+({if $smarty.const.IS_USER_INVITE && ($smarty.const.OPENPNE_REGIST_FROM != $smarty.const.OPENPNE_REGIST_FROM_NONE)})%%i170%%<a href="({t_url m=ktai a=page_h_invite})&amp;({$tail})">友人を誘う</a><br>({/if})
 </td></tr>
 <tr><td colspan="2" align="center">
-&#xE6DC;<a href="#search">検索</a>/&#xE683;<a href="({t_url m=ktai a=page_h_diary_list_all})&amp;({$tail})">最新日記</a>/&#xE71A;<a href="({t_url m=ktai a=page_h_ranking})&amp;({$tail})">ﾗﾝｷﾝｸﾞ</a>
+%%i119%%<a href="#search">検索</a>/%%i70%%<a href="({t_url m=ktai a=page_h_diary_list_all})&amp;({$tail})">最新日記</a>/%%i1015%%<a href="({t_url m=ktai a=page_h_ranking})&amp;({$tail})">ﾗﾝｷﾝｸﾞ</a>
 <hr color="#0d6ddf" size="3"></td></tr>
 
 <tr>
 <td colspan="2">
-&#xE6B1;<a href="({t_url m=ktai a=page_fh_friend_list})&amp;({$tail})">({$WORD_MY_FRIEND_HALF})</a>(({$c_friend_count|default:'0'}))<br>
-&#xE67D;<a href="({t_url m=ktai a=page_fh_com_list})&amp;({$tail})">参加ｺﾐｭﾆﾃｨ</a>(({$fh_com_count_user|default:'0'}))<br>
-&#xE6EC;<a href="({t_url m=ktai a=page_h_bookmark_list})&amp;({$tail})">お気に入り</a>
+%%i170%%<a href="({t_url m=ktai a=page_fh_friend_list})&amp;({$tail})">({$WORD_MY_FRIEND_HALF})</a>(({$c_friend_count|default:'0'}))<br>
+%%i64%%<a href="({t_url m=ktai a=page_fh_com_list})&amp;({$tail})">参加ｺﾐｭﾆﾃｨ</a>(({$fh_com_count_user|default:'0'}))<br>
+%%i136%%<a href="({t_url m=ktai a=page_h_bookmark_list})&amp;({$tail})">お気に入り</a>
 <hr color="#0d6ddf" size="3"></td></tr>
 
 <tr>
 <td colspan="2"  align="center">
-&#xE6B1;<a href="({t_url m=ktai a=page_h_config_prof})&amp;({$tail})">ﾌﾟﾛﾌｨｰﾙ</a>/&#xE681;<a href="({t_url m=ktai a=page_h_config_image})&amp;({$tail})">写真</a>/&#xE717;<a href="({t_url m=ktai a=page_fh_intro})&amp;({$tail})">紹介文</a><br>
+%%i170%%<a href="({t_url m=ktai a=page_h_config_prof})&amp;({$tail})">ﾌﾟﾛﾌｨｰﾙ</a>/%%i68%%<a href="({t_url m=ktai a=page_h_config_image})&amp;({$tail})">写真</a>/%%i1012%%<a href="({t_url m=ktai a=page_fh_intro})&amp;({$tail})">紹介文</a><br>
 <hr color="#0d6ddf"></td></tr>
 </table>
 　
@@ -89,7 +89,7 @@
 
 <table width="100%">
 <tr><td bgcolor="#7ddadf">
-<a accesskey="1" name="a1" href="#a1">&#xE6E2;</a>({$WORD_FRIEND_HALF})最新日記<br>
+<a accesskey="1" name="a1" href="#a1">%%i125%%</a>({$WORD_FRIEND_HALF})最新日記<br>
 </td></tr>
 ({foreach from=$c_diary_friend_list item=item})
 <tr><td bgcolor="({cycle values="#e0eaef,#ffffff"})">
@@ -110,7 +110,7 @@
 
 <table width="100%">
 <tr><td bgcolor="#c49fff">
-<a accesskey="2" name="a2" href="#a2">&#xE6E3;</a>日記ｺﾒﾝﾄ記入履歴<br>
+<a accesskey="2" name="a2" href="#a2">%%i126%%</a>日記ｺﾒﾝﾄ記入履歴<br>
 </td></tr>
 ({foreach from=$c_diary_my_comment_list item=item})
 <tr><td bgcolor="({cycle values="#dcd1ef,#ffffff"})">
@@ -131,7 +131,7 @@
 
 <table width="100%">
 <tr><td bgcolor="#7ddadf">
-<a accesskey="3" name="a3" href="#a3">&#xE6E4;</a>ｺﾐｭﾆﾃｨ最新書き込み<br>
+<a accesskey="3" name="a3" href="#a3">%%i127%%</a>ｺﾐｭﾆﾃｨ最新書き込み<br>
 </td></tr>
 ({foreach from=$c_commu_topic_list item=item})
 <tr><td bgcolor="({cycle values="#e0eaef,#ffffff"})">
@@ -152,7 +152,7 @@
 
 <table width="100%">
 <tr><td bgcolor="#c49fff">
-<a name="search">&#xE6DC;検索</a><br>
+<a name="search">%%i119%%検索</a><br>
 </td></tr>
 <tr><td bgcolor="#dcd1ef">
 <a href="({t_url m=ktai a=page_h_friend_find_all})&amp;({$tail})">ﾒﾝﾊﾞｰ検索</a><br>
@@ -175,7 +175,7 @@
 <br>
 <table width="100%">
 <tr><td bgcolor="#7ddadf">
-&#xE6B1;ﾌﾟﾛﾌｨｰﾙ変更<br>
+%%i170%%ﾌﾟﾛﾌｨｰﾙ変更<br>
 </td></tr>
 <tr><td bgcolor="#e0eaef">
 <a href="({t_url m=ktai a=page_h_config_prof})&amp;({$tail})">ﾌﾟﾛﾌｨｰﾙ変更</a><br>
@@ -189,7 +189,7 @@
 <br>
 <table width="100%">
 <tr><td bgcolor="#c49fff">
-&#xE718;設定変更<br>
+%%i1013%%設定変更<br>
 </td></tr>
 <tr><td bgcolor="#dcd1ef">
 <a href="({t_url m=ktai a=page_h_config_mail})&amp;({$tail})">携帯ﾒｰﾙｱﾄﾞﾚｽ変更</a><br>

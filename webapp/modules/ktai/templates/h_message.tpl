@@ -42,28 +42,28 @@
 <center>
 <hr color="#b3ceef">
 ({if $prev_c_message_id})
-<a href="({t_url m=ktai a=page_h_message})&amp;target_c_message_id=({$prev_c_message_id})&amp;({$tail})" accesskey="4">&#xE6E5;前を表示</a>　
+<a href="({t_url m=ktai a=page_h_message})&amp;target_c_message_id=({$prev_c_message_id})&amp;({$tail})" accesskey="4">%%i128%%前を表示</a>　
 ({/if})
 ({if $next_c_message_id})
-<a href="({t_url m=ktai a=page_h_message})&amp;target_c_message_id=({$next_c_message_id})&amp;({$tail})" accesskey="6">&#xE6E7;次を表示</a>
+<a href="({t_url m=ktai a=page_h_message})&amp;target_c_message_id=({$next_c_message_id})&amp;({$tail})" accesskey="6">%%i130%%次を表示</a>
 ({/if})
 </center>
 ({/if})
 ({if $c_message.c_member_id_to==$u})
 ({if $c_message.is_deleted_to})
 <hr color="#0d6ddf">
-&#xE6F5;<a href="({t_url m=ktai a=do_h_message_update_c_message_is_deleted})&amp;c_message_id=({$c_message.c_message_id})&amp;({$tail})">元に戻す</a><br>
-&#xE675;<a href="({t_url m=ktai a=page_h_message_delete_confirm})&amp;c_message_id=({$c_message.c_message_id})&amp;({$tail})">削除する</a><br>
+%%i145%%<a href="({t_url m=ktai a=do_h_message_update_c_message_is_deleted})&amp;c_message_id=({$c_message.c_message_id})&amp;({$tail})">元に戻す</a><br>
+%%i56%%<a href="({t_url m=ktai a=page_h_message_delete_confirm})&amp;c_message_id=({$c_message.c_message_id})&amp;({$tail})">削除する</a><br>
 <hr color="#0d6ddf">
-&#xE697;<a href="({t_url m=ktai a=page_h_message_box})&amp;box=trash&amp;({$tail})">ごみ箱</a><br>
+%%i90%%<a href="({t_url m=ktai a=page_h_message_box})&amp;box=trash&amp;({$tail})">ごみ箱</a><br>
 ({else})
 <hr color="#0d6ddf">
-&#xE675;<a href="({t_url m=ktai a=page_h_message_trash_confirm})&amp;c_message_id=({$c_message.c_message_id})&amp;({$tail})">削除する</a><br>
+%%i56%%<a href="({t_url m=ktai a=page_h_message_trash_confirm})&amp;c_message_id=({$c_message.c_message_id})&amp;({$tail})">削除する</a><br>
 ({/if})
 
 ({if !$c_message.is_deleted_to})
 <table width="100%"><tr><td align="center" bgcolor="#0d6ddf">
-&#xE6CF;<font color="#eeeeee">返信を書く</font><br>
+%%i106%%<font color="#eeeeee">返信を書く</font><br>
 </td></tr></table>
 ({t_form m=ktai a=do_h_message_insert_message})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
@@ -79,20 +79,20 @@
 </center>
 </form>
 <hr color="#0d6ddf">
-&#xE697;<a href="({t_url m=ktai a=page_h_message_box})&amp;box=inbox&amp;({$tail})">受信箱</a><br>
+%%i90%%<a href="({t_url m=ktai a=page_h_message_box})&amp;box=inbox&amp;({$tail})">受信箱</a><br>
 ({/if})
 ({else})
 ({if $c_message.is_deleted_from})
 <hr color="#0d6ddf">
-&#xE6F5;<a href="({t_url m=ktai a=do_h_message_update_c_message_is_deleted})&amp;c_message_id=({$c_message.c_message_id})&amp;({$tail})">元に戻す</a><br>
-&#xE697;<a href="({t_url m=ktai a=page_h_message_delete_confirm})&amp;c_message_id=({$c_message.c_message_id})&amp;({$tail})">削除する</a><br>
+%%i145%%<a href="({t_url m=ktai a=do_h_message_update_c_message_is_deleted})&amp;c_message_id=({$c_message.c_message_id})&amp;({$tail})">元に戻す</a><br>
+%%i90%%<a href="({t_url m=ktai a=page_h_message_delete_confirm})&amp;c_message_id=({$c_message.c_message_id})&amp;({$tail})">削除する</a><br>
 <hr color="#0d6ddf">
-&#xE697;<a href="({t_url m=ktai a=page_h_message_box})&amp;box=trash&amp;({$tail})">ごみ箱</a><br>
+%%i90%%<a href="({t_url m=ktai a=page_h_message_box})&amp;box=trash&amp;({$tail})">ごみ箱</a><br>
 ({else})
 <hr color="#0d6ddf">
-&#xE697;<a href="({t_url m=ktai a=page_h_message_trash_confirm})&amp;c_message_id=({$c_message.c_message_id})&amp;({$tail})">削除する</a><br>
+%%i90%%<a href="({t_url m=ktai a=page_h_message_trash_confirm})&amp;c_message_id=({$c_message.c_message_id})&amp;({$tail})">削除する</a><br>
 <hr color="#0d6ddf">
-&#xE697;<a href="({t_url m=ktai a=page_h_message_box})&amp;box=outbox&amp;({$tail})">送信箱</a><br>
+%%i90%%<a href="({t_url m=ktai a=page_h_message_box})&amp;box=outbox&amp;({$tail})">送信箱</a><br>
 ({/if})
 ({/if})
 ({$inc_ktai_footer|smarty:nodefaults})
