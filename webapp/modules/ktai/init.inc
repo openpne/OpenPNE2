@@ -20,6 +20,15 @@ if (CHECK_KTAI_UA && !isKtaiUserAgent()) {
     openpne_redirect('pc');
 }
 
+$agent = new OpenPNE_KtaiUA();
+if ($agent->is_docomo()) {
+    $GLOBALS['__Framework']['carrier'] = 'i';
+} elseif ($agent->is_au()) {
+    $GLOBALS['__Framework']['carrier'] = 'e';
+} elseif ($agent->is_vodafone()) {
+    $GLOBALS['__Framework']['carrier'] = 's';
+}
+
 // 文字コード変換
 function ktai_convert_encoding($arr)
 {
