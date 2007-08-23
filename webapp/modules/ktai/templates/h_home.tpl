@@ -66,7 +66,7 @@
 %%i70%%<a href="({t_url m=ktai a=page_fh_diary_list})&amp;({$tail})">日記を読む</a><br>
 %%i110%%<a href="({t_url m=ktai a=page_h_message_box})&amp;({$tail})">ﾒｯｾｰｼﾞ</a><br>
 %%i91%%<a href="({t_url m=ktai a=page_h_ashiato})&amp;({$tail})">あしあと</a><br>
-({if $smarty.const.IS_USER_INVITE && ($smarty.const.OPENPNE_REGIST_FROM != $smarty.const.OPENPNE_REGIST_FROM_NONE)})%%i170%%<a href="({t_url m=ktai a=page_h_invite})&amp;({$tail})">友人を誘う</a><br>({/if})
+({if $smarty.const.IS_USER_INVITE && ($smarty.const.OPENPNE_REGIST_FROM != $smarty.const.OPENPNE_REGIST_FROM_NONE)})%%i140%%<a href="({t_url m=ktai a=page_h_invite})&amp;({$tail})">友人を誘う</a><br>({/if})
 </td></tr>
 <tr><td colspan="2" align="center">
 %%i119%%<a href="#search">検索</a>/%%i70%%<a href="({t_url m=ktai a=page_h_diary_list_all})&amp;({$tail})">最新日記</a>/%%i1015%%<a href="({t_url m=ktai a=page_h_ranking})&amp;({$tail})">ﾗﾝｷﾝｸﾞ</a>
@@ -74,14 +74,14 @@
 
 <tr>
 <td colspan="2">
-%%i170%%<a href="({t_url m=ktai a=page_fh_friend_list})&amp;({$tail})">({$WORD_MY_FRIEND_HALF})</a>(({$c_friend_count|default:'0'}))<br>
-%%i64%%<a href="({t_url m=ktai a=page_fh_com_list})&amp;({$tail})">参加ｺﾐｭﾆﾃｨ</a>(({$fh_com_count_user|default:'0'}))<br>
+%%i140%%<a href="({t_url m=ktai a=page_fh_friend_list})&amp;({$tail})">({$WORD_MY_FRIEND_HALF})</a>(({$c_friend_count|default:'0'}))<br>
+%%i155%%<a href="({t_url m=ktai a=page_fh_com_list})&amp;({$tail})">参加ｺﾐｭﾆﾃｨ</a>(({$fh_com_count_user|default:'0'}))<br>
 %%i136%%<a href="({t_url m=ktai a=page_h_bookmark_list})&amp;({$tail})">お気に入り</a>
 <hr color="#0d6ddf" size="3"></td></tr>
 
 <tr>
 <td colspan="2"  align="center">
-%%i170%%<a href="({t_url m=ktai a=page_h_config_prof})&amp;({$tail})">ﾌﾟﾛﾌｨｰﾙ</a>/%%i68%%<a href="({t_url m=ktai a=page_h_config_image})&amp;({$tail})">写真</a>/%%i1012%%<a href="({t_url m=ktai a=page_fh_intro})&amp;({$tail})">紹介文</a><br>
+%%i140%%<a href="({t_url m=ktai a=page_h_config_prof})&amp;({$tail})">ﾌﾟﾛﾌｨｰﾙ</a>/%%i68%%<a href="({t_url m=ktai a=page_h_config_image})&amp;({$tail})">写真</a>/%%i76%%<a href="({t_url m=ktai a=page_fh_intro})&amp;({$tail})">紹介文</a><br>
 <hr color="#0d6ddf"></td></tr>
 </table>
 　
@@ -169,7 +169,7 @@
 <br>
 <table width="100%">
 <tr><td bgcolor="#7ddadf">
-%%i170%%ﾌﾟﾛﾌｨｰﾙ変更<br>
+%%i140%%ﾌﾟﾛﾌｨｰﾙ変更<br>
 </td></tr>
 <tr><td bgcolor="#e0eaef">
 <a href="({t_url m=ktai a=page_h_config_prof})&amp;({$tail})">ﾌﾟﾛﾌｨｰﾙ変更</a><br>
@@ -183,7 +183,7 @@
 <br>
 <table width="100%">
 <tr><td bgcolor="#c49fff">
-%%i1013%%設定変更<br>
+%%i75%%設定変更<br>
 </td></tr>
 <tr><td bgcolor="#dcd1ef">
 <a href="({t_url m=ktai a=page_h_config_mail})&amp;({$tail})">携帯ﾒｰﾙｱﾄﾞﾚｽ変更</a><br>

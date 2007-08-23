@@ -7,7 +7,7 @@
 ({if $kind == "ashiato"})
 ｱｸｾｽ数
 ({elseif $kind == "friend"})
-({$WORD_MY_FRIEND_HALF})数<br>
+({$WORD_MY_FRIEND_HALF})数
 ({elseif $kind == "com_member"})
 ｺﾐｭﾆﾃｨ参加人数
 ({elseif $kind == "com_comment"})
