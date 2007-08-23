@@ -164,12 +164,6 @@
 <a href="({t_url m=ktai a=page_h_com_find_all})&amp;({$tail})">ｺﾐｭﾆﾃｨ検索</a><br>
 </td></tr>
 <tr><td bgcolor="#ffffff">
-<a href="({t_url m=ktai a=page_h_com_topic_find_all})&amp;type=topic&amp;({$tail})">ﾄﾋﾟｯｸ検索</a><br>
-</td></tr>
-<tr><td bgcolor="#dcd1ef">
-<a href="({t_url m=ktai a=page_h_com_topic_find_all})&amp;type=event&amp;({$tail})">ｲﾍﾞﾝﾄ検索</a><br>
-</td></tr>
-<tr><td bgcolor="#ffffff">
 <hr color="#bfa4ef">
 </td></tr></table>
 <br>
