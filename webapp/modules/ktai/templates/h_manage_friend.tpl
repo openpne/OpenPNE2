@@ -47,5 +47,5 @@
 </center>
 ({/if})
 <hr color="#0d6ddf">
-%%i170%%<a href="({t_url m=ktai a=page_fh_friend_list})&amp;({$tail})">({$WORD_MY_FRIEND_HALF})ﾘｽﾄ</a><br>
+%%i140%%<a href="({t_url m=ktai a=page_fh_friend_list})&amp;({$tail})">({$WORD_MY_FRIEND_HALF})ﾘｽﾄ</a><br>
 ({$inc_ktai_footer|smarty:nodefaults})
