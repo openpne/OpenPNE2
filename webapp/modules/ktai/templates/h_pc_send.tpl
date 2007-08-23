@@ -19,5 +19,5 @@ PCｱﾄﾞﾚｽ登録<br>
 </center>
 </form>
 <hr color="#0d6ddf">
-%%i117%%<a href="({t_url m=ktai a=page_h_config})&amp;({$tail})">設定変更</a><br>
+%%i90%%<a href="({t_url m=ktai a=page_h_config})&amp;({$tail})">設定変更</a><br>
 ({$inc_ktai_footer|smarty:nodefaults})

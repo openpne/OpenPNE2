@@ -35,8 +35,8 @@
 ｲﾍﾞﾝﾄへの参加者がいません。
 ({/if})
 <hr color="#0d6ddf">
-%%i117%%<a href="({t_url m=ktai a=page_c_bbs})&amp;target_c_commu_topic_id=({$c_commu_topic_id})&amp;({$tail})">ｲﾍﾞﾝﾄに戻る</a><br>
-%%i117%%<a href="({t_url m=ktai a=page_c_event_list})&amp;target_c_commu_id=({$c_commu_id})&amp;({$tail})">ｲﾍﾞﾝﾄﾘｽﾄに戻る</a><br>
-%%i117%%<a href="({t_url m=ktai a=page_c_home})&amp;target_c_commu_id=({$c_commu_id})&amp;({$tail})">ｺﾐｭﾆﾃｨに戻る</a><br>
+%%i90%%<a href="({t_url m=ktai a=page_c_bbs})&amp;target_c_commu_topic_id=({$c_commu_topic_id})&amp;({$tail})">ｲﾍﾞﾝﾄに戻る</a><br>
+%%i90%%<a href="({t_url m=ktai a=page_c_event_list})&amp;target_c_commu_id=({$c_commu_id})&amp;({$tail})">ｲﾍﾞﾝﾄﾘｽﾄに戻る</a><br>
+%%i90%%<a href="({t_url m=ktai a=page_c_home})&amp;target_c_commu_id=({$c_commu_id})&amp;({$tail})">ｺﾐｭﾆﾃｨに戻る</a><br>
 
 ({$inc_ktai_footer|smarty:nodefaults})
