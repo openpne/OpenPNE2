@@ -1,16 +1,17 @@
 ({$inc_ktai_header|smarty:nodefaults})
 
-<center>({$smarty.const.SNS_NAME})登録</center>
-<hr>
-<br>
-新規登録するには以下のリンクから本文をそのままにメール送信を行ってください。<br>
+<table width="100%"><tr><td align="center" bgcolor="#0d6ddf">
+<font color="#eeeeee"><a name="top">({$smarty.const.SNS_NAME})登録</a></font><br>
+</td></tr></table>
+新規登録するには以下のﾘﾝｸから本文をそのままにﾒｰﾙ送信を行ってください。<br>
+※かならず利用規約に同意してから登録をおこなってください。
+<hr color="#0d6ddf">
+<center>
+<a href="mailto:({$smarty.const.MAIL_ADDRESS_PREFIX})get@({$smarty.const.MAIL_SERVER_DOMAIN})?body=({$aff_id})">&#xE6CF;ﾒｰﾙで登録!</a><br>
+</center>
 
-<a href="mailto:({$smarty.const.MAIL_ADDRESS_PREFIX})get@({$smarty.const.MAIL_SERVER_DOMAIN})?body=({$aff_id})">◆メールで登録！◆</a><br>
-<br>
-※かならず利用規約に同意してから登録をおこなってください。<br>
+<hr color="#0d6ddf">
 ■<a href="({t_url m=ktai a=page_o_sns_kiyaku})">利用規約</a><br>
-■<a href="({t_url m=ktai a=page_o_sns_privacy})">プライバシーポリシー</a><br>
-
-<hr>
+■<a href="({t_url m=ktai a=page_o_sns_privacy})">ﾌﾟﾗｲﾊﾞｼｰﾎﾟﾘｼｰ</a><br>
 
 ({$inc_ktai_footer|smarty:nodefaults})

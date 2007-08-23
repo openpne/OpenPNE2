@@ -1,25 +1,31 @@
 ({$inc_ktai_header|smarty:nodefaults})
-
-<center>かんたんログイン設定</center>
-<hr>
-
+<table width="100%"><tr><td align="center" bgcolor="#0d6ddf">
+<font color="#eeeeee"><a name="top">設定変更</a></font><br>
+</td></tr>
+<tr><td bgcolor="#dddddd" align="center">
+かんたんﾛｸﾞｲﾝ設定<br>
+</td></tr></table>
 ({if $msg})
-<font color="red">({$msg})</font><br>
+<font color="#ff0000">({$msg})</font><br>
 <br>
 ({/if})
 
 ({if $is_registered})
 
-<font color="orange">かんたんログイン設定済みです。</font><br>
+<font color="#ff0000">かんたんﾛｸﾞｲﾝ設定済みです。</font><br>
+
+<hr color="#b3ceef">
+
 変更するには
 ({/if})
 
-パスワードを入力して、設定ボタンを押してください。<br>
+ﾊﾟｽﾜｰﾄﾞを入力して、設定ﾎﾞﾀﾝを押してください。<br>
 <br>
 ({t_form _attr='utn' m=ktai a=do_h_config_easy_login})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
-パスワード：<br>
+<font color="#999966">ﾊﾟｽﾜｰﾄﾞ：</font><br>
 <input type="text" name="password" istyle="3" mode="alphabet" value=""><br>
+<center>
 ({if $is_registered})
 <input type="submit" name="update" value="変更">
 ({if $smarty.const.IS_GET_EASY_ACCESS_ID != 2})
@@ -27,15 +33,18 @@
 ({/if})
 <br>
 ({else})
-<input type="submit" name="update" value="ケータイ情報送信"><br>
+<input type="submit" name="update" value="携帯情報送信"><br>
 ({/if})
+</center>
 </form>
 
-<br>
-※一部機種では携帯の個体識別番号を送信できないためご利用になれません｡<br>
+<hr color="#b3ceef">
+
+<font color="#ff0000">※一部機種では携帯の個体識別番号を送信できないためご利用になれません｡</font><br>
 <a href="({t_url m=ktai a=page_o_whatis_easy_login})">&gt;&gt;かんたんﾛｸﾞｲﾝとは</a>
 
-<hr>
-<a href="({t_url m=ktai a=page_h_config})&amp;({$tail})">設定変更</a><br>
+<hr color="#0d6ddf">
+
+&#xE6DA;<a href="({t_url m=ktai a=page_h_config})&amp;({$tail})">設定変更</a><br>
 
 ({$inc_ktai_footer|smarty:nodefaults})

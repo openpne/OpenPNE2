@@ -53,7 +53,6 @@
     ({/foreach})
     </select>
 ({elseif $profile.form_type == 'checkbox'})
-({* 単一選択パターン *})
     <select name="profile[({$profile.name})]">
     <option value="0">指定しない
     ({foreach from=$profile_list[$profile.name].options item=item})
