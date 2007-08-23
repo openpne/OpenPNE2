@@ -15,7 +15,11 @@ class ktai_page_fh_diary_delete_c_diary_comment_confirm extends OpenPNE_Action
         $target_c_diary_comment_id = $requests['target_c_diary_comment_id'];
         // ----------
 
+        $target_c_diary_comment = db_diary_get_c_diary_comment_list4id_list(array($target_c_diary_comment_id));
+
+        $this->set('target_c_diary', db_diary_get_c_diary4id($target_c_diary_id));
         $this->set("target_c_diary_id", $target_c_diary_id);
+        $this->set('target_c_diary_comment', $target_c_diary_comment[0][0]);
         $this->set("target_c_diary_comment_id", $target_c_diary_comment_id);
 
         return 'success';

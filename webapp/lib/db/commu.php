@@ -473,7 +473,7 @@ function db_commu_c_member_list4c_commu_id($c_commu_id, $page_size, $page)
         }
     }
 
-    return array($list, $prev, $next);
+    return array($list, $prev, $next, $total_num);
 }
 
 /**
@@ -1276,7 +1276,7 @@ function db_commu_c_commu_topic_comment_list4c_c_commu_topic_id($c_commu_topic_i
     $sql = "SELECT c_commu_topic_comment.*, c_member.nickname" .
         " FROM c_commu_topic_comment" .
             " LEFT JOIN c_member USING (c_member_id)" .
-        " WHERE c_commu_topic_id = ?" .
+        " WHERE c_commu_topic_id = ? AND c_commu_topic_comment.number > 0" .
         " ORDER BY number DESC";
     $params = array(intval($c_commu_topic_id));
     $list = db_get_all_page($sql, $page, $page_size, $params);
@@ -1287,9 +1287,9 @@ function db_commu_c_commu_topic_comment_list4c_c_commu_topic_id($c_commu_topic_i
         }
     }
 
-    $sql = "SELECT COUNT(*) FROM c_commu_topic_comment WHERE c_commu_topic_id = ?";
+    $sql = "SELECT COUNT(*)-1 FROM c_commu_topic_comment WHERE c_commu_topic_id = ?";
     $params = array(intval($c_commu_topic_id));
-    $total_num = db_get_one($sql, $params) - 1;
+    $total_num = db_get_one($sql, $params);
 
     if ($total_num > 0) {
         $total_page_num =  ceil($total_num / $page_size);
@@ -1304,7 +1304,7 @@ function db_commu_c_commu_topic_comment_list4c_c_commu_topic_id($c_commu_topic_i
             $prev = true;
         }
     }
-    return array($list , $prev , $next);
+    return array($list , $prev , $next, $total_num);
 }
 
 /**

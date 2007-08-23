@@ -16,7 +16,7 @@ class ktai_page_fh_diary extends OpenPNE_Action
         $page = $requests['page'];
         // ----------
 
-        $page_size = 10;
+        $page_size = 5;
         $page += $direc;
 
         //ページ

@@ -12,13 +12,12 @@
 
 ({capture name="pager"})
 ({if $is_prev || $is_next})
-({if $is_prev})
-<a href="({t_url m=ktai a=page_h_diary_list_all})&amp;keyword=({$keyword|to_sjis|escape:url|smarty:nodefaults})&amp;page=({$page})&amp;direc=-1&amp;({$tail})">前へ</a>&nbsp;
-({/if})
-({if $is_next})
-<a href="({t_url m=ktai a=page_h_diary_list_all})&amp;keyword=({$keyword|to_sjis|escape:url|smarty:nodefaults})&amp;page=({$page})&amp;direc=1&amp;({$tail})">次へ</a>
-({/if})
+<center>
+({if $is_prev})<a href="({t_url m=ktai a=page_h_diary_list_all})&amp;keyword=({$keyword|to_sjis|escape:url|smarty:nodefaults})&amp;page=({$page})&amp;direc=-1&amp;({$tail})">前へ</a>({/if})
+({if $is_prev && $is_next})&nbsp;({/if})
+({if $is_next})<a href="({t_url m=ktai a=page_h_diary_list_all})&amp;keyword=({$keyword|to_sjis|escape:url|smarty:nodefaults})&amp;page=({$page})&amp;direc=1&amp;({$tail})">次へ</a>({/if})
 <br>
+</center>
 ({/if})
 
 ({if $c_diary_search_list_count})

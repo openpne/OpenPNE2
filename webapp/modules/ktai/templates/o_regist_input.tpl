@@ -1,8 +1,10 @@
 ({$inc_ktai_header|smarty:nodefaults})({strip})
+<table width="100%"><tr><td align="center" bgcolor="#0d6ddf">
+<font color="#eeeeee"><a name="top">
+({$SNS_NAME})新規登録</a></font><br>
+</td></tr></table>
 
-<center>({$SNS_NAME})登録</center>
-<hr>
-以下の項目を入力して、登録を完了してください。<br>
+以下の項目を入力して、登録を完了してください。<font color="#ff0000">*</font>の項目は必須です。<br>
 <br>
 
 ({t_form _attr='utn' m=ktai a=do_o_insert_c_member})
@@ -12,19 +14,21 @@
 ({/if})
 
 ({capture name="nick"})
-<font color="red">*</font>ニックネーム<br>
+<font color="#999966">ﾆｯｸﾈｰﾑ：</font><font color="#ff0000">*</font><br>
 <input type="text" name="nickname"><br>
+<br>
 ({/capture})
 ({capture name="birth"})
-<font color="red">*</font>生まれた年<br>
+<font color="#999966">生まれた年：</font><font color="#ff0000">*</font><br>
 <input type="text" name="birth_year" size="4" maxlength="4" istyle="4" mode="numeric">年<br>
 <select name="public_flag_birth_year">
     ({foreach from=$public_flags key=key item=item})
     <option value="({$key})"({if $c_member.public_flag_birth_year == $key}) selected="selected"({/if})>({$item})
     ({/foreach})
 </select><br>
+<br>
 
-<font color="red">*</font>誕生日<br>
+<font color="#999966">誕生日：</font><font color="#ff0000">*</font><br>
 <select name="birth_month">
     <option value="" selected="selected">--
     ({foreach from=$month_list item=item})
@@ -37,6 +41,7 @@
     <option value="({$item})">({$item})
     ({/foreach})
 </select>日<br>
+<br>
 ({/capture})
 
 ({foreach from=$profile_list item=profile})
@@ -65,10 +70,9 @@
 ({/if})
 
 ({if $profile.disp_regist})
-
-    ({if $profile.is_required})<font color="red">*</font>({/if})
-    ({$profile.caption})<br>
-
+    <font color="#999966">({$profile.caption})：</font>
+    ({if $profile.is_required})<font color="#ff0000">*</font>({/if})<br>
+    
     ({if $profile.form_type == 'text'})
         <input type="text" name="profile[({$profile.name})]" value="({$c_member.profile[$profile.name].value})">
     ({elseif $profile.form_type == 'textlong'})
@@ -88,7 +92,7 @@
         ({/foreach})
     ({/if})
     ({if $profile.info})
-    <br><font color="red">({$profile.info})</font>
+    <br><font color="#ff0000">({$profile.info})</font>
     ({/if})
     <br>
 
@@ -100,8 +104,9 @@
     </select>
     <br>
     ({/if})
-
+<br>
 ({/if})
+
 ({/foreach})
 
 ({if !$_cnt_nick && !$_cnt_birth})
@@ -116,27 +121,25 @@
 ({if !$_cnt_nick})({$smarty.capture.nick|smarty:nodefaults})({/if})
 ({if !$_cnt_birth})({$smarty.capture.birth|smarty:nodefaults})({/if})
 ({/if})
-
-<br>
-<font color="red">*</font>パスワード<br>
+<font color="#999966">ﾊﾟｽﾜｰﾄﾞ：</font><font color="#ff0000">*</font><br>
 <input type="text" name="password" maxlength="12" istyle="3" mode="alphabet"><br>
-<font color="red">※パスワードは6-12文字の半角英数で入力してください</font><br>
-
+<font color="#ff0000">※ﾊﾟｽﾜｰﾄﾞは6-12文字の半角英数で入力してください</font><br>
 <br>
-<font color="red">*</font>秘密の質問<br>
+<font color="#999966">秘密の質問：</font><font color="#ff0000">*</font><br>
 <select name="c_password_query_id">
     <option value="0">選択してください
     ({foreach from=$password_query_list key=key item=item})
     <option value="({$key})">({$item})
     ({/foreach})
 </select><br>
-
-<font color="red">*</font>秘密の質問の答え<br>
-<input type="text" name="password_query_answer" value=""><br>
-※パスワードを忘れた場合の確認に使用します。<br>
-
 <br>
-<input type="submit" value=" 登録 ">
+<font color="#999966">秘密の質問の答え：</font><font color="#ff0000">*</font><br>
+<input type="text" name="password_query_answer" value=""><br>
+<font color="#ff0000">※ﾊﾟｽﾜｰﾄﾞを忘れた場合の確認に使用します。</font>
+<hr color="#0d6ddf">
+<center>
+<input type="submit" value="この内容で登録する">
+</center>
 </form>
 
 ({/strip})({$inc_ktai_footer|smarty:nodefaults})
