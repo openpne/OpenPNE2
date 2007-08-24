@@ -23,8 +23,8 @@
 <font color="#999966">ﾒｰﾙｱﾄﾞﾚｽ：</font><br>
 <input type="text" name="mail_address" istyle="3" mode="alphabet" maxlength="100"><br>
 <br>
-<font color="#999966">ﾒｯｾｰｼ：</font><br>
-<textarea name="body" cols="15"></textarea><br>
+<font color="#999966">ﾒｯｾｰｼﾞ：</font><br>
+<textarea name="body" rows="6"></textarea><br>
 <center>
 <input type="submit" value="送信">
 </center>

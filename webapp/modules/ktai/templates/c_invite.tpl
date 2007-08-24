@@ -25,7 +25,7 @@
 </select>
 <br>
 <font color="#999966">ﾒｯｾｰｼﾞ：</font><br>
-<textarea name="body">「({$c_commu.name})」ｺﾐｭﾆﾃｨに入ってみました。よかったら一緒にどうですか?</textarea><br>
+<textarea name="body" rows="6">「({$c_commu.name})」ｺﾐｭﾆﾃｨに入ってみました。よかったら一緒にどうですか?</textarea><br>
 <br>
 <input type="submit" value="ﾒｯｾｰｼﾞを送信する">
 </form>

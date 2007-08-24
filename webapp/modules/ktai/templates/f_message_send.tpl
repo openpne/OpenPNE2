@@ -16,7 +16,7 @@
 <font color="#999966">件名：</font><br>
 <input type="text" name="subject"><br>
 <font color="#999966">ﾒｯｾｰｼﾞ：</font><br>
-<textarea name="body"></textarea>
+<textarea name="body" rows="6"></textarea>
 <center>
 <input type="submit" value="ﾒｯｾｰｼﾞを送る">
 </center>
