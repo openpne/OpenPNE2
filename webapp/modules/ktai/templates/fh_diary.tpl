@@ -76,7 +76,7 @@
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
 <input type="hidden" name="target_c_diary_id" value="({$target_c_diary.c_diary_id})">
 <font color=red>({if $msg})({$msg})<br>({/if})</font>
-<textarea name="body"></textarea><br>
+<textarea name="body" rows="3"></textarea><br>
 <input type="submit" value="書き込む">
 </form>
 

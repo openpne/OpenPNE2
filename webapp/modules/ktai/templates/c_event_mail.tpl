@@ -25,7 +25,7 @@
 </table>
 
 <font color="#999966">ﾒｯｾｰｼﾞ：</font><br>
-<textarea name="body"></textarea><br>
+<textarea name="body" rows="6"></textarea><br>
 <input type="submit" value="確認画面">
 </form>
 ({else})

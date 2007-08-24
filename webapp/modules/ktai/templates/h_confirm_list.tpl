@@ -3,16 +3,20 @@
 <tr><td align="center" bgcolor="#0d6ddf">
 <font color="#eeeeee"><a name="top">承認待ちﾘｽﾄ</a></font><br>
 </td></tr></table>
+
 ({if $msg})
 <font color="#ff0000">({$msg})</font><br>
 ({/if})
 
 <table width="100%">
+
 <tr><td bgcolor="#7ddadf">
 ({$WORD_FRIEND_HALF})ﾘﾝｸ承認待ち<br>
 </td></tr>
+
 ({if $anatani_c_friend_confirm_list})
 ({foreach from=$anatani_c_friend_confirm_list item=anatani_c_friend_confirm name=anatani_c_friend_confirm_list_name})
+
 <tr><td bgcolor="({cycle values="#e0eaef,#ffffff"})">
 <font color="#999966">ﾆｯｸﾈｰﾑ：</font><br>
 <a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$anatani_c_friend_confirm.c_member_id_from})&amp;({$tail})">({$anatani_c_friend_confirm.nickname})</a><br>
@@ -26,7 +30,7 @@
 [<a href="({t_url m=ktai a=do_h_confirm_list_insert_c_friend})&amp;target_c_friend_confirm_id=({$anatani_c_friend_confirm.c_friend_confirm_id})&amp;({$tail})">承認</a>]
 [<a href="({t_url m=ktai a=do_h_confirm_list_delete_c_friend_confirm})&amp;target_c_friend_confirm_id=({$anatani_c_friend_confirm.c_friend_confirm_id})&amp;({$tail})">拒否</a>]<br>
 </center>
-<td></tr>
+</td></tr>
 <tr><td>
 <hr color="#b3ceef">
 </td></tr>
@@ -58,7 +62,7 @@
 [<a href="({t_url m=ktai a=do_h_confirm_list_insert_c_commu_member})&amp;target_c_commu_member_confirm_id=({$item.c_commu_member_confirm_id})&amp;({$tail})">承認</a>]
 [<a href="({t_url m=ktai a=do_h_confirm_list_delete_c_commu_member_confirm})&amp;target_c_commu_member_confirm_id=({$item.c_commu_member_confirm_id})&amp;({$tail})">拒否</a>]<br>
 </center>
-<td></tr>
+</td></tr>
 <tr><td>
 <hr color="#bfa4ef">
 </td></tr>

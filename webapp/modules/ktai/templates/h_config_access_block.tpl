@@ -16,9 +16,9 @@
 ({t_form m=ktai a=do_h_config_access_block_update})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
 ({foreach from=$c_member_id_block item=item})
-<font color="#999966">ID</font> <input type="text" name="c_member_id_block[]" value="({$item})"><br>
+<font color="#999966">ID：</font><br><input type="text" name="c_member_id_block[]" value="({$item})"><br>
 ({/foreach})
-<font color="#999966">ID</font> <input type="text" name="c_member_id_block[]" value=""><br>
+<font color="#999966">ID：</font><br><input type="text" name="c_member_id_block[]" value=""><br>
 
 <center>
 <input type="submit" value="変更"><br>

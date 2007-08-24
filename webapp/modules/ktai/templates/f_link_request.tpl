@@ -16,7 +16,7 @@
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
 <input type="hidden" name="target_c_member_id" value="({$target_c_member.c_member_id})">
 <font color="#999966">ﾒｯｾｰｼﾞ：</font><br>
-<textarea name="body"></textarea>
+<textarea name="body" rows="6"></textarea>
 <hr color="#0d6ddf">
 <center>
 <input type="submit" value="送信">

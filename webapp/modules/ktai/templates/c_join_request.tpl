@@ -15,7 +15,7 @@
 <input type="hidden" name="target_c_commu_id" value="({$target_c_commu_id})">
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
 <font color="#999966">ﾒｯｾｰｼﾞ：</font><br>
-<textarea name="body"></textarea><br>
+<textarea name="body" rows="6"></textarea><br>
 <center>
 <input type="submit" value="参加を希望する">
 </center>

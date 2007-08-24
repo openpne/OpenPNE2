@@ -43,7 +43,7 @@
 </select><br>
 <font color="#999966">補足：</font><input type="text" name="open_pref_comment" value="({$event.open_pref_comment})"><br><br>
 <font color="#999966">詳細：</font><font color="#ff0000">※</font><br>
-<textarea name="detail">({$event.body})</textarea><br><br>
+<textarea name="detail" rows="6">({$event.body})</textarea><br><br>
 <font color="#999966">募集人数：</font><br>
 <input type="text" name="capacity" value="({if $event.capacity})({$event.capacity})({/if})"><br><br>
 <font color="#999966">募集期限：</font><br>
