@@ -71,9 +71,9 @@
 <input type="hidden" name="target_c_member_id" value="({$c_message.c_member_id_from})">
 <font color=red>({if $msg})({$msg})<br>({/if})</font>
 <font color="#999966">ﾀｲﾄﾙ：</font><br>
-<input type="text" name="subject" value="Re:({$c_message.subject})" size="14"><br>
+<input type="text" name="subject" value="Re:({$c_message.subject})"><br>
 <font color="#999966">本文：</font><br>
-<textarea cols="14" rows="6" name="body"></textarea><br>
+<textarea rows="6" name="body"></textarea><br>
 <center>
 <input type="submit" value="送信">
 </center>

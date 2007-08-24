@@ -33,7 +33,7 @@
 ({if $rank == 1})
 ({foreach from=$list item=item})
 <tr><td bgcolor="({cycle values="#e0eaef,#ffffff"})">
-%%i1015%%<font color="#999966">第({$rank})位</font>
+%%i1015%%<font color="#999966">第({$rank})位</font><br>
 ({strip})
 ({if $kind == "ashiato" || $kind == "friend"})
 <a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})&amp;({$tail})">({$item.c_member.nickname})</a>さん
@@ -60,7 +60,7 @@
 
 ({foreach from=$list item=item})
 <tr><td bgcolor="({cycle values="#e0eaef,#ffffff"})">
-<font color="#999966">第({$rank})位</font>
+<font color="#999966">第({$rank})位</font><br>
 ({strip})
 ({if $kind == "ashiato" || $kind == "friend"})
 <a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})&amp;({$tail})">({$item.c_member.nickname})</a>さん

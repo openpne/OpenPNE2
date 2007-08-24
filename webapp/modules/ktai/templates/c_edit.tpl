@@ -26,7 +26,7 @@
 </select><br>
 <br>
 <font color="#999966">説明文：</font><br>
-<textarea name="info">({$c_commu.info})</textarea><br>
+<textarea name="info" rows="6">({$c_commu.info})</textarea><br>
 <br>
 <font color="#999966">参加条件と公開範囲：</font><br>
 <select name="public_flag">
