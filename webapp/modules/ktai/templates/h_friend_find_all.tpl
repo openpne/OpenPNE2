@@ -20,8 +20,8 @@
 </td></tr></table>
 ({if $pager.page_prev || $pager.page_next})
 <center>
-({if $pager.page_prev})<a href="({t_url m=ktai a=page_h_friend_find_all})({if $nickname})&amp;nickname=({$nickname|to_sjis|escape:url|smarty:nodefaults})({/if})({if $search_condition})&amp;({$search_condition})({/if})&amp;page=({$pager.page_prev})&amp;({$tail})" accesskey="4">&#xE6E5;前を表示</a> ({/if})
-({if $pager.page_next})<a href="({t_url m=ktai a=page_h_friend_find_all})({if $nickname})&amp;nickname=({$nickname|to_sjis|escape:url|smarty:nodefaults})({/if})({if $search_condition})&amp;({$search_condition})({/if})&amp;page=({$pager.page_next})&amp;({$tail})" accesskey="6">&#xE6E7;次を表示</a>({/if})
+({if $pager.page_prev})<a href="({t_url m=ktai a=page_h_friend_find_all})({if $nickname})&amp;nickname=({$nickname|to_sjis|escape:url|smarty:nodefaults})({/if})({if $search_condition})&amp;({$search_condition})({/if})&amp;page=({$pager.page_prev})&amp;({$tail})" accesskey="4">%%i128%%前を表示</a> ({/if})
+({if $pager.page_next})<a href="({t_url m=ktai a=page_h_friend_find_all})({if $nickname})&amp;nickname=({$nickname|to_sjis|escape:url|smarty:nodefaults})({/if})({if $search_condition})&amp;({$search_condition})({/if})&amp;page=({$pager.page_next})&amp;({$tail})" accesskey="6">%%i130%%次を表示</a>({/if})
 </center>
 ({/if})
 <br>
