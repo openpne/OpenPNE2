@@ -4,7 +4,7 @@
 <font color="#eeeeee"><a name="top">({$target_c_member.nickname})({if $INC_NAVI_type=="f"})さん({/if})</a></font><br>
 </td></tr>
 <tr><td bgcolor="#dddddd" align="center">
-({$WORD_MY_FRIEND_HALF})ﾘｽﾄ(({$total_num}))<br>
+({if $INC_NAVI_type=="h"})({$WORD_MY_FRIEND_HALF})({else})({$WORD_FRIEND_HALF})({/if})ﾘｽﾄ(({$total_num}))<br>
 </td></tr></table>
 
 <center>
