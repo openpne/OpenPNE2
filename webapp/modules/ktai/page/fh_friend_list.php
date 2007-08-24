@@ -30,7 +30,7 @@ class ktai_page_fh_friend_list extends OpenPNE_Action
         $page += $direc;
         //ターゲットの詳細な友達リスト
         $list = db_friend_friend_list4c_member_id($target_c_member_id, $page_size, $page);
-        $total_num = $list[3];
+        $total_num = db_friend_count_friends($target_c_member_id);
         $this->set("target_friend_list", $list[0]);
         $this->set("page", $page);
         $this->set("is_prev", $list[1]);

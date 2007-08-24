@@ -13,20 +13,19 @@
 <tr><td bgcolor="({cycle values="#e0eaef,#ffffff"})">
 ({$each_diary.r_datetime|date_format:"%Y/%m/%d %H:%M"})<br>
 <a href="({t_url m=ktai a=page_fh_diary})&amp;target_c_diary_id=({$each_diary.c_diary_id})&amp;({$tail})">({$each_diary.subject|t_truncate:28:""})(({$each_diary.num_comment}))</a>
-({$each_diary.nickname|t_truncate:17:""})<br>
+(({$each_diary.nickname|t_truncate:17:""}))<br>
 </td></tr>
 <tr><td>
 <hr color="#b3ceef">
 </td></tr>
 ({/foreach})
 </table>
-
+<br>
 ({if $is_prev || $is_next})
 <center>
 ({if $is_prev})<a href="({t_url m=ktai a=page_h_diary_comment_list})&amp;page=({$page})&amp;direc=-1&amp;({$tail})" accesskey="4">%%i128%%前を表示</a>({/if})
 ({if $is_prev && $is_next})&nbsp;({/if})
 ({if $is_next})<a href="({t_url m=ktai a=page_h_diary_comment_list})&amp;page=({$page})&amp;direc=1&amp;({$tail})" accesskey="6">%%i130%%次を表示</a>({/if})
-<br>
 </center>
 ({/if})
 ({$inc_ktai_footer|smarty:nodefaults})
