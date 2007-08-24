@@ -18,7 +18,7 @@
 <input type="text" name="title" value=""><br>
 <br>
 <font color="#999966">本文：</font><br>
-<textarea name="body"></textarea><br>
+<textarea name="body" rows="6"></textarea><br>
 <hr color="#0d6ddf">
 <center>
 <input type="submit" value="ﾄﾋﾟｯｸを作成する">

@@ -24,10 +24,10 @@
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
 ({if $target_c_diary.c_diary_id})<input type="hidden" name="target_c_diary_id" value="({$target_c_diary.c_diary_id})">({/if})
 <font color="#999966">ﾀｲﾄﾙ：</font><br>
-<input size="14" name="subject" value="({$target_c_diary.subject})"><br>
+<input name="subject" value="({$target_c_diary.subject})"><br>
 <br>
 <font color="#999966">本文：</font><br>
-<textarea name="body" rows="6" cols="14">({$target_c_diary.body})</textarea><br>
+<textarea name="body" rows="6">({$target_c_diary.body})</textarea><br>
 <br>
 <font color="#999966">公開範囲：</font><br>
 <input type="radio" name="public_flag" value="public"({if $target_c_diary.public_flag == "public"}) checked="checked"({/if})>全員に公開<br>

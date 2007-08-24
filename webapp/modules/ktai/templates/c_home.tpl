@@ -116,6 +116,7 @@
 <tr><td>
 ({t_form _method=get m=ktai a=page_c_com_topic_find})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
+<font color="#999966">ｷｰﾜｰﾄﾞ：</font><br>
 <input type="text" name="keyword" value="({$search_word})">
 <br>
 <select name="target_commu">

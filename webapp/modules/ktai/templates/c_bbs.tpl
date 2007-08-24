@@ -125,12 +125,12 @@
 <br>
 ({/if})
 
-<a name="menu">
+
 ({t_form m=ktai a=do_c_bbs_insert_c_commu_topic_comment})
-</a>
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
 <input type="hidden" name="target_c_commu_topic_id" value="({$c_commu_topic_id})">
-<textarea name="body"></textarea><br>
+<a name="menu"><font color="#999966">ｺﾒﾝﾄ：</font></a><br>
+<textarea name="body" rows="3"></textarea><br>
 ({if $c_commu_topic.event_flag})
 ({if $is_event_join_date})
 ({if !$is_c_event_member})
