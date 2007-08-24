@@ -14,7 +14,7 @@
 <input type="text" name="title" value="({$c_topic.name})"><br>
 <br>
 <font color="#999966">本文：</font><br>
-<textarea name="body">({$c_topic.body})</textarea><br>
+<textarea name="body" rows="6">({$c_topic.body})</textarea><br>
 <hr color="#0d6ddf">
 <center>
 <input type="submit" value="ﾄﾋﾟｯｸを編集する">

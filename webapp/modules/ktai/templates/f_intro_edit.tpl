@@ -13,7 +13,7 @@
 ({t_form m=ktai a=do_f_intro_edit_update_c_friend})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
 <input type="hidden" name="target_c_member_id" value="({$target_member.c_member_id})">
-<textarea name="body" rows="6" cols="14" >({$intro_body})</textarea><br>
+<textarea name="body" rows="6">({$intro_body})</textarea><br>
 <center>
 <input type="submit" value="紹介文を編集する">
 </center>
