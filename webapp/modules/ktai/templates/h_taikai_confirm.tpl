@@ -16,7 +16,7 @@
 <input type="text" name="password" istyle="3" mode="alphabet" maxlength="12"><br>
 <br>
 <font color="#999966">退会理由：</font><br>
-<textarea name="reason"></textarea><br>
+<textarea name="reason" rows="6"></textarea><br>
 <center>
 <input type="submit" value="退会する">
 </center>

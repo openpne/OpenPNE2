@@ -18,8 +18,8 @@
 <center>
 ({if $is_prev_t})<a href="({t_url m=ktai a=page_h_message_box})&amp;box=trash&amp;page_t=({$page_t-1})&amp;({$tail})" accesskey="4">%%i128%%前を表示</a> ({/if})
 ({if $is_next_t})<a href="({t_url m=ktai a=page_h_message_box})&amp;box=trash&amp;page_t=({$page_t+1})&amp;({$tail})" accesskey="6">%%i130%%次を表示</a>({/if})
-({/if})
 </center>
+({/if})
 ({/capture})
 
 ({if $total_num})
@@ -50,8 +50,8 @@
 <center>
 ({if $is_prev_r})<a href="({t_url m=ktai a=page_h_message_box})&amp;box=inbox&amp;page_r=({$page_r-1})({if $keyword})&amp;keyword=({$keyword})({/if})&amp;({$tail})" accesskey="4">%%i128%%前を表示</a> ({/if})
 ({if $is_next_r})<a href="({t_url m=ktai a=page_h_message_box})&amp;box=inbox&amp;page_r=({$page_r+1})({if $keyword})&amp;keyword=({$keyword})({/if})&amp;({$tail})" accesskey="6">%%i130%%次を表示</a>({/if})
-({/if})
 </center>
+({/if})
 ({/capture})
 
 ({if $total_num})

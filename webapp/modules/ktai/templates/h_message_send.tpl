@@ -22,7 +22,7 @@
 <input type="text" name="subject"><br>
 <br>
 <font color="#999966">本文：</font><br>
-<textarea name="body"></textarea><br>
+<textarea name="body" rows="6"></textarea><br>
 <center>
 <input type="submit" value="ﾒｯｾｰｼﾞを送る">
 </center>

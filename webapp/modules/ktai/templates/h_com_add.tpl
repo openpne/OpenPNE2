@@ -17,7 +17,7 @@
 </select><br>
 <br>
 <font color="#999966">説明文：</font><br>
-<textarea name="info"></textarea><br>
+<textarea name="info" rows="6"></textarea><br>
 <br>
 <font color="#999966">参加条件と公開範囲：</font><br>
 <select name="public_flag">
