@@ -33,6 +33,15 @@ function ktai_biz_convert_encoding($arr)
         mb_convert_encoding($arr, 'UTF-8', 'SJIS-win');
 }
 
+$agent = new OpenPNE_KtaiUA();
+if ($agent->is_docomo()) {
+    $GLOBALS['__Framework']['carrier'] = 'i';
+} elseif ($agent->is_au()) {
+    $GLOBALS['__Framework']['carrier'] = 'e';
+} elseif ($agent->is_vodafone()) {
+    $GLOBALS['__Framework']['carrier'] = 's';
+}
+
 // 絵文字変換
 function ktai_biz_convert_emoji($arr)
 {
