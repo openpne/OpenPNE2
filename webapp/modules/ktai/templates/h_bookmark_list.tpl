@@ -1,9 +1,9 @@
 ({$inc_ktai_header|smarty:nodefaults})
 
-<table width="100%"><tr><td align="center" bgcolor="#0d6ddf">
-<font color="#eeeeee"><a name="top">お気に入り</a></font><br>
+<table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_01})">
+<font color="#({$ktai_color_config.font_01})"><a name="top">お気に入り</a></font><br>
 </td></tr>
-<tr><td bgcolor="#dddddd" align="center">
+<tr><td bgcolor="#({$ktai_color_config.bg_02})" align="center">
 ﾒﾝﾊﾞｰﾘｽﾄ<br>
 </td></tr></table>
 
@@ -18,7 +18,7 @@
 <hr color="#b3ceef">
 <table width="100%">
 ({foreach from=$c_members item=c_member})
-<tr><td bgcolor="({cycle values="#e0eaef,#ffffff"})">
+<tr><td bgcolor="({cycle values="#`$ktai_color_config.bg_05`,#ffffff"})">
 <a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$c_member.c_member_id})&amp;({$tail})">({$c_member.nickname})</a>
 [<a href="({t_url m=ktai a=do_f_bookmark_delete_delete_c_bookmark})&amp;target_c_member_id=({$c_member.c_member_id})&amp;({$tail})">削除</a>]
 </td></tr>

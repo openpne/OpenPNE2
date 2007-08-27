@@ -1,9 +1,9 @@
 ({$inc_ktai_header|smarty:nodefaults})
 
-<table width="100%"><tr><td align="center" bgcolor="#0d6ddf">
-<font color="#eeeeee"><a name="top">({$target_member.nickname})({if $type=="f"})さん({/if})</a></font><br>
+<table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_01})">
+<font color="#({$ktai_color_config.font_01})"><a name="top">({$target_member.nickname})({if $type=="f"})さん({/if})</a></font><br>
 </td></tr>
-<tr><td bgcolor="#dddddd" align="center">
+<tr><td bgcolor="#({$ktai_color_config.bg_02})" align="center">
 ({if $type=="f"})({$WORD_FRIEND_HALF})({else})({$WORD_MY_FRIEND_HALF})({/if})からの紹介文<br>
 </td></tr></table>
 
@@ -16,10 +16,10 @@
 <tr><td>
 <hr color="#b3ceef">
 </td></tr>
-<tr><td bgcolor="({cycle values="#e0eaef,#ffffff"})">
-<font color="#999966">ﾆｯｸﾈｰﾑ：</font><br>
+<tr><td bgcolor="({cycle values="#`$ktai_color_config.bg_05`,#ffffff"})">
+<font color="#({$ktai_color_config.font_02})">ﾆｯｸﾈｰﾑ：</font><br>
 <a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})&amp;({$tail})">({$item.nickname})</a><br><br>
-<font color="#999966">紹介文：</font><br>
+<font color="#({$ktai_color_config.font_02})">紹介文：</font><br>
 ({$item.intro|t_url2a_ktai|nl2br})<br>
 
 ({if $target_member.c_member_id==$member.c_member_id})
@@ -55,7 +55,7 @@
 </center>
 ({/if})
 
-<hr color="#0d6ddf">
+<hr color="#({$ktai_color_config.border_01})">
 ({if $type=="f"})
 %%i90%%<a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$target_member.c_member_id})&amp;({$tail})">({$target_member.nickname})さんのﾄｯﾌﾟ</a><br>
 ({/if})

@@ -1,6 +1,6 @@
 ({$inc_ktai_header|smarty:nodefaults})({strip})
-<table width="100%"><tr><td align="center" bgcolor="#0d6ddf">
-<font color="#eeeeee"><a name="top">
+<table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_01})">
+<font color="#({$ktai_color_config.font_01})"><a name="top">
 ({$SNS_NAME})新規登録</a></font><br>
 </td></tr></table>
 
@@ -14,12 +14,12 @@
 ({/if})
 
 ({capture name="nick"})
-<font color="#999966">ﾆｯｸﾈｰﾑ：</font><font color="#ff0000">*</font><br>
+<font color="#({$ktai_color_config.font_02})">ﾆｯｸﾈｰﾑ：</font><font color="#ff0000">*</font><br>
 <input type="text" name="nickname"><br>
 <br>
 ({/capture})
 ({capture name="birth"})
-<font color="#999966">生まれた年：</font><font color="#ff0000">*</font><br>
+<font color="#({$ktai_color_config.font_02})">生まれた年：</font><font color="#ff0000">*</font><br>
 <input type="text" name="birth_year" size="4" maxlength="4" istyle="4" mode="numeric">年<br>
 <select name="public_flag_birth_year">
     ({foreach from=$public_flags key=key item=item})
@@ -28,7 +28,7 @@
 </select><br>
 <br>
 
-<font color="#999966">誕生日：</font><font color="#ff0000">*</font><br>
+<font color="#({$ktai_color_config.font_02})">誕生日：</font><font color="#ff0000">*</font><br>
 <select name="birth_month">
     <option value="" selected="selected">--
     ({foreach from=$month_list item=item})
@@ -70,7 +70,7 @@
 ({/if})
 
 ({if $profile.disp_regist})
-    <font color="#999966">({$profile.caption})：</font>
+    <font color="#({$ktai_color_config.font_02})">({$profile.caption})：</font>
     ({if $profile.is_required})<font color="#ff0000">*</font>({/if})<br>
     
     ({if $profile.form_type == 'text'})
@@ -121,11 +121,11 @@
 ({if !$_cnt_nick})({$smarty.capture.nick|smarty:nodefaults})({/if})
 ({if !$_cnt_birth})({$smarty.capture.birth|smarty:nodefaults})({/if})
 ({/if})
-<font color="#999966">ﾊﾟｽﾜｰﾄﾞ：</font><font color="#ff0000">*</font><br>
+<font color="#({$ktai_color_config.font_02})">ﾊﾟｽﾜｰﾄﾞ：</font><font color="#ff0000">*</font><br>
 <input type="text" name="password" maxlength="12" istyle="3" mode="alphabet"><br>
 <font color="#ff0000">※ﾊﾟｽﾜｰﾄﾞは6-12文字の半角英数で入力してください</font><br>
 <br>
-<font color="#999966">秘密の質問：</font><font color="#ff0000">*</font><br>
+<font color="#({$ktai_color_config.font_02})">秘密の質問：</font><font color="#ff0000">*</font><br>
 <select name="c_password_query_id">
     <option value="0">選択してください
     ({foreach from=$password_query_list key=key item=item})
@@ -133,10 +133,10 @@
     ({/foreach})
 </select><br>
 <br>
-<font color="#999966">秘密の質問の答え：</font><font color="#ff0000">*</font><br>
+<font color="#({$ktai_color_config.font_02})">秘密の質問の答え：</font><font color="#ff0000">*</font><br>
 <input type="text" name="password_query_answer" value=""><br>
 <font color="#ff0000">※ﾊﾟｽﾜｰﾄﾞを忘れた場合の確認に使用します。</font>
-<hr color="#0d6ddf">
+<hr color="#({$ktai_color_config.border_01})">
 <center>
 <input type="submit" value="この内容で登録する">
 </center>
