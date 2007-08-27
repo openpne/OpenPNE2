@@ -1,8 +1,8 @@
 ({$inc_ktai_header|smarty:nodefaults})
-<table width="100%"><tr><td align="center" bgcolor="#0d6ddf">
-<font color="#eeeeee"><a name="top">設定変更</a></font><br>
+<table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_01})">
+<font color="#({$ktai_color_config.font_01})"><a name="top">設定変更</a></font><br>
 </td></tr>
-<tr><td bgcolor="#dddddd" align="center">
+<tr><td bgcolor="#({$ktai_color_config.bg_02})" align="center">
 かんたんﾛｸﾞｲﾝ設定<br>
 </td></tr></table>
 ({if $msg})
@@ -23,7 +23,7 @@
 <br>
 ({t_form _attr='utn' m=ktai a=do_h_config_easy_login})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
-<font color="#999966">ﾊﾟｽﾜｰﾄﾞ：</font><br>
+<font color="#({$ktai_color_config.font_02})">ﾊﾟｽﾜｰﾄﾞ：</font><br>
 <input type="text" name="password" istyle="3" mode="alphabet" value=""><br>
 <center>
 ({if $is_registered})
@@ -43,7 +43,7 @@
 <font color="#ff0000">※一部機種では携帯の個体識別番号を送信できないためご利用になれません｡</font><br>
 <a href="({t_url m=ktai a=page_o_whatis_easy_login})">&gt;&gt;かんたんﾛｸﾞｲﾝとは</a>
 
-<hr color="#0d6ddf">
+<hr color="#({$ktai_color_config.border_01})">
 
 %%i90%%<a href="({t_url m=ktai a=page_h_config})&amp;({$tail})">設定変更</a><br>
 

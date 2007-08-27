@@ -22,10 +22,10 @@
 ({/if})
 </center>
 <br>
-<table width="100%"><tr><td bgcolor="#0d6ddf">
-%%i75%%<font color="#eeeeee">かんたんﾛｸﾞｲﾝ</font><br>
+<table width="100%"><tr><td bgcolor="#({$ktai_color_config.bg_01})">
+%%i75%%<font color="#({$ktai_color_config.font_01})">かんたんﾛｸﾞｲﾝ</font><br>
 </td></tr>
-<tr><td bgcolor="#e0eaef">
+<tr><td bgcolor="#({$ktai_color_config.bg_05})">
 <br>
 <center>
 ({t_form _attr='utn' m=ktai a=do_o_easy_login})
@@ -41,23 +41,23 @@
 </td></tr></table>
 <br>
 
-<table width="100%"><tr><td bgcolor="#0d6ddf">
-<font color="#eeeeee">%%i116%%ﾊﾟｽﾜｰﾄﾞﾛｸﾞｲﾝ</font><br>
+<table width="100%"><tr><td bgcolor="#({$ktai_color_config.bg_01})">
+<font color="#({$ktai_color_config.font_01})">%%i116%%ﾊﾟｽﾜｰﾄﾞﾛｸﾞｲﾝ</font><br>
 </td></tr>
-<tr><td bgcolor="#e0eaef">
+<tr><td bgcolor="#({$ktai_color_config.bg_05})">
 ({t_form m=ktai a=do_o_login})
 <input type="hidden" name="login_params" value="({$requests.login_params})">
 ({if $ktai_address})
 <input type="hidden" name="username" value="({$ktai_address})">
 ({else})
 ({if !$smarty.const.IS_SLAVEPNE})
-<font color="#0d6ddf">★</font>携帯ｱﾄﾞﾚｽ<br>
+<font color="#({$ktai_color_config.bg_01})">★</font>携帯ｱﾄﾞﾚｽ<br>
 ({else})
-<font color="#0d6ddf">★</font>ﾒﾝﾊﾞｰID<br>
+<font color="#({$ktai_color_config.bg_01})">★</font>ﾒﾝﾊﾞｰID<br>
 ({/if})
 <textarea name="username" rows="1" istyle="3" mode="alphabet"></textarea><br>
 ({/if})
-<font color="#0d6ddf">★</font>ﾊﾟｽﾜｰﾄﾞ<br>
+<font color="#({$ktai_color_config.bg_01})">★</font>ﾊﾟｽﾜｰﾄﾞ<br>
 <input name="password" type="text" istyle="3" mode="alphabet" value=""><br>
 <center>
 <input name="submit" value="ﾛｸﾞｲﾝ" type="submit"><br>
@@ -71,7 +71,7 @@
 ({/if})
 </td></tr></table>
 <br>
-<hr color="#0d6ddf">
+<hr color="#({$ktai_color_config.border_01})">
 ({if $IS_CLOSED_SNS})
 ({$SNS_NAME})は招待制のｿｰｼｬﾙﾈｯﾄﾜｰｷﾝｸﾞｻｰﾋﾞｽです。<br>
 登録には({$SNS_NAME})参加者からの招待が必要です。<br>
@@ -88,7 +88,7 @@
 <br>
 ※かならず利用規約に同意してから登録をおこなってください。<br>
 
-<hr color="#0d6ddf">
+<hr color="#({$ktai_color_config.border_01})">
 ■<a href="({t_url m=ktai a=page_o_sns_kiyaku})">利用規約</a><br>
 ■<a href="({t_url m=ktai a=page_o_sns_privacy})">ﾌﾟﾗｲﾊﾞｼｰﾎﾟﾘｼｰ</a><br>
 ({/if})

@@ -70,6 +70,7 @@ function init_ktai_page(&$smarty)
     $smarty->assign('WORD_MY_FRIEND', WORD_MY_FRIEND);
     $smarty->assign('WORD_FRIEND_HALF', WORD_FRIEND_HALF);
     $smarty->assign('WORD_MY_FRIEND_HALF', WORD_MY_FRIEND_HALF);
+    $smarty->assign('ktai_color_config', db_select_c_sns_config_ktai());
 
     $is_secure = $GLOBALS['__Framework']['is_secure'];
 
