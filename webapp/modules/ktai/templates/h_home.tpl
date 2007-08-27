@@ -81,7 +81,7 @@
 
 <tr>
 <td colspan="2"  align="center">
-%%i140%%<a href="({t_url m=ktai a=page_h_config_prof})&amp;({$tail})">ﾌﾟﾛﾌｨｰﾙ</a>/%%i68%%<a href="({t_url m=ktai a=page_h_config_image})&amp;({$tail})">写真</a>/%%i76%%<a href="({t_url m=ktai a=page_fh_intro})&amp;({$tail})">紹介文</a><br>
+%%i140%%<a href="({t_url m=ktai a=page_h_prof})&amp;({$tail})">ﾌﾟﾛﾌｨｰﾙ</a>/%%i68%%<a href="({t_url m=ktai a=page_h_config_image})&amp;({$tail})">写真</a>/%%i76%%<a href="({t_url m=ktai a=page_fh_intro})&amp;({$tail})">紹介文</a><br>
 <hr color="#0d6ddf"></td></tr>
 </table>
 　
