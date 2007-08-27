@@ -19,7 +19,11 @@
 ({if $item.is_c_topic_admin ==$u || $c_commu.c_member_id_admin == $u})
 [<a href="({t_url m=ktai a=page_c_event_edit})&amp;target_c_commu_topic_id=({$item.c_commu_topic_id})&amp;({$tail})">編集</a>]
 ({/if})<br>
-<a href="({t_url m=ktai a=page_c_bbs})&amp;target_c_commu_topic_id=({$item.c_commu_topic_id})&amp;({$tail})">({$item.name|t_truncate:50:""})(({$item.write_num}))</a><br>
+<a href="({t_url m=ktai a=page_c_bbs})&amp;target_c_commu_topic_id=({$item.c_commu_topic_id})&amp;({$tail})">({$item.name|t_truncate:50:""})(({$item.write_num}))</a>
+({if $item.image_filename1 || $item.image_filename2 || $item.image_filename3})
+%%i68%%
+({/if})
+<br>
 </td></tr>
 <tr><td>
 <hr color="#b3ceef">
