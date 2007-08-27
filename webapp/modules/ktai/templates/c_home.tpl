@@ -71,7 +71,11 @@
 ({if $is_c_commu_view})
 ({foreach from=$new_topic_comment item=item})
 <tr><td bgcolor="#e0eaef">
-<font color="#999966">[({$item.r_datetime|date_format:"%m/%d"})]</font> <a href="({t_url m=ktai a=page_c_bbs})&amp;target_c_commu_topic_id=({$item.c_commu_topic_id})&amp;({$tail})">({$item.name|t_truncate:22:""})(({$item.count_comments}))</a><br>
+<font color="#999966">[({$item.r_datetime|date_format:"%m/%d"})]</font> <a href="({t_url m=ktai a=page_c_bbs})&amp;target_c_commu_topic_id=({$item.c_commu_topic_id})&amp;({$tail})">({$item.name|t_truncate:22:""})(({$item.count_comments}))</a>
+({if $item.image_filename1 || $item.image_filename2 || $item.image_filename3})
+%%i68%%
+({/if})
+<br>
 </td></tr>
 <tr><td>
 <hr color="#b3ceef">
@@ -94,7 +98,11 @@
 ({if $is_c_commu_view})
 ({foreach from=$new_topic_comment_event item=item})
 <tr><td bgcolor="#dcd1ef">
-<font color="#999966">[({$item.r_datetime|date_format:"%m/%d"})]</font> <a href="({t_url m=ktai a=page_c_bbs})&amp;target_c_commu_topic_id=({$item.c_commu_topic_id})&amp;({$tail})">({$item.name|t_truncate:22:""})(({$item.count_comments}))</a><br>
+<font color="#999966">[({$item.r_datetime|date_format:"%m/%d"})]</font> <a href="({t_url m=ktai a=page_c_bbs})&amp;target_c_commu_topic_id=({$item.c_commu_topic_id})&amp;({$tail})">({$item.name|t_truncate:22:""})(({$item.count_comments}))</a>
+({if $item.image_filename1 || $item.image_filename2 || $item.image_filename3})
+%%i68%%
+({/if})
+<br>
 </td></tr>
 <tr><td>
 <hr color="#bfa4ef">

@@ -16,7 +16,11 @@
 ({foreach from=$new_diary_list item=item})
 <tr><td bgcolor="({cycle values="#e0eaef,#ffffff"})">
 ({$item.r_datetime|date_format:"%Y/%m/%d %H:%M"})<br>
-<a href="({t_url m=ktai a=page_fh_diary})&amp;target_c_diary_id=({$item.c_diary_id})&amp;({$tail})">({$item.subject|t_truncate:28:""})(({$item.num_comment}))</a>(({$item.c_member.nickname|t_truncate:17:""}))<br>
+<a href="({t_url m=ktai a=page_fh_diary})&amp;target_c_diary_id=({$item.c_diary_id})&amp;({$tail})">({$item.subject|t_truncate:28:""})(({$item.num_comment}))</a>(({$item.c_member.nickname|t_truncate:17:""}))
+({if $item.image_filename_1 || $item.image_filename_2 || $item.image_filename_3})
+%%i68%%
+({/if})
+<br>
 </td></tr>
 <tr><td>
 <hr color="#b3ceef">

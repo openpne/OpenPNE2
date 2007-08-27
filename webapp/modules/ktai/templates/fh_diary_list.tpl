@@ -21,7 +21,11 @@
 ({foreach from=$target_diary_list item=target_diary})
 <tr><td bgcolor="({cycle values="#e0eaef,#ffffff"})">
 ({$target_diary.r_datetime|date_format:"%Y/%m/%d %H:%M"})({if $INC_NAVI_type=="h"}) [<a href="({t_url m=ktai a=page_h_diary_edit})&amp;target_c_diary_id=({$target_diary.c_diary_id})&amp;({$tail})">編集</a>]({/if})<br>
-<a href="({t_url m=ktai a=page_fh_diary})&amp;target_c_diary_id=({$target_diary.c_diary_id})&amp;({$tail})">({$target_diary.subject|t_truncate:28:""})</a>(({$target_diary.num_comment}))<br>
+<a href="({t_url m=ktai a=page_fh_diary})&amp;target_c_diary_id=({$target_diary.c_diary_id})&amp;({$tail})">({$target_diary.subject|t_truncate:28:""})</a>(({$target_diary.num_comment}))
+({if $target_diary.image_filename_1 || $target_diary.image_filename_2 || $target_diary.image_filename_3})
+%%i68%%
+({/if})
+<br>
 </td></tr>
 <tr><td>
 <hr color="#b3ceef">

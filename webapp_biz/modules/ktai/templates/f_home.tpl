@@ -145,7 +145,11 @@
 ({if $c_diary_list})
 ({foreach from=$c_diary_list item=c_diary})
 <tr><td bgcolor="({cycle values="#e0eaef,#ffffff"})">
-<font color="#999966">[({$c_diary.r_date|date_format:"%m/%d"})]</font><a href="({t_url m=ktai a=page_fh_diary})&amp;target_c_diary_id=({$c_diary.c_diary_id})&amp;({$tail})">({$c_diary.subject|t_truncate:22:""})(({$c_diary.comment_count}))</a><br>
+<font color="#999966">[({$c_diary.r_date|date_format:"%m/%d"})]</font><a href="({t_url m=ktai a=page_fh_diary})&amp;target_c_diary_id=({$c_diary.c_diary_id})&amp;({$tail})">({$c_diary.subject|t_truncate:22:""})(({$c_diary.comment_count}))</a>
+({if $c_diary.image_filename_1 || $c_diary.image_filename_2 || $c_diary.image_filename_3})
+%%i68%%
+({/if})
+<br>
 </td></tr>
 <tr><td>
 <hr color="#b3ceef">
