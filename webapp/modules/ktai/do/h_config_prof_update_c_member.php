@@ -59,7 +59,7 @@ class ktai_do_h_config_prof_update_c_member extends OpenPNE_Action
         db_member_config_prof_new($u, $prof);
         db_member_update_c_member_profile($u, $c_member_profile_list);
 
-        openpne_redirect('ktai', 'page_h_home');
+        openpne_redirect('ktai', 'page_h_prof');
     }
 
     function _getValidateRules()
