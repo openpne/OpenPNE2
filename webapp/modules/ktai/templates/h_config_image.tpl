@@ -1,8 +1,8 @@
 ({$inc_ktai_header|smarty:nodefaults})
-<table width="100%"><tr><td align="center" bgcolor="#0d6ddf">
-<font color="#eeeeee"><a name="top">設定変更</a></font><br>
+<table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_01})">
+<font color="#({$ktai_color_config.font_01})"><a name="top">設定変更</a></font><br>
 </td></tr>
-<tr><td bgcolor="#dddddd" align="center">
+<tr><td bgcolor="#({$ktai_color_config.bg_02})" align="center">
 ﾌﾟﾛﾌｨｰﾙ写真設定<br>
 </td></tr></table>
 <center>
@@ -12,7 +12,7 @@
 [<a href="({t_img_url filename=$c_member.image_filename_1 w=$smarty.const.OPENPNE_IMG_KTAI_MAX_WIDTH h=$smarty.const.OPENPNE_IMG_KTAI_MAX_HEIGHT f=jpg})">大</a>]<br>
 [<a href="({t_url m=ktai a=page_h_config_image_delete_image_confirm})&amp;img_num=1&amp;({$tail})">削除</a>|
 ({if $c_member.image_filename_1==$c_member.image_filename})
-<font color="#999966">現在のﾒｲﾝ</font>]<br>
+<font color="#({$ktai_color_config.font_02})">現在のﾒｲﾝ</font>]<br>
 ({else})
 <a href="({t_url m=ktai a=do_h_config_image_change_main_image})&amp;img_num=1&amp;({$tail})">ﾒｲﾝにする</a>]<br>
 ({/if})
@@ -24,7 +24,7 @@
 [<a href="({t_img_url filename=$c_member.image_filename_2 w=$smarty.const.OPENPNE_IMG_KTAI_MAX_WIDTH h=$smarty.const.OPENPNE_IMG_KTAI_MAX_HEIGHT f=jpg})">大</a>]<br>
 [<a href="({t_url m=ktai a=page_h_config_image_delete_image_confirm})&amp;img_num=2&amp;({$tail})">削除</a>|
 ({if $c_member.image_filename_2==$c_member.image_filename})
-<font color="#999966">現在のﾒｲﾝ</font>]<br>
+<font color="#({$ktai_color_config.font_02})">現在のﾒｲﾝ</font>]<br>
 ({else})
 <a href="({t_url m=ktai a=do_h_config_image_change_main_image})&amp;img_num=2&amp;({$tail})">ﾒｲﾝにする</a>]<br>
 ({/if})
@@ -36,7 +36,7 @@
 [<a href="({t_img_url filename=$c_member.image_filename_3 w=$smarty.const.OPENPNE_IMG_KTAI_MAX_WIDTH h=$smarty.const.OPENPNE_IMG_KTAI_MAX_HEIGHT f=jpg})">大</a>]<br>
 [<a href="({t_url m=ktai a=page_h_config_image_delete_image_confirm})&amp;img_num=3&amp;({$tail})">削除</a>|
 ({if $c_member.image_filename_3==$c_member.image_filename})
-<font color="#999966">現在のﾒｲﾝ</font>]<br>
+<font color="#({$ktai_color_config.font_02})">現在のﾒｲﾝ</font>]<br>
 ({else})
 <a href="({t_url m=ktai a=do_h_config_image_change_main_image})&amp;img_num=3&amp;({$tail})">ﾒｲﾝにする</a>]<br>
 ({/if})
@@ -47,7 +47,7 @@
 現在、ﾌﾟﾛﾌｨｰﾙ写真は登録されていません。<br>
 ({/if})
 </center>
-<hr color="#0d6ddf">
+<hr color="#({$ktai_color_config.border_01})">
 ({if $c_member.image_filename_1&&$c_member.image_filename_2&&$c_member.image_filename_3})
 登録できる画像は三枚までです。<br>
 新しく登録する場合は登録画像を削除してください。<br>

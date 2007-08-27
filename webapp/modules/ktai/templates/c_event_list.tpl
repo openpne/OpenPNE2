@@ -1,9 +1,9 @@
 ({$inc_ktai_header|smarty:nodefaults})
 
-<table width="100%"><tr><td align="center" bgcolor="#0d6ddf">
-<font color="#eeeeee"><a name="top">({$c_commu.name})</a></font><br>
+<table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_01})">
+<font color="#({$ktai_color_config.font_01})"><a name="top">({$c_commu.name})</a></font><br>
 </td></tr>
-<tr><td bgcolor="#dddddd" align="center">
+<tr><td bgcolor="#({$ktai_color_config.bg_02})" align="center">
 ｲﾍﾞﾝﾄﾘｽﾄ<br>
 </td></tr></table>
 
@@ -14,7 +14,7 @@
 <hr color="#b3ceef">
 <table width="100%">
 ({foreach from=$c_topic_list item=item})
-<tr><td bgcolor="({cycle values="#e0eaef,#ffffff"})">
+<tr><td bgcolor="({cycle values="#`$ktai_color_config.bg_05`,#ffffff"})">
 ({$item.r_datetime|date_format:"%Y/%m/%d %H:%M"})
 ({if $item.is_c_topic_admin ==$u || $c_commu.c_member_id_admin == $u})
 [<a href="({t_url m=ktai a=page_c_event_edit})&amp;target_c_commu_topic_id=({$item.c_commu_topic_id})&amp;({$tail})">編集</a>]
@@ -39,7 +39,7 @@
 </center>
 ({/if})
 
-<hr color="#0d6ddf">
+<hr color="#({$ktai_color_config.border_01})">
 %%i90%%<a href="({t_url m=ktai a=page_c_home})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">ｺﾐｭﾆﾃｨに戻る</a><br>
 
 ({$inc_ktai_footer|smarty:nodefaults})

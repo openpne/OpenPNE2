@@ -1,6 +1,6 @@
 ({$inc_ktai_header|smarty:nodefaults})
-<table width="100%"><tr><td align="center" bgcolor="#0d6ddf">
-<font color="#eeeeee"><a name="top">
+<table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_01})">
+<font color="#({$ktai_color_config.font_01})"><a name="top">
 ({$WORD_FRIEND_HALF})最新日記</a></font><br>
 </td></tr></table>
 <center>
@@ -9,7 +9,7 @@
 <hr color="#b3ceef">
 <table width="100%">
 ({foreach from=$h_diary_list_friend item=each_diary})
-<tr><td bgcolor="({cycle values="#e0eaef,#ffffff"})">
+<tr><td bgcolor="({cycle values="#`$ktai_color_config.bg_05`,#ffffff"})">
 ({$each_diary.r_datetime|date_format:"%Y/%m/%d %H:%M"})<br>
 <a href="({t_url m=ktai a=page_fh_diary})&amp;target_c_diary_id=({$each_diary.c_diary_id})&amp;({$tail})">({$each_diary.subject|t_truncate:28:""})(({$each_diary.count_comments}))</a>
 (({$each_diary.c_member.nickname|t_truncate:17:""}))

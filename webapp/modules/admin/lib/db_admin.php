@@ -72,6 +72,12 @@ function db_admin_update_c_sns_config($data)
     return db_update('c_sns_config', $data, $where);
 }
 
+function db_admin_update_c_sns_config_ktai($data)
+{
+    $where = array('key_name' => 'current');
+    return db_update('c_sns_config_ktai', $data, $where);
+}
+
 function db_admin_delete_c_profile_option($c_profile_option_id)
 {
     //function cache削除

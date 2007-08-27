@@ -1,7 +1,7 @@
 ({$inc_ktai_header|smarty:nodefaults})
 <table width="100%">
-<tr><td align="center" bgcolor="#0d6ddf">
-<font color="#eeeeee"><a name="top">承認待ちﾘｽﾄ</a></font><br>
+<tr><td align="center" bgcolor="#({$ktai_color_config.bg_01})">
+<font color="#({$ktai_color_config.font_01})"><a name="top">承認待ちﾘｽﾄ</a></font><br>
 </td></tr></table>
 
 ({if $msg})
@@ -10,19 +10,19 @@
 
 <table width="100%">
 
-<tr><td bgcolor="#7ddadf">
+<tr><td bgcolor="#({$ktai_color_config.bg_04})">
 ({$WORD_FRIEND_HALF})ﾘﾝｸ承認待ち<br>
 </td></tr>
 
 ({if $anatani_c_friend_confirm_list})
 ({foreach from=$anatani_c_friend_confirm_list item=anatani_c_friend_confirm name=anatani_c_friend_confirm_list_name})
 
-<tr><td bgcolor="({cycle values="#e0eaef,#ffffff"})">
-<font color="#999966">ﾆｯｸﾈｰﾑ：</font><br>
+<tr><td bgcolor="({cycle values="#`$ktai_color_config.bg_05`,#ffffff"})">
+<font color="#({$ktai_color_config.font_02})">ﾆｯｸﾈｰﾑ：</font><br>
 <a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$anatani_c_friend_confirm.c_member_id_from})&amp;({$tail})">({$anatani_c_friend_confirm.nickname})</a><br>
 <br>
 ({if $$anatani_c_friend_confirm_list.message})
-<font color="#999966">ﾒｯｾｰｼﾞ：</font><br>
+<font color="#({$ktai_color_config.font_02})">ﾒｯｾｰｼﾞ：</font><br>
 ({$anatani_c_friend_confirm.message|nl2br})<br>
 <br>
 ({/if})
@@ -41,20 +41,20 @@
 
 
 <table width="100%">
-<tr><td bgcolor="#c49fff">
+<tr><td bgcolor="#({$ktai_color_config.bg_06})">
 ｺﾐｭﾆﾃｨ参加承認待ち<br>
 </td></tr>
 ({if $anatani_c_commu_member_confirm_list})
 ({foreach from=$anatani_c_commu_member_confirm_list item=item name=anatani_c_commu_member_confirm_list_name})
-<tr><td bgcolor="({cycle values="#dcd1ef,#ffffff"})">
-<font color="#999966">ﾆｯｸﾈｰﾑ：</font><br>
+<tr><td bgcolor="({cycle values="#`$ktai_color_config.bg_07`,#ffffff"})">
+<font color="#({$ktai_color_config.font_02})">ﾆｯｸﾈｰﾑ：</font><br>
 <a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})&amp;({$tail})">({$item.nickname})</a><br>
 <br>
-<font color="#999966">ｺﾐｭﾆﾃｨ名：</font><br>
+<font color="#({$ktai_color_config.font_02})">ｺﾐｭﾆﾃｨ名：</font><br>
 <a href="({t_url m=ktai a=page_c_home})&amp;target_c_commu_id=({$item.c_commu_id})&amp;({$tail})">({$item.c_commu_name})</a><br>
 <br>
 ({if $item.message})
-<font color="#999966">ﾒｯｾｰｼﾞ：</font><br>
+<font color="#({$ktai_color_config.font_02})">ﾒｯｾｰｼﾞ：</font><br>
 ({$item.message|nl2br})<br>
 <br>
 ({/if})
@@ -64,7 +64,7 @@
 </center>
 </td></tr>
 <tr><td>
-<hr color="#bfa4ef">
+<hr color="#({$ktai_color_config.border_03})">
 </td></tr>
 ({/foreach})
 ({/if})
@@ -72,20 +72,20 @@
 <br>
 
 <table width="100%">
-<tr><td bgcolor="#7ddadf">
+<tr><td bgcolor="#({$ktai_color_config.bg_04})">
 ｺﾐｭﾆﾃｨ管理者交代承認待ち<br>
 </td></tr>
 ({if $anatani_c_commu_admin_confirm_list})
 ({foreach from=$anatani_c_commu_admin_confirm_list item=item name=anatani_c_commu_admin_confirm_list_name})
-<tr><td bgcolor="#e0eaef">
-<font color="#999966">ﾆｯｸﾈｰﾑ：</font><br>
+<tr><td bgcolor="#({$ktai_color_config.bg_05})">
+<font color="#({$ktai_color_config.font_02})">ﾆｯｸﾈｰﾑ：</font><br>
 <a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$item.c_member_id_admin})&amp;({$tail})">({$item.nickname})</a><br>
 <br>
-<font color="#999966">ｺﾐｭﾆﾃｨ名：</font><br>
+<font color="#({$ktai_color_config.font_02})">ｺﾐｭﾆﾃｨ名：</font><br>
 <a href="({t_url m=ktai a=page_c_home})&amp;target_c_commu_id=({$item.c_commu_id})&amp;({$tail})">({$item.c_commu_name})</a><br>
 <br>
 ({if $item.message})
-<font color="#999966">ﾒｯｾｰｼﾞ：</font><br>
+<font color="#({$ktai_color_config.font_02})">ﾒｯｾｰｼﾞ：</font><br>
 ({$item.message|nl2br})<br>
 <br>
 ({/if})
@@ -104,20 +104,20 @@
 <br>
 
 <table width="100%">
-<tr><td bgcolor="#c49fff">
+<tr><td bgcolor="#({$ktai_color_config.bg_06})">
 ｺﾐｭﾆﾃｨ副管理者承認待ち<br>
 </td></tr>
 ({if $anatani_c_commu_sub_admin_confirm_list})
 ({foreach from=$anatani_c_commu_sub_admin_confirm_list item=item})
-<tr><td bgcolor="({cycle values="#dcd1ef,#ffffff"})">
-<font color="#999966">ﾆｯｸﾈｰﾑ：</font><br>
+<tr><td bgcolor="({cycle values="#`$ktai_color_config.bg_07`,#ffffff"})">
+<font color="#({$ktai_color_config.font_02})">ﾆｯｸﾈｰﾑ：</font><br>
 <a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$item.c_member_id_sub_admin})&amp;({$tail})">({$item.nickname})</a><br>
 <br>
-<font color="#999966">ｺﾐｭﾆﾃｨ名：</font><br>
+<font color="#({$ktai_color_config.font_02})">ｺﾐｭﾆﾃｨ名：</font><br>
 <a href="({t_url m=ktai a=page_c_home})&amp;target_c_commu_id=({$item.c_commu_id})&amp;({$tail})">({$item.c_commu_name})</a><br>
 <br>
 ({if $item.message})
-<font color="#999966">ﾒｯｾｰｼﾞ：</font><br>
+<font color="#({$ktai_color_config.font_02})">ﾒｯｾｰｼﾞ：</font><br>
 ({$item.message|nl2br})<br>
 ({/if})
 <center>
@@ -127,7 +127,7 @@
 <br>
 </td></tr>
 <tr><td>
-<hr color="#bfa4ef">
+<hr color="#({$ktai_color_config.border_03})">
 </td></tr>
 ({/foreach})
 ({/if})
@@ -135,17 +135,17 @@
 <br>
 
 <table width="100%">
-<tr><td bgcolor="#7ddadf">
+<tr><td bgcolor="#({$ktai_color_config.bg_04})">
 ({$WORD_FRIEND_HALF})ﾘﾝｸ要請中<br>
 </td></tr>
 ({if $anataga_c_friend_confirm_list})
 ({foreach from=$anataga_c_friend_confirm_list item=anataga_c_friend_confirm name=anataga_c_friend_confirm_list_name})
-<tr><td bgcolor="#e0eaef">
-<font color="#999966">ﾆｯｸﾈｰﾑ：</font><br>
+<tr><td bgcolor="#({$ktai_color_config.bg_05})">
+<font color="#({$ktai_color_config.font_02})">ﾆｯｸﾈｰﾑ：</font><br>
 <a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$anataga_c_friend_confirm.c_member_id_to})&amp;({$tail})">({$anataga_c_friend_confirm.nickname})</a><br>
 <br>
 ({if $anataga_c_friend_confirm.message})
-<font color="#999966">ﾒｯｾｰｼﾞ：</font><br>
+<font color="#({$ktai_color_config.font_02})">ﾒｯｾｰｼﾞ：</font><br>
 ({$anataga_c_friend_confirm.message|nl2br})<br>
 ({/if})
 <center>
@@ -160,20 +160,20 @@
 </table>
 <br>
 <table width="100%">
-<tr><td bgcolor="#c49fff">
+<tr><td bgcolor="#({$ktai_color_config.bg_06})">
 ｺﾐｭﾆﾃｨ要請中<br>
 </td></tr>
 ({if $anataga_c_commu_member_confirm_list})
 ({foreach from=$anataga_c_commu_member_confirm_list item=anataga_c_commu_member_confirm name=anataga_c_commu_member_confirm_list_name})
-<tr><td bgcolor="({cycle values="#dcd1ef,#ffffff"})">
-<font color="#999966">ﾆｯｸﾈｰﾑ：</font><br>
+<tr><td bgcolor="({cycle values="#`$ktai_color_config.bg_07`,#ffffff"})">
+<font color="#({$ktai_color_config.font_02})">ﾆｯｸﾈｰﾑ：</font><br>
 <a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$anataga_c_commu_member_confirm.c_member_id_admin})&amp;({$tail})">({$anataga_c_commu_member_confirm.nickname})</a><br>
 <br>
-<font color="#999966">ｺﾐｭﾆﾃｨ名：</font><br>
+<font color="#({$ktai_color_config.font_02})">ｺﾐｭﾆﾃｨ名：</font><br>
 <a href="({t_url m=ktai a=page_c_home})&amp;target_c_commu_id=({$anataga_c_commu_member_confirm.c_commu_id})&amp;({$tail})">({$anataga_c_commu_member_confirm.c_commu_name})</a><br>
 <br>
 ({if $anataga_c_commu_member_confirm.message})
-<font color="#999966">ﾒｯｾｰｼﾞ：</font><br>
+<font color="#({$ktai_color_config.font_02})">ﾒｯｾｰｼﾞ：</font><br>
 ({$anataga_c_commu_member_confirm.message|nl2br})<br>
 ({/if})
 <center>
@@ -181,7 +181,7 @@
 </center>
 </td></tr>
 <tr><td>
-<hr color="#bfa4ef">
+<hr color="#({$ktai_color_config.border_03})">
 </td></tr>
 ({/foreach})
 ({/if})
@@ -190,20 +190,20 @@
 
 
 <table width="100%">
-<tr><td bgcolor="#7ddadf">
+<tr><td bgcolor="#({$ktai_color_config.bg_04})">
 ｺﾐｭﾆﾃｨ管理者交代要請中<br>
 </td></tr>
 ({if $anataga_c_commu_admin_confirm_list})
 ({foreach from=$anataga_c_commu_admin_confirm_list item=item name=anataga_c_commu_admin_confirm_list_name})
-<tr><td bgcolor="({cycle values="#e0eaef,#ffffff"})">
-<font color="#999966">ﾆｯｸﾈｰﾑ：</font><br>
+<tr><td bgcolor="({cycle values="#`$ktai_color_config.bg_05`,#ffffff"})">
+<font color="#({$ktai_color_config.font_02})">ﾆｯｸﾈｰﾑ：</font><br>
 <a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$item.c_member_id_admin})&amp;({$tail})">({$item.nickname})</a><br>
 <br>
-<font color="#999966">ｺﾐｭﾆﾃｨ名：</font><br>
+<font color="#({$ktai_color_config.font_02})">ｺﾐｭﾆﾃｨ名：</font><br>
 <a href="({t_url m=ktai a=page_c_home})&amp;target_c_commu_id=({$item.c_commu_id})&amp;({$tail})">({$item.c_commu_name})</a><br>
 <br>
 ({if $item.message})
-<font color="#999966">ﾒｯｾｰｼﾞ：</font><br>
+<font color="#({$ktai_color_config.font_02})">ﾒｯｾｰｼﾞ：</font><br>
 ({$item.message|nl2br})<br>
 ({/if})
 <center>
@@ -219,20 +219,20 @@
 <br>
 
 <table width="100%">
-<tr><td bgcolor="#c49fff">
+<tr><td bgcolor="#({$ktai_color_config.bg_06})">
 ｺﾐｭﾆﾃｨ副管理者要請中<br>
 </td></tr>
 ({if $anataga_c_commu_sub_admin_confirm_list})
 ({foreach from=$anataga_c_commu_sub_admin_confirm_list item=item name=anataga_c_commu_sub_admin_confirm_list_name})
-<tr><td bgcolor="({cycle values="#dcd1ef,#ffffff"})">
-<font color="#999966">ﾆｯｸﾈｰﾑ：</font><br>
+<tr><td bgcolor="({cycle values="#`$ktai_color_config.bg_07`,#ffffff"})">
+<font color="#({$ktai_color_config.font_02})">ﾆｯｸﾈｰﾑ：</font><br>
 <a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$item.c_member_id_sub_admin})&amp;({$tail})">({$item.nickname})</a><br>
 <br>
-<font color="#999966">ｺﾐｭﾆﾃｨ名：</font><br>
+<font color="#({$ktai_color_config.font_02})">ｺﾐｭﾆﾃｨ名：</font><br>
 <a href="({t_url m=ktai a=page_c_home})&amp;target_c_commu_id=({$item.c_commu_id})&amp;({$tail})">({$item.c_commu_name})</a><br>
 <br>
 ({if $item.message})
-<font color="#999966">ﾒｯｾｰｼﾞ：</font><br>
+<font color="#({$ktai_color_config.font_02})">ﾒｯｾｰｼﾞ：</font><br>
 ({$item.message|nl2br})<br>
 ({/if})
 <center>

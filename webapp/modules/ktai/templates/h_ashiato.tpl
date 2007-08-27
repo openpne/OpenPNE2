@@ -1,17 +1,17 @@
 ({$inc_ktai_header|smarty:nodefaults})
 
-<table width="100%"><tr><td align="center" bgcolor="#0d6ddf">
-<font color="#eeeeee"><a name="top">あしあと</a></font><br>
+<table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_01})">
+<font color="#({$ktai_color_config.font_01})"><a name="top">あしあと</a></font><br>
 </td></tr>
 </table>
 あなたのページを訪れた人たちです。<br>
-<hr color="#0d6ddf">
+<hr color="#({$ktai_color_config.border_01})">
 総ｱｸｾｽ数: ({$c_ashiato_num})ｱｸｾｽ
-<hr color="#0d6ddf">
+<hr color="#({$ktai_color_config.border_01})">
 %%i91%%最近のあしあと<br>
 <table width="100%">
 ({foreach from=$c_ashiato_list item=item})
-<tr><td bgcolor="({cycle values="#e0eaef,#ffffff"})">
+<tr><td bgcolor="({cycle values="#`$ktai_color_config.bg_05`,#ffffff"})">
 ({$item.r_datetime|date_format:"%m/%d %H:%M"})
 ({if $item.nickname})
 <a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$item.c_member_id_from})&amp;({$tail})">({$item.nickname})</a>

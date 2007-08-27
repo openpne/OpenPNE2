@@ -1,9 +1,9 @@
 ({$inc_ktai_header|smarty:nodefaults})
 
-<table width="100%"><tr><td align="center" bgcolor="#0d6ddf">
-<font color="#eeeeee"><a name="top">({$c_commu.name})</a></font><br>
+<table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_01})">
+<font color="#({$ktai_color_config.font_01})"><a name="top">({$c_commu.name})</a></font><br>
 </td></tr>
-<tr><td bgcolor="#dddddd" align="center">
+<tr><td bgcolor="#({$ktai_color_config.bg_02})" align="center">
 ｺﾐｭﾆﾃｨに参加<br>
 </td></tr></table>
 
@@ -14,12 +14,12 @@
 ({t_form m=ktai a=do_c_join_request_insert_c_commu_member_confirm})
 <input type="hidden" name="target_c_commu_id" value="({$target_c_commu_id})">
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
-<font color="#999966">ﾒｯｾｰｼﾞ：</font><br>
+<font color="#({$ktai_color_config.font_02})">ﾒｯｾｰｼﾞ：</font><br>
 <textarea name="body" rows="6"></textarea><br>
 <center>
 <input type="submit" value="参加を希望する">
 </center>
 </form>
-<hr　color="#0d6ddf">
+<hr　color="#({$ktai_color_config.border_01})">
 <a href="({t_url m=ktai a=page_c_home})&amp;target_c_commu_id=({$target_c_commu_id})&amp;({$tail})">({$c_commu.name})ﾄｯﾌﾟ</a><br>
 ({$inc_ktai_footer|smarty:nodefaults})

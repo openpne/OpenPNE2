@@ -1,6 +1,6 @@
 ({$inc_ktai_header|smarty:nodefaults})
-<table width="100%"><tr><td align="center" bgcolor="#0d6ddf">
-<font color="#eeeeee"><a name="top">
+<table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_01})">
+<font color="#({$ktai_color_config.font_01})"><a name="top">
 ({$SNS_NAME})新規登録</a></font><br>
 </td></tr></table>
 
@@ -8,7 +8,7 @@
 ■<a href="({t_url m=ktai a=page_o_sns_kiyaku})">利用規約</a><br>
 ■<a href="({t_url m=ktai a=page_o_sns_privacy})">ﾌﾟﾗｲﾊﾞｼｰﾎﾟﾘｼｰ</a><br>
 
-<hr color="#0d6ddf">
+<hr color="#({$ktai_color_config.border_01})">
 <center>
 ({t_form m=ktai a=page_o_regist_input ses=$ses})
 ({if $aff_id})
