@@ -1,10 +1,10 @@
 ({$inc_ktai_header|smarty:nodefaults})
 
-<table width="100%"><tr><td align="center" bgcolor="#0d6ddf">
-<font color="#eeeeee"><a name="top">
+<table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_01})">
+<font color="#({$ktai_color_config.font_01})"><a name="top">
 ({if $box == 'trash'})ごみ箱({elseif $box != 'outbox'})受信箱({else})送信箱({/if})</a></font><br>
 </td></tr>
-<tr><td bgcolor="#dddddd" align="center">
+<tr><td bgcolor="#({$ktai_color_config.bg_02})" align="center">
 ﾒｯｾｰｼﾞﾘｽﾄ<br>
 </td></tr></table>
 <center>
@@ -26,17 +26,17 @@
 <hr color="#b3ceef">
 <table width="100%">
 ({foreach from=$c_message_trash_list item=c_message_trash})
-<tr><td bgcolor="({cycle values="#e0eaef,#ffffff"})">
+<tr><td bgcolor="({cycle values="#`$ktai_color_config.bg_05`,#ffffff"})">
 ({$c_message_trash.r_datetime|date_format:"%Y/%m/%d %H:%M"})<br>
 <a href="({t_url m=ktai a=page_h_message})&amp;target_c_message_id=({$c_message_trash.c_message_id})&amp;({$tail})">({$c_message_trash.subject|default:"&nbsp;"|t_truncate:50:""})</a>(({$c_message_trash.nickname|t_truncate:17:""|default:"&nbsp;"})さん)
-({if $c_message_trash.c_member_id_to != $u})<font color="#999966">(★)</font>({/if})
+({if $c_message_trash.c_member_id_to != $u})<font color="#({$ktai_color_config.font_02})">(★)</font>({/if})
 </td></tr>
 <tr><td>
 <hr color="#b3ceef">
 </td></tr>
 ({/foreach})
 </table>
-※送信済ﾒｯｾｰｼﾞ…<font color="#999966">(★)</font>
+※送信済ﾒｯｾｰｼﾞ…<font color="#({$ktai_color_config.font_02})">(★)</font>
 <br>
 ({else})
 <br>ﾒｯｾｰｼﾞはありません<br><br>
@@ -58,7 +58,7 @@
 <hr color="#b3ceef">
 <table width="100%">
 ({foreach from=$c_message_received_list item=c_message_received})
-<tr><td bgcolor="({cycle values="#e0eaef,#ffffff"})">
+<tr><td bgcolor="({cycle values="#`$ktai_color_config.bg_05`,#ffffff"})">
 ({$c_message_received.r_datetime|date_format:"%Y/%m/%d %H:%M"})<br>
 <a href="({t_url m=ktai a=page_h_message})&amp;target_c_message_id=({$c_message_received.c_message_id})&amp;({$tail})">({$c_message_received.subject|default:"&nbsp;"|t_truncate:50:""})</a>（({$c_message_received.nickname|t_truncate:17:""|default:"&nbsp;"})さん）
 </td></tr>
@@ -86,7 +86,7 @@
 <hr color="#b3ceef">
 <table width="100%">
 ({foreach from=$c_message_sent_list item=c_message_sent})
-<tr><td bgcolor="({cycle values="#e0eaef,#ffffff"})">
+<tr><td bgcolor="({cycle values="#`$ktai_color_config.bg_05`,#ffffff"})">
 ({$c_message_sent.r_datetime|date_format:"%Y/%m/%d %H:%M"})<br>
 <a href="({t_url m=ktai a=page_h_message})&amp;target_c_message_id=({$c_message_sent.c_message_id})&amp;({$tail})">({$c_message_sent.subject|default:"&nbsp;"|t_truncate:50:""})</a>（({$c_message_sent.nickname|t_truncate:17:""|default:"&nbsp;"})さん）<br>
 </td></tr>
@@ -104,11 +104,11 @@
 
 ({if $box != 'trash'})
 <table width="100%">
-<tr><td bgcolor="#dddddd" align="center">
+<tr><td bgcolor="#({$ktai_color_config.bg_02})" align="center">
 ﾒｯｾｰｼﾞ検索<br>
 </td></tr>
 </table>
-<font color="#999966">ｷｰﾜｰﾄﾞ：</font><br>
+<font color="#({$ktai_color_config.font_02})">ｷｰﾜｰﾄﾞ：</font><br>
 ({t_form _method=get m=ktai a=page_h_message_box})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
 <input type="hidden" name="box" value="({$box})">
@@ -119,7 +119,7 @@
 </form>
 ({/if})
 
-<hr color="#0d6ddf">
+<hr color="#({$ktai_color_config.border_01})">
 ({if $box == 'trash'})
 <a href="({t_url m=ktai a=page_h_message_box})&amp;box=outbox&amp;({$tail})">送信箱</a><br>
 <a href="({t_url m=ktai a=page_h_message_box})&amp;box=inbox&amp;({$tail})">受信箱</a><br>

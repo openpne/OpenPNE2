@@ -1,9 +1,9 @@
 ({$inc_ktai_header|smarty:nodefaults})
 
-<table width="100%"><tr><td align="center" bgcolor="#0d6ddf">
-<font color="#eeeeee"><a name="top">({$target_c_member.nickname})さん</a></font><br>
+<table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_01})">
+<font color="#({$ktai_color_config.font_01})"><a name="top">({$target_c_member.nickname})さん</a></font><br>
 </td></tr>
-<tr><td bgcolor="#dddddd" align="center">
+<tr><td bgcolor="#({$ktai_color_config.bg_02})" align="center">
 参加ｺﾐｭﾆﾃｨﾘｽﾄ(({$count_commus|default:0}))<br>
 </td></tr></table>
 
@@ -14,7 +14,7 @@
 <hr color="#b3ceef">
 <table width="100%">
 ({foreach from=$c_commu_list item=c_commu})
-<tr><td bgcolor="({cycle values="#e0eaef,#ffffff"})">
+<tr><td bgcolor="({cycle values="#`$ktai_color_config.bg_05`,#ffffff"})">
 <a href="({t_url m=ktai a=page_c_home})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">({$c_commu.name|t_truncate:50:""})</a>(({$c_commu.count_members}))<br>
 </td></tr>
 <tr><td>
@@ -32,7 +32,7 @@
 ({/if})
 
 ({if $INC_NAVI_type=="f"})
-<hr color="#0d6ddf">
+<hr color="#({$ktai_color_config.border_01})">
 %%i90%%<a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">({$target_c_member.nickname})さんのﾄｯﾌﾟ</a><br>
 ({/if})
 

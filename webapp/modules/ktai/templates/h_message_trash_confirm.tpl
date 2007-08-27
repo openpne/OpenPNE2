@@ -1,15 +1,15 @@
 ({$inc_ktai_header|smarty:nodefaults})
 
-<table width="100%"><tr><td align="center" bgcolor="#0d6ddf">
-<font color="#eeeeee"><a name="top">ﾒｯｾｰｼﾞ</a></font><br>
+<table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_01})">
+<font color="#({$ktai_color_config.font_01})"><a name="top">ﾒｯｾｰｼﾞ</a></font><br>
 </td></tr>
-<tr><td bgcolor="#dddddd" align="center">
+<tr><td bgcolor="#({$ktai_color_config.bg_02})" align="center">
 ﾒｯｾｰｼﾞをごみ箱へ移動<br>
 </td></tr></table>
 
 このﾒｯｾｰｼﾞをごみ箱に本当に移動しますか?<br>
 
-<hr color="#0d6ddf">
+<hr color="#({$ktai_color_config.border_01})">
 <center>
 ({t_form m=ktai a=do_h_message_update_c_message_is_deleted})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">

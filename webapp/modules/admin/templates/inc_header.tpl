@@ -95,6 +95,7 @@
 <ul id="adminDesignCont" class="pull">
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_skin_image')})">スキン画像変更</a></li>
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_sns_config')})">配色・CSS変更</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_sns_config_ktai')})">携帯版配色変更</a></li>
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_navi')})">ナビゲーション変更</a></li>
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('insert_html')})">HTML挿入</a></li>
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_entry_point')})">テンプレート挿入</a></li>

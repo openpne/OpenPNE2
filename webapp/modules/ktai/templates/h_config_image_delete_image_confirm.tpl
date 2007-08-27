@@ -1,14 +1,14 @@
 ({$inc_ktai_header|smarty:nodefaults})
-<table width="100%"><tr><td align="center" bgcolor="#0d6ddf">
-<font color="#eeeeee"><a name="top">設定変更</a></font><br>
+<table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_01})">
+<font color="#({$ktai_color_config.font_01})"><a name="top">設定変更</a></font><br>
 </td></tr>
-<tr><td bgcolor="#dddddd" align="center">
+<tr><td bgcolor="#({$ktai_color_config.bg_02})" align="center">
 ﾌﾟﾛﾌｨｰﾙ写真削除<br>
 </td></tr></table>
 
 この写真を本当に削除しますか?<br>
 
-<hr color="#0d6ddf">	
+<hr color="#({$ktai_color_config.border_01})">	
 <center>
 ({if $img_num == 1})
 <img src="({t_img_url filename=$c_member.image_filename_1 w=120 h=120 f=jpg noimg=no_image})" alt="画像1"><br>
@@ -22,7 +22,7 @@
 ({/if})
 </center>
 
-<hr color="#0d6ddf">
+<hr color="#({$ktai_color_config.border_01})">
 <center>
 ({t_form m=ktai a=do_h_config_image_delete_image})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
