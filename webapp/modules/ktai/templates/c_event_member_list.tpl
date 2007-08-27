@@ -1,9 +1,9 @@
 ({$inc_ktai_header|smarty:nodefaults})
 
-<table width="100%"><tr><td align="center" bgcolor="#0d6ddf">
-<font color="#eeeeee"><a name="top">({$c_event.name})</a></font><br>
+<table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_01})">
+<font color="#({$ktai_color_config.font_01})"><a name="top">({$c_event.name})</a></font><br>
 </td></tr>
-<tr><td bgcolor="#dddddd" align="center">
+<tr><td bgcolor="#({$ktai_color_config.bg_02})" align="center">
 ｲﾍﾞﾝﾄ参加者ﾘｽﾄ<br>
 </td></tr></table>
 ({if $count_member})
@@ -14,7 +14,7 @@
 <hr color="#b3ceef">
 <table width="100%">
 ({foreach from=$c_event_member_list item=c_member})
-<tr><td bgcolor="({cycle values="#e0eaef,#ffffff"})">
+<tr><td bgcolor="({cycle values="#`$ktai_color_config.bg_05`,#ffffff"})">
 <a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$c_member.c_member_id})&amp;({$tail})">({$c_member.nickname})</a><br>
 </td></tr>
 <tr><td>
@@ -34,7 +34,7 @@
 ({else})
 ｲﾍﾞﾝﾄへの参加者がいません。
 ({/if})
-<hr color="#0d6ddf">
+<hr color="#({$ktai_color_config.border_01})">
 %%i90%%<a href="({t_url m=ktai a=page_c_bbs})&amp;target_c_commu_topic_id=({$c_commu_topic_id})&amp;({$tail})">ｲﾍﾞﾝﾄに戻る</a><br>
 %%i90%%<a href="({t_url m=ktai a=page_c_event_list})&amp;target_c_commu_id=({$c_commu_id})&amp;({$tail})">ｲﾍﾞﾝﾄﾘｽﾄに戻る</a><br>
 %%i90%%<a href="({t_url m=ktai a=page_c_home})&amp;target_c_commu_id=({$c_commu_id})&amp;({$tail})">ｺﾐｭﾆﾃｨに戻る</a><br>

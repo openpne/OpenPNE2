@@ -3,15 +3,15 @@
 ({if $inc_ktai_entry_point[1]})
 ({$inc_ktai_entry_point[1]|smarty:nodefaults})
 ({/if})
-<table width="100%"><tr><td align="center" bgcolor="#0d6ddf">
-<font color="#eeeeee"><a name="top">({$target_c_member.nickname})さん</a></font><br>
+<table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_01})">
+<font color="#({$ktai_color_config.font_01})"><a name="top">({$target_c_member.nickname})さん</a></font><br>
 </td></tr>
 ({if $inc_ktai_entry_point[2]})
 <tr><td>
 ({$inc_ktai_entry_point[2]|smarty:nodefaults})
 </td></tr>
 ({/if})
-<tr><td bgcolor="#dddddd" align="center">
+<tr><td bgcolor="#({$ktai_color_config.bg_02})" align="center">
 最終ﾛｸﾞｲﾝは({$target_c_member.last_login})<br>
 </td></tr></table>
 ({if $inc_ktai_entry_point[3]})
@@ -29,7 +29,7 @@
 <font color="#ff0000">※他のﾒﾝﾊﾞｰから見たあなたのﾍﾟｰｼﾞはこのようになります。<br>ﾌﾟﾛﾌｨｰﾙを変更する場合は <a href="({t_url m=ktai a=page_h_config_prof})&amp;({$tail})">「ﾌﾟﾛﾌｨｰﾙ変更」 </a>よりおこなえます。</font><br>
 ({/if})
 
-<table width="100%" bgcolor="#e0eaef">
+<table width="100%" bgcolor="#({$ktai_color_config.bg_05})">
 <tr><td colspan="2" align="center">
 ({if ($is_friend || $friend_path)})
 ({if $friend_path})<a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$friend_path.c_member_id})">({$friend_path.nickname})</a>さんの({$WORD_FRIEND_HALF})({/if})
@@ -59,11 +59,11 @@
 <td valign="top">
 ({strip})
 ({capture name="birth"})
-({if $target_c_member.age !== NULL})<font color="#999966">年齢：</font>({$target_c_member.age})歳<br>
+({if $target_c_member.age !== NULL})<font color="#({$ktai_color_config.font_02})">年齢：</font>({$target_c_member.age})歳<br>
 ({if $is_h_prof && $target_c_member.public_flag_birth_year == 'friend'})<font color="#ff0000">※({$WORD_MY_FRIEND_HALF})まで公開</font><br>({/if})
 ({/if})
 ({if $target_c_member.birth_month && $target_c_member.birth_day})
-<font color="#999966">誕生日：</font>({$target_c_member.birth_month})月({$target_c_member.birth_day})日<br>
+<font color="#({$ktai_color_config.font_02})">誕生日：</font>({$target_c_member.birth_month})月({$target_c_member.birth_day})日<br>
 ({/if})
 ({/capture})
 
@@ -93,7 +93,7 @@
 ({/if})
 
 ({if $item.value && $item.form_type != 'textarea'})
-	<font color="#999966">({$item.caption})：</font>
+	<font color="#({$ktai_color_config.font_02})">({$item.caption})：</font>
 ({/if})
 
 ({if $item.form_type == 'checkbox'})
@@ -123,14 +123,14 @@
 <tr><td colspan="2">
 ({foreach from=$target_c_member.profile key=key item=item})
 ({if $item.form_type == 'textarea'})
-<font color="#999966">({$item.caption})：</font><br>
+<font color="#({$ktai_color_config.font_02})">({$item.caption})：</font><br>
 ({$item.value|t_truncate:108:""})<br>
 ({/if})
 ({/foreach})
 </td></tr>
 <tr><td align="right" colspan="2">
-<font color="#0c5f0f">⇒</font><a href="({t_url m=ktai a=page_f_profile_detail})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">もっと見る</a>
-<hr color="#0d6ddf"></td></tr></table>
+<font color="#({$ktai_color_config.font_03})">⇒</font><a href="({t_url m=ktai a=page_f_profile_detail})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">もっと見る</a>
+<hr color="#({$ktai_color_config.border_01})"></td></tr></table>
 ({if $is_h_prof})
 %%i76%%<a href="({t_url m=ktai a=page_fh_intro})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">紹介文を読む</a>
 ({else})
@@ -148,13 +148,13 @@
 ({/if})
 <br>
 <table width="100%">
-<tr><td bgcolor="#7ddadf">
+<tr><td bgcolor="#({$ktai_color_config.bg_04})">
 <a accesskey="1" name="a1" href="#a1">%%i125%%</a>新着日記<br>
 </td></tr>
 ({if $c_diary_list})
 ({foreach from=$c_diary_list item=c_diary})
-<tr><td bgcolor="({cycle values="#e0eaef,#ffffff"})">
-<font color="#999966">[({$c_diary.r_date|date_format:"%m/%d"})]</font><a href="({t_url m=ktai a=page_fh_diary})&amp;target_c_diary_id=({$c_diary.c_diary_id})&amp;({$tail})">({$c_diary.subject|t_truncate:22:""})(({$c_diary.comment_count}))</a>
+<tr><td bgcolor="({cycle values="#`$ktai_color_config.bg_05`,#ffffff"})">
+<font color="#({$ktai_color_config.font_02})">[({$c_diary.r_date|date_format:"%m/%d"})]</font><a href="({t_url m=ktai a=page_fh_diary})&amp;target_c_diary_id=({$c_diary.c_diary_id})&amp;({$tail})">({$c_diary.subject|t_truncate:22:""})(({$c_diary.comment_count}))</a>
 ({if $c_diary.image_filename_1 || $c_diary.image_filename_2 || $c_diary.image_filename_3})
 %%i68%%
 ({/if})
@@ -166,34 +166,34 @@
 </td></tr>
 ({/foreach})
 <tr><td align="right">
-<font color="#0c5f0f">⇒</font><a href="({t_url m=ktai a=page_fh_diary_list})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">もっと見る</a><br>
+<font color="#({$ktai_color_config.font_03})">⇒</font><a href="({t_url m=ktai a=page_fh_diary_list})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">もっと見る</a><br>
 </td></tr>
 ({/if})
 </table>
 <br>
 <table width="100%">
-<tr><td bgcolor="#c49fff">
+<tr><td bgcolor="#({$ktai_color_config.bg_06})">
 <a accesskey="2" name="a2" href="#a2">%%i126%%</a>({$WORD_FRIEND_HALF})ﾘｽﾄ<br>
 </td></tr>
 ({foreach from=$c_friend_list item=c_friend})
-<tr><td bgcolor="({cycle values="#dcd1ef,#ffffff"})">
+<tr><td bgcolor="({cycle values="#`$ktai_color_config.bg_07`,#ffffff"})">
 <a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$c_friend.c_member_id_to})&amp;({$tail})">({$c_friend.nickname|t_truncate:30:""})(({$c_friend.count_friend}))</a><br>
 </td></tr>
 <tr><td>
-<hr color="#bfa4ef">
+<hr color="#({$ktai_color_config.border_03})">
 </td></tr>
 ({/foreach})
 <tr><td align="right">
-<font color="#0c5f0f">⇒</font><a href="({t_url m=ktai a=page_fh_friend_list})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">もっと見る</a><br>
+<font color="#({$ktai_color_config.font_03})">⇒</font><a href="({t_url m=ktai a=page_fh_friend_list})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">もっと見る</a><br>
 </td></tr></table>
 
 <br>
 
 <table width="100%">
-<tr><td bgcolor="#7ddadf"><a accesskey="3" name="a3" href="#a3">%%i127%%</a>参加ｺﾐｭﾆﾃｨ<br>
+<tr><td bgcolor="#({$ktai_color_config.bg_04})"><a accesskey="3" name="a3" href="#a3">%%i127%%</a>参加ｺﾐｭﾆﾃｨ<br>
 </td></tr>
 ({foreach from=$c_commu_list item=c_commu})
-<tr><td bgcolor="({cycle values="#e0eaef,#ffffff"})">
+<tr><td bgcolor="({cycle values="#`$ktai_color_config.bg_05`,#ffffff"})">
 <a href="({t_url m=ktai a=page_c_home})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">({$c_commu.name|t_truncate:30:""})(({$c_commu.count_members}))</a><br>
 </td></tr>
 <tr><td>
@@ -201,9 +201,9 @@
 </td></tr>
 ({/foreach})
 <tr><td align="right">
-<font color="#0c5f0f">⇒</font><a href="({t_url m=ktai a=page_fh_com_list})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">もっと見る</a><br>
+<font color="#({$ktai_color_config.font_03})">⇒</font><a href="({t_url m=ktai a=page_fh_com_list})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">もっと見る</a><br>
 ({if $common_commu_count})
-<font color="#0c5f0f">⇒</font><a href="({t_url m=ktai a=page_f_com_list_common})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">共通ｺﾐｭﾆﾃｨ</a><br>
+<font color="#({$ktai_color_config.font_03})">⇒</font><a href="({t_url m=ktai a=page_f_com_list_common})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">共通ｺﾐｭﾆﾃｨ</a><br>
 ({/if})
 </td></tr></table>
 
