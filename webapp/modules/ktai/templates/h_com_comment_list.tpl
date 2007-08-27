@@ -10,7 +10,11 @@
 ({foreach from=$h_com_comment_list item=each_topic})
 <tr><td bgcolor="({cycle values="#e0eaef,#ffffff"})">
 ({$each_topic.r_datetime|date_format:"%Y/%m/%d %H:%M"})<br>
-<a href="({t_url m=ktai a=page_c_bbs})&amp;target_c_commu_topic_id=({$each_topic.c_commu_topic_id})&amp;({$tail})">({$each_topic.c_commu_topic_name|t_truncate:50:""})(({$each_topic.number}))</a>(({$each_topic.c_commu_name|t_truncate:17:""}))<br>
+<a href="({t_url m=ktai a=page_c_bbs})&amp;target_c_commu_topic_id=({$each_topic.c_commu_topic_id})&amp;({$tail})">({$each_topic.c_commu_topic_name|t_truncate:50:""})(({$each_topic.number}))</a>(({$each_topic.c_commu_name|t_truncate:17:""}))
+({if $each_topic.image_filename1 || $each_topic.image_filename2 || $each_topic.image_filename3})
+%%i68%%
+({/if})
+<br>
 </td></tr>
 <tr><td>
 <hr color="#b3ceef">
