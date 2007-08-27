@@ -1,15 +1,15 @@
 ({$inc_ktai_header|smarty:nodefaults})
 
-<table width="100%"><tr><td align="center" bgcolor="#0d6ddf">
-<font color="#eeeeee"><a name="top">({$target_c_diary.subject})</a></font><br>
+<table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_01})">
+<font color="#({$ktai_color_config.font_01})"><a name="top">({$target_c_diary.subject})</a></font><br>
 </td></tr>
-<tr><td bgcolor="#dddddd" align="center">
+<tr><td bgcolor="#({$ktai_color_config.bg_02})" align="center">
 日記の削除<br>
 </td></tr></table>
 
 この日記を本当に削除しますか?<br>
 
-<hr color="#0d6ddf">
+<hr color="#({$ktai_color_config.border_01})">
 <center>
 ({t_form m=ktai a=do_fh_diary_delete_c_diary})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">

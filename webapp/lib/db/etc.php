@@ -36,6 +36,15 @@ function db_select_c_sns_config_all()
 }
 
 /**
+ * 携帯版配色設定を取得
+ */
+function db_select_c_sns_config_ktai($key_name = 'current') {
+    $sql = 'SELECT * FROM c_sns_config_ktai WHERE key_name = ?';
+    $params = array($key_name);
+    return db_get_row($sql, $params);
+}
+
+/**
  * siteadminを取得
  */
 function p_common_c_siteadmin4target_pagename($target_pagename)

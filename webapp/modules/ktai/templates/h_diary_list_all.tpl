@@ -1,12 +1,12 @@
 ({$inc_ktai_header|smarty:nodefaults})
-<table width="100%"><tr><td align="center" bgcolor="#0d6ddf">
-<font color="#eeeeee"><a name="top">({if $keyword})日記検索結果({else})最新日記({/if})</a></font><br>
+<table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_01})">
+<font color="#({$ktai_color_config.font_01})"><a name="top">({if $keyword})日記検索結果({else})最新日記({/if})</a></font><br>
 </td></tr></table>
 <center>
 ({if $keyword})
 「({$keyword})」の検索結果
 ({/if})
-<font color="#999966">(({$c_diary_search_list_count|default:"0"})件)</font><br>
+<font color="#({$ktai_color_config.font_02})">(({$c_diary_search_list_count|default:"0"})件)</font><br>
 </center>
 <table width="100%">
 <tr><td>
@@ -14,7 +14,7 @@
 </td></tr>
 
 ({foreach from=$new_diary_list item=item})
-<tr><td bgcolor="({cycle values="#e0eaef,#ffffff"})">
+<tr><td bgcolor="({cycle values="#`$ktai_color_config.bg_05`,#ffffff"})">
 ({$item.r_datetime|date_format:"%Y/%m/%d %H:%M"})<br>
 <a href="({t_url m=ktai a=page_fh_diary})&amp;target_c_diary_id=({$item.c_diary_id})&amp;({$tail})">({$item.subject|t_truncate:28:""})(({$item.num_comment}))</a>(({$item.c_member.nickname|t_truncate:17:""}))
 ({if $item.image_filename_1 || $item.image_filename_2 || $item.image_filename_3})
@@ -36,19 +36,19 @@
 </center>
 ({/if})
 <table width="100%">
-<tr><td bgcolor="#dddddd" align="center">
+<tr><td bgcolor="#({$ktai_color_config.bg_02})" align="center">
 日記検索<br>
 </td></tr></table>
 ({t_form _method=get m=ktai a=page_h_diary_list_all})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
-<font color="#999966">ｷｰﾜｰﾄﾞ：</font><br>
+<font color="#({$ktai_color_config.font_02})">ｷｰﾜｰﾄﾞ：</font><br>
 <input type="text" name="keyword" value="({$keyword})">
 <center>
 <input type="submit" value="検索">
 </center>
 </form>
 
-<hr color="#0d6ddf">
+<hr color="#({$ktai_color_config.border_01})">
 ({if $keyword})<a href="({t_url m=ktai a=page_h_diary_list_all})&amp;({$tail})">最新日記</a><br>({/if})
 
 ({$inc_ktai_footer|smarty:nodefaults})

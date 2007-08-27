@@ -140,6 +140,8 @@ function fetch_inc_ktai_header()
     $inc_smarty->assign('is_au', $ktai->is_au());
     $inc_smarty->assign('is_softbank', $ktai->is_vodafone());
 
+    $inc_smarty->assign('ktai_color_config', db_select_c_sns_config_ktai());
+
     if (SNS_TITLE) {
         $inc_smarty->assign('title', SNS_TITLE);
     } else {
@@ -159,6 +161,7 @@ function fetch_inc_ktai_footer()
     $inc_smarty->assign('inc_ktai_footer', p_common_c_siteadmin4target_pagename('inc_ktai_footer'));
     $inc_smarty->assign('tail', $GLOBALS['KTAI_URL_TAIL']);
     $inc_smarty->assign('page', $GLOBALS['__Framework']['current_action']);
+    $inc_smarty->assign('ktai_color_config', db_select_c_sns_config_ktai());
 
     return $inc_smarty->ext_fetch('inc_ktai_footer.tpl');
 }

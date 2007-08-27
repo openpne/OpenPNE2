@@ -1,9 +1,9 @@
 ({$inc_ktai_header|smarty:nodefaults})
 
-<table width="100%"><tr><td align="center" bgcolor="#0d6ddf">
-<font color="#eeeeee"><a name="top">ﾗﾝｷﾝｸﾞ</a></font><br>
+<table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_01})">
+<font color="#({$ktai_color_config.font_01})"><a name="top">ﾗﾝｷﾝｸﾞ</a></font><br>
 </td></tr>
-<tr><td bgcolor="#dddddd" align="center">
+<tr><td bgcolor="#({$ktai_color_config.bg_02})" align="center">
 ({if $kind == "ashiato"})
 ｱｸｾｽ数
 ({elseif $kind == "friend"})
@@ -26,14 +26,14 @@
 ({elseif $kind == "com_comment"})
 昨日の掲示板書き込み数が多かったｺﾐｭﾆﾃｨのﾗﾝｷﾝｸﾞです。<br>
 ({/if})
-<hr color="#0d6ddf">
+<hr color="#({$ktai_color_config.border_01})">
 
 <table width="100%">
 ({foreach from=$rank_list key=rank item=list name=ranking})
 ({if $rank == 1})
 ({foreach from=$list item=item})
-<tr><td bgcolor="({cycle values="#e0eaef,#ffffff"})">
-%%i1015%%<font color="#999966">第({$rank})位</font><br>
+<tr><td bgcolor="({cycle values="#`$ktai_color_config.bg_05`,#ffffff"})">
+%%i1015%%<font color="#({$ktai_color_config.font_02})">第({$rank})位</font><br>
 ({strip})
 ({if $kind == "ashiato" || $kind == "friend"})
 <a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})&amp;({$tail})">({$item.c_member.nickname})</a>さん
@@ -54,13 +54,13 @@
 ({/strip})
 ({/foreach})
 <tr><td>
-<hr color="#0d6ddf">
+<hr color="#({$ktai_color_config.border_01})">
 </td></tr>
 ({else})
 
 ({foreach from=$list item=item})
-<tr><td bgcolor="({cycle values="#e0eaef,#ffffff"})">
-<font color="#999966">第({$rank})位</font><br>
+<tr><td bgcolor="({cycle values="#`$ktai_color_config.bg_05`,#ffffff"})">
+<font color="#({$ktai_color_config.font_02})">第({$rank})位</font><br>
 ({strip})
 ({if $kind == "ashiato" || $kind == "friend"})
 <a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})&amp;({$tail})">({$item.c_member.nickname})</a>さん

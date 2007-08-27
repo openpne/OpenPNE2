@@ -854,6 +854,34 @@ div.listControl p.listMove a {
 #admin_page_edit_c_sns_config textarea#copy_area { width: 40em; height: 20em;}
 #admin_page_edit_c_sns_config textarea#customCss { width: 950px;}
 
+/** admin_page_edit_c_sns_config_ktai **/
+#admin_page_edit_c_sns_config_ktai div.sampleColors p ,
+#admin_page_edit_c_sns_config_ktai div.bg p { padding: 0;}
+#admin_page_edit_c_sns_config_ktai div.contents p#c05 { padding: 10px 0 5px 0;}
+#admin_page_edit_c_sns_config_ktai div.sampleColors p#c03 { padding: 0 5px 5px 5px;}
+
+#admin_page_edit_c_sns_config_ktai div.sampleColors h3#subttl01 {
+	margin-top: 10px;
+}
+#admin_page_edit_c_sns_config_ktai div.sampleColors dl.box { width: 200px;}
+#admin_page_edit_c_sns_config_ktai div.sampleColors dl.box p { margin: 0;padding: 0;border-left: #58585C 5px solid;}
+#admin_page_edit_c_sns_config_ktai div.sampleColors dl.box p input { padding: 2px 5px;}
+#admin_page_edit_c_sns_config_ktai div.bg { padding: 10px 0;}
+#admin_page_edit_c_sns_config_ktai div.bg h3#subttl02 {
+	margin-top: 10px;
+}
+#admin_page_edit_c_sns_config_ktai dl.box { float: left; margin: 5px 5px 0 0; width: 150px; border: 1px #5F6067 solid;}
+#admin_page_edit_c_sns_config_ktai dl.box dt { padding: 5px; background-color: #58585C; font-weight: bold; color: #fff;}
+#admin_page_edit_c_sns_config_ktai dl.box dd { padding: 5px; background: #FFFFFF;}
+#admin_page_edit_c_sns_config_ktai dl.box dd.pre_color { padding: 0; height: 35px; border-top: #5F6067 1px solid; font-size: 1px; text-align: left;}
+#admin_page_edit_c_sns_config_ktai dl.box dd.color { padding: 0; height: 35px; border-top: #5F6067 1px solid; font-size: 1px; text-align: left;}
+#admin_page_edit_c_sns_config_ktai dl.box dd div { width: 70px; height: 13px; padding: 3px 5px; border-right: #58585C 5px solid; border-bottom: #5F6067 1px solid; background: #D5D5D7; font-size:8pt; overflow: hidden; text-align: center;}
+#admin_page_edit_c_sns_config_ktai h2#ttl02 {}
+#admin_page_edit_c_sns_config_ktai textarea { padding-right: 0;}
+#admin_page_edit_c_sns_config_ktai textarea#backgroundColors { width: 450px;}
+#admin_page_edit_c_sns_config_ktai textarea#copy_area { width: 40em; height: 20em;}
+#admin_page_edit_c_sns_config_ktai textarea#customCss { width: 950px;}
+
 /** admin_page_edit_c_navi **/
 #admin_page_edit_c_navi p.caution#c01 {}
 #admin_page_edit_c_navi p.pageNavi { padding: 5px 0 0 0;}

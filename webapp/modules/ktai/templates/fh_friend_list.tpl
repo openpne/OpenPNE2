@@ -1,9 +1,9 @@
 ({$inc_ktai_header|smarty:nodefaults})
 
-<table width="100%"><tr><td align="center" bgcolor="#0d6ddf">
-<font color="#eeeeee"><a name="top">({$target_c_member.nickname})({if $INC_NAVI_type=="f"})さん({/if})</a></font><br>
+<table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_01})">
+<font color="#({$ktai_color_config.font_01})"><a name="top">({$target_c_member.nickname})({if $INC_NAVI_type=="f"})さん({/if})</a></font><br>
 </td></tr>
-<tr><td bgcolor="#dddddd" align="center">
+<tr><td bgcolor="#({$ktai_color_config.bg_02})" align="center">
 ({if $INC_NAVI_type=="h"})({$WORD_MY_FRIEND_HALF})({else})({$WORD_FRIEND_HALF})({/if})ﾘｽﾄ(({$total_num}))<br>
 </td></tr></table>
 
@@ -14,7 +14,7 @@
 <hr color="#b3ceef">
 <table width="100%">
 ({foreach from=$target_friend_list item=target_friend})
-<tr><td bgcolor="({cycle values="#e0eaef,#ffffff"})">
+<tr><td bgcolor="({cycle values="#`$ktai_color_config.bg_05`,#ffffff"})">
 <a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$target_friend.c_member_id})&amp;({$tail})">({$target_friend.nickname})</a>(({$target_friend.friend_count}))<br>
 </td></tr>
 <tr><td>
@@ -31,7 +31,7 @@
 <br>
 </center>
 ({/if})
-<hr color="#0d6ddf">
+<hr color="#({$ktai_color_config.border_01})">
 ({if $INC_NAVI_type=="f"})
 %%i90%%<a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">({$target_c_member.nickname})さんのﾄｯﾌﾟ</a><br>
 ({else})
