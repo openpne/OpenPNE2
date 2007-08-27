@@ -131,6 +131,9 @@
 <tr><td align="right" colspan="2">
 <font color="#0c5f0f">⇒</font><a href="({t_url m=ktai a=page_f_profile_detail})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">もっと見る</a>
 <hr color="#0d6ddf"></td></tr></table>
+({if $is_h_prof})
+%%i76%%<a href="({t_url m=ktai a=page_fh_intro})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">紹介文を読む</a>
+({else})
 %%i110%%<a href="({t_url m=ktai a=page_f_message_send})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">ﾒｯｾｰｼﾞを送る</a><br>
 ({if $relation.friend==0})
 ({if $relation.wait==0})
@@ -141,6 +144,7 @@
 %%i76%%<a href="({t_url m=ktai a=page_fh_intro})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">紹介文を読む</a>
 ({if $relation.friend})
  / <a href="({t_url m=ktai a=page_f_intro_edit})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">書く</a><br>
+({/if})
 ({/if})
 <br>
 <table width="100%">
