@@ -2575,7 +2575,7 @@ function db_commu_insert_c_commu_topic($topic)
         }
     } else {
         $open_date = $topic['open_date'];
-        $invete_period = $topic['invite_period'];
+        $invite_period = $topic['invite_period'];
     }
     if ($data['event_flag']) {
         $data += array(
