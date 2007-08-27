@@ -10,18 +10,18 @@
 <center>
 ({if $target_c_member.image_filename})
 <img src="({t_img_url filename=$target_c_member.image_filename w=120 h=120 f=jpg})" alt="画像1"><br>
-[<a href="({t_img_url filename=$target_c_member.image_filename f=jpg})">大</a>]<br>
+[<a href="({t_img_url filename=$target_c_member.image_filename w=$smarty.const.OPENPNE_IMG_KTAI_MAX_WIDTH h=$smarty.const.OPENPNE_IMG_KTAI_MAX_HEIGHT f=jpg})">大</a>]<br>
 ({if ($target_c_member.image_filename_1!=$target_c_member.image_filename)&&$target_c_member.image_filename_1})
 <img src="({t_img_url filename=$target_c_member.image_filename_1 w=120 h=120 f=jpg})" alt="画像１"><br>
-[<a href="({t_img_url filename=$target_c_member.image_filename_1 f=jpg})">大</a>]<br>
+[<a href="({t_img_url filename=$target_c_member.image_filename_1 w=$smarty.const.OPENPNE_IMG_KTAI_MAX_WIDTH h=$smarty.const.OPENPNE_IMG_KTAI_MAX_HEIGHT f=jpg})">大</a>]<br>
 ({/if})
 ({if ($target_c_member.image_filename_2!=$target_c_member.image_filename)&&$target_c_member.image_filename_2})
 <img src="({t_img_url filename=$target_c_member.image_filename_2 w=120 h=120 f=jpg})" alt="画像２"><br>
-[<a href="({t_img_url filename=$target_c_member.image_filename_2 f=jpg})">大</a>]<br>
+[<a href="({t_img_url filename=$target_c_member.image_filename_2 w=$smarty.const.OPENPNE_IMG_KTAI_MAX_WIDTH h=$smarty.const.OPENPNE_IMG_KTAI_MAX_HEIGHT f=jpg})">大</a>]<br>
 ({/if})
 ({if ($target_c_member.image_filename_3!=$target_c_member.image_filename)&&$target_c_member.image_filename_3})
 <img src="({t_img_url filename=$target_c_member.image_filename_3 w=120 h=120 f=jpg})" alt="画像３"><br>
-[<a href="({t_img_url filename=$target_c_member.image_filename_3 f=jpg})">大</a>]<br>
+[<a href="({t_img_url filename=$target_c_member.image_filename_3 w=$smarty.const.OPENPNE_IMG_KTAI_MAX_WIDTH h=$smarty.const.OPENPNE_IMG_KTAI_MAX_HEIGHT f=jpg})">大</a>]<br>
 ({/if})
 ({/if})
 </center>
