@@ -94,7 +94,11 @@
 ({foreach from=$c_diary_friend_list item=item})
 <tr><td bgcolor="({cycle values="#e0eaef,#ffffff"})">
 <font color="#999966">[({$item.r_date|date_format:"%m/%d"})]</font> ({$item.nickname|t_truncate:22:""})<br>
-<a href="({t_url m=ktai a=page_fh_diary})&amp;target_c_diary_id=({$item.c_diary_id})&amp;({$tail})">({$item.subject|t_truncate:28:""})(({$item.count_comments}))</a><br>
+<a href="({t_url m=ktai a=page_fh_diary})&amp;target_c_diary_id=({$item.c_diary_id})&amp;({$tail})">({$item.subject|t_truncate:28:""})(({$item.count_comments}))</a>
+({if $item.image_filename_1 || $item.image_filename_2 || $item.image_filename_3})
+%%i68%%
+({/if})
+<br>
 </td></tr>
 <tr><td>
 <hr color="#b3ceef">
@@ -136,7 +140,11 @@
 ({foreach from=$c_commu_topic_list item=item})
 <tr><td bgcolor="({cycle values="#e0eaef,#ffffff"})">
 <font color="#999966">[({$item.r_datetime|date_format:"%m/%d"})]</font> ({$item.c_commu_name|t_truncate:22:""})<br>
-<a href="({t_url m=ktai a=page_c_bbs})&amp;target_c_commu_topic_id=({$item.c_commu_topic_id})&amp;({$tail})">({$item.c_commu_topic_name|t_truncate:28:""})(({$item.number}))</a><br>
+<a href="({t_url m=ktai a=page_c_bbs})&amp;target_c_commu_topic_id=({$item.c_commu_topic_id})&amp;({$tail})">({$item.c_commu_topic_name|t_truncate:28:""})(({$item.number}))</a>
+({if $item.image_filename1 || $item.image_filename2 || $item.image_filename3})
+%%i68%%
+({/if})
+<br>
 </td></tr>
 <tr><td>
 <hr color="#b3ceef">
