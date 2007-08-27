@@ -12,7 +12,11 @@
 <tr><td bgcolor="({cycle values="#e0eaef,#ffffff"})">
 ({$each_diary.r_datetime|date_format:"%Y/%m/%d %H:%M"})<br>
 <a href="({t_url m=ktai a=page_fh_diary})&amp;target_c_diary_id=({$each_diary.c_diary_id})&amp;({$tail})">({$each_diary.subject|t_truncate:28:""})(({$each_diary.count_comments}))</a>
-(({$each_diary.c_member.nickname|t_truncate:17:""}))<br>
+(({$each_diary.c_member.nickname|t_truncate:17:""}))
+({if $each_diary.image_filename_1 || $each_diary.image_filename_2 || $each_diary.image_filename_3})
+%%i68%%
+({/if})
+<br>
 </td></tr>
 <tr><td>
 <hr color="#b3ceef">
