@@ -13,7 +13,12 @@ class pc_page_fh_diary extends OpenPNE_Action
         // --- リクエスト変数
         $target_c_diary_id = $requests['target_c_diary_id'];
         $body = $requests['body'];
+        $is_all = $requests['is_all'];
+        $direc = $requests['direc'];
+        $page = $requests['page'];
         // ----------
+
+        $page += $direc;
 
         // target が指定されていない
         if (!$target_c_diary_id) {
@@ -59,7 +64,29 @@ class pc_page_fh_diary extends OpenPNE_Action
 
         $this->set("target_member", db_member_c_member4c_member_id($target_c_member_id));
         $this->set("target_diary", $target_c_diary);
-        $this->set("target_diary_comment_list", db_diary_get_c_diary_comment_list4c_diary_id($target_c_diary_id));
+
+        if ($is_all) {
+            $page_size = db_diary_count_c_diary_comment4c_diary_id($target_c_diary_id);
+        } else {
+            $page_size = 10;
+        }
+
+//        $this->set("target_diary_comment_list", db_diary_get_c_diary_comment_list4c_diary_id($target_c_diary_id));
+        list ($c_diary_comment_list, $is_prev, $is_next, $total_num, $total_page_num)
+            = k_p_fh_diary_c_diary_comment_list4c_diary_id($target_c_diary_id, $page_size, $page);
+        $this->set('target_diary_comment_list', $c_diary_comment_list);
+        $this->set("is_prev", $is_prev);
+        $this->set("is_next", $is_next);
+        $this->set("total_num", $total_num);
+        $this->set("total_page_num", $total_page_num);
+        $this->set("page_size", $page_size);
+        $this->set('is_all', $is_all);
+        $this->set('page', $page);
+
+        $pager = array();
+        $pager['end'] = $total_num - ($page_size * ($page - 1));
+        $pager['start'] = $pager['end'] - count($c_diary_comment_list) + 1;
+        $this->set('pager', $pager);
 
         $this->set("body", $body);
 
