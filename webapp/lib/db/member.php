@@ -973,6 +973,31 @@ function db_member_update_c_member_image($c_member_id, $image_filename, $img_num
     return db_update('c_member', $data, $where);
 }
 
+/**
+ * 一言を更新する
+ */
+function db_member_update_c_profile_message($c_member_id, $prof_message, $message_datetime)
+{
+    $sql = 'SELECT c_profile_id FROM c_profile WHERE name = ? ';
+    $prof_message_id = db_get_one($sql, array('PNE_MESSAGE'));
+    $message_datetime_id = db_get_one($sql, array('PNE_MESSAGE_DATETIME'));
+    
+	//function cache削除
+    cache_drop_c_member_profile($c_member_id);
+    
+    $sql = 'DELETE FROM c_member_profile' .
+            ' WHERE c_member_id = ? AND c_profile_id = ?';
+    $params = array(intval($c_member_id), $prof_message_id);
+    db_query($sql, $params);
+    do_config_prof_insert_c_member_profile($c_member_id, $prof_message_id, '', $prof_message, 'private');
+    
+    $sql = 'DELETE FROM c_member_profile' .
+            ' WHERE c_member_id = ? AND c_profile_id = ?';
+    $params = array(intval($c_member_id), $message_datetime_id);
+    db_query($sql, $params);
+    do_config_prof_insert_c_member_profile($c_member_id, $message_datetime_id, '', $message_datetime, 'private');
+}
+
 //--- c_member_secure
 
 function db_member_insert_c_member($c_member, $c_member_secure)

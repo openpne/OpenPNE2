@@ -1008,6 +1008,65 @@ show_flash('flash/list.swf', '({$flashvars})');
 
 ({/if})
 
+<!-- ***************************** -->
+<!-- ******ここから：一言****** -->
+({t_form m=pc a=do_h_home_insert_c_schedule})
+<input type="hidden" name="sessid" value="({$PHPSESSID})">
+<input type="hidden" name="w" value="({$w})">
+
+<table border="0" cellspacing="0" cellpadding="0" style="width:440px;margin:0px auto;" class="border_07">
+<tr>
+<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:424px;" class="bg_00"><img src="./skin/dummy.gif" style="width:424px;height:7px;" class="dummy"></td>
+<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+</tr>
+<tr>
+<td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_01" style="width:424px;">
+<!-- ここから：主内容＞＞一言 -->
+<div class="border_01">
+<table border="0" cellspacing="0" cellpadding="0" style="width:422px;">
+<tr>
+<td style="width:36px;" class="bg_06"><img src="({t_img_url_skin filename=content_header_1})" style="width:30px;height:20px;" class="dummy"></td>
+<td style="width:100px;padding:2px 0px;" class="bg_06"><span class="b_b c_00">My News!</span></td>
+<td style="width:286px;" align="right" class="bg_06">&nbsp;</td>
+</tr>
+</table>
+</div>
+<div class="border_01">
+<table border="0" cellspacing="0" cellpadding="0" style="width:422px;">
+<tr>
+<td style="width:36px;" class="bg_09"></td>
+<td style="width:200px;padding:2px 0px;" class="bg_09"><span class="b_b c_00">({if $c_member_all.profile.PNE_MESSAGE_DATETIME.value})({$c_member_all.profile.PNE_MESSAGE_DATETIME.value|date_format:"%m/%d %H:%M"}) 更新({/if}) </span></td>
+<td style="width:186px;" align="right" class="bg_09">&nbsp;</td>
+</tr>
+</table>
+</div>
+<div class="border_01 bg_02 padding_s" align="left">
+({t_form m=pc a=do_h_home_update_message})
+<input type="hidden" name="sessid" value="({$PHPSESSID})">
+
+<textarea style="WIDTH: 350px" name="prof_message" rows="3">({$c_member_all.profile.PNE_MESSAGE.value})</textarea>
+<INPUT style="PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 11px; PADDING-TOP: 11px; TEXT-ALIGN: center; 6px: " type=submit value=&nbsp;変&nbsp;更&nbsp;> 
+
+</form>
+</div>
+<!-- ここまで：主内容＞＞一言 -->
+</td>
+<td class="bg_00"><img src="./skin/dummy.gif"></td>
+</tr>
+<tr>
+<td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" style="width:424px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+</tr>
+</table>
+
+<!-- ******ここまで：一言****** -->
+<!-- ***************************** -->
+
+<img src="./skin/dummy.gif" class="v_spacer_m">
+
 ({if $inc_entry_point[9]})
 ({$inc_entry_point[9]|smarty:nodefaults|t_url2cmd:'entry_point'|t_cmd:'entry_point'})
 ({/if})
