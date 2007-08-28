@@ -547,6 +547,38 @@
 ({*ここまで：header*})
 ({*ここから：body*})
 <!-- ここから：主内容 -->
+<!-- ここから：主内容＞＞表示件数切り替え -->
+<table border="0" cellspacing="0" cellpadding="0" style="width:524px;">
+({*********})
+<tr>
+<td style="width:524;height:1px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+</tr>
+({*********})
+<tr>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:522;" class="bg_02" align="right" valign="middle">
+<div style="padding:4px 3px;">
+
+({if $is_all})
+<a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$target_diary.c_diary_id})">最新を表示</a>
+({else})
+<a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$target_diary.c_diary_id})&amp;is_all=1">すべて表示</a>
+({if $is_next})<a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$target_diary.c_diary_id})&amp;direc=1&amp;page=({$page})">＜前</a> ({/if})
+({if $is_prev})<a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$target_diary.c_diary_id})&amp;direc=-1&amp;page=({$page})">次＞</a> ({/if})
+({/if})
+ ({$pager.start})番～({$pager.end})番を表示
+
+</div>
+</td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+</tr>
+({*********})
+<tr>
+<td style="height:1px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+</tr>
+({*********})
+</table>
+<!-- ここまで：主内容＞＞表示件数切り替え -->
 <!-- ここから：主内容＞＞コメント表示 -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:524px;" class="border_01">
 ({*********})
@@ -625,6 +657,38 @@
 ({/foreach})
 </table>
 <!-- ここまで：主内容＞＞コメント表示 -->
+<!-- ここから：主内容＞＞表示件数切り替え -->
+<table border="0" cellspacing="0" cellpadding="0" style="width:524px;">
+({*********})
+<tr>
+<td style="width:524;height:1px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+</tr>
+({*********})
+<tr>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:522;" class="bg_02" align="right" valign="middle">
+<div style="padding:4px 3px;">
+
+({if $is_all})
+<a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$target_diary.c_diary_id})">最新を表示</a>
+({else})
+<a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$target_diary.c_diary_id})&amp;is_all=1">すべて表示</a>
+({if $is_next})<a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$target_diary.c_diary_id})&amp;direc=1&amp;page=({$page})">＜前</a> ({/if})
+({if $is_prev})<a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$target_diary.c_diary_id})&amp;direc=-1&amp;page=({$page})">次＞</a> ({/if})
+({/if})
+ ({$pager.start})番～({$pager.end})番を表示
+
+</div>
+</td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+</tr>
+({*********})
+<tr>
+<td style="height:1px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+</tr>
+({*********})
+</table>
+<!-- ここまで：主内容＞＞表示件数切り替え -->
 <!-- ここまで：主内容 -->
 ({*ここまで：body*})
 ({*ここから：footer*})
