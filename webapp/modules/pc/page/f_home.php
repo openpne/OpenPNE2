@@ -62,6 +62,9 @@ class pc_page_f_home extends OpenPNE_Action
         }
         $this->set('target_c_member', $target_c_member);
 
+        $target_c_member_all = db_member_c_member_with_profile($target_c_member_id, 'private');
+        $this->set('target_c_member_all', $target_c_member_all);
+
         $this->set('c_rss_cache_list', db_rss_c_rss_cache_list4c_member_id($target_c_member_id, 5));
 
         $c_friend_comment_list = db_friend_c_friend_comment4c_member_id($target_c_member_id);
