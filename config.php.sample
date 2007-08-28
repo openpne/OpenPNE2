@@ -410,6 +410,11 @@ $GLOBALS['_OPENPNE_API_IP_LIST'] = array(
 define('SERVER_IP_KEY', 'REMOTE_ADDR');
 
 ///
+// memory_limit設定
+///
+// ini_set('memory_limit','32M');
+
+///
 // umask設定
 ///
 
