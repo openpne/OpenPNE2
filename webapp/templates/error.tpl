@@ -18,8 +18,14 @@
 <p>ページが見つかりません。</p>
 ({else})
 ({*メンテナンス画面*})
-<p>現在、サーバが混み合っているか、メンテナンス中です。<br>
-ご迷惑をおかけいたしますが、しばらく時間を空けて再度アクセスしてください。</p>
+<p>
+({if $smarty.const.OPENPNE_MAINTENANCE_TEXT})
+({$smarty.const.OPENPNE_MAINTENANCE_TEXT|smarty:nodefaults})
+({else})
+現在、サーバが混み合っているか、メンテナンス中です。<br>
+ご迷惑をおかけいたしますが、しばらく時間を空けて再度アクセスしてください。
+({/if})
+</p>
 ({/if})
 
 ({/if})
