@@ -377,7 +377,7 @@
 ({*********})
 <tr>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-<td style="width:95px;" class="bg_05" align="center" valign="top" rowspan="({if $type == "h"})5({else})3({/if})">
+<td style="width:95px;" class="bg_05" align="center" valign="top" rowspan="5">
 <div style="padding:4px 3px;">
 
 ({$target_diary.r_datetime|date_format:"%Y年%m月%d日<br>%H:%M"})
@@ -394,7 +394,6 @@
 </td>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
-({if $type == "h"})
 ({*********})
 <tr>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
@@ -413,7 +412,6 @@
 ({$WORD_MY_FRIEND})まで公開
 ({elseif $target_diary.public_flag == "private"})
 公開しない
-({/if})
 
 </div>
 </td>
