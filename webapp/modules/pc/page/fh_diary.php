@@ -71,9 +71,8 @@ class pc_page_fh_diary extends OpenPNE_Action
             $page_size = 10;
         }
 
-//        $this->set("target_diary_comment_list", db_diary_get_c_diary_comment_list4c_diary_id($target_c_diary_id));
-        list ($c_diary_comment_list, $is_prev, $is_next, $total_num, $total_page_num)
-            = k_p_fh_diary_c_diary_comment_list4c_diary_id($target_c_diary_id, $page_size, $page);
+        list ($c_diary_comment_list, $is_next, $is_prev, $total_num, $total_page_num)
+            = k_p_fh_diary_c_diary_comment_list4c_diary_id($target_c_diary_id, $page_size, $page, false);
         $this->set('target_diary_comment_list', $c_diary_comment_list);
         $this->set("is_prev", $is_prev);
         $this->set("is_next", $is_next);
@@ -84,8 +83,8 @@ class pc_page_fh_diary extends OpenPNE_Action
         $this->set('page', $page);
 
         $pager = array();
-        $pager['end'] = $total_num - ($page_size * ($page - 1));
-        $pager['start'] = $pager['end'] - count($c_diary_comment_list) + 1;
+        $pager['start'] = ($page_size * ($page - 1)) + 1;
+        $pager['end'] = $pager['start'] + count($c_diary_comment_list) - 1;
         $this->set('pager', $pager);
 
         $this->set("body", $body);

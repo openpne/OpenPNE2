@@ -912,9 +912,14 @@ function k_p_fh_diary_list_c_diary_list4c_member_id($c_member_id, $page_size, $p
 /**
  * 日記へのコメントリストを取得
  */
-function k_p_fh_diary_c_diary_comment_list4c_diary_id($c_diary_id, $page_size, $page)
+function k_p_fh_diary_c_diary_comment_list4c_diary_id($c_diary_id, $page_size, $page, $desc = true)
 {
-    $sql = 'SELECT * FROM c_diary_comment WHERE c_diary_id = ? ORDER BY r_datetime DESC';
+    $sql = 'SELECT * FROM c_diary_comment WHERE c_diary_id = ? ORDER BY r_datetime ';
+    if ($desc) {
+        $sql .= 'DESC';
+    } else {
+        $sql .= 'ASC';
+    }
     $params = array(intval($c_diary_id));
     $c_diary_comment_list = db_get_all_page($sql, $page, $page_size, $params);
 
