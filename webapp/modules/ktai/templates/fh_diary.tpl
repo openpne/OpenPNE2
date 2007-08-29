@@ -23,9 +23,7 @@
 画像3を見る:[<a href="({t_img_url filename=$target_c_diary.image_filename_3 w=120 h=120 f=jpg})">小</a>/<a href="({t_img_url filename=$target_c_diary.image_filename_3 w=$smarty.const.OPENPNE_IMG_KTAI_MAX_WIDTH h=$smarty.const.OPENPNE_IMG_KTAI_MAX_HEIGHT f=jpg})">大</a>]<br>
 ({/if})
 
-({if $type == "h"})
 (({if $target_c_diary.public_flag == "public"})全員に公開({elseif $target_c_diary.public_flag == "friend"})({$WORD_MY_FRIEND_HALF})まで公開({elseif $target_c_diary.public_flag == "private"})公開しない({/if}))
-({/if})
 
 ({if $c_diary_comment})
 <hr color="#({$ktai_color_config.border_01})">
