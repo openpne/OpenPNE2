@@ -41,6 +41,10 @@ define('OPENPNE_DEBUGGING', 1);
 // true: ユーザーにメンテナンス画面を表示
 define('OPENPNE_UNDER_MAINTENANCE', false);
 
+// メンテナンス画面に表示させるテキスト
+// 未入力の場合は、標準のテキストが表示されます
+define('OPENPNE_MAINTENANCE_TEXT', '');
+
 // メンテナンス中でも表示するモジュール名
 $GLOBALS['_OPENPNE_MAINTENANCE_MODULES'] = array('admin');
 
