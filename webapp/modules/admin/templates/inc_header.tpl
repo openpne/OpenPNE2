@@ -78,8 +78,10 @@
 ({foreach from=$profile_list item=item})
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('user_analysis_profile')})&amp;target_c_profile_id=({$item.c_profile_id})">({$item.caption})別メンバー数表示</a></li>
 ({/foreach})
+({if $smarty.const.LOG_C_ACCESS_LOG})
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('access_analysis_month')})&amp;ktai_flag=0">PCページ月次集計</a></li>
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('access_analysis_month')})&amp;ktai_flag=1">携帯ページ月次集計</a></li>
+({/if})
 </ul>
 </li>
 
