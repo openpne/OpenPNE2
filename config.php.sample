@@ -66,9 +66,11 @@ define('OPENPNE_USE_FUNCTION_CACHE', false);
 // MySQL ヒント使用設定
 define('OPENPNE_USE_MYSQL_HINT', true);
 
-// セッション情報をDBに保存するかどうか
-// (有効にする場合は、以下のDBサーバ設定も行ってください)
-define('SESSION_SAVE_DB', false);
+// セッション情報を保存するストレージ
+// 0:ファイル
+// 1:データベース
+// 2:memcache(要PECL::memcache)
+define('SESSION_STRAGE', 0);
 
 // 確認画面用の一時画像をDBに保存するかどうか
 define('OPENPNE_TMP_IMAGE_DB', false);
@@ -115,6 +117,13 @@ define('OPENPNE_TMP_FILE_DB', false);
 //    'new_link' => false,
 //    ),
 //);
+
+// セッションデータ保存用Memcache(オプション)
+$GLOBALS['_OPENPNE_MEMCACHE_LIST']['session'] = array(
+'dsn' => array(
+    'hostspec' => '127.0.0.1',
+    ),
+);
 
 // 画像データ保存用DB(オプション)
 //$GLOBALS['_OPENPNE_DSN_LIST']['image'] = array(
