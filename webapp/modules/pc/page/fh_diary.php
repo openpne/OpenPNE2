@@ -72,7 +72,8 @@ class pc_page_fh_diary extends OpenPNE_Action
         }
 
         list ($c_diary_comment_list, $is_next, $is_prev, $total_num, $total_page_num)
-            = k_p_fh_diary_c_diary_comment_list4c_diary_id($target_c_diary_id, $page_size, $page, false);
+            = k_p_fh_diary_c_diary_comment_list4c_diary_id($target_c_diary_id, $page_size, $page);
+        $c_diary_comment_list = array_reverse($c_diary_comment_list);
         $this->set('target_diary_comment_list', $c_diary_comment_list);
         $this->set("is_prev", $is_prev);
         $this->set("is_next", $is_next);

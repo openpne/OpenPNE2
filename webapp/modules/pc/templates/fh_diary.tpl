@@ -561,8 +561,8 @@
 <a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$target_diary.c_diary_id})">最新を表示</a>
 ({else})
 <a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$target_diary.c_diary_id})&amp;is_all=1">すべて表示</a>
-({if $is_next})<a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$target_diary.c_diary_id})&amp;direc=-1&amp;page=({$page})">＜前</a> ({/if})
-({if $is_prev})<a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$target_diary.c_diary_id})&amp;direc=1&amp;page=({$page})">次＞</a> ({/if})
+({if $is_next})<a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$target_diary.c_diary_id})&amp;direc=-1&amp;page=({$page})">次＞</a> ({/if})
+({if $is_prev})<a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$target_diary.c_diary_id})&amp;direc=1&amp;page=({$page})">＜前</a> ({/if})
 ({/if})
  ({$pager.start})番～({$pager.end})番を表示
 
@@ -671,8 +671,8 @@
 <a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$target_diary.c_diary_id})">最新を表示</a>
 ({else})
 <a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$target_diary.c_diary_id})&amp;is_all=1">すべて表示</a>
-({if $is_next})<a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$target_diary.c_diary_id})&amp;direc=-1&amp;page=({$page})">＜前</a> ({/if})
-({if $is_prev})<a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$target_diary.c_diary_id})&amp;direc=1&amp;page=({$page})">次＞</a> ({/if})
+({if $is_next})<a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$target_diary.c_diary_id})&amp;direc=-1&amp;page=({$page})">次＞</a> ({/if})
+({if $is_prev})<a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$target_diary.c_diary_id})&amp;direc=1&amp;page=({$page})">＜前</a> ({/if})
 ({/if})
  ({$pager.start})番～({$pager.end})番を表示
 
