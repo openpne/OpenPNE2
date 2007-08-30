@@ -147,7 +147,7 @@ class OpenPNE_Config
             'OPENPNE_DEBUGGING' => false,
             'OPENPNE_TRIM_DOUBLEBYTE_SPACE' => true,
             'OPENPNE_USE_API' => false,
-            'SESSION_SAVE_DB' => false,
+            'SESSION_STRAGE' => 0,
             'OPENPNE_TMP_IMAGE_DB' => false,
             'OPENPNE_TMP_FILE_DB' => false,
             'OPENPNE_USE_PARTIAL_SSL' => false,
