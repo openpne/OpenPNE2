@@ -156,18 +156,26 @@ class OpenPNE_Auth
      */
     function set_session_save_handler()
     {
-        if (SESSION_SAVE_DB) {
-            static $dbsess;
-            if (is_null($dbsess)) {
+        static $sess_strage;
+        if (is_null($sess_strage)) {
+            switch (SESSION_STRAGE) {
+            	case 1:
                 include_once 'OpenPNE/DBSession.php';
-                $dbsess = new OpenPNE_DBSession(db_get_dsn('session'));
+                $sess_strage = new OpenPNE_DBSession(db_get_dsn('session'));
+                break;
+                case 2:
+                include_once 'OpenPNE/MemcacheSession.php';
+                $sess_strage = new OpenPNE_MemcacheSession($GLOBALS['_OPENPNE_MEMCACHE_LIST']['session']['dsn']);
+                break;
+                default:
+                return;
             }
-            session_set_save_handler(array(&$dbsess, 'open'),
-                                     array(&$dbsess, 'close'),
-                                     array(&$dbsess, 'read'),
-                                     array(&$dbsess, 'write'),
-                                     array(&$dbsess, 'destroy'),
-                                     array(&$dbsess, 'gc'));
+            session_set_save_handler(array(&$sess_strage, 'open'),
+                                 array(&$sess_strage, 'close'),
+                                 array(&$sess_strage, 'read'),
+                                 array(&$sess_strage, 'write'),
+                                 array(&$sess_strage, 'destroy'),
+                                 array(&$sess_strage, 'gc'));
         }
     }
 
