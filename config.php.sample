@@ -70,7 +70,7 @@ define('OPENPNE_USE_MYSQL_HINT', true);
 // 0:ファイル
 // 1:データベース
 // 2:memcache(要PECL::memcache)
-define('SESSION_STRAGE', 0);
+define('SESSION_STORAGE', 0);
 
 // 確認画面用の一時画像をDBに保存するかどうか
 define('OPENPNE_TMP_IMAGE_DB', false);
