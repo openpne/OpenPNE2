@@ -27,7 +27,7 @@
 <input type="hidden" name="target_script" value="({$requests.target_script})">
 <input type="text" tabindex="1" name="username" id="username" class="text">
 <input type="password" tabindex="2" name="password" id="password" class="text">
-<input type="image" tabindex="4" name="submit" src="./skin/dummy.gif" border="0" id="button_login" alt="ログイン">
+<input type="image" tabindex="4" name="submit" src="./skin/dummy.gif" alt="" border="0" id="button_login" alt="ログイン">
 
 ({if !$IS_CLOSED_SNS && (($smarty.const.OPENPNE_REGIST_FROM) & ($smarty.const.OPENPNE_REGIST_FROM_PC))})
 <a href="({t_url m=pc a=page_o_public_invite})" id="button_new_regist"><img src="./skin/dummy.gif" alt="新規登録"></a>
