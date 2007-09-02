@@ -10,12 +10,12 @@
 <!-- ******ここから：メンバー一覧（メンバーあり）****** -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:575px;margin:0px auto;" class="border_07">
 <tr>
-<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
-<td style="width:561px;" class="bg_00"><img src="./skin/dummy.gif" style="width:561px;height:7px;" class="dummy"></td>
-<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:561px;" class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:561px;height:7px;" class="dummy"></td>
+<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
 </tr>
 <tr>
-<td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
 <td class="bg_01" align="center">
 <!-- *ここから：メンバー一覧＞内容* -->
 ({*ここから：header*})
@@ -36,11 +36,11 @@
 <table border="0" cellspacing="0" cellpadding="0" style="width:561px;">
 ({*********})
 <tr>
-<td style="width:561px;height:1px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:561px;height:1px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({*********})
 <tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 <td style="width:559px;" class="bg_02" align="center" valign="middle">
 
 <div style="padding:4px 3px;text-align:center;">
@@ -53,15 +53,15 @@
 </div>
 
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({*********})
 <tr>
-<td style="width:561px;height:1px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:561px;height:1px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({*********})
 <tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 <td style="width:559px;" class="bg_02" align="right" valign="middle">
 <div style="padding:4px 3px;">
 
@@ -71,109 +71,109 @@
 
 </div>
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({*********})
 <tr>
-<td style="width:561px;height:1px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:561px;height:1px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({*********})
 </tr>
 <table border="0" cellspacing="0" cellpadding="0" style="width:561px;">
 ({*---------------ここから：１行目：画像-------------------*})
 <tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 ({t_loop from=$c_event_member_list start=0 num=5})
 <td style="width:111px;" class="bg_03" align="center" valign="middle">
 
-<img src="./skin/dummy.gif" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
 ({if $item})
 <a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})"><img src="({t_img_url filename=$item.image_filename w=76 h=76 noimg=no_image})" class="pict"></a>
 ({else})
-<img src="./skin/dummy.gif" class="dummy" style="width:76px;height:76px;">
+<img src="./skin/dummy.gif" alt="" class="dummy" style="width:76px;height:76px;">
 ({/if})
-<img src="./skin/dummy.gif" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
 
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 ({/t_loop})
 </tr>
 ({*********})
 <tr>
-<td style="width:561px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:561px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({*********})
 ({*---------------ここまで：１行目：画像-------------------*})
 ({*---------------ここから：１行目：ニックネーム-------------------*})
 <tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 ({t_loop from=$c_event_member_list start=0 num=5})
 <td style="width:111px;" class="bg_02" align="center" valign="middle">
 
-<img src="./skin/dummy.gif" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
 ({if $item})
 <a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})">({$item.nickname|default:"&nbsp;"})</a>
 ({else})
 &nbsp;
 ({/if})
-<img src="./skin/dummy.gif" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
 
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 ({/t_loop})
 </tr>
 ({*********})
 <tr>
-<td style="width:561px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:561px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({*********})
 ({*---------------ここまで：１行目：ニックネーム-------------------*})
 ({*---------------ここから：２行目：画像-------------------*})
 ({if $c_event_member_list[5]})
 <tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 ({t_loop from=$c_event_member_list start=5 num=5})
 <td style="width:111px;" class="bg_03" align="center" valign="middle">
 
-<img src="./skin/dummy.gif" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
 ({if $item})
 <a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})"><img src="({t_img_url filename=$item.image_filename w=76 h=76 noimg=no_image})" class="pict"></a>
 ({else})
-<img src="./skin/dummy.gif" class="dummy" style="width:76px;height:76px;">
+<img src="./skin/dummy.gif" alt="" class="dummy" style="width:76px;height:76px;">
 ({/if})
-<img src="./skin/dummy.gif" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
 
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 ({/t_loop})
 </tr>
 ({*********})
 <tr>
-<td style="width:561px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:561px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({*********})
 ({*---------------ここまで：２行目：画像-------------------*})
 ({*---------------ここから：２行目：ニックネーム-------------------*})
 <tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 ({t_loop from=$c_event_member_list start=5 num=5})
 <td style="width:111px;" class="bg_02" align="center" valign="middle">
 
-<img src="./skin/dummy.gif" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
 ({if $item})
 <a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})">({$item.nickname|default:"&nbsp;"})</a>
 ({else})
 &nbsp;
 ({/if})
-<img src="./skin/dummy.gif" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
 
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 ({/t_loop})
 </tr>
 ({*********})
 <tr>
-<td style="width:561px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:561px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({*********})
 ({/if})
@@ -181,49 +181,49 @@
 ({*---------------ここから：３行目：画像-------------------*})
 ({if $c_event_member_list[10]})
 <tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 ({t_loop from=$c_event_member_list start=10 num=5})
 <td style="width:111px;" class="bg_03" align="center" valign="middle">
 
-<img src="./skin/dummy.gif" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
 ({if $item})
 <a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})"><img src="({t_img_url filename=$item.image_filename w=76 h=76 noimg=no_image})" class="pict"></a>
 ({else})
-<img src="./skin/dummy.gif" class="dummy" style="width:76px;height:76px;">
+<img src="./skin/dummy.gif" alt="" class="dummy" style="width:76px;height:76px;">
 ({/if})
-<img src="./skin/dummy.gif" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
 
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 ({/t_loop})
 </tr>
 ({*********})
 <tr>
-<td style="width:561px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:561px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({*********})
 ({*---------------ここまで：３行目：画像-------------------*})
 ({*---------------ここから：３行目：ニックネーム-------------------*})
 <tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 ({t_loop from=$c_event_member_list start=10 num=5})
 <td style="width:111px;" class="bg_02" align="center" valign="middle">
 
-<img src="./skin/dummy.gif" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
 ({if $item})
 <a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})">({$item.nickname|default:"&nbsp;"})</a>
 ({else})
 &nbsp;
 ({/if})
-<img src="./skin/dummy.gif" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
 
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 ({/t_loop})
 </tr>
 ({*********})
 <tr>
-<td style="width:561px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:561px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({*********})
 ({/if})
@@ -231,49 +231,49 @@
 ({*---------------ここから：４行目：画像-------------------*})
 ({if $c_event_member_list[15]})
 <tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 ({t_loop from=$c_event_member_list start=15 num=5})
 <td style="width:111px;" class="bg_03" align="center" valign="middle">
 
-<img src="./skin/dummy.gif" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
 ({if $item})
 <a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})"><img src="({t_img_url filename=$item.image_filename w=76 h=76 noimg=no_image})" class="pict"></a>
 ({else})
-<img src="./skin/dummy.gif" class="dummy" style="width:76px;height:76px;">
+<img src="./skin/dummy.gif" alt="" class="dummy" style="width:76px;height:76px;">
 ({/if})
-<img src="./skin/dummy.gif" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
 
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 ({/t_loop})
 </tr>
 ({*********})
 <tr>
-<td style="width:561px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:561px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({*********})
 ({*---------------ここまで：４行目：画像-------------------*})
 ({*---------------ここから：４行目：ニックネーム-------------------*})
 <tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 ({t_loop from=$c_event_member_list start=15 num=5})
 <td style="width:111px;" class="bg_02" align="center" valign="middle">
 
-<img src="./skin/dummy.gif" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
 ({if $item})
 <a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})">({$item.nickname|default:"&nbsp;"})</a>
 ({else})
 &nbsp;
 ({/if})
-<img src="./skin/dummy.gif" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
 
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 ({/t_loop})
 </tr>
 ({*********})
 <tr>
-<td style="width:561px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:561px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({*********})
 ({/if})
@@ -281,49 +281,49 @@
 ({*---------------ここから：５行目：画像-------------------*})
 ({if $c_event_member_list[20]})
 <tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 ({t_loop from=$c_event_member_list start=20 num=5})
 <td style="width:111px;" class="bg_03" align="center" valign="middle">
 
-<img src="./skin/dummy.gif" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
 ({if $item})
 <a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})"><img src="({t_img_url filename=$item.image_filename w=76 h=76 noimg=no_image})" class="pict"></a>
 ({else})
-<img src="./skin/dummy.gif" class="dummy" style="width:76px;height:76px;">
+<img src="./skin/dummy.gif" alt="" class="dummy" style="width:76px;height:76px;">
 ({/if})
-<img src="./skin/dummy.gif" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
 
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 ({/t_loop})
 </tr>
 ({*********})
 <tr>
-<td style="width:561px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:561px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({*********})
 ({*---------------ここまで：５行目：画像-------------------*})
 ({*---------------ここから：５行目：ニックネーム-------------------*})
 <tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 ({t_loop from=$c_event_member_list start=20 num=5})
 <td style="width:111px;" class="bg_02" align="center" valign="middle">
 
-<img src="./skin/dummy.gif" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
 ({if $item})
 <a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})">({$item.nickname|default:"&nbsp;"})</a>
 ({else})
 &nbsp;
 ({/if})
-<img src="./skin/dummy.gif" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
 
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 ({/t_loop})
 </tr>
 ({*********})
 <tr>
-<td style="width:561px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:561px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({*********})
 ({/if})
@@ -331,49 +331,49 @@
 ({*---------------ここから：６行目：画像-------------------*})
 ({if $c_event_member_list[25]})
 <tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 ({t_loop from=$c_event_member_list start=25 num=5})
 <td style="width:111px;" class="bg_03" align="center" valign="middle">
 
-<img src="./skin/dummy.gif" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
 ({if $item})
 <a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})"><img src="({t_img_url filename=$item.image_filename w=76 h=76 noimg=no_image})" class="pict"></a>
 ({else})
-<img src="./skin/dummy.gif" class="dummy" style="width:76px;height:76px;">
+<img src="./skin/dummy.gif" alt="" class="dummy" style="width:76px;height:76px;">
 ({/if})
-<img src="./skin/dummy.gif" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
 
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 ({/t_loop})
 </tr>
 ({*********})
 <tr>
-<td style="width:561px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:561px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({*********})
 ({*---------------ここまで：６行目：画像-------------------*})
 ({*---------------ここから：６行目：ニックネーム-------------------*})
 <tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 ({t_loop from=$c_event_member_list start=25 num=5})
 <td style="width:111px;" class="bg_02" align="center" valign="middle">
 
-<img src="./skin/dummy.gif" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
 ({if $item})
 <a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})">({$item.nickname|default:"&nbsp;"})</a>
 ({else})
 &nbsp;
 ({/if})
-<img src="./skin/dummy.gif" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
 
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 ({/t_loop})
 </tr>
 ({*********})
 <tr>
-<td style="width:561px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:561px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({*********})
 ({/if})
@@ -381,49 +381,49 @@
 ({*---------------ここから：７行目：画像-------------------*})
 ({if $c_event_member_list[30]})
 <tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 ({t_loop from=$c_event_member_list start=30 num=5})
 <td style="width:111px;" class="bg_03" align="center" valign="middle">
 
-<img src="./skin/dummy.gif" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
 ({if $item})
 <a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})"><img src="({t_img_url filename=$item.image_filename w=76 h=76 noimg=no_image})" class="pict"></a>
 ({else})
-<img src="./skin/dummy.gif" class="dummy" style="width:76px;height:76px;">
+<img src="./skin/dummy.gif" alt="" class="dummy" style="width:76px;height:76px;">
 ({/if})
-<img src="./skin/dummy.gif" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
 
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 ({/t_loop})
 </tr>
 ({*********})
 <tr>
-<td style="width:561px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:561px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({*********})
 ({*---------------ここまで：７行目：画像-------------------*})
 ({*---------------ここから：７行目：ニックネーム-------------------*})
 <tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 ({t_loop from=$c_event_member_list start=30 num=5})
 <td style="width:111px;" class="bg_02" align="center" valign="middle">
 
-<img src="./skin/dummy.gif" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
 ({if $item})
 <a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})">({$item.nickname|default:"&nbsp;"})</a>
 ({else})
 &nbsp;
 ({/if})
-<img src="./skin/dummy.gif" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
 
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 ({/t_loop})
 </tr>
 ({*********})
 <tr>
-<td style="width:561px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:561px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({*********})
 ({/if})
@@ -431,49 +431,49 @@
 ({*---------------ここから：８行目：画像-------------------*})
 ({if $c_event_member_list[35]})
 <tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 ({t_loop from=$c_event_member_list start=35 num=5})
 <td style="width:111px;" class="bg_03" align="center" valign="middle">
 
-<img src="./skin/dummy.gif" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
 ({if $item})
 <a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})"><img src="({t_img_url filename=$item.image_filename w=76 h=76 noimg=no_image})" class="pict"></a>
 ({else})
-<img src="./skin/dummy.gif" class="dummy" style="width:76px;height:76px;">
+<img src="./skin/dummy.gif" alt="" class="dummy" style="width:76px;height:76px;">
 ({/if})
-<img src="./skin/dummy.gif" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
 
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 ({/t_loop})
 </tr>
 ({*********})
 <tr>
-<td style="width:561px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:561px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({*********})
 ({*---------------ここまで：８行目：画像-------------------*})
 ({*---------------ここから：８行目：ニックネーム-------------------*})
 <tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 ({t_loop from=$c_event_member_list start=35 num=5})
 <td style="width:111px;" class="bg_02" align="center" valign="middle">
 
-<img src="./skin/dummy.gif" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
 ({if $item})
 <a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})">({$item.nickname|default:"&nbsp;"})</a>
 ({else})
 &nbsp;
 ({/if})
-<img src="./skin/dummy.gif" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
 
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 ({/t_loop})
 </tr>
 ({*********})
 <tr>
-<td style="width:561px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:561px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({*********})
 ({/if})
@@ -481,49 +481,49 @@
 ({*---------------ここから：９行目：画像-------------------*})
 ({if $c_event_member_list[40]})
 <tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 ({t_loop from=$c_event_member_list start=40 num=5})
 <td style="width:111px;" class="bg_03" align="center" valign="middle">
 
-<img src="./skin/dummy.gif" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
 ({if $item})
 <a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})"><img src="({t_img_url filename=$item.image_filename w=76 h=76 noimg=no_image})" class="pict"></a>
 ({else})
-<img src="./skin/dummy.gif" class="dummy" style="width:76px;height:76px;">
+<img src="./skin/dummy.gif" alt="" class="dummy" style="width:76px;height:76px;">
 ({/if})
-<img src="./skin/dummy.gif" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
 
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 ({/t_loop})
 </tr>
 ({*********})
 <tr>
-<td style="width:561px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:561px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({*********})
 ({*---------------ここまで：９行目：画像-------------------*})
 ({*---------------ここから：９行目：ニックネーム-------------------*})
 <tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 ({t_loop from=$c_event_member_list start=40 num=5})
 <td style="width:111px;" class="bg_02" align="center" valign="middle">
 
-<img src="./skin/dummy.gif" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
 ({if $item})
 <a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})">({$item.nickname|default:"&nbsp;"})</a>
 ({else})
 &nbsp;
 ({/if})
-<img src="./skin/dummy.gif" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
 
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 ({/t_loop})
 </tr>
 ({*********})
 <tr>
-<td style="width:561px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:561px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({*********})
 ({/if})
@@ -531,49 +531,49 @@
 ({*---------------ここから：１０行目：画像-------------------*})
 ({if $c_event_member_list[45]})
 <tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 ({t_loop from=$c_event_member_list start=45 num=5})
 <td style="width:111px;" class="bg_03" align="center" valign="middle">
 
-<img src="./skin/dummy.gif" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
 ({if $item})
 <a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})"><img src="({t_img_url filename=$item.image_filename w=76 h=76 noimg=no_image})" class="pict"></a>
 ({else})
-<img src="./skin/dummy.gif" class="dummy" style="width:76px;height:76px;">
+<img src="./skin/dummy.gif" alt="" class="dummy" style="width:76px;height:76px;">
 ({/if})
-<img src="./skin/dummy.gif" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
 
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 ({/t_loop})
 </tr>
 ({*********})
 <tr>
-<td style="width:561px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:561px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({*********})
 ({*---------------ここまで：１０行目：画像-------------------*})
 ({*---------------ここから：１０行目：ニックネーム-------------------*})
 <tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 ({t_loop from=$c_event_member_list start=45 num=5})
 <td style="width:111px;" class="bg_02" align="center" valign="middle">
 
-<img src="./skin/dummy.gif" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
 ({if $item})
 <a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})">({$item.nickname|default:"&nbsp;"})</a>
 ({else})
 &nbsp;
 ({/if})
-<img src="./skin/dummy.gif" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
 
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 ({/t_loop})
 </tr>
 ({*********})
 <tr>
-<td style="width:561px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:561px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({*********})
 ({/if})
@@ -581,7 +581,7 @@
 </table>
 <table border="0" cellspacing="0" cellpadding="0" style="width:561px;">
 <tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 <td style="width:559px;" class="bg_02" align="center" valign="middle">
 <div style="padding:4px 3px;text-align:center;">
 
@@ -595,15 +595,15 @@
 
 </div>
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({*********})
 <tr>
-<td style="width:561px;height:1px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:561px;height:1px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({*********})
 <tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 <td style="width:561px;" class="bg_02" align="right" valign="middle">
 <div style="padding:4px 3px;">
 
@@ -613,11 +613,11 @@
 
 </div>
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({*********})
 <tr>
-<td style="width:561px;height:1px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:561px;height:1px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({*********})
 </table>
@@ -628,12 +628,12 @@
 ({*ここまで：footer*})
 <!-- *ここまで：メンバー一覧＞＞内容* -->
 </td>
-<td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
 </tr>
 <tr>
-<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
-<td style="width:561px;" class="bg_00"><img src="./skin/dummy.gif" style="width:561px;height:7px;" class="dummy"></td>
-<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:561px;" class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:561px;height:7px;" class="dummy"></td>
+<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
 </tr>
 </table>
 <!-- ******ここまで：メンバー一覧（メンバーあり）****** -->
@@ -645,12 +645,12 @@
 <!-- ******ここから：メンバー一覧（メンバーなし）****** -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:580px;margin:0px auto;" class="border_07">
 <tr>
-<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
-<td style="width:566px;" class="bg_00"><img src="./skin/dummy.gif" style="width:566px;height:7px;" class="dummy"></td>
-<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:566px;" class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:566px;height:7px;" class="dummy"></td>
+<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
 </tr>
 <tr>
-<td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
 <td class="bg_01" align="center">
 <!-- *ここから：メンバー一覧＞内容* -->
 ({*ここから：header*})
@@ -668,21 +668,21 @@
 ({*ここから：body*})
 <table border="0" cellspacing="0" cellpadding="0" style="width:564px;">
 <tr>
-<td style="width:564px;height:1px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:564px;height:1px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 <!-- ここから：主内容 -->
 <tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 <td style="width:564px;height:50px;" class="bg_03" align="center" valign="middle">
 
 イベントへの参加者がいません。
 
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 <!-- ここまで：主内容 -->
 <tr>
-<td style="width:564px;height:1px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:564px;height:1px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 </table>
 ({*ここまで：body*})
@@ -691,12 +691,12 @@
 ({*ここまで：footer*})
 <!-- *ここまで：メンバー一覧＞＞内容* -->
 </td>
-<td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
 </tr>
 <tr>
-<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
-<td style="width:566px;" class="bg_00"><img src="./skin/dummy.gif" style="width:566px;height:7px;" class="dummy"></td>
-<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:566px;" class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:566px;height:7px;" class="dummy"></td>
+<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
 </tr>
 </table>
 <!-- ******ここまで：メンバー一覧（メンバー無し）****** -->
@@ -704,20 +704,20 @@
 
 ({/if})
 
-<img src="./skin/dummy.gif" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
 
 <!-- ************************************ -->
 <!-- ******ここから：イベントトップへ****** -->
 <div class="content_footer" id="link_event_top" align="center">
 
-<img src="./skin/dummy.gif" class="icon arrow_1">&nbsp;
+<img src="./skin/dummy.gif" alt="" class="icon arrow_1">&nbsp;
 <a href="({t_url m=pc a=page_c_event_detail})&amp;target_c_commu_topic_id=({$c_topic.c_commu_topic_id})">イベント [({$c_topic.name})] トップへ</a>
 
 </div>
 <!-- ******ここまで：イベントトップへ****** -->
 <!-- ************************************ -->
 
-<img src="./skin/dummy.gif" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
 
 ({***************************})
 ({**ここまで：メインコンテンツ**})

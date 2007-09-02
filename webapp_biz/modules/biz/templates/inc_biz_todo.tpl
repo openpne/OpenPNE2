@@ -1,10 +1,10 @@
-<img src="./skin/dummy.gif" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
 
 <!-- ********************************** -->
 <!-- ******ここから：Todo一覧****** -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:240px;">
 <tr>
-<td style="width:10px;"><img src="./skin/dummy.gif" style="width:10px;height:10px;display:block;"></td>
+<td style="width:10px;"><img src="./skin/dummy.gif" alt="" style="width:10px;height:10px;display:block;"></td>
 <td style="width:230px;" align="left">
 
 ({t_form m=biz a=do_`$cmd`_home_insert_biz_todo})
@@ -58,7 +58,7 @@
 ({if $value.memo})
 <tr>
 <td class="border_01({if $value.writer_id != $target_id}) bg_09({else}) bg_02({/if})" style="width:4px;height:33px;border-top:none;border-right:none;">
-<img src="./skin/dummy.gif" style="width:4px;height:33px;({if $value.priority == 1})background-color:#f00;({elseif $value.priority == 2})background-color:#f88;({/if})">
+<img src="./skin/dummy.gif" alt="" style="width:4px;height:33px;({if $value.priority == 1})background-color:#f00;({elseif $value.priority == 2})background-color:#f88;({/if})">
 </td>
 <td class="border_01({if $value.writer_id != $target_id}) bg_09({else}) bg_02({/if})" style="width:35px;border-top:none;border-right:none;" valign="top">
 <a href="({t_url m=biz a=do_`$cmd`_home_check_biz_todo})&amp;sessid=({$PHPSESSID})&amp;chid=({$value.biz_todo_id})&amp;is_check=({$value.is_check})">
@@ -85,7 +85,7 @@
 </td>
 </tr>
 <tr>
-<td style="height:2px;"><img src="./skin/dummy.gif" style="width:16px;height:2px;"></td>
+<td style="height:2px;"><img src="./skin/dummy.gif" alt="" style="width:16px;height:2px;"></td>
 </tr>
 <tr>
 <td style="height:16px;" valign="top" align="right">
@@ -108,7 +108,7 @@
 ({if $value.memo})
 <tr>
 <td class="border_01({if $value.writer_id != $target_id}) bg_09({else}) bg_02({/if})" style="width:4px;height:33px;border-top:none;border-right:none;">
-<img src="./skin/dummy.gif" style="width:4px;height:33px;">
+<img src="./skin/dummy.gif" alt="" style="width:4px;height:33px;">
 </td>
 <td class="border_01({if $value.writer_id != $target_id}) bg_09({else}) bg_02({/if})" style="width:35px;border-top:none;border-right:none;" valign="top">
 
@@ -136,7 +136,7 @@
 </td>
 </tr>
 <tr>
-<td style="height:2px;"><img src="./skin/dummy.gif" style="width:16px;height:2px;"></td>
+<td style="height:2px;"><img src="./skin/dummy.gif" alt="" style="width:16px;height:2px;"></td>
 </tr>
 <tr>
 <td style="height:16px;" valign="top" align="right">
