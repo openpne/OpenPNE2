@@ -183,11 +183,8 @@ $GLOBALS['_OPENPNE_SSL_REQUIRED'] = array(
 // SSLを使用するかどうかをユーザーが選択できるアクションリスト
 $GLOBALS['_OPENPNE_SSL_SELECTABLE'] = array(
 'pc' => array(
-    'page_h_config', 'do_h_config_1', 'do_h_config_2', 'do_h_config_3',
-    'page_o_login', 'page_o_tologin', 'do_o_login',
 ),
 'ktai' => array(
-    'page_h_config',
 ));
 
 ///
