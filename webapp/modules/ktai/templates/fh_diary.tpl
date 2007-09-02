@@ -73,15 +73,14 @@
 ({t_form m=ktai a=do_fh_diary_insert_c_diary_comment})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
 <input type="hidden" name="target_c_diary_id" value="({$target_c_diary.c_diary_id})">
-<font color=red>({if $msg})({$msg})<br>({/if})</font>
+({if $msg})<font color="#ff0000">({$msg})</font><br>({/if})
 <textarea name="body" rows="3"></textarea><br>
 <input type="submit" value="書き込む">
 </form>
 
 <hr color="#({$ktai_color_config.border_01})">
-<a name="menu">
+<a name="menu"></a>
 %%i1014%%<a href="({t_url m=ktai a=page_fh_diary_list})&amp;target_c_member_id=({$target_diary_writer.c_member_id})&amp;({$tail})">({$target_diary_writer.nickname})さんの日記ﾘｽﾄ</a><br>
-</a>
 ({if $INC_NAVI_type=="f"})
 <a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$target_diary_writer.c_member_id})&amp;({$tail})">({$target_diary_writer.nickname})さんのﾄｯﾌﾟ</a><br>
 ({/if})
