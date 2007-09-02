@@ -5,7 +5,7 @@
 ({*******************************************})
 <table border="0" cellspacing="0" cellpadding="0" style="width:720px;">
 <tr>
-<td style="width:720px;height:2px;"><img src="./skin/dummy.gif" style="width:720px;height:2px;" class="dummy"></td>
+<td style="width:720px;height:2px;"><img src="./skin/dummy.gif" alt="" style="width:720px;height:2px;" class="dummy"></td>
 </tr>
 <tr>
 <td align="center">
