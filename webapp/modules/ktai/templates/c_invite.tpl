@@ -16,7 +16,7 @@
 ({t_form m=ktai a=do_c_invite_insert_c_message_commu_invite})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
 <input type="hidden" name="target_c_commu_id" value="({$target_c_commu_id})">
-<font color=red>({if $msg})({$msg})<br>({/if})</font>
+({if $msg})<font color="#ff0000">({$msg})</font><br>({/if})
 <font color="#({$ktai_color_config.font_02})">紹介先：</font><br>
 <select name="target_c_member_id">
 ({foreach from=$c_friend_list item=c_friend})
