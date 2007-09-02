@@ -59,6 +59,20 @@ if (IS_SLAVEPNE && (empty($_SESSION['regist_step']) || !$_SESSION['regist_step']
         openpne_redirect('ktai', 'page_h_regist_address');
     }
 }
+if (OPENPNE_KTAI_ID_REQUIRED && (!IS_SLAVEPNE || $_SESSION['regist_step'])) {
+    if (!db_member_is_ktai_id_registed($u)) {
+        $current_page = $GLOBALS['__Framework']['current_type']."_".$GLOBALS['__Framework']['current_action'];
+        //携帯個体識別番号が未登録の場合はリダイレクト
+        $ktai_id_ext_page=array(
+        'page_h_regist_ktai_id'=>true,
+        'do_h_regist_ktai_id'=>true,
+        );
+        
+        if (!$ktai_id_ext_page[$current_page]) {
+            openpne_redirect('ktai', 'page_h_regist_ktai_id');
+        }
+    }
+}
 
 function __logout($msg = 0, $c_member_id = 0)
 {
