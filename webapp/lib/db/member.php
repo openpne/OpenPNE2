@@ -1664,6 +1664,11 @@ function db_member_check_param_inputed($c_member_id, $is_ktai = false)
     
     return 0;
 }
-            
 
+function db_member_is_ktai_id_registed($c_member_id)
+{
+    $sql = 'SELECT easy_access_id FROM c_member_secure WHERE c_member_id = ?';
+    $params = array(intval($c_member_id));
+    return (db_get_one($sql, $params) != '');
+}
 ?>
