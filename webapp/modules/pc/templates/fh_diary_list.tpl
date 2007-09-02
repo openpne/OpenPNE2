@@ -3,7 +3,7 @@
 <td class="container inc_c_com_topic_find" align="center">
 <table border="0" cellspacing="0" cellpadding="0" style="width:720px;">
 <tr>
-<td style="width:720px;height:2px;"><img src="./skin/dummy.gif" style="width:720px;height:2px;" class="dummy"></td>
+<td style="width:720px;height:2px;"><img src="./skin/dummy.gif" alt="" style="width:720px;height:2px;" class="dummy"></td>
 </tr>
 <tr>
 <td align="center">
@@ -39,18 +39,18 @@
 ({**ここから：メインコンテンツ（左）**})
 ({********************************})
 
-<img src="./skin/dummy.gif" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
 
 <!-- ******************************* -->
 <!-- ******ここから：カレンダー****** -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:165px;margin:0px auto;" class="border_07">
 <tr>
-<td style="width:7px;" class="bg_10"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
-<td style="width:149px;" class="bg_10"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
-<td style="width:7px;" class="bg_10"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:7px;" class="bg_10"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:149px;" class="bg_10"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:7px;" class="bg_10"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
 </tr>
 <tr>
-<td class="bg_10"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_10"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
 <td class="bg_10" align="center">
 <!-- *ここから：カレンダー＞内容* -->
 ({*ここから：header*})
@@ -95,27 +95,27 @@
 <table border="0" cellspacing="0" cellpadding="0" style="width:149px;margin:0px auto;">
 ({****************})
 <tr>
-<td style="width:149px;" class="bg_10" colspan="13"><img src="./skin/dummy.gif" style="width:149px;height:1px;" class="dummy"></td>
+<td style="width:149px;" class="bg_10" colspan="13"><img src="./skin/dummy.gif" alt="" style="width:149px;height:1px;" class="dummy"></td>
 </tr>
 ({****************})
 <tr>
 <td class="bg_09 s_ss padding_ss" align="right"><span class="c_02 s_ss">日</span></td>
-<td style="width:1px;" class="bg_10"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_10"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 <td class="bg_09 s_ss padding_ss" align="right">月</td>
-<td style="width:1px;" class="bg_10"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_10"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 <td class="bg_09 s_ss padding_ss" align="right">火</td>
-<td style="width:1px;" class="bg_10"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_10"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 <td class="bg_09 s_ss padding_ss" align="right">水</td>
-<td style="width:1px;" class="bg_10"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_10"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 <td class="bg_09 s_ss padding_ss" align="right">木</td>
-<td style="width:1px;" class="bg_10"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_10"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 <td class="bg_09 s_ss padding_ss" align="right">金</td>
-<td style="width:1px;" class="bg_10"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_10"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 <td class="bg_09 s_ss padding_ss" align="right"><span class="c_03 s_ss">土</span></td>
 </tr>
 ({****************})
 <tr>
-<td style="width:149px;" class="bg_10" colspan="13"><img src="./skin/dummy.gif" style="width:149px;height:1px;" class="dummy"></td>
+<td style="width:149px;" class="bg_10" colspan="13"><img src="./skin/dummy.gif" alt="" style="width:149px;height:1px;" class="dummy"></td>
 </tr>
 ({****************})
 ({foreach from=$calendar item=week})
@@ -132,13 +132,13 @@
 &nbsp;({/if})
 </td>
 ({if $smarty.foreach.calendar_days.iteration%7 != 0})
-<td style="width:1px;" class="bg_10"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_10"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 ({/if})
 ({/foreach})
 </tr>
 ({****************})
 <tr>
-<td style="width:149px;" class="bg_10" colspan="13"><img src="./skin/dummy.gif" style="width:149px;height:1px;" class="dummy"></td>
+<td style="width:149px;" class="bg_10" colspan="13"><img src="./skin/dummy.gif" alt="" style="width:149px;height:1px;" class="dummy"></td>
 </tr>
 ({****************})
 ({/foreach})
@@ -150,29 +150,29 @@
 ({*ここまで：footer*})
 <!-- *ここまで：カレンダー＞＞内容* -->
 </td>
-<td class="bg_10"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_10"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
 </tr>
 <tr>
-<td class="bg_10"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
-<td class="bg_10"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
-<td class="bg_10"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_10"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_10"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_10"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
 </tr>
 </table>
 <!-- ******ここまで：カレンダー****** -->
 <!-- ****************************** -->
 
-<img src="./skin/dummy.gif" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
 
 <!-- ********************************** -->
 <!-- ******ここから：最近のコメント****** -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:165px;margin:0px auto;" class="border_07">
 <tr>
-<td style="width:7px;" class="bg_10"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
-<td style="width:149px;" class="bg_10"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
-<td style="width:7px;" class="bg_10"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:7px;" class="bg_10"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:149px;" class="bg_10"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:7px;" class="bg_10"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
 </tr>
 <tr>
-<td class="bg_10"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_10"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
 <td class="bg_10" align="center">
 <!-- *ここから：最近のコメント＞内容* -->
 ({*ここから：header*})
@@ -188,7 +188,7 @@
 ({*ここから：body*})
 <!-- ここから：主内容 -->
 <div align="left" class="bg_02 border_01 padding_ss">
-<a href="({t_url m=pc a=page_fh_comment_list})&amp;target_c_member_id=({$target_member.c_member_id})"><img src="./skin/dummy.gif" style="width:14px;height:14px;" class="icon icon_1">一覧を見る</a>
+<a href="({t_url m=pc a=page_fh_comment_list})&amp;target_c_member_id=({$target_member.c_member_id})"><img src="./skin/dummy.gif" alt="" style="width:14px;height:14px;" class="icon icon_1">一覧を見る</a>
 </div>
 <!-- ここまで：主内容 -->
 ({*ここまで：body*})
@@ -197,18 +197,18 @@
 ({*ここまで：footer*})
 <!-- *ここまで：最近のコメント＞＞内容* -->
 </td>
-<td class="bg_10"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_10"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
 </tr>
 <tr>
-<td class="bg_10"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
-<td class="bg_10"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
-<td class="bg_10"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_10"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_10"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_10"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
 </tr>
 </table>
 <!-- ******ここまで：最近のコメント****** -->
 <!-- ********************************** -->
 
-<img src="./skin/dummy.gif" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
 
 ({if $date_list})
 
@@ -216,12 +216,12 @@
 <!-- ******ここから：各月の日記一覧****** -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:165px;margin:0px auto;" class="border_07">
 <tr>
-<td style="width:7px;" class="bg_10"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
-<td style="width:149px;" class="bg_10"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
-<td style="width:7px;" class="bg_10"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:7px;" class="bg_10"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:149px;" class="bg_10"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:7px;" class="bg_10"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
 </tr>
 <tr>
-<td class="bg_10"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_10"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
 <td class="bg_10" align="center">
 <!-- *ここから：各月の日記一覧＞内容* -->
 ({*ここから：header*})
@@ -239,7 +239,7 @@
 <div align="left" class="bg_02 border_01 padding_ss">
 ({foreach from=$date_list item=date})
 
-<div><a href="({t_url m=pc a=page_fh_diary_list})&amp;target_c_member_id=({$target_member.c_member_id})&amp;year=({$date.year})&amp;month=({$date.month})"><img src="./skin/dummy.gif" style="width:14px;height:14px;" class="icon icon_2">({$date.year})年({$date.month})月の一覧</a></div>
+<div><a href="({t_url m=pc a=page_fh_diary_list})&amp;target_c_member_id=({$target_member.c_member_id})&amp;year=({$date.year})&amp;month=({$date.month})"><img src="./skin/dummy.gif" alt="" style="width:14px;height:14px;" class="icon icon_2">({$date.year})年({$date.month})月の一覧</a></div>
 
 ({/foreach})
 </div>
@@ -250,18 +250,18 @@
 ({*ここまで：footer*})
 <!-- *ここまで：各月の日記一覧＞＞内容* -->
 </td>
-<td class="bg_10"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_10"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
 </tr>
 <tr>
-<td class="bg_10"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
-<td class="bg_10"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
-<td class="bg_10"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_10"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_10"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_10"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
 </tr>
 </table>
 <!-- ******ここまで：各月の日記一覧****** -->
 <!-- ********************************** -->
 
-<img src="./skin/dummy.gif" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
 
 ({/if})
 
@@ -271,12 +271,12 @@
 <!-- ******ここから：カテゴリ一覧****** -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:165px;margin:0px auto;" class="border_07">
 <tr>
-<td style="width:7px;" class="bg_10"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
-<td style="width:149px;" class="bg_10"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
-<td style="width:7px;" class="bg_10"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:7px;" class="bg_10"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:149px;" class="bg_10"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:7px;" class="bg_10"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
 </tr>
 <tr>
-<td class="bg_10"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_10"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
 <td class="bg_10" align="center">
 <!-- *ここから：カテゴリ一覧＞内容* -->
 ({*ここから：header*})
@@ -294,7 +294,7 @@
 <div align="left" class="bg_02 border_01 padding_ss">
 ({foreach from=$category_list item=category})
 
-<div><a href="({t_url m=pc a=page_fh_diary_list})&amp;target_c_member_id=({$target_member.c_member_id})&amp;category_id=({$category.c_diary_category_id})"><img src="./skin/dummy.gif" style="width:14px;height:14px;" class="icon icon_2">({$category.category_name})</a></div>
+<div><a href="({t_url m=pc a=page_fh_diary_list})&amp;target_c_member_id=({$target_member.c_member_id})&amp;category_id=({$category.c_diary_category_id})"><img src="./skin/dummy.gif" alt="" style="width:14px;height:14px;" class="icon icon_2">({$category.category_name})</a></div>
 
 ({/foreach})
 </div>
@@ -305,18 +305,18 @@
 ({*ここまで：footer*})
 <!-- *ここまで：カテゴリ一覧＞＞内容* -->
 </td>
-<td class="bg_10"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_10"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
 </tr>
 <tr>
-<td class="bg_10"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
-<td class="bg_10"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
-<td class="bg_10"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_10"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_10"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_10"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
 </tr>
 </table>
 <!-- ******ここまで：カテゴリ一覧****** -->
 <!-- ********************************** -->
 
-<img src="./skin/dummy.gif" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
 
 ({/if})
 
@@ -328,19 +328,19 @@
 ({**ここから：メインコンテンツ（右）**})
 ({********************************})
 
-<img src="./skin/dummy.gif" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
 
 ({if $type == "h"})
 <!-- ****************************** -->
 <!-- ******ここから：日記を書く****** -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:540px;margin:0px auto;" class="border_07">
 <tr>
-<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
-<td style="width:524px;" class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
-<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:524px;" class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
 </tr>
 <tr>
-<td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
 <td class="bg_01" align="center">
 <!-- *ここから：日記を書く＞内容* -->
 ({*ここから：header*})
@@ -357,7 +357,7 @@
 <!-- ここから：主内容 -->
 <div class="border_01 bg_09" align="center">
 
-<img src="./skin/dummy.gif" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
 
 <div style="width:490px;padding:30px 10px;margin:0px auto;" class="border_01 bg_03">
 
@@ -367,7 +367,7 @@
 
 </div>
 
-<img src="./skin/dummy.gif" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
 
 </div>
 <!-- ここまで：主内容 -->
@@ -377,18 +377,18 @@
 ({*ここまで：footer*})
 <!-- *ここまで：日記を書く＞＞内容* -->
 </td>
-<td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
 </tr>
 <tr>
-<td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
-<td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
-<td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
 </tr>
 </table>
 <!-- ******ここまで：日記を書く****** -->
 <!-- ****************************** -->
 
-<img src="./skin/dummy.gif" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
 ({/if})
 
 ({if $target_diary_list})
@@ -396,12 +396,12 @@
 <!-- ******ここから：日記一覧****** -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:540px;margin:0px auto;" class="border_07">
 <tr>
-<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
-<td style="width:524px;" class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
-<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:524px;" class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
 </tr>
 <tr>
-<td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
 <td class="bg_01" align="center">
 <!-- *ここから：日記一覧＞内容* -->
 ({*ここから：header*})
@@ -428,11 +428,11 @@
 <table border="0" cellspacing="0" cellpadding="0" style="width:524px;" class="border_01">
 ({*********})
 <tr>
-<td style="width:524px;height:1px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:524px;height:1px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({*********})
 <tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 <td style="width:522px;" class="bg_02" align="right" valign="middle">
 <div style="padding:4px 3px;">
 
@@ -453,7 +453,7 @@
 
 </div>
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({*********})
 </table>
@@ -463,7 +463,7 @@
 ({*********})
 ({foreach from=$target_diary_list item=item name=tdl})
 <tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 <td style="width:66px;" class="bg_05" align="center" valign="top" rowspan="7">
 <div style="padding:4px 3px;">
 
@@ -471,7 +471,7 @@
 
 </div>
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 <td style="width:453px;" class="bg_02" align="left" valign="middle">
 <div style="padding:4px 3px;">
 
@@ -479,17 +479,17 @@
 
 </div>
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({*********})
 <tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-<td style="width:455px;height:1px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:455px;height:1px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({*********})
 <tr>
-<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 <td class="bg_02" align="right" valign="middle">
 <div style="padding:4px 3px;">
 
@@ -503,17 +503,17 @@
 
 </div>
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({*********})
 <tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-<td style="width:455px;height:1px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:455px;height:1px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({*********})
 <tr>
-<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 <td class="bg_02" align="left" valign="middle">
 
 <div style="padding:4px 3px;" class="lh_120">
@@ -531,17 +531,17 @@
 </div>
 
 </td>
-<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({*********})
 <tr>
-<td style="height:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-<td style="height:1px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="height:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="height:1px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({*********})
 <tr>
-<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 <td class="bg_02" align="right" valign="middle">
 <div style="padding:4px 3px;">
 
@@ -555,12 +555,12 @@
 
 </div>
 </td>
-<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({*********})
 ({if !$smarty.foreach.tdl.last})
 <tr>
-<td style="height:1px;" class="bg_01" colspan="7"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="height:1px;" class="bg_01" colspan="7"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({*********})
 ({/if})
@@ -572,7 +572,7 @@
 <table border="0" cellspacing="0" cellpadding="0" style="width:524px;" class="border_01">
 ({*********})
 <tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 <td style="width:520px;" class="bg_02" align="right" valign="middle">
 <div style="padding:4px 3px;">
 
@@ -593,11 +593,11 @@
 
 </div>
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({*********})
 <tr>
-<td style="width:522px;height:1px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:522px;height:1px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({*********})
 </table>
@@ -609,18 +609,18 @@
 ({*ここまで：footer*})
 <!-- *ここまで：日記一覧＞＞内容* -->
 </td>
-<td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
 </tr>
 <tr>
-<td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
-<td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
-<td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
 </tr>
 </table>
 <!-- ******ここまで：日記一覧****** -->
 <!-- ***************************** -->
 
-<img src="./skin/dummy.gif" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
 ({/if})
 
 ({if $c_rss_cache_list})
@@ -628,12 +628,12 @@
 <!-- ******ここから：Blog一覧****** -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:540px;margin:0px auto;" class="border_07">
 <tr>
-<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
-<td style="width:524px;" class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
-<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:524px;" class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
 </tr>
 <tr>
-<td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
 <td class="bg_01" align="center">
 <!-- *ここから：Blog一覧＞内容* -->
 ({*ここから：header*})
@@ -660,12 +660,12 @@
 <table border="0" cellspacing="0" cellpadding="0" style="width:524px;" class="border_01">
 ({*********})
 <tr>
-<td style="width:522px;height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:522px;height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({*********})
 ({foreach from=$c_rss_cache_list item=item})
 <tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 <td style="width:66px;" class="bg_05" align="center" valign="top">
 <div style="padding:4px 3px;">
 
@@ -673,7 +673,7 @@
 
 </div>
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 <td style="width:453px;" class="bg_02" align="left" valign="middle">
 <div style="padding:4px 3px;">
 
@@ -681,11 +681,11 @@
 
 </div>
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({*********})
 <tr>
-<td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({*********})
 ({/foreach})
@@ -698,18 +698,18 @@
 ({*ここまで：footer*})
 <!-- *ここまで：Blog一覧＞＞内容* -->
 </td>
-<td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
 </tr>
 <tr>
-<td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
-<td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
-<td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
 </tr>
 </table>
 <!-- ******ここまで：Blog一覧****** -->
 <!-- ***************************** -->
 
-<img src="./skin/dummy.gif" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
 ({/if})
 
 ({********************************})

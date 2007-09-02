@@ -5,18 +5,18 @@
 ({**ここから：メインコンテンツ**})
 ({***************************})
 
-<img src="./skin/dummy.gif" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
 
 <!-- ****************************** -->
 <!-- ******ここから：カレンダー****** -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:684px;margin:0px auto;" class="border_07">
 <tr>
-<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
-<td style="width:670px;" class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
-<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:670px;" class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
 </tr>
 <tr>
-<td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
 <td class="bg_01" align="center">
 <!-- *ここから：カレンダー＞内容* -->
 ({*ここから：header*})
@@ -149,18 +149,18 @@
 ({*ここまで：footer*})
 <!-- *ここまで：カレンダー＞＞内容* -->
 </td>
-<td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
 </tr>
 <tr>
-<td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
-<td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
-<td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
 </tr>
 </table>
 <!-- ******ここまで：カレンダー****** -->
 <!-- ****************************** -->
 
-<img src="./skin/dummy.gif" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
 
 ({***************************})
 ({**ここまで：メインコンテンツ**})
