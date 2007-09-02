@@ -7,7 +7,7 @@
 ﾒｯｾｰｼﾞの送信<br>
 </td></tr></table>
 
-<font color=red>({if $msg})({$msg})<br>({/if})</font>
+({if $msg})<font color="#ff0000">({$msg})</font><br>({/if})
 
 <font color="#({$ktai_color_config.font_02})">宛先：</font><a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">({$target_c_member.nickname})</a><br>
 ({t_form m=ktai a=do_f_message_send_insert_c_message})
