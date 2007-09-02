@@ -15,6 +15,9 @@ class admin_do_update_c_admin_config extends OpenPNE_Action
     {
         $config =& OpenPNE_Config::getInstance();
 
+        if (!$requests['OPENPNE_ENABLE_KTAI'] && $requests['OPENPNE_KTAI_ID_REQUIRED']) {
+        	admin_client_redirect('edit_c_admin_config', '携帯版が使用可でなければ携帯固有番号は必須にできません');
+        }
         foreach ($requests as $name => $value) {
             if (!$config->is_allowed($name)) continue;
 
