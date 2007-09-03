@@ -57,7 +57,7 @@
 %%i138%%<a href="({t_url m=ktai a=do_inc_leave_c_commu})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">ｺﾐｭﾆﾃｨから退会</a><br>
 ({/if})
 ({if !($is_unused_pc_bbs && $is_unused_ktai_bbs)})
-%%i105%%<a href="#setting">ﾒｰﾙ受信設定</a><br>
+%%i105%%<a href="({t_url m=ktai a=page_c_receive_mail})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">ﾒｰﾙ受信設定</a><br>
 ({/if})
 ({/if})
 %%i150%%<a href="({t_url m=ktai a=page_c_invite})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">({$WORD_MY_FRIEND_HALF})に紹介</a><br>
