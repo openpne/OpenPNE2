@@ -717,7 +717,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 </td>
 </tr>
 ({/if})
-({if $smarty.const.OPENPNE_ENABLE_KTAI && !$is_unused_ktai_bbs})
+({if $smarty.const.OPENPNE_ENABLE_KTAI && !$is_unused_ktai_bbs && $is_registered_ktai_address})
 <tr>
 <td class="border_01 bg_09 padding_s" style="width:90px;border-right:none;border-top:none;">
 
