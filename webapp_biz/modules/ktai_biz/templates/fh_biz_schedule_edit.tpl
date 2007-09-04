@@ -20,7 +20,7 @@
 <input type="hidden" name="target_id" value="({$t_id})">
 
 <font color="#999966">予定日：</font><br>
-<input type="text" name='sc_b_year' size="2" value="({$begin.year})">年
+<input type="text" name='sc_b_year' size="4" value="({$begin.year})">年
 		<input type="text" name='sc_b_month' size="2" value="({$begin.month})">月
 		<input type="text" name='sc_b_date' size="2" value="({$begin.day})">日<br>
 <br>
@@ -32,7 +32,7 @@
 	<input type="text" name='sc_f_minute' size="2" value="({$finish.min})">分<br>
 <br>
 <font color="#999966">ﾀｲﾄﾙ：</font><br>
-<input type="text" name='sc_title' size="30" value="({$title})"><br>
+<input type="text" name='sc_title' value="({$title})"><br>
 <br>
 <font color="#999966">詳細：</font><br>
 ({$value})<br>
