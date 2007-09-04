@@ -15,7 +15,7 @@
 <input type="text" name='value' value="({$todo.memo})"><br>
 <br>
 <font color="#999966">目標期日：</font><br>
-<input type="text" name='due_datetime_y' size="2" value="({if $todo.due_datetime})({$todo.due_datetime|date_format:'%Y'})({/if})" istyle="4" mode="numeric">年
+<input type="text" name='due_datetime_y' size="4" value="({if $todo.due_datetime})({$todo.due_datetime|date_format:'%Y'})({/if})" istyle="4" mode="numeric">年
 <input type="text" name='due_datetime_m' size="2" value="({if $todo.due_datetime})({$todo.due_datetime|date_format:'%m'})({/if})" istyle="4" mode="numeric">月
 <input type="text" name='due_datetime_d' size="2" value="({if $todo.due_datetime})({$todo.due_datetime|date_format:'%d'})({/if})" istyle="4" mode="numeric">日<br>
 <br>
