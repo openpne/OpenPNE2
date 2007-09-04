@@ -979,26 +979,26 @@ function db_member_update_c_member_image($c_member_id, $image_filename, $img_num
 /**
  * 一言を更新する
  */
-function db_member_update_c_profile_message($c_member_id, $prof_message, $message_datetime)
+function db_member_update_c_profile_my_news($c_member_id, $prof_my_news, $my_news_datetime)
 {
     $sql = 'SELECT c_profile_id FROM c_profile WHERE name = ? ';
-    $prof_message_id = db_get_one($sql, array('PNE_MESSAGE'));
-    $message_datetime_id = db_get_one($sql, array('PNE_MESSAGE_DATETIME'));
+    $prof_my_news_id = db_get_one($sql, array('PNE_MY_NEWS'));
+    $my_news_datetime_id = db_get_one($sql, array('PNE_MY_NEWS_DATETIME'));
     
 	//function cache削除
     cache_drop_c_member_profile($c_member_id);
     
     $sql = 'DELETE FROM c_member_profile' .
             ' WHERE c_member_id = ? AND c_profile_id = ?';
-    $params = array(intval($c_member_id), $prof_message_id);
+    $params = array(intval($c_member_id), $prof_my_news_id);
     db_query($sql, $params);
-    do_config_prof_insert_c_member_profile($c_member_id, $prof_message_id, '', $prof_message, 'private');
+    do_config_prof_insert_c_member_profile($c_member_id, $prof_my_news_id, '', $prof_my_news, 'private');
     
     $sql = 'DELETE FROM c_member_profile' .
             ' WHERE c_member_id = ? AND c_profile_id = ?';
-    $params = array(intval($c_member_id), $message_datetime_id);
+    $params = array(intval($c_member_id), $my_news_datetime_id);
     db_query($sql, $params);
-    do_config_prof_insert_c_member_profile($c_member_id, $message_datetime_id, '', $message_datetime, 'private');
+    do_config_prof_insert_c_member_profile($c_member_id, $my_news_datetime_id, '', $my_news_datetime, 'private');
 }
 
 //--- c_member_secure
