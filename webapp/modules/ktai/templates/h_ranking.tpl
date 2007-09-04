@@ -79,7 +79,7 @@
 ({/strip})
 ({/foreach})
 <tr><td>
-<hr color="#b3ceef">
+<hr color="#({$ktai_color_config.border_02})">
 </td></tr>
 ({/if})
 
@@ -87,7 +87,7 @@
 ﾗﾝｷﾝｸﾞﾃﾞｰﾀがありません<br>
 </td></tr>
 <tr><td>
-<hr color="#b3ceef">
+<hr color="#({$ktai_color_config.border_02})">
 </td></tr>
 ({/foreach})
 </table>

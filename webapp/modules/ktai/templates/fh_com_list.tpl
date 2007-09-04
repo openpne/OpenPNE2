@@ -11,14 +11,14 @@
 ({$pager.start})件～({$pager.end})件を表示<br>
 </center>
 
-<hr color="#b3ceef">
+<hr color="#({$ktai_color_config.border_02})">
 <table width="100%">
 ({foreach from=$c_commu_list item=c_commu})
 <tr><td bgcolor="({cycle values="#`$ktai_color_config.bg_05`,#ffffff"})">
 <a href="({t_url m=ktai a=page_c_home})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">({$c_commu.name|t_truncate:50:""})</a>(({$c_commu.count_members}))<br>
 </td></tr>
 <tr><td>
-<hr color="#b3ceef">
+<hr color="#({$ktai_color_config.border_02})">
 </td></tr>
 ({/foreach})
 </table>

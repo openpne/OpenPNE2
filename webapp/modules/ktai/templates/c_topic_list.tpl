@@ -13,7 +13,7 @@
 <table width="100%">
 ({foreach from=$c_topic_list item=item})
 <tr><td>
-<hr color="#b3ceef">
+<hr color="#({$ktai_color_config.border_02})">
 </td></tr>
 <tr><td bgcolor="({cycle values="#`$ktai_color_config.bg_05`,#ffffff"})">
 ({$item.r_datetime|date_format:"%Y/%m/%d %H:%M"})
@@ -28,7 +28,7 @@
 </td></tr>
 ({/foreach})
 <tr><td>
-<hr color="#b3ceef">
+<hr color="#({$ktai_color_config.border_02})">
 </td></tr>
 </table>
 ({* pager *})
