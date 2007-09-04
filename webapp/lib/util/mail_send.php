@@ -362,6 +362,7 @@ function do_common_send_daily_news()
     print mb_convert_encoding($logstr, 'JIS');
 
     $i = 1;
+    $date = date("Y. n. j");
     foreach ($list as $key => $value) {
         if ($value['is_receive_daily_news'] == 1 ||
             ($value['is_receive_daily_news'] == 2 && $send_2_flag)) {
@@ -374,7 +375,7 @@ function do_common_send_daily_news()
 
             $params = array(
                 'c_member' => db_common_c_member4c_member_id($c_member_id),
-                'date'     => date("Y. n. j"),
+                'date'     => $date,
                 'ashiato_num' => p_h_ashiato_c_ashiato_num4c_member_id($c_member_id),
                 'diary_friend_list' => p_h_home_c_diary_friend_list4c_member_id($c_member_id, 5),
                 'c_commu_topic_comment_list'
