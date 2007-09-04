@@ -5,7 +5,7 @@
 </td></tr></table>
 
 ({if $msg})
-<font color="#ff0000">({$msg})</font><br>
+<font color="#({$ktai_color_config.font_04})">({$msg})</font><br>
 <br>
 ({/if})
 携帯ﾒｰﾙｱﾄﾞﾚｽを入力して送信ﾎﾞﾀﾝを押してください。<br>

@@ -8,7 +8,7 @@
 退会する場合は、確認のためﾊﾟｽﾜｰﾄﾞを入力してください。<br>
 
 <hr color="#({$ktai_color_config.border_01})">
-({if $msg})<font color="#ff0000">({$msg})</font><br><br>({/if})
+({if $msg})<font color="#({$ktai_color_config.font_04})">({$msg})</font><br><br>({/if})
 
 ({t_form m=ktai a=do_h_taikai})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">

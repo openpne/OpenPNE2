@@ -13,7 +13,7 @@
 
 <table width="100%">
 ({foreach from=$c_member_list item=item})
-<tr><td bgcolor="({cycle values="#`$ktai_color_config.bg_05`,#ffffff"})">
+<tr><td bgcolor="({cycle values="#`$ktai_color_config.bg_05`,#`$ktai_color_config.bg_08`"})">
 <font color="#({$ktai_color_config.font_02})">ﾆｯｸﾈｰﾑ：</font><br>
 ({$item.nickname})<br>
 ({if $c_commu.c_member_id_admin != $item.c_member_id})
