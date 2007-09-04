@@ -79,7 +79,7 @@
     ({elseif $profile.form_type == 'textlong'})
         <input type="text" name="profile[({$profile.name})]" value="({$c_member.profile[$profile.name].value})">
     ({elseif $profile.form_type == 'textarea'})
-        <textarea name="profile[({$profile.name})]" cols="6">({$c_member.profile[$profile.name].value})</textarea>
+        <textarea name="profile[({$profile.name})]" rows="6">({$c_member.profile[$profile.name].value})</textarea>
     ({elseif $profile.form_type == 'select' || $profile.form_type == 'radio'})
         <select name="profile[({$profile.name})]">
             <option value="">選択してください
