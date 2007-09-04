@@ -84,6 +84,7 @@
 			<th class="cell16" rowspan="2">PCアドレス</th>
 			<th class="cell17" rowspan="2">携帯アドレス</th>
 			<th class="cell18" rowspan="3">登録時アドレス</th>
+			<th class="cell18" rowspan="3">個体識別番号</th>
 			<th class="cell15" rowspan="3"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;order=c_member_id-1({$cond})">▲</a>ID<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;order=c_member_id-2({$cond})">▼</a></th>
 		</tr>
 		<tr>
@@ -196,6 +197,7 @@
 			<th class="cell16" rowspan="2">PCアドレス</th>
 			<th class="cell17" rowspan="2">携帯アドレス</th>
 			<th class="cell18" rowspan="2">登録時アドレス</th>
+			<th class="cell18" rowspan="2">個体識別番号</th>
 			<th class="cell15" rowspan="2">ID</th>
 		</tr>
 		<tr>
@@ -239,6 +241,7 @@
 			<td class="cell16">({if $item.secure.pc_address})<a href="mailto:({$item.secure.pc_address|escape:"hexentity"})">({$item.secure.pc_address|t_truncate:"30"|escape:"hexentity"})</a>({else})&nbsp;({/if})</td>
 			<td class="cell17">({if $item.secure.ktai_address})<a href="mailto:({$item.secure.ktai_address})">({$item.secure.ktai_address|t_truncate:"30"})</a>({else})&nbsp;({/if})</td>
 			<td class="cell18">({if $item.secure.regist_address})({$item.secure.regist_address})({else})&nbsp;({/if})</td>
+			<td class="cell18">({if $item.secure.easy_access_id})({$item.secure.easy_access_id})({else})&nbsp;({/if})</td>
 			<td class="cell15">({$item.c_member_id})</td>
 		</tr>
 		({/foreach})
