@@ -32,6 +32,13 @@ class ktai_page_c_receive_mail extends OpenPNE_Action
             handle_kengen_error();
         }
 
+        $c_member_secure = db_member_c_member_secure4c_member_id($u);
+        if (empty($c_member_secure['pc_address'])) {
+            $is_registered_pc_address = false;
+        } else {
+            $is_registered_pc_address = true;
+        }
+
         //コミュニティ情報
         $this->set("c_commu", db_commu_c_commu4c_commu_id_k($target_c_commu_id));
 
@@ -41,6 +48,8 @@ class ktai_page_c_receive_mail extends OpenPNE_Action
         $this->set("is_receive_mail_pc", db_commu_is_receive_mail_pc($target_c_commu_id, $u));
         //管理者からのメッセージ受信設定
         $this->set("is_receive_message", db_commu_is_receive_message($target_c_commu_id, $u));
+        // PCアドレス登録状況
+        $this->set('is_registered_pc_address', $is_registered_pc_address);
 
         return 'success';
     }
