@@ -7,7 +7,7 @@
 ({t_form m=ktai a=do_h_message_send_insert_message})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
 <input type="hidden" name="target_c_member_id" value="({$target_member.c_member_id})">
-({if $msg})<font color="#ff0000">({$msg})</font><br>({/if})
+({if $msg})<font color="#({$ktai_color_config.font_04})">({$msg})</font><br>({/if})
 <font color="#({$ktai_color_config.font_02})">宛先：</font><br>
 <select name="target_c_member_id">
 ({foreach from=$c_friend_list item=c_friend})

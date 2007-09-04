@@ -18,7 +18,7 @@
 このﾍﾟｰｼﾞをﾌﾞｯｸﾏｰｸしてください<br>
 ({if $msg})
 <br>
-<font color="#ff0000">({$msg})</font><br>
+<font color="#({$ktai_color_config.font_04})">({$msg})</font><br>
 ({/if})
 </center>
 <br>

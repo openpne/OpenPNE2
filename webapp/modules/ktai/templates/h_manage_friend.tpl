@@ -9,7 +9,7 @@
 </center>
 ({if $msg})
 ({foreach from=$msg item=item})
-<font color="#ff0000">({$item})</font></br>
+<font color="#({$ktai_color_config.font_04})">({$item})</font></br>
 <br>
 ({/foreach})
 ({/if})
@@ -19,7 +19,7 @@
 <tr><td>
 <hr color="#({$ktai_color_config.border_02})">
 </td></tr>
-<tr><td bgcolor="({cycle values="#`$ktai_color_config.bg_05`,#ffffff"})">
+<tr><td bgcolor="({cycle values="#`$ktai_color_config.bg_05`,#`$ktai_color_config.bg_08`"})">
 <font color="#({$ktai_color_config.font_02})">ﾆｯｸﾈｰﾑ：</font><br>
 <a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$friend.c_member_id})&amp;({$tail})">({$friend.nickname})</a><br>
 <br>

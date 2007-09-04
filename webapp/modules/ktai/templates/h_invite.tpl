@@ -4,7 +4,7 @@
 <font color="#({$ktai_color_config.font_01})"><a name="top">友人を招待</a></font><br>
 </td></tr></table>
 ({if $msg})
-<font color="#ff0000">({$msg})</font><br>
+<font color="#({$ktai_color_config.font_04})">({$msg})</font><br>
 <br>
 ({/if})
 

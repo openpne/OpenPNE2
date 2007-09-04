@@ -7,7 +7,7 @@
 紹介文の編集<br>
 </td></tr></table>
 
-({if $msg})<font color="#ff0000">({$msg})</a><br>({/if})
+({if $msg})<font color="#({$ktai_color_config.font_04})">({$msg})</a><br>({/if})
 
 <font color="#({$ktai_color_config.font_02})">紹介文：</font><br>
 ({t_form m=ktai a=do_f_intro_edit_update_c_friend})

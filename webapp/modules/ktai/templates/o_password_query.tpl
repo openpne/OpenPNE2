@@ -5,7 +5,7 @@
 </td></tr></table>
 
 ({if $msg})
-<font color="#ff0000">({$msg})</font><br>
+<font color="#({$ktai_color_config.font_04})">({$msg})</font><br>
 ({/if})
 <br>
 ({t_form m=ktai a=do_o_password_query})
