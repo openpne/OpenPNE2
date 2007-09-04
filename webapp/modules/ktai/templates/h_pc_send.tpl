@@ -11,9 +11,9 @@ PCｱﾄﾞﾚｽ登録<br>
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
 <font color="#({$ktai_color_config.font_02})">PCﾒｰﾙｱﾄﾞﾚｽ：</font><br>
 <input type="text" name="pc_address" istyle="3" mode="alphabet" maxlength="100"><br>
-<hr color="#b3ceef">
+<hr color="#({$ktai_color_config.border_02})">
 <font color="#({$ktai_color_config.font_02})">届いたﾒｰﾙに記載してあるURLにｱｸｾｽして、ﾊﾟｽﾜｰﾄﾞを入力すると登録が完了します。</font>
-<hr color="#b3ceef">
+<hr color="#({$ktai_color_config.border_02})">
 <center>
 <input type="submit" value="送信">
 </center>
