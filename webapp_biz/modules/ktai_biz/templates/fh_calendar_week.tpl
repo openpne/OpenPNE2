@@ -1,12 +1,12 @@
 ({$inc_ktai_header|smarty:nodefaults})
-<table width="100%"><tr><td align="center" bgcolor="#0d6ddf">
-<font color="#eeeeee"><a name="top">({$c_member.nickname})さんの週間ｶﾚﾝﾀﾞｰ</a></font><br>
+<table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_01})">
+<font color="#({$ktai_color_config.font_01})"><a name="top">({$c_member.nickname})さんの週間ｶﾚﾝﾀﾞｰ</a></font><br>
 </td></tr>
-<tr><td bgcolor="#dddddd" align="center">
+<tr><td bgcolor="#({$ktai_color_config.bg_02})" align="center">
 ({$y_disp})年({$m_disp})月<br>
 </td></tr></table>
 %%i76%%<a href="({t_url m=ktai_biz a=page_fh_biz_schedule_add})&amp;target_id=({$c_member.c_member_id})&amp;({$tail})">予定登録</a><br>
-<hr color="#0d6ddf">
+<hr color="#({$ktai_color_config.border_01})">
 ({if $msg})
 	<font color=red>※({$msg})</font>
 ({/if})
@@ -19,12 +19,12 @@
 ({if $calendar})
 <table width="100%">
 <tr><td>
-<hr color="#b3ceef">
+<hr color="#({$ktai_color_config.border_02})">
 </td></tr>
 ({foreach from=$calendar item=item name=calendar})
-<tr><td bgcolor="({cycle values="#e0eaef,#ffffff"})">
+<tr><td bgcolor="({cycle values=`$ktai_color_config.bg_05`,#`$ktai_color_config.bg_08`"})">
 ({if $item.now})
-<font color="#7ddadf">■</font>
+<font color="#({$ktai_color_config.bg_04})">■</font>
 ({/if})
 ({if $item.day})
 ({if $item.now})
@@ -34,7 +34,7 @@
 <font color="#0000ff">({$item.day})
 (({$item.dayofweek}))</font>
 ({elseif $item.dayofweek == "日"})
-<font color="#ff0000">({$item.day})
+<font color="#({$ktai_color_config.font_04})">({$item.day})
 (({$item.dayofweek}))</font>
 ({else})
 ({$item.day})
@@ -72,7 +72,7 @@
 ({/if})
 </td></tr>
 <tr><td>
-<hr color="#b3ceef">
+<hr color="#({$ktai_color_config.border_02})">
 </td></tr>
 ({/foreach})
 </table>
