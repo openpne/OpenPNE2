@@ -769,12 +769,15 @@ function db_member_is_password_query_complete2($ktai_address, $query_id, $query_
     return db_get_one($sql, $params);
 }
 
-function db_member_c_member_id4easy_access_id($easy_access_id)
+function db_member_c_member_id4easy_access_id($easy_access_id, $md5 = true)
 {
     if (!$easy_access_id) return false;
 
     $sql = 'SELECT c_member_id FROM c_member_secure WHERE easy_access_id = ?';
-    $params = array(t_encrypt($easy_access_id));
+    if ($md5) {
+        $easy_access_id = md5($easy_access_id);
+    }
+    $params = array($easy_access_id);
     return db_get_one($sql, $params);
 }
 
@@ -1127,7 +1130,7 @@ function db_member_h_config_3(
 
 function db_member_update_easy_access_id($c_member_id, $easy_access_id)
 {
-    $data = array('easy_access_id' => t_encrypt($easy_access_id));
+    $data = array('easy_access_id' => md5($easy_access_id));
     $where = array('c_member_id' => intval($c_member_id));
     return db_update('c_member_secure', $data, $where);
 }
@@ -1169,7 +1172,7 @@ function db_member_update_ktai_address($c_member_id, $ktai_address)
     if ($ktai_address == ''){
         $data = array(
             'ktai_address' => t_encrypt($ktai_address),
-            'easy_access_id' => t_encrypt(''),
+            'easy_access_id' => md5(''),
         );
     } else {
         $data = array('ktai_address' => t_encrypt($ktai_address));
@@ -1671,4 +1674,27 @@ function db_member_is_ktai_id_registed($c_member_id)
     $params = array(intval($c_member_id));
     return (db_get_one($sql, $params) != '');
 }
+
+function db_member_is_blacklist($c_member_id)
+{
+    $sql = 'SELECT count(*) ' .
+            ' FROM c_blacklist AS b' .
+            ' INNER JOIN c_member_secure AS ms USING (easy_access_id)' .
+            ' WHERE ms.c_member_id = ?';
+    $params = array(intval($c_member_id));
+    return (db_get_one($sql, $params) > 0);
+}
+
+function db_member_easy_access_id_is_blacklist($easy_access_id, $c_blacklist_id = '')
+{
+    $sql = 'SELECT count(*) FROM c_blacklist ' .
+            ' WHERE easy_access_id = ? ' .
+            ' AND c_blacklist_id <> ? ';
+    $param = array(
+        $easy_access_id,
+        $c_blacklist_id,
+    );
+    return (db_get_one($sql, $param) > 0);
+}
+
 ?>

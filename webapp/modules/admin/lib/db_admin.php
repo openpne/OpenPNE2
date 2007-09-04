@@ -2711,4 +2711,63 @@ function db_admin_get_c_member_profile_pnepoint($c_member_id)
     return  $c_member_profile;
 }
 
+function db_admin_c_blacklist_list($page, $page_size)
+{
+    $sql = 'SELECT b.c_blacklist_id,ms.c_member_id,b.info,m.nickname,b.easy_access_id ' .
+            ' FROM c_blacklist AS b' .
+            ' LEFT JOIN c_member_secure AS ms ON b.easy_access_id = ms.easy_access_id'.
+            ' LEFT JOIN c_member AS m ON ms.c_member_id = m.c_member_id'
+            ;
+    $list = db_get_all_page($sql, $page, $page_size);
+    
+    $sql = 'SELECT count(*) FROM c_blacklist';
+    $total_num = db_get_one($sql);
+    
+    $total_page_num = ceil($total_num / $page_size);
+    $next = ($page < $total_page_num);
+    $prev = ($page > 1);
+    
+    return array($list, $prev, $next, $total_num, $total_page_num);
+}
+
+function db_admin_insert_c_blacklist($easy_access_id, $info)
+{
+    $data = array(
+        'easy_access_id' => $easy_access_id,
+        'info' => $info,
+    );
+    return db_insert('c_blacklist', $data);
+}
+
+function db_admin_update_c_blacklist($c_blacklist_id, $easy_access_id, $info)
+{
+    $data = array(
+        'easy_access_id' => $easy_access_id,
+        'info' => $info,
+    );
+    $where = array('c_blacklist_id' => $c_blacklist_id);
+    return db_update('c_blacklist', $data, $where);
+}
+
+function db_admin_delete_c_blacklist($c_blacklist_id)
+{
+    $sql = 'DELETE FROM c_blacklist WHERE c_blacklist_id = ?';
+    $params = array(intval($c_blacklist_id));
+    db_query($sql, $params);
+}
+
+function db_admin_c_blacklist($c_blacklist_id)
+{
+    $sql = 'SELECT b.c_blacklist_id,ms.c_member_id,b.info,m.nickname,b.easy_access_id ' .
+            ' FROM c_blacklist AS b' .
+            ' LEFT JOIN c_member_secure AS ms ON b.easy_access_id = ms.easy_access_id'.
+            ' LEFT JOIN c_member AS m ON ms.c_member_id = m.c_member_id' .
+            ' WHERE b.c_blacklist_id = ? '
+            ;
+    $param = array($c_blacklist_id);
+    $blacklist = db_get_row($sql, $param);
+    
+    return $blacklist;
+}
+
 ?>
