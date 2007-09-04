@@ -78,6 +78,7 @@
 ({/if})
 ({/foreach})
 
+({if $target_c_member.c_member_id != $u})
 <hr color="#({$ktai_color_config.border_01})">
 ({if $relation.friend==0})
 ({if $relation.wait==0})
@@ -86,4 +87,5 @@
 ({/if})
 %%i136%%<a href="({t_url m=ktai a=do_f_bookmark_add_insert_c_bookmark})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">お気に入りに追加</a><br>
 %%i90%%<a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">({$target_c_member.nickname})さんのﾄｯﾌﾟ</a><br>
+({/if})
 ({$inc_ktai_footer|smarty:nodefaults})
