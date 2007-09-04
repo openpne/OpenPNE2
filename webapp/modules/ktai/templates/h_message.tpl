@@ -69,7 +69,7 @@
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
 <input type="hidden" name="c_message_id" value="({$c_message.c_message_id})">
 <input type="hidden" name="target_c_member_id" value="({$c_message.c_member_id_from})">
-({if $msg})<font color="#ff0000">({$msg})</font><br>({/if})
+({if $msg})<font color="#({$ktai_color_config.font_04})">({$msg})</font><br>({/if})
 <font color="#({$ktai_color_config.font_02})">ﾀｲﾄﾙ：</font><br>
 <input type="text" name="subject" value="Re:({$c_message.subject})"><br>
 <font color="#({$ktai_color_config.font_02})">本文：</font><br>

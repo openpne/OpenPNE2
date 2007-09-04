@@ -13,7 +13,7 @@
 <hr color="#({$ktai_color_config.border_02})">
 </td></tr>
 ({foreach from=$c_commu_topic_search_list item=topic})
-<tr><td bgcolor="({cycle values="#`$ktai_color_config.bg_05`,#ffffff"})">
+<tr><td bgcolor="({cycle values="#`$ktai_color_config.bg_05`,#`$ktai_color_config.bg_08`"})">
 ({$topic.max_datetime|date_format:"%Y/%m/%d %H:%M"})<br>
 <a href="({t_url m=ktai a=page_c_bbs})&amp;target_c_commu_topic_id=({$topic.c_commu_topic_id})&amp;({$tail})">({$topic.name|t_truncate:50:""})(({$topic.max_number}))</a>(({$topic.commu_name|t_truncate:17:""}))<br>
 </td></tr>
