@@ -4,7 +4,7 @@
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
-class ktai_page_f_profile_detail extends OpenPNE_Action
+class ktai_page_fh_profile_detail extends OpenPNE_Action
 {
     function execute($requests)
     {
@@ -14,8 +14,8 @@ class ktai_page_f_profile_detail extends OpenPNE_Action
         $target_c_member_id = $requests['target_c_member_id'];
         // ----------
 
-        if ($target_c_member_id == $u) {
-            openpne_redirect('ktai', 'page_h_home');
+        if ($target_c_member_id == $u || empty($target_c_member_id)) {
+            $target_c_member_id = $u;
         }
 
         if (!db_member_is_active_c_member_id($target_c_member_id)) {
