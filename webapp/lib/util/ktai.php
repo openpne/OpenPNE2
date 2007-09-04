@@ -182,6 +182,7 @@ function ktai_display_error($errors)
     $smarty->assign('inc_ktai_header', fetch_inc_ktai_header());
     $smarty->assign('inc_ktai_footer', fetch_inc_ktai_footer());
     $smarty->assign('errors', (array)$errors);
+    $smarty->assign('ktai_color_config', db_select_c_sns_config_ktai());
     $smarty->ext_display('error.tpl');
     exit;
 }
