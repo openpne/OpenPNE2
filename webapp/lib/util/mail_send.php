@@ -321,19 +321,53 @@ function send_bbs_info_mail_pc($c_commu_topic_comment_id, $c_member_id)
 //デイリーニュース
 function do_common_send_daily_news()
 {
+    // 改行コード
+    $cr = "\x0D";
+    $lf = "\x0A";
+    $crlf = "\x0D\x0A";
+
+    // 設定値によりMTAに渡すヘッダの区切り記号を分ける
+    if (MAIL_HEADER_SEP === 'CRLF') {
+        $sep = $crlf;
+    } else {
+        $sep = $lf;
+    }
+
+    $subject = mb_convert_encoding('【' . SNS_NAME . '】デイリーニュース送信結果通知', "JIS");
+    $subject = '=?ISO-2022-JP?B?'.base64_encode($subject).'?=';
+
+    if (MAIL_SET_ENVFROM) {
+        if (MAIL_ENVFROM) {
+            $from = MAIL_ENVFROM;
+        } else {
+            $from = ADMIN_EMAIL;
+        }
+    }
+
+    // header
+    $headers .= "From: " .  $from . $sep;
+    $headers .= 'Subject: ' . $subject . $sep;
+
+    print $headers . $sep;
+
     $list = do_common_c_member_list4daily_news();
     $send_2_flag = 0;
     $day_arr = array('日','月','火','水','木','金','土');
     $day = date('w');
     if (strstr(DAILY_NEWS_DAY, $day_arr[$day])) $send_2_flag = 1;
+    $logstr = '【' . SNS_NAME . '】' . OPENPNE_URL . $sep
+        . "SNSメンバー総数：" . count(db_member_c_member_id_list4null()) . $sep
+        . "デイリーニュース送信対象総数：" . count($list)  . $sep  . $sep
+        . "c_member_id\t通し番号\tタイムスタンプ" . $sep;
+    print mb_convert_encoding($logstr, 'JIS');
 
+    $i = 1;
     foreach ($list as $key => $value) {
         if ($value['is_receive_daily_news'] == 1 ||
             ($value['is_receive_daily_news'] == 2 && $send_2_flag)) {
 
-            $date = date("Y. n. j");
             $c_member_id = $value['c_member_id'];
-            print "c_member_id=".$c_member_id."<br>\n";
+            print $c_member_id."\t" . $i++ ."\t". date("Y-m-d H:i:s") . $sep;
 
             $c_member_secure = db_common_c_member_secure4c_member_id($c_member_id);
             $pc_address = $c_member_secure['pc_address'];
