@@ -14,7 +14,7 @@
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
 
 <font color="#999966">予定日：</font><br>
-		<input type="text" navme='sc_b_year' size="2" value="({$now.year})" istyle="4" mode="numeric">年
+		<input type="text" navme='sc_b_year' size="4" value="({$now.year})" istyle="4" mode="numeric">年
 		<input type="text" name='sc_b_month' size="2" value="({$now.month})" istyle="4" mode="numeric">月
 		<input type="text" name='sc_b_date' size="2" value="({$now.day})" istyle="4" mode="numeric">日<br>
 <br>		
