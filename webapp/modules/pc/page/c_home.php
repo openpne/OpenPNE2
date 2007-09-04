@@ -33,6 +33,13 @@ class pc_page_c_home extends OpenPNE_Action
         $c_commu_member_list = db_commu_c_commu_member_list4c_commu_id($c_commu_id, 9);
         $this->set('c_commu_member_list', $c_commu_member_list);
 
+        $c_member_secure = db_member_c_member_secure4c_member_id($u);
+        if (empty($c_member_secure['ktai_address'])) {
+            $is_registered_ktai_address = false;
+        } else {
+            $is_registered_ktai_address = true;
+        }
+
         //非公開コミュニティに管理者から招待されたかどうか
         $this->set('admin_invite', db_commu_c_commu4c_admin_invite_id($c_commu_id, $u));
 
@@ -44,6 +51,8 @@ class pc_page_c_home extends OpenPNE_Action
         $this->set('new_topic_comment_event', $new_topic_comment_event);
         //参加コミュニティの新着おすすめレビュー
         $this->set('new_commu_review', db_review_new_commu_review4c_commu_id($c_commu_id, 7));
+        // 携帯アドレス登録状況
+        $this->set('is_registered_ktai_address', $is_registered_ktai_address);
 
         $this->set('is_unused_pc_bbs', util_is_unused_mail('m_pc_bbs_info'));
         $this->set('is_unused_ktai_bbs', util_is_unused_mail('m_ktai_bbs_info'));
