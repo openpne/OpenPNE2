@@ -1,13 +1,13 @@
 ({$inc_ktai_header|smarty:nodefaults})
-<table width="100%"><tr><td align="center" bgcolor="#0d6ddf">
-<font color="#eeeeee"><a name="top">予定の詳細</a></font><br>
+<table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_01})">
+<font color="#({$ktai_color_config.font_01})"><a name="top">予定の詳細</a></font><br>
 </td></tr></table>
 <br>
 ({*BEGIN:container*})
-<font color="#999966">ﾀｲﾄﾙ：</font><br>
+<font color="#({$ktai_color_config.font_02})">ﾀｲﾄﾙ：</font><br>
 ({$schedule.title})<br>
 <br>
-<font color="#999966">日時：</font><br>
+<font color="#({$ktai_color_config.font_02})">日時：</font><br>
 ({if $schedule.rep_type_loc})
 毎週&nbsp;({$schedule.rep_type_loc})&nbsp;曜日({$schedule.begin_time}) ({if $schedule.begin_time})～({/if})
 ({$schedule.finish_time}) <br>
@@ -27,26 +27,26 @@
 ({/strip})
 ({/if})
 <br>
-<font color="#999966">詳細：</font><br>
+<font color="#({$ktai_color_config.font_02})">詳細：</font><br>
 ({$schedule.value})<br>
 <br>
-<font color="#999966">登録者：</font><br>
+<font color="#({$ktai_color_config.font_02})">登録者：</font><br>
 <a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$schedule.c_member_id})&amp;({$tail})">({$schedule.writer_name})</a><br>
 <br>
-<font color="#999966">公開範囲：</font><br>
+<font color="#({$ktai_color_config.font_02})">公開範囲：</font><br>
 ({if $schedule.public_flag == "private"})
 参加者のみに公開
 ({else})
 全体に公開
 ({/if})<br>
 <br>
-<font color="#999966">参加者：</font><br>
+<font color="#({$ktai_color_config.font_02})">参加者：</font><br>
 ({foreach item=name key=id from=$jmembers})
 	<a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$id})&amp;({$tail})">({$name})</a>&nbsp;
 ({/foreach})
 ({if $jam})
 	<div align="right">
-	<font color="#0c5f0f">⇒</font><a href="({t_url m=ktai_biz a=page_fh_biz_schedule_view_member})&amp;id=({$schedule_id})&amp;target_id=({$t_id})&amp;({$tail})">全員表示する</a></div>
+	<font color="#({$ktai_color_config.font_03})">⇒</font><a href="({t_url m=ktai_biz a=page_fh_biz_schedule_view_member})&amp;id=({$schedule_id})&amp;target_id=({$t_id})&amp;({$tail})">全員表示する</a></div>
 ({/if})
 <br>
 ({if !$schedule.rep_type_loc})
@@ -77,11 +77,11 @@
 </form>
 ({/if})
 ({if $schedule.rep_type_loc})
-	<hr color="#0d6ddf">
+	<hr color="#({$ktai_color_config.border_01})">
 	＊携帯からは繰り返し予定は編集・削除できません。
 ({/if})
 
-<hr color="#0d6ddf">
+<hr color="#({$ktai_color_config.border_01})">
 %%i90%%<a href="({t_url m=ktai_biz a=page_fh_calendar_week})&amp;target_id=({$t_id})&amp;({$tail})">週間ｶﾚﾝﾀﾞｰ</a><br>
 ({*END:container*})
 
