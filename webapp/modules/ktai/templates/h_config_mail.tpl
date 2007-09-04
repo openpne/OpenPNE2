@@ -9,7 +9,7 @@
 新しい携帯ﾒｰﾙｱﾄﾞﾚｽを入力して送信ﾎﾞﾀﾝを押してください。<br>
 <hr color="#({$ktai_color_config.border_01})">
 ({if $msg})
-<font color="#ff0000">({$msg})</font><br>
+<font color="#({$ktai_color_config.font_04})">({$msg})</font><br>
 <br>
 ({/if})
 ({t_form m=ktai a=do_h_config_mail_insert_c_ktai_address_pre})

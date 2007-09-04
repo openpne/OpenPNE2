@@ -10,7 +10,7 @@
 
 <table width="100%">
 ({foreach from=$c_diary_my_comment_list item=each_diary name=c_diary_my_comment_list_name})
-<tr><td bgcolor="({cycle values="#`$ktai_color_config.bg_05`,#ffffff"})">
+<tr><td bgcolor="({cycle values="#`$ktai_color_config.bg_05`,#`$ktai_color_config.bg_08`"})">
 ({$each_diary.r_datetime|date_format:"%Y/%m/%d %H:%M"})<br>
 <a href="({t_url m=ktai a=page_fh_diary})&amp;target_c_diary_id=({$each_diary.c_diary_id})&amp;({$tail})">({$each_diary.subject|t_truncate:28:""})(({$each_diary.num_comment}))</a>
 (({$each_diary.nickname|t_truncate:17:""}))<br>

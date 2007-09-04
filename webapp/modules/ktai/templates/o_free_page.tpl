@@ -6,7 +6,7 @@
 ({if $c_free_page})
 ({$c_free_page.body|smarty:nodefaults|nl2br})
 ({else})
-<font color="#ff0000">({$msg})</font>
+<font color="#({$ktai_color_config.font_04})">({$msg})</font>
 ({/if})
 
 ({$inc_ktai_footer|smarty:nodefaults})
