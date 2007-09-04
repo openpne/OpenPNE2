@@ -29,6 +29,9 @@ class ktai_do_h_config_easy_login extends OpenPNE_Action
             if (db_member_c_member_id4easy_access_id($easy_access_id)) {
                 $p = array('msg' => 39);
                 openpne_redirect('ktai', 'page_h_config', $p);
+            } elseif (db_member_easy_access_id_is_blacklist(md5($easy_access_id))) {
+                $p = array('msg' => 44);
+                openpne_redirect('ktai', 'page_h_config', $p);
             } else {
                 // update
                 db_member_update_easy_access_id($u, $easy_access_id);

@@ -12,6 +12,7 @@
 ﾊﾟｽﾜｰﾄﾞを入力してください。<br>
 <br>
 ({t_form _attr='utn' m=ktai a=do_h_regist_ktai_id})
+<input type="hidden" name="ksid" value="({$PHPSESSID})">
 <font color="#({$ktai_color_config.font_02})">ﾊﾟｽﾜｰﾄﾞ：</font><br>
 <input name="password" type="text" istyle="3" mode="alphabet" value=""><br>
 <center>
