@@ -7,17 +7,17 @@
 /**
  * コミュニティ管理者交代依頼メッセージ送信
  */
-class pc_do_h_home_update_message extends OpenPNE_Action
+class pc_do_h_home_update_my_news extends OpenPNE_Action
 {
     function execute($requests)
     {
         $u = $GLOBALS['AUTH']->uid();
 
         // --- リクエスト変数
-        $prof_message = $requests['prof_message'];
+        $prof_my_news = $requests['prof_my_news'];
         // ----------
         
-        db_member_update_c_profile_message($u, $prof_message, date('Y-m-d H:i:s'));
+        db_member_update_c_profile_my_news($u, $prof_my_news, date('Y-m-d H:i:s'));
         
         //--- 権限チェック
         //なし
