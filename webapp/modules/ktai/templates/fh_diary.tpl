@@ -35,7 +35,7 @@
 <table width="100%">
 ({foreach from=$c_diary_comment name=c_diary_comment item=c_diary_comment_})
 <tr><td>
-<hr color="#b3ceef">
+<hr color="#({$ktai_color_config.border_02})">
 </td></tr>
 <tr><td bgcolor="({cycle values="#`$ktai_color_config.bg_05`,#ffffff"})">
 <a href="#({if $smarty.foreach.c_diary_comment.last})menu({else})dc({$smarty.foreach.c_diary_comment.iteration+1})({/if})" name="dc({$smarty.foreach.c_diary_comment.iteration})"><font color="#({$ktai_color_config.bg_06})">▼</font></a><font color="#({$ktai_color_config.font_02})">[({$c_diary_comment_.number|string_format:"%03d"})]</font>　({$c_diary_comment_.r_datetime|date_format:"%m/%d %H:%M"})

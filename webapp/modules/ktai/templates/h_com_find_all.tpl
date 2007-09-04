@@ -16,7 +16,7 @@
 <input type="submit" value="検索">
 </center>
 </form>
-<hr color="#b3ceef">
+<hr color="#({$ktai_color_config.border_02})">
 <font color="#({$ktai_color_config.font_03})">⇒</font><a href="({t_url m=ktai a=page_h_com_add})&amp;({$tail})">ｺﾐｭﾆﾃｨ作成</a><br>
 <font color="#({$ktai_color_config.font_03})">⇒</font><a href="({t_url m=ktai a=page_h_com_topic_find_all})&amp;({$tail})">ﾄﾋﾟｯｸ検索</a><br>
 <hr color="#({$ktai_color_config.border_01})">
@@ -28,7 +28,7 @@
 <tr><td>
 <font color="#({$ktai_color_config.font_02})">({$ccpl.name})：</font><br>
 <tr><td>
-<hr color="#b3ceef">
+<hr color="#({$ktai_color_config.border_02})">
 </td></tr>
 ({foreach from=$c_commu_category_list item=cccl})
 ({if $ccpl.c_commu_category_parent_id == $cccl.c_commu_category_parent_id })
@@ -38,7 +38,7 @@
 ({/if})
 ({/foreach})
 <tr><td>
-<hr color="#b3ceef">
+<hr color="#({$ktai_color_config.border_02})">
 </td></tr>
 ({/foreach})
 </table>
