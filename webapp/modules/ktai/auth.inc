@@ -27,6 +27,10 @@ if (   !$auth->auth()
     __logout();
 }
 
+if (db_member_is_blacklist($u)) {
+    openpne_redirect('ktai', 'page_o_login', array('msg' => 43));
+}
+
 $auth->uid($u);
 $GLOBALS['AUTH'] = $auth;
 

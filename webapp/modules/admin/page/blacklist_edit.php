@@ -4,12 +4,12 @@
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
-class ktai_page_h_regist_ktai_id extends OpenPNE_Action
+class admin_page_blacklist_edit extends OpenPNE_Action
 {
     function execute($requests)
     {
-        $u  = $GLOBALS['KTAI_C_MEMBER_ID'];
-
+        $this->set('blacklist', db_admin_c_blacklist($requests['target_c_blacklist_id']));
+        
         return 'success';
     }
 }
