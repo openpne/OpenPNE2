@@ -42,6 +42,7 @@ define('OPENPNE_DEBUGGING', 1);
 define('OPENPNE_UNDER_MAINTENANCE', false);
 
 // メンテナンス画面に表示させるテキスト
+// HTMLが使用できます
 // 未入力の場合は、標準のテキストが表示されます
 define('OPENPNE_MAINTENANCE_TEXT', '');
 
