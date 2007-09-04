@@ -23,7 +23,7 @@
 ({/capture})
 
 ({if $total_num})
-<hr color="#b3ceef">
+<hr color="#({$ktai_color_config.border_02})">
 <table width="100%">
 ({foreach from=$c_message_trash_list item=c_message_trash})
 <tr><td bgcolor="({cycle values="#`$ktai_color_config.bg_05`,#ffffff"})">
@@ -32,7 +32,7 @@
 ({if $c_message_trash.c_member_id_to != $u})<font color="#({$ktai_color_config.font_02})">(★)</font>({/if})
 </td></tr>
 <tr><td>
-<hr color="#b3ceef">
+<hr color="#({$ktai_color_config.border_02})">
 </td></tr>
 ({/foreach})
 </table>
@@ -55,7 +55,7 @@
 ({/capture})
 
 ({if $total_num})
-<hr color="#b3ceef">
+<hr color="#({$ktai_color_config.border_02})">
 <table width="100%">
 ({foreach from=$c_message_received_list item=c_message_received})
 <tr><td bgcolor="({cycle values="#`$ktai_color_config.bg_05`,#ffffff"})">
@@ -63,7 +63,7 @@
 <a href="({t_url m=ktai a=page_h_message})&amp;target_c_message_id=({$c_message_received.c_message_id})&amp;({$tail})">({$c_message_received.subject|default:"&nbsp;"|t_truncate:50:""})</a>（({$c_message_received.nickname|t_truncate:17:""|default:"&nbsp;"})さん）
 </td></tr>
 <tr><td>
-<hr color="#b3ceef">
+<hr color="#({$ktai_color_config.border_02})">
 </td></tr>
 ({/foreach})
 </table>
@@ -83,7 +83,7 @@
 ({/if})
 ({/capture})
 ({if $total_num})
-<hr color="#b3ceef">
+<hr color="#({$ktai_color_config.border_02})">
 <table width="100%">
 ({foreach from=$c_message_sent_list item=c_message_sent})
 <tr><td bgcolor="({cycle values="#`$ktai_color_config.bg_05`,#ffffff"})">
@@ -91,7 +91,7 @@
 <a href="({t_url m=ktai a=page_h_message})&amp;target_c_message_id=({$c_message_sent.c_message_id})&amp;({$tail})">({$c_message_sent.subject|default:"&nbsp;"|t_truncate:50:""})</a>（({$c_message_sent.nickname|t_truncate:17:""|default:"&nbsp;"})さん）<br>
 </td></tr>
 <tr><td>
-<hr color="#b3ceef">
+<hr color="#({$ktai_color_config.border_02})">
 </td></tr>
 ({/foreach})
 </table>

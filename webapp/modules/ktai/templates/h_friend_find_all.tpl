@@ -8,7 +8,7 @@
 </center>
 <table width="100%">
 <tr><td>
-<hr color="#b3ceef">
+<hr color="#({$ktai_color_config.border_02})">
 </td></tr>
 ({foreach from=$target_friend_list item=target_friend})
 <tr><td bgcolor="({cycle values="#`$ktai_color_config.bg_05`,#ffffff"})">
@@ -16,7 +16,7 @@
 </td></tr>
 ({/foreach})
 <tr><td>
-<hr color="#b3ceef">
+<hr color="#({$ktai_color_config.border_02})">
 </td></tr></table>
 ({if $pager.page_prev || $pager.page_next})
 <center>

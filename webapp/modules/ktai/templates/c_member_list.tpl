@@ -11,7 +11,7 @@
 ({$pager.start})件～({$pager.end})件を表示<br>
 </center>
 
-<hr color="#b3ceef">
+<hr color="#({$ktai_color_config.border_02})">
 <table width="100%">
 ({foreach from=$c_member_list item=c_member})
 <tr><td bgcolor="({cycle values="#`$ktai_color_config.bg_05`,#ffffff"})">
@@ -19,7 +19,7 @@
 </td></tr>
 ({/foreach})
 </table>
-<hr color="#b3ceef">
+<hr color="#({$ktai_color_config.border_02})">
 
 ({if $is_prev || $is_next})
 <center>

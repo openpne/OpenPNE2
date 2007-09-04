@@ -17,7 +17,7 @@
 <table width="100%">
 ({foreach from=$friend_list item=friend})
 <tr><td>
-<hr color="#b3ceef">
+<hr color="#({$ktai_color_config.border_02})">
 </td></tr>
 <tr><td bgcolor="({cycle values="#`$ktai_color_config.bg_05`,#ffffff"})">
 <font color="#({$ktai_color_config.font_02})">ﾆｯｸﾈｰﾑ：</font><br>
@@ -38,7 +38,7 @@
 </table>
 
 ({if $is_prev || $is_next})
-<hr color="#b3ceef">
+<hr color="#({$ktai_color_config.border_02})">
 <center>
 ({if $is_prev})<a href="({t_url m=ktai a=page_h_manage_friend})&amp;page=({$page-1})&amp;({$tail})" accesskey="4">%%i128%%前を表示</a>({/if})
 ({if $is_prev && $is_next})&nbsp;({/if})

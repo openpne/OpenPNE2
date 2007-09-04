@@ -101,7 +101,7 @@
 <br>
 </td></tr>
 <tr><td>
-<hr color="#b3ceef">
+<hr color="#({$ktai_color_config.border_02})">
 </td></tr>
 ({/foreach})
 <tr><td align="right">
@@ -147,7 +147,7 @@
 <br>
 </td></tr>
 <tr><td>
-<hr color="#b3ceef">
+<hr color="#({$ktai_color_config.border_02})">
 </td></tr>
 ({/foreach})
 ({if $c_commu_topic_list})
@@ -186,7 +186,7 @@
 <a href="({t_url m=ktai a=page_h_config_image})&amp;({$tail})">ﾌﾟﾛﾌｨｰﾙ写真設定</a><br>
 </td></tr>
 <tr><td bgcolor="#ffffff">
-<hr color="#b3ceef">
+<hr color="#({$ktai_color_config.border_02})">
 </td></tr></table>
 <br>
 <table width="100%">
