@@ -9,7 +9,7 @@
 ｱｸｾｽをﾌﾞﾛｯｸするﾒﾝﾊﾞｰのIDを指定します。<br>
 <br>
 ({if $msg})
-<font color="#ff0000">({$msg})</font><br>
+<font color="#({$ktai_color_config.font_04})">({$msg})</font><br>
 <br>
 ({/if})
 

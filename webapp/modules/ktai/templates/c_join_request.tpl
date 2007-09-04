@@ -9,7 +9,7 @@
 
 ｺﾐｭﾆﾃｨ管理者への参加希望ﾒｯｾｰｼﾞを送信し、承諾を受けてください。<br>
 ({if $msg})
-<font color="#ff0000">({$msg})</font><br>
+<font color="#({$ktai_color_config.font_04})">({$msg})</font><br>
 ({/if})
 ({t_form m=ktai a=do_c_join_request_insert_c_commu_member_confirm})
 <input type="hidden" name="target_c_commu_id" value="({$target_c_commu_id})">

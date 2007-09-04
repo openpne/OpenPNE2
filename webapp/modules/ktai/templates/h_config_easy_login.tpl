@@ -6,13 +6,13 @@
 かんたんﾛｸﾞｲﾝ設定<br>
 </td></tr></table>
 ({if $msg})
-<font color="#ff0000">({$msg})</font><br>
+<font color="#({$ktai_color_config.font_04})">({$msg})</font><br>
 <br>
 ({/if})
 
 ({if $is_registered})
 
-<font color="#ff0000">かんたんﾛｸﾞｲﾝ設定済みです。</font><br>
+<font color="#({$ktai_color_config.font_04})">かんたんﾛｸﾞｲﾝ設定済みです。</font><br>
 
 <hr color="#({$ktai_color_config.border_02})">
 
@@ -40,7 +40,7 @@
 
 <hr color="#({$ktai_color_config.border_02})">
 
-<font color="#ff0000">※一部機種では携帯の個体識別番号を送信できないためご利用になれません｡</font><br>
+<font color="#({$ktai_color_config.font_04})">※一部機種では携帯の個体識別番号を送信できないためご利用になれません｡</font><br>
 <a href="({t_url m=ktai a=page_o_whatis_easy_login})">&gt;&gt;かんたんﾛｸﾞｲﾝとは</a>
 
 <hr color="#({$ktai_color_config.border_01})">

@@ -32,7 +32,7 @@
 </td></tr>
 ({foreach from=$c_commu_category_list item=cccl})
 ({if $ccpl.c_commu_category_parent_id == $cccl.c_commu_category_parent_id })
-<tr><td bgcolor="({cycle values="#`$ktai_color_config.bg_05`,#ffffff"})">
+<tr><td bgcolor="({cycle values="#`$ktai_color_config.bg_05`,#`$ktai_color_config.bg_08`"})">
 <a href="({t_url m=ktai a=page_h_com_category})&amp;target_c_commu_category_id=({$cccl.c_commu_category_id})&amp;({$tail})">({$cccl.name|t_truncate:50:""})</a><br>
 </td></tr>
 ({/if})
