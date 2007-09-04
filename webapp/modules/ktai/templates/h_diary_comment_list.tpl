@@ -6,7 +6,7 @@
 ({$pager.start})～({$pager.end})件を表示
 </center>
 
-<hr color="#b3ceef">
+<hr color="#({$ktai_color_config.border_02})">
 
 <table width="100%">
 ({foreach from=$c_diary_my_comment_list item=each_diary name=c_diary_my_comment_list_name})
@@ -16,7 +16,7 @@
 (({$each_diary.nickname|t_truncate:17:""}))<br>
 </td></tr>
 <tr><td>
-<hr color="#b3ceef">
+<hr color="#({$ktai_color_config.border_02})">
 </td></tr>
 ({/foreach})
 </table>

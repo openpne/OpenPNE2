@@ -78,7 +78,7 @@
 <br>
 </td></tr>
 <tr><td>
-<hr color="#b3ceef">
+<hr color="#({$ktai_color_config.border_02})">
 </td></tr>
 ({/foreach})
 <tr><td align="right">
@@ -147,7 +147,7 @@
 <a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$c_commu_member.c_member_id})&amp;({$tail})">({$c_commu_member.nickname})</a><br>
 </td></tr>
 <tr><td>
-<hr color="#b3ceef">
+<hr color="#({$ktai_color_config.border_02})">
 </td></tr>
 ({/foreach})
 <tr><td align="right">

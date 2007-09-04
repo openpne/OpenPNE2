@@ -11,14 +11,14 @@
 ({$pager.start})～({$pager.end})件目を表示<br>
 </center>
 
-<hr color="#b3ceef">
+<hr color="#({$ktai_color_config.border_02})">
 <table width="100%">
 ({foreach from=$target_friend_list item=target_friend})
 <tr><td bgcolor="({cycle values="#`$ktai_color_config.bg_05`,#ffffff"})">
 <a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$target_friend.c_member_id})&amp;({$tail})">({$target_friend.nickname})</a>(({$target_friend.friend_count}))<br>
 </td></tr>
 <tr><td>
-<hr color="#b3ceef">
+<hr color="#({$ktai_color_config.border_02})">
 </td></tr>
 ({/foreach})
 </table>

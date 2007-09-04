@@ -21,7 +21,7 @@
 全員に公開
 ({/if})<br>
 
-<hr color="#b3ceef">
+<hr color="#({$ktai_color_config.border_02})">
 <center>
 <input type="submit" class="submit" value="　は　い　"><br>
 </center>

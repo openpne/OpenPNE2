@@ -11,7 +11,7 @@
 ({$start_num})件～({$end_num})件を表示
 </center>
 
-<hr color="#b3ceef">
+<hr color="#({$ktai_color_config.border_02})">
 <table width="100%">
 ({foreach from=$c_topic_list item=item})
 <tr><td bgcolor="({cycle values="#`$ktai_color_config.bg_05`,#ffffff"})">
@@ -26,7 +26,7 @@
 <br>
 </td></tr>
 <tr><td>
-<hr color="#b3ceef">
+<hr color="#({$ktai_color_config.border_02})">
 </td></tr>
 ({/foreach})
 </table>
