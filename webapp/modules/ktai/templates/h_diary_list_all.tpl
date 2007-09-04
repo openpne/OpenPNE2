@@ -10,7 +10,7 @@
 </center>
 <table width="100%">
 <tr><td>
-<hr color="#b3ceef">
+<hr color="#({$ktai_color_config.border_02})">
 </td></tr>
 
 ({foreach from=$new_diary_list item=item})
@@ -23,7 +23,7 @@
 <br>
 </td></tr>
 <tr><td>
-<hr color="#b3ceef">
+<hr color="#({$ktai_color_config.border_02})">
 </td></tr>
 ({/foreach})
 </table>

@@ -40,7 +40,7 @@
 
 ({if (!$c_message.is_deleted_from && $c_message.c_member_id_from==$u) || (!$c_message.is_deleted_to && $c_message.c_member_id_to==$u)})
 <center>
-<hr color="#b3ceef">
+<hr color="#({$ktai_color_config.border_02})">
 ({if $prev_c_message_id})
 <a href="({t_url m=ktai a=page_h_message})&amp;target_c_message_id=({$prev_c_message_id})&amp;({$tail})" accesskey="4">%%i128%%前を表示</a>　
 ({/if})
