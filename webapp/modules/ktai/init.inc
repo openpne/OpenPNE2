@@ -33,7 +33,7 @@ if (CHECK_KTAI_IP) {
     }
 
     if (!$is_valid_ip) {
-        ktai_display_error('携帯電話以外からはアクセスできません。');
+        openpne_redirect('pc');
     }
 }
 
