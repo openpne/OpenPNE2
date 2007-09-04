@@ -184,6 +184,10 @@ class OpenPNE_Config
             'OPENPNE_INFO_URL' => 'http://info.openpne.jp/rss',
             'DISPLAY_OPENPNE_INFO' => true,
             'IS_SLAVEPNE' => false,
+            'OPENPNE_IMG_KTAI_MAX_WIDTH' => 240,
+            'OPENPNE_IMG_KTAI_MAX_HEIGHT' => 320,
+            'OPENPNE_MAINTENANCE_TEXT' => '',
+            'CHECK_KTAI_IP' => false,
         // 固定値
             'AMAZON_TOKEN'   => '1WZYY1W9YF49AGM0RTG2',
             'AMAZON_LOCALE'  => 'jp',
