@@ -129,7 +129,7 @@
 ({/foreach})
 </td></tr>
 <tr><td align="right" colspan="2">
-<font color="#({$ktai_color_config.font_03})">⇒</font><a href="({t_url m=ktai a=page_f_profile_detail})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">もっと見る</a>
+<font color="#({$ktai_color_config.font_03})">⇒</font><a href="({t_url m=ktai a=page_fh_profile_detail})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">もっと見る</a>
 <hr color="#({$ktai_color_config.border_01})"></td></tr></table>
 ({if $is_h_prof})
 %%i76%%<a href="({t_url m=ktai a=page_fh_intro})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">紹介文を読む</a>
