@@ -50,6 +50,10 @@ class ktai_do_o_regist_ktai_id extends OpenPNE_Action
                 $p = array('msg' => 39, 'ses' => $ses);
                 openpne_redirect('ktai', 'page_o_regist_ktai_id', $p);
             }
+            if (db_member_easy_access_id_is_blacklist(md5($easy_access_id))) {
+                $p = array('msg' => 44, 'ses' => $ses);
+                openpne_redirect('ktai', 'page_o_regist_ktai_id', $p);
+            }
             // update
             db_member_update_easy_access_id($c_member_id, $easy_access_id);
             db_member_update_ktai_address($c_member_id, $ktai_address);
