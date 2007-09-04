@@ -6,21 +6,21 @@
 <tr><td bgcolor="#({$ktai_color_config.bg_02})" align="center">
 ｲﾍﾞﾝﾄの作成<br>
 </td></tr></table>
-<font color="#ff0000">※</font>は必須項目です。
+<font color="#({$ktai_color_config.font_04})">※</font>は必須項目です。
 <hr color="#({$ktai_color_config.border_02})">
 
 ({if $err_msg})
 ({foreach from=$err_msg item=item})
-<font color="#ff0000">({$item})</font></br>
+<font color="#({$ktai_color_config.font_04})">({$item})</font></br>
 <br>
 ({/foreach})
 ({/if})
 ({t_form m=ktai a=do_c_event_add_insert_c_commu_topic})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
 <input type="hidden" name="target_c_commu_id" value="({$c_commu.c_commu_id})">
-<font color="#({$ktai_color_config.font_02})">ﾀｲﾄﾙ：</font><font color="#ff0000">※</font><br>
+<font color="#({$ktai_color_config.font_02})">ﾀｲﾄﾙ：</font><font color="#({$ktai_color_config.font_04})">※</font><br>
 <input type="text" name="title" value="({$event.title})"><br><br>
-<font color="#({$ktai_color_config.font_02})">開催日時：</font><font color="#ff0000">※</font><br>
+<font color="#({$ktai_color_config.font_02})">開催日時：</font><font color="#({$ktai_color_config.font_04})">※</font><br>
 <select name="open_date_year">
 <option value="">----
 ({html_options values=$year selected=$event.open_date_year output=$year})
@@ -40,7 +40,7 @@
 ({html_options options=$pref selected=$event.open_pref_id})
 </select><br>
 <font color="#({$ktai_color_config.font_02})">補足：</font><input type="text" name="open_pref_comment" value="({$event.open_pref_comment})"><br><br>
-<font color="#({$ktai_color_config.font_02})">詳細：</font><font color="#ff0000">※</font><br>
+<font color="#({$ktai_color_config.font_02})">詳細：</font><font color="#({$ktai_color_config.font_04})">※</font><br>
 <textarea name="detail" rows="6">({$event.detail})</textarea><br>
 <br>
 <font color="#({$ktai_color_config.font_02})">募集人数：</font><br>

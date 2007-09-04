@@ -37,7 +37,7 @@
 <tr><td>
 <hr color="#({$ktai_color_config.border_02})">
 </td></tr>
-<tr><td bgcolor="({cycle values="#`$ktai_color_config.bg_05`,#ffffff"})">
+<tr><td bgcolor="({cycle values="#`$ktai_color_config.bg_05`,#`$ktai_color_config.bg_08`"})">
 <a href="#({if $smarty.foreach.c_diary_comment.last})menu({else})dc({$smarty.foreach.c_diary_comment.iteration+1})({/if})" name="dc({$smarty.foreach.c_diary_comment.iteration})"><font color="#({$ktai_color_config.bg_06})">▼</font></a><font color="#({$ktai_color_config.font_02})">[({$c_diary_comment_.number|string_format:"%03d"})]</font>　({$c_diary_comment_.r_datetime|date_format:"%m/%d %H:%M"})
 ({if $c_diary_comment_.c_member_id == $u || $target_diary_writer.c_member_id==$u})
 [<a href="({t_url m=ktai a=page_fh_diary_delete_c_diary_comment_confirm})&amp;target_c_diary_comment_id=({$c_diary_comment_.c_diary_comment_id})&amp;({$tail})&amp;target_c_diary_id=({$target_c_diary.c_diary_id})">削除</a>]
@@ -73,7 +73,7 @@
 ({t_form m=ktai a=do_fh_diary_insert_c_diary_comment})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
 <input type="hidden" name="target_c_diary_id" value="({$target_c_diary.c_diary_id})">
-({if $msg})<font color="#ff0000">({$msg})</font><br>({/if})
+({if $msg})<font color="#({$ktai_color_config.font_04})">({$msg})</font><br>({/if})
 <textarea name="body" rows="3"></textarea><br>
 <input type="submit" value="書き込む">
 </form>

@@ -11,8 +11,8 @@ class admin_page_edit_c_sns_config_ktai extends OpenPNE_Action
         $v = array();
 
         $v['bgcolor_scheme_names'] = array('bg_01', 'bg_02', 'bg_03', 'bg_04',
-        	'bg_05', 'bg_06', 'bg_07', 'border_01', 'border_02',
-        	'border_03', 'font_01', 'font_02', 'font_03',
+        	'bg_05', 'bg_06', 'bg_07', 'bg_08', 'border_01', 'border_02',
+        	'border_03', 'font_01', 'font_02', 'font_03', 'font_04'
         );
 
         $v['c_sns_config'] = array();

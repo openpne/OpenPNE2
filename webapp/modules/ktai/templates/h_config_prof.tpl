@@ -6,7 +6,7 @@
 ﾌﾟﾛﾌｨｰﾙ変更<br>
 </td></tr></table>
 
-<font color="#ff0000">*</font>は必須項目。<br>
+<font color="#({$ktai_color_config.font_04})">*</font>は必須項目。<br>
 
 <hr color="#({$ktai_color_config.border_01})">
 
@@ -14,13 +14,13 @@
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
 
 ({capture name="nick"})
-<font color="#ff0000">*</font>
+<font color="#({$ktai_color_config.font_04})">*</font>
 <font color="#({$ktai_color_config.font_02})">ﾆｯｸﾈｰﾑ：</font><br>
 <input type="text" name="nickname" value="({$c_member.nickname})"><br>
 <br>
 ({/capture})
 ({capture name="birth"})
-<font color="#ff0000">*</font><font color="#({$ktai_color_config.font_02})">生まれた年：</font><br>
+<font color="#({$ktai_color_config.font_04})">*</font><font color="#({$ktai_color_config.font_02})">生まれた年：</font><br>
 <input type="text" name="birth_year" istyle="4" mode="numeric" value="({if $c_member.birth_year})({$c_member.birth_year})({/if})" size="4" maxlength="4"><br>
 <select name="public_flag_birth_year">
     ({foreach from=$public_flags key=key item=item})
@@ -29,7 +29,7 @@
 </select><br>
 <br>
 
-<font color="#ff0000">*</font><font color="#({$ktai_color_config.font_02})">誕生日：</font><br>
+<font color="#({$ktai_color_config.font_04})">*</font><font color="#({$ktai_color_config.font_02})">誕生日：</font><br>
 <select name="birth_month">
     <option>--
     ({foreach from=$month item=item})
@@ -71,7 +71,7 @@
 
 ({if $profile.disp_config})
 
-    ({if $profile.is_required})<font color="#ff0000">*</font>({/if})
+    ({if $profile.is_required})<font color="#({$ktai_color_config.font_04})">*</font>({/if})
     <font color="#({$ktai_color_config.font_02})">({$profile.caption})：</font><br>
 
     ({if $profile.form_type == 'text'})
