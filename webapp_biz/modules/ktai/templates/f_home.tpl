@@ -144,7 +144,7 @@
 </td></tr>
 ({if $c_diary_list})
 ({foreach from=$c_diary_list item=c_diary})
-<tr><td bgcolor="({cycle values=`$ktai_color_config.bg_05`,#`$ktai_color_config.bg_08`"})">
+<tr><td bgcolor="#({cycle values=`$ktai_color_config.bg_05`,#`$ktai_color_config.bg_08`"})">
 <font color="#({$ktai_color_config.font_02})">[({$c_diary.r_date|date_format:"%m/%d"})]</font><a href="({t_url m=ktai a=page_fh_diary})&amp;target_c_diary_id=({$c_diary.c_diary_id})&amp;({$tail})">({$c_diary.subject|t_truncate:22:""})(({$c_diary.comment_count}))</a>
 ({if $c_diary.image_filename_1 || $c_diary.image_filename_2 || $c_diary.image_filename_3})
 %%i68%%
@@ -166,7 +166,7 @@
 <a accesskey="2" name="a2" href="#a2">%%i126%%</a>({$WORD_FRIEND_HALF})ﾘｽﾄ<br>
 </td></tr>
 ({foreach from=$c_friend_list item=c_friend})
-<tr><td bgcolor="({cycle values=`$ktai_color_config.bg_07`,#`$ktai_color_config.bg_08`"})">
+<tr><td bgcolor="#({cycle values=`$ktai_color_config.bg_07`,#`$ktai_color_config.bg_08`"})">
 <a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$c_friend.c_member_id_to})&amp;({$tail})">({$c_friend.nickname|t_truncate:30:""})(({$c_friend.count_friend}))</a><br>
 </td></tr>
 <tr><td>
@@ -183,7 +183,7 @@
 <tr><td bgcolor="#({$ktai_color_config.bg_04})"><a accesskey="3" name="a3" href="#a3">%%i127%%</a>参加ｺﾐｭﾆﾃｨ<br>
 </td></tr>
 ({foreach from=$c_commu_list item=c_commu})
-<tr><td bgcolor="({cycle values=`$ktai_color_config.bg_05`,#`$ktai_color_config.bg_08`"})">
+<tr><td bgcolor="#({cycle values=`$ktai_color_config.bg_05`,#`$ktai_color_config.bg_08`"})">
 <a href="({t_url m=ktai a=page_c_home})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">({$c_commu.name|t_truncate:30:""})(({$c_commu.count_members}))</a><br>
 </td></tr>
 <tr><td>
