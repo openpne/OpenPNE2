@@ -34,7 +34,7 @@
 <font color="#0000ff">({$item.day})
 (({$item.dayofweek}))</font>
 ({elseif $item.dayofweek == "日"})
-<font color="#({$ktai_color_config.font_04})">({$item.day})
+<font color="#ff0000">({$item.day})
 (({$item.dayofweek}))</font>
 ({else})
 ({$item.day})
