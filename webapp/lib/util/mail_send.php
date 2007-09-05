@@ -321,6 +321,8 @@ function send_bbs_info_mail_pc($c_commu_topic_comment_id, $c_member_id)
 //デイリーニュース
 function do_common_send_daily_news()
 {
+//    ini_set('expose_php', 'On');
+
     // 改行コード
     $cr = "\x0D";
     $lf = "\x0A";
@@ -333,7 +335,7 @@ function do_common_send_daily_news()
         $sep = $lf;
     }
 
-    $subject = mb_convert_encoding('【' . SNS_NAME . '】デイリーニュース送信結果通知', "JIS");
+    $subject = mb_convert_encoding('【' . SNS_NAME . '】デイリーニュース送信結果通知 ' . date("[Y. m. d]"), "JIS");
     $subject = '=?ISO-2022-JP?B?'.base64_encode($subject).'?=';
 
     if (MAIL_SET_ENVFROM) {
@@ -351,13 +353,20 @@ function do_common_send_daily_news()
     print $headers . $sep;
 
     $list = do_common_c_member_list4daily_news();
+    $count_receive_daiy_news = db_member_count_c_member_is_receive_daily_news();
+    $count_daily_news_day = count(explode(',', DAILY_NEWS_DAY));
+    $str_daily_news_day = str_replace(',', '・', DAILY_NEWS_DAY);
     $send_2_flag = 0;
     $day_arr = array('日','月','火','水','木','金','土');
     $day = date('w');
     if (strstr(DAILY_NEWS_DAY, $day_arr[$day])) $send_2_flag = 1;
-    $logstr = '【' . SNS_NAME . '】' . OPENPNE_URL . $sep
-        . "SNSメンバー総数：" . count(db_member_c_member_id_list4null()) . $sep
-        . "デイリーニュース送信対象総数：" . count($list)  . $sep  . $sep
+    $logstr = '【SNS名】' . SNS_NAME . $sep
+        . '【URL】' . OPENPNE_URL . $sep
+        . '【SNSメンバー総数】' . number_format(count(db_member_c_member_id_list4null())) . $sep
+        . '【デイリーニュース送信対象総数】' . $sep
+        . '毎回：' . number_format($count_receive_daiy_news['every_day']) . $sep
+        . '週' . $count_daily_news_day . '回（' . $str_daily_news_day . '）：' . number_format($count_receive_daiy_news['daily_news_day']) . $sep
+        . '【配信日】' . date("Y/m/d") . '(' . $day_arr[$day] . ')' . $sep .$sep
         . "c_member_id\t通し番号\tタイムスタンプ" . $sep;
     print mb_convert_encoding($logstr, 'JIS');
 
