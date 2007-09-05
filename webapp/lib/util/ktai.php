@@ -176,6 +176,26 @@ function t_get_user_hash($c_member_id, $length = 12)
     return substr(md5($seed), 0, $length);
 }
 
+/**
+ * 携帯電話からのアクセスかどうかを IPアドレスから判別する
+ * 
+ * @return bool
+ */
+function is_ktai_ip()
+{
+    require_once 'Net/IPv4.php';
+    $is_valid_ip = false;
+    for ($i = 0; $i < count($GLOBALS['_OPENPNE_KTAI_IP_LIST']); $i++) {
+        if (Net_IPv4::ipInNetwork($_SERVER['REMOTE_ADDR'], $GLOBALS['_OPENPNE_KTAI_IP_LIST'][$i])
+            || Net_IPv4::ipInNetwork($_SERVER['HTTP_X_FORWARDED_FOR'], $GLOBALS['_OPENPNE_KTAI_IP_LIST'][$i])) {
+            $is_valid_ip = true;
+            break;
+        }
+    }
+
+    return $is_valid_ip;
+}
+
 function ktai_display_error($errors)
 {
     $smarty = new OpenPNE_Smarty($GLOBALS['SMARTY']);
