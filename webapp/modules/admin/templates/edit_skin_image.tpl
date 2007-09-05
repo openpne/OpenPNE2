@@ -10,19 +10,45 @@
 <h2>スキン画像変更</h2>
 <div class="contents">
 
-<h3 class="item" id="subttl01">プリセットデザインから設定</h3>
+<script type="text/javascript">
+function toggleDisplay(targetId) {
+    var tgt = document.getElementById(targetId);
+    var btn = document.getElementById("skin_changer_openclose_button");
+    if ( tgt.style.display == "none" ) {
+        tgt.style.display = "block";
+        document.cookie = "skinChangerArea=1";
+        btn.value = '非表示';
+    } else {
+        tgt.style.display = "none";
+        document.cookie = "skinChangerArea=0";
+        btn.value = '表示';
+    }
+}
+function getCookie() {
+        var cook = new Array();
+        var tmp = document.cookie.split("; ");
+        for (var i = 0; i < tmp.length; i++) {
+            var parts = tmp[i].split("=");
+            cook[parts[0]] = parts[1];
+        }
+
+        return cook;
+}
+</script>
+
+<h3 class="item" id="subttl01">プリセットデザインから設定&nbsp;<span class="textBtnS"><input id="skin_changer_openclose_button" type="button" value="非表示" onclick="toggleDisplay('skin_changer_area');" /></span></h3>
 <p class="caution" id="c01">※プリセットデザインから設定をおこなうと、カスタマイズ設定で変更された内容がすべて上書きされてしまいます。</p>
 
 <form action="./" method="post">
-<table class="basicType2">
+<table class="basicType2" id="skin_changer_area">
 <tr>
 <td>
 ({foreach from=$theme_list item=item})
 <dl class="box">
 <dd>
 <a href="./skin/({$item.name})/({$item.link})" target="_blank"><img src="./skin/({$item.name})/({$item.thumbnail})" width="180" /></a><br />
-<br />
-<input type="radio" name="value" value="({$item.name})"({if $item.name == $smarty.const.OPENPNE_SKIN_THEME}) checked="checked"({/if})> ({$item.caption})
+<input type="radio" name="value" id="skin_theme_({$item.name})" value="({$item.name})"({if $item.name == $smarty.const.OPENPNE_SKIN_THEME}) checked="checked"({/if}) />
+<label for="skin_theme_({$item.name})">({$item.caption})</label>
 </dd>
 </dl>
 ({/foreach})
@@ -40,9 +66,14 @@
 </table>
 </form>
 
+<script type="text/javascript">
+var c = getCookie();
+if ( c['skinChangerArea'] == 0 ) { toggleDisplay('skin_changer_area'); }
+</script>
+
 <h3 class="item" id="subttl02">カスタマイズ設定</h3>
 <p class="pageNavi"><a href="#skin1">ログインページ</a> | <a href="#skin2">メニュー等、画面上部画像&nbsp;[1]</a> | <a href="#skin3">メニュー等、画面上部画像&nbsp;[2]</a> | <a href="#skin4">画面下部画像</a> | <a href="#skin5">NoImage画像</a> | <a href="#skin6">画像ボタン</a> | <a href="#skin7">レビュー用画像</a> | <a href="#skin8">小物画像&nbsp;[1]</a> | <a href="#skin9">小物画像&nbsp;[2]</a> | <a href="#skin10">小物画像&nbsp;[3]</a> | <a href="#skin11">小物画像&nbsp;[4]</a> | </p>
-<p class="caution" id="c01">※規定のサイズと異なる画像を設定した場合、レイアウトが崩れてしまう可能性があります。</p>
+<p class="caution" id="c02">※規定のサイズと異なる画像を設定した場合、レイアウトが崩れてしまう可能性があります。</p>
 
 <table class="basicType2">
 ({*******})
