@@ -124,7 +124,7 @@
 ({/foreach})
 </td></tr>
 <tr><td align="right" colspan="2">
-<font color="#0c5f0f">⇒</font><a href="({t_url m=ktai a=page_f_profile_detail})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">もっと見る</a>
+<font color="#({$ktai_color_config.font_03})">⇒</font><a href="({t_url m=ktai a=page_f_profile_detail})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">もっと見る</a>
 <hr color="#({$ktai_color_config.border_01})"></td></tr></table>
 %%i110%%<a href="({t_url m=ktai a=page_f_message_send})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">ﾒｯｾｰｼﾞを送る</a><br>
 ({if $relation.friend==0})
@@ -156,7 +156,7 @@
 </td></tr>
 ({/foreach})
 <tr><td align="right">
-<font color="#0c5f0f">⇒</font><a href="({t_url m=ktai a=page_fh_diary_list})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">もっと見る</a><br>
+<font color="#({$ktai_color_config.font_03})">⇒</font><a href="({t_url m=ktai a=page_fh_diary_list})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">もっと見る</a><br>
 </td></tr>
 ({/if})
 </table>
@@ -174,7 +174,7 @@
 </td></tr>
 ({/foreach})
 <tr><td align="right">
-<font color="#0c5f0f">⇒</font><a href="({t_url m=ktai a=page_fh_friend_list})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">もっと見る</a><br>
+<font color="#({$ktai_color_config.font_03})">⇒</font><a href="({t_url m=ktai a=page_fh_friend_list})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">もっと見る</a><br>
 </td></tr></table>
 
 <br>
@@ -191,9 +191,9 @@
 </td></tr>
 ({/foreach})
 <tr><td align="right">
-<font color="#0c5f0f">⇒</font><a href="({t_url m=ktai a=page_fh_com_list})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">もっと見る</a><br>
+<font color="#({$ktai_color_config.font_03})">⇒</font><a href="({t_url m=ktai a=page_fh_com_list})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">もっと見る</a><br>
 ({if $common_commu_count})
-<font color="#0c5f0f">⇒</font><a href="({t_url m=ktai a=page_f_com_list_common})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">共通ｺﾐｭﾆﾃｨ</a><br>
+<font color="#({$ktai_color_config.font_03})">⇒</font><a href="({t_url m=ktai a=page_f_com_list_common})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">共通ｺﾐｭﾆﾃｨ</a><br>
 ({/if})
 </td></tr></table>
 
