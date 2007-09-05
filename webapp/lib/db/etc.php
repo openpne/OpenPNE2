@@ -664,9 +664,30 @@ function db_delete_c_skin_filename($skinname)
 }
 
 /**
+ * デフォルト画像をマスター画像からコピー(デフォルトに戻すの一環)
+ */
+function db_master_copy_c_skin_filename($skinname)
+{
+
+    $data = array(
+        'skinname' => strval($skinname),
+        'filename' => 'skin_'.strval($skinname).'.gif',
+    );
+    db_insert('c_skin_filename', $data);
+
+    $sql = "INSERT INTO c_image (SELECT '', ?, bin, ?, type FROM c_image WHERE filename = ?)";
+    $params = array(
+        'skin_'.strval($skinname).'.gif',
+        db_now(),
+        'skin_'.strval($skinname).'_master.gif',
+    );
+    db_query($sql, $params);
+}
+
+/**
  * スキン画像全削除（デフォルトに戻す）
  */
-function db_delete_all_c_skin_filename()
+function db_delete_all_c_skin_filename($theme = 'default')
 {
     $list = db_get_c_skin_filename_list();
     foreach ($list as $filename) {
@@ -674,27 +695,33 @@ function db_delete_all_c_skin_filename()
     }
     $sql = 'DELETE FROM c_skin_filename';
     db_query($sql);
-    
-    db_insert_c_image4skin_filename('no_image');
-    db_insert_c_image4skin_filename('no_logo');
-    db_insert_c_image4skin_filename('no_logo_small');
+
+    db_insert_c_image4skin_filename('no_image', $theme);
+    db_insert_c_image4skin_filename('no_logo', $theme);
+    db_insert_c_image4skin_filename('no_logo_small', $theme);
 }
 
 /**
  * スキンファイルから画像をDB登録（no_imageをデフォルトに戻す）
  */
-function db_insert_c_image4skin_filename($skinname)
+function db_insert_c_image4skin_filename($skinname, $skintheme = OPENPNE_SKIN_THEME)
 {
     if (!$skinname || preg_match('/[^\.\w]/', $skinname)) {
         return false;
     }
-    $filename = $skinname . '.gif';
+    $ext = 'gif';
+    $filename = $skinname . '.' . $ext;
 
-    $path = sprintf('%s/skin/%s/img/%s', OPENPNE_PUBLIC_HTML_DIR, OPENPNE_SKIN_THEME, $filename);
+    if (!$skintheme || preg_match('/[^\.\w]/', $skintheme)) {
+        $skintheme = 'default';
+    }
+
+    $path = sprintf('%s/skin/%s/img/%s', OPENPNE_PUBLIC_HTML_DIR, $skintheme, $filename);
     if (!is_readable($path)) {
         $path = sprintf('%s/skin/default/img/%s', OPENPNE_PUBLIC_HTML_DIR, $filename);
     }
-    $filename = 'skin_' . $filename;
+
+    $filename = sprintf('skin_%s_%s.%s', $skinname, time(), $ext);
     $res = db_image_insert_c_image2($filename, $path);
     return db_replace_c_skin_filename($skinname, $filename);
 }
