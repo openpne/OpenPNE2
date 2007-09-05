@@ -6,7 +6,7 @@
 <table width="100%"><tr><td>
 <hr color="#({$ktai_color_config.border_02})"></td></tr>
 ({foreach from=$todolist item=todo})
-<tr><td bgcolor="#({cycle values=`$ktai_color_config.bg_05`,#`$ktai_color_config.bg_08`"})">
+<tr><td bgcolor="({cycle values="#`$ktai_color_config.bg_05`,#`$ktai_color_config.bg_08`"})">
 ({$todo.memo})<br>
 [<a href="({t_url m=ktai_biz a=do_fh_biz_todo_check})&amp;target_biz_todo_id=({$todo.biz_todo_id})&amp;target_c_member_id=({$target_c_member_id})&amp;is_checked=({$is_checked})&amp;({$tail})">({if $is_checked})未完了に戻す({else})完了する({/if})</a>]
 [<a href="({t_url m=ktai_biz a=page_fh_biz_todo_edit})&amp;target_c_member_id=({$target_c_member_id})&amp;target_biz_todo_id=({$todo.biz_todo_id})&amp;({$tail})">編集</a>]
