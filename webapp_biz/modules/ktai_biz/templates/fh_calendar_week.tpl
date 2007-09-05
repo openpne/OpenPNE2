@@ -22,7 +22,7 @@
 <hr color="#({$ktai_color_config.border_02})">
 </td></tr>
 ({foreach from=$calendar item=item name=calendar})
-<tr><td bgcolor="#({cycle values=`$ktai_color_config.bg_05`,#`$ktai_color_config.bg_08`"})">
+<tr><td bgcolor="({cycle values="#`$ktai_color_config.bg_05`,#`$ktai_color_config.bg_08`"})">
 ({if $item.now})
 <font color="#({$ktai_color_config.bg_04})">■</font>
 ({/if})
