@@ -786,6 +786,10 @@ function db_is_use_cmd($src, $type)
     $params = array(strval($src));
     $c_cmd = db_get_row($sql, $params);
 
+    if (empty($c_cmd)) {
+        return true;
+    }
+
     $permit_list = db_get_permit_list();
 
     foreach ($permit_list as $key => $name) {
