@@ -7,7 +7,7 @@
 <hr color="#({$ktai_color_config.border_01})">
 ({*BEGIN:container*})
 ({if $msg})
-<font color=red>※({$msg})</font><br>
+<font color="#({$ktai_color_config.font_04})">※({$msg})</font><br>
 <br>
 ({/if})
 ({t_form m=ktai_biz a=do_fh_biz_schedule_edit})
