@@ -918,8 +918,31 @@ if ( c['skinChangerArea'] == 0 ) { toggleDisplay('skin_changer_area'); }
 </dl>
 <br class="clear" />
 <p class="detailLink"><a href="modules/admin/img/11.gif" target="preview">詳細を確認する</a></p>
-
 </td>
 </tr>
+({*******})
+<tr class="skin12">
+<th><a name="skin12">携帯版画像</a></th>
+</tr>
+<tr class="skin12">
+<td>
+<dl class="box">
+<dt><strong>ロゴ画像</strong></dt>
+<dd class="image">({assign var=skinname value=skin_ktai_header})<img src="({t_img_url_skin filename=$skinname})" /></dd>
+<dd class="default">({if $skin_list[$skinname]})[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})</dd>
+<dd class="submit">
+<form action="./" method="post" enctype="multipart/form-data" >
+<input type="hidden" name="m" value="({$module_name})" />
+<input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
+<input type="hidden" name="sessid" value="({$PHPSESSID})" />
+<input type="hidden" name="skinname" value="skin_ktai_header" />
+<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="変更" /></span>
+</form></dd>
+</dl>
+<br class="clear" />
+<p class="detailLink"><a href="modules/admin/img/dummy.gif" target="preview">詳細を確認する</a></p>
+</td>
+</tr>
+({*******})
 </table> 
 ({$inc_footer|smarty:nodefaults})
