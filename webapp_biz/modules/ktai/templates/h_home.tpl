@@ -42,7 +42,7 @@
 ({/if})
 <table width="100%" bgcolor="#({$ktai_color_config.bg_05})">
 <tr><td colspan="2" align="center">
-<cycle values= size="3">
+<hr color="#({$ktai_color_config.border_01})" size="3">
 ({if $birthday_flag})
 <font color="#({$ktai_color_config.font_04})">☆Happy Birthday☆<br>
 お誕生日おめでとうございます</font>
@@ -73,14 +73,14 @@
 </td></tr>
 <tr><td colspan="2" align="center">
 %%i119%%<a href="#search">検索</a>/%%i70%%<a href="({t_url m=ktai a=page_h_diary_list_all})&amp;({$tail})">最新日記</a>/%%i1015%%<a href="({t_url m=ktai a=page_h_ranking})&amp;({$tail})">ﾗﾝｷﾝｸﾞ</a>
-<cycle values= size="3"></td></tr>
+<hr color="#({$ktai_color_config.border_01})" size="3"></td></tr>
 
 <tr>
 <td colspan="2">
 %%i140%%<a href="({t_url m=ktai a=page_fh_friend_list})&amp;({$tail})">({$WORD_MY_FRIEND_HALF})</a>(({$c_friend_count|default:'0'}))<br>
 %%i155%%<a href="({t_url m=ktai a=page_fh_com_list})&amp;({$tail})">参加ｺﾐｭﾆﾃｨ</a>(({$fh_com_count_user|default:'0'}))<br>
 %%i136%%<a href="({t_url m=ktai a=page_h_bookmark_list})&amp;({$tail})">お気に入り</a>
-<cycle values= size="3"></td></tr>
+<hr color="#({$ktai_color_config.border_01})" size="3"></td></tr>
 
 <tr>
 <td colspan="2"  align="center">
