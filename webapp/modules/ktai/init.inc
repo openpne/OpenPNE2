@@ -21,20 +21,8 @@ if (CHECK_KTAI_UA && !isKtaiUserAgent()) {
 }
 
 // IPアドレスチェック
-if (CHECK_KTAI_IP) {
-    require_once 'Net/IPv4.php';
-    $is_valid_ip = false;
-    for ($i = 0; $i < count($GLOBALS['_OPENPNE_KTAI_IP_LIST']); $i++) {
-        if (Net_IPv4::ipInNetwork($_SERVER['REMOTE_ADDR'], $GLOBALS['_OPENPNE_KTAI_IP_LIST'][$i])
-            || Net_IPv4::ipInNetwork($_SERVER['HTTP_X_FORWARDED_FOR'], $GLOBALS['_OPENPNE_KTAI_IP_LIST'][$i])) {
-            $is_valid_ip = true;
-            break;
-        }
-    }
-
-    if (!$is_valid_ip) {
-        openpne_redirect('pc');
-    }
+if (CHECK_KTAI_IP && !is_ktai_ip()) {
+    openpne_redirect('pc');
 }
 
 $agent = new OpenPNE_KtaiUA();
