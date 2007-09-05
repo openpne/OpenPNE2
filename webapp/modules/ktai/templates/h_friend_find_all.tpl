@@ -105,7 +105,7 @@
 ({/if})
 <center>
 <input type="submit" value="検索">
-<center>
+</center>
 </form>
 ({/strip})
 
