@@ -4,7 +4,7 @@
 </td></tr></table>
 <br>
 ({if $msg})
-<a name="comment"><font color="red">({$msg})</font></a><br>
+<a name="comment"><font color="#({$ktai_color_config.font_04})">({$msg})</font></a><br>
 <br>
 ({/if})
 ({t_form m=ktai_biz a=do_fh_biz_todo_add})
