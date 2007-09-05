@@ -38,7 +38,7 @@
 <td style="width:468px;padding:2px 0px;" class="bg_05">
 ({if $smarty.const.USE_EXTRA_SERVICE})
 &nbsp;<img src="({t_img_url_skin filename=icon_weather_FC})" class="icon">
-<a href="({$weather_url})" target="_blank">天気予報を見る</a>
+<a href="({$smarty.const.OPENPNE_WEATHER_URL})" target="_blank">天気予報を見る</a>
 ({/if})
 &nbsp;<img src="({t_img_url_skin filename=icon_schedule})" class="icon">
 <a href="({t_url m=biz a=page_fh_biz_schedule_add})&target_id=({$c_member.c_member_id})">予定を追加</a>&nbsp;
