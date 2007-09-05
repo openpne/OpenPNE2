@@ -8,7 +8,7 @@
 %%i76%%<a href="({t_url m=ktai_biz a=page_fh_biz_schedule_add})&amp;target_id=({$c_member.c_member_id})&amp;({$tail})">予定登録</a><br>
 <hr color="#({$ktai_color_config.border_01})">
 ({if $msg})
-	<font color=red>※({$msg})</font>
+<font color="#({$ktai_color_config.font_04})">※({$msg})</font><br>
 ({/if})
 ({*BEGIN:container*})
 <center>
