@@ -2496,6 +2496,18 @@ function db_admin_get_c_cmd_one($c_cmd_id)
     return db_get_row($sql, $params);
 }
 
+/***
+ * 指定した名称のCMD（小窓）の設定を取得する
+ * 
+ * @param names array 設定を取得したい小窓名（複数指定）
+ * @return array 小窓の設定リスト
+ */
+function db_admin_get_c_cmd_list4name($names)
+{
+    $sql = 'SELECT * FROM c_cmd WHERE name IN ("' . implode('","', $names) . '")';
+    return db_get_all($sql);
+}
+
 /**
  * 祝日のリストを取得
  */
