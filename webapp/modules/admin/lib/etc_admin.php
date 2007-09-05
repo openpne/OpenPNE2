@@ -133,4 +133,30 @@ function admin_api_is_ip($ip)
     }
 }
 
+/***
+ * CMD（小窓）ディレクトリ内のCMDファイルリストを取得する
+ * 
+ * @return array CMDファイルリスト
+ */
+function admin_get_cmd_file_list()
+{
+    $dir = OPENPNE_PUBLIC_HTML_DIR . '/cmd';
+
+    if (!is_dir($dir)) {
+        return array();
+    }
+
+    $filelist = array();
+
+    if ($handle = opendir($dir)) {
+        while (($filename = readdir($handle)) !== false) {
+            if (array_pop(explode('.', $filename)) == 'js') {
+                $filelist[] = basename($filename, '.js');
+            }
+        }
+    }
+
+    return $filelist;
+}
+
 ?>
