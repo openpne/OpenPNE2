@@ -554,6 +554,28 @@ function db_member_c_member_list4daily_news()
     return db_get_all($sql);
 }
 
+/***
+ * デイリーニュース配信対象者数を取得する
+ * 
+ * @return array
+ */
+function db_member_count_c_member_is_receive_daily_news()
+{
+    $list = array();
+
+    // 毎日デイリーニュースを受け取るメンバー数の取得
+    $sql = 'SELECT COUNT(*) FROM c_member' .
+        ' WHERE is_receive_daily_news = 1';
+    $list['every_day'] = db_get_one($sql);
+
+    // DAILY_NEWS_DAY（管理画面から設定）のみデイリーニュースを受け取るメンバー数の取得
+    $sql = 'SELECT COUNT(*) FROM c_member' .
+        ' WHERE is_receive_daily_news = 2';
+    $list['daily_news_day'] = db_get_one($sql);
+
+    return $list;
+}
+
 function db_member_c_member_list4birthday_mail()
 {
     // この日が誕生日の人を対称にする
