@@ -7,23 +7,23 @@
 携帯からは詳細は登録できません。
 <hr color="#({$ktai_color_config.border_01})">
 ({if $msg})
-	<font color=red>※({$msg})</font><br>
-	<br>
+<font color="#({$ktai_color_config.font_04})">※({$msg})</font><br>
+<br>
 ({/if})
 ({t_form m=ktai_biz a=do_fhg_biz_schedule_add})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
 
 <font color="#({$ktai_color_config.font_02})">予定日：</font><br>
-		<input type="text" navme='sc_b_year' size="4" value="({$now.year})" istyle="4" mode="numeric">年
-		<input type="text" name='sc_b_month' size="2" value="({$now.month})" istyle="4" mode="numeric">月
-		<input type="text" name='sc_b_date' size="2" value="({$now.day})" istyle="4" mode="numeric">日<br>
+<input type="text" name='sc_b_year' size="4" value="({$now.year})" istyle="4" mode="numeric">年
+<input type="text" name='sc_b_month' size="2" value="({$now.month})" istyle="4" mode="numeric">月
+<input type="text" name='sc_b_date' size="2" value="({$now.day})" istyle="4" mode="numeric">日<br>
 <br>		
 <font color="#({$ktai_color_config.font_02})">時刻：</font><br>
-	<input type="text" name='sc_b_hour' size="2" istyle="4" mode="numeric">時
-	<input type="text" name='sc_b_minute' size="2" istyle="4" mode="numeric">分
-	～
-	<input type="text" name='sc_f_hour' size="2" istyle="4" mode="numeric">時
-	<input type="text" name='sc_f_minute' size="2" istyle="4" mode="numeric">分<br>
+<input type="text" name='sc_b_hour' size="2" istyle="4" mode="numeric">時
+<input type="text" name='sc_b_minute' size="2" istyle="4" mode="numeric">分
+～
+<input type="text" name='sc_f_hour' size="2" istyle="4" mode="numeric">時
+<input type="text" name='sc_f_minute' size="2" istyle="4" mode="numeric">分<br>
 <br>
 <font color="#({$ktai_color_config.font_02})">ﾀｲﾄﾙ：</font><br>
 <input type="text" name='sc_title'><br>
@@ -32,12 +32,12 @@
 <input type="hidden" name="public_flag" value="public">
 <font color="#({$ktai_color_config.font_02})">参加者：</font><br>
 <select name='sc_j_mem'>
-		<option value="my">({if $is_f})ﾌﾚﾝﾄﾞ({else})自分({/if})のみ</option>
-		<option value="">全ﾕｰｻﾞｰ</option>
-		({foreach item=nm from=$jgroup name=join})
-		<option value="({$nm.biz_group_id})">({$nm.name})
-		({/foreach})
-		</select><br>
+<option value="my">({if $is_f})ﾌﾚﾝﾄﾞ({else})自分({/if})のみ</option>
+<option value="">全ﾕｰｻﾞｰ
+({foreach item=nm from=$jgroup name=join})
+<option value="({$nm.biz_group_id})">({$nm.name})
+({/foreach})
+</select><br>
 <br>
 <font color="#({$ktai_color_config.font_02})">公開範囲：</font><br>
 <input type='radio' name='public_flag' value='public' checked>全体に公開<br>
