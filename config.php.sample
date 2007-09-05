@@ -467,6 +467,8 @@ define('DISPLAY_OPENPNE_INFO', true);
 // OpenPNE更新情報のURL設定
 define('OPENPNE_INFO_URL', 'http://info.openpne.jp/rss');
 
+// 天気予報ページのURL設定
+define('OPENPNE_WEATHER_URL', 'http://weather.yahoo.co.jp/weather/');
 
 // 携帯版でUser-Agentのチェックをするかどうか
 define('CHECK_KTAI_UA', true);
