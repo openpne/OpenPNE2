@@ -109,7 +109,7 @@
 ({/foreach})
 <tr><td align="right">
 ({if $c_diary_friend_list})
-<font color="#0c5f0f">⇒</font><a href="({t_url m=ktai a=page_h_diary_list_friend})&amp;({$tail})">もっと見る</a><br>
+<font color="#({$ktai_color_config.font_03})">⇒</font><a href="({t_url m=ktai a=page_h_diary_list_friend})&amp;({$tail})">もっと見る</a><br>
 ({/if})
 </td></tr>
 </table>
@@ -130,7 +130,7 @@
 ({/foreach})
 ({if $c_diary_my_comment_list})
 <tr><td align="right">
-<font color="#0c5f0f">⇒</font><a href="({t_url m=ktai a=page_h_diary_comment_list})&amp;({$tail})">もっと見る</a><br>
+<font color="#({$ktai_color_config.font_03})">⇒</font><a href="({t_url m=ktai a=page_h_diary_comment_list})&amp;({$tail})">もっと見る</a><br>
 </td></tr>
 ({/if})
 </table>
@@ -155,7 +155,7 @@
 ({/foreach})
 ({if $c_commu_topic_list})
 <tr><td align="right">
-<font color="#0c5f0f">⇒</font><a href="({t_url m=ktai a=page_h_com_comment_list})&amp;({$tail})">もっと見る</a><br>
+<font color="#({$ktai_color_config.font_03})">⇒</font><a href="({t_url m=ktai a=page_h_com_comment_list})&amp;({$tail})">もっと見る</a><br>
 </td></tr>
 ({/if})
 </table>
