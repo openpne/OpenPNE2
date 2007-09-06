@@ -96,20 +96,20 @@ function assign_color_user_({$key})() {
 <div class="contents">
 
 <form action="./" method="post" name="color">
-<input type="hidden" name="m" value="({$module_name})">
-<input type="hidden" name="a" value="do_({$hash_tbl->hash('update_c_sns_config_ktai','do')})">
-<input type="hidden" name="sessid" value="({$PHPSESSID})">
+<input type="hidden" name="m" value="({$module_name})" />
+<input type="hidden" name="a" value="do_({$hash_tbl->hash('update_c_sns_config_ktai','do')})" />
+<input type="hidden" name="sessid" value="({$PHPSESSID})" />
 
 <div class="bg">
 <h3 class="item" id="subttl02">カラーコードの設定</h3>
 
 <p class="caution" id="c02">※色の指定は16進数表記で行ってください。</p>
 <p class="caution" id="c03">※色のプレビューが変更されてもそのままでは色設定は反映されません。必ず確定してください。</p>
-<p class="textBtn"><input type="button" value="デフォルトの設定に戻す" onclick="assign_color_0()"></p>
+<p class="textBtn"><input type="button" value="デフォルトの設定に戻す" onclick="assign_color_0()" /></p>
 ({foreach from=$bgcolor_scheme_names item=item})
 <dl class="box">
 	<dt>({$item})</dt>
-	<dd>#&nbsp;<input type="text" class="basic" name="({$item})" value="({$c_sns_config[$item]})" onChange="reflect_color(this)" size="8" maxlength="6"></dd>
+	<dd>#&nbsp;<input type="text" class="basic" name="({$item})" value="({$c_sns_config[$item]})" onchange="reflect_color(this)" size="8" maxlength="6" /></dd>
 	<dd class="pre_color" style="background-color:#({$c_sns_config[$item]});"><div>&nbsp;変更前&nbsp;</div></dd>
 	<dd class="color" style="background-color:#({$c_sns_config[$item]});" id="preview_display_({$item})"><div>&nbsp;変更後&nbsp;</div></dd>
 </dl>
@@ -117,11 +117,11 @@ function assign_color_user_({$key})() {
 <br class="clear" />
 </div>
 
-<p class="textBtn" id="c04"><input type="submit" value="色変更を確定する"></p>
+<p class="textBtn" id="c04"><input type="submit" value="色変更を確定する" /></p>
 
 <p id="c05">配色設定をバックアップする場合は下記の内容をコピーしてテキストファイルなどに保存してください。</p>
 
-<textarea name="copy_area" id="copy_area">
+<textarea name="copy_area" id="copy_area" cols="30" rows="20">
 ({if $preset_bgcolors})
 ({foreach from=$c_sns_config key=key item=item})({foreach from=$bgcolor_scheme_names item=item_x})({if $item_x == $key})({$key}):#({$item})
 ({/if})({/foreach})({/foreach})
@@ -129,7 +129,5 @@ function assign_color_user_({$key})() {
 </textarea>
 
 </form>
-
-</div>({*/div class="contents"*})
 
 ({$inc_footer|smarty:nodefaults})
