@@ -6,7 +6,7 @@
 
 <table width="100%">
 	<tr><td align="center">
-		<a name="top"><img src="({t_img_url_skin filename=skin_ktai_header})" alt="({$smarty.const.SNS_NAME})"></a><br>
+		<a name="top"><img src="({t_img_url_skin filename=skin_ktai_header f=jpg})" alt="({$smarty.const.SNS_NAME})"></a><br>
 	</td></tr>
 
 ({if $inc_ktai_entry_point[2]})
@@ -56,7 +56,7 @@
 ({$c_member.nickname})さん<br>
 ({if $smarty.const.OPENPNE_IS_POINT_ADMIN || $c_member.c_member_id != 1})
 ({if $smarty.const.OPENPNE_DISP_RANK && $rank})
-<img src="({t_img_url filename=$rank.image_filename})" alt="({$rank.name})"><br>
+<img src="({t_img_url filename=$rank.image_filename f=jpg})" alt="({$rank.name})"><br>
 ({/if})
 ({if $smarty.const.OPENPNE_DISP_POINT && $point})
 ({$point}) Point<br>
