@@ -47,9 +47,6 @@
 
 <tr><td align="center" width="50%" valign="top">
 <img src="({t_img_url filename=$target_c_member.image_filename w=120 h=120 f=jpg noimg=no_image})" alt="({$target_c_member.nickname})さん"><br>
-({if $smarty.const.OPENPNE_DISP_RANK && $rank})
-<img src="({t_img_url filename=$rank.image_filename})" alt="({$rank.name})" width="120"><br>
-({/if})
 ({if $target_c_member.image_filename})
 <a href="({t_url m=ktai a=page_f_show_image})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">写真を見る</a><br>
 ({/if})
