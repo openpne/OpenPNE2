@@ -6,7 +6,7 @@
 
 <table width="100%">
 <tr><td align="center">
-<img src="({t_img_url_skin filename=skin_ktai_header})" alt="({$smarty.const.SNS_NAME})"><br>
+<img src="({t_img_url_skin filename=skin_ktai_header f=jpg})" alt="({$smarty.const.SNS_NAME})"><br>
 </td></tr>
 ({if $inc_ktai_entry_point[2]})
 <tr><td>({$inc_ktai_entry_point[2]|smarty:nodefaults})<br>
