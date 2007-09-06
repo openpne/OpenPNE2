@@ -95,7 +95,7 @@
 <a accesskey="1" name="a1" href="#a1">%%i125%%</a>({$WORD_FRIEND_HALF})最新日記<br>
 </td></tr>
 ({foreach from=$c_diary_friend_list item=item})
-<tr><td bgcolor="({cycle values="#`$ktai_color_config.bg_05`,#`$ktai_color_config.bg_08`"})">
+<tr><td bgcolor="#({cycle values="`$ktai_color_config.bg_05`,`$ktai_color_config.bg_08`"})">
 <font color="#({$ktai_color_config.font_02})">[({$item.r_date|date_format:"%m/%d"})]</font> ({$item.nickname|t_truncate:22:""})<br>
 <a href="({t_url m=ktai a=page_fh_diary})&amp;target_c_diary_id=({$item.c_diary_id})&amp;({$tail})">({$item.subject|t_truncate:28:""})(({$item.count_comments}))</a>
 ({if $item.image_filename_1 || $item.image_filename_2 || $item.image_filename_3})
@@ -120,7 +120,7 @@
 <a accesskey="2" name="a2" href="#a2">%%i126%%</a>日記ｺﾒﾝﾄ記入履歴<br>
 </td></tr>
 ({foreach from=$c_diary_my_comment_list item=item})
-<tr><td bgcolor="({cycle values="#`$ktai_color_config.bg_07`,#`$ktai_color_config.bg_08`"})">
+<tr><td bgcolor="#({cycle values="`$ktai_color_config.bg_07`,`$ktai_color_config.bg_08`"})">
 <font color="#({$ktai_color_config.font_02})">[({$item.r_datetime|date_format:"%m/%d"})]</font> ({$item.nickname|t_truncate:22:""})<br>
 <a href="({t_url m=ktai a=page_fh_diary})&amp;target_c_diary_id=({$item.c_diary_id})&amp;({$tail})">({$item.subject|t_truncate:28:""})(({$item.num_comment}))</a><br>
 </td></tr>
@@ -141,7 +141,7 @@
 <a accesskey="3" name="a3" href="#a3">%%i127%%</a>ｺﾐｭﾆﾃｨ最新書き込み<br>
 </td></tr>
 ({foreach from=$c_commu_topic_list item=item})
-<tr><td bgcolor="({cycle values="#`$ktai_color_config.bg_05`,#`$ktai_color_config.bg_08`"})">
+<tr><td bgcolor="#({cycle values="`$ktai_color_config.bg_05`,`$ktai_color_config.bg_08`"})">
 <font color="#({$ktai_color_config.font_02})">[({$item.r_datetime|date_format:"%m/%d"})]</font> ({$item.c_commu_name|t_truncate:22:""})<br>
 <a href="({t_url m=ktai a=page_c_bbs})&amp;target_c_commu_topic_id=({$item.c_commu_topic_id})&amp;({$tail})">({$item.c_commu_topic_name|t_truncate:28:""})(({$item.number}))</a>
 ({if $item.image_filename1 || $item.image_filename2 || $item.image_filename3})
