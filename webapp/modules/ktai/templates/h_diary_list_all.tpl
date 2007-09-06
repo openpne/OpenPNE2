@@ -14,7 +14,7 @@
 </td></tr>
 
 ({foreach from=$new_diary_list item=item})
-<tr><td bgcolor="({cycle values="#`$ktai_color_config.bg_05`,#`$ktai_color_config.bg_08`"})">
+<tr><td bgcolor="#({cycle values="`$ktai_color_config.bg_05`,`$ktai_color_config.bg_08`"})">
 ({$item.r_datetime|date_format:"%Y/%m/%d %H:%M"})<br>
 <a href="({t_url m=ktai a=page_fh_diary})&amp;target_c_diary_id=({$item.c_diary_id})&amp;({$tail})">({$item.subject|t_truncate:28:""})(({$item.num_comment}))</a>(({$item.c_member.nickname|t_truncate:17:""}))
 ({if $item.image_filename_1 || $item.image_filename_2 || $item.image_filename_3})

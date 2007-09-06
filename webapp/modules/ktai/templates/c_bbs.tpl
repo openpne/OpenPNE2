@@ -88,7 +88,7 @@
 <hr color="#({$ktai_color_config.border_02})">
 <table width="100%">
 ({foreach from=$c_commu_topic_comment_list name=c_commu_topic_comment item=item})
-<tr><td bgcolor="({cycle values="#`$ktai_color_config.bg_05`,#`$ktai_color_config.bg_08`"})">
+<tr><td bgcolor="#({cycle values="`$ktai_color_config.bg_05`,`$ktai_color_config.bg_08`"})">
 <a name="tc({$smarty.foreach.c_commu_topic_comment.iteration})" href="#({if $smarty.foreach.c_commu_topic_comment.last || $item.number == 1})menu({else})tc({$smarty.foreach.c_commu_topic_comment.iteration+1})({/if})">
 <font color="#({$ktai_color_config.bg_06})">▼</font>
 </a><font color="#({$ktai_color_config.font_02})">[({$item.number|string_format:"%03d"})]</font>({$item.r_datetime|date_format:"%m/%d %H:%M"})

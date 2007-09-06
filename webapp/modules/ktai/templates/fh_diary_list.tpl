@@ -19,7 +19,7 @@
 <hr color="#({$ktai_color_config.border_02})">
 <table width="100%">
 ({foreach from=$target_diary_list item=target_diary})
-<tr><td bgcolor="({cycle values="#`$ktai_color_config.bg_05`,#`$ktai_color_config.bg_08`"})">
+<tr><td bgcolor="#({cycle values="`$ktai_color_config.bg_05`,`$ktai_color_config.bg_08`"})">
 ({$target_diary.r_datetime|date_format:"%Y/%m/%d %H:%M"})({if $INC_NAVI_type=="h"}) [<a href="({t_url m=ktai a=page_h_diary_edit})&amp;target_c_diary_id=({$target_diary.c_diary_id})&amp;({$tail})">編集</a>]({/if})<br>
 <a href="({t_url m=ktai a=page_fh_diary})&amp;target_c_diary_id=({$target_diary.c_diary_id})&amp;({$tail})">({$target_diary.subject|t_truncate:28:""})</a>(({$target_diary.num_comment}))
 ({if $target_diary.image_filename_1 || $target_diary.image_filename_2 || $target_diary.image_filename_3})
