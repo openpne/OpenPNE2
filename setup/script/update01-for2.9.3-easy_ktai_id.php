@@ -36,7 +36,7 @@ while ($res->fetchInto($row)) {
     if ($i % (int)($row_num/100) == 0) {
         echo $i."/".$row_num." ".(int)($i/$row_num*100)."%";
         $end_time = (int)((time() - $start_time) / $i * ($row_num-$i));
-        echo " Estimated left time:".$end_time."s \n";
+        echo " Estimated left time:".$end_time."s \r";
         usleep(10000);
     }
 }
