@@ -11,13 +11,13 @@
 <hr color="#({$ktai_color_config.border_01})">	
 <center>
 ({if $img_num == 1})
-<img src="({t_img_url filename=$c_member.image_filename_1 w=120 h=120 f=jpg noimg=no_image})" alt="画像1"><br>
+<img src="({t_img_url filename=$c_member.image_filename_1 w=120 h=120 f=jpg noimg=no_image f=jpg})" alt="画像1"><br>
 [<a href="({t_img_url filename=$c_member.image_filename_1 w=$smarty.const.OPENPNE_IMG_KTAI_MAX_WIDTH h=$smarty.const.OPENPNE_IMG_KTAI_MAX_HEIGHT f=jpg})">大</a>]<br>
 ({elseif $img_num == 2})
-<img src="({t_img_url filename=$c_member.image_filename_2 w=120 h=120 f=jpg noimg=no_image})" alt="画像2"><br>
+<img src="({t_img_url filename=$c_member.image_filename_2 w=120 h=120 f=jpg noimg=no_image f=jpg})" alt="画像2"><br>
 [<a href="({t_img_url filename=$c_member.image_filename_2 w=$smarty.const.OPENPNE_IMG_KTAI_MAX_WIDTH h=$smarty.const.OPENPNE_IMG_KTAI_MAX_HEIGHT f=jpg})">大</a>]<br>
 ({elseif $img_num == 3})
-<img src="({t_img_url filename=$c_member.image_filename_3 w=120 h=120 f=jpg noimg=no_image})" alt="画像3"><br>
+<img src="({t_img_url filename=$c_member.image_filename_3 w=120 h=120 f=jpg noimg=no_image f=jpg})" alt="画像3"><br>
 [<a href="({t_img_url filename=$c_member.image_filename_3 w=$smarty.const.OPENPNE_IMG_KTAI_MAX_WIDTH h=$smarty.const.OPENPNE_IMG_KTAI_MAX_HEIGHT f=jpg})">大</a>]<br>
 ({/if})
 </center>
