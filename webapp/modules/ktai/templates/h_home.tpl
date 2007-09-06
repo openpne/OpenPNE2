@@ -165,7 +165,7 @@
 <tr><td bgcolor="#({$ktai_color_config.bg_07})">
 <a href="({t_url m=ktai a=page_h_friend_find_all})&amp;({$tail})">ﾒﾝﾊﾞｰ検索</a><br>
 </td></tr>
-<tr><td bgcolor=",#({$ktai_color_config.bg_08})">
+<tr><td bgcolor="#({$ktai_color_config.bg_08})">
 <a href="({t_url m=ktai a=page_h_diary_list_all})&amp;({$tail})">日記検索</a><br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_07})">
