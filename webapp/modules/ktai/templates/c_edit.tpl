@@ -8,7 +8,7 @@
 </td></tr></table>
 
 <center>
-<img src="({t_img_url filename=$c_commu.image_filename w=120 h=120 noimg=no_logo_small})" alt="({$c_commu.name})"><br>
+<img src="({t_img_url filename=$c_commu.image_filename w=120 h=120 noimg=no_logo_small f=jpg})" alt="({$c_commu.name})"><br>
 [ <a href="">編集</a> ]
 </center>
 
