@@ -21,7 +21,7 @@
 <br>
 <table width="100%" bgcolor="#({$ktai_color_config.bg_03})">
 <tr><td align="center" width="50%" valign="top">
-<img src="({t_img_url filename=$c_commu.image_filename w=120 h=120 noimg=no_logo_small})" alt="({$c_commu.name})"><br>
+<img src="({t_img_url filename=$c_commu.image_filename w=120 h=120 noimg=no_logo_small f=jpg})" alt="({$c_commu.name})"><br>
 </td>
 <td valign="top">
 %%i115%%({$c_commu.c_commu_id})<br>
