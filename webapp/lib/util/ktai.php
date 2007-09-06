@@ -185,9 +185,8 @@ function is_ktai_ip()
 {
     require_once 'Net/IPv4.php';
     $is_valid_ip = false;
-    for ($i = 0; $i < count($GLOBALS['_OPENPNE_KTAI_IP_LIST']); $i++) {
-        if (Net_IPv4::ipInNetwork($_SERVER['REMOTE_ADDR'], $GLOBALS['_OPENPNE_KTAI_IP_LIST'][$i])
-            || Net_IPv4::ipInNetwork($_SERVER['HTTP_X_FORWARDED_FOR'], $GLOBALS['_OPENPNE_KTAI_IP_LIST'][$i])) {
+    foreach ($GLOBALS['_OPENPNE_KTAI_IP_LIST'] as $ktai_ip) {
+        if (Net_IPv4::ipInNetwork($_SERVER[SERVER_IP_KEY], $ktai_ip)) {
             $is_valid_ip = true;
             break;
         }
