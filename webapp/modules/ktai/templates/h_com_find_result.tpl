@@ -14,7 +14,7 @@
 <hr color="#({$ktai_color_config.border_02})">
 </td></tr>
 ({foreach from=$c_commu_search_result item=commu})
-<tr><td bgcolor="({cycle values="#`$ktai_color_config.bg_05`,#`$ktai_color_config.bg_08`"})">
+<tr><td bgcolor="#({cycle values="`$ktai_color_config.bg_05`,`$ktai_color_config.bg_08`"})">
 <a href="({t_url m=ktai a=page_c_home})&amp;target_c_commu_id=({$commu.c_commu_id})&amp;({$tail})">({$commu.name|t_truncate:30:""})(({$commu.count_commu_member}))</a><br>
 </td></tr>
 <tr><td>
