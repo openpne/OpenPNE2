@@ -32,7 +32,7 @@
 ({foreach from=$rank_list key=rank item=list name=ranking})
 ({if $rank == 1})
 ({foreach from=$list item=item})
-<tr><td bgcolor="({cycle values="#`$ktai_color_config.bg_05`,#`$ktai_color_config.bg_08`"})">
+<tr><td bgcolor="#({cycle values="`$ktai_color_config.bg_05`,`$ktai_color_config.bg_08`"})">
 %%i1015%%<font color="#({$ktai_color_config.font_02})">第({$rank})位</font><br>
 ({strip})
 ({if $kind == "ashiato" || $kind == "friend"})
@@ -59,7 +59,7 @@
 ({else})
 
 ({foreach from=$list item=item})
-<tr><td bgcolor="({cycle values="#`$ktai_color_config.bg_05`,#`$ktai_color_config.bg_08`"})">
+<tr><td bgcolor="#({cycle values="`$ktai_color_config.bg_05`,`$ktai_color_config.bg_08`"})">
 <font color="#({$ktai_color_config.font_02})">第({$rank})位</font><br>
 ({strip})
 ({if $kind == "ashiato" || $kind == "friend"})
