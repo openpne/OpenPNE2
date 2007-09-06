@@ -20,6 +20,7 @@ class admin_page_edit_c_sns_config_ktai extends OpenPNE_Action
         $v['preset_bgcolors'] = array();
 
         $current_list = db_select_c_sns_config_ktai();
+        ksort($current_list);
         $v['preset_bgcolors'][] = db_select_c_sns_config_ktai('default');
 
         foreach ($current_list as $key => $value) {
