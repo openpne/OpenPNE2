@@ -54,7 +54,7 @@ class pc_page_c_topic_detail extends OpenPNE_Action
         if ($all==1) {
             $page_size = 1000;
         } else {
-            $page_size = 10;
+            $page_size = 50;
         }
 
         list($c_topic_write, $is_prev, $is_next, $total_num, $start_num, $end_num)
