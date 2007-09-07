@@ -189,6 +189,7 @@ class OpenPNE_Config
             'OPENPNE_MAINTENANCE_TEXT' => '',
             'CHECK_KTAI_IP' => false,
             'OPENPNE_WEATHER_URL' => 'http://weather.yahoo.co.jp/weather/',
+            'OPENPNE_USE_FUNCTION_CACHE_MEMCACHE' => false,
         // 固定値
             'AMAZON_TOKEN'   => '1WZYY1W9YF49AGM0RTG2',
             'AMAZON_LOCALE'  => 'jp',
