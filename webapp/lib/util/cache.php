@@ -8,13 +8,18 @@ function &get_cache_lite_function()
 {
     static $instance;
     if (empty($instance)) {
-        include_once 'Cache/Lite/Function.php';
-        $options = array(
-            'cacheDir' => OPENPNE_VAR_DIR . '/function_cache/',
-            'hashedDirectoryLevel' => 2,
-            'hashedDirectoryUmask' => 0777,
-        );
-        $instance = new Cache_Lite_Function($options);
+        if (OPENPNE_USE_FUNCTION_CACHE_MEMCACHE) {
+            include_once 'OpenPNE/Cache.php';
+            $instance = new OpenPNE_Cache_Function('memcache', $GLOBALS['_OPENPNE_MEMCACHE_LIST']['func_cache']);
+        } else {
+            include_once 'Cache/Lite/Function.php';
+            $options = array(
+                'cacheDir' => OPENPNE_VAR_DIR . '/function_cache/',
+                'hashedDirectoryLevel' => 2,
+                'hashedDirectoryUmask' => 0777,
+            );
+            $instance = new Cache_Lite_Function($options);
+        }
     }
     return $instance;
 }
