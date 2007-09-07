@@ -68,7 +68,7 @@ class pc_page_fh_diary extends OpenPNE_Action
         if ($is_all) {
             $page_size = db_diary_count_c_diary_comment4c_diary_id($target_c_diary_id);
         } else {
-            $page_size = 10;
+            $page_size = 50;
         }
 
         list ($c_diary_comment_list, $is_next, $is_prev, $total_num, $total_page_num)
@@ -83,9 +83,13 @@ class pc_page_fh_diary extends OpenPNE_Action
         $this->set('is_all', $is_all);
         $this->set('page', $page);
 
+        reset($c_diary_comment_list);
+        $start_comment = current($c_diary_comment_list);
+        $end_comment = end($c_diary_comment_list);
+
         $pager = array();
-        $pager['start'] = ($page_size * ($page - 1)) + 1;
-        $pager['end'] = $pager['start'] + count($c_diary_comment_list) - 1;
+        $pager['start'] = $start_comment['number'];
+        $pager['end'] = $end_comment['number'];
         $this->set('pager', $pager);
 
         $this->set("body", $body);
