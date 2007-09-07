@@ -64,6 +64,18 @@ define('OPENPNE_USE_OLD_CRYPT_BLOWFISH', false);
 //有効にした場合は、最新情報の表示に遅延が起こることがあります
 define('OPENPNE_USE_FUNCTION_CACHE', false);
 
+// このオプションを有効にするためにはOPENPNE_USE_FUNCTION_CACHEをtrueにする必要があります。
+// ファンクションキャッシュのキャッシュを保存するストレージにmemcacheを使用
+define('OPENPNE_USE_FUNCTION_CACHE_MEMCACHE', false);
+
+// OPENPNE_USE_FUNCTION_CACHE_MEMCACHEがtrueの場合の
+// ファンクションキャッシュ用memcacheサーバ設定
+$GLOBALS['_OPENPNE_MEMCACHE_LIST']['func_cache'] = array(
+'dsn' => array(
+    'hostspec' => '127.0.0.1',
+    ),
+);
+
 // MySQL ヒント使用設定
 define('OPENPNE_USE_MYSQL_HINT', true);
 
