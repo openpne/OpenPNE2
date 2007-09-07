@@ -335,23 +335,6 @@ function do_common_send_daily_news()
         $sep = $lf;
     }
 
-    $subject = mb_convert_encoding('【' . SNS_NAME . '】デイリーニュース送信結果通知 ' . date("[Y. m. d]"), "JIS");
-    $subject = '=?ISO-2022-JP?B?'.base64_encode($subject).'?=';
-
-    if (MAIL_SET_ENVFROM) {
-        if (MAIL_ENVFROM) {
-            $from = MAIL_ENVFROM;
-        } else {
-            $from = ADMIN_EMAIL;
-        }
-    }
-
-    // header
-    $headers .= "From: " .  $from . $sep;
-    $headers .= 'Subject: ' . $subject . $sep;
-
-    print $headers . $sep;
-
     $list = do_common_c_member_list4daily_news();
     $count_receive_daiy_news = db_member_count_c_member_is_receive_daily_news();
     $count_daily_news_day = count(explode(',', DAILY_NEWS_DAY));
