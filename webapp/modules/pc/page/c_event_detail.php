@@ -49,7 +49,7 @@ class pc_page_c_event_detail extends OpenPNE_Action
         if ($all==1) {
             $page_size = 1000;
         } else {
-            $page_size = 10;
+            $page_size = 50;
         }
 
         $lst = db_commu_c_topic_write4c_commu_topic_id($c_commu_topic_id, $page, $page_size);
