@@ -383,6 +383,12 @@ $ chmod 0755 bin/*.cron
 [bin_path]は、PHP の実行ファイルがインストールされているディレクトリ(例えば、/usr/bin)です。
 </div>
 
+<p>また、デイリーニュース送信用スクリプトは、デイリーニュース送信結果通知ログを出力します。/etc/crontabを以下のように記述し、メールで受け取れるようにすると便利です。</p>
+<div>
+<pre>
+00   6 * * * root sh <var>OPENPNE_DIR</var>/bin/tool_send_schedule_mail.cron  <var>OPENPNE_DIR</var>/bin/ [bin_path]/php | mail -s "daily news log" example@example.com
+</pre>
+</div>
 
 <h2 id="section5">5. セットアップモジュールの実行</h2>
 
