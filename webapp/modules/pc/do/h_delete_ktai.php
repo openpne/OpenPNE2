@@ -8,11 +8,10 @@ class pc_do_h_delete_ktai extends OpenPNE_Action
 {
     function execute($requests)
     {
-        $q = $requests['c_member_id'];
+        $u = $GLOBALS['AUTH']->uid();
 
-        db_member_update_ktai_address($q,"");
+        db_member_update_ktai_address($u, '');
         openpne_redirect('pc', 'page_h_ktai_delete_end');
-
     }
 }
 
