@@ -333,9 +333,6 @@ function do_common_send_daily_news()
         $sep = $lf;
     }
 
-    $daily_news_head = p_common_c_siteadmin4target_pagename('daily_news_head');
-    $daily_news_foot = p_common_c_siteadmin4target_pagename('daily_news_foot');
-
     $list = do_common_c_member_list4daily_news();
     $count_receive_daily_news = db_member_count_c_member_is_receive_daily_news();
     $count_daily_news_day = count(explode(',', DAILY_NEWS_DAY));
@@ -356,6 +353,8 @@ function do_common_send_daily_news()
 
     $i = 1;
     $date = date("Y. n. j");
+    $daily_news_head = p_common_c_siteadmin4target_pagename('daily_news_head');
+    $daily_news_foot = p_common_c_siteadmin4target_pagename('daily_news_foot');
     foreach ($list as $key => $value) {
         if ($value['is_receive_daily_news'] == 1 ||
             ($value['is_receive_daily_news'] == 2 && $send_2_flag)) {
