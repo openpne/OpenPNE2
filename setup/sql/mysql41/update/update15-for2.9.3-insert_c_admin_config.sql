@@ -1,0 +1,3 @@
+/*!40101 SET NAMES utf8 */;
+
+INSERT INTO `c_admin_config` VALUES (NULL,'OPENPNE_USE_KTAI_LOGO','0');
