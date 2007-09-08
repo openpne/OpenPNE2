@@ -1152,7 +1152,11 @@ function db_member_h_config_3(
 
 function db_member_update_easy_access_id($c_member_id, $easy_access_id)
 {
-    $data = array('easy_access_id' => md5($easy_access_id));
+    $hashed_easy_access_id = '';
+    if ($easy_access_id) {
+        $hashed_easy_access_id = md5($easy_access_id);
+    }
+    $data = array('easy_access_id' => $hashed_easy_access_id);
     $where = array('c_member_id' => intval($c_member_id));
     return db_update('c_member_secure', $data, $where);
 }
@@ -1193,8 +1197,8 @@ function db_member_update_ktai_address($c_member_id, $ktai_address)
 {
     if ($ktai_address == ''){
         $data = array(
-            'ktai_address' => t_encrypt($ktai_address),
-            'easy_access_id' => md5(''),
+            'ktai_address' => '',
+            'easy_access_id' => '',
         );
     } else {
         $data = array('ktai_address' => t_encrypt($ktai_address));
