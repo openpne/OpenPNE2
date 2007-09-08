@@ -44,29 +44,22 @@ class ktai_do_o_regist_ktai_id extends OpenPNE_Action
             // 携帯の個体識別番号を取得できませんでした
             $p = array('msg' => 27, 'ses' => $ses);
             openpne_redirect('ktai', 'page_o_regist_ktai_id', $p);
-        } else {
-            $id = db_member_c_member_id4easy_access_id($easy_access_id);
-            if ($id && $c_member_id != $id) {
-                $p = array('msg' => 39, 'ses' => $ses);
-                openpne_redirect('ktai', 'page_o_regist_ktai_id', $p);
-            }
-            if (db_member_easy_access_id_is_blacklist(md5($easy_access_id))) {
-                $p = array('msg' => 44, 'ses' => $ses);
-                openpne_redirect('ktai', 'page_o_regist_ktai_id', $p);
-            }
-            // update
-            db_member_update_easy_access_id($c_member_id, $easy_access_id);
-            db_member_update_ktai_address($c_member_id, $ktai_address);
-            db_member_delete_ktai_address_pre($pre['c_ktai_address_pre_id']);
-            openpne_redirect('ktai', 'do_o_easy_login');
         }
 
+        $id = db_member_c_member_id4easy_access_id($easy_access_id);
+        if ($id && $c_member_id != $id) {
+            $p = array('msg' => 39, 'ses' => $ses);
+            openpne_redirect('ktai', 'page_o_regist_ktai_id', $p);
+        }
+        if (db_member_easy_access_id_is_blacklist(md5($easy_access_id))) {
+            $p = array('msg' => 44, 'ses' => $ses);
+            openpne_redirect('ktai', 'page_o_regist_ktai_id', $p);
+        }
+        // update
+        db_member_update_easy_access_id($c_member_id, $easy_access_id);
         db_member_update_ktai_address($c_member_id, $ktai_address);
         db_member_delete_ktai_address_pre($pre['c_ktai_address_pre_id']);
-
-        // login ページへリダイレクト
-        $p = array('msg' => 19, 'kad' => t_encrypt(db_member_username4c_member_id($c_member_id, true)));
-        openpne_redirect('ktai', 'page_o_login', $p);
+        openpne_redirect('ktai', 'do_o_easy_login');
     }
 }
 
