@@ -19,7 +19,7 @@
 <tbody>
 <tr>
 <th>個体識別番号</th>
-<td><input name="easy_access_id" type="text" class="basic" value="({$blacklist.easy_access_id})" size="38" /></td>
+<td><input name="easy_access_id" type="text" class="basic" value="({$easy_access_id})" size="38" /></td>
 </tr>
 <tr>
 <th>備考</th>
