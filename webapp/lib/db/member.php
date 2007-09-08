@@ -999,7 +999,7 @@ function db_member_update_c_member_image($c_member_id, $image_filename, $img_num
 }
 
 /**
- * 一言を更新する
+ * My Newsを更新する
  */
 function db_member_update_c_profile_my_news($c_member_id, $prof_my_news, $my_news_datetime)
 {
