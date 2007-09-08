@@ -42,6 +42,7 @@
     <option value="({$item})"({if $item == $c_member.birth_day}) selected="selected"({/if})>({$item})
     ({/foreach})
 </select><br>
+<br>
 ({/capture})
 
 ({foreach from=$profile_list item=profile})
