@@ -321,8 +321,6 @@ function send_bbs_info_mail_pc($c_commu_topic_comment_id, $c_member_id)
 //デイリーニュース
 function do_common_send_daily_news()
 {
-//    ini_set('expose_php', 'On');
-
     // 改行コード
     $cr = "\x0D";
     $lf = "\x0A";
@@ -335,8 +333,11 @@ function do_common_send_daily_news()
         $sep = $lf;
     }
 
+    $daily_news_head = p_common_c_siteadmin4target_pagename('daily_news_head');
+    $daily_news_foot = p_common_c_siteadmin4target_pagename('daily_news_foot');
+
     $list = do_common_c_member_list4daily_news();
-    $count_receive_daiy_news = db_member_count_c_member_is_receive_daily_news();
+    $count_receive_daily_news = db_member_count_c_member_is_receive_daily_news();
     $count_daily_news_day = count(explode(',', DAILY_NEWS_DAY));
     $str_daily_news_day = str_replace(',', '・', DAILY_NEWS_DAY);
     $send_2_flag = 0;
@@ -347,8 +348,8 @@ function do_common_send_daily_news()
         . '【URL】' . OPENPNE_URL . $sep
         . '【SNSメンバー総数】' . number_format(count(db_member_c_member_id_list4null())) . $sep
         . '【デイリーニュース送信対象総数】' . $sep
-        . '毎回：' . number_format($count_receive_daiy_news['every_day']) . $sep
-        . '週' . $count_daily_news_day . '回（' . $str_daily_news_day . '）：' . number_format($count_receive_daiy_news['daily_news_day']) . $sep
+        . '毎回：' . number_format($count_receive_daily_news['every_day']) . $sep
+        . '週' . $count_daily_news_day . '回（' . $str_daily_news_day . '）：' . number_format($count_receive_daily_news['daily_news_day']) . $sep
         . '【配信日】' . date("Y/m/d") . '(' . $day_arr[$day] . ')' . $sep .$sep
         . "c_member_id\t通し番号\tタイムスタンプ" . $sep;
     print mb_convert_encoding($logstr, 'JIS');
@@ -372,8 +373,8 @@ function do_common_send_daily_news()
                 'diary_friend_list' => p_h_home_c_diary_friend_list4c_member_id($c_member_id, 5),
                 'c_commu_topic_comment_list'
                                     => p_h_home_c_commu_topic_comment_list4c_member_id($c_member_id, 5),
-                'daily_news_head' => p_common_c_siteadmin4target_pagename('daily_news_head'),
-                'daily_news_foot' => p_common_c_siteadmin4target_pagename('daily_news_foot'),
+                'daily_news_head' => $daily_news_head,
+                'daily_news_foot' => $daily_news_foot,
             );
             fetch_send_mail($pc_address, 'm_pc_daily_news', $params);
         }
