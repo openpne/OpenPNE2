@@ -49,6 +49,7 @@ class OpenPNE_Config
             'LIMIT_DOMAIN5',
             'OPENPNE_USE_POINT_RANK',
             'OPENPNE_SKIN_THEME',
+            'OPENPNE_USE_KTAI_LOGO',
         );
     }
 
@@ -189,6 +190,7 @@ class OpenPNE_Config
             'OPENPNE_MAINTENANCE_TEXT' => '',
             'CHECK_KTAI_IP' => false,
             'OPENPNE_WEATHER_URL' => 'http://weather.yahoo.co.jp/weather/',
+            'OPENPNE_USE_KTAI_LOGO' => true,
             'OPENPNE_USE_FUNCTION_CACHE_MEMCACHE' => false,
         // 固定値
             'AMAZON_TOKEN'   => '1WZYY1W9YF49AGM0RTG2',
