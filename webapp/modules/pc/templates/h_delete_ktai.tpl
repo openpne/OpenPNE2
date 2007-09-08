@@ -53,7 +53,6 @@
 
 ({t_form m=pc a=do_h_delete_ktai})
 <input type="hidden" name="sessid" value="({$PHPSESSID})">
-<input type="hidden" name="c_member_id" value="({$c_member_id})">
 
 <input type="submit"  class="submit" value=" 削除 ">
 
