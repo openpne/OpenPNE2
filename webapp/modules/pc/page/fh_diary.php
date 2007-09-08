@@ -83,13 +83,12 @@ class pc_page_fh_diary extends OpenPNE_Action
         $this->set('is_all', $is_all);
         $this->set('page', $page);
 
-        reset($c_diary_comment_list);
-        $start_comment = current($c_diary_comment_list);
+        $start_comment = reset($c_diary_comment_list);
         $end_comment = end($c_diary_comment_list);
 
         $pager = array();
-        $pager['start'] = $start_comment['number'];
-        $pager['end'] = $end_comment['number'];
+        $pager['start'] = (int)$start_comment['number'];
+        $pager['end'] = (int)$end_comment['number'];
         $this->set('pager', $pager);
 
         $this->set("body", $body);
