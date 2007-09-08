@@ -59,6 +59,7 @@ class pc_page_c_event_detail extends OpenPNE_Action
         $this->set("total_num", $lst[3]);
         $this->set("page", $page);
         $this->set("all", $all);
+        $this->set('page_size', $page_size);
 
         $this->set("start_num", $lst[4]);
         $this->set("end_num", $lst[5]);
