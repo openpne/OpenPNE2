@@ -928,8 +928,21 @@ if ( c['skinChangerArea'] == 0 ) { toggleDisplay('skin_changer_area'); }
 <td>
 <dl class="box">
 <dt><strong>ロゴ画像</strong></dt>
-<dd class="image">({assign var=skinname value=skin_ktai_header})<img src="({t_img_url_skin filename=$skinname})" /></dd>
-<dd class="default">({if $skin_list[$skinname]})[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})</dd>
+<dd class="image">({assign var=skinname value=skin_ktai_header})
+({if $smarty.const.OPENPNE_USE_KTAI_LOGO})
+<img src="({t_img_url_skin filename=$skinname})" />
+({else})
+画像はありません
+({/if})
+</dd>
+<dd class="default">
+({if $smarty.const.OPENPNE_USE_KTAI_LOGO})
+({if $skin_list[$skinname]})[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]<br />({/if})
+[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('update_c_admin_config_use_ktai_logo','do')})&amp;sessid=({$PHPSESSID})">画像を表示しない</a>]
+({else})
+[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('update_c_admin_config_use_ktai_logo','do')})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]
+({/if})
+</dd>
 <dd class="submit">
 <form action="./" method="post" enctype="multipart/form-data" >
 <input type="hidden" name="m" value="({$module_name})" />

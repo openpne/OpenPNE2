@@ -5,9 +5,15 @@
 ({/if})
 
 <table width="100%">
+({if $smarty.const.OPENPNE_USE_KTAI_LOGO})
 <tr><td align="center">
 <img src="({t_img_url_skin filename=skin_ktai_header f=jpg})" alt="({$smarty.const.SNS_NAME})"><br>
 </td></tr>
+({else})
+<tr><td align="center" bgcolor="#({$ktai_color_config.bg_01})">
+<font color="#({$ktai_color_config.font_01})">({$smarty.const.SNS_NAME})</font><br>
+</td></tr>
+({/if})
 ({if $inc_ktai_entry_point[2]})
 <tr><td>({$inc_ktai_entry_point[2]|smarty:nodefaults})<br>
 </td></tr>

@@ -5,10 +5,15 @@
 ({/if})
 
 <table width="100%">
+({if $smarty.const.OPENPNE_USE_KTAI_LOGO})
 	<tr><td align="center">
 		<a name="top"><img src="({t_img_url_skin filename=skin_ktai_header f=jpg})" alt="({$smarty.const.SNS_NAME})"></a><br>
 	</td></tr>
-
+({else})
+	<tr><td align="center" bgcolor="#({$ktai_color_config.bg_01})">
+		<font color="#({$ktai_color_config.font_01})"><a name="top">({$c_member.nickname})さん</a></font><br>
+	</td></tr>
+({/if})
 ({if $inc_ktai_entry_point[2]})
 	<tr><td>({$inc_ktai_entry_point[2]|smarty:nodefaults})</td></tr>
 ({/if})
