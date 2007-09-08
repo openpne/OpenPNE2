@@ -49,10 +49,10 @@
 
 <tr><td align="center" width="50%" valign="top">
 <img src="({t_img_url filename=$target_c_member.image_filename w=120 h=120 f=jpg noimg=no_image})" alt="({$target_c_member.nickname})さん"><br>
-({if $target_c_member.image_filename})
 ({if $is_h_prof == 1})
 <a href="({t_url m=ktai a=page_h_config_image})&amp;({$tail})">写真を編集</a><br>
 ({else})
+({if $target_c_member.image_filename})
 <a href="({t_url m=ktai a=page_f_show_image})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">写真を見る</a><br>
 ({/if})
 ({/if})
