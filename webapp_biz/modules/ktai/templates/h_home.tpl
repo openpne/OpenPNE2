@@ -11,7 +11,7 @@
 	</td></tr>
 ({else})
 	<tr><td align="center" bgcolor="#({$ktai_color_config.bg_01})">
-		<font color="#({$ktai_color_config.font_01})"><a name="top">({$c_member.nickname})さん</a></font><br>
+		<font color="#({$ktai_color_config.font_01})"><a name="top">({$smarty.const.SNS_NAME})</a></font><br>
 	</td></tr>
 ({/if})
 ({if $inc_ktai_entry_point[2]})
