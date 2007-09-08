@@ -35,19 +35,17 @@
 ({if $friend_path})<a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$friend_path.c_member_id})">({$friend_path.nickname})</a>さんの({$WORD_FRIEND_HALF})({/if})
 ({if $is_friend})({$WORD_MY_FRIEND_HALF})({/if})
 <hr color="#({$ktai_color_config.border_02})">
-
+({else})
+&nbsp;
 ({/if})
-<hr color="#({$ktai_color_config.border_01})">
 ({if $days_birthday == 0})({* 誕生日当日　*})
-<a href="({t_url m=ktai a=page_f_message_send})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">☆Happy Birthday☆<hr color="#({$ktai_color_config.border_02})">
-
+<a href="({t_url m=ktai a=page_f_message_send})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">☆Happy Birthday☆
 <br>お誕生日にﾒｯｾｰｼﾞを送りましょう</a><br>
-<hr color="#({$ktai_color_config.border_02})">
 ({elseif $days_birthday <= 3})({* 誕生日3日以内 *})
 <a href="({t_url m=ktai a=page_f_message_send})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">☆もうすぐ誕生日です!☆
 <br>お誕生日にはﾒｯｾｰｼﾞを送りましょう</a><br>
-<hr color="#({$ktai_color_config.border_02})">
 ({/if})
+<hr color="#({$ktai_color_config.border_01})">
 %%i69%%<a href="({t_url m=ktai_biz a=page_fh_biz_todo_list})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">Todoﾘｽﾄ</a>/%%i176%%<a href="({t_url m=ktai_biz a=page_fh_calendar_week})&amp;target_id=({$target_c_member.c_member_id})&amp;({$tail})">週間ｶﾚﾝﾀﾞｰ</a><br>
 <hr color="#({$ktai_color_config.border_02})">
 </td></tr>
