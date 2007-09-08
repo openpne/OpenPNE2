@@ -65,7 +65,7 @@
 	<thead>
 		<tr>
 			<th class="cell01" rowspan="3">&nbsp;</th>
-			<th class="cell02" colspan="3" rowspan="3">操作パネル</th>
+			<th class="cell02" colspan="4" rowspan="3">操作パネル</th>
 			<th class="cell03" rowspan="3"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=c_member_id-1({$cond})">▲</a>ID<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=c_member_id-2({$cond})">▼</a></th>
 			<th class="cell04" rowspan="3"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=nickname-1({$cond})">▲</a>ニックネーム<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=nickname-2({$cond})">▼</a></th>
 			({if $smarty.const.OPENPNE_USE_POINT_RANK})
@@ -173,7 +173,7 @@
 	<tfoot>
 		<tr>
 			<th class="cell01" rowspan="3">&nbsp;</th>
-			<th class="cell02" colspan="3" rowspan="2">操作パネル</th>
+			<th class="cell02" colspan="4" rowspan="2">操作パネル</th>
 			<th class="cell03" rowspan="2">ID</th>
 			<th class="cell04" rowspan="2">ニックネーム</th>
 			({if $smarty.const.OPENPNE_USE_POINT_RANK})
@@ -212,6 +212,7 @@
 			<td class="cell02A">({if $item.c_member_id != 1})<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('delete_c_member_confirm')})&amp;target_c_member_id=({$item.c_member_id})"><img src="modules/admin/img/icn_withdrawal.gif" alt="強制退会" /></a>({else})&nbsp;({/if})</td>
 			<td class="cell02B"><a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('update_is_login_rejected','do')})&amp;target_c_member_id=({$item.c_member_id})&amp;sessid=({$PHPSESSID})">({if $item.is_login_rejected})<img src="modules/admin/img/icn_permit.gif" alt="ログイン停止解除" />({else})<img src="modules/admin/img/icn_rejected.gif" alt="ログイン停止" />({/if})</a></td>
 			<td class="cell02C"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('passwd')})&amp;target_c_member_id=({$item.c_member_id})"><img src="modules/admin/img/icn_passwd.gif" alt="パスワード再発行" /></a></td>
+			<td class="cell02D"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('blacklist_add')})&amp;easy_access_id=({$item.secure.easy_access_id})"><img src="modules/admin/img/icn_blacklist.gif" alt="ブラックリストメンバーに追加" /></a></td>
 			<td class="cell03">({$item.c_member_id})</td>
 			<td class="cell04"><a href="({t_url _absolute=1 m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})" target="_blank">({$item.nickname})</a></td>
 			({if $smarty.const.OPENPNE_USE_POINT_RANK})
