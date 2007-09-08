@@ -66,6 +66,7 @@ class pc_page_c_topic_detail extends OpenPNE_Action
         $this->set("total_num", $total_num);
         $this->set('start_num', $start_num);
         $this->set('end_num', $end_num);
+        $this->set('page_size', $page_size);
 
         $this->set('all', $all);
 
