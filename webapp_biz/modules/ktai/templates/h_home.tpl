@@ -56,7 +56,7 @@
 ({$c_member.nickname})さん<br>
 ({if $smarty.const.OPENPNE_IS_POINT_ADMIN || $c_member.c_member_id != 1})
 ({if $smarty.const.OPENPNE_DISP_RANK && $rank})
-<img src="({t_img_url filename=$rank.image_filename f=jpg})" alt="({$rank.name})"><br>
+<img src="({t_img_url filename=$rank.image_filename w=120 h=120 f=jpg})" alt="({$rank.name})"><br>
 ({/if})
 ({if $smarty.const.OPENPNE_DISP_POINT && $point})
 ({$point}) Point<br>
