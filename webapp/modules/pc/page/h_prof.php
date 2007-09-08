@@ -14,7 +14,7 @@ class pc_page_h_prof extends OpenPNE_Action
 
         $this->set('is_h_prof', 1);
         $this->set('inc_navi', fetch_inc_navi('h'));
-        $target_c_member = db_member_c_member_with_profile($u, 'friend');
+        $target_c_member = db_member_c_member_with_profile($u, 'private');
         $this->set('is_friend', 0);
         $this->set('c_diary_list', db_diary_get_c_diary_list4c_member_id($target_c_member_id, 5, null, 'friend'));
 
@@ -26,9 +26,6 @@ class pc_page_h_prof extends OpenPNE_Action
             $target_c_member['age'] = getAge($target_c_member['birth_year'], $target_c_member['birth_month'], $target_c_member['birth_day']);
         }
         $this->set('target_c_member', $target_c_member);
-
-        $target_c_member_all = db_member_c_member_with_profile($target_c_member_id, 'private');
-        $this->set('target_c_member_all', $target_c_member_all);
 
         $this->set('c_rss_cache_list', db_rss_c_rss_cache_list4c_member_id($target_c_member_id, 5));
 
