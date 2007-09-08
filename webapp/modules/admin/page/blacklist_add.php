@@ -8,7 +8,7 @@ class admin_page_blacklist_add extends OpenPNE_Action
 {
     function execute($requests)
     {
-        
+        $this->set('easy_access_id', $requests['easy_access_id']);
         return 'success';
     }
 }
