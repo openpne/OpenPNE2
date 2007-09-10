@@ -80,7 +80,7 @@
 <hr color="#({$ktai_color_config.border_01})">
 ({if $IS_CLOSED_SNS})
 ({$SNS_NAME})は招待制のｿｰｼｬﾙﾈｯﾄﾜｰｷﾝｸﾞｻｰﾋﾞｽです。<br>
-登録には({$SNS_NAME})参加者からの招待が必要です。<br>
+登録には({$SNS_NAME})({if $smarty.const.IS_USER_INVITE})参加者({else})管理者({/if})からの招待が必要です。<br>
 
 ({elseif !((($smarty.const.OPENPNE_REGIST_FROM) & ($smarty.const.OPENPNE_REGIST_FROM_KTAI)) >> 1)})
 
