@@ -31,6 +31,7 @@
 ({*ここまで：header*})
 ({*ここから：body*})
 <!-- ここから：主内容 -->
+({if $new_comment_list})
 <table border="0" cellspacing="0" cellpadding="0" style="width:636px;">
 ({*********})
 <tr>
@@ -60,6 +61,7 @@
 </tr>
 ({*********})
 </table>
+({/if})
 <table border="0" cellspacing="1" cellpadding="0" style="width:636px;">
 
 ({if $new_comment_list})
@@ -101,6 +103,7 @@
 </tr>
 ({/if})
 </table>
+({if $new_comment_list})
 <table border="0" cellspacing="0" cellpadding="0" style="width:636px;">
 ({*********})
 <tr>
@@ -130,6 +133,7 @@
 </tr>
 ({*********})
 </table>
+({/if})
 <!-- ここまで：主内容 -->
 ({*ここまで：body*})
 ({*ここから：footer*})
