@@ -20,9 +20,7 @@ class ktai_do_h_message_delete_c_message extends OpenPNE_Action
 
         $c_message = db_message_c_message4c_message_id($c_message_id);
 
-        // $u が送信者でも受信者でもない場合は権限エラー
-        if ($c_message['c_member_id_to'] != $u
-            && $c_message['c_member_id_from'] != $u) {
+        if (!util_is_readable_message($u, $c_message_id)) {
             handle_kengen_error();
         }
 
