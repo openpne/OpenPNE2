@@ -530,4 +530,31 @@ function util_is_regist_mail_address($mail_address)
     return true;
 }
 
+/**
+ * 参照可能なメッセージかどうか
+ * 
+ * ・指定メンバーが送信者で、完全削除済でない
+ * ・指定メンバーが受信者で、送信済であり完全削除済でない
+ * 
+ * @param int $c_member_id
+ * @param int $c_message_id
+ * @return bool
+ */
+function util_is_readable_message($c_member_id, $c_message_id)
+{
+    $c_message = db_message_c_message4c_message_id($c_message_id);
+
+    if ($c_message['c_member_id_from'] == $c_member_id) {  // 自分が送信者
+        if (!$c_message['is_kanzen_sakujo_from']) {  // 完全削除済でない
+            return true;
+        }
+    } elseif ($c_message['c_member_id_to'] == $c_member_id)  { // 自分が受信者
+        if ($c_message['is_send'] && !$c_message['is_kanzen_sakujo_to']) {  // 送信済であり完全削除済でない
+            return true;
+        }
+    }
+
+    return false;
+}
+
 ?>
