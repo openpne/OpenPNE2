@@ -32,10 +32,9 @@
 </select><br>
 ﾒｯｾｰｼﾞ<br>
 <textarea name="body"></textarea><br>
-<input type="submit" value="送信">
+<input type="submit" value="送信"><br>
 </form>
-ﾒﾝﾊﾞｰの選択肢はﾗﾝﾀﾞﾑとなっています。送りたいﾒﾝﾊﾞｰがﾘｽﾄに表示されなかった場合、
-<a href="({t_url m=ktai a=page_c_edit_member})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">ここ</a>を押して画面を更新してください
+ﾒｯｾｰｼﾞを送信したいﾒﾝﾊﾞｰが表示されない場合、「前へ」「次へ」を押してください。
 ({/if})
 ({if $subadmin_list})
 <hr>
@@ -53,10 +52,9 @@
 </select><br>
 ﾒｯｾｰｼﾞ<br>
 <textarea name="body"></textarea><br>
-<input type="submit" value="送信">
+<input type="submit" value="送信"><br>
 </form>
-ﾒﾝﾊﾞｰの選択肢はﾗﾝﾀﾞﾑとなっています。送りたいﾒﾝﾊﾞｰがﾘｽﾄに表示されなかった場合、
-<a href="({t_url m=ktai a=page_c_edit_member})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">ここ</a>を押して画面を更新してください
+ﾒｯｾｰｼﾞを送信したいﾒﾝﾊﾞｰが表示されない場合、「前へ」「次へ」を押してください。
 ({/if})
 
 ({/if})
