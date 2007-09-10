@@ -60,7 +60,7 @@
 ({if $IS_CLOSED_SNS})
 
 ({$SNS_NAME})は招待制のソーシャルネットワーキングサービスです。<br>
-登録には({$SNS_NAME})参加者からの招待が必要です。
+登録には({$SNS_NAME})({if $smarty.const.IS_USER_INVITE})参加者({else})管理者({/if})からの招待が必要です。
 
 ({elseif !((($smarty.const.OPENPNE_REGIST_FROM) & ($smarty.const.OPENPNE_REGIST_FROM_KTAI)) >> 1)})
 
