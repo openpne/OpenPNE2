@@ -390,6 +390,7 @@ function db_member_search_check_profile($profile)
         switch ($c_profile['form_type']) {
         case "text":
         case "textarea":
+        case "textlong":
             $value = $v;
             $c_profile_option_id = 0;
             break;
