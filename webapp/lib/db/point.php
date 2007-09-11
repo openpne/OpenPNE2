@@ -74,7 +74,7 @@ function db_point_add_point($c_member_id, $point)
     do_config_prof_insert_c_member_profile($c_member_id, $c_profile_id, 0, $p, $public_flag);
 
     //ランクアップしたらメール送信
-    if ($before_rank['point'] != $after_rank['point']) {
+    if (!empty($after_rank) && $before_rank['point'] != $after_rank['point']) {
         send_mail_pcktai_rank_up($c_member_id, $before_rank, $after_rank);
         send_mail_admin_rank_up($c_member_id, $before_rank, $after_rank);
     }
