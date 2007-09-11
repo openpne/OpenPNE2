@@ -23,6 +23,9 @@ function smarty_modifier_t_truncate($string, $length = 80, $etc = '...',
     $to   = array('&', '<', '>', '"', "'");
     $string = str_replace($from, $to, $string);
 
+    // 全角スペースの連続によりIEでレイアウトが崩れてしまうバグへの対策
+    $string = str_replace('　', ' ', $string);
+
     if (strlen($string) > $length) {
         $length -= strlen($etc);
         if (!$break_words)
