@@ -8,13 +8,7 @@
 <img src="./skin/dummy.gif" alt="" class="v_spacer_l">
 
 <!-- ******************************************** -->
-<!-- ******ここから：副副管理者交代依頼****** -->
-
-({t_form m=pc a=page_c_sub_admin_request_confirm})
-<input type="hidden" name="sessid" value="({$PHPSESSID})">
-<input type="hidden" name="target_c_member_id" value="({$member.c_member_id})">
-<input type="hidden" name="target_c_commu_id" value="({$c_commu.c_commu_id})">
-
+<!-- ******ここから：管理者交代依頼****** -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:580px;" class="border_07">
 <tr>
 <td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
@@ -24,12 +18,12 @@
 <tr>
 <td class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
 <td class="bg_01" align="center">
-<!-- *ここから：副管理者交代依頼＞内容* -->
+<!-- *ここから：管理者交代依頼＞内容* -->
 ({*ここから：header*})
 <table border="0" cellspacing="0" cellpadding="0" style="width:566px;" class="border_01">
 <tr>
 <td style="width:36px;" class="bg_06"><img src="({t_img_url_skin filename=content_header_1})" style="width:30px;height:20px;" class="dummy"></td>
-<td style="width:528px;padding:2px 0px;" class="bg_06"><span class="b_b c_00">副管理者交代依頼</span></td>
+<td style="width:528px;padding:2px 0px;" class="bg_06"><span class="b_b c_00">以下のメッセージを送信しますか？</span></td>
 </tr>
 </table>
 <!-- ここまで：小タイトル -->
@@ -76,8 +70,8 @@
 
 <div class="padding_s">
 
-<a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$member.c_member_id})">
-<img src="({t_img_url filename=$member.image_filename w=76 h=76 noimg=no_image})"></a>
+<a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$target_c_member.c_member_id})">
+<img src="({t_img_url filename=$target_c_member.image_filename w=76 h=76 noimg=no_image})" class="pict"></a>
 
 </div>
 
@@ -105,7 +99,7 @@
 
 <div class="padding_s">
 
-<a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$member.c_member_id})">({$member.nickname})</a>
+<a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$target_c_member.c_member_id})">({$target_c_member.nickname})</a>
 
 </div>
 
@@ -133,7 +127,7 @@
 
 <div class="padding_s">
 
-<textarea class="text" name="body" rows="5" cols="40" style="width:410px;">({$body})</textarea>
+({$body|nl2br})
 
 </div>
 
@@ -157,8 +151,28 @@
 
 <div align="center" style="text-align:center;">
 
-<input type="submit" class="submit" value="確認画面">
-
+<table border="0" cellspacing="0" cellpadding="0" style="width:100%;height:2em;">
+<tr>
+<td style="width:50%;text-align:right;">
+({t_form m=pc a=do_c_sub_admin_request_insert_c_commu_sub_admin_confirm})
+<input type="hidden" name="sessid" value="({$PHPSESSID})">
+<input type="hidden" name="target_c_member_id" value="({$target_c_member.c_member_id})">
+<input type="hidden" name="target_c_commu_id" value="({$target_c_commu_id})">
+<input type="hidden" name="body" value="({$body})">
+<input type="submit" class="submit" value="　送　信　">&nbsp;
+</form>
+</td>
+<td style="width:50%;text-align:left;">
+({t_form m=pc a=page_c_sub_admin_request})
+<input type="hidden" name="sessid" value="({$PHPSESSID})">
+<input type="hidden" name="target_c_member_id" value="({$target_c_member.c_member_id})">
+<input type="hidden" name="target_c_commu_id" value="({$target_c_commu_id})">
+<input type="hidden" name="body" value="({$body})">
+&nbsp;<input type="submit" class="submit" value="　修　正　">
+</form>
+</td>
+</tr>
+</table>
 </div>
 
 </td>
@@ -191,7 +205,7 @@
 <td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
 </tr>
 </table>
-</form>
+
 <!-- ******ここまで：副管理者交代依頼****** -->
 <!-- ******************************************** -->
 
