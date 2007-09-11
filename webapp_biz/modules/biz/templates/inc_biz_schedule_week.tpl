@@ -258,6 +258,9 @@
 ({if $item_schedule.finish_time})
 ({assign var="finish_time_H" value=$item_schedule.finish_time|date_format:"%H"})
 ({assign var="finish_time_M" value=$item_schedule.finish_time|date_format:"%M"})
+({else})
+({assign var="finish_time_H" value=""})
+({assign var="finish_time_M" value=""})
 ({/if})
 ({ext_include file="inc_biz_schedule_week_time.tpl"})
 <div class="padding_s" style="padding-top:0;">
