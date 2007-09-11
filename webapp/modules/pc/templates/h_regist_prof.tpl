@@ -212,6 +212,8 @@
 ({strip})
 ({if $profile.form_type == 'text'})
     <input type="text" size="30" name="profile[({$profile.name})]" value="({$profs.profile[$profile.name].value})">
+({elseif $profile.form_type == 'textlong'})
+    <input type="text" size="60" name="profile[({$profile.name})]" value="({$profs.profile[$profile.name].value})">
 ({elseif $profile.form_type == 'textarea'})
     <textarea name="profile[({$profile.name})]" rows="6" cols="50">({$profs.profile[$profile.name].value})</textarea>
 ({elseif $profile.form_type == 'select'})
