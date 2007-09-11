@@ -13,6 +13,7 @@ class pc_page_c_sub_admin_request extends OpenPNE_Action
         // --- リクエスト変数
         $target_c_commu_id = $requests['target_c_commu_id'];
         $target_c_member_id = $requests['target_c_member_id'];
+        $body = $requests['body'];
         // ----------
 
         //--- 権限チェック
@@ -57,6 +58,7 @@ class pc_page_c_sub_admin_request extends OpenPNE_Action
 
         $this->set("member", $member);
         $this->set("c_commu", db_commu_c_commu4c_commu_id($target_c_commu_id));
+        $this->set('body', $body);
 
         return 'success';
     }
