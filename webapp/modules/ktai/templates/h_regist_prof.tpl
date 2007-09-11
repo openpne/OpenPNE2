@@ -68,6 +68,8 @@
 
     ({if $profile.form_type == 'text'})
         <input type="text" name="profile[({$profile.name})]" value="({$c_member.profile[$profile.name].value})">
+    ({elseif $profile.form_type == 'textlong'})
+        <input type="text" name="profile[({$profile.name})]" value="({$c_member.profile[$profile.name].value})">
     ({elseif $profile.form_type == 'textarea'})
         <textarea name="profile[({$profile.name})]">({$c_member.profile[$profile.name].value})</textarea>
     ({elseif $profile.form_type == 'select' || $profile.form_type == 'radio'})
