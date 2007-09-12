@@ -7,6 +7,9 @@
 <tr><td bgcolor="#({$ktai_color_config.bg_02})" align="center">
 ﾒｯｾｰｼﾞﾘｽﾄ<br>
 </td></tr></table>
+({if !$total_num})
+ﾒｯｾｰｼﾞはありません。
+({else})
 <center>
 ({$pager.start})件～({$pager.end})件を表示
 </center>
@@ -22,7 +25,6 @@
 ({/if})
 ({/capture})
 
-({if $total_num})
 <hr color="#({$ktai_color_config.border_02})">
 <table width="100%">
 ({foreach from=$c_message_trash_list item=c_message_trash})
@@ -38,9 +40,6 @@
 </table>
 ※送信済ﾒｯｾｰｼﾞ…<font color="#({$ktai_color_config.font_02})">(★)</font>
 <br>
-({else})
-<br>ﾒｯｾｰｼﾞはありません<br><br>
-({/if})
 
 ({$smarty.capture.pager|smarty:nodefaults})
 
@@ -54,7 +53,6 @@
 ({/if})
 ({/capture})
 
-({if $total_num})
 <hr color="#({$ktai_color_config.border_02})">
 <table width="100%">
 ({foreach from=$c_message_received_list item=c_message_received})
@@ -67,9 +65,6 @@
 </td></tr>
 ({/foreach})
 </table>
-({else})
-ﾒｯｾｰｼﾞはありません<br><br>
-({/if})
 
 ({$smarty.capture.pager|smarty:nodefaults})
 
@@ -82,7 +77,6 @@
 </center>
 ({/if})
 ({/capture})
-({if $total_num})
 <hr color="#({$ktai_color_config.border_02})">
 <table width="100%">
 ({foreach from=$c_message_sent_list item=c_message_sent})
@@ -95,11 +89,10 @@
 </td></tr>
 ({/foreach})
 </table>
-({else})
-ﾒｯｾｰｼﾞはありません<br><br>
-({/if})
 
 ({$smarty.capture.pager|smarty:nodefaults})
+({/if})
+
 ({/if})
 
 ({if $box != 'trash'})

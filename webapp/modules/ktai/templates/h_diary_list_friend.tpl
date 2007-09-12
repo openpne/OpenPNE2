@@ -3,6 +3,9 @@
 <font color="#({$ktai_color_config.font_01})"><a name="top">
 ({$WORD_FRIEND_HALF})最新日記</a></font><br>
 </td></tr></table>
+({if !$h_diary_list_friend})
+({$WORD_FRIEND_HALF})最新日記はありません。
+({else})
 <center>
 ({$pager.start})件～({$pager.end})件を表示<br>
 </center>
@@ -29,5 +32,6 @@
 ({if $is_prev && $is_next})&nbsp;({/if})
 ({if $is_next})<a href="({t_url m=ktai a=page_h_diary_list_friend})&amp;page=({$page+1})&amp;({$tail})" accesskey="6">%%i130%%次を表示</a>({/if})
 </center>
+({/if})
 ({/if})
 ({$inc_ktai_footer|smarty:nodefaults})
