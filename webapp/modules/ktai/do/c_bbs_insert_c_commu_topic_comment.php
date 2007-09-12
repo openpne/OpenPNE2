@@ -52,7 +52,7 @@ class ktai_do_c_bbs_insert_c_commu_topic_comment extends OpenPNE_Action
 
         //イベントのメンバーに追加
         if ($requests['join_event']) {
-            if ($c_commu_topic['capacity'] <= $c_event_member_count) {
+            if ($c_commu_topic['capacity'] && $c_commu_topic['capacity'] <= $c_event_member_count) {
                 $p = array(
                     'target_c_commu_topic_id' => $target_c_commu_topic_id,
                     'msg' => 45,
