@@ -2,6 +2,9 @@
 <table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_01})">
 <font color="#({$ktai_color_config.font_01})"><a name="top">ｺﾐｭﾆﾃｨ最新書き込み</a></font><br>
 </td></tr></table>
+({if !$h_com_comment_list})
+ｺﾐｭﾆﾃｨ最新書き込みはありません。
+({else})
 <center>
 ({$pager.start})～({$pager.end})件目を表示
 </center>
@@ -22,6 +25,7 @@
 </td></tr>
 ({/foreach})
 </table>
+({/if})
 
 ({if $is_prev || $is_next})
 <center>
