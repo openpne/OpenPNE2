@@ -41,7 +41,7 @@ function emoji_escape($str, $remove = false)
 
 function emoji_escape_i($bin)
 {
-    $iemoji = '\xF8[\x9F-\xFC]|\xF9[\x40-\xFC]';
+    $iemoji = '\xF8[\x9F-\xFC]|\xF9[\xb40-\xFC]';
     if (preg_match('/'.$iemoji.'/', $bin)) {
         $unicode = mb_convert_encoding($bin, 'UCS2', 'SJIS-win');
         $emoji_code = OpenPNE_KtaiEmoji::getInstance();
@@ -212,17 +212,18 @@ function _emoji_convert($matches)
     $o_code = $matches[1];
     
     switch ($GLOBALS['__Framework']['carrier']) {
-        case 'i':
+    case 'i':
         $carrior = 'i';
         break;
-        case 's':
+    case 's':
         $carrior = 's';
         break;
-        case 'e':
+    case 'e':
         $carrior = 'e';
         break;
-        default:
-        return '〓';
+    default:
+        $carrior = null;
+        break;
     }
     
     $emoji_code = OpenPNE_KtaiEmoji::getInstance();
