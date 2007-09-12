@@ -32,11 +32,7 @@ class ktai_page_f_home extends OpenPNE_Action
         //ターゲットのc_member
 
         $is_friend = db_friend_is_friend($u, $target_c_member_id);
-        if ($is_friend) {
-            $target_c_member = db_member_c_member_with_profile($target_c_member_id, 'friend');
-        } else {
-            $target_c_member = db_member_c_member_with_profile($target_c_member_id, 'public');
-        }
+        $target_c_member = db_member_c_member_with_profile($target_c_member_id, 'private');
         $target_c_member['last_login'] = p_f_home_last_login4access_date($target_c_member['access_date']);
         if ($target_c_member['birth_year']) {
             $target_c_member['age'] = getAge($target_c_member['birth_year'], $target_c_member['birth_month'], $target_c_member['birth_day']);
