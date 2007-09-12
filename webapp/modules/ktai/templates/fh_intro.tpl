@@ -7,6 +7,10 @@
 ({if $type=="f"})({$WORD_FRIEND_HALF})({else})({$WORD_MY_FRIEND_HALF})({/if})からの紹介文<br>
 </td></tr></table>
 
+({if !$intro_list})
+紹介文はありません。
+({else})
+
 <center>
 ({$pager_index.displaying_first})件～({$pager_index.displaying_last})件を表示
 </center>
@@ -35,13 +39,6 @@
 <a href="({t_url m=ktai a=do_f_intro_from_delete})&amp;target_c_member_id=({$item.c_member_id})&amp;({$tail})">削除</a><br>
 ({/if})
 </td></tr>
-({foreachelse})
-<tr><td>
-<hr color="#({$ktai_color_config.border_02})">
-</td></tr>
-<tr><td>
-紹介文はありません
-</td></tr>
 ({/foreach})
 </table>
 
@@ -54,9 +51,9 @@
 <br>
 </center>
 ({/if})
-
-<hr color="#({$ktai_color_config.border_01})">
+({/if})
 ({if $type=="f"})
+<hr color="#({$ktai_color_config.border_01})">
 %%i90%%<a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$target_member.c_member_id})&amp;({$tail})">({$target_member.nickname})さんのﾄｯﾌﾟ</a><br>
 ({/if})
 

@@ -7,6 +7,10 @@
 ｲﾍﾞﾝﾄﾘｽﾄ<br>
 </td></tr></table>
 
+({if !$c_topic_list})
+ｲﾍﾞﾝﾄはありません。
+({else})
+
 <center>
 ({$start_num})件～({$end_num})件を表示
 </center>
@@ -39,7 +43,8 @@
 </center>
 ({/if})
 
+({/if})
+
 <hr color="#({$ktai_color_config.border_01})">
 %%i90%%<a href="({t_url m=ktai a=page_c_home})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">ｺﾐｭﾆﾃｨに戻る</a><br>
-
 ({$inc_ktai_footer|smarty:nodefaults})
