@@ -19,7 +19,7 @@ class ktai_page_h_prof extends OpenPNE_Action
         //管理画面HTML
         $this->set('c_siteadmin', p_common_c_siteadmin4target_pagename('k_f_home'));
 
-        $target_c_member = db_member_c_member_with_profile($target_c_member_id, 'friend');
+        $target_c_member = db_member_c_member_with_profile($target_c_member_id, 'private');
         $target_c_member['last_login'] = p_f_home_last_login4access_date($target_c_member['access_date']);
         if ($target_c_member['birth_year']) {
             $target_c_member['age'] = getAge($target_c_member['birth_year'], $target_c_member['birth_month'], $target_c_member['birth_day']);
