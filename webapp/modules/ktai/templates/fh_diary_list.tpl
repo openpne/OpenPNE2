@@ -12,6 +12,9 @@
 <hr color="#({$ktai_color_config.border_01})">
 ({/if})
 
+({if !$target_diary_list})
+最新日記はありません。
+({else})
 <center>
 ({$pager.start})件～({$pager.end})件を表示<br>
 </center>
@@ -39,6 +42,7 @@
 ({if $is_next})<a href="({t_url m=ktai a=page_fh_diary_list})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;page=({$page+1})({if $keyword})&amp;keyword=({$keyword})({/if})&amp;({$tail})" accesskey="6">%%i130%%次を表示</a>({/if})
 <br>
 </center>
+({/if})
 ({/if})
 <hr color="#({$ktai_color_config.border_01})">
 ({if $INC_NAVI_type=="h"})

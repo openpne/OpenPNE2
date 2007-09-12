@@ -7,6 +7,10 @@
 参加ｺﾐｭﾆﾃｨﾘｽﾄ(({$count_commus|default:0}))<br>
 </td></tr></table>
 
+({if !$c_commu_list})
+参加ｺﾐｭﾆﾃｨはありません。
+({else})
+
 <center>
 ({$pager.start})件～({$pager.end})件を表示<br>
 </center>
@@ -29,6 +33,8 @@
 ({if $is_next})<a href="({t_url m=ktai a=page_fh_com_list})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;page=({$page+1})&amp;({$tail})" accesskey="6">%%i130%%次を表示</a>({/if})
 <br>
 </center>
+({/if})
+
 ({/if})
 
 ({if $INC_NAVI_type=="f"})

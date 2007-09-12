@@ -7,6 +7,10 @@
 ﾄﾋﾟｯｸﾘｽﾄ<br>
 </td></tr></table>
 
+({if !$c_topic_list})
+ﾄﾋﾟｯｸはありません。
+({else})
+
 <center>
 ({$start_num})件～({$end_num})件を表示
 </center>
@@ -40,6 +44,7 @@
 ({if $is_next})<a href="({t_url m=ktai a=page_c_topic_list})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;page=({$page})&amp;direc=1&amp;({$tail})" accesskey="6">%%i130%%次を表示</a>({/if})
 <br>
 </center>
+({/if})
 ({/if})
 <hr color="#({$ktai_color_config.border_01})">
 %%i90%%<a href="({t_url m=ktai a=page_c_home})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">ｺﾐｭﾆﾃｨに戻る</a><br>
