@@ -2863,14 +2863,17 @@ class OpenPNE_KtaiEmoji
      * 与えられた絵文字コードを指定されたキャリアの対応する絵文字IDで返す
      * 対応するIDが指定されたキャリア間に存在しない場合はfalseを返す
      */
-    function convert_emoji_code($o_code, $c_carrier)
+    function convert_emoji_code($o_code, $c_carrier = null)
     {
         $o_carrier = $o_code[0];
         $o_id = substr($o_code, 1);
         
         if ($o_carrier == $c_carrier) {
-            //キャリアの変更がない場合はそのままIDを返す
+            // キャリアの変更がない場合はそのままIDを返す
         	return $o_id;
+        } elseif (is_null($c_carrier)) {
+            // キャリア指定がない場合はそのまま絵文字コードを返す
+        	return $o_code;
         } else {
         	return $this->convert_emoji_code_id($o_carrier, $o_id, $c_carrier);
         }
@@ -2880,21 +2883,21 @@ class OpenPNE_KtaiEmoji
      * 与えられた絵文字コードを指定されたキャリアの対応する絵文字で返す
      * 対応する絵文字が指定されたキャリア間に存在しない場合は定められた代替文字を返す
      */
-    function convert_emoji($o_code, $c_carrier)
+    function convert_emoji($o_code, $c_carrier = null)
     {
         if ($c_code = $this->convert_emoji_code($o_code, $c_carrier)) {
             switch ($c_carrier) {
-                case 'i':
+            case 'i':
                 $converter = OpenPNE_EmojiDocomo::getInstance();
                 break;
-                case 's':
+            case 's':
                 $converter = OpenPNE_EmojiSoftBank::getInstance();
                 break;
-                case 'e':
+            case 'e':
                 $converter = OpenPNE_EmojiAU::getInstance();
                 break;
-                default:
-                return false;
+            default:
+                $converter = OpenPNE_EmojiImg::getInstance();
             }
         	return $converter->get_emoji4emoji_code_id($c_code);
         }
@@ -4410,5 +4413,44 @@ class OpenPNE_EmojiAU extends OpenPNE_EmojiBase
         return $singleton;
     }
 }
+
+/**
+ * 絵文字を画像に変換するためのクラス
+ */
+class OpenPNE_EmojiImg extends OpenPNE_EmojiBase
+{
+    function OpenPNE_EmojiImg()
+    {
+        $this->emoji_image_dir = 'skin/default/img/emoji/';
+        $this->emoji_image_default = $this->emoji_image_dir . 'dummy.gif';
+        $this->emoji_image_extension = '.gif';
+    }
+    
+    function &getInstance()
+    {
+        static $singleton;
+        if (empty($singleton)) {
+            $singleton = new OpenPNE_EmojiImg();
+        }
+        return $singleton;
+    }
+
+    /**
+     * 絵文字IDを画像表示用タグにして返す
+     * 
+     * @param string $emoji_code_id 絵文字ID
+     * @return string 画像表示用タグ
+     */
+    function get_emoji4emoji_code_id($emoji_code_id)
+    {
+        $carrier_id = $emoji_code_id{0};
+        $emoji_path = OPENPNE_URL . $this->emoji_image_dir . $carrier_id .'/' . $emoji_code_id . $this->emoji_image_extension;
+
+        $str = '<img src="' . $emoji_path . '" alt="絵文字：' . $emoji_code_id . '">';
+
+        return $str;
+    }
+}
+
 
 ?>
