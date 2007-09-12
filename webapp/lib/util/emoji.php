@@ -41,7 +41,7 @@ function emoji_escape($str, $remove = false)
 
 function emoji_escape_i($bin)
 {
-    $iemoji = '\xF8[\x9F-\xFC]|\xF9[\xb40-\xFC]';
+    $iemoji = '\xF8[\x9F-\xFC]|\xF9[\x40-\xFC]';
     if (preg_match('/'.$iemoji.'/', $bin)) {
         $unicode = mb_convert_encoding($bin, 'UCS2', 'SJIS-win');
         $emoji_code = OpenPNE_KtaiEmoji::getInstance();
