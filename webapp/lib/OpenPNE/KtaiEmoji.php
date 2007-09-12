@@ -4422,7 +4422,6 @@ class OpenPNE_EmojiImg extends OpenPNE_EmojiBase
     function OpenPNE_EmojiImg()
     {
         $this->emoji_image_dir = 'skin/default/img/emoji/';
-        $this->emoji_image_default = $this->emoji_image_dir . 'dummy.gif';
         $this->emoji_image_extension = '.gif';
     }
     
