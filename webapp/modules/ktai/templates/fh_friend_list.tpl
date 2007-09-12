@@ -7,6 +7,9 @@
 ({if $INC_NAVI_type=="h"})({$WORD_MY_FRIEND_HALF})({else})({$WORD_FRIEND_HALF})({/if})ﾘｽﾄ(({$total_num}))<br>
 </td></tr></table>
 
+({if !$target_friend_list})
+({if $INC_NAVI_type=="h"})({$WORD_MY_FRIEND_HALF})({else})({$WORD_FRIEND_HALF})({/if})はいません。
+({else})
 <center>
 ({$pager.start})～({$pager.end})件目を表示<br>
 </center>
@@ -30,6 +33,7 @@
 ({if $is_next})<a href="({t_url m=ktai a=page_fh_friend_list})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;page=({$page+1})&amp;({$tail})" accesskey="6">%%i130%%次を表示</a>({/if})
 <br>
 </center>
+({/if})
 ({/if})
 <hr color="#({$ktai_color_config.border_01})">
 ({if $INC_NAVI_type=="f"})
