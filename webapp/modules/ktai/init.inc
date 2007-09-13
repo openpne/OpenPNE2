@@ -32,6 +32,8 @@ if ($agent->is_docomo()) {
     $GLOBALS['__Framework']['carrier'] = 'e';
 } elseif ($agent->is_vodafone()) {
     $GLOBALS['__Framework']['carrier'] = 's';
+} elseif ($agent->is_willcom()) {
+    $GLOBALS['__Framework']['carrier'] = 'w';
 }
 
 // 文字コード変換

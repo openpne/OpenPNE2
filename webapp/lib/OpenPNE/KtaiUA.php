@@ -11,6 +11,7 @@ class OpenPNE_KtaiUA
     var $is_docomo   = false;
     var $is_vodafone = false;
     var $is_au       = false;
+    var $is_willcom = false;
 
     /**
      * constructor
@@ -66,6 +67,7 @@ class OpenPNE_KtaiUA
              || strpos($ua, 'SHARP/WS') !== false
              || strpos($ua, 'DDIPOCKET') !== false) {
             $this->is_ktai = true;
+            $this->is_willcom = true;
         }
 
         else {
@@ -77,6 +79,7 @@ class OpenPNE_KtaiUA
     function is_docomo() { return $this->is_docomo; }
     function is_vodafone() { return $this->is_vodafone; }
     function is_au() { return $this->is_au; }
+    function is_willcom() { return $this->is_willcom; }
 }
 
 ?>
