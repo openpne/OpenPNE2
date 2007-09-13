@@ -515,6 +515,43 @@
 
 <img src="./skin/dummy.gif" alt="" class="v_spacer_l">
 
+<!-- ********************************** -->
+<!-- ******ここから：前の日記／次の日記****** -->
+({if $c_diary_id_prev || $c_diary_id_next})
+
+<table cellspacing="0" cellpadding="0" border="0" style="width:540px;margin:0px auto;">
+<tr>
+<!-- ************************************** -->
+<td align="left" style="width: 10px"><img src="./skin/dummy.gif" alt="" style="width:10px;" class="dummy"></td>
+<td align="left" style="width: 260px;">
+({if $c_diary_id_prev})
+<a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$c_diary_id_prev})">前の日記</a>
+({else})
+&nbsp;
+({/if})
+</td>
+
+<!-- ************************************** -->
+
+<td align="right" style="width: 260px;">
+({if $c_diary_id_next})
+<a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$c_diary_id_next})">次の日記</a>
+({else})
+&nbsp;
+({/if})
+</td>
+<td align="right" style="width: 10px"><img src="./skin/dummy.gif" alt="" style="width:10px;" class="dummy"></td>
+<!-- ************************************** -->
+
+</tr>
+</table>
+
+<img class="v_spacer_l" alt="" src="./skin/dummy.gif"/>
+
+({/if})
+<!-- ******ここまで：前の日記／次の日記****** -->
+<!-- ******************************** -->
+
 ({if $target_diary_comment_list})
 <!-- ********************************* -->
 <!-- ******ここから：コメント一覧****** -->
