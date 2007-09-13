@@ -25,6 +25,15 @@
 
 (({if $target_c_diary.public_flag == "public"})全員に公開({elseif $target_c_diary.public_flag == "friend"})({$WORD_MY_FRIEND_HALF})まで公開({elseif $target_c_diary.public_flag == "private"})公開しない({/if}))
 
+({if $c_diary_id_prev || $c_diary_id_next})
+<hr color="#({$ktai_color_config.border_01})">
+<center>
+({if $c_diary_id_prev})<a href="({t_url m=ktai a=page_fh_diary})&amp;target_c_diary_id=({$c_diary_id_prev})&amp;({$tail})">前の日記</a>({/if})
+({if $c_diary_id_prev && $c_diary_id_next})&nbsp;({/if})
+({if $c_diary_id_next})<a href="({t_url m=ktai a=page_fh_diary})&amp;target_c_diary_id=({$c_diary_id_next})&amp;({$tail})">次の日記</a>({/if})
+</center>
+({/if})
+
 ({if $c_diary_comment})
 <hr color="#({$ktai_color_config.border_01})">
 <center>
