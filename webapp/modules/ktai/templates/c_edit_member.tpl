@@ -20,11 +20,11 @@
 <br>
 <a href="({t_url m=ktai a=page_c_edit_member_delete_c_commu_member_confirm})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;target_c_member_id=({$item.c_member_id})&amp;({$tail})">ｺﾐｭﾆﾃｨから退会させる</a><br>
 ({if $count_member > 1 && $c_commu.c_member_id_sub_admin != $u})
-({if $admin_list})
-<a href="({t_url m=ktai a=do_c_edit_member_insert_c_commu_admin_confirm})&amp;target_c_commu_id=({$item.c_member_id})&amp;target_c_member_id=({$item.c_member_id})&amp;({$tail})">管理権を渡す</a><br>
+({if $item.is_display_admin})
+<a href="({t_url m=ktai a=page_c_admin_request})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;target_c_member_id=({$item.c_member_id})&amp;({$tail})">管理権を渡す</a><br>
 ({/if})
-({if $subadmin_list})
-<a href="({t_url m=ktai a=do_c_edit_member_insert_c_commu_sub_admin_confirm})&amp;target_c_commu_id=({$item.c_member_id})&amp;target_c_member_id=({$item.c_member_id})&amp;({$tail})">副管理者に任命</a><br>
+({if $item.is_display_sub_admin})
+<a href="({t_url m=ktai a=page_c_sub_admin_request})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;target_c_member_id=({$item.c_member_id})&amp;({$tail})">副管理者に任命</a><br>
 ({/if})
 ({/if})
 ({/if})
