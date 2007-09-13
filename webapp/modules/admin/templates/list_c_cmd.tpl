@@ -14,17 +14,26 @@
     "({$permit})"({if !$smarty.foreach.permits.last}),({/if})
     ({/foreach})
     );
+    /***
+     * チェックボックスによる小窓使用範囲設定の可否を切り替える
+     *
+     * 「使用許可」セレクトボックス選択後に呼ばれる
+     *
+     * @param string cmd_name CMD名称
+     */
     function changePermitEnable(cmd_name)
     {
         var select_using = document.getElementById("select_using_" + cmd_name);
         var permit_prefix = "check_permit_";
+
         for (var i=0; i < permit_list.length; i++) {
             var permit_name = permit_list[i];
             var permit = document.getElementById(permit_prefix + cmd_name + "_" + permit_name);
-            if (select_using.selectedIndex == 1) {
+            if (select_using.selectedIndex == 1) {  // 「使用しない」が選択されている
                 permit.setAttribute('disabled', 'disabled');
-            } else {
+            } else {  // 「使用する」が選択されている
                 permit.removeAttribute('disabled');
+                permit.setAttribute('checked', 'checked');  // 全使用範囲を選択済に
             }
         }
     }
@@ -60,7 +69,7 @@
 
 <td>({$cmd_name})</td>
 <td>
-<select name="using" id="select_using_({$cmd_name})" onChange="changePermitEnable('({$cmd_name})')">
+<select name="using" id="select_using_({$cmd_name})" onchange="changePermitEnable('({$cmd_name})')">
     <option value="0">使用する
     <option value="1"({if $c_cmd.disabled}) selected="selected"({/if})>使用しない
 </select>
