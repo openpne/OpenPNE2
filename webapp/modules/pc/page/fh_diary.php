@@ -97,6 +97,9 @@ class pc_page_fh_diary extends OpenPNE_Action
         $list_set = p_fh_diary_list_diary_list4c_member_id($target_c_member_id, 7, 1, $u);
         $this->set("new_diary_list", $list_set[0]);
 
+        $this->set('c_diary_id_prev', db_diary_c_diary_id_prev4c_diary_id($target_c_member_id, $target_c_diary_id, $u));
+        $this->set('c_diary_id_next', db_diary_c_diary_id_next4c_diary_id($target_c_member_id, $target_c_diary_id, $u));
+
         //カレンダー関係
         //カレンダー開始用変数
         $time = strtotime($target_c_diary['r_datetime']);

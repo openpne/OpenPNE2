@@ -256,6 +256,34 @@ function p_common_is_active_c_diary_id($c_diary_id)
     return (bool)db_get_one($sql, array(intval($c_diary_id)));
 }
 
+/**
+ * 指定した日記の前の日記IDを取得する
+ * 
+ * @param int $c_member_id
+ * @param int $c_diary_id
+ */
+function db_diary_c_diary_id_prev4c_diary_id($c_member_id, $c_diary_id, $u = null)
+{
+    $public_flag_condition = db_diary_public_flag_condition($c_member_id, $u);
+	$sql = 'SELECT c_diary_id FROM c_diary WHERE c_member_id = ? AND c_diary_id < ?'
+         . $public_flag_condition . ' ORDER BY c_diary_id DESC';
+    return db_get_one($sql, array(intval($c_member_id), intval($c_diary_id)));
+}
+
+/**
+ * 指定した日記の次の日記IDを取得する
+ * 
+ * @param int $c_member_id
+ * @param int $c_diary_id
+ */
+function db_diary_c_diary_id_next4c_diary_id($c_member_id, $c_diary_id, $u = null)
+{
+    $public_flag_condition = db_diary_public_flag_condition($c_member_id, $u);
+    $sql = 'SELECT c_diary_id FROM c_diary WHERE c_member_id = ? AND c_diary_id > ?'
+         . $public_flag_condition . ' ORDER BY c_diary_id ASC';
+    return db_get_one($sql, array(intval($c_member_id), intval($c_diary_id)));
+}
+
 //// c_diary_comment
 
 /**
