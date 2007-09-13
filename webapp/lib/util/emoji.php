@@ -213,6 +213,7 @@ function _emoji_convert($matches)
     
     switch ($GLOBALS['__Framework']['carrier']) {
     case 'i':
+    case 'w':
         $carrior = 'i';
         break;
     case 's':
