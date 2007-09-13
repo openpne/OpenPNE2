@@ -89,7 +89,7 @@
 <table width="100%">
 ({foreach from=$c_commu_topic_comment_list name=c_commu_topic_comment item=item})
 <tr><td bgcolor="#({cycle values="`$ktai_color_config.bg_05`,`$ktai_color_config.bg_08`"})">
-<a name="tc({$smarty.foreach.c_commu_topic_comment.iteration})" href="#({if $smarty.foreach.c_commu_topic_comment.last || $item.number == 1})menu({else})tc({$smarty.foreach.c_commu_topic_comment.iteration+1})({/if})">
+<a name="tc({$smarty.foreach.c_commu_topic_comment.iteration})" href="#({if $smarty.foreach.c_commu_topic_comment.last || $item.number == 1})({if $is_prev || $is_next})pager({else})write({/if})({else})tc({$smarty.foreach.c_commu_topic_comment.iteration+1})({/if})">
 <font color="#({$ktai_color_config.bg_06})">▼</font>
 </a><font color="#({$ktai_color_config.font_02})">[({$item.number|string_format:"%03d"})]</font>({$item.r_datetime|date_format:"%m/%d %H:%M"})
 <br>
@@ -110,6 +110,7 @@
 </table>
 ({if $is_prev || $is_next})
 <center>
+<a name="pager"></a>
 ({if $is_prev})<a href="({t_url m=ktai a=page_c_bbs})&amp;target_c_commu_topic_id=({$c_commu_topic_id})&amp;page=({$page-1})&amp;({$tail})" accesskey="4">%%i128%%前を表示</a>({/if})
 ({if $is_prev && $is_next})&nbsp;({/if})
 ({if $is_next})<a href="({t_url m=ktai a=page_c_bbs})&amp;target_c_commu_topic_id=({$c_commu_topic_id})&amp;page=({$page+1})&amp;({$tail})" accesskey="6">%%i130%%次を表示</a>({/if})
@@ -120,6 +121,7 @@
 
 ({if $is_c_commu_member})
 <hr color="#({$ktai_color_config.border_01})">
+<a name="write"></a>
 ({if $msg})
 <a name="comment"><font color="#({$ktai_color_config.font_04})">({$msg})</font></a><br>
 <br>
