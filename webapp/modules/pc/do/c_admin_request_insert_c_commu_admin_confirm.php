@@ -19,9 +19,10 @@ class pc_do_c_admin_request_insert_c_commu_admin_confirm extends OpenPNE_Action
         // ----------
 
         //--- 権限チェック
-        //自分がコミュニティ管理者
-        //自分がコミュニティ副管理者ではない
-        //targetがコミュニティメンバー
+        // 自分がコミュニティ管理者
+        // 自分がコミュニティ副管理者ではない
+        // 自分へのメッセージ送信ではない
+        // targetがコミュニティメンバー
         // すでに管理者交代依頼メッセージ送信済みではない
         // すでに副管理者要請メッセージを送信済みでない
 
@@ -31,6 +32,10 @@ class pc_do_c_admin_request_insert_c_commu_admin_confirm extends OpenPNE_Action
         }
         if ($status['is_commu_sub_admin']) {
             handle_kengen_error();
+        }
+
+        if ($u == $target_c_member_id) {
+        	handle_kengen_error();
         }
 
         $status = db_common_commu_status($target_c_member_id, $target_c_commu_id);
