@@ -19,7 +19,7 @@ class ktai_page_f_message_send extends OpenPNE_Action
         }
 
         if ($target_c_member_id == $u) {  // 自分にメッセージは送れない
-        	handle_kengen_error();
+            handle_kengen_error();
         }
 
         //ターゲットの情報

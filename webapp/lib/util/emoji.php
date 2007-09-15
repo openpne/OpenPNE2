@@ -12,7 +12,7 @@ function emoji_escape($str, $remove = false)
         $emoji = '';
         $c1 = ord($str[$i]);
         if ($GLOBALS['__Framework']['carrier'] == 's') {
-        	if ($c1 == 0xF7 || $c1 == 0xF9 || $c1 == 0xFB) {
+            if ($c1 == 0xF7 || $c1 == 0xF9 || $c1 == 0xFB) {
                 $bin = substr($str, $i, 2);
                 $emoji = emoji_escape_sb($bin);
             }
