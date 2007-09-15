@@ -159,15 +159,15 @@ class OpenPNE_Auth
         static $sess_storage;
         if (is_null($sess_storage)) {
             switch (SESSION_STORAGE) {
-            	case 1:
+            case 1:
                 include_once 'OpenPNE/DBSession.php';
                 $sess_storage = new OpenPNE_DBSession(db_get_dsn('session'));
                 break;
-                case 2:
+            case 2:
                 include_once 'OpenPNE/MemcacheSession.php';
                 $sess_storage = new OpenPNE_MemcacheSession($GLOBALS['_OPENPNE_MEMCACHE_LIST']['session']['dsn']);
                 break;
-                default:
+            default:
                 return;
             }
             session_set_save_handler(array(&$sess_storage, 'open'),

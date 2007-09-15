@@ -35,7 +35,7 @@ class pc_do_c_event_invite extends OpenPNE_Action
 
         // 自分が送信対象に含まれている
         if (in_array($u, $c_member_ids)) {
-        	handle_kengen_error();
+            handle_kengen_error();
         }
         //---
 

@@ -34,7 +34,7 @@ class pc_do_h_message_box_delete_message extends OpenPNE_Action
                 //ごみ箱から移動
                 foreach ($c_message_id as $val) {
                     if (!util_is_readable_message($u, $val)) {
-                    	handle_kengen_error();
+                        handle_kengen_error();
                     }
 
                     $c_message = db_message_c_message4c_message_id($val);

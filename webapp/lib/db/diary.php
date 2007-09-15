@@ -265,7 +265,7 @@ function p_common_is_active_c_diary_id($c_diary_id)
 function db_diary_c_diary_id_prev4c_diary_id($c_member_id, $c_diary_id, $u = null)
 {
     $public_flag_condition = db_diary_public_flag_condition($c_member_id, $u);
-	$sql = 'SELECT c_diary_id FROM c_diary WHERE c_member_id = ? AND c_diary_id < ?'
+    $sql = 'SELECT c_diary_id FROM c_diary WHERE c_member_id = ? AND c_diary_id < ?'
          . $public_flag_condition . ' ORDER BY c_diary_id DESC';
     return db_get_one($sql, array(intval($c_member_id), intval($c_diary_id)));
 }

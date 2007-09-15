@@ -29,7 +29,7 @@ class ktai_do_c_edit_member_insert_c_commu_sub_admin_confirm extends OpenPNE_Act
         }
 
         if ($u == $target_c_member_id) {
-        	handle_kengen_error();
+            handle_kengen_error();
         }
 
         $target_c_commu_sub_admin_confirm_list =
