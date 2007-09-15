@@ -70,16 +70,6 @@
 <span class="caution">※使用不可にすると携帯で表示できなくなります</span>
 </td>
 </tr>
-<tr class="cell07">
-<th colspan="2">携帯固有番号</th>
-<td>
-<select class="basic" name="OPENPNE_KTAI_ID_REQUIRED">
-<option value="1"({if $smarty.const.OPENPNE_KTAI_ID_REQUIRED}) selected="selected"({/if})>必須</option>
-<option value="0"({if !$smarty.const.OPENPNE_KTAI_ID_REQUIRED}) selected="selected"({/if})>不要</option>
-</select><br />
-<span class="caution">※携帯版を使用可にしなければ必須にできません</span>
-</td>
-</tr>
 <tr class="cell08">
 <th colspan="2">登録の可否</th>
 <td>
