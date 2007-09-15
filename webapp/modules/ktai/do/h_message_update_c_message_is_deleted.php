@@ -23,7 +23,7 @@ class ktai_do_h_message_update_c_message_is_deleted extends OpenPNE_Action
         $is_sent = false;  // メッセージの送信者かどうか
 
         if (!util_is_readable_message($u, $c_message_id)) {
-        	handle_kengen_error();
+            handle_kengen_error();
         }
 
         // $u がメッセージを削除したかどうかを判定する

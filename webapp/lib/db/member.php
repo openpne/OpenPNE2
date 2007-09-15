@@ -1008,7 +1008,7 @@ function db_member_update_c_profile_my_news($c_member_id, $prof_my_news, $my_new
     $prof_my_news_id = db_get_one($sql, array('PNE_MY_NEWS'));
     $my_news_datetime_id = db_get_one($sql, array('PNE_MY_NEWS_DATETIME'));
     
-	//function cache削除
+    // function cache削除
     cache_drop_c_member_profile($c_member_id);
     
     $sql = 'DELETE FROM c_member_profile' .

@@ -30,7 +30,7 @@ class ktai_do_c_event_mail extends OpenPNE_Action
 
         // 対象者に自分が含まれている
         if (in_array($u, $c_member_ids)) {
-        	handle_kengen_error();
+            handle_kengen_error();
         }
         //---
 
