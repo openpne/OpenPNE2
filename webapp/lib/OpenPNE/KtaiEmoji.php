@@ -2870,12 +2870,12 @@ class OpenPNE_KtaiEmoji
         
         if ($o_carrier == $c_carrier) {
             // キャリアの変更がない場合はそのままIDを返す
-        	return $o_id;
+            return $o_id;
         } elseif (is_null($c_carrier)) {
             // キャリア指定がない場合はそのまま絵文字コードを返す
-        	return $o_code;
+            return $o_code;
         } else {
-        	return $this->convert_emoji_code_id($o_carrier, $o_id, $c_carrier);
+            return $this->convert_emoji_code_id($o_carrier, $o_id, $c_carrier);
         }
     }
     
@@ -2898,8 +2898,9 @@ class OpenPNE_KtaiEmoji
                 break;
             default:
                 $converter = OpenPNE_EmojiImg::getInstance();
+                break;
             }
-        	return $converter->get_emoji4emoji_code_id($c_code);
+            return $converter->get_emoji4emoji_code_id($c_code);
         }
         
         //対応する絵文字コードが変換先キャリアにない場合は代替文字を返す
