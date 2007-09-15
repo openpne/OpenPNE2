@@ -467,7 +467,7 @@
 
 <span class="caution">削除の際はトラブル等を避けるため、あらかじめ参加者へ削除を告知してください。</span>
 
-<div align="center" syyle="text-align:center;">
+<div align="center" style="text-align:center;">
 ({t_form m=pc a=page_c_event_delete_confirm})
 <input type="hidden" name="target_c_commu_topic_id" value="({$event.c_commu_topic_id})">
 <input type="submit" class="submit" value="　　削　除　　">
