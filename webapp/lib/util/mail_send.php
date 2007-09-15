@@ -829,13 +829,4 @@ function send_mail_admin_rank_up($c_member_id, $before_rank, $after_rank)
     return fetch_send_mail(ADMIN_EMAIL, 'm_admin_rank_up', $params);
 }
 
-//携帯個体識別番号を登録する必要がある場合に送られるメール
-function do_mail_sns_regist_ktai_id_mail_send($c_member_id, $session, $ktai_address)
-{
-    $params['SNS_NAME'] = SNS_NAME;
-    $p = array('id' => $c_member_id, 'ses' => $session);
-    $params['url'] = openpne_gen_url('ktai', 'page_o_regist_ktai_id', $p);
-    return fetch_send_mail($ktai_address, 'm_ktai_regist_ktai_id', $params);
-}
-
 ?>

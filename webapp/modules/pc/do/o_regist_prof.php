@@ -102,20 +102,6 @@ class pc_do_o_regist_prof extends OpenPNE_Action
         if (t_isFutureDate($prof['birth_day'], $prof['birth_month'], $prof['birth_year'])) {
             $errors[] = '生年月日を未来に設定することはできません';
         }
-        
-        if (OPENPNE_KTAI_ID_REQUIRED) {
-        	//携帯アドレスチェック
-            if (!db_common_is_mailaddress($prof['ktai_address'])) {
-                $errors[] = "メールアドレスを正しく入力してください";
-            } elseif (db_member_is_sns_join4mail_address($prof['ktai_address'])) {
-                $errors[] = "そのアドレスは既に登録済みです";
-            } elseif (!db_member_is_limit_domain4mail_address($prof['ktai_address'])) {
-                $errors[] = "そのアドレスは登録できません";
-            } elseif (!is_ktai_mail_address($prof['ktai_address'])) {
-                $errors[] = "携帯アドレスを入力してください";
-            }
-        }
-        
 
         if ($mode != 'input' && $errors) {
             $_REQUEST['err_msg'] = $errors;
@@ -191,17 +177,6 @@ class pc_do_o_regist_prof extends OpenPNE_Action
 
             // 登録完了メール送信
             do_regist_prof_do_regist2_mail_send($u);
-            
-            // 携帯登録
-            if (OPENPNE_KTAI_ID_REQUIRED) {
-                db_member_delete_c_member_ktai_pre4ktai_address($prof['ktai_address']);
-                db_member_delete_c_ktai_address_pre4ktai_address($prof['ktai_address']);
-                
-                $session = create_hash();
-                db_member_insert_c_ktai_address_pre($u, $session, $prof['ktai_address']);
-        
-                do_mail_sns_regist_ktai_id_mail_send($u, $session, $prof['ktai_address']);
-            }
 
             openpne_redirect('pc', 'page_o_regist_end', array('c_member_id' => $u));
         }
@@ -237,9 +212,6 @@ class pc_do_o_regist_prof extends OpenPNE_Action
                 'max' => '31',
             ),
             'public_flag_birth_year' => array(
-                'type' => 'string',
-            ),
-            'ktai_address' => array(
                 'type' => 'string',
             ),
             'password' => array(
