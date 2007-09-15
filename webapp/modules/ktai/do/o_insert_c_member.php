@@ -83,9 +83,9 @@ class ktai_do_o_insert_c_member extends OpenPNE_Action
             $errors[] = '生年月日を未来に設定することはできません';
         }
 
-        if (IS_GET_EASY_ACCESS_ID != 0 || OPENPNE_KTAI_ID_REQUIRED) {
+        if (IS_GET_EASY_ACCESS_ID != 0) {
             $easy_access_id = OpenPNE_KtaiID::getID();
-            if (!$easy_access_id && (IS_GET_EASY_ACCESS_ID == 2 || OPENPNE_KTAI_ID_REQUIRED)) {
+            if (!$easy_access_id && (IS_GET_EASY_ACCESS_ID == 2)) {
                 $errors[] = '携帯の個体識別番号を取得できませんでした';
             }
             if (db_member_c_member_id4easy_access_id($easy_access_id)) {

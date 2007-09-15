@@ -327,38 +327,7 @@ PCアドレス <span class="caution">※</span>
 <tr>
 <td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
-({if $smarty.const.OPENPNE_KTAI_ID_REQUIRED})
 ({*********})
-<tr>
-<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
-<td class="bg_05" align="left" valign="middle">
-
-<div class="padding_s">
-
-携帯アドレス <span class="caution">※</span>
-
-</div>
-
-</td>
-<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-<td class="bg_02" align="left" valign="middle">
-
-<div class="padding_s">
-
-<input type="text" class="text" name="ktai_address" type="text" value="({$profs.ktai_address})" size="30">
-<br>※他のメンバーには公開されません
-
-</div>
-
-</td>
-<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-</tr>
-({*********})
-<tr>
-<td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-</tr>
-({*********})
-({/if})
 <tr>
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 <td class="bg_05" align="left" valign="middle">
