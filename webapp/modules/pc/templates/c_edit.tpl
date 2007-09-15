@@ -446,7 +446,7 @@
 
 ({t_form m=pc a=page_c_edit_delete_c_commu_confirm})
 <input type="hidden" name="target_c_commu_id" value="({$c_commu.c_commu_id})">
-<div align="center" syyle="text-align:center;">
+<div align="center" style="text-align:center;">
 <input type="submit" class="submit" value="　　削　除　　">
 </div>
 </form>
