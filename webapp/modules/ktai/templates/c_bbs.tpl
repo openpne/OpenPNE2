@@ -9,7 +9,7 @@
 
 ({if $c_commu_topic.event_flag != 1})
 
-<a href="#({if $c_commu_topic_comment_list})tc1({else})menu({/if})"><font color="#({$ktai_color_config.bg_06})">▼</font></a>({$c_commu_topic.r_datetime|date_format:"%m/%d %H:%M"})<br>
+<a href="#({if $c_commu_topic_comment_list})tc1({else})write({/if})"><font color="#({$ktai_color_config.bg_06})">▼</font></a>({$c_commu_topic.r_datetime|date_format:"%m/%d %H:%M"})<br>
 <a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$c_commu_topic.c_member_id})&amp;({$tail})">({$c_commu_topic.nickname|default:"&nbsp;"})</a>
 ({if $c_commu_topic.c_member_id==$u || $is_admin})
 [<a href="({t_url m=ktai a=page_c_topic_edit})&amp;target_c_commu_topic_id=({$c_commu_topic_id})&amp;({$tail})">編集</a>]
@@ -26,7 +26,7 @@
 <font color="#({$ktai_color_config.font_03})">⇒</font><a href="">このｲﾍﾞﾝﾄを友人に教える</a>
 
 <hr color="#({$ktai_color_config.border_01})">
-<a href="#({if $c_commu_topic_comment_list})tc1({else})menu({/if})"><font color="#({$ktai_color_config.bg_06})">▼</font></a><br>
+<a href="#({if $c_commu_topic_comment_list})tc1({else})write({/if})"><font color="#({$ktai_color_config.bg_06})">▼</font></a><br>
 企画者：<br>
 <a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$c_commu_topic.c_member_id})&amp;({$tail})">({$c_commu_topic.nickname|default:"&nbsp;"})</a> <br>
 <br>
@@ -89,7 +89,7 @@
 <table width="100%">
 ({foreach from=$c_commu_topic_comment_list name=c_commu_topic_comment item=item})
 <tr><td bgcolor="#({cycle values="`$ktai_color_config.bg_05`,`$ktai_color_config.bg_08`"})">
-<a name="tc({$smarty.foreach.c_commu_topic_comment.iteration})" href="#({if $smarty.foreach.c_commu_topic_comment.last || $item.number == 1})({if $is_prev || $is_next})pager({else})write({/if})({else})tc({$smarty.foreach.c_commu_topic_comment.iteration+1})({/if})">
+<a name="tc({$smarty.foreach.c_commu_topic_comment.iteration})" href="#({if $smarty.foreach.c_commu_topic_comment.last || $item.number == 0})({if $is_prev || $is_next})pager({else})write({/if})({else})tc({$smarty.foreach.c_commu_topic_comment.iteration+1})({/if})">
 <font color="#({$ktai_color_config.bg_06})">▼</font>
 </a><font color="#({$ktai_color_config.font_02})">[({$item.number|string_format:"%03d"})]</font>({$item.r_datetime|date_format:"%m/%d %H:%M"})
 <br>
