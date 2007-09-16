@@ -1433,6 +1433,11 @@ div.listControl p.listMove a {
 #admin_page_limit_domain div.contents ul.description { padding-left: 20px;}
 #admin_page_limit_domain div.contents ul.description li { list-style-type: disc;}
 
+/** admin_page_blacklist **/
+
+#admin_page_blacklist div.contents ul.description { padding-left: 20px;}
+#admin_page_blacklist div.contents ul.description li { list-style-type: disc;}
+
 /*********** footer ***********/
 .footer { margin-top: 20px; padding: 10px 0; text-align: center;}
 .footer div.declaration a { margin: 0 3px;}
