@@ -40,19 +40,19 @@
 ({/if})
 ({if $days_birthday == 0})({* 誕生日当日　*})
 ({if $is_h_prof})
-<a href="({t_url m=ktai a=page_f_message_send})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">☆Happy Birthday☆
-<br>お誕生日にﾒｯｾｰｼﾞを送りましょう</a><br>
-({else})
 ☆Happy Birthday☆
 <br>お誕生日にﾒｯｾｰｼﾞを送りましょう<br>
+({else})
+<a href="({t_url m=ktai a=page_f_message_send})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">☆Happy Birthday☆
+<br>お誕生日にﾒｯｾｰｼﾞを送りましょう</a><br>
 ({/if})
 ({elseif $days_birthday <= 3})({* 誕生日3日以内 *})
 ({if $is_h_prof})
-<a href="({t_url m=ktai a=page_f_message_send})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">☆もうすぐ誕生日です!☆
-<br>お誕生日にはﾒｯｾｰｼﾞを送りましょう</a><br>
-({else})
 ☆もうすぐ誕生日です!☆
 <br>お誕生日にはﾒｯｾｰｼﾞを送りましょう<br>
+({else})
+<a href="({t_url m=ktai a=page_f_message_send})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">☆もうすぐ誕生日です!☆
+<br>お誕生日にはﾒｯｾｰｼﾞを送りましょう</a><br>
 ({/if})
 ({/if})
 </td></tr>
