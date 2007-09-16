@@ -22,6 +22,9 @@
 <table width="100%" bgcolor="#({$ktai_color_config.bg_03})">
 <tr><td align="center" width="50%" valign="top">
 <img src="({t_img_url filename=$c_commu.image_filename w=120 h=120 noimg=no_logo_small f=jpg})" alt="({$c_commu.name})"><br>
+({if $c_commu.c_member_id_admin==$u})
+[<a href="({t_url m=ktai a=page_c_edit_image})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">写真を編集</a>]<br>
+({/if})
 </td>
 <td valign="top">
 <font color="#({$ktai_color_config.font_02})">ID：</font><br>
