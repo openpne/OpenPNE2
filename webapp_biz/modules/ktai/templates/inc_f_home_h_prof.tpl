@@ -30,21 +30,28 @@
 ({/if})
 
 <table width="100%" bgcolor="#({$ktai_color_config.bg_05})">
-<tr><td colspan="2" align="center">
+({if !$is_h_prof})
 ({if ($is_friend || $friend_path)})
+<tr><td colspan="2" align="center">
 ({if $friend_path})<a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$friend_path.c_member_id})">({$friend_path.nickname})</a>さんの({$WORD_FRIEND_HALF})({/if})
 ({if $is_friend})({$WORD_MY_FRIEND_HALF})({/if})
 <hr color="#({$ktai_color_config.border_02})">
-({else})
-&nbsp;
+</td></tr>
 ({/if})
 ({if $days_birthday == 0})({* 誕生日当日　*})
-<a href="({t_url m=ktai a=page_f_message_send})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">☆Happy Birthday☆
-<br>お誕生日にﾒｯｾｰｼﾞを送りましょう</a><br>
+<tr><td colspan="2" align="center">
+<a href="({t_url m=ktai a=page_f_message_send})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">☆Happy Birthday☆<br>
+お誕生日にﾒｯｾｰｼﾞを送りましょう</a><br>
+</td></tr>
 ({elseif $days_birthday <= 3})({* 誕生日3日以内 *})
-<a href="({t_url m=ktai a=page_f_message_send})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">☆もうすぐ誕生日です!☆
-<br>お誕生日にはﾒｯｾｰｼﾞを送りましょう</a><br>
+<tr><td colspan="2" align="center">
+<a href="({t_url m=ktai a=page_f_message_send})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">☆もうすぐ誕生日です!☆<br>
+お誕生日にはﾒｯｾｰｼﾞを送りましょう</a><br>
+</td></tr>
 ({/if})
+({/if})
+
+<tr><td colspan="2" align="center">
 <hr color="#({$ktai_color_config.border_01})">
 %%i69%%<a href="({t_url m=ktai_biz a=page_fh_biz_todo_list})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">Todoﾘｽﾄ</a>/%%i176%%<a href="({t_url m=ktai_biz a=page_fh_calendar_week})&amp;target_id=({$target_c_member.c_member_id})&amp;({$tail})">週間ｶﾚﾝﾀﾞｰ</a><br>
 <hr color="#({$ktai_color_config.border_02})">
@@ -63,8 +70,9 @@
 <td valign="top">
 ({strip})
 <font color="#({$ktai_color_config.font_02})">ID：</font>({$target_c_member.c_member_id})<br>
+
 ({capture name="birth"})
-({if $target_c_member.age !== NULL})<font color="#({$ktai_color_config.font_02})">年齢：</font>({$target_c_member.age})歳<br>
+({if $target_c_member.age !== NULL && $target_c_member.public_flag_birth_year == 'private' && $target_c_member.public_flag_birth_year == 'public' || $is_h_prof || ($target_c_member.public_flag_birth_year == 'friend' && $is_friend)})<font color="#({$ktai_color_config.font_02})">年齢：</font>({$target_c_member.age})歳<br>
 ({if $is_h_prof && $target_c_member.public_flag_birth_year == 'friend'})<font color="#({$ktai_color_config.font_04})">※({$WORD_MY_FRIEND_HALF})まで公開</font><br>({/if})
 ({/if})
 ({if $target_c_member.birth_month && $target_c_member.birth_day})
@@ -73,56 +81,28 @@
 ({/capture})
 
 ({foreach from=$target_c_member.profile key=key item=item})
+({if $item.public_flag != "private" && ($is_h_prof || ($item.public_flag == "public" || ($item.public_flag == "friend" && $is_friend)))})
 ({if $item.form_type != 'textarea'})
-({if !$_cnt_nick && $profile_list[$key].sort_order >= $smarty.const.SORT_ORDER_NICK
-  && !$_cnt_birth && $profile_list[$key].sort_order >= $smarty.const.SORT_ORDER_BIRTH})
-({counter assign="_cnt_nick"})
-({counter assign="_cnt_birth"})
-({if $smarty.const.SORT_ORDER_NICK > $smarty.const.SORT_ORDER_BIRTH})
-({$smarty.capture.birth|smarty:nodefaults})
-({$smarty.capture.nick|smarty:nodefaults})
-({else})
-({$smarty.capture.nick|smarty:nodefaults})
-({$smarty.capture.birth|smarty:nodefaults})
-({/if})
-({/if})
-
-({if !$_cnt_nick && $profile_list[$key].sort_order >= $smarty.const.SORT_ORDER_NICK})
-({counter assign="_cnt_nick"})
-({$smarty.capture.nick|smarty:nodefaults})
-({/if})
 
 ({if !$_cnt_birth && $profile_list[$key].sort_order >= $smarty.const.SORT_ORDER_BIRTH})
 ({counter assign="_cnt_birth"})
 ({$smarty.capture.birth|smarty:nodefaults})
 ({/if})
 
-({if $item.value && $item.form_type != 'textarea'})
-	<font color="#({$ktai_color_config.font_02})">({$item.caption})：</font>
-({/if})
-
+<font color="#({$ktai_color_config.font_02})">({$item.caption})：</font>
 ({if $item.form_type == 'checkbox'})
     ({$item.value|@t_implode:", "})
 ({else})
     ({$item.value})
 ({/if})
 <br>
-({/if})
 ({if $is_h_prof && $item.public_flag == 'friend'})<font color="#({$ktai_color_config.font_04})">※({$WORD_MY_FRIEND_HALF})まで公開</font><br>({/if})
+
+({/if})
+({/if})
 ({/foreach})
 
-({if !$_cnt_nick && !$_cnt_birth})
-({if $smarty.const.SORT_ORDER_NICK > $smarty.const.SORT_ORDER_BIRTH})
-({$smarty.capture.birth|smarty:nodefaults})
-({$smarty.capture.nick|smarty:nodefaults})
-({else})
-({$smarty.capture.nick|smarty:nodefaults})
-({$smarty.capture.birth|smarty:nodefaults})
-({/if})
-({else})
-({if !$_cnt_nick})({$smarty.capture.nick|smarty:nodefaults})({/if})
 ({if !$_cnt_birth})({$smarty.capture.birth|smarty:nodefaults})({/if})
-({/if})
 ({/strip})
 </td></tr>
 <tr><td colspan="2">
