@@ -8,7 +8,7 @@
 <img src="./skin/dummy.gif" alt="" class="v_spacer_l">
 
 <!-- ******************************************** -->
-<!-- ******ここから：管理者交代依頼****** -->
+<!-- ******ここから：副管理者要請****** -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:580px;" class="border_07">
 <tr>
 <td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
@@ -18,7 +18,7 @@
 <tr>
 <td class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
 <td class="bg_01" align="center">
-<!-- *ここから：管理者交代依頼＞内容* -->
+<!-- *ここから：副管理者要請＞内容* -->
 ({*ここから：header*})
 <table border="0" cellspacing="0" cellpadding="0" style="width:566px;" class="border_01">
 <tr>
@@ -42,7 +42,7 @@
 
 <div class="padding_w_m">
 
-({$target_c_member.nickname})さんに副管理者交代依頼を送信します。よろしいですか。
+({$target_c_member.nickname})さんに副管理者要請メッセージを送信します。よろしいですか。
 
 </div>
 
@@ -195,7 +195,7 @@
 ({*ここから：footer*})
 <!-- 無し -->
 ({*ここまで：footer*})
-<!-- *ここまで：副管理者交代依頼＞＞内容* -->
+<!-- *ここまで：副管理者要請＞＞内容* -->
 </td>
 <td class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
 </tr>
@@ -206,7 +206,7 @@
 </tr>
 </table>
 
-<!-- ******ここまで：副管理者交代依頼****** -->
+<!-- ******ここまで：副管理者要請****** -->
 <!-- ******************************************** -->
 
 <img src="./skin/dummy.gif" alt="" class="v_spacer_l">
