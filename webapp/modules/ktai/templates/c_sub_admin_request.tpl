@@ -7,7 +7,7 @@
 副管理者交代依頼<br>
 </td></tr></table>
 
-({$member.nickname})さんに副管理者交代依頼を送信します。よろしいですか。
+({$member.nickname})さんに副管理者交代依頼を送信します。
 <hr color="#({$ktai_color_config.border_01})">
 ({if $msg})<font color="#({$ktai_color_config.font_04})">({$msg})</font><br>({/if})
 <font color="#({$ktai_color_config.font_02})">宛先：</font><br>

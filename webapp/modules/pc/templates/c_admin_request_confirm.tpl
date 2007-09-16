@@ -42,7 +42,7 @@
 
 <div class="padding_w_m">
 
-この人に管理者交代依頼を送信します。よろしいですか。
+({$target_c_member.nickname})さんに管理者交代依頼を送信します。よろしいですか。
 
 </div>
 
