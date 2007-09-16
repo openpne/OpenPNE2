@@ -878,8 +878,9 @@ show_flash('flash/list.swf', '({$flashvars})');
 <!-- ここまで：主内容＞誕生日 -->
 ({/capture})
 ({foreach from=$target_c_member.profile key=key item=item})
-({if $item.public_flag != "private" && ($item.public_flag == "public" || ($item.public_flag == "friend" && $is_friend) || $is_h_prof)})
+({if $item.public_flag != "private" && ($is_h_prof || ($item.public_flag == "public" || ($item.public_flag == "friend" && $is_friend)))})
 ({strip})
+
 ({if !$_cnt_nick && $profile_list[$key].sort_order >= $smarty.const.SORT_ORDER_NICK
   && !$_cnt_birth && $profile_list[$key].sort_order >= $smarty.const.SORT_ORDER_BIRTH})
 ({counter assign="_cnt_nick"})
@@ -905,7 +906,6 @@ show_flash('flash/list.swf', '({$flashvars})');
 
 ({/strip})
 <!-- ここから：主内容＞({$item.caption}) -->
-({if $item.value})
 <tr>
 <td class="border_01 bg_09 padding_s" style="width:90px;border-right:none;border-top:none;">
 
@@ -928,7 +928,6 @@ show_flash('flash/list.swf', '({$flashvars})');
 
 </td>
 </tr>
-({/if})
 ({/if})
 <!-- ここまで：主内容＞({$item.caption}) -->
 ({/foreach})
