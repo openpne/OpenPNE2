@@ -29,6 +29,9 @@
 <font color="#({$ktai_color_config.font_02})">本文：</font><br>
 <textarea name="body" rows="6">({$target_c_diary.body})</textarea><br>
 <br>
+<font color="#({$ktai_color_config.font_02})">写真：</font><br>
+%%i68%%<a href="({t_url m=ktai a=page_h_diary_edit_image})&amp;target_c_diary_id=({$target_c_diary.c_diary_id})&amp;({$tail})">写真を編集する</a><br>
+<br>
 <font color="#({$ktai_color_config.font_02})">公開範囲：</font><br>
 <input type="radio" name="public_flag" value="public"({if $target_c_diary.public_flag == "public"}) checked="checked"({/if})>全員に公開<br>
 <input type="radio" name="public_flag" value="friend"({if $target_c_diary.public_flag == "friend"}) checked="checked"({/if})>({$WORD_MY_FRIEND_HALF})まで公開<br>
