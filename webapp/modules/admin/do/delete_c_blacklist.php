@@ -10,7 +10,7 @@ class admin_do_delete_c_blacklist extends OpenPNE_Action
     {
         db_admin_delete_c_blacklist($requests['target_c_blacklist_id']);
         
-        admin_client_redirect('blacklist', '削除しました');
+        admin_client_redirect('blacklist', 'ブラックリストメンバーを削除しました');
     }
 }
 
