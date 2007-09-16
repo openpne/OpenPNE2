@@ -84,7 +84,7 @@
 			<th class="cell16" rowspan="2">PCアドレス</th>
 			<th class="cell17" rowspan="2">携帯アドレス</th>
 			<th class="cell18" rowspan="3">登録時アドレス</th>
-			<th class="cell18" rowspan="3">個体識別番号</th>
+			<th class="cell18" rowspan="3">個体識別番号<br />※暗号化されています</th>
 			<th class="cell15" rowspan="3"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;order=c_member_id-1({$cond})">▲</a>ID<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;order=c_member_id-2({$cond})">▼</a></th>
 		</tr>
 		<tr>

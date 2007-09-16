@@ -1,6 +1,8 @@
 ({$inc_header|smarty:nodefaults})
 ({ext_include file="inc_subnavi_adminSNSConfig.tpl"})
-({assign var="page_name" value="ブラックリスト設定"})
+({assign var="page_name" value="ブラックリスト削除確認"})
+({assign var="parent_page_name" value="ブラックリストメンバー管理"})
+({capture name=parent_page_url})?m=({$module_name})&amp;a=page_({$hash_tbl->hash('blacklist')})({/capture})
 ({ext_include file="inc_tree_adminSNSConfig.tpl"})
 </div>
 
@@ -10,7 +12,7 @@
 <h2>ブラックリスト削除確認</h2>
 <div class="contents">
 以下の内容を削除します。よろしいですか？<br>
-ブラックリストに追加された個体識別番号を持つユーザは、ログイン・新規登録が可能となります。
+ブラックリストから削除された個体識別番号を持つユーザは、ログイン・新規登録が可能となります。
 <form action="./" method="post">
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('delete_c_blacklist','do')})" />
