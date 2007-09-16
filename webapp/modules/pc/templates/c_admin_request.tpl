@@ -48,7 +48,7 @@
 
 <div class="padding_w_m">
 
-({$member.nickname})さんに管理者交代依頼を送信します。よろしいですか。
+({$member.nickname})さんに管理者交代依頼を送信します。
 
 </div>
 
