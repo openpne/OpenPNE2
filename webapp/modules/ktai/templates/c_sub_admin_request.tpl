@@ -4,10 +4,10 @@
 <font color="#({$ktai_color_config.font_01})"><a name="top">({$c_commu.name})</a></font><br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_02})" align="center">
-副管理者交代依頼<br>
+副管理者要請<br>
 </td></tr></table>
 
-({$member.nickname})さんに副管理者交代依頼を送信します。
+({$member.nickname})さんに副管理者要請ﾒｯｾｰｼﾞを送信します。
 <hr color="#({$ktai_color_config.border_01})">
 ({if $msg})<font color="#({$ktai_color_config.font_04})">({$msg})</font><br>({/if})
 <font color="#({$ktai_color_config.font_02})">宛先：</font><br>
