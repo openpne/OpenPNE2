@@ -35,12 +35,11 @@ class ktai_do_h_config_prof_update_c_member extends OpenPNE_Action
         // 必須項目チェック
         $profile_list = db_member_c_profile_list4null();
         foreach ($profile_list as $profile) {
-            if ($profile['disp_config'] &&
-                $profile['is_required'] &&
-                (is_null(!$c_member_profile_list[$profile['name']]['value']) || !$c_member_profile_list[$profile['name']]['value'] === '')
-            ) {
-                $errors[$profile['name']] = "{$profile['caption']}を入力してください";
-                break;
+            $value = $c_member_profile_list[$profile['name']]['value'];
+            if ($profile['disp_config'] && $profile['is_required']) {
+                if (is_null($value) || $value === '' || $value === array()) {
+                    $errors[$profile['name']] = $profile['caption'] . 'を入力してください';
+                }
             }
         }
 
