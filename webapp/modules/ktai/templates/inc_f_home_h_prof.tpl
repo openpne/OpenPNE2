@@ -30,32 +30,26 @@
 ({/if})
 
 <table width="100%" bgcolor="#({$ktai_color_config.bg_05})">
-<tr><td colspan="2" align="center">
+({if !$is_h_prof})
 ({if ($is_friend || $friend_path)})
+<tr><td colspan="2" align="center">
 ({if $friend_path})<a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$friend_path.c_member_id})">({$friend_path.nickname})</a>さんの({$WORD_FRIEND_HALF})({/if})
 ({if $is_friend})({$WORD_MY_FRIEND_HALF})({/if})
 <hr color="#({$ktai_color_config.border_02})">
-({else})
-&nbsp;
+</td></tr>
 ({/if})
 ({if $days_birthday == 0})({* 誕生日当日　*})
-({if $is_h_prof})
-☆Happy Birthday☆
-<br>お誕生日にﾒｯｾｰｼﾞを送りましょう<br>
-({else})
-<a href="({t_url m=ktai a=page_f_message_send})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">☆Happy Birthday☆
-<br>お誕生日にﾒｯｾｰｼﾞを送りましょう</a><br>
-({/if})
-({elseif $days_birthday <= 3})({* 誕生日3日以内 *})
-({if $is_h_prof})
-☆もうすぐ誕生日です!☆
-<br>お誕生日にはﾒｯｾｰｼﾞを送りましょう<br>
-({else})
-<a href="({t_url m=ktai a=page_f_message_send})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">☆もうすぐ誕生日です!☆
-<br>お誕生日にはﾒｯｾｰｼﾞを送りましょう</a><br>
-({/if})
-({/if})
+<tr><td colspan="2" align="center">
+<a href="({t_url m=ktai a=page_f_message_send})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">☆Happy Birthday☆<br>
+お誕生日にﾒｯｾｰｼﾞを送りましょう</a><br>
 </td></tr>
+({elseif $days_birthday <= 3})({* 誕生日3日以内 *})
+<tr><td colspan="2" align="center">
+<a href="({t_url m=ktai a=page_f_message_send})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">☆もうすぐ誕生日です!☆<br>
+お誕生日にはﾒｯｾｰｼﾞを送りましょう</a><br>
+</td></tr>
+({/if})
+({/if})
 
 <tr><td align="center" width="50%" valign="top">
 <img src="({t_img_url filename=$target_c_member.image_filename w=120 h=120 f=jpg noimg=no_image})" alt="({$target_c_member.nickname})さん"><br>
