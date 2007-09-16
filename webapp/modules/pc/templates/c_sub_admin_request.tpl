@@ -8,7 +8,7 @@
 <img src="./skin/dummy.gif" alt="" class="v_spacer_l">
 
 <!-- ******************************************** -->
-<!-- ******ここから：副副管理者交代依頼****** -->
+<!-- ******ここから：副管理者要請****** -->
 
 ({t_form m=pc a=page_c_sub_admin_request_confirm})
 <input type="hidden" name="sessid" value="({$PHPSESSID})">
@@ -24,12 +24,12 @@
 <tr>
 <td class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
 <td class="bg_01" align="center">
-<!-- *ここから：副管理者交代依頼＞内容* -->
+<!-- *ここから：副管理者要請＞内容* -->
 ({*ここから：header*})
 <table border="0" cellspacing="0" cellpadding="0" style="width:566px;" class="border_01">
 <tr>
 <td style="width:36px;" class="bg_06"><img src="({t_img_url_skin filename=content_header_1})" style="width:30px;height:20px;" class="dummy"></td>
-<td style="width:528px;padding:2px 0px;" class="bg_06"><span class="b_b c_00">副管理者交代依頼</span></td>
+<td style="width:528px;padding:2px 0px;" class="bg_06"><span class="b_b c_00">副管理者要請</span></td>
 </tr>
 </table>
 <!-- ここまで：小タイトル -->
@@ -48,7 +48,7 @@
 
 <div class="padding_w_m">
 
-({$member.nickname})さんに副管理者交代依頼を送信します。
+({$member.nickname})さんに副管理者要請メッセージを送信します。
 
 </div>
 
@@ -181,7 +181,7 @@
 ({*ここから：footer*})
 <!-- 無し -->
 ({*ここまで：footer*})
-<!-- *ここまで：副管理者交代依頼＞＞内容* -->
+<!-- *ここまで：副管理者要請＞＞内容* -->
 </td>
 <td class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
 </tr>
@@ -192,7 +192,7 @@
 </tr>
 </table>
 </form>
-<!-- ******ここまで：副管理者交代依頼****** -->
+<!-- ******ここまで：副管理者要請****** -->
 <!-- ******************************************** -->
 
 <img src="./skin/dummy.gif" alt="" class="v_spacer_l">
