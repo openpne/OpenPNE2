@@ -12,7 +12,6 @@ class admin_page_blacklist_add extends OpenPNE_Action
             admin_client_redirect('blacklist', 'その携帯個体識別番号(暗号化済)は既に登録されています');
         }
 
-        $this->set('easy_access_id', $requests['easy_access_id']);
         return 'success';
     }
 }
