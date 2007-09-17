@@ -26,7 +26,7 @@
 ({/if})<br>
 <a href="({t_url m=ktai a=page_c_bbs})&amp;target_c_commu_topic_id=({$item.c_commu_topic_id})&amp;({$tail})">({$item.name|t_truncate:50:""})(({$item.write_num}))</a>
 ({if $item.image_filename1 || $item.image_filename2 || $item.image_filename3})
-%%i68%%
+[i:68]
 ({/if})
 <br>
 </td></tr>
@@ -39,14 +39,14 @@
 ({if $is_prev || $is_next})
 <br>
 <center>
-({if $is_prev})<a href="({t_url m=ktai a=page_c_topic_list})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;page=({$page})&amp;direc=-1&amp;({$tail})" accesskey="4">%%i128%%前を表示</a>({/if})
+({if $is_prev})<a href="({t_url m=ktai a=page_c_topic_list})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;page=({$page})&amp;direc=-1&amp;({$tail})" accesskey="4">[i:128]前を表示</a>({/if})
 ({if $is_prev && $is_next})&nbsp;({/if})
-({if $is_next})<a href="({t_url m=ktai a=page_c_topic_list})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;page=({$page})&amp;direc=1&amp;({$tail})" accesskey="6">%%i130%%次を表示</a>({/if})
+({if $is_next})<a href="({t_url m=ktai a=page_c_topic_list})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;page=({$page})&amp;direc=1&amp;({$tail})" accesskey="6">[i:130]次を表示</a>({/if})
 <br>
 </center>
 ({/if})
 ({/if})
 <hr color="#({$ktai_color_config.border_01})">
-%%i90%%<a href="({t_url m=ktai a=page_c_home})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">ｺﾐｭﾆﾃｨに戻る</a><br>
+[i:90]<a href="({t_url m=ktai a=page_c_home})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">ｺﾐｭﾆﾃｨに戻る</a><br>
 
 ({$inc_ktai_footer|smarty:nodefaults})

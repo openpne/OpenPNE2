@@ -2871,7 +2871,7 @@ class OpenPNE_KtaiEmoji
     function convert_emoji_code($o_code, $c_carrier = null)
     {
         $o_carrier = $o_code[0];
-        $o_id = substr($o_code, 1);
+        $o_id = substr($o_code, 2);
         
         if ($o_carrier == $c_carrier) {
             // キャリアの変更がない場合はそのままIDを返す
@@ -2910,7 +2910,7 @@ class OpenPNE_KtaiEmoji
         
         //対応する絵文字コードが変換先キャリアにない場合は代替文字を返す
         $o_carrier = $o_code[0];
-        $o_id = substr($o_code, 1);
+        $o_id = substr($o_code, 2);
         return $this->relation_list[$o_carrier][$c_carrier][$o_id]['value'];
     }
 }

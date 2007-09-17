@@ -11,7 +11,7 @@
 ({/if})
 </td></tr></table>
 
-%%i106%%<a href="mailto:({$blog_address})">ﾒｰﾙで投稿</a><br>
+[i:106]<a href="mailto:({$blog_address})">ﾒｰﾙで投稿</a><br>
 画像を添付すると写真付き日記になります。
 
 <hr color="#({$ktai_color_config.border_01})">
@@ -30,7 +30,7 @@
 <textarea name="body" rows="6">({$target_c_diary.body})</textarea><br>
 <br>
 <font color="#({$ktai_color_config.font_02})">写真：</font><br>
-%%i68%%<a href="({t_url m=ktai a=page_h_diary_edit_image})&amp;target_c_diary_id=({$target_c_diary.c_diary_id})&amp;({$tail})">写真を編集する</a><br>
+[i:68]<a href="({t_url m=ktai a=page_h_diary_edit_image})&amp;target_c_diary_id=({$target_c_diary.c_diary_id})&amp;({$tail})">写真を編集する</a><br>
 <br>
 <font color="#({$ktai_color_config.font_02})">公開範囲：</font><br>
 <input type="radio" name="public_flag" value="public"({if $target_c_diary.public_flag == "public"}) checked="checked"({/if})>全員に公開<br>
@@ -59,6 +59,6 @@
 ({/if})
 
 <hr color="#({$ktai_color_config.border_01})">
-%%i90%%<a href="({t_url m=ktai a=page_fh_diary_list})&amp;({$tail})">日記ﾘｽﾄ</a><br>
+[i:90]<a href="({t_url m=ktai a=page_fh_diary_list})&amp;({$tail})">日記ﾘｽﾄ</a><br>
 
 ({$inc_ktai_footer|smarty:nodefaults})

@@ -29,6 +29,7 @@ class OpenPNE_KtaiEmoji_Img extends OpenPNE_KtaiEmoji_Common
     function get_emoji4emoji_code_id($emoji_code_id)
     {
         $carrier_id = $emoji_code_id{0};
+        $emoji_code_id = str_replace(':', '', $emoji_code_id);
         $emoji_path = OPENPNE_URL . $this->emoji_image_dir . $carrier_id .'/' . $emoji_code_id . $this->emoji_image_extension;
 
         $str = '<img src="' . $emoji_path . '" alt="絵文字：' . $emoji_code_id . '">';

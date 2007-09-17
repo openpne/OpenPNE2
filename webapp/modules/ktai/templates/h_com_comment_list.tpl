@@ -16,7 +16,7 @@
 <a href="({t_url m=ktai a=page_c_bbs})&amp;target_c_commu_topic_id=({$each_topic.c_commu_topic_id})&amp;({$tail})">({$each_topic.c_commu_topic_name|t_truncate:50:""})(({$each_topic.number}))</a>
 (({$each_topic.c_commu_name|t_truncate:17:""}))
 ({if $each_topic.image_filename1 || $each_topic.image_filename2 || $each_topic.image_filename3})
-%%i68%%
+[i:68]
 ({/if})
 <br>
 </td></tr>
@@ -29,9 +29,9 @@
 
 ({if $is_prev || $is_next})
 <center>
-({if $is_prev})<a href="({t_url m=ktai a=page_h_com_comment_list})&amp;page=({$page-1})&amp;({$tail})" accesskey="4">%%i128%%前を表示</a>({/if})
+({if $is_prev})<a href="({t_url m=ktai a=page_h_com_comment_list})&amp;page=({$page-1})&amp;({$tail})" accesskey="4">[i:128]前を表示</a>({/if})
 ({if $is_prev && $is_next})&nbsp;({/if})
-({if $is_next})<a href="({t_url m=ktai a=page_h_com_comment_list})&amp;page=({$page+1})&amp;({$tail})" accesskey="6">%%i130%%次を表示</a>({/if})
+({if $is_next})<a href="({t_url m=ktai a=page_h_com_comment_list})&amp;page=({$page+1})&amp;({$tail})" accesskey="6">[i:130]次を表示</a>({/if})
 </center>
 ({/if})
 <br>
