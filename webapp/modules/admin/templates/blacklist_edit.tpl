@@ -12,9 +12,10 @@
 ({if $msg})<p class="actionMsg">({$msg})</p>({/if})
 <h2>ブラックリストメンバー編集</h2>
 <div class="contents">
-<p>暗号化された個体識別番号と備考を入力してください。</p>
-<p>暗号化された個体識別番号は<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member','page')})">メンバーリスト</a>で確認することが出来ます。</p>
-<p class="caution">※ブラックリストメンバーに追加された個体識別番号を持つメンバーは、ログイン・新規登録が制限されます。</p>
+
+<p>携帯個体識別番号(暗号化済)とメモを入力してください。</p>
+<p>携帯個体識別番号(暗号化済)は<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member','page')})">メンバーリスト</a>で確認することが出来ます。</p>
+<p class="caution">※ブラックリストメンバーに追加されたメンバーは、ログイン・新規登録が制限されます。</p>
 
 <form action="./" method="post">
 <input type="hidden" name="m" value="({$module_name})" />
@@ -24,22 +25,21 @@
 <table class="basicType2">
 <tbody>
 <tr>
-<th>個体識別番号<br />※暗号化されたもの</th>
+<th>携帯個体識別番号(暗号化済)</th>
 <td><input name="easy_access_id" type="text" class="basic" value="({$blacklist.easy_access_id})" size="38" /></td>
 </tr>
 <tr>
-<th>メモ</th>
-<td><textarea class="basic" name="info" cols="30" rows="3">({$blacklist.info})</textarea>
-<br />
-アクセス制限理由などを記入してください。
-</td>
+<th>該当するメンバー</th>
+<td><a href="({t_url _absolute=1 m=pc a=page_f_home})&amp;target_c_member_id=({$member.c_member_id})" target="_blank">({$member.nickname})</a></td>
 </tr>
 <tr>
-<th>&nbsp;</th>
-<td><p class="textBtn"><input type="submit" class="submit" value=" 編　集 " /></p></td>
+<th>メモ</th>
+<td><textarea class="basic" name="info" cols="30" rows="3">({$blacklist.info})</textarea></td>
 </tr>
 </tbody>
 </table>
+
+<p class="textBtn"><input type="submit" class="submit" value="確認画面へ" /></p>
 </form>
 
 ({$inc_footer|smarty:nodefaults})
