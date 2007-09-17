@@ -8,7 +8,7 @@
 </td></tr></table>
 
 ({if $INC_NAVI_type=="h"})
-%%i1014%%<a href="({t_url m=ktai a=page_h_diary_edit})&amp;({$tail})">日記を書く</a>
+[i:1014]<a href="({t_url m=ktai a=page_h_diary_edit})&amp;({$tail})">日記を書く</a>
 <hr color="#({$ktai_color_config.border_01})">
 ({/if})
 
@@ -26,7 +26,7 @@
 ({$target_diary.r_datetime|date_format:"%Y/%m/%d %H:%M"})({if $INC_NAVI_type=="h"}) [<a href="({t_url m=ktai a=page_h_diary_edit})&amp;target_c_diary_id=({$target_diary.c_diary_id})&amp;({$tail})">編集</a>]({/if})<br>
 <a href="({t_url m=ktai a=page_fh_diary})&amp;target_c_diary_id=({$target_diary.c_diary_id})&amp;({$tail})">({$target_diary.subject|t_truncate:28:""})</a>(({$target_diary.num_comment}))
 ({if $target_diary.image_filename_1 || $target_diary.image_filename_2 || $target_diary.image_filename_3})
-%%i68%%
+[i:68]
 ({/if})
 <br>
 </td></tr>
@@ -37,16 +37,16 @@
 </table>
 ({if $is_prev || $is_next})
 <center>
-({if $is_prev})<a href="({t_url m=ktai a=page_fh_diary_list})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;page=({$page-1})({if $keyword})&amp;keyword=({$keyword})({/if})&amp;({$tail})" accesskey="4">%%i128%%前を表示</a>({/if})
+({if $is_prev})<a href="({t_url m=ktai a=page_fh_diary_list})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;page=({$page-1})({if $keyword})&amp;keyword=({$keyword})({/if})&amp;({$tail})" accesskey="4">[i:128]前を表示</a>({/if})
 ({if $is_prev && $is_next})&nbsp;({/if})
-({if $is_next})<a href="({t_url m=ktai a=page_fh_diary_list})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;page=({$page+1})({if $keyword})&amp;keyword=({$keyword})({/if})&amp;({$tail})" accesskey="6">%%i130%%次を表示</a>({/if})
+({if $is_next})<a href="({t_url m=ktai a=page_fh_diary_list})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;page=({$page+1})({if $keyword})&amp;keyword=({$keyword})({/if})&amp;({$tail})" accesskey="6">[i:130]次を表示</a>({/if})
 <br>
 </center>
 ({/if})
 ({/if})
 <hr color="#({$ktai_color_config.border_01})">
 ({if $INC_NAVI_type=="h"})
-%%i1014%%<a href="({t_url m=ktai a=page_h_diary_edit})&amp;({$tail})">日記を書く</a><br>
+[i:1014]<a href="({t_url m=ktai a=page_h_diary_edit})&amp;({$tail})">日記を書く</a><br>
 <table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_01})">
 <font color="#({$ktai_color_config.font_01})">日記検索</font><br>
 </td></tr>

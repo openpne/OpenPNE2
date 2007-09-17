@@ -43,13 +43,13 @@
 ({if $is_prev || $is_next})
 <hr color="#({$ktai_color_config.border_02})">
 <center>
-({if $is_prev})<a href="({t_url m=ktai a=page_h_manage_friend})&amp;page=({$page-1})&amp;({$tail})" accesskey="4">%%i128%%前を表示</a>({/if})
+({if $is_prev})<a href="({t_url m=ktai a=page_h_manage_friend})&amp;page=({$page-1})&amp;({$tail})" accesskey="4">[i:128]前を表示</a>({/if})
 ({if $is_prev && $is_next})&nbsp;({/if})
-({if $is_next})<a href="({t_url m=ktai a=page_h_manage_friend})&amp;page=({$page+1})&amp;({$tail})" accesskey="6">%%i130%%次を表示</a>({/if})
+({if $is_next})<a href="({t_url m=ktai a=page_h_manage_friend})&amp;page=({$page+1})&amp;({$tail})" accesskey="6">[i:130]次を表示</a>({/if})
 <br>
 </center>
 ({/if})
 ({/if})
 <hr color="#({$ktai_color_config.border_01})">
-%%i140%%<a href="({t_url m=ktai a=page_fh_friend_list})&amp;({$tail})">({$WORD_MY_FRIEND_HALF})ﾘｽﾄ</a><br>
+[i:140]<a href="({t_url m=ktai a=page_fh_friend_list})&amp;({$tail})">({$WORD_MY_FRIEND_HALF})ﾘｽﾄ</a><br>
 ({$inc_ktai_footer|smarty:nodefaults})
