@@ -19,13 +19,13 @@
 ({t_form m=ktai a=do_c_edit_image_delete_c_commu_image})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
 <input type="hidden" name="target_c_commu_id" value="({$c_commu.c_commu_id})">
-<input type="submit" value="は　い">
+<input type="submit" value="　は　い　"><br>
 </form>
 
-({t_form m=ktai a=page_c_edit_image})
+({t_form _method=get m=ktai a=page_c_edit_image})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
 <input type="hidden" name="target_c_commu_id" value="({$c_commu.c_commu_id})">
-<input type="submit" value="いいえ">
+<input type="submit" value="　いいえ　">
 </form>
 </center>
 
