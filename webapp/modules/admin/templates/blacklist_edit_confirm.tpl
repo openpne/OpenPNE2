@@ -42,6 +42,13 @@
 <p class="textBtn"><input type="submit" class="submit" value="はい" /></p>
 </form>
 
+<form action="./" method="post">
+<input type="hidden" name="m" value="({$module_name})" />
+<input type="hidden" name="a" value="page_({$hash_tbl->hash('blacklist_edit')})" />
+<input type="hidden" name="target_c_blacklist_id" value="({$target_c_blacklist_id})" />
+<input type="hidden" name="easy_access_id" value="({$easy_access_id})" />
+<input type="hidden" name="info" value="({$info})" />
 <p class="textBtn"><input type="submit" class="submit" value="いいえ" /></p>
+</form>
 
 ({$inc_footer|smarty:nodefaults})
