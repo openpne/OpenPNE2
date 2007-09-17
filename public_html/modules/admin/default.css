@@ -1438,6 +1438,21 @@ div.listControl p.listMove a {
 #admin_page_blacklist div.contents ul.description { padding-left: 20px;}
 #admin_page_blacklist div.contents ul.description li { list-style-type: disc;}
 
+/** admin_page_blacklist_add_confirm **/
+
+#admin_page_blacklist_add_confirm div.contents form { display: inline;}
+#admin_page_blacklist_add_confirm div.contents p.textBtn { display: inline;}
+
+/** admin_page_blacklist_edit_confirm **/
+
+#admin_page_blacklist_edit_confirm div.contents form { display: inline;}
+#admin_page_blacklist_edit_confirm div.contents p.textBtn { display: inline;}
+
+/** admin_page_blacklist_delete_confirm **/
+
+#admin_page_blacklist_delete_confirm div.contents form { display: inline;}
+#admin_page_blacklist_delete_confirm div.contents p.textBtn { display: inline;}
+
 /*********** footer ***********/
 .footer { margin-top: 20px; padding: 10px 0; text-align: center;}
 .footer div.declaration a { margin: 0 3px;}

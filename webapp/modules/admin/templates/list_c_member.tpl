@@ -84,7 +84,7 @@
 			<th class="cell16" rowspan="2">PCアドレス</th>
 			<th class="cell17" rowspan="2">携帯アドレス</th>
 			<th class="cell18" rowspan="3">登録時アドレス</th>
-			<th class="cell18" rowspan="3">個体識別番号<br />※暗号化されています</th>
+			<th class="cell18" rowspan="3">携帯個体識別番号(暗号化済)</th>
 			<th class="cell15" rowspan="3"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;order=c_member_id-1({$cond})">▲</a>ID<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;order=c_member_id-2({$cond})">▼</a></th>
 		</tr>
 		<tr>
@@ -197,7 +197,7 @@
 			<th class="cell16" rowspan="2">PCアドレス</th>
 			<th class="cell17" rowspan="2">携帯アドレス</th>
 			<th class="cell18" rowspan="2">登録時アドレス</th>
-			<th class="cell18" rowspan="2">個体識別番号</th>
+			<th class="cell18" rowspan="2">携帯個体識別番号(暗号化済)</th>
 			<th class="cell15" rowspan="2">ID</th>
 		</tr>
 		<tr>
@@ -284,7 +284,6 @@
 <input type="submit" id="btnSelectUser" value="メンバーを指定してメッセージ／Eメールを送る">
 </form>
 
-<br>
 <form action="./" method="post" name="formSendMessagesHistory">
 <input type="hidden" name="m" value="({$module_name})">
 <input type="hidden" name="a" value="page_({$hash_tbl->hash('send_messages_history_list')})">
