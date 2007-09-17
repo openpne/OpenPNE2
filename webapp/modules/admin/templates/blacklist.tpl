@@ -11,8 +11,8 @@
 <div class="contents">
 
 <ul class="description">
-    <li>ブラックリストメンバーに登録されたユーザのSNSへのログイン・新規登録を制限する機能です。</li>
-    <li>携帯の個体識別番号をキーにブラックリストに登録します。</li>
+    <li>ブラックリストメンバーに登録されたメンバーのSNSへのログイン・新規登録を制限する機能です。</li>
+    <li>携帯個体識別番号(暗号化済)をキーにブラックリストメンバーに登録します。</li>
 </ul>
 
 <p id="itemAdd"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('blacklist_add','page')})">ブラックリストメンバーを追加する</a></p>
@@ -40,7 +40,7 @@
 ({capture name="table_header"})
 <tr>
 <th>NO</th>
-<th>個体識別番号<br />※暗号化されています</th>
+<th>携帯個体識別番号(暗号化済)</th>
 <th>該当するメンバー</th>
 <th>メモ</th>
 <th>操作</th>
@@ -58,23 +58,22 @@
 <td><a href="({t_url _absolute=1 m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})" target="_blank">({$item.nickname})</a></td>
 <td>({$item.info|nl2br})</td>
 <td>
-<a href='?m=({$module_name})&amp;a=page_({$hash_tbl->hash('blacklist_edit','page')})&amp;target_c_blacklist_id=({$item.c_blacklist_id})'>編集</a><br>
-<a href='?m=({$module_name})&amp;a=page_({$hash_tbl->hash('blacklist_delete_confirm','page')})&amp;target_c_blacklist_id=({$item.c_blacklist_id})'>ブラックリストから外す</a><br>
-({if $item.c_member_id })
-<a href='?m=({$module_name})&amp;a=page_({$hash_tbl->hash('delete_c_member_confirm','page')})&amp;target_c_member_id=({$item.c_member_id})'>強制退会</a>
-({/if})
+<ul>
+<li><a href='?m=({$module_name})&amp;a=page_({$hash_tbl->hash('blacklist_edit','page')})&amp;target_c_blacklist_id=({$item.c_blacklist_id})'>編集</a></li>
+<li><a href='?m=({$module_name})&amp;a=page_({$hash_tbl->hash('blacklist_delete_confirm','page')})&amp;target_c_blacklist_id=({$item.c_blacklist_id})'>ブラックリストメンバーから外す</a></li>
+</ul>
 </td>
 </tr>
 ({/if})
 ({foreachelse})
 <tr>
-<td colspan="5">ブラックリスト登録はされていません</td>
+<td colspan="5">ブラックリストメンバーは登録されていません</td>
 </tr>
 ({/foreach})
 </table>
 
 ({if $c_blacklist_list})
-<div class="listControl" id="pager01">
+<div class="listControl" id="pager02">
 ({$smarty.capture.pager|smarty:nodefaults})
 </div>
 ({/if})
