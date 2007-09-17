@@ -20,13 +20,13 @@
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
 <input type="hidden" name="target_c_diary_id" value="({$target_c_diary.c_diary_id})">
 <input type="hidden" name="img_num" value="({$img_num})">
-<input type="submit" value="は　い">
+<input type="submit" value="　は　い　"><br>
 </form>
 
-({t_form m=ktai a=page_h_diary_edit_image})
+({t_form _method=get m=ktai a=page_h_diary_edit_image})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
 <input type="hidden" name="target_c_diary_id" value="({$target_c_diary.c_diary_id})">
-<input type="submit" value="いいえ">
+<input type="submit" value="　いいえ　">
 </form>
 </center>
 

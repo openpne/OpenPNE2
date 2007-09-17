@@ -17,7 +17,7 @@
 <input type="submit" value="　は　い　"><br>
 </form>
 
-({t_form m=ktai a=page_h_message})
+({t_form _method=get m=ktai a=page_h_message})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
 <input type="hidden" name="target_c_message_id" value="({$c_message_id})">
 <input type="submit" value="　いいえ　">

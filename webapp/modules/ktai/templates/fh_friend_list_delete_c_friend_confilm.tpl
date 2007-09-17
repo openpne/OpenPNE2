@@ -17,7 +17,7 @@
 <input type="submit" value="　は　い　"><br>
 </form>
 
-({t_form m=ktai a=page_h_manage_friend})
+({t_form _method=get m=ktai a=page_h_manage_friend})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
 <input type="submit" value="　いいえ　">
 </form>
