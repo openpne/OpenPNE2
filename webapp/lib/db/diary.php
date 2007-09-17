@@ -781,7 +781,7 @@ function p_h_diary_list_all_search_c_diary4c_diary($keyword, $page_size, $page, 
     $select = 'SELECT *';
     $from = ' FROM c_diary';
 
-    //自分の日記だけを対象にする事も出来る
+    //自分の日記だけを対象にする事もできる
     if ($c_member_id) {
         $where = ' WHERE c_member_id = ?';
         $params[] = intval($c_member_id);

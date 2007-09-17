@@ -13,7 +13,7 @@
 <div class="contents">
 
 <p>携帯個体識別番号(暗号化済)とメモを入力してください。</p>
-<p>携帯個体識別番号(暗号化済)は<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member','page')})">メンバーリスト</a>で確認することが出来ます。</p>
+<p>携帯個体識別番号(暗号化済)は<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member','page')})">メンバーリスト</a>で確認することができます。</p>
 <p class="caution">※ブラックリストメンバーに追加されたメンバーは、ログイン・新規登録が制限されます。</p>
 
 <form action="./" method="post">
