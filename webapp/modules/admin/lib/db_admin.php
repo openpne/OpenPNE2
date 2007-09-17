@@ -2746,7 +2746,7 @@ function db_admin_insert_c_blacklist($easy_access_id, $info)
 {
     $data = array(
         'easy_access_id' => $easy_access_id,
-        'info' => $info,
+        'info' => (string)$info,
     );
     return db_insert('c_blacklist', $data);
 }
@@ -2755,7 +2755,7 @@ function db_admin_update_c_blacklist($c_blacklist_id, $easy_access_id, $info)
 {
     $data = array(
         'easy_access_id' => $easy_access_id,
-        'info' => $info,
+        'info' => (string)$info,
     );
     $where = array('c_blacklist_id' => $c_blacklist_id);
     return db_update('c_blacklist', $data, $where);
