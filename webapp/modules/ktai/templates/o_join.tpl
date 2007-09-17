@@ -7,7 +7,7 @@
 ※かならず利用規約に同意してから登録をおこなってください。
 <hr color="#({$ktai_color_config.border_01})">
 <center>
-<a href="mailto:({$smarty.const.MAIL_ADDRESS_PREFIX})get@({$smarty.const.MAIL_SERVER_DOMAIN})?body=({$aff_id})">%%i106%%ﾒｰﾙで登録!</a><br>
+<a href="mailto:({$smarty.const.MAIL_ADDRESS_PREFIX})get@({$smarty.const.MAIL_SERVER_DOMAIN})?body=({$aff_id})">[i:106]ﾒｰﾙで登録!</a><br>
 </center>
 
 <hr color="#({$ktai_color_config.border_01})">

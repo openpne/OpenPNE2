@@ -8,7 +8,7 @@
 <hr color="#({$ktai_color_config.border_01})">
 総ｱｸｾｽ数: ({$c_ashiato_num})ｱｸｾｽ
 <hr color="#({$ktai_color_config.border_01})">
-%%i91%%最近のあしあと<br>
+[i:91]最近のあしあと<br>
 <table width="100%">
 ({foreach from=$c_ashiato_list item=item})
 <tr><td bgcolor="#({cycle values="`$ktai_color_config.bg_05`,`$ktai_color_config.bg_08`"})">

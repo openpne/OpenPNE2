@@ -47,7 +47,7 @@ function emoji_escape_i($bin)
         $unicode = mb_convert_encoding($bin, 'UCS2', 'SJIS-win');
         $emoji_code = OpenPNE_KtaiEmoji::getInstance();
         $code = $emoji_code->get_emoji_code4emoji(sprintf('&#x%02X%02X;', ord($unicode[0]), ord($unicode[1])), 'i');
-        return '%%'.$code.'%%';
+        return '['.$code.']';
     } else {
         return '';
     }
@@ -89,7 +89,7 @@ function emoji_escape_e($bin)
     }
     $emoji_code = OpenPNE_KtaiEmoji::getInstance();
     $code = $emoji_code->get_emoji_code4emoji(sprintf('&#x%04X;', $unicode), 'e');
-    return '%%'.$code.'%%';
+    return '['.$code.']';
 }
 
 function emoji_escape_s($bin)
@@ -139,7 +139,7 @@ function emoji_escape_s($bin)
     }
     $emoji_code = OpenPNE_KtaiEmoji::getInstance();
     $code = $emoji_code->get_emoji_code4emoji(pack('c5', 0x1b, 0x24, $web1, $web2, 0x0f), 's');
-    return '%%'.$code.'%%';
+    return '['.$code.']';
 }
 
 function emoji_unescape($str, $amp_escaped = false)
@@ -204,7 +204,7 @@ function emoji_unescape4e($unicode)
 
 function emoji_convert($str)
 {
-    $moji_pattern = '/%%([a-z][0-9]+)%%/i';
+    $moji_pattern = '/\[([a-z]:[0-9]+)\]/i';
     return preg_replace_callback($moji_pattern, '_emoji_convert', $str);
 }
 

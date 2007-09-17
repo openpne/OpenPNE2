@@ -17,6 +17,6 @@
 </center>
 
 <hr color="#({$ktai_color_config.border_01})">
-%%i90%%<a href="({t_url m=ktai a=page_c_edit})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">ｺﾐｭﾆﾃｨの編集</a><br>
+[i:90]<a href="({t_url m=ktai a=page_c_edit})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">ｺﾐｭﾆﾃｨの編集</a><br>
 
 ({$inc_ktai_footer|smarty:nodefaults})

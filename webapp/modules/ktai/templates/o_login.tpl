@@ -29,7 +29,7 @@
 </center>
 <br>
 <table width="100%"><tr><td bgcolor="#({$ktai_color_config.bg_01})">
-%%i75%%<font color="#({$ktai_color_config.font_01})">かんたんﾛｸﾞｲﾝ</font><br>
+[i:75]<font color="#({$ktai_color_config.font_01})">かんたんﾛｸﾞｲﾝ</font><br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_05})">
 <br>
@@ -48,7 +48,7 @@
 <br>
 
 <table width="100%"><tr><td bgcolor="#({$ktai_color_config.bg_01})">
-<font color="#({$ktai_color_config.font_01})">%%i116%%ﾊﾟｽﾜｰﾄﾞﾛｸﾞｲﾝ</font><br>
+<font color="#({$ktai_color_config.font_01})">[i:116]ﾊﾟｽﾜｰﾄﾞﾛｸﾞｲﾝ</font><br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_05})">
 ({t_form m=ktai a=do_o_login})
@@ -90,7 +90,7 @@
 
 新規登録するには以下のﾘﾝｸから、本文を入力せずにﾒｰﾙを送信してください。<br>
 <br>
-<a href="mailto:({$smarty.const.MAIL_ADDRESS_PREFIX})get@({$smarty.const.MAIL_SERVER_DOMAIN})">%%i106%%ﾒｰﾙで登録!</a><br>
+<a href="mailto:({$smarty.const.MAIL_ADDRESS_PREFIX})get@({$smarty.const.MAIL_SERVER_DOMAIN})">[i:106]ﾒｰﾙで登録!</a><br>
 <br>
 ※かならず利用規約に同意してから登録をおこなってください。<br>
 

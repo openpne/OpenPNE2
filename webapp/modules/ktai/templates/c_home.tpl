@@ -51,33 +51,33 @@
 <tr><td>
 <hr color="#({$ktai_color_config.border_01})">
 ({if !$relation_c_member_and_c_commu.join && !$relation_c_member_and_c_commu.wait})
-%%i1028%%<a href="({t_url m=ktai a=do_inc_join_c_commu})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">ｺﾐｭﾆﾃｨに参加</a><br>
+[i:1028]<a href="({t_url m=ktai a=do_inc_join_c_commu})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">ｺﾐｭﾆﾃｨに参加</a><br>
 ({/if})
 ({if ($c_commu.c_member_id_admin==$u || $c_commu.c_member_id_sub_admin==$u)})
-%%i1014%%<a href="({t_url m=ktai a=page_c_edit})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">ｺﾐｭﾆﾃｨ編集</a><br>
+[i:1014]<a href="({t_url m=ktai a=page_c_edit})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">ｺﾐｭﾆﾃｨ編集</a><br>
 ({/if})
 ({if $relation_c_member_and_c_commu.join})
 ({if !($c_commu.c_member_id_admin==$u || $c_commu.c_member_id_sub_admin==$u)})
-%%i138%%<a href="({t_url m=ktai a=do_inc_leave_c_commu})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">ｺﾐｭﾆﾃｨから退会</a><br>
+[i:138]<a href="({t_url m=ktai a=do_inc_leave_c_commu})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">ｺﾐｭﾆﾃｨから退会</a><br>
 ({/if})
 ({if !($is_unused_pc_bbs && $is_unused_ktai_bbs)})
-%%i105%%<a href="({t_url m=ktai a=page_c_receive_mail})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">ﾒｰﾙ受信設定</a><br>
+[i:105]<a href="({t_url m=ktai a=page_c_receive_mail})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">ﾒｰﾙ受信設定</a><br>
 ({/if})
 ({/if})
-%%i150%%<a href="({t_url m=ktai a=page_c_invite})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">({$WORD_MY_FRIEND_HALF})に紹介</a><br>
+[i:150]<a href="({t_url m=ktai a=page_c_invite})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">({$WORD_MY_FRIEND_HALF})に紹介</a><br>
 <br>
 </td></tr></table>
 
 <table width="100%">
 <tr><td bgcolor="#({$ktai_color_config.bg_04})">
-<a accesskey="1" name="a1" href="#a1">%%i125%%</a>新着ﾄﾋﾟｯｸﾘｽﾄ<br>
+<a accesskey="1" name="a1" href="#a1">[i:125]</a>新着ﾄﾋﾟｯｸﾘｽﾄ<br>
 </td></tr>
 ({if $is_c_commu_view})
 ({foreach from=$new_topic_comment item=item})
 <tr><td bgcolor="#({$ktai_color_config.bg_05})">
 <font color="#({$ktai_color_config.font_02})">[({$item.r_datetime|date_format:"%m/%d"})]</font> <a href="({t_url m=ktai a=page_c_bbs})&amp;target_c_commu_topic_id=({$item.c_commu_topic_id})&amp;({$tail})">({$item.name|t_truncate:22:""})(({$item.count_comments}))</a>
 ({if $item.image_filename1 || $item.image_filename2 || $item.image_filename3})
-%%i68%%
+[i:68]
 ({/if})
 <br>
 </td></tr>
@@ -97,14 +97,14 @@
 
 <table width="100%">
 <tr><td bgcolor="#({$ktai_color_config.bg_06})">
-<a accesskey="2" name="a2" href="#a2">%%i126%%</a>新着ｲﾍﾞﾝﾄﾘｽﾄ<br>
+<a accesskey="2" name="a2" href="#a2">[i:126]</a>新着ｲﾍﾞﾝﾄﾘｽﾄ<br>
 </td></tr>
 ({if $is_c_commu_view})
 ({foreach from=$new_topic_comment_event item=item})
 <tr><td bgcolor="#({$ktai_color_config.bg_07})">
 <font color="#({$ktai_color_config.font_02})">[({$item.r_datetime|date_format:"%m/%d"})]</font> <a href="({t_url m=ktai a=page_c_bbs})&amp;target_c_commu_topic_id=({$item.c_commu_topic_id})&amp;({$tail})">({$item.name|t_truncate:22:""})(({$item.count_comments}))</a>
 ({if $item.image_filename1 || $item.image_filename2 || $item.image_filename3})
-%%i68%%
+[i:68]
 ({/if})
 <br>
 </td></tr>
@@ -144,7 +144,7 @@
 
 <table width="100%">
 <tr><td bgcolor="#({$ktai_color_config.bg_04})">
-<a accesskey="3" name="a3" href="#a3">%%i127%%</a>ｺﾐｭﾆﾃｨﾒﾝﾊﾞｰ<br>
+<a accesskey="3" name="a3" href="#a3">[i:127]</a>ｺﾐｭﾆﾃｨﾒﾝﾊﾞｰ<br>
 </td></tr>
 ({foreach from=$c_commu_member_list item=c_commu_member})
 <tr><td bgcolor="#({$ktai_color_config.bg_05})">
