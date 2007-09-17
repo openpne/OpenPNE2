@@ -39,7 +39,7 @@
 <table class="basicType2">
 ({capture name="table_header"})
 <tr>
-<th>NO</th>
+<th>ID</th>
 <th>携帯個体識別番号(暗号化済)</th>
 <th>該当するメンバー</th>
 <th>メモ</th>
