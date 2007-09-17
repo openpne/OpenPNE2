@@ -18,6 +18,6 @@
 
 <hr color="#({$ktai_color_config.border_01})">
 
-%%i90%%<a href="({t_url m=ktai a=page_h_config})&amp;({$tail})">設定変更</a><br>
+[i:90]<a href="({t_url m=ktai a=page_h_config})&amp;({$tail})">設定変更</a><br>
 
 ({$inc_ktai_footer|smarty:nodefaults})

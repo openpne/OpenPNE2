@@ -53,7 +53,7 @@
 お誕生日おめでとうございます</font>
 <hr color="#({$ktai_color_config.border_01})">
 ({/if})
-%%i69%%<a href="({t_url m=ktai_biz a=page_fh_biz_todo_list})&amp;({$tail})">ToDoﾘｽﾄ</a>/%%i176%%<a href="({t_url m=ktai_biz a=page_fh_calendar_week})&amp;({$tail})">週間ｶﾚﾝﾀﾞｰ</a><br>
+[i:69]<a href="({t_url m=ktai_biz a=page_fh_biz_todo_list})&amp;({$tail})">ToDoﾘｽﾄ</a>/[i:176]<a href="({t_url m=ktai_biz a=page_fh_calendar_week})&amp;({$tail})">週間ｶﾚﾝﾀﾞｰ</a><br>
 <hr color="#({$ktai_color_config.border_01})">
 </td></tr>
 <tr><td align="center" width="50%" valign="top">
@@ -70,26 +70,26 @@
 </td>
 
 <td valign="top">
-%%i1014%%<a href="({t_url m=ktai a=page_h_diary_edit})&amp;({$tail})">日記を書く</a><br>
-%%i70%%<a href="({t_url m=ktai a=page_fh_diary_list})&amp;({$tail})">日記を読む</a><br>
-%%i110%%<a href="({t_url m=ktai a=page_h_message_box})&amp;({$tail})">ﾒｯｾｰｼﾞ</a><br>
-%%i91%%<a href="({t_url m=ktai a=page_h_ashiato})&amp;({$tail})">あしあと</a><br>
-({if $smarty.const.IS_USER_INVITE && ($smarty.const.OPENPNE_REGIST_FROM != $smarty.const.OPENPNE_REGIST_FROM_NONE)})%%i140%%<a href="({t_url m=ktai a=page_h_invite})&amp;({$tail})">友人を誘う</a><br>({/if})
+[i:1014]<a href="({t_url m=ktai a=page_h_diary_edit})&amp;({$tail})">日記を書く</a><br>
+[i:70]<a href="({t_url m=ktai a=page_fh_diary_list})&amp;({$tail})">日記を読む</a><br>
+[i:110]<a href="({t_url m=ktai a=page_h_message_box})&amp;({$tail})">ﾒｯｾｰｼﾞ</a><br>
+[i:91]<a href="({t_url m=ktai a=page_h_ashiato})&amp;({$tail})">あしあと</a><br>
+({if $smarty.const.IS_USER_INVITE && ($smarty.const.OPENPNE_REGIST_FROM != $smarty.const.OPENPNE_REGIST_FROM_NONE)})[i:140]<a href="({t_url m=ktai a=page_h_invite})&amp;({$tail})">友人を誘う</a><br>({/if})
 </td></tr>
 <tr><td colspan="2" align="center">
-%%i119%%<a href="#search">検索</a>/%%i70%%<a href="({t_url m=ktai a=page_h_diary_list_all})&amp;({$tail})">最新日記</a>/%%i1015%%<a href="({t_url m=ktai a=page_h_ranking})&amp;({$tail})">ﾗﾝｷﾝｸﾞ</a>
+[i:119]<a href="#search">検索</a>/[i:70]<a href="({t_url m=ktai a=page_h_diary_list_all})&amp;({$tail})">最新日記</a>/[i:1015]<a href="({t_url m=ktai a=page_h_ranking})&amp;({$tail})">ﾗﾝｷﾝｸﾞ</a>
 <hr color="#({$ktai_color_config.border_01})" size="3"></td></tr>
 
 <tr>
 <td colspan="2">
-%%i140%%<a href="({t_url m=ktai a=page_fh_friend_list})&amp;({$tail})">({$WORD_MY_FRIEND_HALF})</a>(({$c_friend_count|default:'0'}))<br>
-%%i155%%<a href="({t_url m=ktai a=page_fh_com_list})&amp;({$tail})">参加ｺﾐｭﾆﾃｨ</a>(({$fh_com_count_user|default:'0'}))<br>
-%%i136%%<a href="({t_url m=ktai a=page_h_bookmark_list})&amp;({$tail})">お気に入り</a>
+[i:140]<a href="({t_url m=ktai a=page_fh_friend_list})&amp;({$tail})">({$WORD_MY_FRIEND_HALF})</a>(({$c_friend_count|default:'0'}))<br>
+[i:155]<a href="({t_url m=ktai a=page_fh_com_list})&amp;({$tail})">参加ｺﾐｭﾆﾃｨ</a>(({$fh_com_count_user|default:'0'}))<br>
+[i:136]<a href="({t_url m=ktai a=page_h_bookmark_list})&amp;({$tail})">お気に入り</a>
 <hr color="#({$ktai_color_config.border_01})" size="3"></td></tr>
 
 <tr>
 <td colspan="2"  align="center">
-%%i140%%<a href="({t_url m=ktai a=page_h_prof})&amp;({$tail})">ﾌﾟﾛﾌｨｰﾙ</a>/%%i68%%<a href="({t_url m=ktai a=page_h_config_image})&amp;({$tail})">写真</a>/%%i76%%<a href="({t_url m=ktai a=page_fh_intro})&amp;({$tail})">紹介文</a><br>
+[i:140]<a href="({t_url m=ktai a=page_h_prof})&amp;({$tail})">ﾌﾟﾛﾌｨｰﾙ</a>/[i:68]<a href="({t_url m=ktai a=page_h_config_image})&amp;({$tail})">写真</a>/[i:76]<a href="({t_url m=ktai a=page_fh_intro})&amp;({$tail})">紹介文</a><br>
 <hr color="#({$ktai_color_config.border_01})"></td></tr>
 </table>
 　
@@ -97,14 +97,14 @@
 
 <table width="100%">
 <tr><td bgcolor="#({$ktai_color_config.bg_04})">
-<a accesskey="1" name="a1" href="#a1">%%i125%%</a>({$WORD_FRIEND_HALF})最新日記<br>
+<a accesskey="1" name="a1" href="#a1">[i:125]</a>({$WORD_FRIEND_HALF})最新日記<br>
 </td></tr>
 ({foreach from=$c_diary_friend_list item=item})
 <tr><td bgcolor="#({cycle values="`$ktai_color_config.bg_05`,`$ktai_color_config.bg_08`"})">
 <font color="#({$ktai_color_config.font_02})">[({$item.r_date|date_format:"%m/%d"})]</font> ({$item.nickname|t_truncate:22:""})<br>
 <a href="({t_url m=ktai a=page_fh_diary})&amp;target_c_diary_id=({$item.c_diary_id})&amp;({$tail})">({$item.subject|t_truncate:28:""})(({$item.count_comments}))</a>
 ({if $item.image_filename_1 || $item.image_filename_2 || $item.image_filename_3})
-%%i68%%
+[i:68]
 ({/if})
 <br>
 </td></tr>
@@ -122,7 +122,7 @@
 
 <table width="100%">
 <tr><td bgcolor="#({$ktai_color_config.bg_06})">
-<a accesskey="2" name="a2" href="#a2">%%i126%%</a>日記ｺﾒﾝﾄ記入履歴<br>
+<a accesskey="2" name="a2" href="#a2">[i:126]</a>日記ｺﾒﾝﾄ記入履歴<br>
 </td></tr>
 ({foreach from=$c_diary_my_comment_list item=item})
 <tr><td bgcolor="#({cycle values="`$ktai_color_config.bg_07`,`$ktai_color_config.bg_08`"})">
@@ -143,14 +143,14 @@
 
 <table width="100%">
 <tr><td bgcolor="#({$ktai_color_config.bg_04})">
-<a accesskey="3" name="a3" href="#a3">%%i127%%</a>ｺﾐｭﾆﾃｨ最新書き込み<br>
+<a accesskey="3" name="a3" href="#a3">[i:127]</a>ｺﾐｭﾆﾃｨ最新書き込み<br>
 </td></tr>
 ({foreach from=$c_commu_topic_list item=item})
 <tr><td bgcolor="#({cycle values="`$ktai_color_config.bg_05`,`$ktai_color_config.bg_08`"})">
 <font color="#({$ktai_color_config.font_02})">[({$item.r_datetime|date_format:"%m/%d"})]</font> ({$item.c_commu_name|t_truncate:22:""})<br>
 <a href="({t_url m=ktai a=page_c_bbs})&amp;target_c_commu_topic_id=({$item.c_commu_topic_id})&amp;({$tail})">({$item.c_commu_topic_name|t_truncate:28:""})(({$item.number}))</a>
 ({if $item.image_filename1 || $item.image_filename2 || $item.image_filename3})
-%%i68%%
+[i:68]
 ({/if})
 <br>
 </td></tr>
@@ -168,7 +168,7 @@
 
 <table width="100%">
 <tr><td bgcolor="#({$ktai_color_config.bg_06})">
-<a name="search">%%i119%%検索</a><br>
+<a name="search">[i:119]検索</a><br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_07})">
 <a href="({t_url m=ktai a=page_h_friend_find_all})&amp;({$tail})">ﾒﾝﾊﾞｰ検索</a><br>
@@ -185,7 +185,7 @@
 <br>
 <table width="100%">
 <tr><td bgcolor="#({$ktai_color_config.bg_04})">
-%%i140%%ﾌﾟﾛﾌｨｰﾙ変更<br>
+[i:140]ﾌﾟﾛﾌｨｰﾙ変更<br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_05})">
 <a href="({t_url m=ktai a=page_h_config_prof})&amp;({$tail})">ﾌﾟﾛﾌｨｰﾙ変更</a><br>
@@ -199,7 +199,7 @@
 <br>
 <table width="100%">
 <tr><td bgcolor="#({$ktai_color_config.bg_06})">
-%%i75%%設定変更<br>
+[i:75]設定変更<br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_07})">
 <a href="({t_url m=ktai a=page_h_config_mail})&amp;({$tail})">携帯ﾒｰﾙｱﾄﾞﾚｽ変更</a><br>
