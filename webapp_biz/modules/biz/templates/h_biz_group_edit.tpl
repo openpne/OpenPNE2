@@ -136,7 +136,7 @@
 
 ({if $group.image_filename})
 <img src="img.php?filename=({$group.image_filename})&w=76&h=76"><br>
-<a href="({t_url m=biz a=do_h_biz_group_image_delete})&id=({$group.biz_group_id})&filename=({$group.image_filename})&sessid=({$PHPSESSID})">この画像を削除</a>
+<a href="({t_url m=biz a=do_h_biz_group_image_delete})&id=({$group.biz_group_id})&filename=({$group.image_filename})&sessid=({$PHPSESSID})">この写真を削除</a>
 ({/if})
 <div class="padding_s">
 <input type="file" size="40" name="image_filename"><br>
