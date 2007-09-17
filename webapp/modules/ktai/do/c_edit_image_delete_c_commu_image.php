@@ -38,7 +38,7 @@ class ktai_do_c_edit_image_delete_c_commu_image extends OpenPNE_Action
         db_commu_delete_c_commu_image_filename($target_c_commu_id);
 
         $p = array('target_c_commu_id' => $target_c_commu_id);
-        openpne_redirect('ktai', 'page_c_edit', $p);
+        openpne_redirect('ktai', 'page_c_edit_image', $p);
     }
 }
 

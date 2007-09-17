@@ -7,11 +7,6 @@
 ｺﾐｭﾆﾃｨの編集<br>
 </td></tr></table>
 
-<center>
-<img src="({t_img_url filename=$c_commu.image_filename w=120 h=120 noimg=no_logo_small f=jpg})" alt="({$c_commu.name})"><br>
-[<a href="({t_url m=ktai a=page_c_edit_image})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">編集</a>]<br>
-</center>
-
 ({t_form m=ktai a=do_c_edit_update_c_commu})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
 <input type="hidden" name="target_c_commu_id" value="({$c_commu.c_commu_id})">
@@ -28,12 +23,15 @@
 <font color="#({$ktai_color_config.font_02})">説明文：</font><br>
 <textarea name="info" rows="6">({$c_commu.info})</textarea><br>
 <br>
+<font color="#({$ktai_color_config.font_02})">写真：</font><br>
+[i:68]<a href="({t_url m=ktai a=page_c_edit_image})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">写真を編集する</a><br>
+<br>
 <font color="#({$ktai_color_config.font_02})">参加条件と公開範囲：</font><br>
 <select name="public_flag">
 <option value="public"({if $c_commu.public_flag=='public'}) selected="selected"({/if})>誰でも参加可能、掲示板は全員に公開
 <option value="auth_sns"({if $c_commu.public_flag=='auth_sns'}) selected="selected"({/if})>参加には管理者の承認が必要、掲示板は全員に公開
 <option value="auth_commu_member"({if $c_commu.public_flag=='auth_commu_member'}) selected="selected"({/if})>参加には管理者の承認が必要、掲示板はｺﾐｭﾆﾃｨﾒﾝﾊﾞｰにのみ公開
-</select>
+</select><br>
 <br>
 <font color="#({$ktai_color_config.font_02})">ﾄﾋﾟｯｸ作成の権限：</font><br>
 <select name="topic_authority">
