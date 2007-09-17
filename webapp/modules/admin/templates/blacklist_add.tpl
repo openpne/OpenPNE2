@@ -25,11 +25,11 @@
 <tbody>
 <tr>
 <th>携帯個体識別番号(暗号化済)</th>
-<td><input name="easy_access_id" type="text" class="basic" value="({$easy_access_id})" size="38" /></td>
+<td><input name="easy_access_id" type="text" class="basic" value="({$requests.easy_access_id})" size="38" /></td>
 </tr>
 <tr>
 <th>メモ</th>
-<td><textarea class="basic" name="info" cols="30" rows="3"></textarea></td>
+<td><textarea class="basic" name="info" cols="30" rows="3">({$requests.info})</textarea></td>
 </tr>
 </tbody>
 </table>
