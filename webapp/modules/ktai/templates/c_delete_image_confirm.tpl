@@ -1,12 +1,12 @@
 ({$inc_ktai_header|smarty:nodefaults})
 <table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_01})">
-<font color="#({$ktai_color_config.font_01})"><a name="top">ｺﾐｭﾆﾃｨの編集</a></font><br>
+<font color="#({$ktai_color_config.font_01})"><a name="top">({$c_commu.name})</a></font><br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_02})" align="center">
-({$c_commu.name})<br>
+ｺﾐｭﾆﾃｨ写真の削除<br>
 </td></tr></table>
 
-この写真を本当に削除しますか？
+この写真を本当に削除しますか?
 <hr color="#({$ktai_color_config.border_01})">
 
 <center>
@@ -22,7 +22,7 @@
 <input type="submit" value="は　い">
 </form>
 
-({t_form m=ktai a=page_c_edit})
+({t_form m=ktai a=page_c_edit_image})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
 <input type="hidden" name="target_c_commu_id" value="({$c_commu.c_commu_id})">
 <input type="submit" value="いいえ">
