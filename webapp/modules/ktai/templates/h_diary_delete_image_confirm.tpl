@@ -6,7 +6,7 @@
 ({$target_c_diary.subject})<br>
 </td></tr></table>
 
-この写真を本当に削除しますか？
+この写真を本当に削除しますか?
 <hr color="#({$ktai_color_config.border_01})">
 
 <center>
@@ -23,7 +23,7 @@
 <input type="submit" value="は　い">
 </form>
 
-({t_form m=ktai a=page_h_diary_edit})
+({t_form m=ktai a=page_h_diary_edit_image})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
 <input type="hidden" name="target_c_diary_id" value="({$target_c_diary.c_diary_id})">
 <input type="submit" value="いいえ">

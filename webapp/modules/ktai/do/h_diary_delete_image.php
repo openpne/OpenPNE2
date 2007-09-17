@@ -49,7 +49,7 @@ class ktai_do_h_diary_delete_image extends OpenPNE_Action
         db_diary_delete_c_diary_image($target_c_diary_id, $img_num);
 
         $p = array('target_c_diary_id' => $target_c_diary_id);
-        openpne_redirect('ktai', 'page_h_diary_edit', $p);
+        openpne_redirect('ktai', 'page_h_diary_edit_image', $p);
     }
 }
 
