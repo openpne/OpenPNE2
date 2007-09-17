@@ -48,5 +48,5 @@
 </center>
 </form>
 <hr color="#({$ktai_color_config.border_01})">
-%%i90%%<a href="({t_url m=ktai_biz a=page_fh_calendar_week})&amp;target_id=({$t_id})&amp;({$tail})">週間ｶﾚﾝﾀﾞｰ</a><br>
+[i:90]<a href="({t_url m=ktai_biz a=page_fh_calendar_week})&amp;target_id=({$t_id})&amp;({$tail})">週間ｶﾚﾝﾀﾞｰ</a><br>
 ({$inc_ktai_footer|smarty:nodefaults})
