@@ -46,8 +46,8 @@
 </center>
 <hr color="#({$ktai_color_config.border_01})">
 ({if $c_member.image_filename_1&&$c_member.image_filename_2&&$c_member.image_filename_3})
-登録できる画像は三枚までです。<br>
-新しく登録する場合は登録画像を削除してください。<br>
+登録できる写真は三枚までです。<br>
+新しく登録する場合は登録写真を削除してください。<br>
 ({else})
 以下のｱﾄﾞﾚｽに写真を添付して送信してください。<br>
 [i:68]<a href="mailto:({$mail_address})">ﾒｰﾙ送信</a><br>

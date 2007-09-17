@@ -38,7 +38,7 @@
 	<td><input type="text" name="name" value=""></td>
 </tr>
 <tr>
-	<th>施設画像</th>
+	<th>施設写真</th>
 	<td><input type="file" size="40" name="image_filename"></td>
 </tr>
 <tr>

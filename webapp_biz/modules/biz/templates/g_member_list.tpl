@@ -78,7 +78,7 @@
 </table>
 <table border="0" cellspacing="0" cellpadding="0" style="width:561px;">
 ({*********})
-({*---------------ここから：１行目：画像-------------------*})
+({*---------------ここから：１行目：写真-------------------*})
 <tr>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 ({t_loop from=$c_member_list start=0 num=5})
@@ -102,7 +102,7 @@
 <td style="width:561px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({*********})
-({*---------------ここまで：１行目：画像-------------------*})
+({*---------------ここまで：１行目：写真-------------------*})
 ({*---------------ここから：１行目：ニックネーム-------------------*})
 <tr>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
@@ -127,7 +127,7 @@
 </tr>
 ({*********})
 ({*---------------ここまで：１行目：ニックネーム-------------------*})
-({*---------------ここから：２行目：画像-------------------*})
+({*---------------ここから：２行目：写真-------------------*})
 ({if $c_member_list[5]})
 <tr>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
@@ -152,7 +152,7 @@
 <td style="width:561px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({*********})
-({*---------------ここまで：２行目：画像-------------------*})
+({*---------------ここまで：２行目：写真-------------------*})
 ({*---------------ここから：２行目：ニックネーム-------------------*})
 <tr>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
@@ -178,7 +178,7 @@
 ({*********})
 ({/if})
 ({*---------------ここまで：２行目：ニックネーム-------------------*})
-({*---------------ここから：３行目：画像-------------------*})
+({*---------------ここから：３行目：写真-------------------*})
 ({if $c_member_list[10]})
 <tr>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
@@ -203,7 +203,7 @@
 <td style="width:561px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({*********})
-({*---------------ここまで：３行目：画像-------------------*})
+({*---------------ここまで：３行目：写真-------------------*})
 ({*---------------ここから：３行目：ニックネーム-------------------*})
 <tr>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
@@ -229,7 +229,7 @@
 ({*********})
 ({/if})
 ({*---------------ここまで：３行目：ニックネーム-------------------*})
-({*---------------ここから：４行目：画像-------------------*})
+({*---------------ここから：４行目：写真-------------------*})
 ({if $c_member_list[15]})
 <tr>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
@@ -254,7 +254,7 @@
 <td style="width:561px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({*********})
-({*---------------ここまで：４行目：画像-------------------*})
+({*---------------ここまで：４行目：写真-------------------*})
 ({*---------------ここから：４行目：ニックネーム-------------------*})
 <tr>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
@@ -280,7 +280,7 @@
 ({*********})
 ({/if})
 ({*---------------ここまで：４行目：ニックネーム-------------------*})
-({*---------------ここから：５行目：画像-------------------*})
+({*---------------ここから：５行目：写真-------------------*})
 ({if $c_member_list[20]})
 <tr>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
@@ -305,7 +305,7 @@
 <td style="width:561px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({*********})
-({*---------------ここまで：５行目：画像-------------------*})
+({*---------------ここまで：５行目：写真-------------------*})
 ({*---------------ここから：５行目：ニックネーム-------------------*})
 <tr>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
@@ -331,7 +331,7 @@
 ({*********})
 ({/if})
 ({*---------------ここまで：５行目：ニックネーム-------------------*})
-({*---------------ここから：６行目：画像-------------------*})
+({*---------------ここから：６行目：写真-------------------*})
 ({if $c_member_list[25]})
 <tr>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
@@ -356,7 +356,7 @@
 <td style="width:561px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({*********})
-({*---------------ここまで：６行目：画像-------------------*})
+({*---------------ここまで：６行目：写真-------------------*})
 ({*---------------ここから：６行目：ニックネーム-------------------*})
 <tr>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
@@ -382,7 +382,7 @@
 ({*********})
 ({/if})
 ({*---------------ここまで：６行目：ニックネーム-------------------*})
-({*---------------ここから：７行目：画像-------------------*})
+({*---------------ここから：７行目：写真-------------------*})
 ({if $c_member_list[30]})
 <tr>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
@@ -407,7 +407,7 @@
 <td style="width:561px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({*********})
-({*---------------ここまで：７行目：画像-------------------*})
+({*---------------ここまで：７行目：写真-------------------*})
 ({*---------------ここから：７行目：ニックネーム-------------------*})
 <tr>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
@@ -433,7 +433,7 @@
 ({*********})
 ({/if})
 ({*---------------ここまで：７行目：ニックネーム-------------------*})
-({*---------------ここから：８行目：画像-------------------*})
+({*---------------ここから：８行目：写真-------------------*})
 ({if $c_member_list[35]})
 <tr>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
@@ -458,7 +458,7 @@
 <td style="width:561px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({*********})
-({*---------------ここまで：８行目：画像-------------------*})
+({*---------------ここまで：８行目：写真-------------------*})
 ({*---------------ここから：８行目：ニックネーム-------------------*})
 <tr>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
@@ -484,7 +484,7 @@
 ({*********})
 ({/if})
 ({*---------------ここまで：８行目：ニックネーム-------------------*})
-({*---------------ここから：９行目：画像-------------------*})
+({*---------------ここから：９行目：写真-------------------*})
 ({if $c_member_list[40]})
 <tr>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
@@ -509,7 +509,7 @@
 <td style="width:561px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({*********})
-({*---------------ここまで：９行目：画像-------------------*})
+({*---------------ここまで：９行目：写真-------------------*})
 ({*---------------ここから：９行目：ニックネーム-------------------*})
 <tr>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
@@ -535,7 +535,7 @@
 ({*********})
 ({/if})
 ({*---------------ここまで：９行目：ニックネーム-------------------*})
-({*---------------ここから：１０行目：画像-------------------*})
+({*---------------ここから：１０行目：写真-------------------*})
 ({if $c_member_list[45]})
 <tr>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
@@ -560,7 +560,7 @@
 <td style="width:561px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
 ({*********})
-({*---------------ここまで：１０行目：画像-------------------*})
+({*---------------ここまで：１０行目：写真-------------------*})
 ({*---------------ここから：１０行目：ニックネーム-------------------*})
 <tr>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
