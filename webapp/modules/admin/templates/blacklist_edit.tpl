@@ -30,7 +30,7 @@
 </tr>
 <tr>
 <th>該当するメンバー</th>
-<td><a href="({t_url _absolute=1 m=pc a=page_f_home})&amp;target_c_member_id=({$member.c_member_id})" target="_blank">({$member.nickname})</a></td>
+<td>({if $blacklist.c_member_id})<a href="({t_url _absolute=1 m=pc a=page_f_home})&amp;target_c_member_id=({$blacklist.c_member_id})" target="_blank">({$blacklist.nickname})</a>({else})&nbsp;({/if})</td>
 </tr>
 <tr>
 <th>メモ</th>
