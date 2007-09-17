@@ -15,13 +15,13 @@
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
 <input type="hidden" name="target_c_commu_id" value="({$target_c_commu_id})">
 <input type="hidden" name="target_c_member_id" value="({$target_c_member_id})">
-<input type="submit" value="は　い">
+<input type="submit" value="　は　い　"><br>
 </form>
 
-({t_form m=ktai a=page_c_edit_member})
+({t_form _method=get m=ktai a=page_c_edit_member})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
 <input type="hidden" name="target_c_commu_id" value="({$target_c_commu_id})">
-<input type="submit" value="いいえ">
+<input type="submit" value="　いいえ　">
 </form>
 </center>
 
