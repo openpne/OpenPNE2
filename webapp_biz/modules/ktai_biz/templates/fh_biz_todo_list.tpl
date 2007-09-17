@@ -17,10 +17,10 @@
 </td></tr>
 ({/foreach})
 </table>
-%%i76%%<a href="({t_url m=ktai_biz a=page_fh_biz_todo_add})&amp;target_c_member_id=({$target_c_member_id})&amp;({$tail})">Todoを追加</a><br>
+[i:76]<a href="({t_url m=ktai_biz a=page_fh_biz_todo_add})&amp;target_c_member_id=({$target_c_member_id})&amp;({$tail})">Todoを追加</a><br>
 ({if $is_checked})
-%%i69%%<a href="({t_url m=ktai_biz a=page_fh_biz_todo_list})&amp;target_c_member_id=({$target_c_member_id})&amp;({$tail})">未完了Todoを見る</a><br>
+[i:69]<a href="({t_url m=ktai_biz a=page_fh_biz_todo_list})&amp;target_c_member_id=({$target_c_member_id})&amp;({$tail})">未完了Todoを見る</a><br>
 ({else})
-%%i69%%<a href="({t_url m=ktai_biz a=page_fh_biz_todo_list})&amp;target_c_member_id=({$target_c_member_id})&amp;is_checked=1&amp;({$tail})">完了済みTodoを見る</a><br>
+[i:69]<a href="({t_url m=ktai_biz a=page_fh_biz_todo_list})&amp;target_c_member_id=({$target_c_member_id})&amp;is_checked=1&amp;({$tail})">完了済みTodoを見る</a><br>
 ({/if})
 ({$inc_ktai_footer|smarty:nodefaults})

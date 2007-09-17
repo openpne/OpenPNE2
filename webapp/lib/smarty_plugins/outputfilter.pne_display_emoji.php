@@ -1,7 +1,7 @@
 <?php
 
 /**
- * 「%%cNNN%%」形式の絵文字コードをHTML表示用に変換するアウトプットフィルタ
+ * 「[c:NNN]」形式の絵文字コードをHTML表示用に変換するアウトプットフィルタ
  */
 function smarty_outputfilter_pne_display_emoji($tpl_output, &$smarty)
 {

@@ -32,6 +32,6 @@
 </center>
 
 <hr color="#({$ktai_color_config.border_01})">
-%%i90%%<a href="({t_url m=ktai a=page_h_diary_edit})&amp;target_c_diary_id=({$target_c_diary.c_diary_id})&amp;({$tail})">日記の編集</a><br>
+[i:90]<a href="({t_url m=ktai a=page_h_diary_edit})&amp;target_c_diary_id=({$target_c_diary.c_diary_id})&amp;({$tail})">日記の編集</a><br>
 
 ({$inc_ktai_footer|smarty:nodefaults})
