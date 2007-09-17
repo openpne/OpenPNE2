@@ -91,17 +91,17 @@
 <div class="padding_s">
 
 <select name="open_date_year">
-<option value=0>----
+<option value="0">----
 ({html_options values=$year selected=$event.open_date_year output=$year})
 </select>
 年
 <select name="open_date_month">
-<option value=0>----
+<option value="0">----
 ({html_options values=$month selected=$event.open_date_month output=$month})
 </select>
 月
 <select name="open_date_day">
-<option value=0>----
+<option value="0">----
 ({html_options values=$day selected=$event.open_date_day output=$day})
 </select>
 日
@@ -134,7 +134,7 @@
 <div class="padding_s">
 
 <select name="open_pref_id">
-<option value=0>選択してください
+<option value="0">選択してください
 ({html_options options=$pref selected=$event.open_pref_id})
 </select>
 (補足：<input type="text" class="text" name="open_pref_comment" value="({$event.open_pref_comment})" size="30">)

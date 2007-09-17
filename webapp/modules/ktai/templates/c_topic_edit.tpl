@@ -15,9 +15,12 @@
 <br>
 <font color="#({$ktai_color_config.font_02})">本文：</font><br>
 <textarea name="body" rows="6">({$c_topic.body})</textarea><br>
+<br>
+<font color="#({$ktai_color_config.font_02})">写真：</font><br>
+[i:68]<a href="({t_url m=ktai a=page_c_topic_edit_image})&amp;target_c_commu_topic_id=({$c_topic.c_commu_topic_id})&amp;({$tail})">写真を編集する</a><br>
 <hr color="#({$ktai_color_config.border_01})">
 <center>
-<input type="submit" value="ﾄﾋﾟｯｸを編集する">
+<input type="submit" value="ﾄﾋﾟｯｸを編集する"><br>
 </center>
 </form>
 
@@ -33,5 +36,8 @@
 <input type="submit" value="ﾄﾋﾟｯｸを削除する">
 </center>
 </form>
+
+<hr color="#({$ktai_color_config.border_01})">
+[i:90]<a href="({t_url m=ktai a=page_c_bbs})&amp;target_c_commu_topic_id=({$c_topic.c_commu_topic_id})&amp;({$tail})">ﾄﾋﾟｯｸ</a><br>
 
 ({$inc_ktai_footer|smarty:nodefaults})
