@@ -23,7 +23,7 @@
 <input type="submit" value="　は　い　"><br>
 </form>
 
-({t_form m=ktai a=page_fh_diary})
+({t_form _method=get m=ktai a=page_fh_diary})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
 <input type="hidden" name="target_c_diary_id" value="({$target_c_diary_id})">
 <input type="submit" value="　いいえ　">
