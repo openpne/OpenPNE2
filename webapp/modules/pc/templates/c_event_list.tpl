@@ -40,7 +40,7 @@
 <img src="./skin/dummy.gif" alt="" class="v_spacer_l">
 
 <div style="width:570px;padding:40px 10px;margin:0px auto;" class="border_01 bg_03">
-非公開のコミュニティのため、コミュニティに参加しないとイベントを見ることは出来ません。
+非公開のコミュニティのため、コミュニティに参加しないとイベントを見ることはできません。
 </div>
 
 <img src="./skin/dummy.gif" alt="" class="v_spacer_l">
