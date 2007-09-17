@@ -20,13 +20,13 @@
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
 <input type="hidden" name="target_c_commu_topic_id" value="({$c_topic.c_commu_topic_id})">
 <input type="hidden" name="img_num" value="({$img_num})">
-<input type="submit" value="は　い">
+<input type="submit" value="　は　い　"><br>
 </form>
-<br>
+
 ({t_form _method=get m=ktai a=page_c_topic_edit_image})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
 <input type="hidden" name="target_c_commu_topic_id" value="({$c_topic.c_commu_topic_id})">
-<input type="submit" value="いいえ">
+<input type="submit" value="　いいえ　">
 </form>
 </center>
 
