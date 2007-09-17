@@ -23,13 +23,13 @@
 ({$c_message.body|t_url2a_ktai|nl2br})
 <br>
 ({if $c_message.image_filename_1})
-画像1を見る:[<a href="({t_img_url filename=$c_message.image_filename_1 w=120 h=120 f=jpg})">小</a>/<a href="({t_img_url filename=$c_message.image_filename_1 w=$smarty.const.OPENPNE_IMG_KTAI_MAX_WIDTH h=$smarty.const.OPENPNE_IMG_KTAI_MAX_HEIGHT f=jpg})">大</a>]<br>
+写真1を見る:[<a href="({t_img_url filename=$c_message.image_filename_1 w=120 h=120 f=jpg})">小</a>/<a href="({t_img_url filename=$c_message.image_filename_1 w=$smarty.const.OPENPNE_IMG_KTAI_MAX_WIDTH h=$smarty.const.OPENPNE_IMG_KTAI_MAX_HEIGHT f=jpg})">大</a>]<br>
 ({/if})
 ({if $c_message.image_filename_2})
-画像2を見る:[<a href="({t_img_url filename=$c_message.image_filename_2 w=120 h=120 f=jpg})">小</a>/<a href="({t_img_url filename=$c_message.image_filename_2 w=$smarty.const.OPENPNE_IMG_KTAI_MAX_WIDTH h=$smarty.const.OPENPNE_IMG_KTAI_MAX_HEIGHT f=jpg})">大</a>]<br>
+写真2を見る:[<a href="({t_img_url filename=$c_message.image_filename_2 w=120 h=120 f=jpg})">小</a>/<a href="({t_img_url filename=$c_message.image_filename_2 w=$smarty.const.OPENPNE_IMG_KTAI_MAX_WIDTH h=$smarty.const.OPENPNE_IMG_KTAI_MAX_HEIGHT f=jpg})">大</a>]<br>
 ({/if})
 ({if $c_message.image_filename_3})
-画像3を見る:[<a href="({t_img_url filename=$c_message.image_filename_3 w=120 h=120 f=jpg})">小</a>/<a href="({t_img_url filename=$c_message.image_filename_3 w=$smarty.const.OPENPNE_IMG_KTAI_MAX_WIDTH h=$smarty.const.OPENPNE_IMG_KTAI_MAX_HEIGHT f=jpg})">大</a>]<br>
+写真3を見る:[<a href="({t_img_url filename=$c_message.image_filename_3 w=120 h=120 f=jpg})">小</a>/<a href="({t_img_url filename=$c_message.image_filename_3 w=$smarty.const.OPENPNE_IMG_KTAI_MAX_WIDTH h=$smarty.const.OPENPNE_IMG_KTAI_MAX_HEIGHT f=jpg})">大</a>]<br>
 ({/if})
 
 ({if $com_url})<a href="({$com_url})">ｺﾐｭﾆﾃｨﾍﾟｰｼﾞ</a><br>({/if})
