@@ -11,10 +11,12 @@
 ({/if})
 </td></tr></table>
 
+({if !$target_c_diary.c_diary_id})
 [i:106]<a href="mailto:({$blog_address})">ﾒｰﾙで投稿</a><br>
-画像を添付すると写真付き日記になります。
-
+写真を添付すると写真付き日記になります。
 <hr color="#({$ktai_color_config.border_01})">
+({/if})
+
 ({if $msg})
 <font color="#({$ktai_color_config.font_04})">({$msg})</font><br>
 <br>

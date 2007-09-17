@@ -1,6 +1,6 @@
 ({$inc_ktai_header|smarty:nodefaults})
 <table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_01})">
-<font color="#({$ktai_color_config.font_01})"><a name="top">日記の編集</a></font><br>
+<font color="#({$ktai_color_config.font_01})"><a name="top">日記写真の編集</a></font><br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_02})" align="center">
 ({$target_c_diary.subject})<br>
@@ -27,7 +27,9 @@
 ({/if})
 
 ({else})
-画像はありません
+<br>
+写真はありません<br>
+<br>
 ({/if})
 </center>
 
