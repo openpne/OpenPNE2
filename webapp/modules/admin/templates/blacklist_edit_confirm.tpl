@@ -11,20 +11,14 @@
 ({if $msg})<p class="actionMsg">({$msg})</p>({/if})
 <h2>ブラックリストメンバー編集確認</h2>
 <div class="contents">
-<p>ブラックリストメンバーを以下のデータに編集します。よろしいですか？</p>
-<p class="caution">ブラックリストに追加された個体識別番号を持つユーザは、ログイン・新規登録が制限されます。</p>
-<form action="./" method="post">
-<input type="hidden" name="m" value="({$module_name})" />
-<input type="hidden" name="a" value="do_({$hash_tbl->hash('update_c_blacklist','do')})" />
-<input type="hidden" name="sessid" value="({$PHPSESSID})" />
-<input name="target_c_blacklist_id" type="hidden" value="({$target_c_blacklist_id})"/>
-<input name="easy_access_id" type="hidden" value="({$easy_access_id})"/>
-<input name="info" type="hidden" value="({$info})"/>
+
+<p>以下の内容に編集します。よろしいですか？</p>
+<p class="caution">※ブラックリストメンバーに追加されたメンバーは、ログイン・新規登録が制限されます。</p>
 
 <table class="basicType2">
 <tbody>
 <tr>
-<th>個体識別番号</th>
+<th>携帯個体識別番号(暗号化済)</th>
 <td>({$easy_access_id})</td>
 </tr>
 <tr>
@@ -35,12 +29,19 @@
 <th>メモ</th>
 <td width="250">({$info|nl2br})</td>
 </tr>
-<tr>
-<th>&nbsp;</th>
-<td><p class="textBtn"><input type="submit" class="submit" value=" 編　集 " /></p></td>
-</tr>
 </tbody>
 </table>
+
+<form action="./" method="post">
+<input type="hidden" name="m" value="({$module_name})" />
+<input type="hidden" name="a" value="do_({$hash_tbl->hash('update_c_blacklist','do')})" />
+<input type="hidden" name="sessid" value="({$PHPSESSID})" />
+<input type="hidden" name="target_c_blacklist_id" value="({$target_c_blacklist_id})" />
+<input type="hidden" name="easy_access_id" value="({$easy_access_id})" />
+<input type="hidden" name="info" value="({$info})" />
+<p class="textBtn"><input type="submit" class="submit" value="はい" /></p>
 </form>
+
+<p class="textBtn"><input type="submit" class="submit" value="いいえ" /></p>
 
 ({$inc_footer|smarty:nodefaults})
