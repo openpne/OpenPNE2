@@ -28,7 +28,7 @@ if (   !$auth->auth()
 }
 
 if (db_member_is_blacklist($u)) {
-    openpne_redirect('ktai', 'page_o_login', array('msg' => 43));
+    ktai_display_error('ﾛｸﾞｲﾝできませんでした。');
 }
 
 $auth->uid($u);
