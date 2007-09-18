@@ -91,7 +91,7 @@ class ktai_do_o_insert_c_member extends OpenPNE_Action
                 $errors[] = 'この個体識別番号はすでに登録されています';
             }
             if (db_member_easy_access_id_is_blacklist(md5($easy_access_id))) {
-                $errors[] = 'この個体識別番号は登録することができません';
+                ktai_display_error('新規登録を完了できませんでした。');
             }
         }
 
