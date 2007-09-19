@@ -174,12 +174,12 @@
 <!-- ******ここから：自分の写真及びニックネーム覧****** -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:270px;margin:0px auto;" class="border_07" id="main_image_and_name">
 <tr>
-<td style="width:7px;height:7px;" class="bg_05"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:7px;height:7px;" class="bg_05"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 <td style="width:254px;height:7px;" class="bg_05"><img src="./skin/dummy.gif" alt="" style="width:254px;height:7px;" class="dummy"></td>
-<td style="width:7px;height:7px;" class="bg_05"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:7px;height:7px;" class="bg_05"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 <tr>
-<td class="bg_05"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_05"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 <td align="center" class="bg_02">
 <!-- *ここから：自分の写真及びニックネーム覧＞＞内容* -->
 ({*ここから：header*})
@@ -249,12 +249,12 @@
 ({*ここから：footer*})
 <!-- *ここまで：自分の写真及びニックネーム覧＞＞内容* -->
 </td>
-<td class="bg_05"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_05"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 <tr>
-<td class="bg_05"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
-<td class="bg_05"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
-<td class="bg_05"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_05"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+<td class="bg_05"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+<td class="bg_05"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 </table>
 <!-- ******ここまで：自分の写真及びニックネーム覧****** -->
@@ -436,9 +436,9 @@ show_flash('flash/list.swf', '({$flashvars})');
 <!-- ここから：小メニュー -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:268px">
 <tr>
-<td style="width:1px;" class="bg_07" rowspan="4"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_07" rowspan="4"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 <td style="width:266px;" class="bg_02" colspan="4"><img src="./skin/dummy.gif" alt="" style="width:266px;height:5px;" class="dummy"></td>
-<td style="width:1px;" class="bg_07" rowspan="4"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_07" rowspan="4"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 <tr>
 <td style="width:125px;" class="bg_02" rowspan="2"><img src="./skin/dummy.gif" alt="" style="width:125px;height:1px;" class="dummy"></td>
@@ -458,7 +458,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <td style="width:266px;" class="bg_02" colspan="4"><img src="./skin/dummy.gif" alt="" style="width:266px;height:5px;" class="dummy"></td>
 </tr>
 <tr>
-<td style="width:268px;" class="bg_07" colspan="6"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:268px;" class="bg_07" colspan="6"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 </table>
 <!-- ここまで：小メニュー -->
@@ -650,9 +650,9 @@ show_flash('flash/list.swf', '({$flashvars})');
 <!-- ここから：小メニュー -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:268px">
 <tr>
-<td style="width:1px;" class="bg_07" rowspan="3"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_07" rowspan="3"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 <td style="width:266px;" class="bg_02" colspan="4"><img src="./skin/dummy.gif" alt="" style="width:266px;height:5px;" class="dummy"></td>
-<td style="width:1px;" class="bg_07" rowspan="3"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_07" rowspan="3"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 <tr>
 <td style="width:125px;" class="bg_02"><img src="./skin/dummy.gif" alt="" style="width:125px;height:1px;" class="dummy"></td>
@@ -666,7 +666,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <td style="width:266px;" class="bg_02" colspan="4"><img src="./skin/dummy.gif" alt="" style="width:266px;height:5px;" class="dummy"></td>
 </tr>
 <tr>
-<td style="width:268px;" class="bg_07" colspan="6"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:268px;" class="bg_07" colspan="6"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 </table>
 <!-- ここまで：小メニュー -->
@@ -851,9 +851,9 @@ show_flash('flash/list.swf', '({$flashvars})');
 <!-- ここから：小メニュー -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:268px">
 <tr>
-<td style="width:1px;" class="bg_07" rowspan="3"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_07" rowspan="3"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 <td style="width:266px;" class="bg_02" colspan="4"><img src="./skin/dummy.gif" alt="" style="width:266px;height:5px;" class="dummy"></td>
-<td style="width:1px;" class="bg_07" rowspan="3"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_07" rowspan="3"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 <tr>
 <td style="width:125px;" class="bg_02"><img src="./skin/dummy.gif" alt="" style="width:125px;height:1px;" class="dummy"></td>
@@ -867,7 +867,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <td style="width:266px;" class="bg_02" colspan="4"><img src="./skin/dummy.gif" alt="" style="width:266px;height:5px;" class="dummy"></td>
 </tr>
 <tr>
-<td style="width:268px;" class="bg_07" colspan="6"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:268px;" class="bg_07" colspan="6"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 </table>
 <!-- ここまで：小メニュー -->
@@ -908,12 +908,12 @@ show_flash('flash/list.swf', '({$flashvars})');
 
 <table border="0" cellspacing="0" cellpadding="0" style="width:440px;margin:0px auto;" class="border_07">
 <tr>
-<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 <td style="width:424px;" class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:424px;height:7px;" class="dummy"></td>
-<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 <tr>
-<td class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 <td class="bg_01" style="width:424px;">
 <!-- ここから：主内容＞＞カレンダー -->
 ({if $msg})
@@ -994,9 +994,9 @@ show_flash('flash/list.swf', '({$flashvars})');
 <td class="bg_00"><img src="./skin/dummy.gif" alt=""></td>
 </tr>
 <tr>
-<td class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 <td class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:424px;height:7px;" class="dummy"></td>
-<td class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 </table>
 
@@ -1016,12 +1016,12 @@ show_flash('flash/list.swf', '({$flashvars})');
 <!-- ******ここから：最新情報一覧****** -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:440px;margin:0px auto;" class="border_07">
 <tr>
-<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 <td style="width:424px;" class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:424px;height:7px;" class="dummy"></td>
-<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 <tr>
-<td class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 <td class="bg_01">
 <!-- *ここから：最新情報一覧＞内容* -->
 ({*ここから：header*})
@@ -1040,7 +1040,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <!-- ここから：主内容 -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:424px;">
 <tr>
-<td style="width:1px;" class="bg_01"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 <td class="bg_01" align="center">
 <table border="0" cellspacing="0" cellpadding="0" style="width:422px;">
 <!-- ここから：主内容＞フレンド最新日記 -->
@@ -1289,7 +1289,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 
 </table>
 </td>
-<td style="width:1px;" class="bg_01"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 <tr>
 <td class="bg_01" colspan="3"><img src="./skin/dummy.gif" alt="" style="height:1px;" class="dummy"></td>
@@ -1305,9 +1305,9 @@ show_flash('flash/list.swf', '({$flashvars})');
 <td class="bg_00"><img src="./skin/dummy.gif" alt=""></td>
 </tr>
 <tr>
-<td class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 <td class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:424px;height:7px;" class="dummy"></td>
-<td class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 </table>
 <!-- ******ここまで：最新情報一覧****** -->
@@ -1324,12 +1324,12 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({if $c_diary_list || $c_blog_list || $c_review_list})
 <table border="0" cellspacing="0" cellpadding="0" style="width:440px;margin:0px auto;" class="border_07">
 <tr>
-<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 <td style="width:424px;" class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:424px;height:7px;" class="dummy"></td>
-<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 <tr>
-<td class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 <td class="bg_01">
 <!-- *ここから：自己情報一覧＞＞内容* -->
 ({*ここから：header*})
@@ -1347,7 +1347,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <!-- ここから：主内容 -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:422px;">
 <tr>
-<td style="width:1px;" class="bg_01"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 <td class="bg_01" align="center">
 
 <table border="0" cellspacing="0" cellpadding="0" style="width:422px;">
@@ -1472,7 +1472,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 </table>
 
 </td>
-<td style="width:1px;" class="bg_01"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 <tr>
 <td class="bg_01" colspan="3"><img src="./skin/dummy.gif" alt="" style="height:1px;" class="dummy"></td>
@@ -1488,9 +1488,9 @@ show_flash('flash/list.swf', '({$flashvars})');
 <td class="bg_00"><img src="./skin/dummy.gif" alt=""></td>
 </tr>
 <tr>
-<td class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 <td class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:424px;height:7px;" class="dummy"></td>
-<td class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 </table>
 <!-- ******ここまで：自己情報一覧****** -->
@@ -1508,12 +1508,12 @@ show_flash('flash/list.swf', '({$flashvars})');
 <!-- ******ここから：他者評価一覧****** -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:440px;margin:0px auto;" class="border_07">
 <tr>
-<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 <td style="width:424px;" class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:424px;height:7px;" class="dummy"></td>
-<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 <tr>
-<td class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 <td class="bg_01" align="center">
 <!-- *ここから：他者評価一覧＞＞内容* -->
 ({*ここから：header*})
@@ -1531,7 +1531,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <!-- 主内容 -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:424px;">
 <tr>
-<td style="width:1px;" class="bg_01"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 <td class="bg_01">
 <table border="0" cellspacing="0" cellpadding="0" style="width:422px;">
 ({foreach from=$c_friend_intro_list item=item})
@@ -1555,7 +1555,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <!-- 小メニュー -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:422px;">
 <tr>
-<td style="width:1px;" class="bg_04"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_04"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 <td style="width:290px;" class="bg_02"><img src="./skin/dummy.gif" alt="" style="width:290px;height:1px;" class="dummy"></td>
 <td style="width:130px;" class="bg_02 lh_140 padding_s">
 <img src="./skin/dummy.gif" alt="" class="icon arrow_1">
@@ -1564,18 +1564,18 @@ show_flash('flash/list.swf', '({$flashvars})');
 <img src="./skin/dummy.gif" alt="" class="icon arrow_1">
 <a href="({t_url m=pc a=page_h_manage_friend})">紹介文を書く</a>
 </td>
-<td style="width:1px;" class="bg_04"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_04"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 <tr>
-<td style="width:1px;height:1px;" class="bg_04" colspan="4"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;height:1px;" class="bg_04" colspan="4"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 </table>
 ({*ここまで：footer*})
 </td>
-<td style="width:1px;" class="bg_01"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 <tr>
-<td class="bg_01" colspan="3"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td class="bg_01" colspan="3"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 </table>
 <!-- *ここまで：他者評価一覧＞＞内容* -->
@@ -1583,9 +1583,9 @@ show_flash('flash/list.swf', '({$flashvars})');
 <td class="bg_00"><img src="./skin/dummy.gif" alt=""></td>
 </tr>
 <tr>
-<td class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 <td class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:424px;height:7px;" class="dummy"></td>
-<td class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 </table>
 <!-- ******ここまで：他者評価一覧****** -->

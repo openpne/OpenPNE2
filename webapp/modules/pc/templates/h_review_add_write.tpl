@@ -14,12 +14,12 @@
 <input type="hidden" name="category_id" value="({$category_id})">
 <table border="0" cellspacing="0" cellpadding="0" style="width:650px;" class="border_07">
 <tr>
-<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 <td style="width:646px;" class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:566px;height:7px;" class="dummy"></td>
-<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 <tr>
-<td class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 <td class="bg_01" align="center">
 <!-- *ここから：レビュー＞内容* -->
 ({*ここから：header*})
@@ -38,17 +38,17 @@
 <table border="0" cellspacing="0" cellpadding="0" style="width:644px;">
 ({*********})
 <tr>
-<td style="height:1px;" class="bg_01" colspan="7"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="height:1px;" class="bg_01" colspan="7"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({*********})
 <tr>
-<td style="width:1px;" class="bg_01"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;"></td>
+<td style="width:1px;" class="bg_01"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 <td class="bg_02" style="width:180px;" align="center" rowspan="7">
 
 <a href="({$product.url})" target="_blank"><img src="({$product.imagemedium})"><br>詳細を見る</a>
 
 </td>
-<td style="width:1px;" class="bg_01"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;"></td>
+<td style="width:1px;" class="bg_01"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 <td style="width:100px;" class="bg_05" align="left" valign="middle">
 
 <div style="padding:6px;" class="c_01">
@@ -58,7 +58,7 @@
 </div>
 
 </td>
-<td style="width:1px;" class="bg_01"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 <td style="width:450px;height:50px;" class="bg_02" align="left" valign="middle">
 
 <div class="padding_s">
@@ -68,17 +68,17 @@
 </div>
 
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({*********})
 <tr>
-<td style="height:1px;" class="bg_01"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
-<td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="height:1px;" class="bg_01"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+<td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({*********})
 <tr>
-<td style="width:1px;" class="bg_01"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
-<td style="width:1px;" class="bg_01"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+<td style="width:1px;" class="bg_01"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 <td class="bg_05" align="left" valign="middle">
 
 <div style="padding:6px;" class="c_01">
@@ -88,7 +88,7 @@
 </div>
 
 </td>
-<td style="width:1px;" class="bg_01"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 <td style="width:450px;" class="bg_02" align="left" valign="middle">
 <div class="padding_s">
 
@@ -98,17 +98,17 @@
 
 </div>
 </td>
-<td style="width:1px;" class="bg_01"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({*********})
 <tr>
-<td style="height:1px;" class="bg_01"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
-<td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="height:1px;" class="bg_01"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+<td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({*********})
 <tr>
-<td style="width:1px;" class="bg_01"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
-<td style="width:1px;" class="bg_01"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+<td style="width:1px;" class="bg_01"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 <td class="bg_05" align="left" valign="middle">
 
 <img src="./skin/dummy.gif" alt="" class="v_spacer_s">
@@ -120,7 +120,7 @@
 <img src="./skin/dummy.gif" alt="" class="v_spacer_s">
 
 </td>
-<td style="width:1px;" class="bg_01"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 <td style="width:450px;" class="bg_02" align="left" valign="middle">
 
 <div class="padding_s">
@@ -130,17 +130,17 @@
 </div>
 
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({*********})
 <tr>
-<td style="height:1px;" class="bg_01"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
-<td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="height:1px;" class="bg_01"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+<td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({*********})
 <tr>
-<td style="width:1px;" class="bg_01"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 <td class="bg_05" align="left" valign="middle">
 
 <div style="padding:6px;" class="c_01">
@@ -150,7 +150,7 @@
 </div>
 
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 <td style="width:450px;" class="bg_02" align="left" valign="middle">
 
 <div class="padding_s">
@@ -163,15 +163,15 @@
 </div>
 
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({*********})
 <tr>
-<td style="width:644px;height:1px;" class="bg_01" colspan="7"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:644px;height:1px;" class="bg_01" colspan="7"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({*********})
 <tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 <td style="width:642px;" class="bg_03" align="left" valign="middle" colspan="6">
 <div style="padding:5px 90px;">
 
@@ -185,11 +185,11 @@
 
 </div>
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({*********})
 <tr>
-<td style="width:644px;height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:644px;height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({*********})
 </table>
@@ -200,12 +200,12 @@
 ({*ここまで：footer*})
 <!-- *ここまで：レビュー＞＞内容* -->
 </td>
-<td class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 <tr>
-<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 <td style="width:566px;" class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:566px;height:7px;" class="dummy"></td>
-<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 </table>
 </form>

@@ -8,12 +8,12 @@
 <!-- ******ここから：コミュニティの写真及び名前覧****** -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:268px;margin:0px auto;" class="border_07">
 <tr>
-<td style="width:7px;height:7px;" class="bg_05"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:7px;height:7px;" class="bg_05"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 <td style="width:254px;height:7px;" class="bg_05"><img src="./skin/dummy.gif" alt="" style="width:254px;height:7px;" class="dummy"></td>
-<td style="width:7px;height:7px;" class="bg_05"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:7px;height:7px;" class="bg_05"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 <tr>
-<td class="bg_05"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_05"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 <td align="center" class="bg_01">
 <!-- *ここから：コミュニティの写真及び名前覧＞＞内容* -->
 ({*ここから：header*})
@@ -54,12 +54,12 @@
 ({*ここから：footer*})
 <!-- *ここまで：コミュニティの写真及び名前覧＞＞内容* -->
 </td>
-<td class="bg_05"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_05"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 <tr>
-<td class="bg_05"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
-<td class="bg_05"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
-<td class="bg_05"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_05"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+<td class="bg_05"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+<td class="bg_05"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 </table>
 <!-- ******ここまで：コミュニティの写真及び名前覧****** -->
@@ -79,12 +79,12 @@
 <!-- ******ここから：コミュニティ情報一覧****** -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:440px;margin:0px auto;" class="border_07">
 <tr>
-<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 <td style="width:426px;" class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:426px;height:7px;" class="dummy"></td>
-<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 <tr>
-<td class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 <td class="bg_01">
 <!-- *ここから：コミュニティ情報一覧＞内容* -->
 ({*ここから：header*})
@@ -104,7 +104,7 @@
 <div class="bg_00">
 <table border="0" cellspacing="0" cellpadding="0" style="width:426px;">
 <tr>
-<td style="width:1px;" class="bg_01"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 <td class="bg_01" align="center">
 <table border="0" cellspacing="1" cellpadding="4" style="width:424px;">
 <!-- ここから：主内容＞コミュニティの名前 -->
@@ -148,7 +148,7 @@
 <!-- ここまで：主内容＞コミュニティの説明 -->
 </table>
 </td>
-<td style="width:1px;" class="bg_01"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 </table>
 </div>
@@ -158,7 +158,7 @@
 <!-- ここから：小メニュー -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:424px;">
 <tr>
-<td style="width:1px;" class="bg_04"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_04"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 <td style="width:271px;" class="bg_02"><img src="./skin/dummy.gif" alt="" class="dummy"></td>
 <td style="width:151px;padding:5px 0px;" class="bg_02 lh_140">
 ({if $is_admin})
@@ -168,10 +168,10 @@
 ({/if})
 <br>
 </td>
-<td style="width:1px;" class="bg_04"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_04"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 <tr>
-<td style="width:1px;height:1px;" class="bg_04" colspan="4"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;height:1px;" class="bg_04" colspan="4"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 </table>
 <!-- ここまで：小メニュー -->
@@ -181,9 +181,9 @@
 <td class="bg_00"><img src="./skin/dummy.gif" alt=""></td>
 </tr>
 <tr>
-<td class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 <td class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:426px;height:7px;" class="dummy"></td>
-<td class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 </table>
 <!-- ******ここまで：コミュニティ情報一覧****** -->
