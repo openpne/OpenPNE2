@@ -10,12 +10,12 @@
 
 <table border="0" cellspacing="0" cellpadding="0" style="width:713px;margin:0px;" class="border_07">
 <tr>
-<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 <td style="width:699px;" class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:699px;height:7px;" class="dummy"></td>
-<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 <tr>
-<td class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 <td class="bg_02">
 <!-- ここから：主内容 -->
 
@@ -381,9 +381,9 @@
 <td class="bg_00"><img src="./skin/dummy.gif" alt=""></td>
 </tr>
 <tr>
-<td class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
-<td class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
-<td class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 </table>
 

@@ -13,12 +13,12 @@
 <!-- ******ここから：マイフレンド一覧（メンバー有り）****** -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:580px;margin:0px auto;" class="border_07">
 <tr>
-<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 <td style="width:566px;" class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:566px;height:7px;" class="dummy"></td>
-<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 <tr>
-<td class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 <td class="bg_01" align="center">
 <!-- *ここから：マイフレンド一覧＞内容* -->
 ({*ここから：header*})
@@ -39,11 +39,11 @@
 <table border="0" cellspacing="0" cellpadding="0" style="width:564px;">
 ({*********})
 <tr>
-<td style="width:564px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:564px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({*********})
 <tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 <td style="width:562px;" class="bg_02" align="center">
 
 <div class="padding_s">
@@ -57,11 +57,11 @@
 </div>
 
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({*********})
 <tr>
-<td style="width:564px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:564px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({*********})
 </table>
@@ -70,11 +70,11 @@
 <table border="0" cellspacing="0" cellpadding="0" style="width:564px;">
 ({*********})
 <tr>
-<td style="width:564px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:564px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({*********})
 <tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 <td style="width:562px;" class="bg_02" align="right">
 
 <div class="padding_s">
@@ -87,11 +87,11 @@
 </div>
 
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({*********})
 <tr>
-<td style="width:564px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:564px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({*********})
 </table>
@@ -100,13 +100,13 @@
 <table border="0" cellspacing="0" cellpadding="0" style="width:564px;">
 ({*********})
 <tr>
-<td style="width:564px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:564px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({*********})
 ({if $target_friend_list_disp.0})
 <!-- ここから：サムネイル＞＞一段目 -->
 <tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 ({t_loop from=$target_friend_list_disp start=0 num=5})
 <td style="width:111px;" class="bg_03" align="center">
 <img src="./skin/dummy.gif" alt="" class="v_spacer_l" style="width:111px;">
@@ -118,18 +118,18 @@
 ({/if})
 <img src="./skin/dummy.gif" alt="" class="v_spacer_l" style="width:111px;">
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 ({/t_loop})
 </tr>
 ({*********})
 <!-- ここまで：サムネイル＞＞一段目 -->
 <tr>
-<td style="width:564px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:564px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({*********})
 <!-- ここから：ニックネーム＞＞一段目 -->
 <tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 ({t_loop from=$target_friend_list_disp start=0 num=5})
 <td style="width:111px;" class="bg_02" align="center">
 ({if $item})
@@ -141,20 +141,20 @@
 &nbsp;
 ({/if})
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 ({/t_loop})
 </tr>
 ({*********})
 <!-- ここまで：ニックネーム＞＞一段目 -->
 <tr>
-<td style="width:564px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:564px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({/if})
 ({*********})
 ({if $target_friend_list_disp.5})
 <!-- ここから：サムネイル＞＞二段目 -->
 <tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 ({t_loop from=$target_friend_list_disp start=5 num=5})
 <td style="width:111px;" class="bg_03" align="center">
 <img src="./skin/dummy.gif" alt="" class="v_spacer_l" style="width:111px;">
@@ -166,18 +166,18 @@
 ({/if})
 <img src="./skin/dummy.gif" alt="" class="v_spacer_l" style="width:111px;">
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 ({/t_loop})
 </tr>
 ({*********})
 <!-- ここまで：サムネイル＞＞二段目 -->
 <tr>
-<td style="width:564px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:564px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({*********})
 <!-- ここから：ニックネーム＞＞二段目 -->
 <tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 ({t_loop from=$target_friend_list_disp start=5 num=5})
 <td style="width:111px;" class="bg_02" align="center">
 ({if $item})
@@ -189,20 +189,20 @@
 &nbsp;
 ({/if})
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 ({/t_loop})
 </tr>
 ({*********})
 <!-- ここまで：ニックネーム＞＞二段目 -->
 <tr>
-<td style="width:564px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:564px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({/if})
 ({*********})
 ({if $target_friend_list_disp.10})
 <!-- ここから：サムネイル＞＞三段目 -->
 <tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 ({t_loop from=$target_friend_list_disp start=10 num=5})
 <td style="width:111px;" class="bg_03" align="center">
 <img src="./skin/dummy.gif" alt="" class="v_spacer_l" style="width:111px;">
@@ -214,18 +214,18 @@
 ({/if})
 <img src="./skin/dummy.gif" alt="" class="v_spacer_l" style="width:111px;">
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 ({/t_loop})
 </tr>
 ({*********})
 <!-- ここまで：サムネイル＞＞三段目 -->
 <tr>
-<td style="width:564px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:564px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({*********})
 <!-- ここから：ニックネーム＞＞三段目 -->
 <tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 ({t_loop from=$target_friend_list_disp start=10 num=5})
 <td style="width:111px;" class="bg_02" align="center">
 ({if $item})
@@ -237,20 +237,20 @@
 &nbsp;
 ({/if})
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 ({/t_loop})
 </tr>
 <!-- ここまで：ニックネーム＞＞三段目 -->
 ({*********})
 <tr>
-<td style="width:564px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:564px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({/if})
 ({*********})
 ({if $target_friend_list_disp.15})
 <!-- ここから：サムネイル＞＞四段目 -->
 <tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 ({t_loop from=$target_friend_list_disp start=15 num=5})
 <td style="width:111px;" class="bg_03" align="center">
 <img src="./skin/dummy.gif" alt="" class="v_spacer_l" style="width:111px;">
@@ -262,18 +262,18 @@
 ({/if})
 <img src="./skin/dummy.gif" alt="" class="v_spacer_l" style="width:111px;">
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 ({/t_loop})
 </tr>
 ({*********})
 <!-- ここまで：サムネイル＞＞四段目 -->
 <tr>
-<td style="width:564px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:564px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({*********})
 <!-- ここから：ニックネーム＞＞四段目 -->
 <tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 ({t_loop from=$target_friend_list_disp start=15 num=5})
 <td style="width:111px;" class="bg_02" align="center">
 ({if $item})
@@ -285,20 +285,20 @@
 &nbsp;
 ({/if})
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 ({/t_loop})
 </tr>
 <!-- ここまで：ニックネーム＞＞四段目 -->
 ({*********})
 <tr>
-<td style="width:564px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:564px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({/if})
 ({*********})
 ({if $target_friend_list_disp.20})
 <!-- ここから：サムネイル＞＞五段目 -->
 <tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 ({t_loop from=$target_friend_list_disp start=20 num=5})
 <td style="width:111px;" class="bg_03" align="center">
 <img src="./skin/dummy.gif" alt="" class="v_spacer_l" style="width:111px;">
@@ -310,18 +310,18 @@
 ({/if})
 <img src="./skin/dummy.gif" alt="" class="v_spacer_l" style="width:111px;">
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 ({/t_loop})
 </tr>
 ({*********})
 <!-- ここまで：サムネイル＞＞五段目 -->
 <tr>
-<td style="width:564px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:564px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({*********})
 <!-- ここから：ニックネーム＞＞五段目 -->
 <tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 ({t_loop from=$target_friend_list_disp start=20 num=5})
 <td style="width:111px;" class="bg_02" align="center">
 ({if $item})
@@ -333,20 +333,20 @@
 &nbsp;
 ({/if})
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 ({/t_loop})
 </tr>
 ({*********})
 <!-- ここまで：ニックネーム＞＞五段目 -->
 <tr>
-<td style="width:564px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:564px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({/if})
 ({*********})
 ({if $target_friend_list_disp.25})
 <!-- ここから：サムネイル＞＞六段目 -->
 <tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 ({t_loop from=$target_friend_list_disp start=25 num=5})
 <td style="width:111px;" class="bg_03" align="center">
 <img src="./skin/dummy.gif" alt="" class="v_spacer_l" style="width:111px;">
@@ -358,18 +358,18 @@
 ({/if})
 <img src="./skin/dummy.gif" alt="" class="v_spacer_l" style="width:111px;">
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 ({/t_loop})
 </tr>
 ({*********})
 <!-- ここまで：サムネイル＞＞六段目 -->
 <tr>
-<td style="width:564px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:564px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({*********})
 <!-- ここから：ニックネーム＞＞六段目 -->
 <tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 ({t_loop from=$target_friend_list_disp start=25 num=5})
 <td style="width:111px;" class="bg_02" align="center">
 ({if $item})
@@ -381,20 +381,20 @@
 &nbsp;
 ({/if})
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 ({/t_loop})
 </tr>
 ({*********})
 <!-- ここまで：ニックネーム＞＞六段目 -->
 <tr>
-<td style="width:564px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:564px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({/if})
 ({*********})
 ({if $target_friend_list_disp.30})
 <!-- ここから：サムネイル＞＞七段目 -->
 <tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 ({t_loop from=$target_friend_list_disp start=30 num=5})
 <td style="width:111px;" class="bg_03" align="center">
 <img src="./skin/dummy.gif" alt="" class="v_spacer_l" style="width:111px;">
@@ -406,18 +406,18 @@
 ({/if})
 <img src="./skin/dummy.gif" alt="" class="v_spacer_l" style="width:111px;">
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 ({/t_loop})
 </tr>
 ({*********})
 <!-- ここまで：サムネイル＞＞七段目 -->
 <tr>
-<td style="width:564px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:564px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({*********})
 <!-- ここから：ニックネーム＞＞七段目 -->
 <tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 ({t_loop from=$target_friend_list_disp start=30 num=5})
 <td style="width:111px;" class="bg_02" align="center">
 ({if $item})
@@ -429,12 +429,12 @@
 &nbsp;
 ({/if})
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 ({/t_loop})
 </tr>
 <!-- ここまで：ニックネーム＞＞七段目 -->
 <tr>
-<td style="width:564px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:564px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({*********})
 ({/if})
@@ -442,7 +442,7 @@
 ({if $target_friend_list_disp.35})
 <!-- ここから：サムネイル＞＞八段目 -->
 <tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 ({t_loop from=$target_friend_list_disp start=35 num=5})
 <td style="width:111px;" class="bg_03" align="center">
 <img src="./skin/dummy.gif" alt="" class="v_spacer_l" style="width:111px;">
@@ -454,18 +454,18 @@
 ({/if})
 <img src="./skin/dummy.gif" alt="" class="v_spacer_l" style="width:111px;">
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 ({/t_loop})
 </tr>
 ({*********})
 <!-- ここまで：サムネイル＞＞八段目 -->
 <tr>
-<td style="width:564px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:564px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({*********})
 <!-- ここから：ニックネーム＞＞八段目 -->
 <tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 ({t_loop from=$target_friend_list_disp start=35 num=5})
 <td style="width:111px;" class="bg_02" align="center">
 ({if $item})
@@ -477,20 +477,20 @@
 &nbsp;
 ({/if})
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 ({/t_loop})
 </tr>
 ({*********})
 <!-- ここまで：ニックネーム＞＞八段目 -->
 <tr>
-<td style="width:564px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:564px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({/if})
 ({*********})
 ({if $target_friend_list_disp.40})
 <!-- ここから：サムネイル＞＞九段目 -->
 <tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 ({t_loop from=$target_friend_list_disp start=40 num=5})
 <td style="width:111px;" class="bg_03" align="center">
 <img src="./skin/dummy.gif" alt="" class="v_spacer_l" style="width:111px;">
@@ -502,18 +502,18 @@
 ({/if})
 <img src="./skin/dummy.gif" alt="" class="v_spacer_l" style="width:111px;">
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 ({/t_loop})
 </tr>
 ({*********})
 <!-- ここまで：サムネイル＞＞九段目 -->
 <tr>
-<td style="width:564px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:564px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({*********})
 <!-- ここから：ニックネーム＞＞九段目 -->
 <tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 ({t_loop from=$target_friend_list_disp start=40 num=5})
 <td style="width:111px;" class="bg_02" align="center">
 ({if $item})
@@ -525,19 +525,19 @@
 &nbsp;
 ({/if})
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 ({/t_loop})
 </tr>
 <!-- ここまで：ニックネーム＞＞九段目 -->
 <tr>
-<td style="width:564px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:564px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({/if})
 ({*********})
 ({if $target_friend_list_disp.45})
 <!-- ここから：サムネイル＞＞十段目 -->
 <tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 ({t_loop from=$target_friend_list_disp start=45 num=5})
 <td style="width:111px;" class="bg_03" align="center">
 <img src="./skin/dummy.gif" alt="" class="v_spacer_l" style="width:111px;">
@@ -549,18 +549,18 @@
 ({/if})
 <img src="./skin/dummy.gif" alt="" class="v_spacer_l" style="width:111px;">
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 ({/t_loop})
 </tr>
 ({*********})
 <!-- ここまで：サムネイル＞＞十段目 -->
 <tr>
-<td style="width:564px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:564px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({*********})
 <!-- ここから：ニックネーム＞＞十段目 -->
 <tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 ({t_loop from=$target_friend_list_disp start=45 num=5})
 <td style="width:111px;" class="bg_02" align="center">
 ({if $item})
@@ -572,13 +572,13 @@
 &nbsp;
 ({/if})
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 ({/t_loop})
 </tr>
 ({*********})
 <!-- ここまで：ニックネーム＞＞十段目 -->
 <tr>
-<td style="width:564px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:564px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({*********})
 ({/if})
@@ -589,11 +589,11 @@
 <table border="0" cellspacing="0" cellpadding="0" style="width:564px;">
 ({*********})
 <tr>
-<td style="width:564px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:564px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({*********})
 <tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 <td style="width:562px;" class="bg_02" align="center">
 
 <div class="padding_s">
@@ -607,11 +607,11 @@
 </div>
 
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({*********})
 <tr>
-<td style="width:564px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:564px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({*********})
 </table>
@@ -619,11 +619,11 @@
 <!-- ここから：ページ切り替えメニュー：下 -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:564px;">
 <tr>
-<td style="width:564px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:564px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({*********})
 <tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 <td style="width:562px;" class="bg_02" align="right">
 
 <div class="padding_s">
@@ -636,11 +636,11 @@
 </div>
 
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({*********})
 <tr>
-<td style="width:564px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:564px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({*********})
 </table>
@@ -652,12 +652,12 @@
 ({*ここまで：footer*})
 <!-- *ここまで：マイフレンド一覧＞＞内容* -->
 </td>
-<td class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 <tr>
-<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 <td style="width:566px;" class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:566px;height:7px;" class="dummy"></td>
-<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 </table>
 <!-- ******ここまで：マイフレンド一覧（メンバー有り）****** -->
@@ -669,12 +669,12 @@
 <!-- ******ここから：マイフレンド一覧（メンバー無し）****** -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:580px;margin:0px auto;" class="border_07">
 <tr>
-<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 <td style="width:566px;" class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:566px;height:7px;" class="dummy"></td>
-<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 <tr>
-<td class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 <td class="bg_01" align="center">
 <!-- *ここから：マイフレンド一覧＞内容* -->
 ({*ここから：header*})
@@ -692,21 +692,21 @@
 ({*ここから：body*})
 <table border="0" cellspacing="0" cellpadding="0" style="width:564px;">
 <tr>
-<td style="width:564px;height:1px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:564px;height:1px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 <!-- ここから：主内容 -->
 <tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 <td style="width:564px;height:50px;" class="bg_03" align="center" valign="middle">
 
 ({$WORD_MY_FRIEND})登録がありません。
 
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 <!-- ここまで：主内容 -->
 <tr>
-<td style="width:564px;height:1px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:564px;height:1px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 </table>
 ({*ここまで：body*})
@@ -715,12 +715,12 @@
 ({*ここまで：footer*})
 <!-- *ここまで：マイフレンド一覧＞＞内容* -->
 </td>
-<td class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 <tr>
-<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 <td style="width:566px;" class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:566px;height:7px;" class="dummy"></td>
-<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 </table>
 <!-- ******ここまで：マイフレンド一覧（メンバー無し）****** -->
