@@ -15,12 +15,12 @@
 
 <table border="0" cellspacing="0" cellpadding="0" style="width:580px;">
 <tr>
-<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 <td style="width:566px;" class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:566px;height:7px;" class="dummy"></td>
-<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 <tr>
-<td class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 <td class="bg_01" align="center">
 <!-- *ここから：コミュニティ一覧＞内容* -->
 ({*ここから：header*})
@@ -41,11 +41,11 @@
 <table border="0" cellspacing="0" cellpadding="0" style="width:564px;">
 ({*********})
 <tr>
-<td style="width:564px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:564px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({*********})
 <tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 <td style="width:562px;" class="bg_02" align="center">
 
 <div class="padding_s">
@@ -61,11 +61,11 @@
 </div>
 
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({*********})
 <tr>
-<td style="width:564px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:564px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({*********})
 </table>
@@ -74,11 +74,11 @@
 <table border="0" cellspacing="0" cellpadding="0" style="width:564px;">
 ({*********})
 <tr>
-<td style="width:564px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:564px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({*********})
 <tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 <td style="width:562px;" class="bg_02" align="right">
 
 <div class="padding_s">
@@ -95,11 +95,11 @@
 </div>
 
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({*********})
 <tr>
-<td style="width:564px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:564px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({*********})
 </table>
@@ -107,13 +107,13 @@
 <!-- ここから：サムネイルと名前 -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:564px;">
 <tr>
-<td style="width:564px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:564px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 
 ({if $common_commu_list.0})
 <!-- ここから：サムネイル＞＞一段目 -->
 <tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 ({t_loop from=$common_commu_list start=0 num=5})
 <td style="width:111px;" class="bg_03" align="center">
 <img src="./skin/dummy.gif" alt="" class="v_spacer_l" style="width:111px;">
@@ -126,16 +126,16 @@
 ({/if})
 <img src="./skin/dummy.gif" alt="" class="v_spacer_l" style="width:111px;">
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 ({/t_loop})
 </tr>
 <!-- ここまで：サムネイル＞＞一段目 -->
 <tr>
-<td style="width:564px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:564px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 <!-- ここから：名前＞＞一段目 -->
 <tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 ({t_loop from=$common_commu_list start=0 num=5})
 <td style="width:111px;" class="bg_02" align="center">
 ({if $item})
@@ -147,19 +147,19 @@
 &nbsp;
 ({/if})
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 ({/t_loop})
 </tr>
 <!-- ここまで：名前＞＞一段目 -->
 <tr>
-<td style="width:564px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:564px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({/if})
 
 ({if $common_commu_list.5})
 <!-- ここから：サムネイル＞＞二段目 -->
 <tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 ({t_loop from=$common_commu_list start=5 num=5})
 <td style="width:111px;" class="bg_03" align="center">
 <img src="./skin/dummy.gif" alt="" class="v_spacer_l">
@@ -172,16 +172,16 @@
 ({/if})
 <img src="./skin/dummy.gif" alt="" class="v_spacer_l">
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 ({/t_loop})
 </tr>
 <!-- ここまで：サムネイル＞＞二段目 -->
 <tr>
-<td style="width:564px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:564px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 <!-- ここから：名前＞＞二段目 -->
 <tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 ({t_loop from=$common_commu_list start=5 num=5})
 <td style="width:111px;" class="bg_02" align="center">
 ({if $item})
@@ -193,19 +193,19 @@
 &nbsp;
 ({/if})
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 ({/t_loop})
 </tr>
 <!-- ここまで：名前＞＞二段目 -->
 <tr>
-<td style="width:564px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:564px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({/if})
 
 ({if $common_commu_list.10})
 <!-- ここから：サムネイル＞＞三段目 -->
 <tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 ({t_loop from=$common_commu_list start=10 num=5})
 <td style="width:111px;" class="bg_03" align="center">
 <img src="./skin/dummy.gif" alt="" class="v_spacer_l">
@@ -218,16 +218,16 @@
 ({/if})
 <img src="./skin/dummy.gif" alt="" class="v_spacer_l">
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 ({/t_loop})
 </tr>
 <!-- ここまで：サムネイル＞＞三段目 -->
 <tr>
-<td style="width:564px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:564px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 <!-- ここから：名前＞＞三段目 -->
 <tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 ({t_loop from=$common_commu_list start=10 num=5})
 <td style="width:111px;" class="bg_02" align="center">
 ({if $item})
@@ -239,19 +239,19 @@
 &nbsp;
 ({/if})
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 ({/t_loop})
 </tr>
 <!-- ここまで：名前＞＞三段目 -->
 <tr>
-<td style="width:564px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:564px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({/if})
 
 ({if $common_commu_list.15})
 <!-- ここから：サムネイル＞＞四段目 -->
 <tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 ({t_loop from=$common_commu_list start=15 num=5})
 <td style="width:111px;" class="bg_03" align="center">
 <img src="./skin/dummy.gif" alt="" class="v_spacer_l">
@@ -264,16 +264,16 @@
 ({/if})
 <img src="./skin/dummy.gif" alt="" class="v_spacer_l">
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 ({/t_loop})
 </tr>
 <!-- ここまで：サムネイル＞＞四段目 -->
 <tr>
-<td style="width:564px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:564px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 <!-- ここから：名前＞＞四段目 -->
 <tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 ({t_loop from=$common_commu_list start=15 num=5})
 <td style="width:111px;" class="bg_02" align="center">
 ({if $item})
@@ -285,19 +285,19 @@
 &nbsp;
 ({/if})
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 ({/t_loop})
 </tr>
 <!-- ここまで：名前＞＞四段目 -->
 <tr>
-<td style="width:564px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:564px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({/if})
 
 ({if $common_commu_list.20})
 <!-- ここから：サムネイル＞＞五段目 -->
 <tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 ({t_loop from=$common_commu_list start=20 num=5})
 <td style="width:111px;" class="bg_03" align="center">
 <img src="./skin/dummy.gif" alt="" class="v_spacer_l">
@@ -310,16 +310,16 @@
 ({/if})
 <img src="./skin/dummy.gif" alt="" class="v_spacer_l">
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 ({/t_loop})
 </tr>
 <!-- ここまで：サムネイル＞＞五段目 -->
 <tr>
-<td style="width:564px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:564px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 <!-- ここから：名前＞＞五段目 -->
 <tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 ({t_loop from=$common_commu_list start=20 num=5})
 <td style="width:111px;" class="bg_02" align="center">
 ({if $item})
@@ -331,19 +331,19 @@
 &nbsp;
 ({/if})
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 ({/t_loop})
 </tr>
 <!-- ここまで：名前＞＞五段目 -->
 <tr>
-<td style="width:564px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:564px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({/if})
 
 ({if $common_commu_list.25})
 <!-- ここから：サムネイル＞＞六段目 -->
 <tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 ({t_loop from=$common_commu_list start=25 num=5})
 <td style="width:111px;" class="bg_03" align="center">
 <img src="./skin/dummy.gif" alt="" class="v_spacer_l">
@@ -356,16 +356,16 @@
 ({/if})
 <img src="./skin/dummy.gif" alt="" class="v_spacer_l">
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 ({/t_loop})
 </tr>
 <!-- ここまで：サムネイル＞＞六段目 -->
 <tr>
-<td style="width:564px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:564px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 <!-- ここから：名前＞＞六段目 -->
 <tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 ({t_loop from=$common_commu_list start=25 num=5})
 <td style="width:111px;" class="bg_02" align="center">
 ({if $item})
@@ -377,19 +377,19 @@
 &nbsp;
 ({/if})
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 ({/t_loop})
 </tr>
 <!-- ここまで：名前＞＞六段目 -->
 <tr>
-<td style="width:564px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:564px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({/if})
 
 ({if $common_commu_list.30})
 <!-- ここから：サムネイル＞＞七段目 -->
 <tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 ({t_loop from=$common_commu_list start=30 num=5})
 <td style="width:111px;" class="bg_03" align="center">
 <img src="./skin/dummy.gif" alt="" class="v_spacer_l">
@@ -402,16 +402,16 @@
 ({/if})
 <img src="./skin/dummy.gif" alt="" class="v_spacer_l">
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 ({/t_loop})
 </tr>
 <!-- ここまで：サムネイル＞＞七段目 -->
 <tr>
-<td style="width:564px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:564px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 <!-- ここから：名前＞＞七段目 -->
 <tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 ({t_loop from=$common_commu_list start=30 num=5})
 <td style="width:111px;" class="bg_02" align="center">
 ({if $item})
@@ -423,19 +423,19 @@
 &nbsp;
 ({/if})
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 ({/t_loop})
 </tr>
 <!-- ここまで：名前＞＞七段目 -->
 <tr>
-<td style="width:564px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:564px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({/if})
 
 ({if $common_commu_list.35})
 <!-- ここから：サムネイル＞＞八段目 -->
 <tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 ({t_loop from=$common_commu_list start=35 num=5})
 <td style="width:111px;" class="bg_03" align="center">
 <img src="./skin/dummy.gif" alt="" class="v_spacer_l">
@@ -448,16 +448,16 @@
 ({/if})
 <img src="./skin/dummy.gif" alt="" class="v_spacer_l">
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 ({/t_loop})
 </tr>
 <!-- ここまで：サムネイル＞＞八段目 -->
 <tr>
-<td style="width:564px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:564px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 <!-- ここから：名前＞＞八段目 -->
 <tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 ({t_loop from=$common_commu_list start=35 num=5})
 <td style="width:111px;" class="bg_02" align="center">
 ({if $item})
@@ -469,19 +469,19 @@
 &nbsp;
 ({/if})
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 ({/t_loop})
 </tr>
 <!-- ここまで：名前＞＞八段目 -->
 <tr>
-<td style="width:564px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:564px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({/if})
 
 ({if $common_commu_list.40})
 <!-- ここから：サムネイル＞＞九段目 -->
 <tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 ({t_loop from=$common_commu_list start=40 num=5})
 <td style="width:111px;" class="bg_03" align="center">
 <img src="./skin/dummy.gif" alt="" class="v_spacer_l">
@@ -494,16 +494,16 @@
 ({/if})
 <img src="./skin/dummy.gif" alt="" class="v_spacer_l">
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 ({/t_loop})
 </tr>
 <!-- ここまで：サムネイル＞＞九段目 -->
 <tr>
-<td style="width:564px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:564px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 <!-- ここから：名前＞＞九段目 -->
 <tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 ({t_loop from=$common_commu_list start=40 num=5})
 <td style="width:111px;" class="bg_02" align="center">
 ({if $item})
@@ -515,19 +515,19 @@
 &nbsp;
 ({/if})
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 ({/t_loop})
 </tr>
 <!-- ここまで：名前＞＞九段目 -->
 <tr>
-<td style="width:564px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:564px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({/if})
 
 ({if $common_commu_list.45})
 <!-- ここから：サムネイル＞＞十段目 -->
 <tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 ({t_loop from=$common_commu_list start=45 num=5})
 <td style="width:111px;" class="bg_03" align="center">
 <img src="./skin/dummy.gif" alt="" class="v_spacer_l">
@@ -540,16 +540,16 @@
 ({/if})
 <img src="./skin/dummy.gif" alt="" class="v_spacer_l">
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 ({/t_loop})
 </tr>
 <!-- ここまで：サムネイル＞＞十段目 -->
 <tr>
-<td style="width:564px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:564px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 <!-- ここから：名前＞＞十段目 -->
 <tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 ({t_loop from=$common_commu_list start=45 num=5})
 <td style="width:111px;" class="bg_02" align="center">
 ({if $item})
@@ -561,12 +561,12 @@
 &nbsp;
 ({/if})
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 ({/t_loop})
 </tr>
 <!-- ここまで：名前＞＞十段目 -->
 <tr>
-<td style="width:564px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:564px;height:1px;" class="bg_01" colspan="11"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({/if})
 
@@ -576,11 +576,11 @@
 <table border="0" cellspacing="0" cellpadding="0" style="width:564px;">
 ({*********})
 <tr>
-<td style="width:564px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:564px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({*********})
 <tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 <td style="width:562px;" class="bg_02" align="center">
 
 <div class="padding_s">
@@ -596,11 +596,11 @@
 </div>
 
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({*********})
 <tr>
-<td style="width:564px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:564px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({*********})
 </table>
@@ -609,11 +609,11 @@
 <table border="0" cellspacing="0" cellpadding="0" style="width:564px;">
 ({*********})
 <tr>
-<td style="width:564px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:564px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({*********})
 <tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 <td style="width:562px;" class="bg_02" align="right">
 
 <div class="padding_s">
@@ -630,11 +630,11 @@
 </div>
 
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({*********})
 <tr>
-<td style="width:564px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:564px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({*********})
 </table>
@@ -646,12 +646,12 @@
 ({*ここまで：footer*})
 <!-- *ここまで：コミュニティ一覧＞＞内容* -->
 </td>
-<td class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 <tr>
-<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 <td style="width:566px;" class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:566px;height:7px;" class="dummy"></td>
-<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 </table>
 
@@ -667,12 +667,12 @@
 
 <table border="0" cellspacing="0" cellpadding="0" style="width:580px;">
 <tr>
-<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 <td style="width:566px;" class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:566px;height:7px;" class="dummy"></td>
-<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 <tr>
-<td class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 <td class="bg_01" align="center">
 <!-- *ここから：コミュニティ一覧＞内容* -->
 ({*ここから：header*})
@@ -690,21 +690,21 @@
 ({*ここから：body*})
 <table border="0" cellspacing="0" cellpadding="0" style="width:564px;">
 <tr>
-<td style="width:564px;height:1px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:564px;height:1px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 <!-- ここから：主内容 -->
 <tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 <td style="width:564px;height:50px;" class="bg_03" align="center" valign="middle">
 
 共通のコミュニティはありません。
 
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 <!-- ここまで：主内容 -->
 <tr>
-<td style="width:564px;height:1px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:564px;height:1px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 </table>
 ({*ここまで：body*})
@@ -713,12 +713,12 @@
 ({*ここまで：footer*})
 <!-- *ここまで：コミュニティ一覧＞＞内容* -->
 </td>
-<td class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 <tr>
-<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 <td style="width:566px;" class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:566px;height:7px;" class="dummy"></td>
-<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 </table>
 
