@@ -1046,7 +1046,7 @@ function db_commu_c_commu_topic_comment4c_commu_topic_comment_id($c_commu_topic_
         " AND ct.c_commu_topic_id=ctc.c_commu_topic_id" .
         " AND c.c_commu_id=ctc.c_commu_id";
     $params = array(intval($c_commu_topic_comment_id));
-    return db_get_row($sql, $params);
+    return db_get_row($sql, $params, 'main');
 }
 
 function db_common_commu_status($u, $target_c_commu_id)
