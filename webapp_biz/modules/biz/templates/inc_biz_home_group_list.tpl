@@ -143,7 +143,7 @@
 <table border="0" cellspacing="0" cellpadding="0" style="width:268px">
 
 <tr>
-<td style="width:1px;" class="bg_07"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_07"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 <td style="width:115px;" class="bg_02"><img src="./skin/dummy.gif" alt="" style="width:115px;height:1px;" class="dummy"></td>
 <td align="left" style="width:136px;padding:2px 0px;" class="bg_02 lh_110">
 <img src="./skin/dummy.gif" alt="" class="icon arrow_1">
@@ -154,11 +154,11 @@
 <a href="({t_url m=biz a=page_h_biz_group_find_all})">グループ検索</a>
 </td>
 <td style="width:15px;" class="bg_02"><img src="./skin/dummy.gif" alt="" style="width:15px;height:1px;" class="dummy"></td>
-<td style="width:1px;" class="bg_07"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_07"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 
 <tr>
-<td style="width:268px;" class="bg_07" colspan="5"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:268px;" class="bg_07" colspan="5"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 
 </table>
