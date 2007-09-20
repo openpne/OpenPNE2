@@ -81,7 +81,6 @@ $target = array(
     'c_rss_cache' => array('subject', 'body',),
     'c_schedule' => array('title', 'body',),
     'c_searchlog' => array('searchword',),
-    'c_tmp_file' => array('c_tmp_file',),
     'c_username' => array('username',),
 );
 
