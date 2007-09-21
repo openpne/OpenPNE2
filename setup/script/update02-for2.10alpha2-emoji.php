@@ -61,8 +61,14 @@ function _callback_emoji_replace_alpha_to_alpha2($matches)
 }
 
 $target = array(
+    'biz_group' => array('name', 'info',),
+    'biz_schedule' => array('title', 'value',),
+    'biz_shisetsu' => array('name', 'info',),
+    'biz_todo' => array('memo',),
     'c_commu' => array('name', 'info',),
     'c_commu_admin_confirm' => array('message',),
+    'c_commu_category' => array('name',),
+    'c_commu_category_parent' => array('name',),
     'c_commu_member_confirm' => array('message',),
     'c_commu_sub_admin_confirm' => array('message',),
     'c_commu_topic' => array('name', 'open_date_comment', 'open_pref_comment',),
@@ -70,18 +76,25 @@ $target = array(
     'c_diary' => array('subject', 'body',),
     'c_diary_category' => array('category_name',),
     'c_diary_comment' => array('body',),
+    'c_free_page' => array('title', 'body',),
     'c_friend' => array('intro',),
-    'c_friend_confirm' => array('c_friend_confirm',),
+    'c_friend_confirm' => array('message',),
+    'c_holiday' => array('name',),
     'c_member' => array('nickname',),
     'c_member_pre' => array('nickname', 'c_password_query_answer',),
     'c_member_pre_profile' => array('value',),
     'c_member_profile' => array('value',),
     'c_message' => array('body', 'subject',),
+    'c_message_queue' => array('subject', 'body',),
+    'c_profile' => array('caption', 'info',),
+    'c_profile_option' => array('value',),
+    'c_rank' => array('name',),
     'c_review_comment' => array('body',),
-    'c_rss_cache' => array('subject', 'body',),
     'c_schedule' => array('title', 'body',),
     'c_searchlog' => array('searchword',),
-    'c_username' => array('username',),
+    'c_send_messages_history' => array('subject', 'body',),
+    'c_siteadmin' => array('body',),
+    'c_template' => array('source',),
 );
 
 foreach ($target as $tablename => $fields) {
