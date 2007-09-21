@@ -138,7 +138,7 @@
 </tr>
 <tr>
 <td class="bg_10"><img src="./skin/dummy.gif" alt="square" class="square"></td>
-<td class="bg_10" align="center">
+<td class="bg_10" align="center" style="width: 149px;">
 <!-- *ここから：最近の日記＞内容* -->
 ({*ここから：header*})
 <!-- ここから：小タイトル -->
@@ -427,7 +427,7 @@
 <tr>
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-<td class="bg_02" align="left" valign="middle">
+<td class="bg_02" align="left" valign="middle" style="width:424px;">
 
 <div style="padding:4px 3px;">
 
@@ -665,7 +665,7 @@
 <tr>
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-<td class="bg_02" align="left" valign="middle">
+<td class="bg_02" align="left" valign="middle" style="width:424px;">
 
 <div style="padding:4px 3px;" class="lh_120 DOM_fh_diary_comment_body">
 
