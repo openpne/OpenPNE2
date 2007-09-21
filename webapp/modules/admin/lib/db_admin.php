@@ -2728,8 +2728,8 @@ function db_admin_c_blacklist_list($page, $page_size)
     $sql = 'SELECT b.c_blacklist_id,ms.c_member_id,b.info,m.nickname,b.easy_access_id ' .
             ' FROM c_blacklist AS b' .
             ' LEFT JOIN c_member_secure AS ms ON b.easy_access_id = ms.easy_access_id'.
-            ' LEFT JOIN c_member AS m ON ms.c_member_id = m.c_member_id'
-            ;
+            ' LEFT JOIN c_member AS m ON ms.c_member_id = m.c_member_id' .
+            ' ORDER BY b.c_blacklist_id ASC';
     $list = db_get_all_page($sql, $page, $page_size);
     
     $sql = 'SELECT count(*) FROM c_blacklist';
