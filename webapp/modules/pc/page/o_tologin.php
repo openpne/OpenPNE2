@@ -56,7 +56,7 @@ class pc_page_o_tologin extends OpenPNE_Action
             $msg = 'メールアドレスを登録しました。';
             break;
         case 'blacklist':
-            $msg = 'ログインできませんでした。';
+            $msg = 'ログインできません。詳細は' . SNS_NAME . '管理者にお問い合わせください。';
             break;
         }
         $this->set('msg', $msg);
