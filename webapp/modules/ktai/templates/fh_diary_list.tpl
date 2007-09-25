@@ -8,7 +8,7 @@
 </td></tr></table>
 
 ({if $INC_NAVI_type=="h"})
-[i:1014]<a href="({t_url m=ktai a=page_h_diary_edit})&amp;({$tail})">日記を書く</a>
+[i:190]<a href="({t_url m=ktai a=page_h_diary_edit})&amp;({$tail})">日記を書く</a>
 <hr color="#({$ktai_color_config.border_01})">
 ({/if})
 
@@ -46,7 +46,7 @@
 ({/if})
 <hr color="#({$ktai_color_config.border_01})">
 ({if $INC_NAVI_type=="h"})
-[i:1014]<a href="({t_url m=ktai a=page_h_diary_edit})&amp;({$tail})">日記を書く</a><br>
+[i:190]<a href="({t_url m=ktai a=page_h_diary_edit})&amp;({$tail})">日記を書く</a><br>
 <table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_01})">
 <font color="#({$ktai_color_config.font_01})">日記検索</font><br>
 </td></tr>
