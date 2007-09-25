@@ -10,7 +10,11 @@
 
 <h2 id="ttl01">強制退会の確認</h2>
 <div class="contents">
-<p class="caution" id="c01">本当にこのメンバーを強制退会させてもよろしいですか？<br /><strong>※強制退会させると、このメンバーに関する情報は削除され元に戻すことはできません。</strong></p>
+<p class="caution" id="c01">
+本当にこのメンバーを強制退会させてもよろしいですか？<br />
+<strong>※強制退会させると、このメンバーに関する情報は削除され元に戻すことはできません。</strong>
+<strong>※このメンバーが管理者になっているコミュニティがあれば、副管理者に管理権限が移管されます。また、副管理者がいない場合は参加日時のもっとも早いメンバーに権限が移管されます。</strong>
+</p>
 
 <form action="./" method="post">
 <input type="hidden" name="m" value="({$module_name})" />
