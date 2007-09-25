@@ -51,10 +51,10 @@
 <tr><td>
 <hr color="#({$ktai_color_config.border_01})">
 ({if !$relation_c_member_and_c_commu.join && !$relation_c_member_and_c_commu.wait})
-[i:1028]<a href="({t_url m=ktai a=do_inc_join_c_commu})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">ｺﾐｭﾆﾃｨに参加</a><br>
+[i:204]<a href="({t_url m=ktai a=do_inc_join_c_commu})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">ｺﾐｭﾆﾃｨに参加</a><br>
 ({/if})
 ({if ($c_commu.c_member_id_admin==$u || $c_commu.c_member_id_sub_admin==$u)})
-[i:1014]<a href="({t_url m=ktai a=page_c_edit})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">ｺﾐｭﾆﾃｨ編集</a><br>
+[i:190]<a href="({t_url m=ktai a=page_c_edit})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">ｺﾐｭﾆﾃｨ編集</a><br>
 ({/if})
 ({if $relation_c_member_and_c_commu.join})
 ({if !($c_commu.c_member_id_admin==$u || $c_commu.c_member_id_sub_admin==$u)})
