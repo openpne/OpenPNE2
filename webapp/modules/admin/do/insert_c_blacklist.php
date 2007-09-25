@@ -8,7 +8,7 @@ class admin_do_insert_c_blacklist extends OpenPNE_Action
 {
     function handleError($errors)
     {
-        $tail = 'info=' . $this->requests['info'] . '&easy_access_id=' . $this->requests['easy_access_id'];
+        $tail = array('info' => $this->requests['info'], 'easy_access_id' => $this->requests['easy_access_id']);
         admin_client_redirect('blacklist_add', array_shift($errors), $tail);
     }
 
