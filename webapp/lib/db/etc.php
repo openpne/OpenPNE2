@@ -401,6 +401,11 @@ function db_common_delete_c_member($c_member_id)
     $sql = 'DELETE FROM c_commu_member WHERE c_member_id = ?';
     db_query($sql, $single);
 
+    // c_commu.c_member_id_sub_admin
+    $data = array('c_member_id_sub_admin' => 0);
+    $where = array('c_member_id_sub_admin' => intval($c_member_id));
+    db_update('c_commu', $data, $where);
+
     // c_commu (画像)
     $sql = 'SELECT * FROM c_commu WHERE c_member_id_admin = ?';
     $c_commu_list = db_get_all($sql, $single);
@@ -411,11 +416,18 @@ function db_common_delete_c_member($c_member_id)
             db_common_delete_c_commu($c_commu['c_commu_id']);
         } else {
             // 管理者交代
-            // 参加日時が一番古い人
-            $sql = 'SELECT c_member_id FROM c_commu_member WHERE c_commu_id = ?'.
-                ' ORDER BY r_datetime';
-            $params = array(intval($c_commu['c_commu_id']));
-            $new_admin_id = db_get_one($sql, $params);
+            //     副管理者がいる場合：副管理者に交代
+            //     副管理者がいない場合：参加日時が一番古い人に交代
+            $new_admin_id = 0;
+            if (empty($c_commu['c_member_id_sub_admin'])) {
+                $sql = 'SELECT c_member_id FROM c_commu_member WHERE c_commu_id = ?'.
+                    ' ORDER BY r_datetime';
+                $params = array(intval($c_commu['c_commu_id']));
+                $new_admin_id = db_get_one($sql, $params);
+            } else {
+                $new_admin_id = $c_commu['c_member_id_sub_admin'];
+            }
+            do_common_send_mail_c_commu_admin_change(intval($new_admin_id), intval($c_commu['c_commu_id']));
 
             $data = array('c_member_id_admin' => intval($new_admin_id));
             $where = array('c_commu_id' => intval($c_commu['c_commu_id']));
