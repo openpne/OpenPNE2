@@ -12,9 +12,9 @@
 ({t_form m=ktai a=do_h_config_access_block_update})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
 ({foreach from=$c_member_id_block item=item})
-ID <input type="text" name="c_member_id_block[]" value="({$item})"><br>
+ID <input type="text" name="c_member_id_block[]" value="({$item})" istyle="4" mode="numeric"><br>
 ({/foreach})
-ID <input type="text" name="c_member_id_block[]" value=""><br>
+ID <input type="text" name="c_member_id_block[]" value="" istyle="4" mode="numeric"><br>
 <input type="submit" value="変更"><br>
 </form>
 

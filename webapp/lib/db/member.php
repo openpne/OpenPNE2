@@ -1070,6 +1070,9 @@ function db_member_h_config_3(
 
 function db_member_update_easy_access_id($c_member_id, $easy_access_id)
 {
+    // function cacheを削除
+    cache_drop_c_member_profile($c_member_id);
+
     $data = array('easy_access_id' => t_encrypt($easy_access_id));
     $where = array('c_member_id' => intval($c_member_id));
     return db_update('c_member_secure', $data, $where);
@@ -1077,6 +1080,9 @@ function db_member_update_easy_access_id($c_member_id, $easy_access_id)
 
 function db_member_update_password_query($c_member_id, $c_password_query_id, $password_query_answer)
 {
+    // function cacheを削除
+    cache_drop_c_member_profile($c_member_id);
+
     $data = array('c_password_query_id' => intval($c_password_query_id));
     $where = array('c_member_id' => intval($c_member_id));
     db_update('c_member', $data, $where);
@@ -1090,6 +1096,9 @@ function db_member_update_password_query($c_member_id, $c_password_query_id, $pa
 
 function db_member_update_c_member_pc_address4c_member_id($c_member_id, $pc_address)
 {
+    // function cacheを削除
+    cache_drop_c_member_profile($c_member_id);
+
     $data = array('pc_address' => t_encrypt($pc_address));
     $where = array('c_member_id' => intval($c_member_id));
     return db_update('c_member_secure', $data, $where);
@@ -1097,6 +1106,9 @@ function db_member_update_c_member_pc_address4c_member_id($c_member_id, $pc_addr
 
 function db_member_regist_c_member_pc_address4c_member_id($c_member_id, $pc_address)
 {
+    // function cacheを削除
+    cache_drop_c_member_profile($c_member_id);
+
     $data = array(
     'pc_address' => t_encrypt($pc_address),
     'regist_address' => t_encrypt($pc_address),
@@ -1109,6 +1121,9 @@ function db_member_regist_c_member_pc_address4c_member_id($c_member_id, $pc_addr
 
 function db_member_update_ktai_address($c_member_id, $ktai_address)
 {
+    // function cacheを削除
+    cache_drop_c_member_profile($c_member_id);
+
     if ($ktai_address == ''){
         $data = array(
             'ktai_address' => t_encrypt($ktai_address),
@@ -1125,6 +1140,9 @@ function db_member_update_ktai_address($c_member_id, $ktai_address)
 
 function db_member_update_password($c_member_id, $password)
 {
+    // function cacheを削除
+    cache_drop_c_member_profile($c_member_id);
+
     $data = array('hashed_password' => md5($password));
     $where = array('c_member_id' => intval($c_member_id));
     return db_update('c_member_secure', $data, $where);
@@ -1443,6 +1461,9 @@ function db_member_filter_c_access_block_id($c_member_id, $c_member_id_block)
 
 function db_member_update_mail_receive($c_member_id, $is_receive_ktai_mail)
 {
+    // function cacheを削除
+    cache_drop_c_member_profile($c_member_id);
+
     $data = array('is_receive_ktai_mail' => intval($is_receive_ktai_mail));
     $where = array('c_member_id' => intval($c_member_id));
     db_update('c_member', $data, $where);
@@ -1450,6 +1471,9 @@ function db_member_update_mail_receive($c_member_id, $is_receive_ktai_mail)
 
 function db_member_update_ashiato_mail_num($c_member_id, $ashiato_mail_num)
 {
+    // function cacheを削除
+    cache_drop_c_member_profile($c_member_id);
+
     $data = array('ashiato_mail_num' => intval($ashiato_mail_num));
     $where = array('c_member_id' => intval($c_member_id));
     db_update('c_member', $data, $where);
@@ -1457,6 +1481,9 @@ function db_member_update_ashiato_mail_num($c_member_id, $ashiato_mail_num)
 
 function db_member_update_public_flag_diary($c_member_id, $public_flag_diary)
 {
+    // function cacheを削除
+    cache_drop_c_member_profile($c_member_id);
+
     $data = array('public_flag_diary' => util_cast_public_flag_diary($public_flag_diary));
     $where = array('c_member_id' => intval($c_member_id));
     db_update('c_member', $data, $where);

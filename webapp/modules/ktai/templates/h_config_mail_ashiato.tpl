@@ -6,7 +6,7 @@
 <br>
 ({t_form m=ktai a=do_h_config_mail_ashiato_update})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
-<input type="text" name="ashiato_mail_num" value="({$c_member.ashiato_mail_num})" size="6" maxlength="10">ｱｸｾｽ目にﾒｰﾙを受け取る<br>
+<input type="text" name="ashiato_mail_num" value="({$c_member.ashiato_mail_num})" size="6" maxlength="10" istyle="4" mode="numeric">ｱｸｾｽ目にﾒｰﾙを受け取る<br>
 <input type="submit" value="変更"><br>
 </form>
 
