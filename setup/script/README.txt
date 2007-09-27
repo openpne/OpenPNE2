@@ -14,6 +14,6 @@ config.phpの設定を行ったのちにスクリプトを実行してくださ�
 
 実行方法：
   php option-covert_ktai_emoji.php [carrier] [input] ([output])
-    [carrier]  : どのキャリアの絵文字をコンバートするか
-    [input]    : コンバート対象の絵文字が入ったディレクトリ
-    [output]   : （オプション）コンバート後の絵文字を保存するディレクトリ（省略すると、[OPENPNE_PUBLIC_HTML_DIR]/skin//skin/default/img/emoji/）
+    [carrier]  : どのキャリアの絵文字をコンバートするか（iを指定するとdocomo, eを指定するとau, sを指定するとsoftbankの絵文字をコンバートする）
+    [input]    : コンバート対象の絵文字が入ったディレクトリ（/で終わる形で指定してください）
+    [output]   : （オプション）コンバート後の絵文字を保存するディレクトリ（省略すると、[OPENPNE_PUBLIC_HTML_DIR]/skin//skin/default/img/emoji/[carrier]）
