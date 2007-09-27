@@ -31,6 +31,15 @@
 </center>
 
 <hr color="#({$ktai_color_config.border_01})">
+({if $c_topic.image_filename1 && $c_topic.image_filename2 && $c_topic.image_filename3})
+すでに写真が3枚登録されています。新しい写真を登録する場合は今の写真を削除してください。<br>
+({else})
+以下のｱﾄﾞﾚｽに写真を添付して送信してください。<br>
+<font color="#({$ktai_color_config.font_02})">※写真は3枚以上登録できません</font><br>
+<font color="#({$ktai_color_config.font_02})">※ﾀｲﾄﾙと本文は反映されません</font><br>
+<a href="mailto:({$mail_address})">ﾒｰﾙ送信</a><br>
+({/if})
+<hr color="#({$ktai_color_config.border_01})">
 ({if !$c_topic.event_flag})
 [i:90]<a href="({t_url m=ktai a=page_c_topic_edit})&amp;target_c_commu_topic_id=({$c_topic.c_commu_topic_id})&amp;({$tail})">ﾄﾋﾟｯｸの編集</a><br>
 ({else})
