@@ -7,13 +7,3 @@ config.phpの設定を行ったのちにスクリプトを実行してくださ�
 
 実行方法：
   php update01-for2.9.3-easy_ktai_id.php
-
-
-■option-covert_ktai_emoji.php
-  各キャリアの絵文字画像をOpenPNEで表示できるファイル名にして保存するスクリプトです。
-
-実行方法：
-  php option-covert_ktai_emoji.php [carrier] [input] ([output])
-    [carrier]  : どのキャリアの絵文字をコンバートするか（iを指定するとdocomo, eを指定するとau, sを指定するとsoftbankの絵文字をコンバートする）
-    [input]    : コンバート対象の絵文字が入ったディレクトリ（/で終わる形で指定してください）
-    [output]   : （オプション）コンバート後の絵文字を保存するディレクトリ（省略すると、[OPENPNE_PUBLIC_HTML_DIR]/skin//skin/default/img/emoji/[carrier]）
