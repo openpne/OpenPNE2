@@ -142,6 +142,81 @@ class mail_sns
             return $this->add_member_image();
         }
 
+        //---
+
+        // 日記画像変更
+        elseif (
+            preg_match('/^bi(\d+)$/', $to_user, $matches) ||
+            preg_match('/^bi(\d+)-([0-9a-f]{12})$/', $to_user, $matches)
+        ) {
+            // 日記IDのチェック
+            if (!$c_diary_id = $matches[1]) {
+                return false;
+            }
+
+            if (MAIL_ADDRESS_HASHED) {
+                if (empty($matches[2])) return false;
+
+                // メンバーハッシュのチェック
+                if ($matches[2] != t_get_user_hash($this->c_member_id)) {
+                    return false;
+                }
+            }
+
+            m_debug_log('mail_sns::add_diary_image()', PEAR_LOG_INFO);
+            return $this->add_diary_image($c_diary_id);
+        }
+
+        //---
+
+        // コミュニティ画像変更
+        elseif (
+            preg_match('/^ci(\d+)$/', $to_user, $matches) ||
+            preg_match('/^ci(\d+)-([0-9a-f]{12})$/', $to_user, $matches)
+        ) {
+            // コミュニティIDのチェック
+            if (!$c_commu_id = $matches[1]) {
+                return false;
+            }
+
+            if (MAIL_ADDRESS_HASHED) {
+                if (empty($matches[2])) return false;
+
+                // メンバーハッシュのチェック
+                if ($matches[2] != t_get_user_hash($this->c_member_id)) {
+                    return false;
+                }
+            }
+
+            m_debug_log('mail_sns::add_commu_image()', PEAR_LOG_INFO);
+            return $this->add_commu_image($c_commu_id);
+        }
+
+        //---
+
+        // トピック・イベント画像画像変更
+        elseif (
+            preg_match('/^ti(\d+)$/', $to_user, $matches) ||
+            preg_match('/^ti(\d+)-([0-9a-f]{12})$/', $to_user, $matches)
+        ) {
+            // トピックIDのチェック
+            if (!$c_commu_topic_id = $matches[1]) {
+                return false;
+            }
+
+            if (MAIL_ADDRESS_HASHED) {
+                if (empty($matches[2])) return false;
+
+                // メンバーハッシュのチェック
+                if ($matches[2] != t_get_user_hash($this->c_member_id)) {
+                    return false;
+                }
+            }
+
+            m_debug_log('mail_sns::add_topic_image()', PEAR_LOG_INFO);
+            return $this->add_topic_image($c_commu_topic_id);
+        }
+
         m_debug_log('mail_sns::main() action not found(member)');
         return false;
     }
@@ -306,6 +381,139 @@ class mail_sns
             m_debug_log('mail_sns::add_member_image() no images');
             return false;
         }
+    }
+
+    /**
+     * 日記画像変更
+     */
+    function add_diary_image($c_diary_id)
+    {
+        if (!$c_diary = db_diary_get_c_diary4id($c_diary_id)) {
+            return false;
+        }
+
+        if ($c_diary['c_member_id'] != $this->c_member_id) {
+            return false;
+        }
+
+        if ($c_diary['image_filename_1'] && $c_diary['image_filename_2'] && $c_diary['image_filename_3']) {
+            $this->error_mail('日記画像の登録は最大三枚までです。');
+            m_debug_log('mail_sns::add_diary_image() image is full');
+            return false;
+        }
+
+        // 画像登録
+        $images = $this->decoder->get_images();
+        $img_num = 1;
+        foreach ($images as $image_data) {
+            for ($i = $img_num; $i <= 3; $i++) {  // 画像が登録できるかどうかのチェック
+                if ($c_diary['image_filename_' . $i]) {  // 指定したフィールドにすでに画像がある
+                    if ($i == 3) {
+                        break 2;  // 全フィールドに画像があるので、登録処理を終了
+                    }
+                } else {
+                    $img_num = $i;  // 登録するフィールドを決定
+                    break;
+                }
+            }
+
+            $filename = 'd_' . $c_diary_id . '_' . $img_num . '_' . time() . '.jpg';
+
+            db_image_insert_c_image($filename, $image_data);
+            db_diary_update_c_diary_image_filename($c_diary_id, $filename, $img_num);
+            $img_num++;
+            if ($img_num > 3) {
+                break;
+            }
+        }
+
+        return true;
+    }
+
+    /**
+     * コミュニティ画像変更
+     */
+    function add_commu_image($c_commu_id)
+    {
+        if (!$c_commu = db_commu_c_commu4c_commu_id($c_commu_id)) {
+            return false;
+        }
+
+        if ($c_commu['c_member_id_admin'] != $this->c_member_id) {
+            return false;
+        }
+
+        if ($c_commu['image_filename']) {
+            $this->error_mail('コミュニティ画像の登録は最大一枚までです。');
+            m_debug_log('mail_sns::add_commu_image() image is full');
+            return false;
+        }
+
+        // 画像登録
+        if ($images = $this->decoder->get_images()) {
+            $filename = 'c_' . $c_commu_id . '_' .  time() . '.jpg';
+            db_image_insert_c_image($filename, $images[0]);
+            db_commu_update_c_commu_image_filename($c_commu_id, $filename);
+            return true;
+        } else {
+            m_debug_log('mail_sns::add_commu_image() no images');
+            return false;
+        }
+    }
+
+    /**
+     * トピック・イベント画像変更
+     */
+    function add_topic_image($c_commu_topic_id)
+    {
+        if (!$c_topic = db_commu_c_topic4c_commu_topic_id($c_commu_topic_id)) {
+            return false;
+        }
+
+        $c_commu_id = $c_topic['c_commu_id'];
+
+        if (!db_commu_is_c_topic_admin($c_commu_topic_id, $this->c_member_id) &&
+            !db_commu_is_c_commu_admin($c_commu_id, $this->c_member_id)) {
+            return false;
+        }
+
+        if ($c_topic['image_filename_1'] && $c_topic['image_filename_2'] && $c_topic['image_filename_3']) {
+            $this->error_mail('トピック・イベント画像の登録は最大三枚までです。');
+            m_debug_log('mail_sns::add_topic_image() image is full');
+            return false;
+        }
+
+        // 画像登録
+        $c_topic_images = array(
+            'image_filename_1' => $c_topic['image_filename1'],
+            'image_filename_2' => $c_topic['image_filename2'],
+            'image_filename_3' => $c_topic['image_filename3'],
+        );
+        $images = $this->decoder->get_images();
+        $image_num = 1;
+        foreach ($images as $image_data) {
+            for ($i = $image_num; $i <= 3; $i++) {  // 画像が登録できるかどうかのチェック
+                if ($c_topic_images['image_filename_' . $i]) {  // 指定したフィールドにすでに画像がある
+                    if ($i == 3) {
+                        break 2;  // 全フィールドに画像があるので、登録処理を終了
+                    }
+                } else {
+                    $image_num = $i;  // 登録するフィールドを決定
+                    break;
+                }
+            }
+
+            $filename = 't_' . $c_commu_topic_id . '_' . $image_num . '_' . time() . '.jpg';
+            $c_topic_images['image_filename_' . $image_num] = $filename;
+
+            db_image_insert_c_image($filename, $image_data);
+            $image_num++;
+            if ($image_num > 3) {
+                break;
+            }
+        }
+        db_commu_update_c_commu_topic_comment_images($c_topic['c_commu_topic_comment_id'], $c_topic_images['image_filename_1'], $c_topic_images['image_filename_2'], $c_topic_images['image_filename_3']);
+        return true;
     }
 
     /**
