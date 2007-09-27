@@ -26,6 +26,14 @@ class ktai_page_h_diary_edit_image extends OpenPNE_Action
             handle_kengen_error();
         }
 
+        if (MAIL_ADDRESS_HASHED) {
+            $mail_address = 'bi' . $target_c_diary_id . '-' . t_get_user_hash($u) . "@" . MAIL_SERVER_DOMAIN;
+        } else {
+            $mail_address = 'bi' . $target_c_diary_id . "@" . MAIL_SERVER_DOMAIN;
+        }
+        $mail_address = MAIL_ADDRESS_PREFIX . $mail_address;
+        $this->set('mail_address', $mail_address);
+
         //メンバー情報
         $this->set('member', $c_member);
 

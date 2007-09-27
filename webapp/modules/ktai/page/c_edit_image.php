@@ -25,6 +25,15 @@ class ktai_page_c_edit_image extends OpenPNE_Action
             handle_kengen_error();
         }
         //---
+
+        if (MAIL_ADDRESS_HASHED) {
+            $mail_address = 'ci' . $target_c_commu_id . '-' . t_get_user_hash($u) . "@" . MAIL_SERVER_DOMAIN;
+        } else {
+            $mail_address = 'ci' . $target_c_commu_id . "@" . MAIL_SERVER_DOMAIN;
+        }
+        $mail_address = MAIL_ADDRESS_PREFIX . $mail_address;
+        $this->set('mail_address', $mail_address);
+
         $this->set('c_commu', $c_commu);
 
         return 'success';
