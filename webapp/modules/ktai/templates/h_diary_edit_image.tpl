@@ -34,6 +34,15 @@
 </center>
 
 <hr color="#({$ktai_color_config.border_01})">
+({if $target_c_diary.image_filename_1 && $target_c_diary.image_filename_2 && $target_c_diary.image_filename_3})
+すでに写真が3枚登録されています。新しい写真を登録する場合は今の写真を削除してください。<br>
+({else})
+以下のｱﾄﾞﾚｽに写真を添付して送信してください。<br>
+<font color="#({$ktai_color_config.font_02})">※写真は3枚以上登録できません</font><br>
+<font color="#({$ktai_color_config.font_02})">※ﾀｲﾄﾙと本文は反映されません</font><br>
+<a href="mailto:({$mail_address})">ﾒｰﾙ送信</a><br>
+({/if})
+<hr color="#({$ktai_color_config.border_01})">
 [i:90]<a href="({t_url m=ktai a=page_h_diary_edit})&amp;target_c_diary_id=({$target_c_diary.c_diary_id})&amp;({$tail})">日記の編集</a><br>
 
 ({$inc_ktai_footer|smarty:nodefaults})
