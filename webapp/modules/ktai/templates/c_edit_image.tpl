@@ -19,6 +19,15 @@
 </center>
 
 <hr color="#({$ktai_color_config.border_01})">
+({if $c_commu.image_filename})
+すでに写真が1枚登録されています。新しい写真を登録する場合は今の写真を削除してください。<br>
+({else})
+以下のｱﾄﾞﾚｽに写真を添付して送信してください。<br>
+<font color="#({$ktai_color_config.font_02})">※写真は1枚以上登録できません</font><br>
+<font color="#({$ktai_color_config.font_02})">※ﾀｲﾄﾙと本文は反映されません</font><br>
+<a href="mailto:({$mail_address})">ﾒｰﾙ送信</a><br>
+({/if})
+<hr color="#({$ktai_color_config.border_01})">
 [i:90]<a href="({t_url m=ktai a=page_c_edit})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">ｺﾐｭﾆﾃｨの編集</a><br>
 
 ({$inc_ktai_footer|smarty:nodefaults})
