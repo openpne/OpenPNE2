@@ -23,7 +23,7 @@
 
 ({else})
 このｲﾍﾞﾝﾄを({$WORD_MY_FRIEND_HALF})に教えよう!<br>
-<font color="#({$ktai_color_config.font_03})">⇒</font><a href="">このｲﾍﾞﾝﾄを友人に教える</a>
+<font color="#({$ktai_color_config.font_03})">⇒</font><a href="({t_url m=ktai a=page_c_event_invite})&amp;target_c_commu_topic_id=({$c_commu_topic.c_commu_topic_id})&amp;({$tail})">このｲﾍﾞﾝﾄを友人に教える</a>
 
 <hr color="#({$ktai_color_config.border_01})">
 <a href="#({if $c_commu_topic_comment_list})tc1({else})write({/if})"><font color="#({$ktai_color_config.bg_06})">▼</font></a><br>
