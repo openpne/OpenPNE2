@@ -16,9 +16,9 @@
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
 <font color="#({$ktai_color_config.font_02})">ﾒｰﾙｱﾄﾞﾚｽ：</font><br>
 <textarea name="ktai_address" rows="1" istyle="3" mode="alphabet" maxlength="100"></textarea>
-<hr color="#({$ktai_color_config.border_02})">
+<hr color="#({$ktai_color_config.border_01})">
 届いたﾒｰﾙに記載してあるURLにｱｸｾｽして、ﾊﾟｽﾜｰﾄﾞを入力すると変更が完了します。
-<hr color="#({$ktai_color_config.border_02})">
+<hr color="#({$ktai_color_config.border_01})">
 <center>
 <input type="submit" value="ﾒｰﾙ送信">
 </center>
