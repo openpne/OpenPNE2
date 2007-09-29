@@ -7,7 +7,7 @@
 ｲﾍﾞﾝﾄの作成<br>
 </td></tr></table>
 <font color="#({$ktai_color_config.font_04})">※</font>は必須項目です。
-<hr color="#({$ktai_color_config.border_02})">
+<hr color="#({$ktai_color_config.border_01})">
 
 ({if $err_msg})
 ({foreach from=$err_msg item=item})
@@ -59,7 +59,7 @@
 <option value="">--
 ({html_options values=$day selected=$event.invite_period_day output=$day})
 </select>日<br>
-<hr color="#({$ktai_color_config.border_02})">
+<hr color="#({$ktai_color_config.border_01})">
 <center>
 <input type="submit" value="ｲﾍﾞﾝﾄを作成する">
 </center>
