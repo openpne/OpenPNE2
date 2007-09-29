@@ -40,7 +40,7 @@ class ktai_do_o_update_ktai_address extends OpenPNE_Action
             openpne_redirect('ktai', 'page_o_login2', $p);
         }
 
-        if (IS_GET_EASY_ACCESS_ID == 2) {
+        if (IS_GET_EASY_ACCESS_ID == 2 || IS_GET_EASY_ACCESS_ID == 3) {
 
         // 携帯の個体識別番号の取得が必須
             if (!$easy_access_id = OpenPNE_KtaiID::getID()) {

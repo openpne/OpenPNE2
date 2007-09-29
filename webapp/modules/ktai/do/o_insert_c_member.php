@@ -84,11 +84,11 @@ class ktai_do_o_insert_c_member extends OpenPNE_Action
 
         if (IS_GET_EASY_ACCESS_ID != 0) {
             $easy_access_id = OpenPNE_KtaiID::getID();
-            if (!$easy_access_id && (IS_GET_EASY_ACCESS_ID == 2)) {
-                $errors[] = '携帯の個体識別番号を取得できませんでした';
+            if (!$easy_access_id && (IS_GET_EASY_ACCESS_ID == 2 || IS_GET_EASY_ACCESS_ID == 3) && (!$pre['is_disabled_regist_easy_access_id'])) {
+                openpne_redirect('ktai', 'page_o_regist_ktai_uid_err');
             }
             if (db_member_c_member_id4easy_access_id($easy_access_id)) {
-                $errors[] = 'この個体識別番号はすでに登録されています';
+                $errors[] = 'この携帯個体識別番号はすでに登録されています';
             }
             if (db_member_easy_access_id_is_blacklist(md5($easy_access_id))) {
                 ktai_display_error('新規登録を完了できませんでした。');

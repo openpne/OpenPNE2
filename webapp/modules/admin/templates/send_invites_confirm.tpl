@@ -15,7 +15,7 @@ PCからは登録できない設定になっています。<br>
 <div class="caution">※以下のアドレスには送信されません</div>
 ({else})
 <dl class="invitesAdd">
-	<dt><strong>【PCアドレス】</strong></dt>
+	<dt><strong>【PCメールアドレス】</strong></dt>
 ({/if})
 <dd>({foreach from=$requests.pc_mails item=item name=pm})<strong>({$item})</strong>({if !$smarty.foreach.pm.last})&nbsp;／&nbsp;({/if})({/foreach})</dd>
 </dl>
@@ -26,10 +26,23 @@ PCからは登録できない設定になっています。<br>
 <div class="caution">※以下のアドレスには送信されません</div>
 ({else})
 <dl class="invitesAdd">
-	<dt><strong>【携帯アドレス】</strong></dt>
+	<dt><strong>【携帯メールアドレス】</strong></dt>
 ({/if})
 	<dd>({foreach from=$requests.ktai_mails item=item name=km})<strong>({$item})</strong>({if !$smarty.foreach.km.last})&nbsp;／&nbsp;({/if})({/foreach})</dd>
 </dl>
+({/if})
+({if $smarty.const.IS_GET_EASY_ACCESS_ID == 2 || $smarty.const.IS_GET_EASY_ACCESS_ID == 3})
+<dl class="invitesAdd">
+    <dt><strong>【携帯個体識別番号の登録】</strong></dt>
+    ({if $requests.is_disable_regist_easy_access_id})
+    <dd><strong>必須にしない</strong></dd>
+    ({else})
+    <dd><strong>必須にする</strong></dd>
+    ({/if})
+</dl>
+({if $smarty.const.IS_GET_EASY_ACCESS_ID == 2})
+<div class="caution">※携帯メールアドレスへの招待のみ適用されます。</div>
+({/if})
 ({/if})
 ({if $requests.error_mails})
 <dl class="invitesAdd" id="warning">
@@ -47,6 +60,7 @@ PCからは登録できない設定になっています。<br>
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
 <input type="hidden" name="mails" value="({$requests.mails})" />
 <input type="hidden" name="message" value="({$requests.message})" />
+<input type="hidden" name="is_disable_regist_easy_access_id" value="({$requests.is_disable_regist_easy_access_id})" />
 ({if !$cannot_send})<p class="textBtn"><input name="complete" type="submit" value="送信する"></p>({/if})<p class="textBtn"><input name="input" type="submit" value="修正する"></p>
 </form>
 <br class="clear" />
