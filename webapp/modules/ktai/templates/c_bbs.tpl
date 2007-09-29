@@ -1,15 +1,15 @@
 ({$inc_ktai_header|smarty:nodefaults})
 
-<table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_01})">
-<font color="#({$ktai_color_config.font_01})"><a name="top">({$c_commu.name})</a></font><br>
+<table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_02})">
+<font color="#({$ktai_color_config.font_05})"><a name="top">({$c_commu.name})</a></font><br>
 </td></tr>
-<tr><td bgcolor="#({$ktai_color_config.bg_02})" align="center">
+<tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
 ({$c_commu_topic.name})<br>
 </td></tr></table>
 
 ({if $c_commu_topic.event_flag != 1})
 
-<a href="#({if $c_commu_topic_comment_list})tc1({else})write({/if})"><font color="#({$ktai_color_config.bg_06})">▼</font></a>({$c_commu_topic.r_datetime|date_format:"%m/%d %H:%M"})<br>
+<a href="#({if $c_commu_topic_comment_list})tc1({else})write({/if})"><font color="#({$ktai_color_config.bg_08})">▼</font></a>({$c_commu_topic.r_datetime|date_format:"%m/%d %H:%M"})<br>
 <a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$c_commu_topic.c_member_id})&amp;({$tail})">({$c_commu_topic.nickname|default:"&nbsp;"})</a>
 ({if $c_commu_topic.c_member_id==$u || $is_admin})
 [<a href="({t_url m=ktai a=page_c_topic_edit})&amp;target_c_commu_topic_id=({$c_commu_topic_id})&amp;({$tail})">編集</a>]
@@ -23,10 +23,10 @@
 
 ({else})
 このｲﾍﾞﾝﾄを({$WORD_MY_FRIEND_HALF})に教えよう!<br>
-<font color="#({$ktai_color_config.font_03})">⇒</font><a href="({t_url m=ktai a=page_c_event_invite})&amp;target_c_commu_topic_id=({$c_commu_topic.c_commu_topic_id})&amp;({$tail})">このｲﾍﾞﾝﾄを友人に教える</a>
+<font color="#({$ktai_color_config.font_07})">⇒</font><a href="({t_url m=ktai a=page_c_event_invite})&amp;target_c_commu_topic_id=({$c_commu_topic.c_commu_topic_id})&amp;({$tail})">このｲﾍﾞﾝﾄを友人に教える</a>
 
 <hr color="#({$ktai_color_config.border_01})">
-<a href="#({if $c_commu_topic_comment_list})tc1({else})write({/if})"><font color="#({$ktai_color_config.font_09})">▼</font></a><br>
+<a href="#({if $c_commu_topic_comment_list})tc1({else})write({/if})"><font color="#({$ktai_color_config.font_08})">▼</font></a><br>
 企画者：<br>
 <a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$c_commu_topic.c_member_id})&amp;({$tail})">({$c_commu_topic.nickname|default:"&nbsp;"})</a> <br>
 <br>
@@ -88,10 +88,10 @@
 <hr color="#({$ktai_color_config.border_02})">
 <table width="100%">
 ({foreach from=$c_commu_topic_comment_list name=c_commu_topic_comment item=item})
-<tr><td bgcolor="#({cycle values="`$ktai_color_config.bg_05`,`$ktai_color_config.bg_08`"})">
+<tr><td bgcolor="#({cycle values="`$ktai_color_config.bg_06`,`$ktai_color_config.bg_07`"})">
 <a name="tc({$smarty.foreach.c_commu_topic_comment.iteration})" href="#({if $smarty.foreach.c_commu_topic_comment.last || $item.number == 0})({if $is_prev || $is_next})pager({else})write({/if})({else})tc({$smarty.foreach.c_commu_topic_comment.iteration+1})({/if})">
-<font color="#({$ktai_color_config.font_09})">▼</font>
-</a><font color="#({$ktai_color_config.font_02})">[({$item.number|string_format:"%03d"})]</font>({$item.r_datetime|date_format:"%m/%d %H:%M"})
+<font color="#({$ktai_color_config.font_08})">▼</font>
+</a><font color="#({$ktai_color_config.font_06})">[({$item.number|string_format:"%03d"})]</font>({$item.r_datetime|date_format:"%m/%d %H:%M"})
 <br>
 ({if $item.nickname})<a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})&amp;({$tail})">({$item.nickname})</a>({/if})
 ({if $item.c_member_id == $u || $target_diary_writer==$u || $is_admin})
@@ -123,7 +123,7 @@
 <hr color="#({$ktai_color_config.border_01})">
 <a name="write"></a>
 ({if $msg})
-<a name="comment"><font color="#({$ktai_color_config.font_04})">({$msg})</font></a><br>
+<a name="comment"><font color="#({$ktai_color_config.font_09})">({$msg})</font></a><br>
 <br>
 ({/if})
 
@@ -131,7 +131,7 @@
 ({t_form m=ktai a=do_c_bbs_insert_c_commu_topic_comment})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
 <input type="hidden" name="target_c_commu_topic_id" value="({$c_commu_topic_id})">
-<a name="menu"><font color="#({$ktai_color_config.font_02})">ｺﾒﾝﾄ：</font></a><br>
+<a name="menu"><font color="#({$ktai_color_config.font_06})">ｺﾒﾝﾄ：</font></a><br>
 <textarea name="body" rows="3"></textarea><br>
 ({if $c_commu_topic.event_flag})
 ({if $is_event_join_date})
