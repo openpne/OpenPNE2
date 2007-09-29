@@ -1,9 +1,9 @@
 ({$inc_ktai_header|smarty:nodefaults})
 
-<table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_01})">
-<font color="#({$ktai_color_config.font_01})"><a name="top">ｶﾃｺﾞﾘ検索</a></font><br>
+<table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_02})">
+<font color="#({$ktai_color_config.font_05})"><a name="top">ｶﾃｺﾞﾘ検索</a></font><br>
 </td></tr>
-<tr><td bgcolor="#({$ktai_color_config.bg_02})" align="center">
+<tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
 ｶﾃｺﾞﾘ：({$c_commu_category_name})<br>
 </td></tr></table>
 
@@ -11,14 +11,14 @@
 ({if $search_word})
 「({$search_word})」の検索結果
 ({/if})
-<font color="#({$ktai_color_config.font_02})">(({$count_total})件)</font>
+<font color="#({$ktai_color_config.font_06})">(({$count_total})件)</font>
 </center>
 <table width="100%">
 <tr><td>
 <hr color="#({$ktai_color_config.border_02})">
 </td></tr>
 ({foreach from=$c_commu_list item=c_commu})
-<tr><td bgcolor="#({cycle values="`$ktai_color_config.bg_05`,`$ktai_color_config.bg_08`"})">
+<tr><td bgcolor="#({cycle values="`$ktai_color_config.bg_06`,`$ktai_color_config.bg_07`"})">
 <a href="({t_url m=ktai a=page_c_home})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">({$c_commu.name|t_truncate:50:""})(({$c_commu.count_commu_member}))</a><br>
 </td></tr>
 <tr><td>
@@ -36,13 +36,13 @@
 <br>
 
 <table width="100%">
-<tr><td bgcolor="#({$ktai_color_config.bg_02})" align="center">
+<tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
 ｶﾃｺﾞﾘ内から検索<br>
 </td></tr></table>
 ({t_form _method=get m=ktai a=page_h_com_category})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
 <input type="hidden" name="target_c_commu_category_id" value="({$c_commu_category_id})">
-<font color="#({$ktai_color_config.font_02})">ｷｰﾜｰﾄﾞ：</font><br>
+<font color="#({$ktai_color_config.font_06})">ｷｰﾜｰﾄﾞ：</font><br>
 <input type="text" name="search_word" maxlength="64" value="({$search_word})"><br>
 <input type="submit" value="検索">
 </form>
