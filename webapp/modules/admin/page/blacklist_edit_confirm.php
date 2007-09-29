@@ -19,7 +19,7 @@ class admin_page_blacklist_edit_confirm extends OpenPNE_Action
 
         $c_black_list = db_admin_c_blacklist($requests['target_c_blacklist_id']);
         if (!$c_black_list) {
-            admin_client_redirect('blacklist', 'ブラックリストメンバーに登録されていません');
+            admin_client_redirect('blacklist', 'ブラックリストに登録されていません');
         }
 
         $c_member_id = db_member_c_member_id4easy_access_id($requests['easy_access_id'], false);

@@ -1,21 +1,21 @@
 ({$inc_header|smarty:nodefaults})
-({ext_include file="inc_subnavi_adminSNSConfig.tpl"})
-({assign var="page_name" value="ブラックリストメンバー管理"})
-({ext_include file="inc_tree_adminSNSConfig.tpl"})
+({ext_include file="inc_subnavi_adminSiteMember.tpl"})
+({assign var="page_name" value="ブラックリスト管理"})
+({ext_include file="inc_tree_adminSiteMember.tpl"})
 </div>
 
 ({*ここまで:navi*})
 
 ({if $msg})<p class="actionMsg">({$msg})</p>({/if})
-<h2>ブラックリストメンバー管理</h2>
+<h2>ブラックリスト管理</h2>
 <div class="contents">
 
 <ul class="description">
-    <li>ブラックリストメンバーに登録されたメンバーのSNSへのログイン・新規登録を制限する機能です。</li>
-    <li>携帯個体識別番号(暗号化済)をキーにブラックリストメンバーに登録します。</li>
+    <li>ブラックリストに登録されたメンバーのSNSへのログイン・新規登録を制限する機能です。</li>
+    <li>携帯個体識別番号(暗号化済)をキーにブラックリストに登録します。</li>
 </ul>
 
-<p id="itemAdd"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('blacklist_add','page')})">ブラックリストメンバーを追加する</a></p>
+<p id="itemAdd"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('blacklist_add','page')})">携帯個体識別番号をブラックリストに追加する</a></p>
 
 ({capture name="pager"})
 <div class="listControl">
@@ -42,7 +42,7 @@
 <th>ID</th>
 <th>携帯個体識別番号(暗号化済)</th>
 <th>該当するメンバー</th>
-<th>メモ</th>
+<th>備考</th>
 <th>操作</th>
 </tr>
 ({/capture})
@@ -60,14 +60,14 @@
 <td>
 <ul>
 <li><a href='?m=({$module_name})&amp;a=page_({$hash_tbl->hash('blacklist_edit','page')})&amp;target_c_blacklist_id=({$item.c_blacklist_id})'>編集</a></li>
-<li><a href='?m=({$module_name})&amp;a=page_({$hash_tbl->hash('blacklist_delete_confirm','page')})&amp;target_c_blacklist_id=({$item.c_blacklist_id})'>ブラックリストメンバーから外す</a></li>
+<li><a href='?m=({$module_name})&amp;a=page_({$hash_tbl->hash('blacklist_delete_confirm','page')})&amp;target_c_blacklist_id=({$item.c_blacklist_id})'>ブラックリストから外す</a></li>
 </ul>
 </td>
 </tr>
 ({/if})
 ({foreachelse})
 <tr>
-<td colspan="5">ブラックリストメンバーは登録されていません</td>
+<td colspan="5">ブラックリストは登録されていません</td>
 </tr>
 ({/foreach})
 </table>
