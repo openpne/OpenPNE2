@@ -1,20 +1,20 @@
 ({$inc_ktai_header|smarty:nodefaults})
 
-<table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_01})">
-<font color="#({$ktai_color_config.font_01})"><a name="top">({$c_commu.name})</a></font><br>
+<table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_02})">
+<font color="#({$ktai_color_config.font_05})"><a name="top">({$c_commu.name})</a></font><br>
 </td></tr>
-<tr><td bgcolor="#({$ktai_color_config.bg_02})" align="center">
+<tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
 ｺﾐｭﾆﾃｨに参加<br>
 </td></tr></table>
 
 ｺﾐｭﾆﾃｨ管理者への参加希望ﾒｯｾｰｼﾞを送信し、承諾を受けてください。<br>
 ({if $msg})
-<font color="#({$ktai_color_config.font_04})">({$msg})</font><br>
+<font color="#({$ktai_color_config.font_09})">({$msg})</font><br>
 ({/if})
 ({t_form m=ktai a=do_c_join_request_insert_c_commu_member_confirm})
 <input type="hidden" name="target_c_commu_id" value="({$target_c_commu_id})">
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
-<font color="#({$ktai_color_config.font_02})">ﾒｯｾｰｼﾞ：</font><br>
+<font color="#({$ktai_color_config.font_06})">ﾒｯｾｰｼﾞ：</font><br>
 <textarea name="body" rows="6"></textarea><br>
 <center>
 <input type="submit" value="参加を希望する">
