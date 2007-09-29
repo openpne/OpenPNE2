@@ -1,9 +1,9 @@
 ({$inc_ktai_header|smarty:nodefaults})
 
-<table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_01})">
-<font color="#({$ktai_color_config.font_01})"><a name="top">({$c_commu.name})</a></font><br>
+<table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_02})">
+<font color="#({$ktai_color_config.font_05})"><a name="top">({$c_commu.name})</a></font><br>
 </td></tr>
-<tr><td bgcolor="#({$ktai_color_config.bg_02})" align="center">
+<tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
 ﾄﾋﾟｯｸﾘｽﾄ<br>
 </td></tr></table>
 
@@ -19,7 +19,7 @@
 <tr><td>
 <hr color="#({$ktai_color_config.border_02})">
 </td></tr>
-<tr><td bgcolor="#({cycle values="`$ktai_color_config.bg_05`,`$ktai_color_config.bg_08`"})">
+<tr><td bgcolor="#({cycle values="`$ktai_color_config.bg_06`,`$ktai_color_config.bg_07`"})">
 ({$item.r_datetime|date_format:"%Y/%m/%d %H:%M"})
 ({if $item.is_c_topic_admin ==$u || $c_commu.c_member_id_admin == $u})
 [<a href="({t_url m=ktai a=page_c_event_edit})&amp;target_c_commu_topic_id=({$item.c_commu_topic_id})&amp;({$tail})">編集</a>]

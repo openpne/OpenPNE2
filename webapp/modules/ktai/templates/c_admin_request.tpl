@@ -1,23 +1,23 @@
 ({$inc_ktai_header|smarty:nodefaults})
 
-<table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_01})">
-<font color="#({$ktai_color_config.font_01})"><a name="top">({$c_commu.name})</a></font><br>
+<table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_02})">
+<font color="#({$ktai_color_config.font_05})"><a name="top">({$c_commu.name})</a></font><br>
 </td></tr>
-<tr><td bgcolor="#({$ktai_color_config.bg_02})" align="center">
+<tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
 管理者交代依頼<br>
 </td></tr></table>
 
 ({$member.nickname})さんに管理者交代依頼を送信します。
 <hr color="#({$ktai_color_config.border_01})">
-({if $msg})<font color="#({$ktai_color_config.font_04})">({$msg})</font><br>({/if})
-<font color="#({$ktai_color_config.font_02})">宛先：</font><br>
+({if $msg})<font color="#({$ktai_color_config.font_09})">({$msg})</font><br>({/if})
+<font color="#({$ktai_color_config.font_06})">宛先：</font><br>
 <a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$member.c_member_id})&amp;({$tail})">({$member.nickname})</a><br>
 <br>
 ({t_form m=ktai a=do_c_edit_member_insert_c_commu_admin_confirm})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
 <input type="hidden" name="target_c_member_id" value="({$member.c_member_id})">
 <input type="hidden" name="target_c_commu_id" value="({$c_commu.c_commu_id})">
-<font color="#({$ktai_color_config.font_02})">ﾒｯｾｰｼﾞ：</font><br>
+<font color="#({$ktai_color_config.font_06})">ﾒｯｾｰｼﾞ：</font><br>
 <textarea name="body" rows="6"></textarea>
 <hr color="#({$ktai_color_config.border_01})">
 <center>

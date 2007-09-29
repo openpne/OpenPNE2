@@ -1,24 +1,24 @@
 ({$inc_ktai_header|smarty:nodefaults})
 
-<table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_01})">
-<font color="#({$ktai_color_config.font_01})"><a name="top">
+<table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_02})">
+<font color="#({$ktai_color_config.font_05})"><a name="top">
 ({if $c_message.c_member_id_to==$u})({if $c_message.is_deleted_to})ごみ箱({else})受信箱({/if})
 ({else})({if $c_message.is_deleted_from})ごみ箱({else})送信箱({/if})
 ({/if})
 </a></font><br>
 </td></tr>
-<tr><td bgcolor="#({$ktai_color_config.bg_02})" align="center">
+<tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
 ﾒｯｾｰｼﾞ<br>
 </td></tr></table>
 
 ({if $c_message.c_member_id_to==$u})
-<font color="#({$ktai_color_config.font_02})">差出人：</font><a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$c_message.c_member_id_from})&amp;({$tail})">({$c_message.c_member_nickname_from})</a><br>
+<font color="#({$ktai_color_config.font_06})">差出人：</font><a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$c_message.c_member_id_from})&amp;({$tail})">({$c_message.c_member_nickname_from})</a><br>
 ({else})
-<font color="#({$ktai_color_config.font_02})">宛先：</font><a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$c_message.c_member_id_to})&amp;({$tail})">({$c_message.c_member_nickname_to})</a><br>
+<font color="#({$ktai_color_config.font_06})">宛先：</font><a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$c_message.c_member_id_to})&amp;({$tail})">({$c_message.c_member_nickname_to})</a><br>
 ({/if})
 
-<font color="#({$ktai_color_config.font_02})">日付：</font>({$c_message.r_datetime|date_format:"%y/%m/%d %H:%M"})<br>
-<font color="#({$ktai_color_config.font_02})">件名：</font>({$c_message.subject})<br>
+<font color="#({$ktai_color_config.font_06})">日付：</font>({$c_message.r_datetime|date_format:"%y/%m/%d %H:%M"})<br>
+<font color="#({$ktai_color_config.font_06})">件名：</font>({$c_message.subject})<br>
 <hr color="#({$ktai_color_config.border_01})">
 ({$c_message.body|t_url2a_ktai|nl2br})
 <br>
@@ -62,17 +62,17 @@
 ({/if})
 
 ({if !$c_message.is_deleted_to})
-<table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_01})">
-[i:106]<font color="#({$ktai_color_config.font_01})">返信を書く</font><br>
+<table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_02})">
+[i:106]<font color="#({$ktai_color_config.font_05})">返信を書く</font><br>
 </td></tr></table>
 ({t_form m=ktai a=do_h_message_insert_message})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
 <input type="hidden" name="c_message_id" value="({$c_message.c_message_id})">
 <input type="hidden" name="target_c_member_id" value="({$c_message.c_member_id_from})">
-({if $msg})<font color="#({$ktai_color_config.font_04})">({$msg})</font><br>({/if})
-<font color="#({$ktai_color_config.font_02})">ﾀｲﾄﾙ：</font><br>
+({if $msg})<font color="#({$ktai_color_config.font_09})">({$msg})</font><br>({/if})
+<font color="#({$ktai_color_config.font_06})">ﾀｲﾄﾙ：</font><br>
 <input type="text" name="subject" value="Re:({$c_message.subject})"><br>
-<font color="#({$ktai_color_config.font_02})">本文：</font><br>
+<font color="#({$ktai_color_config.font_06})">本文：</font><br>
 <textarea rows="6" name="body"></textarea><br>
 <center>
 <input type="submit" value="送信">

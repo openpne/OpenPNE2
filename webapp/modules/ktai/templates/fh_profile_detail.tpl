@@ -1,17 +1,17 @@
 ({$inc_ktai_header|smarty:nodefaults})
 
-<table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_01})">
-<font color="#({$ktai_color_config.font_01})"><a name="top">({$target_c_member.nickname})さん</a></font><br>
+<table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_02})">
+<font color="#({$ktai_color_config.font_05})"><a name="top">({$target_c_member.nickname})さん</a></font><br>
 </td></tr>
-<tr><td bgcolor="#({$ktai_color_config.bg_02})" align="center">
+<tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
 ﾌﾟﾛﾌｨｰﾙ詳細<br>
 </td></tr></table>
 
 ({strip})
 ({capture name="birth"})
-({if $target_c_member.age !== NULL})<font color="#({$ktai_color_config.font_02})">年齢：</font><br>({$target_c_member.age})歳<br>({/if})
+({if $target_c_member.age !== NULL})<font color="#({$ktai_color_config.font_06})">年齢：</font><br>({$target_c_member.age})歳<br>({/if})
 ({if $target_c_member.birth_month && $target_c_member.birth_day})
-<br><font color="#({$ktai_color_config.font_02})">誕生日：</font><br>({$target_c_member.birth_month})月({$target_c_member.birth_day})日<br>
+<br><font color="#({$ktai_color_config.font_06})">誕生日：</font><br>({$target_c_member.birth_month})月({$target_c_member.birth_day})日<br>
 ({/if})
 ({/capture})
 
@@ -43,7 +43,7 @@
 ({/if})
 
 ({if $item.value && $item.form_type != 'textarea'})
-	<br><font color="#({$ktai_color_config.font_02})">({$item.caption})：</font><br>
+	<br><font color="#({$ktai_color_config.font_06})">({$item.caption})：</font><br>
 ({/if})
 
 ({if $item.form_type == 'checkbox'})
@@ -72,7 +72,7 @@
 <br>
 ({foreach from=$target_c_member.profile key=key item=item})
 ({if $item.form_type == 'textarea'})
-<font color="#({$ktai_color_config.font_02})">({$item.caption})：</font><br>
+<font color="#({$ktai_color_config.font_06})">({$item.caption})：</font><br>
 ({$item.value|t_url2a_ktai|nl2br})<br>
 <br>
 ({/if})
