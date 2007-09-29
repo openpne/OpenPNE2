@@ -1,19 +1,19 @@
 ({$inc_header|smarty:nodefaults})
-({ext_include file="inc_subnavi_adminSNSConfig.tpl"})
-({assign var="page_name" value="ブラックリストメンバー編集確認"})
-({assign var="parent_page_name" value="ブラックリストメンバー管理"})
+({ext_include file="inc_subnavi_adminSiteMember.tpl"})
+({assign var="page_name" value="携帯個体識別番号のブラックリスト編集確認"})
+({assign var="parent_page_name" value="ブラックリスト管理"})
 ({capture name=parent_page_url})?m=({$module_name})&amp;a=page_({$hash_tbl->hash('blacklist')})({/capture})
-({ext_include file="inc_tree_adminSNSConfig.tpl"})
+({ext_include file="inc_tree_adminSiteMember.tpl"})
 </div>
 
 ({*ここまで:navi*})
 
 ({if $msg})<p class="actionMsg">({$msg})</p>({/if})
-<h2>ブラックリストメンバー編集確認</h2>
+<h2>携帯個体識別番号のブラックリスト編集確認</h2>
 <div class="contents">
 
 <p>以下の内容に編集します。よろしいですか？</p>
-<p class="caution">※ブラックリストメンバーに追加されたメンバーは、ログイン・新規登録が制限されます。</p>
+<p class="caution">※ブラックリストに追加されたメンバーは、ログイン・新規登録が制限されます。</p>
 
 <table class="basicType2">
 <tbody>
@@ -26,7 +26,7 @@
 <td>({if $member})<a href="({t_url _absolute=1 m=pc a=page_f_home})&amp;target_c_member_id=({$member.c_member_id})" target="_blank">({$member.nickname})</a>({else})&nbsp;({/if})</td>
 </tr>
 <tr>
-<th>メモ</th>
+<th>備考</th>
 <td width="250">({$info|nl2br})</td>
 </tr>
 </tbody>
