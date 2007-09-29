@@ -74,7 +74,7 @@
 </td></tr>
 ({if $is_c_commu_view})
 ({foreach from=$new_topic_comment item=item})
-<tr><td bgcolor="#({$ktai_color_config.bg_05})">
+<tr><td bgcolor="#(({cycle values="`$ktai_color_config.bg_05`,`$ktai_color_config.bg_08`"})">
 <font color="#({$ktai_color_config.font_02})">[({$item.r_datetime|date_format:"%m/%d"})]</font> <a href="({t_url m=ktai a=page_c_bbs})&amp;target_c_commu_topic_id=({$item.c_commu_topic_id})&amp;({$tail})">({$item.name|t_truncate:22:""})(({$item.count_comments}))</a>
 ({if $item.image_filename1 || $item.image_filename2 || $item.image_filename3})
 [i:68]
@@ -101,7 +101,7 @@
 </td></tr>
 ({if $is_c_commu_view})
 ({foreach from=$new_topic_comment_event item=item})
-<tr><td bgcolor="#({$ktai_color_config.bg_07})">
+<tr><td bgcolor="#(({cycle values="`$ktai_color_config.bg_07`,`$ktai_color_config.bg_10`"})">
 <font color="#({$ktai_color_config.font_02})">[({$item.r_datetime|date_format:"%m/%d"})]</font> <a href="({t_url m=ktai a=page_c_bbs})&amp;target_c_commu_topic_id=({$item.c_commu_topic_id})&amp;({$tail})">({$item.name|t_truncate:22:""})(({$item.count_comments}))</a>
 ({if $item.image_filename1 || $item.image_filename2 || $item.image_filename3})
 [i:68]
@@ -147,7 +147,7 @@
 <a accesskey="3" name="a3" href="#a3">[i:127]</a>ｺﾐｭﾆﾃｨﾒﾝﾊﾞｰ<br>
 </td></tr>
 ({foreach from=$c_commu_member_list item=c_commu_member})
-<tr><td bgcolor="#({$ktai_color_config.bg_05})">
+<tr><td bgcolor="#(({cycle values="`$ktai_color_config.bg_05`,`$ktai_color_config.bg_08`"})">
 <a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$c_commu_member.c_member_id})&amp;({$tail})">({$c_commu_member.nickname})</a><br>
 </td></tr>
 <tr><td>
