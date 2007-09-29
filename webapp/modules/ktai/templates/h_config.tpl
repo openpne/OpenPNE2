@@ -4,7 +4,7 @@
 </td></tr></table>
 ({if $msg})
 <font color="#({$ktai_color_config.font_04})">({$msg})</font>
-<hr color="#({$ktai_color_config.border_02})">
+<hr color="#({$ktai_color_config.border_01})">
 ({/if})
 <font color="#({$ktai_color_config.bg_01})">◆</font><a href="({t_url m=ktai a=page_h_config_mail_receive})&amp;({$tail})">ﾒｰﾙ受信設定</a><br>
 ({if !$is_unused_ashiato})

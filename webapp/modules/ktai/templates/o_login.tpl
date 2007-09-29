@@ -31,7 +31,7 @@
 <table width="100%"><tr><td bgcolor="#({$ktai_color_config.bg_01})">
 [i:75]<font color="#({$ktai_color_config.font_01})">かんたんﾛｸﾞｲﾝ</font><br>
 </td></tr>
-<tr><td bgcolor="#({$ktai_color_config.bg_05})">
+<tr><td bgcolor="#({$ktai_color_config.bg_03})">
 <br>
 <center>
 ({t_form _attr='utn' m=ktai a=do_o_easy_login})
@@ -50,7 +50,7 @@
 <table width="100%"><tr><td bgcolor="#({$ktai_color_config.bg_01})">
 <font color="#({$ktai_color_config.font_01})">[i:116]ﾊﾟｽﾜｰﾄﾞﾛｸﾞｲﾝ</font><br>
 </td></tr>
-<tr><td bgcolor="#({$ktai_color_config.bg_05})">
+<tr><td bgcolor="#({$ktai_color_config.bg_03})">
 ({t_form m=ktai a=do_o_login})
 <input type="hidden" name="login_params" value="({$requests.login_params})">
 ({if $ktai_address})
