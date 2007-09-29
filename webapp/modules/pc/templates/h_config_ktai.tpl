@@ -136,7 +136,7 @@
 <!-- ******ここから：携帯アドレス削除****** -->
 <!-- ******************************************** -->
 
-({if $ktai})
+({if $ktai && ($smarty.const.IS_GET_EASY_ACCESS_ID != 3 && $smarty.const.IS_GET_EASY_ACCESS_ID != 2)})
 
 <table border="0" cellspacing="0" cellpadding="0" style="width:580px;" class="border_07">
 <tr>
