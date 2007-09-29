@@ -1,8 +1,8 @@
 ({$inc_ktai_header|smarty:nodefaults})
-<table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_01})">
-<font color="#({$ktai_color_config.font_01})"><a name="top">({$c_commu.name})</a></font><br>
+<table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_02})">
+<font color="#({$ktai_color_config.font_05})"><a name="top">({$c_commu.name})</a></font><br>
 </td></tr>
-<tr><td bgcolor="#({$ktai_color_config.bg_02})" align="center">
+<tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
 ｺﾐｭﾆﾃｨ写真の編集<br>
 </td></tr></table>
 
@@ -23,8 +23,8 @@
 すでに写真が1枚登録されています。新しい写真を登録する場合は今の写真を削除してください。<br>
 ({else})
 以下のｱﾄﾞﾚｽに写真を添付して送信してください。<br>
-<font color="#({$ktai_color_config.font_02})">※写真は1枚以上登録できません</font><br>
-<font color="#({$ktai_color_config.font_02})">※ﾀｲﾄﾙと本文は反映されません</font><br>
+<font color="#({$ktai_color_config.font_06})">※写真は1枚以上登録できません</font><br>
+<font color="#({$ktai_color_config.font_06})">※ﾀｲﾄﾙと本文は反映されません</font><br>
 <a href="mailto:({$mail_address})">ﾒｰﾙ送信</a><br>
 ({/if})
 <hr color="#({$ktai_color_config.border_01})">

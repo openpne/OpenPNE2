@@ -1,15 +1,15 @@
 ({$inc_ktai_header|smarty:nodefaults})
 
-<table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_01})">
-<font color="#({$ktai_color_config.font_01})"><a name="top">({$c_commu_topic_name})</a></font><br>
+<table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_02})">
+<font color="#({$ktai_color_config.font_05})"><a name="top">({$c_commu_topic_name})</a></font><br>
 </td></tr>
-<tr><td bgcolor="#({$ktai_color_config.bg_02})" align="center">
+<tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
 ｺﾒﾝﾄの削除<br>
 </td></tr></table>
 
 このｺﾒﾝﾄを本当に削除しますか?<br>
 <hr color="#({$ktai_color_config.border_01})">
-<font color="#({$ktai_color_config.font_02})">ｺﾒﾝﾄ:</font><br>
+<font color="#({$ktai_color_config.font_06})">ｺﾒﾝﾄ:</font><br>
 
 ({foreach from=$c_commu_topic_comment_list item=item})
 ({if $item.number != 0})

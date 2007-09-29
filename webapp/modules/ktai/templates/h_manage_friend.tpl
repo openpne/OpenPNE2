@@ -1,7 +1,7 @@
 ({$inc_ktai_header|smarty:nodefaults})
 
-<table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_01})">
-<font color="#({$ktai_color_config.font_01})"><a name="top">({$WORD_MY_FRIEND_HALF})管理</a></font><br>
+<table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_02})">
+<font color="#({$ktai_color_config.font_05})"><a name="top">({$WORD_MY_FRIEND_HALF})管理</a></font><br>
 </td></tr></table>
 
 ({if !$friend_list})
@@ -12,7 +12,7 @@
 </center>
 ({if $msg})
 ({foreach from=$msg item=item})
-<font color="#({$ktai_color_config.font_04})">({$item})</font></br>
+<font color="#({$ktai_color_config.font_09})">({$item})</font></br>
 <br>
 ({/foreach})
 ({/if})
@@ -22,12 +22,12 @@
 <tr><td>
 <hr color="#({$ktai_color_config.border_02})">
 </td></tr>
-<tr><td bgcolor="#({cycle values="`$ktai_color_config.bg_05`,`$ktai_color_config.bg_08`"})">
-<font color="#({$ktai_color_config.font_02})">ﾆｯｸﾈｰﾑ：</font><br>
+<tr><td bgcolor="#({cycle values="`$ktai_color_config.bg_06`,`$ktai_color_config.bg_07`"})">
+<font color="#({$ktai_color_config.font_06})">ﾆｯｸﾈｰﾑ：</font><br>
 <a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$friend.c_member_id})&amp;({$tail})">({$friend.nickname})</a><br>
 <br>
 ({if $friend.intro})
-<font color="#({$ktai_color_config.font_02})">紹介文：</font><br>
+<font color="#({$ktai_color_config.font_06})">紹介文：</font><br>
 ({$friend.intro|nl2br})
 <br>
 [<a href="({t_url m=ktai a=page_f_intro_edit})&amp;target_c_member_id=({$friend.c_member_id})&amp;({$tail})">編集</a>][<a href="({t_url m=ktai a=do_f_intro_delete})&amp;target_c_member_id=({$friend.c_member_id})&amp;({$tail})">削除</a>]<br>
