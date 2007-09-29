@@ -25,7 +25,7 @@
 <tr>
 <td style="width:36px;" class="bg_06"><img src="({t_img_url_skin filename=content_header_1})" style="width:30px;height:20px;" class="dummy"></td>
 <td style="width:528px;padding:2px 0px;" class="bg_06"><span class="b_b c_00">
-登録完了
+携帯登録メール送信完了
 </span></td>
 </tr>
 </table>
@@ -50,10 +50,8 @@
 
 <div class="padding_w_m">
 
-登録が完了しました。<br>
-以下のページからログインしてください。<br>
-<br>
-<a href="({$login_url})">ログインページへ</a>
+携帯登録をおこなうことでメンバー登録が完了します。<br>
+入力された携帯メールアドレス宛てにメールを送信いたしましたので、メール内に記載されたURLから携帯登録をおこなってください。
 
 </div>
 
@@ -93,10 +91,6 @@
 <img src="./skin/dummy.gif" alt="" class="v_spacer_l">
 
 <img src="./skin/dummy.gif" alt="" class="v_spacer_l">
-
-({*ここから：アフィリエイトタグ*})
-({$aftag|smarty:nodefaults})
-({*ここまで：アフィリエイトタグ*})
 
 ({***************************})
 ({**ここまで：メインコンテンツ**})
