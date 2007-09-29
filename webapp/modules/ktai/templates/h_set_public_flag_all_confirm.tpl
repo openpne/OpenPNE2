@@ -18,7 +18,7 @@
 全員に公開
 ({/if})<br>
 
-<hr color="#({$ktai_color_config.border_02})">
+<hr color="#({$ktai_color_config.border_01})">
 <center>
 ({t_form m=ktai a=do_h_set_public_flag_all})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">

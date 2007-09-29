@@ -14,7 +14,7 @@
 
 <font color="#({$ktai_color_config.font_04})">かんたんﾛｸﾞｲﾝ設定済みです。</font><br>
 
-<hr color="#({$ktai_color_config.border_02})">
+<hr color="#({$ktai_color_config.border_01})">
 
 変更するには
 ({/if})
@@ -38,7 +38,7 @@
 </center>
 </form>
 
-<hr color="#({$ktai_color_config.border_02})">
+<hr color="#({$ktai_color_config.border_01})">
 
 <font color="#({$ktai_color_config.font_04})">※一部機種では携帯の個体識別番号を送信できないためご利用になれません｡</font><br>
 <a href="({t_url m=ktai a=page_o_whatis_easy_login})">&gt;&gt;かんたんﾛｸﾞｲﾝとは</a>
