@@ -101,7 +101,7 @@ class ktai_do_o_regist_ktai extends OpenPNE_Action
                 'regist_address' => $pre['pc_address'],
             );
 
-            $u = db_member_insert_c_member($c_member, $c_member_secure);
+            $u = db_member_insert_c_member($c_member, $c_member_secure, true);
     
             if (OPENPNE_USE_POINT_RANK) {
                 //入会者にポイント加算
