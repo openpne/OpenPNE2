@@ -829,26 +829,6 @@ function send_mail_admin_rank_up($c_member_id, $before_rank, $after_rank)
     return fetch_send_mail(ADMIN_EMAIL, 'm_admin_rank_up', $params);
 }
 
-function do_common_send_mail_c_commu_admin_change($c_member_id_to, $c_commu_id)
-{
-    $c_member_to  = $c_member = db_member_c_member4c_member_id($c_member_id_to, true);
-    $c_commu = db_commu_c_commu4c_commu_id($c_commu_id);
-    $to_address = '';
-
-    $params = array(
-        'c_member_to' => $c_member_to,
-        'c_commu' => $c_commu,
-    );
-
-    if (!empty($c_member_to['secure']['pc_address'])) {
-        $to_address = $c_member_to['secure']['pc_address'];
-        return fetch_send_mail($to_address, 'm_pc_c_commu_admin_change', $params);
-    } else {
-        $to_address = $c_member_to['secure']['ktai_address'];
-        return fetch_send_mail($to_address, 'm_ktai_c_commu_admin_change', $params);
-    }
-}
-
 //携帯個体識別番号を登録する必要がある場合に送られるメール
 function do_mail_sns_regist_ktai_id_mail_send($c_member_id, $session, $ktai_address)
 {
