@@ -1367,7 +1367,6 @@ function biz_do_common_send_schedule_mail()
             "c_member" => db_member_c_member4c_member_id_LIGHT($key),
             "c_schedule_list" => $value,
         );
-        var_dump($pc_address, $params);
         fetch_send_mail($pc_address, 'm_pc_schedule_mail', $params);
     }
 }
