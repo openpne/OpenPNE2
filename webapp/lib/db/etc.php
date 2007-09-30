@@ -427,7 +427,9 @@ function db_common_delete_c_member($c_member_id)
             } else {
                 $new_admin_id = $c_commu['c_member_id_sub_admin'];
             }
-            do_common_send_mail_c_commu_admin_change(intval($new_admin_id), intval($c_commu['c_commu_id']));
+            //メッセージ
+            list($msg_subject, $msg_body) = create_message_c_commu_admin_change(intval($c_commu['c_commu_id']));
+            db_message_insert_c_message($c_member_id, $new_admin_id, $msg_subject, $msg_body);
 
             $data = array('c_member_id_admin' => intval($new_admin_id));
             $where = array('c_commu_id' => intval($c_commu['c_commu_id']));
