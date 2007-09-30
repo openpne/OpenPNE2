@@ -37,7 +37,6 @@ class ktai_page_o_regist_ktai extends OpenPNE_Action
         } elseif (!empty($c_member_pre_id) && ($c_member_pre_id == $pre['c_member_pre_id'])) {
             $this->set('c_member_pre_id', $c_member_pre_id);
         } else {
-            var_dump($c_member_pre_id, $pre['c_member_pre_id']);
             openpne_redirect('ktai', 'page_o_login');
         }
         $this->set('ses', $ses);
