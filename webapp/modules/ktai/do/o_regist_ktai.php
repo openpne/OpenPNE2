@@ -37,19 +37,19 @@ class ktai_do_o_regist_ktai extends OpenPNE_Action
 
         // 携帯個体識別番号を取得できなかった場合
         if (!$easy_access_id = OpenPNE_KtaiID::getID()) {
-            $p = array('ses' => $ses, 'pre_id' => $c_member_pre_id);
+            $p = array('ses' => $ses);
             openpne_redirect('ktai', 'page_o_regist_ktai_uid_err', $p);
         }
 
         // 携帯個体識別番号が登録済み
         if (db_member_c_member_id4easy_access_id($easy_access_id)) {
-            $p = array('msg' => 39, 'ses' => $ses, 'pre_id' => $c_member_pre_id);
+            $p = array('msg' => 39, 'ses' => $ses);
             openpne_redirect('ktai', 'page_o_regist_ktai', $p);
         }
 
         // 携帯個体識別番号がブラックリストに登録済み
         if (db_member_easy_access_id_is_blacklist(md5($easy_access_id))) {
-            $p = array('msg' => 44, 'ses' => $ses, 'c_member_pre_id' => $c_member_pre_id);
+            $p = array('msg' => 44, 'ses' => $ses);
             openpne_redirect('ktai', 'page_o_regist_ktai', $p);
         }
 
@@ -104,7 +104,7 @@ class ktai_do_o_regist_ktai extends OpenPNE_Action
         // 登録完了メール送信
         do_regist_prof_do_regist2_mail_send($u);
 
-        $p = array('ses' => $ses, 'pre_id' => $c_member_pre_id);
+        $p = array('ses' => $ses);
 
         openpne_redirect('ktai', 'page_o_regist_ktai_end', $p);
     }

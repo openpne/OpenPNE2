@@ -830,10 +830,10 @@ function send_mail_admin_rank_up($c_member_id, $before_rank, $after_rank)
 }
 
 //携帯個体識別番号を登録する必要がある場合に送られるメール（新規登録用）
-function do_mail_sns_regist_ktai_id_mail_send_pre($c_member_pre_id, $session, $ktai_address)
+function do_mail_sns_regist_ktai_id_mail_send_pre($session, $ktai_address)
 {
     $params['SNS_NAME'] = SNS_NAME;
-    $p = array('pre_id' => $c_member_pre_id, 'ses' => $session);
+    $p = array('ses' => $session);
     $params['url'] = openpne_gen_url('ktai', 'page_o_regist_ktai', $p);
     return fetch_send_mail($ktai_address, 'm_ktai_regist_ktai_id', $params);
 }
