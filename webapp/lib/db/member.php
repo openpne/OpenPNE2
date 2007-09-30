@@ -1042,7 +1042,7 @@ function db_member_update_c_profile_my_news($c_member_id, $prof_my_news, $my_new
 
 //--- c_member_secure
 
-function db_member_insert_c_member($c_member, $c_member_secure)
+function db_member_insert_c_member($c_member, $c_member_secure, $is_password_encrypted = false)
 {
     if ($c_member_secure['pc_address'] && !util_is_regist_mail_address($c_member_secure['pc_address'])) {
         return false;
@@ -1082,13 +1082,19 @@ function db_member_insert_c_member($c_member, $c_member_secure)
 
     $data = array(
         'c_member_id' => intval($c_member_id),
-        'hashed_password' => $c_member_secure['password'],
-        'hashed_password_query_answer' => $c_member_secure['password_query_answer'],
+        'hashed_password' => md5($c_member_secure['password']),
+        'hashed_password_query_answer' => md5($c_member_secure['password_query_answer']),
         'pc_address'     => t_encrypt($c_member_secure['pc_address']),
         'ktai_address'   => t_encrypt($c_member_secure['ktai_address']),
         'regist_address' => t_encrypt($c_member_secure['regist_address']),
         'easy_access_id' => '',
     );
+
+    if ($is_password_encrypted) {
+        $data['hashed_password'] = $c_member_secure['password'];
+        $data['hashed_password_query_answer'] = $c_member_secure['password_query_answer'];
+    }
+
     db_insert('c_member_secure', $data);
 
     return $c_member_id;
