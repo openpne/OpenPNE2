@@ -48,7 +48,6 @@ class ktai_do_o_regist_ktai extends OpenPNE_Action
             openpne_redirect('ktai', 'page_o_login2', $p);
         } elseif (!empty($c_member_pre_id) && (md5($password) !== $pre['password'])) {
             $p = array('msg' => 18, 'ses' => $ses);
-            var_dump(md5($password), $pre['password']);
             openpne_redirect('ktai', 'page_o_login2', $p);
         }
 
