@@ -128,31 +128,4 @@ function create_message_commu_sub_admin_request($u, $body, $target_c_member_id, 
 EOD;
     return array($msg_subject, $msg_body);
 }
-
-/**
- * コミュニティ管理者がSNSを退会した際、新しいコミュニティ管理者に送信されるメッセージ
- *
- * @param int $c_commu_id
- * @return array
- */
-function create_message_c_commu_admin_change($c_commu_id)
-{
-    $c_commu = db_commu_c_commu4c_commu_id($c_commu_id);
-    $SNS_NAME = SNS_NAME;
-
-    $p = array('target_c_commu_id' => $c_commu['c_commu_id']);
-    $url = openpne_gen_url('pc', 'page_c_home', $p);
-
-    $msg_subject = 'コミュニティ管理者権限移管のお知らせ';
-    $msg_body = <<<EOD
-下記コミュニティの管理者であるメンバーが{$SNS_NAME}を退会し、あなたがコミュニティの副管理者であるか、またはコミュニティ参加者の中でもっとも参加時期が早いメンバーであるため、コミュニティの管理者の権限が移管されました。
-
-{$c_commu['name']}
-{$url}
-
-もし他のメンバーに管理者権限を渡したい場合はコミュニティホームの「メンバー管理」から操作する事ができます。
-EOD;
-    return array($msg_subject, $msg_body);
-}
-
 ?>
