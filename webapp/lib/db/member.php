@@ -761,10 +761,10 @@ function db_member_c_member_ktai_pre4session($session)
     return db_get_row($sql, $params);
 }
 
-function db_member_c_member_pre4session($session)
+function db_member_c_member_pre4ktai_session($ktai_session)
 {
     $sql = 'SELECT * FROM c_member_pre WHERE ktai_session = ?';
-    $params = array($session);
+    $params = array($ktai_session);
     return db_get_row($sql, $params);
 }
 

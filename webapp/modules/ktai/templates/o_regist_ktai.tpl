@@ -12,11 +12,6 @@
 <br>
 ({t_form _attr='utn' m=ktai a=do_o_regist_ktai})
 <input type="hidden" name="ses" value="({$ses})">
-({if $c_member_id_pre})
-<input type="hidden" name="id_pre" value="({$c_member_id_pre})">
-({elseif $c_member_id})
-<input type="hidden" name="id" value="({$c_member_id})">
-({/if})
 <font color="#({$ktai_color_config.font_06})">携帯ﾒｰﾙｱﾄﾞﾚｽ：</font><br>
 ({$pre.ktai_address})<br>
 <font color="#({$ktai_color_config.font_06})">ﾊﾟｽﾜｰﾄﾞ：</font><br>
