@@ -844,6 +844,8 @@ function do_common_send_mail_c_commu_admin_change($c_member_id_to, $c_commu_id)
         $to_address = $c_member_to['secure']['pc_address'];
         return fetch_send_mail($to_address, 'm_pc_c_commu_admin_change', $params);
     } else {
+        $p = array('kad' => t_encrypt(db_member_username4c_member_id($c_member['c_member_id'], true)));
+        $params['login_url'] = openpne_gen_url('ktai', 'page_o_login', $p);
         $to_address = $c_member_to['secure']['ktai_address'];
         return fetch_send_mail($to_address, 'm_ktai_c_commu_admin_change', $params);
     }
