@@ -30,7 +30,7 @@ class ktai_do_o_regist_ktai extends OpenPNE_Action
         // パスワードチェック
         if (md5($password) !== $pre['password']) {
             $p = array('msg' => 18, 'ses' => $ses);
-            openpne_redirect('ktai', 'page_o_login2', $p);
+            openpne_redirect('ktai', 'page_o_regist_ktai', $p);
         }
 
         // 携帯個体識別番号を取得できなかった場合
