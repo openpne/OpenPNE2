@@ -33,8 +33,8 @@
 ({if $smarty.const.IS_GET_EASY_ACCESS_ID == 2 || $smarty.const.IS_GET_EASY_ACCESS_ID == 3})
 <dt><strong>携帯個体識別番号の登録</strong></dt>
 <dd>
-    <input type="radio" name="is_disable_regist_easy_access_id" value="0" />必須にする<br />
-    <input type="radio" name="is_disable_regist_easy_access_id" value="1" checked="checked" />必須にしない<br />
+    <input type="radio" name="is_disable_regist_easy_access_id" value="0" ({if $requests.is_disable_regist_easy_access_id === 0}) checked="checked" ({/if}) />必須にする<br />
+    <input type="radio" name="is_disable_regist_easy_access_id" value="1" ({if $requests.is_disable_regist_easy_access_id !== 0}) checked="checked" ({/if}) />必須にしない<br />
 </dd>
 <dd class="caution" id="c02">※「必須にしない」を選択して招待したメンバーは、携帯個体識別番号を登録しなくてもメンバー登録することができます。
 ({if $smarty.const.IS_GET_EASY_ACCESS_ID == 2})<br />※携帯メールアドレスへの招待のみ適用されます。({/if})</dd>
