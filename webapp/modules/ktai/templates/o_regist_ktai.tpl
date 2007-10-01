@@ -12,16 +12,14 @@
 <br>
 ({t_form _attr='utn' m=ktai a=do_o_regist_ktai})
 <input type="hidden" name="ses" value="({$ses})">
-<font color="#({$ktai_color_config.font_06})">携帯ﾒｰﾙｱﾄﾞﾚｽ：</font><br>
-({$pre.ktai_address})<br>
 <font color="#({$ktai_color_config.font_06})">ﾊﾟｽﾜｰﾄﾞ：</font><br>
 <input name="password" type="text" istyle="3" mode="alphabet" value=""><br>
-<hr>
+<hr color="#({$ktai_color_config.border_01})">
 携帯個体識別番号を登録します。<br>
 携帯個体識別番号に電話番号などの個人情報は含まれません。<br>
-<hr>
+<hr color="#({$ktai_color_config.border_01})">
 <center>
-<input name="submit" value="送信" type="submit">
+<input name="submit" value="登録" type="submit">
 </center>
 </form>
 
