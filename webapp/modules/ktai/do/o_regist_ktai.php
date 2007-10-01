@@ -47,8 +47,7 @@ class ktai_do_o_regist_ktai extends OpenPNE_Action
 
         // 携帯個体識別番号がブラックリストに登録済み
         if (db_member_easy_access_id_is_blacklist(md5($easy_access_id))) {
-            $p = array('msg' => 44, 'ses' => $ses);
-            openpne_redirect('ktai', 'page_o_regist_ktai', $p);
+            ktai_display_error('新規登録を完了できませんでした。');
         }
 
         // PC版で行わなかったメンバー登録処理をここで行う
