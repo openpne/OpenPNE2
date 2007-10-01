@@ -17,9 +17,7 @@ class ktai_page_o_regist_ktai extends OpenPNE_Action
         $ses = $requests['ses'];
         // ----------
 
-        $pre = array();
-
-        if (!$pre = db_member_c_member_pre4session($ses)) {
+        if (!$pre = db_member_c_member_pre4ktai_session($ses)) {
             openpne_redirect('ktai', 'page_o_login');
         }
 
