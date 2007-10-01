@@ -402,32 +402,28 @@ class mail_sns
             return false;
         }
 
-        // 画像登録
-        $images = $this->decoder->get_images();
-        $img_num = 1;
-        foreach ($images as $image_data) {
-            for ($i = $img_num; $i <= 3; $i++) {  // 画像が登録できるかどうかのチェック
-                if ($c_diary['image_filename_' . $i]) {  // 指定したフィールドにすでに画像がある
-                    if ($i == 3) {
-                        break 2;  // 全フィールドに画像があるので、登録処理を終了
-                    }
-                } else {
-                    $img_num = $i;  // 登録するフィールドを決定
-                    break;
-                }
-            }
-
-            $filename = 'd_' . $c_diary_id . '_' . $img_num . '_' . time() . '.jpg';
-
-            db_image_insert_c_image($filename, $image_data);
-            db_diary_update_c_diary_image_filename($c_diary_id, $filename, $img_num);
-            $img_num++;
-            if ($img_num > 3) {
-                break;
-            }
+        // 登録する画像番号(1-3)を決める
+        $target_number = 0;
+        if (!$c_diary['image_filename_1']) {
+            $target_number = 1;
+        } elseif (!$c_diary['image_filename_2']) {
+            $target_number = 2;
+        } elseif (!$c_diary['image_filename_3']) {
+            $target_number = 3;
         }
 
-        return true;
+        // 画像登録
+        $images = $this->decoder->get_images();
+
+        if ($images = $this->decoder->get_images()) {
+            $filename = 'd_' . $c_diary_id . '_' . $target_number . '_' . time() . '.jpg';
+            db_image_insert_c_image($filename, $images[0]);
+            db_diary_update_c_diary_image_filename($c_diary_id, $filename, $target_number);
+            return true;
+        } else {
+            m_debug_log('mail_sns::add_diary_image() no images');
+            return false;
+        }
     }
 
     /**
@@ -483,37 +479,36 @@ class mail_sns
             return false;
         }
 
-        // 画像登録
         $c_topic_images = array(
             'image_filename_1' => $c_topic['image_filename1'],
             'image_filename_2' => $c_topic['image_filename2'],
             'image_filename_3' => $c_topic['image_filename3'],
         );
-        $images = $this->decoder->get_images();
-        $image_num = 1;
-        foreach ($images as $image_data) {
-            for ($i = $image_num; $i <= 3; $i++) {  // 画像が登録できるかどうかのチェック
-                if ($c_topic_images['image_filename_' . $i]) {  // 指定したフィールドにすでに画像がある
-                    if ($i == 3) {
-                        break 2;  // 全フィールドに画像があるので、登録処理を終了
-                    }
-                } else {
-                    $image_num = $i;  // 登録するフィールドを決定
-                    break;
-                }
-            }
 
-            $filename = 't_' . $c_commu_topic_id . '_' . $image_num . '_' . time() . '.jpg';
-            $c_topic_images['image_filename_' . $image_num] = $filename;
-
-            db_image_insert_c_image($filename, $image_data);
-            $image_num++;
-            if ($image_num > 3) {
-                break;
-            }
+        // 登録する画像番号(1-3)を決める
+        $target_number = 0;
+        if (!$c_topic_images['image_filename_1']) {
+            $target_number = 1;
+        } elseif (!$c_topic_images['image_filename_2']) {
+            $target_number = 2;
+        } elseif (!$c_topic_images['image_filename_3']) {
+            $target_number = 3;
         }
-        db_commu_update_c_commu_topic_comment_images($c_topic['c_commu_topic_comment_id'], $c_topic_images['image_filename_1'], $c_topic_images['image_filename_2'], $c_topic_images['image_filename_3']);
-        return true;
+
+        // 画像登録
+        $images = $this->decoder->get_images();
+
+        if ($images = $this->decoder->get_images()) {
+            $filename = 't_' . $c_commu_topic_id . '_' . $target_number . '_' . time() . '.jpg';
+            $c_topic_images['image_filename_' . $target_number] = $filename;
+            db_image_insert_c_image($filename, $images[0]);
+            db_commu_update_c_commu_topic_comment_images($c_topic['c_commu_topic_comment_id'], $c_topic_images['image_filename_1'], $c_topic_images['image_filename_2'], $c_topic_images['image_filename_3']);
+            return true;
+        } else {
+            m_debug_log('mail_sns::add_topic_image() no images');
+            return false;
+        }
+        
     }
 
     /**
