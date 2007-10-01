@@ -378,6 +378,7 @@ class mail_sns
             mail_update_c_member_image($this->c_member_id, $filename, $target_number);
             return true;
         } else {
+            $this->error_mail('プロフィール画像が添付されていないか、ファイルサイズが大きすぎるため、取得できませんでした。');
             m_debug_log('mail_sns::add_member_image() no images');
             return false;
         }
@@ -421,6 +422,7 @@ class mail_sns
             db_diary_update_c_diary_image_filename($c_diary_id, $filename, $target_number);
             return true;
         } else {
+            $this->error_mail('日記画像が添付されていないか、ファイルサイズが大きすぎるため、取得できませんでした。');
             m_debug_log('mail_sns::add_diary_image() no images');
             return false;
         }
@@ -452,6 +454,7 @@ class mail_sns
             db_commu_update_c_commu_image_filename($c_commu_id, $filename);
             return true;
         } else {
+            $this->error_mail('コミュニティ画像が添付されていないか、ファイルサイズが大きすぎるため、取得できませんでした。');
             m_debug_log('mail_sns::add_commu_image() no images');
             return false;
         }
@@ -505,6 +508,7 @@ class mail_sns
             db_commu_update_c_commu_topic_comment_images($c_topic['c_commu_topic_comment_id'], $c_topic_images['image_filename_1'], $c_topic_images['image_filename_2'], $c_topic_images['image_filename_3']);
             return true;
         } else {
+            $this->error_mail('トピック・イベント画像が添付されていないか、ファイルサイズが大きすぎるため、取得できませんでした。');
             m_debug_log('mail_sns::add_topic_image() no images');
             return false;
         }
