@@ -473,7 +473,7 @@ class mail_sns
             return false;
         }
 
-        if ($c_topic['image_filename_1'] && $c_topic['image_filename_2'] && $c_topic['image_filename_3']) {
+        if ($c_topic['image_filename1'] && $c_topic['image_filename2'] && $c_topic['image_filename3']) {
             $this->error_mail('トピック・イベント画像の登録は最大三枚までです。');
             m_debug_log('mail_sns::add_topic_image() image is full');
             return false;
