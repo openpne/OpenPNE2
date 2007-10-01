@@ -20,9 +20,7 @@ class ktai_do_o_regist_ktai extends OpenPNE_Action
         $password = $requests['password'];
         // ----------
 
-        $pre = array();
-
-        if (!$pre = db_member_c_member_pre4session($ses)) {
+        if (!$pre = db_member_c_member_pre4ktai_session($ses)) {
             openpne_redirect('ktai', 'page_o_login');
         }
 
@@ -104,9 +102,7 @@ class ktai_do_o_regist_ktai extends OpenPNE_Action
         // 登録完了メール送信
         do_regist_prof_do_regist2_mail_send($u);
 
-        $p = array('ses' => $ses);
-
-        openpne_redirect('ktai', 'page_o_regist_ktai_end', $p);
+        openpne_redirect('ktai', 'page_o_regist_ktai_end');
     }
 }
 
