@@ -28,7 +28,7 @@
 <center>
 ({if $is_registered})
 <input type="submit" name="update" value="変更">
-({if $smarty.const.IS_GET_EASY_ACCESS_ID != 2})
+({if $smarty.const.IS_GET_EASY_ACCESS_ID != 2 && $smarty.const.IS_GET_EASY_ACCESS_ID != 3})
 <input type="submit" name="delete" value="削除">
 ({/if})
 <br>
