@@ -101,7 +101,7 @@ class ktai_do_o_regist_ktai extends OpenPNE_Action
         // 登録完了メール送信
         do_regist_prof_do_regist2_mail_send($u);
 
-        openpne_redirect('ktai', 'page_o_regist_ktai_end');
+        openpne_redirect('ktai', 'page_o_regist_ktai_end', array('c_member_id' => $u));
     }
 }
 
