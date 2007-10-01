@@ -18,7 +18,6 @@ function convert_emoji_format_2_8_to_2_10_alpha2($table, $field)
         $new_field_value = $old_field_value;
 
         // すべての絵文字を展開する
-        $new_field_value = emoji_unescape($new_field_value, true);
         $new_field_value = emoji_unescape($new_field_value, false);
 
         // 先にSoftBank絵文字のコンバート処理
