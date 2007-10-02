@@ -543,15 +543,15 @@ function util_is_regist_mail_address($mail_address, $c_member_id = 0)
     if (!db_common_is_mailaddress($mail_address)) {
         return false;
     }
-    
-    if (db_member_is_sns_join4mail_address($mail_address, $c_member_id)) {
-        return false;
-    }
-    
+
     if (!db_member_is_limit_domain4mail_address($mail_address)) {
         return false;
     }
-    
+
+    if (db_member_is_sns_join4mail_address($mail_address, $c_member_id)) {
+        return false;
+    }
+
     return true;
 }
 
