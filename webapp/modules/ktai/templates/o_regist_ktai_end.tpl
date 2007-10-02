@@ -9,6 +9,4 @@
 <br>
 <a href="({t_url m=ktai a=page_o_login})">ﾛｸﾞｲﾝ画面へ</a>
 
-({if $aftag})({$aftag|smarty:nodefaults})({/if})
-
 ({$inc_ktai_footer|smarty:nodefaults})

@@ -13,14 +13,6 @@ class ktai_page_o_regist_ktai_end extends OpenPNE_Action
 
     function execute($requests)
     {
-        // --- リクエスト変数
-
-        //アフィリエイトタグ用変数
-        $aftag = str_replace(array('({$ID})', '({$DATETIME})'),
-            array($requests['c_member_id'], date("YmdHis")), AFFILIATE_KTAI_TAG);
-        $this->set('aftag', $aftag);
-        
-        // ----------
         return 'success';
     }
 }

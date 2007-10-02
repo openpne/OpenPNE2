@@ -52,7 +52,7 @@ class pc_do_o_regist_ktai_address extends OpenPNE_Action
 
         db_member_update_c_member_pre_secure($pre['c_member_pre_id'], array_merge($pre, $c_member_pre_secure), true);
         do_mail_sns_regist_ktai_id_mail_send_pre($ktai_session, $ktai_address);
-        openpne_redirect('pc', 'page_o_regist_ktai_address_end', array('sid' => $pre['session']));
+        openpne_redirect('pc', 'page_o_regist_ktai_address_end', array('c_member_pre_id' => $pre['c_member_pre_id']));
     }
 }
 ?>
