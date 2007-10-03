@@ -7,7 +7,7 @@
 require_once './config.inc.php';
 require_once OPENPNE_WEBAPP_DIR . '/init.inc';
 
-function convert_emoji_format_2_8_to_2_10_alpha2($table, $field)
+function convert_emoji_format_2_8_to_2_10($table, $field)
 {
     $primary_key = $table . '_id';
     $sql = 'SELECT ' . $primary_key . ',' . $field . ' FROM ' . $table;
@@ -56,14 +56,12 @@ $target = array(
     'c_member_pre_profile' => array('value',),
     'c_member_profile' => array('value',),
     'c_message' => array('body', 'subject',),
-    'c_message_queue' => array('subject', 'body',),
     'c_searchlog' => array('searchword',),
-    'c_send_messages_history' => array('subject', 'body',),
 );
 
 foreach ($target as $tablename => $fields) {
     foreach ($fields as $fieldname) {
-        convert_emoji_format_2_8_to_2_10_alpha2($tablename, $fieldname);
+        convert_emoji_format_2_8_to_2_10($tablename, $fieldname);
     }
 }
 
