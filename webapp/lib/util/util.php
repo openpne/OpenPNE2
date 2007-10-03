@@ -619,4 +619,60 @@ function util_is_readable_message($c_member_id, $c_message_id)
     return false;
 }
 
+function util_get_color_config()
+{
+    $c_config_color = db_etc_c_config_color();
+    $color_config = array(
+        'border_01' => $c_config_color['color_1'],
+        'border_07' => $c_config_color['color_2'],
+        'border_10' => $c_config_color['color_3'],    
+        'bg_00' => $c_config_color['color_4'],
+        'bg_01' => $c_config_color['color_4'],
+        'bg_02' => $c_config_color['color_5'],
+        'bg_03' => $c_config_color['color_6'],
+        'bg_04' => $c_config_color['color_7'],
+        'bg_05' => $c_config_color['color_8'],
+        'bg_06' => $c_config_color['color_9'],
+        'bg_07' => $c_config_color['color_10'],
+        'bg_08' => $c_config_color['color_11'],
+        'bg_09' => $c_config_color['color_12'],
+        'bg_10' => $c_config_color['color_13'],
+        'bg_11' => $c_config_color['color_14'],
+        'bg_12' => $c_config_color['color_15'],
+        'bg_13' => $c_config_color['color_16'],
+        'bg_14' => $c_config_color['color_17'],
+    );
+    return $color_config;
+}
+
+function util_get_color_config_ktai()
+{
+    $c_config_color = db_etc_c_config_color_ktai();
+    $color_config = array(
+        'bg_01' => $c_config_color['color_1'],
+        'bg_02' => $c_config_color['color_2'],
+        'bg_03' => $c_config_color['color_3'],
+        'bg_04' => $c_config_color['color_4'],
+        'bg_05' => $c_config_color['color_5'],
+        'bg_06' => $c_config_color['color_6'],
+        'bg_07' => $c_config_color['color_7'],
+        'bg_08' => $c_config_color['color_8'],
+        'bg_09' => $c_config_color['color_9'],
+        'bg_10' => $c_config_color['color_10'],
+        'border_01' => $c_config_color['color_11'],
+        'border_02' => $c_config_color['color_12'],
+        'border_03' => $c_config_color['color_13'],
+        'font_01' => $c_config_color['color_14'],
+        'font_02' => $c_config_color['color_15'],
+        'font_03' => $c_config_color['color_16'],
+        'font_04' => $c_config_color['color_17'],
+        'font_05' => $c_config_color['color_18'],
+        'font_06' => $c_config_color['color_19'],
+        'font_07' => $c_config_color['color_20'],
+        'font_08' => $c_config_color['color_21'],
+        'font_09' => $c_config_color['color_22'],
+    );
+    return $color_config;
+}
+
 ?>
