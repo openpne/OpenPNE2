@@ -546,23 +546,24 @@ function db_admin_get_auth_type($c_admin_user_id)
 function _db_admin_c_member_id_list($cond_list, $order = null)
 {
     $sql = 'SELECT c_member_id'.
-           ' FROM c_member'.
-           ' WHERE true';
+           ' FROM c_member';
+
+    $wheres = array();
 
     //開始年
     if (!empty($cond_list['s_year'])) {
-        $sql .= ' AND birth_year >= ?';
+        $wheres[] = 'birth_year >= ?';
         $params[] = $cond_list['s_year'];
     }
     //終了年
     if (!empty($cond_list['e_year'])) {
-        $sql .= ' AND birth_year <= ?';
+        $wheres[] = 'birth_year <= ?';
         $params[] = $cond_list['e_year'];
     }
 
     // 誕生日による絞り込みの場合は、誕生年が0のメンバーを除外する
     if (!empty($cond_list['s_year']) || !empty($cond_list['e_year'])) {
-        $sql .= ' AND birth_year <> 0';
+        $wheres[] = 'birth_year <> 0';
     }
 
     //最終ログイン時間で絞り込み
@@ -570,31 +571,38 @@ function _db_admin_c_member_id_list($cond_list, $order = null)
         //期間で分ける
         switch($cond_list['last_login']) {
         case 1: //3日以内
-            $sql .= ' AND access_date >= ?';
+            $wheres[] = 'access_date >= ?';
             $params[] = date('Y-m-d', strtotime('-3 day'));
             break;
         case 2: //3～7日以内
-            $sql .= ' AND access_date >= ? AND access_date < ?';
+            $wheres[] = 'access_date >= ? AND access_date < ?';
             $params[] = date('Y-m-d', strtotime('-7 day'));
             $params[] = date('Y-m-d', strtotime('-3 day'));
             break;
         case 3: //7～30日以内
-            $sql .= ' AND access_date >= ? AND access_date < ?';
+            $wheres[] = 'access_date >= ? AND access_date < ?';
             $params[] = date('Y-m-d', strtotime('-30 day'));
             $params[] = date('Y-m-d', strtotime('-7 day'));
             break;
         case 4: //30日以上
-            $sql .= ' AND access_date > ? AND access_date < ?';
+            $wheres[] = 'access_date > ? AND access_date < ?';
             $params[] = '0000-00-00 00:00:00';
             $params[] = date('Y-m-d', strtotime('-30 day'));
             break;
         case 5: //未ログイン
-            $sql .= ' AND access_date = ?';
+            $wheres[] = 'access_date = ?';
             $params[] = '0000-00-00 00:00:00';
             break;
         }
     }
 
+    if ($wheres) {
+        $where = ' WHERE ' . implode(' AND ', $wheres);
+    } else {
+        $where = '';
+    }
+    $sql .= $where;
+    
     // --- ソートオーダーここから
 
     // $orderの例：id_1 , id_2
@@ -686,21 +694,29 @@ function _db_admin_c_member_id_list($cond_list, $order = null)
     // --- メールアドレスで絞り込み ここから
     if (!empty($cond_list['is_pc_address']) || !empty($cond_list['is_ktai_address'])) {
 
-        $sql = 'SELECT c_member_id FROM c_member_secure WHERE true';
+        $sql = 'SELECT c_member_id FROM c_member_secure';
+        $wheres = array();
 
         //PCアドレスの有無で絞る
         if ($cond_list['is_pc_address'] == 1) {
-            $sql .= " AND pc_address <> '' ";
-        } else if ($cond_list['is_pc_address'] == 2) {
-            $sql .= " AND pc_address = '' ";
+            $wheres[] = "pc_address <> ''";
+        } elseif ($cond_list['is_pc_address'] == 2) {
+            $wheres[] = "pc_address = ''";
         }
 
         //携帯アドレスの有無で絞る
         if ($cond_list['is_ktai_address'] == 1) {
-            $sql .= " AND ktai_address <> '' ";
-        } else if ($cond_list['is_ktai_address'] == 2) {
-            $sql .= " AND ktai_address = '' ";
+            $wheres[] = "ktai_address <> ''";
+        } elseif ($cond_list['is_ktai_address'] == 2) {
+            $wheres[] = "ktai_address = ''";
         }
+
+        if ($wheres) {
+            $where = ' WHERE ' . implode(' AND ', $wheres);
+        } else {
+            $where = '';
+        }
+        $sql .= $where;
 
         $temp_ids = db_get_col($sql);
 
@@ -1604,17 +1620,24 @@ function p_member_edit_c_member_list($page_size, $page, $s_access_date='', $e_ac
     $page = intval($page);
     $page_size = intval($page_size);
 
-    $where = " WHERE true ";
+    $wheres = array();
+    $params = array();
 
     //指定された条件で絞っていく
-    if ($s_access_date != "") {
-        $where = $where . " and access_date >= ?";
-        $params = array($s_access_date);
+    if ($s_access_date != '') {
+        $wheres[] = 'access_date >= ?';
+        $params[] = $s_access_date;
     }
 
-    if ($e_access_date != "") {
-        $where = $where . " and access_date < ?";
-        $params = array($e_access_date);
+    if ($e_access_date != '') {
+        $wheres[] = 'access_date < ?';
+        $params[] = $e_access_date;
+    }
+
+    if ($wheres) {
+        $where = ' WHERE ' . implode(' AND ', $wheres);
+    } else {
+        $where = '';
     }
 
     $select = "SELECT * FROM c_member";
@@ -1854,21 +1877,25 @@ function monitor_diary_list($keyword, $page_size, $page)
     $page = intval($page);
     $page_size = intval($page_size);
     
-    $where = " WHERE true";
+    $wheres = array();
 
     if ($keyword) {
         //全角空白を半角に統一
-        $keyword = str_replace("　", " ", $keyword);
-        $keyword_list = explode(" ", $keyword);
-            
-        for($i=0;$i < count($keyword_list);$i++) {
-            $keyword = check_search_word( $keyword_list[$i] );
-                
-            $where .= " AND (c_diary.subject LIKE ?";
-            $where .= " OR c_diary.body LIKE ? )";
-            $params[]="%$keyword%";
-            $params[]="%$keyword%";
+        $keyword = str_replace('　', ' ', $keyword);
+        $keyword_list = explode(' ', $keyword);
+
+        for ($i = 0; $i < count($keyword_list); $i++) {
+            $keyword = check_search_word($keyword_list[$i]);
+
+            $wheres[] = '(c_diary.subject LIKE ? OR c_diary.body LIKE ?)';
+            $params[] = '%' . $keyword . '%';
+            $params[] = '%' . $keyword . '%';
         }
+    }
+    if ($wheres) {
+        $where = ' WHERE ' . implode(' AND ', $wheres);
+    } else {
+        $where = '';
     }
     
     $select = "SELECT c_diary.*";
@@ -1932,21 +1959,27 @@ function monitor_diary_comment_list($keyword, $page_size, $page)
     $page = intval($page);
     $page_size = intval($page_size);
     
-    $where = " WHERE true ";
+    $wheres = array();
 
     if ($keyword) {
         //全角空白を半角に統一
-        $keyword = str_replace("　", " ", $keyword);
-        $keyword_list = explode(" ", $keyword);
-            
-        for($i=0;$i < count($keyword_list);$i++) {
-            $keyword = check_search_word( $keyword_list[$i] );
-                
-            $where .= " AND (c_diary_comment.body LIKE ?)";
-            $params[] = "%$keyword%";
+        $keyword = str_replace('　', ' ', $keyword);
+        $keyword_list = explode(' ', $keyword);
+
+        for($i = 0; $i < count($keyword_list); $i++) {
+            $keyword = check_search_word($keyword_list[$i]);
+
+            $wheres[] = 'c_diary_comment.body LIKE ?';
+            $params[] = '%' . $keyword . '%';
         }
     }
-    
+
+    if ($wheres) {
+        $where = ' WHERE ' . implode(' AND ', $wheres);
+    } else {
+        $where = '';
+    }
+
     $select = "SELECT c_diary_comment.*, c_diary.subject";
     $from = " FROM c_diary_comment"
         ." LEFT JOIN c_diary ON c_diary.c_diary_id = c_diary_comment.c_diary_id ";
@@ -2011,22 +2044,27 @@ function monitor_commu_list($keyword, $page_size, $page)
     $page = intval($page);
     $page_size = intval($page_size);
     
-    $where = " WHERE true ";
+    $wheres = array();
 
     if ($keyword) {
-        $keyword = str_replace("?@", " ", $keyword);
-        $keyword_list = explode(" ", $keyword);
+        $keyword = str_replace('　', ' ', $keyword);
+        $keyword_list = explode(' ', $keyword);
             
-        for($i=0;$i < count($keyword_list);$i++) {
-            $keyword = check_search_word( $keyword_list[$i] );
+        for($i = 0; $i < count($keyword_list); $i++) {
+            $keyword = check_search_word($keyword_list[$i]);
                 
-            $where .= " AND ((name LIKE ? )";
-            $where .= " OR (info LIKE ? ))";
-            $params[]="%$keyword%";
-            $params[]="%$keyword%";
+            $wheres[] = '(name LIKE ? OR info LIKE ?)';
+            $params[] = '%' . $keyword . '%';
+            $params[] = '%' . $keyword . '%';
         }
     }
-    
+
+    if ($wheres) {
+        $where = ' WHERE ' . implode(' AND ', $wheres);
+    } else {
+        $where = '';
+    }
+
     $select = "SELECT * ";
     $from = " FROM c_commu";
     $order = " ORDER BY r_datetime DESC";
@@ -2173,22 +2211,26 @@ function monitor_topic_list($keyword, $page_size, $page)
     $page = intval($page);
     $page_size = intval($page_size);
     
-    $where = " where true ";
+    $wheres = array();
 
     if ($keyword) {
-        $keyword = str_replace("?@", " ", $keyword);
-        $keyword_list = explode(" ", $keyword);
-            
-        for($i=0;$i < count($keyword_list);$i++) {
-            $keyword = check_search_word( $keyword_list[$i] );
-                
-            $where .= " AND (ctc.body like ? ";
-            $where .= " OR ct.name like ? ";
-            $where .= " OR c.name like ? ) ";
-            $params[]="%$keyword%";
-            $params[]="%$keyword%";
-            $params[]="%$keyword%";
+        $keyword = str_replace('　', ' ', $keyword);
+        $keyword_list = explode(' ', $keyword);
+
+        for ($i = 0; $i < count($keyword_list); $i++) {
+            $keyword = check_search_word($keyword_list[$i]);
+
+            $wheres[] = '(ctc.body like ? OR ct.name like ? OR c.name like ?)';
+            $params[] = '%' . $keyword . '%';
+            $params[] = '%' . $keyword . '%';
+            $params[] = '%' . $keyword . '%';
         }
+    }
+    
+    if ($wheres) {
+        $where = ' WHERE ' . implode(' AND ', $wheres);
+    } else {
+        $where = '';
     }
     
     $select = "SELECT ct.*," .
@@ -2275,19 +2317,25 @@ function monitor_review_list($keyword, $page_size, $page)
     $page = intval($page);
     $page_size = intval($page_size);
     
-    $where = " where true ";
+    $wheres = array();
 
     if ($keyword) {
         //全角空白を半角に統一
-        $keyword = str_replace("　", " ", $keyword);
-        $keyword_list = explode(" ", $keyword);
-            
-        for($i=0;$i < count($keyword_list);$i++) {
-            $keyword = check_search_word( $keyword_list[$i] );
-                
-            $where .= " and c_review_comment.body like ? ";
-            $params[]="%$keyword%";
+        $keyword = str_replace('　', ' ', $keyword);
+        $keyword_list = explode(' ', $keyword);
+
+        for ($i = 0; $i < count($keyword_list); $i++) {
+            $keyword = check_search_word($keyword_list[$i]);
+
+            $wheres[] = 'c_review_comment.body like ?';
+            $params[] = '%' . $keyword . '%';
         }
+    }
+    
+    if ($wheres) {
+        $where = ' WHERE ' . implode(' AND ', $wheres);
+    } else {
+        $where = '';
     }
     
     $select = "SELECT c_review_comment.*";

@@ -373,7 +373,7 @@ function biz_getGroupList($keyword = '', $page = 0, $page_size = 20)
 
     //keywordあり
     if ($keyword) {
-        $where = ' WHERE true AND (info LIKE ? OR name LIKE ?) ORDER BY biz_group_id';
+        $where = ' WHERE info LIKE ? OR name LIKE ? ORDER BY biz_group_id';
         $sql = 'SELECT * FROM biz_group'. $where;
 
         $params = array(
@@ -533,7 +533,7 @@ function biz_getBannerScheduleList($y, $m, $id)
     $schedule = array();
     $contain = array();
 
-    $sql = 'SELECT biz_schedule_id FROM biz_schedule WHERE true AND (begin_date LIKE \''.$y.'-'.$m.'%\' OR finish_date LIKE \''.$y.'-'.$m.'%\') AND begin_date != finish_date';
+    $sql = 'SELECT biz_schedule_id FROM biz_schedule WHERE (begin_date LIKE \''.$y.'-'.$m.'%\' OR finish_date LIKE \''.$y.'-'.$m.'%\') AND begin_date != finish_date';
     $tmp = db_get_all($sql, $params);
 
     if (!$tmp) {
