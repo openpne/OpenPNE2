@@ -4,7 +4,7 @@
 ({**ここから：メインコンテンツ（左）**})
 ({********************************})
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 <!-- ************************************** -->
 <!-- ******ここから：ランキングメニュー****** -->
@@ -127,7 +127,7 @@
 <!-- ******ここまで：ランキングメニュー****** -->
 <!-- ************************************** -->
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 ({********************************})
 ({**ここまで：メインコンテンツ（左）**})
@@ -137,7 +137,7 @@
 ({**ここから：メインコンテンツ（右）**})
 ({********************************})
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 ({foreach from=$rank_list key=rank item=list name=ranking})
 <!-- ********************************** -->
@@ -379,12 +379,12 @@
 
 ({else})
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 <!-- ここから：主内容＞＞ランキング一覧本体＞＞のループ部分(2位以下) -->
 ({foreach from=$list item=item})
 <div class="border_01 bg_09" style="width:492px;margin:0px auto;" align="center">
-<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_m">
 <table border="0" cellspacing="0" cellpadding="0" style="width:480px;margin:0px auto;">
 ({*********})
 <tr>
@@ -561,10 +561,10 @@
 </tr>
 ({*********})
 </table>
-<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_m">
 </div>
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 ({/foreach})
 <!-- ここまで：主内容＞＞ランキング一覧本体＞＞のループ部分(2位以下) -->
 
@@ -590,7 +590,7 @@
 <!-- ******ここまで：ランキング一覧****** -->
 <!-- ********************************** -->
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 ({/foreach})
 

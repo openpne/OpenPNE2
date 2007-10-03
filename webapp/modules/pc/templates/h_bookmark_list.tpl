@@ -5,7 +5,7 @@
 ({**ここから：メインコンテンツ**})
 ({***************************})
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 ({if $c_members_num==0})
 <!-- ********************************** -->
@@ -73,7 +73,7 @@
 <!-- ******ここまで：無ブックマーク****** -->
 <!-- ********************************** -->
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 ({else})
 
@@ -135,14 +135,14 @@
 <!-- ここから：主内容＞＞ブックマーク本体 -->
 <div class="border_01 bg_05">
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 <!-- ここから：主内容＞＞ブックマーク本体＞＞の本体 -->
 
 ({foreach from=$c_members item=c_member})
 <div style="padding:5px;">
 <div style="width:562px;margin:0px auto;" class="border_01 bg_09">
-<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_m">
 <table border="0" cellspacing="0" cellpadding="0" style="width:550px;margin:0px auto;">
 ({*********})
 <tr>
@@ -224,7 +224,7 @@
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 <td class="bg_05" align="center" valign="middle" style="width:85px;">
 
-<img src="./skin/dummy.gif" alt="" style="width:85px;height:1px;" class="dummy">
+<img src="./skin/dummy.gif" alt="dummy" style="width:85px;height:1px;" class="dummy">
 
 <div class="padding_s">
 
@@ -232,13 +232,13 @@
 
 </div>
 
-<img src="./skin/dummy.gif" alt="" style="width:85px;height:1px;" class="dummy">
+<img src="./skin/dummy.gif" alt="dummy" style="width:85px;height:1px;" class="dummy">
 
 </td>
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 <td style="width:99px;" class="bg_02" align="left">
 
-<img src="./skin/dummy.gif" alt="" style="width:99px;height:1px;" class="dummy">
+<img src="./skin/dummy.gif" alt="dummy" style="width:99px;height:1px;" class="dummy">
 
 <div class="padding_s">
 
@@ -246,13 +246,13 @@
 
 </div>
 
-<img src="./skin/dummy.gif" alt="" style="width:99px;height:1px;" class="dummy">
+<img src="./skin/dummy.gif" alt="dummy" style="width:99px;height:1px;" class="dummy">
 
 </td>
 <td style="width:1px;" class="bg_01"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 <td style="width:271px;" class="bg_03" align="center">
 
-<img src="./skin/dummy.gif" alt="" style="width:271px;height:1px;" class="dummy">
+<img src="./skin/dummy.gif" alt="dummy" style="width:271px;height:1px;" class="dummy">
 
 <div class="padding_s">
 
@@ -261,7 +261,7 @@
 
 </div>
 
-<img src="./skin/dummy.gif" alt="" style="width:271px;height:1px;" class="dummy">
+<img src="./skin/dummy.gif" alt="dummy" style="width:271px;height:1px;" class="dummy">
 
 </td>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
@@ -272,14 +272,14 @@
 </tr>
 ({*********})
 </table>
-<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_m">
 </div>
 </div>
 ({/foreach})
 
 <!-- ここまで：主内容＞＞ブックマーク本体＞＞の本体 -->
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 </div>
 <!-- ここまで：＞＞ブックマーク本体 -->
@@ -330,7 +330,7 @@
 <!-- ******ここまで：お気に入り一覧****** -->
 <!-- ********************************** -->
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 ({/if})
 

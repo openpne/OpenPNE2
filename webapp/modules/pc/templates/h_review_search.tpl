@@ -5,7 +5,7 @@
 ({**ここから：メインコンテンツ**})
 ({***************************})
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 <!-- ********************************** -->
 <!-- ******ここから：レビュー検索・並び替え****** -->
@@ -34,7 +34,7 @@
 <!-- ここから：主内容 -->
 <div class="border_01 bg_05">
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 <table border="0" cellspacing="0" cellpadding="0" style="width:550px;margin:0px auto;" class="border_01">
 ({*********})
@@ -106,7 +106,7 @@
 
 <div class="padding_s">
 
-<img src="./skin/dummy.gif" alt="" class="icon arrow_1">
+<img src="./skin/dummy.gif" alt="dummy" class="icon arrow_1">
 <a href="({t_url m=pc a=page_h_review_add})")>レビューを作成する</a>
 
 </div>
@@ -162,7 +162,7 @@
 ({*********})
 </table>
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 </div>
 <!-- ここまで：主内容 -->
@@ -182,7 +182,7 @@
 <!-- ******ここまで：レビュー検索・並び替え****** -->
 <!-- ********************************** -->
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 ({* if $result *})
 <!-- ************************************ -->
@@ -259,7 +259,7 @@
 <td style="width:1px;" class="bg_01"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 <td style="width:180px;" class="bg_02" rowspan="7" align="center">
 
-<img src="./skin/dummy.gif" alt="" style="width:180px;height:1px;" class="dummy">
+<img src="./skin/dummy.gif" alt="dummy" style="width:180px;height:1px;" class="dummy">
 
 <div class="padding_s">
 
@@ -267,13 +267,13 @@
 
 </div>
 
-<img src="./skin/dummy.gif" alt="" style="width:180px;height:1px;" class="dummy">
+<img src="./skin/dummy.gif" alt="dummy" style="width:180px;height:1px;" class="dummy">
 
 </td>
 <td style="width:1px;" class="bg_01"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 <td style="width:70px;" class="bg_03" align="center">
 
-<img src="./skin/dummy.gif" alt="" style="width:70px;height:1px;" class="dummy">
+<img src="./skin/dummy.gif" alt="dummy" style="width:70px;height:1px;" class="dummy">
 
 <div class="padding_s">
 
@@ -281,13 +281,13 @@
 
 </div>
 
-<img src="./skin/dummy.gif" alt="" style="width:70px;height:1px;" class="dummy">
+<img src="./skin/dummy.gif" alt="dummy" style="width:70px;height:1px;" class="dummy">
 
 </td>
 <td style="width:1px;" class="bg_01"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 <td style="width:382px;" class="bg_02">
 
-<img src="./skin/dummy.gif" alt="" style="width:382px;height:1px;" class="dummy">
+<img src="./skin/dummy.gif" alt="dummy" style="width:382px;height:1px;" class="dummy">
 
 <div class="padding_s">
 
@@ -295,7 +295,7 @@
 
 </div>
 
-<img src="./skin/dummy.gif" alt="" style="width:382px;height:1px;" class="dummy">
+<img src="./skin/dummy.gif" alt="dummy" style="width:382px;height:1px;" class="dummy">
 
 </td>
 <td style="width:1px;" class="bg_01"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
@@ -437,9 +437,9 @@
 ({* /if *})
 
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 ({***************************})
 ({**ここまで：メインコンテンツ**})
