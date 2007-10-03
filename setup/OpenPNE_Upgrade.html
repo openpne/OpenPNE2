@@ -61,7 +61,7 @@ em {
 
 <h1>OpenPNE アップグレードガイド</h1>
 
-<p>最終更新日: 2007/05/20</p>
+<p>最終更新日: 2007/10/04</p>
 
 <h2>目次</h2>
 <ul>
@@ -76,6 +76,7 @@ em {
     </ul></li>
   <li><a href="#section2-2">2-2. ソースコードの設置</a></li>
   <li><a href="#section2-3">2-3. 設定ファイルの変更</a></li>
+  <li><a href="#section2-4">2-4. アップグレードスクリプトの実行</a></li>
   </ul></li>
 </ul>
 
@@ -83,7 +84,7 @@ em {
 
 <h2 id="section0">0. はじめに</h2>
 
-<p>この文書は、OpenPNE バージョン2.6.x から バージョン2.8.x へのアップグレード手順を書いたものです。</p>
+<p>この文書は、OpenPNE バージョン2.8.x から バージョン2.10.x へのアップグレード手順を書いたものです。</p>
 
 <p class="caution">アップグレード作業を始める前に、データベースのバックアップを保存しておくことを強くおすすめします。</p>
 
@@ -107,48 +108,73 @@ em {
 <h4 id="section2-1-1">2-1-1. MySQL 4.1 以降 (5.x 含む) の場合</h4>
 
 <ul>
-<li><var>OPENPNE_DIR</var>/setup/sql/mysql41/upgrade/upgrade-2.6to2.8.sql</li>
+<li><var>OPENPNE_DIR</var>/setup/sql/mysql41/upgrade/upgrade-2.8to2.10.sql</li>
 </ul>
 
 <div>
 <em>[実行例]</em>
 <pre>
 $ cd setup/sql/mysql41/upgrade/
-$ mysql -u username -p --default-character-set=utf8 DBNAME &lt; upgrade-2.6to2.8.sql
+$ mysql -u username -p --default-character-set=utf8 DBNAME &lt; upgrade-2.8to2.10.sql
 </pre>
 </div>
 
 <h4 id="section2-1-2">2-1-2. MySQL 4.0 の場合</h4>
 
 <ul>
-<li><var>OPENPNE_DIR</var>/setup/sql/mysql40/upgrade/upgrade-2.6to2.8.sql</li>
+<li><var>OPENPNE_DIR</var>/setup/sql/mysql40/upgrade/upgrade-2.8to2.10.sql</li>
 </ul>
 
 <div>
 <em>[実行例]</em>
 <pre>
 $ cd setup/sql/mysql40/upgrade/
-$ mysql -u username -p DBNAME &lt; upgrade-2.6to2.8.sql
+$ mysql -u username -p DBNAME &lt; upgrade-2.8to2.10.sql
 </pre>
 </div>
 
 
 <h3 id="section2-2">2-2. ソースコードの設置</h3>
 
-<p>Webサーバ上に OpenPNE 2.8 のソースファイルを設置します。</p>
+<p>Webサーバ上に OpenPNE 2.10 のソースファイルを設置します。</p>
 
 <p class="caution">
 新旧ソースファイル混在によるトラブルを防ぐため、上書きではなくソースコード全てを交換してください。
 交換後は、<var>OPENPNE_DIR</var>/var ディレクトリの書き込み権限を適切なもの(例: 777)に変更してください。
 </p>
 
+<p><var>OPENPNE_DIR</var>/var 以下に新たなディレクトリが追加されたので、書き込み権限の変更には特に注意してください。</p>
+<p>また、<var>OPENPNE_DIR</var>/bin/tool_send_dairy_news.cron のファイル名が tool_send_daily_news.cron に変更されたので、サーバの cron の設定もあわせて変更してください。</p>
+
+
 <p>『<a href="./OpenPNE_Setup.html">OpenPNE セットアップガイド</a>』も参考にしてください。</p>
 
 
 <h3 id="section2-3">2-3. 設定ファイルの変更</h3>
 
-<p>OpenPNE 2.6 の設定ファイルを参考にして 2.8 用の設定ファイルを作成します。</p>
+<p>OpenPNE 2.8 の設定ファイルを参考にして 2.10 用の設定ファイルを作成します。</p>
 
+<h3 id="section2-4">2-4. アップグレードスクリプトの実行</h3>
+
+<p>アップグレード用のPHPスクリプトを実行します。</p>
+<p class="caution">
+スクリプト実行前に、必ず 2-3. 設定ファイルの変更 で config.php の設定を済ませてください。
+</p>
+
+<h4 id="section2-4-1">2-4-1. 実行するスクリプト</h4>
+<ul>
+<li><var>OPENPNE_DIR</var>/setup/script/upgrade/upgrade01.php</li>
+<li><var>OPENPNE_DIR</var>/setup/script/upgrade/upgrade02.php</li>
+</ul>
+
+<div>
+<em>[実行例]</em>
+<pre>
+$ cd setup/script/upgrade/
+$ php upgrade01.php
+$ php upgrade02.php
+</pre>
+</div>
 
 <hr>
 <p>以上でアップグレード作業は完了です。</p>
