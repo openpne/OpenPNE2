@@ -161,15 +161,20 @@ function db_review_search_result4keyword_category($keyword, $category_id , $orde
 {
     $from = " FROM c_review INNER JOIN c_review_comment USING (c_review_id)";
 
-    $where = ' WHERE true';
+    $wheres = array();
     $params = array();
     if ($keyword) {
-        $where .= ' AND c_review.title LIKE ?';
+        $wheres[] = 'c_review.title LIKE ?';
         $params[] = '%'.check_search_word($keyword).'%';
     }
     if ($category_id) {
-        $where .= ' AND c_review.c_review_category_id = ?';
+        $wheres[] = 'c_review.c_review_category_id = ?';
         $params[] = intval($category_id);
+    }
+    if ($wheres) {
+        $where = ' WHERE ' . implode(' AND ', $wheres);
+    } else {
+        $where = '';
     }
 
     switch ($orderby) {
