@@ -5,7 +5,7 @@
 ({**ここから：メインコンテンツ**})
 ({***************************})
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 <!-- ********************************** -->
 <!-- ******ここから：お気に入り追加****** -->
@@ -44,7 +44,7 @@
 <td style="width:634px;height:100px;padding:6px;" class="bg_05" align="center">
 
 <div class="border_01 bg_09" style="width:562px;margin:0px auto;">
-<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_m">
 
 <table border="0" cellspacing="0" cellpadding="0" style="width:550px;margin:0px auto;">
 ({*********})
@@ -186,7 +186,7 @@
 ({*********})
 </table>
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 </div>
 
 </td>
@@ -217,7 +217,7 @@
 <!-- ******ここまで：お気に入り追加****** -->
 <!-- ********************************** -->
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 ({***************************})
 ({**ここまで：メインコンテンツ**})

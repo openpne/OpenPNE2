@@ -4,7 +4,7 @@
 ({**ここから：メインコンテンツ(左)*******})
 ({***********************************})
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 <!-- *********************************************** -->
 <!-- ******ここから：メッセージボックス左メニュー****** -->
@@ -30,7 +30,7 @@
 ({else})
 <td align="left" style="width:151px;padding:3px;" class="bg_09 border_10">
 ({/if})
-<img src="./skin/dummy.gif" alt="" style="width:14px;height:14px;" class="icon icon_1"><a href="({t_url m=pc a=page_h_message_box})&amp;box=inbox">受信メッセージ</a>
+<img src="./skin/dummy.gif" alt="dummy" style="width:14px;height:14px;" class="icon icon_1"><a href="({t_url m=pc a=page_h_message_box})&amp;box=inbox">受信メッセージ</a>
 </td>
 </tr>
 <tr>
@@ -39,7 +39,7 @@
 ({else})
 <td align="left" style="width:151px;padding:3px;border-top:none;" class="bg_09 border_10">
 ({/if})
-<img src="./skin/dummy.gif" alt="" style="width:14px;height:14px;" class="icon icon_1"><a href="({t_url m=pc a=page_h_message_box})&amp;box=outbox">送信済メッセージ</a>
+<img src="./skin/dummy.gif" alt="dummy" style="width:14px;height:14px;" class="icon icon_1"><a href="({t_url m=pc a=page_h_message_box})&amp;box=outbox">送信済メッセージ</a>
 </td>
 </tr>
 <tr>
@@ -48,7 +48,7 @@
 ({else})
 <td align="left" style="width:151px;padding:3px;border-top:none;" class="bg_09 border_10">
 ({/if})
-<img src="./skin/dummy.gif" alt="" style="width:14px;height:14px;" class="icon icon_1"><a href="({t_url m=pc a=page_h_message_box})&amp;box=savebox">下書き</a>
+<img src="./skin/dummy.gif" alt="dummy" style="width:14px;height:14px;" class="icon icon_1"><a href="({t_url m=pc a=page_h_message_box})&amp;box=savebox">下書き</a>
 </td>
 </tr>
 <tr>
@@ -57,7 +57,7 @@
 ({else})
 <td align="left" style="width:151px;padding:3px;border-top:none;" class="bg_09 border_10">
 ({/if})
-<img src="./skin/dummy.gif" alt="" style="width:14px;height:14px;" class="icon icon_1"><a href="({t_url m=pc a=page_h_message_box})&amp;box=trash">ごみ箱</a>
+<img src="./skin/dummy.gif" alt="dummy" style="width:14px;height:14px;" class="icon icon_1"><a href="({t_url m=pc a=page_h_message_box})&amp;box=trash">ごみ箱</a>
 </td>
 </tr>
 </table>
@@ -86,7 +86,7 @@
 ({**ここから：メインコンテンツ（右）**})
 ({********************************})
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 <!-- **************************** -->
 <!-- ******ここから：メッセージ表示欄****** -->
@@ -312,7 +312,7 @@
 <!-- ******ここまで：メッセージ表示欄****** -->
 <!-- **************************** -->
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 ({********************************})
 ({**ここまで：メインコンテンツ（右）**})

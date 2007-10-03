@@ -4,7 +4,7 @@
 ({**ここから：メインコンテンツ**})
 ({***************************})
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 <!-- ********************************** -->
 <!-- ******ここから：予定を編集する****** -->
@@ -320,7 +320,7 @@
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 <td class="bg_02" align="center" colspan="3">
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_m">
 
 <div style="padding:4px 3px;">
 
@@ -328,7 +328,7 @@
 
 </div>
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_m">
 
 </td>
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
@@ -360,7 +360,7 @@
 <!-- ******ここまで：予定を編集する****** -->
 <!-- ********************************** -->
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 ({***************************})
 ({**ここまで：メインコンテンツ**})

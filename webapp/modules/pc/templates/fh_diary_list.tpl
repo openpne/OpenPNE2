@@ -3,7 +3,7 @@
 <td class="container inc_c_com_topic_find" align="center">
 <table border="0" cellspacing="0" cellpadding="0" style="width:720px;">
 <tr>
-<td style="width:720px;height:2px;"><img src="./skin/dummy.gif" alt="" style="width:720px;height:2px;" class="dummy"></td>
+<td style="width:720px;height:2px;"><img src="./skin/dummy.gif" alt="dummy" style="width:720px;height:2px;" class="dummy"></td>
 </tr>
 <tr>
 <td align="center">
@@ -39,7 +39,7 @@
 ({**ここから：メインコンテンツ（左）**})
 ({********************************})
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 <!-- ******************************* -->
 <!-- ******ここから：カレンダー****** -->
@@ -95,7 +95,7 @@
 <table border="0" cellspacing="0" cellpadding="0" style="width:149px;margin:0px auto;">
 ({****************})
 <tr>
-<td style="width:149px;" class="bg_10" colspan="13"><img src="./skin/dummy.gif" alt="" style="width:149px;height:1px;" class="dummy"></td>
+<td style="width:149px;" class="bg_10" colspan="13"><img src="./skin/dummy.gif" alt="dummy" style="width:149px;height:1px;" class="dummy"></td>
 </tr>
 ({****************})
 <tr>
@@ -115,7 +115,7 @@
 </tr>
 ({****************})
 <tr>
-<td style="width:149px;" class="bg_10" colspan="13"><img src="./skin/dummy.gif" alt="" style="width:149px;height:1px;" class="dummy"></td>
+<td style="width:149px;" class="bg_10" colspan="13"><img src="./skin/dummy.gif" alt="dummy" style="width:149px;height:1px;" class="dummy"></td>
 </tr>
 ({****************})
 ({foreach from=$calendar item=week})
@@ -138,7 +138,7 @@
 </tr>
 ({****************})
 <tr>
-<td style="width:149px;" class="bg_10" colspan="13"><img src="./skin/dummy.gif" alt="" style="width:149px;height:1px;" class="dummy"></td>
+<td style="width:149px;" class="bg_10" colspan="13"><img src="./skin/dummy.gif" alt="dummy" style="width:149px;height:1px;" class="dummy"></td>
 </tr>
 ({****************})
 ({/foreach})
@@ -161,7 +161,7 @@
 <!-- ******ここまで：カレンダー****** -->
 <!-- ****************************** -->
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 <!-- ********************************** -->
 <!-- ******ここから：最近のコメント****** -->
@@ -188,7 +188,7 @@
 ({*ここから：body*})
 <!-- ここから：主内容 -->
 <div align="left" class="bg_02 border_01 padding_ss">
-<a href="({t_url m=pc a=page_fh_comment_list})&amp;target_c_member_id=({$target_member.c_member_id})"><img src="./skin/dummy.gif" alt="" style="width:14px;height:14px;" class="icon icon_1">一覧を見る</a>
+<a href="({t_url m=pc a=page_fh_comment_list})&amp;target_c_member_id=({$target_member.c_member_id})"><img src="./skin/dummy.gif" alt="dummy" style="width:14px;height:14px;" class="icon icon_1">一覧を見る</a>
 </div>
 <!-- ここまで：主内容 -->
 ({*ここまで：body*})
@@ -208,7 +208,7 @@
 <!-- ******ここまで：最近のコメント****** -->
 <!-- ********************************** -->
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 ({if $date_list})
 
@@ -239,7 +239,7 @@
 <div align="left" class="bg_02 border_01 padding_ss">
 ({foreach from=$date_list item=date})
 
-<div><a href="({t_url m=pc a=page_fh_diary_list})&amp;target_c_member_id=({$target_member.c_member_id})&amp;year=({$date.year})&amp;month=({$date.month})"><img src="./skin/dummy.gif" alt="" style="width:14px;height:14px;" class="icon icon_2">({$date.year})年({$date.month})月の一覧</a></div>
+<div><a href="({t_url m=pc a=page_fh_diary_list})&amp;target_c_member_id=({$target_member.c_member_id})&amp;year=({$date.year})&amp;month=({$date.month})"><img src="./skin/dummy.gif" alt="dummy" style="width:14px;height:14px;" class="icon icon_2">({$date.year})年({$date.month})月の一覧</a></div>
 
 ({/foreach})
 </div>
@@ -261,7 +261,7 @@
 <!-- ******ここまで：各月の日記一覧****** -->
 <!-- ********************************** -->
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 ({/if})
 
@@ -294,7 +294,7 @@
 <div align="left" class="bg_02 border_01 padding_ss">
 ({foreach from=$category_list item=category})
 
-<div><a href="({t_url m=pc a=page_fh_diary_list})&amp;target_c_member_id=({$target_member.c_member_id})&amp;category_id=({$category.c_diary_category_id})"><img src="./skin/dummy.gif" alt="" style="width:14px;height:14px;" class="icon icon_2">({$category.category_name})</a></div>
+<div><a href="({t_url m=pc a=page_fh_diary_list})&amp;target_c_member_id=({$target_member.c_member_id})&amp;category_id=({$category.c_diary_category_id})"><img src="./skin/dummy.gif" alt="dummy" style="width:14px;height:14px;" class="icon icon_2">({$category.category_name})</a></div>
 
 ({/foreach})
 </div>
@@ -316,7 +316,7 @@
 <!-- ******ここまで：カテゴリ一覧****** -->
 <!-- ********************************** -->
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 ({/if})
 
@@ -328,7 +328,7 @@
 ({**ここから：メインコンテンツ（右）**})
 ({********************************})
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 ({if $type == "h"})
 <!-- ****************************** -->
@@ -357,7 +357,7 @@
 <!-- ここから：主内容 -->
 <div class="border_01 bg_09" align="center">
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 <div style="width:490px;padding:30px 10px;margin:0px auto;" class="border_01 bg_03">
 
@@ -367,7 +367,7 @@
 
 </div>
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 </div>
 <!-- ここまで：主内容 -->
@@ -388,7 +388,7 @@
 <!-- ******ここまで：日記を書く****** -->
 <!-- ****************************** -->
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 ({/if})
 
 ({if $target_diary_list})
@@ -620,7 +620,7 @@
 <!-- ******ここまで：日記一覧****** -->
 <!-- ***************************** -->
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 ({/if})
 
 ({if $c_rss_cache_list})
@@ -709,7 +709,7 @@
 <!-- ******ここまで：Blog一覧****** -->
 <!-- ***************************** -->
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 ({/if})
 
 ({********************************})

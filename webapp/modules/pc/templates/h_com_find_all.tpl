@@ -6,7 +6,7 @@
 ({***************************})
 ({capture name="keyword_url"})({$keyword|escape:url|smarty:nodefaults})({/capture})
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 <!-- ************************************ -->
 <!-- ******ここから：コミュニティ検索****** -->
@@ -34,7 +34,7 @@
 <!-- ここから：主内容 -->
 <div class="border_01 bg_05" align="center">
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 <table border="0" cellspacing="0" cellpadding="0" style="width:562px;margin:0px auto;">
 ({*********})
@@ -57,7 +57,7 @@
 |
 <a href="({t_url m=pc a=page_h_com_find_all})&amp;val_order=r_datetime&amp;keyword=({$smarty.capture.keyword_url|smarty:nodefaults})&amp;category_id=({$search_val_list.category_id})">作成日順</a>
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 キーワード<img src="({t_img_url_skin filename=icon_arrow_2})" class="icon">
 <input type="text" class="text" name="keyword" size="15" value="({$keyword})">
@@ -77,11 +77,11 @@
 <!-- ここまで：主内容＞＞並び替え・カテゴリ・検索 -->
 
 <div style="text-align:left;padding:3px;padding-left:160px;">
-<img src="./skin/dummy.gif" alt="" class="icon arrow_1"><a href="({t_url m=pc a=page_h_com_add})">新規作成</a>&nbsp;(作成の前に、似たコミュニティがないかご確認ください)&nbsp;&nbsp;
+<img src="./skin/dummy.gif" alt="dummy" class="icon arrow_1"><a href="({t_url m=pc a=page_h_com_add})">新規作成</a>&nbsp;(作成の前に、似たコミュニティがないかご確認ください)&nbsp;&nbsp;
 </div>
 
 <div style="text-align:left;padding:3px;padding-left:160px;">
-<img src="./skin/dummy.gif" alt="" class="icon arrow_1"><a href="({t_url m=pc a=page_h_com_topic_find_all})">トピック検索</a>
+<img src="./skin/dummy.gif" alt="dummy" class="icon arrow_1"><a href="({t_url m=pc a=page_h_com_topic_find_all})">トピック検索</a>
 </div>
 
 <hr>
@@ -132,7 +132,7 @@
 ({*********})
 </table>
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 </div>
 <!-- ここまで：主内容 -->
@@ -155,7 +155,7 @@
 
 ({if $c_commu_search_list})
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 <!-- ************************************ -->
 <!-- ******ここから：コミュニティ一覧****** -->
@@ -227,12 +227,12 @@
 <!-- ここから：主内容＞＞コミュニティ一覧本体 -->
 <div class="border_01 bg_05" align="center">
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 <!-- ここから：主内容＞＞コミュニティ一覧本体＞＞のループ部分 -->
 ({foreach from=$c_commu_search_list item=c_commu_search})
 <div class="border_01 bg_09" style="width:562px;margin:0px auto;" align="center">
-<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_m">
 <table border="0" cellspacing="0" cellpadding="0" style="width:550px;margin:0px auto;">
 ({*********})
 <tr>
@@ -387,10 +387,10 @@
 </tr>
 ({*********})
 </table>
-<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_m">
 </div>
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 ({/foreach})
 <!-- ここまで：主内容＞＞コミュニティ一覧本体＞＞のループ部分 -->
 
@@ -451,7 +451,7 @@
 
 ({/if})
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 ({***************************})
 ({**ここまで：メインコンテンツ**})
