@@ -18,31 +18,74 @@ function db_admin_user_exists()
 
 /**
  * 配色設定を取得
+ *
+ * @param int $c_config_color_id
+ * @return array
  */
-function db_select_c_sns_config($target_id = 1)
+function db_etc_c_config_color($c_config_color_id = 1)
 {
-    $sql = 'SELECT * FROM c_sns_config WHERE c_sns_config_id = ?';
-    $params = array(intval($target_id));
+    $sql = 'SELECT * FROM c_config_color WHERE c_config_color_id = ?';
+    $params = array(intval($c_config_color_id));
     return db_get_row($sql, $params);
 }
 
 /**
  * 配色設定を全て取得
  */
-function db_select_c_sns_config_all()
+function db_etc_c_config_color_list()
 {
-    $sql = 'SELECT * FROM c_sns_config';
+    $sql = 'SELECT * FROM c_config_color ORDER BY c_config_color_id';
     return db_get_all($sql);
 }
 
 /**
- * 携帯版配色設定を取得
+ * 配色設定を変更
+ *
+ * @param array $color_list
+ * @param int $c_config_color_id
+ * @return bool
  */
-function db_select_c_sns_config_ktai($key_name = 'current') {
-    $sql = 'SELECT * FROM c_sns_config_ktai WHERE key_name = ?';
-    $params = array($key_name);
+function db_update_c_config_color($color_list, $c_config_color_id = 1)
+{
+    $where = array('c_config_color_id' => intval($c_config_color_id));
+    return db_update('c_config_color', $color_list, $where);
+}
+
+/**
+ * 携帯版配色設定を取得
+ *
+ * @param int $c_config_color_ktai_id
+ * @return array
+ */
+function db_etc_c_config_color_ktai($c_config_color_ktai_id = 1)
+{
+    $sql = 'SELECT * FROM c_config_color_ktai WHERE c_config_color_ktai_id = ?';
+    $params = array(intval($c_config_color_ktai_id));
     return db_get_row($sql, $params);
 }
+
+/**
+ * 携帯版配色設定を全て取得
+ */
+function db_etc_c_config_color_ktai_list()
+{
+    $sql = 'SELECT * FROM c_config_color_ktai ORDER BY c_config_color_ktai_id';
+    return db_get_all($sql);
+}
+
+/**
+ * 携帯版配色設定を変更
+ *
+ * @param array $color_list
+ * @param int $c_config_color_ktai_id
+ * @return bool
+ */
+function db_update_c_config_color_ktai($color_list, $c_config_color_ktai_id = 1)
+{
+    $where = array('c_config_color_ktai_id' => intval($c_config_color_ktai_id));
+    return db_update('c_config_color_ktai', $color_list, $where);
+}
+
 
 /**
  * siteadminを取得
