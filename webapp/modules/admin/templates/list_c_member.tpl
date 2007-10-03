@@ -250,7 +250,7 @@
 </table>
 <div class="listControlBtm">
 <div class="msgTransmit">
-<p class="msgCheck"><img src="modules/admin/img/icn_msgtransmit.gif" alt="" /><a href="#" onClick="return checkAll();" onKeyPress="return checkAll();">全てをチェック</a>&nbsp;|&nbsp;<a href="#" onClick="return clearAll();" onKeyPress="return clearAll();">全てのチェックをはずす</a></p>
+<p class="msgCheck"><img src="modules/admin/img/icn_msgtransmit.gif" alt="dummy" /><a href="#" onClick="return checkAll();" onKeyPress="return checkAll();">全てをチェック</a>&nbsp;|&nbsp;<a href="#" onClick="return clearAll();" onKeyPress="return clearAll();">全てのチェックをはずす</a></p>
 
 <div class="msgTransmitBtn">
 <input type="submit" id="btnSelTransmit" value="選択したメンバーにメッセージ／Eメールを送る" />

@@ -5,7 +5,7 @@
 ({***************************})
 ({capture name="keyword_url"})({$keyword|escape:url|smarty:nodefaults})({/capture})
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 <!-- ************************************ -->
 <!-- ******ここから：コミュニティ検索****** -->
@@ -33,7 +33,7 @@
 <!-- ここから：主内容 -->
 <div class="border_01 bg_05" align="center">
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 <table border="0" cellspacing="0" cellpadding="0" style="width:562px;margin:0px auto;">
 ({*********})
@@ -66,7 +66,7 @@
 <!-- ここまで：主内容＞＞並び替え・カテゴリ・検索 -->
 
 <div style="text-align:right;padding:3px;">
-<img src="./skin/dummy.gif" alt="" class="icon arrow_1"><a href="({t_url m=biz a=page_h_biz_group_add})">新規作成</a>&nbsp;(作成の前に、似たグループがないかご確認ください)&nbsp;&nbsp;
+<img src="./skin/dummy.gif" alt="dummy" class="icon arrow_1"><a href="({t_url m=biz a=page_h_biz_group_add})">新規作成</a>&nbsp;(作成の前に、似たグループがないかご確認ください)&nbsp;&nbsp;
 </div>
 
 </div>
@@ -80,7 +80,7 @@
 ({*********})
 </table>
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 </div>
 <!-- ここまで：主内容 -->
@@ -101,7 +101,7 @@
 <!-- ******ここまで：コミュニティ検索****** -->
 <!-- ************************************ -->
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 <!-- ************************************ -->
 <!-- ******ここから：コミュニティ一覧****** -->
@@ -173,12 +173,12 @@
 <!-- ここから：主内容＞＞コミュニティ一覧本体 -->
 <div class="border_01 bg_05" align="center">
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 <!-- ここから：主内容＞＞コミュニティ一覧本体＞＞のループ部分 -->
 ({foreach from=$c_commu_search_list item=c_commu_search})
 <div class="border_01 bg_09" style="width:562px;margin:0px auto;" align="center">
-<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_m">
 <table border="0" cellspacing="0" cellpadding="0" style="width:550px;margin:0px auto;">
 ({*********})
 <tr>
@@ -316,10 +316,10 @@
 </tr>
 ({*********})
 </table>
-<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_m">
 </div>
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 ({/foreach})
 <!-- ここまで：主内容＞＞コミュニティ一覧本体＞＞のループ部分 -->
 
@@ -378,7 +378,7 @@
 <!-- ******ここまで：コミュニティ一覧****** -->
 <!-- ************************************ -->
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 ({***************************})
 ({**ここまで：メインコンテンツ**})
