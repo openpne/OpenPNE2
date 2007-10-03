@@ -5,7 +5,7 @@
 ({**ここから：メインコンテンツ**})
 ({***************************})
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 ({if $is_c_commu_member})
 <!-- ********************************************* -->
@@ -37,9 +37,9 @@
 <!-- ここから：主内容＞＞内容外枠 -->
 <div class="bg_05 border_01" align="center">
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 <table border="0" cellspacing="0" cellpadding="0" style="width:564px;margin:0px auto;">
 ({*********})
@@ -49,13 +49,13 @@
 ({*********})
 <tr>
 <td style="width:1px;" class="bg_01"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-<td style="width:562px;height:6px;" class="bg_09" colspan="3"><img src="./skin/dummy.gif" alt="" style="width:562px;height:6px;" class="dummy"></td>
+<td style="width:562px;height:6px;" class="bg_09" colspan="3"><img src="./skin/dummy.gif" alt="dummy" style="width:562px;height:6px;" class="dummy"></td>
 <td style="width:1px;" class="bg_01"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({*********})
 <tr>
 <td style="width:1px;" class="bg_01"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-<td style="width:6px;" class="bg_09"><img src="./skin/dummy.gif" alt="" style="width:6px;height:1px;" class="dummy"></td>
+<td style="width:6px;" class="bg_09"><img src="./skin/dummy.gif" alt="dummy" style="width:6px;height:1px;" class="dummy"></td>
 <td style="width:550px;" align="center">
 <!-- ここから：主内容＞＞内容外枠＞＞内容そのもの -->
 
@@ -76,7 +76,7 @@
 <input type="submit" class="submit" value="　レビューを掲載する　">
 </form>
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 コミュニティ上にあなたが作成したおすすめレビューを掲載することができます。
 おすすめレビューの作成は<a href="({t_url m=pc a=page_h_review_add})">こちら</a>
@@ -95,13 +95,13 @@
 
 <!-- ここまで：主内容＞＞内容外枠＞＞内容そのもの -->
 </td>
-<td style="width:6px;" class="bg_09"><img src="./skin/dummy.gif" alt="" style="width:6px;height:1px;" class="dummy"></td>
+<td style="width:6px;" class="bg_09"><img src="./skin/dummy.gif" alt="dummy" style="width:6px;height:1px;" class="dummy"></td>
 <td style="width:1px;" class="bg_01"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({*********})
 <tr>
 <td style="width:1px;" class="bg_01"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-<td style="width:562px;height:6px;" class="bg_09" colspan="3"><img src="./skin/dummy.gif" alt="" style="width:562px;height:6px;" class="dummy"></td>
+<td style="width:562px;height:6px;" class="bg_09" colspan="3"><img src="./skin/dummy.gif" alt="dummy" style="width:562px;height:6px;" class="dummy"></td>
 <td style="width:1px;" class="bg_01"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({*********})
@@ -111,9 +111,9 @@
 ({*********})
 </table>
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 </div>
 <!-- ここまで：主内容＞＞内容外枠 -->
@@ -136,7 +136,7 @@
 <!-- ********************************************* -->
 ({/if})
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 ({if $c_member_review})
 
@@ -196,9 +196,9 @@
 <!-- ここから：主内容＞＞レビュー内容外枠 -->
 <div class="bg_05 border_01" align="center">
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 <table border="0" cellspacing="0" cellpadding="0" style="width:564px;">
 ({*********})
@@ -208,13 +208,13 @@
 ({*********})
 <tr>
 <td style="width:1px;" class="bg_01"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-<td style="width:562px;height:6px;" class="bg_09" colspan="3"><img src="./skin/dummy.gif" alt="" style="width:562px;height:6px;" class="dummy"></td>
+<td style="width:562px;height:6px;" class="bg_09" colspan="3"><img src="./skin/dummy.gif" alt="dummy" style="width:562px;height:6px;" class="dummy"></td>
 <td style="width:1px;" class="bg_01"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({*********})
 <tr>
 <td style="width:1px;" class="bg_01"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-<td style="width:6px;" class="bg_09"><img src="./skin/dummy.gif" alt="" style="width:6px;height:1px;" class="dummy"></td>
+<td style="width:6px;" class="bg_09"><img src="./skin/dummy.gif" alt="dummy" style="width:6px;height:1px;" class="dummy"></td>
 <td style="width:550px;" align="center">
 <!-- ここから：主内容＞＞レビュー内容外枠＞＞レビュー内容 -->
 
@@ -229,14 +229,14 @@
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 <td style="width:190px;" class="bg_03" align="center" valign="top" rowspan="9">
 
-<img src="./skin/dummy.gif" alt="" style="width:190px;height:1px;" class="dummy">
+<img src="./skin/dummy.gif" alt="dummy" style="width:190px;height:1px;" class="dummy">
 
 <div class="padding_s">
 
 <a href="({$review.url})" target="_blank">
 <img src="({$review.image_medium})"></a>
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_s">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_s">
 
 <a href="({$review.url})" target="_blank">
 詳細を見る
@@ -244,13 +244,13 @@
 
 </div>
 
-<img src="./skin/dummy.gif" alt="" style="width:190px;height:1px;" class="dummy">
+<img src="./skin/dummy.gif" alt="dummy" style="width:190px;height:1px;" class="dummy">
 
 </td>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 <td style="width:71px;" class="bg_05" align="center" valign="middle">
 
-<img src="./skin/dummy.gif" alt="" style="width:71px;height:1px;" class="dummy">
+<img src="./skin/dummy.gif" alt="dummy" style="width:71px;height:1px;" class="dummy">
 
 <div class="padding_s">
 
@@ -258,13 +258,13 @@
 
 </div>
 
-<img src="./skin/dummy.gif" alt="" style="width:71px;height:1px;" class="dummy">
+<img src="./skin/dummy.gif" alt="dummy" style="width:71px;height:1px;" class="dummy">
 
 </td>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 <td style="width:286px;" class="bg_02" align="left" valign="middle">
 
-<img src="./skin/dummy.gif" alt="" style="width:286px;height:1px;" class="dummy">
+<img src="./skin/dummy.gif" alt="dummy" style="width:286px;height:1px;" class="dummy">
 
 <div class="padding_s b_b">
 
@@ -272,7 +272,7 @@
 
 </div>
 
-<img src="./skin/dummy.gif" alt="" style="width:286px;height:1px;" class="dummy">
+<img src="./skin/dummy.gif" alt="dummy" style="width:286px;height:1px;" class="dummy">
 
 </td>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
@@ -399,13 +399,13 @@
 
 <!-- ここまで：主内容＞＞レビュー内容外枠＞＞レビュー内容 -->
 </td>
-<td style="width:6px;" class="bg_09"><img src="./skin/dummy.gif" alt="" style="width:6px;height:1px;" class="dummy"></td>
+<td style="width:6px;" class="bg_09"><img src="./skin/dummy.gif" alt="dummy" style="width:6px;height:1px;" class="dummy"></td>
 <td style="width:1px;" class="bg_01"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({*********})
 <tr>
 <td style="width:1px;" class="bg_01"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-<td style="width:562px;height:6px;" class="bg_09" colspan="3"><img src="./skin/dummy.gif" alt="" style="width:562px;height:6px;" class="dummy"></td>
+<td style="width:562px;height:6px;" class="bg_09" colspan="3"><img src="./skin/dummy.gif" alt="dummy" style="width:562px;height:6px;" class="dummy"></td>
 <td style="width:1px;" class="bg_01"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({*********})
@@ -415,9 +415,9 @@
 ({*********})
 </table>
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 </div>
 <!-- ここまで：主内容＞＞レビュー内容外枠 -->
@@ -466,21 +466,21 @@
 <!-- ******ここまで：メンバーのおすすめレビュー****** -->
 <!-- ********************************************* -->
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 ({/if})
 
 <!-- **************************************** -->
 <!-- ******ここから：コミュニティトップへ****** -->
 <div id="link_community_top" align="center">
 
-<img src="./skin/dummy.gif" alt="" class="icon arrow_1">&nbsp;
+<img src="./skin/dummy.gif" alt="dummy" class="icon arrow_1">&nbsp;
 <a href="({t_url m=pc a=page_c_home})&amp;target_c_commu_id=({$c_commu.c_commu_id})">[({$c_commu.name})]コミュニティトップへ</a>
 
 </div>
 <!-- ******ここまで：コミュニティトップへ****** -->
 <!-- **************************************** -->
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 ({***************************})
 ({**ここまで：メインコンテンツ**})

@@ -1,13 +1,13 @@
 ({if $newlist})
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_m">
 
 <!-- ********************************** -->
 <!-- ******ここから：new schedule一覧****** -->
 
 <table border="0" cellspacing="0" cellpadding="0" style="width:240px;">
 <tr>
-<td style="width:10px;"><img src="./skin/dummy.gif" alt="" style="width:10px;height:10px;display:block;"></td>
+<td style="width:10px;"><img src="./skin/dummy.gif" alt="dummy" style="width:10px;height:10px;display:block;"></td>
 <td style="width:230px;" align="left">
 
 ({*ここから：header*})

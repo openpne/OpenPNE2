@@ -1,17 +1,17 @@
 ({if $head})<!-- HEADER_BEGIN -->
-<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_m">
 
 <!-- ***************************** -->
 <!-- ******ここから：週間予定****** -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:720px;">
 <tr>
-<td style="width:5px;"><img src="./skin/dummy.gif" alt="" style="width:5px;height:7px;" class="dummy"></td>
+<td style="width:5px;"><img src="./skin/dummy.gif" alt="dummy" style="width:5px;height:7px;" class="dummy"></td>
 <td style="width:713px;" class="bg_02">
 
 <table border="0" cellspacing="0" cellpadding="0" style="width:713px;margin:0px;" class="border_07">
 <tr>
 <td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
-<td style="width:699px;" class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:699px;height:7px;" class="dummy"></td>
+<td style="width:699px;" class="bg_00"><img src="./skin/dummy.gif" alt="dummy" style="width:699px;height:7px;" class="dummy"></td>
 <td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 <tr>
@@ -36,7 +36,7 @@
 
 <table border="0" cellspacing="0" cellpadding="0" style="width:699px;">
 <tr>
-<td class="border_01 bg_02" align="right" style="width:130px;border-right:none;"><img src="./skin/dummy.gif" alt="" style="width:129px;height:10px;" class="dummy"></td>
+<td class="border_01 bg_02" align="right" style="width:130px;border-right:none;"><img src="./skin/dummy.gif" alt="dummy" style="width:129px;height:10px;" class="dummy"></td>
 <td class="border_01 bg_02 padding_ss" align="left" style="width:100px;border-right:none;">
 
 <a href="({t_url m=biz a=page_fh_biz_schedule_add})&amp;target_biz_group_id=({$target_id})">新規予定登録</a>
@@ -79,7 +79,7 @@
 </tr>
 ({if $list.info})
 <tr>
-<td class="border_01 bg_02" align="left" style="width:10px;border-right:none;"><img src="./skin/dummy.gif" alt="" style="width:9px;height:10px;" class="dummy"></td>
+<td class="border_01 bg_02" align="left" style="width:10px;border-right:none;"><img src="./skin/dummy.gif" alt="dummy" style="width:9px;height:10px;" class="dummy"></td>
 <td class="border_01 bg_02 padding_ss" style="border-left:none;" align="left">
 ({$list.info})
 </td>
@@ -90,7 +90,7 @@
 
 <table border="0" cellspacing="0" cellpadding="0" style="width:699px;">
 <tr>
-<td class="border_01 bg_02" align="right" style="width:130px;border-right:none;"><img src="./skin/dummy.gif" alt="" style="width:129px;height:10px;" class="dummy"></td>
+<td class="border_01 bg_02" align="right" style="width:130px;border-right:none;"><img src="./skin/dummy.gif" alt="dummy" style="width:129px;height:10px;" class="dummy"></td>
 <td class="border_01 bg_02 padding_ss" style="border-left:none;" align="right">
 
 施設予約を入れる:
@@ -137,7 +137,7 @@
 ({if $value})  <!-- BEGIN VALUE -->
 ({*****})
 <tr>
-<td class="bg_05 border_01" style="width:131px;border-top:none;border-right:none;" align="center" valign="top"><img src="./skin/dummy.gif" alt="" style="width:130px;height:10px;" class="dummy"></td>
+<td class="bg_05 border_01" style="width:131px;border-top:none;border-right:none;" align="center" valign="top"><img src="./skin/dummy.gif" alt="dummy" style="width:130px;height:10px;" class="dummy"></td>
 ({foreach from=$calendar item=item name=calendar})
 <td class="({if $item.now})bg_09({else})bg_05({/if}) padding_ss border_01({if $item.dayofweek == "日" || $item.holiday}) c_02({elseif $item.dayofweek == "土"}) c_03({else})({/if})" style="width:81px;border-top:none;({if !$smarty.foreach.calendar.last}) border-right:none;({/if})" align="center">
 
@@ -154,7 +154,7 @@
 ({*****})
 <tr>
 <td class="bg_02 border_01" style="width:131px;border-top:none;border-right:none;" align="center" valign="top" rowspan="2">
-<img src="./skin/dummy.gif" alt="" style="width:130px;height:10px;" class="dummy">
+<img src="./skin/dummy.gif" alt="dummy" style="width:130px;height:10px;" class="dummy">
 
 <a href="({t_url m=pc a=page_f_home})&target_c_member_id=({$member_info.c_member_id})">
 ({if $cmd == "s_list"})
@@ -162,19 +162,19 @@
 ({else})
 <img src="({t_img_url filename=$member_info.image_filename w=120 h=120 noimg=no_image})" class="pict" alt="写真" style="margin:2px"></a>
 ({/if})
-<img src="./skin/dummy.gif" alt="" style="width:130px;height:10px;" class="dummy">
+<img src="./skin/dummy.gif" alt="dummy" style="width:130px;height:10px;" class="dummy">
 
 ({if $cmd == "s_list"})
 ({if !$is_closed_shisetsu})
 <input type="button" onClick="location.href='({t_url m=biz a=page_s_edit_shisetsu})&id=({$target_id})'" value="編　集" style="width:112px;" class="submit">
 
-<img src="./skin/dummy.gif" alt="" style="width:130px;height:3px;" class="dummy">
+<img src="./skin/dummy.gif" alt="dummy" style="width:130px;height:3px;" class="dummy">
 
 <input type="button" onClick="location.href='({t_url m=biz a=page_s_delete_shisetsu})&target_id=({$target_id})&sessid=({$PHPSESSID})'" value="削　除" style="width:112px;" class="submit">
 ({/if})
-<img src="./skin/dummy.gif" alt="" class="v_spacer_s">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_s">
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_s">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_s">
 
 ({else})
 
@@ -192,7 +192,7 @@
 ({if $smarty.const.OPENPNE_DISP_POINT && $point})
 ({$point}) Point<br>
 ({/if})
-<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_m">
 ({/if})
 ({/if})
 
@@ -201,18 +201,18 @@
 ({/if})
 
 ({/if})
-<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_m">
 
 ({if $cmd == "h"})
 <input type="button" onClick="location.href='({t_url m=pc a=page_h_config_image})'" value="写真を編集" style="width:112px;" class="submit">
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_s">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_s">
 
 <input type="button" onClick="location.href='({t_url m=pc a=page_h_config_prof})'" value="プロフィール変更" style="width:112px;" class="submit">
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_s">
-<img src="./skin/dummy.gif" alt="" class="v_spacer_s">
-<img src="./skin/dummy.gif" alt="" class="v_spacer_s">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_s">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_s">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_s">
 ({/if})
 
 </td>
@@ -269,7 +269,7 @@
 	({/if})
 ({/foreach})
 
-<img src="./skin/dummy.gif" alt="" style="width:80px;height:10px;" class="dummy">
+<img src="./skin/dummy.gif" alt="dummy" style="width:80px;height:10px;" class="dummy">
 
 </td>
 ({/foreach})
@@ -326,7 +326,7 @@
 
 ({if $foot})  <!-- BEGIN FOOT -->
 <tr>
-<td class="bg_02 border_01" style="border-top:none;border-right:none;" align="center" valign="top"><img src="./skin/dummy.gif" alt="" style="width:130px;height:10px;" class="dummy"></td>
+<td class="bg_02 border_01" style="border-top:none;border-right:none;" align="center" valign="top"><img src="./skin/dummy.gif" alt="dummy" style="width:130px;height:10px;" class="dummy"></td>
 <td class="bg_02 border_01" style="border-top:none;" align="right" valign="top" colspan="7">
 
 <table border="0" cellspacing="0" cellpadding="0" style="width:100%;">
@@ -378,7 +378,7 @@
 
 <!-- ここまで：主内容 -->
 </td>
-<td class="bg_00"><img src="./skin/dummy.gif" alt=""></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="dummy"></td>
 </tr>
 <tr>
 <td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
@@ -393,5 +393,5 @@
 <!-- ******ここまで：週間予定****** -->
 <!-- ***************************** -->
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_m">
 ({/if}) <!-- END FOOT -->

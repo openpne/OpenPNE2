@@ -9,7 +9,7 @@
 <table border="0" cellspacing="0" cellpadding="0" style="width:268px;margin:0px auto;" class="border_07">
 <tr>
 <td style="width:7px;height:7px;" class="bg_05"><img src="./skin/dummy.gif" alt="square" class="square"></td>
-<td style="width:254px;height:7px;" class="bg_05"><img src="./skin/dummy.gif" alt="" style="width:254px;height:7px;" class="dummy"></td>
+<td style="width:254px;height:7px;" class="bg_05"><img src="./skin/dummy.gif" alt="dummy" style="width:254px;height:7px;" class="dummy"></td>
 <td style="width:7px;height:7px;" class="bg_05"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 <tr>
@@ -27,11 +27,11 @@
 <tr>
 <td align="center">
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_m">
 
 <img src="({t_img_url filename=$group.image_filename w=180 h=180 noimg=no_image})" class="pict">
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_m">
 
 </td>
 </tr>
@@ -45,7 +45,7 @@
 <table border="0" cellspacing="0" cellpadding="0" style="width:256px;">
 <tr>
 <td align="center" class="bg_05">
-<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_m">
 ({$c_commu.name})
 </td>
 </tr>
@@ -65,7 +65,7 @@
 <!-- ******ここまで：コミュニティの写真及び名前覧****** -->
 <!-- *********************************************** -->
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_m">
 
 ({********************************})
 ({**ここまで：メインコンテンツ（左）**})
@@ -80,7 +80,7 @@
 <table border="0" cellspacing="0" cellpadding="0" style="width:440px;margin:0px auto;" class="border_07">
 <tr>
 <td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
-<td style="width:426px;" class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:426px;height:7px;" class="dummy"></td>
+<td style="width:426px;" class="bg_00"><img src="./skin/dummy.gif" alt="dummy" style="width:426px;height:7px;" class="dummy"></td>
 <td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 <tr>
@@ -159,10 +159,10 @@
 <table border="0" cellspacing="0" cellpadding="0" style="width:424px;">
 <tr>
 <td style="width:1px;" class="bg_04"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-<td style="width:271px;" class="bg_02"><img src="./skin/dummy.gif" alt="" class="dummy"></td>
+<td style="width:271px;" class="bg_02"><img src="./skin/dummy.gif" alt="dummy" class="dummy"></td>
 <td style="width:151px;padding:5px 0px;" class="bg_02 lh_140">
 ({if $is_admin})
-<img src="./skin/dummy.gif" alt="" class="icon arrow_1">
+<img src="./skin/dummy.gif" alt="dummy" class="icon arrow_1">
 <a href="({t_url m=biz a=page_h_biz_group_edit})&amp;target_id=({$group.biz_group_id})">グループ設定変更</a>
 <br>
 ({/if})
@@ -178,18 +178,18 @@
 ({*ここまで：footer*})
 ({*ここから：*})
 </td>
-<td class="bg_00"><img src="./skin/dummy.gif" alt=""></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="dummy"></td>
 </tr>
 <tr>
 <td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
-<td class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:426px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="dummy" style="width:426px;height:7px;" class="dummy"></td>
 <td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 </table>
 <!-- ******ここまで：コミュニティ情報一覧****** -->
 <!-- **************************************** -->
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_m">
 
 ({********************************})
 ({**ここまで：メインコンテンツ（右）**})
