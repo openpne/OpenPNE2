@@ -183,6 +183,13 @@ CREATE TABLE `c_banner_log` (
   KEY `c_member_id` (`c_member_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+CREATE TABLE `c_blacklist` (
+  `c_blacklist_id` int(11) NOT NULL auto_increment,
+  `easy_access_id` blob NOT NULL,
+  `info` text NOT NULL,
+  PRIMARY KEY  (`c_blacklist_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
 CREATE TABLE `c_bookmark` (
   `c_bookmark_id` int(11) NOT NULL auto_increment,
   `c_member_id_from` int(11) NOT NULL default '0',
@@ -218,6 +225,7 @@ CREATE TABLE `c_commu` (
   `map_latitude` double NOT NULL default '0',
   `map_longitude` double NOT NULL default '0',
   `map_zoom` int(11) NOT NULL default '0',
+  `u_datetime` datetime NOT NULL default '0000-00-00 00:00:00',
   PRIMARY KEY  (`c_commu_id`),
   KEY `c_commu_category_id` (`c_commu_category_id`),
   KEY `c_member_id_admin` (`c_member_id_admin`),
@@ -347,6 +355,120 @@ CREATE TABLE `c_commu_topic_comment` (
   KEY `r_datetime_c_commu_id` (`r_datetime`,`c_commu_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+CREATE TABLE `c_config_color` (
+  `c_config_color_id` int(11) NOT NULL auto_increment,
+  `color_0` char(6) NOT NULL default '',
+  `color_1` char(6) NOT NULL default '',
+  `color_2` char(6) NOT NULL default '',
+  `color_3` char(6) NOT NULL default '',
+  `color_4` char(6) NOT NULL default '',
+  `color_5` char(6) NOT NULL default '',
+  `color_6` char(6) NOT NULL default '',
+  `color_7` char(6) NOT NULL default '',
+  `color_8` char(6) NOT NULL default '',
+  `color_9` char(6) NOT NULL default '',
+  `color_10` char(6) NOT NULL default '',
+  `color_11` char(6) NOT NULL default '',
+  `color_12` char(6) NOT NULL default '',
+  `color_13` char(6) NOT NULL default '',
+  `color_14` char(6) NOT NULL default '',
+  `color_15` char(6) NOT NULL default '',
+  `color_16` char(6) NOT NULL default '',
+  `color_17` char(6) NOT NULL default '',
+  `color_18` char(6) NOT NULL default '',
+  `color_19` char(6) NOT NULL default '',
+  `color_20` char(6) NOT NULL default '',
+  `color_21` char(6) NOT NULL default '',
+  `color_22` char(6) NOT NULL default '',
+  `color_23` char(6) NOT NULL default '',
+  `color_24` char(6) NOT NULL default '',
+  `color_25` char(6) NOT NULL default '',
+  `color_26` char(6) NOT NULL default '',
+  `color_27` char(6) NOT NULL default '',
+  `color_28` char(6) NOT NULL default '',
+  `color_29` char(6) NOT NULL default '',
+  `color_30` char(6) NOT NULL default '',
+  `color_31` char(6) NOT NULL default '',
+  `color_32` char(6) NOT NULL default '',
+  `color_33` char(6) NOT NULL default '',
+  `color_34` char(6) NOT NULL default '',
+  `color_35` char(6) NOT NULL default '',
+  `color_36` char(6) NOT NULL default '',
+  `color_37` char(6) NOT NULL default '',
+  `color_38` char(6) NOT NULL default '',
+  `color_39` char(6) NOT NULL default '',
+  `color_40` char(6) NOT NULL default '',
+  `color_41` char(6) NOT NULL default '',
+  `color_42` char(6) NOT NULL default '',
+  `color_43` char(6) NOT NULL default '',
+  `color_44` char(6) NOT NULL default '',
+  `color_45` char(6) NOT NULL default '',
+  `color_46` char(6) NOT NULL default '',
+  `color_47` char(6) NOT NULL default '',
+  `color_48` char(6) NOT NULL default '',
+  `color_49` char(6) NOT NULL default '',
+  `color_50` char(6) NOT NULL default '',
+  `caption` char(32) NOT NULL default '',
+  PRIMARY KEY  (`c_config_color_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `c_config_color_ktai` (
+  `c_config_color_ktai_id` int(11) NOT NULL auto_increment,
+  `color_0` char(6) NOT NULL default '',
+  `color_1` char(6) NOT NULL default '',
+  `color_2` char(6) NOT NULL default '',
+  `color_3` char(6) NOT NULL default '',
+  `color_4` char(6) NOT NULL default '',
+  `color_5` char(6) NOT NULL default '',
+  `color_6` char(6) NOT NULL default '',
+  `color_7` char(6) NOT NULL default '',
+  `color_8` char(6) NOT NULL default '',
+  `color_9` char(6) NOT NULL default '',
+  `color_10` char(6) NOT NULL default '',
+  `color_11` char(6) NOT NULL default '',
+  `color_12` char(6) NOT NULL default '',
+  `color_13` char(6) NOT NULL default '',
+  `color_14` char(6) NOT NULL default '',
+  `color_15` char(6) NOT NULL default '',
+  `color_16` char(6) NOT NULL default '',
+  `color_17` char(6) NOT NULL default '',
+  `color_18` char(6) NOT NULL default '',
+  `color_19` char(6) NOT NULL default '',
+  `color_20` char(6) NOT NULL default '',
+  `color_21` char(6) NOT NULL default '',
+  `color_22` char(6) NOT NULL default '',
+  `color_23` char(6) NOT NULL default '',
+  `color_24` char(6) NOT NULL default '',
+  `color_25` char(6) NOT NULL default '',
+  `color_26` char(6) NOT NULL default '',
+  `color_27` char(6) NOT NULL default '',
+  `color_28` char(6) NOT NULL default '',
+  `color_29` char(6) NOT NULL default '',
+  `color_30` char(6) NOT NULL default '',
+  `color_31` char(6) NOT NULL default '',
+  `color_32` char(6) NOT NULL default '',
+  `color_33` char(6) NOT NULL default '',
+  `color_34` char(6) NOT NULL default '',
+  `color_35` char(6) NOT NULL default '',
+  `color_36` char(6) NOT NULL default '',
+  `color_37` char(6) NOT NULL default '',
+  `color_38` char(6) NOT NULL default '',
+  `color_39` char(6) NOT NULL default '',
+  `color_40` char(6) NOT NULL default '',
+  `color_41` char(6) NOT NULL default '',
+  `color_42` char(6) NOT NULL default '',
+  `color_43` char(6) NOT NULL default '',
+  `color_44` char(6) NOT NULL default '',
+  `color_45` char(6) NOT NULL default '',
+  `color_46` char(6) NOT NULL default '',
+  `color_47` char(6) NOT NULL default '',
+  `color_48` char(6) NOT NULL default '',
+  `color_49` char(6) NOT NULL default '',
+  `color_50` char(6) NOT NULL default '',
+  `caption` char(32) NOT NULL default '',
+  PRIMARY KEY  (`c_config_color_ktai_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
 CREATE TABLE `c_diary` (
   `c_diary_id` int(11) NOT NULL auto_increment,
   `c_member_id` int(11) NOT NULL default '0',
@@ -359,6 +481,7 @@ CREATE TABLE `c_diary` (
   `image_filename_3` text NOT NULL,
   `is_checked` tinyint(1) NOT NULL default '0',
   `public_flag` enum('public','friend','private') NOT NULL default 'public',
+  `u_datetime` datetime NOT NULL default '0000-00-00 00:00:00',
   PRIMARY KEY  (`c_diary_id`),
   KEY `c_member_id` (`c_member_id`),
   KEY `r_datetime_c_member_id` (`r_datetime`,`c_member_id`),
@@ -373,14 +496,18 @@ CREATE TABLE `c_diary_category` (
   `category_name` text character set utf8 collate utf8_unicode_ci NOT NULL,
   `c_member_id` int(11) NOT NULL default '0',
   `r_datetime` datetime NOT NULL default '0000-00-00 00:00:00',
-  PRIMARY KEY  (`c_diary_category_id`)
+  PRIMARY KEY  (`c_diary_category_id`),
+  KEY `c_member_id_c_diary_category_id` (`c_member_id`,`c_diary_category_id`),
+  KEY `category_name_c_member_id` (`category_name`(20),`c_member_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `c_diary_category_diary` (
   `c_diary_category_diary_id` int(11) NOT NULL auto_increment,
   `c_diary_category_id` int(11) NOT NULL default '0',
   `c_diary_id` int(11) NOT NULL default '0',
-  PRIMARY KEY  (`c_diary_category_diary_id`)
+  PRIMARY KEY  (`c_diary_category_diary_id`),
+  KEY `c_diary_category_id` (`c_diary_category_id`),
+  KEY `c_diary_id` (`c_diary_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `c_diary_comment` (
@@ -392,6 +519,7 @@ CREATE TABLE `c_diary_comment` (
   `image_filename_1` text NOT NULL,
   `image_filename_2` text NOT NULL,
   `image_filename_3` text NOT NULL,
+  `number` int(11) NOT NULL default '0',
   PRIMARY KEY  (`c_diary_comment_id`),
   KEY `c_member_id` (`c_member_id`),
   KEY `c_diary_id` (`c_diary_id`),
@@ -473,7 +601,7 @@ CREATE TABLE `c_image` (
   `type` text,
   PRIMARY KEY  (`c_image_id`),
   KEY `filename` (`filename`(100))
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 MAX_ROWS=190000;
 
 CREATE TABLE `c_ktai_address_pre` (
   `c_ktai_address_pre_id` int(11) NOT NULL auto_increment,
@@ -526,6 +654,7 @@ CREATE TABLE `c_member` (
   `is_shinobiashi` tinyint(1) NOT NULL default '0',
   `ashiato_count_log` int(11) NOT NULL default '0',
   `schedule_start_day` int(11) NOT NULL default '0',
+  `u_datetime` datetime NOT NULL default '0000-00-00 00:00:00',
   PRIMARY KEY  (`c_member_id`),
   KEY `birth_year_c_member_id` (`birth_year`,`c_member_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -536,6 +665,7 @@ CREATE TABLE `c_member_ktai_pre` (
   `ktai_address` varchar(64) NOT NULL default '',
   `r_datetime` datetime NOT NULL default '0000-00-00 00:00:00',
   `c_member_id_invite` int(11) NOT NULL default '0',
+  `is_disabled_regist_easy_access_id` tinyint(1) NOT NULL default '0',
   PRIMARY KEY  (`c_member_ktai_pre_id`),
   UNIQUE KEY `session` (`session`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -560,6 +690,8 @@ CREATE TABLE `c_member_pre` (
   `easy_access_id` text NOT NULL,
   `c_password_query_id` int(11) NOT NULL default '0',
   `c_password_query_answer` text NOT NULL,
+  `ktai_session` varchar(255) NOT NULL default '',
+  `is_disabled_regist_easy_access_id` tinyint(1) NOT NULL default '0',
   PRIMARY KEY  (`c_member_pre_id`),
   UNIQUE KEY `session` (`session`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -812,6 +944,7 @@ CREATE TABLE `c_schedule` (
   `end_date` date NOT NULL default '0000-00-00',
   `end_time` time default NULL,
   `is_receive_mail` tinyint(1) NOT NULL default '0',
+  `u_datetime` datetime NOT NULL default '0000-00-00 00:00:00',
   PRIMARY KEY  (`c_schedule_id`),
   KEY `c_member_id` (`c_member_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -861,40 +994,6 @@ CREATE TABLE `c_skin_filename` (
   `filename` text NOT NULL,
   PRIMARY KEY  (`c_skin_filename_id`),
   UNIQUE KEY `skinname` (`skinname`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
-CREATE TABLE `c_sns_config` (
-  `c_sns_config_id` int(11) NOT NULL auto_increment,
-  `key_name` varchar(100) NOT NULL default '',
-  `border_00` text NOT NULL,
-  `border_01` text NOT NULL,
-  `border_02` text NOT NULL,
-  `border_03` text NOT NULL,
-  `border_04` text NOT NULL,
-  `border_05` text NOT NULL,
-  `border_06` text NOT NULL,
-  `border_07` text NOT NULL,
-  `border_08` text NOT NULL,
-  `border_09` text NOT NULL,
-  `border_10` text NOT NULL,
-  `bg_00` text NOT NULL,
-  `bg_01` text NOT NULL,
-  `bg_02` text NOT NULL,
-  `bg_03` text NOT NULL,
-  `bg_04` text NOT NULL,
-  `bg_05` text NOT NULL,
-  `bg_06` text NOT NULL,
-  `bg_07` text NOT NULL,
-  `bg_08` text NOT NULL,
-  `bg_09` text NOT NULL,
-  `bg_10` text NOT NULL,
-  `bg_11` text NOT NULL,
-  `bg_12` text NOT NULL,
-  `bg_13` text NOT NULL,
-  `bg_14` text NOT NULL,
-  `caption` varchar(100) NOT NULL default '',
-  `symbol` text NOT NULL,
-  PRIMARY KEY  (`c_sns_config_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `c_template` (
@@ -958,4 +1057,3 @@ CREATE TABLE `mail_queue_seq` (
   `id` int(10) unsigned NOT NULL auto_increment,
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
