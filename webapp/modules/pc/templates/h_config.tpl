@@ -5,7 +5,7 @@
 ({**ここから：メインコンテンツ**})
 ({***************************})
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 <!-- **************************** -->
 <!-- ******ここから：設定変更****** -->
@@ -101,11 +101,11 @@
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 <td class="bg_03" align="center" valign="middle" colspan="3">
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_s">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_s">
 
 <input type="submit" class="submit" value="　変　更　">
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_s">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_s">
 
 </td>
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
@@ -203,11 +203,11 @@
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 <td class="bg_03" align="center" valign="middle" colspan="3">
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_s">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_s">
 
 <input type="submit" class="submit" value="　変　更　">
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_s">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_s">
 
 </td>
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
@@ -568,11 +568,11 @@ ID <input type="text" class="text" name="c_member_id_block[]" value=""><br>
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 <td class="bg_03" align="center" valign="middle" colspan="3">
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_s">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_s">
 
 <input type="submit" class="submit" value="　変　更　">
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_s">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_s">
 
 </td>
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
@@ -602,7 +602,7 @@ ID <input type="text" class="text" name="c_member_id_block[]" value=""><br>
 <!-- ******ここまで：設定変更****** -->
 <!-- ***************************** -->
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 <!-- ************************* -->
 <!-- ******ここから：日記公開範囲の一括設定****** -->
@@ -682,7 +682,7 @@ ID <input type="text" class="text" name="c_member_id_block[]" value=""><br>
 <!-- ******ここまで：日記公開範囲の一括設定****** -->
 <!-- ************************* -->
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 <!-- ************************* -->
 <!-- ******ここから：退会****** -->
@@ -763,7 +763,7 @@ ID 1 のメンバーはSNSを退会することができません。
 <!-- ******ここまで：退会****** -->
 <!-- ************************* -->
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 ({***************************})
 ({**ここまで：メインコンテンツ**})

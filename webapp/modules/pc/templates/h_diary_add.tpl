@@ -5,7 +5,7 @@
 ({**ここから：メインコンテンツ（左）**})
 ({********************************})
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 <!-- ******************************* -->
 <!-- ******ここから：カレンダー****** -->
@@ -61,7 +61,7 @@
 <table border="0" cellspacing="0" cellpadding="0" style="width:149px;margin:0px auto;">
 ({****************})
 <tr>
-<td style="width:149px;" class="bg_10" colspan="13"><img src="./skin/dummy.gif" alt="" style="width:149px;height:1px;" class="dummy"></td>
+<td style="width:149px;" class="bg_10" colspan="13"><img src="./skin/dummy.gif" alt="dummy" style="width:149px;height:1px;" class="dummy"></td>
 </tr>
 ({****************})
 <tr>
@@ -81,7 +81,7 @@
 </tr>
 ({****************})
 <tr>
-<td style="width:149px;" class="bg_10" colspan="13"><img src="./skin/dummy.gif" alt="" style="width:149px;height:1px;" class="dummy"></td>
+<td style="width:149px;" class="bg_10" colspan="13"><img src="./skin/dummy.gif" alt="dummy" style="width:149px;height:1px;" class="dummy"></td>
 </tr>
 ({****************})
 ({foreach from=$calendar item=week})
@@ -104,7 +104,7 @@
 </tr>
 ({****************})
 <tr>
-<td style="width:149px;" class="bg_10" colspan="13"><img src="./skin/dummy.gif" alt="" style="width:149px;height:1px;" class="dummy"></td>
+<td style="width:149px;" class="bg_10" colspan="13"><img src="./skin/dummy.gif" alt="dummy" style="width:149px;height:1px;" class="dummy"></td>
 </tr>
 ({****************})
 ({/foreach})
@@ -127,7 +127,7 @@
 <!-- ******ここまで：カレンダー****** -->
 <!-- ****************************** -->
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 <!-- ********************************** -->
 <!-- ******ここから：最近のコメント****** -->
@@ -155,7 +155,7 @@
 <!-- ここから：主内容 -->
 <div align="left" style="padding:3px;" class="bg_02 border_01">
 
-<a href="({t_url m=pc a=page_fh_comment_list})"><img src="./skin/dummy.gif" alt="" style="width:14px;height:14px;" class="icon icon_1">一覧を見る</a>
+<a href="({t_url m=pc a=page_fh_comment_list})"><img src="./skin/dummy.gif" alt="dummy" style="width:14px;height:14px;" class="icon icon_1">一覧を見る</a>
 
 </div>
 <!-- ここまで：主内容 -->
@@ -176,7 +176,7 @@
 <!-- ******ここまで：最近のコメント****** -->
 <!-- ********************************** -->
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 ({if $date_list})
 
@@ -207,7 +207,7 @@
 <div align="left" class="bg_02 border_01 padding_ss">
 ({foreach from=$date_list item=item})
 
-<div><a href="({t_url m=pc a=page_fh_diary_list})&amp;year=({$item.year})&amp;month=({$item.month})"><img src="./skin/dummy.gif" alt="" style="width:14px;height:14px;" class="icon icon_2">({$item.year})年({$item.month})月の一覧</a></div>
+<div><a href="({t_url m=pc a=page_fh_diary_list})&amp;year=({$item.year})&amp;month=({$item.month})"><img src="./skin/dummy.gif" alt="dummy" style="width:14px;height:14px;" class="icon icon_2">({$item.year})年({$item.month})月の一覧</a></div>
 
 ({/foreach})
 </div>
@@ -229,7 +229,7 @@
 <!-- ******ここまで：各月の日記一覧****** -->
 <!-- ********************************** -->
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 ({/if})
 ({if $category_list})
@@ -261,7 +261,7 @@
 <div align="left" class="bg_02 border_01 padding_ss">
 ({foreach from=$category_list item=category})
 
-<div><a href="({t_url m=pc a=page_fh_diary_list})&amp;target_c_member_id=({$target_member.c_member_id})&amp;category_id=({$category.c_diary_category_id})"><img src="./skin/dummy.gif" alt="" style="width:14px;height:14px;" class="icon icon_2">({$category.category_name})</a></div>
+<div><a href="({t_url m=pc a=page_fh_diary_list})&amp;target_c_member_id=({$target_member.c_member_id})&amp;category_id=({$category.c_diary_category_id})"><img src="./skin/dummy.gif" alt="dummy" style="width:14px;height:14px;" class="icon icon_2">({$category.category_name})</a></div>
 
 ({/foreach})
 </div>
@@ -283,7 +283,7 @@
 <!-- ******ここまで：カテゴリ一覧****** -->
 <!-- ********************************** -->
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 ({/if})
 
@@ -295,7 +295,7 @@
 ({**ここから：メインコンテンツ（右）**})
 ({********************************})
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 <!-- ********************************** -->
 <!-- ******ここから：日記を編集する****** -->
@@ -554,7 +554,7 @@
 <!-- ******ここまで：日記を編集する****** -->
 <!-- ********************************** -->
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 ({********************************})
 ({**ここまで：メインコンテンツ（右）**})

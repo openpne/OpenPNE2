@@ -5,7 +5,7 @@
 ({**ここから：メインコンテンツ**})
 ({***************************})
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 <!-- ******************************* -->
 <!-- ******ここから：写真を編集****** -->
@@ -36,7 +36,7 @@
 <!-- ここから：主内容＞＞１ -->
 <div class="border_01 bg_02">
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 <table border="0" cellspacing="0" cellpadding="0" style="width:564px;">
 <tr>
@@ -94,14 +94,14 @@
 </tr>
 </table>
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 </div>
 <!-- ここまで：主内容＞＞２ -->
 <!-- ここから：主内容＞＞２ -->
 <div class="border_01 bg_02">
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 <table border="0" cellspacing="0" cellpadding="0" style="width:564px;">
 <tr>
@@ -112,7 +112,7 @@
 
 <input name="upfile" type="file" value=" 参 照 ">
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 <input type="submit" class="submit" name="submit" value="写真をアップロードする">
 </form>
@@ -142,7 +142,7 @@
 </tr>
 </table>
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 </div>
 <!-- ここまで：主内容＞＞２ -->
@@ -165,19 +165,19 @@
 <!-- ******************************* -->
 
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 <!-- ************************************** -->
 <!-- ******ここから：トップページに戻る****** -->
-<img src="./skin/dummy.gif" alt="" class="icon arrow_1">&nbsp;<a href="({t_url m=pc a=page_h_home})">ホームに戻る</a>
+<img src="./skin/dummy.gif" alt="dummy" class="icon arrow_1">&nbsp;<a href="({t_url m=pc a=page_h_home})">ホームに戻る</a>
 <!-- ******ここまで：トップページに戻る****** -->
 <!-- ************************************** -->
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 
 ({***************************})

@@ -5,7 +5,7 @@
 ({**ここから：メインコンテンツ**})
 ({***************************})
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 <!-- ******************************* -->
 <!-- ******ここから：メッセージ****** -->
@@ -23,7 +23,7 @@
 <!-- ******ここまで：メッセージ****** -->
 <!-- ******************************* -->
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 ({if $c_review_list})
 
@@ -95,32 +95,32 @@
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 <td style="width:180px;" class="bg_03" align="center" valign="top" rowspan="12">
 
-<img src="./skin/dummy.gif" alt="" style="width:180px;height:1px;" class="dummy">
+<img src="./skin/dummy.gif" alt="dummy" style="width:180px;height:1px;" class="dummy">
 
 <div class="padding_s">
 
 <a href="({$review.url})" target="_blank">
 <img src="({$review.image_medium})"></a>
-<img src="./skin/dummy.gif" alt="" class="v_spacer_s">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_s">
 
 <a href="({$review.url})" target="_blank">
 詳細を見る
 </a>
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_s">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_s">
 
 <input type="checkbox" name="c_review_id[]" value="({$review.c_review_id})" class="no_bg">
 <br>このレビューを掲載する
 
 </div>
 
-<img src="./skin/dummy.gif" alt="" style="width:180px;height:1px;" class="dummy">
+<img src="./skin/dummy.gif" alt="dummy" style="width:180px;height:1px;" class="dummy">
 
 </td>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 <td style="width:112px;" class="bg_05" align="center" valign="middle">
 
-<img src="./skin/dummy.gif" alt="" style="width:112px;height:1px;" class="dummy">
+<img src="./skin/dummy.gif" alt="dummy" style="width:112px;height:1px;" class="dummy">
 
 <div class="padding_s">
 
@@ -128,13 +128,13 @@
 
 </div>
 
-<img src="./skin/dummy.gif" alt="" style="width:112px;height:1px;" class="dummy">
+<img src="./skin/dummy.gif" alt="dummy" style="width:112px;height:1px;" class="dummy">
 
 </td>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 <td style="width:338px;" class="bg_02" align="left" valign="middle">
 
-<img src="./skin/dummy.gif" alt="" style="width:338px;height:1px;" class="dummy">
+<img src="./skin/dummy.gif" alt="dummy" style="width:338px;height:1px;" class="dummy">
 
 <div class="padding_s b_b">
 
@@ -142,7 +142,7 @@
 
 </div>
 
-<img src="./skin/dummy.gif" alt="" style="width:338px;height:1px;" class="dummy">
+<img src="./skin/dummy.gif" alt="dummy" style="width:338px;height:1px;" class="dummy">
 
 </td>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
@@ -201,7 +201,7 @@
 
 ({$review.body|nl2br})
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_m">
 
 <div style="text-align:right;"><a href="({t_url m=pc a=page_h_review_add_write})&amp;category_id=({$review.c_review_category_id})&amp;asin=({$review.asin})">編集</a></div>
 
@@ -374,21 +374,21 @@
 <!-- ******ここまで：あなたのレビュー一覧****** -->
 <!-- **************************************** -->
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 ({/if})
 
 <!-- **************************************** -->
 <!-- ******ここから：コミュニティトップへ****** -->
 <div class="content_footer" id="link_community_top" align="center">
 
-<img src="./skin/dummy.gif" alt="" class="icon arrow_1">&nbsp;
+<img src="./skin/dummy.gif" alt="dummy" class="icon arrow_1">&nbsp;
 <a href="({t_url m=pc a=page_c_home})&amp;target_c_commu_id=({$c_commu.c_commu_id})">[({$c_commu.name})]コミュニティトップへ</a>
 
 </div>
 <!-- ******ここまで：コミュニティトップへ****** -->
 <!-- **************************************** -->
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 ({***************************})
 ({**ここまで：メインコンテンツ**})

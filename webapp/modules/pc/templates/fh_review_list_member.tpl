@@ -5,7 +5,7 @@
 ({**ここから：メインコンテンツ**})
 ({***************************})
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 ({if $type == "h"})
 <!-- ********************************** -->
@@ -36,7 +36,7 @@
 <!-- ここから：主内容 -->
 <div class="border_01">
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 <table border="0" cellspacing="0" cellpadding="0" style="width:550px;margin:0px auto;" class="border_01">
 ({*********})
@@ -53,20 +53,20 @@
 ({t_form _method=get m=pc a=page_h_review_add})
 <input type="submit" class="submit" value="　　レビューを書く　　">
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 <div style="width:190px;margin:0px auto;text-align:left;">
 
 <div>
 
-<img src="./skin/dummy.gif" alt="" class="icon arrow_1">
+<img src="./skin/dummy.gif" alt="dummy" class="icon arrow_1">
 <a href="({t_url m=pc a=page_h_review_search})">全体のレビュー一覧を見る</a>
 
 </div>
 
 <div>
 
-<img src="./skin/dummy.gif" alt="" class="icon arrow_1">
+<img src="./skin/dummy.gif" alt="dummy" class="icon arrow_1">
 <a href="({t_url m=pc a=page_h_review_clip_list})">クリップを見る</a>
 
 </div>
@@ -87,7 +87,7 @@
 ({*********})
 </table>
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 </div>
 <!-- ここまで：主内容 -->
@@ -108,7 +108,7 @@
 <!-- ******ここまで：レビューを書く****** -->
 <!-- ********************************** -->
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 ({/if})
 
 ({if $c_review_list})
@@ -179,23 +179,23 @@
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 <td style="width:180px;" class="bg_02" align="center" valign="top" rowspan="11">
 
-<img src="./skin/dummy.gif" alt="" style="width:180px;height:1px;" class="dummy">
+<img src="./skin/dummy.gif" alt="dummy" style="width:180px;height:1px;" class="dummy">
 
 <div class="padding_s">
 
 <a href="({$review.url})" target="_blank"><img src="({$review.image_medium})"><br>詳細を見る</a>
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 </div>
 
-<img src="./skin/dummy.gif" alt="" style="width:180px;height:1px;" class="dummy">
+<img src="./skin/dummy.gif" alt="dummy" style="width:180px;height:1px;" class="dummy">
 
 </td>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 <td style="width:100px;" class="bg_05" align="left" valign="middle">
 
-<img src="./skin/dummy.gif" alt="" style="width:100px;height:1px;" class="dummy">
+<img src="./skin/dummy.gif" alt="dummy" style="width:100px;height:1px;" class="dummy">
 
 <div class="padding_s">
 
@@ -203,13 +203,13 @@
 
 </div>
 
-<img src="./skin/dummy.gif" alt="" style="width:100px;height:1px;" class="dummy">
+<img src="./skin/dummy.gif" alt="dummy" style="width:100px;height:1px;" class="dummy">
 
 </td>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 <td style="width:352px;" class="bg_02" align="left" valign="middle">
 
-<img src="./skin/dummy.gif" alt="" style="width:352px;height:1px;" class="dummy">
+<img src="./skin/dummy.gif" alt="dummy" style="width:352px;height:1px;" class="dummy">
 
 <div class="padding_s">
 
@@ -217,7 +217,7 @@
 
 </div>
 
-<img src="./skin/dummy.gif" alt="" style="width:352px;height:1px;" class="dummy">
+<img src="./skin/dummy.gif" alt="dummy" style="width:352px;height:1px;" class="dummy">
 
 </td>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
@@ -437,7 +437,7 @@
 <!-- ******ここまで：レビュー一覧****** -->
 <!-- ******************************** -->
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 ({else})
 
 <!-- ****************************** -->
@@ -505,7 +505,7 @@
 <!-- ******ここまで：無レビュー****** -->
 <!-- ****************************** -->
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 ({/if})
 
