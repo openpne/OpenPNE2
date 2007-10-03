@@ -253,6 +253,9 @@ default:
 // アクセスログを取得するかどうか(c_access_log)
 define('LOG_C_ACCESS_LOG', true);
 
+// カスタムログ用の関数名を指定します
+define('OPENPNE_LOG_FUNCTION', '');
+
 ///
 // セッション・クッキー設定
 ///
