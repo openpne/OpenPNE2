@@ -4,6 +4,10 @@
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
+set_time_limit(0);
+
+echo "Begin converter.\n";
+
 require_once './config.inc.php';
 require_once OPENPNE_WEBAPP_DIR . '/init.inc';
 
@@ -99,8 +103,12 @@ $target = array(
 
 foreach ($target as $tablename => $fields) {
     foreach ($fields as $fieldname) {
+        echo "Converting {$tablename}.{$fieldname}...";
         convert_emoji_format_alpha_to_alpha2 ($tablename, $fieldname);
+        echo "done.\n";
     }
 }
+
+echo "Finish converter.\n";
 
 ?>
