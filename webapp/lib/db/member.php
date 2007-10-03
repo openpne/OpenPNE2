@@ -1236,7 +1236,7 @@ function db_member_update_c_member_pc_address4c_member_id($c_member_id, $pc_addr
     // function cacheを削除
     cache_drop_c_member_profile($c_member_id);
 
-    if (util_is_regist_mail_address($pc_address)) {
+    if (!util_is_regist_mail_address($pc_address, $c_member_id)) {
         return false;
     }
 
@@ -1250,7 +1250,7 @@ function db_member_regist_c_member_pc_address4c_member_id($c_member_id, $pc_addr
     // function cacheを削除
     cache_drop_c_member_profile($c_member_id);
 
-    if (util_is_regist_mail_address($pc_address)) {
+    if (!util_is_regist_mail_address($pc_address, $c_member_id)) {
         return false;
     }
 
@@ -1274,7 +1274,7 @@ function db_member_update_ktai_address($c_member_id, $ktai_address)
             'ktai_address' => '',
             'easy_access_id' => '',
         );
-    } elseif (util_is_regist_mail_address($ktai_address)) {
+    } elseif (util_is_regist_mail_address($ktai_address, $c_member_id)) {
         $data = array('ktai_address' => t_encrypt($ktai_address));
     } else {
         return false;
