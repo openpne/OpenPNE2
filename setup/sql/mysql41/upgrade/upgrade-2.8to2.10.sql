@@ -194,3 +194,5 @@ DROP TABLE IF EXISTS `c_sns_config`;
 INSERT INTO `c_config_color_ktai` VALUES 
   (1,'FFFFFF','FFFFFF','0D6DDF','DDDDDD','EEEEFF','7DDADF','E0EAEF','FFFFFF','C49FFF','DCD1EF','FFFFFF','0D6DDF','B3CEEF','BFA4EF','000000','0000FF','0000FF','800080','EEEEEE','999966','0C5F0F','C49FFF','FF0000','','','','','','','','','','','','','','','','','','','','','','','','','','','','','現在の設定'),
   (2,'0D6DDF','FFFFFF','0D6DDF','DDDDDD','EEEEFF','7DDADF','E0EAEF','FFFFFF','C49FFF','DCD1EF','FFFFFF','0D6DDF','B3CEEF','BFA4EF','000000','0000FF','0000FF','800080','EEEEEE','999966','0C5F0F','C49FFF','FF0000','','','','','','','','','','','','','','','','','','','','','','','','','','','','','デフォルト');
+
+INSERT IGNORE INTO `c_admin_config` VALUES (NULL, 'OPENPNE_USE_FLASH_LIST', '1');
