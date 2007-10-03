@@ -240,27 +240,32 @@ function db_member_search($cond, $cond_like, $page_size, $page, $c_member_id, $p
     $page = intval($page);
     $page_size = intval($page_size);
 
-    $where = " WHERE true";
+    $wheres = array();
     $params = array();
 
     foreach ($cond as $key => $value) {
         if ($value) {
             if ($key == 'image') {
-                $where .= " AND image_filename <> ''";
+                $wheres[] = "image_filename <> ''";
             } else {
-                $where .= " AND ". db_escapeIdentifier($key) ." = ?";
+                $wheres[] = db_escapeIdentifier($key) . ' = ?';
                 $params[] = $value;
                 if ($key == 'birth_year') {
-                    $where .= " AND public_flag_birth_year = 'public'";
+                    $wheres[] = "public_flag_birth_year = 'public'";
                 }
             }
         }
     }
     foreach ($cond_like as $key => $value) {
         if ($value) {
-            $where .= " AND " . db_escapeIdentifier($key) . " LIKE ?";
-            $params[] = '%'.$value.'%';
+            $wheres[] = db_escapeIdentifier($key) . ' LIKE ?';
+            $params[] = '%' . $value . '%';
         }
+    }
+    if ($wheres) {
+        $where = ' WHERE ' . implode(' AND ', $wheres);
+    } else {
+        $where = '';
     }
 
     $from = " FROM c_member" . $hint;

@@ -37,19 +37,25 @@ class admin_do_csv_member extends OpenPNE_Action
     /**
      * メンバーリスト取得
      */
-    function db_get_c_member_list($start_id,$end_id)
+    function db_get_c_member_list($start_id, $end_id)
     {
         $params = array();
-        $sql = 'SELECT c_member_id FROM c_member ';
-        $sql .= ' WHERE true ' ;
+        $sql = 'SELECT c_member_id FROM c_member';
+        $wheres = array();
         if ($start_id > 1) {
-            $sql .= ' AND c_member_id >= ? ';
+            $wheres[] = 'c_member_id >= ?';
             $params[] = $start_id;
         }
         if ($end_id > 0) {
-            $sql .= ' AND c_member_id <= ? ';
+            $wheres[] = 'c_member_id <= ?';
             $params[] = $end_id;
         }
+        if ($wheres) {
+            $where = ' WHERE ' . implode(' AND ', $wheres);
+        } else {
+            $where = '';
+        }
+        $sql .= $where;
         $sql .= ' ORDER BY c_member_id';
         $ids = db_get_col($sql, $params);
     

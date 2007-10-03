@@ -1709,10 +1709,10 @@ function db_commu_search_c_commu4c_commu_category(
 {
     $select = 'SELECT c_commu.*';
 
-    $where = ' WHERE true';
+    $wheres = array();
     $params = array();
     if ($c_commu_category_id) {
-        $where .= ' AND c_commu.c_commu_category_id = ?';
+        $wheres[] = 'c_commu.c_commu_category_id = ?';
         $params[] = $c_commu_category_id;
     }
     if ($search_word) {
@@ -1720,10 +1720,15 @@ function db_commu_search_c_commu4c_commu_category(
         foreach ($words as $word) {
             $word = check_search_word($word);
 
-            $where .= ' AND (c_commu.name LIKE ? OR c_commu.info LIKE ?)';
+            $wheres[] = '(c_commu.name LIKE ? OR c_commu.info LIKE ?)';
             $params[] = '%'.$word.'%';
             $params[] = '%'.$word.'%';
         }
+    }
+    if ($wheres) {
+        $where = ' WHERE ' . implode(' AND ', $wheres);
+    } else {
+        $where = '';
     }
 
     switch ($val_order) {
@@ -1798,16 +1803,21 @@ function db_commu_c_commu_list4c_commu_category_id_search($c_commu_category_id, 
 {
     $sql = 'SELECT * FROM c_commu';
 
-    $where = ' WHERE true';
+    $wheres = array();
     $params = array();
     if ($search_word) {
-        $where .= ' AND (name LIKE ? OR info LIKE ?)';
+        $wheres[] = '(name LIKE ? OR info LIKE ?)';
         $params[] = '%'.$search_word.'%';
         $params[] = '%'.$search_word.'%';
     }
     if ($c_commu_category_id != 'all' && $c_commu_category_id) {
-        $where .= ' AND c_commu_category_id = ?';
+        $wheres[] = 'c_commu_category_id = ?';
         $params[] = intval($c_commu_category_id);
+    }
+    if ($wheres) {
+        $where = ' WHERE ' . implode(' AND ', $wheres);
+    } else {
+        $where = '';
     }
 
     $sql .= $where . ' ORDER BY r_datetime DESC';
