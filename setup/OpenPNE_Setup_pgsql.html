@@ -338,7 +338,7 @@ $ chmod 0755 bin/*.cron
 <div>
 <pre>
 # 6時にメールを送信＆20分毎にRSS更新＆5時にvacuum処理
-00   6 * * * root sh <var>OPENPNE_DIR</var>/bin/tool_send_dairy_news.cron     <var>OPENPNE_DIR</var>/bin/ [bin_path]/php
+00   6 * * * root sh <var>OPENPNE_DIR</var>/bin/tool_send_daily_news.cron     <var>OPENPNE_DIR</var>/bin/ [bin_path]/php
 00   6 * * * root sh <var>OPENPNE_DIR</var>/bin/tool_send_birthday_mail.cron  <var>OPENPNE_DIR</var>/bin/ [bin_path]/php
 00   6 * * * root sh <var>OPENPNE_DIR</var>/bin/tool_send_schedule_mail.cron  <var>OPENPNE_DIR</var>/bin/ [bin_path]/php
 */20 * * * * root sh <var>OPENPNE_DIR</var>/bin/tool_rss_cache.cron           <var>OPENPNE_DIR</var>/bin/ [bin_path]/php
