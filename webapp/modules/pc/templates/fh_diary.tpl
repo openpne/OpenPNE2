@@ -361,23 +361,61 @@
 <table border="0" cellspacing="0" cellpadding="0" style="width:524px;" class="border_01">
 <tr>
 <td style="width:36px;" class="bg_06"><img src="({t_img_url_skin filename=content_header_1})" style="width:30px;height:20px;" class="dummy"></td>
-<td style="width:486px;padding:2px 0px;" class="bg_06"><span class="b_b c_00"><span id="DOM_fh_diary_writer">({$target_member.nickname})</span>({if $type == "f"})さん({/if})の日記</span></td>
+<td style="width:236px; padding:2px 0px;" class="bg_06"><span class="b_b c_00"><span id="DOM_fh_diary_writer">({$target_member.nickname})</span>({if $type == "f"})さん({/if})の日記</span></td>
+<td style="width:250px; padding:2px 3px;" class="bg_06" align="right" valign="middle">
+({if $target_diary.public_flag == "public"})
+（全員に公開）
+({elseif $target_diary.public_flag == "friend"})
+（({$WORD_MY_FRIEND})まで公開）
+({elseif $target_diary.public_flag == "private"})
+（公開しない）
+({/if})
+</td>
 </tr>
 </table>
-<!-- ここまで：小タイトル -->
-({*ここまで：header*})
-({*ここから：body*})
-<!-- ここから：主内容 -->
+<!-- ここから：主内容＞＞前の日記／次の日記 -->
+<table border="0" cellspacing="0" cellpadding="0" style="width:524px;" class="border_01">
+({*********})
+<tr>
+<td style="width:524px;height:1px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+</tr>
+({*********})
+<tr>
+<!-- ************************************** -->
+<td align="left" style="width: 10px" class="bg_09"><img src="./skin/dummy.gif" alt="" style="width:10px;" class="dummy"></td>
+<td align="left" style="width: 252px;" class="bg_09">
+({if $c_diary_id_prev})
+<div style="padding:4px 3px;">
+<a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$c_diary_id_prev})">«前の日記</a>
+({else})
+&nbsp;
+({/if})
+</div>
+</td>
+
+<!-- ************************************** -->
+
+<td align="right" style="width: 252px;" class="bg_09">
+<div style="padding:4px 3px;">
+({if $c_diary_id_next})
+<a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$c_diary_id_next})">次の日記»</a>
+({else})
+&nbsp;
+({/if})
+</div>
+</td>
+<td align="right" style="width: 10px" class="bg_09"><img src="./skin/dummy.gif" alt="" style="width:10px;" class="dummy"></td>
+<!-- ************************************** -->
+</tr>
+({*********})
+</table>
+<!-- ここまで：主内容＞＞前の日記／次の日記 -->
 <!-- ここから：主内容＞＞日記表示 -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:524px;" class="border_01">
 ({*********})
 <tr>
-<td style="width:522px;height:1px;" class="bg_01" colspan="7"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-</tr>
-({*********})
-<tr>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-<td style="width:95px;" class="bg_05" align="center" valign="top" rowspan="5">
+<td style="width:95px;" class="bg_05" align="center" valign="top" rowspan="3">
 <div style="padding:4px 3px;">
 
 ({$target_diary.r_datetime|date_format:"%Y年%m月%d日<br>%H:%M"})
@@ -389,30 +427,6 @@
 <div style="padding:4px 3px;">
 
 <span id="DOM_fh_diary_title">({$target_diary.subject})</span>
-
-</div>
-</td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-</tr>
-({*********})
-<tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-<td style="width:426px;height:1px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-</tr>
-({*********})
-<tr>
-<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-<td class="bg_02" align="right" valign="middle">
-<div style="padding:4px 3px;">
-
-({if $target_diary.public_flag == "public"})
-全員に公開
-({elseif $target_diary.public_flag == "friend"})
-({$WORD_MY_FRIEND})まで公開
-({elseif $target_diary.public_flag == "private"})
-公開しない
-({/if})
 
 </div>
 </td>
@@ -514,43 +528,6 @@
 <!-- ***************************** -->
 
 <img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
-
-<!-- ********************************** -->
-<!-- ******ここから：前の日記／次の日記****** -->
-({if $c_diary_id_prev || $c_diary_id_next})
-
-<table cellspacing="0" cellpadding="0" border="0" style="width:540px;margin:0px auto;">
-<tr>
-<!-- ************************************** -->
-<td align="left" style="width: 10px"><img src="./skin/dummy.gif" alt="dummy" style="width:10px;" class="dummy"></td>
-<td align="left" style="width: 260px;">
-({if $c_diary_id_prev})
-<a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$c_diary_id_prev})">前の日記</a>
-({else})
-&nbsp;
-({/if})
-</td>
-
-<!-- ************************************** -->
-
-<td align="right" style="width: 260px;">
-({if $c_diary_id_next})
-<a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$c_diary_id_next})">次の日記</a>
-({else})
-&nbsp;
-({/if})
-</td>
-<td align="right" style="width: 10px"><img src="./skin/dummy.gif" alt="dummy" style="width:10px;" class="dummy"></td>
-<!-- ************************************** -->
-
-</tr>
-</table>
-
-<img class="v_spacer_l" alt="dummy" src="./skin/dummy.gif"/>
-
-({/if})
-<!-- ******ここまで：前の日記／次の日記****** -->
-<!-- ******************************** -->
 
 ({if $target_diary_comment_list})
 <!-- ********************************* -->
@@ -778,6 +755,43 @@
 
 <img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 ({/if})
+
+<!-- ********************************** -->
+<!-- ******ここから：前の日記／次の日記****** -->
+({if $c_diary_id_prev || $c_diary_id_next})
+
+<table cellspacing="0" cellpadding="0" border="0" style="width:540px;margin:0px auto;">
+<tr>
+<!-- ************************************** -->
+<td align="left" style="width: 10px"><img src="./skin/dummy.gif" alt="" style="width:10px;" class="dummy"></td>
+<td align="left" style="width: 260px;">
+({if $c_diary_id_prev})
+<a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$c_diary_id_prev})">«前の日記</a>
+({else})
+&nbsp;
+({/if})
+</td>
+
+<!-- ************************************** -->
+
+<td align="right" style="width: 260px;">
+({if $c_diary_id_next})
+<a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$c_diary_id_next})">次の日記»</a>
+({else})
+&nbsp;
+({/if})
+</td>
+<td align="right" style="width: 10px"><img src="./skin/dummy.gif" alt="dummy" style="width:10px;" class="dummy"></td>
+<!-- ************************************** -->
+
+</tr>
+</table>
+
+<img class="v_spacer_l" alt="dummy" src="./skin/dummy.gif"/>
+
+({/if})
+<!-- ******ここまで：前の日記／次の日記****** -->
+<!-- ******************************** -->
 
 <!-- ********************************** -->
 <!-- ******ここから：コメントを書く****** -->
