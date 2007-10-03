@@ -17,16 +17,8 @@
 <style type="text/css">
 <!--
 /*枠線要素*/
-.border_00 { border: #({$INC_HEADER_color_config.border_00}) 1px solid ; }
 .border_01 { border: #({$INC_HEADER_color_config.border_01}) 1px solid ; }
-.border_02 { border: #({$INC_HEADER_color_config.border_02}) 1px solid ; }
-.border_03 { border: #({$INC_HEADER_color_config.border_03}) 1px solid ; }
-.border_04 { border: #({$INC_HEADER_color_config.border_04}) 1px solid ; }
-.border_05 { border: #({$INC_HEADER_color_config.border_05}) 1px solid ; }
-.border_06 { border: #({$INC_HEADER_color_config.border_06}) 1px solid ; }
 .border_07 { border: #({$INC_HEADER_color_config.border_07}) 1px solid ; }
-.border_08 { border: #({$INC_HEADER_color_config.border_08}) 1px solid ; }
-.border_09 { border: #({$INC_HEADER_color_config.border_09}) 1px solid ; }
 .border_10 { border: #({$INC_HEADER_color_config.border_10}) 1px solid ; }
 
 /*背景要素*/
@@ -263,7 +255,6 @@ div.inc_page_header div.navi_global a.navi_global_9:hover {
 </style>
 <script type="text/javascript">
 <!--
-
 ({*テキスト入力欄の背景色変更*})
 TextFiledClassName_normal = 'text';
 TextFiledClassName_focus  = 'text_focus';
@@ -279,21 +270,6 @@ function setFocusClass() {
 		node.onblur  = function() { this.className = this.TFclass; };
 	});
 }
-
-({*二度押し対策*})
-/*
-Event.observe(window, 'load', setSubmitFunction, false);
-
-function setSubmitFunction() {
-	var SFs = $A(document.getElementsByTagName('form'));
-	SFs.each(function (node){
-		node.onsubmit = function() {
-			var obj= $A(node.elements);
-			obj.each( function(n){if(n.type== 'submit') n.disabled= true;})
-		};
-	});
-}
-*/
 //-->
 </script>
 </head>
