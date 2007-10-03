@@ -5,7 +5,7 @@
 ({**ここから：メインコンテンツ**})
 ({***************************})
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 <!-- ************************* -->
 <!-- ******ここから：検索****** -->
@@ -15,7 +15,7 @@
 ({*********})
 <tr>
 <td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
-<td style="width:566px;" class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:566px;height:7px;" class="dummy"></td>
+<td style="width:566px;" class="bg_00"><img src="./skin/dummy.gif" alt="dummy" style="width:566px;height:7px;" class="dummy"></td>
 <td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 ({*********})
@@ -41,11 +41,11 @@
 ({*********})
 <tr>
 <td style="width:150px;" class="bg_05" align="left" valign="middle">
-<img src="./skin/dummy.gif" alt="" class="v_spacer_s">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_s">
 <span class="c_01" style="padding:5px;">
 ニックネーム
 </span>
-<img src="./skin/dummy.gif" alt="" class="v_spacer_s">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_s">
 </td>
 
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
@@ -65,11 +65,11 @@
 ({*********})
 <tr>
 <td style="width:150px;" class="bg_05" align="left" valign="middle">
-<img src="./skin/dummy.gif" alt="" class="v_spacer_s">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_s">
 <span class="c_01" style="padding:5px;">
 生年月日
 </span>
-<img src="./skin/dummy.gif" alt="" class="v_spacer_s">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_s">
 </td>
 
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
@@ -92,11 +92,11 @@
 ({if $profile.disp_search})
 <tr>
 <td style="width:150px;" class="bg_05" align="left" valign="middle">
-<img src="./skin/dummy.gif" alt="" class="v_spacer_s">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_s">
 <span class="c_01" style="padding:5px;">
 ({$profile.caption})
 </span>
-<img src="./skin/dummy.gif" alt="" class="v_spacer_s">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_s">
 </td>
 
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
@@ -136,11 +136,11 @@
 
 <tr>
 <td style="width:150px;" class="bg_05" align="left" valign="middle">
-<img src="./skin/dummy.gif" alt="" class="v_spacer_s">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_s">
 <span class="c_01" style="padding:5px;">
 写真の有無
 </span>
-<img src="./skin/dummy.gif" alt="" class="v_spacer_s">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_s">
 </td>
 
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
@@ -198,7 +198,7 @@
 </tr>
 <tr>
 <td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
-<td style="width:566px;" class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:566px;height:7px;" class="dummy"></td>
+<td style="width:566px;" class="bg_00"><img src="./skin/dummy.gif" alt="dummy" style="width:566px;height:7px;" class="dummy"></td>
 <td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 </table>
@@ -207,7 +207,7 @@
 <!-- ******ここまで：検索****** -->
 <!-- ************************* -->
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 <!-- ************************* -->
 <!-- ******ここから：検索項目の一覧****** -->
@@ -215,7 +215,7 @@
 ({*********})
 <tr>
 <td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
-<td style="width:566px;" class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:566px;height:7px;" class="dummy"></td>
+<td style="width:566px;" class="bg_00"><img src="./skin/dummy.gif" alt="dummy" style="width:566px;height:7px;" class="dummy"></td>
 <td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 ({*********})
@@ -240,17 +240,17 @@
 
 <div class="border_01 bg_09" align="center">
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 <div style="width:490px;padding:20px 10px;margin:0px auto;" class="border_01 bg_03">
 検索項目の一覧と各項目のメンバー数を表示します。<br>
-<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_m">
 ({t_form _method=get m=pc a=page_h_search_list})
 <input type="submit" class="submit" value="　一覧を見る　">
 </form>
 </div>
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 </div>
 <!-- ここまで: 主内容 -->
@@ -264,7 +264,7 @@
 </tr>
 <tr>
 <td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
-<td style="width:566px;" class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:566px;height:7px;" class="dummy"></td>
+<td style="width:566px;" class="bg_00"><img src="./skin/dummy.gif" alt="dummy" style="width:566px;height:7px;" class="dummy"></td>
 <td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 </table>
@@ -272,7 +272,7 @@
 <!-- ******ここまで：検索項目の一覧****** -->
 <!-- ************************* -->
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 ({***************************})
 ({**ここまで：メインコンテンツ**})

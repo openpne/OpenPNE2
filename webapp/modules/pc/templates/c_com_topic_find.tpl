@@ -6,7 +6,7 @@
 ({***************************})
 ({capture name="keyword_url"})({$keyword|escape:url|smarty:nodefaults})({/capture})
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 <!-- ************************************ -->
 <!-- ******ここから：トピック検索****** -->
@@ -34,7 +34,7 @@
 <!-- ここから：主内容 -->
 <div class="border_01 bg_05" align="center">
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 <table border="0" cellspacing="0" cellpadding="0" style="width:562px;margin:0px auto;">
 ({*********})
@@ -51,7 +51,7 @@
 
 ({t_form _method=get m=pc a=page_c_com_topic_find})
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 キーワード<img src="({t_img_url_skin filename=icon_arrow_2})" class="icon">
 
@@ -89,7 +89,7 @@
 ({*********})
 </table>
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 </div>
 <!-- ここまで：主内容 -->
@@ -112,7 +112,7 @@
 
 ({if $c_commu_topic_search_list})
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 <!-- ************************************ -->
 <!-- ******ここから：トピック一覧****** -->
@@ -184,12 +184,12 @@
 <!-- ここから：主内容＞＞トピック一覧本体 -->
 <div class="border_01 bg_05" align="center">
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 <!-- ここから：主内容＞＞トピック一覧本体＞＞のループ部分 -->
 ({foreach from=$c_commu_topic_search_list item=c_topic_search})
 <div class="border_01 bg_09" style="width:562px;margin:0px auto;" align="center">
-<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_m">
 <table border="0" cellspacing="0" cellpadding="0" style="width:550px;margin:0px auto;">
 ({*********})
 <tr>
@@ -328,10 +328,10 @@
 </tr>
 ({*********})
 </table>
-<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_m">
 </div>
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 ({/foreach})
 <!-- ここまで：主内容＞＞トピック一覧本体＞＞のループ部分 -->
 
@@ -392,7 +392,7 @@
 
 ({/if})
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 ({***************************})
 ({**ここまで：メインコンテンツ**})

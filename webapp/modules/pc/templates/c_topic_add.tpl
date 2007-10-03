@@ -5,7 +5,7 @@
 ({**ここから：メインコンテンツ**})
 ({***************************})
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 <!-- ******************************************** -->
 <!-- ******ここから：新しいトピックを作成する****** -->
@@ -215,11 +215,11 @@
 <br>
 上記に反する場合、事前の通告なしに削除させていただく場合がありますのでご了承ください。<br>
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 <div align="center" style="text-align:center;">
 <input type="submit" class="submit" value="　確認画面　">
 </div>
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 </div>
 </td>
@@ -251,7 +251,7 @@
 <!-- ******ここまで：新しいトピックを作成する****** -->
 <!-- ******************************************** -->
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 
 ({***************************})

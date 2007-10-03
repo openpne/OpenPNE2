@@ -4,7 +4,7 @@
 ({**ここから：メインコンテンツ**})
 ({***************************})
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 <!-- ****************************** -->
 <!-- ******ここから：カレンダー****** -->
@@ -132,7 +132,7 @@
 <div class="padding_s" style="padding-top:0;">
 <a href="({t_url m=biz a=page_fh_biz_schedule_view})&amp;id=({$item_schedule.biz_schedule_id})">({$item_schedule.title})</a>
 </div>
-<img src="./skin/dummy.gif" alt="" style="width:80px;height:10px;" class="dummy">
+<img src="./skin/dummy.gif" alt="dummy" style="width:80px;height:10px;" class="dummy">
 	({/if})
 ({/foreach})
 
@@ -219,7 +219,7 @@
 <!-- ******ここまで：カレンダー****** -->
 <!-- ****************************** -->
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 ({***************************})
 ({**ここまで：メインコンテンツ**})
