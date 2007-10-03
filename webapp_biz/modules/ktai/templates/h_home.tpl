@@ -45,7 +45,7 @@
 ({if $anatani_c_commu_admin_confirm_list||$num_f_confirm_list||$num_message_not_is_read||$num_diary_not_is_read||$num_h_confirm_list||$anatani_c_commu_admin_confirm_list||$anatani_c_commu_sub_admin_confirm_list})
 <br>
 ({/if})
-<table width="100%" bgcolor="#({$ktai_color_config.bg_06})">
+<table width="100%" bgcolor="#({$ktai_color_config.bg_04})">
 <tr><td colspan="2" align="center">
 <hr color="#({$ktai_color_config.border_01})" size="3">
 ({if $birthday_flag})
@@ -125,7 +125,7 @@
 <a accesskey="2" name="a2" href="#a2">[i:126]</a>日記ｺﾒﾝﾄ記入履歴<br>
 </td></tr>
 ({foreach from=$c_diary_my_comment_list item=item})
-<tr><td bgcolor="#({cycle values="`$ktai_color_config.bg_09`,`$ktai_color_config.bg_07`"})">
+<tr><td bgcolor="#({cycle values="`$ktai_color_config.bg_09`,`$ktai_color_config.bg_10`"})">
 <font color="#({$ktai_color_config.font_06})">[({$item.r_datetime|date_format:"%m/%d"})]</font> ({$item.nickname|t_truncate:22:""})<br>
 <a href="({t_url m=ktai a=page_fh_diary})&amp;target_c_diary_id=({$item.c_diary_id})&amp;({$tail})">({$item.subject|t_truncate:28:""})(({$item.num_comment}))</a><br>
 </td></tr>
@@ -173,13 +173,13 @@
 <tr><td bgcolor="#({$ktai_color_config.bg_09})">
 <a href="({t_url m=ktai a=page_h_friend_find_all})&amp;({$tail})">ﾒﾝﾊﾞｰ検索</a><br>
 </td></tr>
-<tr><td bgcolor="#({$ktai_color_config.bg_07})">
+<tr><td bgcolor="#({$ktai_color_config.bg_10})">
 <a href="({t_url m=ktai a=page_h_diary_list_all})&amp;({$tail})">日記検索</a><br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_09})">
 <a href="({t_url m=ktai a=page_h_com_find_all})&amp;({$tail})">ｺﾐｭﾆﾃｨ検索</a><br>
 </td></tr>
-<tr><td bgcolor="#({$ktai_color_config.bg_07})">
+<tr><td bgcolor="#({$ktai_color_config.bg_10})">
 <hr color="#({$ktai_color_config.border_03})">
 </td></tr></table>
 <br>
@@ -205,35 +205,35 @@
 <a href="({t_url m=ktai a=page_h_config_mail})&amp;({$tail})">携帯ﾒｰﾙｱﾄﾞﾚｽ変更</a><br>
 ({if $smarty.const.OPENPNE_ENABLE_PC})
 </td></tr>
-<tr><td bgcolor="#({$ktai_color_config.bg_07})">
+<tr><td bgcolor="#({$ktai_color_config.bg_10})">
 <a href="({t_url m=ktai a=page_h_pc_send})&amp;({$tail})">PCｱﾄﾞﾚｽ登録</a><br>
 ({/if})
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_09})">
 <a href="({t_url m=ktai a=page_h_config_password})&amp;({$tail})">ﾊﾟｽﾜｰﾄﾞ変更</a><br>
 </td></tr>
-<tr><td bgcolor="#({$ktai_color_config.bg_07})">
+<tr><td bgcolor="#({$ktai_color_config.bg_10})">
 <a href="({t_url m=ktai a=page_h_config_password_query})&amp;({$tail})">秘密の質問・答え設定</a><br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_09})">
 <a href="({t_url m=ktai a=page_h_config_easy_login})&amp;({$tail})">かんたんﾛｸﾞｲﾝ設定</a><br>
 </td></tr>
-<tr><td bgcolor="#({$ktai_color_config.bg_07})">
+<tr><td bgcolor="#({$ktai_color_config.bg_10})">
 <hr color="#({$ktai_color_config.border_03})">
 </td></tr>
-<tr><td bgcolor="#({$ktai_color_config.bg_07})">
+<tr><td bgcolor="#({$ktai_color_config.bg_10})">
 <a href="({t_url m=ktai a=page_h_config_mail_receive})&amp;({$tail})">ﾒｰﾙ受信設定</a><br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_09})">
 <a href="({t_url m=ktai a=page_h_config_mail_ashiato})&amp;({$tail})">あしあとお知らせﾒｰﾙ設定</a><br>
 </td></tr>
-<tr><td bgcolor="#({$ktai_color_config.bg_07})">
+<tr><td bgcolor="#({$ktai_color_config.bg_10})">
 <a href="({t_url m=ktai a=page_h_config_public_flag_diary})&amp;({$tail})">日記の公開範囲設定</a><br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_09})">
 <a href="({t_url m=ktai a=page_h_config_access_block})&amp;({$tail})">ｱｸｾｽﾌﾞﾛｯｸ設定</a><br>
 </td></tr>
-<tr><td bgcolor="#({$ktai_color_config.bg_07})">
+<tr><td bgcolor="#({$ktai_color_config.bg_10})">
 <hr color="#({$ktai_color_config.border_03})">
 </td></tr></table>
 <br>
