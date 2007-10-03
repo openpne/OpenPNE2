@@ -44,7 +44,7 @@ function pne_cache_drop()
 {
     $arg_list = func_get_args();
     
-    if (OPENPNE_USE_FUNCITON_CACHE) {
+    if (OPENPNE_USE_FUNCTION_CACHE) {
         $cache =& get_cache_lite_function();
         return call_user_func_array(array(&$cache, 'drop'), $arg_list);
     } else {
