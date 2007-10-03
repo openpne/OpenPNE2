@@ -397,20 +397,22 @@ class mail_sns
             return false;
         }
 
-        if ($c_diary['image_filename_1'] && $c_diary['image_filename_2'] && $c_diary['image_filename_3']) {
-            $this->error_mail('日記画像の登録は最大三枚までです。');
-            m_debug_log('mail_sns::add_diary_image() image is full');
-            return false;
-        }
-
         // 登録する画像番号(1-3)を決める
         $target_number = 0;
-        if (!$c_diary['image_filename_1']) {
+        if ($c_diary['image_filename_1'] || $c_diary['image_filename_2'] || $c_diary['image_filename_3']) {
+            if (!$c_diary['image_filename_1']) {
+                $target_number = 1;
+            } elseif (!$c_diary['image_filename_2']) {
+                $target_number = 2;
+            } elseif (!$c_diary['image_filename_3']) {
+                $target_number = 3;
+            } else {
+                $this->error_mail('日記画像の登録は最大三枚までです。');
+                m_debug_log('mail_sns::add_diary_image() image is full');
+                return false;
+            }
+        } else {
             $target_number = 1;
-        } elseif (!$c_diary['image_filename_2']) {
-            $target_number = 2;
-        } elseif (!$c_diary['image_filename_3']) {
-            $target_number = 3;
         }
 
         // 画像登録
@@ -476,26 +478,22 @@ class mail_sns
             return false;
         }
 
-        if ($c_topic['image_filename1'] && $c_topic['image_filename2'] && $c_topic['image_filename3']) {
-            $this->error_mail('トピック・イベント画像の登録は最大三枚までです。');
-            m_debug_log('mail_sns::add_topic_image() image is full');
-            return false;
-        }
-
-        $c_topic_images = array(
-            'image_filename_1' => $c_topic['image_filename1'],
-            'image_filename_2' => $c_topic['image_filename2'],
-            'image_filename_3' => $c_topic['image_filename3'],
-        );
-
         // 登録する画像番号(1-3)を決める
         $target_number = 0;
-        if (!$c_topic_images['image_filename_1']) {
+        if ($c_topic['image_filename1'] || $c_topic['image_filename2'] || $c_topic['image_filename3']) {
+            if (!$c_topic['image_filename1']) {
+                $target_number = 1;
+            } elseif (!$c_topic['image_filename2']) {
+                $target_number = 2;
+            } elseif (!$c_topic['image_filename3']) {
+                $target_number = 3;
+            } else {
+                $this->error_mail('トピック・イベント画像の登録は最大三枚までです。');
+                m_debug_log('mail_sns::add_topic_image() image is full');
+                return false;
+            }
+        } else {
             $target_number = 1;
-        } elseif (!$c_topic_images['image_filename_2']) {
-            $target_number = 2;
-        } elseif (!$c_topic_images['image_filename_3']) {
-            $target_number = 3;
         }
 
         // 画像登録
@@ -503,9 +501,9 @@ class mail_sns
 
         if ($images = $this->decoder->get_images()) {
             $filename = 't_' . $c_commu_topic_id . '_' . $target_number . '_' . time() . '.jpg';
-            $c_topic_images['image_filename_' . $target_number] = $filename;
+            $c_topic['image_filename' . $target_number] = $filename;
             db_image_insert_c_image($filename, $images[0]);
-            db_commu_update_c_commu_topic_comment_images($c_topic['c_commu_topic_comment_id'], $c_topic_images['image_filename_1'], $c_topic_images['image_filename_2'], $c_topic_images['image_filename_3']);
+            db_commu_update_c_commu_topic_comment_images($c_topic['c_commu_topic_comment_id'], $c_topic['image_filename1'], $c_topic['image_filename2'], $c_topic['image_filename3']);
             return true;
         } else {
             $this->error_mail('トピック・イベント画像が添付されていないか、ファイルサイズが大きすぎるため、取得できませんでした。');
