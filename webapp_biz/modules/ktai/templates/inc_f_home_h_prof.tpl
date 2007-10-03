@@ -29,7 +29,7 @@
 <font color="#({$ktai_color_config.font_09})">※他のﾒﾝﾊﾞｰから見たあなたのﾍﾟｰｼﾞはこのようになります。<br>ﾌﾟﾛﾌｨｰﾙを変更する場合は <a href="({t_url m=ktai a=page_h_config_prof})&amp;({$tail})">「ﾌﾟﾛﾌｨｰﾙ変更」 </a>よりおこなえます。</font><br>
 ({/if})
 
-<table width="100%" bgcolor="#({$ktai_color_config.bg_06})">
+<table width="100%" bgcolor="#({$ktai_color_config.bg_04})">
 ({if !$is_h_prof})
 ({if ($is_friend || $friend_path)})
 <tr><td colspan="2" align="center">
