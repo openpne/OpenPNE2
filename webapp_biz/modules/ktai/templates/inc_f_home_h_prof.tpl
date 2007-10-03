@@ -33,7 +33,7 @@
 ({if !$is_h_prof})
 ({if ($is_friend || $friend_path)})
 <tr><td colspan="2" align="center">
-({if $friend_path})<a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$friend_path.c_member_id})">({$friend_path.nickname})</a>さんの({$WORD_FRIEND_HALF})({/if})
+({if $friend_path})<a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$friend_path.c_member_id})&amp;({$tail})">({$friend_path.nickname})</a>さんの({$WORD_FRIEND_HALF})({/if})
 ({if $is_friend})({$WORD_MY_FRIEND_HALF})({/if})
 <hr color="#({$ktai_color_config.border_02})">
 </td></tr>
