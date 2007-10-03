@@ -1,6 +1,7 @@
 -- update02
 ALTER TABLE `c_diary_comment` ADD COLUMN `number` int(11) NOT NULL default '0';
 
+DROP TABLE IF EXISTS `tmp_c_diary_comment`;
 CREATE TABLE `tmp_c_diary_comment` (
   `c_diary_comment_id` int(11) NOT NULL auto_increment,
   `number` int(11) NOT NULL default '0',
@@ -43,6 +44,7 @@ INSERT INTO `c_profile` VALUES (NULL,'PNE_MY_NEWS_DATETIME','My News（更新記
 ALTER TABLE c_image TYPE=MyISAM MAX_ROWS=190000;
 
 -- update11
+DROP TABLE IF EXISTS `c_blacklist`;
 CREATE TABLE `c_blacklist` (
   `c_blacklist_id` int(11) NOT NULL auto_increment,
   `easy_access_id` blob NOT NULL,
@@ -65,7 +67,8 @@ ALTER TABLE `c_member_pre` ADD COLUMN `is_disabled_regist_easy_access_id` tinyin
 ALTER TABLE `c_member_ktai_pre` ADD COLUMN `is_disabled_regist_easy_access_id` tinyint(1) NOT NULL default '0';
 
 -- update21
-CREATE TABLE IF NOT EXISTS `c_config_color` (
+DROP TABLE IF EXISTS `c_config_color`;
+CREATE TABLE `c_config_color` (
   `c_config_color_id` int(11) NOT NULL auto_increment,
   `color_0` char(6) NOT NULL default '',
   `color_1` char(6) NOT NULL default '',
@@ -122,7 +125,8 @@ CREATE TABLE IF NOT EXISTS `c_config_color` (
   PRIMARY KEY  (`c_config_color_id`)
 ) TYPE=MyISAM;
 
-CREATE TABLE IF NOT EXISTS `c_config_color_ktai` (
+DROP TABLE IF EXISTS `c_config_color_ktai`;
+CREATE TABLE `c_config_color_ktai` (
   `c_config_color_ktai_id` int(11) NOT NULL auto_increment,
   `color_0` char(6) NOT NULL default '',
   `color_1` char(6) NOT NULL default '',
