@@ -141,6 +141,7 @@ function fetch_inc_ktai_header()
     $ktai = new OpenPNE_KtaiUA();
     $inc_smarty->assign('is_au', $ktai->is_au());
     $inc_smarty->assign('is_softbank', $ktai->is_vodafone());
+    $inc_smarty->assign('is_docomo', $ktai->is_docomo());
 
     $inc_smarty->assign('ktai_color_config', util_get_color_config_ktai());
 

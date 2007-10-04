@@ -648,6 +648,11 @@ function util_get_color_config()
 function util_get_color_config_ktai()
 {
     $c_config_color = db_etc_c_config_color_ktai();
+
+    if (empty($c_config_color['color_23'])) {
+        $c_config_color['color_23'] = 'FFFFFF';
+    }
+
     $color_config = array(
         'bg_01' => $c_config_color['color_1'],
         'bg_02' => $c_config_color['color_2'],
@@ -664,7 +669,7 @@ function util_get_color_config_ktai()
         'border_03' => $c_config_color['color_13'],
         'font_01' => $c_config_color['color_14'],
         'font_02' => $c_config_color['color_15'],
-        'font_03' => $c_config_color['color_16'],
+        'font_03' => $c_config_color['color_23'],
         'font_04' => $c_config_color['color_17'],
         'font_05' => $c_config_color['color_18'],
         'font_06' => $c_config_color['color_19'],
