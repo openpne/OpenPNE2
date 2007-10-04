@@ -300,7 +300,7 @@
 
 </td>
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-<td class="bg_02" align="left" valign="middle">
+<td style="width:400px;" class="bg_02" align="left" valign="middle">
 
 <div class="padding_s lh_120">
 
@@ -621,7 +621,7 @@
 <tr>
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-<td class="bg_02" align="left" valign="middle">
+<td class="bg_02" align="left" valign="middle" style="width:483px;">
 
 ({if $item.image_filename1 || $item.image_filename2 || $item.image_filename3})
 <div class="padding_s lh_120">
