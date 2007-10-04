@@ -27,7 +27,7 @@ class admin_page_edit_c_sns_config_ktai extends OpenPNE_Action
             'color_13' => 'border_03',
             'color_14' => 'font_01',
             'color_15' => 'font_02',
-            'color_16' => 'font_03',
+            'color_23' => 'font_03',
             'color_17' => 'font_04',
             'color_18' => 'font_05',
             'color_19' => 'font_06',
