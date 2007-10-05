@@ -680,4 +680,50 @@ function util_get_color_config_ktai()
     return $color_config;
 }
 
+/**
+ * メンバー登録を行う
+ * 
+ * @param array $c_member
+ * @param array $c_member_secure
+ * @param array $c_member_profile_list
+ * @return int
+ */
+function util_regist_c_member($c_member, $c_member_secure, $c_member_profile_list)
+{
+    // メール受信設定をデフォルト値に
+    $c_member['is_receive_mail'] = 1;
+    $c_member['is_receive_ktai_mail'] = 1;
+    $c_member['is_receive_daily_news'] = 1;
+
+    // メンバー登録
+    $u = db_member_insert_c_member($c_member, $c_member_secure);
+    if ($u === false) {  // メンバー登録に失敗した場合
+        return false;
+    }
+
+    if (OPENPNE_USE_POINT_RANK) {
+        //入会者にポイント加算
+        $point = db_action_get_point4c_action_id(1);
+        db_point_add_point($u, $point);
+
+        //メンバー招待をした人にポイント加算
+        $point = db_action_get_point4c_action_id(7);
+        db_point_add_point($c_member['c_member_id_invite'], $point);
+    }
+
+    // c_member_profile
+    db_member_update_c_member_profile($u, $c_member_profile_list);
+
+    // 招待者とフレンドリンク
+    db_friend_insert_c_friend($u, $c_member['c_member_id_invite']);
+
+    //管理画面で指定したコミュニティに強制参加
+    $c_commu_id_list = db_commu_regist_join_list();
+    foreach ($c_commu_id_list as $c_commu_id) {
+        db_commu_join_c_commu($c_commu_id, $u);
+    }
+
+    return $u;
+}
+
 ?>

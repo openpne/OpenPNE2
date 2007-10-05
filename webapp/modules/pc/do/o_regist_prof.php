@@ -131,9 +131,6 @@ class pc_do_o_regist_prof extends OpenPNE_Action
                 // メンバー登録時の携帯個体識別番号取得設定が「PC・携帯登録時に個体識別番号を必須にする」でない場合、メンバー登録処理をおこなう
                 $c_member = $prof;
                 $c_member['c_member_id_invite'] = $pre['c_member_id_invite'];
-                $c_member['is_receive_mail'] = 1;
-                $c_member['is_receive_ktai_mail'] = 1;
-                $c_member['is_receive_daily_news'] = 1;
                 $c_member_secure = array(
                     'password' => $prof['password'],
                     'password_query_answer' => $prof['c_password_query_answer'],
@@ -141,30 +138,10 @@ class pc_do_o_regist_prof extends OpenPNE_Action
                     'ktai_address' => '',
                     'regist_address' => $pre['pc_address'],
                 );
-                $u = db_member_insert_c_member($c_member, $c_member_secure);
-        
-                if (OPENPNE_USE_POINT_RANK) {
-                    //入会者にポイント加算
-                    $point = db_action_get_point4c_action_id(1);
-                    db_point_add_point($u, $point);
-        
-                    //メンバー招待をした人にポイント付与
-                    $point = db_action_get_point4c_action_id(7);
-                    db_point_add_point($pre['c_member_id_invite'], $point);
-                }
-        
-                // c_member_profile
-                db_member_update_c_member_profile($u, $c_member_profile_list);
-        
-                // 招待者とフレンドリンク
-                db_friend_insert_c_friend($u, $pre['c_member_id_invite']);
-        
-                //管理画面で指定したコミュニティに強制参加
-                $c_commu_id_list = db_commu_regist_join_list();
-                foreach ($c_commu_id_list as $c_commu_id) {
-                    db_commu_join_c_commu($c_commu_id, $u);
-                }
-        
+
+                // メンバー登録
+                $u = util_regist_c_member($c_member, $c_member_secure, $c_member_profile_list);
+
                 // pre の内容を削除
                 db_member_delete_c_member_pre4sid($sid);
         
