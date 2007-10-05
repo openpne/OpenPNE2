@@ -137,6 +137,14 @@ function db_commu_c_commu_topic_comment_number4c_commu_topic_id($c_commu_topic_i
     return db_commu_get_max_number4topic($c_commu_topic_id) + 1;
 }
 
+function db_commu_c_commu_topic_comment_count($c_commu_topic_id)
+{
+    var_dump($c_commu_topic_id);
+    $sql = 'SELECT COUNT(*) FROM c_commu_topic_comment'
+        . ' WHERE c_commu_topic_id = ?';
+    return db_get_one($sql, array($c_commu_topic_id));
+}
+
 //// 判定
 
 /** 
