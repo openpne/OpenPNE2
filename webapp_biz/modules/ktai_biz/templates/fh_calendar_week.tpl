@@ -11,14 +11,9 @@
 <font color="#({$ktai_color_config.font_09})">※({$msg})</font><br>
 ({/if})
 ({*BEGIN:container*})
-<center>
-<a href="({t_url m=ktai_biz a=page_fh_calendar_week})&amp;target_id=({$c_member.c_member_id})&amp;w=({$w-1})&amp;({$tail})" accesskey="4">[i:128]前の週</a> 
-<a href="({t_url m=ktai_biz a=page_fh_calendar_week})&amp;target_id=({$c_member.c_member_id})&amp;({$tail})" accesskey="5">[i:129]今週</a>
-<a href="({t_url m=ktai_biz a=page_fh_calendar_week})&amp;target_id=({$c_member.c_member_id})&amp;w=({$w+1})&amp;({$tail})" accesskey="6">[i:130]次の週</a><br>
-</center>
 ({if $calendar})
 <table width="100%">
-<tr><td>
+<tr><td bgcolor="#({$ktai_color_config.bg_07})">
 <hr color="#({$ktai_color_config.border_02})">
 </td></tr>
 ({foreach from=$calendar item=item name=calendar})
@@ -71,7 +66,7 @@
 ({else})
 ({/if})
 </td></tr>
-<tr><td>
+<tr><td bgcolor="#({$ktai_color_config.bg_07})">
 <hr color="#({$ktai_color_config.border_02})">
 </td></tr>
 ({/foreach})
