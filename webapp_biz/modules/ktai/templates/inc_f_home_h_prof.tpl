@@ -41,18 +41,18 @@
 ({if $days_birthday == 0})({* 誕生日当日　*})
 <tr><td colspan="2" align="center">
 <a href="({t_url m=ktai a=page_f_message_send})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">☆Happy Birthday☆<br>
-お誕生日にﾒｯｾｰｼﾞを送りましょう</a><br>
+お誕生日にﾒｯｾｰｼﾞを送りましょう</a>
+<hr color="#({$ktai_color_config.border_02})">
 </td></tr>
 ({elseif $days_birthday <= 3})({* 誕生日3日以内 *})
 <tr><td colspan="2" align="center">
 <a href="({t_url m=ktai a=page_f_message_send})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">☆もうすぐ誕生日です!☆<br>
-お誕生日にはﾒｯｾｰｼﾞを送りましょう</a><br>
+お誕生日にはﾒｯｾｰｼﾞを送りましょう</a>
+<hr color="#({$ktai_color_config.border_02})">
 </td></tr>
 ({/if})
 ({/if})
-
 <tr><td colspan="2" align="center">
-<hr color="#({$ktai_color_config.border_01})">
 [i:69]<a href="({t_url m=ktai_biz a=page_fh_biz_todo_list})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">Todoﾘｽﾄ</a>/[i:176]<a href="({t_url m=ktai_biz a=page_fh_calendar_week})&amp;target_id=({$target_c_member.c_member_id})&amp;({$tail})">週間ｶﾚﾝﾀﾞｰ</a><br>
 <hr color="#({$ktai_color_config.border_02})">
 </td></tr>
