@@ -18,7 +18,7 @@
 ({$inc_ktai_entry_point[3]|smarty:nodefaults})
 ({/if})
 ({if $c_siteadmin})
-({$c_siteadmin|smarty:nodefaults})<br>
+({$c_siteadmin|smarty:nodefaults})
 ({/if})
 
 ({if $relation.wait==1})
