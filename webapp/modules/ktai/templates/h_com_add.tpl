@@ -20,11 +20,10 @@
 <textarea name="info" rows="6"></textarea><br>
 <br>
 <font color="#({$ktai_color_config.font_06})">参加条件と公開範囲：</font><br>
-<select name="public_flag">
-<option value="public" selected="selected">誰でも参加可能、掲示板は全員に公開
-<option value="auth_sns">参加には管理者の承認が必要、掲示板は全員に公開
-<option value="auth_commu_member">参加には管理者の承認が必要、掲示板はｺﾐｭﾆﾃｨﾒﾝﾊﾞｰにのみ公開
-</select><br>
+<input name="public_flag" type="radio" value="public" checked="checked">誰でも参加可能、掲示板は全員に公開<br>
+<input name="public_flag" type="radio" value="auth_sns">参加には管理者の承認が必要、掲示板は全員に公開<br>
+<input name="public_flag" type="radio" value="auth_commu_member">参加には管理者の承認が必要、掲示板はｺﾐｭﾆﾃｨﾒﾝﾊﾞｰにのみ公開<br>
+<br>
 <hr color="#({$ktai_color_config.border_01})">
 <center>
 <input type="submit" value="ｺﾐｭﾆﾃｨを作成する">
