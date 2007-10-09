@@ -53,7 +53,7 @@
 </td></tr>
 ({/strip})
 ({/foreach})
-<tr><td>
+<tr><td bgcolor="#({$ktai_color_config.bg_07})">
 <hr color="#({$ktai_color_config.border_01})">
 </td></tr>
 ({else})
@@ -78,7 +78,7 @@
 </td></tr>
 ({/strip})
 ({/foreach})
-<tr><td>
+<tr><td bgcolor="#({$ktai_color_config.bg_07})">
 <hr color="#({$ktai_color_config.border_02})">
 </td></tr>
 ({/if})
@@ -86,7 +86,7 @@
 ({foreachelse})
 ﾗﾝｷﾝｸﾞﾃﾞｰﾀがありません<br>
 </td></tr>
-<tr><td>
+<tr><td bgcolor="#({$ktai_color_config.bg_07})">
 <hr color="#({$ktai_color_config.border_02})">
 </td></tr>
 ({/foreach})
