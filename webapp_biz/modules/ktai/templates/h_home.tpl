@@ -19,10 +19,10 @@
 ({/if})
 </table>
 ({if $inc_ktai_entry_point[3]})
-({$inc_ktai_entry_point[3]|smarty:nodefaults})<br>
+({$inc_ktai_entry_point[3]|smarty:nodefaults})
 ({/if})
 ({if $c_siteadmin})
-({$c_siteadmin|smarty:nodefaults})<br>
+({$c_siteadmin|smarty:nodefaults})
 ({/if})
 ({if $num_f_confirm_list})
 <a href="({t_url m=ktai a=page_h_confirm_list})&amp;({$tail})"><font color="#({$ktai_color_config.font_09})">★承認待ちのﾒﾝﾊﾞｰ({$num_f_confirm_list})名</font></a><br>
