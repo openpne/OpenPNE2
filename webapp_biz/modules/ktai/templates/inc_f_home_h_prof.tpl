@@ -38,6 +38,10 @@
 <hr color="#({$ktai_color_config.border_02})">
 </td></tr>
 ({/if})
+<tr><td colspan="2" align="center">
+[i:69]<a href="({t_url m=ktai_biz a=page_fh_biz_todo_list})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">Todoﾘｽﾄ</a>/[i:176]<a href="({t_url m=ktai_biz a=page_fh_calendar_week})&amp;target_id=({$target_c_member.c_member_id})&amp;({$tail})">週間ｶﾚﾝﾀﾞｰ</a><br>
+<hr color="#({$ktai_color_config.border_02})">
+</td></tr>
 ({if $days_birthday == 0})({* 誕生日当日　*})
 <tr><td colspan="2" align="center">
 <a href="({t_url m=ktai a=page_f_message_send})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">☆Happy Birthday☆<br>
@@ -50,12 +54,6 @@
 </td></tr>
 ({/if})
 ({/if})
-
-<tr><td colspan="2" align="center">
-<hr color="#({$ktai_color_config.border_01})">
-[i:69]<a href="({t_url m=ktai_biz a=page_fh_biz_todo_list})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">Todoﾘｽﾄ</a>/[i:176]<a href="({t_url m=ktai_biz a=page_fh_calendar_week})&amp;target_id=({$target_c_member.c_member_id})&amp;({$tail})">週間ｶﾚﾝﾀﾞｰ</a><br>
-<hr color="#({$ktai_color_config.border_02})">
-</td></tr>
 
 <tr><td align="center" width="50%" valign="top">
 <img src="({t_img_url filename=$target_c_member.image_filename w=120 h=120 f=jpg noimg=no_image})" alt="({$target_c_member.nickname})さん"><br>
