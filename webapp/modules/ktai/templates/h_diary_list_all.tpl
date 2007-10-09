@@ -9,7 +9,7 @@
 <font color="#({$ktai_color_config.font_06})">(({$c_diary_search_list_count|default:"0"})件)</font><br>
 </center>
 <table width="100%">
-<tr><td>
+<tr><td bgcolor="#({$ktai_color_config.bg_07})">
 <hr color="#({$ktai_color_config.border_02})">
 </td></tr>
 
@@ -22,7 +22,7 @@
 ({/if})
 <br>
 </td></tr>
-<tr><td>
+<tr><td bgcolor="#({$ktai_color_config.bg_07})">
 <hr color="#({$ktai_color_config.border_02})">
 </td></tr>
 ({/foreach})

@@ -140,7 +140,7 @@
 <br>
 ({if $is_h_prof && $item.public_flag == 'friend'})<font color="#({$ktai_color_config.font_09})">※({$WORD_MY_FRIEND_HALF})まで公開</font><br>({/if})
 </td></tr>
-<tr><td>
+<tr><td bgcolor="#({$ktai_color_config.bg_07})">
 <hr color="#({$ktai_color_config.border_02})">
 </td></tr>
 ({/foreach})
@@ -158,7 +158,7 @@
 <tr><td bgcolor="#({cycle values="`$ktai_color_config.bg_09`,`$ktai_color_config.bg_07`"})">
 <a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$c_friend.c_member_id_to})&amp;({$tail})">({$c_friend.nickname|t_truncate:30:""})(({$c_friend.count_friend}))</a><br>
 </td></tr>
-<tr><td>
+<tr><td bgcolor="#({$ktai_color_config.bg_10})">
 <hr color="#({$ktai_color_config.border_03})">
 </td></tr>
 ({/foreach})
@@ -175,7 +175,7 @@
 <tr><td bgcolor="#({cycle values="`$ktai_color_config.bg_06`,`$ktai_color_config.bg_07`"})">
 <a href="({t_url m=ktai a=page_c_home})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">({$c_commu.name|t_truncate:30:""})(({$c_commu.count_members}))</a><br>
 </td></tr>
-<tr><td>
+<tr><td bgcolor="#({$ktai_color_config.bg_07})">
 <hr color="#({$ktai_color_config.border_02})">
 </td></tr>
 ({/foreach})

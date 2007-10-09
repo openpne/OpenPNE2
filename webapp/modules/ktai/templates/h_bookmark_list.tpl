@@ -22,7 +22,7 @@
 <a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$c_member.c_member_id})&amp;({$tail})">({$c_member.nickname})</a>
 [<a href="({t_url m=ktai a=do_f_bookmark_delete_delete_c_bookmark})&amp;target_c_member_id=({$c_member.c_member_id})&amp;({$tail})">削除</a>]
 </td></tr>
-<tr><td>
+<tr><td bgcolor="#({$ktai_color_config.bg_07})">
 <hr color="#({$ktai_color_config.border_02})">
 </td></tr>
 ({/foreach})

@@ -31,7 +31,7 @@
 [<a href="({t_url m=ktai a=do_h_confirm_list_delete_c_friend_confirm})&amp;target_c_friend_confirm_id=({$anatani_c_friend_confirm.c_friend_confirm_id})&amp;({$tail})">拒否</a>]<br>
 </center>
 </td></tr>
-<tr><td>
+<tr><td bgcolor="#({$ktai_color_config.bg_07})">
 <hr color="#({$ktai_color_config.border_02})">
 </td></tr>
 ({/foreach})
@@ -63,7 +63,7 @@
 [<a href="({t_url m=ktai a=do_h_confirm_list_delete_c_commu_member_confirm})&amp;target_c_commu_member_confirm_id=({$item.c_commu_member_confirm_id})&amp;({$tail})">拒否</a>]<br>
 </center>
 </td></tr>
-<tr><td>
+<tr><td bgcolor="#({$ktai_color_config.bg_10})">
 <hr color="#({$ktai_color_config.border_03})">
 </td></tr>
 ({/foreach})
@@ -95,7 +95,7 @@
 </center>
 <br>
 </td></tr>
-<tr><td>
+<tr><td bgcolor="#({$ktai_color_config.bg_07})">
 <hr color="#({$ktai_color_config.border_02})">
 </td></tr>
 ({/foreach})
@@ -126,7 +126,7 @@
 </center>
 <br>
 </td></tr>
-<tr><td>
+<tr><td bgcolor="#({$ktai_color_config.bg_10})">
 <hr color="#({$ktai_color_config.border_03})">
 </td></tr>
 ({/foreach})
@@ -152,7 +152,7 @@
 [<a href="({t_url m=ktai a=do_h_confirm_list_delete_c_friend_confirm})&amp;target_c_friend_confirm_id=({$anataga_c_friend_confirm.c_friend_confirm_id})&amp;({$tail})">依頼削除</a>]<br>
 </center>
 </td></tr>
-<tr><td>
+<tr><td bgcolor="#({$ktai_color_config.bg_07})">
 <hr color="#({$ktai_color_config.border_02})">
 </td></tr>
 ({/foreach})
@@ -180,7 +180,7 @@
 [<a href="({t_url m=ktai a=do_h_confirm_list_delete_c_commu_member_confirm})&amp;target_c_commu_member_confirm_id=({$anataga_c_commu_member_confirm.c_commu_member_confirm_id})&amp;({$tail})">依頼削除</a>]<br><br>
 </center>
 </td></tr>
-<tr><td>
+<tr><td bgcolor="#({$ktai_color_config.bg_10})">
 <hr color="#({$ktai_color_config.border_03})">
 </td></tr>
 ({/foreach})
@@ -210,7 +210,7 @@
 [<a href="({t_url m=ktai a=do_h_confirm_list_delete_c_commu_admin_confirm})&amp;target_c_commu_admin_confirm_id=({$item.c_commu_admin_confirm_id})&amp;({$tail})">依頼削除</a>]<br>
 </center>
 </td></tr>
-<tr><td>
+<tr><td bgcolor="#({$ktai_color_config.bg_07})">
 <hr color="#({$ktai_color_config.border_02})">
 </td></tr>
 ({/foreach})
@@ -239,7 +239,7 @@
 [<a href="({t_url m=ktai a=do_h_confirm_list_delete_c_commu_sub_admin_confirm})&amp;target_c_commu_sub_admin_confirm_id=({$item.c_commu_sub_admin_confirm_id})&amp;({$tail})">依頼削除</a>]<br>
 </center>
 </td></tr>
-<tr><td>
+<tr><td bgcolor="#({$ktai_color_config.bg_10})">
 <hr color="#({$ktai_color_config.border_02})">
 </td></tr>
 ({/foreach})
