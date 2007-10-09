@@ -11,18 +11,14 @@
 <hr color="#({$ktai_color_config.border_01})">
 <font color="#({$ktai_color_config.font_06})">ｺﾒﾝﾄ:</font><br>
 
-({foreach from=$c_commu_topic_comment_list item=item})
-({if $item.number != 0})
-({$item.r_datetime|date_format:"%y/%m/%d %H:%M"})<br>
-({if $item.nickname})<a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})&amp;({$tail})">({$item.nickname})</a>({/if})
+({$c_commu_topic_comment.r_datetime|date_format:"%y/%m/%d %H:%M"})<br>
+({if $c_commu_topic_comment.nickname})<a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$c_commu_topic_comment.c_member_id})&amp;({$tail})">({$c_commu_topic_comment.nickname})</a>({/if})
 <br>
-({$item.body|t_url2a_ktai|nl2br})<br>
-({if $item.image_filename1})写真：[<a href="({t_img_url filename=$item.image_filename1 w=120 h=120 f=jpg})">小</a>/<a href="({t_img_url filename=$item.image_filename1 w=$smarty.const.OPENPNE_IMG_KTAI_MAX_WIDTH h=$smarty.const.OPENPNE_IMG_KTAI_MAX_HEIGHT f=jpg})">大</a>]<br>({/if})
-({if $item.image_filename2})写真：[<a href="({t_img_url filename=$item.image_filename2 w=120 h=120 f=jpg})">小</a>/<a href="({t_img_url filename=$item.image_filename2 w=$smarty.const.OPENPNE_IMG_KTAI_MAX_WIDTH h=$smarty.const.OPENPNE_IMG_KTAI_MAX_HEIGHT f=jpg})">大</a>]<br>({/if})
-({if $item.image_filename3})写真：[<a href="({t_img_url filename=$item.image_filename3 w=120 h=120 f=jpg})">小</a>/<a href="({t_img_url filename=$item.image_filename3 w=$smarty.const.OPENPNE_IMG_KTAI_MAX_WIDTH h=$smarty.const.OPENPNE_IMG_KTAI_MAX_HEIGHT f=jpg})">大</a>]<br>({/if})
+({$c_commu_topic_comment.body|t_url2a_ktai|nl2br})<br>
+({if $c_commu_topic_comment.image_filename1})写真：[<a href="({t_img_url filename=$c_commu_topic_comment.image_filename1 w=120 h=120 f=jpg})">小</a>/<a href="({t_img_url filename=$c_commu_topic_comment.image_filename1 w=$smarty.const.OPENPNE_IMG_KTAI_MAX_WIDTH h=$smarty.const.OPENPNE_IMG_KTAI_MAX_HEIGHT f=jpg})">大</a>]<br>({/if})
+({if $c_commu_topic_comment.image_filename2})写真：[<a href="({t_img_url filename=$c_commu_topic_comment.image_filename2 w=120 h=120 f=jpg})">小</a>/<a href="({t_img_url filename=$c_commu_topic_comment.image_filename2 w=$smarty.const.OPENPNE_IMG_KTAI_MAX_WIDTH h=$smarty.const.OPENPNE_IMG_KTAI_MAX_HEIGHT f=jpg})">大</a>]<br>({/if})
+({if $c_commu_topic_comment.image_filename3})写真：[<a href="({t_img_url filename=$c_commu_topic_comment.image_filename3 w=120 h=120 f=jpg})">小</a>/<a href="({t_img_url filename=$c_commu_topic_comment.image_filename3 w=$smarty.const.OPENPNE_IMG_KTAI_MAX_WIDTH h=$smarty.const.OPENPNE_IMG_KTAI_MAX_HEIGHT f=jpg})">大</a>]<br>({/if})
 <br>
-({/if})
-({/foreach})
 
 <hr color="#({$ktai_color_config.border_01})">
 <center>
