@@ -41,6 +41,7 @@
 <font color="#({$ktai_color_config.font_06})">※写真は3枚以上登録できません</font><br>
 <font color="#({$ktai_color_config.font_06})">※ﾀｲﾄﾙと本文は反映されません</font><br>
 <a href="mailto:({$mail_address})">ﾒｰﾙ送信</a><br>
+<font color="#({$ktai_color_config.font_09})">※1回のﾒｰﾙで登録できる画像は1枚までです</font><br>
 ({/if})
 <hr color="#({$ktai_color_config.border_01})">
 [i:90]<a href="({t_url m=ktai a=page_h_diary_edit})&amp;target_c_diary_id=({$target_c_diary.c_diary_id})&amp;({$tail})">日記の編集</a><br>
