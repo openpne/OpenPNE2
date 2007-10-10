@@ -112,11 +112,11 @@
 <hr color="#({$ktai_color_config.border_02})">
 </td></tr>
 ({/foreach})
-<tr><td align="right">
 ({if $c_diary_friend_list})
+<tr><td align="right">
 <font color="#({$ktai_color_config.font_07})">⇒</font><a href="({t_url m=ktai a=page_h_diary_list_friend})&amp;({$tail})">もっと見る</a><br>
-({/if})
 </td></tr>
+({/if})
 </table>
 <br>
 
@@ -203,12 +203,12 @@
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_09})">
 <a href="({t_url m=ktai a=page_h_config_mail})&amp;({$tail})">携帯ﾒｰﾙｱﾄﾞﾚｽ変更</a><br>
-({if $smarty.const.OPENPNE_ENABLE_PC})
 </td></tr>
+({if $smarty.const.OPENPNE_ENABLE_PC})
 <tr><td bgcolor="#({$ktai_color_config.bg_10})">
 <a href="({t_url m=ktai a=page_h_pc_send})&amp;({$tail})">PCｱﾄﾞﾚｽ登録</a><br>
-({/if})
 </td></tr>
+({/if})
 <tr><td bgcolor="#({$ktai_color_config.bg_09})">
 <a href="({t_url m=ktai a=page_h_config_password})&amp;({$tail})">ﾊﾟｽﾜｰﾄﾞ変更</a><br>
 </td></tr>
