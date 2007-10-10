@@ -4,7 +4,7 @@
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
-class ktai_do_o_logout extends OpenPNE_Action
+class ktai_do_h_logout extends OpenPNE_Action
 {
     function execute($requests)
     {
