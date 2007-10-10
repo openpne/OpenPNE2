@@ -122,16 +122,7 @@ class admin_do_import_c_member extends OpenPNE_Action
                 'regist_address' => $mail_address,
             );
 
-            $u = db_member_insert_c_member($c_member, $c_member_secure);
-            // 招待者とフレンドリンク
-            db_friend_insert_c_friend($u, 1);
-
-            //管理画面で指定したコミュニティに強制参加
-            $c_commu_id_list = db_commu_regist_join_list();
-            foreach ($c_commu_id_list as $c_commu_id) {
-                db_commu_join_c_commu($c_commu_id, $u);
-            }
-
+            $u = util_regist_c_member($c_member, $c_member_secure);
             // --- データのインポート ここまで
 
         }
