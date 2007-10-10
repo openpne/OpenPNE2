@@ -686,9 +686,10 @@ function util_get_color_config_ktai()
  * @param array $c_member
  * @param array $c_member_secure
  * @param array $c_member_profile_list
+ * @param bool $is_password_encrypted    パスワードが既に暗号化済みかどうか
  * @return int
  */
-function util_regist_c_member($c_member, $c_member_secure, $c_member_profile_list)
+function util_regist_c_member($c_member, $c_member_secure, $c_member_profile_list = array(), $is_password_encrypted = false)
 {
     // メール受信設定をデフォルト値に
     $c_member['is_receive_mail'] = 1;
@@ -696,7 +697,7 @@ function util_regist_c_member($c_member, $c_member_secure, $c_member_profile_lis
     $c_member['is_receive_daily_news'] = 1;
 
     // メンバー登録
-    $u = db_member_insert_c_member($c_member, $c_member_secure);
+    $u = db_member_insert_c_member($c_member, $c_member_secure, $is_password_encrypted);
     if ($u === false) {  // メンバー登録に失敗した場合
         return false;
     }
