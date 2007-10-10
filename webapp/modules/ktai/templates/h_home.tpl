@@ -238,9 +238,9 @@
 
 ■<a href="({t_url m=ktai a=page_o_sns_kiyaku})">利用規約</a><br>
 ■<a href="({t_url m=ktai a=page_o_sns_privacy})">ﾌﾟﾗｲﾊﾞｼｰﾎﾟﾘｼｰ</a><br>
-■<a href="({t_url m=ktai a=do_o_logout})&amp;({$tail})">ﾛｸﾞｱｳﾄ</a><br>
 ({if $u!=1})
 ■<a href="({t_url m=ktai a=page_h_taikai_confirm})&amp;({$tail})">退会手続き</a><br>
 ({/if})
+■<a href="({t_url m=ktai a=do_h_logout})&amp;({$tail})">ﾛｸﾞｱｳﾄ</a><br>
 
 ({$inc_ktai_footer|smarty:nodefaults})
