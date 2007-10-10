@@ -63,14 +63,16 @@
 </td>
 <td valign="top">
 ({strip})
-<font color="#({$ktai_color_config.font_06})">ID：</font>({$target_c_member.c_member_id})<br>
+<font color="#({$ktai_color_config.font_06})">ID：</font><br>
+({$target_c_member.c_member_id})<br>
 
 ({capture name="birth"})
-({if $target_c_member.age !== NULL && $target_c_member.public_flag_birth_year == 'private' && $target_c_member.public_flag_birth_year == 'public' || $is_h_prof || ($target_c_member.public_flag_birth_year == 'friend' && $is_friend)})<font color="#({$ktai_color_config.font_06})">年齢：</font>({$target_c_member.age})歳<br>
+({if $target_c_member.age !== NULL && $target_c_member.public_flag_birth_year == 'private' && $target_c_member.public_flag_birth_year == 'public' || $is_h_prof || ($target_c_member.public_flag_birth_year == 'friend' && $is_friend)})<font color="#({$ktai_color_config.font_06})">年齢：</font><br>({$target_c_member.age})歳<br>
 ({if $is_h_prof && $target_c_member.public_flag_birth_year == 'friend'})<font color="#({$ktai_color_config.font_09})">※({$WORD_MY_FRIEND_HALF})まで公開</font><br>({/if})
 ({/if})
 ({if $target_c_member.birth_month && $target_c_member.birth_day})
-<font color="#({$ktai_color_config.font_06})">誕生日：</font>({$target_c_member.birth_month})月({$target_c_member.birth_day})日<br>
+<font color="#({$ktai_color_config.font_06})">誕生日：</font><br>
+({$target_c_member.birth_month})月({$target_c_member.birth_day})日<br>
 ({/if})
 ({/capture})
 
@@ -83,9 +85,11 @@
 ({$smarty.capture.birth|smarty:nodefaults})
 ({/if})
 
-<font color="#({$ktai_color_config.font_06})">({$item.caption})：</font>
+<font color="#({$ktai_color_config.font_06})">({$item.caption})：</font><br>
 ({if $item.form_type == 'checkbox'})
     ({$item.value|@t_implode:", "})
+({elseif $item.form_type == 'text' || $item.form_type == 'textlong'})
+    ({$item.value|t_truncate:30:""})
 ({else})
     ({$item.value})
 ({/if})
