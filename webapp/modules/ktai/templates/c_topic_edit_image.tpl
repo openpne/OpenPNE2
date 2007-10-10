@@ -38,6 +38,7 @@
 <font color="#({$ktai_color_config.font_06})">※写真は3枚以上登録できません</font><br>
 <font color="#({$ktai_color_config.font_06})">※ﾀｲﾄﾙと本文は反映されません</font><br>
 <a href="mailto:({$mail_address})">ﾒｰﾙ送信</a><br>
+<font color="#({$ktai_color_config.font_09})">※1回のﾒｰﾙで登録できる画像は1枚までです</font><br>
 ({/if})
 <hr color="#({$ktai_color_config.border_01})">
 ({if !$c_topic.event_flag})
