@@ -153,6 +153,7 @@
 <br>
 [i:110]<a href="mailto:({$mail_address})">ﾒｰﾙ投稿</a><br>
 写真も添付できます。
+<font color="#({$ktai_color_config.font_06})">※ﾒｰﾙ投稿では絵文字が反映されません</font>
 ({/if})
 ({/if})
 <hr color="#({$ktai_color_config.border_01})">
