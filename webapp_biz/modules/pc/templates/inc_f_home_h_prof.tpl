@@ -870,7 +870,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({/capture})
 ({capture name="birth"})
 <!-- ここから：主内容＞年齢 -->
-({if $target_c_member.age !== NULL && $target_c_member.public_flag_birth_year == 'private' && $target_c_member.public_flag_birth_year == 'public' || $is_h_prof || ($target_c_member.public_flag_birth_year == 'friend' && $is_friend)})
+({if $target_c_member.age !== NULL && $target_c_member.public_flag_birth_year == 'public' || ($target_c_member.public_flag_birth_year == 'friend' && $is_friend)})
 <tr>
 <td class="border_01 bg_09 padding_s" style="width:90px;border-right:none;border-top:none;">
 
