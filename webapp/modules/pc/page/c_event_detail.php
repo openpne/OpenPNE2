@@ -47,7 +47,7 @@ class pc_page_c_event_detail extends OpenPNE_Action
         //書き込み一覧部分
         $page += $direc;
         if ($all) {
-            $page_size = db_commu_c_commu_topic_comment_count($c_commu_topic_id) - 1;
+            $page_size = null;
         } else {
             $page_size = 20;
         }
