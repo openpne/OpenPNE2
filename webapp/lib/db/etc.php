@@ -34,8 +34,9 @@ function db_etc_c_config_color($c_config_color_id = 1)
  */
 function db_etc_c_config_color_list()
 {
-    $sql = 'SELECT * FROM c_config_color ORDER BY c_config_color_id';
-    return db_get_all($sql);
+    $current = db_etc_c_config_color();
+    $preset = util_get_preset_color_list();
+    return array_merge(array($current), $preset);
 }
 
 /**
@@ -69,8 +70,9 @@ function db_etc_c_config_color_ktai($c_config_color_ktai_id = 1)
  */
 function db_etc_c_config_color_ktai_list()
 {
-    $sql = 'SELECT * FROM c_config_color_ktai ORDER BY c_config_color_ktai_id';
-    return db_get_all($sql);
+    $current = db_etc_c_config_color_ktai();
+    $preset = util_get_preset_color_list('ktai');
+    return array_merge(array($current), $preset);
 }
 
 /**

@@ -727,4 +727,21 @@ function util_regist_c_member($c_member, $c_member_secure, $c_member_profile_lis
     return $u;
 }
 
+function util_get_preset_color_list($dir = 'pc')
+{
+    $color_list_dir = OPENPNE_WEBAPP_DIR . '/lib/color/' . $dir . '/';
+    $color_list = array();
+
+    if ($dh = opendir($color_list_dir)) {
+        while (($file = readdir($dh)) !== false) {
+            if (array_pop(explode('.', $file)) == 'ini') {
+                $color_list[] = parse_ini_file($color_list_dir . $file);
+            }
+        }
+        closedir($dh);
+    }
+
+    return $color_list;
+}
+
 ?>

@@ -19,7 +19,7 @@ function reflect_color(n) {
             bgcolors[str_1] = color;
         }
     }
-    set_textarea_for_color_config ();
+    set_textarea_for_color_config();
 }
 
 function set_preset_color(target, color) {
@@ -31,15 +31,14 @@ function set_preset_color(target, color) {
 }
 
 function set_textarea_for_color_config() {
-    var str_1 = "";
+    var str_1 = "[color]\n" 
+        + "caption = \"バックアップ\"\n"
+        + "color_0 = \"FFFFFF\"\n";
     for (key in bgcolors) {
         if (key.indexOf("color") == -1) {
             continue;
         }
-        str_1 += key;
-        str_1 += ":#";
-        str_1 += bgcolors[key];
-        str_1 += "\n";
+        str_1 += key + " = \"" + bgcolors[key] + "\"\n";
     }
     document.forms["color"].elements["copy_area"].value = str_1;
 }
@@ -107,7 +106,9 @@ function assign_color_({$key})() {
 <p id="c05">配色設定をバックアップする場合は下記の内容をコピーしてテキストファイルなどに保存してください。</p>
 
 <textarea name="copy_area" id="copy_area" rows="20" cols="60">
-({foreach from=$bgcolor_scheme_names key=key item=item})({$item}):#({$c_config_color_list[0][$key]})
+[color]
+caption = "バックアップ"
+({foreach from=$bgcolor_scheme_names key=key item=item})({$item}) = "({$c_config_color_list[0][$key]})"
 ({/foreach})
 </textarea>
 
