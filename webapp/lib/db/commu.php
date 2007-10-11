@@ -137,14 +137,6 @@ function db_commu_c_commu_topic_comment_number4c_commu_topic_id($c_commu_topic_i
     return db_commu_get_max_number4topic($c_commu_topic_id) + 1;
 }
 
-function db_commu_c_commu_topic_comment_count($c_commu_topic_id)
-{
-    var_dump($c_commu_topic_id);
-    $sql = 'SELECT COUNT(*) FROM c_commu_topic_comment'
-        . ' WHERE c_commu_topic_id = ?';
-    return db_get_one($sql, array($c_commu_topic_id));
-}
-
 //// 判定
 
 /** 
@@ -1904,19 +1896,26 @@ function db_commu_c_topic4c_commu_topic_id_2($c_commu_topic_id)
     return $lst;
 }
 
-function db_commu_c_topic_write4c_commu_topic_id($c_commu_topic_id,$page,$page_size)
+function db_commu_c_topic_write4c_commu_topic_id($c_commu_topic_id, $page, $page_size = null)
 {
+    $params = array(intval($c_commu_topic_id));
+
+    $sql = "SELECT count(*) FROM c_commu_topic_comment" .
+        " WHERE c_commu_topic_id = ? AND number > 0";
+    $total_num = db_get_one($sql, $params);
+
+    // 件数指定がない場合は全件取得
+    if (is_null($page_size)) {
+        $page = 1;
+        $page_size = $total_num;
+    }
+
     $sql = "SELECT ctc.*, c_member.nickname " .
         " FROM c_commu_topic_comment AS ctc" .
             " LEFT JOIN c_member USING (c_member_id)" .
         " WHERE ctc.c_commu_topic_id = ? AND ctc.number > 0 " .
         " ORDER BY ctc.r_datetime DESC";
-    $params = array(intval($c_commu_topic_id));
     $lst = db_get_all_page($sql, $page, $page_size, $params);
-
-    $sql = "SELECT count(*) FROM c_commu_topic_comment" .
-        " WHERE c_commu_topic_id = ? AND number > 0";
-    $total_num = db_get_one($sql, $params);
 
     if ($total_num != 0) {
         $total_page_num = ceil($total_num / $page_size);
