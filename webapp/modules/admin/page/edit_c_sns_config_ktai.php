@@ -41,6 +41,7 @@ class admin_page_edit_c_sns_config_ktai extends OpenPNE_Action
             'color_28' => 'color_28',
         );
         $v['c_config_color_ktai_list'] = db_etc_c_config_color_ktai_list();
+        $v['c_config_color_ktai_list'][0]['caption'] = '現在の設定';
 
         $this->set($v);
         return 'success';
