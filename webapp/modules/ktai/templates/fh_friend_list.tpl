@@ -4,7 +4,7 @@
 <font color="#({$ktai_color_config.font_05})"><a name="top">({$target_c_member.nickname})({if $INC_NAVI_type=="f"})さん({/if})</a></font><br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
-({if $INC_NAVI_type=="h"})({$WORD_MY_FRIEND_HALF})({else})({$WORD_FRIEND_HALF})({/if})ﾘｽﾄ(({$total_num}))<br>
+<font color="#({$ktai_color_config.color_24})">({if $INC_NAVI_type=="h"})({$WORD_MY_FRIEND_HALF})({else})({$WORD_FRIEND_HALF})({/if})ﾘｽﾄ(({$total_num}))</font><br>
 </td></tr></table>
 
 ({if !$target_friend_list})

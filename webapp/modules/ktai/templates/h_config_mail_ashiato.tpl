@@ -3,7 +3,7 @@
 <font color="#({$ktai_color_config.font_05})"><a name="top">設定変更</a></font><br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
-あしあとお知らせﾒｰﾙ設定<br>
+<font color="#({$ktai_color_config.color_24})">あしあとお知らせﾒｰﾙ設定</font><br>
 </td></tr></table>
 ここで指定したｱｸｾｽ数に達したとき、お知らせﾒｰﾙが届きます。
 <hr color="#({$ktai_color_config.border_01})">

@@ -32,8 +32,8 @@
 </center>
 ({/if})
 <table width="100%">
-<tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
-ｺﾐｭﾆﾃｨ検索<br>
+<tr><td bgcolor="#({$ktai_color_config.color_27})" align="center">
+<font color="#({$ktai_color_config.color_28})">ｺﾐｭﾆﾃｨ検索</font><br>
 </td></tr></table>
 ({t_form _method=get m=ktai a=page_h_com_find_result})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
