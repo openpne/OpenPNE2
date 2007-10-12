@@ -35,7 +35,6 @@ function db_etc_c_config_color($c_config_color_id = 1)
 function db_etc_c_config_color_list()
 {
     $current = db_etc_c_config_color();
-    $current['caption'] = '現在の設定';
     $preset = util_get_preset_color_list();
     return array_merge(array($current), $preset);
 }
