@@ -31,6 +31,7 @@ class admin_page_edit_c_sns_config extends OpenPNE_Action
             'color_16' => 'bg_12',
             'color_17' => 'bg_13',
             'color_18' => 'bg_14',
+            'color_19' => 'color_19',
         );
         $v['c_config_color_list'] = db_etc_c_config_color_list();
         $v['inc_custom_css'] = p_common_c_siteadmin4target_pagename('inc_custom_css');
