@@ -29,6 +29,16 @@
 <a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$c_commu.c_member_id_admin})&amp;({$tail})">({$c_commu.c_member_admin.nickname})</a><br>
 <font color="#({$ktai_color_config.font_06})">ｶﾃｺﾞﾘ名:</font><br>
 ({$c_commu.c_commu_category.name})<br>
+<font color="#({$ktai_color_config.font_06})">参加条件と公開範囲：</font><br>
+({if $c_commu.public_flag == 'public'})
+だれでも参加できる(公開)
+({elseif $c_commu.public_flag == 'auth_public'})
+管理者の承認が必要(公開)
+({elseif $c_commu.public_flag == 'auth_sns'})
+管理者の承認が必要(公開)
+({elseif $c_commu.public_flag == 'auth_commu_member'})
+管理者の承認が必要(非公開)
+({/if})<br>
 </td>
 </tr>
 <tr>
