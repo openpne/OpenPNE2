@@ -27,6 +27,10 @@
 ({$c_commu.r_datetime|date_format:"%Y年%m月%d日"})<br>
 <font color="#({$ktai_color_config.font_06})">管理者:</font><br>
 <a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$c_commu.c_member_id_admin})&amp;({$tail})">({$c_commu.c_member_admin.nickname})</a><br>
+({if $sub_admin})
+<font color="#({$ktai_color_config.font_06})">副管理者:</font><br>
+<a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$sub_admin.c_member_id})&amp;({$tail})">({$sub_admin.nickname})</a><br>
+({/if})
 <font color="#({$ktai_color_config.font_06})">ｶﾃｺﾞﾘ名:</font><br>
 ({$c_commu.c_commu_category.name})<br>
 <font color="#({$ktai_color_config.font_06})">参加条件と公開範囲：</font><br>
