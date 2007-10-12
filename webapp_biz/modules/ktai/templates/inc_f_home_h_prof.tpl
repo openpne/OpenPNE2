@@ -6,19 +6,14 @@
 <table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_02})">
 <font color="#({$ktai_color_config.font_05})"><a name="top">({$target_c_member.nickname})さん</a></font><br>
 </td></tr>
-({if $inc_ktai_entry_point[2]})
-<tr><td>
-({$inc_ktai_entry_point[2]|smarty:nodefaults})
-</td></tr>
-({/if})
 <tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
 最終ﾛｸﾞｲﾝは({$target_c_member.last_login})<br>
 </td></tr></table>
-({if $inc_ktai_entry_point[3]})
-({$inc_ktai_entry_point[3]|smarty:nodefaults})
-({/if})
 ({if $c_siteadmin})
-({$c_siteadmin|smarty:nodefaults})
+({$c_siteadmin|smarty:nodefaults})<br>
+({/if})
+({if $inc_ktai_entry_point[2]})
+({$inc_ktai_entry_point[2]|smarty:nodefaults})
 ({/if})
 
 ({if $relation.wait==1})
@@ -128,6 +123,9 @@
 ({if $relation.friend})
  / <a href="({t_url m=ktai a=page_f_intro_edit})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">書く</a><br>
 ({/if})
+({/if})
+({if $inc_ktai_entry_point[3]})
+({$inc_ktai_entry_point[3]|smarty:nodefaults})
 ({/if})
 <br>
 <table width="100%">
