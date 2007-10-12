@@ -11,7 +11,7 @@
 
 ({*ここから：本体*})
 
-<div class="bg_09" style="width:680px;height:24px;border-left:none 0px;border-right:none 0px;border-top:none 0px;">
+<div class="color_19" style="width:680px;height:24px;border-left:none 0px;border-right:none 0px;border-top:none 0px;">
 ({t_form _method=get m=pc a=page_h_message_box})
 <input type="hidden" name="box" value="({$box})">
 
@@ -56,7 +56,7 @@
 
 ({*ここから：本体*})
 
-<div class="bg_09" style="width:680px;height:24px;border-left:none 0px;border-right:none 0px;border-top:none 0px;">
+<div class="color_19" style="width:680px;height:24px;border-left:none 0px;border-right:none 0px;border-top:none 0px;">
 ({t_form _method=get m=pc a=page_h_message_box})
 <input type="hidden" name="box" value="({$box})">
 
