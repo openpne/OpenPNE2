@@ -15,8 +15,7 @@
 </td></tr>
 ({/if})
 ({if $inc_ktai_entry_point[2]})
-<tr><td>({$inc_ktai_entry_point[2]|smarty:nodefaults})<br>
-</td></tr>
+<tr><td>({$inc_ktai_entry_point[2]|smarty:nodefaults})</td></tr>
 ({/if})
 </table>
 <br>
