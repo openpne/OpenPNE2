@@ -4,7 +4,7 @@
 <font color="#({$ktai_color_config.font_05})"><a name="top">({$target_c_member.nickname})さん</a></font><br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
-({$WORD_MY_FRIEND_HALF})に追加<br>
+<font color="#({$ktai_color_config.color_24})">({$WORD_MY_FRIEND_HALF})に追加</font><br>
 </td></tr></table>
 
 <a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">({$target_c_member.nickname})さん</a>とは既にお知り合いですか?
