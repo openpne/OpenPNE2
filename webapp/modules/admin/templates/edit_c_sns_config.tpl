@@ -108,7 +108,7 @@ function assign_color_({$key})() {
 <textarea name="copy_area" id="copy_area" rows="20" cols="60">
 [color]
 caption = "バックアップ"
-({foreach from=$bgcolor_scheme_names key=key item=item})({$item}) = "({$c_config_color_list[0][$key]})"
+({foreach from=$bgcolor_scheme_names key=key item=item})({$key}) = "({$c_config_color_list[0][$key]})"
 ({/foreach})
 </textarea>
 
