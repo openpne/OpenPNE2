@@ -250,7 +250,7 @@
 <td style="width:630px;" class="bg_03" align="left" valign="middle">
 
 <img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
-<div align="center" style="text-align:center;">
+<div align="center">
 
 <table style="width:200px;height:50px;" border="0" cellspacing="0" cellpadding="0">
 <tr>
