@@ -14,10 +14,10 @@
 <font color="#({$ktai_color_config.font_05})">({$smarty.const.SNS_NAME})</font><br>
 </td></tr>
 ({/if})
-({if $inc_ktai_entry_point[2]})
-<tr><td>({$inc_ktai_entry_point[2]|smarty:nodefaults})</td></tr>
-({/if})
 </table>
+({if $inc_ktai_entry_point[2]})
+({$inc_ktai_entry_point[2]|smarty:nodefaults})
+({/if})
 <br>
 <center>
 このﾍﾟｰｼﾞをﾌﾞｯｸﾏｰｸしてください<br>
