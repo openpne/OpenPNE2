@@ -622,6 +622,11 @@ function util_is_readable_message($c_member_id, $c_message_id)
 function util_get_color_config()
 {
     $c_config_color = db_etc_c_config_color();
+
+    if (empty($c_config_color['color_19'])) {
+        $c_config_color['color_19'] = $c_config_color['color_13'];
+    }
+
     $color_config = array(
         'border_01' => $c_config_color['color_1'],
         'border_07' => $c_config_color['color_2'],
@@ -641,6 +646,7 @@ function util_get_color_config()
         'bg_12' => $c_config_color['color_16'],
         'bg_13' => $c_config_color['color_17'],
         'bg_14' => $c_config_color['color_18'],
+        'color_19' => $c_config_color['color_19'],
     );
     return $color_config;
 }
