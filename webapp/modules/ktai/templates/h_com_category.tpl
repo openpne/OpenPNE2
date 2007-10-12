@@ -4,7 +4,7 @@
 <font color="#({$ktai_color_config.font_05})"><a name="top">ｶﾃｺﾞﾘ検索</a></font><br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
-ｶﾃｺﾞﾘ：({$c_commu_category_name})<br>
+<font color="#({$ktai_color_config.color_24})">ｶﾃｺﾞﾘ：({$c_commu_category_name})</font><br>
 </td></tr></table>
 
 <center>
@@ -36,8 +36,8 @@
 <br>
 
 <table width="100%">
-<tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
-ｶﾃｺﾞﾘ内から検索<br>
+<tr><td bgcolor="#({$ktai_color_config.color_27})" align="center">
+<font color="#({$ktai_color_config.color_28})">ｶﾃｺﾞﾘ内から検索</font><br>
 </td></tr></table>
 ({t_form _method=get m=ktai a=page_h_com_category})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">

@@ -3,7 +3,7 @@
 <font color="#({$ktai_color_config.font_05})"><a name="top">({$c_commu.name})</a></font><br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
-ｲﾍﾞﾝﾄの編集<br>
+<font color="#({$ktai_color_config.color_24})">ｲﾍﾞﾝﾄの編集</font><br>
 </td></tr></table>
 <font color="#({$ktai_color_config.font_09})">※</font>は必須項目です。
 <hr color="#({$ktai_color_config.border_01})">

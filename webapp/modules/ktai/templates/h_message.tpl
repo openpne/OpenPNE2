@@ -8,7 +8,7 @@
 </a></font><br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
-ﾒｯｾｰｼﾞ<br>
+<font color="#({$ktai_color_config.color_24})">ﾒｯｾｰｼﾞ</font><br>
 </td></tr></table>
 
 ({if $c_message.c_member_id_to==$u})

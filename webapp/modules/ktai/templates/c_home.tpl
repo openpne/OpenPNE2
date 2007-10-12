@@ -81,7 +81,7 @@
 
 <table width="100%">
 <tr><td bgcolor="#({$ktai_color_config.bg_05})">
-<a accesskey="1" name="a1" href="#a1">[i:125]</a>新着ﾄﾋﾟｯｸﾘｽﾄ<br>
+<a accesskey="1" name="a1" href="#a1">[i:125]</a><font color="#({$ktai_color_config.color_25})">新着ﾄﾋﾟｯｸﾘｽﾄ</font><br>
 </td></tr>
 ({if $is_c_commu_view})
 ({foreach from=$new_topic_comment item=item})
@@ -108,7 +108,7 @@
 
 <table width="100%">
 <tr><td bgcolor="#({$ktai_color_config.bg_08})">
-<a accesskey="2" name="a2" href="#a2">[i:126]</a>新着ｲﾍﾞﾝﾄﾘｽﾄ<br>
+<a accesskey="2" name="a2" href="#a2">[i:126]</a><font color="#({$ktai_color_config.color_26})">新着ｲﾍﾞﾝﾄﾘｽﾄ</font><br>
 </td></tr>
 ({if $is_c_commu_view})
 ({foreach from=$new_topic_comment_event item=item})
@@ -133,8 +133,8 @@
 ({/if})
 <br>
 <table width="100%">
-<tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
-ﾄﾋﾟｯｸ検索<br>
+<tr><td bgcolor="#({$ktai_color_config.color_27})" align="center">
+<font color="#({$ktai_color_config.color_28})">ﾄﾋﾟｯｸ検索</font><br>
 </td></tr>
 <tr><td>
 ({t_form _method=get m=ktai a=page_c_com_topic_find})
@@ -155,7 +155,7 @@
 
 <table width="100%">
 <tr><td bgcolor="#({$ktai_color_config.bg_05})">
-<a accesskey="3" name="a3" href="#a3">[i:127]</a>ｺﾐｭﾆﾃｨﾒﾝﾊﾞｰ<br>
+<a accesskey="3" name="a3" href="#a3">[i:127]</a><font color="#({$ktai_color_config.color_25})">ｺﾐｭﾆﾃｨﾒﾝﾊﾞｰ</font><br>
 </td></tr>
 ({foreach from=$c_commu_member_list item=c_commu_member})
 <tr><td bgcolor="#({cycle values="`$ktai_color_config.bg_06`,`$ktai_color_config.bg_07`"})">

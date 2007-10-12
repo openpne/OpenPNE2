@@ -3,7 +3,7 @@
 <font color="#({$ktai_color_config.font_05})"><a name="top">設定変更</a></font><br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
-かんたんﾛｸﾞｲﾝ設定<br>
+<font color="#({$ktai_color_config.color_24})">かんたんﾛｸﾞｲﾝ設定</font><br>
 </td></tr></table>
 ({if $msg})
 <font color="#({$ktai_color_config.font_09})">({$msg})</font><br>

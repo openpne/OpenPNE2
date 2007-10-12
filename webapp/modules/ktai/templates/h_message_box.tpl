@@ -5,7 +5,7 @@
 ({if $box == 'trash'})ごみ箱({elseif $box != 'outbox'})受信箱({else})送信箱({/if})</a></font><br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
-ﾒｯｾｰｼﾞﾘｽﾄ<br>
+<font color="#({$ktai_color_config.color_24})">ﾒｯｾｰｼﾞﾘｽﾄ</font><br>
 </td></tr></table>
 ({if !$total_num})
 ﾒｯｾｰｼﾞはありません。
@@ -97,8 +97,8 @@
 
 ({if $box != 'trash'})
 <table width="100%">
-<tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
-ﾒｯｾｰｼﾞ検索<br>
+<tr><td bgcolor="#({$ktai_color_config.color_27})" align="center">
+<font color="#({$ktai_color_config.color_28})">ﾒｯｾｰｼﾞ検索</font><br>
 </td></tr>
 </table>
 <font color="#({$ktai_color_config.font_06})">ｷｰﾜｰﾄﾞ：</font><br>

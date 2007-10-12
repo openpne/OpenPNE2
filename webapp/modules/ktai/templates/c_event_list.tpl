@@ -4,7 +4,7 @@
 <font color="#({$ktai_color_config.font_05})"><a name="top">({$c_commu.name})</a></font><br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
-ｲﾍﾞﾝﾄﾘｽﾄ<br>
+<font color="#({$ktai_color_config.color_24})">ｲﾍﾞﾝﾄﾘｽﾄ</font><br>
 </td></tr></table>
 
 ({if !$c_topic_list})
