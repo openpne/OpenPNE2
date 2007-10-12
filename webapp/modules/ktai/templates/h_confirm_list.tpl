@@ -11,7 +11,7 @@
 <table width="100%">
 
 <tr><td bgcolor="#({$ktai_color_config.bg_05})">
-({$WORD_FRIEND_HALF})ﾘﾝｸ承認待ち<br>
+<font color="#({$ktai_color_config.color_25})">({$WORD_FRIEND_HALF})ﾘﾝｸ承認待ち</font><br>
 </td></tr>
 
 ({if $anatani_c_friend_confirm_list})
@@ -42,7 +42,7 @@
 
 <table width="100%">
 <tr><td bgcolor="#({$ktai_color_config.bg_08})">
-ｺﾐｭﾆﾃｨ参加承認待ち<br>
+<font color="#({$ktai_color_config.color_26})">ｺﾐｭﾆﾃｨ参加承認待ち</font><br>
 </td></tr>
 ({if $anatani_c_commu_member_confirm_list})
 ({foreach from=$anatani_c_commu_member_confirm_list item=item name=anatani_c_commu_member_confirm_list_name})
@@ -73,7 +73,7 @@
 
 <table width="100%">
 <tr><td bgcolor="#({$ktai_color_config.bg_05})">
-ｺﾐｭﾆﾃｨ管理者交代承認待ち<br>
+<font color="#({$ktai_color_config.color_25})">ｺﾐｭﾆﾃｨ管理者交代承認待ち</font><br>
 </td></tr>
 ({if $anatani_c_commu_admin_confirm_list})
 ({foreach from=$anatani_c_commu_admin_confirm_list item=item name=anatani_c_commu_admin_confirm_list_name})
@@ -105,7 +105,7 @@
 
 <table width="100%">
 <tr><td bgcolor="#({$ktai_color_config.bg_08})">
-ｺﾐｭﾆﾃｨ副管理者承認待ち<br>
+<font color="#({$ktai_color_config.color_26})">ｺﾐｭﾆﾃｨ副管理者承認待ち</font><br>
 </td></tr>
 ({if $anatani_c_commu_sub_admin_confirm_list})
 ({foreach from=$anatani_c_commu_sub_admin_confirm_list item=item})
@@ -136,7 +136,7 @@
 
 <table width="100%">
 <tr><td bgcolor="#({$ktai_color_config.bg_05})">
-({$WORD_FRIEND_HALF})ﾘﾝｸ要請中<br>
+<font color="#({$ktai_color_config.color_25})">({$WORD_FRIEND_HALF})ﾘﾝｸ要請中</font><br>
 </td></tr>
 ({if $anataga_c_friend_confirm_list})
 ({foreach from=$anataga_c_friend_confirm_list item=anataga_c_friend_confirm name=anataga_c_friend_confirm_list_name})
@@ -161,7 +161,7 @@
 <br>
 <table width="100%">
 <tr><td bgcolor="#({$ktai_color_config.bg_08})">
-ｺﾐｭﾆﾃｨ要請中<br>
+<font color="#({$ktai_color_config.color_26})">ｺﾐｭﾆﾃｨ要請中</font><br>
 </td></tr>
 ({if $anataga_c_commu_member_confirm_list})
 ({foreach from=$anataga_c_commu_member_confirm_list item=anataga_c_commu_member_confirm name=anataga_c_commu_member_confirm_list_name})
@@ -191,7 +191,7 @@
 
 <table width="100%">
 <tr><td bgcolor="#({$ktai_color_config.bg_05})">
-ｺﾐｭﾆﾃｨ管理者交代要請中<br>
+<font color="#({$ktai_color_config.color_25})">ｺﾐｭﾆﾃｨ管理者交代要請中</font><br>
 </td></tr>
 ({if $anataga_c_commu_admin_confirm_list})
 ({foreach from=$anataga_c_commu_admin_confirm_list item=item name=anataga_c_commu_admin_confirm_list_name})
@@ -220,7 +220,7 @@
 
 <table width="100%">
 <tr><td bgcolor="#({$ktai_color_config.bg_08})">
-ｺﾐｭﾆﾃｨ副管理者要請中<br>
+<font color="#({$ktai_color_config.color_26})">ｺﾐｭﾆﾃｨ副管理者要請中</font><br>
 </td></tr>
 ({if $anataga_c_commu_sub_admin_confirm_list})
 ({foreach from=$anataga_c_commu_sub_admin_confirm_list item=item name=anataga_c_commu_sub_admin_confirm_list_name})

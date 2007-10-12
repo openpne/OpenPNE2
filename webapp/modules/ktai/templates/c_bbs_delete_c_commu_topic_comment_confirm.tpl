@@ -4,7 +4,7 @@
 <font color="#({$ktai_color_config.font_05})"><a name="top">({$c_commu_topic_name})</a></font><br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
-ｺﾒﾝﾄの削除<br>
+<font color="#({$ktai_color_config.color_24})">ｺﾒﾝﾄの削除</font><br>
 </td></tr></table>
 
 このｺﾒﾝﾄを本当に削除しますか?<br>

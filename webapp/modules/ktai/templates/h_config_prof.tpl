@@ -3,7 +3,7 @@
 <font color="#({$ktai_color_config.font_05})"><a name="top">設定変更</a></font><br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
-ﾌﾟﾛﾌｨｰﾙ変更<br>
+<font color="#({$ktai_color_config.color_24})">ﾌﾟﾛﾌｨｰﾙ変更</font><br>
 </td></tr></table>
 
 <font color="#({$ktai_color_config.font_09})">*</font>は必須項目。<br>
