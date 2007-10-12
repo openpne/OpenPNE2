@@ -658,6 +658,21 @@ function util_get_color_config_ktai()
     if (empty($c_config_color['color_23'])) {
         $c_config_color['color_23'] = 'FFFFFF';
     }
+    if (empty($c_config_color['color_24'])) {
+        $c_config_color['color_24'] = $c_config_color['color_14'];
+    }
+    if (empty($c_config_color['color_25'])) {
+        $c_config_color['color_25'] = $c_config_color['color_14'];
+    }
+    if (empty($c_config_color['color_26'])) {
+        $c_config_color['color_26'] = $c_config_color['color_14'];
+    }
+    if (empty($c_config_color['color_27'])) {
+        $c_config_color['color_27'] = $c_config_color['color_3'];
+    }
+    if (empty($c_config_color['color_28'])) {
+        $c_config_color['color_28'] = $c_config_color['color_14'];
+    }
 
     $color_config = array(
         'bg_01' => $c_config_color['color_1'],
@@ -682,6 +697,11 @@ function util_get_color_config_ktai()
         'font_07' => $c_config_color['color_20'],
         'font_08' => $c_config_color['color_21'],
         'font_09' => $c_config_color['color_22'],
+        'color_24' => $c_config_color['color_24'],
+        'color_25' => $c_config_color['color_25'],
+        'color_26' => $c_config_color['color_26'],
+        'color_27' => $c_config_color['color_27'],
+        'color_28' => $c_config_color['color_28'],
     );
     return $color_config;
 }
