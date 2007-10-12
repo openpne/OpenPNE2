@@ -5,18 +5,12 @@
 <table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_02})">
 <font color="#({$ktai_color_config.font_05})">({$c_commu.name})</font><br>
 </td></tr>
-({if $inc_ktai_entry_point[2]})
-<tr><td>
-({$inc_ktai_entry_point[2]|smarty:nodefaults})
-</td></tr>
-({/if})
 </table>
-({if $inc_ktai_entry_point[3]})
-({$inc_ktai_entry_point[3]|smarty:nodefaults})
-({/if})
 ({if $c_siteadmin})
 ({$c_siteadmin|smarty:nodefaults})<br>
-<hr>
+({/if})
+({if $inc_ktai_entry_point[2]})
+({$inc_ktai_entry_point[2]|smarty:nodefaults})
 ({/if})
 <br>
 <table width="100%" bgcolor="#({$ktai_color_config.bg_04})">
@@ -67,6 +61,9 @@
 [i:150]<a href="({t_url m=ktai a=page_c_invite})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">({$WORD_MY_FRIEND_HALF})に紹介</a><br>
 <br>
 </td></tr></table>
+({if $inc_ktai_entry_point[3]})
+({$inc_ktai_entry_point[3]|smarty:nodefaults})
+({/if})
 
 <table width="100%">
 <tr><td bgcolor="#({$ktai_color_config.bg_05})">
