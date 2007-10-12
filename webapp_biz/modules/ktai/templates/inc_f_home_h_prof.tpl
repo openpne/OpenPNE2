@@ -7,7 +7,7 @@
 <font color="#({$ktai_color_config.font_05})"><a name="top">({$target_c_member.nickname})さん</a></font><br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
-最終ﾛｸﾞｲﾝは({$target_c_member.last_login})<br>
+<font color="#({$ktai_color_config.color_24})">最終ﾛｸﾞｲﾝは({$target_c_member.last_login})</font><br>
 </td></tr></table>
 ({if $c_siteadmin})
 ({$c_siteadmin|smarty:nodefaults})<br>
@@ -134,7 +134,7 @@
 <br>
 <table width="100%">
 <tr><td bgcolor="#({$ktai_color_config.bg_05})">
-<a accesskey="1" name="a1" href="#a1">[i:125]</a>新着日記<br>
+<a accesskey="1" name="a1" href="#a1">[i:125]</a><font color="#({$ktai_color_config.color_25})">新着日記</font><br>
 </td></tr>
 ({if $c_diary_list})
 ({foreach from=$c_diary_list item=c_diary})
@@ -158,7 +158,7 @@
 <br>
 <table width="100%">
 <tr><td bgcolor="#({$ktai_color_config.bg_08})">
-<a accesskey="2" name="a2" href="#a2">[i:126]</a>({$WORD_FRIEND_HALF})ﾘｽﾄ<br>
+<a accesskey="2" name="a2" href="#a2">[i:126]</a><font color="#({$ktai_color_config.color_26})">({$WORD_FRIEND_HALF})ﾘｽﾄ</font><br>
 </td></tr>
 ({foreach from=$c_friend_list item=c_friend})
 <tr><td bgcolor="#({cycle values="`$ktai_color_config.bg_09`,`$ktai_color_config.bg_07`"})">
@@ -175,7 +175,7 @@
 <br>
 
 <table width="100%">
-<tr><td bgcolor="#({$ktai_color_config.bg_05})"><a accesskey="3" name="a3" href="#a3">[i:127]</a>参加ｺﾐｭﾆﾃｨ<br>
+<tr><td bgcolor="#({$ktai_color_config.bg_05})"><a accesskey="3" name="a3" href="#a3">[i:127]</a><font color="#({$ktai_color_config.color_25})">参加ｺﾐｭﾆﾃｨ</font><br>
 </td></tr>
 ({foreach from=$c_commu_list item=c_commu})
 <tr><td bgcolor="#({cycle values="`$ktai_color_config.bg_06`,`$ktai_color_config.bg_07`"})">
