@@ -22,6 +22,12 @@ class pc_page_c_home extends OpenPNE_Action
 
         $this->set('c_commu', $c_commu);
 
+        // 副管理者情報
+        if ($c_commu['c_member_id_sub_admin']) {
+            $c_member_sub_admin = db_member_c_member4c_member_id($c_commu['c_member_id_sub_admin']);
+            $this->set('sub_admin', $c_member_sub_admin);
+        }
+
         $this->set('is_c_commu_admin', db_commu_is_c_commu_admin($c_commu_id, $u));
         $this->set('is_c_commu_member', db_commu_is_c_commu_member($c_commu_id, $u));
         $this->set('is_c_commu_view', db_commu_is_c_commu_view4c_commu_idAc_member_id($c_commu_id, $u));

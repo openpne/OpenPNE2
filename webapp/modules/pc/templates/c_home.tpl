@@ -469,6 +469,22 @@ show_flash('flash/list.swf', '({$flashvars})');
 </td>
 </tr>
 <!-- ここまで：主内容＞管理者 -->
+({if $sub_admin})
+<!-- ここから：主内容＞副管理者 -->
+<tr>
+<td class="border_01 bg_09 padding_s" style="width:90px;border-right:none;border-top:none;">
+
+<span class="c_01">副管理者</span>
+
+</td>
+<td class="border_01 bg_02 padding_s" style="width:332px;border-top:none;">
+
+<a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$sub_admin.c_member_id})">({$sub_admin.nickname})</a>
+
+</td>
+</tr>
+<!-- ここまで：主内容＞副管理者 -->
+({/if})
 <!-- ここから：主内容＞カテゴリ -->
 <tr>
 <td class="border_01 bg_09 padding_s" style="width:90px;border-right:none;border-top:none;">
