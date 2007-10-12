@@ -456,7 +456,9 @@ function db_common_delete_c_member($c_member_id)
     $c_commu_list = db_get_all($sql, $single, 'main');
 
     foreach ($c_commu_list as $c_commu) {
-        if (!_db_count_c_commu_member_list4c_commu_id($c_commu['c_commu_id'])) {
+        $sql = 'SELECT COUNT(*) FROM c_commu_member WHERE c_commu_id = ?';
+        $count = db_get_one($sql, array($c_commu['c_commu_id']), 'main');
+        if (!$count) {
             // コミュニティ削除
             db_common_delete_c_commu($c_commu['c_commu_id']);
         } else {
