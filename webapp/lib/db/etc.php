@@ -453,7 +453,7 @@ function db_common_delete_c_member($c_member_id)
 
     // c_commu (画像)
     $sql = 'SELECT * FROM c_commu WHERE c_member_id_admin = ?';
-    $c_commu_list = db_get_all($sql, $single);
+    $c_commu_list = db_get_all($sql, $single, 'main');
 
     foreach ($c_commu_list as $c_commu) {
         if (!_db_count_c_commu_member_list4c_commu_id($c_commu['c_commu_id'])) {
@@ -468,7 +468,7 @@ function db_common_delete_c_member($c_member_id)
                 $sql = 'SELECT c_member_id FROM c_commu_member WHERE c_commu_id = ?'.
                     ' ORDER BY r_datetime';
                 $params = array(intval($c_commu['c_commu_id']));
-                $new_admin_id = db_get_one($sql, $params);
+                $new_admin_id = db_get_one($sql, $params, 'main');
             } else {
                 $new_admin_id = $c_commu['c_member_id_sub_admin'];
             }
@@ -500,7 +500,7 @@ function db_common_delete_c_member($c_member_id)
     ///日記関連
     // c_diary (画像)
     $sql = 'SELECT * FROM c_diary WHERE c_member_id = ?';
-    $c_diary_list = db_get_all($sql, $single);
+    $c_diary_list = db_get_all($sql, $single, 'main');
     foreach ($c_diary_list as $c_diary) {
         image_data_delete($c_diary['image_filename_1']);
         image_data_delete($c_diary['image_filename_2']);
@@ -509,7 +509,7 @@ function db_common_delete_c_member($c_member_id)
         // c_diary_comment
         $sql = 'SELECT * FROM c_diary_comment WHERE c_diary_id = ?';
         $params = array(intval($c_diary['c_diary_id']));
-        $c_diary_comment_list = db_get_all($sql, $params);
+        $c_diary_comment_list = db_get_all($sql, $params, 'main');
         foreach ($c_diary_comment_list as $c_diary_comment) {
             image_data_delete($c_diary_comment['image_filename_1']);
             image_data_delete($c_diary_comment['image_filename_2']);
@@ -526,7 +526,7 @@ function db_common_delete_c_member($c_member_id)
     ///メンバー関連
     // c_member_pre
     $sql = 'SELECT * FROM c_member_pre WHERE c_member_id_invite = ?';
-    $c_member_pre_list = db_get_all($sql, $single);
+    $c_member_pre_list = db_get_all($sql, $single, 'main');
     foreach ($c_member_pre_list as $c_member_pre) {
         // c_member_pre_profile
         $sql = 'DELETE FROM c_member_pre_profile WHERE c_member_pre_id = ?';
@@ -547,7 +547,7 @@ function db_common_delete_c_member($c_member_id)
     // c_member (画像)
     $sql = 'SELECT image_filename_1, image_filename_2, image_filename_3' .
         ' FROM c_member WHERE c_member_id = ?';
-    $c_member = db_get_row($sql, $single);
+    $c_member = db_get_row($sql, $single, 'main');
     image_data_delete($c_member['image_filename_1']);
     image_data_delete($c_member['image_filename_2']);
     image_data_delete($c_member['image_filename_3']);
