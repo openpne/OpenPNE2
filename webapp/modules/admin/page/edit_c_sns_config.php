@@ -35,6 +35,9 @@ class admin_page_edit_c_sns_config extends OpenPNE_Action
         );
         $v['c_config_color_list'] = db_etc_c_config_color_list();
         $v['c_config_color_list'][0]['caption'] = '現在の設定';
+        if (empty($v['c_config_color_list'][0]['color_19'])) {
+            $v['c_config_color_list'][0]['color_19'] = $v['c_config_color_list'][0]['color_13'];
+        }
         $v['inc_custom_css'] = p_common_c_siteadmin4target_pagename('inc_custom_css');
 
         $this->set($v);
