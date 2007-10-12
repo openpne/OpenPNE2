@@ -34,6 +34,11 @@ class admin_page_edit_c_sns_config_ktai extends OpenPNE_Action
             'color_20' => 'font_07',
             'color_21' => 'font_08',
             'color_22' => 'font_09',
+            'color_24' => 'color_24',
+            'color_25' => 'color_25',
+            'color_26' => 'color_26',
+            'color_27' => 'color_27',
+            'color_28' => 'color_28',
         );
         $v['c_config_color_ktai_list'] = db_etc_c_config_color_ktai_list();
 
