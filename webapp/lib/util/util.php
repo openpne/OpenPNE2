@@ -741,13 +741,15 @@ function util_get_preset_color_list($dir = 'pc')
     if ($dh = opendir($color_list_dir)) {
         while (($file = readdir($dh)) !== false) {
             if (array_pop(explode('.', $file)) == 'ini') {
-                $color_list[] = parse_ini_file($color_list_dir . $file);
+                $color_list[$file] = parse_ini_file($color_list_dir . $file);
             }
         }
         closedir($dh);
     }
 
-    return $color_list;
+    ksort($color_list);
+
+    return array_values($color_list);
 }
 
 ?>
