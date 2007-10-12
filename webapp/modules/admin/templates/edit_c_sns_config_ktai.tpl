@@ -111,7 +111,7 @@ function assign_color_({$key})() {
 [color]
 caption = "バックアップ"
 ({foreach from=$bgcolor_scheme_names key=key item=item})
-({$item}) = "({$c_config_color_ktai_list[0][$key]})"
+({$key}) = "({$c_config_color_ktai_list[0][$key]})"
 ({/foreach})
 </textarea>
 
