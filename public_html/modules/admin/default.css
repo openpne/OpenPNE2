@@ -1082,15 +1082,25 @@ div.listControl p.listMove a {
 /** admin_page_top **/
 #admin_page_top p.actionMsg { margin-top: 10px; margin-bottom: 0;}
 #admin_page_top div.contents { padding: 10px 0 0 0;}
-#admin_page_top div.info { margin: 0 17px;}
-#admin_page_top div.info { padding-bottom: 10px;}
-#admin_page_top div.topics { border: 1px #A3A3A6 solid;}
-#admin_page_top div.topics { float: left; margin-top: 10px; padding-bottom: 3px; margin: 0 17px;}
-#admin_page_top div.topics h2 { padding: 0 0 0 10px; margin-top: 0; border-bottom: 1px #A3A3A6 solid; background: #58585C; background-image: none; line-height: 150%; font-size: medium; color: #ffffff;}
-#admin_page_top div.topics dl { padding: 3px 15px 0 15px;}
-#admin_page_top div.topics dt { float: left; padding: 4px 0;}
-#admin_page_top div.topics dd { padding: 4px 0; padding-left: 7em;}
-#admin_page_top div.topics dd span { padding-right: 5px; font-size: x-small; font-weight: bold; color: #ff0000;}
+
+#admin_page_top div.noticeTypeA,
+#admin_page_top div.noticeTypeB { float:left; margin-left: 10px; width: 300px;}
+#admin_page_top div.box { margin-bottom:10px; border: 1px #a5a2a5 solid;}
+#admin_page_top div.box h2 { margin-top: 0px; padding: 0 0 0 18px; background: #5a595a; line-height: 150%; font-size: 105%; color: #fff;}
+#admin_page_top div.box div.innerBox { width: 298px; overflow: hidden; line-height:1.1em;}
+
+#admin_page_top div#topics dl,
+#admin_page_top div#counter dl { padding: 1px 10px 0 10px;}
+#admin_page_top div#topics dt,
+#admin_page_top div#counter dt { float: left; padding: 4px 0;}
+#admin_page_top div#topics dd,
+#admin_page_top div#counter dd { padding: 4px 0; padding-left: 6.3em;}
+#admin_page_top div.box dd span.origin { padding-left:8px; font-size: x-small;}
+#admin_page_top div.box dd span.origin a { margin:0 2px;}
+
+#admin_page_top div#topics dd { padding-left: 3.7em;}
+#admin_page_top div#topics dd span { padding-right: 5px; font-size: x-small; font-weight: bold; color: #c00;}
+#admin_page_top div#counter dd { padding-left: 8em;}
 
 /** admin_page_login **/
 #admin_page_login p.caution#c01 { padding-top: 15px;}
