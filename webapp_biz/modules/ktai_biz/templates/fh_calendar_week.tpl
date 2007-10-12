@@ -13,7 +13,7 @@
 ({*BEGIN:container*})
 ({if $calendar})
 <table width="100%">
-<tr><td>
+<tr><td bgcolor="#({$ktai_color_config.bg_07})">
 <hr color="#({$ktai_color_config.border_02})">
 </td></tr>
 ({foreach from=$calendar item=item name=calendar})
@@ -66,7 +66,7 @@
 ({else})
 ({/if})
 </td></tr>
-<tr><td>
+<tr><td bgcolor="#({$ktai_color_config.bg_07})">
 <hr color="#({$ktai_color_config.border_02})">
 </td></tr>
 ({/foreach})

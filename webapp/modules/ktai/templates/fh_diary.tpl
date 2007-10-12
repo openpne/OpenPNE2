@@ -44,7 +44,7 @@
 
 <table width="100%">
 ({foreach from=$c_diary_comment name=c_diary_comment item=c_diary_comment_})
-<tr><td>
+<tr><td bgcolor="#({$ktai_color_config.bg_07})">
 <hr color="#({$ktai_color_config.border_02})">
 </td></tr>
 <tr><td bgcolor="#({cycle values="`$ktai_color_config.bg_06`,`$ktai_color_config.bg_07`"})">
