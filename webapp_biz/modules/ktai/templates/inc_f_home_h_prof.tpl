@@ -33,22 +33,24 @@
 <hr color="#({$ktai_color_config.border_02})">
 </td></tr>
 ({/if})
-<tr><td colspan="2" align="center">
-[i:69]<a href="({t_url m=ktai_biz a=page_fh_biz_todo_list})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">Todoﾘｽﾄ</a>/[i:176]<a href="({t_url m=ktai_biz a=page_fh_calendar_week})&amp;target_id=({$target_c_member.c_member_id})&amp;({$tail})">週間ｶﾚﾝﾀﾞｰ</a><br>
-<hr color="#({$ktai_color_config.border_02})">
-</td></tr>
 ({if $days_birthday == 0})({* 誕生日当日　*})
 <tr><td colspan="2" align="center">
 <a href="({t_url m=ktai a=page_f_message_send})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">☆Happy Birthday☆<br>
-お誕生日にﾒｯｾｰｼﾞを送りましょう</a><br>
+お誕生日にﾒｯｾｰｼﾞを送りましょう</a>
+<hr color="#({$ktai_color_config.border_02})">
 </td></tr>
 ({elseif $days_birthday <= 3})({* 誕生日3日以内 *})
 <tr><td colspan="2" align="center">
 <a href="({t_url m=ktai a=page_f_message_send})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">☆もうすぐ誕生日です!☆<br>
-お誕生日にはﾒｯｾｰｼﾞを送りましょう</a><br>
+お誕生日にはﾒｯｾｰｼﾞを送りましょう</a>
+<hr color="#({$ktai_color_config.border_02})">
 </td></tr>
 ({/if})
 ({/if})
+<tr><td colspan="2" align="center">
+[i:69]<a href="({t_url m=ktai_biz a=page_fh_biz_todo_list})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">Todoﾘｽﾄ</a>/[i:176]<a href="({t_url m=ktai_biz a=page_fh_calendar_week})&amp;target_id=({$target_c_member.c_member_id})&amp;({$tail})">週間ｶﾚﾝﾀﾞｰ</a><br>
+<hr color="#({$ktai_color_config.border_02})">
+</td></tr>
 
 <tr><td align="center" width="50%" valign="top">
 <img src="({t_img_url filename=$target_c_member.image_filename w=120 h=120 f=jpg noimg=no_image})" alt="({$target_c_member.nickname})さん"><br>
@@ -62,14 +64,14 @@
 </td>
 <td valign="top">
 ({strip})
-<font color="#({$ktai_color_config.font_06})">ID：</font>({$target_c_member.c_member_id})<br>
+<font color="#({$ktai_color_config.font_06})">ID：</font><br>({$target_c_member.c_member_id})<br>
 
 ({capture name="birth"})
-({if $target_c_member.public_flag_birth_year == 'public' || ($target_c_member.public_flag_birth_year == 'friend' && $is_friend)})<font color="#({$ktai_color_config.font_06})">年齢：</font>({$target_c_member.age})歳<br>
+({if $target_c_member.public_flag_birth_year == 'public' || ($target_c_member.public_flag_birth_year == 'friend' && $is_friend)})<font color="#({$ktai_color_config.font_06})">年齢：</font><br>({$target_c_member.age})歳<br>
 ({if $is_h_prof && $target_c_member.public_flag_birth_year == 'friend'})<font color="#({$ktai_color_config.font_09})">※({$WORD_MY_FRIEND_HALF})まで公開</font><br>({/if})
 ({/if})
 ({if $target_c_member.birth_month && $target_c_member.birth_day})
-<font color="#({$ktai_color_config.font_06})">誕生日：</font>({$target_c_member.birth_month})月({$target_c_member.birth_day})日<br>
+<font color="#({$ktai_color_config.font_06})">誕生日：</font><br>({$target_c_member.birth_month})月({$target_c_member.birth_day})日<br>
 ({/if})
 ({/capture})
 
@@ -82,9 +84,11 @@
 ({$smarty.capture.birth|smarty:nodefaults})
 ({/if})
 
-<font color="#({$ktai_color_config.font_06})">({$item.caption})：</font>
+<font color="#({$ktai_color_config.font_06})">({$item.caption})：</font><br>
 ({if $item.form_type == 'checkbox'})
     ({$item.value|@t_implode:", "})
+({elseif $item.form_type == 'text' || $item.form_type == 'textlong'})
+    ({$item.value|t_truncate:30:""})
 ({else})
     ({$item.value})
 ({/if})
