@@ -4,7 +4,7 @@
 <font color="#({$ktai_color_config.font_05})"><a name="top">({$c_commu_topic.name})</a></font><br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
-ｲﾍﾞﾝﾄとｺﾒﾝﾄの削除<br>
+<font color="#({$ktai_color_config.color_24})">ｲﾍﾞﾝﾄとｺﾒﾝﾄの削除</font><br>
 </td></tr></table>
 
 このｲﾍﾞﾝﾄを本当に削除しますか?<br>

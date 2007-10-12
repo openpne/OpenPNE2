@@ -4,7 +4,7 @@
 <font color="#({$ktai_color_config.font_05})"><a name="top">({$target_c_member.nickname})さん</a></font><br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
-ﾌﾟﾛﾌｨｰﾙ詳細<br>
+<font color="#({$ktai_color_config.color_24})">ﾌﾟﾛﾌｨｰﾙ詳細</font><br>
 </td></tr></table>
 
 ({strip})

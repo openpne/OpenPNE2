@@ -7,7 +7,7 @@
 <font color="#({$ktai_color_config.font_05})"><a name="top">({$target_c_member.nickname})さん</a></font><br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
-最終ﾛｸﾞｲﾝは({$target_c_member.last_login})<br>
+<font color="#({$ktai_color_config.color_24})">最終ﾛｸﾞｲﾝは({$target_c_member.last_login})</font><br>
 </td></tr></table>
 ({if $c_siteadmin})
 ({$c_siteadmin|smarty:nodefaults})<br>
@@ -154,7 +154,7 @@
 <br>
 <table width="100%">
 <tr><td bgcolor="#({$ktai_color_config.bg_08})">
-<a accesskey="2" name="a2" href="#a2">[i:126]</a>({$WORD_FRIEND_HALF})ﾘｽﾄ<br>
+<a accesskey="2" name="a2" href="#a2">[i:126]</a><font color="#({$ktai_color_config.color_26})">({$WORD_FRIEND_HALF})ﾘｽﾄ</font><br>
 </td></tr>
 ({foreach from=$c_friend_list item=c_friend})
 <tr><td bgcolor="#({cycle values="`$ktai_color_config.bg_09`,`$ktai_color_config.bg_07`"})">

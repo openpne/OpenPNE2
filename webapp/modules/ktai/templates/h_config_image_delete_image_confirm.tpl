@@ -3,7 +3,7 @@
 <font color="#({$ktai_color_config.font_05})"><a name="top">設定変更</a></font><br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
-ﾌﾟﾛﾌｨｰﾙ写真削除<br>
+<font color="#({$ktai_color_config.color_24})">ﾌﾟﾛﾌｨｰﾙ写真削除</font><br>
 </td></tr></table>
 
 この写真を本当に削除しますか?<br>

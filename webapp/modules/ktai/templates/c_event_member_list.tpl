@@ -4,7 +4,7 @@
 <font color="#({$ktai_color_config.font_05})"><a name="top">({$c_event.name})</a></font><br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
-ｲﾍﾞﾝﾄ参加者ﾘｽﾄ<br>
+<font color="#({$ktai_color_config.color_24})">ｲﾍﾞﾝﾄ参加者ﾘｽﾄ</font><br>
 </td></tr></table>
 ({if $count_member})
 <center>

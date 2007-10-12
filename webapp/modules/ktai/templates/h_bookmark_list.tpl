@@ -4,7 +4,7 @@
 <font color="#({$ktai_color_config.font_05})"><a name="top">お気に入り</a></font><br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
-ﾒﾝﾊﾞｰﾘｽﾄ<br>
+<font color="#({$ktai_color_config.color_24})">ﾒﾝﾊﾞｰﾘｽﾄ</font><br>
 </td></tr></table>
 
 ({if $c_members_num==0})

@@ -9,7 +9,7 @@
 </td></tr>
 ({/if})
 <tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
-({$target_c_diary.subject})<br>
+<font color="#({$ktai_color_config.color_24})">({$target_c_diary.subject})</font><br>
 </td></tr></table>
 <a href="#({if $c_diary_comment})dc1({else})({if $is_prev || $is_next})pager({else})write({/if})({/if})"><font color="#({$ktai_color_config.font_08})">▼</font></a>({$target_c_diary.r_datetime|date_format:"%y/%m/%d %H:%M"})({if $target_diary_writer.c_member_id==$u}) [<a href="({t_url m=ktai a=page_h_diary_edit})&amp;target_c_diary_id=({$target_c_diary.c_diary_id})&amp;({$tail})">編集</a>][<a href="({t_url m=ktai a=page_fh_diary_delete_c_diary_confirm})&amp;target_c_diary_id=({$target_c_diary.c_diary_id})&amp;({$tail})">削除</a>]({/if})<br>
 ({$target_c_diary.body|t_url2a_ktai|nl2br})
