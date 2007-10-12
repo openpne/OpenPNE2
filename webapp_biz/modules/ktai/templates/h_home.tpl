@@ -14,15 +14,12 @@
 		<font color="#({$ktai_color_config.font_05})"><a name="top">({$smarty.const.SNS_NAME})</a></font><br>
 	</td></tr>
 ({/if})
-({if $inc_ktai_entry_point[2]})
-	<tr><td>({$inc_ktai_entry_point[2]|smarty:nodefaults})</td></tr>
-({/if})
 </table>
-({if $inc_ktai_entry_point[3]})
-({$inc_ktai_entry_point[3]|smarty:nodefaults})
-({/if})
 ({if $c_siteadmin})
-({$c_siteadmin|smarty:nodefaults})
+({$c_siteadmin|smarty:nodefaults})<br>
+({/if})
+({if $inc_ktai_entry_point[2]})
+({$inc_ktai_entry_point[2]|smarty:nodefaults})
 ({/if})
 ({if $num_f_confirm_list})
 <a href="({t_url m=ktai a=page_h_confirm_list})&amp;({$tail})"><font color="#({$ktai_color_config.font_09})">★承認待ちのﾒﾝﾊﾞｰ({$num_f_confirm_list})名</font></a><br>
@@ -92,9 +89,10 @@
 [i:140]<a href="({t_url m=ktai a=page_h_prof})&amp;({$tail})">ﾌﾟﾛﾌｨｰﾙ</a>/[i:68]<a href="({t_url m=ktai a=page_h_config_image})&amp;({$tail})">写真</a>/[i:76]<a href="({t_url m=ktai a=page_fh_intro})&amp;({$tail})">紹介文</a><br>
 <hr color="#({$ktai_color_config.border_01})"></td></tr>
 </table>
-　
+({if $inc_ktai_entry_point[3]})
+({$inc_ktai_entry_point[3]|smarty:nodefaults})
+({/if})
 <br>
-
 <table width="100%">
 <tr><td bgcolor="#({$ktai_color_config.bg_05})">
 <a accesskey="1" name="a1" href="#a1">[i:125]</a>({$WORD_FRIEND_HALF})最新日記<br>
