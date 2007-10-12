@@ -3,7 +3,7 @@
 <font color="#({$ktai_color_config.font_05})"><a name="top">日記写真の編集</a></font><br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
-({$target_c_diary.subject})<br>
+<font color="#({$ktai_color_config.color_24})">({$target_c_diary.subject})</font><br>
 </td></tr></table>
 
 <center>

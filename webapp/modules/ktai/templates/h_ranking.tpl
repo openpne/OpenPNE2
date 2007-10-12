@@ -4,6 +4,7 @@
 <font color="#({$ktai_color_config.font_05})"><a name="top">ﾗﾝｷﾝｸﾞ</a></font><br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
+<font color="#({$ktai_color_config.color_24})">
 ({if $kind == "ashiato"})
 ｱｸｾｽ数
 ({elseif $kind == "friend"})
@@ -13,7 +14,7 @@
 ({elseif $kind == "com_comment"})
 ｺﾐｭﾆﾃｨ盛り上がり度
 ({/if})
-ﾗﾝｷﾝｸﾞ<br>
+ﾗﾝｷﾝｸﾞ</font><br>
 </td></tr></table>
 
 [i:150]
