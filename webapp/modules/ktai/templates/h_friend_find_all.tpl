@@ -7,7 +7,7 @@
 <font color="#({$ktai_color_config.font_06})">(({$pager.total_num})件)</font><br>
 </center>
 <table width="100%">
-<tr><td>
+<tr><td bgcolor="#({$ktai_color_config.bg_07})">
 <hr color="#({$ktai_color_config.border_02})">
 </td></tr>
 ({foreach from=$target_friend_list item=target_friend})
@@ -15,7 +15,7 @@
 <a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$target_friend.c_member_id})&amp;({$tail})">({$target_friend.nickname|t_truncate:30:""})</a><br>
 </td></tr>
 ({/foreach})
-<tr><td>
+<tr><td bgcolor="#({$ktai_color_config.bg_07})">
 <hr color="#({$ktai_color_config.border_02})">
 </td></tr></table>
 ({if $pager.page_prev || $pager.page_next})
