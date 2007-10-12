@@ -19,7 +19,7 @@
 <a href="({t_url m=ktai a=page_fh_diary})&amp;target_c_diary_id=({$each_diary.c_diary_id})&amp;({$tail})">({$each_diary.subject|t_truncate:28:""})(({$each_diary.num_comment}))</a>
 (({$each_diary.nickname|t_truncate:17:""}))<br>
 </td></tr>
-<tr><td>
+<tr><td bgcolor="#({$ktai_color_config.bg_07})">
 <hr color="#({$ktai_color_config.border_02})">
 </td></tr>
 ({/foreach})

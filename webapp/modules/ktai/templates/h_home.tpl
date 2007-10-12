@@ -103,7 +103,7 @@
 ({/if})
 <br>
 </td></tr>
-<tr><td>
+<tr><td bgcolor="#({$ktai_color_config.bg_07})">
 <hr color="#({$ktai_color_config.border_02})">
 </td></tr>
 ({/foreach})
@@ -124,7 +124,7 @@
 <font color="#({$ktai_color_config.font_06})">[({$item.r_datetime|date_format:"%m/%d"})]</font> ({$item.nickname|t_truncate:22:""})<br>
 <a href="({t_url m=ktai a=page_fh_diary})&amp;target_c_diary_id=({$item.c_diary_id})&amp;({$tail})">({$item.subject|t_truncate:28:""})(({$item.num_comment}))</a><br>
 </td></tr>
-<tr><td>
+<tr><td bgcolor="#({$ktai_color_config.bg_10})">
 <hr color="#({$ktai_color_config.border_03})">
 </td></tr>
 ({/foreach})
@@ -149,7 +149,7 @@
 ({/if})
 <br>
 </td></tr>
-<tr><td>
+<tr><td bgcolor="#({$ktai_color_config.bg_07})">
 <hr color="#({$ktai_color_config.border_02})">
 </td></tr>
 ({/foreach})
