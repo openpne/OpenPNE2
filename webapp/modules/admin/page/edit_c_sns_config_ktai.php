@@ -42,24 +42,7 @@ class admin_page_edit_c_sns_config_ktai extends OpenPNE_Action
         );
         $v['c_config_color_ktai_list'] = db_etc_c_config_color_ktai_list();
         $v['c_config_color_ktai_list'][0]['caption'] = '現在の設定';
-        if (empty($v['c_config_color_ktai_list'][0]['color_23'])) {
-            $v['c_config_color_ktai_list'][0]['color_23'] = 'FFFFFF';
-        }
-        if (empty($v['c_config_color_ktai_list'][0]['color_24'])) {
-            $v['c_config_color_ktai_list'][0]['color_24'] = $v['c_config_color_ktai_list'][0]['color_14'];
-        }
-        if (empty($v['c_config_color_ktai_list'][0]['color_25'])) {
-            $v['c_config_color_ktai_list'][0]['color_25'] = $v['c_config_color_ktai_list'][0]['color_14'];
-        }
-        if (empty($v['c_config_color_ktai_list'][0]['color_26'])) {
-            $v['c_config_color_ktai_list'][0]['color_26'] = $v['c_config_color_ktai_list'][0]['color_14'];
-        }
-        if (empty($v['c_config_color_ktai_list'][0]['color_27'])) {
-            $v['c_config_color_ktai_list'][0]['color_27'] = $v['c_config_color_ktai_list'][0]['color_3'];
-        }
-        if (empty($v['c_config_color_ktai_list'][0]['color_28'])) {
-            $v['c_config_color_ktai_list'][0]['color_28'] = $v['c_config_color_ktai_list'][0]['color_14'];
-        }
+        $v['c_config_color_ktai_list'][0] = util_apply_color_default2current($v['c_config_color_ktai_list'][0], 'ktai');
 
         $this->set($v);
         return 'success';
