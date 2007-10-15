@@ -619,18 +619,36 @@ function util_is_readable_message($c_member_id, $c_message_id)
     return false;
 }
 
+/**
+ * DB内配色設定の未設定項目をデフォルトの配色設定で埋める
+ *
+ * @param array $c_config_color    DB内配色設定
+ * @param string $dir
+ * @return array
+ */
+function util_apply_color_default2current($c_config_color, $dir = 'pc')
+{
+    $default_color = util_get_default_color($dir);
+
+    $empty_keys = array_keys($c_config_color, '');
+    foreach ($empty_keys as $key) {
+        if (array_key_exists($key, $default_color)) {
+            $c_config_color[$key] = $default_color[$key];
+        }
+    }
+
+    return $c_config_color;
+}
+
 function util_get_color_config()
 {
     $c_config_color = db_etc_c_config_color();
-
-    if (empty($c_config_color['color_19'])) {
-        $c_config_color['color_19'] = $c_config_color['color_13'];
-    }
+    $c_config_color = util_apply_color_default2current($c_config_color);
 
     $color_config = array(
         'border_01' => $c_config_color['color_1'],
         'border_07' => $c_config_color['color_2'],
-        'border_10' => $c_config_color['color_3'],    
+        'border_10' => $c_config_color['color_3'],
         'bg_00' => $c_config_color['color_4'],
         'bg_01' => $c_config_color['color_5'],
         'bg_02' => $c_config_color['color_6'],
@@ -654,25 +672,7 @@ function util_get_color_config()
 function util_get_color_config_ktai()
 {
     $c_config_color = db_etc_c_config_color_ktai();
-
-    if (empty($c_config_color['color_23'])) {
-        $c_config_color['color_23'] = 'FFFFFF';
-    }
-    if (empty($c_config_color['color_24'])) {
-        $c_config_color['color_24'] = $c_config_color['color_14'];
-    }
-    if (empty($c_config_color['color_25'])) {
-        $c_config_color['color_25'] = $c_config_color['color_14'];
-    }
-    if (empty($c_config_color['color_26'])) {
-        $c_config_color['color_26'] = $c_config_color['color_14'];
-    }
-    if (empty($c_config_color['color_27'])) {
-        $c_config_color['color_27'] = $c_config_color['color_3'];
-    }
-    if (empty($c_config_color['color_28'])) {
-        $c_config_color['color_28'] = $c_config_color['color_14'];
-    }
+    $c_config_color = util_apply_color_default2current($c_config_color, 'ktai');
 
     $color_config = array(
         'bg_01' => $c_config_color['color_1'],
@@ -770,6 +770,16 @@ function util_get_preset_color_list($dir = 'pc')
     ksort($color_list);
 
     return array_values($color_list);
+}
+
+function util_get_default_color($dir = 'pc')
+{
+    $color_list_dir = OPENPNE_WEBAPP_DIR . '/lib/color/' . $dir . '/';
+    $color_file = $color_list_dir . '999_default.ini';
+
+    $color = parse_ini_file($color_file);
+
+    return $color;
 }
 
 ?>
