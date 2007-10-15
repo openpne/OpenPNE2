@@ -476,7 +476,7 @@ function db_common_delete_c_member($c_member_id)
             }
             do_common_send_mail_c_commu_admin_change(intval($new_admin_id), intval($c_commu['c_commu_id']));
 
-            $data = array('c_member_id_admin' => intval($new_admin_id));
+            $data = array('c_member_id_admin' => intval($new_admin_id), 'c_member_id_sub_admin' => 0);
             $where = array('c_commu_id' => intval($c_commu['c_commu_id']));
             db_update('c_commu', $data, $where);
         }
