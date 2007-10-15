@@ -843,7 +843,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({/capture})
 ({capture name="birth"})
 <!-- ここから：主内容＞年齢 -->
-({if $target_c_member.public_flag_birth_year == 'public' || ($target_c_member.public_flag_birth_year == 'friend' && $is_friend)})
+({if $target_c_member.age !== NULL && ($target_c_member.public_flag_birth_year == 'public' || ($target_c_member.public_flag_birth_year == 'friend' && $is_friend))})
 <tr>
 <td class="border_01 bg_09 padding_s" style="width:90px;border-right:none;border-top:none;">
 
@@ -878,7 +878,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <!-- ここまで：主内容＞誕生日 -->
 ({/capture})
 ({foreach from=$target_c_member.profile key=key item=item})
-({if $item.public_flag != "private" && ($is_h_prof || ($item.public_flag == "public" || ($item.public_flag == "friend" && $is_friend)))})
+({if $item.public_flag != "private" && ($item.public_flag == "public" || ($item.public_flag == "friend" && $is_friend))})
 ({strip})
 
 ({if !$_cnt_nick && $profile_list[$key].sort_order >= $smarty.const.SORT_ORDER_NICK
