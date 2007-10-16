@@ -87,7 +87,7 @@ function smarty_modifier_t_truncate_callback($string, $width, $etc = '')
 
             // 絵文字分を足してちょうどwidthと等しい
             if ($substr_width + 2 == $width) {
-                $width = $width + $emoji_width;
+                $width = $substr_width + $emoji_width;
                 break;
             }
 
