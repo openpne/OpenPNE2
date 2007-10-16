@@ -623,12 +623,21 @@ function util_is_readable_message($c_member_id, $c_message_id)
  * DB内配色設定の未設定項目をデフォルトの配色設定で埋める
  *
  * @param array $c_config_color    DB内配色設定
- * @param string $dir
+ * @param string $mode
  * @return array
  */
-function util_apply_color_default2current($c_config_color, $dir = 'pc')
+function util_apply_color_default2current($c_config_color, $mode = 'pc')
 {
-    $default_color = util_get_default_color($dir);
+    if ($mode == 'ktai') {
+        $default_color['color_23'] = $c_config_color['color_1'];
+        $default_color['color_24'] = $c_config_color['color_14'];
+        $default_color['color_25'] = $c_config_color['color_14'];
+        $default_color['color_26'] = $c_config_color['color_14'];
+        $default_color['color_27'] = $c_config_color['color_3'];
+        $default_color['color_28'] = $c_config_color['color_14'];
+    } else {
+        $default_color['color_19'] = $c_config_color['color_13'];
+    }
 
     $empty_keys = array_keys($c_config_color, '');
     foreach ($empty_keys as $key) {
@@ -771,15 +780,4 @@ function util_get_preset_color_list($dir = 'pc')
 
     return array_values($color_list);
 }
-
-function util_get_default_color($dir = 'pc')
-{
-    $color_list_dir = OPENPNE_WEBAPP_DIR . '/lib/color/' . $dir . '/';
-    $color_file = $color_list_dir . '999_default.ini';
-
-    $color = parse_ini_file($color_file);
-
-    return $color;
-}
-
 ?>
