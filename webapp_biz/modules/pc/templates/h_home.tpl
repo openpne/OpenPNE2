@@ -1563,7 +1563,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 </td>
 <td style="width:298px;" class="bg_02 border_01 padding_l">
 
-({$item.intro|t_truncate:"200"|t_url2a|nl2br})
+({$item.intro|t_truncate:36:"":3|t_url2a|nl2br})
 
 </td>
 </tr>
