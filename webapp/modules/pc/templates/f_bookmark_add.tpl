@@ -109,7 +109,7 @@
 
 <div class="padding_s">
 
-({$c_member.profile.self_intro.value|t_truncate:150})
+({$c_member.profile.self_intro.value|t_truncate:36:"":3})
 
 </div>
 
