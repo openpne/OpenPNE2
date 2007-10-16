@@ -126,7 +126,7 @@
 </td>
 <td class="bg_02" align="left" valign="middle" colspan="3">
 <div class="padding_s">
-({$item.profile.self_intro.value|t_truncate:150})
+({$item.profile.self_intro.value|t_truncate:36:"":3})
 </div>
 </td>
 </tr>

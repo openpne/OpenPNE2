@@ -132,7 +132,7 @@
 
 <div class="padding_s">
 
-({$member.profile.self_intro.value|t_truncate:150})&nbsp;
+({$member.profile.self_intro.value|t_truncate:36:"":3})&nbsp;
 
 </div>
 
