@@ -243,7 +243,7 @@
 ({/if})
 
 <div class="padding_s lh_120">
-({$item.body|nl2br})
+({$item.body|nl2br|t_truncate:48:"":3})
 
 </div>
 

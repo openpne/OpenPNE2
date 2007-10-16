@@ -326,7 +326,7 @@
 
 <div class="padding_s">
 
-({$c_commu_search.info})
+({$c_commu_search.info|t_truncate:36:"":3})
 
 </div>
 

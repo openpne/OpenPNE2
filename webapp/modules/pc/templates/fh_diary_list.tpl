@@ -520,7 +520,7 @@
 </div>
 ({/if})
 
-({$item.body|t_truncate:"120"})
+({$item.body|t_truncate:48:"":3})
 
 </div>
 
