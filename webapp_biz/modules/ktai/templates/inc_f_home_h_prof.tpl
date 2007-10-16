@@ -67,7 +67,7 @@
 <font color="#({$ktai_color_config.font_06})">ID：</font><br>({$target_c_member.c_member_id})<br>
 
 ({capture name="birth"})
-({if $target_c_member.age !== NULL && ($target_c_member.public_flag_birth_year == 'public' || ($target_c_member.public_flag_birth_year == 'friend' && $is_friend))})<font color="#({$ktai_color_config.font_06})">年齢：</font><br>({$target_c_member.age})歳<br>
+({if $target_c_member.age !== NULL && ($target_c_member.public_flag_birth_year == 'public' || ($target_c_member.public_flag_birth_year == 'friend' && ($is_friend || $is_h_prof)))})<font color="#({$ktai_color_config.font_06})">年齢：</font><br>({$target_c_member.age})歳<br>
 ({if $is_h_prof && $target_c_member.public_flag_birth_year == 'friend'})<font color="#({$ktai_color_config.font_09})">※({$WORD_MY_FRIEND_HALF})まで公開</font><br>({/if})
 ({/if})
 ({if $target_c_member.birth_month && $target_c_member.birth_day})
@@ -76,7 +76,7 @@
 ({/capture})
 
 ({foreach from=$target_c_member.profile key=key item=item})
-({if $item.public_flag != "private" && ($item.public_flag == "public" || ($item.public_flag == "friend" && $is_friend))})
+({if $item.public_flag != "private" && ($item.public_flag == "public" || ($item.public_flag == "friend" && ($is_friend || $is_h_prof)))})
 ({if $item.form_type != 'textarea'})
 
 ({if !$_cnt_birth && $profile_list[$key].sort_order >= $smarty.const.SORT_ORDER_BIRTH})
