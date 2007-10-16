@@ -10,10 +10,16 @@
  * @param string $string
  * @param int    $width
  * @param string $etc
+ * @param int    $rows
  * @return string
  */
-function smarty_modifier_t_truncate($string, $width = 80, $etc = '...')
+function smarty_modifier_t_truncate($string, $width = 80, $etc = '', $rows = 1)
 {
+    $rows = (int)$rows;
+    if (!($rows > 0)) {
+        $rows = 1;
+    }
+
     // 特殊文字を変換
     $trans = array(
         // htmlspecialchars
@@ -31,6 +37,34 @@ function smarty_modifier_t_truncate($string, $width = 80, $etc = '...')
     );
     $string = strtr($string, $trans);
 
+    // 複数行対応
+    $result = array();
+    $p_string = $string;
+    for ($i = 1; $i <= $rows; $i++) {
+        // 最終行のみ $etc を反映
+        if ($i === $rows) {
+            $p_etc = $etc;
+        } else {
+            $p_etc = '';
+        }
+
+        if ($i > 0) {
+            // 前行の分を切り取り
+            $p_string = substr($p_string, strlen($result[$i - 1]));
+            if (!$p_string) {
+                break;
+            }
+        }
+
+        $result[$i] .= smarty_modifier_t_truncate_callback($p_string, $width, $p_etc);
+    }
+    $string = implode("\n", $result);
+
+    return nl2br(htmlspecialchars($string, ENT_QUOTES, 'UTF-8'));
+}
+
+function smarty_modifier_t_truncate_callback($string, $width, $etc = '')
+{
     // 入力文字列の幅が大きい場合は切り取り
     if (mb_strwidth($string) > $width) {
         $width = $width - mb_strwidth($etc);
@@ -42,9 +76,10 @@ function smarty_modifier_t_truncate($string, $width = 80, $etc = '...')
             $emoji_pos = $matches[0][1];
             $emoji_len = strlen($emoji_str);
             $emoji_width = $emoji_len; // ASCIIなのでstrlenでOK
-            
+
+            // 絵文字直前までの文字列の幅
             $substr_width = mb_strwidth(substr($string, 0, $emoji_pos));
-            
+
             // 絵文字がwidth位置より後ろ
             if ($substr_width >= $width) {
                 break;
@@ -70,7 +105,7 @@ function smarty_modifier_t_truncate($string, $width = 80, $etc = '...')
         $string = mb_strimwidth($string, 0, $width) . $etc;
     }
 
-    return htmlspecialchars($string, ENT_QUOTES, 'UTF-8');
+    return $string;
 }
 
 ?>
