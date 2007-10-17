@@ -19,6 +19,9 @@ require_once $module_lib_dir . '/db_admin.php';
 require_once $module_lib_dir . '/etc_admin.php';
 require_once $module_lib_dir . '/hash_admin.php';
 
+// 管理画面向け smarty plugins
+$GLOBALS['SMARTY']['plugins_dir'][] = $module_lib_dir . '/smarty_plugins/';
+
 // デフォルトページ
 $GLOBALS['__Framework']['default_page'] = 'top';
 
