@@ -583,4 +583,7 @@ array(
 //※画像静的化機能を用いている場合は利用できません
 define('CHECK_IMG_AUTH', false);
 
+//携帯電話の絵文字をDocomoに対応する絵文字・文字列に変換するかどうか
+define('OPENPNE_EMOJI_DOCOMO');
+
 ?>
