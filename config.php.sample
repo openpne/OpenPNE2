@@ -580,7 +580,8 @@ array(
 //※画像静的化機能を用いている場合は利用できません
 define('CHECK_IMG_AUTH', false);
 
-//携帯電話の絵文字をDocomoに対応する絵文字・文字列に変換するかどうか
-define('OPENPNE_EMOJI_DOCOMO');
+// PC表示時にau/SoftBankの絵文字をDoCoMo絵文字に変換するかどうか
+// au/SoftBankの絵文字を使用するには、 public_html/skin/default/img/emoji/{e|s} に画像を用意する必要があります
+define('OPENPNE_EMOJI_DOCOMO_FOR_PC', true);
 
 ?>
