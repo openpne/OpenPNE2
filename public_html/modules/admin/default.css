@@ -1089,15 +1089,20 @@ div.listControl p.listMove a {
 #admin_page_top div.box h2 { margin-top: 0px; padding: 0 0 0 18px; background: #5a595a; line-height: 150%; font-size: 105%; color: #fff;}
 #admin_page_top div.box div.innerBox { width: 298px; overflow: hidden; line-height:1.1em; padding: 10px;}
 
-#admin_page_top div.box dl { padding: 0px;}
-#admin_page_top div.box dt { float: left; padding: 4px 0;}
-#admin_page_top div.box dd { padding: 4px 0; padding-left: 6.3em;}
+#admin_page_top div.box dl { width: 280px; padding: 0px; float:left;}
+#admin_page_top div.box dt { padding: 4px 0px; float:left; width: 70px; clear: both; margin-right: 10px;}
+#admin_page_top div.box dd { width: 200px; padding: 4px 0px; float:left;}
 #admin_page_top div.box dd span.origin { padding-left:8px; font-size: x-small;}
 #admin_page_top div.box dd span.origin a { margin:0 2px;}
 
-#admin_page_top div#topics dd { padding-left: 3.7em;}
-#admin_page_top div#topics dd span { padding-right: 5px; font-size: x-small; font-weight: bold; color: #c00;}
-#admin_page_top div#counter dd { padding-left: 8em;}
+#admin_page_top div.box#counter dt { width: 90px;}
+#admin_page_top div.box#counter dd { width: 180px;}
+
+#admin_page_top div.box#ranking dt { width: 90px;}
+#admin_page_top div.box#ranking dd { width: 180px;}
+
+#admin_page_top div.box#pneinfo dt { width: 60px;}
+#admin_page_top div.box#pneinfo dd { width: 210px;}
 
 /** admin_page_login **/
 #admin_page_login p.caution#c01 { padding-top: 15px;}
