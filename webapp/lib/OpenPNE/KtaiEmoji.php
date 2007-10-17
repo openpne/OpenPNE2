@@ -2852,9 +2852,6 @@ class OpenPNE_KtaiEmoji
         $o_carrier = $o_code[0];
         $o_id = substr($o_code, 2);
 
-        if($o_carrier != 'i' && OPENPNE_EMOJI_DOCOMO){
-            return emoji_convert($this->relation_list[$o_carrier]['i'][$o_id]);
-        }
         if (is_null($c_carrier) || ($o_carrier == $c_carrier)) {  // キャリアの変更がないか、キャリアが指定されていない場合はそのまま変換処理
             $c_code = $o_id;
             switch ($c_carrier) {
@@ -2868,6 +2865,11 @@ class OpenPNE_KtaiEmoji
                 $converter = OpenPNE_KtaiEmoji_Au::getInstance();
                 break;
             default:
+                // PC向けau/SoftBank→DoCoMo絵文字変換
+                if (OPENPNE_EMOJI_DOCOMO_FOR_PC && $o_carrier !== 'i') {
+                    return emoji_convert($this->relation_list[$o_carrier]['i'][$o_id]);
+                }
+
                 $c_code = $o_code;  // 画像出力の際にキャリア情報が必要になるため、絵文字IDではなく絵文字コードを用いる
                 $converter = OpenPNE_KtaiEmoji_Img::getInstance();
                 break;
