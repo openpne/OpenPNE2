@@ -953,7 +953,7 @@ if ( c['skinChangerArea'] == 0 ) { toggleDisplay('skin_changer_area'); }
 </form></dd>
 </dl>
 <br class="clear" />
-<p class="detailLink"><a href="modules/admin/img/dummy.gif" target="preview">詳細を確認する</a></p>
+<p class="detailLink"><a href="modules/admin/img/12.gif" target="preview">詳細を確認する</a></p>
 </td>
 </tr>
 ({*******})
