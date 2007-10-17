@@ -192,6 +192,7 @@ class OpenPNE_Config
             'OPENPNE_USE_KTAI_LOGO' => true,
             'OPENPNE_USE_FUNCTION_CACHE_MEMCACHE' => false,
             'OPENPNE_LOG_FUNCTION' => '',
+            'OPENPNE_EMOJI_DOCOMO' => true,
         // 固定値
             'AMAZON_TOKEN'   => '1WZYY1W9YF49AGM0RTG2',
             'AMAZON_LOCALE'  => 'jp',
