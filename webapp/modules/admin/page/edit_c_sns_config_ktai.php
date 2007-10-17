@@ -37,8 +37,8 @@ class admin_page_edit_c_sns_config_ktai extends OpenPNE_Action
             'color_24' => 'サブタイトル文字',
             'color_25' => 'リストA見出し文字',
             'color_26' => 'リストB見出し文字',
-            'color_27' => '検索フォーム見出し背景',
-            'color_28' => '検索フォーム見出し文字',
+            'color_27' => '検索部分見出し背景',
+            'color_28' => '検索部分見出し文字',
         );
         $v['c_config_color_ktai_list'] = db_etc_c_config_color_ktai_list();
         $v['c_config_color_ktai_list'][0]['caption'] = '現在の設定';
