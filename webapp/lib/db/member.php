@@ -155,7 +155,7 @@ function db_member_c_member4c_member_id_LIGHT($c_member_id)
 }
 
 /**
- * PCアドレスからメンバーIDを取得(ログインに必要)
+ * PCメールアドレスからメンバーIDを取得(ログインに必要)
  * 
  * @param   string $pc_address
  * @return  int    $c_member_id
@@ -644,7 +644,7 @@ function db_member_inviting_member4c_member_id2($c_member_id)
 }
 
 /**
- * 対象のアドレスが、登録されてるか否か
+ * 対象のメールアドレスが、登録されてるか否か
  * 
  * @param string $mail_address
  * @param int $c_member_id チェックから除外するメンバーID
@@ -668,7 +668,7 @@ function db_member_is_sns_join4mail_address($mail_address, $c_member_id = 0, $is
         $p_array = array();
     }
 
-    //対象のアドレスが登録済み
+    //対象のメールアドレスが登録済み
     if ($array['c_member_id'] || $k_array['c_member_id'] || $p_array['c_member_pre_id']) {
         return true;
     } else {
@@ -676,7 +676,7 @@ function db_member_is_sns_join4mail_address($mail_address, $c_member_id = 0, $is
     }
 }
 
-//対象のアドレスが、ドメイン制限に合致しているかどうか
+//対象のメールアドレスが、ドメイン制限に合致しているかどうか
 function db_member_is_limit_domain4mail_address($mail_address)
 {
     // メールアドレスとして正しくない
@@ -684,7 +684,7 @@ function db_member_is_limit_domain4mail_address($mail_address)
         return false;
     }
 
-    // 携帯アドレスは制限しない
+    // 携帯メールアドレスは制限しない
     if (is_ktai_mail_address($mail_address)) {
         return true;
     }
@@ -1307,7 +1307,7 @@ function db_member_h_config_1($c_member_id, $pc_address)
     $insert_id = 0;
     $session = create_hash();
 
-    // 既にpreに存在するアドレスかどうか
+    // 既にpreに存在するメールアドレスかどうか
     if (do_common_c_pc_address_pre4pc_address($pc_address)) {
         $data = array(
             'c_member_id' => intval($c_member_id),
@@ -1335,7 +1335,7 @@ function db_member_h_regist_mail($c_member_id, $pc_address)
     $insert_id = 0;
     $session = create_hash();
 
-    // 既にpreに存在するアドレスかどうか
+    // 既にpreに存在するメールアドレスかどうか
     if (do_common_c_pc_address_pre4pc_address($pc_address)) {
         $data = array(
             'c_member_id' => intval($c_member_id),
@@ -1404,7 +1404,7 @@ function db_member_regist_mail($sid, $password)
 //--- c_ktai_address_pre
 
 /**
- * 携帯アドレス変更
+ * 携帯メールアドレス変更
  */
 function db_member_insert_c_ktai_address_pre($c_member_id, $session, $ktai_address)
 {
