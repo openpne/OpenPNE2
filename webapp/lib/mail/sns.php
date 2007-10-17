@@ -59,7 +59,7 @@ class mail_sns
 
         //---
 
-        // ログインアドレス通知
+        // ログインURL通知
         if ($to_user == 'get') {
             m_debug_log('mail_sns::login_get()', PEAR_LOG_INFO);
             return $this->login_get();

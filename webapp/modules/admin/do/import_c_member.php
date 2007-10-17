@@ -73,16 +73,16 @@ class admin_do_import_c_member extends OpenPNE_Action
 
             // メールアドレスとして正しくない
             if (!db_common_is_mailaddress($mail_address)) {
-                $this->handleError(($key+1)."行目：アドレス [".$mail_address."] はメールアドレスとして正しくありません");
+                $this->handleError(($key+1)."行目：メールアドレス [".$mail_address."] はメールアドレスとして正しくありません");
             }
-            //対象のアドレスが、登録されてるか否か
+            //対象のメールアドレスが、登録されてるか否か
             if (db_member_is_sns_join4mail_address($mail_address)) {
-                $this->handleError(($key+1)."行目：そのアドレス [".$mail_address."] は既に登録済みです");
+                $this->handleError(($key+1)."行目：そのメールアドレス [".$mail_address."] は既に登録済みです");
             }
 
-            //対象のアドレスが、ドメイン制限に合致しているかどうか
+            //対象のメールアドレスが、ドメイン制限に合致しているかどうか
             if (!db_member_is_limit_domain4mail_address($mail_address)) {
-                $this->handleError(($key+1)."行目：そのアドレス [".$mail_address."] では登録できません");
+                $this->handleError(($key+1)."行目：そのメールアドレス [".$mail_address."] では登録できません");
             }
 
             //パスワードの形式チェック
@@ -96,7 +96,7 @@ class admin_do_import_c_member extends OpenPNE_Action
 
             // --- データのインポート ここから
 
-            // 携帯アドレスか否か
+            // 携帯メールアドレスか否か
             if (is_ktai_mail_address($mail_address)) {
                 $ktai_address = $mail_address;
                 $pc_address   = '';
