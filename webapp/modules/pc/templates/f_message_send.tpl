@@ -13,6 +13,7 @@
 <input type="hidden" name="target_c_member_id" value="({$target_member.c_member_id})">
 <input type="hidden" name="target_c_message_id" value="({$form_val.target_c_message_id})">
 <input type="hidden" name="jyusin_c_message_id" value="({$form_val.jyusin_c_message_id})">
+<input type="hidden" name="box" value="({$box})">
 
 <table border="0" cellspacing="0" cellpadding="0" style="width:650px;" class="border_07">
 <tr>
