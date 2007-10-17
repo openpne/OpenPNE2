@@ -2852,6 +2852,9 @@ class OpenPNE_KtaiEmoji
         $o_carrier = $o_code[0];
         $o_id = substr($o_code, 2);
 
+        if($o_carrier != 'i' && OPENPNE_EMOJI_DOCOMO){
+            return emoji_convert($this->relation_list[$o_carrier]['i'][$o_id]);
+        }
         if (is_null($c_carrier) || ($o_carrier == $c_carrier)) {  // キャリアの変更がないか、キャリアが指定されていない場合はそのまま変換処理
             $c_code = $o_id;
             switch ($c_carrier) {
