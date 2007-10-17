@@ -274,7 +274,7 @@ class OpenPNE_KtaiMail
         // "example"@docomo.ne.jp
         $str = str_replace('"', '', $str);
 
-        // <example@docomo.ne.jp> というアドレスになることがある。
+        // <example@docomo.ne.jp> というメールアドレスになることがある。
         //   日本語 <example@docomo.ne.jp>
         // のような場合に複数マッチする可能性があるので、
         // マッチした最後のものを取ってくるように変更

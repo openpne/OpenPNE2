@@ -697,14 +697,14 @@ function _db_admin_c_member_id_list($cond_list, $order = null)
         $sql = 'SELECT c_member_id FROM c_member_secure';
         $wheres = array();
 
-        //PCアドレスの有無で絞る
+        //PCメールアドレスの有無で絞る
         if ($cond_list['is_pc_address'] == 1) {
             $wheres[] = "pc_address <> ''";
         } elseif ($cond_list['is_pc_address'] == 2) {
             $wheres[] = "pc_address = ''";
         }
 
-        //携帯アドレスの有無で絞る
+        //携帯メールアドレスの有無で絞る
         if ($cond_list['is_ktai_address'] == 1) {
             $wheres[] = "ktai_address <> ''";
         } elseif ($cond_list['is_ktai_address'] == 2) {
@@ -831,11 +831,11 @@ function validate_cond($requests)
         $cond_list['last_login'] = intval($requests['last_login']);
     }
 
-    //PCアドレスの有無
+    //PCメールアドレスの有無
     if (!empty($requests['is_pc_address'])) {
         $cond_list['is_pc_address'] = intval($requests['is_pc_address']);
     }
-    //携帯アドレスの有無
+    //携帯メールアドレスの有無
     if (!empty($requests['is_ktai_address'])) {
         $cond_list['is_ktai_address'] = intval($requests['is_ktai_address']);
     }

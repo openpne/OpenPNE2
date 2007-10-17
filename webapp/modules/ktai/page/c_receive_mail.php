@@ -48,7 +48,7 @@ class ktai_page_c_receive_mail extends OpenPNE_Action
         $this->set("is_receive_mail_pc", db_commu_is_receive_mail_pc($target_c_commu_id, $u));
         //管理者からのメッセージ受信設定
         $this->set("is_receive_message", db_commu_is_receive_message($target_c_commu_id, $u));
-        // PCアドレス登録状況
+        // PCメールアドレス登録状況
         $this->set('is_registered_pc_address', $is_registered_pc_address);
 
         return 'success';
