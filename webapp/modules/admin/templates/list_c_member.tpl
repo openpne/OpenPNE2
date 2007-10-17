@@ -81,9 +81,9 @@
 			<th rowspan="2"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=({$prof.name})-1({$cond})">▲</a>({$prof.caption})<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=({$prof.name})-2({$cond})">▼</a></th>
 			({/if})
 			({/foreach})
-			<th class="cell16" rowspan="2">PCアドレス</th>
-			<th class="cell17" rowspan="2">携帯アドレス</th>
-			<th class="cell18" rowspan="3">登録時アドレス</th>
+			<th class="cell16" rowspan="2">PCメールアドレス</th>
+			<th class="cell17" rowspan="2">携帯メールアドレス</th>
+			<th class="cell18" rowspan="3">登録時メールアドレス</th>
 			<th class="cell18" rowspan="3">携帯個体識別番号(暗号化済)</th>
 			<th class="cell15" rowspan="3"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;order=c_member_id-1({$cond})">▲</a>ID<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;order=c_member_id-2({$cond})">▼</a></th>
 		</tr>
@@ -194,9 +194,9 @@
 			<th rowspan="2">({$prof.caption})</th>
 			({/if})
 			({/foreach})
-			<th class="cell16" rowspan="2">PCアドレス</th>
-			<th class="cell17" rowspan="2">携帯アドレス</th>
-			<th class="cell18" rowspan="2">登録時アドレス</th>
+			<th class="cell16" rowspan="2">PCメールアドレス</th>
+			<th class="cell17" rowspan="2">携帯メールアドレス</th>
+			<th class="cell18" rowspan="2">登録時メールアドレス</th>
 			<th class="cell18" rowspan="2">携帯個体識別番号(暗号化済)</th>
 			<th class="cell15" rowspan="2">ID</th>
 		</tr>

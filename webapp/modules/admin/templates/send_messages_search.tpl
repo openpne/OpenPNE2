@@ -30,10 +30,10 @@
 <li>ポイント : ({$cond_list.s_point})～({$cond_list.e_point})</li>
 ({/if})
 ({if $cond_list.is_pc_address})
-<li>PCアドレス : ({if $cond_list.is_pc_address == 1})登録している({else})登録していない({/if})</li>
+<li>PCメールアドレス : ({if $cond_list.is_pc_address == 1})登録している({else})登録していない({/if})</li>
 ({/if})
 ({if $cond_list.is_ktai_address})
-<li>携帯アドレス : ({if $cond_list.is_ktai_address == 1})登録している({else})登録していない({/if})</li>
+<li>携帯メールアドレス : ({if $cond_list.is_ktai_address == 1})登録している({else})登録していない({/if})</li>
 ({/if})
 ({foreach from=$profile_value_list key=key item=item})
 <li>({$item.caption}) : ({$item.value})</li>

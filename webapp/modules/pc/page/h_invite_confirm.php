@@ -28,20 +28,20 @@ class pc_page_h_invite_confirm extends OpenPNE_Action
             if (!db_common_is_mailaddress($form_val['mail'])) {
                 $msg = "メールアドレスを正しく入力してください";
             } elseif (db_member_is_sns_join4mail_address($form_val['mail'])) {
-                $msg = "そのアドレスは既に登録済みです";
+                $msg = "そのメールアドレスは既に登録済みです";
             } elseif (!db_member_is_limit_domain4mail_address($form_val['mail'])) {
-                $msg = "そのアドレスは登録できません";
+                $msg = "そのメールアドレスは登録できません";
             } else {
                 if (is_ktai_mail_address($form_val['mail'])) {
                     //<PCKTAI
                     if (!((OPENPNE_REGIST_FROM & OPENPNE_REGIST_FROM_KTAI) >> 1)) {
-                        $msg = "携帯アドレスには招待を送ることができません";
+                        $msg = "携帯メールアドレスには招待を送ることができません";
                     }
                     //>
                 } else {
                     //<PCKTAI
                     if (!(OPENPNE_REGIST_FROM & OPENPNE_REGIST_FROM_PC)) {
-                        $msg = "PCアドレスには招待を送ることができません";
+                        $msg = "PCメールアドレスには招待を送ることができません";
                     }
                     //>
                 }

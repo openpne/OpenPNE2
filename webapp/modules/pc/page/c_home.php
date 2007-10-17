@@ -57,7 +57,7 @@ class pc_page_c_home extends OpenPNE_Action
         $this->set('new_topic_comment_event', $new_topic_comment_event);
         //参加コミュニティの新着おすすめレビュー
         $this->set('new_commu_review', db_review_new_commu_review4c_commu_id($c_commu_id, 7));
-        // 携帯アドレス登録状況
+        // 携帯メールアドレス登録状況
         $this->set('is_registered_ktai_address', $is_registered_ktai_address);
 
         $this->set('is_unused_pc_bbs', util_is_unused_mail('m_pc_bbs_info'));

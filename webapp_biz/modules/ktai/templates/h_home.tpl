@@ -204,7 +204,7 @@
 </td></tr>
 ({if $smarty.const.OPENPNE_ENABLE_PC})
 <tr><td bgcolor="#({$ktai_color_config.bg_10})">
-<a href="({t_url m=ktai a=page_h_pc_send})&amp;({$tail})">PCｱﾄﾞﾚｽ登録</a><br>
+<a href="({t_url m=ktai a=page_h_pc_send})&amp;({$tail})">PCﾒｰﾙｱﾄﾞﾚｽ登録</a><br>
 </td></tr>
 ({/if})
 <tr><td bgcolor="#({$ktai_color_config.bg_09})">

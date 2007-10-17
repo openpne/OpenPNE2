@@ -40,13 +40,13 @@ class pc_do_h_invite_insert_c_invite extends OpenPNE_Action
         }
 
         if (db_member_is_sns_join4mail_address($mail)) {
-            $msg = "そのアドレスは既に登録済みです";
+            $msg = "そのメールアドレスは既に登録済みです";
             $p = array('msg' => $msg);
             openpne_redirect('pc', 'page_h_invite', $p);
         }
 
         if (!db_member_is_limit_domain4mail_address($mail)) {
-            $msg = "そのアドレスでは登録できません";
+            $msg = "そのメールアドレスでは登録できません";
             $p = array('msg' => $msg);
             openpne_redirect('pc', 'page_h_invite', $p);
         }
@@ -57,7 +57,7 @@ class pc_do_h_invite_insert_c_invite extends OpenPNE_Action
         if (is_ktai_mail_address($mail)) {
             //<PCKTAI
             if (!((OPENPNE_REGIST_FROM & OPENPNE_REGIST_FROM_KTAI) >> 1)) {
-                $msg = '携帯アドレスには招待を送ることができません';
+                $msg = '携帯メールアドレスには招待を送ることができません';
                 $p = array('msg' => $msg);
                 openpne_redirect('pc', 'page_h_invite', $p);
             }
@@ -75,7 +75,7 @@ class pc_do_h_invite_insert_c_invite extends OpenPNE_Action
         } else {
             //<PCKTAI
             if (!(OPENPNE_REGIST_FROM & OPENPNE_REGIST_FROM_PC)) {
-                $msg = 'PCアドレスには招待を送ることができません';
+                $msg = 'PCメールアドレスには招待を送ることができません';
                 $p = array('msg' => $msg);
                 openpne_redirect('pc', 'page_h_invite', $p);
             }
