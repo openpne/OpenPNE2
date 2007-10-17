@@ -836,7 +836,7 @@ div.listControl p.listMove a {
 #admin_page_edit_c_sns_config div.sampleColors h3#subttl01 {
 	margin-top: 10px;
 }
-#admin_page_edit_c_sns_config div.sampleColors dl.box { width: 200px;}
+#admin_page_edit_c_sns_config div.sampleColors dl.box { float: left; margin: 5px 5px 0 0; width: 200px; border: 1px #5F6067 solid;}
 #admin_page_edit_c_sns_config div.sampleColors dl.box p { margin: 0;padding: 0;border-left: #58585C 5px solid;}
 #admin_page_edit_c_sns_config div.sampleColors dl.box p input { padding: 2px 5px;}
 #admin_page_edit_c_sns_config div.bg { padding: 10px 0;}
