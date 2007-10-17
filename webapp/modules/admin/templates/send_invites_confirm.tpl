@@ -12,7 +12,7 @@
 ({if $requests.pc_mails})
 ({if !(($smarty.const.OPENPNE_REGIST_FROM) & ($smarty.const.OPENPNE_REGIST_FROM_PC))})
 PCからは登録できない設定になっています。<br>
-<div class="caution">※以下のアドレスには送信されません</div>
+<div class="caution">※以下のメールアドレスには送信されません</div>
 ({else})
 <dl class="invitesAdd">
 	<dt><strong>【PCメールアドレス】</strong></dt>
@@ -23,7 +23,7 @@ PCからは登録できない設定になっています。<br>
 ({if $requests.ktai_mails})
 ({if !(($smarty.const.OPENPNE_REGIST_FROM) & ($smarty.const.OPENPNE_REGIST_FROM_KTAI))})
 携帯からは登録できない設定になっています。<br>
-<div class="caution">※以下のアドレスには送信されません</div>
+<div class="caution">※以下のメールアドレスには送信されません</div>
 ({else})
 <dl class="invitesAdd">
 	<dt><strong>【携帯メールアドレス】</strong></dt>
@@ -46,7 +46,7 @@ PCからは登録できない設定になっています。<br>
 ({/if})
 ({if $requests.error_mails})
 <dl class="invitesAdd" id="warning">
-	<dt><strong>以下のアドレスは登録済みのため送信されません。</strong></dt>
+	<dt><strong>以下のメールアドレスは登録済みのため送信されません。</strong></dt>
 	<dd>({foreach from=$requests.error_mails item=item name=em})<strong>({$item})</strong>({if !$smarty.foreach.em.last})&nbsp;／&nbsp;({/if})({/foreach})</dd>
 </dl>
 ({/if})

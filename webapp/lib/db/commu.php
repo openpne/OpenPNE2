@@ -267,7 +267,7 @@ function db_commu_is_receive_message($c_commu_id, $c_member_id)
 }
 
 /**
- * コミュニティメールの受信アドレスリスト(携帯)
+ * コミュニティメールの受信メールアドレスリスト(携帯)
  */
 function db_common_receive_ktai_address_list4c_commu_id($c_commu_id)
 {
@@ -287,7 +287,7 @@ function db_common_receive_ktai_address_list4c_commu_id($c_commu_id)
 }
 
 /**
- * コミュニティメールの受信アドレスリスト(PC)
+ * コミュニティメールの受信メールアドレスリスト(PC)
  */
 function db_common_receive_pc_address_list4c_commu_id($c_commu_id)
 {
