@@ -15,7 +15,7 @@ class admin_page_edit_c_sns_config extends OpenPNE_Action
         $v['bgcolor_scheme_names'] = array(
             'color_1' => '見出し枠線',
             'color_2' => 'テーブル外枠',
-            'color_3' => 'メッセージボックスメニュー枠線',
+            'color_3' => 'メッセージメニュー枠線',
             'color_4' => 'テーブル背景1',
             'color_5' => 'テーブル罫線',
             'color_6' => 'セル背景1',
@@ -26,11 +26,11 @@ class admin_page_edit_c_sns_config extends OpenPNE_Action
             'color_11' => '9面パネル罫線',
             'color_12' => 'テーブル・項目名背景1',
             'color_13' => 'テーブル・項目名背景2',
-            'color_14' => 'メッセージメニュー・カレンダー背景',
-            'color_15' => 'information欄見出し背景',
+            'color_14' => 'カレンダー背景',
+            'color_15' => 'お知らせ見出し背景',
             'color_16' => 'サイドバナー領域背景',
-            'color_17' => 'コンテンツ表示領域背景',
-            'color_18' => 'カレンダー（日曜日部分）背景',
+            'color_17' => 'コンテンツ領域背景',
+            'color_18' => 'カレンダー(日曜)背景',
             'color_19' => 'Searchフォーム背景',
         );
         $v['c_config_color_list'] = db_etc_c_config_color_list();
