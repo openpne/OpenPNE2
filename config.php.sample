@@ -372,10 +372,10 @@ define('RSS_CACHE_LIMIT', 100);
 // 携帯メール投稿
 ///
 
-// 宛先アドレスのprefix
+// 宛先メールアドレスのprefix
 //define('MAIL_ADDRESS_PREFIX', 'sns_');
 
-// 宛先アドレスをハッシュにするか
+// 宛先メールアドレスをハッシュにするか
 define('MAIL_ADDRESS_HASHED', true);
 
 // 受信メールの文字コード(Content-Typeから取得できない場合に使う)

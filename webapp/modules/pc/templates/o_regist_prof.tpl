@@ -306,7 +306,7 @@
 
 <div class="padding_s">
 
-PCアドレス <span class="caution">※</span>
+PCメールアドレス <span class="caution">※</span>
 
 </div>
 

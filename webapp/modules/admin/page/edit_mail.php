@@ -35,7 +35,7 @@ class admin_page_edit_mail extends OpenPNE_Action
             'm_ktai_ashiato' => 'あしあとお知らせメール',
             'm_ktai_bbs_info' => 'コミュニティ書き込み通知メール',
             'm_ktai_change_ktai' => '携帯メールアドレス変更確認メール',
-            'm_ktai_login_get' => '携帯版ログインアドレスお知らせメール',
+            'm_ktai_login_get' => '携帯版ログインURLお知らせメール',
             'm_ktai_login_regist_end' => '登録完了メール',
             'm_ktai_message_zyushin' => 'メッセージお知らせメール',
             'm_ktai_password_query' => 'パスワード再発行メール',

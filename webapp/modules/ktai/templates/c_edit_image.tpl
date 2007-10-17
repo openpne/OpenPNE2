@@ -22,7 +22,7 @@
 ({if $c_commu.image_filename})
 すでに写真が1枚登録されています。新しい写真を登録する場合は今の写真を削除してください。<br>
 ({else})
-以下のｱﾄﾞﾚｽに写真を添付して送信してください。<br>
+以下のﾒｰﾙｱﾄﾞﾚｽに写真を添付して送信してください。<br>
 <font color="#({$ktai_color_config.font_06})">※写真は1枚以上登録できません</font><br>
 <font color="#({$ktai_color_config.font_06})">※ﾀｲﾄﾙと本文は反映されません</font><br>
 <a href="mailto:({$mail_address})">ﾒｰﾙ送信</a><br>
