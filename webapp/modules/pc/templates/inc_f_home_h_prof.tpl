@@ -656,6 +656,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({t_loop from=$c_commu_list start=3 num=3})
 ({if $item})
 <td class="bg_03" align="center">
+({if $item.c_member_id_admin == $target_c_member.c_member_id })<img src="({t_img_url_skin filename=icon_crown})" class="icon"><br>({/if})
 <a href="({t_url m=pc a=page_c_home})&amp;target_c_commu_id=({$item.c_commu_id})">
 <img src="({t_img_url filename=$item.image_filename w=76 h=76 noimg=no_logo_small})" class="pict"></a>
 </td>
