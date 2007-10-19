@@ -14,6 +14,8 @@ require_once OPENPNE_WEBAPP_DIR . '/init.inc';
 
 //SNSにログインしているかどうか
 if (CHECK_IMG_AUTH) {
+    session_cache_limiter('public');
+
     $module = $_GET['m'];
     // init
     if ($init = openpne_ext_search("{$module}/init.inc")) {
