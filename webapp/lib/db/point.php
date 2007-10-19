@@ -40,7 +40,7 @@ function db_point_add_point($c_member_id, $point)
     }
 
     $sql = 'SELECT c_profile_id, public_flag_default FROM c_profile WHERE name = \'PNE_POINT\'';
-    if (!$c_profile = db_get_row($sql, array())) {
+    if (!$c_profile = db_get_row($sql)) {
         return false;
     }
     $c_profile_id = $c_profile['c_profile_id'];
