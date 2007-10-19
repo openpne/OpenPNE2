@@ -109,6 +109,8 @@ class pc_do_f_message_send_insert_c_message extends OpenPNE_Action
         } else {
             $c_message_id = $requests['target_c_message_id'];
             db_message_update_message_to_is_save($requests['target_c_message_id'], $subject, $body, 1);
+            do_common_send_message_mail_send($c_member_id_to, $u);
+            do_common_send_message_mail_send_ktai($c_member_id_to, $u);
         }
         //画像挿入
         $sessid = session_id();
