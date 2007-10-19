@@ -6,6 +6,12 @@
 
 class admin_do_csv_member extends OpenPNE_Action
 {
+    function isSecure()
+    {
+        session_cache_limiter('public');
+        return true;
+    }
+
     function handleError($errors)
     {
         admin_client_redirect('csv_download', array_shift($errors));
