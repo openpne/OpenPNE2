@@ -13,20 +13,18 @@ ob_start();
 require_once OPENPNE_WEBAPP_DIR . '/init.inc';
 
 //SNSにログインしているかどうか
-if (CHECK_IMG_AUTH) {
-    session_cache_limiter('public');
+session_cache_limiter('public');
 
-    $module = $_GET['m'];
-    // init
-    if ($init = openpne_ext_search("{$module}/init.inc")) {
-        require_once $init;
-    }
-    //auth
-    if ($auth = openpne_ext_search("{$module}/auth.inc")) {
-        require_once $auth;
-    } else {
-        require_once OPENPNE_WEBAPP_DIR . '/lib/auth.inc';
-    }
+$module = $_GET['m'];
+// init
+if ($init = openpne_ext_search("{$module}/init.inc")) {
+    require_once $init;
+}
+//auth
+if ($auth = openpne_ext_search("{$module}/auth.inc")) {
+    require_once $auth;
+} else {
+    require_once OPENPNE_WEBAPP_DIR . '/lib/auth.inc';
 }
 
 // include_path の設定
