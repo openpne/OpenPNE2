@@ -603,7 +603,7 @@
 
 <span class="c_08 b_b">
 ({$item.number}):</span>&nbsp;<a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})">({$item.nickname})</a>&nbsp;
-({if $c_member_id == $item.c_member_id || $c_member_id == $c_commu.c_member_id_admin})
+({if $c_member_id == $item.c_member_id || $c_member_id == $c_commu.c_member_id_admin || $c_member_id == $c_commu.c_member_id_sub_admin})
 <a href="({t_url m=pc a=page_c_event_write_delete_confirm})&amp;target_c_commu_topic_comment_id=({$item.c_commu_topic_comment_id})">削除</a>
 ({/if})
 
