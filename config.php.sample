@@ -49,12 +49,6 @@ define('OPENPNE_MAINTENANCE_TEXT', '');
 // メンテナンス中でも表示するモジュール名
 $GLOBALS['_OPENPNE_MAINTENANCE_MODULES'] = array('admin');
 
-// 1.8以前形式のURLでアクセスした場合の動作設定
-// 0    : 直接新URLへ移動する
-// n(>0): URL変更お知らせ画面を表示、n秒後に移動する
-// -1   : URL変更お知らせ画面を表示、自動的に移動しない
-define('WAIT_REDIRECT_TIME', 5);
-
 // Crypt_Blowfish ライブラリの旧バージョン使用設定
 // 2.2以前からのアップグレードでログインできないなどの
 //暗号化まわりの不具合が起こった場合はtrueに設定してください
@@ -430,13 +424,6 @@ define('OPENPNE_USE_API', false);
 // セッション鍵生成用文字列(適当な文字列に変更してください)
 define('OPENPNE_API_TOKEN', 'OpenPNE');
 
-// 許可するIPリスト('any'が含まれている場合はIPをチェックしません)
-$GLOBALS['_OPENPNE_API_IP_LIST'] = array(
-'127.0.0.1',
-//'192.168.0.1',
-//'any',
-);
-
 // クライアントのIPアドレスのあるサーバ変数名($_SERVER['REMOTE_ADDR'])
 //define('SERVER_IP_KEY', 'HTTP_X_FORWARDED_FOR');
 define('SERVER_IP_KEY', 'REMOTE_ADDR');
@@ -469,9 +456,6 @@ define('GOOGLE_AJAX_SEARCH_API_KEY', '');
 // 管理画面のURL設定
 //(OPENPNE_URL)?m=ADMIN_MODULE_NAME (例. http://sns.example.com/?m=admin)
 define('ADMIN_MODULE_NAME', 'admin');
-
-// 管理画面の初期設定項目を表示するかどうか
-define('ADMIN_INIT_CONFIG', true);
 
 // 管理画面にバージョン情報を表示するかどうか
 define('DISPLAY_VERSION', true);
