@@ -9,7 +9,6 @@ function admin_fetch_inc_header($display_navi = true)
     $v['display_navi'] = $display_navi;
     $v['PHPSESSID'] = md5(session_id());
     $v['module_name'] = ADMIN_MODULE_NAME;
-    $v['ADMIN_INIT_CONFIG'] = ADMIN_INIT_CONFIG;
     $v['auth_type'] = admin_get_auth_type();
     $v['CURRENT_ACTION'] = $GLOBALS['__Framework']['current_action'];
 
