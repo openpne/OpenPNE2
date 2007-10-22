@@ -121,7 +121,7 @@
 <td style="width:531px;height:50px;" class="bg_02" align="left" valign="middle">
 
 <div class="padding_s">
-<a href="({t_file_url filename=$c_topic.filename})">
+<a href="({t_url m=pc a=do_c_file_download})&amp;target_c_commu_topic_id=({$c_topic.c_commu_topic_id})&amp;sessid=({$PHPSESSID})">
 ({$c_topic.original_filename})
 </a>
 </div>
