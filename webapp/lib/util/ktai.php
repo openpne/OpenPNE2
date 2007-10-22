@@ -186,6 +186,7 @@ function t_get_user_hash($c_member_id, $length = 12)
 function is_ktai_ip()
 {
     require_once 'Net/IPv4.php';
+    require_once 'ktaiIP.php';
     $is_valid_ip = false;
     foreach ($GLOBALS['_OPENPNE_KTAI_IP_LIST'] as $ktai_ip) {
         if (Net_IPv4::ipInNetwork($_SERVER[SERVER_IP_KEY], $ktai_ip)) {
