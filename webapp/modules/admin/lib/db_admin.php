@@ -2232,30 +2232,30 @@ function monitor_topic_list($keyword, $page_size, $page)
     } else {
         $where = '';
     }
-    
+
     $select = "SELECT ct.*," .
-            "ct.name as topic_name,c.name as commu_name," .
-            "m.nickname,ctc.body as body," .
-            "ctc.image_filename1 as image_filename1,ctc.image_filename2 as image_filename2,ctc.image_filename3 as image_filename3," .
-            "ctc.filename as filename,f.original_filename as original_filename";
-    
-    $from = " FROM c_commu_topic as ct"
-            ." LEFT JOIN c_member as m ON ct.c_member_id = m.c_member_id "
-            ." LEFT JOIN c_commu as c ON c.c_commu_id = ct.c_commu_id "
-            ." LEFT JOIN c_commu_topic_comment as ctc ON (ctc.c_commu_topic_id = ct.c_commu_topic_id AND ctc.number = 0)"
-            ." LEFT JOIN c_file as f ON f.filename = ctc.filename "
-            ;
-    
+            "ct.name AS topic_name, c.name AS commu_name," .
+            "ctc.body, ctc.filename, ctc.image_filename1, ctc.image_filename2, ctc.image_filename3";
+
+    $from = " FROM c_commu_topic AS ct"
+            ." LEFT JOIN c_commu AS c ON c.c_commu_id = ct.c_commu_id "
+            ." LEFT JOIN c_commu_topic_comment AS ctc ON (ctc.c_commu_topic_id = ct.c_commu_topic_id AND ctc.number = 0)";
+
     $order = " ORDER BY r_datetime desc";
-    
+
     $sql = $select . $from . $where . $order;
-    
+
     $list = db_get_all_limit($sql,($page-1)*$page_size,$page_size,$params);
-    
+
     foreach ($list as $key => $value) {
-        $list[$key]['count_comments'] = _db_count_c_commu_topic_comments4c_commu_topic_id($value['c_commu_topic_id']); 
+        $list[$key]['count_comments'] = _db_count_c_commu_topic_comments4c_commu_topic_id($value['c_commu_topic_id']);
+        $c_member = db_member_c_member4c_member_id_LIGHT($value['c_member_id']);
+        $list[$key]['nickname'] = $c_member['nickname'];
+        if (!empty($value['filename'])) {
+            $list[$key]['original_filename'] = db_file_original_filename4filename($value['filename']);
+        }
     }
-    
+
     $sql = 
         "SELECT COUNT(*) "
         . $from
