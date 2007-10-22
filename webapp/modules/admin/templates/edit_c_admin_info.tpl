@@ -75,6 +75,20 @@
 <textarea name="body" cols="({$cols|default:60})" rows="({$rows|default:10})">({$c_siteadmin.body})</textarea>
 <p class="textBtn"><input type="submit" value="変更する" /></p>
 </form>
+({if $requests.target == 'k_h_home' || $requests.target == 'k_fh_diary' || $requests.target == 'k_f_home'|| $requests.target == 'k_c_home'})
+<h4>【携帯】お知らせ挿入場所対応図[ ({if $requests.target == 'k_h_home'})
+ホーム
+({elseif $requests.target == 'k_f_home'})
+フレンドページ
+({elseif $requests.target == 'k_c_home'})
+コミュニティページ
+({elseif $requests.target == 'k_fh_diary'})
+日記ページ
+({/if}) ]</h4>
+<p class="image">
+<img src="modules/admin/img/admin_info_({$requests.target}).gif" />
+</p>
+({/if})
 </td>
 </tr>
 </table>
