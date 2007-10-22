@@ -173,7 +173,6 @@ class OpenPNE_Config
             'LOG_C_ACCESS_LOG' => false,
             'OPENPNE_ADMIN_URL' => '',
             'ADMIN_MODULE_NAME' => 'admin',
-            'ADMIN_INIT_CONFIG' => true,
             'SERVER_IP_KEY' => 'REMOTE_ADDR',
             'OPENPNE_USE_FUNCTION_CACHE' => false,
             'OPENPNE_USE_MYSQL_HINT' => false,
