@@ -67,7 +67,7 @@
 ({if $c_topic.image_filename1||$c_topic.image_filename2||$c_topic.image_filename3})
 <tr>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-<td style="width:110px;" class="bg_03" align="center" valign="top" rowspan="({if $is_c_event_admin})21({else})19({/if})">
+<td style="width:110px;" class="bg_03" align="center" valign="top" rowspan="({if $is_c_event_admin || $is_c_commu_admin})21({else})19({/if})">
 
 <div class="padding_s">
 
@@ -129,7 +129,7 @@
 ({else})
 <tr>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-<td style="width:110px;" class="bg_03" align="center" valign="top" rowspan="({if $is_c_event_admin})19({else})17({/if})">
+<td style="width:110px;" class="bg_03" align="center" valign="top" rowspan="({if $is_c_event_admin || $is_c_commu_admin})19({else})17({/if})">
 
 <div class="padding_s">
 
@@ -424,7 +424,7 @@
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({*********})
-({if $is_c_event_admin})
+({if $is_c_event_admin || $is_c_commu_admin})
 <tr>
 <td style="height:1px;" class="bg_01"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 <td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
