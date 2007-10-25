@@ -38,8 +38,11 @@ class OpenPNE_MemcacheSession
         $this->sess_name($sess_name);
         
         $this->memcache->addServer($this->dsn['hostspec']);
-        $this->memcache->pconnect($this->dsn['hostspec']);
-        
+        $is_connect = @$this->memcache->pconnect($this->dsn['hostspec']);
+        if ($is_connect === false) {
+            openpne_display_error();
+            exit;
+        }
         return true;
     }
 
