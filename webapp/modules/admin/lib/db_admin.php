@@ -1887,7 +1887,7 @@ function monitor_diary_list($keyword, $page_size, $page)
         for ($i = 0; $i < count($keyword_list); $i++) {
             $keyword = check_search_word($keyword_list[$i]);
 
-            $wheres[] = '(c_diary.subject LIKE ? OR c_diary.body LIKE ?)';
+            $wheres[] = '(subject LIKE ? OR body LIKE ?)';
             $params[] = '%' . $keyword . '%';
             $params[] = '%' . $keyword . '%';
         }
@@ -1898,7 +1898,7 @@ function monitor_diary_list($keyword, $page_size, $page)
         $where = '';
     }
     
-    $select = "SELECT c_diary.*";
+    $select = "SELECT *";
     $from = " FROM c_diary";
     $order = " ORDER BY r_datetime DESC";
     
@@ -2142,9 +2142,8 @@ function monitor_topic_comment_list($keyword, $page_size, $page)
         }
     }
     
-    $select = "SELECT ctc.*,ct.name as topic_name,c.name as commu_name,m.nickname";
+    $select = "SELECT ctc.*,ct.name as topic_name,c.name as commu_name";
     $from = " FROM c_commu_topic_comment as ctc"
-            ." LEFT JOIN c_member as m ON ctc.c_member_id = m.c_member_id "
             ." LEFT JOIN c_commu_topic as ct ON ct.c_commu_topic_id = ctc.c_commu_topic_id "
             ." LEFT JOIN c_commu as c ON c.c_commu_id = ct.c_commu_id ";
     $order = " ORDER BY r_datetime desc";
@@ -2154,7 +2153,9 @@ function monitor_topic_comment_list($keyword, $page_size, $page)
     $list = db_get_all_limit($sql,($page-1)*$page_size,$page_size,$params);
     
     foreach ($list as $key => $value) {
-        $list[$key]['count_comments'] = _db_count_c_commu_topic_comments4c_commu_topic_id($value['c_commu_topic_id']); 
+        $list[$key]['count_comments'] = _db_count_c_commu_topic_comments4c_commu_topic_id($value['c_commu_topic_id']);
+        $c_member = db_member_c_member4c_member_id_LIGHT($value['c_member_id']);
+        $list[$key]['nickname'] = $c_member['nickname'];
     }
     
     $sql = 
@@ -2178,9 +2179,8 @@ function monitor_topic_comment_list4c_commu_topic_comment_id($c_commu_topic_comm
     $where = " WHERE ctc.number <> 0 AND ctc.c_commu_topic_comment_id = ? ";
     $params[] = intval($c_commu_topic_comment_id);
     
-    $select = "SELECT ctc.*,ct.name as topic_name,c.name as commu_name,m.nickname";
+    $select = "SELECT ctc.*,ct.name as topic_name,c.name as commu_name";
     $from = " FROM c_commu_topic_comment as ctc"
-            ." LEFT JOIN c_member as m ON ctc.c_member_id = m.c_member_id "
             ." LEFT JOIN c_commu_topic as ct ON ct.c_commu_topic_id = ctc.c_commu_topic_id "
             ." LEFT JOIN c_commu as c ON c.c_commu_id = ct.c_commu_id ";
     $order = " ORDER BY r_datetime desc";
@@ -2191,6 +2191,8 @@ function monitor_topic_comment_list4c_commu_topic_comment_id($c_commu_topic_comm
     
     foreach ($list as $key => $value) {
         $list[$key]['count_comments'] = _db_count_c_commu_topic_comments4c_commu_topic_id($value['c_commu_topic_id']); 
+        $c_member = db_member_c_member4c_member_id_LIGHT($value['c_member_id']);
+        $list[$key]['nickname'] = $c_member['nickname'];
     }
     
     $sql = 
