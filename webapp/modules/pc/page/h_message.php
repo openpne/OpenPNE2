@@ -35,7 +35,7 @@ class pc_page_h_message extends OpenPNE_Action
 
         //--- 権限チェック
         if (!util_is_readable_message($u, $target_c_message_id)) {
-            handle_kengen_error();          
+            handle_kengen_error();
         }
         //---
 

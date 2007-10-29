@@ -2822,7 +2822,7 @@ function db_common_commu_common_commu_id4c_member_id($target_c_member_id , $u)
     // 自分のコミュニティリスト
     $sql = 'SELECT c_commu_id FROM c_commu_member ' .
             ' WHERE c_member_id = ?' .
-            ' ORDER BY c_commu_id DESC ' ;            
+            ' ORDER BY c_commu_id DESC ';
 
     $params = array(intval($u));
     $h_commu_id_list = db_get_col($sql, $params);
