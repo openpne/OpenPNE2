@@ -639,7 +639,7 @@ function p_h_bookmark_list($c_member_id, $page, $page_size)
 //------------------------------------------------------------------
 function p_h_home_h_blog_list_friend4c_member_id($c_member_id, $page_size = 5)
 {
-    return db_rss_h_blog_list_friend4c_member_id($c_member_id, $page_size);    
+    return db_rss_h_blog_list_friend4c_member_id($c_member_id, $page_size);
 }
 function p_h_diary_list_all_c_rss_cache_list($limit)
 {
@@ -706,7 +706,7 @@ function p_h_calendar_birth4c_member_id($month, $c_member_id)
 }
 function p_h_calendar_event4c_member_id($year, $month, $c_member_id)
 {
-    return db_schedule_event4c_member_id($year, $month, $c_member_id);    
+    return db_schedule_event4c_member_id($year, $month, $c_member_id);
 }
 function do_h_schedule_add_insert_c_schedule(
     $c_member_id, $title, $body,
