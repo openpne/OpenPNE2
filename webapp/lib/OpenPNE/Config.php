@@ -140,7 +140,7 @@ class OpenPNE_Config
             'OPENPNE_DISP_POINT' => 1,
             'OPENPNE_DISP_RANK' => 1,
             'OPENPNE_IS_POINT_ADMIN' => 1,
-            'OPENPNE_SKIN_THEME' => 'default_blue',
+            'OPENPNE_SKIN_THEME' => '005_openpne_blue',
         // config.php
             'OPENPNE_RSS_CACHE_DIR' => OPENPNE_VAR_DIR . '/rss_cache',
             'OPENPNE_PUBLIC_HTML_DIR' => OPENPNE_DIR . '/public_html',
