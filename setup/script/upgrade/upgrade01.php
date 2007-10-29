@@ -22,7 +22,7 @@ $i = 0;
 $start_time = time();
 while ($res->fetchInto($row)) {
     if ($row['easy_access_id'] == '') {
-    	$row['easy_access_id'] = '';
+        $row['easy_access_id'] = '';
     } else {
         $row['easy_access_id'] = md5(t_decrypt($row['easy_access_id']));
     }
