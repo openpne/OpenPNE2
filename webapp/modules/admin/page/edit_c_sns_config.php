@@ -13,7 +13,7 @@ class admin_page_edit_c_sns_config extends OpenPNE_Action
 
         // 色設定名配列構造
         $v['bgcolor_scheme_names'] = array(
-            'color_1' => '見出し・セル枠線',
+            'color_1' => '見出し・セル罫線',
             'color_2' => 'テーブル外枠',
             'color_3' => 'メッセージメニュー枠線',
             'color_4' => 'テーブル背景1',
@@ -24,8 +24,8 @@ class admin_page_edit_c_sns_config extends OpenPNE_Action
             'color_9' => 'テーブル背景2',
             'color_10' => '見出し背景',
             'color_11' => '9面パネル罫線',
-            'color_12' => 'テーブル・項目名背景1',
-            'color_13' => 'テーブル・項目名背景2',
+            'color_12' => 'テーブル・項目背景1',
+            'color_13' => 'テーブル・項目背景2',
             'color_14' => '日記カレンダー背景',
             'color_15' => 'お知らせ見出し背景',
             'color_16' => 'サイドバナー領域背景',
