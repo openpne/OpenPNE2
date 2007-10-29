@@ -50,6 +50,12 @@ class ktai_do_o_regist_ktai extends OpenPNE_Action
             ktai_display_error('新規登録を完了できませんでした。');
         }
 
+        // 携帯アドレスが登録済みかどうか
+        if (db_member_is_sns_join4mail_address($ktai_address)) {
+            $p = array('msg' => 17, 'ses' => $ses);
+            openpne_redirect('ktai', 'page_o_regist_ktai', $p);
+        } 
+
         // PC版で行わなかったメンバー登録処理をここで行う
         $c_member = $pre;
         $c_member_secure = array(
