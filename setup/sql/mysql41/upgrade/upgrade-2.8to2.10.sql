@@ -1,7 +1,7 @@
 /*!40101 SET NAMES utf8 */;
 
 -- update02
-ALTER TABLE `c_diary_comment` ADD COLUMN `number` int(11) NOT NULL default '0';
+ALTER IGNORE TABLE `c_diary_comment` ADD COLUMN `number` int(11) NOT NULL default '0';
 
 DROP TABLE IF EXISTS `tmp_c_diary_comment`;
 CREATE TABLE `tmp_c_diary_comment` (
@@ -23,24 +23,24 @@ UPDATE c_diary_comment INNER JOIN tmp_c_diary_comment USING (c_diary_comment_id)
 DROP TABLE tmp_c_diary_comment;
 
 -- update03
-ALTER TABLE c_diary_category ADD INDEX c_member_id_c_diary_category_id(c_member_id, c_diary_category_id);
-ALTER TABLE c_diary_category ADD INDEX category_name_c_member_id(category_name(20), c_member_id);
-ALTER TABLE c_diary_category_diary ADD INDEX c_diary_category_id(c_diary_category_id);
-ALTER TABLE c_diary_category_diary ADD INDEX c_diary_id(c_diary_id);
+ALTER IGNORE TABLE c_diary_category ADD INDEX c_member_id_c_diary_category_id(c_member_id, c_diary_category_id);
+ALTER IGNORE TABLE c_diary_category ADD INDEX category_name_c_member_id(category_name(20), c_member_id);
+ALTER IGNORE TABLE c_diary_category_diary ADD INDEX c_diary_category_id(c_diary_category_id);
+ALTER IGNORE TABLE c_diary_category_diary ADD INDEX c_diary_id(c_diary_id);
 
 -- update04
-ALTER TABLE `c_commu` ADD COLUMN `u_datetime` datetime NOT NULL default '0000-00-00 00:00:00';
-ALTER TABLE `c_diary` ADD COLUMN `u_datetime` datetime NOT NULL default '0000-00-00 00:00:00';
-ALTER TABLE `c_member` ADD COLUMN `u_datetime` datetime NOT NULL default '0000-00-00 00:00:00';
-ALTER TABLE `c_schedule` ADD COLUMN `u_datetime` datetime NOT NULL default '0000-00-00 00:00:00';
+ALTER IGNORE TABLE `c_commu` ADD COLUMN `u_datetime` datetime NOT NULL default '0000-00-00 00:00:00';
+ALTER IGNORE TABLE `c_diary` ADD COLUMN `u_datetime` datetime NOT NULL default '0000-00-00 00:00:00';
+ALTER IGNORE TABLE `c_member` ADD COLUMN `u_datetime` datetime NOT NULL default '0000-00-00 00:00:00';
+ALTER IGNORE TABLE `c_schedule` ADD COLUMN `u_datetime` datetime NOT NULL default '0000-00-00 00:00:00';
 
 UPDATE `c_commu` SET u_datetime = r_datetime;
 UPDATE `c_diary` SET u_datetime = r_datetime;
 UPDATE `c_member` SET u_datetime = r_date;
 
 -- update06 / update09 / update16
-INSERT INTO `c_profile` VALUES (NULL,'PNE_MY_NEWS','My News','',0,0,'private','text',1000,0,0,0,'','',0,0);
-INSERT INTO `c_profile` VALUES (NULL,'PNE_MY_NEWS_DATETIME','My News（更新記録）','',0,0,'private','text',1000,0,0,0,'','',0,0);
+INSERT IGNORE INTO `c_profile` VALUES (NULL,'PNE_MY_NEWS','My News','',0,0,'private','text',1000,0,0,0,'','',0,0);
+INSERT IGNORE INTO `c_profile` VALUES (NULL,'PNE_MY_NEWS_DATETIME','My News（更新記録）','',0,0,'private','text',1000,0,0,0,'','',0,0);
 
 -- update07
 ALTER TABLE c_image ENGINE=MyISAM DEFAULT CHARSET=utf8 MAX_ROWS=190000;
@@ -64,9 +64,9 @@ DELETE FROM c_cmd WHERE permit = 127;
 INSERT IGNORE INTO `c_admin_config` VALUES (NULL,'OPENPNE_USE_KTAI_LOGO','0');
 
 -- update17
-ALTER TABLE `c_member_pre` ADD COLUMN `ktai_session` varchar(255) NOT NULL default '';
-ALTER TABLE `c_member_pre` ADD COLUMN `is_disabled_regist_easy_access_id` tinyint(1) NOT NULL default '0';
-ALTER TABLE `c_member_ktai_pre` ADD COLUMN `is_disabled_regist_easy_access_id` tinyint(1) NOT NULL default '0';
+ALTER IGNORE TABLE `c_member_pre` ADD COLUMN `ktai_session` varchar(255) NOT NULL default '';
+ALTER IGNORE TABLE `c_member_pre` ADD COLUMN `is_disabled_regist_easy_access_id` tinyint(1) NOT NULL default '0';
+ALTER IGNORE TABLE `c_member_ktai_pre` ADD COLUMN `is_disabled_regist_easy_access_id` tinyint(1) NOT NULL default '0';
 
 -- update21
 DROP TABLE IF EXISTS `c_config_color`;
@@ -191,8 +191,7 @@ INSERT INTO c_config_color (color_0, color_1, color_2, color_3, color_4, color_5
 
 DROP TABLE IF EXISTS `c_sns_config`;
 
-INSERT INTO `c_config_color_ktai` VALUES 
-  (1,'FFFFFF','FFFFFF','0D6DDF','DDDDDD','EEEEFF','7DDADF','E0EAEF','FFFFFF','C49FFF','DCD1EF','FFFFFF','0D6DDF','B3CEEF','BFA4EF','000000','0000FF','0000FF','800080','EEEEEE','999966','0C5F0F','C49FFF','FF0000','','','','','','','','','','','','','','','','','','','','','','','','','','','','','現在の設定'),
-  (2,'0D6DDF','FFFFFF','0D6DDF','DDDDDD','EEEEFF','7DDADF','E0EAEF','FFFFFF','C49FFF','DCD1EF','FFFFFF','0D6DDF','B3CEEF','BFA4EF','000000','0000FF','0000FF','800080','EEEEEE','999966','0C5F0F','C49FFF','FF0000','','','','','','','','','','','','','','','','','','','','','','','','','','','','','デフォルト');
+INSERT IGNORE INTO `c_config_color_ktai` VALUES 
+  (1,'FFFFFF','FFFFFF','0D6DDF','DDDDDD','EEEEFF','7DDADF','E0EAEF','FFFFFF','C49FFF','DCD1EF','FFFFFF','0D6DDF','B3CEEF','BFA4EF','000000','0000FF','0000FF','800080','EEEEEE','999966','0C5F0F','C49FFF','FF0000','','','','','','','','','','','','','','','','','','','','','','','','','','','','','現在の設定');
 
 INSERT IGNORE INTO `c_admin_config` VALUES (NULL, 'OPENPNE_USE_FLASH_LIST', '1');
