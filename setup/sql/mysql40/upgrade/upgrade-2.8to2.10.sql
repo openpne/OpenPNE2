@@ -194,4 +194,4 @@ INSERT IGNORE INTO `c_config_color_ktai` VALUES
 
 INSERT IGNORE INTO `c_admin_config` VALUES (NULL, 'OPENPNE_USE_FLASH_LIST', '1');
 
-INSERT IGNORE INTO `c_admin_config` VALUES (NULL, 'OPENPNE_SKIN_THEME', '999_openpne_ver28');
+INSERT IGNORE INTO `c_admin_config` VALUES (NULL, 'OPENPNE_SKIN_THEME', '900_openpne_ver28');
