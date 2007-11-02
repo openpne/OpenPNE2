@@ -1,15 +1,21 @@
 ({$inc_header|smarty:nodefaults})
-({ext_include file="inc_subnavi_adminSNSConfig.tpl"})
-({assign var="page_name" value="ブラックリスト設定"})
-({ext_include file="inc_tree_adminSNSConfig.tpl"})
+({ext_include file="inc_subnavi_adminSiteMember.tpl"})
+({assign var="page_name" value="ブラックリスト管理"})
+({ext_include file="inc_tree_adminSiteMember.tpl"})
 </div>
 
 ({*ここまで:navi*})
 
 ({if $msg})<p class="actionMsg">({$msg})</p>({/if})
-<h2>ブラックリスト設定</h2>
+<h2>ブラックリスト管理</h2>
 <div class="contents">
-<p id="itemAdd"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('blacklist_add','page')})">ブラックリストを追加する</a></p>
+
+<ul class="description">
+    <li>ブラックリストに登録されたメンバーのSNSへのログイン・新規登録を制限する機能です。</li>
+    <li>携帯個体識別番号(暗号化済)をキーにブラックリストに登録します。</li>
+</ul>
+
+<p id="itemAdd"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('blacklist_add','page')})">携帯個体識別番号をブラックリストに追加する</a></p>
 
 ({capture name="pager"})
 <div class="listControl">
@@ -23,17 +29,20 @@
 </p>
 </div>
 ({/capture})
+
+({if $c_blacklist_list})
 <div class="listControl" id="pager01">
 ({$smarty.capture.pager|smarty:nodefaults})
 </div>
+({/if})
 
 <table class="basicType2">
 ({capture name="table_header"})
 <tr>
-<th>NO</th>
-<th>個体識別番号</th>
+<th>ID</th>
+<th>携帯個体識別番号(暗号化済)</th>
 <th>該当するメンバー</th>
-<th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;備考&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+<th>備考</th>
 <th>操作</th>
 </tr>
 ({/capture})
@@ -49,23 +58,24 @@
 <td><a href="({t_url _absolute=1 m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})" target="_blank">({$item.nickname})</a></td>
 <td>({$item.info|nl2br})</td>
 <td>
-<a href='?m=({$module_name})&amp;a=page_({$hash_tbl->hash('blacklist_edit','page')})&amp;target_c_blacklist_id=({$item.c_blacklist_id})'>編集</a><br>
-<a href='?m=({$module_name})&amp;a=page_({$hash_tbl->hash('blacklist_delete_confirm','page')})&amp;target_c_blacklist_id=({$item.c_blacklist_id})'>ブラックリストから外す</a><br>
-({if $item.c_member_id })
-<a href='?m=({$module_name})&amp;a=page_({$hash_tbl->hash('delete_c_member_confirm','page')})&amp;target_c_member_id=({$item.c_member_id})'>強制退会</a>
-({/if})
+<ul>
+<li><a href='?m=({$module_name})&amp;a=page_({$hash_tbl->hash('blacklist_edit','page')})&amp;target_c_blacklist_id=({$item.c_blacklist_id})'>編集</a></li>
+<li><a href='?m=({$module_name})&amp;a=page_({$hash_tbl->hash('blacklist_delete_confirm','page')})&amp;target_c_blacklist_id=({$item.c_blacklist_id})'>ブラックリストから外す</a></li>
+</ul>
 </td>
 </tr>
 ({/if})
 ({foreachelse})
 <tr>
-<td colspan="5">ブラックリスト登録はされていません</td>
+<td colspan="5">ブラックリストは登録されていません</td>
 </tr>
 ({/foreach})
 </table>
 
-<div class="listControl" id="pager01">
+({if $c_blacklist_list})
+<div class="listControl" id="pager02">
 ({$smarty.capture.pager|smarty:nodefaults})
 </div>
+({/if})
 
 ({$inc_footer|smarty:nodefaults})

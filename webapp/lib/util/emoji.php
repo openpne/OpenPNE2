@@ -4,7 +4,8 @@
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
-require_once(OPENPNE_WEBAPP_DIR .'/lib/OpenPNE/KtaiEmoji.php');
+require_once 'OpenPNE/KtaiEmoji.php';
+
 function emoji_escape($str, $remove = false)
 {
     $result = '';
@@ -12,16 +13,16 @@ function emoji_escape($str, $remove = false)
         $emoji = '';
         $c1 = ord($str[$i]);
         if ($GLOBALS['__Framework']['carrier'] == 's') {
-        	if ($c1 == 0xF7 || $c1 == 0xF9 || $c1 == 0xFB) {
+            if ($c1 == 0xF7 || $c1 == 0xF9 || $c1 == 0xFB) {
                 $bin = substr($str, $i, 2);
-                $emoji = emoji_escape_sb($bin);
+                $emoji = emoji_escape_s($bin);
             }
         } elseif ($c1 == 0xF8 || $c1 == 0xF9) {
             $bin = substr($str, $i, 2);
             $emoji = emoji_escape_i($bin);
         } elseif (0xF3 <= $c1 && $c1 <= 0xF7) {
             $bin = substr($str, $i, 2);
-            $emoji = emoji_escape_ez($bin);
+            $emoji = emoji_escape_e($bin);
         }
         if ($emoji) {
             if (!$remove) {
@@ -46,13 +47,13 @@ function emoji_escape_i($bin)
         $unicode = mb_convert_encoding($bin, 'UCS2', 'SJIS-win');
         $emoji_code = OpenPNE_KtaiEmoji::getInstance();
         $code = $emoji_code->get_emoji_code4emoji(sprintf('&#x%02X%02X;', ord($unicode[0]), ord($unicode[1])), 'i');
-        return '%%'.$code.'%%';
+        return '['.$code.']';
     } else {
         return '';
     }
 }
 
-function emoji_escape_ez($bin)
+function emoji_escape_e($bin)
 {
     $sjis = (ord($bin[0]) << 8) + ord($bin[1]);
     if ($sjis >= 0xF340 && $sjis <= 0xF493) {
@@ -88,57 +89,57 @@ function emoji_escape_ez($bin)
     }
     $emoji_code = OpenPNE_KtaiEmoji::getInstance();
     $code = $emoji_code->get_emoji_code4emoji(sprintf('&#x%04X;', $unicode), 'e');
-    return '%%'.$code.'%%';
+    return '['.$code.']';
 }
 
-function emoji_escape_sb($bin)
+function emoji_escape_s($bin)
 {
     $sjis1 = ord($bin[0]);
     $sjis2 = ord($bin[1]);
     $web1 = $web2 = 0;
     switch ($sjis1) {
-        case 0xF9:
-            if ($sjis2 >= 0x41 && $sjis2 <= 0x7E) {
-                $web1 = ord('G');
-                $web2 = $sjis2 - 0x20;
-            } elseif($sjis2 >= 0x80 && $sjis2 <= 0x9B) {
-                $web1 = ord('G');
-                $web2 = $sjis2 - 0x21;
-            } elseif ($sjis2 >= 0xA1 && $sjis2 <= 0xED) {
-                $web1 = ord('O');
-                $web2 = $sjis2 - 0x80;
-            }
-            break;
-        case 0xF7:
-            if ($sjis2 >= 0x41 && $sjis2 <= 0x7E) {
-                $web1 = ord('E');
-                $web2 = $sjis2 - 0x20;
-            } elseif ($sjis2 >= 0x80 && $sjis2 <= 0x9B) {
-                $web1 = ord('E');
-                $web2 = $sjis2 - 0x21;
-            } elseif ($sjis2 >= 0xA1 && $sjis2 <= 0xF3) {
-                $web1 = ord('F');
-                $web2 = $sjis2 - 0x80;
-            }
-            break;
-        case 0xFB:
-            if ($sjis2 >= 0x41 && $sjis2 <= 0x7E) {
-                $web1 = ord('P');
-                $web2 = $sjis2 - 0x20;
-            } elseif ($sjis2 >= 0x80 && $sjis2 <= 0x8D) {
-                $web1 = ord('P');
-                $web2 = $sjis2 - 0x21;
-            } elseif ($sjis2 >= 0xA1 && $sjis2 <= 0xD7) {
-                $web1 = ord('Q');
-                $web2 = $sjis2 - 0x80;
-            }
-            break;
-        default:
+    case 0xF9:
+        if ($sjis2 >= 0x41 && $sjis2 <= 0x7E) {
+            $web1 = ord('G');
+            $web2 = $sjis2 - 0x20;
+        } elseif($sjis2 >= 0x80 && $sjis2 <= 0x9B) {
+            $web1 = ord('G');
+            $web2 = $sjis2 - 0x21;
+        } elseif ($sjis2 >= 0xA1 && $sjis2 <= 0xED) {
+            $web1 = ord('O');
+            $web2 = $sjis2 - 0x80;
+        }
+        break;
+    case 0xF7:
+        if ($sjis2 >= 0x41 && $sjis2 <= 0x7E) {
+            $web1 = ord('E');
+            $web2 = $sjis2 - 0x20;
+        } elseif ($sjis2 >= 0x80 && $sjis2 <= 0x9B) {
+            $web1 = ord('E');
+            $web2 = $sjis2 - 0x21;
+        } elseif ($sjis2 >= 0xA1 && $sjis2 <= 0xF3) {
+            $web1 = ord('F');
+            $web2 = $sjis2 - 0x80;
+        }
+        break;
+    case 0xFB:
+        if ($sjis2 >= 0x41 && $sjis2 <= 0x7E) {
+            $web1 = ord('P');
+            $web2 = $sjis2 - 0x20;
+        } elseif ($sjis2 >= 0x80 && $sjis2 <= 0x8D) {
+            $web1 = ord('P');
+            $web2 = $sjis2 - 0x21;
+        } elseif ($sjis2 >= 0xA1 && $sjis2 <= 0xD7) {
+            $web1 = ord('Q');
+            $web2 = $sjis2 - 0x80;
+        }
+        break;
+    default:
         return '';
     }
     $emoji_code = OpenPNE_KtaiEmoji::getInstance();
     $code = $emoji_code->get_emoji_code4emoji(pack('c5', 0x1b, 0x24, $web1, $web2, 0x0f), 's');
-    return '%%'.$code.'%%';
+    return '['.$code.']';
 }
 
 function emoji_unescape($str, $amp_escaped = false)
@@ -155,7 +156,7 @@ function emoji_unescape_callback($matches)
         return emoji_unescape4i($unicode);
     } elseif ((0xE468 <= $unicode && $unicode <= 0xE5DF) ||
               (0xEA80 <= $unicode && $unicode <= 0xEB88)) {
-        return emoji_unescape4ez($unicode);
+        return emoji_unescape4e($unicode);
     } else {
         return $matches[0];
     }
@@ -167,7 +168,7 @@ function emoji_unescape4i($unicode)
     return mb_convert_encoding($ubin, 'SJIS-win', 'UCS2');
 }
 
-function emoji_unescape4ez($unicode)
+function emoji_unescape4e($unicode)
 {
     if (0xE468 <= $unicode  && $unicode <= 0xE5DF) {
         if ($unicode <= 0xE4A6) {
@@ -203,7 +204,7 @@ function emoji_unescape4ez($unicode)
 
 function emoji_convert($str)
 {
-    $moji_pattern = '/%%([a-z][0-9]+)%%/i';
+    $moji_pattern = '/\[([a-z]:[0-9]+)\]/i';
     return preg_replace_callback($moji_pattern, '_emoji_convert', $str);
 }
 
@@ -212,17 +213,19 @@ function _emoji_convert($matches)
     $o_code = $matches[1];
     
     switch ($GLOBALS['__Framework']['carrier']) {
-        case 'i':
+    case 'i':
+    case 'w':
         $carrior = 'i';
         break;
-        case 's':
+    case 's':
         $carrior = 's';
         break;
-        case 'e':
+    case 'e':
         $carrior = 'e';
         break;
-        default:
-        return '〓';
+    default:
+        $carrior = null;
+        break;
     }
     
     $emoji_code = OpenPNE_KtaiEmoji::getInstance();

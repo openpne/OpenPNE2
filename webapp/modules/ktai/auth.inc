@@ -28,7 +28,7 @@ if (   !$auth->auth()
 }
 
 if (db_member_is_blacklist($u)) {
-    openpne_redirect('ktai', 'page_o_login', array('msg' => 43));
+    ktai_display_error('ﾛｸﾞｲﾝできませんでした。');
 }
 
 $auth->uid($u);
@@ -61,20 +61,6 @@ if (IS_SLAVEPNE && (empty($_SESSION['regist_step']) || !$_SESSION['regist_step']
     
     if (($check_param==2) && !$mail_ext_page[$current_page]) {
         openpne_redirect('ktai', 'page_h_regist_address');
-    }
-}
-if (OPENPNE_KTAI_ID_REQUIRED && (!IS_SLAVEPNE || $_SESSION['regist_step'])) {
-    if (!db_member_is_ktai_id_registed($u)) {
-        $current_page = $GLOBALS['__Framework']['current_type']."_".$GLOBALS['__Framework']['current_action'];
-        //携帯個体識別番号が未登録の場合はリダイレクト
-        $ktai_id_ext_page=array(
-        'page_h_regist_ktai_id'=>true,
-        'do_h_regist_ktai_id'=>true,
-        );
-        
-        if (!$ktai_id_ext_page[$current_page]) {
-            openpne_redirect('ktai', 'page_h_regist_ktai_id');
-        }
     }
 }
 

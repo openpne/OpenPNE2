@@ -14,6 +14,6 @@
 ({/if})
 ({$inc_ktai_html_head|smarty:nodefaults})
 </head>
-<body text="#({$ktai_color_config.font_05})" bgcolor="#({$ktai_color_config.bg_09})" link="#({$ktai_color_config.font_06})" alink="#({$ktai_color_config.font_07})" vlink="#({$ktai_color_config.font_08})">
+<body text="#({$ktai_color_config.font_01})" bgcolor="#({$ktai_color_config.bg_01})" link="#({$ktai_color_config.font_02})" ({if $is_docomo})alink="#({$ktai_color_config.font_03})"({/if}) vlink="#({$ktai_color_config.font_04})">
 ({/strip})
 ({$inc_ktai_header|smarty:nodefaults})

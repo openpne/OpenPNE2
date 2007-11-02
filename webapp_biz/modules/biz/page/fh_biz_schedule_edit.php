@@ -158,7 +158,7 @@ class biz_page_fh_biz_schedule_edit extends OpenPNE_Action
         if (!is_null($requests['finish_time'])) {
             $finish_min = date("i", strtotime($requests['finish_time']));
         }
-        if (substr($begin_min, 0, 1) == '0') {
+        if (substr($finish_min, 0, 1) == '0') {
             $finish_min = substr($finish_min, 1,1);
         }
 

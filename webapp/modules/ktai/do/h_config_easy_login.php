@@ -40,7 +40,7 @@ class ktai_do_h_config_easy_login extends OpenPNE_Action
             }
         } else {
             // 個体識別番号の取得が必須の場合は個体識別番号の削除はできない
-            if (IS_GET_EASY_ACCESS_ID == 2) {
+            if (IS_GET_EASY_ACCESS_ID == 2 || IS_GET_EASY_ACCESS_ID == 3) {
                 handle_kengen_error();
             }
             // delete

@@ -1,14 +1,14 @@
 ({$inc_ktai_header|smarty:nodefaults})
-<table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_01})">
-<font color="#({$ktai_color_config.font_01})"><a name="top">設定変更</a></font><br>
+<table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_02})">
+<font color="#({$ktai_color_config.font_05})"><a name="top">設定変更</a></font><br>
 </td></tr>
-<tr><td bgcolor="#({$ktai_color_config.bg_02})" align="center">
-日記の公開範囲設定<br>
+<tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
+<font color="#({$ktai_color_config.color_24})">日記の公開範囲設定</font><br>
 </td></tr></table>
 日記作成画面であらかじめ選択されている値となります。<br>
 また、ﾒｰﾙ投稿で書かれた日記はここで設定した公開範囲になります。<br>
 <br>
-<font color="#({$ktai_color_config.font_02})">※これまでに書かれた日記の公開範囲は変更されません。</font><br>
+<font color="#({$ktai_color_config.font_06})">※これまでに書かれた日記の公開範囲は変更されません。</font><br>
 <hr color="#({$ktai_color_config.border_01})">
 ({t_form m=ktai a=do_h_config_public_flag_diary})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
@@ -24,7 +24,7 @@
 </form>
 <br>
 <table width="100%">
-<tr><td bgcolor="#({$ktai_color_config.bg_02})" align="center">
+<tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
 日記公開範囲の一括設定<br>
 </td></tr></table>
 これまでに書かれた日記の公開設定を一括で変更します。
