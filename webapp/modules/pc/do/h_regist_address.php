@@ -42,7 +42,7 @@ class pc_do_h_regist_address extends OpenPNE_Action
         }
 
         if (is_ktai_mail_address($pc_address)) {
-            $p = array('msg' => '携帯電話アドレスは記入できません');
+            $p = array('msg' => '携帯メールアドレスは記入できません');
             openpne_redirect('pc', 'page_h_regist_address', $p);
         }
 

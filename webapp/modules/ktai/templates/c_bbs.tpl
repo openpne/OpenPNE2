@@ -1,32 +1,32 @@
 ({$inc_ktai_header|smarty:nodefaults})
 
-<table width="100%"><tr><td align="center" bgcolor="#0d6ddf">
-<font color="#eeeeee"><a name="top">({$c_commu.name})</a></font><br>
+<table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_02})">
+<font color="#({$ktai_color_config.font_05})"><a name="top">({$c_commu.name})</a></font><br>
 </td></tr>
-<tr><td bgcolor="#dddddd" align="center">
-({$c_commu_topic.name})<br>
+<tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
+<font color="#({$ktai_color_config.color_24})">({$c_commu_topic.name})</font><br>
 </td></tr></table>
 
 ({if $c_commu_topic.event_flag != 1})
 
-<a href="#({if $c_commu_topic_comment_list})tc1({else})menu({/if})"><font color="#c49fff">▼</font></a>({$c_commu_topic.r_datetime|date_format:"%m/%d %H:%M"})<br>
+<a href="#({if $c_commu_topic_comment_list})tc1({else})write({/if})"><font color="#({$ktai_color_config.font_08})">▼</font></a>({$c_commu_topic.r_datetime|date_format:"%m/%d %H:%M"})<br>
 <a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$c_commu_topic.c_member_id})&amp;({$tail})">({$c_commu_topic.nickname|default:"&nbsp;"})</a>
 ({if $c_commu_topic.c_member_id==$u || $is_admin})
 [<a href="({t_url m=ktai a=page_c_topic_edit})&amp;target_c_commu_topic_id=({$c_commu_topic_id})&amp;({$tail})">編集</a>]
 ({/if})
 <br>
 ({$c_commu_topic.body|t_url2a_ktai|nl2br})<br>
-({if $c_commu_topic.image_filename1})%%i68%%画像：[<a href="({t_img_url filename=$c_commu_topic.image_filename1 w=120 h=120 f=jpg})">小</a>/<a href="({t_img_url filename=$c_commu_topic.image_filename1 f=jpg})">大</a>]<br>({/if})
-({if $c_commu_topic.image_filename2})%%i68%%画像：[<a href="({t_img_url filename=$c_commu_topic.image_filename2 w=120 h=120 f=jpg})">小</a>/<a href="({t_img_url filename=$c_commu_topic.image_filename2 f=jpg})">大</a>]<br>({/if})
-({if $c_commu_topic.image_filename3})%%i68%%画像：[<a href="({t_img_url filename=$c_commu_topic.image_filename3 w=120 h=120 f=jpg})">小</a>/<a href="({t_img_url filename=$c_commu_topic.image_filename3 f=jpg})">大</a>]<br>({/if})
+({if $c_commu_topic.image_filename1})[i:68]写真：[<a href="({t_img_url filename=$c_commu_topic.image_filename1 w=120 h=120 f=jpg})">小</a>/<a href="({t_img_url filename=$c_commu_topic.image_filename1 w=$smarty.const.OPENPNE_IMG_KTAI_MAX_WIDTH h=$smarty.const.OPENPNE_IMG_KTAI_MAX_HEIGHT f=jpg})">大</a>]<br>({/if})
+({if $c_commu_topic.image_filename2})[i:68]写真：[<a href="({t_img_url filename=$c_commu_topic.image_filename2 w=120 h=120 f=jpg})">小</a>/<a href="({t_img_url filename=$c_commu_topic.image_filename2 w=$smarty.const.OPENPNE_IMG_KTAI_MAX_WIDTH h=$smarty.const.OPENPNE_IMG_KTAI_MAX_HEIGHT f=jpg})">大</a>]<br>({/if})
+({if $c_commu_topic.image_filename3})[i:68]写真：[<a href="({t_img_url filename=$c_commu_topic.image_filename3 w=120 h=120 f=jpg})">小</a>/<a href="({t_img_url filename=$c_commu_topic.image_filename3 w=$smarty.const.OPENPNE_IMG_KTAI_MAX_WIDTH h=$smarty.const.OPENPNE_IMG_KTAI_MAX_HEIGHT f=jpg})">大</a>]<br>({/if})
 <br>
 
 ({else})
 このｲﾍﾞﾝﾄを({$WORD_MY_FRIEND_HALF})に教えよう!<br>
-<font color="#0c5f0f">⇒</font><a href="">このｲﾍﾞﾝﾄを友人に教える</a>
+<font color="#({$ktai_color_config.font_07})">⇒</font><a href="({t_url m=ktai a=page_c_event_invite})&amp;target_c_commu_topic_id=({$c_commu_topic.c_commu_topic_id})&amp;({$tail})">このｲﾍﾞﾝﾄを友人に教える</a>
 
-<hr color="#0d6ddf">
-<a href="#({if $c_commu_topic_comment_list})tc1({else})menu({/if})"><font color="#c49fff">▼</font></a><br>
+<hr color="#({$ktai_color_config.border_01})">
+<a href="#({if $c_commu_topic_comment_list})tc1({else})write({/if})"><font color="#({$ktai_color_config.font_08})">▼</font></a><br>
 企画者：<br>
 <a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$c_commu_topic.c_member_id})&amp;({$tail})">({$c_commu_topic.nickname|default:"&nbsp;"})</a> <br>
 <br>
@@ -57,9 +57,9 @@
 ({/if})
 詳細：<br>
 ({$c_commu_topic.body|t_url2a_ktai|nl2br})<br>
-({if $c_commu_topic.image_filename1})%%i68%%画像：[<a href="({t_img_url filename=$c_commu_topic.image_filename1 w=120 h=120 f=jpg})">小</a>/<a href="({t_img_url filename=$c_commu_topic.image_filename1 f=jpg})">大</a>]<br>({/if})
-({if $c_commu_topic.image_filename2})%%i68%%画像：[<a href="({t_img_url filename=$c_commu_topic.image_filename2 w=120 h=120 f=jpg})">小</a>/<a href="({t_img_url filename=$c_commu_topic.image_filename2 f=jpg})">大</a>]<br>({/if})
-({if $c_commu_topic.image_filename3})%%i68%%画像：[<a href="({t_img_url filename=$c_commu_topic.image_filename3 w=120 h=120 f=jpg})">小</a>/<a href="({t_img_url filename=$c_commu_topic.image_filename3 f=jpg})">大</a>]<br>({/if})
+({if $c_commu_topic.image_filename1})[i:68]写真：[<a href="({t_img_url filename=$c_commu_topic.image_filename1 w=120 h=120 f=jpg})">小</a>/<a href="({t_img_url filename=$c_commu_topic.image_filename1 w=$smarty.const.OPENPNE_IMG_KTAI_MAX_WIDTH h=$smarty.const.OPENPNE_IMG_KTAI_MAX_HEIGHT f=jpg})">大</a>]<br>({/if})
+({if $c_commu_topic.image_filename2})[i:68]写真：[<a href="({t_img_url filename=$c_commu_topic.image_filename2 w=120 h=120 f=jpg})">小</a>/<a href="({t_img_url filename=$c_commu_topic.image_filename2 w=$smarty.const.OPENPNE_IMG_KTAI_MAX_WIDTH h=$smarty.const.OPENPNE_IMG_KTAI_MAX_HEIGHT f=jpg})">大</a>]<br>({/if})
+({if $c_commu_topic.image_filename3})[i:68]写真：[<a href="({t_img_url filename=$c_commu_topic.image_filename3 w=120 h=120 f=jpg})">小</a>/<a href="({t_img_url filename=$c_commu_topic.image_filename3 w=$smarty.const.OPENPNE_IMG_KTAI_MAX_WIDTH h=$smarty.const.OPENPNE_IMG_KTAI_MAX_HEIGHT f=jpg})">大</a>]<br>({/if})
 ({$c_commu_topic.r_datetime|date_format:"%m/%d %H:%M"})<br>
 
 ({if $is_c_event_admin})
@@ -79,19 +79,19 @@
 
 ({if $is_c_commu_view})
 ({if $c_commu_topic_comment_list})
-<hr color="#0d6ddf">
+<hr color="#({$ktai_color_config.border_01})">
 <center>
 ｺﾒﾝﾄ(全({$total_num})件)<br>
 ({$pager.start})～({$pager.end})番を表示
 </center>
 
-<hr color="#b3ceef">
+<hr color="#({$ktai_color_config.border_02})">
 <table width="100%">
 ({foreach from=$c_commu_topic_comment_list name=c_commu_topic_comment item=item})
-<tr><td bgcolor="({cycle values="#e0eaef,#ffffff"})">
-<a name="tc({$smarty.foreach.c_commu_topic_comment.iteration})" href="#({if $smarty.foreach.c_commu_topic_comment.last || $item.number == 1})menu({else})tc({$smarty.foreach.c_commu_topic_comment.iteration+1})({/if})">
-<font color="#c49fff">▼</font>
-</a><font color="#999966">[({$item.number|string_format:"%03d"})]</font>({$item.r_datetime|date_format:"%m/%d %H:%M"})
+<tr><td bgcolor="#({cycle values="`$ktai_color_config.bg_06`,`$ktai_color_config.bg_07`"})">
+<a name="tc({$smarty.foreach.c_commu_topic_comment.iteration})" href="#({if $smarty.foreach.c_commu_topic_comment.last || $item.number == 0})({if $is_prev || $is_next})pager({else})write({/if})({else})tc({$smarty.foreach.c_commu_topic_comment.iteration+1})({/if})">
+<font color="#({$ktai_color_config.font_08})">▼</font>
+</a><font color="#({$ktai_color_config.font_06})">[({$item.number|string_format:"%03d"})]</font>({$item.r_datetime|date_format:"%m/%d %H:%M"})
 <br>
 ({if $item.nickname})<a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})&amp;({$tail})">({$item.nickname})</a>({/if})
 ({if $item.c_member_id == $u || $target_diary_writer==$u || $is_admin})
@@ -99,29 +99,31 @@
 ({/if})
 <br>
 ({$item.body|t_url2a_ktai|nl2br})<br>
-({if $item.image_filename1})%%i68%%画像：[<a href="({t_img_url filename=$item.image_filename1 w=120 h=120 f=jpg})">小</a>/<a href="({t_img_url filename=$item.image_filename1 f=jpg})">大</a>]<br>({/if})
-({if $item.image_filename2})%%i68%%画像：[<a href="({t_img_url filename=$item.image_filename2 w=120 h=120 f=jpg})">小</a>/<a href="({t_img_url filename=$item.image_filename2 f=jpg})">大</a>]<br>({/if})
-({if $item.image_filename3})%%i68%%画像：[<a href="({t_img_url filename=$item.image_filename3 w=120 h=120 f=jpg})">小</a>/<a href="({t_img_url filename=$item.image_filename3 f=jpg})">大</a>]<br>({/if})
+({if $item.image_filename1})[i:68]写真：[<a href="({t_img_url filename=$item.image_filename1 w=120 h=120 f=jpg})">小</a>/<a href="({t_img_url filename=$item.image_filename1 w=$smarty.const.OPENPNE_IMG_KTAI_MAX_WIDTH h=$smarty.const.OPENPNE_IMG_KTAI_MAX_HEIGHT f=jpg})">大</a>]<br>({/if})
+({if $item.image_filename2})[i:68]写真：[<a href="({t_img_url filename=$item.image_filename2 w=120 h=120 f=jpg})">小</a>/<a href="({t_img_url filename=$item.image_filename2 w=$smarty.const.OPENPNE_IMG_KTAI_MAX_WIDTH h=$smarty.const.OPENPNE_IMG_KTAI_MAX_HEIGHT f=jpg})">大</a>]<br>({/if})
+({if $item.image_filename3})[i:68]写真：[<a href="({t_img_url filename=$item.image_filename3 w=120 h=120 f=jpg})">小</a>/<a href="({t_img_url filename=$item.image_filename3 w=$smarty.const.OPENPNE_IMG_KTAI_MAX_WIDTH h=$smarty.const.OPENPNE_IMG_KTAI_MAX_HEIGHT f=jpg})">大</a>]<br>({/if})
 </td></tr>
-<tr><td>
-<hr color="#b3ceef">
+<tr><td bgcolor="#({$ktai_color_config.bg_07})">
+<hr color="#({$ktai_color_config.border_02})">
 </td></tr>
 ({/foreach})
 </table>
 ({if $is_prev || $is_next})
 <center>
-({if $is_prev})<a href="({t_url m=ktai a=page_c_bbs})&amp;target_c_commu_topic_id=({$c_commu_topic_id})&amp;page=({$page-1})&amp;({$tail})" accesskey="4">%%i128%%前を表示</a>({/if})
+<a name="pager"></a>
+({if $is_prev})<a href="({t_url m=ktai a=page_c_bbs})&amp;target_c_commu_topic_id=({$c_commu_topic_id})&amp;page=({$page-1})&amp;({$tail})" accesskey="4">[i:128]前を表示</a>({/if})
 ({if $is_prev && $is_next})&nbsp;({/if})
-({if $is_next})<a href="({t_url m=ktai a=page_c_bbs})&amp;target_c_commu_topic_id=({$c_commu_topic_id})&amp;page=({$page+1})&amp;({$tail})" accesskey="6">%%i130%%次を表示</a>({/if})
+({if $is_next})<a href="({t_url m=ktai a=page_c_bbs})&amp;target_c_commu_topic_id=({$c_commu_topic_id})&amp;page=({$page+1})&amp;({$tail})" accesskey="6">[i:130]次を表示</a>({/if})
 <br>
 </center>
 ({/if})
 ({/if})
 
 ({if $is_c_commu_member})
-<hr color="#0d6ddf">
+<hr color="#({$ktai_color_config.border_01})">
+<a name="write"></a>
 ({if $msg})
-<a name="comment"><font color="#ff0000">({$msg})</font></a><br>
+<a name="comment"><font color="#({$ktai_color_config.font_09})">({$msg})</font></a><br>
 <br>
 ({/if})
 
@@ -129,7 +131,7 @@
 ({t_form m=ktai a=do_c_bbs_insert_c_commu_topic_comment})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
 <input type="hidden" name="target_c_commu_topic_id" value="({$c_commu_topic_id})">
-<a name="menu"><font color="#999966">ｺﾒﾝﾄ：</font></a><br>
+<a name="menu"><font color="#({$ktai_color_config.font_06})">ｺﾒﾝﾄ：</font></a><br>
 <textarea name="body" rows="3"></textarea><br>
 ({if $c_commu_topic.event_flag})
 ({if $is_event_join_date})
@@ -149,16 +151,17 @@
 ({/if})
 </form>
 <br>
-%%i110%%<a href="mailto:({$mail_address})">ﾒｰﾙ投稿</a><br>
-画像も添付できます。
+[i:110]<a href="mailto:({$mail_address})">ﾒｰﾙ投稿</a><br>
+写真も添付できます。<br>
+<font color="#({$ktai_color_config.font_09})">※ﾒｰﾙ投稿では絵文字が反映されません</font>
 ({/if})
 ({/if})
-<hr color="#0d6ddf">
+<hr color="#({$ktai_color_config.border_01})">
 ({if $c_commu_topic.event_flag != 1})
-%%i90%%<a href="({t_url m=ktai a=page_c_topic_list})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">ﾄﾋﾟｯｸﾘｽﾄ</a><br>
+[i:90]<a href="({t_url m=ktai a=page_c_topic_list})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">ﾄﾋﾟｯｸﾘｽﾄ</a><br>
 ({else})
-%%i90%%<a href="({t_url m=ktai a=page_c_event_list})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">ｲﾍﾞﾝﾄﾘｽﾄ</a><br>
+[i:90]<a href="({t_url m=ktai a=page_c_event_list})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">ｲﾍﾞﾝﾄﾘｽﾄ</a><br>
 ({/if})
-%%i90%%<a href="({t_url m=ktai a=page_c_home})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">ｺﾐｭﾆﾃｨﾄｯﾌﾟ</a><br>
+[i:90]<a href="({t_url m=ktai a=page_c_home})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">ｺﾐｭﾆﾃｨﾄｯﾌﾟ</a><br>
 
 ({$inc_ktai_footer|smarty:nodefaults})

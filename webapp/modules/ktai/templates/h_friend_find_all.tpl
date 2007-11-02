@@ -1,43 +1,43 @@
 ({$inc_ktai_header|smarty:nodefaults})
-<table width="100%"><tr><td align="center" bgcolor="#0d6ddf">
-<font color="#eeeeee"><a name="top">ﾒﾝﾊﾞｰ検索</a></font><br>
+<table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_02})">
+<font color="#({$ktai_color_config.font_05})"><a name="top">ﾒﾝﾊﾞｰ検索</a></font><br>
 </td></tr></table>
 <center>
 検索結果
-<font color="#999966">(({$pager.total_num})件)</font><br>
+<font color="#({$ktai_color_config.font_06})">(({$pager.total_num})件)</font><br>
 </center>
 <table width="100%">
-<tr><td>
-<hr color="#b3ceef">
+<tr><td bgcolor="#({$ktai_color_config.bg_07})">
+<hr color="#({$ktai_color_config.border_02})">
 </td></tr>
 ({foreach from=$target_friend_list item=target_friend})
-<tr><td bgcolor="({cycle values="#e0eaef,#ffffff"})">
+<tr><td bgcolor="#({cycle values="`$ktai_color_config.bg_06`,`$ktai_color_config.bg_07`"})">
 <a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$target_friend.c_member_id})&amp;({$tail})">({$target_friend.nickname|t_truncate:30:""})</a><br>
 </td></tr>
 ({/foreach})
-<tr><td>
-<hr color="#b3ceef">
+<tr><td bgcolor="#({$ktai_color_config.bg_07})">
+<hr color="#({$ktai_color_config.border_02})">
 </td></tr></table>
 ({if $pager.page_prev || $pager.page_next})
 <center>
-({if $pager.page_prev})<a href="({t_url m=ktai a=page_h_friend_find_all})({if $nickname})&amp;nickname=({$nickname|to_sjis|escape:url|smarty:nodefaults})({/if})({if $search_condition})&amp;({$search_condition})({/if})&amp;page=({$pager.page_prev})&amp;({$tail})" accesskey="4">%%i128%%前を表示</a> ({/if})
-({if $pager.page_next})<a href="({t_url m=ktai a=page_h_friend_find_all})({if $nickname})&amp;nickname=({$nickname|to_sjis|escape:url|smarty:nodefaults})({/if})({if $search_condition})&amp;({$search_condition})({/if})&amp;page=({$pager.page_next})&amp;({$tail})" accesskey="6">%%i130%%次を表示</a>({/if})
+({if $pager.page_prev})<a href="({t_url m=ktai a=page_h_friend_find_all})({if $nickname})&amp;nickname=({$nickname|to_sjis|escape:url|smarty:nodefaults})({/if})({if $search_condition})&amp;({$search_condition})({/if})&amp;page=({$pager.page_prev})&amp;({$tail})" accesskey="4">[i:128]前を表示</a> ({/if})
+({if $pager.page_next})<a href="({t_url m=ktai a=page_h_friend_find_all})({if $nickname})&amp;nickname=({$nickname|to_sjis|escape:url|smarty:nodefaults})({/if})({if $search_condition})&amp;({$search_condition})({/if})&amp;page=({$pager.page_next})&amp;({$tail})" accesskey="6">[i:130]次を表示</a>({/if})
 </center>
 ({/if})
 <br>
 <table width="100%">
-<tr><td bgcolor="#dddddd" align="center">
-ﾒﾝﾊﾞｰ検索<br>
+<tr><td bgcolor="#({$ktai_color_config.color_27})" align="center">
+<font color="#({$ktai_color_config.color_28})">ﾒﾝﾊﾞｰ検索</font><br>
 </td></tr></table>
 ({strip})
 ({t_form _method=get m=ktai a=page_h_friend_find_all})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
 ({capture name="nick"})
-<font color="#999966">ﾆｯｸﾈｰﾑ：</font><br>
+<font color="#({$ktai_color_config.font_06})">ﾆｯｸﾈｰﾑ：</font><br>
 <input type="text" name="nickname" value="({$nickname})"><br>
 ({/capture})
 ({capture name="birth"})
-<font color="#999966">生年月日：</font><br>
+<font color="#({$ktai_color_config.font_06})">生年月日：</font><br>
 <input type="text" name="birth_year" value="({$cond.birth_year})" size="4" maxlength="4" istyle="4" mode="numeric">年
 <input type="text" name="birth_month" value="({$cond.birth_month})" size="2" maxlength="4" istyle="4" mode="numeric">月
 <input type="text" name="birth_day" value="({$cond.birth_day})" size="2" maxlength="4" istyle="4" mode="numeric">日<br>
@@ -69,7 +69,7 @@
 ({/if})
 
 ({if $profile.disp_search})
-<font color="#999966">({$profile.caption})：</font><br>
+<font color="#({$ktai_color_config.font_06})">({$profile.caption})：</font><br>
 ({if $profile.form_type == 'select' || $profile.form_type == 'radio'})
     <select name="profile[({$profile.name})]">
     <option value="0">指定しない
@@ -105,7 +105,7 @@
 ({/if})
 <center>
 <input type="submit" value="検索">
-<center>
+</center>
 </form>
 ({/strip})
 

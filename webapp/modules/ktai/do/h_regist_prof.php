@@ -36,12 +36,11 @@ class ktai_do_h_regist_prof extends OpenPNE_Action
         // 必須項目チェック
         $profile_list = db_member_c_profile_list4null();
         foreach ($profile_list as $profile) {
-            if ($profile['disp_regist'] &&
-                $profile['is_required'] &&
-                (is_null(!$c_member_profile_list[$profile['name']]['value']) || !$c_member_profile_list[$profile['name']]['value'] === '')
-            ) {
-                $errors[$profile['name']] = "{$profile['caption']}を入力してください";
-                break;
+            $value = $c_member_profile_list[$profile['name']]['value'];
+            if ($profile['disp_config'] && $profile['is_required']) {
+                if (is_null($value) || $value === '' || $value === array()) {
+                    $errors[$profile['name']] = $profile['caption'] . 'を入力してください';
+                }
             }
         }
 
@@ -144,6 +143,7 @@ class ktai_do_h_regist_prof extends OpenPNE_Action
                 );
                 switch ($profile['form_type']) {
                 case 'text':
+                case 'textlong':
                 case 'textarea':
                     $rule['type'] = $profile['val_type'];
                     $rule['regexp'] = $profile['val_regexp'];

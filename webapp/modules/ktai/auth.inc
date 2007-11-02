@@ -27,6 +27,10 @@ if (   !$auth->auth()
     __logout();
 }
 
+if (db_member_is_blacklist($u)) {
+    ktai_display_error('ﾛｸﾞｲﾝできませんでした。');
+}
+
 $auth->uid($u);
 $GLOBALS['AUTH'] = $auth;
 

@@ -36,13 +36,13 @@ class pc_page_f_home extends OpenPNE_Action
         $inc_navi = fetch_inc_navi('f', $target_c_member_id);
         $this->set('inc_navi', $inc_navi);
 
+        $target_c_member = db_member_c_member_with_profile($target_c_member_id, 'private');
+
         $is_friend = db_friend_is_friend($u, $target_c_member_id);
         if ($is_friend) {
-            $target_c_member = db_member_c_member_with_profile($target_c_member_id, 'friend');
             // 自分が書いた紹介文
             $this->set('my_friend_intro', db_friend_c_friend_intro($u, $target_c_member_id));
         } else {
-            $target_c_member = db_member_c_member_with_profile($target_c_member_id, 'public');
             // 友達の友達
             $this->set('friend_path', db_friend_friend_path4c_member_ids($u, $target_c_member_id));
         }

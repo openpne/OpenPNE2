@@ -136,7 +136,7 @@ function db_diary_category_insert_category($c_member_id, $category_name)
 function db_diary_category_delete_category($c_diary_category_id)
 {
     $sql = 'DELETE FROM c_diary_category WHERE c_diary_category_id = ?';
-    db_query($sql, array($c_diary_category_id));    
+    db_query($sql, array($c_diary_category_id));
 }
 /**
  * カテゴリと日記を関連づける
@@ -254,6 +254,34 @@ function p_common_is_active_c_diary_id($c_diary_id)
 {
     $sql = 'SELECT c_diary_id FROM c_diary WHERE c_diary_id = ?';
     return (bool)db_get_one($sql, array(intval($c_diary_id)));
+}
+
+/**
+ * 指定した日記の前の日記IDを取得する
+ * 
+ * @param int $c_member_id
+ * @param int $c_diary_id
+ */
+function db_diary_c_diary_id_prev4c_diary_id($c_member_id, $c_diary_id, $u = null)
+{
+    $public_flag_condition = db_diary_public_flag_condition($c_member_id, $u);
+    $sql = 'SELECT c_diary_id FROM c_diary WHERE c_member_id = ? AND c_diary_id < ?'
+         . $public_flag_condition . ' ORDER BY c_diary_id DESC';
+    return db_get_one($sql, array(intval($c_member_id), intval($c_diary_id)));
+}
+
+/**
+ * 指定した日記の次の日記IDを取得する
+ * 
+ * @param int $c_member_id
+ * @param int $c_diary_id
+ */
+function db_diary_c_diary_id_next4c_diary_id($c_member_id, $c_diary_id, $u = null)
+{
+    $public_flag_condition = db_diary_public_flag_condition($c_member_id, $u);
+    $sql = 'SELECT c_diary_id FROM c_diary WHERE c_member_id = ? AND c_diary_id > ?'
+         . $public_flag_condition . ' ORDER BY c_diary_id ASC';
+    return db_get_one($sql, array(intval($c_member_id), intval($c_diary_id)));
 }
 
 //// c_diary_comment
@@ -753,7 +781,7 @@ function p_h_diary_list_all_search_c_diary4c_diary($keyword, $page_size, $page, 
     $select = 'SELECT *';
     $from = ' FROM c_diary';
 
-    //自分の日記だけを対象にする事も出来る
+    //自分の日記だけを対象にする事もできる
     if ($c_member_id) {
         $where = ' WHERE c_member_id = ?';
         $params[] = intval($c_member_id);
@@ -912,9 +940,14 @@ function k_p_fh_diary_list_c_diary_list4c_member_id($c_member_id, $page_size, $p
 /**
  * 日記へのコメントリストを取得
  */
-function k_p_fh_diary_c_diary_comment_list4c_diary_id($c_diary_id, $page_size, $page)
+function k_p_fh_diary_c_diary_comment_list4c_diary_id($c_diary_id, $page_size, $page, $desc = true)
 {
-    $sql = 'SELECT * FROM c_diary_comment WHERE c_diary_id = ? ORDER BY r_datetime DESC';
+    $sql = 'SELECT * FROM c_diary_comment WHERE c_diary_id = ? ORDER BY r_datetime ';
+    if ($desc) {
+        $sql .= 'DESC';
+    } else {
+        $sql .= 'ASC';
+    }
     $params = array(intval($c_diary_id));
     $c_diary_comment_list = db_get_all_page($sql, $page, $page_size, $params);
 

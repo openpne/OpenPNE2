@@ -1,16 +1,16 @@
 ({$inc_ktai_header|smarty:nodefaults})
 
-<table width="100%"><tr><td align="center" bgcolor="#0d6ddf">
-<font color="#eeeeee"><a name="top">({$c_commu_topic.name})</a></font><br>
+<table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_02})">
+<font color="#({$ktai_color_config.font_05})"><a name="top">({$c_commu_topic.name})</a></font><br>
 </td></tr>
-<tr><td bgcolor="#dddddd" align="center">
-ｲﾍﾞﾝﾄとｺﾒﾝﾄの削除<br>
+<tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
+<font color="#({$ktai_color_config.color_24})">ｲﾍﾞﾝﾄとｺﾒﾝﾄの削除</font><br>
 </td></tr></table>
 
 このｲﾍﾞﾝﾄを本当に削除しますか?<br>
 (ｺﾒﾝﾄも削除されますのでご注意ください)<br>
 
-<hr color="#0d6ddf">
+<hr color="#({$ktai_color_config.border_01})">
 <center>
 ({t_form m=ktai a=do_c_bbs_delete_c_commu_topic})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
@@ -18,7 +18,7 @@
 <input type="submit" value="　は　い　"><br>
 </form>
 
-({t_form m=ktai a=page_c_event_edit})
+({t_form _method=get m=ktai a=page_c_event_edit})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
 <input type="hidden" name="target_c_commu_topic_id" value="({$c_commu_topic_id})">
 <input type="submit" value="　いいえ　">

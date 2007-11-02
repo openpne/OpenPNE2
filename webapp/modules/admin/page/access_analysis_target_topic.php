@@ -8,6 +8,9 @@ class admin_page_access_analysis_target_topic extends OpenPNE_Action
 {
     function execute($requests)
     {
+        if (!LOG_C_ACCESS_LOG) {
+            admin_client_redirect('top', '指定されたページにはアクセスできません');
+        }
         //----------リクエスト変数-------------//
         $ktai_flag = $requests['ktai_flag'];
         $ymd = $requests['ymd'];

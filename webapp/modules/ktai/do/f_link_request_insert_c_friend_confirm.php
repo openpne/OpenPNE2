@@ -29,6 +29,8 @@ class ktai_do_f_link_request_insert_c_friend_confirm extends OpenPNE_Action
             ktai_display_error('このメンバーは既に'.WORD_MY_FRIEND_HALF.'に登録されています。');
         } elseif ($status['is_friend_confirm']) {
             ktai_display_error('このメンバーは既に'.WORD_MY_FRIEND_HALF.'リンク承認待ち中です。');
+        } elseif ($target_c_member_id == $u) {
+            ktai_display_error('自分にﾘﾝｸ要請することはできません。');
         }
 
         // アクセスブロック

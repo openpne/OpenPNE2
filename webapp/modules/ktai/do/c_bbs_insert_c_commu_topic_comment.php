@@ -23,6 +23,9 @@ class ktai_do_c_bbs_insert_c_commu_topic_comment extends OpenPNE_Action
         //コミュニティ参加者
 
         $c_commu_topic = _do_c_bbs_c_commu_topic4c_commu_topic_id($target_c_commu_topic_id);
+        if ($c_commu_topic['event_flag']) {
+            $c_event_member_count = db_commu_count_c_event_member_list4c_commu_topic_id($target_c_commu_topic_id);
+        }
         $c_commu_id = $c_commu_topic['c_commu_id'];
 
         $status = db_common_commu_status($u, $c_commu_id);
@@ -49,7 +52,15 @@ class ktai_do_c_bbs_insert_c_commu_topic_comment extends OpenPNE_Action
 
         //イベントのメンバーに追加
         if ($requests['join_event']) {
-            do_c_event_add_insert_c_event_member($target_c_commu_topic_id, $u);
+            if ($c_commu_topic['capacity'] && $c_commu_topic['capacity'] <= $c_event_member_count) {
+                $p = array(
+                    'target_c_commu_topic_id' => $target_c_commu_topic_id,
+                    'msg' => 45,
+                );
+                openpne_redirect('ktai', 'page_c_bbs', $p);
+            } else {
+                do_c_event_add_insert_c_event_member($target_c_commu_topic_id, $u);
+            }
         } elseif ($requests['cancel_event']) {
             db_commu_delete_c_event_member($target_c_commu_topic_id, $u);
         }

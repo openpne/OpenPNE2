@@ -1,21 +1,21 @@
 ({$inc_ktai_header|smarty:nodefaults})
 
-<table width="100%"><tr><td align="center" bgcolor="#0d6ddf">
-<font color="#eeeeee"><a name="top">({$target_c_member.nickname})さん</a></font><br>
+<table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_02})">
+<font color="#({$ktai_color_config.font_05})"><a name="top">({$target_c_member.nickname})さん</a></font><br>
 </td></tr>
-<tr><td bgcolor="#dddddd" align="center">
-ﾒｯｾｰｼﾞの送信<br>
+<tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
+<font color="#({$ktai_color_config.color_24})">ﾒｯｾｰｼﾞの送信</font><br>
 </td></tr></table>
 
-<font color=red>({if $msg})({$msg})<br>({/if})</font>
+({if $msg})<font color="#({$ktai_color_config.font_09})">({$msg})</font><br>({/if})
 
-<font color="#999966">宛先：</font><a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">({$target_c_member.nickname})</a><br>
+<font color="#({$ktai_color_config.font_06})">宛先：</font><a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">({$target_c_member.nickname})</a><br>
 ({t_form m=ktai a=do_f_message_send_insert_c_message})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
 <input type="hidden" name="c_member_id_to" value="({$target_c_member.c_member_id})">
-<font color="#999966">件名：</font><br>
+<font color="#({$ktai_color_config.font_06})">件名：</font><br>
 <input type="text" name="subject"><br>
-<font color="#999966">ﾒｯｾｰｼﾞ：</font><br>
+<font color="#({$ktai_color_config.font_06})">ﾒｯｾｰｼﾞ：</font><br>
 <textarea name="body" rows="6"></textarea>
 <center>
 <input type="submit" value="ﾒｯｾｰｼﾞを送る">

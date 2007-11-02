@@ -1,26 +1,26 @@
 ({$inc_ktai_header|smarty:nodefaults})({strip})
-<table width="100%"><tr><td align="center" bgcolor="#0d6ddf">
-<font color="#eeeeee"><a name="top">設定変更</a></font><br>
+<table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_02})">
+<font color="#({$ktai_color_config.font_05})"><a name="top">設定変更</a></font><br>
 </td></tr>
-<tr><td bgcolor="#dddddd" align="center">
-ﾌﾟﾛﾌｨｰﾙ変更<br>
+<tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
+<font color="#({$ktai_color_config.color_24})">ﾌﾟﾛﾌｨｰﾙ変更</font><br>
 </td></tr></table>
 
-<font color="#ff0000">*</font>は必須項目。<br>
+<font color="#({$ktai_color_config.font_09})">*</font>は必須項目。<br>
 
-<hr color="#0d6ddf">
+<hr color="#({$ktai_color_config.border_01})">
 
 ({t_form m=ktai a=do_h_config_prof_update_c_member})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
 
 ({capture name="nick"})
-<font color="#ff0000">*</font>
-<font color="#999966">ﾆｯｸﾈｰﾑ：</font><br>
+<font color="#({$ktai_color_config.font_09})">*</font>
+<font color="#({$ktai_color_config.font_06})">ﾆｯｸﾈｰﾑ：</font><br>
 <input type="text" name="nickname" value="({$c_member.nickname})"><br>
 <br>
 ({/capture})
 ({capture name="birth"})
-<font color="#ff0000">*</font><font color="#999966">生まれた年：</font><br>
+<font color="#({$ktai_color_config.font_09})">*</font><font color="#({$ktai_color_config.font_06})">生まれた年：</font><br>
 <input type="text" name="birth_year" istyle="4" mode="numeric" value="({if $c_member.birth_year})({$c_member.birth_year})({/if})" size="4" maxlength="4"><br>
 <select name="public_flag_birth_year">
     ({foreach from=$public_flags key=key item=item})
@@ -29,7 +29,7 @@
 </select><br>
 <br>
 
-<font color="#ff0000">*</font><font color="#999966">誕生日：</font><br>
+<font color="#({$ktai_color_config.font_09})">*</font><font color="#({$ktai_color_config.font_06})">誕生日：</font><br>
 <select name="birth_month">
     <option>--
     ({foreach from=$month item=item})
@@ -42,6 +42,7 @@
     <option value="({$item})"({if $item == $c_member.birth_day}) selected="selected"({/if})>({$item})
     ({/foreach})
 </select><br>
+<br>
 ({/capture})
 
 ({foreach from=$profile_list item=profile})
@@ -71,15 +72,15 @@
 
 ({if $profile.disp_config})
 
-    ({if $profile.is_required})<font color="#ff0000">*</font>({/if})
-    <font color="#999966">({$profile.caption})：</font><br>
+    ({if $profile.is_required})<font color="#({$ktai_color_config.font_09})">*</font>({/if})
+    <font color="#({$ktai_color_config.font_06})">({$profile.caption})：</font><br>
 
     ({if $profile.form_type == 'text'})
         <input type="text" name="profile[({$profile.name})]" value="({$c_member.profile[$profile.name].value})">
     ({elseif $profile.form_type == 'textlong'})
-        <input type="text" size=60 name="profile[({$profile.name})]" value="({$c_member.profile[$profile.name].value})">
+        <input type="text" name="profile[({$profile.name})]" value="({$c_member.profile[$profile.name].value})">
     ({elseif $profile.form_type == 'textarea'})
-        <textarea name="profile[({$profile.name})]">({$c_member.profile[$profile.name].value})</textarea>
+        <textarea name="profile[({$profile.name})]" rows="6">({$c_member.profile[$profile.name].value})</textarea>
     ({elseif $profile.form_type == 'select' || $profile.form_type == 'radio'})
         <select name="profile[({$profile.name})]">
             <option value="">選択してください
@@ -93,7 +94,7 @@
         ({/foreach})
     ({/if})
     ({if $profile.info})
-    <br><font color="#999966">({$profile.info})</font>
+    <br><font color="#({$ktai_color_config.font_06})">({$profile.info})</font>
     ({/if})
     <br>
 

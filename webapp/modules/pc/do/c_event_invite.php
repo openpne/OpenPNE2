@@ -28,8 +28,13 @@ class pc_do_c_event_invite extends OpenPNE_Action
 
         //--- 権限チェック
 
-        //イベント参加者でないと送信できない
+        // イベント参加者でないと送信できない
         if (!db_commu_is_c_event_member($c_commu_topic_id, $u)) {
+            handle_kengen_error();
+        }
+
+        // 自分が送信対象に含まれている
+        if (in_array($u, $c_member_ids)) {
             handle_kengen_error();
         }
         //---
