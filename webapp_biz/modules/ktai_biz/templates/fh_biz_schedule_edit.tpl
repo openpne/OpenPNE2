@@ -20,19 +20,19 @@
 <input type="hidden" name="target_id" value="({$t_id})">
 
 <font color="#({$ktai_color_config.font_06})">予定日：</font><br>
-<input type="text" name='sc_b_year' size="4" value="({$begin.year})" istyle="4" mode="numeric">年
-		<input type="text" name='sc_b_month' size="2" value="({$begin.month})" istyle="4" mode="numeric">月
-		<input type="text" name='sc_b_date' size="2" value="({$begin.day})" istyle="4" mode="numeric">日<br>
+<input type="text" name="sc_b_year" maxlength="2" size="2" value="({$begin.year})" istyle="4" mode="numeric">年
+		<input type="text" name="sc_b_month" maxlength="2"  size="2" value="({$begin.month})" istyle="4" mode="numeric">月
+		<input type="text" name="sc_b_date" maxlength="2"  size="2" value="({$begin.day})" istyle="4" mode="numeric">日<br>
 <br>
 <font color="#({$ktai_color_config.font_06})">時刻：</font><br>
-<input type="text" name='sc_b_hour' size="2" value="({$begin.hour})" istyle="4" mode="numeric">時
-	<input type="text" name='sc_b_minute' size="2" value="({$begin.min})" istyle="4" mode="numeric">分
+<input type="text" name="sc_b_hour" maxlength="2"  size="2" value="({$begin.hour})" istyle="4" mode="numeric">時
+	<input type="text" name="sc_b_minute" maxlength="2"  size="2" value="({$begin.min})" istyle="4" mode="numeric">分
 	～
-	<input type="text" name='sc_f_hour' size="2" value="({$finish.hour})" istyle="4" mode="numeric">時
-	<input type="text" name='sc_f_minute' size="2" value="({$finish.min})" istyle="4" mode="numeric">分<br>
+	<input type="text" name="sc_f_hour" maxlength="2"  size="2" value="({$finish.hour})" istyle="4" mode="numeric">時
+	<input type="text" name="sc_f_minute" maxlength="2"  size="2" value="({$finish.min})" istyle="4" mode="numeric">分<br>
 <br>
 <font color="#({$ktai_color_config.font_06})">ﾀｲﾄﾙ：</font><br>
-<input type="text" name='sc_title' value="({$title})"><br>
+<input type="text" name="sc_title" value="({$title})"><br>
 <br>
 <font color="#({$ktai_color_config.font_06})">詳細：</font><br>
 ({$value})<br>
@@ -44,8 +44,8 @@
 <input type="hidden" name="public_flag" value="public">
 
 <font color="#({$ktai_color_config.font_06})">公開範囲：</font><br>
-<input type='radio' name='public_flag' value='public' ({if $public_flag == 'public'})checked({/if})>全体に公開<br>
-<input type='radio' name='public_flag' value='private' ({if $public_flag == 'private'})checked({/if})>参加者のみに公開<br>
+<input type="radio" name="public_flag" value="public" ({if $public_flag == 'public'})checked({/if})>全体に公開<br>
+<input type="radio" name="public_flag" value="private" ({if $public_flag == 'private'})checked({/if})>参加者のみに公開<br>
 <br>
 
 <font color="#({$ktai_color_config.font_06})">参加者：</font><br>
@@ -56,7 +56,7 @@
 <br>
 
 <center>
-<input type='submit' name='entry' value='編集'>
+<input type="submit" name="entry" value="編集">
 </center>
 </form>
 ({t_form m=ktai_biz a=page_fh_calendar_week})

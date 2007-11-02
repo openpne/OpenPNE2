@@ -4,7 +4,7 @@
 <font color="#({$ktai_color_config.font_05})"><a name="top">({$c_commu.name})</a></font><br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
-ｺﾐｭﾆﾃｨ詳細<br>
+<font color="#({$ktai_color_config.color_24})">ｺﾐｭﾆﾃｨ詳細</font><br>
 </td></tr></table>
 <br>
 <font color="#({$ktai_color_config.font_06})">ｺﾐｭﾆﾃｨ名：</font><br>

@@ -136,7 +136,7 @@ function db_diary_category_insert_category($c_member_id, $category_name)
 function db_diary_category_delete_category($c_diary_category_id)
 {
     $sql = 'DELETE FROM c_diary_category WHERE c_diary_category_id = ?';
-    db_query($sql, array($c_diary_category_id));    
+    db_query($sql, array($c_diary_category_id));
 }
 /**
  * カテゴリと日記を関連づける

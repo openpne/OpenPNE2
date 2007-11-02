@@ -3,9 +3,9 @@
 <font color="#({$ktai_color_config.font_05})"><a name="top">設定変更</a></font><br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
-携帯ﾒｰﾙｱﾄﾞﾚｽ変更<br>
+<font color="#({$ktai_color_config.color_24})">携帯ﾒｰﾙｱﾄﾞﾚｽ変更</font><br>
 </td></tr></table>
-登録ﾒｰﾙｱﾄﾞﾚｽ(携帯電話)を変更します。<br>
+登録されている携帯ﾒｰﾙｱﾄﾞﾚｽを変更します。<br>
 新しい携帯ﾒｰﾙｱﾄﾞﾚｽを入力して送信ﾎﾞﾀﾝを押してください。<br>
 <hr color="#({$ktai_color_config.border_01})">
 ({if $msg})

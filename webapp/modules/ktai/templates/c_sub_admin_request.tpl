@@ -4,7 +4,7 @@
 <font color="#({$ktai_color_config.font_05})"><a name="top">({$c_commu.name})</a></font><br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
-副管理者要請<br>
+<font color="#({$ktai_color_config.color_24})">副管理者要請</font><br>
 </td></tr></table>
 
 ({$member.nickname})さんに副管理者要請ﾒｯｾｰｼﾞを送信します。

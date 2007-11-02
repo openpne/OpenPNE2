@@ -3,9 +3,9 @@
 <font color="#({$ktai_color_config.font_05})"><a name="top">かんたんﾛｸﾞｲﾝ設定</a></font><br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
-かんたんﾛｸﾞｲﾝとは<br>
+<font color="#({$ktai_color_config.color_24})">かんたんﾛｸﾞｲﾝとは</font><br>
 </td></tr></table>
-かんたんﾛｸﾞｲﾝとは、携帯電話の個体識別番号(*)を利用して、毎回ﾊﾟｽﾜｰﾄﾞを入力しなくてもﾛｸﾞｲﾝできる機能です。<br>
+かんたんﾛｸﾞｲﾝとは、携帯端末の個体識別番号(*)を利用して、毎回ﾊﾟｽﾜｰﾄﾞを入力しなくてもﾛｸﾞｲﾝできる機能です。<br>
 <br>
 (*)電話番号などの個人情報は含まれません。<br>
 <br>

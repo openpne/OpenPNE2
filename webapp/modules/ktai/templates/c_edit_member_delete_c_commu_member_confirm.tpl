@@ -4,7 +4,7 @@
 <font color="#({$ktai_color_config.font_05})"><a name="top">({$c_commu.name})</a></font><br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
-ｺﾐｭﾆﾃｨﾒﾝﾊﾞｰ管理<br>
+<font color="#({$ktai_color_config.color_24})">ｺﾐｭﾆﾃｨﾒﾝﾊﾞｰ管理</font><br>
 </td></tr></table>
 
 ({$target_c_member.nickname})さんをｺﾐｭﾆﾃｨから本当に退会させますか?<br>

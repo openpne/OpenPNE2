@@ -4,12 +4,12 @@
 <font color="#({$ktai_color_config.font_05})"><a name="top">({$c_commu.name})</a></font><br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
-({$c_commu_topic.name})<br>
+<font color="#({$ktai_color_config.color_24})">({$c_commu_topic.name})</font><br>
 </td></tr></table>
 
 ({if $c_commu_topic.event_flag != 1})
 
-<a href="#({if $c_commu_topic_comment_list})tc1({else})write({/if})"><font color="#({$ktai_color_config.bg_08})">▼</font></a>({$c_commu_topic.r_datetime|date_format:"%m/%d %H:%M"})<br>
+<a href="#({if $c_commu_topic_comment_list})tc1({else})write({/if})"><font color="#({$ktai_color_config.font_08})">▼</font></a>({$c_commu_topic.r_datetime|date_format:"%m/%d %H:%M"})<br>
 <a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$c_commu_topic.c_member_id})&amp;({$tail})">({$c_commu_topic.nickname|default:"&nbsp;"})</a>
 ({if $c_commu_topic.c_member_id==$u || $is_admin})
 [<a href="({t_url m=ktai a=page_c_topic_edit})&amp;target_c_commu_topic_id=({$c_commu_topic_id})&amp;({$tail})">編集</a>]
@@ -152,7 +152,8 @@
 </form>
 <br>
 [i:110]<a href="mailto:({$mail_address})">ﾒｰﾙ投稿</a><br>
-写真も添付できます。
+写真も添付できます。<br>
+<font color="#({$ktai_color_config.font_09})">※ﾒｰﾙ投稿では絵文字が反映されません</font>
 ({/if})
 ({/if})
 <hr color="#({$ktai_color_config.border_01})">

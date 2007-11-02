@@ -7,13 +7,14 @@
 日記の編集</a></font><br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
-({$target_c_diary.subject})<br>
+<font color="#({$ktai_color_config.color_24})">({$target_c_diary.subject})</font><br>
 ({/if})
 </td></tr></table>
 
 ({if !$target_c_diary.c_diary_id})
 [i:106]<a href="mailto:({$blog_address})">ﾒｰﾙで投稿</a><br>
-写真を添付すると写真付き日記になります。
+写真を添付すると写真付き日記になります。<br>
+<font color="#({$ktai_color_config.font_09})">※ﾒｰﾙ投稿では絵文字が反映されません</font>
 <hr color="#({$ktai_color_config.border_01})">
 ({/if})
 

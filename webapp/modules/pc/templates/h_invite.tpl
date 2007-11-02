@@ -92,9 +92,9 @@
 
 <input type="text" class="text"  name="mail" value="({$requests.mail})" size="40">
 ({if $smarty.const.OPENPNE_REGIST_FROM == $smarty.const.OPENPNE_REGIST_FROM_PC})
-<br>※携帯アドレスには招待を送ることができません
+<br>※携帯メールアドレスには招待を送ることができません
 ({elseif $smarty.const.OPENPNE_REGIST_FROM == $smarty.const.OPENPNE_REGIST_FROM_KTAI})
-<br>※PCアドレスには招待を送ることができません
+<br>※PCメールアドレスには招待を送ることができません
 ({/if})
 
 </div>

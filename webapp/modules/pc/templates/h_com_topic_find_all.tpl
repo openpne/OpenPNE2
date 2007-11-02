@@ -276,7 +276,7 @@
 
 <div class="padding_s">
 
-({$c_topic_search.body|t_truncate:80})
+({$c_topic_search.body|t_truncate:36:"":3})
 
 </div>
 

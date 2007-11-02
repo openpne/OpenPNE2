@@ -4,7 +4,7 @@
 <font color="#({$ktai_color_config.font_05})"><a name="top">({$c_commu.name})</a></font><br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
-ｲﾍﾞﾝﾄ一括ﾒｯｾｰｼﾞ送信<br>
+<font color="#({$ktai_color_config.color_24})">ｲﾍﾞﾝﾄ一括ﾒｯｾｰｼﾞ送信</font><br>
 </td></tr></table>
 ({if $c_event_member_list})
 ({t_form m=ktai a=page_c_event_mail_confirm})

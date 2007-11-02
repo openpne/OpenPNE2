@@ -67,7 +67,7 @@
 ({if $c_topic.image_filename1||$c_topic.image_filename2||$c_topic.image_filename3})
 <tr>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-<td style="width:110px;" class="bg_03" align="center" valign="top" rowspan="({if $is_c_event_admin})21({else})19({/if})">
+<td style="width:110px;" class="bg_03" align="center" valign="top" rowspan="({if $is_c_event_admin || $is_c_commu_admin})21({else})19({/if})">
 
 <div class="padding_s">
 
@@ -129,7 +129,7 @@
 ({else})
 <tr>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-<td style="width:110px;" class="bg_03" align="center" valign="top" rowspan="({if $is_c_event_admin})19({else})17({/if})">
+<td style="width:110px;" class="bg_03" align="center" valign="top" rowspan="({if $is_c_event_admin || $is_c_commu_admin})19({else})17({/if})">
 
 <div class="padding_s">
 
@@ -300,7 +300,7 @@
 
 </td>
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-<td class="bg_02" align="left" valign="middle">
+<td style="width:400px;" class="bg_02" align="left" valign="middle">
 
 <div class="padding_s lh_120">
 
@@ -424,7 +424,7 @@
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({*********})
-({if $is_c_event_admin})
+({if $is_c_event_admin || $is_c_commu_admin})
 <tr>
 <td style="height:1px;" class="bg_01"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 <td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
@@ -603,7 +603,7 @@
 
 <span class="c_08 b_b">
 ({$item.number}):</span>&nbsp;<a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})">({$item.nickname})</a>&nbsp;
-({if $c_member_id == $item.c_member_id || $c_member_id == $c_commu.c_member_id_admin})
+({if $c_member_id == $item.c_member_id || $c_member_id == $c_commu.c_member_id_admin || $c_member_id == $c_commu.c_member_id_sub_admin})
 <a href="({t_url m=pc a=page_c_event_write_delete_confirm})&amp;target_c_commu_topic_comment_id=({$item.c_commu_topic_comment_id})">削除</a>
 ({/if})
 
@@ -621,7 +621,7 @@
 <tr>
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-<td class="bg_02" align="left" valign="middle">
+<td class="bg_02" align="left" valign="middle" style="width:483px;">
 
 ({if $item.image_filename1 || $item.image_filename2 || $item.image_filename3})
 <div class="padding_s lh_120">

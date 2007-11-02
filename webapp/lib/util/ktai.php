@@ -26,11 +26,11 @@ function k_p_common_msg4msg_id($msg_id)
         10  => "管理者なので退会できません",
         11  => "このｺﾐｭﾆﾃｨのﾒﾝﾊﾞｰではありません",
         12  => "ﾒｰﾙｱﾄﾞﾚｽを入力してください",
-        13  => "携帯ｱﾄﾞﾚｽには送信できません",
+        13  => "携帯ﾒｰﾙｱﾄﾞﾚｽには送信できません",
         14  => "かんたんﾛｸﾞｲﾝに失敗しました。通常ﾛｸﾞｲﾝ後、設定してください",
         15  => "ﾛｸﾞｲﾝしてください",
-        16  => "携帯ｱﾄﾞﾚｽ以外は指定できません",
-        17  => "このｱﾄﾞﾚｽはすでに登録されています",
+        16  => "携帯ﾒｰﾙｱﾄﾞﾚｽ以外は指定できません",
+        17  => "このﾒｰﾙｱﾄﾞﾚｽはすでに登録されています",
         18  => "ﾊﾟｽﾜｰﾄﾞが違います",
         19  => "携帯ﾒｰﾙｱﾄﾞﾚｽを登録しました",
         20  => "ﾊﾟｽﾜｰﾄﾞは6～12文字の半角英数で入力してください",
@@ -50,7 +50,7 @@ function k_p_common_msg4msg_id($msg_id)
         34  => "あしあとお知らせﾒｰﾙ設定を変更しました",
         35  => "日記の公開設定を変更しました",
         36  => "ｱｸｾｽﾌﾞﾛｯｸ設定を変更しました",
-        37  => "このｱﾄﾞﾚｽでは登録できません",
+        37  => "このﾒｰﾙｱﾄﾞﾚｽでは登録できません",
         38  => "退会理由を入力して下さい",
         39  => "この携帯個体識別番号はすでに登録されています",
         40  => "日記の公開範囲を一括変更しました",
@@ -58,13 +58,14 @@ function k_p_common_msg4msg_id($msg_id)
         42  => "登録できませんでした",
         44  => "この携帯個体識別番号は登録することができません",
         45  => "ｲﾍﾞﾝﾄの参加者数制限を超えています",
+        46  => "ﾛｸﾞｱｳﾄしました",
     );
 
     return $msg[$msg_id];
 }
 
 /**
- * 携帯電話からのアクセスかどうかを User-Agent の値から判別する
+ * 携帯端末からのアクセスかどうかを User-Agent の値から判別する
  * 
  * @return bool
  */
@@ -141,6 +142,7 @@ function fetch_inc_ktai_header()
     $ktai = new OpenPNE_KtaiUA();
     $inc_smarty->assign('is_au', $ktai->is_au());
     $inc_smarty->assign('is_softbank', $ktai->is_vodafone());
+    $inc_smarty->assign('is_docomo', $ktai->is_docomo());
 
     $inc_smarty->assign('ktai_color_config', util_get_color_config_ktai());
 
@@ -177,13 +179,14 @@ function t_get_user_hash($c_member_id, $length = 12)
 }
 
 /**
- * 携帯電話からのアクセスかどうかを IPアドレスから判別する
+ * 携帯端末からのアクセスかどうかを IPアドレスから判別する
  * 
  * @return bool
  */
 function is_ktai_ip()
 {
     require_once 'Net/IPv4.php';
+    require_once 'ktaiIP.php';
     $is_valid_ip = false;
     foreach ($GLOBALS['_OPENPNE_KTAI_IP_LIST'] as $ktai_ip) {
         if (Net_IPv4::ipInNetwork($_SERVER[SERVER_IP_KEY], $ktai_ip)) {

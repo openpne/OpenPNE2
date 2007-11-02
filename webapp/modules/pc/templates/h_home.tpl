@@ -13,7 +13,7 @@
 <td align="center">
 
 ({*ここから：本体*})
-<div class="bg_09" style="width:680px;height:24px;border-left:none 0px;border-right:none 0px;border-top:none 0px;">
+<div class="color_19" style="width:680px;height:24px;border-left:none 0px;border-right:none 0px;border-top:none 0px;">
 ({t_form m=pc a=do_h_home_search})
 <input type="hidden" name="sessid" value="({$PHPSESSID})">
 
@@ -549,7 +549,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 
 ({t_loop from=$c_commu_user_list start=0 num=3})
 ({if $item})
-<td class="bg_02" align="center">
+<td class="bg_02" align="center" style="width:88px;">
 <a href="({t_url m=pc a=page_c_home})&amp;target_c_commu_id=({$item.c_commu_id})">
 ({$item.name}) (({$item.count_commu_members}))
 </a>
@@ -588,7 +588,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 
 ({t_loop from=$c_commu_user_list start=3 num=3})
 ({if $item})
-<td class="bg_02" align="center">
+<td class="bg_02" align="center" style="width:88px;">
 <a href="({t_url m=pc a=page_c_home})&amp;target_c_commu_id=({$item.c_commu_id})">
 ({$item.name}) (({$item.count_commu_members}))
 </a>
@@ -627,7 +627,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 
 ({t_loop from=$c_commu_user_list start=6 num=3})
 ({if $item})
-<td class="bg_02" align="center">
+<td class="bg_02" align="center" style="width:88px;">
 <a href="({t_url m=pc a=page_c_home})&amp;target_c_commu_id=({$item.c_commu_id})">
 ({$item.name}) (({$item.count_commu_members}))
 </a>
@@ -1542,9 +1542,9 @@ show_flash('flash/list.swf', '({$flashvars})');
 <img src="({t_img_url filename=$item.image_filename w=76 h=76 noimg=no_image})" border="0"><br>({$item.nickname})</a>
 
 </td>
-<td style="width:298px;" class="bg_02 border_01 padding_l">
+<td style="width:268px;" class="bg_02 border_01 padding_l">
 
-({$item.intro|t_truncate:"200"|t_url2a|nl2br})
+({$item.intro|t_truncate:36:"":3})
 
 </td>
 </tr>

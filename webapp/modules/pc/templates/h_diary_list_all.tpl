@@ -247,7 +247,7 @@
 
 </td>
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-<td class="bg_02" align="left" valign="middle">
+<td class="bg_02" align="left" valign="middle" style="width:371px;">
 
 <div class="padding_s">
 
@@ -278,11 +278,11 @@
 
 </td>
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-<td class="bg_02" align="left" valign="middle">
+<td class="bg_02" align="left" valign="middle" style="width:371px;">
 
 <div class="padding_s">
 
-({$diary.body|t_truncate:80:"…"})
+({$diary.body|t_truncate:36:"":3})
 
 </div>
 

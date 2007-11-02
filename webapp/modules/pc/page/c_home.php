@@ -22,6 +22,12 @@ class pc_page_c_home extends OpenPNE_Action
 
         $this->set('c_commu', $c_commu);
 
+        // 副管理者情報
+        if ($c_commu['c_member_id_sub_admin']) {
+            $c_member_sub_admin = db_member_c_member4c_member_id($c_commu['c_member_id_sub_admin']);
+            $this->set('sub_admin', $c_member_sub_admin);
+        }
+
         $this->set('is_c_commu_admin', db_commu_is_c_commu_admin($c_commu_id, $u));
         $this->set('is_c_commu_member', db_commu_is_c_commu_member($c_commu_id, $u));
         $this->set('is_c_commu_view', db_commu_is_c_commu_view4c_commu_idAc_member_id($c_commu_id, $u));
@@ -51,7 +57,7 @@ class pc_page_c_home extends OpenPNE_Action
         $this->set('new_topic_comment_event', $new_topic_comment_event);
         //参加コミュニティの新着おすすめレビュー
         $this->set('new_commu_review', db_review_new_commu_review4c_commu_id($c_commu_id, 7));
-        // 携帯アドレス登録状況
+        // 携帯メールアドレス登録状況
         $this->set('is_registered_ktai_address', $is_registered_ktai_address);
 
         $this->set('is_unused_pc_bbs', util_is_unused_mail('m_pc_bbs_info'));

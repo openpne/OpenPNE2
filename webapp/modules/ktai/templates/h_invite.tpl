@@ -13,9 +13,9 @@
 ({else})
 ({$smarty.const.SNS_NAME})に招待したい方のﾒｰﾙｱﾄﾞﾚｽを記入してください。<br>
 ({if $smarty.const.OPENPNE_REGIST_FROM == $smarty.const.OPENPNE_REGIST_FROM_PC})
-※携帯ｱﾄﾞﾚｽには招待を送ることができません。<br>
+※携帯ﾒｰﾙｱﾄﾞﾚｽには招待を送ることができません。<br>
 ({elseif $smarty.const.OPENPNE_REGIST_FROM == $smarty.const.OPENPNE_REGIST_FROM_KTAI})
-※PCｱﾄﾞﾚｽには招待を送ることができません。<br>
+※PCﾒｰﾙｱﾄﾞﾚｽには招待を送ることができません。<br>
 ({/if})
 
 ({t_form m=ktai a=do_h_invite_insert_c_invite})
