@@ -31,15 +31,15 @@ class pc_do_h_config_prof extends OpenPNE_Action
 
         // 値の整合性をチェック(DB)
         $c_member_profile_list = db_member_check_profile($validator->getParams(), $_REQUEST['public_flag']);
+
         // 必須項目チェック
         $profile_list = db_member_c_profile_list4null();
         foreach ($profile_list as $profile) {
-            if ($profile['disp_config']
-                && $profile['is_required']
-                && (is_null(!$c_member_profile_list[$profile['name']]['value']) || !$c_member_profile_list[$profile['name']]['value'] === '')
-            ) {
-                $errors[$profile['name']] = "{$profile['caption']}を入力してください";
-                break;
+            $value = $c_member_profile_list[$profile['name']]['value'];
+            if ($profile['disp_config'] && $profile['is_required']) {
+                if (is_null($value) || $value === '' || $value === array()) {
+                    $errors[$profile['name']] = $profile['caption'] . 'を入力してください';
+                }
             }
         }
 

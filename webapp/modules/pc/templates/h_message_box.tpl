@@ -4,14 +4,14 @@
 <td class="container inc_c_com_topic_find" align="center">
 <table border="0" cellspacing="0" cellpadding="0" style="width:720px;">
 <tr>
-<td style="width:720px;height:2px;"><img src="./skin/dummy.gif" alt="" style="width:720px;height:2px;" class="dummy"></td>
+<td style="width:720px;height:2px;"><img src="./skin/dummy.gif" alt="dummy" style="width:720px;height:2px;" class="dummy"></td>
 </tr>
 <tr>
 <td align="center">
 
 ({*ここから：本体*})
 
-<div class="bg_09" style="width:680px;height:24px;border-left:none 0px;border-right:none 0px;border-top:none 0px;">
+<div class="color_19" style="width:680px;height:24px;border-left:none 0px;border-right:none 0px;border-top:none 0px;">
 ({t_form _method=get m=pc a=page_h_message_box})
 <input type="hidden" name="box" value="({$box})">
 
@@ -49,14 +49,14 @@
 <td class="container inc_c_com_topic_find" align="center">
 <table border="0" cellspacing="0" cellpadding="0" style="width:720px;">
 <tr>
-<td style="width:720px;height:2px;"><img src="./skin/dummy.gif" alt="" style="width:720px;height:2px;" class="dummy"></td>
+<td style="width:720px;height:2px;"><img src="./skin/dummy.gif" alt="dummy" style="width:720px;height:2px;" class="dummy"></td>
 </tr>
 <tr>
 <td align="center">
 
 ({*ここから：本体*})
 
-<div class="bg_09" style="width:680px;height:24px;border-left:none 0px;border-right:none 0px;border-top:none 0px;">
+<div class="color_19" style="width:680px;height:24px;border-left:none 0px;border-right:none 0px;border-top:none 0px;">
 ({t_form _method=get m=pc a=page_h_message_box})
 <input type="hidden" name="box" value="({$box})">
 
@@ -117,18 +117,18 @@ function clearAll() {
 ({**ここから：メインコンテンツ（左）**})
 ({********************************})
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 <!-- *********************************************** -->
 <!-- ******ここから：メッセージボックス左メニュー****** -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:165px;margin:0px auto;" class="border_07">
 <tr>
-<td style="width:7px;" class="bg_10"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
-<td style="width:151px;" class="bg_10"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
-<td style="width:7px;" class="bg_10"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:7px;" class="bg_10"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+<td style="width:151px;" class="bg_10"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+<td style="width:7px;" class="bg_10"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 <tr>
-<td class="bg_10"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_10"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 <td class="bg_02" align="center">
 <!-- *ここから：メッセージボックス左メニュー＞内容* -->
 ({*ここから：header*})
@@ -140,40 +140,40 @@ function clearAll() {
 <tr>
 ({if $box != "inbox"})
 <td align="left" style="width:151px;padding:3px;" class="bg_02 border_10">
-<img src="./skin/dummy.gif" alt="" style="width:14px;height:14px;" class="icon icon_1"><a href="({t_url m=pc a=page_h_message_box})&amp;box=inbox">受信メッセージ</a>
+<img src="./skin/dummy.gif" alt="dummy" style="width:14px;height:14px;" class="icon icon_1"><a href="({t_url m=pc a=page_h_message_box})&amp;box=inbox">受信メッセージ</a>
 ({else})
 <td align="left" style="width:151px;padding:3px;" class="bg_09 border_10">
-<img src="./skin/dummy.gif" alt="" style="width:14px;height:14px;" class="icon icon_1">受信メッセージ
+<img src="./skin/dummy.gif" alt="dummy" style="width:14px;height:14px;" class="icon icon_1">受信メッセージ
 ({/if})
 </td>
 </tr>
 <tr>
 ({if $box != "outbox"})
 <td align="left" style="width:151px;padding:3px;border-top:none;" class="bg_02 border_10">
-<img src="./skin/dummy.gif" alt="" style="width:14px;height:14px;" class="icon icon_1"><a href="({t_url m=pc a=page_h_message_box})&amp;box=outbox">送信済みメッセージ</a>
+<img src="./skin/dummy.gif" alt="dummy" style="width:14px;height:14px;" class="icon icon_1"><a href="({t_url m=pc a=page_h_message_box})&amp;box=outbox">送信済みメッセージ</a>
 ({else})
 <td align="left" style="width:151px;padding:3px;border-top:none;" class="bg_09 border_10">
-<img src="./skin/dummy.gif" alt="" style="width:14px;height:14px;" class="icon icon_1">送信済みメッセージ
+<img src="./skin/dummy.gif" alt="dummy" style="width:14px;height:14px;" class="icon icon_1">送信済みメッセージ
 ({/if})
 </td>
 </tr>
 <tr>
 ({if $box != "savebox"})
 <td align="left" style="width:151px;padding:3px;border-top:none;" class="bg_02 border_10">
-<img src="./skin/dummy.gif" alt="" style="width:14px;height:14px;" class="icon icon_1"><a href="({t_url m=pc a=page_h_message_box})&amp;box=savebox">下書きメッセージ</a>
+<img src="./skin/dummy.gif" alt="dummy" style="width:14px;height:14px;" class="icon icon_1"><a href="({t_url m=pc a=page_h_message_box})&amp;box=savebox">下書きメッセージ</a>
 ({else})
 <td align="left" style="width:151px;padding:3px;border-top:none;" class="bg_09 border_10">
-<img src="./skin/dummy.gif" alt="" style="width:14px;height:14px;" class="icon icon_1">下書きメッセージ
+<img src="./skin/dummy.gif" alt="dummy" style="width:14px;height:14px;" class="icon icon_1">下書きメッセージ
 ({/if})
 </td>
 </tr>
 <tr>
 ({if $box != "trash"})
 <td align="left" style="width:151px;padding:3px;border-top:none;" class="bg_02 border_10">
-<img src="./skin/dummy.gif" alt="" style="width:14px;height:14px;" class="icon icon_1"><a href="({t_url m=pc a=page_h_message_box})&amp;box=trash">ごみ箱</a>
+<img src="./skin/dummy.gif" alt="dummy" style="width:14px;height:14px;" class="icon icon_1"><a href="({t_url m=pc a=page_h_message_box})&amp;box=trash">ごみ箱</a>
 ({else})
 <td align="left" style="width:151px;padding:3px;border-top:none;" class="bg_09 border_10">
-<img src="./skin/dummy.gif" alt="" style="width:14px;height:14px;" class="icon icon_1">ごみ箱
+<img src="./skin/dummy.gif" alt="dummy" style="width:14px;height:14px;" class="icon icon_1">ごみ箱
 ({/if})
 </td>
 </tr>
@@ -185,12 +185,12 @@ function clearAll() {
 ({*ここまで：footer*})
 <!-- *ここまで：メッセージボックス左メニュー＞＞内容* -->
 </td>
-<td class="bg_10"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_10"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 <tr>
-<td class="bg_10"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
-<td class="bg_10"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
-<td class="bg_10"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_10"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+<td class="bg_10"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+<td class="bg_10"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 </table>
 <!-- ******ここまで：メッセージボックス左メニュー****** -->
@@ -198,18 +198,18 @@ function clearAll() {
 
 
 ({if $calendar})
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 <!-- ******************************* -->
 <!-- ******ここから：カレンダー****** -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:165px;margin:0px auto;" class="border_07">
 <tr>
-<td style="width:7px;" class="bg_10"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
-<td style="width:149px;" class="bg_10"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
-<td style="width:7px;" class="bg_10"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:7px;" class="bg_10"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+<td style="width:149px;" class="bg_10"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+<td style="width:7px;" class="bg_10"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 <tr>
-<td class="bg_10"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_10"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 <td class="bg_10" align="center">
 <!-- *ここから：カレンダー＞内容* -->
 ({*ここから：header*})
@@ -256,27 +256,27 @@ function clearAll() {
 <table border="0" cellspacing="0" cellpadding="0" style="width:149px;margin:0px auto;">
 ({****************})
 <tr>
-<td style="width:149px;" class="bg_10" colspan="13"><img src="./skin/dummy.gif" alt="" style="width:149px;height:1px;" class="dummy"></td>
+<td style="width:149px;" class="bg_10" colspan="13"><img src="./skin/dummy.gif" alt="dummy" style="width:149px;height:1px;" class="dummy"></td>
 </tr>
 ({****************})
 <tr>
 <td class="bg_09 s_ss padding_ss" align="right"><span class="c_02 s_ss">日</span></td>
-<td style="width:1px;" class="bg_10"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_10"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 <td class="bg_09 s_ss padding_ss" align="right">月</td>
-<td style="width:1px;" class="bg_10"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_10"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 <td class="bg_09 s_ss padding_ss" align="right">火</td>
-<td style="width:1px;" class="bg_10"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_10"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 <td class="bg_09 s_ss padding_ss" align="right">水</td>
-<td style="width:1px;" class="bg_10"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_10"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 <td class="bg_09 s_ss padding_ss" align="right">木</td>
-<td style="width:1px;" class="bg_10"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_10"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 <td class="bg_09 s_ss padding_ss" align="right">金</td>
-<td style="width:1px;" class="bg_10"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_10"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 <td class="bg_09 s_ss padding_ss" align="right"><span class="c_03 s_ss">土</span></td>
 </tr>
 ({****************})
 <tr>
-<td style="width:149px;" class="bg_10" colspan="13"><img src="./skin/dummy.gif" alt="" style="width:149px;height:1px;" class="dummy"></td>
+<td style="width:149px;" class="bg_10" colspan="13"><img src="./skin/dummy.gif" alt="dummy" style="width:149px;height:1px;" class="dummy"></td>
 </tr>
 ({****************})
 ({foreach from=$calendar item=week})
@@ -293,13 +293,13 @@ function clearAll() {
 &nbsp;({/if})
 </td>
 ({if $smarty.foreach.calendar_days.iteration%7 != 0})
-<td style="width:1px;" class="bg_10"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_10"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 ({/if})
 ({/foreach})
 </tr>
 ({****************})
 <tr>
-<td style="width:149px;" class="bg_10" colspan="13"><img src="./skin/dummy.gif" alt="" style="width:149px;height:1px;" class="dummy"></td>
+<td style="width:149px;" class="bg_10" colspan="13"><img src="./skin/dummy.gif" alt="dummy" style="width:149px;height:1px;" class="dummy"></td>
 </tr>
 ({****************})
 ({/foreach})
@@ -311,32 +311,32 @@ function clearAll() {
 ({*ここまで：footer*})
 <!-- *ここまで：カレンダー＞＞内容* -->
 </td>
-<td class="bg_10"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_10"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 <tr>
-<td class="bg_10"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
-<td class="bg_10"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
-<td class="bg_10"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_10"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+<td class="bg_10"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+<td class="bg_10"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 </table>
 <!-- ******ここまで：カレンダー****** -->
 <!-- ****************************** -->
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 ({/if})
 
 ({if $date_list})
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 <!-- ********************************** -->
 <!-- ******ここから：各月のメッセージ一覧****** -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:165px;margin:0px auto;" class="border_07">
 <tr>
-<td style="width:7px;" class="bg_10"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
-<td style="width:149px;" class="bg_10"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
-<td style="width:7px;" class="bg_10"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:7px;" class="bg_10"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+<td style="width:149px;" class="bg_10"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+<td style="width:7px;" class="bg_10"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 <tr>
-<td class="bg_10"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_10"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 <td class="bg_10" align="center">
 <!-- *ここから：各月のメッセージ一覧＞内容* -->
 ({*ここから：header*})
@@ -354,7 +354,7 @@ function clearAll() {
 <div align="left" class="bg_02 border_01 padding_ss">
 ({foreach from=$date_list item=date})
 
-<div><a href="({t_url m=pc a=page_h_message_box})&amp;box=({$box})&amp;year=({$date.year})&amp;month=({$date.month})&amp;box=({$box})"><img src="./skin/dummy.gif" alt="" style="width:14px;height:14px;" class="icon icon_2">({$date.year})年({$date.month})月の一覧</a></div>
+<div><a href="({t_url m=pc a=page_h_message_box})&amp;box=({$box})&amp;year=({$date.year})&amp;month=({$date.month})&amp;box=({$box})"><img src="./skin/dummy.gif" alt="dummy" style="width:14px;height:14px;" class="icon icon_2">({$date.year})年({$date.month})月の一覧</a></div>
 
 ({/foreach})
 </div>
@@ -365,21 +365,21 @@ function clearAll() {
 ({*ここまで：footer*})
 <!-- *ここまで：各月のメッセージ一覧＞＞内容* -->
 </td>
-<td class="bg_10"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_10"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 <tr>
-<td class="bg_10"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
-<td class="bg_10"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
-<td class="bg_10"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_10"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+<td class="bg_10"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+<td class="bg_10"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 </table>
 <!-- ******ここまで：各月のメッセージ一覧****** -->
 <!-- ********************************** -->
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 ({/if})
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 ({********************************})
 ({**ここまで：メインコンテンツ（左）**})
@@ -389,18 +389,18 @@ function clearAll() {
 ({**ここから：メインコンテンツ（右）**})
 ({********************************})
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 <!-- **************************** -->
 <!-- ******ここから：Box一覧****** -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:520px;margin:0px auto;" class="border_07">
 <tr>
-<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
-<td style="width:506px;" class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
-<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+<td style="width:506px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 <tr>
-<td class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 <td class="bg_01" align="center">
 <!-- *ここから：Box一覧＞内容* -->
 ({*ここから：header*})
@@ -506,7 +506,7 @@ function clearAll() {
 </tr>
 ({*********})
 <tr>
-<td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({*********})
 
@@ -525,7 +525,7 @@ function clearAll() {
 </tr>
 ({*********})
 <tr>
-<td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({*********})
 ({/foreach})
@@ -650,7 +650,7 @@ function clearAll() {
 </tr>
 ({*********})
 <tr>
-<td style="height:1px;" class="bg_01" colspan="4"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="height:1px;" class="bg_01" colspan="4"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({*********})
 
@@ -669,7 +669,7 @@ function clearAll() {
 </tr>
 ({*********})
 <tr>
-<td style="height:1px;" class="bg_01" colspan="4"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="height:1px;" class="bg_01" colspan="4"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({*********})
 ({/foreach})
@@ -787,7 +787,7 @@ function clearAll() {
 </tr>
 ({*********})
 <tr>
-<td style="height:1px;" class="bg_01" colspan="4"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="height:1px;" class="bg_01" colspan="4"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({*********})
 
@@ -806,7 +806,7 @@ function clearAll() {
 </tr>
 ({*********})
 <tr>
-<td style="height:1px;" class="bg_01" colspan="4"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="height:1px;" class="bg_01" colspan="4"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({*********})
 ({/foreach})
@@ -931,7 +931,7 @@ function clearAll() {
 </tr>
 ({*********})
 <tr>
-<td style="height:1px;" class="bg_01" colspan="4"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="height:1px;" class="bg_01" colspan="4"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({*********})
 
@@ -962,7 +962,7 @@ function clearAll() {
 </tr>
 ({*********})
 <tr>
-<td style="height:1px;" class="bg_01" colspan="4"><img src="./skin/dummy.gif" alt="" style="width:1px;height:1px;" class="dummy"></td>
+<td style="height:1px;" class="bg_01" colspan="4"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({*********})
 ({/foreach})
@@ -1032,18 +1032,18 @@ function clearAll() {
 ({*ここまで：footer*})
 <!-- *ここまで：Box一覧＞＞内容* -->
 </td>
-<td class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 <tr>
-<td class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
-<td class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
-<td class="bg_00"><img src="./skin/dummy.gif" alt="" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 </table>
 <!-- ******ここまで：Box一覧****** -->
 <!-- **************************** -->
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 ({********************************})
 ({**ここまで：メインコンテンツ（右）**})

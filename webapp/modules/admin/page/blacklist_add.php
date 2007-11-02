@@ -8,7 +8,12 @@ class admin_page_blacklist_add extends OpenPNE_Action
 {
     function execute($requests)
     {
-        $this->set('easy_access_id', $requests['easy_access_id']);
+        if ($requests['easy_access_id'] && db_member_easy_access_id_is_blacklist($requests['easy_access_id'])) {
+            admin_client_redirect('blacklist', 'その携帯個体識別番号(暗号化済)は既に登録されています');
+        }
+
+        $this->set('requests', $requests);
+
         return 'success';
     }
 }

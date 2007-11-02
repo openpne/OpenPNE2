@@ -4,7 +4,7 @@
 ({$body})
 
 ({if $image_filename1 || $image_filename2 || $image_filename3})
-[画像あり]
+[写真あり]
 ({/if})
 
 ({$url})

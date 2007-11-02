@@ -9,7 +9,6 @@ function admin_fetch_inc_header($display_navi = true)
     $v['display_navi'] = $display_navi;
     $v['PHPSESSID'] = md5(session_id());
     $v['module_name'] = ADMIN_MODULE_NAME;
-    $v['ADMIN_INIT_CONFIG'] = ADMIN_INIT_CONFIG;
     $v['auth_type'] = admin_get_auth_type();
     $v['CURRENT_ACTION'] = $GLOBALS['__Framework']['current_action'];
 
@@ -79,8 +78,28 @@ function admin_insert_c_image($upfile_obj, $filename)
     return false;
 }
 
+/**
+ * 指定したアクションにリダイレクトする
+ *
+ * 引数 $tail は文字列と配列の両方を許容する。
+ * 文字列を指定した場合、URLに $tail がそのまま付加される。
+ * 配列を指定した場合、キーと要素を元にパラメータを生成し、URLに付加する。
+ * 
+ * @param string $p    リダイレクト先のページ
+ * @param string $msg    エラーメッセージ
+ * @param mixied $tail    URLに付加する文字列かパラメータ
+ */
 function admin_client_redirect($p, $msg = '', $tail = '')
 {
+    if (is_array($tail)) {
+        $_tail_list = array();
+        foreach ($tail as $key => $value) {
+            $_tail_list[] = $key . '=' . urlencode($value);
+        }
+        $tail = '';
+        $tail = implode('&', $_tail_list);
+    }
+
     if (OPENPNE_ADMIN_URL) {
         $url = OPENPNE_ADMIN_URL;
     } else {

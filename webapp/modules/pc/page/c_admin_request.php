@@ -17,8 +17,9 @@ class pc_page_c_admin_request extends OpenPNE_Action
         // ----------
 
         //--- 権限チェック
-        //コミュニティ管理者
-        //コミュニティ副管理者ではない
+        // コミュニティ管理者
+        // コミュニティ副管理者ではない
+        // 自分へのメッセージ送信ではない
         // すでに管理者交代依頼メッセージ送信済みではない
         // すでに副管理者要請メッセージを送信済みでない
 
@@ -27,6 +28,10 @@ class pc_page_c_admin_request extends OpenPNE_Action
         }
 
         if (db_commu_is_c_commu_sub_admin($target_c_commu_id, $u)) {
+            handle_kengen_error();
+        }
+
+        if ($u == $target_c_member_id) {
             handle_kengen_error();
         }
 

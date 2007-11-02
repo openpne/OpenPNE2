@@ -24,6 +24,9 @@ class ktai_page_c_member_list extends OpenPNE_Action
 
         //メンバーリスト
         $list = k_p_c_member_list_c_members_disp4c_commu_id($target_c_commu_id, $page_size, $page);
+        if (empty($list[0])) {
+            handle_kengen_error();
+        }
         $this->set("c_member_list", $list[0]);
         $this->set("is_prev", $list[1]);
         $this->set("is_next", $list[2]);

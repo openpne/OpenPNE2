@@ -31,7 +31,7 @@ class admin_page_list_c_cmd extends OpenPNE_Action
             }
             $c_cmd_list[$value['name']] = array(
                 'c_cmd_id' => $c_cmd_id,
-            	'permit' => $is_permit,
+                'permit' => $is_permit,
                 'disabled' => $disabled,
             );
         }

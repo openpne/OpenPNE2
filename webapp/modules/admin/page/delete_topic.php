@@ -22,7 +22,7 @@ class admin_page_delete_topic extends OpenPNE_Action
         }
         
         $member = db_member_c_member4c_member_id($topic['c_member_id']);
-        $topic['count_comments'] = _db_count_c_commu_topic_comments4c_commu_topic_id($topic['c_commu_topic_id']); 
+        $topic['count_comments'] = _db_count_c_commu_topic_comments4c_commu_topic_id($topic['c_commu_topic_id']);
         $commu = db_commu_c_commu4c_commu_id($topic['c_commu_id']);
         $topic['commu_name'] = $commu['name'];
         $topic['c_member'] = $member;
