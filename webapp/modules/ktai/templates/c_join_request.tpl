@@ -4,7 +4,7 @@
 <font color="#({$ktai_color_config.font_05})"><a name="top">({$c_commu.name})</a></font><br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
-ｺﾐｭﾆﾃｨに参加<br>
+<font color="#({$ktai_color_config.color_24})">ｺﾐｭﾆﾃｨに参加</font><br>
 </td></tr></table>
 
 ｺﾐｭﾆﾃｨ管理者への参加希望ﾒｯｾｰｼﾞを送信し、承諾を受けてください。<br>

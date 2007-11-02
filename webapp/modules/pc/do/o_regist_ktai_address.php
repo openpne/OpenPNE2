@@ -27,13 +27,13 @@ class pc_do_o_regist_ktai_address extends OpenPNE_Action
             openpne_redirect('pc', 'page_o_tologin', $p);
         }
 
-        //携帯アドレスチェック
+        //携帯メールアドレスチェック
         if (!db_common_is_mailaddress($ktai_address)) {
             $msg = "メールアドレスを正しく入力してください";
-        } elseif (db_member_is_sns_join4mail_address($ktai_address, 0, true)) {
-            $msg = "そのアドレスは既に登録済みです";
+        } elseif (db_member_is_sns_join4mail_address($ktai_address)) {
+            $msg = "そのメールアドレスは既に登録済みです";
         } elseif (!is_ktai_mail_address($ktai_address)) {
-            $msg = "携帯アドレスを入力してください";
+            $msg = "携帯メールアドレスを入力してください";
         }
 
         if (!empty($msg)) {

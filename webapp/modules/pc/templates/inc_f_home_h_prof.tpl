@@ -633,7 +633,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 
 ({t_loop from=$c_commu_list start=0 num=3})
 ({if $item})
-<td class="bg_02" align="center">
+<td class="bg_02" align="center" style="width:88px;">
 <a href="({t_url m=pc a=page_c_home})&amp;target_c_commu_id=({$item.c_commu_id})">
 ({$item.name}) (({$item.count_commu_members}))
 </a>
@@ -656,6 +656,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({t_loop from=$c_commu_list start=3 num=3})
 ({if $item})
 <td class="bg_03" align="center">
+({if $item.c_member_id_admin == $target_c_member.c_member_id })<img src="({t_img_url_skin filename=icon_crown})" class="icon"><br>({/if})
 <a href="({t_url m=pc a=page_c_home})&amp;target_c_commu_id=({$item.c_commu_id})">
 <img src="({t_img_url filename=$item.image_filename w=76 h=76 noimg=no_logo_small})" class="pict"></a>
 </td>
@@ -671,7 +672,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 
 ({t_loop from=$c_commu_list start=3 num=3})
 ({if $item})
-<td class="bg_02" align="center">
+<td class="bg_02" align="center" style="width:88px;">
 <a href="({t_url m=pc a=page_c_home})&amp;target_c_commu_id=({$item.c_commu_id})">
 ({$item.name}) (({$item.count_commu_members}))
 </a>
@@ -710,7 +711,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 
 ({t_loop from=$c_commu_list start=6 num=3})
 ({if $item})
-<td class="bg_02" align="center">
+<td class="bg_02" align="center" style="width:88px;">
 <a href="({t_url m=pc a=page_c_home})&amp;target_c_commu_id=({$item.c_commu_id})">
 ({$item.name}) (({$item.count_commu_members}))
 </a>
@@ -843,7 +844,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({/capture})
 ({capture name="birth"})
 <!-- ここから：主内容＞年齢 -->
-({if $target_c_member.age !== NULL && $target_c_member.public_flag_birth_year == 'private' && $target_c_member.public_flag_birth_year == 'public' || $is_h_prof || ($target_c_member.public_flag_birth_year == 'friend' && $is_friend)})
+({if $target_c_member.age !== NULL && ($target_c_member.public_flag_birth_year == 'public' || ($target_c_member.public_flag_birth_year == 'friend' && ($is_friend || $is_h_prof)))})
 <tr>
 <td class="border_01 bg_09 padding_s" style="width:90px;border-right:none;border-top:none;">
 
@@ -878,7 +879,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <!-- ここまで：主内容＞誕生日 -->
 ({/capture})
 ({foreach from=$target_c_member.profile key=key item=item})
-({if $item.public_flag != "private" && ($is_h_prof || ($item.public_flag == "public" || ($item.public_flag == "friend" && $is_friend)))})
+({if $item.public_flag != "private" && ($item.public_flag == "public" || ($item.public_flag == "friend" && ($is_friend || $is_h_prof)))})
 ({strip})
 
 ({if !$_cnt_nick && $profile_list[$key].sort_order >= $smarty.const.SORT_ORDER_NICK
@@ -1123,9 +1124,9 @@ show_flash('flash/list.swf', '({$flashvars})');
 <img src="({t_img_url filename=$item.image_filename w=76 h=76 noimg=no_image})" class="pict"><br>({$item.nickname})</a>
 
 </td>
-<td style="width:298px;" class="bg_02 border_01 padding_l">
+<td style="width:268px;" class="bg_02 border_01 padding_l">
 
-({$item.intro|t_truncate:"200"|t_url2a|nl2br})
+({$item.intro|t_truncate:36:"":3})
 
 </td>
 </tr>

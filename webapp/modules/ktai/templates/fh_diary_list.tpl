@@ -4,7 +4,7 @@
 <font color="#({$ktai_color_config.font_05})"><a name="top">({$target_c_member.nickname})さんの日記</a></font><br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
-最新日記ﾘｽﾄ<br>
+<font color="#({$ktai_color_config.color_24})">最新日記ﾘｽﾄ</font><br>
 </td></tr></table>
 
 ({if $INC_NAVI_type=="h"})

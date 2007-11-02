@@ -10,7 +10,7 @@
 
 ({*ここから：本体*})
 
-<div class="bg_09" style="width:680px;height:24px;border-left:none 0px;border-right:none 0px;border-top:none 0px;">
+<div class="color_19" style="width:680px;height:24px;border-left:none 0px;border-right:none 0px;border-top:none 0px;">
 ({t_form _method=get m=pc a=page_fh_diary_list})
 <input type="hidden" name="c_commu_id" value="({$c_commu.c_commu_id})">
 
@@ -464,7 +464,7 @@
 ({foreach from=$target_diary_list item=item name=tdl})
 <tr>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-<td style="width:66px;" class="bg_05" align="center" valign="top" rowspan="7">
+<td style="width:66px;" class="bg_05" align="center" valign="top" rowspan="5">
 <div style="padding:4px 3px;">
 
 ({$item.r_datetime|date_format:"%m月%d日<br> %H:%M"})
@@ -473,36 +473,30 @@
 </td>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 <td style="width:453px;" class="bg_02" align="left" valign="middle">
+<table border="0" cellspacing="0" cellpadding="0" style="width:453px;">
+<tr>
+<td style="width:303px;" class="bg_02" align="left" valign="middle">
 <div style="padding:4px 3px;">
 
 ({$item.subject})
 
 </div>
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-</tr>
-({*********})
-<tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-<td style="width:455px;height:1px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-</tr>
-({*********})
-<tr>
-<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-<td class="bg_02" align="right" valign="middle">
+<td style="width:150px;" class="bg_02" align="right" valign="middle">
 <div style="padding:4px 3px;">
 
 ({if $item.public_flag == "public"})
-全員に公開
+（全員に公開）
 ({elseif $item.public_flag == "friend"})
-({$WORD_MY_FRIEND})まで公開
+（({$WORD_MY_FRIEND})まで公開）
 ({elseif $item.public_flag == "private"})
-公開しない
+（公開しない）
 ({/if})
 
 </div>
 </td>
+</tr>
+</table>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({*********})
@@ -526,7 +520,7 @@
 </div>
 ({/if})
 
-({$item.body|t_truncate:"120"})
+({$item.body|t_truncate:48:"":3})
 
 </div>
 

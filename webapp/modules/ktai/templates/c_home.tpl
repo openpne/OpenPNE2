@@ -5,18 +5,12 @@
 <table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_02})">
 <font color="#({$ktai_color_config.font_05})">({$c_commu.name})</font><br>
 </td></tr>
-({if $inc_ktai_entry_point[2]})
-<tr><td>
-({$inc_ktai_entry_point[2]|smarty:nodefaults})
-</td></tr>
-({/if})
 </table>
-({if $inc_ktai_entry_point[3]})
-({$inc_ktai_entry_point[3]|smarty:nodefaults})
-({/if})
 ({if $c_siteadmin})
 ({$c_siteadmin|smarty:nodefaults})<br>
-<hr>
+({/if})
+({if $inc_ktai_entry_point[2]})
+({$inc_ktai_entry_point[2]|smarty:nodefaults})
 ({/if})
 <br>
 <table width="100%" bgcolor="#({$ktai_color_config.bg_04})">
@@ -33,8 +27,22 @@
 ({$c_commu.r_datetime|date_format:"%Y年%m月%d日"})<br>
 <font color="#({$ktai_color_config.font_06})">管理者:</font><br>
 <a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$c_commu.c_member_id_admin})&amp;({$tail})">({$c_commu.c_member_admin.nickname})</a><br>
+({if $sub_admin})
+<font color="#({$ktai_color_config.font_06})">副管理者:</font><br>
+<a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$sub_admin.c_member_id})&amp;({$tail})">({$sub_admin.nickname})</a><br>
+({/if})
 <font color="#({$ktai_color_config.font_06})">ｶﾃｺﾞﾘ名:</font><br>
 ({$c_commu.c_commu_category.name})<br>
+<font color="#({$ktai_color_config.font_06})">参加条件と公開範囲：</font><br>
+({if $c_commu.public_flag == 'public'})
+だれでも参加できる(公開)
+({elseif $c_commu.public_flag == 'auth_public'})
+管理者の承認が必要(公開)
+({elseif $c_commu.public_flag == 'auth_sns'})
+管理者の承認が必要(公開)
+({elseif $c_commu.public_flag == 'auth_commu_member'})
+管理者の承認が必要(非公開)
+({/if})<br>
 </td>
 </tr>
 <tr>
@@ -67,10 +75,13 @@
 [i:150]<a href="({t_url m=ktai a=page_c_invite})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">({$WORD_MY_FRIEND_HALF})に紹介</a><br>
 <br>
 </td></tr></table>
+({if $inc_ktai_entry_point[3]})
+({$inc_ktai_entry_point[3]|smarty:nodefaults})
+({/if})
 
 <table width="100%" cellpadding="0" >
 <tr><td bgcolor="#({$ktai_color_config.bg_05})">
-<a accesskey="1" name="a1" href="#a1">[i:125]</a>新着ﾄﾋﾟｯｸﾘｽﾄ<br>
+<a accesskey="1" name="a1" href="#a1">[i:125]</a><font color="#({$ktai_color_config.color_25})">新着ﾄﾋﾟｯｸﾘｽﾄ</font><br>
 </td></tr>
 ({if $is_c_commu_view})
 ({foreach from=$new_topic_comment item=item})
@@ -97,7 +108,7 @@
 
 <table width="100%">
 <tr><td bgcolor="#({$ktai_color_config.bg_08})">
-<a accesskey="2" name="a2" href="#a2">[i:126]</a>新着ｲﾍﾞﾝﾄﾘｽﾄ<br>
+<a accesskey="2" name="a2" href="#a2">[i:126]</a><font color="#({$ktai_color_config.color_26})">新着ｲﾍﾞﾝﾄﾘｽﾄ</font><br>
 </td></tr>
 ({if $is_c_commu_view})
 ({foreach from=$new_topic_comment_event item=item})
@@ -122,8 +133,8 @@
 ({/if})
 <br>
 <table width="100%">
-<tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
-ﾄﾋﾟｯｸ検索<br>
+<tr><td bgcolor="#({$ktai_color_config.color_27})" align="center">
+<font color="#({$ktai_color_config.color_28})">ﾄﾋﾟｯｸ検索</font><br>
 </td></tr>
 <tr><td>
 ({t_form _method=get m=ktai a=page_c_com_topic_find})
@@ -144,7 +155,7 @@
 
 <table width="100%">
 <tr><td bgcolor="#({$ktai_color_config.bg_05})">
-<a accesskey="3" name="a3" href="#a3">[i:127]</a>ｺﾐｭﾆﾃｨﾒﾝﾊﾞｰ<br>
+<a accesskey="3" name="a3" href="#a3">[i:127]</a><font color="#({$ktai_color_config.color_25})">ｺﾐｭﾆﾃｨﾒﾝﾊﾞｰ</font><br>
 </td></tr>
 ({foreach from=$c_commu_member_list item=c_commu_member})
 <tr><td bgcolor="#({cycle values="`$ktai_color_config.bg_06`,`$ktai_color_config.bg_07`"})">

@@ -4,7 +4,7 @@
 <font color="#({$ktai_color_config.font_05})"><a name="top">設定変更</a></font><br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
-日記公開範囲の一括変更<br>
+<font color="#({$ktai_color_config.color_24})">日記公開範囲の一括変更</font><br>
 </td></tr></table>
 
 これまでに書かれた日記の公開設定を以下の通りに一括で変更します。よろしいですか?<br>

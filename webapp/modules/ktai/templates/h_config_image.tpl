@@ -3,7 +3,7 @@
 <font color="#({$ktai_color_config.font_05})"><a name="top">設定変更</a></font><br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
-ﾌﾟﾛﾌｨｰﾙ写真設定<br>
+<font color="#({$ktai_color_config.color_24})">ﾌﾟﾛﾌｨｰﾙ写真設定</font><br>
 </td></tr></table>
 <center>
 ({if $c_member.image_filename})
@@ -49,7 +49,7 @@
 登録できる写真は三枚までです。<br>
 新しく登録する場合は登録写真を削除してください。<br>
 ({else})
-以下のｱﾄﾞﾚｽに写真を添付して送信してください。<br>
+以下のﾒｰﾙｱﾄﾞﾚｽに写真を添付して送信してください。<br>
 [i:68]<a href="mailto:({$mail_address})">ﾒｰﾙ送信</a><br>
 ({/if})
 ({$inc_ktai_footer|smarty:nodefaults})

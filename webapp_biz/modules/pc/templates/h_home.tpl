@@ -13,7 +13,7 @@
 <td align="center">
 
 ({*ここから：本体*})
-<div class="bg_09" style="width:680px;height:24px;border-left:none 0px;border-right:none 0px;border-top:none 0px;">
+<div class="color_19" style="width:680px;height:24px;border-left:none 0px;border-right:none 0px;border-top:none 0px;">
 ({t_form m=pc a=do_h_home_search})
 <input type="hidden" name="sessid" value="({$PHPSESSID})">
 
@@ -1563,7 +1563,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 </td>
 <td style="width:298px;" class="bg_02 border_01 padding_l">
 
-({$item.intro|t_truncate:"200"|t_url2a|nl2br})
+({$item.intro|t_truncate:36:"":3})
 
 </td>
 </tr>

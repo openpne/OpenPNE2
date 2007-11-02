@@ -7,9 +7,9 @@
 class admin_do_update_profile_sort_order extends OpenPNE_Action
 {
     function handleError($errors) 
-    { 
-        admin_client_redirect('edit_c_profile', array_shift($errors)); 
-    } 
+    {
+        admin_client_redirect('edit_c_profile', array_shift($errors));
+    }
 
     function execute($requests)
     {

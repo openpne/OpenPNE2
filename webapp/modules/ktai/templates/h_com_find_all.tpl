@@ -21,8 +21,8 @@
 <font color="#({$ktai_color_config.font_07})">⇒</font><a href="({t_url m=ktai a=page_h_com_topic_find_all})&amp;({$tail})">ﾄﾋﾟｯｸ検索</a><br>
 <hr color="#({$ktai_color_config.border_01})">
 <br>
-<table width="100%"><tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
-ｶﾃｺﾞﾘ別に表示<br>
+<table width="100%"><tr><td bgcolor="#({$ktai_color_config.color_27})" align="center">
+<font color="#({$ktai_color_config.color_28})">ｶﾃｺﾞﾘ別に表示</font><br>
 </td></tr>
 ({foreach from=$c_commu_category_parent_list item=ccpl})
 <tr><td>

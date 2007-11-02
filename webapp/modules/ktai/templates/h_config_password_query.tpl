@@ -3,7 +3,7 @@
 <font color="#({$ktai_color_config.font_05})"><a name="top">設定変更</a></font><br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
-秘密の質問・答え設定<br>
+<font color="#({$ktai_color_config.color_24})">秘密の質問・答え設定</font><br>
 </td></tr></table>
 
 ﾊﾟｽﾜｰﾄﾞを忘れた場合に、ﾊﾟｽﾜｰﾄﾞを再発行するための秘密の質問とその答えを設定することができます。<br>

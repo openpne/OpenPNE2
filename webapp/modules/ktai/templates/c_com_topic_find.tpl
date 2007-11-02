@@ -3,7 +3,8 @@
 <table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_02})">
 <font color="#({$ktai_color_config.font_05})"><a name="top">({$c_commu.name})</a></font><br>
 </td></tr>
-<tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">ﾄﾋﾟｯｸ検索<br>
+<tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
+<font color="#({$ktai_color_config.color_24})">ﾄﾋﾟｯｸ検索</font><br>
 </td></tr></table>
 <center>
 ({if $keyword})
@@ -35,8 +36,8 @@
 ({/if})
 <br>
 <table width="100%">
-<tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
-ﾄﾋﾟｯｸ検索<br>
+<tr><td bgcolor="#({$ktai_color_config.color_27})" align="center">
+<font color="#({$ktai_color_config.color_28})">ﾄﾋﾟｯｸ検索</font><br>
 </td></tr></table>
 ({t_form _method=get m=ktai a=page_c_com_topic_find})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">

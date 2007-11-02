@@ -14,11 +14,10 @@
 <font color="#({$ktai_color_config.font_05})">({$smarty.const.SNS_NAME})</font><br>
 </td></tr>
 ({/if})
-({if $inc_ktai_entry_point[2]})
-<tr><td>({$inc_ktai_entry_point[2]|smarty:nodefaults})<br>
-</td></tr>
-({/if})
 </table>
+({if $inc_ktai_entry_point[2]})
+({$inc_ktai_entry_point[2]|smarty:nodefaults})
+({/if})
 <br>
 <center>
 このﾍﾟｰｼﾞをﾌﾞｯｸﾏｰｸしてください<br>
@@ -57,7 +56,7 @@
 <input type="hidden" name="username" value="({$ktai_address})">
 ({else})
 ({if !$smarty.const.IS_SLAVEPNE})
-<font color="#({$ktai_color_config.bg_02})">★</font>携帯ｱﾄﾞﾚｽ<br>
+<font color="#({$ktai_color_config.bg_02})">★</font>携帯ﾒｰﾙｱﾄﾞﾚｽ<br>
 ({else})
 <font color="#({$ktai_color_config.bg_02})">★</font>ﾒﾝﾊﾞｰID<br>
 ({/if})
@@ -70,7 +69,7 @@
 </center>
 </form>
 ({if $ktai_address})
-<a href="({t_url m=ktai a=page_o_login})">&gt;&gt;携帯ｱﾄﾞﾚｽを入力</a><br>
+<a href="({t_url m=ktai a=page_o_login})">&gt;&gt;携帯ﾒｰﾙｱﾄﾞﾚｽを入力</a><br>
 ({/if})
 ({if !$smarty.const.IS_SLAVEPNE})
 <a href="({t_url m=ktai a=page_o_password_query})">&gt;&gt;ﾊﾟｽﾜｰﾄﾞを忘れた方</a><br>

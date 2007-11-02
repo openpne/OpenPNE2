@@ -6,19 +6,14 @@
 <table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_02})">
 <font color="#({$ktai_color_config.font_05})"><a name="top">({$target_c_member.nickname})さん</a></font><br>
 </td></tr>
-({if $inc_ktai_entry_point[2]})
-<tr><td>
-({$inc_ktai_entry_point[2]|smarty:nodefaults})
-</td></tr>
-({/if})
 <tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
-最終ﾛｸﾞｲﾝは({$target_c_member.last_login})<br>
+<font color="#({$ktai_color_config.color_24})">最終ﾛｸﾞｲﾝは({$target_c_member.last_login})</font><br>
 </td></tr></table>
-({if $inc_ktai_entry_point[3]})
-({$inc_ktai_entry_point[3]|smarty:nodefaults})
-({/if})
 ({if $c_siteadmin})
 ({$c_siteadmin|smarty:nodefaults})<br>
+({/if})
+({if $inc_ktai_entry_point[2]})
+({$inc_ktai_entry_point[2]|smarty:nodefaults})
 ({/if})
 
 ({if $relation.wait==1})
@@ -67,7 +62,7 @@
 ({$target_c_member.c_member_id})<br>
 
 ({capture name="birth"})
-({if $target_c_member.age !== NULL && $target_c_member.public_flag_birth_year == 'private' && $target_c_member.public_flag_birth_year == 'public' || $is_h_prof || ($target_c_member.public_flag_birth_year == 'friend' && $is_friend)})<font color="#({$ktai_color_config.font_06})">年齢：</font><br>({$target_c_member.age})歳<br>
+({if $target_c_member.age !== NULL && ($target_c_member.public_flag_birth_year == 'public' || ($target_c_member.public_flag_birth_year == 'friend' && ($is_friend || $is_h_prof)))})<font color="#({$ktai_color_config.font_06})">年齢：</font><br>({$target_c_member.age})歳<br>
 ({if $is_h_prof && $target_c_member.public_flag_birth_year == 'friend'})<font color="#({$ktai_color_config.font_09})">※({$WORD_MY_FRIEND_HALF})まで公開</font><br>({/if})
 ({/if})
 ({if $target_c_member.birth_month && $target_c_member.birth_day})
@@ -77,7 +72,7 @@
 ({/capture})
 
 ({foreach from=$target_c_member.profile key=key item=item})
-({if $item.public_flag != "private" && ($is_h_prof || ($item.public_flag == "public" || ($item.public_flag == "friend" && $is_friend)))})
+({if $item.public_flag != "private" && ($item.public_flag == "public" || ($item.public_flag == "friend" && ($is_friend || $is_h_prof)))})
 ({if $item.form_type != 'textarea'})
 
 ({if !$_cnt_birth && $profile_list[$key].sort_order >= $smarty.const.SORT_ORDER_BIRTH})
@@ -129,6 +124,9 @@
  / <a href="({t_url m=ktai a=page_f_intro_edit})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">書く</a><br>
 ({/if})
 ({/if})
+({if $inc_ktai_entry_point[3]})
+({$inc_ktai_entry_point[3]|smarty:nodefaults})
+({/if})
 <br>
 <table width="100%">
 <tr><td bgcolor="#({$ktai_color_config.bg_05})">
@@ -156,7 +154,7 @@
 <br>
 <table width="100%">
 <tr><td bgcolor="#({$ktai_color_config.bg_08})">
-<a accesskey="2" name="a2" href="#a2">[i:126]</a>({$WORD_FRIEND_HALF})ﾘｽﾄ<br>
+<a accesskey="2" name="a2" href="#a2">[i:126]</a><font color="#({$ktai_color_config.color_26})">({$WORD_FRIEND_HALF})ﾘｽﾄ</font><br>
 </td></tr>
 ({foreach from=$c_friend_list item=c_friend})
 <tr><td bgcolor="#({cycle values="`$ktai_color_config.bg_09`,`$ktai_color_config.bg_07`"})">

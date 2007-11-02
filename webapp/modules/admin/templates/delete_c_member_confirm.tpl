@@ -53,15 +53,15 @@
 	</tr>
 	({/foreach})
 	<tr>
-		<th>PCアドレス</th>
+		<th>PCメールアドレス</th>
 		<td>({if $c_member.secure.pc_address})<a href="mailto:({$c_member.secure.pc_address|escape:"hexentity"})">({$c_member.secure.pc_address|t_truncate:"30"|escape:"hexentity"})</a>({else})&nbsp;({/if})</td>
 	</tr>
 	<tr>
-		<th>携帯アドレス</th>
+		<th>携帯メールアドレス</th>
 		<td>({if $c_member.secure.ktai_address})<a href="mailto:({$c_member.secure.ktai_address})">({$c_member.secure.ktai_address|t_truncate:"30"})</a>({else})&nbsp;({/if})</td>
 	</tr>
 	<tr>
-		<th>登録アドレス</th>
+		<th>登録メールアドレス</th>
 		<td>({if $c_member.secure.regist_address})({$c_member.secure.regist_address})({else})&nbsp;({/if})</td>
 	</tr>
 	</tbody>

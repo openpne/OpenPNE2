@@ -4,11 +4,11 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 ({$INC_HEADER_inc_html_head|smarty:nodefaults})
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Cache-Control" content="no-cache">
 <meta http-equiv="Expires" content="Thu, 01 Dec 1994 16:00:00 GMT">
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="Content-Style-Type" content="text/css">
 <title>({$INC_HEADER_title})</title>
 <link rel="stylesheet" href="./css/default.css" type="text/css">
@@ -37,6 +37,7 @@
 .bg_12 { background-color: #({$INC_HEADER_color_config.bg_12}) ; }
 .bg_13 { background-color: #({$INC_HEADER_color_config.bg_13}) ; }
 .bg_14 { background-color: #({$INC_HEADER_color_config.bg_14}) ; }
+.color_19 { background-color: #({$INC_HEADER_color_config.color_19}) ; }
 
 body { background-color: #({$INC_HEADER_color_config.bg_12}) ; }
 .container { background-color: #({$INC_HEADER_color_config.bg_13}) ; }

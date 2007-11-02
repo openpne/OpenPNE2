@@ -22,16 +22,15 @@ $i = 0;
 $start_time = time();
 while ($res->fetchInto($row)) {
     if ($row['easy_access_id'] == '') {
-    	$row['easy_access_id'] = '';
+        $row['easy_access_id'] = '';
     } else {
         $row['easy_access_id'] = md5(t_decrypt($row['easy_access_id']));
     }
-    
-    $sql = "UPDATE c_member_secure SET easy_access_id = ? " .
-            " WHERE c_member_secure_id = ? ";
+
+    $sql = "UPDATE c_member_secure SET easy_access_id = ? WHERE c_member_secure_id = ? ";
     $param = array($row['easy_access_id'],$row['c_member_secure_id']);
     $db->query($sql, $param);
-    
+
     $i++;
     if ($i % (int)($row_num/100) == 0) {
         echo $i."/".$row_num." ".(int)($i/$row_num*100)."%";

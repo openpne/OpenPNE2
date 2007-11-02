@@ -14,15 +14,12 @@
 		<font color="#({$ktai_color_config.font_05})"><a name="top">({$smarty.const.SNS_NAME})</a></font><br>
 	</td></tr>
 ({/if})
-({if $inc_ktai_entry_point[2]})
-	<tr><td>({$inc_ktai_entry_point[2]|smarty:nodefaults})</td></tr>
-({/if})
 </table>
-({if $inc_ktai_entry_point[3]})
-({$inc_ktai_entry_point[3]|smarty:nodefaults})<br>
-({/if})
 ({if $c_siteadmin})
 ({$c_siteadmin|smarty:nodefaults})<br>
+({/if})
+({if $inc_ktai_entry_point[2]})
+({$inc_ktai_entry_point[2]|smarty:nodefaults})
 ({/if})
 ({if $num_f_confirm_list})
 <a href="({t_url m=ktai a=page_h_confirm_list})&amp;({$tail})"><font color="#({$ktai_color_config.font_09})">★承認待ちのﾒﾝﾊﾞｰ({$num_f_confirm_list})名</font></a><br>
@@ -92,12 +89,13 @@
 [i:140]<a href="({t_url m=ktai a=page_h_prof})&amp;({$tail})">ﾌﾟﾛﾌｨｰﾙ</a>/[i:68]<a href="({t_url m=ktai a=page_h_config_image})&amp;({$tail})">写真</a>/[i:76]<a href="({t_url m=ktai a=page_fh_intro})&amp;({$tail})">紹介文</a><br>
 <hr color="#({$ktai_color_config.border_01})"></td></tr>
 </table>
-　
+({if $inc_ktai_entry_point[3]})
+({$inc_ktai_entry_point[3]|smarty:nodefaults})
+({/if})
 <br>
-
 <table width="100%">
 <tr><td bgcolor="#({$ktai_color_config.bg_05})">
-<a accesskey="1" name="a1" href="#a1">[i:125]</a>({$WORD_FRIEND_HALF})最新日記<br>
+<a accesskey="1" name="a1" href="#a1">[i:125]</a><font color="#({$ktai_color_config.color_25})">({$WORD_FRIEND_HALF})最新日記</font><br>
 </td></tr>
 ({foreach from=$c_diary_friend_list item=item})
 <tr><td bgcolor="#({cycle values="`$ktai_color_config.bg_06`,`$ktai_color_config.bg_07`"})">
@@ -112,17 +110,17 @@
 <hr color="#({$ktai_color_config.border_02})">
 </td></tr>
 ({/foreach})
-<tr><td align="right">
 ({if $c_diary_friend_list})
+<tr><td align="right">
 <font color="#({$ktai_color_config.font_07})">⇒</font><a href="({t_url m=ktai a=page_h_diary_list_friend})&amp;({$tail})">もっと見る</a><br>
-({/if})
 </td></tr>
+({/if})
 </table>
 <br>
 
 <table width="100%">
 <tr><td bgcolor="#({$ktai_color_config.bg_08})">
-<a accesskey="2" name="a2" href="#a2">[i:126]</a>日記ｺﾒﾝﾄ記入履歴<br>
+<a accesskey="2" name="a2" href="#a2">[i:126]</a><font color="#({$ktai_color_config.color_26})">日記ｺﾒﾝﾄ記入履歴</font><br>
 </td></tr>
 ({foreach from=$c_diary_my_comment_list item=item})
 <tr><td bgcolor="#({cycle values="`$ktai_color_config.bg_09`,`$ktai_color_config.bg_10`"})">
@@ -143,7 +141,7 @@
 
 <table width="100%">
 <tr><td bgcolor="#({$ktai_color_config.bg_05})">
-<a accesskey="3" name="a3" href="#a3">[i:127]</a>ｺﾐｭﾆﾃｨ最新書き込み<br>
+<a accesskey="3" name="a3" href="#a3">[i:127]</a><font color="#({$ktai_color_config.color_25})">ｺﾐｭﾆﾃｨ最新書き込み</font><br>
 </td></tr>
 ({foreach from=$c_commu_topic_list item=item})
 <tr><td bgcolor="#({cycle values="`$ktai_color_config.bg_06`,`$ktai_color_config.bg_07`"})">
@@ -168,7 +166,7 @@
 
 <table width="100%">
 <tr><td bgcolor="#({$ktai_color_config.bg_08})">
-<a name="search">[i:119]検索</a><br>
+<a name="search">[i:119]<font color="#({$ktai_color_config.color_26})">検索</font></a><br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_09})">
 <a href="({t_url m=ktai a=page_h_friend_find_all})&amp;({$tail})">ﾒﾝﾊﾞｰ検索</a><br>
@@ -185,7 +183,7 @@
 <br>
 <table width="100%">
 <tr><td bgcolor="#({$ktai_color_config.bg_05})">
-[i:140]ﾌﾟﾛﾌｨｰﾙ変更<br>
+[i:140]<font color="#({$ktai_color_config.color_25})">ﾌﾟﾛﾌｨｰﾙ変更</font><br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_06})">
 <a href="({t_url m=ktai a=page_h_config_prof})&amp;({$tail})">ﾌﾟﾛﾌｨｰﾙ変更</a><br>
@@ -199,16 +197,16 @@
 <br>
 <table width="100%">
 <tr><td bgcolor="#({$ktai_color_config.bg_08})">
-[i:75]設定変更<br>
+[i:75]<font color="#({$ktai_color_config.color_26})">設定変更</font><br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_09})">
 <a href="({t_url m=ktai a=page_h_config_mail})&amp;({$tail})">携帯ﾒｰﾙｱﾄﾞﾚｽ変更</a><br>
+</td></tr>
 ({if $smarty.const.OPENPNE_ENABLE_PC})
-</td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_10})">
-<a href="({t_url m=ktai a=page_h_pc_send})&amp;({$tail})">PCｱﾄﾞﾚｽ登録</a><br>
-({/if})
+<a href="({t_url m=ktai a=page_h_pc_send})&amp;({$tail})">PCﾒｰﾙｱﾄﾞﾚｽ登録</a><br>
 </td></tr>
+({/if})
 <tr><td bgcolor="#({$ktai_color_config.bg_09})">
 <a href="({t_url m=ktai a=page_h_config_password})&amp;({$tail})">ﾊﾟｽﾜｰﾄﾞ変更</a><br>
 </td></tr>
@@ -244,5 +242,6 @@
 ({if $u!=1})
 ■<a href="({t_url m=ktai a=page_h_taikai_confirm})&amp;({$tail})">退会手続き</a><br>
 ({/if})
+■<a href="({t_url m=ktai a=do_h_logout})&amp;({$tail})">ﾛｸﾞｱｳﾄ</a><br>
 
 ({$inc_ktai_footer|smarty:nodefaults})

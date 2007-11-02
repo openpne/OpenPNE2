@@ -697,14 +697,14 @@ function _db_admin_c_member_id_list($cond_list, $order = null)
         $sql = 'SELECT c_member_id FROM c_member_secure';
         $wheres = array();
 
-        //PCアドレスの有無で絞る
+        //PCメールアドレスの有無で絞る
         if ($cond_list['is_pc_address'] == 1) {
             $wheres[] = "pc_address <> ''";
         } elseif ($cond_list['is_pc_address'] == 2) {
             $wheres[] = "pc_address = ''";
         }
 
-        //携帯アドレスの有無で絞る
+        //携帯メールアドレスの有無で絞る
         if ($cond_list['is_ktai_address'] == 1) {
             $wheres[] = "ktai_address <> ''";
         } elseif ($cond_list['is_ktai_address'] == 2) {
@@ -831,11 +831,11 @@ function validate_cond($requests)
         $cond_list['last_login'] = intval($requests['last_login']);
     }
 
-    //PCアドレスの有無
+    //PCメールアドレスの有無
     if (!empty($requests['is_pc_address'])) {
         $cond_list['is_pc_address'] = intval($requests['is_pc_address']);
     }
-    //携帯アドレスの有無
+    //携帯メールアドレスの有無
     if (!empty($requests['is_ktai_address'])) {
         $cond_list['is_ktai_address'] = intval($requests['is_ktai_address']);
     }
@@ -966,7 +966,7 @@ function p_access_analysis_month_access_analysis_month($ktai_flag)
                 " group by ym";
     }
 
-    $params = array(intval($ktai_flag));            
+    $params = array(intval($ktai_flag));
     $list = db_get_all($sql,$params);
     return $list;
 }
@@ -979,7 +979,7 @@ function p_access_analysis_day_access_analysis_day($ym, $ktai_flag)
             " FROM c_access_log " .
             " where substr(r_datetime,1,7) = ?" .
             " and ktai_flag = ? " .
-            " group by ymd";            
+            " group by ymd";
     } else {
         $sql = "SELECT left(r_datetime,10) as ymd , count(*) as count" .
                 " FROM c_access_log " .
@@ -1218,7 +1218,7 @@ function p_access_analysis_target_commu_target_commu4ym_page_name
     $start_num = ($page - 1) * $page_size + 1 ;
     $end_num =   ($page - 1) * $page_size + $page_size > $total_num ? $total_num : ($page - 1) * $page_size + $page_size ;
 
-    return array($return, $sum, $prev, $next, $total_num, $start_num, $end_num);    
+    return array($return, $sum, $prev, $next, $total_num, $start_num, $end_num);
 }
 
 function p_access_analysis_target_topic_target_topic4ym_page_name
@@ -1389,7 +1389,7 @@ function p_access_analysis_target_diary_target_diary4ym_page_name
     $start_num = ($page - 1) * $page_size + 1 ;
     $end_num =   ($page - 1) * $page_size + $page_size > $total_num ? $total_num : ($page - 1) * $page_size + $page_size ;
 
-    return array($return, $sum, $prev, $next, $total_num, $start_num, $end_num);    
+    return array($return, $sum, $prev, $next, $total_num, $start_num, $end_num);
 }
 
 function p_access_analysis_member_access_member4ym_page_name
@@ -1464,7 +1464,7 @@ function p_access_analysis_member_access_member4ym_page_name
     }
     $start_num = ($page - 1) * $page_size + 1 ;
     $end_num =   ($page - 1) * $page_size + $page_size > $total_num ? $total_num : ($page - 1) * $page_size + $page_size ;
-    return array($return, $sum, $prev, $next, $total_num, $start_num, $end_num);    
+    return array($return, $sum, $prev, $next, $total_num, $start_num, $end_num);
 }
 
 function p_access_analysis_target_member_access_member4ym_page_name
@@ -1745,7 +1745,7 @@ function get_analysis_region()
     $lst = get_array_list4db($sql);
 
     foreach($pref as $value) {
-        $analysis_region[$value] = 0;    
+        $analysis_region[$value] = 0;
     }
 
     foreach ($lst as $value) {
@@ -1774,7 +1774,7 @@ function get_analysis_date_month($year = "", $month = "")
     do{
         $date = date("Y-m", mktime (0,0,0,$m+$i++,1,$y));
         $analysis_date_month[$date] = 0;
-    }while($date < date("Y-m"));    
+    }while($date < date("Y-m"));
     
     if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
         $sql = "select to_char(r_date,'YYYY-MM') as d from c_member";
@@ -1887,7 +1887,7 @@ function monitor_diary_list($keyword, $page_size, $page)
         for ($i = 0; $i < count($keyword_list); $i++) {
             $keyword = check_search_word($keyword_list[$i]);
 
-            $wheres[] = '(c_diary.subject LIKE ? OR c_diary.body LIKE ?)';
+            $wheres[] = '(subject LIKE ? OR body LIKE ?)';
             $params[] = '%' . $keyword . '%';
             $params[] = '%' . $keyword . '%';
         }
@@ -1898,7 +1898,7 @@ function monitor_diary_list($keyword, $page_size, $page)
         $where = '';
     }
     
-    $select = "SELECT c_diary.*";
+    $select = "SELECT *";
     $from = " FROM c_diary";
     $order = " ORDER BY r_datetime DESC";
     
@@ -1906,7 +1906,7 @@ function monitor_diary_list($keyword, $page_size, $page)
     $list = db_get_all_limit($sql,($page-1)*$page_size,$page_size,$params);
     foreach ($list as $key => $value) {
         $list[$key]['c_member'] = db_member_c_member_with_profile($value['c_member_id']);
-        $list[$key]['count_comments'] = db_diary_count_c_diary_comment4c_diary_id($value['c_diary_id']); 
+        $list[$key]['count_comments'] = db_diary_count_c_diary_comment4c_diary_id($value['c_diary_id']);
     }
     
     $sql = 
@@ -1919,7 +1919,7 @@ function monitor_diary_list($keyword, $page_size, $page)
     $next = ($page < $total_page_num);
     $prev = ($page > 1);
     
-    return array($list , $prev , $next, $total_num, $total_page_num);  
+    return array($list , $prev , $next, $total_num, $total_page_num);
 }
 
 function monitor_diary_list4c_diary_id($c_diary_id, $page_size, $page)
@@ -1938,7 +1938,7 @@ function monitor_diary_list4c_diary_id($c_diary_id, $page_size, $page)
     $list = db_get_all_limit($sql,($page-1)*$page_size,$page_size,$params);
     foreach ($list as $key => $value) {
         $list[$key]['c_member'] = db_member_c_member_with_profile($value['c_member_id']);
-        $list[$key]['count_comments'] = db_diary_count_c_diary_comment4c_diary_id($value['c_diary_id']); 
+        $list[$key]['count_comments'] = db_diary_count_c_diary_comment4c_diary_id($value['c_diary_id']);
     }
     
     $sql = 
@@ -1951,7 +1951,7 @@ function monitor_diary_list4c_diary_id($c_diary_id, $page_size, $page)
     $next = ($page < $total_page_num);
     $prev = ($page > 1);
     
-    return array($list , $prev , $next, $total_num, $total_page_num);  
+    return array($list , $prev , $next, $total_num, $total_page_num);
 }
 
 function monitor_diary_comment_list($keyword, $page_size, $page)
@@ -1989,7 +1989,7 @@ function monitor_diary_comment_list($keyword, $page_size, $page)
     $list = db_get_all_limit($sql,($page-1)*$page_size,$page_size,$params);
     foreach ($list as $key => $value) {
         $list[$key]['c_member'] = db_member_c_member_with_profile($value['c_member_id']);
-        $list[$key]['count_comments'] = db_diary_count_c_diary_comment4c_diary_id($value['c_diary_id']); 
+        $list[$key]['count_comments'] = db_diary_count_c_diary_comment4c_diary_id($value['c_diary_id']);
     }
     
     $sql = 
@@ -2002,7 +2002,7 @@ function monitor_diary_comment_list($keyword, $page_size, $page)
     $next = ($page < $total_page_num);
     $prev = ($page > 1);
     
-    return array($list , $prev , $next, $total_num, $total_page_num);  
+    return array($list , $prev , $next, $total_num, $total_page_num);
 }
 
 function monitor_diary_comment_list4c_diary_comment_id($c_diary_comment_id, $page_size, $page)
@@ -2023,7 +2023,7 @@ function monitor_diary_comment_list4c_diary_comment_id($c_diary_comment_id, $pag
     
     foreach ($list as $key => $value) {
         $list[$key]['c_member'] = db_member_c_member_with_profile($value['c_member_id']);
-        $list[$key]['count_comments'] = db_diary_count_c_diary_comment4c_diary_id($value['c_diary_id']); 
+        $list[$key]['count_comments'] = db_diary_count_c_diary_comment4c_diary_id($value['c_diary_id']);
     }
     
     $sql = 
@@ -2036,7 +2036,7 @@ function monitor_diary_comment_list4c_diary_comment_id($c_diary_comment_id, $pag
     $next = ($page < $total_page_num);
     $prev = ($page > 1);
     
-    return array($list , $prev , $next, $total_num, $total_page_num);  
+    return array($list , $prev , $next, $total_num, $total_page_num);
 }
 
 function monitor_commu_list($keyword, $page_size, $page)
@@ -2074,7 +2074,7 @@ function monitor_commu_list($keyword, $page_size, $page)
     $list = db_get_all_limit($sql,($page-1)*$page_size,$page_size,$params);
     
     foreach ($list as $key => $value) {
-        $list[$key]['c_member'] = db_member_c_member_with_profile($value['c_member_id_admin']);; 
+        $list[$key]['c_member'] = db_member_c_member_with_profile($value['c_member_id_admin']);
     }
     
     $sql = 
@@ -2087,7 +2087,7 @@ function monitor_commu_list($keyword, $page_size, $page)
     $next = ($page < $total_page_num);
     $prev = ($page > 1);
     
-    return array($list , $prev , $next, $total_num, $total_page_num);  
+    return array($list, $prev, $next, $total_num, $total_page_num);
 }
 
 function monitor_commu_list4c_commu_id($c_commu_id, $page_size, $page)
@@ -2107,7 +2107,7 @@ function monitor_commu_list4c_commu_id($c_commu_id, $page_size, $page)
     $list = db_get_all_limit($sql,($page-1)*$page_size,$page_size,$params);
     
     foreach ($list as $key => $value) {
-        $list[$key]['c_member'] = db_member_c_member_with_profile($value['c_member_id_admin']);; 
+        $list[$key]['c_member'] = db_member_c_member_with_profile($value['c_member_id_admin']);;
     }
     
     $sql = 
@@ -2120,7 +2120,7 @@ function monitor_commu_list4c_commu_id($c_commu_id, $page_size, $page)
     $next = ($page < $total_page_num);
     $prev = ($page > 1);
     
-    return array($list , $prev , $next, $total_num, $total_page_num);  
+    return array($list , $prev , $next, $total_num, $total_page_num);
 }
 
 function monitor_topic_comment_list($keyword, $page_size, $page)
@@ -2142,9 +2142,8 @@ function monitor_topic_comment_list($keyword, $page_size, $page)
         }
     }
     
-    $select = "SELECT ctc.*,ct.name as topic_name,c.name as commu_name,m.nickname";
+    $select = "SELECT ctc.*,ct.name as topic_name,c.name as commu_name";
     $from = " FROM c_commu_topic_comment as ctc"
-            ." LEFT JOIN c_member as m ON ctc.c_member_id = m.c_member_id "
             ." LEFT JOIN c_commu_topic as ct ON ct.c_commu_topic_id = ctc.c_commu_topic_id "
             ." LEFT JOIN c_commu as c ON c.c_commu_id = ct.c_commu_id ";
     $order = " ORDER BY r_datetime desc";
@@ -2154,7 +2153,9 @@ function monitor_topic_comment_list($keyword, $page_size, $page)
     $list = db_get_all_limit($sql,($page-1)*$page_size,$page_size,$params);
     
     foreach ($list as $key => $value) {
-        $list[$key]['count_comments'] = _db_count_c_commu_topic_comments4c_commu_topic_id($value['c_commu_topic_id']); 
+        $list[$key]['count_comments'] = _db_count_c_commu_topic_comments4c_commu_topic_id($value['c_commu_topic_id']);
+        $c_member = db_member_c_member4c_member_id_LIGHT($value['c_member_id']);
+        $list[$key]['nickname'] = $c_member['nickname'];
     }
     
     $sql = 
@@ -2167,7 +2168,7 @@ function monitor_topic_comment_list($keyword, $page_size, $page)
     $next = ($page < $total_page_num);
     $prev = ($page > 1);
     
-    return array($list , $prev , $next, $total_num, $total_page_num);  
+    return array($list , $prev , $next, $total_num, $total_page_num);
 }
 
 function monitor_topic_comment_list4c_commu_topic_comment_id($c_commu_topic_comment_id, $page_size, $page)
@@ -2178,9 +2179,8 @@ function monitor_topic_comment_list4c_commu_topic_comment_id($c_commu_topic_comm
     $where = " WHERE ctc.number <> 0 AND ctc.c_commu_topic_comment_id = ? ";
     $params[] = intval($c_commu_topic_comment_id);
     
-    $select = "SELECT ctc.*,ct.name as topic_name,c.name as commu_name,m.nickname";
+    $select = "SELECT ctc.*,ct.name as topic_name,c.name as commu_name";
     $from = " FROM c_commu_topic_comment as ctc"
-            ." LEFT JOIN c_member as m ON ctc.c_member_id = m.c_member_id "
             ." LEFT JOIN c_commu_topic as ct ON ct.c_commu_topic_id = ctc.c_commu_topic_id "
             ." LEFT JOIN c_commu as c ON c.c_commu_id = ct.c_commu_id ";
     $order = " ORDER BY r_datetime desc";
@@ -2190,7 +2190,9 @@ function monitor_topic_comment_list4c_commu_topic_comment_id($c_commu_topic_comm
     $list = db_get_all_limit($sql,($page-1)*$page_size,$page_size,$params);
     
     foreach ($list as $key => $value) {
-        $list[$key]['count_comments'] = _db_count_c_commu_topic_comments4c_commu_topic_id($value['c_commu_topic_id']); 
+        $list[$key]['count_comments'] = _db_count_c_commu_topic_comments4c_commu_topic_id($value['c_commu_topic_id']);
+        $c_member = db_member_c_member4c_member_id_LIGHT($value['c_member_id']);
+        $list[$key]['nickname'] = $c_member['nickname'];
     }
     
     $sql = 
@@ -2203,7 +2205,7 @@ function monitor_topic_comment_list4c_commu_topic_comment_id($c_commu_topic_comm
     $next = ($page < $total_page_num);
     $prev = ($page > 1);
     
-    return array($list , $prev , $next, $total_num, $total_page_num);  
+    return array($list , $prev , $next, $total_num, $total_page_num);
 }
 
 function monitor_topic_list($keyword, $page_size, $page)
@@ -2232,30 +2234,30 @@ function monitor_topic_list($keyword, $page_size, $page)
     } else {
         $where = '';
     }
-    
+
     $select = "SELECT ct.*," .
-            "ct.name as topic_name,c.name as commu_name," .
-            "m.nickname,ctc.body as body," .
-            "ctc.image_filename1 as image_filename1,ctc.image_filename2 as image_filename2,ctc.image_filename3 as image_filename3," .
-            "ctc.filename as filename,f.original_filename as original_filename";
-    
-    $from = " FROM c_commu_topic as ct"
-            ." LEFT JOIN c_member as m ON ct.c_member_id = m.c_member_id "
-            ." LEFT JOIN c_commu as c ON c.c_commu_id = ct.c_commu_id "
-            ." LEFT JOIN c_commu_topic_comment as ctc ON (ctc.c_commu_topic_id = ct.c_commu_topic_id AND ctc.number = 0)"
-            ." LEFT JOIN c_file as f ON f.filename = ctc.filename "
-            ;
-    
+            "ct.name AS topic_name, c.name AS commu_name," .
+            "ctc.body, ctc.filename, ctc.image_filename1, ctc.image_filename2, ctc.image_filename3";
+
+    $from = " FROM c_commu_topic AS ct"
+            ." LEFT JOIN c_commu AS c ON c.c_commu_id = ct.c_commu_id "
+            ." LEFT JOIN c_commu_topic_comment AS ctc ON (ctc.c_commu_topic_id = ct.c_commu_topic_id AND ctc.number = 0)";
+
     $order = " ORDER BY r_datetime desc";
-    
+
     $sql = $select . $from . $where . $order;
-    
+
     $list = db_get_all_limit($sql,($page-1)*$page_size,$page_size,$params);
-    
+
     foreach ($list as $key => $value) {
-        $list[$key]['count_comments'] = _db_count_c_commu_topic_comments4c_commu_topic_id($value['c_commu_topic_id']); 
+        $list[$key]['count_comments'] = _db_count_c_commu_topic_comments4c_commu_topic_id($value['c_commu_topic_id']);
+        $c_member = db_member_c_member4c_member_id_LIGHT($value['c_member_id']);
+        $list[$key]['nickname'] = $c_member['nickname'];
+        if (!empty($value['filename'])) {
+            $list[$key]['original_filename'] = db_file_original_filename4filename($value['filename']);
+        }
     }
-    
+
     $sql = 
         "SELECT COUNT(*) "
         . $from
@@ -2266,7 +2268,7 @@ function monitor_topic_list($keyword, $page_size, $page)
     $next = ($page < $total_page_num);
     $prev = ($page > 1);
     
-    return array($list , $prev , $next, $total_num, $total_page_num);  
+    return array($list , $prev , $next, $total_num, $total_page_num);
 }
 
 function monitor_topic_list4target_c_commu_topic_id($c_commu_topic_id, $page_size, $page)
@@ -2296,7 +2298,7 @@ function monitor_topic_list4target_c_commu_topic_id($c_commu_topic_id, $page_siz
     $list = db_get_all_limit($sql,($page-1)*$page_size,$page_size,$params);
     
     foreach ($list as $key => $value) {
-        $list[$key]['count_comments'] = _db_count_c_commu_topic_comments4c_commu_topic_id($value['c_commu_topic_id']); 
+        $list[$key]['count_comments'] = _db_count_c_commu_topic_comments4c_commu_topic_id($value['c_commu_topic_id']);
     }
     
     $sql = 
@@ -2309,7 +2311,7 @@ function monitor_topic_list4target_c_commu_topic_id($c_commu_topic_id, $page_siz
     $next = ($page < $total_page_num);
     $prev = ($page > 1);
     
-    return array($list , $prev , $next, $total_num, $total_page_num);  
+    return array($list , $prev , $next, $total_num, $total_page_num);
 }
 
 function monitor_review_list($keyword, $page_size, $page)
@@ -2361,7 +2363,7 @@ function monitor_review_list($keyword, $page_size, $page)
     $next = ($page < $total_page_num);
     $prev = ($page > 1);
     
-    return array($list , $prev , $next, $total_num, $total_page_num);  
+    return array($list , $prev , $next, $total_num, $total_page_num);
 }
 
 function monitor_review_list4c_review_id($c_review_comment_id, $page_size, $page)
@@ -2394,7 +2396,7 @@ function monitor_review_list4c_review_id($c_review_comment_id, $page_size, $page
     $next = ($page < $total_page_num);
     $prev = ($page > 1);
     
-    return array($list , $prev , $next, $total_num, $total_page_num);  
+    return array($list , $prev , $next, $total_num, $total_page_num);
 }
 
 function _db_count_c_commu_topic_comments4c_commu_topic_id($c_commu_topic_id)

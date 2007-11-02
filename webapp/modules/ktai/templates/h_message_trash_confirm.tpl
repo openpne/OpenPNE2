@@ -4,7 +4,7 @@
 <font color="#({$ktai_color_config.font_05})"><a name="top">ﾒｯｾｰｼﾞ</a></font><br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
-ﾒｯｾｰｼﾞをごみ箱へ移動<br>
+<font color="#({$ktai_color_config.color_24})">ﾒｯｾｰｼﾞをごみ箱へ移動</font><br>
 </td></tr></table>
 
 このﾒｯｾｰｼﾞをごみ箱に本当に移動しますか?<br>

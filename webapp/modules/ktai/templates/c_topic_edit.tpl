@@ -4,7 +4,7 @@
 <font color="#({$ktai_color_config.font_05})"><a name="top">({$c_commu.name})</a></font><br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
-ﾄﾋﾟｯｸの編集<br>
+<font color="#({$ktai_color_config.color_24})">ﾄﾋﾟｯｸの編集</font><br>
 </td></tr></table>
 
 ({t_form m=ktai a=do_c_topic_edit_update_c_commu_topic})

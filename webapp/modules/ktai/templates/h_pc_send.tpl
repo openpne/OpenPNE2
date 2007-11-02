@@ -3,7 +3,7 @@
 <font color="#({$ktai_color_config.font_05})"><a name="top">設定変更</a></font><br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
-PCｱﾄﾞﾚｽ登録<br>
+<font color="#({$ktai_color_config.color_24})">PCﾒｰﾙｱﾄﾞﾚｽ登録</font><br>
 </td></tr></table>
 以下の欄にPCﾒｰﾙｱﾄﾞﾚｽを入力してください。<br>
 <hr color="#({$ktai_color_config.border_01})">

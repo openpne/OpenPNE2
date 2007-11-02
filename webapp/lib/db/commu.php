@@ -267,7 +267,7 @@ function db_commu_is_receive_message($c_commu_id, $c_member_id)
 }
 
 /**
- * コミュニティメールの受信アドレスリスト(携帯)
+ * コミュニティメールの受信メールアドレスリスト(携帯)
  */
 function db_common_receive_ktai_address_list4c_commu_id($c_commu_id)
 {
@@ -287,7 +287,7 @@ function db_common_receive_ktai_address_list4c_commu_id($c_commu_id)
 }
 
 /**
- * コミュニティメールの受信アドレスリスト(PC)
+ * コミュニティメールの受信メールアドレスリスト(PC)
  */
 function db_common_receive_pc_address_list4c_commu_id($c_commu_id)
 {
@@ -1896,19 +1896,26 @@ function db_commu_c_topic4c_commu_topic_id_2($c_commu_topic_id)
     return $lst;
 }
 
-function db_commu_c_topic_write4c_commu_topic_id($c_commu_topic_id,$page,$page_size)
+function db_commu_c_topic_write4c_commu_topic_id($c_commu_topic_id, $page, $page_size = null)
 {
+    $params = array(intval($c_commu_topic_id));
+
+    $sql = "SELECT count(*) FROM c_commu_topic_comment" .
+        " WHERE c_commu_topic_id = ? AND number > 0";
+    $total_num = db_get_one($sql, $params);
+
+    // 件数指定がない場合は全件取得
+    if (is_null($page_size)) {
+        $page = 1;
+        $page_size = $total_num;
+    }
+
     $sql = "SELECT ctc.*, c_member.nickname " .
         " FROM c_commu_topic_comment AS ctc" .
             " LEFT JOIN c_member USING (c_member_id)" .
         " WHERE ctc.c_commu_topic_id = ? AND ctc.number > 0 " .
         " ORDER BY ctc.r_datetime DESC";
-    $params = array(intval($c_commu_topic_id));
     $lst = db_get_all_page($sql, $page, $page_size, $params);
-
-    $sql = "SELECT count(*) FROM c_commu_topic_comment" .
-        " WHERE c_commu_topic_id = ? AND number > 0";
-    $total_num = db_get_one($sql, $params);
 
     if ($total_num != 0) {
         $total_page_num = ceil($total_num / $page_size);
@@ -2815,7 +2822,7 @@ function db_common_commu_common_commu_id4c_member_id($target_c_member_id , $u)
     // 自分のコミュニティリスト
     $sql = 'SELECT c_commu_id FROM c_commu_member ' .
             ' WHERE c_member_id = ?' .
-            ' ORDER BY c_commu_id DESC ' ;            
+            ' ORDER BY c_commu_id DESC ';
 
     $params = array(intval($u));
     $h_commu_id_list = db_get_col($sql, $params);

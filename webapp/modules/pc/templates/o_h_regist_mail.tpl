@@ -45,12 +45,6 @@
 
 入力されたメールアドレスにメールを送信しました。メール内のＵＲＬをクリックしてログインしてください。（パスワードは現在登録のものをご使用ください。）
 
-<div style="padding-top:10px;text-align:center;">
-
-<a href="javascript:void(0);" onclick="window.close()">ウィンドウを閉じる</a>
-
-</div>
-
 </div>
 
 </td>

@@ -24,7 +24,7 @@ class ktai_page_h_diary_delete_image_confirm extends OpenPNE_Action
                 handle_kengen_error();
             }
         } else {
-        	handle_kengen_error();
+            handle_kengen_error();
         }
 
         $target_image_filename = '';
@@ -41,7 +41,7 @@ class ktai_page_h_diary_delete_image_confirm extends OpenPNE_Action
         }
 
         if (empty($target_image_filename)) {
-        	handle_kengen_error();
+            handle_kengen_error();
         }
 
         $this->set('img_num', $img_num);

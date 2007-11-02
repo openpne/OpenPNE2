@@ -3,7 +3,7 @@
 <font color="#({$ktai_color_config.font_05})"><a name="top">設定変更</a></font><br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
-日記の公開範囲設定<br>
+<font color="#({$ktai_color_config.color_24})">日記の公開範囲設定</font><br>
 </td></tr></table>
 日記作成画面であらかじめ選択されている値となります。<br>
 また、ﾒｰﾙ投稿で書かれた日記はここで設定した公開範囲になります。<br>

@@ -4,7 +4,7 @@
 <font color="#({$ktai_color_config.font_05})"><a name="top">({$c_commu.name})</a></font><br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
-ﾄﾋﾟｯｸの作成<br>
+<font color="#({$ktai_color_config.color_24})">ﾄﾋﾟｯｸの作成</font><br>
 </td></tr></table>
 
 ({if $msg})

@@ -4,7 +4,7 @@
 <font color="#({$ktai_color_config.font_05})"><a name="top">({$target_c_member.nickname})さん</a></font><br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
-参加ｺﾐｭﾆﾃｨﾘｽﾄ(({$count_commus|default:0}))<br>
+<font color="#({$ktai_color_config.color_24})">参加ｺﾐｭﾆﾃｨﾘｽﾄ(({$count_commus|default:0}))</font><br>
 </td></tr></table>
 
 ({if !$c_commu_list})
