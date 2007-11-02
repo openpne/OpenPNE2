@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -22,21 +22,27 @@ class ktai_page_c_event_mail_confirm extends OpenPNE_Action
             openpne_redirect('ktai', 'page_c_event_mail', $p);
         }
 
-        $c_topic = c_event_detail_c_topic4c_commu_topic_id($c_commu_topic_id);
+        $c_topic = db_commu_c_topic4c_commu_topic_id_2($c_commu_topic_id);
         $c_commu_id = $c_topic['c_commu_id'];
 
 
         //--- 権限チェック
-        if (!p_common_is_c_commu_view4c_commu_idAc_member_id($c_commu_id, $u)) {
+        if (!db_commu_is_c_commu_view4c_commu_idAc_member_id($c_commu_id, $u)) {
             handle_kengen_error();
         }
-        if (!_db_is_c_event_admin($c_commu_topic_id, $u)) {
+
+        if (!db_commu_is_c_event_admin($c_commu_topic_id, $u)) {
+            handle_kengen_error();
+        }
+
+        // 対象者に自分が含まれている
+        if (in_array($u, $c_member_ids)) {
             handle_kengen_error();
         }
         //---
 
-        $this->set('c_commu', _db_c_commu4c_commu_id($c_commu_id));
-        $this->set('c_mail_member', p_c_event_mail_confirm_list4c_member_ids($c_member_ids));
+        $this->set('c_commu', db_commu_c_commu4c_commu_id($c_commu_id));
+        $this->set('c_mail_member', db_commu_c_event_mail_confirm_list4c_member_ids($c_member_ids));
 
         $this->set('body', $body);
         $this->set('c_member_ids', implode(',', $c_member_ids));

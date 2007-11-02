@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -20,6 +20,7 @@ class pc_do_c_edit_update_c_commu extends OpenPNE_Action
         $c_commu_category_id = $requests['c_commu_category_id'];
         $info = $requests['info'];
         $public_flag = $requests['public_flag'];
+        $topic_authority = $requests['topic_authority'];
         $is_send_join_mail = $requests['is_send_join_mail'];
         // ----------
         $upfile_obj = $_FILES['image_filename'];
@@ -46,13 +47,14 @@ class pc_do_c_edit_update_c_commu extends OpenPNE_Action
         ////GoogleMAP
         if (OPENPNE_USE_COMMU_MAP) {
             $is_display_map = $requests['is_display_map'];
-            if ($is_display_map) {
+
+            if ($is_display_map && $requests['map_pref_id'] <> 50) {
                 $pref = null;
                 if ($requests['map_pref_id'] > 0) {
                     $pref = db_etc_c_profile_pref4id($requests['map_pref_id']);
                 }
 
-                if (!empty($pref['map_latitude']) && !empty($pref['map_longitude'])) {
+                if (!empty($pref['map_latitude']) && !empty($pref['map_longitude']) && $requests['map_pref_id'] <> -1) {
                     $map_latitude = $pref['map_latitude'];
                     $map_longitude = $pref['map_longitude'];
                     $map_zoom = $pref['map_zoom'];
@@ -96,13 +98,14 @@ class pc_do_c_edit_update_c_commu extends OpenPNE_Action
 
         if ($image_filename) {
             //画像削除
-            $c_commu = _db_c_commu4c_commu_id($target_c_commu_id);
+            $c_commu = db_commu_c_commu4c_commu_id($target_c_commu_id);
             image_data_delete($c_commu['image_filename']);
         }
 
         db_commu_update_c_commu(
             $target_c_commu_id,
             $name,
+            $topic_authority,
             $c_commu_category_id,
             $info,
             $public_flag,

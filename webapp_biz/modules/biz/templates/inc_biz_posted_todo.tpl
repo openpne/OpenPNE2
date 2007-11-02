@@ -10,7 +10,7 @@
 
 ({foreach from=$posted_todo item=item})
 ({strip})
-<img src="./skin/dummy.gif" style="width:14px;height:14px;" class="icon icon_3">
+<img src="./skin/dummy.gif" alt="dummy" style="width:14px;height:14px;" class="icon icon_3">
 ({$item.r_datetime|date_format:"%m月%d日"})…&nbsp;
 <a href="({t_url m=biz a=page_fh_home_edit_biz_todo})&amp;id=({$item.biz_todo_id})">({$item.memo})</a>
 ({/strip})
@@ -23,7 +23,7 @@
 <tr>
 <td style="width:130px;text-align:left;padding:1px 0px;">
 
-<img src="./skin/dummy.gif" class="icon arrow_1">
+<img src="./skin/dummy.gif" alt="dummy" class="icon arrow_1">
 <a href="({t_url m=biz a=page_h_biz_todo_posted_list})">もっと読む</a>
 
 </td>

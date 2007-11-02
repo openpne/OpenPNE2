@@ -1,10 +1,20 @@
 ({$inc_header|smarty:nodefaults})
+({ext_include file="inc_subnavi_adminInfoKiyaku.tpl"})
 
-<table>
+({assign var="page_name" value="お知らせ・規約設定"})
+({ext_include file="inc_tree_adminInfoKiyaku.tpl"})
+</div>
+
+({*ここまで:navi*})
+
+<h2>お知らせ・規約設定</h2>
+
+<table class="contents" cellpadding="0" cellspacing="0" border="0">
 <tr>
-<td>
-
-<p>お知らせ</p>
+<td class="menu">
+<dl>
+<dt><strong class="item">お知らせ</strong></dt>
+<dd>
 <ul>
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_admin_info')})&amp;target=h_home">【PC版】 h_homeのお知らせ</a></li>
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_admin_info')})&amp;target=k_h_home">【携帯】 h_homeのお知らせ</a></li>
@@ -14,42 +24,18 @@
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_admin_info')})&amp;target=daily_news_head">デイリーニュース上部</a></li>
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_admin_info')})&amp;target=daily_news_foot">デイリーニュース下部</a></li>
 </ul>
-
-<p>規約</p>
+</dd>
+<dt><strong class="item">規約</strong></dt>
+<dd>
 <ul>
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_admin_info')})&amp;target=sns_kiyaku">利用規約</a></li>
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_admin_info')})&amp;target=sns_privacy">プライバシーポリシー</a></li>
 </ul>
-
-<p>HTML挿入</p>
-<ul>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_admin_info')})&amp;target=inc_page_footer_before">ログイン前フッター</a></li>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_admin_info')})&amp;target=inc_page_footer_after">ログイン後フッター</a></li>
-</ul>
-
-PC版全ページ共通
-<ul>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_admin_info')})&amp;target=inc_html_head">HTML挿入(HTML head内)</a></li>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_admin_info')})&amp;target=inc_page_top">HTML挿入(ページ上部)</a></li>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_admin_info')})&amp;target=inc_page_bottom">HTML挿入(ページ下部)</a></li>
-</ul>
-
-携帯版全ページ共通
-<ul>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_admin_info')})&amp;target=inc_ktai_html_head">HTML挿入(HTML head内)</a></li>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_admin_info')})&amp;target=inc_ktai_header">HTML挿入(ページ上部)</a></li>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_admin_info')})&amp;target=inc_ktai_footer">HTML挿入(ページ下部)</a></li>
-</ul>
-
-（上級者向け設定）
-<ul>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_entry_point')})">テンプレート挿入</a></li>
-</ul>
+</dd>
+</dl>
 </td>
-
-<td style="vertical-align:top;">
-
-<p>
+<td class="detail">
+<h3>
 ({if $requests.target == 'h_home'})
 ＜ＰＣ版＞ホームのお知らせ
 ({elseif $requests.target == 'k_h_home'})
@@ -68,44 +54,44 @@ PC版全ページ共通
 デイリーニュース上部
 ({elseif $requests.target == 'daily_news_foot'})
 デイリーニュース下部
-({elseif $requests.target == 'inc_html_head'})
-【PC版】HTML挿入(HTML head内)
-({elseif $requests.target == 'inc_page_top'})
-【PC版】HTML挿入(ページ上部)
-({elseif $requests.target == 'inc_page_bottom'})
-【PC版】HTML挿入(ページ下部)
-({elseif $requests.target == 'inc_ktai_html_head'})
-【携帯】HTML挿入(HTML head内)
-({elseif $requests.target == 'inc_ktai_header'})
-【携帯】HTML挿入(ページ上部)
-({elseif $requests.target == 'inc_ktai_footer'})
-【携帯】HTML挿入(ページ下部)
 ({/if})
-</p>
-
-({if $msg})
-<div class="caution">({$msg})</div>
+</h3>
+({if $msg})<p class="actionMsg">({$msg})</p>({/if})
+({if $requests.target == 'sns_kiyaku' || $requests.target == 'sns_privacy'})
+<p class="caution" id="c01">※HTMLタグは<strong>使用できません</strong>が、URLはリンクされます。</p>
+({elseif $requests.target == 'daily_news_head' || $requests.target == 'daily_news_foot'})
+({elseif $requests.target == 'k_h_home' || $requests.target == 'k_fh_diary' || $requests.target == 'k_f_home' || $requests.target == 'k_c_home'})
+<p class="caution" id="c01">※HTMLタグが使用できますが、タグの閉じ忘れ等がありますと表示が崩れるなどの問題が起こることがありますのでご注意ください。<br />
+※携帯版のお知らせ内に外部サイトへのリンクを含めると、外部サイトにリファラから「第三者によるログインが可能な情報」が漏えいする危険性があります。</p>
+({else})
+<p class="caution" id="c01">※HTMLタグが使用できますが、タグの閉じ忘れ等がありますと表示が崩れるなどの問題が起こることがありますのでご注意ください。</p>
 ({/if})
 
 <form action="./" method="post">
-<input type="hidden" name="m" value="({$module_name})">
-<input type="hidden" name="a" value="do_({$hash_tbl->hash('edit_c_admin_info','do')})">
-<input type="hidden" name="sessid" value="({$PHPSESSID})">
-<input type="hidden" name="target" value="({$requests.target})">
-<textarea name="body" cols="({$cols|default:60})" rows="({$rows|default:10})">({$c_siteadmin.body})</textarea><br>
-<input type="submit" class="submit" value="変更">
+<input type="hidden" name="m" value="({$module_name})" />
+<input type="hidden" name="a" value="do_({$hash_tbl->hash('edit_c_admin_info','do')})" />
+<input type="hidden" name="sessid" value="({$PHPSESSID})" />
+<input type="hidden" name="target" value="({$requests.target})" />
+<textarea name="body" cols="({$cols|default:60})" rows="({$rows|default:10})">({$c_siteadmin.body})</textarea>
+<p class="textBtn"><input type="submit" value="変更する" /></p>
 </form>
-
-({if $requests.target == 'sns_kiyaku' || $requests.target == 'sns_privacy'})
-<p class="caution">※HTMLタグは使用<strong>できません</strong>が、URLはリンクされます。</p>
-({elseif $requests.target == 'daily_news_head' || $requests.target == 'daily_news_foot'})
-({else})
-<p class="caution">※HTMLタグが使用できますが、タグの閉じ忘れ等がありますと表示が崩れるなどの<br>
-問題が起こることがありますのでご注意ください。</p>
+({if $requests.target == 'k_h_home' || $requests.target == 'k_fh_diary' || $requests.target == 'k_f_home'|| $requests.target == 'k_c_home'})
+<h4>【携帯】お知らせ挿入場所対応図[ ({if $requests.target == 'k_h_home'})
+ホーム
+({elseif $requests.target == 'k_f_home'})
+フレンドページ
+({elseif $requests.target == 'k_c_home'})
+コミュニティページ
+({elseif $requests.target == 'k_fh_diary'})
+日記ページ
+({/if}) ]</h4>
+<p class="image">
+<img src="modules/admin/img/admin_info_({$requests.target}).gif" />
+</p>
 ({/if})
-
 </td>
 </tr>
 </table>
 
+<div class="contents">
 ({$inc_footer|smarty:nodefaults})

@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -27,17 +27,17 @@ class admin_do_passwd extends OpenPNE_Action
         }
 
         //パスワード変更
-        do_common_update_password($c_member_id, $password);
+        db_member_update_password($c_member_id, $password);
 
         //メール送信
-        $c_member_secure = db_common_c_member_secure4c_member_id($c_member_id);
+        $c_member_secure = db_member_c_member_secure4c_member_id($c_member_id);
         if ($c_member_secure['pc_address']) {
             do_password_query_mail_send($c_member_id, $c_member_secure['pc_address'], $password);
         } else {
             db_mail_send_m_ktai_password_query($c_member_id, $password);
         }
 
-        admin_client_redirect('top', 'ユーザーのパスワードを変更し、メールを送信しました');
+        admin_client_redirect('top', 'メンバーのパスワードを変更し、メールを送信しました');
     }
 }
 

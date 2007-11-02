@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -11,6 +11,7 @@ class OpenPNE_KtaiUA
     var $is_docomo   = false;
     var $is_vodafone = false;
     var $is_au       = false;
+    var $is_willcom = false;
 
     /**
      * constructor
@@ -63,8 +64,10 @@ class OpenPNE_KtaiUA
 
         // WILLCOM / DDIPOCKET
         elseif (strpos($ua, 'WILLCOM') !== false
+             || strpos($ua, 'SHARP/WS') !== false
              || strpos($ua, 'DDIPOCKET') !== false) {
             $this->is_ktai = true;
+            $this->is_willcom = true;
         }
 
         else {
@@ -76,6 +79,7 @@ class OpenPNE_KtaiUA
     function is_docomo() { return $this->is_docomo; }
     function is_vodafone() { return $this->is_vodafone; }
     function is_au() { return $this->is_au; }
+    function is_willcom() { return $this->is_willcom; }
 }
 
 ?>

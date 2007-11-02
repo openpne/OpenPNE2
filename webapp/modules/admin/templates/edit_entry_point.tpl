@@ -1,90 +1,82 @@
 ({$inc_header|smarty:nodefaults})
+({ext_include file="inc_subnavi_adminDesign.tpl"})
+({assign var="page_name" value="テンプレート挿入"})
+({ext_include file="inc_tree_adminDesign.tpl"})
+</div>
 
-<h2>テンプレート挿入 (上級者向け設定)</h2>
+({*ここまで:navi*})
 
-<table>
+<h2>テンプレート挿入(<img src="./modules/admin/img/icn_exclamation.gif" alt="上級者向け設定" class="icn" />上級者向け設定)</h2>
+<div class="contents">
+<p class="caution" id="c01">※Smartyテンプレート形式で記述します。</p>
+<p class="caution" id="c02">誤った形式で記述すると、ページを正しく表示することができなくなってしまいます。<br />元に戻す場合は、内容を空にして変更してください。</p>
+
+<table class="contents" cellpadding="0" cellspacing="0" border="0">
 <tr>
-<td style="vertical-align:top;">
+<td class="menu">
 
-【PC版】 h_home
+<dl>
+({foreach from=$entry_point_list key=key item=item})
+<dt><strong class="item">({$item[2]})</strong></dt>
+<dd>
 <ul>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_entry_point')})&amp;target=h_home&amp;num=1">h_home 1</a></li>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_entry_point')})&amp;target=h_home&amp;num=2">h_home 2</a></li>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_entry_point')})&amp;target=h_home&amp;num=3">h_home 3</a></li>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_entry_point')})&amp;target=h_home&amp;num=4">h_home 4</a></li>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_entry_point')})&amp;target=h_home&amp;num=5">h_home 5</a></li>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_entry_point')})&amp;target=h_home&amp;num=6">h_home 6</a></li>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_entry_point')})&amp;target=h_home&amp;num=7">h_home 7</a></li>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_entry_point')})&amp;target=h_home&amp;num=8">h_home 8</a></li>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_entry_point')})&amp;target=h_home&amp;num=9">h_home 9</a></li>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_entry_point')})&amp;target=h_home&amp;num=10">h_home 10</a></li>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_entry_point')})&amp;target=h_home&amp;num=11">h_home 11</a></li>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_entry_point')})&amp;target=h_home&amp;num=12">h_home 12</a></li>
+({section name=menulist loop=$item[1]+1 start=$item[0]})
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_entry_point')})&amp;target=({$key})&amp;num=({$smarty.section.menulist.index})">({$key}) ({$smarty.section.menulist.index})</a></li>
+({/section})
 </ul>
+</dd>
+({/foreach})
+</dl>
 
-【PC版】 f_home (h_prof)
-<ul>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_entry_point')})&amp;target=f_home&amp;num=1">f_home 1</a></li>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_entry_point')})&amp;target=f_home&amp;num=2">f_home 2</a></li>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_entry_point')})&amp;target=f_home&amp;num=3">f_home 3</a></li>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_entry_point')})&amp;target=f_home&amp;num=4">f_home 4</a></li>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_entry_point')})&amp;target=f_home&amp;num=5">f_home 5</a></li>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_entry_point')})&amp;target=f_home&amp;num=6">f_home 6</a></li>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_entry_point')})&amp;target=f_home&amp;num=7">f_home 7</a></li>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_entry_point')})&amp;target=f_home&amp;num=8">f_home 8</a></li>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_entry_point')})&amp;target=f_home&amp;num=9">f_home 9</a></li>
-</ul>
-
-【PC版】 c_home
-<ul>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_entry_point')})&amp;target=c_home&amp;num=1">c_home 1</a></li>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_entry_point')})&amp;target=c_home&amp;num=2">c_home 2</a></li>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_entry_point')})&amp;target=c_home&amp;num=3">c_home 3</a></li>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_entry_point')})&amp;target=c_home&amp;num=4">c_home 4</a></li>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_entry_point')})&amp;target=c_home&amp;num=5">c_home 5</a></li>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_entry_point')})&amp;target=c_home&amp;num=6">c_home 6</a></li>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_entry_point')})&amp;target=c_home&amp;num=7">c_home 7</a></li>
-</ul>
-
-<ul>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_admin_info')})">戻る</a></li>
-</ul>
 </td>
+<td class="detail">
+<h3>({$entry_point_list[$requests.target][2]}) ({$requests.num})</h3>
 
-<td style="vertical-align:top;">
-<p>
-({if $requests.target == 'h_home'})
-【PC版】 h_home ({$requests.num})
-({elseif $requests.target == 'f_home'})
-【PC版】 f_home (h_prof) ({$requests.num})
-({elseif $requests.target == 'c_home'})
-【PC版】 c_home ({$requests.num})
-({/if})
-</p>
-
-({if $msg})
-<div class="caution">({$msg})</div>
-({/if})
-
+({if $msg})<p class="actionMsg">({$msg})</p>({/if})
 <form action="./" method="post">
-<input type="hidden" name="m" value="({$module_name})">
-<input type="hidden" name="a" value="do_({$hash_tbl->hash('update_entry_point','do')})">
-<input type="hidden" name="sessid" value="({$PHPSESSID})">
-<input type="hidden" name="target" value="({$requests.target})">
-<input type="hidden" name="num" value="({$requests.num})">
-<textarea name="source" cols="({$cols|default:60})" rows="({$rows|default:10})">({$source})</textarea><br>
-<input type="submit" class="submit" value="変更">
+<input type="hidden" name="m" value="({$module_name})" />
+<input type="hidden" name="a" value="do_({$hash_tbl->hash('update_entry_point','do')})" />
+<input type="hidden" name="sessid" value="({$PHPSESSID})" />
+<input type="hidden" name="target" value="({$requests.target})" />
+<input type="hidden" name="num" value="({$requests.num})" />
+<textarea name="source" cols="({$cols|default:60})" rows="({$rows|default:10})">({$source})</textarea>
+<p class="textBtn"><input type="submit" value="変更する" /></p>
 </form>
 
-<p class="caution">※Smartyテンプレート形式で記述します。<br>
-誤った形式で記述すると、ページを正しく表示することができなくなってしまいます。<br>
-元に戻す場合は、内容を空にして変更してください。</p>
-
-<p>
-[ ({$requests.target}) ]<br>
-<img src="modules/admin/img/({$requests.target})_small.gif">
+<h4>テンプレート挿入場所対応図[ ({$requests.target}) ]</h4>
+({if $requests.target == 'h_home' || $requests.target == 'f_home' || $requests.target == 'c_home'})
+<p class="image">
+<img src="modules/admin/img/({$requests.target})_small.gif" />
 </p>
-
+({elseif $requests.target == 'h_reply_message'})
+<p class="image">
+<img src="modules/admin/img/entry_point_h_reply_message.gif" />
+</p>
+({elseif $requests.target == 'h_diary_add'})
+<p class="image">
+<img src="modules/admin/img/entry_point_h_diary_add.gif" />
+</p>
+({elseif $requests.target == 'h_diary_edit'})
+<p class="image">
+<img src="modules/admin/img/entry_point_h_diary_edit.gif" />
+</p>
+({elseif $requests.target == 'ktai_o_login'})
+<p class="image">
+<img src="modules/admin/img/entry_point_k-tai_o_login.gif" />
+</p>
+({elseif $requests.target == 'ktai_h_home'})
+<p class="image">
+<img src="modules/admin/img/entry_point_k-tai_h_home.gif" />
+</p>
+({elseif $requests.target == 'ktai_f_home'})
+<p class="image">
+<img src="modules/admin/img/entry_point_k-tai_f_home.gif" />
+</p>
+({elseif $requests.target == 'ktai_c_home'})
+<p class="image">
+<img src="modules/admin/img/entry_point_k-tai_c_home.gif" />
+</p>
+({/if})
 </td>
 </tr>
 </table>

@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -15,7 +15,7 @@ class pc_page_h_config_ktai extends OpenPNE_Action
         //>
 
         $u = $GLOBALS['AUTH']->uid();
-        $c_member_secure=db_common_c_member_secure4c_member_id($u);
+        $c_member_secure=db_member_c_member_secure4c_member_id($u);
         $kad = $c_member_secure['ktai_address'];
 
         $this->set('ktai',$kad);

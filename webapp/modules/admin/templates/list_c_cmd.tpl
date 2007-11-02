@@ -1,119 +1,108 @@
 ({$inc_header|smarty:nodefaults})
-<h2>CMD一覧</h2>
+({ext_include file="inc_subnavi_adminSNSConfig.tpl"})
 
-({if $msg})
-<p class="caution">({$msg})</p>
-({/if})
-
-({if $pager && $pager.total_num > 0})
-<!-- pager_begin -->
-<div class="pager">
-({$pager.total_num}) 件中 ({$pager.start_num}) - ({$pager.end_num})件目を表示しています
-<br>
-({if $pager.prev_page})
-<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_cmd')})&amp;page=({$pager.prev_page})&amp;page_size=({$pager.page_size})({$cond})">前へ</a>&nbsp;
-({/if})
-({foreach from=$pager.disp_pages item=i})
-({if $i == $pager.page})
-&nbsp;<strong>({$i})</strong>&nbsp;
-({else})
-<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_cmd')})&amp;page=({$i})&amp;page_size=({$pager.page_size})({$cond})">&nbsp;({$i})&nbsp;</a>
-({/if})
-({/foreach})
-({if $pager.next_page})
-&nbsp;<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_cmd')})&amp;page=({$pager.next_page})&amp;page_size=({$pager.page_size})({$cond})">次へ</a>
-({/if})
+({assign var="page_name" value="CMD設定"})
+({ext_include file="inc_tree_adminSNSConfig.tpl"})
 </div>
-<!-- pager_end -->
-({/if})
 
-<p class="caution">※URL記述例 : ファイル名から拡張子を取り除いたもの<br>youtube.js → youtube</p>
+({*ここまで:navi*})
 
-<table>
+<script type="text/javascript">
+//<![CDATA[
+    var permit_list = new Array(
+    ({foreach from=$permit_list item=permit name=permits})
+    "({$permit})"({if !$smarty.foreach.permits.last}),({/if})
+    ({/foreach})
+    );
+    /***
+     * チェックボックスによる小窓使用範囲設定の可否を切り替える
+     *
+     * 「使用許可」セレクトボックス選択後に呼ばれる
+     *
+     * @param string cmd_name CMD名称
+     */
+    function changePermitEnable(cmd_name)
+    {
+        var select_using = document.getElementById("select_using_" + cmd_name);
+        var permit_prefix = "check_permit_";
+
+        for (var i=0; i < permit_list.length; i++) {
+            var permit_name = permit_list[i];
+            var permit = document.getElementById(permit_prefix + cmd_name + "_" + permit_name);
+            if (select_using.selectedIndex == 1) {  // 「使用しない」が選択されている
+                permit.setAttribute('disabled', 'disabled');
+            } else {  // 「使用する」が選択されている
+                permit.removeAttribute('disabled');
+                permit.setAttribute('checked', 'checked');  // 全使用範囲を選択済に
+            }
+        }
+    }
+//]]>
+</script>
+
+({if $msg})<p class="actionMsg">({$msg})</p>({/if})
+<h2>CMD設定</h2>
+<div class="contents">
+
+<p>※使用許可が「使用しない」の場合、使用範囲の設定は反映されません。</p>
+
+<table class="basicType2">
+<thead>
 <tr>
-<th>ID</th>
-<th>URL</th>
+<th>CMD名称</th>
+<th>使用許可</th>
 <th>使用範囲</th>
 <th colspan='2'>操作</th>
 </tr>
+</thead>
+<tbody>
 
-({foreach from=$c_cmd_list item=c_cmd})
+({foreach from=$c_cmd_list item=c_cmd key=cmd_name})
 <tr>
-<td class="idnumber">({$c_cmd.c_cmd_id})</td>
 
 <form action="./" method="post">
-<input type="hidden" name="m" value="({$module_name})">
-<input type="hidden" name="a" value="do_({$hash_tbl->hash('update_c_cmd','do')})">
-<input type="hidden" name="sessid" value="({$PHPSESSID})">
+<input type="hidden" name="m" value="({$module_name})" />
+<input type="hidden" name="a" value="do_({$hash_tbl->hash('update_c_cmd','do')})" />
+<input type="hidden" name="sessid" value="({$PHPSESSID})" />
+<input type="hidden" name="name" value="({$cmd_name})" />
+<input type="hidden" name="c_cmd_id" value="({$c_cmd.c_cmd_id|default:0})" />
 
-<input type="hidden" name="c_cmd_id" value="({$c_cmd.c_cmd_id})">
-
-<td><input type="text" name="name" value="({$c_cmd.name})"></td>
+<td>({$cmd_name})</td>
+<td>
+<select name="using" id="select_using_({$cmd_name})" onchange="changePermitEnable('({$cmd_name})')">
+    <option value="0">使用する
+    <option value="1"({if $c_cmd.disabled}) selected="selected"({/if})>使用しない
+</select>
+</td>
 <td>
 
-({foreach from=$permit_list key=key item=name})
-<input name="permit[]" type="checkbox" value="({$key})"({if $c_cmd.permit[$name] == 1}) checked="checked"({/if})>({$name})
-({/foreach})
-
-</td>
-<td><input type="submit" class="submit" value="変更"></td>
-</form>
+<table>
+<tr>
 <td>
-
-<form action="./" method="get">
-<input type="hidden" name="m" value="({$module_name})">
-<input type="hidden" name="a" value="page_({$hash_tbl->hash('delete_c_cmd_confirm','page')})">
-<input type="hidden" name="c_cmd_id" value="({$c_cmd.c_cmd_id})">
-<input type="submit" class="submit" value="削除">
-</form>
+<input name="permit[]" type="checkbox" value="1" id="check_permit_({$cmd_name})_community" ({if $c_cmd.permit.community || is_null($c_cmd.permit)}) checked="checked"({/if})({if $c_cmd.disabled}) disabled="disabled"({/if}) /><label for="check_permit_({$c_cmd.c_cmd_id})_community">コミュニティ</label><br />
+<input name="permit[]" type="checkbox" value="2" id="check_permit_({$cmd_name})_diary"({if $c_cmd.permit.diary || is_null($c_cmd.permit)}) checked="checked"({/if})({if $c_cmd.disabled}) disabled="disabled"({/if}) /><label for="check_permit_({$c_cmd.c_cmd_id})_diary">日記</label><br />
+<input name="permit[]" type="checkbox" value="4" id="check_permit_({$cmd_name})_profile"({if $c_cmd.permit.profile || is_null($c_cmd.permit)}) checked="checked"({/if})({if $c_cmd.disabled}) disabled="disabled"({/if}) /><label for="check_permit_({$c_cmd.c_cmd_id})_profile">プロフィール</label><br />
+<input name="permit[]" type="checkbox" value="64" id="check_permit_({$cmd_name})_message"({if $c_cmd.permit.message || is_null($c_cmd.permit)}) checked="checked"({/if})({if $c_cmd.disabled}) disabled="disabled"({/if}) /><label for="check_permit_({$c_cmd.c_cmd_id})_message">メッセージ</label><br />
+</td>
+<td>
+<input name="permit[]" type="checkbox" value="8" id="check_permit_({$cmd_name})_side_banner"({if $c_cmd.permit.side_banner || is_null($c_cmd.permit)}) checked="checked"({/if})({if $c_cmd.disabled}) disabled="disabled"({/if}) /><label for="check_permit_({$c_cmd.c_cmd_id})_side_banner">サイドバナー</label><br />
+<input name="permit[]" type="checkbox" value="16" id="check_permit_({$cmd_name})_info"({if $c_cmd.permit.info || is_null($c_cmd.permit)}) checked="checked"({/if})({if $c_cmd.disabled}) disabled="disabled"({/if}) /><label for="check_permit_({$c_cmd.c_cmd_id})_info">お知らせ</label><br />
+<input name="permit[]" type="checkbox" value="32" id="check_permit_({$cmd_name})_entry_point"({if $c_cmd.permit.entry_point || is_null($c_cmd.permit)}) checked="checked"({/if})({if $c_cmd.disabled}) disabled="disabled"({/if}) /><label for="check_permit_({$c_cmd.c_cmd_id})_entry_point">テンプレート挿入</label><br />
+</td>
+</tr>
+</table>
 
 </td>
+<td><span class="textBtnS"><input type="submit" class="submit" value="　変　更　" /></span></td>
+</form>
 </tr>
 ({foreachelse})
 <tr>
-<td colspan="5">APIが登録されていません</td>
+<td colspan="5">小窓が登録されていません</td>
 </tr>
 ({/foreach})
-
-<tr>
-<form action="./" method="post">
-<input type="hidden" name="m" value="({$module_name})">
-<input type="hidden" name="a" value="do_({$hash_tbl->hash('update_c_cmd','do')})">
-<input type="hidden" name="sessid" value="({$PHPSESSID})">
-
-<td class="idnumber"></td>
-<td><input type="text" name="name"></td>
-<td>
-({foreach from=$permit_list key=key item=name})
-<input name="permit[]" type="checkbox" value="({$key})" checked="checked">({$name})
-({/foreach})
-</td>
-<td colspan='2' align='center'><input type="submit" class="submit" value="追加"></td>
-</tr>
-</form>
+</tbody>
 
 </table>
-
-({if $pager && $pager.total_num > 0})
-<!-- pager_begin -->
-<div class="pager">
-({$pager.total_num}) 件中 ({$pager.start_num}) - ({$pager.end_num})件目を表示しています
-<br>
-({if $pager.prev_page})
-<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_cmd')})&amp;page=({$pager.prev_page})&amp;page_size=({$pager.page_size})({$cond})">前へ</a>&nbsp;
-({/if})
-({foreach from=$pager.disp_pages item=i})
-({if $i == $pager.page})
-&nbsp;<strong>({$i})</strong>&nbsp;
-({else})
-<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_cmd')})&amp;page=({$i})&amp;page_size=({$pager.page_size})({$cond})">&nbsp;({$i})&nbsp;</a>
-({/if})
-({/foreach})
-({if $pager.next_page})
-&nbsp;<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_cmd')})&amp;page=({$pager.next_page})&amp;page_size=({$pager.page_size})({$cond})">次へ</a>
-({/if})
-</div>
-<!-- pager_end -->
-({/if})
 
 ({$inc_footer|smarty:nodefaults})

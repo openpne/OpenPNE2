@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -29,6 +29,10 @@ class pc_page_f_message_send_confirm extends OpenPNE_Action
         $sessid = session_id();
         t_image_clear_tmp($sessid);
 
+        if ($form_val['target_c_member_id'] == $u) {  // 自分にメッセージは送れない
+            handle_kengen_error();
+        }
+
         $upfiles = array(
             1 => $_FILES['upfile_1'],
             $_FILES['upfile_2'],
@@ -39,6 +43,11 @@ class pc_page_f_message_send_confirm extends OpenPNE_Action
             '',
             '',
         );
+
+        $target_member = db_member_c_member4c_member_id($form_val['target_c_member_id']);
+        if (empty($target_member)) {
+            handle_kengen_error();
+        }
 
         foreach ($upfiles as $key => $upfile) {
             if ($upfile['error'] !== UPLOAD_ERR_NO_FILE) {
@@ -61,14 +70,14 @@ class pc_page_f_message_send_confirm extends OpenPNE_Action
 
         $target_c_member_id = $form_val['target_c_member_id'];
 
-        if (p_common_is_access_block($u, $target_c_member_id)) {
+        if (db_member_is_access_block($u, $target_c_member_id)) {
             openpne_redirect('pc', 'page_h_access_block');
         }
 
         $this->set('inc_navi', fetch_inc_navi("f", $target_c_member_id));
 
         //ターゲット情報
-        $this->set("target_member", db_common_c_member4c_member_id($target_c_member_id));
+        $this->set("target_member", $target_member);
 
         //ターゲットのid
         $this->set("target_c_member_id", $form_val['target_c_member_id']);
@@ -79,9 +88,9 @@ class pc_page_f_message_send_confirm extends OpenPNE_Action
         if (!empty ($save)) {
             //下書き保存が存在しない
             if ($form_val['target_c_message_id'] == $form_val['jyusin_c_message_id']) {
-                insert_message_to_is_save($form_val['target_c_member_id'], $u, $form_val['subject'], $form_val['body'], $_REQUEST['jyusin_c_message_id']);
+                db_message_insert_message_to_is_save($form_val['target_c_member_id'], $u, $form_val['subject'], $form_val['body'], $_REQUEST['jyusin_c_message_id']);
             } else { //下書き保存が存在する
-                update_message_to_is_save($form_val['target_c_message_id'], $form_val['subject'], $form_val['body']);
+                db_message_update_message_to_is_save($form_val['target_c_message_id'], $form_val['subject'], $form_val['body']);
             }
 
             $p = array('msg' => 2);

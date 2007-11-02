@@ -4,25 +4,25 @@
 ({**ここから：メインコンテンツ**})
 ({***************************})
 
-<img src="./skin/dummy.gif" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 <!-- ****************************** -->
 <!-- ******ここから：カレンダー****** -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:684px;margin:0px auto;" class="border_07">
 <tr>
-<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
-<td style="width:670px;" class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
-<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+<td style="width:670px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 <tr>
-<td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 <td class="bg_01" align="center">
 <!-- *ここから：カレンダー＞内容* -->
 ({*ここから：header*})
 <!-- ここから：小タイトル -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:670px;" class="border_01">
 <tr>
-<td style="width:36px;" class="bg_06"><img src="./skin/content_header_1.gif" style="width:30px;height:20px;" class="dummy"></td>
+<td style="width:36px;" class="bg_06"><img src="({t_img_url_skin filename=content_header_1})" style="width:30px;height:20px;" class="dummy"></td>
 <td style="width:622px;padding:2px 0px;" class="bg_06"><span class="b_b c_00">
 ({$ym.year_disp})年({$ym.month_disp})月のカレンダー
 </span></td>
@@ -36,10 +36,12 @@
 <table border="0" cellspacing="0" cellpadding="0" style="width:670px;" class="border_01">
 <tr>
 <td style="width:468px;padding:2px 0px;" class="bg_05">
-&nbsp;<img src="./skin/icon_weather_FC.gif" class="icon">
-<a href="({$weather_url})" target="_blank">天気予報を見る</a>
-&nbsp;<img src="./skin/icon_schedule.gif" class="icon">
-<a href="({t_url m=biz a=page_fh_biz_schedule_add})">予定を追加</a>&nbsp;
+({if $smarty.const.USE_EXTRA_SERVICE})
+&nbsp;<img src="({t_img_url_skin filename=icon_weather_FC})" class="icon">
+<a href="({$smarty.const.OPENPNE_WEATHER_URL})" target="_blank">天気予報を見る</a>
+({/if})
+&nbsp;<img src="({t_img_url_skin filename=icon_schedule})" class="icon">
+<a href="({t_url m=biz a=page_fh_biz_schedule_add})&target_id=({$c_member.c_member_id})">予定を追加</a>&nbsp;
 
 </td>
 <td style="width:200px;padding:2px 0px;" class="bg_05" align="right">
@@ -65,9 +67,11 @@
 </tr>
 ({foreach from=$calendar item=week})
 <tr>
-({foreach from=$week item=item})
+({foreach from=$week item=item name=weekloop})
 ({if $item.now})
 <td style="height:65px;padding:2px;" align="left" valign="top" class="bg_09">
+({elseif $item.holiday || $smarty.foreach.weekloop.first})
+<td style="height:65px;padding:2px;" align="left" valign="top" class="bg_14">
 ({else})
 <td style="height:65px;padding:2px;" align="left" valign="top" class="bg_02">
 ({/if})
@@ -77,7 +81,12 @@
 ({else})
 ({$item.day})
 ({/if})<br>
-<a href="({t_url m=biz a=page_fh_biz_schedule_add})&amp;begin_date=({$year})({$month|string_format:'%02d'})({$item.day|string_format:'%02d'})"><img src="./skin/icon_schedule.gif" class="icon"></a><br>
+<a href="({t_url m=biz a=page_fh_biz_schedule_add})&amp;begin_date=({$year})({$month|string_format:'%02d'})({$item.day|string_format:'%02d'})&target_id=({$c_member.c_member_id})"><img src="({t_img_url_skin filename=icon_schedule})" class="icon"></a><br>
+
+({* 祝日 *})
+({foreach from=$item.holiday item=item_holiday})
+<span class=" c_02">({$item_holiday})</span><br>
+({/foreach})
 
 ({* スケジュール *})
 ({foreach from=$item.schedule item=item_schedule name=schedule})
@@ -102,11 +111,11 @@
 ({$item_schedule.c_member_name})
 </div></a>
 	({elseif $item_schedule.begin_date != $item_schedule.finish_date})  <!--バナー予定 -->
-({assign var="begin_time_H" value=$item_schedule.begin_date|date_format:"%H"})
-({assign var="begin_time_M" value=$item_schedule.begin_date|date_format:"%M"})
+({assign var="begin_time_H" value=$item_schedule.begin_time|date_format:"%H"})
+({assign var="begin_time_M" value=$item_schedule.begin_time|date_format:"%M"})
 ({if $item_schedule.finish_time})
-	({assign var="finish_time_H" value=$item_schedule.finish_date|date_format:"%H"})
-	({assign var="finish_time_M" value=$item_schedule.finish_date|date_format:"%M"})
+	({assign var="finish_time_H" value=$item_schedule.finish_time|date_format:"%H"})
+	({assign var="finish_time_M" value=$item_schedule.finish_time|date_format:"%M"})
 ({/if})
 ({ext_include file="inc_biz_schedule_week_time.tpl"})
 <div class="padding_s" style="padding-top:0;">
@@ -123,7 +132,7 @@
 <div class="padding_s" style="padding-top:0;">
 <a href="({t_url m=biz a=page_fh_biz_schedule_view})&amp;id=({$item_schedule.biz_schedule_id})">({$item_schedule.title})</a>
 </div>
-<img src="./skin/dummy.gif" style="width:80px;height:10px;" class="dummy">
+<img src="./skin/dummy.gif" alt="dummy" style="width:80px;height:10px;" class="dummy">
 	({/if})
 ({/foreach})
 
@@ -137,11 +146,17 @@
 <img src="({if $item_event.is_join})({t_img_url_skin filename=icon_event_R})({else})({t_img_url_skin filename=icon_event_B})({/if})" class="icon"><a href="({t_url m=pc a=page_c_event_detail})&amp;target_c_commu_topic_id=({$item_event.c_commu_topic_id})">({$item_event.name})</a><br>
 ({/foreach})
 
+({* Todo *})
+({foreach from=$item.todo item=item_todo})
+<img src="./skin/default/img/biz/todo_icon.gif"  class="icon">
+<a href="({t_url m=biz a=page_fh_home_edit_biz_todo})&amp;id=({$item_todo.biz_todo_id})&target_id=({$c_member.c_member_id})">({$item_todo.memo|t_truncate:20:".."})</a>
+({/foreach})
+
 ({if $item.schedule})
 ({foreach from=$item.schedule item=item_schedule name=schedule})
 	({if !$item_schedule.begin_time})  <!-- 時間指定なしの予定 -->
 <div class="padding_s">
-({*<img src="./skin/icon_pen.gif" class="icon">*})<a href="({t_url m=biz a=page_fh_biz_schedule_view})&amp;id=({$item_schedule.biz_schedule_id})({if $is_f})&amp;target_id=({$c_member.c_member_id})({/if})">({$item_schedule.title})</a>
+({*<img src="({t_img_url_skin filename=icon_pen})" class="icon">*})<a href="({t_url m=biz a=page_fh_biz_schedule_view})&amp;id=({$item_schedule.biz_schedule_id})({if $is_f})&amp;target_id=({$c_member.c_member_id})({/if})">({$item_schedule.title})</a>
 </div>
 	({else})
 &nbsp;
@@ -166,7 +181,7 @@
 <table border="0" cellspacing="0" cellpadding="0" style="width:670px;" class="border_01">
 <tr>
 <td style="width:668px;padding:2px 0px;" class="bg_09">
-※<img src="./skin/icon_schedule.gif" class="icon">アイコンをクリックすると予定を入力することができます。予定は他の人にも公開されます。<br>
+※<img src="({t_img_url_skin filename=icon_schedule})" class="icon">アイコンをクリックすると予定を入力することができます。予定は他の人にも公開されます。<br>
 ※<img src="({t_img_url_skin filename=icon_birthday})" class="icon">は({$WORD_MY_FRIEND})の誕生日、<img src="({t_img_url_skin filename=icon_event_B})" class="icon">はイベント、<img src="({t_img_url_skin filename=icon_event_R})" class="icon">は参加イベントを意味します。
 </td>
 </tr>
@@ -192,19 +207,19 @@
 ({*ここまで：footer*})
 <!-- *ここまで：カレンダー＞＞内容* -->
 </td>
-<td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 <tr>
-<td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
-<td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
-<td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 </table>
 </form>
 <!-- ******ここまで：カレンダー****** -->
 <!-- ****************************** -->
 
-<img src="./skin/dummy.gif" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 ({***************************})
 ({**ここまで：メインコンテンツ**})

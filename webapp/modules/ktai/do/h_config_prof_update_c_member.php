@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -30,17 +30,16 @@ class ktai_do_h_config_prof_update_c_member extends OpenPNE_Action
         }
 
         // 値の整合性をチェック(DB)
-        $c_member_profile_list = do_config_prof_check_profile($validator->getParams(), $_REQUEST['public_flag']);
+        $c_member_profile_list = db_member_check_profile($validator->getParams(), $_REQUEST['public_flag']);
 
         // 必須項目チェック
-        $profile_list = db_common_c_profile_list4null();
+        $profile_list = db_member_c_profile_list4null();
         foreach ($profile_list as $profile) {
-            if ($profile['disp_config'] &&
-                $profile['is_required'] &&
-                !$c_member_profile_list[$profile['name']]['value']
-            ) {
-                $errors[$profile['name']] = "{$profile['caption']}を入力してください";
-                break;
+            $value = $c_member_profile_list[$profile['name']]['value'];
+            if ($profile['disp_config'] && $profile['is_required']) {
+                if (is_null($value) || $value === '' || $value === array()) {
+                    $errors[$profile['name']] = $profile['caption'] . 'を入力してください';
+                }
             }
         }
 
@@ -56,10 +55,10 @@ class ktai_do_h_config_prof_update_c_member extends OpenPNE_Action
             ktai_display_error($errors);
         }
 
-        do_config_prof_new($u, $prof);
-        do_config_prof_update_c_member_profile($u, $c_member_profile_list);
+        db_member_config_prof_new($u, $prof);
+        db_member_update_c_member_profile($u, $c_member_profile_list);
 
-        openpne_redirect('ktai', 'page_h_home');
+        openpne_redirect('ktai', 'page_h_prof');
     }
 
     function _getValidateRules()
@@ -100,7 +99,7 @@ class ktai_do_h_config_prof_update_c_member extends OpenPNE_Action
     function _getValidateRulesProfile()
     {
         $rules = array();
-        $profile_list = db_common_c_profile_list4null();
+        $profile_list = db_member_c_profile_list4null();
         foreach ($profile_list as $profile) {
             if ($profile['disp_config']) {
                 $rule = array(

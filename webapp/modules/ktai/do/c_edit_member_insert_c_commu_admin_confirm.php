@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -18,22 +18,52 @@ class ktai_do_c_edit_member_insert_c_commu_admin_confirm extends OpenPNE_Action
         // ----------
 
         //--- 権限チェック
-        //コミュニティ管理者
+        // コミュニティ管理者
+        // 自分自身へのメッセージ送信ではない
+        // すでに管理者交代依頼メッセージ送信済みではない
+        // すでに副管理者要請メッセージを送信済みでない
+
         $status = db_common_commu_status($u, $target_c_commu_id);
         if (!$status['is_commu_admin']) {
             handle_kengen_error();
         }
+
+        if ($u == $target_c_member_id) {
+            handle_kengen_error();
+        }
+
+        $target_c_commu_admin_confirm_list =
+            db_commu_anatani_c_commu_admin_confirm_list4c_member_id($target_c_member_id);
+        if (!empty($target_c_commu_admin_confirm_list)) {
+            foreach ($target_c_commu_admin_confirm_list as $value) {
+                if ($value['c_commu_id'] == $target_c_commu_id) {
+                    handle_kengen_error();
+                }
+            }
+        }
+
+        $target_c_commu_sub_admin_confirm_list =
+        db_commu_anatani_c_commu_sub_admin_confirm_list4c_member_id($target_c_member_id);
+        if (!empty($target_c_commu_sub_admin_confirm_list)) {
+            foreach ($target_c_commu_sub_admin_confirm_list as $value) {
+                if ($value['c_commu_id'] == $target_c_commu_id) {
+                    handle_kengen_error();
+                }
+            }
+        }
         //---
 
+        // 以前に送られた管理者交代要請を削除
+        db_commu_delete_c_commu_admin_confirm4c_commu_id($target_c_commu_id);
 
         $target_c_commu_admin_confirm_id =
             db_commu_insert_c_commu_admin_confirm($target_c_commu_id, $target_c_member_id, $body);
 
         //メッセージ
         $c_member_id_from = $u;
-        $c_member_from    = db_common_c_member4c_member_id($c_member_id_from);
+        $c_member_from    = db_member_c_member4c_member_id($c_member_id_from);
         $c_member_to      = $target_c_member_id;
-        $c_commu          = _db_c_commu4c_commu_id($target_c_commu_id);
+        $c_commu          = db_commu_c_commu4c_commu_id($target_c_commu_id);
 
         $subject ="コミュニティ管理者交代要請メッセージ";
         $body_disp =
@@ -44,7 +74,7 @@ class ktai_do_c_edit_member_insert_c_commu_admin_confirm extends OpenPNE_Action
             "\n".
             "この要請について、承認待ちリストから承認または拒否を選択してください。\n";
 
-        do_common_send_message_syoudaku($c_member_id_from, $target_c_member_id, $subject, $body_disp);
+        db_message_send_message_syoudaku($c_member_id_from, $target_c_member_id, $subject, $body_disp);
 
         $p = array('target_c_commu_id' => $target_c_commu_id);
         openpne_redirect('ktai', 'page_c_home', $p);

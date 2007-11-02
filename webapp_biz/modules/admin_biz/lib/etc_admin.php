@@ -1,16 +1,15 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
 function admin_fetch_inc_header($display_navi = true)
 {
-    $v['title'] = SNS_NAME . 'BIZ用管理ページ';
+    $v['title'] = SNS_NAME . 'BIZ用管理画面';
     $v['display_navi'] = $display_navi;
     $v['PHPSESSID'] = md5(session_id());
     $v['module_name'] = ADMIN_BIZ_MODULE_NAME;
-    $v['ADMIN_INIT_CONFIG'] = ADMIN_INIT_CONFIG;
     $v['auth_type'] = admin_get_auth_type();
 
     $inc_smarty = new OpenPNE_Smarty($GLOBALS['SMARTY']);
@@ -68,7 +67,7 @@ function admin_insert_c_image($upfile_obj, $filename)
 {
     if ($upfile_obj &&
         is_uploaded_file($upfile_obj['tmp_name']) &&
-        _do_insert_c_image($filename, $upfile_obj['tmp_name']) > 0)
+        db_image_insert_c_image2($filename, $upfile_obj['tmp_name']) > 0)
     {
         return $filename;
     }

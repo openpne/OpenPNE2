@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -30,7 +30,7 @@ class pc_do_c_topic_write_insert_c_commu_topic_comment extends OpenPNE_Action
         }
         //---
 
-        $number = _do_c_commu_topic_comment_number4c_commu_topic_id($c_commu_topic_id);
+        $number = db_commu_c_commu_topic_comment_number4c_commu_topic_id($c_commu_topic_id);
         $insert_c_commu_topic_comment = array(
             "c_commu_id"        => $c_commu_id,
             "c_member_id"       => $u,
@@ -38,7 +38,7 @@ class pc_do_c_topic_write_insert_c_commu_topic_comment extends OpenPNE_Action
             "number"            => $number,
             "c_commu_topic_id"  => $c_commu_topic_id,
         );
-        $insert_id = do_c_event_add_insert_c_commu_topic_comment($insert_c_commu_topic_comment);
+        $insert_id = db_commu_insert_c_commu_topic_comment_3($insert_c_commu_topic_comment);
 
         if ($tmpfile1) {
             $filename1 = image_insert_c_image4tmp("tc_{$insert_id}_1", $tmpfile1);
@@ -58,6 +58,12 @@ class pc_do_c_topic_write_insert_c_commu_topic_comment extends OpenPNE_Action
         send_bbs_info_mail($insert_id, $u);
         //お知らせメール送信(PCへ)
         send_bbs_info_mail_pc($insert_id, $u);
+
+        if (OPENPNE_USE_POINT_RANK) {
+            //トピック・イベントにコメントした人にポイント付与
+            $point = db_action_get_point4c_action_id(11);
+            db_point_add_point($u, $point);
+        }
 
         $p = array('target_c_commu_topic_id' => $c_commu_topic_id);
         openpne_redirect('pc', 'page_c_topic_detail', $p);

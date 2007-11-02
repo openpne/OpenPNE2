@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -11,6 +11,9 @@ class pc_do_h_config_2 extends OpenPNE_Action
 {
     function execute($requests)
     {
+        //外部認証の場合はリダイレクト
+        check_action4pne_slave(false);
+        
         $u = $GLOBALS['AUTH']->uid();
 
         // --- リクエスト変数
@@ -41,7 +44,7 @@ class pc_do_h_config_2 extends OpenPNE_Action
             exit;
         }
 
-        do_common_update_password($u, $new_password);
+        db_member_update_password($u, $new_password);
 
         $GLOBALS['AUTH']->logout();
 

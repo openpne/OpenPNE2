@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -89,13 +89,17 @@ function biz_getRepeatScheduleID($schedule_id)
     );
     $first_id = db_get_one($sql, $params);
 
-    $sql = 'SELECT biz_schedule_id FROM biz_schedule WHERE rep_first = ? ORDER BY begin_date';
-    $params = array(
-        intval($first_id),
-    );
-    $schedule = db_get_col($sql, $params);
+    if (!$first_id) {  // 削除しようとした繰り返し予定が存在しない
+        return array();
+    } else {
+        $sql = 'SELECT biz_schedule_id FROM biz_schedule WHERE rep_first = ? ORDER BY begin_date';
+        $params = array(
+            intval($first_id),
+        );
+        $schedule = db_get_col($sql, $params);
 
-    return $schedule;
+        return $schedule;
+    }
 }
 
 //指定された繰り返し予定IDの開始日を得る関数
@@ -135,19 +139,58 @@ function biz_getRepeatFinish($schedule_id)
     return $schedule;
 }
 
-//指定された日付に存在する特定ユーザの予定idのみを得る関数
-function biz_getDateMemberSchedule($y, $m, $d, $id)
+//指定された予定に関する権限があるかどうかをチェックする関数
+function biz_isPermissionSchedule($u, $biz_schedule_id)
+{
+    $biz_schedule = biz_getScheduleInfo($biz_schedule_id);
+    $biz_schedule_member = biz_getJoinIdSchedule($biz_schedule_id);
+    $public_flag = $biz_schedule['public_flag'];
+    $biz_group_id = $biz_schedule['biz_group_id'];
+    $target_c_member_id = $biz_schedule['c_member_id'];
+
+    if (empty($biz_schedule)) {  // 存在しない予定には表示権限がない
+        return false;
+    }
+
+    switch ($public_flag) {
+    case 'private' :  // 予定参加者にのみ権限が与えられる予定
+        if ($target_c_member_id == $u) {  // 自分が予定作成者
+            return true;
+        } elseif(in_array($u, $biz_schedule_member)) {
+            return true;
+        } else {
+            return false;
+        }
+    default :  // すべてのメンバーに権限が与えられる予定
+        return true;
+    }
+}
+
+//指定された日付に存在する特定メンバーの予定idのみを得る関数
+function biz_getDateMemberSchedule($y, $m, $d, $target_c_member_id, $u)
 {
     $schedule = array();
     $contain = array();
 
-    $tmp = biz_getDateSchedule($y,$m,$d);
+    $tmp = biz_getDateSchedule($y, $m, $d);
     $sc_list = array();
+    
+    $biz_group_id_list = array();
+    foreach(biz_getJoinGroup($target_c_member_id) as $value) {
+        $biz_group_id_list[] = $value['biz_group_id'];
+    }
 
-    foreach ($tmp as $value) {
-        $members = biz_getJoinIdSchedule($value);
-        if (in_array($id, $members)) {
-            $contain[] = $value;
+    foreach ($tmp as $biz_schedule_id) {
+        $biz_schedule = biz_getScheduleInfo($biz_schedule_id);
+        $sql = 'SELECT c_member_id FROM biz_schedule_member WHERE biz_schedule_id = ?';
+        $biz_schedule_member_id_list = db_get_col($sql, array(intval($biz_schedule_id)));
+
+        // スケジュールに参加しているメンバー
+        $members = biz_getJoinIdSchedule($biz_schedule_id);
+        if (biz_isPermissionSchedule($u, $biz_schedule_id)) {
+            if (in_array($target_c_member_id, $members)) {
+                $contain[] = $biz_schedule_id;
+            }
         }
     }
 
@@ -155,6 +198,7 @@ function biz_getDateMemberSchedule($y, $m, $d, $id)
 
     foreach ($contain as $key => $value) {
         if (!is_null($value)) {
+            
             //そのidの予定を得る
             $sql = 'SELECT * FROM biz_schedule WHERE biz_schedule_id = ?';
             $params = array(
@@ -166,7 +210,7 @@ function biz_getDateMemberSchedule($y, $m, $d, $id)
     return $schedule;
 }
 
-//指定された予定idの保持するユーザidを得る関数
+//指定された予定idの保持するメンバーIDを得る関数
 function biz_getJoinIdSchedule($id)
 {
     $sql = 'SELECT c_member_id FROM biz_schedule_member WHERE biz_schedule_id = ?';
@@ -179,7 +223,7 @@ function biz_getJoinIdSchedule($id)
     return $ids;
 }
 
-//指定されたユーザidと関連付いた未読予定idを得たうえに、予定のデータまでつけてしまう関数
+//指定されたメンバーIDと関連付いた未読予定idを得たうえに、予定のデータまでつけてしまう関数
 function biz_getJoinIdNewSchedule($id)
 {
     $sql = 'SELECT biz_schedule_id FROM biz_schedule_member WHERE c_member_id = ? AND is_read = 0;';
@@ -187,7 +231,7 @@ function biz_getJoinIdNewSchedule($id)
         intval($id),
     );
 
-    $ids = db_get_col($sql, $param);
+    $ids = db_get_col($sql, $params);
 
     $schedule = array();
 
@@ -200,7 +244,7 @@ function biz_getJoinIdNewSchedule($id)
     return $schedule;
 }
 
-//指定された予定IDを保持しているユーザ名を得る関数
+//指定された予定IDを保持しているメンバー情報を得る関数
 function biz_getJoinMemberSchedule($id)
 {
     $sql = 'SELECT c_member_id FROM biz_schedule_member WHERE biz_schedule_id = ?';
@@ -221,31 +265,6 @@ function biz_getJoinMemberSchedule($id)
     }
 
     return $members;
-}
-
-//指定された予定IDを保持している施設名を得る関数
-function biz_getJoinShisetsuSchedule($id)
-{
-    $sql = 'SELECT * FROM biz_schedule_shisetsu WHERE biz_schedule_id = ?';
-    $params = array(
-        intval($id),
-    );
-    $tmp = db_get_all($sql, $params);
-    $shisetsu = array();
-
-    if (!is_array($tmp)) {
-        $tmp = array();
-    }
-
-    foreach ($tmp as $key=> $value) {
-        $sql = 'SELECT name FROM biz_shisetsu WHERE biz_shisetsu_id = ?';
-        $params = array(
-            intval($value['shisetsu_id']),
-        );
-        $shisetsu += array($key => db_get_one($sql, $params));
-    }
-
-    return $shisetsu;
 }
 
 function biz_getJoinShisetsuScheduleID($id)
@@ -316,7 +335,7 @@ function biz_getJoinGroup($id, $limit = null)
     $list = array();
     $sql = "SELECT * FROM biz_group_member";
     $sql .= " WHERE c_member_id = ?";
-    $sql .= " ORDER BY RAND()";
+    $sql .= db_order_by_rand();
 
     $params = array(
         intval($id),
@@ -336,7 +355,7 @@ function biz_getJoinGroup($id, $limit = null)
     return $list;
 }
 
-//指定されたグループのメンバーを返す関数
+//指定メンバーがグループに所属しているかどうかを返す関数
 function biz_isGroupMember($member_id, $group_id)
 {
     $sql = 'SELECT * FROM biz_group_member WHERE c_member_id = ? AND biz_group_id = ?';
@@ -349,27 +368,26 @@ function biz_isGroupMember($member_id, $group_id)
 }
 
 //指定された条件に見合うグループのリストを得る関数
-function biz_getGroupList($keyword='', $start=0, $num=20, $order='biz_group_id')
+function biz_getGroupList($keyword = '', $page = 0, $page_size = 20)
 {
 
     //keywordあり
     if ($keyword) {
-        $sql = 'SELECT * FROM biz_group WHERE 1 AND (info LIKE ? OR name LIKE ?) ORDER BY ?';
+        $where = ' WHERE info LIKE ? OR name LIKE ? ORDER BY biz_group_id';
+        $sql = 'SELECT * FROM biz_group'. $where;
 
         $params = array(
             '%'.$keyword.'%',
             '%'.$keyword.'%',
-            $order,
         );
-        $list = db_get_all_limit($sql, $start, ($start + $num), $params);
+        $list = db_get_all_page($sql, $page, $page_size, $params);
     //keywordなし(全件表示)
     } else {
-        $sql = 'SELECT * FROM biz_group ORDER BY ?';
+        $where = '';
+        $sql = 'SELECT * FROM biz_group ORDER BY biz_group_id';
 
-        $params = array(
-            $order,
-        );
-        $list = db_get_all_limit($sql, $start, ($start + $num), $params);
+        $params = array();
+        $list = db_get_all_page($sql, $page, $page_size);
     }
 
     if (!$list) {
@@ -381,7 +399,27 @@ function biz_getGroupList($keyword='', $start=0, $num=20, $order='biz_group_id')
         $list[$key]['count'] = $count;
     }
 
-    return $list;
+    $sql = 'SELECT COUNT(*) FROM biz_group' . $where;
+    $total_num = db_get_one($sql, $params);
+
+    if ($total_num != 0) {
+        $total_page_num =  ceil($total_num / $page_size);
+        if ($page >= $total_page_num) {
+            $next = false;
+        } else {
+            $next = true;
+        }
+        if ($page <= 1) {
+            $prev = false;
+        } else {
+            $prev = true;
+        }
+    }
+
+    $start_num = ($page - 1) * $page_size + 1;
+    $end_num   = $start_num + $page_size >= $total_num ? $total_num : $start_num + $page_size - 1;
+
+    return array($list, $prev, $next, $total_num, $start_num, $end_num);
 }
 
 //指定日の施設予定を得る関数
@@ -395,9 +433,9 @@ function biz_getShisetsuSchedule($y, $m, $d, $id=false)
 
     if ($id) {
         $params[] = intval($id);
-        $sql = 'SELECT * FROM `biz_shisetsu_schedule` WHERE `date` = "?-?-?" AND biz_shisetsu_id = ? ORDER BY begin_time ASC';
+        $sql = 'SELECT * FROM biz_shisetsu_schedule WHERE date = \'?-?-?\' AND biz_shisetsu_id = ? ORDER BY begin_time ASC';
     } else {
-        $sql = 'SELECT * FROM `biz_shisetsu_schedule` WHERE `date` = "?-?-?" ORDER BY begin_time ASC';
+        $sql = 'SELECT * FROM biz_shisetsu_schedule WHERE date = \'?-?-?\' ORDER BY begin_time ASC';
     }
     $list = db_get_all($sql, $params);
     foreach ($list as $key => $value) {
@@ -414,7 +452,7 @@ function biz_getShisetsuSchedule($y, $m, $d, $id=false)
 //施設施設予定の情報を得る関数
 function biz_getShisetsuScheduleID($id)
 {
-    $sql = 'SELECT * FROM `biz_shisetsu_schedule` WHERE biz_shisetsu_schedule_id = ?';
+    $sql = 'SELECT * FROM biz_shisetsu_schedule WHERE biz_shisetsu_schedule_id = ?';
 
     $params = array(
         intval($id),
@@ -495,17 +533,19 @@ function biz_getBannerScheduleList($y, $m, $id)
     $schedule = array();
     $contain = array();
 
-    $sql = 'SELECT biz_schedule_id FROM biz_schedule WHERE 1 AND (begin_date LIKE \''.$y.'-'.$m.'%\' OR finish_date LIKE \''.$y.'-'.$m.'%\') AND begin_date != finish_date';
-    $tmp = db_get_row($sql, $params);
+    $sql = 'SELECT biz_schedule_id FROM biz_schedule WHERE (begin_date LIKE \''.$y.'-'.$m.'%\' OR finish_date LIKE \''.$y.'-'.$m.'%\') AND begin_date != finish_date';
+    $tmp = db_get_all($sql, $params);
 
     if (!$tmp) {
         return false;
     }
 
-    foreach ($tmp as $value) {
-        $members = biz_getJoinIdSchedule($value);
-        if (in_array($id, $members)) {
-            $contain[] = $value;
+    foreach ($tmp as $index) {
+        foreach ($index as $value) {
+            $members = biz_getJoinIdSchedule($value);
+            if (in_array($id, $members)) {
+                $contain[] = $value;
+            }
         }
     }
 
@@ -534,8 +574,8 @@ function biz_isBannerSchedule($y, $m, $d, $id)
             $begin_date = strtotime($value['begin_date'].' 00:00:00');
             $finish_date = strtotime($value['finish_date'].' 00:00:00');
 
-            if (($begin_date < $testing) && ($finish_date > $testing)) {
-                $schedule += biz_getScheduleInfo($value['biz_schedule_id']);
+            if (($begin_date < $testing) && ($finish_date >= $testing)) {
+                $schedule[] = biz_getScheduleInfo($value['biz_schedule_id']);
             }
         }
     }
@@ -543,16 +583,54 @@ function biz_isBannerSchedule($y, $m, $d, $id)
     return $schedule;
 }
 
+//指定されたTodoに関する権限があるかどうかをチェックする関数
+function biz_isPermissionTodo($u, $biz_todo_id)
+{
+    $biz_todo = biz_getTodo($biz_todo_id);
+    $public_flag = $biz_todo['public_flag'];
+    $biz_group_id = $biz_todo['biz_group_id'];
+    $target_c_member_id = $biz_todo['c_member_id'];
+
+    switch ($public_flag) {
+    case 'group' :  //グループのメンバーにのみ権限が与えられるTodo
+        $biz_group = biz_getGroupData($biz_group_id);
+        if (biz_isGroupMember($u, $biz_group_id)) {
+            return true;
+        } elseif (empty($biz_group)) {  //グループが存在しない場合はTodoを公開する
+            return true;
+        } else {
+            return false;
+        }
+        break;
+    case 'private' :  //投稿者にのみ権限が与えられるTodo
+        if ($target_c_member_id == $u) {
+            return true;
+        } else {
+            return false;
+        }
+        break;
+    default :  //すべてのメンバーに権限が与えられるTodo
+        return true;
+    }
+}
+
 //指定メンバーのTodoを得る
-function biz_getMemberTodo($id, $cat = null)
+function biz_getMemberTodo($u, $target_c_member_id, $cat = null)
 {
     $sql = 'SELECT * FROM biz_todo WHERE c_member_id = ? AND is_check = ? ORDER BY biz_todo_id DESC;';  //メンバーが保有しているtodoid一覧
     $params = array(
-        intval($id),
+        intval($target_c_member_id),
         intval($cat),
     );
 
+    //priorityの高い順にソート
     $membertodo = db_get_all($sql, $params);
+    foreach ($membertodo as $key => $row) {
+       $priority[$key]  = $row['priority'];
+    }
+    if(!is_null($priority)) {
+        array_multisort($priority, SORT_ASC, $membertodo);
+    }
 
     $sql = 'SELECT * FROM biz_todo WHERE c_member_id = 0 AND is_check = ? ORDER BY biz_todo_id DESC;';  //共有Todo
     $params = array(
@@ -560,14 +638,17 @@ function biz_getMemberTodo($id, $cat = null)
     );
     $sharetodo = db_get_all($sql, $params);
 
-    $list = array_merge($membertodo , $sharetodo);  //各Todoの連結処理
+    $list = array();  //各Todoの連結処理
 
-    foreach ($list as $key => $value) {
-        $sql = 'SELECT nickname FROM c_member WHERE c_member_id = ?';
-        $params = array(
-            ($list[$key]['writer_id']),
-        );
-        $list[$key]['writer_name'] = db_get_one($sql, $params);
+    foreach (array_merge($membertodo, $sharetodo) as $key => $value) {
+        if (biz_isPermissionTodo($u, $value['biz_todo_id'])) {
+            $sql = 'SELECT nickname FROM c_member WHERE c_member_id = ?';
+            $params = array(
+                intval($value['writer_id']),
+            );
+            $list[$key] = $value;
+            $list[$key]['writer_name'] = db_get_one($sql, $params);
+        }
     }
 
     return $list;
@@ -586,6 +667,53 @@ function biz_getTodo($id)
     return db_get_row($sql, $params);
 }
 
+//カレンダー表示用期限付きTodoリストの取得
+function biz_schedule_todo4c_member_id($u, $c_member_id, $year, $month, $day = null)
+{
+    $sql = 'SELECT biz_todo_id FROM biz_todo WHERE c_member_id = ?';
+    $params = array(intval($c_member_id));
+    $ids = db_get_col($sql, $params);
+    $ids = implode(', ', $ids);
+    if (!$ids) {
+        return array();
+    }
+
+    if (!is_null($day)) {
+        $sql = 'SELECT * FROM biz_todo WHERE biz_todo_id IN ('.$ids.')' .
+                ' AND due_datetime = ?';
+        $params = array(
+            sprintf('%04d-%02d-%02d', intval($year), intval($month), intval($day)) . ' 00:00:00',
+        );
+
+        $list = array();
+        foreach(db_get_all($sql, $params) as $key => $value) {
+            if(biz_isPermissionTodo($u, $value['biz_todo_id'])) {
+                $list[$key] = $value;
+            }
+        }
+        
+        return $list;
+    } else {
+        $sql = 'SELECT * FROM biz_todo WHERE biz_todo_id IN ('.$ids.')' .
+                ' AND due_datetime > ? AND due_datetime <= ?';
+        $max_day = date("t", mktime(0,0,0,intval($month),1,intval($year) ));
+        $params = array(
+            sprintf('%04d-%02d', intval($year), intval($month)) . '-01 00:00:00',
+            sprintf('%04d-%02d', intval($year), intval($month)) . '-' . $max_day . ' 23:59:59'
+        );
+        $list = db_get_all($sql, $params);
+
+        $res = array();
+        foreach ($list as $item) {
+            if(biz_isPermissionTodo($u, $item['biz_todo_id'])) {
+                $day = date('j', strtotime($item['due_datetime']));
+                $res[$day][] = $item;
+            }
+        }
+        return $res;
+    }
+}
+
 //自分が投稿したTodoの一覧を得る
 function biz_getPostedTodo($id, $limit = null)
 {
@@ -596,12 +724,17 @@ function biz_getPostedTodo($id, $limit = null)
     );
 
     if ($limit) {
-        $list = db_get_all_limit($sql, 0, intval($limit), $params);
+        $tmp = db_get_all_limit($sql, 0, intval($limit), $params);
     } else {
-        $list = db_get_all($sql, $params);
+        $tmp = db_get_all($sql, $params);
     }
 
-    foreach ($list as $key => $value) {
+    $list = array();
+    foreach ($tmp as $key => $value) {
+        if (!biz_isPermissionTodo($id, $value['biz_todo_id'])) {
+            continue;
+        }
+        $list[$key] = $value;
         $sql = 'SELECT nickname FROM c_member WHERE c_member_id = ?';
         $params = array(
             intval($list[$key]['c_member_id']),
@@ -679,24 +812,15 @@ function biz_getJoinGroupList($c_member_id, $page, $page_size)
 //SET---------------------------------------------
 
 //スケジュール登録
-function biz_insertSchedule($title, $member_id, $begin_date, $finish_date, $begin_time = null, $finish_time = null,
+function biz_insertSchedule($title, $c_member_id, $begin_date, $finish_date, $begin_time = null, $finish_time = null,
                                                         $value = '', $rep_type, $first_id = 0,
-                                                        $join_members = array(), $join_shisetsu = array())
+                                                        $biz_group_id = 0, $public_flag = "public", $join_members = array())
 {
     //登録値のセット、チェック
     if (!$value) {
         $value = '';
     }
 
-    //参加者が指定されていない
-    if (empty($join_members)) {
-        $join_members = db_get_col('SELECT c_member_id FROM c_member');  //強制的に全員参加と見なす
-    }
-
-    if (empty($join_shisetsu)) {
-        $join_shisetsu = array();
-    }
-        
     if (!$rep_type) {
         $rep_type = 0;
     }
@@ -704,7 +828,7 @@ function biz_insertSchedule($title, $member_id, $begin_date, $finish_date, $begi
     //biz_scheduleにデータを追加する
     $data = array(
         'title' => $title,
-        'c_member_id' => intval($member_id),
+        'c_member_id' => intval($c_member_id),
         'begin_date' => $begin_date,
         'finish_date' => $finish_date,
         'begin_time' => $begin_time,
@@ -712,13 +836,16 @@ function biz_insertSchedule($title, $member_id, $begin_date, $finish_date, $begi
         'value' => $value,
         'rep_type' => $rep_type,
         'rep_first' => $first_id,
+        'biz_group_id' => $biz_group_id,
+        'public_flag' => $public_flag,
     );
-    db_insert('biz_schedule', $data);
+    $new_schedule_id = db_insert('biz_schedule', $data);
 
-    //biz_schedule_memberで予定とメンバーを関連づける
-
-    $new_schedule_id = mysql_insert_id();
-
+    // 参加者が指定されていない場合は、c_memberすべてが予定の参加者に
+    if (empty($join_members)) {
+        $sql = 'SELECT c_member_id FROM c_member';
+        $join_members = db_get_col($sql);
+    }
     foreach ($join_members as $value) {
         $data = array(
             'c_member_id' => $value,
@@ -730,47 +857,37 @@ function biz_insertSchedule($title, $member_id, $begin_date, $finish_date, $begi
 }
 
 //スケジュール削除
-function biz_deleteSchedule($id, $group = false)
+function biz_deleteSchedule($id)
 {
-    if ($group) {
-        $sql = 'SELECT first_id FROM biz_schedule WHERE biz_schedule_id = ?';
-        $params = array(intval($id));
-        $firstid = db_get_one($sql, $params);
-
-        $sql = 'SELECT biz_schedule_id FROM biz_schedule WHERE first_id = ?';
-        $params = array(intval($firstid));
-        $schedules = db_get_col($sql, $params);
-
-        $sql = 'DELETE FROM biz_schedule WHERE first_id = ?';
-        $params = array(intval($firstid));
-        db_query($sql, $params);
-
-        foreach ($schedules as $nowid) {
-            $sql = 'DELETE FROM biz_schedule_member WHERE biz_schedule_id = ?';
-            $params = array(intval($nowid));
-            db_query($sql, $params);
-        }
-    } else {
-        $sql = 'DELETE FROM biz_schedule WHERE biz_schedule_id = ?';
-        $params = array(
-            intval($id),
-        );
-        db_query($sql, $params);
-        $sql = 'DELETE FROM biz_schedule_member WHERE biz_schedule_id = ?';
-        $params = array(
-            intval($id),
-        );
-        db_query($sql, $params);
-    }
+    $sql = 'DELETE FROM biz_schedule WHERE biz_schedule_id = ?';
+    $params = array(
+        intval($id),
+    );
+    db_query($sql, $params);
+    $sql = 'DELETE FROM biz_schedule_member WHERE biz_schedule_id = ?';
+    $params = array(
+        intval($id),
+    );
+    db_query($sql, $params);
 }
 
 //スケジュール編集
 function biz_editSchedule($title, $member_id, $begin_date, $finish_date, $begin_time = null, $finish_time = null,
                                                     $value = '', $rep_type, $first_id = 0,
-                                                    $join_members = array(), $join_shisetsu,
-                                                    $id)
+                                                    $biz_group_id = 0, $public_flag = "public",
+                                                    $id, $join_members = array())
 {
-    $sql = 'UPDATE `biz_schedule` SET `title` = ?,`c_member_id` = ?,`begin_date` = ?,`finish_date` = ?,`begin_time` = ?,`finish_time` = ?,`value` = ?,`rep_type` = ?,`rep_first` = ?,`is_read` = 0 WHERE `biz_schedule_id` = ?';
+    $sql = 'UPDATE biz_schedule SET title = ?,c_member_id = ?,begin_date = ?,finish_date = ?,begin_time = ?,finish_time = ?,value = ?,rep_type = ?,rep_first = ?, biz_group_id = ?, public_flag = ?, is_read = 0 WHERE biz_schedule_id = ?';
+
+    //登録値のセット、チェック
+    if (!$value) {
+        $value = '';
+    }
+
+    if (!$rep_type) {
+        $rep_type = 0;
+    }
+
     $params = array(
         $title,
         $member_id,
@@ -781,11 +898,13 @@ function biz_editSchedule($title, $member_id, $begin_date, $finish_date, $begin_
         $value,
         $rep_type,
         $first_id,
+        $biz_group_id,
+        $public_flag,
         $id,
     );
     db_query($sql, $params);
-
-    $sql = 'DELETE FROM `biz_schedule_member` WHERE `biz_schedule_id` = ?';
+    
+    $sql = 'DELETE FROM biz_schedule_member WHERE biz_schedule_id = ?';
     $params = array(
         intval($id),
     );
@@ -797,6 +916,7 @@ function biz_editSchedule($title, $member_id, $begin_date, $finish_date, $begin_
             'biz_schedule_id' => intval($id),
             'is_read' => 0,
         );
+        
         db_insert('biz_schedule_member', $data);
     }
 }
@@ -811,7 +931,7 @@ function biz_readSchedule($member_id, $schedule_id)
     );
     $sid = db_get_one($sql, $params);
 
-    $sql = 'UPDATE `biz_schedule_member` SET `is_read` = \'1\' WHERE `biz_schedule_member_id` = ?';
+    $sql = 'UPDATE biz_schedule_member SET is_read = \'1\' WHERE biz_schedule_member_id = ?';
     $params = array(
         intval($sid),
     );
@@ -867,7 +987,7 @@ function biz_editGroup($biz_group_id, $name, $member_id, $info, $image_name, $me
 
     //biz_groupにデータを追加する
 
-    $sql = 'UPDATE `biz_group` SET `name` = ?,`info` = ?,`image_filename` = ? WHERE `biz_group_id` = ?';
+    $sql = 'UPDATE biz_group SET name = ?,info = ?,image_filename = ? WHERE biz_group_id = ?';
     $params = array(
         $name,
         $info,
@@ -903,6 +1023,14 @@ function biz_deleteGroup($group_id)
     $params = array(
         intval($group_id),
     );    $result = db_query($sql, $params);
+
+
+    $sql = 'UPDATE biz_schedule SET public_flag = "private", biz_group_id = NULL WHERE biz_group_id = ?';
+    db_query($sql, array(intval($group_id)));
+
+    $sql = 'DELETE FROM biz_todo WHERE biz_group_id = ?'; 
+    db_query($sql, array(intval($group_id))); 
+
 }
 
 //グループに参加
@@ -937,7 +1065,7 @@ function biz_editShisetsu($id, $name, $image_name, $info = '')
         $image_name = 0;
     }
 
-    $sql = 'UPDATE `biz_shisetsu` SET `name` = ?,`image_filename` = ?, `info` = ? WHERE `biz_shisetsu_id` = ?';
+    $sql = 'UPDATE biz_shisetsu SET name = ?,image_filename = ?, info = ? WHERE biz_shisetsu_id = ?';
     $params = array(
         $name,
         $image_name,
@@ -957,19 +1085,13 @@ function biz_addShisetsuSchedule($shisetsu_id, $member_id, $date, $begin_time, $
         'begin_time' => $begin_time,
         'finish_time' => $finish_time,
     );
-    $insert_id = db_insert('biz_shisetsu_schedule', $data);
-
-    $data = array(
-        'shisetsu_id' => intval($shisetsu_id),
-        'schedule_id' => intval($insert_id),
-    );
-    db_insert('biz_schedule_shisetsu', $data);
+    return db_insert('biz_shisetsu_schedule', $data);
 }
 
 //施設予定削除
 function biz_deleteShisetsuSchedule($shisetsu_id)
 {
-    $sql = 'DELETE FROM `biz_shisetsu_schedule` WHERE biz_shisetsu_schedule_id = ?';
+    $sql = 'DELETE FROM biz_shisetsu_schedule WHERE biz_shisetsu_schedule_id = ?';
     $params = array(
         intval($shisetsu_id),
     );
@@ -980,13 +1102,24 @@ function biz_deleteShisetsuSchedule($shisetsu_id)
 }
 
 //Todo登録
-function biz_insertTodo($member_id, $memo, $writer_id, $sort_order, $is_all)
+function biz_insertTodo($member_id, $memo, $writer_id, $sort_order, $is_all,
+    $due_datetime = '', $priority = 3, $biz_group_id = '', $public_flag = 'public')
 {
     if ($is_all) {
         //共有Todo
         $member_id = 0;
     } elseif ($member_id == $writer_id) {
         $writer_name = '';
+    }
+
+    if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
+        if ($due_datetime == '') {
+            $due_datetime = '0000-01-01';
+        }
+
+        if ($biz_group_id == '') {
+            $biz_group_id = 0;
+        }
     }
 
     $data = array(
@@ -996,13 +1129,19 @@ function biz_insertTodo($member_id, $memo, $writer_id, $sort_order, $is_all)
         'writer_id' => $writer_id,
         'sort_order' => $sort_order,
         'r_datetime' => date("Y-m-d H:i"),
+        'due_datetime' => $due_datetime,
+        'priority' => $priority,
+        'biz_group_id' => $biz_group_id,
+        'public_flag' => $public_flag,
     );
     return db_insert('biz_todo', $data);
 }
 
 //Todo登録
-function biz_editTodo($member_id, $memo, $writer_id, $sort_order, $is_all, $target)
+function biz_editTodo($member_id, $memo, $writer_id, $sort_order, $is_all, $biz_todo_id, $is_done, $due_datetime, $priority, $biz_group_id, $public_flag)
 {
+    $todo = biz_getTodo($biz_todo_id);
+
     if ($is_all) {
         //共有Todo
         $member_id = 0;
@@ -1010,14 +1149,24 @@ function biz_editTodo($member_id, $memo, $writer_id, $sort_order, $is_all, $targ
         $writer_name = '';
     }
 
-    $sql = 'UPDATE `biz_todo` SET `c_member_id` = ?, `memo` = ?, `writer_id` = ?, `r_datetime` = ? WHERE `biz_todo_id` = ?';
+    if ($is_done != $todo['is_check']) {
+        biz_checkTodo($biz_todo_id, $todo['is_check']);
+    }
+    
+    $sql = 'UPDATE biz_todo SET c_member_id = ?, memo = ?, writer_id = ?,'
+        .'r_datetime = ?, due_datetime = ?, priority = ?, biz_group_id = ?,'
+        .'public_flag = ? WHERE biz_todo_id = ?';
 
     $params = array(
         intval($member_id),
         $memo,
         intval($writer_id),
         date("Y-m-d H:i"),
-        $target,
+        $due_datetime,
+        intval($priority),
+        intval($biz_group_id),
+        $public_flag,
+        intval($biz_todo_id),
     );
 
     $result = db_query($sql, $params);
@@ -1045,10 +1194,10 @@ function biz_checkTodo($chid, $is_check)
 {
     if ($is_check) {
     //チェックを解除する
-        $sql = 'UPDATE `biz_todo` SET `is_check` = \'0\' WHERE `biz_todo_id` = ?';
+        $sql = 'UPDATE biz_todo SET is_check = \'0\' WHERE biz_todo_id = ?';
     } else {
     //チェックをつける
-        $sql = 'UPDATE `biz_todo` SET `is_check` = \'1\' WHERE `biz_todo_id` = ?';
+        $sql = 'UPDATE biz_todo SET is_check = \'1\' WHERE biz_todo_id = ?';
     }
 
     $params = array(
@@ -1119,7 +1268,7 @@ function biz_deleteImage($filename)
 
 function biz_deleteGroupImage($id, $filename)
 {
-    $sql = 'UPDATE `biz_group` SET `image_filename` = \'0\' WHERE `biz_group_id` = ?';
+    $sql = 'UPDATE biz_group SET image_filename = \'0\' WHERE biz_group_id = ?';
     $params = array(
         intval($id),
     );
@@ -1129,7 +1278,7 @@ function biz_deleteGroupImage($id, $filename)
 
 function biz_deleteShisetsuImage($id, $filename)
 {
-    $sql = 'UPDATE `biz_shisetsu` SET `image_filename` = \'0\' WHERE `biz_shisetsu_id` = ?';
+    $sql = 'UPDATE biz_shisetsu SET image_filename = \'0\' WHERE biz_shisetsu_id = ?';
 
     $params = array(
         intval($id),
@@ -1141,7 +1290,7 @@ function biz_deleteShisetsuImage($id, $filename)
 
 function biz_changeNickname($member_id, $new)
 {
-    $sql = 'UPDATE `c_member` SET `nickname` = ? WHERE `c_member_id` = ?';
+    $sql = 'UPDATE c_member SET nickname = ? WHERE c_member_id = ?';
     $params = array(
         $new,
         intval($member_id),
@@ -1161,7 +1310,7 @@ function biz_deleteShisetsu($id)
     //画像削除
     biz_deleteShisetsuImage($id, $shisetsu['image_filename']);
 
-    $sql = 'DELETE FROM `biz_shisetsu` WHERE biz_shisetsu_id = ?';
+    $sql = 'DELETE FROM biz_shisetsu WHERE biz_shisetsu_id = ?';
     $params = array(
         intval($id),
     );
@@ -1211,14 +1360,13 @@ function biz_do_common_send_schedule_mail()
     }
 
     foreach ($send_list as $key => $value) {
-        $c_member_secure = db_common_c_member_secure4c_member_id($key);
+        $c_member_secure = db_member_c_member_secure4c_member_id($key);
         $pc_address = $c_member_secure['pc_address'];
 
         $params = array(
-            "c_member" => db_common_c_member4c_member_id_LIGHT($key),
+            "c_member" => db_member_c_member4c_member_id_LIGHT($key),
             "c_schedule_list" => $value,
         );
-        var_dump($pc_address, $params);
         fetch_send_mail($pc_address, 'm_pc_schedule_mail', $params);
     }
 }

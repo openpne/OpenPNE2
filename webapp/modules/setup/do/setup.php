@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -19,7 +19,7 @@ class setup_do_setup extends OpenPNE_Action
             $errors[] = 'パスワードが一致していません';
         }
         if ($requests['admin_password'] != $requests['admin_password2']) {
-            $errors[] = '管理者パスワードが一致していません';
+            $errors[] = '管理用パスワードが一致していません';
         }
         if ($errors) {
             $this->handleError($errors);
@@ -36,8 +36,11 @@ class setup_do_setup extends OpenPNE_Action
         $data = array(
             'c_member_id' => 1,
             'hashed_password' => md5($requests['password']),
+            'hashed_password_query_answer' => '',
             'pc_address' => t_encrypt($requests['pc_address']),
+            'ktai_address' => '',
             'regist_address' => t_encrypt($requests['pc_address']),
+            'easy_access_id' => '',
         );
         db_insert('c_member_secure', $data);
 
@@ -45,6 +48,7 @@ class setup_do_setup extends OpenPNE_Action
         $data = array(
             'username' => $requests['admin_username'],
             'password' => md5($requests['admin_password']),
+            'auth_type' => 'all',
         );
         db_insert('c_admin_user', $data);
 

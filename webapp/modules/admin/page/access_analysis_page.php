@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -8,6 +8,9 @@ class admin_page_access_analysis_page extends OpenPNE_Action
 {
     function execute($requests)
     {
+        if (!LOG_C_ACCESS_LOG) {
+            admin_client_redirect('top', '指定されたページにはアクセスできません');
+        }
         //----------リクエスト変数-------------//
         $ktai_flag = $requests['ktai_flag'];
         $ymd = $requests['ymd'];

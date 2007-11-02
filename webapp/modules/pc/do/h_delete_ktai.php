@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -8,11 +8,14 @@ class pc_do_h_delete_ktai extends OpenPNE_Action
 {
     function execute($requests)
     {
-        $q = $requests['c_member_id'];
+        $u = $GLOBALS['AUTH']->uid();
 
-        k_do_update_ktai_address($q,"");
+        if (IS_GET_EASY_ACCESS_ID == 3 || IS_GET_EASY_ACCESS_ID == 2) {
+            handle_kengen_error();
+        }
+
+        db_member_update_ktai_address($u, '');
         openpne_redirect('pc', 'page_h_ktai_delete_end');
-
     }
 }
 

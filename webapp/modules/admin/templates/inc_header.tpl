@@ -1,110 +1,177 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-   "http://www.w3.org/TR/html4/loose.dtd">
-<html lang="ja">
+({assign var="title" value="`$smarty.const.SNS_NAME`管理画面"}) 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="Content-Style-Type" content="text/css">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>({$title})</title>
-<link rel="stylesheet" href="modules/admin/default.css" type="text/css">
+<meta content="text/css" http-equiv="content-style-type" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<link href="modules/admin/default.css" rel="stylesheet" type="text/css" media="all" />
+<script type="text/javascript" src="./js/prototype.js"></script>
+<script type="text/javascript" src="./modules/admin/default.js"></script>
 </head>
+<body id="admin_page_({$CURRENT_ACTION})">
 
-<body>
+<div class="container">
 
-<table border="0" cellspacing="0" cellpadding="0">
+({*ここから:header*})
 
-<tr>
-<td style="width:100%;background:#000000;color:#ffffff;padding:5px;" colspan="2">
+<div class="header">
+<div class="ttl"><h1><a href="?m=({$module_name})">({$title})</a></h1><span>【<a href="./" target="_blank">サイト確認</a>】</span></div>
+<div class="naviHelp"></div>
+</div>
 
-<h1><a href="?m=({$module_name})" title="({$title})">({$title})</a></h1>
+({*ここまで:header*})
 
-</td>
-</tr>
-<tr>
-<td style="background:#F0F3F3;padding:5px;" valign="top">
+({*ここから:navi*})
 
 ({if $display_navi})
-<div id="site_navi">
+<div class="navi">
+<div class="naviMain">
+
+({****************})
+({****************})
 
 ({if $auth_type == 'all' || $auth_type == ''})
-<p>SNS管理</p>
-<ul>
+<ul class="admin">
+
+<li id="adminSiteMember" onmouseover="menu('adminSiteMember','adminSiteMemberCont')" onmouseout="menu('adminSiteMember','adminSiteMemberCont')"><a class="tab" href="({if $auth_type == 'all'})?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})({elseif $auth_type == 'all' || $auth_type == ''})?m=({$module_name})&amp;a=page_({$hash_tbl->hash('send_invites')})({else})?m=({$module_name})&amp;a=page_({$hash_tbl->hash('csv_download')})({/if})">メンバー管理</a>
+<ul id="adminSiteMemberCont" class="pull">
 ({if $auth_type == 'all'})
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})" title="メンバーリスト: ユーザ登録情報閲覧、メッセージ送信、強制退会">メンバーリスト</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})">メンバーリスト</a></li>
 ({/if})
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('send_invites')})" title="SNS招待メール送信: 複数のメールアドレス宛に招待メールを送信">SNS招待メール送信</a></li>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_image')})" title="画像リスト・管理: SNSに登録されている画像の一覧、登録、削除">画像リスト・管理</a></li>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('diary_list')})" title="日記管理">日記管理</a></li>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('diary_comment_list')})" title="日記コメント管理">日記コメント管理</a></li>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('topic_list')})" title="トピック・イベント管理">トピック・イベント管理</a></li>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('topic_comment_list')})" title="トピック・イベントのコメント管理">トピック・イベントのコメント管理</a></li>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('delete_kakikomi')})" title="書き込み管理: 日記、コミュニティ、コミュニティトピックの強制削除">書き込み削除</a></li>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('manage_c_commu')})" title="初期コミュニティ管理: 新規登録時に参加させるコミュニティの設定">初期コミュニティ管理</a></li>
-</ul>
-
-<p>SNS統計情報</p>
-
-<ul>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('user_analysis_generation')})" title="世代別ユーザー表示">世代別ユーザー表示</a></li>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('user_analysis_date_month')})" title="登録日別ユーザー表示（月次集計）">登録日別ユーザー表示（月次集計）</a></li>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('user_analysis_date_day')})" title="登録日別ユーザー表示（日次集計）">登録日別ユーザー表示（日次集計）</a></li>
-({foreach from=$profile_list item=item})
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('user_analysis_profile')})&target_c_profile_id=({$item.c_profile_id})">({$item.caption})別ユーザー表示</a></li>
-({/foreach})
-
-({if $smarty.const.LOG_C_ACCESS_LOG})
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('access_analysis_month')})&ktai_flag=0" title="PCページ（月次集計）">PCページ月次集計</a></li>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('access_analysis_month')})&ktai_flag=1" title="携帯ページ（月次集計）">携帯ページ月次集計</a></li>
-({/if})
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('send_invites')})">招待メール送信</a></li>
+({if $auth_type == 'all'})
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('csv_download')})">CSVダウンロード</a></li>
+({/if})
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('import_c_member')})">CSVインポート</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('blacklist')})">ブラックリスト管理</a></li>
+</ul>
+</li>
+
+({****})
+
+<li id="adminImageKakikomi" onmouseover="menu('adminImageKakikomi','adminImageKakikomiCont')" onmouseout="menu('adminImageKakikomi','adminImageKakikomiCont')">
+<a class="tab" href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_image')})">画像・書き込み管理</a>
+<ul id="adminImageKakikomiCont" class="pull">
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_image')})">アップロード画像リスト</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_image')})">画像アップロード・削除</a></li>
+({if $smarty.const.OPENPNE_USE_FILEUPLOAD})
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_file')})">アップロードファイルリスト</a></li>
+({/if})
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('diary_list')})">日記管理</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('diary_comment_list')})">日記コメント管理</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('commu_list')})">コミュニティ管理</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('topic_list')})">トピック・イベント管理</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('topic_comment_list')})">トピック・イベントのコメント管理</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('review_list')})">レビュー管理</a></li>
+</ul>
+</li>
+
+({****})
+
+<li id="adminStatisticalInformation" onmouseover="menu('adminStatisticalInformation','adminStatisticalInformationCont')" onmouseout="menu('adminStatisticalInformation','adminStatisticalInformationCont')"><a class="tab" href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('user_analysis_generation')})">統計情報</a>
+<ul id="adminStatisticalInformationCont" class="pull">
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('user_analysis_generation')})">世代別メンバー数表示</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('user_analysis_date_month')})">登録日別メンバー数表示（月次集計）</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('user_analysis_date_day')})">登録日別メンバー数表示（日次集計）</a></li>
+({foreach from=$profile_list item=item})
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('user_analysis_profile')})&amp;target_c_profile_id=({$item.c_profile_id})">({$item.caption})別メンバー数表示</a></li>
+({/foreach})
+({if $smarty.const.LOG_C_ACCESS_LOG})
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('access_analysis_month')})&amp;ktai_flag=0">PCページ月次集計</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('access_analysis_month')})&amp;ktai_flag=1">携帯ページ月次集計</a></li>
+({/if})
+</ul>
+</li>
 
 </ul>
 ({/if})
 
-<p>SNS設定</p>
-<ul>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_skin_image')})" title="スキン画像変更: スキン画像変更、ナビゲーション互換設定">スキン画像変更</a></li>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_sns_config')})" title="配色・CSS変更: 配色設定、カスタムCSS">配色・CSS変更</a></li>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_navi')})" title="ナビゲーション変更: ナビゲーションボタンのリンク先、キャプションを変更">ナビゲーション変更</a></li>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_admin_info')})" title="お知らせ変更・HTML挿入: お知らせ、利用規約変更、HTML挿入">お知らせ変更・HTML挿入</a></li>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_banner')})" title="バナー管理: トップバナー、サイドバナー追加、任意HTML挿入">バナー管理</a></li>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('limit_domain')})" title="ドメイン制限: ドメイン制限追加、編集、削除">ドメイン制限</a></li>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_api')})" title="OpenPNE API設定: API通信を許可するIPアドレスの設定">OpenPNE API設定</a></li>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_cmd')})" title="CMD設定: CMDを許可するページの設定">CMD設定</a></li>
+({****************})
+({****************})
+
+<ul class="design">
+
+<li id="adminDesign" onmouseover="menu('adminDesign','adminDesignCont')" onmouseout="menu('adminDesign','adminDesignCont')"><a class="tab" href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_skin_image')})">デザイン</a>
+<ul id="adminDesignCont" class="pull">
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_skin_image')})">スキン画像変更</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_sns_config')})">配色・CSS変更</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_sns_config_ktai')})">携帯版配色変更</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_navi')})">ナビゲーション変更</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('insert_html')})">HTML挿入</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_entry_point')})">テンプレート挿入</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_banner')})">バナー設定</a></li>
+</ul>
+</li>
+
 </ul>
 
-({if $ADMIN_INIT_CONFIG})
-<ul>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_admin_config')})" title="SNS設定変更: SNSの動作に関する詳細設定">SNS設定変更</a></li>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_profile')})" title="プロフィール項目変更: プロフィール項目の追加、編集、削除、並び替え">プロフィール項目変更</a></li>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_category')})" title="コミュニティカテゴリ変更: コミュニティカテゴリの追加、編集、削除、並び替え">コミュニティカテゴリ変更</a></li>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_mail_send')})" title="メール設定変更: SNSから送信する各種メールの送信設定、文言変更">メール設定変更</a></li>
-</ul>
+({****************})
+({****************})
+
+<ul class="config">
+
+<li id="adminSNSConfig" onmouseover="menu('adminSNSConfig','adminSNSConfigCont')" onmouseout="menu('adminSNSConfig','adminSNSConfigCont')"><a class="tab" href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_admin_config')})">SNS設定</a>
+<ul id="adminSNSConfigCont" class="pull">
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_admin_config')})">SNS設定</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_profile')})">プロフィール項目設定</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_category')})">コミュニティカテゴリ設定</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('manage_c_commu')})">初期コミュニティ設定</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_holiday')})">祝日設定</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_mail_send')})">メール送信設定</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_mail')})">メール文言変更</a></li>
+({if $smarty.const.OPENPNE_USE_POINT_RANK})
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_rank')})">ポイント・ランク設定</a></li>
 ({/if})
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('limit_domain')})">招待メールドメイン制限</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_cmd')})">CMD設定</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_api')})">API設定</a></li>
+</ul>
+</li>
 
-<ul>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_free_page')})" title="フリーページ一覧: フリーページの追加、編集、削除">フリーページ管理</a></li>
+({****})
+
+<li id="adminInfoKiyaku" onmouseover="menu('adminInfoKiyaku','adminInfoKiyakuCont')" onmouseout="menu('adminInfoKiyaku','adminInfoKiyakuCont')"><a class="tab" href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_admin_info')})">お知らせ・規約設定</a>
+<ul id="adminInfoKiyakuCont" class="pull">
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_admin_info')})">お知らせ・規約設定</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_free_page')})">フリーページ管理</a></li>
+</ul>
+</li>
+
 </ul>
 
-<p>管理ページ設定</p>
-<ul>
+({****************})
+({****************})
+
+<ul class="adminadmin">
+
+<li id="adminAdminConfig" onmouseover="menu('adminAdminConfig','adminAdminConfigCont')" onmouseout="menu('adminAdminConfig','adminAdminConfigCont')"><a class="tab" href="({if $auth_type == 'all'})?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_admin_user')})({else})?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_admin_password')})({/if})">管理画面設定</a>
+<ul id="adminAdminConfigCont" class="pull">
 ({if $auth_type == 'all'})
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_admin_user')})" title="アカウント管理: 管理画面ログイン用アカウントの管理">アカウント管理</a><br>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_admin_user')})">アカウント管理</a></li>
 ({/if})
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_admin_password')})" title="パスワード変更: 管理画面ログイン用パスワードの変更">パスワード変更</a><br>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('update_hash_table')})" title="ページ名ランダム生成: 管理画面のページ名を推測不可能なランダム文字列で置換">ページ名ランダム生成</a><br>
-<li><a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('logout','do')})&amp;sessid=({$PHPSESSID})" title="ログアウト: 管理画面からログアウト">ログアウト</a>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_admin_password')})">パスワード変更</a></li>
+({if $auth_type == 'all'})
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('update_hash_table')})">ページ名ランダム生成</a></li>
+({/if})
+</ul>
+</li>
+
 </ul>
 
+({****************})
+({****************})
 
+<p id="logout"><a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('logout','do')})&amp;sessid=({$PHPSESSID})">ログアウト</a></p>
 
-<div style="text-align:left;padding:.5em 5px;">
-【<a href="./" title="サイトを表示" target="_blank">サイトを表示</a>】
+({****************})
+({****************})
+
 </div>
 
-</div>
 ({else})
-&nbsp;
+<div>({*naviSubに閉じタグに対応*})
 ({/if})
 
-</td>
-<td style="width:100%;padding:5px;" valign="top">
+({*続く:各ページのnaviSubへ続く*})

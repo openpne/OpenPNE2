@@ -1,8 +1,10 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
+
+require_once 'OpenPNE/KtaiID.php';
 
 class ktai_do_o_insert_c_member extends OpenPNE_Action
 {
@@ -14,23 +16,28 @@ class ktai_do_o_insert_c_member extends OpenPNE_Action
     function execute($requests)
     {
         //<PCKTAI
-        if (defined('OPENPNE_REGIST_FROM') &&
-                !((OPENPNE_REGIST_FROM & OPENPNE_REGIST_FROM_KTAI) >> 1)) {
-            openpne_redirect('ktai', 'page_o_login');
+        if (!((OPENPNE_REGIST_FROM & OPENPNE_REGIST_FROM_KTAI) >> 1)) {
+            openpne_redirect('ktai', 'page_o_login', array('msg' => 42));
         }
         //>
 
         // --- リクエスト変数
         $ses = $requests['ses'];
+        $aff_id = $requests['aff_id'];
         // ----------
 
         //--- 権限チェック
         //セッションが有効
 
         // セッションが有効かどうか
-        if (!$pre = c_member_ktai_pre4session($ses)) {
+        if (!$pre = db_member_c_member_ktai_pre4session($ses)) {
             // 無効の場合、login へリダイレクト
-            openpne_redirect('ktai', 'page_o_login');
+            openpne_redirect('ktai', 'page_o_login', array('msg' => 42));
+        }
+
+        // メールアドレスが登録できるかどうか
+        if (!util_is_regist_mail_address($pre['ktai_address'])) {
+            openpne_redirect('ktai', 'page_o_login', array('msg' => 42));
         }
         //---
 
@@ -54,17 +61,16 @@ class ktai_do_o_insert_c_member extends OpenPNE_Action
         }
 
         // 値の整合性をチェック(DB)
-        $c_member_profile_list = do_config_prof_check_profile($validator->getParams(), $_REQUEST['public_flag']);
+        $c_member_profile_list = db_member_check_profile($validator->getParams(), $_REQUEST['public_flag']);
 
         // 必須項目チェック
-        $profile_list = db_common_c_profile_list4null();
+        $profile_list = db_member_c_profile_list4null();
         foreach ($profile_list as $profile) {
-            if ($profile['disp_regist'] &&
-                $profile['is_required'] &&
-                !$c_member_profile_list[$profile['name']]['value']
-            ) {
-                $errors[$profile['name']] = "{$profile['caption']}を入力してください";
-                break;
+            $value = $c_member_profile_list[$profile['name']]['value'];
+            if ($profile['disp_regist'] && $profile['is_required']) {
+                if (is_null($value) || $value === '' || $value === array()) {
+                    $errors[$profile['name']] = $profile['caption'] . 'を入力してください';
+                }
             }
         }
 
@@ -76,14 +82,34 @@ class ktai_do_o_insert_c_member extends OpenPNE_Action
             $errors[] = '生年月日を未来に設定することはできません';
         }
 
+        if (IS_GET_EASY_ACCESS_ID != 0) {
+            $easy_access_id = OpenPNE_KtaiID::getID();
+            if (!$easy_access_id && (IS_GET_EASY_ACCESS_ID == 2 || IS_GET_EASY_ACCESS_ID == 3) && (!$pre['is_disabled_regist_easy_access_id'])) {
+                openpne_redirect('ktai', 'page_o_regist_ktai_uid_err');
+            }
+            if (db_member_c_member_id4easy_access_id($easy_access_id)) {
+                $errors[] = 'この携帯個体識別番号はすでに登録されています';
+            }
+            if (db_member_easy_access_id_is_blacklist(md5($easy_access_id))) {
+                ktai_display_error('新規登録を完了できませんでした。');
+            }
+        }
+
         // 入力エラー
         if ($errors) {
             ktai_display_error($errors);
         }
 
         // insert c_member
-        $prof['ktai_address'] = $pre['ktai_address'];
         $prof['c_member_id_invite'] = $pre['c_member_id_invite'];
+
+        $c_member_secure = array(
+            'password' => $prof['password'],
+            'password_query_answer' => $prof['c_password_query_answer'],
+            'pc_address' => '',
+            'ktai_address' => $pre['ktai_address'],
+            'regist_address' => $pre['ktai_address'],
+        );
 
         switch ($prof['public_flag_birth_year']) {
         case "public":
@@ -98,28 +124,28 @@ class ktai_do_o_insert_c_member extends OpenPNE_Action
             break;
         }
 
-        if (!$c_member_id = k_do_insert_c_member($prof)) {
-            openpne_redirect('ktai', 'page_o_login');
+        if (!$c_member_id = util_regist_c_member($prof, $c_member_secure, $c_member_profile_list)) {
+            openpne_redirect('ktai', 'page_o_login', array('msg' => 42));
         }
-        // insert c_member_profile
-        do_config_prof_update_c_member_profile($c_member_id, $c_member_profile_list);
 
-        // insert c_friend(紹介者)
-        db_friend_insert_c_friend($c_member_id, $pre['c_member_id_invite']);
-
-        //管理画面で指定したコミュニティに強制参加
-        $c_commu_id_list = db_commu_regist_join_list();
-        foreach ($c_commu_id_list as $c_commu_id) {
-            do_inc_join_c_commu($c_commu_id, $c_member_id);
+        // 個体識別番号の登録
+        if ($easy_access_id) {
+            db_member_update_easy_access_id($c_member_id, $easy_access_id);
         }
 
         // delete c_member_ktai_pre
-        k_do_delete_c_member_ktai_pre($pre['c_member_ktai_pre_id']);
-
+        db_member_delete_c_member_ktai_pre4id($pre['c_member_ktai_pre_id']);
 
         do_insert_c_member_mail_send($c_member_id, $prof['password'], $pre['ktai_address']);
 
-        openpne_redirect('ktai', 'page_o_regist_end');
+        if ($aff_id) {
+            $p = array('aff_id' => $aff_id);
+        } else {
+            $p = array();
+        }
+        $p['c_member_id'] = $c_member_id;
+        
+        openpne_redirect('ktai', 'page_o_regist_end',$p);
     }
 
     function _getValidateRules()
@@ -180,7 +206,7 @@ class ktai_do_o_insert_c_member extends OpenPNE_Action
     function _getValidateRulesProfile()
     {
         $rules = array();
-        $profile_list = db_common_c_profile_list4null();
+        $profile_list = db_member_c_profile_list4null();
         foreach ($profile_list as $profile) {
             if ($profile['disp_regist']) {
                 $rule = array(

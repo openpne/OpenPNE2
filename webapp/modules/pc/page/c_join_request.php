@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -18,13 +18,13 @@ class pc_page_c_join_request extends OpenPNE_Action
 
 
         //メンバー情報
-        $this->set("member", db_common_c_member4c_member_id($u));
+        $this->set("member", db_member_c_member4c_member_id($u));
 
         //コミュニティID
         $this->set("c_commu_id", $target_c_commu_id);
 
         //community情報
-        $this->set("c_commu", _db_c_commu4c_commu_id($target_c_commu_id));
+        $this->set("c_commu", db_commu_c_commu4c_commu_id($target_c_commu_id));
 
         return 'success';
     }

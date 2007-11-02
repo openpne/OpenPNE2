@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -25,16 +25,29 @@ class pc_do_h_diary_add_insert_c_diary extends OpenPNE_Action
         // --- リクエスト変数
         $subject = $requests['subject'];
         $body = $requests['body'];
-        $public_flag = $requests['public_flag'];
+        $public_flag = util_cast_public_flag_diary($requests['public_flag']);
         $tmpfile_1 = $requests['tmpfile_1'];
         $tmpfile_2 = $requests['tmpfile_2'];
         $tmpfile_3 = $requests['tmpfile_3'];
-        $category = explode(' ', trim($requests['category']));
+        $category = preg_split('/\s+/', $requests['category']);
         // ----------
 
         $sessid = session_id();
         $c_member_id = $u;
 
+        if (count($category) > 5) {
+            $_REQUEST['msg'] = 'カテゴリは5つまでしか指定できません';
+            openpne_forward('pc', 'page', 'h_diary_add');
+            exit;
+        }
+        foreach($category as $value) {
+            if (mb_strwidth($value) > 20) {
+                $_REQUEST['msg'] = 'カテゴリはひとつにつき全角10文字（半角20文字）以内で入力してください';
+                openpne_forward('pc', 'page', 'h_diary_add');
+                exit;
+            }
+        }
+        
         $c_diary_id = db_diary_insert_c_diary($c_member_id, $subject, $body, $public_flag);
 
         foreach($category as $value) {
@@ -55,6 +68,12 @@ class pc_do_h_diary_add_insert_c_diary extends OpenPNE_Action
         t_image_clear_tmp($sessid);
 
         db_diary_update_c_diary($c_diary_id, $subject, $body, $public_flag, $filename_1, $filename_2, $filename_3);
+
+        if (OPENPNE_USE_POINT_RANK) {
+            //日記を書いた人にポイント付与
+            $point = db_action_get_point4c_action_id(4);
+            db_point_add_point($u, $point);
+        }
 
         $p = array('target_c_diary_id' => $c_diary_id);
         openpne_redirect('pc', 'page_fh_diary', $p);

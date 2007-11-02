@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -16,6 +16,9 @@ function db_review_c_review_list4member($c_member_id, $count = 10)
 function db_review_c_friend_review_list4c_member_id($c_member_id, $limit)
 {
     $friends = db_friend_c_member_id_list($c_member_id);
+    if (!$friends) {
+        return array();
+    }
     $ids = implode(',', array_map('intval', $friends));
 
     $sql = 'SELECT * FROM c_review INNER JOIN c_review_comment USING (c_review_id)' .
@@ -130,11 +133,18 @@ function db_review_write_product4asin($asin)
     $keyword = mb_convert_encoding($keyword, "UTF-8", "auto");
 
     $result = $amazon->searchAsin($asin);
+    if (PEAR::isError($result)) {
+        return false;
+    }
+
     $product  =$result[1];
     if ($result[1]['authors']) {
         $product['author'] = implode(',', $result[1]['authors']);
     }
-
+    
+    if (!is_array($product)) {
+        return false;
+    }
     foreach ($product as $key => $value) {
         $product[$key] = mb_convert_encoding($value, 'UTF-8', 'auto');
     }
@@ -151,34 +161,57 @@ function db_review_search_result4keyword_category($keyword, $category_id , $orde
 {
     $from = " FROM c_review INNER JOIN c_review_comment USING (c_review_id)";
 
-    $where = ' WHERE 1';
+    $wheres = array();
     $params = array();
     if ($keyword) {
-        $where .= ' AND c_review.title LIKE ?';
+        $wheres[] = 'c_review.title LIKE ?';
         $params[] = '%'.check_search_word($keyword).'%';
     }
     if ($category_id) {
-        $where .= ' AND c_review.c_review_category_id = ?';
+        $wheres[] = 'c_review.c_review_category_id = ?';
         $params[] = intval($category_id);
+    }
+    if ($wheres) {
+        $where = ' WHERE ' . implode(' AND ', $wheres);
+    } else {
+        $where = '';
     }
 
     switch ($orderby) {
     case "r_datetime":
     default:
-        $order = " ORDER BY r_datetime DESC";
+        $order = " ORDER BY r_datetime2 DESC";
         break;
     case "r_num":
-        $order = " ORDER BY write_num DESC, r_datetime DESC";
+        $order = " ORDER BY write_num DESC, r_datetime2 DESC";
         break;
     }
 
+    if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
+        $group = " GROUP BY c_review.c_review_id" .
+                ", c_review.title" .
+                ", c_review.release_date" .
+                ", c_review.manufacturer" .
+                ", c_review.author" .
+                ", c_review.c_review_category_id" .
+                ", c_review.image_small" .
+                ", c_review.image_medium" .
+                ", c_review.image_large" .
+                ", c_review.url" .
+                ", c_review.asin" .
+                ", c_review.list_price" .
+                ", c_review.retail_price" .
+                ", c_review.r_datetime";
+    } else {
+        $group = " GROUP BY c_review.c_review_id";
+    }
     $sql = "SELECT" .
             " c_review.*" .
-            ", MAX(c_review_comment.r_datetime) as r_datetime" .
+            ", MAX(c_review_comment.r_datetime) as r_datetime2" .
             ", COUNT(c_review_comment.c_review_comment_id) AS write_num" .
         $from .
         $where .
-        " GROUP BY c_review.c_review_id" .
+        $group .
         $order;
 
     $lst = db_get_all_page($sql, $page, $page_size, $params);
@@ -382,6 +415,9 @@ function db_review_c_member_review_c_member_review4c_commu_id($c_commu_id, $page
 
 function db_review_c_member_review_add_confirm_c_member_review4c_review_id($c_review_id, $c_member_id)
 {
+    if (!$c_review_id) {
+        return array();
+    }
     $c_review_id_str = implode(',', array_map('intval', $c_review_id));
     $sql = "SELECT * FROM c_review as cr, c_review_comment as crc , c_review_category as crc2 " .
             " WHERE cr.c_review_id = crc.c_review_id " .
@@ -408,7 +444,12 @@ function db_review_edit_c_review_comment4c_review_comment_id_c_member_id($c_revi
     return db_get_row($sql, $params);
 }
 
-
+function db_review_edit_c_review_comment4c_review_comment_id($c_review_comment_id)
+{
+    $sql = 'SELECT * FROM c_review_comment WHERE c_review_comment_id = ?';
+    $params = array(intval($c_review_comment_id));
+    return db_get_row($sql, $params);
+}
 
 function db_review_clip_add_c_review_id4c_review_id_c_member_id($c_review_id, $c_member_id)
 {
@@ -454,7 +495,7 @@ function db_review_count_c_review_comment4c_review_id($c_review_id)
 
 
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -568,6 +609,30 @@ function do_delete_c_review4c_review_id($c_review_id)
     // c_commu_review
     $sql = 'DELETE FROM c_commu_review WHERE c_review_id = ?';
     db_query($sql, $params);
+}
+
+//コミュニティのおすすめレビューを削除
+function db_review_delete_c_review4c_review_id($c_review_id)
+{
+    $sql = 'DELETE FROM c_review WHERE c_review_id = ?';
+    $params = array(intval($c_review_id));
+    db_query($sql, $params);
+}
+
+//コミュニティのおすすめレビューを削除
+function db_review_delete_c_commu_review4c_commu_review_id($c_commu_review_id)
+{
+    $sql = 'DELETE FROM c_commu_review WHERE c_commu_review_id = ?';
+    $params = array(intval($c_commu_review_id));
+    db_query($sql, $params);
+}
+
+//コミュニティのおすすめレビューを取得(一つ)
+function db_review_get_c_commu_review_one4c_commu_review_id($c_commu_review_id)
+{
+    $sql = 'SELECT * FROM c_commu_review WHERE c_commu_review_id = ?';
+    $params = array(intval($c_commu_review_id));
+    return db_get_row($sql, $params);
 }
 
 ?>

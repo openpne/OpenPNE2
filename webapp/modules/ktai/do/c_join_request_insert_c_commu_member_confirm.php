@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -47,9 +47,9 @@ class ktai_do_c_join_request_insert_c_commu_member_confirm extends OpenPNE_Actio
         db_commu_insert_c_commu_member_confirm($target_c_commu_id, $c_member_id_from, $body);
 
         //メッセージ
-        $c_commu        = _db_c_commu4c_commu_id($target_c_commu_id);
+        $c_commu        = db_commu_c_commu4c_commu_id($target_c_commu_id);
         $c_member_id_to = $c_commu['c_member_id_admin'];
-        $c_member_from  = db_common_c_member4c_member_id($c_member_id_from);
+        $c_member_from  = db_member_c_member4c_member_id($c_member_id_from);
 
         $subject ="コミュニティ参加要請メッセージ";
         $body_disp =
@@ -60,7 +60,7 @@ class ktai_do_c_join_request_insert_c_commu_member_confirm extends OpenPNE_Actio
             "\n".
             "この要請について、承認待ちリストから承認または拒否を選択してください。\n";
 
-        do_common_send_message_syoudaku($c_member_id_from, $c_member_id_to, $subject, $body_disp);
+        db_message_send_message_syoudaku($c_member_id_from, $c_member_id_to, $subject, $body_disp);
 
         $p = array('target_c_commu_id' => $target_c_commu_id);
         openpne_redirect('ktai', 'page_c_home', $p);

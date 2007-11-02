@@ -23,21 +23,26 @@
 </tr>
 ({/if})
 </table>
+
+({$INC_FOOTER_inc_page_bottom2|smarty:nodefaults})
+
 </td>
 
-({if $INC_FOOTER_side_banner_html_before || $INC_FOOTER_side_banner_html_after || $INC_FOOTER_inc_side_banner})
+({if $INC_FOOTER_side_banner_html_before || $INC_FOOTER_side_banner_html_after || $INC_FOOTER_inc_side_banner || $newschedule || $todolist })
 
 <td class="ext_sub_container_right" align="center" valign="top">
 ({**********************************})
 ({**ここから：サイドコンテンツ領域**})
 ({**********************************})
 
+({if $INC_FOOTER_side_banner_html_before || $INC_FOOTER_side_banner_html_after || $INC_FOOTER_inc_side_banner})
+
 ({strip})
 ({if $INC_FOOTER_side_banner_html_before || $INC_FOOTER_side_banner_html_after})
     ({if $before_after == 'before'})
-        ({$INC_FOOTER_side_banner_html_before|smarty:nodefaults})
+        ({$INC_FOOTER_side_banner_html_before|smarty:nodefaults|t_url2cmd:'side_banner'|t_cmd:'side_banner'})
     ({else})
-        ({$INC_FOOTER_side_banner_html_after|smarty:nodefaults})
+        ({$INC_FOOTER_side_banner_html_after|smarty:nodefaults|t_url2cmd:'side_banner'|t_cmd:'side_banner'})
     ({/if})
 ({else})
     ({if $INC_FOOTER_inc_side_banner.a_href})
@@ -54,11 +59,13 @@
 ({/if})
 ({/strip})
 
-({if $newschedule })
+({/if})
+
+({if $newschedule})
 ({$newschedule|smarty:nodefaults})
 ({/if})
 
-({if $todolist })
+({if $todolist})
 ({$todolist|smarty:nodefaults})
 ({/if})
 

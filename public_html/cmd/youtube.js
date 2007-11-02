@@ -1,9 +1,9 @@
 function main(id, width, height) {
-    if (!id.match(/^[a-zA-Z0-9_-]+$/)) {
+    if (!id.match(/^[a-zA-Z0-9_\-]+$/)) {
         return;
     }
-    width = parseInt(width);
-    height = parseInt(height);
+    if (!width) width = 0; else width = parseInt(width);
+    if (!height) height = 0; else height = parseInt(height);
     if (width <= 0 || width > 425) {
         width = 425;
     }

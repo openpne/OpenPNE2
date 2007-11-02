@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -10,6 +10,12 @@ class ktai_biz_do_fh_biz_schedule_edit extends OpenPNE_Action
     {
         $u  = $GLOBALS['KTAI_C_MEMBER_ID'];
         $tail = $GLOBALS['KTAI_URL_TAIL'];
+        
+        if (!biz_isPermissionSchedule($u, $requests['schedule_id'])) {
+            handle_kengen_error();
+        }
+        $schedule = biz_getScheduleInfo($requests['schedule_id']);
+        $requests['sc_b_year'] = $requests['sc_b_year'] + 2000;
 
         //ERROR----------------
         //存在しない日付
@@ -122,12 +128,11 @@ class ktai_biz_do_fh_biz_schedule_edit extends OpenPNE_Action
 
         $finish_date = $begin_date;  //当日中に終わる予定は、開始日と終了日は同一でなければならない
 
-
-        $finish_date = date("Y-m-d", strtotime($requests['sc_b_year'].'-'.$requests['sc_b_month'].'-'.($requests['sc_b_date']+($requests['sc_bn']-1))));
-
         $schedule_id = '';
 
-        biz_editSchedule($requests['sc_title'], $u, $begin_date, $finish_date, $begin_time, $finish_time, $requests['sc_memo'], $rp_rule, 0, $requests['sc_j_mem'], $requests['sc_j_plc'], $requests['schedule_id']);
+        $biz_schedule_member = biz_getJoinIdSchedule($requests['schedule_id']);
+
+        biz_editSchedule($requests['sc_title'], $schedule['c_member_id'], $begin_date, $finish_date, $begin_time, $finish_time, $requests['sc_memo'], $rp_rule, 0, $requests['sc_j_mem'], $requests['public_flag'], $requests['schedule_id'], $biz_schedule_member);
         $schedule_id = $requests['schedule_id'];
 
 
@@ -140,7 +145,7 @@ class ktai_biz_do_fh_biz_schedule_edit extends OpenPNE_Action
 
         $_REQUEST['msg'] = '予定を編集しました。';
         $_REQUEST['w'] = $week;
-        $_REQUEST['target_id'] = $target_id;
+        $_REQUEST['target_id'] = $requests['target_id'];
         $_REQUEST['id'] = biz_getScheduleMax();
 
         openpne_forward('ktai_biz', 'page', "fh_calendar_week");

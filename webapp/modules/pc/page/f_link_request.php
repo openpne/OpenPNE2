@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -15,12 +15,12 @@ class pc_page_f_link_request extends OpenPNE_Action
         $body = $requests['body'];
         // ----------
 
-        $c_member = db_common_c_member4c_member_id($target_c_member_id);
+        $c_member = db_member_c_member4c_member_id($target_c_member_id);
         if (!$c_member) {
             openpne_redirect('pc', 'page_h_err_f_home');
         }
 
-        $frined_status=db_common_friend_status($u, $target_c_member_id);
+        $frined_status=db_friend_status($u, $target_c_member_id);
 
         if ($target_c_member_id == $u) {
             openpne_redirect('pc', 'page_h_home');
@@ -36,7 +36,7 @@ class pc_page_f_link_request extends OpenPNE_Action
             openpne_redirect('pc', 'page_f_link_request_err_wait', $p);
         }
 
-        if (p_common_is_access_block($u, $target_c_member_id)) {
+        if (db_member_is_access_block($u, $target_c_member_id)) {
             openpne_redirect('pc', 'page_h_access_block');
         }
 

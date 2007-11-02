@@ -4,30 +4,21 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
+({$INC_HEADER_inc_html_head|smarty:nodefaults})
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Cache-Control" content="no-cache">
 <meta http-equiv="Expires" content="Thu, 01 Dec 1994 16:00:00 GMT">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="Content-Style-Type" content="text/css">
 <title>({$INC_HEADER_title})</title>
-({if $smarty.const.SKIN_VERSION=='1.8'})
-<link rel="stylesheet" href="./css/default_1_8.css?v=2.2.5" type="text/css">
-({else})
-<link rel="stylesheet" href="./css/default.css?v=2.2.5" type="text/css">
-({/if})
+<link rel="stylesheet" href="./css/default.css" type="text/css">
+<script type="text/javascript" src="./js/prototype.js"></script>
+<script type="text/javascript" src="./js/pne.js"></script>
 <style type="text/css">
 <!--
 /*枠線要素*/
-.border_00 { border: #({$INC_HEADER_color_config.border_00}) 1px solid ; }
 .border_01 { border: #({$INC_HEADER_color_config.border_01}) 1px solid ; }
-.border_02 { border: #({$INC_HEADER_color_config.border_02}) 1px solid ; }
-.border_03 { border: #({$INC_HEADER_color_config.border_03}) 1px solid ; }
-.border_04 { border: #({$INC_HEADER_color_config.border_04}) 1px solid ; }
-.border_05 { border: #({$INC_HEADER_color_config.border_05}) 1px solid ; }
-.border_06 { border: #({$INC_HEADER_color_config.border_06}) 1px solid ; }
 .border_07 { border: #({$INC_HEADER_color_config.border_07}) 1px solid ; }
-.border_08 { border: #({$INC_HEADER_color_config.border_08}) 1px solid ; }
-.border_09 { border: #({$INC_HEADER_color_config.border_09}) 1px solid ; }
 .border_10 { border: #({$INC_HEADER_color_config.border_10}) 1px solid ; }
 
 /*背景要素*/
@@ -45,6 +36,7 @@
 .bg_11 { background-color: #({$INC_HEADER_color_config.bg_11}) ; }
 .bg_12 { background-color: #({$INC_HEADER_color_config.bg_12}) ; }
 .bg_13 { background-color: #({$INC_HEADER_color_config.bg_13}) ; }
+.bg_14 { background-color: #({$INC_HEADER_color_config.bg_14}) ; }
 
 body { background-color: #({$INC_HEADER_color_config.bg_12}) ; }
 .container { background-color: #({$INC_HEADER_color_config.bg_13}) ; }
@@ -70,7 +62,16 @@ body { background-color: #({$INC_HEADER_color_config.bg_12}) ; }
   background: url(({t_img_url_skin filename=icon_3})) 50% 70%  no-repeat ;
 }
 
-* { font-family: "ＭＳ Ｐゴシック", "ヒラギノ角ゴ Pro W3", Osaka, sans-serif ; }
+* { font-family: "Hiragino Kaku Gothic Pro", "Hiragino Kaku Ghothic Pro W3", "ヒラギノ角ゴ Pro W3",({* "メイリオ", Meiryo,*}) "ＭＳ Ｐゴシック", Osaka, sans-serif ; }
+
+/*ここから：safari1.xパスワードフォーム非表示対策*/
+html:\66irst-child input[type="password"] { font-family: "Lucida Grande", "Hiragino Kaku Gothic Pro", "Hiragino Kaku Ghothic Pro W3", "ヒラギノ角ゴ Pro W3",sans-serif,"Osaka" ; }
+/*ここまで：safari1.xパスワードフォーム非表示対策*/
+
+/*テキスト入力欄のフォーカス時のクラス*/
+.text       { background-color:#F8F8F8; }
+.text_focus { background-color:#FFFFFF; }
+
 
 /*ボタンに対する背景画像の指定*/
 input.submit {
@@ -252,14 +253,32 @@ div.inc_page_header div.navi_global a.navi_global_9:hover {
 
 -->
 </style>
-({$INC_HEADER_inc_html_head|smarty:nodefaults})
+<script type="text/javascript">
+<!--
+({*テキスト入力欄の背景色変更*})
+TextFiledClassName_normal = 'text';
+TextFiledClassName_focus  = 'text_focus';
+
+Event.observe(window, 'load', setFocusClass, false);
+
+function setFocusClass() {
+	var TFs = $A(document.getElementsByClassName(TextFiledClassName_normal));
+	TFs.each(function (node){
+		node.TFclass = node.className;
+		node.TFclass_onfocus = TextFiledClassName_focus;
+		node.onfocus = function() { this.className = this.TFclass_onfocus; };
+		node.onblur  = function() { this.className = this.TFclass; };
+	});
+}
+//-->
+</script>
 </head>
 ({***************************************})
 ({**ここまで：旧inc_html_header.tplの内容**})
 ({***************************************})
 
-({if $smarty.const.OPENPNE_USE_COMMU_MAP && $c_commu.is_display_map})
-<script src="http://maps.google.co.jp/maps?file=api&amp;v=2&amp;key=({$smarty.const.GOOGLE_MAPS_API_KEY})" type="text/javascript"></script>
+({if $smarty.const.OPENPNE_USE_COMMU_MAP && $c_commu.is_display_map && $INC_HEADER_page_name == 'c_home'})
+<script src="http://maps.google.co.jp/maps?file=api&amp;v=2.x&amp;key=({$smarty.const.GOOGLE_MAPS_API_KEY})" type="text/javascript"></script>
 <script type="text/javascript">
 <!--
 function load() {
@@ -282,10 +301,13 @@ function load() {
 }
 //-->
 </script>
-<body onLoad="load()" onUnload="GUnload()" class="({$INC_HEADER_type})">
+<body onLoad="load()" onUnload="GUnload()" id="pc_page_({$INC_HEADER_page_name})">
 ({else})
-<body class="({$INC_HEADER_type})">
+<body id="pc_page_({$INC_HEADER_page_name})">
 ({/if})
+
+({$INC_HEADER_inc_page_top2|smarty:nodefaults})
+
 <div align="left">
 
 <table class="ext_sub_container" border="0" cellspacing="0" cellpadding="0">
@@ -357,7 +379,7 @@ function load() {
 ({if $inc_entry_point[1]})
 <tr>
 <td class="container">
-({$inc_entry_point[1]|smarty:nodefaults})
+({$inc_entry_point[1]|smarty:nodefaults|t_url2cmd:'entry_point'|t_cmd:'entry_point'})
 </td>
 </tr>
 ({/if})
@@ -371,30 +393,29 @@ function load() {
 ({if $inc_entry_point[2]})
 <tr>
 <td class="container">
-({$inc_entry_point[2]|smarty:nodefaults})
+({$inc_entry_point[2]|smarty:nodefaults|t_url2cmd:'entry_point'|t_cmd:'entry_point'})
 </td>
 </tr>
 ({/if})
-({if !$no_use_alert && $msg})
+({if !$no_use_alert && ($msg || $msg1 || $msg2 || $msg3 || $err_msg)})
 <tr>
 <td class="container main_content" align="center">
 
 ({*************************************})
 ({**ここから：旧inc_alert_box.tplの内容**})
 ({*************************************})
-({if $msg || $msg1 || $msg2 || $msg3 || $err_msg})
-<img src="./skin/dummy.gif" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 <!-- ************************* -->
 <!-- ******ここから：警告****** -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:({if $width})({$width})({else})580({/if})px;margin:0px auto;" class="border_07">
 <tr>
-<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
-<td style="width:({if $width})({$width-14})({else})566({/if})px;" class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
-<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+<td style="width:({if $width})({$width-14})({else})566({/if})px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 <tr>
-<td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 <td class="bg_01" align="center">
 <!-- *ここから：警告＞内容* -->
 ({*ここから：header*})
@@ -402,21 +423,20 @@ function load() {
 ({*ここまで：header*})
 ({*ここから：body*})
 <!-- ここから：主内容 -->
-({if !INC_HEADER_is_no_alert})
 <table border="0" cellspacing="0" cellpadding="0" style="width:({if $width})({$width-16})({else})564({/if})px;">
 <tr>
-<td style="width:({if $width})({$width-16})({else})564({/if})px;height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:({if $width})({$width-16})({else})564({/if})px;height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 <tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 <td style="width:150px;" class="bg_03" align="center" valign="middle">
 <!-- ここから：主内容＞警告アイコン -->
-<img src="./skin/dummy.gif" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 <img src="({t_img_url_skin filename=icon_alert_l})" class="icon">
-<img src="./skin/dummy.gif" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 <!-- ここまで：主内容＞警告アイコン -->
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 <td style="width:({if $width})({$width-153})({else})427({/if})px;height:50px;" class="bg_02" align="left" valign="middle">
 <div style="padding:8px 6px;" class="caution">
 <!-- ここから：主内容＞警告文本体 -->
@@ -425,44 +445,17 @@ function load() {
 ({if $msg2})({$msg2})<br>({/if})
 ({if $msg3})({$msg3})<br>({/if})
 ({foreach from=$err_msg item=item})
-({$item})</br>
+({$item})<br>
 ({/foreach})
 <!-- ここまで：主内容＞警告文本体 -->
 </div>
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 <tr>
-<td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 </table>
-({else})
-<table border="0" cellspacing="0" cellpadding="0" style="width:({if $width})({$width-16})({else})564({/if})px;">
-<tr>
-<td style="width:({if $width})({$width-16})({else})564({/if})px;height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-</tr>
-<tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-<td style="width:({if $width})({$width-18})({else})562({/if})px;height:50px;" class="bg_02" align="left" valign="middle">
-<div style="padding:8px 30px;">
-<!-- ここから：主内容＞メッセージ文本体 -->
-({if $msg})({$msg})<br>({/if})
-({if $msg1})({$msg1})<br>({/if})
-({if $msg2})({$msg2})<br>({/if})
-({if $msg3})({$msg3})<br>({/if})
-({foreach from=$err_msg item=item})
-({$item})</br>
-({/foreach})
-<!-- ここまで：主内容＞メッセージ文本体 -->
-</div>
-</td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-</tr>
-<tr>
-<td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-</tr>
-</table>
-({/if})
 <!-- ここまで：主内容 -->
 ({*ここまで：body*})
 ({*ここから：footer*})
@@ -470,18 +463,17 @@ function load() {
 ({*ここまで：footer*})
 <!-- *ここまで：警告＞＞内容* -->
 </td>
-<td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 <tr>
-<td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
-<td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
-<td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 </table>
 <!-- ******ここまで：警告****** -->
 <!-- ************************* -->
 
-({/if})
 ({*************************************})
 ({**ここまで：旧inc_alert_box.tplの内容**})
 ({*************************************})

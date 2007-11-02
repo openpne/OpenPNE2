@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -30,6 +30,9 @@ function db_rss_list_all_c_rss_cache_list($limit)
 function db_rss_list_friend_c_rss_cache_list($c_member_id, $limit)
 {
     $friends = db_friend_c_member_id_list($c_member_id, true);
+    if (!$friends) {
+        return array();
+    }
     $ids = implode(',', array_map('intval', $friends));
 
     $hint = db_mysql_hint('USE INDEX (r_datetime_c_member_id, r_datetime)');
@@ -110,7 +113,7 @@ function db_rss_is_future_rss_item($date)
 ?>
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 

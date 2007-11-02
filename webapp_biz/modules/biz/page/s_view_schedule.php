@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -19,6 +19,7 @@ class biz_page_s_view_schedule extends OpenPNE_Action
         $list = biz_getShisetsuData($shisetsu_id);
         $schedule = biz_getShisetsuScheduleID($id);
 
+        $this->set('inc_navi', fetch_inc_navi('h'));
         $this->set("list", $list);
         $this->set('schedule', $schedule);
         $this->set("id", $id);

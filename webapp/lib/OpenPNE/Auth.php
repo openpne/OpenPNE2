@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -22,13 +22,22 @@ class OpenPNE_Auth
     var $uid;
     var $sess_id;
     var $cookie_path;
+    var $is_ktai;
 
-    function OpenPNE_Auth($storageDriver = 'DB', $options = '')
+    function OpenPNE_Auth($storageDriver = 'DB', $options = '', $is_ktai = false)
     {
         ini_set('session.use_cookies', 0);
-        if (!empty($_COOKIE[session_name()])) {
-            $this->sess_id = $_COOKIE[session_name()];
-            session_id($this->sess_id);
+        $this->is_ktai = $is_ktai;
+        if ($this->is_ktai) {
+            if (!empty($_REQUEST['ksid'])) {
+                $this->sess_id = $_REQUEST['ksid'];
+                session_id($this->sess_id);
+            }
+        } else {
+            if (!empty($_COOKIE[session_name()])) {
+                $this->sess_id = $_COOKIE[session_name()];
+                session_id($this->sess_id);
+            }
         }
         $this->storage = $storageDriver;
         $this->options = $options;
@@ -58,12 +67,14 @@ class OpenPNE_Auth
         return $auth;
     }
 
-    function login($is_save_cookie = false, $is_encrypt_username = false)
+    function login($is_save_cookie = false, $is_encrypt_username = false, $is_ktai = false)
     {
         $this->auth =& $this->factory(true);
-        if ($is_encrypt_username) {
-            $this->auth->post[$this->auth->_postUsername] =
-                t_encrypt($this->auth->post[$this->auth->_postUsername]);
+        if (!IS_SLAVEPNE) {
+            if ($is_encrypt_username) {
+                $this->auth->post[$this->auth->_postUsername] =
+                    t_encrypt($this->auth->post[$this->auth->_postUsername]);
+            }
         }
 
         $this->auth->start();
@@ -78,7 +89,9 @@ class OpenPNE_Auth
             } else {
                 $expire = 0;
             }
-            setcookie(session_name(), session_id(), $expire, $this->cookie_path);
+            if (!$this->is_ktai) {
+                setcookie(session_name(), session_id(), $expire, $this->cookie_path);
+            }
             return true;
         } else {
             return false;
@@ -104,7 +117,9 @@ class OpenPNE_Auth
         }
 
         if (isset($_COOKIE[session_name()])) {
-            setcookie(session_name(), '', time() - 3600, $this->cookie_path);
+            if (!$this->is_ktai) {
+                setcookie(session_name(), '', time() - 3600, $this->cookie_path);
+            }
         }
         $_SESSION = array();
         session_destroy();
@@ -141,18 +156,26 @@ class OpenPNE_Auth
      */
     function set_session_save_handler()
     {
-        if (SESSION_SAVE_DB) {
-            static $dbsess;
-            if (is_null($dbsess)) {
+        static $sess_storage;
+        if (is_null($sess_storage)) {
+            switch (SESSION_STORAGE) {
+            case 1:
                 include_once 'OpenPNE/DBSession.php';
-                $dbsess = new OpenPNE_DBSession(db_get_dsn('session'));
+                $sess_storage = new OpenPNE_DBSession(db_get_dsn('session'));
+                break;
+            case 2:
+                include_once 'OpenPNE/MemcacheSession.php';
+                $sess_storage = new OpenPNE_MemcacheSession($GLOBALS['_OPENPNE_MEMCACHE_LIST']['session']['dsn']);
+                break;
+            default:
+                return;
             }
-            session_set_save_handler(array(&$dbsess, 'open'),
-                                     array(&$dbsess, 'close'),
-                                     array(&$dbsess, 'read'),
-                                     array(&$dbsess, 'write'),
-                                     array(&$dbsess, 'destroy'),
-                                     array(&$dbsess, 'gc'));
+            session_set_save_handler(array(&$sess_storage, 'open'),
+                                 array(&$sess_storage, 'close'),
+                                 array(&$sess_storage, 'read'),
+                                 array(&$sess_storage, 'write'),
+                                 array(&$sess_storage, 'destroy'),
+                                 array(&$sess_storage, 'gc'));
         }
     }
 

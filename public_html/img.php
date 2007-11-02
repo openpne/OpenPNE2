@@ -1,10 +1,28 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
 require_once './config.inc.php';
+
+
+//SNSにログインしているかどうか
+if (defined('CHECK_IMG_AUTH') && CHECK_IMG_AUTH) {
+    require_once OPENPNE_WEBAPP_DIR . '/init.inc';
+    
+    $module = $_GET['m'];
+    // init
+    if ($init = openpne_ext_search("{$module}/init.inc")) {
+        require_once $init;
+    }
+    //auth
+    if ($auth = openpne_ext_search("{$module}/auth.inc")) {
+        require_once $auth;
+    } else {
+        require_once OPENPNE_WEBAPP_DIR . '/lib/auth.inc';
+    }
+}
 
 // エラー出力を抑制
 ini_set('display_errors', false);
@@ -52,7 +70,7 @@ if (defined('USE_IMAGEMAGICK')) {
         exit;
     }
 } else {
-	$use_IM = false;
+    $use_IM = false;
 }
 
 if ($use_IM) {

@@ -1,10 +1,10 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
-// ドメイン制限更新
+// 招待メールドメイン制限設定の更新
 class admin_do_update_limit_domain extends OpenPNE_Action
 {
     function execute($requests)
@@ -26,7 +26,7 @@ class admin_do_update_limit_domain extends OpenPNE_Action
             }
         }
 
-        admin_client_redirect('limit_domain', 'ドメイン制限を更新しました');
+        admin_client_redirect('limit_domain', '招待メールドメイン制限設定を更新しました');
     }
 }
 

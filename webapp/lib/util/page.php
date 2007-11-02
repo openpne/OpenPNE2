@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -17,15 +17,18 @@
  */
 function fetch_inc_navi($type, $target_id = null)
 {
-    static $is_recurred = false;  //再帰処理中かどうかの判定フラグ
+    // $type が h の場合のみ function cache
+    if ($type == 'h') {
+        static $is_recurred = false;  //再帰処理中かどうかの判定フラグ
 
-    if (!$is_recurred) {  //function cacheのために再帰処理を行う
-        $is_recurred = true;
-        $funcargs = func_get_args();
-        return pne_cache_recursive_call(OPENPNE_FUNCTION_CACHE_LIFETIME_LONG, __FUNCTION__, $funcargs);
+        if (!$is_recurred) {  //function cacheのために再帰処理を行う
+            $is_recurred = true;
+            $funcargs = func_get_args();
+            return pne_cache_recursive_call(OPENPNE_FUNCTION_CACHE_LIFETIME_LONG, __FUNCTION__, $funcargs);
+        }
+
+        $is_recurred = false;
     }
-
-    $is_recurred = false;
 
     $inc_smarty = new OpenPNE_Smarty($GLOBALS['SMARTY']);
     $inc_smarty->templates_dir = 'pc/templates';
@@ -52,54 +55,6 @@ function fetch_inc_navi($type, $target_id = null)
     $inc_smarty->assign('WORD_MY_FRIEND_HALF', WORD_MY_FRIEND_HALF);
 
     return $inc_smarty->ext_fetch('inc_navi.tpl');
-}
-
-/**
- * inc_html_header.tpl
- */
-function fetch_inc_html_header()
-{
-    $inc_smarty = new OpenPNE_Smarty($GLOBALS['SMARTY']);
-    $inc_smarty->templates_dir = 'pc/templates';
-
-    if (SNS_TITLE) {
-        $inc_smarty->assign('title', SNS_TITLE);
-    } else {
-        $inc_smarty->assign('title', SNS_NAME);
-    }
-
-    $inc_smarty->assign('inc_html_head', p_common_c_siteadmin4target_pagename('inc_html_head'));
-    $inc_smarty->assign('inc_custom_css', p_common_c_siteadmin4target_pagename('inc_custom_css'));
-
-    $c_sns_config = db_select_c_sns_config();
-    $inc_smarty->assign('border_00', $c_sns_config['border_00']);
-    $inc_smarty->assign('border_01', $c_sns_config['border_01']);
-    $inc_smarty->assign('border_02', $c_sns_config['border_02']);
-    $inc_smarty->assign('border_03', $c_sns_config['border_03']);
-    $inc_smarty->assign('border_04', $c_sns_config['border_04']);
-    $inc_smarty->assign('border_05', $c_sns_config['border_05']);
-    $inc_smarty->assign('border_06', $c_sns_config['border_06']);
-    $inc_smarty->assign('border_07', $c_sns_config['border_07']);
-    $inc_smarty->assign('border_08', $c_sns_config['border_08']);
-    $inc_smarty->assign('border_09', $c_sns_config['border_09']);
-    $inc_smarty->assign('border_10', $c_sns_config['border_10']);
-
-    $inc_smarty->assign('bg_00', $c_sns_config['bg_00']);
-    $inc_smarty->assign('bg_01', $c_sns_config['bg_01']);
-    $inc_smarty->assign('bg_02', $c_sns_config['bg_02']);
-    $inc_smarty->assign('bg_03', $c_sns_config['bg_03']);
-    $inc_smarty->assign('bg_04', $c_sns_config['bg_04']);
-    $inc_smarty->assign('bg_05', $c_sns_config['bg_05']);
-    $inc_smarty->assign('bg_06', $c_sns_config['bg_06']);
-    $inc_smarty->assign('bg_07', $c_sns_config['bg_07']);
-    $inc_smarty->assign('bg_08', $c_sns_config['bg_08']);
-    $inc_smarty->assign('bg_09', $c_sns_config['bg_09']);
-    $inc_smarty->assign('bg_10', $c_sns_config['bg_10']);
-    $inc_smarty->assign('bg_11', $c_sns_config['bg_11']);
-    $inc_smarty->assign('bg_12', $c_sns_config['bg_12']);
-    $inc_smarty->assign('bg_13', $c_sns_config['bg_13']);
-
-    return $inc_smarty->ext_fetch('inc_html_header.tpl');
 }
 
 /**
@@ -159,40 +114,37 @@ function fetch_from_db($tpl_name, &$smarty)
     return $content;
 }
 
-function fetch_inc_entry_point_h_home(&$smarty)
+function fetch_inc_entry_point(&$smarty, $target)
 {
-    $target = 'h_home';
-
+    $list = get_inc_entry_point_list();
+    if (empty($list[$target])) {
+        return false;
+    }
+    list($start, $end, $caption) = $list[$target];
+    
     $contents = array();
-    for ($i = 1; $i <= 12; $i++) {
+    for ($i = (int)$start; $i <= (int)$end; $i++) {
         $tpl = sprintf('db:inc_entry_point_%s_%d', $target, $i);
         $contents[$i] = fetch_from_db($tpl, $smarty);
     }
     return $contents;
 }
 
-function fetch_inc_entry_point_f_home(&$smarty)
+function get_inc_entry_point_list()
 {
-    $target = 'f_home';
-
-    $contents = array();
-    for ($i = 1; $i <= 9; $i++) {
-        $tpl = sprintf('db:inc_entry_point_%s_%d', $target, $i);
-        $contents[$i] = fetch_from_db($tpl, $smarty);
-    }
-    return $contents;
-}
-
-function fetch_inc_entry_point_c_home(&$smarty)
-{
-    $target = 'c_home';
-
-    $contents = array();
-    for ($i = 1; $i <= 7; $i++) {
-        $tpl = sprintf('db:inc_entry_point_%s_%d', $target, $i);
-        $contents[$i] = fetch_from_db($tpl, $smarty);
-    }
-    return $contents;
+    $list = array(
+        'h_home' => array(1, 12, '【PC版】 h_home'),
+        'f_home' => array(1, 9, '【PC版】 f_home (h_prof)'),
+        'c_home' => array(1, 7, '【PC版】 c_home'),
+        'h_reply_message' => array(1, 3, '【PC版】 h_reply_message'),
+        'h_diary_add' => array(1, 3, '【PC版】 h_diary_add'),
+        'h_diary_edit' => array(1, 3, '【PC版】 h_diary_edit'),
+        'ktai_o_login' => array(1, 2, '【携帯版】 o_login'),
+        'ktai_h_home' => array(1, 3, '【携帯版】 h_home'),
+        'ktai_f_home' => array(1, 3, '【携帯版】 f_home'),
+        'ktai_c_home' => array(1, 3, '【携帯版】 c_home'),
+    );
+    return $list;
 }
 
 //------------
@@ -223,7 +175,7 @@ function p_regist_prof_c_profile_day_list4null()
 
 //------------
 
-function p_c_event_add_confirm_event4request()
+function p_c_event_add_confirm_event4request($get_errors = false)
 {
     $rule = array(
         'target_c_commu_id' => array(
@@ -232,7 +184,8 @@ function p_c_event_add_confirm_event4request()
         ),
         'title' => array(
             'type' => 'string',
-            'default' => '',
+            'required' => '1',
+            'caption' => 'タイトル',
         ),
         'open_date_year' => array(
             'type' => 'int',
@@ -260,7 +213,8 @@ function p_c_event_add_confirm_event4request()
         ),
         'detail' => array(
             'type' => 'string',
-            'default' => '',
+            'required' => '1',
+            'caption' => '詳細',
         ),
         'invite_period_year' => array(
             'type' => 'int',
@@ -286,13 +240,27 @@ function p_c_event_add_confirm_event4request()
             'type' => 'string',
             'default' => '',
         ),
+        'capacity' => array(
+            'type' => 'int',
+            'default' => '0',
+            'caption' => '募集人数',
+        ),
     );
     $validator = new OpenPNE_Validator($rule, $_REQUEST);
-    $validator->validate();
 
+    $errors = array();
+    if (!$validator->validate()) {
+        
+        $errors = $validator->getErrors();
+    }
     $result = $validator->getParams();
     $result['c_commu_id'] = $result['target_c_commu_id'];
-    return $result;
+
+    if ($get_errors) {
+        return array($result, $errors);
+    } else {
+        return $result;
+    }
 }
 
 function p_f_home_last_login4access_date($access_date)

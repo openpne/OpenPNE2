@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -19,10 +19,6 @@ class pc_page_h_diary_edit extends OpenPNE_Action
         // ----------
 
         $c_diary = db_diary_get_c_diary4id($target_c_diary_id);
-        if (!(is_null($subject) || is_null($body))) {
-            $c_diary['subject'] = $subject;
-            $c_diary['body'] = $body;
-        }
 
         // target が指定されていない
         // 新規作成
@@ -51,8 +47,7 @@ class pc_page_h_diary_edit extends OpenPNE_Action
         $this->set('inc_navi', fetch_inc_navi('h'));
 
         //プロフィール
-        $this->set("target_member", db_common_c_member4c_member_id($u));
-        $this->set("diary", $c_diary);
+        $this->set("target_member", db_member_c_member4c_member_id($u));
 
         //カレンダー関係
         //カレンダー開始用変数
@@ -77,23 +72,35 @@ class pc_page_h_diary_edit extends OpenPNE_Action
         $this->set("date_list", p_fh_diary_list_date_list4c_member_id($u));
 
         if (USE_DIARY_CATEGORY) {
-	        //この日記のカテゴリリストを得る
-	        if ($category) {
-	            $category_list = array();
-	            foreach(explode(' ', $category) as $value) {
-	                if (empty($value)) {
-	                    break;
-	                }
-	                $category_list[] = array('c_diary_category_id' => 'dummy', 'category_name' => $value);
-	            }
-	            $this->set("category", $category_list);
-	        } else {
-	            $this->set("category", db_diary_category_list4c_diary_id($target_c_diary_id));
-	        }
-	        //ユーザのカテゴリリスト
-	        $this->set("category_list", db_diary_category_list4c_member_id($u));
+            //この日記のカテゴリリストを得る
+            if ($category) {
+                $category_list = array();
+                foreach(preg_split('/\s+/', $category) as $value) {
+                    if (empty($value)) {
+                        break;
+                    }
+                    $category_list[] = array('c_diary_category_id' => 'dummy', 'category_name' => $value);
+                }
+                $this->set("category", $category_list);
+            } else {
+                $this->set("category", db_diary_category_list4c_diary_id($target_c_diary_id));
+            }
+            //メンバーのカテゴリリスト
+            $this->set("category_list", db_diary_category_list4c_member_id($u));
             $this->set("use_diary_category", true);
         }
+
+        if (!(is_null($subject) || is_null($body))) {
+            $c_diary['subject'] = $subject;
+            $c_diary['body'] = $body;
+        }
+        if ($public_flag) {
+            $c_diary['public_flag'] = util_cast_public_flag_diary($public_flag);
+        }
+        $this->set("diary", $c_diary);
+
+        // inc_entry_point
+        $this->set('inc_entry_point', fetch_inc_entry_point($this->getView(), 'h_diary_edit'));
 
         return 'success';
     }

@@ -1,32 +1,29 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
 // c_sns_config 更新
 class admin_do_update_c_sns_config extends OpenPNE_Action
 {
+    function handleError($errors)
+    {
+        admin_client_redirect('edit_c_sns_config', array_shift($errors));
+    }
+
     function execute($requests)
     {
-        $sets = array();
-        for ($i = 0; $i <= 10; $i++) {
-            $name = sprintf('border_%02d', $i);
-            if ($requests[$name]) {
-                $sets[$name] = $requests[$name];
+        $data = array();
+        foreach ($requests as $key => $value) {
+            if (preg_match('/^color_(\d+)$/', $key, $matches)) {
+                $number = intval($matches[1]);
+                if ($number > 0 && $number <= 50) {
+                    $data[$key] = $value;
+                }
             }
         }
-        for ($i = 0; $i <= 13; $i++) {
-            $name = sprintf('bg_%02d', $i);
-            if ($requests[$name]) {
-                $sets[$name] = $requests[$name];
-            }
-        }
-        if (!$sets) {
-            admin_client_redirect('edit_c_sns_config');
-        }
-        db_admin_update_c_sns_config($sets);
-
+        db_update_c_config_color($data);
         admin_client_redirect('edit_c_sns_config', '色を変更しました');
     }
 }

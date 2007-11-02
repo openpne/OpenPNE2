@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -20,7 +20,7 @@ class pc_do_f_intro_from_delete extends OpenPNE_Action
         //-- 権限チェック
         //フレンド
 
-        $status = db_common_friend_status($u, $target_c_member_id);
+        $status = db_friend_status($u, $target_c_member_id);
         if (!$status['is_friend']) {
             handle_kengen_error();
         }

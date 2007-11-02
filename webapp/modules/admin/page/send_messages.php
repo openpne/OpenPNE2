@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -17,7 +17,7 @@ class admin_page_send_messages extends OpenPNE_Action
 
         $v['c_member_list'] = array();
         foreach ($requests['c_member_ids'] as $c_member_id) {
-            $v['c_member_list'][$c_member_id] = db_common_c_member4c_member_id($c_member_id, true);
+            $v['c_member_list'][$c_member_id] = db_member_c_member4c_member_id($c_member_id, true);
         }
 
         $this->set($v);

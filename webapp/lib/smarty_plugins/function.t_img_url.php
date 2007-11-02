@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -21,17 +21,11 @@ function smarty_function_t_img_url($params, &$smarty)
     if (OPENPNE_IMG_URL) {
         $url = OPENPNE_IMG_URL;
     } else {
-        if (OPENPNE_USE_PARTIAL_SSL && is_ssl()) {
-            $url = OPENPNE_SSL_URL;
-        } else {
-            $url = OPENPNE_URL;
-        }
+        $url = './';
     }
 
     if (!OPENPNE_IMG_CACHE_PUBLIC) {
         $url .= 'img.php';
-
-        include_once 'PHP/Compat/Function/http_build_query.php';
         if ($q = http_build_query($p)) {
             if ($html) {
                 $url .= '?' . htmlspecialchars($q);
@@ -101,6 +95,12 @@ function _smarty_function_t_img_url($params)
             $result['f'] = $params['f'];
             break;
         }
+    }
+    
+    $result['m'] = $GLOBALS['__Framework']['current_module'];
+    
+    if ($GLOBALS['KTAI_URL_TAIL']) {
+        $result['ksid'] = session_id();
     }
 
     return $result;

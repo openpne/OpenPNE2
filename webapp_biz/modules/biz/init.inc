@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -60,15 +60,17 @@ function init_biz_page(&$smarty)
     $smarty->assign('INC_HEADER_title', $title);
     $smarty->assign('INC_HEADER_inc_html_head', p_common_c_siteadmin4target_pagename('inc_html_head'));
     $smarty->assign('INC_HEADER_inc_custom_css', p_common_c_siteadmin4target_pagename('inc_custom_css'));
-    $smarty->assign('INC_HEADER_color_config', db_select_c_sns_config());
+    $smarty->assign('INC_HEADER_color_config', util_get_color_config());
     $smarty->assign('INC_HEADER_top_banner', db_banner_get_top_banner($is_secure));
+    $smarty->assign('INC_HEADER_page_name', $GLOBALS['__Framework']['current_action']);
     if ($is_secure) {
-            $smarty->assign('INC_HEADER_top_banner_html_after', p_common_c_siteadmin4target_pagename('top_banner_html_after'));
-            $smarty->assign('INC_HEADER_global_navi', util_get_c_navi('global'));
+        $smarty->assign('INC_HEADER_top_banner_html_after', p_common_c_siteadmin4target_pagename('top_banner_html_after'));
+        $smarty->assign('INC_HEADER_global_navi', util_get_c_navi('global'));
     } else {
-            $smarty->assign('INC_HEADER_top_banner_html_before', p_common_c_siteadmin4target_pagename('top_banner_html_before'));
+        $smarty->assign('INC_HEADER_top_banner_html_before', p_common_c_siteadmin4target_pagename('top_banner_html_before'));
     }
     $smarty->assign('INC_HEADER_inc_page_top', p_common_c_siteadmin4target_pagename('inc_page_top'));
+    $smarty->assign('INC_HEADER_inc_page_top2', p_common_c_siteadmin4target_pagename('inc_page_top2'));
 
     // INC_FOOTER_* (inc_footer.tpl)
 
@@ -79,6 +81,7 @@ function init_biz_page(&$smarty)
     }
     $smarty->assign('INC_FOOTER_inc_page_footer', p_common_c_siteadmin4target_pagename($name));
     $smarty->assign('INC_FOOTER_inc_page_bottom', p_common_c_siteadmin4target_pagename('inc_page_bottom'));
+    $smarty->assign('INC_FOOTER_inc_page_bottom2', p_common_c_siteadmin4target_pagename('inc_page_bottom2'));
     $smarty->assign('INC_FOOTER_inc_side_banner', db_banner_get_side_banner($is_secure));
     $smarty->assign('INC_FOOTER_side_banner_html_before', p_common_c_siteadmin4target_pagename('side_banner_html_before'));
     $smarty->assign('INC_FOOTER_side_banner_html_after', p_common_c_siteadmin4target_pagename('side_banner_html_after'));

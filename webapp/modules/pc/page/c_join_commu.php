@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -14,11 +14,13 @@ class pc_page_c_join_commu extends OpenPNE_Action
         $target_c_commu_id = $requests['target_c_commu_id'];
         // ----------
 
+        $c_commu = db_commu_c_commu4c_commu_id($target_c_commu_id);
+
         $status = do_common_get_c_join_status($u, $target_c_commu_id);
 
         //非公開コミュニティに管理者から招待されている場合は強制的に承認を回避
-        $admin_invite = db_c_commu4c_admin_invite_id($target_c_commu_id, $u);
-        if ($admin_invite) {
+        $admin_invite = db_commu_c_commu4c_admin_invite_id($target_c_commu_id, $u);
+        if ($admin_invite && $status != STATUS_C_JOIN_ALREADY) {
             $status = STATUS_C_JOIN_REQUEST_FREE;
         }
 
@@ -45,7 +47,7 @@ class pc_page_c_join_commu extends OpenPNE_Action
 
         $this->set('inc_navi', fetch_inc_navi('c', $target_c_commu_id));
 
-        $this->set('c_commu', _db_c_commu4c_commu_id($target_c_commu_id));
+        $this->set('c_commu', $c_commu);
 
         return 'success';
     }

@@ -1,0 +1,4 @@
+#! /bin/sh
+cd $1
+$2 -f tool_send_message_in_queue.php
+

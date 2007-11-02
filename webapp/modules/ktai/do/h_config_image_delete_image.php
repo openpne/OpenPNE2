@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -13,7 +13,7 @@ class ktai_do_h_config_image_delete_image extends OpenPNE_Action
 
         $img_num = $requests['img_num'];
 
-        $c_member = db_common_c_member4c_member_id($u);
+        $c_member = db_member_c_member4c_member_id($u);
         if (!$img_num) {
             if ($c_member['image_filename'] == $c_member['image_filename_1']) {
                 $img_num = 1;
@@ -25,10 +25,10 @@ class ktai_do_h_config_image_delete_image extends OpenPNE_Action
         }
 
         image_data_delete($c_member['image_filename_'.$img_num]);
-        do_h_config_image_delete_c_member_image_new($u, $img_num);
+        db_member_delete_c_member_image_new($u, $img_num);
 
         if ($c_member['image_filename'] == $c_member['image_filename_'.$img_num]) {
-            do_h_config_image_change_c_member_main_image($u, 1);
+            db_member_change_c_member_main_image($u, 1);
         }
 
         openpne_redirect('ktai', 'page_h_config_image');

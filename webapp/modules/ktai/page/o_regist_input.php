@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -14,20 +14,25 @@ class ktai_page_o_regist_input extends OpenPNE_Action
     function execute($requests)
     {
         //<PCKTAI
-        if (defined('OPENPNE_REGIST_FROM') &&
-                !((OPENPNE_REGIST_FROM & OPENPNE_REGIST_FROM_KTAI) >> 1)) {
-            openpne_redirect('ktai', 'page_o_login');
+        if (!((OPENPNE_REGIST_FROM & OPENPNE_REGIST_FROM_KTAI) >> 1)) {
+            openpne_redirect('ktai', 'page_o_login', array('msg' => 42));
         }
         //>
 
         // --- リクエスト変数
         $ses = $requests['ses'];
+        $aff_id = $requests['aff_id'];
         // ----------
 
         // セッションが有効かどうか
-        if (!$pre = c_member_ktai_pre4session($ses)) {
+        if (!$pre = db_member_c_member_ktai_pre4session($ses)) {
             // 無効の場合、login へリダイレクト
-            openpne_redirect('ktai', 'page_o_login');
+            openpne_redirect('ktai', 'page_o_login', array('msg' => 42));
+        }
+
+        // メールアドレスが登録できるかどうか
+        if (!util_is_regist_mail_address($pre['ktai_address'])) {
+            openpne_redirect('ktai', 'page_o_login', array('msg' => 42));
         }
 
         $this->set('SNS_NAME', SNS_NAME);
@@ -47,7 +52,8 @@ class ktai_page_o_regist_input extends OpenPNE_Action
         $this->set('public_flags', $public_flags);
 
         $this->set('password_query_list', p_common_c_password_query4null());
-        $this->set('profile_list', db_common_c_profile_list());
+        $this->set('profile_list', db_member_c_profile_list());
+        $this->set('aff_id', $aff_id);
 
         $this->set($v);
         return 'success';

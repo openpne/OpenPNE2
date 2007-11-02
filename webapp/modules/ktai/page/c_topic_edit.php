@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -22,11 +22,11 @@ class ktai_page_c_topic_edit extends OpenPNE_Action
         $c_commu_id = $c_topic['c_commu_id'];
 
         //--- 権限チェック
-        if (!p_common_is_c_commu_view4c_commu_idAc_member_id($c_commu_id, $u)) {
+        if (!db_commu_is_c_commu_view4c_commu_idAc_member_id($c_commu_id, $u)) {
             handle_kengen_error();
         }
-        if (!_db_is_c_topic_admin($c_commu_topic_id, $u) &&
-            !_db_is_c_commu_admin($c_commu_id, $u)) {
+        if (!db_commu_is_c_topic_admin($c_commu_topic_id, $u) &&
+            !db_commu_is_c_commu_admin($c_commu_id, $u)) {
             handle_kengen_error();
         }
         //---
@@ -42,6 +42,8 @@ class ktai_page_c_topic_edit extends OpenPNE_Action
         }
         $this->set('err_msg', $err_msg);
         $this->set('c_topic', $c_topic);
+        $this->set("c_commu", db_commu_c_commu4c_commu_id2($c_commu_id));
+
         return 'success';
     }
 }

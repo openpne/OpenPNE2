@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -11,7 +11,6 @@ class biz_page_s_list extends OpenPNE_Action
         $u = $GLOBALS['AUTH']->uid();
 
         // --- リクエスト変数
-        // ----------
 
         $this->set("list", biz_getShisetsuList());
         //カレンダー表示用
@@ -44,8 +43,8 @@ class biz_page_s_list extends OpenPNE_Action
                 'day' => $d,
                 'dayofweek'=>$dayofweek[$i++], 
                 'now' => false,
-                'birth' => p_h_home_birth4c_member_id($m, $d, $u),
-                'event' => p_h_home_event4c_member_id($y, $m, $d, $u),
+                'birth' => db_member_birth4c_member_id($m, $d, $u),
+                'event' => db_commu_event4c_member_id($y, $m, $d, $u),
                 'schedule' => $schedule,
             );
             if ($w == 0 && $d == date('d')) {
@@ -59,7 +58,7 @@ class biz_page_s_list extends OpenPNE_Action
 
         $calendar = '';
         foreach ($list as $key => $value) {
-            $calendar .= biz_getScheduleWeek($value['biz_shisetsu_id'], $requests['w'], 's_list', true, true, true);
+            $calendar .= biz_getScheduleWeek($u, $value['biz_shisetsu_id'], $requests['w'], 's_list', true, true, true);
         }
 
         $this->set('calendar', $calendar);
@@ -69,6 +68,7 @@ class biz_page_s_list extends OpenPNE_Action
 
         $config = biz_getConfig();
 
+        $this->set('inc_navi', fetch_inc_navi('h'));
         $this->set('is_closed_shisetsu', $config['IS_CLOSED_SHISETSU']);
 
         return 'success';

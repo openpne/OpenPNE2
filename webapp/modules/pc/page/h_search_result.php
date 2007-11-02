@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -21,7 +21,7 @@ class pc_page_h_search_result extends OpenPNE_Action
 
         $profiles = array();
         if ($_REQUEST['profile']) {
-            $profiles = p_h_search_result_check_profile($_REQUEST['profile']);
+            $profiles = db_member_search_check_profile($_REQUEST['profile']);
         }
 
         $limit = 20;
@@ -37,7 +37,7 @@ class pc_page_h_search_result extends OpenPNE_Action
             'nickname' => $nickname,
         );
 
-        $result = p_h_search_result_search($cond, $cond_like, $limit, $page, $u, $profiles);
+        $result = db_member_search($cond, $cond_like, $limit, $page, $u, $profiles);
         $this->set("target_friend_list", $result[0]);
         $pager = array(
             "page_prev" => $result[1],

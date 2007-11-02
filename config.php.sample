@@ -38,17 +38,16 @@ define('OPENPNE_DEBUGGING', 1);
 //$GLOBALS['_OPENPNE_DISABLE_MODULES'] = array('admin', 'setup');
 
 // メンテナンスモード
-// true: ユーザにメンテナンス画面を表示
+// true: ユーザーにメンテナンス画面を表示
 define('OPENPNE_UNDER_MAINTENANCE', false);
+
+// メンテナンス画面に表示させるテキスト
+// HTMLが使用できます
+// 未入力の場合は、標準のテキストが表示されます
+define('OPENPNE_MAINTENANCE_TEXT', '');
 
 // メンテナンス中でも表示するモジュール名
 $GLOBALS['_OPENPNE_MAINTENANCE_MODULES'] = array('admin');
-
-// 1.8以前形式のURLでアクセスした場合の動作設定
-// 0    : 直接新URLへ移動する
-// n(>0): URL変更お知らせ画面を表示、n秒後に移動する
-// -1   : URL変更お知らせ画面を表示、自動的に移動しない
-define('WAIT_REDIRECT_TIME', 5);
 
 // Crypt_Blowfish ライブラリの旧バージョン使用設定
 // 2.2以前からのアップグレードでログインできないなどの
@@ -59,15 +58,32 @@ define('OPENPNE_USE_OLD_CRYPT_BLOWFISH', false);
 //有効にした場合は、最新情報の表示に遅延が起こることがあります
 define('OPENPNE_USE_FUNCTION_CACHE', false);
 
+// このオプションを有効にするためにはOPENPNE_USE_FUNCTION_CACHEをtrueにする必要があります。
+// ファンクションキャッシュのキャッシュを保存するストレージにmemcacheを使用
+define('OPENPNE_USE_FUNCTION_CACHE_MEMCACHE', false);
+
+// OPENPNE_USE_FUNCTION_CACHE_MEMCACHEがtrueの場合の
+// ファンクションキャッシュ用memcacheサーバ設定
+$GLOBALS['_OPENPNE_MEMCACHE_LIST']['func_cache'] = array(
+'dsn' => array(
+    'hostspec' => '127.0.0.1',
+    ),
+);
+
 // MySQL ヒント使用設定
 define('OPENPNE_USE_MYSQL_HINT', true);
 
-// セッション情報をDBに保存するかどうか
-// (有効にする場合は、以下のDBサーバ設定も行ってください)
-define('SESSION_SAVE_DB', false);
+// セッション情報を保存するストレージ
+// 0:ファイル
+// 1:データベース
+// 2:memcache(要PECL::memcache)
+define('SESSION_STORAGE', 0);
 
 // 確認画面用の一時画像をDBに保存するかどうか
 define('OPENPNE_TMP_IMAGE_DB', false);
+
+// 確認画面用の一時ファイルをDBに保存するかどうか
+define('OPENPNE_TMP_FILE_DB', false);
 
 ///
 // DBサーバ設定
@@ -109,6 +125,13 @@ define('OPENPNE_TMP_IMAGE_DB', false);
 //    ),
 //);
 
+// セッションデータ保存用Memcache(オプション)
+$GLOBALS['_OPENPNE_MEMCACHE_LIST']['session'] = array(
+'dsn' => array(
+    'hostspec' => '127.0.0.1',
+    ),
+);
+
 // 画像データ保存用DB(オプション)
 //$GLOBALS['_OPENPNE_DSN_LIST']['image'] = array(
 //'dsn' => array(
@@ -143,6 +166,11 @@ $GLOBALS['_OPENPNE_SSL_REQUIRED'] = array(
     'page_o_regist_intro', 'page_o_ri', 'page_o_regist_end',
     'page_h_config_prof', 'page_h_config_prof_confirm', 'do_h_config_prof',
     'page_h_config_ktai', 'do_h_config_ktai_send',
+    'page_h_config', 'do_h_config_1', 'do_h_config_2', 'do_h_config_3',
+    'page_o_login', 'page_o_tologin', 'do_o_login',
+    'page_o_public_invite','do_o_public_invite',
+    'page_h_invite','page_h_invite_confirm','do_h_invite_insert_c_invite',
+    'page_o_password_query','do_o_password_query',
 ),
 'ktai' => array(
     'page_o_login', 'do_o_login', 'do_o_easy_login',
@@ -156,16 +184,14 @@ $GLOBALS['_OPENPNE_SSL_REQUIRED'] = array(
     'page_h_pc_send', 'page_h_pc_send_confirm', 'do_h_pc_send_insert_c_pc_address_pre',
     'page_h_config_password_query', 'do_h_config_password_query_update_password_query',
     'page_h_config_password', 'do_h_config_password_update_password',
+    'page_h_config', 'page_h_invite', 'do_h_invite_insert_c_invite',
 ));
 
-// SSLを使用するかどうかユーザが選択できるアクションリスト
+// SSLを使用するかどうかをユーザーが選択できるアクションリスト
 $GLOBALS['_OPENPNE_SSL_SELECTABLE'] = array(
 'pc' => array(
-    'page_h_config', 'do_h_config_1', 'do_h_config_2', 'do_h_config_3',
-    'page_o_login', 'page_o_tologin', 'do_o_login',
 ),
 'ktai' => array(
-    'page_h_config',
 ));
 
 ///
@@ -177,6 +203,7 @@ define('OPENPNE_VAR_DIR'    , OPENPNE_DIR . '/var');
 define('OPENPNE_WEBAPP_DIR' , OPENPNE_DIR . '/webapp');
 define('OPENPNE_MODULES_DIR', OPENPNE_WEBAPP_DIR . '/modules');
 define('OPENPNE_RSS_CACHE_DIR', OPENPNE_VAR_DIR . '/rss_cache');
+define('OPENPNE_PUBLIC_HTML_DIR', OPENPNE_DIR . '/public_html');
 
 ///
 // webapp_ext ディレクトリ使用設定
@@ -188,12 +215,9 @@ define('OPENPNE_MODULES_EXT_DIR', OPENPNE_WEBAPP_EXT_DIR . '/modules');
 
 ///
 // webapp_biz ディレクトリ使用設定
-// PNEBIZ機能を使用する場合は
-// setup/sql/install/option-pnebiz-mysql4X.sqlを実行した後
-// USE_BIZ_DIRをtrueにしてください
-///
-
-define('USE_BIZ_DIR', false);
+//
+// BIZ使用設定は管理画面に移動しました
+// define('USE_EXT_DIR', false);
 define('OPENPNE_WEBAPP_BIZ_DIR' , OPENPNE_DIR . '/webapp_biz');
 define('OPENPNE_MODULES_BIZ_DIR', OPENPNE_WEBAPP_BIZ_DIR . '/modules');
 
@@ -223,9 +247,15 @@ default:
 // アクセスログを取得するかどうか(c_access_log)
 define('LOG_C_ACCESS_LOG', true);
 
+// カスタムログ用の関数名を指定します
+define('OPENPNE_LOG_FUNCTION', '');
+
 ///
 // セッション・クッキー設定
 ///
+
+ini_set('session.gc_probability',1);
+ini_set('session.gc_divisor',10000);
 
 ini_set('session.gc_maxlifetime', 432000); // 5 days
 //session_save_path('/tmp');
@@ -261,6 +291,9 @@ define('OPENPNE_SESSION_CHECK_URL', true);
 // 画像を別サーバに設定する場合に指定する
 //define('OPENPNE_IMG_URL', 'http://img.example.com/');
 
+//// 画像サーバ用設定 ////
+//define('OPENPNE_IS_IMG_SERVER', false);
+
 // 画像キャッシュをpublic_html以下に置くかどうか(要mod_rewrite)
 define('OPENPNE_IMG_CACHE_PUBLIC', false);
 
@@ -273,7 +306,7 @@ if (OPENPNE_IMG_CACHE_PUBLIC) {
 
 // 画像変換時に許可する解像度のリスト (幅x高さ)
 // (空の配列を指定すると無制限になります)
-$GLOBALS['_OPENPNE_IMG_ALLOWED_SIZE'] = array('76x76', '120x120', '180x180');
+$GLOBALS['_OPENPNE_IMG_ALLOWED_SIZE'] = array('76x76', '120x120', '180x180', '240x320');
 
 // 画像キャッシュのファイル名のprefix
 define('OPENPNE_IMG_CACHE_PREFIX', 'img_cache_');
@@ -297,6 +330,31 @@ define('IMGMAGICK_APP', '/usr/bin/convert');
 // アップロード画像のファイルサイズ制限(KB)
 define('IMAGE_MAX_FILESIZE', 300);
 
+// アップロード画像の大きさ制限(ピクセル)
+// 0 を指定した場合は無制限
+define('IMAGE_MAX_WIDTH', 0);
+define('IMAGE_MAX_HEIGHT', 0);
+
+// 携帯版「大」サイズ画像表示時の解像度制限
+// （$GLOBALS['_OPENPNE_IMG_ALLOWED_SIZE'] で許可された解像度を指定してください）
+define('OPENPNE_IMG_KTAI_MAX_WIDTH', 240);
+define('OPENPNE_IMG_KTAI_MAX_HEIGHT', 320);
+
+///
+// ファイルアップロード機能
+///
+
+// ファイルアップロード機能を使用するかどうか
+define('OPENPNE_USE_FILEUPLOAD', false);
+
+// アップロードファイルのファイルサイズ制限(KB)
+define('FILE_MAX_FILESIZE', 300);
+
+// 許可する拡張子のリスト(カンマ(,)区切り)
+// 未指定の場合は全て許可
+//define('FILE_ALLOWED_EXTENTIONS', 'pdf,xls,ppt,zip');
+define('FILE_ALLOWED_EXTENTIONS', '');
+
 ///
 // 外部RSS取得
 ///
@@ -308,10 +366,10 @@ define('RSS_CACHE_LIMIT', 100);
 // 携帯メール投稿
 ///
 
-// 宛先アドレスのprefix
+// 宛先メールアドレスのprefix
 //define('MAIL_ADDRESS_PREFIX', 'sns_');
 
-// 宛先アドレスをハッシュにするか
+// 宛先メールアドレスをハッシュにするか
 define('MAIL_ADDRESS_HASHED', true);
 
 // 受信メールの文字コード(Content-Typeから取得できない場合に使う)
@@ -366,16 +424,14 @@ define('OPENPNE_USE_API', false);
 // セッション鍵生成用文字列(適当な文字列に変更してください)
 define('OPENPNE_API_TOKEN', 'OpenPNE');
 
-// 許可するIPリスト('any'が含まれている場合はIPをチェックしません)
-$GLOBALS['_OPENPNE_API_IP_LIST'] = array(
-'127.0.0.1',
-//'192.168.0.1',
-//'any',
-);
-
 // クライアントのIPアドレスのあるサーバ変数名($_SERVER['REMOTE_ADDR'])
 //define('SERVER_IP_KEY', 'HTTP_X_FORWARDED_FOR');
 define('SERVER_IP_KEY', 'REMOTE_ADDR');
+
+///
+// memory_limit設定
+///
+// ini_set('memory_limit','32M');
 
 ///
 // umask設定
@@ -385,9 +441,15 @@ umask(0);
 
 ///
 // Google Maps API key
+// http://www.google.com/apis/maps/ から取得
 ///
 define('GOOGLE_MAPS_API_KEY', '');
 
+///
+// Google AJAX Search API key
+// http://code.google.com/apis/ajaxsearch/signup.html  から取得
+///
+define('GOOGLE_AJAX_SEARCH_API_KEY', '');
 
 //// SNSアプリケーション設定 ////
 
@@ -395,21 +457,21 @@ define('GOOGLE_MAPS_API_KEY', '');
 //(OPENPNE_URL)?m=ADMIN_MODULE_NAME (例. http://sns.example.com/?m=admin)
 define('ADMIN_MODULE_NAME', 'admin');
 
-// 管理画面の初期設定項目を表示するかどうか
-define('ADMIN_INIT_CONFIG', true);
-
 // 管理画面にバージョン情報を表示するかどうか
 define('DISPLAY_VERSION', true);
 
-// 管理画面にOpenPNE更新情報(RSS)を表示するかどうか
-define('DISPLAY_OPENPNE_INFO', true);
+// ダッシュボードで表示するOpenPNE情報のURL設定
+define('OPENPNE_DASHBOARD_URL', 'http://ad.pne.jp/dashboard/');
 
-// OpenPNE更新情報のURL設定
-define('OPENPNE_INFO_URL', 'http://info.openpne.jp/rss');
-
+// 天気予報ページのURL設定
+define('OPENPNE_WEATHER_URL', 'http://weather.yahoo.co.jp/weather/');
 
 // 携帯版でUser-Agentのチェックをするかどうか
 define('CHECK_KTAI_UA', true);
+
+// 携帯版でIP制限機能を使用するかどうか
+// IPリストは webapp/lib/ktaiIP.php
+define('CHECK_KTAI_IP', false);
 
 // コミュニティに地図を表示するかどうか
 define('OPENPNE_USE_COMMU_MAP', true);
@@ -418,5 +480,44 @@ define('OPENPNE_USE_COMMU_MAP', true);
 define('OPENPNE_MAIL_QUEUE', false);
 // メールキューで一度に送信するメールの数
 define('SEND_MAIL_QUEUE_NUM', 10);
+
+// メッセージ一斉送信のメッセージキューの使用
+define('OPENPNE_MESSAGE_QUEUE', false);
+// メッセージキューで一度に送信するメッセージの数
+define('SEND_MESSAGE_QUEUE_NUM', 10);
+
+// CAPTCHA（画像のなかの文字列をメンバーに入力させる認証方式）を使用するかどうか
+define('OPENPNE_USE_CAPTCHA', true);
+
+// 外部認証を使用するかどうか
+define('IS_SLAVEPNE' , false);
+
+// IS_SLAVEPNEがtrueの場合のauthオプション
+$GLOBALS['_OPENPNE_AUTH_CONFIG'] = 
+array(
+'storage'=>"DB",
+'options'=>array(
+    'dsn'         => array(
+        'phptype'  => 'mysql',
+        'username' => 'root',
+        'password' => '',
+        'hostspec' => 'localhost',
+        'database' => '',
+        'new_link' => true,
+        ),
+    'table'       => '',
+    'usernamecol' => 'username',
+    'passwordcol' => 'password',
+    'cryptType'   => 'none',
+    ),
+);
+
+//画像へのアクセスをSNS認証する
+//※画像静的化機能を用いている場合は利用できません
+define('CHECK_IMG_AUTH', false);
+
+// PC表示時にau/SoftBankの絵文字をDoCoMo絵文字に変換するかどうか
+// au/SoftBankの絵文字を使用するには、 public_html/skin/default/img/emoji/{e|s} に画像を用意する必要があります
+define('OPENPNE_EMOJI_DOCOMO_FOR_PC', true);
 
 ?>

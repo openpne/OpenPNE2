@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -11,11 +11,7 @@ function smarty_function_t_img_url_skin($params, &$smarty)
     if (OPENPNE_IMG_URL) {
         $url = OPENPNE_IMG_URL;
     } else {
-        if (OPENPNE_USE_PARTIAL_SSL && is_ssl()) {
-            $url = OPENPNE_SSL_URL;
-        } else {
-            $url = OPENPNE_URL;
-        }
+        $url = './';
     }
 
     if (!$filename = db_get_c_skin_filename4skinname($p['filename'])) {
@@ -24,18 +20,19 @@ function smarty_function_t_img_url_skin($params, &$smarty)
         } else {
             $ext = 'gif';
         }
-        $url .= sprintf('skin/%s.%s', $p['filename'], $ext);
+        $file = sprintf('skin/%s/img/%s.%s', OPENPNE_SKIN_THEME, $p['filename'], $ext);
+        if (!is_readable(OPENPNE_PUBLIC_HTML_DIR . '/' . $file)) {
+            $file = sprintf('skin/default/img/%s.%s', $p['filename'], $ext);
+        }
+        $url .= $file;
     } else {
-        $p['filename'] = $filename;
-
         if (!OPENPNE_IMG_CACHE_PUBLIC) {
-            $url .= 'img.php';
-
-            include_once 'PHP/Compat/Function/http_build_query.php';
+            $url .= 'img_skin.php';
             if ($q = http_build_query($p)) {
                 $url .= '?' . htmlspecialchars($q);
             }
         } else {
+            $p['filename'] = $filename;
             include_once 'OpenPNE/Img.php';
             if (!$p['f']) {
                 $parts = explode('.', $p['filename']);

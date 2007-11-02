@@ -1,11 +1,11 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
 /**
- * ユーザ入力値バリデータクラス
+ * ユーザー入力値バリデータクラス
  */
 class OpenPNE_Validator
 {
@@ -242,6 +242,10 @@ class OpenPNE_Validator
             $rule['type'] = 'string';
         }
 
+        if ($rule['type'] == 'int') {
+            $rule['pre_filter'] = $rule['pre_filter'] . ',intval';
+        }
+
         return $rule;
     }
 
@@ -262,8 +266,8 @@ class OpenPNE_Validator
                 case 'trim':
                     if (OPENPNE_TRIM_DOUBLEBYTE_SPACE) {
                         // 全角スペースに対応
-                        $value = mb_ereg_replace('^(\s|　)+', '', $value);
-                        $value = mb_ereg_replace('(\s|　)+$', '', $value);
+                        $value = mb_ereg_replace('^([\s　])+', '', $value);
+                        $value = mb_ereg_replace('([\s　])+$', '', $value);
                     } else {
                         $value = trim($value);
                     }
@@ -271,7 +275,7 @@ class OpenPNE_Validator
                 case 'ltrim':
                     if (OPENPNE_TRIM_DOUBLEBYTE_SPACE) {
                         // 全角スペースに対応
-                        $value = mb_ereg_replace('^(\s|　)+', '', $value);
+                        $value = mb_ereg_replace('^([\s　])+', '', $value);
                     } else {
                         $value = ltrim($value);
                     }
@@ -279,7 +283,7 @@ class OpenPNE_Validator
                 case 'rtrim':
                     if (OPENPNE_TRIM_DOUBLEBYTE_SPACE) {
                         // 全角スペースに対応
-                        $value = mb_ereg_replace('(\s|　)+$', '', $value);
+                        $value = mb_ereg_replace('([\s　])+$', '', $value);
                     } else {
                         $value = rtrim($value);
                     }
@@ -291,6 +295,11 @@ class OpenPNE_Validator
                 case 'mysqltext':
                     if (is_string($value) && strlen($value) > 65535) {
                         $value = mb_strcut($value, 0, 65535);
+                    }
+                    break;
+                case 'intval':
+                    if (is_numeric($value)) {
+                        $value = (int)$value;
                     }
                     break;
                 }

@@ -5,18 +5,18 @@
 ({**ここから：メインコンテンツ**})
 ({***************************})
 
-<img src="./skin/dummy.gif" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 <!-- ******************************************* -->
 <!-- ******ここから：スケジュール修正内容確認****** -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:580px;margin:0px auto;" class="border_07">
 <tr>
-<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
-<td style="width:566px;" class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
-<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+<td style="width:566px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 <tr>
-<td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 <td align="center">
 <!-- *ここから：スケジュール修正内容確認内容* -->
 ({*ここから：header*})
@@ -37,7 +37,7 @@
 <table border="0" cellspacing="0" cellpadding="0" style="width:564px;">
 ({*********})
 <tr>
-<td align="center" class="border_01" style="width:110px;border-width:0px 1px 1px 0px;">
+<td align="center" class="border_01 bg_05" style="width:110px;border-width:0px 1px 1px 0px;">
 
 <div class="padding_s">
 
@@ -46,7 +46,7 @@
 </div>
 
 </td>
-<td class="border_01" style="width:454px;border-width:0px 0px 1px 0px;">
+<td class="border_01 bg_02" style="width:454px;border-width:0px 0px 1px 0px;">
 
 <div class="padding_s">
 
@@ -59,7 +59,7 @@
 ({*********})
 <!-- *スケジュール詳細＞開始日時* -->
 <tr>
-<td align="center" class="border_01" style="border-width:0px 1px 1px 0px">
+<td align="center" class="border_01 bg_05" style="border-width:0px 1px 1px 0px">
 
 <div class="padding_s">
 
@@ -68,7 +68,7 @@
 </div>
 
 </td>
-<td class="border_01" style="border-width:0px 0px 1px 0px;">
+<td class="border_01 bg_02" style="border-width:0px 0px 1px 0px;">
 
 <div class="padding_s">
 
@@ -93,7 +93,7 @@
 ({*********})
 <!-- *スケジュール詳細＞終了日時* -->
 <tr>
-<td align="center" class="border_01" style="border-width:0px 1px 1px 0px;">
+<td align="center" class="border_01 bg_05" style="border-width:0px 1px 1px 0px;">
 
 <div class="padding_s">
 
@@ -102,7 +102,7 @@
 </div>
 
 </td>
-<td class="border_01" style="border-width:0px 0px 1px 0px;">
+<td class="border_01 bg_02" style="border-width:0px 0px 1px 0px;">
 
 <div class="padding_s">
 
@@ -127,7 +127,7 @@
 ({*********})
 <!-- *スケジュール詳細＞詳細テキスト* -->
 <tr>
-<td align="center" class="border_01" style="border-width:0px 1px 1px 0px;">
+<td align="center" class="border_01 bg_05" style="border-width:0px 1px 1px 0px;">
 
 <div class="padding_s">
 
@@ -136,7 +136,7 @@
 </div>
 
 </td>
-<td class="border_01" style="border-width:0px 0px 1px 0px;">
+<td class="border_01 bg_02" style="border-width:0px 0px 1px 0px;">
 
 <div class="padding_s">
 
@@ -150,7 +150,7 @@
 ({if !$is_unused_schedule})
 <!-- *スケジュール詳細＞お知らせメール有無* -->
 <tr>
-<td align="center" class="border_01" style="border-width:0px 1px 1px 0px;">
+<td align="center" class="border_01 bg_05" style="border-width:0px 1px 1px 0px;">
 
 <div class="padding_s">
 
@@ -159,7 +159,7 @@
 </div>
 
 </td>
-<td class="border_01" style="border-width:0px 0px 1px 0px;">
+<td class="border_01 bg_02" style="border-width:0px 0px 1px 0px;">
 
 <div class="padding_s">
 
@@ -246,18 +246,18 @@
 ({*ここまで：footer*})
 <!-- *ここまで：スケジュール修正内容確認内容* -->
 </td>
-<td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 <tr>
-<td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
-<td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
-<td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 </table>
 <!-- ******ここまで：スケジュール修正内容確認****** -->
 <!-- ************************************ -->
 
-<img src="./skin/dummy.gif" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 ({***************************})
 ({**ここまで：メインコンテンツ**})

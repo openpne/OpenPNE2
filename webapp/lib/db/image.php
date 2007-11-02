@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -29,13 +29,13 @@ function db_image_c_image_list($page, $page_size, &$pager)
     $db =& db_get_instance('image');
 
     $sql = 'SELECT c_image_id FROM c_image ORDER BY c_image_id DESC';
-    $id_list = db_get_col_page($sql, $page, $page_size);
+    $id_list = $db->get_col_page($sql, $page, $page_size);
 
     $c_image_list = array();
     foreach ($id_list as $c_image_id) {
         $sql = 'SELECT c_image_id, filename, r_datetime FROM c_image WHERE c_image_id = ?';
         $params = array(intval($c_image_id));
-        $c_image_list[] = db_get_row($sql, $params);
+        $c_image_list[] = $db->get_row($sql, $params);
     }
 
     $sql = 'SELECT COUNT(*) FROM c_image';

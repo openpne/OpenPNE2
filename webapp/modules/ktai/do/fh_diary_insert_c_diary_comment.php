@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -28,7 +28,7 @@ class ktai_do_fh_diary_insert_c_diary_comment extends OpenPNE_Action
 
         $c_diary = db_diary_get_c_diary4id($target_c_diary_id);
         $target_c_member_id = $c_diary['c_member_id'];
-        $target_c_member = db_common_c_member4c_member_id($target_c_member_id);
+        $target_c_member = db_member_c_member4c_member_id($target_c_member_id);
 
         if ($u != $target_c_member_id) {
             // check public_flag
@@ -36,7 +36,7 @@ class ktai_do_fh_diary_insert_c_diary_comment extends OpenPNE_Action
                 openpne_redirect('ktai', 'page_h_access_block');
             }
             //アクセスブロック設定
-            if (p_common_is_access_block($u, $target_c_member_id)) {
+            if (db_member_is_access_block($u, $target_c_member_id)) {
                 openpne_redirect('ktai', 'page_h_access_block');
             }
         }
@@ -45,6 +45,19 @@ class ktai_do_fh_diary_insert_c_diary_comment extends OpenPNE_Action
         db_diary_insert_c_diary_comment($u, $target_c_diary_id, $body);
         //日記コメントが書き込まれたので日記自体を未読扱いにする
         db_diary_update_c_diary_is_checked($target_c_diary_id, 0);
+
+        if (OPENPNE_USE_POINT_RANK) {
+            // コメント者と被コメント者が違う場合にポイント加算
+            if ($u != $target_c_member_id) {
+                //書いた人にポイント付与
+                $point = db_action_get_point4c_action_id(3);
+                db_point_add_point($u, $point);
+
+                //書かれた人にポイント付与
+                $point = db_action_get_point4c_action_id(2);
+                db_point_add_point($target_c_member_id, $point);
+            }
+        }
 
         $p = array('target_c_diary_id' => $target_c_diary_id);
         openpne_redirect('ktai', 'page_fh_diary', $p);

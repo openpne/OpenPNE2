@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -24,20 +24,18 @@ class pc_page_h_message extends OpenPNE_Action
         $this->set('inc_navi', fetch_inc_navi("h"));
 
         // 既読にする
-        p_h_message_update_c_message_is_read4c_message_id($target_c_message_id, $u);
+        db_message_update_c_message_is_read4c_message_id($target_c_message_id, $u);
 
         //---- 受信・送信、閲覧権限のチェック ----//
         // メッセージデータ取得
-        $c_message = p_h_message_c_message4c_message_id($target_c_message_id, $u);
+        $c_message = db_message_c_message4c_message_id2($target_c_message_id, $u);
 
         if (!$form_val['subject'])
             $form_val['subject'] = "Re:".$c_message['subject'];
 
         //--- 権限チェック
-        if ($c_message['c_member_id_from'] != $u) {
-            if ($c_message['c_member_id_to'] != $u || !$c_message['is_send']) {
-                handle_kengen_error();
-            }
+        if (!util_is_readable_message($u, $target_c_message_id)) {
+            handle_kengen_error();
         }
         //---
 

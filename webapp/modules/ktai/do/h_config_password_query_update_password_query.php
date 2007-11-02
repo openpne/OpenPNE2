@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -21,7 +21,7 @@ class ktai_do_h_config_password_query_update_password_query extends OpenPNE_Acti
         //---
 
         // 現在のパスワードが正しいか
-        if (!db_common_authenticate_password($u, $password)) {
+        if (!db_common_authenticate_password($u, $password, true)) {
             $p = array('msg' => 18);
             openpne_redirect('ktai', 'page_h_config_password_query', $p);
         }
@@ -35,7 +35,7 @@ class ktai_do_h_config_password_query_update_password_query extends OpenPNE_Acti
             openpne_redirect('ktai', 'page_h_config_password_query', $p);
         }
 
-        db_ktai_update_password_query($u, $requests['c_password_query_id'], $requests['password_query_answer']);
+        db_member_update_password_query($u, $requests['c_password_query_id'], $requests['password_query_answer']);
 
         $p = array('msg' => 24);
         openpne_redirect('ktai', 'page_h_config', $p);

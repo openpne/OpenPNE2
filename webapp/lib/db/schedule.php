@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -52,10 +52,13 @@ function db_schedule_event4c_member_id($year, $month, $c_member_id)
 
     $sql = 'SELECT * FROM c_commu_topic WHERE c_commu_id IN ('.$ids.')' .
             ' AND event_flag = 1 AND open_date > ? AND open_date <= ?';
+
+    $max_day = date("t", mktime(0,0,0,intval($month),1,intval($year) ));
     $params = array(
-        sprintf('%04d-%02d', intval($year), intval($month)) . '-00',
-        sprintf('%04d-%02d', intval($year), intval($month)) . '-31'
+        sprintf('%04d-%02d', intval($year), intval($month)) . '-01',
+        sprintf('%04d-%02d', intval($year), intval($month)) . '-' . $max_day
     );
+
     $list = db_get_all($sql, $params);
 
     $res = array();
@@ -78,7 +81,7 @@ function db_schedule_c_member_list4mail()
 ?>
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -96,6 +99,7 @@ function db_schedule_add_insert_c_schedule(
         'start_time' => $start_time,
         'end_date' => $end_date,
         'end_time' => $end_time,
+        'u_datetime' => db_now(),
         'is_receive_mail' => (bool)$is_receive_mail,
     );
     return db_insert('c_schedule', $data);
@@ -116,6 +120,7 @@ function db_schedule_edit_update_c_schedule(
         'start_time' => $start_time,
         'end_date' => $end_date,
         'end_time' => $end_time,
+        'u_datetime' => db_now(),
         'is_receive_mail' => (bool)$is_receive_mail,
     );
     $where = array('c_schedule_id' => intval($c_schedule_id));

@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -15,13 +15,14 @@ function &db_get_instance($name = 'main', $readonly = false)
             if ($name == 'main') {
                 return false;
             } else {
-                return db_get_instance();
+                $_OPENPNE_DB_LIST[$name] =& db_get_instance();
             }
-        }
-        if ($readonly) {
-            $_OPENPNE_DB_LIST[$name] =& new OpenPNE_DB($dsn);
         } else {
-            $_OPENPNE_DB_LIST[$name] =& new OpenPNE_DB_Writer($dsn);
+            if ($readonly) {
+                $_OPENPNE_DB_LIST[$name] =& new OpenPNE_DB($dsn);
+            } else {
+                $_OPENPNE_DB_LIST[$name] =& new OpenPNE_DB_Writer($dsn);
+            }
         }
     }
     return $_OPENPNE_DB_LIST[$name];
@@ -54,63 +55,103 @@ function db_get_dsn($name = 'main')
     return $item['dsn'];
 }
 
-function db_get_one($sql, $params = array())
+function db_get_one($sql, $params = array(), $dsn_name = 'main_reader')
 {
-    $reader =& db_get_instance('main_reader', true);
+    if ($dsn_name = 'main_reader') {
+        $reader =& db_get_instance($dsn_name, true);
+    } else {
+        $reader =& db_get_instance($dsn_name);
+    }
     return $reader->get_one($sql, $params);
 }
 
-function db_get_row($sql, $params = array())
+function db_get_row($sql, $params = array(), $dsn_name = 'main_reader')
 {
-    $reader =& db_get_instance('main_reader', true);
+    if ($dsn_name = 'main_reader') {
+        $reader =& db_get_instance($dsn_name, true);
+    } else {
+        $reader =& db_get_instance($dsn_name);
+    }
     return $reader->get_row($sql, $params);
 }
 
-function db_get_col($sql, $params = array())
+function db_get_col($sql, $params = array(), $dsn_name = 'main_reader')
 {
-    $reader =& db_get_instance('main_reader', true);
+    if ($dsn_name = 'main_reader') {
+        $reader =& db_get_instance($dsn_name, true);
+    } else {
+        $reader =& db_get_instance($dsn_name);
+    }
     return $reader->get_col($sql, $params);
 }
 
-function db_get_col_limit($sql, $from, $count, $params = array())
+function db_get_col_limit($sql, $from, $count, $params = array(), $dsn_name = 'main_reader')
 {
-    $reader =& db_get_instance('main_reader', true);
+    if ($dsn_name = 'main_reader') {
+        $reader =& db_get_instance($dsn_name, true);
+    } else {
+        $reader =& db_get_instance($dsn_name);
+    }
     return $reader->get_col_limit($sql, $from, $count, $params);
 }
 
-function db_get_col_page($sql, $page, $count, $params = array())
+function db_get_col_page($sql, $page, $count, $params = array(), $dsn_name = 'main_reader')
 {
-    $reader =& db_get_instance('main_reader', true);
+    if ($dsn_name = 'main_reader') {
+        $reader =& db_get_instance($dsn_name, true);
+    } else {
+        $reader =& db_get_instance($dsn_name);
+    }
     return $reader->get_col_page($sql, $page, $count, $params);
 }
 
-function db_get_assoc($sql, $params = array())
+function db_get_assoc($sql, $params = array(), $dsn_name = 'main_reader')
 {
-    $reader =& db_get_instance('main_reader', true);
+    if ($dsn_name = 'main_reader') {
+        $reader =& db_get_instance($dsn_name, true);
+    } else {
+        $reader =& db_get_instance($dsn_name);
+    }
     return $reader->get_assoc($sql, $params);
 }
 
-function db_get_assoc_limit($sql, $from, $count, $params = array())
+function db_get_assoc_limit($sql, $from, $count, $params = array(), $dsn_name = 'main_reader')
 {
-    $reader =& db_get_instance('main_reader', true);
+    if ($dsn_name = 'main_reader') {
+        $reader =& db_get_instance($dsn_name, true);
+    } else {
+        $reader =& db_get_instance($dsn_name);
+    }
     return $reader->get_assoc_limit($sql, $from, $count, $params);
 }
 
-function db_get_all($sql, $params = array())
+function db_get_all($sql, $params = array(), $dsn_name = 'main_reader')
 {
-    $reader =& db_get_instance('main_reader', true);
+    if ($dsn_name = 'main_reader') {
+        $reader =& db_get_instance($dsn_name, true);
+    } else {
+        $reader =& db_get_instance($dsn_name);
+    }
     return $reader->get_all($sql, $params);
 }
 
-function db_get_all_limit($sql, $from, $count, $params = array())
+function db_get_all_limit($sql, $from, $count, $params = array(), $dsn_name = 'main_reader')
 {
-    $reader =& db_get_instance('main_reader', true);
+    if ($dsn_name = 'main_reader') {
+        $reader =& db_get_instance($dsn_name, true);
+    } else {
+        $reader =& db_get_instance($dsn_name);
+    }
     return $reader->get_all_limit($sql, $from, $count, $params);
 }
 
-function db_get_all_page($sql, $page, $count, $params = array())
+function db_get_all_page($sql, $page, $count, $params = array(), $dsn_name = 'main_reader')
 {
-    $reader =& db_get_instance('main_reader', true);
+    if ($dsn_name = 'main_reader') {
+        $reader =& db_get_instance($dsn_name, true);
+    } else {
+        $reader =& db_get_instance($dsn_name);
+    }
     return $reader->get_all_page($sql, $page, $count, $params);
 }
 
@@ -167,6 +208,20 @@ function db_mysql_hint($hint)
     } else {
         return '';
     }
+}
+
+/**
+ * MySQL: ORDER BY RAND()
+ * PgSQL: ORDER BY RANDOM()
+ */
+function db_order_by_rand()
+{
+    if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
+        $order = ' ORDER BY RANDOM()';
+    } else {
+        $order = ' ORDER BY RAND()';
+    }
+    return $order;
 }
 
 ?>

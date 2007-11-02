@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -19,7 +19,7 @@ class pc_page_h_review_add_write extends OpenPNE_Action
         // ----------
 
         //登録済みならh_review_editへ飛ばす
-        $c_review_comment = p_h_review_add_write_c_review_comment4asin_c_member_id($asin, $u);
+        $c_review_comment = db_review_add_write_c_review_comment4asin_c_member_id($asin, $u);
         if ($c_review_comment) {
             $_REQUEST['c_review_id'] = $c_review_comment['c_review_id'];
             $_REQUEST['asin'] = $asin;
@@ -43,7 +43,10 @@ class pc_page_h_review_add_write extends OpenPNE_Action
         $this->set('satisfaction', $satisfaction);
         $this->set('err_msg', $err_msg);
 
-        $product = p_h_review_write_product4asin($asin);
+        $product = db_review_write_product4asin($asin);
+        if (!$product) {
+            handle_kengen_error();
+        }
 
         $this->set('product', $product);
         return 'success';

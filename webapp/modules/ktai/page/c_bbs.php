@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -23,16 +23,28 @@ class ktai_page_c_bbs extends OpenPNE_Action
         $this->set("page", $page);
 
         //トピックのコメントリスト
-        $list = k_p_c_bbs_c_commu_topic_comment_list4c_c_commu_topic_id($target_c_commu_topic_id, $u, $page_size, $page);
-        $this->set("c_commu_topic_comment_list", $list[0]);
+        $list = db_commu_c_commu_topic_comment_list4c_c_commu_topic_id($target_c_commu_topic_id, $u, $page_size, $page);
+        $total_num = $list[3];
         $this->set("is_prev", $list[1]);
         $this->set("is_next", $list[2]);
+        $this->set('total_num', $total_num);
+
+        $pager = array();
+        // number ベースにする
+        $top = reset($list[0]);
+        $bottom = end($list[0]);
+        $pager['end'] = (int)$top['number'];
+        $pager['start'] = (int)$bottom['number'];
+        $this->set('pager', $pager);
+
+        $c_commu_topic_comment_list = array_reverse($list[0]);
+        $this->set("c_commu_topic_comment_list", $c_commu_topic_comment_list);
 
         //トピック名
         $this->set("c_commu_topic_name", k_p_c_bbs_c_commu_topic_name4c_commu_topic_id($target_c_commu_topic_id));
         //トピックID,トピック
         $this->set("c_commu_topic_id", $target_c_commu_topic_id);
-        $this->set("c_commu_topic", c_event_detail_c_topic4c_commu_topic_id($target_c_commu_topic_id));
+        $this->set("c_commu_topic", db_commu_c_topic4c_commu_topic_id_2($target_c_commu_topic_id));
 
         //コミュニティ
         $c_commu = k_p_c_bbs_c_commu4c_commu_topic_id($target_c_commu_topic_id);
@@ -46,18 +58,18 @@ class ktai_page_c_bbs extends OpenPNE_Action
         }
 
         //コミュニティ掲示板閲覧権限
-        if (!p_common_is_c_commu_view4c_commu_idAc_member_id($c_commu_id, $u)) {
+        if (!db_commu_is_c_commu_view4c_commu_idAc_member_id($c_commu_id, $u)) {
             handle_kengen_error();
         }
 
         //掲示板の閲覧権限 tplでやっている
-        $this->set("is_c_commu_view", p_common_is_c_commu_view4c_commu_idAc_member_id($c_commu['c_commu_id'], $u));
-        $this->set("is_c_commu_member", _db_is_c_commu_member($c_commu['c_commu_id'], $u));
-        $this->set("is_c_event_member", _db_is_c_event_member($target_c_commu_topic_id, $u));
-        $this->set("is_c_event_admin", _db_is_c_event_admin($target_c_commu_topic_id, $u));
+        $this->set("is_c_commu_view", db_commu_is_c_commu_view4c_commu_idAc_member_id($c_commu['c_commu_id'], $u));
+        $this->set("is_c_commu_member", db_commu_is_c_commu_member($c_commu['c_commu_id'], $u));
+        $this->set("is_c_event_member", db_commu_is_c_event_member($target_c_commu_topic_id, $u));
+        $this->set("is_c_event_admin", db_commu_is_c_event_admin($target_c_commu_topic_id, $u));
+        $this->set('is_event_join_date', db_commu_is_event_join_date($target_c_commu_topic_id));
 
-
-        //ユーザーがコミュニティ管理者かどうか
+        //メンバーがコミュニティ管理者かどうか
         $this->set("is_admin", k_p_c_bbs_is_admin4c_member_id_c_commu_topic_id($u, $target_c_commu_topic_id));
         //コミュニティ管理者
         $this->set("c_member_admin", k_p_c_bbs_c_member_admin4c_commu_topic_id($target_c_commu_topic_id));

@@ -1,5 +1,6 @@
 function url2cmd(url) {
-    if (!url.match(/^http:\/\/(?:www\.|)youtube\.com\/watch\?v=([a-zA-Z0-9_-]+)/)) {
+    if (!url.match(/^http:\/\/(?:www\.|)youtube\.com\/watch\?v=([a-zA-Z0-9_\-]+)/)) {
+        pne_url2a(url);
         return;
     }
     var id = RegExp.$1;
@@ -9,11 +10,11 @@ function url2cmd(url) {
 }
 
 function main(id, width, height) {
-    if (!id.match(/^[a-zA-Z0-9_-]+$/)) {
+    if (!id.match(/^[a-zA-Z0-9_\-]+$/)) {
         return;
     }
-    width = parseInt(width);
-    height = parseInt(height);
+    if (!width) width = 0; else width = parseInt(width);
+    if (!height) height = 0; else height = parseInt(height);
     if (width <= 0 || width > 425) {
         width = 425;
     }

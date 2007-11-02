@@ -1,8 +1,9 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
+
 
 //デフォルトページ
 $GLOBALS['__Framework']['default_page'] = 'h_home';
@@ -17,6 +18,22 @@ if (!OPENPNE_ENABLE_KTAI) {
 // User-Agent判別
 if (CHECK_KTAI_UA && !isKtaiUserAgent()) {
     openpne_redirect('pc');
+}
+
+// IPアドレスチェック
+if (CHECK_KTAI_IP && !is_ktai_ip()) {
+    openpne_redirect('pc');
+}
+
+$agent = new OpenPNE_KtaiUA();
+if ($agent->is_docomo()) {
+    $GLOBALS['__Framework']['carrier'] = 'i';
+} elseif ($agent->is_au()) {
+    $GLOBALS['__Framework']['carrier'] = 'e';
+} elseif ($agent->is_vodafone()) {
+    $GLOBALS['__Framework']['carrier'] = 's';
+} elseif ($agent->is_willcom()) {
+    $GLOBALS['__Framework']['carrier'] = 'w';
 }
 
 // 文字コード変換
@@ -60,6 +77,7 @@ function init_ktai_page(&$smarty)
     $smarty->assign('WORD_MY_FRIEND', WORD_MY_FRIEND);
     $smarty->assign('WORD_FRIEND_HALF', WORD_FRIEND_HALF);
     $smarty->assign('WORD_MY_FRIEND_HALF', WORD_MY_FRIEND_HALF);
+    $smarty->assign('ktai_color_config', util_get_color_config_ktai());
 
     $is_secure = $GLOBALS['__Framework']['is_secure'];
 

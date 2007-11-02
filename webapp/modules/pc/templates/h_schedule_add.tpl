@@ -5,7 +5,7 @@
 ({**ここから：メインコンテンツ**})
 ({***************************})
 
-<img src="./skin/dummy.gif" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 <!-- ******************************************* -->
 <!-- ******ここから：スケジュール入力フォーム****** -->
@@ -13,12 +13,12 @@
 
 <table border="0" cellspacing="0" cellpadding="0" style="width:580px;margin:0px auto;" class="border_07">
 <tr>
-<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
-<td style="width:566px;" class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
-<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+<td style="width:566px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 <tr>
-<td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 <td align="center">
 <!-- *ここから：スケジュール入力フォーム内容* -->
 ({*ここから：header*})
@@ -60,7 +60,7 @@
 
 <div class="padding_s">
 
-<input name="title" value="({$input.title})" style="width: 400">
+<input type="text" class="text" name="title" value="({$input.title})" style="width:400px">
 
 </div>
 
@@ -177,7 +177,7 @@
 
 <div class="padding_s">
 
-<textarea name="body" style="width:400;height:150">({$input.body})</textarea>
+<textarea class="text" name="body" style="width:400px;height:150px">({$input.body})</textarea>
 
 </div>
 
@@ -188,7 +188,7 @@
 ({if !$is_unused_schedule})
 <!-- ここから；スケジュールフォーム＞お知らせメール通知 -->
 <tr>
-<td align="center" class="border_01" style="border-width:0px 1px 1px 0px;">
+<td align="center" class="border_01 bg_05" style="border-width:0px 1px 1px 0px;">
 
 <div class="padding_s">お知らせメール</div>
 
@@ -242,12 +242,12 @@
 ({*ここから：footer*})
 <!-- *ここまで：スケジュール入力フォーム内容* -->
 </td>
-<td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 <tr>
-<td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
-<td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
-<td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 </table>
 
@@ -255,7 +255,7 @@
 <!-- ******ここまで：スケジュール入力フォーム****** -->
 <!-- ******************************************** -->
 
-<img src="./skin/dummy.gif" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 ({***************************})
 ({**ここまで：メインコンテンツ**})

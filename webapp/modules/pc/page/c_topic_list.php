@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -18,7 +18,7 @@ class pc_page_c_topic_list extends OpenPNE_Action
 
 
         $page_size = 20;
-        $c_commu = _db_c_commu4c_commu_id($c_commu_id);
+        $c_commu = db_commu_c_commu4c_commu_id($c_commu_id);
 
         //コミュニティの存在の有無
         if (!$c_commu) {
@@ -42,7 +42,7 @@ class pc_page_c_topic_list extends OpenPNE_Action
 
 
         //--- 権限チェック
-        $is_c_commu_member = _db_is_c_commu_member($c_commu_id, $u);
+        $is_c_commu_member = db_commu_is_c_commu_member($c_commu_id, $u);
 
         if (!$is_c_commu_member && $c_commu['public_flag'] == "auth_commu_member") {
             $is_warning = true;
@@ -52,7 +52,7 @@ class pc_page_c_topic_list extends OpenPNE_Action
         $this->set("is_warning", $is_warning);
         //---
 
-        $this->set("is_c_commu_admin", _db_is_c_commu_admin($c_commu_id, $u));
+        $this->set("is_c_commu_admin", db_commu_is_c_commu_admin($c_commu_id, $u));
         $this->set("is_c_commu_member", $is_c_commu_member);
 
         return 'success';

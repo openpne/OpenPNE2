@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -14,6 +14,7 @@ class ktai_page_fh_diary_delete_c_diary_confirm extends OpenPNE_Action
         $target_c_diary_id = $requests['target_c_diary_id'];
         // ----------
 
+        $this->set('target_c_diary', db_diary_get_c_diary4id($target_c_diary_id));
         $this->set("target_c_diary_id", $target_c_diary_id);
 
         return 'success';

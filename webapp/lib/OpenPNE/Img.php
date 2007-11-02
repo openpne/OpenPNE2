@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -257,6 +257,13 @@ class OpenPNE_Img
         if ($h < $o_height && $h < $s_height) {
             $o_width  = $s_width * $h / $s_height;
             $o_height = $h;
+        }
+        
+        if ($o_height < 1.) {
+            $o_height = 1;
+        }
+        if ($o_width < 1.) {
+            $o_width = 1;
         }
 
         $output_gdimg = imagecreatetruecolor($o_width, $o_height);

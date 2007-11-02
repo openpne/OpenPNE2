@@ -1,11 +1,11 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
 /**
- * ユーザーリスト取得
+ * メンバーリスト取得
  */
 function db_admin_c_member_list($page, $page_size, &$pager)
 {
@@ -14,7 +14,7 @@ function db_admin_c_member_list($page, $page_size, &$pager)
 
     $c_member_list = array();
     foreach ($ids as $id) {
-        $c_member_list[] = db_common_c_member4c_member_id($id, true, true, 'private');
+        $c_member_list[] = db_member_c_member4c_member_id($id, true, true, 'private');
     }
 
     $sql = 'SELECT COUNT(*) FROM c_member';
@@ -34,7 +34,7 @@ function db_admin_c_member4mail_address($mail_address)
 
     $c_member_list = array();
     foreach ($list as $c_member_id) {
-        $c_member_list[] = db_common_c_member4c_member_id($c_member_id, true, true, 'private');
+        $c_member_list[] = db_member_c_member4c_member_id($c_member_id, true, true, 'private');
     }
     return $c_member_list;
 }
@@ -64,12 +64,6 @@ function db_admin_update_c_siteadmin($target, $body)
     );
     $where = array('target' => $target);
     return db_update('c_siteadmin', $data, $where);
-}
-
-function db_admin_update_c_sns_config($data)
-{
-    $where = array('c_sns_config_id' => 1);
-    return db_update('c_sns_config', $data, $where);
 }
 
 function db_admin_delete_c_profile_option($c_profile_option_id)
@@ -117,6 +111,7 @@ function db_admin_insert_c_banner($a_href, $type, $nickname)
         'nickname' => $nickname,
         'is_hidden_after' => 0,
         'is_hidden_before' => 0,
+        'image_filename' => '',
     );
     return db_insert('c_banner', $data);
 }
@@ -164,6 +159,7 @@ function db_admin_insert_c_profile(
     $data = array(
         'name' => $name,
         'caption' => $caption,
+        'info' => '',
         'is_required' => (bool)$is_required,
         'public_flag_edit' => (bool)$public_flag_edit,
         'public_flag_default' => $public_flag_default,
@@ -216,7 +212,7 @@ function db_admin_update_c_profile($c_profile_id
     $where = array('c_profile_id' => intval($c_profile_id));
     db_update('c_profile', $data, $where);
 
-    // 公開設定が固定のときはユーザーの設定値を上書き
+    // 公開設定が固定のときはメンバーの設定値を上書き
     if (!$public_flag_edit) {
         $data = array('public_flag' => $public_flag_default);
         db_update('c_member_profile', $data, $where);

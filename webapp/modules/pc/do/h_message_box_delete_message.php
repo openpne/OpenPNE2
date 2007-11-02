@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -33,23 +33,31 @@ class pc_do_h_message_box_delete_message extends OpenPNE_Action
             if (!empty($requests['move']) ) {
                 //ごみ箱から移動
                 foreach ($c_message_id as $val) {
-                    $c_message = _db_c_message4c_message_id($val);
+                    if (!util_is_readable_message($u, $val)) {
+                        handle_kengen_error();
+                    }
+
+                    $c_message = db_message_c_message4c_message_id($val);
                     if ($c_message['c_member_id_from'] != $u
                         && $c_message['c_member_id_to'] != $u) {
                         handle_kengen_error();
                     }
-                    do_h_message_box_move_message($val, $u);
+                    db_message_move_message($val, $u);
                 }
                 $p = array('box' => $box);
                 openpne_redirect('pc', 'page_h_message_box', $p);
             } else {
                 //ごみ箱から完全削除　復元方法なし
                 foreach ($c_message_id as $val) {
-                    $c_message = _db_c_message4c_message_id($val);
+                    if (!util_is_readable_message($u, $val)) {
+                        handle_kengen_error();
+                    }
+
+                    $c_message = db_message_c_message4c_message_id($val);
                     if ($c_message['c_member_id_from'] == $u) {
-                        do_delete_c_message_from_trash($val);
+                        db_message_delete_c_message_from_trash($val);
                     } elseif ($c_message['c_member_id_to'] == $u) {
-                        do_delete_c_message_to_trash($val);
+                        db_message_delete_c_message_to_trash($val);
                     } else {
                         handle_kengen_error();
                     }
@@ -60,13 +68,17 @@ class pc_do_h_message_box_delete_message extends OpenPNE_Action
         } else {
             // メッセージをごみ箱へ移動
             foreach ($c_message_id as $val) {
-                $c_message = _db_c_message4c_message_id($val);
+                if (!util_is_readable_message($u, $val)) {
+                    handle_kengen_error();
+                }
+
+                $c_message = db_message_c_message4c_message_id($val);
                 if ($c_message['c_member_id_from'] != $u) {
                     if ($c_message['c_member_id_to'] != $u || !$c_message['is_send']) {
                         handle_kengen_error();
                     }
                 }
-                _do_delete_c_message4c_message_id($val, $u);
+                db_message_delete_c_message4c_message_id($val, $u);
             }
         }
 

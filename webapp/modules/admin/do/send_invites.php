@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -21,6 +21,8 @@ class admin_do_send_invites extends OpenPNE_Action
         $mails = str_replace("\r", "\n", $mails);
         $mail_list = explode("\n", $mails);
 
+        $is_disable_regist_easy_access_id = $requests['is_disable_regist_easy_access_id'];
+
         // filtering
         $errors = array();
         $pcs = array();
@@ -33,7 +35,7 @@ class admin_do_send_invites extends OpenPNE_Action
                 continue;
             }
 
-            if (p_is_sns_join4mail_address($mail)) { // 登録済み
+            if (db_member_is_sns_join4mail_address($mail)) { // 登録済み
                 $errors[] = $mail;
             } elseif (!db_member_is_limit_domain4mail_address($mail)) { // ドメイン制限
                 $limits[] = $mail;
@@ -58,17 +60,16 @@ class admin_do_send_invites extends OpenPNE_Action
             $c_member_id_invite = 1;
 
             //<PCKTAI
-            if (!defined('OPENPNE_REGIST_FROM') ||
-                    (OPENPNE_REGIST_FROM & OPENPNE_REGIST_FROM_KTAI) >> 1) {
+            if ((OPENPNE_REGIST_FROM & OPENPNE_REGIST_FROM_KTAI) >> 1) {
+                // 携帯へ招待メール
                 foreach ($ktais as $mail) {
-                    // 携帯へ招待メール
                     $session = create_hash();
 
                     // c_member_ktai_pre に追加
-                    if (do_common_c_member_ktai_pre4ktai_address($mail)) {
-                        do_update_c_member_ktai_pre($session, $mail, $c_member_id_invite);
+                    if (db_member_c_member_ktai_pre4ktai_address($mail)) {
+                        db_member_update_c_member_ktai_pre($session, $mail, $c_member_id_invite, $is_disable_regist_easy_access_id);
                     } else {
-                        do_insert_c_member_ktai_pre($session, $mail, $c_member_id_invite);
+                        db_member_insert_c_member_ktai_pre($session, $mail, $c_member_id_invite, $is_disable_regist_easy_access_id);
                     }
 
                     h_invite_insert_c_invite_mail_send($session, $c_member_id_invite, $mail, $requests['message']);
@@ -77,18 +78,16 @@ class admin_do_send_invites extends OpenPNE_Action
             //>
 
             //<PCKTAI
-            if (!defined('OPENPNE_REGIST_FROM') ||
-                    (OPENPNE_REGIST_FROM & OPENPNE_REGIST_FROM_PC)) {
-
+            if ((OPENPNE_REGIST_FROM & OPENPNE_REGIST_FROM_PC)) {
                 // PCへ招待メール
                 foreach ($pcs as $mail) {
                     $session = create_hash();
 
                     // c_member_pre に追加
-                    if (do_common_c_member_pre4pc_address($mail)) {
-                        do_h_invite_update_c_invite($c_member_id_invite, $mail, $requests['message'], $session);
+                    if (db_member_c_member_pre4pc_address($mail)) {
+                        db_member_update_c_invite($c_member_id_invite, $mail, $requests['message'], $session, $is_disable_regist_easy_access_id);
                     } else {
-                        do_h_invite_insert_c_invite($c_member_id_invite, $mail, $requests['message'], $session);
+                        db_member_insert_c_invite($c_member_id_invite, $mail, $requests['message'], $session, $is_disable_regist_easy_access_id);
                     }
 
                     do_h_invite_insert_c_invite_mail_send($c_member_id_invite, $session, $requests['message'], $mail);

@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -18,6 +18,10 @@ class admin_do_update_c_profile extends OpenPNE_Action
         $id = db_admin_c_profile_name_exists($requests['name']);
         if ($id && ($id != $requests['c_profile_id'])) {
             admin_client_redirect('update_c_profile', 'その識別名は既に登録されています',
+                'c_profile_id='.$requests['c_profile_id']);
+        }
+        if (is_numeric($requests['name'])) {
+            admin_client_redirect('update_c_profile', '識別名は数値のみには設定できません',
                 'c_profile_id='.$requests['c_profile_id']);
         }
 

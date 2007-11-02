@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -11,10 +11,15 @@ class admin_page_send_messages_search extends OpenPNE_Action
     {
         $cond_list = validate_cond($_REQUEST);
 
-        $profile_list = db_common_c_profile_list();
+        $profile_list = db_member_c_profile_list();
         $profile_value_list = array();
-        foreach ($cond_list as $key=>$each_cond) {
-            if (($key == "s_year") || ($key == "e_year")) {
+
+        $special_keys = array('s_year', 'e_year',
+                              's_point', 'e_point',
+                              'last_login',
+                              'is_pc_address', 'is_ktai_address');
+        foreach ($cond_list as $key => $each_cond) {
+            if (in_array($key, $special_keys)) {
                 continue;
             }
             $c_profile_option = db_c_profile_option4c_profile_option_id($each_cond);
@@ -23,6 +28,17 @@ class admin_page_send_messages_search extends OpenPNE_Action
         }
         $v['cond_list'] = $cond_list;
         $v['profile_value_list'] = $profile_value_list;
+
+        //絞り込みのための最終ログイン時間
+        $select_last_login = array(
+            1 => "3日以内",
+            2 => "3～7日以内",
+            3 => "7～30日以内",
+            4 => "30日以上",
+            5 => "未ログイン",
+        );
+        $v['select_last_login'] = $select_last_login;
+        
         $this->set($v);
 
         return 'success';

@@ -114,6 +114,10 @@ select {
 	vertical-align: middle ;
 }
 
+input.submit {
+	cursor: pointer;
+}
+
 input.no_bg {
 	background-color: transparent ;
 	border: 0px none ;
@@ -143,6 +147,16 @@ img.v_spacer_l {
 
 img.dummy {
 	display: block ;
+}
+
+img.dot {
+	height: 1px;
+	width: 1px;
+}
+
+img.square {
+	height: 7px;
+	width: 7px;
 }
 
 /*その他*/

@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -27,24 +27,33 @@ class setup_page_setup extends OpenPNE_Action
             $errors[] = 'ENCRYPT_KEYが適切に設定されていません。config.phpの設定を確認してください。';
         }
 
+        // database のチェック
+        if (!$GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['database'])
+        {
+            $errors[] = 'データベース名が空です。config.phpの設定を確認してください。';
+        }
+
         // ディレクトリの書き込み権限のチェック
         $dirs = array(
             OPENPNE_IMG_CACHE_DIR . '/jpg',
             OPENPNE_IMG_CACHE_DIR . '/jpg/w120_h120',
             OPENPNE_IMG_CACHE_DIR . '/jpg/w180_h180',
             OPENPNE_IMG_CACHE_DIR . '/jpg/w76_h76',
+            OPENPNE_IMG_CACHE_DIR . '/jpg/w240_h320',
             OPENPNE_IMG_CACHE_DIR . '/jpg/w_h',
             OPENPNE_IMG_CACHE_DIR . '/jpg/w_h_raw',
             OPENPNE_IMG_CACHE_DIR . '/gif',
             OPENPNE_IMG_CACHE_DIR . '/gif/w120_h120',
             OPENPNE_IMG_CACHE_DIR . '/gif/w180_h180',
             OPENPNE_IMG_CACHE_DIR . '/gif/w76_h76',
+            OPENPNE_IMG_CACHE_DIR . '/gif/w240_h320',
             OPENPNE_IMG_CACHE_DIR . '/gif/w_h',
             OPENPNE_IMG_CACHE_DIR . '/gif/w_h_raw',
             OPENPNE_IMG_CACHE_DIR . '/png',
             OPENPNE_IMG_CACHE_DIR . '/png/w120_h120',
             OPENPNE_IMG_CACHE_DIR . '/png/w180_h180',
             OPENPNE_IMG_CACHE_DIR . '/png/w76_h76',
+            OPENPNE_IMG_CACHE_DIR . '/png/w240_h320',
             OPENPNE_IMG_CACHE_DIR . '/png/w_h',
             OPENPNE_IMG_CACHE_DIR . '/png/w_h_raw',
             OPENPNE_VAR_DIR . '/function_cache',

@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -46,7 +46,7 @@ class biz_do_g_home_add_biz_schedule extends OpenPNE_Action
             exit();  //強制的にスクリプトを終了しなければいけない
         }
 
-        biz_insertSchedule($title, $u, $begin_date, $finish_date, $begin_time, $finish_time, '', 0, 0, $members_id);  //予定の登録
+        biz_insertSchedule($title, $u, $begin_date, $finish_date, $begin_time, $finish_time, '', 0, 0, $target_id, 'group', $members_id);  //予定の登録
         biz_readSchedule($u, biz_getScheduleMax());  //既読済みに
 
         $p = array('target_c_commu_id' => $target_id);

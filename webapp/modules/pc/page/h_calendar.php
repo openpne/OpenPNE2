@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -36,9 +36,9 @@ class pc_page_h_calendar extends OpenPNE_Action
 
         $this->set('inc_navi', fetch_inc_navi('h'));
         // イベント
-        $event_list = p_h_calendar_event4c_member_id($year, $month, $u);
+        $event_list = db_schedule_event4c_member_id($year, $month, $u);
         // 誕生日
-        $birth_list = p_h_calendar_birth4c_member_id($month, $u);
+        $birth_list = db_schedule_birth4c_member_id($month, $u);
 
         include_once 'Calendar/Month/Weekdays.php';
         $Month = new Calendar_Month_Weekdays($year, $month, 0);
@@ -58,7 +58,8 @@ class pc_page_h_calendar extends OpenPNE_Action
                     'now' => false,
                     'birth' => $birth_list[$day],
                     'event' => $event_list[$day],
-                    'schedule' => p_h_calendar_c_schedule_list4date($year, $month, $day, $u),
+                    'schedule' => db_schedule_c_schedule_list4date($year, $month, $day, $u),
+                    'holiday' => db_c_holiday_list4date($month, $day),
                 );
                 $item['day'] = $day;
                 if ($is_curr && $item['day'] == $curr_day) {
@@ -83,11 +84,9 @@ class pc_page_h_calendar extends OpenPNE_Action
         $this->set("month", $month);
         $this->set("calendar", $calendar);
 
-        $c_member = db_common_c_member4c_member_id($u);
+        $c_member = db_member_c_member4c_member_id($u);
         $this->set("pref_list", p_regist_prof_c_profile_pref_list4null());
         $this->set("c_member", $c_member);
-
-        $this->set("weather_url", "http://weather.yahoo.co.jp/weather/");
 
         return 'success';
     }

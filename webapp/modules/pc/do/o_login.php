@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -9,6 +9,7 @@ class pc_do_o_login extends OpenPNE_Action
     var $_auth;
     var $_lc;
     var $_login_params;
+    var $_target_script;
 
     function isSecure()
     {
@@ -18,14 +19,9 @@ class pc_do_o_login extends OpenPNE_Action
     function execute($requests)
     {
         $this->_login_params = $requests['login_params'];
-        $options = array(
-            'dsn'         => db_get_dsn(),
-            'table'       => 'c_member_secure',
-            'usernamecol' => 'pc_address',
-            'passwordcol' => 'hashed_password',
-            'cryptType'   => 'md5',
-        );
-        $auth = new OpenPNE_Auth('DB', $options);
+        $this->_target_script = $requests['target_script'];
+        $auth_config = get_auth_config();
+        $auth = new OpenPNE_Auth($auth_config['storage'], $auth_config['options']);
         $this->_auth =& $auth;
         $auth->setExpire($GLOBALS['OpenPNE']['common']['session_lifetime']);
         $auth->setIdle($GLOBALS['OpenPNE']['common']['session_idletime']);
@@ -50,9 +46,17 @@ class pc_do_o_login extends OpenPNE_Action
         if (LOGIN_CHECK_ENABLE && $this->_lc->is_rejected()) {
             $this->_fail_login();
         }
+        
+        if (IS_SLAVEPNE && !($c_member_id = db_member_c_member_id4username_encrypted($auth->getUsername(), false))) {
+            db_member_create_member($_POST['username']);
+        }
 
         db_api_update_token($auth->uid());
         $url = OPENPNE_URL;
+        if ($this->_target_script) {
+            $this->_target_script = str_replace("/","",$this->_target_script);
+            $url .= $this->_target_script;
+        }
         if ($this->_login_params) {
             $url .= '?' . $this->_login_params;
         }

@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -23,7 +23,7 @@ class pc_page_h_diary_add extends OpenPNE_Action
         $this->set('inc_navi', fetch_inc_navi("h"));
 
         //プロフィール
-        $c_member = db_common_c_member4c_member_id($u);
+        $c_member = db_member_c_member4c_member_id($u);
         if (empty($form_val['public_flag'])) {
             $form_val['public_flag'] = $c_member['public_flag_diary'];
         }
@@ -52,10 +52,13 @@ class pc_page_h_diary_add extends OpenPNE_Action
         $this->set("date_list", p_fh_diary_list_date_list4c_member_id($u));
 
         if (USE_DIARY_CATEGORY) {
-	        //カテゴリリスト
-	        $this->set("category_list", db_diary_category_list4c_member_id($u));
+            //カテゴリリスト
+            $this->set("category_list", db_diary_category_list4c_member_id($u));
             $this->set("use_diary_category", true);
         }
+
+        // inc_entry_point
+        $this->set('inc_entry_point', fetch_inc_entry_point($this->getView(), 'h_diary_add'));
 
         return 'success';
     }
