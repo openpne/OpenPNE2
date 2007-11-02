@@ -16,7 +16,7 @@ class ktai_page_fh_diary extends OpenPNE_Action
         $page = $requests['page'];
         // ----------
 
-        $page_size = 10;
+        $page_size = 5;
         $page += $direc;
 
         //ページ
@@ -24,7 +24,8 @@ class ktai_page_fh_diary extends OpenPNE_Action
 
         $c_diary = db_diary_get_c_diary4id($target_c_diary_id);
 
-        $target_c_member = k_p_fh_diary_c_member4c_diary_id($target_c_diary_id);        $target_c_member_id = $target_c_member['c_member_id'];
+        $target_c_member = k_p_fh_diary_c_member4c_diary_id($target_c_diary_id);
+        $target_c_member_id = $target_c_member['c_member_id'];
 
         if ($u != $target_c_member_id) {
 
@@ -45,6 +46,8 @@ class ktai_page_fh_diary extends OpenPNE_Action
 
         //日記
         $this->set("target_c_diary", $c_diary);
+        $this->set('c_diary_id_prev', db_diary_c_diary_id_prev4c_diary_id($target_c_member_id, $target_c_diary_id, $u));
+        $this->set('c_diary_id_next', db_diary_c_diary_id_next4c_diary_id($target_c_member_id, $target_c_diary_id, $u));
         //自分で日記を見たとき
         if ($c_diary['c_member_id'] == $u) {
             //日記を閲覧済みにする

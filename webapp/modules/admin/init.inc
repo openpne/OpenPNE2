@@ -19,6 +19,9 @@ require_once $module_lib_dir . '/db_admin.php';
 require_once $module_lib_dir . '/etc_admin.php';
 require_once $module_lib_dir . '/hash_admin.php';
 
+// 管理画面向け smarty plugins
+$GLOBALS['SMARTY']['plugins_dir'][] = $module_lib_dir . '/smarty_plugins/';
+
 // デフォルトページ
 $GLOBALS['__Framework']['default_page'] = 'top';
 
@@ -113,7 +116,6 @@ $GLOBALS['_OPENPNE_ADMIN_AUTH_ACTIONS'] = array(
 'do_update_profile_sort_order',
 'do_update_side_banner_html',
 'do_update_skin_image',
-'do_update_skin_version',
 'do_update_top_banner_html',
 ),
 
@@ -244,7 +246,6 @@ $GLOBALS['_OPENPNE_ADMIN_AUTH_ACTIONS'] = array(
 'do_update_profile_sort_order',
 'do_update_side_banner_html',
 'do_update_skin_image',
-'do_update_skin_version',
 'do_update_top_banner_html',
 ),
 );

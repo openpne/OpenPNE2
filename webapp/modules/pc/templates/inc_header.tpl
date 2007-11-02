@@ -4,33 +4,21 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 ({$INC_HEADER_inc_html_head|smarty:nodefaults})
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Cache-Control" content="no-cache">
 <meta http-equiv="Expires" content="Thu, 01 Dec 1994 16:00:00 GMT">
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="Content-Style-Type" content="text/css">
 <title>({$INC_HEADER_title})</title>
-({if $smarty.const.SKIN_VERSION=='1.8'})
-<link rel="stylesheet" href="./css/default_1_8.css?v=2.2.5" type="text/css">
-({else})
-<link rel="stylesheet" href="./css/default.css?v=2.2.5" type="text/css">
-({/if})
+<link rel="stylesheet" href="./css/default.css" type="text/css">
 <script type="text/javascript" src="./js/prototype.js"></script>
 <script type="text/javascript" src="./js/pne.js"></script>
 <style type="text/css">
 <!--
 /*枠線要素*/
-.border_00 { border: #({$INC_HEADER_color_config.border_00}) 1px solid ; }
 .border_01 { border: #({$INC_HEADER_color_config.border_01}) 1px solid ; }
-.border_02 { border: #({$INC_HEADER_color_config.border_02}) 1px solid ; }
-.border_03 { border: #({$INC_HEADER_color_config.border_03}) 1px solid ; }
-.border_04 { border: #({$INC_HEADER_color_config.border_04}) 1px solid ; }
-.border_05 { border: #({$INC_HEADER_color_config.border_05}) 1px solid ; }
-.border_06 { border: #({$INC_HEADER_color_config.border_06}) 1px solid ; }
 .border_07 { border: #({$INC_HEADER_color_config.border_07}) 1px solid ; }
-.border_08 { border: #({$INC_HEADER_color_config.border_08}) 1px solid ; }
-.border_09 { border: #({$INC_HEADER_color_config.border_09}) 1px solid ; }
 .border_10 { border: #({$INC_HEADER_color_config.border_10}) 1px solid ; }
 
 /*背景要素*/
@@ -49,6 +37,7 @@
 .bg_12 { background-color: #({$INC_HEADER_color_config.bg_12}) ; }
 .bg_13 { background-color: #({$INC_HEADER_color_config.bg_13}) ; }
 .bg_14 { background-color: #({$INC_HEADER_color_config.bg_14}) ; }
+.color_19 { background-color: #({$INC_HEADER_color_config.color_19}) ; }
 
 body { background-color: #({$INC_HEADER_color_config.bg_12}) ; }
 .container { background-color: #({$INC_HEADER_color_config.bg_13}) ; }
@@ -267,7 +256,6 @@ div.inc_page_header div.navi_global a.navi_global_9:hover {
 </style>
 <script type="text/javascript">
 <!--
-
 ({*テキスト入力欄の背景色変更*})
 TextFiledClassName_normal = 'text';
 TextFiledClassName_focus  = 'text_focus';
@@ -283,21 +271,6 @@ function setFocusClass() {
 		node.onblur  = function() { this.className = this.TFclass; };
 	});
 }
-
-({*二度押し対策*})
-/*
-Event.observe(window, 'load', setSubmitFunction, false);
-
-function setSubmitFunction() {
-	var SFs = $A(document.getElementsByTagName('form'));
-	SFs.each(function (node){
-		node.onsubmit = function() {
-			var obj= $A(node.elements);
-			obj.each( function(n){if(n.type== 'submit') n.disabled= true;})
-		};
-	});
-}
-*/
 //-->
 </script>
 </head>
@@ -432,18 +405,18 @@ function load() {
 ({*************************************})
 ({**ここから：旧inc_alert_box.tplの内容**})
 ({*************************************})
-<img src="./skin/dummy.gif" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 <!-- ************************* -->
 <!-- ******ここから：警告****** -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:({if $width})({$width})({else})580({/if})px;margin:0px auto;" class="border_07">
 <tr>
-<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
-<td style="width:({if $width})({$width-14})({else})566({/if})px;" class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
-<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+<td style="width:({if $width})({$width-14})({else})566({/if})px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 <tr>
-<td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 <td class="bg_01" align="center">
 <!-- *ここから：警告＞内容* -->
 ({*ここから：header*})
@@ -453,18 +426,18 @@ function load() {
 <!-- ここから：主内容 -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:({if $width})({$width-16})({else})564({/if})px;">
 <tr>
-<td style="width:({if $width})({$width-16})({else})564({/if})px;height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:({if $width})({$width-16})({else})564({/if})px;height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 <tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 <td style="width:150px;" class="bg_03" align="center" valign="middle">
 <!-- ここから：主内容＞警告アイコン -->
-<img src="./skin/dummy.gif" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 <img src="({t_img_url_skin filename=icon_alert_l})" class="icon">
-<img src="./skin/dummy.gif" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 <!-- ここまで：主内容＞警告アイコン -->
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 <td style="width:({if $width})({$width-153})({else})427({/if})px;height:50px;" class="bg_02" align="left" valign="middle">
 <div style="padding:8px 6px;" class="caution">
 <!-- ここから：主内容＞警告文本体 -->
@@ -478,10 +451,10 @@ function load() {
 <!-- ここまで：主内容＞警告文本体 -->
 </div>
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 <tr>
-<td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 </table>
 <!-- ここまで：主内容 -->
@@ -491,12 +464,12 @@ function load() {
 ({*ここまで：footer*})
 <!-- *ここまで：警告＞＞内容* -->
 </td>
-<td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 <tr>
-<td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
-<td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
-<td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 </table>
 <!-- ******ここまで：警告****** -->

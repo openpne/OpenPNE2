@@ -89,4 +89,43 @@ EOD;
     return array($msg_subject, $msg_body);
 }
 
+function create_message_commu_admin_request($u, $body, $target_c_member_id, $target_c_commu_id)
+{
+    $msg_subject = 'コミュニティ管理者交代要請メッセージ';
+
+    $c_member_id_from = $u;
+    $c_member = db_common_c_member4c_member_id_LIGHT($u);
+    $c_member_to = $target_c_member_id;
+    $c_commu = db_commu_c_commu4c_commu_id($target_c_commu_id);
+
+    $msg_body = <<<EOD
+{$c_member['nickname']} さんから{$c_commu['name']} コミュニティの管理者交代希望メッセージが届いています。
+
+メッセージ：
+{$body}
+
+この要請について、承認待ちリストから承認または拒否を選択してください。
+EOD;
+    return array($msg_subject, $msg_body);
+}
+
+function create_message_commu_sub_admin_request($u, $body, $target_c_member_id, $target_c_commu_id)
+{
+    $msg_subject = '副管理者要請メッセージ';
+
+    $c_member_id_from = $u;
+    $c_member = db_common_c_member4c_member_id_LIGHT($u);
+    $c_member_to = $target_c_member_id;
+    $c_commu = db_commu_c_commu4c_commu_id($target_c_commu_id);
+
+    $msg_body = <<<EOD
+{$c_member['nickname']} さんから{$c_commu['name']} コミュニティの副管理者要請メッセージが届いています。
+
+メッセージ：
+{$body}
+
+この要請について、承認待ちリストから承認または拒否を選択してください。
+EOD;
+    return array($msg_subject, $msg_body);
+}
 ?>

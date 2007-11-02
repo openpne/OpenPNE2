@@ -45,7 +45,7 @@
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('csv_download')})">CSVダウンロード</a></li>
 ({/if})
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('import_c_member')})">CSVインポート</a></li>
-
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('blacklist')})">ブラックリスト管理</a></li>
 </ul>
 </li>
 
@@ -78,8 +78,10 @@
 ({foreach from=$profile_list item=item})
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('user_analysis_profile')})&amp;target_c_profile_id=({$item.c_profile_id})">({$item.caption})別メンバー数表示</a></li>
 ({/foreach})
+({if $smarty.const.LOG_C_ACCESS_LOG})
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('access_analysis_month')})&amp;ktai_flag=0">PCページ月次集計</a></li>
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('access_analysis_month')})&amp;ktai_flag=1">携帯ページ月次集計</a></li>
+({/if})
 </ul>
 </li>
 
@@ -95,6 +97,7 @@
 <ul id="adminDesignCont" class="pull">
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_skin_image')})">スキン画像変更</a></li>
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_sns_config')})">配色・CSS変更</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_sns_config_ktai')})">携帯版配色変更</a></li>
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_navi')})">ナビゲーション変更</a></li>
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('insert_html')})">HTML挿入</a></li>
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_entry_point')})">テンプレート挿入</a></li>

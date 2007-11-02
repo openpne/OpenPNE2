@@ -15,7 +15,7 @@ class ktai_page_h_home extends OpenPNE_Action
         //管理画面HTML
         $this->set('c_siteadmin', p_common_c_siteadmin4target_pagename('k_h_home'));
 
-        $c_member = db_member_c_member4c_member_id($u);
+        $c_member = db_member_c_member_with_profile($u, 'private');
         //メンバー情報
         $this->set('c_member', $c_member);
         //新着メッセージ数

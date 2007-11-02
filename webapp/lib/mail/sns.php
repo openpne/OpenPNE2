@@ -59,7 +59,7 @@ class mail_sns
 
         //---
 
-        // ログインアドレス通知
+        // ログインURL通知
         if ($to_user == 'get') {
             m_debug_log('mail_sns::login_get()', PEAR_LOG_INFO);
             return $this->login_get();
@@ -118,7 +118,7 @@ class mail_sns
 
         //---
 
-        //プロフィール画像変更
+        //プロフィール写真変更
         elseif (
             preg_match('/^p(\d+)$/', $to_user, $matches) ||
             preg_match('/^p(\d+)-([0-9a-f]{12})$/', $to_user, $matches)
@@ -140,6 +140,81 @@ class mail_sns
 
             m_debug_log('mail_sns::add_member_image()', PEAR_LOG_INFO);
             return $this->add_member_image();
+        }
+
+        //---
+
+        // 日記写真変更
+        elseif (
+            preg_match('/^bi(\d+)$/', $to_user, $matches) ||
+            preg_match('/^bi(\d+)-([0-9a-f]{12})$/', $to_user, $matches)
+        ) {
+            // 日記IDのチェック
+            if (!$c_diary_id = $matches[1]) {
+                return false;
+            }
+
+            if (MAIL_ADDRESS_HASHED) {
+                if (empty($matches[2])) return false;
+
+                // メンバーハッシュのチェック
+                if ($matches[2] != t_get_user_hash($this->c_member_id)) {
+                    return false;
+                }
+            }
+
+            m_debug_log('mail_sns::add_diary_image()', PEAR_LOG_INFO);
+            return $this->add_diary_image($c_diary_id);
+        }
+
+        //---
+
+        // コミュニティ写真変更
+        elseif (
+            preg_match('/^ci(\d+)$/', $to_user, $matches) ||
+            preg_match('/^ci(\d+)-([0-9a-f]{12})$/', $to_user, $matches)
+        ) {
+            // コミュニティIDのチェック
+            if (!$c_commu_id = $matches[1]) {
+                return false;
+            }
+
+            if (MAIL_ADDRESS_HASHED) {
+                if (empty($matches[2])) return false;
+
+                // メンバーハッシュのチェック
+                if ($matches[2] != t_get_user_hash($this->c_member_id)) {
+                    return false;
+                }
+            }
+
+            m_debug_log('mail_sns::add_commu_image()', PEAR_LOG_INFO);
+            return $this->add_commu_image($c_commu_id);
+        }
+
+        //---
+
+        // トピック・イベント写真変更
+        elseif (
+            preg_match('/^ti(\d+)$/', $to_user, $matches) ||
+            preg_match('/^ti(\d+)-([0-9a-f]{12})$/', $to_user, $matches)
+        ) {
+            // トピックIDのチェック
+            if (!$c_commu_topic_id = $matches[1]) {
+                return false;
+            }
+
+            if (MAIL_ADDRESS_HASHED) {
+                if (empty($matches[2])) return false;
+
+                // メンバーハッシュのチェック
+                if ($matches[2] != t_get_user_hash($this->c_member_id)) {
+                    return false;
+                }
+            }
+
+            m_debug_log('mail_sns::add_topic_image()', PEAR_LOG_INFO);
+            return $this->add_topic_image($c_commu_topic_id);
         }
 
         m_debug_log('mail_sns::main() action not found(member)');
@@ -182,14 +257,14 @@ class mail_sns
 
         $c_commu_id = $topic['c_commu_id'];
         if (!_db_is_c_commu_member($c_commu_id, $this->c_member_id)) {
-            $this->error_mail('コミュニティに参加していないため投稿できませんでした');
+            $this->error_mail('コミュニティに参加していないため投稿できませんでした。');
             m_debug_log('mail_sns::add_commu_topic_comment() not a member');
             return false;
         }
 
         $body = $this->decoder->get_text_body();
         if ($body === '') {
-            $this->error_mail('本文が空のため投稿できませんでした');
+            $this->error_mail('本文が空のため投稿できませんでした。');
             m_debug_log('mail_sns::add_commu_topic_comment() body is empty');
             return false;
         }
@@ -197,7 +272,7 @@ class mail_sns
         // 書き込みをDBに追加
         $ins_id = db_commu_insert_c_commu_topic_comment($c_commu_id, $topic['c_commu_topic_id'], $this->c_member_id, $body);
 
-        // 画像保存
+        // 写真登録
         $images = $this->decoder->get_images();
         $image_num = 1;
         foreach ($images as $image_data) {
@@ -247,7 +322,7 @@ class mail_sns
             return false;
         }
 
-        // 画像登録
+        // 写真登録
         $images = $this->decoder->get_images();
         $image_num = 1;
         foreach ($images as $image_data) {
@@ -271,13 +346,13 @@ class mail_sns
     }
 
     /**
-     * プロフィール画像変更
+     * プロフィール写真変更
      */
     function add_member_image()
     {
         $c_member = db_common_c_member4c_member_id($this->c_member_id);
 
-        // 登録する画像番号(1-3)を決める
+        // 登録する写真番号(1-3)を決める
         $target_number = 0;
         if ($c_member['image_filename']) {
             if (!$c_member['image_filename_1']) {
@@ -287,7 +362,7 @@ class mail_sns
             } elseif (!$c_member['image_filename_3']) {
                 $target_number = 3;
             } else {
-                $this->error_mail('プロフィール画像の登録は最大三枚までです。');
+                $this->error_mail('プロフィール写真の登録は最大3枚までです。');
                 m_debug_log('mail_sns::add_diary() image is full');
                 return false;
             }
@@ -295,7 +370,7 @@ class mail_sns
             $target_number = 1;
         }
 
-        // 画像登録
+        // 写真登録
         if ($images = $this->decoder->get_images()) {
             $filename = 'm_' .$this->c_member_id.'_'. time() . '.jpg';
 
@@ -303,9 +378,139 @@ class mail_sns
             mail_update_c_member_image($this->c_member_id, $filename, $target_number);
             return true;
         } else {
+            $this->error_mail('写真が添付されていないか、ファイルサイズが大きすぎるため、登録できませんでした。');
             m_debug_log('mail_sns::add_member_image() no images');
             return false;
         }
+    }
+
+    /**
+     * 日記写真変更
+     */
+    function add_diary_image($c_diary_id)
+    {
+        if (!$c_diary = db_diary_get_c_diary4id($c_diary_id)) {
+            return false;
+        }
+
+        if ($c_diary['c_member_id'] != $this->c_member_id) {
+            return false;
+        }
+
+        // 登録する写真番号(1-3)を決める
+        $target_number = 0;
+        if ($c_diary['image_filename_1'] || $c_diary['image_filename_2'] || $c_diary['image_filename_3']) {
+            if (!$c_diary['image_filename_1']) {
+                $target_number = 1;
+            } elseif (!$c_diary['image_filename_2']) {
+                $target_number = 2;
+            } elseif (!$c_diary['image_filename_3']) {
+                $target_number = 3;
+            } else {
+                $this->error_mail('日記写真の登録は最大3枚までです。');
+                m_debug_log('mail_sns::add_diary_image() image is full');
+                return false;
+            }
+        } else {
+            $target_number = 1;
+        }
+
+        // 写真登録
+        $images = $this->decoder->get_images();
+
+        if ($images = $this->decoder->get_images()) {
+            $filename = 'd_' . $c_diary_id . '_' . $target_number . '_' . time() . '.jpg';
+            db_image_insert_c_image($filename, $images[0]);
+            db_diary_update_c_diary_image_filename($c_diary_id, $filename, $target_number);
+            return true;
+        } else {
+            $this->error_mail('写真が添付されていないか、ファイルサイズが大きすぎるため、登録できませんでした。');
+            m_debug_log('mail_sns::add_diary_image() no images');
+            return false;
+        }
+    }
+
+    /**
+     * コミュニティ写真変更
+     */
+    function add_commu_image($c_commu_id)
+    {
+        if (!$c_commu = db_commu_c_commu4c_commu_id($c_commu_id)) {
+            return false;
+        }
+
+        if ($c_commu['c_member_id_admin'] != $this->c_member_id) {
+            return false;
+        }
+
+        if ($c_commu['image_filename']) {
+            $this->error_mail('コミュニティ写真の登録は最大1枚までです。');
+            m_debug_log('mail_sns::add_commu_image() image is full');
+            return false;
+        }
+
+        // 写真登録
+        if ($images = $this->decoder->get_images()) {
+            $filename = 'c_' . $c_commu_id . '_' .  time() . '.jpg';
+            db_image_insert_c_image($filename, $images[0]);
+            db_commu_update_c_commu_image_filename($c_commu_id, $filename);
+            return true;
+        } else {
+            $this->error_mail('写真が添付されていないか、ファイルサイズが大きすぎるため、登録できませんでした。');
+            m_debug_log('mail_sns::add_commu_image() no images');
+            return false;
+        }
+    }
+
+    /**
+     * トピック・イベント写真変更
+     */
+    function add_topic_image($c_commu_topic_id)
+    {
+        if (!$c_topic = db_commu_c_topic4c_commu_topic_id($c_commu_topic_id)) {
+            return false;
+        }
+
+        $c_commu_id = $c_topic['c_commu_id'];
+
+        if (!db_commu_is_c_topic_admin($c_commu_topic_id, $this->c_member_id) &&
+            !db_commu_is_c_commu_admin($c_commu_id, $this->c_member_id)) {
+            return false;
+        }
+
+        // 登録する写真番号(1-3)を決める
+        $target_number = 0;
+        if ($c_topic['image_filename1'] || $c_topic['image_filename2'] || $c_topic['image_filename3']) {
+            if (!$c_topic['image_filename1']) {
+                $target_number = 1;
+            } elseif (!$c_topic['image_filename2']) {
+                $target_number = 2;
+            } elseif (!$c_topic['image_filename3']) {
+                $target_number = 3;
+            } else {
+                $this->error_mail('トピック・イベント写真の登録は最大3枚までです。');
+                m_debug_log('mail_sns::add_topic_image() image is full');
+                return false;
+            }
+        } else {
+            $target_number = 1;
+        }
+
+        // 写真登録
+        $images = $this->decoder->get_images();
+
+        if ($images = $this->decoder->get_images()) {
+            $filename = 't_' . $c_commu_topic_id . '_' . $target_number . '_' . time() . '.jpg';
+            $c_topic['image_filename' . $target_number] = $filename;
+            db_image_insert_c_image($filename, $images[0]);
+            db_commu_update_c_commu_topic_comment_images($c_topic['c_commu_topic_comment_id'], $c_topic['image_filename1'], $c_topic['image_filename2'], $c_topic['image_filename3']);
+            return true;
+        } else {
+            $this->error_mail('写真が添付されていないか、ファイルサイズが大きすぎるため、登録できませんでした。');
+            m_debug_log('mail_sns::add_topic_image() no images');
+            return false;
+        }
+        
     }
 
     /**

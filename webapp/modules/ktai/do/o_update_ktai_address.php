@@ -40,7 +40,7 @@ class ktai_do_o_update_ktai_address extends OpenPNE_Action
             openpne_redirect('ktai', 'page_o_login2', $p);
         }
 
-        if (IS_GET_EASY_ACCESS_ID == 2) {
+        if (IS_GET_EASY_ACCESS_ID == 2 || IS_GET_EASY_ACCESS_ID == 3) {
 
         // 携帯の個体識別番号の取得が必須
             if (!$easy_access_id = OpenPNE_KtaiID::getID()) {
@@ -52,6 +52,9 @@ class ktai_do_o_update_ktai_address extends OpenPNE_Action
                 if ($id && $c_member_id != $id) {
                     $p = array('msg' => 39, 'ses' => $ses);
                     openpne_redirect('ktai', 'page_o_login2', $p);
+                }
+                if (db_member_easy_access_id_is_blacklist(md5($easy_access_id))) {
+                    ktai_display_error('携帯ﾒｰﾙｱﾄﾞﾚｽを登録できませんでした。');
                 }
                 // update
                 db_member_update_easy_access_id($c_member_id, $easy_access_id);
@@ -67,6 +70,9 @@ class ktai_do_o_update_ktai_address extends OpenPNE_Action
                 if ($id && $c_member_id != $id) {
                     $p = array('msg' => 39, 'ses' => $ses);
                     openpne_redirect('ktai', 'page_o_login2', $p);
+                }
+                if (db_member_easy_access_id_is_blacklist(md5($easy_access_id))) {
+                    ktai_display_error('携帯ﾒｰﾙｱﾄﾞﾚｽを登録できませんでした。');
                 }
                 // update
                 db_member_update_easy_access_id($c_member_id, $easy_access_id);

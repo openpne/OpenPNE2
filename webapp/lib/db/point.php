@@ -40,7 +40,7 @@ function db_point_add_point($c_member_id, $point)
     }
 
     $sql = 'SELECT c_profile_id, public_flag_default FROM c_profile WHERE name = \'PNE_POINT\'';
-    if (!$c_profile = db_get_row($sql)) {
+    if (!$c_profile = db_get_row($sql, array(), 'main')) {
         return false;
     }
     $c_profile_id = $c_profile['c_profile_id'];
@@ -48,18 +48,18 @@ function db_point_add_point($c_member_id, $point)
 
     $sql = 'SELECT value FROM c_member_profile WHERE c_member_id = ? AND c_profile_id = ?';
     $params = array(intval($c_member_id), intval($c_profile_id));
-    $p = db_get_one($sql, $params);
+    $p = db_get_one($sql, $params, 'main');
 
-    //プロフィールにポイントがなければ追加
-    if (!$p) {
+    // プロフィールにポイントがなければ追加
+    if (is_null($p)) {
         $data = array(
             'c_member_id' => intval($c_member_id),
-            'c_profile_id'   => intval($c_profile_id),
+            'c_profile_id' => intval($c_profile_id),
             'c_profile_option_id' => 0,
             'value' => '0',
             'public_flag' => $public_flag,
         );
-        db_insert('c_member_profile',$data);
+        db_insert('c_member_profile', $data);
     }
 
     $before_rank = db_point_get_rank4point($p);
@@ -69,12 +69,12 @@ function db_point_add_point($c_member_id, $point)
 
     $after_rank = db_point_get_rank4point($p);
 
-    $sql = 'DELETE FROM c_member_profile WHERE c_member_id = ? AND c_profile_id = ?';
-    db_query($sql, $params);
-    do_config_prof_insert_c_member_profile($c_member_id, $c_profile_id, 0, $p, $public_flag);
+    $data = array('value' => $p);
+    $where = array('c_member_id' => intval($c_member_id), 'c_profile_id' => intval($c_profile_id));
+    db_update('c_member_profile', $data, $where);
 
     //ランクアップしたらメール送信
-    if ($before_rank['point'] != $after_rank['point']) {
+    if (!empty($after_rank) && $before_rank['point'] != $after_rank['point']) {
         send_mail_pcktai_rank_up($c_member_id, $before_rank, $after_rank);
         send_mail_admin_rank_up($c_member_id, $before_rank, $after_rank);
     }

@@ -107,8 +107,6 @@ class biz_page_fh_biz_schedule_calendar extends OpenPNE_Action
         $this->set("pref_list", p_regist_prof_c_profile_pref_list4null());
         $this->set("c_member", $c_member);
 
-        $this->set("weather_url", "http://weather.yahoo.co.jp/weather/");
-
         return 'success';
     }
 }

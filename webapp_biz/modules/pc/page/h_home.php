@@ -56,7 +56,7 @@ class pc_page_h_home extends OpenPNE_Action
 
         /// 左側 ///
 
-        $c_member = db_member_c_member4c_member_id($u);
+        $c_member = db_member_c_member_with_profile($u, 'private');
         // メンバー情報
         $this->set('c_member', $c_member);
         // フレンドリスト

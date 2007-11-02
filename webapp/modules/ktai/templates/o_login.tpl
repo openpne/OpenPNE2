@@ -4,78 +4,98 @@
 ({$inc_ktai_entry_point[1]|smarty:nodefaults})
 ({/if})
 
-<center>({$SNS_NAME})ログイン</center>
-<hr>
-
+<table width="100%">
+({if $smarty.const.OPENPNE_USE_KTAI_LOGO})
+<tr><td align="center">
+<img src="({t_img_url_skin filename=skin_ktai_header f=jpg})" alt="({$smarty.const.SNS_NAME})"><br>
+</td></tr>
+({else})
+<tr><td align="center" bgcolor="#({$ktai_color_config.bg_02})">
+<font color="#({$ktai_color_config.font_05})">({$smarty.const.SNS_NAME})</font><br>
+</td></tr>
+({/if})
+</table>
 ({if $inc_ktai_entry_point[2]})
 ({$inc_ktai_entry_point[2]|smarty:nodefaults})
 ({/if})
-
-({if $msg})
-<font color="red">({$msg})</font><br>
-({/if})
 <br>
-
+<center>
+このﾍﾟｰｼﾞをﾌﾞｯｸﾏｰｸしてください<br>
+({if $msg})
+<br>
+<font color="#({$ktai_color_config.font_09})">({$msg})</font><br>
+({/if})
+</center>
+<br>
+<table width="100%"><tr><td bgcolor="#({$ktai_color_config.bg_02})">
+[i:75]<font color="#({$ktai_color_config.font_05})">かんたんﾛｸﾞｲﾝ</font><br>
+</td></tr>
+<tr><td bgcolor="#({$ktai_color_config.bg_04})">
+<br>
+<center>
 ({t_form _attr='utn' m=ktai a=do_o_easy_login})
 <input type="hidden" name="login_params" value="({$requests.login_params})">
 ({if $ktai_address})
 <input type="hidden" name="ktai_address" value="({$ktai_address})">
 ({/if})
-★かんたんログイン<br>
-<input type="submit" value="ログイン"><br>
-<a href="({t_url m=ktai a=page_o_whatis_easy_login})">&gt;&gt;かんたんﾛｸﾞｲﾝとは</a>
+<input type="submit" value="かんたんﾛｸﾞｲﾝ"><br>
 </form>
-
+</center>
+<br>
+<a href="({t_url m=ktai a=page_o_whatis_easy_login})">&gt;&gt;かんたんﾛｸﾞｲﾝとは</a><br>
+</td></tr></table>
 <br>
 
+<table width="100%"><tr><td bgcolor="#({$ktai_color_config.bg_02})">
+<font color="#({$ktai_color_config.font_05})">[i:116]ﾊﾟｽﾜｰﾄﾞﾛｸﾞｲﾝ</font><br>
+</td></tr>
+<tr><td bgcolor="#({$ktai_color_config.bg_04})">
 ({t_form m=ktai a=do_o_login})
 <input type="hidden" name="login_params" value="({$requests.login_params})">
 ({if $ktai_address})
 <input type="hidden" name="username" value="({$ktai_address})">
 ({else})
 ({if !$smarty.const.IS_SLAVEPNE})
-★携帯アドレス<br>
+<font color="#({$ktai_color_config.bg_02})">★</font>携帯ﾒｰﾙｱﾄﾞﾚｽ<br>
 ({else})
-★メンバーID<br>
+<font color="#({$ktai_color_config.bg_02})">★</font>ﾒﾝﾊﾞｰID<br>
 ({/if})
-<textarea name="username" rows="1" istyle="3" mode="alphabet" maxlength="100"></textarea><br>
+<textarea name="username" rows="1" istyle="3" mode="alphabet"></textarea><br>
 ({/if})
-★パスワード<br>
+<font color="#({$ktai_color_config.bg_02})">★</font>ﾊﾟｽﾜｰﾄﾞ<br>
 <input name="password" type="text" istyle="3" mode="alphabet" value=""><br>
-<input name="submit" value="ログイン" type="submit"><br>
+<center>
+<input name="submit" value="ﾛｸﾞｲﾝ" type="submit"><br>
+</center>
 </form>
-
-<br>
-<font color="orange">■このﾍﾟｰｼﾞをﾌﾞｯｸﾏｰｸしてください</font>
-<hr>
-
 ({if $ktai_address})
-<a href="({t_url m=ktai a=page_o_login})">&gt;&gt;携帯アドレスを入力</a><br>
+<a href="({t_url m=ktai a=page_o_login})">&gt;&gt;携帯ﾒｰﾙｱﾄﾞﾚｽを入力</a><br>
 ({/if})
 ({if !$smarty.const.IS_SLAVEPNE})
-<a href="({t_url m=ktai a=page_o_password_query})">&gt;&gt;パスワードを忘れた方</a><br>
+<a href="({t_url m=ktai a=page_o_password_query})">&gt;&gt;ﾊﾟｽﾜｰﾄﾞを忘れた方</a><br>
 ({/if})
-<hr>
-
+</td></tr></table>
+<br>
+<hr color="#({$ktai_color_config.border_01})">
 ({if $IS_CLOSED_SNS})
-
-({$SNS_NAME})は招待制のソーシャルネットワーキングサービスです。<br>
-登録には({$SNS_NAME})参加者からの招待が必要です。
+({$SNS_NAME})は招待制のｿｰｼｬﾙﾈｯﾄﾜｰｷﾝｸﾞｻｰﾋﾞｽです。<br>
+登録には({$SNS_NAME})({if $smarty.const.IS_USER_INVITE})参加者({else})管理者({/if})からの招待が必要です。<br>
 
 ({elseif !((($smarty.const.OPENPNE_REGIST_FROM) & ($smarty.const.OPENPNE_REGIST_FROM_KTAI)) >> 1)})
 
-新規登録はPCからおこなってください。
+新規登録はPCからおこなってください。<br>
 
 ({else})
 
-新規登録するには以下のリンクから、本文を入力せずにメールを送信してください。<br>
+新規登録するには以下のﾘﾝｸから、本文を入力せずにﾒｰﾙを送信してください。<br>
 <br>
-<a href="mailto:({$smarty.const.MAIL_ADDRESS_PREFIX})get@({$smarty.const.MAIL_SERVER_DOMAIN})">◆メールで登録！◆</a><br>
+<a href="mailto:({$smarty.const.MAIL_ADDRESS_PREFIX})get@({$smarty.const.MAIL_SERVER_DOMAIN})">[i:106]ﾒｰﾙで登録!</a><br>
 <br>
 ※かならず利用規約に同意してから登録をおこなってください。<br>
-■<a href="({t_url m=ktai a=page_o_sns_kiyaku})">利用規約</a><br>
-■<a href="({t_url m=ktai a=page_o_sns_privacy})">プライバシーポリシー</a><br>
 
+<hr color="#({$ktai_color_config.border_01})">
+■<a href="({t_url m=ktai a=page_o_sns_kiyaku})">利用規約</a><br>
+■<a href="({t_url m=ktai a=page_o_sns_privacy})">ﾌﾟﾗｲﾊﾞｼｰﾎﾟﾘｼｰ</a><br>
 ({/if})
 
 ({$inc_ktai_footer|smarty:nodefaults})

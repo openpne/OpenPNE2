@@ -16,12 +16,14 @@ class pc_do_c_sub_admin_request_insert_c_commu_sub_admin_confirm extends OpenPNE
         // --- リクエスト変数
         $target_c_member_id = $requests['target_c_member_id'];
         $target_c_commu_id = $requests['target_c_commu_id'];
+        $body = $requests['body'];
         // ----------
 
         //--- 権限チェック
-        //自分がコミュニティ管理者
-        //targetが副管理者でない
-        //targetがコミュニティメンバー
+        // 自分がコミュニティ管理者
+        // targetが副管理者でない
+        // targetがコミュニティメンバー
+        // 自分へのメッセージ送信ではない
         // すでに管理者交代依頼メッセージ送信済みではない
         // すでに副管理者要請メッセージを送信済みでない
 
@@ -36,6 +38,10 @@ class pc_do_c_sub_admin_request_insert_c_commu_sub_admin_confirm extends OpenPNE
         }
 
         if (!$status['is_commu_member']) {
+            handle_kengen_error();
+        }
+
+        if ($u == $target_c_member_id) {
             handle_kengen_error();
         }
 
@@ -63,21 +69,11 @@ class pc_do_c_sub_admin_request_insert_c_commu_sub_admin_confirm extends OpenPNE
         db_commu_delete_c_commu_sub_admin_confirm4c_commu_id($target_c_commu_id);
 
         $target_c_commu_sub_admin_confirm_id =
-            db_commu_insert_c_commu_sub_admin_confirm($target_c_commu_id, $target_c_member_id);
+            db_commu_insert_c_commu_sub_admin_confirm($target_c_commu_id, $target_c_member_id, $body);
 
         //メッセージ
-        $c_member_id_from = $u;
-        $c_member_from    = db_member_c_member4c_member_id_LIGHT($c_member_id_from);
-        $c_member_to      = $target_c_member_id;
-        $c_commu          = db_commu_c_commu4c_commu_id($target_c_commu_id);
-
-        $subject ="副管理者要請メッセージ";
-        $body_disp =
-            $c_member_from['nickname']." さんから".$c_commu['name']." コミュニティの副管理者希望メッセージが届いています。\n".
-            "\n".
-            "この要請について、承認待ちリストから承認または拒否を選択してください。\n";
-
-        db_message_send_message_syoudaku($c_member_id_from, $target_c_member_id, $subject, $body_disp);
+        list($msg_subject, $msg_body) = create_message_commu_admin_request($u, $body, $target_c_member_id, $target_c_commu_id);
+        db_message_send_message_syoudaku($u, $target_c_member_id, $msg_subject, $msg_body);
 
         $p = array('target_c_commu_id' => $target_c_commu_id);
         openpne_redirect('pc', 'page_c_edit_member', $p);

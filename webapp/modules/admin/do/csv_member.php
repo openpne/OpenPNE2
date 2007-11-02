@@ -6,6 +6,12 @@
 
 class admin_do_csv_member extends OpenPNE_Action
 {
+    function isSecure()
+    {
+        session_cache_limiter('public');
+        return true;
+    }
+
     function handleError($errors)
     {
         admin_client_redirect('csv_download', array_shift($errors));
@@ -37,19 +43,25 @@ class admin_do_csv_member extends OpenPNE_Action
     /**
      * メンバーリスト取得
      */
-    function db_get_c_member_list($start_id,$end_id)
+    function db_get_c_member_list($start_id, $end_id)
     {
         $params = array();
-        $sql = 'SELECT c_member_id FROM c_member ';
-        $sql .= ' WHERE 1 ' ;
+        $sql = 'SELECT c_member_id FROM c_member';
+        $wheres = array();
         if ($start_id > 1) {
-            $sql .= ' AND c_member_id >= ? ';
+            $wheres[] = 'c_member_id >= ?';
             $params[] = $start_id;
         }
         if ($end_id > 0) {
-            $sql .= ' AND c_member_id <= ? ';
+            $wheres[] = 'c_member_id <= ?';
             $params[] = $end_id;
         }
+        if ($wheres) {
+            $where = ' WHERE ' . implode(' AND ', $wheres);
+        } else {
+            $where = '';
+        }
+        $sql .= $where;
         $sql .= ' ORDER BY c_member_id';
         $ids = db_get_col($sql, $params);
     
@@ -133,9 +145,9 @@ class admin_do_csv_member extends OpenPNE_Action
                 $ley_list[]= $profile['caption'];
             }
         }
-        $ley_list[]="PCアドレス";
-        $ley_list[]="携帯アドレス";
-        $ley_list[]="登録時アドレス";
+        $ley_list[]="PCメールアドレス";
+        $ley_list[]="携帯メールアドレス";
+        $ley_list[]="登録時メールアドレス";
         
         return $ley_list;
     }

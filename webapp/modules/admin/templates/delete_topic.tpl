@@ -1,27 +1,19 @@
 ({$inc_header|smarty:nodefaults})
 ({ext_include file="inc_subnavi_adminImageKakikomi.tpl"})
-({assign var="page_name" value="トピック削除"})
+({assign var="page_name" value="トピック削除の確認"})
 ({ext_include file="inc_tree_adminImageKakikomi.tpl"})
 </div>
 
 ({*ここまで:navi*})
 
-<h2>トピック削除</h2>
+<h2>トピック削除の確認</h2>
 <div class="contents">
 
 ({if $msg})
 <p class="actionMsg">({$msg})</p>
 ({/if})
 
-このトピックを削除します。削除後に復元させることはできないので注意してください。
-
-<form action="./" method="post">
-<input type="hidden" name="sessid" value="({$PHPSESSID})" />
-<input type="hidden" name="m" value="({$module_name})" />
-<input type="hidden" name="a" value="do_({$hash_tbl->hash('delete_kakikomi_c_commu_topic')})" />
-<input type="hidden" name="target_c_commu_topic_id" value="({$topic.c_commu_topic_id})" />
-<span class="textBtnS"><input type="submit" value="削除" /></span>
-</form>
+<p>本当に削除しますか？</p>
 
 <table class="basicType2">
 <tbody>
@@ -49,7 +41,7 @@
 </tr>
 ({****})
 <tr>
-<th>トピック主</th>
+<th>トピック作成者</th>
 <td>
 <a href="({t_url _absolute=1 m=pc a=page_f_home})&amp;target_c_member_id=({$topic.c_member_id})" target="_blank">({$topic.nickname})</a>
 </td>
@@ -72,11 +64,30 @@
 ({if $topic.image_filename3})<span class="padding_s"><a href="({t_img_url filename=$topic.image_filename3})" target="_blank"><img src="({t_img_url filename=$topic.image_filename3 w=120 h=120})"></a></span>({/if})
 </div>
 ({/if})
-({$topic.body|t_truncate:"120"|nl2br})
+({$topic.body|nl2br})
 </td>
 </tr>
 ({****})
+({if $topic.filename && $smarty.const.OPENPNE_USE_FILEUPLOAD})
+<tr>
+<th>ファイル</th>
+<td class="textbody">
+<a href="({t_url m=admin a=do_file_download})&amp;filename=({$topic.filename})&amp;sessid=({$PHPSESSID})">
+({$topic.original_filename})
+</a>
+</td>
+</tr>
+({/if})
+({****})
 </tbody>
 </table>
+
+<form action="./" method="post">
+<input type="hidden" name="sessid" value="({$PHPSESSID})" />
+<input type="hidden" name="m" value="({$module_name})" />
+<input type="hidden" name="a" value="do_({$hash_tbl->hash('delete_kakikomi_c_commu_topic','do')})" />
+<input type="hidden" name="target_c_commu_topic_id" value="({$topic.c_commu_topic_id})" />
+<span class="textBtnS"><input type="submit" value="削除する" /></span>
+</form>
 
 ({$inc_footer|smarty:nodefaults})

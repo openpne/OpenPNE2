@@ -116,14 +116,24 @@ function db_insert_c_rss_cache_list($c_member_id, $insert_rss_list)
         $values = array_map('db_quote', array_values($params));
         $values = implode(",", $values);
 
-        if ($values_list != '') $values_list .= ",";
-        $values_list .= "($values)";
+        if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
+            $values = "($values)";
+            $sql = "INSERT INTO c_rss_cache" .
+                    "(c_member_id, subject, body, r_datetime, link, cache_date)" .
+                " VALUES $values";
+            db_query($sql);
+        } else {
+            if ($values_list != '') $values_list .= ",";
+            $values_list .= "($values)";
+        }
     }
 
-    $sql = "INSERT INTO c_rss_cache" .
-            "(c_member_id, subject, body, r_datetime, link, cache_date)" .
-        " VALUES $values_list";
-    db_query($sql);
+    if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] != 'pgsql') {
+        $sql = "INSERT INTO c_rss_cache" .
+                "(c_member_id, subject, body, r_datetime, link, cache_date)" .
+            " VALUES $values_list";
+        db_query($sql);
+    }
 }
 
 function db_c_member_list4exists_rssAc_member_id($c_member_id, $limit)
