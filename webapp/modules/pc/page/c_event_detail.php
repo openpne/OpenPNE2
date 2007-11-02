@@ -46,10 +46,10 @@ class pc_page_c_event_detail extends OpenPNE_Action
 
         //書き込み一覧部分
         $page += $direc;
-        if ($all==1) {
-            $page_size = 1000;
+        if ($all) {
+            $page_size = null;
         } else {
-            $page_size = 50;
+            $page_size = 20;
         }
 
         $lst = db_commu_c_topic_write4c_commu_topic_id($c_commu_topic_id, $page, $page_size);

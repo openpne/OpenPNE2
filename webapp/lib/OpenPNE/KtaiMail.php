@@ -205,6 +205,36 @@ class OpenPNE_KtaiMail
                 return array();
             }
 
+            // 画像のリサイズ
+            list($width, $height, $type, $attr) = @getimagesize($tmpfname);
+            $need_resize = false;
+            $original_width = $width;
+            $original_height = $height;
+            //横のサイズが、指定されたサイズより大きい場合
+            if (IMAGE_MAX_WIDTH && ($width > IMAGE_MAX_WIDTH)) {
+                $need_resize = true;
+                $height = $height * (IMAGE_MAX_WIDTH / $width);
+                $width = IMAGE_MAX_WIDTH;
+            }
+            //縦サイズが、指定されたサイズより大きい場合
+            if (IMAGE_MAX_HEIGHT && ($height > IMAGE_MAX_HEIGHT)) {
+                $need_resize = true;
+                $width = $width * (IMAGE_MAX_HEIGHT / $height);
+                $height = IMAGE_MAX_HEIGHT;
+            }
+            if ($height < 1.) {
+                $height = 1;
+            }
+            if ($width < 1.) {
+                $width = 1;
+            }
+            if ($need_resize) {
+                resize_image($type, $tmpfname, $tmpfname, $original_width, $original_height, $width, $height);
+                $fp = fopen($tmpfname, 'rb');
+                $image_data = fread($fp, filesize($tmpfname));  // 一時ファイルを再度読み込み
+                fclose($fp);
+            }
+
             // 画像が正しいかどうかチェック
             switch (strtolower($mail->ctype_secondary)) {
             case 'jpeg':
@@ -244,7 +274,7 @@ class OpenPNE_KtaiMail
         // "example"@docomo.ne.jp
         $str = str_replace('"', '', $str);
 
-        // <example@docomo.ne.jp> というアドレスになることがある。
+        // <example@docomo.ne.jp> というメールアドレスになることがある。
         //   日本語 <example@docomo.ne.jp>
         // のような場合に複数マッチする可能性があるので、
         // マッチした最後のものを取ってくるように変更

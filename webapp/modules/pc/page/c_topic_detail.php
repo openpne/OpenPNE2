@@ -51,10 +51,10 @@ class pc_page_c_topic_detail extends OpenPNE_Action
 
         //書き込み一覧部分
         $page += $direc;
-        if ($all==1) {
-            $page_size = 1000;
+        if ($all) {
+            $page_size = null;
         } else {
-            $page_size = 50;
+            $page_size = 20;
         }
 
         list($c_topic_write, $is_prev, $is_next, $total_num, $start_num, $end_num)

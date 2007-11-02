@@ -26,7 +26,8 @@ class OpenPNE_Smarty extends Smarty
     // extディレクトリ対応 SMARTY->display() ラッパー
     function ext_display($resource_name, $cache_id = null, $compile_id = null)
     {
-        $this->register_outputfilter('smarty_outputfilter_convert_emoji');
+        $this->load_filter('output', 'pne_display_emoji');
+        $this->register_outputfilter('smarty_outputfilter_pne_display_emoji');
         // とりあえず携帯用にSJISのみ対応
         if ($this->output_charset == 'SJIS') {
             $this->register_outputfilter('smarty_outputfilter_convert_utf82sjis');
@@ -119,11 +120,6 @@ function smarty_outputfilter_add_font4docomo($tpl_output, &$smarty)
     $tpl_output = str_replace($pattern_end_tag, $replacement_end_tag, $tpl_output);
 
     return $tpl_output;
-}
-
-function smarty_outputfilter_convert_emoji($tpl_output, &$smarty)
-{
-    return emoji_convert($tpl_output, true);
 }
 
 ?>

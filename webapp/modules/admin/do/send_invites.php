@@ -21,6 +21,8 @@ class admin_do_send_invites extends OpenPNE_Action
         $mails = str_replace("\r", "\n", $mails);
         $mail_list = explode("\n", $mails);
 
+        $is_disable_regist_easy_access_id = $requests['is_disable_regist_easy_access_id'];
+
         // filtering
         $errors = array();
         $pcs = array();
@@ -65,9 +67,9 @@ class admin_do_send_invites extends OpenPNE_Action
 
                     // c_member_ktai_pre に追加
                     if (db_member_c_member_ktai_pre4ktai_address($mail)) {
-                        db_member_update_c_member_ktai_pre($session, $mail, $c_member_id_invite);
+                        db_member_update_c_member_ktai_pre($session, $mail, $c_member_id_invite, $is_disable_regist_easy_access_id);
                     } else {
-                        db_member_insert_c_member_ktai_pre($session, $mail, $c_member_id_invite);
+                        db_member_insert_c_member_ktai_pre($session, $mail, $c_member_id_invite, $is_disable_regist_easy_access_id);
                     }
 
                     h_invite_insert_c_invite_mail_send($session, $c_member_id_invite, $mail, $requests['message']);
@@ -83,9 +85,9 @@ class admin_do_send_invites extends OpenPNE_Action
 
                     // c_member_pre に追加
                     if (db_member_c_member_pre4pc_address($mail)) {
-                        db_member_update_c_invite($c_member_id_invite, $mail, $requests['message'], $session);
+                        db_member_update_c_invite($c_member_id_invite, $mail, $requests['message'], $session, $is_disable_regist_easy_access_id);
                     } else {
-                        db_member_insert_c_invite($c_member_id_invite, $mail, $requests['message'], $session);
+                        db_member_insert_c_invite($c_member_id_invite, $mail, $requests['message'], $session, $is_disable_regist_easy_access_id);
                     }
 
                     do_h_invite_insert_c_invite_mail_send($c_member_id_invite, $session, $requests['message'], $mail);

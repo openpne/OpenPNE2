@@ -32,7 +32,7 @@ class admin_do_send_messages_id_list extends OpenPNE_Action
         $id_list_string = str_replace("\n", ' ', $id_list_string);
         $id_list_string = str_replace("\r", ' ', $id_list_string);
         $id_list_string = str_replace("　", ' ', $id_list_string);
-        $id_list_parsed = explode(' ', $id_list_string); 
+        $id_list_parsed = explode(' ', $id_list_string);
         
         $c_member_id_list = array();
         foreach ($id_list_parsed as $each_id) {

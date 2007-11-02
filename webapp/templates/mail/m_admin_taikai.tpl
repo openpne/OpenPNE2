@@ -23,9 +23,9 @@
 ({/if})
 ({/foreach})
 
-PCアドレス : ({$c_member.secure.pc_address})
-携帯アドレス : ({$c_member.secure.ktai_address})
-登録時アドレス : ({$c_member.secure.regist_address})
+PCメールアドレス : ({$c_member.secure.pc_address})
+携帯メールアドレス : ({$c_member.secure.ktai_address})
+登録時メールアドレス : ({$c_member.secure.regist_address})
 
 ({if $reason})
 退会理由

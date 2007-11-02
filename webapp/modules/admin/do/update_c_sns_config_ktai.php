@@ -6,16 +6,23 @@
 
 class admin_do_update_c_sns_config_ktai extends OpenPNE_Action
 {
+    function handleError($errors)
+    {
+        admin_client_redirect('edit_c_sns_config_ktai', array_shift($errors));
+    }
+
     function execute($requests)
     {
-        $color = array();
+        $data = array();
         foreach ($requests as $key => $value) {
-            if (!strncmp($key, 'bg', strlen('bg')) || !strncmp($key, 'border', strlen('border')) || !strncmp($key, 'font', strlen('font'))) {
-                $color[$key] = $value;
+            if (preg_match('/^color_(\d+)$/', $key, $matches)) {
+                $number = intval($matches[1]);
+                if ($number > 0 && $number <= 50) {
+                    $data[$key] = $value;
+                }
             }
         }
-        db_admin_update_c_sns_config_ktai($color);
-
+        db_update_c_config_color_ktai($data);
         admin_client_redirect('edit_c_sns_config_ktai', '色を変更しました');
     }
 }
