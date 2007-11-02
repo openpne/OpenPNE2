@@ -19,6 +19,7 @@ class admin_do_update_skin_image extends OpenPNE_Action
                 image_data_delete($old_fn);
             }
             db_replace_c_skin_filename($requests['skinname'], $fn);
+            pne_cache_drop('fetch_inc_navi', 'h');
             admin_client_redirect('edit_skin_image', 'スキン画像を変更しました');
         }
 

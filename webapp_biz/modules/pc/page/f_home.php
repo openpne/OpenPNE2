@@ -36,12 +36,13 @@ class pc_page_f_home extends OpenPNE_Action
         $this->set('inc_navi',fetch_inc_navi('f',$target_c_member_id));
 
         $is_friend = db_friend_is_friend($u, $target_c_member_id);
+
+        $target_c_member = db_member_c_member_with_profile($target_c_member_id, 'private');
+
         if ($is_friend) {
-            $target_c_member = db_member_c_member_with_profile($target_c_member_id, 'friend');
             // 自分が書いた紹介文
             $this->set('my_friend_intro', db_friend_c_friend_intro($u, $target_c_member_id));
         } else {
-            $target_c_member = db_member_c_member_with_profile($target_c_member_id, 'public');
             // 友達の友達
             $this->set('friend_path', db_friend_friend_path4c_member_ids($u, $target_c_member_id));
         }
@@ -58,6 +59,8 @@ class pc_page_f_home extends OpenPNE_Action
             $target_c_member['age'] = getAge($target_c_member['birth_year'], $target_c_member['birth_month'], $target_c_member['birth_day']);
         }
         $this->set('target_c_member', $target_c_member);
+        $target_c_member_all = db_member_c_member_with_profile($target_c_member_id, 'private');
+        $this->set('target_c_member_all', $target_c_member_all);
 
         $this->set('c_rss_cache_list', db_rss_c_rss_cache_list4c_member_id($target_c_member_id, 5));
 
@@ -65,6 +68,9 @@ class pc_page_f_home extends OpenPNE_Action
         $this->set('c_friend_list', db_friend_c_friend_list4c_member_id($target_c_member_id, 9));
         $this->set('c_friend_count', db_friend_count_friends($target_c_member_id));
         $this->set('user_count',db_commu_count_c_commu4c_member_id($target_c_member_id));
+
+        $this->set('common_commu_count', count(db_common_commu_common_commu_id4c_member_id($target_c_member_id,$u)));
+
         $this->set('c_commu_list', db_commu_c_commu_list4c_member_id_2($target_c_member_id, 9));
         $this->set('c_review_list', db_review_c_review_list4member($target_c_member_id, 5));
 
@@ -73,9 +79,14 @@ class pc_page_f_home extends OpenPNE_Action
         // 誕生日まであと何日？
         $this->set('days_birthday', db_member_count_days_birthday4c_member_id($target_c_member_id));
 
-        // inc_entry_point
-        $this->set('inc_entry_point', fetch_inc_entry_point_f_home($this->getView()));
+        if (OPENPNE_USE_POINT_RANK) {
+            // ポイント
+            $point = db_point_get_point($target_c_member_id);
+            $this->set("point", $point);
 
+            // ランク
+            $this->set("rank", db_point_get_rank4point($point));
+        }
 
         // --- bizここから
         // バナーをBIZ用右部拡張領域下に表示させる為の仕掛け
@@ -95,6 +106,9 @@ class pc_page_f_home extends OpenPNE_Action
         $group_list = biz_getHomeGroupList($target_c_member_id);
         $this->set('group_list', $group_list);
         // --- bizここまで
+
+        // inc_entry_point
+        $this->set('inc_entry_point', fetch_inc_entry_point($this->getView(), 'f_home'));
 
         // ---
 

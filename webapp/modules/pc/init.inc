@@ -46,7 +46,7 @@ function init_pc_page(&$smarty)
     $smarty->assign('INC_HEADER_title', $title);
     $smarty->assign('INC_HEADER_inc_html_head', p_common_c_siteadmin4target_pagename('inc_html_head'));
     $smarty->assign('INC_HEADER_inc_custom_css', p_common_c_siteadmin4target_pagename('inc_custom_css'));
-    $smarty->assign('INC_HEADER_color_config', db_select_c_sns_config());
+    $smarty->assign('INC_HEADER_color_config', util_get_color_config());
     $smarty->assign('INC_HEADER_top_banner', db_banner_get_top_banner($is_secure));
     $smarty->assign('INC_HEADER_page_name', $GLOBALS['__Framework']['current_action']);
     if ($is_secure) {

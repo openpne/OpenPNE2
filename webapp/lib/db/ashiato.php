@@ -50,11 +50,11 @@ function db_ashiato_c_ashiato_num4c_member_id($c_member_id)
 {
     $sql = 'SELECT COUNT(*) FROM c_ashiato WHERE c_member_id_to = ?';
     $params = array(intval($c_member_id));
-    $count = db_get_one($sql, $params);
+    $count = db_get_one($sql, $params, 'main');
 
     $sql = 'SELECT ashiato_count_log FROM c_member WHERE c_member_id = ?';
     $params = array(intval($c_member_id));
-    return $count + db_get_one($sql, $params);
+    return $count + db_get_one($sql, $params, 'main');
 }
 
 /**
@@ -67,15 +67,8 @@ function db_ashiato_ashiato_mail_num4c_member_id($c_member_id)
 {
     $sql = 'SELECT ashiato_mail_num FROM c_member WHERE c_member_id = ?';
     $params = array(intval($c_member_id));
-    return db_get_one($sql, $params);
+    return db_get_one($sql, $params, 'main');
 }
-
-?>
-<?php
-/**
- * @copyright 2005-2007 OpenPNE Project
- * @license   http://www.php.net/license/3_01.txt PHP License 3.01
- */
 
 /**
  * あしあとを付ける
@@ -92,7 +85,7 @@ function db_ashiato_insert_c_ashiato($c_member_id_to, $c_member_id_from)
     $sql = 'SELECT c_ashiato_id FROM c_ashiato WHERE r_datetime > ?' .
             ' AND c_member_id_to = ? AND c_member_id_from = ?';
     $params = array($wait, intval($c_member_id_to), intval($c_member_id_from));
-    if (db_get_one($sql, $params)) {
+    if (db_get_one($sql, $params, 'main')) {
         return false;
     }
 

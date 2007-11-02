@@ -401,6 +401,9 @@ function db_message_insert_c_message($c_member_id_from, $c_member_id_to, $subjec
         'body'             => $body,
         'r_datetime'       => db_now(),
         'is_send'          => 1,
+        'image_filename_1' => '',
+        'image_filename_2' => '',
+        'image_filename_3' => '',
     );
     return db_insert('c_message', $data);
 }
@@ -425,6 +428,9 @@ function db_message_insert_c_message_syoudaku($c_member_id_from, $c_member_id_to
         'is_send'          => 1,
         'is_syoudaku'      => 1,
         'is_read'          => 1,
+        'image_filename_1' => '',
+        'image_filename_2' => '',
+        'image_filename_3' => '',
     );
     return db_insert('c_message', $data);
 }
@@ -442,6 +448,9 @@ function db_message_insert_message_to_is_save($c_member_id_to,$c_member_id_from,
         'r_datetime'       => db_now(),
         'is_send'          => 0,
         'hensinmoto_c_message_id' => intval($jyusin_message_id),
+        'image_filename_1' => '',
+        'image_filename_2' => '',
+        'image_filename_3' => '',
     );
     return db_insert('c_message', $data);
 }
@@ -549,7 +558,8 @@ function db_message_update_c_message_is_read4c_message_id($c_message_id, $c_memb
         'c_message_id' => intval($c_message_id),
         'c_member_id_to' => intval($c_member_id),
     );
-    pne_cache_drop('db_message_count_c_message_not_is_read4c_member_to_id', $c_member_id);
+    pne_cache_drop('db_message_count_c_message_not_is_read4c_member_to_id', (int)$c_member_id);
+    pne_cache_drop('db_message_count_c_message_not_is_read4c_member_to_id', (string)$c_member_id);
     return db_update('c_message', $data, $where);
 }
 
@@ -578,7 +588,8 @@ function db_message_send_message($c_member_id_from, $c_member_id_to, $subject, $
 
     do_common_send_message_mail_send($c_member_id_to, $c_member_id_from);
     do_common_send_message_mail_send_ktai($c_member_id_to, $c_member_id_from);
-    pne_cache_drop('db_message_count_c_message_not_is_read4c_member_to_id', $c_member_id_to);
+    pne_cache_drop('db_message_count_c_message_not_is_read4c_member_to_id', (int)$c_member_id_to);
+    pne_cache_drop('db_message_count_c_message_not_is_read4c_member_to_id', (string)$c_member_id_to);
 
     return $c_message_id;
 }
@@ -588,9 +599,11 @@ function db_message_send_message_syoudaku($c_member_id_from, $c_member_id_to, $s
 {
     //メッセージ
     db_message_insert_c_message_syoudaku($c_member_id_from, $c_member_id_to, $subject, $body);
-    pne_cache_drop('db_message_count_c_message_not_is_read4c_member_to_id', $c_member_id_to);
+    pne_cache_drop('db_message_count_c_message_not_is_read4c_member_to_id', (int)$c_member_id_to);
+    pne_cache_drop('db_message_count_c_message_not_is_read4c_member_to_id', (string)$c_member_id_to);
 
     do_common_send_message_syoudaku_mail_send($c_member_id_to, $c_member_id_from);
+    do_common_send_message_mail_send_ktai($c_member_id_to, $c_member_id_from);
 }
 
 // コミュニティ紹介
@@ -598,9 +611,11 @@ function db_message_send_message_syoukai_commu($c_member_id_from, $c_member_id_t
 {
     //メッセージ
     db_message_insert_c_message($c_member_id_from, $c_member_id_to, $subject, $body);
-    pne_cache_drop('db_message_count_c_message_not_is_read4c_member_to_id', $c_member_id_to);
+    pne_cache_drop('db_message_count_c_message_not_is_read4c_member_to_id', (int)$c_member_id_to);
+    pne_cache_drop('db_message_count_c_message_not_is_read4c_member_to_id', (string)$c_member_id_to);
 
     do_common_send_message_syoukai_commu_mail_send($c_member_id_to, $c_member_id_from);
+    do_common_send_message_mail_send_ktai($c_member_id_to, $c_member_id_from);
 }
 
 // メンバー紹介
@@ -608,9 +623,11 @@ function db_message_send_message_syoukai_member($c_member_id_from, $c_member_id_
 {
     //メッセージ
     db_message_insert_c_message($c_member_id_from, $c_member_id_to, $subject, $body);
-    pne_cache_drop('db_message_count_c_message_not_is_read4c_member_to_id', $c_member_id_to);
+    pne_cache_drop('db_message_count_c_message_not_is_read4c_member_to_id', (int)$c_member_id_to);
+    pne_cache_drop('db_message_count_c_message_not_is_read4c_member_to_id', (string)$c_member_id_to);
 
     do_common_send_message_syoukai_member_mail_send($c_member_id_to, $c_member_id_from);
+    do_common_send_message_mail_send_ktai($c_member_id_to, $c_member_id_from);
 }
 
 //イベント紹介
@@ -618,9 +635,11 @@ function db_message_send_message_event_invite($c_member_id_from, $c_member_id_to
 {
     //メッセージ
     db_message_insert_c_message($c_member_id_from, $c_member_id_to, $subject, $body);
-    pne_cache_drop('db_message_count_c_message_not_is_read4c_member_to_id', $c_member_id_to);
+    pne_cache_drop('db_message_count_c_message_not_is_read4c_member_to_id', (int)$c_member_id_to);
+    pne_cache_drop('db_message_count_c_message_not_is_read4c_member_to_id', (string)$c_member_id_to);
 
     do_common_send_message_event_invite_mail_send($c_member_id_to, $c_member_id_from);
+    do_common_send_message_mail_send_ktai($c_member_id_to, $c_member_id_from);
 }
 
 //イベントメッセージ
@@ -628,9 +647,11 @@ function db_message_send_message_event_message($c_member_id_from, $c_member_id_t
 {
     //メッセージ
     db_message_insert_c_message($c_member_id_from, $c_member_id_to, $subject, $body);
-    pne_cache_drop('db_message_count_c_message_not_is_read4c_member_to_id', $c_member_id_to);
+    pne_cache_drop('db_message_count_c_message_not_is_read4c_member_to_id', (int)$c_member_id_to);
+    pne_cache_drop('db_message_count_c_message_not_is_read4c_member_to_id', (string)$c_member_id_to);
 
     do_common_send_message_event_message_mail_send($c_member_id_to, $c_member_id_from);
+    do_common_send_message_mail_send_ktai($c_member_id_to, $c_member_id_from);
 }
 
 function db_message_update_c_message($c_message_id, $subject, $body, $image_filename_1 = '', $image_filename_2 = '', $image_filename_3 = '')
@@ -773,11 +794,23 @@ function db_message_search_c_message($c_member_id, $page, $page_size, $keyword, 
  */
 function db_message_c_message_sender_list4c_member_id($c_member_id)
 {
-    $sql = "SELECT distinct c_member_id_from FROM c_message";
     $where = "c_member_id_to = ?".
             " AND is_deleted_to = 0" .
             " AND is_send = 1";
-    $sql .= " WHERE $where";
+
+    if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
+        $sql = "SELECT c_member_id_from" .
+                " FROM" .
+                    "(" .
+                        "SELECT distinct on(c_member_id_from) *" .
+                        " FROM" .
+                            " c_message" .
+                        " WHERE " . $where .
+                    ") as sub_member_tbl";
+    } else {
+        $sql = "SELECT distinct c_member_id_from FROM c_message";
+        $sql .= " WHERE $where";
+    }
     $sql .= " ORDER BY r_datetime DESC";
     $params = array(intval($c_member_id));
     $c_message_list = db_get_all($sql, $params);
@@ -794,12 +827,26 @@ function db_message_c_message_sender_list4c_member_id($c_member_id)
  */
 function db_message_c_message_receiver_list4c_member_id($c_member_id)
 {
-    $sql = "SELECT distinct c_member_id_to FROM c_message";
     $where = "c_member_id_from = ?".
             " AND is_deleted_from = 0" .
             " AND is_send = 1";
-    $sql .= " WHERE $where";
+    
+    if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
+        $sql = "SELECT c_member_id_to" .
+                " FROM" .
+                    "(" .
+                        "SELECT distinct on(c_member_id_to) *" .
+                        " FROM" .
+                            " c_message" .
+                        " WHERE " . $where .
+                    ") as sub_member_tbl";
+    } else {
+        $sql = "SELECT distinct c_member_id_to FROM c_message";
+        $sql .= " WHERE $where";
+    }
+
     $sql .= " ORDER BY r_datetime DESC";
+
     $params = array(intval($c_member_id));
     $c_message_list = db_get_all($sql, $params);
 
@@ -886,9 +933,15 @@ function db_message_is_message_list4date($u, $year, $month, $box)
         return null;
     }
 
-    $sql = 'SELECT DISTINCT DAYOFMONTH(r_datetime) FROM c_message' .
-           " WHERE $where" .
-           ' AND is_send=1 AND r_datetime >= ? AND r_datetime < ?';
+    if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
+        $sql = "SELECT DISTINCT date_part('day', r_datetime) FROM c_message" .
+               " WHERE $where" .
+               ' AND is_send=1 AND r_datetime >= ? AND r_datetime < ?';
+    } else {
+        $sql = 'SELECT DISTINCT DAYOFMONTH(r_datetime) FROM c_message' .
+               " WHERE $where" .
+               ' AND is_send=1 AND r_datetime >= ? AND r_datetime < ?';
+    }
 
     $date_format = '%Y-%m-%d 00:00:00';
     $thismonth = Date_Calc::beginOfMonth($month, $year, $date_format);

@@ -1,14 +1,12 @@
 function url2cmd(url) {
-
 	var maps_google_co_jp_maps = url.match(/^http:\/\/maps\.google\.co\.jp\/maps\?(.+)/);
 	var maps_google_co_jp = url.match(/^http:\/\/maps\.google\.co\.jp\/\?(.+)/);
 			
 	if (maps_google_co_jp_maps || maps_google_co_jp) {
 	   var id = RegExp.$1;
 	   main(id);
-    }else{
-       document.write('<a href="'+url+'">'+url+'</a>');
-       return;    
+    } else {
+       pne_url2a(url);
     }
 }
 

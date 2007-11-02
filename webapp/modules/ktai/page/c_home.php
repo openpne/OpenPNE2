@@ -35,7 +35,13 @@ class ktai_page_c_home extends OpenPNE_Action
         //コミュニティ情報
         $this->set("c_commu", db_commu_c_commu4c_commu_id_k($target_c_commu_id));
 
-        //コミュニティメンバリスト
+        // 副管理者情報
+        if ($c_commu['c_member_id_sub_admin']) {
+            $c_member_sub_admin = db_member_c_member4c_member_id($c_commu['c_member_id_sub_admin']);
+            $this->set('sub_admin', $c_member_sub_admin);
+        }
+
+        //コミュニティメンバーリスト
         $this->set("c_commu_member_list",
             k_p_c_home_c_commu_member_list_random4c_commu_id($target_c_commu_id, 5));
 
@@ -55,11 +61,11 @@ class ktai_page_c_home extends OpenPNE_Action
         //管理者からのメッセージ受信設定
         $this->set("is_receive_message", db_commu_is_receive_message($target_c_commu_id, $u));
 
-        // inc_entry_point
-        $this->set('inc_ktai_entry_point', fetch_ktai_inc_entry_point_c_home($this->getView()));
-
         $this->set('is_unused_pc_bbs', util_is_unused_mail('m_pc_bbs_info'));
         $this->set('is_unused_ktai_bbs', util_is_unused_mail('m_ktai_bbs_info'));
+
+        // inc_entry_point
+        $this->set('inc_ktai_entry_point', fetch_inc_entry_point($this->getView(), 'ktai_c_home'));
 
         return 'success';
     }

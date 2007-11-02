@@ -32,11 +32,7 @@ class ktai_page_f_home extends OpenPNE_Action
         //ターゲットのc_member
 
         $is_friend = db_friend_is_friend($u, $target_c_member_id);
-        if ($is_friend) {
-            $target_c_member = db_member_c_member_with_profile($target_c_member_id, 'friend');
-        } else {
-            $target_c_member = db_member_c_member_with_profile($target_c_member_id, 'public');
-        }
+        $target_c_member = db_member_c_member_with_profile($target_c_member_id, 'private');
         $target_c_member['last_login'] = p_f_home_last_login4access_date($target_c_member['access_date']);
         if ($target_c_member['birth_year']) {
             $target_c_member['age'] = getAge($target_c_member['birth_year'], $target_c_member['birth_month'], $target_c_member['birth_day']);
@@ -58,20 +54,29 @@ class ktai_page_f_home extends OpenPNE_Action
         //ターゲットと自分との関係
         $this->set("relation", db_friend_relationship4two_members($u, $target_c_member_id));
 
+        $is_friend = db_friend_is_friend($u, $target_c_member_id);
+        if ($is_friend) {
+            $this->set('is_friend', $is_friend);
+        } else {
+            $this->set('friend_path', db_friend_friend_path4c_member_ids($u, $target_c_member_id));
+        }
+
         $this->set('profile_list', db_member_c_profile_list());
 
         // 誕生日まであと何日？
         $this->set('days_birthday', db_member_count_days_birthday4c_member_id($target_c_member_id));
 
+        if (OPENPNE_USE_POINT_RANK) {
+            // ポイント
+            $point = db_point_get_point($target_c_member_id);
+            $this->set("point", $point);
+
+            // ランク
+            $this->set("rank", db_point_get_rank4point($point));
+        }
+
         // inc_entry_point
-        $this->set('inc_ktai_entry_point', fetch_ktai_inc_entry_point_f_home($this->getView()));
-
-        //PNEPOINT
-        $point = db_point_get_point($target_c_member_id);
-        $this->set("point", $point);
-
-        //rank
-        $this->set("rank", db_point_get_rank4point($point));
+        $this->set('inc_ktai_entry_point', fetch_inc_entry_point($this->getView(), 'ktai_f_home'));
 
         //あしあとをつける
         db_ashiato_insert_c_ashiato($target_c_member_id, $u);

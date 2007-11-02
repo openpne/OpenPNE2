@@ -50,6 +50,9 @@ class pc_page_c_topic_add extends OpenPNE_Action
         $this->set('title', $title);
         $this->set('body', $body);
 
+        // 許可されている拡張子のリスト
+        $this->set('allowed_extensions', util_get_file_allowed_extensions('string'));
+
         return 'success';
     }
 }

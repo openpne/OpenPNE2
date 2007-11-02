@@ -46,10 +46,10 @@ class pc_page_c_event_detail extends OpenPNE_Action
 
         //書き込み一覧部分
         $page += $direc;
-        if ($all==1) {
-            $page_size = 1000;
+        if ($all) {
+            $page_size = null;
         } else {
-            $page_size = 10;
+            $page_size = 20;
         }
 
         $lst = db_commu_c_topic_write4c_commu_topic_id($c_commu_topic_id, $page, $page_size);
@@ -59,6 +59,7 @@ class pc_page_c_event_detail extends OpenPNE_Action
         $this->set("total_num", $lst[3]);
         $this->set("page", $page);
         $this->set("all", $all);
+        $this->set('page_size', $page_size);
 
         $this->set("start_num", $lst[4]);
         $this->set("end_num", $lst[5]);
@@ -67,6 +68,7 @@ class pc_page_c_event_detail extends OpenPNE_Action
         $this->set("is_c_commu_member", db_commu_is_c_commu_member($c_commu_id, $u));
         $this->set("is_c_event_member", db_commu_is_c_event_member($c_commu_topic_id, $u));
         $this->set("is_c_event_admin", db_commu_is_c_event_admin($c_commu_topic_id, $u));
+        $this->set('is_event_join_date', db_commu_is_event_join_date($c_commu_topic_id));
 
         $this->set('err_msg', $err_msg);
         $this->set('body', $body);

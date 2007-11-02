@@ -26,9 +26,9 @@ class biz_do_f_home_edit_biz_todo extends OpenPNE_Action
         $public_flag = $requests['public_flag'];
         // ----------
 
-		if (!biz_isPermissionTodo($u, $id)) {
-		    handle_kengen_error();
-		}
+        if (!biz_isPermissionTodo($u, $id)) {
+            handle_kengen_error();
+        }
 
         if (!$biz_group_id && $public_flag == 'group') {
                 $_REQUEST['msg'] = '「グループまで公開」Todoの場合はグループを指定してください';

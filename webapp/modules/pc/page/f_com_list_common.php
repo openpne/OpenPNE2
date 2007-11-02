@@ -20,6 +20,8 @@ class pc_page_f_com_list_common extends OpenPNE_Action
             openpne_redirect('pc', 'page_h_access_block');
         }
 
+        $this->set('inc_navi', fetch_inc_navi('f', $target_c_member_id));
+
         $this->set("target_member", db_member_c_member4c_member_id($target_c_member_id));
 
         $page_size = 50;

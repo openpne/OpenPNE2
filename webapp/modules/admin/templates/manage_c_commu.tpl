@@ -12,7 +12,7 @@
 <div class="contents">
 
 ({if $msg})<p class="actionMsg">({$msg})</p>({/if})
-<p class="info">ユーザ新規登録時に以下で設定したコミュニティに自動的に参加させることができます。</p>
+<p class="info">メンバー新規登録時に以下で設定したコミュニティに自動的に参加させることができます。</p>
 <p class="caution" id="c01">参加させたいコミュニティのIDを入力して「追加」ボタンを押してください。</p>
 <form action="./" method="post">
 <input type="hidden" name="m" value="({$module_name})" />

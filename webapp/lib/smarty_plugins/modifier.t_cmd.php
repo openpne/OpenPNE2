@@ -10,11 +10,10 @@ function smarty_modifier_t_cmd($string, $type = '')
         return $string;
     }
 
-    $regexp = '/&lt;cmd\s+src="(\w+)"(?:\s+args="([\w-\+%]+(,[\w-\+%]+)*)?")?\s*&gt;/i';
+    $regexp = '/&lt;cmd\s+src=&quot;([a-z0-9_\.]+)&quot;(?:\s+args=&quot;([a-z0-9_\-+%]+(,[a-z0-9_\-+%]+)*)?&quot;)?\s*&gt;/i';
     $GLOBALS['_CMD']['type'] = $type;
 
     return preg_replace_callback($regexp, '_smarty_modifier_t_cmd_make_js', $string);
-
 }
 
 function _smarty_modifier_t_cmd_make_js($matches)
@@ -39,6 +38,5 @@ main({$arg_str});
 EOD;
     return $result;
 }
-
 
 ?>

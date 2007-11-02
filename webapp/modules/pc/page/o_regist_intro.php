@@ -14,8 +14,7 @@ class pc_page_o_regist_intro extends OpenPNE_Action
     function execute($requests)
     {
         //<PCKTAI
-        if (defined('OPENPNE_REGIST_FROM') &&
-                !(OPENPNE_REGIST_FROM & OPENPNE_REGIST_FROM_PC)) {
+        if (!(OPENPNE_REGIST_FROM & OPENPNE_REGIST_FROM_PC)) {
             client_redirect_login();
         }
         //>
@@ -26,13 +25,12 @@ class pc_page_o_regist_intro extends OpenPNE_Action
             openpne_redirect('pc', 'page_o_tologin', $p);
         }
 
+        // メールアドレスが登録できるかどうか
         $pre = db_member_c_member_pre4sid($sid);
-        // ブラックリストチェック
-        if (db_is_c_black_list($pre['pc_address'])) {
-            $p = array('msg' => "このメールアドレスでは登録できません");
-            openpne_redirect('pc', 'page_o_err', $p);
+        if (!util_is_regist_mail_address($pre['pc_address'])) {
+            $p = array('msg_code' => 'invalid_url');
+            openpne_redirect('pc', 'page_o_tologin', $p);
         }
-
 
         $this->set('inc_page_header', fetch_inc_page_header('public'));
 

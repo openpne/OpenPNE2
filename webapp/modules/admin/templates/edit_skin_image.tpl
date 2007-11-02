@@ -10,23 +10,70 @@
 <h2>スキン画像変更</h2>
 <div class="contents">
 
-<a name="skin"></a>
-<p>ナビゲーションボタンの位置を旧バージョンのものに変更できます。<br />
-1.8.x 以前のスキン画像をそのまま使いたい場合は、1.8形式を選択してください。<br />
-<form action="./" method="post">
-<input type="hidden" name="m" value="({$module_name})" />
-<input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_version','do')})" />
-<input type="hidden" name="sessid" value="({$PHPSESSID})" />
-<select class="basic" name="version">
-<option value="2.0"({if $smarty.const.SKIN_VERSION=='2.0'}) selected="selected"({/if})>2.0形式を使用する(デフォルト)</option>
-<option value="1.8"({if $smarty.const.SKIN_VERSION=='1.8'}) selected="selected"({/if})>1.8形式を使用する</option>
-</select>
-<span class="textBtnS"><input type="submit" value="変更" /></span>
-</form>
-</p>
-<p class="pageNavi"><a href="#skin1">ログインページ</a>|　<a href="#skin2">メニュー等、画面上部画像&nbsp;[1]</a>|　<a href="#skin3">メニュー等、画面上部画像&nbsp;[2]</a>|　<a href="#skin4">画面下部画像</a>|　<a href="#skin5">NoImage画像</a>|　<a href="#skin6">画像ボタン</a>|　<a href="#skin7">レビュー用画像</a>|　<a href="#skin8">小物画像&nbsp;[1]</a>|　<a href="#skin9">小物画像&nbsp;[2]</a>|　<a href="#skin10">小物画像&nbsp;[3]</a>|　<a href="#skin11">小物画像&nbsp;[4]</a></p>
-<p class="caution" id="c01">※規定のサイズと異なる画像を設定した場合、レイアウトが崩れてしまう可能性があります。</p>
+<script type="text/javascript">
+function toggleDisplay(targetId) {
+    var tgt = document.getElementById(targetId);
+    var btn = document.getElementById("skin_changer_openclose_button");
+    if ( tgt.style.display == "none" ) {
+        tgt.style.display = "block";
+        document.cookie = "skinChangerArea=1";
+        btn.value = '非表示';
+    } else {
+        tgt.style.display = "none";
+        document.cookie = "skinChangerArea=0";
+        btn.value = '表示';
+    }
+}
+function getCookie() {
+        var cook = new Array();
+        var tmp = document.cookie.split("; ");
+        for (var i = 0; i < tmp.length; i++) {
+            var parts = tmp[i].split("=");
+            cook[parts[0]] = parts[1];
+        }
 
+        return cook;
+}
+</script>
+
+<h3 class="item" id="subttl01">プリセットデザインから設定&nbsp;<span class="textBtnS"><input id="skin_changer_openclose_button" type="button" value="非表示" onclick="toggleDisplay('skin_changer_area');" /></span></h3>
+<p class="caution" id="c01">※プリセットデザインから設定をおこなうと、カスタマイズ設定で変更された内容がすべて上書きされてしまいます。</p>
+
+<form action="./" method="post">
+<table class="basicType2" id="skin_changer_area">
+<tr>
+<td>
+({foreach from=$theme_list item=item})
+<dl class="box">
+<dd>
+<a href="./skin/({$item.name})/({$item.link})" target="_blank"><img src="./skin/({$item.name})/({$item.thumbnail})" width="180" /></a><br />
+<input type="radio" name="value" id="skin_theme_({$item.name})" value="({$item.name})"({if $item.name == $smarty.const.OPENPNE_SKIN_THEME}) checked="checked"({/if}) />
+<label for="skin_theme_({$item.name})">({$item.caption})</label>
+</dd>
+</dl>
+({/foreach})
+
+<br class="clear" />
+<div class="submitTheme">
+<input type="hidden" name="m" value="({$module_name})" />
+<input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_theme','do')})" />
+<input type="hidden" name="sessid" value="({$PHPSESSID})"/>
+<span class="textBtnS"><input type="submit" value="変更" /></span>
+</div>
+
+</td>
+</tr>
+</table>
+</form>
+
+<script type="text/javascript">
+var c = getCookie();
+if ( c['skinChangerArea'] == 0 ) { toggleDisplay('skin_changer_area'); }
+</script>
+
+<h3 class="item" id="subttl02">カスタマイズ設定</h3>
+<p class="pageNavi"><a href="#skin1">ログインページ</a> | <a href="#skin2">メニュー等、画面上部画像&nbsp;[1]</a> | <a href="#skin3">メニュー等、画面上部画像&nbsp;[2]</a> | <a href="#skin4">画面下部画像</a> | <a href="#skin5">NoImage画像</a> | <a href="#skin6">画像ボタン</a> | <a href="#skin7">レビュー用画像</a> | <a href="#skin8">小物画像&nbsp;[1]</a> | <a href="#skin9">小物画像&nbsp;[2]</a> | <a href="#skin10">小物画像&nbsp;[3]</a> | <a href="#skin11">小物画像&nbsp;[4]</a> | <a href="#skin12">携帯版画像</a> | </p>
+<p class="caution" id="c02">※規定のサイズと異なる画像を設定した場合、レイアウトが崩れてしまう可能性があります。</p>
 
 <table class="basicType2">
 ({*******})
@@ -40,7 +87,7 @@
 <dd class="image">({assign var=skinname value=skin_login})<a href="({t_img_url_skin filename=$skinname})" target="_blank"><img src="({t_img_url_skin filename=$skinname w=180 h=180})" width="180"></a></dd>
 <dd class="default">({if $skin_list[$skinname]})[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})</dd>
 <dd class="submit">
-<form action="./" method="post" enctype="multipart/form-data" />
+<form action="./" method="post" enctype="multipart/form-data" >
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})"/>
@@ -63,7 +110,7 @@
 <dd class="image">({assign var=skinname value=skin_after_header})<a href="({t_img_url_skin filename=$skinname})" target="_blank"><img src="({t_img_url_skin filename=$skinname w=180 h=180})" width="180"></a></dd>
 <dd class="default">({if $skin_list[$skinname]})[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})</dd>
 <dd class="submit">
-<form action="./" method="post" enctype="multipart/form-data" />
+<form action="./" method="post" enctype="multipart/form-data" >
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
@@ -77,7 +124,7 @@
 <dd class="image">({assign var=skinname value=skin_after_header_2})<a href="({t_img_url_skin filename=$skinname})" target="_blank"><img src="({t_img_url_skin filename=$skinname w=180 h=180})" width="180"></a></dd>
 <dd class="default">({if $skin_list[$skinname]})[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})</dd>
 <dd class="submit">
-<form action="./" method="post" enctype="multipart/form-data" />
+<form action="./" method="post" enctype="multipart/form-data" >
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
@@ -91,7 +138,7 @@
 <dd class="image">({assign var=skinname value=skin_navi_h})<a href="({t_img_url_skin filename=$skinname})" target="_blank"><img src="({t_img_url_skin filename=$skinname w=180 h=180})" width="180"></a></dd>
 <dd class="default">({if $skin_list[$skinname]})[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})</dd>
 <dd class="submit">
-<form action="./" method="post" enctype="multipart/form-data" />
+<form action="./" method="post" enctype="multipart/form-data" >
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
@@ -104,7 +151,7 @@
 <dd class="image">({assign var=skinname value=skin_navi_f})<a href="({t_img_url_skin filename=$skinname})" target="_blank"><img src="({t_img_url_skin filename=$skinname w=180 h=180})" width="180"></a></dd>
 <dd class="default">({if $skin_list[$skinname]})[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})</dd>
 <dd class="submit">
-<form action="./" method="post" enctype="multipart/form-data" />
+<form action="./" method="post" enctype="multipart/form-data" >
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
@@ -117,7 +164,7 @@
 <dd class="image">({assign var=skinname value=skin_navi_c})<a href="({t_img_url_skin filename=$skinname})" target="_blank"><img src="({t_img_url_skin filename=$skinname w=180 h=180})" width="180"></a></dd>
 <dd class="default">({if $skin_list[$skinname]})[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})</dd>
 <dd class="submit">
-<form action="./" method="post" enctype="multipart/form-data" />
+<form action="./" method="post" enctype="multipart/form-data" >
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
@@ -131,7 +178,7 @@
 <dd class="image">({assign var=skinname value=skin_navi_h_2})<a href="({t_img_url_skin filename=$skinname})" target="_blank"><img src="({t_img_url_skin filename=$skinname w=180 h=180})" width="180"></a></dd>
 <dd class="default">({if $skin_list[$skinname]})[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})</dd>
 <dd class="submit">
-<form action="./" method="post" enctype="multipart/form-data" />
+<form action="./" method="post" enctype="multipart/form-data" >
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
@@ -144,7 +191,7 @@
 <dd class="image">({assign var=skinname value=skin_navi_f_2})<a href="({t_img_url_skin filename=$skinname})" target="_blank"><img src="({t_img_url_skin filename=$skinname w=180 h=180})" width="180"></a></dd>
 <dd class="default">({if $skin_list[$skinname]})[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})</dd>
 <dd class="submit">
-<form action="./" method="post" enctype="multipart/form-data" />
+<form action="./" method="post" enctype="multipart/form-data" >
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
@@ -157,7 +204,7 @@
 <dd class="image">({assign var=skinname value=skin_navi_c_2})<a href="({t_img_url_skin filename=$skinname})" target="_blank"><img src="({t_img_url_skin filename=$skinname w=180 h=180})" width="180"></a></dd>
 <dd class="default">({if $skin_list[$skinname]})[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})</dd>
 <dd class="submit">
-<form action="./" method="post" enctype="multipart/form-data" />
+<form action="./" method="post" enctype="multipart/form-data" >
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
@@ -171,7 +218,7 @@
 <dd class="image">({assign var=skinname value=icon_search})<img src="({t_img_url_skin filename=$skinname})"></dd>
 <dd class="default">({if $skin_list[$skinname]})[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})</dd>
 <dd class="submit">
-<form action="./" method="post" enctype="multipart/form-data" />
+<form action="./" method="post" enctype="multipart/form-data" >
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
@@ -184,7 +231,7 @@
 <dd class="image">({assign var=skinname value=button_search_1})<img src="({t_img_url_skin filename=$skinname})"></dd>
 <dd class="default">({if $skin_list[$skinname]})[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})</dd>
 <dd class="submit">
-<form action="./" method="post" enctype="multipart/form-data" />
+<form action="./" method="post" enctype="multipart/form-data" >
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
@@ -197,7 +244,7 @@
 <dd class="image">({assign var=skinname value=button_search_2})<img src="({t_img_url_skin filename=$skinname})"></dd>
 <dd class="default">({if $skin_list[$skinname]})[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})</dd>
 <dd class="submit">
-<form action="./" method="post" enctype="multipart/form-data" />
+<form action="./" method="post" enctype="multipart/form-data" >
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
@@ -210,7 +257,7 @@
 <dd class="image">({assign var=skinname value=button_search_3})<img src="({t_img_url_skin filename=$skinname})"></dd>
 <dd class="default">({if $skin_list[$skinname]})[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})</dd>
 <dd class="submit">
-<form action="./" method="post" enctype="multipart/form-data" />
+<form action="./" method="post" enctype="multipart/form-data" >
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
@@ -223,7 +270,7 @@
 <dd class="image">({assign var=skinname value=button_search_4})<img src="({t_img_url_skin filename=$skinname})" style="width:62px;height:20px;"></dd>
 <dd class="default">({if $skin_list[$skinname]})[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})</dd>
 <dd class="submit">
-<form action="./" method="post" enctype="multipart/form-data" />
+<form action="./" method="post" enctype="multipart/form-data" >
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
@@ -246,7 +293,7 @@
 <dd class="image">({assign var=skinname value=birthday_f})<a href="({t_img_url_skin filename=$skinname})" target="_blank"><img src="({t_img_url_skin filename=$skinname w=180 h=180})" width="180"></a></dd>
 <dd class="default">({if $skin_list[$skinname]})[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})</dd>
 <dd class="submit">
-<form action="./" method="post" enctype="multipart/form-data" />
+<form action="./" method="post" enctype="multipart/form-data" >
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
@@ -259,7 +306,7 @@
 <dd class="image">({assign var=skinname value=birthday_f_2})<a href="({t_img_url_skin filename=$skinname})" target="_blank"><img src="({t_img_url_skin filename=$skinname w=180 h=180})" width="180"></a></dd>
 <dd class="default">({if $skin_list[$skinname]})[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})</dd>
 <dd class="submit">
-<form action="./" method="post" enctype="multipart/form-data" />
+<form action="./" method="post" enctype="multipart/form-data" >
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
@@ -272,7 +319,7 @@
 <dd class="image">({assign var=skinname value=birthday_h})<a href="({t_img_url_skin filename=$skinname})" target="_blank"><img src="({t_img_url_skin filename=$skinname w=180 h=180})" width="180"></a></dd>
 <dd class="default">({if $skin_list[$skinname]})[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})</dd>
 <dd class="submit">
-<form action="./" method="post" enctype="multipart/form-data" />
+<form action="./" method="post" enctype="multipart/form-data" >
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
@@ -286,7 +333,7 @@
 <dd class="image">({assign var=skinname value=icon_information})<img src="({t_img_url_skin filename=$skinname})"></dd>
 <dd class="default">({if $skin_list[$skinname]})[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})</dd>
 <dd class="submit">
-<form action="./" method="post" enctype="multipart/form-data" />
+<form action="./" method="post" enctype="multipart/form-data" >
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
@@ -299,7 +346,7 @@
 <dd class="image">({assign var=skinname value=skin_before_header})<a href="({t_img_url_skin filename=$skinname})" target="_blank"><img src="({t_img_url_skin filename=$skinname w=180 h=180})" width="180"></a></dd>
 <dd class="default">({if $skin_list[$skinname]})[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})</dd>
 <dd class="submit">
-<form action="./" method="post" enctype="multipart/form-data" />
+<form action="./" method="post" enctype="multipart/form-data" >
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
@@ -322,7 +369,7 @@
 <dd class="image">({assign var=skinname value=skin_footer})<a href="({t_img_url_skin filename=$skinname})" target="_blank"><img src="({t_img_url_skin filename=$skinname w=180 h=180})" width="180"></a></dd>
 <dd class="default">({if $skin_list[$skinname]})[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})</dd>
 <dd class="submit">
-<form action="./" method="post" enctype="multipart/form-data" />
+<form action="./" method="post" enctype="multipart/form-data" >
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
@@ -345,7 +392,7 @@
 <dd class="image">({assign var=skinname value=no_image})<img src="({t_img_url_skin filename=$skinname w=180 h=180})"></dd>
 <dd class="default">({if $skin_list[$skinname] != "skin_$skinname.gif"})[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})</dd>
 <dd class="submit">
-<form action="./" method="post" enctype="multipart/form-data" />
+<form action="./" method="post" enctype="multipart/form-data" >
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
@@ -358,7 +405,7 @@
 <dd class="image">({assign var=skinname value=no_logo})<img src="({t_img_url_skin filename=$skinname w=180 h=180})"></dd>
 <dd class="default">({if $skin_list[$skinname] != "skin_$skinname.gif"})[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})</dd>
 <dd class="submit">
-<form action="./" method="post" enctype="multipart/form-data" />
+<form action="./" method="post" enctype="multipart/form-data" >
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
@@ -371,7 +418,7 @@
 <dd class="image">({assign var=skinname value=no_logo_small})<img src="({t_img_url_skin filename=$skinname w=76 h=76})"></dd>
 <dd class="default">({if $skin_list[$skinname] != "skin_$skinname.gif"})[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})</dd>
 <dd class="submit">
-<form action="./" method="post" enctype="multipart/form-data" />
+<form action="./" method="post" enctype="multipart/form-data" >
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
@@ -394,7 +441,7 @@
 <dd class="image">({assign var=skinname value=button_edit_photo})<img src="({t_img_url_skin filename=$skinname})"></dd>
 <dd class="default">({if $skin_list[$skinname]})[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})</dd>
 <dd class="submit">
-<form action="./" method="post" enctype="multipart/form-data" />
+<form action="./" method="post" enctype="multipart/form-data" >
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
@@ -407,7 +454,7 @@
 <dd class="image">({assign var=skinname value=button_prof_conf})<img src="({t_img_url_skin filename=$skinname})"></dd>
 <dd class="default">({if $skin_list[$skinname]})[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})</dd>
 <dd class="submit">
-<form action="./" method="post" enctype="multipart/form-data" />
+<form action="./" method="post" enctype="multipart/form-data" >
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
@@ -420,7 +467,7 @@
 <dd class="image">({assign var=skinname value=button_show_photo})<img src="({t_img_url_skin filename=$skinname})"></dd>
 <dd class="default">({if $skin_list[$skinname]})[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})</dd>
 <dd class="submit">
-<form action="./" method="post" enctype="multipart/form-data" />
+<form action="./" method="post" enctype="multipart/form-data" >
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
@@ -434,7 +481,7 @@
 <dd class="image">({assign var=skinname value=button_kyohi})<img src="({t_img_url_skin filename=$skinname})"></dd>
 <dd class="default">({if $skin_list[$skinname]})[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})</dd>
 <dd class="submit">
-<form action="./" method="post" enctype="multipart/form-data" />
+<form action="./" method="post" enctype="multipart/form-data" >
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
@@ -447,7 +494,7 @@
 <dd class="image">({assign var=skinname value=button_sakujo})<img src="({t_img_url_skin filename=$skinname})"></dd>
 <dd class="default">({if $skin_list[$skinname]})[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})</dd>
 <dd class="submit">
-<form action="./" method="post" enctype="multipart/form-data" />
+<form action="./" method="post" enctype="multipart/form-data" >
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
@@ -460,7 +507,7 @@
 <dd class="image">({assign var=skinname value=button_shonin})<img src="({t_img_url_skin filename=$skinname})"></dd>
 <dd class="default">({if $skin_list[$skinname]})[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})</dd>
 <dd class="submit">
-<form action="./" method="post" enctype="multipart/form-data" />
+<form action="./" method="post" enctype="multipart/form-data" >
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
@@ -473,7 +520,7 @@
 <dd class="image">({assign var=skinname value=button_shosai})<img src="({t_img_url_skin filename=$skinname})"></dd>
 <dd class="default">({if $skin_list[$skinname]})[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})</dd>
 <dd class="submit">
-<form action="./" method="post" enctype="multipart/form-data" />
+<form action="./" method="post" enctype="multipart/form-data" >
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
@@ -486,7 +533,7 @@
 <dd class="image">({assign var=skinname value=bg_button})<img src="({t_img_url_skin filename=$skinname})"></dd>
 <dd class="default">({if $skin_list[$skinname]})[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})</dd>
 <dd class="submit">
-<form action="./" method="post" enctype="multipart/form-data" />
+<form action="./" method="post" enctype="multipart/form-data" >
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
@@ -509,7 +556,7 @@
 <dd class="image">({assign var=skinname value=satisfaction_level_1})<img src="({t_img_url_skin filename=$skinname})"></dd>
 <dd class="default">({if $skin_list[$skinname]})[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})</dd>
 <dd class="submit">
-<form action="./" method="post" enctype="multipart/form-data" />
+<form action="./" method="post" enctype="multipart/form-data" >
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
@@ -522,7 +569,7 @@
 <dd class="image">({assign var=skinname value=satisfaction_level_2})<img src="({t_img_url_skin filename=$skinname})"></dd>
 <dd class="default">({if $skin_list[$skinname]})[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})</dd>
 <dd class="submit">
-<form action="./" method="post" enctype="multipart/form-data" />
+<form action="./" method="post" enctype="multipart/form-data" >
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
@@ -535,7 +582,7 @@
 <dd class="image">({assign var=skinname value=satisfaction_level_3})<img src="({t_img_url_skin filename=$skinname})"></dd>
 <dd class="default">({if $skin_list[$skinname]})[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})</dd>
 <dd class="submit">
-<form action="./" method="post" enctype="multipart/form-data" />
+<form action="./" method="post" enctype="multipart/form-data" >
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
@@ -548,7 +595,7 @@
 <dd class="image">({assign var=skinname value=satisfaction_level_4})<img src="({t_img_url_skin filename=$skinname})"></dd>
 <dd class="default">({if $skin_list[$skinname]})[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})</dd>
 <dd class="submit">
-<form action="./" method="post" enctype="multipart/form-data" />
+<form action="./" method="post" enctype="multipart/form-data" >
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
@@ -561,7 +608,7 @@
 <dd class="image">({assign var=skinname value=satisfaction_level_5})<img src="({t_img_url_skin filename=$skinname})"></dd>
 <dd class="default">({if $skin_list[$skinname]})[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})</dd>
 <dd class="submit">
-<form action="./" method="post" enctype="multipart/form-data" />
+<form action="./" method="post" enctype="multipart/form-data" >
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
@@ -584,7 +631,7 @@
 <dd class="image">({assign var=skinname value=icon_title_1})<img src="({t_img_url_skin filename=$skinname})" class="c_10"></dd>
 <dd class="default">({if $skin_list[$skinname]})[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})</dd>
 <dd class="submit">
-<form action="./" method="post" enctype="multipart/form-data" />
+<form action="./" method="post" enctype="multipart/form-data" >
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
@@ -597,7 +644,7 @@
 <dd class="image">({assign var=skinname value=content_header_1})<img src="({t_img_url_skin filename=$skinname})" class="c_11"></dd>
 <dd class="default">({if $skin_list[$skinname]})[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})</dd>
 <dd class="submit">
-<form action="./" method="post" enctype="multipart/form-data" />
+<form action="./" method="post" enctype="multipart/form-data" >
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
@@ -610,7 +657,7 @@
 <dd class="image">({assign var=skinname value=icon_arrow_1})<img src="({t_img_url_skin filename=$skinname})"></dd>
 <dd class="default">({if $skin_list[$skinname]})[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})</dd>
 <dd class="submit">
-<form action="./" method="post" enctype="multipart/form-data" />
+<form action="./" method="post" enctype="multipart/form-data" >
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
@@ -623,7 +670,7 @@
 <dd class="image">({assign var=skinname value=icon_arrow_2})<img src="({t_img_url_skin filename=$skinname})"></dd>
 <dd class="default">({if $skin_list[$skinname]})[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})</dd>
 <dd class="submit">
-<form action="./" method="post" enctype="multipart/form-data" />
+<form action="./" method="post" enctype="multipart/form-data" >
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
@@ -636,7 +683,7 @@
 <dd class="image">({assign var=skinname value=icon_1})<img src="({t_img_url_skin filename=$skinname})"></dd>
 <dd class="default">({if $skin_list[$skinname]})[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})</dd>
 <dd class="submit">
-<form action="./" method="post" enctype="multipart/form-data" />
+<form action="./" method="post" enctype="multipart/form-data" >
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
@@ -649,7 +696,7 @@
 <dd class="image">({assign var=skinname value=icon_2})<img src="({t_img_url_skin filename=$skinname})"></dd>
 <dd class="default">({if $skin_list[$skinname]})[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})</dd>
 <dd class="submit">
-<form action="./" method="post" enctype="multipart/form-data" />
+<form action="./" method="post" enctype="multipart/form-data" >
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
@@ -662,7 +709,7 @@
 <dd class="image">({assign var=skinname value=icon_3})<img src="({t_img_url_skin filename=$skinname})"></dd>
 <dd class="default">({if $skin_list[$skinname]})[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})</dd>
 <dd class="submit">
-<form action="./" method="post" enctype="multipart/form-data" />
+<form action="./" method="post" enctype="multipart/form-data" >
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
@@ -685,7 +732,7 @@
 <dd class="image">({assign var=skinname value=icon_alert_l})<img src="({t_img_url_skin filename=$skinname})"></dd>
 <dd class="default">({if $skin_list[$skinname]})[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})</dd>
 <dd class="submit">
-<form action="./" method="post" enctype="multipart/form-data" />
+<form action="./" method="post" enctype="multipart/form-data" >
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
@@ -698,7 +745,7 @@
 <dd class="image">({assign var=skinname value=icon_crown})<img src="({t_img_url_skin filename=$skinname})"></dd>
 <dd class="default">({if $skin_list[$skinname]})[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})</dd>
 <dd class="submit">
-<form action="./" method="post" enctype="multipart/form-data" />
+<form action="./" method="post" enctype="multipart/form-data" >
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
@@ -711,7 +758,7 @@
 <dd class="image">({assign var=skinname value=icon_camera})<img src="({t_img_url_skin filename=$skinname})"></dd>
 <dd class="default">({if $skin_list[$skinname]})[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})</dd>
 <dd class="submit">
-<form action="./" method="post" enctype="multipart/form-data" />
+<form action="./" method="post" enctype="multipart/form-data" >
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
@@ -734,7 +781,7 @@
 <dd class="image">({assign var=skinname value=icon_birthday})<img src="({t_img_url_skin filename=$skinname})" /></dd>
 <dd class="default">({if $skin_list[$skinname]})[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})</dd>
 <dd class="submit">
-<form action="./" method="post" enctype="multipart/form-data" />
+<form action="./" method="post" enctype="multipart/form-data" >
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
@@ -747,7 +794,7 @@
 <dd class="image">({assign var=skinname value=icon_event_B})<img src="({t_img_url_skin filename=$skinname})" /></dd>
 <dd class="default">({if $skin_list[$skinname]})[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})</dd>
 <dd class="submit">
-<form action="./" method="post" enctype="multipart/form-data" />
+<form action="./" method="post" enctype="multipart/form-data" >
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
@@ -760,7 +807,7 @@
 <dd class="image">({assign var=skinname value=icon_event_R})<img src="({t_img_url_skin filename=$skinname})" /></dd>
 <dd class="default">({if $skin_list[$skinname]})[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})</dd>
 <dd class="submit">
-<form action="./" method="post" enctype="multipart/form-data" />
+<form action="./" method="post" enctype="multipart/form-data" >
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
@@ -773,7 +820,7 @@
 <dd class="image">({assign var=skinname value=icon_pen})<img src="({t_img_url_skin filename=$skinname})" /></dd>
 <dd class="default">({if $skin_list[$skinname]})[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})</dd>
 <dd class="submit">
-<form action="./" method="post" enctype="multipart/form-data" />
+<form action="./" method="post" enctype="multipart/form-data" >
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
@@ -786,7 +833,7 @@
 <dd class="image">({assign var=skinname value=icon_weather_FC})<img src="({t_img_url_skin filename=$skinname})" /></dd>
 <dd class="default">({if $skin_list[$skinname]})[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})</dd>
 <dd class="submit">
-<form action="./" method="post" enctype="multipart/form-data" />
+<form action="./" method="post" enctype="multipart/form-data" >
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
@@ -799,7 +846,7 @@
 <dd class="image">({assign var=skinname value=icon_schedule})<img src="({t_img_url_skin filename=$skinname})" /></dd>
 <dd class="default">({if $skin_list[$skinname]})[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})</dd>
 <dd class="submit">
-<form action="./" method="post" enctype="multipart/form-data" />
+<form action="./" method="post" enctype="multipart/form-data" >
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
@@ -822,7 +869,7 @@
 <dd class="image">({assign var=skinname value=icon_mail_1})<img src="({t_img_url_skin filename=$skinname})" /></dd>
 <dd class="default">({if $skin_list[$skinname]})[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})</dd>
 <dd class="submit">
-<form action="./" method="post" enctype="multipart/form-data" />
+<form action="./" method="post" enctype="multipart/form-data" >
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
@@ -835,7 +882,7 @@
 <dd class="image">({assign var=skinname value=icon_mail_2})<img src="({t_img_url_skin filename=$skinname})"/></dd>
 <dd class="default">({if $skin_list[$skinname]})[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})</dd>
 <dd class="submit">
-<form action="./" method="post" enctype="multipart/form-data" />
+<form action="./" method="post" enctype="multipart/form-data" >
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
@@ -848,7 +895,7 @@
 <dd class="image">({assign var=skinname value=icon_mail_3})<img src="({t_img_url_skin filename=$skinname})" /></dd>
 <dd class="default">({if $skin_list[$skinname]})[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})</dd>
 <dd class="submit">
-<form action="./" method="post" enctype="multipart/form-data" />
+<form action="./" method="post" enctype="multipart/form-data" >
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
@@ -861,7 +908,7 @@
 <dd class="image">({assign var=skinname value=icon_mail_4})<img src="({t_img_url_skin filename=$skinname})" /></dd>
 <dd class="default">({if $skin_list[$skinname]})[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})</dd>
 <dd class="submit">
-<form action="./" method="post" enctype="multipart/form-data" />
+<form action="./" method="post" enctype="multipart/form-data" >
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
@@ -871,8 +918,44 @@
 </dl>
 <br class="clear" />
 <p class="detailLink"><a href="modules/admin/img/11.gif" target="preview">詳細を確認する</a></p>
-
 </td>
 </tr>
+({*******})
+<tr class="skin12">
+<th><a name="skin12">携帯版画像</a></th>
+</tr>
+<tr class="skin12">
+<td>
+<dl class="box">
+<dt><strong>ロゴ画像</strong></dt>
+<dd class="image">({assign var=skinname value=skin_ktai_header})
+({if $smarty.const.OPENPNE_USE_KTAI_LOGO})
+<img src="({t_img_url_skin filename=$skinname})" />
+({else})
+画像はありません
+({/if})
+</dd>
+<dd class="default">
+({if $smarty.const.OPENPNE_USE_KTAI_LOGO})
+({if $skin_list[$skinname]})[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]<br />({/if})
+[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('update_c_admin_config_use_ktai_logo','do')})&amp;sessid=({$PHPSESSID})">画像を表示しない</a>]
+({else})
+[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('update_c_admin_config_use_ktai_logo','do')})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]
+({/if})
+</dd>
+<dd class="submit">
+<form action="./" method="post" enctype="multipart/form-data" >
+<input type="hidden" name="m" value="({$module_name})" />
+<input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
+<input type="hidden" name="sessid" value="({$PHPSESSID})" />
+<input type="hidden" name="skinname" value="skin_ktai_header" />
+<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="変更" /></span>
+</form></dd>
+</dl>
+<br class="clear" />
+<p class="detailLink"><a href="modules/admin/img/12.gif" target="preview">詳細を確認する</a></p>
+</td>
+</tr>
+({*******})
 </table> 
 ({$inc_footer|smarty:nodefaults})

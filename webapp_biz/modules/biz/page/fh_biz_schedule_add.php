@@ -125,12 +125,74 @@ class biz_page_fh_biz_schedule_add extends OpenPNE_Action
         $this->set('bn_num', $bn_num);
         $this->set('my_id', $u);
         $this->set('is_h', true);
+        $this->set('sc_rcount', $requests["sc_rcount"]);
+        $this->set('sc_bn', $requests["sc_bn"]);
+        $this->set('sc_rp', $requests["sc_rp"]);
+
+        $sc_rwk_enc = array();
+        if (isset($requests['sc_rwk_enc'])) {
+            $sc_rwk_enc = unserialize($requests['sc_rwk_enc']);
+        }
+
+        foreach ($wk as $key => $value) {
+            if (in_array($key, $sc_rwk_enc)) {
+                $sc_rwk_chk[$key]['checkflag'] = 1;
+            } else {
+                $sc_rwk_chk[$key]['chekflag'] = 0;
+            }
+        };
+        $this->set('sc_rwk_chk', $sc_rwk_chk);
 
         $biz_group_count = biz_getGroupCount($target_id);
         $biz_group_list = biz_getJoinGroupList($target_id, 1, $biz_group_count);
 
         $this->set('biz_group_list', $biz_group_list[0]);
+        $this->set('target_c_member_id', $target_id);
 
+        // グループのメンバーリストを取得
+        $biz_group_member_list = biz_getGroupMember($form_val['biz_group_id']);
+        $biz_group_member_id_list = array();
+        foreach ($biz_group_member_list as $biz_group_member) {
+            $biz_group_member_id_list[] = $biz_group_member['c_member_id'];
+        }
+
+        //追加
+        $members = array();
+
+        $sql = 'SELECT c_member_id, nickname FROM c_member WHERE c_member_id != '.$target_id;
+        $members = db_get_all($sql);
+
+        $sql = 'SELECT c_member_id, nickname FROM c_member WHERE c_member_id = '.$target_id;
+        $my_info = db_get_row($sql);
+        
+        array_unshift($members, $my_info);
+
+        $members[0]['checkflag'] = 1;
+
+        $jmembers = unserialize($requests['sc_j_mem_enc']);
+
+        $i = 0;
+
+        if (empty($jmembers)) {
+            foreach ($members as $key => $value) {
+                if (in_array($value['c_member_id'], $biz_group_member_id_list)) {
+                    $members[$key]['checkflag'] = 1;
+                }
+            }
+        } else {
+            foreach ($members as $key => $value) {
+                if ($jmembers[$i] == $value['c_member_id']) {
+                    $members[$key]['checkflag'] = 1;
+                    $i++;
+                }
+
+                if (count($jmembers) < $i) {
+                    break;
+                }
+            }
+        }
+        $this->set('members', $members);
+        
         return 'success';
     }
 }

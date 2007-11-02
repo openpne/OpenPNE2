@@ -14,7 +14,7 @@ class ktai_do_c_event_add_insert_c_commu_topic extends OpenPNE_Action
         //--- 権限チェック
         //コミュニティ参加者
 
-        $event = p_c_event_add_confirm_event4request();
+        list($event, $errors) = p_c_event_add_confirm_event4request(true);
 
         $status = db_common_commu_status($u, $event['c_commu_id']);
         if (!$status['is_commu_member']) {
@@ -30,9 +30,7 @@ class ktai_do_c_event_add_insert_c_commu_topic extends OpenPNE_Action
         //---
 
         //--- エラーチェック
-        $err_msg = array();
-        if (trim($event['title']) == '')  $err_msg[] = "タイトルを入力してください";
-        if (trim($event['detail']) == '')  $err_msg[] = "詳細を入力してください";
+        $err_msg = $errors;
 
         if (!$event['open_date_month'] || !$event['open_date_day'] || !$event['open_date_year']) {
             $err_msg[] = "開催日時を入力してください";
@@ -102,6 +100,12 @@ class ktai_do_c_event_add_insert_c_commu_topic extends OpenPNE_Action
         send_bbs_info_mail_pc($insert_id, $u);
 
         db_commu_insert_c_event_member_as_admin($c_commu_topic_id, $u);
+
+        if (OPENPNE_USE_POINT_RANK) {
+            //イベントを作成した人にポイント付与
+            $point = db_action_get_point4c_action_id(10);
+            db_point_add_point($u, $point);
+        }
 
         $p = array('target_c_commu_topic_id' => $c_commu_topic_id);
         openpne_redirect('ktai', 'page_c_bbs', $p);

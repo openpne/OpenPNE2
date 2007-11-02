@@ -24,19 +24,49 @@ class ktai_page_c_edit_member extends OpenPNE_Action
         }
         //---
 
-        $page_size = 20;
+        $page_size = 5;
         $page += $direc;
 
         //ページ
         $this->set("page", $page);
 
-        //メンバのリスト
-        $list = k_p_c_member_list_c_members_disp4c_commu_id($target_c_commu_id, $page_size, $page);
-        $this->set("c_member_list", $list[0]);
+        //メンバーリスト
+        $list = db_commu_c_member_list4c_commu_id($target_c_commu_id, $page_size, $page);
+        $total_num = $list[3];
+        $c_member_list = $list[0];
+
+        // 管理者交代メッセージ送信先メンバーリスト
+        foreach ($c_member_list as $key => $c_member) {
+            if ($c_member['c_member_id'] != $u
+                && $c_member['c_commu_admin_confirm_id'] <= 0
+                && $c_member['c_commu_sub_admin_confirm_id'] <= 0) {
+                $c_member_list[$key]['is_display_admin'] = true;
+            } else {
+                $c_member_list[$key]['is_display_admin'] = false;
+            }
+        }
+
+        // 副管理者要請メッセージ送信先メンバーリスト
+        foreach ($c_member_list as $key => $c_member) {
+            if ($c_member['c_member_id'] != $u && $c_member['c_member_id'] != $c_commu['c_member_id_sub_admin']
+                && $c_member['c_commu_admin_confirm_id'] <= 0
+                && $c_member['c_commu_sub_admin_confirm_id'] <= 0) {
+                $c_member_list[$key]['is_display_sub_admin'] = true;
+            } else {
+                $c_member_list[$key]['is_display_sub_admin'] = false;
+            }
+        }
+
+        $this->set("c_member_list", $c_member_list);
         $this->set("is_prev", $list[1]);
         $this->set("is_next", $list[2]);
 
-        //コミュニティのメンバ数
+        $pager = array();
+        $pager['start'] = ($page_size * ($page - 1)) + 1;
+        $pager['end'] = $pager['start'] + count($c_member_list) - 1;
+        $this->set('pager', $pager);
+
+        //コミュニティのメンバー数
         $this->set("count_member", db_commu_count_c_commu_member_list4c_commu_id($target_c_commu_id));
 
         $this->set("c_commu", $c_commu);

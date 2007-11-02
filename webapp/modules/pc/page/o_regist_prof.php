@@ -14,8 +14,7 @@ class pc_page_o_regist_prof extends OpenPNE_Action
     function execute($requests)
     {
         //<PCKTAI
-        if (defined('OPENPNE_REGIST_FROM') &&
-                !(OPENPNE_REGIST_FROM & OPENPNE_REGIST_FROM_PC)) {
+        if (!(OPENPNE_REGIST_FROM & OPENPNE_REGIST_FROM_PC)) {
             client_redirect_login();
         }
         //>
@@ -29,6 +28,8 @@ class pc_page_o_regist_prof extends OpenPNE_Action
             $p = array('msg_code' => 'invalid_url');
             openpne_redirect('pc', 'page_o_tologin', $p);
         }
+
+        $pre = db_member_c_member_pre4sid($sid);
 
         $this->set('err_msg', $err_msg);
 

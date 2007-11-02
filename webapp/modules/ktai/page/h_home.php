@@ -15,8 +15,8 @@ class ktai_page_h_home extends OpenPNE_Action
         //管理画面HTML
         $this->set('c_siteadmin', p_common_c_siteadmin4target_pagename('k_h_home'));
 
-        $c_member = db_member_c_member4c_member_id($u);
-        //メンバ情報
+        $c_member = db_member_c_member_with_profile($u, 'private');
+        //メンバー情報
         $this->set('c_member', $c_member);
         //新着メッセージ数
         $this->set('c_message_unread_count', db_message_c_message_received_unread_all_count4c_member_id($u));
@@ -84,16 +84,18 @@ class ktai_page_h_home extends OpenPNE_Action
         $mail_address = MAIL_ADDRESS_PREFIX . $mail_address;
         $this->set('blog_address', $mail_address);
 
+        if (OPENPNE_USE_POINT_RANK) {
+            // ポイント
+            $point = db_point_get_point($u);
+            $this->set("point", $point);
+
+            // ランク
+            $this->set("rank", db_point_get_rank4point($point));
+        }
+
         // inc_entry_point
-        $this->set('inc_ktai_entry_point', fetch_ktai_inc_entry_point_h_home($this->getView()));
+        $this->set('inc_ktai_entry_point', fetch_inc_entry_point($this->getView(), 'ktai_h_home'));
         
-        //PNEPOINT
-        $point = db_point_get_point($u);
-        $this->set("point", $point);
-
-        //rank
-        $this->set("rank", db_point_get_rank4point($point));
-
         return 'success';
     }
 }

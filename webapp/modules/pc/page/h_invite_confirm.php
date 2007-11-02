@@ -20,7 +20,7 @@ class pc_page_h_invite_confirm extends OpenPNE_Action
         // ----------
 
         $msg = "";
-        if (empty($_SESSION['captcha_keystring']) || $_SESSION['captcha_keystring'] !=  $requests['captcha']) {
+        if (OPENPNE_USE_CAPTCHA && (empty($_SESSION['captcha_keystring']) || $_SESSION['captcha_keystring'] !=  $requests['captcha'])) {
             unset($_SESSION['captcha_keystring']);
             $msg = "確認キーワードが誤っています";
         } else {
@@ -28,27 +28,23 @@ class pc_page_h_invite_confirm extends OpenPNE_Action
             if (!db_common_is_mailaddress($form_val['mail'])) {
                 $msg = "メールアドレスを正しく入力してください";
             } elseif (db_member_is_sns_join4mail_address($form_val['mail'])) {
-                $msg = "そのアドレスは既に登録済みです";
+                $msg = "そのメールアドレスは既に登録済みです";
             } elseif (!db_member_is_limit_domain4mail_address($form_val['mail'])) {
-                $msg = "そのアドレスは登録できません";
-            } elseif (!db_is_c_black_list($form_val['mail'])) {
+                $msg = "そのメールアドレスは登録できません";
+            } else {
                 if (is_ktai_mail_address($form_val['mail'])) {
                     //<PCKTAI
-                    if (defined('OPENPNE_REGIST_FROM') &&
-                            !((OPENPNE_REGIST_FROM & OPENPNE_REGIST_FROM_KTAI) >> 1)) {
-                        $msg = "携帯アドレスには招待を送ることができません";
+                    if (!((OPENPNE_REGIST_FROM & OPENPNE_REGIST_FROM_KTAI) >> 1)) {
+                        $msg = "携帯メールアドレスには招待を送ることができません";
                     }
                     //>
                 } else {
                     //<PCKTAI
-                    if (defined('OPENPNE_REGIST_FROM') &&
-                            !(OPENPNE_REGIST_FROM & OPENPNE_REGIST_FROM_PC)) {
-                        $msg = "PCアドレスには招待を送ることができません";
+                    if (!(OPENPNE_REGIST_FROM & OPENPNE_REGIST_FROM_PC)) {
+                        $msg = "PCメールアドレスには招待を送ることができません";
                     }
                     //>
                 }
-            } else {
-                $msg = "このメールアドレスには招待状は送れません";
             }
         }
 

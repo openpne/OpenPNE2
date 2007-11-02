@@ -24,7 +24,7 @@ class ktai_page_h_friend_find_all extends OpenPNE_Action
         }
         $this->set('profiles', $profiles);
 
-        $limit = 20;
+        $limit = 10;
         $this->set("page", $page);
 
         //検索デフォルト値表示用
@@ -72,7 +72,7 @@ class ktai_page_h_friend_find_all extends OpenPNE_Action
             if ($value['c_profile_option_id']) {
                 $v = $value['c_profile_option_id'];
             } else {
-                $v = urlencode(mb_convert_encoding($value, 'SJIS-win', 'UTF-8'));
+                $v = urlencode(mb_convert_encoding($value['value'], 'SJIS-win', 'UTF-8'));
             }
             $tmp[] = urlencode("profile[{$key}]") . '=' . $v;
         }

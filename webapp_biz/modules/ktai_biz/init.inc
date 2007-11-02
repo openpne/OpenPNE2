@@ -19,6 +19,11 @@ if (CHECK_KTAI_UA && !isKtaiUserAgent()) {
     openpne_redirect('pc');
 }
 
+// IPアドレスチェック
+if (CHECK_KTAI_IP && !is_ktai_ip()) {
+    openpne_redirect('pc');
+}
+
 // bizモジュールディレクトリの定義
 $biz_dir = OPENPNE_MODULES_BIZ_DIR.'/biz/';
 // bizモジュールライブラリ
@@ -26,31 +31,40 @@ require_once $biz_dir . 'lib/smarty_functions.php';
 require_once $biz_dir . 'lib/mysql_functions.php';
 
 // 文字コード変換
-function ktai_convert_encoding($arr)
+function ktai_biz_convert_encoding($arr)
 {
     return is_array($arr) ?
-        array_map('ktai_convert_encoding', $arr) :
+        array_map('ktai_biz_convert_encoding', $arr) :
         mb_convert_encoding($arr, 'UTF-8', 'SJIS-win');
 }
 
+$agent = new OpenPNE_KtaiUA();
+if ($agent->is_docomo()) {
+    $GLOBALS['__Framework']['carrier'] = 'i';
+} elseif ($agent->is_au()) {
+    $GLOBALS['__Framework']['carrier'] = 'e';
+} elseif ($agent->is_vodafone()) {
+    $GLOBALS['__Framework']['carrier'] = 's';
+}
+
 // 絵文字変換
-function ktai_convert_emoji($arr)
+function ktai_biz_convert_emoji($arr)
 {
     return is_array($arr) ?
-        array_map('ktai_convert_emoji', $arr) :
+        array_map('ktai_biz_convert_emoji', $arr) :
         emoji_escape($arr);
 }
 
-function ktai_convert($arr)
+function ktai_biz_convert($arr)
 {
-    $arr = ktai_convert_emoji($arr);
-    $arr = ktai_convert_encoding($arr);
+    $arr = ktai_biz_convert_emoji($arr);
+    $arr = ktai_biz_convert_encoding($arr);
     return $arr;
 }
 
-$_GET     = ktai_convert($_GET);
-$_POST    = ktai_convert($_POST);
-$_REQUEST = ktai_convert($_REQUEST);
+$_GET     = ktai_biz_convert($_GET);
+$_POST    = ktai_biz_convert($_POST);
+$_REQUEST = ktai_biz_convert($_REQUEST);
 
 ini_set('session.use_cookies', '0');
 
@@ -66,6 +80,7 @@ function init_ktai_biz_page(&$smarty)
     $smarty->assign('WORD_MY_FRIEND', WORD_MY_FRIEND);
     $smarty->assign('WORD_FRIEND_HALF', WORD_FRIEND_HALF);
     $smarty->assign('WORD_MY_FRIEND_HALF', WORD_MY_FRIEND_HALF);
+    $smarty->assign('ktai_color_config', util_get_color_config_ktai());
 
     $is_secure = $GLOBALS['__Framework']['is_secure'];
 

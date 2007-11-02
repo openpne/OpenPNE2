@@ -21,11 +21,7 @@ function smarty_function_t_img_url($params, &$smarty)
     if (OPENPNE_IMG_URL) {
         $url = OPENPNE_IMG_URL;
     } else {
-        if (OPENPNE_USE_PARTIAL_SSL && is_ssl()) {
-            $url = OPENPNE_SSL_URL;
-        } else {
-            $url = OPENPNE_URL;
-        }
+        $url = './';
     }
 
     if (!OPENPNE_IMG_CACHE_PUBLIC) {
@@ -104,7 +100,7 @@ function _smarty_function_t_img_url($params)
     $result['m'] = $GLOBALS['__Framework']['current_module'];
     
     if ($GLOBALS['KTAI_URL_TAIL']) {
-    	$result['ksid'] = session_id();
+        $result['ksid'] = session_id();
     }
 
     return $result;

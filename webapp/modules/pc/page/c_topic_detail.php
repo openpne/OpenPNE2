@@ -43,16 +43,18 @@ class pc_page_c_topic_detail extends OpenPNE_Action
 
         $this->set('inc_navi', fetch_inc_navi('c', $c_commu_id));
 
+        $c_topic['original_filename'] = db_file_original_filename4filename($c_topic['filename']);
+
         //詳細部分
         $this->set("c_commu", $c_commu);
         $this->set("c_topic", $c_topic);
 
         //書き込み一覧部分
         $page += $direc;
-        if ($all==1) {
-            $page_size = 1000;
+        if ($all) {
+            $page_size = null;
         } else {
-            $page_size = 10;
+            $page_size = 20;
         }
 
         list($c_topic_write, $is_prev, $is_next, $total_num, $start_num, $end_num)
@@ -64,6 +66,7 @@ class pc_page_c_topic_detail extends OpenPNE_Action
         $this->set("total_num", $total_num);
         $this->set('start_num', $start_num);
         $this->set('end_num', $end_num);
+        $this->set('page_size', $page_size);
 
         $this->set('all', $all);
 

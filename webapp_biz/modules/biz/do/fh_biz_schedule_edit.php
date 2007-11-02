@@ -6,65 +6,22 @@
 
 class biz_do_fh_biz_schedule_edit extends OpenPNE_Action
 {
+    function handleError($errors)
+    {
+        $_REQUEST['msg'] = array_shift($errors);
+        openpne_forward('biz', 'page', 'fh_biz_schedule_edit', $errors);
+        exit;
+    }
+
     function execute($requests)
     {
 
         $u = $GLOBALS['AUTH']->uid();
         $sessid = session_id();
-
         if (!biz_isPermissionSchedule($u, $requests['schedule_id'])) {
             handle_kengen_error();
         }
-
-        //ERROR----------------
-        //存在しない日付
-        if (!checkdate($requests['sc_b_month'], $requests['sc_b_date'], $requests['sc_b_year'])) {
-            $redirect_script = '?m=biz&a=page_fh_biz_schedule_edit';
-            $msg = '存在しない日付が指定されました。';
-
-            $schedule = biz_getScheduleInfo($requests['schedule_id']);
-
-            $begin_date = $schedule['begin_date'];
-
-            //日付関連の引数は返さなくてもよい
-            $p = array('msg' => $msg, 'begin_date' => $begin_date, 'title' => $requests['sc_title'],
-                'sc_rp' => $requests['sc_rp'], 'sc_memo' => $requests['sc_memo'], 'members' => serialize($requests['sc_j_mem']),
-                'sc_rwk_enc' => serialize($requests['sc_rwk_enc']), 'sc_rcount' => $requests['sc_rcount'],
-                'schedule_id' => $requests['schedule_id']);
-            openpne_redirect('biz', 'page_fh_biz_schedule_edit', $p);
-            exit();  //強制的にスクリプトを終了しなければいけない
-        }
-        //---------------------
-
-        //ERROR----------------
-        //タイトル未入力
-        if (empty($requests['sc_title'])) {
-            $msg = 'タイトルを入力してください。';
-            $begin_date = $requests['sc_b_year'].'-'.$requests['sc_b_month'].'-'.$requests['sc_b_date'];
-
-            $p = array('msg' => $msg, 'begin_date' => $begin_date,  'sc_rp' => $requests['sc_rp'],
-             'sc_memo' => $requests['sc_memo'], 'members' => serialize($requests['sc_j_mem']),
-                'sc_rwk_enc' => serialize($requests['sc_rwk_enc']), 'sc_rcount' => $requests['sc_rcount'],
-                'schedule_id' => $requests['schedule_id']);
-            openpne_redirect('biz', 'page_fh_biz_schedule_edit', $p);
-            exit();  //強制的にスクリプトを終了しなければいけない
-        }   
-        //---------------------
-
-        //ERROR----------------
-        //繰り返し予定::曜日指定なし
-        if ($requests['sc_rp'] && empty($requests['sc_rwk'])) {
-            $msg = '繰り返し予定を登録する場合は、曜日を指定してください。';
-            $begin_date = $requests['sc_b_year'].'-'.$requests['sc_b_month'].'-'.$requests['sc_b_date'];
-
-            $p = array('msg' => $msg, 'begin_date' => $begin_date, 'sc_title' => $requests['sc_title'],
-                'sc_rp' => $requests['sc_rp'], 'sc_memo' => $requests['sc_memo'], 'members' => serialize($requests['sc_j_mem']),
-                'sc_rwk_enc' => serialize($requests['sc_rwk_enc']), 'sc_rcount' => $requests['sc_rcount'],
-                'schedule_id' => $requests['schedule_id']);
-            openpne_redirect('biz', 'page_fh_biz_schedule_edit', $p);
-            exit();  //強制的にスクリプトを終了しなければいけない
-        }
-        //--------------------
+        $schedule = biz_getScheduleInfo($requests['schedule_id']);
 
         if ($requests['sc_b_hour'] && !$requests['sc_b_minute']) {
             $requests['sc_b_minute'] = '00';
@@ -75,41 +32,50 @@ class biz_do_fh_biz_schedule_edit extends OpenPNE_Action
 
         //日付のフォーマットを設定
         $begin_date = $requests['sc_b_year'].'-'.$requests['sc_b_month'].'-'.$requests['sc_b_date'];
-        $begin_time = $requests['sc_b_hour'].':'.$requests['sc_b_minute'];
-        $finish_time = $requests['sc_f_hour'].':'.$requests['sc_f_minute'];
 
-        //ERROR---------------
-        if ((strtotime($finish_time) < strtotime($begin_time)) && ($finish_time != ':')) {
-            //終了時間と開始時間が変
-            $msg = '終了時刻が開始時刻より先です。';
-            $begin_date = $requests['sc_b_year'].'-'.$requests['sc_b_month'].'-'.$requests['sc_b_date'];
-
-            $p = array('msg' => $msg, 'begin_date' => $begin_date, 'sc_title' => $requests['sc_title'],
-                'sc_rp' => $requests['sc_rp'], 'sc_memo' => $requests['sc_memo'], 'members' => serialize($requests['sc_j_mem']),
-                'sc_rwk_enc' => serialize($requests['sc_rwk_enc']), 'sc_rcount' => $requests['sc_rcount'],
-                'schedule_id' => $requests['schedule_id']);
-            openpne_redirect('biz', 'page_fh_biz_schedule_edit', $p);
-
-            exit();  //強制的にスクリプトを終了しなければいけない
+        if ($requests['sc_b_hour'] && $requests['sc_b_minute']) {
+            $begin_time = $requests['sc_b_hour'].':'.$requests['sc_b_minute'];
         }
-        //--------------------
 
-        //ERROR---------------
-        //グループまで公開の予定なのにグループが指定されていない
-        //--------------------
+        if ($requests['sc_f_hour'] && $requests['sc_f_minute']) {
+            $finish_time = $requests['sc_f_hour'].':'.$requests['sc_f_minute'];
+        }
+
+        // エラー遷移用
+        $_REQUEST['begin_date'] = $begin_date;
+        $_REQUEST['begin_time'] = $begin_time;
+        $_REQUEST['finish_time'] = $finish_time;
+
+        if (!checkdate($requests['sc_b_month'], $requests['sc_b_date'], $requests['sc_b_year'])) {
+            $_REQUEST['msg'] = '存在しない日付が指定されました。';
+            openpne_forward('biz', 'page', 'fh_biz_schedule_edit');
+            exit();
+        }
+
+        if ($requests['sc_rp'] && empty($requests['sc_rwk'])) {
+            $_REQUEST['msg'] = '繰り返し予定を登録する場合は、曜日を指定してください。';
+            openpne_forward('biz', 'page', 'fh_biz_schedule_edit');
+            exit();
+        }
+
+        if ((strtotime($finish_time) < strtotime($begin_time)) && isset($finish_time)) {
+            $_REQUEST['msg'] = '終了時刻が開始時刻より先です。';
+            openpne_forward('biz', 'page', 'fh_biz_schedule_edit');
+            exit();
+        }
+        
         if(($requests['public_flag'] == 'group') && empty($requests['biz_group_id'])) {
-            $msg = '「グループまで公開」予定の場合はグループを指定してください';
-            $begin_date = $requests['sc_b_year'].'-'.$requests['sc_b_month'].'-'.$requests['sc_b_date'];
-
-            $p = array('msg' => $msg, 'begin_date' => $begin_date, 'title' => $requests['sc_title'],
-                'sc_rp' => $requests['sc_rp'], 'value' => $requests['sc_memo'], 'members' => serialize($requests['sc_j_mem']),
-                'sc_rwk_enc' => serialize($requests['sc_rwk_enc']), 'sc_rcount' => $requests['sc_rcount'],
-                'schedule_id' => $requests['schedule_id']);
-            openpne_redirect('biz', 'page_fh_biz_schedule_edit', $p);
-
-            exit();  //強制的にスクリプトを終了しなければいけない
+            $_REQUEST['msg'] = '「グループまで公開」予定の場合はグループを指定してください';
+            openpne_forward('biz', 'page', 'fh_biz_schedule_edit');
+            exit();
         }
 
+        //施設、参加者のチェック
+        if (in_array('0', $requests['sc_j_mem'])) {
+            //「全員」が含まれている場合は、配列を空に
+            $requests['sc_j_mem'] = array();
+        }
+        
         if (!($requests['sc_b_hour'] || $requests['sc_b_minute'] || $requests['sc_f_hour'] || $requests['sc_f_minute'])) {
             //時刻指定なし
             $begin_time = $finish_time = null;
@@ -128,11 +94,15 @@ class biz_do_fh_biz_schedule_edit extends OpenPNE_Action
             //繰り返しなし
             $finish_date = date("Y-m-d", strtotime($requests['sc_b_year'].'-'.$requests['sc_b_month'].'-'.($requests['sc_b_date']+($requests['sc_bn']-1))));
             //繰り返しをしない予定登録
-            biz_editSchedule($requests['sc_title'], $u, $begin_date, $finish_date, $begin_time, $finish_time, $requests['sc_memo'], $rp_rule, 0, $requests['biz_group_id'], $requests['public_flag'], $requests['schedule_id']);
+            biz_editSchedule($requests['sc_title'], $schedule['c_member_id'], $begin_date, $finish_date, $begin_time, $finish_time, $requests['sc_memo'], $rp_rule, 0, $requests['biz_group_id'], $requests['public_flag'], $requests['schedule_id'], $requests['sc_j_mem']);
             $schedule_id = $requests['schedule_id'];
         } else {
             //終了日の決定
-            $finish_date = date("Y-m-d", strtotime($begindate . ' +' . (7 * $requests['sc_rcount']) . 'days')); 
+            if (in_array(date('w', strtotime($begin_date)), $requests['sc_rwk'])) {
+                $finish_date = date("Y-m-d", strtotime($begin_date . ' + ' . ($requests['sc_rcount'] - 1) * 7 . 'days'));
+            } else {
+                $finish_date = date("Y-m-d", strtotime($begin_date . ' + ' . ($requests['sc_rcount']) * 7 . 'days'));
+            }
             //繰り返しルールの決定
             foreach ($requests['sc_rwk'] as $value) {
                 $rp_rule += 1 << $value;
@@ -157,7 +127,7 @@ class biz_do_fh_biz_schedule_edit extends OpenPNE_Action
                 $tmp = $nowday;
                 
                 if ($rp_rule & (1 << date("w", $nowday))) {
-                    biz_insertSchedule($requests['sc_title'], $u, date("Y-m-d", $tmp), date("Y-m-d", $tmp), $begin_time, $finish_time, $requests['sc_memo'], $rp_rule, $first_id, $requests['biz_group_id'], $requests['public_flag']); 
+                    biz_insertSchedule($requests['sc_title'], $schedule['c_member_id'], date("Y-m-d", $tmp), date("Y-m-d", $tmp), $begin_time, $finish_time, $requests['sc_memo'], $rp_rule, $first_id, $requests['biz_group_id'], $requests['public_flag'], $requests['sc_j_mem']); 
                 }
             }
 

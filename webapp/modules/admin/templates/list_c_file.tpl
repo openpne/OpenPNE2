@@ -45,8 +45,10 @@
 <tr>
 	<th>ID</th>
 	<th>ファイル名</th>
+	<th>元ファイル名</th>
 	<th>作成日</th>
 	<th>ファイルサイズ</th>
+	<th>&nbsp;</th>
 </tr>
 </thead>
 <tbody>
@@ -58,9 +60,13 @@
 </td>
 ({****})
 <td>
-<a href="({t_file_url filename=$item.filename})" target="_blank">
+<a href="({t_url m=admin a=do_file_download})&amp;filename=({$item.filename})&amp;sessid=({$PHPSESSID})">
 ({$item.filename})
 </a>
+</td>
+({****})
+<td>
+({$item.original_filename})
 </td>
 ({****})
 <td>
@@ -69,6 +75,10 @@
 ({****})
 <td>
 ({$item.size|number_format}) Bytes
+</td>
+({****})
+<td>
+<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('delete_c_file_confirm')})&amp;target_c_file_id=({$item.c_file_id})">削除</a>
 </td>
 ({****})
 ({/foreach})

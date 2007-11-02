@@ -15,9 +15,7 @@ class ktai_do_h_invite_insert_c_invite extends OpenPNE_Action
         $u = $GLOBALS['KTAI_C_MEMBER_ID'];
 
         if (!IS_USER_INVITE) {
-            ktai_display_error(SNS_NAME . 'では、ユーザによる招待は行えません');
-        } elseif (db_is_c_black_list($requests['mail_address'])) {
-            ktai_display_error("このメールアドレスには招待状は送れません");
+            ktai_display_error(SNS_NAME . 'では、メンバーによる招待は行えません');
         }
 
         // --- リクエスト変数
@@ -46,8 +44,7 @@ class ktai_do_h_invite_insert_c_invite extends OpenPNE_Action
 
         if (is_ktai_mail_address($mail)) {
             //<PCKTAI
-            if (defined('OPENPNE_REGIST_FROM') &&
-                    !((OPENPNE_REGIST_FROM & OPENPNE_REGIST_FROM_KTAI) >> 1)) {
+            if (!((OPENPNE_REGIST_FROM & OPENPNE_REGIST_FROM_KTAI) >> 1)) {
                 $p = array('msg' => 13);
                 openpne_redirect('ktai', 'page_h_invite', $p);
             }
@@ -64,8 +61,7 @@ class ktai_do_h_invite_insert_c_invite extends OpenPNE_Action
 
         } else {
             //<PCKTAI
-            if (defined('OPENPNE_REGIST_FROM') &&
-                    !(OPENPNE_REGIST_FROM & OPENPNE_REGIST_FROM_PC)) {
+            if (!(OPENPNE_REGIST_FROM & OPENPNE_REGIST_FROM_PC)) {
                 $p = array('msg' => 16);
                 openpne_redirect('ktai', 'page_h_invite', $p);
             }

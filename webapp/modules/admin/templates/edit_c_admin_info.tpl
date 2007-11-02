@@ -60,6 +60,9 @@
 ({if $requests.target == 'sns_kiyaku' || $requests.target == 'sns_privacy'})
 <p class="caution" id="c01">※HTMLタグは<strong>使用できません</strong>が、URLはリンクされます。</p>
 ({elseif $requests.target == 'daily_news_head' || $requests.target == 'daily_news_foot'})
+({elseif $requests.target == 'k_h_home' || $requests.target == 'k_fh_diary' || $requests.target == 'k_f_home' || $requests.target == 'k_c_home'})
+<p class="caution" id="c01">※HTMLタグが使用できますが、タグの閉じ忘れ等がありますと表示が崩れるなどの問題が起こることがありますのでご注意ください。<br />
+※携帯版のお知らせ内に外部サイトへのリンクを含めると、外部サイトにリファラから「第三者によるログインが可能な情報」が漏えいする危険性があります。</p>
 ({else})
 <p class="caution" id="c01">※HTMLタグが使用できますが、タグの閉じ忘れ等がありますと表示が崩れるなどの問題が起こることがありますのでご注意ください。</p>
 ({/if})
@@ -72,6 +75,20 @@
 <textarea name="body" cols="({$cols|default:60})" rows="({$rows|default:10})">({$c_siteadmin.body})</textarea>
 <p class="textBtn"><input type="submit" value="変更する" /></p>
 </form>
+({if $requests.target == 'k_h_home' || $requests.target == 'k_fh_diary' || $requests.target == 'k_f_home'|| $requests.target == 'k_c_home'})
+<h4>【携帯】お知らせ挿入場所対応図[ ({if $requests.target == 'k_h_home'})
+ホーム
+({elseif $requests.target == 'k_f_home'})
+フレンドページ
+({elseif $requests.target == 'k_c_home'})
+コミュニティページ
+({elseif $requests.target == 'k_fh_diary'})
+日記ページ
+({/if}) ]</h4>
+<p class="image">
+<img src="modules/admin/img/admin_info_({$requests.target}).gif" />
+</p>
+({/if})
 </td>
 </tr>
 </table>

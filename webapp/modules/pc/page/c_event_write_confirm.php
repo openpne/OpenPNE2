@@ -28,6 +28,11 @@ class pc_page_c_event_write_confirm extends OpenPNE_Action
         }
         //---
 
+        if ($button == "イベントに参加する") {
+            $event_write['add_event_member'] = 1;
+        } elseif ($button == "参加をキャンセルする") {
+            $event_write['add_event_member'] = -1;
+        }
 
         //エラーチェック
         $err_msg = array();
@@ -50,8 +55,14 @@ class pc_page_c_event_write_confirm extends OpenPNE_Action
             }
         }
 
-        if ($button == "イベントに参加する" && $c_topic['capacity'] && $c_topic['capacity'] <= $c_topic['member_num'] ) {
+        if ($event_write['add_event_member'] === 1 && $c_topic['capacity'] && $c_topic['capacity'] <= $c_topic['member_num'] ) {
                 $err_msg[] = 'イベントの参加者数制限を超えています';
+        }
+
+        if ($event_write['add_event_member']) {
+            if (!db_commu_is_event_join_date($c_commu_topic_id)) {
+                $err_msg[] = '現在このイベントへの参加・キャンセルの変更はできません';
+            }
         }
 
         if ($err_msg) {
@@ -77,12 +88,6 @@ class pc_page_c_event_write_confirm extends OpenPNE_Action
         $event_write['image_filename1'] = $upfile_obj1["name"];
         $event_write['image_filename2'] = $upfile_obj2["name"];
         $event_write['image_filename3'] = $upfile_obj3["name"];
-
-        if ($button == "イベントに参加する") {
-            $event_write['add_event_member'] = 1;
-        } elseif ($button == "参加をキャンセルする") {
-            $event_write['add_event_member'] = -1;
-        }
 
         $this->set('event_write', $event_write);
         return 'success';
