@@ -32,6 +32,12 @@ class pc_do_f_message_send_insert_c_message extends OpenPNE_Action
             $msg2 = "メッセージを入力してください";
         }
 
+        if ($requests['target_c_message_id'] == $requests['jyusin_c_message_id']) {
+            $is_savebox = false;
+        } else {
+            $is_savebox = true;
+        }
+
         if ($msg1 || $msg2) {
             $p = array(
                 'target_c_member_id' => $c_member_id_to,
@@ -42,6 +48,9 @@ class pc_do_f_message_send_insert_c_message extends OpenPNE_Action
                 'msg1' => $msg1,
                 'msg2' => $msg2,
             );
+            if ($is_savebox) {
+                $p['box'] = 'savebox';
+            }
             openpne_redirect('pc', 'page_f_message_send', $p);
         }
 
@@ -95,11 +104,13 @@ class pc_do_f_message_send_insert_c_message extends OpenPNE_Action
         }
 
         //下書き保存が存在しない
-        if ($requests['target_c_message_id'] == $requests['jyusin_c_message_id']) {
+        if (!$is_savebox) {
             $c_message_id = db_message_send_message($u, $c_member_id_to, $subject, $body);
         } else {
             $c_message_id = $requests['target_c_message_id'];
             db_message_update_message_to_is_save($requests['target_c_message_id'], $subject, $body, 1);
+            do_common_send_message_mail_send($c_member_id_to, $u);
+            do_common_send_message_mail_send_ktai($c_member_id_to, $u);
         }
         //画像挿入
         $sessid = session_id();

@@ -6,7 +6,7 @@
 ({**ここから：メインコンテンツ**})
 ({***************************})
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 ({*コミュニティのメンバーでないとき非公開の場合*})
 ({if $is_warning })
@@ -37,13 +37,13 @@
 <!-- ここから：主内容 -->
 <div class="border_01 bg_09" align="center">
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 <div style="width:570px;padding:40px 10px;margin:0px auto;" class="border_01 bg_03">
 非公開のコミュニティのため、コミュニティに参加しないと掲示板を見ることはできません。
 </div>
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 </div>
 <!-- ここまで：主内容 -->
@@ -64,7 +64,7 @@
 <!-- ******ここまで：掲示板表示権限警告****** -->
 <!-- ************************************** -->
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 ({else})
 
@@ -98,20 +98,20 @@
 <!-- ここから：主内容 -->
 <div class="border_01 bg_09" align="center">
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 <div style="width:570px;padding:40px 10px;margin:0px auto;" class="border_01 bg_03">
 
 <input type="radio" name="event_flag" value="0" checked="checked" class="no_bg"> トピックを作成　<br>
 <input type="radio" name="event_flag" value="1" class="no_bg"> イベントを作成　<br>
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 <input type="submit" class="submit" value="　新 規 作 成　">
 
 </div>
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 </div>
 <!-- ここまで：主内容 -->
@@ -134,7 +134,7 @@
 <!-- ******ここまで：新規トピック作成****** -->
 <!-- ************************************ -->
 ({/if})
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 ({if $c_topic_list })
 
@@ -243,7 +243,7 @@
 ({/if})
 
 <div class="padding_s lh_120">
-({$item.body|nl2br})
+({$item.body|t_truncate:48:"":3})
 
 </div>
 
@@ -322,7 +322,7 @@
 <!-- ******ここまで：トピック一覧****** -->
 <!-- ******************************** -->
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 ({/if})
 

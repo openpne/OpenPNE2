@@ -15,6 +15,9 @@ class admin_do_update_c_admin_config extends OpenPNE_Action
     {
         $config =& OpenPNE_Config::getInstance();
 
+        if (!$requests['OPENPNE_ENABLE_KTAI'] && ($requests['IS_GET_EASY_ACCESS_ID'] == 3)) {
+            admin_client_redirect('edit_c_admin_config', '「PC・携帯登録時に携帯個体識別番号の登録を必須にする」を選択した場合、携帯版使用設定は「使用可にする」に設定する必要があります');
+        }
         foreach ($requests as $name => $value) {
             if (!$config->is_allowed($name)) continue;
 

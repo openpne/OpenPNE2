@@ -5,7 +5,7 @@
 ({**ここから：メインコンテンツ**})
 ({***************************})
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 <!-- ******************************************** -->
 <!-- ******ここから：副管理者から降格****** -->
@@ -67,7 +67,7 @@
 
 <div class="border_01 bg_09" style="width:562px;margin:0px auto;">
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_m">
 
 <table border="0" cellspacing="0" cellpadding="0" style="width:550px;margin:0px auto;">
 ({*********})
@@ -132,7 +132,7 @@
 
 <div class="padding_s">
 
-({$member.profile.self_intro.value|t_truncate:150})&nbsp;
+({$member.profile.self_intro.value|t_truncate:36:"":3})&nbsp;
 
 </div>
 
@@ -206,7 +206,7 @@
 ({*********})
 </table>
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 </div>
 
@@ -238,7 +238,7 @@
 <!-- ******ここまで：副管理者から降格****** -->
 <!-- ******************************************** -->
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 ({***************************})
 ({**ここまで：メインコンテンツ**})

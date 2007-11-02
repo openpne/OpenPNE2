@@ -5,7 +5,7 @@
 ({**ここから：メインコンテンツ**})
 ({***************************})
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 <!-- ******************************** -->
 <!-- ******ここから：メンバー一覧****** -->
@@ -85,14 +85,14 @@
 ({t_loop from=$c_member_list start=0 num=5})
 <td style="width:111px;" class="bg_03" align="center" valign="middle">
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l" style="width:111px;">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l" style="width:111px;">
 ({if $item})
 ({if $item.c_member_id == $c_commu.c_member_id_admin})<img src="({t_img_url_skin filename=icon_crown})" class="icon"><br>({/if})
 <a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})"><img src="({t_img_url filename=$item.image_filename w=76 h=76 noimg=no_image})" class="pict"></a>
 ({else})
-<img src="./skin/dummy.gif" alt="" class="dummy" style="width:76px;height:76px;">
+<img src="./skin/dummy.gif" alt="dummy" class="dummy" style="width:76px;height:76px;">
 ({/if})
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l" style="width:111px;">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l" style="width:111px;">
 
 </td>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
@@ -110,13 +110,13 @@
 ({t_loop from=$c_member_list start=0 num=5})
 <td style="width:111px;" class="bg_02" align="center" valign="middle">
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_m">
 ({if $item})
 <a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})">({$item.nickname|default:"&nbsp;"}) (({$item.friend_count}))</a>
 ({else})
 &nbsp;
 ({/if})
-<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_m">
 
 </td>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
@@ -135,14 +135,14 @@
 ({t_loop from=$c_member_list start=5 num=5})
 <td style="width:111px;" class="bg_03" align="center" valign="middle">
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l" style="width:111px;">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l" style="width:111px;">
 ({if $item})
 ({if $item.c_member_id == $c_commu.c_member_id_admin})<img src="({t_img_url_skin filename=icon_crown})" class="icon"><br>({/if})
 <a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})"><img src="({t_img_url filename=$item.image_filename w=76 h=76 noimg=no_image})" class="pict"></a>
 ({else})
-<img src="./skin/dummy.gif" alt="" class="dummy" style="width:76px;height:76px;">
+<img src="./skin/dummy.gif" alt="dummy" class="dummy" style="width:76px;height:76px;">
 ({/if})
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l" style="width:111px;">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l" style="width:111px;">
 
 </td>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
@@ -160,13 +160,13 @@
 ({t_loop from=$c_member_list start=5 num=5})
 <td style="width:111px;" class="bg_02" align="center" valign="middle">
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_m">
 ({if $item})
 <a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})">({$item.nickname|default:"&nbsp;"}) (({$item.friend_count}))</a>
 ({else})
 &nbsp;
 ({/if})
-<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_m">
 
 </td>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
@@ -186,14 +186,14 @@
 ({t_loop from=$c_member_list start=10 num=5})
 <td style="width:111px;" class="bg_03" align="center" valign="middle">
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l" style="width:111px;">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l" style="width:111px;">
 ({if $item})
 ({if $item.c_member_id == $c_commu.c_member_id_admin})<img src="({t_img_url_skin filename=icon_crown})" class="icon"><br>({/if})
 <a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})"><img src="({t_img_url filename=$item.image_filename w=76 h=76 noimg=no_image})" class="pict"></a>
 ({else})
-<img src="./skin/dummy.gif" alt="" class="dummy" style="width:76px;height:76px;">
+<img src="./skin/dummy.gif" alt="dummy" class="dummy" style="width:76px;height:76px;">
 ({/if})
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l" style="width:111px;">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l" style="width:111px;">
 
 </td>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
@@ -211,13 +211,13 @@
 ({t_loop from=$c_member_list start=10 num=5})
 <td style="width:111px;" class="bg_02" align="center" valign="middle">
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_m">
 ({if $item})
 <a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})">({$item.nickname|default:"&nbsp;"}) (({$item.friend_count}))</a>
 ({else})
 &nbsp;
 ({/if})
-<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_m">
 
 </td>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
@@ -237,14 +237,14 @@
 ({t_loop from=$c_member_list start=15 num=5})
 <td style="width:111px;" class="bg_03" align="center" valign="middle">
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l" style="width:111px;">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l" style="width:111px;">
 ({if $item})
 ({if $item.c_member_id == $c_commu.c_member_id_admin})<img src="({t_img_url_skin filename=icon_crown})" class="icon"><br>({/if})
 <a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})"><img src="({t_img_url filename=$item.image_filename w=76 h=76 noimg=no_image})" class="pict"></a>
 ({else})
-<img src="./skin/dummy.gif" alt="" class="dummy" style="width:76px;height:76px;">
+<img src="./skin/dummy.gif" alt="dummy" class="dummy" style="width:76px;height:76px;">
 ({/if})
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l" style="width:111px;">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l" style="width:111px;">
 
 </td>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
@@ -262,13 +262,13 @@
 ({t_loop from=$c_member_list start=15 num=5})
 <td style="width:111px;" class="bg_02" align="center" valign="middle">
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_m">
 ({if $item})
 <a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})">({$item.nickname|default:"&nbsp;"}) (({$item.friend_count}))</a>
 ({else})
 &nbsp;
 ({/if})
-<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_m">
 
 </td>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
@@ -288,14 +288,14 @@
 ({t_loop from=$c_member_list start=20 num=5})
 <td style="width:111px;" class="bg_03" align="center" valign="middle">
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l" style="width:111px;">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l" style="width:111px;">
 ({if $item})
 ({if $item.c_member_id == $c_commu.c_member_id_admin})<img src="({t_img_url_skin filename=icon_crown})" class="icon"><br>({/if})
 <a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})"><img src="({t_img_url filename=$item.image_filename w=76 h=76 noimg=no_image})" class="pict"></a>
 ({else})
-<img src="./skin/dummy.gif" alt="" class="dummy" style="width:76px;height:76px;">
+<img src="./skin/dummy.gif" alt="dummy" class="dummy" style="width:76px;height:76px;">
 ({/if})
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l" style="width:111px;">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l" style="width:111px;">
 
 </td>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
@@ -313,13 +313,13 @@
 ({t_loop from=$c_member_list start=20 num=5})
 <td style="width:111px;" class="bg_02" align="center" valign="middle">
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_m">
 ({if $item})
 <a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})">({$item.nickname|default:"&nbsp;"}) (({$item.friend_count}))</a>
 ({else})
 &nbsp;
 ({/if})
-<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_m">
 
 </td>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
@@ -339,14 +339,14 @@
 ({t_loop from=$c_member_list start=25 num=5})
 <td style="width:111px;" class="bg_03" align="center" valign="middle">
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l" style="width:111px;">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l" style="width:111px;">
 ({if $item})
 ({if $item.c_member_id == $c_commu.c_member_id_admin})<img src="({t_img_url_skin filename=icon_crown})" class="icon"><br>({/if})
 <a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})"><img src="({t_img_url filename=$item.image_filename w=76 h=76 noimg=no_image})" class="pict"></a>
 ({else})
-<img src="./skin/dummy.gif" alt="" class="dummy" style="width:76px;height:76px;">
+<img src="./skin/dummy.gif" alt="dummy" class="dummy" style="width:76px;height:76px;">
 ({/if})
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l" style="width:111px;">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l" style="width:111px;">
 
 </td>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
@@ -364,13 +364,13 @@
 ({t_loop from=$c_member_list start=25 num=5})
 <td style="width:111px;" class="bg_02" align="center" valign="middle">
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_m">
 ({if $item})
 <a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})">({$item.nickname|default:"&nbsp;"}) (({$item.friend_count}))</a>
 ({else})
 &nbsp;
 ({/if})
-<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_m">
 
 </td>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
@@ -390,14 +390,14 @@
 ({t_loop from=$c_member_list start=30 num=5})
 <td style="width:111px;" class="bg_03" align="center" valign="middle">
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l" style="width:111px;">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l" style="width:111px;">
 ({if $item})
 ({if $item.c_member_id == $c_commu.c_member_id_admin})<img src="({t_img_url_skin filename=icon_crown})" class="icon"><br>({/if})
 <a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})"><img src="({t_img_url filename=$item.image_filename w=76 h=76 noimg=no_image})" class="pict"></a>
 ({else})
-<img src="./skin/dummy.gif" alt="" class="dummy" style="width:76px;height:76px;">
+<img src="./skin/dummy.gif" alt="dummy" class="dummy" style="width:76px;height:76px;">
 ({/if})
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l" style="width:111px;">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l" style="width:111px;">
 
 </td>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
@@ -415,13 +415,13 @@
 ({t_loop from=$c_member_list start=30 num=5})
 <td style="width:111px;" class="bg_02" align="center" valign="middle">
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_m">
 ({if $item})
 <a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})">({$item.nickname|default:"&nbsp;"}) (({$item.friend_count}))</a>
 ({else})
 &nbsp;
 ({/if})
-<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_m">
 
 </td>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
@@ -441,14 +441,14 @@
 ({t_loop from=$c_member_list start=35 num=5})
 <td style="width:111px;" class="bg_03" align="center" valign="middle">
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l" style="width:111px;">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l" style="width:111px;">
 ({if $item})
 ({if $item.c_member_id == $c_commu.c_member_id_admin})<img src="({t_img_url_skin filename=icon_crown})" class="icon"><br>({/if})
 <a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})"><img src="({t_img_url filename=$item.image_filename w=76 h=76 noimg=no_image})" class="pict"></a>
 ({else})
-<img src="./skin/dummy.gif" alt="" class="dummy" style="width:76px;height:76px;">
+<img src="./skin/dummy.gif" alt="dummy" class="dummy" style="width:76px;height:76px;">
 ({/if})
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l" style="width:111px;">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l" style="width:111px;">
 
 </td>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
@@ -466,13 +466,13 @@
 ({t_loop from=$c_member_list start=35 num=5})
 <td style="width:111px;" class="bg_02" align="center" valign="middle">
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_m">
 ({if $item})
 <a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})">({$item.nickname|default:"&nbsp;"}) (({$item.friend_count}))</a>
 ({else})
 &nbsp;
 ({/if})
-<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_m">
 
 </td>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
@@ -492,14 +492,14 @@
 ({t_loop from=$c_member_list start=40 num=5})
 <td style="width:111px;" class="bg_03" align="center" valign="middle">
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l" style="width:111px;">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l" style="width:111px;">
 ({if $item})
 ({if $item.c_member_id == $c_commu.c_member_id_admin})<img src="({t_img_url_skin filename=icon_crown})" class="icon"><br>({/if})
 <a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})"><img src="({t_img_url filename=$item.image_filename w=76 h=76 noimg=no_image})" class="pict"></a>
 ({else})
-<img src="./skin/dummy.gif" alt="" class="dummy" style="width:76px;height:76px;">
+<img src="./skin/dummy.gif" alt="dummy" class="dummy" style="width:76px;height:76px;">
 ({/if})
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l" style="width:111px;">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l" style="width:111px;">
 
 </td>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
@@ -517,13 +517,13 @@
 ({t_loop from=$c_member_list start=40 num=5})
 <td style="width:111px;" class="bg_02" align="center" valign="middle">
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_m">
 ({if $item})
 <a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})">({$item.nickname|default:"&nbsp;"}) (({$item.friend_count}))</a>
 ({else})
 &nbsp;
 ({/if})
-<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_m">
 
 </td>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
@@ -543,14 +543,14 @@
 ({t_loop from=$c_member_list start=45 num=5})
 <td style="width:111px;" class="bg_03" align="center" valign="middle">
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l" style="width:111px;">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l" style="width:111px;">
 ({if $item})
 ({if $item.c_member_id == $c_commu.c_member_id_admin})<img src="({t_img_url_skin filename=icon_crown})" class="icon"><br>({/if})
 <a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})"><img src="({t_img_url filename=$item.image_filename w=76 h=76 noimg=no_image})" class="pict"></a>
 ({else})
-<img src="./skin/dummy.gif" alt="" class="dummy" style="width:76px;height:76px;">
+<img src="./skin/dummy.gif" alt="dummy" class="dummy" style="width:76px;height:76px;">
 ({/if})
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l" style="width:111px;">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l" style="width:111px;">
 
 </td>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
@@ -568,13 +568,13 @@
 ({t_loop from=$c_member_list start=45 num=5})
 <td style="width:111px;" class="bg_02" align="center" valign="middle">
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_m">
 ({if $item})
 <a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})">({$item.nickname|default:"&nbsp;"}) (({$item.friend_count}))</a>
 ({else})
 &nbsp;
 ({/if})
-<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_m">
 
 </td>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
@@ -646,7 +646,7 @@
 <!-- ******ここまで：メンバー一覧****** -->
 <!-- ******************************** -->
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 ({***************************})
 ({**ここまで：メインコンテンツ**})

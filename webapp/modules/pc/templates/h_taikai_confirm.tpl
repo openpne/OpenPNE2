@@ -5,7 +5,7 @@
 ({**ここから：メインコンテンツ**})
 ({***************************})
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 <!-- ******************************************** -->
 <!-- ******ここから：退会確認****** -->
@@ -48,7 +48,8 @@
 
 本当に退会してもよろしいですか？<br>
 退会する場合は、確認のためパスワードを入力してください。<br>
-
+<br>
+管理者になっているコミュニティがあれば、副管理者に管理権限が移管されます。また、副管理者がいない場合は参加日時のもっとも早いメンバーに権限が移管されます。<br>
 </div>
 
 </td>
@@ -152,20 +153,20 @@
 <!-- ******ここまで：退会確認****** -->
 <!-- ******************************************** -->
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 <!-- **************************************** -->
 <!-- ******ここから：コミュニティトップへ****** -->
 <div class="content_footer" id="link_community_top" align="center">
 
-<img src="./skin/dummy.gif" alt="" class="icon arrow_1">&nbsp;
+<img src="./skin/dummy.gif" alt="dummy" class="icon arrow_1">&nbsp;
 [<a href="({t_url m=pc a=page_h_home})">キャンセルしてホームへ</a>]
 
 </div>
 <!-- ******ここまで：コミュニティトップへ****** -->
 <!-- **************************************** -->
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 ({***************************})
 ({**ここまで：メインコンテンツ**})

@@ -4,7 +4,7 @@
 ({**ここから：メインコンテンツ**})
 ({***************************})
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 <!-- ******************************* -->
 <!-- ******ここから：登録完了****** -->
@@ -24,7 +24,9 @@
 <table border="0" cellspacing="0" cellpadding="0" style="width:564px;">
 <tr>
 <td style="width:36px;" class="bg_06"><img src="({t_img_url_skin filename=content_header_1})" style="width:30px;height:20px;" class="dummy"></td>
-<td style="width:528px;padding:2px 0px;" class="bg_06"><span class="b_b c_00">登録完了</span></td>
+<td style="width:528px;padding:2px 0px;" class="bg_06"><span class="b_b c_00">
+登録完了
+</span></td>
 </tr>
 </table>
 </div>
@@ -34,7 +36,7 @@
 <!-- ここから：主内容 -->
 <div style="width:566px;" class="border_01 bg_05" align="center">
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 <table border="0" cellspacing="0" cellpadding="0" style="width:500px;margin:0px auto;">
 ({*********})
@@ -65,7 +67,7 @@
 ({*********})
 </table>
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 </div>
 <!-- ここまで：主内容 -->
@@ -86,27 +88,11 @@
 <!-- ******ここまで：登録完了****** -->
 <!-- ******************************* -->
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
-
-<!-- ************************************** -->
-<!-- ******ここから：ウィンドウを閉じる****** -->
-<div align="center">
-
-<img src="./skin/dummy.gif" alt="" class="icon arrow_1">&nbsp;<a href="javascript:void(0);" onclick="window.close()">ウィンドウを閉じる</a>
-
-</div>
-<!-- ******ここまで：ウィンドウを閉じる****** -->
-<!-- ************************************** -->
-
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
-
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
-
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 ({*ここから：アフィリエイトタグ*})
 ({$aftag|smarty:nodefaults})

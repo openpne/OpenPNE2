@@ -1,19 +1,13 @@
-このディレクトリには、バージョンアップに伴い必要となるコンバートを行うスクリプトを格納しています。
+このディレクトリには、OpenPNEのセットアップに使用するPHPファイルが格納されています。
 
-config.phpの設定を行ったのちにスクリプトを実行してください。
+・用途
+により分類されて別ディレクトリに格納されているので、適切なファイルを選択してご使用ください。
 
-■update01-for2.9.3-easy_ktai_id.php
-  DBに存在する個体識別番号の値をハッシュ化するスクリプトです。
+■ 用途
 
-実行方法：
-  php update01-for2.9.3-easy_ktai_id.php
+・upgrade
+   安定版 2.8.x から 2.10.x へのアップグレードに使用するPHPが格納されています。
+   アップグレード手順の詳細に関しては、OpenPNE_Upgrade.html をご覧ください。
 
-
-■option-covert_ktai_emoji.php
-  各キャリアの絵文字画像をOpenPNEで表示できるファイル名にして保存するスクリプトです。
-
-実行方法：
-  php option-covert_ktai_emoji.php [carrier] [input] ([output])
-    [carrier]  : どのキャリアの絵文字をコンバートするか
-    [input]    : コンバート対象の絵文字が入ったディレクトリ
-    [output]   : （オプション）コンバート後の絵文字を保存するディレクトリ（省略すると、[OPENPNE_PUBLIC_HTML_DIR]/skin//skin/default/img/emoji/）
+・update
+   開発版 2.9.x / 2.10alphaX から 2.10.x へのアップデートに使用するPHPが格納されています。

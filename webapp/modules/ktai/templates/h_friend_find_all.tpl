@@ -1,21 +1,21 @@
 ({$inc_ktai_header|smarty:nodefaults})
-<table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_01})">
-<font color="#({$ktai_color_config.font_01})"><a name="top">ﾒﾝﾊﾞｰ検索</a></font><br>
+<table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_02})">
+<font color="#({$ktai_color_config.font_05})"><a name="top">ﾒﾝﾊﾞｰ検索</a></font><br>
 </td></tr></table>
 <center>
 検索結果
-<font color="#({$ktai_color_config.font_02})">(({$pager.total_num})件)</font><br>
+<font color="#({$ktai_color_config.font_06})">(({$pager.total_num})件)</font><br>
 </center>
 <table width="100%">
-<tr><td>
+<tr><td bgcolor="#({$ktai_color_config.bg_07})">
 <hr color="#({$ktai_color_config.border_02})">
 </td></tr>
 ({foreach from=$target_friend_list item=target_friend})
-<tr><td bgcolor="#({cycle values="`$ktai_color_config.bg_05`,`$ktai_color_config.bg_08`"})">
+<tr><td bgcolor="#({cycle values="`$ktai_color_config.bg_06`,`$ktai_color_config.bg_07`"})">
 <a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$target_friend.c_member_id})&amp;({$tail})">({$target_friend.nickname|t_truncate:30:""})</a><br>
 </td></tr>
 ({/foreach})
-<tr><td>
+<tr><td bgcolor="#({$ktai_color_config.bg_07})">
 <hr color="#({$ktai_color_config.border_02})">
 </td></tr></table>
 ({if $pager.page_prev || $pager.page_next})
@@ -26,18 +26,18 @@
 ({/if})
 <br>
 <table width="100%">
-<tr><td bgcolor="#({$ktai_color_config.bg_02})" align="center">
-ﾒﾝﾊﾞｰ検索<br>
+<tr><td bgcolor="#({$ktai_color_config.color_27})" align="center">
+<font color="#({$ktai_color_config.color_28})">ﾒﾝﾊﾞｰ検索</font><br>
 </td></tr></table>
 ({strip})
 ({t_form _method=get m=ktai a=page_h_friend_find_all})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
 ({capture name="nick"})
-<font color="#({$ktai_color_config.font_02})">ﾆｯｸﾈｰﾑ：</font><br>
+<font color="#({$ktai_color_config.font_06})">ﾆｯｸﾈｰﾑ：</font><br>
 <input type="text" name="nickname" value="({$nickname})"><br>
 ({/capture})
 ({capture name="birth"})
-<font color="#({$ktai_color_config.font_02})">生年月日：</font><br>
+<font color="#({$ktai_color_config.font_06})">生年月日：</font><br>
 <input type="text" name="birth_year" value="({$cond.birth_year})" size="4" maxlength="4" istyle="4" mode="numeric">年
 <input type="text" name="birth_month" value="({$cond.birth_month})" size="2" maxlength="4" istyle="4" mode="numeric">月
 <input type="text" name="birth_day" value="({$cond.birth_day})" size="2" maxlength="4" istyle="4" mode="numeric">日<br>
@@ -69,7 +69,7 @@
 ({/if})
 
 ({if $profile.disp_search})
-<font color="#({$ktai_color_config.font_02})">({$profile.caption})：</font><br>
+<font color="#({$ktai_color_config.font_06})">({$profile.caption})：</font><br>
 ({if $profile.form_type == 'select' || $profile.form_type == 'radio'})
     <select name="profile[({$profile.name})]">
     <option value="0">指定しない

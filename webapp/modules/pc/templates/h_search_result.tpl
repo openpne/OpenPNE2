@@ -5,7 +5,7 @@
 ({**ここから：メインコンテンツ**})
 ({***************************})
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 <!-- ******************************** -->
 <!-- ******ここから：メンバー一覧****** -->
@@ -70,12 +70,12 @@
 <!-- ここから：主内容＞＞メンバープロフィール一覧本体 -->
 <div class="border_01 bg_05" align="center">
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 <!-- ここから：主内容＞＞メンバープロフィール一覧本体＞＞のループ部分 -->
 ({foreach from=$target_friend_list item=item})
 <div class="border_01 bg_09" style="width:562px;margin:0px auto;" align="center">
-<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_m">
 <table border="0" cellspacing="0" cellpadding="0" style="width:550px;margin:0px auto;">
 ({*********})
 <tr>
@@ -126,7 +126,7 @@
 </td>
 <td class="bg_02" align="left" valign="middle" colspan="3">
 <div class="padding_s">
-({$item.profile.self_intro.value|t_truncate:150})
+({$item.profile.self_intro.value|t_truncate:36:"":3})
 </div>
 </td>
 </tr>
@@ -166,10 +166,10 @@
 </tr>
 ({*********})
 </table>
-<img src="./skin/dummy.gif" alt="" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_m">
 </div>
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 ({/foreach})
 <!--　↑　プロフィール表示ここまで　↑　-->
 <!-- ここまで：主内容＞＞メンバープロフィール一覧本体＞＞のループ部分 -->
@@ -232,7 +232,7 @@
 <!-- ******ここまで：メンバー一覧****** -->
 <!-- ************************************ -->
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 ({***************************})
 ({**ここまで：メインコンテンツ**})

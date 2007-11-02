@@ -5,7 +5,7 @@
 ({**ここから：メインコンテンツ**})
 ({***************************})
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 <!-- ************************************ -->
 <!-- ******ここから：レビュー掲載確認****** -->
@@ -44,7 +44,7 @@
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 <td style="width:180px;" class="bg_03" align="center" valign="top" rowspan="12">
 
-<img src="./skin/dummy.gif" alt="" style="width:180px;height:1px;" class="dummy">
+<img src="./skin/dummy.gif" alt="dummy" style="width:180px;height:1px;" class="dummy">
 
 <div class="padding_s">
 
@@ -53,13 +53,13 @@
 
 </div>
 
-<img src="./skin/dummy.gif" alt="" style="width:180px;height:1px;" class="dummy">
+<img src="./skin/dummy.gif" alt="dummy" style="width:180px;height:1px;" class="dummy">
 
 </td>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 <td style="width:112px;" class="bg_05" align="center" valign="middle">
 
-<img src="./skin/dummy.gif" alt="" style="width:112px;height:1px;" class="dummy">
+<img src="./skin/dummy.gif" alt="dummy" style="width:112px;height:1px;" class="dummy">
 
 <div class="padding_s">
 
@@ -67,13 +67,13 @@
 
 </div>
 
-<img src="./skin/dummy.gif" alt="" style="width:112px;height:1px;" class="dummy">
+<img src="./skin/dummy.gif" alt="dummy" style="width:112px;height:1px;" class="dummy">
 
 </td>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 <td style="width:336px;" class="bg_02" align="left" valign="middle">
 
-<img src="./skin/dummy.gif" alt="" style="width:336px;height:1px;" class="dummy">
+<img src="./skin/dummy.gif" alt="dummy" style="width:336px;height:1px;" class="dummy">
 
 <div class="padding_s b_b">
 
@@ -81,7 +81,7 @@
 
 </div>
 
-<img src="./skin/dummy.gif" alt="" style="width:336px;height:1px;" class="dummy">
+<img src="./skin/dummy.gif" alt="dummy" style="width:336px;height:1px;" class="dummy">
 
 </td>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
@@ -249,8 +249,8 @@
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 <td style="width:630px;" class="bg_03" align="left" valign="middle">
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
-<div align="center" style="text-align:center;">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
+<div align="center">
 
 <table style="width:200px;height:50px;" border="0" cellspacing="0" cellpadding="0">
 <tr>
@@ -277,7 +277,7 @@
 </tr>
 </table>
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 </div>
 </td>
@@ -304,20 +304,20 @@
 <!-- ******ここまで：レビュー掲載確認****** -->
 <!-- ************************************ -->
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 <!-- **************************************** -->
 <!-- ******ここから：コミュニティトップへ****** -->
 <div class="content_footer" id="link_community_top" align="center">
 
-<img src="./skin/dummy.gif" alt="" class="icon arrow_1">&nbsp;
+<img src="./skin/dummy.gif" alt="dummy" class="icon arrow_1">&nbsp;
 <a href="({t_url m=pc a=page_c_home})&amp;target_c_commu_id=({$c_commu.c_commu_id})">[({$c_commu.name})]コミュニティトップへ</a>
 
 </div>
 <!-- ******ここまで：コミュニティトップへ****** -->
 <!-- **************************************** -->
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 ({***************************})
 ({**ここまで：メインコンテンツ**})

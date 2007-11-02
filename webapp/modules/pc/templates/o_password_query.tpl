@@ -4,7 +4,7 @@
 ({**ここから：メインコンテンツ**})
 ({***************************})
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 <!-- ********************************** -->
 <!-- ******ここから：パスワード確認****** -->
@@ -46,7 +46,7 @@
 <div style="padding:10px 30px;">
 
 登録したメールアドレスと、秘密の質問・答えを入力してください。<br>
-登録したものと一致すると、パスワードが登録アドレス宛に送信されます。
+登録したものと一致すると、パスワードが登録メールアドレス宛に送信されます。
 
 </div>
 
@@ -193,9 +193,9 @@
 <!-- ******ここまで：パスワード確認****** -->
 <!-- ********************************** -->
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 ({***************************})
 ({**ここまで：メインコンテンツ**})

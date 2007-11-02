@@ -1,30 +1,25 @@
 ({$inc_ktai_header|smarty:nodefaults})
-<table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_01})">
-<font color="#({$ktai_color_config.font_01})"><a name="top">({$c_member.nickname})さんの週間ｶﾚﾝﾀﾞｰ</a></font><br>
+<table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_02})">
+<font color="#({$ktai_color_config.font_05})"><a name="top">({$c_member.nickname})さんの週間ｶﾚﾝﾀﾞｰ</a></font><br>
 </td></tr>
-<tr><td bgcolor="#({$ktai_color_config.bg_02})" align="center">
+<tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
 ({$y_disp})年({$m_disp})月<br>
 </td></tr></table>
 [i:76]<a href="({t_url m=ktai_biz a=page_fh_biz_schedule_add})&amp;target_id=({$c_member.c_member_id})&amp;({$tail})">予定登録</a><br>
 <hr color="#({$ktai_color_config.border_01})">
 ({if $msg})
-<font color="#({$ktai_color_config.font_04})">※({$msg})</font><br>
+<font color="#({$ktai_color_config.font_09})">※({$msg})</font><br>
 ({/if})
 ({*BEGIN:container*})
-<center>
-<a href="({t_url m=ktai_biz a=page_fh_calendar_week})&amp;target_id=({$c_member.c_member_id})&amp;w=({$w-1})&amp;({$tail})" accesskey="4">[i:128]前の週</a> 
-<a href="({t_url m=ktai_biz a=page_fh_calendar_week})&amp;target_id=({$c_member.c_member_id})&amp;({$tail})" accesskey="5">[i:129]今週</a>
-<a href="({t_url m=ktai_biz a=page_fh_calendar_week})&amp;target_id=({$c_member.c_member_id})&amp;w=({$w+1})&amp;({$tail})" accesskey="6">[i:130]次の週</a><br>
-</center>
 ({if $calendar})
 <table width="100%">
-<tr><td>
+<tr><td bgcolor="#({$ktai_color_config.bg_07})">
 <hr color="#({$ktai_color_config.border_02})">
 </td></tr>
 ({foreach from=$calendar item=item name=calendar})
-<tr><td bgcolor="#({cycle values="`$ktai_color_config.bg_05`,`$ktai_color_config.bg_08`"})">
+<tr><td bgcolor="#({cycle values="`$ktai_color_config.bg_06`,`$ktai_color_config.bg_07`"})">
 ({if $item.now})
-<font color="#({$ktai_color_config.bg_04})">■</font>
+<font color="#({$ktai_color_config.bg_05})">■</font>
 ({/if})
 ({if $item.day})
 ({if $item.now})
@@ -71,7 +66,7 @@
 ({else})
 ({/if})
 </td></tr>
-<tr><td>
+<tr><td bgcolor="#({$ktai_color_config.bg_07})">
 <hr color="#({$ktai_color_config.border_02})">
 </td></tr>
 ({/foreach})

@@ -5,7 +5,7 @@
 ({**ここから：メインコンテンツ**})
 ({***************************})
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 <!-- ****************************************** -->
 <!-- ******ここから：マイフレンド管理****** -->
@@ -56,7 +56,7 @@
 <div class="padding_s">
 
 ({if $item.intro})
-({$item.intro|t_truncate:"80"|nl2br})<br>
+({$item.intro|t_truncate:48:"":3})<br>
 <a href="({t_url m=pc a=page_f_intro_edit})&amp;target_c_member_id=({$item.c_member_id})">編集</a>
 
 <a href="({t_url m=pc a=page_f_intro_delete_confirm})&amp;target_c_member_id=({$item.c_member_id})&amp;sessid=({$PHPSESSID})">削除</a>
@@ -104,7 +104,7 @@
 <!-- ******ここまで：マイフレンド管理****** -->
 <!-- ****************************************** -->
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 
 ({***************************})

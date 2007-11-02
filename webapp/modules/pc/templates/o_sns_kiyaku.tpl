@@ -5,7 +5,7 @@
 ({**ここから：メインコンテンツ**})
 ({***************************})
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 <!-- ****************************** -->
 <!-- ******ここから：拡張ページ****** -->
@@ -59,8 +59,8 @@
 <!-- ******ここまで：拡張ページ****** -->
 <!-- ****************************** -->
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 ({***************************})
 ({**ここまで：メインコンテンツ**})

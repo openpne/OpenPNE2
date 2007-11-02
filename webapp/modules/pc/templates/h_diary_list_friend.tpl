@@ -4,7 +4,7 @@
 ({**ここから：メインコンテンツ**})
 ({***************************})
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 <!-- **************************** -->
 <!-- ******ここから：日記一覧****** -->
@@ -182,7 +182,7 @@
 <!-- ******ここまで：日記一覧****** -->
 <!-- ***************************** -->
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 ({if $c_rss_cache_list})
 
@@ -203,7 +203,7 @@
 <table border="0" cellspacing="0" cellpadding="0" style="width:634px;">
 <tr>
 <td style="width:36px;" class="bg_06"><img src="({t_img_url_skin filename=content_header_1})" style="width:30px;height:20px;" class="dummy"></td>
-<td style="width:598px;padding:2px 0px;" class="bg_06"><span class="b_b c_00" id="blog" name="blog">({$WORD_MY_FRIEND})最新Blog</span></td>
+<td style="width:598px;padding:2px 0px;" class="bg_06"><span class="b_b c_00" id="blog">({$WORD_MY_FRIEND})最新Blog</span></td>
 </tr>
 </table>
 </div>
@@ -266,7 +266,7 @@
 <!-- ******ここまで：Blog一覧****** -->
 <!-- ***************************** -->
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 ({/if})
 

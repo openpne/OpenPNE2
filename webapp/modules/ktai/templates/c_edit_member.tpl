@@ -1,10 +1,10 @@
 ({$inc_ktai_header|smarty:nodefaults})
 
-<table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_01})">
-<font color="#({$ktai_color_config.font_01})"><a name="top">({$c_commu.name})</a></font><br>
+<table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_02})">
+<font color="#({$ktai_color_config.font_05})"><a name="top">({$c_commu.name})</a></font><br>
 </td></tr>
-<tr><td bgcolor="#({$ktai_color_config.bg_02})" align="center">
-ｺﾐｭﾆﾃｨﾒﾝﾊﾞｰ管理<br>
+<tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
+<font color="#({$ktai_color_config.color_24})">ｺﾐｭﾆﾃｨﾒﾝﾊﾞｰ管理</font><br>
 </td></tr></table>
 <center>
 ({$pager.start})～({$pager.end})件目を表示
@@ -13,8 +13,8 @@
 
 <table width="100%">
 ({foreach from=$c_member_list item=item})
-<tr><td bgcolor="#({cycle values="`$ktai_color_config.bg_05`,`$ktai_color_config.bg_08`"})">
-<font color="#({$ktai_color_config.font_02})">ﾆｯｸﾈｰﾑ：</font><br>
+<tr><td bgcolor="#({cycle values="`$ktai_color_config.bg_06`,`$ktai_color_config.bg_07`"})">
+<font color="#({$ktai_color_config.font_06})">ﾆｯｸﾈｰﾑ：</font><br>
 ({$item.nickname})<br>
 ({if $c_commu.c_member_id_admin != $item.c_member_id})
 <br>
@@ -29,7 +29,7 @@
 ({/if})
 ({/if})
 </td></tr>
-<tr><td>
+<tr><td bgcolor="#({$ktai_color_config.bg_07})">
 <hr color="#({$ktai_color_config.border_02})">
 </td></tr>
 ({/foreach})

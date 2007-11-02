@@ -1,16 +1,17 @@
 ({$inc_ktai_header|smarty:nodefaults})
 
-<table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_01})">
-<font color="#({$ktai_color_config.font_01})"><a name="top">({$target_diary_writer.nickname})さんの日記</a></font><br>
+<table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_02})">
+<font color="#({$ktai_color_config.font_05})"><a name="top">({$target_diary_writer.nickname})さんの日記</a></font><br>
 </td></tr>
-<tr><td bgcolor="#({$ktai_color_config.bg_02})" align="center">
-({$target_c_diary.subject})<br>
-</td></tr></table>
-
 ({if $c_siteadmin})
-({$c_siteadmin|smarty:nodefaults})
+<tr><td align="left">
+({$c_siteadmin|smarty:nodefaults})<br>
+</td></tr>
 ({/if})
-<a href="#({if $c_diary_comment})dc1({else})({if $is_prev || $is_next})pager({else})write({/if})({/if})"><font color="#({$ktai_color_config.bg_06})">▼</font></a>({$target_c_diary.r_datetime|date_format:"%y/%m/%d %H:%M"})({if $target_diary_writer.c_member_id==$u}) [<a href="({t_url m=ktai a=page_h_diary_edit})&amp;target_c_diary_id=({$target_c_diary.c_diary_id})&amp;({$tail})">編集</a>][<a href="({t_url m=ktai a=page_fh_diary_delete_c_diary_confirm})&amp;target_c_diary_id=({$target_c_diary.c_diary_id})&amp;({$tail})">削除</a>]({/if})<br>
+<tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
+<font color="#({$ktai_color_config.color_24})">({$target_c_diary.subject})</font><br>
+</td></tr></table>
+<a href="#({if $c_diary_comment})dc1({else})({if $is_prev || $is_next})pager({else})write({/if})({/if})"><font color="#({$ktai_color_config.font_08})">▼</font></a>({$target_c_diary.r_datetime|date_format:"%y/%m/%d %H:%M"})({if $target_diary_writer.c_member_id==$u}) [<a href="({t_url m=ktai a=page_h_diary_edit})&amp;target_c_diary_id=({$target_c_diary.c_diary_id})&amp;({$tail})">編集</a>][<a href="({t_url m=ktai a=page_fh_diary_delete_c_diary_confirm})&amp;target_c_diary_id=({$target_c_diary.c_diary_id})&amp;({$tail})">削除</a>]({/if})<br>
 ({$target_c_diary.body|t_url2a_ktai|nl2br})
 <br>
 ({if $target_c_diary.image_filename_1})
@@ -43,11 +44,11 @@
 
 <table width="100%">
 ({foreach from=$c_diary_comment name=c_diary_comment item=c_diary_comment_})
-<tr><td>
+<tr><td bgcolor="#({$ktai_color_config.bg_07})">
 <hr color="#({$ktai_color_config.border_02})">
 </td></tr>
-<tr><td bgcolor="#({cycle values="`$ktai_color_config.bg_05`,`$ktai_color_config.bg_08`"})">
-<a href="#({if $smarty.foreach.c_diary_comment.last})({if $is_prev || $is_next})pager({else})write({/if})({else})dc({$smarty.foreach.c_diary_comment.iteration+1})({/if})" name="dc({$smarty.foreach.c_diary_comment.iteration})"><font color="#({$ktai_color_config.bg_06})">▼</font></a><font color="#({$ktai_color_config.font_02})">[({$c_diary_comment_.number|string_format:"%03d"})]</font>　({$c_diary_comment_.r_datetime|date_format:"%m/%d %H:%M"})
+<tr><td bgcolor="#({cycle values="`$ktai_color_config.bg_06`,`$ktai_color_config.bg_07`"})">
+<a href="#({if $smarty.foreach.c_diary_comment.last})({if $is_prev || $is_next})pager({else})write({/if})({else})dc({$smarty.foreach.c_diary_comment.iteration+1})({/if})" name="dc({$smarty.foreach.c_diary_comment.iteration})"><font color="#({$ktai_color_config.font_08})">▼</font></a><font color="#({$ktai_color_config.font_06})">[({$c_diary_comment_.number|string_format:"%03d"})]</font>　({$c_diary_comment_.r_datetime|date_format:"%m/%d %H:%M"})
 ({if $c_diary_comment_.c_member_id == $u || $target_diary_writer.c_member_id==$u})
 [<a href="({t_url m=ktai a=page_fh_diary_delete_c_diary_comment_confirm})&amp;target_c_diary_comment_id=({$c_diary_comment_.c_diary_comment_id})&amp;({$tail})&amp;target_c_diary_id=({$target_c_diary.c_diary_id})">削除</a>]
 ({/if})<br>
@@ -80,11 +81,11 @@
 ({/if})
 <hr color="#({$ktai_color_config.border_01})">
 <a name="write"></a>
-<font color="#({$ktai_color_config.font_02})">ｺﾒﾝﾄを書く：</font>
+<font color="#({$ktai_color_config.font_06})">ｺﾒﾝﾄを書く：</font>
 ({t_form m=ktai a=do_fh_diary_insert_c_diary_comment})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
 <input type="hidden" name="target_c_diary_id" value="({$target_c_diary.c_diary_id})">
-({if $msg})<font color="#({$ktai_color_config.font_04})">({$msg})</font><br>({/if})
+({if $msg})<font color="#({$ktai_color_config.font_09})">({$msg})</font><br>({/if})
 <textarea name="body" rows="3"></textarea><br>
 <input type="submit" value="書き込む">
 </form>
@@ -96,13 +97,13 @@
 <a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$target_diary_writer.c_member_id})&amp;({$tail})">({$target_diary_writer.nickname})さんのﾄｯﾌﾟ</a><br>
 ({/if})
 ({if $target_diary_writer.c_member_id==$u})
-<table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_01})">
-<font color="#({$ktai_color_config.font_01})">日記検索</font><br>
+<table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_02})">
+<font color="#({$ktai_color_config.font_05})">日記検索</font><br>
 </td></tr>
 </table>
 ({t_form _method=get m=ktai a=page_fh_diary_list})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
-<font color="#({$ktai_color_config.font_02})">ｷｰﾜｰﾄﾞ：</font><br>
+<font color="#({$ktai_color_config.font_06})">ｷｰﾜｰﾄﾞ：</font><br>
 <input type="text" name="keyword" value="({$keyword})"><br>
 <center><input type="submit" value="検索する"></center>
 </form>

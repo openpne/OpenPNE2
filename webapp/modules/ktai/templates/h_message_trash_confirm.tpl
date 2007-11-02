@@ -1,10 +1,10 @@
 ({$inc_ktai_header|smarty:nodefaults})
 
-<table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_01})">
-<font color="#({$ktai_color_config.font_01})"><a name="top">ﾒｯｾｰｼﾞ</a></font><br>
+<table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_02})">
+<font color="#({$ktai_color_config.font_05})"><a name="top">ﾒｯｾｰｼﾞ</a></font><br>
 </td></tr>
-<tr><td bgcolor="#({$ktai_color_config.bg_02})" align="center">
-ﾒｯｾｰｼﾞをごみ箱へ移動<br>
+<tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
+<font color="#({$ktai_color_config.color_24})">ﾒｯｾｰｼﾞをごみ箱へ移動</font><br>
 </td></tr></table>
 
 このﾒｯｾｰｼﾞをごみ箱に本当に移動しますか?<br>

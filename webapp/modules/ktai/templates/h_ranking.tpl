@@ -1,9 +1,10 @@
 ({$inc_ktai_header|smarty:nodefaults})
 
-<table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_01})">
-<font color="#({$ktai_color_config.font_01})"><a name="top">ﾗﾝｷﾝｸﾞ</a></font><br>
+<table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_02})">
+<font color="#({$ktai_color_config.font_05})"><a name="top">ﾗﾝｷﾝｸﾞ</a></font><br>
 </td></tr>
-<tr><td bgcolor="#({$ktai_color_config.bg_02})" align="center">
+<tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
+<font color="#({$ktai_color_config.color_24})">
 ({if $kind == "ashiato"})
 ｱｸｾｽ数
 ({elseif $kind == "friend"})
@@ -13,7 +14,7 @@
 ({elseif $kind == "com_comment"})
 ｺﾐｭﾆﾃｨ盛り上がり度
 ({/if})
-ﾗﾝｷﾝｸﾞ<br>
+ﾗﾝｷﾝｸﾞ</font><br>
 </td></tr></table>
 
 [i:150]
@@ -32,8 +33,8 @@
 ({foreach from=$rank_list key=rank item=list name=ranking})
 ({if $rank == 1})
 ({foreach from=$list item=item})
-<tr><td bgcolor="#({cycle values="`$ktai_color_config.bg_05`,`$ktai_color_config.bg_08`"})">
-[i:191]<font color="#({$ktai_color_config.font_02})">第({$rank})位</font><br>
+<tr><td bgcolor="#({cycle values="`$ktai_color_config.bg_06`,`$ktai_color_config.bg_07`"})">
+[i:191]<font color="#({$ktai_color_config.font_06})">第({$rank})位</font><br>
 ({strip})
 ({if $kind == "ashiato" || $kind == "friend"})
 <a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})&amp;({$tail})">({$item.c_member.nickname})</a>さん
@@ -53,14 +54,14 @@
 </td></tr>
 ({/strip})
 ({/foreach})
-<tr><td>
+<tr><td bgcolor="#({$ktai_color_config.bg_07})">
 <hr color="#({$ktai_color_config.border_01})">
 </td></tr>
 ({else})
 
 ({foreach from=$list item=item})
-<tr><td bgcolor="#({cycle values="`$ktai_color_config.bg_05`,`$ktai_color_config.bg_08`"})">
-<font color="#({$ktai_color_config.font_02})">第({$rank})位</font><br>
+<tr><td bgcolor="#({cycle values="`$ktai_color_config.bg_06`,`$ktai_color_config.bg_07`"})">
+<font color="#({$ktai_color_config.font_06})">第({$rank})位</font><br>
 ({strip})
 ({if $kind == "ashiato" || $kind == "friend"})
 <a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})&amp;({$tail})">({$item.c_member.nickname})</a>さん
@@ -78,7 +79,7 @@
 </td></tr>
 ({/strip})
 ({/foreach})
-<tr><td>
+<tr><td bgcolor="#({$ktai_color_config.bg_07})">
 <hr color="#({$ktai_color_config.border_02})">
 </td></tr>
 ({/if})
@@ -86,7 +87,7 @@
 ({foreachelse})
 ﾗﾝｷﾝｸﾞﾃﾞｰﾀがありません<br>
 </td></tr>
-<tr><td>
+<tr><td bgcolor="#({$ktai_color_config.bg_07})">
 <hr color="#({$ktai_color_config.border_02})">
 </td></tr>
 ({/foreach})

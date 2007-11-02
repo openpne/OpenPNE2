@@ -5,7 +5,7 @@
 ({**ここから：メインコンテンツ**})
 ({***************************})
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 <!-- ******************************************** -->
 <!-- ******ここから：書き込み確認****** -->
@@ -131,12 +131,12 @@
 <!-- ******ここまで：書き込み確認****** -->
 <!-- ******************************************** -->
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
-<!-- ******ここから：携帯アドレス削除****** -->
+<!-- ******ここから：携帯メールアドレス削除****** -->
 <!-- ******************************************** -->
 
-({if $ktai})
+({if $ktai && ($smarty.const.IS_GET_EASY_ACCESS_ID != 3 && $smarty.const.IS_GET_EASY_ACCESS_ID != 2)})
 
 <table border="0" cellspacing="0" cellpadding="0" style="width:580px;" class="border_07">
 <tr>
@@ -162,7 +162,7 @@
 <!-- ここから：主内容 -->
 <div class="border_01 bg_09" align="center">
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 <div style="width:528px;padding:30px 10px;margin:0px auto;" class="border_01 bg_03">
 
@@ -174,7 +174,7 @@
 </form>
 </div>
 
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 </div>
 <!-- ここまで：主内容 -->
@@ -197,7 +197,7 @@
 
 ({/if})
 
-<!-- ******ここまで：携帯アドレス削除****** -->
+<!-- ******ここまで：携帯メールアドレス削除****** -->
 <!-- ******************************************** -->
 
 ({***************************})

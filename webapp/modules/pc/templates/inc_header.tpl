@@ -4,11 +4,11 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 ({$INC_HEADER_inc_html_head|smarty:nodefaults})
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Cache-Control" content="no-cache">
 <meta http-equiv="Expires" content="Thu, 01 Dec 1994 16:00:00 GMT">
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="Content-Style-Type" content="text/css">
 <title>({$INC_HEADER_title})</title>
 <link rel="stylesheet" href="./css/default.css" type="text/css">
@@ -17,16 +17,8 @@
 <style type="text/css">
 <!--
 /*枠線要素*/
-.border_00 { border: #({$INC_HEADER_color_config.border_00}) 1px solid ; }
 .border_01 { border: #({$INC_HEADER_color_config.border_01}) 1px solid ; }
-.border_02 { border: #({$INC_HEADER_color_config.border_02}) 1px solid ; }
-.border_03 { border: #({$INC_HEADER_color_config.border_03}) 1px solid ; }
-.border_04 { border: #({$INC_HEADER_color_config.border_04}) 1px solid ; }
-.border_05 { border: #({$INC_HEADER_color_config.border_05}) 1px solid ; }
-.border_06 { border: #({$INC_HEADER_color_config.border_06}) 1px solid ; }
 .border_07 { border: #({$INC_HEADER_color_config.border_07}) 1px solid ; }
-.border_08 { border: #({$INC_HEADER_color_config.border_08}) 1px solid ; }
-.border_09 { border: #({$INC_HEADER_color_config.border_09}) 1px solid ; }
 .border_10 { border: #({$INC_HEADER_color_config.border_10}) 1px solid ; }
 
 /*背景要素*/
@@ -45,6 +37,7 @@
 .bg_12 { background-color: #({$INC_HEADER_color_config.bg_12}) ; }
 .bg_13 { background-color: #({$INC_HEADER_color_config.bg_13}) ; }
 .bg_14 { background-color: #({$INC_HEADER_color_config.bg_14}) ; }
+.color_19 { background-color: #({$INC_HEADER_color_config.color_19}) ; }
 
 body { background-color: #({$INC_HEADER_color_config.bg_12}) ; }
 .container { background-color: #({$INC_HEADER_color_config.bg_13}) ; }
@@ -263,7 +256,6 @@ div.inc_page_header div.navi_global a.navi_global_9:hover {
 </style>
 <script type="text/javascript">
 <!--
-
 ({*テキスト入力欄の背景色変更*})
 TextFiledClassName_normal = 'text';
 TextFiledClassName_focus  = 'text_focus';
@@ -279,21 +271,6 @@ function setFocusClass() {
 		node.onblur  = function() { this.className = this.TFclass; };
 	});
 }
-
-({*二度押し対策*})
-/*
-Event.observe(window, 'load', setSubmitFunction, false);
-
-function setSubmitFunction() {
-	var SFs = $A(document.getElementsByTagName('form'));
-	SFs.each(function (node){
-		node.onsubmit = function() {
-			var obj= $A(node.elements);
-			obj.each( function(n){if(n.type== 'submit') n.disabled= true;})
-		};
-	});
-}
-*/
 //-->
 </script>
 </head>
@@ -428,7 +405,7 @@ function load() {
 ({*************************************})
 ({**ここから：旧inc_alert_box.tplの内容**})
 ({*************************************})
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 <!-- ************************* -->
 <!-- ******ここから：警告****** -->
@@ -455,9 +432,9 @@ function load() {
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 <td style="width:150px;" class="bg_03" align="center" valign="middle">
 <!-- ここから：主内容＞警告アイコン -->
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 <img src="({t_img_url_skin filename=icon_alert_l})" class="icon">
-<img src="./skin/dummy.gif" alt="" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 <!-- ここまで：主内容＞警告アイコン -->
 </td>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
