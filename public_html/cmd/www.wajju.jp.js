@@ -1,6 +1,6 @@
 //MASTER:wajju.jp.js SLAVE:www.wajju.jp.js
 function url2cmd(url) {
-    if (!url.match(/^http:\/\/(?:www\.|)wajju\.jp\/clips\/[a-zA-Z0-9_-]+\/([a-zA-Z0-9_-]+)\/?$/)) {
+    if (!url.match(/^http:\/\/(?:www\.|)wajju\.jp\/clips\/[a-zA-Z0-9_\-]+\/([a-zA-Z0-9_\-]+)\/?$/)) {
         return;
     }
     var clipid =(url);
