@@ -27,6 +27,11 @@ class mail_sns
         list($from_user, $from_host) = explode('@', $this->from, 2);
         list($to_user, $to_host) = explode('@', $this->to, 2);
 
+        // メンテナンスモード
+        if (OPENPNE_UNDER_MAINTENANCE) {
+            $this->error_mail('現在メンテナンス中のため、メール投稿はおこなえません。しばらく時間を空けて再度送信してください。');
+        }
+
         // from_host が携帯ドメイン以外はエラー
         if (!is_ktai_mail_address($this->from)) {
             m_debug_log('mail_sns::main() from wrong host');
