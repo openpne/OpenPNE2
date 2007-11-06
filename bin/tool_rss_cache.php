@@ -7,6 +7,10 @@
 require_once './config.inc.php';
 require_once OPENPNE_WEBAPP_DIR . '/init.inc';
 
+if (OPENPNE_UNDER_MAINTENANCE) {
+    exit;
+}
+
 //-------------config-------------//
 // 一度に取得するRSSの件数
 $rss_num = 100;
