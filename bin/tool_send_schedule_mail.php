@@ -7,6 +7,10 @@
 require_once './config.inc.php';
 require_once OPENPNE_WEBAPP_DIR . '/init.inc';
 
+if (OPENPNE_UNDER_MAINTENANCE) {
+    exit;
+}
+
 if (USE_BIZ_DIR) {
     require_once OPENPNE_MODULES_BIZ_DIR . '/biz/init.inc';
     biz_do_common_send_schedule_mail();
