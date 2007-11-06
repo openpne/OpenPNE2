@@ -46,12 +46,19 @@ class pc_do_o_login extends OpenPNE_Action
         if (LOGIN_CHECK_ENABLE && $this->_lc->is_rejected()) {
             $this->_fail_login();
         }
-        
-        if (IS_SLAVEPNE && !($c_member_id = db_member_c_member_id4username_encrypted($auth->getUsername(), false))) {
-            db_member_create_member($_POST['username']);
+
+        $c_member_id = db_member_c_member_id4username_encrypted($auth->getUsername(), false);
+        if (!$c_member_id) {
+            if (IS_SLAVEPNE) {
+                db_member_create_member($_POST['username']);
+            } else {
+                $this->_fail_login();
+            }
         }
 
-        db_api_update_token($auth->uid());
+        db_member_do_access($c_member_id);
+        db_api_update_token($c_member_id);
+
         $url = OPENPNE_URL;
         if ($this->_target_script) {
             $this->_target_script = str_replace("/","",$this->_target_script);
