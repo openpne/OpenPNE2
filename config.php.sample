@@ -38,6 +38,7 @@ define('OPENPNE_DEBUGGING', 1);
 //$GLOBALS['_OPENPNE_DISABLE_MODULES'] = array('admin', 'setup');
 
 // メンテナンスモード
+// メンテナンスモードではデイリーメール配信やメール投稿機能も無効になります
 // true: ユーザーにメンテナンス画面を表示
 define('OPENPNE_UNDER_MAINTENANCE', false);
 
