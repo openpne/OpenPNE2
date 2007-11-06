@@ -8,6 +8,10 @@ require_once './config.inc.php';
 require_once OPENPNE_WEBAPP_DIR . '/init.inc';
 require_once OPENPNE_MODULES_DIR . '/admin/lib/db_admin.php';
 
+if (OPENPNE_UNDER_MAINTENANCE) {
+    exit;
+}
+
 $sql = "SELECT * FROM c_message_queue order by c_message_queue_id";
 
 $c_message_queue_list = db_get_all_limit($sql, 0, SEND_MESSAGE_QUEUE_NUM);
