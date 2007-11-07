@@ -304,6 +304,7 @@ if (OPENPNE_IMG_CACHE_PUBLIC) {
 } else {
     define('OPENPNE_IMG_CACHE_DIR', OPENPNE_VAR_DIR . '/img_cache');
 }
+
 // 画像変換時に許可する解像度のリスト (幅x高さ)
 // (空の配列を指定すると無制限になります)
 $GLOBALS['_OPENPNE_IMG_ALLOWED_SIZE'] = array('76x76', '120x120', '180x180', '240x320');
