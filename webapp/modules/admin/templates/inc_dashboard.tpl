@@ -110,6 +110,7 @@
             ({/if})
         </div>
     </div>
-
-({fetch file=$smarty.const.OPENPNE_DASHBOARD_URL})
+({if $smarty.const.OPENPNE_DASHBOARD_URL})
+	({fetch file=$smarty.const.OPENPNE_DASHBOARD_URL})
+({/if})
     <br class="clear" />
