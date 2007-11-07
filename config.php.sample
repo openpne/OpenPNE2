@@ -299,7 +299,7 @@ define('OPENPNE_IMG_CACHE_PUBLIC', false);
 
 // 画像キャッシュディレクトリ(要書き込み権限)
 if (OPENPNE_IMG_CACHE_PUBLIC) {
-    define('OPENPNE_IMG_CACHE_DIR', OPENPNE_DIR . '/public_html/img');
+    define('OPENPNE_IMG_CACHE_DIR', OPENPNE_PUBLIC_HTML_DIR . '/img');
 } else {
     define('OPENPNE_IMG_CACHE_DIR', OPENPNE_VAR_DIR . '/img_cache');
 }
