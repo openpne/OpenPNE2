@@ -10,7 +10,7 @@ $GLOBALS['_OPENPNE_KTAI_IP_LIST'] = array(
 '210.136.161.0/24',
 '210.153.86.0/24',
 
-// au (2007/09/03更新)
+// au (2007/11/07更新)
 // http://www.au.kddi.com/ezfactory/tec/spec/ezsava_ip.html
 '210.169.40.0/24',
 '210.196.3.192/26',
@@ -40,6 +40,7 @@ $GLOBALS['_OPENPNE_KTAI_IP_LIST'] = array(
 '219.125.151.128/25',
 '219.125.145.0/25',
 '121.111.231.0/25',
+'121.111.231.160/27',
 
 // SoftBank (2007/10/9更新)
 // http://developers.softbankmobile.co.jp/dp/tech_svc/web/ip.php
