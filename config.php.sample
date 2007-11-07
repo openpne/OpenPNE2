@@ -461,6 +461,7 @@ define('ADMIN_MODULE_NAME', 'admin');
 define('DISPLAY_VERSION', true);
 
 // ダッシュボードで表示するOpenPNE情報のURL設定
+// URLを空にするとダッシュボードが非表示になります
 define('OPENPNE_DASHBOARD_URL', 'http://ad.pne.jp/dashboard/');
 
 // 天気予報ページのURL設定
