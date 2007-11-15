@@ -71,7 +71,7 @@ function smarty_modifier_t_truncate_callback($string, $width, $etc = '')
 
         // 絵文字対応
         $offset = 0;
-        while (preg_match('/\[[a-z]:[0-9]+\]/i', $string, $matches, PREG_OFFSET_CAPTURE, $offset)) {
+        while (preg_match('/\[[a-z]:[0-9]+\]/i', substr($string, $offset), $matches, PREG_OFFSET_CAPTURE)) {
             $emoji_str = $matches[0][0];
             $emoji_pos = $matches[0][1];
             $emoji_len = strlen($emoji_str);
