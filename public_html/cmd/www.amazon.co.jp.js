@@ -22,7 +22,7 @@ function main(id) {
 	id = htmlSpecialChars(id);
 	var url = "http://amazon.openpne.jp/?id=" + id ;
     var html = ''
-	+ '<iframe MARGINWIDTH="0" MARGINHEIGHT="0" HSPACE="0" VSPACE="0" FRAMEBORDER="0" SCROLLING="no" BORDERCOLOR="#000000" src="' + url + '" name="sample" width="425" height="350">'
+	+ '<iframe MARGINWIDTH="0" MARGINHEIGHT="0" HSPACE="0" VSPACE="0" FRAMEBORDER="0" SCROLLING="no" BORDERCOLOR="#000000" src="' + url + '" name="sample" width="420" height="320">'
 	+ 'この部分はインラインフレームを使用しています。'
 	+ '</iframe>';
 	
