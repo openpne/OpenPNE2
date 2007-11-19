@@ -2542,7 +2542,7 @@ function db_admin_get_c_cmd_one($c_cmd_id)
  */
 function db_admin_get_c_cmd_list4name($names)
 {
-    $sql = 'SELECT * FROM c_cmd WHERE name IN ("' . implode('","', $names) . '")';
+    $sql = 'SELECT * FROM c_cmd WHERE name IN (\'' . implode('\',\'', $names) . '\')';
     return db_get_all($sql);
 }
 
