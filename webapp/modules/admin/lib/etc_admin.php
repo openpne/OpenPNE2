@@ -173,6 +173,7 @@ function admin_get_cmd_file_list()
                 $filelist[] = basename($filename, '.js');
             }
         }
+        closedir($handle);
     }
 
     return $filelist;
