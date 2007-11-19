@@ -246,7 +246,7 @@ function db_member_search($cond, $cond_like, $page_size, $page, $c_member_id, $p
     foreach ($cond as $key => $value) {
         if ($value) {
             if ($key == 'image') {
-                $wheres[] = "image_filename <> ''";
+                $wheres[] = "image_filename <> '' AND image_filename <> '0'";
             } else {
                 $wheres[] = db_escapeIdentifier($key) . ' = ?';
                 $params[] = $value;
