@@ -22,6 +22,9 @@ class OpenPNE_DB_Writer extends OpenPNE_DB
     {
         $seq_name = sprintf('%s_%s', $table, $pkey);
         if ($pkey && ($id = $this->nextId($seq_name))) {
+            if (DB::isError($id)) {
+                return false;
+            }
             $fields_values = array($pkey => $id) + $fields_values;
         }
 
