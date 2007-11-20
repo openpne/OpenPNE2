@@ -2,10 +2,13 @@
 /**
  * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
+ * @author Ogawa ogawa@tejimaya.com
+ * @author Masaki Miyshita
  */
 
 // PEAR::Mail_mimeDecode
 require_once 'Mail/mimeDecode.php';
+require_once 'util.inc.php';
 
 /**
  * OpenPNE_KtaiMail
@@ -274,7 +277,12 @@ class OpenPNE_KtaiMail
         // "example"@docomo.ne.jp
         $str = str_replace('"', '', $str);
 
-        // <example@docomo.ne.jp> というメールアドレスになることがある。
+    $bkup = $str;
+        $ar = split(',',$str);
+    $cnt = count($ar);
+    if( $cnt < 2 ){
+    $str = $bkup;
+        // <example@docomo.ne.jp> というアドレスになることがある。
         //   日本語 <example@docomo.ne.jp>
         // のような場合に複数マッチする可能性があるので、
         // マッチした最後のものを取ってくるように変更
@@ -283,10 +291,89 @@ class OpenPNE_KtaiMail
         if (preg_match_all($regx, $str, $matches)) {
             return array_pop($matches[1]);
         }
+    } else {
+    $regx = '/([\.\w!#$%&\'*+\-\/=?^`{|}~]+@[\w!#$%&\'*+\-\/=?^`{|}~]+(\.[\w!#$%&\'*+\-\/=?^`{|}~]+)*)/';
+        for($i=0;$i<$cnt;$i++){
+             $matches = array();
+               
+                if (preg_match_all($regx, $ar[$i], $matches)) {
+            
+                $to = array_pop($matches[1]);
+                list($to_user0, $to_host0) = explode("@", $to, 2);
+                if( $to_host0 === MAIL_SERVER_DOMAIN ) {
+                    return $to;
+                }
+                }
+        }
+
+
+
+    }
 
         return false;
     }
 
+    function convert_text_core( $str )
+    {
+
+      $converted_text = "";
+      $res = preg_split("/JIS\+..../", $str, -1 ,PREG_SPLIT_OFFSET_CAPTURE) ;
+      
+      for($i=0;$i<count($res);$i++){
+        if($i==0){
+          $begin=strlen($res[$i][0]);
+          $converted_text .= $res[$i][0];
+        } else {
+          $jis=substr($str,$begin,8);
+          
+          // $jisを変換
+          $a = "0x".substr($jis,4,2);
+          $b = "0x".substr($jis,6,2);
+          {
+            // http://www.slayers.ne.jp/~oouchi/code/jistosjis.html
+            $a=intval($a,16);
+            $b=intval($b,16);
+            if($a%2==1)
+              $b+=0x1f;
+            else
+              $b+=0x7d;
+            
+            if($b>=0x7f)
+              $b++;
+            
+            $a=floor(($a-0x21)/2)+0x81;
+            
+            if($a>=0x9e)
+              $a+=0x40;
+            
+            $c=$a*16*16+$b;
+            if( $c >= 0xEDCF || ( $c >= 0xED40 && $c <= 0xEDCE )) $c += 1536;
+            else $c += 2816;
+
+            // 絵文字変換
+            $bin[0] = chr($c >> 8);
+            $bin[1] = chr($c - ($bin[0] << 8));
+            $emoji = emoji_escape_e($bin);
+              
+            $converted_text .= $emoji;
+          }
+        
+          //Eメール送出用Shift-JIS(E-SJIS)と携帯用Shift-JISコード(K-SJIS)には以下の関係がある
+          // * 358 <= 絵文字番号 <= 499, 700 <= 絵文字番号
+          // hexdec(K-SJIS) = hexdec(E-SJIS) + 1536
+          // * それ以外の絵文字
+          // hexdec(K-SJIS) = hexdec(E-SJIS) + 2816
+          
+          $begin=strlen($res[$i][0])+$res[$i][1];
+          $converted_text .= $res[$i][0];
+        }
+        
+      }
+      return $converted_text;
+      
+      
+    }
+  
     /**
      * 文字エンコーディングの変換、空白文字の削除
      * 
@@ -301,7 +388,14 @@ class OpenPNE_KtaiMail
         if (!$from_encoding) $from_encoding = $this->from_encoding;
         if (!$to_encoding)   $to_encoding = $this->to_encoding;
 
-        $str = mb_convert_encoding($str, $to_encoding, $from_encoding);
+
+        if ( $GLOBALS['__Framework']['carrier'] != 's' ) {
+          mb_substitute_character("long");
+          $str = mb_convert_encoding($str, $to_encoding, $from_encoding);
+          $str = $this->convert_text_core($str);
+        } else {
+          $str = mb_convert_encoding($str, $to_encoding, $from_encoding);
+        }
 
         // 空白文字の削除
         $str = str_replace("\0", '', $str);
