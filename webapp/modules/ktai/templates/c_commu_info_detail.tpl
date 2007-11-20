@@ -47,7 +47,7 @@
 ({/if})<br>
 <br>
 <font color="#({$ktai_color_config.font_06})">ｺﾐｭﾆﾃｨの説明：</font><br>
-({$c_commu.info|t_url2a_ktai})<br>
+({$c_commu.info|t_url2a_ktai|nl2br})<br>
 <br>
 <hr color="#({$ktai_color_config.border_01})">
 [i:90]<a href="({t_url m=ktai a=page_c_home})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">ｺﾐｭﾆﾃｨに戻る</a><br>
