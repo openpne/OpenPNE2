@@ -68,7 +68,7 @@
 <th>フォームタイプ</th>
 <td><select class="basic" name="form_type">
 <option value="text" selected="selected">テキスト</option>
-<option value="textlong"({if $c_profile.form_type == 'textlong'}) selected="selected"({/if})>テキスト(長)</option>
+<option value="textlong">テキスト(長)</option>
 <option value="textarea">テキスト(複数行)</option>
 <option value="select">単一選択(プルダウン)</option>
 <option value="radio">単一選択(ラジオボタン)</option>
@@ -76,7 +76,7 @@
 </select></td>
 </tr>
 <tr>
-<td colspan="2" class="caution">以下の項目はフォームタイプが「テキスト」、「テキスト(複数行)」の場合のみ有効です。</td>
+<td colspan="2" class="caution">以下の項目はフォームタイプが「テキスト」、「テキスト(長)」、「テキスト(複数行)」の場合のみ有効です。</td>
 </tr>
 <tr>
 <th>入力値タイプ</th>
