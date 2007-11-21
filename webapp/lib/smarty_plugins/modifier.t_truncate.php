@@ -71,9 +71,10 @@ function smarty_modifier_t_truncate_callback($string, $width, $etc = '')
 
         // 絵文字対応
         $offset = 0;
-        while (preg_match('/\[[a-z]:[0-9]+\]/i', $string, $matches, PREG_OFFSET_CAPTURE, $offset)) {
+        $tmp_string = $string;
+        while (preg_match('/\[[a-z]:[0-9]+\]/i', $tmp_string, $matches, PREG_OFFSET_CAPTURE)) {
             $emoji_str = $matches[0][0];
-            $emoji_pos = $matches[0][1];
+            $emoji_pos = $matches[0][1] + $offset;
             $emoji_len = strlen($emoji_str);
             $emoji_width = $emoji_len; // ASCIIなのでstrlenでOK
 
@@ -98,8 +99,10 @@ function smarty_modifier_t_truncate_callback($string, $width, $etc = '')
             }
 
             // 絵文字分を足してもwidthより小さい
-            $offset = $matches[0][1] + $emoji_len;
+            $offset = $emoji_pos + $emoji_len;
             $width = $width + $emoji_width - 2;
+
+            $tmp_string = substr($string, $offset);
         }
 
         $string = mb_strimwidth($string, 0, $width) . $etc;
