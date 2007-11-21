@@ -2535,7 +2535,7 @@ function db_admin_get_c_cmd_one($c_cmd_id)
 }
 
 /***
- * 指CMD（小窓）の設定リストを取得する
+ * CMD（小窓）の設定リストを取得する
  * 
  * @return array 小窓の設定リスト
  */
