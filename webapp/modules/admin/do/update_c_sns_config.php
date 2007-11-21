@@ -19,7 +19,7 @@ class admin_do_update_c_sns_config extends OpenPNE_Action
             if (preg_match('/^color_(\d+)$/', $key, $matches)) {
                 $number = intval($matches[1]);
                 if ($number > 0 && $number <= 50) {
-                    $data[$key] = $value;
+                    $data[$key] = strval($value);
                 }
             }
         }
