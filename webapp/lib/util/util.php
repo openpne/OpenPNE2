@@ -639,6 +639,7 @@ function util_apply_color_default2current($c_config_color, $mode = 'pc')
         $default_color['color_19'] = $c_config_color['color_13'];
     }
 
+    $c_config_color = array_map('trim', $c_config_color);
     $empty_keys = array_keys($c_config_color, '');
     foreach ($empty_keys as $key) {
         if (array_key_exists($key, $default_color)) {
