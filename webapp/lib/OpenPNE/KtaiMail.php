@@ -3,7 +3,7 @@
  * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  * @author Ogawa ogawa@tejimaya.com
- * @author Masaki Miyshita
+ * @author Masaki Miyashita miyasita@zenzy.net
  */
 
 // PEAR::Mail_mimeDecode
