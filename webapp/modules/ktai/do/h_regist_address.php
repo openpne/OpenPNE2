@@ -45,6 +45,9 @@ class ktai_do_h_regist_address extends OpenPNE_Action
         $session = create_hash();
         db_member_insert_c_ktai_address_pre($u, $session, $ktai_address);
 
+        //function cache削除
+        cache_drop_c_member_profile($u);
+
         do_mail_sns_change_ktai_mail_send($u, $session, $ktai_address);
 
         openpne_redirect('ktai', 'page_o_send_mail_end');
