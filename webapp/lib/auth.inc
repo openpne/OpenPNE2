@@ -31,6 +31,11 @@ if (   !$auth->auth()
     }
 }
 
+if (db_member_is_blacklist($u)) {
+	$p = array('msg_code' => 'blacklist');
+    openpne_redirect('pc', 'page_o_tologin', $p);
+}
+
 $auth->uid($u);
 $GLOBALS['AUTH'] = $auth;
 

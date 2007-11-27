@@ -10,8 +10,11 @@ class pc_page_h_delete_ktai extends OpenPNE_Action
     {
         $u = $GLOBALS['AUTH']->uid();
 
+        if (IS_GET_EASY_ACCESS_ID == 3 || IS_GET_EASY_ACCESS_ID == 2) {
+            handle_kengen_error();
+        }
+
         $this->set('inc_navi',fetch_inc_navi("h"));
-        $this->set('c_member_id',$u);
 
         return 'success';
     }

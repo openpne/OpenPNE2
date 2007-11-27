@@ -27,13 +27,13 @@ class ktai_do_h_regist_address extends OpenPNE_Action
         }
 
         if (!is_ktai_mail_address($ktai_address)) {
-            // 携帯アドレス以外は指定できません
+            // 携帯メールアドレス以外は指定できません
             $p = array('msg' => 16);
             openpne_redirect('ktai', 'page_h_config_mail', $p);
         }
 
         if (db_member_is_sns_join4mail_address($ktai_address)) {
-            // このアドレスはすでに登録されています
+            // このメールアドレスはすでに登録されています
             $p = array('msg' => 17);
             openpne_redirect('ktai', 'page_h_config_mail', $p);
         }

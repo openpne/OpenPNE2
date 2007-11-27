@@ -23,7 +23,9 @@ class pc_page_c_event_write_delete_confirm extends OpenPNE_Action
         if (!db_commu_is_c_commu_view4c_commu_idAc_member_id($c_commu_id, $u)) {
             handle_kengen_error();
         }
-        if ($c_commu_topic_comment['c_member_id'] != $u && $c_commu['c_member_id_admin'] != $u) {
+        $status = db_common_commu_status($u, $c_commu_id);
+        if (!$status['is_commu_admin']
+            && $c_commu_topic_comment['c_member_id'] != $u) {
             handle_kengen_error();
         }
         //---

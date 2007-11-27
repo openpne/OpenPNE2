@@ -18,12 +18,17 @@ class ktai_do_c_edit_member_insert_c_commu_admin_confirm extends OpenPNE_Action
         // ----------
 
         //--- 権限チェック
-        //コミュニティ管理者
+        // コミュニティ管理者
+        // 自分自身へのメッセージ送信ではない
         // すでに管理者交代依頼メッセージ送信済みではない
         // すでに副管理者要請メッセージを送信済みでない
 
         $status = db_common_commu_status($u, $target_c_commu_id);
         if (!$status['is_commu_admin']) {
+            handle_kengen_error();
+        }
+
+        if ($u == $target_c_member_id) {
             handle_kengen_error();
         }
 

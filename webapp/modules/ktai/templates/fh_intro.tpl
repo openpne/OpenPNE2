@@ -1,9 +1,29 @@
 ({$inc_ktai_header|smarty:nodefaults})
-<center><font color="orange">({if $type=="f"})({$WORD_FRIEND_HALF})({else})({$WORD_MY_FRIEND_HALF})({/if})からの紹介文</font></center>
-<hr>
 
+<table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_02})">
+<font color="#({$ktai_color_config.font_05})"><a name="top">({$target_member.nickname})({if $type=="f"})さん({/if})</a></font><br>
+</td></tr>
+<tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
+<font color="#({$ktai_color_config.color_24})">({if $type=="f"})({$WORD_FRIEND_HALF})({else})({$WORD_MY_FRIEND_HALF})({/if})からの紹介文</font><br>
+</td></tr></table>
+
+({if !$intro_list})
+紹介文はありません。
+({else})
+
+<center>
+({$pager_index.displaying_first})件～({$pager_index.displaying_last})件を表示
+</center>
+
+<table width="100%">
 ({foreach from=$intro_list item=item})
-<a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})&amp;({$tail})">({$item.nickname})</a><br>
+<tr><td bgcolor="#({$ktai_color_config.bg_07})">
+<hr color="#({$ktai_color_config.border_02})">
+</td></tr>
+<tr><td bgcolor="#({cycle values="`$ktai_color_config.bg_06`,`$ktai_color_config.bg_07`"})">
+<font color="#({$ktai_color_config.font_06})">ﾆｯｸﾈｰﾑ：</font><br>
+<a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})&amp;({$tail})">({$item.nickname})</a><br><br>
+<font color="#({$ktai_color_config.font_06})">紹介文：</font><br>
 ({$item.intro|t_url2a_ktai|nl2br})<br>
 
 ({if $target_member.c_member_id==$member.c_member_id})
@@ -18,19 +38,23 @@
 ({elseif $type=='h'})
 <a href="({t_url m=ktai a=do_f_intro_from_delete})&amp;target_c_member_id=({$item.c_member_id})&amp;({$tail})">削除</a><br>
 ({/if})
-<br>
-({foreachelse})
-紹介文はありません
+</td></tr>
 ({/foreach})
+</table>
 
 ({if $is_prev || $is_next})
-({if $is_prev})<a href="({t_url m=ktai a=page_fh_intro})&amp;target_c_member_id=({$requests.target_c_member_id})&amp;page=({$page-1})&amp;({$tail})">前へ</a> ({/if})
-({if $is_next})<a href="({t_url m=ktai a=page_fh_intro})&amp;target_c_member_id=({$requests.target_c_member_id})&amp;page=({$page+1})&amp;({$tail})">次へ</a>({/if})
+<hr color="#({$ktai_color_config.border_02})">
+<center>
+({if $is_prev})<a href="({t_url m=ktai a=page_fh_intro})&amp;target_c_member_id=({$requests.target_c_member_id})&amp;page=({$page-1})&amp;({$tail})" accesskey="4">[i:128]前を表示</a>({/if})
+({if $is_prev && $is_next})&nbsp;({/if})
+({if $is_next})<a href="({t_url m=ktai a=page_fh_intro})&amp;target_c_member_id=({$requests.target_c_member_id})&amp;page=({$page+1})&amp;({$tail})" accesskey="6">[i:130]次を表示</a>({/if})
+<br>
+</center>
 ({/if})
-
-<hr>
+({/if})
 ({if $type=="f"})
-<a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$target_member.c_member_id})&amp;({$tail})">({$target_member.nickname})さんのﾄｯﾌﾟ</a><br>
+<hr color="#({$ktai_color_config.border_01})">
+[i:90]<a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$target_member.c_member_id})&amp;({$tail})">({$target_member.nickname})さんのﾄｯﾌﾟ</a><br>
 ({/if})
 
 ({$inc_ktai_footer|smarty:nodefaults})

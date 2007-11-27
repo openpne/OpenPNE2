@@ -69,7 +69,6 @@
 </select><br />
 <span class="caution">※使用不可にすると携帯で表示できなくなります</span>
 </td>
-</tr>
 <tr class="cell08">
 <th colspan="2">登録の可否</th>
 <td>
@@ -80,11 +79,15 @@
 </td>
 </tr>
 <tr class="cell27">
-<th colspan="2">個体識別番号の取得設定</th>
+<th colspan="2">メンバー登録時の<br />携帯個体識別番号取得設定</th>
 <td>
-<input class="basicRadio" name="IS_GET_EASY_ACCESS_ID" id="IS_GET_EASY_ACCESS_ID_2" type="radio" value="2"({if $smarty.const.IS_GET_EASY_ACCESS_ID == 2}) checked="checked"({/if}) /><label for="IS_GET_EASY_ACCESS_ID_2">携帯登録時に個体識別番号を取得する(必須)</label><br />
+<input class="basicRadio" name="IS_GET_EASY_ACCESS_ID" id="IS_GET_EASY_ACCESS_ID_3" type="radio" value="3"({if $smarty.const.IS_GET_EASY_ACCESS_ID == 3}) checked="checked"({/if}) /><label for="IS_GET_EASY_ACCESS_ID_3">PC・携帯登録時に個体識別番号を必須にする</label><br />
+<input class="basicRadio" name="IS_GET_EASY_ACCESS_ID" id="IS_GET_EASY_ACCESS_ID_2" type="radio" value="2"({if $smarty.const.IS_GET_EASY_ACCESS_ID == 2}) checked="checked"({/if}) /><label for="IS_GET_EASY_ACCESS_ID_2">携帯登録時に携帯個体識別番号の登録を必須にする</label><br />
 <input class="basicRadio" name="IS_GET_EASY_ACCESS_ID" id="IS_GET_EASY_ACCESS_ID_1" type="radio" value="1"({if $smarty.const.IS_GET_EASY_ACCESS_ID == 1}) checked="checked"({/if}) /><label for="IS_GET_EASY_ACCESS_ID_1">携帯登録時に個体識別番号を取得する(任意)</label><br />
-<input class="basicRadio" name="IS_GET_EASY_ACCESS_ID" id="IS_GET_EASY_ACCESS_ID_0" type="radio" value="0"({if $smarty.const.IS_GET_EASY_ACCESS_ID == 0}) checked="checked"({/if}) /><label for="IS_GET_EASY_ACCESS_ID_0">携帯登録時に個体識別番号を取得しない</label>
+<input class="basicRadio" name="IS_GET_EASY_ACCESS_ID" id="IS_GET_EASY_ACCESS_ID_0" type="radio" value="0"({if $smarty.const.IS_GET_EASY_ACCESS_ID == 0}) checked="checked"({/if}) /><label for="IS_GET_EASY_ACCESS_ID_0">携帯登録時には個体識別番号を取得しない</label><br />
+<span class="caution">※携帯個体識別番号の登録を必須にした場合、携帯個体識別番号が取得可能な携帯端末を持っていないメンバーが登録できなくなってしまう可能性があります</span><br />
+<span class="caution">※すでに登録済みのメンバーに対しては、携帯個体識別番号の登録は強制されません</span><br />
+<span class="caution">※「PC・携帯登録時に携帯個体識別番号の登録を必須にする」を選択した場合、携帯版使用設定は「使用可にする」に設定する必要があります</span><br />
 </td>
 </tr>
 <tr class="cell09">

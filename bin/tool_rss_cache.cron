@@ -1,4 +1,4 @@
 #! /bin/sh
 cd $1
-$2 tool_rss_cache.php
+$2 -f tool_rss_cache.php
 

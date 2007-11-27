@@ -21,6 +21,10 @@ class pc_page_f_message_send extends OpenPNE_Action
         // ----------
 
         // 権限チェック
+        if ($target_c_member_id == $u) {  // 自分にメッセージは送れない
+            handle_kengen_error();
+        }
+
         if ($form_val['target_c_message_id']) {
             $c_message = db_message_c_message4c_message_id($form_val['target_c_message_id']);
             if ($c_message['c_member_id_from'] != $u) {

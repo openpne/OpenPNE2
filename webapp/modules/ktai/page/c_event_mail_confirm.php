@@ -30,7 +30,13 @@ class ktai_page_c_event_mail_confirm extends OpenPNE_Action
         if (!db_commu_is_c_commu_view4c_commu_idAc_member_id($c_commu_id, $u)) {
             handle_kengen_error();
         }
+
         if (!db_commu_is_c_event_admin($c_commu_topic_id, $u)) {
+            handle_kengen_error();
+        }
+
+        // 対象者に自分が含まれている
+        if (in_array($u, $c_member_ids)) {
             handle_kengen_error();
         }
         //---

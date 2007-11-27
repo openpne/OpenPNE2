@@ -28,12 +28,7 @@ class pc_page_o_regist_prof_confirm extends OpenPNE_Action
             openpne_redirect('pc', 'page_o_tologin', $p);
         }
 
-        // メールアドレスが登録できるかどうか
         $pre = db_member_c_member_pre4sid($sid);
-        if (!util_is_regist_mail_address($pre['pc_address'])) {
-            $p = array('msg_code' => 'invalid_url');
-            openpne_redirect('pc', 'page_o_tologin', $p);
-        }
 
         $this->set('inc_page_header', fetch_inc_page_header('regist'));
 

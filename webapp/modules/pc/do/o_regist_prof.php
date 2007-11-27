@@ -25,12 +25,7 @@ class pc_do_o_regist_prof extends OpenPNE_Action
             openpne_redirect('pc', 'page_o_tologin', $p);
         }
 
-        // メールアドレスが登録できるかどうか
         $pre = db_member_c_member_pre4sid($sid);
-        if (!util_is_regist_mail_address($pre['pc_address'])) {
-            $p = array('msg_code' => 'invalid_url');
-            openpne_redirect('pc', 'page_o_tologin', $p);
-        }
 
         $mode = $requests['mode'];
         $errors = array();
@@ -82,16 +77,14 @@ class pc_do_o_regist_prof extends OpenPNE_Action
         // 値の整合性をチェック(DB)
         $c_member_profile_list = db_member_check_profile($validator->getParams(), $public_flag_list);
 
-
         // 必須項目チェック
         $profile_list = db_member_c_profile_list4null();
         foreach ($profile_list as $profile) {
-            if ( $profile['disp_regist'] &&
-                $profile['is_required'] &&
-                (is_null(!$c_member_profile_list[$profile['name']]['value']) || !$c_member_profile_list[$profile['name']]['value'] === '')
-            ) {
-                $errors[$profile['name']] = $profile['caption'] . 'を入力してください';
-                break;
+            $value = $c_member_profile_list[$profile['name']]['value'];
+            if ($profile['disp_regist'] && $profile['is_required']) {
+                if (is_null($value) || $value === '' || $value === array()) {
+                    $errors[$profile['name']] = $profile['caption'] . 'を入力してください';
+                }
             }
         }
 
@@ -130,55 +123,60 @@ class pc_do_o_regist_prof extends OpenPNE_Action
             openpne_forward('pc', 'page', 'o_regist_prof_confirm');
             exit;
         case 'register':
-            // delete cookie
+            $pre = db_member_c_member_pre4sid($sid);
+             // delete cookie
             setcookie(session_name(), '', time() - 3600, ini_get('session.cookie_path'));
 
-            $pre = db_member_c_member_pre4sid($sid);
+            if ((IS_GET_EASY_ACCESS_ID != 3) || $pre['is_disabled_regist_easy_access_id']) {
+                // メンバー登録時の携帯個体識別番号取得設定が「PC・携帯登録時に個体識別番号を必須にする」でない場合、メンバー登録処理をおこなう
+                $c_member = $prof;
+                $c_member['c_member_id_invite'] = $pre['c_member_id_invite'];
+                $c_member_secure = array(
+                    'password' => $prof['password'],
+                    'password_query_answer' => $prof['c_password_query_answer'],
+                    'pc_address' => $pre['pc_address'],
+                    'ktai_address' => '',
+                    'regist_address' => $pre['pc_address'],
+                );
 
-            // c_member, c_member_secure
-            $c_member = $prof;
-            $c_member['c_member_id_invite'] = $pre['c_member_id_invite'];
-            $c_member['is_receive_mail'] = 1;
-            $c_member['is_receive_ktai_mail'] = 1;
-            $c_member['is_receive_daily_news'] = 1;
-            $c_member_secure = array(
-                'password' => $prof['password'],
-                'password_query_answer' => $prof['c_password_query_answer'],
-                'pc_address' => $pre['pc_address'],
-                'ktai_address' => '',
-                'regist_address' => $pre['pc_address'],
-            );
-            $u = db_member_insert_c_member($c_member, $c_member_secure);
+                // メンバー登録
+                $u = util_regist_c_member($c_member, $c_member_secure, $c_member_profile_list);
 
-            if (OPENPNE_USE_POINT_RANK) {
-                //入会者にポイント加算
-                $point = db_action_get_point4c_action_id(1);
-                db_point_add_point($u, $point);
+                // pre の内容を削除
+                db_member_delete_c_member_pre4sid($sid);
+        
+                // 登録完了メール送信
+                do_regist_prof_do_regist2_mail_send($u);
 
-                //メンバー招待をした人にポイント付与
-                $point = db_action_get_point4c_action_id(7);
-                db_point_add_point($pre['c_member_id_invite'], $point);
+                openpne_redirect('pc', 'page_o_regist_end', array('c_member_id' => $u));
+            } else {
+                // メンバー登録時の携帯個体識別番号取得設定が「PC・携帯登録時に個体識別番号を必須にする」である場合、
+                // ここでのメンバー登録はすべてスキップする。入力した項目は c_member_pre とc_member_pre_profile に
+                // 保持しておき、携帯の登録が完了した場合に、メンバー登録も完了する
+
+                // c_member_pre_profile にデータ挿入
+                db_member_update_c_member_pre_profile($pre['c_member_pre_id'], $c_member_profile_list);
+
+                // c_member_pre にデータ挿入
+                $c_member_pre_secure = array(
+                    'session' => $pre['session'],
+                    'nickname' => $prof['nickname'],
+                    'birth_year' => $prof['birth_year'],
+                    'birth_month' => $prof['birth_month'],
+                    'birth_day' => $prof['birth_day'],
+                    'public_flag_birth_year' => $prof['public_flag_birth_year'],
+                    'password' => $prof['password'],
+                    'public_flag_birth_year' => $prof['public_flag_birth_year'],
+                    'c_password_query_id' => $prof['c_password_query_id'],
+                    'password_query_answer' => $prof['c_password_query_answer'],
+                    'pc_address' => $pre['pc_address'],
+                    'regist_address' => $pre['pc_address'],
+                );
+
+                db_member_update_c_member_pre_secure($pre['c_member_pre_id'], $c_member_pre_secure);
+
+                openpne_redirect('pc', 'page_o_regist_ktai_address', array('sid' => $pre['session']));
             }
-
-            // c_member_profile
-            db_member_update_c_member_profile($u, $c_member_profile_list);
-
-            // 招待者とフレンドリンク
-            db_friend_insert_c_friend($u, $pre['c_member_id_invite']);
-
-            //管理画面で指定したコミュニティに強制参加
-            $c_commu_id_list = db_commu_regist_join_list();
-            foreach ($c_commu_id_list as $c_commu_id) {
-                db_commu_join_c_commu($c_commu_id, $u);
-            }
-
-            // pre の内容を削除
-            db_member_delete_c_member_pre4sid($sid);
-
-            // 登録完了メール送信
-            do_regist_prof_do_regist2_mail_send($u);
-
-            openpne_redirect('pc', 'page_o_regist_end', array('c_member_id' => $u));
         }
     }
 

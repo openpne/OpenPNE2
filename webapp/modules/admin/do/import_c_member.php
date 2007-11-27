@@ -73,16 +73,16 @@ class admin_do_import_c_member extends OpenPNE_Action
 
             // メールアドレスとして正しくない
             if (!db_common_is_mailaddress($mail_address)) {
-                $this->handleError(($key+1)."行目：アドレス [".$mail_address."] はメールアドレスとして正しくありません");
+                $this->handleError(($key+1)."行目：メールアドレス [".$mail_address."] はメールアドレスとして正しくありません");
             }
-            //対象のアドレスが、登録されてるか否か
+            //対象のメールアドレスが、登録されてるか否か
             if (db_member_is_sns_join4mail_address($mail_address)) {
-                $this->handleError(($key+1)."行目：そのアドレス [".$mail_address."] は既に登録済みです");
+                $this->handleError(($key+1)."行目：そのメールアドレス [".$mail_address."] は既に登録済みです");
             }
 
-            //対象のアドレスが、ドメイン制限に合致しているかどうか
+            //対象のメールアドレスが、ドメイン制限に合致しているかどうか
             if (!db_member_is_limit_domain4mail_address($mail_address)) {
-                $this->handleError(($key+1)."行目：そのアドレス [".$mail_address."] では登録できません");
+                $this->handleError(($key+1)."行目：そのメールアドレス [".$mail_address."] では登録できません");
             }
 
             //パスワードの形式チェック
@@ -96,7 +96,7 @@ class admin_do_import_c_member extends OpenPNE_Action
 
             // --- データのインポート ここから
 
-            // 携帯アドレスか否か
+            // 携帯メールアドレスか否か
             if (is_ktai_mail_address($mail_address)) {
                 $ktai_address = $mail_address;
                 $pc_address   = '';
@@ -122,16 +122,7 @@ class admin_do_import_c_member extends OpenPNE_Action
                 'regist_address' => $mail_address,
             );
 
-            $u = db_member_insert_c_member($c_member, $c_member_secure);
-            // 招待者とフレンドリンク
-            db_friend_insert_c_friend($u, 1);
-
-            //管理画面で指定したコミュニティに強制参加
-            $c_commu_id_list = db_commu_regist_join_list();
-            foreach ($c_commu_id_list as $c_commu_id) {
-                db_commu_join_c_commu($c_commu_id, $u);
-            }
-
+            $u = util_regist_c_member($c_member, $c_member_secure);
             // --- データのインポート ここまで
 
         }

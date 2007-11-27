@@ -45,7 +45,7 @@
 ({if $pager})
 <div class="listControlTop">
 <p class="display">({$pager.total_num}) 人中 ({$pager.start_num}) - ({$pager.end_num})人目を表示しています</p>
-<p id="controlIcon"><img src="./modules/admin/img/icn_withdrawal.gif" alt="強制退会のアイコン" class="withdraw" />：強制退会　<img src="modules/admin/img/icn_rejected.gif" alt="ログイン停止のアイコン" />：ログイン停止　<img src="modules/admin/img/icn_permit.gif" alt="ログイン停止解除" />：ログイン停止解除　<img src="modules/admin/img/icn_passwd.gif" alt="パスワード再発行のアイコン" />：パスワード再発行</p>
+<p id="controlIcon"><img src="./modules/admin/img/icn_withdrawal.gif" alt="強制退会のアイコン" class="withdraw" />：強制退会　<img src="modules/admin/img/icn_rejected.gif" alt="ログイン停止のアイコン" />：ログイン停止　<img src="modules/admin/img/icn_permit.gif" alt="ログイン停止解除" />：ログイン停止解除　<img src="modules/admin/img/icn_passwd.gif" alt="パスワード再発行のアイコン" />：パスワード再発行 <img src="modules/admin/img/icn_blacklist.gif" alt="ブラックリストに追加" />：携帯個体識別番号をブラックリストに追加</p>
 <p class="listMove">
 ({if $pager.prev_page})<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page=({$pager.prev_page})&amp;page_size=({$pager.page_size})&amp;order=({$requests.order})({$cond})">前へ</a>({/if})
 ({foreach from=$pager.disp_pages item=i})
@@ -65,7 +65,7 @@
 	<thead>
 		<tr>
 			<th class="cell01" rowspan="3">&nbsp;</th>
-			<th class="cell02" colspan="3" rowspan="3">操作パネル</th>
+			<th class="cell02" colspan="4" rowspan="3">操作パネル</th>
 			<th class="cell03" rowspan="3"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=c_member_id-1({$cond})">▲</a>ID<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=c_member_id-2({$cond})">▼</a></th>
 			<th class="cell04" rowspan="3"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=nickname-1({$cond})">▲</a>ニックネーム<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=nickname-2({$cond})">▼</a></th>
 			({if $smarty.const.OPENPNE_USE_POINT_RANK})
@@ -81,9 +81,10 @@
 			<th rowspan="2"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=({$prof.name})-1({$cond})">▲</a>({$prof.caption})<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=({$prof.name})-2({$cond})">▼</a></th>
 			({/if})
 			({/foreach})
-			<th class="cell16" rowspan="2">PCアドレス</th>
-			<th class="cell17" rowspan="2">携帯アドレス</th>
-			<th class="cell18" rowspan="3">登録時アドレス</th>
+			<th class="cell16" rowspan="2">PCメールアドレス</th>
+			<th class="cell17" rowspan="2">携帯メールアドレス</th>
+			<th class="cell18" rowspan="3">登録時メールアドレス</th>
+			<th class="cell18" rowspan="3">携帯個体識別番号(暗号化済)</th>
 			<th class="cell15" rowspan="3"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;order=c_member_id-1({$cond})">▲</a>ID<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;order=c_member_id-2({$cond})">▼</a></th>
 		</tr>
 		<tr>
@@ -172,7 +173,7 @@
 	<tfoot>
 		<tr>
 			<th class="cell01" rowspan="3">&nbsp;</th>
-			<th class="cell02" colspan="3" rowspan="2">操作パネル</th>
+			<th class="cell02" colspan="4" rowspan="2">操作パネル</th>
 			<th class="cell03" rowspan="2">ID</th>
 			<th class="cell04" rowspan="2">ニックネーム</th>
 			({if $smarty.const.OPENPNE_USE_POINT_RANK})
@@ -193,9 +194,10 @@
 			<th rowspan="2">({$prof.caption})</th>
 			({/if})
 			({/foreach})
-			<th class="cell16" rowspan="2">PCアドレス</th>
-			<th class="cell17" rowspan="2">携帯アドレス</th>
-			<th class="cell18" rowspan="2">登録時アドレス</th>
+			<th class="cell16" rowspan="2">PCメールアドレス</th>
+			<th class="cell17" rowspan="2">携帯メールアドレス</th>
+			<th class="cell18" rowspan="2">登録時メールアドレス</th>
+			<th class="cell18" rowspan="2">携帯個体識別番号(暗号化済)</th>
 			<th class="cell15" rowspan="2">ID</th>
 		</tr>
 		<tr>
@@ -210,6 +212,7 @@
 			<td class="cell02A">({if $item.c_member_id != 1})<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('delete_c_member_confirm')})&amp;target_c_member_id=({$item.c_member_id})"><img src="modules/admin/img/icn_withdrawal.gif" alt="強制退会" /></a>({else})&nbsp;({/if})</td>
 			<td class="cell02B"><a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('update_is_login_rejected','do')})&amp;target_c_member_id=({$item.c_member_id})&amp;sessid=({$PHPSESSID})">({if $item.is_login_rejected})<img src="modules/admin/img/icn_permit.gif" alt="ログイン停止解除" />({else})<img src="modules/admin/img/icn_rejected.gif" alt="ログイン停止" />({/if})</a></td>
 			<td class="cell02C"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('passwd')})&amp;target_c_member_id=({$item.c_member_id})"><img src="modules/admin/img/icn_passwd.gif" alt="パスワード再発行" /></a></td>
+			<td class="cell02D"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('blacklist_add')})&amp;easy_access_id=({$item.secure.easy_access_id})"><img src="modules/admin/img/icn_blacklist.gif" alt="ブラックリストに追加" /></a></td>
 			<td class="cell03">({$item.c_member_id})</td>
 			<td class="cell04"><a href="({t_url _absolute=1 m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})" target="_blank">({$item.nickname})</a></td>
 			({if $smarty.const.OPENPNE_USE_POINT_RANK})
@@ -239,6 +242,7 @@
 			<td class="cell16">({if $item.secure.pc_address})<a href="mailto:({$item.secure.pc_address|escape:"hexentity"})">({$item.secure.pc_address|t_truncate:"30"|escape:"hexentity"})</a>({else})&nbsp;({/if})</td>
 			<td class="cell17">({if $item.secure.ktai_address})<a href="mailto:({$item.secure.ktai_address})">({$item.secure.ktai_address|t_truncate:"30"})</a>({else})&nbsp;({/if})</td>
 			<td class="cell18">({if $item.secure.regist_address})({$item.secure.regist_address})({else})&nbsp;({/if})</td>
+			<td class="cell18">({if $item.secure.easy_access_id})({$item.secure.easy_access_id})({else})&nbsp;({/if})</td>
 			<td class="cell15">({$item.c_member_id})</td>
 		</tr>
 		({/foreach})
@@ -246,7 +250,7 @@
 </table>
 <div class="listControlBtm">
 <div class="msgTransmit">
-<p class="msgCheck"><img src="modules/admin/img/icn_msgtransmit.gif" alt="" /><a href="#" onClick="return checkAll();" onKeyPress="return checkAll();">全てをチェック</a>&nbsp;|&nbsp;<a href="#" onClick="return clearAll();" onKeyPress="return clearAll();">全てのチェックをはずす</a></p>
+<p class="msgCheck"><img src="modules/admin/img/icn_msgtransmit.gif" alt="dummy" /><a href="#" onClick="return checkAll();" onKeyPress="return checkAll();">全てをチェック</a>&nbsp;|&nbsp;<a href="#" onClick="return clearAll();" onKeyPress="return clearAll();">全てのチェックをはずす</a></p>
 
 <div class="msgTransmitBtn">
 <input type="submit" id="btnSelTransmit" value="選択したメンバーにメッセージ／Eメールを送る" />
@@ -280,7 +284,6 @@
 <input type="submit" id="btnSelectUser" value="メンバーを指定してメッセージ／Eメールを送る">
 </form>
 
-<br>
 <form action="./" method="post" name="formSendMessagesHistory">
 <input type="hidden" name="m" value="({$module_name})">
 <input type="hidden" name="a" value="page_({$hash_tbl->hash('send_messages_history_list')})">

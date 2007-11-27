@@ -21,15 +21,15 @@ class pc_do_h_config_ktai_send extends OpenPNE_Action
         // ----------
 
         if (!is_ktai_mail_address($ktai_address)) {
-            $msg = "携帯電話アドレスを記入してください";
+            $msg = "携帯メールアドレスを記入してください";
             $p = array('msg' => $msg);
             openpne_redirect('pc', 'page_h_config_ktai', $p);
         }
 
-        // 登録済みアドレスかどうかチェックする
+        // 登録済みメールアドレスかどうかチェックする
         if (($c_member_id = db_member_c_member_id4ktai_address2($ktai_address)) &&
             $c_member_id != $u) {
-            $msg = "入力されたアドレスは既に登録されています";
+            $msg = "入力されたメールアドレスは既に登録されています";
             $p = array('msg' => $msg);
             openpne_redirect('pc', 'page_h_config_ktai', $p);
         }

@@ -26,10 +26,17 @@ class OpenPNE_Smarty extends Smarty
     // extディレクトリ対応 SMARTY->display() ラッパー
     function ext_display($resource_name, $cache_id = null, $compile_id = null)
     {
+        $this->load_filter('output', 'pne_display_emoji');
+        $this->register_outputfilter('smarty_outputfilter_pne_display_emoji');
         // とりあえず携帯用にSJISのみ対応
         if ($this->output_charset == 'SJIS') {
             $this->register_outputfilter('smarty_outputfilter_convert_utf82sjis');
             $this->register_outputfilter('smarty_outputfilter_unescape_emoji');
+            require_once 'OpenPNE/KtaiUA.php';
+            $ktai = new OpenPNE_KtaiUA();
+            if ($ktai->is_docomo()) {
+                $this->register_outputfilter('smarty_outputfilter_add_font4docomo');
+            }
         }
         $this->sendContentType();
         $this->ext_fetch($resource_name, $cache_id, $compile_id, true);
@@ -95,7 +102,24 @@ function smarty_outputfilter_convert_utf82sjis($tpl_output, &$smarty)
 
 function smarty_outputfilter_unescape_emoji($tpl_output, &$smarty)
 {
-    return emoji_unescape($tpl_output, true);
+    $tpl_output = emoji_unescape($tpl_output, true);
+    $tpl_output = emoji_unescape($tpl_output, false);
+    return $tpl_output;
+}
+
+function smarty_outputfilter_add_font4docomo($tpl_output, &$smarty)
+{
+    // 開始タグは属性値が入る可能性があるので正規表現で置換
+    $pattern_start_tag = array('/(<body.*?>)/', '/(<td.*?>)/');
+    $replacement_start_tag = '$1<font size="2">';
+    $tpl_output = preg_replace($pattern_start_tag, $replacement_start_tag, $tpl_output);
+
+    // 終了タグは単純な置換
+    $pattern_end_tag = array('</body>', '</td>');
+    $replacement_end_tag = array('</font></body>', '</font></td>');
+    $tpl_output = str_replace($pattern_end_tag, $replacement_end_tag, $tpl_output);
+
+    return $tpl_output;
 }
 
 ?>

@@ -9,20 +9,20 @@ class admin_do_update_c_cmd extends OpenPNE_Action
 {
     function execute($requests)
     {
-        if (!$requests['name']) {
-            admin_client_redirect('list_c_cmd', 'CMD名称を入力して下さい');
+        $permit = 0;
+
+        if ($requests['using'] == 0) {
+            foreach ($requests['permit'] as $item) {
+                $permit += $item;
+            }
         }
 
-        $permit = 0;
-        foreach ($requests['permit'] as $item) {
-            $permit += $item;
-        }
         if ($requests['c_cmd_id']) {
             db_admin_update_c_cmd($requests['c_cmd_id'], $requests['name'], $permit);
             admin_client_redirect('list_c_cmd', 'CMDを編集しました');
         } else {
             db_admin_insert_c_cmd($requests['name'], $permit);
-            admin_client_redirect('list_c_cmd', 'CMDを追加しました');
+            admin_client_redirect('list_c_cmd', 'CMDを編集しました');
         }
 
     }

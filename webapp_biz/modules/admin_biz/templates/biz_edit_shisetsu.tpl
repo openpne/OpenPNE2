@@ -17,11 +17,11 @@
 	<td><input type="text" name="name" value="({$shisetsu.name})"></td>
 </tr>
 <tr>
-	<th>施設画像</th>
+	<th>施設写真</th>
 	<td>
 ({if $shisetsu.image_filename})
 <img src="img.php?filename=({$shisetsu.image_filename})&w=76&h=76"><br>
-この画像を削除<br>
+この写真を削除<br>
 ({/if})
 
 	<input type="file" size="40" name="image_filename"></td>

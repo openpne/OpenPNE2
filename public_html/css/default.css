@@ -10,13 +10,13 @@
 @import url(./main/font.css);/*フォント設定：フォント色、大きさ、フォントの設定全般*/
 
 /*ほぼ全ページ共通：ページ上部共通要素*/
-@import url(./main/inc_page_header.css?v=2.2.5);
+@import url(./main/inc_page_header.css);
 /*ほぼ全ページ共通：ページ上部検索部分*/
 @import url(./main/inc_search_box.css);
 /*ほぼ全ページ共通：ページ上部お知らせ部分*/
 @import url(./main/inc_info.css);
 /*ほぼ全ページ共通：各ページ共通メニューバー*/
-@import url(./main/inc_navi.css?v=2.2);
+@import url(./main/inc_navi.css);
 /*ほぼ全ページ共通：ページ下部共通要素*/
 @import url(./main/inc_page_footer.css);
 

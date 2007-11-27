@@ -57,12 +57,12 @@ class pc_do_o_public_invite extends OpenPNE_Action
             openpne_redirect('pc', 'page_o_public_invite', $p);
         }
         if (db_member_c_member_id4pc_address($pc_address)) {
-            $msg = 'そのアドレスは既に登録されています';
+            $msg = 'そのメールアドレスは既に登録されています';
             $p = array('msg' => $msg);
             openpne_redirect('pc', 'page_o_public_invite', $p);
         }
         if (!db_member_is_limit_domain4mail_address($pc_address)) {
-            $msg = 'そのアドレスでは登録できません';
+            $msg = 'そのメールアドレスでは登録できません';
             $p = array('msg' => $msg);
             openpne_redirect('pc', 'page_o_public_invite', $p);
         }

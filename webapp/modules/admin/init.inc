@@ -19,6 +19,9 @@ require_once $module_lib_dir . '/db_admin.php';
 require_once $module_lib_dir . '/etc_admin.php';
 require_once $module_lib_dir . '/hash_admin.php';
 
+// 管理画面向け smarty plugins
+$GLOBALS['SMARTY']['plugins_dir'][] = $module_lib_dir . '/smarty_plugins/';
+
 // デフォルトページ
 $GLOBALS['__Framework']['default_page'] = 'top';
 
@@ -44,6 +47,7 @@ $GLOBALS['_OPENPNE_ADMIN_AUTH_ACTIONS'] = array(
 'page_edit_c_navi',
 'page_edit_c_profile',
 'page_edit_c_sns_config',
+'page_edit_c_sns_config_ktai',
 'page_edit_category',
 'page_edit_entry_point',
 'page_edit_mail_send',
@@ -91,6 +95,7 @@ $GLOBALS['_OPENPNE_ADMIN_AUTH_ACTIONS'] = array(
 'do_logout',
 'do_update_c_action',
 'do_update_c_admin_config',
+'do_update_c_admin_config_use_ktai_logo',
 'do_update_c_admin_user_password',
 'do_update_c_api',
 'do_update_c_banner',
@@ -106,6 +111,7 @@ $GLOBALS['_OPENPNE_ADMIN_AUTH_ACTIONS'] = array(
 'do_update_c_rank',
 'do_update_c_siteadmin_css',
 'do_update_c_sns_config',
+'do_update_c_sns_config_ktai',
 'do_update_entry_point',
 'do_update_limit_domain',
 'do_update_mail_send',
@@ -113,7 +119,7 @@ $GLOBALS['_OPENPNE_ADMIN_AUTH_ACTIONS'] = array(
 'do_update_profile_sort_order',
 'do_update_side_banner_html',
 'do_update_skin_image',
-'do_update_skin_version',
+'do_update_skin_theme',
 'do_update_top_banner_html',
 ),
 
@@ -128,6 +134,7 @@ $GLOBALS['_OPENPNE_ADMIN_AUTH_ACTIONS'] = array(
 'page_access_analysis_target_diary',
 'page_access_analysis_target_member',
 'page_access_analysis_target_topic',
+'page_commu_list',
 'page_delete_c_banner_confirm',
 'page_delete_c_cmd_confirm',
 'page_delete_c_file_confirm',
@@ -135,7 +142,12 @@ $GLOBALS['_OPENPNE_ADMIN_AUTH_ACTIONS'] = array(
 'page_delete_c_image_confirm',
 'page_delete_c_profile',
 'page_delete_c_rank_confirm',
-'page_delete_kakikomi',
+'page_delete_diary_comment',
+'page_delete_diary',
+'page_delete_review',
+'page_delete_topic_comment',
+'page_delete_topic',
+'page_delete_commu',
 'page_diary_comment_list',
 'page_diary_list',
 'page_edit_admin_password',
@@ -147,6 +159,7 @@ $GLOBALS['_OPENPNE_ADMIN_AUTH_ACTIONS'] = array(
 'page_edit_c_navi',
 'page_edit_c_profile',
 'page_edit_c_sns_config',
+'page_edit_c_sns_config_ktai',
 'page_edit_category',
 'page_edit_entry_point',
 'page_edit_mail_send',
@@ -201,6 +214,7 @@ $GLOBALS['_OPENPNE_ADMIN_AUTH_ACTIONS'] = array(
 'do_delete_mail',
 'do_delete_skin_image',
 'do_edit_c_admin_info',
+'do_file_download',
 'do_import_c_member',
 'do_insert_c_banner',
 'do_insert_c_commu_category_parent',
@@ -217,6 +231,7 @@ $GLOBALS['_OPENPNE_ADMIN_AUTH_ACTIONS'] = array(
 'do_send_invites',
 'do_update_c_action',
 'do_update_c_admin_config',
+'do_update_c_admin_config_use_ktai_logo',
 'do_update_c_admin_user_password',
 'do_update_c_api',
 'do_update_c_banner',
@@ -232,6 +247,7 @@ $GLOBALS['_OPENPNE_ADMIN_AUTH_ACTIONS'] = array(
 'do_update_c_rank',
 'do_update_c_siteadmin_css',
 'do_update_c_sns_config',
+'do_update_c_sns_config_ktai',
 'do_update_entry_point',
 'do_update_limit_domain',
 'do_update_mail_send',
@@ -239,7 +255,7 @@ $GLOBALS['_OPENPNE_ADMIN_AUTH_ACTIONS'] = array(
 'do_update_profile_sort_order',
 'do_update_side_banner_html',
 'do_update_skin_image',
-'do_update_skin_version',
+'do_update_skin_theme',
 'do_update_top_banner_html',
 ),
 );

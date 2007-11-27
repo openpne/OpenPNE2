@@ -18,6 +18,10 @@ class ktai_page_f_message_send extends OpenPNE_Action
             openpne_redirect('ktai', 'page_h_access_block');
         }
 
+        if ($target_c_member_id == $u) {  // 自分にメッセージは送れない
+            handle_kengen_error();
+        }
+
         //ターゲットの情報
         $this->set("target_c_member", db_member_c_member4c_member_id_LIGHT($target_c_member_id));
 

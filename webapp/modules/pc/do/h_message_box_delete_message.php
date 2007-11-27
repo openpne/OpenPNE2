@@ -33,6 +33,10 @@ class pc_do_h_message_box_delete_message extends OpenPNE_Action
             if (!empty($requests['move']) ) {
                 //ごみ箱から移動
                 foreach ($c_message_id as $val) {
+                    if (!util_is_readable_message($u, $val)) {
+                        handle_kengen_error();
+                    }
+
                     $c_message = db_message_c_message4c_message_id($val);
                     if ($c_message['c_member_id_from'] != $u
                         && $c_message['c_member_id_to'] != $u) {
@@ -45,6 +49,10 @@ class pc_do_h_message_box_delete_message extends OpenPNE_Action
             } else {
                 //ごみ箱から完全削除　復元方法なし
                 foreach ($c_message_id as $val) {
+                    if (!util_is_readable_message($u, $val)) {
+                        handle_kengen_error();
+                    }
+
                     $c_message = db_message_c_message4c_message_id($val);
                     if ($c_message['c_member_id_from'] == $u) {
                         db_message_delete_c_message_from_trash($val);
@@ -60,6 +68,10 @@ class pc_do_h_message_box_delete_message extends OpenPNE_Action
         } else {
             // メッセージをごみ箱へ移動
             foreach ($c_message_id as $val) {
+                if (!util_is_readable_message($u, $val)) {
+                    handle_kengen_error();
+                }
+
                 $c_message = db_message_c_message4c_message_id($val);
                 if ($c_message['c_member_id_from'] != $u) {
                     if ($c_message['c_member_id_to'] != $u || !$c_message['is_send']) {

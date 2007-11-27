@@ -13,12 +13,11 @@ class biz_page_fh_biz_schedule_edit extends OpenPNE_Action
         if (!biz_isPermissionSchedule($u, $requests['schedule_id'])) {
             handle_kengen_error();
         }
-
         $form_val['subject'] = $requests['subject'];
         $form_val['body'] = $requests['body'];
 
         $this->set('banner', $requests['sc_bn']);
-
+        
         if ($requests['sc_title']) {
             $requests['title'] = $requests['sc_title'];
         }
@@ -134,6 +133,8 @@ class biz_page_fh_biz_schedule_edit extends OpenPNE_Action
 
         $this->set('title', $requests['title']);
         $this->set('value', $requests['value']);
+        
+        
         if (!is_null($requests['begin_time'])) {
             $this->set('begin_hour', date("G", strtotime($requests['begin_time'])));
         }
@@ -157,7 +158,7 @@ class biz_page_fh_biz_schedule_edit extends OpenPNE_Action
         if (!is_null($requests['finish_time'])) {
             $finish_min = date("i", strtotime($requests['finish_time']));
         }
-        if (substr($begin_min, 0, 1) == '0') {
+        if (substr($finish_min, 0, 1) == '0') {
             $finish_min = substr($finish_min, 1,1);
         }
 
@@ -170,10 +171,21 @@ class biz_page_fh_biz_schedule_edit extends OpenPNE_Action
         if ($requests['rep_type']) {
             $is_rep = true;
         } else {
-            $is_rep = false;
+            if ($requests['sc_rp']) {
+                $is_rep = true;
+            } else {
+                $is_rep = false;
+            }
         }
 
         $dayofweek = array();
+
+        if (empty($requests['rep_type'])) {
+            foreach ($requests['sc_rwk'] as $value) {
+                $rp_rule += 1 << $value;
+            }
+            $requests['rep_type'] = $rp_rule;
+        }
 
         for ($i = 0; $i <= 6; $i++) {
             if ($requests['rep_type'] & (1 << $i)) {
@@ -182,7 +194,6 @@ class biz_page_fh_biz_schedule_edit extends OpenPNE_Action
                 array_push($dayofweek, 0);
             }
         }
-
         $this->set('rep_type', $dayofweek);
         $this->set('is_rep', $is_rep);
 
@@ -195,6 +206,9 @@ class biz_page_fh_biz_schedule_edit extends OpenPNE_Action
         $daycount = $repeat_term / (24 * 60 * 60) / 6;
 
         $this->set('repeat_begin_date', $repeat_begin);
+        if (isset($requests["sc_rcount"])) {
+            $daycount = $requests["sc_rcount"];
+        }
         $this->set('repeat_term', ceil($daycount));
 
         $biz_group_count = biz_getGroupCount($target_id);

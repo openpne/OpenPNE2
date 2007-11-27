@@ -160,7 +160,7 @@ function db_bookmark_member_list($c_member_id, $limit = 0)
     $is_recurred = false;
 
     $sql = 'SELECT c_member_id_to AS c_member_id FROM c_bookmark' .
-            ' WHERE c_member_id_from = ? ORDER BY RAND()';
+            ' WHERE c_member_id_from = ?' . db_order_by_rand();
     $params = array(intval($c_member_id));
 
     if ($limit) {

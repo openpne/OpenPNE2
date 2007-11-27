@@ -257,7 +257,7 @@ function db_friend_c_friend_id_list4c_member_id($c_member_id, $limit)
     $is_recurred = false;
 
     $sql = 'SELECT c_member_id_to AS c_member_id FROM c_friend' .
-            ' WHERE c_member_id_from = ? ORDER BY RAND()';
+            ' WHERE c_member_id_from = ?' . db_order_by_rand();
     $params = array(intval($c_member_id));
     if ($limit) {
         $result = db_get_all_limit($sql, 0, $limit, $params);
@@ -339,7 +339,7 @@ function db_friend_c_friend_intro_list4c_member_id($c_member_id, $limit)
     $is_recurred = false;
 
     $sql = 'SELECT * FROM c_friend' .
-            ' WHERE c_member_id_to = ? AND intro <> \'\' ORDER BY RAND()';
+            ' WHERE c_member_id_to = ? AND intro <> \'\'' . db_order_by_rand();
     $params = array(intval($c_member_id));
     $list = db_get_all_limit($sql, 0, $limit, $params);
 
@@ -454,7 +454,7 @@ function db_friend_c_friend_list_random4c_member_id($c_member_id, $limit)
     $sql .= " FROM c_friend AS cf, c_member AS cm";
     $sql .= " WHERE cf.c_member_id_from = ?" .
             " AND cm.c_member_id=cf.c_member_id_to";
-    $sql .= " ORDER BY RAND()";
+    $sql .= db_order_by_rand();
     $params = array(intval($c_member_id));
     $c_friend_list = db_get_all_limit($sql, 0, $limit, $params);
 
@@ -539,7 +539,7 @@ function db_friend_friend_list4c_member_id($c_member_id,$page_size,$page)
             $prev = true;
         }
     }
-    return array($c_friend_list, $prev, $next);
+    return array($c_friend_list, $prev, $next, $total_num);
 }
 
 /**
@@ -597,7 +597,7 @@ function db_friend_ktai_c_friend_list_random4c_member_id($c_member_id)
     $sql .= " FROM c_friend AS cf, c_member AS cm";
     $sql .= " WHERE cf.c_member_id_from = ?".
             " AND cf.c_member_id_to = cm.c_member_id";
-    $sql .= " ORDER BY RAND()";
+    $sql .= db_order_by_rand();
     $params = array(intval($c_member_id));
     return db_get_all_limit($sql, 0, 50, $params);
 }

@@ -23,8 +23,13 @@ class ktai_do_c_event_mail extends OpenPNE_Action
 
         //--- 権限チェック
 
-        //イベントの管理者でないと送信できない
+        // イベントの管理者でないと送信できない
         if (!db_commu_is_c_event_admin($c_commu_topic_id, $u)) {
+            handle_kengen_error();
+        }
+
+        // 対象者に自分が含まれている
+        if (in_array($u, $c_member_ids)) {
             handle_kengen_error();
         }
         //---

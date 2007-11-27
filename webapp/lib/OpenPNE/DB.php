@@ -46,7 +46,7 @@ class OpenPNE_DB
         }
 
         $this->db->setFetchMode(DB_FETCHMODE_ASSOC);
-        $this->db->query('SET NAMES utf8');
+        $this->db->query('SET NAMES \'utf8\'');
     }
 
     function get_one($sql, $params = array())

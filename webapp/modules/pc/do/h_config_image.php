@@ -19,6 +19,9 @@ class pc_do_h_config_image extends OpenPNE_Action
                 $p = array('msg' => '画像は'.IMAGE_MAX_FILESIZE.'KB以内のGIF・JPEG・PNGにしてください');
                 openpne_redirect('pc', 'page_h_config_image', $p);
             }
+        } elseif ($upfile_obj['error'] === UPLOAD_ERR_NO_FILE) {
+            $p = array('msg' => '画像を指定してください');
+            openpne_redirect('pc', 'page_h_config_image', $p);
         }
 
         $c_member = db_member_c_member4c_member_id($u);
@@ -37,12 +40,14 @@ class pc_do_h_config_image extends OpenPNE_Action
         //画像をDBに格納
         $image_filename = image_insert_c_image($upfile_obj, "m_{$u}");
 
-        //c_memberのフィールドに登録
-        db_member_config_image_new($u, $image_filename, $img_num);
+        if ($image_filename) {
+            //c_memberのフィールドに登録
+            db_member_config_image_new($u, $image_filename, $img_num);
 
-        //画像1の時（最初の画像）メイン画像に
-        if ($img_num == 1) {
-            db_member_change_c_member_main_image($u, 1);
+            //画像1の時（最初の画像）メイン画像に
+            if ($img_num == 1) {
+                db_member_change_c_member_main_image($u, 1);
+            }
         }
 
         openpne_redirect('pc', 'page_h_config_image');

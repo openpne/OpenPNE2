@@ -1,25 +1,24 @@
 ({$inc_ktai_header|smarty:nodefaults})
 
-<center>メールアドレス登録</center>
-<hr>
+<table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_02})">
+<font color="#({$ktai_color_config.font_05})"><a name="top">ﾒｰﾙｱﾄﾞﾚｽ登録</a></font><br>
+</td></tr></table>
 
 ({if $msg})
-<font color="red">({$msg})</font><br>
+<font color="#({$ktai_color_config.font_09})">({$msg})</font><br>
 <br>
 ({/if})
-
-パスワードを入力してください。<br>
+ﾊﾟｽﾜｰﾄﾞを入力してください。<br>
 <br>
-
 ({t_form _attr='utn' m=ktai a=do_o_update_ktai_address})
 <input type="hidden" name="ses" value="({$ses})">
-携帯ﾒｰﾙｱﾄﾞﾚｽ<br>
+<font color="#({$ktai_color_config.font_06})">携帯ﾒｰﾙｱﾄﾞﾚｽ：</font><br>
 ({$pre.ktai_address})<br>
-ﾊﾟｽﾜｰﾄﾞ<br>
+<font color="#({$ktai_color_config.font_06})">ﾊﾟｽﾜｰﾄﾞ：</font><br>
 <input name="password" type="text" istyle="3" mode="alphabet" value=""><br>
-<input name="submit" value="送信" type="submit"><br>
+<center>
+<input name="submit" value="送信" type="submit">
+</center>
 </form>
-
-<hr>
 
 ({$inc_ktai_footer|smarty:nodefaults})

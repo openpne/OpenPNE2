@@ -4,18 +4,18 @@
 ({**ここから：メインコンテンツ(左)*******})
 ({***********************************})
 
-<img src="./skin/dummy.gif" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 <!-- *********************************************** -->
 <!-- ******ここから：メッセージボックス左メニュー****** -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:165px;margin:0px auto;" class="border_07">
 <tr>
-<td style="width:7px;" class="bg_10"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
-<td style="width:151px;" class="bg_10"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
-<td style="width:7px;" class="bg_10"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:7px;" class="bg_10"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+<td style="width:151px;" class="bg_10"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+<td style="width:7px;" class="bg_10"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 <tr>
-<td class="bg_10"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_10"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 <td class="bg_02" align="center">
 <!-- *ここから：メッセージボックス左メニュー＞内容* -->
 ({*ここから：header*})
@@ -30,7 +30,7 @@
 ({else})
 <td align="left" style="width:151px;padding:3px;" class="bg_09 border_10">
 ({/if})
-<img src="./skin/dummy.gif" style="width:14px;height:14px;" class="icon icon_1"><a href="({t_url m=pc a=page_h_message_box})&amp;box=inbox">受信メッセージ</a>
+<img src="./skin/dummy.gif" alt="dummy" style="width:14px;height:14px;" class="icon icon_1"><a href="({t_url m=pc a=page_h_message_box})&amp;box=inbox">受信メッセージ</a>
 </td>
 </tr>
 <tr>
@@ -39,7 +39,7 @@
 ({else})
 <td align="left" style="width:151px;padding:3px;border-top:none;" class="bg_09 border_10">
 ({/if})
-<img src="./skin/dummy.gif" style="width:14px;height:14px;" class="icon icon_1"><a href="({t_url m=pc a=page_h_message_box})&amp;box=outbox">送信済メッセージ</a>
+<img src="./skin/dummy.gif" alt="dummy" style="width:14px;height:14px;" class="icon icon_1"><a href="({t_url m=pc a=page_h_message_box})&amp;box=outbox">送信済メッセージ</a>
 </td>
 </tr>
 <tr>
@@ -48,7 +48,7 @@
 ({else})
 <td align="left" style="width:151px;padding:3px;border-top:none;" class="bg_09 border_10">
 ({/if})
-<img src="./skin/dummy.gif" style="width:14px;height:14px;" class="icon icon_1"><a href="({t_url m=pc a=page_h_message_box})&amp;box=savebox">下書き</a>
+<img src="./skin/dummy.gif" alt="dummy" style="width:14px;height:14px;" class="icon icon_1"><a href="({t_url m=pc a=page_h_message_box})&amp;box=savebox">下書き</a>
 </td>
 </tr>
 <tr>
@@ -57,7 +57,7 @@
 ({else})
 <td align="left" style="width:151px;padding:3px;border-top:none;" class="bg_09 border_10">
 ({/if})
-<img src="./skin/dummy.gif" style="width:14px;height:14px;" class="icon icon_1"><a href="({t_url m=pc a=page_h_message_box})&amp;box=trash">ごみ箱</a>
+<img src="./skin/dummy.gif" alt="dummy" style="width:14px;height:14px;" class="icon icon_1"><a href="({t_url m=pc a=page_h_message_box})&amp;box=trash">ごみ箱</a>
 </td>
 </tr>
 </table>
@@ -68,12 +68,12 @@
 ({*ここまで：footer*})
 <!-- *ここまで：メッセージボックス左メニュー＞＞内容* -->
 </td>
-<td class="bg_10"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_10"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 <tr>
-<td class="bg_10"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
-<td class="bg_10"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
-<td class="bg_10"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_10"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+<td class="bg_10"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+<td class="bg_10"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 </table>
 <!-- ******ここまで：メッセージボックス左メニュー****** -->
@@ -86,18 +86,18 @@
 ({**ここから：メインコンテンツ（右）**})
 ({********************************})
 
-<img src="./skin/dummy.gif" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 <!-- **************************** -->
 <!-- ******ここから：メッセージ表示欄****** -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:520px;margin:0px auto;" class="border_07">
 <tr>
-<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
-<td style="width:506px;" class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
-<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+<td style="width:506px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 <tr>
-<td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 <td class="bg_01" align="center">
 <!-- *ここから：メッセージ表示欄＞内容* -->
 ({*ここから：header*})
@@ -135,11 +135,11 @@
 <table border="0" cellspacing="0" cellpadding="0" style="width:504px;">
 ({*********})
 <tr>
-<td style="height:1px;" class="bg_01" colspan="6"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="height:1px;" class="bg_01" colspan="6"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({*********})
 <tr>
-<td style="width:1px;" class="bg_01" rowspan="5"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" rowspan="5"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 <td style="width:110px;" align="center" rowspan="5" class="bg_03">
 
 <div class="padding_s">
@@ -150,7 +150,7 @@
 </div>
 
 </td>
-<td style="width:1px;" class="bg_01" rowspan="5"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" rowspan="5"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 <td style="width:63px;" class="bg_05" align="right">
 
 <div class="padding_s">
@@ -177,11 +177,11 @@
 </div>
 
 </td>
-<td style="width:1px;" class="bg_01" rowspan="5"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01" rowspan="5"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({*********})
 <tr>
-<td style="height:1px;" class="bg_01" colspan="2"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="height:1px;" class="bg_01" colspan="2"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({*********})
 <tr>
@@ -206,7 +206,7 @@
 </tr>
 ({*********})
 <tr>
-<td style="height:1px;" class="bg_01" colspan="2"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="height:1px;" class="bg_01" colspan="2"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({*********})
 <tr>
@@ -231,7 +231,7 @@
 </tr>
 ({*********})
 <tr>
-<td style="height:1px;" class="bg_01" colspan="6"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="height:1px;" class="bg_01" colspan="6"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({*********})
 <tr>
@@ -301,18 +301,18 @@
 ({*ここまで：footer*})
 <!-- *ここまで：メッセージ表示欄＞＞内容* -->
 </td>
-<td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 <tr>
-<td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
-<td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
-<td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 </table>
 <!-- ******ここまで：メッセージ表示欄****** -->
 <!-- **************************** -->
 
-<img src="./skin/dummy.gif" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 ({********************************})
 ({**ここまで：メインコンテンツ（右）**})

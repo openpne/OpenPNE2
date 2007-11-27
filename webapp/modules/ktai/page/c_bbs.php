@@ -23,10 +23,22 @@ class ktai_page_c_bbs extends OpenPNE_Action
         $this->set("page", $page);
 
         //トピックのコメントリスト
-        $list = k_p_c_bbs_c_commu_topic_comment_list4c_c_commu_topic_id($target_c_commu_topic_id, $u, $page_size, $page);
-        $this->set("c_commu_topic_comment_list", $list[0]);
+        $list = db_commu_c_commu_topic_comment_list4c_c_commu_topic_id($target_c_commu_topic_id, $u, $page_size, $page);
+        $total_num = $list[3];
         $this->set("is_prev", $list[1]);
         $this->set("is_next", $list[2]);
+        $this->set('total_num', $total_num);
+
+        $pager = array();
+        // number ベースにする
+        $top = reset($list[0]);
+        $bottom = end($list[0]);
+        $pager['end'] = (int)$top['number'];
+        $pager['start'] = (int)$bottom['number'];
+        $this->set('pager', $pager);
+
+        $c_commu_topic_comment_list = array_reverse($list[0]);
+        $this->set("c_commu_topic_comment_list", $c_commu_topic_comment_list);
 
         //トピック名
         $this->set("c_commu_topic_name", k_p_c_bbs_c_commu_topic_name4c_commu_topic_id($target_c_commu_topic_id));

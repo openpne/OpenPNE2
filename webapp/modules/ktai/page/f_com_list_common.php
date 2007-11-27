@@ -33,6 +33,8 @@ class ktai_page_f_com_list_common extends OpenPNE_Action
         $this->set("page", $page);
         $this->set("is_prev", $pager[prev_page]);
         $this->set("is_next", $pager[next_page]);
+        $this->set('start_num', $pager['start_num']);
+        $this->set('end_num', $pager['end_num']);
 
         // 共通コミュニティ数
         $this->set("common_commu_count", $pager[total_num]);

@@ -15,6 +15,21 @@ class ktai_page_c_bbs_delete_c_commu_topic_comment_confirm extends OpenPNE_Actio
         $c_commu_topic_comment_id = $requests['c_commu_topic_comment_id'];
         // ----------
 
+        $c_topic = c_topic_detail_c_topic4c_commu_topic_id($target_c_commu_topic_id);
+        $c_commu_id = $c_topic['c_commu_id'];
+        $c_commu_topic_comment = do_c_bbs_c_commu_topic_comment4c_commu_topic_comment_id($c_commu_topic_comment_id);
+
+        //--- 権限チェック
+        $status = db_common_commu_status($u, $c_commu_id);
+        if (!$status['is_commu_admin']
+            && $c_commu_topic_comment['c_member_id'] != $u) {
+            handle_kengen_error();
+        }
+        //---
+
+        //トピック名
+        $this->set("c_commu_topic_name", $c_topic['name']);
+        $this->set('c_commu_topic_comment', $c_commu_topic_comment);
         $this->set("c_commu_topic_id", $target_c_commu_topic_id);
         $this->set("c_commu_topic_comment_id", $c_commu_topic_comment_id);
 

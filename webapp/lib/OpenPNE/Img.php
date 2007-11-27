@@ -258,6 +258,13 @@ class OpenPNE_Img
             $o_width  = $s_width * $h / $s_height;
             $o_height = $h;
         }
+        
+        if ($o_height < 1.) {
+            $o_height = 1;
+        }
+        if ($o_width < 1.) {
+            $o_width = 1;
+        }
 
         $output_gdimg = imagecreatetruecolor($o_width, $o_height);
         imagecopyresampled($output_gdimg, $source_gdimg,

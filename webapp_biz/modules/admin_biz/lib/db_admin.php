@@ -66,12 +66,6 @@ function db_admin_update_c_siteadmin($target, $body)
     return db_update('c_siteadmin', $data, $where);
 }
 
-function db_admin_update_c_sns_config($data)
-{
-    $where = array('c_sns_config_id' => 1);
-    return db_update('c_sns_config', $data, $where);
-}
-
 function db_admin_delete_c_profile_option($c_profile_option_id)
 {
     if (!$c_profile_option_id) return false;

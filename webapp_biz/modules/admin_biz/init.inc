@@ -35,7 +35,7 @@ $GLOBALS['__Framework']['default_type'] = 'page';
 $hash_tbl =& AdminHashTable::singleton();
 $action = $hash_tbl->action($action, $type);
 
-//allでのみアクセス出来るページ
+//allでのみアクセスできるページ
 $GLOBALS['_OPENPNE_ADMIN_AUTH_ACTIONS'] = array(
 'page_insert_c_admin_user',
 'page_list_c_admin_user',

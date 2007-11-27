@@ -20,10 +20,8 @@ class ktai_page_h_message extends OpenPNE_Action
         $c_message = db_message_c_message4c_message_id($target_c_message_id);
 
         //--- 権限チェック
-        if ($c_message['c_member_id_from'] != $u) {
-            if ($c_message['c_member_id_to'] != $u || !$c_message['is_send']) {
-                handle_kengen_error();
-            }
+        if (!util_is_readable_message($u, $target_c_message_id)) {
+            handle_kengen_error();
         }
         //---
 

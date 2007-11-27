@@ -149,6 +149,16 @@ img.dummy {
 	display: block ;
 }
 
+img.dot {
+	height: 1px;
+	width: 1px;
+}
+
+img.square {
+	height: 7px;
+	width: 7px;
+}
+
 /*その他*/
 
 .w_screen {

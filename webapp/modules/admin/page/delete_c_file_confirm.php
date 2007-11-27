@@ -16,6 +16,9 @@ class admin_page_delete_c_file_confirm extends OpenPNE_Action
         $v = array();
 
         $v['c_file'] = db_file_c_file4c_file_id($requests['target_c_file_id']);
+        if (!$v['c_file']) {
+            admin_client_redirect('top', '指定されたファイルは存在しません');
+        }
 
         $this->set($v);
         return 'success';

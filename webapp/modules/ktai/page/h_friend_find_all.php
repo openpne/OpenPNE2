@@ -24,7 +24,7 @@ class ktai_page_h_friend_find_all extends OpenPNE_Action
         }
         $this->set('profiles', $profiles);
 
-        $limit = 20;
+        $limit = 10;
         $this->set("page", $page);
 
         //検索デフォルト値表示用

@@ -543,15 +543,15 @@ function util_is_regist_mail_address($mail_address, $c_member_id = 0)
     if (!db_common_is_mailaddress($mail_address)) {
         return false;
     }
-    
-    if (db_member_is_sns_join4mail_address($mail_address, $c_member_id)) {
-        return false;
-    }
-    
+
     if (!db_member_is_limit_domain4mail_address($mail_address)) {
         return false;
     }
-    
+
+    if (db_member_is_sns_join4mail_address($mail_address, $c_member_id)) {
+        return false;
+    }
+
     return true;
 }
 
@@ -592,4 +592,193 @@ function util_check_file_extention($filename)
     return (!$list || in_array($extension, $list));
 }
 
+/**
+ * 参照可能なメッセージかどうか
+ * 
+ * ・指定メンバーが送信者で、完全削除済でない
+ * ・指定メンバーが受信者で、送信済であり完全削除済でない
+ * 
+ * @param int $c_member_id
+ * @param int $c_message_id
+ * @return bool
+ */
+function util_is_readable_message($c_member_id, $c_message_id)
+{
+    $c_message = db_message_c_message4c_message_id($c_message_id);
+
+    if ($c_message['c_member_id_from'] == $c_member_id) {  // 自分が送信者
+        if (!$c_message['is_kanzen_sakujo_from']) {  // 完全削除済でない
+            return true;
+        }
+    } elseif ($c_message['c_member_id_to'] == $c_member_id)  { // 自分が受信者
+        if ($c_message['is_send'] && !$c_message['is_kanzen_sakujo_to']) {  // 送信済であり完全削除済でない
+            return true;
+        }
+    }
+
+    return false;
+}
+
+/**
+ * DB内配色設定の未設定項目をデフォルトの配色設定で埋める
+ *
+ * @param array $c_config_color    DB内配色設定
+ * @param string $mode
+ * @return array
+ */
+function util_apply_color_default2current($c_config_color, $mode = 'pc')
+{
+    if ($mode == 'ktai') {
+        $default_color['color_23'] = $c_config_color['color_1'];
+        $default_color['color_24'] = $c_config_color['color_14'];
+        $default_color['color_25'] = $c_config_color['color_14'];
+        $default_color['color_26'] = $c_config_color['color_14'];
+        $default_color['color_27'] = $c_config_color['color_3'];
+        $default_color['color_28'] = $c_config_color['color_14'];
+    } else {
+        $default_color['color_19'] = $c_config_color['color_13'];
+    }
+
+    $c_config_color = array_map('trim', $c_config_color);
+    $empty_keys = array_keys($c_config_color, '');
+    foreach ($empty_keys as $key) {
+        if (array_key_exists($key, $default_color)) {
+            $c_config_color[$key] = $default_color[$key];
+        }
+    }
+
+    return $c_config_color;
+}
+
+function util_get_color_config()
+{
+    $c_config_color = db_etc_c_config_color();
+    $c_config_color = util_apply_color_default2current($c_config_color);
+
+    $color_config = array(
+        'border_01' => $c_config_color['color_1'],
+        'border_07' => $c_config_color['color_2'],
+        'border_10' => $c_config_color['color_3'],
+        'bg_00' => $c_config_color['color_4'],
+        'bg_01' => $c_config_color['color_5'],
+        'bg_02' => $c_config_color['color_6'],
+        'bg_03' => $c_config_color['color_7'],
+        'bg_04' => $c_config_color['color_8'],
+        'bg_05' => $c_config_color['color_9'],
+        'bg_06' => $c_config_color['color_10'],
+        'bg_07' => $c_config_color['color_11'],
+        'bg_08' => $c_config_color['color_12'],
+        'bg_09' => $c_config_color['color_13'],
+        'bg_10' => $c_config_color['color_14'],
+        'bg_11' => $c_config_color['color_15'],
+        'bg_12' => $c_config_color['color_16'],
+        'bg_13' => $c_config_color['color_17'],
+        'bg_14' => $c_config_color['color_18'],
+        'color_19' => $c_config_color['color_19'],
+    );
+    return $color_config;
+}
+
+function util_get_color_config_ktai()
+{
+    $c_config_color = db_etc_c_config_color_ktai();
+    $c_config_color = util_apply_color_default2current($c_config_color, 'ktai');
+
+    $color_config = array(
+        'bg_01' => $c_config_color['color_1'],
+        'bg_02' => $c_config_color['color_2'],
+        'bg_03' => $c_config_color['color_3'],
+        'bg_04' => $c_config_color['color_4'],
+        'bg_05' => $c_config_color['color_5'],
+        'bg_06' => $c_config_color['color_6'],
+        'bg_07' => $c_config_color['color_7'],
+        'bg_08' => $c_config_color['color_8'],
+        'bg_09' => $c_config_color['color_9'],
+        'bg_10' => $c_config_color['color_10'],
+        'border_01' => $c_config_color['color_11'],
+        'border_02' => $c_config_color['color_12'],
+        'border_03' => $c_config_color['color_13'],
+        'font_01' => $c_config_color['color_14'],
+        'font_02' => $c_config_color['color_15'],
+        'font_03' => $c_config_color['color_23'],
+        'font_04' => $c_config_color['color_17'],
+        'font_05' => $c_config_color['color_18'],
+        'font_06' => $c_config_color['color_19'],
+        'font_07' => $c_config_color['color_20'],
+        'font_08' => $c_config_color['color_21'],
+        'font_09' => $c_config_color['color_22'],
+        'color_24' => $c_config_color['color_24'],
+        'color_25' => $c_config_color['color_25'],
+        'color_26' => $c_config_color['color_26'],
+        'color_27' => $c_config_color['color_27'],
+        'color_28' => $c_config_color['color_28'],
+    );
+    return $color_config;
+}
+
+/**
+ * メンバー登録を行う
+ * 
+ * @param array $c_member
+ * @param array $c_member_secure
+ * @param array $c_member_profile_list
+ * @param bool $is_password_encrypted    パスワードが既に暗号化済みかどうか
+ * @return int
+ */
+function util_regist_c_member($c_member, $c_member_secure, $c_member_profile_list = array(), $is_password_encrypted = false)
+{
+    // メール受信設定をデフォルト値に
+    $c_member['is_receive_mail'] = 1;
+    $c_member['is_receive_ktai_mail'] = 1;
+    $c_member['is_receive_daily_news'] = 1;
+
+    // メンバー登録
+    $u = db_member_insert_c_member($c_member, $c_member_secure, $is_password_encrypted);
+    if ($u === false) {  // メンバー登録に失敗した場合
+        return false;
+    }
+
+    if (OPENPNE_USE_POINT_RANK) {
+        //入会者にポイント加算
+        $point = db_action_get_point4c_action_id(1);
+        db_point_add_point($u, $point);
+
+        //メンバー招待をした人にポイント加算
+        $point = db_action_get_point4c_action_id(7);
+        db_point_add_point($c_member['c_member_id_invite'], $point);
+    }
+
+    // c_member_profile
+    db_member_update_c_member_profile($u, $c_member_profile_list);
+
+    // 招待者とフレンドリンク
+    db_friend_insert_c_friend($u, $c_member['c_member_id_invite']);
+
+    //管理画面で指定したコミュニティに強制参加
+    $c_commu_id_list = db_commu_regist_join_list();
+    foreach ($c_commu_id_list as $c_commu_id) {
+        db_commu_join_c_commu($c_commu_id, $u);
+    }
+
+    return $u;
+}
+
+function util_get_preset_color_list($dir = 'pc')
+{
+    $color_list_dir = OPENPNE_WEBAPP_DIR . '/lib/color/' . $dir . '/';
+    $color_list = array();
+
+    if ($dh = opendir($color_list_dir)) {
+        while (($file = readdir($dh)) !== false) {
+            if (array_pop(explode('.', $file)) == 'ini') {
+                $color_list[$file] = parse_ini_file($color_list_dir . $file);
+            }
+        }
+        closedir($dh);
+    }
+
+    ksort($color_list);
+
+    return array_values($color_list);
+}
 ?>

@@ -18,22 +18,76 @@ function db_admin_user_exists()
 
 /**
  * 配色設定を取得
+ *
+ * @param int $c_config_color_id
+ * @return array
  */
-function db_select_c_sns_config($target_id = 1)
+function db_etc_c_config_color($c_config_color_id = 1)
 {
-    $sql = 'SELECT * FROM c_sns_config WHERE c_sns_config_id = ?';
-    $params = array(intval($target_id));
+    $sql = 'SELECT * FROM c_config_color WHERE c_config_color_id = ?';
+    $params = array(intval($c_config_color_id));
     return db_get_row($sql, $params);
 }
 
 /**
  * 配色設定を全て取得
  */
-function db_select_c_sns_config_all()
+function db_etc_c_config_color_list()
 {
-    $sql = 'SELECT * FROM c_sns_config';
-    return db_get_all($sql);
+    $current = db_etc_c_config_color();
+    $preset = util_get_preset_color_list();
+    return array_merge(array($current), $preset);
 }
+
+/**
+ * 配色設定を変更
+ *
+ * @param array $color_list
+ * @param int $c_config_color_id
+ * @return bool
+ */
+function db_update_c_config_color($color_list, $c_config_color_id = 1)
+{
+    $where = array('c_config_color_id' => intval($c_config_color_id));
+    return db_update('c_config_color', $color_list, $where);
+}
+
+/**
+ * 携帯版配色設定を取得
+ *
+ * @param int $c_config_color_ktai_id
+ * @return array
+ */
+function db_etc_c_config_color_ktai($c_config_color_ktai_id = 1)
+{
+    $sql = 'SELECT * FROM c_config_color_ktai WHERE c_config_color_ktai_id = ?';
+    $params = array(intval($c_config_color_ktai_id));
+    return db_get_row($sql, $params);
+}
+
+/**
+ * 携帯版配色設定を全て取得
+ */
+function db_etc_c_config_color_ktai_list()
+{
+    $current = db_etc_c_config_color_ktai();
+    $preset = util_get_preset_color_list('ktai');
+    return array_merge(array($current), $preset);
+}
+
+/**
+ * 携帯版配色設定を変更
+ *
+ * @param array $color_list
+ * @param int $c_config_color_ktai_id
+ * @return bool
+ */
+function db_update_c_config_color_ktai($color_list, $c_config_color_ktai_id = 1)
+{
+    $where = array('c_config_color_ktai_id' => intval($c_config_color_ktai_id));
+    return db_update('c_config_color_ktai', $color_list, $where);
+}
+
 
 /**
  * siteadminを取得
@@ -321,13 +375,6 @@ function db_get_c_navi($navi_type = 'h')
     return db_get_all($sql, $params);
 }
 
-?>
-<?php
-/**
- * @copyright 2005-2007 OpenPNE Project
- * @license   http://www.php.net/license/3_01.txt PHP License 3.01
- */
-
 //--- 退会
 
 /**
@@ -399,23 +446,37 @@ function db_common_delete_c_member($c_member_id)
     $sql = 'DELETE FROM c_commu_member WHERE c_member_id = ?';
     db_query($sql, $single);
 
+    // c_commu.c_member_id_sub_admin
+    $data = array('c_member_id_sub_admin' => 0);
+    $where = array('c_member_id_sub_admin' => intval($c_member_id));
+    db_update('c_commu', $data, $where);
+
     // c_commu (画像)
     $sql = 'SELECT * FROM c_commu WHERE c_member_id_admin = ?';
-    $c_commu_list = db_get_all($sql, $single);
+    $c_commu_list = db_get_all($sql, $single, 'main');
 
     foreach ($c_commu_list as $c_commu) {
-        if (!_db_count_c_commu_member_list4c_commu_id($c_commu['c_commu_id'])) {
+        $sql = 'SELECT COUNT(*) FROM c_commu_member WHERE c_commu_id = ?';
+        $count = db_get_one($sql, array(intval($c_commu['c_commu_id'])), 'main');
+        if (!$count) {
             // コミュニティ削除
             db_common_delete_c_commu($c_commu['c_commu_id']);
         } else {
             // 管理者交代
-            // 参加日時が一番古い人
-            $sql = 'SELECT c_member_id FROM c_commu_member WHERE c_commu_id = ?'.
-                ' ORDER BY r_datetime';
-            $params = array(intval($c_commu['c_commu_id']));
-            $new_admin_id = db_get_one($sql, $params);
+            //     副管理者がいる場合：副管理者に交代
+            //     副管理者がいない場合：参加日時が一番古い人に交代
+            $new_admin_id = 0;
+            if (empty($c_commu['c_member_id_sub_admin'])) {
+                $sql = 'SELECT c_member_id FROM c_commu_member WHERE c_commu_id = ?'.
+                    ' ORDER BY r_datetime';
+                $params = array(intval($c_commu['c_commu_id']));
+                $new_admin_id = db_get_one($sql, $params, 'main');
+            } else {
+                $new_admin_id = $c_commu['c_member_id_sub_admin'];
+            }
+            do_common_send_mail_c_commu_admin_change(intval($new_admin_id), intval($c_commu['c_commu_id']));
 
-            $data = array('c_member_id_admin' => intval($new_admin_id));
+            $data = array('c_member_id_admin' => intval($new_admin_id), 'c_member_id_sub_admin' => 0);
             $where = array('c_commu_id' => intval($c_commu['c_commu_id']));
             db_update('c_commu', $data, $where);
         }
@@ -441,7 +502,7 @@ function db_common_delete_c_member($c_member_id)
     ///日記関連
     // c_diary (画像)
     $sql = 'SELECT * FROM c_diary WHERE c_member_id = ?';
-    $c_diary_list = db_get_all($sql, $single);
+    $c_diary_list = db_get_all($sql, $single, 'main');
     foreach ($c_diary_list as $c_diary) {
         image_data_delete($c_diary['image_filename_1']);
         image_data_delete($c_diary['image_filename_2']);
@@ -450,7 +511,7 @@ function db_common_delete_c_member($c_member_id)
         // c_diary_comment
         $sql = 'SELECT * FROM c_diary_comment WHERE c_diary_id = ?';
         $params = array(intval($c_diary['c_diary_id']));
-        $c_diary_comment_list = db_get_all($sql, $params);
+        $c_diary_comment_list = db_get_all($sql, $params, 'main');
         foreach ($c_diary_comment_list as $c_diary_comment) {
             image_data_delete($c_diary_comment['image_filename_1']);
             image_data_delete($c_diary_comment['image_filename_2']);
@@ -467,7 +528,7 @@ function db_common_delete_c_member($c_member_id)
     ///メンバー関連
     // c_member_pre
     $sql = 'SELECT * FROM c_member_pre WHERE c_member_id_invite = ?';
-    $c_member_pre_list = db_get_all($sql, $single);
+    $c_member_pre_list = db_get_all($sql, $single, 'main');
     foreach ($c_member_pre_list as $c_member_pre) {
         // c_member_pre_profile
         $sql = 'DELETE FROM c_member_pre_profile WHERE c_member_pre_id = ?';
@@ -488,7 +549,7 @@ function db_common_delete_c_member($c_member_id)
     // c_member (画像)
     $sql = 'SELECT image_filename_1, image_filename_2, image_filename_3' .
         ' FROM c_member WHERE c_member_id = ?';
-    $c_member = db_get_row($sql, $single);
+    $c_member = db_get_row($sql, $single, 'main');
     image_data_delete($c_member['image_filename_1']);
     image_data_delete($c_member['image_filename_2']);
     image_data_delete($c_member['image_filename_3']);
@@ -662,24 +723,45 @@ function db_delete_c_skin_filename($skinname)
 }
 
 /**
- * デフォルト画像をマスター画像からコピー(デフォルトに戻すの一環)
+ * スキン画像全削除（デフォルトに戻す）
  */
-function db_master_copy_c_skin_filename($skinname)
+function db_delete_all_c_skin_filename($theme = 'default')
 {
+    $list = db_get_c_skin_filename_list();
+    foreach ($list as $filename) {
+        db_image_data_delete($filename);
+    }
+    $sql = 'DELETE FROM c_skin_filename';
+    db_query($sql);
 
-    $data = array(
-        'skinname' => strval($skinname),
-        'filename' => 'skin_'.strval($skinname).'.gif',
-    );
-    db_insert('c_skin_filename', $data);
+    db_insert_c_image4skin_filename('no_image', $theme);
+    db_insert_c_image4skin_filename('no_logo', $theme);
+    db_insert_c_image4skin_filename('no_logo_small', $theme);
+}
 
-    $sql = "INSERT INTO c_image (SELECT '', ?, bin, ?, type FROM c_image WHERE filename = ?)";
-    $params = array(
-        'skin_'.strval($skinname).'.gif',
-        db_now(),
-        'skin_'.strval($skinname).'_master.gif',
-    );
-    db_query($sql, $params);
+/**
+ * スキンファイルから画像をDB登録（no_imageをデフォルトに戻す）
+ */
+function db_insert_c_image4skin_filename($skinname, $skintheme = OPENPNE_SKIN_THEME)
+{
+    if (!$skinname || preg_match('/[^\.\w]/', $skinname)) {
+        return false;
+    }
+    $ext = 'gif';
+    $filename = $skinname . '.' . $ext;
+
+    if (!$skintheme || preg_match('/[^\.\w]/', $skintheme)) {
+        $skintheme = 'default';
+    }
+
+    $path = sprintf('%s/skin/%s/img/%s', OPENPNE_PUBLIC_HTML_DIR, $skintheme, $filename);
+    if (!is_readable($path)) {
+        $path = sprintf('%s/skin/default/img/%s', OPENPNE_PUBLIC_HTML_DIR, $filename);
+    }
+
+    $filename = sprintf('skin_%s_%s.%s', $skinname, time(), $ext);
+    $res = db_image_insert_c_image2($filename, $path);
+    return db_replace_c_skin_filename($skinname, $filename);
 }
 
 //---
@@ -741,6 +823,10 @@ function db_is_use_cmd($src, $type)
     $sql = 'SELECT * FROM c_cmd WHERE name = ?';
     $params = array(strval($src));
     $c_cmd = db_get_row($sql, $params);
+
+    if (empty($c_cmd)) {
+        return true;
+    }
 
     $permit_list = db_get_permit_list();
 

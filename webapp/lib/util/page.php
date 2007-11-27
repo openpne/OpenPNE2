@@ -58,54 +58,6 @@ function fetch_inc_navi($type, $target_id = null)
 }
 
 /**
- * inc_html_header.tpl
- */
-function fetch_inc_html_header()
-{
-    $inc_smarty = new OpenPNE_Smarty($GLOBALS['SMARTY']);
-    $inc_smarty->templates_dir = 'pc/templates';
-
-    if (SNS_TITLE) {
-        $inc_smarty->assign('title', SNS_TITLE);
-    } else {
-        $inc_smarty->assign('title', SNS_NAME);
-    }
-
-    $inc_smarty->assign('inc_html_head', p_common_c_siteadmin4target_pagename('inc_html_head'));
-    $inc_smarty->assign('inc_custom_css', p_common_c_siteadmin4target_pagename('inc_custom_css'));
-
-    $c_sns_config = db_select_c_sns_config();
-    $inc_smarty->assign('border_00', $c_sns_config['border_00']);
-    $inc_smarty->assign('border_01', $c_sns_config['border_01']);
-    $inc_smarty->assign('border_02', $c_sns_config['border_02']);
-    $inc_smarty->assign('border_03', $c_sns_config['border_03']);
-    $inc_smarty->assign('border_04', $c_sns_config['border_04']);
-    $inc_smarty->assign('border_05', $c_sns_config['border_05']);
-    $inc_smarty->assign('border_06', $c_sns_config['border_06']);
-    $inc_smarty->assign('border_07', $c_sns_config['border_07']);
-    $inc_smarty->assign('border_08', $c_sns_config['border_08']);
-    $inc_smarty->assign('border_09', $c_sns_config['border_09']);
-    $inc_smarty->assign('border_10', $c_sns_config['border_10']);
-
-    $inc_smarty->assign('bg_00', $c_sns_config['bg_00']);
-    $inc_smarty->assign('bg_01', $c_sns_config['bg_01']);
-    $inc_smarty->assign('bg_02', $c_sns_config['bg_02']);
-    $inc_smarty->assign('bg_03', $c_sns_config['bg_03']);
-    $inc_smarty->assign('bg_04', $c_sns_config['bg_04']);
-    $inc_smarty->assign('bg_05', $c_sns_config['bg_05']);
-    $inc_smarty->assign('bg_06', $c_sns_config['bg_06']);
-    $inc_smarty->assign('bg_07', $c_sns_config['bg_07']);
-    $inc_smarty->assign('bg_08', $c_sns_config['bg_08']);
-    $inc_smarty->assign('bg_09', $c_sns_config['bg_09']);
-    $inc_smarty->assign('bg_10', $c_sns_config['bg_10']);
-    $inc_smarty->assign('bg_11', $c_sns_config['bg_11']);
-    $inc_smarty->assign('bg_12', $c_sns_config['bg_12']);
-    $inc_smarty->assign('bg_13', $c_sns_config['bg_13']);
-
-    return $inc_smarty->ext_fetch('inc_html_header.tpl');
-}
-
-/**
  * inc_page_header.tpl
  */
 function fetch_inc_page_header($type = null)

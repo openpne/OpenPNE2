@@ -17,7 +17,7 @@ function db_banner_get_top_banner($is_logined = false)
     } else {
         $sql .= ' AND is_hidden_before = 0';
     }
-    $sql .= ' ORDER BY RAND()';
+    $sql .= db_order_by_rand();
 
     return db_get_row($sql);
 }
@@ -35,7 +35,7 @@ function db_banner_get_side_banner($is_logined = false)
     } else {
         $sql .= ' AND is_hidden_before = 0';
     }
-    $sql .= ' ORDER BY RAND()';
+    $sql .= db_order_by_rand();
 
     return db_get_row($sql);
 }

@@ -38,6 +38,11 @@ class ktai_page_fh_com_list extends OpenPNE_Action
         $this->set("is_prev", $list[1]);
         $this->set("is_next", $list[2]);
 
+        $pager = array();
+        $pager['start'] = ($page_size * ($page - 1)) + 1;
+        $pager['end'] = $pager['start'] + count($list[0]) - 1;
+        $this->set('pager', $pager);
+
         // 参加コミュニティ数
         $this->set("count_commus", $list[3]);
 

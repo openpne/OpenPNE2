@@ -99,6 +99,12 @@ class biz_page_fh_biz_schedule_view extends OpenPNE_Action
             }
             $this->set('repeat_begin_date', $repeat_begin);
             $this->set('repeat_term', ceil($daycount));
+        } else{
+            // 繰り返さない予定の場合、日数をセット
+            $term = strtotime($list["finish_date"]) - strtotime($list["begin_date"]);
+            
+            $daycount = ceil($term / (24 * 60 * 60)) + 1;
+            $this->set('sc_bn', $daycount);
         }
 
         if ($list['rep_type']) {

@@ -32,6 +32,13 @@ class ktai_page_c_event_member_list extends OpenPNE_Action
         $this->set('is_prev', $list[1]);
         $this->set('is_next', $list[2]);
 
+        $pager = array();
+        $pager['start'] = ($page_size * ($page - 1)) + 1;
+        $pager['end'] = $pager['start'] + count($list[0]) - 1;
+        $this->set('pager', $pager);
+
+        // イベント
+        $this->set('c_event', $c_topic);
         //コミュニティID
         $this->set("c_commu_id", $c_commu_id);
         //イベントID

@@ -55,6 +55,9 @@ class pc_page_o_tologin extends OpenPNE_Action
         case 'regist_mail':
             $msg = 'メールアドレスを登録しました。';
             break;
+        case 'blacklist':
+            $msg = 'ログインできませんでした。';
+            break;
         }
         $this->set('msg', $msg);
 

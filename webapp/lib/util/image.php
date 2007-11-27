@@ -86,6 +86,13 @@ function t_check_image($file)
         $width = $width * (IMAGE_MAX_HEIGHT / $height);
         $height = IMAGE_MAX_HEIGHT;
     }
+    if ($height < 1.) {
+        $height = 1;
+    }
+    if ($width < 1.) {
+        $width = 1;
+    }
+    
     if ($need_resize) {
         resize_image($type, $file['tmp_name'], $file['tmp_name'], $original_width, $original_height,$width, $height );
     }
@@ -120,21 +127,21 @@ function resize_image( $type, $src_filename, $dst_filename, $original_width, $or
             //透過GIFの場合
             if($transparentIndex >= 0){
                 $dst_img = imagecreate ( $new_width, $new_height );
-                $transparentColor=imagecolorsforindex($src_img, $transparentIndex); 
-                $transparent=imagecolorallocate($dst_img, $transparentColor['red'], $transparentColor['green'], $transparentColor['blue']); 
-                imagecolortransparent($dst_img, $transparent); 
+                $transparentColor=imagecolorsforindex($src_img, $transparentIndex);
+                $transparent=imagecolorallocate($dst_img, $transparentColor['red'], $transparentColor['green'], $transparentColor['blue']);
+                imagecolortransparent($dst_img, $transparent);
                 imagecopyresized ($dst_img,$src_img,0,0,0,0,$new_width,$new_height,$original_width,$original_height);
             }
             //透過GIFで無い場合
             else{
                 $dst_img = imagecreatetruecolor( $new_width, $new_height );
                 imagecopyresampled ($dst_img,$src_img,0,0,0,0,$new_width,$new_height,$original_width,$original_height);
-                imagetruecolortopalette($dst_img, true, 256); 
+                imagetruecolortopalette($dst_img, true, 256);
             }
-            imagegif ( $dst_img, $dst_filename ); 
+            imagegif ( $dst_img, $dst_filename );
             break;
         case IMAGETYPE_JPEG:
-               $src_img = imagecreatefromjpeg ( $src_filename ); 
+               $src_img = imagecreatefromjpeg ( $src_filename );
             $dst_img = imagecreatetruecolor ( $new_width, $new_height );
             imagecopyresampled ($dst_img,$src_img,0,0,0,0,$new_width,$new_height,$original_width,$original_height);
             imagejpeg ( $dst_img, $dst_filename );
@@ -152,28 +159,28 @@ function resize_image( $type, $src_filename, $dst_filename, $original_width, $or
             else{
                 //透過PNGの場合
                 if($transparentIndex >= 0){
-                    $dst_img = imagecreate ( $new_width, $new_height );
-                    $transparentColor=imagecolorsforindex($src_img, $transparentIndex); 
-                    $transparent=imagecolorallocate($dst_img, $transparentColor['red'], $transparentColor['green'], $transparentColor['blue']); 
-                    imagecolortransparent($dst_img, $transparent); 
+                    $dst_img = imagecreate ( $new_width, $new_height);
+                    $transparentColor=imagecolorsforindex($src_img, $transparentIndex);
+                    $transparent=imagecolorallocate($dst_img, $transparentColor['red'], $transparentColor['green'], $transparentColor['blue']);
+                    imagecolortransparent($dst_img, $transparent);
                     imagecopyresized ($dst_img,$src_img,0,0,0,0,$new_width,$new_height,$original_width,$original_height);
                 }
                 //透過PNGで無い場合
                     else{
                         $dst_img = imagecreatetruecolor( $new_width, $new_height );
                     imagecopyresampled ($dst_img,$src_img,0,0,0,0,$new_width,$new_height,$original_width,$original_height);
-                    imagetruecolortopalette($dst_img, true, 256); 
+                    imagetruecolortopalette($dst_img, true, 256);
                 }
             }
-            imagepng ( $dst_img, $dst_filename );
+            imagepng($dst_img, $dst_filename);
             break;
         default:
             break;
 
     }
     //リリースを解放
-    imagedestroy ( $dst_img );
-    imagedestroy ( $src_img );
+    imagedestroy($dst_img);
+    imagedestroy($src_img);
 }
 
 /**

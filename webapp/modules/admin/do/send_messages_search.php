@@ -7,19 +7,17 @@
 // メッセージ一括送信
 class admin_do_send_messages_search extends OpenPNE_Action
 {
+    function handleError($errors)
+    {
+        $_REQUEST['msg'] = array_shift($errors);
+        openpne_forward(ADMIN_MODULE_NAME, 'page', 'send_messages_search');
+        exit;
+    }
+    
     function execute($requests)
     {
         $module_name = ADMIN_MODULE_NAME;
         $send_type = $requests['send_type'];
-
-        if (empty($requests['subject'])) {
-            openpne_forward($module_name, 'page', 'send_messages_search');
-            exit;
-        }
-        if (empty($requests['body'])) {
-            openpne_forward($module_name, 'page', 'send_messages_search');
-            exit;
-        }
 
         $cond_list = validate_cond($_REQUEST);
 
@@ -41,7 +39,7 @@ class admin_do_send_messages_search extends OpenPNE_Action
                     do_admin_send_message($c_member_id_from, $c_member_id, $requests['subject'], $requests['body']);
                 break;
                 default:
-                    openpne_forward($module_name, 'page', 'send_messages');
+                    openpne_forward($module_name, 'page', 'send_messages_search');
                     exit;
                 break;
             }

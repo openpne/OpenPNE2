@@ -11,14 +11,14 @@ class admin_do_delete_skin_image extends OpenPNE_Action
     {
         db_delete_c_skin_filename($requests['skinname']);
 
-        //マスタ－画像からコピーするスキン名
+        // スキンディレクトリの画像からコピーするスキン名
         $skinname_list = array(
             'no_image',
             'no_logo',
             'no_logo_small',
         );
         if (in_array($requests['skinname'], $skinname_list)) {
-            db_master_copy_c_skin_filename($requests['skinname']);
+            db_insert_c_image4skin_filename($requests['skinname']);
         }
 
         pne_cache_drop('fetch_inc_navi', 'h');

@@ -7,13 +7,13 @@
 ({**************************************})
 <table border="0" cellspacing="0" cellpadding="0" style="width:720px;">
 <tr>
-<td style="width:720px;height:2px;"><img src="./skin/dummy.gif" style="width:720px;height:2px;" class="dummy"></td>
+<td style="width:720px;height:2px;"><img src="./skin/dummy.gif" alt="dummy" style="width:720px;height:2px;" class="dummy"></td>
 </tr>
 <tr>
 <td align="center">
 
 ({*ここから：本体*})
-<div class="bg_09" style="width:680px;height:24px;border-left:none 0px;border-right:none 0px;border-top:none 0px;">
+<div class="color_19" style="width:680px;height:24px;border-left:none 0px;border-right:none 0px;border-top:none 0px;">
 ({t_form m=pc a=do_h_home_search})
 <input type="hidden" name="sessid" value="({$PHPSESSID})">
 
@@ -67,7 +67,7 @@
 <!--　インフォメーション　＆　カレンダー　-->
 <table border="0" cellspacing="0" cellpadding="0" style="width:720px;" class="info">
 <tr>
-<td style="width:5px;"><img src="./skin/dummy.gif" style="width:5px;height:1px;" class="dummy"></td>
+<td style="width:5px;"><img src="./skin/dummy.gif" alt="dummy" style="width:5px;height:1px;" class="dummy"></td>
 <td style="width:715px;" align="center" valign="middle">
 
 <!--ここから：運営者からのお知らせ-->
@@ -174,12 +174,12 @@
 <!-- ******ここから：自分の写真及びニックネーム覧****** -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:270px;margin:0px auto;" class="border_07" id="main_image_and_name">
 <tr>
-<td style="width:7px;height:7px;" class="bg_05"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
-<td style="width:254px;height:7px;" class="bg_05"><img src="./skin/dummy.gif" style="width:254px;height:7px;" class="dummy"></td>
-<td style="width:7px;height:7px;" class="bg_05"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:7px;height:7px;" class="bg_05"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+<td style="width:254px;height:7px;" class="bg_05"><img src="./skin/dummy.gif" alt="dummy" style="width:254px;height:7px;" class="dummy"></td>
+<td style="width:7px;height:7px;" class="bg_05"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 <tr>
-<td class="bg_05"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_05"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 <td align="center" class="bg_02">
 <!-- *ここから：自分の写真及びニックネーム覧＞＞内容* -->
 ({*ここから：header*})
@@ -193,7 +193,7 @@
 <tr>
 <td align="center">
 
-<img src="./skin/dummy.gif" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_m">
 
 <img src="({t_img_url filename=$c_member.image_filename w=180 h=180 noimg=no_image})" class="pict" alt="写真" style="margin:2px">
 
@@ -202,14 +202,14 @@
 <td>
 <a href="({t_url m=pc a=page_h_config_image})">
 <img src="({t_img_url_skin filename=button_edit_photo})"></a>
-<img src="./skin/dummy.gif" class="v_spacer_s">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_s">
 </td>
 </tr>
 <tr>
 <td>
 <a href="({t_url m=pc a=page_h_prof})">
 <img src="({t_img_url_skin filename=button_prof_conf})"></a>
-<img src="./skin/dummy.gif" class="v_spacer_s">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_s">
 </td>
 </tr>
 </table>
@@ -229,7 +229,7 @@
 
 ({if $smarty.const.OPENPNE_IS_POINT_ADMIN || $c_member.c_member_id != 1})
 ({if ($smarty.const.OPENPNE_DISP_RANK && $rank) || ($smarty.const.OPENPNE_DISP_POINT && $point)})
-<img src="./skin/dummy.gif" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_m">
 ({if $smarty.const.OPENPNE_DISP_RANK && $rank})
 <img src="({t_img_url filename=$rank.image_filename})" class="pict" alt="({$rank.name})" style="margin:2px"><br>
 ({/if})
@@ -239,7 +239,7 @@
 ({/if})
 ({/if})
 
-<img src="./skin/dummy.gif" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_m">
 ({$c_member.nickname})さん (({$c_friend_count}))
 
 </td>
@@ -249,18 +249,18 @@
 ({*ここから：footer*})
 <!-- *ここまで：自分の写真及びニックネーム覧＞＞内容* -->
 </td>
-<td class="bg_05"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_05"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 <tr>
-<td class="bg_05"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
-<td class="bg_05"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
-<td class="bg_05"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_05"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+<td class="bg_05"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+<td class="bg_05"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 </table>
 <!-- ******ここまで：自分の写真及びニックネーム覧****** -->
 <!-- **************************************** -->
 
-<img src="./skin/dummy.gif" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_m">
 
 ({if $inc_entry_point[5]})
 ({$inc_entry_point[5]|smarty:nodefaults|t_url2cmd:'entry_point'|t_cmd:'entry_point'})
@@ -288,7 +288,7 @@
 ({if $smarty.const.OPENPNE_USE_FLASH_LIST})
 <table border="0" cellspacing="0" cellpadding="0" style="width:266px;" class="bg_07">
 <tr>
-<td class="bg_07"><img src="./skin/dummy.gif" style="width:1px;"></td>
+<td class="bg_07"><img src="./skin/dummy.gif" alt="dummy" style="width:1px;"></td>
 <td class="bg_03" align="center">
 
 ({capture assign=flashvars})({strip})
@@ -309,7 +309,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 </script>
 
 </td>
-<td class="bg_07"><img src="./skin/dummy.gif" style="width:1px;"></td>
+<td class="bg_07"><img src="./skin/dummy.gif" alt="dummy" style="width:1px;"></td>
 </tr>
 </table>
 ({else})
@@ -326,7 +326,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <img src="({t_img_url filename=$item.image_filename w=76 h=76 noimg=no_image})" class="pict"></a>
 </td>
 ({else})
-<td style="width:88px;" class="bg_03"><img src="./skin/dummy.gif" style="width:84px;height:84px;" class="dummy"></td>
+<td style="width:88px;" class="bg_03"><img src="./skin/dummy.gif" alt="dummy" style="width:84px;height:84px;" class="dummy"></td>
 ({/if})
 ({/t_loop})
 
@@ -343,7 +343,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 </a>
 </td>
 ({else})
-<td class="bg_02" align="center"><img src="./skin/dummy.gif" style="height:1em;" class="dummy"></td>
+<td class="bg_02" align="center"><img src="./skin/dummy.gif" alt="dummy" style="height:1em;" class="dummy"></td>
 ({/if})
 ({/t_loop})
 
@@ -364,7 +364,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <img src="({t_img_url filename=$item.image_filename w=76 h=76 noimg=no_image})" class="pict"></a>
 </td>
 ({else})
-<td class="bg_03"><img src="./skin/dummy.gif" style="width:84px;height:84px;" class="dummy"></td>
+<td class="bg_03"><img src="./skin/dummy.gif" alt="dummy" style="width:84px;height:84px;" class="dummy"></td>
 ({/if})
 ({/t_loop})
 
@@ -381,7 +381,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 </a>
 </td>
 ({else})
-<td class="bg_02" align="center"><img src="./skin/dummy.gif" style="height:1em;" class="dummy"></td>
+<td class="bg_02" align="center"><img src="./skin/dummy.gif" alt="dummy" style="height:1em;" class="dummy"></td>
 ({/if})
 ({/t_loop})
 
@@ -402,7 +402,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <img src="({t_img_url filename=$item.image_filename w=76 h=76 noimg=no_image})" class="pict"></a>
 </td>
 ({else})
-<td class="bg_03"><img src="./skin/dummy.gif" style="width:84px;height:84px;" class="dummy"></td>
+<td class="bg_03"><img src="./skin/dummy.gif" alt="dummy" style="width:84px;height:84px;" class="dummy"></td>
 ({/if})
 ({/t_loop})
 </tr>
@@ -418,7 +418,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 </a>
 </td>
 ({else})
-<td class="bg_02" align="center"><img src="./skin/dummy.gif" style="height:1em;" class="dummy"></td>
+<td class="bg_02" align="center"><img src="./skin/dummy.gif" alt="dummy" style="height:1em;" class="dummy"></td>
 ({/if})
 
 ({/t_loop})
@@ -436,29 +436,29 @@ show_flash('flash/list.swf', '({$flashvars})');
 <!-- ここから：小メニュー -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:268px">
 <tr>
-<td style="width:1px;" class="bg_07" rowspan="4"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-<td style="width:266px;" class="bg_02" colspan="4"><img src="./skin/dummy.gif" style="width:266px;height:5px;" class="dummy"></td>
-<td style="width:1px;" class="bg_07" rowspan="4"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_07" rowspan="4"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+<td style="width:266px;" class="bg_02" colspan="4"><img src="./skin/dummy.gif" alt="dummy" style="width:266px;height:5px;" class="dummy"></td>
+<td style="width:1px;" class="bg_07" rowspan="4"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 <tr>
-<td style="width:125px;" class="bg_02" rowspan="2"><img src="./skin/dummy.gif" style="width:125px;height:1px;" class="dummy"></td>
-<td style="width:20px;" class="bg_02"><img src="./skin/dummy.gif" class="icon arrow_1"></td>
+<td style="width:125px;" class="bg_02" rowspan="2"><img src="./skin/dummy.gif" alt="dummy" style="width:125px;height:1px;" class="dummy"></td>
+<td style="width:20px;" class="bg_02"><img src="./skin/dummy.gif" alt="dummy" class="icon arrow_1"></td>
 <td align="left" style="width:116px;padding:2px 0px;" class="bg_02 lh_110">
 <a href="({t_url m=pc a=page_fh_friend_list})">全てを見る(({$c_friend_count})人)</a>
 </td>
-<td style="width:5px;" class="bg_02" rowspan="2"><img src="./skin/dummy.gif" style="width:5px;height:1px;" class="dummy"></td>
+<td style="width:5px;" class="bg_02" rowspan="2"><img src="./skin/dummy.gif" alt="dummy" style="width:5px;height:1px;" class="dummy"></td>
 </tr>
 <tr>
-<td style="width:20px;" class="bg_02"><img src="./skin/dummy.gif" class="icon arrow_1"></td>
+<td style="width:20px;" class="bg_02"><img src="./skin/dummy.gif" alt="dummy" class="icon arrow_1"></td>
 <td align="left" style="width:116px;padding:2px 0px;" class="bg_02 lh_110">
 <a href="({t_url m=pc a=page_h_manage_friend})">({$WORD_MY_FRIEND})管理</a>
 </td>
 </tr>
 <tr>
-<td style="width:266px;" class="bg_02" colspan="4"><img src="./skin/dummy.gif" style="width:266px;height:5px;" class="dummy"></td>
+<td style="width:266px;" class="bg_02" colspan="4"><img src="./skin/dummy.gif" alt="dummy" style="width:266px;height:5px;" class="dummy"></td>
 </tr>
 <tr>
-<td style="width:268px;" class="bg_07" colspan="6"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:268px;" class="bg_07" colspan="6"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 </table>
 <!-- ここまで：小メニュー -->
@@ -470,7 +470,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <!-- ******ここまで：マイフレンドリスト****** -->
 <!-- ********************************** -->
 
-<img src="./skin/dummy.gif" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_m">
 ({/if})
 
 ({if $inc_entry_point[6]})
@@ -499,7 +499,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({if $smarty.const.OPENPNE_USE_FLASH_LIST})
 <table border="0" cellspacing="0" cellpadding="0" style="width:266px;" class="bg_07">
 <tr>
-<td class="bg_07"><img src="./skin/dummy.gif" style="width:1px;"></td>
+<td class="bg_07"><img src="./skin/dummy.gif" alt="dummy" style="width:1px;"></td>
 <td class="bg_03" align="center">
 
 ({capture assign=flashvars})({strip})
@@ -520,7 +520,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 </script>
 
 </td>
-<td class="bg_07"><img src="./skin/dummy.gif" style="width:1px;"></td>
+<td class="bg_07"><img src="./skin/dummy.gif" alt="dummy" style="width:1px;"></td>
 </tr>
 </table>
 ({else})
@@ -538,7 +538,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <img src="({t_img_url filename=$item.image_filename w=76 h=76 noimg=no_logo_small})" class="pict"></a>
 </td>
 ({else})
-<td style="width:88px;" class="bg_03"><img src="./skin/dummy.gif" style="width:84px;height:84px;" class="dummy"></td>
+<td style="width:88px;" class="bg_03"><img src="./skin/dummy.gif" alt="dummy" style="width:84px;height:84px;" class="dummy"></td>
 ({/if})
 ({/t_loop})
 
@@ -549,13 +549,13 @@ show_flash('flash/list.swf', '({$flashvars})');
 
 ({t_loop from=$c_commu_user_list start=0 num=3})
 ({if $item})
-<td class="bg_02" align="center">
+<td class="bg_02" align="center" style="width:88px;">
 <a href="({t_url m=pc a=page_c_home})&amp;target_c_commu_id=({$item.c_commu_id})">
 ({$item.name}) (({$item.count_commu_members}))
 </a>
 </td>
 ({else})
-<td class="bg_02" align="center"><img src="./skin/dummy.gif" style="height:1em;" class="dummy"></td>
+<td class="bg_02" align="center"><img src="./skin/dummy.gif" alt="dummy" style="height:1em;" class="dummy"></td>
 ({/if})
 ({/t_loop})
 
@@ -577,7 +577,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <img src="({t_img_url filename=$item.image_filename w=76 h=76 noimg=no_logo_small})" class="pict"></a>
 </td>
 ({else})
-<td class="bg_03"><img src="./skin/dummy.gif" style="width:84px;height:84px;" class="dummy"></td>
+<td class="bg_03"><img src="./skin/dummy.gif" alt="dummy" style="width:84px;height:84px;" class="dummy"></td>
 ({/if})
 ({/t_loop})
 
@@ -588,13 +588,13 @@ show_flash('flash/list.swf', '({$flashvars})');
 
 ({t_loop from=$c_commu_user_list start=3 num=3})
 ({if $item})
-<td class="bg_02" align="center">
+<td class="bg_02" align="center" style="width:88px;">
 <a href="({t_url m=pc a=page_c_home})&amp;target_c_commu_id=({$item.c_commu_id})">
 ({$item.name}) (({$item.count_commu_members}))
 </a>
 </td>
 ({else})
-<td class="bg_02" align="center"><img src="./skin/dummy.gif" style="height:1em;" class="dummy"></td>
+<td class="bg_02" align="center"><img src="./skin/dummy.gif" alt="dummy" style="height:1em;" class="dummy"></td>
 ({/if})
 ({/t_loop})
 
@@ -616,7 +616,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <img src="({t_img_url filename=$item.image_filename w=76 h=76 noimg=no_logo_small})" class="pict"></a>
 </td>
 ({else})
-<td class="bg_03"><img src="./skin/dummy.gif" style="width:84px;height:84px;" class="dummy"></td>
+<td class="bg_03"><img src="./skin/dummy.gif" alt="dummy" style="width:84px;height:84px;" class="dummy"></td>
 ({/if})
 ({/t_loop})
 
@@ -627,13 +627,13 @@ show_flash('flash/list.swf', '({$flashvars})');
 
 ({t_loop from=$c_commu_user_list start=6 num=3})
 ({if $item})
-<td class="bg_02" align="center">
+<td class="bg_02" align="center" style="width:88px;">
 <a href="({t_url m=pc a=page_c_home})&amp;target_c_commu_id=({$item.c_commu_id})">
 ({$item.name}) (({$item.count_commu_members}))
 </a>
 </td>
 ({else})
-<td class="bg_02" align="center"><img src="./skin/dummy.gif" style="height:1em;" class="dummy"></td>
+<td class="bg_02" align="center"><img src="./skin/dummy.gif" alt="dummy" style="height:1em;" class="dummy"></td>
 ({/if})
 ({/t_loop})
 
@@ -650,23 +650,23 @@ show_flash('flash/list.swf', '({$flashvars})');
 <!-- ここから：小メニュー -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:268px">
 <tr>
-<td style="width:1px;" class="bg_07" rowspan="3"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-<td style="width:266px;" class="bg_02" colspan="4"><img src="./skin/dummy.gif" style="width:266px;height:5px;" class="dummy"></td>
-<td style="width:1px;" class="bg_07" rowspan="3"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_07" rowspan="3"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+<td style="width:266px;" class="bg_02" colspan="4"><img src="./skin/dummy.gif" alt="dummy" style="width:266px;height:5px;" class="dummy"></td>
+<td style="width:1px;" class="bg_07" rowspan="3"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 <tr>
-<td style="width:125px;" class="bg_02"><img src="./skin/dummy.gif" style="width:125px;height:1px;" class="dummy"></td>
-<td style="width:20px;" class="bg_02"><img src="./skin/dummy.gif" class="icon arrow_1"></td>
+<td style="width:125px;" class="bg_02"><img src="./skin/dummy.gif" alt="dummy" style="width:125px;height:1px;" class="dummy"></td>
+<td style="width:20px;" class="bg_02"><img src="./skin/dummy.gif" alt="dummy" class="icon arrow_1"></td>
 <td align="left" style="width:116px;padding:2px 0px;" class="bg_02 lh_110">
 <a href="({t_url m=pc a=page_fh_com_list})">全てを見る(({$fh_com_count_user}))</a>
 </td>
-<td style="width:5px;" class="bg_02"><img src="./skin/dummy.gif" style="width:5px;height:1px;" class="dummy"></td>
+<td style="width:5px;" class="bg_02"><img src="./skin/dummy.gif" alt="dummy" style="width:5px;height:1px;" class="dummy"></td>
 </tr>
 <tr>
-<td style="width:266px;" class="bg_02" colspan="4"><img src="./skin/dummy.gif" style="width:266px;height:5px;" class="dummy"></td>
+<td style="width:266px;" class="bg_02" colspan="4"><img src="./skin/dummy.gif" alt="dummy" style="width:266px;height:5px;" class="dummy"></td>
 </tr>
 <tr>
-<td style="width:268px;" class="bg_07" colspan="6"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:268px;" class="bg_07" colspan="6"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 </table>
 <!-- ここまで：小メニュー -->
@@ -680,7 +680,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <!-- ************************************ -->
 
 ({if $bookmark_member_list})
-<img src="./skin/dummy.gif" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_m">
 
 <!-- **************************************** -->
 <!-- ******ここから：お気に入りメンバー一覧****** -->
@@ -703,7 +703,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({if $smarty.const.OPENPNE_USE_FLASH_LIST})
 <table border="0" cellspacing="0" cellpadding="0" style="width:266px;" class="bg_07">
 <tr>
-<td class="bg_07"><img src="./skin/dummy.gif" style="width:1px;"></td>
+<td class="bg_07"><img src="./skin/dummy.gif" alt="dummy" style="width:1px;"></td>
 <td class="bg_03" align="center">
 
 ({capture assign=flashvars})({strip})
@@ -724,7 +724,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 </script>
 
 </td>
-<td class="bg_07"><img src="./skin/dummy.gif" style="width:1px;"></td>
+<td class="bg_07"><img src="./skin/dummy.gif" alt="dummy" style="width:1px;"></td>
 </tr>
 </table>
 ({else})
@@ -741,7 +741,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <img src="({t_img_url filename=$item.image_filename w=76 h=76 noimg=no_image})" class="pict"></a>
 </td>
 ({else})
-<td style="width:88px;" class="bg_03"><img src="./skin/dummy.gif" style="width:84px;height:84px;" class="dummy"></td>
+<td style="width:88px;" class="bg_03"><img src="./skin/dummy.gif" alt="dummy" style="width:84px;height:84px;" class="dummy"></td>
 ({/if})
 ({/t_loop})
 
@@ -758,7 +758,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 </a>
 </td>
 ({else})
-<td class="bg_02" align="center"><img src="./skin/dummy.gif" style="height:1em;" class="dummy"></td>
+<td class="bg_02" align="center"><img src="./skin/dummy.gif" alt="dummy" style="height:1em;" class="dummy"></td>
 ({/if})
 ({/t_loop})
 
@@ -779,7 +779,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <img src="({t_img_url filename=$item.image_filename w=76 h=76 noimg=no_image})" class="pict"></a>
 </td>
 ({else})
-<td class="bg_03"><img src="./skin/dummy.gif" style="width:84px;height:84px;" class="dummy"></td>
+<td class="bg_03"><img src="./skin/dummy.gif" alt="dummy" style="width:84px;height:84px;" class="dummy"></td>
 ({/if})
 ({/t_loop})
 
@@ -796,7 +796,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 </a>
 </td>
 ({else})
-<td class="bg_02" align="center"><img src="./skin/dummy.gif" style="height:1em;" class="dummy"></td>
+<td class="bg_02" align="center"><img src="./skin/dummy.gif" alt="dummy" style="height:1em;" class="dummy"></td>
 ({/if})
 ({/t_loop})
 
@@ -817,7 +817,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <img src="({t_img_url filename=$item.image_filename w=76 h=76 noimg=no_image})" class="pict"></a>
 </td>
 ({else})
-<td class="bg_03"><img src="./skin/dummy.gif" style="width:84px;height:84px;" class="dummy"></td>
+<td class="bg_03"><img src="./skin/dummy.gif" alt="dummy" style="width:84px;height:84px;" class="dummy"></td>
 ({/if})
 ({/t_loop})
 
@@ -834,7 +834,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 </a>
 </td>
 ({else})
-<td class="bg_02" align="center"><img src="./skin/dummy.gif" style="height:1em;" class="dummy"></td>
+<td class="bg_02" align="center"><img src="./skin/dummy.gif" alt="dummy" style="height:1em;" class="dummy"></td>
 ({/if})
 ({/t_loop})
 
@@ -851,23 +851,23 @@ show_flash('flash/list.swf', '({$flashvars})');
 <!-- ここから：小メニュー -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:268px">
 <tr>
-<td style="width:1px;" class="bg_07" rowspan="3"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-<td style="width:266px;" class="bg_02" colspan="4"><img src="./skin/dummy.gif" style="width:266px;height:5px;" class="dummy"></td>
-<td style="width:1px;" class="bg_07" rowspan="3"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_07" rowspan="3"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+<td style="width:266px;" class="bg_02" colspan="4"><img src="./skin/dummy.gif" alt="dummy" style="width:266px;height:5px;" class="dummy"></td>
+<td style="width:1px;" class="bg_07" rowspan="3"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 <tr>
-<td style="width:125px;" class="bg_02"><img src="./skin/dummy.gif" style="width:125px;height:1px;" class="dummy"></td>
-<td style="width:20px;" class="bg_02"><img src="./skin/dummy.gif" class="icon arrow_1"></td>
+<td style="width:125px;" class="bg_02"><img src="./skin/dummy.gif" alt="dummy" style="width:125px;height:1px;" class="dummy"></td>
+<td style="width:20px;" class="bg_02"><img src="./skin/dummy.gif" alt="dummy" class="icon arrow_1"></td>
 <td align="left" style="width:116px;padding:2px 0px;" class="bg_02 lh_110">
 <a href="({t_url m=pc a=page_h_bookmark_list})">全てを見る(({$bookmark_count}))</a>
 </td>
-<td style="width:5px;" class="bg_02"><img src="./skin/dummy.gif" style="width:5px;height:1px;" class="dummy"></td>
+<td style="width:5px;" class="bg_02"><img src="./skin/dummy.gif" alt="dummy" style="width:5px;height:1px;" class="dummy"></td>
 </tr>
 <tr>
-<td style="width:266px;" class="bg_02" colspan="4"><img src="./skin/dummy.gif" style="width:266px;height:5px;" class="dummy"></td>
+<td style="width:266px;" class="bg_02" colspan="4"><img src="./skin/dummy.gif" alt="dummy" style="width:266px;height:5px;" class="dummy"></td>
 </tr>
 <tr>
-<td style="width:268px;" class="bg_07" colspan="6"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:268px;" class="bg_07" colspan="6"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 </table>
 <!-- ここまで：小メニュー -->
@@ -881,7 +881,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <!-- **************************************** -->
 ({/if})
 
-<img src="./skin/dummy.gif" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_m">
 
 ({if $inc_entry_point[7]})
 ({$inc_entry_point[7]|smarty:nodefaults|t_url2cmd:'entry_point'|t_cmd:'entry_point'})
@@ -908,12 +908,12 @@ show_flash('flash/list.swf', '({$flashvars})');
 
 <table border="0" cellspacing="0" cellpadding="0" style="width:440px;margin:0px auto;" class="border_07">
 <tr>
-<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
-<td style="width:424px;" class="bg_00"><img src="./skin/dummy.gif" style="width:424px;height:7px;" class="dummy"></td>
-<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+<td style="width:424px;" class="bg_00"><img src="./skin/dummy.gif" alt="dummy" style="width:424px;height:7px;" class="dummy"></td>
+<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 <tr>
-<td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 <td class="bg_01" style="width:424px;">
 <!-- ここから：主内容＞＞カレンダー -->
 ({if $msg})
@@ -984,19 +984,19 @@ show_flash('flash/list.swf', '({$flashvars})');
 
 <div style="text-align:right;padding-right:20px;" class="border_01 bg_02 padding_s">
 
-<img src="./skin/dummy.gif" class="icon arrow_1">
+<img src="./skin/dummy.gif" alt="dummy" class="icon arrow_1">
 <a href="({t_url m=pc a=page_h_calendar})">月別カレンダー</a>
 
 </div>
 
 <!-- ここまで：主内容＞＞カレンダー -->
 </td>
-<td class="bg_00"><img src="./skin/dummy.gif"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="dummy"></td>
 </tr>
 <tr>
-<td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
-<td class="bg_00"><img src="./skin/dummy.gif" style="width:424px;height:7px;" class="dummy"></td>
-<td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="dummy" style="width:424px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 </table>
 
@@ -1004,7 +1004,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <!-- ******ここまで：週間予定****** -->
 <!-- ***************************** -->
 
-<img src="./skin/dummy.gif" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_m">
 
 ({/if})
 
@@ -1016,12 +1016,12 @@ show_flash('flash/list.swf', '({$flashvars})');
 <!-- ******ここから：最新情報一覧****** -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:440px;margin:0px auto;" class="border_07">
 <tr>
-<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
-<td style="width:424px;" class="bg_00"><img src="./skin/dummy.gif" style="width:424px;height:7px;" class="dummy"></td>
-<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+<td style="width:424px;" class="bg_00"><img src="./skin/dummy.gif" alt="dummy" style="width:424px;height:7px;" class="dummy"></td>
+<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 <tr>
-<td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 <td class="bg_01">
 <!-- *ここから：最新情報一覧＞内容* -->
 ({*ここから：header*})
@@ -1040,7 +1040,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <!-- ここから：主内容 -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:424px;">
 <tr>
-<td style="width:1px;" class="bg_01"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 <td class="bg_01" align="center">
 <table border="0" cellspacing="0" cellpadding="0" style="width:422px;">
 <!-- ここから：主内容＞フレンド最新日記 -->
@@ -1054,7 +1054,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <td class="border_01 bg_02 padding_s" style="width:332px;border-top:none;">
 
 ({foreach from=$c_diary_friend_list item=item})
-<img src="./skin/dummy.gif" style="width:14px;height:14px;clear:both;" class="icon icon_1">({$item.r_datetime|date_format:"%m月%d日"})…&nbsp;<a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$item.c_diary_id})&amp;comment_count=({$item.count_comments})">({$item.subject|default:"&nbsp;"}) (({$item.count_comments|default:0}))</a>
+<img src="./skin/dummy.gif" alt="dummy" style="width:14px;height:14px;clear:both;" class="icon icon_1">({$item.r_datetime|date_format:"%m月%d日"})…&nbsp;<a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$item.c_diary_id})&amp;comment_count=({$item.count_comments})">({$item.subject|default:"&nbsp;"}) (({$item.count_comments|default:0}))</a>
 (({$item.nickname|default:"&nbsp;"}))
 ({if $item.image_filename_1 || $item.image_filename_2 || $item.image_filename_3})<img src="({t_img_url_skin filename=icon_camera})" class="icon">({/if})<br>
 ({/foreach})
@@ -1065,7 +1065,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <tr>
 <td style="width:130px;text-align:left;padding:1px 0px;">
 
-<img src="./skin/dummy.gif" class="icon arrow_1">
+<img src="./skin/dummy.gif" alt="dummy" class="icon arrow_1">
 <a href="({t_url m=pc a=page_h_diary_list_friend})">もっと読む</a>
 
 </td>
@@ -1089,7 +1089,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <td class="border_01 bg_02 padding_s" style="width:332px;border-top:none;">
 
 ({foreach from=$c_rss_cache_list item=item})
-<img src="./skin/dummy.gif" style="width:14px;height:14px;" class="icon icon_1">({$item.r_datetime|date_format:"%m月%d日"})…&nbsp;<a href="({$item.link})" target="_blank">({$item.subject|default:"&nbsp;"})</a>
+<img src="./skin/dummy.gif" alt="dummy" style="width:14px;height:14px;" class="icon icon_1">({$item.r_datetime|date_format:"%m月%d日"})…&nbsp;<a href="({$item.link})" target="_blank">({$item.subject|default:"&nbsp;"})</a>
 (({$item.c_member.nickname|default:"&nbsp;"}))<br>
 ({/foreach})
 
@@ -1099,7 +1099,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <tr>
 <td style="width:130px;text-align:left;padding:1px 0px;">
 
-<img src="./skin/dummy.gif" class="icon arrow_1">
+<img src="./skin/dummy.gif" alt="dummy" class="icon arrow_1">
 <a href="({t_url m=pc a=page_h_diary_list_friend})#blog">もっと読む</a>
 
 </td>
@@ -1124,7 +1124,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <td class="border_01 bg_02 padding_s" style="width:332px;border-top:none;">
 
 ({foreach from=$c_diary_my_comment_list item=item})
-<img src="./skin/dummy.gif" style="width:14px;height:14px;" class="icon icon_3">({$item.r_datetime|date_format:"%m月%d日"})…&nbsp;<a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$item.c_diary_id})&amp;comment_count=({$item.num_comment})">({$item.subject}) (({$item.num_comment}))</a>
+<img src="./skin/dummy.gif" alt="dummy" style="width:14px;height:14px;" class="icon icon_3">({$item.r_datetime|date_format:"%m月%d日"})…&nbsp;<a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$item.c_diary_id})&amp;comment_count=({$item.num_comment})">({$item.subject}) (({$item.num_comment}))</a>
 (({$item.nickname}))<br>
 ({/foreach})
 
@@ -1134,7 +1134,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <tr>
 <td style="width:130px;text-align:left;padding:1px 0px;">
 
-<img src="./skin/dummy.gif" class="icon arrow_1">
+<img src="./skin/dummy.gif" alt="dummy" class="icon arrow_1">
 <a href="({t_url m=pc a=page_h_diary_comment_list})">もっと読む</a>
 
 </td>
@@ -1158,7 +1158,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <td class="border_01 bg_02 padding_s" style="width:332px;border-top:none;">
 
 ({foreach from=$c_commu_topic_comment_list item=item})
-<img src="./skin/dummy.gif" style="width:14px;height:14px;" class="icon icon_2">({$item.r_datetime|date_format:"%m月%d日"})…&nbsp;<a href="({t_url m=pc a=page_c_topic_detail})&amp;target_c_commu_topic_id=({$item.c_commu_topic_id})&amp;comment_count=({$item.number})">({$item.c_commu_topic_name}) (({$item.number}))</a>
+<img src="./skin/dummy.gif" alt="dummy" style="width:14px;height:14px;" class="icon icon_2">({$item.r_datetime|date_format:"%m月%d日"})…&nbsp;<a href="({t_url m=pc a=page_c_topic_detail})&amp;target_c_commu_topic_id=({$item.c_commu_topic_id})&amp;comment_count=({$item.number})">({$item.c_commu_topic_name}) (({$item.number}))</a>
 (({$item.c_commu_name}))
 ({if $item.image_filename1 || $item.image_filename2 || $item.image_filename3})<img src="({t_img_url_skin filename=icon_camera})" class="icon">({/if})<br>
 ({/foreach})
@@ -1169,7 +1169,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <tr>
 <td style="width:130px;text-align:left;padding:1px 0px;">
 
-<img src="./skin/dummy.gif" class="icon arrow_1">
+<img src="./skin/dummy.gif" alt="dummy" class="icon arrow_1">
 <a href="({t_url m=pc a=page_h_com_comment_list})">もっと読む</a>
 
 </td>
@@ -1193,7 +1193,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <td class="border_01 bg_02 padding_s" style="width:332px;border-top:none;">
 
 ({foreach from=$c_friend_review_list item=item})
-<img src="./skin/dummy.gif" style="width:14px;height:14px;" class="icon icon_1">({$item.r_datetime|date_format:"%m月%d日"})…&nbsp;<a href="({t_url m=pc a=page_h_review_list_product})&amp;c_review_id=({$item.c_review_id})">({$item.title|t_truncate:30})</a>
+<img src="./skin/dummy.gif" alt="dummy" style="width:14px;height:14px;" class="icon icon_1">({$item.r_datetime|date_format:"%m月%d日"})…&nbsp;<a href="({t_url m=pc a=page_h_review_list_product})&amp;c_review_id=({$item.c_review_id})">({$item.title|t_truncate:30})</a>
 (({$item.nickname}))<br>
 ({/foreach})
 
@@ -1203,7 +1203,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <tr>
 <td style="width:130px;text-align:left;padding:1px 0px;">
 
-<img src="./skin/dummy.gif" class="icon arrow_1">
+<img src="./skin/dummy.gif" alt="dummy" class="icon arrow_1">
 <a href="({t_url m=pc a=page_h_friend_review_list})">もっと読む</a>
 
 </td>
@@ -1227,7 +1227,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <td class="border_01 bg_02 padding_s" style="width:332px;border-top:none;">
 
 ({foreach from=$bookmark_diary_list item=item})
-<img src="./skin/dummy.gif" style="width:14px;height:14px;" class="icon icon_1">({$item.r_datetime|date_format:"%m月%d日"})…&nbsp;<a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$item.c_diary_id})&amp;comment_count=({$item.count_comments})">({$item.subject|default:"&nbsp;"}) (({$item.count_comments}))</a>
+<img src="./skin/dummy.gif" alt="dummy" style="width:14px;height:14px;" class="icon icon_1">({$item.r_datetime|date_format:"%m月%d日"})…&nbsp;<a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$item.c_diary_id})&amp;comment_count=({$item.count_comments})">({$item.subject|default:"&nbsp;"}) (({$item.count_comments}))</a>
 (({$item.nickname}))
 ({if $item.image_filename_1 || $item.image_filename_2 || $item.image_filename_3})<img src="({t_img_url_skin filename=icon_camera})" class="icon">({/if})<br>
 ({/foreach})
@@ -1238,7 +1238,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <tr>
 <td style="width:130px;text-align:left;padding:1px 0px;">
 
-<img src="./skin/dummy.gif" class="icon arrow_1">
+<img src="./skin/dummy.gif" alt="dummy" class="icon arrow_1">
 <a href="({t_url m=pc a=page_h_bookmark_diary_blog_list})">もっと読む</a>
 
 </td>
@@ -1263,7 +1263,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <td class="border_01 bg_02 padding_s" style="width:332px;border-top:none;">
 
 ({foreach from=$bookmark_blog_list item=item})
-<img src="./skin/dummy.gif" style="width:14px;height:14px;" class="icon icon_1">({$item.r_datetime|date_format:"%m月%d日"})…&nbsp;<a href="({$item.link})" target="_blank">({$item.subject|default:"&nbsp;"})</a>
+<img src="./skin/dummy.gif" alt="dummy" style="width:14px;height:14px;" class="icon icon_1">({$item.r_datetime|date_format:"%m月%d日"})…&nbsp;<a href="({$item.link})" target="_blank">({$item.subject|default:"&nbsp;"})</a>
 (({$item.nickname}))<br>
 ({/foreach})
 
@@ -1273,7 +1273,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <tr>
 <td style="width:130px;text-align:left;padding:1px 0px;">
 
-<img src="./skin/dummy.gif" class="icon arrow_1">
+<img src="./skin/dummy.gif" alt="dummy" class="icon arrow_1">
 <a href="({t_url m=pc a=page_h_bookmark_diary_blog_list})#blog">もっと読む</a>
 
 </td>
@@ -1289,10 +1289,10 @@ show_flash('flash/list.swf', '({$flashvars})');
 
 </table>
 </td>
-<td style="width:1px;" class="bg_01"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 <tr>
-<td class="bg_01" colspan="3"><img src="./skin/dummy.gif" style="height:1px;" class="dummy"></td>
+<td class="bg_01" colspan="3"><img src="./skin/dummy.gif" alt="dummy" style="height:1px;" class="dummy"></td>
 </tr>
 </table>
 <!-- ここまで：主内容 -->
@@ -1302,18 +1302,18 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({*ここまで：footer*})
 <!-- *ここまで：自己情報一覧＞＞内容* -->
 </td>
-<td class="bg_00"><img src="./skin/dummy.gif"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="dummy"></td>
 </tr>
 <tr>
-<td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
-<td class="bg_00"><img src="./skin/dummy.gif" style="width:424px;height:7px;" class="dummy"></td>
-<td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="dummy" style="width:424px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 </table>
 <!-- ******ここまで：最新情報一覧****** -->
 <!-- ******************************** -->
 
-<img src="./skin/dummy.gif" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_m">
 
 ({if $inc_entry_point[10]})
 ({$inc_entry_point[10]|smarty:nodefaults|t_url2cmd:'entry_point'|t_cmd:'entry_point'})
@@ -1324,12 +1324,12 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({if $c_diary_list || $c_blog_list || $c_review_list})
 <table border="0" cellspacing="0" cellpadding="0" style="width:440px;margin:0px auto;" class="border_07">
 <tr>
-<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
-<td style="width:424px;" class="bg_00"><img src="./skin/dummy.gif" style="width:424px;height:7px;" class="dummy"></td>
-<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+<td style="width:424px;" class="bg_00"><img src="./skin/dummy.gif" alt="dummy" style="width:424px;height:7px;" class="dummy"></td>
+<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 <tr>
-<td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 <td class="bg_01">
 <!-- *ここから：自己情報一覧＞＞内容* -->
 ({*ここから：header*})
@@ -1347,7 +1347,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <!-- ここから：主内容 -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:422px;">
 <tr>
-<td style="width:1px;" class="bg_01"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 <td class="bg_01" align="center">
 
 <table border="0" cellspacing="0" cellpadding="0" style="width:422px;">
@@ -1362,7 +1362,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <td class="border_01 bg_02 padding_s" style="width:332px;border-top:none;">
 
 ({foreach from=$c_diary_list item=item})
-<img src="./skin/dummy.gif" style="width:14px;height:14px;" class="icon icon_1">({$item.r_datetime|date_format:"%m月%d日"})…&nbsp;<a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$item.c_diary_id})&amp;comment_count=({$item.comment_count})">({$item.subject|t_truncate:40}) (({$item.comment_count}))</a>
+<img src="./skin/dummy.gif" alt="dummy" style="width:14px;height:14px;" class="icon icon_1">({$item.r_datetime|date_format:"%m月%d日"})…&nbsp;<a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$item.c_diary_id})&amp;comment_count=({$item.comment_count})">({$item.subject|t_truncate:40}) (({$item.comment_count}))</a>
 ({if $item.image_filename_1 || $item.image_filename_2 || $item.image_filename_3})<img src="({t_img_url_skin filename=icon_camera})" class="icon">({/if})<br>
 ({/foreach})
 
@@ -1372,7 +1372,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <tr>
 <td style="width:130px;text-align:left;padding:1px 0px;">
 
-<img src="./skin/dummy.gif" class="icon arrow_1">
+<img src="./skin/dummy.gif" alt="dummy" class="icon arrow_1">
 <a href="({t_url m=pc a=page_fh_diary_list})">もっと読む</a>
 
 </td>
@@ -1380,7 +1380,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <tr>
 <td style="width:130px;text-align:left;padding:1px 0px;">
 
-<img src="./skin/dummy.gif" class="icon arrow_1">
+<img src="./skin/dummy.gif" alt="dummy" class="icon arrow_1">
 <a href="({t_url m=pc a=page_h_diary_add})">日記を書く</a>
 
 </td>
@@ -1404,7 +1404,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <td class="border_01 bg_02 padding_s" style="width:332px;border-top:none;">
 
 ({foreach from=$c_blog_list item=item})
-<img src="./skin/dummy.gif" style="width:14px;height:14px;" class="icon icon_2">({$item.r_datetime|date_format:"%m月%d日"})…&nbsp;<a href="({$item.link})" target="_blank">({$item.subject|t_truncate:40})</a><br>
+<img src="./skin/dummy.gif" alt="dummy" style="width:14px;height:14px;" class="icon icon_2">({$item.r_datetime|date_format:"%m月%d日"})…&nbsp;<a href="({$item.link})" target="_blank">({$item.subject|t_truncate:40})</a><br>
 ({/foreach})
 
 <!-- ここから：主内容＞最新Blog＞フッターメニュー -->
@@ -1413,7 +1413,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <tr>
 <td style="width:130px;text-align:left;padding:1px 0px;">
 
-<img src="./skin/dummy.gif" class="icon arrow_1">
+<img src="./skin/dummy.gif" alt="dummy" class="icon arrow_1">
 <a href="({t_url m=pc a=page_fh_diary_list})#blog">もっと読む</a>
 
 </td>
@@ -1439,7 +1439,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <td class="border_01 bg_02 padding_s" style="width:332px;border-top:none;">
 
 ({foreach from=$c_review_list item=item})
-<img src="./skin/dummy.gif" style="width:14px;height:14px;" class="icon icon_3">({$item.r_datetime|date_format:"%m月%d日"})…&nbsp;<a href="({t_url m=pc a=page_h_review_list_product})&amp;c_review_id=({$item.c_review_id})">({$item.title|t_truncate:30})</a><br>
+<img src="./skin/dummy.gif" alt="dummy" style="width:14px;height:14px;" class="icon icon_3">({$item.r_datetime|date_format:"%m月%d日"})…&nbsp;<a href="({t_url m=pc a=page_h_review_list_product})&amp;c_review_id=({$item.c_review_id})">({$item.title|t_truncate:30})</a><br>
 ({/foreach})
 
 <!-- ここから：主内容＞最新レビュー＞フッターメニュー -->
@@ -1448,7 +1448,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <tr>
 <td style="width:130px;text-align:left;padding:1px 0px;">
 
-<img src="./skin/dummy.gif" class="icon arrow_1">
+<img src="./skin/dummy.gif" alt="dummy" class="icon arrow_1">
 <a href="({t_url m=pc a=page_fh_review_list_member})">もっと読む</a>
 
 </td>
@@ -1456,7 +1456,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <tr>
 <td style="width:130px;text-align:left;padding:1px 0px;">
 
-<img src="./skin/dummy.gif" class="icon arrow_1">
+<img src="./skin/dummy.gif" alt="dummy" class="icon arrow_1">
 <a href="({t_url m=pc a=page_h_review_add})">レビューを書く</a>
 
 </td>
@@ -1472,10 +1472,10 @@ show_flash('flash/list.swf', '({$flashvars})');
 </table>
 
 </td>
-<td style="width:1px;" class="bg_01"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 <tr>
-<td class="bg_01" colspan="3"><img src="./skin/dummy.gif" style="height:1px;" class="dummy"></td>
+<td class="bg_01" colspan="3"><img src="./skin/dummy.gif" alt="dummy" style="height:1px;" class="dummy"></td>
 </tr>
 </table>
 <!-- ここまで：主内容 -->
@@ -1485,18 +1485,18 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({*ここまで：footer*})
 <!-- *ここまで：自己情報一覧＞＞内容* -->
 </td>
-<td class="bg_00"><img src="./skin/dummy.gif"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="dummy"></td>
 </tr>
 <tr>
-<td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
-<td class="bg_00"><img src="./skin/dummy.gif" style="width:424px;height:7px;" class="dummy"></td>
-<td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="dummy" style="width:424px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 </table>
 <!-- ******ここまで：自己情報一覧****** -->
 <!-- ******************************** -->
 
-<img src="./skin/dummy.gif" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_m">
 ({/if})
 
 ({if $inc_entry_point[11]})
@@ -1508,12 +1508,12 @@ show_flash('flash/list.swf', '({$flashvars})');
 <!-- ******ここから：他者評価一覧****** -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:440px;margin:0px auto;" class="border_07">
 <tr>
-<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
-<td style="width:424px;" class="bg_00"><img src="./skin/dummy.gif" style="width:424px;height:7px;" class="dummy"></td>
-<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+<td style="width:424px;" class="bg_00"><img src="./skin/dummy.gif" alt="dummy" style="width:424px;height:7px;" class="dummy"></td>
+<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 <tr>
-<td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 <td class="bg_01" align="center">
 <!-- *ここから：他者評価一覧＞＞内容* -->
 ({*ここから：header*})
@@ -1531,7 +1531,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <!-- 主内容 -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:424px;">
 <tr>
-<td style="width:1px;" class="bg_01"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 <td class="bg_01">
 <table border="0" cellspacing="0" cellpadding="0" style="width:422px;">
 ({foreach from=$c_friend_intro_list item=item})
@@ -1542,9 +1542,9 @@ show_flash('flash/list.swf', '({$flashvars})');
 <img src="({t_img_url filename=$item.image_filename w=76 h=76 noimg=no_image})" border="0"><br>({$item.nickname})</a>
 
 </td>
-<td style="width:298px;" class="bg_02 border_01 padding_l">
+<td style="width:268px;" class="bg_02 border_01 padding_l">
 
-({$item.intro|t_truncate:"200"|t_url2a|nl2br})
+({$item.intro|t_truncate:36:"":3})
 
 </td>
 </tr>
@@ -1555,43 +1555,43 @@ show_flash('flash/list.swf', '({$flashvars})');
 <!-- 小メニュー -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:422px;">
 <tr>
-<td style="width:1px;" class="bg_04"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-<td style="width:290px;" class="bg_02"><img src="./skin/dummy.gif" style="width:290px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_04"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+<td style="width:290px;" class="bg_02"><img src="./skin/dummy.gif" alt="dummy" style="width:290px;height:1px;" class="dummy"></td>
 <td style="width:130px;" class="bg_02 lh_140 padding_s">
-<img src="./skin/dummy.gif" class="icon arrow_1">
+<img src="./skin/dummy.gif" alt="dummy" class="icon arrow_1">
 <a href="({t_url m=pc a=page_fh_intro})">全て見る</a>
 <br>
-<img src="./skin/dummy.gif" class="icon arrow_1">
+<img src="./skin/dummy.gif" alt="dummy" class="icon arrow_1">
 <a href="({t_url m=pc a=page_h_manage_friend})">紹介文を書く</a>
 </td>
-<td style="width:1px;" class="bg_04"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_04"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 <tr>
-<td style="width:1px;height:1px;" class="bg_04" colspan="4"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;height:1px;" class="bg_04" colspan="4"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 </table>
 ({*ここまで：footer*})
 </td>
-<td style="width:1px;" class="bg_01"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td style="width:1px;" class="bg_01"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 <tr>
-<td class="bg_01" colspan="3"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
+<td class="bg_01" colspan="3"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 </table>
 <!-- *ここまで：他者評価一覧＞＞内容* -->
 </td>
-<td class="bg_00"><img src="./skin/dummy.gif"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="dummy"></td>
 </tr>
 <tr>
-<td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
-<td class="bg_00"><img src="./skin/dummy.gif" style="width:424px;height:7px;" class="dummy"></td>
-<td class="bg_00"><img src="./skin/dummy.gif" style="width:7px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="dummy" style="width:424px;height:7px;" class="dummy"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 </table>
 <!-- ******ここまで：他者評価一覧****** -->
 <!-- ******************************** -->
 
-<img src="./skin/dummy.gif" class="v_spacer_m">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_m">
 ({/if})
 
 ({if $inc_entry_point[12]})

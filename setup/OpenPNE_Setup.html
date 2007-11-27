@@ -61,7 +61,7 @@ em {
 
 <h1>OpenPNE セットアップガイド</h1>
 
-<p>最終更新日: 2007/05/24</p>
+<p>最終更新日: 2007/10/04</p>
 
 <h2>目次</h2>
 <ul>
@@ -92,13 +92,13 @@ em {
 
 <h2 id="section0">0. はじめに</h2>
 
-<p>この文書は、OpenPNE バージョン2.8 を基にして書かれています。</p>
+<p>この文書は、OpenPNE バージョン2.10beta1 を基にして書かれています。</p>
 <p>OpenPNE は以下のようなサーバ環境で動作させることを想定しています。</p>
 <dl>
 <dt>Webサーバ</dt>
 <dd>Apache を推奨</dd>
 <dt>PHP</dt>
-<dd>PHP 4.3.x / 5.0.x 以降 (ASPI版を推奨)
+<dd>PHP 4.3.x / 5.0.x 以降
 	<ul>
 	<li>PHP の mbstring 拡張モジュールを使用可能</li>
 	<li>PHP から GD ライブラリを使用可能 (JPEG/GIF/PNG サポート)</li>
@@ -125,7 +125,8 @@ em {
   │ │ │ ├ w_h_raw [777]
   │ │ │ ├ w76_h76 [777]
   │ │ │ ├ w120_h120 [777]
-  │ │ │ └ w180_h180 [777]
+  │ │ │ ├ w180_h180 [777]
+  │ │ │ └ w240_h320 [777]
   │ │ ├ jpg [777]
   │ │ │ ├ w_h [777]  
   │ │ │    ... [777]
@@ -190,7 +191,8 @@ $ chmod -R 0777 var/*
   │ │ ├ w_h_raw [777]
   │ │ ├ w76_h76 [777]
   │ │ ├ w120_h120 [777]
-  │ │ └ w180_h180 [777]
+  │ │ ├ w180_h180 [777]
+  │ │ └ w240_h320 [777]
   │ ├ jpg [777]
   │ │ ├ w_h [777]
   │ │    ... [777]
@@ -241,8 +243,8 @@ CREATE DATABASE `DBNAME` DEFAULT CHARACTER SET utf8;
 
 <p>準備したデータベース(例:DBNAME)上で、以下のSQL文を順番に実行します。</p>
 <ol>
-<li><var>OPENPNE_DIR</var>/setup/sql/mysql41/install/install-2.8-create_tables.sql</li>
-<li><var>OPENPNE_DIR</var>/setup/sql/mysql41/install/install-2.8-insert_data.sql</li>
+<li><var>OPENPNE_DIR</var>/setup/sql/mysql41/install/install-2.10-create_tables.sql</li>
+<li><var>OPENPNE_DIR</var>/setup/sql/mysql41/install/install-2.10-insert_data.sql</li>
 </ol>
 
 <p>PNEBIZを使用する場合は上記に加えて、以下のSQL文を実行してください。</p>
@@ -260,8 +262,8 @@ CREATE DATABASE `DBNAME` DEFAULT CHARACTER SET utf8;
 
 (2) OpenPNEセットアップ用SQL実行
     $ cd setup/sql/mysql41/install/
-    $ mysql -u username -p --default-character-set=utf8 DBNAME &lt; install-2.8-create_tables.sql
-    $ mysql -u username -p --default-character-set=utf8 DBNAME &lt; install-2.8-insert_data.sql
+    $ mysql -u username -p --default-character-set=utf8 DBNAME &lt; install-2.10-create_tables.sql
+    $ mysql -u username -p --default-character-set=utf8 DBNAME &lt; install-2.10-insert_data.sql
 
 (3) PNEBIZ用SQL実行 (オプション)
     $ cd ../option
@@ -279,8 +281,8 @@ CREATE DATABASE `DBNAME`;
 
 <p>準備したデータベース(例:DBNAME)上で、以下のSQL文を順番に実行します。</p>
 <ol>
-<li><var>OPENPNE_DIR</var>/setup/sql/mysql40/install/install-2.8-create_tables.sql</li>
-<li><var>OPENPNE_DIR</var>/setup/sql/mysql40/install/install-2.8-insert_data.sql</li>
+<li><var>OPENPNE_DIR</var>/setup/sql/mysql40/install/install-2.10-create_tables.sql</li>
+<li><var>OPENPNE_DIR</var>/setup/sql/mysql40/install/install-2.10-insert_data.sql</li>
 </ol>
 
 <p>PNEBIZを使用する場合は上記に加えて、以下のSQL文を実行してください。</p>
@@ -299,8 +301,8 @@ CREATE DATABASE `DBNAME`;
 
 (2) OpenPNEセットアップ用SQL実行
     $ cd setup/sql/mysql40/install/
-    $ mysql -u username -p DBNAME &lt; install-2.8-create_tables.sql
-    $ mysql -u username -p DBNAME &lt; install-2.8-insert_data.sql
+    $ mysql -u username -p DBNAME &lt; install-2.10-create_tables.sql
+    $ mysql -u username -p DBNAME &lt; install-2.10-insert_data.sql
 
 (3) PNEBIZ用SQL実行 (オプション)
     $ cd ../option
@@ -339,25 +341,28 @@ CREATE DATABASE `DBNAME`;
 
 <p>携帯版を使用しない場合は以下の設定は不要です。</p>
 
-<p>MAIL_SERVER_DOMAIN に届くメールで、以下のアドレスはシステムで利用されます。</p>
+<p>MAIL_SERVER_DOMAIN に届くメールで、以下のメールアドレスはシステムで利用されます。</p>
 
 <table>
 <tr><th>項目</th><th>新形式</th><th>旧形式</th></tr>
 <tr><td>新規登録 / ログインURL取得</td><td>get@MAIL_SERVER_DOMAIN</td><td>get@MAIL_SERVER_DOMAIN</td></tr>
-<tr><td>プロフィール画像変更</td><td>p<var>XXX</var>-<var>YYY</var>@MAIL_SERVER_DOMAIN</td><td>p<var>XXX</var>@MAIL_SERVER_DOMAIN</td></tr>
+<tr><td>プロフィール写真変更</td><td>p<var>XXX</var>-<var>YYY</var>@MAIL_SERVER_DOMAIN</td><td>p<var>XXX</var>@MAIL_SERVER_DOMAIN</td></tr>
 <tr><td>コミュニティ掲示板メール投稿</td><td>t<var>XXX</var>-<var>YYY</var>@MAIL_SERVER_DOMAIN</td><td>t<var>XXX</var>@MAIL_SERVER_DOMAIN</td></tr>
 <tr><td>日記メール投稿</td><td>b<var>XXX</var>-<var>YYY</var>@MAIL_SERVER_DOMAIN</td><td>blog@MAIL_SERVER_DOMAIN</td></tr>
+<tr><td>日記写真変更</td><td>bi<var>XXX</var>-<var>YYY</var>@MAIL_SERVER_DOMAIN</td><td>bi<var>XXX</var>@MAIL_SERVER_DOMAIN</td></tr>
+<tr><td>コミュニティ写真変更</td><td>ci<var>XXX</var>-<var>YYY</var>@MAIL_SERVER_DOMAIN</td><td>ci<var>XXX</var>@MAIL_SERVER_DOMAIN</td></tr>
+<tr><td>トピック・イベント写真変更</td><td>ti<var>XXX</var>-<var>YYY</var>@MAIL_SERVER_DOMAIN</td><td>ti<var>XXX</var>@MAIL_SERVER_DOMAIN</td></tr>
 </table>
 <ul>
 <li><var>XXX</var> には数字。</li>
 <li><var>YYY</var> には12バイトの英数字([0-9a-f]{12})。</li>
 </ul>
 
-<p>新形式、旧形式のどちらのアドレスで受け付けるかは config.phpの設定(MAIL_ADDRESS_HASHED)によって切り替えることができます。</p>
-<p>新形式はメール投稿の際のFromアドレス偽装へのセキュリティ対策のために導入されたものです。
+<p>新形式、旧形式のどちらのメールアドレスで受け付けるかは config.phpの設定(MAIL_ADDRESS_HASHED)によって切り替えることができます。</p>
+<p>新形式はメール投稿の際のFromメールアドレス偽装へのセキュリティ対策のために導入されたものです。
 From偽装対策を(IP制限等により)メールサーバ側で行っている場合には旧形式での運用も問題ありません。</p>
 
-<p>メールサーバの転送設定を利用して、これらのアドレスへのメールが、以下のコマンドにわたるように設定します。</p>
+<p>メールサーバの転送設定を利用して、これらのメールアドレスへのメールが、以下のコマンドにわたるように設定します。</p>
 <pre>
 "|/usr/bin/php <var>OPENPNE_DIR</var>/bin/mail.php"
 </pre>
@@ -375,7 +380,7 @@ $ chmod 0755 bin/*.cron
 <div>
 <pre>
 # 6時にメールを送信＆20分毎にRSS更新
-00   6 * * * root sh <var>OPENPNE_DIR</var>/bin/tool_send_dairy_news.cron     <var>OPENPNE_DIR</var>/bin/ [bin_path]/php
+00   6 * * * root sh <var>OPENPNE_DIR</var>/bin/tool_send_daily_news.cron     <var>OPENPNE_DIR</var>/bin/ [bin_path]/php
 00   6 * * * root sh <var>OPENPNE_DIR</var>/bin/tool_send_birthday_mail.cron  <var>OPENPNE_DIR</var>/bin/ [bin_path]/php
 00   6 * * * root sh <var>OPENPNE_DIR</var>/bin/tool_send_schedule_mail.cron  <var>OPENPNE_DIR</var>/bin/ [bin_path]/php
 */20 * * * * root sh <var>OPENPNE_DIR</var>/bin/tool_rss_cache.cron           <var>OPENPNE_DIR</var>/bin/ [bin_path]/php
@@ -383,10 +388,16 @@ $ chmod 0755 bin/*.cron
 [bin_path]は、PHP の実行ファイルがインストールされているディレクトリ(例えば、/usr/bin)です。
 </div>
 
+<p>また、デイリーニュース送信用スクリプトは、デイリーニュース送信結果通知ログを出力します。/etc/crontabを以下のように記述し、メールで受け取れるようにすると便利です。</p>
+<div>
+<pre>
+00   6 * * * root sh <var>OPENPNE_DIR</var>/bin/tool_send_daily_mail.cron  <var>OPENPNE_DIR</var>/bin/ [bin_path]/php | mail -s "daily news log" example@example.com
+</pre>
+</div>
 
 <h2 id="section5">5. セットアップモジュールの実行</h2>
 
-<p>ブラウザから以下のアドレスへアクセスしてください。(セットアップ完了後はアクセスすることができません)</p>
+<p>ブラウザから以下のURLへアクセスしてください。(セットアップ完了後はアクセスすることができません)</p>
 
 <pre>
 <var>OPENPNE_URL</var>?m=setup

@@ -16,6 +16,8 @@ class ktai_page_h_message_box extends OpenPNE_Action
         $page_r = $requests['page_r'];
         $direc_s = $requests['direc_s'];
         $page_s = $requests['page_s'];
+        $direc_t = $requests['direc_t'];
+        $page_t = $requests['page_t'];
         $box = $requests['box'];
         $keyword = $requests['keyword'];
         // ----------
@@ -47,6 +49,23 @@ class ktai_page_h_message_box extends OpenPNE_Action
             $pager['start'] = $page_size * ($page_s - 1) + 1;
             if (($pager['end'] = $page_size * $page_s) > $list_s[3]) {
                 $pager['end'] = $list_s[3];
+            }
+            $this->set('pager', $pager);
+        } elseif ($box == 'trash') {
+            $page_t += $direc_t;
+            $list_t = db_message_c_message_trash_list4c_member_id4range($u, $page_t, $page_size);
+
+            $this->set('c_message_trash_list', $list_t[0]);
+            $this->set('page_t', $page_t);
+            $this->set('is_prev_t', $list_t[1]);
+            $this->set('is_next_t', $list_t[2]);
+            $this->set('count_messages_sent', $list_t[3]);
+            $this->set('total_num', $list_t[3]);
+
+            $pager = array();
+            $pager['start'] = $page_size * ($page_t - 1) + 1;
+            if (($pager['end'] = $page_size * $page_t) > $list_t[3]) {
+                $pager['end'] = $list_t[3];
             }
             $this->set('pager', $pager);
         } else {

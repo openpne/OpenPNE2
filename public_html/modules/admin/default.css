@@ -57,13 +57,13 @@ li { list-style-type: none;}
 
 .header { height: 50px; background: url("img/bg_header.gif") no-repeat; border-bottom: #000000 1px solid; overflow: hidden;}
 .header div.ttl { float: left; padding: 0 0 0 24px; line-height: 100%; color: #FFFFFF;}
-.header div.ttl h1 { float: left; padding: 24px 15px 0 0; font-size: 22px; color: #FFFFFF;}
-.header div.ttl h1 a { line-height: 16px; text-decoration: none;}
+.header div.ttl h1 { float: left; padding: 18px 15px 0 0; line-height: 22px; font-size: 22px; color: #FFFFFF;}
+.header div.ttl h1 a { text-decoration: none;}
 .header div.ttl h1 a:link ,
 .header div.ttl h1 a:visited ,
 .header div.ttl h1 a:hover ,
 .header div.ttl h1 a:active { color: #FFFFFF;}
-.header div.ttl span { float: left; display: block; padding-top: 27px; color: #FFFFFF;}
+.header div.ttl span { float: left; display: block; padding-top: 25px; color: #FFFFFF;}
 .header div.ttl span a { margin: 0 3px; color: #FFFFFF;}
 .header div.naviHelp { float: right; padding-top: 25px; padding-right: 17px;}
 .header div.naviHelp a { margin: 0 3px;}
@@ -510,6 +510,7 @@ div.listControl p.listMove a {
 #admin_page_list_c_member table.userListTable td.cell02A,
 #admin_page_list_c_member table.userListTable td.cell02B,
 #admin_page_list_c_member table.userListTable td.cell02C,
+#admin_page_list_c_member table.userListTable td.cell02D,
 #admin_page_list_c_member table.userListTable td.cell08A,
 #admin_page_list_c_member table.userListTable td.cell08B,
 #admin_page_list_c_member table.userListTable td.cell08C,
@@ -581,12 +582,12 @@ div.listControl p.listMove a {
 
 /** admin_page_delete_c_member_confirm **/
 #admin_page_delete_c_member_confirm p.caution#c01 strong { font-weight: bold; line-height: 170%;}
-#admin_page_delete_c_member_confirm p.caution#c02 { padding: 20px 0 10px 0;}
 #admin_page_delete_c_member_confirm p#userImg { padding: 20px 0 10px 0;}
 #admin_page_delete_c_member_confirm p#userImg img { margin: 0 10px;}
 #admin_page_delete_c_member_confirm table.userDetailTable { clear: both; width: 960px; border: 1px #A3A3A6 solid; border-collapse: collapse; line-height: 100%;}
 #admin_page_delete_c_member_confirm table.userDetailTable th { padding: 5px; width: 10%; border-left: 1px #A3A3A6 solid; background: #58585C; white-space: pre; text-align: right; font-weight: normal; color: #fff;}
 #admin_page_delete_c_member_confirm table.userDetailTable td { padding: 5px; border-left: 1px #A3A3A6 solid;}
+#admin_page_delete_c_member_confirm ul.cautionList { padding: 10px 0 0 0;}
 
 /** admin_page_passwd **/
 #admin_page_passwd p.info { font-size: medium;}
@@ -818,10 +819,13 @@ div.listControl p.listMove a {
 #admin_page_edit_skin_image dl.box dd.default a { margin: 0;padding: 0;}
 #admin_page_edit_skin_image dl.box dd.submit { padding: 10px 0 10px 0; background-color: #E4EBEF; text-align: center;}
 #admin_page_edit_skin_image dl.box dd span input { margin: 0; vertical-align: middle;}
-* html #admin_page_edit_skin_image dl.box dd input { margin: 0; width: 150px;vertical-align: middle;}
-* html #admin_page_edit_skin_image dl.box dd span { margin: 0; padding: 0; padding-left: 10px;}
-* html #admin_page_edit_skin_image dl.box dd span input { margin: 0; width: 50px;vertical-align: middle;}
+#admin_page_edit_skin_image dl.box dd input { vertical-align: middle;}
 #admin_page_edit_skin_image p.detailLink { clear: both; margin-top: 10px; padding: 5px 10px 5px 0; border: #A3A3A6 solid 1px; background: #D5D5D7; text-align: right;}
+#admin_page_edit_skin_image h3#subttl01 { margin-top: 10px;}
+#admin_page_edit_skin_image h3#subttl02 { margin-top: 30px;}
+#admin_page_edit_skin_image div.submitTheme { clear: both; margin-top: 10px;}
+#admin_page_edit_skin_image #skin_changer_area dl.box { width: 220px;}
+#admin_page_edit_skin_image #skin_changer_area dl.box dd { padding:10px 0pt 10px; border-top: none;}
 
 /** admin_page_edit_c_sns_config **/
 #admin_page_edit_c_sns_config div.sampleColors p ,
@@ -832,7 +836,7 @@ div.listControl p.listMove a {
 #admin_page_edit_c_sns_config div.sampleColors h3#subttl01 {
 	margin-top: 10px;
 }
-#admin_page_edit_c_sns_config div.sampleColors dl.box { width: 200px;}
+#admin_page_edit_c_sns_config div.sampleColors dl.box { float: left; margin: 5px 5px 0 0; width: 200px; border: 1px #5F6067 solid;}
 #admin_page_edit_c_sns_config div.sampleColors dl.box p { margin: 0;padding: 0;border-left: #58585C 5px solid;}
 #admin_page_edit_c_sns_config div.sampleColors dl.box p input { padding: 2px 5px;}
 #admin_page_edit_c_sns_config div.bg { padding: 10px 0;}
@@ -850,6 +854,34 @@ div.listControl p.listMove a {
 #admin_page_edit_c_sns_config textarea#backgroundColors { width: 450px;}
 #admin_page_edit_c_sns_config textarea#copy_area { width: 40em; height: 20em;}
 #admin_page_edit_c_sns_config textarea#customCss { width: 950px;}
+
+/** admin_page_edit_c_sns_config_ktai **/
+#admin_page_edit_c_sns_config_ktai div.sampleColors p ,
+#admin_page_edit_c_sns_config_ktai div.bg p { padding: 0;}
+#admin_page_edit_c_sns_config_ktai div.contents p#c05 { padding: 10px 0 5px 0;}
+#admin_page_edit_c_sns_config_ktai div.sampleColors p#c03 { padding: 0 5px 5px 5px;}
+
+#admin_page_edit_c_sns_config_ktai div.sampleColors h3#subttl01 {
+	margin-top: 10px;
+}
+#admin_page_edit_c_sns_config_ktai div.sampleColors dl.box { width: 200px;}
+#admin_page_edit_c_sns_config_ktai div.sampleColors dl.box p { margin: 0;padding: 0;border-left: #58585C 5px solid;}
+#admin_page_edit_c_sns_config_ktai div.sampleColors dl.box p input { padding: 2px 5px;}
+#admin_page_edit_c_sns_config_ktai div.bg { padding: 10px 0;}
+#admin_page_edit_c_sns_config_ktai div.bg h3#subttl02 {
+	margin-top: 10px;
+}
+#admin_page_edit_c_sns_config_ktai dl.box { float: left; margin: 5px 5px 0 0; width: 150px; border: 1px #5F6067 solid;}
+#admin_page_edit_c_sns_config_ktai dl.box dt { padding: 5px; background-color: #58585C; font-weight: bold; color: #fff;}
+#admin_page_edit_c_sns_config_ktai dl.box dd { padding: 5px; background: #FFFFFF;}
+#admin_page_edit_c_sns_config_ktai dl.box dd.pre_color { padding: 0; height: 35px; border-top: #5F6067 1px solid; font-size: 1px; text-align: left;}
+#admin_page_edit_c_sns_config_ktai dl.box dd.color { padding: 0; height: 35px; border-top: #5F6067 1px solid; font-size: 1px; text-align: left;}
+#admin_page_edit_c_sns_config_ktai dl.box dd div { width: 70px; height: 13px; padding: 3px 5px; border-right: #58585C 5px solid; border-bottom: #5F6067 1px solid; background: #D5D5D7; font-size:8pt; overflow: hidden; text-align: center;}
+#admin_page_edit_c_sns_config_ktai h2#ttl02 {}
+#admin_page_edit_c_sns_config_ktai textarea { padding-right: 0;}
+#admin_page_edit_c_sns_config_ktai textarea#backgroundColors { width: 450px;}
+#admin_page_edit_c_sns_config_ktai textarea#copy_area { width: 40em; height: 20em;}
+#admin_page_edit_c_sns_config_ktai textarea#customCss { width: 950px;}
 
 /** admin_page_edit_c_navi **/
 #admin_page_edit_c_navi p.caution#c01 {}
@@ -1044,21 +1076,36 @@ div.listControl p.listMove a {
 #admin_page_edit_c_admin_info td.menu dl dd ul li { padding-top: 2px; list-style-type: disc; white-space: pre;}
 #admin_page_edit_c_admin_info td.detail h3 { padding-left: 20px; border-bottom: 1px #A3A3A6 solid; background-color: #58585C; color: #FFFFFF; line-height: 200%; font-size: medium;}
 #admin_page_edit_c_admin_info td.detail form { padding: 10px 0 0 20px;}
+#admin_page_edit_c_admin_info td.detail h4 { margin-top: 16px; margin-left: 20px;padding-left: 5px; border-left: 6px #58585C solid; font-size: medium;}
+#admin_page_edit_c_admin_info td.detail p.image { padding-top: 10px;}
+#admin_page_edit_c_admin_info td.detail img { margin-left: 23px;border-width: 2px; border-style: solid; border-color: #828282 #E0E0E0 #F0F0F0 #999999;}
 #admin_page_edit_c_admin_info form textarea { width: 85%; height: 400px;}
 #admin_page_edit_c_admin_info p.actionMsg { margin: 10px 17px; border-color: #FFFFFF;}
 
 /** admin_page_top **/
 #admin_page_top p.actionMsg { margin-top: 10px; margin-bottom: 0;}
 #admin_page_top div.contents { padding: 10px 0 0 0;}
-#admin_page_top div.info { margin: 0 17px;}
-#admin_page_top div.info { padding-bottom: 10px;}
-#admin_page_top div.topics { border: 1px #A3A3A6 solid;}
-#admin_page_top div.topics { float: left; margin-top: 10px; padding-bottom: 3px; margin: 0 17px;}
-#admin_page_top div.topics h2 { padding: 0 0 0 10px; margin-top: 0; border-bottom: 1px #A3A3A6 solid; background: #58585C; background-image: none; line-height: 150%; font-size: medium; color: #ffffff;}
-#admin_page_top div.topics dl { padding: 3px 15px 0 15px;}
-#admin_page_top div.topics dt { float: left; padding: 4px 0;}
-#admin_page_top div.topics dd { padding: 4px 0; padding-left: 7em;}
-#admin_page_top div.topics dd span { padding-right: 5px; font-size: x-small; font-weight: bold; color: #ff0000;}
+
+#admin_page_top div.noticeTypeA,
+#admin_page_top div.noticeTypeB { float:left; margin-left: 10px; width: 300px;}
+#admin_page_top div.box { margin-bottom:10px; border: 1px #a5a2a5 solid;}
+#admin_page_top div.box h2 { _width:300px; margin-top: 0px; padding: 0 0 0 18px; background: #5a595a; line-height: 150%; font-size: 105%; color: #fff;}
+#admin_page_top div.box div.innerBox { width: 298px; overflow: hidden; line-height:1.1em; padding: 10px;}
+
+#admin_page_top div.box dl { width: 280px; padding: 0px; float:left;}
+#admin_page_top div.box dt { padding: 4px 0px; float:left; width: 70px; clear: both; margin-right: 10px;}
+#admin_page_top div.box dd { width: 200px; padding: 4px 0px; float:left;}
+#admin_page_top div.box dd span.origin { padding-left:8px; font-size: x-small;}
+#admin_page_top div.box dd span.origin a { margin:0 2px;}
+
+#admin_page_top div.box#counter dt { width: 110px;}
+#admin_page_top div.box#counter dd { width: 160px;}
+
+#admin_page_top div.box#ranking dt { width: 160px;}
+#admin_page_top div.box#ranking dd { width: 110px;}
+
+#admin_page_top div.box#pneinfo dt { width: 50px;}
+#admin_page_top div.box#pneinfo dd { width: 220px;}
 
 /** admin_page_login **/
 #admin_page_login p.caution#c01 { padding-top: 15px;}
@@ -1072,55 +1119,148 @@ div.listControl p.listMove a {
 #admin_page_diary_list h3 {
 	margin-bottom: 5px;
 }
+#admin_page_diary_list div#c01 {
+    padding-bottom: 10px;
+}
 #admin_page_diary_list div.listControl {
 	margin-top: 5px;
 }
 #admin_page_diary_list table {
-	margin: 0;
+	margin: 15px 0;
+}
+#admin_page_diary_list td.textbody {
+    width: 570px;
+    word-break: break-all;
+}
+#admin_page_diary_list td.formbutton {
+    text-align: center;
+}
+#admin_page_diary_list p.info {
+	margin: 10px;
 }
 
 /** admin_page_diary_comment_list **/
 #admin_page_diary_comment_list h3 {
 	margin-bottom: 5px;
 }
-#admin_page_diary_comment_list p#c01 {
-	margin-bottom: 10px;
+#admin_page_diary_comment_list div#c01 {
+    padding-bottom: 10px;
+}
+#admin_page_diary_comment_list table {
+    margin: 15px 0;
+}
+#admin_page_diary_comment_list td.textbody {
+    width: 570px;
+    word-break: break-all;
+}
+#admin_page_diary_comment_list td.formbutton {
+    text-align: center;
+}
+#admin_page_diary_comment_list p.info {
+    margin: 10px;
 }
 
+/** admin_page_diary_list **/
+#admin_page_commu_list h3 {
+    margin-bottom: 5px;
+}
+#admin_page_commu_list div#c01 {
+    padding-bottom: 10px;
+}
+#admin_page_commu_list div.listControl {
+    margin-top: 5px;
+}
+#admin_page_commu_list table {
+    margin: 15px 0;
+}
+#admin_page_commu_list td.textbody {
+    width: 570px;
+    word-break: break-all;
+}
+#admin_page_commu_list td.formbutton {
+    text-align: center;
+}
+#admin_page_commu_list p.info {
+    margin: 10px;
+}
 
 /** admin_page_topic_list **/
 #admin_page_topic_list h3 {
 	margin-bottom: 5px;
 }
-#admin_page_topic_list div#c01 { padding-bottom: 10px;}
+#admin_page_topic_list div#c01 {
+	padding-bottom: 10px;
+}
+#admin_page_topic_list div.listControl {
+    margin-top: 5px;
+}
+#admin_page_topic_list table {
+    margin: 15px 0;
+}
+#admin_page_topic_list td.textbody {
+    width: 570px;
+    word-break: break-all;
+}
+#admin_page_topic_list td.formbutton {
+    text-align: center;
+}
+#admin_page_topic_list p.info {
+    margin: 10px;
+}
 
 /** admin_page_topic_comment_list **/
 #admin_page_topic_comment_list h3 {
 	margin-bottom: 5px;
 }
-#admin_page_topic_comment_list div#c01 { padding-bottom: 10px;}
-
-/** admin_page_topic_comment_list **/
-#admin_page_user_analysis_generation table tbody th {
-	background-color: #FFFFFF;
-	color: #000000;
+#admin_page_topic_comment_list div#c01 {
+    padding-bottom: 10px;
+}
+#admin_page_topic_comment_list div.listControl {
+    margin-top: 5px;
+}
+#admin_page_topic_comment_list table {
+    margin: 15px 0;
+}
+#admin_page_topic_comment_list td.textbody {
+    width: 570px;
+    word-break: break-all;
+}
+#admin_page_topic_comment_list td.formbutton {
+    text-align: center;
+}
+#admin_page_topic_comment_list p.info {
+    margin: 10px;
 }
 
 /** admin_page_page_review_list **/
-#admin_page_page_review_list h3 {
+#admin_page_review_list h3 {
 	margin-bottom: 5px;
 }
-#admin_page_page_review_list div#c01 { padding-bottom: 10px;}
-
-/** admin_page_page_review_list **/
-#admin_page_user_analysis_generation table tbody th {
-	background-color: #FFFFFF;
-	color: #000000;
+#admin_page_review_list div#c01 {
+	padding-bottom: 10px;
+}
+#admin_page_review_list div.listControl {
+    margin-top: 5px;
+}
+#admin_page_review_list table {
+    margin: 15px 0;
+}
+#admin_page_review_list td.textbody {
+    width: 570px;
+    word-break: break-all;
+}
+#admin_page_review_list td.formbutton {
+    text-align: center;
+}
+#admin_page_review_list p.info {
+    margin: 10px;
 }
 
-
-
 /** admin_page_user_analysis_generation **/
+#admin_page_user_analysis_generation table tbody th {
+    background-color: #FFFFFF;
+    color: #000000;
+}
 #admin_page_user_analysis_generation table tfoot th ,
 #admin_page_user_analysis_generation table tfoot td {
 	background-color: #E4EBEF;
@@ -1303,6 +1443,30 @@ div.listControl p.listMove a {
 #admin_page_update_c_free_page textarea { margin: 3px 3px 3px 0; vertical-align: middle;}
 #admin_page_update_c_free_page input.basicRadio { margin: 3px 3px 3px 0; vertical-align: middle;}
 
+/** admin_page_limit_domain **/
+
+#admin_page_limit_domain div.contents ul.description { padding-left: 20px;}
+#admin_page_limit_domain div.contents ul.description li { list-style-type: disc;}
+
+/** admin_page_blacklist **/
+
+#admin_page_blacklist div.contents ul.description { padding-left: 20px;}
+#admin_page_blacklist div.contents ul.description li { list-style-type: disc;}
+
+/** admin_page_blacklist_add_confirm **/
+
+#admin_page_blacklist_add_confirm div.contents form { display: inline;}
+#admin_page_blacklist_add_confirm div.contents p.textBtn { display: inline;}
+
+/** admin_page_blacklist_edit_confirm **/
+
+#admin_page_blacklist_edit_confirm div.contents form { display: inline;}
+#admin_page_blacklist_edit_confirm div.contents p.textBtn { display: inline;}
+
+/** admin_page_blacklist_delete_confirm **/
+
+#admin_page_blacklist_delete_confirm div.contents form { display: inline;}
+#admin_page_blacklist_delete_confirm div.contents p.textBtn { display: inline;}
 
 /*********** footer ***********/
 .footer { margin-top: 20px; padding: 10px 0; text-align: center;}

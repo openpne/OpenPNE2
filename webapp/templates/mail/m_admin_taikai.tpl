@@ -15,13 +15,17 @@
 
 ({foreach from=$c_profile_list item=prof})
 ({if $prof.name != 'PNE_POINT'})
+({if $prof.form_type == "checkbox"})
+({$prof.caption}) : ({$c_member.profile[$prof.name].value|@t_implode:", "})
+({else})
 ({$prof.caption}) : ({$c_member.profile[$prof.name].value})
+({/if})
 ({/if})
 ({/foreach})
 
-PCアドレス : ({$c_member.secure.pc_address})
-携帯アドレス : ({$c_member.secure.ktai_address})
-登録時アドレス : ({$c_member.secure.regist_address})
+PCメールアドレス : ({$c_member.secure.pc_address})
+携帯メールアドレス : ({$c_member.secure.ktai_address})
+登録時メールアドレス : ({$c_member.secure.regist_address})
 
 ({if $reason})
 退会理由

@@ -125,6 +125,23 @@ class biz_page_fh_biz_schedule_add extends OpenPNE_Action
         $this->set('bn_num', $bn_num);
         $this->set('my_id', $u);
         $this->set('is_h', true);
+        $this->set('sc_rcount', $requests["sc_rcount"]);
+        $this->set('sc_bn', $requests["sc_bn"]);
+        $this->set('sc_rp', $requests["sc_rp"]);
+
+        $sc_rwk_enc = array();
+        if (isset($requests['sc_rwk_enc'])) {
+            $sc_rwk_enc = unserialize($requests['sc_rwk_enc']);
+        }
+
+        foreach ($wk as $key => $value) {
+            if (in_array($key, $sc_rwk_enc)) {
+                $sc_rwk_chk[$key]['checkflag'] = 1;
+            } else {
+                $sc_rwk_chk[$key]['chekflag'] = 0;
+            }
+        };
+        $this->set('sc_rwk_chk', $sc_rwk_chk);
 
         $biz_group_count = biz_getGroupCount($target_id);
         $biz_group_list = biz_getJoinGroupList($target_id, 1, $biz_group_count);

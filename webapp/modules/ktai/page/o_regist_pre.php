@@ -39,8 +39,15 @@ class ktai_page_o_regist_pre extends OpenPNE_Action
             $this->set('aff_id', $aff_id);
         }
 
+        // 招待者の情報
+        $c_member_invite = db_member_c_member_with_profile($pre['c_member_id_invite'], 'friend');
+        $this->set('last_login',p_f_home_last_login4access_date($c_member_invite['access_date']));
+        $this->set('friend_count',db_friend_count_friends($c_member_invite['c_member_id']));
+        $this->set('target_c_member', $c_member_invite);
+        
         $this->set('ses', $ses);
         $this->set('SNS_NAME', SNS_NAME);
+        
         return 'success';
     }
 }

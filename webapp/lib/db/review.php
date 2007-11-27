@@ -161,34 +161,57 @@ function db_review_search_result4keyword_category($keyword, $category_id , $orde
 {
     $from = " FROM c_review INNER JOIN c_review_comment USING (c_review_id)";
 
-    $where = ' WHERE 1';
+    $wheres = array();
     $params = array();
     if ($keyword) {
-        $where .= ' AND c_review.title LIKE ?';
+        $wheres[] = 'c_review.title LIKE ?';
         $params[] = '%'.check_search_word($keyword).'%';
     }
     if ($category_id) {
-        $where .= ' AND c_review.c_review_category_id = ?';
+        $wheres[] = 'c_review.c_review_category_id = ?';
         $params[] = intval($category_id);
+    }
+    if ($wheres) {
+        $where = ' WHERE ' . implode(' AND ', $wheres);
+    } else {
+        $where = '';
     }
 
     switch ($orderby) {
     case "r_datetime":
     default:
-        $order = " ORDER BY r_datetime DESC";
+        $order = " ORDER BY r_datetime2 DESC";
         break;
     case "r_num":
-        $order = " ORDER BY write_num DESC, r_datetime DESC";
+        $order = " ORDER BY write_num DESC, r_datetime2 DESC";
         break;
     }
 
+    if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
+        $group = " GROUP BY c_review.c_review_id" .
+                ", c_review.title" .
+                ", c_review.release_date" .
+                ", c_review.manufacturer" .
+                ", c_review.author" .
+                ", c_review.c_review_category_id" .
+                ", c_review.image_small" .
+                ", c_review.image_medium" .
+                ", c_review.image_large" .
+                ", c_review.url" .
+                ", c_review.asin" .
+                ", c_review.list_price" .
+                ", c_review.retail_price" .
+                ", c_review.r_datetime";
+    } else {
+        $group = " GROUP BY c_review.c_review_id";
+    }
     $sql = "SELECT" .
             " c_review.*" .
-            ", MAX(c_review_comment.r_datetime) as r_datetime" .
+            ", MAX(c_review_comment.r_datetime) as r_datetime2" .
             ", COUNT(c_review_comment.c_review_comment_id) AS write_num" .
         $from .
         $where .
-        " GROUP BY c_review.c_review_id" .
+        $group .
         $order;
 
     $lst = db_get_all_page($sql, $page, $page_size, $params);
@@ -421,7 +444,12 @@ function db_review_edit_c_review_comment4c_review_comment_id_c_member_id($c_revi
     return db_get_row($sql, $params);
 }
 
-
+function db_review_edit_c_review_comment4c_review_comment_id($c_review_comment_id)
+{
+    $sql = 'SELECT * FROM c_review_comment WHERE c_review_comment_id = ?';
+    $params = array(intval($c_review_comment_id));
+    return db_get_row($sql, $params);
+}
 
 function db_review_clip_add_c_review_id4c_review_id_c_member_id($c_review_id, $c_member_id)
 {

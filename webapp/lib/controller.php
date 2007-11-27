@@ -211,7 +211,7 @@ function openpne_forward($module, $type = '', $action = '', $errors = array())
     }
     // ----------------------------------------------
 
-    //logger
+    // c_access_log
     if (LOG_C_ACCESS_LOG) {
         if ($GLOBALS['__Framework']['is_secure'] && $type == 'page') {
             if ($module == 'pc') {
@@ -220,6 +220,28 @@ function openpne_forward($module, $type = '', $action = '', $errors = array())
                 p_access_log($GLOBALS['KTAI_C_MEMBER_ID'], $action, 1);
             }
         }
+    }
+
+    // カスタムログ用関数の呼び出し
+    if (OPENPNE_LOG_FUNCTION && is_callable(OPENPNE_LOG_FUNCTION)) {
+        // c_member_id を取得
+        $c_member_id = 0;
+        if ($GLOBALS['__Framework']['is_secure']) {
+            if ($module == 'pc') {
+                $c_member_id = $GLOBALS['AUTH']->uid();
+            } else if ($module == 'ktai') {
+                $c_member_id = $GLOBALS['KTAI_C_MEMBER_ID'];
+            }
+        }
+
+        $params = array(
+            'module' => $module,
+            'type' => $type,
+            'action' => $action,
+            'c_member_id' => $c_member_id,
+            'is_secure' => $GLOBALS['__Framework']['is_secure'],
+        );
+        call_user_func(OPENPNE_LOG_FUNCTION, $params);
     }
 
     return true;

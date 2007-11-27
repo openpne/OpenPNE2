@@ -66,12 +66,6 @@ function db_admin_update_c_siteadmin($target, $body)
     return db_update('c_siteadmin', $data, $where);
 }
 
-function db_admin_update_c_sns_config($data)
-{
-    $where = array('c_sns_config_id' => 1);
-    return db_update('c_sns_config', $data, $where);
-}
-
 function db_admin_delete_c_profile_option($c_profile_option_id)
 {
     //function cache削除
@@ -176,6 +170,10 @@ function db_admin_insert_c_profile(
 {
     pne_cache_drop('db_member_c_profile_list');
 
+    if (empty($info) || is_null($info)) {
+        $info = '';
+    }
+
     $data = array(
         'name' => $name,
         'caption' => $caption,
@@ -214,6 +212,10 @@ function db_admin_update_c_profile($c_profile_id
     , $val_max
     )
 {
+    if (empty($info) || is_null($info)) {
+        $info = '';
+    }
+
     $data = array(
         'name' => $name,
         'caption' => $caption,
@@ -544,23 +546,24 @@ function db_admin_get_auth_type($c_admin_user_id)
 function _db_admin_c_member_id_list($cond_list, $order = null)
 {
     $sql = 'SELECT c_member_id'.
-           ' FROM c_member'.
-           ' WHERE 1';
+           ' FROM c_member';
+
+    $wheres = array();
 
     //開始年
     if (!empty($cond_list['s_year'])) {
-        $sql .= ' AND birth_year >= ?';
+        $wheres[] = 'birth_year >= ?';
         $params[] = $cond_list['s_year'];
     }
     //終了年
     if (!empty($cond_list['e_year'])) {
-        $sql .= ' AND birth_year <= ?';
+        $wheres[] = 'birth_year <= ?';
         $params[] = $cond_list['e_year'];
     }
 
     // 誕生日による絞り込みの場合は、誕生年が0のメンバーを除外する
     if (!empty($cond_list['s_year']) || !empty($cond_list['e_year'])) {
-        $sql .= ' AND birth_year <> 0';
+        $wheres[] = 'birth_year <> 0';
     }
 
     //最終ログイン時間で絞り込み
@@ -568,31 +571,38 @@ function _db_admin_c_member_id_list($cond_list, $order = null)
         //期間で分ける
         switch($cond_list['last_login']) {
         case 1: //3日以内
-            $sql .= ' AND access_date >= ?';
+            $wheres[] = 'access_date >= ?';
             $params[] = date('Y-m-d', strtotime('-3 day'));
             break;
         case 2: //3～7日以内
-            $sql .= ' AND access_date >= ? AND access_date < ?';
+            $wheres[] = 'access_date >= ? AND access_date < ?';
             $params[] = date('Y-m-d', strtotime('-7 day'));
             $params[] = date('Y-m-d', strtotime('-3 day'));
             break;
         case 3: //7～30日以内
-            $sql .= ' AND access_date >= ? AND access_date < ?';
+            $wheres[] = 'access_date >= ? AND access_date < ?';
             $params[] = date('Y-m-d', strtotime('-30 day'));
             $params[] = date('Y-m-d', strtotime('-7 day'));
             break;
         case 4: //30日以上
-            $sql .= ' AND access_date > ? AND access_date < ?';
+            $wheres[] = 'access_date > ? AND access_date < ?';
             $params[] = '0000-00-00 00:00:00';
             $params[] = date('Y-m-d', strtotime('-30 day'));
             break;
         case 5: //未ログイン
-            $sql .= ' AND access_date = ?';
+            $wheres[] = 'access_date = ?';
             $params[] = '0000-00-00 00:00:00';
             break;
         }
     }
 
+    if ($wheres) {
+        $where = ' WHERE ' . implode(' AND ', $wheres);
+    } else {
+        $where = '';
+    }
+    $sql .= $where;
+    
     // --- ソートオーダーここから
 
     // $orderの例：id_1 , id_2
@@ -684,21 +694,29 @@ function _db_admin_c_member_id_list($cond_list, $order = null)
     // --- メールアドレスで絞り込み ここから
     if (!empty($cond_list['is_pc_address']) || !empty($cond_list['is_ktai_address'])) {
 
-        $sql = 'SELECT c_member_id FROM c_member_secure WHERE 1';
+        $sql = 'SELECT c_member_id FROM c_member_secure';
+        $wheres = array();
 
-        //PCアドレスの有無で絞る
+        //PCメールアドレスの有無で絞る
         if ($cond_list['is_pc_address'] == 1) {
-            $sql .= " AND pc_address <> '' ";
-        } else if ($cond_list['is_pc_address'] == 2) {
-            $sql .= " AND pc_address = '' ";
+            $wheres[] = "pc_address <> ''";
+        } elseif ($cond_list['is_pc_address'] == 2) {
+            $wheres[] = "pc_address = ''";
         }
 
-        //携帯アドレスの有無で絞る
+        //携帯メールアドレスの有無で絞る
         if ($cond_list['is_ktai_address'] == 1) {
-            $sql .= " AND ktai_address <> '' ";
-        } else if ($cond_list['is_ktai_address'] == 2) {
-            $sql .= " AND ktai_address = '' ";
+            $wheres[] = "ktai_address <> ''";
+        } elseif ($cond_list['is_ktai_address'] == 2) {
+            $wheres[] = "ktai_address = ''";
         }
+
+        if ($wheres) {
+            $where = ' WHERE ' . implode(' AND ', $wheres);
+        } else {
+            $where = '';
+        }
+        $sql .= $where;
 
         $temp_ids = db_get_col($sql);
 
@@ -731,7 +749,11 @@ function _db_admin_c_member_id_list($cond_list, $order = null)
                     $sql .= ' ORDER BY c_profile_option_id';
                 } else {
                     if ($value['name'] == "PNE_POINT") {
-                        $sql .= ' ORDER BY cast(value as signed)';
+                        if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
+                            $sql .= ' ORDER BY cast(value as integer)';
+                        } else {
+                            $sql .= ' ORDER BY cast(value as signed)';
+                        }
                     } else {
                         $sql .= ' ORDER BY value';
                     }
@@ -809,11 +831,11 @@ function validate_cond($requests)
         $cond_list['last_login'] = intval($requests['last_login']);
     }
 
-    //PCアドレスの有無
+    //PCメールアドレスの有無
     if (!empty($requests['is_pc_address'])) {
         $cond_list['is_pc_address'] = intval($requests['is_pc_address']);
     }
-    //携帯アドレスの有無
+    //携帯メールアドレスの有無
     if (!empty($requests['is_ktai_address'])) {
         $cond_list['is_ktai_address'] = intval($requests['is_ktai_address']);
     }
@@ -932,11 +954,19 @@ function db_access_analysis_c_admin_user_id4username($username)
 
 function p_access_analysis_month_access_analysis_month($ktai_flag)
 {
-    $sql = "SELECT concat(left(r_datetime, 7), '-01') as ym, count(*) as count" .
-            " FROM c_access_log " .
-            " where ktai_flag = ?" .
-            " group by ym";
-    $params = array(intval($ktai_flag));            
+    if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
+        $sql = "SELECT to_char(r_datetime, 'YYYY-MM-01') as ym, count(*) as count" .
+                " FROM c_access_log " .
+                " where ktai_flag = ?" .
+                " group by ym";
+    } else {
+        $sql = "SELECT date_format(r_datetime, '%Y-%m-01') as ym, count(*) as count" .
+                " FROM c_access_log " .
+                " where ktai_flag = ?" .
+                " group by ym";
+    }
+
+    $params = array(intval($ktai_flag));
     $list = db_get_all($sql,$params);
     return $list;
 }
@@ -944,11 +974,19 @@ function p_access_analysis_month_access_analysis_month($ktai_flag)
 
 function p_access_analysis_day_access_analysis_day($ym, $ktai_flag)
 {
-    $sql = "SELECT left(r_datetime,10) as ymd , count(*) as count" .
+    if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
+        $sql = "SELECT substr(r_datetime,1,10) as ymd , count(*) as count" .
             " FROM c_access_log " .
-            " where left(r_datetime, 7) = ?" .
+            " where substr(r_datetime,1,7) = ?" .
             " and ktai_flag = ? " .
-            " group by ymd";            
+            " group by ymd";
+    } else {
+        $sql = "SELECT left(r_datetime,10) as ymd , count(*) as count" .
+                " FROM c_access_log " .
+                " where left(r_datetime, 7) = ?" .
+                " and ktai_flag = ? " .
+                " group by ymd";
+    }
     $params = array(intval(substr($ym,0,7)),intval($ktai_flag));
     $list = db_get_all($sql,$params);
     
@@ -1000,10 +1038,19 @@ function p_access_analysis_page_access_analysis_page4ym($ymd, $month_flag, $ktai
     $sql = "select page_name , count(*) as count from c_access_log where ktai_flag = ? ";
     $params = array(intval($ktai_flag));
     if ($month_flag) {
-        $sql .= " and left(r_datetime, 7) = ? ";
+        if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
+            $sql .= " and substr(r_datetime,1,7) = ? ";
+        } else {
+            $sql .= " and left(r_datetime, 7) = ? ";
+        }
+
         array_push($params,substr($ymd,0,7));
     } else {
-        $sql .= " and left(r_datetime,10) = ? ";
+        if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
+            $sql .= " and substr(r_datetime,1,10) = ? ";
+        } else {
+            $sql .= " and left(r_datetime,10) = ? ";
+        }
         array_push($params,$ymd);
     }
     $sql .= " group by page_name ".    $orderby_str;
@@ -1095,19 +1142,28 @@ function p_access_analysis_target_commu_target_commu4ym_page_name
     $sql = "select target_c_commu_id , count(*) as count from c_access_log  where ktai_flag = ? ";
     $params = array(intval($ktai_flag));
     if ($month_flag) {
+        if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
+            $sql .= " and substr(r_datetime,1,7) = ? ";
+        } else {
             $sql .= " and left(r_datetime, 7) = ? ";
-            array_push($params,substr($ymd,0,7));
+        }
+        array_push($params,substr($ymd,0,7));
     } else {
+        if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
+            $sql .= " and substr(r_datetime,1,10) = ? ";
+        } else {
             $sql .= " and left(r_datetime,10) = ? ";
-            array_push($params,$ymd);
+        }
+        array_push($params,$ymd);
     }
     if ($page_name!="all") {
             $sql .= " and page_name = ? ";
             array_push($params,$page_name);
     }
     $sql .= " and target_c_commu_id <> 0 ";
-    $sql .= " group by target_c_commu_id " .$orderby_str." limit $start, $page_size";
-    $list = db_get_all($sql,$params);
+
+    $sql .= " group by target_c_commu_id " .$orderby_str;
+    $list = db_get_all_limit($sql, $start, $page_size, $params);
 
     $return = array();
     $sum = 0;
@@ -1123,10 +1179,18 @@ function p_access_analysis_target_commu_target_commu4ym_page_name
     $sql =   "select count(*) from c_access_log  where ktai_flag = ? ";
     $params = array(intval($ktai_flag));
     if ($month_flag) {
-        $sql .= " and left(r_datetime, 7) = ? ";
+        if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
+            $sql .= " and substr(r_datetime,1,7) = ? ";
+        } else {
+            $sql .= " and left(r_datetime, 7) = ? ";
+        }
         array_push($params,substr($ymd,0,7));
     } else {
-        $sql .= " and left(r_datetime,10) = ? ";
+        if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
+            $sql .= " and substr(r_datetime,1,10) = ? ";
+        } else {
+            $sql .= " and left(r_datetime,10) = ? ";
+        }
         array_push($params,$ymd);
     }
     if ($page_name!="all") {
@@ -1154,7 +1218,7 @@ function p_access_analysis_target_commu_target_commu4ym_page_name
     $start_num = ($page - 1) * $page_size + 1 ;
     $end_num =   ($page - 1) * $page_size + $page_size > $total_num ? $total_num : ($page - 1) * $page_size + $page_size ;
 
-    return array($return, $sum, $prev, $next, $total_num, $start_num, $end_num);    
+    return array($return, $sum, $prev, $next, $total_num, $start_num, $end_num);
 }
 
 function p_access_analysis_target_topic_target_topic4ym_page_name
@@ -1174,19 +1238,27 @@ function p_access_analysis_target_topic_target_topic4ym_page_name
     $where =" where ktai_flag = ? ";
     $params = array(intval($ktai_flag));
     if ($month_flag) {
+        if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
+            $where .= " and substr(r_datetime,1, 7) = ? ";
+        } else {
             $where .= " and left(r_datetime, 7) = ? ";
-            array_push($params,substr($ymd,0,7));
+        }
+        array_push($params,substr($ymd,0,7));
     } else {
+        if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
+            $where .= " and substr(r_datetime,1,10) = ? ";
+        } else {
             $where .= " and left(r_datetime,10) = ? ";
-            array_push($params,$ymd);
+        }
+        array_push($params,$ymd);
     }
     if ($page_name!="all") {
             $where .= " and page_name = ? ";
             array_push($params,$page_name);
     }
     $sql = "select target_c_commu_topic_id , count(*) as count from c_access_log ";
-    $sql .= $where." group by target_c_commu_topic_id " .$orderby_str." limit $start, $page_size";
-    $list = db_get_all($sql,$params);
+    $sql .= $where." group by target_c_commu_topic_id " .$orderby_str;
+    $list = db_get_all_limit($sql, $start, $page_size, $params);
     $sql = "select count(*) from c_access_log ";
     $sql .= $where ." group by target_c_commu_topic_id ";
     $result = db_get_all($sql,$params);
@@ -1244,10 +1316,18 @@ function p_access_analysis_target_diary_target_diary4ym_page_name
     $sql = "select target_c_diary_id , count(*) as count from c_access_log where ktai_flag = ? ";
     $params = array(intval($ktai_flag));
     if ($month_flag) {
-        $sql .= " and left(r_datetime, 7) = ? ";
+        if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
+            $sql .= " and substr(r_datetime,1,7) = ? ";
+        } else {
+            $sql .= " and left(r_datetime, 7) = ? ";
+        }
         array_push($params,substr($ymd,0,7));
     } else {
-        $sql .= " and left(r_datetime,10) = ? ";
+        if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
+            $sql .= " and substr(r_datetime,1,10) = ? ";
+        } else {
+            $sql .= " and left(r_datetime,10) = ? ";
+        }
         array_push($params,$ymd);
     }
     if ($page_name!="all") {
@@ -1255,8 +1335,8 @@ function p_access_analysis_target_diary_target_diary4ym_page_name
         array_push($params,$page_name);
     }
     $sql .= " and target_c_diary_id <> 0 ";
-    $sql .= " group by target_c_diary_id " . $orderby_str. " limit $start, $page_size";
-    $list = db_get_all($sql,$params);
+    $sql .= " group by target_c_diary_id " . $orderby_str;
+    $list = db_get_all_limit($sql, $start, $page_size, $params);
 
     $return = array();
     $sum = 0;
@@ -1274,11 +1354,19 @@ function p_access_analysis_target_diary_target_diary4ym_page_name
     $sql =   "select count(*) from c_access_log where ktai_flag = ? ";
     $params = array(intval($ktai_flag));
     if ($month_flag) {
+        if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
+            $sql .= " and substr(r_datetime,1,7) = ? ";
+        } else {
             $sql .= " and left(r_datetime, 7) = ? ";
-            array_push($params,substr($ymd,0,7));
+        }
+        array_push($params,substr($ymd,0,7));
     } else {
+        if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
+            $sql .= " and substr(r_datetime,1,10) = ? ";
+        } else {
             $sql .= " and left(r_datetime,10) = ? ";
-            array_push($params,$ymd);
+        }
+        array_push($params,$ymd);
     }
     $sql .= " and target_c_diary_id <> 0 ";
     $sql .= " group by target_c_diary_id ";
@@ -1301,7 +1389,7 @@ function p_access_analysis_target_diary_target_diary4ym_page_name
     $start_num = ($page - 1) * $page_size + 1 ;
     $end_num =   ($page - 1) * $page_size + $page_size > $total_num ? $total_num : ($page - 1) * $page_size + $page_size ;
 
-    return array($return, $sum, $prev, $next, $total_num, $start_num, $end_num);    
+    return array($return, $sum, $prev, $next, $total_num, $start_num, $end_num);
 }
 
 function p_access_analysis_member_access_member4ym_page_name
@@ -1322,10 +1410,18 @@ function p_access_analysis_member_access_member4ym_page_name
     $where =" where ktai_flag = ? ";
     $params = array(intval($ktai_flag));
     if ($month_flag) {
-        $where .= " and left(r_datetime, 7) = ? ";
+        if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
+            $where .= " and substr(r_datetime,1,7) = ? ";
+        } else {
+            $where .= " and left(r_datetime, 7) = ? ";
+        }
         array_push($params,substr($ymd,0,7));
     } else {
-        $where .= " and left(r_datetime,10) = ? ";
+        if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
+            $where .= " and substr(r_datetime,1,10) = ? ";
+        } else {
+            $where .= " and left(r_datetime,10) = ? ";
+        }
         array_push($params,$ymd);
     }
     if ($page_name!="all") {
@@ -1334,8 +1430,8 @@ function p_access_analysis_member_access_member4ym_page_name
     }
 
     $sql = "select c_member_id , count(*) as count from c_access_log";
-    $sql .= $where." group by c_member_id $orderby_str limit $start, $page_size";
-    $list = db_get_all($sql,$params);
+    $sql .= $where." group by c_member_id $orderby_str";
+    $list = db_get_all_limit($sql, $start, $page_size, $params);
     $sql = "select count(*) from c_access_log ";
     $sql .=    $where ." group by c_member_id ";
     $result = db_get_all($sql,$params);
@@ -1368,7 +1464,7 @@ function p_access_analysis_member_access_member4ym_page_name
     }
     $start_num = ($page - 1) * $page_size + 1 ;
     $end_num =   ($page - 1) * $page_size + $page_size > $total_num ? $total_num : ($page - 1) * $page_size + $page_size ;
-    return array($return, $sum, $prev, $next, $total_num, $start_num, $end_num);    
+    return array($return, $sum, $prev, $next, $total_num, $start_num, $end_num);
 }
 
 function p_access_analysis_target_member_access_member4ym_page_name
@@ -1387,23 +1483,31 @@ function p_access_analysis_target_member_access_member4ym_page_name
     }
     $where =" where ktai_flag = ? ";
     $params = array(intval($ktai_flag));
-        if ($month_flag) {
-                $where .= " and left(r_datetime, 7) = ? ";
-                array_push($params,substr($ymd,0,7));
+    if ($month_flag) {
+        if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
+            $where .= " and substr(r_datetime,1,7) = ? ";
         } else {
-                $where .= " and left(r_datetime,10) = ? ";
-                array_push($params,$ymd);
+            $where .= " and left(r_datetime, 7) = ? ";
         }
-        if ($page_name!="all") {
-                $where .= " and page_name = ? ";
-                array_push($params,$page_name);
+        array_push($params,substr($ymd,0,7));
+    } else {
+        if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
+            $where .= " and substr(r_datetime,1,10) = ? ";
+        } else {
+            $where .= " and left(r_datetime,10) = ? ";
         }
+        array_push($params,$ymd);
+    }
+    if ($page_name != "all") {
+        $where .= " and page_name = ? ";
+        array_push($params,$page_name);
+    }
     $sql = "select target_c_member_id , count(*) as count from c_access_log ";
     $sql .= $where;
     $sql .= " AND target_c_member_id <> 0 ";
-    $sql .= " group by target_c_member_id " . $orderby_str. " limit $start, $page_size";
+    $sql .= " group by target_c_member_id " . $orderby_str;
 
-    $list = db_get_all($sql,$params);
+    $list = db_get_all_limit($sql, $start, $page_size, $params);
 
     $return = array();
     $sum = 0;
@@ -1418,17 +1522,25 @@ function p_access_analysis_target_member_access_member4ym_page_name
 
     $where =" where ktai_flag = ? ";
     $params = array(intval($ktai_flag));
-        if ($month_flag) {
-                $where .= " and left(r_datetime, 7) = ? ";
-                array_push($params,substr($ymd,0,7));
+    if ($month_flag) {
+        if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
+            $where .= " and substr(r_datetime,1,7) = ? ";
         } else {
-                $where .= " and left(r_datetime,10) = ? ";
-                array_push($params,$ymd);
+            $where .= " and left(r_datetime, 7) = ? ";
         }
-        if ($page_name != "all") {
-                $where .= " and page_name = ? ";
-                array_push($params,$page_name);
+        array_push($params,substr($ymd,0,7));
+    } else {
+        if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
+            $where .= " and substr(r_datetime,1,10) = ? ";
+        } else {
+            $where .= " and left(r_datetime,10) = ? ";
         }
+        array_push($params,$ymd);
+    }
+    if ($page_name != "all") {
+        $where .= " and page_name = ? ";
+        array_push($params,$page_name);
+    }
     $sql = "select count(*) from c_access_log " ;
     $sql .= $where;
     $sql .= " AND target_c_member_id <> 0 ";
@@ -1503,36 +1615,39 @@ $e_access_date    最終ログイン時刻　終了年月日
 c_member_list
 
 */
-function p_member_edit_c_member_list($page_size, $page,$s_access_date='', $e_access_date='')
+function p_member_edit_c_member_list($page_size, $page, $s_access_date='', $e_access_date='')
 {
-
     $page = intval($page);
     $page_size = intval($page_size);
 
-    $limit = "";
-
-    //page_sizeが0の時は全て表示(pagerなし)
-    if ($page_size != 0) {
-        $limit = " LIMIT ".($page_size*($page-1)).",$page_size";
-    }
-    $where = " WHERE 1 ";
+    $wheres = array();
+    $params = array();
 
     //指定された条件で絞っていく
-    if ($s_access_date != "") {
-        $where = $where . " and access_date >= ?";
-        $params = array($s_access_date);
+    if ($s_access_date != '') {
+        $wheres[] = 'access_date >= ?';
+        $params[] = $s_access_date;
     }
 
-    if ($e_access_date != "") {
-        $where = $where . " and access_date < ?";
-        $params = array($e_access_date);
+    if ($e_access_date != '') {
+        $wheres[] = 'access_date < ?';
+        $params[] = $e_access_date;
+    }
+
+    if ($wheres) {
+        $where = ' WHERE ' . implode(' AND ', $wheres);
+    } else {
+        $where = '';
     }
 
     $select = "SELECT * FROM c_member";
     $order = " order by c_member_id";
-
-    $sql = $select . $where . $order . $limit;
-    $list = db_get_all_limit($sql, 0, $limit, $params);
+    $sql = $select . $where . $order;
+    if ($page_size > 0) {
+        $list = db_get_all_page($sql, $page, $page_size, $params);
+    } else {
+        $list = db_get_all($sql, $params);
+    }
     
     $sql = "select count(*) from c_member".$where;
 
@@ -1593,9 +1708,17 @@ function get_analysis_generation()
             '80～' =>0
     );
     
-    $sql = "SELECT ((YEAR(CURDATE()) - birth_year)- " .
-        "(RIGHT(CURDATE(),5)<CONCAT(birth_month,'-',birth_day))) " .
-        "AS age FROM c_member WHERE birth_year <> 0;";
+    if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
+        $sql = "SELECT ((date_part('year', now()) - birth_year)- " .
+            "cast(substring(CURRENT_DATE,'.....$')<(to_char(birth_month, '00') || '-' || to_char(birth_day, '00')) as int)) " .
+            "AS age FROM c_member WHERE birth_year <> 0;";
+    } else {
+        $today = getdate();
+        $mmdd = $today['mon'] * 100 + $today['mday'];
+        $sql = 'SELECT ' . $today['year'] . ' - birth_year'
+             . ' - (' . $mmdd . ' < (birth_month * 100 + birth_day))'
+             . ' AS age FROM c_member WHERE birth_year <> 0';
+    }
     $lst = db_get_all($sql);
 
     $temp = array_keys($analysis_generation);
@@ -1622,7 +1745,7 @@ function get_analysis_region()
     $lst = get_array_list4db($sql);
 
     foreach($pref as $value) {
-        $analysis_region[$value] = 0;    
+        $analysis_region[$value] = 0;
     }
 
     foreach ($lst as $value) {
@@ -1639,7 +1762,11 @@ function get_analysis_region()
 
 function get_analysis_date_month($year = "", $month = "")
 {
-    $sql = "select date_format(r_date,'%Y-%m') from c_member order by r_date";
+    if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
+        $sql = "select to_char(r_date,'YYYY-MM') from c_member order by r_date";
+    } else {
+        $sql = "select date_format(r_date,'%Y-%m') from c_member order by r_date";
+    }
     $start_date = db_get_one($sql);
 
     $i = 0;
@@ -1647,9 +1774,13 @@ function get_analysis_date_month($year = "", $month = "")
     do{
         $date = date("Y-m", mktime (0,0,0,$m+$i++,1,$y));
         $analysis_date_month[$date] = 0;
-    }while($date < date("Y-m"));    
+    }while($date < date("Y-m"));
     
-    $sql = "select date_format(r_date,'%Y-%m') as d from c_member";
+    if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
+        $sql = "select to_char(r_date,'YYYY-MM') as d from c_member";
+    } else {
+        $sql = "select date_format(r_date,'%Y-%m') as d from c_member";
+    }
     $lst = db_get_all($sql);
     foreach ($lst as $value) {
         $analysis_date_month[$value['d']]++;
@@ -1682,8 +1813,11 @@ function get_analysis_date_day($date="")
         $analysis_date_day[$i] = 0;
     }
 
-    
-    $sql = "select date_format(r_date,'%d') as d from c_member where date_format(r_date,'%Y-%m') = ?";
+    if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
+        $sql = "select to_char(r_date,'DD') as d from c_member where to_char(r_date,'YYYY-MM') = ?";
+    } else {
+        $sql = "select date_format(r_date,'%d') as d from c_member where date_format(r_date,'%Y-%m') = ?";
+    }
     $params = array($date);
     $lst = db_get_all($sql,$params);
 
@@ -1737,75 +1871,116 @@ function analysis_profile4c_profile_id($c_profile_id)
     
     return $profile;
 }
-function monitor_diary_list($keyword,$page_size,$page)
-{
 
+function monitor_diary_list($keyword, $page_size, $page)
+{
     $page = intval($page);
     $page_size = intval($page_size);
     
-    $where = " where 1 ";
+    $wheres = array();
 
     if ($keyword) {
         //全角空白を半角に統一
-        $keyword = str_replace("　", " ", $keyword);
-        $keyword_list = explode(" ", $keyword);
-            
-        for($i=0;$i < count($keyword_list);$i++) {
-            $keyword = check_search_word( $keyword_list[$i] );
-                
-            $where .= " and (c_diary.subject like ? ";
-            $where .= " or c_diary.body like ? ) ";
-            $params[]="%$keyword%";
-            $params[]="%$keyword%";
+        $keyword = str_replace('　', ' ', $keyword);
+        $keyword_list = explode(' ', $keyword);
+
+        for ($i = 0; $i < count($keyword_list); $i++) {
+            $keyword = check_search_word($keyword_list[$i]);
+
+            $wheres[] = '(subject LIKE ? OR body LIKE ?)';
+            $params[] = '%' . $keyword . '%';
+            $params[] = '%' . $keyword . '%';
         }
     }
+    if ($wheres) {
+        $where = ' WHERE ' . implode(' AND ', $wheres);
+    } else {
+        $where = '';
+    }
     
-    $select = " select c_diary.*";
+    $select = "SELECT *";
     $from = " FROM c_diary";
-    $order = " ORDER BY r_datetime desc";
+    $order = " ORDER BY r_datetime DESC";
     
     $sql = $select . $from . $where . $order;
     $list = db_get_all_limit($sql,($page-1)*$page_size,$page_size,$params);
     foreach ($list as $key => $value) {
         $list[$key]['c_member'] = db_member_c_member_with_profile($value['c_member_id']);
-        $list[$key]['count_comments'] = db_diary_count_c_diary_comment4c_diary_id($value['c_diary_id']); 
+        $list[$key]['count_comments'] = db_diary_count_c_diary_comment4c_diary_id($value['c_diary_id']);
     }
     
     $sql = 
-        "SELECT count(*) "
+        "SELECT COUNT(*) "
         . $from
         . $where ;
-    $total_num = db_get_one($sql,$params);
+    $total_num = db_get_one($sql, $params);
     
     $total_page_num =  ceil($total_num / $page_size);
     $next = ($page < $total_page_num);
     $prev = ($page > 1);
     
-    return array($list , $prev , $next, $total_num,$total_page_num);  
+    return array($list , $prev , $next, $total_num, $total_page_num);
 }
 
-function monitor_diary_comment_list($keyword,$page_size,$page)
+function monitor_diary_list4c_diary_id($c_diary_id, $page_size, $page)
 {
-
     $page = intval($page);
     $page_size = intval($page_size);
     
-    $where = " where 1 ";
+    $where = " WHERE c_diary_id = ? ";
+    $params[] = intval($c_diary_id);
+    
+    $select = "SELECT c_diary.*";
+    $from = " FROM c_diary";
+    $order = " ORDER BY r_datetime DESC";
+    
+    $sql = $select . $from . $where . $order;
+    $list = db_get_all_limit($sql,($page-1)*$page_size,$page_size,$params);
+    foreach ($list as $key => $value) {
+        $list[$key]['c_member'] = db_member_c_member_with_profile($value['c_member_id']);
+        $list[$key]['count_comments'] = db_diary_count_c_diary_comment4c_diary_id($value['c_diary_id']);
+    }
+    
+    $sql = 
+        "SELECT COUNT(*) "
+        . $from
+        . $where ;
+    $total_num = db_get_one($sql, $params);
+    
+    $total_page_num =  ceil($total_num / $page_size);
+    $next = ($page < $total_page_num);
+    $prev = ($page > 1);
+    
+    return array($list , $prev , $next, $total_num, $total_page_num);
+}
+
+function monitor_diary_comment_list($keyword, $page_size, $page)
+{
+    $page = intval($page);
+    $page_size = intval($page_size);
+    
+    $wheres = array();
 
     if ($keyword) {
         //全角空白を半角に統一
-        $keyword = str_replace("　", " ", $keyword);
-        $keyword_list = explode(" ", $keyword);
-            
-        for($i=0;$i < count($keyword_list);$i++) {
-            $keyword = check_search_word( $keyword_list[$i] );
-                
-            $where .= " and (c_diary_comment.body like ? ) ";
-            $params[]="%$keyword%";
+        $keyword = str_replace('　', ' ', $keyword);
+        $keyword_list = explode(' ', $keyword);
+
+        for($i = 0; $i < count($keyword_list); $i++) {
+            $keyword = check_search_word($keyword_list[$i]);
+
+            $wheres[] = 'c_diary_comment.body LIKE ?';
+            $params[] = '%' . $keyword . '%';
         }
     }
-    
-    $select = " select c_diary_comment.*,c_diary.subject";
+
+    if ($wheres) {
+        $where = ' WHERE ' . implode(' AND ', $wheres);
+    } else {
+        $where = '';
+    }
+
+    $select = "SELECT c_diary_comment.*, c_diary.subject";
     $from = " FROM c_diary_comment"
         ." LEFT JOIN c_diary ON c_diary.c_diary_id = c_diary_comment.c_diary_id ";
     $order = " ORDER BY r_datetime desc";
@@ -1814,30 +1989,146 @@ function monitor_diary_comment_list($keyword,$page_size,$page)
     $list = db_get_all_limit($sql,($page-1)*$page_size,$page_size,$params);
     foreach ($list as $key => $value) {
         $list[$key]['c_member'] = db_member_c_member_with_profile($value['c_member_id']);
-        $list[$key]['count_comments'] = db_diary_count_c_diary_comment4c_diary_id($value['c_diary_id']); 
+        $list[$key]['count_comments'] = db_diary_count_c_diary_comment4c_diary_id($value['c_diary_id']);
     }
     
     $sql = 
-        "SELECT count(*) "
+        "SELECT COUNT(*) "
         . $from
         . $where ;
-    $total_num = db_get_one($sql,$params);
+    $total_num = db_get_one($sql, $params);
     
     $total_page_num =  ceil($total_num / $page_size);
     $next = ($page < $total_page_num);
     $prev = ($page > 1);
     
-    return array($list , $prev , $next, $total_num,$total_page_num);  
+    return array($list , $prev , $next, $total_num, $total_page_num);
 }
 
-
-function monitor_topic_comment_list($keyword,$page_size,$page)
+function monitor_diary_comment_list4c_diary_comment_id($c_diary_comment_id, $page_size, $page)
 {
+    $page = intval($page);
+    $page_size = intval($page_size);
 
+    $where = " WHERE c_diary_comment.c_diary_comment_id = ? ";
+    $params[] = intval($c_diary_comment_id);
+    
+    $select = "SELECT c_diary_comment.*, c_diary.subject";
+    $from = " FROM c_diary_comment"
+        ." LEFT JOIN c_diary ON c_diary.c_diary_id = c_diary_comment.c_diary_id ";
+    $order = " ORDER BY r_datetime desc";
+    
+    $sql = $select . $from . $where . $order;
+    $list = db_get_all_limit($sql,($page-1)*$page_size,$page_size,$params);
+    
+    foreach ($list as $key => $value) {
+        $list[$key]['c_member'] = db_member_c_member_with_profile($value['c_member_id']);
+        $list[$key]['count_comments'] = db_diary_count_c_diary_comment4c_diary_id($value['c_diary_id']);
+    }
+    
+    $sql = 
+        "SELECT COUNT(*) "
+        . $from
+        . $where ;
+    $total_num = db_get_one($sql, $params);
+    
+    $total_page_num =  ceil($total_num / $page_size);
+    $next = ($page < $total_page_num);
+    $prev = ($page > 1);
+    
+    return array($list , $prev , $next, $total_num, $total_page_num);
+}
+
+function monitor_commu_list($keyword, $page_size, $page)
+{
     $page = intval($page);
     $page_size = intval($page_size);
     
-    $where = " where 1 ";
+    $wheres = array();
+
+    if ($keyword) {
+        $keyword = str_replace('　', ' ', $keyword);
+        $keyword_list = explode(' ', $keyword);
+            
+        for($i = 0; $i < count($keyword_list); $i++) {
+            $keyword = check_search_word($keyword_list[$i]);
+                
+            $wheres[] = '(name LIKE ? OR info LIKE ?)';
+            $params[] = '%' . $keyword . '%';
+            $params[] = '%' . $keyword . '%';
+        }
+    }
+
+    if ($wheres) {
+        $where = ' WHERE ' . implode(' AND ', $wheres);
+    } else {
+        $where = '';
+    }
+
+    $select = "SELECT * ";
+    $from = " FROM c_commu";
+    $order = " ORDER BY r_datetime DESC";
+    
+    $sql = $select . $from . $where . $order;
+    
+    $list = db_get_all_limit($sql,($page-1)*$page_size,$page_size,$params);
+    
+    foreach ($list as $key => $value) {
+        $list[$key]['c_member'] = db_member_c_member_with_profile($value['c_member_id_admin']);
+    }
+    
+    $sql = 
+        "SELECT COUNT(*) "
+        . $from
+        . $where ;
+    $total_num = db_get_one($sql, $params);
+    
+    $total_page_num =  ceil($total_num / $page_size);
+    $next = ($page < $total_page_num);
+    $prev = ($page > 1);
+    
+    return array($list, $prev, $next, $total_num, $total_page_num);
+}
+
+function monitor_commu_list4c_commu_id($c_commu_id, $page_size, $page)
+{
+    $page = intval($page);
+    $page_size = intval($page_size);
+    
+    $where = " WHERE c_commu_id = ? ";
+    $params[] = intval($c_commu_id);
+    
+    $select = "SELECT * ";
+    $from = " FROM c_commu";
+    $order = " ORDER BY r_datetime DESC";
+    
+    $sql = $select . $from . $where . $order;
+    
+    $list = db_get_all_limit($sql,($page-1)*$page_size,$page_size,$params);
+    
+    foreach ($list as $key => $value) {
+        $list[$key]['c_member'] = db_member_c_member_with_profile($value['c_member_id_admin']);;
+    }
+    
+    $sql = 
+        "SELECT COUNT(*) "
+        . $from
+        . $where ;
+    $total_num = db_get_one($sql, $params);
+    
+    $total_page_num =  ceil($total_num / $page_size);
+    $next = ($page < $total_page_num);
+    $prev = ($page > 1);
+    
+    return array($list , $prev , $next, $total_num, $total_page_num);
+}
+
+function monitor_topic_comment_list($keyword, $page_size, $page)
+{
+    $page = intval($page);
+    $page_size = intval($page_size);
+    
+    $where = " WHERE ctc.number <> 0  ";
 
     if ($keyword) {
         $keyword = str_replace("?@", " ", $keyword);
@@ -1846,14 +2137,13 @@ function monitor_topic_comment_list($keyword,$page_size,$page)
         for($i=0;$i < count($keyword_list);$i++) {
             $keyword = check_search_word( $keyword_list[$i] );
                 
-            $where .= " AND (ctc.body like ? )";
+            $where .= " AND (ctc.body LIKE ? )";
             $params[]="%$keyword%";
         }
     }
     
-    $select = " SELECT ctc.*,ct.name as topic_name,c.name as commu_name,m.nickname";
+    $select = "SELECT ctc.*,ct.name as topic_name,c.name as commu_name";
     $from = " FROM c_commu_topic_comment as ctc"
-            ." LEFT JOIN c_member as m ON ctc.c_member_id = m.c_member_id "
             ." LEFT JOIN c_commu_topic as ct ON ct.c_commu_topic_id = ctc.c_commu_topic_id "
             ." LEFT JOIN c_commu as c ON c.c_commu_id = ct.c_commu_id ";
     $order = " ORDER BY r_datetime desc";
@@ -1863,50 +2153,36 @@ function monitor_topic_comment_list($keyword,$page_size,$page)
     $list = db_get_all_limit($sql,($page-1)*$page_size,$page_size,$params);
     
     foreach ($list as $key => $value) {
-        $list[$key]['count_comments'] = _db_count_c_commu_topic_comments4c_commu_topic_id($value['c_commu_topic_id']); 
+        $list[$key]['count_comments'] = _db_count_c_commu_topic_comments4c_commu_topic_id($value['c_commu_topic_id']);
+        $c_member = db_member_c_member4c_member_id_LIGHT($value['c_member_id']);
+        $list[$key]['nickname'] = $c_member['nickname'];
     }
     
     $sql = 
-        "SELECT count(*) "
+        "SELECT COUNT(*) "
         . $from
         . $where ;
-    $total_num = db_get_one($sql,$params);
+    $total_num = db_get_one($sql, $params);
     
     $total_page_num =  ceil($total_num / $page_size);
     $next = ($page < $total_page_num);
     $prev = ($page > 1);
     
-    return array($list , $prev , $next, $total_num,$total_page_num);  
+    return array($list , $prev , $next, $total_num, $total_page_num);
 }
 
-function monitor_topic_list($keyword,$page_size,$page)
+function monitor_topic_comment_list4c_commu_topic_comment_id($c_commu_topic_comment_id, $page_size, $page)
 {
     $page = intval($page);
     $page_size = intval($page_size);
     
-    $where = " where 1 ";
-
-    if ($keyword) {
-        $keyword = str_replace("?@", " ", $keyword);
-        $keyword_list = explode(" ", $keyword);
-            
-        for($i=0;$i < count($keyword_list);$i++) {
-            $keyword = check_search_word( $keyword_list[$i] );
-                
-            $where .= " AND (ctc.body like ? ";
-            $where .= " OR ct.name like ? ";
-            $where .= " OR c.name like ? ) ";
-            $params[]="%$keyword%";
-            $params[]="%$keyword%";
-            $params[]="%$keyword%";
-        }
-    }
+    $where = " WHERE ctc.number <> 0 AND ctc.c_commu_topic_comment_id = ? ";
+    $params[] = intval($c_commu_topic_comment_id);
     
-    $select = " SELECT ct.*,ct.name as topic_name,c.name as commu_name,m.nickname,ctc.body as body";
-    $from = " FROM c_commu_topic as ct"
-            ." LEFT JOIN c_member as m ON ct.c_member_id = m.c_member_id "
-            ." LEFT JOIN c_commu as c ON c.c_commu_id = ct.c_commu_id "
-            ." LEFT JOIN c_commu_topic_comment as ctc ON (ctc.c_commu_topic_id = ct.c_commu_topic_id AND ctc.number = 0)";
+    $select = "SELECT ctc.*,ct.name as topic_name,c.name as commu_name";
+    $from = " FROM c_commu_topic_comment as ctc"
+            ." LEFT JOIN c_commu_topic as ct ON ct.c_commu_topic_id = ctc.c_commu_topic_id "
+            ." LEFT JOIN c_commu as c ON c.c_commu_id = ct.c_commu_id ";
     $order = " ORDER BY r_datetime desc";
     
     $sql = $select . $from . $where . $order;
@@ -1914,44 +2190,157 @@ function monitor_topic_list($keyword,$page_size,$page)
     $list = db_get_all_limit($sql,($page-1)*$page_size,$page_size,$params);
     
     foreach ($list as $key => $value) {
-        $list[$key]['count_comments'] = _db_count_c_commu_topic_comments4c_commu_topic_id($value['c_commu_topic_id']); 
+        $list[$key]['count_comments'] = _db_count_c_commu_topic_comments4c_commu_topic_id($value['c_commu_topic_id']);
+        $c_member = db_member_c_member4c_member_id_LIGHT($value['c_member_id']);
+        $list[$key]['nickname'] = $c_member['nickname'];
+    }
+    
+    $sql = 
+        "SELECT COUNT(*) "
+        . $from
+        . $where ;
+    $total_num = db_get_one($sql, $params);
+    
+    $total_page_num =  ceil($total_num / $page_size);
+    $next = ($page < $total_page_num);
+    $prev = ($page > 1);
+    
+    return array($list , $prev , $next, $total_num, $total_page_num);
+}
+
+function monitor_topic_list($keyword, $page_size, $page)
+{
+    $page = intval($page);
+    $page_size = intval($page_size);
+    
+    $wheres = array();
+
+    if ($keyword) {
+        $keyword = str_replace('　', ' ', $keyword);
+        $keyword_list = explode(' ', $keyword);
+
+        for ($i = 0; $i < count($keyword_list); $i++) {
+            $keyword = check_search_word($keyword_list[$i]);
+
+            $wheres[] = '(ctc.body like ? OR ct.name like ? OR c.name like ?)';
+            $params[] = '%' . $keyword . '%';
+            $params[] = '%' . $keyword . '%';
+            $params[] = '%' . $keyword . '%';
+        }
+    }
+    
+    if ($wheres) {
+        $where = ' WHERE ' . implode(' AND ', $wheres);
+    } else {
+        $where = '';
+    }
+
+    $select = "SELECT ct.*," .
+            "ct.name AS topic_name, c.name AS commu_name," .
+            "ctc.body, ctc.filename, ctc.image_filename1, ctc.image_filename2, ctc.image_filename3";
+
+    $from = " FROM c_commu_topic AS ct"
+            ." LEFT JOIN c_commu AS c ON c.c_commu_id = ct.c_commu_id "
+            ." LEFT JOIN c_commu_topic_comment AS ctc ON (ctc.c_commu_topic_id = ct.c_commu_topic_id AND ctc.number = 0)";
+
+    $order = " ORDER BY r_datetime desc";
+
+    $sql = $select . $from . $where . $order;
+
+    $list = db_get_all_limit($sql,($page-1)*$page_size,$page_size,$params);
+
+    foreach ($list as $key => $value) {
+        $list[$key]['count_comments'] = _db_count_c_commu_topic_comments4c_commu_topic_id($value['c_commu_topic_id']);
+        $c_member = db_member_c_member4c_member_id_LIGHT($value['c_member_id']);
+        $list[$key]['nickname'] = $c_member['nickname'];
+        if (!empty($value['filename'])) {
+            $list[$key]['original_filename'] = db_file_original_filename4filename($value['filename']);
+        }
+    }
+
+    $sql = 
+        "SELECT COUNT(*) "
+        . $from
+        . $where ;
+    $total_num = db_get_one($sql, $params);
+    
+    $total_page_num =  ceil($total_num / $page_size);
+    $next = ($page < $total_page_num);
+    $prev = ($page > 1);
+    
+    return array($list , $prev , $next, $total_num, $total_page_num);
+}
+
+function monitor_topic_list4target_c_commu_topic_id($c_commu_topic_id, $page_size, $page)
+{
+    $page = intval($page);
+    $page_size = intval($page_size);
+    
+    $where = " where ct.c_commu_topic_id = ? ";
+    $params[] = intval($c_commu_topic_id);
+    
+    $select = "SELECT ct.*," .
+            "ct.name as topic_name,c.name as commu_name," .
+            "m.nickname,ctc.body as body," .
+            "ctc.image_filename1 as image_filename1,ctc.image_filename2 as image_filename2,ctc.image_filename3 as image_filename3," .
+            "ctc.filename as filename,f.original_filename as original_filename";
+    
+    $from = " FROM c_commu_topic as ct"
+            ." LEFT JOIN c_member as m ON ct.c_member_id = m.c_member_id "
+            ." LEFT JOIN c_commu as c ON c.c_commu_id = ct.c_commu_id "
+            ." LEFT JOIN c_commu_topic_comment as ctc ON (ctc.c_commu_topic_id = ct.c_commu_topic_id AND ctc.number = 0)"
+            ." LEFT JOIN c_file as f ON f.filename = ctc.filename "
+            ;
+    $order = " ORDER BY r_datetime desc";
+    
+    $sql = $select . $from . $where . $order;
+    
+    $list = db_get_all_limit($sql,($page-1)*$page_size,$page_size,$params);
+    
+    foreach ($list as $key => $value) {
+        $list[$key]['count_comments'] = _db_count_c_commu_topic_comments4c_commu_topic_id($value['c_commu_topic_id']);
     }
     
     $sql = 
         "SELECT count(*) "
         . $from
         . $where ;
-    $total_num = db_get_one($sql,$params);
+    $total_num = db_get_one($sql, $params);
     
     $total_page_num =  ceil($total_num / $page_size);
     $next = ($page < $total_page_num);
     $prev = ($page > 1);
     
-    return array($list , $prev , $next, $total_num,$total_page_num);  
+    return array($list , $prev , $next, $total_num, $total_page_num);
 }
 
-function monitor_review_list($keyword,$page_size,$page)
+function monitor_review_list($keyword, $page_size, $page)
 {
-
     $page = intval($page);
     $page_size = intval($page_size);
     
-    $where = " where 1 ";
+    $wheres = array();
 
     if ($keyword) {
         //全角空白を半角に統一
-        $keyword = str_replace("　", " ", $keyword);
-        $keyword_list = explode(" ", $keyword);
-            
-        for($i=0;$i < count($keyword_list);$i++) {
-            $keyword = check_search_word( $keyword_list[$i] );
-                
-            $where .= " and c_review_comment.body like ? ";
-            $params[]="%$keyword%";
+        $keyword = str_replace('　', ' ', $keyword);
+        $keyword_list = explode(' ', $keyword);
+
+        for ($i = 0; $i < count($keyword_list); $i++) {
+            $keyword = check_search_word($keyword_list[$i]);
+
+            $wheres[] = 'c_review_comment.body like ?';
+            $params[] = '%' . $keyword . '%';
         }
     }
     
-    $select = " select c_review_comment.*";
+    if ($wheres) {
+        $where = ' WHERE ' . implode(' AND ', $wheres);
+    } else {
+        $where = '';
+    }
+    
+    $select = "SELECT c_review_comment.*";
     $from = " FROM c_review_comment";
     $order = " ORDER BY r_datetime desc";
     
@@ -1965,7 +2354,7 @@ function monitor_review_list($keyword,$page_size,$page)
     }
 
     $sql = 
-        "SELECT count(*) "
+        "SELECT COUNT(*) "
         . $from
         . $where ;
     $total_num = db_get_one($sql,$params);
@@ -1974,7 +2363,40 @@ function monitor_review_list($keyword,$page_size,$page)
     $next = ($page < $total_page_num);
     $prev = ($page > 1);
     
-    return array($list , $prev , $next, $total_num,$total_page_num);  
+    return array($list , $prev , $next, $total_num, $total_page_num);
+}
+
+function monitor_review_list4c_review_id($c_review_comment_id, $page_size, $page)
+{
+    $page = intval($page);
+    $page_size = intval($page_size);
+    
+    $where = " WHERE c_review_comment_id = ? ";
+    $params[] = intval($c_review_comment_id);
+    
+    $select = "SELECT c_review_comment.*";
+    $from = " FROM c_review_comment";
+    $order = " ORDER BY r_datetime desc";
+    
+    $sql = $select . $from . $where . $order;
+    $list = db_get_all_limit($sql,($page-1)*$page_size,$page_size,$params);
+    
+    foreach ($list as $key => $value) {
+        $list[$key]['c_member'] = db_common_c_member4c_member_id_LIGHT($value['c_member_id']);
+        $list[$key]['c_review'] = db_review_list_product_c_review4c_review_id($value['c_review_id']);
+    }
+
+    $sql = 
+        "SELECT COUNT(*) "
+        . $from
+        . $where ;
+    $total_num = db_get_one($sql, $params);
+    
+    $total_page_num =  ceil($total_num / $page_size);
+    $next = ($page < $total_page_num);
+    $prev = ($page > 1);
+    
+    return array($list , $prev , $next, $total_num, $total_page_num);
 }
 
 function _db_count_c_commu_topic_comments4c_commu_topic_id($c_commu_topic_id)
@@ -2110,6 +2532,17 @@ function db_admin_get_c_cmd_one($c_cmd_id)
     $params = array(intval($c_cmd_id));
 
     return db_get_row($sql, $params);
+}
+
+/***
+ * CMD（小窓）の設定リストを取得する
+ * 
+ * @return array 小窓の設定リスト
+ */
+function db_admin_get_c_cmd_list4name()
+{
+    $sql = 'SELECT * FROM c_cmd';
+    return db_get_all($sql);
 }
 
 /**
@@ -2325,6 +2758,65 @@ function db_admin_get_c_member_profile_pnepoint($c_member_id)
     $c_member_profile = db_get_row($sql, $params);
 
     return  $c_member_profile;
+}
+
+function db_admin_c_blacklist_list($page, $page_size)
+{
+    $sql = 'SELECT b.c_blacklist_id,ms.c_member_id,b.info,m.nickname,b.easy_access_id ' .
+            ' FROM c_blacklist AS b' .
+            ' LEFT JOIN c_member_secure AS ms ON b.easy_access_id = ms.easy_access_id'.
+            ' LEFT JOIN c_member AS m ON ms.c_member_id = m.c_member_id' .
+            ' ORDER BY b.c_blacklist_id ASC';
+    $list = db_get_all_page($sql, $page, $page_size);
+    
+    $sql = 'SELECT count(*) FROM c_blacklist';
+    $total_num = db_get_one($sql);
+    
+    $total_page_num = ceil($total_num / $page_size);
+    $next = ($page < $total_page_num);
+    $prev = ($page > 1);
+    
+    return array($list, $prev, $next, $total_num, $total_page_num);
+}
+
+function db_admin_insert_c_blacklist($easy_access_id, $info)
+{
+    $data = array(
+        'easy_access_id' => $easy_access_id,
+        'info' => (string)$info,
+    );
+    return db_insert('c_blacklist', $data);
+}
+
+function db_admin_update_c_blacklist($c_blacklist_id, $easy_access_id, $info)
+{
+    $data = array(
+        'easy_access_id' => $easy_access_id,
+        'info' => (string)$info,
+    );
+    $where = array('c_blacklist_id' => $c_blacklist_id);
+    return db_update('c_blacklist', $data, $where);
+}
+
+function db_admin_delete_c_blacklist($c_blacklist_id)
+{
+    $sql = 'DELETE FROM c_blacklist WHERE c_blacklist_id = ?';
+    $params = array(intval($c_blacklist_id));
+    db_query($sql, $params);
+}
+
+function db_admin_c_blacklist($c_blacklist_id)
+{
+    $sql = 'SELECT b.c_blacklist_id,ms.c_member_id,b.info,m.nickname,b.easy_access_id ' .
+            ' FROM c_blacklist AS b' .
+            ' LEFT JOIN c_member_secure AS ms ON b.easy_access_id = ms.easy_access_id'.
+            ' LEFT JOIN c_member AS m ON ms.c_member_id = m.c_member_id' .
+            ' WHERE b.c_blacklist_id = ? '
+            ;
+    $param = array($c_blacklist_id);
+    $blacklist = db_get_row($sql, $param);
+    
+    return $blacklist;
 }
 
 ?>
