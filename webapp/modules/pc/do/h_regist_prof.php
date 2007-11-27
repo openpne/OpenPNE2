@@ -85,7 +85,7 @@ class pc_do_h_regist_prof extends OpenPNE_Action
         case "register":
             db_member_config_prof_new($u, $prof);
             db_member_update_c_member_profile($u, $c_member_profile_list);
-            db_member_update_password_query($u, $prof['password_query_id'], $prof['password_query_answer']);
+            db_member_update_password_query($u, $prof['c_password_query_id'], $prof['c_password_query_answer']);
             //管理画面で指定したコミュニティに強制参加
             $c_commu_id_list = db_commu_regist_join_list();
             foreach ($c_commu_id_list as $c_commu_id) {
