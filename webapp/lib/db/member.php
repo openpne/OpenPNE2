@@ -1332,6 +1332,9 @@ function db_member_h_config_1($c_member_id, $pc_address)
 
 function db_member_h_regist_mail($c_member_id, $pc_address)
 {
+    //function cache削除
+    cache_drop_c_member_profile($c_member_id);
+
     $insert_id = 0;
     $session = create_hash();
 
