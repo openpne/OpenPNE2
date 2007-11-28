@@ -184,12 +184,14 @@ function cache_drop_c_member_profile($c_member_id)
 {
     $c_member_id = (int)$c_member_id;
     pne_cache_drop('db_member_c_member4c_member_id', $c_member_id);
+    pne_cache_drop('db_member_c_member4c_member_id', $c_member_id, false);
     pne_cache_drop('db_member_c_member4c_member_id', $c_member_id, false, false, 'public');
     pne_cache_drop('db_member_c_member4c_member_id', $c_member_id, false, false, 'friend');
     pne_cache_drop('db_member_c_member4c_member_id', $c_member_id, false, false, 'private');
     pne_cache_drop('db_member_c_member4c_member_id', $c_member_id, false, true, 'public');
     pne_cache_drop('db_member_c_member4c_member_id', $c_member_id, false, true, 'friend');
     pne_cache_drop('db_member_c_member4c_member_id', $c_member_id, false, true, 'private');
+    pne_cache_drop('db_member_c_member4c_member_id', $c_member_id, true);
     pne_cache_drop('db_member_c_member4c_member_id', $c_member_id, true, false, 'public');
     pne_cache_drop('db_member_c_member4c_member_id', $c_member_id, true, false, 'friend');
     pne_cache_drop('db_member_c_member4c_member_id', $c_member_id, true, false, 'private');
@@ -199,12 +201,14 @@ function cache_drop_c_member_profile($c_member_id)
     pne_cache_drop('db_member_c_profile_list');
     $c_member_id = (string)$c_member_id;
     pne_cache_drop('db_member_c_member4c_member_id', $c_member_id);
+    pne_cache_drop('db_member_c_member4c_member_id', $c_member_id, false);
     pne_cache_drop('db_member_c_member4c_member_id', $c_member_id, false, false, 'public');
     pne_cache_drop('db_member_c_member4c_member_id', $c_member_id, false, false, 'friend');
     pne_cache_drop('db_member_c_member4c_member_id', $c_member_id, false, false, 'private');
     pne_cache_drop('db_member_c_member4c_member_id', $c_member_id, false, true, 'public');
     pne_cache_drop('db_member_c_member4c_member_id', $c_member_id, false, true, 'friend');
     pne_cache_drop('db_member_c_member4c_member_id', $c_member_id, false, true, 'private');
+    pne_cache_drop('db_member_c_member4c_member_id', $c_member_id, true);
     pne_cache_drop('db_member_c_member4c_member_id', $c_member_id, true, false, 'public');
     pne_cache_drop('db_member_c_member4c_member_id', $c_member_id, true, false, 'friend');
     pne_cache_drop('db_member_c_member4c_member_id', $c_member_id, true, false, 'private');
