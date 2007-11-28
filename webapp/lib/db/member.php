@@ -1226,6 +1226,9 @@ function db_member_h_regist_mail($c_member_id, $pc_address)
         $insert_id = db_insert('c_pc_address_pre', $data);
     }
 
+    //function cache削除
+    cache_drop_c_member_profile($c_member_id);
+
     do_h_regist_mail_mail_send($c_member_id, $session, $pc_address);
     return $insert_id;
 }
