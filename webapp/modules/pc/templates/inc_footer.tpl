@@ -49,10 +49,10 @@
     ({else})
     <a href="({t_url m=pc a=do_o_click_banner})&amp;target_c_banner_id=({$INC_FOOTER_inc_side_banner.c_banner_id})" target="_blank">
     ({/if})
-        <img src="({t_img_url filename=$INC_FOOTER_inc_side_banner.image_filename})">
+        <img src="({t_img_url filename=$INC_FOOTER_inc_side_banner.image_filename})" />
     </a>
     ({else})
-    <img src="({t_img_url filename=$INC_FOOTER_inc_side_banner.image_filename})">
+    <img src="({t_img_url filename=$INC_FOOTER_inc_side_banner.image_filename})" />
     ({/if})
 ({/if})
 ({/strip})
