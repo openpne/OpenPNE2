@@ -1,21 +1,77 @@
 ({***************************************})
 ({**ここから：旧inc_html_header.tplの内容**})
 ({***************************************})
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja" dir="ltr">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
 ({$INC_HEADER_inc_html_head|smarty:nodefaults})
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="Cache-Control" content="no-cache">
-<meta http-equiv="Expires" content="Thu, 01 Dec 1994 16:00:00 GMT">
-<meta http-equiv="Content-Style-Type" content="text/css">
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta http-equiv="Expires" content="Thu, 01 Dec 1994 16:00:00 GMT" />
 <title>({$INC_HEADER_title})</title>
-<link rel="stylesheet" href="./css/default.css" type="text/css">
+<link rel="stylesheet" href="./css/default.css" type="text/css" />
 <script type="text/javascript" src="./js/prototype.js"></script>
 <script type="text/javascript" src="./js/pne.js"></script>
 <style type="text/css">
 <!--
+/*あしあとページ [12/11(火)] 暫定 */
+div.section {
+	width: 564px;
+	margin: 8px 0;
+	padding: 7px;
+	border: 1px solid #ccc;
+	text-align: left;
+	font-size: 83.3%;
+}
+dl.item {
+	margin: 0;
+	padding: 0;
+	border: 1px solid #ccc;
+}
+dt.heading {
+	padding: 2px 0 2px 36px;
+	background-image: url(({t_img_url_skin filename=content_header_1}));
+	background-repeat: no-repeat;
+	background-attachment: scroll;
+	background-position: 0% 50%;
+	color: #222222;
+	font-weight: bold;
+}
+dd.description {
+	margin: 0;
+	padding: 10px 24px;
+	border-width: 2px 1px;
+	border-style: solid;
+	border-color: #ccc;	
+}
+dd.description p {
+	margin: 0;
+	padding: 0;
+}
+dd.data {
+	margin: 0;
+	padding: 0;
+}
+dd.data #ashiato {
+	margin: 8px 32px;
+	border: 1px solid #ccc;
+}
+dd.data #ashiato p {
+	margin: 8px 0 8px 140px;
+	padding: 0;
+}
+dd.data #ashiato_list {
+	margin: 16px 0 10px 140px;
+	padding: 0;
+	list-style-type: none;
+	list-style-position: outside;
+}
+
 /*枠線要素*/
 .border_01 { border: #({$INC_HEADER_color_config.border_01}) 1px solid ; }
 .border_07 { border: #({$INC_HEADER_color_config.border_07}) 1px solid ; }
@@ -286,7 +342,7 @@ function load() {
     if (GBrowserIsCompatible()) {
         var point = new GLatLng(({$c_commu.map_latitude}), ({$c_commu.map_longitude}));
         var zoom = ({$c_commu.map_zoom});
-        var html = '<div><img src="({t_img_url filename=$c_commu.image_filename w=120 h=120 noimg=no_logo})" width="60" height="60" align="left" hspace="5">({$c_commu.name})</div>';
+        var html = '<div><img src="({t_img_url filename=$c_commu.image_filename w=120 h=120 noimg=no_logo})" width="60" height="60" align="left" hspace="5" />({$c_commu.name})</div>';
 
         var map = new GMap2(document.getElementById("map"));
         map.addControl(new GSmallMapControl());
@@ -329,7 +385,7 @@ function load() {
 
 ({* skin_before_header / skin_after_header *})
 ({* bg_before / bg_after *})
-<img src="({t_img_url_skin filename=skin_`$before_after`_header})" class="bg_({$before_after})">
+<img src="({t_img_url_skin filename=skin_`$before_after`_header})" class="bg_({$before_after})" />
 
 ({if $INC_HEADER_top_banner_html_before || $INC_HEADER_top_banner_html_after})
 <div class="banner">
@@ -348,25 +404,25 @@ function load() {
     ({else})
     <a href="({t_url m=pc a=do_h_click_banner})&amp;target_c_banner_id=({$INC_HEADER_top_banner.c_banner_id})&amp;sessid=({$PHPSESSID})" target="_blank">
     ({/if})
-    <img src="({t_img_url filename=$INC_HEADER_top_banner.image_filename})">
+    <img src="({t_img_url filename=$INC_HEADER_top_banner.image_filename})" />
     </a>
 ({else})
-    <img src="({t_img_url filename=$INC_HEADER_top_banner.image_filename})">
+    <img src="({t_img_url filename=$INC_HEADER_top_banner.image_filename})" />
 ({/if})
 ({/strip})
 </div>
 ({/if})
 
-<a class="logo_home" href="({t_url})"><img src="./skin/dummy.gif" alt="({$smarty.const.SNS_NAME})"></a>
+<a class="logo_home" href="({t_url})"><img src="./skin/dummy.gif" alt="({$smarty.const.SNS_NAME})" /></a>
 
 ({if $before_after == "after"})
 <div class="navi_global">
 ({foreach from=$INC_HEADER_global_navi key=key item=item})
 ({if $item.url})
-<a class="navi_global_({$key+1})" href="({$item.url})"><img src="./skin/dummy.gif" alt="({$item.caption})"></a>
+<a class="navi_global_({$key+1})" href="({$item.url})"><img src="./skin/dummy.gif" alt="({$item.caption})" /></a>
 ({/if})
 ({/foreach})
-<a class="navi_global_9" href="({t_url m=pc a=do_inc_page_header_logout})&amp;sessid=({$PHPSESSID})"><img src="./skin/dummy.gif" alt="ログアウト"></a>
+<a class="navi_global_9" href="({t_url m=pc a=do_inc_page_header_logout})&amp;sessid=({$PHPSESSID})"><img src="./skin/dummy.gif" alt="ログアウト" /></a>
 </div>
 ({/if})
 
@@ -405,18 +461,18 @@ function load() {
 ({*************************************})
 ({**ここから：旧inc_alert_box.tplの内容**})
 ({*************************************})
-<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l" />
 
 <!-- ************************* -->
 <!-- ******ここから：警告****** -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:({if $width})({$width})({else})580({/if})px;margin:0px auto;" class="border_07">
 <tr>
-<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
-<td style="width:({if $width})({$width-14})({else})566({/if})px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
-<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
+<td style="width:({if $width})({$width-14})({else})566({/if})px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
+<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
 </tr>
 <tr>
-<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
 <td class="bg_01" align="center">
 <!-- *ここから：警告＞内容* -->
 ({*ここから：header*})
@@ -426,35 +482,35 @@ function load() {
 <!-- ここから：主内容 -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:({if $width})({$width-16})({else})564({/if})px;">
 <tr>
-<td style="width:({if $width})({$width-16})({else})564({/if})px;height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+<td style="width:({if $width})({$width-16})({else})564({/if})px;height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
 </tr>
 <tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
 <td style="width:150px;" class="bg_03" align="center" valign="middle">
 <!-- ここから：主内容＞警告アイコン -->
-<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
-<img src="({t_img_url_skin filename=icon_alert_l})" class="icon">
-<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l" />
+<img src="({t_img_url_skin filename=icon_alert_l})" class="icon"/>
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l"/>
 <!-- ここまで：主内容＞警告アイコン -->
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
 <td style="width:({if $width})({$width-153})({else})427({/if})px;height:50px;" class="bg_02" align="left" valign="middle">
 <div style="padding:8px 6px;" class="caution">
 <!-- ここから：主内容＞警告文本体 -->
-({if $msg})({$msg})<br>({/if})
-({if $msg1})({$msg1})<br>({/if})
-({if $msg2})({$msg2})<br>({/if})
-({if $msg3})({$msg3})<br>({/if})
+({if $msg})({$msg})<br />({/if})
+({if $msg1})({$msg1})<br />({/if})
+({if $msg2})({$msg2})<br />({/if})
+({if $msg3})({$msg3})<br />({/if})
 ({foreach from=$err_msg item=item})
-({$item})<br>
+({$item}) <br />
 ({/foreach})
 <!-- ここまで：主内容＞警告文本体 -->
 </div>
 </td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
 </tr>
 <tr>
-<td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+<td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
 </tr>
 </table>
 <!-- ここまで：主内容 -->
@@ -464,12 +520,12 @@ function load() {
 ({*ここまで：footer*})
 <!-- *ここまで：警告＞＞内容* -->
 </td>
-<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
 </tr>
 <tr>
-<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
-<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
-<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
+<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
 </tr>
 </table>
 <!-- ******ここまで：警告****** -->
