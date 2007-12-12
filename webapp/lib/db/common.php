@@ -57,7 +57,7 @@ function db_get_dsn($name = 'main')
 
 function db_get_one($sql, $params = array(), $dsn_name = 'main_reader')
 {
-    if ($dsn_name = 'main_reader') {
+    if ($dsn_name === 'main_reader') {
         $reader =& db_get_instance($dsn_name, true);
     } else {
         $reader =& db_get_instance($dsn_name);
@@ -67,7 +67,7 @@ function db_get_one($sql, $params = array(), $dsn_name = 'main_reader')
 
 function db_get_row($sql, $params = array(), $dsn_name = 'main_reader')
 {
-    if ($dsn_name = 'main_reader') {
+    if ($dsn_name === 'main_reader') {
         $reader =& db_get_instance($dsn_name, true);
     } else {
         $reader =& db_get_instance($dsn_name);
@@ -77,7 +77,7 @@ function db_get_row($sql, $params = array(), $dsn_name = 'main_reader')
 
 function db_get_col($sql, $params = array(), $dsn_name = 'main_reader')
 {
-    if ($dsn_name = 'main_reader') {
+    if ($dsn_name === 'main_reader') {
         $reader =& db_get_instance($dsn_name, true);
     } else {
         $reader =& db_get_instance($dsn_name);
@@ -87,7 +87,7 @@ function db_get_col($sql, $params = array(), $dsn_name = 'main_reader')
 
 function db_get_col_limit($sql, $from, $count, $params = array(), $dsn_name = 'main_reader')
 {
-    if ($dsn_name = 'main_reader') {
+    if ($dsn_name === 'main_reader') {
         $reader =& db_get_instance($dsn_name, true);
     } else {
         $reader =& db_get_instance($dsn_name);
@@ -97,7 +97,7 @@ function db_get_col_limit($sql, $from, $count, $params = array(), $dsn_name = 'm
 
 function db_get_col_page($sql, $page, $count, $params = array(), $dsn_name = 'main_reader')
 {
-    if ($dsn_name = 'main_reader') {
+    if ($dsn_name === 'main_reader') {
         $reader =& db_get_instance($dsn_name, true);
     } else {
         $reader =& db_get_instance($dsn_name);
@@ -107,7 +107,7 @@ function db_get_col_page($sql, $page, $count, $params = array(), $dsn_name = 'ma
 
 function db_get_assoc($sql, $params = array(), $dsn_name = 'main_reader')
 {
-    if ($dsn_name = 'main_reader') {
+    if ($dsn_name === 'main_reader') {
         $reader =& db_get_instance($dsn_name, true);
     } else {
         $reader =& db_get_instance($dsn_name);
@@ -117,7 +117,7 @@ function db_get_assoc($sql, $params = array(), $dsn_name = 'main_reader')
 
 function db_get_assoc_limit($sql, $from, $count, $params = array(), $dsn_name = 'main_reader')
 {
-    if ($dsn_name = 'main_reader') {
+    if ($dsn_name === 'main_reader') {
         $reader =& db_get_instance($dsn_name, true);
     } else {
         $reader =& db_get_instance($dsn_name);
@@ -127,7 +127,7 @@ function db_get_assoc_limit($sql, $from, $count, $params = array(), $dsn_name = 
 
 function db_get_all($sql, $params = array(), $dsn_name = 'main_reader')
 {
-    if ($dsn_name = 'main_reader') {
+    if ($dsn_name === 'main_reader') {
         $reader =& db_get_instance($dsn_name, true);
     } else {
         $reader =& db_get_instance($dsn_name);
@@ -137,7 +137,7 @@ function db_get_all($sql, $params = array(), $dsn_name = 'main_reader')
 
 function db_get_all_limit($sql, $from, $count, $params = array(), $dsn_name = 'main_reader')
 {
-    if ($dsn_name = 'main_reader') {
+    if ($dsn_name === 'main_reader') {
         $reader =& db_get_instance($dsn_name, true);
     } else {
         $reader =& db_get_instance($dsn_name);
@@ -147,7 +147,7 @@ function db_get_all_limit($sql, $from, $count, $params = array(), $dsn_name = 'm
 
 function db_get_all_page($sql, $page, $count, $params = array(), $dsn_name = 'main_reader')
 {
-    if ($dsn_name = 'main_reader') {
+    if ($dsn_name === 'main_reader') {
         $reader =& db_get_instance($dsn_name, true);
     } else {
         $reader =& db_get_instance($dsn_name);
