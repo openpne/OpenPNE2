@@ -20,7 +20,7 @@ function smarty_function_ext_include($params, &$smarty)
 
     // 拡張ファイルチェック
     if (!$tpl = $smarty->ext_search($template, $place)) {
-        $smarty->trigger_error('ext_include: tpl file not found. '.$tpl);
+        $smarty->trigger_error('ext_include: tpl file not found. ' . $template);
         return;
     }
     $tpl = 'file:' . $tpl;
