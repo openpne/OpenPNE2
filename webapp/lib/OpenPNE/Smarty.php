@@ -34,7 +34,7 @@ class OpenPNE_Smarty extends Smarty
             $this->register_outputfilter('smarty_outputfilter_unescape_emoji');
             require_once 'OpenPNE/KtaiUA.php';
             $ktai = new OpenPNE_KtaiUA();
-            if ($ktai->is_docomo()) {
+            if ($ktai->is_docomo() && IS_SET_KTAI_FONT_SIZE) {
                 $this->register_outputfilter('smarty_outputfilter_add_font4docomo');
             }
         }
