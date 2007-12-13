@@ -40,7 +40,12 @@ class pc_do_h_config_ktai_send extends OpenPNE_Action
         $session = create_hash();
         db_member_insert_c_ktai_address_pre($u, $session, $ktai_address);
 
-        do_mail_sns_change_ktai_mail_send($u, $session, $ktai_address);
+        $c_member_secure = db_member_c_member_secure4c_member_id($u);
+        if ($c_member_secure['ktai_address']) {
+            do_mail_sns_change_ktai_mail_send($u, $session, $ktai_address);
+        } else {
+            do_mail_sns_insert_ktai_mail_send($u, $session, $ktai_address);
+        }
 
         openpne_redirect('pc', 'page_h_config_ktai_end');
     }
