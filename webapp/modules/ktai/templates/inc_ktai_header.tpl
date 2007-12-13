@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
 <title>({$title})</title>
-({if $smarty.const.IS_SET_KTAI_FONT_SIZE})
+({if $smarty.const.OPENPNE_IS_SET_KTAI_FONT_SIZE})
 ({if $is_softbank})
 <style type="text/css">
 *{font-size:small;}
