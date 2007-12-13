@@ -10,7 +10,7 @@ function smarty_modifier_t_cmd($string, $type = '')
         return $string;
     }
 
-    $regexp = '/&lt;cmd\s+src=&quot;(\w+)&quot;(?:\s+args=&quot;([a-zA-Z0-9_\-+%]+(,[a-zA-Z0-9_\-+%]+)*)?&quot;)?\s*&gt;/i';
+    $regexp = '/(&lt;|<)cmd\s+src=(&quot;|"|\')(\w+)(&quot;|"|\')(?:\s+args=(&quot;|"|\')([a-zA-Z0-9_\-+%]+(,[a-zA-Z0-9_\-+%]+)*)(&quot;|"|\'))?\s*(&gt;|>)/i';
     $GLOBALS['_CMD']['type'] = $type;
 
     return preg_replace_callback($regexp, '_smarty_modifier_t_cmd_make_js', $string);
@@ -18,12 +18,12 @@ function smarty_modifier_t_cmd($string, $type = '')
 
 function _smarty_modifier_t_cmd_make_js($matches)
 {
-    if (!db_is_use_cmd($matches[1], $GLOBALS['_CMD']['type'])) {
+    if (!db_is_use_cmd($matches[3], $GLOBALS['_CMD']['type'])) {
         return $matches[0];
     }
 
-    $src  = $matches[1];
-    $args = $matches[2];
+    $src  = $matches[3];
+    $args = $matches[6];
 
     $_args = explode(',', $args);
     $arg_str = "'" . implode("','", $_args) . "'";
