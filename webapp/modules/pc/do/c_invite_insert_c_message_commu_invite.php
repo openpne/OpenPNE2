@@ -44,7 +44,6 @@ class pc_do_c_invite_insert_c_message_commu_invite extends OpenPNE_Action
 
         list($msg_subject, $msg_body) =
             create_message_commu_invite($u, $body, $target_c_commu_id);
-
         $commu = db_commu_c_commu4c_commu_id($target_c_commu_id);
         $c_member_id_admin = $commu['c_member_id_admin'];
         $public_flag = $commu['public_flag'];

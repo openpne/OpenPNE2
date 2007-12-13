@@ -618,6 +618,18 @@ function db_message_send_message_syoukai_commu($c_member_id_from, $c_member_id_t
     do_common_send_message_mail_send_ktai($c_member_id_to, $c_member_id_from);
 }
 
+// コミュニティ参加者全員にメール
+function db_message_send_message_commu_send_msg($c_member_id_from, $c_member_id_to, $subject, $body, $c_commu_id)
+{
+    //メッセージ
+    db_message_insert_c_message($c_member_id_from, $c_member_id_to, $subject, $body);
+    pne_cache_drop('db_message_count_c_message_not_is_read4c_member_to_id', (int)$c_member_id_to);
+    pne_cache_drop('db_message_count_c_message_not_is_read4c_member_to_id', (string)$c_member_id_to);
+
+    do_common_send_message_commu_send_msg($c_member_id_to, $c_member_id_from, $c_commu_id);
+    do_common_send_message_mail_send_ktai($c_member_id_to, $c_member_id_from);
+}
+
 // メンバー紹介
 function db_message_send_message_syoukai_member($c_member_id_from, $c_member_id_to, $subject, $body)
 {
