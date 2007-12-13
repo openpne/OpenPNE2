@@ -607,9 +607,9 @@ function do_common_send_message_commu_send_msg($c_member_id_to, $c_member_id_fro
     $is_receive_mail = $c_member_to['is_receive_mail'];
 
     $params = array(
-        "c_member_to"   =>db_common_c_member4c_member_id($c_member_id_to),
-        "c_member_from" =>db_common_c_member4c_member_id($c_member_id_from),
-        'c_commu' => $c_commu,
+        'c_member_to'   => db_common_c_member4c_member_id($c_member_id_to),
+        'c_member_from' => db_common_c_member4c_member_id($c_member_id_from),
+        'c_commu'       => $c_commu,
     );
     return fetch_send_mail($pc_address, 'm_pc_message_commu_send_msg', $params, $is_receive_mail);
 }
