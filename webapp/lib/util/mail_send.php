@@ -574,7 +574,7 @@ function do_mail_sns_change_ktai_mail_send($c_member_id, $session, $ktai_address
 {
     $params['SNS_NAME'] = SNS_NAME;
     $p = array('id' => $c_member_id, 'ses' => $session);
-    $params['url'] = openpne_gen_url('ktai', 'page_o_login2', $p);
+    $params['url'] = openpne_gen_url('ktai', 'page_o_change_ktai_address', $p);
     return fetch_send_mail($ktai_address, 'm_ktai_change_ktai_address', $params);
 }
 
@@ -583,7 +583,7 @@ function do_mail_sns_insert_ktai_mail_send($c_member_id, $session, $ktai_address
 {
     $params['SNS_NAME'] = SNS_NAME;
     $p = array('id' => $c_member_id, 'ses' => $session);
-    $params['url'] = openpne_gen_url('ktai', 'page_o_login2', $p);
+    $params['url'] = openpne_gen_url('ktai', 'page_o_insert_ktai_address', $p);
     return fetch_send_mail($ktai_address, 'm_ktai_insert_ktai_address', $params);
 }
 
