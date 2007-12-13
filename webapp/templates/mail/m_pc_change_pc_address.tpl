@@ -6,7 +6,7 @@
 以下のURLをクリックし、新しいメールアドレスとパスワードを入力して
 登録を完了してください。
 
-({t_url_mail m=pc a=page_o_l2})&sid=({$sid})
+({t_url_mail m=pc a=page_o_change_pc_address})&sid=({$sid})
 
 今後とも、ぜひ、({$SNS_NAME})をご活用ください。
 
