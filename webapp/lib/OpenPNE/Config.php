@@ -49,6 +49,7 @@ class OpenPNE_Config
             'OPENPNE_USE_POINT_RANK',
             'OPENPNE_SKIN_THEME',
             'OPENPNE_USE_KTAI_LOGO',
+            'IS_SET_KTAI_FONT_SIZE',
         );
     }
 
@@ -141,6 +142,7 @@ class OpenPNE_Config
             'OPENPNE_DISP_RANK' => 1,
             'OPENPNE_IS_POINT_ADMIN' => 1,
             'OPENPNE_SKIN_THEME' => '005_openpne_blue',
+            'IS_SET_KTAI_FONT_SIZE' => 1,
         // config.php
             'OPENPNE_RSS_CACHE_DIR' => OPENPNE_VAR_DIR . '/rss_cache',
             'OPENPNE_PUBLIC_HTML_DIR' => OPENPNE_DIR . '/public_html',
