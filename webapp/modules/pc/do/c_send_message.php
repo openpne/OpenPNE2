@@ -43,9 +43,10 @@ class pc_do_c_send_message extends OpenPNE_Action
             handle_kengen_error();
         }
 
+	$c_commu = db_commu_c_commu4c_commu_id($target_c_commu_id);
         foreach ($c_member_id_list as $c_member_id) {
             if ($c_member_id == $u)continue;
-            db_message_send_message_syoukai_commu($u, $c_member_id, $subject, $body);
+            db_message_send_message_commu_send_msg($u, $c_member_id, $subject, $body, $target_c_commu_id);
         }
         $p = array('target_c_commu_id' => $target_c_commu_id);
         openpne_redirect('pc', 'page_c_home', $p);
