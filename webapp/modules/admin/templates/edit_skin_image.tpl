@@ -930,7 +930,7 @@ if ( c['skinChangerArea'] == 0 ) { toggleDisplay('skin_changer_area'); }
 <dt><strong>ロゴ画像</strong></dt>
 <dd class="image">({assign var=skinname value=skin_ktai_header})
 ({if $smarty.const.OPENPNE_USE_KTAI_LOGO})
-<img src="({t_img_url_skin filename=$skinname})" />
+<a href="({t_img_url_skin filename=$skinname})" target="_blank"><img src="({t_img_url_skin filename=$skinname w=180 h=180})" /></a>
 ({else})
 画像はありません
 ({/if})
