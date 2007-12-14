@@ -1,4 +1,5 @@
 ({ext_include file="inc_header.tpl"})
+({if $type == 'h'})
 <tr>
 <td class="container inc_c_com_topic_find" align="center">
 <table border="0" cellspacing="0" cellpadding="0" style="width:720px;">
@@ -34,6 +35,7 @@
 </table>
 </td>
 </tr>
+({/if})
 ({ext_include file="inc_layoutcolumn_top_165px.tpl"})
 ({********************************})
 ({**ここから：メインコンテンツ（左）**})
