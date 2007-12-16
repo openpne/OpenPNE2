@@ -111,7 +111,7 @@
 ({foreach from=$anatani_c_commu_sub_admin_confirm_list item=item})
 <tr><td bgcolor="#({cycle values="`$ktai_color_config.bg_09`,`$ktai_color_config.bg_10`"})">
 <font color="#({$ktai_color_config.font_06})">ﾆｯｸﾈｰﾑ：</font><br>
-<a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$item.c_member_id_sub_admin})&amp;({$tail})">({$item.nickname})</a><br>
+<a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$item.c_member_id_admin})&amp;({$tail})">({$item.nickname})</a><br>
 <br>
 <font color="#({$ktai_color_config.font_06})">ｺﾐｭﾆﾃｨ名：</font><br>
 <a href="({t_url m=ktai a=page_c_home})&amp;target_c_commu_id=({$item.c_commu_id})&amp;({$tail})">({$item.c_commu_name})</a><br>
