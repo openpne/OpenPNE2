@@ -48,7 +48,7 @@
 [ｺﾐｭﾆﾃｨ副管理者承認待ち]<br>
 ({if $anatani_c_commu_sub_admin_confirm_list})
 ({foreach from=$anatani_c_commu_sub_admin_confirm_list item=item})
-<a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$item.c_member_id_sub_admin})&amp;({$tail})">({$item.nickname})</a><br>
+<a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$item.c_member_id_admin})&amp;({$tail})">({$item.nickname})</a><br>
 <a href="({t_url m=ktai a=page_c_home})&amp;target_c_commu_id=({$item.c_commu_id})&amp;({$tail})">({$item.c_commu_name})</a><br>
 ﾒｯｾｰｼﾞ<br>
 ({$item.message|nl2br})<br>
