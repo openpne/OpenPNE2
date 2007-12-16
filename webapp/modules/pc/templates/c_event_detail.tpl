@@ -10,7 +10,6 @@
 
 ({if !$err_msg})
 
-({if $is_c_event_admin || $is_c_event_member})
 <!-- ******************************* -->
 <!-- ******ここから：紹介の勧め****** -->
 <table border="0" cellspacing="1" cellpadding="2" style="width:600px;margin:0px auto;" class="border_07 bg_07">
@@ -28,7 +27,6 @@
 <!-- ******************************* -->
 
 <img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
-({/if})
 
 <!-- ******************************** -->
 <!-- ******ここから：イベント詳細****** -->
