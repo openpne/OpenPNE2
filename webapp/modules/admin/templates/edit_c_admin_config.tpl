@@ -69,6 +69,7 @@
 </select><br />
 <span class="caution">※使用不可にすると携帯で表示できなくなります</span>
 </td>
+</tr>
 <tr class="cell08">
 <th colspan="2">登録の可否</th>
 <td>
@@ -356,7 +357,7 @@
 </select></td>
 </tr>
 </table>
-<p class="textBtn"><input type="submit" value="設定変更する"></p>
+<p class="textBtn"><input type="submit" value="設定変更する" /></p>
 </form>
 </div>({*/div class="contents"*})
 
