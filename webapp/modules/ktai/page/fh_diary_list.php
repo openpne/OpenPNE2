@@ -17,7 +17,9 @@ class ktai_page_fh_diary_list extends OpenPNE_Action
         $keyword = $requests['keyword'];
         // ----------
 
-        if (!$target_c_member_id) $target_c_member_id = $u;
+        if (!$target_c_member_id || !is_null($keyword)) {
+            $target_c_member_id = $u;
+        }
 
         $is_friend = db_friend_is_friend($u, $target_c_member_id);
 
