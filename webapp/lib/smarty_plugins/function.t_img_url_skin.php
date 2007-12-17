@@ -30,6 +30,7 @@ function smarty_function_t_img_url_skin($params, &$smarty)
 
         if (!OPENPNE_IMG_CACHE_PUBLIC) {
             $url .= 'img_skin.php';
+            $p['image_filename'] = $filename;
             if ($q = http_build_query($p)) {
                 $url .= '?' . htmlspecialchars($q);
             }
