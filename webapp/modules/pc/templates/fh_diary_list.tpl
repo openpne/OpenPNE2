@@ -13,8 +13,6 @@
 
 <div class="color_19" style="width:680px;height:24px;border-left:none 0px;border-right:none 0px;border-top:none 0px;">
 ({t_form _method=get m=pc a=page_fh_diary_list})
-<input type="hidden" name="c_commu_id" value="({$c_commu.c_commu_id})">
-
 <table border="0" cellspacing="0" cellpadding="0" class="search_bar" style="width:680px;height:24px;">
 <tr>
 <td align="center" style="height:24px;">
