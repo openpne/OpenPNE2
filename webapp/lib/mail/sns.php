@@ -275,8 +275,10 @@ class mail_sns
         // 写真登録
         $images = $this->decoder->get_images();
         $image_num = 1;
-        foreach ($images as $image_data) {
-            $filename = 'tc_' . $ins_id . '_' . $image_num . '_' . time() . '.jpg';
+        foreach ($images as $image) {
+            $image_ext = $image['ext'];
+            $image_data = $image['data'];
+            $filename = 'tc_' . $ins_id . '_' . $image_num . '_' . time() . '.' . $image_ext;
 
             db_image_insert_c_image($filename, $image_data);
             mail_update_c_commu_topic_comment_image($ins_id, $filename, $image_num);
@@ -325,8 +327,10 @@ class mail_sns
         // 写真登録
         $images = $this->decoder->get_images();
         $image_num = 1;
-        foreach ($images as $image_data) {
-            $filename = 'd_' . $ins_id . '_' . $image_num . '_' . time() . '.jpg';
+        foreach ($images as $image) {
+            $image_ext = $image['ext'];
+            $image_data = $image['data'];
+            $filename = 'd_' . $ins_id . '_' . $image_num . '_' . time() . '.' . $image_ext;
 
             db_image_insert_c_image($filename, $image_data);
             db_diary_update_c_diary_image_filename($ins_id, $filename, $image_num);
@@ -372,9 +376,12 @@ class mail_sns
 
         // 写真登録
         if ($images = $this->decoder->get_images()) {
-            $filename = 'm_' .$this->c_member_id.'_'. time() . '.jpg';
+            $image = $images[0];
+            $image_ext = $image['ext'];
+            $image_data = $image['data'];
+            $filename = 'm_' . $this->c_member_id . '_' . time() . '.' . $image_ext;
 
-            db_image_insert_c_image($filename, $images[0]);
+            db_image_insert_c_image($filename, $image_data);
             mail_update_c_member_image($this->c_member_id, $filename, $target_number);
             return true;
         } else {
@@ -416,11 +423,12 @@ class mail_sns
         }
 
         // 写真登録
-        $images = $this->decoder->get_images();
-
         if ($images = $this->decoder->get_images()) {
-            $filename = 'd_' . $c_diary_id . '_' . $target_number . '_' . time() . '.jpg';
-            db_image_insert_c_image($filename, $images[0]);
+            $image = $images[0];
+            $image_ext = $image['ext'];
+            $image_data = $image['data'];
+            $filename = 'd_' . $c_diary_id . '_' . $target_number . '_' . time() . '.' . $image_ext;
+            db_image_insert_c_image($filename, $image_data);
             db_diary_update_c_diary_image_filename($c_diary_id, $filename, $target_number);
             return true;
         } else {
@@ -451,8 +459,11 @@ class mail_sns
 
         // 写真登録
         if ($images = $this->decoder->get_images()) {
-            $filename = 'c_' . $c_commu_id . '_' .  time() . '.jpg';
-            db_image_insert_c_image($filename, $images[0]);
+            $image = $images[0];
+            $image_ext = $image['ext'];
+            $image_data = $image['data'];
+            $filename = 'c_' . $c_commu_id . '_' .  time() . '.' . $image_ext;
+            db_image_insert_c_image($filename, $image_data);
             db_commu_update_c_commu_image_filename($c_commu_id, $filename);
             return true;
         } else {
@@ -497,12 +508,14 @@ class mail_sns
         }
 
         // 写真登録
-        $images = $this->decoder->get_images();
-
         if ($images = $this->decoder->get_images()) {
-            $filename = 't_' . $c_commu_topic_id . '_' . $target_number . '_' . time() . '.jpg';
+            $image = $images[0];
+            $image_ext = $image['ext'];
+            $image_data = $image['data'];
+            $filename = 't_' . $c_commu_topic_id . '_' . $target_number . '_' . time() . '.' . $image_ext;
+
             $c_topic['image_filename' . $target_number] = $filename;
-            db_image_insert_c_image($filename, $images[0]);
+            db_image_insert_c_image($filename, $image_data);
             db_commu_update_c_commu_topic_comment_images($c_topic['c_commu_topic_comment_id'], $c_topic['image_filename1'], $c_topic['image_filename2'], $c_topic['image_filename3']);
             return true;
         } else {
