@@ -12,6 +12,8 @@ if (defined('CHECK_IMG_AUTH') && CHECK_IMG_AUTH) {
     require_once OPENPNE_WEBAPP_DIR . '/init.inc';
     
     $module = $_GET['m'];
+    $_GET['a'] = 'page_h_toimg';
+
     // init
     if ($init = openpne_ext_search("{$module}/init.inc")) {
         require_once $init;
