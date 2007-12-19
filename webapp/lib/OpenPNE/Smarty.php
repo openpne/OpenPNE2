@@ -132,12 +132,12 @@ function smarty_outputfilter_change_table_width4softbank($tpl_output, &$smarty)
     if (!strncmp($_SERVER['HTTP_USER_AGENT'], 'J-PHONE', 7) && !is_null($_SERVER['HTTP_X_JPHONE_DISPLAY'])) {
         $display_size = explode('*', $_SERVER['HTTP_X_JPHONE_DISPLAY']);
 
-        if (!ctype_digit($display_size[0])) {
+        if (!ctype_digit($display_size[0]) || (intval($display_size[0]) < 0)) {
             return $tpl_output;
         }
 
         $pattern_start_tag = '<table width="100%"';
-        $replacement_start_tag = '<table width="' . $display_size[0] . '"';
+        $replacement_start_tag = '<table width="' . intval($display_size[0]) . '"';
         $tpl_output = str_replace($pattern_start_tag, $replacement_start_tag, $tpl_output);
     }
 
