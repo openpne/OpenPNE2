@@ -27,7 +27,7 @@
 <table border="0" cellspacing="0" cellpadding="0" style="width:636px;" class="border_01">
 <tr>
 <td style="width:36px;" class="bg_06"><img src="({t_img_url_skin filename=content_header_1})" style="width:30px;height:20px;" class="dummy"></td>
-<td style="width:458px;padding:2px 0px;" class="bg_06"><span class="b_b c_00">メールアドレス変更</span></td>
+<td style="width:458px;padding:2px 0px;" class="bg_06"><span class="b_b c_00">PCメールアドレス登録</span></td>
 <td style="width:140px;" align="right" class="bg_06">&nbsp;</td>
 </tr>
 </table>
@@ -48,7 +48,7 @@
 
 <div class="padding_w_m">
 
-メールアドレスの変更をおこないます。<br>
+PCメールアドレスの登録をおこないます。<br>
 パスワードを入力してください。
 
 </div>
@@ -131,7 +131,7 @@
 
 <div class="padding_w_m">
 
-<input type="submit" class="submit" value="　変　更　">
+<input type="submit" class="submit" value="　登　録　">
 
 </div>
 
