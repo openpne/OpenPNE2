@@ -33,7 +33,6 @@ class ktai_do_o_update_ktai_address extends OpenPNE_Action
 
         $c_member_id = $pre['c_member_id'];
         $ktai_address = $pre['ktai_address'];
-        $c_member_secure = db_member_c_member_secure4c_member_id($c_member_id);
 
         // パスワードチェック
         if (!db_common_authenticate_password($c_member_id, $password, true)) {
@@ -89,12 +88,7 @@ class ktai_do_o_update_ktai_address extends OpenPNE_Action
         db_member_delete_ktai_address_pre($pre['c_ktai_address_pre_id']);
 
         // login ページへリダイレクト
-        $p = array('kad' => t_encrypt(db_member_username4c_member_id($c_member_id, true)));
-        if ($c_member_secure['ktai_address']) {
-            $p['msg'] = 47;
-        } else {
-            $p['msg'] = 48;
-        }
+        $p = array('msg' => 19, 'kad' => t_encrypt(db_member_username4c_member_id($c_member_id, true)));
         openpne_redirect('ktai', 'page_o_login', $p);
     }
 }
