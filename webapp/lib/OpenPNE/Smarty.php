@@ -129,7 +129,7 @@ function smarty_outputfilter_change_table_width4softbank($tpl_output, &$smarty)
 {
     // table要素のwidth属性を x-jphone-display で得られる表示可能幅に置換
     // ただし3G端末は x-jphone-display の仕様が異なるため、置換しない
-    if (!strncmp($_SERVER['HTTP_USER_AGENT'], 'J-PHONE', 7)) {
+    if (!strncmp($_SERVER['HTTP_USER_AGENT'], 'J-PHONE', 7) && !is_null($_SERVER['HTTP_X_JPHONE_DISPLAY'])) {
         $display_size = explode('*', $_SERVER['HTTP_X_JPHONE_DISPLAY']);
 
         $pattern_start_tag = '<table width="100%"';
