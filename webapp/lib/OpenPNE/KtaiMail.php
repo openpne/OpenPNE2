@@ -182,6 +182,7 @@ class OpenPNE_KtaiMail
         } elseif (strtolower($mail->ctype_primary) === 'image' &&
                   in_array(strtolower($mail->ctype_secondary), $allowed_type)) {
             $image_data = $mail->body;
+            $image_ext = '';
 
              // 画像かどうかチェック
             if (!@imagecreatefromstring($image_data)) {
@@ -208,19 +209,31 @@ class OpenPNE_KtaiMail
             // 画像が正しいかどうかチェック
             switch (strtolower($mail->ctype_secondary)) {
             case 'jpeg':
-                if (!@imagecreatefromjpeg($tmpfname)) $image_data = '';
+                if (!@imagecreatefromjpeg($tmpfname)) {
+                    $image_data = '';
+                } else {
+                    $image_ext = 'jpg';
+                }
                 break;
             case 'gif':
-                if (!@imagecreatefromgif($tmpfname)) $image_data = '';
+                if (!@imagecreatefromgif($tmpfname)) {
+                    $image_data = '';
+                } else {
+                    $image_ext = 'gif';
+                }
                 break;
             case 'png':
-                if (!@imagecreatefrompng($tmpfname)) $image_data = '';
+                if (!@imagecreatefrompng($tmpfname)) {
+                    $image_data = '';
+                } else {
+                    $image_ext = 'png';
+                }
                 break;
             }
             unlink($tmpfname);
 
-            if ($image_data) {
-                $images = array($image_data);
+            if ($image_data && $image_ext) {
+                $images = array(array('data' => $image_data, 'ext' => $image_ext));
             }
         }
 

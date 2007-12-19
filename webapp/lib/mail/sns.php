@@ -200,8 +200,10 @@ class mail_sns
         // 画像保存
         $images = $this->decoder->get_images();
         $image_num = 1;
-        foreach ($images as $image_data) {
-            $filename = 'tc_' . $ins_id . '_' . $image_num . '_' . time() . '.jpg';
+        foreach ($images as $image) {
+            $image_ext = $image['ext'];
+            $image_data = $image['data'];
+            $filename = 'tc_' . $ins_id . '_' . $image_num . '_' . time() . '.' . $image_ext;
 
             db_image_insert_c_image($filename, $image_data);
             mail_update_c_commu_topic_comment_image($ins_id, $filename, $image_num);
@@ -250,8 +252,10 @@ class mail_sns
         // 画像登録
         $images = $this->decoder->get_images();
         $image_num = 1;
-        foreach ($images as $image_data) {
-            $filename = 'd_' . $ins_id . '_' . $image_num . '_' . time() . '.jpg';
+        foreach ($images as $image) {
+            $image_ext = $image['ext'];
+            $image_data = $image['data'];
+            $filename = 'd_' . $ins_id . '_' . $image_num . '_' . time() . '.' . $image_ext;
 
             db_image_insert_c_image($filename, $image_data);
             db_diary_update_c_diary_image_filename($ins_id, $filename, $image_num);
@@ -297,9 +301,12 @@ class mail_sns
 
         // 画像登録
         if ($images = $this->decoder->get_images()) {
-            $filename = 'm_' .$this->c_member_id.'_'. time() . '.jpg';
+            $image = $images[0];
+            $image_ext = $image['ext'];
+            $image_data = $image['data'];
+            $filename = 'm_' . $this->c_member_id . '_' . time() . '.' . $image_ext;
 
-            db_image_insert_c_image($filename, $images[0]);
+            db_image_insert_c_image($filename, $image_data);
             mail_update_c_member_image($this->c_member_id, $filename, $target_number);
             return true;
         } else {
