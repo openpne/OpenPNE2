@@ -9,7 +9,6 @@ class pc_do_o_login extends OpenPNE_Action
     var $_auth;
     var $_lc;
     var $_login_params;
-    var $_target_script;
 
     function isSecure()
     {
@@ -19,7 +18,6 @@ class pc_do_o_login extends OpenPNE_Action
     function execute($requests)
     {
         $this->_login_params = $requests['login_params'];
-        $this->_target_script = $requests['target_script'];
         $auth_config = get_auth_config();
         $auth = new OpenPNE_Auth($auth_config['storage'], $auth_config['options']);
         $this->_auth =& $auth;
@@ -53,10 +51,6 @@ class pc_do_o_login extends OpenPNE_Action
 
         db_api_update_token($auth->uid());
         $url = OPENPNE_URL;
-        if ($this->_target_script) {
-            $this->_target_script = str_replace("/","",$this->_target_script);
-            $url .= $this->_target_script;
-        }
         if ($this->_login_params) {
             $url .= '?' . $this->_login_params;
         }
