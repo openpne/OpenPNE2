@@ -472,20 +472,14 @@ function do_h_confirm_list_insert_c_friend_mail_send($c_member_id_from, $u)
     return fetch_send_mail($pc_address, 'm_pc_syounin_friend', $params, $is_receive_mail);
 }
 
-// PCメールアドレス追加・変更メール
+//メールアドレス変更メール
 function do_h_config_1_mail_send($target_c_member_id, $session, $pc_address)
 {
     $params = array(
         "c_member" => db_common_c_member4c_member_id($target_c_member_id),
         "sid"      => $session,
     );
-
-    $c_member_secure = db_member_c_member_secure4c_member_id($target_c_member_id);
-    if ($c_member_secure['pc_address']) {
-        return fetch_send_mail($pc_address, 'm_pc_change_pc_address', $params);
-    } else {
-        return fetch_send_mail($pc_address, 'm_pc_insert_pc_address', $params);
-    }
+    return fetch_send_mail($pc_address, 'm_pc_change_mail', $params);
 }
 
 //メールアドレス変更メール
@@ -569,22 +563,14 @@ function h_invite_insert_c_invite_mail_send($session, $c_member_id_invite, $mail
     return fetch_send_mail($mail, 'm_ktai_regist_invite', $params);
 }
 
-// 携帯メールアドレスを変更するときに送られるメール
+//メールアドレスの変更および
+//PCで今まで使っていたメンバーが新たに携帯メールアドレスを登録したときに送られるメール
 function do_mail_sns_change_ktai_mail_send($c_member_id, $session, $ktai_address)
 {
     $params['SNS_NAME'] = SNS_NAME;
     $p = array('id' => $c_member_id, 'ses' => $session);
-    $params['url'] = openpne_gen_url('ktai', 'page_o_change_ktai_address', $p);
-    return fetch_send_mail($ktai_address, 'm_ktai_change_ktai_address', $params);
-}
-
-// PCから携帯メールアドレスを登録したときに送られるメール
-function do_mail_sns_insert_ktai_mail_send($c_member_id, $session, $ktai_address)
-{
-    $params['SNS_NAME'] = SNS_NAME;
-    $p = array('id' => $c_member_id, 'ses' => $session);
-    $params['url'] = openpne_gen_url('ktai', 'page_o_insert_ktai_address', $p);
-    return fetch_send_mail($ktai_address, 'm_ktai_insert_ktai_address', $params);
+    $params['url'] = openpne_gen_url('ktai', 'page_o_login2', $p);
+    return fetch_send_mail($ktai_address, 'm_ktai_change_ktai', $params);
 }
 
 //ログインURL通知メール
