@@ -100,7 +100,9 @@
 ({if $new_topic_comment})
 <font color="#({$ktai_color_config.font_07})">⇒</font><a href="({t_url m=ktai a=page_c_topic_list})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">もっと見る</a><br>
 ({/if})
+({if ($c_commu.topic_authority == 'public' && $is_c_commu_member) || ($c_commu.topic_authority == 'admin_only' && $is_c_commu_admin)})
 <a href="({t_url m=ktai a=page_c_topic_add})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">ﾄﾋﾟｯｸの作成</a><br>
+({/if})
 </td></tr>
 ({/if})
 </table>
@@ -127,7 +129,9 @@
 ({if $new_topic_comment_event})
 <font color="#({$ktai_color_config.font_07})">⇒</font><a href="({t_url m=ktai a=page_c_event_list})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">もっと見る</a><br>
 ({/if})
+({if ($c_commu.topic_authority == 'public' && $is_c_commu_member) || ($c_commu.topic_authority == 'admin_only' && $is_c_commu_admin)})
 <a href="({t_url m=ktai a=page_c_event_add})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">ｲﾍﾞﾝﾄの作成</a><br>
+({/if})
 </td></tr>
 </table>
 ({/if})
