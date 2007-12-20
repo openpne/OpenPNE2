@@ -61,7 +61,7 @@ em {
 
 <h1>OpenPNE セットアップガイド</h1>
 
-<p>最終更新日: 2007/11/01</p>
+<p>最終更新日: 2007/12/20</p>
 
 <h2>目次</h2>
 <ul>
@@ -91,7 +91,7 @@ em {
 
 <h2 id="section0">0. はじめに</h2>
 
-<p>この文書は、OpenPNE バージョン2.10beta1 を基にして書かれています。</p>
+<p>この文書は、OpenPNE バージョン2.10 を基にして書かれています。</p>
 <p>OpenPNE は以下のようなサーバ環境で動作させることを想定しています。</p>
 <dl>
 <dt>Webサーバ</dt>
@@ -152,6 +152,8 @@ em {
 <p><var>public_html</var> のパスとディレクトリ名は変更することができます。</p>
 <p><var>public_html</var> のパスを <var>OPENPNE_DIR</var> ディレクトリの直下(デフォルト配置)以外に変更した場合は、
 <var>public_html</var> 直下にある config.inc.php の内容を書き換えてください。</p>
+<p><var>public_html</var> のディレクトリ名を変更した場合は、後の「2. 設定ファイルの変更」で、
+<em>OPENPNE_PUBLIC_HTML_DIR</em> の内容を書き換えてください。</p>
 
 <p>また、<var>OPENPNE_DIR</var>/var 以下の<strong>全ディレクトリ</strong>にウェブサーバからの書き込み権限(例えば 777)を与えてください。</p>
 <pre>
@@ -230,6 +232,8 @@ $ chmod -R 0777 var/*
 
 <p>必要に応じて、その他の設定も書き換えてください。
 デバッグモードの設定(<em>OPENPNE_DEBUGGING</em>)は、本番運用に移行する際には 0 にしておくことをおすすめします。</p>
+
+<p><var>public_html</var> のディレクトリ名を変更した場合は、 <em>OPENPNE_PUBLIC_HTML_DIR</em> を変更したディレクトリ名に書き換えてください。</p>
 
 <p class="caution">PHPの設定でセーフモードが有効な場合は、<em>MAIL_SET_ENVFROM</em> を false に設定してください。</p>
 
