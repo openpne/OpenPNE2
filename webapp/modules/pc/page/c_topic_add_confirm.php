@@ -32,7 +32,10 @@ class pc_page_c_topic_add_confirm extends OpenPNE_Action
 
         //トピック作成権限チェック
         if ($c_commu['topic_authority'] == 'admin_only' && !db_commu_is_c_commu_admin($c_commu_id, $u)) {
-            handle_kengen_error();
+            $_REQUEST['target_c_commu_id'] = $c_commu_id;
+            $_REQUEST['msg'] = "トピックは管理者だけが作成できます";
+            openpne_forward('pc', 'page', "c_home");
+            exit;
         }
 
         //画像ファイル
