@@ -32,3 +32,5 @@
 ・option
    インストールには必須ではないSQLが格納されています。
    PNEBIZ モードを有効にした際に有用なSQLなどが格納されています。
+   ※ただし、postgres74/option ディレクトリには、アップデートに必要なSQLが格納されています。
+     詳細は postgres74/option/README.txt をご覧ください。
