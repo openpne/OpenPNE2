@@ -33,7 +33,7 @@
 <td style="width:1px;" class="bg_01"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 <td style="width:20px;padding-left:5px;" class="bg_02"><img src="./skin/dummy.gif" class="icon arrow_1"></td>
 <td style="width:343px;" class="bg_02">
-<a href="./?m=pc&amp;a=page_c_join_commu&amp;target_c_commu_id=({$c_commu.c_commu_id})">({$c_commu.name})に参加する</a>
+<a href="({t_url m=pc a=page_c_join_commu})&amp;target_c_commu_id=({$c_commu.c_commu_id})">({$c_commu.name})に参加する</a>
 </td>
 <td style="width:1px;" class="bg_01"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 </tr>
