@@ -18,7 +18,7 @@ class pc_page_c_event_invite extends OpenPNE_Action
         $c_commu_id = $c_topic['c_commu_id'];
 
         //--- 権限チェック
-        if (!db_commu_is_c_event_member($c_commu_topic_id, $u)) {
+        if (!db_commu_is_c_commu_view4c_commu_idAc_member_id($c_commu_id, $u)) {
             handle_kengen_error();
         }
         //---

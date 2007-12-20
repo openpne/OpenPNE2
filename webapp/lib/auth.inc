@@ -19,7 +19,6 @@ if (   !$auth->auth()
         client_redirect_absolute(get_login_url());
     } else {
         $parts = explode('/', $_SERVER['SCRIPT_NAME']);
-        $_REQUEST['target_script'] = array_pop($parts);
         $_REQUEST['login_params'] = $_SERVER['QUERY_STRING'];
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_POST = array('login_params' => $_SERVER['QUERY_STRING']);
@@ -32,7 +31,7 @@ if (   !$auth->auth()
 }
 
 if (db_member_is_blacklist($u)) {
-	$p = array('msg_code' => 'blacklist');
+    $p = array('msg_code' => 'blacklist');
     openpne_redirect('pc', 'page_o_tologin', $p);
 }
 

@@ -1229,7 +1229,12 @@ function db_member_update_password_query($c_member_id, $c_password_query_id, $pa
     $where = array('c_member_id' => intval($c_member_id));
     db_update('c_member', $data, $where);
 
-    $data = array('hashed_password_query_answer' => md5($password_query_answer));
+    if (empty($password_query_answer)) {
+        $password_query_answer = '';
+    } else {
+        $password_query_answer = md5($password_query_answer);
+    }
+    $data = array('hashed_password_query_answer' => $password_query_answer);
     $where = array('c_member_id' => intval($c_member_id));
     db_update('c_member_secure', $data, $where);
 }
@@ -1353,6 +1358,9 @@ function db_member_h_regist_mail($c_member_id, $pc_address)
         );
         $insert_id = db_insert('c_pc_address_pre', $data);
     }
+
+    //function cache削除
+    cache_drop_c_member_profile($c_member_id);
 
     do_h_regist_mail_mail_send($c_member_id, $session, $pc_address);
     return $insert_id;
@@ -1871,10 +1879,10 @@ function db_member_check_param_inputed($c_member_id, $is_ktai = false)
     $c_member = db_member_c_member4c_member_id($c_member_id, true);
     
     if (($c_member['nickname'] === '')
-     || ($c_member['birth_year'] === '')
-     || ($c_member['birth_month'] === '')
-     || ($c_member['birth_day'] === '')
-     || ($c_member['c_password_query_id'] === '')
+     || !$c_member['birth_year']
+     || !$c_member['birth_month']
+     || !$c_member['birth_day']
+     || !$c_member['c_password_query_id']
      || ($c_member['secure']['hashed_password_query_answer'] === '')
     ) {
         return 1;

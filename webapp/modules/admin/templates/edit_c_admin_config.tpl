@@ -69,6 +69,7 @@
 </select><br />
 <span class="caution">※使用不可にすると携帯で表示できなくなります</span>
 </td>
+</tr>
 <tr class="cell08">
 <th colspan="2">登録の可否</th>
 <td>
@@ -131,6 +132,17 @@
 <option value="1"({if $smarty.const.OPENPNE_USE_FLASH_LIST}) selected="selected"({/if})>Flash版</option>
 <option value="0"({if !$smarty.const.OPENPNE_USE_FLASH_LIST}) selected="selected"({/if})>通常HTML版</option>
 </select></td>
+</tr>
+<tr class="cell26">
+<th colspan="2">携帯版フォントサイズ指定設定</th>
+<td>
+<span class="info">携帯版でのフォントサイズ指定をおこなうかどうかを設定します</span><br />
+<select class="basic" name="OPENPNE_IS_SET_KTAI_FONT_SIZE">
+<option value="1"({if $smarty.const.OPENPNE_IS_SET_KTAI_FONT_SIZE}) selected="selected"({/if})>フォントサイズを指定する</option>
+<option value="0"({if !$smarty.const.OPENPNE_IS_SET_KTAI_FONT_SIZE}) selected="selected"({/if})>フォントサイズを指定しない</option>
+</select><br />
+<span class="caution">※「フォントサイズを指定する」を選択した場合、文字サイズが小さめに設定されます</span><br />
+<span class="caution">※「フォントサイズを指定しない」を選択した場合、携帯端末ごとのデフォルトの文字サイズで表示されるようになります</span></td>
 </tr>
 <tr class="cell15">
 <th colspan="2">メニューロールオーバー</th>
@@ -326,7 +338,7 @@
 <option value="0"({if !$smarty.const.USE_EXTRA_SERVICE}) selected="selected"({/if})>使用しない</option>
 </select></td>
 </tr>
-<tr class="cell26">
+<tr class="cell27">
 <th colspan="2">BIZ使用設定</th>
 <td>
 <span class="info">BIZを使用するかどうかを設定します</span><br />
@@ -345,7 +357,7 @@
 </select></td>
 </tr>
 </table>
-<p class="textBtn"><input type="submit" value="設定変更する"></p>
+<p class="textBtn"><input type="submit" value="設定変更する" /></p>
 </form>
 </div>({*/div class="contents"*})
 

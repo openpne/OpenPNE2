@@ -10,8 +10,33 @@ require_once './config.inc.php';
 //SNSにログインしているかどうか
 if (defined('CHECK_IMG_AUTH') && CHECK_IMG_AUTH) {
     require_once OPENPNE_WEBAPP_DIR . '/init.inc';
-    
-    $module = $_GET['m'];
+
+    $module = '';
+    if (!($module = get_request_var('m'))) {
+        // モジュール名の自動設定
+        if (!db_admin_user_exists()) {
+            $module = 'setup';
+        } elseif (isKtaiUserAgent()) {
+            $module = 'ktai';
+        } else {
+            $module = 'pc';
+        }
+    }
+    $_SERVER['QUERY_STRING'] .= '&a=page_h_toimg';
+
+    if (!$module = _check_module($module)) {
+        openpne_display_error('モジュールが見つかりません', true);
+    }
+
+    // disable modules
+    if (in_array($module, (array)$GLOBALS['_OPENPNE_DISABLE_MODULES'])) {
+        openpne_display_error('モジュールが無効になっています', true);
+    }
+    // maintenace mode
+    if (OPENPNE_UNDER_MAINTENANCE &&
+        !in_array($module, (array)$GLOBALS['_OPENPNE_MAINTENANCE_MODULES'])) {
+        openpne_display_error();
+    }
     // init
     if ($init = openpne_ext_search("{$module}/init.inc")) {
         require_once $init;

@@ -21,7 +21,7 @@ class pc_page_fh_diary_list extends OpenPNE_Action
         $keyword = $requests['keyword'];
         // ----------
 
-        if (!$target_c_member_id) {
+        if (!$target_c_member_id || !is_null($keyword)) {
             $target_c_member_id = $u;
         }
 

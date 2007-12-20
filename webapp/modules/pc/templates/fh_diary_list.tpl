@@ -1,4 +1,5 @@
 ({ext_include file="inc_header.tpl"})
+({if $type == 'h'})
 <tr>
 <td class="container inc_c_com_topic_find" align="center">
 <table border="0" cellspacing="0" cellpadding="0" style="width:720px;">
@@ -12,8 +13,6 @@
 
 <div class="color_19" style="width:680px;height:24px;border-left:none 0px;border-right:none 0px;border-top:none 0px;">
 ({t_form _method=get m=pc a=page_fh_diary_list})
-<input type="hidden" name="c_commu_id" value="({$c_commu.c_commu_id})">
-
 <table border="0" cellspacing="0" cellpadding="0" class="search_bar" style="width:680px;height:24px;">
 <tr>
 <td align="center" style="height:24px;">
@@ -34,6 +33,7 @@
 </table>
 </td>
 </tr>
+({/if})
 ({ext_include file="inc_layoutcolumn_top_165px.tpl"})
 ({********************************})
 ({**ここから：メインコンテンツ（左）**})

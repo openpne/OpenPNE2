@@ -682,12 +682,12 @@ CREATE TABLE c_password_query (
 );
 
 CREATE TABLE c_pc_address_pre (
-  c_pc_addess_pre_id serial NOT NULL,
+  c_pc_address_pre_id serial NOT NULL,
   c_member_id int4 NOT NULL default '0',
   pc_address text NOT NULL,
   session varchar(32) NOT NULL default '',
   r_datetime timestamp NOT NULL default '0000-01-01 00:00:00',
-  PRIMARY KEY  (c_pc_addess_pre_id)
+  PRIMARY KEY  (c_pc_address_pre_id)
 );
 
 CREATE INDEX c_pc_address_pre_c_member_id on c_pc_address_pre (c_member_id);

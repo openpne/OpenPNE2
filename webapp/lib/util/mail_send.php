@@ -597,6 +597,23 @@ function do_common_send_message_syoukai_commu_mail_send($c_member_id_to, $c_memb
     return fetch_send_mail($pc_address, 'm_pc_message_syoukai_commu', $params, $is_receive_mail);
 }
 
+// コミュニティ参加者全員にメール
+function do_common_send_message_commu_send_msg($c_member_id_to, $c_member_id_from, $c_commu_id)
+{
+    //メール
+    $c_member_to = db_common_c_member4c_member_id($c_member_id_to, true);
+    $c_commu = db_commu_c_commu4c_commu_id($c_commu_id);
+    $pc_address = $c_member_to['secure']['pc_address'];
+    $is_receive_mail = $c_member_to['is_receive_mail'];
+
+    $params = array(
+        'c_member_to'   => db_common_c_member4c_member_id($c_member_id_to),
+        'c_member_from' => db_common_c_member4c_member_id($c_member_id_from),
+        'c_commu'       => $c_commu,
+    );
+    return fetch_send_mail($pc_address, 'm_pc_message_commu_send_msg', $params, $is_receive_mail);
+}
+
 // メンバー紹介
 function do_common_send_message_syoukai_member_mail_send($c_member_id_to, $c_member_id_from)
 {

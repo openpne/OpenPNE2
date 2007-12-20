@@ -34,8 +34,11 @@ class OpenPNE_Smarty extends Smarty
             $this->register_outputfilter('smarty_outputfilter_unescape_emoji');
             require_once 'OpenPNE/KtaiUA.php';
             $ktai = new OpenPNE_KtaiUA();
-            if ($ktai->is_docomo()) {
+            if ($ktai->is_docomo() && OPENPNE_IS_SET_KTAI_FONT_SIZE) {
                 $this->register_outputfilter('smarty_outputfilter_add_font4docomo');
+            }
+            if ($ktai->is_vodafone()) {
+                $this->register_outputfilter('smarty_outputfilter_change_table_width4softbank');
             }
         }
         $this->sendContentType();
@@ -118,6 +121,25 @@ function smarty_outputfilter_add_font4docomo($tpl_output, &$smarty)
     $pattern_end_tag = array('</body>', '</td>');
     $replacement_end_tag = array('</font></body>', '</font></td>');
     $tpl_output = str_replace($pattern_end_tag, $replacement_end_tag, $tpl_output);
+
+    return $tpl_output;
+}
+
+function smarty_outputfilter_change_table_width4softbank($tpl_output, &$smarty)
+{
+    // table要素のwidth属性を x-jphone-display で得られる表示可能幅に置換
+    // ただし3G端末は x-jphone-display の仕様が異なるため、置換しない
+    if (!strncmp($_SERVER['HTTP_USER_AGENT'], 'J-PHONE', 7) && !is_null($_SERVER['HTTP_X_JPHONE_DISPLAY'])) {
+        $display_size = explode('*', $_SERVER['HTTP_X_JPHONE_DISPLAY']);
+
+        if (!ctype_digit($display_size[0]) || intval($display_size[0]) <= 0) {
+            return $tpl_output;
+        }
+
+        $pattern_start_tag = '<table width="100%"';
+        $replacement_start_tag = '<table width="' . intval($display_size[0]) . '"';
+        $tpl_output = str_replace($pattern_start_tag, $replacement_start_tag, $tpl_output);
+    }
 
     return $tpl_output;
 }
