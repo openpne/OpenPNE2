@@ -18,13 +18,17 @@ class ktai_page_c_event_add extends OpenPNE_Action
         //--- 権限チェック
         //コミュニティメンバー
         if (!db_commu_is_c_commu_member($c_commu_id, $u)) {
-            handle_kengen_error();
+            $_REQUEST['target_c_commu_id'] = $c_commu_id;
+            $_REQUEST['msg'] = "イベント作成をおこなうにはコミュニティに参加する必要があります";
+            openpne_forward('ktai', 'page', "c_home");
+            exit;
         }
 
         $c_commu = db_commu_c_commu4c_commu_id2($c_commu_id);
+
         //トピック作成権限チェック
         if ($c_commu['topic_authority'] == 'admin_only' && !db_commu_is_c_commu_admin($c_commu_id, $u)) {
-            handle_kengen_error();
+            ktai_display_error("イベントは管理者だけが作成できます");
         }
         //---
 
