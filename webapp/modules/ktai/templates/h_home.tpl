@@ -25,7 +25,7 @@
 <a href="({t_url m=ktai a=page_h_confirm_list})&amp;({$tail})"><font color="#({$ktai_color_config.font_09})">★承認待ちのﾒﾝﾊﾞｰ({$num_f_confirm_list})名</font></a><br>
 ({/if})
 ({if $num_message_not_is_read})
-<a href="({t_url m=ktai a=page_h_message_box})&amp;({$tail})"><font color="#({$ktai_color_config.font_09})">★新着ﾒｯｾｰｼﾞ({$num_message_not_is_read})件</font></a></font><br>
+<a href="({t_url m=ktai a=page_h_message_box})&amp;({$tail})"><font color="#({$ktai_color_config.font_09})">★新着ﾒｯｾｰｼﾞ({$num_message_not_is_read})件</font></a><br>
 ({/if})
 ({if $num_diary_not_is_read})
 <a href="({t_url m=ktai a=page_fh_diary})&amp;target_c_diary_id=({$first_diary_read})&amp;({$tail})"><font color="#({$ktai_color_config.font_09})">★({$num_diary_not_is_read})件日記に新着ｺﾒﾝﾄ</font></a><br>
