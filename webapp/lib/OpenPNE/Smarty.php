@@ -132,7 +132,7 @@ function smarty_outputfilter_change_table_width4softbank($tpl_output, &$smarty)
     if (!strncmp($_SERVER['HTTP_USER_AGENT'], 'J-PHONE', 7) && !is_null($_SERVER['HTTP_X_JPHONE_DISPLAY'])) {
         $display_size = explode('*', $_SERVER['HTTP_X_JPHONE_DISPLAY']);
 
-        if (!ctype_digit($display_size[0]) || intval($display_size[0]) < 0) {
+        if (!ctype_digit($display_size[0]) || intval($display_size[0]) <= 0) {
             return $tpl_output;
         }
 
