@@ -64,14 +64,16 @@
 </td>
 <td valign="top">
 ({strip})
-<font color="#({$ktai_color_config.font_06})">ID：</font><br>({$target_c_member.c_member_id})<br>
+<font color="#({$ktai_color_config.font_06})">ID：</font><br>
+({$target_c_member.c_member_id})<br>
 
 ({capture name="birth"})
 ({if $target_c_member.age !== NULL && ($target_c_member.public_flag_birth_year == 'public' || ($target_c_member.public_flag_birth_year == 'friend' && ($is_friend || $is_h_prof)))})<font color="#({$ktai_color_config.font_06})">年齢：</font><br>({$target_c_member.age})歳<br>
 ({if $is_h_prof && $target_c_member.public_flag_birth_year == 'friend'})<font color="#({$ktai_color_config.font_09})">※({$WORD_MY_FRIEND_HALF})まで公開</font><br>({/if})
 ({/if})
 ({if $target_c_member.birth_month && $target_c_member.birth_day})
-<font color="#({$ktai_color_config.font_06})">誕生日：</font><br>({$target_c_member.birth_month})月({$target_c_member.birth_day})日<br>
+<font color="#({$ktai_color_config.font_06})">誕生日：</font><br>
+({$target_c_member.birth_month})月({$target_c_member.birth_day})日<br>
 ({/if})
 ({/capture})
 
@@ -181,7 +183,7 @@
 <tr><td bgcolor="#({cycle values="`$ktai_color_config.bg_06`,`$ktai_color_config.bg_07`"})">
 <a href="({t_url m=ktai a=page_c_home})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">({$c_commu.name|t_truncate:30:""})(({$c_commu.count_members}))</a><br>
 </td></tr>
-<tr><td  bgcolor="#({$ktai_color_config.bg_07})">
+<tr><td bgcolor="#({$ktai_color_config.bg_07})">
 <hr color="#({$ktai_color_config.border_02})">
 </td></tr>
 ({/foreach})
