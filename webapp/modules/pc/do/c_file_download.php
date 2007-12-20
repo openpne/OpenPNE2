@@ -29,7 +29,7 @@ class pc_do_c_file_download extends OpenPNE_Action
         $c_commu_id = $c_topic['c_commu_id'];
 
         $status = db_common_commu_status($u, $c_commu_id);
-        if (!$status['is_commu_member']) {
+        if (!$status['is_bbs_view']) {
             handle_kengen_error();
         }
 
