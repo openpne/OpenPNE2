@@ -1742,11 +1742,17 @@ function db_commu_search_c_commu4c_commu_category(
     case 'count':
         $from  = ' FROM c_commu, c_commu_member';
         $order = ' ORDER BY count_commu_member DESC';
+        if ($where) {
+            $count_where = $where . ' AND';
+        } else {
+            $count_where = ' WHERE';
+        }
+        $count_where .= ' c_commu_member.c_commu_id = c_commu.c_commu_id';
         if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
             $sub_tbl = ' (' .
                             'SELECT c_commu_member.c_commu_id, count(c_commu_member.c_commu_member_id) as count_commu_member' .
                             $from .
-                            $where . ' AND c_commu_member.c_commu_id = c_commu.c_commu_id' .
+                            $count_where .
                             ' GROUP BY c_commu_member.c_commu_id' .
                         ') as sub_commu_tbl';
             $sql = $select .
@@ -1757,7 +1763,7 @@ function db_commu_search_c_commu4c_commu_category(
             $group = ' GROUP BY c_commu_member.c_commu_id';
             $sql = $select . ', COUNT(c_commu_member.c_member_id) AS count_commu_member' .
                 $from .
-                $where . ' AND c_commu_member.c_commu_id = c_commu.c_commu_id' .
+                $count_where .
                 $group .
                 $order;
         }
