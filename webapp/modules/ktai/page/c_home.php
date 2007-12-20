@@ -27,6 +27,7 @@ class ktai_page_c_home extends OpenPNE_Action
         //掲示板の閲覧権限チェック tplでやっている
         $this->set("is_c_commu_view", db_commu_is_c_commu_view4c_commu_idAc_member_id($target_c_commu_id, $u));
         $this->set("is_c_commu_member", db_commu_is_c_commu_member($target_c_commu_id, $u));
+        $this->set('is_c_commu_admin', db_commu_is_c_commu_admin($target_c_commu_id, $u));
         //---
 
         //管理画面HTML
