@@ -30,7 +30,7 @@ class pc_page_f_message_send_confirm extends OpenPNE_Action
         t_image_clear_tmp($sessid);
 
         if ($form_val['target_c_member_id'] == $u) {  // 自分にメッセージは送れない
-        	handle_kengen_error();
+            handle_kengen_error();
         }
 
         $upfiles = array(

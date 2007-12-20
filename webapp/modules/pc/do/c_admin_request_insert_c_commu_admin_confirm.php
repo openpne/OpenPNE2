@@ -35,7 +35,7 @@ class pc_do_c_admin_request_insert_c_commu_admin_confirm extends OpenPNE_Action
         }
 
         if ($u == $target_c_member_id) {
-        	handle_kengen_error();
+            handle_kengen_error();
         }
 
         $status = db_common_commu_status($target_c_member_id, $target_c_commu_id);
