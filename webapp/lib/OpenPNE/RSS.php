@@ -65,6 +65,7 @@ class OpenPNE_RSS
             $trans_table['&#039;'] = "'";
             $title = strtr($title, $trans_table);
             $description = strtr($description, $trans_table);
+            $link = strtr($link, $trans_table);
 
             $f_item = array(
                 'title' => $this->convert_encoding($title),
