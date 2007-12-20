@@ -29,7 +29,7 @@ class pc_do_c_event_mail extends OpenPNE_Action
 
         // 自分へのメッセージ送信ではない
         if (in_array($u, $c_member_ids)) {
-        	handle_kengen_error();
+            handle_kengen_error();
         }
         //---
 

@@ -56,9 +56,9 @@ class ktai_do_c_bbs_insert_c_commu_topic_comment extends OpenPNE_Action
                     'target_c_commu_topic_id' => $target_c_commu_topic_id,
                     'msg' => 43,
                 );
-            	openpne_redirect('ktai', 'page_c_bbs', $p);
+                openpne_redirect('ktai', 'page_c_bbs', $p);
             } else {
-                do_c_event_add_insert_c_event_member($target_c_commu_topic_id, $u);            	
+                do_c_event_add_insert_c_event_member($target_c_commu_topic_id, $u);
             }
         } elseif ($requests['cancel_event']) {
             db_commu_delete_c_event_member($target_c_commu_topic_id, $u);

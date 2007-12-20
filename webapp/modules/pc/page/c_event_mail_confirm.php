@@ -33,7 +33,7 @@ class pc_page_c_event_mail_confirm extends OpenPNE_Action
             handle_kengen_error();
         }
         if (in_array($u, $c_member_ids)) {
-        	handle_kengen_error();
+            handle_kengen_error();
         }
         //---
 

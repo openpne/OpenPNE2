@@ -25,11 +25,11 @@ class admin_page_commu_list extends OpenPNE_Action
         $v = array();
         
         if ($target_c_commu_id) {
-        	list($commu_list,$prev,$next,$total_num,$total_page_num) 
-            = monitor_commu_list4c_commu_id($target_c_commu_id,$page_size,$page);
+            list($commu_list,$prev,$next,$total_num,$total_page_num) 
+                = monitor_commu_list4c_commu_id($target_c_commu_id,$page_size,$page);
         } else {
-        	list($commu_list,$prev,$next,$total_num,$total_page_num) 
-            = monitor_commu_list($keyword,$page_size,$page);
+            list($commu_list,$prev,$next,$total_num,$total_page_num) 
+                = monitor_commu_list($keyword,$page_size,$page);
         }
         $this->set('commu_list', $commu_list);
         $this->set('page', $page);

@@ -41,7 +41,7 @@ class pc_do_c_sub_admin_request_insert_c_commu_sub_admin_confirm extends OpenPNE
         }
 
         if ($u == $target_c_member_id) {
-        	handle_kengen_error();
+            handle_kengen_error();
         }
 
         $target_c_commu_admin_confirm_list =

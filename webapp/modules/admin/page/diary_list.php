@@ -23,11 +23,11 @@ class admin_page_diary_list extends OpenPNE_Action
         $page_size = 20;
         
         if ($target_c_diary_id) {
-        	list($diary_list,$prev,$next,$total_num,$total_page_num) 
-            = monitor_diary_list4c_diary_id($target_c_diary_id,$page_size,$page);
+            list($diary_list,$prev,$next,$total_num,$total_page_num) 
+                = monitor_diary_list4c_diary_id($target_c_diary_id,$page_size,$page);
         } else {
-        	list($diary_list,$prev,$next,$total_num,$total_page_num) 
-            = monitor_diary_list($keyword,$page_size,$page);
+            list($diary_list,$prev,$next,$total_num,$total_page_num) 
+                = monitor_diary_list($keyword,$page_size,$page);
         }
         $this->set('diary_list', $diary_list);
         $this->set('page', $page);
