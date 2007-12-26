@@ -13,10 +13,10 @@ function url2cmd(url)
     var match = url.match(/^.*(?:ASIN|product|dp)\/([^\/]+)(?:\/.*)*$/);
 
     if (match) {
-       var id = RegExp.$1;
-       main(id);
+        var id = RegExp.$1;
+        main(id);
     } else {
-       pne_url2a(url);
+        pne_url2a(url);
     }
 }
 
