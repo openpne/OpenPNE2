@@ -430,6 +430,19 @@ define('OPENPNE_API_TOKEN', 'OpenPNE');
 define('SERVER_IP_KEY', 'REMOTE_ADDR');
 
 ///
+// HTTPプロキシ設定
+///
+
+// HTTPプロキシ使用設定
+define('OPENPNE_USE_HTTP_PROXY', false);
+
+// プロキシのホスト名
+define('OPENPNE_HTTP_PROXY_HOST', 'proxy.example.com');
+
+// プロキシのポート番号
+define('OPENPNE_HTTP_PROXY_PORT', 8080);
+
+///
 // memory_limit設定
 ///
 // ini_set('memory_limit','32M');
