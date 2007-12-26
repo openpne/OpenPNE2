@@ -106,6 +106,20 @@ class Services_Amazon
     * @var    string $_baseurl
     */
     var $_baseurl = null;
+ 
+   /**
+    * The proxy parameters to be used by HTTP_Request
+    *
+    * @access private
+    * @var    string $_proxy_host
+    * @var    int    $_proxy_port
+    * @var    string $_proxy_user
+    * @var    string $_proxy_pass
+    */
+    var $_proxy_host = null;
+    var $_proxy_port = null;
+    var $_proxy_user = null;
+    var $_proxy_pass = null;
 
     /**
     * Constructor
@@ -233,6 +247,23 @@ class Services_Amazon
     */    
     function getLocale() {
         return $this->_locale;
+    }
+    
+   /**
+    * Sets a proxy to be used by HTTP_Request
+    *
+    * @param string     Proxy host
+    * @param int        Proxy port
+    * @param string     Proxy username
+    * @param string     Proxy password
+    * @access public
+    */
+    function setProxy($host, $port = 8080, $user = null, $pass = null)
+    {
+        $this->_proxy_host = $host;
+        $this->_proxy_port = $port;
+        $this->_proxy_user = $user;
+        $this->_proxy_pass = $pass;
     }
     
     /**
@@ -768,6 +799,7 @@ class Services_Amazon
         // Open up our HTTP_Request and set our User-Agent field then send the
         // request for the URL.
         $http = &new HTTP_Request($url);
+        if ($this->_proxy_host) $http->setProxy($this->_proxy_host, $this->_proxy_port, $this->_proxy_user, $this->_proxy_pass);
         $http->addHeader('User-Agent', 'Services_Amazon/' . $this->getApiVersion());
         $http->sendRequest();
         
