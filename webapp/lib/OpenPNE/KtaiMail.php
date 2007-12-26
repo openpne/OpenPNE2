@@ -306,17 +306,17 @@ class OpenPNE_KtaiMail
             }
         } else {
             $regx = '/([\.\w!#$%&\'*+\-\/=?^`{|}~]+@[\w!#$%&\'*+\-\/=?^`{|}~]+(\.[\w!#$%&\'*+\-\/=?^`{|}~]+)*)/';
-            for($i = 0; $i < $cnt; $i++) {
+            for ($i = 0; $i < $cnt; $i++) {
                 $matches = array();
                 if (preg_match_all($regx, $ar[$i], $matches)) {
                     $to = array_pop($matches[1]);
                     list($to_user0, $to_host0) = explode("@", $to, 2);
-                if($to_host0 === MAIL_SERVER_DOMAIN) {
-                    return $to;
+                    if ($to_host0 === MAIL_SERVER_DOMAIN) {
+                        return $to;
+                    }
                 }
             }
         }
-    }
 
         return false;
     }
