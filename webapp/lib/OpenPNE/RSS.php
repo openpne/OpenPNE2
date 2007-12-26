@@ -23,6 +23,10 @@ class OpenPNE_RSS
     function fetch($rss_url)
     {
         $feed = new SimplePie();
+        if (OPENPNE_USE_HTTP_PROXY) {
+            $proxy = OPENPNE_HTTP_PROXY_HOST . ":" . OPENPNE_HTTP_PROXY_PORT;
+            $feed->set_proxy($proxy);
+        }
 
         $feed->set_feed_url($rss_url);
         $feed->set_cache_location(OPENPNE_RSS_CACHE_DIR);
@@ -98,8 +102,11 @@ class OpenPNE_RSS
         }
 
         $result = '';
-        $file = @new SimplePie_File($url);
-        $locator = new SimplePie_Locator($file);
+        if (OPENPNE_USE_HTTP_PROXY) {
+            $proxy = OPENPNE_HTTP_PROXY_HOST . ":" . OPENPNE_HTTP_PROXY_PORT;
+        }
+        $file = @new SimplePie_File($url, 10, 5, null, null, false, $proxy);
+        $locator = new SimplePie_Locator($file, 10, null, 'SimplePie_File', 10, $proxy);
         $feed_url = $locator->find();
         if (SimplePie_Misc::is_a($feed_url, 'SimplePie_File')) {
             $result = $feed_url->url;
