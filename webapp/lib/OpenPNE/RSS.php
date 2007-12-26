@@ -24,8 +24,8 @@ class OpenPNE_RSS
     {
         $feed = new SimplePie();
 
-        $feed->feed_url($rss_url);
-        $feed->cache_location(OPENPNE_RSS_CACHE_DIR);
+        $feed->set_feed_url($rss_url);
+        $feed->set_cache_location(OPENPNE_RSS_CACHE_DIR);
 
         if (!(@$feed->init())) {
             return false;
@@ -97,9 +97,15 @@ class OpenPNE_RSS
             $url .= '/';
         }
 
+        $result = '';
         $file = @new SimplePie_File($url);
         $locator = new SimplePie_Locator($file);
-        return $locator->find();
+        $feed_url = $locator->find();
+        if (SimplePie_Misc::is_a($feed_url, 'SimplePie_File')) {
+            $result = $feed_url->url;
+        }
+
+        return $result;
     }
 }
 
