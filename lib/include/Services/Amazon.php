@@ -799,7 +799,9 @@ class Services_Amazon
         // Open up our HTTP_Request and set our User-Agent field then send the
         // request for the URL.
         $http = &new HTTP_Request($url);
-        if ($this->_proxy_host) $http->setProxy($this->_proxy_host, $this->_proxy_port, $this->_proxy_user, $this->_proxy_pass);
+        if ($this->_proxy_host) {
+            $http->setProxy($this->_proxy_host, $this->_proxy_port, $this->_proxy_user, $this->_proxy_pass);
+        }
         $http->addHeader('User-Agent', 'Services_Amazon/' . $this->getApiVersion());
         $http->sendRequest();
         
