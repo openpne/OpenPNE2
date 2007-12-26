@@ -267,6 +267,23 @@ class OpenPNE_Img
         }
 
         $output_gdimg = imagecreatetruecolor($o_width, $o_height);
+
+        if (($this->output_format == 'gif') || ($this->output_format == 'png')) {
+            $trnprt_idx_s = imagecolortransparent($source_gdimg);
+            if ($trnprt_idx_s >= 0) {
+                imagetruecolortopalette($output_gdimg, true, 256);
+                $trnprt_color = imagecolorsforindex($source_gdimg, $trnprt_idx_s);
+                imagecolorset($source_gdimg, 0, $trnprt_color['red'], $trnprt_color['green'],$trnprt_color['blue']);
+                imagefill( $output_gdimg, 0, 0, 0 );
+                imagecolortransparent( $output_gdimg, 0);
+            } elseif ($this->$this->output_format == 'png') {  // PNG-24
+                imagealphablending($output_gdimg, false);
+                $color = imagecolorallocatealpha($output_gdimg, 0, 0, 0, 127);
+                imagefill($output_gdimg, 0, 0, $color);
+                imagesavealpha($output_gdimg, true);
+            }
+        }
+
         imagecopyresampled($output_gdimg, $source_gdimg,
                 0, 0, 0, 0, $o_width, $o_height, $s_width, $s_height);
         return $output_gdimg;
