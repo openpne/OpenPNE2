@@ -96,7 +96,6 @@ function do_review_add_search_result($keyword, $category_id, $page)
 
     include_once 'Services/Amazon.php';
     $amazon =& new Services_Amazon(AMAZON_TOKEN, AMAZON_AFFID, AMAZON_LOCALE, AMAZON_BASEURL);
-    $amazon->setLocale(AMAZON_LOCALE);
     if (OPENPNE_USE_HTTP_PROXY) {
         $amazon->setProxy(OPENPNE_HTTP_PROXY_HOST, OPENPNE_HTTP_PROXY_PORT);
     }
@@ -134,7 +133,6 @@ function db_review_write_product4asin($asin)
 {
     include_once 'Services/Amazon.php';
     $amazon =& new Services_Amazon(AMAZON_TOKEN, AMAZON_AFFID, AMAZON_LOCALE, AMAZON_BASEURL);
-    $amazon->setLocale(AMAZON_LOCALE);
     if (OPENPNE_USE_HTTP_PROXY) {
         $amazon->setProxy(OPENPNE_HTTP_PROXY_HOST, OPENPNE_HTTP_PROXY_PORT);
     }
