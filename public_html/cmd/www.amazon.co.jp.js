@@ -10,7 +10,7 @@
 
 function url2cmd(url)
 {
-    var match = url.match(/(?:ASIN|product|dp)\/([^\/]+)(?:\/.*)*$/i);
+    var match = url.match(/(?:ASIN|product|dp)\/([^\/]+)/i);
 
     if (match) {
         var id = RegExp.$1;
