@@ -305,63 +305,37 @@ class OpenPNE_KtaiMail
 
     function convert_text_core($str)
     {
-        $converted_text = "";
-        $res = preg_split("/JIS\+..../", $str, -1, PREG_SPLIT_OFFSET_CAPTURE);
+        $result = "";
 
-        for ($i = 0; $i < count($res); $i++) {
-            if ($i == 0) {
-                $begin = strlen($res[$i][0]);
-                $converted_text .= $res[$i][0];
-            } else {
-                $jis = substr($str, $begin, 8);
+        for ($i = 0; $i < strlen($str); $i++) {
+            $c = 0;
+            $c1 = ord($str[$i]);
+            $c2 = ord($str[$i]);
 
-                // $jisを変換
-                $a = "0x" . substr($jis, 4, 2);
-                $b = "0x" . substr($jis, 6, 2);
+            // E-mail用絵文字から携帯用絵文字に変換
+            if ($c1 == 0xED || $c1 ==0xEE) {  // [e:358] ～ [e:499]、[e:700]～
+                $c = hexdec(bin2hex(substr($str, $i, 2))) + 1536;
+            } elseif ($c1 == 0xEB || $c1 == 0xEC) {  // [e:1]～[e:357]、[e:500]～[e:518]
+                $c = hexdec(bin2hex(substr($str, $i, 2))) + 2816;
+            }
 
-                // http://www.slayers.ne.jp/~oouchi/code/jistosjis.html
-                $a = intval($a, 16);
-                $b = intval($b, 16);
-                if ($a % 2 == 1) {
-                    $b += 0x1f;
-                } else {
-                    $b += 0x7d;
-                }
-
-                if ($b >= 0x7f) {
-                    $b++;
-                }
-
-                $a = floor(($a-0x21) / 2) + 0x81;
-
-                if ($a >= 0x9e) {
-                    $a+=0x40;
-                }
-
-                $c = $a * 16 * 16 + $b;
-                if ($c >= 0xEDCF || ($c >= 0xED40 && $c <= 0xEDCE)) {
-                    $c += 1536;
-                } else {
-                    $c += 2816;
-                }
-
-                // 絵文字変換
+            if ($c) {
+                $bin = array();
                 $bin[0] = chr($c >> 8);
                 $bin[1] = chr($c - ($bin[0] << 8));
                 $emoji = emoji_escape_e($bin);
-
-                $converted_text .= $emoji;
-
-                //Eメール送出用Shift-JIS(E-SJIS)と携帯用Shift-JISコード(K-SJIS)には以下の関係がある
-                // * 358 <= 絵文字番号 <= 499, 700 <= 絵文字番号
-                // hexdec(K-SJIS) = hexdec(E-SJIS) + 1536
-                // * それ以外の絵文字
-                // hexdec(K-SJIS) = hexdec(E-SJIS) + 2816
-                $begin = strlen($res[$i][0]) + $res[$i][1];
-                $converted_text .= $res[$i][0];
+                $result .= $emoji;
+                $i++;
+            } else {
+                $result .= $str[$i];
+                if ((0x81 <= $c1 && $c1 <= 0x9F) || 0xE0 <= $c1) {
+                    $result .= $str[$i+1];
+                    $i++;
+                }
             }
         }
-        return $converted_text;
+
+        return $result;
     }
   
     /**
@@ -386,10 +360,15 @@ class OpenPNE_KtaiMail
         $from_addr = explode('@', $this->get_from());
         $domain = array_pop($from_addr);
 
-        if ($domain == 'ezweb.ne.jp') {
-            mb_substitute_character("long");
-            $str = mb_convert_encoding($str, $to_encoding, $from_encoding);
+        if ($domain == 'ezweb.ne.jp') {  // auは絵文字変換もおこなう
+            // 絵文字変換をするため、いったんShift_JISに変換
+            $str = mb_convert_encoding($str, 'SJIS-win', $from_encoding);
+
+            // 絵文字変換
             $str = $this->convert_text_core($str);
+
+            // 文字エンコーディング変換
+            $str = mb_convert_encoding($str, $to_encoding, 'SJIS-win');
         } else {
             $str = mb_convert_encoding($str, $to_encoding, $from_encoding);
         }
