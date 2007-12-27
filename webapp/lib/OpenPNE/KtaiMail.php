@@ -293,7 +293,7 @@ class OpenPNE_KtaiMail
         $bkup = $str;
         $ar = split(',', $str);
         $cnt = count($ar);
-        if($cnt < 2){
+        if ($cnt < 2) {
             $str = $bkup;
             // <example@docomo.ne.jp> というアドレスになることがある。
             //   日本語 <example@docomo.ne.jp>
@@ -324,7 +324,7 @@ class OpenPNE_KtaiMail
     function convert_text_core($str)
     {
         $converted_text = "";
-        $res = preg_split("/JIS\+..../", $str, -1 ,PREG_SPLIT_OFFSET_CAPTURE) ;
+        $res = preg_split("/JIS\+..../", $str, -1, PREG_SPLIT_OFFSET_CAPTURE);
 
         for ($i = 0; $i < count($res); $i++) {
             if ($i == 0) {
@@ -336,40 +336,39 @@ class OpenPNE_KtaiMail
                 // $jisを変換
                 $a = "0x" . substr($jis, 4, 2);
                 $b = "0x" . substr($jis, 6, 2);
-                {
-                    // http://www.slayers.ne.jp/~oouchi/code/jistosjis.html
-                    $a = intval($a, 16);
-                    $b = intval($b, 16);
-                    if($a % 2 == 1) {
-                        $b += 0x1f;
-                    } else {
-                        $b += 0x7d;
-                    }
 
-                    if($b >= 0x7f) {
-                        $b++;
-                    }
-    
-                    $a = floor(($a-0x21) / 2) + 0x81;
-
-                    if ($a >= 0x9e) {
-                        $a+=0x40;
-                    }
-
-                    $c = $a * 16 * 16 + $b;
-                    if($c >= 0xEDCF || ($c >= 0xED40 && $c <= 0xEDCE)) {
-                        $c += 1536;
-                    } else {
-                        $c += 2816;
-                    }
-
-                    // 絵文字変換
-                    $bin[0] = chr($c >> 8);
-                    $bin[1] = chr($c - ($bin[0] << 8));
-                    $emoji = emoji_escape_e($bin);
-
-                    $converted_text .= $emoji;
+                // http://www.slayers.ne.jp/~oouchi/code/jistosjis.html
+                $a = intval($a, 16);
+                $b = intval($b, 16);
+                if ($a % 2 == 1) {
+                    $b += 0x1f;
+                } else {
+                    $b += 0x7d;
                 }
+
+                if ($b >= 0x7f) {
+                    $b++;
+                }
+
+                $a = floor(($a-0x21) / 2) + 0x81;
+
+                if ($a >= 0x9e) {
+                    $a+=0x40;
+                }
+
+                $c = $a * 16 * 16 + $b;
+                if ($c >= 0xEDCF || ($c >= 0xED40 && $c <= 0xEDCE)) {
+                    $c += 1536;
+                } else {
+                    $c += 2816;
+                }
+
+                // 絵文字変換
+                $bin[0] = chr($c >> 8);
+                $bin[1] = chr($c - ($bin[0] << 8));
+                $emoji = emoji_escape_e($bin);
+
+                $converted_text .= $emoji;
 
                 //Eメール送出用Shift-JIS(E-SJIS)と携帯用Shift-JISコード(K-SJIS)には以下の関係がある
                 // * 358 <= 絵文字番号 <= 499, 700 <= 絵文字番号
@@ -380,7 +379,7 @@ class OpenPNE_KtaiMail
                 $converted_text .= $res[$i][0];
             }
         }
-      return $converted_text;
+        return $converted_text;
     }
   
     /**
