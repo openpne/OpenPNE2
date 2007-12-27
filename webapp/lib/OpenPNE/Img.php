@@ -270,17 +270,24 @@ class OpenPNE_Img
 
         if (($this->output_format == 'gif') || ($this->output_format == 'png')) {
             $trnprt_idx_s = imagecolortransparent($source_gdimg);
-            if ($trnprt_idx_s >= 0) {
+            if ($trnprt_idx_s >= 0) { // 透過色が設定されている
                 imagetruecolortopalette($output_gdimg, true, 256);
+
+                // 入力画像から透明色取得
                 $trnprt_color = imagecolorsforindex($source_gdimg, $trnprt_idx_s);
-                imagecolorset($source_gdimg, 0, $trnprt_color['red'], $trnprt_color['green'],$trnprt_color['blue']);
-                imagefill( $output_gdimg, 0, 0, 0 );
-                imagecolortransparent( $output_gdimg, 0);
+
+                // 出力画像に透明色設定
+                imagecolorset($source_gdimg, 0, $trnprt_color['red'], $trnprt_color['green'], $trnprt_color['blue']);
+                imagefill($output_gdimg, 0, 0, 0);
+                imagecolortransparent($output_gdimg, 0);
             } elseif ($this->$this->output_format == 'png') {  // PNG-24
+                // アルファチャンネル情報を保存するには、アルファブレンディングを解除する必要がある
                 imagealphablending($output_gdimg, false);
+                imagesavealpha($output_gdimg, true);
+
+                // 透過色設定
                 $color = imagecolorallocatealpha($output_gdimg, 0, 0, 0, 127);
                 imagefill($output_gdimg, 0, 0, $color);
-                imagesavealpha($output_gdimg, true);
             }
         }
 
