@@ -54,7 +54,9 @@ class ktai_do_c_event_edit_update_c_commu_topic extends OpenPNE_Action
                 $err_msg[] = "募集期限は開催日時より未来に指定できません";
             }
         }
-
+        if ( $event['capacity'] != "" && 1*$event['capacity'] < 1 )
+        	$err_msg[] = "募集人数は１以上の数値を指定してください";
+        
         if ($err_msg) {
             $_REQUEST = $event;
             $_REQUEST['err_msg'] = $err_msg;
