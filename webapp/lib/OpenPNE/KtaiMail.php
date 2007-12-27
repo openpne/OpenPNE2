@@ -290,32 +290,14 @@ class OpenPNE_KtaiMail
         // "example"@docomo.ne.jp
         $str = str_replace('"', '', $str);
 
-        $bkup = $str;
-        $ar = split(',', $str);
-        $cnt = count($ar);
-        if ($cnt < 2) {
-            $str = $bkup;
-            // <example@docomo.ne.jp> というアドレスになることがある。
-            //   日本語 <example@docomo.ne.jp>
-            // のような場合に複数マッチする可能性があるので、
-            // マッチした最後のものを取ってくるように変更
-            $matches = array();
-            $regx = '/([\.\w!#$%&\'*+\-\/=?^`{|}~]+@[\w!#$%&\'*+\-\/=?^`{|}~]+(\.[\w!#$%&\'*+\-\/=?^`{|}~]+)*)/';
-            if (preg_match_all($regx, $str, $matches)) {
-                return array_pop($matches[1]);
-            }
-        } else {
-            $regx = '/([\.\w!#$%&\'*+\-\/=?^`{|}~]+@[\w!#$%&\'*+\-\/=?^`{|}~]+(\.[\w!#$%&\'*+\-\/=?^`{|}~]+)*)/';
-            for ($i = 0; $i < $cnt; $i++) {
-                $matches = array();
-                if (preg_match_all($regx, $ar[$i], $matches)) {
-                    $to = array_pop($matches[1]);
-                    list($to_user0, $to_host0) = explode("@", $to, 2);
-                    if ($to_host0 === MAIL_SERVER_DOMAIN) {
-                        return $to;
-                    }
-                }
-            }
+        // <example@docomo.ne.jp> というメールアドレスになることがある。
+        //   日本語 <example@docomo.ne.jp>
+        // のような場合に複数マッチする可能性があるので、
+        // マッチした最後のものを取ってくるように変更
+        $matches = array();
+        $regx = '/([\.\w!#$%&\'*+\-\/=?^`{|}~]+@[\w!#$%&\'*+\-\/=?^`{|}~]+(\.[\w!#$%&\'*+\-\/=?^`{|}~]+)*)/';
+        if (preg_match_all($regx, $str, $matches)) {
+            return array_pop($matches[1]);
         }
 
         return false;
@@ -393,11 +375,18 @@ class OpenPNE_KtaiMail
      */
     function convert_text($str, $from_encoding = '', $to_encoding = '')
     {
-        if (!$from_encoding) $from_encoding = $this->from_encoding;
-        if (!$to_encoding)   $to_encoding = $this->to_encoding;
+        if (!$from_encoding) {
+            $from_encoding = $this->from_encoding;
+        }
 
+        if (!$to_encoding) {
+            $to_encoding = $this->to_encoding;
+        }
 
-        if ($GLOBALS['__Framework']['carrier'] != 's') {
+        $from_addr = explode('@', $this->get_from());
+        $domain = array_pop($from_addr);
+
+        if ($domain == 'ezweb.ne.jp') {
             mb_substitute_character("long");
             $str = mb_convert_encoding($str, $to_encoding, $from_encoding);
             $str = $this->convert_text_core($str);
