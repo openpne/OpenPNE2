@@ -16,9 +16,9 @@
  * @category   Database
  * @package    DB
  * @author     Stig Bakken <stig@php.net>
- * @copyright  1997-2005 The PHP Group
+ * @copyright  1997-2007 The PHP Group
  * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
- * @version    CVS: $Id: storage.php,v 1.21 2005/02/02 02:54:51 danielc Exp $
+ * @version    CVS: $Id: storage.php,v 1.24 2007/08/12 05:27:25 aharvey Exp $
  * @link       http://pear.php.net/package/DB
  */
 
@@ -36,9 +36,9 @@ require_once 'DB.php';
  * @category   Database
  * @package    DB
  * @author     Stig Bakken <stig@php.net>
- * @copyright  1997-2005 The PHP Group
+ * @copyright  1997-2007 The PHP Group
  * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
- * @version    Release: 1.7.6
+ * @version    Release: 1.7.13
  * @link       http://pear.php.net/package/DB
  */
 class DB_storage extends PEAR
@@ -293,7 +293,7 @@ class DB_storage extends PEAR
     function &create($table, &$data)
     {
         $classname = strtolower(get_class($this));
-        $obj =& new $classname($table);
+        $obj = new $classname($table);
         foreach ($data as $name => $value) {
             $obj->_properties[$name] = true;
             $obj->$name = &$value;
@@ -445,6 +445,8 @@ class DB_storage extends PEAR
      */
     function store()
     {
+        $params = array();
+        $vars = array();
         foreach ($this->_changes as $name => $foo) {
             $params[] = &$this->$name;
             $vars[] = $name . ' = ?';
