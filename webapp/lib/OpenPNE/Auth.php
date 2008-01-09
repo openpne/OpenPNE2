@@ -55,6 +55,7 @@ class OpenPNE_Auth
 
     function &factory($login = false)
     {
+        @session_start();
         if ($login) {
             $auth = new Auth($this->storage, $this->options, '', false);
             $auth->setAllowLogin(true);
