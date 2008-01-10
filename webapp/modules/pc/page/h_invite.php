@@ -17,8 +17,16 @@ class pc_page_h_invite extends OpenPNE_Action
 
         $this->set('inc_navi', fetch_inc_navi('h'));
 
-        $this->set('inviting_member', db_member_inviting_member4c_member_id($u));
-        $this->set('k_inviting_member', db_member_inviting_member4c_member_id2($u));
+        if (IS_SLAVEPNE) {
+            $inviting_member = array();
+            $k_inviting_member = array();
+        } else {
+            $inviting_member = db_member_inviting_member4c_member_id($u);
+            $k_inviting_member = db_member_inviting_member4c_member_id2($u);
+        }
+        
+        $this->set('inviting_member', $inviting_member);
+        $this->set('k_inviting_member', $k_inviting_member);
 
         return 'success';
     }
