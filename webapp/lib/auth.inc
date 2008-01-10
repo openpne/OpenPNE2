@@ -6,7 +6,8 @@
 
 require_once 'OpenPNE/Auth.php';
 
-$auth = new OpenPNE_Auth();
+$auth_config = get_auth_config();
+$auth = new OpenPNE_Auth($auth_config['storage'], $auth_config['options'], false, true);
 $auth->setExpire($GLOBALS['OpenPNE']['common']['session_lifetime']);
 $auth->setIdle($GLOBALS['OpenPNE']['common']['session_idletime']);
 
