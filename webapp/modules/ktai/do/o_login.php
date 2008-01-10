@@ -64,7 +64,6 @@ class ktai_do_o_login extends OpenPNE_Action
             }
         }
 
-        $_SESSION['c_member_id'] = $c_member_id;
         db_member_do_access($c_member_id);
 
         $p = array();
