@@ -20,7 +20,7 @@ $auth->setExpire($GLOBALS['OpenPNE']['ktai']['session_lifetime']);
 $auth->setIdle($GLOBALS['OpenPNE']['ktai']['session_idletime']);
 
 if (   !$auth->auth()
-    || !($u = db_member_c_member_id4username_encrypted($auth->getUsername(), true))
+    || !($u = db_member_c_member_id4ktai_address_encrypted($auth->getUsername()))
     || db_member_is_login_rejected($u)) {
     $auth->logout();
     
