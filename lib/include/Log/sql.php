@@ -1,9 +1,9 @@
 <?php
 /**
- * $Header: /repository/pear/Log/Log/sql.php,v 1.40 2006/01/03 04:12:45 jon Exp $
+ * $Header: /repository/pear/Log/Log/sql.php,v 1.41 2007/12/23 20:30:23 jon Exp $
  * $Horde: horde/lib/Log/sql.php,v 1.12 2000/08/16 20:27:34 chuck Exp $
  *
- * @version $Revision: 1.40 $
+ * @version $Revision: 1.41 $
  * @package Log
  */
 
@@ -125,7 +125,7 @@ class Log_sql extends Log
         $this->_mask = Log::UPTO($level);
 
         /* Now that we have a table name, assign our SQL statement. */
-        if (!empty($this->_sql)) {
+        if (!empty($conf['sql'])) {
             $this->_sql = $conf['sql'];
         } else {
             $this->_sql = 'INSERT INTO ' . $this->_table .
