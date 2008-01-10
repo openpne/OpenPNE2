@@ -351,18 +351,20 @@ function _check_action($action)
 function send_nocache_headers()
 {
     if (!headers_sent()) {
-        // no-cache
-        // 日付が過去
-        header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
-
-        // 常に修正されている
-        header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
-
-        // HTTP/1.1
-        header('Cache-Control: no-store, no-cache, must-revalidate');
-        header('Cache-Control: post-check=0, pre-check=0', false);
-        // HTTP/1.0
-        header('Pragma: no-cache');
+        if (defined('SEND_NO_CACHE_HEADER') && SEND_NO_CACHE_HEADER) {
+            // no-cache
+            // 日付が過去
+            header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
+    
+            // 常に修正されている
+            header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
+    
+            // HTTP/1.1
+            header('Cache-Control: no-store, no-cache, must-revalidate');
+            header('Cache-Control: post-check=0, pre-check=0', false);
+            // HTTP/1.0
+            header('Pragma: no-cache');
+        }
 
         return true;
     } else {
