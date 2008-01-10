@@ -11,7 +11,7 @@ $auth->setExpire($GLOBALS['OpenPNE']['common']['session_lifetime']);
 $auth->setIdle($GLOBALS['OpenPNE']['common']['session_idletime']);
 
 if (   !$auth->auth()
-    || !($u = db_member_c_member_id4username_encrypted($auth->getUsername(), false))
+    || !($u = db_member_c_member_id4pc_address_encrypted($auth->getUsername()))
     || db_member_is_login_rejected($u)) {
     $auth->logout();
 
@@ -31,7 +31,7 @@ if (   !$auth->auth()
 }
 
 if (db_member_is_blacklist($u)) {
-	$p = array('msg_code' => 'blacklist');
+    $p = array('msg_code' => 'blacklist');
     openpne_redirect('pc', 'page_o_tologin', $p);
 }
 
