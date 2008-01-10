@@ -1798,18 +1798,18 @@ function db_member_c_member_id4username($username, $is_ktai = false)
  */
 function db_member_c_member_id4username_encrypted($username, $is_ktai = false)
 {
-    if (!isset($_SESSION['username'])){
+    if (!isset($_SESSION['c_member_id'])){
         if (!IS_SLAVEPNE) {
             $username = t_decrypt($username);
         }
-        $_SESSION['username'] = db_member_c_member_id4username($username, $is_ktai);
+        $_SESSION['c_member_id'] = db_member_c_member_id4username($username, $is_ktai);
     }
 
     // c_member_id の存在チェック
-    if (db_member_c_member4c_member_id_LIGHT($_SESSION['username'])) {
-        return $_SESSION['username'];
+    if (db_member_c_member4c_member_id_LIGHT($_SESSION['c_member_id'])) {
+        return $_SESSION['c_member_id'];
     } else {
-        unset($_SESSION['username']);
+        unset($_SESSION['c_member_id']);
         return false;
     }
 }
