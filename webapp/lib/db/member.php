@@ -1798,10 +1798,13 @@ function db_member_c_member_id4username($username, $is_ktai = false)
  */
 function db_member_c_member_id4username_encrypted($username, $is_ktai = false)
 {
-    if (!IS_SLAVEPNE) {
-        $username = t_decrypt($username);
+    if (!isset($_SESSION['username'])){
+        if (!IS_SLAVEPNE) {
+            $username = t_decrypt($username);
+        }
+        $_SESSION['username'] = db_member_c_member_id4username($username, $is_ktai);
     }
-    return db_member_c_member_id4username($username, $is_ktai);
+    return $_SESSION['username'];
 }
 
 /**
