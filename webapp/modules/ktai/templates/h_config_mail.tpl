@@ -18,6 +18,9 @@
 <textarea name="ktai_address" rows="1" istyle="3" mode="alphabet" maxlength="100"></textarea>
 <hr color="#({$ktai_color_config.border_01})">
 届いたﾒｰﾙに記載してあるURLにｱｸｾｽして、ﾊﾟｽﾜｰﾄﾞを入力すると変更が完了します。
+({if $smarty.const.IS_SLAVEPNE && !$smarty.const.IS_SLAVEPNE_EMAIL_REGIST})
+<br>初期設定ではメールアドレスが登録されておりません。新着情報などご希望の際はこちらからご登録ください。 
+({/if})
 <hr color="#({$ktai_color_config.border_01})">
 <center>
 <input type="submit" value="ﾒｰﾙ送信">
