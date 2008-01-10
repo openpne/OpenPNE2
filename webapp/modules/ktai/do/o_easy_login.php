@@ -31,7 +31,7 @@ class ktai_do_o_easy_login extends OpenPNE_Action
         
         $auth_config = get_auth_config();
         $auth_config['options']['advancedsecurity'] = false;
-        $auth = new OpenPNE_Auth($auth_config['storage'], $auth_config['options'],true);
+        $auth = new OpenPNE_Auth($auth_config['storage'], $auth_config['options'], true, true);
         $this->_auth =& $auth;
         $auth->setExpire($GLOBALS['OpenPNE']['ktai']['session_lifetime']);
         $auth->setIdle($GLOBALS['OpenPNE']['ktai']['session_idletime']);
