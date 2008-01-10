@@ -535,7 +535,7 @@ define('CHECK_IMG_AUTH', false);
 // au/SoftBankの絵文字を使用するには、 public_html/skin/default/img/emoji/{e|s} に画像を用意する必要があります
 define('OPENPNE_EMOJI_DOCOMO_FOR_PC', true);
 
-//ページのキャッシュをさせないヘッダを送信するかどうか
+// ページのキャッシュをさせないヘッダを送信するかどうか
 define('SEND_NO_CACHE_HEADER', false);
 
 ?>
