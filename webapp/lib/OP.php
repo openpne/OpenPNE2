@@ -86,8 +86,6 @@ class OP
             }
         }
 
-        $_SESSION['c_member_id'] = $c_member_id;
-
         return session_id();
     }
 
