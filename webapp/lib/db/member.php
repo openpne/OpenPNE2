@@ -1804,7 +1804,14 @@ function db_member_c_member_id4username_encrypted($username, $is_ktai = false)
         }
         $_SESSION['username'] = db_member_c_member_id4username($username, $is_ktai);
     }
-    return $_SESSION['username'];
+
+    // c_member_id の存在チェック
+    if (db_member_c_member4c_member_id_LIGHT($_SESSION['username'])) {
+        return $_SESSION['username'];
+    } else {
+        unset($_SESSION['username']);
+        return false;
+    }
 }
 
 /**
