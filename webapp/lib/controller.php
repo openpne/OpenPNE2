@@ -351,7 +351,8 @@ function _check_action($action)
 function send_nocache_headers()
 {
     if (!headers_sent()) {
-        if (defined('SEND_NO_CACHE_HEADER') && SEND_NO_CACHE_HEADER) {
+        if ((!empty($GLOBALS['__Framework']['carrier']) && $GLOBALS['__Framework']['carrier'] === 'e')  // au の場合は常に no-cache ヘッダを送信
+            || (defined('SEND_NO_CACHE_HEADER') && SEND_NO_CACHE_HEADER)) {
             // no-cache
             // 日付が過去
             header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
