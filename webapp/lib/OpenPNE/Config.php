@@ -195,6 +195,7 @@ class OpenPNE_Config
             'OPENPNE_USE_HTTP_PROXY' => false,
             'OPENPNE_HTTP_PROXY_HOST' => 'proxy.example.com',
             'OPENPNE_HTTP_PROXY_PORT' => 8080,
+            'SEND_NO_CACHE_HEADER' => false,
         // 固定値
             'AMAZON_TOKEN'   => '1WZYY1W9YF49AGM0RTG2',
             'AMAZON_LOCALE'  => 'jp',
