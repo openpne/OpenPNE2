@@ -70,7 +70,11 @@ $GLOBALS['SMARTY']['plugins_dir'] = array(
 
 // 外部認証の場合は招待・新規登録はできない
 if (defined('IS_SLAVEPNE') && IS_SLAVEPNE) {
-    define('IS_USER_INVITE', false);
+    // 招待用URLがPC・携帯どちらも空の場合は招待不可
+    if (!(defined('SLAVEPNE_SYOUTAI_URL_PC') && SLAVEPNE_SYOUTAI_URL_PC) &&
+        !(defined('SLAVEPNE_SYOUTAI_URL_KTAI') && SLAVEPNE_SYOUTAI_URL_KTAI)) {
+        define('IS_USER_INVITE', false);
+    }
     define('IS_CLOSED_SNS', true);
 }
 
