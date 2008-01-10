@@ -15,7 +15,7 @@ require_once 'OpenPNE/Auth.php';
 
 $options = array("advancedsecurity"=>false);
 
-$auth = new OpenPNE_Auth('DB','',true);
+$auth = new OpenPNE_Auth('DB', '', true, true);
 $auth->setExpire($GLOBALS['OpenPNE']['ktai']['session_lifetime']);
 $auth->setIdle($GLOBALS['OpenPNE']['ktai']['session_idletime']);
 
