@@ -14,7 +14,7 @@ class ktai_page_o_regist_input extends OpenPNE_Action
     function execute($requests)
     {
         //<PCKTAI
-        if (!((OPENPNE_REGIST_FROM & OPENPNE_REGIST_FROM_KTAI) >> 1)) {
+        if (IS_SLAVEPNE || !((OPENPNE_REGIST_FROM & OPENPNE_REGIST_FROM_KTAI) >> 1)) {
             openpne_redirect('ktai', 'page_o_login', array('msg' => 42));
         }
         //>

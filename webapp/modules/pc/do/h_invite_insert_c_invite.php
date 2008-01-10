@@ -63,11 +63,13 @@ class pc_do_h_invite_insert_c_invite extends OpenPNE_Action
             }
             //>
 
-            // c_member_ktai_pre に追加
-            if (db_member_c_member_ktai_pre4ktai_address($mail)) {
-                db_member_update_c_member_ktai_pre($session, $mail, $c_member_id_invite);
-            } else {
-                db_member_insert_c_member_ktai_pre($session, $mail, $c_member_id_invite);
+            if (!IS_SLAVEPNE) {
+                // c_member_ktai_pre に追加
+                if (db_member_c_member_ktai_pre4ktai_address($mail)) {
+                    db_member_update_c_member_ktai_pre($session, $mail, $c_member_id_invite);
+                } else {
+                    db_member_insert_c_member_ktai_pre($session, $mail, $c_member_id_invite);
+                }
             }
 
             h_invite_insert_c_invite_mail_send($session, $c_member_id_invite, $mail, $message);
@@ -81,11 +83,13 @@ class pc_do_h_invite_insert_c_invite extends OpenPNE_Action
             }
             //>
 
-            // c_member_pre に追加
-            if (db_member_c_member_pre4pc_address($mail)) {
-                db_member_update_c_invite($c_member_id_invite, $mail, $message, $session);
-            } else {
-                db_member_insert_c_invite($c_member_id_invite, $mail, $message, $session);
+            if (!IS_SLAVEPNE) {
+                // c_member_pre に追加
+                if (db_member_c_member_pre4pc_address($mail)) {
+                    db_member_update_c_invite($c_member_id_invite, $mail, $message, $session);
+                } else {
+                    db_member_insert_c_invite($c_member_id_invite, $mail, $message, $session);
+                }
             }
 
             do_h_invite_insert_c_invite_mail_send($c_member_id_invite, $session, $message, $mail);

@@ -1869,6 +1869,12 @@ function db_member_create_member($username)
         'regist_address' => "",
         'easy_access_id' => '',
     );
+    
+    if (!IS_SLAVEPNE_EMAIL_REGIST) {
+        $data['pc_address'] = t_encrypt($c_member_id.'@pc.example.com');
+        $data['ktai_address'] = t_encrypt($c_member_id.'@ktai.example.com');
+    }
+    
     db_insert('c_member_secure', $data);
     
     $data = array(

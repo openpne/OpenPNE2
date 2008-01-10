@@ -505,7 +505,14 @@ define('SEND_MESSAGE_QUEUE_NUM', 10);
 define('OPENPNE_USE_CAPTCHA', true);
 
 // 外部認証を使用するかどうか
-define('IS_SLAVEPNE' , false);
+define('IS_SLAVEPNE', false);
+
+// 外部認証時にメールアドレス登録を必須にするかどうか
+define('IS_SLAVEPNE_EMAIL_REGIST', true);
+
+// 招待メールに記載するURL
+define('SLAVEPNE_SYOUTAI_URL_PC', '');
+define('SLAVEPNE_SYOUTAI_URL_KTAI', '');
 
 // IS_SLAVEPNEがtrueの場合のauthオプション
 $GLOBALS['_OPENPNE_AUTH_CONFIG'] = 
