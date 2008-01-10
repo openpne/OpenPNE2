@@ -45,7 +45,12 @@ class pc_do_o_login extends OpenPNE_Action
             $this->_fail_login();
         }
 
-        $c_member_id = db_member_c_member_id4pc_address_encrypted($auth->getUsername());
+        if (IS_SLAVEPNE) {
+            $c_member_id = db_member_c_member_id4username($auth->getUsername());
+        } else {
+            $c_member_id = db_member_c_member_id4pc_address_encrypted($auth->getUsername());
+        }
+
         if (!$c_member_id) {
             if (IS_SLAVEPNE) {
                 db_member_create_member($_POST['username']);

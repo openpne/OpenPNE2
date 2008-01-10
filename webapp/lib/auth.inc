@@ -12,7 +12,8 @@ $auth->setExpire($GLOBALS['OpenPNE']['common']['session_lifetime']);
 $auth->setIdle($GLOBALS['OpenPNE']['common']['session_idletime']);
 
 if (   !$auth->auth()
-    || !($u = db_member_c_member_id4pc_address_encrypted($auth->getUsername()))
+    || (!($u = db_member_c_member_id4pc_address_encrypted($auth->getUsername()))
+        && !($u = db_member_c_member_id4username($auth->getUsername())))
     || db_member_is_login_rejected($u)) {
     $auth->logout();
 
