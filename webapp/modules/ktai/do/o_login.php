@@ -54,7 +54,7 @@ class ktai_do_o_login extends OpenPNE_Action
             }
         }
 
-        $c_member_id = db_member_c_member_id4username_encrypted($auth->getUsername(), true);
+        $c_member_id = db_member_c_member_id4ktai_address_encrypted($auth->getUsername());
         if (!$c_member_id) {
             if (IS_SLAVEPNE) {
                 db_member_create_member($_POST['username']);
