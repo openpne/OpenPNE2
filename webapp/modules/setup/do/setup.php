@@ -15,11 +15,18 @@ class setup_do_setup extends OpenPNE_Action
     function execute($requests)
     {
         $errors = array();
-        if ($requests['password'] != $requests['password2']) {
+        if (!IS_SLAVEPNE && $requests['password'] != $requests['password2']) {
             $errors[] = 'パスワードが一致していません';
         }
         if ($requests['admin_password'] != $requests['admin_password2']) {
             $errors[] = '管理用パスワードが一致していません';
+        }
+        if (IS_SLAVEPNE) {
+            $auth_config = get_auth_config(false);
+            $storage = Auth::_factory($auth_config['storage'],$auth_config['options']);
+            if (!$storage->fetchData($requests['username'], $requests['password'], false)){
+                $errors[] = 'ユーザIDまたはパスワードが一致しません';
+            }
         }
         if ($errors) {
             $this->handleError($errors);
@@ -42,6 +49,11 @@ class setup_do_setup extends OpenPNE_Action
             'regist_address' => t_encrypt($requests['pc_address']),
             'easy_access_id' => '',
         );
+        
+        if (IS_SLAVEPNE && !IS_SLAVEPNE_EMAIL_REGIST) {
+            $data['ktai_address'] = t_encrypt('1@ktai.example.com');
+        }
+        
         db_insert('c_member_secure', $data);
 
         // c_admin_user
@@ -51,6 +63,10 @@ class setup_do_setup extends OpenPNE_Action
             'auth_type' => 'all',
         );
         db_insert('c_admin_user', $data);
+        
+        if (IS_SLAVEPNE) {
+            db_member_insert_username(1, $requests['username']);
+        }
 
         openpne_redirect('setup', 'page_setup_done');
     }
