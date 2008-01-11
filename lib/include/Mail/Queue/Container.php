@@ -17,7 +17,7 @@
 // |          Lorenzo Alberton <l dot alberton at quipo dot it>           |
 // +----------------------------------------------------------------------+
 //
-// $Id: Container.php,v 1.8 2004/07/18 14:59:15 quipo Exp $
+// $Id: Container.php,v 1.10 2007/01/20 11:24:17 quipo Exp $
 
 /**
  * File Container.php
@@ -30,7 +30,7 @@ require_once 'Mail/Queue/Body.php';
  * Mail_Queue_Container - base class for MTA queue.
  * Define methods for all storage containers.
  *
- * @version  $Revision: 1.8 $
+ * @version  $Revision: 1.10 $
  * @author   Radek Maciaszek <chief@php.net>
  * @author   Lorenzo Alberton <l dot alberton at quipo dot it>
  * @package  Mail_Queue
@@ -92,7 +92,7 @@ class Mail_Queue_Container
      */
     function get()
     {
-        if (Mail_Queue::isError($err = $this->preload())) {
+        if (PEAR::isError($err = $this->preload())) {
             return $err;
         }
         if (empty($this->queue_data)) {
@@ -109,6 +109,23 @@ class Mail_Queue_Container
 		unset($this->queue_data[$this->_current_item]);
 		$this->_current_item++;
 		return $object;
+    }
+
+    // }}}
+    // {{{ skip()
+
+    /**
+     * Remove the current (problematic) mail from the buffer, but don't delete
+     * it from the db: it might be a temporary issue.
+     */
+    function skip()
+    {
+        if (!empty($this->queue_data)) {
+            if (isset($this->queue_data[$this->_current_item])) {
+                unset($this->queue_data[$this->_current_item]);
+                $this->_current_item++;
+            }
+        }
     }
 
     // }}}
@@ -271,6 +288,37 @@ class Mail_Queue_Container
         $this->_last_item = count($this->queue_data)-1;
 
         return true;
+    }
+
+    // }}}
+    // {{{ _isSerialized()
+
+    /**
+     * Check if the string is a regular string or a serialized array
+     *
+     * @param string $string
+     * @return boolean
+     * @access protected
+     */
+    function _isSerialized($string)
+    {
+        if (!is_string($string) || strlen($string) < 4) {
+            return false;
+        }
+        // serialized integer?
+        if (preg_match('/^i:\d+;$/', $string)) {
+            return true;
+        }
+        // serialized float?
+        if (preg_match('/^d:\d(\.\d+)?;$/', $string)) {
+            return true;
+        }
+        // serialized string?
+        if (preg_match('/^s:\d+\:\"(.*)\";$/', $string)) {
+            return true;
+        }
+        //serialized array?
+        return preg_match('/^a:\d+\:\{(.*)\}$/', $string);
     }
 
     // }}}
