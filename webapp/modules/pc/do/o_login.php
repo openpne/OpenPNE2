@@ -18,8 +18,8 @@ class pc_do_o_login extends OpenPNE_Action
     function execute($requests)
     {
         $this->_login_params = $requests['login_params'];
-        $auth_config = get_auth_config();
-        $auth = new OpenPNE_Auth($auth_config['storage'], $auth_config['options']);
+        $config = get_auth_config();
+        $auth = new OpenPNE_Auth($config);
         $this->_auth =& $auth;
         $auth->setExpire($GLOBALS['OpenPNE']['common']['session_lifetime']);
         $auth->setIdle($GLOBALS['OpenPNE']['common']['session_idletime']);
