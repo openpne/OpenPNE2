@@ -6,14 +6,12 @@
 
 require_once 'OpenPNE/Auth.php';
 
-$auth_config = get_auth_config();
-$auth = new OpenPNE_Auth($auth_config['storage'], $auth_config['options'], false, true);
+$auth = new OpenPNE_Auth();
 $auth->setExpire($GLOBALS['OpenPNE']['common']['session_lifetime']);
 $auth->setIdle($GLOBALS['OpenPNE']['common']['session_idletime']);
 
 if (   !$auth->auth()
-    || (!($u = db_member_c_member_id4pc_address_encrypted($auth->getUsername()))
-        && !($u = db_member_c_member_id4username($auth->getUsername())))
+    || !($u = db_member_c_member_id4username_encrypted($auth->getUsername(), false))
     || db_member_is_login_rejected($u)) {
     $auth->logout();
 
@@ -33,7 +31,7 @@ if (   !$auth->auth()
 }
 
 if (db_member_is_blacklist($u)) {
-    $p = array('msg_code' => 'blacklist');
+	$p = array('msg_code' => 'blacklist');
     openpne_redirect('pc', 'page_o_tologin', $p);
 }
 
