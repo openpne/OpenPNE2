@@ -1778,30 +1778,32 @@ function db_member_insert_username($c_member_id, $username)
  */
 function db_member_c_member_id4username($username, $is_ktai = false)
 {
+    if (!IS_SLAVEPNE) {
+        $username = t_encrypt($username);
+    }
+    return db_member_c_member_id4username_encrypted($username, $is_ktai);
+}
+
+/**
+ * ログインIDからc_member_idを取得
+ * 
+ * @param string $username 暗号化されたメールアドレス or SlavePNEのusername
+ * @return int c_member_id
+ */
+function db_member_c_member_id4username_encrypted($username, $is_ktai = false)
+{
     if (IS_SLAVEPNE) {
         $sql = 'SELECT c_member_id FROM c_username WHERE username = ?';
         $params = array($username);
         $c_member_id = db_get_one($sql, $params);
     } else {
         if ($is_ktai) {
-            $c_member_id = db_member_c_member_id4ktai_address2($username);
+            $c_member_id = db_member_c_member_id4ktai_address_encrypted($username);
         } else {
-            $c_member_id = db_member_c_member_id4pc_address($username);
+            $c_member_id = db_member_c_member_id4pc_address_encrypted($username);
         }
     }
     return $c_member_id;
-}
-
-/**
- * ログインIDからc_member_idを取得
- * 暗号化されたメールアドレスの場合は復号化する
- */
-function db_member_c_member_id4username_encrypted($username, $is_ktai = false)
-{
-    if (!IS_SLAVEPNE) {
-        $username = t_decrypt($username);
-    }
-    return db_member_c_member_id4username($username, $is_ktai);
 }
 
 /**
