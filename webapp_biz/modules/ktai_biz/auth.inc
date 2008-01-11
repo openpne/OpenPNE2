@@ -9,13 +9,10 @@ if (empty($_REQUEST['ksid'])) {
 }
 
 session_name('OpenPNEktai');
-session_id($_REQUEST['ksid']);
-session_start();
 require_once 'OpenPNE/Auth.php';
 
-$options = array("advancedsecurity"=>false);
-
-$auth = new OpenPNE_Auth('DB','',true);
+$config = get_auth_config(true);
+$auth = new OpenPNE_Auth($config);
 $auth->setExpire($GLOBALS['OpenPNE']['ktai']['session_lifetime']);
 $auth->setIdle($GLOBALS['OpenPNE']['ktai']['session_idletime']);
 
