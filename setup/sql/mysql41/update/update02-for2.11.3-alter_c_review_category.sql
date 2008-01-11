@@ -1,3 +1,5 @@
+/*!40101 SET NAMES utf8 */;
+
 UPDATE `c_review_category` SET `category` = 'Books' WHERE `c_review_category_id` = 1;
 UPDATE `c_review_category` SET `category` = 'ForeignBooks' WHERE `c_review_category_id` = 2;
 UPDATE `c_review_category` SET `category` = 'Music' WHERE `c_review_category_id` = 3;
@@ -10,3 +12,6 @@ UPDATE `c_review_category` SET `category` = 'Kitchen' WHERE `c_review_category_i
 UPDATE `c_review_category` SET `category` = 'Toys' WHERE `c_review_category_id` = 10;
 UPDATE `c_review_category` SET `category` = 'SportingGoods' WHERE `c_review_category_id` = 11;
 UPDATE `c_review_category` SET `category` = 'HealthPersonalCare' WHERE `c_review_category_id` = 12;
+INSERT INTO `c_review_category` VALUES (NULL,'Watches','時計',13);
+INSERT INTO `c_review_category` VALUES (NULL,'Baby','ベビー＆マタニティ',14);
+INSERT INTO `c_review_category` VALUES (NULL,'Apparel','アパレル＆シューズ',15);
