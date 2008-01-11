@@ -490,7 +490,8 @@ class DB_pgsql extends DB_common
      * @since Method available since release 1.7.8.
      */
     function quoteBoolean($boolean) {
-        return $boolean ? 'TRUE' : 'FALSE';
+//        return $boolean ? 'TRUE' : 'FALSE';
+        return $boolean ? 1 : 0;
     }
      
     // }}}
