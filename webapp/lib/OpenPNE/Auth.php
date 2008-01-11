@@ -96,12 +96,12 @@ class OpenPNE_Auth
             }
 
             $this->sess_id = session_id();
-            if ($is_save_cookie) {
-                $expire = time() + 2592000; // 30 days
-            } else {
-                $expire = 0;
-            }
             if (!$this->is_ktai) {
+                if ($is_save_cookie) {
+                    $expire = time() + 2592000; // 30 days
+                } else {
+                    $expire = 0;
+                }
                 setcookie(session_name(), session_id(), $expire, $this->cookie_path);
             }
             return true;
