@@ -23,9 +23,8 @@ class OpenPNE_Auth
     var $sess_id;
     var $cookie_path;
     var $is_ktai;
-    var $is_encrypt_username;
 
-    function OpenPNE_Auth($storageDriver = 'DB', $options = '', $is_ktai = false, $is_encrypt_username = false)
+    function OpenPNE_Auth($storageDriver = 'DB', $options = '', $is_ktai = false)
     {
         ini_set('session.use_cookies', 0);
         $this->is_ktai = $is_ktai;
@@ -43,7 +42,6 @@ class OpenPNE_Auth
         $this->storage = $storageDriver;
         $this->options = $options;
         $this->set_cookie_params();
-        $this->is_encrypt_username = $is_encrypt_username;
     }
 
     function set_cookie_params()
@@ -70,11 +68,11 @@ class OpenPNE_Auth
         return $auth;
     }
 
-    function login($is_save_cookie = false)
+    function login($is_save_cookie = false, $is_encrypt_username = false, $is_ktai = false)
     {
         $this->auth =& $this->factory(true);
         if (!IS_SLAVEPNE) {
-            if ($this->is_encrypt_username) {
+            if ($is_encrypt_username) {
                 $this->auth->post[$this->auth->_postUsername] =
                     t_encrypt($this->auth->post[$this->auth->_postUsername]);
             }

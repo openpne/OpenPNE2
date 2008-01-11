@@ -27,7 +27,7 @@ class ktai_do_o_login extends OpenPNE_Action
         
         $auth_config = get_auth_config(true);
         $auth_config['options']['advancedsecurity'] = false;
-        $auth = new OpenPNE_Auth($auth_config['storage'], $auth_config['options'], true, true);
+        $auth = new OpenPNE_Auth($auth_config['storage'], $auth_config['options'],true);
         $this->_auth =& $auth;
         $auth->setExpire($GLOBALS['OpenPNE']['ktai']['session_lifetime']);
         $auth->setIdle($GLOBALS['OpenPNE']['ktai']['session_idletime']);
@@ -41,25 +41,20 @@ class ktai_do_o_login extends OpenPNE_Action
                 'reject_time' => LOGIN_REJECT_TIME,
             );
             $lc = new OpenPNE_LoginChecker($options);
-            if ($lc->is_rejected() || !$auth->login(false)) {
+            if ($lc->is_rejected() || !$auth->login(false, true, true)) {
                 // 認証エラー
                 $lc->fail_login();
                 $p = array('msg' => '0', 'kad' => t_encrypt($ktai_address), 'login_params' => $requests['login_params']);
                 openpne_redirect('ktai', 'page_o_login', $p);
             }
         } else {
-            if (!$auth->login(false)) {
+            if (!$auth->login(false, true, true)) {
                 $p = array('msg' => '0', 'kad' => t_encrypt($ktai_address), 'login_params' => $requests['login_params']);
                 openpne_redirect('ktai', 'page_o_login', $p);
             }
         }
 
-        if (IS_SLAVEPNE) {
-            $c_member_id = db_member_c_member_id4username($auth->getUsername());
-        } else {
-            $c_member_id = db_member_c_member_id4ktai_address_encrypted($auth->getUsername());
-        }
-
+        $c_member_id = db_member_c_member_id4username_encrypted($auth->getUsername(), true);
         if (!$c_member_id) {
             if (IS_SLAVEPNE) {
                 db_member_create_member($_POST['username']);
@@ -69,6 +64,7 @@ class ktai_do_o_login extends OpenPNE_Action
             }
         }
 
+        $_SESSION['c_member_id'] = $c_member_id;
         db_member_do_access($c_member_id);
 
         $p = array();
