@@ -10,3 +10,6 @@ UPDATE c_review_category SET category = 'Kitchen' WHERE c_review_category_id = 9
 UPDATE c_review_category SET category = 'Toys' WHERE c_review_category_id = 10;
 UPDATE c_review_category SET category = 'SportingGoods' WHERE c_review_category_id = 11;
 UPDATE c_review_category SET category = 'HealthPersonalCare' WHERE c_review_category_id = 12;
+INSERT INTO c_review_category VALUES (nextval('c_review_category_c_review_category_id_seq'),'Watches','時計',13);
+INSERT INTO c_review_category VALUES (nextval('c_review_category_c_review_category_id_seq'),'Baby','ベビー＆マタニティ',14);
+INSERT INTO c_review_category VALUES (nextval('c_review_category_c_review_category_id_seq'),'Apparel','アパレル＆シューズ',15);
