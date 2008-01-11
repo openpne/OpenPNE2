@@ -94,22 +94,6 @@ function do_review_add_search_result($keyword, $category_id, $page)
         return null;
     }
 
-    // 暫定的に、旧カテゴリとSearchIndexの対応テーブルを用いる
-    $category2index = array(
-        'books-jp' => 'Books',
-        'books-us' => 'ForeignBooks',
-        'music-jp' => 'Music',
-        'classical-jp' => 'Classical',
-        'dvd-jp' => 'Music',
-        'videogames-jp' => 'Music',
-        'software-jp' => 'Software',
-        'electronics-jp' => 'Electronics',
-        'kitchen-jp' => 'Kitchen',
-        'toys-jp' => 'Toys',
-        'sporting-goods-jp' => 'SportingGoods',
-        'hpc-jp' => 'HealthPersonalCare',
-    );
-    
     include_once 'Services/AmazonECS4.php';
     $amazon =& new Services_AmazonECS4(AMAZON_TOKEN, AMAZON_AFFID);
     $amazon->setLocale(AMAZON_LOCALE);
@@ -123,7 +107,7 @@ function do_review_add_search_result($keyword, $category_id, $page)
         'ItemPage' => $page,
         'ResponseGroup' => 'Large',
     );
-    $products = $amazon->ItemSearch($category2index[$category], $options);
+    $products = $amazon->ItemSearch($category, $options);
 
     if (PEAR::isError($products)) {
         return null;
