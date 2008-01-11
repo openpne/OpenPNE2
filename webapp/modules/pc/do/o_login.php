@@ -37,7 +37,7 @@ class pc_do_o_login extends OpenPNE_Action
             $this->_lc =& new OpenPNE_LoginChecker($options);
         }
 
-        if (!$auth->login($requests['is_save'], true)) {
+        if (!$auth->login($requests['is_save'])) {
             $this->_fail_login();
         }
 
