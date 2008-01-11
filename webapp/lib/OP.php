@@ -60,9 +60,9 @@ class OP
         @session_start();
         @session_regenerate_id();
 
-        $auth_config = get_auth_config($is_ktai);
-        $auth_config['options']['advancedsecurity'] = false;
-        $auth = new OpenPNE_Auth($auth_config['storage'], $auth_config['options'], $is_ktai);
+        $config = get_auth_config($is_ktai);
+        $config['options']['advancedsecurity'] = false;
+        $auth = new OpenPNE_Auth($config);
         $auth->setExpire($GLOBALS['OpenPNE'][$ei_name]['session_lifetime']);
         $auth->setIdle($GLOBALS['OpenPNE'][$ei_name]['session_idletime']);
 
