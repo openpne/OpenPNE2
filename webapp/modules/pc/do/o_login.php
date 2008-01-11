@@ -19,7 +19,7 @@ class pc_do_o_login extends OpenPNE_Action
     {
         $this->_login_params = $requests['login_params'];
         $auth_config = get_auth_config();
-        $auth = new OpenPNE_Auth($auth_config['storage'], $auth_config['options'], false, true);
+        $auth = new OpenPNE_Auth($auth_config['storage'], $auth_config['options']);
         $this->_auth =& $auth;
         $auth->setExpire($GLOBALS['OpenPNE']['common']['session_lifetime']);
         $auth->setIdle($GLOBALS['OpenPNE']['common']['session_idletime']);
@@ -45,12 +45,7 @@ class pc_do_o_login extends OpenPNE_Action
             $this->_fail_login();
         }
 
-        if (IS_SLAVEPNE) {
-            $c_member_id = db_member_c_member_id4username($auth->getUsername());
-        } else {
-            $c_member_id = db_member_c_member_id4pc_address_encrypted($auth->getUsername());
-        }
-
+        $c_member_id = db_member_c_member_id4username_encrypted($auth->getUsername(), false);
         if (!$c_member_id) {
             if (IS_SLAVEPNE) {
                 db_member_create_member($_POST['username']);

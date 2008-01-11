@@ -15,13 +15,12 @@ require_once 'OpenPNE/Auth.php';
 
 $options = array("advancedsecurity"=>false);
 
-$auth = new OpenPNE_Auth('DB', '', true, true);
+$auth = new OpenPNE_Auth('DB','',true);
 $auth->setExpire($GLOBALS['OpenPNE']['ktai']['session_lifetime']);
 $auth->setIdle($GLOBALS['OpenPNE']['ktai']['session_idletime']);
 
 if (   !$auth->auth()
-    || (!($u = db_member_c_member_id4ktai_address_encrypted($auth->getUsername(), true))
-        && !($u = db_member_c_member_id4username($auth->getUsername())))
+    || !($u = db_member_c_member_id4username_encrypted($auth->getUsername(), true))
     || db_member_is_login_rejected($u)) {
     $auth->logout();
     
