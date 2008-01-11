@@ -94,65 +94,91 @@ function do_review_add_search_result($keyword, $category_id, $page)
         return null;
     }
 
-    include_once 'Services/Amazon.php';
-    $amazon =& new Services_Amazon(AMAZON_TOKEN, AMAZON_AFFID, AMAZON_LOCALE, AMAZON_BASEURL);
+    // 暫定的に、旧カテゴリとSearchIndexの対応テーブルを用いる
+    $category2index = array(
+        'books-jp' => 'Books',
+        'books-us' => 'ForeignBooks',
+        'music-jp' => 'Music',
+        'classical-jp' => 'Classical',
+        'dvd-jp' => 'Music',
+        'videogames-jp' => 'Music',
+        'software-jp' => 'Software',
+        'electronics-jp' => 'Electronics',
+        'kitchen-jp' => 'Kitchen',
+        'toys-jp' => 'Toys',
+        'sporting-goods-jp' => 'SportingGoods',
+        'hpc-jp' => 'HealthPersonalCare',
+    );
+    
+    include_once 'Services/AmazonECS4.php';
+    $amazon =& new Services_AmazonECS4(AMAZON_TOKEN, AMAZON_AFFID);
+    $amazon->setLocale(AMAZON_LOCALE);
+//    $amazon->setBaseUrl(AMAZON_BASEURL);
     if (OPENPNE_USE_HTTP_PROXY) {
         $amazon->setProxy(OPENPNE_HTTP_PROXY_HOST, OPENPNE_HTTP_PROXY_PORT);
     }
-    $products = $amazon->searchKeyword($keyword, $category, $page);
+
+    $options = array(
+        'Keywords' => $keyword,
+        'ItemPage' => $page,
+        'ResponseGroup' => 'Large',
+    );
+    $products = $amazon->ItemSearch($category2index[$category], $options);
+
     if (PEAR::isError($products)) {
         return null;
     }
-    if (empty($products['totalresults'])) {
+    if (empty($products['Request']['IsValid']) || $products['Request']['IsValid'] !== 'True') {
         return null;
     }
 
-    foreach ($products as $key => $value) {
-        if (is_array($value['authors'])) {
-            $authors = array_unique($value['authors']);
-            $products[$key]['author'] = implode(', ', $authors);
+    foreach ($products['Item'] as $key => $value) {
+        if (is_array($value['ItemAttributes']['Author'])) {
+            $authors = array_unique($value['ItemAttributes']['Author']);
+            $products['Item'][$key]['author'] = implode(', ', $authors);
         }
-        if (is_array($value['artists'])) {
-            $artists = array_unique($value['artists']);
-            $products[$key]['artist'] = implode(', ', $artists);
+        if (is_array($value['ItemAttributes']['Aritst'])) {
+            $artists = array_unique($value['ItemAttributes']['Artist']);
+            $products['Item'][$key]['artist'] = implode(', ', $artists);
         }
     }
 
-    $product_page = $products['page'];
-    $product_pages = $products['pages'];
-    $total_num = $products['totalresults'];
-    unset($products[0]);
-    unset($products['page']);
-    unset($products['pages']);
-    unset($products['totalresults']);
+    $product_page = $products['Request']['ItemSearchRequest']['ItemPage'];
+    $product_pages = $products['TotalPages'];
+    $total_num = $products['TotalResults'];
 
-    return array($products, $product_page, $product_pages, $total_num);
+    return array($products['Item'], $product_page, $product_pages, $total_num);
 }
 
 function db_review_write_product4asin($asin)
 {
-    include_once 'Services/Amazon.php';
-    $amazon =& new Services_Amazon(AMAZON_TOKEN, AMAZON_AFFID, AMAZON_LOCALE, AMAZON_BASEURL);
+    include_once 'Services/AmazonECS4.php';
+    $amazon =& new Services_AmazonECS4(AMAZON_TOKEN, AMAZON_AFFID);
+    $amazon->setLocale(AMAZON_LOCALE);
+//    $amazon->setBaseUrl(AMAZON_BASEURL);
     if (OPENPNE_USE_HTTP_PROXY) {
         $amazon->setProxy(OPENPNE_HTTP_PROXY_HOST, OPENPNE_HTTP_PROXY_PORT);
     }
     $keyword = mb_convert_encoding($keyword, "UTF-8", "auto");
 
-    $result = $amazon->searchAsin($asin);
+    $options = array();
+    $options['ResponseGroup'] = 'Large';
+    $result = $amazon->ItemLookup($asin, $options);
     if (PEAR::isError($result)) {
         return false;
     }
+    if (empty($result['Request']['IsValid']) || $result['Request']['IsValid'] !== 'True') {
+        return null;
+    }
 
-    $product  =$result[1];
-    if ($result[1]['authors']) {
-        $product['author'] = implode(',', $result[1]['authors']);
+    $product  = $result['Item'][0];
+    if (is_array($product['ItemAttributes']['Author'])) {
+        $authors = array_unique($product['ItemAttributes']['Author']);
+        $product['author'] = implode(', ', $authors);
     }
-    
-    if (!is_array($product)) {
-        return false;
-    }
-    foreach ($product as $key => $value) {
-        $product[$key] = mb_convert_encoding($value, 'UTF-8', 'auto');
+    if (is_array($product['ItemAttributes']['Aritst'])) {
+        $artists = array_unique($product['ItemAttributes']['Artist']);
+        $product['artist'] = implode(', ', $artists);
     }
 
     return $product;
@@ -508,24 +534,24 @@ function db_review_count_c_review_comment4c_review_id($c_review_id)
 function do_c_review_add_insert_c_review($product, $c_review_category_id)
 {
     $sql = 'SELECT c_review_id FROM c_review WHERE asin = ?';
-    $params = array($product['asin']);
+    $params = array($product['ASIN']);
     if ($c_review_id = db_get_one($sql, $params)) {
         return $c_review_id;
     }
 
     $data = array(
-        'title'        => $product['name'],
-        'release_date' => $product['release'],
-        'manufacturer' => $product['manufacturer'],
+        'title'        => $product['ItemAttributes']['Title'],
+        'release_date' => $product['ItemAttributes']['PublicationDate'],
+        'manufacturer' => $product['ItemAttributes']['Manufacturer'],
         'author'       => $product['author'],
         'c_review_category_id' => intval($c_review_category_id),
-        'image_small'  => $product['imagesmall'],
-        'image_medium' => $product['imagemedium'],
-        'image_large'  => $product['imagelarge'],
-        'url'          => $product['url'],
-        'asin'         => $product['asin'],
-        'list_price'   => $product['listprice'],
-        'retail_price' => $product['ourprice'],
+        'image_small'  => $product['MediumImage']['URL'],
+        'image_medium' => $product['MediumImage']['URL'],
+        'image_large'  => $product['MediumImage']['URL'],
+        'url'          => $product['DetailPageURL'],
+        'asin'         => $product['ASIN'],
+        'list_price'   => $product['ListPrice']['FormattedPrice'],
+        'retail_price' => $product['OfferSummary']['LowestUsedPrice']['FormattedPrice'],
         'r_datetime'   => db_now(),
     );
 
