@@ -25,12 +25,11 @@ class ktai_do_o_login extends OpenPNE_Action
         @session_start();
         @session_regenerate_id();
         
-        $auth_config = get_auth_config(true);
-        $auth_config['options']['advancedsecurity'] = false;
-        $auth = new OpenPNE_Auth($auth_config['storage'], $auth_config['options'],true);
-        $this->_auth =& $auth;
+        $config = get_auth_config(true);
+        $auth = new OpenPNE_Auth($config);
         $auth->setExpire($GLOBALS['OpenPNE']['ktai']['session_lifetime']);
         $auth->setIdle($GLOBALS['OpenPNE']['ktai']['session_idletime']);
+        $this->_auth =& $auth;
         
         if (LOGIN_CHECK_ENABLE) {
             // 不正ログインチェック
@@ -64,7 +63,6 @@ class ktai_do_o_login extends OpenPNE_Action
             }
         }
 
-        $_SESSION['c_member_id'] = $c_member_id;
         db_member_do_access($c_member_id);
 
         $p = array();
