@@ -451,6 +451,7 @@ function get_auth_config($is_ktai = false)
         $config = $GLOBALS['_OPENPNE_AUTH_CONFIG'];
     } else {
         $config['storage'] = 'DB';
+        $config['is_encrypt_username'] = true;
         if ($is_ktai) {
             $config['options'] = array(
                 'dsn'         => db_get_dsn(),
@@ -469,6 +470,7 @@ function get_auth_config($is_ktai = false)
             );
         }
     }
+    $config['is_ktai'] = $is_ktai;
     return $config;
 }
 
