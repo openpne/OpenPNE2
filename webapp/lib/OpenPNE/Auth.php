@@ -15,32 +15,45 @@ class OpenPNE_Auth
      */
     var $auth;
 
-    var $storage;
-    var $options;
-    var $expire = 0;
-    var $idle   = 0;
-    var $uid;
-    var $sess_id;
-    var $cookie_path;
-    var $is_ktai;
+    var $storage = 'DB';
+    var $options = '';
+    var $is_ktai = false;
+    var $is_encrypt_username = false;
 
-    function OpenPNE_Auth($storageDriver = 'DB', $options = '', $is_ktai = false)
+    var $expire = 0;
+    var $idle = 0;
+    var $uid = 0;
+    var $sess_id = '';
+    var $cookie_path = '/';
+
+    function OpenPNE_Auth($config = array())
     {
         ini_set('session.use_cookies', 0);
-        $this->is_ktai = $is_ktai;
+        if (isset($config['is_ktai'])) {
+            $this->is_ktai = (bool)$config['is_ktai'];
+        }
+        if (isset($config['storage'])) {
+            $this->storage = $config['storage'];
+        }
+        if (isset($config['options'])) {
+            $this->options = $config['options'];
+        }
+        if (isset($config['is_encrypt_username'])) {
+            $this->is_encrypt_username = $config['is_encrypt_username'];
+        }
+
         if ($this->is_ktai) {
             if (!empty($_REQUEST['ksid'])) {
                 $this->sess_id = $_REQUEST['ksid'];
                 session_id($this->sess_id);
             }
+            $this->options['advancedsecurity'] = false;
         } else {
             if (!empty($_COOKIE[session_name()])) {
                 $this->sess_id = $_COOKIE[session_name()];
                 session_id($this->sess_id);
             }
         }
-        $this->storage = $storageDriver;
-        $this->options = $options;
         $this->set_cookie_params();
     }
 
@@ -68,14 +81,12 @@ class OpenPNE_Auth
         return $auth;
     }
 
-    function login($is_save_cookie = false, $is_encrypt_username = false, $is_ktai = false)
+    function login($is_save_cookie = false)
     {
         $this->auth =& $this->factory(true);
-        if (!IS_SLAVEPNE) {
-            if ($is_encrypt_username) {
-                $this->auth->post[$this->auth->_postUsername] =
-                    t_encrypt($this->auth->post[$this->auth->_postUsername]);
-            }
+        if ($this->is_encrypt_username) {
+            $this->auth->post[$this->auth->_postUsername] =
+                t_encrypt($this->auth->post[$this->auth->_postUsername]);
         }
 
         $this->auth->start();

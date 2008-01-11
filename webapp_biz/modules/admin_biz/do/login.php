@@ -15,17 +15,18 @@ class admin_biz_do_login extends OpenPNE_Action
 
     function execute($requests)
     {
-        $options = array(
+        $config['storage'] = 'DB';
+        $config['options'] = array(
             'dsn'         => db_get_dsn(),
             'table'       => 'c_admin_user',
             'usernamecol' => 'username',
             'passwordcol' => 'password',
             'cryptType'   => 'md5',
         );
-        $auth = new OpenPNE_Auth('DB', $options);
-        $this->_auth =& $auth;
+        $auth = new OpenPNE_Auth($config);
         $auth->setExpire($GLOBALS['OpenPNE']['admin']['session_lifetime']);
         $auth->setIdle($GLOBALS['OpenPNE']['admin']['session_idletime']);
+        $this->_auth =& $auth;
 
         // 現在のセッションを削除
         $auth->logout();
