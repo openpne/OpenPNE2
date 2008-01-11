@@ -76,12 +76,12 @@ class OP
             'reject_time' => LOGIN_REJECT_TIME,
             );
             $lc =& new OpenPNE_LoginChecker($options);
-            if ($lc->is_rejected() || !$auth->login(false, true, $is_ktai)) {
+            if ($lc->is_rejected() || !$auth->login(false)) {
                 $lc->fail_login();
                 return false;
             }
         } else {
-            if (!$auth->login(false, true, $is_ktai)) {
+            if (!$auth->login(false)) {
                 return false;
             }
         }
