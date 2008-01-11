@@ -208,6 +208,9 @@ INSERT INTO c_review_category VALUES (nextval('c_review_category_c_review_catego
 INSERT INTO c_review_category VALUES (nextval('c_review_category_c_review_category_id_seq'),'Toys','おもちゃ＆ホビー',10);
 INSERT INTO c_review_category VALUES (nextval('c_review_category_c_review_category_id_seq'),'SportingGoods','スポーツ',11);
 INSERT INTO c_review_category VALUES (nextval('c_review_category_c_review_category_id_seq'),'HealthPersonalCare','ヘルス＆ビューティー',12);
+INSERT INTO c_review_category VALUES (nextval('c_review_category_c_review_category_id_seq'),'Watches','時計',13);
+INSERT INTO c_review_category VALUES (nextval('c_review_category_c_review_category_id_seq'),'Baby','ベビー＆マタニティ',14);
+INSERT INTO c_review_category VALUES (nextval('c_review_category_c_review_category_id_seq'),'Apparel','アパレル＆シューズ',15);
 INSERT INTO c_siteadmin VALUES (nextval('c_siteadmin_c_siteadmin_id_seq'),'inc_page_footer_before','<a href=\"./?m=pc&amp;a=page_o_sns_kiyaku\" target=\"_blank\">利用規約</a> <a href=\"./?m=pc&amp;a=page_o_sns_privacy\" target=\"_blank\">プライバシーポリシー</a> <a href=\"http://www.openpne.jp/about/\" target=\"_blank\">OpenPNEとは</a>',NOW());
 INSERT INTO c_siteadmin VALUES (nextval('c_siteadmin_c_siteadmin_id_seq'),'inc_page_footer_after','<a href=\"./?m=pc&amp;a=page_o_sns_kiyaku\" target=\"_blank\">利用規約</a> <a href=\"./?m=pc&amp;a=page_o_sns_privacy\" target=\"_blank\">プライバシーポリシー</a>',NOW());
 INSERT INTO c_siteadmin VALUES (nextval('c_siteadmin_c_siteadmin_id_seq'),'inc_custom_css','/**フォント色変更**/\n\n/*リンク関連*/\na:link    { color: #026CD1; }\na:visited { color: #004A95; }\na:hover   { color: #76AFE6; }\na:active  { color: #76AFE6; }\n\n/*コンテンツ見出しlv1*/\ntd.bg_06 span.b_b,\n.c_00 { color: #222222; }\n\n/*コンテンツ見出しlv2*/\n.c_01 { color: #444444; }\n\n/*強調文字暖色*/\n.c_02 { color: #D92C49; }\n\n/*強調文字寒色*/\n.c_03 { color: #2C65D9; }\n\n/*その他文字色*/\nbody { color: #000000; }',NOW());
