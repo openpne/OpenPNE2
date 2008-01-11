@@ -40,14 +40,14 @@ class ktai_do_o_login extends OpenPNE_Action
                 'reject_time' => LOGIN_REJECT_TIME,
             );
             $lc = new OpenPNE_LoginChecker($options);
-            if ($lc->is_rejected() || !$auth->login(false, true, true)) {
+            if ($lc->is_rejected() || !$auth->login()) {
                 // 認証エラー
                 $lc->fail_login();
                 $p = array('msg' => '0', 'kad' => t_encrypt($ktai_address), 'login_params' => $requests['login_params']);
                 openpne_redirect('ktai', 'page_o_login', $p);
             }
         } else {
-            if (!$auth->login(false, true, true)) {
+            if (!$auth->login()) {
                 $p = array('msg' => '0', 'kad' => t_encrypt($ktai_address), 'login_params' => $requests['login_params']);
                 openpne_redirect('ktai', 'page_o_login', $p);
             }
