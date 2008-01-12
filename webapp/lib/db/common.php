@@ -18,11 +18,7 @@ function &db_get_instance($name = 'main', $readonly = false)
                 $_OPENPNE_DB_LIST[$name] =& db_get_instance();
             }
         } else {
-            if ($readonly) {
-                $_OPENPNE_DB_LIST[$name] =& new OpenPNE_DB($dsn);
-            } else {
-                $_OPENPNE_DB_LIST[$name] =& new OpenPNE_DB_Writer($dsn);
-            }
+            $_OPENPNE_DB_LIST[$name] =& new OpenPNE_DB($dsn, $readonly);
         }
     }
     return $_OPENPNE_DB_LIST[$name];
