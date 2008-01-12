@@ -18,11 +18,13 @@ class OpenPNE_DB
     var $db;
 
     var $dsn;
+    var $readonly = false;
 
-    function OpenPNE_DB($dsn)
+    function OpenPNE_DB($dsn, $readonly = false)
     {
         $this->dsn = $dsn;
         $this->_connect();
+        $this->readonly = $readonly;
     }
 
     function &getInstance()
@@ -156,6 +158,69 @@ class OpenPNE_DB
             $_where .= $key . ' = ' . $this->quote($value);
         }
         return $_where;
+    }
+
+    function &query($sql, $params = array())
+    {
+        return $this->db->query($sql, $params);
+    }
+
+    function insert($table, $fields_values, $pkey = '')
+    {
+        if ($this->readonly) {
+            return false;
+        }
+
+        $seq_name = sprintf('%s_%s', $table, $pkey);
+        if ($pkey && ($id = $this->nextId($seq_name))) {
+            if (DB::isError($id)) {
+                return false;
+            }
+            $fields_values = array($pkey => $id) + $fields_values;
+        }
+
+        $res = $this->db->autoExecute($table, $fields_values, DB_AUTOQUERY_INSERT);
+        if (DB::isError($res)) {
+            return false;
+        }
+        return $this->insertId($id);
+    }
+
+    function nextId($seq_name = '', $ondemand = true)
+    {
+        if ($this->db->phptype == 'mysql') {
+            return null;
+        } else {
+            return $this->db->nextId($seq_name, $ondemand);
+        }
+    }
+
+    function insertId($id = null)
+    {
+        if ($this->db->phptype == 'mysql') {
+            return $this->db->getOne('SELECT LAST_INSERT_ID()');
+        } else {
+            return $id;
+        }
+    }
+
+    function update($table, $fields_values, $where)
+    {
+        if ($this->readonly) {
+            return false;
+        }
+
+        $where = $this->makeWhereClause($where);
+        $res = $this->db->autoExecute($table, $fields_values, DB_AUTOQUERY_UPDATE, $where);
+        if (DB::isError($res)) {
+            return false;
+        }
+        return true;
+    }
+
+    function affectedRows()
+    {
+        return $this->db->affectedRows();
     }
 }
 
