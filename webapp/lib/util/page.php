@@ -243,7 +243,7 @@ function p_c_event_add_confirm_event4request($get_errors = false)
         'capacity' => array(
             'type' => 'int',
             'default' => '0',
-        	'min' => '1',
+            'min' => '0',
             'caption' => '募集人数',
         ),
     );
