@@ -790,12 +790,12 @@ CREATE TABLE `c_password_query` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `c_pc_address_pre` (
-  `c_pc_address_pre_id` int(11) NOT NULL auto_increment,
+  `c_pc_addess_pre_id` int(11) NOT NULL auto_increment,
   `c_member_id` int(11) NOT NULL default '0',
   `pc_address` text NOT NULL,
   `session` varchar(32) NOT NULL default '',
   `r_datetime` datetime NOT NULL default '0000-00-00 00:00:00',
-  PRIMARY KEY  (`c_pc_address_pre_id`),
+  PRIMARY KEY  (`c_pc_addess_pre_id`),
   KEY `c_member_id` (`c_member_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
