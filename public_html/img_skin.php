@@ -15,7 +15,6 @@ $include_paths = array(
 );
 ini_set('include_path', implode(PATH_SEPARATOR, $include_paths));
 require_once OPENPNE_WEBAPP_DIR . '/lib/OpenPNE/DB.php';
-require_once OPENPNE_WEBAPP_DIR . '/lib/OpenPNE/DB/Writer.php';
 require_once OPENPNE_WEBAPP_DIR . '/lib/db/common.php';
 require_once OPENPNE_WEBAPP_DIR . '/lib/db/etc.php';
 
