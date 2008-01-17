@@ -77,7 +77,11 @@ function __logout($msg = 0, $c_member_id = 0)
     } else {
         $_GET = array('login_params' => $_SERVER['QUERY_STRING']);
     }
-    openpne_forward('ktai', 'page', 'o_login');
+    if (LOGIN_URL_KTAI) {
+        client_redirect_absolute(LOGIN_URL_KTAI);
+    } else {
+        openpne_forward('ktai', 'page', 'o_login');
+    }
     exit;
 }
 
