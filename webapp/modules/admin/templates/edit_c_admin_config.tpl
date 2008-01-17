@@ -96,10 +96,18 @@
 <td><input class="basic" name="AMAZON_AFFID" type="text" value="({$smarty.const.AMAZON_AFFID})" size="30" /><br /><span class="caution">※空にするとレビュー機能が正常に動作しません</span></td>
 </tr>
 <tr class="cell10">
-<th colspan="2">外部ログインページURL</th>
+<th colspan="2">PC版外部ログインページURL</th>
 <td>
-<span class="info">ログアウトした場合やログインに失敗した場合、ここで指定したURLに遷移します</span><br />
+<span class="info">PC版でログアウトした場合やログインに失敗した場合、ここで指定したURLに遷移します</span><br />
 <input class="basic" name="LOGIN_URL_PC" type="text" value="({$smarty.const.LOGIN_URL_PC})" size="50" /><br />
+<span class="caution">※ここで指定するページには<a href="#form">ログインフォーム</a>を置いておく必要があります</span><br />
+<span class="caution">※通常のログインページを使用する場合は空欄にしておきます</span></td>
+</tr>
+<tr>
+<th colspan="2">携帯版外部ログインページURL</th>
+<td>
+<span class="info">携帯版でログアウトした場合やログインに失敗した場合、ここで指定したURLに遷移します</span><br />
+<input class="basic" name="LOGIN_URL_KTAI" type="text" value="({$smarty.const.LOGIN_URL_KTAI})" size="50" /><br />
 <span class="caution">※ここで指定するページには<a href="#form">ログインフォーム</a>を置いておく必要があります</span><br />
 <span class="caution">※通常のログインページを使用する場合は空欄にしておきます</span></td>
 </tr>
@@ -364,7 +372,7 @@
 <h2 id="ttl02"><a name="form">外部ログインフォーム用HTML</a></h2>
 <div class="contents">
 <p class="info">通常のログインページ以外の外部ログインページを設定する場合は、以下のHTMLを使ってログイン用フォームを作成してください。</p>
-({capture name=html_form})
+({capture name=pc_html_form})
 <form action="({$smarty.const.OPENPNE_URL})" method="post">
 <input type="hidden" name="m" value="pc" />
 <input type="hidden" name="a" value="do_o_login" />
@@ -378,10 +386,31 @@
 </dl>
 </form>
 ({/capture})
+({capture name=ktai_html_form})
+<form action="({$smarty.const.OPENPNE_URL})" method="post" utn>
+<input type="hidden" name="m" value="ktai">
+<input type="hidden" name="a" value="do_o_easy_login">
+<input type="submit" value="かんたんﾛｸﾞｲﾝ"><br>
+</form>
+<br>
+<form action="({$smarty.const.OPENPNE_URL})" method="post">
+<input type="hidden" name="m" value="ktai">
+<input type="hidden" name="a" value="do_o_login">
+携帯ﾒｰﾙｱﾄﾞﾚｽ<br>
+<textarea name="username" rows="1" istyle="3" mode="alphabet"></textarea><br>
+ﾊﾟｽﾜｰﾄﾞ<br>
+<input name="password" type="text" istyle="3" mode="alphabet" value=""><br>
+<input name="submit" value="ﾛｸﾞｲﾝ" type="submit"><br>
+</form>({/capture})
 
 <dl class="sampleHtml">
-<dt><strong class="item">ログインフォーム</strong></dt>
-<dd><textarea cols="84" rows="14" readonly="readonly">({$smarty.capture.html_form})</textarea></dd>
+<dt><strong class="item">PC版ログインフォーム</strong></dt>
+<dd><textarea cols="84" rows="14" readonly="readonly">({$smarty.capture.pc_html_form})</textarea></dd>
+</dl>
+
+<dl class="sampleHtml">
+<dt><strong class="item">携帯版ログインフォーム</strong></dt>
+<dd><textarea cols="84" rows="14" readonly="readonly">({$smarty.capture.ktai_html_form})</textarea></dd>
 </dl>
 
 ({capture name=html_password})
