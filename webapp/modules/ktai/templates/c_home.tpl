@@ -68,7 +68,9 @@
 ({if $new_topic_comment})
 →<a href="({t_url m=ktai a=page_c_topic_list})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">もっと見る</a><br>
 ({/if})
+({if ($c_commu.topic_authority == 'public' && $is_c_commu_member) || ($c_commu.topic_authority == 'admin_only' && $is_c_commu_admin)})
 →<a href="({t_url m=ktai a=page_c_topic_add})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">トピック作成</a>
+({/if})
 <hr>
 <font color="green">[ｲﾍﾞﾝﾄﾘｽﾄ]</font><br>
 ({foreach from=$new_topic_comment_event item=item})
@@ -79,7 +81,9 @@
 ({if $new_topic_comment_event})
 →<a href="({t_url m=ktai a=page_c_event_list})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">もっと見る</a><br>
 ({/if})
+({if ($c_commu.topic_authority == 'public' && $is_c_commu_member) || ($c_commu.topic_authority == 'admin_only' && $is_c_commu_admin)})
 →<a href="({t_url m=ktai a=page_c_event_add})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">イベント作成</a>
+({/if})
 ({if $relation_c_member_and_c_commu.join})
 <hr>
 ({/if})
