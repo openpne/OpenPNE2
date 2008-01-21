@@ -328,11 +328,11 @@ function db_c_commu_admin_confirm4c_commu_admin_confirm_id($c_commu_admin_confir
  * @param  int $c_commu_sub_admin_confirm_id
  * @return array
  *              c_commu_sub_admin_confirm,
- *              c_member_id_sub_admin       : 管理者のメンバーID
+ *              c_member_id_admin       : 管理者のメンバーID
  */
 function db_c_commu_sub_admin_confirm4c_commu_sub_admin_confirm_id($c_commu_sub_admin_confirm_id)
 {
-    $sql = "SELECT cac.*, c.c_member_id_sub_admin FROM c_commu_sub_admin_confirm AS cac, c_commu AS c";
+    $sql = "SELECT cac.*, c.c_member_id_admin FROM c_commu_sub_admin_confirm AS cac, c_commu AS c";
     $sql .= " WHERE cac.c_commu_sub_admin_confirm_id = ?";
     $sql .= " AND cac.c_commu_id=c.c_commu_id";
     $params = array(intval($c_commu_sub_admin_confirm_id));
