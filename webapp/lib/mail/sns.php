@@ -296,7 +296,7 @@ class mail_sns
         if (OPENPNE_USE_POINT_RANK) {
             //トピック・イベントにコメントした人にポイント付与
             $point = db_action_get_point4c_action_id(11);
-            db_point_add_point($u, $point);
+            db_point_add_point($this->c_member_id, $point);
         }
 
         return true;
