@@ -14,7 +14,7 @@
 <tr><td bgcolor="#({cycle values="`$ktai_color_config.bg_06`,`$ktai_color_config.bg_07`"})">
 ({$item.r_datetime|date_format:"%m/%d %H:%M"})
 ({if $item.nickname})
-<a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$item.c_member_id_from})&amp;({$tail})">({$item.nickname})</a>
+<a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$item.c_member_id_from})&amp;({$tail})">({$item.nickname})</a><br>
 ({/if})
 </td></tr>
 ({/foreach})
