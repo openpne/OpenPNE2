@@ -788,9 +788,9 @@ function db_commu_anatani_c_commu_sub_admin_confirm_list4c_member_id($c_member_i
  */
 function db_commu_anataga_c_commu_sub_admin_confirm_list4c_member_id($c_member_id_sub_admin)
 {
-    $sql = "SELECT cac.*, c.name AS c_commu_name, c.c_member_id_sub_admin";
+    $sql = "SELECT cac.*, c.name AS c_commu_name, c.c_member_id_admin";
     $sql .= " FROM c_commu_sub_admin_confirm AS cac, c_commu AS c";
-    $sql .= " WHERE c.c_member_id_sub_admin = ? AND cac.c_commu_id=c.c_commu_id";
+    $sql .= " WHERE c.c_member_id_admin = ? AND cac.c_commu_id=c.c_commu_id";
     $params = array(intval($c_member_id_sub_admin));
     $c_commu_sub_admin_confirm_list = db_get_all($sql, $params);
 
