@@ -28,8 +28,7 @@ class ktai_do_h_confirm_list_update_c_commu_sub_admin_confirm extends OpenPNE_Ac
             handle_kengen_error();
         }
 
-        if (db_commu_is_c_commu_admin($sub_admin_confirm['c_commu_id'], $u)
-) {
+        if ($sub_admin_confirm['c_member_id_admin'] == $u) {
             handle_kengen_error();
         }
         // -----
