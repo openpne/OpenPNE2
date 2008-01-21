@@ -768,19 +768,19 @@ function db_commu_anatani_c_commu_sub_admin_confirm_list4c_member_id($c_member_i
 /**
  * あなたがコミュニティ副管理者を要請しているメンバー
  * 
- * @param   int $c_member_id_sub_admin  : 要請している方(あなた)
+ * @param   int $c_member_id_admin  : 要請している方(あなた)
  * @return  array_of_array
  *              c_commu_sub_admin_confirm.*
  *              nickname            : 要請されている人の名前
  *              image_filename      : 要請されている人の画像
  * @see     h_confirm_list.php
  */
-function db_commu_anataga_c_commu_sub_admin_confirm_list4c_member_id($c_member_id_sub_admin)
+function db_commu_anataga_c_commu_sub_admin_confirm_list4c_member_id($c_member_id_admin)
 {
     $sql = "SELECT cac.*, c.name AS c_commu_name, c.c_member_id_admin";
     $sql .= " FROM c_commu_sub_admin_confirm AS cac, c_commu AS c";
     $sql .= " WHERE c.c_member_id_admin = ? AND cac.c_commu_id=c.c_commu_id";
-    $params = array(intval($c_member_id_sub_admin));
+    $params = array(intval($c_member_id_admin));
     $c_commu_sub_admin_confirm_list = db_get_all($sql, $params);
 
     foreach ($c_commu_sub_admin_confirm_list as $key => $value) {
