@@ -24,7 +24,7 @@ class ktai_do_h_confirm_list_delete_c_commu_sub_admin_confirm extends OpenPNE_Ac
         $cac = db_c_commu_sub_admin_confirm4c_commu_sub_admin_confirm_id($target_c_commu_sub_admin_confirm_id);
 
         if ($cac['c_member_id_to'] != $u
-            && $cac['c_member_id_sub_admin'] != $u) {
+            && $cac['c_member_id_admin'] != $u) {
             handle_kengen_error();
         }
         //---
