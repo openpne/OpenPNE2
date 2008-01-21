@@ -83,7 +83,7 @@
 [ｺﾐｭﾆﾃｨ管理者交代要請中]<br>
 ({if $anataga_c_commu_admin_confirm_list})
 ({foreach from=$anataga_c_commu_admin_confirm_list item=item})
-<a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$item.c_member_id_admin})&amp;({$tail})">({$item.nickname})</a><br>
+<a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$item.c_member_id_to})&amp;({$tail})">({$item.nickname})</a><br>
 <a href="({t_url m=ktai a=page_c_home})&amp;target_c_commu_id=({$item.c_commu_id})&amp;({$tail})">({$item.c_commu_name})</a><br>
 ﾒｯｾｰｼﾞ<br>
 ({$item.message|nl2br})<br>
@@ -95,7 +95,7 @@
 [ｺﾐｭﾆﾃｨ副管理者要請中]<br>
 ({if $anataga_c_commu_sub_admin_confirm_list})
 ({foreach from=$anataga_c_commu_sub_admin_confirm_list item=item})
-<a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$item.c_member_id_sub_admin})&amp;({$tail})">({$item.nickname})</a><br>
+<a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$item.c_member_id_to})&amp;({$tail})">({$item.nickname})</a><br>
 <a href="({t_url m=ktai a=page_c_home})&amp;target_c_commu_id=({$item.c_commu_id})&amp;({$tail})">({$item.c_commu_name})</a><br>
 ﾒｯｾｰｼﾞ<br>
 ({$item.message|nl2br})<br>
