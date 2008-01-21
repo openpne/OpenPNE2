@@ -70,7 +70,7 @@
 
 <!-- ************************************ -->
 <!-- ******ここから：新規トピック作成****** -->
-({if ($c_commu.topic_authority == 'public')||($c_commu.topic_authority == 'admin_only' && $is_c_commu_admin)})
+({if ($c_commu.topic_authority == 'public' && $is_c_commu_member) || ($c_commu.topic_authority == 'admin_only' && $is_c_commu_admin)})
 ({t_form m=pc a=page_c_topic_add})
 <input type="hidden" name="target_c_commu_id" value="({$c_commu.c_commu_id})">
 
