@@ -558,7 +558,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <a href="({t_url m=pc a=page_c_topic_list})&amp;target_c_commu_id=({$c_commu.c_commu_id})">もっと読む</a>
 </td>
 </tr>
-({if ($c_commu.topic_authority == 'public')||($c_commu.topic_authority == 'admin_only' && $is_c_commu_admin)})
+({if ($c_commu.topic_authority == 'public' && $is_c_commu_member) || ($c_commu.topic_authority == 'admin_only' && $is_c_commu_admin)})
 <tr>
 <td style="width:130px;text-align:left;padding:1px 0px;">
 <img src="./skin/dummy.gif" class="icon arrow_1">
@@ -598,7 +598,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <a href="({t_url m=pc a=page_c_event_list})&amp;target_c_commu_id=({$c_commu.c_commu_id})">もっと読む</a>
 </td>
 </tr>
-({if ($c_commu.topic_authority == 'public')||($c_commu.topic_authority == 'admin_only' && $is_c_commu_admin)})
+({if ($c_commu.topic_authority == 'public' && $is_c_commu_member) || ($c_commu.topic_authority == 'admin_only' && $is_c_commu_admin)})
 <tr>
 <td style="width:130px;text-align:left;padding:1px 0px;">
 <img src="./skin/dummy.gif" class="icon arrow_1">
@@ -664,7 +664,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <td style="width:260px;" class="bg_02"><img src="./skin/dummy.gif" style="width:260px;height:1px;" class="dummy"></td>
 <td style="width:160px;padding:5px 0px;" class="bg_02 lh_140">
 ({if $is_c_commu_member || $c_commu.public_flag neq "auth_commu_member"})
-({if ($c_commu.topic_authority == 'public')||($c_commu.topic_authority == 'admin_only' && $is_c_commu_admin)})
+({if ($c_commu.topic_authority == 'public' && $is_c_commu_member) || ($c_commu.topic_authority == 'admin_only' && $is_c_commu_admin)})
 ({if !$new_topic_comment})
 <img src="./skin/dummy.gif" class="icon arrow_1">
 <a href="({t_url m=pc a=page_c_topic_add})&amp;target_c_commu_id=({$c_commu.c_commu_id})">トピックを作成</a>
