@@ -30,23 +30,6 @@ class pc_page_h_confirm_list extends OpenPNE_Action
                 db_commu_anatani_c_commu_sub_admin_confirm_list4c_member_id($u));
 
 
-        // あなたがフレンドリンクを要請しているメンバー
-        $this->set("anataga_c_friend_confirm_list",
-                db_friend_anataga_c_friend_confirm_list4c_member_id($u));
-
-        // あなたがコミュニティ参加要請しているコミュニティ
-        $this->set("anataga_c_commu_member_confirm_list",
-                db_commu_anataga_c_commu_member_confirm_list4c_member_id_2($u));
-
-        // あなたがコミュニティ管理者交代を要請しているメンバー
-        $this->set("anataga_c_commu_admin_confirm_list",
-                p_h_confirm_list_anataga_c_commu_admin_confirm_list4c_member_id($u));
-
-        // あなたがコミュニティ副管理者を要請しているメンバー
-        $this->set("anataga_c_commu_sub_admin_confirm_list",
-                db_commu_anataga_c_commu_sub_admin_confirm_list4c_member_id($u));
-
-
         //---- ページ表示 ----//
         return 'success';
     }
