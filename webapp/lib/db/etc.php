@@ -759,7 +759,7 @@ function db_insert_c_image4skin_filename($skinname, $skintheme = OPENPNE_SKIN_TH
         $path = sprintf('%s/skin/default/img/%s', OPENPNE_PUBLIC_HTML_DIR, $filename);
     }
 
-    $filename = sprintf('default_skin_%s_%s.%s', $skinname, time(), $ext);
+    $filename = sprintf('skin_default_%s_%s.%s', $skinname, time(), $ext);
     $res = db_image_insert_c_image2($filename, $path);
     return db_replace_c_skin_filename($skinname, $filename);
 }
