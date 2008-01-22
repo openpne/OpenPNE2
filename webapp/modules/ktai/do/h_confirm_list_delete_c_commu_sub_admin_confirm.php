@@ -31,8 +31,7 @@ class ktai_do_h_confirm_list_delete_c_commu_sub_admin_confirm extends OpenPNE_Ac
 
         db_commu_delete_c_commu_sub_admin_confirm4id($target_c_commu_sub_admin_confirm_id);
 
-        $msg = '承認依頼を削除しました';
-        $p = array('msg' => $msg);
+        $p = array('msg' => 4);
         openpne_redirect('ktai', 'page_h_confirm_list', $p);
     }
 }
