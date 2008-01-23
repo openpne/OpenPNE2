@@ -328,11 +328,11 @@ function db_c_commu_admin_confirm4c_commu_admin_confirm_id($c_commu_admin_confir
  * @param  int $c_commu_sub_admin_confirm_id
  * @return array
  *              c_commu_sub_admin_confirm,
- *              c_member_id_sub_admin       : 管理者のメンバーID
+ *              c_member_id_admin       : 管理者のメンバーID
  */
 function db_c_commu_sub_admin_confirm4c_commu_sub_admin_confirm_id($c_commu_sub_admin_confirm_id)
 {
-    $sql = "SELECT cac.*, c.c_member_id_sub_admin FROM c_commu_sub_admin_confirm AS cac, c_commu AS c";
+    $sql = "SELECT cac.*, c.c_member_id_admin FROM c_commu_sub_admin_confirm AS cac, c_commu AS c";
     $sql .= " WHERE cac.c_commu_sub_admin_confirm_id = ?";
     $sql .= " AND cac.c_commu_id=c.c_commu_id";
     $params = array(intval($c_commu_sub_admin_confirm_id));
@@ -779,19 +779,19 @@ function db_commu_anatani_c_commu_sub_admin_confirm_list4c_member_id($c_member_i
 /**
  * あなたがコミュニティ副管理者を要請しているメンバー
  * 
- * @param   int $c_member_id_sub_admin  : 要請している方(あなた)
+ * @param   int $c_member_id_admin  : 要請している方(あなた)
  * @return  array_of_array
  *              c_commu_sub_admin_confirm.*
  *              nickname            : 要請されている人の名前
  *              image_filename      : 要請されている人の画像
  * @see     h_confirm_list.php
  */
-function db_commu_anataga_c_commu_sub_admin_confirm_list4c_member_id($c_member_id_sub_admin)
+function db_commu_anataga_c_commu_sub_admin_confirm_list4c_member_id($c_member_id_admin)
 {
-    $sql = "SELECT cac.*, c.name AS c_commu_name, c.c_member_id_sub_admin";
+    $sql = "SELECT cac.*, c.name AS c_commu_name, c.c_member_id_admin";
     $sql .= " FROM c_commu_sub_admin_confirm AS cac, c_commu AS c";
-    $sql .= " WHERE c.c_member_id_sub_admin = ? AND cac.c_commu_id=c.c_commu_id";
-    $params = array(intval($c_member_id_sub_admin));
+    $sql .= " WHERE c.c_member_id_admin = ? AND cac.c_commu_id=c.c_commu_id";
+    $params = array(intval($c_member_id_admin));
     $c_commu_sub_admin_confirm_list = db_get_all($sql, $params);
 
     foreach ($c_commu_sub_admin_confirm_list as $key => $value) {
@@ -2511,7 +2511,7 @@ function db_commu_update_c_commu_topic($c_commu_topic_id, $topic)
         }
     } else {
         $open_date = $topic['open_date'];
-        $invete_period = $topic['invite_period'];
+        $invite_period = $topic['invite_period'];
     }
     if ($data['event_flag']) {
         $data += array(

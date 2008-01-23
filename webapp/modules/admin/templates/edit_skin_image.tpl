@@ -390,7 +390,7 @@ if ( c['skinChangerArea'] == 0 ) { toggleDisplay('skin_changer_area'); }
 <dl class="box">
 <dt><strong>no_image</strong></dt>
 <dd class="image">({assign var=skinname value=no_image})<img src="({t_img_url_skin filename=$skinname w=180 h=180})"></dd>
-<dd class="default">({if $skin_list[$skinname] != "skin_$skinname.gif"})[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})</dd>
+<dd class="default">({if $skin_list[$skinname] != "skin_$skinname.gif" && substr($skin_list[$skinname], 0, 12) != "skin_default"})[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})</dd>
 <dd class="submit">
 <form action="./" method="post" enctype="multipart/form-data" >
 <input type="hidden" name="m" value="({$module_name})" />
@@ -403,7 +403,7 @@ if ( c['skinChangerArea'] == 0 ) { toggleDisplay('skin_changer_area'); }
 <dl class="box">
 <dt><strong>no_logo</strong></dt>
 <dd class="image">({assign var=skinname value=no_logo})<img src="({t_img_url_skin filename=$skinname w=180 h=180})"></dd>
-<dd class="default">({if $skin_list[$skinname] != "skin_$skinname.gif"})[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})</dd>
+<dd class="default">({if $skin_list[$skinname] != "skin_$skinname.gif" && substr($skin_list[$skinname], 0, 12) != "skin_default"})[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})</dd>
 <dd class="submit">
 <form action="./" method="post" enctype="multipart/form-data" >
 <input type="hidden" name="m" value="({$module_name})" />
@@ -416,7 +416,7 @@ if ( c['skinChangerArea'] == 0 ) { toggleDisplay('skin_changer_area'); }
 <dl class="box">
 <dt><strong>no_logo_small</strong></dt>
 <dd class="image">({assign var=skinname value=no_logo_small})<img src="({t_img_url_skin filename=$skinname w=76 h=76})"></dd>
-<dd class="default">({if $skin_list[$skinname] != "skin_$skinname.gif"})[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})</dd>
+<dd class="default">({if $skin_list[$skinname] != "skin_$skinname.gif" && substr($skin_list[$skinname], 0, 12) != "skin_default"})[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})</dd>
 <dd class="submit">
 <form action="./" method="post" enctype="multipart/form-data" >
 <input type="hidden" name="m" value="({$module_name})" />
