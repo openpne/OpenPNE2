@@ -88,6 +88,8 @@ $config->db_load_config();
 // 設定のデフォルト値を適用
 $config->bind_default();
 
+session_cache_limiter('none');
+
 // session/cookie 設定
 ini_set('session.use_cookies', '1');
 ini_set('session.use_only_cookies', '1');
