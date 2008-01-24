@@ -39,9 +39,9 @@ class pc_do_c_send_message extends OpenPNE_Action
         //---
         $c_member_id_list = db_commu_c_commu_member_id_list4c_commu_id($target_c_commu_id);
 
-        if (count($c_member_id_list) === 1) {
-            handle_kengen_error();
-        }
+//        if (count($c_member_id_list) === 1) {
+//            handle_kengen_error();
+//        }
 
         foreach ($c_member_id_list as $c_member_id) {
             if ($c_member_id == $u)continue;
