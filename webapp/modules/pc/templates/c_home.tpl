@@ -373,16 +373,6 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({$inc_entry_point[5]|smarty:nodefaults|t_url2cmd:'entry_point'|t_cmd:'entry_point'})
 ({/if})
 
-({if $smarty.const.OPENPNE_USE_COMMU_MAP && $c_commu.is_display_map}) 
-<table border="0" cellspacing="0" cellpadding="10" style="width:270px;margin:0px auto;" class="border_07">
-<tr>
-<td style="width:268px;" class="bg_00">
-<div id="map" style="width: 248px; height: 300px"></div>
-</td>
-</tr>
-</table>
-({/if})
-
 ({********************************})
 ({**ここまで：メインコンテンツ（左）**})
 ({********************************})

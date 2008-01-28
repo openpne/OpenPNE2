@@ -488,9 +488,6 @@ define('CHECK_KTAI_UA', true);
 // IPリストは webapp/lib/ktaiIP.php
 define('CHECK_KTAI_IP', false);
 
-// コミュニティに地図を表示するかどうか
-define('OPENPNE_USE_COMMU_MAP', true);
-
 // メール一斉送信のメールキューの使用
 define('OPENPNE_MAIL_QUEUE', false);
 // メールキューで一度に送信するメールの数
