@@ -360,7 +360,10 @@ function p_f_home_last_login4access_date($access_date)
  */
 function getCountdownDays($month, $day)
 {
-    $year = date('Y');
+	if ( $monyh == 0 or $day == 0 )	//誕生日等が未登録な場合
+		return -1;					//エラーを返す
+
+	$year = date('Y');
 
     // 今日の00:00:00
     $today = mktime(0, 0, 0);
