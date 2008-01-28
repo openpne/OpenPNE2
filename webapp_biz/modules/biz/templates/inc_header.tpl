@@ -277,34 +277,7 @@ function setFocusClass() {
 ({**ここまで：旧inc_html_header.tplの内容**})
 ({***************************************})
 
-({if $smarty.const.OPENPNE_USE_COMMU_MAP && $c_commu.is_display_map && $INC_HEADER_page_name == 'c_home'})
-<script src="http://maps.google.co.jp/maps?file=api&amp;v=2.x&amp;key=({$smarty.const.GOOGLE_MAPS_API_KEY})" type="text/javascript"></script>
-<script type="text/javascript">
-<!--
-function load() {
-    if (GBrowserIsCompatible()) {
-        var point = new GLatLng(({$c_commu.map_latitude}), ({$c_commu.map_longitude}));
-        var zoom = ({$c_commu.map_zoom});
-        var html = '<div><img src="({t_img_url filename=$c_commu.image_filename w=120 h=120 noimg=no_logo})" width="60" height="60" align="left" hspace="5">({$c_commu.name})</div>';
-
-        var map = new GMap2(document.getElementById("map"));
-        map.addControl(new GSmallMapControl());
-        map.addControl(new GMapTypeControl());
-        map.setCenter(point, zoom);
-
-        var marker = new GMarker(point);
-        map.addOverlay(marker);
-        GEvent.addListener(marker, "click", function() {
-            marker.openInfoWindowHtml(html);
-        });
-    }
-}
-//-->
-</script>
-<body onLoad="load()" onUnload="GUnload()" id="pc_page_({$INC_HEADER_page_name})">
-({else})
 <body id="pc_page_({$INC_HEADER_page_name})">
-({/if})
 
 ({$INC_HEADER_inc_page_top2|smarty:nodefaults})
 
