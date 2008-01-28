@@ -92,7 +92,7 @@
 ({if $item.image_filename})<span class="padding_s"><a href="({t_img_url filename=$item.image_filename})" target="_blank"><img src="({t_img_url filename=$item.image_filename w=120 h=120})"></a></span>({/if})
 </div>
 ({/if})
-({$item.info|nl2br})
+({$item.info|nl2br|t_url2cmd:'community'|t_cmd:'community'})
 </td>
 </tr>
 ({****})
