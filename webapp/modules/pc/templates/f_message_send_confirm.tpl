@@ -157,7 +157,7 @@
 
 <div class="padding_s">
 
-({$form_val.body|nl2br})
+({$form_val.body|nl2br|t_url2cmd:'message'|t_cmd:'message'})
 
 </div>
 
