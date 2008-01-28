@@ -10,6 +10,10 @@ class ktai_page_h_ranking extends OpenPNE_Action
     {
         $u  = $GLOBALS['KTAI_C_MEMBER_ID'];
 
+        if (!OPENPNE_USE_RANKING) {
+            ktai_display_error(SNS_NAME . 'では、ランキングの閲覧はおこなえません');
+        }
+
         // --- リクエスト変数
         $kind = $requests['kind'];
         // ----------
