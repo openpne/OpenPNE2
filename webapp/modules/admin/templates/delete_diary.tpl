@@ -56,7 +56,7 @@
 ({if $diary.image_filename_3})<span class="padding_s"><a href="({t_img_url filename=$diary.image_filename_3})" target="_blank"><img src="({t_img_url filename=$diary.image_filename_3 w=120 h=120})"></a></span>({/if})
 </div>
 ({/if})
-({$diary.body|nl2br})
+({$diary.body|nl2br|t_url2cmd:'diary'|t_cmd:'diary'})
 </td>
 </tr>
 ({****})
