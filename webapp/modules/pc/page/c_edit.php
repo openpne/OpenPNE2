@@ -71,17 +71,6 @@ class pc_page_c_edit extends OpenPNE_Action
         $this->set('is_unused_join_commu', util_is_unused_mail('m_pc_join_commu'));
         $this->set('u', $u);
 
-        //-- Google MAPs
-        if (OPENPNE_USE_COMMU_MAP) {
-            $pref_list = db_etc_c_profile_pref_list();
-
-            // get pref_id selected
-            $pref_id = db_etc_c_profile_pref_id4latlng($c_commu['map_latitude'], $c_commu['map_longitude'], $c_commu['map_zoom']);
-
-            $this->set('pref_list', $pref_list);
-            $this->set('pref_id', $pref_id);
-        }
-
         return 'success';
     }
 }
