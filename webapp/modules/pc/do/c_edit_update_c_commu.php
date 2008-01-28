@@ -78,11 +78,7 @@ class pc_do_c_edit_update_c_commu extends OpenPNE_Action
             $info,
             $public_flag,
             $image_filename,
-            $is_send_join_mail,
-            $is_display_map,
-            $map_latitude,
-            $map_longitude,
-            $map_zoom);
+            $is_send_join_mail);
 
         $p = array('target_c_commu_id' => $target_c_commu_id);
         openpne_redirect('pc', 'page_c_home', $p);
