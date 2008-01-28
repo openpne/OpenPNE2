@@ -39,7 +39,7 @@
 お誕生日にﾒｯｾｰｼﾞを送りましょう</a>
 <hr color="#({$ktai_color_config.border_02})">
 </td></tr>
-({elseif $days_birthday <= 3})({* 誕生日3日以内 *})
+({elseif $days_birthday > 0 && $days_birthday <= 3})({* 誕生日3日以内 *})
 <tr><td colspan="2" align="center">
 <a href="({t_url m=ktai a=page_f_message_send})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">☆もうすぐ誕生日です!☆<br>
 お誕生日にはﾒｯｾｰｼﾞを送りましょう</a>
