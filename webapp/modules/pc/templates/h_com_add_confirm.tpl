@@ -140,7 +140,7 @@
 
 <div class="padding_s">
 
-({$form_val.info|nl2br})
+({$form_val.info|nl2br|t_url2cmd:'community'|t_cmd:'community'})
 
 </div>
 

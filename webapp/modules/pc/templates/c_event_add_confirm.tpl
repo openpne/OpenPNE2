@@ -142,7 +142,7 @@
 
 <div class="padding_s">
 
-({$event.detail|nl2br})
+({$event.detail|nl2br|t_url2cmd:'community'|t_cmd:'community'})
 
 </div>
 
