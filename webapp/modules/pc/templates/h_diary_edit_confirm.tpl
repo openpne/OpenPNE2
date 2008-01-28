@@ -74,7 +74,7 @@
 <td class="bg_02" align="left" valign="middle">
 <div class="padding_s">
 
-({$form_val.body|nl2br})
+({$form_val.body|nl2br|t_url2cmd:'diary'|t_cmd:'diary'})
 
 </div>
 </td>
