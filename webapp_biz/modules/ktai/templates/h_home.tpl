@@ -74,7 +74,7 @@
 ({if $smarty.const.IS_USER_INVITE && ($smarty.const.OPENPNE_REGIST_FROM != $smarty.const.OPENPNE_REGIST_FROM_NONE)})[i:140]<a href="({t_url m=ktai a=page_h_invite})&amp;({$tail})">友人を誘う</a><br>({/if})
 </td></tr>
 <tr><td colspan="2" align="center">
-[i:119]<a href="#search">検索</a>/[i:70]<a href="({t_url m=ktai a=page_h_diary_list_all})&amp;({$tail})">最新日記</a>/[i:191]<a href="({t_url m=ktai a=page_h_ranking})&amp;({$tail})">ﾗﾝｷﾝｸﾞ</a>
+[i:119]<a href="#search">検索</a>/[i:70]<a href="({t_url m=ktai a=page_h_diary_list_all})&amp;({$tail})">最新日記</a>({if $smarty.const.OPENPNE_USE_RANKING})/[i:191]<a href="({t_url m=ktai a=page_h_ranking})&amp;({$tail})">ﾗﾝｷﾝｸﾞ</a>({/if})
 <hr color="#({$ktai_color_config.border_01})" size="3"></td></tr>
 
 <tr>
