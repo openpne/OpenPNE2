@@ -534,7 +534,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 </td>
 <td class="border_01 bg_02 padding_s" style="width:332px;border-top:none;">
 
-({$c_commu.info|t_url2cmd:'entry_point'|t_cmd:'entry_point'|nl2br})
+({$c_commu.info|nl2br|t_url2cmd:'community'|t_cmd:'community'})
 
 </td>
 </tr>
