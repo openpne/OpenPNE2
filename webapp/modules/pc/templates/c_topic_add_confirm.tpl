@@ -78,7 +78,7 @@
 <td style="width:421px;" class="bg_02" align="left" valign="middle">
 <div class="padding_s">
 
-({$c_topic.body|nl2br})
+({$c_topic.body|nl2br|t_url2cmd:'community'|t_cmd:'community'})
 
 </div>
 </td>
