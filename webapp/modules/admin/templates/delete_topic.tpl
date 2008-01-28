@@ -64,7 +64,7 @@
 ({if $topic.image_filename3})<span class="padding_s"><a href="({t_img_url filename=$topic.image_filename3})" target="_blank"><img src="({t_img_url filename=$topic.image_filename3 w=120 h=120})"></a></span>({/if})
 </div>
 ({/if})
-({$topic.body|nl2br})
+({$topic.body|nl2br|t_url2cmd:'community'|t_cmd:'community'})
 </td>
 </tr>
 ({****})
