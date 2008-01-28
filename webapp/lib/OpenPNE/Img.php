@@ -280,7 +280,7 @@ class OpenPNE_Img
                 imagecolorset($source_gdimg, 0, $trnprt_color['red'], $trnprt_color['green'], $trnprt_color['blue']);
                 imagefill($output_gdimg, 0, 0, 0);
                 imagecolortransparent($output_gdimg, 0);
-            } elseif ($this->$this->output_format == 'png') {  // PNG-24
+            } elseif ($this->output_format == 'png') {  // PNG-24
                 // アルファチャンネル情報を保存するには、アルファブレンディングを解除する必要がある
                 imagealphablending($output_gdimg, false);
                 imagesavealpha($output_gdimg, true);
