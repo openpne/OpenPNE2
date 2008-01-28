@@ -50,6 +50,7 @@ class OpenPNE_Config
             'OPENPNE_SKIN_THEME',
             'OPENPNE_USE_KTAI_LOGO',
             'OPENPNE_IS_SET_KTAI_FONT_SIZE',
+            'OPENPNE_USE_RANKING',
         );
     }
 
@@ -107,6 +108,7 @@ class OpenPNE_Config
             'DISPLAY_LOGIN' => 1,
             'DISPLAY_SCHEDULE_HOME' => 1,
             'DISPLAY_SEARCH_HOME' => 1,
+            'OPENPNE_USE_RANKING' => 1,
             'DAILY_NEWS_DAY' => '月,木',
             'USE_BOOKMARK_FEED' => false,
             'USE_SHINOBIASHI' => false,

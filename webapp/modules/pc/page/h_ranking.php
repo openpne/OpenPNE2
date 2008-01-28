@@ -10,6 +10,11 @@ class pc_page_h_ranking extends OpenPNE_Action
     {
         $u = $GLOBALS['AUTH']->uid();
 
+        if (!OPENPNE_USE_RANKING) {
+            openpne_forward('pc', 'page', 'h_err_ranking');
+            exit;
+        }
+
         // --- リクエスト変数
         $kind = $requests['kind'];
         // ----------
