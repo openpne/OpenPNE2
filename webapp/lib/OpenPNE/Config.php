@@ -179,7 +179,6 @@ class OpenPNE_Config
             'SERVER_IP_KEY' => 'REMOTE_ADDR',
             'OPENPNE_USE_FUNCTION_CACHE' => false,
             'OPENPNE_USE_MYSQL_HINT' => false,
-            'OPENPNE_USE_COMMU_MAP' => true,
             'OPENPNE_USE_OLD_CRYPT_BLOWFISH' => false,
             'OPENPNE_SESSION_CHECK_URL' => false,
             'OPENPNE_DASHBOARD_URL' => 'http://ad.pne.jp/dashboard/',
