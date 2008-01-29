@@ -56,7 +56,11 @@
 ({if $diary.image_filename_3})<span class="padding_s"><a href="({t_img_url filename=$diary.image_filename_3})" target="_blank"><img src="({t_img_url filename=$diary.image_filename_3 w=120 h=120})"></a></span>({/if})
 </div>
 ({/if})
+({if $smarty.const.OPENPNE_ADMIN_CONVERT_URL})
 ({$diary.body|nl2br|t_url2cmd:'diary'|t_cmd:'diary'})
+({else})
+({$diary.body|nl2br})
+({/if})
 </td>
 </tr>
 ({****})
