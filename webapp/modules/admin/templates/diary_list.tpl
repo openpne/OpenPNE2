@@ -66,7 +66,7 @@
 <tr>
 <th>タイトル</th>
 <td>
-<a href="({t_url _absolute=1 m=pc a=page_fh_diary})&amp;target_c_diary_id=({$item.c_diary_id})" target="_blank">({$item.subject})</a> (コメント({$item.count_comments})件)
+<a href="({t_url _absolute=1 m=pc a=page_fh_diary})&amp;target_c_diary_id=({$item.c_diary_id})" target="_blank">({$item.subject})</a> (({if $item.count_comments})<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('diary_comment_list','page')})&amp;target_c_diary_id=({$item.c_diary_id})">({/if})コメント({$item.count_comments})件({if $item.count_comments})</a>({/if}))
 </td>
 </tr>
 ({****})
@@ -74,6 +74,19 @@
 <th>作成者</th>
 <td>
 <a href="({t_url _absolute=1 m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})" target="_blank">({$item.c_member.nickname})</a>
+</td>
+</tr>
+({****})
+<tr>
+<th>公開範囲</th>
+<td>
+({if $item.public_flag == "public"})
+全員に公開
+({elseif $item.public_flag == "friend"})
+({$smarty.const.WORD_MY_FRIEND})まで公開
+({elseif $item.public_flag == "private"})
+公開しない
+({/if})
 </td>
 </tr>
 ({****})
