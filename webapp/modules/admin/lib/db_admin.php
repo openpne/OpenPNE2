@@ -2039,6 +2039,40 @@ function monitor_diary_comment_list4c_diary_comment_id($c_diary_comment_id, $pag
     return array($list , $prev , $next, $total_num, $total_page_num);
 }
 
+function monitor_diary_comment_list4c_diary_id($c_diary_id, $page_size, $page)
+{
+    $page = intval($page);
+    $page_size = intval($page_size);
+
+    $where = " WHERE c_diary_comment.c_diary_id = ? ";
+    $params[] = intval($c_diary_id);
+    
+    $select = "SELECT c_diary_comment.*, c_diary.subject";
+    $from = " FROM c_diary_comment"
+        ." LEFT JOIN c_diary ON c_diary.c_diary_id = c_diary_comment.c_diary_id ";
+    $order = " ORDER BY r_datetime desc";
+    
+    $sql = $select . $from . $where . $order;
+    $list = db_get_all_limit($sql,($page-1)*$page_size,$page_size,$params);
+    
+    foreach ($list as $key => $value) {
+        $list[$key]['c_member'] = db_member_c_member_with_profile($value['c_member_id']);
+        $list[$key]['count_comments'] = db_diary_count_c_diary_comment4c_diary_id($value['c_diary_id']);
+    }
+    
+    $sql = 
+        "SELECT COUNT(*) "
+        . $from
+        . $where ;
+    $total_num = db_get_one($sql, $params);
+    
+    $total_page_num =  ceil($total_num / $page_size);
+    $next = ($page < $total_page_num);
+    $prev = ($page > 1);
+    
+    return array($list , $prev , $next, $total_num, $total_page_num);
+}
+
 function monitor_commu_list($keyword, $page_size, $page)
 {
     $page = intval($page);
