@@ -20,12 +20,16 @@ class admin_page_diary_comment_list extends OpenPNE_Action
         $page = $requests['page'];
         $keyword = $requests['keyword'];
         $target_c_diary_comment_id = $requests['target_c_diary_comment_id'];
+        $target_c_diary_id = $requests['target_c_diary_id'];
 
         $page_size = 20;
         
         if ($target_c_diary_comment_id) {
             list($diary_comment_list,$prev,$next,$total_num,$total_page_num) 
             = monitor_diary_comment_list4c_diary_comment_id($target_c_diary_comment_id,$page_size,$page);
+        } elseif ($target_c_diary_id) {
+            list($diary_comment_list, $prev, $next, $total_num, $total_page_num)
+            = monitor_diary_comment_list4c_diary_id($target_c_diary_id, $page_size, $page);
         } else {
             list($diary_comment_list,$prev,$next,$total_num,$total_page_num) 
             = monitor_diary_comment_list($keyword,$page_size,$page);
@@ -37,6 +41,7 @@ class admin_page_diary_comment_list extends OpenPNE_Action
         $this->set('keyword_encode', urlencode($keyword));
         $this->set('keyword', $keyword);
         $this->set('target_c_diary_comment_id', $target_c_diary_comment_id);
+        $this->set('target_c_diary_id', $target_c_diary_id);
         $this->set('total_num', $total_num);
         
         for($i = $page-10<1 ? 1 : $page-10 ;($i<=$total_page_num)&&($i<$page+10);$i++)
