@@ -184,7 +184,7 @@
 ({if $prof.profile[$profile.name].value})
 
 ({if $profile.form_type == 'textarea'})
-    ({$prof.profile[$profile.name].value|t_url2cmd:'community'|t_cmd:'community'|nl2br})
+    ({$prof.profile[$profile.name].value|t_url2cmd:'profile'|t_cmd:'profile'|nl2br})
 ({elseif $profile.form_type == 'checkbox'})
     ({$prof.profile[$profile.name].value|@t_implode:", "})
 ({else})
