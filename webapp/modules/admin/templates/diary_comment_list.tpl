@@ -26,7 +26,15 @@
 <form action="./" method="get">
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="page_({$hash_tbl->hash('diary_comment_list','page')})" />
-<h3 class="item">ID検索</h3>
+<h3 class="item">日記ID検索</h3>
+<input class="basic" type="text" name="target_c_diary_id" value="({$target_c_diary_id})" />
+<span class="textBtnS"><input type="submit" value="検索" /></span>
+</form>
+
+<form action="./" method="get">
+<input type="hidden" name="m" value="({$module_name})" />
+<input type="hidden" name="a" value="page_({$hash_tbl->hash('diary_comment_list','page')})" />
+<h3 class="item">日記コメントID検索</h3>
 <input class="basic" type="text" name="target_c_diary_comment_id" value="({$target_c_diary_comment_id})" />
 <span class="textBtnS"><input type="submit" value="検索" /></span>
 </form>
