@@ -13,59 +13,6 @@
 <script type="text/javascript" src="./js/pne.js"></script>
 <style type="text/css">
 <!--
-/*あしあとページ [12/11(火)] 暫定 */
-div.section {
-	width: 564px;
-	margin: 8px 0;
-	padding: 7px;
-	border: 1px solid #ccc;
-	text-align: left;
-	font-size: 83.3%;
-}
-dl.item {
-	margin: 0;
-	padding: 0;
-	border: 1px solid #ccc;
-}
-dt.heading {
-	padding: 2px 0 2px 36px;
-	background-image: url(({t_img_url_skin filename=content_header_1}));
-	background-repeat: no-repeat;
-	background-attachment: scroll;
-	background-position: 0% 50%;
-	color: #222222;
-	font-weight: bold;
-}
-dd.description {
-	margin: 0;
-	padding: 10px 24px;
-	border-width: 2px 1px;
-	border-style: solid;
-	border-color: #ccc;	
-}
-dd.description p {
-	margin: 0;
-	padding: 0;
-}
-dd.data {
-	margin: 0;
-	padding: 0;
-}
-dd.data #ashiato {
-	margin: 8px 32px;
-	border: 1px solid #ccc;
-}
-dd.data #ashiato p {
-	margin: 8px 0 8px 140px;
-	padding: 0;
-}
-dd.data #ashiato_list {
-	margin: 16px 0 10px 140px;
-	padding: 0;
-	list-style-type: none;
-	list-style-position: outside;
-}
-
 /*枠線要素*/
 .border_01 { border: #({$INC_HEADER_color_config.border_01}) 1px solid ; }
 .border_07 { border: #({$INC_HEADER_color_config.border_07}) 1px solid ; }
