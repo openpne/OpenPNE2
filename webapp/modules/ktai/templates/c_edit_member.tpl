@@ -25,6 +25,8 @@
 ({/if})
 ({if $item.is_display_sub_admin})
 <a href="({t_url m=ktai a=page_c_sub_admin_request})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;target_c_member_id=({$item.c_member_id})&amp;({$tail})">副管理者に任命</a><br>
+({elseif $item.is_c_commu_sub_admin && $c_commu.c_member_id_sub_admin != $u })
+<a href="({t_url m=ktai a=page_c_edit_member_delete_c_sub_admin_confirm})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;target_c_member_id=({$item.c_member_id})&amp;({$tail})">副管理者から降格</a><br>
 ({/if})
 ({/if})
 ({/if})
