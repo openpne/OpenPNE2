@@ -38,7 +38,7 @@
 </td>
 
 <td class="bg_02">
-({$c_commu_topic_comment.body|nl2br})
+({$c_commu_topic_comment.body|nl2br|t_url2cmd:'community'|t_cmd:'community'})
 </td>
 
 </tr>
