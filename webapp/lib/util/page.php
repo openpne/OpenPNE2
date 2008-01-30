@@ -312,8 +312,13 @@ function p_f_home_last_login4access_date($access_date)
  */
 function getCountdownDays($month, $day)
 {
-	if ( $monyh == 0 or $day == 0 )	//誕生日等が未登録な場合
-		return -1;					//エラーを返す
+    $month = (int)$month;
+    $day = (int)$day;
+
+    // 月または日が未登録な場合エラーを返す
+    if ($monyh == 0 || $day == 0) {
+        return -1;
+    }
 
 	$year = date('Y');
 
