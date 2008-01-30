@@ -65,7 +65,7 @@
 &nbsp;
 ({/if})
 <br>
-({$target_diary_comment.body|nl2br|default:"&nbsp;"})<br>
+({$target_diary_comment.body|nl2br|default:"&nbsp;"|t_url2cmd:'diary'|t_cmd:'diary'})<br>
 
 </div>
 
