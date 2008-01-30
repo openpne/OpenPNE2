@@ -67,7 +67,7 @@
 
 <div class="padding_s lh_120">
 
-({$c_commu_topic_comment.body|nl2br})
+({$c_commu_topic_comment.body|nl2br|t_url2cmd:'community'|t_cmd:'community'})
 
 </div>
 
