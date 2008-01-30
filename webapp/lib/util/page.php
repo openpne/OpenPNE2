@@ -316,7 +316,7 @@ function getCountdownDays($month, $day)
     $day = (int)$day;
 
     // 月または日が未登録な場合エラーを返す
-    if ($monyh == 0 || $day == 0) {
+    if ($month == 0 || $day == 0) {
         return -1;
     }
 
