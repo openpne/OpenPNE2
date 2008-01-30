@@ -9,6 +9,7 @@
 <link href="modules/admin/default.css" rel="stylesheet" type="text/css" media="all" />
 <script type="text/javascript" src="./js/prototype.js"></script>
 <script type="text/javascript" src="./modules/admin/default.js"></script>
+<script type="text/javascript" src="./js/pne.js"></script>
 </head>
 <body id="admin_page_({$CURRENT_ACTION})">
 
