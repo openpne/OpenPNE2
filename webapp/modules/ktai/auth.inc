@@ -41,22 +41,23 @@ if (IS_SLAVEPNE && (empty($_SESSION['regist_step']) || !$_SESSION['regist_step']
     $current_page = $GLOBALS['__Framework']['current_type']."_".$GLOBALS['__Framework']['current_action'];
     
     //プロフィールが未登録の場合はリダイレクト
-    $prof_ext_page=array(
-    'do_h_regist_prof'=>true,
-    'page_h_regist_prof'=>true,
+    $prof_ext_page = array(
+        'page_h_regist_pre' => true,
+        'do_h_regist_prof' => true,
+        'page_h_regist_prof' => true,
     );
     
-    if (($check_param==1) && !$prof_ext_page[$current_page]) {
-        openpne_redirect('ktai', 'page_h_regist_prof');
+    if (($check_param == 1) && !$prof_ext_page[$current_page]) {
+        openpne_redirect('ktai', 'page_h_regist_pre');
     }
     
     //メールアドレスが未登録の場合はリダイレクト
-    $mail_ext_page=array(
-    'do_h_regist_address'=>true,
-    'page_h_regist_address'=>true,
+    $mail_ext_page = array(
+        'do_h_regist_address' => true,
+        'page_h_regist_address' => true,
     );
     
-    if (($check_param==2) && !$mail_ext_page[$current_page]) {
+    if (($check_param == 2) && !$mail_ext_page[$current_page]) {
         openpne_redirect('ktai', 'page_h_regist_address');
     }
 }
