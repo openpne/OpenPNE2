@@ -414,9 +414,20 @@
 <input name="submit" value="ﾛｸﾞｲﾝ" type="submit"><br>
 </form>({/capture})
 
+({capture name=pc_html_password})
+<a href="({t_url _html=0 _absolute=1 m=pc a=page_o_password_query})">パスワードを忘れた方はこちらへ</a>({/capture})
+
+({capture name=ktai_html_password})
+<a href="({t_url _html=0 _absolute=1 m=ktai a=page_o_password_query})">&gt;&gt;ﾊﾟｽﾜｰﾄﾞを忘れた方</a>({/capture})
+
 <dl class="sampleHtml">
 <dt><strong class="item">PC版ログインフォーム</strong></dt>
 <dd><textarea cols="84" rows="14" readonly="readonly">({$smarty.capture.pc_html_form})</textarea></dd>
+</dl>
+
+<dl class="sampleHtml">
+<dt><strong class="item">PC版パスワード再発行ページへのリンク</strong></dt>
+<dd><textarea cols="84" rows="3" readonly="readonly">({$smarty.capture.pc_html_password})</textarea></dd>
 </dl>
 
 <dl class="sampleHtml">
@@ -424,12 +435,9 @@
 <dd><textarea cols="84" rows="14" readonly="readonly">({$smarty.capture.ktai_html_form})</textarea></dd>
 </dl>
 
-({capture name=html_password})
-<a href="({t_url _html=0 _absolute=1 m=pc a=page_o_password_query})">パスワードを忘れた方はこちらへ</a>({/capture})
-
 <dl class="sampleHtml">
-<dt><strong class="item">パスワード再発行ページへのリンク</strong></dt>
-<dd><textarea cols="84" rows="3" readonly="readonly">({$smarty.capture.html_password})</textarea></dd>
+<dt><strong class="item">携帯版パスワード再発行ページへのリンク</strong></dt>
+<dd><textarea cols="84" rows="3" readonly="readonly">({$smarty.capture.ktai_html_password})</textarea></dd>
 </dl>
 
 ({if !$smarty.const.IS_CLOSED_SNS})
