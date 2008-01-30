@@ -18,7 +18,5 @@
 <input type="submit" value="登録ﾌｫｰﾑへ"><br>
 </form>
 </center>
-<br>
-[i:38]<a href="({t_url m=ktai a=page_o_login})">すでに登録済みの方はこちら</a>
 
 ({$inc_ktai_footer|smarty:nodefaults})
