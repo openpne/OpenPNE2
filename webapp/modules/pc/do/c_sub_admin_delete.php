@@ -19,12 +19,16 @@ class pc_do_c_sub_admin_delete extends OpenPNE_Action
         // ----------
 
         //--- 権限チェック
-        //自分がコミュニティ管理者
-        //targetがコミュニティメンバー
-        //targetが副管理者
+        // 自分がコミュニティ管理者
+        // 自分がコミュニティ副管理者でない
+        // targetがコミュニティメンバー
+        // targetが副管理者
 
         $status = db_common_commu_status($u, $target_c_commu_id);
         if (!$status['is_commu_admin']) {
+            handle_kengen_error();
+        }
+        if ($status['is_commu_sub_admin']) {
             handle_kengen_error();
         }
 
