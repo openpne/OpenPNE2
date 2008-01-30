@@ -83,7 +83,7 @@
 
 <div class="padding_s">
 
-({$body|nl2br})
+({$body|nl2br|t_url2cmd:'community'|t_cmd:'community'})
 
 </div>
 
