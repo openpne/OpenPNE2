@@ -82,16 +82,15 @@ em {
 
 <h2 id="section0">0. はじめに</h2>
 
-<p>この文書は、OpenPNE の SlavePNE 機能を使って<a href="http://www.docomo.biz/html/product/mybox/">マイボックス</a>による認証を実現するためのものです。OpenPNE バージョン2.11.4 を基にして書かれています。</p>
-<p>OpenPNE でマイボックス認証をおこなうためには以下のものが必要です。</p>
-<dl>
-<dt>マイボックスが利用可能なドメイン</dt>
-<dt>マイボックスサービス番号</dt>
-<dt>認証コード</dt>
-</dl>
-<p>なお、あらかじめオペレーション端末からユーザ登録をおこなっておく必要があります。</p>
-<p>詳細は、マイボックスの契約後に受け取ることのできる「インターフェース仕様書」をご覧ください。</p>
-<p>OpenPNE自体の動作環境については、<a href="./OpenPNE_setup.html">MySQL環境用セットアップガイド</a>、<a href="./OpenPNE_setup_pgsql.html">PostgreSQL環境用セットアップガイド</a>をご覧ください。</p>
+<p>この文書は、OpenPNE の SlavePNE 機能により<a href="http://www.docomo.biz/html/product/mybox/">マイボックスサービス</a>を利用したユーザ認証を実現する手順を示したものです。OpenPNE バージョン2.11.4 を基にして書かれています。</p>
+<p>OpenPNE でマイボックス認証をおこなうためには、あらかじめマイボックスサービスへの登録が必要です。また、OpenPNE 側の設定には以下の情報が必要となります。</p>
+<ul>
+<li>マイボックスが利用可能なドメイン</li>
+<li>マイボックスサービス番号</li>
+<li>認証コード</li>
+</ul>
+<p>なお、OpenPNE にログインする際には、あらかじめオペレーション端末からマイボックスへユーザ登録をおこなっておく必要があります。</p>
+<p>OpenPNE 自体の動作環境については、<a href="./OpenPNE_setup.html">MySQL環境用セットアップガイド</a>、<a href="./OpenPNE_setup_pgsql.html">PostgreSQL環境用セットアップガイド</a>をご覧ください。</p>
 
 <h2 id="section1">1. ファイルの設置</h2>
 <p><a href="./OpenPNE_setup.html">MySQL環境用セットアップガイド</a>、<a href="./OpenPNE_setup_pgsql.html">PostgreSQL環境用セットアップガイド</a>の「1. ファイルの設置」をご覧ください。</p>
@@ -100,21 +99,21 @@ em {
 
 <p>先に<a href="./OpenPNE_setup.html">MySQL環境用セットアップガイド</a>、<a href="./OpenPNE_setup_pgsql.html">PostgreSQL環境用セットアップガイド</a>の「2. 設定ファイルの変更」の手順をおこなってください。</p>
 
-<p>config.php の次の項目を設定します。</p>
+<p>OpenPNE標準の設定に加えて、config.php の以下の項目を設定します。</p>
 
 <dl>
 <dt>IS_SLAVEPNE</dt>
-    <dd>外部認証を使用するかどうかの設定です。<br><em>true</em> に設定してください。</dd>
+    <dd>SlavePNE（外部認証機能）を使用するかどうかの設定です。<br><em>true</em> に設定してください。</dd>
 <dt>_OPENPNE_AUTH_CONFIG</dt>
-    <dd>外部認証を使用する場合の認証方式についての設定項目です。<br>
+    <dd>SlavePNEを使用する場合の認証方式についての設定項目です。<br>
     次のように書き換えてください（ただし、<em>【マイボックスサービス番号】</em>と<em>【認証コード】</em>の部分は、あらかじめ用意しているものに置き換えてください）。
 <pre>// IS_SLAVEPNEがtrueの場合のauthオプション
 $GLOBALS['_OPENPNE_AUTH_CONFIG'] = 
 array(
 'storage' =&gt; "Mybox",
 'options' =&gt; array(
-    'xpid' =&gt; '【マイボックスサービス番号】',
-    'pswd' =&gt; '【認証コード】',),
+    'xpid' =&gt; '<em>【マイボックスサービス番号】</em>',
+    'pswd' =&gt; '<em>【認証コード】</em>',),
 );
 if (is_null($_POST['username']) &amp;&amp; $_GET['key'] == 'mybox' &amp;&amp; !is_null($_SERVER['HTTP_X_CUID'])) {
     $_POST['username'] = $_SERVER['HTTP_X_CUID'];
@@ -135,7 +134,7 @@ if (is_null($_POST['username']) &amp;&amp; $_GET['key'] == 'mybox' &amp;&amp; !i
 <p>先に<a href="./OpenPNE_setup.html">MySQL環境用セットアップガイド</a>、<a href="./OpenPNE_setup_pgsql.html">PostgreSQL環境用セットアップガイド</a>の「6. 管理画面へのアクセス」の手順をおこなってください。</p>
 
 <h3 id="section6-1">6-1. マイボックス認証専用のログインページを作成する</h3>
-<p>「お知らせ・規約設定」メニューから「フリーページ管理」を選択し、フリーページ管理ページを表示します。</p>
+<p>管理画面上部の「お知らせ・規約設定」メニューから「フリーページ管理」を選択し、フリーページ管理ページを表示します。</p>
 <p>ページ下部の「フリーページの新規追加」にある「ページ内容」の欄に、以下の内容を記述してください。</p>
 <pre>以下のﾎﾞﾀﾝをｸﾘｯｸしてﾛｸﾞｲﾝしてください。
 &lt;center&gt;
@@ -150,19 +149,21 @@ if (is_null($_POST['username']) &amp;&amp; $_GET['key'] == 'mybox' &amp;&amp; !i
 <p>クリックした後に表示される「フリーページリスト」ページに追加したフリーページへのリンクが表示されるので、そのURLを控えておきます。</p>
 
 <h3 id="section6-2">6-2. SNS設定を変更する</h3>
-<p>「SNS設定」メニューをクリックし、SNS設定ページを表示します。</p>
+<p>管理画面上部の「SNS設定」メニューをクリックし、SNS設定ページを表示します。</p>
 <p>次の項目の設定をおこないます。</p>
 <dl>
+<dt>PC版使用設定</dt>
+    <dd>「使用不可にする」を選択してください。</dd>
 <dt>携帯版外部ログインページURL</dt>
     <dd>「6-1. マイボックス認証専用のログインページを作成する」で追加したフリーページのURLを入力してください。</dd>
 <dt>通常ログインページ表示設定</dt>
-    <dd>「外部ログインページにリダイレクトする」を選択します。</dd>
+    <dd>「外部ログインページにリダイレクトする」を選択してください。</dd>
 </dl>
-<p>以上の内容を確認し、「設定変更する」ボタンを押してください。</p>
+<p>内容を確認し、「設定変更する」ボタンを押してください。</p>
 
 <hr>
 
-<p>これでセットアップは完了です。友達を招待してみたり、日記を書いたり、あなただけのSNSを作り上げてください！</p>
+<p>以上でセットアップは完了です。</p>
 
 </body>
 </html>
