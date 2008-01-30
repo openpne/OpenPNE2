@@ -48,7 +48,7 @@
 <td style="width:481px;" class="bg_02" align="left" valign="middle">
 <div class="padding_s">
 
-({$event_write.body|nl2br})
+({$event_write.body|nl2br|t_url2cmd:'community'|t_cmd:'community'})
 
 </div>
 </td>
