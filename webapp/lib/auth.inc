@@ -49,10 +49,11 @@ if (IS_SLAVEPNE && (empty($_SESSION['regist_step']) || !$_SESSION['regist_step']
         'do_h_regist_prof' => true,
         'page_h_regist_prof' => true,
         'do_inc_page_header_logout' => true,
+        'page_h_regist_intro' => true,
     );
 
     if (($check_param == 1) && !$prof_ext_page[$current_page]) {
-        openpne_redirect('pc', 'page_h_regist_prof');
+        openpne_redirect('pc', 'page_h_regist_intro');
     }
 
     // メールアドレスが未登録の場合はリダイレクト
