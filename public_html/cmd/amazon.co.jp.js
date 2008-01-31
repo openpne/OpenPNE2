@@ -24,16 +24,20 @@ function url2cmd(url)
         tag = '';
     }
 
-    if(id,tag){
-        main(id,tag);
-    }else{
+    if (id) {
+        main(id, tag);
+    } else {
         pne_url2a(url);
     }
 }
 
-function main(id,tag)
+function main(id, tag)
 {
-    var url = "http://amazon.openpne.jp/?id=" + id + "&tag=" + tag;
+    var url = 'http://amazon.openpne.jp/?id=' + id;
+    if (tag) {
+        url += '&tag=' + tag;
+    }
+
     var html = ''
     + '<iframe MARGINWIDTH="0" MARGINHEIGHT="0" HSPACE="0" VSPACE="0" FRAMEBORDER="0" SCROLLING="no" BORDERCOLOR="#000000" src="' + url + '" name="sample" width="420" height="320">'
     + 'この部分はインラインフレームを使用しています。'
