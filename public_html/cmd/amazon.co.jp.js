@@ -17,7 +17,7 @@ function url2cmd(url)
         id = RegExp.$1;
     }
 
-    var match_tag = url.match(/tag=([a-zA-Z0-9_\-]+));
+    var match_tag = url.match(/tag=([a-zA-Z0-9_\-]+)/);
     if (match_tag) {
         tag = RegExp.$1;
     } else {
