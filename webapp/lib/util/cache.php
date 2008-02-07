@@ -162,9 +162,11 @@ function cache_drop_c_commu_list4c_member_id($c_member_id)
     $c_member_id = (int)$c_member_id;
     pne_cache_drop('db_commu_c_commu_list_lastupdate4c_member_id', $c_member_id, 5);
     pne_cache_drop('db_commu_c_commu_list4c_member_id_2', $c_member_id, 9);
+	pne_cache_drop('db_commu_c_commu_topic_comment_list4c_member_id', $c_member_id, 5);
     $c_member_id = (string)$c_member_id;
     pne_cache_drop('db_commu_c_commu_list_lastupdate4c_member_id', $c_member_id, 5);
     pne_cache_drop('db_commu_c_commu_list4c_member_id_2', $c_member_id, 9);
+	pne_cache_drop('db_commu_c_commu_topic_comment_list4c_member_id', $c_member_id, 5);
 }
 
 
