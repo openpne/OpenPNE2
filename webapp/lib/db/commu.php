@@ -807,6 +807,18 @@ function db_commu_anataga_c_commu_sub_admin_confirm_list4c_member_id($c_member_i
  */
 function db_commu_c_commu_topic_comment_list4c_member_id($c_member_id, $limit)
 {
+
+    static $is_recurred = false;  //再帰処理中かどうかの判定フラグ
+
+    if (!$is_recurred) {  //function cacheのために再帰処理を行う
+        $is_recurred = true;
+        $funcargs = func_get_args();
+        return pne_cache_recursive_call(OPENPNE_FUNCTION_CACHE_LIFETIME_FAST, __FUNCTION__, $funcargs);
+    }
+
+    $is_recurred = false;
+
+
     $sql = 'SELECT c_commu_id FROM c_commu_member WHERE c_member_id = ?';
     $c_commu_id_list = db_get_col($sql, array(intval($c_member_id)));
     if (!$c_commu_id_list) {
