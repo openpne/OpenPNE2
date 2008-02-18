@@ -42,24 +42,24 @@ class pc_do_c_topic_edit_update_c_commu_topic extends OpenPNE_Action
         if (is_null($title) || $title === '') $err_msg[] = "タイトルを入力してください";
         if (is_null($body) || $body === '') $err_msg[] = "詳細を入力してください";
 
-        if ($upfile_obj1['error'] !== UPLOAD_ERR_NO_FILE) {
+        if (empty($upfile_obj1) && $upfile_obj1['error'] !== UPLOAD_ERR_NO_FILE) {
             if (!($image = t_check_image($upfile_obj1))) {
                 $err_msg[] = '画像1は'.IMAGE_MAX_FILESIZE.'KB以内のGIF・JPEG・PNGにしてください';
             }
         }
-        if ($upfile_obj2['error'] !== UPLOAD_ERR_NO_FILE) {
+        if (empty($upfile_obj2) && $upfile_obj2['error'] !== UPLOAD_ERR_NO_FILE) {
             if (!($image = t_check_image($upfile_obj2))) {
                 $err_msg[] = '画像2は'.IMAGE_MAX_FILESIZE.'KB以内のGIF・JPEG・PNGにしてください';
             }
         }
-        if ($upfile_obj3['error'] !== UPLOAD_ERR_NO_FILE) {
+        if (empty($upfile_obj3) && $upfile_obj3['error'] !== UPLOAD_ERR_NO_FILE) {
             if (!($image = t_check_image($upfile_obj3))) {
                 $err_msg[] = '画像3は'.IMAGE_MAX_FILESIZE.'KB以内のGIF・JPEG・PNGにしてください';
             }
         }
 
         if (OPENPNE_USE_FILEUPLOAD) {
-            if ($upfile_obj4['error'] !== UPLOAD_ERR_NO_FILE) {
+            if (empty($upfile_obj4) && $upfile_obj4['error'] !== UPLOAD_ERR_NO_FILE) {
                 // ファイルサイズ制限
                 if ($upfile_obj4['size'] === 0 || $upfile_obj4['size'] > FILE_MAX_FILESIZE * 1024) {
                     $err_msg[] = 'ファイルは' . FILE_MAX_FILESIZE . 'KB以内のファイルにしてください（ただし空のファイルはアップロードできません）';
