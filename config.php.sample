@@ -410,6 +410,8 @@ ini_set('mbstring.internal_encoding', 'UTF-8');
 ini_set('mbstring.script_encoding'  , 'UTF-8');
 ini_set('mbstring.substitute_character', 'none');
 mb_regex_encoding('UTF-8');
+mb_substitute_character("long");
+mb_substitute_character(0x3013);
 
 // Validatorで全角スペースを削除するかどうか
 // mb_ereg_replace でエラーが出る場合は false にしてください
