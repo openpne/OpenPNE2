@@ -127,4 +127,7 @@ $GLOBALS['_OPENPNE_PC2KTAI_LINK_ACTION_LIST'] = array(
     'page_f_home'           => 'page_f_home',
 );
 
+mb_substitute_character("long");
+mb_substitute_character(0x3013);
+
 ?>
