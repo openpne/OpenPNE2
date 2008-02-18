@@ -50,7 +50,7 @@ class pc_page_f_message_send_confirm extends OpenPNE_Action
         }
 
         foreach ($upfiles as $key => $upfile) {
-            if ($upfile['error'] !== UPLOAD_ERR_NO_FILE) {
+            if (empty($upfile) && $upfile['error'] !== UPLOAD_ERR_NO_FILE) {
                 if (!($image = t_check_image($upfile))) {
                     $_REQUEST['msg'] = '画像は'.IMAGE_MAX_FILESIZE.'KB以内のGIF・JPEG・PNGにしてください';
                     openpne_forward('pc', 'page', 'f_message_send');
