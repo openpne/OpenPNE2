@@ -14,12 +14,12 @@ class pc_do_h_config_image extends OpenPNE_Action
         $u = $GLOBALS['AUTH']->uid();
         $upfile_obj = $_FILES['upfile'];
 
-        if (empty($upfile_obj) && $upfile_obj['error'] !== UPLOAD_ERR_NO_FILE) {
+        if (!empty($upfile_obj) && $upfile_obj['error'] !== UPLOAD_ERR_NO_FILE) {
             if (!($image = t_check_image($upfile_obj))) {
                 $p = array('msg' => '画像は'.IMAGE_MAX_FILESIZE.'KB以内のGIF・JPEG・PNGにしてください');
                 openpne_redirect('pc', 'page_h_config_image', $p);
             }
-        } elseif (!empty($upfile_obj) || $upfile_obj['error'] === UPLOAD_ERR_NO_FILE) {
+        } elseif (empty($upfile_obj) || $upfile_obj['error'] === UPLOAD_ERR_NO_FILE) {
             $p = array('msg' => '画像を指定してください');
             openpne_redirect('pc', 'page_h_config_image', $p);
         }
