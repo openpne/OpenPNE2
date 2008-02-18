@@ -38,7 +38,7 @@ class pc_do_c_edit_update_c_commu extends OpenPNE_Action
         if (!$name) $err_msg[] = "コミュニティ名を入力してください";
         if (!$info) $err_msg[] = "コミュニティの説明を入力してください";
 
-        if ($upfile_obj['error'] !== UPLOAD_ERR_NO_FILE) {
+        if (!empty($upfile_obj) && $upfile_obj['error'] !== UPLOAD_ERR_NO_FILE) {
             if (!($image = t_check_image($upfile_obj))) {
                 $err_msg[] = '画像は'.IMAGE_MAX_FILESIZE.'KB以内のGIF・JPEG・PNGにしてください';
             }
