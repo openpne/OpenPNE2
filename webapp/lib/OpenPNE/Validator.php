@@ -289,8 +289,8 @@ class OpenPNE_Validator
                     }
                     break;
                 case 'ntrim':
-                    // NULL バイトをすべて削除
-                    $value = str_replace("\0", '', $value);
+                    // NULL バイト・制御文字(HT,LF,NBSP以外)をすべて削除
+                    $value = preg_replace("/[\x{0}-\x{08}\x{0b}-\x{1f}\x{7f}-\x{9f}\x{ad}]/u", '', $value);
                     break;
                 case 'mysqltext':
                     if (is_string($value) && strlen($value) > 65535) {
