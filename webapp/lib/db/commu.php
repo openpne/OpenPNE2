@@ -2419,6 +2419,8 @@ function db_commu_delete_c_commu_topic($c_commu_topic_id)
  */
 function db_commu_insert_c_commu_topic_comment($c_commu_id, $c_commu_topic_id, $c_member_id, $body)
 {
+    cache_drop_c_commu_list4c_member_id($c_member_id);
+
     $number = _do_c_commu_topic_comment_number4c_commu_topic_id($c_commu_topic_id);
 
     $data = array(
@@ -2581,6 +2583,7 @@ function db_commu_insert_c_commu_topic($topic)
 {
     //function cacheの削除
     cache_drop_c_commu_topic($topic['c_commu_id']);
+    cache_drop_c_commu_list4c_member_id($topic['c_member_id']);
 
     $data = array(
         'c_commu_id'  => intval($topic['c_commu_id']),
@@ -2619,6 +2622,8 @@ function db_commu_insert_c_commu_topic($topic)
 
 function db_commu_insert_c_commu_topic_comment_3($comment)
 {
+    cache_drop_c_commu_list4c_member_id($comment['c_member_id']);
+
     $data = array(
         'c_commu_id'       => intval($comment['c_commu_id']),
         'c_member_id'      => intval($comment['c_member_id']),
