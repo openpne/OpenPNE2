@@ -23,10 +23,7 @@ class mail_sns
         // メンバーIDが見つからない場合は、ローカルパートに二重引用符を付加してリトライ
         if (!$this->c_member_id) {
             list($local, $domain) = explode('@', $this->from, 2);
-            if (strpos($this->from, '"') === false) {
-                $local = '"' . $local . '"';
-            }
-            $this->c_member_id = do_common_c_member_id4ktai_address($local . '@' . $domain);
+            $this->c_member_id = do_common_c_member_id4ktai_address('"' . $local . '"' . '@' . $domain);
         }
     }
 
