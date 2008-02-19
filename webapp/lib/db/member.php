@@ -1004,6 +1004,11 @@ function db_member_insert_c_member($c_member, $c_member_secure)
     //function cacheの削除
     cache_drop_c_member_profile($c_member_id);
 
+    if ($c_member_secure['ktai_address']) {
+        $c_member_secure['ktai_address'] = str_replace('"', '', $c_member_secure['ktai_address']);
+        $c_member_secure['regist_address'] = str_replace('"', '', $c_member_secure['regist_address']);
+    }
+
     $data = array(
         'c_member_id' => intval($c_member_id),
         'hashed_password' => md5($c_member_secure['password']),
@@ -1042,6 +1047,10 @@ function db_member_ktai_insert_c_member($profs)
     );
     $c_member_id_new = db_insert('c_member', $data);
 
+    if ($profs['ktai_address']) {
+        $profs['ktai_address'] = str_replace('"', '', $profs['ktai_address']);
+        $profs['regist_address'] = str_replace('"', '', $profs['regist_address']);
+    }
     $data = array(
         'c_member_id' => intval($c_member_id_new),
         'hashed_password' => md5($profs['password']),
@@ -1159,6 +1168,7 @@ function db_member_update_ktai_address($c_member_id, $ktai_address)
             'easy_access_id' => t_encrypt(''),
         );
     } else {
+        $ktai_address = str_replace('"', '', $ktai_address);
         $data = array('ktai_address' => t_encrypt($ktai_address));
     }
     $where = array('c_member_id' => intval($c_member_id));
