@@ -20,14 +20,10 @@ class mail_sns
 
         $this->c_member_id = do_common_c_member_id4ktai_address($this->from);
 
-        // メンバーIDが見つからない場合、
-        //   - 二重引用符がある場合：二重引用符を除去してリトライ
-        //   - 二重引用符がない場合：ローカルパートに二重引用符を付加してリトライ
+        // メンバーIDが見つからない場合は、ローカルパートに二重引用符を付加してリトライ
         if (!$this->c_member_id) {
             list($local, $domain) = explode('@', $this->from, 2);
-            if (strpos($this->from, '"') !== false) {
-                $local = str_replace('"', '', $local);
-            } else {
+            if (strpos($this->from, '"') === false) {
                 $local = '"' . $local . '"';
             }
             $this->c_member_id = do_common_c_member_id4ktai_address($local . '@' . $domain);
