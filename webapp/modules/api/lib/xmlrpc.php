@@ -40,7 +40,7 @@ function xmlrpc_get_image_url($image_filename = '', $no_image = true)
         if (!$no_image) {
             return '';
         }
-        $image_filename = 'no_image.gif';
+        $image_filename = db_get_c_skin_filename4skinname('no_image');
     }
 
     if (OPENPNE_IMG_URL) {
