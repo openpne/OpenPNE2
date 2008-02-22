@@ -349,7 +349,7 @@ function db_friend_c_friend_intro_list4c_member_id($c_member_id, $limit)
     return $list;
 }
 
-function db_friend_c_friend_list_disp4c_member_id($c_member_id)
+function db_friend_c_friend_list_disp4c_member_id($c_member_id, $page = 1, $size = 20)
 {
     $sql =  "SELECT c_member_id,".
                 "image_filename,".
@@ -363,15 +363,30 @@ function db_friend_c_friend_list_disp4c_member_id($c_member_id)
                 " AND c_friend.c_member_id_to = ?".
             " ORDER BY c_friend.r_datetime DESC";
     $params = array(intval($c_member_id));
-    $result = db_get_all($sql, $params);
+    $c_friend_list = db_get_all_page($sql, $page, $size, $params);
 
-    foreach ($result as $key=>$value) {
+    foreach ($c_friend_list as $key => $value) {
         $c_friend = p_common_c_friend4c_member_id_from4c_member_id_to($value['c_member_id_to'], $value['c_member_id_from']);
-        $result[$key]['intro'] = $c_friend['intro'];
+        $c_friend_list[$key]['intro'] = $c_friend['intro'];
 
-        $result[$key]['friend_count'] = db_friend_count_friends($value['c_member_id_from']);
+        $c_friend_list[$key]['friend_count'] = db_friend_count_friends($value['c_member_id_from']);
     }
-    return $result;
+
+    $total_num = db_friend_count_friends($c_member_id);
+    $prev = 0;
+    $next = 0;
+    if ($total_num) {
+        $total_page_num = ceil($total_num / $size);
+        if ($page < $total_page_num) {
+            $next = $page + 1;
+        }
+
+        if ($page > 1) {
+            $prev = $page - 1;
+        }
+    }
+
+    return array($c_friend_list, $prev, $next, $total_num);
 }
 
 function db_friend_status($u, $target_c_member_id)
