@@ -29,6 +29,37 @@
 </tr>
 </table>
 <!-- ここまで：小タイトル -->
+<!-- ここから：ページャー -->
+<table border="0" cellspacing="0" cellpadding="0" style="width:634px;">
+({*********})
+<tr>
+<td style="width:634px;height:1px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+</tr>
+({*********})
+<tr>
+<td style="width:634px;" class="bg_02" align="right" valign="middle">
+<div style="padding:4px 3px;">
+
+({if $pager.prev})
+<a href="({t_url m=pc a=page_h_manage_friend page=$pager.prev})">前を表示</a>&nbsp;&nbsp;
+({/if})
+({if $pager.total_num})
+({$pager.start})件～({$pager.end})件を表示
+({/if})
+({if $pager.next})
+&nbsp;&nbsp;<a href="({t_url m=pc a=page_h_manage_friend page=$pager.next})">次を表示</a>
+({/if})
+
+</div>
+</td>
+</tr>
+({*********})
+<tr>
+<td style="width:634px;height:1px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+</tr>
+({*********})
+</table>
+<!-- ここまで：ページャー -->
 ({*ここまで：header*})
 ({*ここから：body*})
 <!-- ここから：主内容 -->
@@ -88,7 +119,32 @@
 <!-- ここまで：主内容 -->
 ({*ここまで：body*})
 ({*ここから：footer*})
-<!-- 無し -->
+<!-- ここから：ページャー -->
+<table border="0" cellspacing="0" cellpadding="0" style="width:634px;">
+<tr>
+<td style="width:634px;height:1px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+</tr>
+({*********})
+<tr>
+<td style="width:634px;" class="bg_02" align="right" valign="middle">
+<div style="padding:4px 3px;">
+
+({if $pager.prev})
+<a href="({t_url m=pc a=page_h_manage_friend page=$pager.prev})">前を表示</a>&nbsp;&nbsp;
+({/if})
+({if $pager.total_num})
+({$pager.start})件～({$pager.end})件を表示
+({/if})
+({if $pager.next})
+&nbsp;&nbsp;<a href="({t_url m=pc a=page_h_manage_friend page=$pager.next})">次を表示</a>
+({/if})
+
+</div>
+</td>
+</tr>
+({*********})
+</table>
+<!-- ここまで：ページャー -->
 ({*ここまで：footer*})
 </div>
 <!-- *ここまで：マイフレンド管理＞＞内容* -->
