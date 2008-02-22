@@ -428,8 +428,8 @@ BlogのURL
 
 <input type="radio" name="is_receive_mail" value="1"({if $c_member.is_receive_mail}) checked="checked"({/if}) class="no_bg">受け取る
 <input type="radio" name="is_receive_mail" value="0"({if !$c_member.is_receive_mail}) checked="checked"({/if}) class="no_bg">受け取らない<br>
-<span>※新着メッセージの通知などを登録メールアドレスにお知らせします。</span>
-
+※新着メッセージの通知などをPCメールアドレスにお知らせします。<br>
+※携帯メールアドレスの受信設定はここでは変更されません。携帯版で設定をおこなってください。
 </div>
 </td>
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
