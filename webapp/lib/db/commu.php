@@ -796,6 +796,16 @@ function db_commu_anataga_c_commu_sub_admin_confirm_list4c_member_id($c_member_i
  */
 function db_commu_c_commu_topic_comment_list4c_member_id($c_member_id, $limit)
 {
+    static $is_recurred = false;  //再帰処理中かどうかの判定フラグ
+
+    if (!$is_recurred) {  //function cacheのために再帰処理を行う
+        $is_recurred = true;
+        $funcargs = func_get_args();
+        return pne_cache_recursive_call(OPENPNE_FUNCTION_CACHE_LIFETIME_FAST, __FUNCTION__, $funcargs);
+    }
+
+    $is_recurred = false;
+
     $sql = 'SELECT c_commu_id FROM c_commu_member WHERE c_member_id = ?';
     $c_commu_id_list = db_get_col($sql, array(intval($c_member_id)));
     if (!$c_commu_id_list) {
@@ -2316,6 +2326,8 @@ function db_commu_delete_c_commu_topic($c_commu_topic_id)
  */
 function db_commu_insert_c_commu_topic_comment($c_commu_id, $c_commu_topic_id, $c_member_id, $body)
 {
+    cache_drop_c_commu_list4c_member_id($c_member_id);
+
     $number = _do_c_commu_topic_comment_number4c_commu_topic_id($c_commu_topic_id);
 
     $data = array(
@@ -2464,6 +2476,7 @@ function db_commu_insert_c_commu_topic($topic)
 {
     //function cacheの削除
     cache_drop_c_commu_topic($topic['c_commu_id']);
+    cache_drop_c_commu_list4c_member_id($topic['c_member_id']);
 
     $data = array(
         'c_commu_id'  => intval($topic['c_commu_id']),
@@ -2488,6 +2501,8 @@ function db_commu_insert_c_commu_topic($topic)
 
 function db_commu_insert_c_commu_topic_comment_3($comment)
 {
+    cache_drop_c_commu_list4c_member_id($comment['c_member_id']);
+
     $data = array(
         'c_commu_id'       => intval($comment['c_commu_id']),
         'c_member_id'      => intval($comment['c_member_id']),
