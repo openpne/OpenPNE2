@@ -6,6 +6,7 @@
 <font color="#({$ktai_color_config.color_24})">ﾒｰﾙ受信設定</font><br>
 </td></tr></table>
 新着ﾒｯｾｰｼﾞの通知などを登録携帯ﾒｰﾙｱﾄﾞﾚｽにお知らせします。 <br>
+※PCメールアドレスの受信設定はここでは変更されません。PC版で設定をおこなってください。<br>
 <hr color="#({$ktai_color_config.border_01})">
 <font color="#({$ktai_color_config.font_06})">ﾒｰﾙ受信設定：</font><br>
 ({t_form m=ktai a=do_h_config_mail_receive_update_mail_receive})
