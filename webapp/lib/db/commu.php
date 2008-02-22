@@ -807,7 +807,6 @@ function db_commu_anataga_c_commu_sub_admin_confirm_list4c_member_id($c_member_i
  */
 function db_commu_c_commu_topic_comment_list4c_member_id($c_member_id, $limit)
 {
-
     static $is_recurred = false;  //再帰処理中かどうかの判定フラグ
 
     if (!$is_recurred) {  //function cacheのために再帰処理を行う
@@ -817,7 +816,6 @@ function db_commu_c_commu_topic_comment_list4c_member_id($c_member_id, $limit)
     }
 
     $is_recurred = false;
-
 
     $sql = 'SELECT c_commu_id FROM c_commu_member WHERE c_member_id = ?';
     $c_commu_id_list = db_get_col($sql, array(intval($c_member_id)));
