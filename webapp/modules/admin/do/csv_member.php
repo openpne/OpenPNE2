@@ -159,14 +159,14 @@ class admin_do_csv_member extends OpenPNE_Action
             if ($csv != "") {
                 $csv .= ",";
             }
-            $csv .= '"' . mb_convert_encoding($each_key, 'SJIS', 'auto') . '"';
+            $csv .= '"' . mb_convert_encoding($each_key, 'SJIS', 'UTF-8') . '"';
         }
         $csv .= "\n";
         
         foreach ($value_list as $key => $value) {
             $temp = "";
             foreach ($value as $key2 => $value2) {
-                $value2 = mb_convert_encoding($value2, 'SJIS', 'auto');
+                $value2 = mb_convert_encoding($value2, 'SJIS', 'UTF-8');
                 if ($value2 != null) $value2 = str_replace('"', '""', $value2);//クォート
                 if ($value2 != null) $value2 = str_replace("\r","",$value2);//改行コードを変換
                 $temp .= '"' . $value2 . '",';
