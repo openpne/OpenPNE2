@@ -77,7 +77,8 @@
 </td></tr></table>
 <br>
 <hr color="#({$ktai_color_config.border_01})">
-({if $IS_CLOSED_SNS})
+({if $smarty.const.IS_SLAVE_PNE})
+({elseif $IS_CLOSED_SNS})
 ({$SNS_NAME})は招待制のｿｰｼｬﾙﾈｯﾄﾜｰｷﾝｸﾞｻｰﾋﾞｽです。<br>
 登録には({$SNS_NAME})({if $smarty.const.IS_USER_INVITE})参加者({else})管理者({/if})からの招待が必要です。<br>
 
