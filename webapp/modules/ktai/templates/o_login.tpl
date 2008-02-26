@@ -55,20 +55,17 @@
 ({if !$smarty.const.IS_SLAVEPNE})
 <a href="({t_url m=ktai a=page_o_password_query})">&gt;&gt;パスワードを忘れた方</a><br>
 ({/if})
-<hr>
 
-({if $smarty.const.IS_SLAVE_PNE})
+({if $smarty.const.IS_SLAVEPNE})
 ({elseif $IS_CLOSED_SNS})
-
+<hr>
 ({$SNS_NAME})は招待制のソーシャルネットワーキングサービスです。<br>
 登録には({$SNS_NAME})({if $smarty.const.IS_USER_INVITE})参加者({else})管理者({/if})からの招待が必要です。
-
 ({elseif !((($smarty.const.OPENPNE_REGIST_FROM) & ($smarty.const.OPENPNE_REGIST_FROM_KTAI)) >> 1)})
-
+<hr>
 新規登録はPCからおこなってください。
-
 ({else})
-
+<hr>
 新規登録するには以下のリンクから、本文を入力せずにメールを送信してください。<br>
 <br>
 <a href="mailto:({$smarty.const.MAIL_ADDRESS_PREFIX})get@({$smarty.const.MAIL_SERVER_DOMAIN})">◆メールで登録！◆</a><br>
@@ -76,7 +73,6 @@
 ※かならず利用規約に同意してから登録をおこなってください。<br>
 ■<a href="({t_url m=ktai a=page_o_sns_kiyaku})">利用規約</a><br>
 ■<a href="({t_url m=ktai a=page_o_sns_privacy})">プライバシーポリシー</a><br>
-
 ({/if})
 
 ({$inc_ktai_footer|smarty:nodefaults})
