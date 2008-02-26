@@ -44,8 +44,7 @@
 <div class="padding_s">
 
 <a href="({$c_review.url})" target="_blank">
-<img src="({$c_review.image_medium})">
-<br>詳細を見る</a>
+<img src="({if $c_review.image_medium})({$c_review.image_medium})({else})({t_img_url_skin filename=no_image w=120 h=120})({/if})"><br>詳細を見る</a>
 
 </div>
 
