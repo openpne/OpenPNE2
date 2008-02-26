@@ -6,19 +6,23 @@
 
 class biz_do_h_home_edit_nickname extends OpenPNE_Action
 {
+    function handleError($errors)
+    {
+        $p['msg'] = array_shift($errors);
+        openpne_redirect('pc', 'page_h_home', $p);
+    }
+
     function execute($requests)
     {
         $u = $GLOBALS['AUTH']->uid();
 
         // --- リクエスト変数
-        $state = $requests['state'];
-        $member_id = $requests['member_id'];
+        $nickname = $requests['nickname'];
         // ----------
 
-        biz_changeNickname($member_id, $state);
+        biz_changeNickname($u, $nickname);
 
-        $p = array();
-        openpne_redirect('pc', 'page_h_home', $p);
+        openpne_redirect('pc', 'page_h_home');
     }
 }
 
