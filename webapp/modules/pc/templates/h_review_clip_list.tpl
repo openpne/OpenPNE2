@@ -186,7 +186,7 @@
 <div style="padding:6px;">
 
 <a href="({$review.url})" target="_blank">
-<img src="({$review.image_medium})"><br>
+<img src="({if $review.image_medium})({$review.image_medium})({else})({t_img_url_skin filename=no_image w=120 h=120})({/if})"><br>
 詳細を見る</a><br>
 <input type="checkbox" name="c_review_clips[]" value="({$review.c_review_id})" class="no_bg">
 
