@@ -76,21 +76,20 @@
 ({/if})
 </td></tr></table>
 <br>
-<hr color="#({$ktai_color_config.border_01})">
-({if $smarty.const.IS_SLAVE_PNE})
+({if $smarty.const.IS_SLAVEPNE})
 ({if $smarty.const.SLAVEPNE_SYOUTAI_URL_KTAI})
+<hr color="#({$ktai_color_config.border_01})">
 ■<a href="({$smarty.const.SLAVEPNE_SYOUTAI_URL_KTAI})">新規登録について</a><br>
 ({/if})
 ({elseif $IS_CLOSED_SNS})
+<hr color="#({$ktai_color_config.border_01})">
 ({$SNS_NAME})は招待制のｿｰｼｬﾙﾈｯﾄﾜｰｷﾝｸﾞｻｰﾋﾞｽです。<br>
 登録には({$SNS_NAME})({if $smarty.const.IS_USER_INVITE})参加者({else})管理者({/if})からの招待が必要です。<br>
-
 ({elseif !((($smarty.const.OPENPNE_REGIST_FROM) & ($smarty.const.OPENPNE_REGIST_FROM_KTAI)) >> 1)})
-
+<hr color="#({$ktai_color_config.border_01})">
 新規登録はPCからおこなってください。<br>
-
 ({else})
-
+<hr color="#({$ktai_color_config.border_01})">
 新規登録するには以下のﾘﾝｸから、本文を入力せずにﾒｰﾙを送信してください。<br>
 <br>
 <a href="mailto:({$smarty.const.MAIL_ADDRESS_PREFIX})get@({$smarty.const.MAIL_SERVER_DOMAIN})">[i:106]ﾒｰﾙで登録!</a><br>
