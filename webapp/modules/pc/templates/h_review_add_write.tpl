@@ -45,7 +45,7 @@
 <td style="width:1px;" class="bg_01"><img src="./skin/dummy.gif" style="width:1px;height:1px;"></td>
 <td class="bg_02" style="width:180px;" align="center" rowspan="7">
 
-<a href="({$product.url})" target="_blank"><img src="({$product.imagemedium})"><br>詳細を見る</a>
+<a href="({$product.url})" target="_blank"><img src="({if $product.imagemedium})({$product.imagemedium})({else})({t_img_url_skin filename=no_image w=120 h=120})({/if})"><br>詳細を見る</a>
 
 </td>
 <td style="width:1px;" class="bg_01"><img src="./skin/dummy.gif" style="width:1px;height:1px;"></td>

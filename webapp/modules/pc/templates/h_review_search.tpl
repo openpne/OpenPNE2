@@ -263,7 +263,7 @@
 
 <div class="padding_s">
 
-<a href="({$item.url})" target="_blank"><img src="({$item.image_medium})"><br>詳細を見る</a>
+<a href="({$item.url})" target="_blank"><img src="({if $item.image_medium})({$item.image_medium})({else})({t_img_url_skin filename=no_image w=120 h=120})({/if})"><br>詳細を見る</a>
 
 </div>
 
