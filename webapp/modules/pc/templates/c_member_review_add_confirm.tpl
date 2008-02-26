@@ -49,7 +49,7 @@
 <div class="padding_s">
 
 <a href="({$review.url})" target="_blank">
-<img src="({$review.image_medium})"></a>
+<img src="({if $review.image_medium})({$review.image_medium})({else})({t_img_url_skin filename=no_image w=120 h=120})({/if})"></a>
 
 </div>
 
