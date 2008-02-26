@@ -51,7 +51,7 @@ function db_schedule_event4c_member_id($year, $month, $c_member_id)
     }
 
     $sql = 'SELECT * FROM c_commu_topic WHERE c_commu_id IN ('.$ids.')' .
-            ' AND event_flag = 1 AND open_date > ? AND open_date <= ?';
+            ' AND event_flag = 1 AND open_date >= ? AND open_date <= ?';
 
     $max_day = date("t", mktime(0,0,0,intval($month),1,intval($year) ));
     $params = array(
