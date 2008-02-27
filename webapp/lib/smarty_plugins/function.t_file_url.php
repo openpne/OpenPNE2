@@ -36,8 +36,12 @@ function _smarty_function_t_file_url($params)
     }
     $result['filename'] = $filename;
 
-    $result['m'] = $GLOBALS['__Framework']['current_module'];
-    
+    if ($GLOBALS['__Framework']['current_module'] === 'admin' && ADMIN_MODULE_NAME) {
+        $result['m'] = ADMIN_MODULE_NAME;
+    } else {
+        $result['m'] = $GLOBALS['__Framework']['current_module'];
+    }
+
     if ($GLOBALS['KTAI_URL_TAIL']) {
         $result['ksid'] = session_id();
     }
