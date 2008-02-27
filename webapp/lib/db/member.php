@@ -1085,6 +1085,11 @@ function db_member_insert_c_member($c_member, $c_member_secure, $is_password_enc
     //function cacheの削除
     cache_drop_c_member_profile($c_member_id);
 
+    if ($c_member_secure['ktai_address']) {
+        $c_member_secure['ktai_address'] = str_replace('"', '', $c_member_secure['ktai_address']);
+        $c_member_secure['regist_address'] = str_replace('"', '', $c_member_secure['regist_address']);
+    }
+
     $data = array(
         'c_member_id' => intval($c_member_id),
         'hashed_password' => md5($c_member_secure['password']),
@@ -1129,6 +1134,10 @@ function db_member_ktai_insert_c_member($profs)
     );
     $c_member_id_new = db_insert('c_member', $data);
 
+    if ($profs['ktai_address']) {
+        $profs['ktai_address'] = str_replace('"', '', $profs['ktai_address']);
+        $profs['regist_address'] = str_replace('"', '', $profs['regist_address']);
+    }
     $data = array(
         'c_member_id' => intval($c_member_id_new),
         'hashed_password' => md5($profs['password']),
@@ -1285,6 +1294,7 @@ function db_member_update_ktai_address($c_member_id, $ktai_address)
             'easy_access_id' => '',
         );
     } elseif (util_is_regist_mail_address($ktai_address, $c_member_id)) {
+        $ktai_address = str_replace('"', '', $ktai_address);
         $data = array('ktai_address' => t_encrypt($ktai_address));
     } else {
         return false;
@@ -1416,6 +1426,8 @@ function db_member_regist_mail($sid, $password)
  */
 function db_member_insert_c_ktai_address_pre($c_member_id, $session, $ktai_address)
 {
+    $ktai_address = str_replace('"', '', $ktai_address);
+
     $data = array(
         'c_member_id' => intval($c_member_id),
         'session' => $session,

@@ -1,17 +1,17 @@
 <?php
 /**
- * @copyright 2005-2007 OpenPNE Project
+ * @copyright 2005-2008 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
 /**
  * コミュニティ副管理者から降格
  */
-class pc_do_c_sub_admin_delete extends OpenPNE_Action
+class ktai_do_c_edit_member_delete_c_sub_admin extends OpenPNE_Action
 {
     function execute($requests)
     {
-        $u = $GLOBALS['AUTH']->uid();
+        $u = $GLOBALS['KTAI_C_MEMBER_ID'];
 
         // --- リクエスト変数
         $target_c_member_id = $requests['target_c_member_id'];
@@ -44,7 +44,7 @@ class pc_do_c_sub_admin_delete extends OpenPNE_Action
         db_commu_update_c_commu_c_member_id_sub_admin($target_c_commu_id, 0);
 
         $p = array('target_c_commu_id' => $target_c_commu_id);
-        openpne_redirect('pc', 'page_c_edit_member', $p);
+        openpne_redirect('ktai', 'page_c_edit_member', $p);
     }
 }
 ?>

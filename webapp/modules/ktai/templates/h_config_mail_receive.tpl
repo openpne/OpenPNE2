@@ -5,7 +5,7 @@
 <tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
 <font color="#({$ktai_color_config.color_24})">ﾒｰﾙ受信設定</font><br>
 </td></tr></table>
-新着ﾒｯｾｰｼﾞの通知などを登録携帯ﾒｰﾙｱﾄﾞﾚｽにお知らせします。 <br>
+新着ﾒｯｾｰｼﾞの通知などを登録されている携帯ﾒｰﾙｱﾄﾞﾚｽにお知らせします。
 <hr color="#({$ktai_color_config.border_01})">
 <font color="#({$ktai_color_config.font_06})">ﾒｰﾙ受信設定：</font><br>
 ({t_form m=ktai a=do_h_config_mail_receive_update_mail_receive})
@@ -14,6 +14,11 @@
 受け取る<br>
 <input type="radio" name="is_receive_ktai_mail" value="0"({if !$c_member.is_receive_ktai_mail}) checked="checked"({/if})>
 受け取らない<br>
+<hr color="#({$ktai_color_config.border_01})">
+<font color="#({$ktai_color_config.font_06})">
+※PCへのﾒｰﾙ受信設定は、PCからﾛｸﾞｲﾝして設定してください。
+</font>
+<hr color="#({$ktai_color_config.border_01})">
 <center>
 <input type="submit" value="変更">
 </center>

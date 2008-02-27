@@ -312,7 +312,15 @@ function p_f_home_last_login4access_date($access_date)
  */
 function getCountdownDays($month, $day)
 {
-    $year = date('Y');
+    $month = (int)$month;
+    $day = (int)$day;
+
+    // 月または日が未登録な場合エラーを返す
+    if ($month == 0 || $day == 0) {
+        return -1;
+    }
+
+	$year = date('Y');
 
     // 今日の00:00:00
     $today = mktime(0, 0, 0);

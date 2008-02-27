@@ -60,7 +60,7 @@
 </td>
 ({****})
 <td>
-<a href="({t_url m=admin a=do_file_download})&amp;filename=({$item.filename})&amp;sessid=({$PHPSESSID})">
+<a href="({t_url m=$module_name a=do_file_download})&amp;filename=({$item.filename})&amp;sessid=({$PHPSESSID})">
 ({$item.filename})
 </a>
 </td>

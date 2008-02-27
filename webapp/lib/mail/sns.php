@@ -19,6 +19,12 @@ class mail_sns
         $this->to = $decoder->get_to();
 
         $this->c_member_id = do_common_c_member_id4ktai_address($this->from);
+
+        // メンバーIDが見つからない場合は、ローカルパートに二重引用符を付加してリトライ
+        if (!$this->c_member_id) {
+            list($local, $domain) = explode('@', $this->from, 2);
+            $this->c_member_id = do_common_c_member_id4ktai_address('"' . $local . '"' . '@' . $domain);
+        }
     }
 
     function main()
