@@ -128,7 +128,7 @@
 ({*********})
 <tr>
 <td style="height: 50px;" class="bg_03" align="center" valign="middle">
-マイフレンド登録がありません。
+({$WORD_MY_FRIEND})登録がありません。
 </td>
 </tr>
 ({*********})
