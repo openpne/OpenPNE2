@@ -29,6 +29,7 @@
 </tr>
 </table>
 <!-- ここまで：小タイトル -->
+({if $pager.total_num})
 <!-- ここから：ページャー -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:634px;">
 ({*********})
@@ -60,9 +61,11 @@
 ({*********})
 </table>
 <!-- ここまで：ページャー -->
+({/if})
 ({*ここまで：header*})
 ({*ここから：body*})
 <!-- ここから：主内容 -->
+({if $c_friend_list})
 <table border="0" cellspacing="0" cellpadding="0" style="width:636px;">
 ({*********})
 <tr>
@@ -116,9 +119,25 @@
 ({*********})
 ({/foreach})
 </table>
+({else})
+<table border="0" cellspacing="0" cellpadding="0" style="width:636px;">
+({*********})
+<tr>
+<td style="width:636px;height:1px;" class="bg_01"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+</tr>
+({*********})
+<tr>
+<td style="height: 50px;" class="bg_03" align="center" valign="middle">
+マイフレンド登録がありません。
+</td>
+</tr>
+({*********})
+</table>
+({/if})
 <!-- ここまで：主内容 -->
 ({*ここまで：body*})
 ({*ここから：footer*})
+({if $pager.total_num})
 <!-- ここから：ページャー -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:634px;">
 <tr>
@@ -145,6 +164,7 @@
 ({*********})
 </table>
 <!-- ここまで：ページャー -->
+({/if})
 ({*ここまで：footer*})
 </div>
 <!-- *ここまで：マイフレンド管理＞＞内容* -->
