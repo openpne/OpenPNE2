@@ -1426,6 +1426,8 @@ function db_member_regist_mail($sid, $password)
  */
 function db_member_insert_c_ktai_address_pre($c_member_id, $session, $ktai_address)
 {
+    $ktai_address = str_replace('"', '', $ktai_address);
+
     $data = array(
         'c_member_id' => intval($c_member_id),
         'session' => $session,
