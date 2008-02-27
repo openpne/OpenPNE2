@@ -112,7 +112,7 @@
 <tr>
 <th>ファイル</th>
 <td class="textbody">
-<a href="({t_url m=admin a=do_file_download})&amp;filename=({$item.filename})&amp;sessid=({$PHPSESSID})">
+<a href="({t_url m=$module_name a=do_file_download})&amp;filename=({$item.filename})&amp;sessid=({$PHPSESSID})">
 ({$item.original_filename})
 </a>
 </td>
