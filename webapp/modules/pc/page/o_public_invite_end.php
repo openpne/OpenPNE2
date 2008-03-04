@@ -18,7 +18,7 @@ class pc_page_o_public_invite_end extends OpenPNE_Action
             client_redirect_login();
         }
         //<PCKTAI
-        if (IS_SLAVEPNE || !(OPENPNE_REGIST_FROM & OPENPNE_REGIST_FROM_PC)) {
+        if (OPENPNE_AUTH_MODE == 'slavepne' || !(OPENPNE_REGIST_FROM & OPENPNE_REGIST_FROM_PC)) {
             client_redirect_login();
         }
         //>

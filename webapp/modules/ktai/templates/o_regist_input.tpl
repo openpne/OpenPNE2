@@ -13,6 +13,17 @@
 <input type="hidden" name="aff_id" value="({$aff_id})">
 ({/if})
 
+({if $smarty.const.OPENPNE_AUTH_MODE == 'pneid'})
+<font color="#({$ktai_color_config.font_06})">ﾛｸﾞｲﾝID：</font><font color="#({$ktai_color_config.font_09})">*</font><br>
+<input type="text" name="login_id"><br>
+<font color="#({$ktai_color_config.font_09})">
+※4-30文字の半角英数字、記号(ｱﾝﾀﾞｰﾊﾞｰ｢_｣、ﾊｲﾌﾝ｢-｣)で入力してください<br>
+※最初と最後の文字は半角英数字で入力してください<br>
+※ｱﾙﾌｧﾍﾞｯﾄの大文字と小文字は区別されません<br>
+</font>
+<br>
+({/if})
+
 ({capture name="nick"})
 <font color="#({$ktai_color_config.font_06})">ﾆｯｸﾈｰﾑ：</font><font color="#({$ktai_color_config.font_09})">*</font><br>
 <input type="text" name="nickname"><br>
