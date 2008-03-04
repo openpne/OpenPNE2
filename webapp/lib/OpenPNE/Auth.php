@@ -28,6 +28,7 @@ class OpenPNE_Auth
     var $options = '';
     var $is_ktai = false;
     var $is_encrypt_username = false;
+    var $is_lowercase_username = false;
 
     var $expire = 0;
     var $idle = 0;
@@ -43,6 +44,7 @@ class OpenPNE_Auth
      * + options: PEAR::Auth用オプション
      * + is_ktai: 携帯用認証かどうか
      * + is_encrypt_username: usernameをt_encryptで暗号化するかどうか
+     * + is_lowercase_username: usernameを強制的に小文字にするかどうか
      *
      * @param array $config
      */
@@ -60,6 +62,9 @@ class OpenPNE_Auth
         }
         if (isset($config['is_encrypt_username'])) {
             $this->is_encrypt_username = $config['is_encrypt_username'];
+        }
+        if (isset($config['is_lowercase_username'])) {
+            $this->is_lowercase_username = $config['is_lowercase_username'];
         }
 
         if ($this->is_ktai) {
@@ -112,6 +117,12 @@ class OpenPNE_Auth
     function login($is_save_cookie = false)
     {
         $this->auth =& $this->factory(true);
+
+        if ($this->is_lowercase_username) {
+            $this->auth->post[$this->auth->_postUsername] =
+                strtolower($this->auth->post[$this->auth->_postUsername]);
+        }
+
         if ($this->is_encrypt_username) {
             $this->auth->post[$this->auth->_postUsername] =
                 t_encrypt($this->auth->post[$this->auth->_postUsername]);

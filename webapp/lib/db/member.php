@@ -56,7 +56,7 @@ function db_member_c_member4c_member_id($c_member_id, $is_secure = false, $with_
         }
     }
     
-    if (IS_SLAVEPNE && $is_secure) {
+    if (OPENPNE_AUTH_MODE == 'slavepne' && $is_secure) {
         $c_member['username'] = db_member_username4c_member_id($c_member_id);
     }
 
@@ -1175,6 +1175,10 @@ function db_member_update_c_member_pre_secure($c_member_pre_id, $c_member_pre_se
         $data['c_password_query_answer'] = $c_member_pre_secure['password_query_answer'];
     }
 
+    if (OPENPNE_AUTH_MODE == 'pneid') {
+        $data['login_id'] = $c_member_pre_secure['login_id'];
+    }
+
     return db_update('c_member_pre', $data, array('c_member_pre_id' => $c_member_pre_id));
 }
 
@@ -1790,7 +1794,7 @@ function db_member_insert_username($c_member_id, $username)
  */
 function db_member_c_member_id4username($username, $is_ktai = false)
 {
-    if (!IS_SLAVEPNE) {
+    if (OPENPNE_AUTH_MODE != 'slavepne' && OPENPNE_AUTH_MODE != 'pneid') {
         $username = t_encrypt($username);
     }
     return db_member_c_member_id4username_encrypted($username, $is_ktai);
@@ -1804,7 +1808,7 @@ function db_member_c_member_id4username($username, $is_ktai = false)
  */
 function db_member_c_member_id4username_encrypted($username, $is_ktai = false)
 {
-    if (IS_SLAVEPNE) {
+    if (OPENPNE_AUTH_MODE == 'slavepne' || OPENPNE_AUTH_MODE == 'pneid') {
         $sql = 'SELECT c_member_id FROM c_username WHERE username = ?';
         $params = array($username);
         $c_member_id = db_get_one($sql, $params);
@@ -1823,7 +1827,7 @@ function db_member_c_member_id4username_encrypted($username, $is_ktai = false)
  */
 function db_member_username4c_member_id($c_member_id, $is_ktai = false)
 {
-    if (IS_SLAVEPNE) {
+    if (OPENPNE_AUTH_MODE == 'slavepne' || OPENPNE_AUTH_MODE == 'pneid') {
         $sql = 'SELECT username FROM c_username WHERE c_member_id = ?';
         $params = array($c_member_id);
         $username = db_get_one($sql, $params);
