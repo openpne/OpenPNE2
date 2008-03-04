@@ -14,89 +14,86 @@ class admin_do_import_c_member extends OpenPNE_Action
 
     function execute($requests)
     {
-        //件数制限つき
-        $limit = 1000;
-
-        //項目数
-        $column_num = 3;
-
-        $errors = array();
-
         $member_file = $_FILES['member_file'];
+
+        $limit = 1000;  // 件数制限
+
+        // 項目数
+        if (OPENPNE_AUTH_MODE == 'pneid') {
+            $column_num = 4;
+        } else {
+            $column_num = 3;
+        }
+
+        if (empty($member_file) || $member_file['error'] === UPLOAD_ERR_NO_FILE) {
+            $this->handleError('ファイルを指定してください');
+        }
+
+        $filename_parts = explode('.', $member_file['name']);
+        if (array_pop($filename_parts) != 'csv') {
+            $this->handleError('拡張子は.csvにしてください');
+        }
+
         $member_data = file($member_file['tmp_name']);
-
-        // --- エラーチェック1 ここから
-
-        $name_data = explode(".", $member_file['name']);
-        if ($name_data[count($name_data)-1] != 'csv') {
-            $this->handleError("データタイプはcsv形式にして下さい");
+        $member_data_count = count($member_data);
+        if ($member_data_count > $limit) {
+            $this->handleError("ファイルの行数は{$limit}行以内にしてください");
         }
-
-        if (count($member_data) > $limit) {
-            $this->handleError("一度に登録できるのは{$limit}件までです");
-        }
-        // --- エラーチェック1 ここまで
-
 
         foreach ($member_data as $key => $value) {
-            $data = explode(",", $value);
+            $columns = explode(',', trim($value));
+            $lnum = $key + 1;  // 行番号
 
-            //改行コードを除去
-            $data = str_replace("\r\n", "\n", $data);
-            $data = str_replace("\r", "\n", $data);
-            $data = str_replace("\n", "", $data);
-
-            $nickname     = $data[0];
-            $mail_address = $data[1];
-            $password     = $data[2];
-
-            // --- エラーチェック2 ここから
-
-            //入力項目が多い
-            if (count($data) > $column_num) {
-                $this->handleError(($key+1)."行目：項目数が多すぎます");
+            if (OPENPNE_AUTH_MODE == 'pneid') {
+                list($login_id, $nickname, $mail_address, $password) = $columns;
+            } else {
+                $login_id = null;
+                list($nickname, $mail_address, $password) = $columns;
             }
 
-            //空の項目が存在する
-            if (!$data[0] || !$data[1] || !$data[2]) {
-                $this->handleError(($key+1)."行目：空の項目が存在します");
+            if (count($columns) != $column_num) {
+                $this->handleError("{$lnum}行目：項目は{$column_num}つにしてください");
             }
 
+            if ($nickname === '' || $mail_address === '' || $password === '' || $login_id === '') {
+                $this->handleError("{$lnum}行目：空の項目が存在します");
+            }
 
-
-            //ニックネームの形式チェック
             if (strlen($nickname) > 40) {
-                $this->handleError("ニックネームは40文字以内で入力してください");
+                $this->handleError("{$lnum}行目：ニックネームは40文字以内で入力してください");
             }
 
-            //メールアドレスの形式チェック
-
-            // メールアドレスとして正しくない
             if (!db_common_is_mailaddress($mail_address)) {
-                $this->handleError(($key+1)."行目：メールアドレス [".$mail_address."] はメールアドレスとして正しくありません");
+                $this->handleError("{$lnum}行目：メールアドレス [{$mail_address}] はメールアドレスとして正しくありません");
             }
-            //対象のメールアドレスが、登録されてるか否か
+
             if (db_member_is_sns_join4mail_address($mail_address)) {
-                $this->handleError(($key+1)."行目：そのメールアドレス [".$mail_address."] は既に登録済みです");
+                $this->handleError("{$lnum}行目：メールアドレス [{$mail_address}] は既に登録済みです");
             }
 
-            //対象のメールアドレスが、ドメイン制限に合致しているかどうか
+            // ドメイン制限
             if (!db_member_is_limit_domain4mail_address($mail_address)) {
-                $this->handleError(($key+1)."行目：そのメールアドレス [".$mail_address."] では登録できません");
+                $this->handleError("{$lnum}行目：メールアドレス [{$mail_address}] は登録できません");
             }
 
-            //パスワードの形式チェック
-            if (!ctype_alnum($password) ||
-                strlen($password) < 6 ||
-                strlen($password) > 12) {
-                $this->handleError(($key+1)."行目：パスワードは6～12文字の半角英数で入力してください");
+            if (!preg_match('/^[a-z0-9]{6,12}$/i', $password)) {
+                $this->handleError("{$lnum}行目：パスワードは6～12文字の半角英数で入力してください");
             }
 
-            // --- エラーチェック2 ここまで
+            // ログインIDを使用する場合
+            if (OPENPNE_AUTH_MODE == 'pneid') {
+                if (!preg_match('/^[a-z0-9][a-z0-9\-_]+[a-z0-9]$/i', $login_id)) {
+                    $this->handleError("{$lnum}行目：ログインIDは4～30文字の半角英数で入力してください");
+                }
 
-            // --- データのインポート ここから
+                if (db_member_c_member_id4username($login_id)) {
+                    $this->handleError("{$lnum}行目：ログインID［{$login_id}］は既に登録済みです");
+                }
+                
+            }
 
-            // 携帯メールアドレスか否か
+            // メールアドレスが携帯メールアドレスのドメインの場合は、
+            // 携帯メールアドレスとして登録する
             if (is_ktai_mail_address($mail_address)) {
                 $ktai_address = $mail_address;
                 $pc_address   = '';
@@ -105,16 +102,23 @@ class admin_do_import_c_member extends OpenPNE_Action
                 $pc_address   = $mail_address;
             }
 
-            $c_member['nickname'] = $nickname;
-            $c_member['birth_year'] = 0;
-            $c_member['birth_month'] = 0;
-            $c_member['birth_day'] = 0;
-            $c_member['c_password_query_id'] = 0;
-            $c_member['c_member_id_invite'] = 1;
-            $c_member['is_receive_mail'] = 1;
-            $c_member['is_receive_ktai_mail'] = 1;
-            $c_member['is_receive_daily_news'] = 1;
-            $c_member['public_flag_birth_year'] = 'public';
+            $c_member = array(
+                'nickname' => $nickname,
+                'birth_year' => 0,
+                'birth_month' => 0,
+                'birth_day' => 0,
+                'c_password_query_id' => 0,
+                'c_member_id_invite' => 1,
+                'is_receive_mail' => 1,
+                'is_receive_ktai_mail' => 1,
+                'is_receive_daily_news' => 1,
+                'public_flag_birth_year' => 'public',
+            );
+
+            if (OPENPNE_AUTH_MODE == 'pneid') {
+                $c_member['login_id'] = $login_id;
+            }
+
             $c_member_secure = array(
                 'password' => $password,
                 'pc_address' => $pc_address,
@@ -123,11 +127,9 @@ class admin_do_import_c_member extends OpenPNE_Action
             );
 
             $u = util_regist_c_member($c_member, $c_member_secure);
-            // --- データのインポート ここまで
-
         }
 
-        admin_client_redirect('import_c_member', count($member_data)."　件のインポートが完了しました");
+        admin_client_redirect('import_c_member', "{$member_data_count}件のインポートが完了しました");
     }
 }
 

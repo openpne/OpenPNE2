@@ -55,10 +55,12 @@
 ({if $ktai_address})
 <input type="hidden" name="username" value="({$ktai_address})">
 ({else})
-({if !$smarty.const.IS_SLAVEPNE})
-<font color="#({$ktai_color_config.bg_02})">★</font>携帯ﾒｰﾙｱﾄﾞﾚｽ<br>
-({else})
+({if $smarty.const.OPENPNE_AUTH_MODE == 'slavepne'})
 <font color="#({$ktai_color_config.bg_02})">★</font>ﾒﾝﾊﾞｰID<br>
+({elseif $smarty.const.OPENPNE_AUTH_MODE == 'pneid'})
+<font color="#({$ktai_color_config.bg_02})">★</font>ﾛｸﾞｲﾝID<br>
+({else})
+<font color="#({$ktai_color_config.bg_02})">★</font>携帯ﾒｰﾙｱﾄﾞﾚｽ<br>
 ({/if})
 <textarea name="username" rows="1" istyle="3" mode="alphabet"></textarea><br>
 ({/if})
@@ -71,12 +73,12 @@
 ({if $ktai_address})
 <a href="({t_url m=ktai a=page_o_login})">&gt;&gt;携帯ﾒｰﾙｱﾄﾞﾚｽを入力</a><br>
 ({/if})
-({if !$smarty.const.IS_SLAVEPNE})
+({if $smarty.const.OPENPNE_AUTH_MODE != 'slavepne'})
 <a href="({t_url m=ktai a=page_o_password_query})">&gt;&gt;ﾊﾟｽﾜｰﾄﾞを忘れた方</a><br>
 ({/if})
 </td></tr></table>
 <br>
-({if $smarty.const.IS_SLAVEPNE})
+({if $smarty.const.OPENPNE_AUTH_MODE == 'slavepne'})
 ({if $smarty.const.SLAVEPNE_SYOUTAI_URL_KTAI})
 <hr color="#({$ktai_color_config.border_01})">
 ■<a href="({$smarty.const.SLAVEPNE_SYOUTAI_URL_KTAI})">新規登録について</a><br>

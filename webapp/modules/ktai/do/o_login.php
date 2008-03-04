@@ -55,7 +55,7 @@ class ktai_do_o_login extends OpenPNE_Action
 
         $c_member_id = db_member_c_member_id4username_encrypted($auth->getUsername(), true);
         if (!$c_member_id) {
-            if (IS_SLAVEPNE) {
+            if (OPENPNE_AUTH_MODE == 'slavepne') {
                 db_member_create_member($_POST['username']);
             } else {
                 $p = array('msg' => '0', 'kad' => t_encrypt($ktai_address), 'login_params' => $requests['login_params']);
