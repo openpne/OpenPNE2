@@ -39,7 +39,7 @@ if (db_member_is_blacklist($u)) {
 $auth->uid($u);
 $GLOBALS['AUTH'] = $auth;
 
-if (IS_SLAVEPNE && (empty($_SESSION['regist_step']) || !$_SESSION['regist_step'])) {
+if (OPENPNE_AUTH_MODE != 'email' && (empty($_SESSION['regist_step']) || !$_SESSION['regist_step'])) {
     $check_param = db_member_check_param_inputed($u);
     $_SESSION['regist_step'] = ($check_param == 0);
     $current_page = $GLOBALS['__Framework']['current_type'] . '_' . $GLOBALS['__Framework']['current_action'];
@@ -52,7 +52,7 @@ if (IS_SLAVEPNE && (empty($_SESSION['regist_step']) || !$_SESSION['regist_step']
         'page_h_regist_intro' => true,
     );
 
-    if (($check_param == 1) && !$prof_ext_page[$current_page]) {
+    if (OPENPNE_AUTH_MODE == 'slavepne' && ($check_param == 1) && !$prof_ext_page[$current_page]) {
         openpne_redirect('pc', 'page_h_regist_intro');
     }
 

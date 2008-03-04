@@ -447,8 +447,20 @@ function pne_url2a($url, $target = '_blank')
 
 function get_auth_config($is_ktai = false)
 {
-    if (IS_SLAVEPNE) {
+    if (OPENPNE_AUTH_MODE == 'slavepne') {
         $config = $GLOBALS['_OPENPNE_AUTH_CONFIG'];
+    } elseif (OPENPNE_AUTH_MODE == 'pneid') {
+        $config['storage'] = 'DB';
+        $config['is_lowercase_username'] = true;
+        $config['options'] = array(
+            'dsn'         => db_get_dsn(),
+            'auto_quote'  => false,
+            'table'       => 'c_member_secure AS cms INNER JOIN c_username AS cu USING (c_member_id)',
+            'db_fields'   => 'cms.hashed_password AS hashed_password, cu.username AS username',
+            'usernamecol' => 'username',
+            'passwordcol' => 'hashed_password',
+            'cryptType'   => 'md5',
+        );
     } else {
         $config['storage'] = 'DB';
         $config['is_encrypt_username'] = true;
@@ -491,7 +503,7 @@ function crypt_func($raw_value,$cryptType)
 
 function check_action4pne_slave($is_ktai = false)
 {
-    if (IS_SLAVEPNE) {
+    if (OPENPNE_AUTH_MODE == 'slavepne') {
         if ($is_ktai) {
             openpne_redirect('ktai');
         } else {
@@ -760,6 +772,12 @@ function util_regist_c_member($c_member, $c_member_secure, $c_member_profile_lis
     $c_commu_id_list = db_commu_regist_join_list();
     foreach ($c_commu_id_list as $c_commu_id) {
         db_commu_join_c_commu($c_commu_id, $u);
+    }
+
+    // ログインIDを登録
+    if (OPENPNE_AUTH_MODE == 'pneid') {
+        $login_id = strtolower($c_member['login_id']);
+        db_member_insert_username($u, $login_id);       
     }
 
     return $u;

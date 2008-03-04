@@ -184,7 +184,7 @@ class OpenPNE_Config
             'OPENPNE_USE_OLD_CRYPT_BLOWFISH' => false,
             'OPENPNE_SESSION_CHECK_URL' => false,
             'OPENPNE_DASHBOARD_URL' => 'http://ad.pne.jp/dashboard/',
-            'IS_SLAVEPNE' => false,
+            'OPENPNE_AUTH_MODE' => 'email',
             'IS_SLAVEPNE_EMAIL_REGIST' => true,
             'SLAVEPNE_SYOUTAI_URL_PC' => '',
             'SLAVEPNE_SYOUTAI_URL_KTAI' => '',

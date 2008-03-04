@@ -63,7 +63,7 @@ class pc_do_h_invite_insert_c_invite extends OpenPNE_Action
             }
             //>
 
-            if (!IS_SLAVEPNE) {
+            if (OPENPNE_AUTH_MODE != 'slavepne') {
                 // c_member_ktai_pre に追加
                 if (db_member_c_member_ktai_pre4ktai_address($mail)) {
                     db_member_update_c_member_ktai_pre($session, $mail, $c_member_id_invite);
@@ -83,7 +83,7 @@ class pc_do_h_invite_insert_c_invite extends OpenPNE_Action
             }
             //>
 
-            if (!IS_SLAVEPNE) {
+            if (OPENPNE_AUTH_MODE != 'slavepne') {
                 // c_member_pre に追加
                 if (db_member_c_member_pre4pc_address($mail)) {
                     db_member_update_c_invite($c_member_id_invite, $mail, $message, $session);

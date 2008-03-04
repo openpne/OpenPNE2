@@ -209,6 +209,9 @@ function do_password_query_mail_send($c_member_id, $pc_address, $new_password)
         "pc_address" => $pc_address,
         "password"   => $new_password,
     );
+    if (OPENPNE_AUTH_MODE == 'pneid') {
+        $params['login_id'] = db_member_username4c_member_id($c_member_id);
+    }
     return fetch_send_mail($pc_address, 'm_pc_password_query', $params);
 }
 
@@ -225,6 +228,9 @@ function db_mail_send_m_ktai_password_query($c_member_id, $new_password)
         'password'  => $new_password,
         'login_url' => $login_url,
     );
+    if (OPENPNE_AUTH_MODE == 'pneid') {
+        $params['login_id'] = db_member_username4c_member_id($c_member_id);
+    }
     return fetch_send_mail($ktai_address, 'm_ktai_password_query', $params);
 }
 
