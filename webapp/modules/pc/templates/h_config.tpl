@@ -61,7 +61,7 @@
 
 <input type="text" class="text" name="pc_address" value="" size="40"><br>
 <span class="caution">※メールアドレスは公開されません。</span>
-({if $smarty.const.IS_SLAVEPNE && !$smarty.const.IS_SLAVEPNE_EMAIL_REGIST})
+({if $smarty.const.OPENPNE_AUTH_MODE == 'slavepne' && !$smarty.const.IS_SLAVEPNE_EMAIL_REGIST})
 <br><span class="caution">※初期設定ではメールアドレスが登録されておりません。新着情報などご希望の際はこちらからご登録ください。 </span>
 ({/if})
 
@@ -119,7 +119,7 @@
 </tr>
 </form>
 ({*********})
-({if !$smarty.const.IS_SLAVEPNE})
+({if $smarty.const.OPENPNE_AUTH_MODE != 'slavepne'})
 ({t_form m=pc a=do_h_config_2})
 <input type="hidden" name="sessid" value="({$PHPSESSID})">
 <tr>

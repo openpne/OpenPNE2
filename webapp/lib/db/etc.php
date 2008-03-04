@@ -189,7 +189,7 @@ function db_common_authenticate_password($c_member_id, $password, $is_ktai = fal
 {
     $auth_config = get_auth_config($is_ktai);
     
-    if (IS_SLAVEPNE) {
+    if (OPENPNE_AUTH_MODE == 'slavepne' || OPENPNE_AUTH_MODE == 'pneid') {
         $username = db_member_username4c_member_id($c_member_id, $is_ktai);
     } else {
         $auth_config['options']['usernamecol'] = 'c_member_id';
