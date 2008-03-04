@@ -47,7 +47,7 @@ class pc_do_o_login extends OpenPNE_Action
 
         $c_member_id = db_member_c_member_id4username_encrypted($auth->getUsername(), false);
         if (!$c_member_id) {
-            if (IS_SLAVEPNE) {
+            if (OPENPNE_AUTH_MODE == 'slavepne') {
                 db_member_create_member($_POST['username']);
             } else {
                 $this->_fail_login();

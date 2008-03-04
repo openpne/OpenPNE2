@@ -5,6 +5,8 @@
 
 パスワードを再発行いたしました。
 
+({if $login_id})ログインID：({$login_id})
+({/if})
 メールアドレス：({$pc_address})
 パスワード：({$password})
 

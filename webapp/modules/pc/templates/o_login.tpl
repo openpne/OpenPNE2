@@ -34,7 +34,7 @@
 
 <div class="msg lh_130">
 <input type="checkbox" tabindex="3" name="is_save" id="is_save" value="1" class="no_bg"><label for="is_save">次回から自動的にログイン</label><br>
-({if !$smarty.const.IS_SLAVEPNE})
+({if $smarty.const.OPENPNE_AUTH_MODE != 'slavepne'})
 <span class="password_query"><a href="({t_url m=pc a=page_o_password_query})">&gt;パスワードを忘れた方はこちらへ</a></span>
 ({/if})
 ({if $SSL_SELECT_URL})

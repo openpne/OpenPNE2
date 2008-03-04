@@ -17,7 +17,7 @@ class pc_page_h_invite extends OpenPNE_Action
 
         $this->set('inc_navi', fetch_inc_navi('h'));
 
-        if (IS_SLAVEPNE) {
+        if (OPENPNE_AUTH_MODE == 'slavepne') {
             $inviting_member = array();
             $k_inviting_member = array();
         } else {
