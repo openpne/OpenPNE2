@@ -41,6 +41,40 @@
 <td style="width:636px;height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({*********})
+({if $smarty.const.OPENPNE_AUTH_MODE == 'pneid'})
+<tr>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+<td style="width:150px;" class="bg_05" align="left" valign="middle">
+
+<div class="padding_s">
+
+ログインID <span class="caution">※</span>
+
+</div>
+
+</td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+<td style="width:483px;" class="bg_02" align="left" valign="middle">
+
+<div class="padding_s">
+
+<input class="text" name="login_id" type="text" value="({$profs.login_id})" size="30"><br>
+<span class="caution">※4～30文字の半角英数字、記号（アンダーバー「_」、ハイフン「-」）で入力してください<br>
+※最初と最後の文字は半角英数字で入力してください<br>
+※アルファベットの大文字と小文字は区別されません<br>
+</span>
+
+</div>
+
+</td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+</tr>
+({*********})
+<tr>
+<td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+</tr>
+({/if})
+({*********})
 ({capture name="nick"})
 <tr>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>

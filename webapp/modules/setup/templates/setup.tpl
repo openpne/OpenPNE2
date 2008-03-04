@@ -41,7 +41,7 @@
 <th>PCメールアドレス</th>
 <td><input type="text" name="pc_address" value="({$requests.pc_address})" size="30"></td>
 </tr>
-({if $smarty.const.IS_SLAVEPNE})
+({if $smarty.const.OPENPNE_AUTH_MODE == 'slavepne'})
 <tr>
 <th>ユーザID</th>
 <td><input type="text" name="username" value="({$requests.username})" size="30"></td>
@@ -51,7 +51,7 @@
 <th>パスワード</th>
 <td><input type="password" name="password" value="" size="15"></td>
 </tr>
-({if !$smarty.const.IS_SLAVEPNE})
+({if $smarty.const.OPENPNE_AUTH_MODE != 'slavepne'})
 <tr>
 <th>パスワード(確認)</th>
 <td><input type="password" name="password2" value="" size="15"></td>

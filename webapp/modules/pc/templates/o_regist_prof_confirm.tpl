@@ -38,6 +38,36 @@
 <td style="width:566px;height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({*********})
+({if $smarty.const.OPENPNE_AUTH_MODE == 'pneid'})
+<tr>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+<td style="width:150px;" class="bg_05" align="left" valign="middle">
+
+<div class="padding_s">
+
+ログインID <span class="caution">※</span>
+
+</div>
+
+</td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+<td style="width:413px;" class="bg_02" align="left" valign="middle">
+
+<div class="padding_s">
+
+({$prof.login_id})
+
+</div>
+
+</td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+</tr>
+({*********})
+<tr>
+<td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+</tr>
+({/if})
+({*********})
 ({capture name="nick"})
 <tr>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>

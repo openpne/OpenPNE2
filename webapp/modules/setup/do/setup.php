@@ -15,13 +15,13 @@ class setup_do_setup extends OpenPNE_Action
     function execute($requests)
     {
         $errors = array();
-        if (!IS_SLAVEPNE && $requests['password'] != $requests['password2']) {
+        if (OPENPNE_AUTH_MODE != 'slavepne' && $requests['password'] != $requests['password2']) {
             $errors[] = 'パスワードが一致していません';
         }
         if ($requests['admin_password'] != $requests['admin_password2']) {
             $errors[] = '管理用パスワードが一致していません';
         }
-        if (IS_SLAVEPNE) {
+        if (OPENPNE_AUTH_MODE == 'slavepne') {
             $auth_config = get_auth_config(false);
             $storage = Auth::_factory($auth_config['storage'],$auth_config['options']);
             if (!$storage->fetchData($requests['username'], $requests['password'], false)){
@@ -50,7 +50,7 @@ class setup_do_setup extends OpenPNE_Action
             'easy_access_id' => '',
         );
         
-        if (IS_SLAVEPNE && !IS_SLAVEPNE_EMAIL_REGIST) {
+        if (OPENPNE_AUTH_MODE == 'slavepne' && !IS_SLAVEPNE_EMAIL_REGIST) {
             $data['ktai_address'] = t_encrypt('1@ktai.example.com');
         }
         
@@ -64,7 +64,7 @@ class setup_do_setup extends OpenPNE_Action
         );
         db_insert('c_admin_user', $data);
         
-        if (IS_SLAVEPNE) {
+        if (OPENPNE_AUTH_MODE == 'slavepne') {
             db_member_insert_username(1, $requests['username']);
         }
 
