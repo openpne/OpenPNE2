@@ -16,7 +16,7 @@ class ktai_do_o_insert_c_member extends OpenPNE_Action
     function execute($requests)
     {
         //<PCKTAI
-        if (IS_SLAVEPNE || !((OPENPNE_REGIST_FROM & OPENPNE_REGIST_FROM_KTAI) >> 1)) {
+        if (OPENPNE_AUTH_MODE == 'slavepne' || !((OPENPNE_REGIST_FROM & OPENPNE_REGIST_FROM_KTAI) >> 1)) {
             openpne_redirect('ktai', 'page_o_login', array('msg' => 42));
         }
         //>
@@ -95,6 +95,13 @@ class ktai_do_o_insert_c_member extends OpenPNE_Action
             }
         }
 
+        if (OPENPNE_AUTH_MODE == 'pneid') {
+            // ログインIDの重複チェック
+            if (db_member_c_member_id4username($prof['login_id'])) {
+                $errors[] = 'このﾛｸﾞｲﾝIDはすでに登録されています';
+            }
+        }
+
         // 入力エラー
         if ($errors) {
             ktai_display_error($errors);
@@ -150,7 +157,7 @@ class ktai_do_o_insert_c_member extends OpenPNE_Action
 
     function _getValidateRules()
     {
-        return array(
+        $rules = array(
             'nickname' => array(
                 'type' => 'string',
                 'required' => '1',
@@ -201,6 +208,20 @@ class ktai_do_o_insert_c_member extends OpenPNE_Action
                 'caption' => '秘密の質問の答え',
             ),
         );
+
+        if (OPENPNE_AUTH_MODE == 'pneid') {
+            $rules['login_id'] = array(
+                'type' => 'regexp',
+                'regexp' => '/^[a-zA-Z0-9][a-zA-Z0-9\-_]+[a-zA-Z0-9]$/i',
+                'required' => '1',
+                'caption' => 'ログインID',
+                'type_error' => 'ﾛｸﾞｲﾝIDは4-30文字の半角英数字、記号(ｱﾝﾀﾞｰﾊﾞｰ「_」、ﾊｲﾌﾝ「-」)で入力してください',
+                'min' => '4',
+                'max' => '30',
+            );
+        }
+
+        return $rules;
     }
 
     function _getValidateRulesProfile()
