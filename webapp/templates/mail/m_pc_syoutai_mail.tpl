@@ -18,7 +18,7 @@
 
 
 ■ ({$SNS_NAME}) に参加する
-({if $smarty.const.IS_SLAVEPNE})
+({if $smarty.const.OPENPNE_AUTH_MODE == 'slavepne'})
 ({if $smarty.const.SLAVEPNE_SYOUTAI_URL_PC})
 ({$smarty.const.SLAVEPNE_SYOUTAI_URL_PC})
 ({else})

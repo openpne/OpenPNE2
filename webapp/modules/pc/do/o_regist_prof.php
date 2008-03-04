@@ -14,7 +14,7 @@ class pc_do_o_regist_prof extends OpenPNE_Action
     function execute($requests)
     {
         //<PCKTAI
-        if (IS_SLAVEPNE || !(OPENPNE_REGIST_FROM & OPENPNE_REGIST_FROM_PC)) {
+        if (OPENPNE_AUTH_MODE == 'slavepne' || !(OPENPNE_REGIST_FROM & OPENPNE_REGIST_FROM_PC)) {
             client_redirect_login();
         }
         //>
@@ -96,6 +96,13 @@ class pc_do_o_regist_prof extends OpenPNE_Action
             $errors[] = '生年月日を未来に設定することはできません';
         }
 
+        if (OPENPNE_AUTH_MODE == 'pneid') {
+            // ログインIDの重複チェック
+            if (db_member_c_member_id4username($prof['login_id'])) {
+                $errors[] = 'このログインIDはすでに登録されています';
+            }
+        }
+
         if ($mode != 'input' && $errors) {
             $_REQUEST['err_msg'] = $errors;
             $mode = 'input';
@@ -173,6 +180,10 @@ class pc_do_o_regist_prof extends OpenPNE_Action
                     'regist_address' => $pre['pc_address'],
                 );
 
+                if (OPENPNE_AUTH_MODE == 'pneid') {
+                    $c_member_pre_secure['login_id'] = $prof['login_id'];
+                }
+
                 db_member_update_c_member_pre_secure($pre['c_member_pre_id'], $c_member_pre_secure);
 
                 openpne_redirect('pc', 'page_o_regist_ktai_address', array('sid' => $pre['session']));
@@ -182,7 +193,7 @@ class pc_do_o_regist_prof extends OpenPNE_Action
 
     function _getValidateRules()
     {
-        return array(
+        $rules = array(
             'nickname' => array(
                 'type' => 'string',
                 'required' => '1',
@@ -233,6 +244,20 @@ class pc_do_o_regist_prof extends OpenPNE_Action
                 'caption' => '秘密の質問の答え',
             ),
         );
+
+        if (OPENPNE_AUTH_MODE == 'pneid') {
+            $rules['login_id'] = array(
+                'type' => 'regexp',
+                'regexp' => '/^[a-zA-Z0-9][a-zA-Z0-9\-_]+[a-zA-Z0-9]$/i',
+                'required' => '1',
+                'caption' => 'ログインID',
+                'type_error' => 'ログインIDは4～30文字の半角英数字、記号（アンダーバー「_」、ハイフン「-」）で入力してください',
+                'min' => '4',
+                'max' => '30',
+            );
+        }
+
+        return $rules;
     }
 
     function _getValidateRulesProfile()
