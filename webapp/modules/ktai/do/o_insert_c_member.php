@@ -105,7 +105,7 @@ class ktai_do_o_insert_c_member extends OpenPNE_Action
 
         $c_member_secure = array(
             'password' => $prof['password'],
-            'password_query_answer' => $prof['c_password_query_answer'],
+            'password_query_answer' => $prof['password_query_answer'],
             'pc_address' => '',
             'ktai_address' => $pre['ktai_address'],
             'regist_address' => $pre['ktai_address'],
