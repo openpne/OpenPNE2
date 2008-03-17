@@ -103,7 +103,6 @@
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('insert_html')})">HTML挿入</a></li>
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_entry_point')})">テンプレート挿入</a></li>
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_banner')})">バナー設定</a></li>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('make_cmd_tag')})">CMDタグ生成</a></li>
 </ul>
 </li>
 
