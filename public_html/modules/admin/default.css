@@ -159,7 +159,6 @@ li { list-style-type: none;}
  #admin_page_delete_c_banner_confirm li#adminDesign a.tab ,
  #admin_page_insert_c_banner li#adminDesign a.tab ,
  #admin_page_update_c_banner li#adminDesign a.tab ,
-#admin_page_make_cmd_tag li#adminDesign a.tab ,
 
 #admin_page_edit_c_admin_config li#adminSNSConfig a.tab ,
 #admin_page_limit_domain li#adminSNSConfig a.tab ,
@@ -210,7 +209,6 @@ li { list-style-type: none;}
 #admin_page_insert_html li#adminDesign ul.pull ,
 #admin_page_edit_entry_point li#adminDesign ul.pull ,
 #admin_page_edit_c_banner li#adminDesign ul.pull ,
-#admin_page_make_cmd_tag li#adminDesign ul.pull ,
 
 #admin_page_edit_c_admin_config li#adminSNSConfig ul.pull ,
 #admin_page_limit_domain li#adminSNSConfig ul.pull ,
