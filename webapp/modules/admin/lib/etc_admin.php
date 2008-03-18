@@ -4,13 +4,14 @@
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
-function admin_fetch_inc_header($display_navi = true)
+function admin_fetch_inc_header($display_navi = true, $custom_header = '')
 {
     $v['display_navi'] = $display_navi;
     $v['PHPSESSID'] = md5(session_id());
     $v['module_name'] = ADMIN_MODULE_NAME;
     $v['auth_type'] = admin_get_auth_type();
     $v['CURRENT_ACTION'] = $GLOBALS['__Framework']['current_action'];
+    $v['custom_header'] = $custom_header;
 
     $inc_smarty = new OpenPNE_Smarty($GLOBALS['SMARTY']);
     $inc_smarty->templates_dir = 'admin/templates';
