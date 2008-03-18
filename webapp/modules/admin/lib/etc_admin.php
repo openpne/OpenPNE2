@@ -12,6 +12,7 @@ function admin_fetch_inc_header($display_navi = true, $custom_header = '')
     $v['auth_type'] = admin_get_auth_type();
     $v['CURRENT_ACTION'] = $GLOBALS['__Framework']['current_action'];
     $v['custom_header'] = $custom_header;
+    $v['enable_module_list'] = db_admin_enabled_module_config_list();
 
     $inc_smarty = new OpenPNE_Smarty($GLOBALS['SMARTY']);
     $inc_smarty->templates_dir = 'admin/templates';
@@ -178,6 +179,47 @@ function admin_get_cmd_file_list()
     }
 
     return $filelist;
+}
+
+/**
+ * すべてのモジュールの設定ファイルを読み込む
+ */
+function ext_admin_get_modules_config()
+{
+    require_once OPENPNE_LIB_DIR . '/include/PHP/Compat/Function/scandir.php';
+
+    $configs = array();
+    $modules = scandir(OPENPNE_MODULES_DIR);
+    if (USE_EXT_DIR) {
+        $ext_modules = scandir(OPENPNE_MODULES_EXT_DIR);
+        $modules = array_merge($modules, $ext_modules);
+    }
+
+    foreach ($modules as $module) {
+        if (strpos($module, '.') === 0) {
+            continue;
+        }
+
+        if ($config = openpne_ext_search($module . '/config.ini')) {
+            $configs[$module] = parse_ini_file($config, true);
+        }
+    }
+
+    return $configs;
+}
+
+/**
+ * 指定したモジュールの設定ファイルを読み込む
+ */
+function ext_admin_get_module_config4module($module)
+{
+    $config = array();
+
+    if ($file = openpne_ext_search($module . '/config.ini')) {
+        $config = parse_ini_file($file, true);
+    }
+
+    return $config;
 }
 
 ?>
