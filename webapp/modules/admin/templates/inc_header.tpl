@@ -106,6 +106,8 @@
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('insert_html')})">HTML挿入</a></li>
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_entry_point')})">テンプレート挿入</a></li>
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_banner')})">バナー設定</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_admin_info')})">お知らせ・規約設定</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_free_page')})">フリーページ管理</a></li>
 </ul>
 </li>
 
@@ -134,12 +136,21 @@
 </ul>
 </li>
 
-({****})
+</ul>
 
-<li id="adminInfoKiyaku" onmouseover="menu('adminInfoKiyaku','adminInfoKiyakuCont')" onmouseout="menu('adminInfoKiyaku','adminInfoKiyakuCont')"><a class="tab" href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_admin_info')})">お知らせ・規約設定</a>
-<ul id="adminInfoKiyakuCont" class="pull">
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_admin_info')})">お知らせ・規約設定</a></li>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_free_page')})">フリーページ管理</a></li>
+({****************})
+({****************})
+
+<ul class="module">
+
+<li id="adminModule" onmouseover="menu('adminModule','adminModuleCont')" onmouseout="menu('adminModule','adminModuleCont')"><a class="tab" href="#">拡張機能</a>
+<ul id="adminModuleCont" class="pull">
+({foreach from=$enable_module_list item=item})
+<li><a href="?m=({$item.admin_menu.module})&amp;a=({$item.admin_menu.action})">({$item.admin_menu.caption|default:$item.general.name})</a></li>
+({/foreach})
+({if !$enable_module_list})
+<li><a href="#">（なし）</a></li>
+({/if})
 </ul>
 </li>
 
