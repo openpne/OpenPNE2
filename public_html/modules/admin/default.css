@@ -83,9 +83,11 @@ li { list-style-type: none;}
 .navi div.naviMain ul.design,
 .navi div.naviMain ul.setup ,
 .navi div.naviMain ul.config,
+.navi div.naviMain ul.module,
 .navi div.naviMain ul.adminadmin { float: left; position: relative; height: 30px;}
 .navi div.naviMain ul.design,
 .navi div.naviMain ul.config,
+.navi div.naviMain ul.module,
 .navi div.naviMain ul.adminadmin { margin-left: 10px;}
 .navi div.naviMain ul li { float: left;}
 .navi div.naviMain ul li a { float: left; display: block; padding: 0 22px 0 18px; height: 30px; background: url("img/nv_tab_off.gif") repeat-x right top; line-height: 30px; text-decoration: none; font-weight: bold;}
@@ -106,7 +108,7 @@ li { list-style-type: none;}
 .navi div.naviMain ul li ul#adminStatisticalInformationCont { width: 220px; z-index: 30;}
 .navi div.naviMain ul li ul#adminDesignCont                 { width: 180px; z-index: 40;}
 .navi div.naviMain ul li ul#adminSNSConfigCont              { width: 180px; z-index: 50;}
-.navi div.naviMain ul li ul#adminInfoKiyakuCont             { width: 180px; z-index: 60;}
+.navi div.naviMain ul li ul#adminModuleCont             { width: 180px; z-index: 60;}
 .navi div.naviMain ul li ul#adminAdminConfigCont            { width: 180px; z-index: 70;}
 .navi div.naviMain ul li ul.pull li { float: none; padding: 0 1px; background: #CCCCCC;}
 .navi div.naviMain ul li ul.pull li a { float: none; padding: 0 0 0 10px; border-bottom: #CCCCCC 1px solid; height: 23px; background: #FFFFFF; white-space: pre; line-height: 23px; font-size: 12px; text-decoration:underline; font-weight: normal; cursor: pointer; color: #5b5b5b;}
@@ -172,12 +174,6 @@ li { list-style-type: none;}
 #admin_page_edit_c_holiday li#adminSNSConfig a.tab ,
 #admin_page_list_c_rank li#adminSNSConfig a.tab ,
 
-#admin_page_edit_c_admin_info li#adminInfoKiyaku a.tab ,
-#admin_page_list_c_free_page li#adminInfoKiyaku a.tab ,
- #admin_page_delete_c_free_page_confirm li#adminInfoKiyaku a.tab ,
- #admin_page_insert_c_free_page li#adminInfoKiyaku a.tab ,
- #admin_page_update_c_free_page li#adminInfoKiyaku a.tab ,
-
 #admin_page_list_c_admin_user li#adminAdminConfig a.tab ,
 #admin_page_edit_admin_password li#adminAdminConfig a.tab ,
 #admin_page_update_hash_table li#adminAdminConfig a.tab ,
@@ -209,6 +205,8 @@ li { list-style-type: none;}
 #admin_page_insert_html li#adminDesign ul.pull ,
 #admin_page_edit_entry_point li#adminDesign ul.pull ,
 #admin_page_edit_c_banner li#adminDesign ul.pull ,
+#admin_page_edit_c_admin_info li#adminDesign ul.pull ,
+#admin_page_list_c_free_page li#adminDesign ul.pull ,
 
 #admin_page_edit_c_admin_config li#adminSNSConfig ul.pull ,
 #admin_page_limit_domain li#adminSNSConfig ul.pull ,
@@ -221,9 +219,6 @@ li { list-style-type: none;}
 #admin_page_manage_c_commu li#adminSNSConfig ul.pull ,
 #admin_page_edit_c_holiday li#adminSNSConfig ul.pull ,
 #admin_page_list_c_rank li#adminSNSConfig ul.pull ,
-
-#admin_page_edit_c_admin_info li#adminInfoKiyaku ul.pull ,
-#admin_page_list_c_free_page li#adminInfoKiyaku ul.pull ,
 
 #admin_page_list_c_admin_user li#adminAdminConfig ul.pull ,
 #admin_page_edit_admin_password li#adminAdminConfig ul.pull ,
