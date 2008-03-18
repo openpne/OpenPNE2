@@ -818,8 +818,12 @@ function db_replace_c_navi($navi_type, $sort_order, $url, $caption)
 }
 
 //小窓の使用範囲をチェック
-function db_is_use_cmd($src, $type)
+function db_is_use_cmd($src, $type = '')
 {
+    if (!$type) {  // type の指定がない場合は小窓を有効にする
+        return true;
+    }
+
     $sql = 'SELECT * FROM c_cmd WHERE name = ?';
     $params = array(strval($src));
     $c_cmd = db_get_row($sql, $params);
