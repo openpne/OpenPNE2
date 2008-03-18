@@ -79,3 +79,5 @@ INSERT IGNORE INTO `portal_config` VALUES
   (4,'LAYOUT_TYPE','2'),
   (5,'COLOR_TYPE','005_openpne_blue');
 
+INSERT IGNORE INTO `c_module` VALUES(NULL, 'portal', 1);
+
