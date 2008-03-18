@@ -1,0 +1,44 @@
+@charset "utf-8";
+body{ background-color:#fff; color:#000;}
+
+#siteTtl,
+.contents div.box div.innerBox dl,
+.contents div.PatternF ul,
+.contents div.PatternG ul { background: none;}
+
+/*サイト名*/
+#siteTtl h1{ color:#000;}
+
+/*ログイン窓*/
+#invite div.snsLogin { height:224px; background-color:#F9D80D;}
+#free div.snsLogin{ height:254px; background-color:#F9D80D;}
+.snsLogin div#usernameArea { left:25px;}
+.snsLogin div#passwordArea { left:25px;}
+.snsLogin div#usernameArea span,
+.snsLogin div#passwordArea span { font-size:12px; line-height:1; text-indent:0; font-weight:bold; color:#444;}
+.snsLogin div#usernameArea input,
+.snsLogin div#passwordArea input { top:18px; border: 2px #bbb inset; background-color:#fff;}
+.snsLogin div#isSaveArea span { color:#444;}
+.snsLogin div#loginSecurity { background:url("../../img/login_sec_black.gif") no-repeat center center;}
+.snsLogin div#buttonLoginArea { top:170px;}
+.snsLogin div#buttonRegiArea { top:202px;}
+.snsLogin div#buttonLoginArea button,
+.snsLogin div#buttonRegiArea button { width:122px; height:26px; border:2px #fff outset; background-color:#555; text-indent:0; font-weight:bold; color:#fff;}
+
+/*コンテンツエリア*/
+.contents div.box div.ttl { background-color:#F9D80D;}
+.contents div.box div.ttl h2 { color: #444;}
+.contents div.box div.innerBox { margin-top:-2px; padding:0 0 5px 0; border: 1px #F9D80D solid;}
+.contents div.box div.innerBox dl { background:none;}
+.contents div.box div.innerBox dt { padding:5px 0 5px 0; border-top:1px #F9D80D dotted;}
+.contents div.box div.innerBox dd { padding:5px 0 5px 0; border-top:1px #F9D80D dotted;}
+
+/*コンテンツエリア／パターン別*/
+.contents div.PatternE div.innerBox div.freeArea { padding: 10px 6px 0 6px;}
+.contents div.PatternF div.innerBox ul { margin:0 4px 0 4px;}
+.contents div.PatternF div.innerBox li { margin-top:-1px; padding:5px 0 5px 0; border-top:1px #F9D80D dotted;}
+.contents div.PatternG div.innerBox ul { margin:0 4px 0 4px;}
+
+/*サイドバナー領域*/
+#invite div.sideBanner { margin-top:120px;}
+#free div.sideBanner { margin-top:150px;}

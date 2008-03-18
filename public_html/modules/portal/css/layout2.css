@@ -1,0 +1,6 @@
+@charset "utf-8";
+/* --- [ layout ] --- */
+.partitionLeft { width:284px;}
+.partitionLeft div.box { width:274px;}
+.partitionRight,
+.partitionRight div.box { width:426px;}
