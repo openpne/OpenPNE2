@@ -140,7 +140,7 @@
 
 ({****************})
 ({****************})
-
+({if $smarty.const.USE_EXT_DIR})
 <ul class="module">
 
 <li id="adminModule" onmouseover="menu('adminModule','adminModuleCont')" onmouseout="menu('adminModule','adminModuleCont')"><a class="tab" href="#">拡張機能</a>
@@ -155,7 +155,7 @@
 </li>
 
 </ul>
-
+({/if})
 ({****************})
 ({****************})
 
