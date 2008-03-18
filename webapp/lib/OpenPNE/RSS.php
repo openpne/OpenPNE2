@@ -20,7 +20,7 @@ class OpenPNE_RSS
         $this->charset = $charset;
     }
 
-    function fetch($rss_url)
+    function fetch($rss_url, $is_get_feed_title = false)
     {
         $feed = new SimplePie();
         if (OPENPNE_USE_HTTP_PROXY) {
@@ -39,12 +39,19 @@ class OpenPNE_RSS
             return false;
         }
 
+        if ($is_get_feed_title) {
+            $feed_title = @$feed->get_feed_title();
+        } else {
+            $feed_title = '';
+        }
+
         $result = array();
         foreach ($items as $item) {
             $title = $item->get_title();
             $links = $item->get_links();
             $description = $item->get_description();
             $date = @$item->get_date('Y-m-d H:i:s');
+            $enclosure = $item->get_enclosure();
 
             if (!$title) {
                 $title = '';
@@ -64,6 +71,10 @@ class OpenPNE_RSS
                 $date = '';
             }
 
+            if (!$enclosure) {
+                $enclosure = '';
+            }
+
             // エスケープされた文字列を元に戻す
             $trans_table = array_flip(get_html_translation_table(HTML_SPECIALCHARS, ENT_QUOTES));
             $trans_table['&#039;'] = "'";
@@ -76,9 +87,15 @@ class OpenPNE_RSS
                 'body'  => $this->convert_encoding($description),
                 'link'  => $link,
                 'date'  => $date,
+                'enclosure' => $enclosure,
             );
             $result[] = $f_item;
         }
+
+        if ($is_get_feed_title && $feed_title) {
+            return array($feed_title, $result);
+        }
+
         return $result;
     }
 
