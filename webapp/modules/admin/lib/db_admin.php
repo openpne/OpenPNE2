@@ -2853,4 +2853,44 @@ function db_admin_c_blacklist($c_blacklist_id)
     return $blacklist;
 }
 
+function db_admin_enabled_module_list()
+{
+    $sql = 'SELECT * FROM c_module WHERE is_enabled = 1';
+    $module_list = db_get_all($sql);
+
+    return $module_list;
+}
+
+function db_admin_insert_module_enabled($module, $is_enabled)
+{
+    $data = array(
+        'name' => $module,
+        'is_enabled' => $is_enabled,
+    );
+    return db_insert('c_module', $data);
+}
+
+function db_admin_update_module_enabled($module, $is_enabled)
+{
+    $data = array(
+        'is_enabled' => $is_enabled,
+    );
+    $where = array(
+        'name' => $module,
+    );
+    return db_update('c_module', $data, $where);
+}
+
+function db_admin_enabled_module_config_list()
+{
+    $enable_module_list = db_admin_enabled_module_list();
+    $configs = array();
+    foreach ($enable_module_list as $module) {
+        $name = $module['name'];
+        $configs[$name] = ext_admin_get_module_config4module($name);
+    }
+
+    return $configs;
+}
+
 ?>
