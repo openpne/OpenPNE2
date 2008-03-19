@@ -43,19 +43,19 @@
                        <dd>URL&nbsp;<input type="text" class="basic" name="rss_1" value="({$portal_rss.rss_1})" size="100" /></dd></dl>
 
                        <dl>
-                        <dt class="title"><input type="text" class="basic" name="rss_name_2" value="({$portal_rss.rss_name_2|default:"RSSリーダー1"})" size="30" /></dt>
+                        <dt class="title"><input type="text" class="basic" name="rss_name_2" value="({$portal_rss.rss_name_2|default:"RSSリーダー2"})" size="30" /></dt>
                        <dd>URL&nbsp;<input type="text" class="basic" name="rss_2" value="({$portal_rss.rss_2})" size="100" /></dd></dl>
 
                        <dl>
-                        <dt class="title"><input type="text" class="basic" name="rss_name_3" value="({$portal_rss.rss_name_3|default:"RSSリーダー1"})" size="30" /></dt>
+                        <dt class="title"><input type="text" class="basic" name="rss_name_3" value="({$portal_rss.rss_name_3|default:"RSSリーダー3"})" size="30" /></dt>
                        <dd>URL&nbsp;<input type="text" class="basic" name="rss_3" value="({$portal_rss.rss_3})" size="100" /></dd></dl>
 
                        <dl>
-                        <dt class="title"><input type="text" class="basic" name="rss_name_4" value="({$portal_rss.rss_name_4|default:"RSSリーダー1"})" size="30" /></dt>
+                        <dt class="title"><input type="text" class="basic" name="rss_name_4" value="({$portal_rss.rss_name_4|default:"RSSリーダー4"})" size="30" /></dt>
                        <dd>URL&nbsp;<input type="text" class="basic" name="rss_4" value="({$portal_rss.rss_4})" size="100" /></dd></dl>
 
                        <dl>
-                        <dt class="title"><input type="text" class="basic" name="rss_name_5" value="({$portal_rss.rss_name_5|default:"RSSリーダー1"})" size="30" /></dt>
+                        <dt class="title"><input type="text" class="basic" name="rss_name_5" value="({$portal_rss.rss_name_5|default:"RSSリーダー5"})" size="30" /></dt>
                        <dd>URL&nbsp;<input type="text" class="basic" name="rss_5" value="({$portal_rss.rss_5})" size="100" /></dd></dl>
                        <br class="clear" />
 
