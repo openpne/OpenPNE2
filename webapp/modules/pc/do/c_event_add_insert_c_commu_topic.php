@@ -72,7 +72,7 @@ class pc_do_c_event_add_insert_c_commu_topic extends OpenPNE_Action
         if ($event['invite_period_year'].$event['invite_period_month'].$event['invite_period_day']!="") {
             $invite_period = $event['invite_period_year']."-".$event['invite_period_month']."-".$event['invite_period_day'];
         } else {
-            $invite_period = "";
+            $invite_period = "0000-00-00";
         }
 
         $insert_c_commu_topic = array(
