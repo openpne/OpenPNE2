@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS portal_config;
+DROP TABLE portal_config;
 CREATE TABLE portal_config (
   portal_config_id serial NOT NULL,
   name text NOT NULL,
@@ -7,7 +7,7 @@ CREATE TABLE portal_config (
   UNIQUE (name)
 );
 
-DROP TABLE IF EXISTS portal_layout;
+DROP TABLE portal_layout;
 CREATE TABLE portal_layout (
   portal_layout_id serial NOT NULL,
   content_name text NOT NULL,
@@ -18,7 +18,7 @@ CREATE TABLE portal_layout (
   UNIQUE (position)
 );
 
-DROP TABLE IF EXISTS portal_free_area;
+DROP TABLE portal_free_area;
 CREATE TABLE portal_free_area (
   portal_free_area_id serial NOT NULL,
   html text NOT NULL,
@@ -26,7 +26,7 @@ CREATE TABLE portal_free_area (
   PRIMARY KEY (portal_free_area_id)
 );
 
-DROP TABLE IF EXISTS portal_rss;
+DROP TABLE portal_rss;
 CREATE TABLE portal_rss (
   portal_rss_id serial NOT NULL,
   url text NOT NULL,
@@ -34,7 +34,7 @@ CREATE TABLE portal_rss (
   PRIMARY KEY (portal_rss_id)
 );
 
-DROP TABLE IF EXISTS portal_link;
+DROP TABLE portal_link;
 CREATE TABLE portal_link (
   portal_link_id serial NOT NULL,
   title text NOT NULL,
@@ -45,14 +45,14 @@ CREATE TABLE portal_link (
   PRIMARY KEY (portal_link_id)
 );
 
-DROP TABLE IF EXISTS portal_image;
+DROP TABLE portal_image;
 CREATE TABLE portal_image (
   portal_image_id serial NOT NULL,
   image_filename text NOT NULL,
   PRIMARY KEY (portal_image_id)
 );
 
-DROP TABLE IF EXISTS portal_layout_ktai;
+DROP TABLE portal_layout_ktai;
 CREATE TABLE portal_layout_ktai (
   portal_layout_ktai_id serial NOT NULL,
   content_name text NOT NULL,
@@ -62,7 +62,7 @@ CREATE TABLE portal_layout_ktai (
   UNIQUE (position)
 );
 
-DROP TABLE IF EXISTS portal_free_area_ktai;
+DROP TABLE portal_free_area_ktai;
 CREATE TABLE portal_free_area_ktai (
   portal_free_area_ktai_id serial NOT NULL,
   name text NOT NULL,
