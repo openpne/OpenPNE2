@@ -70,12 +70,11 @@ CREATE TABLE portal_free_area_ktai (
   PRIMARY KEY (portal_free_area_ktai_id)
 );
 
-INSERT INTO portal_config VALUES
-  (1,'USE_PORTAL','0'),
-  (2,'HEAD_TEXT_TYPE','0'),
-  (3,'HEAD_TEXT',''),
-  (4,'LAYOUT_TYPE','2'),
-  (5,'COLOR_TYPE','005_openpne_blue');
+INSERT INTO portal_config VALUES (1,'USE_PORTAL','0');
+INSERT INTO portal_config VALUES (2,'HEAD_TEXT_TYPE','0');
+INSERT INTO portal_config VALUES (3,'HEAD_TEXT','');
+INSERT INTO portal_config VALUES (4,'LAYOUT_TYPE','2');
+INSERT INTO portal_config VALUES (5,'COLOR_TYPE','005_openpne_blue');
 
 INSERT INTO c_module VALUES(nextval('c_module_c_module_id_seq'), 'portal', 1);
 
