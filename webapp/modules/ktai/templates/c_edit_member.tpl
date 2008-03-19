@@ -18,7 +18,9 @@
 ({$item.nickname})<br>
 ({if $c_commu.c_member_id_admin != $item.c_member_id})
 <br>
+({if $c_commu.c_member_id_sub_admin != $item.c_member_id})
 <a href="({t_url m=ktai a=page_c_edit_member_delete_c_commu_member_confirm})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;target_c_member_id=({$item.c_member_id})&amp;({$tail})">ｺﾐｭﾆﾃｨから退会させる</a><br>
+({/if})
 ({if $count_member > 1 && $c_commu.c_member_id_sub_admin != $u})
 ({if $item.is_display_admin})
 <a href="({t_url m=ktai a=page_c_admin_request})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;target_c_member_id=({$item.c_member_id})&amp;({$tail})">管理権を渡す</a><br>
