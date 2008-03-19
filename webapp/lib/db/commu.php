@@ -2413,13 +2413,25 @@ function db_commu_update_c_commu_topic($c_commu_topic_id, $topic)
         'r_datetime' => db_now(),
         'r_date' => db_now(),
     );
+
+    $open_date = '0000-00-00';
+    $invite_period = '0000-00-00';
+
+    if (isset($topic['open_date']) && $topic['open_date']) {
+        $open_date = $topic['open_date'];
+    }
+    
+    if (isset($topic['invite_period']) && $topic['invite_period']) {
+        $invite_period = $topic['invite_period'];
+    }
+
     if ($data['event_flag']) {
         $data += array(
-            'open_date'         => $topic['open_date'],
+            'open_date'         => $open_date,
             'open_date_comment' => $topic['open_date_comment'],
             'open_pref_id'      => intval($topic['open_pref_id']),
             'open_pref_comment' => $topic['open_pref_comment'],
-            'invite_period'     => $topic['invite_period'],
+            'invite_period'     => $invite_period,
         );
     }
     $where = array('c_commu_topic_id' => intval($c_commu_topic_id));
@@ -2487,13 +2499,26 @@ function db_commu_insert_c_commu_topic($topic)
         'r_datetime'  => db_now(),
         'r_date'      => db_now(),
     );
+
+
+    $open_date = '0000-00-00';
+    $invite_period = '0000-00-00';
+
+    if (isset($topic['open_date']) && $topic['open_date']) {
+        $open_date = $topic['open_date'];
+    }
+    
+    if (isset($topic['invite_period']) && $topic['invite_period']) {
+        $invite_period = $topic['invite_period'];
+    }
+
     if ($data['event_flag']) {
         $data += array(
-            'open_date'         => $topic['open_date'],
+            'open_date'         => $open_date,
             'open_date_comment' => $topic['open_date_comment'],
             'open_pref_id'      => intval($topic['open_pref_id']),
             'open_pref_comment' => $topic['open_pref_comment'],
-            'invite_period'     => $topic['invite_period'],
+            'invite_period'     => $invite_period,
         );
     }
     return db_insert('c_commu_topic', $data);
