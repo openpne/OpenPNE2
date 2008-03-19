@@ -40,7 +40,7 @@ class OpenPNE_RSS
         }
 
         if ($is_get_feed_title) {
-            $feed_title = @$feed->get_feed_title();
+            $feed_title = @$feed->get_title();
         } else {
             $feed_title = '';
         }
