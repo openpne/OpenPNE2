@@ -1,5 +1,9 @@
 ({$inc_ktai_header|smarty:nodefaults})
 
+({if $inc_ktai_entry_point[1]})
+({$inc_ktai_entry_point[1]|smarty:nodefaults})
+({/if})
+
 <table width="100%">
 ({if $smarty.const.OPENPNE_USE_KTAI_LOGO})
 <tr><td align="center">
@@ -11,6 +15,9 @@
 </td></tr>
 ({/if})
 </table>
+({if $inc_ktai_entry_point[2]})
+({$inc_ktai_entry_point[2]|smarty:nodefaults})
+({/if})
 <br>
 ({foreach from=$top item=data})
     ({ext_include file="inc_portal_Contents_Layout_ktai.tpl"})
