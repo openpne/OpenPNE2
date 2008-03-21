@@ -64,7 +64,7 @@
 ({if $INC_FOOTER_side_banner_html_before || $INC_FOOTER_inc_side_banner})
     <div class="sideBanner">
     ({if $INC_FOOTER_side_banner_html_before})
-        ({$INC_FOOTER_side_banner_html_before|smarty:nodefaults})
+        ({$INC_FOOTER_side_banner_html_before|smarty:nodefaults|t_url2cmd:'side_banner'|t_cmd:'side_banner'})
     ({else})
         ({if $INC_FOOTER_inc_side_banner.a_href})
         ({if $PHPSESSID})
