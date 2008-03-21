@@ -76,6 +76,9 @@ a:active  { color:#f00;}
 /*フッター部分*/
 .publication { clear:both; margin-left: -10px; width:720px; height:21px; text-align: right; font-size: 11px; line-height: 21px;}
 
+/* サイドバナー領域 */
+.sideBanner { float:left; width:250px;}
+
 /* --- clearfix --- */
 .contents div.PatternF div.innerBox li:after { content: " "; display: block; visibility: hidden; clear: both; height: 0.1px; font-size: 0.1em; line-height: 0;}
 .contents div.PatternF div.innerBox li { display:inline-block; min-height:1%;}
