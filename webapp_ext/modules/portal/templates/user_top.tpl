@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+({$INC_HEADER_inc_html_head|smarty:nodefaults})
 <title>({$title})</title>
 <meta content="text/css" http-equiv="content-style-type" />
 <meta http-equiv="Content-Script-Type" content="text/javascript" />
@@ -25,11 +26,13 @@
 </style>
 </head>
 <body>
+({$INC_HEADER_inc_page_top2|smarty:nodefaults})
 ({if ! $smarty.const.IS_CLOSED_SNS})
 <div class="container" id="free">
 ({else})
 <div class="container" id="invite">
 ({/if})
+({$INC_HEADER_inc_page_top|smarty:nodefaults})
    ({ext_include file="inc_portal_Login_Form.tpl"})
 
    <div class="contents">
@@ -59,8 +62,8 @@
        </div>
 
        <div class="publication" id="publication">({$INC_FOOTER_inc_page_footer|smarty:nodefaults})</div>
+({$INC_FOOTER_inc_page_bottom2|smarty:nodefaults})
    </div>
-
 ({if $INC_FOOTER_side_banner_html_before || $INC_FOOTER_inc_side_banner})
     <div class="sideBanner">
     ({if $INC_FOOTER_side_banner_html_before})
@@ -82,5 +85,6 @@
 ({/if})
 
 </div>
+({$INC_FOOTER_inc_page_bottom|smarty:nodefaults})
 </body>
 </html>
