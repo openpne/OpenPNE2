@@ -69,6 +69,7 @@ a:active  { color:#f00;}
 .contents div.PatternF ul { padding:0 10px; height:100%; background: url("../img/inrbox_bg.gif") repeat-x;}
 .contents div.PatternF li { padding-top:10px; list-style:none;}
 .contents div.PatternF div.innerBox li span{float:left; overflow:hidden; width:76px; height:76px; font-size:0;}
+.contents div.PatternF div.innerBox li img{vertical-align:top;}
 .contents div.PatternF div.innerBox li dl { margin-left:80px;}
 .contents div.PatternG ul { padding:0 10px 0 22px; height:100%; background: url("../img/inrbox_bg.gif") repeat-x;}
 .contents div.PatternG li { padding-top:5px;}
@@ -76,8 +77,8 @@ a:active  { color:#f00;}
 .publication { clear:both; margin-left: -10px; width:720px; height:21px; text-align: right; font-size: 11px; line-height: 21px;}
 
 /* --- clearfix --- */
-.contents div.PatternF div.innerBox li:after,
-.contents div.PatternF div.innerBox li,
+.contents div.PatternF div.innerBox li:after { content: " "; display: block; visibility: hidden; clear: both; height: 0.1px; font-size: 0.1em; line-height: 0;}
+.contents div.PatternF div.innerBox li { display:inline-block; min-height:1%;}
 /* no ie mac \*/
 * html .contents div.PatternF div.innerBox li,
 .contents div.PatternF div.innerBox li,
