@@ -43,6 +43,9 @@ class portal_page_preview_ktai extends OpenPNE_Action
         $this->set('WORD_FRIEND_HALF', WORD_FRIEND_HALF);
         $this->set('WORD_MY_FRIEND_HALF', WORD_MY_FRIEND_HALF);
 
+        // inc_entry_point
+        $this->set('inc_ktai_entry_point', fetch_inc_entry_point($this->getView(), 'ktai_o_login'));
+
         return 'success';
     }
 
