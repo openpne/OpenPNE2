@@ -41,6 +41,9 @@ function dummyAlert() { alert('プレビューページからは操作できま�
 <div id="Outline">
 <div id="Content">
 
+({if $inc_ktai_entry_point[1]})
+({$inc_ktai_entry_point[1]|smarty:nodefaults})
+({/if})
 <table width="100%">
 ({if $smarty.const.OPENPNE_USE_KTAI_LOGO})
 <tr><td align="center">
@@ -52,6 +55,9 @@ function dummyAlert() { alert('プレビューページからは操作できま�
 </td></tr>
 ({/if})
 </table>
+({if $inc_ktai_entry_point[2]})
+({$inc_ktai_entry_point[2]|smarty:nodefaults})
+({/if})
 <br>
 
 ({foreach from=$top item=data})
