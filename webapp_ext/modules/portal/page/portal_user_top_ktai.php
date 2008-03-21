@@ -33,6 +33,9 @@ class portal_page_portal_user_top_ktai extends OpenPNE_Action
         $this->set('top', $top);
         $this->set('bottom', $bottom);
 
+        // inc_entry_point
+        $this->set('inc_ktai_entry_point', fetch_inc_entry_point($this->getView(), 'ktai_o_login'));
+
         return 'success';
     }
 
