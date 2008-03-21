@@ -16,7 +16,7 @@
        <td class="detail">
            <h3>({$page_name})</h3>
            <p>お好みの配色設定を選択してください。ポートレット（枠）のデザインと色が変化します。</p>
-           <p class="caution" id="c01">※「SNSポータル」のヘッダーとフッターの画像は、<a href="({t_url m=admin a=page_edit_skin_image})">[ デザイン：スキン画像変更 ]</a> ページにある、「ログイン前ヘッダ」と「共通フッタ」の画像が表示されます。ヘッダとフッターの画像を変更したい場合は、そちらのページで変更してください。</p>
+           <p class="caution" id="c01">※「SNSポータル」のヘッダーとフッターの画像は、<a href="?m=({$smarty.const.ADMIN_MODULE_NAME})&amp;a=page_({$hash_tbl->hash('edit_skin_image', 'page')})">[ デザイン：スキン画像変更 ]</a> ページにある、「ログイン前ヘッダ」と「共通フッタ」の画像が表示されます。ヘッダとフッターの画像を変更したい場合は、そちらのページで変更してください。</p>
 
            <form action="./" method="post">
            <input type="hidden" name="m" value="({$module_name})" />

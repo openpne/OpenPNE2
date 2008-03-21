@@ -29,7 +29,7 @@
                    <dd><p>標準設定されているスタイルは、ここで上書きすることができます。</p>
                    <p class="caution" id="c01">
                    ※よくわからない場合は、何も入力しなくても問題ありません。<br />
-                   ※「SNSポータル」のヘッダーとフッターの画像は、<a href="({t_url m=admin a=page_edit_skin_image})">[ デザイン：スキン画像変更 ]</a> ページにある、「ログイン前ヘッダ」と「共通フッタ」の画像が表示されます。ヘッダとフッターの画像を変更したい場合は、そちらのページで変更してください。</p></dd>
+                   ※「SNSポータル」のヘッダーとフッターの画像は、<a href="?m=({$smarty.const.ADMIN_MODULE_NAME})&amp;a=page_({$hash_tbl->hash('edit_skin_image', 'page')})">[ デザイン：スキン画像変更 ]</a>  ページにある、「ログイン前ヘッダ」と「共通フッタ」の画像が表示されます。ヘッダとフッターの画像を変更したい場合は、そちらのページで変更してください。</p></dd>
 
                    <dd><textarea name="custom_css" rows="10" cols="80">({$portal_config.custom_css})</textarea></dd>
                    </dl>
