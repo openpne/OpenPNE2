@@ -801,4 +801,16 @@ function util_get_preset_color_list($dir = 'pc')
 
     return array_values($color_list);
 }
+
+function util_get_module_config($module)
+{
+    $config = array();
+
+    if ($file = openpne_ext_search($module . '/config.ini')) {
+        $config = parse_ini_file($file, true);
+    }
+
+    return $config;
+}
+
 ?>
