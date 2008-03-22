@@ -208,18 +208,4 @@ function ext_admin_get_modules_config()
     return $configs;
 }
 
-/**
- * 指定したモジュールの設定ファイルを読み込む
- */
-function ext_admin_get_module_config4module($module)
-{
-    $config = array();
-
-    if ($file = openpne_ext_search($module . '/config.ini')) {
-        $config = parse_ini_file($file, true);
-    }
-
-    return $config;
-}
-
 ?>
