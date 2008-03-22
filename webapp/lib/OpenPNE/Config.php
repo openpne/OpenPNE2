@@ -202,6 +202,7 @@ class OpenPNE_Config
             'OPENPNE_HTTP_PROXY_PORT' => 8080,
             'OPENPNE_SEND_NO_CACHE_HEADER' => false,
             'OPENPNE_ADMIN_CONVERT_URL' => true,
+            'CHECK_IMG_AUTH' => false,
         // 固定値
             'AMAZON_TOKEN'   => '1WZYY1W9YF49AGM0RTG2',
             'AMAZON_LOCALE'  => 'jp',
