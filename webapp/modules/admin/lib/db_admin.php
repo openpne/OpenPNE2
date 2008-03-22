@@ -2887,7 +2887,7 @@ function db_admin_enabled_module_config_list()
     $configs = array();
     foreach ($enable_module_list as $module) {
         $name = $module['name'];
-        $configs[$name] = ext_admin_get_module_config4module($name);
+        $configs[$name] = util_get_module_config($name);
     }
 
     return $configs;
