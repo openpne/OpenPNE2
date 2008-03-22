@@ -24,6 +24,9 @@
 ヘッダには、 [ SNS名を表示 ] を選択した場合はSNS名が、 [ 手動入力 ] を選択した場合には入力ボックスに入れた文字列が表示されます。</p>
            <p class="caution">※表示したくないコンテンツは「表示しない」を選択してください。<br />
            ※同じ番号を2箇所に設定することはできません。</p>
+            ({if $smarty.const.CHECK_IMG_AUTH})
+            <p class="caution">※画像認証が有効になっているため、「最新コミュニティ書き込み」「コミュニティ盛り上がりランキング」の画像を表示することができません。画像を表示したい場合は、config.php の CHECK_IMG_AUTH を false にしてから設定をおこなってください。</p>
+            ({/if})
 
            <form action="./" method="post">
            <input type="hidden" name="m" value="({$module_name})" />
@@ -65,7 +68,7 @@
                    ({/if})
                ({/foreach})
                </select>
-               <input type="checkbox" name="({$name})_is_image" value="1" ({if $portal_config.layout_config.is_image.$name})checked="checked" ({/if})/>コミュニティ画像を表示
+               <input type="checkbox" name="({$name})_is_image" value="1" ({if $portal_config.layout_config.is_image.$name})checked="checked" ({/if})({if $smarty.const.CHECK_IMG_AUTH}) disabled="disabled" ({/if})/>コミュニティ画像を表示
            </td>
            </tr>
            
@@ -115,7 +118,7 @@
                    ({/if})
                ({/foreach})
                </select>
-               <input type="checkbox" name="({$name})_is_image" value="1" ({if $portal_config.layout_config.is_image.$name})checked="checked" ({/if})/>コミュニティ画像を表示
+               <input type="checkbox" name="({$name})_is_image" value="1" ({if $portal_config.layout_config.is_image.$name})checked="checked" ({/if})({if $smarty.const.CHECK_IMG_AUTH}) disabled="disabled" ({/if})/>コミュニティ画像を表示
            </td>
            </tr>
            
