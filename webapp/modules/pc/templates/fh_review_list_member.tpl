@@ -1,516 +1,364 @@
-({ext_include file="inc_header.tpl"})
-({ext_include file="inc_layoutcolumn_top_720px.tpl"})
-
-({***************************})
-({**ここから：メインコンテンツ**})
-({***************************})
-
-<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
+<div id="LayoutC">
+<div id="Center">
 
 ({if $type == "h"})
-<!-- ********************************** -->
-<!-- ******ここから：レビューを書く****** -->
-<table border="0" cellspacing="0" cellpadding="0" style="width:650px;margin:0px auto;" class="border_07">
-<tr>
-<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
-<td style="width:636px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
-<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
-</tr>
-<tr>
-<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
-<td class="bg_05" align="center">
-<!-- *ここから：レビューを書く＞内容* -->
-({*ここから：header*})
-<!-- ここから：小タイトル -->
-<table border="0" cellspacing="0" cellpadding="0" style="width:634px;" class="border_01">
-<tr>
-<td style="width:36px;" class="bg_06"><img src="({t_img_url_skin filename=content_header_1})" style="width:30px;height:20px;" class="dummy"></td>
-<td style="width:598px;padding:2px 0px;" class="bg_06"><span class="b_b c_00">
-レビューを書く
-</span></td>
-</tr>
-</table>
-<!-- ここまで：小タイトル -->
-({*ここまで：header*})
-({*ここから：body*})
-<!-- ここから：主内容 -->
-<div class="border_01">
-
-<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
-
-<table border="0" cellspacing="0" cellpadding="0" style="width:550px;margin:0px auto;" class="border_01">
-({*********})
-<tr>
-<td style="width:548px;height:1px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-</tr>
-({*********})
-<tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-<td style="width:546px;" class="bg_02" align="center" valign="middle">
-
-<div style="text-align:center;" class="padding_w_s">
-
-({t_form _method=get m=pc a=page_h_review_add})
-<input type="submit" class="submit" value="　　レビューを書く　　">
-
-<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
-
-<div style="width:190px;margin:0px auto;text-align:left;">
-
-<div>
-
-<img src="./skin/dummy.gif" alt="dummy" class="icon arrow_1">
-<a href="({t_url m=pc a=page_h_review_search})">全体のレビュー一覧を見る</a>
-
+({* {{{ infoButtonBox *})
+<div class="dparts infoButtonBox"><div class="parts">
+<div class="partsHeading"><h3>レビューを書く</h3></div>
+<div class="block">
+({t_form_block _method=get m=pc a=page_h_review_add})
+<ul class="moreInfo button">
+<li><input type="submit" class="input_submit" value="レビューを書く" /></li>
+</ul>
+({/t_form_block})
+<ul class="moreInfo">
+<li><a href="({t_url m=pc a=page_h_review_search})">全体のレビュー一覧を見る</a></li>
+<li><a href="({t_url m=pc a=page_h_review_clip_list})">クリップを見る</a></li>
+</ul>
 </div>
-
-<div>
-
-<img src="./skin/dummy.gif" alt="dummy" class="icon arrow_1">
-<a href="({t_url m=pc a=page_h_review_clip_list})">クリップを見る</a>
-
-</div>
-
-</div>
-
-</form>
-
-</div>
-
-</td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-</tr>
-({*********})
-<tr>
-<td style="height:1px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-</tr>
-({*********})
-</table>
-
-<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
-
-</div>
-<!-- ここまで：主内容 -->
-({*ここまで：body*})
-({*ここから：footer*})
-<!-- 無し -->
-({*ここまで：footer*})
-<!-- *ここまで：レビューを書く＞＞内容* -->
-</td>
-<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
-</tr>
-<tr>
-<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
-<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
-<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
-</tr>
-</table>
-<!-- ******ここまで：レビューを書く****** -->
-<!-- ********************************** -->
-
-<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
+</div></div>
+({* }}} *})
 ({/if})
 
 ({if $c_review_list})
-<!-- ******************************** -->
-<!-- ******ここから：レビュー一覧****** -->
-<table border="0" cellspacing="0" cellpadding="0" style="width:650px;margin:0px auto;" class="border_07">
-<tr>
-<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
-<td style="width:636px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
-<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
-</tr>
-<tr>
-<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
-<td class="bg_01" align="center">
-<!-- *ここから：レビュー一覧＞内容* -->
-({*ここから：header*})
-<!-- ここから：小タイトル -->
-<table border="0" cellspacing="0" cellpadding="0" style="width:636px;" class="border_01">
-<tr>
-<td style="width:36px;" class="bg_06"><img src="({t_img_url_skin filename=content_header_1})" style="width:30px;height:20px;" class="dummy"></td>
-<td style="width:598px;padding:2px 0px;" class="bg_06"><span class="b_b c_00">
-({$c_member.nickname})さんのレビュー一覧
-</span></td>
-</tr>
-</table>
-<!-- ここまで：小タイトル -->
-({*ここまで：header*})
-({*ここから：body*})
-<!-- ここから：主内容 -->
-<!-- ここから：主内容＞＞件数表示終わり -->
-<table border="0" cellspacing="0" cellpadding="0" style="width:636px;">
-({*********})
-<tr>
-<td style="width:636px;height:1px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-</tr>
-({*********})
-<tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-<td style="width:634px;" class="bg_02" align="right" valign="middle">
 
-<div class="padding_s">
+({* {{{ *})
+({* #1949 *})<!-- ******ここから：レビュー一覧****** -->
+({* #1949 *})<table border="0" cellspacing="0" cellpadding="0" style="width:650px;margin:0px auto;" class="border_07">
+({* #1949 *})<tr>
+({* #1949 *})<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+({* #1949 *})<td style="width:636px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+({* #1949 *})<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+({* #1949 *})</tr>
+({* #1949 *})<tr>
+({* #1949 *})<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+({* #1949 *})<td class="bg_01" align="center">
+({* #1949 *})<!-- *ここから：レビュー一覧＞内容* -->
+({* #1949 *})({*ここから：header*})
+({* #1949 *})<!-- ここから：小タイトル -->
+({* #1949 *})<table border="0" cellspacing="0" cellpadding="0" style="width:636px;" class="border_01">
+({* #1949 *})<tr>
+({* #1949 *})<td style="width:36px;" class="bg_06"><img src="({t_img_url_skin filename=content_header_1})" style="width:30px;height:20px;" class="dummy"></td>
+({* #1949 *})<td style="width:598px;padding:2px 0px;" class="bg_06"><span class="b_b c_00">
+({* #1949 *})({$c_member.nickname})さんのレビュー一覧
+({* #1949 *})</span></td>
+({* #1949 *})</tr>
+({* #1949 *})</table>
+({* #1949 *})<!-- ここまで：小タイトル -->
+({* #1949 *})({*ここまで：header*})
+({* #1949 *})({*ここから：body*})
+({* #1949 *})<!-- ここから：主内容 -->
+({* #1949 *})<!-- ここから：主内容＞＞件数表示終わり -->
+({* #1949 *})<table border="0" cellspacing="0" cellpadding="0" style="width:636px;">
+({* #1949 *})({*********})
+({* #1949 *})<tr>
+({* #1949 *})<td style="width:636px;height:1px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1949 *})</tr>
+({* #1949 *})({*********})
+({* #1949 *})<tr>
+({* #1949 *})<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1949 *})<td style="width:634px;" class="bg_02" align="right" valign="middle">
+({* #1949 *})
+({* #1949 *})<div class="padding_s">
+({* #1949 *})
+({* #1949 *})({if $is_prev})<a href="({t_url m=pc a=page_fh_review_list_member})&amp;target_c_member_id=({$c_member.c_member_id})&amp;direc=-1&amp;page=({$page})">＜前</a> ({/if})
+({* #1949 *})({$start_num})件～({$end_num})件を表示
+({* #1949 *})({if $is_next})<a href="({t_url m=pc a=page_fh_review_list_member})&amp;target_c_member_id=({$c_member.c_member_id})&amp;direc=1&amp;page=({$page})">次＞</a>({/if})
+({* #1949 *})
+({* #1949 *})</div>
+({* #1949 *})
+({* #1949 *})</td>
+({* #1949 *})<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1949 *})</tr>
+({* #1949 *})({*********})
+({* #1949 *})<tr>
+({* #1949 *})<td style="height:1px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1949 *})</tr>
+({* #1949 *})({*********})
+({* #1949 *})</table>
+({* #1949 *})<!-- ここまで：主内容＞＞件数表示終わり -->
+({* #1949 *})<!-- ここから：主内容＞＞レビュー表示 -->
+({* #1949 *})<table border="0" cellspacing="0" cellpadding="0" style="width:636px;">
+({* #1949 *})({*********})
+({* #1949 *})<tr>
+({* #1949 *})<td style="width:636px;height:1px;" class="bg_01" colspan="7"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1949 *})</tr>
+({* #1949 *})({*********})
+({* #1949 *})({foreach from=$c_review_list item=review})
+({* #1949 *})<tr>
+({* #1949 *})<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1949 *})<td style="width:180px;" class="bg_02" align="center" valign="top" rowspan="11">
+({* #1949 *})
+({* #1949 *})<img src="./skin/dummy.gif" alt="dummy" style="width:180px;height:1px;" class="dummy">
+({* #1949 *})
+({* #1949 *})<div class="padding_s">
+({* #1949 *})
+({* #1949 *})<a href="({$review.url})" target="_blank"><img src="({if $review.image_medium})({$review.image_medium})({else})({t_img_url_skin filename=no_image w=120 h=120})({/if})"><br>詳細を見る</a>
+({* #1949 *})
+({* #1949 *})<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
+({* #1949 *})
+({* #1949 *})</div>
+({* #1949 *})
+({* #1949 *})<img src="./skin/dummy.gif" alt="dummy" style="width:180px;height:1px;" class="dummy">
+({* #1949 *})
+({* #1949 *})</td>
+({* #1949 *})<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1949 *})<td style="width:100px;" class="bg_05" align="left" valign="middle">
+({* #1949 *})
+({* #1949 *})<img src="./skin/dummy.gif" alt="dummy" style="width:100px;height:1px;" class="dummy">
+({* #1949 *})
+({* #1949 *})<div class="padding_s">
+({* #1949 *})
+({* #1949 *})タイトル
+({* #1949 *})
+({* #1949 *})</div>
+({* #1949 *})
+({* #1949 *})<img src="./skin/dummy.gif" alt="dummy" style="width:100px;height:1px;" class="dummy">
+({* #1949 *})
+({* #1949 *})</td>
+({* #1949 *})<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1949 *})<td style="width:352px;" class="bg_02" align="left" valign="middle">
+({* #1949 *})
+({* #1949 *})<img src="./skin/dummy.gif" alt="dummy" style="width:352px;height:1px;" class="dummy">
+({* #1949 *})
+({* #1949 *})<div class="padding_s">
+({* #1949 *})
+({* #1949 *})({$review.title})
+({* #1949 *})
+({* #1949 *})</div>
+({* #1949 *})
+({* #1949 *})<img src="./skin/dummy.gif" alt="dummy" style="width:352px;height:1px;" class="dummy">
+({* #1949 *})
+({* #1949 *})</td>
+({* #1949 *})<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1949 *})</tr>
+({* #1949 *})({*********})
+({* #1949 *})<tr>
+({* #1949 *})<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1949 *})<td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1949 *})</tr>
+({* #1949 *})({*********})
+({* #1949 *})<tr>
+({* #1949 *})<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1949 *})<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1949 *})<td class="bg_05" align="left" valign="middle">
+({* #1949 *})
+({* #1949 *})<div class="padding_s">
+({* #1949 *})
+({* #1949 *})説明
+({* #1949 *})
+({* #1949 *})</div>
+({* #1949 *})
+({* #1949 *})</td>
+({* #1949 *})<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1949 *})<td class="bg_02" align="left" valign="middle">
+({* #1949 *})
+({* #1949 *})<div class="padding_s">
+({* #1949 *})
+({* #1949 *})({$review.release_date})<br>
+({* #1949 *})({$review.manufacturer})<br>
+({* #1949 *})({$review.author})
+({* #1949 *})
+({* #1949 *})</div>
+({* #1949 *})
+({* #1949 *})</td>
+({* #1949 *})<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1949 *})</tr>
+({* #1949 *})({*********})
+({* #1949 *})<tr>
+({* #1949 *})<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1949 *})<td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1949 *})</tr>
+({* #1949 *})({*********})
+({* #1949 *})<tr>
+({* #1949 *})<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1949 *})<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1949 *})<td class="bg_05" align="left" valign="middle">
+({* #1949 *})
+({* #1949 *})<div class="padding_s">
+({* #1949 *})
+({* #1949 *})レビュー
+({* #1949 *})
+({* #1949 *})</div>
+({* #1949 *})
+({* #1949 *})</td>
+({* #1949 *})<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1949 *})<td class="bg_02" align="left" valign="middle">
+({* #1949 *})
+({* #1949 *})<div class="padding_s lh_120">
+({* #1949 *})
+({* #1949 *})({$review.body|nl2br})
+({* #1949 *})
+({* #1949 *})<div style="text-align:right;">
+({* #1949 *})
+({* #1949 *})<a href="({t_url m=pc a=page_h_review_list_product})&amp;c_review_id=({$review.c_review_id})">全てのレビューを見る(({$review.write_num}))</a>
+({* #1949 *})
+({* #1949 *})({if $type == "h"})|<a href="({t_url m=pc a=page_h_review_add_write})&amp;category_id=({$review.c_review_category_id})&amp;asin=({$review.asin})">編集</a><br>({/if})
+({* #1949 *})
+({* #1949 *})</div>
+({* #1949 *})
+({* #1949 *})</div>
+({* #1949 *})
+({* #1949 *})</td>
+({* #1949 *})<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1949 *})</tr>
+({* #1949 *})({*********})
+({* #1949 *})<tr>
+({* #1949 *})<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1949 *})<td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1949 *})</tr>
+({* #1949 *})({*********})
+({* #1949 *})<tr>
+({* #1949 *})<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1949 *})<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1949 *})<td class="bg_05" align="left" valign="middle">
+({* #1949 *})
+({* #1949 *})<div class="padding_s">
+({* #1949 *})
+({* #1949 *})作成日時
+({* #1949 *})
+({* #1949 *})</div>
+({* #1949 *})
+({* #1949 *})</td>
+({* #1949 *})<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1949 *})<td class="bg_02" align="left" valign="middle">
+({* #1949 *})
+({* #1949 *})<div class="padding_s">
+({* #1949 *})
+({* #1949 *})({$review.r_datetime|date_format:"%Y年%m月%d日 %H:%M"})
+({* #1949 *})
+({* #1949 *})</div>
+({* #1949 *})
+({* #1949 *})</td>
+({* #1949 *})<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1949 *})</tr>
+({* #1949 *})({*********})
+({* #1949 *})<tr>
+({* #1949 *})<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1949 *})<td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1949 *})</tr>
+({* #1949 *})({*********})
+({* #1949 *})<tr>
+({* #1949 *})<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1949 *})<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1949 *})<td class="bg_05" align="left" valign="middle">
+({* #1949 *})
+({* #1949 *})<div class="padding_s">
+({* #1949 *})
+({* #1949 *})満足度
+({* #1949 *})
+({* #1949 *})</div>
+({* #1949 *})
+({* #1949 *})</td>
+({* #1949 *})<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1949 *})<td class="bg_02" align="left" valign="middle">
+({* #1949 *})
+({* #1949 *})<div class="padding_s">
+({* #1949 *})
+({* #1949 *})<img src="({t_img_url_skin filename=satisfaction_level_`$review.satisfaction_level`})" class="icon">
+({* #1949 *})
+({* #1949 *})</div>
+({* #1949 *})
+({* #1949 *})</td>
+({* #1949 *})<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1949 *})</tr>
+({* #1949 *})({*********})
+({* #1949 *})<tr>
+({* #1949 *})<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1949 *})<td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1949 *})</tr>
+({* #1949 *})({*********})
+({* #1949 *})<tr>
+({* #1949 *})<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1949 *})<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1949 *})<td class="bg_05" align="left" valign="middle">
+({* #1949 *})
+({* #1949 *})<div class="padding_s">
+({* #1949 *})
+({* #1949 *})カテゴリ
+({* #1949 *})
+({* #1949 *})</div>
+({* #1949 *})
+({* #1949 *})</td>
+({* #1949 *})<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1949 *})<td class="bg_02" align="left" valign="middle">
+({* #1949 *})
+({* #1949 *})<div class="padding_s">
+({* #1949 *})
+({* #1949 *})({$review.category_disp})
+({* #1949 *})
+({* #1949 *})</div>
+({* #1949 *})
+({* #1949 *})</td>
+({* #1949 *})<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1949 *})</tr>
+({* #1949 *})({*********})
+({* #1949 *})<tr>
+({* #1949 *})<td style="height:1px;" class="bg_01" colspan="7"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1949 *})</tr>
+({* #1949 *})({*********})
+({* #1949 *})({/foreach})
+({* #1949 *})</table>
+({* #1949 *})<!-- ここまで：主内容＞＞レビュー表示 -->
+({* #1949 *})<!-- ここから：主内容＞＞件数表示終わり -->
+({* #1949 *})<table border="0" cellspacing="0" cellpadding="0" style="width:636px;">
+({* #1949 *})({*********})
+({* #1949 *})<tr>
+({* #1949 *})<td style="width:636px;height:1px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1949 *})</tr>
+({* #1949 *})({*********})
+({* #1949 *})<tr>
+({* #1949 *})<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1949 *})<td style="width:634px;" class="bg_02" align="right" valign="middle">
+({* #1949 *})
+({* #1949 *})<div class="padding_s">
+({* #1949 *})
+({* #1949 *})({if $is_prev})<a href="({t_url m=pc a=page_fh_review_list_member})&amp;target_c_member_id=({$c_member.c_member_id})&amp;direc=-1&amp;page=({$page})">＜前</a> ({/if})
+({* #1949 *})({$start_num})件～({$end_num})件を表示
+({* #1949 *})({if $is_next})<a href="({t_url m=pc a=page_fh_review_list_member})&amp;target_c_member_id=({$c_member.c_member_id})&amp;direc=1&amp;page=({$page})">次＞</a>({/if})
+({* #1949 *})
+({* #1949 *})</div>
+({* #1949 *})
+({* #1949 *})</td>
+({* #1949 *})<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1949 *})</tr>
+({* #1949 *})({*********})
+({* #1949 *})<tr>
+({* #1949 *})<td style="width:636px;height:1px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1949 *})</tr>
+({* #1949 *})({*********})
+({* #1949 *})</table>
+({* #1949 *})<!-- ここまで：主内容＞＞件数表示終わり -->
+({* #1949 *})<!-- ここまで：主内容 -->
+({* #1949 *})({*ここまで：body*})
+({* #1949 *})({*ここから：footer*})
+({* #1949 *})<!-- 無し -->
+({* #1949 *})({*ここまで：footer*})
+({* #1949 *})<!-- *ここまで：レビュー一覧＞＞内容* -->
+({* #1949 *})</td>
+({* #1949 *})<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+({* #1949 *})</tr>
+({* #1949 *})<tr>
+({* #1949 *})<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+({* #1949 *})<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+({* #1949 *})<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+({* #1949 *})</tr>
+({* #1949 *})</table>
+({* #1949 *})<!-- ******ここまで：レビュー一覧****** -->
+({* }}} *})
 
-({if $is_prev})<a href="({t_url m=pc a=page_fh_review_list_member})&amp;target_c_member_id=({$c_member.c_member_id})&amp;direc=-1&amp;page=({$page})">＜前</a> ({/if})
-({$start_num})件～({$end_num})件を表示
-({if $is_next})<a href="({t_url m=pc a=page_fh_review_list_member})&amp;target_c_member_id=({$c_member.c_member_id})&amp;direc=1&amp;page=({$page})">次＞</a>({/if})
-
-</div>
-
-</td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-</tr>
-({*********})
-<tr>
-<td style="height:1px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-</tr>
-({*********})
-</table>
-<!-- ここまで：主内容＞＞件数表示終わり -->
-<!-- ここから：主内容＞＞レビュー表示 -->
-<table border="0" cellspacing="0" cellpadding="0" style="width:636px;">
-({*********})
-<tr>
-<td style="width:636px;height:1px;" class="bg_01" colspan="7"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-</tr>
-({*********})
-({foreach from=$c_review_list item=review})
-<tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-<td style="width:180px;" class="bg_02" align="center" valign="top" rowspan="11">
-
-<img src="./skin/dummy.gif" alt="dummy" style="width:180px;height:1px;" class="dummy">
-
-<div class="padding_s">
-
-<a href="({$review.url})" target="_blank"><img src="({if $review.image_medium})({$review.image_medium})({else})({t_img_url_skin filename=no_image w=120 h=120})({/if})"><br>詳細を見る</a>
-
-<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
-
-</div>
-
-<img src="./skin/dummy.gif" alt="dummy" style="width:180px;height:1px;" class="dummy">
-
-</td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-<td style="width:100px;" class="bg_05" align="left" valign="middle">
-
-<img src="./skin/dummy.gif" alt="dummy" style="width:100px;height:1px;" class="dummy">
-
-<div class="padding_s">
-
-タイトル
-
-</div>
-
-<img src="./skin/dummy.gif" alt="dummy" style="width:100px;height:1px;" class="dummy">
-
-</td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-<td style="width:352px;" class="bg_02" align="left" valign="middle">
-
-<img src="./skin/dummy.gif" alt="dummy" style="width:352px;height:1px;" class="dummy">
-
-<div class="padding_s">
-
-({$review.title})
-
-</div>
-
-<img src="./skin/dummy.gif" alt="dummy" style="width:352px;height:1px;" class="dummy">
-
-</td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-</tr>
-({*********})
-<tr>
-<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-<td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-</tr>
-({*********})
-<tr>
-<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-<td class="bg_05" align="left" valign="middle">
-
-<div class="padding_s">
-
-説明
-
-</div>
-
-</td>
-<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-<td class="bg_02" align="left" valign="middle">
-
-<div class="padding_s">
-
-({$review.release_date})<br>
-({$review.manufacturer})<br>
-({$review.author})
-
-</div>
-
-</td>
-<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-</tr>
-({*********})
-<tr>
-<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-<td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-</tr>
-({*********})
-<tr>
-<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-<td class="bg_05" align="left" valign="middle">
-
-<div class="padding_s">
-
-レビュー
-
-</div>
-
-</td>
-<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-<td class="bg_02" align="left" valign="middle">
-
-<div class="padding_s lh_120">
-
-({$review.body|nl2br})
-
-<div style="text-align:right;">
-
-<a href="({t_url m=pc a=page_h_review_list_product})&amp;c_review_id=({$review.c_review_id})">全てのレビューを見る(({$review.write_num}))</a>
-
-({if $type == "h"})|<a href="({t_url m=pc a=page_h_review_add_write})&amp;category_id=({$review.c_review_category_id})&amp;asin=({$review.asin})">編集</a><br>({/if})
-
-</div>
-
-</div>
-
-</td>
-<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-</tr>
-({*********})
-<tr>
-<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-<td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-</tr>
-({*********})
-<tr>
-<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-<td class="bg_05" align="left" valign="middle">
-
-<div class="padding_s">
-
-作成日時
-
-</div>
-
-</td>
-<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-<td class="bg_02" align="left" valign="middle">
-
-<div class="padding_s">
-
-({$review.r_datetime|date_format:"%Y年%m月%d日 %H:%M"})
-
-</div>
-
-</td>
-<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-</tr>
-({*********})
-<tr>
-<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-<td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-</tr>
-({*********})
-<tr>
-<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-<td class="bg_05" align="left" valign="middle">
-
-<div class="padding_s">
-
-満足度
-
-</div>
-
-</td>
-<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-<td class="bg_02" align="left" valign="middle">
-
-<div class="padding_s">
-
-<img src="({t_img_url_skin filename=satisfaction_level_`$review.satisfaction_level`})" class="icon">
-
-</div>
-
-</td>
-<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-</tr>
-({*********})
-<tr>
-<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-<td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-</tr>
-({*********})
-<tr>
-<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-<td class="bg_05" align="left" valign="middle">
-
-<div class="padding_s">
-
-カテゴリ
-
-</div>
-
-</td>
-<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-<td class="bg_02" align="left" valign="middle">
-
-<div class="padding_s">
-
-({$review.category_disp})
-
-</div>
-
-</td>
-<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-</tr>
-({*********})
-<tr>
-<td style="height:1px;" class="bg_01" colspan="7"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-</tr>
-({*********})
-({/foreach})
-</table>
-<!-- ここまで：主内容＞＞レビュー表示 -->
-<!-- ここから：主内容＞＞件数表示終わり -->
-<table border="0" cellspacing="0" cellpadding="0" style="width:636px;">
-({*********})
-<tr>
-<td style="width:636px;height:1px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-</tr>
-({*********})
-<tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-<td style="width:634px;" class="bg_02" align="right" valign="middle">
-
-<div class="padding_s">
-
-({if $is_prev})<a href="({t_url m=pc a=page_fh_review_list_member})&amp;target_c_member_id=({$c_member.c_member_id})&amp;direc=-1&amp;page=({$page})">＜前</a> ({/if})
-({$start_num})件～({$end_num})件を表示
-({if $is_next})<a href="({t_url m=pc a=page_fh_review_list_member})&amp;target_c_member_id=({$c_member.c_member_id})&amp;direc=1&amp;page=({$page})">次＞</a>({/if})
-
-</div>
-
-</td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-</tr>
-({*********})
-<tr>
-<td style="width:636px;height:1px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-</tr>
-({*********})
-</table>
-<!-- ここまで：主内容＞＞件数表示終わり -->
-<!-- ここまで：主内容 -->
-({*ここまで：body*})
-({*ここから：footer*})
-<!-- 無し -->
-({*ここまで：footer*})
-<!-- *ここまで：レビュー一覧＞＞内容* -->
-</td>
-<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
-</tr>
-<tr>
-<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
-<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
-<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
-</tr>
-</table>
-<!-- ******ここまで：レビュー一覧****** -->
-<!-- ******************************** -->
-
-<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 ({else})
 
-<!-- ****************************** -->
-<!-- ******ここから：無レビュー****** -->
-<table border="0" cellspacing="0" cellpadding="0" style="width:650px;margin:0px auto;" class="border_07">
-<tr>
-<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
-<td style="width:636px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
-<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
-</tr>
-<tr>
-<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
-<td class="bg_01" align="center">
-<!-- *ここから：無レビュー＞内容* -->
-({*ここから：header*})
-<!-- ここから：小タイトル -->
-<table border="0" cellspacing="0" cellpadding="0" style="width:636px;" class="border_01">
-<tr>
-<td style="width:36px;" class="bg_06"><img src="({t_img_url_skin filename=content_header_1})" style="width:30px;height:20px;" class="dummy"></td>
-<td style="width:598px;padding:2px 0px;" class="bg_06"><span class="b_b c_00">
-({$c_member.nickname})さんのレビュー一覧
-</span></td>
-</tr>
-</table>
-<!-- ここまで：小タイトル -->
-({*ここまで：header*})
-({*ここから：body*})
-<!-- ここから：主内容 -->
-<table border="0" cellspacing="0" cellpadding="0" style="width:636px;margin:0px auto;">
-<tr>
-<td style="width:636px;height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-</tr>
-<tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-<td style="width:634px;" class="bg_02" align="center" valign="middle">
-
-<div class="padding_w_m">
-
-まだレビューがありません。
-
+({* {{{ simpleBox *})
+<div class="dparts simpleBox"><div class="parts">
+<div class="partsHeading"><h3>({$c_member.nickname})さんのレビュー一覧</h3></div>
+<div class="block">
+<p>まだレビューがありません。</p>
 </div>
-
-</td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-</tr>
-<tr>
-<td style="width:636px;height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-</tr>
-</table>
-<!-- ここまで：主内容 -->
-({*ここまで：body*})
-({*ここから：footer*})
-<!-- 無し -->
-({*ここまで：footer*})
-<!-- *ここまで：無レビュー＞＞内容* -->
-</td>
-<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
-</tr>
-<tr>
-<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
-<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
-<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
-</tr>
-</table>
-<!-- ******ここまで：無レビュー****** -->
-<!-- ****************************** -->
-
-<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
+</div></div>
+({* }}} *})
 
 ({/if})
 
-({***************************})
-({**ここまで：メインコンテンツ**})
-({***************************})
-({ext_include file="inc_layoutcolumn_bottom_270px_165px_175px_720px.tpl"})
-({ext_include file="inc_footer.tpl"})
+</div><!-- Center -->
+</div><!-- LayoutC -->

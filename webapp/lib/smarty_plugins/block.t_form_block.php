@@ -4,8 +4,12 @@
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
-function smarty_function_t_form($params, &$smarty)
+function smarty_block_t_form_block($params, $content, &$smarty, &$repeat)
 {
+    if ($repeat) {  // 開始タグでは実行しない
+        return null;
+    }
+
     $method = 'post';
     if (isset($params['_method'])) {
         if ($params['_method'] == 'get') {
@@ -36,9 +40,12 @@ function smarty_function_t_form($params, &$smarty)
         unset($params['_form_action']);
     }
 
-
     if (need_ssl_param($params['m'], $params['a'])) {
         $params['ssl_param'] = 1;
+    }
+
+    if (@session_id() && strpos($params['a'], 'do') === 0) {
+        $params['sessid'] = md5(session_id());       
     }
 
     $html = sprintf('<form action="%s" method="%s"', $form_action, $method);
@@ -48,13 +55,17 @@ function smarty_function_t_form($params, &$smarty)
     if ($attr) {
         $html .= sprintf(' %s', $attr);
     }
-    $html .= '>';
+    $html .= ">";
     foreach ($params as $key => $value) {
         $html .= "\n";
         $html .= sprintf('<input type="hidden" name="%s" value="%s" />',
                          htmlspecialchars($key, ENT_QUOTES, 'UTF-8'),
                          htmlspecialchars($value, ENT_QUOTES, 'UTF-8'));
     }
+    $html .= "\n";
+    $html .= $content;
+    $html .= "</form>\n";
+
     return $html;
 }
 
