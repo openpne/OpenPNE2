@@ -4,6 +4,8 @@
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
+require_once 'OpenPNE/Amazon.php';
+
 function db_review_c_review_list4member($c_member_id, $count = 10)
 {
     $sql = 'SELECT rev.c_review_id, rev.title, com.r_datetime' .
@@ -94,8 +96,7 @@ function do_review_add_search_result($keyword, $category_id, $page)
         return null;
     }
 
-    include_once 'Services/AmazonECS4.php';
-    $amazon =& new Services_AmazonECS4(AMAZON_TOKEN, AMAZON_AFFID);
+    $amazon =& new OpenPNE_Amazon(AMAZON_TOKEN, AMAZON_AFFID);
     $amazon->setLocale(AMAZON_LOCALE);
     $amazon->setBaseUrl(AMAZON_BASEURL);
 
@@ -133,8 +134,7 @@ function do_review_add_search_result($keyword, $category_id, $page)
 
 function db_review_write_product4asin($asin)
 {
-    include_once 'Services/AmazonECS4.php';
-    $amazon =& new Services_AmazonECS4(AMAZON_TOKEN, AMAZON_AFFID);
+    $amazon =& new OpenPNE_Amazon(AMAZON_TOKEN, AMAZON_AFFID);
     $amazon->setLocale(AMAZON_LOCALE);
     $amazon->setBaseUrl(AMAZON_BASEURL);
     $keyword = mb_convert_encoding($keyword, "UTF-8", "auto");
