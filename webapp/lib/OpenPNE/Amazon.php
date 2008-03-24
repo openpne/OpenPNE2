@@ -62,11 +62,12 @@ class OpenPNE_Amazon extends Services_AmazonECS4
     function ItemSearch($search_index, $options = array())
     {
         // SearchIndex ではなく Category が渡された
-        if (in_array($search_index, $this->_categoryToSearchIndex)) {
+        if (array_key_exists($search_index, $this->_categoryToSearchIndex)) {
             $search_index = $this->categoryToSearchIndex[$search_index];
         }
 
-        return parent::ItemSearch($search_index);
+        $result =  parent::ItemSearch($search_index, $options);
+        return $result;
     }
 
     function getSearchIndexDisplayName()
