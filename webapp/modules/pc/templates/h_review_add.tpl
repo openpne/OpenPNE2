@@ -179,7 +179,7 @@
 
 <div class="padding_s">
 
-<a href="({$product.DetailPageURL})" target="_blank"><img src="({if $product.MediumImage})({$product.MediumImage.URL})({else})./skin/dummy.gif({/if})"><br>詳細を見る</a>
+<a href="({$product.DetailPageURL})" target="_blank"><img src="({if $product.MediumImage})({$product.MediumImage.URL})({else})({t_img_url_skin filename=no_image w=120 h=120})({/if})"><br>詳細を見る</a>
 
 </div>
 
