@@ -34,31 +34,6 @@ class OpenPNE_Amazon extends Services_AmazonECS4
         'hpc-jp' => 'HealthPersonalCare', 
     );
 
-    /**
-     * SearchIndexとローカライズされた表示名の変換テーブル
-     * 
-     * @var array
-     */
-    var $_searchIndexToDisplayName = array(
-        'ja' => array(
-            'Books', '和書',
-            'ForeignBooks' => '洋書', 
-            'Music' => 'CDポピュラー', 
-            'Classical' => 'CDクラシック', 
-            'DVD' => 'DVD', 
-            'VideoGames' => 'ゲーム', 
-            'Software' => 'ソフトウェア', 
-            'Electronics' => 'エレクトロニクス', 
-            'Kitchen' => 'キッチン', 
-            'Toys' => 'おもちゃ＆ホビー', 
-            'SportingGoods' => 'スポーツ', 
-            'HealthPersonalCare' => 'ヘルス＆ビューティー',
-            'Watches' => '時計',
-            'Baby' => 'ベビー＆マタニティ',
-            'Apparel' => 'アパレル＆シューズ',
-        ),
-    );
-
     function ItemSearch($search_index, $options = array())
     {
         // SearchIndex ではなく Category が渡された
@@ -68,12 +43,6 @@ class OpenPNE_Amazon extends Services_AmazonECS4
 
         $result =  parent::ItemSearch($search_index, $options);
         return $result;
-    }
-
-    function getSearchIndexDisplayName()
-    {
-        $locale = $this->getLocale();
-        return $_searchIndexToDisplayName[$locale];
     }
 }
 
