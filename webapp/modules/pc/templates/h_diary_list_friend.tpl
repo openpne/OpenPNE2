@@ -44,7 +44,7 @@
 
 ({if $c_rss_cache_list})
 ({* {{{ recentList *})
-<div class="dparts recentList"><div class="parts">
+<div class="dparts recentList" id="blog"><div class="parts">
 <div class="partsHeading"><h3>({$WORD_MY_FRIEND})最新Blog</h3></div>
 
 ({foreach from=$c_rss_cache_list item=item})
