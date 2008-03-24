@@ -207,7 +207,12 @@ function openpne_forward($module, $type = '', $action = '', $errors = array())
     $result = $action_obj->execute($requests);
     if ($result == 'success') {
         send_nocache_headers();
-        $smarty->ext_display("{$action}.tpl");
+        if ($smarty->ext_search($smarty->templates_dir . '/common/layout.tpl', $place)) {
+            $smarty->assign('op_content', $smarty->ext_fetch("{$action}.tpl"));
+            $smarty->ext_display('common/layout.tpl');
+        } else {
+            $smarty->ext_display("{$action}.tpl");
+        }
     }
     // ----------------------------------------------
 
