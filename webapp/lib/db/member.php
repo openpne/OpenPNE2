@@ -1596,6 +1596,7 @@ function db_member_delete_c_member_ktai_pre4ktai_address($ktai_address)
 
 function db_member_insert_c_member_ktai_pre($session, $ktai_address, $c_member_id_invite, $is_disabled_regist_easy_access_id = false)
 {
+    $ktai_address = str_replace('"', '', $ktai_address);
     $data = array(
         'session' => $session,
         'ktai_address' => $ktai_address,
