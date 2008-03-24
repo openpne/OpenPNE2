@@ -196,7 +196,7 @@ class OpenPNE_Config
         // 固定値
             'AMAZON_TOKEN'   => '1WZYY1W9YF49AGM0RTG2',
             'AMAZON_LOCALE'  => 'jp',
-            'AMAZON_BASEURL' => 'http://xml-jp.amznxslt.com/onca/xml3',
+            'AMAZON_BASEURL' => 'http://webservices.amazon.co.jp/onca/xml?Service=AWSECommerceService',
             'OPENPNE_REGIST_FROM_NONE'   => 0,
             'OPENPNE_REGIST_FROM_PC'     => 1,
             'OPENPNE_REGIST_FROM_KTAI'   => 2,
