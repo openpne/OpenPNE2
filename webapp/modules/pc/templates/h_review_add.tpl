@@ -179,7 +179,7 @@
 
 <div class="padding_s">
 
-<a href="({$product.url})" target="_blank"><img src="({if $product.imagemedium})({$product.imagemedium})({else})({t_img_url_skin filename=no_image w=120 h=120})({/if})"><br>詳細を見る</a>
+<a href="({$product.DetailPageURL})" target="_blank"><img src="({if $product.MediumImage})({$product.MediumImage.URL})({else})({t_img_url_skin filename=no_image w=120 h=120})({/if})"><br>詳細を見る</a>
 
 </div>
 
@@ -207,7 +207,7 @@
 
 <div class="padding_s">
 
-<span class="b_b">({$product.name})</span>
+<span class="b_b">({$product.ItemAttributes.Title})</span>
 
 </div>
 
@@ -239,8 +239,8 @@
 
 <div class="padding_s">
 
-({$product.release})<br>
-({$product.manufacturer})<br>
+({$product.ItemAttributes.PublicationDate})<br>
+({$product.ItemAttributes.Manufacturer})<br>
 ({$product.artist})({$product.author})
 
 </div>
@@ -261,7 +261,7 @@
 
 <div class="padding_s">
 
-<a href="({t_url m=pc a=page_h_review_add_write})&amp;category_id=({$category_id})&amp;asin=({$product.asin})">レビューを書く</a>
+<a href="({t_url m=pc a=page_h_review_add_write})&amp;category_id=({$category_id})&amp;asin=({$product.ASIN})">レビューを書く</a>
 
 </div>
 
