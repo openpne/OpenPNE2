@@ -43,9 +43,10 @@ body { background-color: #({$INC_HEADER_color_config.bg_12}); }
 
 ({$INC_HEADER_inc_page_top|smarty:nodefaults})
 
+({if !$INC_HEADER_is_login})
+
 <div id="Header">
 
-({if !$INC_HEADER_is_login})
 <div id="({if $before_after == "after"})globalNav({else})globalNavBefore({/if})">
 <h1><a href="({t_url})">({$smarty.const.SNS_NAME})</a></h1>
 ({if $before_after == "after"})
