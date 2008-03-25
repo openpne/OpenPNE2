@@ -44,7 +44,7 @@
 
 ({if $bookmark_blog_list})
 ({* {{{ recentList *})
-<div class="dparts recentList"><div class="parts">
+<div class="dparts recentList" id="blog"><div class="parts">
 <div class="partsHeading"><h3>お気に入り最新Blog</h3></div>
 
 ({foreach from=$bookmark_blog_list item=item})
