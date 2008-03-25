@@ -50,6 +50,9 @@ class admin_do_import_c_member extends OpenPNE_Action
                 $login_id = null;
                 list($nickname, $mail_address, $password) = $columns;
             }
+            if (is_ktai_mail_address($mail_address)) {
+                $mail_address = str_replace('"', '', $mail_address);
+            }
 
             if (count($columns) != $column_num) {
                 $this->handleError("{$lnum}行目：項目は{$column_num}つにしてください");
