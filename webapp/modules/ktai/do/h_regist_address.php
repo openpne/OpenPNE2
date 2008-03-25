@@ -14,6 +14,7 @@ class ktai_do_h_regist_address extends OpenPNE_Action
         // --- リクエスト変数
         $ktai_address = $requests['ktai_address'];
         // ----------
+        $ktai_address = str_replace('"', '', $ktai_address);
 
         //--- 権限チェック
         //必要なし?
