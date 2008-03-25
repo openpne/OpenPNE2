@@ -14,6 +14,7 @@ class ktai_do_h_config_mail_insert_c_ktai_address_pre extends OpenPNE_Action
         // --- リクエスト変数
         $ktai_address = $requests['ktai_address'];
         // ----------
+        $ktai_address = str_replace('"', '', $ktai_address);
 
         //--- 権限チェック
         //必要なし
