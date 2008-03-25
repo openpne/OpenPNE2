@@ -30,6 +30,10 @@ class admin_do_send_invites extends OpenPNE_Action
         $limits = array();
 
         foreach ($mail_list as $mail) {
+            if (is_ktai_mail_address($mail)) {
+                $mail = str_replace('"', '', $mail);
+            }
+
             // メールアドレスとして正しくない
             if (!db_common_is_mailaddress($mail)) {
                 continue;
