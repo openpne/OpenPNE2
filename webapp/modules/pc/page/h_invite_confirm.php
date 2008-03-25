@@ -18,6 +18,9 @@ class pc_page_h_invite_confirm extends OpenPNE_Action
         // --- リクエスト変数
         $form_val = $requests;
         // ----------
+        if (is_ktai_mail_address($form_val['mail'])) {
+            $form_val['mail'] = str_replace('"', '', $form_val['mail']);
+        }
 
         $msg = "";
         if (OPENPNE_USE_CAPTCHA && (empty($_SESSION['captcha_keystring']) || $_SESSION['captcha_keystring'] !=  $requests['captcha'])) {
