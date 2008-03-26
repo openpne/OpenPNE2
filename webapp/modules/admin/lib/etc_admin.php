@@ -181,31 +181,4 @@ function admin_get_cmd_file_list()
     return $filelist;
 }
 
-/**
- * すべてのモジュールの設定ファイルを読み込む
- */
-function ext_admin_get_modules_config()
-{
-    require_once OPENPNE_LIB_DIR . '/include/PHP/Compat/Function/scandir.php';
-
-    $configs = array();
-    $modules = scandir(OPENPNE_MODULES_DIR);
-    if (USE_EXT_DIR) {
-        $ext_modules = scandir(OPENPNE_MODULES_EXT_DIR);
-        $modules = array_merge($modules, $ext_modules);
-    }
-
-    foreach ($modules as $module) {
-        if (strpos($module, '.') === 0) {
-            continue;
-        }
-
-        if ($config = openpne_ext_search($module . '/config.ini')) {
-            $configs[$module] = parse_ini_file($config, true);
-        }
-    }
-
-    return $configs;
-}
-
 ?>
