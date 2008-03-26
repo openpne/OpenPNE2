@@ -15,8 +15,8 @@ require_once $admin_lib_dir . '/hash_admin.php';
 
 
 // DBアクセスライブラリ
-$module_extlib_dir = OPENPNE_MODULES_EXT_DIR . '/portal/lib';
-require_once $module_extlib_dir . '/db_portal.php';
+$db_portal = openpne_ext_search('portal/lib/db_portal.php');
+require_once $db_portal;
 
 // 暫定的に定義
 define('PORTAL_MODULE_NAME', 'portal');
@@ -60,8 +60,9 @@ function init_portal_page(&$smarty)
     $is_secure = $GLOBALS['__Framework']['is_secure'];
 
     // エラーメッセージ
-    $validate_dir = OPENPNE_MODULES_EXT_DIR . '/portal/validate/';
-    $ini_files = array($validate_dir . 'error_msg.ini');
+    $ini_files = array(
+        openpne_ext_search('portal/validate/error_msg.ini'),
+    );
     $validator =& new OpenPNE_Validator_Common();
     $valid_result = $validator->common_validate($ini_files);
     $error_msg = $valid_result[1]['error_msg'];

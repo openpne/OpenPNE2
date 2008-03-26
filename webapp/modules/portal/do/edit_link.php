@@ -30,7 +30,8 @@ class portal_do_edit_link extends OpenPNE_Action
 
     function _validateParams($link)
     {
-        $rules = parse_ini_file(OPENPNE_MODULES_EXT_DIR . '/portal/validate/do/edit_link/link_list.ini', true);
+        $ini_filepath = openpne_ext_search('portal/validate/do/edit_link/link_list.ini');
+        $rules = parse_ini_file($ini_filepath, true);
         $validator = new OpenPNE_Validator($rules, $link);
 
         // OpenPNE_Validator による検証
