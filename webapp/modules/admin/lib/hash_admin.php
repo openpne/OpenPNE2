@@ -92,9 +92,11 @@ class AdminHashTable
 
     function _createHashString($length = 12)
     {
-        list($usec, $sec) = explode(' ', microtime());
-        $seed = (float)$sec + ((float)$usec * 100000);
-        srand($seed);
+        if (version_compare(phpversion(), '4.2.0', '<')) {
+            list($usec, $sec) = explode(' ', microtime());
+            $seed = (float)$sec + ((float)$usec * 100000);
+            srand($seed);
+        }
 
         $elem = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ012345679';
         $max = strlen($elem) - 1;
