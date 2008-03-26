@@ -89,6 +89,10 @@
 <textarea name="body" rows="3"></textarea><br>
 <input type="submit" value="書き込む">
 </form>
+<br>
+[i:110]<a href="mailto:({$mail_address})">ﾒｰﾙ投稿</a><br>
+写真も添付できます。<br>
+<font color="#({$ktai_color_config.font_09})">※ﾒｰﾙ投稿では絵文字が反映されません</font>
 
 <hr color="#({$ktai_color_config.border_01})">
 <a name="menu"></a>

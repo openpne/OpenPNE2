@@ -131,6 +131,32 @@ class mail_sns
 
         //---
 
+        // 日記コメント投稿
+        elseif (
+            preg_match('/^bc(\d+)$/', $to_user, $matches) ||
+            preg_match('/^bc(\d+)-([0-9a-f]{12})$/', $to_user, $matches)
+        ) {
+
+            // 日記IDのチェック
+            if (!$c_diary_id = $matches[1]) {
+                return false;
+            }
+
+            if (MAIL_ADDRESS_HASHED) {
+                if (empty($matches[2])) return false;
+
+                // メンバーハッシュのチェック
+                if ($matches[2] != t_get_user_hash($this->c_member_id)) {
+                    return false;
+                }
+            }
+
+            m_debug_log('mail_sns::add_diary_comment()', PEAR_LOG_INFO);
+            return $this->add_diary_comment($c_diary_id);
+        }
+
+        //---
+
         //プロフィール写真変更
         elseif (
             preg_match('/^p(\d+)$/', $to_user, $matches) ||
@@ -357,6 +383,82 @@ class mail_sns
             //日記を書いた人にポイント付与
             $point = db_action_get_point4c_action_id(4);
             db_point_add_point($this->c_member_id, $point);
+        }
+
+        return true;
+    }
+
+    /**
+     * 日記コメント投稿
+     */
+    function add_diary_comment($c_diary_id)
+    {
+        //--- 権限チェック
+
+        $c_diary = db_diary_get_c_diary4id($c_diary_id);
+        $target_c_member_id = $c_diary['c_member_id'];
+        $target_c_member = db_member_c_member4c_member_id($target_c_member_id);
+
+        if ($this->c_member_id != $target_c_member_id) {
+            // check public_flag
+            if (!pne_check_diary_public_flag($c_diary_id, $this->c_member_id)) {
+                $this->error_mail('日記にアクセスできないため投稿できませんでした。');
+                m_debug_log('mail_sns::add_diary_comment() not a member');
+                return false;
+            }
+            //アクセスブロック設定
+            if (db_member_is_access_block($this->c_member_id, $target_c_member_id)) {
+                $this->error_mail('日記にアクセスできないため投稿できませんでした。');
+                m_debug_log('mail_sns::add_diary_comment() access block');
+                return false;
+            }
+        }
+        //---
+
+        $body = $this->decoder->get_text_body();
+        if ($body === '') {
+            $this->error_mail('本文が空のため投稿できませんでした。');
+            m_debug_log('mail_sns::add_diary_comment() body is empty');
+            return false;
+        }
+
+        //日記コメント書き込み
+        $ins_id = db_diary_insert_c_diary_comment($this->c_member_id, $c_diary_id, $body);
+
+        // 写真登録
+        $images = $this->decoder->get_images();
+        $image_num = 1;
+        $filenames = array(1 => '', 2 => '', 3 => '');
+        foreach ($images as $image) {
+            $image_ext = $image['ext'];
+            $image_data = $image['data'];
+            $filename = 'dc_' . $ins_id . '_' . $image_num . '_' . time() . '.' . $image_ext;
+
+            db_image_insert_c_image($filename, $image_data);
+            $filenames[$image_num] = $filename;
+            $image_num++;
+            if ($image_num > 3) {
+                break;
+            }
+        }
+        db_diary_insert_c_diary_comment_images($ins_id, $filenames[1], $filenames[2], $filenames[3]);
+
+        //日記コメントが書き込まれたので日記自体を未読扱いにする
+        if ($this->c_member_id != $target_c_member_id) {
+            db_diary_update_c_diary_is_checked($c_diary_id, 0);
+        }
+
+        if (OPENPNE_USE_POINT_RANK) {
+            // コメント者と被コメント者が違う場合にポイント加算
+            if ($this->c_member_id != $target_c_member_id) {
+                //書いた人にポイント付与
+                $point = db_action_get_point4c_action_id(3);
+                db_point_add_point($this->c_member_id, $point);
+
+                //書かれた人にポイント付与
+                $point = db_action_get_point4c_action_id(2);
+                db_point_add_point($target_c_member_id, $point);
+            }
         }
 
         return true;
