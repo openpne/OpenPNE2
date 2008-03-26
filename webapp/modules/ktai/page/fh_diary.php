@@ -74,6 +74,14 @@ class ktai_page_fh_diary extends OpenPNE_Action
         // f or h
         $this->set("INC_NAVI_type", k_p_fh_common_get_type($target_c_member['c_member_id'], $u));
 
+        if (MAIL_ADDRESS_HASHED) {
+            $mail_address = "bc{$target_c_diary_id}-".t_get_user_hash($u)."@".MAIL_SERVER_DOMAIN;
+        } else {
+            $mail_address = "bc{$target_c_diary_id}"."@".MAIL_SERVER_DOMAIN;
+        }
+        $mail_address = MAIL_ADDRESS_PREFIX . $mail_address;
+        $this->set("mail_address", $mail_address);
+
         //あしあとをつける
         db_ashiato_insert_c_ashiato($target_c_member_id, $u);
 
