@@ -82,21 +82,21 @@
 ({* #1952 *})<td style="width:50%;text-align:right;">
 ({* #1952 *})
 ({* #1952 *})({t_form_block m=pc a=do_fh_diary_delete_c_diary_comment})
-({* #1952 *})<input type="hidden" name="target_c_diary_comment_id" value="({$target_c_diary_comment_id})">
+({* #1952 *})<input type="hidden" name="target_c_diary_comment_id" value="({$target_c_diary_comment_id})" />
 ({* #1952 *})
 ({* #1952 *})({foreach from=$target_diary_comment_list item=target_diary_comment})
-({* #1952 *})<input type="hidden" name="target_c_diary_comment_id[]" value="({$target_diary_comment.c_diary_comment_id})">
+({* #1952 *})<input type="hidden" name="target_c_diary_comment_id[]" value="({$target_diary_comment.c_diary_comment_id})" />
 ({* #1952 *})({/foreach})
 ({* #1952 *})
-({* #1952 *})<input type="submit" class="input_submit" value=" は い ">&nbsp;
+({* #1952 *})<input type="submit" class="input_submit" value=" は い " />&nbsp;
 ({* #1952 *})({/t_form_block})
 ({* #1952 *})
 ({* #1952 *})</td>
 ({* #1952 *})<td style="width:50%;text-align:left;">
 ({* #1952 *})
 ({* #1952 *})({t_form_block _method=get m=pc a=page_fh_diary})
-({* #1952 *})<input type="hidden" name="target_c_diary_id" value="({$target_diary.c_diary_id})">
-({* #1952 *})&nbsp;<input type="submit" class="input_submit" value="いいえ">
+({* #1952 *})<input type="hidden" name="target_c_diary_id" value="({$target_diary.c_diary_id})" />
+({* #1952 *})&nbsp;<input type="submit" class="input_submit" value="いいえ" />
 ({* #1952 *})({/t_form_block})
 ({* #1952 *})
 ({* #1952 *})</td>

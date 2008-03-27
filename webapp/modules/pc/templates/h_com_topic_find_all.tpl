@@ -49,8 +49,8 @@
 ({* #1932 *})
 ({* #1932 *})キーワード<img src="({t_img_url_skin filename=icon_arrow_2})" class="icon" />
 ({* #1932 *})
-({* #1932 *})<input type="text" class="text" name="keyword" size="15" value="({$keyword})">
-({* #1932 *})<input type="submit" class="input_submit" value=" 検 索 ">
+({* #1932 *})<input type="text" class="text" name="keyword" size="15" value="({$keyword})" />
+({* #1932 *})<input type="submit" class="input_submit" value=" 検 索 " />
 ({* #1932 *})<br />
 ({* #1932 *})
 ({* #1932 *})絞りこみ<img src="({t_img_url_skin filename=icon_arrow_2})" class="icon" />

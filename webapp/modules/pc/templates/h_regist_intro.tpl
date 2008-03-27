@@ -28,8 +28,8 @@
 ({* #2036 *})<div align="center">
 ({* #2036 *})
 ({* #2036 *})({t_form_block m=pc a=page_h_regist_prof})
-({* #2036 *})<input type="hidden" name="mode" value="input">
-({* #2036 *})<input type="submit" class="input_submit" value="同意して登録手続きへ">
+({* #2036 *})<input type="hidden" name="mode" value="input" />
+({* #2036 *})<input type="submit" class="input_submit" value="同意して登録手続きへ" />
 ({* #2036 *})({/t_form_block})
 ({* #2036 *})
 ({* #2036 *})</div>

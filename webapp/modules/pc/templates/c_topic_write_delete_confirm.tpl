@@ -84,16 +84,16 @@
 ({* #1952 *})
 ({* #1952 *})({t_form_block m=pc a=do_c_bbs_delete_c_commu_topic_comment})
 ({* #1952 *})
-({* #1952 *})<input type="hidden" name="target_c_commu_topic_comment_id" value="({$c_commu_topic_comment.c_commu_topic_comment_id})">
-({* #1952 *})&nbsp;<input type="submit" class="input_submit" value=" は い ">&nbsp;
+({* #1952 *})<input type="hidden" name="target_c_commu_topic_comment_id" value="({$c_commu_topic_comment.c_commu_topic_comment_id})" />
+({* #1952 *})&nbsp;<input type="submit" class="input_submit" value=" は い " />&nbsp;
 ({* #1952 *})({/t_form_block})
 ({* #1952 *})
 ({* #1952 *})</td>
 ({* #1952 *})<td style="width:50%;" align="left">
 ({* #1952 *})
 ({* #1952 *})({t_form_block _method=get m=pc a=page_c_topic_detail})
-({* #1952 *})<input type="hidden" name="target_c_commu_topic_id" value="({$c_commu_topic_id})">
-({* #1952 *})&nbsp;<input type="submit" class="input_submit" value="いいえ">&nbsp;
+({* #1952 *})<input type="hidden" name="target_c_commu_topic_id" value="({$c_commu_topic_id})" />
+({* #1952 *})&nbsp;<input type="submit" class="input_submit" value="いいえ" />&nbsp;
 ({* #1952 *})({/t_form_block})
 ({* #1952 *})
 ({* #1952 *})</td>

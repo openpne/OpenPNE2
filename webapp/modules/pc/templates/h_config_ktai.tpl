@@ -67,7 +67,7 @@
 ({* #1927 *})
 ({* #1927 *})
 ({* #1927 *})({t_form_block m=pc a=page_h_delete_ktai})
-({* #1927 *})<input type="submit"  class="input_submit" value="　削除　">
+({* #1927 *})<input type="submit"  class="input_submit" value="　削除　" />
 ({* #1927 *})({/t_form_block})
 ({* #1927 *})</div>
 ({* #1927 *})
