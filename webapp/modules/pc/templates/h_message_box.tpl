@@ -140,19 +140,19 @@
 ({* #1956 *})<!-- ******ここから：Box一覧****** -->
 ({* #1956 *})<table border="0" cellspacing="0" cellpadding="0" style="width:520px;margin:0px auto;" class="border_07">
 ({* #1956 *})<tr>
-({* #1956 *})<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
-({* #1956 *})<td style="width:506px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
-({* #1956 *})<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+({* #1956 *})<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
+({* #1956 *})<td style="width:506px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
+({* #1956 *})<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
 ({* #1956 *})</tr>
 ({* #1956 *})<tr>
-({* #1956 *})<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+({* #1956 *})<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
 ({* #1956 *})<td class="bg_01" align="center">
 ({* #1956 *})<!-- *ここから：Box一覧＞内容* -->
 ({* #1956 *})({*ここから：header*})
 ({* #1956 *})<!-- ここから：小タイトル -->
 ({* #1956 *})<table border="0" cellspacing="0" cellpadding="0" style="width:506px;" class="border_01">
 ({* #1956 *})<tr>
-({* #1956 *})<td style="width:36px;" class="bg_06"><img src="({t_img_url_skin filename=content_header_1})" style="width:30px;height:20px;" class="dummy"></td>
+({* #1956 *})<td style="width:36px;" class="bg_06"><img src="({t_img_url_skin filename=content_header_1})" style="width:30px;height:20px;" class="dummy" /></td>
 ({* #1956 *})<td style="width:468px;padding:2px 0px;" class="bg_06"><span class="b_b c_00">
 ({* #1956 *})({if $box == "inbox" || !$box })
 ({* #1956 *})受信メッセージ
@@ -197,7 +197,7 @@
 ({* #1956 *})
 ({* #1956 *})<div class="padding_s">
 ({* #1956 *})
-({* #1956 *})&nbsp;<img src="({t_img_url_skin filename=icon_mail_4})" class="icon">&nbsp;…&nbsp;返信済み
+({* #1956 *})&nbsp;<img src="({t_img_url_skin filename=icon_mail_4})" class="icon" />&nbsp;…&nbsp;返信済み
 ({* #1956 *})
 ({* #1956 *})</div>
 ({* #1956 *})
@@ -251,7 +251,7 @@
 ({* #1956 *})</tr>
 ({* #1956 *})({*********})
 ({* #1956 *})<tr>
-({* #1956 *})<td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1956 *})<td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
 ({* #1956 *})</tr>
 ({* #1956 *})({*********})
 ({* #1956 *})
@@ -259,7 +259,7 @@
 ({* #1956 *})
 ({* #1956 *})({foreach from=$c_message_ru_list item=c_message_ru})
 ({* #1956 *})<tr>
-({* #1956 *})<td class="bg_({if $c_message_ru.is_read})02({else})09({/if})" align="center"><img src="({if $c_message_ru.is_hensin})({t_img_url_skin filename=icon_mail_4})({elseif $c_message_ru.is_read})({t_img_url_skin filename=icon_mail_2})({else})({t_img_url_skin filename=icon_mail_1})({/if})" class="icon"></td>
+({* #1956 *})<td class="bg_({if $c_message_ru.is_read})02({else})09({/if})" align="center"><img src="({if $c_message_ru.is_hensin})({t_img_url_skin filename=icon_mail_4})({elseif $c_message_ru.is_read})({t_img_url_skin filename=icon_mail_2})({else})({t_img_url_skin filename=icon_mail_1})({/if})" class="icon" /></td>
 ({* #1956 *})<td class="bg_({if $c_message_ru.is_read})02({else})09({/if})"><input name="c_message_id[]" value="({$c_message_ru.c_message_id})" type="checkbox" class="no_bg"></td>
 ({* #1956 *})<td class="bg_({if $c_message_ru.is_read})02({else})09({/if})">({$c_message_ru.nickname})</td>
 ({* #1956 *})<td class="bg_({if $c_message_ru.is_read})02({else})09({/if})"><a href="({t_url m=pc a=page_h_message})&amp;target_c_message_id=({$c_message_ru.c_message_id})&amp;jyusin_c_message_id=({$c_message_ru.c_message_id})">({$c_message_ru.subject})</a></td>
@@ -267,7 +267,7 @@
 ({* #1956 *})</tr>
 ({* #1956 *})({*********})
 ({* #1956 *})<tr>
-({* #1956 *})<td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1956 *})<td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
 ({* #1956 *})</tr>
 ({* #1956 *})({*********})
 ({* #1956 *})({/foreach})
@@ -392,7 +392,7 @@
 ({* #1956 *})</tr>
 ({* #1956 *})({*********})
 ({* #1956 *})<tr>
-({* #1956 *})<td style="height:1px;" class="bg_01" colspan="4"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1956 *})<td style="height:1px;" class="bg_01" colspan="4"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
 ({* #1956 *})</tr>
 ({* #1956 *})({*********})
 ({* #1956 *})
@@ -400,7 +400,7 @@
 ({* #1956 *})
 ({* #1956 *})({foreach from=$c_message_s_list item=c_message_s})
 ({* #1956 *})<tr>
-({* #1956 *})<td class="bg_02" align="center"><img src="({t_img_url_skin filename=icon_mail_3})" class="icon"></td>
+({* #1956 *})<td class="bg_02" align="center"><img src="({t_img_url_skin filename=icon_mail_3})" class="icon" /></td>
 ({* #1956 *})<td class="bg_02"><input name="c_message_id[]" value="({$c_message_s.c_message_id})" type="checkbox" class="no_bg"></td>
 ({* #1956 *})<td class="bg_02">({$c_message_s.nickname})</td>
 ({* #1956 *})<td class="bg_02"><a href="({t_url m=pc a=page_h_message})&amp;target_c_message_id=({$c_message_s.c_message_id})&amp;box=outbox">({$c_message_s.subject})</a></td>
@@ -408,7 +408,7 @@
 ({* #1956 *})</tr>
 ({* #1956 *})({*********})
 ({* #1956 *})<tr>
-({* #1956 *})<td style="height:1px;" class="bg_01" colspan="4"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1956 *})<td style="height:1px;" class="bg_01" colspan="4"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
 ({* #1956 *})</tr>
 ({* #1956 *})({*********})
 ({* #1956 *})({/foreach})
@@ -526,7 +526,7 @@
 ({* #1956 *})</tr>
 ({* #1956 *})({*********})
 ({* #1956 *})<tr>
-({* #1956 *})<td style="height:1px;" class="bg_01" colspan="4"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1956 *})<td style="height:1px;" class="bg_01" colspan="4"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
 ({* #1956 *})</tr>
 ({* #1956 *})({*********})
 ({* #1956 *})
@@ -534,7 +534,7 @@
 ({* #1956 *})
 ({* #1956 *})({foreach from=$c_message_save_list item=c_message_save})
 ({* #1956 *})<tr>
-({* #1956 *})<td class="bg_02" align="center"><img src="({t_img_url_skin filename=icon_mail_1})" class="icon"></td>
+({* #1956 *})<td class="bg_02" align="center"><img src="({t_img_url_skin filename=icon_mail_1})" class="icon" /></td>
 ({* #1956 *})<td class="bg_02"><input name="c_message_id[]" value="({$c_message_save.c_message_id})" type="checkbox" class="no_bg"></td>
 ({* #1956 *})<td class="bg_02">({$c_message_save.nickname})</td>
 ({* #1956 *})<td class="bg_02"><a href="({t_url m=pc a=page_f_message_send})&amp;target_c_message_id=({$c_message_save.c_message_id})&amp;jyusin_c_message_id=({$c_message_save.hensinmoto_c_message_id})&amp;box=savebox">({$c_message_save.subject})</a></td>
@@ -542,7 +542,7 @@
 ({* #1956 *})</tr>
 ({* #1956 *})({*********})
 ({* #1956 *})<tr>
-({* #1956 *})<td style="height:1px;" class="bg_01" colspan="4"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1956 *})<td style="height:1px;" class="bg_01" colspan="4"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
 ({* #1956 *})</tr>
 ({* #1956 *})({*********})
 ({* #1956 *})({/foreach})
@@ -615,9 +615,9 @@
 ({* #1956 *})
 ({* #1956 *})<div class="padding_s">
 ({* #1956 *})
-({* #1956 *})&nbsp;<img src="({t_img_url_skin filename=icon_mail_2})" class="icon">&nbsp;…&nbsp;受信&nbsp;
-({* #1956 *})&nbsp;<img src="({t_img_url_skin filename=icon_mail_3})" class="icon">&nbsp;…&nbsp;送信済み&nbsp;
-({* #1956 *})&nbsp;<img src="({t_img_url_skin filename=icon_mail_1})" class="icon">&nbsp;…&nbsp;下書き
+({* #1956 *})&nbsp;<img src="({t_img_url_skin filename=icon_mail_2})" class="icon" />&nbsp;…&nbsp;受信&nbsp;
+({* #1956 *})&nbsp;<img src="({t_img_url_skin filename=icon_mail_3})" class="icon" />&nbsp;…&nbsp;送信済み&nbsp;
+({* #1956 *})&nbsp;<img src="({t_img_url_skin filename=icon_mail_1})" class="icon" />&nbsp;…&nbsp;下書き
 ({* #1956 *})
 ({* #1956 *})</div>
 ({* #1956 *})
@@ -667,7 +667,7 @@
 ({* #1956 *})</tr>
 ({* #1956 *})({*********})
 ({* #1956 *})<tr>
-({* #1956 *})<td style="height:1px;" class="bg_01" colspan="4"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1956 *})<td style="height:1px;" class="bg_01" colspan="4"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
 ({* #1956 *})</tr>
 ({* #1956 *})({*********})
 ({* #1956 *})
@@ -678,12 +678,12 @@
 ({* #1956 *})({strip})
 ({* #1956 *})<td class="bg_02" align="center">
 ({* #1956 *})({if $c_message_trash.c_member_id_to == $u})({* 受信メッセージ *})
-({* #1956 *})    <img src="({t_img_url_skin filename=icon_mail_2})" class="icon">
+({* #1956 *})    <img src="({t_img_url_skin filename=icon_mail_2})" class="icon" />
 ({* #1956 *})({else})
 ({* #1956 *})    ({if $c_message_trash.is_send})({* 送信メッセージ *})
-({* #1956 *})        <img src="({t_img_url_skin filename=icon_mail_3})" class="icon">
+({* #1956 *})        <img src="({t_img_url_skin filename=icon_mail_3})" class="icon" />
 ({* #1956 *})    ({else})({* 下書きメッセージ *})
-({* #1956 *})        <img src="({t_img_url_skin filename=icon_mail_1})" class="icon">
+({* #1956 *})        <img src="({t_img_url_skin filename=icon_mail_1})" class="icon" />
 ({* #1956 *})    ({/if})
 ({* #1956 *})({/if})
 ({* #1956 *})</td>
@@ -695,7 +695,7 @@
 ({* #1956 *})</tr>
 ({* #1956 *})({*********})
 ({* #1956 *})<tr>
-({* #1956 *})<td style="height:1px;" class="bg_01" colspan="4"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1956 *})<td style="height:1px;" class="bg_01" colspan="4"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
 ({* #1956 *})</tr>
 ({* #1956 *})({*********})
 ({* #1956 *})({/foreach})
@@ -765,12 +765,12 @@
 ({* #1956 *})({*ここまで：footer*})
 ({* #1956 *})<!-- *ここまで：Box一覧＞＞内容* -->
 ({* #1956 *})</td>
-({* #1956 *})<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+({* #1956 *})<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
 ({* #1956 *})</tr>
 ({* #1956 *})<tr>
-({* #1956 *})<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
-({* #1956 *})<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
-({* #1956 *})<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+({* #1956 *})<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
+({* #1956 *})<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
+({* #1956 *})<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
 ({* #1956 *})</tr>
 ({* #1956 *})</table>
 ({* #1956 *})<!-- ******ここまで：Box一覧****** -->

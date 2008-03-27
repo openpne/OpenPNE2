@@ -238,13 +238,13 @@
 ({* #1927 *})<table border="0" cellspacing="0" cellpadding="0" style="width:650px;margin:0px auto;" class="border_07">
 ({* #1927 *})({*********})
 ({* #1927 *})<tr>
-({* #1927 *})<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
-({* #1927 *})<td style="width:636px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
-({* #1927 *})<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+({* #1927 *})<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
+({* #1927 *})<td style="width:636px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
+({* #1927 *})<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
 ({* #1927 *})</tr>
 ({* #1927 *})({*********})
 ({* #1927 *})<tr>
-({* #1927 *})<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+({* #1927 *})<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
 ({* #1927 *})<td class="bg_01" align="center">
 ({* #1927 *})<!-- *ここから：退会＞内容* -->
 ({* #1927 *})({*ここから：header*})
@@ -252,7 +252,7 @@
 ({* #1927 *})<div class="border_01">
 ({* #1927 *})<table border="0" cellspacing="0" cellpadding="0" style="width:634px;">
 ({* #1927 *})<tr>
-({* #1927 *})<td style="width:36px;" class="bg_06"><img src="({t_img_url_skin filename=content_header_1})" style="width:30px;height:20px;" class="dummy"></td>
+({* #1927 *})<td style="width:36px;" class="bg_06"><img src="({t_img_url_skin filename=content_header_1})" style="width:30px;height:20px;" class="dummy" /></td>
 ({* #1927 *})<td style="width:598px;padding:2px 0px;" class="bg_06"><span class="b_b c_00">({$smarty.const.SNS_NAME})を退会する</span></td>
 ({* #1927 *})</tr>
 ({* #1927 *})</table>
@@ -264,7 +264,7 @@
 ({* #1927 *})<table border="0" cellspacing="0" cellpadding="0" style="width:636px;">
 ({* #1927 *})({*********})
 ({* #1927 *})<tr>
-({* #1927 *})<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1927 *})<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
 ({* #1927 *})<td style="width:634px;" class="bg_03" align="left" valign="middle" colspan="3">
 ({* #1927 *})
 ({* #1927 *})<div style="padding:10px 90px;">
@@ -278,11 +278,11 @@
 ({* #1927 *})</div>
 ({* #1927 *})
 ({* #1927 *})</td>
-({* #1927 *})<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1927 *})<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
 ({* #1927 *})</tr>
 ({* #1927 *})({*********})
 ({* #1927 *})<tr>
-({* #1927 *})<td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1927 *})<td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
 ({* #1927 *})</tr>
 ({* #1927 *})({*********})
 ({* #1927 *})</table>
@@ -293,12 +293,12 @@
 ({* #1927 *})({*ここまで：footer*})
 ({* #1927 *})<!-- *ここまで：退会＞＞内容* -->
 ({* #1927 *})</td>
-({* #1927 *})<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+({* #1927 *})<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
 ({* #1927 *})</tr>
 ({* #1927 *})<tr>
-({* #1927 *})<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
-({* #1927 *})<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
-({* #1927 *})<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+({* #1927 *})<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
+({* #1927 *})<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
+({* #1927 *})<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
 ({* #1927 *})</tr>
 ({* #1927 *})</table>
 ({* #1927 *})
