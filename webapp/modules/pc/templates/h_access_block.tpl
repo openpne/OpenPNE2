@@ -10,13 +10,13 @@
 </div></div>
 ({* }}} *})
 
-({* #1939 *})<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
-({* #1939 *})<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
+({* #1939 *})<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l" />
+({* #1939 *})<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l" />
 ({* #1939 *})
 ({* #1939 *})<a href="({t_url m=pc a=page_h_home})">ホームに戻る</a>
 ({* #1939 *})
-({* #1939 *})<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
-({* #1939 *})<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
+({* #1939 *})<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l" />
+({* #1939 *})<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l" />
 
 </div><!-- Center -->
 </div><!-- LayoutC -->

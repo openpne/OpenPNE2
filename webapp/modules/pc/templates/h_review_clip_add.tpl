@@ -4,19 +4,19 @@
 ({* #1949 *})<!-- ******ここから：レビュー****** -->
 ({* #1949 *})<table border="0" cellspacing="0" cellpadding="0" style="width:650px;" class="border_07">
 ({* #1949 *})<tr>
-({* #1949 *})<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
-({* #1949 *})<td style="width:636px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
-({* #1949 *})<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+({* #1949 *})<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
+({* #1949 *})<td style="width:636px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
+({* #1949 *})<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
 ({* #1949 *})</tr>
 ({* #1949 *})<tr>
-({* #1949 *})<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+({* #1949 *})<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
 ({* #1949 *})<td class="bg_01" align="center">
 ({* #1949 *})<!-- *ここから：レビュー＞内容* -->
 ({* #1949 *})({*ここから：header*})
 ({* #1949 *})<!-- ここから：小タイトル -->
 ({* #1949 *})<table border="0" cellspacing="0" cellpadding="0" style="width:636px;" class="border_01">
 ({* #1949 *})<tr>
-({* #1949 *})<td style="width:36px;" class="bg_06"><img src="({t_img_url_skin filename=content_header_1})" style="width:30px;height:20px;" class="dummy"></td>
+({* #1949 *})<td style="width:36px;" class="bg_06"><img src="({t_img_url_skin filename=content_header_1})" style="width:30px;height:20px;" class="dummy" /></td>
 ({* #1949 *})<td style="width:598px;padding:2px 0px;" class="bg_06"><span class="b_b c_00">以下のアイテムをクリップしますか？</span></td>
 ({* #1949 *})</tr>
 ({* #1949 *})</table>
@@ -27,22 +27,22 @@
 ({* #1949 *})<table border="0" cellspacing="0" cellpadding="0" style="width:636px;">
 ({* #1949 *})({*********})
 ({* #1949 *})<tr>
-({* #1949 *})<td style="height:1px;" class="bg_01" colspan="7"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1949 *})<td style="height:1px;" class="bg_01" colspan="7"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
 ({* #1949 *})</tr>
 ({* #1949 *})({*********})
 ({* #1949 *})<tr>
-({* #1949 *})<td style="width:1px;" class="bg_01" align="center" rowspan="7"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1949 *})<td style="width:1px;" class="bg_01" align="center" rowspan="7"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
 ({* #1949 *})<td style="width:280px;" class="bg_03" align="center" rowspan="7">
 ({* #1949 *})
 ({* #1949 *})<div class="padding_s">
 ({* #1949 *})
 ({* #1949 *})<a href="({$c_review.url})" target="_blank">
-({* #1949 *})<img src="({if $c_review.image_medium})({$c_review.image_medium})({else})({t_img_url_skin filename=no_image w=120 h=120})({/if})"><br />詳細を見>る</a>
+({* #1949 *})<img src="({if $c_review.image_medium})({$c_review.image_medium})({else})({t_img_url_skin filename=no_image w=120 h=120})({/if})" /><br />詳細を見>る</a>
 ({* #1949 *})
 ({* #1949 *})</div>
 ({* #1949 *})
 ({* #1949 *})</td>
-({* #1949 *})<td style="width:1px;" rowspan="7"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1949 *})<td style="width:1px;" rowspan="7"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
 ({* #1949 *})<td style="width:80px;" class="bg_05" align="left" valign="middle">
 ({* #1949 *})
 ({* #1949 *})<div class="padding_s">
@@ -52,7 +52,7 @@
 ({* #1949 *})</div>
 ({* #1949 *})
 ({* #1949 *})</td>
-({* #1949 *})<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1949 *})<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
 ({* #1949 *})<td style="width:272px;" class="bg_02" align="left" valign="middle">
 ({* #1949 *})
 ({* #1949 *})<div class="padding_s">
@@ -62,12 +62,12 @@
 ({* #1949 *})</div>
 ({* #1949 *})
 ({* #1949 *})</td>
-({* #1949 *})<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1949 *})<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
 ({* #1949 *})</tr>
 ({* #1949 *})({*********})
 ({* #1949 *})<tr>
-({* #1949 *})<td style="height:1px;" class="bg_01"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-({* #1949 *})<td style="height:1px;" class="bg_01" colspan="4"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1949 *})<td style="height:1px;" class="bg_01"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
+({* #1949 *})<td style="height:1px;" class="bg_01" colspan="4"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
 ({* #1949 *})</tr>
 ({* #1949 *})({*********})
 ({* #1949 *})<tr>
@@ -80,7 +80,7 @@
 ({* #1949 *})</div>
 ({* #1949 *})
 ({* #1949 *})</td>
-({* #1949 *})<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1949 *})<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
 ({* #1949 *})<td class="bg_02" align="left" valign="middle">
 ({* #1949 *})
 ({* #1949 *})<div class="padding_s">
@@ -92,12 +92,12 @@
 ({* #1949 *})</div>
 ({* #1949 *})
 ({* #1949 *})</td>
-({* #1949 *})<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1949 *})<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
 ({* #1949 *})</tr>
 ({* #1949 *})({*********})
 ({* #1949 *})<tr>
-({* #1949 *})<td style="height:1px;" class="bg_01"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-({* #1949 *})<td style="height:1px;" class="bg_01" colspan="4"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1949 *})<td style="height:1px;" class="bg_01"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
+({* #1949 *})<td style="height:1px;" class="bg_01" colspan="4"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
 ({* #1949 *})</tr>
 ({* #1949 *})({*********})
 ({* #1949 *})<tr>
@@ -110,7 +110,7 @@
 ({* #1949 *})</div>
 ({* #1949 *})
 ({* #1949 *})</td>
-({* #1949 *})<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1949 *})<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
 ({* #1949 *})<td class="bg_02" align="left" valign="middle">
 ({* #1949 *})
 ({* #1949 *})<div class="padding_s">
@@ -120,12 +120,12 @@
 ({* #1949 *})</div>
 ({* #1949 *})
 ({* #1949 *})</td>
-({* #1949 *})<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1949 *})<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
 ({* #1949 *})</tr>
 ({* #1949 *})({*********})
 ({* #1949 *})<tr>
-({* #1949 *})<td style="height:1px;" class="bg_01"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-({* #1949 *})<td style="height:1px;" class="bg_01" colspan="4"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1949 *})<td style="height:1px;" class="bg_01"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
+({* #1949 *})<td style="height:1px;" class="bg_01" colspan="4"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
 ({* #1949 *})</tr>
 ({* #1949 *})({*********})
 ({* #1949 *})<tr>
@@ -154,11 +154,11 @@
 ({* #1949 *})</div>
 ({* #1949 *})
 ({* #1949 *})</td>
-({* #1949 *})<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1949 *})<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
 ({* #1949 *})</tr>
 ({* #1949 *})({*********})
 ({* #1949 *})<tr>
-({* #1949 *})<td style="height:1px;" class="bg_01" colspan="7"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1949 *})<td style="height:1px;" class="bg_01" colspan="7"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
 ({* #1949 *})</tr>
 ({* #1949 *})({*********})
 ({* #1949 *})</table>
@@ -169,12 +169,12 @@
 ({* #1949 *})({*ここまで：footer*})
 ({* #1949 *})<!-- *ここまで：レビュー＞＞内容* -->
 ({* #1949 *})</td>
-({* #1949 *})<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+({* #1949 *})<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
 ({* #1949 *})</tr>
 ({* #1949 *})<tr>
-({* #1949 *})<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
-({* #1949 *})<td style="width:566px;" class="bg_00"><img src="./skin/dummy.gif" alt="dummy" style="width:566px;height:7px;" class="dummy"></td>
-({* #1949 *})<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+({* #1949 *})<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
+({* #1949 *})<td style="width:566px;" class="bg_00"><img src="./skin/dummy.gif" alt="dummy" style="width:566px;height:7px;" class="dummy" /></td>
+({* #1949 *})<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
 ({* #1949 *})</tr>
 ({* #1949 *})</table>
 ({* #1949 *})
