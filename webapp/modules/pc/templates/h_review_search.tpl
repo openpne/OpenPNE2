@@ -79,13 +79,13 @@
 ({* #1953 *})
 ({* #1953 *})<div class="padding_s">
 ({* #1953 *})
-({* #1953 *})<input type="text" class="text" name="keyword" value="({$keyword})" size="15">&nbsp;
+({* #1953 *})<input type="text" class="text" name="keyword" value="({$keyword})" size="15" />&nbsp;
 ({* #1953 *})&nbsp;カテゴリ&nbsp;<img src="({t_img_url_skin filename=icon_arrow_2})" class="icon" />
 ({* #1953 *})<select name="category">
 ({* #1953 *})<option value="">指定なし</option>
 ({* #1953 *})({html_options options=$category_disp selected=$category})
 ({* #1953 *})</select>
-({* #1953 *})<input type="submit" class="input_submit" value="　検 索　">
+({* #1953 *})<input type="submit" class="input_submit" value="　検 索　" />
 ({* #1953 *})
 ({* #1953 *})</div>
 ({* #1953 *})

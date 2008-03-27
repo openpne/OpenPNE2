@@ -17,7 +17,7 @@
 ({* unknown *})({if $c_review_list})
 ({* #1949 *})<!-- ******ここから：あなたのレビュー一覧****** -->
 ({* #1949 *})({t_form_block m=pc a=page_c_member_review_add_confirm})
-({* #1949 *})<input type="hidden" name="target_c_commu_id" value="({$c_commu.c_commu_id})">
+({* #1949 *})<input type="hidden" name="target_c_commu_id" value="({$c_commu.c_commu_id})" />
 ({* #1949 *})
 ({* #1949 *})<table border="0" cellspacing="0" cellpadding="0" style="width:650px;margin:0px auto;" class="border_07">
 ({* #1949 *})<tr>
@@ -96,7 +96,7 @@
 ({* #1949 *})
 ({* #1949 *})<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_s" />
 ({* #1949 *})
-({* #1949 *})<input type="checkbox" name="c_review_id[]" value="({$review.c_review_id})" class="no_bg">
+({* #1949 *})<input type="checkbox" name="c_review_id[]" value="({$review.c_review_id})" class="no_bg" />
 ({* #1949 *})<br />このレビューを掲載する
 ({* #1949 *})
 ({* #1949 *})</div>
@@ -331,7 +331,7 @@
 ({* #1949 *})<div style="text-align:center;" class="padding_w_s">
 ({* #1949 *})
 ({* #1949 *})
-({* #1949 *})<input type="submit" class="input_submit" value="　掲　　載　">
+({* #1949 *})<input type="submit" class="input_submit" value="　掲　　載　" />
 ({* #1949 *})
 ({* #1949 *})
 ({* #1949 *})</div>

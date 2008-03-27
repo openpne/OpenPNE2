@@ -3,7 +3,7 @@
 
 ({* #1952 *})<!-- ******ここから：プロフィール変更****** -->
 ({* #1952 *})({t_form_block m=pc a=page_o_regist_ktai_address_confirm})
-({* #1952 *})<input type="hidden" name="sid" value="({$sid})">
+({* #1952 *})<input type="hidden" name="sid" value="({$sid})" />
 ({* #1952 *})
 ({* #1952 *})<table border="0" cellspacing="0" cellpadding="0" style="width:650px;margin:0px auto;" class="border_07">
 ({* #1952 *})<tr>
@@ -78,7 +78,7 @@
 ({* #1952 *})<td style="width:503px;" class="bg_02" align="left" valign="middle">
 ({* #1952 *})<div class="padding_s">
 ({* #1952 *})
-({* #1952 *})<input type="text" class="text" name="ktai_address" value="({$ktai_address})" size="40">
+({* #1952 *})<input type="text" class="text" name="ktai_address" value="({$ktai_address})" size="40" />
 ({* #1952 *})
 ({* #1952 *})</div>
 ({* #1952 *})</td>
@@ -95,7 +95,7 @@
 ({* #1952 *})
 ({* #1952 *})<div class="padding_w_m">
 ({* #1952 *})
-({* #1952 *})<input type="submit" class="input_submit" value="確認画面へ">
+({* #1952 *})<input type="submit" class="input_submit" value="確認画面へ" />
 ({* #1952 *})
 ({* #1952 *})</div>
 ({* #1952 *})

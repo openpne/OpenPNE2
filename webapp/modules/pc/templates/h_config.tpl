@@ -271,7 +271,7 @@
 ({* #1927 *})
 ({* #1927 *})<div align="center" style="text-align:center;">
 ({* #1927 *})
-({* #1927 *})<input type="submit" class="input_submit" value="退会確認ページへ">
+({* #1927 *})<input type="submit" class="input_submit" value="退会確認ページへ" />
 ({* #1927 *})
 ({* #1927 *})</div>
 ({* #1927 *})

@@ -149,19 +149,19 @@
 ({* #1952 *})<td style="width:50%;text-align:right;">
 ({* #1952 *})({t_form_block m=pc a=do_c_sub_admin_request_insert_c_commu_sub_admin_confirm})
 ({* #1952 *})
-({* #1952 *})<input type="hidden" name="target_c_member_id" value="({$target_c_member.c_member_id})">
-({* #1952 *})<input type="hidden" name="target_c_commu_id" value="({$target_c_commu_id})">
-({* #1952 *})<input type="hidden" name="body" value="({$body})">
-({* #1952 *})<input type="submit" class="input_submit" value="　送　信　">&nbsp;
+({* #1952 *})<input type="hidden" name="target_c_member_id" value="({$target_c_member.c_member_id})" />
+({* #1952 *})<input type="hidden" name="target_c_commu_id" value="({$target_c_commu_id})" />
+({* #1952 *})<input type="hidden" name="body" value="({$body})" />
+({* #1952 *})<input type="submit" class="input_submit" value="　送　信　" />&nbsp;
 ({* #1952 *})({/t_form_block})
 ({* #1952 *})</td>
 ({* #1952 *})<td style="width:50%;text-align:left;">
 ({* #1952 *})({t_form_block m=pc a=page_c_sub_admin_request})
 ({* #1952 *})
-({* #1952 *})<input type="hidden" name="target_c_member_id" value="({$target_c_member.c_member_id})">
-({* #1952 *})<input type="hidden" name="target_c_commu_id" value="({$target_c_commu_id})">
-({* #1952 *})<input type="hidden" name="body" value="({$body})">
-({* #1952 *})&nbsp;<input type="submit" class="input_submit" value="　修　正　">
+({* #1952 *})<input type="hidden" name="target_c_member_id" value="({$target_c_member.c_member_id})" />
+({* #1952 *})<input type="hidden" name="target_c_commu_id" value="({$target_c_commu_id})" />
+({* #1952 *})<input type="hidden" name="body" value="({$body})" />
+({* #1952 *})&nbsp;<input type="submit" class="input_submit" value="　修　正　" />
 ({* #1952 *})({/t_form_block})
 ({* #1952 *})</td>
 ({* #1952 *})</tr>
