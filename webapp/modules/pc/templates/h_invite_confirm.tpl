@@ -98,19 +98,19 @@
 ({* #1952 *})
 ({* #1952 *})({t_form_block m=pc a=do_h_invite_insert_c_invite})
 ({* #1952 *})
-({* #1952 *})<input type="hidden" name="mail" value="({$form_val.mail})">
-({* #1952 *})<input type="hidden" name="message" value="({$form_val.message})">
-({* #1952 *})<input type="hidden" name="captcha_confirm" value="({$captcha_confirm})">
-({* #1952 *})<input type="submit"  class="input_submit"  value="  送　信  ">&nbsp;
+({* #1952 *})<input type="hidden" name="mail" value="({$form_val.mail})" />
+({* #1952 *})<input type="hidden" name="message" value="({$form_val.message})" />
+({* #1952 *})<input type="hidden" name="captcha_confirm" value="({$captcha_confirm})" />
+({* #1952 *})<input type="submit"  class="input_submit"  value="  送　信  " />&nbsp;
 ({* #1952 *})({/t_form_block})
 ({* #1952 *})
 ({* #1952 *})</td>
 ({* #1952 *})<td style="width:50%;height:2em;text-align:left;">
 ({* #1952 *})
 ({* #1952 *})({t_form_block m=pc a=page_h_invite})
-({* #1952 *})<input type="hidden" name="mail" value="({$form_val.mail})">
-({* #1952 *})<input type="hidden" name="message" value="({$form_val.message})">
-({* #1952 *})&nbsp;<input type="submit" class="input_submit" value="　修　正　">
+({* #1952 *})<input type="hidden" name="mail" value="({$form_val.mail})" />
+({* #1952 *})<input type="hidden" name="message" value="({$form_val.message})" />
+({* #1952 *})&nbsp;<input type="submit" class="input_submit" value="　修　正　" />
 ({* #1952 *})({/t_form_block})
 ({* #1952 *})
 ({* #1952 *})</td>

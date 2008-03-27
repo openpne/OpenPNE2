@@ -93,15 +93,15 @@
 ({* #1952 *})<tr>
 ({* #1952 *})
 ({* #1952 *})({t_form_block m=pc a=do_o_regist_ktai_address})
-({* #1952 *})<input type="hidden" name="sid" value="({$sid})">
-({* #1952 *})<input type="hidden" name="ktai_address" value="({$ktai_address})">
-({* #1952 *})<input type="submit" class="input_submit" value="&nbsp;送&nbsp;信&nbsp;">
+({* #1952 *})<input type="hidden" name="sid" value="({$sid})" />
+({* #1952 *})<input type="hidden" name="ktai_address" value="({$ktai_address})" />
+({* #1952 *})<input type="submit" class="input_submit" value="&nbsp;送&nbsp;信&nbsp;" />
 ({* #1952 *})({/t_form_block})
 ({* #1952 *})
 ({* #1952 *})({t_form_block m=pc a=page_o_regist_ktai_address})
-({* #1952 *})<input type="hidden" name="sid" value="({$sid})">
-({* #1952 *})<input type="hidden" name="ktai_address" value="({$ktai_address})">
-({* #1952 *})<input type="submit" class="input_submit" value="&nbsp;修&nbsp;正&nbsp;">
+({* #1952 *})<input type="hidden" name="sid" value="({$sid})" />
+({* #1952 *})<input type="hidden" name="ktai_address" value="({$ktai_address})" />
+({* #1952 *})<input type="submit" class="input_submit" value="&nbsp;修&nbsp;正&nbsp;" />
 ({* #1952 *})({/t_form_block})
 ({* #1952 *})
 ({* #1952 *})</tr>
