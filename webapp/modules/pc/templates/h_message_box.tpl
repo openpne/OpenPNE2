@@ -190,7 +190,7 @@
 ({* #1956 *})({if $count_c_message_ru_list})
 ({* #1956 *})
 ({* #1956 *})<!-- ここから：主内容＞＞受信箱＞＞ページ切り替えタブ -->
-({* #1956 *})<table style="width:504px;" border="0" cellspacing="0" cellpadding="0" style="width:auto;margin:0px auto;" class="border_01">
+({* #1956 *})<table border="0" cellspacing="0" cellpadding="0" style="width:504px;margin:0px auto;" class="border_01">
 ({* #1956 *})({*********})
 ({* #1956 *})<tr>
 ({* #1956 *})<td style="width:50%;" class="bg_02" align="left">
@@ -240,7 +240,7 @@
 ({* #1956 *})<!-- ここまで：主内容＞＞受信箱＞＞検索BOX -->
 ({* #1956 *})
 ({* #1956 *})<!-- ここから：主内容＞＞受信箱＞＞メール内容リスト -->
-({* #1956 *})<table style="width:504px;" border="0" cellspacing="0" cellpadding="0" style="margin:0px auto;" class="border_01">
+({* #1956 *})<table border="0" cellspacing="0" cellpadding="0" style="width:504px;margin:0px auto;" class="border_01">
 ({* #1956 *})({*********})
 ({* #1956 *})<tr>
 ({* #1956 *})<td style="width:35px;height:19px;" class="bg_08">&nbsp;</td>
@@ -275,7 +275,7 @@
 ({* #1956 *})<!-- ここまで：主内容＞＞受信箱＞＞メール内容リスト -->
 ({* #1956 *})
 ({* #1956 *})<!-- ここから：主内容＞＞受信箱＞＞ページ切り替えタブ -->
-({* #1956 *})<table style="width:504px;" border="0" cellspacing="0" cellpadding="0" style="width:auto;margin:0px auto;" class="border_01">
+({* #1956 *})<table border="0" cellspacing="0" cellpadding="0" style="width:504px;margin:0px auto;" class="border_01">
 ({* #1956 *})({*********})
 ({* #1956 *})<tr>
 ({* #1956 *})<td style="width:100%;" class="bg_02" align="right">
@@ -293,7 +293,7 @@
 ({* #1956 *})<!-- ここまで：主内容＞＞受信箱＞＞ページ切り替えタブ -->
 ({* #1956 *})
 ({* #1956 *})<!-- ここから：主内容＞＞受信箱＞＞削除タブ -->
-({* #1956 *})<table style="width:504px;" border="0" cellspacing="0" cellpadding="0" style="width:auto;margin:0px auto;" class="border_01">
+({* #1956 *})<table border="0" cellspacing="0" cellpadding="0" style="width:504px;margin:0px auto;" class="border_01">
 ({* #1956 *})({*********})
 ({* #1956 *})<tr>
 ({* #1956 *})<td style="width:100%;" class="bg_05" align="left">
@@ -339,7 +339,7 @@
 ({* #1956 *})({if $count_c_message_s_list})
 ({* #1956 *})
 ({* #1956 *})<!-- ここから：主内容＞＞送信済み箱＞＞ページ切り替えタブ -->
-({* #1956 *})<table style="width:504px;" border="0" cellspacing="0" cellpadding="0" style="width:auto;margin:0px auto;" class="border_01">
+({* #1956 *})<table border="0" cellspacing="0" cellpadding="0" style="width:504px;margin:0px auto;" class="border_01">
 ({* #1956 *})({*********})
 ({* #1956 *})<tr>
 ({* #1956 *})<td style="width:100%;" class="bg_02" align="right">
@@ -381,7 +381,7 @@
 ({* #1956 *})
 ({* #1956 *})
 ({* #1956 *})<!-- ここから：主内容＞＞送信済み箱＞＞メール内容リスト -->
-({* #1956 *})<table style="width:504px;" border="0" cellspacing="0" cellpadding="0" style="margin:0px auto;" class="border_01">
+({* #1956 *})<table border="0" cellspacing="0" cellpadding="0" style="width:504px;margin:0px auto;" class="border_01">
 ({* #1956 *})({*********})
 ({* #1956 *})<tr>
 ({* #1956 *})<td style="width:35px;height:19px;" class="bg_08">&nbsp;</td>
@@ -416,7 +416,7 @@
 ({* #1956 *})<!-- ここまで：主内容＞＞送信済み箱＞＞メール内容リスト -->
 ({* #1956 *})
 ({* #1956 *})<!-- ここから：主内容＞＞送信済み箱＞＞ページ切り替えタブ -->
-({* #1956 *})<table style="width:504px;" border="0" cellspacing="0" cellpadding="0" style="width:auto;margin:0px auto;" class="border_01">
+({* #1956 *})<table border="0" cellspacing="0" cellpadding="0" style="width:504px;margin:0px auto;" class="border_01">
 ({* #1956 *})({*********})
 ({* #1956 *})<tr>
 ({* #1956 *})<td style="width:100%;" class="bg_02" align="right">
@@ -434,7 +434,7 @@
 ({* #1956 *})<!-- ここまで：主内容＞＞送信済み箱＞＞ページ切り替えタブ -->
 ({* #1956 *})
 ({* #1956 *})<!-- ここから：主内容＞＞送信済み箱＞＞削除タブ -->
-({* #1956 *})<table style="width:504px;" border="0" cellspacing="0" cellpadding="0" style="width:auto;margin:0px auto;" class="border_01">
+({* #1956 *})<table border="0" cellspacing="0" cellpadding="0" style="width:504px;margin:0px auto;" class="border_01">
 ({* #1956 *})({*********})
 ({* #1956 *})<tr>
 ({* #1956 *})<td style="width:100%;" class="bg_05" align="left">
@@ -480,7 +480,7 @@
 ({* #1956 *})({if $count_c_message_save_list})
 ({* #1956 *})
 ({* #1956 *})<!-- ここから：主内容＞＞下書き保存箱＞＞ページ切り替えタブ -->
-({* #1956 *})<table style="width:504px;" border="0" cellspacing="0" cellpadding="0" style="width:auto;margin:0px auto;" class="border_01">
+({* #1956 *})<table border="0" cellspacing="0" cellpadding="0" style="width:504px;margin:0px auto;" class="border_01">
 ({* #1956 *})({*********})
 ({* #1956 *})<tr>
 ({* #1956 *})<td style="width:100%;" class="bg_02" align="right">
@@ -515,7 +515,7 @@
 ({* #1956 *})<!-- ここまで：主内容＞＞下書き保存箱＞＞ページ切り替えタブ -->
 ({* #1956 *})
 ({* #1956 *})<!-- ここから：主内容＞＞下書き保存箱＞＞メール内容リスト -->
-({* #1956 *})<table style="width:504px;" border="0" cellspacing="0" cellpadding="0" style="margin:0px auto;" class="border_01">
+({* #1956 *})<table border="0" cellspacing="0" cellpadding="0" style="width:504px;margin:0px auto;" class="border_01">
 ({* #1956 *})({*********})
 ({* #1956 *})<tr>
 ({* #1956 *})<td style="width:35px;height:19px;" class="bg_08">&nbsp;</td>
@@ -550,7 +550,7 @@
 ({* #1956 *})<!-- ここまで：主内容＞＞下書き保存箱＞＞メール内容リスト -->
 ({* #1956 *})
 ({* #1956 *})<!-- ここから：主内容＞＞下書き保存箱＞＞ページ切り替えタブ -->
-({* #1956 *})<table style="width:504px;" border="0" cellspacing="0" cellpadding="0" style="width:auto;margin:0px auto;" class="border_01">
+({* #1956 *})<table border="0" cellspacing="0" cellpadding="0" style="width:504px;margin:0px auto;" class="border_01">
 ({* #1956 *})({*********})
 ({* #1956 *})<tr>
 ({* #1956 *})<td style="width:100%;" class="bg_02" align="right">
@@ -568,7 +568,7 @@
 ({* #1956 *})<!-- ここまで：主内容＞＞下書き保存箱＞＞ページ切り替えタブ -->
 ({* #1956 *})
 ({* #1956 *})<!-- ここから：主内容＞＞下書き保存箱＞＞削除タブ -->
-({* #1956 *})<table style="width:504px;" border="0" cellspacing="0" cellpadding="0" style="width:auto;margin:0px auto;" class="border_01">
+({* #1956 *})<table border="0" cellspacing="0" cellpadding="0" style="width:504px;margin:0px auto;" class="border_01">
 ({* #1956 *})({*********})
 ({* #1956 *})<tr>
 ({* #1956 *})
@@ -608,7 +608,7 @@
 ({* #1956 *})({if $count_c_message_trash_list})
 ({* #1956 *})
 ({* #1956 *})<!-- ここから：主内容＞＞ごみ箱＞＞ページ切り替えタブ -->
-({* #1956 *})<table style="width:504px;" border="0" cellspacing="0" cellpadding="0" style="width:auto;margin:0px auto;" class="border_01">
+({* #1956 *})<table border="0" cellspacing="0" cellpadding="0" style="width:504px;margin:0px auto;" class="border_01">
 ({* #1956 *})({*********})
 ({* #1956 *})<tr>
 ({* #1956 *})<td style="width:350px;" class="bg_05" align="left">
@@ -656,7 +656,7 @@
 ({* #1956 *})<!-- ここまで：主内容＞＞ごみ箱＞＞ページ切り替えタブ -->
 ({* #1956 *})
 ({* #1956 *})<!-- ここから：主内容＞＞ごみ箱＞＞メール内容リスト -->
-({* #1956 *})<table style="width:504px;" border="0" cellspacing="0" cellpadding="0" style="margin:0px auto;" class="border_01">
+({* #1956 *})<table border="0" cellspacing="0" cellpadding="0" style="width:504px;margin:0px auto;" class="border_01">
 ({* #1956 *})({*********})
 ({* #1956 *})<tr>
 ({* #1956 *})<td style="width:35px;height:19px;" class="bg_08">&nbsp;</td>
@@ -703,7 +703,7 @@
 ({* #1956 *})<!-- ここまで：主内容＞＞ごみ箱＞＞メール内容リスト -->
 ({* #1956 *})
 ({* #1956 *})<!-- ここから：主内容＞＞ごみ箱＞＞ページ切り替えタブ -->
-({* #1956 *})<table style="width:504px;" border="0" cellspacing="0" cellpadding="0" style="width:auto;margin:0px auto;" class="border_01">
+({* #1956 *})<table border="0" cellspacing="0" cellpadding="0" style="width:504px;margin:0px auto;" class="border_01">
 ({* #1956 *})({*********})
 ({* #1956 *})<tr>
 ({* #1956 *})<td style="width:100%;" class="bg_02" align="right">
@@ -721,7 +721,7 @@
 ({* #1956 *})<!-- ここまで：主内容＞＞ごみ箱＞＞ページ切り替えタブ -->
 ({* #1956 *})
 ({* #1956 *})<!-- ここから：主内容＞＞ごみ箱＞＞削除タブ -->
-({* #1956 *})<table style="width:504px;" border="0" cellspacing="0" cellpadding="0" style="width:auto;margin:0px auto;" class="border_01">
+({* #1956 *})<table border="0" cellspacing="0" cellpadding="0" style="width:504px;margin:0px auto;" class="border_01">
 ({* #1956 *})({*********})
 ({* #1956 *})<tr>
 ({* #1956 *})<td style="width:100%;" class="bg_05" align="left">
