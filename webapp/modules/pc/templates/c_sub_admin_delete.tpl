@@ -170,15 +170,15 @@
 ({* #1952 *})
 ({* #1952 *})({t_form_block m=pc a=do_c_sub_admin_delete})
 ({* #1952 *})
-({* #1952 *})<input type="hidden" name="target_c_member_id" value="({$member.c_member_id})">
-({* #1952 *})<input type="hidden" name="target_c_commu_id" value="({$c_commu.c_commu_id})">
-({* #1952 *})<td align="right"><input type=submit class="input_submit" name="yes_button" value="　送　信　">
+({* #1952 *})<input type="hidden" name="target_c_member_id" value="({$member.c_member_id})" />
+({* #1952 *})<input type="hidden" name="target_c_commu_id" value="({$c_commu.c_commu_id})" />
+({* #1952 *})<td align="right"><input type=submit class="input_submit" name="yes_button" value="　送　信　" />
 ({* #1952 *})</td>
 ({* #1952 *})({/t_form_block})
 ({* #1952 *})
 ({* #1952 *})({t_form_block _method=get m=pc a=page_c_edit_member})
-({* #1952 *})<input type="hidden" name="target_c_commu_id" value="({$c_commu.c_commu_id})">
-({* #1952 *})<td><input type="submit" class="input_submit" value="キャンセル">
+({* #1952 *})<input type="hidden" name="target_c_commu_id" value="({$c_commu.c_commu_id})" />
+({* #1952 *})<td><input type="submit" class="input_submit" value="キャンセル" />
 ({* #1952 *})</td>
 ({* #1952 *})({/t_form_block})
 ({* #1952 *})

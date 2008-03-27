@@ -181,42 +181,42 @@
 ({* #1952 *})
 ({* #1952 *})({t_form_block m=pc a=do_h_schedule_edit_update_c_schedule})
 ({* #1952 *})
-({* #1952 *})<input type="hidden" name="target_c_schedule_id" value="({$target_c_schedule_id})">
-({* #1952 *})<input type="hidden" name="title" value="({$input.title})">
-({* #1952 *})<input type="hidden" name="body" value="({$input.body})">
-({* #1952 *})<input type="hidden" name="start_year" value="({$input.start_year})">
-({* #1952 *})<input type="hidden" name="start_month" value="({$input.start_month})">
-({* #1952 *})<input type="hidden" name="start_day" value="({$input.start_day})">
-({* #1952 *})<input type="hidden" name="start_hour" value="({$input.start_hour})">
-({* #1952 *})<input type="hidden" name="start_minute" value="({$input.start_minute})">
-({* #1952 *})<input type="hidden" name="end_year" value="({$input.end_year})">
-({* #1952 *})<input type="hidden" name="end_month" value="({$input.end_month})">
-({* #1952 *})<input type="hidden" name="end_day" value="({$input.end_day})">
-({* #1952 *})<input type="hidden" name="end_hour" value="({$input.end_hour})">
-({* #1952 *})<input type="hidden" name="end_minute" value="({$input.end_minute})">
-({* #1952 *})<input type="hidden" name="is_receive_mail" value="({$input.is_receive_mail})">
-({* #1952 *})<td><input type="submit" class="input_submit" value="　 完　　了 　">
+({* #1952 *})<input type="hidden" name="target_c_schedule_id" value="({$target_c_schedule_id})" />
+({* #1952 *})<input type="hidden" name="title" value="({$input.title})" />
+({* #1952 *})<input type="hidden" name="body" value="({$input.body})" />
+({* #1952 *})<input type="hidden" name="start_year" value="({$input.start_year})" />
+({* #1952 *})<input type="hidden" name="start_month" value="({$input.start_month})" />
+({* #1952 *})<input type="hidden" name="start_day" value="({$input.start_day})" />
+({* #1952 *})<input type="hidden" name="start_hour" value="({$input.start_hour})" />
+({* #1952 *})<input type="hidden" name="start_minute" value="({$input.start_minute})" />
+({* #1952 *})<input type="hidden" name="end_year" value="({$input.end_year})" />
+({* #1952 *})<input type="hidden" name="end_month" value="({$input.end_month})" />
+({* #1952 *})<input type="hidden" name="end_day" value="({$input.end_day})" />
+({* #1952 *})<input type="hidden" name="end_hour" value="({$input.end_hour})" />
+({* #1952 *})<input type="hidden" name="end_minute" value="({$input.end_minute})" />
+({* #1952 *})<input type="hidden" name="is_receive_mail" value="({$input.is_receive_mail})" />
+({* #1952 *})<td><input type="submit" class="input_submit" value="　 完　　了 　" />
 ({* #1952 *})({/t_form_block})
 ({* #1952 *})
 ({* #1952 *})</td>
 ({* #1952 *})<td>
 ({* #1952 *})
 ({* #1952 *})({t_form_block m=pc a=page_h_schedule_edit})
-({* #1952 *})<input type="hidden" name="target_c_schedule_id" value="({$target_c_schedule_id})">
-({* #1952 *})<input type="hidden" name="title" value="({$input.title})">
-({* #1952 *})<input type="hidden" name="body" value="({$input.body})">
-({* #1952 *})<input type="hidden" name="start_year" value="({$input.start_year})">
-({* #1952 *})<input type="hidden" name="start_month" value="({$input.start_month})">
-({* #1952 *})<input type="hidden" name="start_day" value="({$input.start_day})">
-({* #1952 *})<input type="hidden" name="start_hour" value="({$input.start_hour})">
-({* #1952 *})<input type="hidden" name="start_minute" value="({$input.start_minute})">
-({* #1952 *})<input type="hidden" name="end_year" value="({$input.end_year})">
-({* #1952 *})<input type="hidden" name="end_month" value="({$input.end_month})">
-({* #1952 *})<input type="hidden" name="end_day" value="({$input.end_day})">
-({* #1952 *})<input type="hidden" name="end_hour" value="({$input.end_hour})">
-({* #1952 *})<input type="hidden" name="end_minute" value="({$input.end_minute})">
-({* #1952 *})<input type="hidden" name="is_receive_mail" value="({$input.is_receive_mail})">
-({* #1952 *})<td><input type="submit" class="input_submit" value="　 修　　正 　"><br />
+({* #1952 *})<input type="hidden" name="target_c_schedule_id" value="({$target_c_schedule_id})" />
+({* #1952 *})<input type="hidden" name="title" value="({$input.title})" />
+({* #1952 *})<input type="hidden" name="body" value="({$input.body})" />
+({* #1952 *})<input type="hidden" name="start_year" value="({$input.start_year})" />
+({* #1952 *})<input type="hidden" name="start_month" value="({$input.start_month})" />
+({* #1952 *})<input type="hidden" name="start_day" value="({$input.start_day})" />
+({* #1952 *})<input type="hidden" name="start_hour" value="({$input.start_hour})" />
+({* #1952 *})<input type="hidden" name="start_minute" value="({$input.start_minute})" />
+({* #1952 *})<input type="hidden" name="end_year" value="({$input.end_year})" />
+({* #1952 *})<input type="hidden" name="end_month" value="({$input.end_month})" />
+({* #1952 *})<input type="hidden" name="end_day" value="({$input.end_day})" />
+({* #1952 *})<input type="hidden" name="end_hour" value="({$input.end_hour})" />
+({* #1952 *})<input type="hidden" name="end_minute" value="({$input.end_minute})" />
+({* #1952 *})<input type="hidden" name="is_receive_mail" value="({$input.is_receive_mail})" />
+({* #1952 *})<td><input type="submit" class="input_submit" value="　 修　　正 　" /><br />
 ({* #1952 *})({/t_form_block})
 ({* #1952 *})
 ({* #1952 *})</td>

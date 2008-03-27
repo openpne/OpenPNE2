@@ -251,19 +251,19 @@
 ({* #1949 *})
 ({* #1949 *})({t_form_block m=pc a=do_c_member_review_insert_c_commu_review})
 ({* #1949 *})
-({* #1949 *})<input type="hidden" name="target_c_commu_id" value="({$c_commu.c_commu_id})">
+({* #1949 *})<input type="hidden" name="target_c_commu_id" value="({$c_commu.c_commu_id})" />
 ({* #1949 *})({foreach from=$c_review_id item=item})
-({* #1949 *})<input type="hidden" name="c_review_id[]" value="({$item})">
+({* #1949 *})<input type="hidden" name="c_review_id[]" value="({$item})" />
 ({* #1949 *})({/foreach})
-({* #1949 *})<input type="submit" class="input_submit" value="　は　い　">
+({* #1949 *})<input type="submit" class="input_submit" value="　は　い　" />
 ({* #1949 *})({/t_form_block})
 ({* #1949 *})
 ({* #1949 *})</td>
 ({* #1949 *})<td>
 ({* #1949 *})
 ({* #1949 *})({t_form_block _method=get m=pc a=page_c_member_review_add})
-({* #1949 *})<input type="hidden" name="target_c_commu_id" value="({$c_commu.c_commu_id})">
-({* #1949 *})<input type="submit" class="input_submit" value="　いいえ　">
+({* #1949 *})<input type="hidden" name="target_c_commu_id" value="({$c_commu.c_commu_id})" />
+({* #1949 *})<input type="submit" class="input_submit" value="　いいえ　" />
 ({* #1949 *})({/t_form_block})
 ({* #1949 *})
 ({* #1949 *})</td>
