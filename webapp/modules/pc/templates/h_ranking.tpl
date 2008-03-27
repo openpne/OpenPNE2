@@ -5,12 +5,12 @@
 ({* #1942 *})<!-- ******ここから：ランキングメニュー****** -->
 ({* #1942 *})<table border="0" cellspacing="0" cellpadding="0" style="width:165px;margin:0px auto;" class="border_07">
 ({* #1942 *})<tr>
-({* #1942 *})<td style="width:7px;" class="bg_10"><img src="./skin/dummy.gif" alt="square" class="square"></td>
-({* #1942 *})<td style="width:149px;" class="bg_10"><img src="./skin/dummy.gif" alt="square" class="square"></td>
-({* #1942 *})<td style="width:7px;" class="bg_10"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+({* #1942 *})<td style="width:7px;" class="bg_10"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
+({* #1942 *})<td style="width:149px;" class="bg_10"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
+({* #1942 *})<td style="width:7px;" class="bg_10"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
 ({* #1942 *})</tr>
 ({* #1942 *})<tr>
-({* #1942 *})<td class="bg_10"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+({* #1942 *})<td class="bg_10"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
 ({* #1942 *})<td class="bg_10" align="center">
 ({* #1942 *})<!-- *ここから：ランキングメニュー＞内容* -->
 ({* #1942 *})({*ここから：header*})
@@ -111,12 +111,12 @@
 ({* #1942 *})({*ここまで：body*})
 ({* #1942 *})<!-- *ここまで：ランキングメニュー＞＞内容* -->
 ({* #1942 *})</td>
-({* #1942 *})<td class="bg_10"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+({* #1942 *})<td class="bg_10"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
 ({* #1942 *})</tr>
 ({* #1942 *})<tr>
-({* #1942 *})<td class="bg_10"><img src="./skin/dummy.gif" alt="square" class="square"></td>
-({* #1942 *})<td class="bg_10"><img src="./skin/dummy.gif" alt="square" class="square"></td>
-({* #1942 *})<td class="bg_10"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+({* #1942 *})<td class="bg_10"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
+({* #1942 *})<td class="bg_10"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
+({* #1942 *})<td class="bg_10"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
 ({* #1942 *})</tr>
 ({* #1942 *})</table>
 ({* #1942 *})<!-- ******ここまで：ランキングメニュー****** -->
@@ -128,12 +128,12 @@
 ({* #1936 *})<!-- ******ここから：ランキング一覧****** -->
 ({* #1936 *})<table border="0" cellspacing="0" cellpadding="0" style="width:540px;margin:0px auto;" class="border_07">
 ({* #1936 *})<tr>
-({* #1936 *})<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
-({* #1936 *})<td style="width:524px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
-({* #1936 *})<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+({* #1936 *})<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
+({* #1936 *})<td style="width:524px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
+({* #1936 *})<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
 ({* #1936 *})</tr>
 ({* #1936 *})<tr>
-({* #1936 *})<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+({* #1936 *})<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
 ({* #1936 *})<td class="bg_01" align="center">
 ({* #1936 *})<!-- *ここから：ランキング一覧＞内容* -->
 ({* #1936 *})({*ここから：header*})
@@ -142,7 +142,7 @@
 ({* #1936 *})
 ({* #1936 *})<table border="0" cellspacing="0" cellpadding="0" style="width:524px;" class="border_01">
 ({* #1936 *})<tr>
-({* #1936 *})<td style="width:36px;" class="bg_06"><img src="({t_img_url_skin filename=content_header_1})" style="width:30px;height:20px;" class="dummy"></td>
+({* #1936 *})<td style="width:36px;" class="bg_06"><img src="({t_img_url_skin filename=content_header_1})" style="width:30px;height:20px;" class="dummy" /></td>
 ({* #1936 *})<td style="width:486px;padding:2px 0px;" class="bg_06">
 ({* #1936 *})<span class="c_00">
 ({* #1936 *})
@@ -185,28 +185,28 @@
 ({* #1936 *})<table border="0" cellspacing="0" cellpadding="0" style="width:522px;margin:0px auto;">
 ({* #1936 *})({*********})
 ({* #1936 *})<tr>
-({* #1936 *})<td style="width:522px;height:1px;" class="bg_01" colspan="7"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1936 *})<td style="width:522px;height:1px;" class="bg_01" colspan="7"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
 ({* #1936 *})</tr>
 ({* #1936 *})({*********})
 ({* #1936 *})({foreach from=$list item=item})
 ({* #1936 *})<tr>
-({* #1936 *})<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1936 *})<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
 ({* #1936 *})<td style="width:130px;min-height:130px;" class="bg_03" align="center" valign="middle" rowspan="({if $kind == "ashiato" || $kind == "friend"})5({else})7({/if})">
 ({* #1936 *})
 ({* #1936 *})<div class="padding_s">
 ({* #1936 *})
 ({* #1936 *})({if $kind == "ashiato" || $kind == "friend"})
 ({* #1936 *})<a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})">
-({* #1936 *})<img src="({t_img_url filename=$item.c_member.image_filename w=120 h=120 noimg=no_image})"></a>
+({* #1936 *})<img src="({t_img_url filename=$item.c_member.image_filename w=120 h=120 noimg=no_image})" /></a>
 ({* #1936 *})({else})
 ({* #1936 *})<a href="({t_url m=pc a=page_c_home})&amp;target_c_commu_id=({$item.c_commu_id})">
-({* #1936 *})<img src="({t_img_url filename=$item.c_commu.image_filename w=120 h=120 noimg=no_logo})"></a>
+({* #1936 *})<img src="({t_img_url filename=$item.c_commu.image_filename w=120 h=120 noimg=no_logo})" /></a>
 ({* #1936 *})({/if})
 ({* #1936 *})
 ({* #1936 *})</div>
 ({* #1936 *})
 ({* #1936 *})</td>
-({* #1936 *})<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1936 *})<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
 ({* #1936 *})<td style="width:85px;" class="bg_05" align="left" valign="middle">
 ({* #1936 *})
 ({* #1936 *})<div class="padding_s">
@@ -216,7 +216,7 @@
 ({* #1936 *})</div>
 ({* #1936 *})
 ({* #1936 *})</td>
-({* #1936 *})<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1936 *})<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
 ({* #1936 *})<td style="width:302px;" class="bg_09" align="left" valign="middle">
 ({* #1936 *})
 ({* #1936 *})<div class="padding_s">
@@ -242,17 +242,17 @@
 ({* #1936 *})</div>
 ({* #1936 *})
 ({* #1936 *})</td>
-({* #1936 *})<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1936 *})<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
 ({* #1936 *})</tr>
 ({* #1936 *})({*********})
 ({* #1936 *})<tr>
-({* #1936 *})<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-({* #1936 *})<td style="width:400px;" class="bg_01" align="center" colspan="5"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1936 *})<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
+({* #1936 *})<td style="width:400px;" class="bg_01" align="center" colspan="5"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
 ({* #1936 *})</tr>
 ({* #1936 *})({*********})
 ({* #1936 *})<tr>
-({* #1936 *})<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-({* #1936 *})<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1936 *})<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
+({* #1936 *})<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
 ({* #1936 *})<td class="bg_05" align="left" valign="middle">
 ({* #1936 *})
 ({* #1936 *})<div class="padding_s">
@@ -266,7 +266,7 @@
 ({* #1936 *})</div>
 ({* #1936 *})
 ({* #1936 *})</td>
-({* #1936 *})<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1936 *})<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
 ({* #1936 *})<td class="bg_02" align="left" valign="middle">
 ({* #1936 *})
 ({* #1936 *})<div class="padding_s">
@@ -280,18 +280,18 @@
 ({* #1936 *})</div>
 ({* #1936 *})
 ({* #1936 *})</td>
-({* #1936 *})<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1936 *})<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
 ({* #1936 *})</tr>
 ({* #1936 *})({*********})
 ({* #1936 *})<tr>
-({* #1936 *})<td style="height:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-({* #1936 *})<td style="height:1px;" class="bg_01" align="center" colspan="5"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1936 *})<td style="height:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
+({* #1936 *})<td style="height:1px;" class="bg_01" align="center" colspan="5"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
 ({* #1936 *})</tr>
 ({* #1936 *})({if $kind == "com_member" || $kind == "com_comment"})
 ({* #1936 *})({*********})
 ({* #1936 *})<tr>
-({* #1936 *})<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-({* #1936 *})<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1936 *})<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
+({* #1936 *})<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
 ({* #1936 *})<td class="bg_05" align="left" valign="middle">
 ({* #1936 *})
 ({* #1936 *})<div class="padding_s">
@@ -301,7 +301,7 @@
 ({* #1936 *})</div>
 ({* #1936 *})
 ({* #1936 *})</td>
-({* #1936 *})<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1936 *})<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
 ({* #1936 *})<td class="bg_02" align="left" valign="middle">
 ({* #1936 *})
 ({* #1936 *})<div class="padding_s">
@@ -311,18 +311,18 @@
 ({* #1936 *})</div>
 ({* #1936 *})
 ({* #1936 *})</td>
-({* #1936 *})<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1936 *})<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
 ({* #1936 *})</tr>
 ({* #1936 *})({*********})
 ({* #1936 *})<tr>
-({* #1936 *})<td style="height:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-({* #1936 *})<td style="height:1px;" class="bg_01" align="center" colspan="5"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1936 *})<td style="height:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
+({* #1936 *})<td style="height:1px;" class="bg_01" align="center" colspan="5"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
 ({* #1936 *})</tr>
 ({* #1936 *})({/if})
 ({* #1936 *})({*********})
 ({* #1936 *})<tr>
-({* #1936 *})<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-({* #1936 *})<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1936 *})<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
+({* #1936 *})<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
 ({* #1936 *})<td class="bg_05" align="left" valign="middle">
 ({* #1936 *})
 ({* #1936 *})<div class="padding_s">
@@ -336,7 +336,7 @@
 ({* #1936 *})</div>
 ({* #1936 *})
 ({* #1936 *})</td>
-({* #1936 *})<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1936 *})<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
 ({* #1936 *})<td class="bg_02" align="left" valign="middle">
 ({* #1936 *})
 ({* #1936 *})<div class="padding_s">
@@ -350,11 +350,11 @@
 ({* #1936 *})</div>
 ({* #1936 *})
 ({* #1936 *})</td>
-({* #1936 *})<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1936 *})<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
 ({* #1936 *})</tr>
 ({* #1936 *})({*********})
 ({* #1936 *})<tr>
-({* #1936 *})<td style="height:1px;" class="bg_01" colspan="7"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1936 *})<td style="height:1px;" class="bg_01" colspan="7"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
 ({* #1936 *})</tr>
 ({* #1936 *})({*********})
 ({* #1936 *})({/foreach})
@@ -363,36 +363,36 @@
 ({* #1936 *})
 ({* #1936 *})({else})
 ({* #1936 *})
-({* #1936 *})<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
+({* #1936 *})<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l" />
 ({* #1936 *})
 ({* #1936 *})<!-- ここから：主内容＞＞ランキング一覧本体＞＞のループ部分(2位以下) -->
 ({* #1936 *})({foreach from=$list item=item})
 ({* #1936 *})<div class="border_01 bg_09" style="width:492px;margin:0px auto;" align="center">
-({* #1936 *})<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_m">
+({* #1936 *})<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_m" />
 ({* #1936 *})<table border="0" cellspacing="0" cellpadding="0" style="width:480px;margin:0px auto;">
 ({* #1936 *})({*********})
 ({* #1936 *})<tr>
-({* #1936 *})<td style="width:480px;height:1px;" class="bg_01" colspan="7"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1936 *})<td style="width:480px;height:1px;" class="bg_01" colspan="7"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
 ({* #1936 *})</tr>
 ({* #1936 *})({*********})
 ({* #1936 *})<tr>
-({* #1936 *})<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1936 *})<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
 ({* #1936 *})<td style="width:100px;" class="bg_03" align="center" valign="middle" rowspan="({if $kind == "ashiato" || $kind == "friend"})6({else})7({/if})">
 ({* #1936 *})
 ({* #1936 *})<div class="padding_s">
 ({* #1936 *})
 ({* #1936 *})({if $kind == "ashiato" || $kind == "friend"})
 ({* #1936 *})<a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})">
-({* #1936 *})<img src="({t_img_url filename=$item.c_member.image_filename w=76 h=76 noimg=no_image})" class="pict"></a>
+({* #1936 *})<img src="({t_img_url filename=$item.c_member.image_filename w=76 h=76 noimg=no_image})" class="pict" /></a>
 ({* #1936 *})({else})
 ({* #1936 *})<a href="({t_url m=pc a=page_c_home})&amp;target_c_commu_id=({$item.c_commu_id})">
-({* #1936 *})<img src="({t_img_url filename=$item.c_commu.image_filename w=76 h=76 noimg=no_logo})" class="pict"></a>
+({* #1936 *})<img src="({t_img_url filename=$item.c_commu.image_filename w=76 h=76 noimg=no_logo})" class="pict" /></a>
 ({* #1936 *})({/if})
 ({* #1936 *})
 ({* #1936 *})</div>
 ({* #1936 *})
 ({* #1936 *})</td>
-({* #1936 *})<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1936 *})<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
 ({* #1936 *})<td style="width:85px;" class="bg_05" align="left" valign="middle">
 ({* #1936 *})
 ({* #1936 *})<div class="padding_s">
@@ -402,7 +402,7 @@
 ({* #1936 *})</div>
 ({* #1936 *})
 ({* #1936 *})</td>
-({* #1936 *})<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1936 *})<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
 ({* #1936 *})<td style="width:291px;" class="bg_09" align="left" valign="middle">
 ({* #1936 *})
 ({* #1936 *})<div class="padding_s">
@@ -429,17 +429,17 @@
 ({* #1936 *})</div>
 ({* #1936 *})
 ({* #1936 *})</td>
-({* #1936 *})<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1936 *})<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
 ({* #1936 *})</tr>
 ({* #1936 *})({*********})
 ({* #1936 *})<tr>
-({* #1936 *})<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-({* #1936 *})<td style="width:389px;" class="bg_01" align="center" colspan="5"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1936 *})<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
+({* #1936 *})<td style="width:389px;" class="bg_01" align="center" colspan="5"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
 ({* #1936 *})</tr>
 ({* #1936 *})({*********})
 ({* #1936 *})<tr>
-({* #1936 *})<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-({* #1936 *})<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1936 *})<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
+({* #1936 *})<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
 ({* #1936 *})<td class="bg_05" align="left" valign="middle">
 ({* #1936 *})
 ({* #1936 *})<div class="padding_s">
@@ -453,7 +453,7 @@
 ({* #1936 *})</div>
 ({* #1936 *})
 ({* #1936 *})</td>
-({* #1936 *})<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1936 *})<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
 ({* #1936 *})<td class="bg_02" align="left" valign="middle">
 ({* #1936 *})
 ({* #1936 *})<div class="padding_s">
@@ -467,18 +467,18 @@
 ({* #1936 *})</div>
 ({* #1936 *})
 ({* #1936 *})</td>
-({* #1936 *})<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1936 *})<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
 ({* #1936 *})</tr>
 ({* #1936 *})({*********})
 ({* #1936 *})<tr>
-({* #1936 *})<td style="height:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-({* #1936 *})<td style="height:1px;" class="bg_01" align="center" colspan="5"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1936 *})<td style="height:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
+({* #1936 *})<td style="height:1px;" class="bg_01" align="center" colspan="5"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
 ({* #1936 *})</tr>
 ({* #1936 *})({if $kind == "com_member" || $kind == "com_comment"})
 ({* #1936 *})({*********})
 ({* #1936 *})<tr>
-({* #1936 *})<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-({* #1936 *})<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1936 *})<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
+({* #1936 *})<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
 ({* #1936 *})<td class="bg_05" align="left" valign="middle">
 ({* #1936 *})
 ({* #1936 *})<div class="padding_s">
@@ -488,7 +488,7 @@
 ({* #1936 *})</div>
 ({* #1936 *})
 ({* #1936 *})</td>
-({* #1936 *})<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1936 *})<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
 ({* #1936 *})<td class="bg_02" align="left" valign="middle">
 ({* #1936 *})
 ({* #1936 *})<div class="padding_s">
@@ -498,18 +498,18 @@
 ({* #1936 *})</div>
 ({* #1936 *})
 ({* #1936 *})</td>
-({* #1936 *})<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1936 *})<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
 ({* #1936 *})</tr>
 ({* #1936 *})({*********})
 ({* #1936 *})<tr>
-({* #1936 *})<td style="height:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-({* #1936 *})<td style="height:1px;" class="bg_01" align="center" colspan="5"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1936 *})<td style="height:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
+({* #1936 *})<td style="height:1px;" class="bg_01" align="center" colspan="5"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
 ({* #1936 *})</tr>
 ({* #1936 *})({/if})
 ({* #1936 *})({*********})
 ({* #1936 *})<tr>
-({* #1936 *})<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-({* #1936 *})<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1936 *})<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
+({* #1936 *})<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
 ({* #1936 *})<td class="bg_05" align="left" valign="middle">
 ({* #1936 *})
 ({* #1936 *})<div class="padding_s">
@@ -523,7 +523,7 @@
 ({* #1936 *})</div>
 ({* #1936 *})
 ({* #1936 *})</td>
-({* #1936 *})<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1936 *})<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
 ({* #1936 *})<td class="bg_02" align="left" valign="middle">
 ({* #1936 *})
 ({* #1936 *})<div class="padding_s">
@@ -537,18 +537,18 @@
 ({* #1936 *})</div>
 ({* #1936 *})
 ({* #1936 *})</td>
-({* #1936 *})<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1936 *})<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
 ({* #1936 *})</tr>
 ({* #1936 *})({*********})
 ({* #1936 *})<tr>
-({* #1936 *})<td style="height:1px;" class="bg_01" colspan="7"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #1936 *})<td style="height:1px;" class="bg_01" colspan="7"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
 ({* #1936 *})</tr>
 ({* #1936 *})({*********})
 ({* #1936 *})</table>
-({* #1936 *})<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_m">
+({* #1936 *})<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_m" />
 ({* #1936 *})</div>
 ({* #1936 *})
-({* #1936 *})<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
+({* #1936 *})<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l" />
 ({* #1936 *})({/foreach})
 ({* #1936 *})<!-- ここまで：主内容＞＞ランキング一覧本体＞＞のループ部分(2位以下) -->
 ({* #1936 *})
@@ -563,12 +563,12 @@
 ({* #1936 *})({*ここまで：footer*})
 ({* #1936 *})<!-- *ここまで：ランキング一覧＞＞内容* -->
 ({* #1936 *})</td>
-({* #1936 *})<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+({* #1936 *})<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
 ({* #1936 *})</tr>
 ({* #1936 *})<tr>
-({* #1936 *})<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
-({* #1936 *})<td style="width:636px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
-({* #1936 *})<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+({* #1936 *})<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
+({* #1936 *})<td style="width:636px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
+({* #1936 *})<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
 ({* #1936 *})</tr>
 ({* #1936 *})</table>
 ({* #1936 *})<!-- ******ここまで：ランキング一覧****** -->

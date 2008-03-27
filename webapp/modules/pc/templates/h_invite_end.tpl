@@ -11,7 +11,7 @@
 ({* }}} *})
 
 ({* #1939 *})<!-- ******ここから：トップページに戻る****** -->
-({* #1939 *})<img src="./skin/dummy.gif" alt="dummy" class="icon arrow_1">&nbsp;<a href="({t_url m=pc a=page_h_home})">ホームに戻る</a>
+({* #1939 *})<img src="./skin/dummy.gif" alt="dummy" class="icon arrow_1" />&nbsp;<a href="({t_url m=pc a=page_h_home})">ホームに戻る</a>
 ({* #1939 *})<!-- ******ここまで：トップページに戻る****** -->
 
 </div><!-- Center -->
