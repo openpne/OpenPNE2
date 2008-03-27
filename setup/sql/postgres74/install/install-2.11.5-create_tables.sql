@@ -88,6 +88,9 @@ CREATE TABLE c_access_block (
   PRIMARY KEY  (c_access_block_id)
 );
 
+CREATE INDEX c_member_id_c_member_id_block ON c_access_block(c_member_id,c_member_id_block);
+CREATE INDEX c_member_id_block ON c_access_block(c_member_id_block);
+
 CREATE TABLE c_access_log (
   c_access_log_id serial NOT NULL,
   c_member_id int4 NOT NULL default '0',
@@ -222,10 +225,6 @@ CREATE TABLE c_commu (
   public_flag varchar(20) NOT NULL default 'public',
   is_send_join_mail smallint NOT NULL default '1',
   is_regist_join smallint NOT NULL default '0',
-  is_display_map smallint NOT NULL default '0',
-  map_latitude double precision NOT NULL default '0',
-  map_longitude double precision NOT NULL default '0',
-  map_zoom int4 NOT NULL default '0',
   u_datetime timestamp NOT NULL default '0000-01-01 00:00:00',
   PRIMARY KEY (c_commu_id)
 );
@@ -254,6 +253,8 @@ CREATE TABLE c_commu_admin_invite (
   r_datetime timestamp NOT NULL default '0000-01-01 00:00:00',
   PRIMARY KEY  (c_commu_admin_invite_id)
 );
+
+CREATE INDEX c_commu_id_c_memer_id_to ON c_commu_admin_invite(c_commu_id,c_member_id_to);
 
 CREATE TABLE c_commu_category (
   c_commu_category_id serial NOT NULL,
@@ -714,6 +715,7 @@ CREATE TABLE c_member_pre (
   c_password_query_answer text NOT NULL,
   ktai_session varchar(255) NOT NULL default '',
   is_disabled_regist_easy_access_id smallint NOT NULL default '0',
+  login_id varchar(255) NOT NULL default '',
   PRIMARY KEY  (c_member_pre_id),
   UNIQUE (session)
 );
@@ -796,6 +798,14 @@ CREATE TABLE c_message_queue (
   subject text NOT NULL,
   body text NOT NULL,
   PRIMARY KEY  (c_message_queue_id)
+);
+
+CREATE TABLE c_module (
+  c_module_id serial NOT NULL,
+  name text NOT NULL,
+  is_enabled smallint NOT NULL default '0',
+  PRIMARY KEY  (c_module_id),
+  UNIQUE (name)
 );
 
 CREATE TABLE c_navi (
@@ -953,6 +963,9 @@ CREATE TABLE c_review_comment (
   PRIMARY KEY  (c_review_comment_id)
 );
 
+CREATE INDEX c_review_id_r_datetime ON c_review_comment(c_review_id,r_datetime);
+CREATE INDEX c_member_id_r_datetime ON c_review_comment(c_member_id,r_datetime);
+
 CREATE TABLE c_rss_cache (
   c_rss_cache_id serial NOT NULL,
   c_member_id int4 NOT NULL default '0',
@@ -1096,5 +1109,69 @@ CREATE INDEX mail_queue_id_user on mail_queue (id_user);
 CREATE TABLE mail_queue_seq (
   id serial NOT NULL,
   PRIMARY KEY  (id)
+);
+
+CREATE TABLE portal_config (
+  portal_config_id serial NOT NULL,
+  name text NOT NULL,
+  value text NOT NULL,
+  PRIMARY KEY (portal_config_id),
+  UNIQUE (name)
+);
+
+CREATE TABLE portal_layout (
+  portal_layout_id serial NOT NULL,
+  content_name text NOT NULL,
+  position int4 NOT NULL,
+  is_image smallint NOT NULL default '0',
+  PRIMARY KEY  (portal_layout_id),
+  UNIQUE (content_name),
+  UNIQUE (position)
+);
+
+CREATE TABLE portal_free_area (
+  portal_free_area_id serial NOT NULL,
+  html text NOT NULL,
+  name text NOT NULL,
+  PRIMARY KEY (portal_free_area_id)
+);
+
+CREATE TABLE portal_rss (
+  portal_rss_id serial NOT NULL,
+  url text NOT NULL,
+  name text NOT NULL,
+  PRIMARY KEY (portal_rss_id)
+);
+
+CREATE TABLE portal_link (
+  portal_link_id serial NOT NULL,
+  title text NOT NULL,
+  url text NOT NULL,
+  sort_order int4 NOT NULL default '0',
+  is_target_blank smallint NOT NULL default '0',
+  is_enabled smallint NOT NULL default '0',
+  PRIMARY KEY (portal_link_id)
+);
+
+CREATE TABLE portal_image (
+  portal_image_id serial NOT NULL,
+  image_filename text NOT NULL,
+  PRIMARY KEY (portal_image_id)
+);
+
+CREATE TABLE portal_layout_ktai (
+  portal_layout_ktai_id serial NOT NULL,
+  content_name text NOT NULL,
+  position int4 NOT NULL default '0',
+  PRIMARY KEY (portal_layout_ktai_id),
+  UNIQUE (content_name),
+  UNIQUE (position)
+);
+
+CREATE TABLE portal_free_area_ktai (
+  portal_free_area_ktai_id serial NOT NULL,
+  name text NOT NULL,
+  html text NOT NULL,
+  PRIMARY KEY (portal_free_area_ktai_id)
 );
 
