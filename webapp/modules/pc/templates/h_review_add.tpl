@@ -24,7 +24,7 @@
 ({* #1932 *})({*ここまで：header*})
 ({* #1932 *})({*ここから：body*})
 ({* #1932 *})<!-- ここから：主内容 -->
-({* #1932 *})<div class="border_01" class="bg_05">
+({* #1932 *})<div class="border_01 bg_05">
 ({* #1932 *})
 ({* #1932 *})<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l" />
 ({* #1932 *})
@@ -59,7 +59,7 @@
 ({* #1932 *})<input type="text" class="text" name="keyword" size="15" value="({$keyword})" />
 ({* #1932 *})&nbsp;カテゴリ&nbsp;<img src="./skin/dummy.gif" alt="dummy" style="width:14px;height:14px;" class="icon icon_1" />
 ({* #1932 *})<select name="category_id">
-({* #1932 *})<option value="" selected="selected">選択
+({* #1932 *})<option value="" selected="selected">選択</option>
 ({* #1932 *})({html_options options=$category_disp selected=$category_id})
 ({* #1932 *})</select>
 ({* #1932 *})&nbsp;<input type="submit" class="input_submit" name="button" value="　検 索　" />
