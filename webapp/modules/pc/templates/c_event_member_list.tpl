@@ -263,7 +263,7 @@
 ({* #1939 *})<!-- ******ここから：イベントトップへ****** -->
 ({* #1939 *})<div class="content_footer" id="link_event_top" align="center">
 ({* #1939 *})
-({* #1939 *})<img src="./skin/dummy.gif" alt="dummy" class="icon arrow_1">&nbsp;
+({* #1939 *})<img src="./skin/dummy.gif" alt="dummy" class="icon arrow_1" />&nbsp;
 ({* #1939 *})<a href="({t_url m=pc a=page_c_event_detail})&amp;target_c_commu_topic_id=({$c_topic.c_commu_topic_id})">イベント [({$c_topic.name})] トップへ</a>
 ({* #1939 *})
 ({* #1939 *})</div>
