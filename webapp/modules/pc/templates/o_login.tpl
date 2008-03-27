@@ -34,7 +34,7 @@
 ({* unknown *})<span class="password_query"><a href="({t_url m=pc a=page_o_password_query})">&gt;パスワードを忘れた方はこちらへ</a></span>
 ({* unknown *})({/if})
 ({* unknown *})({if $SSL_SELECT_URL})
-({* unknown *})<br><a href="({$SSL_SELECT_URL})">({if $HTTPS})標準(http)({else})SSL(https)({/if})はこちら</a>
+({* unknown *})<br /><a href="({$SSL_SELECT_URL})">({if $HTTPS})標準(http)({else})SSL(https)({/if})はこちら</a>
 ({* unknown *})({/if})
 ({* unknown *})</div>
 ({* unknown *})({/t_form_block})

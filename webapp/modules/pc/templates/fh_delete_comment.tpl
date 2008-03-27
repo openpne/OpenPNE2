@@ -40,7 +40,7 @@
 ({* #1952 *})<td style="width:125px;" class="bg_05" align="left" valign="middle">
 ({* #1952 *})
 ({* #1952 *})<div style="padding:10px 3px;">
-({* #1952 *})({$target_diary_comment.r_datetime|date_format:"%Y年%m月%d日<br>%H:%M"})
+({* #1952 *})({$target_diary_comment.r_datetime|date_format:"%Y年%m月%d日<br />%H:%M"})
 ({* #1952 *})</div>
 ({* #1952 *})
 ({* #1952 *})<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_s">
@@ -57,8 +57,8 @@
 ({* #1952 *})({else})
 ({* #1952 *})&nbsp;
 ({* #1952 *})({/if})
-({* #1952 *})<br>
-({* #1952 *})({$target_diary_comment.body|nl2br|default:"&nbsp;"|t_url2cmd:'diary'|t_cmd:'diary'})<br>
+({* #1952 *})<br />
+({* #1952 *})({$target_diary_comment.body|nl2br|default:"&nbsp;"|t_url2cmd:'diary'|t_cmd:'diary'})<br />
 ({* #1952 *})
 ({* #1952 *})</div>
 ({* #1952 *})

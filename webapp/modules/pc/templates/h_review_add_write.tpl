@@ -38,7 +38,7 @@
 ({* unknown *})<td style="width:1px;" class="bg_01"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 ({* unknown *})<td class="bg_02" style="width:180px;" align="center" rowspan="7">
 ({* unknown *})
-({* unknown *})<a href="({$product.DetailPageURL})" target="_blank"><img src="({if $product.MediumImage})({$product.MediumImage.URL})({else})({t_img_url_skin filename=no_image w=120 h=120})({/if})"><br>詳細を見る</a>
+({* unknown *})<a href="({$product.DetailPageURL})" target="_blank"><img src="({if $product.MediumImage})({$product.MediumImage.URL})({else})({t_img_url_skin filename=no_image w=120 h=120})({/if})"><br />詳細を見る</a>
 ({* unknown *})
 ({* unknown *})</td>
 ({* unknown *})<td style="width:1px;" class="bg_01"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
@@ -85,8 +85,8 @@
 ({* unknown *})<td style="width:450px;" class="bg_02" align="left" valign="middle">
 ({* unknown *})<div class="padding_s">
 ({* unknown *})
-({* unknown *})({$product.ItemAttributes.PublicationDate})<br>
-({* unknown *})({$product.ItemAttributes.Manufacturer})<br>
+({* unknown *})({$product.ItemAttributes.PublicationDate})<br />
+({* unknown *})({$product.ItemAttributes.Manufacturer})<br />
 ({* unknown *})({$product.artist})({$product.author})
 ({* unknown *})
 ({* unknown *})</div>

@@ -91,8 +91,8 @@
 ({* #1949 *})<div style="padding:6px;">
 ({* #1949 *})
 ({* #1949 *})<a href="({$review.url})" target="_blank">
-({* #1949 *})<img src="({if $review.image_medium})({$review.image_medium})({else})({t_img_url_skin filename=no_image w=120 h=120})({/if})"><br>
-({* #1949 *})詳細を見る</a><br>
+({* #1949 *})<img src="({if $review.image_medium})({$review.image_medium})({else})({t_img_url_skin filename=no_image w=120 h=120})({/if})"><br />
+({* #1949 *})詳細を見る</a><br />
 ({* #1949 *})<input type="checkbox" name="c_review_clips[]" value="({$review.c_review_id})" class="no_bg">
 ({* #1949 *})
 ({* #1949 *})</div>
