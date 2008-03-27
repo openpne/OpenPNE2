@@ -4,18 +4,18 @@
 ({* #1952 *})<!-- ******ここから：書き込み削除確認****** -->
 ({* #1952 *})<table border="0" cellspacing="0" cellpadding="0" style="width:580px;" class="border_01">
 ({* #1952 *})<tr>
-({* #1952 *})<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
-({* #1952 *})<td style="width:566px;" class="bg_00"><img src="./skin/dummy.gif" alt="dummy" style="width:566px;height:7px;" class="dummy"></td>
-({* #1952 *})<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+({* #1952 *})<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
+({* #1952 *})<td style="width:566px;" class="bg_00"><img src="./skin/dummy.gif" alt="dummy" style="width:566px;height:7px;" class="dummy" /></td>
+({* #1952 *})<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
 ({* #1952 *})</tr>
 ({* #1952 *})<tr>
-({* #1952 *})<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+({* #1952 *})<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
 ({* #1952 *})<td class="bg_01" align="center">
 ({* #1952 *})({*ここから：header*})
 ({* #1952 *})<!-- 小タイトル -->
 ({* #1952 *})<table border="0" cellspacing="0" cellpadding="0" style="width:566px;" class="border_01">
 ({* #1952 *})<tr>
-({* #1952 *})<td style="width:36px;" class="bg_06"><img src="({t_img_url_skin filename=content_header_1})" style="width:30px;height:20px;" class="dummy"></td>
+({* #1952 *})<td style="width:36px;" class="bg_06"><img src="({t_img_url_skin filename=content_header_1})" style="width:30px;height:20px;" class="dummy" /></td>
 ({* #1952 *})<td style="width:528px;padding:2px 0px;" class="bg_06"><span class="b_b c_00">下記の書き込みを削除しますか？</span></td>
 ({* #1952 *})</tr>
 ({* #1952 *})</table>
@@ -67,12 +67,12 @@
 ({* #1952 *})({*ここから：footer*})
 ({* #1952 *})<!-- 無し -->
 ({* #1952 *})({*ここまで：footer*})
-({* #1952 *})<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+({* #1952 *})<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
 ({* #1952 *})</tr>
 ({* #1952 *})<tr>
-({* #1952 *})<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
-({* #1952 *})<td class="bg_00"><img src="./skin/dummy.gif" alt="dummy" style="width:566px;height:7px;" class="dummy"></td>
-({* #1952 *})<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+({* #1952 *})<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
+({* #1952 *})<td class="bg_00"><img src="./skin/dummy.gif" alt="dummy" style="width:566px;height:7px;" class="dummy" /></td>
+({* #1952 *})<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
 ({* #1952 *})</tr>
 ({* #1952 *})</table>
 ({* #1952 *})<!-- ******ここまで：書き込み削除確認****** -->

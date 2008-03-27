@@ -4,9 +4,9 @@
 ({* {{{ alertBox *})
 <div class="dparts alertBox"><div class="parts">
 <table><tr>
-<th><img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
-<img src="({t_img_url_skin filename=icon_alert_l})" class="icon">
-<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
+<th><img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l" />
+<img src="({t_img_url_skin filename=icon_alert_l})" class="icon" />
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l" />
 </th>
 <td>({$smarty.const.SNS_NAME}) のURLが変更になりました。<br />
 <br />
