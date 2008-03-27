@@ -203,13 +203,13 @@
 ({* #2037 *})
 ({* #2037 *})({t_form_block m=pc a=do_h_message_box_delete_message})
 ({* #2037 *})
-({* #2037 *})<input type="hidden" name="c_message_id[]" value=({$c_message.c_message_id})>
-({* #2037 *})<input type="hidden" name="box" value="({$box})">
+({* #2037 *})<input type="hidden" name="c_message_id[]" value=({$c_message.c_message_id}) />
+({* #2037 *})<input type="hidden" name="box" value="({$box})" />
 ({* #2037 *})
 ({* #2037 *})({if $box == 'trash'})
-({* #2037 *})<input type="submit" class="input_submit" name="move" value="元に戻す">
+({* #2037 *})<input type="submit" class="input_submit" name="move" value="元に戻す" />
 ({* #2037 *})({/if})
-({* #2037 *})<input type="submit" class="input_submit" name="remove" value="削 除">
+({* #2037 *})<input type="submit" class="input_submit" name="remove" value="削 除" />
 ({* #2037 *})
 ({* #2037 *})({/t_form_block})
 ({* #2037 *})
@@ -222,10 +222,10 @@
 ({* #2037 *})
 ({* #2037 *})({if ($box == 'inbox' || !$box) && $c_message.c_member_nickname_from})
 ({* #2037 *})({t_form_block m=pc a=page_f_message_send})
-({* #2037 *})<input type="hidden" name="target_c_message_id" value="({$c_message.c_message_id})">
-({* #2037 *})<input type="hidden" name="jyusin_c_message_id" value="({$jyusin_c_message_id})">
-({* #2037 *})<input type="hidden" name="target_c_member_id" value="({$c_message.c_member_id_from})">
-({* #2037 *})<input name="hensin2" type="submit" class="input_submit" value="　返信する　">
+({* #2037 *})<input type="hidden" name="target_c_message_id" value="({$c_message.c_message_id})" />
+({* #2037 *})<input type="hidden" name="jyusin_c_message_id" value="({$jyusin_c_message_id})" />
+({* #2037 *})<input type="hidden" name="target_c_member_id" value="({$c_message.c_member_id_from})" />
+({* #2037 *})<input name="hensin2" type="submit" class="input_submit" value="　返信する　" />
 ({* #2037 *})({/t_form_block})
 ({* #2037 *})({/if})
 ({* #2037 *})

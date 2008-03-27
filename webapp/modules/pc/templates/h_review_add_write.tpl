@@ -3,8 +3,8 @@
 
 ({* unknown *})<!-- ******ここから：レビュー****** -->
 ({* unknown *})({t_form_block m=pc a=page_h_review_add_write_confirm})
-({* unknown *})<input type="hidden" name="asin" value="({$asin})">
-({* unknown *})<input type="hidden" name="category_id" value="({$category_id})">
+({* unknown *})<input type="hidden" name="asin" value="({$asin})" />
+({* unknown *})<input type="hidden" name="category_id" value="({$category_id})" />
 ({* unknown *})<table border="0" cellspacing="0" cellpadding="0" style="width:650px;" class="border_07">
 ({* unknown *})<tr>
 ({* unknown *})<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
@@ -171,7 +171,7 @@
 ({* unknown *})<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l" />
 ({* unknown *})
 ({* unknown *})<div align="center" style="text-align:center;">
-({* unknown *})<input type="submit" class="input_submit" value="確認画面">
+({* unknown *})<input type="submit" class="input_submit" value="確認画面" />
 ({* unknown *})</div>
 ({* unknown *})
 ({* unknown *})<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l" />

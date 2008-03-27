@@ -187,17 +187,17 @@
 ({* #1952 *})({t_form_block m=pc a=do_h_com_add_insert_c_commu})
 ({* #1952 *})
 ({* #1952 *})({foreach from=$form_val key=key item=item})
-({* #1952 *})<input type="hidden" name="({$key})" value="({$item})">
+({* #1952 *})<input type="hidden" name="({$key})" value="({$item})" />
 ({* #1952 *})({/foreach})
-({* #1952 *})<input type="submit" class="input_submit" value="　作 　成　">
+({* #1952 *})<input type="submit" class="input_submit" value="　作 　成　" />
 ({* #1952 *})({/t_form_block})
 ({* #1952 *})</td>
 ({* #1952 *})<td style="height:20px;" align="center">
 ({* #1952 *})({t_form_block m=pc a=page_h_com_add})
 ({* #1952 *})({foreach from=$form_val key=key item=item})
-({* #1952 *})<input type="hidden" name="({$key})" value="({$item})">
+({* #1952 *})<input type="hidden" name="({$key})" value="({$item})" />
 ({* #1952 *})({/foreach})
-({* #1952 *})<input type="submit" class="input_submit" value="　修 　正　">
+({* #1952 *})<input type="submit" class="input_submit" value="　修 　正　" />
 ({* #1952 *})({/t_form_block})
 ({* #1952 *})</td>
 ({* #1952 *})</tr>

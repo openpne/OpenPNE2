@@ -4,7 +4,7 @@
 ({* unknown *})<!-- ******ここから：レビュー****** -->
 ({* unknown *})({t_form_block m=pc a=do_h_review_edit_update_c_review_comment})
 ({* unknown *})
-({* unknown *})<input type="hidden" name="c_review_comment_id" value="({$c_review_comment.c_review_comment_id})">
+({* unknown *})<input type="hidden" name="c_review_comment_id" value="({$c_review_comment.c_review_comment_id})" />
 ({* unknown *})
 ({* unknown *})<table border="0" cellspacing="0" cellpadding="0" style="width:650px;" class="border_07">
 ({* unknown *})<tr>
@@ -169,7 +169,7 @@
 ({* unknown *})
 ({* unknown *})<div align="center" style="text-align:center;">
 ({* unknown *})
-({* unknown *})<input type="submit" class="input_submit" value="　登　録　">
+({* unknown *})<input type="submit" class="input_submit" value="　登　録　" />
 ({* unknown *})
 ({* unknown *})</div>
 ({* unknown *})

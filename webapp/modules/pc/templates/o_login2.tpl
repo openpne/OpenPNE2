@@ -3,8 +3,8 @@
 
 ({* #1952 *})<!-- ******ここから：メールアドレス変更****** -->
 ({* #1952 *})({t_form_block m=pc a=do_o_login2_change_mail})
-({* #1952 *})<input type="hidden" name="sid" value="({$sid})">
-({* #1952 *})<input type="hidden" name="username" value="({$username})">
+({* #1952 *})<input type="hidden" name="sid" value="({$sid})" />
+({* #1952 *})<input type="hidden" name="username" value="({$username})" />
 ({* #1952 *})
 ({* #1952 *})<table border="0" cellspacing="0" cellpadding="0" style="width:650px;margin:0px auto;" class="border_07">
 ({* #1952 *})<tr>
@@ -108,7 +108,7 @@
 ({* #1952 *})
 ({* #1952 *})<div class="padding_s">
 ({* #1952 *})
-({* #1952 *})<input type="password" name="password" class="text">
+({* #1952 *})<input type="password" name="password" class="text" />
 ({* #1952 *})
 ({* #1952 *})</div>
 ({* #1952 *})
@@ -126,7 +126,7 @@
 ({* #1952 *})
 ({* #1952 *})<div class="padding_w_m">
 ({* #1952 *})
-({* #1952 *})<input type="submit" class="input_submit" value="　登　録　">
+({* #1952 *})<input type="submit" class="input_submit" value="　登　録　" />
 ({* #1952 *})
 ({* #1952 *})</div>
 ({* #1952 *})
