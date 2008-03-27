@@ -8,7 +8,18 @@ require_once './config.inc.php';
 require_once OPENPNE_WEBAPP_DIR . '/init.inc';
 require_once 'smarty_plugins/function.t_img_url_skin.php';
 
-$colors = util_get_color_config();
+$old_colors = util_get_color_config();
+$colors = array(
+    1 => $old_colors['bg_01'], // (1)線の色
+    2 => $old_colors['bg_12'], // (2)ページ背景
+    3 => $old_colors['bg_13'], // (3)コンテンツ領域背景
+    4 => $old_colors['bg_00'], // (4)枠色
+    5 => $old_colors['bg_06'], // (5)コンテンツ見出し背景
+    6 => $old_colors['bg_09'], // (6)説明領域背景
+    7 => $old_colors['bg_09'], // (7)項目背景
+    8 => $old_colors['bg_02'], // (8)ボックスの背景
+    9 => $old_colors['bg_10'], // (9)左メニュー枠色
+);
 function getSkin($name)
 {
     $params['filename'] = $name;
@@ -149,7 +160,7 @@ div.parts td {
 	overflow: hidden;
 	border-width: 1px 0 0 1px;
 	border-style: solid;
-	border-color: #cccccc;
+	border-color: #<?php echo $colors[1]; ?>;
 }
 div.parts tr th:first-child,
 div.parts tr td:first-child {
@@ -226,9 +237,13 @@ div#LayoutC {
 /*----------------------------------------------
  * ベースレイアウト
  *--------------------------------------------*/
+#Body {
+	background: #<?php echo $colors[2]; ?>;
+}
 #Container {
 	position: relative;
 	width: 720px;
+	background: #<?php echo $colors[3]; ?>;
 }
 #Header {
 	position: relative;
@@ -264,22 +279,24 @@ div.dparts,
 div.dparts div.parts,
 div.ditem,
 #LayoutA #Left div.parts {
-	border: 1px solid #cccccc;
+	border: 1px solid #<?php echo $colors[1]; ?>;
 }
 div.ditem div.item {
 	border-width: 0 1px 1px;
 	border-style: solid;
-	border-color: #cccccc;
+	border-color: #<?php echo $colors[1]; ?>;
 }
 div.dparts {
 	margin: 0 auto 10px;
 	padding: 7px;
+	background-color: #<?php echo $colors[4]; ?>;
 }
 div.dparts div.parts {
 	margin: 0;
 }
 div.parts {
 	margin: 0 auto 10px;
+	background-color: #<?php echo $colors[8]; ?>;
 }
 div.ditem {
 	padding: 5px 6px;
@@ -290,7 +307,7 @@ div.ditem {
 .partsHeading {
 	overflow: hidden;
 	padding: 2px 0 2px 36px;
-	background: #<?php echo $colors['bg_06']; ?> url(<?php echo getSkin('content_header_1'); ?>) no-repeat 0 0;
+	background: #<?php echo $colors[5]; ?> url(<?php echo getSkin('content_header_1'); ?>) no-repeat 0 0;
 	text-align: left;
 	font-size: 100%;
 }
@@ -315,7 +332,7 @@ div.pagerAbsolute,
 div.pagerRelative,
 div.pagerRelativeMulti,
 div.operation {
-	border-top: 1px solid #cccccc;
+	border-top: 1px solid #<?php echo $colors[1]; ?>;
 }
 div.partsInfo {
 	padding: 10px 40px;
@@ -665,7 +682,7 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 }
 .homeMainTable th {
 	width: 83px;
-	background-color: #eeeeee;
+	background-color: #<?php echo $colors[7]; ?>;
 }
 .homeMainTable th, .homeMainTable td {
 	padding: 5px;
@@ -698,14 +715,18 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 /*==============================================================================
  * 34. sideNav（サイドナビ）
  *----------------------------------------------------------------------------*/
+#Body .sideNav {
+	background-color: transparent;
+}
 .sideNav .item {
 	overflow: hidden;
 	width: 150px;
 	margin: 0 auto 10px;
-	border: 8px solid #cccccc;
+	border: 8px solid #<?php echo $colors[9]; ?>;
+	background-color: #<?php echo $colors[8]; ?>;
 }
 .sideNav .partsHeading {
-	border-bottom: 1px solid #cccccc;
+	border-bottom: 1px solid #<?php echo $colors[1]; ?>;
 }
 .sideNav .pageNav ul {
 	margin: 1px;
@@ -715,7 +736,7 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 	background: url(<?php echo getSkin('icon_1'); ?>) 8px 50% no-repeat scroll;
 }
 .sideNav .pageNav li.looking {
-	background-color: #eeeeee;
+	background-color: #<?php echo $colors[7]; ?>;
 }
 .sideNav .calendar .partsHeading {
 	padding: 4px 0;
@@ -724,7 +745,7 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 	text-align: center;
 }
 .sideNav .calendar th {
-	background-color: #eeeeee;
+	background-color: #<?php echo $colors[7]; ?>;
 }
 .sideNav .calendar td {
 	padding: 1px 2px;
@@ -772,7 +793,7 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 	right: 8px;
 }
 .formTable div.partsInfo {
-	background-color: #eeeeee;
+	background-color: #<?php echo $colors[6]; ?>;
 }
 .formTable th, .formTable td {
 	padding: 5px;
@@ -869,7 +890,7 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
  * 17. commentList（コメントリスト）
  *----------------------------------------------------------------------------*/
 .commentList dl {
-	border-top: 1px solid #cccccc; overflow:hidden;
+	border-top: 1px solid #<?php echo $colors[1]; ?>; overflow:hidden;
 }
 .commentList dt {
 	float: left;
@@ -881,7 +902,7 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 	zoom: 1;
 	min-height: 5.5em;
 	margin-left: 70px;
-	border-left: 1px solid #cccccc;
+	border-left: 1px solid #<?php echo $colors[1]; ?>;
 }
 * html .commentList dd {
 	height: 5.5em;
@@ -893,7 +914,7 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 	margin-left: 110px;
 }
 .commentList dd div {
-	border-top: 1px solid #cccccc;
+	border-top: 1px solid #<?php echo $colors[1]; ?>;
 }
 .commentList dd div p {
 	padding: 4px 3px;
@@ -937,7 +958,7 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 	right: 3px;
 }
 .diaryDetailBox dl {
-	border-top: 1px solid #cccccc;
+	border-top: 1px solid #<?php echo $colors[1]; ?>;
 }
 .diaryDetailBox dt {
 	float: left;
@@ -949,13 +970,13 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 	zoom: 1;
 	min-height: 4.2em;
 	margin-left: 70px;
-	border-left: 1px solid #cccccc;
+	border-left: 1px solid #<?php echo $colors[1]; ?>;
 }
 * html .diaryDetailBox dd {
 	height: 4.2em;
 }
 .diaryDetailBox dd div {
-	border-top: 1px solid #cccccc;
+	border-top: 1px solid #<?php echo $colors[1]; ?>;
 }
 .diaryDetailBox dd div p {
 	padding: 4px 3px;
@@ -983,7 +1004,7 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
  * 21. recentList（最新書き込みリスト）
  *----------------------------------------------------------------------------*/
 .recentList dl {
-	border-top: 1px solid #cccccc;
+	border-top: 1px solid #<?php echo $colors[1]; ?>;
 }
 .recentList dt {
 	float: left;
@@ -995,7 +1016,7 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 	zoom: 1;
 	margin-left: 180px;
 	padding: 5px;
-	border-left: 1px solid #cccccc;
+	border-left: 1px solid #<?php echo $colors[1]; ?>;
 }
 #LayoutB #Center .recentList dt {
 	width: 110px;
@@ -1008,7 +1029,7 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
  * 10. eventDetailBox（イベント詳細ボックス）
  *----------------------------------------------------------------------------*/
 .eventDetailBox dl {
-	border-top: 1px solid #cccccc;
+	border-top: 1px solid #<?php echo $colors[1]; ?>;
 }
 .eventDetailBox dt {
 	float: left;
@@ -1019,11 +1040,11 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 .eventDetailBox dd {
 	zoom: 1;
 	margin-left: 110px;
-	border-left: 1px solid #cccccc;
+	border-left: 1px solid #<?php echo $colors[1]; ?>;
 }
 .eventDetailBox dd ul.photo {
 	padding: 5px;
-	border-bottom: 1px solid #cccccc;
+	border-bottom: 1px solid #<?php echo $colors[1]; ?>;
 }
 .eventDetailBox dd ul.photo li {
 	display: inline;
@@ -1075,7 +1096,7 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
  * 9. topicDetailBox（トピック詳細ボックス）
  *----------------------------------------------------------------------------*/
 .topicDetailBox dl {
-	border-top: 1px solid #cccccc;
+	border-top: 1px solid #<?php echo $colors[1]; ?>;
 }
 .topicDetailBox dt {
 	float: left;
@@ -1086,10 +1107,10 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 .topicDetailBox dd {
 	zoom: 1;
 	margin-left: 110px;
-	border-left: 1px solid #cccccc;
+	border-left: 1px solid #<?php echo $colors[1]; ?>;
 }
 .topicDetailBox dd div {
-	border-top: 1px solid #cccccc;
+	border-top: 1px solid #<?php echo $colors[1]; ?>;
 }
 .topicDetailBox dd div p {
 	padding: 5px;
@@ -1115,12 +1136,12 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
  * 26. ashiatoList（あしあとリスト）
  *----------------------------------------------------------------------------*/
 .ashiatoList div.partsInfo {
-	border-bottom: 1px solid #cccccc;
+	border-bottom: 1px solid #<?php echo $colors[1]; ?>;
 }
 .ashiatoList div.item {
 	margin: 8px 40px;
 	padding: 8px 0;
-	border: 1px solid #cccccc;
+	border: 1px solid #<?php echo $colors[1]; ?>;
 }
 .ashiatoList div.item p,
 .ashiatoList div.item ul.list {
@@ -1137,6 +1158,9 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 /*==============================================================================
  * 15. linkLine（リンクライン）
  *----------------------------------------------------------------------------*/
+#Body .linkLine {
+	background-color: transparent;
+}
 .linkLine ul.moreInfo {
 	text-align: center;
 }
@@ -1148,6 +1172,9 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 /*==============================================================================
  * 14. searchFormLine（検索フォームライン）
  *----------------------------------------------------------------------------*/
+#Body .searchFormLine {
+ 	background-color: transparent;
+}
 .searchFormLine ul {
 	text-align: center;
 	padding: 1px 0;
@@ -1195,14 +1222,14 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
  * 12. homeInfoBox（ホームインフォメーションボックス）
  *----------------------------------------------------------------------------*/
 #Body .homeInfoBox {
-	border: 1px solid #cccccc;
+	border: 1px solid #<?php echo $colors[1]; ?>;
 }
 #Body .homeInfoBox th {
 	width: 105px;
 	padding: 8px 0;
 	border: none;
 	text-align: center;
-	background: #dddddd;
+	background: #<?php echo $colors[7]; ?>;
 }
 #Body .homeInfoBox td {
 	padding: 6px;
@@ -1230,7 +1257,7 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 }
 .weeklyCalendarTable table.calendar th.now,
 .weeklyCalendarTable table.calendar td.now {
-	background: #eeeeee;
+	background: #<?php echo $colors[7]; ?>;
 }
 .weeklyCalendarTable span.holiday {
 	color: #d92c49;
@@ -1262,7 +1289,7 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 	border-top: none;
 }
 .infoBox th {
-	background: #eeeeee;
+	background: #<?php echo $colors[6]; ?>;
 }
 .infoBox td {
 	width: 15em;
@@ -1271,6 +1298,9 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 /*==============================================================================
  * 36. buttonLine（ボタンライン）
  *----------------------------------------------------------------------------*/
+#Body .buttonLine {
+	background-color: transparent;
+}
 .buttonLine {
 	text-align: center;
 }
