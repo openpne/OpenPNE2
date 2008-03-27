@@ -29,19 +29,19 @@
 ({* #2037 *})<!-- ******ここから：メッセージ表示欄****** -->
 ({* #2037 *})<table border="0" cellspacing="0" cellpadding="0" style="width:520px;margin:0px auto;" class="border_07">
 ({* #2037 *})<tr>
-({* #2037 *})<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
-({* #2037 *})<td style="width:506px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
-({* #2037 *})<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+({* #2037 *})<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
+({* #2037 *})<td style="width:506px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
+({* #2037 *})<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
 ({* #2037 *})</tr>
 ({* #2037 *})<tr>
-({* #2037 *})<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+({* #2037 *})<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
 ({* #2037 *})<td class="bg_01" align="center">
 ({* #2037 *})<!-- *ここから：メッセージ表示欄＞内容* -->
 ({* #2037 *})({*ここから：header*})
 ({* #2037 *})<!-- ここから：小タイトル -->
 ({* #2037 *})<table border="0" cellspacing="0" cellpadding="0" style="width:506px;" class="border_01">
 ({* #2037 *})<tr>
-({* #2037 *})<td style="width:36px;" class="bg_06"><img src="({t_img_url_skin filename=content_header_1})" style="width:30px;height:20px;" class="dummy"></td>
+({* #2037 *})<td style="width:36px;" class="bg_06"><img src="({t_img_url_skin filename=content_header_1})" style="width:30px;height:20px;" class="dummy" /></td>
 ({* #2037 *})<td style="width:468px;padding:2px 0px;" class="bg_06"><span class="b_b c_00">メッセージの詳細</span></td>
 ({* #2037 *})</tr>
 ({* #2037 *})</table>
@@ -72,22 +72,22 @@
 ({* #2037 *})<table border="0" cellspacing="0" cellpadding="0" style="width:504px;">
 ({* #2037 *})({*********})
 ({* #2037 *})<tr>
-({* #2037 *})<td style="height:1px;" class="bg_01" colspan="6"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #2037 *})<td style="height:1px;" class="bg_01" colspan="6"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
 ({* #2037 *})</tr>
 ({* #2037 *})({*********})
 ({* #2037 *})<tr>
-({* #2037 *})<td style="width:1px;" class="bg_01" rowspan="5"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #2037 *})<td style="width:1px;" class="bg_01" rowspan="5"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
 ({* #2037 *})<td style="width:110px;" align="center" rowspan="5" class="bg_03">
 ({* #2037 *})
 ({* #2037 *})<div class="padding_s">
 ({* #2037 *})
 ({* #2037 *})<a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({if $c_message.is_received})({$c_message.c_member_id_from})({else})({$c_message.c_member_id_to})({/if})">
-({* #2037 *})<img src="({t_img_url filename=$c_message.image_filename_disp w=120 h=120 noimg=no_image})"></a>
+({* #2037 *})<img src="({t_img_url filename=$c_message.image_filename_disp w=120 h=120 noimg=no_image})" /></a>
 ({* #2037 *})
 ({* #2037 *})</div>
 ({* #2037 *})
 ({* #2037 *})</td>
-({* #2037 *})<td style="width:1px;" class="bg_01" rowspan="5"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #2037 *})<td style="width:1px;" class="bg_01" rowspan="5"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
 ({* #2037 *})<td style="width:63px;" class="bg_05" align="right">
 ({* #2037 *})
 ({* #2037 *})<div class="padding_s">
@@ -114,11 +114,11 @@
 ({* #2037 *})</div>
 ({* #2037 *})
 ({* #2037 *})</td>
-({* #2037 *})<td style="width:1px;" class="bg_01" rowspan="5"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #2037 *})<td style="width:1px;" class="bg_01" rowspan="5"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
 ({* #2037 *})</tr>
 ({* #2037 *})({*********})
 ({* #2037 *})<tr>
-({* #2037 *})<td style="height:1px;" class="bg_01" colspan="2"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #2037 *})<td style="height:1px;" class="bg_01" colspan="2"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
 ({* #2037 *})</tr>
 ({* #2037 *})({*********})
 ({* #2037 *})<tr>
@@ -143,7 +143,7 @@
 ({* #2037 *})</tr>
 ({* #2037 *})({*********})
 ({* #2037 *})<tr>
-({* #2037 *})<td style="height:1px;" class="bg_01" colspan="2"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #2037 *})<td style="height:1px;" class="bg_01" colspan="2"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
 ({* #2037 *})</tr>
 ({* #2037 *})({*********})
 ({* #2037 *})<tr>
@@ -168,7 +168,7 @@
 ({* #2037 *})</tr>
 ({* #2037 *})({*********})
 ({* #2037 *})<tr>
-({* #2037 *})<td style="height:1px;" class="bg_01" colspan="6"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+({* #2037 *})<td style="height:1px;" class="bg_01" colspan="6"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
 ({* #2037 *})</tr>
 ({* #2037 *})({*********})
 ({* #2037 *})<tr>
@@ -177,9 +177,9 @@
 ({* #2037 *})<div class="padding_w_m">
 ({* #2037 *})
 ({* #2037 *})({if $c_message.image_filename_1||$c_message.image_filename_2||$c_message.image_filename_3})
-({* #2037 *})({if $c_message.image_filename_1})<span class="padding_s"><a href="({t_img_url filename=$c_message.image_filename_1})" target="_blank"><img src="({t_img_url filename=$c_message.image_filename_1 w=120 h=120})"></a></span>({/if})
-({* #2037 *})({if $c_message.image_filename_2})<span class="padding_s"><a href="({t_img_url filename=$c_message.image_filename_2})" target="_blank"><img src="({t_img_url filename=$c_message.image_filename_2 w=120 h=120})"></a></span>({/if})
-({* #2037 *})({if $c_message.image_filename_3})<span class="padding_s"><a href="({t_img_url filename=$c_message.image_filename_3})" target="_blank"><img src="({t_img_url filename=$c_message.image_filename_3 w=120 h=120})"></a></span>({/if})
+({* #2037 *})({if $c_message.image_filename_1})<span class="padding_s"><a href="({t_img_url filename=$c_message.image_filename_1})" target="_blank"><img src="({t_img_url filename=$c_message.image_filename_1 w=120 h=120})" /></a></span>({/if})
+({* #2037 *})({if $c_message.image_filename_2})<span class="padding_s"><a href="({t_img_url filename=$c_message.image_filename_2})" target="_blank"><img src="({t_img_url filename=$c_message.image_filename_2 w=120 h=120})" /></a></span>({/if})
+({* #2037 *})({if $c_message.image_filename_3})<span class="padding_s"><a href="({t_img_url filename=$c_message.image_filename_3})" target="_blank"><img src="({t_img_url filename=$c_message.image_filename_3 w=120 h=120})" /></a></span>({/if})
 ({* #2037 *})<br /><br />
 ({* #2037 *})({/if})
 ({* #2037 *})
@@ -238,12 +238,12 @@
 ({* #2037 *})({*ここまで：footer*})
 ({* #2037 *})<!-- *ここまで：メッセージ表示欄＞＞内容* -->
 ({* #2037 *})</td>
-({* #2037 *})<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+({* #2037 *})<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
 ({* #2037 *})</tr>
 ({* #2037 *})<tr>
-({* #2037 *})<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
-({* #2037 *})<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
-({* #2037 *})<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
+({* #2037 *})<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
+({* #2037 *})<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
+({* #2037 *})<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
 ({* #2037 *})</tr>
 ({* #2037 *})</table>
 ({* #2037 *})<!-- ******ここまで：メッセージ表示欄****** -->
