@@ -298,7 +298,7 @@
 ({* #1956 *})<tr>
 ({* #1956 *})<td style="width:100%;" class="bg_05" align="left">
 ({* #1956 *})
-({* #1956 *})<br>
+({* #1956 *})<br />
 ({* #1956 *})&nbsp;<a href="#" onClick="return checkAll();" onKeyPress="return checkAll();">全てをチェック</a> / <a href="#" onClick="return clearAll();" onKeyPress="return clearAll();">全てのチェックをはずす</a>
 ({* #1956 *})
 ({* #1956 *})<div class="padding_s">
@@ -439,7 +439,7 @@
 ({* #1956 *})<tr>
 ({* #1956 *})<td style="width:100%;" class="bg_05" align="left">
 ({* #1956 *})
-({* #1956 *})<br>
+({* #1956 *})<br />
 ({* #1956 *})&nbsp;<a href="#" onClick="return checkAll();" onKeyPress="return checkAll();">全てをチェック</a> / <a href="#" onClick="return clearAll();" onKeyPress="return clearAll();">全てのチェックをはずす</a>
 ({* #1956 *})
 ({* #1956 *})<div class="padding_s">
@@ -573,7 +573,7 @@
 ({* #1956 *})<tr>
 ({* #1956 *})
 ({* #1956 *})<td style="width:100%;" class="bg_05" align="left">
-({* #1956 *})<br>
+({* #1956 *})<br />
 ({* #1956 *})&nbsp;<a href="#" onClick="return checkAll();" onKeyPress="return checkAll();">全てをチェック</a> / <a href="#" onClick="return clearAll();" onKeyPress="return clearAll();">全てのチェックをはずす</a>
 ({* #1956 *})
 ({* #1956 *})<div class="padding_s">
@@ -726,7 +726,7 @@
 ({* #1956 *})<tr>
 ({* #1956 *})<td style="width:100%;" class="bg_05" align="left">
 ({* #1956 *})
-({* #1956 *})<br>
+({* #1956 *})<br />
 ({* #1956 *})&nbsp;<a href="#" onClick="return checkAll();" onKeyPress="return checkAll();">全てをチェック</a> / <a href="#" onClick="return clearAll();" onKeyPress="return clearAll();">全てのチェックをはずす</a>
 ({* #1956 *})
 ({* #1956 *})<div class="padding_s">

@@ -74,32 +74,32 @@
 ({* #1970 *})<span class="b_b">({$item.day})</span>
 ({* #1970 *})({else})
 ({* #1970 *})({$item.day})
-({* #1970 *})({/if})<br>
+({* #1970 *})({/if})<br />
 ({* #1970 *})
 ({* #1970 *})({if $add_schedule})
-({* #1970 *})<a href="({t_url m=pc a=page_h_schedule_add})&amp;year=({$ym.year_disp})&amp;month=({$ym.month_disp})&amp;day=({$item.day})"><img src="({t_img_url_skin filename=icon_schedule})" class="icon"></a><br>
+({* #1970 *})<a href="({t_url m=pc a=page_h_schedule_add})&amp;year=({$ym.year_disp})&amp;month=({$ym.month_disp})&amp;day=({$item.day})"><img src="({t_img_url_skin filename=icon_schedule})" class="icon"></a><br />
 ({* #1970 *})({/if})
 ({* #1970 *})
 ({* #1970 *})({* 祝日 *})
 ({* #1970 *})({if $item.holiday})
 ({* #1970 *})({foreach from=$item.holiday item=item_holiday})
-({* #1970 *})<span class=" c_02">({$item_holiday})</span><br>
+({* #1970 *})<span class=" c_02">({$item_holiday})</span><br />
 ({* #1970 *})({/foreach})
 ({* #1970 *})({/if})
 ({* #1970 *})
 ({* #1970 *})({* 誕生日 *})
 ({* #1970 *})({foreach from=$item.birth item=item_birth})
-({* #1970 *})<img src="({t_img_url_skin filename=icon_birthday})" class="icon"><a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item_birth.c_member_id})">({$item_birth.nickname})さん</a><br>
+({* #1970 *})<img src="({t_img_url_skin filename=icon_birthday})" class="icon"><a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item_birth.c_member_id})">({$item_birth.nickname})さん</a><br />
 ({* #1970 *})({/foreach})
 ({* #1970 *})
 ({* #1970 *})({* イベント *})
 ({* #1970 *})({foreach from=$item.event item=item_event})
-({* #1970 *})<img src="({if $item_event.is_join})({t_img_url_skin filename=icon_event_R})({else})({t_img_url_skin filename=icon_event_B})({/if})" class="icon"><a href="({t_url m=pc a=page_c_event_detail})&amp;target_c_commu_topic_id=({$item_event.c_commu_topic_id})">({$item_event.name})</a><br>
+({* #1970 *})<img src="({if $item_event.is_join})({t_img_url_skin filename=icon_event_R})({else})({t_img_url_skin filename=icon_event_B})({/if})" class="icon"><a href="({t_url m=pc a=page_c_event_detail})&amp;target_c_commu_topic_id=({$item_event.c_commu_topic_id})">({$item_event.name})</a><br />
 ({* #1970 *})({/foreach})
 ({* #1970 *})
 ({* #1970 *})({* スケジュール *})
 ({* #1970 *})({foreach from=$item.schedule item=item_schedule})
-({* #1970 *})<img src="({t_img_url_skin filename=icon_pen})" class="icon"><a href="({t_url m=pc a=page_h_schedule})&amp;target_c_schedule_id=({$item_schedule.c_schedule_id})">({$item_schedule.title})</a><br>
+({* #1970 *})<img src="({t_img_url_skin filename=icon_pen})" class="icon"><a href="({t_url m=pc a=page_h_schedule})&amp;target_c_schedule_id=({$item_schedule.c_schedule_id})">({$item_schedule.title})</a><br />
 ({* #1970 *})({/foreach})
 ({* #1970 *})({else})
 ({* #1970 *})&nbsp;
@@ -115,7 +115,7 @@
 ({* #1970 *})<tr>
 ({* #1970 *})<td style="width:668px;padding:2px 0px;" class="bg_09">
 ({* #1970 *})({if $add_schedule})
-({* #1970 *})※<img src="({t_img_url_skin filename=icon_schedule})" class="icon">アイコンをクリックすると予定を入力することができます。予定は他の人には公開されません。<br>
+({* #1970 *})※<img src="({t_img_url_skin filename=icon_schedule})" class="icon">アイコンをクリックすると予定を入力することができます。予定は他の人には公開されません。<br />
 ({* #1970 *})({/if})
 ({* #1970 *})※<img src="({t_img_url_skin filename=icon_birthday})" class="icon">は({$WORD_MY_FRIEND})の誕生日、<img src="({t_img_url_skin filename=icon_event_B})" class="icon">はイベント、<img src="({t_img_url_skin filename=icon_event_R})" class="icon">は参加イベントを意味します。
 ({* #1970 *})</td>
