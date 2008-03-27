@@ -93,7 +93,7 @@
 ({* #1949 *})
 ({* #1949 *})<div class="padding_s">
 ({* #1949 *})
-({* #1949 *})<a href="({$review.url})" target="_blank"><img src="({if $review.image_medium})({$review.image_medium})({else})({t_img_url_skin filename=no_image w=120 h=120})({/if})"><br>詳細を見る</a>
+({* #1949 *})<a href="({$review.url})" target="_blank"><img src="({if $review.image_medium})({$review.image_medium})({else})({t_img_url_skin filename=no_image w=120 h=120})({/if})"><br />詳細を見る</a>
 ({* #1949 *})
 ({* #1949 *})<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 ({* #1949 *})
@@ -155,8 +155,8 @@
 ({* #1949 *})
 ({* #1949 *})<div class="padding_s">
 ({* #1949 *})
-({* #1949 *})({$review.release_date})<br>
-({* #1949 *})({$review.manufacturer})<br>
+({* #1949 *})({$review.release_date})<br />
+({* #1949 *})({$review.manufacturer})<br />
 ({* #1949 *})({$review.author})
 ({* #1949 *})
 ({* #1949 *})</div>
@@ -193,7 +193,7 @@
 ({* #1949 *})
 ({* #1949 *})<a href="({t_url m=pc a=page_h_review_list_product})&amp;c_review_id=({$review.c_review_id})">全てのレビューを見る(({$review.write_num}))</a>
 ({* #1949 *})
-({* #1949 *})({if $type == "h"})|<a href="({t_url m=pc a=page_h_review_add_write})&amp;category_id=({$review.c_review_category_id})&amp;asin=({$review.asin})">編集</a><br>({/if})
+({* #1949 *})({if $type == "h"})|<a href="({t_url m=pc a=page_h_review_add_write})&amp;category_id=({$review.c_review_category_id})&amp;asin=({$review.asin})">編集</a><br />({/if})
 ({* #1949 *})
 ({* #1949 *})</div>
 ({* #1949 *})

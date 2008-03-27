@@ -47,7 +47,7 @@
 ({* #1939 *})<!--
 ({* #1939 *})document.writeln('<img src="./skin/dummy.gif" alt="dummy" class="icon arrow_1">&nbsp;');
 ({* #1939 *})document.writeln('<a href="javascript:history.back()">前のページへ戻る</a>');
-({* #1939 *})document.writeln('<br>');
+({* #1939 *})document.writeln('<br />');
 ({* #1939 *})//-->
 ({* #1939 *})</script>
 ({* #1939 *})

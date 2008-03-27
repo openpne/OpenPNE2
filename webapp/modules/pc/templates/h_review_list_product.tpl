@@ -6,7 +6,7 @@
 ({* #1924 *})
 ({* #1924 *})<div style="padding: 10px ;">
 ({* #1924 *})
-({* #1924 *})<span class="b_b">クリップ機能で自分のページに保存することができます。</span><br>
+({* #1924 *})<span class="b_b">クリップ機能で自分のページに保存することができます。</span><br />
 ({* #1924 *})<img src="./skin/dummy.gif" alt="dummy" class="icon arrow_1">
 ({* #1924 *})<a href="({t_url m=pc a=page_h_review_clip_add})&amp;c_review_id=({$c_review.c_review_id})">クリップに追加する</a>
 ({* #1924 *})
@@ -52,7 +52,7 @@
 ({* #1949 *})
 ({* #1949 *})<div class="padding_s">
 ({* #1949 *})
-({* #1949 *})<a href="({$c_review.url})" target="_blank"><img src="({if $c_review.image_medium})({$c_review.image_medium})({else})({t_img_url_skin filename=no_image w=120 h=120})({/if})"><br>詳細を見る</a>
+({* #1949 *})<a href="({$c_review.url})" target="_blank"><img src="({if $c_review.image_medium})({$c_review.image_medium})({else})({t_img_url_skin filename=no_image w=120 h=120})({/if})"><br />詳細を見る</a>
 ({* #1949 *})
 ({* #1949 *})</div>
 ({* #1949 *})
@@ -104,9 +104,9 @@
 ({* #1949 *})
 ({* #1949 *})<div class="padding_s">
 ({* #1949 *})
-({* #1949 *})({$c_review.release_date})<br>
-({* #1949 *})({$c_review.manufacturer})<br>
-({* #1949 *})({$c_review.artist})({$c_review.author})<br>
+({* #1949 *})({$c_review.release_date})<br />
+({* #1949 *})({$c_review.manufacturer})<br />
+({* #1949 *})({$c_review.artist})({$c_review.author})<br />
 ({* #1949 *})
 ({* #1949 *})</div>
 ({* #1949 *})
@@ -256,7 +256,7 @@
 ({* #1949 *})<div class="padding_s">
 ({* #1949 *})
 ({* #1949 *})<a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$review.c_member_id})">
-({* #1949 *})<img src="({t_img_url filename=$review.image_filename w=76 h=76 noimg=no_image})"><br>({$review.nickname})</a>
+({* #1949 *})<img src="({t_img_url filename=$review.image_filename w=76 h=76 noimg=no_image})"><br />({$review.nickname})</a>
 ({* #1949 *})
 ({* #1949 *})</div>
 ({* #1949 *})

@@ -101,9 +101,9 @@
 ({* #1949 *})<td class="bg_02" align="left" valign="middle">
 ({* #1949 *})<div class="padding_s">
 ({* #1949 *})
-({* #1949 *})({$review.release_date})<br>
-({* #1949 *})({$review.manufacturer})<br>
-({* #1949 *})({$review.author})<br>
+({* #1949 *})({$review.release_date})<br />
+({* #1949 *})({$review.manufacturer})<br />
+({* #1949 *})({$review.author})<br />
 ({* #1949 *})
 ({* #1949 *})</div>
 ({* #1949 *})</td>
