@@ -174,7 +174,7 @@
 ({* #1952 *})<!-- *ここまで：スケジュール詳細* -->
 ({* #1952 *})<!-- *ここから：追加修正ボタン* -->
 ({* #1952 *})<tr>
-({* #1952 *})<td class="bg_03" colspan="2" class="border_01" style="border-width:0px 0px 1px 0px;">
+({* #1952 *})<td class="bg_03 border_01" colspan="2" style="border-width:0px 0px 1px 0px;">
 ({* #1952 *})
 ({* #1952 *})<div class="padding_w_s" align="center">
 ({* #1952 *})
