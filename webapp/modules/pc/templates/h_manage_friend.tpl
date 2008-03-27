@@ -72,7 +72,7 @@
 ({* #1958 *})<div class="padding_s">
 ({* #1958 *})
 ({* #1958 *})<a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})">
-({* #1958 *})<img src="({t_img_url filename=$item.image_filename w=76 h=76 noimg=no_image})" class="pict"><br>({$item.nickname})</a>
+({* #1958 *})<img src="({t_img_url filename=$item.image_filename w=76 h=76 noimg=no_image})" class="pict"><br />({$item.nickname})</a>
 ({* #1958 *})
 ({* #1958 *})</div>
 ({* #1958 *})
@@ -83,7 +83,7 @@
 ({* #1958 *})<div class="padding_s">
 ({* #1958 *})
 ({* #1958 *})({if $item.intro})
-({* #1958 *})({$item.intro|t_truncate:48:"":3})<br>
+({* #1958 *})({$item.intro|t_truncate:48:"":3})<br />
 ({* #1958 *})<a href="({t_url m=pc a=page_f_intro_edit})&amp;target_c_member_id=({$item.c_member_id})">編集</a>
 ({* #1958 *})
 ({* #1958 *})<a href="({t_url m=pc a=page_f_intro_delete_confirm})&amp;target_c_member_id=({$item.c_member_id})&amp;sessid=({$PHPSESSID})">削除</a>

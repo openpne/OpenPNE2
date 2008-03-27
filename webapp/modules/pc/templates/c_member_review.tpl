@@ -59,7 +59,7 @@
 ({* #1935 *})<div style="padding:4px 3px;">
 ({* #1935 *})
 ({* #1935 *})({if $is_prev})<a href="({t_url m=pc a=page_c_member_review})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;direc=-1&amp;page=({$page})">＜前</a> ({/if})
-({* #1935 *})({$start_num})件～({$end_num})件を表示<br>
+({* #1935 *})({$start_num})件～({$end_num})件を表示<br />
 ({* #1935 *})({if $is_next})<a href="({t_url m=pc a=page_c_member_review})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;direc=1&amp;page=({$page})">次＞</a>({/if})
 ({* #1935 *})
 ({* #1935 *})</div>
@@ -179,8 +179,8 @@
 ({* #1935 *})<td style="width:286px;" class="bg_02" align="left" valign="middle">
 ({* #1935 *})<div class="padding_s">
 ({* #1935 *})
-({* #1935 *})({$review.release_date})<br>
-({* #1935 *})({$review.manufacturer})<br>
+({* #1935 *})({$review.release_date})<br />
+({* #1935 *})({$review.manufacturer})<br />
 ({* #1935 *})({$review.artist})({$review.author})
 ({* #1935 *})
 ({* #1935 *})</div>
@@ -314,7 +314,7 @@
 ({* #1935 *})<div style="padding:4px 3px;">
 ({* #1935 *})
 ({* #1935 *})({if $is_prev})<a href="({t_url m=pc a=page_c_member_review})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;direc=-1&amp;page=({$page})">＜前</a> ({/if})
-({* #1935 *})({$start_num})件～({$end_num})件を表示<br>
+({* #1935 *})({$start_num})件～({$end_num})件を表示<br />
 ({* #1935 *})({if $is_next})<a href="({t_url m=pc a=page_c_member_review})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;direc=1&amp;page=({$page})">次＞</a>({/if})
 ({* #1935 *})
 ({* #1935 *})</div>
