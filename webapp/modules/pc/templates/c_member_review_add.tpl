@@ -56,7 +56,7 @@
 ({* #1949 *})<div style="padding:4px 3px;">
 ({* #1949 *})
 ({* #1949 *})({if $is_prev})<a href="({t_url m=pc a=page_c_member_review_add})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;direc=-1&amp;page=({$page})">＜前</a> ({/if})
-({* #1949 *})({$start_num})件～({$end_num})件を表示<br>
+({* #1949 *})({$start_num})件～({$end_num})件を表示<br />
 ({* #1949 *})({if $is_next})<a href="({t_url m=pc a=page_c_member_review_add})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;direc=1&amp;page=({$page})">次＞</a>({/if})
 ({* #1949 *})
 ({* #1949 *})</div>
@@ -97,7 +97,7 @@
 ({* #1949 *})<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_s">
 ({* #1949 *})
 ({* #1949 *})<input type="checkbox" name="c_review_id[]" value="({$review.c_review_id})" class="no_bg">
-({* #1949 *})<br>このレビューを掲載する
+({* #1949 *})<br />このレビューを掲載する
 ({* #1949 *})
 ({* #1949 *})</div>
 ({* #1949 *})
@@ -156,9 +156,9 @@
 ({* #1949 *})<td class="bg_02" align="left" valign="middle">
 ({* #1949 *})<div class="padding_s">
 ({* #1949 *})
-({* #1949 *})({$review.release_date})<br>
-({* #1949 *})({$review.manufacturer})<br>
-({* #1949 *})({$review.author})<br>
+({* #1949 *})({$review.release_date})<br />
+({* #1949 *})({$review.manufacturer})<br />
+({* #1949 *})({$review.author})<br />
 ({* #1949 *})
 ({* #1949 *})</div>
 ({* #1949 *})</td>
@@ -301,7 +301,7 @@
 ({* #1949 *})<div style="padding:4px 3px;">
 ({* #1949 *})
 ({* #1949 *})({if $is_prev})<a href="({t_url m=pc a=page_c_member_review_add})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;direc=-1&amp;page=({$page})">＜前</a> ({/if})
-({* #1949 *})({$start_num})件～({$end_num})件を表示<br>
+({* #1949 *})({$start_num})件～({$end_num})件を表示<br />
 ({* #1949 *})({if $is_next})<a href="({t_url m=pc a=page_c_member_review_add})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;direc=1&amp;page=({$page})">次＞</a>({/if})
 ({* #1949 *})
 ({* #1949 *})</div>
