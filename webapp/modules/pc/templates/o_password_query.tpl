@@ -76,7 +76,7 @@
 ({* #1952 *})<td style="width:503px;" class="bg_02" align="left" valign="middle">
 ({* #1952 *})<div class="padding_s">
 ({* #1952 *})
-({* #1952 *})<input type="text" class="text" name="pc_address" value="">
+({* #1952 *})<input type="text" class="text" name="pc_address" value="" />
 ({* #1952 *})
 ({* #1952 *})</div>
 ({* #1952 *})</td>
@@ -136,7 +136,7 @@
 ({* #1952 *})
 ({* #1952 *})<div class="padding_s">
 ({* #1952 *})
-({* #1952 *})<input type="text" class="text" name="c_password_query_answer" value="">
+({* #1952 *})<input type="text" class="text" name="c_password_query_answer" value="" />
 ({* #1952 *})
 ({* #1952 *})</div>
 ({* #1952 *})
@@ -154,7 +154,7 @@
 ({* #1952 *})
 ({* #1952 *})<div class="padding_w_m">
 ({* #1952 *})
-({* #1952 *})<input type="submit" class="input_submit" value="　送　信　">
+({* #1952 *})<input type="submit" class="input_submit" value="　送　信　" />
 ({* #1952 *})
 ({* #1952 *})</div>
 ({* #1952 *})
