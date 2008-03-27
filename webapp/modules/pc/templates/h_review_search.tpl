@@ -251,7 +251,7 @@
 ({* #1949 *})
 ({* #1949 *})<div class="padding_s">
 ({* #1949 *})
-({* #1949 *})<a href="({$item.url})" target="_blank"><img src="({if $item.image_medium})({$item.image_medium})({else})({t_img_url_skin filename=no_image w=120 h=120})({/if})"><br>詳細を見る</a>
+({* #1949 *})<a href="({$item.url})" target="_blank"><img src="({if $item.image_medium})({$item.image_medium})({else})({t_img_url_skin filename=no_image w=120 h=120})({/if})"><br />詳細を見る</a>
 ({* #1949 *})
 ({* #1949 *})</div>
 ({* #1949 *})

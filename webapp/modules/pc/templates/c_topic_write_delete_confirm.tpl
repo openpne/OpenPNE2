@@ -46,7 +46,7 @@
 ({* #1952 *})
 ({* #1952 *})<div class="padding_s lh_120">
 ({* #1952 *})
-({* #1952 *})<a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$c_member.c_member_id})">({$c_member.nickname})</a><br>
+({* #1952 *})<a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$c_member.c_member_id})">({$c_member.nickname})</a><br />
 ({* #1952 *})
 ({* #1952 *})</div>
 ({* #1952 *})

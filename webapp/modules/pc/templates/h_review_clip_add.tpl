@@ -37,7 +37,7 @@
 ({* #1949 *})<div class="padding_s">
 ({* #1949 *})
 ({* #1949 *})<a href="({$c_review.url})" target="_blank">
-({* #1949 *})<img src="({if $c_review.image_medium})({$c_review.image_medium})({else})({t_img_url_skin filename=no_image w=120 h=120})({/if})"><br>詳細を見>る</a>
+({* #1949 *})<img src="({if $c_review.image_medium})({$c_review.image_medium})({else})({t_img_url_skin filename=no_image w=120 h=120})({/if})"><br />詳細を見>る</a>
 ({* #1949 *})
 ({* #1949 *})</div>
 ({* #1949 *})
@@ -85,8 +85,8 @@
 ({* #1949 *})
 ({* #1949 *})<div class="padding_s">
 ({* #1949 *})
-({* #1949 *})({$c_review.release_date})<br>
-({* #1949 *})({$c_review.manufacturer})<br>
+({* #1949 *})({$c_review.release_date})<br />
+({* #1949 *})({$c_review.manufacturer})<br />
 ({* #1949 *})({$c_review.artist})({$c_review.author})
 ({* #1949 *})
 ({* #1949 *})</div>
