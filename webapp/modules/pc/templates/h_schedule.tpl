@@ -177,15 +177,15 @@
 ({* #1952 *})<td>
 ({* #1952 *})
 ({* #1952 *})({t_form_block m=pc a=page_h_schedule_edit})
-({* #1952 *})<input type="hidden" name="target_c_schedule_id" value="({$c_schedule.c_schedule_id})">
-({* #1952 *})<input type="submit" class="input_submit" value="　 編　　集 　">
+({* #1952 *})<input type="hidden" name="target_c_schedule_id" value="({$c_schedule.c_schedule_id})" />
+({* #1952 *})<input type="submit" class="input_submit" value="　 編　　集 　" />
 ({* #1952 *})({/t_form_block})
 ({* #1952 *})</td>
 ({* #1952 *})
 ({* #1952 *})<td>
 ({* #1952 *})({t_form_block m=pc a=page_h_schedule_delete})
-({* #1952 *})<input type="hidden" name="target_c_schedule_id" value="({$c_schedule.c_schedule_id})">
-({* #1952 *})<input type="submit" class="input_submit" value="　 削　　除 　">
+({* #1952 *})<input type="hidden" name="target_c_schedule_id" value="({$c_schedule.c_schedule_id})" />
+({* #1952 *})<input type="submit" class="input_submit" value="　 削　　除 　" />
 ({* #1952 *})({/t_form_block})
 ({* #1952 *})
 ({* #1952 *})</td>

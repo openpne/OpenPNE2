@@ -103,11 +103,11 @@
 ({* #1987 *})({t_form_block _enctype=file m=pc a=do_h_config_image})
 ({* #1987 *})
 ({* #1987 *})
-({* #1987 *})<input name="upfile" type="file" value=" 参 照 ">
+({* #1987 *})<input name="upfile" type="file" value=" 参 照 " />
 ({* #1987 *})
 ({* #1987 *})<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l" />
 ({* #1987 *})
-({* #1987 *})<input type="submit" class="input_submit" name="submit" value="写真をアップロードする">
+({* #1987 *})<input type="submit" class="input_submit" name="submit" value="写真をアップロードする" />
 ({* #1987 *})({/t_form_block})
 ({* #1987 *})</td>
 ({* #1987 *})<td style="width:1em;" align="right" valign="top">・</td>
