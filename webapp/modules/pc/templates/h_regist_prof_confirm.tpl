@@ -284,16 +284,16 @@
 ({* #1952 *})
 ({* #1952 *})({t_form_block m=pc a=do_h_regist_prof})
 ({* #1952 *})
-({* #1952 *})<input type="hidden" name="mode" value="register">
-({* #1952 *})<input type="hidden" name="sid" value="({$sid})">
-({* #1952 *})<td><input type="submit" class="input_submit" value="　登　録　"></td>
+({* #1952 *})<input type="hidden" name="mode" value="register" />
+({* #1952 *})<input type="hidden" name="sid" value="({$sid})" />
+({* #1952 *})<td><input type="submit" class="input_submit" value="　登　録　" /></td>
 ({* #1952 *})({/t_form_block})
 ({* #1952 *})
 ({* #1952 *})({t_form_block m=pc a=do_h_regist_prof})
 ({* #1952 *})
-({* #1952 *})<input type="hidden" name="mode" value="input">
-({* #1952 *})<input type="hidden" name="sid" value="({$sid})">
-({* #1952 *})<td><input type="submit" class="input_submit" value="　修　正　"></td>
+({* #1952 *})<input type="hidden" name="mode" value="input" />
+({* #1952 *})<input type="hidden" name="sid" value="({$sid})" />
+({* #1952 *})<td><input type="submit" class="input_submit" value="　修　正　" /></td>
 ({* #1952 *})({/t_form_block})
 ({* #1952 *})
 ({* #1952 *})</tr>

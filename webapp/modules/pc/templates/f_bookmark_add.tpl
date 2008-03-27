@@ -155,13 +155,13 @@
 ({* #1952 *})
 ({* #1952 *})({t_form_block m=pc a=do_f_bookmark_add})
 ({* #1952 *})
-({* #1952 *})<input type="hidden" name="c_member_id" value="({$c_member.c_member_id})">
-({* #1952 *})<td><input type="submit" class="input_submit" value="　は　い　"></td>
+({* #1952 *})<input type="hidden" name="c_member_id" value="({$c_member.c_member_id})" />
+({* #1952 *})<td><input type="submit" class="input_submit" value="　は　い　" /></td>
 ({* #1952 *})({/t_form_block})
 ({* #1952 *})
 ({* #1952 *})({t_form_block _method=get m=pc a=page_f_home})
-({* #1952 *})<input type="hidden" name="target_c_member_id" value="({$c_member.c_member_id})">
-({* #1952 *})<td><input type="submit" class="input_submit" value="  いいえ　"></td>
+({* #1952 *})<input type="hidden" name="target_c_member_id" value="({$c_member.c_member_id})" />
+({* #1952 *})<td><input type="submit" class="input_submit" value="  いいえ　" /></td>
 ({* #1952 *})({/t_form_block})
 ({* #1952 *})
 ({* #1952 *})</tr>
