@@ -87,7 +87,9 @@ CREATE TABLE `c_access_block` (
   `c_member_id` int(11) NOT NULL default '0',
   `c_member_id_block` int(11) NOT NULL default '0',
   `r_datetime` datetime NOT NULL default '0000-00-00 00:00:00',
-  PRIMARY KEY  (`c_access_block_id`)
+  PRIMARY KEY  (`c_access_block_id`),
+  KEY `c_member_id_c_member_id_block` (`c_member_id`,`c_member_id_block`),
+  KEY `c_member_id_block` (`c_member_id_block`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `c_access_log` (
@@ -221,10 +223,6 @@ CREATE TABLE `c_commu` (
   `public_flag` enum('public','auth_public','auth_sns','auth_commu_member') NOT NULL default 'public',
   `is_send_join_mail` tinyint(1) NOT NULL default '1',
   `is_regist_join` tinyint(1) NOT NULL default '0',
-  `is_display_map` tinyint(1) NOT NULL default '0',
-  `map_latitude` double NOT NULL default '0',
-  `map_longitude` double NOT NULL default '0',
-  `map_zoom` int(11) NOT NULL default '0',
   `u_datetime` datetime NOT NULL default '0000-00-00 00:00:00',
   PRIMARY KEY  (`c_commu_id`),
   KEY `c_commu_category_id` (`c_commu_category_id`),
@@ -249,7 +247,8 @@ CREATE TABLE `c_commu_admin_invite` (
   `c_commu_id` int(11) NOT NULL default '0',
   `c_member_id_to` int(11) NOT NULL default '0',
   `r_datetime` datetime NOT NULL default '0000-00-00 00:00:00',
-  PRIMARY KEY  (`c_commu_admin_invite_id`)
+  PRIMARY KEY  (`c_commu_admin_invite_id`),
+  KEY `c_commu_id_c_memer_id_to` (`c_commu_id`,`c_member_id_to`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `c_commu_category` (
@@ -692,6 +691,7 @@ CREATE TABLE `c_member_pre` (
   `c_password_query_answer` text NOT NULL,
   `ktai_session` varchar(255) NOT NULL default '',
   `is_disabled_regist_easy_access_id` tinyint(1) NOT NULL default '0',
+  `login_id` varchar(255) NOT NULL default '',
   PRIMARY KEY  (`c_member_pre_id`),
   UNIQUE KEY `session` (`session`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -771,6 +771,14 @@ CREATE TABLE `c_message_queue` (
   `subject` text NOT NULL,
   `body` text NOT NULL,
   PRIMARY KEY  (`c_message_queue_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `c_module` (
+  `c_module_id` int(11) NOT NULL auto_increment,
+  `name` varchar(64) NOT NULL default '',
+  `is_enabled` tinyint(1) NOT NULL default '0',
+  PRIMARY KEY  (`c_module_id`),
+  UNIQUE KEY `name` (`name`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `c_navi` (
@@ -916,7 +924,9 @@ CREATE TABLE `c_review_comment` (
   `body` text NOT NULL,
   `satisfaction_level` int(11) NOT NULL default '0',
   `r_datetime` datetime NOT NULL default '0000-00-00 00:00:00',
-  PRIMARY KEY  (`c_review_comment_id`)
+  PRIMARY KEY  (`c_review_comment_id`),
+  KEY `c_review_id_r_datetime` (`c_review_id`,`r_datetime`),
+  KEY `c_member_id_r_datetime` (`c_member_id`,`r_datetime`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `c_rss_cache` (
@@ -1057,3 +1067,68 @@ CREATE TABLE `mail_queue_seq` (
   `id` int(10) unsigned NOT NULL auto_increment,
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `portal_config` (
+  `portal_config_id` int(11) NOT NULL auto_increment,
+  `name` varchar(64) NOT NULL,
+  `value` text NOT NULL,
+  PRIMARY KEY  (`portal_config_id`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `portal_free_area` (
+  `portal_free_area_id` int(11) NOT NULL auto_increment,
+  `html` text NOT NULL,
+  `name` varchar(64) NOT NULL,
+  PRIMARY KEY  (`portal_free_area_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `portal_free_area_ktai` (
+  `portal_free_area_ktai_id` int(11) NOT NULL auto_increment,
+  `name` varchar(64) NOT NULL,
+  `html` text NOT NULL,
+  PRIMARY KEY  (`portal_free_area_ktai_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `portal_image` (
+  `portal_image_id` int(11) NOT NULL auto_increment,
+  `image_filename` text NOT NULL,
+  PRIMARY KEY  (`portal_image_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `portal_layout` (
+  `portal_layout_id` int(11) NOT NULL auto_increment,
+  `content_name` varchar(64) NOT NULL,
+  `position` int(11) NOT NULL,
+  `is_image` tinyint(4) NOT NULL default '0',
+  PRIMARY KEY  (`portal_layout_id`),
+  UNIQUE KEY `content_name` (`content_name`),
+  UNIQUE KEY `position` (`position`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `portal_layout_ktai` (
+  `portal_layout_ktai_id` int(11) NOT NULL auto_increment,
+  `content_name` varchar(64) NOT NULL,
+  `position` int(11) NOT NULL default '0',
+  PRIMARY KEY  (`portal_layout_ktai_id`),
+  UNIQUE KEY `content_name` (`content_name`),
+  UNIQUE KEY `postion` (`position`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `portal_link` (
+  `portal_link_id` int(11) NOT NULL auto_increment,
+  `title` varchar(64) NOT NULL,
+  `url` text NOT NULL,
+  `sort_order` int(11) NOT NULL default '0',
+  `is_target_blank` tinyint(4) NOT NULL default '0',
+  `is_enabled` tinyint(4) default '0',
+  PRIMARY KEY  (`portal_link_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `portal_rss` (
+  `portal_rss_id` int(11) NOT NULL auto_increment,
+  `url` text NOT NULL,
+  `name` varchar(64) NOT NULL,
+  PRIMARY KEY  (`portal_rss_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
