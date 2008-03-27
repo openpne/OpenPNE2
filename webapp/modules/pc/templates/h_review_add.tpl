@@ -54,15 +54,15 @@
 ({* #1932 *})<div style="padding:10px 0px;text-align:center;">
 ({* #1932 *})
 ({* #1932 *})({t_form_block m=pc a=page_h_review_add})
-({* #1932 *})<input type="hidden" name="search_flag" value="1">
+({* #1932 *})<input type="hidden" name="search_flag" value="1" />
 ({* #1932 *})キーワード&nbsp;<img src="./skin/dummy.gif" alt="dummy" style="width:14px;height:14px;" class="icon icon_1" />
-({* #1932 *})<input type="text" class="text" name="keyword" size="15" value="({$keyword})">
+({* #1932 *})<input type="text" class="text" name="keyword" size="15" value="({$keyword})" />
 ({* #1932 *})&nbsp;カテゴリ&nbsp;<img src="./skin/dummy.gif" alt="dummy" style="width:14px;height:14px;" class="icon icon_1" />
 ({* #1932 *})<select name="category_id">
 ({* #1932 *})<option value="" selected="selected">選択
 ({* #1932 *})({html_options options=$category_disp selected=$category_id})
 ({* #1932 *})</select>
-({* #1932 *})&nbsp;<input type="submit" class="input_submit" name="button" value="　検 索　">
+({* #1932 *})&nbsp;<input type="submit" class="input_submit" name="button" value="　検 索　" />
 ({* #1932 *})({/t_form_block})
 ({* #1932 *})
 ({* #1932 *})</div>

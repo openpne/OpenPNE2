@@ -177,16 +177,16 @@
 ({* #1952 *})<td>
 ({* #1952 *})
 ({* #1952 *})({t_form_block m=pc a=do_h_schedule_delete_delete_c_schedule})
-({* #1952 *})<input type="hidden" name="target_c_schedule_id" value="({$c_schedule.c_schedule_id})">
-({* #1952 *})<input type="submit" class="input_submit" value="　 削　　除 　">
+({* #1952 *})<input type="hidden" name="target_c_schedule_id" value="({$c_schedule.c_schedule_id})" />
+({* #1952 *})<input type="submit" class="input_submit" value="　 削　　除 　" />
 ({* #1952 *})({/t_form_block})
 ({* #1952 *})
 ({* #1952 *})</td>
 ({* #1952 *})<td>
 ({* #1952 *})
 ({* #1952 *})({t_form_block _method=get m=pc a=page_h_schedule})
-({* #1952 *})<input type="hidden" name="target_c_schedule_id" value="({$c_schedule.c_schedule_id})">
-({* #1952 *})<input type="submit" class="input_submit" value="　キャンセル　">
+({* #1952 *})<input type="hidden" name="target_c_schedule_id" value="({$c_schedule.c_schedule_id})" />
+({* #1952 *})<input type="submit" class="input_submit" value="　キャンセル　" />
 ({* #1952 *})({/t_form_block})
 ({* #1952 *})
 ({* #1952 *})</td>
