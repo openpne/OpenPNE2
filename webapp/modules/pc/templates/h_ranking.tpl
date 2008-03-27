@@ -78,7 +78,7 @@
 ({* #1942 *})
 ({* #1942 *})<div align="right" style="padding:3px 0px;" class="border_01 bg_03">
 ({* #1942 *})
-({* #1942 *})<a href="({t_url m=pc a=page_h_ranking})&amp;kind=com_member">参加人数No１<br>コミュニティを表示</a>
+({* #1942 *})<a href="({t_url m=pc a=page_h_ranking})&amp;kind=com_member">参加人数No１<br />コミュニティを表示</a>
 ({* #1942 *})
 ({* #1942 *})</div>
 ({* #1942 *})
@@ -102,7 +102,7 @@
 ({* #1942 *})
 ({* #1942 *})<div align="right" style="padding:3px 0px;" class="border_01 bg_03">
 ({* #1942 *})
-({* #1942 *})<a href="({t_url m=pc a=page_h_ranking})&amp;kind=com_comment">盛り上がり度No１<br>コミュニティを表示</a>
+({* #1942 *})<a href="({t_url m=pc a=page_h_ranking})&amp;kind=com_comment">盛り上がり度No１<br />コミュニティを表示</a>
 ({* #1942 *})
 ({* #1942 *})</div>
 ({* #1942 *})
