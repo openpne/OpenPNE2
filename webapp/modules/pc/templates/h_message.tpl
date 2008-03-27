@@ -180,7 +180,7 @@
 ({* #2037 *})({if $c_message.image_filename_1})<span class="padding_s"><a href="({t_img_url filename=$c_message.image_filename_1})" target="_blank"><img src="({t_img_url filename=$c_message.image_filename_1 w=120 h=120})"></a></span>({/if})
 ({* #2037 *})({if $c_message.image_filename_2})<span class="padding_s"><a href="({t_img_url filename=$c_message.image_filename_2})" target="_blank"><img src="({t_img_url filename=$c_message.image_filename_2 w=120 h=120})"></a></span>({/if})
 ({* #2037 *})({if $c_message.image_filename_3})<span class="padding_s"><a href="({t_img_url filename=$c_message.image_filename_3})" target="_blank"><img src="({t_img_url filename=$c_message.image_filename_3 w=120 h=120})"></a></span>({/if})
-({* #2037 *})<br><br>
+({* #2037 *})<br /><br />
 ({* #2037 *})({/if})
 ({* #2037 *})
 ({* #2037 *})({$c_message.body|nl2br|t_url2cmd:'message'|t_cmd:'message'})

@@ -42,8 +42,8 @@
 ({* #1932 *})<!-- ここから：主内容＞＞内枠＞＞検索説明文 -->
 ({* #1932 *})<div style="padding:10px 30px 10px 30px;text-align:left;">
 ({* #1932 *})
-({* #1932 *})レビューを書きたい商品を検索します。<br>
-({* #1932 *})キーワードを入力し、該当するカテゴリを選択してください。<br>
+({* #1932 *})レビューを書きたい商品を検索します。<br />
+({* #1932 *})キーワードを入力し、該当するカテゴリを選択してください。<br />
 ({* #1932 *})
 ({* #1932 *})
 ({* #1932 *})</div>
@@ -167,7 +167,7 @@
 ({* #1949 *})
 ({* #1949 *})<div class="padding_s">
 ({* #1949 *})
-({* #1949 *})<a href="({$product.DetailPageURL})" target="_blank"><img src="({if $product.MediumImage})({$product.MediumImage.URL})({else})({t_img_url_skin filename=no_image w=120 h=120})({/if})"><br>詳細を見る</a>
+({* #1949 *})<a href="({$product.DetailPageURL})" target="_blank"><img src="({if $product.MediumImage})({$product.MediumImage.URL})({else})({t_img_url_skin filename=no_image w=120 h=120})({/if})"><br />詳細を見る</a>
 ({* #1949 *})
 ({* #1949 *})</div>
 ({* #1949 *})
@@ -227,8 +227,8 @@
 ({* #1949 *})
 ({* #1949 *})<div class="padding_s">
 ({* #1949 *})
-({* #1949 *})({$product.ItemAttributes.PublicationDate})<br>
-({* #1949 *})({$product.ItemAttributes.Manufacturer})<br>
+({* #1949 *})({$product.ItemAttributes.PublicationDate})<br />
+({* #1949 *})({$product.ItemAttributes.Manufacturer})<br />
 ({* #1949 *})({$product.artist})({$product.author})
 ({* #1949 *})
 ({* #1949 *})</div>
