@@ -218,3 +218,12 @@ INSERT INTO c_skin_filename VALUES (nextval('c_skin_filename_c_skin_filename_id_
 INSERT INTO c_skin_filename VALUES (nextval('c_skin_filename_c_skin_filename_id_seq'),'no_logo','skin_no_logo.gif');
 INSERT INTO c_skin_filename VALUES (nextval('c_skin_filename_c_skin_filename_id_seq'),'no_logo_small','skin_no_logo_small.gif');
 INSERT INTO mail_queue_seq VALUES (1);
+
+INSERT INTO portal_config VALUES (1,'USE_PORTAL','0');
+INSERT INTO portal_config VALUES (2,'HEAD_TEXT_TYPE','0');
+INSERT INTO portal_config VALUES (3,'HEAD_TEXT','');
+INSERT INTO portal_config VALUES (4,'LAYOUT_TYPE','2');
+INSERT INTO portal_config VALUES (5,'COLOR_TYPE','005_openpne_blue');
+
+INSERT INTO c_module VALUES(nextval('c_module_c_module_id_seq'), 'portal', 1);
+
