@@ -504,6 +504,7 @@ define('SEND_MESSAGE_QUEUE_NUM', 10);
 define('OPENPNE_USE_CAPTCHA', true);
 
 // 認証モード設定
+// ※運用中のSNSで認証モードを変更すると既存のメンバーがログインできなくなります
 //  email    : メールアドレスとパスワードによるログイン
 //  pneid    : IDとパスワードによるログイン
 //  slavepne : 外部認証(SlavePNE機能)を使ったログイン
