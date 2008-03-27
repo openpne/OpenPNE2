@@ -138,14 +138,14 @@
 ({* #1949 *})
 ({* #1949 *})({t_form_block m=pc a=do_h_review_clip_add_insert_c_review_clip})
 ({* #1949 *})
-({* #1949 *})<input type="hidden" name="c_review_id" value="({$c_review.c_review_id})">
+({* #1949 *})<input type="hidden" name="c_review_id" value="({$c_review.c_review_id})" />
 ({* #1949 *})
-({* #1949 *})<td align="right"><input type="submit" class="input_submit" value="　は　い　"></td>
+({* #1949 *})<td align="right"><input type="submit" class="input_submit" value="　は　い　" /></td>
 ({* #1949 *})({/t_form_block})
 ({* #1949 *})
 ({* #1949 *})({t_form_block _method=get m=pc a=page_h_review_list_product})
-({* #1949 *})<input type="hidden" name="c_review_id" value="({$c_review.c_review_id})">
-({* #1949 *})<td><input type="submit" class="input_submit" value="  いいえ　"></td>
+({* #1949 *})<input type="hidden" name="c_review_id" value="({$c_review.c_review_id})" />
+({* #1949 *})<td><input type="submit" class="input_submit" value="  いいえ　" /></td>
 ({* #1949 *})({/t_form_block})
 ({* #1949 *})
 ({* #1949 *})</tr>

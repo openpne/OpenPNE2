@@ -260,7 +260,7 @@
 ({* #1956 *})({foreach from=$c_message_ru_list item=c_message_ru})
 ({* #1956 *})<tr>
 ({* #1956 *})<td class="bg_({if $c_message_ru.is_read})02({else})09({/if})" align="center"><img src="({if $c_message_ru.is_hensin})({t_img_url_skin filename=icon_mail_4})({elseif $c_message_ru.is_read})({t_img_url_skin filename=icon_mail_2})({else})({t_img_url_skin filename=icon_mail_1})({/if})" class="icon" /></td>
-({* #1956 *})<td class="bg_({if $c_message_ru.is_read})02({else})09({/if})"><input name="c_message_id[]" value="({$c_message_ru.c_message_id})" type="checkbox" class="no_bg"></td>
+({* #1956 *})<td class="bg_({if $c_message_ru.is_read})02({else})09({/if})"><input name="c_message_id[]" value="({$c_message_ru.c_message_id})" type="checkbox" class="no_bg" /></td>
 ({* #1956 *})<td class="bg_({if $c_message_ru.is_read})02({else})09({/if})">({$c_message_ru.nickname})</td>
 ({* #1956 *})<td class="bg_({if $c_message_ru.is_read})02({else})09({/if})"><a href="({t_url m=pc a=page_h_message})&amp;target_c_message_id=({$c_message_ru.c_message_id})&amp;jyusin_c_message_id=({$c_message_ru.c_message_id})">({$c_message_ru.subject})</a></td>
 ({* #1956 *})<td class="bg_({if $c_message_ru.is_read})02({else})09({/if})">({$c_message_ru.r_datetime|date_format:"%m月%d日"})</td>
@@ -302,8 +302,8 @@
 ({* #1956 *})&nbsp;<a href="#" onClick="return checkAll();" onKeyPress="return checkAll();">全てをチェック</a> / <a href="#" onClick="return clearAll();" onKeyPress="return clearAll();">全てのチェックをはずす</a>
 ({* #1956 *})
 ({* #1956 *})<div class="padding_s">
-({* #1956 *})<input type="hidden" name="box" value="({$box})">
-({* #1956 *})<input type="submit" class="input_submit" value="削 除">
+({* #1956 *})<input type="hidden" name="box" value="({$box})" />
+({* #1956 *})<input type="submit" class="input_submit" value="削 除" />
 ({* #1956 *})({/t_form_block})
 ({* #1956 *})</div>
 ({* #1956 *})
@@ -401,7 +401,7 @@
 ({* #1956 *})({foreach from=$c_message_s_list item=c_message_s})
 ({* #1956 *})<tr>
 ({* #1956 *})<td class="bg_02" align="center"><img src="({t_img_url_skin filename=icon_mail_3})" class="icon" /></td>
-({* #1956 *})<td class="bg_02"><input name="c_message_id[]" value="({$c_message_s.c_message_id})" type="checkbox" class="no_bg"></td>
+({* #1956 *})<td class="bg_02"><input name="c_message_id[]" value="({$c_message_s.c_message_id})" type="checkbox" class="no_bg" /></td>
 ({* #1956 *})<td class="bg_02">({$c_message_s.nickname})</td>
 ({* #1956 *})<td class="bg_02"><a href="({t_url m=pc a=page_h_message})&amp;target_c_message_id=({$c_message_s.c_message_id})&amp;box=outbox">({$c_message_s.subject})</a></td>
 ({* #1956 *})<td class="bg_02">({$c_message_s.r_datetime|date_format:"%m月%d日"})</td>
@@ -443,8 +443,8 @@
 ({* #1956 *})&nbsp;<a href="#" onClick="return checkAll();" onKeyPress="return checkAll();">全てをチェック</a> / <a href="#" onClick="return clearAll();" onKeyPress="return clearAll();">全てのチェックをはずす</a>
 ({* #1956 *})
 ({* #1956 *})<div class="padding_s">
-({* #1956 *})<input type="hidden" name="box" value="({$box})">
-({* #1956 *})<input type="submit" class="input_submit" value="削 除">
+({* #1956 *})<input type="hidden" name="box" value="({$box})" />
+({* #1956 *})<input type="submit" class="input_submit" value="削 除" />
 ({* #1956 *})({/t_form_block})
 ({* #1956 *})</div>
 ({* #1956 *})
@@ -535,7 +535,7 @@
 ({* #1956 *})({foreach from=$c_message_save_list item=c_message_save})
 ({* #1956 *})<tr>
 ({* #1956 *})<td class="bg_02" align="center"><img src="({t_img_url_skin filename=icon_mail_1})" class="icon" /></td>
-({* #1956 *})<td class="bg_02"><input name="c_message_id[]" value="({$c_message_save.c_message_id})" type="checkbox" class="no_bg"></td>
+({* #1956 *})<td class="bg_02"><input name="c_message_id[]" value="({$c_message_save.c_message_id})" type="checkbox" class="no_bg" /></td>
 ({* #1956 *})<td class="bg_02">({$c_message_save.nickname})</td>
 ({* #1956 *})<td class="bg_02"><a href="({t_url m=pc a=page_f_message_send})&amp;target_c_message_id=({$c_message_save.c_message_id})&amp;jyusin_c_message_id=({$c_message_save.hensinmoto_c_message_id})&amp;box=savebox">({$c_message_save.subject})</a></td>
 ({* #1956 *})<td class="bg_02">({$c_message_save.r_datetime|date_format:"%m月%d日"})</td>
@@ -577,8 +577,8 @@
 ({* #1956 *})&nbsp;<a href="#" onClick="return checkAll();" onKeyPress="return checkAll();">全てをチェック</a> / <a href="#" onClick="return clearAll();" onKeyPress="return clearAll();">全てのチェックをはずす</a>
 ({* #1956 *})
 ({* #1956 *})<div class="padding_s">
-({* #1956 *})<input type="hidden" name="box" value="savebox">
-({* #1956 *})<input type="submit" class="input_submit" value="削 除">
+({* #1956 *})<input type="hidden" name="box" value="savebox" />
+({* #1956 *})<input type="submit" class="input_submit" value="削 除" />
 ({* #1956 *})({/t_form_block})
 ({* #1956 *})
 ({* #1956 *})</div>
@@ -688,7 +688,7 @@
 ({* #1956 *})({/if})
 ({* #1956 *})</td>
 ({* #1956 *})({/strip})
-({* #1956 *})<td class="bg_02"><input name="c_message_id[]" value="({$c_message_trash.c_message_id})" type="checkbox" class="no_bg"></td>
+({* #1956 *})<td class="bg_02"><input name="c_message_id[]" value="({$c_message_trash.c_message_id})" type="checkbox" class="no_bg" /></td>
 ({* #1956 *})<td class="bg_02">({$c_message_trash.nickname})</td>
 ({* #1956 *})<td class="bg_02"><a href="({t_url m=pc a=page_h_message})&amp;target_c_message_id=({$c_message_trash.c_message_id})&amp;box=trash">({$c_message_trash.subject})</a></td>
 ({* #1956 *})<td class="bg_02">({$c_message_trash.r_datetime|date_format:"%m月%d日"})</td>
@@ -730,10 +730,10 @@
 ({* #1956 *})&nbsp;<a href="#" onClick="return checkAll();" onKeyPress="return checkAll();">全てをチェック</a> / <a href="#" onClick="return clearAll();" onKeyPress="return clearAll();">全てのチェックをはずす</a>
 ({* #1956 *})
 ({* #1956 *})<div class="padding_s">
-({* #1956 *})<input type="hidden" name="box" value="trash">
+({* #1956 *})<input type="hidden" name="box" value="trash" />
 ({* #1956 *})
-({* #1956 *})<input type="submit" class="input_submit" name="move" value="元に戻す">
-({* #1956 *})<input type="submit" class="input_submit" name="remove" value="削除">
+({* #1956 *})<input type="submit" class="input_submit" name="move" value="元に戻す" />
+({* #1956 *})<input type="submit" class="input_submit" name="remove" value="削除" />
 ({* #1956 *})({/t_form_block})
 ({* #1956 *})
 ({* #1956 *})</div>

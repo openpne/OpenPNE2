@@ -91,22 +91,22 @@
 ({* #1952 *})
 ({* #1952 *})({t_form_block m=pc a=do_h_review_add})
 ({* #1952 *})
-({* #1952 *})<input type="hidden" name="category_id" value="({$category_id})">
-({* #1952 *})<input type="hidden" name="asin" value="({$asin})">
-({* #1952 *})<input type="hidden" name="body" value="({$body})">
-({* #1952 *})<input type="hidden" name="satisfaction_level" value="({$satisfaction_level})">
-({* #1952 *})<input type="submit" class="input_submit" value="　作　成　">
+({* #1952 *})<input type="hidden" name="category_id" value="({$category_id})" />
+({* #1952 *})<input type="hidden" name="asin" value="({$asin})" />
+({* #1952 *})<input type="hidden" name="body" value="({$body})" />
+({* #1952 *})<input type="hidden" name="satisfaction_level" value="({$satisfaction_level})" />
+({* #1952 *})<input type="submit" class="input_submit" value="　作　成　" />
 ({* #1952 *})({/t_form_block})
 ({* #1952 *})
 ({* #1952 *})</td>
 ({* #1952 *})<td>
 ({* #1952 *})
 ({* #1952 *})({t_form_block _method=get m=pc a=page_h_review_add_write})
-({* #1952 *})<input type="hidden" name="category_id" value="({$category_id})">
-({* #1952 *})<input type="hidden" name="asin" value="({$asin})">
-({* #1952 *})<input type="hidden" name="body" value="({$body})">
-({* #1952 *})<input type="hidden" name="satisfaction_level" value="({$satisfaction_level})">
-({* #1952 *})<input type="submit" class="input_submit" value="　修　正　">
+({* #1952 *})<input type="hidden" name="category_id" value="({$category_id})" />
+({* #1952 *})<input type="hidden" name="asin" value="({$asin})" />
+({* #1952 *})<input type="hidden" name="body" value="({$body})" />
+({* #1952 *})<input type="hidden" name="satisfaction_level" value="({$satisfaction_level})" />
+({* #1952 *})<input type="submit" class="input_submit" value="　修　正　" />
 ({* #1952 *})({/t_form_block})
 ({* #1952 *})
 ({* #1952 *})</td>

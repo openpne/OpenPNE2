@@ -24,7 +24,7 @@
 
 <div class="padding_s">
 
-<input class="text" name="login_id" type="text" value="({$profs.login_id})" size="30"><br />
+<input class="text" name="login_id" type="text" value="({$profs.login_id})" size="30" /><br />
 <span class="caution">※4～30文字の半角英数字、記号（アンダーバー「_」、ハイフン「-」）で入力してください<br />
 ※最初と最後の文字は半角英数字で入力してください<br />
 ※アルファベットの大文字と小文字は区別されません<br />
