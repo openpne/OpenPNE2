@@ -217,7 +217,7 @@
 ({* #1952 *})<input type="hidden" name="end_hour" value="({$input.end_hour})">
 ({* #1952 *})<input type="hidden" name="end_minute" value="({$input.end_minute})">
 ({* #1952 *})<input type="hidden" name="is_receive_mail" value="({$input.is_receive_mail})">
-({* #1952 *})<input type="submit" class="input_submit" value="　 修　　正 　"><br>
+({* #1952 *})<input type="submit" class="input_submit" value="　 修　　正 　"><br />
 ({* #1952 *})({/t_form_block})
 ({* #1952 *})
 ({* #1952 *})</td>

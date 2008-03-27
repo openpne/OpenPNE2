@@ -36,7 +36,7 @@
 ({* #1987 *})<td style="width:188px;" align="center">
 ({* #1987 *})
 ({* #1987 *})({if $c_member.image_filename_1})
-({* #1987 *})<img src="({t_img_url filename=$c_member.image_filename_1 w=180 h=180})"><br>
+({* #1987 *})<img src="({t_img_url filename=$c_member.image_filename_1 w=180 h=180})"><br />
 ({* #1987 *})[ <a href="({t_url m=pc a=do_h_config_image_delete_c_member_image})&amp;img_num=1&amp;sessid=({$PHPSESSID})">削除</a> |
 ({* #1987 *})({if $c_member.image_filename_1==$c_member.image_filename})
 ({* #1987 *})メイン写真
@@ -53,7 +53,7 @@
 ({* #1987 *})<td style="width:188px;" align="center">
 ({* #1987 *})
 ({* #1987 *})({if $c_member.image_filename_2})
-({* #1987 *})<img src="({t_img_url filename=$c_member.image_filename_2 w=180 h=180})"><br>
+({* #1987 *})<img src="({t_img_url filename=$c_member.image_filename_2 w=180 h=180})"><br />
 ({* #1987 *})[ <a href="({t_url m=pc a=do_h_config_image_delete_c_member_image})&amp;img_num=2&amp;sessid=({$PHPSESSID})">削除</a> |
 ({* #1987 *})({if $c_member.image_filename_2==$c_member.image_filename})
 ({* #1987 *})メイン写真
@@ -70,7 +70,7 @@
 ({* #1987 *})<td style="width:188px;" align="center">
 ({* #1987 *})
 ({* #1987 *})({if $c_member.image_filename_3})
-({* #1987 *})<img src="({t_img_url filename=$c_member.image_filename_3 w=180 h=180})"><br>
+({* #1987 *})<img src="({t_img_url filename=$c_member.image_filename_3 w=180 h=180})"><br />
 ({* #1987 *})[ <a href="({t_url m=pc a=do_h_config_image_delete_c_member_image})&amp;img_num=3&amp;sessid=({$PHPSESSID})">削除</a> |
 ({* #1987 *})({if $c_member.image_filename_3==$c_member.image_filename})
 ({* #1987 *})メイン写真

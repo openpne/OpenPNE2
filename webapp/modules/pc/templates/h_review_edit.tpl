@@ -41,7 +41,7 @@
 ({* unknown *})<div class="padding_s">
 ({* unknown *})
 ({* unknown *})<a href="({$c_review_comment.url})" target="_blank">
-({* unknown *})<img src="({if $c_review_comment.image_medium})({$c_review_comment.image_medium})({else})({t_img_url_skin filename=no_image w=120 h=120})({/if})"><br>詳細を見る</a>
+({* unknown *})<img src="({if $c_review_comment.image_medium})({$c_review_comment.image_medium})({else})({t_img_url_skin filename=no_image w=120 h=120})({/if})"><br />詳細を見る</a>
 ({* unknown *})
 ({* unknown *})</div>
 ({* unknown *})
@@ -89,8 +89,8 @@
 ({* unknown *})
 ({* unknown *})<div class="padding_s">
 ({* unknown *})
-({* unknown *})({$c_review_comment.release_date})<br>
-({* unknown *})({$c_review_comment.manufacturer})<br>
+({* unknown *})({$c_review_comment.release_date})<br />
+({* unknown *})({$c_review_comment.manufacturer})<br />
 ({* unknown *})({$c_review_comment.artist})({$c_review_comment.author})
 ({* unknown *})
 ({* unknown *})</div>
