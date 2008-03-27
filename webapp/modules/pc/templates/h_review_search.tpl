@@ -100,7 +100,7 @@
 ({* #1953 *})<div class="padding_s">
 ({* #1953 *})
 ({* #1953 *})<img src="./skin/dummy.gif" alt="dummy" class="icon arrow_1" />
-({* #1953 *})<a href="({t_url m=pc a=page_h_review_add})")>レビューを作成する</a>
+({* #1953 *})<a href="({t_url m=pc a=page_h_review_add})">レビューを作成する</a>
 ({* #1953 *})
 ({* #1953 *})</div>
 ({* #1953 *})
