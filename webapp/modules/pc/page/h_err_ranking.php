@@ -10,6 +10,10 @@ class pc_page_h_err_ranking extends OpenPNE_Action
     {
         $u = $GLOBALS['AUTH']->uid();
 
+        if (OPENPNE_USE_RANKING) {
+            openpne_redirect('pc', 'page_h_ranking');
+        }
+
         $this->set('inc_navi', fetch_inc_navi('h'));
         return 'success';
     }
