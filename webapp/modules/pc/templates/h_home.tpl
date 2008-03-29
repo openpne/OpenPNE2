@@ -28,10 +28,8 @@
 
 ({* {{{ homeInfoBox *})
 <div class="parts homeInfoBox">
-<table><tr>
-<th><img src="({t_img_url_skin filename=icon_information})" alt="お知らせ" /></th>
-<td>
-<p>({$site_info|smarty:nodefaults|default:"&nbsp;"|t_url2cmd:'info'|t_cmd:'info'})</p>
+<div class="body">
+({$site_info|smarty:nodefaults|default:"&nbsp;"|t_url2cmd:'info'|t_cmd:'info'})
 ({if $num_f_confirm_list || $num_message_not_is_read || $num_diary_not_is_read || $num_h_confirm_list || $anatani_c_commu_admin_confirm_list || $anatani_c_commu_sub_admin_confirm_list})
 <ul>
 ({if $num_f_confirm_list})
@@ -54,8 +52,7 @@
 ({/if})
 </ul>
 ({/if})
-</td>
-</tr></table>
+</div>
 </div>
 ({* }}} *})
 
