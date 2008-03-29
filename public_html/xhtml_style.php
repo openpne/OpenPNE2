@@ -177,12 +177,6 @@ ul.moreInfo.button li {
 	padding: 0;
 	background: none;
 }
-ul.moreInfo.button li form {
-	display: inline;
-}
-ul.moreInfo.button li form .input_submit {
-	margin: 0 5px;
-}
 /*----------------------------------------------
  * サブミットボタン
  *--------------------------------------------*/
@@ -237,19 +231,8 @@ div#LayoutC {
 /*----------------------------------------------
  * ベースレイアウト
  *--------------------------------------------*/
-#Body {
-	background: #<?php echo $colors[2]; ?>;
-}
 #Container {
-	position: relative;
 	width: 720px;
-	background: #<?php echo $colors[3]; ?>;
-}
-#Header {
-	position: relative;
-}
-#LayoutA #Top {
-	padding-left: 5px;
 }
 #LayoutA #Left {
 	float: left;
@@ -289,14 +272,12 @@ div.ditem div.item {
 div.dparts {
 	margin: 0 auto 10px;
 	padding: 7px;
-	background-color: #<?php echo $colors[4]; ?>;
 }
 div.dparts div.parts {
 	margin: 0;
 }
 div.parts {
 	margin: 0 auto 10px;
-	background-color: #<?php echo $colors[8]; ?>;
 }
 div.ditem {
 	padding: 5px 6px;
@@ -545,34 +526,6 @@ li#cLocalNav_4 a:hover, li#cLocalNav_4 a:active { background-position: -360px -2
 li#cLocalNav_5 a:hover, li#cLocalNav_5 a:active { background-position: -480px -29px; }
 li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -29px; }
 
-#topBanner {
-	display: block;
-	position: absolute;
-	top: 5px;
-	left: 247px;
-	width: 468px;
-	height: 60px;
-}
-#sideBanner {
-	display: block;
-	position: absolute;
-	top: 0px;
-	left: 720px;
-}
-
-#Footer {
-	position: relative;
-	width: 720px;
-	height: 21px;
-	background: url(<?php echo getSkin('skin_footer'); ?>) 0 0 no-repeat;
-}
-#Footer p {
-	padding-right: 12px;
-	line-height: 21px;
-	text-align: right;
-}
-
-
 /*==============================================================================
  * 11. homePhotoBox（ホーム写真ボックス）
  *----------------------------------------------------------------------------*/
@@ -612,6 +565,7 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
  * 28. homeNineTable（ホーム9面テーブル）
  *----------------------------------------------------------------------------*/
 .homeNineTable tr.photo td {
+	height: 80px;
 	padding: 2px 0;
 	text-align: center;
 }
@@ -715,15 +669,11 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 /*==============================================================================
  * 34. sideNav（サイドナビ）
  *----------------------------------------------------------------------------*/
-#Body .sideNav {
-	background-color: transparent;
-}
 .sideNav .item {
 	overflow: hidden;
 	width: 150px;
 	margin: 0 auto 10px;
 	border: 8px solid #<?php echo $colors[9]; ?>;
-	background-color: #<?php echo $colors[8]; ?>;
 }
 .sideNav .partsHeading {
 	border-bottom: 1px solid #<?php echo $colors[1]; ?>;
@@ -840,6 +790,7 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 	width: 561px;
 }
 .photoTable tr.photo td {
+	height: 90px;
 	padding: 8px 0;
 	text-align: center;
 }
@@ -1088,9 +1039,6 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 	margin-left: auto;
 	padding: 6px 2px;
 }
-.friendIntroList p.text {
-	margin-bottom: 1em;
-}
 
 /*==============================================================================
  * 9. topicDetailBox（トピック詳細ボックス）
@@ -1158,9 +1106,6 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 /*==============================================================================
  * 15. linkLine（リンクライン）
  *----------------------------------------------------------------------------*/
-#Body .linkLine {
-	background-color: transparent;
-}
 .linkLine ul.moreInfo {
 	text-align: center;
 }
@@ -1172,9 +1117,6 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 /*==============================================================================
  * 14. searchFormLine（検索フォームライン）
  *----------------------------------------------------------------------------*/
-#Body .searchFormLine {
- 	background-color: transparent;
-}
 .searchFormLine ul {
 	text-align: center;
 	padding: 1px 0;
@@ -1219,26 +1161,213 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 }
 
 /*==============================================================================
+ * 7. searchFormBox（検索フォームボックス）
+ *----------------------------------------------------------------------------*/
+.searchFormBox .partsHeading {
+	border-bottom: 1px solid #<?php echo $colors[1]; ?>;
+}
+.searchFormBox .parts {
+	zoom: 1;
+}
+.searchFormBox .item {
+	overflow: hidden;
+	margin: 10px 40px;
+	padding-top: 8px;
+	border: 1px solid #<?php echo $colors[1]; ?>;
+}
+.searchFormBox label,
+.searchFormBox span.label {
+	margin: 0 4px 0 8px;
+	padding: 1px 16px 0 0;
+	background: url(<?php echo getSkin('icon_arrow_2'); ?>) no-repeat 100% 0;
+}
+.searchFormBox .input_submit {
+	margin-right: 8px;
+}
+.searchFormBox p.desc {
+	margin: 0 4px 16px 8px;
+}
+.searchFormBox p.form {
+	margin: 0 4px 8px 0;
+}
+.searchFormBox p.note {
+	margin: -4px 4px 8px 8px;
+}
+.searchFormBox ul.moreInfo {
+	margin: 0 4px 8px 150px;
+}
+.searchFormBox div.block {
+	padding: 8px 0;
+}
+.searchFormBox dl.category {
+	zoom: 1;
+}
+.searchFormBox dl.category dt {
+	float: left;
+	width: 6em;
+}
+.searchFormBox dl.category dd {
+	zoom: 1;
+	margin-left: 6em;
+}
+.searchFormBox dl.category dd p {
+	margin: 0 16px;
+}
+.searchFormBox dl.categories dt {
+	margin-bottom: 4px;
+}
+.searchFormBox dl.categories dl.category dt {
+	margin: 0;
+	background: url(<?php echo getSkin('colon'); ?>) no-repeat 100% 50%;
+}
+.searchFormBox dl.categories dl.category dt span {
+	margin-left: 8px;
+	font-weight: bold;
+}
+.searchFormBox dl.categories dl.category dd {
+	margin-bottom: 6px;
+}
+.searchFormBox dl.categories dl.category dd p {
+	margin: 0 8px;
+}
+
+/*==============================================================================
+ * 4. infoBox（案内ボックス）
+ *----------------------------------------------------------------------------*/
+#Body .infoBox {
+	margin: 0 20px 10px;
+}
+.infoBox .parts {
+	zoom: 1;
+	overflow: hidden;
+	position: relative;
+}
+.infoBox p {
+	overflow: hidden;
+	margin-right: 16em;
+	padding: 5px;
+	border-right: 1px solid #<?php echo $colors[1]; ?>;
+	background: #<?php echo $colors[6]; ?>;
+}
+.infoBox ul.moreInfo {
+	position: absolute;
+	bottom: 3px;
+	right: 0;
+	width: 15.5em;
+}
+
+/*==============================================================================
  * 12. homeInfoBox（ホームインフォメーションボックス）
  *----------------------------------------------------------------------------*/
 #Body .homeInfoBox {
+	margin-left: 5px;
+	padding-left: 102px;
 	border: 1px solid #<?php echo $colors[1]; ?>;
+	background: #<?php echo $colors[7]; ?> url(<?php echo getSkin('icon_information'); ?>) no-repeat 5px 50%;
 }
-#Body .homeInfoBox th {
-	width: 105px;
-	padding: 8px 0;
-	border: none;
-	text-align: center;
-	background: #<?php echo $colors[7]; ?>;
+.homeInfoBox div.body {
+	min-height: 1.2em;
+	padding: 5px;
+	border-left: 1px solid #<?php echo $colors[1]; ?>;
+	background: #<?php echo $colors[8]; ?>;
 }
-#Body .homeInfoBox td {
-	padding: 6px;
-	border-width: 0 0 0 1px;
-}
- 
+
 /*==============================================================================
- * 32. weeklyCalendarTable（週間カレンダーテーブル）
+ * 2. descriptionBox（説明ボックス）
  *----------------------------------------------------------------------------*/
+#Body .descriptionBox {
+	margin: 0 20px 10px;
+}
+.descriptionBox p {
+	margin: 12px;
+}
+
+/**=============================================================================
+ * 未確認スタイル
+ *----------------------------------------------------------------------------*/
+/**150 o_regist_prof */
+ul.moreInfo.button li form {
+	display: inline;
+}
+ul.moreInfo.button li form .input_submit {
+	margin: 0 5px;
+}
+
+/**200 ヘッダ、Layout直下でなく#Topボックスで包含 */
+#Container {
+	position: relative;
+}
+#Header {
+	position: relative;
+}
+#LayoutA #Top {
+	padding-left: 5px;
+}
+
+/**498 バナー、フッタ */
+#topBanner {
+	display: block;
+	position: absolute;
+	top: 5px;
+	left: 247px;
+	width: 468px;
+	height: 60px;
+}
+#sideBanner {
+	display: block;
+	position: absolute;
+	top: 0px;
+	left: 720px;
+}
+#Footer {
+	position: relative;
+	width: 720px;
+	height: 21px;
+	background: url(<?php echo getSkin('skin_footer'); ?>) 0 0 no-repeat;
+}
+#Footer p {
+	padding-right: 12px;
+	line-height: 21px;
+	text-align: right;
+}
+
+/**1012 フレンド紹介文リスト */
+.friendIntroList p.text {
+	margin-bottom: 1em;
+}
+
+/** 配色設定 */
+#Body {
+	background: #<?php echo $colors[2]; ?>;
+}
+#Container {
+	background: #<?php echo $colors[3]; ?>;
+}
+div.dparts {
+	background-color: #<?php echo $colors[4]; ?>;
+}
+div.parts {
+	background-color: #<?php echo $colors[8]; ?>;
+}
+#Body .sideNav {
+	background-color: transparent;
+}
+.sideNav .item {
+	background-color: #<?php echo $colors[8]; ?>;
+}
+#Body .linkLine {
+	background-color: transparent;
+}
+#Body .searchFormLine {
+ 	background-color: transparent;
+}
+#Body .buttonLine {
+	background-color: transparent;
+}
+
+/*==============================================================
+ * 32. weeklyCalendarTable（週間カレンダーテーブル）
+ *------------------------------------------------------------*/
 .weeklyCalendarTable p.scheduleForm {
 	margin: 0 auto;
 	padding: 6px 5px;
@@ -1267,47 +1396,12 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 	margin: 6px 0 6px auto;
 }
 
-/*==============================================================================
- * 2. descriptionBox（説明ボックス）
- *----------------------------------------------------------------------------*/
-#Top .descriptionBox {
-	margin: 0 20px 10px;
-}
-.descriptionBox p {
-	margin: 1em 2em;
-}
-
-/*==============================================================================
- * 4. infoBox（案内ボックス）
- *----------------------------------------------------------------------------*/
-#Body .infoBox {
-	margin: 0 20px 10px;
-}
-#Body .infoBox th,
-#Body .infoBox td {
-	padding: 5px;
-	border-top: none;
-}
-.infoBox th {
-	background: #<?php echo $colors[6]; ?>;
-}
-.infoBox td {
-	width: 15em;
-}
-
-/*==============================================================================
+/*==============================================================
  * 36. buttonLine（ボタンライン）
- *----------------------------------------------------------------------------*/
-#Body .buttonLine {
-	background-color: transparent;
-}
+ *------------------------------------------------------------*/
 .buttonLine {
 	text-align: center;
 }
-
-/*==============================================================================
- * 
- *----------------------------------------------------------------------------*/
 
 /*==============================================================================
  * 
