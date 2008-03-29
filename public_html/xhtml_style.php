@@ -227,6 +227,7 @@ div#LayoutB,
 div#LayoutC {
 	zoom: 1;
 	overflow: hidden;
+	overflow: -moz-scrollbars-none;
 }
 /*----------------------------------------------
  * ベースレイアウト
