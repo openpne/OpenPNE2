@@ -8,6 +8,7 @@ require_once './config.inc.php';
 require_once OPENPNE_WEBAPP_DIR . '/init.inc';
 require_once 'smarty_plugins/function.t_img_url_skin.php';
 
+$custom_css = p_common_c_siteadmin4target_pagename('inc_custom_css');
 $old_colors = util_get_color_config();
 $colors = array(
     1 => $old_colors['bg_01'], // (1)線の色
@@ -1590,3 +1591,11 @@ div.parts {
 /*==============================================================================
  * 
  *----------------------------------------------------------------------------*/
+<?php if ($custom_css): ?>
+
+/*==============================================================================
+ * カスタムCSS
+ *----------------------------------------------------------------------------*/
+<?php echo $custom_css; ?>
+
+<?php endif; ?>
