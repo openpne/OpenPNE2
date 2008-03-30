@@ -185,6 +185,9 @@ ul.moreInfo.button li {
 	background: #dadce6 url(<?php echo getSkin('bg_button'); ?>) repeat-x scroll 50% 0;
 	letter-spacing: 0;
 }
+.input_file {
+	background: none;
+}
 /*----------------------------------------------
  * ラジオボタン、セレクトボタン
  *--------------------------------------------*/
@@ -229,6 +232,11 @@ div#LayoutC {
 	overflow: hidden;
 	overflow: -moz-scrollbars-none;
 }
+#Left,
+#Center {
+	overflow: hidden;
+}
+
 /*----------------------------------------------
  * ベースレイアウト
  *--------------------------------------------*/
@@ -770,10 +778,13 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 	text-align: right;
 }
 .formTable div.checkList ul {
+	zoom: 1;
 	overflow: hidden;
+	overflow: -moz-scrollbars-none;
 }
 .formTable div.checkList li {
 	overflow: hidden;
+	overflow: -moz-scrollbars-none;
 	float: left;
 	width: 27%;
 	padding-left: 18px;
@@ -1283,6 +1294,181 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 	margin: 12px;
 }
 
+/*==============================================================================
+ * 27. rankingList（ランキングリスト）
+ *----------------------------------------------------------------------------*/
+.rankingList .partsHeading p {
+	margin: 0;
+}
+#Body .rankingList th:first-child {
+	border-left-width: 1px;
+}
+.rankingList td.photo {
+	width: 120px;
+	text-align: center;
+}
+.rankingList th {
+	width: 75px;
+	padding: 5px;
+}
+.rankingList td {
+	padding: 5px;
+}
+.rankingList td.name {
+	background: #<?php echo $colors[7]; ?>;
+}
+.rankingList td.name a {
+	font-weight: bold;
+}
+.rankingList .ditem {
+	margin: 8px 15px;
+	background: #<?php echo $colors[7]; ?>;
+}
+.rankingList .item {
+	background: #<?php echo $colors[8]; ?>;
+}
+.rankingList .item td.photo {
+	width: 90px;
+}
+
+/*==============================================================================
+ * 35. rankingSideNav（ランキングサイドナビ）
+ *----------------------------------------------------------------------------*/
+.rankingSideNav {
+	width: 150px;
+	margin: 0 auto;
+	border: 8px solid #<?php echo $colors[9]; ?>;
+}
+.rankingSideNav .partsHeading {
+	padding: 2px 4px;
+	border-bottom: 1px solid #<?php echo $colors[1]; ?>;
+	background-image: none;
+	text-align: center;
+}
+.rankingSideNav p {
+	margin: 3px;
+}
+.rankingSideNav p.link {
+	padding: 3px;
+	border: 1px solid #<?php echo $colors[1]; ?>;
+	text-align: right;
+}
+
+
+/*==============================================================================
+ * 24. searchCategoryList（検索項目リスト）
+ *----------------------------------------------------------------------------*/
+.searchCategoryList .partsInfo {
+	padding: 5px;
+	border-bottom: 1px solid #<?php echo $colors[1]; ?>;
+	background: #<?php echo $colors[6]; ?>;
+	text-align: center;
+}
+.searchCategoryList .item {
+	margin: 10px 40px;
+	border: 1px solid #<?php echo $colors[1]; ?>;
+	border-top: none;
+}
+.searchCategoryList span.label {
+	margin: 0 4px 0 8px;
+	padding: 1px 16px 0 0;
+	background: url(<?php echo getSkin('icon_arrow_2'); ?>) no-repeat 100% 0;
+}
+.searchCategoryList dl {
+	border-top: 1px solid #<?php echo $colors[1]; ?>;
+}
+.searchCategoryList dl dt {
+	margin: 8px 0 0;
+}
+.searchCategoryList dl dd {
+	margin: 8px 10px 8px 70px;
+}
+.searchCategoryList dl dd ul {
+	zoom: 1;
+	overflow: hidden;
+	overflow: -moz-scrollbars-none;
+	margin: 4px 0;
+}
+.searchCategoryList dl dd ul li {
+	overflow: hidden;
+	float: left;
+	width: 19%;
+	margin: 0 2px;
+}
+
+/*==============================================================================
+ * 23. manageList（管理リスト）
+ *----------------------------------------------------------------------------*/
+.manageList td {
+	padding: 5px;
+}
+.manageList td.photo {
+	width: 140px;
+	text-align: center;
+}
+.manageList td.delete {
+	width: 120px;
+}
+
+/*==============================================================================
+ * 13. photoUploadFormBox（プロフィール写真アップロードフォームボックス）
+ *----------------------------------------------------------------------------*/
+.photoUploadFormBox table {
+	border-top: 1px solid #<?php echo $colors[1]; ?>;
+}
+#Body .photoUploadFormBox td {
+	padding: 8px 0;
+	border: none;
+	text-align: center;
+}
+.photoUploadFormBox form {
+	float: left;
+	width: 230px;
+}
+.photoUploadFormBox form p {
+	margin: 8px 0;
+	text-align: center;
+}
+.photoUploadFormBox ul {
+	zoom: 1;
+	margin: 8px 0 8px 230px;
+}
+.photoUploadFormBox li {
+	padding-left: 12px;
+	background: url(<?php echo getSkin('marker'); ?>) no-repeat 3px 3px;
+}
+
+/*==============================================================================
+ * 36. buttonLine（ボタンライン）
+ *----------------------------------------------------------------------------*/
+.buttonLine form {
+	text-align: center;
+}
+
+/*==============================================================================
+ * 16. prevNextLinkLine（前次リンクライン）
+ *----------------------------------------------------------------------------*/
+.prevNextLinkLine {
+	zoom: 1;
+	overflow: hidden;
+	overflow: -moz-scrollbars-none;
+}
+.prevNextLinkLine p.prev {
+	float: left;
+	width: 50%;
+	text-align: left;
+}
+.prevNextLinkLine p.next {
+	float: right;
+	width: 50%;
+	text-align: right;
+}
+
+/*==============================================================================
+ * 
+ *----------------------------------------------------------------------------*/
+
+
 /**=============================================================================
  * 未確認スタイル
  *----------------------------------------------------------------------------*/
@@ -1395,13 +1581,6 @@ div.parts {
 .weeklyCalendarTable div.moreInfo ul.moreInfo {
 	width: 11em;
 	margin: 6px 0 6px auto;
-}
-
-/*==============================================================
- * 36. buttonLine（ボタンライン）
- *------------------------------------------------------------*/
-.buttonLine {
-	text-align: center;
 }
 
 /*==============================================================================
