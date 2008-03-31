@@ -6,12 +6,10 @@
 ({if !$is_c_commu_member})
 ({* {{{ infoBox *})
 <div class="dparts infoBox"><div class="parts">
-<table><tr> 
-<th>このコミュニティに参加しますか？</th>
-<td><ul class="moreInfo">
+<p>このコミュニティに参加しますか？</p>
+<ul class="moreInfo">
 <li><a href="({t_url m=pc a=page_c_join_commu})&amp;target_c_commu_id=({$c_commu.c_commu_id})">コミュニティに参加する</a></li>
-</ul></td>
-</tr></table>
+</ul>
 </div></div>
 ({* }}} *})
 ({/if})
