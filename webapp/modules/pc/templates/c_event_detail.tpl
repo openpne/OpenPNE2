@@ -7,12 +7,10 @@
 
 ({* {{{ infoBox *})
 <div class="dparts infoBox"><div class="parts">
-<table><tr>
-<th>このイベントを({$WORD_MY_FRIEND})に教える</th>
-<td><ul class="moreInfo">
+<p>このイベントを({$WORD_MY_FRIEND})に教える</p>
+<ul class="moreInfo">
 <li><a href="({t_url m=pc a=page_c_event_invite})&amp;target_c_commu_topic_id=({$c_topic.c_commu_topic_id})">イベントお知らせメッセージ</a></li>
-</ul></td>
-</tr></table>
+</ul>
 </div></div>
 ({* }}} *})
 
