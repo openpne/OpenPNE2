@@ -4,103 +4,36 @@
 ({capture name="keyword_url"})({$keyword|escape:url|smarty:nodefaults})({/capture})
 
 ({* {{{ searchFormBox *})
-({* #1932 *})<table border="0" cellspacing="0" cellpadding="0" style="width:650px;margin:0px auto;" class="border_07">
-({* #1932 *})<tr>
-({* #1932 *})<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
-({* #1932 *})<td style="width:636px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
-({* #1932 *})<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
-({* #1932 *})</tr>
-({* #1932 *})<tr>
-({* #1932 *})<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
-({* #1932 *})<td class="bg_01" align="center">
-({* #1932 *})<!-- *ここから：トピック検索＞内容* -->
-({* #1932 *})({*ここから：header*})
-({* #1932 *})<!-- ここから：小タイトル -->
-({* #1932 *})<table border="0" cellspacing="0" cellpadding="0" style="width:636px;" class="border_01">
-({* #1932 *})<tr>
-({* #1932 *})<td style="width:36px;" class="bg_06"><img src="({t_img_url_skin filename=content_header_1})" style="width:30px;height:20px;" class="dummy" /></td>
-({* #1932 *})<td style="width:600px;padding:2px 0px;" class="bg_06"><span class="b_b c_00">({if $c_commu_id})[({$c_commu.name})] ({/if})トピック検索</span></td>
-({* #1932 *})</tr>
-({* #1932 *})</table>
-({* #1932 *})<!-- ここまで：小タイトル -->
-({* #1932 *})({*ここまで：header*})
-({* #1932 *})({*ここから：body*})
-({* #1932 *})<!-- ここから：主内容 -->
-({* #1932 *})<div class="border_01 bg_05" align="center">
-({* #1932 *})
-({* #1932 *})<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l" />
-({* #1932 *})
-({* #1932 *})<table border="0" cellspacing="0" cellpadding="0" style="width:562px;margin:0px auto;">
-({* #1932 *})({*********})
-({* #1932 *})<tr>
-({* #1932 *})<td style="width:562px;height:1px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
-({* #1932 *})</tr>
-({* #1932 *})({*********})
-({* #1932 *})<tr>
-({* #1932 *})<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
-({* #1932 *})<td style="width:560px;" class="bg_02" align="left" valign="middle">
-({* #1932 *})<div style="padding:4px 3px;">
-({* #1932 *})
-({* #1932 *})<!-- ここから：主内容＞＞検索 -->
-({* #1932 *})
-({* #1932 *})({t_form_block _method=get m=pc a=page_c_com_topic_find})
-({* #1932 *})
-({* #1932 *})<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l" />
-({* #1932 *})
-({* #1932 *})キーワード<img src="({t_img_url_skin filename=icon_arrow_2})" class="icon" />
-({* #1932 *})
-({* #1932 *})<input type="text" class="text" name="keyword" size="15" value="({$keyword})" />
-({* #1932 *})({if $c_commu_id})
-({* #1932 *})<select name="target_commu">
-({* #1932 *})<option value="in_commu">コミュニティ内</option>
-({* #1932 *})<option value="all">コミュニティ全体</option>
-({* #1932 *})</select>
-({* #1932 *})<input type="hidden" name="c_commu_id" value="({$c_commu_id})" />
-({* #1932 *})({/if})
-({* #1932 *})<input type="submit" class="input_submit" value=" 検 索 " />
-({* #1932 *})<br />
-({* #1932 *})
-({* #1932 *})絞りこみ<img src="({t_img_url_skin filename=icon_arrow_2})" class="icon" />
-({* #1932 *})
-({* #1932 *})<a href="({t_url m=pc a=page_c_com_topic_find})&amp;target_commu=in_commu&amp;c_commu_id=({$c_commu_id})&amp;type=all&amp;keyword=({$smarty.capture.keyword_url|smarty:nodefaults})">すべて</a>
-({* #1932 *})|
-({* #1932 *})<a href="({t_url m=pc a=page_c_com_topic_find})&amp;target_commu=in_commu&amp;c_commu_id=({$c_commu_id})&amp;type=topic&amp;keyword=({$smarty.capture.keyword_url|smarty:nodefaults})">トピック</a>
-({* #1932 *})|
-({* #1932 *})<a href="({t_url m=pc a=page_c_com_topic_find})&amp;target_commu=in_commu&amp;c_commu_id=({$c_commu_id})&amp;type=event&amp;keyword=({$smarty.capture.keyword_url|smarty:nodefaults})">イベント</a>
-({* #1932 *})
-({* #1932 *})({/t_form_block})
-({* #1932 *})
-({* #1932 *})<!-- ここまで：主内容＞＞検索 -->
-({* #1932 *})
-({* #1932 *})</div>
-({* #1932 *})</td>
-({* #1932 *})<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
-({* #1932 *})</tr>
-({* #1932 *})({*********})
-({* #1932 *})<tr>
-({* #1932 *})<td style="height:1px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
-({* #1932 *})</tr>
-({* #1932 *})({*********})
-({* #1932 *})</table>
-({* #1932 *})
-({* #1932 *})<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l" />
-({* #1932 *})
-({* #1932 *})</div>
-({* #1932 *})<!-- ここまで：主内容 -->
-({* #1932 *})({*ここまで：body*})
-({* #1932 *})({*ここから：footer*})
-({* #1932 *})<!-- 無し -->
-({* #1932 *})({*ここまで：footer*})
-({* #1932 *})<!-- *ここまで：トピック検索＞＞内容* -->
-({* #1932 *})</td>
-({* #1932 *})<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
-({* #1932 *})</tr>
-({* #1932 *})<tr>
-({* #1932 *})<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
-({* #1932 *})<td style="width:636px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
-({* #1932 *})<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
-({* #1932 *})</tr>
-({* #1932 *})</table>
+<div class="dparts searchFormBox"><div class="parts">
+<div class="partsHeading"><h3>({if $c_commu_id})[({$c_commu.name})] ({/if})トピック検索</h3></div>
+<div class="item">
+
+({t_form_block _method=get m=pc a=page_c_com_topic_find})
+<p class="form">
+<label for="keyword">キーワード</label>
+<input type="text" class="text" name="keyword" id="keyword" size="15" value="({$keyword})" />
+({if $c_commu_id})
+<select name="target_commu">
+<option value="in_commu">コミュニティ内</option>
+<option value="all">コミュニティ全体</option>
+</select>
+<input type="hidden" name="c_commu_id" value="({$c_commu_id})" />
+({/if})
+<input type="submit" class="input_submit" value="　検 索　" />
+</p>
+
+<p class="form">
+<span class="label">絞りこみ</span>
+<a href="({t_url m=pc a=page_c_com_topic_find})&amp;target_commu=in_commu&amp;c_commu_id=({$c_commu_id})&amp;type=all&amp;keyword=({$smarty.capture.keyword_url|smarty:nodefaults})">すべて</a>
+|
+<a href="({t_url m=pc a=page_c_com_topic_find})&amp;target_commu=in_commu&amp;c_commu_id=({$c_commu_id})&amp;type=topic&amp;keyword=({$smarty.capture.keyword_url|smarty:nodefaults})">トピック</a>
+|
+<a href="({t_url m=pc a=page_c_com_topic_find})&amp;target_commu=in_commu&amp;c_commu_id=({$c_commu_id})&amp;type=event&amp;keyword=({$smarty.capture.keyword_url|smarty:nodefaults})">イベント</a>
+</p>
+({/t_form_block})
+
+</div>
+</div></div>
 ({* }}} *})
 
 ({if $c_commu_topic_search_list})
