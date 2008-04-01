@@ -1,104 +1,31 @@
 <div id="LayoutC">
 <div id="Center">
 
-({* #1932 *})<!-- ******ここから：レビューを書く****** -->
-({* #1932 *})<table border="0" cellspacing="0" cellpadding="0" style="width:650px;margin:0px auto;" class="border_07">
-({* #1932 *})<tr>
-({* #1932 *})<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
-({* #1932 *})<td style="width:636px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
-({* #1932 *})<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
-({* #1932 *})</tr>
-({* #1932 *})<tr>
-({* #1932 *})<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
-({* #1932 *})<td class="bg_05" align="center">
-({* #1932 *})<!-- *ここから：レビューを書く＞内容* -->
-({* #1932 *})({*ここから：header*})
-({* #1932 *})<!-- ここから：小タイトル -->
-({* #1932 *})<table border="0" cellspacing="0" cellpadding="0" style="width:636px;" class="border_01">
-({* #1932 *})<tr>
-({* #1932 *})<td style="width:36px;" class="bg_06"><img src="({t_img_url_skin filename=content_header_1})" style="width:30px;height:20px;" class="dummy" /></td>
-({* #1932 *})<td style="width:598px;padding:2px 0px;" class="bg_06"><span class="b_b c_00">レビューを書く</span></td>
-({* #1932 *})</tr>
-({* #1932 *})</table>
-({* #1932 *})<!-- ここまで：小タイトル -->
-({* #1932 *})({*ここまで：header*})
-({* #1932 *})({*ここから：body*})
-({* #1932 *})<!-- ここから：主内容 -->
-({* #1932 *})<div class="border_01 bg_05">
-({* #1932 *})
-({* #1932 *})<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l" />
-({* #1932 *})
-({* #1932 *})<!-- ここから：主内容＞＞内枠 -->
-({* #1932 *})<table border="0" cellspacing="0" cellpadding="0" style="width:550px;margin:0px auto;" class="border_01">
-({* #1932 *})({*********})
-({* #1932 *})<tr>
-({* #1932 *})<td style="width:548px;height:1px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
-({* #1932 *})</tr>
-({* #1932 *})({*********})
-({* #1932 *})<tr>
-({* #1932 *})<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
-({* #1932 *})<td class="bg_02" align="center" valign="middle">
-({* #1932 *})
-({* #1932 *})<!-- ここから：主内容＞＞内枠＞＞検索説明文 -->
-({* #1932 *})<div style="padding:10px 30px 10px 30px;text-align:left;">
-({* #1932 *})
-({* #1932 *})レビューを書きたい商品を検索します。<br />
-({* #1932 *})キーワードを入力し、該当するカテゴリを選択してください。<br />
-({* #1932 *})
-({* #1932 *})
-({* #1932 *})</div>
-({* #1932 *})<!-- ここまで：主内容＞＞内枠＞＞検索説明文 -->
-({* #1932 *})
-({* #1932 *})
-({* #1932 *})<!-- ここから：主内容＞＞内枠＞＞検索フォーム -->
-({* #1932 *})<div style="padding:10px 0px;text-align:center;">
-({* #1932 *})
-({* #1932 *})({t_form_block m=pc a=page_h_review_add})
-({* #1932 *})<input type="hidden" name="search_flag" value="1" />
-({* #1932 *})キーワード&nbsp;<img src="./skin/dummy.gif" alt="dummy" style="width:14px;height:14px;" class="icon icon_1" />
-({* #1932 *})<input type="text" class="text" name="keyword" size="15" value="({$keyword})" />
-({* #1932 *})&nbsp;カテゴリ&nbsp;<img src="./skin/dummy.gif" alt="dummy" style="width:14px;height:14px;" class="icon icon_1" />
-({* #1932 *})<select name="category_id">
-({* #1932 *})<option value="" selected="selected">選択</option>
-({* #1932 *})({html_options options=$category_disp selected=$category_id})
-({* #1932 *})</select>
-({* #1932 *})&nbsp;<input type="submit" class="input_submit" name="button" value="　検 索　" />
-({* #1932 *})({/t_form_block})
-({* #1932 *})
-({* #1932 *})</div>
-({* #1932 *})<!-- ここまで：主内容＞＞内枠＞＞検索フォーム -->
-({* #1932 *})
-({* #1932 *})</td>
-({* #1932 *})<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
-({* #1932 *})</tr>
-({* #1932 *})({*********})
-({* #1932 *})<tr>
-({* #1932 *})<td style="height:1px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
-({* #1932 *})</tr>
-({* #1932 *})({*********})
-({* #1932 *})</table>
-({* #1932 *})<!-- ここまで：主内容＞＞内枠 -->
-({* #1932 *})
-({* #1932 *})<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l" />
-({* #1932 *})
-({* #1932 *})</div>
-({* #1932 *})<!-- ここまで：主内容 -->
-({* #1932 *})({*ここまで：body*})
-({* #1932 *})({*ここから：footer*})
-({* #1932 *})<!-- 無し -->
-({* #1932 *})({*ここまで：footer*})
-({* #1932 *})<!-- *ここまで：レビューを書く＞＞内容* -->
-({* #1932 *})</td>
-({* #1932 *})<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
-({* #1932 *})</tr>
-({* #1932 *})<tr>
-({* #1932 *})<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
-({* #1932 *})<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
-({* #1932 *})<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
-({* #1932 *})</tr>
-({* #1932 *})</table>
-({* #1932 *})<!-- ******ここまで：レビューを書く****** -->
-({* unknown *})({if $search_result})
+({* {{{ searchFormBox *})
+<div class="dparts searchFormBox"><div class="parts">
+<div class="partsHeading"><h3>レビューを書く</h3></div>
+<div class="item">
+
+<p class="desc">レビューを書きたい商品を検索します。<br />
+キーワードを入力し、該当するカテゴリを選択してください。</p>
+
+({t_form_block m=pc a=page_h_review_add})
+<input type="hidden" name="search_flag" value="1" />
+<p class="form">
+<label for="keyword">キーワード</label> <input type="text" class="text" name="keyword" id="keyword" value="({$keyword})" size="15" />
+<label for="category_id">カテゴリ</label> <select name="category_id" id="category_id">
+<option value="" selected="selected">選択</option>
+({html_options options=$category_disp selected=$category_id})
+</select>
+<input type="submit" class="input_submit" name="button" value="　検 索　" />
+</p>
+({/t_form_block})
+
+</div>
+</div></div>
+({* }}} *})
+
+({if $search_result})
 ({* #1949 *})<!-- ******ここから：検索結果****** -->
 ({* #1949 *})<table border="0" cellspacing="0" cellpadding="0" style="width:650px;margin:0px auto;" class="border_07">
 ({* #1949 *})<tr>
