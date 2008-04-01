@@ -411,7 +411,7 @@ ini_set('mbstring.substitute_character', 'none');
 mb_regex_encoding('UTF-8');
 
 // Validatorで全角スペースを削除するかどうか
-// mb_ereg_replace でエラーが出る場合は false にしてください
+// Validatorでエラーが出る場合は false にしてください
 define('OPENPNE_TRIM_DOUBLEBYTE_SPACE', true);
 
 ///
