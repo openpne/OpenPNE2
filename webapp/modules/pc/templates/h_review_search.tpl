@@ -1,179 +1,52 @@
 <div id="LayoutC">
 <div id="Center">
 
-({* #1953 *})<!-- ******ここから：レビュー検索・並び替え****** -->
-({* #1953 *})<table border="0" cellspacing="0" cellpadding="0" style="width:650px;margin:0px auto;" class="border_07">
-({* #1953 *})<tr>
-({* #1953 *})<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
-({* #1953 *})<td style="width:636px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
-({* #1953 *})<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
-({* #1953 *})</tr>
-({* #1953 *})<tr>
-({* #1953 *})<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
-({* #1953 *})<td class="bg_05" align="center">
-({* #1953 *})({*ここから：header*})
-({* #1953 *})<!-- ここから：小タイトル -->
-({* #1953 *})<table border="0" cellspacing="0" cellpadding="0" style="width:634px;" class="border_01">
-({* #1953 *})<tr>
-({* #1953 *})<td style="width:36px;" class="bg_06"><img src="({t_img_url_skin filename=content_header_1})" style="width:30px;height:20px;" class="dummy" /></td>
-({* #1953 *})<td style="width:598px;padding:2px 0px;" class="bg_06"><span class="b_b c_00">
-({* #1953 *})レビュー検索・並び替え
-({* #1953 *})</span></td>
-({* #1953 *})</tr>
-({* #1953 *})</table>
-({* #1953 *})<!-- ここまで：小タイトル -->
-({* #1953 *})({*ここまで：header*})
-({* #1953 *})({*ここから：body*})
-({* #1953 *})<!-- ここから：主内容 -->
-({* #1953 *})<div class="border_01 bg_05">
-({* #1953 *})
-({* #1953 *})<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l" />
-({* #1953 *})
-({* #1953 *})<table border="0" cellspacing="0" cellpadding="0" style="width:550px;margin:0px auto;" class="border_01">
-({* #1953 *})({*********})
-({* #1953 *})<tr>
-({* #1953 *})<td style="width:548px;height:1px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
-({* #1953 *})</tr>
-({* #1953 *})({*********})
-({* #1953 *})<tr>
-({* #1953 *})<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
-({* #1953 *})<td class="bg_02" valign="middle">
-({* #1953 *})
-({* #1953 *})({t_form_block m=pc a=page_h_review_search})
-({* #1953 *})<table border="0" cellspacing="0" cellpadding="3" style="width:546px;">
-({* #1953 *})<!-- ここから：主内容＞再検索フォーム -->
-({* #1953 *})<tr>
-({* #1953 *})<td style="width:100px;" align="right">
-({* #1953 *})
-({* #1953 *})<div class="padding_s">
-({* #1953 *})
-({* #1953 *})並び替え&nbsp;<img src="({t_img_url_skin filename=icon_arrow_2})" class="icon" />
-({* #1953 *})
-({* #1953 *})</div>
-({* #1953 *})
-({* #1953 *})</td>
-({* #1953 *})<td style="width:440px;">
-({* #1953 *})
-({* #1953 *})<div class="padding_s">
-({* #1953 *})
-({* #1953 *})<a href="({t_url m=pc a=page_h_review_search})&amp;keyword=({$keyword|escape:url|smarty:nodefaults})&amp;category=({$category})&amp;orderby=r_num">登録数順</a>
-({* #1953 *})|
-({* #1953 *})<a href="({t_url m=pc a=page_h_review_search})&amp;keyword=({$keyword|escape:url|smarty:nodefaults})&amp;category=({$category})&amp;orderby=r_datetime">作成日順</a>
-({* #1953 *})
-({* #1953 *})</div>
-({* #1953 *})
-({* #1953 *})</td>
-({* #1953 *})</tr>
-({* #1953 *})({*********})
-({* #1953 *})<tr>
-({* #1953 *})<td valign="top" align="right">
-({* #1953 *})
-({* #1953 *})<div class="padding_s">
-({* #1953 *})
-({* #1953 *})キーワード&nbsp;<img src="({t_img_url_skin filename=icon_arrow_2})" class="icon" />
-({* #1953 *})
-({* #1953 *})</div>
-({* #1953 *})
-({* #1953 *})</td>
-({* #1953 *})<td valign="top">
-({* #1953 *})
-({* #1953 *})<div class="padding_s">
-({* #1953 *})
-({* #1953 *})<input type="text" class="text" name="keyword" value="({$keyword})" size="15" />&nbsp;
-({* #1953 *})&nbsp;カテゴリ&nbsp;<img src="({t_img_url_skin filename=icon_arrow_2})" class="icon" />
-({* #1953 *})<select name="category">
-({* #1953 *})<option value="">指定なし</option>
-({* #1953 *})({html_options options=$category_disp selected=$category})
-({* #1953 *})</select>
-({* #1953 *})<input type="submit" class="input_submit" value="　検 索　" />
-({* #1953 *})
-({* #1953 *})</div>
-({* #1953 *})
-({* #1953 *})</td>
-({* #1953 *})</tr>
-({* #1953 *})<!-- ここまで：主内容＞再検索フォーム -->
-({* #1953 *})({*********})
-({* #1953 *})<!-- ここから：主内容＞レビューを作成するリンク -->
-({* #1953 *})<tr>
-({* #1953 *})<td align="center" valign="middle" colspan="2">
-({* #1953 *})
-({* #1953 *})<div class="padding_s">
-({* #1953 *})
-({* #1953 *})<img src="./skin/dummy.gif" alt="dummy" class="icon arrow_1" />
-({* #1953 *})<a href="({t_url m=pc a=page_h_review_add})">レビューを作成する</a>
-({* #1953 *})
-({* #1953 *})</div>
-({* #1953 *})
-({* #1953 *})</td>
-({* #1953 *})</tr>
-({* #1953 *})<!-- ここまで：主内容＞レビューを作成するリンク -->
-({* #1953 *})({*********})
-({* #1953 *})<tr>
-({* #1953 *})<td align="center" valign="middle" colspan="2">
-({* #1953 *})
-({* #1953 *})<hr />
-({* #1953 *})
-({* #1953 *})</td>
-({* #1953 *})</tr>
-({* #1953 *})({********})
-({* #1953 *})<!-- ここから：主内容＞カテゴリリンク -->
-({* #1953 *})<tr>
-({* #1953 *})<td valign="top" align="right">
-({* #1953 *})
-({* #1953 *})<div class="padding_s">
-({* #1953 *})
-({* #1953 *})カテゴリ&nbsp;<img src="({t_img_url_skin filename=icon_arrow_2})" class="icon" />
-({* #1953 *})
-({* #1953 *})</div>
-({* #1953 *})
-({* #1953 *})</td>
-({* #1953 *})<td valign="top">
-({* #1953 *})
-({* #1953 *})<div class="padding_s">
-({* #1953 *})
-({* #1953 *})({foreach from=$category_disp key=key item=item})
-({* #1953 *})({if $key!=1}) - ({/if})
-({* #1953 *})<a href="({t_url m=pc a=page_h_review_search})&amp;category=({$key})">({$item})</a>
-({* #1953 *})({/foreach})
-({* #1953 *})
-({* #1953 *})</div>
-({* #1953 *})
-({* #1953 *})</td>
-({* #1953 *})</tr>
-({* #1953 *})<!-- ここまで：主内容＞カテゴリリンク -->
-({* #1953 *})({********})
-({* #1953 *})</table>
-({* #1953 *})({/t_form_block})
-({* #1953 *})
-({* #1953 *})</td>
-({* #1953 *})<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
-({* #1953 *})</tr>
-({* #1953 *})({*********})
-({* #1953 *})<tr>
-({* #1953 *})<td style="height:1px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" alt="dot" class="dot" /></td>
-({* #1953 *})</tr>
-({* #1953 *})({*********})
-({* #1953 *})</table>
-({* #1953 *})
-({* #1953 *})<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l" />
-({* #1953 *})
-({* #1953 *})</div>
-({* #1953 *})<!-- ここまで：主内容 -->
-({* #1953 *})({*ここまで：body*})
-({* #1953 *})({*ここから：footer*})
-({* #1953 *})<!-- 無し -->
-({* #1953 *})({*ここまで：footer*})
-({* #1953 *})</td>
-({* #1953 *})<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
-({* #1953 *})</tr>
-({* #1953 *})<tr>
-({* #1953 *})<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
-({* #1953 *})<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
-({* #1953 *})<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
-({* #1953 *})</tr>
-({* #1953 *})</table>
-({* #1953 *})<!-- ******ここまで：レビュー検索・並び替え****** -->
-({* unknown *})({* if $result *})
+({* {{{ searchFormBox *})
+<div class="dparts searchFormBox"><div class="parts">
+<div class="partsHeading"><h3>レビュー検索・並び替え</h3></div>
+<div class="item">
+
+({t_form_block m=pc a=page_h_review_search})
+<p class="form">
+<span class="label">並び替え</span>
+<a href="({t_url m=pc a=page_h_review_search})&amp;keyword=({$keyword|escape:url|smarty:nodefaults})&amp;category=({$category})&amp;orderby=r_num">登録数順</a>
+|
+<a href="({t_url m=pc a=page_h_review_search})&amp;keyword=({$keyword|escape:url|smarty:nodefaults})&amp;category=({$category})&amp;orderby=r_datetime">作成日順</a>
+</p>
+
+<p class="form">
+<label for="keyword">キーワード</label>
+<input type="text" class="text" name="keyword" id="keyword" value="({$keyword})" size="15" />
+<label for="category">カテゴリ</label>
+<select name="category" id="category">
+<option value="">指定なし</option>
+({html_options options=$category_disp selected=$category})
+</select>
+<input type="submit" class="input_submit" value=" 検 索 " />
+</p>
+({/t_form_block})
+
+<ul class="moreInfo">
+<li><a href="({t_url m=pc a=page_h_review_add})">レビューを作成する</a></li>
+</ul>
+
+<div class="block">
+<dl class="category">
+<dt><span class="label">カテゴリ</span></dt>
+<dd><p>
+({foreach from=$category_disp key=key item=item})
+({if $key!=1}) - ({/if})
+<a href="({t_url m=pc a=page_h_review_search})&amp;category=({$key})">({$item})</a>
+({/foreach})
+</p></dd>
+</dl>
+</div>
+
+</div>
+</div></div>
+({* }}} *})
+
+({* if $result *})
 ({* #1949 *})<!-- ******ここから：検索結果****** -->
 ({* #1949 *})<table border="0" cellspacing="0" cellpadding="0" style="width:650px;margin:0px auto;" class="border_07">
 ({* #1949 *})<tr>
