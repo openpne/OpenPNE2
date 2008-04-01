@@ -2,28 +2,25 @@
 <div id="Center">
 
 ({* {{{ searchFormBox *})
-({* #1932 *})<div class="dparts searchFormBox"><div class="parts">
-({* #1932 *})<div class="partsHeading"><h3>日記検索</h3></div>
-({* #1932 *})<table>
-({* #1932 *})<tr>
-({* #1932 *})<td style="width:560px;" class="bg_02" align="left" valign="middle">
-({* #1932 *})<div style="padding:6px;">
-({* #1932 *})({t_form_block _method=get m=pc a=page_h_diary_list_all})
-({* #1932 *})キーワード <img src="({t_img_url_skin filename=icon_arrow_2})" class="icon" alt="" />
-({* #1932 *})<input type="text" class="text" name="keyword" size="15" value="({$keyword})" />
-({* #1932 *})<input type="submit" class="input_submit" value=" 検 索 " />
-({* #1932 *})　<a href="({t_url m=pc a=page_h_com_find_all})&amp;keyword=({$keyword|escape:url|smarty:nodefaults})">コミュニティ検索</a>
-({* #1932 *})({if $smarty.const.USE_EXTRA_SERVICE})
-({* #1932 *})|
-({* #1932 *})<a href="http://www.google.com/search?hl=ja&amp;lr=lang_ja&amp;q=({$keyword|escape:url|smarty:nodefaults})" target="_blank">ウェブ検索</a>
-({* #1932 *})({/if})
-({* #1932 *})<p>※タイトル、本文より検索をおこないます。スペースで区切ると複数キーワードでの検索ができます。</p>
-({* #1932 *})({/t_form_block})
-({* #1932 *})</div>
-({* #1932 *})</td>
-({* #1932 *})</tr>
-({* #1932 *})</table>
-({* #1932 *})</div></div>
+<div class="dparts searchFormBox"><div class="parts">
+<div class="partsHeading"><h3>日記検索</h3></div>
+
+({t_form_block _method=get m=pc a=page_h_diary_list_all})
+<input type="hidden" name="m" value="pc" />
+<input type="hidden" name="a" value="page_h_diary_list_all" />
+<p class="form">
+<label for="keyword">キーワード</label> <input type="text" class="input_text" name="keyword" id="keyword" size="15" value="({$keyword})" />
+<input type="submit" class="input_submit" value=" 検 索 " />
+<a href="({t_url m=pc a=page_h_com_find_all})&amp;keyword=({$keyword|escape:url|smarty:nodefaults})">コミュニティ検索</a>
+({if $smarty.const.USE_EXTRA_SERVICE})
+|
+<a href="http://www.google.com/search?hl=ja&amp;lr=lang_ja&amp;q=({$keyword|escape:url|smarty:nodefaults})" target="_blank">ウェブ検索</a>
+({/if})
+</p>
+<p class="note">※タイトル、本文より検索をおこないます。スペースで区切ると複数キーワードでの検索ができます。</p>
+({/t_form_block})
+
+</div></div>
 ({* }}} *})
 
 ({if $c_diary_search_list_count})
