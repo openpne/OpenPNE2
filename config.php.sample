@@ -414,7 +414,7 @@ mb_substitute_character("long");
 mb_substitute_character(0x3013);
 
 // Validatorで全角スペースを削除するかどうか
-// mb_ereg_replace でエラーが出る場合は false にしてください
+// Validatorでエラーが出る場合は false にしてください
 define('OPENPNE_TRIM_DOUBLEBYTE_SPACE', true);
 
 ///
