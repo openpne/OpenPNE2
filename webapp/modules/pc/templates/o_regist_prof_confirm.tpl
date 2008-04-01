@@ -94,39 +94,39 @@
 <tr>
 <th>({$profile.caption})({if $profile.is_required}) <strong>※</strong>({/if})</th>
 <td>
-({* #1952 *})({if $prof.profile[$profile.name].value})
-({* #1952 *})
-({* #1952 *})({if $profile.form_type == 'textarea'})
-({* #1952 *})    ({$prof.profile[$profile.name].value|nl2br|t_url2cmd:'profile'|t_cmd:'profile'})
-({* #1952 *})({elseif $profile.form_type == 'checkbox'})
-({* #1952 *})    ({$prof.profile[$profile.name].value|@t_implode:", "})
-({* #1952 *})({else})
-({* #1952 *})    ({$prof.profile[$profile.name].value})
-({* #1952 *})({/if})
-({* #1952 *})
-({* #1952 *})({if $prof.profile[$profile.name].public_flag == 'friend'})
-({* #1952 *})（({$WORD_MY_FRIEND})まで公開）
-({* #1952 *})({elseif $prof.profile[$profile.name].public_flag == 'private'})
-({* #1952 *})（公開しない）
-({* #1952 *})({/if})
-({* #1952 *})
-({* #1952 *})({/if})
+({if $prof.profile[$profile.name].value})
+
+({if $profile.form_type == 'textarea'})
+    ({$prof.profile[$profile.name].value|nl2br|t_url2cmd:'profile'|t_cmd:'profile'})
+({elseif $profile.form_type == 'checkbox'})
+    ({$prof.profile[$profile.name].value|@t_implode:", "})
+({else})
+    ({$prof.profile[$profile.name].value})
+({/if})
+
+({if $prof.profile[$profile.name].public_flag == 'friend'})
+（({$WORD_MY_FRIEND})まで公開）
+({elseif $prof.profile[$profile.name].public_flag == 'private'})
+（公開しない）
+({/if})
+
+({/if})
 </td>
 </tr>
 ({/if})
 ({/foreach})
-({* #1952 *})({if !$_cnt_nick && !$_cnt_birth})
-({* #1952 *})({if $smarty.const.SORT_ORDER_NICK > $smarty.const.SORT_ORDER_BIRTH})
-({* #1952 *})({$smarty.capture.birth|smarty:nodefaults})
-({* #1952 *})({$smarty.capture.nick|smarty:nodefaults})
-({* #1952 *})({else})
-({* #1952 *})({$smarty.capture.nick|smarty:nodefaults})
-({* #1952 *})({$smarty.capture.birth|smarty:nodefaults})
-({* #1952 *})({/if})
-({* #1952 *})({else})
-({* #1952 *})({if !$_cnt_nick})({$smarty.capture.nick|smarty:nodefaults})({/if})
-({* #1952 *})({if !$_cnt_birth})({$smarty.capture.birth|smarty:nodefaults})({/if})
-({* #1952 *})({/if})
+({if !$_cnt_nick && !$_cnt_birth})
+({if $smarty.const.SORT_ORDER_NICK > $smarty.const.SORT_ORDER_BIRTH})
+({$smarty.capture.birth|smarty:nodefaults})
+({$smarty.capture.nick|smarty:nodefaults})
+({else})
+({$smarty.capture.nick|smarty:nodefaults})
+({$smarty.capture.birth|smarty:nodefaults})
+({/if})
+({else})
+({if !$_cnt_nick})({$smarty.capture.nick|smarty:nodefaults})({/if})
+({if !$_cnt_birth})({$smarty.capture.birth|smarty:nodefaults})({/if})
+({/if})
 <tr>
 <th>PCメールアドレス <strong>※</strong></th>
 <td>({$pc_address})</td>
