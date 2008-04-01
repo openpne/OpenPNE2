@@ -1,19 +1,15 @@
 <div id="LayoutC">
 <div id="Center">
 
-({* #1924 *})<!-- ******ここから：リード****** -->
-({* #1924 *})<div align="left" style="width:600px;margin:0px auto;" class="border_01 bg_02">
-({* #1924 *})
-({* #1924 *})<div style="padding: 10px ;">
-({* #1924 *})
-({* #1924 *})<span class="b_b">クリップ機能で自分のページに保存することができます。</span><br />
-({* #1924 *})<img src="./skin/dummy.gif" alt="dummy" class="icon arrow_1" />
-({* #1924 *})<a href="({t_url m=pc a=page_h_review_clip_add})&amp;c_review_id=({$c_review.c_review_id})">クリップに追加する</a>
-({* #1924 *})
-({* #1924 *})</div>
-({* #1924 *})
-({* #1924 *})</div>
-({* #1924 *})<!-- ******ここまで：リード****** -->
+({* {{{ infoBox *})
+<div class="dparts infoBox"><div class="parts">
+<p>クリップ機能で自分のページに保存することができます。</p>
+<ul class="moreInfo">
+<li><a href="({t_url m=pc a=page_h_review_clip_add})&amp;c_review_id=({$c_review.c_review_id})">クリップに追加する</a></li>
+</ul>
+</div></div>
+({* }}} *})
+
 ({* #1949 *})<!-- ******ここから：この商品の概要****** -->
 ({* #1949 *})<table border="0" cellspacing="0" cellpadding="0" style="width:650px;margin:0px auto;" class="border_07">
 ({* #1949 *})<tr>
