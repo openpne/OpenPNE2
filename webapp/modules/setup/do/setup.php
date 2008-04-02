@@ -15,7 +15,7 @@ class setup_do_setup extends OpenPNE_Action
     function execute($requests)
     {
         $errors = array();
-        if (OPENPNE_AUTH_MODE != 'slavepne' && $requests['password'] != $requests['password2']) {
+        if (OPENPNE_AUTH_MODE == 'email' && $requests['password'] != $requests['password2']) {
             $errors[] = 'パスワードが一致していません';
         }
         if ($requests['admin_password'] != $requests['admin_password2']) {
@@ -64,7 +64,7 @@ class setup_do_setup extends OpenPNE_Action
         );
         db_insert('c_admin_user', $data);
         
-        if (OPENPNE_AUTH_MODE == 'slavepne') {
+        if (OPENPNE_AUTH_MODE != 'email') {
             db_member_insert_username(1, $requests['username']);
         }
 
