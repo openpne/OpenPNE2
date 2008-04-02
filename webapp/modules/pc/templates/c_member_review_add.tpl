@@ -1,20 +1,14 @@
 <div id="LayoutC">
 <div id="Center">
 
-({* #1926 *})<!-- ******ここから：メッセージ****** -->
-({* #1926 *})<div id="message" class="border_07 bg_02" style="width:600px;">
-({* #1926 *})
-({* #1926 *})<div class="padding_w_m">
-({* #1926 *})
-({* #1926 *})<span class="b_b">掲載したいレビューにチェックを入れて「掲載」をクリックしてください。
-({* #1926 *})掲載したいレビューがない場合は  <a href="({t_url m=pc a=page_h_review_add})">こちら</a> より作成してください
-({* #1926 *})</span>
-({* #1926 *})
-({* #1926 *})</div>
-({* #1926 *})
-({* #1926 *})</div>
-({* #1926 *})<!-- ******ここまで：メッセージ****** -->
-({* unknown *})({if $c_review_list})
+({* {{{ descriptionBox *})
+<div class="dparts descriptionBox"><div class="parts">
+<p>掲載したいレビューにチェックを入れて「掲載」をクリックしてください。<br />
+掲載したいレビューがない場合は  <a href="({t_url m=pc a=page_h_review_add})">こちら</a> より作成してください</p>
+</div></div>
+({* }}} *})
+
+({if $c_review_list})
 ({* #1949 *})<!-- ******ここから：あなたのレビュー一覧****** -->
 ({* #1949 *})({t_form_block m=pc a=page_c_member_review_add_confirm})
 ({* #1949 *})<input type="hidden" name="target_c_commu_id" value="({$c_commu.c_commu_id})" />
@@ -359,7 +353,8 @@
 ({* #1949 *})
 ({* #1949 *})({/t_form_block})
 ({* #1949 *})<!-- ******ここまで：あなたのレビュー一覧****** -->
-({* unknown *})({/if})
+({/if})
+
 ({* #1939 *})<!-- ******ここから：コミュニティトップへ****** -->
 ({* #1939 *})<div class="content_footer" id="link_community_top" align="center">
 ({* #1939 *})
