@@ -55,12 +55,10 @@
 ({if $ktai_address})
 <input type="hidden" name="username" value="({$ktai_address})">
 ({else})
-({if $smarty.const.OPENPNE_AUTH_MODE == 'slavepne'})
-<font color="#({$ktai_color_config.bg_02})">★</font>ﾒﾝﾊﾞｰID<br>
-({elseif $smarty.const.OPENPNE_AUTH_MODE == 'pneid'})
-<font color="#({$ktai_color_config.bg_02})">★</font>ﾛｸﾞｲﾝID<br>
-({else})
+({if $smarty.const.OPENPNE_AUTH_MODE == 'email'})
 <font color="#({$ktai_color_config.bg_02})">★</font>携帯ﾒｰﾙｱﾄﾞﾚｽ<br>
+({else})
+<font color="#({$ktai_color_config.bg_02})">★</font>ﾛｸﾞｲﾝID<br>
 ({/if})
 <textarea name="username" rows="1" istyle="3" mode="alphabet"></textarea><br>
 ({/if})
