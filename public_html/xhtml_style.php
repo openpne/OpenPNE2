@@ -594,6 +594,9 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 /*==============================================================================
  * 18. searchResultList（検索結果リスト）
  *----------------------------------------------------------------------------*/
+.searchResultList .partsInfo {
+	background: #<?php echo $colors[6]; ?>;
+}
 .searchResultList .ditem {
 	margin: 8px 34px;
 }
@@ -604,6 +607,7 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 .searchResultList td.photo {
 	width: 90px;
 	padding: 0;
+	border-left: none;
 	text-align: center;
 }
 .searchResultList th, .searchResultList td {
@@ -615,21 +619,36 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 #Body .searchResultList th:first-child {
 	border-left-width: 1px;
 }
-.searchResultList td.operation {
+.searchResultList tr.operation th {
+	padding-top: 0;
+	padding-bottom: 0;
+}
+.searchResultList tr.operation td {
 	padding: 0;
-	background: url(<?php echo getSkin('bg_border'); ?>) repeat-y 120px 0;
 }
-.searchResultList span.text {
-	position: absolute;
-	padding: 2px 0 0 5px;
+.searchResultList tr.operation span.text {
+	float: left;
+	display: block;
+	width: 110px;
+	margin-top: 5px;
+	padding: 0 5px;
 }
-.searchResultList span.moreInfo {
+.searchResultList tr.operation span.moreInfo{
+	zoom: 1;
 	display: block;
 	margin-left: 120px;
+	padding: 4px 0 3px;
+	border-left: 1px solid #<?php echo $colors[1]; ?>;
 	text-align: center;
 }
-.searchResultList span.moreInfo img {
-	vertical-align: middle;
+.searchResultList div.operation {
+	text-align: center;
+}
+.searchResultList tr.operation span.moreInfo img,
+.searchResultList div.operation form,
+.searchResultList div.operation fieldset {
+	display: inline;
+	vertical-align: top;
 }
 
 /*==============================================================================
@@ -758,8 +777,9 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 .formTable th, .formTable td {
 	padding: 5px;
 }
-.formTable th {
+#Body .formTable th {
 	width: 140px;
+	border-left: none;
 }
 #LayoutB #Center .formTable th {
 	width: 80px;
@@ -1043,8 +1063,9 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 .friendIntroList td {
 	padding: 14px;
 }
-.friendIntroList th {
+#Body .friendIntroList th {
 	width: 120px;
+	border-left: none;
 	text-align: center;
 }
 .friendIntroList div.moreInfo ul.moreInfo {
@@ -1405,6 +1426,7 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 }
 .manageList td.photo {
 	width: 140px;
+	border-left: none;
 	text-align: center;
 }
 .manageList td.delete {
@@ -1466,9 +1488,185 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 }
 
 /*==============================================================================
+ * 37. messageDetailBox（メッセージ詳細ボックス）
+ *----------------------------------------------------------------------------*/
+#Body .messageDetailBox th:first-child {
+	border-left-width: 1px;
+}
+.messageDetailBox th,
+.messageDetailBox td {
+	padding: 5px;
+}
+.messageDetailBox td.photo {
+	width: 110px;
+	text-align: center;
+}
+.messageDetailBox th {
+	width: 54px;
+	padding-left: 0;
+	padding-right: 16px;
+	background: url(<?php echo getSkin('colon'); ?>) no-repeat 96% 50%;
+	text-align: right;
+}
+#Body .messageDetailBox td {
+	border-left: none;
+}
+.messageDetailBox ul.photo {
+	margin: 10px;
+	text-align: center;
+}
+.messageDetailBox p.text {
+	margin: 10px 60px;;
+}
+.messageDetailBox ul.photo li {
+	display: inline;
+	margin-left: 6px;
+}
+.messageDetailBox div.operation {
+	zoom: 1;
+	overflow: hidden;
+	overflow: -moz-scrollbars-none;
+}
+.messageDetailBox form.delete {
+	float: left;
+	width: 50%;
+	text-align: left;
+}
+.messageDetailBox form.send {
+	float: right;
+	width: 50%;
+	text-align: right;
+}
+.messageDetailBox form ul.moreInfo {
+	display: inline;
+}
+
+/*==============================================================================
+ * 19. commuReviewList（コミュニティレビューリスト）
+ *----------------------------------------------------------------------------*/
+#Body .commuReviewList .parts {
+	border-bottom: none;
+}
+.commuReviewList .pagerRelative {
+	border-bottom: 1px solid #<?php echo $colors[1]; ?>;
+}
+.commuReviewList .ditem {
+	margin: 16px 34px;
+	background: #<?php echo $colors[7]; ?>;
+}
+.commuReviewList .item {
+	background: #<?php echo $colors[8]; ?>;
+}
+.commuReviewList dl {
+	zoom: 1;
+	overflow: hidden;
+	overflow: -moz-scrollbars-none;
+	border-top: 1px solid #<?php echo $colors[1]; ?>;
+}
+.commuReviewList dl dt {
+	float:left;
+	width: 180px;
+	padding: 5px;
+	text-align: center;
+}
+.commuReviewList dl dt span {
+	display: block;
+	margin-top: 3px;
+}
+.commuReviewList dl dd {
+	zoom: 1;
+	margin-left: 190px;
+	border-left: 1px solid #<?php echo $colors[1]; ?>;
+}
+.commuReviewList dl dd table{
+	height: 192px;
+}
+.commuReviewList dl dd th,
+.commuReviewList dl dd td {
+	padding: 5px;
+}
+.commuReviewList dl tr.title th,
+.commuReviewList dl dd tr.title td {
+	border-top: none;
+}
+.commuReviewList dl dd th {
+	width: 60px;
+	border-left: none;
+	text-align: center;
+}
+.commuReviewList dl dd tr.title td {
+	font-weight: bold;
+}
+.commuReviewList dl dd tr.footer td {
+	border-left: none;
+	text-align: right;
+}
+
+/*==============================================================================
+ * 20. reviewList（レビューリスト）
+ *----------------------------------------------------------------------------*/
+.reviewList dl {
+	zoom: 1;
+	overflow: hidden;
+	overflow: -moz-scrollbars-none;
+	border-top: 1px solid #<?php echo $colors[1]; ?>;
+}
+.reviewList dl dt {
+	float:left;
+	width: 170px;
+	padding: 5px;
+	text-align: center;
+}
+.reviewList dl dt span {
+	display: block;
+	margin: 3px 0;
+}
+.reviewList dl dd {
+	zoom: 1;
+	margin-left: 180px;
+	border-left: 1px solid #<?php echo $colors[1]; ?>;
+}
+.reviewList dl dd table {
+	height: 216px;
+}
+.reviewList dl dd th,
+.reviewList dl dd td {
+	padding: 5px;
+}
+.reviewList dl tr.title th,
+.reviewList dl dd tr.title td {
+	border-top: none;
+}
+.reviewList dl dd th {
+	width: 100px;
+	border-left: none;
+	text-align: center;
+}
+.reviewList dl dd tr.title td {
+	font-weight: bold;
+}
+.reviewList dl dd td p.operation {
+	text-align: right;
+}
+.reviewList dl dd tr.footer td {
+	border-left: none;
+	text-align: right;
+}
+.reviewList div.operation {
+	padding: 10px 0;
+}
+
+/*==============================================================================
  * 
  *----------------------------------------------------------------------------*/
 
+/*==============================================================================
+ * 
+ *----------------------------------------------------------------------------*/
+
+/*==============================================================================
+ * 
+ *----------------------------------------------------------------------------*/
 
 /**=============================================================================
  * 未確認スタイル
