@@ -44,11 +44,7 @@
 ({if $smarty.const.OPENPNE_AUTH_MODE != 'email'})
 <tr>
 <th>
-({if $smarty.const.OPENPNE_AUTH_MODE == 'slavepne'})
-ユーザID
-({elseif $smarty.const.OPENPNE_AUTH_MODE == 'pneid'})
 ログインID
-({/if})
 </th>
 <td><input type="text" name="username" value="({$requests.username})" size="30"></td>
 </tr>
