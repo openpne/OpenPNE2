@@ -5,14 +5,10 @@
 
 ({* {{{ descriptionBox *})
 <div class="dparts descriptionBox"><div class="parts">
-<p>
-※他のメンバーから見たあなたのページはこのようになります。<br />
-<br />
-他のメンバーにあなたのページを教える場合には、以下のURLを使ってください。<br />
-({t_url _absolute=1 m=pc a=page_f_home})&amp;target_c_member_id=({$target_c_member_id})<br />
-<br />
-プロフィールを変更する場合は 「<a href="({t_url m=pc a=page_h_config_prof})">プロフィール変更</a>」 よりおこなえます。
-</p>
+<p>※他のメンバーから見たあなたのページはこのようになります。</p>
+<p>他のメンバーにあなたのページを教える場合には、以下のURLを使ってください。<br />
+({t_url _absolute=1 m=pc a=page_f_home})&amp;target_c_member_id=({$target_c_member_id})</p>
+<p>プロフィールを変更する場合は 「<a href="({t_url m=pc a=page_h_config_prof})">プロフィール変更</a>」 よりおこなえます。</p>
 </div></div>
 ({* }}} *})
 
