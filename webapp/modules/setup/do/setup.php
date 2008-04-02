@@ -28,6 +28,17 @@ class setup_do_setup extends OpenPNE_Action
                 $errors[] = 'ユーザIDまたはパスワードが一致しません';
             }
         }
+        if (OPENPNE_AUTH_MODE == 'pneid') {
+            if (is_null($requests['username']) || $requests['username'] === '') {
+                $errors[] = 'ログインIDを入力してください';
+            } elseif (!preg_match('/^[a-zA-Z0-9][a-zA-Z0-9\-_]+[a-zA-Z0-9]$/i', $requests['username'])) {
+                $errors[] = 'ログインIDは4～30文字の半角英数字、記号（アンダーバー「_」、ハイフン「-」）で入力してください';
+            } elseif (mb_strwidth($requests['username'], 'UTF-8') < 4) {
+                $errors[] = "ログインIDは半角4文字以上で入力してください";
+            } elseif (mb_strwidth($requests['username'], 'UTF-8') > 30) {
+                $errors[] = "ログインIDは半角30文字以内で入力してください";
+            }
+        }
         if ($errors) {
             $this->handleError($errors);
         }
