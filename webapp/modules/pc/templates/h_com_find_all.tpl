@@ -84,8 +84,8 @@
 <th>メンバー数</th><td>({$c_commu_search.count_commu_member})人</td>
 </tr><tr>
 <th>説明文</th><td>({$c_commu_search.info|t_truncate:36:"":3})</td>
-</tr><tr>
-<th>カテゴリ</th><td class="operation"><span class="text">({$c_commu_search.c_commu_category_name})</span> <span class="moreInfo"><a href="({t_url m=pc a=page_c_home})&amp;target_c_commu_id=({$c_commu_search.c_commu_id})"><img src="({t_img_url_skin filename=button_shosai})" alt="詳細を見る" /></a></span></td>
+</tr><tr class="operation">
+<th>カテゴリ</th><td><span class="text">({$c_commu_search.c_commu_category_name})</span> <span class="moreInfo"><a href="({t_url m=pc a=page_c_home})&amp;target_c_commu_id=({$c_commu_search.c_commu_id})"><img src="({t_img_url_skin filename=button_shosai})" alt="詳細を見る" /></a></span></td>
 </tr></table></div></div>
 ({/foreach})
 </div>

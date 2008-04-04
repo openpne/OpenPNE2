@@ -21,8 +21,8 @@
 <th>ニックネーム</th><td><a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id_from})">({$item.nickname})</a></td>
 </tr><tr>
 <th>メッセージ</th><td>({$item.message|nl2br})</td>
-</tr><tr>
-<th>&nbsp;</th><td class="operation"><span class="text"></span> <span class="moreInfo"><a href="({t_url m=pc a=do_h_confirm_list_insert_c_friend})&amp;target_c_friend_confirm_id=({$item.c_friend_confirm_id})&amp;sessid=({$PHPSESSID})"><img src="({t_img_url_skin filename=button_shonin})" alt="承認" /></a> <a href="({t_url m=pc a=do_h_confirm_list_delete_c_friend_confirm})&amp;target_c_friend_confirm_id=({$item.c_friend_confirm_id})&amp;sessid=({$PHPSESSID})" ><img src="({t_img_url_skin filename=button_kyohi})" alt="拒否" /></a></span></td>
+</tr><tr class="operation">
+<th>&nbsp;</th><td><span class="text"></span> <span class="moreInfo"><a href="({t_url m=pc a=do_h_confirm_list_insert_c_friend})&amp;target_c_friend_confirm_id=({$item.c_friend_confirm_id})&amp;sessid=({$PHPSESSID})"><img src="({t_img_url_skin filename=button_shonin})" alt="承認" /></a> <a href="({t_url m=pc a=do_h_confirm_list_delete_c_friend_confirm})&amp;target_c_friend_confirm_id=({$item.c_friend_confirm_id})&amp;sessid=({$PHPSESSID})" ><img src="({t_img_url_skin filename=button_kyohi})" alt="拒否" /></a></span></td>
 </tr></table></div></div>
 ({/foreach})
 </div>
@@ -53,8 +53,8 @@
 <th>参加希望<br />コミュニティ</th><td><a href="({t_url m=pc a=page_c_home})&amp;target_c_commu_id=({$item.c_commu_id})">({$item.c_commu_name})</a></td>
 </tr><tr>
 <th>メッセージ</th><td>({$item.message|nl2br})</td>
-</tr><tr>
-<th>&nbsp;</th><td class="operation"><span class="text"></span> <span class="moreInfo"><a href="({t_url m=pc a=do_h_confirm_list_insert_c_commu_member})&amp;target_c_commu_member_confirm_id=({$item.c_commu_member_confirm_id})&amp;sessid=({$PHPSESSID})"><img src="({t_img_url_skin filename=button_shonin})" alt="承認" /></a> <a href="({t_url m=pc a=do_h_confirm_list_delete_c_commu_member_confirm})&amp;target_c_commu_member_confirm_id=({$item.c_commu_member_confirm_id})&amp;sessid=({$PHPSESSID})" ><img src="({t_img_url_skin filename=button_kyohi})" alt="拒否" /></a></span></td>
+</tr><tr class="operation">
+<th>&nbsp;</th><td><span class="text"></span> <span class="moreInfo"><a href="({t_url m=pc a=do_h_confirm_list_insert_c_commu_member})&amp;target_c_commu_member_confirm_id=({$item.c_commu_member_confirm_id})&amp;sessid=({$PHPSESSID})"><img src="({t_img_url_skin filename=button_shonin})" alt="承認" /></a> <a href="({t_url m=pc a=do_h_confirm_list_delete_c_commu_member_confirm})&amp;target_c_commu_member_confirm_id=({$item.c_commu_member_confirm_id})&amp;sessid=({$PHPSESSID})" ><img src="({t_img_url_skin filename=button_kyohi})" alt="拒否" /></a></span></td>
 </tr></table></div></div>
 ({/foreach})
 </div>
@@ -85,8 +85,8 @@
 <th>コミュニティ</th><td><a href="({t_url m=pc a=page_c_home})&amp;target_c_commu_id=({$item.c_commu_id})">({$item.c_commu_name})</a></td>
 </tr><tr>
 <th>メッセージ</th><td>({$item.message|nl2br})</td>
-</tr><tr>
-<th>&nbsp;</th><td class="operation"><span class="text"></span> <span class="moreInfo"><a href="({t_url m=pc a=do_h_confirm_list_update_c_commu_admin_confirm})&amp;target_c_commu_admin_confirm_id=({$item.c_commu_admin_confirm_id})&amp;sessid=({$PHPSESSID})"><img src="({t_img_url_skin filename=button_shonin})" alt="承認" /></a> <a href="({t_url m=pc a=do_h_confirm_list_delete_c_commu_admin_confirm})&amp;target_c_commu_admin_confirm_id=({$item.c_commu_admin_confirm_id})&amp;sessid=({$PHPSESSID})"><img src="({t_img_url_skin filename=button_kyohi})" alt="拒否" /></a></span></td>
+</tr><tr class="operation">
+<th>&nbsp;</th><td><span class="text"></span> <span class="moreInfo"><a href="({t_url m=pc a=do_h_confirm_list_update_c_commu_admin_confirm})&amp;target_c_commu_admin_confirm_id=({$item.c_commu_admin_confirm_id})&amp;sessid=({$PHPSESSID})"><img src="({t_img_url_skin filename=button_shonin})" alt="承認" /></a> <a href="({t_url m=pc a=do_h_confirm_list_delete_c_commu_admin_confirm})&amp;target_c_commu_admin_confirm_id=({$item.c_commu_admin_confirm_id})&amp;sessid=({$PHPSESSID})"><img src="({t_img_url_skin filename=button_kyohi})" alt="拒否" /></a></span></td>
 </tr></table></div></div>
 ({/foreach})
 </div>
@@ -117,8 +117,8 @@
 <th>コミュニティ</th><td><a href="({t_url m=pc a=page_c_home})&amp;target_c_commu_id=({$item.c_commu_id})">({$item.c_commu_name})</a></td>
 </tr><tr>
 <th>メッセージ</th><td>({$item.message|nl2br})</td>
-</tr><tr>
-<th>&nbsp;</th><td class="operation"><span class="text"></span> <span class="moreInfo"><a href="({t_url m=pc a=do_h_confirm_list_update_c_commu_sub_admin_confirm})&amp;target_c_commu_sub_admin_confirm_id=({$item.c_commu_sub_admin_confirm_id})&amp;sessid=({$PHPSESSID})"><img src="({t_img_url_skin filename=button_shonin})" alt="承認" /></a> <a href="({t_url m=pc a=do_h_confirm_list_delete_c_commu_sub_admin_confirm})&amp;target_c_commu_sub_admin_confirm_id=({$item.c_commu_sub_admin_confirm_id})&amp;sessid=({$PHPSESSID})"><img src="({t_img_url_skin filename=button_kyohi})" alt="拒否" /></a></span></td>
+</tr><tr class="operation">
+<th>&nbsp;</th><td><span class="text"></span> <span class="moreInfo"><a href="({t_url m=pc a=do_h_confirm_list_update_c_commu_sub_admin_confirm})&amp;target_c_commu_sub_admin_confirm_id=({$item.c_commu_sub_admin_confirm_id})&amp;sessid=({$PHPSESSID})"><img src="({t_img_url_skin filename=button_shonin})" alt="承認" /></a> <a href="({t_url m=pc a=do_h_confirm_list_delete_c_commu_sub_admin_confirm})&amp;target_c_commu_sub_admin_confirm_id=({$item.c_commu_sub_admin_confirm_id})&amp;sessid=({$PHPSESSID})"><img src="({t_img_url_skin filename=button_kyohi})" alt="拒否" /></a></span></td>
 </tr></table></div></div>
 ({/foreach})
 </div>
