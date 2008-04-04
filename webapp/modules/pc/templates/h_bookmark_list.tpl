@@ -31,8 +31,8 @@
 <th>ニックネーム</th><td>({$c_member.nickname})</td>
 </tr><tr>
 <th>自己紹介</th><td>({$c_member.profile.self_intro.value|t_truncate:36:"":3})</td>
-</tr><tr>
-<th>最終ログイン</th><td class="operation"><span class="text">({$c_member.last_login})</span> <span class="moreInfo"><a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$c_member.c_member_id})"><img src="({t_img_url_skin filename=button_shosai})" alt="詳細を見る" /></a> <a href="({t_url m=pc a=do_f_bookmark_delete})&amp;target_c_member_id=({$c_member.c_member_id})&amp;sessid=({$PHPSESSID})"><img src="({t_img_url_skin filename=button_sakujo})" alt="削除する" /></a></span></td>
+</tr><tr class="operation">
+<th>最終ログイン</th><td><span class="text">({$c_member.last_login})</span> <span class="moreInfo"><a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$c_member.c_member_id})"><img src="({t_img_url_skin filename=button_shosai})" alt="詳細を見る" /></a> <a href="({t_url m=pc a=do_f_bookmark_delete})&amp;target_c_member_id=({$c_member.c_member_id})&amp;sessid=({$PHPSESSID})"><img src="({t_img_url_skin filename=button_sakujo})" alt="削除する" /></a></span></td>
 </tr></table></div></div>
 ({/foreach})
 </div>
