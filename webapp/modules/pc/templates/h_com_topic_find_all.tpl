@@ -51,8 +51,8 @@
 <th>コミュニティ名</th><td>({$item.commu_name})</td>
 </tr><tr>
 <th>本文</th><td>({$item.body|t_truncate:36:"":3})</td>
-</tr><tr>
-<th>投稿日</th><td class="operation"><span class="text">({$item.max_datetime|date_format:"%m月%d日 %H:%M"})</span> <span class="moreInfo"><a href="({t_url m=pc a=page_c_topic_detail})&amp;target_c_commu_topic_id=({$item.c_commu_topic_id})"><img src="({t_img_url_skin filename=button_shosai})" alt="詳細を見る" /></a></span></td>
+</tr><tr class="operation">
+<th>投稿日</th><td><span class="text">({$item.max_datetime|date_format:"%m月%d日 %H:%M"})</span> <span class="moreInfo"><a href="({t_url m=pc a=page_c_topic_detail})&amp;target_c_commu_topic_id=({$item.c_commu_topic_id})"><img src="({t_img_url_skin filename=button_shosai})" alt="詳細を見る" /></a></span></td>
 </tr></table></div></div>
 ({/foreach})
 </div>
