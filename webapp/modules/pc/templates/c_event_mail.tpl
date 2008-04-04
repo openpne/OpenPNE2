@@ -40,9 +40,11 @@
 ({* }}} *})
 ({/if})
 
-({* #1939 *})<div class="parts">
-({* #1939 *})<img src="./skin/dummy.gif" alt="dummy" class="icon arrow_1" /><a href="({t_url m=pc a=page_c_event_detail})&amp;target_c_commu_topic_id=({$c_commu_topic_id})">イベントページへ戻る</a>
-({* #1939 *})</div>
+({* {{{ linkLine *})
+<div class="parts linkLine"><ul class="moreInfo">
+<li><a href="({t_url m=pc a=page_c_event_detail})&amp;target_c_commu_topic_id=({$c_commu_topic_id})">イベントページへ戻る</a></li>
+</ul></div>
+({* }}} *})
 
 </div><!-- Center -->
 </div><!-- LayoutC -->

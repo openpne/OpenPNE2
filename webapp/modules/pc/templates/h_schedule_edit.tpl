@@ -99,9 +99,9 @@
 ({* }}} *})
 
 ({* {{{ linkLine *})
-({* #1939 *})<div class="parts linkLine">
-({* #1939 *})<p><a href="({t_url m=pc a=page_h_schedule})&amp;target_c_schedule_id=({$target_c_schedule_id})">編集をキャンセルしてもどる</a></p>
-({* #1939 *})</div>
+<div class="parts linkLine"><ul class="moreInfo">
+<li><a href="({t_url m=pc a=page_h_schedule})&amp;target_c_schedule_id=({$target_c_schedule_id})">編集をキャンセルしてもどる</a></li>
+</ul></div>
 ({* }}} *})
 
 </div><!-- Center -->

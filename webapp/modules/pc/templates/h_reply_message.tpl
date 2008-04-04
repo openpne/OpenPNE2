@@ -13,17 +13,15 @@
 </div></div>
 ({* }}} *})
 
-({* #1939 *})<!-- ******ここから：トップページに戻る****** -->
-({* #1939 *})<div class="content_footer" align="center">
-({* #1939 *})
-({* #1939 *})({if $msg == 1})
-({* #1939 *})【<a href="({t_url m=pc a=page_h_message_box})&amp;box=outbox">送信済みメッセージ一覧</a>】
-({* #1939 *})({elseif $msg == 2})
-({* #1939 *})【<a href="({t_url m=pc a=page_h_message_box})&amp;box=savebox">下書きメッセージ一覧</a>】
-({* #1939 *})({/if})
-({* #1939 *})
-({* #1939 *})</div>
-({* #1939 *})<!-- ******ここまで：トップページに戻る****** -->
+({* {{{ linkLine *})
+<div class="parts linkLine"><ul class="moreInfo">
+({if $msg == 1})
+<li><a href="({t_url m=pc a=page_h_message_box})&amp;box=outbox">送信済みメッセージ一覧</a></li>
+({elseif $msg == 2})
+<li><a href="({t_url m=pc a=page_h_message_box})&amp;box=savebox">下書きメッセージ一覧</a></li>
+({/if})
+</ul></div>
+({* }}} *})
 
 </div><!-- Center -->
 </div><!-- LayoutC -->
