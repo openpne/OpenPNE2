@@ -135,11 +135,10 @@
 ({* }}} *})
 ({/if})
 
-({* {{{ *})
-({* #1939 *})<div class="parts">
-({* #1939 *})<img src="./skin/dummy.gif" alt="dummy" class="icon arrow_1" />
-({* #1939 *})<a href="({t_url m=pc a=page_c_home})&amp;target_c_commu_id=({$c_commu.c_commu_id})">[({$c_commu.name})]コミュニティトップへ</a>
-({* #1939 *})</div>
+({* {{{ linkLine *})
+<div class="parts linkLine"><ul class="moreInfo">
+<li><a href="({t_url m=pc a=page_c_home})&amp;target_c_commu_id=({$c_commu.c_commu_id})">[({$c_commu.name})]コミュニティトップへ</a></li>
+</ul></div>
 ({* }}} *})
 
 </div><!-- Center -->
