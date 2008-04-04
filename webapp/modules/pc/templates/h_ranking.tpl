@@ -2,124 +2,34 @@
 
 <div id="Left">
 
-({* #1942 *})<!-- ******ここから：ランキングメニュー****** -->
-({* #1942 *})<table border="0" cellspacing="0" cellpadding="0" style="width:165px;margin:0px auto;" class="border_07">
-({* #1942 *})<tr>
-({* #1942 *})<td style="width:7px;" class="bg_10"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
-({* #1942 *})<td style="width:149px;" class="bg_10"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
-({* #1942 *})<td style="width:7px;" class="bg_10"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
-({* #1942 *})</tr>
-({* #1942 *})<tr>
-({* #1942 *})<td class="bg_10"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
-({* #1942 *})<td class="bg_10" align="center">
-({* #1942 *})<!-- *ここから：ランキングメニュー＞内容* -->
-({* #1942 *})({*ここから：header*})
-({* #1942 *})<!-- ここから：小タイトル -->
-({* #1942 *})<table border="0" cellspacing="0" cellpadding="0" style="width:149px;" class="border_01">
-({* #1942 *})<tr>
-({* #1942 *})<td style="width:147px;padding:2px 0px;" class="bg_06" align="center"><span class="b_b c_00">アクセス数No1</span></td>
-({* #1942 *})</tr>
-({* #1942 *})</table>
-({* #1942 *})<!-- ここまで：小タイトル -->
-({* #1942 *})({*ここまで：header*})
-({* #1942 *})({*ここから：body*})
-({* #1942 *})<!-- ここから：主内容 -->
-({* #1942 *})<div align="left" style="padding:3px;" class="bg_02 border_01">
-({* #1942 *})
-({* #1942 *})昨日のアクセスが多かったメンバーのランキングです。
-({* #1942 *})
-({* #1942 *})<div align="right" style="padding:3px 0px;" class="border_01 bg_03">
-({* #1942 *})
-({* #1942 *})<a href="({t_url m=pc a=page_h_ranking})">アクセス数No1</a>
-({* #1942 *})
-({* #1942 *})</div>
-({* #1942 *})
-({* #1942 *})</div>
-({* #1942 *})<!-- ここまで：主内容 -->
-({* #1942 *})({*ここまで：body*})
-({* #1942 *})({*ここから：header*})
-({* #1942 *})<!-- ここから：小タイトル -->
-({* #1942 *})<table border="0" cellspacing="0" cellpadding="0" style="width:149px;" class="border_01">
-({* #1942 *})<tr>
-({* #1942 *})<td style="width:147px;padding:2px 0px;" class="bg_06" align="center"><span class="b_b c_00">({$WORD_MY_FRIEND})数No1</span></td>
-({* #1942 *})</tr>
-({* #1942 *})</table>
-({* #1942 *})<!-- ここまで：小タイトル -->
-({* #1942 *})({*ここまで：header*})
-({* #1942 *})({*ここから：body*})
-({* #1942 *})<!-- ここから：主内容 -->
-({* #1942 *})<div align="left" style="padding:3px;" class="bg_02 border_01">
-({* #1942 *})
-({* #1942 *})登録されている({$WORD_MY_FRIEND})の数が多いメンバーのランキングです。
-({* #1942 *})
-({* #1942 *})<div align="right" style="padding:3px 0px;" class="border_01 bg_03">
-({* #1942 *})
-({* #1942 *})<a href="({t_url m=pc a=page_h_ranking})&amp;kind=friend">({$WORD_MY_FRIEND})数No1</a>
-({* #1942 *})
-({* #1942 *})</div>
-({* #1942 *})
-({* #1942 *})</div>
-({* #1942 *})<!-- ここまで：主内容 -->
-({* #1942 *})({*ここまで：body*})
-({* #1942 *})({*ここから：header*})
-({* #1942 *})<!-- ここから：小タイトル -->
-({* #1942 *})<table border="0" cellspacing="0" cellpadding="0" style="width:149px;" class="border_01">
-({* #1942 *})<tr>
-({* #1942 *})<td style="width:147px;padding:2px 0px;" class="bg_06" align="center"><span class="b_b c_00">参加人数No１コミュニティ</span></td>
-({* #1942 *})</tr>
-({* #1942 *})</table>
-({* #1942 *})<!-- ここまで：小タイトル -->
-({* #1942 *})({*ここまで：header*})
-({* #1942 *})({*ここから：body*})
-({* #1942 *})<!-- ここから：主内容 -->
-({* #1942 *})<div align="left" style="padding:3px;" class="bg_02 border_01">
-({* #1942 *})
-({* #1942 *})参加者の多いコミュニティのランキングです。
-({* #1942 *})
-({* #1942 *})<div align="right" style="padding:3px 0px;" class="border_01 bg_03">
-({* #1942 *})
-({* #1942 *})<a href="({t_url m=pc a=page_h_ranking})&amp;kind=com_member">参加人数No１<br />コミュニティを表示</a>
-({* #1942 *})
-({* #1942 *})</div>
-({* #1942 *})
-({* #1942 *})</div>
-({* #1942 *})<!-- ここまで：主内容 -->
-({* #1942 *})({*ここまで：body*})
-({* #1942 *})({*ここから：header*})
-({* #1942 *})<!-- ここから：小タイトル -->
-({* #1942 *})<table border="0" cellspacing="0" cellpadding="0" style="width:149px;" class="border_01">
-({* #1942 *})<tr>
-({* #1942 *})<td style="width:147px;padding:2px 0px;" class="bg_06" align="center"><span class="b_b c_00">盛り上がり度No１コミュニティ</span></td>
-({* #1942 *})</tr>
-({* #1942 *})</table>
-({* #1942 *})<!-- ここまで：小タイトル -->
-({* #1942 *})({*ここまで：header*})
-({* #1942 *})({*ここから：body*})
-({* #1942 *})<!-- ここから：主内容 -->
-({* #1942 *})<div align="left" style="padding:3px;" class="bg_02 border_01">
-({* #1942 *})
-({* #1942 *})昨日の掲示板書き込み数が多かったコミュニティのランキングです。
-({* #1942 *})
-({* #1942 *})<div align="right" style="padding:3px 0px;" class="border_01 bg_03">
-({* #1942 *})
-({* #1942 *})<a href="({t_url m=pc a=page_h_ranking})&amp;kind=com_comment">盛り上がり度No１<br />コミュニティを表示</a>
-({* #1942 *})
-({* #1942 *})</div>
-({* #1942 *})
-({* #1942 *})</div>
-({* #1942 *})<!-- ここまで：主内容 -->
-({* #1942 *})({*ここまで：body*})
-({* #1942 *})<!-- *ここまで：ランキングメニュー＞＞内容* -->
-({* #1942 *})</td>
-({* #1942 *})<td class="bg_10"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
-({* #1942 *})</tr>
-({* #1942 *})<tr>
-({* #1942 *})<td class="bg_10"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
-({* #1942 *})<td class="bg_10"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
-({* #1942 *})<td class="bg_10"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
-({* #1942 *})</tr>
-({* #1942 *})</table>
-({* #1942 *})<!-- ******ここまで：ランキングメニュー****** -->
+({* {{{ rankingSideNav *})
+<div class="parts rankingSideNav">
+<div class="item">
+<div class="partsHeading"><h3>アクセス数No1</h3></div>
+<p>昨日のアクセスが多かったメンバーのランキングです。</p>
+<p class="link"><a href="({t_url m=pc a=page_h_ranking})">アクセス数No1</a></p>
+</div>
+
+<div class="item">
+<div class="partsHeading"><h3>マイフレンド数No1</h3></div>
+<p>登録されている({$WORD_MY_FRIEND})の数が多いメンバーのランキングです。
+</p>
+<p class="link"><a href="({t_url m=pc a=page_h_ranking})&amp;kind=friend">({$WORD_MY_FRIEND})数No1</a></p>
+</div>
+
+<div class="item">
+<div class="partsHeading"><h3>参加人数No１コミュニティ</h3></div>
+<p>参加者の多いコミュニティのランキングです。</p>
+<p class="link"><a href="({t_url m=pc a=page_h_ranking})&amp;kind=com_member">参加人数No１<br />コミュニティを表示</a></p>
+</div>
+
+<div class="item">
+<div class="partsHeading"><h3>盛り上がり度No１コミュニティ</h3></div>
+<p>昨日の掲示板書き込み数が多かったコミュニティのランキングです。</p>
+<p class="link"><a href="({t_url m=pc a=page_h_ranking})&amp;kind=com_comment">盛り上がり度No１<br />コミュニティを表示</a></p>
+</div>
+</div>
+({* }}} *})
 
 </div><!-- Left -->
 <div id="Center">
