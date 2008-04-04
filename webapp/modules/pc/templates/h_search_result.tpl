@@ -20,8 +20,8 @@
 <th>ニックネーム</th><td>({$item.nickname})</td>
 </tr><tr>
 <th>自己紹介</th><td>({$item.profile.self_intro.value|t_truncate:36:"":3})</td>
-</tr><tr>
-<th>最終ログイン</th><td class="operation"><span class="text">({$item.last_login})</span> <span class="moreInfo"><a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})"><img src="({t_img_url_skin filename=button_shosai})" alt="詳細を見る" /></a></span></td>
+</tr><tr class="operation">
+<th>最終ログイン</th><td><span class="text">({$item.last_login})</span> <span class="moreInfo"><a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})"><img src="({t_img_url_skin filename=button_shosai})" alt="詳細を見る" /></a></span></td>
 </tr></table></div></div>
 ({/foreach})
 </div>
