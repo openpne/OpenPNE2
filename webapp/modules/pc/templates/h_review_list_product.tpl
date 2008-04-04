@@ -182,7 +182,8 @@
 ({* #1949 *})</tr>
 ({* #1949 *})</table>
 ({* #1949 *})<!-- ******ここまで：この商品の概要****** -->
-({* unknown *})({if $c_review_list})
+
+({if $c_review_list})
 ({* #1949 *})<!-- ******ここから：この商品の全レビュー一覧****** -->
 ({* #1949 *})<table border="0" cellspacing="0" cellpadding="0" style="width:650px;margin:0px auto;" class="border_07">
 ({* #1949 *})<tr>
@@ -412,22 +413,14 @@
 ({* #1949 *})</tr>
 ({* #1949 *})</table>
 ({* #1949 *})<!-- ******ここまで：この商品の全レビュー一覧****** -->
-({* unknown *})({/if})
-({* #1939 *})<!-- ******ここから：レビュー　どこへ****** -->
-({* #1939 *})<div align="center">
-({* #1939 *})
-({* #1939 *})<img src="./skin/dummy.gif" alt="dummy" class="icon arrow_1" />
-({* #1939 *})<a href="({t_url m=pc a=page_h_review_search})">全体のレビュー一覧を見る</a>
-({* #1939 *})
-({* #1939 *})</div>
-({* #1939 *})
-({* #1939 *})<div align="center">
-({* #1939 *})
-({* #1939 *})<img src="./skin/dummy.gif" alt="dummy" class="icon arrow_1" />
-({* #1939 *})<a href="({t_url m=pc a=page_fh_review_list_member})">自分のレビュー一覧を見る</a>
-({* #1939 *})
-({* #1939 *})</div>
-({* #1939 *})<!-- ******ここまで：レビュー　どこへ****** -->
+({/if})
+
+({* {{{ linkLine *})
+<div class="parts linkLine"><ul class="moreInfo">
+<li><a href="({t_url m=pc a=page_h_review_search})">全体のレビュー一覧を見る</a><br /></li>
+<li><a href="({t_url m=pc a=page_fh_review_list_member})">自分のレビュー一覧を見る</a></li>
+</ul></div>
+({* }}} *})
 
 </div><!-- Center -->
 </div><!-- LayoutC -->
