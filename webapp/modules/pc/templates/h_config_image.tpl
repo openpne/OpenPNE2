@@ -62,9 +62,11 @@
 </div></div>
 ({* }}} *})
 
-({* #1939 *})<!-- ******ここから：トップページに戻る****** -->
-({* #1939 *})<img src="./skin/dummy.gif" alt="dummy" class="icon arrow_1" />&nbsp;<a href="({t_url m=pc a=page_h_home})">ホームに戻る</a>
-({* #1939 *})<!-- ******ここまで：トップページに戻る****** -->
+({* {{{ linkLine *})
+<div class="parts linkLine"><ul class="moreInfo">
+<li><a href="({t_url m=pc a=page_h_home})">ホームに戻る</a></li>
+</ul></div>
+({* }}} *})
 
 </div><!-- Center -->
 </div><!-- LayoutC -->
