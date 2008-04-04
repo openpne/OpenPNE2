@@ -36,14 +36,11 @@
 </div></div>
 ({* }}} *})
 
-({* #1939 *})<!-- ******ここから：コミュニティトップへ****** -->
-({* #1939 *})<div class="content_footer" id="link_community_top" align="center">
-({* #1939 *})
-({* #1939 *})<img src="./skin/dummy.gif" alt="dummy" class="icon arrow_1" />&nbsp;
-({* #1939 *})[<a href="({t_url m=pc a=page_h_home})">キャンセルしてホームへ</a>]
-({* #1939 *})
-({* #1939 *})</div>
-({* #1939 *})<!-- ******ここまで：コミュニティトップへ****** -->
+({* {{{ linkLine *})
+<div class="parts linkLine"><ul class="moreInfo">
+<li><a href="({t_url m=pc a=page_h_home})">キャンセルしてホームへ</a></li>
+</ul></div>
+({* }}} *})
 
 </div><!-- Center -->
 </div><!-- LayoutC -->
