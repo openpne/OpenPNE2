@@ -23,17 +23,14 @@
 </div></div>
 ({* }}} *})
 
-({* #2036 *})<!-- **************************************** -->
-({* #2036 *})<!-- ******ここから：同意して登録手続きへ****** -->
-({* #2036 *})<div align="center">
-({* #2036 *})
-({* #2036 *})({t_form_block m=pc a=page_h_regist_prof})
-({* #2036 *})<input type="hidden" name="mode" value="input" />
-({* #2036 *})<input type="submit" class="input_submit" value="同意して登録手続きへ" />
-({* #2036 *})({/t_form_block})
-({* #2036 *})
-({* #2036 *})</div>
-({* #2036 *})<!-- ******ここまで：同意して登録手続きへ****** -->
+({* {{{ buttonLine *})
+<div class="parts buttonLine">
+({t_form_block m=pc a=page_h_regist_prof})
+<input type="hidden" name="mode" value="input" />
+<input type="submit" class="input_submit" value="同意して登録手続きへ" />
+({/t_form_block})
+</div>
+({* }}} *})
 
 </div><!-- Center -->
 </div><!-- LayoutC -->
