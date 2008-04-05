@@ -1,13 +1,6 @@
-({ext_include file="inc_header.tpl"})
-({ext_include file="inc_layoutcolumn_top_720px.tpl"})
-({***************************})
-({**ここから：メインコンテンツ**})
-({***************************})
+<div id="LayoutC">
+<div id="Center">
 
-<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
-
-<!-- ****************************** -->
-<!-- ******ここから：カレンダー****** -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:684px;margin:0px auto;" class="border_07">
 <tr>
 <td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
@@ -216,13 +209,6 @@
 </tr>
 </table>
 </form>
-<!-- ******ここまで：カレンダー****** -->
-<!-- ****************************** -->
 
-<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
-
-({***************************})
-({**ここまで：メインコンテンツ**})
-({***************************})
-({ext_include file="inc_layoutcolumn_bottom_270px_165px_175px_720px.tpl"})
-({ext_include file="inc_footer.tpl"})
+</div><!-- Center -->
+</div><!-- LayoutC -->
