@@ -1,11 +1,5 @@
-({ext_include file="inc_header.tpl"})
-({ext_include file="inc_layoutcolumn_top_720px.tpl"})
-({***************************})
-({**ここから：メインコンテンツ**})
-({***************************})
-
-<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
-
+<div id="LayoutC">
+<div id="Center">
 
 <!-- **************************************** -->
 <!-- ******ここから：コミュニティ新規作成****** -->
@@ -321,10 +315,5 @@
 <!-- ******ここまで：コミュニティ新規作成****** -->
 <!-- **************************************** -->
 
-<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
-
-({***************************})
-({**ここまで：メインコンテンツ**})
-({***************************})
-({ext_include file="inc_layoutcolumn_bottom_270px_165px_175px_720px.tpl"})
-({ext_include file="inc_footer.tpl"})
+</div><!-- Center -->
+</div><!-- LayoutC -->
