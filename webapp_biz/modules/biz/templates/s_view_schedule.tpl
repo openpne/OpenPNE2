@@ -1,13 +1,6 @@
-({ext_include file="inc_header.tpl" INC_HEADER_is_no_alert=true})
-({ext_include file="inc_layoutcolumn_top_720px.tpl"})
-({***************************})
-({**ここから：メインコンテンツ**})
-({***************************})
+<div id="LayoutC">
+<div id="Center">
 
-<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
-
-<!-- **************************************** -->
-<!-- ******ここから：コミュニティ新規作成****** -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:650px;margin:0px auto;" class="border_07">
 <tr>
 <td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
@@ -128,9 +121,9 @@
 ({if !$msg})
 <td class="padding_ss" align="center">
 
-({t_form m=biz a=do_s_delete_schedule})
+({t_form m=biz a=page_s_delete_schedule})
 <input type="hidden" name="sessid" value="({$PHPSESSID})">
-<input type="hidden" name="shisetsu_id" value="({$schedule.biz_shisetsu_schedule_id})">
+<input type="hidden" name="target_id" value="({$schedule.biz_shisetsu_schedule_id})">
 <input value="削除する" type="submit" class="submit">
 </form>
 
@@ -193,13 +186,6 @@
 <td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 </table>
-<!-- ******ここまで：コミュニティ新規作成****** -->
-<!-- **************************************** -->
 
-<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
-
-({***************************})
-({**ここまで：メインコンテンツ**})
-({***************************})
-({ext_include file="inc_layoutcolumn_bottom_270px_165px_175px_720px.tpl"})
-({ext_include file="inc_footer.tpl"})
+</div><!-- Center -->
+</div><!-- LayoutC -->
