@@ -1542,67 +1542,6 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 }
 
 /*==============================================================================
- * 19. commuReviewList（コミュニティレビューリスト）
- *----------------------------------------------------------------------------*/
-#Body .commuReviewList .parts {
-	border-bottom: none;
-}
-.commuReviewList .pagerRelative {
-	border-bottom: 1px solid #<?php echo $colors[1]; ?>;
-}
-.commuReviewList .ditem {
-	margin: 16px 34px;
-	background: #<?php echo $colors[7]; ?>;
-}
-.commuReviewList .item {
-	background: #<?php echo $colors[8]; ?>;
-}
-.commuReviewList dl {
-	zoom: 1;
-	overflow: hidden;
-	overflow: -moz-scrollbars-none;
-	border-top: 1px solid #<?php echo $colors[1]; ?>;
-}
-.commuReviewList dl dt {
-	float:left;
-	width: 180px;
-	padding: 5px;
-	text-align: center;
-}
-.commuReviewList dl dt span {
-	display: block;
-	margin-top: 3px;
-}
-.commuReviewList dl dd {
-	zoom: 1;
-	margin-left: 190px;
-	border-left: 1px solid #<?php echo $colors[1]; ?>;
-}
-.commuReviewList dl dd table{
-	height: 192px;
-}
-.commuReviewList dl dd th,
-.commuReviewList dl dd td {
-	padding: 5px;
-}
-.commuReviewList dl tr.title th,
-.commuReviewList dl dd tr.title td {
-	border-top: none;
-}
-.commuReviewList dl dd th {
-	width: 60px;
-	border-left: none;
-	text-align: center;
-}
-.commuReviewList dl dd tr.title td {
-	font-weight: bold;
-}
-.commuReviewList dl dd tr.footer td {
-	border-left: none;
-	text-align: right;
-}
-
-/*==============================================================================
  * 20. reviewList（レビューリスト）
  *----------------------------------------------------------------------------*/
 .reviewList dl {
