@@ -1,13 +1,6 @@
-({ext_include file="inc_header.tpl"})
-({ext_include file="inc_layoutcolumn_top_720px.tpl"})
-({***************************})
-({**ここから：メインコンテンツ**})
-({***************************})
+<div id="LayoutC">
+<div id="Center">
 
-<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
-
-<!-- **************************************** -->
-<!-- ******ここから：コミュニティ新規作成****** -->
 ({t_form _enctype=file m=biz a=do_s_add_shisetsu})
 <input type="hidden" name="sessid" value="({$PHPSESSID})">
 
@@ -166,13 +159,6 @@
 </tr>
 </table>
 </form>
-<!-- ******ここまで：コミュニティ新規作成****** -->
-<!-- **************************************** -->
 
-<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
-
-({***************************})
-({**ここまで：メインコンテンツ**})
-({***************************})
-({ext_include file="inc_layoutcolumn_bottom_270px_165px_175px_720px.tpl"})
-({ext_include file="inc_footer.tpl"})
+</div><!-- Center -->
+</div><!-- LayoutC -->
