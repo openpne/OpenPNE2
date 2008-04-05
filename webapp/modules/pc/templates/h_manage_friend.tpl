@@ -29,13 +29,12 @@
 </table>
 
 <div class="pagerRelative">
-<p class="prev"><a href="./?m=pc&amp;a=page_h_manage_friend&amp;page=1">前を表示</a></p>
-<p class="number">21件～40件を表示</p>
-<p class="next"><a href="./?m=pc&amp;a=page_h_manage_friend&amp;page=3">次を表示</a></p>
+({if $pager.prev})<p class="prev"><a href="({t_url m=pc a=page_h_manage_friend page=$pager.prev})">前を表示</a></p>({/if})
+({if $pager.total_num})<p class="number">({$pager.start})件～({$pager.end})件を表示</p>({/if})
+({if $pager.next})<p class="next"><a href="({t_url m=pc a=page_h_manage_friend page=$pager.next})">次を表示</a></p>({/if})
 </div>
 </div></div>
 ({* }}} *})
-
 ({else})
 ({* {{{ simpleBox *})
 <div class="dparts simpleBox"><div class="parts">
