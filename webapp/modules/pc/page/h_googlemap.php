@@ -42,7 +42,9 @@ class pc_page_h_googlemap extends OpenPNE_Action
         $this->set('MapType', $MapType);
         $this->set('OPENPNE_URL', OPENPNE_URL);
         $this->set('SNS_NAME', SNS_NAME);
-        return 'success';
+
+        $this->getView()->ext_display('h_googlemap.tpl');
+        exit;
     }
 }
 
