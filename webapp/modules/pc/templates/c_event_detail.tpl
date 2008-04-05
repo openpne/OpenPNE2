@@ -15,7 +15,6 @@
 ({* }}} *})
 
 ({* {{{ eventDetailBox *})
-<!-- ******ここから：イベント詳細****** -->
 <div class="dparts eventDetailBox"><div class="parts">
 <div class="partsHeading"><h3>[({$c_commu.name})] イベント</h3></div>
 
@@ -29,7 +28,6 @@
 ({if $c_topic.image_filename3})<li><a href="({t_img_url filename=$c_topic.image_filename3})" target="_blank"><img src="({t_img_url filename=$c_topic.image_filename3 w=120 h=120})" alt="" /></a></li>({/if})
 </ul>
 ({/if})
-
 <table><tr>
 <th>タイトル</th>
 <td>({$c_topic.name})</td>
@@ -57,12 +55,14 @@
 </tr><tr>
 <th>参加者</th>
 <td>({$c_topic.member_num})人
-<ul class="moreInfo"><li>({if $c_topic.member_num})<img src="./skin/dummy.gif" alt="dummy" class="icon arrow_1" /><a href="({t_url m=pc a=page_c_event_member_list})&amp;target_c_commu_topic_id=({$c_topic.c_commu_topic_id})">参加者一覧を見る</a>({/if})</li></ul>
+({if $c_topic.member_num})
+<ul class="moreInfo"><li><a href="({t_url m=pc a=page_c_event_member_list})&amp;target_c_commu_topic_id=({$c_topic.c_commu_topic_id})">参加者一覧を見る</a></li></ul>
+({/if})
 </td>
 </tr><tr>
 <th>一括メッセージ</th>
 <td>イベント参加者に一括メッセージを送ります。
-<ul class="moreInfo"><li><img src="./skin/dummy.gif" alt="dummy" class="icon arrow_1" /><a href="({t_url m=pc a=page_c_event_mail})&amp;target_c_commu_topic_id=({$c_topic.c_commu_topic_id})">一括メッセージを送る</a></li></ul>
+<ul class="moreInfo"><li><a href="({t_url m=pc a=page_c_event_mail})&amp;target_c_commu_topic_id=({$c_topic.c_commu_topic_id})">一括メッセージを送る</a></li></ul>
 </td>
 </tr></table>
 </dd>
@@ -76,9 +76,7 @@
 </ul>
 ({/t_form_block})
 </div>
-
 </div></div>
-<!-- ******ここまで：イベント詳細****** -->
 ({* }}} *})
 
 ({if $c_topic_write.0})
