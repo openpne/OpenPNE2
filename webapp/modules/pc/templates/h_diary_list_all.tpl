@@ -4,6 +4,7 @@
 ({* {{{ searchFormBox *})
 <div class="dparts searchFormBox"><div class="parts">
 <div class="partsHeading"><h3>日記検索</h3></div>
+<div class="item">
 
 ({t_form_block _method=get m=pc a=page_h_diary_list_all})
 <input type="hidden" name="m" value="pc" />
@@ -20,6 +21,7 @@
 <p class="note">※タイトル、本文より検索をおこないます。スペースで区切ると複数キーワードでの検索ができます。</p>
 ({/t_form_block})
 
+</div>
 </div></div>
 ({* }}} *})
 
