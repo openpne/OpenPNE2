@@ -200,14 +200,10 @@
 
 ({if $c_diary_id_prev || $c_diary_id_next})
 ({* {{{ *})
-({* #1940 *})<div class="parts">
-({* #1940 *})({if $c_diary_id_prev})
-({* #1940 *})<a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$c_diary_id_prev})">«前の日記</a>
-({* #1940 *})({/if})
-({* #1940 *})({if $c_diary_id_next})
-({* #1940 *})<a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$c_diary_id_next})">次の日記»</a>
-({* #1940 *})({/if})
-({* #1940 *})</div>
+<div class="parts prevNextLinkLine">
+({if $c_diary_id_prev})<p class="prev"><a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$c_diary_id_prev})">«前の日記</a></p>({/if})
+({if $c_diary_id_next})<p class="next"><a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$c_diary_id_next})">次の日記»</a></p>({/if})
+</div>
 ({* }}} *})
 ({/if})
 
