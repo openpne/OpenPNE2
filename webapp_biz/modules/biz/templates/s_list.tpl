@@ -1,20 +1,8 @@
-({ext_include file="inc_header.tpl" INC_HEADER_is_no_alert=true})
-({ext_include file="inc_layoutcolumn_top_720px.tpl"})
-({***************************})
-({**ここから：メインコンテンツ**})
-({***************************})
+<div id="LayoutC">
 
-({if $inc_entry_point[3]})
-({$inc_entry_point[3]|smarty:nodefaults})
-({/if})
-
-<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
-
-<!-- ******************************** -->
-<!-- ******ここから：bizモジュール::スケジュール****** -->
 ({$calendar|smarty:nodefaults})
-<!-- ******ここまで：bizモジュール::スケジュール****** -->
-<!-- ******************************** -->
+
+<div id="Center">
 
 <!-- **************************************** -->
 <!-- ******ここから：ホームに戻る****** -->
@@ -30,16 +18,5 @@
 <!-- ******ここまで：ホームに戻る****** -->
 <!-- **************************************** -->
 
-<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
-
-<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
-
-({if $inc_entry_point[5]})
-({$inc_entry_point[5]|smarty:nodefaults})
-({/if})
-
-({***************************})
-({**ここまで：メインコンテンツ**})
-({***************************})
-({ext_include file="inc_layoutcolumn_bottom_270px_165px_175px_720px.tpl"})
-({ext_include file="inc_footer.tpl"})
+</div><!-- Center -->
+</div><!-- LayoutC -->
