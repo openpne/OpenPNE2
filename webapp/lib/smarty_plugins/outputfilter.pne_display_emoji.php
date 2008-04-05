@@ -8,10 +8,11 @@ function smarty_outputfilter_pne_display_emoji($tpl_output, &$smarty)
     $list = array();
 
     if (empty($GLOBALS['__Framework']['carrier'])) {
-        // input, textarea を退避
+        // input, textarea, img を退避
         $patterns = array(
             '/<input[^>]+>/is',
-            '/<textarea[^>]+>.*?<\/textarea>/is',
+            '/<textarea.*?<\/textarea>/is',
+            '/<img[^>]+>/is',
         );
 
         list ($list, $tpl_output) = _smarty_outputfilter_pne_display_emoji_replace($patterns, $tpl_output);
