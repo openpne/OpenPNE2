@@ -42,17 +42,15 @@
 <dt><span class="label">カテゴリ</span></dt>
 <dd>
 <dl class="category">
-<dt><span>
 ({foreach from=$c_commu_category_parent_list item=item_parent})
-({$item_parent.name})
-({/foreach})
-</span></dt>
+<dt><span>({$item_parent.name})</span></dt>
 <dd><p>
 ({foreach name=cccl from=$c_commu_category_list[$item_parent.c_commu_category_parent_id] item=item_cat})
+({if !$smarty.foreach.cccl.first}) - ({/if})
 <a href="({t_url m=pc a=page_h_com_find_all})&amp;order=r_datetime&amp;keyword=({$smarty.capture.keyword_url|smarty:nodefaults})&amp;category_id=({$item_cat.c_commu_category_id})">({$item_cat.name})(({$item_cat.count_commu_category}))</a>
-({if !$smarty.foreach.cccl.last}) - ({/if})
 ({/foreach})
 </p></dd>
+({/foreach})
 </dl>
 </dd>
 </dl>
