@@ -24,7 +24,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({if $group_list[0]})
 <tr class="photo">
 ({t_loop from=$group_list start=0 num=3})
-<td>({if $item})({if $item.admin_id == $c_member.c_member_id })<p class="crown"><img src="({t_img_url_skin filename=icon_crown})" alt="" /></p>({/if})<a href="({t_url m=biz a=page_g_home})&amp;target_c_commu_id=({$item.biz_group_id})"><img src="({t_img_url filename=$item.image_filename w=76 h=76 noimg=no_image})" alt="" /></a>({/if})</td>
+<td>({if $item})({if $item.admin_id == $c_member_id})<p class="crown"><img src="({t_img_url_skin filename=icon_crown})" alt="" /></p>({/if})<a href="({t_url m=biz a=page_g_home})&amp;target_c_commu_id=({$item.biz_group_id})"><img src="({t_img_url filename=$item.image_filename w=76 h=76 noimg=no_image})" alt="" /></a>({/if})</td>
 ({/t_loop})
 </tr>
 <tr class="text">
@@ -36,7 +36,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({if $group_list[3]})
 <tr class="photo">
 ({t_loop from=$group_list start=3 num=3})
-<td>({if $item})({if $item.admin_id == $c_member.c_member_id })<p class="crown"><img src="({t_img_url_skin filename=icon_crown})" alt="" /></p>({/if})<a href="({t_url m=biz a=page_g_home})&amp;target_c_commu_id=({$item.biz_group_id})"><img src="({t_img_url filename=$item.image_filename w=76 h=76 noimg=no_image})" alt="" /></a>({/if})</td>
+<td>({if $item})({if $item.admin_id == $c_member_id})<p class="crown"><img src="({t_img_url_skin filename=icon_crown})" alt="" /></p>({/if})<a href="({t_url m=biz a=page_g_home})&amp;target_c_commu_id=({$item.biz_group_id})"><img src="({t_img_url filename=$item.image_filename w=76 h=76 noimg=no_image})" alt="" /></a>({/if})</td>
 ({/t_loop})
 </tr>
 <tr class="text">
@@ -48,7 +48,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({if $group_list[6]})
 <tr class="photo">
 ({t_loop from=$group_list start=6 num=3})
-<td>({if $item})({if $item.admin_id == $c_member.c_member_id })<p class="crown"><img src="({t_img_url_skin filename=icon_crown})" alt="" /></p>({/if})<a href="({t_url m=biz a=page_g_home})&amp;target_c_commu_id=({$item.biz_group_id})"><img src="({t_img_url filename=$item.image_filename w=76 h=76 noimg=no_image})" alt="" /></a>({/if})</td>
+<td>({if $item})({if $item.admin_id == $c_member_id})<p class="crown"><img src="({t_img_url_skin filename=icon_crown})" alt="" /></p>({/if})<a href="({t_url m=biz a=page_g_home})&amp;target_c_commu_id=({$item.biz_group_id})"><img src="({t_img_url filename=$item.image_filename w=76 h=76 noimg=no_image})" alt="" /></a>({/if})</td>
 ({/t_loop})
 </tr>
 <tr class="text">
@@ -61,7 +61,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({/if})
 <div class="block moreInfo">
 <ul class="moreInfo">
-<li><a href="({t_url m=biz a=page_fh_group_list})">全てを見る(({$group_count}))</a></li>
+<li><a href="({t_url m=biz a=page_fh_group_list})&amp;target_c_member_id=({$c_member_id})">全てを見る(({$group_count}))</a></li>
 <li><a href="({t_url m=biz a=page_h_biz_group_add})">グループの追加</a></li>
 <li><a href="({t_url m=biz a=page_h_biz_group_find_all})">グループ検索</a></li>
 </ul>
