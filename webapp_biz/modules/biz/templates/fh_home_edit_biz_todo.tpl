@@ -1,13 +1,6 @@
-({ext_include file="inc_header.tpl"})
-({ext_include file="inc_layoutcolumn_top_720px.tpl"})
-({***************************})
-({**ここから：メインコンテンツ**})
-({***************************})
+<div id="LayoutC">
+<div id="Center">
 
-<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
-
-<!-- **************************************** -->
-<!-- ******ここから：Todo編集****** -->
 ({t_form m=biz a=do_`$cmd`_home_edit_biz_todo})
 <input type="hidden" name="target_id" value="({$target_id})">
 <input type="hidden" name="nickname" value="({$nickname})">
@@ -269,13 +262,6 @@ Todo
 </tr>
 </table>
 </form>
-<!-- ******ここまで：Todo編集****** -->
-<!-- **************************************** -->
 
-<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
-
-({***************************})
-({**ここまで：メインコンテンツ**})
-({***************************})
-({ext_include file="inc_layoutcolumn_bottom_270px_165px_175px_720px.tpl"})
-({ext_include file="inc_footer.tpl"})
+</div><!-- Center -->
+</div><!-- LayoutC -->
