@@ -5,14 +5,10 @@
 
 ({* {{{ descriptionBox *})
 <div class="dparts descriptionBox"><div class="parts">
-<p>
-※他のメンバーから見たあなたのページはこのようになります。<br />
-<br />
-他のメンバーにあなたのページを教える場合には、以下のURLを使ってください。<br />
-({t_url _absolute=1 m=pc a=page_f_home})&amp;target_c_member_id=({$target_c_member_id})<br />
-<br />
-プロフィールを変更する場合は 「<a href="({t_url m=pc a=page_h_config_prof})">プロフィール変更</a>」 よりおこなえます。
-</p>
+<p>※他のメンバーから見たあなたのページはこのようになります。</p>
+<p>他のメンバーにあなたのページを教える場合には、以下のURLを使ってください。<br />
+({t_url _absolute=1 m=pc a=page_f_home})&amp;target_c_member_id=({$target_c_member_id})</p>
+<p>プロフィールを変更する場合は 「<a href="({t_url m=pc a=page_h_config_prof})">プロフィール変更</a>」 よりおこなえます。</p>
 </div></div>
 ({* }}} *})
 
@@ -31,12 +27,10 @@
 ({if !$is_friend})
 ({* {{{ infoBox *})
 <div class="dparts infoBox"><div class="parts">
-<table><tr>
-<th>({$target_c_member.nickname})さんと直接の知り合いの場合、({$WORD_MY_FRIEND})に追加しましょう！</th>
-<td><ul class="moreInfo">
+<p>({$target_c_member.nickname})さんと直接の知り合いの場合、({$WORD_MY_FRIEND})に追加しましょう！</p>
+<ul class="moreInfo">
 <li><a href="({t_url m=pc a=do_f_link_request})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;sessid=({$PHPSESSID})">({$WORD_MY_FRIEND})に追加</a></li>
-</ul></td>
-</tr></table>
+</ul>
 </div></div>
 ({* }}} *})
 ({/if})
@@ -44,12 +38,10 @@
 ({if $is_friend && $my_friend_intro==''})
 ({* {{{ infoBox *})
 <div class="dparts infoBox"><div class="parts">
-<table><tr>
-<th>({$target_c_member.nickname})さんをみんなに紹介しましょう！</th>
-<td><ul class="moreInfo">
+<p>({$target_c_member.nickname})さんをみんなに紹介しましょう！</p>
+<ul class="moreInfo">
 <li><a href="({t_url m=pc a=page_f_intro_edit})&amp;target_c_member_id=({$target_c_member.c_member_id})">紹介文を書く</a></li>
-</ul></td>
-</tr></table>
+</ul>
 </div></div>
 ({* }}} *})
 ({/if})
