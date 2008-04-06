@@ -1,4 +1,8 @@
 <?php
+/**
+ * @copyright 2005-2008 OpenPNE Project
+ * @license   http://www.php.net/license/3_01.txt PHP License 3.01
+ */
 
 /**
  * 「[c:NNN]」形式の絵文字コードをHTML表示用に変換するアウトプットフィルタ
