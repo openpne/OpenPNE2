@@ -14,6 +14,7 @@ class OpenPNE_Smarty extends Smarty
     function OpenPNE_Smarty($configs=array())
     {
         $this->Smarty();
+        $this->autoload_filters['pre'][] = 'pne_nodefaults';
 
         // 設定値をセット
         foreach ($configs as $key => $value) {
