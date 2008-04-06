@@ -271,6 +271,7 @@ function biz_getHomeGroupList($c_member_id)
     $inc_smarty->templates_dir = 'pc/templates';;
     $inc_smarty->assign("group_list", biz_getJoinGroup($c_member_id, 9));
     $inc_smarty->assign("group_count", biz_getGroupCount($c_member_id));
+    $inc_smarty->assign("c_member_id", $c_member_id);
 
     $content = $inc_smarty->fetch('file:'.OPENPNE_MODULES_BIZ_DIR.'/biz/templates/inc_biz_home_group_list.tpl');
 
