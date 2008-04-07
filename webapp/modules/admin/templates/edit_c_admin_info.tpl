@@ -43,7 +43,7 @@
 ({elseif $requests.target == 'k_fh_diary'})
 ＜携帯版＞日記ページのお知らせ
 ({elseif $requests.target == 'k_f_home'})
-＜携帯版＞フレンドページのお知らせ
+＜携帯版＞({$WORD_FRIEND})ページのお知らせ
 ({elseif $requests.target == 'k_c_home'})
 ＜携帯版＞コミュニティページのお知らせ
 ({elseif $requests.target == 'sns_kiyaku'})
