@@ -3,7 +3,7 @@
 
 ({* {{{ yesNoButtonBox *})
 <div class="dparts yesNoButtonBox"><div class="parts">
-<div class="partsHeading"><h3>日記公開範囲の一括設定します</h3></div>
+<div class="partsHeading"><h3>({$WORD_DIARY})公開範囲の一括設定します</h3></div>
 
 <div class="block">
 ({t_form_block m=pc a=do_h_set_public_flag_all})

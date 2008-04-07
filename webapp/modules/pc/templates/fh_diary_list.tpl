@@ -7,7 +7,7 @@
 <ul>
 <li><img src="({t_img_url_skin filename=icon_search})" alt="search" /></li>
 <li><input type="text" class="input_text" name="keyword" value="({$keyword})" size="30" /></li>
-<li><input type="submit" class="input_submit" value="日記検索" /></li>
+<li><input type="submit" class="input_submit" value="({$WORD_DIARY})検索" /></li>
 </ul>
 ({/t_form_block})
 </div>
@@ -60,7 +60,7 @@
 
 ({if $date_list})
 <div class="item monthlyDiary">
-<div class="partsHeading"><h3>各月の日記</h3></div>
+<div class="partsHeading"><h3>各月の({$WORD_DIARY})</h3></div>
 <ul class="list">
 ({foreach from=$date_list item=date})
 <li><a href="({t_url m=pc a=page_fh_diary_list})&amp;target_c_member_id=({$target_member.c_member_id})&amp;year=({$date.year})&amp;month=({$date.month})">({$date.year})年({$date.month})月の一覧</a></li>
@@ -88,11 +88,11 @@
 ({if $type == "h"})
 ({* {{{ infoButtonBox *})
 <div class="dparts infoButtonBox"><div class="parts">
-<div class="partsHeading"><h3>日記を書く</h3></div>
+<div class="partsHeading"><h3>({$WORD_DIARY})を書く</h3></div>
 <div class="block">
 ({t_form_block _method=get m=pc a=page_h_diary_add})
 <ul class="moreInfo button">
-<li><input type="submit" class="input_submit" value="日記を書く" /></li>
+<li><input type="submit" class="input_submit" value="({$WORD_DIARY})を書く" /></li>
 </ul>
 ({/t_form_block})
 </div>
@@ -103,7 +103,7 @@
 ({if $target_diary_list})
 ({* {{{ commentList *})
 <div class="dparts commentList"><div class="parts">
-<div class="partsHeading"><h3>({$target_member.nickname})({if $type == "f"})さん({/if})の日記({if !$all})({if !$category}) ({$date_val.year})年({$date_val.month})月({if $date_val.day})({$date_val.day})日({/if})({/if})({$category_name})({/if})</h3></div>
+<div class="partsHeading"><h3>({$target_member.nickname})({if $type == "f"})さん({/if})の({$WORD_DIARY})({if !$all})({if !$category}) ({$date_val.year})年({$date_val.month})月({if $date_val.day})({$date_val.day})日({/if})({/if})({$category_name})({/if})</h3></div>
 <div class="pagerRelative">
 ({if $is_prev})
 <p class="prev"><a href="({t_url m=pc a=page_fh_diary_list})&amp;target_c_member_id=({$target_member.c_member_id})&amp;direc=-1&amp;page=({$page})({if $url_keyword})&amp;keyword=({$url_keyword})({/if})({if $category_id})&amp;category_id=({$category_id})({elseif !$all})({if $date_val.year})&amp;year=({$date_val.year})({/if})({if $date_val.month})&amp;month=({$date_val.month})({/if})({if $date_val.day})&amp;day=({$date_val.day})({/if})({/if})">前を表示</a></p>

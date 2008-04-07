@@ -28,7 +28,7 @@
 <a href="({t_url m=ktai a=page_h_message_box})&amp;({$tail})"><font color="#({$ktai_color_config.font_09})">★新着ﾒｯｾｰｼﾞ({$num_message_not_is_read})件</font></a><br>
 ({/if})
 ({if $num_diary_not_is_read})
-<a href="({t_url m=ktai a=page_fh_diary})&amp;target_c_diary_id=({$first_diary_read})&amp;({$tail})"><font color="#({$ktai_color_config.font_09})">★({$num_diary_not_is_read})件日記に新着ｺﾒﾝﾄ</font></a><br>
+<a href="({t_url m=ktai a=page_fh_diary})&amp;target_c_diary_id=({$first_diary_read})&amp;({$tail})"><font color="#({$ktai_color_config.font_09})">★({$num_diary_not_is_read})件({$WORD_DIARY_HALF})に新着ｺﾒﾝﾄ</font></a><br>
 ({/if})
 ({if $num_h_confirm_list })
 <a href="({t_url m=ktai a=page_h_confirm_list})&amp;({$tail})"><font color="#({$ktai_color_config.font_09})">★ｺﾐｭﾆﾃｨ参加承認待ち({$num_h_confirm_list})名</font></a><br>
@@ -64,14 +64,14 @@
 </td>
 
 <td valign="top">
-[i:190]<a href="({t_url m=ktai a=page_h_diary_edit})&amp;({$tail})">日記を書く</a><br>
-[i:70]<a href="({t_url m=ktai a=page_fh_diary_list})&amp;({$tail})">日記を読む</a><br>
+[i:190]<a href="({t_url m=ktai a=page_h_diary_edit})&amp;({$tail})">({$WORD_DIARY_HALF})を書く</a><br>
+[i:70]<a href="({t_url m=ktai a=page_fh_diary_list})&amp;({$tail})">({$WORD_DIARY_HALF})を読む</a><br>
 [i:110]<a href="({t_url m=ktai a=page_h_message_box})&amp;({$tail})">ﾒｯｾｰｼﾞ</a><br>
 [i:91]<a href="({t_url m=ktai a=page_h_ashiato})&amp;({$tail})">あしあと</a><br>
 ({if $smarty.const.IS_USER_INVITE && ($smarty.const.OPENPNE_REGIST_FROM != $smarty.const.OPENPNE_REGIST_FROM_NONE)})[i:140]<a href="({t_url m=ktai a=page_h_invite})&amp;({$tail})">友人を誘う</a><br>({/if})
 </td></tr>
 <tr><td colspan="2" align="center">
-[i:119]<a href="#search">検索</a>/[i:70]<a href="({t_url m=ktai a=page_h_diary_list_all})&amp;({$tail})">最新日記</a>({if $smarty.const.OPENPNE_USE_RANKING})/[i:191]<a href="({t_url m=ktai a=page_h_ranking})&amp;({$tail})">ﾗﾝｷﾝｸﾞ</a>({/if})
+[i:119]<a href="#search">検索</a>/[i:70]<a href="({t_url m=ktai a=page_h_diary_list_all})&amp;({$tail})">最新({$WORD_DIARY_HALF})</a>({if $smarty.const.OPENPNE_USE_RANKING})/[i:191]<a href="({t_url m=ktai a=page_h_ranking})&amp;({$tail})">ﾗﾝｷﾝｸﾞ</a>({/if})
 <hr color="#({$ktai_color_config.border_01})" size="3"></td></tr>
 
 <tr>
@@ -92,7 +92,7 @@
 <br>
 <table width="100%">
 <tr><td bgcolor="#({$ktai_color_config.bg_05})">
-<a accesskey="1" name="a1" href="#a1">[i:125]</a><font color="#({$ktai_color_config.color_25})">({$WORD_FRIEND_HALF})最新日記</font><br>
+<a accesskey="1" name="a1" href="#a1">[i:125]</a><font color="#({$ktai_color_config.color_25})">({$WORD_FRIEND_HALF})最新({$WORD_DIARY_HALF})</font><br>
 </td></tr>
 ({foreach from=$c_diary_friend_list item=item})
 <tr><td bgcolor="#({cycle values="`$ktai_color_config.bg_06`,`$ktai_color_config.bg_07`"})">
@@ -117,7 +117,7 @@
 
 <table width="100%">
 <tr><td bgcolor="#({$ktai_color_config.bg_08})">
-<a accesskey="2" name="a2" href="#a2">[i:126]</a><font color="#({$ktai_color_config.color_26})">日記ｺﾒﾝﾄ記入履歴</font><br>
+<a accesskey="2" name="a2" href="#a2">[i:126]</a><font color="#({$ktai_color_config.color_26})">({$WORD_DIARY_HALF})ｺﾒﾝﾄ記入履歴</font><br>
 </td></tr>
 ({foreach from=$c_diary_my_comment_list item=item})
 <tr><td bgcolor="#({cycle values="`$ktai_color_config.bg_09`,`$ktai_color_config.bg_10`"})">
@@ -169,7 +169,7 @@
 <a href="({t_url m=ktai a=page_h_friend_find_all})&amp;({$tail})">ﾒﾝﾊﾞｰ検索</a><br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_10})">
-<a href="({t_url m=ktai a=page_h_diary_list_all})&amp;({$tail})">日記検索</a><br>
+<a href="({t_url m=ktai a=page_h_diary_list_all})&amp;({$tail})">({$WORD_DIARY_HALF})検索</a><br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_09})">
 <a href="({t_url m=ktai a=page_h_com_find_all})&amp;({$tail})">ｺﾐｭﾆﾃｨ検索</a><br>
@@ -223,7 +223,7 @@
 <a href="({t_url m=ktai a=page_h_config_mail_ashiato})&amp;({$tail})">あしあとお知らせﾒｰﾙ設定</a><br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_10})">
-<a href="({t_url m=ktai a=page_h_config_public_flag_diary})&amp;({$tail})">日記の公開範囲設定</a><br>
+<a href="({t_url m=ktai a=page_h_config_public_flag_diary})&amp;({$tail})">({$WORD_DIARY_HALF})の公開範囲設定</a><br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_09})">
 <a href="({t_url m=ktai a=page_h_config_access_block})&amp;({$tail})">ｱｸｾｽﾌﾞﾛｯｸ設定</a><br>

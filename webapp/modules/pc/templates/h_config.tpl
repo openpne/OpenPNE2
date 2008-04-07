@@ -150,15 +150,15 @@
 </tr>
 ({/if})
 <tr>
-<th>日記公開範囲</th>
+<th>({$WORD_DIARY})公開範囲</th>
 <td>
 <ul>
 <li><input type="radio" class="input_radio" name="public_flag_diary" id="public_flag_diary_public" value="public"({if $c_member.public_flag_diary == "public"}) checked="checked"({/if}) /><label for="public_flag_diary_public">全員に公開</label></li>
 <li><input type="radio" class="input_radio" name="public_flag_diary" id="public_flag_diary_friend" value="friend"({if $c_member.public_flag_diary == "friend"}) checked="checked"({/if}) /><label for="public_flag_diary_friend">({$WORD_MY_FRIEND})まで公開</label></li>
 <li><input type="radio" class="input_radio" name="public_flag_diary" id="public_flag_diary_private" value="private"({if $c_member.public_flag_diary == "private"}) checked="checked"({/if}) /><label for="public_flag_diary_private">公開しない</label></li>
 </ul>
-<p>※ここで指定した値が日記作成画面であらかじめ選択されている値となります。<br />
-これまでに書かれた日記の公開範囲は変更されません。</p>
+<p>※ここで指定した値が({$WORD_DIARY})作成画面であらかじめ選択されている値となります。<br />
+これまでに書かれた({$WORD_DIARY})の公開範囲は変更されません。</p>
 </td>
 </tr>
 <tr>
@@ -200,17 +200,17 @@
 
 ({* {{{ formTable *})
 <div class="dparts formTable"><div class="parts">
-<div class="partsHeading"><h3>日記公開範囲の一括変更</h3></div>
+<div class="partsHeading"><h3>({$WORD_DIARY})公開範囲の一括変更</h3></div>
 ({t_form_block m=pc a=page_h_set_public_flag_all_confirm})
 <table><tr>
-<th>日記公開範囲</th>
+<th>({$WORD_DIARY})公開範囲</th>
 <td>
 <ul>
 <li><input type="radio" class="input_radio" name="public_flag_diary_all" id="public_flag_diary_all_public" value="public" checked="checked" /><label for="public_flag_diary_all_public">全員に公開</label></li>
 <li><input type="radio" class="input_radio" name="public_flag_diary_all" id="public_flag_diary_all_friend" value="friend" /><label for="public_flag_diary_all_friend">({$WORD_MY_FRIEND})まで公開</label></li>
 <li><input type="radio" class="input_radio" name="public_flag_diary_all" id="public_flag_diary_all_private" value="private" /><label for="public_flag_diary_all_private">公開しない</label></li>
 </ul>
-<p>※これまでに書いた日記の公開範囲を一括で変更することができます。</p>
+<p>※これまでに書いた({$WORD_DIARY})の公開範囲を一括で変更することができます。</p>
 </td>
 </tr></table>
 <div class="operation">
