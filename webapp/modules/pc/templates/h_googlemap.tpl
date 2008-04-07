@@ -22,7 +22,6 @@ function OnLocalSearch() {
     gMap.setCenter(point, zoom);
     var marker = new GMarker(point);
     gMap.addOverlay(marker);
-    GEvent.addListener(marker, "click", function() { marker.openInfoWindowHtml(html);});
     geocoder = new GClientGeocoder();
 }
 function load() {
@@ -47,7 +46,6 @@ function load() {
             gMap.setMapType(({$MapType}));
             var marker = new GMarker(point);
             gMap.addOverlay(marker);
-            GEvent.addListener(marker, "click", function() { marker.openInfoWindowHtml(html);});
             geocoder = new GClientGeocoder();
         }
     }
