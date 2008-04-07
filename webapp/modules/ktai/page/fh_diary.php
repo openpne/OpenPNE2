@@ -31,7 +31,7 @@ class ktai_page_fh_diary extends OpenPNE_Action
 
             // check public_flag
             if (!pne_check_diary_public_flag($target_c_diary_id, $u)) {
-                ktai_display_error('この日記にはアクセスできません');
+                ktai_display_error('この' . WORD_DIARY_HALF . 'にはアクセスできません');
             }
             //アクセスブロック設定
             if (db_member_is_access_block($u, $target_c_member_id)) {

@@ -20,14 +20,14 @@
 ■INDEX■
 ―――――――――――――――――――――――――――――
 
-◆({$WORD_MY_FRIEND})の最新日記
+◆({$WORD_MY_FRIEND})の最新({$WORD_DIARY})
 ◆参加コミュニティの最新書き込み
 ◆({$c_member.nickname})さんのページへのアクセス数
 ◆昨日のランキングNo1は？
 
 
 ―――――――――――――――――――――――――――――
-◆({$WORD_MY_FRIEND})の最新日記◆
+◆({$WORD_MY_FRIEND})の最新({$WORD_DIARY})◆
 ―――――――――――――――――――――――――――――
 
 ({foreach from=$diary_friend_list item=item})
