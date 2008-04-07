@@ -9,7 +9,7 @@
 ({capture name=parent_page_url})?m=({$module_name})&amp;a=page_({$hash_tbl->hash('access_analysis_month')})&ktai_flag=1({/capture})
 ({/if})
 
-({capture name=page_name_temp})({$item_str}) 日記別アクセス数表示 ({if $month_flag})({$ymd|date_format:"%Y年%m月分"})({else})({$ymd|date_format:"%Y年%m月%d日分"})({/if})({/capture})
+({capture name=page_name_temp})({$item_str}) ({$WORD_DIARY})別アクセス数表示 ({if $month_flag})({$ymd|date_format:"%Y年%m月分"})({else})({$ymd|date_format:"%Y年%m月%d日分"})({/if})({/capture})
 ({assign var="page_name" value=$smarty.capture.page_name_temp})
 
 ({ext_include file="inc_tree_adminStatisticalInformation.tpl"})
@@ -17,7 +17,7 @@
 
 ({*ここまで:navi*})
 
-<h2>({$item_str}) 日記別アクセス数表示 ({if $month_flag})({$ymd|date_format:"%Y年%m月分"})({else})({$ymd|date_format:"%Y年%m月%d日分"})({/if})</h2>
+<h2>({$item_str}) ({$WORD_DIARY})別アクセス数表示 ({if $month_flag})({$ymd|date_format:"%Y年%m月分"})({else})({$ymd|date_format:"%Y年%m月%d日分"})({/if})</h2>
 <div class="contents">
 
 

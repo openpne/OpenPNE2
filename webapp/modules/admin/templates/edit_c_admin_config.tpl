@@ -202,9 +202,9 @@
 </select></td>
 </tr>
 <tr class="cell19">
-<th colspan="2">日記カテゴリ機能使用設定</th>
+<th colspan="2">({$WORD_DIARY})カテゴリ機能使用設定</th>
 <td>
-<span class="info">※日記のカテゴリ機能を有効にするかどうかを設定します</span><br />
+<span class="info">※({$WORD_DIARY})のカテゴリ機能を有効にするかどうかを設定します</span><br />
 <select class="basic" name="USE_DIARY_CATEGORY">
 <option value="1"({if $smarty.const.USE_DIARY_CATEGORY}) selected="selected"({/if})>使用する</option>
 <option value="0"({if !$smarty.const.USE_DIARY_CATEGORY}) selected="selected"({/if})>使用しない</option>
