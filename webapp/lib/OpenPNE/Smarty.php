@@ -22,6 +22,11 @@ class OpenPNE_Smarty extends Smarty
                 $this->$key = $value;
             }
         }
+
+        $this->assign('WORD_FRIEND', WORD_FRIEND);
+        $this->assign('WORD_FRIEND_HALF', WORD_FRIEND_HALF);
+        $this->assign('WORD_MY_FRIEND', WORD_MY_FRIEND);
+        $this->assign('WORD_MY_FRIEND_HALF', WORD_MY_FRIEND_HALF);
     }
 
     // extディレクトリ対応 SMARTY->display() ラッパー

@@ -124,7 +124,7 @@
 <td class="cell04">({$item.name})</td>
 <td class="cell05">({if $item.is_required})○({else})×({/if})</td>
 <td class="cell06">({if $item.public_flag_edit})○({else})×({/if})</td>
-<td class="cell07">({if $item.public_flag_default == 'private'})公開しない({elseif $item.public_flag_default == 'friend'})({$smarty.const.WORD_MY_FRIEND})まで公開({else})全員に公開({/if})</td>
+<td class="cell07">({if $item.public_flag_default == 'private'})公開しない({elseif $item.public_flag_default == 'friend'})({$WORD_MY_FRIEND})まで公開({else})全員に公開({/if})</td>
 <td class="cell08">({if $item.form_type == 'text'})テキスト({elseif $item.form_type == 'textlong'})テキスト(長)({elseif $item.form_type == 'textarea'})テキスト(複数行)({elseif $item.form_type == 'select'})単一選択(プルダウン)({elseif $item.form_type == 'radio'})単一選択(ラジオボタン)({elseif $item.form_type == 'checkbox'})複数選択(チェックボックス)({/if})</td>
 <td class="cell09">({$item.sort_order})</td>
 <td class="cell10">({if $item.form_type == 'select' || $item.form_type == 'checkbox' || $item.form_type == 'radio'})<a href="#opt_({$item.name})">一覧</a>({else})&nbsp;({/if})</td>
