@@ -3,7 +3,7 @@
 
 ({* {{{ searchFormBox *})
 <div class="dparts searchFormBox"><div class="parts">
-<div class="partsHeading"><h3>日記検索</h3></div>
+<div class="partsHeading"><h3>({$WORD_DIARY})検索</h3></div>
 <div class="item">
 
 ({t_form_block _method=get m=pc a=page_h_diary_list_all})
@@ -29,9 +29,9 @@
 ({* {{{ searchResultList *})
 <div class="dparts searchResultList"><div class="parts">
 ({if $keyword})
-<div class="partsHeading"><h3>日記検索結果一覧</h3><p>*** ({$c_diary_search_list_count})件が該当しました。</p></div>
+<div class="partsHeading"><h3>({$WORD_DIARY})検索結果一覧</h3><p>*** ({$c_diary_search_list_count})件が該当しました。</p></div>
 ({else})
-<div class="partsHeading"><h3>最新日記一覧</h3></div>
+<div class="partsHeading"><h3>最新({$WORD_DIARY})一覧</h3></div>
 ({/if})
 
 <div class="pagerRelative">

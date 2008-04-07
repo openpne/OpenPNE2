@@ -3,7 +3,7 @@
 
 ({* {{{ formTable *})
 <div class="dparts formTable"><div class="parts">
-<div class="partsHeading"><h3>日記にコメントを書く</h3></div>
+<div class="partsHeading"><h3>({$WORD_DIARY})にコメントを書く</h3></div>
 <div class="partsInfo">
 <p>下記のコメントを書き込みますか？</p>
 </div>

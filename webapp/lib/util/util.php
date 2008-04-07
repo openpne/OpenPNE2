@@ -322,7 +322,7 @@ function util_get_c_navi($navi_type = 'h')
             array('url' => '?m=pc&a=page_h_review_search', 'caption' => 'レビュー検索'),
             array('url' => '?m=pc&a=page_h_home', 'caption' => 'マイホーム'),
             array('url' => '?m=pc&a=page_h_invite', 'caption' => '友人を誘う'),
-            array('url' => '?m=pc&a=page_h_diary_list_all', 'caption' => '最新日記'),
+            array('url' => '?m=pc&a=page_h_diary_list_all', 'caption' => '最新' . WORD_DIARY),
             array('url' => '?m=pc&a=page_h_ranking', 'caption' => 'ランキング'),
             array('url' => '?m=pc&a=page_h_config', 'caption' => '設定変更'),
         );
@@ -333,7 +333,7 @@ function util_get_c_navi($navi_type = 'h')
         $navi = array(
             array('url' => '?m=pc&a=page_h_home', 'caption' => 'ホーム'),
             array('url' => '?m=pc&a=page_fh_friend_list', 'caption' => WORD_MY_FRIEND),
-            array('url' => '?m=pc&a=page_fh_diary_list', 'caption' => '日記'),
+            array('url' => '?m=pc&a=page_fh_diary_list', 'caption' => WORD_DIARY),
             array('url' => '?m=pc&a=page_h_message_box', 'caption' => 'メッセージ'),
             array('url' => '?m=pc&a=page_h_ashiato', 'caption' => 'あしあと'),
             array('url' => '?m=pc&a=page_h_bookmark_list', 'caption' => 'お気に入り'),
@@ -346,7 +346,7 @@ function util_get_c_navi($navi_type = 'h')
         $navi = array(
             array('url' => '?m=pc&a=page_f_home', 'caption' => 'ホーム'),
             array('url' => '?m=pc&a=page_fh_friend_list', 'caption' => WORD_FRIEND),
-            array('url' => '?m=pc&a=page_fh_diary_list', 'caption' => '日記を読む'),
+            array('url' => '?m=pc&a=page_fh_diary_list', 'caption' => WORD_DIARY . 'を読む'),
             array('url' => '?m=pc&a=page_f_message_send', 'caption' => 'メッセージを送る'),
             array('url' => '?m=pc&a=page_f_bookmark_add', 'caption' => 'お気に入りに追加'),
             array('url' => '?m=pc&a=page_fh_review_list_member', 'caption' => 'レビュー'),
