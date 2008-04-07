@@ -40,8 +40,8 @@ class OpenPNE_Validator_Common
         // 全アクション共通のiniファイル
         $v_dir = OPENPNE_WEBAPP_DIR . '/validate/';
         $common_ini_files = array();
-        $common_ini_files[] = $v_dir . 'msg.ini'; // エラーメッセージ系
-        $common_ini_files[] = $v_dir . 'sessid.ini'; // はまちちゃん対策セッションID
+        $common_ini_files[] = $v_dir . 'msg.ini';
+        $common_ini_files[] = $v_dir . 'sessid.ini';
         foreach ($common_ini_files as $ini) {
             $this->validator->addIniSetting($ini);
         }

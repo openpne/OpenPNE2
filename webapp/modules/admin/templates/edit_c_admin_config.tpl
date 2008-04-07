@@ -301,28 +301,28 @@
 <th>フレンド</th>
 <td>
 <span class="info">SNS内「フレンド」を他の名称に設定します</span><br />
-<input class="basic" name="WORD_FRIEND" type="text" value="({$smarty.const.WORD_FRIEND})" size="30" />
+<input class="basic" name="WORD_FRIEND" type="text" value="({$WORD_FRIEND})" size="30" />
 </td>
 </tr>
 <tr class="cell23B">
 <th>マイフレンド</th>
 <td>
 <span class="info">SNS内「フレンド」を他の名称に設定します</span><br />
-<input class="basic" name="WORD_MY_FRIEND" type="text" value="({$smarty.const.WORD_MY_FRIEND})" size="30" />
+<input class="basic" name="WORD_MY_FRIEND" type="text" value="({$WORD_MY_FRIEND})" size="30" />
 </td>
 </tr>
 <tr class="cell23C">
 <th>ﾌﾚﾝﾄﾞ(携帯)</th>
 <td>
 <span class="info">SNS内「フレンド」を他の名称に設定します</span><br />
-<input class="basic" name="WORD_FRIEND_HALF" type="text" value="({$smarty.const.WORD_FRIEND_HALF})" size="30" />
+<input class="basic" name="WORD_FRIEND_HALF" type="text" value="({$WORD_FRIEND_HALF})" size="30" />
 </td>
 </tr>
 <tr class="cell23D">
 <th>ﾏｲﾌﾚﾝﾄﾞ(携帯)</th>
 <td>
 <span class="info">SNS内「フレンド」を他の名称に設定します</span><br />
-<input class="basic" name="WORD_MY_FRIEND_HALF" type="text" value="({$smarty.const.WORD_MY_FRIEND_HALF})" size="30" />
+<input class="basic" name="WORD_MY_FRIEND_HALF" type="text" value="({$WORD_MY_FRIEND_HALF})" size="30" />
 </td>
 </tr>
 <tr class="cell24">
