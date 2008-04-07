@@ -38,7 +38,7 @@
 <th>公開設定<br>デフォルト値</th>
 <td><select class="basic" name="public_flag_default">
 <option value="public"({if $c_profile.public_flag_default == 'public'}) selected="selected"({/if})>全員に公開</option>
-<option value="friend"({if $c_profile.public_flag_default == 'friend'}) selected="selected"({/if})>({$smarty.const.WORD_MY_FRIEND})まで公開</option>
+<option value="friend"({if $c_profile.public_flag_default == 'friend'}) selected="selected"({/if})>({$WORD_MY_FRIEND})まで公開</option>
 <option value="private"({if $c_profile.public_flag_default == 'private'}) selected="selected"({/if})>公開しない</option>
 </select></td>
 </tr>
