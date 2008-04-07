@@ -11,7 +11,7 @@
 </div>
 
 <div class="item">
-<div class="partsHeading"><h3>マイフレンド数No1</h3></div>
+<div class="partsHeading"><h3>({$WORD_MY_FRIEND})数No1</h3></div>
 <p>登録されている({$WORD_MY_FRIEND})の数が多いメンバーのランキングです。
 </p>
 <p class="link"><a href="({t_url m=pc a=page_h_ranking})&amp;kind=friend">({$WORD_MY_FRIEND})数No1</a></p>
