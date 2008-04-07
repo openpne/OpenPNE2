@@ -67,7 +67,7 @@ class ktai_do_h_config_prof_update_c_member extends OpenPNE_Action
             'nickname' => array(
                 'type' => 'string',
                 'required' => '1',
-                'caption' => 'ニックネーム',
+                'caption' => WORD_NICKNAME,
                 'max' => '40',
             ),
             'birth_year' => array(

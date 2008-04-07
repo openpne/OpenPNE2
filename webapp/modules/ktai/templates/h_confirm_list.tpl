@@ -18,7 +18,7 @@
 ({foreach from=$anatani_c_friend_confirm_list item=anatani_c_friend_confirm name=anatani_c_friend_confirm_list_name})
 
 <tr><td bgcolor="#({cycle values="`$ktai_color_config.bg_06`,`$ktai_color_config.bg_07`"})">
-<font color="#({$ktai_color_config.font_06})">ﾆｯｸﾈｰﾑ：</font><br>
+<font color="#({$ktai_color_config.font_06})">({$WORD_NICKNAME_HALF})：</font><br>
 <a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$anatani_c_friend_confirm.c_member_id_from})&amp;({$tail})">({$anatani_c_friend_confirm.nickname})</a><br>
 <br>
 ({if $$anatani_c_friend_confirm_list.message})
@@ -47,7 +47,7 @@
 ({if $anatani_c_commu_member_confirm_list})
 ({foreach from=$anatani_c_commu_member_confirm_list item=item name=anatani_c_commu_member_confirm_list_name})
 <tr><td bgcolor="#({cycle values="`$ktai_color_config.bg_09`,`$ktai_color_config.bg_10`"})">
-<font color="#({$ktai_color_config.font_06})">ﾆｯｸﾈｰﾑ：</font><br>
+<font color="#({$ktai_color_config.font_06})">({$WORD_NICKNAME_HALF})：</font><br>
 <a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})&amp;({$tail})">({$item.nickname})</a><br>
 <br>
 <font color="#({$ktai_color_config.font_06})">ｺﾐｭﾆﾃｨ名：</font><br>
@@ -78,7 +78,7 @@
 ({if $anatani_c_commu_admin_confirm_list})
 ({foreach from=$anatani_c_commu_admin_confirm_list item=item name=anatani_c_commu_admin_confirm_list_name})
 <tr><td bgcolor="#({$ktai_color_config.bg_06})">
-<font color="#({$ktai_color_config.font_06})">ﾆｯｸﾈｰﾑ：</font><br>
+<font color="#({$ktai_color_config.font_06})">({$WORD_NICKNAME_HALF})：</font><br>
 <a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$item.c_member_id_admin})&amp;({$tail})">({$item.nickname})</a><br>
 <br>
 <font color="#({$ktai_color_config.font_06})">ｺﾐｭﾆﾃｨ名：</font><br>
@@ -110,7 +110,7 @@
 ({if $anatani_c_commu_sub_admin_confirm_list})
 ({foreach from=$anatani_c_commu_sub_admin_confirm_list item=item})
 <tr><td bgcolor="#({cycle values="`$ktai_color_config.bg_09`,`$ktai_color_config.bg_10`"})">
-<font color="#({$ktai_color_config.font_06})">ﾆｯｸﾈｰﾑ：</font><br>
+<font color="#({$ktai_color_config.font_06})">({$WORD_NICKNAME_HALF})：</font><br>
 <a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$item.c_member_id_admin})&amp;({$tail})">({$item.nickname})</a><br>
 <br>
 <font color="#({$ktai_color_config.font_06})">ｺﾐｭﾆﾃｨ名：</font><br>
@@ -141,7 +141,7 @@
 ({if $anataga_c_friend_confirm_list})
 ({foreach from=$anataga_c_friend_confirm_list item=anataga_c_friend_confirm name=anataga_c_friend_confirm_list_name})
 <tr><td bgcolor="#({$ktai_color_config.bg_06})">
-<font color="#({$ktai_color_config.font_06})">ﾆｯｸﾈｰﾑ：</font><br>
+<font color="#({$ktai_color_config.font_06})">({$WORD_NICKNAME_HALF})：</font><br>
 <a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$anataga_c_friend_confirm.c_member_id_to})&amp;({$tail})">({$anataga_c_friend_confirm.nickname})</a><br>
 <br>
 ({if $anataga_c_friend_confirm.message})
@@ -166,7 +166,7 @@
 ({if $anataga_c_commu_member_confirm_list})
 ({foreach from=$anataga_c_commu_member_confirm_list item=anataga_c_commu_member_confirm name=anataga_c_commu_member_confirm_list_name})
 <tr><td bgcolor="#({cycle values="`$ktai_color_config.bg_09`,`$ktai_color_config.bg_10`"})">
-<font color="#({$ktai_color_config.font_06})">ﾆｯｸﾈｰﾑ：</font><br>
+<font color="#({$ktai_color_config.font_06})">({$WORD_NICKNAME_HALF})：</font><br>
 <a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$anataga_c_commu_member_confirm.c_member_id_admin})&amp;({$tail})">({$anataga_c_commu_member_confirm.nickname})</a><br>
 <br>
 <font color="#({$ktai_color_config.font_06})">ｺﾐｭﾆﾃｨ名：</font><br>
@@ -196,7 +196,7 @@
 ({if $anataga_c_commu_admin_confirm_list})
 ({foreach from=$anataga_c_commu_admin_confirm_list item=item name=anataga_c_commu_admin_confirm_list_name})
 <tr><td bgcolor="#({cycle values="`$ktai_color_config.bg_06`,`$ktai_color_config.bg_07`"})">
-<font color="#({$ktai_color_config.font_06})">ﾆｯｸﾈｰﾑ：</font><br>
+<font color="#({$ktai_color_config.font_06})">({$WORD_NICKNAME_HALF})：</font><br>
 <a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$item.c_member_id_to})&amp;({$tail})">({$item.nickname})</a><br>
 <br>
 <font color="#({$ktai_color_config.font_06})">ｺﾐｭﾆﾃｨ名：</font><br>
@@ -225,7 +225,7 @@
 ({if $anataga_c_commu_sub_admin_confirm_list})
 ({foreach from=$anataga_c_commu_sub_admin_confirm_list item=item name=anataga_c_commu_sub_admin_confirm_list_name})
 <tr><td bgcolor="#({cycle values="`$ktai_color_config.bg_09`,`$ktai_color_config.bg_10`"})">
-<font color="#({$ktai_color_config.font_06})">ﾆｯｸﾈｰﾑ：</font><br>
+<font color="#({$ktai_color_config.font_06})">({$WORD_NICKNAME_HALF})：</font><br>
 <a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$item.c_member_id_to})&amp;({$tail})">({$item.nickname})</a><br>
 <br>
 <font color="#({$ktai_color_config.font_06})">ｺﾐｭﾆﾃｨ名：</font><br>

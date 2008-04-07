@@ -28,7 +28,7 @@
 ({foreach from=$c_members item=c_member})
 <div class="ditem"><div class="item"><table><tr>
 <td class="photo" rowspan="3"><a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$c_member.c_member_id})"><img src="({t_img_url filename=$c_member.image_filename w=76 h=76 noimg=no_image})" alt="" /></a></td>
-<th>ニックネーム</th><td>({$c_member.nickname})</td>
+<th>({$WORD_NICKNAME})</th><td>({$c_member.nickname})</td>
 </tr><tr>
 <th>自己紹介</th><td>({$c_member.profile.self_intro.value|t_truncate:36:"":3})</td>
 </tr><tr class="operation">
