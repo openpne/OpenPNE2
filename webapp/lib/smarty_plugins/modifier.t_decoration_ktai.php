@@ -40,7 +40,7 @@ function _smarty_modifier_t_decoration_convert_ktai($matches)
 
     $opt = '';
     if ($tagname == 'op:color' && $colorcode) {
-        $opt = ' color="#' . $colorcode . '" ';
+        $opt = ' color="' . $colorcode . '" ';
     }
 
     $result = '<' . $c_tagname . $opt . '>' . $value . '</' . $c_tagname . '>';
