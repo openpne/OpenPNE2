@@ -5,7 +5,35 @@
  */
 
 (function() {
+
+    tinymce.create('tinymce.ui.OpenPNEColorButton:tinymce.ui.ColorSplitButton', {
+        renderHTML : function() {
+            var s = this.settings, h = '<a id="' + this.id + '" href="javascript:;" class="mceButton mceButtonEnabled ' + s['class']
+                + '" onmousedown="return false;" onclick="return false;" title="' + tinymce.DOM.encode(s.title) + '">';
+
+            if (s.image) {
+                h += '<img class="mceIcon" src="' + s.image + '" /></a>';
+            } else {
+                h += '<span class="mceIcon ' + s['class'] + '"></span></a>';
+            }
+
+            return h;
+        },
+
+        postRender : function() {
+            tinymce.dom.Event.add(this.id, 'click', this.showMenu, this);
+        },
+
+        setColor : function(c) {
+            this.value = c;
+            this.hideMenu();
+            this.settings.onselect(c);
+        }
+    });
+
     tinymce.PluginManager.requireLangPack('openpne');
+
+    var config = pne_mce_editor_get_config();
 
     tinymce.create('tinymce.plugins.OpenPNEPlugin', {
         init : function(ed, url) {
@@ -13,8 +41,6 @@
 
             // change the editor setting
             ed.settings.content_css = url + "/css/editor.css";
-
-            var config = pne_mce_editor_get_config();
 
             // command
             ed.addCommand('mceOpenPNE_op_b', function() {
@@ -47,7 +73,7 @@
             // button
             for (var key in config) {
                 var value = config[key];
-                if (value.isEnabled) {
+                if (value.isEnabled && key != "op_color") {
                     ed.addButton(key, {title : '{#openpne.' + key + '}', image: value.imageURL, cmd : 'mceOpenPNE_' + key});
                 }
             }
@@ -69,12 +95,52 @@
             });
         },
 
+        createControl: function(n, cm) {
+            var c = null;
+            if (n == "op_color" && config["op_color"].isEnabled) {
+                c = this._createOpenPNEColorButton("op_color", { title : "{#openpne.op_color}", image: config["op_color"].imageURL, cmd : "ForeColor"}, cm);
+            }
+            return c;
+        },
+
         getInfo : function() {
             return {
                 longname : 'OpenPNE plugin',
                 author : 'Kousuke Ebihara',
                 version : "1.0"
             }
+        },
+
+        _createOpenPNEColorButton : function(id, s, cm) {
+            var t = cm, ed = t.editor, cmd, c;
+
+            if (t.get(id)) {
+                return null;
+            }
+
+            s.title = ed.translate(s.title);
+            s.scope = s.scope || ed;
+
+            if (!s.onclick) {
+                s.onclick = function(v) { ed.execCommand(s.cmd, s.ui || false, v || s.value); };
+            }
+
+            if (!s.onselect) {
+                s.onselect = function(v) { ed.execCommand(s.cmd, s.ui || false, v || s.value); };
+            }
+
+            id = t.prefix + id;
+
+            s = tinymce.extend({ title : s.title, 'class' : 'mce_' + id, 'menu_class' : ed.getParam('skin') + 'Skin', scope : s.scope, more_colors_title : ed.getLang('more_colors') }, s);
+
+            c = new tinymce.ui.OpenPNEColorButton(id, s);
+            ed.onMouseDown.add(c.hideMenu, c);
+
+            ed.onRemove.add(function() {
+                c.destroy();
+            });
+
+            return t.add(c);
         },
 
         _previewToText : function(s, editor) {
