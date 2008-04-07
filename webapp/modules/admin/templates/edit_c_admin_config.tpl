@@ -210,7 +210,15 @@
 <option value="0"({if !$smarty.const.USE_DIARY_CATEGORY}) selected="selected"({/if})>使用しない</option>
 </select></td>
 </tr>
-
+<tr>
+<th colspan="2">文字装飾使用設定</th>
+<td>
+<span class="info">文字装飾機能を有効にするかどうかを設定します</span><br />
+<select class="basic" name="OPENPNE_USE_DECORATION">
+<option value="1"({if $smarty.const.OPENPNE_USE_DECORATION}) selected="selected"({/if})>使用する</option>
+<option value="0"({if !$smarty.const.OPENPNE_USE_DECORATION}) selected="selected"({/if})>使用しない</option>
+</select></td>
+</tr>
 <tr class="cell20">
 <th colspan="2">cmdタグ使用設定</th>
 <td>

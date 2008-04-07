@@ -56,6 +56,7 @@ function init_pc_page(&$smarty)
     }
     $smarty->assign('INC_HEADER_inc_page_top', p_common_c_siteadmin4target_pagename('inc_page_top'));
     $smarty->assign('INC_HEADER_inc_page_top2', p_common_c_siteadmin4target_pagename('inc_page_top2'));
+    $smarty->assign('INC_HEADER_decoration_config', db_decoration_enable_list());
 
     // INC_FOOTER_* (inc_footer.tpl)
 
