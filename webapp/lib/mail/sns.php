@@ -402,13 +402,13 @@ class mail_sns
         if ($this->c_member_id != $target_c_member_id) {
             // check public_flag
             if (!pne_check_diary_public_flag($c_diary_id, $this->c_member_id)) {
-                $this->error_mail('日記にアクセスできないため投稿できませんでした。');
+                $this->error_mail(WORD_DIARY . 'にアクセスできないため投稿できませんでした。');
                 m_debug_log('mail_sns::add_diary_comment() not a member');
                 return false;
             }
             //アクセスブロック設定
             if (db_member_is_access_block($this->c_member_id, $target_c_member_id)) {
-                $this->error_mail('日記にアクセスできないため投稿できませんでした。');
+                $this->error_mail(WORD_DIARY . 'にアクセスできないため投稿できませんでした。');
                 m_debug_log('mail_sns::add_diary_comment() access block');
                 return false;
             }
@@ -529,7 +529,7 @@ class mail_sns
             } elseif (!$c_diary['image_filename_3']) {
                 $target_number = 3;
             } else {
-                $this->error_mail('日記写真の登録は最大3枚までです。');
+                $this->error_mail(WORD_DIARY . '写真の登録は最大3枚までです。');
                 m_debug_log('mail_sns::add_diary_image() image is full');
                 return false;
             }

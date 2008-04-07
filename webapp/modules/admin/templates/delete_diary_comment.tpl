@@ -1,12 +1,12 @@
 ({$inc_header|smarty:nodefaults})
 ({ext_include file="inc_subnavi_adminImageKakikomi.tpl"})
-({assign var="page_name" value="日記コメント削除の確認"})
+({assign var="page_name" value="`$WORD_DIARY`コメント削除の確認"})
 ({ext_include file="inc_tree_adminImageKakikomi.tpl"})
 </div>
 
 ({*ここまで:navi*})
 
-<h2>日記コメント削除の確認</h2>
+<h2>({$WORD_DIARY})コメント削除の確認</h2>
 <div class="contents">
 
 ({if $msg})
@@ -26,7 +26,7 @@
 </tr>
 ({****})
 <tr>
-<th>日記タイトル</th>
+<th>({$WORD_DIARY})タイトル</th>
 <td>
 <a href="({t_url _absolute=1 m=pc a=page_fh_diary})&amp;target_c_diary_id=({$diary_comment.c_diary_id})" target="_blank">({$diary_comment.subject})</a> (コメント({$diary_comment.count_comments})件)
 </td>
@@ -47,7 +47,7 @@
 </tr>
 ({****})
 <tr>
-<th>日記コメント本文</th>
+<th>({$WORD_DIARY})コメント本文</th>
 <td width="500">
 ({if $diary_comment.image_filename_1 || $diary_comment.image_filename_2 || $diary_comment.image_filename_3})
 <div>

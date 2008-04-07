@@ -3,7 +3,7 @@
 
 ({* {{{ formTable *})
 <div class="dparts formTable"><div class="parts">
-<div class="partsHeading"><h3>日記を編集する</h3></div>
+<div class="partsHeading"><h3>({$WORD_DIARY})を編集する</h3></div>
 <div class="partsInfo">
 <p>内容を確認し、よろしければ「決定」をクリックしてください。</p>
 </div>

@@ -1,10 +1,10 @@
 ({$inc_ktai_header|smarty:nodefaults})
 <table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_02})">
-<font color="#({$ktai_color_config.font_05})"><a name="top">日記ｺﾒﾝﾄ記入履歴</a></font><br>
+<font color="#({$ktai_color_config.font_05})"><a name="top">({$WORD_DIARY_HALF})ｺﾒﾝﾄ記入履歴</a></font><br>
 </td></tr></table>
 
 ({if !$c_diary_my_comment_list})
-日記ｺﾒﾝﾄ記入履歴はありません。
+({$WORD_DIARY_HALF})ｺﾒﾝﾄ記入履歴はありません。
 ({else})
 <center>
 ({$pager.start})～({$pager.end})件を表示
