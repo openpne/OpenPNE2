@@ -67,7 +67,7 @@
 			<th class="cell01" rowspan="3">&nbsp;</th>
 			<th class="cell02" colspan="4" rowspan="3">操作パネル</th>
 			<th class="cell03" rowspan="3"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=c_member_id-1({$cond})">▲</a>ID<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=c_member_id-2({$cond})">▼</a></th>
-			<th class="cell04" rowspan="3"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=nickname-1({$cond})">▲</a>ニックネーム<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=nickname-2({$cond})">▼</a></th>
+			<th class="cell04" rowspan="3"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=nickname-1({$cond})">▲</a>({$WORD_NICKNAME})<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=nickname-2({$cond})">▼</a></th>
 			({if $smarty.const.OPENPNE_USE_POINT_RANK})
 			<th class="cell10" colspan="2" rowspan="2"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=PNE_POINT-1({$cond})">▲</a>ポイント・ランク<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=PNE_POINT-2({$cond})">▼</a></th>
 			({/if})
@@ -175,7 +175,7 @@
 			<th class="cell01" rowspan="3">&nbsp;</th>
 			<th class="cell02" colspan="4" rowspan="2">操作パネル</th>
 			<th class="cell03" rowspan="2">ID</th>
-			<th class="cell04" rowspan="2">ニックネーム</th>
+			<th class="cell04" rowspan="2">({$WORD_NICKNAME})</th>
 			({if $smarty.const.OPENPNE_USE_POINT_RANK})
 			<th class="cell10" rowspan="2">ランク</th>
 			<th class="cell11" rowspan="2">ポイント</th>

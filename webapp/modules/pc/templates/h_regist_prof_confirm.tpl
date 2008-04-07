@@ -11,7 +11,7 @@
 
 <table>
 ({capture name="nick"})
-<tr><th>ニックネーム<p class="caution">※</p></th><td>({$prof.nickname|default:"&nbsp;"})</td></tr>
+<tr><th>({$WORD_NICKNAME})<p class="caution">※</p></th><td>({$prof.nickname|default:"&nbsp;"})</td></tr>
 ({/capture})
 ({capture name="birth"})
 <tr><th>生まれた年<p class="caution">※</p></th><td>({$prof.birth_year|default:"&nbsp;"})年

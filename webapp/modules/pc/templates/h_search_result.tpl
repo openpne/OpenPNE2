@@ -17,7 +17,7 @@
 ({foreach from=$target_friend_list item=item})
 <div class="ditem"><div class="item"><table><tr>
 <td class="photo" rowspan="3"><a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})"><img src="({t_img_url filename=$item.image_filename w=76 h=76 noimg=no_image})" alt="" /></a></td>
-<th>ニックネーム</th><td>({$item.nickname})</td>
+<th>({$WORD_NICKNAME})</th><td>({$item.nickname})</td>
 </tr><tr>
 <th>自己紹介</th><td>({$item.profile.self_intro.value|t_truncate:36:"":3})</td>
 </tr><tr class="operation">

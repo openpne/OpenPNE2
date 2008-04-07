@@ -21,7 +21,7 @@
 <hr color="#({$ktai_color_config.border_02})">
 </td></tr>
 <tr><td bgcolor="#({cycle values="`$ktai_color_config.bg_06`,`$ktai_color_config.bg_07`"})">
-<font color="#({$ktai_color_config.font_06})">ﾆｯｸﾈｰﾑ：</font><br>
+<font color="#({$ktai_color_config.font_06})">({$WORD_NICKNAME_HALF})：</font><br>
 <a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})&amp;({$tail})">({$item.nickname})</a><br><br>
 <font color="#({$ktai_color_config.font_06})">紹介文：</font><br>
 ({$item.intro|t_url2a_ktai|nl2br})<br>

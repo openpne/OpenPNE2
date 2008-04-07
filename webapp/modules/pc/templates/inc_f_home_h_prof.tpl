@@ -234,7 +234,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <div class="partsHeading"><h3>プロフィール</h3>({if $is_h_prof})<p class="link"><a href="({t_url m=pc a=page_h_config_prof})">プロフィール変更</a></p>({/if})</div>
 <table>
 ({capture name="nick"})
-<tr><th>ニックネーム</th><td>({$target_c_member.nickname})</td></tr>
+<tr><th>({$WORD_NICKNAME})</th><td>({$target_c_member.nickname})</td></tr>
 ({/capture})
 ({capture name="birth"})
 ({if $target_c_member.age !== NULL && ($target_c_member.public_flag_birth_year == 'public' || ($target_c_member.public_flag_birth_year == 'friend' && ($is_friend || $is_h_prof)))})

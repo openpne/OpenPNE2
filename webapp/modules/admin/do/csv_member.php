@@ -126,7 +126,7 @@ class admin_do_csv_member extends OpenPNE_Action
         $c_profile_list = db_member_c_profile_list4null();
         
         $ley_list[]="メンバーID";
-        $ley_list[]="ニックネーム";
+        $ley_list[]=WORD_NICKNAME;
         if (OPENPNE_USE_POINT_RANK) {
             $ley_list[] = 'ランク';
             $ley_list[] = 'ポイント';
