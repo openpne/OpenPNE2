@@ -14,7 +14,7 @@
 <table width="100%">
 ({foreach from=$c_member_list item=item})
 <tr><td bgcolor="#({cycle values="`$ktai_color_config.bg_06`,`$ktai_color_config.bg_07`"})">
-<font color="#({$ktai_color_config.font_06})">ﾆｯｸﾈｰﾑ：</font><br>
+<font color="#({$ktai_color_config.font_06})">({$WORD_NICKNAME_HALF})：</font><br>
 ({$item.nickname})<br>
 <br>
 ({if !$item.is_c_commu_admin && !$item.is_c_commu_sub_admin })

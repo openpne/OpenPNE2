@@ -21,7 +21,7 @@
 </td>
 </tr>
 <tr>
-<th>ニックネーム</th>
+<th>({$WORD_NICKNAME})</th>
 <td>
 <a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$target_member.c_member_id})">({$target_member.nickname})</a>
 </td>

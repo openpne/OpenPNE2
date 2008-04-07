@@ -42,7 +42,7 @@
 <td class="cell01A">&nbsp;</td>
 <td class="cell01B">&nbsp;</td>
 <td class="cell02">-</td>
-<td class="cell03">ニックネーム</td>
+<td class="cell03">({$WORD_NICKNAME})</td>
 <td class="cell04">&nbsp;</td>
 <td class="cell05">○</td>
 <td class="cell06">×</td>
