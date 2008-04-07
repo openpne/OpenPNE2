@@ -7,7 +7,7 @@
 ({t_form_block _method=get m=pc a=page_h_search_result})
 <table>
 <tr>
-<th>ニックネーム</th>
+<th>({$WORD_NICKNAME})</th>
 <td>
 <input type="text" class="input_text" name="nickname" size="30" />
 </td>

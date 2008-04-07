@@ -63,7 +63,7 @@ class admin_do_import_c_member extends OpenPNE_Action
             }
 
             if (strlen($nickname) > 40) {
-                $this->handleError("{$lnum}行目：ニックネームは40文字以内で入力してください");
+                $this->handleError("{$lnum}行目：" WORD_NICKNAME . "は40文字以内で入力してください");
             }
 
             if (!db_common_is_mailaddress($mail_address)) {
