@@ -1,7 +1,7 @@
 ({$inc_ktai_header|smarty:nodefaults})
 
 <table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_02})">
-<font color="#({$ktai_color_config.font_05})"><a name="top">({$target_diary_writer.nickname})さんの日記</a></font><br>
+<font color="#({$ktai_color_config.font_05})"><a name="top">({$target_diary_writer.nickname})さんの({$WORD_DIARY_HALF})</a></font><br>
 </td></tr>
 ({if $c_siteadmin})
 <tr><td align="left">
@@ -29,9 +29,9 @@
 ({if $c_diary_id_prev || $c_diary_id_next})
 <hr color="#({$ktai_color_config.border_01})">
 <center>
-({if $c_diary_id_prev})<a href="({t_url m=ktai a=page_fh_diary})&amp;target_c_diary_id=({$c_diary_id_prev})&amp;({$tail})">前の日記</a>({/if})
+({if $c_diary_id_prev})<a href="({t_url m=ktai a=page_fh_diary})&amp;target_c_diary_id=({$c_diary_id_prev})&amp;({$tail})">前の({$WORD_DIARY_HALF})</a>({/if})
 ({if $c_diary_id_prev && $c_diary_id_next})&nbsp;({/if})
-({if $c_diary_id_next})<a href="({t_url m=ktai a=page_fh_diary})&amp;target_c_diary_id=({$c_diary_id_next})&amp;({$tail})">次の日記</a>({/if})
+({if $c_diary_id_next})<a href="({t_url m=ktai a=page_fh_diary})&amp;target_c_diary_id=({$c_diary_id_next})&amp;({$tail})">次の({$WORD_DIARY_HALF})</a>({/if})
 </center>
 ({/if})
 
@@ -96,13 +96,13 @@
 
 <hr color="#({$ktai_color_config.border_01})">
 <a name="menu"></a>
-[i:190]<a href="({t_url m=ktai a=page_fh_diary_list})&amp;target_c_member_id=({$target_diary_writer.c_member_id})&amp;({$tail})">({$target_diary_writer.nickname})さんの日記ﾘｽﾄ</a><br>
+[i:190]<a href="({t_url m=ktai a=page_fh_diary_list})&amp;target_c_member_id=({$target_diary_writer.c_member_id})&amp;({$tail})">({$target_diary_writer.nickname})さんの({$WORD_DIARY_HALF})ﾘｽﾄ</a><br>
 ({if $INC_NAVI_type=="f"})
 <a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$target_diary_writer.c_member_id})&amp;({$tail})">({$target_diary_writer.nickname})さんのﾄｯﾌﾟ</a><br>
 ({/if})
 ({if $target_diary_writer.c_member_id==$u})
 <table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_02})">
-<font color="#({$ktai_color_config.font_05})">日記検索</font><br>
+<font color="#({$ktai_color_config.font_05})">({$WORD_DIARY_HALF})検索</font><br>
 </td></tr>
 </table>
 ({t_form _method=get m=ktai a=page_fh_diary_list})

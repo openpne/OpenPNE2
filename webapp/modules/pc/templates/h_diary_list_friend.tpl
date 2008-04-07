@@ -4,7 +4,7 @@
 ({if $total_num})
 ({* {{{ recentList *})
 <div class="dparts recentList"><div class="parts">
-<div class="partsHeading"><h3>({$WORD_MY_FRIEND})最新日記</h3></div>
+<div class="partsHeading"><h3>({$WORD_MY_FRIEND})最新({$WORD_DIARY})</h3></div>
 
 <div class="pagerRelative">
 ({if $is_prev})<p class="prev"><a href="({t_url m=pc a=page_h_diary_list_friend})&amp;page=({$page})&amp;direc=-1">前を表示</a></p>
@@ -34,9 +34,9 @@
 ({else})
 ({* {{{ simpleBox *})
 <div class="dparts simpleBox"><div class="parts">
-<div class="partsHeading"><h3>({$WORD_MY_FRIEND})最新日記</h3></div>
+<div class="partsHeading"><h3>({$WORD_MY_FRIEND})最新({$WORD_DIARY})</h3></div>
 <div class="block">
-<p>({$WORD_MY_FRIEND})の日記がありません。</p>
+<p>({$WORD_MY_FRIEND})の({$WORD_DIARY})がありません。</p>
 </div>
 </div></div>
 ({* }}} *})
