@@ -296,35 +296,6 @@
 <span class="info">SNSメンバーに送られるメールの署名に使用します</span><br />
 <input class="basic" name="COPYRIGHT" type="text" value="({$smarty.const.COPYRIGHT})" size="30" /></td>
 </tr>
-<tr class="cell23A">
-<th rowspan="4">フレンド名称</th>
-<th>フレンド</th>
-<td>
-<span class="info">SNS内「フレンド」を他の名称に設定します</span><br />
-<input class="basic" name="WORD_FRIEND" type="text" value="({$WORD_FRIEND})" size="30" />
-</td>
-</tr>
-<tr class="cell23B">
-<th>マイフレンド</th>
-<td>
-<span class="info">SNS内「フレンド」を他の名称に設定します</span><br />
-<input class="basic" name="WORD_MY_FRIEND" type="text" value="({$WORD_MY_FRIEND})" size="30" />
-</td>
-</tr>
-<tr class="cell23C">
-<th>ﾌﾚﾝﾄﾞ(携帯)</th>
-<td>
-<span class="info">SNS内「フレンド」を他の名称に設定します</span><br />
-<input class="basic" name="WORD_FRIEND_HALF" type="text" value="({$WORD_FRIEND_HALF})" size="30" />
-</td>
-</tr>
-<tr class="cell23D">
-<th>ﾏｲﾌﾚﾝﾄﾞ(携帯)</th>
-<td>
-<span class="info">SNS内「フレンド」を他の名称に設定します</span><br />
-<input class="basic" name="WORD_MY_FRIEND_HALF" type="text" value="({$WORD_MY_FRIEND_HALF})" size="30" />
-</td>
-</tr>
 <tr class="cell24">
 <th rowspan="2">アフィリエイト用タグ</th>
 <th>PC用</th>
