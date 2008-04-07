@@ -15,7 +15,7 @@
 
 ({capture name="nick"})
 <font color="#({$ktai_color_config.font_09})">*</font>
-<font color="#({$ktai_color_config.font_06})">ﾆｯｸﾈｰﾑ：</font><br>
+<font color="#({$ktai_color_config.font_06})">({$WORD_NICKNAME_HALF})：</font><br>
 <input type="text" name="nickname" value="({$c_member.nickname})"><br>
 <br>
 ({/capture})
