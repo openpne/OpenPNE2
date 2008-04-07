@@ -78,7 +78,44 @@ span.op_color {
     color : #000 !important;
 }
 ({/if})
+
 </style>
+
+<script type="text/javascript">
+function pne_mce_editor_get_config()
+{
+    return {
+        op_b : {
+            isEnabled : ({$INC_HEADER_decoration_config.op_b}),
+            imageURL : "({t_img_url_skin filename=deco_op_b})"
+        },
+        op_u : {
+            isEnabled : ({$INC_HEADER_decoration_config.op_u}),
+            imageURL : "({t_img_url_skin filename=deco_op_u})"
+        },
+        op_s : {
+            isEnabled : ({$INC_HEADER_decoration_config.op_s}),
+            imageURL : "({t_img_url_skin filename=deco_op_s})"
+        },
+        op_i : {
+            isEnabled : ({$INC_HEADER_decoration_config.op_i}),
+            imageURL : "({t_img_url_skin filename=deco_op_i})"
+        },
+        op_large : {
+            isEnabled : ({$INC_HEADER_decoration_config.op_large}),
+            imageURL : "({t_img_url_skin filename=deco_op_large})"
+        },
+        op_small : {
+            isEnabled : ({$INC_HEADER_decoration_config.op_small}),
+            imageURL : "({t_img_url_skin filename=deco_op_small})"
+        },
+        op_color : {
+            isEnabled : ({$INC_HEADER_decoration_config.op_color}),
+            imageURL : "({t_img_url_skin filename=deco_op_color})"
+        }
+    }
+}
+</script>
 </head>
 <body id="pc_page_({$INC_HEADER_page_name})"><div id="Body">
 ({if $INC_HEADER_inc_page_top2})({$INC_HEADER_inc_page_top2|smarty:nodefaults})({/if})
