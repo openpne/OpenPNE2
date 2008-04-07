@@ -40,7 +40,7 @@
 ({*********})
 ({capture name="nick"})
 <tr>
-<th>ニックネーム <strong>※</strong></th>
+<th>({$WORD_NICKNAME}) <strong>※</strong></th>
 <td>({$prof.nickname})</td>
 </tr>
 ({/capture})
