@@ -49,11 +49,6 @@ function fetch_inc_navi($type, $target_id = null)
     $inc_smarty->assign('INC_NAVI_type', $type);
     $inc_smarty->assign('navi', util_get_c_navi($type));
 
-    $inc_smarty->assign('WORD_FRIEND', WORD_FRIEND);
-    $inc_smarty->assign('WORD_MY_FRIEND', WORD_MY_FRIEND);
-    $inc_smarty->assign('WORD_FRIEND_HALF', WORD_FRIEND_HALF);
-    $inc_smarty->assign('WORD_MY_FRIEND_HALF', WORD_MY_FRIEND_HALF);
-
     return $inc_smarty->ext_fetch('inc_navi.tpl');
 }
 
