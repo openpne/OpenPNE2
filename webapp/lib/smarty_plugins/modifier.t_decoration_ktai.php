@@ -23,8 +23,8 @@ function _smarty_modifier_t_decoration_convert_ktai($matches)
         'op:b' => 'b',
         'op:u' => 'u',
         'op:i' => 'i',
-        'op:large' => 'font size="7"',
-        'op:small' => 'font size="2"',
+        'op:large' => 'font size="5"',
+        'op:small' => 'font size="1"',
         'op:color' => 'font',
     );
 
