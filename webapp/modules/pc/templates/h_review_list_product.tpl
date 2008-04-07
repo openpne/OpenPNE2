@@ -56,7 +56,7 @@
 ({foreach from=$c_review_list item=review})
 <div class="ditem"><div class="item"><table><tr>
 <td class="photo" rowspan="4"><a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$review.c_member_id})"><img src="({t_img_url filename=$review.image_filename w=76 h=76 noimg=no_image})" alt="" /></a></td>
-<th>ニックネーム</th><td>({$review.nickname})</td>
+<th>({$WORD_NICKNAME})</th><td>({$review.nickname})</td>
 </tr><tr>
 <th>レビュー</th><td>({$review.body|nl2br})</td>
 </tr><tr>
