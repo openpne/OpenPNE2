@@ -46,22 +46,87 @@ function pne_mce_editor_init()
     }
 }
 
-function pne_mce_insert_tagname(id, tagname)
+function pne_mce_insert_tagname(id, tagname, opt)
 {
-    var opt = "";
+    var opt = opt || "";
 
     var elm = document.getElementById(id);
     var selection = new Selection(elm);
 
     var pos = selection.create(); 
 
-    if (tagname == "op:color") {
-        opt = " code=\"#000000\"";
+    if (tagname == "op:color" && !opt) {
+        pne_mce_show_color_table(id, tagname);
+        return;
     }
 
     var replace = "<" + tagname + opt + ">" + elm.value.substring(pos.start, pos.end) + "</" + tagname + ">";
     var head = elm.value.substring(0, pos.start);
     var tail = elm.value.substring(pos.end, elm.value.length);
     elm.value =  head + replace + tail;
+}
+
+function pne_mce_show_color_table(id, tagname)
+{
+    var table = document.getElementById("mce_editor_color_table")
+    if (table) {
+        table.parentNode.removeChild(table);
+        return;
+    }
+
+    var color = null;
+    var settings = {
+        colors : ["000000","993300","333300","003300","003366","000080","333399","333333","800000","FF6600","808000","008000","008080","0000FF","666699","808080","FF0000","FF9900","99CC00","339966","33CCCC","3366FF","800080","999999","FF00FF","FFCC00","FFFF00","00FF00","00FFFF","00CCFF","993366","C0C0C0","FF99CC","FFCC99","FFFF99","CCFFCC","CCFFFF","99CCFF","CC99FF","FFFFFF"],
+        grid_width : 8,
+        default_color : "#888888"
+    };
+
+    var button = document.getElementById("mce_textmode_button_op_color");
+    var x = button.offsetLeft;
+
+    var button_container = document.getElementById("mce_editor_buttonmenu");
+
+    var table = document.createElement("table");
+    table.id = "mce_editor_color_table";
+    table.style.width = "150px";
+    table.style.position = "absolute";
+    table.style.left = (x + table.style.width) + "px";
+    table.style.zIndex = 150;
+    table.style.padding = "5px";
+    table.style.border = "1px solid gray";
+    table.style.backgroundColor = "#fff";
+
+    var tr;
+ 
+    for (var i = 0; i < settings.colors.length; i++) {
+        var code = "#" + settings.colors[i];
+
+        if (i == 0 || i % settings.grid_width == 0) {
+            tr = document.createElement("tr");
+            table.appendChild(tr);
+        }
+
+        var td = document.createElement("td");
+        td.style.backgroundColor = "#" + settings.colors[i];
+        td.style.height = "10px";
+        td.style.border = "1px solid white";
+
+        var a = document.createElement("a");
+        a.setAttribute("href", "#");
+        a.colorCode = code;
+        a.style.width = "9px";
+        a.style.height = "9px";
+        a.style.display = "block";
+        a.onclick = function() {
+            pne_mce_insert_tagname(id, tagname, ' code="' + this.colorCode + '"');
+            var table = document.getElementById("mce_editor_color_table")
+            table.parentNode.removeChild(table);
+        };
+
+        td.appendChild(a);
+        tr.appendChild(td);
+    }
+
+    button_container.appendChild(table);
 }
 
