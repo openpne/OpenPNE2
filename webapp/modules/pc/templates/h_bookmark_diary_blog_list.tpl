@@ -4,7 +4,7 @@
 ({if $total_num})
 ({* {{{ recentList *})
 <div class="dparts recentList"><div class="parts">
-<div class="partsHeading"><h3>お気に入り最新日記</h3></div>
+<div class="partsHeading"><h3>お気に入り最新({$WORD_DIARY})</h3></div>
 
 <div class="pagerRelative">
 ({if $is_prev})<p class="prev"><a href="({t_url m=pc a=page_h_bookmark_diary_blog_list})&amp;page=({$page})&amp;direc=-1">前を表示</a></p>
@@ -34,9 +34,9 @@
 ({else})
 ({* {{{ simpleBox *})
 <div class="dparts simpleBox"><div class="parts">
-<div class="partsHeading"><h3>お気に入り最新日記</h3></div>
+<div class="partsHeading"><h3>お気に入り最新({$WORD_DIARY})</h3></div>
 <div class="block">
-<p>過去30日分のお気に入りの日記を表示します。</p>
+<p>過去30日分のお気に入りの({$WORD_DIARY})を表示します。</p>
 </div>
 </div></div>
 ({* }}} *})

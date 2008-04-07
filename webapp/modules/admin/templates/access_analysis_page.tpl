@@ -28,7 +28,7 @@
 <th>アクセスされた<br>メンバー<br>(target_c_member_id)</td>
 <th>アクセスされた<br>コミュニティ<br>(target_c_commu_id)</td>
 <th>アクセスされた<br>トピック<br>(target_c_topic_id)</td>
-<th>アクセスされた<br>日記<br>(target_c_diary_id)</td>
+<th>アクセスされた<br>({$WORD_DIARY})<br>(target_c_diary_id)</td>
 <th>アクセスした<br>メンバー<br>(c_member_id)</td>
 </tr>
 </thead>

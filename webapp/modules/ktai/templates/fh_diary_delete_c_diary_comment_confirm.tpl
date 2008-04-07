@@ -4,7 +4,7 @@
 <font color="#({$ktai_color_config.font_05})"><a name="top">({$target_c_diary.subject})</a></font><br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
-<font color="#({$ktai_color_config.color_24})">日記ｺﾒﾝﾄの削除</font><br>
+<font color="#({$ktai_color_config.color_24})">({$WORD_DIARY_HALF})ｺﾒﾝﾄの削除</font><br>
 </td></tr></table>
 
 このｺﾒﾝﾄを本当に削除しますか?<br>

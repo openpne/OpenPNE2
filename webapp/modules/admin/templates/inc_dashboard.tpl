@@ -12,7 +12,7 @@
     <dd>({$sns_info.info_member_rate_active|number_format:2})%</dd>
     <dt>平均({$WORD_FRIEND})数</dt>
     <dd>({$sns_info.info_friend_count_avg|number_format:2})人</dd>
-    <dt>今日の日記件数</dt>
+    <dt>今日の({$WORD_DIARY})件数</dt>
     <dd>({$sns_info.info_diary_count_today|number_format})件&nbsp;(前日({$sns_info.info_diary_count_yesterday|number_format})件)</dd>
 </dl>
             </div>
@@ -55,7 +55,7 @@
         </div>
 ({t_assign_sns_new_diary var=new_diary_list})
         <div class="box" id="diary">
-            <h2>最新日記</h2>
+            <h2>最新({$WORD_DIARY})</h2>
             ({if $new_diary_list})
             <div class="innerBox">
 <dl>
