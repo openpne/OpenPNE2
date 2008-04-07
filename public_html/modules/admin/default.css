@@ -1468,6 +1468,17 @@ div.listControl p.listMove a {
 
 #admin_page_edit_deco div.contents h3.ttl01 { border-left:0.5em solid #58585C; margin-bottom: 0.5em; font-size:1.4em; padding-left: 0.3em; } 
 
+/** admin_page_edit_c_admin_config_word **/
+#admin_page_edit_c_admin_config_word input.basic,
+#admin_page_edit_c_admin_config_word textarea { margin: 3px 3px 3px 0; vertical-align: middle;}
+#admin_page_edit_c_admin_config_word input.basicRadio { margin: 3px 3px 3px 0; vertical-align: middle;}
+#admin_page_edit_c_admin_config_word select.basic { margin: 3px 0;}
+#admin_page_edit_c_admin_config_word table.basicType2 { width: 600px;}
+#admin_page_edit_c_admin_config_word table.basicType2 td { background-color: #FFFFFF;}
+#admin_page_edit_c_admin_config_word table.basicType2 th { width: 1%; white-space: pre; text-align: left;}
+#admin_page_edit_c_admin_config_word table.basicType2 td span.info { padding-left: 5px; border-left: 4px #7593a5 solid; color: #3b6178;}
+#admin_page_edit_c_admin_config_word h2#ttl02 { margin-top: 35px;}
+
 /*********** footer ***********/
 .footer { margin-top: 20px; padding: 10px 0; text-align: center;}
 .footer div.declaration a { margin: 0 3px;}
