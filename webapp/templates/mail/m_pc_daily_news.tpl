@@ -31,7 +31,7 @@
 ―――――――――――――――――――――――――――――
 
 ({foreach from=$diary_friend_list item=item})
-◇ニックネーム：({$item.nickname})さん
+◇({$WORD_NICKNAME})：({$item.nickname})さん
 　タイトル　　：({$item.subject})
 　({t_url_mail m=pc a=page_fh_diary})&target_c_diary_id=({$item.c_diary_id})
 

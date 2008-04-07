@@ -10,7 +10,7 @@
 以下の内容で送信します。よろしいですか?<br>
 
 <hr color="#({$ktai_color_config.border_01})">
-<font color="#({$ktai_color_config.font_06})">ﾆｯｸﾈｰﾑ：</font><br>
+<font color="#({$ktai_color_config.font_06})">({$WORD_NICKNAME_HALF})：</font><br>
 ({foreach from=$c_mail_member item=c_member})
 <a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$c_member.c_member_id})&amp;({$tail})">({$c_member.nickname})</a><br>
 ({/foreach})

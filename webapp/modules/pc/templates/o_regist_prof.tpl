@@ -43,7 +43,7 @@
 ({*********})
 ({capture name="nick"})
 <tr>
-<th>ニックネーム <strong>※</strong></th>
+<th>({$WORD_NICKNAME}) <strong>※</strong></th>
 <td><input type="text" class="input_text" name="nickname" value="({$profs.nickname})" size="30" /></td>
 </tr>
 ({/capture})

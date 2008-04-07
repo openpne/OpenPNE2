@@ -105,7 +105,7 @@ class pc_do_h_regist_prof extends OpenPNE_Action
             'nickname' => array(
                 'type' => 'string',
                 'required' => '1',
-                'caption' => 'ニックネーム',
+                'caption' => WORD_NICKNAME,
                 'max' => '40',
             ),
             'birth_year' => array(

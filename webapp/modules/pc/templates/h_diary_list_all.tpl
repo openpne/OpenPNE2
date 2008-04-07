@@ -44,7 +44,7 @@
 ({foreach from=$new_diary_list item=diary})
 <div class="ditem"><div class="item"><table><tr>
 <td class="photo" rowspan="4"><a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$diary.c_diary_id})"><img src="({t_img_url filename=$diary.c_member.image_filename w=76 h=76 noimg=no_image})" alt="" /></a></td>
-<th>ニックネーム</th><td>({$diary.c_member.nickname})({if $diary.c_member.profile.sex.value}) (({$diary.c_member.profile.sex.value}))({/if})</td>
+<th>({$WORD_NICKNAME})</th><td>({$diary.c_member.nickname})({if $diary.c_member.profile.sex.value}) (({$diary.c_member.profile.sex.value}))({/if})</td>
 </tr><tr>
 <th>タイトル</th><td>({$diary.subject}) (({$diary.num_comment}))({if $diary.image_filename_1 || $diary.image_filename_2 || $diary.image_filename_3}) <img src="({t_img_url_skin filename=icon_camera})" alt="" />({/if})</td>
 </tr><tr>
