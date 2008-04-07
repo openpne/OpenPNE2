@@ -4,7 +4,7 @@
 ({* {{{ formTable *})
 <div class="dparts formTable"><div class="parts">
 <div class="partsHeading"><h3>日記を書く</h3></div>
-<div class="partsInfo"
+<div class="partsInfo">
 <p>以下の内容でよろしいですか？</p>
 </div>
 <table>
@@ -14,7 +14,7 @@
 </tr>
 <tr>
 <th>本文</th>
-<td>({$form_val.body|nl2br|t_url2cmd:'diary'|t_cmd:'diary'})</td>
+<td>({$form_val.body|nl2br|t_url2cmd:'diary'|t_cmd:'diary'|t_decoration})</td>
 </tr>
 ({if $form_val.upfile_1.name})
 <tr>

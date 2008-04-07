@@ -69,6 +69,7 @@ $GLOBALS['_OPENPNE_ADMIN_AUTH_ACTIONS'] = array(
 'page_update_c_free_page',
 'page_update_c_profile',
 'page_update_c_rank',
+'page_update_deco',
 'do_delete_c_banner',
 'do_delete_c_cmd',
 'do_delete_c_commu_category_parent',
@@ -121,6 +122,7 @@ $GLOBALS['_OPENPNE_ADMIN_AUTH_ACTIONS'] = array(
 'do_update_skin_image',
 'do_update_skin_theme',
 'do_update_top_banner_html',
+'do_update_c_deco',
 ),
 
 // メンバーリスト以外
@@ -192,6 +194,7 @@ $GLOBALS['_OPENPNE_ADMIN_AUTH_ACTIONS'] = array(
 'page_user_analysis_date_day',
 'page_user_analysis_date_month',
 'page_user_analysis_generation',
+'page_edit_deco',
 'do_delete_c_banner',
 'do_delete_c_cmd',
 'do_delete_c_commu_category_parent',
@@ -257,6 +260,7 @@ $GLOBALS['_OPENPNE_ADMIN_AUTH_ACTIONS'] = array(
 'do_update_skin_image',
 'do_update_skin_theme',
 'do_update_top_banner_html',
+'do_update_c_deco',
 ),
 );
 

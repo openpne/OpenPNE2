@@ -879,4 +879,26 @@ function db_c_holiday_list4date($m, $d)
     return db_get_col($sql, $params);
 }
 
+function db_decoration_enable_list()
+{
+    $sql = 'SELECT tagname,is_enabled FROM c_config_decoration';
+    $decoration_enable_list = db_get_all($sql);
+
+    $result = array();
+    foreach ($decoration_enable_list as $value) {
+        $tagname = strtr($value['tagname'], ':', '_');
+        $result[$tagname] = $value['is_enabled'];
+    }
+
+    return $result;
+}
+
+function db_decoration_is_enabled4tagname($tagname)
+{
+    $sql = 'SELECT is_enabled FROM c_config_decoration WHERE tagname = ?';
+    $is_enabled = db_get_one($sql, array($tagname));
+
+    return $is_enabled;
+}
+
 ?>
