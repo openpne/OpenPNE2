@@ -10,7 +10,7 @@
     <dd>({$sns_info.info_commu_count|number_format})</dd>
     <dt>アクティブ率</dt>
     <dd>({$sns_info.info_member_rate_active|number_format:2})%</dd>
-    <dt>平均フレンド数</dt>
+    <dt>平均({$WORD_FRIEND})数</dt>
     <dd>({$sns_info.info_friend_count_avg|number_format:2})人</dd>
     <dt>今日の日記件数</dt>
     <dd>({$sns_info.info_diary_count_today|number_format})件&nbsp;(前日({$sns_info.info_diary_count_yesterday|number_format})件)</dd>
@@ -27,7 +27,7 @@
     <dt>アクセス数No.1</dt>
     <dd><a href="({t_url _absolute=1 m=pc a=page_f_home})&amp;target_c_member_id=({$sns_rank.rank_ashiato[1][0].c_member.c_member_id})" target="_blank">({$sns_rank.rank_ashiato[1][0].c_member.nickname})</a>&nbsp;(({$sns_rank.rank_ashiato[1][0].count|number_format})アクセス)</dd>({/if})
     ({if $sns_rank.rank_friend})
-    <dt>マイフレンド数No.1</dt>
+    <dt>({$WORD_MY_FRIEND})数No.1</dt>
     <dd><a href="({t_url _absolute=1 m=pc a=page_f_home})&amp;target_c_member_id=({$sns_rank.rank_friend[1][0].c_member.c_member_id})" target="_blank">({$sns_rank.rank_friend[1][0].c_member.nickname})</a>&nbsp;(({$sns_rank.rank_friend[1][0].count|number_format})人)</dd>({/if})
     ({if $sns_rank.rank_com_member})
     <dt>参加人数No.1コミュニティ</dt>
