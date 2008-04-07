@@ -86,10 +86,6 @@ function fetch_mail_m_tpl($tpl_name, $params)
     $smarty = new OpenPNE_Smarty($local_configs);
     $smarty->assign($params);
     $smarty->assign('inc_signature', fetch_inc_signature($smarty));
-    $smarty->assign('WORD_FRIEND', WORD_FRIEND);
-    $smarty->assign('WORD_MY_FRIEND', WORD_MY_FRIEND);
-    $smarty->assign('WORD_FRIEND_HALF', WORD_FRIEND_HALF);
-    $smarty->assign('WORD_MY_FRIEND_HALF', WORD_MY_FRIEND_HALF);
 
     $tpl_name = str_replace('.tpl', '', $tpl_name);
     if (util_is_unused_mail($tpl_name)) {
