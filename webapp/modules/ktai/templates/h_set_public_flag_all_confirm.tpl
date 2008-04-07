@@ -13,7 +13,7 @@
 ({if $public_flag_diary_all == 'private'})
 公開しない
 ({elseif $public_flag_diary_all == 'friend'})
-({$smarty.const.WORD_MY_FRIEND_HALF})まで公開
+({$WORD_MY_FRIEND_HALF})まで公開
 ({else})
 全員に公開
 ({/if})<br>

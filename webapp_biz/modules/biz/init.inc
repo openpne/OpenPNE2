@@ -31,12 +31,6 @@ function init_biz_page(&$smarty)
             "pc_get_trusted")
     );
 
-    //文言系
-    $smarty->assign('WORD_FRIEND', WORD_FRIEND);
-    $smarty->assign('WORD_MY_FRIEND', WORD_MY_FRIEND);
-    $smarty->assign('WORD_FRIEND_HALF', WORD_FRIEND_HALF);
-    $smarty->assign('WORD_MY_FRIEND_HALF', WORD_MY_FRIEND_HALF);
-
     $is_secure = $GLOBALS['__Framework']['is_secure'];
 
     if ($is_secure) {
