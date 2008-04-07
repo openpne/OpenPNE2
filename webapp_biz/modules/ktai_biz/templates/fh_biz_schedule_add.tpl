@@ -23,7 +23,7 @@
 <input type="hidden" name="biz_group_id" value="0">
 <input type="hidden" name="public_flag" value="public">
 参加者：<select name='sc_j_mem'>
-		<option value="my">({if $is_f})ﾌﾚﾝﾄﾞ({else})自分({/if})のみ</option>
+		<option value="my">({if $is_f})({$WORD_FRIEND_HALF})({else})自分({/if})のみ</option>
 		<option value="">全ﾕｰｻﾞｰ</option>
 		({foreach item=nm from=$jgroup name=join})
 		<option value="({$nm.biz_group_id})">({$nm.name})

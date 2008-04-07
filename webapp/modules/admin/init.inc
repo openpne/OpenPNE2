@@ -269,6 +269,11 @@ function init_admin_page(&$smarty)
             admin_client_redirect('top', '指定されたページにはアクセスできません');
         }
     }
+
+    $smarty->assign('WORD_FRIEND', WORD_FRIEND);
+    $smarty->assign('WORD_MY_FRIEND', WORD_MY_FRIEND);
+    $smarty->assign('WORD_FRIEND_HALF', WORD_FRIEND_HALF);
+    $smarty->assign('WORD_MY_FRIEND_HALF', WORD_MY_FRIEND_HALF);
 }
 
 function init_admin_do()
