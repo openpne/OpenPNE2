@@ -47,7 +47,7 @@
 
 ({if $date_list})
 <div class="item monthlyDiary">
-<div class="partsHeading"><h3>各月の日記</h3></div>
+<div class="partsHeading"><h3>各月の({$WORD_DIARY})</h3></div>
 <ul class="list">
 ({foreach from=$date_list item=item})
 <li><a href="({t_url m=pc a=page_fh_diary_list})&amp;target_c_member_id=({$target_member.c_member_id})&amp;year=({$item.year})&amp;month=({$item.month})">({$item.year})年({$item.month})月の一覧</a></li>
@@ -75,7 +75,7 @@
 
 ({* {{{ formTable *})
 <div class="dparts formTable"><div class="parts">
-<div class="partsHeading"><h3>日記を編集する</h3></div>
+<div class="partsHeading"><h3>({$WORD_DIARY})を編集する</h3></div>
 ({t_form_block _enctype=file m=pc a=page_h_diary_edit_confirm})
 <input type="hidden" name="target_c_diary_id" value="({$diary.c_diary_id})" />
 <input type="hidden" name="del_img" value="({$del_img})" />
@@ -161,7 +161,7 @@ pne_mce_editor_init();
 ({/foreach})
 </select>
 <p>※カテゴリはひとつにつき全角10文字（半角20文字）以内で入力してください。</p>
-<p>※ひとつの日記にカテゴリは5つまで同時に指定することができます。</p>
+<p>※ひとつの({$WORD_DIARY})にカテゴリは5つまで同時に指定することができます。</p>
 </td>
 </tr>
 ({/if})
@@ -187,9 +187,9 @@ pne_mce_editor_init();
 
 ({* {{{ formTable *})
 <div class="dparts formTable"><div class="parts">
-<div class="partsHeading"><h3>日記を削除する</h3></div>
+<div class="partsHeading"><h3>({$WORD_DIARY})を削除する</h3></div>
 <div class="partsInfo">
-<p>日記を削除するとこの日記に書かれたコメントもすべて削除されます。</p>
+<p>({$WORD_DIARY})を削除するとこの({$WORD_DIARY})に書かれたコメントもすべて削除されます。</p>
 </div>
 ({t_form_block m=pc a=page_h_delete_diary})
 <input type="hidden" name="target_c_diary_id" value="({$diary.c_diary_id})" />

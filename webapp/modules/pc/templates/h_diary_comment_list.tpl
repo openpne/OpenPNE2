@@ -4,7 +4,7 @@
 ({if $total_num})
 ({* {{{ recentList *})
 <div class="dparts recentList"><div class="parts">
-<div class="partsHeading"><h3>日記コメント記入履歴</h3></div>
+<div class="partsHeading"><h3>({$WORD_DIARY})コメント記入履歴</h3></div>
 
 <div class="pagerRelative">
 ({if $is_prev})<p class="prev"><a href="({t_url m=pc a=page_h_diary_comment_list})&amp;page=({$page})&amp;direc=-1">前を表示</a></p>
@@ -34,9 +34,9 @@
 ({else})
 ({* {{{ simpleBox *})
 <div class="dparts simpleBox"><div class="parts">
-<div class="partsHeading"><h3>日記コメント記入履歴</h3></div>
+<div class="partsHeading"><h3>({$WORD_DIARY})コメント記入履歴</h3></div>
 <div class="block">
-<p>まだ記入した日記コメントはありません。</p>
+<p>まだ記入した({$WORD_DIARY})コメントはありません。</p>
 </div>
 </div></div>
 ({* }}} *})
