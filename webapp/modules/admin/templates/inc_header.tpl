@@ -121,6 +121,7 @@
 <li id="adminSNSConfig" onmouseover="menu('adminSNSConfig','adminSNSConfigCont')" onmouseout="menu('adminSNSConfig','adminSNSConfigCont')"><a class="tab" href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_admin_config')})">SNS設定</a>
 <ul id="adminSNSConfigCont" class="pull">
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_admin_config')})">SNS設定</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_admin_config_word')})">SNS内名称設定</a></li>
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_profile')})">プロフィール項目設定</a></li>
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_category')})">コミュニティカテゴリ設定</a></li>
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('manage_c_commu')})">初期コミュニティ設定</a></li>
