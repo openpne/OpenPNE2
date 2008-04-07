@@ -61,14 +61,6 @@
             ed.addCommand('mceOpenPNE_op_small', function() {
                 tinyMCE.execCommand("Fontsize", false, 1);
             });
-            ed.addCommand('mceOpenPNE_op_color', function() {
-                var color = "";
-                tinyMCE.execCommand('mceColorPicker', true, {
-                    func : function(c) {
-                        tinyMCE.execCommand("Forecolor", false, c);
-                    }
-                });
-            });
 
             // button
             for (var key in config) {
