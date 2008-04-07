@@ -921,6 +921,34 @@ if ( c['skinChangerArea'] == 0 ) { toggleDisplay('skin_changer_area'); }
 </td>
 </tr>
 ({*******})
+<tr class="skin13">
+<th><a name="skin13">文字装飾画像</a></th>
+</tr>
+<tr class="skin13">
+<td>
+({foreach from=$c_config_decoration_list item=item})
+<dl class="box">
+<dt><strong>({$item.caption})</strong></dt>
+<dd class="image">({assign var=skinname value=deco_`$item.tagname`})
+<a href="({t_img_url_skin filename=$skinname})" target="_blank"><img src="({t_img_url_skin filename=$skinname w=180 h=180})" /></a>
+</dd>
+<dd class="default">
+({if $skin_list[$skinname]})[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]<br />({/if})
+</dd>
+<dd class="submit">
+<form action="./" method="post" enctype="multipart/form-data" >
+<input type="hidden" name="m" value="({$module_name})" />
+<input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
+<input type="hidden" name="sessid" value="({$PHPSESSID})" />
+<input type="hidden" name="skinname" value="({$skinname})" />
+<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="変更" /></span>
+</form></dd>
+</dl>
+({/foreach})
+<br class="clear" />
+</td>
+</tr>
+({*******})
 <tr class="skin12">
 <th><a name="skin12">携帯版画像</a></th>
 </tr>
