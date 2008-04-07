@@ -2893,4 +2893,20 @@ function db_admin_enabled_module_config_list()
     return $configs;
 }
 
+function db_admin_c_config_decoration_list()
+{
+    $sql = 'SELECT * FROM c_config_decoration';
+    $c_config_decoration_list = db_get_all($sql);
+
+    return $c_config_decoration_list;
+}
+
+function db_admin_update_c_config_decoration($c_config_decoration_id, $is_enabled)
+{
+    $data = array(
+        'is_enabled' => $is_enabled,
+    );
+    $where = array('c_config_decoration_id' => $c_config_decoration_id);
+    return db_update('c_config_decoration', $data, $where);
+}
 ?>

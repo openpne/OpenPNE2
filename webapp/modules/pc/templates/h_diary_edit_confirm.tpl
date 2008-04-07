@@ -9,7 +9,7 @@
 </div>
 <table>
 <tr><th>タイトル</th><td>({$form_val.subject})</td></tr>
-<tr><th>本文</th><td>({$form_val.body|nl2br|t_url2cmd:'diary'|t_cmd:'diary'})</td></tr>
+<tr><th>本文</th><td>({$form_val.body|nl2br|t_url2cmd:'diary'|t_cmd:'diary'|t_decoration})</td></tr>
 ({if $form_val.upfile_1.name})
 <tr><th>写真1</th><td>({$form_val.upfile_1.name})</td></tr>
 ({/if})
