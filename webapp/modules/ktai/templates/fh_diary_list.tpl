@@ -1,19 +1,19 @@
 ({$inc_ktai_header|smarty:nodefaults})
 
 <table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_02})">
-<font color="#({$ktai_color_config.font_05})"><a name="top">({$target_c_member.nickname})さんの日記</a></font><br>
+<font color="#({$ktai_color_config.font_05})"><a name="top">({$target_c_member.nickname})さんの({$WORD_DIARY_HALF})</a></font><br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
-<font color="#({$ktai_color_config.color_24})">最新日記ﾘｽﾄ</font><br>
+<font color="#({$ktai_color_config.color_24})">最新({$WORD_DIARY_HALF})ﾘｽﾄ</font><br>
 </td></tr></table>
 
 ({if $INC_NAVI_type=="h"})
-[i:190]<a href="({t_url m=ktai a=page_h_diary_edit})&amp;({$tail})">日記を書く</a>
+[i:190]<a href="({t_url m=ktai a=page_h_diary_edit})&amp;({$tail})">({$WORD_DIARY_HALF})を書く</a>
 <hr color="#({$ktai_color_config.border_01})">
 ({/if})
 
 ({if !$target_diary_list})
-最新日記はありません。
+最新({$WORD_DIARY_HALF})はありません。
 ({else})
 <center>
 ({$pager.start})件～({$pager.end})件を表示<br>
@@ -46,9 +46,9 @@
 ({/if})
 <hr color="#({$ktai_color_config.border_01})">
 ({if $INC_NAVI_type=="h"})
-[i:190]<a href="({t_url m=ktai a=page_h_diary_edit})&amp;({$tail})">日記を書く</a><br>
+[i:190]<a href="({t_url m=ktai a=page_h_diary_edit})&amp;({$tail})">({$WORD_DIARY_HALF})を書く</a><br>
 <table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_02})">
-<font color="#({$ktai_color_config.font_05})">日記検索</font><br>
+<font color="#({$ktai_color_config.font_05})">({$WORD_DIARY_HALF})検索</font><br>
 </td></tr>
 </table>
 ({t_form _method=get m=ktai a=page_fh_diary_list})

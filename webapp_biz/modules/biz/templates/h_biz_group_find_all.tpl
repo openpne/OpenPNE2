@@ -12,7 +12,7 @@
 <p class="form">
 <label for="keyword">キーワード</label><input type="text" class="input_text" name="keyword" id="keyword" size="15" value="({$keyword})" />
 <input type="submit" class="input_submit" value=" 検 索 " />
-<a href="({t_url m=pc a=page_h_diary_list_all})&amp;keyword=({$smarty.capture.keyword_url|smarty:nodefaults})">日記検索</a>
+<a href="({t_url m=pc a=page_h_diary_list_all})&amp;keyword=({$smarty.capture.keyword_url|smarty:nodefaults})">({$WORD_DIARY})検索</a>
  | <a href="({t_url m=pc a=page_h_com_find_all})&amp;keyword=({$smarty.capture.keyword_url|smarty:nodefaults})">コミュニティ検索</a>
 ({if $smarty.const.USE_EXTRA_SERVICE})
  | <a href="http://www.google.com/search?hl=ja&amp;lr=lang_ja&amp;q=({$smarty.capture.keyword_url|smarty:nodefaults})" target="_blank">ウェブ検索</a>

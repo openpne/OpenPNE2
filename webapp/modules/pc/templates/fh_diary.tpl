@@ -38,7 +38,7 @@
 </div>
 
 <div class="item recentlyDiary">
-<div class="partsHeading"><h3>最近の日記</h3></div>
+<div class="partsHeading"><h3>最近の({$WORD_DIARY})</h3></div>
 <ul class="list">
 ({foreach from=$new_diary_list item=item})
 <li><a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$item.c_diary_id})">({$item.subject})</a></li>
@@ -55,7 +55,7 @@
 
 ({if $date_list})
 <div class="item monthlyDiary">
-<div class="partsHeading"><h3>各月の日記</h3></div>
+<div class="partsHeading"><h3>各月の({$WORD_DIARY})</h3></div>
 <ul class="list">
 ({foreach from=$date_list item=item})
 <li><a href="({t_url m=pc a=page_fh_diary_list})&amp;target_c_member_id=({$target_member.c_member_id})&amp;year=({$item.year})&amp;month=({$item.month})">({$item.year})年({$item.month})月の一覧</a></li>
@@ -82,7 +82,7 @@
 
 ({* {{{ diaryDetailBox *})
 <div class="dparts diaryDetailBox"><div class="parts">
-<div class="partsHeading"><h3>({$target_member.nickname})({if $type == "f"})さん({/if})の日記</h3>
+<div class="partsHeading"><h3>({$target_member.nickname})({if $type == "f"})さん({/if})の({$WORD_DIARY})</h3>
 <p class="public">
 ({if $target_diary.public_flag == "public"})（全員に公開）
 ({elseif $target_diary.public_flag == "friend"})（({$WORD_MY_FRIEND})まで公開）
@@ -90,8 +90,8 @@
 </p></div>
 ({if $c_diary_id_prev || $c_diary_id_next})
 <div class="pagerRelative">
-({if $c_diary_id_prev})<p class="prev"><a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$c_diary_id_prev})">«前の日記</a></p>({/if})
-({if $c_diary_id_next})<p class="next"><a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$c_diary_id_next})">次の日記»</a></p>({/if})
+({if $c_diary_id_prev})<p class="prev"><a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$c_diary_id_prev})">«前の({$WORD_DIARY})</a></p>({/if})
+({if $c_diary_id_next})<p class="next"><a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$c_diary_id_next})">次の({$WORD_DIARY})»</a></p>({/if})
 </div>
 ({/if})
 <dl>
@@ -201,8 +201,8 @@
 ({if $c_diary_id_prev || $c_diary_id_next})
 ({* {{{ *})
 <div class="parts prevNextLinkLine">
-({if $c_diary_id_prev})<p class="prev"><a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$c_diary_id_prev})">«前の日記</a></p>({/if})
-({if $c_diary_id_next})<p class="next"><a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$c_diary_id_next})">次の日記»</a></p>({/if})
+({if $c_diary_id_prev})<p class="prev"><a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$c_diary_id_prev})">«前の({$WORD_DIARY})</a></p>({/if})
+({if $c_diary_id_next})<p class="next"><a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$c_diary_id_next})">次の({$WORD_DIARY})»</a></p>({/if})
 </div>
 ({* }}} *})
 ({/if})
