@@ -26,7 +26,7 @@ class admin_page_edit_c_sns_config extends OpenPNE_Action
             'color_11' => '9面パネル罫線',
             'color_12' => 'テーブル・項目背景1',
             'color_13' => 'テーブル・項目背景2',
-            'color_14' => '日記カレンダー背景',
+            'color_14' => WORD_DIARY . 'カレンダー背景',
             'color_15' => 'お知らせ見出し背景',
             'color_16' => 'サイドバナー領域背景',
             'color_17' => 'コンテンツ領域背景',

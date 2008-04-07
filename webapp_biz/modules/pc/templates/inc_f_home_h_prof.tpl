@@ -281,7 +281,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({if !$_cnt_birth})({$smarty.capture.birth|smarty:nodefaults})({/if})
 ({/if})
 ({if $c_diary_list})
-<tr><th>最新日記</th><td>
+<tr><th>最新({$WORD_DIARY})</th><td>
 <dl class="articleList">
 ({foreach from=$c_diary_list item=item})
 <dt>({$item.r_date|date_format:"%m月%d日"})</dt><dd><a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$item.c_diary_id})">({$item.subject|t_truncate:30}) (({$item.comment_count}))</a> ({if $item.image_filename_1 || $item.image_filename_2 || $item.image_filename_3})<img src="({t_img_url_skin filename=icon_camera})" alt="写真あり" />({/if}) ({if $is_h_prof && $item.public_flag == "friend"})<span class="caution">※({$WORD_MY_FRIEND})まで公開</span>({/if})</dd>

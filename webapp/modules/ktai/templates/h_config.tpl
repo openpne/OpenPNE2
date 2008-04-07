@@ -10,7 +10,7 @@
 ({if !$is_unused_ashiato})
 <font color="#({$ktai_color_config.bg_02})">◆</font><a href="({t_url m=ktai a=page_h_config_mail_ashiato})&amp;({$tail})">あしあとお知らせﾒｰﾙ設定</a><br>
 ({/if})
-<font color="#({$ktai_color_config.bg_02})">◆</font><a href="({t_url m=ktai a=page_h_config_public_flag_diary})&amp;({$tail})">日記の公開範囲設定</a><br>
+<font color="#({$ktai_color_config.bg_02})">◆</font><a href="({t_url m=ktai a=page_h_config_public_flag_diary})&amp;({$tail})">({$WORD_DIARY_HALF})の公開範囲設定</a><br>
 <font color="#({$ktai_color_config.bg_02})">◆</font><a href="({t_url m=ktai a=page_h_config_access_block})&amp;({$tail})">ｱｸｾｽﾌﾞﾛｯｸ設定</a><br>
 <br>
 以下の変更にはﾊﾟｽﾜｰﾄﾞの入力が必要です。<br>

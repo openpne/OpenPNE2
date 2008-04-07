@@ -41,7 +41,7 @@
 ({elseif $requests.target == 'k_h_home'})
 ＜携帯版＞ホームのお知らせ
 ({elseif $requests.target == 'k_fh_diary'})
-＜携帯版＞日記ページのお知らせ
+＜携帯版＞({$WORD_DIARY})ページのお知らせ
 ({elseif $requests.target == 'k_f_home'})
 ＜携帯版＞({$WORD_FRIEND})ページのお知らせ
 ({elseif $requests.target == 'k_c_home'})
@@ -83,7 +83,7 @@
 ({elseif $requests.target == 'k_c_home'})
 コミュニティページ
 ({elseif $requests.target == 'k_fh_diary'})
-日記ページ
+({$WORD_DIARY})ページ
 ({/if}) ]</h4>
 <p class="image">
 <img src="modules/admin/img/admin_info_({$requests.target}).gif" />

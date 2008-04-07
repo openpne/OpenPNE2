@@ -1,12 +1,12 @@
 ({$inc_header|smarty:nodefaults})
 ({ext_include file="inc_subnavi_adminImageKakikomi.tpl"})
-({assign var="page_name" value="日記コメント管理"})
+({assign var="page_name" value="`$WORD_DIARY`コメント管理"})
 ({ext_include file="inc_tree_adminImageKakikomi.tpl"})
 </div>
 
 ({*ここまで:navi*})
 
-<h2>日記コメント管理</h2>
+<h2>({$WORD_DIARY})コメント管理</h2>
 <div class="contents">
 
 ({if $msg})
@@ -26,7 +26,7 @@
 <form action="./" method="get">
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="page_({$hash_tbl->hash('diary_comment_list','page')})" />
-<h3 class="item">日記ID検索</h3>
+<h3 class="item">({$WORD_DIARY})ID検索</h3>
 <input class="basic" type="text" name="target_c_diary_id" value="({$target_c_diary_id})" />
 <span class="textBtnS"><input type="submit" value="検索" /></span>
 </form>
@@ -34,14 +34,14 @@
 <form action="./" method="get">
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="page_({$hash_tbl->hash('diary_comment_list','page')})" />
-<h3 class="item">日記コメントID検索</h3>
+<h3 class="item">({$WORD_DIARY})コメントID検索</h3>
 <input class="basic" type="text" name="target_c_diary_comment_id" value="({$target_c_diary_comment_id})" />
 <span class="textBtnS"><input type="submit" value="検索" /></span>
 </form>
 
 ({if !$diary_comment_list})
 
-<p class="info">該当する日記コメントが存在しません</p>
+<p class="info">該当する({$WORD_DIARY})コメントが存在しません</p>
 
 ({else})
 
@@ -72,7 +72,7 @@
 </tr>
 ({****})
 <tr>
-<th>日記タイトル</th>
+<th>({$WORD_DIARY})タイトル</th>
 <td>
 <a href="({t_url _absolute=1 m=pc a=page_fh_diary})&amp;target_c_diary_id=({$item.c_diary_id})" target="_blank">({$item.subject})</a> (コメント({$item.count_comments})件)
 </td>
@@ -93,7 +93,7 @@
 </tr>
 ({****})
 <tr>
-<th>日記コメント本文</th>
+<th>({$WORD_DIARY})コメント本文</th>
 <td class="textbody">
 ({if $item.image_filename_1 || $item.image_filename_2 || $item.image_filename_3})
 <div>
