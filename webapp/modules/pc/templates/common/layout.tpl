@@ -40,24 +40,28 @@ body { background-color: #({$INC_HEADER_color_config.bg_12}); }
 ({if $INC_HEADER_decoration_config.op_b})
 span.op_b {
     font-weight : bold;
+    font-size: inherit;
 }
 ({/if})
 
 ({if $INC_HEADER_decoration_config.op_u})
 span.op_u {
     text-decoration : underline;
+    font-size: inherit;
 }
 ({/if})
 
 ({if $INC_HEADER_decoration_config.op_s})
 span.op_s {
     text-decoration : line-through;
+    font-size: inherit;
 }
 ({/if})
 
 ({if $INC_HEADER_decoration_config.op_i})
 span.op_i {
     font-style : italic;
+    font-size: inherit;
 }
 ({/if})
 
@@ -76,6 +80,7 @@ span.op_small {
 ({if !$INC_HEADER_decoration_config.op_color})
 span.op_color {
     color : #000 !important;
+    font-size: inherit;
 }
 ({/if})
 
