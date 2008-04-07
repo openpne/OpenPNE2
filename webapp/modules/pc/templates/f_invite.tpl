@@ -28,7 +28,7 @@
 <td><img src="({t_img_url filename=$target_member.image_filename w=76 h=76 noimg=no_image})" alt="" /></td>
 </tr>
 <tr>
-<th>ニックネーム</th>
+<th>({$WORD_NICKNAME})</th>
 <td>({$target_member.nickname})</td>
 </tr>
 <tr>

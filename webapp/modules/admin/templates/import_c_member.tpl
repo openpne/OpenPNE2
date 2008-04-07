@@ -25,7 +25,7 @@
 <p>≪メンバーデータファイル≫<br>
 文字コード：UTF-8<br>
 ファイル形式：csv</p>
-<p>項目の順序({if $smarty.const.OPENPNE_AUTH_MODE == 'pneid'})「ログインID」({/if})「ニックネーム」「登録メールアドレス」「パスワード」</p>
+<p>項目の順序({if $smarty.const.OPENPNE_AUTH_MODE == 'pneid'})「ログインID」({/if})「({$WORD_NICKNAME})」「登録メールアドレス」「パスワード」</p>
 <p><input type="file" name="member_file" /></p>
 <p class="textBtn"><input type="submit" class="submit" name="member_file_submit" value="登録" /></p>
 </form>
