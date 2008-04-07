@@ -1,6 +1,7 @@
 <div class="subNavi">
 ({strip})
 <a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_admin_config')})">SNS設定</a>&nbsp;|&nbsp;
+<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_admin_config_word')})">SNS内名称設定</a>&nbsp;|&nbsp;
 <a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_profile')})">プロフィール項目設定</a>&nbsp;|&nbsp;
 <a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_category')})">コミュニティカテゴリ設定</a>&nbsp;|&nbsp;
 <a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('manage_c_commu')})">初期コミュニティ設定</a>&nbsp;|&nbsp;
