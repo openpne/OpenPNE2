@@ -238,7 +238,7 @@
 
         _textToPreview : function(s) {
             s = tinymce.trim(s);
-            var rule = /&lt;op:(b|u|s|i|large|small|color)( code="(#[0-9a-f]{3,6})"|)&gt;(.*?)&lt;\/op:\1&gt;/;
+            var rule = /&lt;op:(b|u|s|i|large|small|color)( code="(#[0-9a-f]{3,6})"|)&gt;(.*?)&lt;\/op:\1&gt;/i;
 
             function rep(re, str) {
                 s = s.replace(re, str);
