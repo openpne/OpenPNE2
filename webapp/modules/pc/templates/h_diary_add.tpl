@@ -88,7 +88,57 @@
 <th>本文</th>
 <td>
 ({if $inc_entry_point[3]})({$inc_entry_point[3]|smarty:nodefaults|t_url2cmd:'entry_point'|t_cmd:'entry_point'})({/if})
-<textarea name="body" rows="15" cols="50">({$form_val.body})</textarea>
+
+({if $smarty.const.OPENPNE_USE_DECORATION})
+<input type="radio" name="mce_editor_mode_changer" id="mce_editor_mode_changer_1" onchange="pne_toggle_mce_editor('mce_editor_textarea')" checked="checked" /><label for="mce_editor_mode_changer_1">テキストモード</label>&nbsp;<input type="radio" name="mce_editor_mode_changer" id="mce_editor_mode_changer_2" onchange="pne_toggle_mce_editor('mce_editor_textarea')" /><label for="mce_editor_mode_changer_2">プレビューモード</label>
+<div id="mce_editor_buttonmenu">
+({foreach from=$INC_HEADER_decoration_config item=item key=key})
+({if item})
+<a href="#" onclick="pne_mce_insert_tagname('mce_editor_textarea', '({$key|replace:"_":":"})');"><img src="({t_img_url_skin filename=deco_`$key`})" alt="" /></a>
+({/if})
+({/foreach})
+</div>
+
+<script type="text/javascript">
+function pne_mce_editor_get_config()
+{
+    return {
+        op_b : {
+            isEnabled : ({$INC_HEADER_decoration_config.op_b}),
+            imageURL : "({t_img_url_skin filename=deco_op_b})"
+        },
+        op_u : {
+            isEnabled : ({$INC_HEADER_decoration_config.op_u}),
+            imageURL : "({t_img_url_skin filename=deco_op_u})"
+        },
+        op_s : {
+            isEnabled : ({$INC_HEADER_decoration_config.op_s}),
+            imageURL : "({t_img_url_skin filename=deco_op_s})"
+        },
+        op_i : {
+            isEnabled : ({$INC_HEADER_decoration_config.op_i}),
+            imageURL : "({t_img_url_skin filename=deco_op_i})"
+        },
+        op_large : {
+            isEnabled : ({$INC_HEADER_decoration_config.op_large}),
+            imageURL : "({t_img_url_skin filename=deco_op_large})"
+        },
+        op_small : {
+            isEnabled : ({$INC_HEADER_decoration_config.op_small}),
+            imageURL : "({t_img_url_skin filename=deco_op_small})"
+        },
+        op_color : {
+            isEnabled : ({$INC_HEADER_decoration_config.op_color}),
+            imageURL : "({t_img_url_skin filename=deco_op_color})"
+        }
+    }
+}
+
+pne_mce_editor_init();
+</script>
+({/if})
+
+<textarea id="mce_editor_textarea" name="body" rows="15" cols="50">({$form_val.body})</textarea>
 </td>
 </tr>
 <tr>

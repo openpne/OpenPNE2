@@ -109,7 +109,7 @@
 </ul>
 ({/if})
 <p class="text">
-({$target_diary.body|nl2br|t_url2cmd:'diary'|t_cmd:'diary'})
+({$target_diary.body|nl2br|t_url2cmd:'diary'|t_cmd:'diary'|t_decoration})
 </p>
 </div>
 </dd>

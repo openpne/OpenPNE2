@@ -10,7 +10,9 @@
 <link rel="stylesheet" href="./css/default.css" type="text/css" />
 <link rel="stylesheet" href="./xhtml_style.php" type="text/css" />
 <script type="text/javascript" src="./js/prototype.js"></script>
+<script type="text/javascript" src="./js/Selection.js"></script>
 <script type="text/javascript" src="./js/pne.js"></script>
+<script type="text/javascript" src="./js/tiny_mce/tiny_mce.js"></script>
 <style type="text/css">
 .border_01 { border: #({$INC_HEADER_color_config.border_01}) 1px solid; }
 .border_07 { border: #({$INC_HEADER_color_config.border_07}) 1px solid; }
@@ -33,6 +35,49 @@
 .color_19 { background-color: #({$INC_HEADER_color_config.color_19}); }
 body { background-color: #({$INC_HEADER_color_config.bg_12}); }
 .container { background-color: #({$INC_HEADER_color_config.bg_13}); }
+
+/* 文字装飾 */
+({if $INC_HEADER_decoration_config.op_b})
+span.op_b {
+    font-weight : bold;
+}
+({/if})
+
+({if $INC_HEADER_decoration_config.op_u})
+span.op_u {
+    text-decoration : underline;
+}
+({/if})
+
+({if $INC_HEADER_decoration_config.op_s})
+span.op_s {
+    text-decoration : line-through;
+}
+({/if})
+
+({if $INC_HEADER_decoration_config.op_i})
+span.op_i {
+    font-style : italic;
+}
+({/if})
+
+({if $INC_HEADER_decoration_config.op_large})
+span.op_large {
+    font-size : 20px;
+}
+({/if})
+
+({if $INC_HEADER_decoration_config.op_small})
+span.op_small {
+    font-size : 8px;
+}
+({/if})
+
+({if !$INC_HEADER_decoration_config.op_color})
+span.op_color {
+    color : #000 !important;
+}
+({/if})
 </style>
 </head>
 <body id="pc_page_({$INC_HEADER_page_name})"><div id="Body">
