@@ -148,7 +148,7 @@
 ({if $item.image_filename_3})<li><a href="({t_img_url filename=$item.image_filename_3})" target="_blank"><img src="({t_img_url filename=$item.image_filename_3 w=120 h=120})" alt="" /></a></li>({/if})
 </ul>
 ({/if})
-<p class="text">({$item.body|t_truncate:48:"":3})</p>
+<p class="text">({$item.body|t_decoration:1|t_truncate:48:"":3})</p>
 </div>
 <div class="footer">
 <p><a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$item.c_diary_id})&amp;comment_count=({$item.num_comment})">コメント(({$item.num_comment}))</a>
