@@ -17,12 +17,6 @@ if (!OPENPNE_ENABLE_PC) {
 
 function init_pc_page(&$smarty)
 {
-    //文言系
-    $smarty->assign('WORD_FRIEND', WORD_FRIEND);
-    $smarty->assign('WORD_MY_FRIEND', WORD_MY_FRIEND);
-    $smarty->assign('WORD_FRIEND_HALF', WORD_FRIEND_HALF);
-    $smarty->assign('WORD_MY_FRIEND_HALF', WORD_MY_FRIEND_HALF);
-
     $is_secure = $GLOBALS['__Framework']['is_secure'];
 
     if ($is_secure) {
@@ -49,10 +43,10 @@ function init_pc_page(&$smarty)
     $smarty->assign('INC_HEADER_top_banner', db_banner_get_top_banner($is_secure));
     $smarty->assign('INC_HEADER_page_name', $GLOBALS['__Framework']['current_action']);
     if ($is_secure) {
-	    $smarty->assign('INC_HEADER_top_banner_html_after', p_common_c_siteadmin4target_pagename('top_banner_html_after'));
-	    $smarty->assign('INC_HEADER_global_navi', util_get_c_navi('global'));
+        $smarty->assign('INC_HEADER_top_banner_html_after', p_common_c_siteadmin4target_pagename('top_banner_html_after'));
+        $smarty->assign('INC_HEADER_global_navi', util_get_c_navi('global'));
     } else {
-	    $smarty->assign('INC_HEADER_top_banner_html_before', p_common_c_siteadmin4target_pagename('top_banner_html_before'));
+        $smarty->assign('INC_HEADER_top_banner_html_before', p_common_c_siteadmin4target_pagename('top_banner_html_before'));
     }
     $smarty->assign('INC_HEADER_inc_page_top', p_common_c_siteadmin4target_pagename('inc_page_top'));
     $smarty->assign('INC_HEADER_inc_page_top2', p_common_c_siteadmin4target_pagename('inc_page_top2'));
