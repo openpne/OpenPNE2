@@ -6,8 +6,8 @@
 <li><img src="({t_img_url_skin filename=icon_search})" alt="search" /></li>
 <li><input type="text" class="input_text" name="keyword" value="" size="30" /></li>
 <li><select name="target_commu">
-<option value="in_commu">コミュニティ内</option>
-<option value="all">コミュニティ全体</option>
+<option value="in_commu">({$WORD_COMMUNITY})内</option>
+<option value="all">({$WORD_COMMUNITY})全体</option>
 </select></li>
 <li><input type="submit" class="input_submit" value="検索" /></li>
 </ul>

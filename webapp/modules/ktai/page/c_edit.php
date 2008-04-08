@@ -26,8 +26,8 @@ class ktai_page_c_edit extends OpenPNE_Action
 
         $topic_authority_list=
         array(
-            'public' =>'コミュニティ参加者全員が作成可能',
-            'admin_only' =>'コミュニティ管理者のみ作成可能',
+            'public' => WORD_COMMUNITY_HALF . '参加者全員が作成可能',
+            'admin_only' => WORD_COMMUNITY_HALF . '管理者のみ作成可能',
         );
         $this->set('topic_authority_list', $topic_authority_list);
 

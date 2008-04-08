@@ -48,7 +48,7 @@
 <td class="photo" rowspan="4"><a href="({t_url m=pc a=page_c_topic_detail})&amp;target_c_commu_topic_id=({$item.c_commu_topic_id})"><img src="({t_img_url filename=$item.commu_image w=76 h=76 noimg=no_logo_small})" alt="" /></a></td>
 <th>トピック名</th><td>({$item.name}) (({$item.max_number}))</td>
 </tr><tr>
-<th>コミュニティ名</th><td>({$item.commu_name})</td>
+<th>({$WORD_COMMUNITY})名</th><td>({$item.commu_name})</td>
 </tr><tr>
 <th>本文</th><td>({$item.body|t_truncate:36:"":3})</td>
 </tr><tr class="operation">

@@ -1,12 +1,12 @@
 ({$inc_header|smarty:nodefaults})
 ({ext_include file="inc_subnavi_adminImageKakikomi.tpl"})
-({assign var="page_name" value="コミュニティ削除の確認"})
+({assign var="page_name" value="`$WORD_COMMUNITY`削除の確認"})
 ({ext_include file="inc_tree_adminImageKakikomi.tpl"})
 </div>
 
 ({*ここまで:navi*})
 
-<h2>コミュニティ削除の確認</h2>
+<h2>({$WORD_COMMUNITY})削除の確認</h2>
 <div class="contents">
 
 ({if $msg})
@@ -26,7 +26,7 @@
 </tr>
 ({****})
 <tr>
-<th>コミュニティ名</th>
+<th>({$WORD_COMMUNITY})名</th>
 <td>
 <a href="({t_url _absolute=1 m=pc a=page_fh_diary})&amp;target_c_commu_id=({$commu.c_commu_id})" target="_blank">({$commu.name})</a>
 </td>
@@ -47,7 +47,7 @@
 </tr>
 ({****})
 <tr>
-<th>コミュニティ説明文</th>
+<th>({$WORD_COMMUNITY})説明文</th>
 <td width="500">
 ({if $commu.image_filename})
 <div>

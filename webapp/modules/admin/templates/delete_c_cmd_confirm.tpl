@@ -31,7 +31,7 @@
 <table>
 <tr>
 <td>
-({if $c_cmd.permit.community})○({else})×({/if}) : コミュニティ<br />
+({if $c_cmd.permit.community})○({else})×({/if}) : ({$WORD_COMMUNITY})<br />
 ({if $c_cmd.permit.diary})○({else})×({/if}) : ({$WORD_DIARY})<br />
 ({if $c_cmd.permit.profile})○({else})×({/if}) : プロフィール<br />
 ({if $c_cmd.permit.message})○({else})×({/if}) : メッセージ<br />

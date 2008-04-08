@@ -4,7 +4,7 @@
 ({if $total_num})
 ({* {{{ recentList *})
 <div class="dparts recentList"><div class="parts">
-<div class="partsHeading"><h3>コミュニティ最新書き込み</h3></div>
+<div class="partsHeading"><h3>({$WORD_COMMUNITY})最新書き込み</h3></div>
 
 <div class="pagerRelative">
 ({if $is_prev})<p class="prev"><a href="({t_url m=pc a=page_h_com_comment_list})&amp;page=({$page})&amp;direc=-1">前を表示</a></p>
@@ -34,9 +34,9 @@
 ({else})
 ({* {{{ simpleBox *})
 <div class="dparts simpleBox"><div class="parts">
-<div class="partsHeading"><h3>コミュニティ最新書き込み</h3></div>
+<div class="partsHeading"><h3>({$WORD_COMMUNITY})最新書き込み</h3></div>
 <div class="block">
-<p>まだコミュニティ書き込みがありません。</p>
+<p>まだ({$WORD_COMMUNITY})書き込みがありません。</p>
 </div>
 </div></div>
 ({* }}} *})

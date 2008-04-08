@@ -3,7 +3,7 @@
 
 ({* {{{ photoTable *})
 <div class="dparts photoTable"><div class="parts">
-<div class="partsHeading"><h3>コミュニティメンバー</h3></div>
+<div class="partsHeading"><h3>({$WORD_COMMUNITY})メンバー</h3></div>
 
 <div class="pagerAbsolute">
 <p>[ ({foreach from=$page_num item=item})({if $item!=$page})<a href="({t_url m=pc a=page_c_member_list})&amp;page=({$item})&amp;target_c_commu_id=({$c_commu_id})">({$item})</a>({else})({$item})({/if}) ({/foreach})]</p>
