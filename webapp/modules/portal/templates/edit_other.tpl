@@ -37,8 +37,8 @@
                    <dl>
                    <dt><strong class="title">metaタグ設定（任意入力）</strong></dt>
                    <dd><p>metaタグのkeywordsとdescription設定をおこなうことができます。<br />
-                   keywordsは、検索エンジンにヒットさせたい単語を半角カンマ区切りで入力してください。（例：SNS,無料）<br />
-                   descriptionは、検索エンジンにヒットしたときに検索結果一覧で表示させたい文言を入力してください。（例：コミュニティ型のWebサイトです！）</p></dd>
+                   keywordsは、検索エンジンにヒットさせたい単語を半角カンマ区切りで入力してください。<br />
+                   descriptionは、検索エンジンにヒットしたときに検索結果一覧で表示させたい文言を入力してください。</p></dd>
 
                    <dd>
                         <table class="inputForm">

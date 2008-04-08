@@ -3,14 +3,13 @@
 
 <div id="Center">
 
-({*コミュニティのメンバーでないとき非公開の場合*})
 ({if $is_warning})
 
 ({* {{{ simpleBox *})
 <div class="dparts simpleBox"><div class="parts">
 <div class="partsHeading"><h3>イベント</h3></div>
 <div class="block">
-<p>非公開のコミュニティのため、コミュニティに参加しないとイベントを見ることはできません。</p>
+<p>非公開の({$WORD_COMMUNITY})のため、({$WORD_COMMUNITY})に参加しないとイベントを見ることはできません。</p>
 </div>
 </div></div>
 ({* }}} *})

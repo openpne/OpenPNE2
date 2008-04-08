@@ -4,10 +4,10 @@
 <font color="#({$ktai_color_config.font_05})"><a name="top">({$c_commu.name})</a></font><br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
-<font color="#({$ktai_color_config.color_24})">ｺﾐｭﾆﾃｨの削除</font><br>
+<font color="#({$ktai_color_config.color_24})">({$WORD_COMMUNITY_HALF})の削除</font><br>
 </td></tr></table>
 <br>
-このｺﾐｭﾆﾃｨを本当に削除しますか?<br>
+この({$WORD_COMMUNITY_HALF})を本当に削除しますか?<br>
 
 <hr color="#({$ktai_color_config.border_01})">
 <center>

@@ -28,7 +28,7 @@ class pc_page_h_com_add_confirm extends OpenPNE_Action
         //TODO:
         $err_msg = array();
         if (db_commu_is_commu4c_commu_name($name))
-            $err_msg[] = "そのコミュニティはすでに存在します";
+            $err_msg[] = 'その' . WORD_COMMUNITY . 'はすでに存在します';
 
         if (!empty($upfile_obj) && $upfile_obj['error'] !== UPLOAD_ERR_NO_FILE) {
             if (!($image = t_check_image($upfile_obj))) {
@@ -51,7 +51,7 @@ class pc_page_h_com_add_confirm extends OpenPNE_Action
         array(
             'public' =>'参加：誰でも参加可能、掲示板：全員に公開',
             'auth_sns' =>'参加：管理者の承認が必要、掲示板：全員に公開',
-            'auth_commu_member' =>'参加：管理者の承認が必要、掲示板：コミュニティ参加者にのみ公開',
+            'auth_commu_member' =>'参加：管理者の承認が必要、掲示板：' . WORD_COMMUNITY . '参加者にのみ公開',
         );
 
         foreach ($c_commu_category_list as $each_c_commu_categfory) {

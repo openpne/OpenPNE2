@@ -34,7 +34,7 @@
 </tr>
 ({****})
 <tr>
-<th>コミュニティ名</th>
+<th>({$WORD_COMMUNITY})名</th>
 <td>
 <a href="({t_url _absolute=1 m=pc a=page_c_home})&amp;target_c_commu_id=({$topic.c_commu_id})" target="_blank">({$topic.commu_name})</a>
 </td>
