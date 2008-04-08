@@ -10,7 +10,6 @@
 <ul class="moreInfo button">
 <li>
 ({t_form_block m=pc a=do_inc_leave_c_commu})
-<input type="hidden" name="sessid" value="({$PHPSESSID})" />
 <input type="hidden" name="target_c_commu_id" value="({$c_commu.c_commu_id})" />
 <input type="submit" class="input_submit" value=" は　い " />
 ({/t_form_block})
