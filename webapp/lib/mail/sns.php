@@ -296,7 +296,7 @@ class mail_sns
 
         $c_commu_id = $topic['c_commu_id'];
         if (!_db_is_c_commu_member($c_commu_id, $this->c_member_id)) {
-            $this->error_mail('コミュニティに参加していないため投稿できませんでした。');
+            $this->error_mail(WORD_COMMUNITY . 'に参加していないため投稿できませんでした。');
             m_debug_log('mail_sns::add_commu_topic_comment() not a member');
             return false;
         }
@@ -567,7 +567,7 @@ class mail_sns
         }
 
         if ($c_commu['image_filename']) {
-            $this->error_mail('コミュニティ写真の登録は最大1枚までです。');
+            $this->error_mail(WORD_COMMUNITY . '写真の登録は最大1枚までです。');
             m_debug_log('mail_sns::add_commu_image() image is full');
             return false;
         }
