@@ -2,7 +2,6 @@
 ({* unknown *})<div id="Center">
 ({* unknown *})
 ({* unknown *})<!-- **************************************** -->
-({* #1952 *})<!-- ******ここから：コミュニティ新規作成****** -->
 ({* #1952 *})({t_form_block _enctype=file m=biz a=do_h_biz_group_add})
 ({* #1952 *})
 ({* #1952 *})<table border="0" cellspacing="0" cellpadding="0" style="width:650px;margin:0px auto;" class="border_07">
@@ -14,7 +13,6 @@
 ({* #1952 *})<tr>
 ({* #1952 *})<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
 ({* #1952 *})<td class="bg_01" align="center">
-({* #1952 *})<!-- *ここから：コミュニティ新規作成＞内容* -->
 ({* #1952 *})({*ここから：header*})
 ({* #1952 *})<!-- ここから：小タイトル -->
 ({* #1952 *})<table border="0" cellspacing="0" cellpadding="0" style="width:636px;" class="border_01">
@@ -260,7 +258,6 @@
 ({* #1952 *})({*ここから：footer*})
 ({* #1952 *})<!-- 無し -->
 ({* #1952 *})({*ここまで：footer*})
-({* #1952 *})<!-- *ここまで：コミュニティ新規作成＞＞内容* -->
 ({* #1952 *})</td>
 ({* #1952 *})<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
 ({* #1952 *})</tr>
@@ -271,7 +268,6 @@
 ({* #1952 *})</tr>
 ({* #1952 *})</table>
 ({* #1952 *})({/t_form_block})
-({* #1952 *})<!-- ******ここまで：コミュニティ新規作成****** -->
 ({* unknown *})<!-- **************************************** -->
 ({* unknown *})
 ({* unknown *})</div><!-- Center -->

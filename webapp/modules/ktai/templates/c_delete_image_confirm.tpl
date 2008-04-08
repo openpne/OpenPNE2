@@ -3,7 +3,7 @@
 <font color="#({$ktai_color_config.font_05})"><a name="top">({$c_commu.name})</a></font><br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
-<font color="#({$ktai_color_config.color_24})">ｺﾐｭﾆﾃｨ写真の削除</font><br>
+<font color="#({$ktai_color_config.color_24})">({$WORD_COMMUNITY_HALF})写真の削除</font><br>
 </td></tr></table>
 
 この写真を本当に削除しますか?

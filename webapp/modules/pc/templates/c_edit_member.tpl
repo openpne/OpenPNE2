@@ -74,7 +74,7 @@
 ({* #1958 *})<td style="width:80px;" class="bg_02 padding_s">
 ({* #1958 *})
 ({* #1958 *})({if !$c_member.is_c_commu_admin})
-({* #1958 *})<a href="({t_url m=pc a=page_c_edit_member_delete_c_commu_member})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;target_c_member_id=({$c_member.c_member_id})">コミュニティから退会させる</a>
+({* #1958 *})<a href="({t_url m=pc a=page_c_edit_member_delete_c_commu_member})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;target_c_member_id=({$c_member.c_member_id})">({$WORD_COMMUNITY})から退会させる</a>
 ({* #1958 *})({else})
 ({* #1958 *})&nbsp;
 ({* #1958 *})({/if})

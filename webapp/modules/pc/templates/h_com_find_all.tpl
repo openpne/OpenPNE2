@@ -5,7 +5,7 @@
 
 ({* {{{ searchFormBox *})
 <div class="dparts searchFormBox"><div class="parts">
-<div class="partsHeading"><h3>コミュニティ検索・並び替え</h3></div>
+<div class="partsHeading"><h3>({$WORD_COMMUNITY})検索・並び替え</h3></div>
 <div class="item">
 
 ({t_form_block _method=get m=pc a=page_h_com_find_all})
@@ -33,7 +33,7 @@
 ({/t_form_block})
 
 <ul class="moreInfo">
-<li><a href="({t_url m=pc a=page_h_com_add})">新規作成</a>(作成の前に、似たコミュニティがないかご確認ください)</li>
+<li><a href="({t_url m=pc a=page_h_com_add})">新規作成</a>(作成の前に、似た({$WORD_COMMUNITY})がないかご確認ください)</li>
 <li><a href="({t_url m=pc a=page_h_com_topic_find_all})">トピック検索</a></li>
 </ul>
 
@@ -63,7 +63,7 @@
 ({if $c_commu_search_list})
 ({* {{{ searchResultList *})
 <div class="dparts searchResultList"><div class="parts">
-<div class="partsHeading"><h3>コミュニティ一覧</h3><p>*** ({$total_num|default:'0'})件が該当しました。</p></div>
+<div class="partsHeading"><h3>({$WORD_COMMUNITY})一覧</h3><p>*** ({$total_num|default:'0'})件が該当しました。</p></div>
 
 ({if $start_num != $end_num})
 <div class="pagerRelative">
@@ -77,7 +77,7 @@
 ({foreach from=$c_commu_search_list item=c_commu_search})
 <div class="ditem"><div class="item"><table><tr>
 <td class="photo" rowspan="4"><a href="({t_url m=pc a=page_c_home})&amp;target_c_commu_id=({$c_commu_search.c_commu_id})"><img src="({t_img_url filename=$c_commu_search.image_filename w=76 h=76 noimg=no_logo_small})" alt="" /></a></td>
-<th>コミュニティ名</th><td>({$c_commu_search.name})</td>
+<th>({$WORD_COMMUNITY})名</th><td>({$c_commu_search.name})</td>
 </tr><tr>
 <th>メンバー数</th><td>({$c_commu_search.count_commu_member})人</td>
 </tr><tr>
