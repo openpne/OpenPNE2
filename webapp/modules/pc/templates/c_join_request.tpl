@@ -3,7 +3,7 @@
 
 ({* {{{ formTable *})
 <div class="dparts formTable"><div class="parts">
-<div class="partsHeading"><h3>このコミュニティに参加</h3></div>
+<div class="partsHeading"><h3>この({$WORD_COMMUNITY})に参加</h3></div>
 
 ({t_form_block m=pc a=do_c_join_request_insert_c_commu_member_confirm})
 <input type="hidden" name="c_member_id" value="({$member.c_member_id})" />

@@ -12,7 +12,6 @@
 ({* #1952 *})<tr>
 ({* #1952 *})<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
 ({* #1952 *})<td class="bg_01" align="center">
-({* #1952 *})<!-- *ここから：コミュニティ新規作成＞内容* -->
 ({* #1952 *})({*ここから：header*})
 ({* #1952 *})<!-- ここから：小タイトル -->
 ({* #1952 *})<table border="0" cellspacing="0" cellpadding="0" style="width:636px;" class="border_01">
@@ -147,7 +146,6 @@
 ({* #1952 *})({*ここから：footer*})
 ({* #1952 *})<!-- 無し -->
 ({* #1952 *})({*ここまで：footer*})
-({* #1952 *})<!-- *ここまで：コミュニティ新規作成＞＞内容* -->
 ({* #1952 *})</td>
 ({* #1952 *})<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square" /></td>
 ({* #1952 *})</tr>

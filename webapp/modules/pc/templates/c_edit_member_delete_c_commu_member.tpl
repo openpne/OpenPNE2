@@ -3,9 +3,9 @@
 
 ({* {{{ searchResultList *})
 <div class="dparts searchResultList"><div class="parts">
-<div class="partsHeading"><h3>コミュニティメンバー強制退会</h3></div>
+<div class="partsHeading"><h3>({$WORD_COMMUNITY})メンバー強制退会</h3></div>
 <div class="partsInfo">
-<p>このメンバーをコミュニティから退会させます。よろしいですか。</p>
+<p>このメンバーを({$WORD_COMMUNITY})から退会させます。よろしいですか。</p>
 </div>
 
 <div class="block">

@@ -4,7 +4,7 @@
 ({if $fh_com_list_user})
 ({* {{{ photoTable *})
 <div class="dparts photoTable"><div class="parts">
-<div class="partsHeading"><h3>コミュニティリスト</h3></div>
+<div class="partsHeading"><h3>({$WORD_COMMUNITY})リスト</h3></div>
 
 <div class="pagerAbsolute">
 <p>[ ({foreach from=$page_list item=item})({if $item!=$page})<a href="({t_url m=pc a=page_fh_com_list})&amp;page=({$item})&amp;target_c_member_id=({$target_member.c_member_id})">({$item})</a>({else})({$item})({/if}) ({/foreach})]</p>
@@ -183,9 +183,9 @@
 ({else})
 ({* {{{ simpleBox *})
 <div class="dparts simpleBox"><div class="parts">
-<div class="partsHeading"><h3>コミュニティ一覧</h3></div>
+<div class="partsHeading"><h3>({$WORD_COMMUNITY})一覧</h3></div>
 <div class="block">
-<p>参加しているコミュニティはありません。</p>
+<p>参加している({$WORD_COMMUNITY})はありません。</p>
 </div>
 </div></div>
 ({* }}} *})
