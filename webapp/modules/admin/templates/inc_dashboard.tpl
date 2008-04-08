@@ -6,7 +6,7 @@
 <dl>
     <dt>総メンバー数</dt>
     <dd>({$sns_info.info_member_count|number_format})人&nbsp;(前日登録&nbsp;({$sns_info.info_member_count_yesterday|number_format})人)</dd>
-    <dt>総コミュニティ数</dt>
+    <dt>総({$WORD_COMMUNITY})数</dt>
     <dd>({$sns_info.info_commu_count|number_format})</dd>
     <dt>アクティブ率</dt>
     <dd>({$sns_info.info_member_rate_active|number_format:2})%</dd>
@@ -30,10 +30,10 @@
     <dt>({$WORD_MY_FRIEND})数No.1</dt>
     <dd><a href="({t_url _absolute=1 m=pc a=page_f_home})&amp;target_c_member_id=({$sns_rank.rank_friend[1][0].c_member.c_member_id})" target="_blank">({$sns_rank.rank_friend[1][0].c_member.nickname})</a>&nbsp;(({$sns_rank.rank_friend[1][0].count|number_format})人)</dd>({/if})
     ({if $sns_rank.rank_com_member})
-    <dt>参加人数No.1コミュニティ</dt>
+    <dt>参加人数No.1({$WORD_COMMUNITY})</dt>
     <dd><a href="({t_url _absolute=1 m=pc a=page_c_home})&amp;target_c_commu_id=({$sns_rank.rank_com_member[1][0].c_commu_id})" target="_blank">({$sns_rank.rank_com_member[1][0].c_commu.name})</a>&nbsp;(({$sns_rank.rank_com_member[1][0].count|number_format})人)</dd>({/if})
     ({if $sns_rank.rank_com_comment})
-    <dt>盛り上がり度No.1コミュニティ</dt>
+    <dt>盛り上がり度No.1({$WORD_COMMUNITY})</dt>
     <dd><a href="({t_url _absolute=1 m=pc a=page_c_home})&amp;target_c_commu_id=({$sns_rank.rank_com_comment[1][0].c_commu_id})" target="_blank">({$sns_rank.rank_com_comment[1][0].c_commu.name})</a>&nbsp;(書き込み({$sns_rank.rank_com_comment[1][0].count|number_format})件)</dd>({/if})
 </dl>
             </div>
@@ -69,7 +69,7 @@
         </div>
 ({t_assign_sns_new_topic var=new_topic_list})
         <div class="box" id="community">
-            <h2>最新コミュニティ書き込み</h2>
+            <h2>最新({$WORD_COMMUNITY})書き込み</h2>
             ({if $new_topic_list})
             <div class="innerBox">
 <dl>

@@ -25,7 +25,7 @@
            <p class="caution">※表示したくないコンテンツは「表示しない」を選択してください。<br />
            ※同じ番号を2箇所に設定することはできません。</p>
             ({if $smarty.const.CHECK_IMG_AUTH})
-            <p class="caution">※画像認証が有効になっているため、「最新コミュニティ書き込み」「コミュニティ盛り上がりランキング」の画像を表示することができません。画像を表示したい場合は、config.php の CHECK_IMG_AUTH を false にしてから設定をおこなってください。</p>
+            <p class="caution">※画像認証が有効になっているため、「最新({$WORD_COMMUNITY})書き込み」「({$WORD_COMMUNITY})盛り上がりランキング」の画像を表示することができません。画像を表示したい場合は、config.php の CHECK_IMG_AUTH を false にしてから設定をおこなってください。</p>
             ({/if})
 
            <form action="./" method="post">
@@ -56,7 +56,7 @@
            </td>
            </tr>
            <tr>
-           <th>最新コミュニティ書き込み</th>
+           <th>最新({$WORD_COMMUNITY})書き込み</th>
            <td>
                ({assign var="name" value=$smarty.const.PORTAL_LAYOUT_COMMUNITY})
                <select class="basic" name="({$name})">
@@ -68,7 +68,7 @@
                    ({/if})
                ({/foreach})
                </select>
-               <input type="checkbox" name="({$name})_is_image" value="1" ({if $portal_config.layout_config.is_image.$name})checked="checked" ({/if})({if $smarty.const.CHECK_IMG_AUTH}) disabled="disabled" ({/if})/>コミュニティ画像を表示
+               <input type="checkbox" name="({$name})_is_image" value="1" ({if $portal_config.layout_config.is_image.$name})checked="checked" ({/if})({if $smarty.const.CHECK_IMG_AUTH}) disabled="disabled" ({/if})/>({$WORD_COMMUNITY})画像を表示
            </td>
            </tr>
            
@@ -106,7 +106,7 @@
            </tr>
 
            <tr>
-           <th>コミュニティ盛り上がりランキング</th>
+           <th>({$WORD_COMMUNITY})盛り上がりランキング</th>
            <td>
                ({assign var="name" value=$smarty.const.PORTAL_LAYOUT_COMMUNITY_RANKING})
                <select class="basic" name="({$name})">         
@@ -118,7 +118,7 @@
                    ({/if})
                ({/foreach})
                </select>
-               <input type="checkbox" name="({$name})_is_image" value="1" ({if $portal_config.layout_config.is_image.$name})checked="checked" ({/if})({if $smarty.const.CHECK_IMG_AUTH}) disabled="disabled" ({/if})/>コミュニティ画像を表示
+               <input type="checkbox" name="({$name})_is_image" value="1" ({if $portal_config.layout_config.is_image.$name})checked="checked" ({/if})({if $smarty.const.CHECK_IMG_AUTH}) disabled="disabled" ({/if})/>({$WORD_COMMUNITY})画像を表示
            </td>
            </tr>
            

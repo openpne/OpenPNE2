@@ -137,7 +137,7 @@
 
 ({* {{{ linkLine *})
 <div class="parts linkLine"><ul class="moreInfo">
-<li><a href="({t_url m=pc a=page_c_home})&amp;target_c_commu_id=({$c_commu.c_commu_id})">[({$c_commu.name})]コミュニティトップへ</a></li>
+<li><a href="({t_url m=pc a=page_c_home})&amp;target_c_commu_id=({$c_commu.c_commu_id})">[({$c_commu.name})]({$WORD_COMMUNITY})トップへ</a></li>
 </ul></div>
 ({* }}} *})
 

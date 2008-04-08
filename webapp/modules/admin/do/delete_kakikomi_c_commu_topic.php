@@ -17,7 +17,7 @@ class admin_do_delete_kakikomi_c_commu_topic extends OpenPNE_Action
         
         db_commu_delete_c_commu_topic($requests['target_c_commu_topic_id']);
 
-        admin_client_redirect('topic_list', 'コミュニティトピックを削除しました');
+        admin_client_redirect('topic_list', WORD_COMMUNITY . 'トピックを削除しました');
     }
 }
 

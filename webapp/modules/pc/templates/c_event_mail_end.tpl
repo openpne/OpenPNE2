@@ -12,7 +12,7 @@
 
 ({* {{{ linkLine *})
 <div class="parts linkLine"><ul class="moreInfo">
-<li><a href="({t_url m=pc a=page_c_home})&amp;target_c_commu_id=({$c_commu_id})">[({$c_commu.name})]コミュニティトップへ</a><br /></li>
+<li><a href="({t_url m=pc a=page_c_home})&amp;target_c_commu_id=({$c_commu_id})">[({$c_commu.name})]({$WORD_COMMUNITY})トップへ</a><br /></li>
 <li><a href="({t_url m=pc a=page_h_home})">ホームに戻る</a></li>
 </ul></div>
 ({* }}} *})

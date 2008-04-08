@@ -3,9 +3,9 @@
 
 ({* {{{ simpleBox *})
 <div class="dparts simpleBox"><div class="parts">
-<div class="partsHeading"><h3>コミュニティから退会</h3></div>
+<div class="partsHeading"><h3>({$WORD_COMMUNITY})から退会</h3></div>
 <div class="block">
-<p>このコミュニティには参加していません。</p>
+<p>この({$WORD_COMMUNITY})には参加していません。</p>
 </div>
 </div></div>
 ({* }}} *})

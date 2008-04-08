@@ -4,10 +4,10 @@
 <font color="#({$ktai_color_config.font_05})"><a name="top">({$c_commu.name})</a></font><br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
-<font color="#({$ktai_color_config.color_24})">ｺﾐｭﾆﾃｨﾒﾝﾊﾞｰ管理</font><br>
+<font color="#({$ktai_color_config.color_24})">({$WORD_COMMUNITY_HALF})ﾒﾝﾊﾞｰ管理</font><br>
 </td></tr></table>
 
-({$target_c_member.nickname})さんをｺﾐｭﾆﾃｨから本当に退会させますか?<br>
+({$target_c_member.nickname})さんを({$WORD_COMMUNITY_HALF})から本当に退会させますか?<br>
 
 <hr color="#({$ktai_color_config.border_01})">
 <center>

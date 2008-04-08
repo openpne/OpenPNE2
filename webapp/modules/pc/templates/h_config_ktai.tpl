@@ -5,7 +5,7 @@
 <div class="dparts formTable"><div class="parts">
 <div class="partsHeading"><h3>携帯メールアドレスを登録する</h3></div>
 <div class="partsInfo">
-<p>携帯メールアドレスを登録すると、携帯から({$WORD_DIARY})・コミュニティ・あしあとの閲覧・書き込みなどがおこなえます。登録手順は以下の通りです。</p>
+<p>携帯メールアドレスを登録すると、携帯から({$WORD_DIARY})・({$WORD_COMMUNITY})・あしあとの閲覧・書き込みなどがおこなえます。登録手順は以下の通りです。</p>
 <ol>
 <li>１．以下の欄に携帯メールアドレスを記入して「送信」ボタンを押してください。</li>
 <li>２．記入したメールアドレス宛に「({$SNS_NAME})」よりメールが届きます。</li>
