@@ -87,15 +87,7 @@ function pne_mce_show_color_table(id, tagname)
 
     var button_container = document.getElementById("mce_editor_buttonmenu");
 
-    var table = document.createElement("table");
-    table.id = "mce_editor_color_table";
-    table.style.width = "150px";
-    table.style.position = "absolute";
-    table.style.left = (x + table.style.width) + "px";
-    table.style.zIndex = 150;
-    table.style.padding = "5px";
-    table.style.border = "1px solid gray";
-    table.style.backgroundColor = "#fff";
+    var tbody = document.createElement("tbody");
 
     var tr;
  
@@ -104,7 +96,7 @@ function pne_mce_show_color_table(id, tagname)
 
         if (i == 0 || i % settings.grid_width == 0) {
             tr = document.createElement("tr");
-            table.appendChild(tr);
+            tbody.appendChild(tr);
         }
 
         var td = document.createElement("td");
@@ -127,6 +119,17 @@ function pne_mce_show_color_table(id, tagname)
         td.appendChild(a);
         tr.appendChild(td);
     }
+
+    var table = document.createElement("table");
+    table.id = "mce_editor_color_table";
+    table.style.width = "150px";
+    table.style.position = "absolute";
+    table.style.left = x + 150 + "px";
+    table.style.zIndex = 150;
+    table.style.padding = "5px";
+    table.style.border = "1px solid gray";
+    table.style.backgroundColor = "#fff";
+    table.appendChild(tbody);
 
     button_container.appendChild(table);
 }
