@@ -137,6 +137,9 @@ class OpenPNE_Validator
      */
     function _setError($key, $msg)
     {
+        // エラーメッセージに名称変更を適用
+        $msg = preg_replace_callback('/WORD_[A-Z_]+/', create_function('$m', 'return defined($m[0]) ? constant($m[0]) : $m[0];'), $msg);
+
         $this->errors[$key] = $msg;
     }
 
