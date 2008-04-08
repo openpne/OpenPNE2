@@ -19,8 +19,8 @@ function smarty_modifier_t_decoration($string, $is_strip = false)
 
 function _smarty_modifier_t_decoration_convert($matches)
 {
-    $tagname = $matches[2];
-    $colorcode = $matches[4];
+    $tagname = strtolower($matches[2]);
+    $colorcode = strtolower($matches[4]);
     $classname = strtr($tagname, ':', '_');
     $value = smarty_modifier_t_decoration($matches[6]);
 
