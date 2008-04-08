@@ -6,9 +6,9 @@
 ({if !$is_c_commu_member})
 ({* {{{ infoBox *})
 <div class="dparts infoBox"><div class="parts">
-<p>このコミュニティに参加しますか？</p>
+<p>この({$WORD_COMMUNITY})に参加しますか？</p>
 <ul class="moreInfo">
-<li><a href="({t_url m=pc a=page_c_join_commu})&amp;target_c_commu_id=({$c_commu.c_commu_id})">コミュニティに参加する</a></li>
+<li><a href="({t_url m=pc a=page_c_join_commu})&amp;target_c_commu_id=({$c_commu.c_commu_id})">({$WORD_COMMUNITY})に参加する</a></li>
 </ul>
 </div></div>
 ({* }}} *})
@@ -22,7 +22,7 @@
 ({* {{{ homePhotoBox *})
 <div class="dparts homePhotoBox">
 <div class="parts">
-<p class="photo"><img src="({t_img_url filename=$c_commu.image_filename w=180 h=180 noimg=no_logo})" class="pict" alt="コミュニティ写真" /></p>
+<p class="photo"><img src="({t_img_url filename=$c_commu.image_filename w=180 h=180 noimg=no_logo})" class="pict" alt="({$WORD_COMMUNITY})写真" /></p>
 </div>
 <p class="text">({$c_commu.name})</p>
 </div>
@@ -32,7 +32,7 @@
 
 ({* {{{ homeNineTable *})
 <div class="parts homeNineTable">
-<div class="partsHeading"><h3>コミュニティメンバー</h3></div>
+<div class="partsHeading"><h3>({$WORD_COMMUNITY})メンバー</h3></div>
 ({if $smarty.const.OPENPNE_USE_FLASH_LIST})
 ({capture assign=flashvars})({strip})
 ({foreach from=$c_commu_member_list item=item key=key})
@@ -111,9 +111,9 @@ show_flash('flash/list.swf', '({$flashvars})');
 
 ({* {{{ homeMainTable *})
 <div class="dparts homeMainTable"><div class="parts">
-<div class="partsHeading"><h3>コミュニティ</h3></div>
+<div class="partsHeading"><h3>({$WORD_COMMUNITY})</h3></div>
 <table>
-<tr><th>コミュニティ名</th><td>({$c_commu.name})</td></tr>
+<tr><th>({$WORD_COMMUNITY})名</th><td>({$c_commu.name})</td></tr>
 <tr><th>開設日</th><td>({$c_commu.r_datetime|date_format:"%Y年%m月%d日"})</td></tr>
 <tr><th>管理者</th><td><a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$c_commu.c_member_id_admin})">({$c_commu.c_member_admin.nickname})</a></td></tr>
 ({if $sub_admin})
@@ -132,10 +132,10 @@ show_flash('flash/list.swf', '({$flashvars})');
 管理者の承認が必要(非公開)
 ({/if})
 </td></tr>
-<tr><th>コミュニティ<br />説明文</th><td>({$c_commu.info|nl2br|t_url2cmd:'community'|t_cmd:'community'})</td></tr>
+<tr><th>({$WORD_COMMUNITY})<br />説明文</th><td>({$c_commu.info|nl2br|t_url2cmd:'community'|t_cmd:'community'})</td></tr>
 ({if $is_c_commu_member || $c_commu.public_flag != "auth_commu_member"})
 ({if $new_topic_comment})
-<tr><th>コミュニティ<br />掲示板</th><td>
+<tr><th>({$WORD_COMMUNITY})<br />掲示板</th><td>
 <dl class="articleList">
 ({foreach from=$new_topic_comment item=item})
 <dt>({$item.r_datetime|date_format:"%m月%d日"})</dt><dd><a href="({t_url m=pc a=page_c_topic_detail})&amp;target_c_commu_topic_id=({$item.c_commu_topic_id})">({$item.name|t_truncate:30})(({$item.count_comments}))</a>({if $item.image_filename1 || $item.image_filename2 || $item.image_filename3}) <img src="({t_img_url_skin filename=icon_camera})" alt="写真あり" />({/if})</dd>
@@ -191,7 +191,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({/if})
 ({/if})
 ({if $is_c_commu_admin})
-<li><a href="({t_url m=pc a=page_c_edit})&amp;target_c_commu_id=({$c_commu.c_commu_id})">コミュニティ設定変更</a></li>
+<li><a href="({t_url m=pc a=page_c_edit})&amp;target_c_commu_id=({$c_commu.c_commu_id})">({$WORD_COMMUNITY})設定変更</a></li>
 ({/if})
 </ul></td></tr>
 ({/if})
@@ -209,7 +209,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 </td></tr>
 ({/if})
 ({if $smarty.const.OPENPNE_ENABLE_KTAI && !$is_unused_ktai_bbs && $is_registered_ktai_address})
-<tr><th>コミュニティ<br />書き込みを<br />携帯メールで</th><td>
+<tr><th>({$WORD_COMMUNITY})<br />書き込みを<br />携帯メールで</th><td>
 <ul class="check">
 <li><input type="radio" class="input_radio" value="1" id="is_receive_mail_1" name="is_receive_mail"({if $is_receive_mail}) checked="checked"({/if}) /><label for="is_receive_mail_1">受け取る</label></li>
 <li><input type="radio" class="input_radio" value="0" id="is_receive_mail_0" name="is_receive_mail"({if !$is_receive_mail}) checked="checked"({/if}) /><label for="is_receive_mail_0">受け取らない</label></li>
@@ -217,7 +217,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 </td></tr>
 ({/if})
 ({if !$is_unused_pc_bbs})
-<tr><th>コミュニティ<br />書き込みを<br />PCメールで</th><td>
+<tr><th>({$WORD_COMMUNITY})<br />書き込みを<br />PCメールで</th><td>
 <ul class="check">
 <li><input type="radio" class="input_radio" value="1" id="is_receive_mail_pc_1" name="is_receive_mail_pc"({if $is_receive_mail_pc}) checked="checked"({/if}) /><label for="is_receive_mail_pc_1">受け取る</label></li>
 <li><input type="radio" class="input_radio" value="0" id="is_receive_mail_pc_0" name="is_receive_mail_pc"({if !$is_receive_mail_pc}) checked="checked"({/if}) /><label for="is_receive_mail_pc_0">受け取らない</label></li>

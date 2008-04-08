@@ -3,7 +3,7 @@
 
 ({* {{{ yesNoButtonBox *})
 <div class="dparts yesNoButtonBox"><div class="parts">
-<div class="partsHeading"><h3>このコミュニティに参加</h3></div>
+<div class="partsHeading"><h3>この({$WORD_COMMUNITY})に参加</h3></div>
 
 <div class="block">
 <p>({$c_commu.name|default:""})に本当に参加しますか?</p>

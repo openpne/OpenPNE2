@@ -21,7 +21,7 @@
 ―――――――――――――――――――――――――――――
 
 ◆({$WORD_MY_FRIEND})の最新({$WORD_DIARY})
-◆参加コミュニティの最新書き込み
+◆参加({$WORD_COMMUNITY})の最新書き込み
 ◆({$c_member.nickname})さんのページへのアクセス数
 ◆昨日のランキングNo1は？
 
@@ -38,10 +38,10 @@
 ({/foreach})
 
 ―――――――――――――――――――――――――――――
-◆参加コミュニティの最新書き込み◆
+◆参加({$WORD_COMMUNITY})の最新書き込み◆
 ―――――――――――――――――――――――――――――
 
-({$c_member.nickname})さんが参加しているコミュニティ掲示板の更新トピックです。
+({$c_member.nickname})さんが参加している({$WORD_COMMUNITY})掲示板の更新トピックです。
 
 ({foreach from=$c_commu_topic_comment_list item=item})
 ◇名　前　：({$item.c_commu_name})
@@ -72,10 +72,10 @@
 ◇昨日の({$WORD_MY_FRIEND})数No1メンバーは？
 　→　({t_url_mail m=pc a=page_h_ranking})&kind=friend
 
-◇昨日の参加人数No1コミュニティは？
+◇昨日の参加人数No1({$WORD_COMMUNITY})は？
 　→　({t_url_mail m=pc a=page_h_ranking})&kind=com_member
 
-◇昨日の盛り上がり度No1コミュニティは？
+◇昨日の盛り上がり度No1({$WORD_COMMUNITY})は？
 　→　({t_url_mail m=pc a=page_h_ranking})&kind=com_comment
 
 ({if $daily_news_foot|smarty:nodefaults})
@@ -89,7 +89,7 @@
 
 ▼({$SNS_NAME})のデイリー・ニュースとは？
 
-　あなたの({$WORD_MY_FRIEND})からの最新情報や、参加コミュニティの書き込み
+　あなたの({$WORD_MY_FRIEND})からの最新情報や、参加({$WORD_COMMUNITY})の書き込み
 　情報など、毎日の更新情報をメールでお知らせします。
 
 ▼({$SNS_NAME})のデイリー・ニュース　配信停止はこちらから

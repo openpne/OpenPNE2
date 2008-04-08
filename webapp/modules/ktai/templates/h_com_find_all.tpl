@@ -1,6 +1,6 @@
 ({$inc_ktai_header|smarty:nodefaults})
 <table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_02})">
-<font color="#({$ktai_color_config.font_05})"><a name="top">ｺﾐｭﾆﾃｨ検索</a></font><br>
+<font color="#({$ktai_color_config.font_05})"><a name="top">({$WORD_COMMUNITY_HALF})検索</a></font><br>
 </td></tr></table>
 ({t_form _method=get m=ktai a=page_h_com_find_result})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
@@ -17,7 +17,7 @@
 </center>
 </form>
 <hr color="#({$ktai_color_config.border_02})">
-<font color="#({$ktai_color_config.font_07})">⇒</font><a href="({t_url m=ktai a=page_h_com_add})&amp;({$tail})">ｺﾐｭﾆﾃｨ作成</a><br>
+<font color="#({$ktai_color_config.font_07})">⇒</font><a href="({t_url m=ktai a=page_h_com_add})&amp;({$tail})">({$WORD_COMMUNITY_HALF})作成</a><br>
 <font color="#({$ktai_color_config.font_07})">⇒</font><a href="({t_url m=ktai a=page_h_com_topic_find_all})&amp;({$tail})">ﾄﾋﾟｯｸ検索</a><br>
 <hr color="#({$ktai_color_config.border_01})">
 <br>

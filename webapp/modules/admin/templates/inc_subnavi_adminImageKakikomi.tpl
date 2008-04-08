@@ -7,7 +7,7 @@
 ({/if})
 <a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('diary_list')})">({$WORD_DIARY})管理</a>&nbsp;|&nbsp;
 <a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('diary_comment_list')})">({$WORD_DIARY})コメント管理</a>&nbsp;|&nbsp;
-<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('commu_list')})">コミュニティ管理</a>&nbsp;|&nbsp;
+<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('commu_list')})">({$WORD_COMMUNITY})管理</a>&nbsp;|&nbsp;
 <a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('topic_list')})">トピック・イベント管理</a>&nbsp;|&nbsp;
 <a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('topic_comment_list')})">トピック・イベントのコメント管理</a>&nbsp;|&nbsp;
 <a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('review_list')})">レビュー管理</a>&nbsp;|&nbsp;

@@ -152,7 +152,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({if $c_commu_list})
 ({* {{{ homeNineTable *})
 <div class="parts homeNineTable">
-<div class="partsHeading"><h3>コミュニティリスト</h3></div>
+<div class="partsHeading"><h3>({$WORD_COMMUNITY})リスト</h3></div>
 ({if $smarty.const.OPENPNE_USE_FLASH_LIST})
 ({capture assign=flashvars})({strip})
 ({foreach from=$c_commu_list item=item key=key})
@@ -214,7 +214,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <ul class="moreInfo">
 <li><a href="({t_url m=pc a=page_fh_com_list})&amp;target_c_member_id=({$target_c_member_id})">全てを見る(({$user_count}))</a></li>
 ({if $common_commu_count})
-<li><a href="({t_url m=pc a=page_f_com_list_common})&amp;target_c_member_id=({$target_c_member_id})">共通コミュニティ(({$common_commu_count}))</a></li>
+<li><a href="({t_url m=pc a=page_f_com_list_common})&amp;target_c_member_id=({$target_c_member_id})">共通({$WORD_COMMUNITY})(({$common_commu_count}))</a></li>
 ({/if})
 </ul>
 </div>

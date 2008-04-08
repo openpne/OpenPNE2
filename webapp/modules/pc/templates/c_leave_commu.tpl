@@ -3,7 +3,7 @@
 
 ({* {{{ yesNoButtonBox *})
 <div class="dparts yesNoButtonBox"><div class="parts">
-<div class="partsHeading"><h3>このコミュニティから退会</h3></div>
+<div class="partsHeading"><h3>この({$WORD_COMMUNITY})から退会</h3></div>
 
 <div class="block">
 <p>({$c_commu.name|default:""})から本当に退会しますか？</p>

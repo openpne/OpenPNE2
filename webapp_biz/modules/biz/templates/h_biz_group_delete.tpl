@@ -3,7 +3,7 @@
 
 ({* {{{ yesNoButtonBox *})
 <div class="dparts yesNoButtonBox"><div class="parts">
-<div class="partsHeading"><h3>このコミュニティに参加</h3></div>
+<div class="partsHeading"><h3>グループ削除</h3></div>
 <div class="block">
 <p>本当に削除しますか？</p>
 <ul class="moreInfo button">
