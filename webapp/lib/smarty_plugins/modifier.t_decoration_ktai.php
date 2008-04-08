@@ -35,7 +35,7 @@ function _smarty_modifier_t_decoration_convert_ktai($matches)
 
     // 変換対象かどうか
     if (!($c_tagname = $convert_list[$tagname])) {
-        return $matches[0];
+        return $matches[6];
     }
 
     $opt = '';
