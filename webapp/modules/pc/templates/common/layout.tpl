@@ -39,7 +39,10 @@ body { background-color: #({$INC_HEADER_color_config.bg_12}); }
 /* 文字装飾 */
 ({if $INC_HEADER_decoration_config.op_b})
 span.op_b {
+    text-decoration : underline;
+    font-style : inherit;
     font-weight : bold;
+    color : inherit;
     font-size: inherit;
 }
 ({/if})
@@ -47,6 +50,9 @@ span.op_b {
 ({if $INC_HEADER_decoration_config.op_u})
 span.op_u {
     text-decoration : underline;
+    font-style : inherit;
+    font-weight : inherit;
+    color : inherit;
     font-size: inherit;
 }
 ({/if})
@@ -54,32 +60,57 @@ span.op_u {
 ({if $INC_HEADER_decoration_config.op_s})
 span.op_s {
     text-decoration : line-through;
+    font-style : inherit;
+    font-weight : inherit;
+    color : inherit;
     font-size: inherit;
 }
 ({/if})
 
 ({if $INC_HEADER_decoration_config.op_i})
 span.op_i {
+    text-decoration : inherit;
     font-style : italic;
+    font-weight : inherit;
+    color : inherit;
     font-size: inherit;
 }
 ({/if})
 
 ({if $INC_HEADER_decoration_config.op_large})
 span.op_large {
+    text-decoration : inherit;
+    font-style : inherit;
+    font-weight : inherit;
+    color : inherit;
     font-size : 20px;
 }
 ({/if})
 
 ({if $INC_HEADER_decoration_config.op_small})
 span.op_small {
+    text-decoration : inherit;
+    font-style : inherit;
+    font-weight : inherit;
+    color : inherit;
     font-size : 8px;
 }
 ({/if})
 
 ({if !$INC_HEADER_decoration_config.op_color})
 span.op_color {
+    text-decoration : inherit;
+    font-style : inherit;
+    font-weight : inherit;
     color : #000 !important;
+    font-size: inherit;
+}
+({else})
+span.op_color {
+    text-decoration : inherit;
+    font-style : inherit;
+    font-weight : inherit;
+    color : inherit;
     font-size: inherit;
 }
 ({/if})
