@@ -1,12 +1,12 @@
 ({$inc_header|smarty:nodefaults})
 ({ext_include file="inc_subnavi_adminImageKakikomi.tpl"})
-({assign var="page_name" value="コミュニティ管理"})
+({assign var="page_name" value="`$WORD_COMMUNITY`管理"})
 ({ext_include file="inc_tree_adminImageKakikomi.tpl"})
 </div>
 
 ({*ここまで:navi*})
 
-<h2>コミュニティ管理</h2>
+<h2>({$WORD_COMMUNITY})管理</h2>
 <div class="contents">
 
 ({if $msg})
@@ -31,7 +31,7 @@
 
 ({if !$commu_list})
 
-<p class="info">該当するコミュニティが存在しません</p>
+<p class="info">該当する({$WORD_COMMUNITY})が存在しません</p>
 
 ({else})
 
@@ -64,7 +64,7 @@
 </tr>
 ({****})
 <tr>
-<th>コミュニティ名</th>
+<th>({$WORD_COMMUNITY})名</th>
 <td>
 <a href="({t_url _absolute=1 m=pc a=page_c_home})&amp;target_c_commu_id=({$item.c_commu_id})" target="_blank">({$item.name})</a>
 </td>
@@ -85,7 +85,7 @@
 </tr>
 ({****})
 <tr>
-<th>コミュニティ説明文</th>
+<th>({$WORD_COMMUNITY})説明文</th>
 <td class="textbody">
 ({if $item.image_filename})
 <div>

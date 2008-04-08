@@ -4,7 +4,7 @@
 <font color="#({$ktai_color_config.font_05})"><a name="top">({$c_commu.name})</a></font><br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
-<font color="#({$ktai_color_config.color_24})">ｺﾐｭﾆﾃｨﾒﾝﾊﾞｰ管理</font><br>
+<font color="#({$ktai_color_config.color_24})">({$WORD_COMMUNITY_HALF})ﾒﾝﾊﾞｰ管理</font><br>
 </td></tr></table>
 <center>
 ({$pager.start})～({$pager.end})件目を表示
@@ -18,7 +18,7 @@
 ({$item.nickname})<br>
 <br>
 ({if !$item.is_c_commu_admin && !$item.is_c_commu_sub_admin })
-<a href="({t_url m=ktai a=page_c_edit_member_delete_c_commu_member_confirm})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;target_c_member_id=({$item.c_member_id})&amp;({$tail})">ｺﾐｭﾆﾃｨから退会させる</a><br>
+<a href="({t_url m=ktai a=page_c_edit_member_delete_c_commu_member_confirm})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;target_c_member_id=({$item.c_member_id})&amp;({$tail})">({$WORD_COMMUNITY_HALF})から退会させる</a><br>
 ({/if})
 ({if $c_commu.c_member_id_admin == $u})
 ({if $item.is_display_admin})
@@ -44,7 +44,7 @@
 <br>
 </center>
 ({/if})
-<a href="({t_url m=ktai a=page_c_home})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">ｺﾐｭﾆﾃｨﾄｯﾌﾟ</a><br>
+<a href="({t_url m=ktai a=page_c_home})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">({$WORD_COMMUNITY_HALF})ﾄｯﾌﾟ</a><br>
 </font>
 
 ({$inc_ktai_footer|smarty:nodefaults})

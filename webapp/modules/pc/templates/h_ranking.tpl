@@ -18,15 +18,15 @@
 </div>
 
 <div class="item">
-<div class="partsHeading"><h3>参加人数No１コミュニティ</h3></div>
-<p>参加者の多いコミュニティのランキングです。</p>
-<p class="link"><a href="({t_url m=pc a=page_h_ranking})&amp;kind=com_member">参加人数No１<br />コミュニティを表示</a></p>
+<div class="partsHeading"><h3>参加人数No１({$WORD_COMMUNITY})</h3></div>
+<p>参加者の多い({$WORD_COMMUNITY})のランキングです。</p>
+<p class="link"><a href="({t_url m=pc a=page_h_ranking})&amp;kind=com_member">参加人数No１<br />({$WORD_COMMUNITY})を表示</a></p>
 </div>
 
 <div class="item">
-<div class="partsHeading"><h3>盛り上がり度No１コミュニティ</h3></div>
-<p>昨日の掲示板書き込み数が多かったコミュニティのランキングです。</p>
-<p class="link"><a href="({t_url m=pc a=page_h_ranking})&amp;kind=com_comment">盛り上がり度No１<br />コミュニティを表示</a></p>
+<div class="partsHeading"><h3>盛り上がり度No１({$WORD_COMMUNITY})</h3></div>
+<p>昨日の掲示板書き込み数が多かった({$WORD_COMMUNITY})のランキングです。</p>
+<p class="link"><a href="({t_url m=pc a=page_h_ranking})&amp;kind=com_comment">盛り上がり度No１<br />({$WORD_COMMUNITY})を表示</a></p>
 </div>
 </div>
 ({* }}} *})
@@ -47,9 +47,9 @@
 ({elseif $kind == "friend"})
 ({$WORD_MY_FRIEND})数No1メンバー
 ({elseif $kind == "com_member"})
-参加人数No１コミュニティ
+参加人数No１({$WORD_COMMUNITY})
 ({elseif $kind == "com_comment"})
-盛り上がり度No1コミュニティ
+盛り上がり度No1({$WORD_COMMUNITY})
 ({/if})
 </strong>
 は

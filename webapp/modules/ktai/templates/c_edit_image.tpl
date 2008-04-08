@@ -3,7 +3,7 @@
 <font color="#({$ktai_color_config.font_05})"><a name="top">({$c_commu.name})</a></font><br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
-<font color="#({$ktai_color_config.color_24})">ｺﾐｭﾆﾃｨ写真の編集</font><br>
+<font color="#({$ktai_color_config.color_24})">({$WORD_COMMUNITY_HALF})写真の編集</font><br>
 </td></tr></table>
 
 <center>
@@ -28,6 +28,6 @@
 <a href="mailto:({$mail_address})">ﾒｰﾙ送信</a><br>
 ({/if})
 <hr color="#({$ktai_color_config.border_01})">
-[i:90]<a href="({t_url m=ktai a=page_c_edit})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">ｺﾐｭﾆﾃｨの編集</a><br>
+[i:90]<a href="({t_url m=ktai a=page_c_edit})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">({$WORD_COMMUNITY_HALF})の編集</a><br>
 
 ({$inc_ktai_footer|smarty:nodefaults})
