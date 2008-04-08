@@ -45,7 +45,7 @@
 ({elseif $requests.target == 'k_f_home'})
 ＜携帯版＞({$WORD_FRIEND})ページのお知らせ
 ({elseif $requests.target == 'k_c_home'})
-＜携帯版＞コミュニティページのお知らせ
+＜携帯版＞({$WORD_COMMUNITY})ページのお知らせ
 ({elseif $requests.target == 'sns_kiyaku'})
 利用規約
 ({elseif $requests.target == 'sns_privacy'})
@@ -81,7 +81,7 @@
 ({elseif $requests.target == 'k_f_home'})
 ({$WORD_FRIEND})ページ
 ({elseif $requests.target == 'k_c_home'})
-コミュニティページ
+({$WORD_COMMUNITY})ページ
 ({elseif $requests.target == 'k_fh_diary'})
 ({$WORD_DIARY})ページ
 ({/if}) ]</h4>

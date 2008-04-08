@@ -34,7 +34,7 @@ class pc_page_h_com_add extends OpenPNE_Action
         array(
             'public' =>'参加：誰でも参加可能、掲示板：全員に公開',
             'auth_sns' =>'参加：管理者の承認が必要、掲示板：全員に公開',
-            'auth_commu_member' =>'参加：管理者の承認が必要、掲示板：コミュニティ参加者にのみ公開',
+            'auth_commu_member' =>'参加：管理者の承認が必要、掲示板：' . WORD_COMMUNITY . '参加者にのみ公開',
         );
 
         $this->set("c_commu_category_list", $c_commu_category_list);
@@ -43,7 +43,6 @@ class pc_page_h_com_add extends OpenPNE_Action
 
         $this->set('err_msg', $err_msg);
 
-        /////AA local var samples AA//////////////////////////
         return 'success';
     }
 }

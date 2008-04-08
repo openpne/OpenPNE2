@@ -12,7 +12,7 @@
 <li><input type="submit" class="input_submit" value="レビューを掲載する" /></li>
 </ul>
 ({/t_form_block})
-<p>コミュニティ上にあなたが作成したおすすめレビューを掲載することができます。<br />
+<p>({$WORD_COMMUNITY})上にあなたが作成したおすすめレビューを掲載することができます。<br />
 おすすめレビューの作成は<a href="({t_url m=pc a=page_h_review_add})">こちら</a></p>
 </div>
 </div></div>
@@ -77,7 +77,7 @@
 
 ({* {{{ linkLine *})
 <div class="parts linkLine"><ul class="moreInfo">
-<li><a href="({t_url m=pc a=page_c_home})&amp;target_c_commu_id=({$c_commu.c_commu_id})">[({$c_commu.name})]コミュニティトップへ</a></li>
+<li><a href="({t_url m=pc a=page_c_home})&amp;target_c_commu_id=({$c_commu.c_commu_id})">[({$c_commu.name})]({$WORD_COMMUNITY})トップへ</a></li>
 </ul></div>
 ({* }}} *})
 

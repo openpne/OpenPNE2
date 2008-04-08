@@ -11,16 +11,16 @@ class admin_page_edit_mail_send extends OpenPNE_Action
     {
         $pc = array(
             'm_pc_ashiato' => 'あしあとお知らせメール',
-            'm_pc_bbs_info' => 'コミュニティ書き込み通知メール',
+            'm_pc_bbs_info' => WORD_COMMUNITY . '書き込み通知メール',
             'm_pc_birthday_mail' => WORD_MY_FRIEND . 'の誕生日お知らせメール',
 //            'm_pc_change_mail' => 'PCメールアドレス変更確認メール',
             'm_pc_daily_news' => 'デイリー・ニュース',
             'm_pc_friend_intro' => WORD_MY_FRIEND . 'からの紹介文お知らせメール',
             'm_pc_invite_end' => '登録完了メール',
-            'm_pc_join_commu' => 'コミュニティ参加お知らせメール',
+            'm_pc_join_commu' => WORD_COMMUNITY . '参加お知らせメール',
             'm_pc_message_event_message' => 'イベントお知らせメッセージお知らせメール',
             'm_pc_message_event_invite' => 'イベント紹介メッセージお知らせメール',
-            'm_pc_message_syoukai_commu' => 'コミュニティ紹介メッセージお知らせメール',
+            'm_pc_message_syoukai_commu' => WORD_COMMUNITY . '紹介メッセージお知らせメール',
             'm_pc_message_syoukai_member' => 'メンバー紹介メッセージお知らせメール',
             'm_pc_message_syounin' => '承認メッセージお知らせメール',
             'm_pc_message_zyushin' => 'メッセージお知らせメール',
@@ -33,7 +33,7 @@ class admin_page_edit_mail_send extends OpenPNE_Action
         );
         $ktai = array(
             'm_ktai_ashiato' => 'あしあとお知らせメール',
-            'm_ktai_bbs_info' => 'コミュニティ書き込み通知メール',
+            'm_ktai_bbs_info' => WORD_COMMUNITY . '書き込み通知メール',
 //            'm_ktai_change_ktai' => '携帯メールアドレス変更確認メール',
 //            'm_ktai_login_get' => '携帯版ログインURLお知らせメール',
 //            'm_ktai_login_regist_end' => '登録完了メール',

@@ -34,7 +34,7 @@ class pc_do_h_confirm_list_insert_c_commu_member extends OpenPNE_Action
             $msg = '承認が完了しました';
         } else {
             db_commu_delete_c_commu_member_confirm($target_c_commu_member_confirm_id);
-            $msg = '既にこのコミュニティに参加しています。';
+            $msg = '既にこの' . WORD_COMMUNITY . 'に参加しています。';
         }
 
         $p = array('msg' => $msg);

@@ -318,7 +318,7 @@ function util_get_c_navi($navi_type = 'h')
         $navi_type = 'global';
         $navi = array(
             array('url' => '?m=pc&a=page_h_search', 'caption' => 'メンバー検索'),
-            array('url' => '?m=pc&a=page_h_com_find_all', 'caption' => 'コミュニティ検索'),
+            array('url' => '?m=pc&a=page_h_com_find_all', 'caption' => WORD_COMMUNITY . '検索'),
             array('url' => '?m=pc&a=page_h_review_search', 'caption' => 'レビュー検索'),
             array('url' => '?m=pc&a=page_h_home', 'caption' => 'マイホーム'),
             array('url' => '?m=pc&a=page_h_invite', 'caption' => '友人を誘う'),
@@ -357,12 +357,12 @@ function util_get_c_navi($navi_type = 'h')
         break;
     case 'c':
         $navi = array(
-            array('url' => '?m=pc&a=page_c_home', 'caption' => 'コミュニティトップ'),
+            array('url' => '?m=pc&a=page_c_home', 'caption' => WORD_COMMUNITY . 'トップ'),
             array('url' => '?m=pc&a=page_c_topic_list', 'caption' => '掲示板'),
             array('url' => '?m=pc&a=page_c_member_review', 'caption' => 'おすすめレビュー'),
-            array('url' => '?m=pc&a=page_c_join_commu', 'caption' => 'コミュニティに参加'),
+            array('url' => '?m=pc&a=page_c_join_commu', 'caption' => WORD_COMMUNITY . 'に参加'),
             array('url' => '?m=pc&a=page_c_invite', 'caption' => WORD_MY_FRIEND.'に紹介'),
-            array('url' => '?m=pc&a=page_c_leave_commu', 'caption' => 'コミュニティを退会'),
+            array('url' => '?m=pc&a=page_c_leave_commu', 'caption' => WORD_COMMUNITY . 'を退会'),
         );
         break;
     }

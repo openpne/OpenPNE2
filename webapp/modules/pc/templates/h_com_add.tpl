@@ -3,11 +3,11 @@
 
 ({* {{{ formTable *})
 <div class="dparts formTable"><div class="parts">
-<div class="partsHeading"><h3>コミュニティ新規作成</h3></div>
+<div class="partsHeading"><h3>({$WORD_COMMUNITY})新規作成</h3></div>
 ({t_form_block _enctype=file m=pc a=page_h_com_add_confirm})
 <table>
 <tr>
-<th>コミュニティ名</th>
+<th>({$WORD_COMMUNITY})名</th>
 <td>
 <input type="text" class="input_text" name="name" value="({$form_val.name})" size="50" />
 </td>
@@ -34,7 +34,7 @@
 </td>
 </tr>
 <tr>
-<th>コミュニティ説明文</th>
+<th>({$WORD_COMMUNITY})説明文</th>
 <td>
 <textarea name="info" rows="6" cols="50">({$form_val.info})</textarea>
 </td>
