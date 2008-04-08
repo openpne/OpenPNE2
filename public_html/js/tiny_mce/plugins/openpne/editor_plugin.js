@@ -203,11 +203,19 @@
                         tagname = 'op:' + org_tagname;
                     }
 
-                    var newObj = document.createElement(tagname);
-                    for (var key in args) {
-                        newObj.setAttribute(key, args[key]);
+                    if (tinymce.isIE) {
+                        tagname = tagname.replace("op:", "op");
                     }
-                    editor.dom.replace(newObj, targetObj, true);
+
+                    var newObj = editor.dom.create(tagname);
+                    editor.dom.setAttribs(newObj, args);
+
+                    if (tinymce.isIE) {
+                        newObj.innerHTML = targetObj.innerHTML;
+                        targetObj.parentNode.replaceChild(newObj, targetObj);
+                    } else {
+                        editor.dom.replace(newObj, targetObj, true);
+                    }
                     tagList = doc.getElementsByTagName(org_tagname);
                 }
                 s = editorDoc.innerHTML;
@@ -217,7 +225,14 @@
             for (var i = 0; i < convertList.length; i++) {
                 convertHtmlTagToDecoTag(editor.getBody(), convertList[i]);
             }
+
             rep(/<\/?div>/gi,"");  // for Safari
+
+            if (tinymce.isIE) {
+                rep(/<op/gi, "<op:");
+                rep(/<\/op/gi, "</op:");
+            }
+
             rep(/<br\s?\/?[^>]*>/gi,"\n\n");
             rep(/&nbsp;/gi," ");
             rep(/&quot;/gi,"\"");
