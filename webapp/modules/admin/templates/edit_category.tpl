@@ -1,14 +1,14 @@
 ({$inc_header|smarty:nodefaults})
 ({ext_include file="inc_subnavi_adminSNSConfig.tpl"})
 
-({assign var="page_name" value="コミュニティカテゴリ設定"})
+({assign var="page_name" value="`$WORD_COMMUNITY`カテゴリ設定"})
 ({ext_include file="inc_tree_adminSNSConfig.tpl"})
 </div>
 
 ({*ここまで:navi*})
 
 ({if $msg})<p class="actionMsg">({$msg})</p>({/if})
-<h2>コミュニティカテゴリ設定</h2>
+<h2>({$WORD_COMMUNITY})カテゴリ設定</h2>
 <div class="contents">
 <table>
 <tr>

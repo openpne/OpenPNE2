@@ -4,11 +4,11 @@
 <font color="#({$ktai_color_config.font_05})"><a name="top">({$target_c_member.nickname})さん</a></font><br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
-<font color="#({$ktai_color_config.color_24})">参加ｺﾐｭﾆﾃｨﾘｽﾄ(({$count_commus|default:0}))</font><br>
+<font color="#({$ktai_color_config.color_24})">参加({$WORD_COMMUNITY_HALF})ﾘｽﾄ(({$count_commus|default:0}))</font><br>
 </td></tr></table>
 
 ({if !$c_commu_list})
-参加ｺﾐｭﾆﾃｨはありません。
+参加({$WORD_COMMUNITY_HALF})はありません。
 ({else})
 
 <center>

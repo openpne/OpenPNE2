@@ -160,7 +160,7 @@ if ( c['skinChangerArea'] == 0 ) { toggleDisplay('skin_changer_area'); }
 </form></dd>
 </dl>
 <dl class="box">
-<dt><strong>コミュニティメニュー</strong></dt>
+<dt><strong>({$WORD_COMMUNITY})メニュー</strong></dt>
 <dd class="image">({assign var=skinname value=skin_navi_c})<a href="({t_img_url_skin filename=$skinname})" target="_blank"><img src="({t_img_url_skin filename=$skinname w=180 h=180})" width="180"></a></dd>
 <dd class="default">({if $skin_list[$skinname]})[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})</dd>
 <dd class="submit">
@@ -200,7 +200,7 @@ if ( c['skinChangerArea'] == 0 ) { toggleDisplay('skin_changer_area'); }
 </form></dd>
 </dl>
 <dl class="box">
-<dt><strong>コミュニティメニュー(ロールオーバー)</strong></dt>
+<dt><strong>({$WORD_COMMUNITY})メニュー(ロールオーバー)</strong></dt>
 <dd class="image">({assign var=skinname value=skin_navi_c_2})<a href="({t_img_url_skin filename=$skinname})" target="_blank"><img src="({t_img_url_skin filename=$skinname w=180 h=180})" width="180"></a></dd>
 <dd class="default">({if $skin_list[$skinname]})[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})</dd>
 <dd class="submit">

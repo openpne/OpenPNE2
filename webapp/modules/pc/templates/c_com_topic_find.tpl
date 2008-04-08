@@ -14,8 +14,8 @@
 <input type="text" class="text" name="keyword" id="keyword" size="15" value="({$keyword})" />
 ({if $c_commu_id})
 <select name="target_commu">
-<option value="in_commu">コミュニティ内</option>
-<option value="all">コミュニティ全体</option>
+<option value="in_commu">({$WORD_COMMUNITY})内</option>
+<option value="all">({$WORD_COMMUNITY})全体</option>
 </select>
 <input type="hidden" name="c_commu_id" value="({$c_commu_id})" />
 ({/if})
@@ -57,7 +57,7 @@
 </tr><tr>
 <th>本文</th><td>({$item.body|t_truncate:36:"":3})</td>
 </tr><tr>
-<th>コミュニティ名</th><td>({$item.commu_name})</td>
+<th>({$WORD_COMMUNITY})名</th><td>({$item.commu_name})</td>
 </tr><tr class="operation">
 <th>投稿日</th><td><span class="text">({$item.max_datetime|date_format:"%m月%d日 %H:%M"})</span> <span class="moreInfo"><a href="({t_url m=pc a=page_c_topic_detail})&amp;target_c_commu_topic_id=({$item.c_commu_topic_id})"><img src="({t_img_url_skin filename=button_shosai})" alt="詳細を見る" /></a></span></td>
 </tr></table></div></div>

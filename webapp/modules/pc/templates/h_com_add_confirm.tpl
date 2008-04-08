@@ -3,13 +3,13 @@
 
 ({* {{{ formTable *})
 <div class="dparts formTable"><div class="parts">
-<div class="partsHeading"><h3>コミュニティ新規作成</h3></div>
+<div class="partsHeading"><h3>({$WORD_COMMUNITY})新規作成</h3></div>
 
 <table>
-<tr><th>コミュニティ名</th><td>({$form_val.name})</td></tr>
+<tr><th>({$WORD_COMMUNITY})名</th><td>({$form_val.name})</td></tr>
 <tr><th>カテゴリ</th><td>({$c_commu_category_value})<br /></td></tr>
 <tr><th>参加条件と<br />公開範囲</th><td>({$public_flag_value})<br /></td></tr>
-<tr><th>コミュニティ説明文</th><td>({$form_val.info|nl2br|t_url2cmd:'community'|t_cmd:'community'})</td></tr>
+<tr><th>({$WORD_COMMUNITY})説明文</th><td>({$form_val.info|nl2br|t_url2cmd:'community'|t_cmd:'community'})</td></tr>
 <tr><th>写真</th><td>({$form_val.image_filename})<br /></td></tr>
 </table>
 

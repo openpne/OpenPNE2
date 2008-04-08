@@ -1,5 +1,5 @@
         ({if $data.kind eq PORTAL_LAYOUT_COMMUNITY})
-            ({assign var="title" value="最新コミュニティ書き込み"})
+            ({assign var="title" value="最新`$WORD_COMMUNITY`書き込み"})
             ({if $data.is_image && !$smarty.const.CHECK_IMG_AUTH})
             <div class="box PatternF">
                 <div class="ttl"><h2>({$title})</h2></div>
@@ -118,7 +118,7 @@
                </div>
            </div>
        ({elseif $data.kind eq PORTAL_LAYOUT_COMMUNITY_RANKING})
-           ({assign var="title" value="コミュニティ盛り上がりランキング"})
+           ({assign var="title" value="`$WORD_COMMUNITY`盛り上がりランキング"})
             ({if $data.is_image && !$smarty.const.CHECK_IMG_AUTH})
            <div class="box PatternF">
                <div class="ttl"><h2>({$title})</h2></div>

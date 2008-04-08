@@ -3,11 +3,11 @@
 
 ({* {{{ formTable *})
 <div class="dparts formTable"><div class="parts">
-<div class="partsHeading"><h3>コミュニティ設定変更</h3></div>
+<div class="partsHeading"><h3>({$WORD_COMMUNITY})設定変更</h3></div>
 ({t_form_block _enctype=file m=pc a=do_c_edit_update_c_commu})
 <input type="hidden" name="target_c_commu_id" value="({$target_c_commu_id})" />
 <table>
-<tr><th>コミュニティ名</th><td><input type="text" class="input_text" name="name" value="({$c_commu.name})" size="40" /></td></tr>
+<tr><th>({$WORD_COMMUNITY})名</th><td><input type="text" class="input_text" name="name" value="({$c_commu.name})" size="40" /></td></tr>
 <tr><th>カテゴリ</th><td>
 <select name="c_commu_category_id">
 ({foreach from=$c_commu_category_list item=item})
@@ -29,7 +29,7 @@
 ({/foreach})
 </ul>
 </td></tr>
-<tr><th>コミュニティ説明文</th><td><textarea name="info" rows="6" cols="50">({$c_commu.info})</textarea></td></tr>
+<tr><th>({$WORD_COMMUNITY})説明文</th><td><textarea name="info" rows="6" cols="50">({$c_commu.info})</textarea></td></tr>
 <tr><th>写真</th><td>
 ({if $c_commu.image_filename})
 <p>
@@ -45,7 +45,7 @@
 <li><input type="radio" class="input_radio" name="is_send_join_mail" id="is_send_join_mail_1" value="1"({if $c_commu.is_send_join_mail}) checked="checked"({/if}) /><label for="is_send_join_mail_1">受信する</label></li>
 <li><input type="radio" class="input_radio" name="is_send_join_mail" id="is_send_join_mail_0" value="0"({if !$c_commu.is_send_join_mail}) checked="checked"({/if}) /><label for="is_send_join_mail_0">受信しない</label></li>
 </ul>
-<p>※コミュニティに新しく参加者が加わった時に、管理者(あなた)にメールを送ります。</p>
+<p>※({$WORD_COMMUNITY})に新しく参加者が加わった時に、管理者(あなた)にメールを送ります。</p>
 </td></tr>
 ({/if})
 </table>
@@ -63,9 +63,9 @@
 
 ({* {{{ descriptionBox *})
 <div class="dparts descriptionBox"><div class="parts">
-<div class="partsHeading"><h3>コミュニティを削除する</h3></div>
+<div class="partsHeading"><h3>({$WORD_COMMUNITY})を削除する</h3></div>
 <div class="block">
-<p>コミュニティを削除するには、トピックをすべて削除する必要があります。<br />
+<p>({$WORD_COMMUNITY})を削除するには、トピックをすべて削除する必要があります。<br />
 トピックがある場合は、それらを削除した後、このページに再度アクセスしてください。<br />
 (削除ボタンが表示されます)<br />
 <br />
@@ -78,9 +78,9 @@
 
 ({* {{{ infoButtonBox *})
 <div class="dparts infoButtonBox"><div class="parts">
-<div class="partsHeading"><h3>コミュニティを削除する</h3></div>
+<div class="partsHeading"><h3>({$WORD_COMMUNITY})を削除する</h3></div>
 <div class="block">
-<p>コミュニティを削除します。削除の際はトラブル等を避けるため、あらかじめ参加者へ削除を告知してください。</p>
+<p>({$WORD_COMMUNITY})を削除します。削除の際はトラブル等を避けるため、あらかじめ参加者へ削除を告知してください。</p>
 ({t_form_block m=pc a=page_c_edit_delete_c_commu_confirm})
 <input type="hidden" name="target_c_commu_id" value="({$c_commu.c_commu_id})" />
 <ul class="moreInfo button">
