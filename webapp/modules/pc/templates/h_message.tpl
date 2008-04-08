@@ -65,11 +65,7 @@
 </div>
 
 <div class="operation">
-<form action="./" method="post" class="delete">
-<fieldset>
-<input type="hidden" name="m" value="pc" />
-<input type="hidden" name="a" value="do_h_message_box_delete_message" />
-<input type="hidden" name="sessid" value="({$PHPSESSID})" />
+({t_form_block m=pc a=do_h_message_box_delete_message _attr='class="delete"'})
 <input type="hidden" name="c_message_id[]" value="({$c_message.c_message_id})" />
 <input type="hidden" name="box" value="({$box})" />
 <ul class="moreInfo button">
@@ -78,21 +74,16 @@
 ({/if})
 <li><input type="submit" class="input_submit" name="remove" value="削 除" /></li>
 </ul>
-</fieldset>
-</form>
+({/t_form_block})
 ({if ($box == 'inbox' || !$box) && $c_message.c_member_nickname_from})
-<form action="./" method="post" class="send">
-<fieldset>
-<input type="hidden" name="m" value="pc" />
-<input type="hidden" name="a" value="page_f_message_send" />
+({t_form_block m=pc a=page_f_message_send _attr='class="send"'})
 <input type="hidden" name="target_c_message_id" value="({$c_message.c_message_id})" />
 <input type="hidden" name="jyusin_c_message_id" value="({$jyusin_c_message_id})" />
 <input type="hidden" name="target_c_member_id" value="({$c_message.c_member_id_from})" />
 <ul class="moreInfo button">
-<li><input name="hensin2" type="submit" class="input_submit" value="　返信する　" /></li>
+<li><input type="submit" class="input_submit" name="hensin2" value="返信する" /></li>
 </ul>
-</fieldset>
-</form>
+({/t_form_block})
 ({/if})
 </div>
 
