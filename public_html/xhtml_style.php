@@ -545,11 +545,11 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 .homePhotoBox p.friendLink {
 	margin-bottom: 3px;
 }
-.homePhotoBox p.photo {
-	margin-top: 7px;
+.homePhotoBox .parts {
+	padding: 7px;
 }
 .homePhotoBox ul.moreInfo {
-	margin: 1px 0;
+	margin: 2px 0 -5px;
 }
 .homePhotoBox ul.moreInfo li {
 	padding: 1px 0;
