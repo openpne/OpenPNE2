@@ -34,6 +34,7 @@ class admin_page_edit_mail extends OpenPNE_Action
         $ktai = array(
             'm_ktai_ashiato' => 'あしあとお知らせメール',
             'm_ktai_bbs_info' => WORD_COMMUNITY . '書き込み通知メール',
+            'm_ktai_diary_comment_info' => WORD_DIARY . 'コメント書き込み通知メール',
             'm_ktai_change_ktai' => '携帯メールアドレス変更確認メール',
             'm_ktai_login_get' => '携帯版ログインURLお知らせメール',
             'm_ktai_login_regist_end' => '登録完了メール',
