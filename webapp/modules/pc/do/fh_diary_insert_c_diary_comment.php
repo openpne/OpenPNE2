@@ -58,6 +58,11 @@ class pc_do_fh_diary_insert_c_diary_comment extends OpenPNE_Action
         //日記コメントが書き込まれたので日記自体を未読扱いにする
         db_diary_update_c_diary_is_checked($target_c_diary_id, 0);
 
+        //お知らせメール送信(携帯へ)
+        if($u != $target_c_member_id){
+            send_diary_comment_info_mail($c_diary_comment_id, $u);
+        }
+
         if (OPENPNE_USE_POINT_RANK) {
             // コメント者と被コメント者が違う場合にポイント加算
             if ($u != $target_c_member_id) {
