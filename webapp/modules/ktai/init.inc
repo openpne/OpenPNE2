@@ -84,6 +84,11 @@ function init_ktai_page(&$smarty)
         $smarty->assign('PHPSESSID', session_id());
     }
 
+    if ($is_secure) {
+        $u = $GLOBALS['AUTH']->uid();
+        $smarty->assign('C_MEMBER_CONFIG',db_member_c_member_config4c_member_id($u));
+    }
+
     // set SJIS
     $smarty->setOutputCharset('SJIS');
 }
