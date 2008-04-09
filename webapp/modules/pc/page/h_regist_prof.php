@@ -17,15 +17,14 @@ class pc_page_h_regist_prof extends OpenPNE_Action
             'private'=> '公開しない',
         );
         $this->set('public_flags', $public_flags);
-        
+
         $this->set('inc_navi', fetch_inc_navi("h"));
-        
+
         $this->set('month_list', p_regist_prof_c_profile_month_list4null());
         $this->set('day_list', p_regist_prof_c_profile_day_list4null());
-        $this->set('query_list', p_common_c_password_query4null());
 
         $this->set('c_profile_list', db_member_c_profile_list());
-        
+
         return 'success';
     }
 }

@@ -1661,17 +1661,15 @@ function db_member_create_member($username)
 function db_member_check_param_inputed($c_member_id, $is_ktai = false)
 {
     $c_member = db_member_c_member4c_member_id($c_member_id, true);
-    
+
     if (($c_member['nickname'] === '')
      || !$c_member['birth_year']
      || !$c_member['birth_month']
      || !$c_member['birth_day']
-     || !$c_member['c_password_query_id']
-     || ($c_member['secure']['hashed_password_query_answer'] === '')
     ) {
         return 1;
     }
-    
+
     
     if ($c_member['secure']['pc_address']==="" && !$is_ktai) {
         return 2;
@@ -1679,7 +1677,7 @@ function db_member_check_param_inputed($c_member_id, $is_ktai = false)
     if ($c_member['secure']['ktai_address']==="" && $is_ktai) {
         return 2;
     }
-    
+
     return 0;
 }
             
