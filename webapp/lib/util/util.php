@@ -813,4 +813,38 @@ function util_get_module_config($module)
     return $config;
 }
 
+function util_get_validate_rules_profile($disp = 'config')
+{
+    $disp_key = 'disp_' . $disp;
+
+    $rules = array();
+    $profile_list = db_member_c_profile_list4null();
+    foreach ($profile_list as $profile) {
+        if ($profile[$disp_key]) {
+            $rule = array(
+                'type' => 'int',
+                'required' => $profile['is_required'],
+                'caption' => $profile['caption'],
+            );
+            switch ($profile['form_type']) {
+            case 'text':
+            case 'textlong':
+            case 'textarea':
+                $rule['type'] = $profile['val_type'];
+                $rule['regexp'] = $profile['val_regexp'];
+                $rule['min'] = $profile['val_min'];
+                if ($profile['val_max']) {
+                    $rule['max'] = $profile['val_max'];
+                }
+                break;
+            case 'checkbox':
+                $rule['is_array'] = '1';
+                break;
+            }
+            $rules[$profile['name']] = $rule;
+        }
+    }
+    return $rules;
+}
+
 ?>
