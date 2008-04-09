@@ -481,6 +481,15 @@ CREATE TABLE c_config_color_ktai (
   PRIMARY KEY  (c_config_color_ktai_id)
 );
 
+CREATE TABLE c_config_decoration (
+  c_config_decoration_id serial NOT NULL,
+  tagname text NOT NULL,
+  caption text NOT NULL,
+  sample text NOT NULL,
+  is_enabled smallint NOT NULL default '1',
+  PRIMARY KEY  (c_config_decoration_id)
+);
+
 CREATE TABLE c_diary (
   c_diary_id serial NOT NULL,
   c_member_id int4 NOT NULL default '0',
@@ -681,6 +690,21 @@ CREATE TABLE c_member (
 );
 
 CREATE INDEX c_member_birth_year_c_member_id on c_member (birth_year,c_member_id);
+
+CREATE TABLE c_member_config (
+  c_member_config_id serial NOT NULL,
+  c_member_id int4 NOT NULL default '0',
+  c_member_config_option_id int4 NOT NULL default '0',
+  value text NOT NULL,
+  PRIMARY KEY  (c_member_config_id)
+);
+
+CREATE TABLE c_member_config_option (
+  c_member_config_option_id serial NOT NULL,
+  name varchar(64) NOT NULL default '',
+  PRIMARY KEY  (c_member_config_option_id),
+  UNIQUE (name)
+);
 
 CREATE TABLE c_member_ktai_pre (
   c_member_ktai_pre_id serial NOT NULL,
