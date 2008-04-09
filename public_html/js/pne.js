@@ -9,12 +9,22 @@ function pne_url2a(url) {
 
 function pne_toggle_mce_editor(id)
 {
-    tinyMCE.execCommand("mceToggleEditor", false, id);
+    var textmode_checked = document.getElementById("mce_editor_mode_changer_1").checked;
+    var previewmode_checked = document.getElementById("mce_editor_mode_changer_2").checked;
 
-    if (tinyMCE.get(id).isHidden()) {
-        document.getElementById('mce_editor_buttonmenu').style.display = "block";
-    } else {
+    var editor = tinyMCE.get(id);
+    if (!editor && previewmode_checked) {
+        tinyMCE.execCommand('mceAddControl', 0, id);
         document.getElementById('mce_editor_buttonmenu').style.display = "none";
+        return true;
+    }
+
+    if (editor.isHidden() && previewmode_checked) {
+        editor.show();
+        document.getElementById('mce_editor_buttonmenu').style.display = "none";
+    } else if (!editor.isHidden() && textmode_checked) {
+        editor.hide();
+        document.getElementById('mce_editor_buttonmenu').style.display = "block";
     }
 }
 
