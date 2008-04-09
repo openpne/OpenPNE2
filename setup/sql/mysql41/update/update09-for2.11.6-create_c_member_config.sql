@@ -18,5 +18,5 @@ CREATE TABLE `c_member_config_option` (
   UNIQUE KEY `name` (`name`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
-INSERT INTO `c_member_config_option` VALUES (NULL,'SEND_COMMENT_MAIL_KTAI');
+INSERT INTO `c_member_config_option` VALUES (NULL,'SEND_DIARY_COMMENT_MAIL_KTAI');
 
