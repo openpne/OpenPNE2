@@ -1959,16 +1959,14 @@ function db_member_easy_access_id_is_blacklist($easy_access_id, $c_blacklist_id 
  */
 function db_member_c_member_config4c_member_id($c_member_id)
 {
-    $sql = 'SELECT a.*,b.name FROM c_member_config a'
-         . ' INNER JOIN c_member_config_option b USING(c_member_config_option_id)'
+    $sql = 'SELECT c_member_config_option.name, c_member_config.value'
+         . ' FROM c_member_config'
+         . ' INNER JOIN c_member_config_option USING(c_member_config_option_id)'
          . ' WHERE c_member_id = ?';
     $params = array(intval($c_member_id));
-    $list = db_get_all($sql, $params);
 
-    $member_config = array();
-    foreach ($list as $value){
-        $member_config[$value['name']] = $value['value'];
-    }
+    $member_config = db_get_assoc($sql, $params);
+
     return $member_config;
 }
 
