@@ -1,3 +1,4 @@
+/*!40101 SET NAMES utf8 */;
 CREATE TABLE `c_config_decoration` (
   `c_config_decoration_id` int(11) NOT NULL auto_increment,
   `tagname` text NOT NULL,
