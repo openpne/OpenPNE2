@@ -10,9 +10,9 @@
 <font color="#({$ktai_color_config.font_06})">({$WORD_DIARY_HALF})ｺﾒﾝﾄﾒｰﾙ受信設定：</font><br>
 ({t_form m=ktai a=do_h_member_config})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
-<input type="radio" name="SEND_COMMENT_MAIL_KTAI" value="1"({if $C_MEMBER_CONFIG.SEND_COMMENT_MAIL_KTAI}) checked="checked"({/if})>
+<input type="radio" name="SEND_DIARY_COMMENT_MAIL_KTAI" value="1"({if $C_MEMBER_CONFIG.SEND_DIARY_COMMENT_MAIL_KTAI}) checked="checked"({/if})>
 受け取る<br>
-<input type="radio" name="SEND_COMMENT_MAIL_KTAI" value="0"({if !$C_MEMBER_CONFIG.SEND_COMMENT_MAIL_KTAI}) checked="checked"({/if})>
+<input type="radio" name="SEND_DIARY_COMMENT_MAIL_KTAI" value="0"({if !$C_MEMBER_CONFIG.SEND_DIARY_COMMENT_MAIL_KTAI}) checked="checked"({/if})>
 受け取らない<br>
 <hr color="#({$ktai_color_config.border_01})">
 <center>
