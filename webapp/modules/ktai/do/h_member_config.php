@@ -16,7 +16,7 @@ class ktai_do_h_member_config extends OpenPNE_Action
 
         // コメントメール通知
 
-        db_member_update_c_member_config($u, 'SEND_COMMENT_MAIL_KTAI', $requests['SEND_COMMENT_MAIL_KTAI']);
+        db_member_update_c_member_config($u, 'SEND_DIARY_COMMENT_MAIL_KTAI', $requests['SEND_DIARY_COMMENT_MAIL_KTAI']);
 
         $p = array('msg' => 32);
         openpne_redirect('ktai', 'page_h_config', $p);
