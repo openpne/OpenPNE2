@@ -86,7 +86,7 @@ function db_member_c_member_profile_list4c_member_id($c_member_id, $public_flag 
         ' WHERE cm.c_member_id = ?'.
             " AND cm.public_flag IN ($flags)" .
             ' AND cm.c_profile_id = cp.c_profile_id' .
-        ' ORDER BY cp.sort_order, cm.c_member_profile_id';
+        ' ORDER BY cp.sort_order, cp.c_profile_id, cm.c_member_profile_id';
     $profile = db_get_all($sql, array(intval($c_member_id)));
 
     $member_profile = array();
@@ -208,7 +208,7 @@ function db_member_c_member_pre4c_member_pre_session($session)
         ' FROM c_member_pre_profile AS m' .
              ' INNER JOIN c_profile AS p USING (c_profile_id)' .
         ' WHERE m.c_member_pre_id = ?' .
-        ' ORDER BY p.sort_order, m.c_member_pre_profile_id';
+        ' ORDER BY p.sort_order, p.c_profile_id, m.c_member_pre_profile_id';
     $params = array(intval($c_member['c_member_pre_id']));
     $profile = db_get_all($sql, $params);
 
@@ -481,14 +481,13 @@ function db_member_c_member_list4no_exists_rss()
 
 function db_member_c_profile_list4null()
 {
-    $hint = db_mysql_hint('FORCE INDEX (sort_order)');
-    $sql = 'SELECT * FROM c_profile' . $hint . ' ORDER BY sort_order';
+    $sql = 'SELECT * FROM c_profile ORDER BY sort_order, c_profile_id';
     return db_get_all($sql);
 }
 
 function db_member_c_profile_option_list4c_profile_id($c_profile_id)
 {
-    $sql = 'SELECT * FROM c_profile_option WHERE c_profile_id = ? ORDER BY sort_order';
+    $sql = 'SELECT * FROM c_profile_option WHERE c_profile_id = ? ORDER BY sort_order, c_profile_option_id';
     $params = array(intval($c_profile_id));
     return db_get_all($sql, $params);
 }
@@ -858,7 +857,7 @@ function db_member_check_profile($profile_list, $public_flag_list)
             $sql = "SELECT c_profile_option_id, value FROM c_profile_option" .
                 " WHERE c_profile_option_id IN (". implode(",", array_map('intval', $v)). ")" .
                 " AND c_profile_id = ?".
-                " ORDER BY sort_order";
+                " ORDER BY sort_order, c_profile_option_id";
             $params = array(intval($c_profile['c_profile_id']));
             $list = db_get_all($sql, $params);
             foreach ($list as $item) {
@@ -1063,9 +1062,9 @@ function db_member_insert_c_member($c_member, $c_member_secure, $is_password_enc
 
     $data = array(
         'nickname'    => $c_member['nickname'],
-        'birth_year'  => $c_member['birth_year'],
-        'birth_month' => $c_member['birth_month'],
-        'birth_day'   => $c_member['birth_day'],
+        'birth_year'  => intval($c_member['birth_year']),
+        'birth_month' => intval($c_member['birth_month']),
+        'birth_day'   => intval($c_member['birth_day']),
         'public_flag_birth_year' => $c_member['public_flag_birth_year'],
         'c_member_id_invite'  => intval($c_member['c_member_id_invite']),
         'c_password_query_id' => intval($c_member['c_password_query_id']),
@@ -1123,6 +1122,7 @@ function db_member_ktai_insert_c_member($profs)
         'birth_day' => intval($profs['birth_day']),
         'public_flag_birth_year' => $profs['public_flag_birth_year'],
         'r_date' => db_now(),
+        'u_datetime' => db_now(),
         'is_receive_ktai_mail' => 1,
         'c_member_id_invite' => intval($profs['c_member_id_invite']),
         'c_password_query_id' => intval($profs['c_password_query_id']),
@@ -1157,9 +1157,9 @@ function db_member_update_c_member_pre_secure($c_member_pre_id, $c_member_pre_se
     $data = array(
         'session' => $c_member_pre_secure['session'],
         'nickname'    => $c_member_pre_secure['nickname'],
-        'birth_year'  => $c_member_pre_secure['birth_year'],
-        'birth_month' => $c_member_pre_secure['birth_month'],
-        'birth_day'   => $c_member_pre_secure['birth_day'],
+        'birth_year'  => intval($c_member_pre_secure['birth_year']),
+        'birth_month' => intval($c_member_pre_secure['birth_month']),
+        'birth_day'   => intval($c_member_pre_secure['birth_day']),
         'public_flag_birth_year' => $c_member_pre_secure['public_flag_birth_year'],
         'c_password_query_id' => intval($c_member_pre_secure['c_password_query_id']),
         'password' => md5($c_member_pre_secure['password']),
@@ -1788,8 +1788,8 @@ function db_member_update_public_flag_diary($c_member_id, $public_flag_diary)
 function db_member_insert_username($c_member_id, $username)
 {
     $data = array(
-    "c_member_id"=>$c_member_id,
-    "username"=>$username,
+        'c_member_id' => intval($c_member_id),
+        'username' => $username,
     );
     db_insert('c_username', $data);
 }
