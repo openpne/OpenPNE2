@@ -234,6 +234,9 @@
 <a href="({t_url m=ktai a=page_h_config_access_block})&amp;({$tail})">ｱｸｾｽﾌﾞﾛｯｸ設定</a><br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_10})">
+<a href="({t_url m=ktai a=page_h_member_config})&amp;({$tail})">その他設定</a><br>
+</td></tr>
+<tr><td bgcolor="#({$ktai_color_config.bg_10})">
 <hr color="#({$ktai_color_config.border_03})">
 </td></tr></table>
 <br>
