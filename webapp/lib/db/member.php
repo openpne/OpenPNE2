@@ -1951,8 +1951,9 @@ function db_member_easy_access_id_is_blacklist($easy_access_id, $c_blacklist_id 
     return (bool)db_get_one($sql, $param);
 }
 
-/*
+/**
  * c_member_configの値を取得する
+ *
  * @param int $c_member_id
  * @return array メンバー設定情報
  */
@@ -1971,11 +1972,12 @@ function db_member_c_member_config4c_member_id($c_member_id)
     return $member_config;
 }
 
-/*
- * 設定値があるか
+/**
+ * c_member_config_idに設定値があるかどうか
+ *
  * @param int $c_member_id
  * @param int $c_member_config_option_id
- * @return true あり false なし
+ * @return bool
  */
 function db_member_c_member_config4optionid($c_member_id,$c_member_config_option_id)
 {
@@ -1985,10 +1987,11 @@ function db_member_c_member_config4optionid($c_member_id,$c_member_config_option
     return (bool)db_get_one($sql, $params, 'main');
 }
 
-/*
+/**
  * c_member_config_option_id取得
- * @param str $name
- * @return int $c_member_config_option_id
+ *
+ * @param string $name
+ * @return int
  */
 function db_member_config_option_id4name($name)
 {
@@ -1998,11 +2001,12 @@ function db_member_config_option_id4name($name)
     return db_get_one($sql,$params);    
 }
 
-/*
+/**
  * c_member_config更新(無ければInsert)
+ *
  * @param int $c_member_id
- * @param str $name
- * @param str $value
+ * @param string $name
+ * @param string $value
  */
 function db_member_update_c_member_config($c_member_id, $name, $value)
 {
