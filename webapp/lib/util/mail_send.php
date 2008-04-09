@@ -911,12 +911,6 @@ function send_diary_comment_info_mail($c_diary_comment_id, $c_member_id)
         'id' => $c_diary_comment_id,
     );
 
-    $tpl = fetch_mail_m_tpl('m_ktai_diary_comment_info', $params);
-    if (!$tpl) {
-        return false;
-    }
-    list($subject, $body) = $tpl;
-
     $ktai_address = $target_c_member['ktai_address'];
     if (MAIL_ADDRESS_HASHED) {
         $from = "bc{$c_diary_id}-" . t_get_user_hash($target_c_member_id) . '@' . MAIL_SERVER_DOMAIN;
@@ -925,7 +919,7 @@ function send_diary_comment_info_mail($c_diary_comment_id, $c_member_id)
     }
     $from = MAIL_ADDRESS_PREFIX . $from;
 
-    t_send_email($ktai_address, $subject, $body, true, $from);
+    return fetch_send_mail($ktai_address, 'm_ktai_diary_comment_info', $params, true, $from);
 }
 
 ?>
