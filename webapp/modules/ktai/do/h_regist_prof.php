@@ -10,7 +10,7 @@ class ktai_do_h_regist_prof extends OpenPNE_Action
     {
         $tail = $GLOBALS['KTAI_URL_TAIL'];
         $u = $GLOBALS['KTAI_C_MEMBER_ID'];
-        
+
         $errors = array();
 
         $validator = new OpenPNE_Validator();
@@ -72,14 +72,13 @@ class ktai_do_h_regist_prof extends OpenPNE_Action
         db_member_config_prof_new($u, $prof);
         // insert c_member_profile
         db_member_update_c_member_profile($u, $c_member_profile_list);
-        db_member_update_password_query($u, $prof['c_password_query_id'], $prof['password_query_answer']);
-        
+
         //管理画面で指定したコミュニティに強制参加
         $c_commu_id_list = db_commu_regist_join_list();
         foreach ($c_commu_id_list as $c_commu_id) {
             db_commu_join_c_commu($c_commu_id, $u);
         }
-        
+
         openpne_redirect('ktai', 'page_h_home');
     }
 
@@ -115,17 +114,6 @@ class ktai_do_h_regist_prof extends OpenPNE_Action
             ),
             'public_flag_birth_year' => array(
                 'type' => 'string',
-            ),
-            'c_password_query_id' => array(
-                'type' => 'int',
-                'required' => '1',
-                'caption' => '秘密の質問',
-                'required_error' => '秘密の質問を選択してください',
-            ),
-            'password_query_answer' => array(
-                'type' => 'string',
-                'required' => '1',
-                'caption' => '秘密の質問の答え',
             ),
         );
     }
