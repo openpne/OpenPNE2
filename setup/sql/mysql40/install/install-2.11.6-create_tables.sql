@@ -466,6 +466,15 @@ CREATE TABLE `c_config_color_ktai` (
   PRIMARY KEY  (`c_config_color_ktai_id`)
 ) TYPE=MyISAM;
 
+CREATE TABLE `c_config_decoration` (
+  `c_config_decoration_id` int(11) NOT NULL auto_increment,
+  `tagname` text NOT NULL,
+  `caption` text NOT NULL,
+  `sample` text NOT NULL,
+  `is_enabled` tinyint(1) NOT NULL default '1',
+  PRIMARY KEY  (`c_config_decoration_id`)
+) TYPE=MyISAM;
+
 CREATE TABLE `c_diary` (
   `c_diary_id` int(11) NOT NULL auto_increment,
   `c_member_id` int(11) NOT NULL default '0',
@@ -490,7 +499,7 @@ CREATE TABLE `c_diary` (
 
 CREATE TABLE `c_diary_category` (
   `c_diary_category_id` int(11) NOT NULL auto_increment,
-  `category_name` text NOT NULL,
+  `category_name` text character set utf8 collate utf8_unicode_ci NOT NULL,
   `c_member_id` int(11) NOT NULL default '0',
   `r_datetime` datetime NOT NULL default '0000-00-00 00:00:00',
   PRIMARY KEY  (`c_diary_category_id`),
@@ -584,7 +593,7 @@ CREATE TABLE `c_friend_confirm` (
 
 CREATE TABLE `c_holiday` (
   `c_holiday_id` int(11) NOT NULL auto_increment,
-  `name` text NOT NULL,
+  `name` text character set utf8 collate utf8_unicode_ci NOT NULL,
   `month` int(11) NOT NULL default '0',
   `day` int(11) NOT NULL default '0',
   PRIMARY KEY  (`c_holiday_id`)
@@ -598,7 +607,7 @@ CREATE TABLE `c_image` (
   `type` text,
   PRIMARY KEY  (`c_image_id`),
   KEY `filename` (`filename`(100))
-) TYPE=MyISAM MAX_ROWS=190000;
+) TYPE=MyISAM DEFAULT CHARSET=utf8 MAX_ROWS=190000;
 
 CREATE TABLE `c_ktai_address_pre` (
   `c_ktai_address_pre_id` int(11) NOT NULL auto_increment,
@@ -654,6 +663,24 @@ CREATE TABLE `c_member` (
   `u_datetime` datetime NOT NULL default '0000-00-00 00:00:00',
   PRIMARY KEY  (`c_member_id`),
   KEY `birth_year_c_member_id` (`birth_year`,`c_member_id`)
+) TYPE=MyISAM;
+
+CREATE TABLE `c_member_config` (
+  `c_member_config_id` int(11) NOT NULL auto_increment,
+  `c_member_id` int(11) NOT NULL default '0',
+  `c_member_config_option_id` int(11) NOT NULL default '0',
+  `value` text NOT NULL,
+  PRIMARY KEY  (`c_member_config_id`),
+  KEY `c_member_id` (`c_member_id`),
+  KEY `c_member_config_option_id` (`c_member_config_option_id`),
+  KEY `c_member_config_option_id_c_member_id` (`c_member_config_option_id`,`c_member_id`)
+) TYPE=MyISAM;
+
+CREATE TABLE `c_member_config_option` (
+  `c_member_config_option_id` int(11) NOT NULL auto_increment,
+  `name` varchar(64) NOT NULL default '',
+  PRIMARY KEY  (`c_member_config_option_id`),
+  UNIQUE KEY `name` (`name`)
 ) TYPE=MyISAM;
 
 CREATE TABLE `c_member_ktai_pre` (
