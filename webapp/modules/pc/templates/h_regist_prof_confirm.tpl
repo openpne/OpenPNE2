@@ -6,24 +6,25 @@
 <div class="partsHeading"><h3>プロフィール確認</h3></div>
 
 <div class="partsInfo">
-<p>(以下の内容で登録します。確認のうえ、登録ボタンをクリックしてください。)</p>
+<p>以下の内容で登録します。確認のうえ、登録ボタンをクリックしてください。</p>
 </div>
 
 <table>
 ({capture name="nick"})
-<tr><th>({$WORD_NICKNAME})<p class="caution">※</p></th><td>({$prof.nickname|default:"&nbsp;"})</td></tr>
+<tr><th>({$WORD_NICKNAME}) <strong>※</strong></th><td>({$prof.nickname|default:"&nbsp;"})</td></tr>
 ({/capture})
 ({capture name="birth"})
-<tr><th>生まれた年<p class="caution">※</p></th><td>({$prof.birth_year|default:"&nbsp;"})年
+<tr><th>生まれた年 <strong>※</strong></th><td>({$prof.birth_year|default:"&nbsp;"})年
 ({if $prof.public_flag_birth_year == 'friend'})
 （({$WORD_MY_FRIEND})まで公開）
 ({elseif $prof.public_flag_birth_year == 'private'})
 （公開しない）
 ({/if})</td></tr>
-<tr><th>誕生日<p class="caution">※</p></th><td>({$prof.birth_month|default:"&nbsp;"})月({$prof.birth_day|default:"&nbsp;"})日</td></tr>
+<tr><th>誕生日 <strong>※</strong></th><td>({$prof.birth_month|default:"&nbsp;"})月({$prof.birth_day|default:"&nbsp;"})日</td></tr>
 ({/capture})
 ({foreach from=$profile_list item=profile})
 ({strip})
+
 ({if !$_cnt_nick && $profile.sort_order >= $smarty.const.SORT_ORDER_NICK
   && !$_cnt_birth && $profile.sort_order >= $smarty.const.SORT_ORDER_BIRTH})
 ({counter assign="_cnt_nick"})
@@ -37,7 +38,6 @@
 ({/if})
 ({/if})
 
-<tr><th>
 ({if !$_cnt_nick && $profile.sort_order >= $smarty.const.SORT_ORDER_NICK})
 ({counter assign="_cnt_nick"})
 ({$smarty.capture.nick|smarty:nodefaults})
@@ -50,13 +50,10 @@
 
 ({/strip})
 ({if $profile.disp_regist})
-({$profile.caption})
-({if $profile.is_required})
-<p class="caution">※</p>
-({/if})
-</th>
-
+<tr>
+<th>({$profile.caption})({if $profile.is_required}) <strong>※</strong>({/if})</th>
 <td>
+({strip})
 ({if $prof.profile[$profile.name].value})
 
 ({if $profile.form_type == 'textarea'})
@@ -74,8 +71,9 @@
 ({/if})
 
 ({/if})
-</td></tr>
-
+({/strip})
+</td>
+</tr>
 ({/if})
 ({/foreach})
 
@@ -92,8 +90,7 @@
 ({if !$_cnt_birth})({$smarty.capture.birth|smarty:nodefaults})({/if})
 ({/if})
 
-<tr><th>秘密の質問 <p class="caution">※</p></th><td>({$password_query_name|default:""})</td></tr>
-<tr><th>質問の答え<p class="caution">※</p></th><td>({$prof.c_password_query_answer|default:""}))</td></tr>
+</table>
 
 <div class="operation">
 <ul class="moreInfo button">
@@ -105,11 +102,14 @@
 </li><li>
 ({t_form_block m=pc a=do_h_regist_prof})
 <input type="hidden" name="mode" value="input" />
-<td><input type="submit" class="input_submit" value="　修　正　" /></td>
+<input type="submit" class="input_submit" value="　修　正　" />
 ({/t_form_block})
 </li>
 </ul>
 </div>
+
+</div></div>
+({* }}} *})
 
 </div><!-- Center -->
 </div><!-- LayoutC -->

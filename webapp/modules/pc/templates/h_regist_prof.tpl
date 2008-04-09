@@ -150,23 +150,6 @@
 ({if !$_cnt_birth})({$smarty.capture.birth|smarty:nodefaults})({/if})
 ({/if})
 
-<tr>
-<th>秘密の質問  <strong>※</strong></th>
-<td>
-<select name="c_password_query_id">
-<option value="">選択してください</option>
-({foreach from=$query_list key=key item=item})
-<option value="({$key})"({if $profs.c_password_query_id == $key}) selected="selected"({/if})>({$item})</option>
-({/foreach})
-</select>
-</td>
-</tr>
-<tr>
-<th>質問の答え  <strong>※</strong></th>
-<td>
-<input type="text" class="input_text" name="c_password_query_answer" value="({$profs.c_password_query_answer})" size="30" />
-</td>
-</tr>
 </table>
 <div class="operation">
 <ul class="moreInfo button">

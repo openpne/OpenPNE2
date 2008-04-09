@@ -26,12 +26,18 @@ class pc_do_h_config_3 extends OpenPNE_Action
         $is_receive_mail = $requests['is_receive_mail'];
         $ashiato_mail_num= $requests['ashiato_mail_num'];
         $c_member_id_block = $requests['c_member_id_block'];
-        $c_password_query_id = $requests['c_password_query_id'];
-        $c_password_query_answer = $requests['c_password_query_answer'];
         $public_flag_diary = util_cast_public_flag_diary($requests['public_flag_diary']);
         $is_shinobiashi = $requests['is_shinobiashi'];
         $schedule_start_day = $requests['schedule_start_day'];
         // ----------
+
+        if (OPENPNE_AUTH_MODE == 'slavepne') {
+            $c_password_query_id = 0;
+            $c_password_query_answer = '';
+        } else {
+            $c_password_query_id = $requests['c_password_query_id'];
+            $c_password_query_answer = $requests['c_password_query_answer'];
+        }
 
         $error_messages = array();
 
@@ -53,14 +59,14 @@ class pc_do_h_config_3 extends OpenPNE_Action
                 break;
             }
         }
-        
+
         // error
         if ($error_messages) {
             $_REQUEST['msg'] = array_shift($error_messages);
             openpne_forward('pc', 'page', 'h_config');
             exit;
         }
-        
+
         if ($rss_url) {
             $c_member = db_member_c_member4c_member_id($u);
             if ($rss_url != $c_member['rss']) {
