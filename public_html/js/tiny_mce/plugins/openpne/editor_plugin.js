@@ -153,16 +153,38 @@
             function convertHtmlTagToDecoTag(doc, tagname)
             {
                 var tagList = doc.getElementsByTagName(tagname);
-                var count = tagList.length;
                 var org_tagname = tagname;
                 var args = {};
 
                 while (tagList.length) {
                     targetObj = tagList[0];
 
-                    if (org_tagname == 'font') {
-                        var size = targetObj.getAttribute('size');
-                        var color = targetObj.getAttribute('color');
+                    if (org_tagname == "font") {
+                        var size = targetObj.getAttribute("size");
+                        var color = targetObj.getAttribute("color");
+
+                        if (size && color) {
+                            if (tinymce.isIE) {
+                                targetObj.removeAttribute("color");
+                                targetObj.innerHTML = '<font color="' + color + '">' + targetObj.innerHTML + "</font>";
+                            } else {
+                                var fontSize = document.createElement("font");
+                                fontSize.setAttribute("size", size);
+                                fontSize.removeAttribute("color");
+
+                                var clone = targetObj.cloneNode(true);
+                                clone.removeAttribute("size");
+
+                                fontSize.appendChild(clone);
+                                targetObj.parentNode.replaceChild(fontSize, targetObj);
+                            }
+
+                            // initialize
+                            tagList = doc.getElementsByTagName(org_tagname);
+                            args = {};
+
+                            continue;
+                        }
 
                         if (size == '5') {
                             tagname = 'op:large';
