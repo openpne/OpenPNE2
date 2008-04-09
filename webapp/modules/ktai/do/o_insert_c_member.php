@@ -214,7 +214,7 @@ class ktai_do_o_insert_c_member extends OpenPNE_Action
                 'type' => 'regexp',
                 'regexp' => '/^[a-zA-Z0-9][a-zA-Z0-9\-_]+[a-zA-Z0-9]$/i',
                 'required' => '1',
-                'caption' => 'ログインID',
+                'caption' => 'ﾛｸﾞｲﾝID',
                 'type_error' => 'ﾛｸﾞｲﾝIDは4-30文字の半角英数字、記号(ｱﾝﾀﾞｰﾊﾞｰ「_」、ﾊｲﾌﾝ「-」)で入力してください',
                 'min' => '4',
                 'max' => '30',
