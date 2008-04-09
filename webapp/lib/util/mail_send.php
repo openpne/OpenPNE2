@@ -79,11 +79,7 @@ function fetch_mail_m_tpl($tpl_name, $params)
     $params["OPERATION_COMPANY"] = OPERATION_COMPANY;
     $params["COPYRIGHT"] = COPYRIGHT;
 
-    // メールの場合はHTMLエスケープしない
-    $local_configs = $GLOBALS['SMARTY'];
-    $local_configs['default_modifiers'] = array();
-
-    $smarty = new OpenPNE_Smarty($local_configs);
+    $smarty = new OpenPNE_Smarty($GLOBALS['SMARTY'], false);
     $smarty->assign($params);
     $smarty->assign('inc_signature', fetch_inc_signature($smarty));
 
