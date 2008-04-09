@@ -65,6 +65,12 @@ function init_pc_page(&$smarty)
     $smarty->assign('INC_FOOTER_inc_side_banner', db_banner_get_side_banner($is_secure));
     $smarty->assign('INC_FOOTER_side_banner_html_before', p_common_c_siteadmin4target_pagename('side_banner_html_before'));
     $smarty->assign('INC_FOOTER_side_banner_html_after', p_common_c_siteadmin4target_pagename('side_banner_html_after'));
+
+    if ($is_secure) {
+        $u = $GLOBALS['AUTH']->uid();
+        $smarty->assign('C_MEMBER_CONFIG',db_member_c_member_config4c_member_id($u));
+    }
+
 }
 
 function init_pc_do()
