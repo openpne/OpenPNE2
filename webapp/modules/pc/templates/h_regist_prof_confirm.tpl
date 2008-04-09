@@ -96,7 +96,7 @@
 <ul class="moreInfo button">
 <li>
 ({t_form_block m=pc a=do_h_regist_prof})
-<input type="hidden" name="sid" value="({$sid})" />
+<input type="hidden" name="mode" value="register" />
 <input type="submit" class="input_submit" value="　登　録　" />
 ({/t_form_block})
 </li><li>
