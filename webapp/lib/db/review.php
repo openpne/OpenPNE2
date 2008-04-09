@@ -121,7 +121,7 @@ function do_review_add_search_result($keyword, $category_id, $page)
             $authors = array_unique($value['ItemAttributes']['Author']);
             $products['Item'][$key]['author'] = implode(', ', $authors);
         }
-        if (is_array($value['ItemAttributes']['Aritst'])) {
+        if (is_array($value['ItemAttributes']['Artist'])) {
             $artists = array_unique($value['ItemAttributes']['Artist']);
             $products['Item'][$key]['artist'] = implode(', ', $artists);
         }
@@ -160,7 +160,7 @@ function db_review_write_product4asin($asin)
         $authors = array_unique($product['ItemAttributes']['Author']);
         $product['author'] = implode(', ', $authors);
     }
-    if (is_array($product['ItemAttributes']['Aritst'])) {
+    if (is_array($product['ItemAttributes']['Artist'])) {
         $artists = array_unique($product['ItemAttributes']['Artist']);
         $product['artist'] = implode(', ', $artists);
     }
