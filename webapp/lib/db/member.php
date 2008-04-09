@@ -2019,11 +2019,11 @@ function db_member_update_c_member_config($c_member_id, $name, $value)
         $data = array(
             'c_member_id' => intval($c_member_id),
             'c_member_config_option_id' => intval($optionid),
-            'value' => intval($value),
+            'value' => $value,
         );
         db_insert('c_member_config', $data);
     } else {
-        $data = array('value' => intval($value));
+        $data = array('value' => $value);
         $where = array(
             'c_member_id' => intval($c_member_id),
             'c_member_config_option_id' => intval($optionid),
