@@ -53,7 +53,7 @@ class ktai_do_o_easy_login extends OpenPNE_Action
         } 
         $auth->auth =& $auth->factory(true);
         $username = db_member_username4c_member_id($c_member_id, true);
-        if (OPENPNE_AUTH_MODE != 'slavepne' && OPENPNE_AUTH_MODE != 'pneid') {
+        if (OPENPNE_AUTH_MODE == 'email') {
            $username = t_encrypt($username);
         }
         $auth->auth->setAuth($username);
