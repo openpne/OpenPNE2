@@ -24,7 +24,7 @@ class pc_do_h_config_prof extends OpenPNE_Action
         //--- c_profile の項目をチェック
         $validator = new OpenPNE_Validator();
         $validator->addRequests($_REQUEST['profile']);
-        $validator->addRules($this->_getValidateRulesProfile());
+        $validator->addRules(util_get_validate_rules_profile('config'));
         if (!$validator->validate()) {
             $errors = array_merge($errors, $validator->getErrors());
         }
@@ -114,36 +114,6 @@ class pc_do_h_config_prof extends OpenPNE_Action
                 'type' => 'string',
             ),
         );
-    }
-
-    function _getValidateRulesProfile()
-    {
-        $rules = array();
-        $profile_list = db_member_c_profile_list4null();
-        foreach ($profile_list as $profile) {
-            if ($profile['disp_config']) {
-                $rule = array(
-                    'type' => 'int',
-                    'required' => $profile['is_required'],
-                    'caption' => $profile['caption'],
-                );
-                switch ($profile['form_type']) {
-                case 'text':
-                case 'textlong':
-                case 'textarea':
-                    $rule['type'] = $profile['val_type'];
-                    $rule['regexp'] = $profile['val_regexp'];
-                    $rule['min'] = $profile['val_min'];
-                    ($profile['val_max']) and $rule['max'] = $profile['val_max'];
-                    break;
-                case 'checkbox':
-                    $rule['is_array'] = '1';
-                    break;
-                }
-                $rules[$profile['name']] = $rule;
-            }
-        }
-        return $rules;
     }
 }
 
