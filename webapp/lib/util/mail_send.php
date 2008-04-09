@@ -879,46 +879,43 @@ function do_mail_sns_regist_ktai_id_mail_send_pre($session, $ktai_address)
     return fetch_send_mail($ktai_address, 'm_ktai_regist_ktai_id', $params);
 }
 
-//日記コメントが追加されたときのお知らせメール送信(携帯メールアドレスへ)
+// 日記コメントが追加されたときのお知らせメール送信(携帯メールアドレスへ)
 function send_diary_comment_info_mail($c_diary_comment_id, $c_member_id)
 {
-    $comment  = _do_c_diary_comment4c_diary_comment_id($c_diary_comment_id);
+    $comment = _do_c_diary_comment4c_diary_comment_id($c_diary_comment_id);
     $target_c_member_id = $comment['c_member_id_author'];
-    //コメントした人=日記オーナーの場合は通知しない
-    if($target_c_member_id == $c_member_id){
+
+    // コメントした人=日記オーナーの場合は通知しない
+    if ($target_c_member_id == $c_member_id) {
         return false;
     }
-    //日記オーナーの通知設定が無ければ通知しない
+
+    // 日記オーナーの通知設定が無ければ通知しない
     $target_c_member_config = db_member_c_member_config4c_member_id($target_c_member_id);
-    if($target_c_member_config['SEND_COMMENT_MAIL_KTAI']!=1){
+    if (!$target_c_member_config['SEND_COMMENT_MAIL_KTAI']) {
         return false;
     }
 
     $c_member = db_common_c_member4c_member_id_LIGHT($c_member_id);
-    $c_diary_id = $comment['c_diary_id'];
-    $c_diary  = db_diary_get_c_diary4id($c_diary_id);
     $target_c_member = db_common_c_member_secure4c_member_id($target_c_member_id);
+    $c_diary_id = $comment['c_diary_id'];
+    $c_diary = db_diary_get_c_diary4id($c_diary_id);
 
-    $subject  = $c_diary['subject'];
-    $nickname = $c_member['nickname'];
-    $body             = $comment['body'];
-    $image_filename1  = $comment['image_filename_1'];
-    $image_filename2  = $comment['image_filename_2'];
-    $image_filename3  = $comment['image_filename_3'];
     $p = array('target_c_diary_id' => $c_diary_id);
-    $url              = openpne_gen_url('ktai', 'page_fh_diary', $p);
+    $url = openpne_gen_url('ktai', 'page_fh_diary', $p);
+
     $params = array(
-        "subject"         => $subject,
-        "nickname"        => $nickname,
-        "body"            => $body,
-        "url"             => $url,
-        "image_filename1" => $image_filename1,
-        "image_filename2" => $image_filename2,
-        "image_filename3" => $image_filename3,
-        "id"=>$c_diary_comment_id,
+        'subject' => $c_diary['subject'],
+        'nickname' => $c_member['nickname'],
+        'body' => $comment['body'],
+        'url' => $url,
+        'image_filename1' => $comment['image_filename_1'],
+        'image_filename2' => $comment['image_filename_2'],
+        'image_filename3' => $comment['image_filename_3'],
+        'id' => $c_diary_comment_id,
     );
 
-    $tpl = fetch_mail_m_tpl("m_ktai_diary_comment_info", $params);
+    $tpl = fetch_mail_m_tpl('m_ktai_diary_comment_info', $params);
     if (!$tpl) {
         return false;
     }
@@ -926,11 +923,12 @@ function send_diary_comment_info_mail($c_diary_comment_id, $c_member_id)
 
     $ktai_address = $target_c_member['ktai_address'];
     if (MAIL_ADDRESS_HASHED) {
-        $from = "bc{$c_diary_id}-".t_get_user_hash($target_c_member_id).'@'.MAIL_SERVER_DOMAIN;
+        $from = "bc{$c_diary_id}-" . t_get_user_hash($target_c_member_id) . '@' . MAIL_SERVER_DOMAIN;
     } else {
-        $from = "bc{$c_diary_id}".'@'.MAIL_SERVER_DOMAIN;
+        $from = "bc{$c_diary_id}" . '@' . MAIL_SERVER_DOMAIN;
     }
     $from = MAIL_ADDRESS_PREFIX . $from;
+
     t_send_email($ktai_address, $subject, $body, true, $from);
 }
 
