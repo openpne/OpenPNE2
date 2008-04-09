@@ -499,7 +499,7 @@ CREATE TABLE `c_diary` (
 
 CREATE TABLE `c_diary_category` (
   `c_diary_category_id` int(11) NOT NULL auto_increment,
-  `category_name` text character set utf8 collate utf8_unicode_ci NOT NULL,
+  `category_name` text NOT NULL,
   `c_member_id` int(11) NOT NULL default '0',
   `r_datetime` datetime NOT NULL default '0000-00-00 00:00:00',
   PRIMARY KEY  (`c_diary_category_id`),
@@ -593,7 +593,7 @@ CREATE TABLE `c_friend_confirm` (
 
 CREATE TABLE `c_holiday` (
   `c_holiday_id` int(11) NOT NULL auto_increment,
-  `name` text character set utf8 collate utf8_unicode_ci NOT NULL,
+  `name` text NOT NULL,
   `month` int(11) NOT NULL default '0',
   `day` int(11) NOT NULL default '0',
   PRIMARY KEY  (`c_holiday_id`)
@@ -607,7 +607,7 @@ CREATE TABLE `c_image` (
   `type` text,
   PRIMARY KEY  (`c_image_id`),
   KEY `filename` (`filename`(100))
-) TYPE=MyISAM DEFAULT CHARSET=utf8 MAX_ROWS=190000;
+) TYPE=MyISAM MAX_ROWS=190000;
 
 CREATE TABLE `c_ktai_address_pre` (
   `c_ktai_address_pre_id` int(11) NOT NULL auto_increment,
