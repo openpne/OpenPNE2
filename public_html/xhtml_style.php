@@ -1250,19 +1250,18 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 .searchFormBox dl.categories dt {
 	margin-bottom: 4px;
 }
-.searchFormBox dl.categories dl.category dt {
-	margin: 0;
-	background: url(<?php echo getSkin('colon'); ?>) no-repeat 100% 50%;
-}
-.searchFormBox dl.categories dl.category dt span {
-	margin-left: 8px;
+.searchFormBox table.category th {
+	width: 74px;
+	padding: 3px 7px 3px 5px;
+	border: none;
+	background: url(<?php echo getSkin('colon'); ?>) no-repeat 100% 4px;
 	font-weight: bold;
+	vertical-align: top;
 }
-.searchFormBox dl.categories dl.category dd {
-	margin-bottom: 6px;
-}
-.searchFormBox dl.categories dl.category dd p {
-	margin: 0 8px;
+.searchFormBox table.category td {
+	padding: 3px 8px;
+	border: none;
+	vertical-align: top;
 }
 
 /*==============================================================================
