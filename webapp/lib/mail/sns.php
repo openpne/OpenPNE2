@@ -443,6 +443,11 @@ class mail_sns
         }
         db_diary_insert_c_diary_comment_images($ins_id, $filenames[1], $filenames[2], $filenames[3]);
 
+        //お知らせメール送信(携帯へ)
+        if ($this->c_member_id != $target_c_member_id) {
+            send_diary_comment_info_mail($ins_id, $this->c_member_id);
+        }
+
         //日記コメントが書き込まれたので日記自体を未読扱いにする
         if ($this->c_member_id != $target_c_member_id) {
             db_diary_update_c_diary_is_checked($c_diary_id, 0);

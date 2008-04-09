@@ -18,3 +18,6 @@ CREATE TABLE `c_member_config_option` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 
+/* 携帯コメントメール通知オプション */
+INSERT INTO `c_member_config_option` VALUES (NULL,'SEND_COMMENT_MAIL_KTAI');
+
