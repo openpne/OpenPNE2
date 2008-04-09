@@ -6,7 +6,7 @@
 
 /**
  * メンバー情報を取得する
- * 
+ *
  * @param int $c_member_id
  * @param bool $is_secure `c_member_secure`の項目を取得するかどうか
  * @param bool $with_profile `c_member_profile`の項目を取得するかどうか
@@ -55,7 +55,7 @@ function db_member_c_member4c_member_id($c_member_id, $is_secure = false, $with_
             break;
         }
     }
-    
+
     if (OPENPNE_AUTH_MODE == 'slavepne' && $is_secure) {
         $c_member['username'] = db_member_username4c_member_id($c_member_id);
     }
@@ -111,7 +111,7 @@ function db_member_c_member_secure4c_member_id($c_member_id)
 {
     $sql = 'SELECT pc_address, ktai_address, regist_address, easy_access_id, hashed_password, hashed_password_query_answer FROM c_member_secure WHERE c_member_id = ?';
     $c_member_secure = db_get_row($sql, array(intval($c_member_id)));
-    
+
     if (is_array($c_member_secure)) {
         $c_member_secure['pc_address'] = t_decrypt($c_member_secure['pc_address']);
         $c_member_secure['ktai_address'] = t_decrypt($c_member_secure['ktai_address']);
@@ -123,7 +123,7 @@ function db_member_c_member_secure4c_member_id($c_member_id)
 /**
  * メンバー情報をプロフィール付きで取得する
  * (secure情報は取得しない)
- * 
+ *
  * @param int $c_member_id
  * @param string $public_flag 取得するプロフィール項目の公開レベル(public, friend, private)
  * @return array メンバー情報
@@ -135,12 +135,12 @@ function db_member_c_member_with_profile($c_member_id, $public_flag = 'public')
 
 /**
  * メンバー情報のよく使う部分のみを取得する
- * 
+ *
  * - メンバーID
  * - ニックネーム
  * - メイン画像
  * のみを取得する。
- * 
+ *
  * @param int $c_member_id
  * @return array メンバー情報
  */
@@ -156,7 +156,7 @@ function db_member_c_member4c_member_id_LIGHT($c_member_id)
 
 /**
  * PCメールアドレスからメンバーIDを取得(ログインに必要)
- * 
+ *
  * @param   string $pc_address
  * @return  int    $c_member_id
  */
@@ -370,7 +370,7 @@ function db_member_is_access_block($c_member_id, $target_c_member_id)
 
 /**
  * 次の誕生日まであと何日？
- * 
+ *
  * @param int $c_member_id
  * @return int 日数(当日は0)
  */
@@ -561,7 +561,7 @@ function db_member_c_member_list4daily_news()
 
 /***
  * デイリーニュース配信対象者数を取得する
- * 
+ *
  * @return array
  */
 function db_member_count_c_member_is_receive_daily_news()
@@ -644,7 +644,7 @@ function db_member_inviting_member4c_member_id2($c_member_id)
 
 /**
  * 対象のメールアドレスが、登録されてるか否か
- * 
+ *
  * @param string $mail_address
  * @param int $c_member_id チェックから除外するメンバーID
  * @param bool $is_check_pre    c_member_pre をチェックするかどうか
@@ -693,7 +693,7 @@ function db_member_is_limit_domain4mail_address($mail_address)
         LIMIT_DOMAIN2 == '' &&
         LIMIT_DOMAIN3 == '' &&
         LIMIT_DOMAIN4 == '' &&
-        LIMIT_DOMAIN5 == '' 
+        LIMIT_DOMAIN5 == ''
     ) {
         return true;
     }
@@ -740,14 +740,14 @@ function db_member_k_auth_login($ktai_address, $password)
     if (!$ktai_address or !$password) {
         return false;
     }
-    
+
     $c_member_id = db_member_c_member_id4username($ktai_address, true);
     $sql = "SELECT hashed_password FROM c_member_secure " .
             " WHERE c_member_id = ? ";
     if (md5($password) != db_get_one($sql, array($c_member_id))) {
         return false;
     }
-    
+
     return $c_member_id;
 }
 
@@ -775,7 +775,7 @@ function db_member_c_member_pre4ktai_session($ktai_session)
 /**
  * メンバーIDからハッシュ化されたパスワードを取得
  * (携帯の認証に暫定的に用いる)
- * 
+ *
  * @param int $c_member_id
  * @return string hashed password
  */
@@ -908,7 +908,7 @@ function db_member_is_login_rejected($c_member_id)
 
 /**
  * メンバーが忍び足(あしあとをつけない)状態かどうかを取得
- * 
+ *
  * @param   int $c_member_id
  * @return  bool
  */
@@ -1027,16 +1027,16 @@ function db_member_update_c_profile_my_news($c_member_id, $prof_my_news, $my_new
     $sql = 'SELECT c_profile_id FROM c_profile WHERE name = ? ';
     $prof_my_news_id = db_get_one($sql, array('PNE_MY_NEWS'));
     $my_news_datetime_id = db_get_one($sql, array('PNE_MY_NEWS_DATETIME'));
-    
+
     // function cache削除
     cache_drop_c_member_profile($c_member_id);
-    
+
     $sql = 'DELETE FROM c_member_profile' .
             ' WHERE c_member_id = ? AND c_profile_id = ?';
     $params = array(intval($c_member_id), $prof_my_news_id);
     db_query($sql, $params);
     do_config_prof_insert_c_member_profile($c_member_id, $prof_my_news_id, '', $prof_my_news, 'private');
-    
+
     $sql = 'DELETE FROM c_member_profile' .
             ' WHERE c_member_id = ? AND c_profile_id = ?';
     $params = array(intval($c_member_id), $my_news_datetime_id);
@@ -1196,7 +1196,7 @@ function db_member_h_config_3(
 {
     //function cacheの削除
     cache_drop_c_member_profile($c_member_id);
-    
+
     $data = array(
         'is_receive_mail' => (bool)$is_receive_mail,
         'is_receive_daily_news' => intval($is_receive_daily_news),
@@ -1659,9 +1659,9 @@ function db_member_insert_c_member_profile($c_member_id, $c_profile_id, $c_profi
 
 /***
  * 一時的に c_member_pre_profile にプロフィール情報をインサートする
- * 
+ *
  * 個体識別番号登録必須制が「必須にする」である場合など、c_member ではなく c_member_pre を使うのが望ましい場面で使用する。
- * 
+ *
  * @param int $c_member_pre_id
  * @param int $c_profile_id
  * @param int $c_profile_option_id
@@ -1683,7 +1683,7 @@ function db_member_insert_c_member_pre_profile($c_member_pre_id, $c_profile_id, 
 
 /***
  * c_member_pre_profile のプロフィール情報を更新する
- * 
+ *
  * @param int $c_member_pre_id
  * @param array $c_member_profile_list
  * @return mixed
@@ -1695,7 +1695,7 @@ function db_member_update_c_member_pre_profile($c_member_pre_id, $c_member_profi
                 ' WHERE c_member_pre_id = ? AND c_profile_id = ?';
         $params = array(intval($c_member_pre_id), intval($item['c_profile_id']));
         db_query($sql, $params);
-    
+
         if (!(is_null($item['value']) || $item['value'] === '')) {
             if (is_array($item['value'])) {
                 foreach ($item['value'] as $key => $value) {
@@ -1710,7 +1710,7 @@ function db_member_update_c_member_pre_profile($c_member_pre_id, $c_member_profi
 
 /***
  * c_member_pre_profile のプロフィール情報を取得する
- * 
+ *
  * @param int $c_member_pre_id
  * @return array
  */
@@ -1807,7 +1807,7 @@ function db_member_c_member_id4username($username, $is_ktai = false)
 
 /**
  * ログインIDからc_member_idを取得
- * 
+ *
  * @param string $username 暗号化されたメールアドレス or SlavePNEのusername
  * @return int c_member_id
  */
@@ -1872,7 +1872,7 @@ function db_member_create_member($username)
         'rss' => '',
     );
     $c_member_id = db_insert('c_member', $data);
-    
+
     $data = array(
         'c_member_id' => intval($c_member_id),
         'hashed_password' => "",
@@ -1882,14 +1882,14 @@ function db_member_create_member($username)
         'regist_address' => "",
         'easy_access_id' => '',
     );
-    
+
     if (!IS_SLAVEPNE_EMAIL_REGIST) {
         $data['pc_address'] = t_encrypt($c_member_id.'@pc.example.com');
         $data['ktai_address'] = t_encrypt($c_member_id.'@ktai.example.com');
     }
-    
+
     db_insert('c_member_secure', $data);
-    
+
     $data = array(
         'c_member_id' => intval($c_member_id),
         'username' => $username,
@@ -2001,7 +2001,7 @@ function db_member_config_option_id4name($name)
     $sql = 'SELECT c_member_config_option_id FROM c_member_config_option'
          . ' WHERE name = ?';
     $params = array(strval($name));
-    return db_get_one($sql, $params);    
+    return db_get_one($sql, $params);
 }
 
 /**
