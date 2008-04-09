@@ -1963,7 +1963,7 @@ function db_member_c_member_config4c_member_id($c_member_id)
          . ' INNER JOIN c_member_config_option b USING(c_member_config_option_id)'
          . ' WHERE c_member_id = ?';
     $params = array(intval($c_member_id));
-    $list = db_get_all($sql,$params);
+    $list = db_get_all($sql, $params);
 
     $member_config = array();
     foreach ($list as $value){
@@ -1983,7 +1983,10 @@ function db_member_c_member_config4optionid($c_member_id,$c_member_config_option
 {
     $sql = 'SELECT COUNT(c_member_config_id) FROM c_member_config'
          . ' WHERE c_member_id = ? AND c_member_config_option_id = ?';
-    $params = array(intval($c_member_id),intval($c_member_config_option_id));
+    $params = array(
+        intval($c_member_id),
+        intval($c_member_config_option_id),
+    );
     return (bool)db_get_one($sql, $params, 'main');
 }
 
@@ -1998,7 +2001,7 @@ function db_member_config_option_id4name($name)
     $sql = 'SELECT c_member_config_option_id FROM c_member_config_option'
          . ' WHERE name = ?';
     $params = array(strval($name));
-    return db_get_one($sql,$params);    
+    return db_get_one($sql, $params);    
 }
 
 /**
@@ -2012,15 +2015,19 @@ function db_member_update_c_member_config($c_member_id, $name, $value)
 {
     $optionid = db_member_config_option_id4name($name);
 
-    if (!db_member_c_member_config4optionid($c_member_id,$optionid)){
-        $data = array('c_member_id' => intval($c_member_id),
-                  'c_member_config_option_id' => intval($optionid),
-                  'value' => intval($value));
+    if (!db_member_c_member_config4optionid($c_member_id, $optionid)) {
+        $data = array(
+            'c_member_id' => intval($c_member_id),
+            'c_member_config_option_id' => intval($optionid),
+            'value' => intval($value),
+        );
         db_insert('c_member_config', $data);
     } else {
         $data = array('value' => intval($value));
-        $where = array('c_member_id'=>intval($c_member_id),
-                       'c_member_config_option_id' => intval($optionid));
+        $where = array(
+            'c_member_id' => intval($c_member_id),
+            'c_member_config_option_id' => intval($optionid),
+        );
         db_update('c_member_config', $data, $where);
     }
 }
