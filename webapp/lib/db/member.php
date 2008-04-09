@@ -1979,7 +1979,7 @@ function db_member_c_member_config4c_member_id($c_member_id)
  * @param int $c_member_config_option_id
  * @return bool
  */
-function db_member_c_member_config4optionid($c_member_id,$c_member_config_option_id)
+function db_member_c_member_config4option_id($c_member_id,$c_member_config_option_id)
 {
     $sql = 'SELECT COUNT(c_member_config_id) FROM c_member_config'
          . ' WHERE c_member_id = ? AND c_member_config_option_id = ?';
@@ -2013,12 +2013,12 @@ function db_member_config_option_id4name($name)
  */
 function db_member_update_c_member_config($c_member_id, $name, $value)
 {
-    $optionid = db_member_config_option_id4name($name);
+    $option_id = db_member_config_option_id4name($name);
 
-    if (!db_member_c_member_config4optionid($c_member_id, $optionid)) {
+    if (!db_member_c_member_config4option_id($c_member_id, $option_id)) {
         $data = array(
             'c_member_id' => intval($c_member_id),
-            'c_member_config_option_id' => intval($optionid),
+            'c_member_config_option_id' => intval($option_id),
             'value' => $value,
         );
         db_insert('c_member_config', $data);
@@ -2026,7 +2026,7 @@ function db_member_update_c_member_config($c_member_id, $name, $value)
         $data = array('value' => $value);
         $where = array(
             'c_member_id' => intval($c_member_id),
-            'c_member_config_option_id' => intval($optionid),
+            'c_member_config_option_id' => intval($option_id),
         );
         db_update('c_member_config', $data, $where);
     }
