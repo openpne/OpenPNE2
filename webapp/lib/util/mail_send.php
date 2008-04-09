@@ -888,7 +888,7 @@ function send_diary_comment_info_mail($c_diary_comment_id, $c_member_id)
 
     // 日記オーナーの通知設定が無ければ通知しない
     $target_c_member_config = db_member_c_member_config4c_member_id($target_c_member_id);
-    if (!$target_c_member_config['SEND_COMMENT_MAIL_KTAI']) {
+    if (!$target_c_member_config['SEND_DIARY_COMMENT_MAIL_KTAI']) {
         return false;
     }
 
