@@ -20,8 +20,10 @@
 <font color="#({$ktai_color_config.bg_02})">◆</font><a href="({t_url m=ktai a=page_h_pc_send})&amp;({$tail})">PCﾒｰﾙｱﾄﾞﾚｽ登録</a><br>
 ({/if})
 <br>
+({if !$smarty.const.IS_SLAVEPNE}) 
 <font color="#({$ktai_color_config.bg_02})">◆</font><a href="({t_url m=ktai a=page_h_config_password})&amp;({$tail})">ﾊﾟｽﾜｰﾄﾞ変更</a><br>
 <font color="#({$ktai_color_config.bg_02})">◆</font><a href="({t_url m=ktai a=page_h_config_password_query})&amp;({$tail})">秘密の質問答え設定</a><br>
+({/if})
 <font color="#({$ktai_color_config.bg_02})">◆</font><a href="({t_url m=ktai a=page_h_config_easy_login})&amp;({$tail})">かんたんﾛｸﾞｲﾝ設定</a><br>
 <br>
 ◇({if $u!=1})
