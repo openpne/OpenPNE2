@@ -226,62 +226,6 @@
 ({/if})
 <tr>
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-<td class="bg_05" align="left" valign="middle">
-
-<div class="padding_s">
-
-秘密の質問 <span class="caution">※</span>
-
-</div>
-
-</td>
-<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-<td class="bg_02" align="left" valign="middle">
-
-<div class="padding_s">
-
-({$password_query_name|default:"&nbsp;"})
-
-</div>
-
-</td>
-<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-</tr>
-({*********})
-<tr>
-<td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-</tr>
-({*********})
-<tr>
-<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-<td class="bg_05" align="left" valign="middle">
-
-<div class="padding_s">
-
-質問の答え <span class="caution">※</span>
-
-</div>
-
-</td>
-<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-<td class="bg_02" align="left" valign="middle">
-
-<div class="padding_s">
-
-({$prof.c_password_query_answer|default:"&nbsp;"})
-
-</div>
-
-</td>
-<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-</tr>
-({*********})
-<tr>
-<td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-</tr>
-({*********})
-<tr>
-<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 <td class="bg_03" align="center" valign="middle" colspan="3">
 
 <div class="padding_w_m">
