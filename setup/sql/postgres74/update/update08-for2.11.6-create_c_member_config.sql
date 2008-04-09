@@ -13,5 +13,5 @@ CREATE TABLE c_member_config_option (
   UNIQUE (name)
 );
 
-INSERT INTO c_member_config_option VALUES (nextval('c_member_config_option_c_member_config_option_id_seq'),'SEND_COMMENT_MAIL_KTAI');
+INSERT INTO c_member_config_option VALUES (nextval('c_member_config_option_c_member_config_option_id_seq'),'SEND_DIARY_COMMENT_MAIL_KTAI');
 
