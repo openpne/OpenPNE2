@@ -60,7 +60,6 @@ $GLOBALS['SMARTY'] = (array)$GLOBALS['SMARTY'] + array(
     'caching'           => false,
     'debugging'         => false,
     'debug_tpl'         => OPENPNE_WEBAPP_DIR . '/templates/debug.tpl',
-    'default_modifiers' => array('@t_escape'),
     'error_reporting'   => E_ALL ^ E_NOTICE,
 );
 $GLOBALS['SMARTY']['plugins_dir'] = array(
