@@ -57,7 +57,9 @@
 <input name="submit" value="ﾛｸﾞｲﾝ" type="submit"><br>
 </center>
 </form>
+({if $smarty.const.OPENPNE_AUTH_MODE != 'slavepne'})
 <a href="({t_url m=ktai a=page_o_password_query})">&gt;&gt;ﾊﾟｽﾜｰﾄﾞを忘れた方</a><br>
+({/if})
 </td></tr></table>
 <br>
 
