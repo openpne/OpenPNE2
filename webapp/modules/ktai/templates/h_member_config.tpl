@@ -3,11 +3,11 @@
 <font color="#({$ktai_color_config.font_05})"><a name="top">その他設定変更</a></font><br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
-<font color="#({$ktai_color_config.color_24})">日記ｺﾒﾝﾄﾒｰﾙ受信設定</font><br>
+<font color="#({$ktai_color_config.color_24})">({$WORD_DIARY_HALF})ｺﾒﾝﾄﾒｰﾙ受信設定</font><br>
 </td></tr></table>
-日記にｺﾒﾝﾄがついた時に登録されている携帯ﾒｰﾙｱﾄﾞﾚｽにお知らせします。
+({$WORD_DIARY_HALF})にｺﾒﾝﾄがついた時に登録されている携帯ﾒｰﾙｱﾄﾞﾚｽにお知らせします。
 <hr color="#({$ktai_color_config.border_01})">
-<font color="#({$ktai_color_config.font_06})">日記ｺﾒﾝﾄﾒｰﾙ受信設定：</font><br>
+<font color="#({$ktai_color_config.font_06})">({$WORD_DIARY_HALF})ｺﾒﾝﾄﾒｰﾙ受信設定：</font><br>
 ({t_form m=ktai a=do_h_member_config})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
 <input type="radio" name="SEND_COMMENT_MAIL_KTAI" value="1"({if $C_MEMBER_CONFIG.SEND_COMMENT_MAIL_KTAI}) checked="checked"({/if})>
