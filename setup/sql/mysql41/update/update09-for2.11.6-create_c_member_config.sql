@@ -1,4 +1,5 @@
-/* ユーザ個別設定テーブル */
+/*!40101 SET NAMES utf8 */;
+
 CREATE TABLE `c_member_config` (
   `c_member_config_id` int(11) NOT NULL auto_increment,
   `c_member_id` int(11) NOT NULL default '0',
@@ -17,7 +18,5 @@ CREATE TABLE `c_member_config_option` (
   UNIQUE KEY `name` (`name`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
-
-/* 携帯コメントメール通知オプション */
 INSERT INTO `c_member_config_option` VALUES (NULL,'SEND_COMMENT_MAIL_KTAI');
 
