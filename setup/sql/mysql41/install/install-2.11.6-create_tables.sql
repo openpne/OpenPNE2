@@ -468,6 +468,15 @@ CREATE TABLE `c_config_color_ktai` (
   PRIMARY KEY  (`c_config_color_ktai_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+CREATE TABLE `c_config_decoration` (
+  `c_config_decoration_id` int(11) NOT NULL auto_increment,
+  `tagname` text NOT NULL,
+  `caption` text NOT NULL,
+  `sample` text NOT NULL,
+  `is_enabled` tinyint(1) NOT NULL default '1',
+  PRIMARY KEY  (`c_config_decoration_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
 CREATE TABLE `c_diary` (
   `c_diary_id` int(11) NOT NULL auto_increment,
   `c_member_id` int(11) NOT NULL default '0',
@@ -656,6 +665,24 @@ CREATE TABLE `c_member` (
   `u_datetime` datetime NOT NULL default '0000-00-00 00:00:00',
   PRIMARY KEY  (`c_member_id`),
   KEY `birth_year_c_member_id` (`birth_year`,`c_member_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `c_member_config` (
+  `c_member_config_id` int(11) NOT NULL auto_increment,
+  `c_member_id` int(11) NOT NULL default '0',
+  `c_member_config_option_id` int(11) NOT NULL default '0',
+  `value` text NOT NULL,
+  PRIMARY KEY  (`c_member_config_id`),
+  KEY `c_member_id` (`c_member_id`),
+  KEY `c_member_config_option_id` (`c_member_config_option_id`),
+  KEY `c_member_config_option_id_c_member_id` (`c_member_config_option_id`,`c_member_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `c_member_config_option` (
+  `c_member_config_option_id` int(11) NOT NULL auto_increment,
+  `name` varchar(64) NOT NULL default '',
+  PRIMARY KEY  (`c_member_config_option_id`),
+  UNIQUE KEY `name` (`name`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `c_member_ktai_pre` (
