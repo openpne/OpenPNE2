@@ -11,10 +11,9 @@ class OpenPNE_Smarty extends Smarty
     var $templates_dir;
     var $output_charset;
 
-    function OpenPNE_Smarty($configs=array())
+    function OpenPNE_Smarty($configs = array(), $is_html = true)
     {
         $this->Smarty();
-        $this->autoload_filters['pre'][] = 'pne_nodefaults';
 
         // 設定値をセット
         foreach ($configs as $key => $value) {
@@ -23,6 +22,7 @@ class OpenPNE_Smarty extends Smarty
             }
         }
 
+        // 名称変更
         $this->assign('WORD_FRIEND', WORD_FRIEND);
         $this->assign('WORD_FRIEND_HALF', WORD_FRIEND_HALF);
         $this->assign('WORD_MY_FRIEND', WORD_MY_FRIEND);
@@ -33,6 +33,13 @@ class OpenPNE_Smarty extends Smarty
         $this->assign('WORD_COMMUNITY_HALF', WORD_COMMUNITY_HALF);
         $this->assign('WORD_NICKNAME', WORD_NICKNAME);
         $this->assign('WORD_NICKNAME_HALF', WORD_NICKNAME_HALF);
+
+        if ($is_html) {
+            $this->default_modifiers = array('@t_escape');
+            $this->autoload_filters['pre'][] = 'pne_nodefaults';
+        } else {
+            $this->default_modifiers = array();
+        }
     }
 
     // extディレクトリ対応 SMARTY->display() ラッパー
