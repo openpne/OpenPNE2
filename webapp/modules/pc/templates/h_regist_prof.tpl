@@ -337,67 +337,6 @@
 ({/if})
 <tr>
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-<td class="bg_05" align="left" valign="middle">
-
-<div class="padding_s">
-
-秘密の質問 <span class="caution">※</span>
-
-</div>
-
-</td>
-<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-<td class="bg_02" align="left" valign="middle">
-
-<div class="padding_s">
-
-<select name="c_password_query_id">
-<option value="">選択してください</option>
-({foreach from=$query_list key=key item=item})
-<option value="({$key})"({if $profs.c_password_query_id == $key}) selected="selected"({/if})>({$item})</option>
-({/foreach})
-</select>
-
-</div>
-
-</td>
-<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-</tr>
-({*********})
-<tr>
-<td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-</tr>
-({*********})
-<tr>
-<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-<td class="bg_05" align="left" valign="middle">
-
-<div class="padding_s">
-
-質問の答え <span class="caution">※</span>
-
-</div>
-
-</td>
-<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-<td class="bg_02" align="left" valign="middle">
-
-<div class="padding_s">
-
-<input name="c_password_query_answer" type="text" value="({$profs.c_password_query_answer})" size="30">
-
-</div>
-
-</td>
-<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-</tr>
-({*********})
-<tr>
-<td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
-</tr>
-({*********})
-<tr>
-<td class="bg_01" align="center"><img src="./skin/dummy.gif" style="width:1px;height:1px;" class="dummy"></td>
 <td class="bg_03" align="center" valign="middle" colspan="3">
 
 <div class="padding_w_m">
