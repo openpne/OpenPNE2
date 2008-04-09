@@ -112,19 +112,6 @@
 ({/if})
 
 <br>
-<font color="red">*</font>秘密の質問<br>
-<select name="c_password_query_id">
-    <option value="0">選択してください
-    ({foreach from=$password_query_list key=key item=item})
-    <option value="({$key})">({$item})
-    ({/foreach})
-</select><br>
-
-<font color="red">*</font>秘密の質問の答え<br>
-<input type="text" name="password_query_answer" value=""><br>
-※パスワードを忘れた場合の確認に使用します。<br>
-
-<br>
 <input type="submit" value=" 登録 ">
 </form>
 

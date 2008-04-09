@@ -22,8 +22,10 @@
 ◆<a href="({t_url m=ktai a=page_h_pc_send})&amp;({$tail})">PCメールアドレス登録</a><br>
 ({/if})
 <br>
+({if !$smarty.const.IS_SLAVEPNE})
 ◆<a href="({t_url m=ktai a=page_h_config_password})&amp;({$tail})">パスワード変更</a><br>
 ◆<a href="({t_url m=ktai a=page_h_config_password_query})&amp;({$tail})">秘密の質問答え設定</a><br>
+({/if})
 ◆<a href="({t_url m=ktai a=page_h_config_easy_login})&amp;({$tail})">かんたんログイン設定</a><br>
 <br>
 ◇({if $u!=1})
