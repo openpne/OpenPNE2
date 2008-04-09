@@ -207,12 +207,14 @@
 <a href="({t_url m=ktai a=page_h_pc_send})&amp;({$tail})">PCﾒｰﾙｱﾄﾞﾚｽ登録</a><br>
 </td></tr>
 ({/if})
+({if !$smarty.const.IS_SLAVEPNE})
 <tr><td bgcolor="#({$ktai_color_config.bg_09})">
 <a href="({t_url m=ktai a=page_h_config_password})&amp;({$tail})">ﾊﾟｽﾜｰﾄﾞ変更</a><br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_10})">
 <a href="({t_url m=ktai a=page_h_config_password_query})&amp;({$tail})">秘密の質問・答え設定</a><br>
 </td></tr>
+({/if})
 <tr><td bgcolor="#({$ktai_color_config.bg_09})">
 <a href="({t_url m=ktai a=page_h_config_easy_login})&amp;({$tail})">かんたんﾛｸﾞｲﾝ設定</a><br>
 </td></tr>
