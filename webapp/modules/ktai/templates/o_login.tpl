@@ -71,7 +71,11 @@
 ({if $ktai_address})
 <a href="({t_url m=ktai a=page_o_login})">&gt;&gt;携帯ﾒｰﾙｱﾄﾞﾚｽを入力</a><br>
 ({/if})
-({if $smarty.const.OPENPNE_AUTH_MODE != 'slavepne'})
+({if $smarty.const.OPENPNE_AUTH_MODE == 'slavepne'})
+({if $smarty.const.SLAVEPNE_PASSWORD_QUERY_URL_KTAI})
+<a href="({$smarty.const.SLAVEPNE_PASSWORD_QUERY_URL_KTAI})">&gt;&gt;ﾊﾟｽﾜｰﾄﾞを忘れた方</a><br>
+({/if})
+({else})
 <a href="({t_url m=ktai a=page_o_password_query})">&gt;&gt;ﾊﾟｽﾜｰﾄﾞを忘れた方</a><br>
 ({/if})
 </td></tr></table>
