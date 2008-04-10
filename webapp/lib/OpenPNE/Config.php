@@ -199,6 +199,8 @@ class OpenPNE_Config
             'IS_SLAVEPNE_EMAIL_REGIST' => true,
             'SLAVEPNE_SYOUTAI_URL_PC' => '',
             'SLAVEPNE_SYOUTAI_URL_KTAI' => '',
+            'SLAVEPNE_PASSWORD_QUERY_URL_PC' => '',
+            'SLAVEPNE_PASSWORD_QUERY_URL_KTAI' => '',
             'OPENPNE_IMG_KTAI_MAX_WIDTH' => 240,
             'OPENPNE_IMG_KTAI_MAX_HEIGHT' => 320,
             'OPENPNE_MAINTENANCE_TEXT' => '',
