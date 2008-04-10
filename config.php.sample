@@ -517,6 +517,10 @@ define('IS_SLAVEPNE_EMAIL_REGIST', true);
 define('SLAVEPNE_SYOUTAI_URL_PC', '');
 define('SLAVEPNE_SYOUTAI_URL_KTAI', '');
 
+// 外部認証時に携帯ログイン画面に出す「ﾊﾟｽﾜｰﾄﾞを忘れた方」のURLの設定
+// ※設定しない場合リンクは表示されません
+define('SLAVEPNE_PASSWORD_QUERY_URL_KTAI', '');
+
 // OPENPNE_AUTH_MODE がslavepneの場合のauthオプション
 $GLOBALS['_OPENPNE_AUTH_CONFIG'] = 
 array(
