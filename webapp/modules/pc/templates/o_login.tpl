@@ -30,7 +30,11 @@
 ({* unknown *})({/if})
 ({* unknown *})<div class="msg lh_130">
 ({* unknown *})<input type="checkbox" tabindex="3" name="is_save" id="is_save" value="1" class="no_bg" /><label for="is_save">次回から自動的にログイン</label><br />
-({* unknown *})({if $smarty.const.OPENPNE_AUTH_MODE != 'slavepne'})
+({* unknown *})({if $smarty.const.OPENPNE_AUTH_MODE == 'slavepne'})
+({* unknown *})({if $smarty.const.SLAVEPNE_PASSWORD_QUERY_URL_PC})
+({* unknown *})<span class="password_query"><a href="({$smarty.const.SLAVEPNE_PASSWORD_QUERY_URL_PC})">&gt;パスワードを忘れた方はこちらへ</a></span>
+({* unknown *})({/if})
+({* unknown *})({else})
 ({* unknown *})<span class="password_query"><a href="({t_url m=pc a=page_o_password_query})">&gt;パスワードを忘れた方はこちらへ</a></span>
 ({* unknown *})({/if})
 ({* unknown *})({if $SSL_SELECT_URL})
