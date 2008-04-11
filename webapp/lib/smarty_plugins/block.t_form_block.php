@@ -45,7 +45,7 @@ function smarty_block_t_form_block($params, $content, &$smarty, &$repeat)
     }
 
     if (@session_id() && strpos($params['a'], 'do') === 0) {
-        $params['sessid'] = md5(session_id());       
+        $params['sessid'] = md5(session_id());
     }
 
     $html = sprintf('<form action="%s" method="%s"', $form_action, $method);

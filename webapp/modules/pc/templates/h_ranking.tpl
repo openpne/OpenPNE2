@@ -77,7 +77,7 @@
 ({else})
 <a href="({t_url m=pc a=page_c_home})&amp;target_c_commu_id=({$item.c_commu_id})">({$item.c_commu.name})</a>
 ({/if})
- ： 
+ ：
 ({if $kind == "ashiato"})
 ({$item.count})アクセス
 ({elseif $kind == "friend"})

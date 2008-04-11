@@ -13,7 +13,7 @@ function smarty_modifier_t_url2cmd($string, $type = '')
     } else {
         $url_pattern = '/https?:\/\/([a-zA-Z0-9\-.]+)\/?(?:[a-zA-Z0-9_\-\/.,:;~?@=+$%#!()]|&amp;)*/';
     }
-    
+
     $GLOBALS['_CMD']['type'] = $type;
     return preg_replace_callback($url_pattern, '_smarty_modifier_t_cmd_make_url_js', $string);
 }
@@ -22,7 +22,7 @@ function _smarty_modifier_t_cmd_make_url_js($matches)
 {
     $url = str_replace('&amp;', '&', $matches[0]);
     $cmd = $matches[1];
-    
+
     $file = $cmd . '.js';
     $path = './cmd/' . $file;
 
@@ -35,7 +35,7 @@ function _smarty_modifier_t_cmd_make_url_js($matches)
             return pne_url2a($url);
         }
     }
-    
+
     $url_html = str_replace('&', '&amp;', $url);
     $result = <<<EOD
 <script type="text/javascript" src="cmd/{$file}"></script>

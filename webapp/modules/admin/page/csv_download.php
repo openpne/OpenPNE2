@@ -14,7 +14,7 @@ class admin_page_csv_download extends OpenPNE_Action
 
         $v['SNS_NAME'] = SNS_NAME;
         $v['OPENPNE_VERSION'] = OPENPNE_VERSION;
-        
+
         $this->set($v);
         return 'success';
     }

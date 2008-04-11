@@ -20,7 +20,7 @@ if (   !$auth->auth()
     || !($u = db_member_c_member_id4username_encrypted($auth->getUsername(), true))
     || db_member_is_login_rejected($u)) {
     $auth->logout();
-    
+
     __logout();
 }
 
@@ -35,23 +35,23 @@ if (IS_SLAVEPNE && (empty($_SESSION['regist_step']) || !$_SESSION['regist_step']
     $check_param = db_member_check_param_inputed($u, true);
     $_SESSION['regist_step'] = ($check_param == 0);
     $current_page = $GLOBALS['__Framework']['current_type']."_".$GLOBALS['__Framework']['current_action'];
-    
+
     //プロフィールが未登録の場合はリダイレクト
     $prof_ext_page=array(
     'do_h_regist_prof'=>true,
     'page_h_regist_prof'=>true,
     );
-    
+
     if (($check_param==1) && !$prof_ext_page[$current_page]) {
         openpne_redirect('ktai', 'page_h_regist_prof');
     }
-    
+
     //メールアドレスが未登録の場合はリダイレクト
     $mail_ext_page=array(
     'do_h_regist_address'=>true,
     'page_h_regist_address'=>true,
     );
-    
+
     if (($check_param==2) && !$mail_ext_page[$current_page]) {
         openpne_redirect('ktai', 'page_h_regist_address');
     }

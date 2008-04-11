@@ -86,7 +86,7 @@ function admin_insert_c_image($upfile_obj, $filename)
  * 引数 $tail は文字列と配列の両方を許容する。
  * 文字列を指定した場合、URLに $tail がそのまま付加される。
  * 配列を指定した場合、キーと要素を元にパラメータを生成し、URLに付加する。
- * 
+ *
  * @param string $p    リダイレクト先のページ
  * @param string $msg    エラーメッセージ
  * @param mixied $tail    URLに付加する文字列かパラメータ
@@ -156,7 +156,7 @@ function admin_api_is_ip($ip)
 
 /***
  * CMD（小窓）ディレクトリ内のCMDファイルリストを取得する
- * 
+ *
  * @return array CMDファイルリスト
  */
 function admin_get_cmd_file_list()

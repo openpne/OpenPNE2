@@ -14,7 +14,7 @@ class pc_do_h_set_public_flag_all extends OpenPNE_Action
         $u = $GLOBALS['AUTH']->uid();
 
         $public_flag = util_cast_public_flag_diary($requests['public_flag_diary_all']);
-        
+
         if ($requests['ok']) {
             db_diary_update_public_flag_diary_all($u, $public_flag);
             openpne_redirect('pc', 'page_h_home');

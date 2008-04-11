@@ -10,7 +10,7 @@ class Cache_Container_memcache extends Cache_Container
 {
     var $dsn;
     var $memcache;
-    
+
     function Cache_Container_memcache($options = '')
     {
         $this->dsn = $options['dsn'];
@@ -32,12 +32,12 @@ class Cache_Container_memcache extends Cache_Container
     function save($id, $cachedata, $expires, $group, $userdata)
     {
         $cache_name = $group . '_' . $id;
-        
+
         $res['expires'] = $expires;
         $res['cachedata'] = $this->encode($cachedata);
         $res['userdata'] = $userdata;
         $this->memcache->set($cache_name, $res, 0, $expires);
-        
+
         return true;
     }
 

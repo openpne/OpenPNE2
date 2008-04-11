@@ -15,14 +15,14 @@ class admin_page_blacklist extends OpenPNE_Action
         for($i = $page-10<1 ? 1 : $page-10 ;($i<=$total_page_num)&&($i<$page+10);$i++)
             $page_list[]=$i;
         $this->set('page_list', $page_list);
-        
+
         $this->set('page', $page);
         $this->set('prev', $prev);
         $this->set('next', $next);
         $this->set('total_num', $total_num);
         $this->set('start_num', ($page-1)*$page_size+1);
         $this->set('end_num', ($page-1)*$page_size+count($c_blacklist_list));
-        
+
         $this->set("c_blacklist_list", $c_blacklist_list);
         return 'success';
     }
