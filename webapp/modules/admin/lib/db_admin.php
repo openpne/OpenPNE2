@@ -732,48 +732,41 @@ function db_admin_c_member_id_list4cond_mail_address($ids, $cond_list)
 }
 
 /**
- * メンバーIDリスト取得(絞り込み対応)
+ * c_profile 内データによるメンバーIDリスト絞り込み
+ *
+ * 渡されたメンバーIDの配列を条件に従い絞り込んだものを返す
+ * 
+ * @return array
  */
-function _db_admin_c_member_id_list($cond_list, $order = null)
+function db_admin_c_member_id_list4cond_c_profile($ids, $cond_list, $order)
 {
-    $ids = db_admin_c_member_id_list4cond_c_member($cond_list, $order);
-
     $type = explode('-', $order);
+
     // ランクでソートとポイントでソートは同等
     if ($type[0] == 'RANK') {
         $type[0] = 'PNE_POINT';
     }
 
-    // ポイントで絞り込み
-    if (isset($cond_list['s_point']) || isset($cond_list['e_point'])) {
-        $ids = db_admin_c_member_id_list4cond_pne_point($ids, $cond_list);
-    }
+    // 各プロフィールごとに絞り込み
+    $sql = 'SELECT name, form_type, c_profile_id FROM c_profile';
+    $profile = db_get_all($sql);
 
-    // メールアドレスで絞り込み
-    if (!empty($cond_list['is_pc_address']) || !empty($cond_list['is_ktai_address'])) {
-        $ids = db_admin_c_member_id_list4cond_mail_address($ids, $cond_list);
-    }
-
-    //各プロフィールごとで絞り結果をマージする(ソートオーダーつき)
-    $_sql = 'SELECT name, form_type, c_profile_id FROM c_profile';
-    $profile = db_get_all($_sql);
-
-    if ( $profile ) {
+    if ($profile) {
         foreach ($profile as $value) {
             if(!empty($cond_list[$value['name']])
-           && ($value['form_type'] == 'radio' || $value['form_type'] == 'select')) {
+               && ($value['form_type'] == 'radio' || $value['form_type'] == 'select')) {
                 $sql = 'SELECT c_member_id FROM c_member_profile WHERE c_profile_option_id = ?';
                 $params = array($cond_list[$value['name']]);
                 $temp_ids = db_get_col($sql, $params);
                 $ids = array_intersect($ids, $temp_ids);
             }
+
             if($value['name'] == $type[0]) {
                 $sql = 'SELECT c_member_id FROM c_member_profile WHERE c_profile_id = ?';
 
                 if ($value['form_type'] == 'radio'
                  || $value['form_type'] == 'select'
-                 || $value['form_type'] == 'checkbox'
-                ) {
+                 || $value['form_type'] == 'checkbox') {
                     $sql .= ' ORDER BY c_profile_option_id';
                 } else {
                     if ($value['name'] == "PNE_POINT") {
@@ -794,9 +787,31 @@ function _db_admin_c_member_id_list($cond_list, $order = null)
                 $temp_ids = db_get_col($sql, $params);
                 $ids = array_intersect($temp_ids, $ids);
             }
-
         }
     }
+
+    return $ids;
+}
+
+/**
+ * メンバーIDリスト取得(絞り込み対応)
+ */
+function _db_admin_c_member_id_list($cond_list, $order = null)
+{
+    $ids = db_admin_c_member_id_list4cond_c_member($cond_list, $order);
+
+    // ポイントで絞り込み
+    if (isset($cond_list['s_point']) || isset($cond_list['e_point'])) {
+        $ids = db_admin_c_member_id_list4cond_pne_point($ids, $cond_list);
+    }
+
+    // メールアドレスで絞り込み
+    if (!empty($cond_list['is_pc_address']) || !empty($cond_list['is_ktai_address'])) {
+        $ids = db_admin_c_member_id_list4cond_mail_address($ids, $cond_list);
+    }
+
+    // プロフィール項目で絞り込み
+    $ids = db_admin_c_member_id_list4cond_c_profile($ids, $cond_list, $order);
 
     return $ids;
 }
