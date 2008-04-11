@@ -24,7 +24,7 @@ class pc_page_h_invite extends OpenPNE_Action
             $inviting_member = db_member_inviting_member4c_member_id($u);
             $k_inviting_member = db_member_inviting_member4c_member_id2($u);
         }
-        
+
         $this->set('inviting_member', $inviting_member);
         $this->set('k_inviting_member', $k_inviting_member);
 

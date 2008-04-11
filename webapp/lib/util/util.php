@@ -6,7 +6,7 @@
 
 /**
  * リダイレクト
- * 
+ *
  * @param string $module
  * @param string $action
  * @param array  $params
@@ -24,7 +24,7 @@ function openpne_redirect($module, $action = '', $params = array())
 
 /**
  * クライアントリダイレクト
- * 
+ *
  * @param   string  $dest ジャンプ先URI(絶対パス)
  */
 function client_redirect_absolute($dest)
@@ -45,7 +45,7 @@ function client_redirect_login()
 
 /**
  * ログインページを取得
- * 
+ *
  * @return string ログインページURL
  */
 function get_login_url()
@@ -247,7 +247,7 @@ function &get_crypt_blowfish()
 
 /**
  * 可逆的な暗号化をする
- * 
+ *
  * @param string $str 平文
  * @return string 暗号文
  */
@@ -266,7 +266,7 @@ function t_encrypt($str)
 
 /**
  * 可逆的な暗号を復号化する
- * 
+ *
  * @param string $str 暗号文
  * @return string 平文
  */
@@ -396,7 +396,7 @@ function t_isFutureDate($day, $month, $year)
 
 /**
  * Check c_diary.public_flag
- * 
+ *
  * @param int $c_diary_id
  * @param int $c_member_id
  * @return bool allowed or not
@@ -488,16 +488,16 @@ function get_auth_config($is_ktai = false)
 
 function crypt_func($raw_value,$cryptType)
 {
-    if (   isset($cryptType) 
+    if (   isset($cryptType)
         && $cryptType == 'none') {
         $cryptFunction = 'strval';
-    } elseif (   isset($cryptType) 
+    } elseif (   isset($cryptType)
               && function_exists($cryptType)) {
         $cryptFunction = $cryptType;
     } else {
         $cryptFunction = 'md5';
     }
-    
+
     return $cryptFunction($raw_value);
 }
 
@@ -608,10 +608,10 @@ function util_check_file_extention($filename)
 
 /**
  * 参照可能なメッセージかどうか
- * 
+ *
  * ・指定メンバーが送信者で、完全削除済でない
  * ・指定メンバーが受信者で、送信済であり完全削除済でない
- * 
+ *
  * @param int $c_member_id
  * @param int $c_message_id
  * @return bool
@@ -732,7 +732,7 @@ function util_get_color_config_ktai()
 
 /**
  * メンバー登録を行う
- * 
+ *
  * @param array $c_member
  * @param array $c_member_secure
  * @param array $c_member_profile_list
@@ -777,7 +777,7 @@ function util_regist_c_member($c_member, $c_member_secure, $c_member_profile_lis
     // ログインIDを登録
     if (OPENPNE_AUTH_MODE == 'pneid') {
         $login_id = strtolower($c_member['login_id']);
-        db_member_insert_username($u, $login_id);       
+        db_member_insert_username($u, $login_id);
     }
 
     return $u;

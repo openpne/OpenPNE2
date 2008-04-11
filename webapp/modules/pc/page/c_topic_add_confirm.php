@@ -81,7 +81,7 @@ class pc_page_c_topic_add_confirm extends OpenPNE_Action
             exit;
         }
         $sessid = session_id();
-        
+
         //-----
 
         t_image_clear_tmp($sessid);

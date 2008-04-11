@@ -19,7 +19,7 @@ class admin_page_blacklist_edit extends OpenPNE_Action
         if ($requests['info']) {
             $c_black_list['info'] = $requests['info'];
         }
-        
+
         $this->set('blacklist', $c_black_list);
 
         return 'success';

@@ -2,7 +2,7 @@
 
 //
 // ポータル設定 - レイアウト設定画面の表示アクションクラスです。
-// 
+//
 class portal_page_edit_layout extends OpenPNE_Action
 {
     function execute($requests)

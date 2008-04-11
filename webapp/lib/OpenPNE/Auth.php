@@ -11,9 +11,9 @@ require_once 'Auth.php';
 
 /**
  * 認証処理をおこなうクラス
- * 
+ *
  * requires PEAR::Auth
- * 
+ *
  * @package OpenPNE
  * @author OGAWA Rinpei <ogawa@tejimaya.com>
  */
@@ -38,7 +38,7 @@ class OpenPNE_Auth
 
     /**
      * 設定値の初期化をおこなう
-     * 
+     *
      * $config に渡せる値
      * + storage: PEAR::Authのストレージコンテナ名
      * + options: PEAR::Auth用オプション
@@ -83,7 +83,7 @@ class OpenPNE_Auth
             if (substr($url['path'], -1) != '/') {
                 $url['path'] .= '/';
             }
-            $this->cookie_path = $url['path'];            
+            $this->cookie_path = $url['path'];
         }
     }
 
@@ -236,7 +236,7 @@ class OpenPNE_Auth
 
     /**
      * セッションハンドラを設定する
-     * 
+     *
      * @static
      */
     function set_session_save_handler()
@@ -266,9 +266,9 @@ class OpenPNE_Auth
 
     /**
      * checkAuth
-     * 
+     *
      * PEAR::Auth標準の認証処理に加えて、OPENPNE_URLのチェックもおこなう
-     * 
+     *
      * @return bool
      * @see PEAR::Auth::checkAuth
      */

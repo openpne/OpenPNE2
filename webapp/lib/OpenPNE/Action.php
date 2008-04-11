@@ -6,7 +6,7 @@
 
 /**
  * OpenPNEの全アクションの親クラス
- * 
+ *
  * @package OpenPNE
  * @author OGAWA Rinpei <ogawa@tejimaya.com>
  */
@@ -14,7 +14,7 @@ class OpenPNE_Action
 {
     /**
      * OpenPNE_Smartyのインスタンス
-     * 
+     *
      * @var OpenPNE_Smarty
      */
     var $view;
@@ -28,7 +28,7 @@ class OpenPNE_Action
 
     /**
      * アクションの実際の処理
-     * 
+     *
      * @return string pageアクションが成功した場合は、'success'を返す
      */
     function execute()

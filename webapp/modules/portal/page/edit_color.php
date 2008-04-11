@@ -54,7 +54,7 @@ class portal_page_edit_color extends OpenPNE_Action
                         if (!$thumbnail && isset($ini_array['color'])) {
                             $color = $ini_array['color'];
                         }
-                        
+
                         $theme_list[$name] = array(
                             'caption' => $caption,
                             'thumbnail' => $thumbnail,
