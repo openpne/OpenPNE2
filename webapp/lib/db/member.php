@@ -8,7 +8,7 @@
  * メンバー情報を取得する
  *
  * @param int $c_member_id
- * @param bool $is_secure `c_member_secure`の項目を取得するかどうか
+ * @param bool $is_secure `c_member_secure`の項目を取得するかどうか(OPENPNE_AUTH_MODEがemail以外の場合はc_usernameも取得する)
  * @param bool $with_profile `c_member_profile`の項目を取得するかどうか
  * @param string $public_flag プロフィール項目を取得する場合の公開設定(public, friend, private)
  * @return array メンバー情報
@@ -56,7 +56,7 @@ function db_member_c_member4c_member_id($c_member_id, $is_secure = false, $with_
         }
     }
 
-    if (OPENPNE_AUTH_MODE == 'slavepne' && $is_secure) {
+    if (OPENPNE_AUTH_MODE != 'email' && $is_secure) {
         $c_member['username'] = db_member_username4c_member_id($c_member_id);
     }
 
