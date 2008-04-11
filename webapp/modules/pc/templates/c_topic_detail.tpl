@@ -55,16 +55,21 @@
 ({* {{{ commentList *})
 <div class="dparts commentList"><div class="parts">
 <div class="partsHeading"><h3>書き込み</h3></div>
+
+({capture name=pager})({strip})
 <div class="pagerRelative">
 ({if $all})
 <p><a href="({t_url m=pc a=page_c_topic_detail})&amp;target_c_commu_topic_id=({$c_topic.c_commu_topic_id})">最新を表示</a></p>
 ({elseif $total_num > $page_size})
 <p><a href="({t_url m=pc a=page_c_topic_detail})&amp;target_c_commu_topic_id=({$c_topic.c_commu_topic_id})&amp;all=1">すべて表示</a></p>
 ({/if})
-({if $is_next})<p class="prev"><a href="({t_url m=pc a=page_c_topic_detail})&amp;target_c_commu_topic_id=({$c_topic.c_commu_topic_id})&amp;direc=1&amp;page=({$page})">＜前</a></p>({/if})
+({if $is_next})<p class="prev"><a href="({t_url m=pc a=page_c_topic_detail})&amp;target_c_commu_topic_id=({$c_topic.c_commu_topic_id})&amp;page=({$page+1})">前を表示</a></p>({/if})
 <p class="number">({$start_num})番～({$end_num})番を表示</p>
-({if $is_prev})<p class="next"><a href="({t_url m=pc a=page_c_topic_detail})&amp;target_c_commu_topic_id=({$c_topic.c_commu_topic_id})&amp;direc=-1&amp;page=({$page})">次＞</a></p>({/if})
+({if $is_prev})<p class="next"><a href="({t_url m=pc a=page_c_topic_detail})&amp;target_c_commu_topic_id=({$c_topic.c_commu_topic_id})&amp;page=({$page-1})">次を表示</a></p>({/if})
 </div>
+({/strip})({/capture})
+({$smarty.capture.pager|smarty:nodefaults})
+
 ({foreach from=$c_topic_write item=item})
 <dl>
 <dt>({$item.r_datetime|date_format:"%Y年<br />%m月%d日<br />%H:%M"})</dt>
@@ -85,16 +90,9 @@
 </dd>
 </dl>
 ({/foreach})
-<div class="pagerRelative">
-({if $all})
-<p><a href="({t_url m=pc a=page_c_topic_detail})&amp;target_c_commu_topic_id=({$c_topic.c_commu_topic_id})">最新を表示</a></p>
-({elseif $total_num > $page_size})
-<p><a href="({t_url m=pc a=page_c_topic_detail})&amp;target_c_commu_topic_id=({$c_topic.c_commu_topic_id})&amp;all=1">すべて表示</a></p>
-({/if})
-({if $is_next})<p class="prev"><a href="({t_url m=pc a=page_c_topic_detail})&amp;target_c_commu_topic_id=({$c_topic.c_commu_topic_id})&amp;direc=1&amp;page=({$page})">＜前</a></p>({/if})
-<p class="number">({$start_num})番～({$end_num})番を表示</p>
-({if $is_prev})<p class="next"><a href="({t_url m=pc a=page_c_topic_detail})&amp;target_c_commu_topic_id=({$c_topic.c_commu_topic_id})&amp;direc=-1&amp;page=({$page})">次＞</a></p>({/if})
-</div>
+
+({$smarty.capture.pager|smarty:nodefaults})
+
 </div></div>
 ({* }}} *})
 ({/if})

@@ -138,22 +138,25 @@
 
 ({if $target_diary_comment_list})
 ({* {{{ commentList *})
-<div class="dparts commentList"><div class="parts">
+<div class="dparts commentList" id="commentList"><div class="parts">
 <div class="partsHeading"><h3>コメント</h3></div>
 ({t_form_block m=pc a=page_fh_delete_comment})
 <input type="hidden" name="target_c_diary_id" value="({$target_diary.c_diary_id})" />
+
+({capture name=pager})({strip})
 <div class="pagerRelative">
-<p class="number">
 ({if $is_all})
-<a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$target_diary.c_diary_id})">最新を表示</a>
+<a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$target_diary.c_diary_id})#commentList">最新を表示</a>
 ({else})
-({if $total_num > $page_size})<a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$target_diary.c_diary_id})&amp;is_all=1">すべて表示</a> ({/if})
-({if $is_prev})<a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$target_diary.c_diary_id})&amp;direc=1&amp;page=({$page})">＜前</a> ({/if})
-({if $is_next})<a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$target_diary.c_diary_id})&amp;direc=-1&amp;page=({$page})">次＞</a> ({/if})
+({if $total_num > $page_size})<a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$target_diary.c_diary_id})&amp;is_all=1#commentList">すべて表示</a> ({/if})
 ({/if})
-({$pager.start})番～({$pager.end})番を表示
-</p>
+({if $is_prev})<p class="prev"><a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$target_diary.c_diary_id})&amp;page=({$page+1})#commentList">前を表示</a></p>({/if})
+<p class="number">({$pager.start})番～({$pager.end})番を表示</p>
+({if $is_next})<p class="next"><a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$target_diary.c_diary_id})&amp;page=({$page-1})#commentList">次を表示</a></p>({/if})
 </div>
+({/strip})({/capture}) 
+({$smarty.capture.pager|smarty:nodefaults})
+
 ({foreach from=$target_diary_comment_list item=item})
 <dl>
 <dt>({$item.r_datetime|date_format:"%Y年<br />%m月%d日<br />%H:%M"})({if $type == "h"})<br /><input type="checkbox" class="input_checkbox" name="target_c_diary_comment_id[]" value="({$item.c_diary_comment_id})" />({/if})</dt>
@@ -174,18 +177,9 @@
 </dd>
 </dl>
 ({/foreach})
-<div class="pagerRelative">
-<p class="number">
-({if $is_all})
-<a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$target_diary.c_diary_id})">最新を表示</a>
-({else})
-({if $total_num > $page_size})<a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$target_diary.c_diary_id})&amp;is_all=1">すべて表示</a> ({/if})
-({if $is_prev})<a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$target_diary.c_diary_id})&amp;direc=1&amp;page=({$page})">＜前</a> ({/if})
-({if $is_next})<a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$target_diary.c_diary_id})&amp;direc=-1&amp;page=({$page})">次＞</a> ({/if})
-({/if})
-({$pager.start})番～({$pager.end})番を表示
-</p>
-</div>
+
+({$smarty.capture.pager|smarty:nodefaults})
+
 ({if $type == 'h'})
 <div class="operation">
 <ul class="moreInfo button">
