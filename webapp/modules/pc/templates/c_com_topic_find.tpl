@@ -24,11 +24,9 @@
 
 <p class="form">
 <span class="label">絞りこみ</span>
-<a href="({t_url m=pc a=page_c_com_topic_find})&amp;target_commu=in_commu&amp;c_commu_id=({$c_commu_id})&amp;type=all&amp;keyword=({$smarty.capture.keyword_url|smarty:nodefaults})">すべて</a>
-|
-<a href="({t_url m=pc a=page_c_com_topic_find})&amp;target_commu=in_commu&amp;c_commu_id=({$c_commu_id})&amp;type=topic&amp;keyword=({$smarty.capture.keyword_url|smarty:nodefaults})">トピック</a>
-|
-<a href="({t_url m=pc a=page_c_com_topic_find})&amp;target_commu=in_commu&amp;c_commu_id=({$c_commu_id})&amp;type=event&amp;keyword=({$smarty.capture.keyword_url|smarty:nodefaults})">イベント</a>
+ <a href="({t_url m=pc a=page_c_com_topic_find})&amp;target_commu=in_commu&amp;c_commu_id=({$c_commu_id})&amp;type=all&amp;keyword=({$smarty.capture.keyword_url|smarty:nodefaults})">すべて</a>
+ | <a href="({t_url m=pc a=page_c_com_topic_find})&amp;target_commu=in_commu&amp;c_commu_id=({$c_commu_id})&amp;type=topic&amp;keyword=({$smarty.capture.keyword_url|smarty:nodefaults})">トピック</a>
+ | <a href="({t_url m=pc a=page_c_com_topic_find})&amp;target_commu=in_commu&amp;c_commu_id=({$c_commu_id})&amp;type=event&amp;keyword=({$smarty.capture.keyword_url|smarty:nodefaults})">イベント</a>
 </p>
 ({/t_form_block})
 
@@ -36,18 +34,19 @@
 </div></div>
 ({* }}} *})
 
-({if $c_commu_topic_search_list})
+({if $total_num})
 ({* {{{ searchResultList *})
 <div class="dparts searchResultList"><div class="parts">
 <div class="partsHeading"><h3>トピック一覧</h3><p>*** ({$total_num|default:'0'})件が該当しました。</p></div>
 
-({if $total_num})
+({capture name=pager})({strip})
 <div class="pagerRelative">
-({if $is_prev})<p class="prev"><a href="({t_url m=pc a=page_c_com_topic_find})&amp;target_commu=in_commu&amp;c_commu_id=({$c_commu_id})&amp;direc=-1&amp;page=({$page})&amp;keyword=({$smarty.capture.keyword_url|smarty:nodefaults})&amp;type=({$search_val_list.type})">前を表示</a></p>({/if})
+({if $is_prev})<p class="prev"><a href="({t_url m=pc a=page_c_com_topic_find})&amp;target_commu=in_commu&amp;c_commu_id=({$c_commu_id})&amp;page=({$page-1})&amp;keyword=({$smarty.capture.keyword_url|smarty:nodefaults})&amp;type=({$search_val_list.type})">前を表示</a></p>({/if})
 <p class="number">({$start_num})件～({$end_num})件を表示</p>
-({if $is_next})<p class="next"><a href="({t_url m=pc a=page_c_com_topic_find})&amp;target_commu=in_commu&amp;c_commu_id=({$c_commu_id})&amp;direc=1&amp;page=({$page})&amp;keyword=({$smarty.capture.keyword_url|smarty:nodefaults})&amp;type=({$search_val_list.type})">次を表示</a></p>({/if})
+({if $is_next})<p class="next"><a href="({t_url m=pc a=page_c_com_topic_find})&amp;target_commu=in_commu&amp;c_commu_id=({$c_commu_id})&amp;page=({$page+1})&amp;keyword=({$smarty.capture.keyword_url|smarty:nodefaults})&amp;type=({$search_val_list.type})">次を表示</a></p>({/if})
 </div>
-({/if})
+({/strip})({/capture})
+({$smarty.capture.pager|smarty:nodefaults})
 
 <div class="block">
 ({foreach from=$c_commu_topic_search_list item=item})
@@ -64,13 +63,7 @@
 ({/foreach})
 </div>
 
-({if $total_num})
-<div class="pagerRelative">
-({if $is_prev})<p class="prev"><a href="({t_url m=pc a=page_c_com_topic_find})&amp;target_commu=in_commu&amp;c_commu_id=({$c_commu_id})&amp;direc=-1&amp;page=({$page})&amp;keyword=({$smarty.capture.keyword_url|smarty:nodefaults})&amp;type=({$search_val_list.type})">前を表示</a></p>({/if})
-<p class="number">({$start_num})件～({$end_num})件を表示</p>
-({if $is_next})<p class="next"><a href="({t_url m=pc a=page_c_com_topic_find})&amp;target_commu=in_commu&amp;c_commu_id=({$c_commu_id})&amp;direc=1&amp;page=({$page})&amp;keyword=({$smarty.capture.keyword_url|smarty:nodefaults})&amp;type=({$search_val_list.type})">次を表示</a></p>({/if})
-</div>
-({/if})
+({$smarty.capture.pager|smarty:nodefaults})
 
 </div></div>
 ({* }}} *})

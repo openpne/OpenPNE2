@@ -51,11 +51,14 @@
 <div class="dparts reviewList"><div class="parts">
 <div class="partsHeading"><h3>レビュー一覧</h3><p>*** ({$total_num})件が該当しました。</p></div>
 
+({capture name=pager})({strip})
 <div class="pagerRelative">
-({if $is_prev})<p class="prev"><a href="({t_url m=pc a=page_h_review_search})&amp;keyword=({$keyword})&amp;category=({$category})&amp;orderby=({$orderby})&amp;direc=-1&amp;page=({$page})">前を表示</a></p>({/if})
+({if $is_prev})<p class="prev"><a href="({t_url m=pc a=page_h_review_search})&amp;keyword=({$keyword})&amp;category=({$category})&amp;orderby=({$orderby})&amp;page=({$page-1})">前を表示</a></p>({/if})
 <p class="number">({$start_num})件～({$end_num})件を表示</p>
-({if $is_next})<p class="next"><a href="({t_url m=pc a=page_h_review_search})&amp;keyword=({$keyword})&amp;category=({$category})&amp;orderby=({$orderby})&amp;direc=1&amp;page=({$page})">次を表示</a></p>({/if})
+({if $is_next})<p class="next"><a href="({t_url m=pc a=page_h_review_search})&amp;keyword=({$keyword})&amp;category=({$category})&amp;orderby=({$orderby})&amp;page=({$page+1})">次を表示</a></p>({/if})
 </div>
+({/strip})({/capture})
+({$smarty.capture.pager|smarty:nodefaults})
 
 ({foreach from=$result item=item})
 <dl>
@@ -81,11 +84,7 @@
 </dl>
 ({/foreach})
 
-<div class="pagerRelative">
-({if $is_prev})<p class="prev"><a href="({t_url m=pc a=page_h_review_search})&amp;keyword=({$keyword})&amp;category=({$category})&amp;orderby=({$orderby})&amp;direc=-1&amp;page=({$page})">前を表示</a></p>({/if})
-<p class="number">({$start_num})件～({$end_num})件を表示</p>
-({if $is_next})<p class="next"><a href="({t_url m=pc a=page_h_review_search})&amp;keyword=({$keyword})&amp;category=({$category})&amp;orderby=({$orderby})&amp;direc=1&amp;page=({$page})">次を表示</a></p>({/if})
-</div>
+({$smarty.capture.pager|smarty:nodefaults})
 
 </div></div>
 ({* }}} *})

@@ -104,26 +104,24 @@
 ({* {{{ commentList *})
 <div class="dparts commentList"><div class="parts">
 <div class="partsHeading"><h3>({$target_member.nickname})({if $type == "f"})さん({/if})の({$WORD_DIARY})({if !$all})({if !$category}) ({$date_val.year})年({$date_val.month})月({if $date_val.day})({$date_val.day})日({/if})({/if})({$category_name})({/if})</h3></div>
+
+({capture name=pager})({strip})
 <div class="pagerRelative">
-({if $is_prev})
-<p class="prev"><a href="({t_url m=pc a=page_fh_diary_list})&amp;target_c_member_id=({$target_member.c_member_id})&amp;direc=-1&amp;page=({$page})({if $url_keyword})&amp;keyword=({$url_keyword})({/if})({if $category_id})&amp;category_id=({$category_id})({elseif !$all})({if $date_val.year})&amp;year=({$date_val.year})({/if})({if $date_val.month})&amp;month=({$date_val.month})({/if})({if $date_val.day})&amp;day=({$date_val.day})({/if})({/if})">前を表示</a></p>
-({/if})
+({if $is_prev})<p class="prev"><a href="({t_url m=pc a=page_fh_diary_list})&amp;target_c_member_id=({$target_member.c_member_id})&amp;page=({$page-1})({if $url_keyword})&amp;keyword=({$url_keyword})({/if})({if $category_id})&amp;category_id=({$category_id})({elseif !$all})({if $date_val.year})&amp;year=({$date_val.year})({/if})({if $date_val.month})&amp;month=({$date_val.month})({/if})({if $date_val.day})&amp;day=({$date_val.day})({/if})({/if})">前を表示</a></p>({/if})
 <p class="number">
-({$total_num})件中
-({strip})
-({$page*$page_size-$page_size+1})件～
+({$total_num})件中 ({$page*$page_size-$page_size+1})件～
 ({if $page_size > $diary_list_count})
 ({$diary_list_count+$page*$page_size-$page_size})
 ({else})
 ({$page*$page_size})
 ({/if})
 件を表示
-({/strip})
 </p>
-({if $is_next})
-<p class="next"><a href="({t_url m=pc a=page_fh_diary_list})&amp;target_c_member_id=({$target_member.c_member_id})&amp;direc=1&amp;page=({$page})({if $url_keyword})&amp;keyword=({$url_keyword})({/if})({if $category_id})&amp;category_id=({$category_id})({elseif !$all})({if $date_val.year})&amp;year=({$date_val.year})({/if})({if $date_val.month})&amp;month=({$date_val.month})({/if})({if $date_val.day})&amp;day=({$date_val.day})({/if})({/if})">次を表示</a></p>
-({/if})
+({if $is_next})<p class="next"><a href="({t_url m=pc a=page_fh_diary_list})&amp;target_c_member_id=({$target_member.c_member_id})&amp;page=({$page+1})({if $url_keyword})&amp;keyword=({$url_keyword})({/if})({if $category_id})&amp;category_id=({$category_id})({elseif !$all})({if $date_val.year})&amp;year=({$date_val.year})({/if})({if $date_val.month})&amp;month=({$date_val.month})({/if})({if $date_val.day})&amp;day=({$date_val.day})({/if})({/if})">次を表示</a></p>({/if})
 </div>
+({/strip})({/capture})
+({$smarty.capture.pager|smarty:nodefaults})
+
 ({foreach from=$target_diary_list item=item})
 <dl>
 <dt>({$item.r_datetime|date_format:"%m月%d日<br />%H:%M"})</dt>
@@ -161,26 +159,9 @@
 </dd>
 </dl>
 ({/foreach})
-<div class="pagerRelative">
-({if $is_prev})
-<p class="prev"><a href="({t_url m=pc a=page_fh_diary_list})&amp;target_c_member_id=({$target_member.c_member_id})&amp;direc=-1&amp;page=({$page})({if $url_keyword})&amp;keyword=({$url_keyword})({/if})({if $category_id})&amp;category_id=({$category_id})({elseif !$all})({if $date_val.year})&amp;year=({$date_val.year})({/if})({if $date_val.month})&amp;month=({$date_val.month})({/if})({if $date_val.day})&amp;day=({$date_val.day})({/if})({/if})">前を表示</a></p>
-({/if})
-<p class="number">
-({$total_num})件中
-({strip})
-({$page*$page_size-$page_size+1})件～
-({if $page_size > $diary_list_count})
-({$diary_list_count+$page*$page_size-$page_size})
-({else})
-({$page*$page_size})
-({/if})
-件を表示
-({/strip})
-</p>
-({if $is_next})
-<p class="next"><a href="({t_url m=pc a=page_fh_diary_list})&amp;target_c_member_id=({$target_member.c_member_id})&amp;direc=1&amp;page=({$page})({if $url_keyword})&amp;keyword=({$url_keyword})({/if})({if $category_id})&amp;category_id=({$category_id})({elseif !$all})({if $date_val.year})&amp;year=({$date_val.year})({/if})({if $date_val.month})&amp;month=({$date_val.month})({/if})({if $date_val.day})&amp;day=({$date_val.day})({/if})({/if})">次を表示</a></p>
-({/if})
-</div>
+
+({$smarty.capture.pager|smarty:nodefaults})
+
 </div></div>
 ({* }}} *})
 ({/if})
