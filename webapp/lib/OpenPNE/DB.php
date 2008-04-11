@@ -11,7 +11,7 @@ require_once 'DB.php';
 
 /**
  * OpenPNE_DB
- * 
+ *
  * @package OpenPNE
  * @author OGAWA Rinpei <ogawa@tejimaya.com>
  */
@@ -52,7 +52,7 @@ class OpenPNE_DB
 
     /**
      * DBに接続する
-     * 
+     *
      * @access private
      */
     function _connect()
@@ -236,7 +236,7 @@ class OpenPNE_DB
 
     /**
      * Identifierとして使える文字以外を除去する
-     * 
+     *
      * @static
      * @param string $str
      * @return string
@@ -314,7 +314,7 @@ class OpenPNE_DB
 
     /**
      * insertに使用するprimary idを取得する
-     * 
+     *
      * ただし、mysqlの場合はauto_incrementの使用を想定して、nullを返す
      *
      * @param string $seq_name

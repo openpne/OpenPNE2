@@ -63,9 +63,9 @@
 <div class="partsHeading"><h3>招待中メールアドレス一覧</h3></div>
 
  ({t_form_block m=pc a=do_h_invite_delete_member})
-<input type="hidden" name="m" value="pc" />  
-<input type="hidden" name="a" value="do_h_invite_delete_member" />  
-<input type="hidden" name="c_member_id[]" value="({$item.c_member_pre_id})" />  
+<input type="hidden" name="m" value="pc" />
+<input type="hidden" name="a" value="do_h_invite_delete_member" />
+<input type="hidden" name="c_member_id[]" value="({$item.c_member_pre_id})" />
 
 ({foreach from=$inviting_member item=item})
 <dl>
@@ -73,7 +73,7 @@
 <dd><input type="checkbox" class="input_checkbox" name="c_member_id[]" id="c_member_id-({$item.c_member_pre_id})" value="({$item.c_member_pre_id})" /> <label for="c_member_id-({$item.c_member_pre_id})">({$item.regist_address})</label></dd>
 </dl>
 ({/foreach})
- 
+
 ({foreach from=$k_inviting_member item=item})
 <dl>
 <dt>({$item.r_datetime|date_format:"%Y年%m月%d日"})</dt>

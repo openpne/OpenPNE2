@@ -14,7 +14,7 @@ class admin_page_blacklist_delete_confirm extends OpenPNE_Action
         }
 
         $this->set('blacklist', $c_black_list);
-        
+
         return 'success';
     }
 }

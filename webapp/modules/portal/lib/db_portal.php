@@ -74,7 +74,7 @@ function db_portal_layout()
 
 /**
  * 携帯版コンテンツ設定を取得する
- * 
+ *
  * @return array
  */
 function db_portal_layout_ktai()
@@ -85,7 +85,7 @@ function db_portal_layout_ktai()
 
 /**
  * 携帯版コンテンツ設定を設定されている並び順どおりに取得する
- * 
+ *
  * @return array
  */
 function db_portal_layout_ktai_order_by_position()
@@ -207,7 +207,7 @@ function db_portal_portal_free_area_ktai($portal_free_area_ktai_id = null)
 
 /**
  * 携帯版フリーエリアを更新する
- * 
+ *
  * $portal_free_area_ktai_id を指定しない場合は、新規にインサートする。
  *
  * @param int $portal_free_area_ktai_id
@@ -254,7 +254,7 @@ function db_portal_insert_portal_rss($data)
     return db_insert('portal_rss', $data);
 }
 
-function db_portal_c_commu_event($today, $from, $count) 
+function db_portal_c_commu_event($today, $from, $count)
 {
     $sql = 'select cc.name as community_name, cct.name as event_name, cct.open_date as open_date from c_commu cc, c_commu_topic cct where cc.c_commu_id = cct.c_commu_id and cct.event_flag = ? and cct.open_date > ? order by cct.open_date';
     $params = array('1', $today);
@@ -284,7 +284,7 @@ function db_portal_public_c_commmu_list($limit = 5)
 
     $list = db_get_all_limit($sql, 0, $limit);
     foreach ($list as $key => $value) {
-        $list[$key]['count_comments'] = db_portal_db_count_c_commu_topic_comments4c_commu_topic_id($value['c_commu_topic_id']); 
+        $list[$key]['count_comments'] = db_portal_db_count_c_commu_topic_comments4c_commu_topic_id($value['c_commu_topic_id']);
     }
     return $list;
 }
@@ -312,7 +312,7 @@ function db_portal_get_portal_link($limit = 10)
  * リンク集設定を更新する
  *
  * target_portal_link_id が指定されていない場合は新規にインサートする
- * target_portal_linK_id が指定されていて、リンクタイトルとURLが指定されていない場合は削除する 
+ * target_portal_linK_id が指定されていて、リンクタイトルとURLが指定されていない場合は削除する
  *
  * @param int $target_portal_link_id
  * @param array $params

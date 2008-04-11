@@ -22,7 +22,7 @@ class admin_do_send_messages_id_list extends OpenPNE_Action
     {
         $specify_type = $requests['specify_type'];
         $id_list_string = $requests['c_member_id_list'];
-        
+
         if (!$id_list_string) {
             $error_msg = 'IDまたはメールアドレスを入力してください';
             $this->handleError($error_msg);
@@ -33,7 +33,7 @@ class admin_do_send_messages_id_list extends OpenPNE_Action
         $id_list_string = str_replace("\r", ' ', $id_list_string);
         $id_list_string = str_replace("　", ' ', $id_list_string);
         $id_list_parsed = explode(' ', $id_list_string);
-        
+
         $c_member_id_list = array();
         foreach ($id_list_parsed as $each_id) {
             if (!$each_id) {
@@ -58,7 +58,7 @@ class admin_do_send_messages_id_list extends OpenPNE_Action
                 $this->handleError('');
                 break;
             }
-            
+
             if (!is_numeric($each_c_member_id)) {
                 $error_msg = 'IDは整数値で指定してください: ' . $each_c_member_id;
                 $this->handleError($error_msg);
@@ -73,7 +73,7 @@ class admin_do_send_messages_id_list extends OpenPNE_Action
             }
             $c_member_id_list[] = intval($each_c_member_id);
         }
-        
+
         $_REQUEST['c_member_ids'] = $c_member_id_list;
         openpne_forward('admin', 'page', 'send_messages');
         exit;

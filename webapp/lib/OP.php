@@ -581,7 +581,7 @@ class OP
         //プロフィールを取得
         $list = array();
         foreach ($member_list as $key => $value) {
-            //メンバ情報の取得    
+            //メンバ情報の取得
             $c_member = OP::op_get_member_data_list($value['c_member_id_from']);
 
             //デフォルト項目（メンバId、ニックネーム、登録日）

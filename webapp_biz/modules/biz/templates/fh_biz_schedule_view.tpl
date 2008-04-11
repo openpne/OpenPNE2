@@ -82,7 +82,7 @@
 ({* #1952 *})({strip})
 ({* #1952 *})({$schedule.begin_time})
 ({* #1952 *})({if $schedule.begin_time || $schedule.finish_time})～({/if})
-({* #1952 *})({$schedule.finish_time}) 
+({* #1952 *})({$schedule.finish_time})
 ({* #1952 *})({/strip})
 ({* #1952 *})
 ({* #1952 *})</div>

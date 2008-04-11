@@ -20,7 +20,7 @@ class biz_do_fhg_biz_schedule_add extends OpenPNE_Action
 
         //日付のフォーマットを設定
         $begin_date = $requests['sc_b_year'].'-'.$requests['sc_b_month'].'-'.$requests['sc_b_date'];
-        
+
         // 入力された時刻のチェック
         if (!($requests['sc_b_hour']||$requests['sc_b_minute']||$requests['sc_f_hour']||$requests['sc_f_minute'])) {
             // 時刻が未入力
@@ -63,14 +63,14 @@ class biz_do_fhg_biz_schedule_add extends OpenPNE_Action
                         '&sc_rwk_enc='.serialize($requests['sc_rwk']).
                         '&sc_rcount='.$requests['sc_rcount'].
                         '&sc_bn='.$requests['sc_bn'];
-            
+
                 $p = array('msg' => $msg, 'begin_date' => $begin_date, 'begin_time' => $begin_time,
                 'finish_time' => $finish_time, 'sc_rp' => $requests['sc_rp'], 'sc_memo' => $requests['sc_memo'],
                 'sc_j_mem_enc' => serialize($requests['sc_j_mem']), 'sc_rwk_enc' => serialize($requests['sc_rwk']),
                 'sc_rcount' => $requests['sc_rcount'], 'sc_bn' => $requests['sc_bn']);
             openpne_redirect('biz', 'page_fh_biz_schedule_add', $p);
             exit();  //強制的にスクリプトを終了しなければいけない
-        }   
+        }
         //---------------------
 
         //ERROR----------------

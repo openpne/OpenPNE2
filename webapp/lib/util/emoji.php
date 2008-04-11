@@ -211,7 +211,7 @@ function emoji_convert($str)
 function _emoji_convert($matches)
 {
     $o_code = $matches[1];
-    
+
     switch ($GLOBALS['__Framework']['carrier']) {
     case 'i':
     case 'w':
@@ -227,7 +227,7 @@ function _emoji_convert($matches)
         $carrior = null;
         break;
     }
-    
+
     $emoji_code = OpenPNE_KtaiEmoji::getInstance();
     $c_emoji = $emoji_code->convert_emoji($o_code, $carrior);
     if ($c_emoji) {

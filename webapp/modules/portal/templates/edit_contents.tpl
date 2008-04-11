@@ -17,7 +17,7 @@
    <tr>
    ({ext_include file="inc_menu_adminPortalConfig.tpl"})
        <td class="detail">
-       
+
            <h3>({$page_name})</h3>
            <p>「SNSポータル」に表示するコンテンツの表示位置を決めてください。<br />
 左側の表に割り振られた番号を各コンテンツに設定すると、そのポートレット（枠）の位置にコンテンツが表示されます。<br />
@@ -32,7 +32,7 @@
            <input type="hidden" name="m" value="({$module_name})" />
            <input type="hidden" name="a" value="do_({$hash_tbl->hash('edit_contents','do')})" />
            <input type="hidden" name="sessid" value="({$PHPSESSID})" />
-           
+
            <table class="contents" cellpadding="0" cellspacing="0" border="0">
            <tr>
            <td class="menu">
@@ -44,7 +44,7 @@
            </dl>
            </td>
            <td class="contents">
-           
+
            <table class="contents">
            <tbody>
            <tr>
@@ -71,7 +71,7 @@
                <input type="checkbox" name="({$name})_is_image" value="1" ({if $portal_config.layout_config.is_image.$name})checked="checked" ({/if})({if $smarty.const.CHECK_IMG_AUTH}) disabled="disabled" ({/if})/>({$WORD_COMMUNITY})画像を表示
            </td>
            </tr>
-           
+
            <tr>
            <th>最新レビュー</th>
            <td>
@@ -88,12 +88,12 @@
                <input type="checkbox" name="({$name})_is_image" value="1" ({if $portal_config.layout_config.is_image.$name})checked="checked" ({/if})/>商品画像を表示
            </td>
            </tr>
-           
+
            <tr>
            <th>メンバーアクセスランキング</th>
            <td>
                ({assign var="name" value=$smarty.const.PORTAL_LAYOUT_ACCESS_RANKING})
-               <select class="basic" name="({$name})">         
+               <select class="basic" name="({$name})">
                ({foreach key=key item=value from=$portal_layout.position_list })
                    ({if $key == $portal_config.layout_config.$name})
                    <option value="({$key})" selected="selected">({$value})</option>
@@ -109,7 +109,7 @@
            <th>({$WORD_COMMUNITY})盛り上がりランキング</th>
            <td>
                ({assign var="name" value=$smarty.const.PORTAL_LAYOUT_COMMUNITY_RANKING})
-               <select class="basic" name="({$name})">         
+               <select class="basic" name="({$name})">
                ({foreach key=key item=value from=$portal_layout.position_list })
                    ({if $key == $portal_config.layout_config.$name})
                    <option value="({$key})" selected="selected">({$value})</option>
@@ -121,12 +121,12 @@
                <input type="checkbox" name="({$name})_is_image" value="1" ({if $portal_config.layout_config.is_image.$name})checked="checked" ({/if})({if $smarty.const.CHECK_IMG_AUTH}) disabled="disabled" ({/if})/>({$WORD_COMMUNITY})画像を表示
            </td>
            </tr>
-           
+
            <tr>
            <th>イベント予定</th>
            <td>
                ({assign var="name" value=$smarty.const.PORTAL_LAYOUT_EVENT})
-               <select class="basic" name="({$name})">         
+               <select class="basic" name="({$name})">
                ({foreach key=key item=value from=$portal_layout.position_list })
                    ({if $key == $portal_config.layout_config.$name})
                    <option value="({$key})" selected="selected">({$value})</option>
@@ -137,7 +137,7 @@
                </select>
            </td>
            </tr>
-           
+
            <tr>
            <th>({$portal_rss_list.1.name|default:'RSSリーダー1'})</th>
            <td>
@@ -154,7 +154,7 @@
                <input type="checkbox" name="({$name})_is_image" value="1" ({if $portal_config.layout_config.is_image.$name})checked="checked" ({/if})/>記事画像を表示
            </td>
            </tr>
-           
+
            <tr>
            <th>({$portal_rss_list.2.name|default:'RSSリーダー2'})</th>
            <td>
@@ -171,7 +171,7 @@
                <input type="checkbox" name="({$name})_is_image" value="1" ({if $portal_config.layout_config.is_image.$name})checked="checked" ({/if})/>記事画像を表示
            </td>
            </tr>
-           
+
            <tr>
            <th>({$portal_rss_list.3.name|default:'RSSリーダー3'})</th>
            <td>
@@ -188,7 +188,7 @@
                <input type="checkbox" name="({$name})_is_image" value="1" ({if $portal_config.layout_config.is_image.$name})checked="checked" ({/if})/>記事画像を表示
            </td>
            </tr>
-           
+
            <tr>
            <th>({$portal_rss_list.4.name|default:'RSSリーダー4'})</th>
            <td>
@@ -205,7 +205,7 @@
                <input type="checkbox" name="({$name})_is_image" value="1" ({if $portal_config.layout_config.is_image.$name})checked="checked" ({/if})/>記事画像を表示
            </td>
            </tr>
-           
+
            <tr>
            <th>({$portal_rss_list.5.name|default:'RSSリーダー5'})</th>
            <td>

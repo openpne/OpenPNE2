@@ -19,7 +19,7 @@
 <hr color="#({$ktai_color_config.border_01})">
 届いたﾒｰﾙに記載してあるURLにｱｸｾｽして、ﾊﾟｽﾜｰﾄﾞを入力すると変更が完了します。
 ({if $smarty.const.OPENPNE_AUTH_MODE == 'slavepne' && !$smarty.const.IS_SLAVEPNE_EMAIL_REGIST})
-<br>初期設定ではメールアドレスが登録されておりません。新着情報などご希望の際はこちらからご登録ください。 
+<br>初期設定ではメールアドレスが登録されておりません。新着情報などご希望の際はこちらからご登録ください。
 ({/if})
 <hr color="#({$ktai_color_config.border_01})">
 <center>

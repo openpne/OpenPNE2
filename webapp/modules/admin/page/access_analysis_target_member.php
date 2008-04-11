@@ -22,7 +22,7 @@ class admin_page_access_analysis_target_member extends OpenPNE_Action
         $orderby1 = $requests['orderby1'];
         $orderby2 = $requests['orderby2'];
         //----------リクエスト変数-------------//
-        
+
         $v = array();
 
         $v['SNS_NAME'] = SNS_NAME;

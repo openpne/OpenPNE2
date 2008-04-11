@@ -8,7 +8,7 @@
 
 /**
  * コミュニティ情報をIDから取得
- * 
+ *
  * @param  int $c_commu_id
  * @return array コミュニティ情報
  */
@@ -88,7 +88,7 @@ function db_commu_regist_join_list()
 
 /**
  * コミュニティの参加メンバー数を取得
- * 
+ *
  * @param   int $c_commu_id
  * @return  int 参加メンバー数
  */
@@ -101,7 +101,7 @@ function db_commu_count_c_commu_member_list4c_commu_id($c_commu_id)
 
 /**
  * メンバーの参加コミュニティ数を取得
- * 
+ *
  * @param int $c_member_id
  * @return int 参加コミュニティ数
  */
@@ -128,7 +128,7 @@ function db_commu_get_max_number4topic($c_commu_topic_id)
 
 /**
  * 次の書き込み番号取得
- * 
+ *
  * @param  int $c_commu_topic_id
  * @return int 次の書き込み番号
  */
@@ -139,9 +139,9 @@ function db_commu_c_commu_topic_comment_number4c_commu_topic_id($c_commu_topic_i
 
 //// 判定
 
-/** 
+/**
  * コミュニティのメンバーかどうか判定
- * 
+ *
  * @param  int c_commu_id
  * @param  int c_member_id
  * @return bool
@@ -156,7 +156,7 @@ function db_commu_is_c_commu_member($c_commu_id, $c_member_id)
 
 /**
  * コミュニティの管理者かどうかを判定
- * 
+ *
  * @param  int $c_commu_id
  * @param  int $c_member_id
  * @return bool
@@ -171,7 +171,7 @@ function db_commu_is_c_commu_admin($c_commu_id, $c_member_id)
 
 /**
  * コミュニティの副管理者かどうかを判定
- * 
+ *
  * @param  int $c_commu_id
  * @param  int $c_member_id
  * @return bool
@@ -307,7 +307,7 @@ function db_common_receive_pc_address_list4c_commu_id($c_commu_id)
 
 /**
  * 管理者交代の要請情報をIDから取得
- * 
+ *
  * @param  int $c_commu_admin_confirm_id
  * @return array
  *              c_commu_admin_confirm,
@@ -324,7 +324,7 @@ function db_c_commu_admin_confirm4c_commu_admin_confirm_id($c_commu_admin_confir
 
 /**
  * 副管理者の要請情報をIDから取得
- * 
+ *
  * @param  int $c_commu_sub_admin_confirm_id
  * @return array
  *              c_commu_sub_admin_confirm,
@@ -545,7 +545,7 @@ function db_commu_new_topic_comment4c_commu_id($c_commu_id, $limit, $event_flag 
 /**
  * コミュニティに招待するMyフレンドのリストを得る
  * コミュニティに参加していないMyフレンドを全員表示
- * 
+ *
  * @param   int $c_member_id
  * @param   int $c_commu_id
  */
@@ -641,7 +641,7 @@ function db_commu_c_commu_list4c_member_id_2($c_member_id, $limit = 9)
 
 /**
  * あなたに(の)管理コミュニティに参加を希望しているメンバー
- * 
+ *
  * @param   int $c_member_id    : 要請されている方(あなた＝管理者)
  * @return  array_of_array
  *              c_commu_member_confirm.*
@@ -667,7 +667,7 @@ function db_commu_anatani_c_commu_member_confirm_list4c_member_id($c_member_id)
 }
 /**
  * あなたがコミュニティ参加要請しているコミュニティ
- * 
+ *
  * @param   int $c_member_id    : 要請している方(あなた)
  * @return  array_of_array
  *              c_commu_member_confirm.*,
@@ -695,7 +695,7 @@ function db_commu_anataga_c_commu_member_confirm_list4c_member_id($c_member_id)
 
 /**
  * あなたにコミュニティ管理者交代を希望しているメンバー
- * 
+ *
  * @param   int $c_member_id_to : 要請されている方(あなた)
  * @return  array_of_array
  *              c_commu_admin_confirm.*
@@ -723,7 +723,7 @@ function db_commu_anatani_c_commu_admin_confirm_list4c_member_id($c_member_id_to
 
 /**
  * あなたがコミュニティ管理者交代を要請しているメンバー
- * 
+ *
  * @param   int $c_member_id_admin  : 要請している方(あなた)
  * @return  array_of_array
  *              c_commu_admin_confirm.*
@@ -750,7 +750,7 @@ function db_commu_anataga_c_commu_admin_confirm_list4c_member_id($c_member_id_ad
 
 /**
  * あなたにコミュニティ副管理者を希望しているメンバー
- * 
+ *
  * @param   int $c_member_id_to : 要請されている方(あなた)
  * @return  array_of_array
  *              c_commu_sub_admin_confirm.*
@@ -778,7 +778,7 @@ function db_commu_anatani_c_commu_sub_admin_confirm_list4c_member_id($c_member_i
 
 /**
  * あなたがコミュニティ副管理者を要請しているメンバー
- * 
+ *
  * @param   int $c_member_id_admin  : 要請している方(あなた)
  * @return  array_of_array
  *              c_commu_sub_admin_confirm.*
@@ -830,7 +830,7 @@ function db_commu_c_commu_topic_comment_list4c_member_id($c_member_id, $limit)
             ' FROM (' .
                     ' SELECT cct.c_commu_topic_id, MAX(cctc.r_datetime) as r_datetime' .
                     ' FROM' .
-                        ' c_commu_topic as cct, c_commu_topic_comment as cctc'. $hint . 
+                        ' c_commu_topic as cct, c_commu_topic_comment as cctc'. $hint .
                     ' WHERE ' .
                         ' cct.c_commu_id IN (' . $ids . ') AND cctc.c_commu_topic_id = cct.c_commu_topic_id'.
                     ' GROUP BY cct.c_commu_topic_id' .
@@ -893,7 +893,7 @@ function db_commu_c_commu_topic_comment_list4c_member_id_2($c_member_id, $limit,
             ' FROM (' .
                     ' SELECT cct.c_commu_topic_id, MAX(cctc.r_datetime) as r_datetime' .
                     ' FROM' .
-                        ' c_commu_topic as cct, c_commu_topic_comment as cctc'. $hint . 
+                        ' c_commu_topic as cct, c_commu_topic_comment as cctc'. $hint .
                     ' WHERE ' .
                         ' cct.c_commu_id IN (' . $ids . ') AND cctc.c_commu_topic_id = cct.c_commu_topic_id'.
                     ' GROUP BY cct.c_commu_topic_id' .
@@ -1044,7 +1044,7 @@ function db_commu_is_topic4c_commu_id($c_commu_id)
 
 /**
  * IDからコミュニティトピックコメントの情報を取得
- * 
+ *
  * @param int $c_commu_topic_comment_id
  * @return array
  */
@@ -1127,7 +1127,7 @@ function db_commu_c_commu_member4c_member_id($c_member_id, $c_commu_id)
 
 /**
  * コミュニティトピック情報取得
- * 
+ *
  * @param   int $c_commu_topic_id
  * @return  array トピック情報
  */
@@ -1140,7 +1140,7 @@ function db_commu_c_commu_topic4c_commu_topic_id($c_commu_topic_id)
 
 /**
  * コミュニティ参加要請情報をIDから取得
- * 
+ *
  * @param   int $c_commu_member_confirm_id
  * @return  array
  *              c_commu_member_confirm.*,
@@ -1199,7 +1199,7 @@ function db_commu_c_commu_topic_comment4c_commu_topic_comment_id_2($c_commu_topi
 
 /**
  * トピック情報取得
- * 
+ *
  * @param   int $c_commu_topic_id
  * @return  array $c_commu_topic
  */
@@ -1574,7 +1574,7 @@ function db_commu_c_commu_topic_comment_list4c_member_id_3($c_member_id, $page_s
 
 /**
  * あなたに(の)管理コミュニティに参加を希望しているメンバー(参加承認待ち)
- * 
+ *
  * @param   int $c_member_id    : 要請されている方(あなた＝管理者)
  * @return  array_of_array
  *              c_commu_member_confirm.*
@@ -1601,7 +1601,7 @@ function db_commu_anatani_c_commu_member_confirm_list4c_member_id_2($c_member_id
 
 /**
  * あなたがコミュニティ参加要請しているコミュニティ(参加要請中)
- * 
+ *
  * @param   int $c_member_id    : 要請している方(あなた)
  * @return  array_of_array
  *              c_commu_member_confirm.*,
@@ -1627,7 +1627,7 @@ function db_commu_anataga_c_commu_member_confirm_list4c_member_id_2($c_member_id
 
 /**
  * トピックIDからトピック情報を取得
- * 
+ *
  * @param int c_commu_topic_id
  * @return array_of_array c_commu_topic.*, commu_name
  */
@@ -1673,7 +1673,7 @@ function db_commu_c_commu_category_list4null()
 
 /**
  * 中カテゴリリストを取得
- * 
+ *
  * @return  array 中カテゴリリスト
  */
 function db_commu_c_commu_category_parent_list4null()
@@ -1693,7 +1693,7 @@ function db_commu_get_c_commu_category4id($c_commu_category_id)
     return db_get_row($sql, $params);
 }
 
-/** 
+/**
  * コミュニティの小カテゴリIDから小カテゴリ名を得る
  */
 function db_commu_c_commu_category_name4c_commu_category_id($c_commu_category_id)
@@ -2120,7 +2120,7 @@ function db_commu_c_commu_member_id_list4c_commu_id($c_commu_id)
 
 /**
  * コミュニティ作成
- * 
+ *
  * @param  int     $c_member_id 管理者のメンバーID
  * @param  string  $name  コミュニティ名
  * @param  int     $c_commu_category_id
@@ -2146,7 +2146,7 @@ function db_commu_insert_c_commu($c_member_id, $name, $c_commu_category_id, $inf
 
 /**
  * コミュニティ設定変更
- * 
+ *
  * @param   int    $c_commu_id
  * @param   string $name
  * @param   int    $c_commu_category_id
@@ -2209,7 +2209,7 @@ function db_commu_delete_c_commu_image_filename($c_commu_id)
 
 /**
  * 管理者交代
- * 
+ *
  * @param   int $c_commu_admin_confirm
  * @param   int $u : 自分のc_membmer_id
  * @return bool
@@ -2226,7 +2226,7 @@ function db_commu_update_c_commu_c_member_id_admin($c_commu_id, $c_member_id)
 
 /**
  * 副管理者に指名
- * 
+ *
  * @param   int $c_commu_sub_admin_confirm
  * @param   int $u : 自分のc_membmer_id
  * @return bool
@@ -2253,7 +2253,7 @@ function db_commu_update_is_regist_join($c_commu_id, $value = 0)
 
 //--- confirm
 
-/** 
+/**
  * コミュニティ参加要請を削除
  */
 function db_commu_delete_c_commu_member_confirm($c_commu_member_confirm_id)
@@ -2329,7 +2329,7 @@ function db_commu_insert_c_commu_sub_admin_confirm($c_commu_id, $c_member_id, $m
 
 /**
  * 管理者交代の要請を削除
- * 
+ *
  * @param   int $c_commu_admin_confirm_id
  */
 function db_commu_delete_c_commu_admin_confirm4id($c_commu_admin_confirm_id)
@@ -2341,7 +2341,7 @@ function db_commu_delete_c_commu_admin_confirm4id($c_commu_admin_confirm_id)
 
 /**
  * 副管理者の要請を削除
- * 
+ *
  * @param   int $c_commu_sub_admin_confirm_id
  */
 function db_commu_delete_c_commu_sub_admin_confirm4id($c_commu_sub_admin_confirm_id)
@@ -2408,7 +2408,7 @@ function db_commu_delete_c_commu_topic($c_commu_topic_id)
 
 /**
  * トピックコメント書き込み
- * 
+ *
  * @param   int    $c_commu_id
  * @param   int    $c_commu_topic_id
  * @param   int    $c_member_id
@@ -2516,7 +2516,7 @@ function db_commu_update_c_commu_topic($c_commu_topic_id, $topic)
     if (isset($topic['open_date']) && $topic['open_date']) {
         $open_date = $topic['open_date'];
     }
-    
+
     if (isset($topic['invite_period']) && $topic['invite_period']) {
         $invite_period = $topic['invite_period'];
     }
@@ -2607,7 +2607,7 @@ function db_commu_insert_c_commu_topic($topic)
     if (isset($topic['open_date']) && $topic['open_date']) {
         $open_date = $topic['open_date'];
     }
-    
+
     if (isset($topic['invite_period']) && $topic['invite_period']) {
         $invite_period = $topic['invite_period'];
     }
@@ -2748,7 +2748,7 @@ function db_commu_delete_c_commu_member($c_commu_id, $c_member_id)
 
     //副管理者なら副管理者のポストを空に
     $sql = 'UPDATE c_commu' .
-           ' SET c_member_id_sub_admin = 0' . 
+           ' SET c_member_id_sub_admin = 0' .
            ' WHERE c_commu_id = ? AND c_member_id_sub_admin = ?';
     db_query($sql, $params);
 
@@ -2820,7 +2820,7 @@ function db_commu_delete_c_commu_admin_invite($c_commu_admin_invite_id)
 
 /**
  * メンバーの共通参加コミュニティ数を取得
- * 
+ *
  * @param int $target_c_member_id , $u
  * @return int 参加コミュニティ数
  */
@@ -2831,14 +2831,14 @@ function db_common_commu_common_commu_id4c_member_id($target_c_member_id , $u)
     $sql = 'SELECT c_commu_id FROM c_commu_member ' .
             ' WHERE c_member_id = ?' .
             ' ORDER BY c_commu_id DESC ' ;
-    
+
     $params = array(intval($target_c_member_id));
     $f_commu_id_list = db_get_col($sql, $params);
-    
+
     if(is_null($f_commu_id_list)){
         return null;
     }
- 
+
     // 自分のコミュニティリスト
     $sql = 'SELECT c_commu_id FROM c_commu_member ' .
             ' WHERE c_member_id = ?' .
@@ -2846,7 +2846,7 @@ function db_common_commu_common_commu_id4c_member_id($target_c_member_id , $u)
 
     $params = array(intval($u));
     $h_commu_id_list = db_get_col($sql, $params);
-    
+
     if(is_null($h_commu_id_list)){
         return null;
     }
@@ -2859,7 +2859,7 @@ function db_common_commu_common_commu_id4c_member_id($target_c_member_id , $u)
     }
 
     return $common_commu_id_list;
-    
+
 }
 
 /**
@@ -2880,14 +2880,14 @@ function db_common_commu_common_commu_list4c_member_id($target_c_member_id, $u, 
             " FROM c_commu" .
             " WHERE c_commu_id in (".$common_commu_id_str_list.")" .
             " ORDER BY c_commu_id DESC ";
-    
+
     $common_commu_list = db_get_all_page($sql, $page, $page_size);
-    
+
     foreach ($common_commu_list as $key => $value) {
         $common_commu_list[$key]['count_members'] =
             db_commu_count_c_commu_member_list4c_commu_id($value['c_commu_id']);
     }
-    
+
     $pager = array(
         "total_num" => count($common_commu_id_list),
         "disp_num"  => count($common_commu_list),
@@ -2918,7 +2918,7 @@ function db_common_commu_common_commu_list4c_member_id($target_c_member_id, $u, 
 
 }
 
-/** 
+/**
  * コミュニティ参加要請IDを取得
  */
 function db_commu_get_c_commu_member_confirm_id($c_member_id, $c_commu_id)
@@ -2928,7 +2928,7 @@ function db_commu_get_c_commu_member_confirm_id($c_member_id, $c_commu_id)
     return db_get_one($sql, $params);
 }
 
-/** 
+/**
  * トピック検索
  */
 function db_commu_search_c_commu_topic(

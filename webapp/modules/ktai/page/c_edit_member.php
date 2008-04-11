@@ -37,7 +37,7 @@ class ktai_page_c_edit_member extends OpenPNE_Action
 
         // 管理者交代メッセージ送信先メンバーリスト
         foreach ($c_member_list as $key => $c_member) {
-            if ($c_member['c_member_id'] != $c_commu['c_member_id_admin'] 
+            if ($c_member['c_member_id'] != $c_commu['c_member_id_admin']
                 && $c_member['c_commu_admin_confirm_id'] <= 0
                 && $c_member['c_commu_sub_admin_confirm_id'] <= 0) {
                 $c_member_list[$key]['is_display_admin'] = true;

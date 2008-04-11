@@ -643,7 +643,7 @@ class mail_sns
             m_debug_log('mail_sns::add_topic_image() no images');
             return false;
         }
-        
+
     }
 
     /**

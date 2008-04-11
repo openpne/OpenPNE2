@@ -6,10 +6,10 @@
 
 /**
  * 確認画面用に一時ファイルを保存して、そのファイル名を返す
- * 
+ *
  * 保存先:     var/tmp/
  * ファイル名: ($prefix)_($uid).($ext)
- * 
+ *
  * @param array $upfile
  * @param string $uid
  * @param string $prefix
@@ -65,7 +65,7 @@ function t_file_clear_tmp($uid)
 
 /**
  * 一時ファイル情報をDBに保存する
- * 
+ *
  * @param string $prefix
  * @param string $tmpfile
  * @param string $original_filename

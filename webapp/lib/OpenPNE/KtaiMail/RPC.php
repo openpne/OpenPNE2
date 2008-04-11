@@ -19,7 +19,7 @@ class OpenPNE_KtaiMail_RPC extends OpenPNE_KtaiMail
 
     /**
      * constructor
-     * 
+     *
      * @access public
      * @param string $options
      *      - from_encoding    : 変換元文字エンコーディング
@@ -36,7 +36,7 @@ class OpenPNE_KtaiMail_RPC extends OpenPNE_KtaiMail
 
     /**
      * メールをデコード
-     * 
+     *
      * @access public
      * @param array $rpc_value XML_RPCが取得したパラメータ配列
      */
@@ -47,7 +47,7 @@ class OpenPNE_KtaiMail_RPC extends OpenPNE_KtaiMail
 
     /**
      * ヘッダー(From:)から送信元メールアドレスを取得
-     * 
+     *
      * @access public
      * @return string Fromメールアドレス
      */
@@ -58,7 +58,7 @@ class OpenPNE_KtaiMail_RPC extends OpenPNE_KtaiMail
 
     /**
      * ヘッダー(To:)から宛先メールアドレスを取得
-     * 
+     *
      * @access public
      * @return string Toメールアドレス
      */
@@ -69,7 +69,7 @@ class OpenPNE_KtaiMail_RPC extends OpenPNE_KtaiMail
 
     /**
      * Subject の内容を抽出(＋文字コード変換)
-     * 
+     *
      * @access public
      * @return string Subject
      */
@@ -80,7 +80,7 @@ class OpenPNE_KtaiMail_RPC extends OpenPNE_KtaiMail
 
     /**
      * メール本文からテキストを抽出(＋文字コード変換)
-     * 
+     *
      * @access public
      * @return string メール本文のテキスト
      */
@@ -91,7 +91,7 @@ class OpenPNE_KtaiMail_RPC extends OpenPNE_KtaiMail
 
     /**
      * メールから画像データを抽出
-     * 
+     *
      * @access public
      * @return array 画像データ配列
      */

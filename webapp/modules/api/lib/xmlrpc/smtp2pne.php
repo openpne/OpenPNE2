@@ -27,7 +27,7 @@ function xmlrpc_smtp2pne($message)
     }
     if (empty($params['from'])) {
         return xmlrpc_get_response_faultDefault('incorrect_params');
-    }    
+    }
 
     // デコーダオブジェクトを作成
     $options['from_encoding']    = 'UTF-8';

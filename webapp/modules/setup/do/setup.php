@@ -60,11 +60,11 @@ class setup_do_setup extends OpenPNE_Action
             'regist_address' => t_encrypt($requests['pc_address']),
             'easy_access_id' => '',
         );
-        
+
         if (OPENPNE_AUTH_MODE == 'slavepne' && !IS_SLAVEPNE_EMAIL_REGIST) {
             $data['ktai_address'] = t_encrypt('1@ktai.example.com');
         }
-        
+
         db_insert('c_member_secure', $data);
 
         // c_admin_user
@@ -74,7 +74,7 @@ class setup_do_setup extends OpenPNE_Action
             'auth_type' => 'all',
         );
         db_insert('c_admin_user', $data);
-        
+
         if (OPENPNE_AUTH_MODE != 'email') {
             db_member_insert_username(1, $requests['username']);
         }

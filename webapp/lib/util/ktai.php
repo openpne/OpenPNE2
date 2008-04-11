@@ -66,7 +66,7 @@ function k_p_common_msg4msg_id($msg_id)
 
 /**
  * 携帯端末からのアクセスかどうかを User-Agent の値から判別する
- * 
+ *
  * @return bool
  */
 function isKtaiUserAgent()
@@ -91,8 +91,8 @@ function k_p_fh_common_get_type($target_c_member_id, $u)
 
 /** 関数
  * k_p_c_bbs_c_member_admin4c_commu_topic_id($c_commu_topic_id)
- * 
- * 
+ *
+ *
  */
 function k_p_h_message_ktai_url4url($str, $tail)
 {
@@ -180,7 +180,7 @@ function t_get_user_hash($c_member_id, $length = 12)
 
 /**
  * 携帯端末からのアクセスかどうかを IPアドレスから判別する
- * 
+ *
  * @return bool
  */
 function is_ktai_ip()
