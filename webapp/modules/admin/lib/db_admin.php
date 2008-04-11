@@ -554,7 +554,7 @@ function db_admin_get_auth_type($c_admin_user_id)
  * 
  * @return array
  */
-function db_admin_c_member_id_list4cond_c_member($cond_list, $order = null)
+function db_admin_c_member_id_list4cond_c_member($cond_list, $type = array())
 {
     $sql = 'SELECT c_member_id FROM c_member';
     $wheres = array();
@@ -612,10 +612,8 @@ function db_admin_c_member_id_list4cond_c_member($cond_list, $order = null)
 
     // $orderの例：id_1 , id_2
     // 「-」の前が項目名であとが1なら昇順 2なら降順
-    $type = explode('-', $order);
-
     $is_order = false;
-    if ($order) {
+    if (!empty($type)) {
         $is_order = true;
 
         switch ($type[0]) {
@@ -738,10 +736,8 @@ function db_admin_c_member_id_list4cond_mail_address($ids, $cond_list)
  * 
  * @return array
  */
-function db_admin_c_member_id_list4cond_c_profile($ids, $cond_list, $order)
+function db_admin_c_member_id_list4cond_c_profile($ids, $cond_list, $type)
 {
-    $type = explode('-', $order);
-
     // ランクでソートとポイントでソートは同等
     if ($type[0] == 'RANK') {
         $type[0] = 'PNE_POINT';
@@ -794,11 +790,30 @@ function db_admin_c_member_id_list4cond_c_profile($ids, $cond_list, $order)
 }
 
 /**
+ * ログインIDによるメンバーIDリストソート
+ *
+ * @return array
+ */
+function db_admin_c_member_id_list_sort4username($ids, $type)
+{
+    $sql = 'SELECT c_member_id FROM c_username ORDER BY username';
+    if ($type[1] == '2') {
+        $sql .= ' DESC';
+    }
+    
+    $temp_ids = db_get_col($sql, $params);
+    $ids = array_intersect($temp_ids, $ids);
+
+    return $ids;
+}
+
+/**
  * メンバーIDリスト取得(絞り込み対応)
  */
-function _db_admin_c_member_id_list($cond_list, $order = null)
+function _db_admin_c_member_id_list($cond_list, $order = '')
 {
-    $ids = db_admin_c_member_id_list4cond_c_member($cond_list, $order);
+    $type = explode('-', $order);
+    $ids = db_admin_c_member_id_list4cond_c_member($cond_list, $type);
 
     // ポイントで絞り込み
     if (isset($cond_list['s_point']) || isset($cond_list['e_point'])) {
@@ -810,8 +825,13 @@ function _db_admin_c_member_id_list($cond_list, $order = null)
         $ids = db_admin_c_member_id_list4cond_mail_address($ids, $cond_list);
     }
 
+    // ログインIDでソート
+    if ($type[0] == 'username' && OPENPNE_AUTH_MODE != 'email') {
+        $ids = db_admin_c_member_id_list_sort4username($ids, $type);
+    }
+
     // プロフィール項目で絞り込み
-    $ids = db_admin_c_member_id_list4cond_c_profile($ids, $cond_list, $order);
+    $ids = db_admin_c_member_id_list4cond_c_profile($ids, $cond_list, $type);
 
     return $ids;
 }
