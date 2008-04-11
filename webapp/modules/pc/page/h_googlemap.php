@@ -14,7 +14,7 @@ class pc_page_h_googlemap extends OpenPNE_Action
     function execute($requests)
     {
         $u = $GLOBALS['AUTH']->uid();
-        
+
         // --- リクエスト変数
         $x = $requests['x'];
         $y = $requests['y'];

@@ -21,7 +21,7 @@ class OpenPNE_Validator_Common
 
     /**
      * common_validate
-     * 
+     *
      * <ul>
      * <li>共通のiniファイル(validate/common/*.ini)の読み込み</li>
      * <li>$resultの取得</li>

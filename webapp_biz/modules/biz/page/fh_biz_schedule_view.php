@@ -36,7 +36,7 @@ class biz_page_fh_biz_schedule_view extends OpenPNE_Action
         $this->set("target_member", $target_member);
         $this->set("form_val", $form_val);
         $this->set("target_c_member_id", $requests['target_id']);
-        
+
         //カレンダー関係
         //カレンダー開始用変数
         $year = date("Y");
@@ -102,7 +102,7 @@ class biz_page_fh_biz_schedule_view extends OpenPNE_Action
         } else{
             // 繰り返さない予定の場合、日数をセット
             $term = strtotime($list["finish_date"]) - strtotime($list["begin_date"]);
-            
+
             $daycount = ceil($term / (24 * 60 * 60)) + 1;
             $this->set('sc_bn', $daycount);
         }

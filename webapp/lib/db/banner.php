@@ -6,7 +6,7 @@
 
 /**
  * トップバナーを1件ランダムで取得
- * 
+ *
  * @return  array  c_banner
  */
 function db_banner_get_top_banner($is_logined = false)
@@ -24,7 +24,7 @@ function db_banner_get_top_banner($is_logined = false)
 
 /**
  * サイドバナーを1件ランダムで取得
- * 
+ *
  * @return  array  c_banner
  */
 function db_banner_get_side_banner($is_logined = false)
@@ -42,7 +42,7 @@ function db_banner_get_side_banner($is_logined = false)
 
 /**
  * バナーIDからバナー情報を取得
- * 
+ *
  * @param   int $c_banner_id
  * @return  array c_banner
  */

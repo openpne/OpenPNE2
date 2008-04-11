@@ -15,7 +15,7 @@ class OpenPNE_KtaiEmoji
 {
     //変換テーブル
     var $relation_list;
-    
+
     /**
      * constructor
      */
@@ -2797,7 +2797,7 @@ class OpenPNE_KtaiEmoji
             822 => '[s:369]',
         );
     }
-    
+
     function &getInstance()
     {
         static $singleton;
@@ -2840,7 +2840,7 @@ class OpenPNE_KtaiEmoji
             }
             break;
         }
-        
+
         return $emoji_code;
     }
 

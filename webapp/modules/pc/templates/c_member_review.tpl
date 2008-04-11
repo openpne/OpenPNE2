@@ -56,7 +56,7 @@
 </tr><tr>
 <td colspan="2"><p class="operation">
 ({if $c_commu.c_member_id_admin == $u || $c_commu.c_member_id_sub_admin == $u || $review.c_member_id == $u})
-<a href="({t_url m=pc a=page_c_member_review_delete_confirm})&amp;target_c_commu_review_id=({$review.c_commu_review_id})&amp;target_c_commu_id=({$c_commu.c_commu_id})">削除</a> | 
+<a href="({t_url m=pc a=page_c_member_review_delete_confirm})&amp;target_c_commu_review_id=({$review.c_commu_review_id})&amp;target_c_commu_id=({$c_commu.c_commu_id})">削除</a> |
 ({/if})
 <a href="({t_url m=pc a=page_h_review_list_product})&amp;c_review_id=({$review.c_review_id})">他メンバーのレビューを見る</a>
 </p></td>

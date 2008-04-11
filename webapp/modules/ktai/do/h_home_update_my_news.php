@@ -16,12 +16,12 @@ class ktai_do_h_home_update_my_news extends OpenPNE_Action
         // --- リクエスト変数
         $prof_my_news = $requests['prof_my_news'];
         // ----------
-        
+
         db_member_update_c_profile_my_news($u, $prof_my_news, date('Y-m-d H:i:s'));
-        
+
         //--- 権限チェック
         //なし
-        
+
         openpne_redirect('ktai', 'page_h_home');
     }
 }
