@@ -33,7 +33,7 @@ class pc_page_f_message_send extends OpenPNE_Action
                 }
             }
         }
-        
+
         $syusei = 0;
         if ($form_val['subject'] && $form_val['body'])
             $syusei = 1;
@@ -60,12 +60,12 @@ class pc_page_f_message_send extends OpenPNE_Action
                 $target_c_member_id = $tmplist['c_member_id_from'];
             }
         }
-        
+
         $target_member = db_member_c_member4c_member_id($target_c_member_id);
         if (empty($target_member)) {
             handle_kengen_error();
         }
-        
+
         $this->set('inc_navi', fetch_inc_navi("f", $target_c_member_id));
 
         //ターゲット情報

@@ -39,7 +39,7 @@ class portal_page_user_top extends OpenPNE_Action
         if (strlen($layout_type) == 0 || !is_numeric(intval($layout_type))) {
             $layout_type = "1";
         }
-        
+
         //配色設定
         $color_type = $this->_get_portal_config(PORTAL_CONFIG_COLOR_TYPE);
         if (strlen($color_type) == 0) {
@@ -184,7 +184,7 @@ class portal_page_user_top extends OpenPNE_Action
     function _get_portal_config($portal_config_name)
     {
         $data = db_portal_config($portal_config_name);
-        
+
         if (!isset($data)) {
             return "";
         }
@@ -224,14 +224,14 @@ class portal_page_user_top extends OpenPNE_Action
     function _get_free_area($portal_free_area_id)
     {
         $data = db_portal_portal_free_area($portal_free_area_id);
-        
+
         return $data['html'];
     }
 
     function _get_event()
     {
         $data = db_portal_c_commu_event(date('Y-m-d', time()), 0, 5);
-        
+
         return $data;
     }
 

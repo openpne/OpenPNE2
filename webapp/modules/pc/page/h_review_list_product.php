@@ -22,7 +22,7 @@ class pc_page_h_review_list_product extends OpenPNE_Action
         if (!$c_review) {
             handle_kengen_error();
         }
-        
+
         $this->set('inc_navi', fetch_inc_navi('h'));
         $this->set('c_review', $c_review);
 

@@ -7,7 +7,7 @@
 /**
  * あしあとリスト取得
  * 同一人物・同一日付のアクセスは最新の日時だけ
- * 
+ *
  * @param  int $c_member_id_to 訪問された人
  * @param  int $limit
  * @return array あしあとリスト
@@ -42,7 +42,7 @@ function db_ashiato_c_ashiato_list4c_member_id($c_member_id_to, $count)
 
 /**
  * 総あしあと数取得
- * 
+ *
  * @param  int $c_member_id 訪問された人
  * @return int あしあと数
  */
@@ -59,7 +59,7 @@ function db_ashiato_c_ashiato_num4c_member_id($c_member_id)
 
 /**
  * ashiato_mail_num取得
- * 
+ *
  * @param  int $c_member_id
  * @return int ashiato_mail_num
  */

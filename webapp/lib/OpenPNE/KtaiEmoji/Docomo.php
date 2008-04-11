@@ -263,7 +263,7 @@ class OpenPNE_KtaiEmoji_Docomo extends OpenPNE_KtaiEmoji_Common
             252 => '&#xE757;',
         );
     }
-    
+
     function &getInstance()
     {
         static $singleton;

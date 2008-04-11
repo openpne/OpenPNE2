@@ -16,18 +16,18 @@ class admin_page_topic_list extends OpenPNE_Action
     function execute($requests)
     {
         $v = array();
-        
+
         $page = $requests['page'];
         $keyword = $requests['keyword'];
         $target_c_commu_topic_id = $requests['target_c_commu_topic_id'];
 
         $page_size = 20;
-        
+
         if ($target_c_commu_topic_id) {
-            list($topic_list,$prev,$next,$total_num,$total_page_num) 
+            list($topic_list,$prev,$next,$total_num,$total_page_num)
             = monitor_topic_list4target_c_commu_topic_id($target_c_commu_topic_id,$page_size,$page);
         } else {
-            list($topic_list,$prev,$next,$total_num,$total_page_num) 
+            list($topic_list,$prev,$next,$total_num,$total_page_num)
             = monitor_topic_list($keyword,$page_size,$page);
         }
         $this->set('topic_list', $topic_list);
@@ -38,13 +38,13 @@ class admin_page_topic_list extends OpenPNE_Action
         $this->set('keyword', $keyword);
         $this->set('target_c_commu_topic_id', $target_c_commu_topic_id);
         $this->set('total_num', $total_num);
-        
+
         for($i = $page-10<1 ? 1 : $page-10 ;($i<=$total_page_num)&&($i<$page+10);$i++)
             $page_list[]=$i;
         $this->set('page_list', $page_list);
         $this->set('start_num', ($page-1)*$page_size+1);
         $this->set('end_num', ($page-1)*$page_size+count($topic_list));
-        
+
         $v['SNS_NAME'] = SNS_NAME;
         $v['OPENPNE_VERSION'] = OPENPNE_VERSION;
         $this->set($v);

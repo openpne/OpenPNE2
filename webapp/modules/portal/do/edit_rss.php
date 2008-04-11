@@ -7,7 +7,7 @@ class portal_do_edit_rss extends OpenPNE_Action
 
     function execute($requests)
     {
-     
+
         for ($i = $this->min_portal_rss_id; $i <= $this->max_portal_rss_id; $i++) {
             $url = strval($requests['rss_'.$i]);
             $name = strval($requests['rss_name_' . $i]);

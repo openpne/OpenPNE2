@@ -26,7 +26,7 @@ function db_message_c_message4c_message_id($c_message_id)
 
 /**
  * 未読メッセージの数を数える
- * 
+ *
  * @return  num_message_not_is_read
  */
 function db_message_count_c_message_not_is_read4c_member_to_id($c_member_id_to)
@@ -283,7 +283,7 @@ function db_message_c_message_trash_list4c_member_id4range($c_member_id, $page, 
 
 /**
  * 未読メッセージ数を取得
- * 
+ *
  * @param int $c_member_id
  * @return int 未読メッセージ数
  */
@@ -385,7 +385,7 @@ function db_message_hensinmoto_id($hensin_c_message_id)
 
 /**
  * メッセージ作成
- * 
+ *
  * @param   int $c_member_id_from
  * @param   int $c_member_id_to
  * @param   string  $subject
@@ -410,7 +410,7 @@ function db_message_insert_c_message($c_member_id_from, $c_member_id_to, $subjec
 
 /**
  * 承認メッセージ作成
- * 
+ *
  * @param   int $c_member_id_from
  * @param   int $c_member_id_to
  * @param   string  $subject
@@ -458,7 +458,7 @@ function db_message_insert_message_to_is_save($c_member_id_to,$c_member_id_from,
 /**
  * メッセージをゴミ箱へ移動
  * 受信メッセージの場合は既読にする
- * 
+ *
  * @param   int $c_message_id
  * @param   int $c_member_id
  * @return  bool  削除が成功したかどうか
@@ -842,7 +842,7 @@ function db_message_c_message_receiver_list4c_member_id($c_member_id)
     $where = "c_member_id_from = ?".
             " AND is_deleted_from = 0" .
             " AND is_send = 1";
-    
+
     if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
         $sql = "SELECT c_member_id_to" .
                 " FROM" .
@@ -872,7 +872,7 @@ function db_message_c_message_receiver_list4c_member_id($c_member_id)
 
 /**
  * メッセージページの「各月のメッセージ」用
- * 
+ *
  * メッセージを最初に書いた月からスタートしてみる
  */
 function db_message_month_list4c_member_id($c_member_id, $box)

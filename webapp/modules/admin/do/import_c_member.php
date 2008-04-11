@@ -92,7 +92,7 @@ class admin_do_import_c_member extends OpenPNE_Action
                 if (db_member_c_member_id4username($login_id)) {
                     $this->handleError("{$lnum}行目：ログインID［{$login_id}］は既に登録済みです");
                 }
-                
+
             }
 
             // メールアドレスが携帯メールアドレスのドメインの場合は、

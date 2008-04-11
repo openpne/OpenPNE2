@@ -36,7 +36,7 @@ class ktai_biz_page_fh_biz_todo_edit extends OpenPNE_Action
         }
 
         $this->set('target_c_member_id', $target_c_member_id);
-        
+
         return 'success';
     }
 }

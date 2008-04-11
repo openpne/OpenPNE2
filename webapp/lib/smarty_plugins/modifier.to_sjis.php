@@ -6,7 +6,7 @@
 
 /**
  * Smarty to_sjis modifier plugin
- * 
+ *
  * @param string $string
  * @return string
  */

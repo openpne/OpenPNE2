@@ -63,7 +63,7 @@ class biz_do_fh_biz_schedule_edit extends OpenPNE_Action
             openpne_forward('biz', 'page', 'fh_biz_schedule_edit');
             exit();
         }
-        
+
         if(($requests['public_flag'] == 'group') && empty($requests['biz_group_id'])) {
             $_REQUEST['msg'] = '「グループまで公開」予定の場合はグループを指定してください';
             openpne_forward('biz', 'page', 'fh_biz_schedule_edit');
@@ -75,7 +75,7 @@ class biz_do_fh_biz_schedule_edit extends OpenPNE_Action
             //「全員」が含まれている場合は、配列を空に
             $requests['sc_j_mem'] = array();
         }
-        
+
         if (!($requests['sc_b_hour'] || $requests['sc_b_minute'] || $requests['sc_f_hour'] || $requests['sc_f_minute'])) {
             //時刻指定なし
             $begin_time = $finish_time = null;
@@ -90,7 +90,7 @@ class biz_do_fh_biz_schedule_edit extends OpenPNE_Action
 
         $schedule_id = '';
 
-        if (!$requests['sc_rp']) { 
+        if (!$requests['sc_rp']) {
             //繰り返しなし
             $finish_date = date("Y-m-d", strtotime($requests['sc_b_year'].'-'.$requests['sc_b_month'].'-'.($requests['sc_b_date']+($requests['sc_bn']-1))));
             //繰り返しをしない予定登録
@@ -121,13 +121,13 @@ class biz_do_fh_biz_schedule_edit extends OpenPNE_Action
 
             $first_id = biz_getScheduleMax() + 1;  //登録される予定のプライマリキー
 
-            for ($i = 0; $tmp < strtotime($finish_date); $i++) { 
+            for ($i = 0; $tmp < strtotime($finish_date); $i++) {
                 //終了日に達するまで新規予定追加を繰り返す
-                $nowday = strtotime($begin_date . ' +'.$i.'days'); 
+                $nowday = strtotime($begin_date . ' +'.$i.'days');
                 $tmp = $nowday;
-                
+
                 if ($rp_rule & (1 << date("w", $nowday))) {
-                    biz_insertSchedule($requests['sc_title'], $schedule['c_member_id'], date("Y-m-d", $tmp), date("Y-m-d", $tmp), $begin_time, $finish_time, $requests['sc_memo'], $rp_rule, $first_id, $requests['biz_group_id'], $requests['public_flag'], $requests['sc_j_mem']); 
+                    biz_insertSchedule($requests['sc_title'], $schedule['c_member_id'], date("Y-m-d", $tmp), date("Y-m-d", $tmp), $begin_time, $finish_time, $requests['sc_memo'], $rp_rule, $first_id, $requests['biz_group_id'], $requests['public_flag'], $requests['sc_j_mem']);
                 }
             }
 
