@@ -39,6 +39,15 @@ function db_admin_c_member4mail_address($mail_address)
     return $c_member_list;
 }
 
+function db_admin_c_member4username($username)
+{
+    $sql = 'SELECT c_member_id FROM c_username WHERE username = ?';
+    $c_member_id = db_get_one($sql, array($username));
+
+    $c_member = db_member_c_member4c_member_id($c_member_id, true, true, 'private');
+    return $c_member;
+}
+
 function db_admin_c_siteadmin($target)
 {
     $sql = 'SELECT * FROM c_siteadmin WHERE target = ?';
