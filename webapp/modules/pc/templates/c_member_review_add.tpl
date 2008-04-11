@@ -15,11 +15,14 @@
 ({t_form_block m=pc a=page_c_member_review_add_confirm})
 <input type="hidden" name="target_c_commu_id" value="({$c_commu.c_commu_id})" />
 
+({capture name=pager})({strip})
 <div class="pagerRelative">
-({if $is_prev})<p class="prev"><a href="({t_url m=pc a=page_c_member_review_add})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;direc=-1&amp;page=({$page})">前を表示</a></p>({/if})
+({if $is_prev})<p class="prev"><a href="({t_url m=pc a=page_c_member_review_add})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;page=({$page-1})">前を表示</a></p>({/if})
 <p class="number">({$start_num})件～({$end_num})件を表示</p>
-({if $is_next})<p class="next"><a href="({t_url m=pc a=page_c_member_review_add})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;direc=1&amp;page=({$page})">次を表示</a></p>({/if})
+({if $is_next})<p class="next"><a href="({t_url m=pc a=page_c_member_review_add})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;page=({$page+1})">次を表示</a></p>({/if})
 </div>
+({/strip})({/capture})
+({$smarty.capture.pager|smarty:nodefaults})
 
 ({foreach from=$c_review_list item=review})
 <dl>
@@ -61,11 +64,7 @@
 </dl>
 ({/foreach})
 
-<div class="pagerRelative">
-({if $is_prev})<p class="prev"><a href="({t_url m=pc a=page_c_member_review_add})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;direc=-1&amp;page=({$page})">前を表示</a></p>({/if})
-<p class="number">({$start_num})件～({$end_num})件を表示</p>
-({if $is_next})<p class="next"><a href="({t_url m=pc a=page_c_member_review_add})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;direc=1&amp;page=({$page})">次を表示</a></p>({/if})
-</div>
+({$smarty.capture.pager|smarty:nodefaults})
 
 <div class="operation">
 <ul class="moreInfo button">

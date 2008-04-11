@@ -6,15 +6,18 @@
 <div class="dparts photoTable"><div class="parts">
 <div class="partsHeading"><h3>({$WORD_FRIEND})リスト</h3></div>
 
+({capture name=pager})({strip})
 <div class="pagerAbsolute">
 <p>[ ({foreach from=$page_num item=item})({if $item!=$page})<a href="({t_url m=pc a=page_fh_friend_list})&amp;page=({$item})&amp;target_c_member_id=({$target_member.c_member_id})">({$item})</a>({else})({$item})({/if}) ({/foreach})]</p>
 </div>
 
 <div class="pagerRelative">
-({if $is_prev})<p class="prev"><a href="({t_url m=pc a=page_fh_friend_list})&amp;target_c_member_id=({$target_member.c_member_id})&amp;direc=-1&amp;page=({$page})">前を表示</a></p>({/if})
+({if $is_prev})<p class="prev"><a href="({t_url m=pc a=page_fh_friend_list})&amp;target_c_member_id=({$target_member.c_member_id})&amp;page=({$page-1})">前を表示</a></p>({/if})
 <p class="number">({$start_num})件～({$end_num})件を表示</p>
-({if $is_next})<p class="next"><a href="({t_url m=pc a=page_fh_friend_list})&amp;target_c_member_id=({$target_member.c_member_id})&amp;direc=1&amp;page=({$page})">次を表示</a></p>({/if})
+({if $is_next})<p class="next"><a href="({t_url m=pc a=page_fh_friend_list})&amp;target_c_member_id=({$target_member.c_member_id})&amp;page=({$page+1})">次を表示</a></p>({/if})
 </div>
+({/strip})({/capture})
+({$smarty.capture.pager|smarty:nodefaults})
 
 <table>
 ({if $target_friend_list_disp.0})
@@ -148,15 +151,7 @@
 ({/if})
 </table>
 
-<div class="pagerAbsolute">
-<p>[ ({foreach from=$page_num item=item})({if $item!=$page})<a href="({t_url m=pc a=page_fh_friend_list})&amp;page=({$item})&amp;target_c_member_id=({$target_member.c_member_id})">({$item})</a>({else})({$item})({/if}) ({/foreach})]</p>
-</div>
-
-<div class="pagerRelative">
-({if $is_prev})<p class="prev"><a href="({t_url m=pc a=page_fh_friend_list})&amp;target_c_member_id=({$target_member.c_member_id})&amp;direc=-1&amp;page=({$page})">前を表示</a></p>({/if})
-<p class="number">({$start_num})件～({$end_num})件を表示</p>
-({if $is_next})<p class="next"><a href="({t_url m=pc a=page_fh_friend_list})&amp;target_c_member_id=({$target_member.c_member_id})&amp;direc=1&amp;page=({$page})">次を表示</a></p>({/if})
-</div>
+({$smarty.capture.pager|smarty:nodefaults})
 
 </div></div>
 ({* }}} *})
