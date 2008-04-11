@@ -694,6 +694,44 @@ function db_admin_c_member_id_list4cond_pne_point($ids, $cond_list)
 }
 
 /**
+ * メールアドレスの有無によるメンバーIDリスト絞り込み
+ *
+ * 渡されたメンバーIDの配列を条件に従い絞り込んだものを返す
+ * 
+ * @return array
+ */
+function db_admin_c_member_id_list4cond_mail_address($ids, $cond_list)
+{
+    $sql = 'SELECT c_member_id FROM c_member_secure';
+    $wheres = array();
+
+    // PCメールアドレスの有無で絞る
+    if ($cond_list['is_pc_address'] == 1) {
+        $wheres[] = "pc_address <> ''";
+    } elseif ($cond_list['is_pc_address'] == 2) {
+        $wheres[] = "pc_address = ''";
+    }
+
+    // 携帯メールアドレスの有無で絞る
+    if ($cond_list['is_ktai_address'] == 1) {
+        $wheres[] = "ktai_address <> ''";
+    } elseif ($cond_list['is_ktai_address'] == 2) {
+        $wheres[] = "ktai_address = ''";
+    }
+
+    if ($wheres) {
+        $where = ' WHERE ' . implode(' AND ', $wheres);
+    } else {
+        $where = '';
+    }
+    $sql .= $where;
+
+    $temp_ids = db_get_col($sql);
+
+    return array_intersect($ids, $temp_ids);
+}
+
+/**
  * メンバーIDリスト取得(絞り込み対応)
  */
 function _db_admin_c_member_id_list($cond_list, $order = null)
@@ -711,40 +749,10 @@ function _db_admin_c_member_id_list($cond_list, $order = null)
         $ids = db_admin_c_member_id_list4cond_pne_point($ids, $cond_list);
     }
 
-    // --- メールアドレスで絞り込み ここから
+    // メールアドレスで絞り込み
     if (!empty($cond_list['is_pc_address']) || !empty($cond_list['is_ktai_address'])) {
-
-        $sql = 'SELECT c_member_id FROM c_member_secure';
-        $wheres = array();
-
-        //PCメールアドレスの有無で絞る
-        if ($cond_list['is_pc_address'] == 1) {
-            $wheres[] = "pc_address <> ''";
-        } elseif ($cond_list['is_pc_address'] == 2) {
-            $wheres[] = "pc_address = ''";
-        }
-
-        //携帯メールアドレスの有無で絞る
-        if ($cond_list['is_ktai_address'] == 1) {
-            $wheres[] = "ktai_address <> ''";
-        } elseif ($cond_list['is_ktai_address'] == 2) {
-            $wheres[] = "ktai_address = ''";
-        }
-
-        if ($wheres) {
-            $where = ' WHERE ' . implode(' AND ', $wheres);
-        } else {
-            $where = '';
-        }
-        $sql .= $where;
-
-        $temp_ids = db_get_col($sql);
-
-        //メールアドレスで絞り込み
-        $ids = array_intersect($ids, $temp_ids);
-
+        $ids = db_admin_c_member_id_list4cond_mail_address($ids, $cond_list);
     }
-    // --- メールアドレスで絞り込み ここまで
 
     //各プロフィールごとで絞り結果をマージする(ソートオーダーつき)
     $_sql = 'SELECT name, form_type, c_profile_id FROM c_profile';
