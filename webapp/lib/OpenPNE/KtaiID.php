@@ -12,7 +12,7 @@ class OpenPNE_KtaiID
 {
     /**
      * constructor
-     * 
+     *
      * @access public
      */
     function OpenPNE_KtaiID()
@@ -21,7 +21,7 @@ class OpenPNE_KtaiID
 
     /**
      * 個体識別番号を取得する (static)
-     * 
+     *
      * @access public
      * @return string 個体識別番号(取得できなかった場合は空文字列)
      */

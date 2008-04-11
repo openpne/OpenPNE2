@@ -147,7 +147,7 @@
 ({if $is_event_join_date})
     ({if $is_c_event_member})
         <li><input type="submit" class="input_submit" name="button" value="参加をキャンセルする" /></li>
-    ({elseif !$c_topic.capacity || ($c_topic.capacity > $c_topic.member_num)}) 
+    ({elseif !$c_topic.capacity || ($c_topic.capacity > $c_topic.member_num)})
         <li><input type="submit" class="input_submit" name="button" value="イベントに参加する" /></li>
     ({/if})
 ({/if})

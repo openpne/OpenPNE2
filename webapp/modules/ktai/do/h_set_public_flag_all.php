@@ -15,7 +15,7 @@ class ktai_do_h_set_public_flag_all extends OpenPNE_Action
         $u = $GLOBALS['KTAI_C_MEMBER_ID'];
 
         $public_flag = util_cast_public_flag_diary($requests['public_flag_diary_all']);
-        
+
         db_diary_update_public_flag_diary_all($u, $public_flag);
 
         $p = array('msg' => 40);

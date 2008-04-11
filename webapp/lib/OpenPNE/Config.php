@@ -90,7 +90,7 @@ class OpenPNE_Config
 
     /**
      * bind_default()
-     * 
+     *
      * @access public
      */
     function bind_default()

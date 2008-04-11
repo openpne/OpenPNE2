@@ -9,12 +9,12 @@ class portal_do_edit_layout extends OpenPNE_Action
     function execute($requests)
     {
         $layout_type = $requests['layout_type'];
-        
+
         //
         // 登録されていない場合のみinsert
         //
         $tmp = db_portal_config(PORTAL_CONFIG_LAYOUT_TYPE);
-        
+
         if (!isset($tmp)) {
             db_portal_insert_portal_config(PORTAL_CONFIG_LAYOUT_TYPE, $layout_type);
         } else {

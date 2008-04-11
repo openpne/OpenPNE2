@@ -15,7 +15,7 @@ class pc_page_o_password_query extends OpenPNE_Action
     {
         //外部認証の場合はリダイレクト
         check_action4pne_slave(false);
-        
+
         //---- inc_ テンプレート用 変数 ----//
         $this->set('inc_page_header', fetch_inc_page_header('public'));
 

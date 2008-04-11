@@ -151,7 +151,7 @@ class pc_do_o_regist_prof extends OpenPNE_Action
 
                 // pre の内容を削除
                 db_member_delete_c_member_pre4sid($sid);
-        
+
                 // 登録完了メール送信
                 do_regist_prof_do_regist2_mail_send($u);
 

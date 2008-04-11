@@ -21,7 +21,7 @@ class OpenPNE_DBSession
 
     /**
      * sess_nameを取得/変更する
-     * 
+     *
      * メンバ変数で値を保持できないようなので
      * 仕方なくstatic変数で値を保持しておく
      */

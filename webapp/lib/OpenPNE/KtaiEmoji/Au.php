@@ -1,7 +1,7 @@
 <?php
 
 class OpenPNE_KtaiEmoji_Au extends OpenPNE_KtaiEmoji_Common
-{   
+{
     /**
      * constructor
      */
@@ -652,7 +652,7 @@ class OpenPNE_KtaiEmoji_Au extends OpenPNE_KtaiEmoji_Common
             822=> '&#xEB88;',
         );
     }
-    
+
     function &getInstance()
     {
         static $singleton;

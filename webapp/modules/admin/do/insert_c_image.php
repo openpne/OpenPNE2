@@ -7,7 +7,7 @@
 // スキン画像更新
 class admin_do_insert_c_image extends OpenPNE_Action
 {
-    function handleError($errors) 
+    function handleError($errors)
     {
         admin_client_redirect('edit_c_image', array_shift($errors));
     }
