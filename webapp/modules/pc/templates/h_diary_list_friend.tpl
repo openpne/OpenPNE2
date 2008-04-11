@@ -6,13 +6,14 @@
 <div class="dparts recentList"><div class="parts">
 <div class="partsHeading"><h3>({$WORD_MY_FRIEND})最新({$WORD_DIARY})</h3></div>
 
+({capture name=pager})({strip})
 <div class="pagerRelative">
-({if $is_prev})<p class="prev"><a href="({t_url m=pc a=page_h_diary_list_friend})&amp;page=({$page})&amp;direc=-1">前を表示</a></p>
-({/if})
+({if $is_prev})<p class="prev"><a href="({t_url m=pc a=page_h_diary_list_friend})&amp;page=({$page-1})">前を表示</a></p>({/if})
 <p class="number">({$pager.start})件～({$pager.end})件を表示</p>
-({if $is_next})<p class="next"><a href="({t_url m=pc a=page_h_diary_list_friend})&amp;page=({$page})&amp;direc=1">次を表示</a></p>
-({/if})
+({if $is_next})<p class="next"><a href="({t_url m=pc a=page_h_diary_list_friend})&amp;page=({$page+1})">次を表示</a></p>({/if})
 </div>
+({/strip})({/capture})
+({$smarty.capture.pager|smarty:nodefaults})
 
 ({foreach from=$h_diary_list_friend item=item})
 <dl>
@@ -21,13 +22,8 @@
 </dl>
 ({/foreach})
 
-<div class="pagerRelative">
-({if $is_prev})<p class="prev"><a href="({t_url m=pc a=page_h_diary_list_friend})&amp;page=({$page})&amp;direc=-1">前を表示</a></p>
-({/if})
-<p class="number">({$pager.start})件～({$pager.end})件を表示</p>
-({if $is_next})<p class="next"><a href="({t_url m=pc a=page_h_diary_list_friend})&amp;page=({$page})&amp;direc=1">次を表示</a></p>
-({/if})
-</div>
+({$smarty.capture.pager|smarty:nodefaults})
+
 </div></div>
 ({* }}} *})
 
