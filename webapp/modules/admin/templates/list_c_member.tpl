@@ -20,6 +20,18 @@
 <span class="textBtnS"><input type="submit" value="検索" /></span>
 </p>
 </form>
+({if $smarty.const.OPENPNE_AUTH_MODE != 'email'})
+<form action="./" method="get">
+<p id="searchUsername">
+<input type="hidden" name="m" value="({$module_name})" />
+<input type="hidden" name="a" value="page_({$hash_tbl->hash('list_c_member')})" />
+<strong>ログインID検索</strong>(完全一致)：
+<input type="text" class="basic" name="username" value="({$requests.username})" size="30" />
+<span class="textBtnS"><input type="submit" value="検索" /></span>
+</p>
+</form>
+({/if})
+
 <div class="userList">
 ({if $pager})
 <form action="./" method="get">
