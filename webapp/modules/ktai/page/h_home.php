@@ -95,7 +95,7 @@ class ktai_page_h_home extends OpenPNE_Action
 
         // inc_entry_point
         $this->set('inc_ktai_entry_point', fetch_inc_entry_point($this->getView(), 'ktai_h_home'));
-        
+
         return 'success';
     }
 }

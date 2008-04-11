@@ -25,7 +25,7 @@ function smarty_modifier_t_url2a_ktai_callback($matches)
     $host       = $matches[1];
     $raw_action = $matches[2];
     $param      = $matches[3];
-    
+
     //自動リンクのアクションリストにない場合は変換なし
     if (empty($GLOBALS['_OPENPNE_PC2KTAI_LINK_ACTION_LIST'][$raw_action])) {
         return $raw_url;

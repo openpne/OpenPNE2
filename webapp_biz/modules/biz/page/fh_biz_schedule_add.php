@@ -164,7 +164,7 @@ class biz_page_fh_biz_schedule_add extends OpenPNE_Action
 
         $sql = 'SELECT c_member_id, nickname FROM c_member WHERE c_member_id = '.$target_id;
         $my_info = db_get_row($sql);
-        
+
         array_unshift($members, $my_info);
 
         $members[0]['checkflag'] = 1;
@@ -192,7 +192,7 @@ class biz_page_fh_biz_schedule_add extends OpenPNE_Action
             }
         }
         $this->set('members', $members);
-        
+
         return 'success';
     }
 }

@@ -41,7 +41,7 @@ class biz_page_s_list extends OpenPNE_Action
                 'year'=> $y,
                 'month'=>$m,
                 'day' => $d,
-                'dayofweek'=>$dayofweek[$i++], 
+                'dayofweek'=>$dayofweek[$i++],
                 'now' => false,
                 'birth' => db_member_birth4c_member_id($m, $d, $u),
                 'event' => db_commu_event4c_member_id($y, $m, $d, $u),

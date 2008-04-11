@@ -7,7 +7,7 @@
 /**
  * Smarty {t_loop}{/t_loop} block plugin
  * substitute for {foreach}{/foreach}
- * 
+ *
  * @param array $params
  *     from : array
  *     start: int

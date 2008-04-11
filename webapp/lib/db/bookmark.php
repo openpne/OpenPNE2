@@ -45,7 +45,7 @@ function db_bookmark_is_bookmark($c_member_id_from, $c_member_id_to)
 
 /**
  * お気に入りのメンバーIDリスト取得
- * 
+ *
  * @param  int $c_member_id
  * @param  bool $block  アクセスブロックしているメンバーを除外するかどうか
  * @return array  お気に入りのメンバーID配列
