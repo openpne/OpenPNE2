@@ -550,21 +550,21 @@ function db_admin_get_auth_type($c_admin_user_id)
 }
 
 /**
- * メンバーIDリスト取得(絞り込み対応)
+ * c_member テーブル内データによるメンバーIDリスト取得
+ * 
+ * @return array
  */
-function _db_admin_c_member_id_list($cond_list, $order = null)
+function db_admin_c_member_id_list4cond_c_member($cond_list, $order = null)
 {
-    $sql = 'SELECT c_member_id'.
-           ' FROM c_member';
-
+    $sql = 'SELECT c_member_id FROM c_member';
     $wheres = array();
 
-    //開始年
+    // 開始年
     if (!empty($cond_list['s_year'])) {
         $wheres[] = 'birth_year >= ?';
         $params[] = $cond_list['s_year'];
     }
-    //終了年
+    // 終了年
     if (!empty($cond_list['e_year'])) {
         $wheres[] = 'birth_year <= ?';
         $params[] = $cond_list['e_year'];
@@ -577,28 +577,27 @@ function _db_admin_c_member_id_list($cond_list, $order = null)
 
     //最終ログイン時間で絞り込み
     if (isset($cond_list['last_login'])) {
-        //期間で分ける
         switch($cond_list['last_login']) {
-        case 1: //3日以内
+        case 1 : // 3日以内
             $wheres[] = 'access_date >= ?';
             $params[] = date('Y-m-d', strtotime('-3 day'));
             break;
-        case 2: //3～7日以内
+        case 2 : // 3～7日以内
             $wheres[] = 'access_date >= ? AND access_date < ?';
             $params[] = date('Y-m-d', strtotime('-7 day'));
             $params[] = date('Y-m-d', strtotime('-3 day'));
             break;
-        case 3: //7～30日以内
+        case 3 : // 7～30日以内
             $wheres[] = 'access_date >= ? AND access_date < ?';
             $params[] = date('Y-m-d', strtotime('-30 day'));
             $params[] = date('Y-m-d', strtotime('-7 day'));
             break;
-        case 4: //30日以上
+        case 4 : // 30日以上
             $wheres[] = 'access_date > ? AND access_date < ?';
             $params[] = '0000-00-00 00:00:00';
             $params[] = date('Y-m-d', strtotime('-30 day'));
             break;
-        case 5: //未ログイン
+        case 5 : // 未ログイン
             $wheres[] = 'access_date = ?';
             $params[] = '0000-00-00 00:00:00';
             break;
@@ -606,70 +605,74 @@ function _db_admin_c_member_id_list($cond_list, $order = null)
     }
 
     if ($wheres) {
-        $where = ' WHERE ' . implode(' AND ', $wheres);
-    } else {
-        $where = '';
+        $sql .= ' WHERE ' . implode(' AND ', $wheres);
     }
-    $sql .= $where;
     
     // --- ソートオーダーここから
 
     // $orderの例：id_1 , id_2
     // 「-」の前が項目名であとが1なら昇順 2なら降順
-    $type = explode("-",$order);
-
-    //ランクでソートとポイントでソートは同等
-    if ($type[0] == 'RANK') {
-        $type[0] = 'PNE_POINT';
-    }
+    $type = explode('-', $order);
 
     $is_order = false;
     if ($order) {
         $is_order = true;
 
         switch ($type[0]) {
-            case "c_member_id":
-                $sql .= ' ORDER BY c_member_id';
+        case "c_member_id":
+            $sql .= ' ORDER BY c_member_id';
             break;
-            case "nickname":
-                $sql .= ' ORDER BY nickname';
+        case "nickname":
+            $sql .= ' ORDER BY nickname';
             break;
-            case "image_filename":
-                $sql .= ' ORDER BY image_filename';
+        case "image_filename":
+            $sql .= ' ORDER BY image_filename';
             break;
-            case "c_member_id_invite":
-                $sql .= ' ORDER BY c_member_id_invite';
+        case "c_member_id_invite":
+            $sql .= ' ORDER BY c_member_id_invite';
             break;
-
-            case "access_date":
-                $sql .= ' ORDER BY access_date';
+        case "access_date":
+            $sql .= ' ORDER BY access_date';
             break;
-
-            case "r_date":
-                $sql .= ' ORDER BY r_date';
+        case "r_date":
+            $sql .= ' ORDER BY r_date';
             break;
-            case "birth":
-                //降順指定
-                if ($type[1] == "2") {
-                    $sql .= ' ORDER BY birth_year DESC, birth_month DESC, birth_day';
-                } else {
-                    $sql .= ' ORDER BY birth_year, birth_month, birth_day';
-                }
+        case "birth":
+            // 降順指定
+            if ($type[1] == "2") {
+                $sql .= ' ORDER BY birth_year DESC, birth_month DESC, birth_day';
+            } else {
+                $sql .= ' ORDER BY birth_year, birth_month, birth_day';
+            }
             break;
-            default :
-                $is_order = false;
-
+        default :
+            $is_order = false;
         }
 
-        //降順指定
+        // 降順指定
         if ($is_order && $type[1] == "2") {
             $sql .= ' DESC';
         }
 
     }
+
     // --- ソートオーダーここまで
 
-    $ids = db_get_col($sql, $params);
+    return db_get_col($sql, $params);
+}
+
+/**
+ * メンバーIDリスト取得(絞り込み対応)
+ */
+function _db_admin_c_member_id_list($cond_list, $order = null)
+{
+    $ids = db_admin_c_member_id_list4cond_c_member($cond_list, $order);
+
+    $type = explode('-', $order);
+    //ランクでソートとポイントでソートは同等
+    if ($type[0] == 'RANK') {
+        $type[0] = 'PNE_POINT';
+    }
 
     // --- ポイントで絞り込み ここから
     if ( isset($cond_list['s_point']) || isset($cond_list['e_point'])) {
