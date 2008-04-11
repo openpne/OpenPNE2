@@ -662,6 +662,38 @@ function db_admin_c_member_id_list4cond_c_member($cond_list, $order = null)
 }
 
 /**
+ * PNE_POINT によるメンバーIDリスト絞り込み
+ *
+ * 渡されたメンバーIDの配列を条件に従い絞り込んだものを返す
+ * 
+ * @return array
+ */
+function db_admin_c_member_id_list4cond_pne_point($ids, $cond_list)
+{
+    $sql = 'SELECT c_member_id'.
+           ' FROM c_member_profile '.
+           ' INNER JOIN c_profile USING (c_profile_id) '.
+           ' WHERE name = ? ';
+    $params = array('PNE_POINT');
+
+    // 開始ポイント
+    if (!empty($cond_list['s_point'])) {
+        $sql .= ' AND value >= ?';
+        $params[] = $cond_list['s_point'];
+    }
+
+    // 終了ポイント
+    if (!empty($cond_list['e_point'])) {
+        $sql .= ' AND value <= ?';
+        $params[] = $cond_list['e_point'];
+    }
+
+    $point_ids = db_get_col($sql, $params);
+
+    return array_intersect($ids, $point_ids);
+}
+
+/**
  * メンバーIDリスト取得(絞り込み対応)
  */
 function _db_admin_c_member_id_list($cond_list, $order = null)
@@ -669,39 +701,15 @@ function _db_admin_c_member_id_list($cond_list, $order = null)
     $ids = db_admin_c_member_id_list4cond_c_member($cond_list, $order);
 
     $type = explode('-', $order);
-    //ランクでソートとポイントでソートは同等
+    // ランクでソートとポイントでソートは同等
     if ($type[0] == 'RANK') {
         $type[0] = 'PNE_POINT';
     }
 
-    // --- ポイントで絞り込み ここから
-    if ( isset($cond_list['s_point']) || isset($cond_list['e_point'])) {
-
-        $sql = 'SELECT c_member_id'.
-               ' FROM c_member_profile '.
-               ' INNER JOIN c_profile USING (c_profile_id) '.
-               ' WHERE name = ? ';
-        $params = array(
-            'PNE_POINT',
-        );
-        //開始ポイント
-        if (!empty($cond_list['s_point'])) {
-            $sql .= ' AND value >= ?';
-            $params[] = $cond_list['s_point'];
-        }
-        //終了ポイント
-        if (!empty($cond_list['e_point'])) {
-            $sql .= ' AND value <= ?';
-            $params[] = $cond_list['e_point'];
-        }
-
-        $point_ids = db_get_col($sql, $params);
-
-        //ポイントで絞り込み
-        $ids = array_intersect($ids, $point_ids);
-
+    // ポイントで絞り込み
+    if (isset($cond_list['s_point']) || isset($cond_list['e_point'])) {
+        $ids = db_admin_c_member_id_list4cond_pne_point($ids, $cond_list);
     }
-    // --- ポイントで絞り込み ここまで
 
     // --- メールアドレスで絞り込み ここから
     if (!empty($cond_list['is_pc_address']) || !empty($cond_list['is_ktai_address'])) {
