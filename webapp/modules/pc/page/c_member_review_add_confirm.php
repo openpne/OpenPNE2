@@ -32,7 +32,7 @@ class pc_page_c_member_review_add_confirm extends OpenPNE_Action
         if (!$c_member_review) {
             handle_kengen_error();
         }
-        
+
         $this->set('c_member_review', $c_member_review);
         $this->set('c_commu', db_commu_c_commu4c_commu_id($c_commu_id));
         $this->set('c_review_id', $c_review_id);

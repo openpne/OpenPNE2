@@ -6,7 +6,7 @@
 
 /**
  * あるメンバーの友達数を取得
- * 
+ *
  * @param int $c_member_id
  * @return int 友達数
  */
@@ -19,7 +19,7 @@ function db_friend_count_friends($c_member_id)
 
 /**
  * 友達かどうか判定
- * 
+ *
  * @param  int $c_member_id1
  * @param  int $c_member_id2
  * @return bool
@@ -34,7 +34,7 @@ function db_friend_is_friend($c_member_id1, $c_member_id2)
 
 /**
  * 友達のメンバーIDリスト取得
- * 
+ *
  * @param  int $c_member_id
  * @param  bool $except_blocked アクセスブロックされているメンバーを除外するか
  * @return array  友達のメンバーID配列
@@ -278,7 +278,7 @@ function db_friend_intro_body4c_member_id($u, $target_c_member_id)
 
 /**
  * あなたにフレンドリンクを要請しているメンバー
- * 
+ *
  * @param   int $c_member_id_to : 要請されている方(あなた)
  * @return  array_of_array
  *              c_friend_confirm.*
@@ -303,7 +303,7 @@ function db_friend_anatani_c_friend_confirm_list4c_member_id($c_member_id_to)
 
 /**
  * あなたがフレンドリンクを要請しているメンバー
- * 
+ *
  * @param   int $c_member_id_from   : 要請している方(あなた)
  * @return  array_of_array
  *              c_friend_confirm.*
@@ -405,7 +405,7 @@ function db_friend_status($u, $target_c_member_id)
 
 /**
  * 友達リンク要請情報をIDから取得
- * 
+ *
  * @param   int $c_friend_confirm_id
  * @return  array c_friend_confirm.*
  */
@@ -559,7 +559,7 @@ function db_friend_friend_list4c_member_id($c_member_id,$page_size,$page)
 
 /**
  * あなたにフレンドリンクを要請しているメンバー(リンク承認待ち)
- * 
+ *
  * @param   int $c_member_id_to : 要請されている方(あなた)
  * @return  array_of_array
  *              c_friend_confirm.*
@@ -582,7 +582,7 @@ function db_friend_ktai_anatani_c_friend_confirm_list4c_member_id($c_member_id_t
 
 /**
  * あなたがフレンドリンクを要請しているメンバー(リンク要請中)
- * 
+ *
  * @param   int $c_member_id_from   : 要請している方(あなた)
  * @return  array_of_array
  *              c_friend_confirm.*
@@ -670,7 +670,7 @@ function db_friend_insert_c_friend($c_member_id_from, $c_member_id_to)
 
 /**
  * リンク申請からフレンドリンクを追加
- * 
+ *
  * @param   int $c_friend_confirm_id
  * @param   int $u  自分のc_member_id
  */
@@ -732,7 +732,7 @@ function db_friend_update_c_friend_intro($c_member_id_from, $c_member_id_to, $in
 
 /**
  * フレンド申請を追加
- * 
+ *
  * @param  int    $c_member_id_from
  * @param  int    $c_member_id_to
  * @param  string $message
@@ -751,7 +751,7 @@ function db_friend_insert_c_friend_confirm($c_member_id_from, $c_member_id_to, $
 
 /**
  * フレンド申請を削除
- * 
+ *
  * @param  int  $c_friend_confirm_id
  * @param  int  $u 自分のc_member_id
  */

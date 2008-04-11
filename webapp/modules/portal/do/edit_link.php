@@ -36,7 +36,7 @@ class portal_do_edit_link extends OpenPNE_Action
 
         // OpenPNE_Validator による検証
         if (!$validator->validate()) {
-            $this->handleError($validator->getErrors());           
+            $this->handleError($validator->getErrors());
         }
 
         // 独自のパラメータ検証

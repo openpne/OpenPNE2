@@ -29,7 +29,7 @@ class ktai_page_o_regist_pre extends OpenPNE_Action
             // 無効の場合、login へリダイレクト
             openpne_redirect('ktai', 'page_o_login', array('msg' => 42));
         }
-        
+
         // メールアドレスが登録できるかどうか
         if (!util_is_regist_mail_address($pre['ktai_address'])) {
             openpne_redirect('ktai', 'page_o_login', array('msg' => 42));
@@ -44,10 +44,10 @@ class ktai_page_o_regist_pre extends OpenPNE_Action
         $this->set('last_login',p_f_home_last_login4access_date($c_member_invite['access_date']));
         $this->set('friend_count',db_friend_count_friends($c_member_invite['c_member_id']));
         $this->set('target_c_member', $c_member_invite);
-        
+
         $this->set('ses', $ses);
         $this->set('SNS_NAME', SNS_NAME);
-        
+
         return 'success';
     }
 }

@@ -1,7 +1,7 @@
 <?php
 class portal_do_edit_portal_image extends OpenPNE_Action
 {
-    function handleError($errors) 
+    function handleError($errors)
     {
         portal_client_redirect('edit_portal_image', array_shift($errors));
     }

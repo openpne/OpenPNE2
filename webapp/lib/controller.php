@@ -284,10 +284,10 @@ function openpne_ext_search($path)
 /**
  * モジュール名を取得
  * 空の場合はデフォルトモジュールを返す
- * 
+ *
  * 間違ったモジュール名を指定した
  * デフォルトモジュールが存在しない場合は false
- * 
+ *
  * @param string $module module name
  */
 function _check_module($module)
@@ -361,10 +361,10 @@ function send_nocache_headers()
             // no-cache
             // 日付が過去
             header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
-    
+
             // 常に修正されている
             header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
-    
+
             // HTTP/1.1
             header('Cache-Control: no-store, no-cache, must-revalidate');
             header('Cache-Control: post-check=0, pre-check=0', false);

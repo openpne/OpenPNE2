@@ -7,7 +7,7 @@
 /**
  * 管理用アカウントが存在するかどうか
  * setup が完了しているかどうかの判定に使う
- * 
+ *
  * @return bool 存在するかどうか
  */
 function db_admin_user_exists()
@@ -180,7 +180,7 @@ function do_common_c_pc_address_pre4sid($sid)
 
 /**
  * パスワードが正しいかどうか認証する
- * 
+ *
  * @param int $c_member_id
  * @param string $password 平文のパスワード
  * @return bool パスワードが正しいかどうか
@@ -188,14 +188,14 @@ function do_common_c_pc_address_pre4sid($sid)
 function db_common_authenticate_password($c_member_id, $password, $is_ktai = false)
 {
     $auth_config = get_auth_config($is_ktai);
-    
+
     if (OPENPNE_AUTH_MODE == 'slavepne' || OPENPNE_AUTH_MODE == 'pneid') {
         $username = db_member_username4c_member_id($c_member_id, $is_ktai);
     } else {
         $auth_config['options']['usernamecol'] = 'c_member_id';
         $username = $c_member_id;
     }
-    
+
     $storage = Auth::_factory($auth_config['storage'],$auth_config['options']);
     return $storage->fetchData($username, $password, false);
 }
@@ -379,7 +379,7 @@ function db_get_c_navi($navi_type = 'h')
 
 /**
  * SNSメンバー退会
- * 
+ *
  * @param int $c_member_id
  */
 function db_common_delete_c_member($c_member_id)
@@ -556,7 +556,7 @@ function db_common_delete_c_member($c_member_id)
 
     $sql = 'DELETE FROM c_member WHERE c_member_id = ?';
     db_query($sql, $single);
-    
+
     $sql = 'DELETE FROM c_username WHERE c_member_id = ?';
     db_query($sql, $single);
 }
@@ -564,7 +564,7 @@ function db_common_delete_c_member($c_member_id)
 /**
  * コミュニティ削除
  * 関連情報を合わせて削除する
- * 
+ *
  * @param int $c_commu_id
  */
 function db_common_delete_c_commu($c_commu_id)

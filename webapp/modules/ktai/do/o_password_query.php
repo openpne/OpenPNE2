@@ -15,7 +15,7 @@ class ktai_do_o_password_query extends OpenPNE_Action
     {
         //外部認証の場合はリダイレクト
         check_action4pne_slave(true);
-        
+
         //--- 権限チェック
         //パスワード確認の質問と答えがあっている
 

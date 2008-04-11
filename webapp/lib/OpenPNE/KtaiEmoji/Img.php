@@ -1396,7 +1396,7 @@ class OpenPNE_KtaiEmoji_Img extends OpenPNE_KtaiEmoji_Common
             ),
         );
     }
-    
+
     function &getInstance()
     {
         static $singleton;
@@ -1408,7 +1408,7 @@ class OpenPNE_KtaiEmoji_Img extends OpenPNE_KtaiEmoji_Common
 
     /**
      * 絵文字IDを画像表示用タグにして返す
-     * 
+     *
      * @param string $emoji_code_id 絵文字ID
      * @return string 画像表示用タグ
      */

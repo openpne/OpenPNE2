@@ -49,10 +49,10 @@ class admin_do_send_messages extends OpenPNE_Action
 
         //送信履歴登録
         db_admin_insert_c_send_messages_history(
-            $requests['subject'], 
-            $requests['body'], 
+            $requests['subject'],
+            $requests['body'],
             $send_num,
-            $send_type, 
+            $send_type,
             $requests['c_member_ids']
         );
 

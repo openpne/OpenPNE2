@@ -19,7 +19,7 @@ class OpenPNE_KtaiMail
     /**
      * デコード結果
      * @var stdClass
-     */ 
+     */
     var $mail;
 
     /** @var string 変換元文字エンコーディング(デフォルト値) */
@@ -42,7 +42,7 @@ class OpenPNE_KtaiMail
 
     /**
      * constructor
-     * 
+     *
      * @access public
      * @param string $options
      *      - from_encoding    : 変換元文字エンコーディング
@@ -80,7 +80,7 @@ class OpenPNE_KtaiMail
 
     /**
      * メールをデコード
-     * 
+     *
      * @access public
      * @param string メールの生データ
      */
@@ -96,7 +96,7 @@ class OpenPNE_KtaiMail
 
     /**
      * ヘッダー(From:)から送信元メールアドレスを取得
-     * 
+     *
      * @access public
      * @return string Fromメールアドレス
      */
@@ -107,7 +107,7 @@ class OpenPNE_KtaiMail
 
     /**
      * ヘッダー(To:)から宛先メールアドレスを取得
-     * 
+     *
      * @access public
      * @return string Toメールアドレス
      */
@@ -118,7 +118,7 @@ class OpenPNE_KtaiMail
 
     /**
      * Subject の内容を抽出(＋文字コード変換)
-     * 
+     *
      * @access public
      * @return string Subject
      */
@@ -130,7 +130,7 @@ class OpenPNE_KtaiMail
 
     /**
      * メール本文からテキストを抽出(＋文字コード変換)
-     * 
+     *
      * @access public
      * @return string メール本文のテキスト
      */
@@ -162,7 +162,7 @@ class OpenPNE_KtaiMail
 
     /**
      * メールから画像データを抽出
-     * 
+     *
      * @access public
      * @return array 画像データ配列
      */
@@ -275,7 +275,7 @@ class OpenPNE_KtaiMail
 
     /**
      * 文字列からメールアドレスを抽出
-     * 
+     *
      * @access private
      * @param string $str 入力文字列
      * @return string メールアドレス
@@ -337,10 +337,10 @@ class OpenPNE_KtaiMail
 
         return $result;
     }
-  
+
     /**
      * 文字エンコーディングの変換、空白文字の削除
-     * 
+     *
      * @access public
      * @param string $str 変換前の文字列
      * @param string $from_encoding

@@ -7,7 +7,7 @@
 class ktai_do_o_login extends OpenPNE_Action
 {
     var $_auth;
-    
+
     function isSecure()
     {
         return false;
@@ -20,17 +20,17 @@ class ktai_do_o_login extends OpenPNE_Action
         $ktai_address = $requests['ktai_address'];
         $password = $requests['password'];
         // ----------
-        
+
         @session_name('OpenPNEktai');
         @session_start();
         @session_regenerate_id();
-        
+
         $config = get_auth_config(true);
         $auth = new OpenPNE_Auth($config);
         $auth->setExpire($GLOBALS['OpenPNE']['ktai']['session_lifetime']);
         $auth->setIdle($GLOBALS['OpenPNE']['ktai']['session_idletime']);
         $this->_auth =& $auth;
-        
+
         if (LOGIN_CHECK_ENABLE) {
             // 不正ログインチェック
             include_once 'OpenPNE/LoginChecker.php';
