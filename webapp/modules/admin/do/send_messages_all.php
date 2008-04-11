@@ -13,7 +13,7 @@ class admin_do_send_messages_all extends OpenPNE_Action
         openpne_forward(ADMIN_MODULE_NAME, 'page', 'send_messages_all');
         exit;
     }
-    
+
     function execute($requests)
     {
         $module_name = ADMIN_MODULE_NAME;
@@ -46,10 +46,10 @@ class admin_do_send_messages_all extends OpenPNE_Action
 
         //送信履歴登録
         db_admin_insert_c_send_messages_history(
-            $requests['subject'], 
-            $requests['body'], 
+            $requests['subject'],
+            $requests['body'],
             $send_num,
-            $send_type, 
+            $send_type,
             $c_member_id_list
         );
 

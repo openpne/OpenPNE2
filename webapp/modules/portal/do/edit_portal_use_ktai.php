@@ -6,7 +6,7 @@ class portal_do_edit_portal_use_ktai extends OpenPNE_Action
         $use_portal = $requests['use_portal'];
 
         $tmp = db_portal_config('USE_PORTAL_KTAI');
-        
+
         if (!isset($tmp)) {
             db_portal_insert_portal_config('USE_PORTAL_KTAI', $use_portal);
         } else {

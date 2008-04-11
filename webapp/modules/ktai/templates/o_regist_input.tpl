@@ -83,7 +83,7 @@
 ({if $profile.disp_regist})
     <font color="#({$ktai_color_config.font_06})">({$profile.caption})：</font>
     ({if $profile.is_required})<font color="#({$ktai_color_config.font_09})">*</font>({/if})<br>
-    
+
     ({if $profile.form_type == 'text'})
         <input type="text" name="profile[({$profile.name})]" value="({$c_member.profile[$profile.name].value})">
     ({elseif $profile.form_type == 'textlong'})

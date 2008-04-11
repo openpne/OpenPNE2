@@ -985,5 +985,5 @@ if ( c['skinChangerArea'] == 0 ) { toggleDisplay('skin_changer_area'); }
 </td>
 </tr>
 ({*******})
-</table> 
+</table>
 ({$inc_footer|smarty:nodefaults})

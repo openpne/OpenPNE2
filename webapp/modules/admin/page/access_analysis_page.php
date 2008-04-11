@@ -36,7 +36,7 @@ class admin_page_access_analysis_page extends OpenPNE_Action
         $this->set("item_str", ($ktai_flag ? "携帯版":"PC版"));
         $this->set("ymd", $ymd);
         $this->set("month_flag", $month_flag);
-        
+
         if ($orderby1) {
             $orderby1 *= -1;
         } else {
@@ -53,11 +53,11 @@ class admin_page_access_analysis_page extends OpenPNE_Action
         $this->set("orderby1", $orderby1);
         $this->set("orderby2", $orderby2);
 
-        list($access_analysis_month_page, $sum) 
+        list($access_analysis_month_page, $sum)
                 = p_access_analysis_page_access_analysis_page4ym($ymd, $month_flag, $ktai_flag, $orderby);
         $this->set("access_analysis_month_page", $access_analysis_month_page);
         $this->set("sum", $sum);
-        
+
         return 'success';
     }
 }

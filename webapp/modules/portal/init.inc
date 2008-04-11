@@ -111,7 +111,7 @@ function init_portal_page(&$smarty)
                 $init_func();
             }
         }
-        
+
     }
 }
 
@@ -128,9 +128,9 @@ function init_portal_do()
 }
 
 /**
- * 
+ *
  * ポータル設定画面用リダイレクトを行います。
- * 
+ *
  */
 function portal_client_redirect($p, $msg = '', $tail = '')
 {

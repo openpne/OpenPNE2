@@ -17,7 +17,7 @@
    <tr>
    ({ext_include file="inc_menu_adminPortalConfig.tpl"})
        <td class="detail">
-       
+
            <h3>({$page_name})</h3>
            <p>「SNSポータル」に表示するコンテンツの表示位置を決めてください。<br />
 左側の表に割り振られた番号を各コンテンツに設定すると、そのポートレット（枠）の位置にコンテンツが表示されます。<br />
@@ -28,7 +28,7 @@
            <input type="hidden" name="m" value="({$module_name})" />
            <input type="hidden" name="a" value="do_({$hash_tbl->hash('edit_contents_ktai','do')})" />
            <input type="hidden" name="sessid" value="({$PHPSESSID})" />
-           
+
            <table class="contents" cellpadding="0" cellspacing="0" border="0">
            <tr>
            <td class="menu">
@@ -40,7 +40,7 @@
            </dl>
            </td>
            <td class="contents">
-           
+
            <table class="contents">
            <tbody>
 

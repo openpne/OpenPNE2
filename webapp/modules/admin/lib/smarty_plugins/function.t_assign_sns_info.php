@@ -45,7 +45,7 @@ function _getMemberCountYesterday()
 {
     $yesterday = date('Y-m-d H:i:s', mktime(0, 0, 0, date('m'), date('d') - 1, date('Y')));
     $today = date('Y-m-d H:i:s', mktime(0, 0, 0, date('m'), date('d'), date('Y')));
-    
+
     $sql = 'SELECT COUNT(*) FROM c_member WHERE r_date >= ? AND r_date < ?';
     $params = array($yesterday, $today);
     return db_get_one($sql, $params);
@@ -87,7 +87,7 @@ function _getFriendCount()
 function _getDiaryCountToday()
 {
     $today = date('Y-m-d H:i:s', mktime(0, 0, 0, date('m'), date('d'), date('Y')));
-    
+
     $sql = 'SELECT COUNT(*) FROM c_diary WHERE r_datetime >= ?';
     $params = array($today);
     return db_get_one($sql, $params);
@@ -100,7 +100,7 @@ function _getDiaryCountYesterday()
 {
     $yesterday = date('Y-m-d H:i:s', mktime(0, 0, 0, date('m'), date('d') - 1, date('Y')));
     $today = date('Y-m-d H:i:s', mktime(0, 0, 0, date('m'), date('d'), date('Y')));
-    
+
     $sql = 'SELECT COUNT(*) FROM c_diary WHERE r_datetime >= ? AND r_datetime < ?';
     $params = array($yesterday, $today);
     return db_get_one($sql, $params);

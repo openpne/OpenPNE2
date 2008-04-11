@@ -12,7 +12,7 @@ class portal_do_edit_portal_use extends OpenPNE_Action
         $use_portal = $requests['use_portal'];
 
         $tmp = db_portal_config(PORTAL_CONFIG_USE_PORTAL);
-        
+
         if (!isset($tmp)) {
             db_portal_insert_portal_config(PORTAL_CONFIG_USE_PORTAL, $use_portal);
         } else {

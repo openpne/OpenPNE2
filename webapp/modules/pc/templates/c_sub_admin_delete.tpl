@@ -27,10 +27,10 @@
 <input type="hidden" name="target_c_commu_id" value="({$c_commu.c_commu_id})" />
 <input type="submit" class="input_submit" value="キャンセル" />
 ({/t_form_block})
-</div>  
-</td>  
-</tr></table></div></div>  
-</div>  
+</div>
+</td>
+</tr></table></div></div>
+</div>
 
 </div></div>
 ({* }}} *})
