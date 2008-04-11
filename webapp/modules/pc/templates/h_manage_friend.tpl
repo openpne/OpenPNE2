@@ -5,11 +5,15 @@
 ({* {{{ manageList *})
 <div class="dparts manageList"><div class="parts">
 <div class="partsHeading"><h3>({$WORD_MY_FRIEND})管理</h3></div>
+
+({capture name=pager})({strip})
 <div class="pagerRelative">
 ({if $pager.prev})<p class="prev"><a href="({t_url m=pc a=page_h_manage_friend page=$pager.prev})">前を表示</a></p>({/if})
 ({if $pager.total_num})<p class="number">({$pager.start})件～({$pager.end})件を表示</p>({/if})
 ({if $pager.next})<p class="next"><a href="({t_url m=pc a=page_h_manage_friend page=$pager.next})">次を表示</a></p>({/if})
 </div>
+({/strip})({/capture})
+({$smarty.capture.pager|smarty:nodefaults})
 
 <table>
 ({foreach from=$c_friend_list item=item})
@@ -28,11 +32,8 @@
 ({/foreach})
 </table>
 
-<div class="pagerRelative">
-({if $pager.prev})<p class="prev"><a href="({t_url m=pc a=page_h_manage_friend page=$pager.prev})">前を表示</a></p>({/if})
-({if $pager.total_num})<p class="number">({$pager.start})件～({$pager.end})件を表示</p>({/if})
-({if $pager.next})<p class="next"><a href="({t_url m=pc a=page_h_manage_friend page=$pager.next})">次を表示</a></p>({/if})
-</div>
+({$smarty.capture.pager|smarty:nodefaults})
+
 </div></div>
 ({* }}} *})
 ({else})
