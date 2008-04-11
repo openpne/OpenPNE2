@@ -18,11 +18,14 @@
 <div class="dparts searchResultList"><div class="parts">
 <div class="partsHeading"><h3>お気に入り</h3></div>
 
+({capture name=pager})({strip})
 <div class="pagerRelative">
-({if $is_prev})<p class="prev"><a href="({t_url m=pc a=page_h_bookmark_list})&amp;direc=-1&amp;page=({$page})">前の20名を表示</a></p>({/if})
+({if $is_prev})<p class="prev"><a href="({t_url m=pc a=page_h_bookmark_list})&amp;page=({$page-1})">前を表示</a></p>({/if})
 <p class="number">({$pager_index.displaying_first})名～({$pager_index.displaying_last})名を表示</p>
-({if $is_next})<p class="next"><a href="({t_url m=pc a=page_h_bookmark_list})&amp;direc=1&amp;page=({$page})">次の20名を表示</a></p>({/if})
+({if $is_next})<p class="next"><a href="({t_url m=pc a=page_h_bookmark_list})&amp;page=({$page+1})">次を表示</a></p>({/if})
 </div>
+({/strip})({/capture})
+({$smarty.capture.pager|smarty:nodefaults})
 
 <div class="block">
 ({foreach from=$c_members item=c_member})
@@ -37,11 +40,7 @@
 ({/foreach})
 </div>
 
-<div class="pagerRelative">
-({if $is_prev})<p class="prev"><a href="({t_url m=pc a=page_h_bookmark_list})&amp;direc=-1&amp;page=({$page})">前の20名を表示</a></p>({/if})
-<p class="number">({$pager_index.displaying_first})名～({$pager_index.displaying_last})名を表示</p>
-({if $is_next})<p class="next"><a href="({t_url m=pc a=page_h_bookmark_list})&amp;direc=1&amp;page=({$page})">次の20名を表示</a></p>({/if})
-</div>
+({$smarty.capture.pager|smarty:nodefaults})
 
 </div></div>
 ({* }}} *})
