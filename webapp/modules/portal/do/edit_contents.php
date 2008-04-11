@@ -52,7 +52,7 @@ class portal_do_edit_contents extends OpenPNE_Action
         //
         unset($tmp);
         $tmp = db_portal_config(PORTAL_CONFIG_HEAD_TEXT);
-        
+
         if (!isset($tmp)) {
             db_portal_insert_portal_config(PORTAL_CONFIG_HEAD_TEXT, $requests['header_text']);
         } else {
@@ -71,14 +71,14 @@ class portal_do_edit_contents extends OpenPNE_Action
                 db_portal_insert_portal_layout($key, $value, $is_image);
             }
         }
-        
+
         portal_client_redirect('edit_contents', 'コンテンツ設定を変更しました');
     }
 
     function validate_position($requests)
     {
         $tmp = array();
-        
+
         foreach ($this->layout_keys as $key) {
             $value = $requests[$key];
             if (($value != PORTAL_LAYOUT_NOUSE ) and (array_key_exists($value ,$tmp))) {
@@ -86,7 +86,7 @@ class portal_do_edit_contents extends OpenPNE_Action
             }
             $tmp[$value] = $key;
         }
-        
+
         return true;
     }
 

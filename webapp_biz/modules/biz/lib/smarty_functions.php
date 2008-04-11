@@ -104,7 +104,7 @@ function biz_getScheduleWeek($u, $member_id, $w, $cmd, $head = true, $value = tr
                 'day' => $d,
                 'month_disp'=>$m_disp,
                 'day_disp' => $d_disp,
-                'dayofweek'=>$dayofweek[$i++], 
+                'dayofweek'=>$dayofweek[$i++],
                 'now' => false,
                 'birth' => db_member_birth4c_member_id($m, $d, $member_id),
                 'event' => db_commu_event4c_member_id($y, $m, $d, $member_id),

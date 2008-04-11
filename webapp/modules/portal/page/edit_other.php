@@ -8,7 +8,7 @@ class portal_page_edit_other extends OpenPNE_Action
         $custom_css = db_portal_config(PORTAL_CONFIG_CUSTOM_CSS);
         $description = db_portal_config(PORTAL_CONFIG_META_DESCRIPTION);
         $keywords = db_portal_config(PORTAL_CONFIG_META_KEYWORDS);
-        
+
         $v = array();
 
         if (!isset($custom_css)) {

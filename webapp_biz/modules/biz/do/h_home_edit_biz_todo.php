@@ -33,7 +33,7 @@ class biz_do_h_home_edit_biz_todo extends OpenPNE_Action
         if (empty($memo)) {
             $_REQUEST['msg'] = 'Todoの内容を入力してください';
             openpne_forward('biz', 'page', 'fh_home_edit_biz_todo');
-            exit;            
+            exit;
         }
 
         if (!$biz_group_id && $public_flag == 'group') {

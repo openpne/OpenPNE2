@@ -35,7 +35,7 @@ class ktai_page_h_message extends OpenPNE_Action
         $this->set("c_message", $c_message);
         $this->set("com_url", $com_url);
         $this->set("friend_url", $friend_url);
-        
+
         //送信箱
         if ($c_message['c_member_id_from'] == $u) {
             $box = 'outbox';

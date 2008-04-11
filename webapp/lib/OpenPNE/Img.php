@@ -32,7 +32,7 @@ class OpenPNE_Img
     /**
      * constructor
      * set options
-     * 
+     *
      * @access public
      * @param array $options
      */
@@ -55,7 +55,7 @@ class OpenPNE_Img
 
     /**
      * リクエストパラメータを取得
-     * 
+     *
      * @access public
      * @param array $vars request vars
      */
@@ -94,7 +94,7 @@ class OpenPNE_Img
 
     /**
      * 画像を生成
-     * 
+     *
      * @access public
      */
     function generate_img()
@@ -157,7 +157,7 @@ class OpenPNE_Img
 
     /**
      * 画像を出力
-     * 
+     *
      * @access public
      */
     function output_img()
@@ -177,7 +177,7 @@ class OpenPNE_Img
 
     /**
      * キャッシュが残っているかどうかチェックする
-     * 
+     *
      * @access protected
      * @return boolean
      */
@@ -188,7 +188,7 @@ class OpenPNE_Img
 
     /**
      * 画像データを取得
-     * 
+     *
      * @access protected
      * @return string raw image data
      */
@@ -199,7 +199,7 @@ class OpenPNE_Img
 
     /**
      * DBから画像バイナリを取得
-     * 
+     *
      * @access protected
      */
     function get_raw_img4db()
@@ -222,7 +222,7 @@ class OpenPNE_Img
 
     /**
      * GDイメージのリサイズ＋形式変換
-     * 
+     *
      * @access protected
      * @param resource $gdimg source GD image
      * @param int $w width
@@ -258,7 +258,7 @@ class OpenPNE_Img
             $o_width  = $s_width * $h / $s_height;
             $o_height = $h;
         }
-        
+
         if ($o_height < 1.) {
             $o_height = 1;
         }
@@ -298,7 +298,7 @@ class OpenPNE_Img
 
     /**
      * send "Content-Type" header
-     * 
+     *
      * @access protected
      */
     function send_content_type()
@@ -320,7 +320,7 @@ class OpenPNE_Img
 
     /**
      * キャッシュを作成する
-     * 
+     *
      * @access protected
      */
     function create_cache($output_gdimg)

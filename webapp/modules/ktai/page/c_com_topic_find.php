@@ -28,12 +28,12 @@ class ktai_page_c_com_topic_find extends OpenPNE_Action
         if (!db_commu_is_c_commu_view4c_commu_idAc_member_id($c_commu_id, $u)) {
             handle_kengen_error();
         }
-        
+
         //バグ回避のため全角空白を半角空白に統一
         $keyword = str_replace("　", " ", $keyword);
 
         do_common_insert_search_log($u, $keyword);
-        
+
         $page_size = 20;
         $page = $page + $direc;
         $this->set('page', $page);

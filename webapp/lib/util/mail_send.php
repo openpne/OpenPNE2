@@ -65,7 +65,7 @@ function t_send_email($address, $subject, $body, $is_receive_mail=true, $from=AD
 
 /**
  * mailテンプレート内容をfetch
- * 
+ *
  * @param string $tpl_name テンプレート名(/templates/mail 直下のファイル)
  * @param array $params Smartyでassignされる連想配列
  * @return string Smartyが出力したHTMLの文字列
@@ -807,7 +807,7 @@ function send_mail_pcktai_rank_up($c_member_id, $before_rank, $after_rank)
     if (!empty($c_member['secure']['pc_address'])) {
         // PCメールアドレスがある場合は、PCのみ送信
         $to = $c_member['secure']['pc_address'];
-        
+
         $params = array(
             'c_member'    => $c_member,
             'before_rank' => $before_rank,
@@ -819,7 +819,7 @@ function send_mail_pcktai_rank_up($c_member_id, $before_rank, $after_rank)
         $to = $c_member['secure']['ktai_address'];
         $p = array('kad' => t_encrypt(db_member_username4c_member_id($c_member['c_member_id'], true)));
         $login_url = openpne_gen_url('ktai', 'page_o_login', $p);
-        
+
         $params = array(
             'c_member'    => $c_member,
             'before_rank' => $before_rank,

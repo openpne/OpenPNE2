@@ -6,7 +6,7 @@
 
 /**
  * 指定メンバーの日記カテゴリリストを取得する
- * 
+ *
  * @param int $c_member_id
  * @return array
  */
@@ -21,7 +21,7 @@ function db_diary_category_list4c_member_id($c_member_id)
 
 /**
  * カテゴリ名からカテゴリIDを得る
- * 
+ *
  * @param int $c_member_id
  * @param string $category_name
  * @return bool
@@ -45,7 +45,7 @@ function db_diary_get_category_name4category_id($category_id)
 
 /**
  * 日記IDからカテゴリリストを得る
- * 
+ *
  * @param int $c_diary_id
  * @return array
  */
@@ -65,7 +65,7 @@ function db_diary_category_list4c_diary_id($c_diary_id)
 
 /**
  * カテゴリIDから日記を得る
- * 
+ *
  * @param int $c_member_id
  * @param int $c_diary_category_id
  * @param int $u
@@ -114,7 +114,7 @@ function db_diary_list4c_diary_category_id($c_member_id, $c_diary_category_id, $
 
 /**
  * カテゴリを追加する
- * 
+ *
  * @param int $c_member_id
  * @param int $category_name
  */
@@ -130,7 +130,7 @@ function db_diary_category_insert_category($c_member_id, $category_name)
 
 /**
  * カテゴリを削除する
- * 
+ *
  * @param int $c_diary_category_id
  */
 function db_diary_category_delete_category($c_diary_category_id)
@@ -140,7 +140,7 @@ function db_diary_category_delete_category($c_diary_category_id)
 }
 /**
  * カテゴリと日記を関連づける
- * 
+ *
  * @param int $c_diary_id
  * @param int $c_diary_category_id
  */
@@ -176,7 +176,7 @@ function db_diary_category_delete_c_diary_category_diary($c_diary_id)
 
 /**
  * db_diary_public_flag_condition
- * 
+ *
  * @param int $c_member_id target c_member_id
  * @param int $u viewer's c_member_id
  * @param string $force
@@ -211,7 +211,7 @@ function db_diary_public_flag_condition($c_member_id, $u = null, $force = null)
 
 /**
  * 日記IDから日記を取得
- * 
+ *
  * @param   int   $c_diary_id
  * @return  array
  */
@@ -223,7 +223,7 @@ function db_diary_get_c_diary4id($c_diary_id)
 
 /**
  * メンバーIDから日記リストを最新順で取得
- * 
+ *
  * @param int $c_member_id
  * @return array 日記リスト
  */
@@ -258,7 +258,7 @@ function p_common_is_active_c_diary_id($c_diary_id)
 
 /**
  * 指定した日記の前の日記IDを取得する
- * 
+ *
  * @param int $c_member_id
  * @param int $c_diary_id
  */
@@ -272,7 +272,7 @@ function db_diary_c_diary_id_prev4c_diary_id($c_member_id, $c_diary_id, $u = nul
 
 /**
  * 指定した日記の次の日記IDを取得する
- * 
+ *
  * @param int $c_member_id
  * @param int $c_diary_id
  */
@@ -288,7 +288,7 @@ function db_diary_c_diary_id_next4c_diary_id($c_member_id, $c_diary_id, $u = nul
 
 /**
  * 日記のコメントリストを得る
- * 
+ *
  * @param   int $c_diary_id
  * @param   int $limit
  * @return  array 日記コメント＋ニックネーム
@@ -304,7 +304,7 @@ function db_diary_get_c_diary_comment_list4c_diary_id($c_diary_id)
 
 /**
  * 日記のコメントリスト（好きなID(複数)）を取得
- * 
+ *
  * @param   array $id_list
  * @param   int   $page
  * @param   int   $page_size
@@ -356,7 +356,7 @@ function db_diary_get_c_diary_comment_list4id_list($id_list, $page = 1, $page_si
 
 /**
  * 日記のコメント数を取得
- * 
+ *
  * @param int $c_diary_id
  * @return int コメント数
  */
@@ -370,7 +370,7 @@ function db_diary_count_c_diary_comment4c_diary_id($c_diary_id)
 
 /**
  * あるメンバーの日記リストを取得
- * 
+ *
  * @param int $c_member_id target c_member_id
  * @param int $page_size
  * @param int $page
@@ -458,7 +458,7 @@ function p_h_diary_list_friend_h_diary_list_friend4c_member_id($c_member_id, $pa
 
 /**
  * 未読コメントのある日記の数を数える
- * 
+ *
  * @param int $c_member_id
  * @return int 未読日記数
  */
@@ -471,7 +471,7 @@ function p_h_diary_count_c_diary_not_is_read4c_member_id($c_member_id)
 
 /**
  * 未読コメントのある日記のうちもっとも古い日記IDを返す
- * 
+ *
  * @param int $c_member_id
  * @return int c_diary_id
  */
@@ -485,7 +485,7 @@ function p_h_diary_c_diary_first_diary_read4c_member_id($c_member_id)
 /**
  * フレンド最新日記リスト取得
  * 日記公開範囲を考慮
- * 
+ *
  * @param   int $c_member_id
  * @param   int $limit
  * @return  array_of_array  (c_diary.*, nickname)
@@ -526,7 +526,7 @@ function p_h_home_c_diary_friend_list4c_member_id($c_member_id, $limit)
 
 /**
  * 日記コメント記入履歴取得
- * 
+ *
  * @param   int $c_member_id
  * @param   int $limit
  * @return  array_of_array  (c_diary.*, nickname)
@@ -662,7 +662,7 @@ function p_h_diary_comment_list_c_diary_my_comment_list4c_member_id($c_member_id
         $sql .= ' OR (d.public_flag = \'friend\' AND d.c_member_id IN (' . $friend_ids . '))';
     }
     $sql .= ')';
- 
+
     $total_num = db_get_one($sql, $params);
 
     $is_prev = false;
@@ -720,7 +720,7 @@ function p_fh_diary_list_diary_list_date4c_member_id($c_member_id, $page_size, $
 
 /**
  * 日記ページの「各月の日記」用
- * 
+ *
  * 日記を最初に書いた月からスタートしてみる
  */
 function p_fh_diary_list_date_list4c_member_id($c_member_id)
@@ -853,7 +853,7 @@ function p_h_diary_is_diary_written_list4date($year, $month, $c_member_id, $u = 
     include_once 'Date/Calc.php';
 
     $pf_cond = db_diary_public_flag_condition($c_member_id, $u);
-    
+
     if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
         $sql = "SELECT DISTINCT date_part('day', r_datetime) FROM c_diary" .
                " WHERE c_member_id = ? AND r_datetime >= ? AND r_datetime < ?" . $pf_cond;
@@ -873,7 +873,7 @@ function p_h_diary_is_diary_written_list4date($year, $month, $c_member_id, $u = 
 
 /**
  * 日記コメント情報をIDから取得
- * 
+ *
  * @param   int $c_diary_comment_id
  * @return array
  *              c_diary_comemnt.*
@@ -1096,7 +1096,7 @@ function db_diary_update_c_diary($c_diary_id, $subject, $body, $public_flag,
 /**
  * 日記削除
  * コメント、画像も削除
- * 
+ *
  * @param int $c_diary_id
  */
 function db_diary_delete_c_diary($c_diary_id)
@@ -1173,7 +1173,7 @@ function db_diary_update_c_diary_is_checked($c_diary_id, $value)
 
 /**
  * 日記コメント追加
- * 
+ *
  * @param  int    $c_member_id
  * @param  int    $c_diary_id
  * @param  string $body
@@ -1215,7 +1215,7 @@ function db_diary_insert_c_diary_comment_images($c_diary_comment_id, $image_file
 
 /**
  * 日記コメント削除
- * 
+ *
  * @param   int $c_diary_comment_id
  * @param   int $u  : 削除しようとしている人の c_member_id
  */

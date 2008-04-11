@@ -4,7 +4,7 @@ require_once 'HTTP/Request.php';
 require_once 'XML/Unserializer.php';
 
 /**
-$GLOBALS['_OPENPNE_AUTH_CONFIG'] = 
+$GLOBALS['_OPENPNE_AUTH_CONFIG'] =
 array(
 'storage'=>"REST_XML",
 'options'=>array(

@@ -41,7 +41,7 @@
 ({capture name="pager"})
 <div class="listControl">
 <p class="display">
-({$total_num})件中 ({$start_num})-({$end_num})件目を表示しています 
+({$total_num})件中 ({$start_num})-({$end_num})件目を表示しています
 </p>
 <p class="listMove">
 ({if $page_list})({foreach from=$page_list item=item})({if $page!=$item})<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('topic_list','page')})&amp;page=({$item})&amp;keyword=({$keyword_encode})">({$item})</a>({else})<b>({$item})</b>({/if})&nbsp;&nbsp;({/foreach})&nbsp;({/if})

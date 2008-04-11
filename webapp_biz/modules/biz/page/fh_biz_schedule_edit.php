@@ -17,7 +17,7 @@ class biz_page_fh_biz_schedule_edit extends OpenPNE_Action
         $form_val['body'] = $requests['body'];
 
         $this->set('banner', $requests['sc_bn']);
-        
+
         if ($requests['sc_title']) {
             $requests['title'] = $requests['sc_title'];
         }
@@ -98,7 +98,7 @@ class biz_page_fh_biz_schedule_edit extends OpenPNE_Action
 
         for ($i = 1; $i <= 12; $i++) {
             $i_f = sprintf("%02d",$i);  //月は常に二桁
-            if ($i == $nowmonth) { 
+            if ($i == $nowmonth) {
                 $monthes .= '<option value="'.$i_f.'" selected>';
             } else {
                 $monthes .= '<option value="'.$i_f.'">';
@@ -133,8 +133,8 @@ class biz_page_fh_biz_schedule_edit extends OpenPNE_Action
 
         $this->set('title', $requests['title']);
         $this->set('value', $requests['value']);
-        
-        
+
+
         if (!is_null($requests['begin_time'])) {
             $this->set('begin_hour', date("G", strtotime($requests['begin_time'])));
         }
@@ -222,7 +222,7 @@ class biz_page_fh_biz_schedule_edit extends OpenPNE_Action
         } else {
             $this->set('public_flag', $schedule['public_flag']);
         }
-        
+
         //追加
         if ($requests['members']) {
             $j_members = array_keys(unserialize($requests['members']));
@@ -248,7 +248,7 @@ class biz_page_fh_biz_schedule_edit extends OpenPNE_Action
                 break;
             }
         }
-        
+
         $this->set('members', $members);
 
         return 'success';

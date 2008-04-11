@@ -13,7 +13,7 @@ class pc_do_h_config_2 extends OpenPNE_Action
     {
         //外部認証の場合はリダイレクト
         check_action4pne_slave(false);
-        
+
         $u = $GLOBALS['AUTH']->uid();
 
         // --- リクエスト変数

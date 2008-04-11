@@ -31,7 +31,7 @@ class pc_page_fh_review_list_member extends OpenPNE_Action
         } else {
             $type = "f";
         }
-        
+
         $c_member = db_member_c_member4c_member_id($c_member_id);
         if (!$c_member) {
             handle_kengen_error();
