@@ -2461,6 +2461,15 @@ function db_commu_update_c_commu_topic_comment_images($c_commu_topic_comment_id,
     return db_update('c_commu_topic_comment', $data, $where);
 }
 
+function db_commu_update_c_commu_topic_comment_file($c_commu_topic_comment_id, $filename)
+{
+    $data = array(
+        'filename' => strval($filename),
+    );
+    $where = array('c_commu_topic_comment_id' => intval($c_commu_topic_comment_id));
+    return db_update('c_commu_topic_comment', $data, $where);
+}
+
 /**
  * 掲示板書き込みに画像を追加する(メールからの投稿)
  */

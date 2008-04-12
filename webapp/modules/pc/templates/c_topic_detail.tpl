@@ -87,6 +87,11 @@
 ({/if})
 <p class="text">({$item.body|nl2br|t_url2cmd:'community'|t_cmd:'community'})</p>
 </div>
+({if $item.filename && $smarty.const.OPENPNE_USE_FILEUPLOAD})
+<div class="block attachFile"><ul>
+<li><a href="({t_url m=pc a=do_c_file_download})&amp;target_c_commu_topic_comment_id=({$item.c_commu_topic_comment_id})&amp;sessid=({$PHPSESSID})">({$item.original_filename})</a></li>
+</ul></div>
+({/if})
 </dd>
 </dl>
 ({/foreach})
@@ -122,6 +127,15 @@
 <th>写真3</th>
 <td><input type="file" class="input_file" name="image_filename3" size="40" /></td>
 </tr>
+({if $smarty.const.OPENPNE_USE_FILEUPLOAD})
+<tr>
+<th>ファイル</th>
+<td>
+<input type="file" class="input_file" name="uploadfile" size="40" />
+<p class="caution">※ファイルサイズは({$smarty.const.FILE_MAX_FILESIZE})KB以内({if $allowed_extensions})、ファイルの種類は(({$allowed_extensions}))({/if})のファイルがアップロードできます。</p>
+</td>
+</tr>
+({/if})
 </table>
 <div class="operation">
 <ul class="moreInfo button">
