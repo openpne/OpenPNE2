@@ -18,6 +18,11 @@
 ({if $topic_write.image_filename3})
 <tr><th>写真3</th><td>({$topic_write.image_filename3})</td></tr>
 ({/if})
+({if $smarty.const.OPENPNE_USE_FILEUPLOAD})
+({if $topic_write.filename4_original_filename})
+<tr><th>ファイル</th><td>({$topic_write.filename4_original_filename})</td></tr>
+({/if})
+({/if})
 </table>
 <div class="operation">
 <ul class="moreInfo button">
