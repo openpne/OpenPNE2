@@ -929,6 +929,9 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 .commentList div.operation {
 	padding: 8px 0;
 }
+.commentList dd div.attachFile {
+	padding: 16px 5px;
+}
 
 /*==============================================================================
  * 8. diaryDetailBox（日記詳細ボックス）
