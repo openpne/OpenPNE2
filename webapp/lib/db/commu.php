@@ -2489,7 +2489,7 @@ function db_commu_update_c_commu_topic_comment_image($c_commu_topic_comment_id, 
  */
 function db_commu_delete_c_commu_topic_comment($c_commu_topic_comment_id)
 {
-    $sql = 'SELECT image_filename1, image_filename2, image_filename3' .
+    $sql = 'SELECT image_filename1, image_filename2, image_filename3, filename' .
         ' FROM c_commu_topic_comment' .
         ' WHERE c_commu_topic_comment_id = ?';
     $params = array(intval($c_commu_topic_comment_id));
@@ -2497,6 +2497,7 @@ function db_commu_delete_c_commu_topic_comment($c_commu_topic_comment_id)
     image_data_delete($topic_comment['image_filename1']);
     image_data_delete($topic_comment['image_filename2']);
     image_data_delete($topic_comment['image_filename3']);
+    db_file_delete_c_file($topic_comment['filename']);
 
     $sql = 'DELETE FROM c_commu_topic_comment WHERE c_commu_topic_comment_id = ?';
     return db_query($sql, $params);
