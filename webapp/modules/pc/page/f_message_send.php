@@ -79,7 +79,9 @@ class pc_page_f_message_send extends OpenPNE_Action
         $this->set("form_val", $form_val);
         $this->set("box", $box);
 
-        /////AA local var samples AA//////////////////////////
+        // 許可されている拡張子のリスト
+        $this->set('allowed_extensions', util_get_file_allowed_extensions('string'));
+
         return 'success';
     }
 }

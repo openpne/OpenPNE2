@@ -42,6 +42,11 @@
 <td>({$form_val.upfile_3.name})</td>
 </tr>
 ({/if})
+({if $smarty.const.OPENPNE_USE_FILEUPLOAD})
+({if $form_val.upfile_4.name})
+<tr><th>ファイル</th><td>({$form_val.upfile_4.name})</td></tr>
+({/if})
+({/if})
 </table>
 <div class="operation">
 <ul class="moreInfo button">
@@ -53,6 +58,8 @@
 <input type="hidden" name="tmpfile_1" value="({$form_val.tmpfile_1})" />
 <input type="hidden" name="tmpfile_2" value="({$form_val.tmpfile_2})" />
 <input type="hidden" name="tmpfile_3" value="({$form_val.tmpfile_3})" />
+<input type="hidden" name="tmpfile_4" value="({$form_val.tmpfile_4})" />
+<input type="hidden" name="tmpfile_4_original_filename" value="({$form_val.upfile_4.name})" />
 <input type="hidden" name="target_c_message_id" value="({$form_val.target_c_message_id})" />
 <input type="hidden" name="jyusin_c_message_id" value="({$form_val.jyusin_c_message_id})" />
 <input type="submit" class="input_submit" name="yes" value="送信" />
