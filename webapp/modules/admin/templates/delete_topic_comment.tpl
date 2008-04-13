@@ -72,6 +72,17 @@
 </td>
 </tr>
 ({****})
+({if $topic_comment.filename && $smarty.const.OPENPNE_USE_FILEUPLOAD})
+<tr>
+<th>ファイル</th>
+<td class="textbody">
+<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('file_download','do')})&amp;filename=({$topic_comment.filename})&amp;sessid=({$PHPSESSID})">
+({$topic_comment.original_filename})
+</a>
+</td>
+</tr>
+({/if})
+({****})
 </tbody>
 </table>
 
