@@ -112,6 +112,17 @@
 </td>
 </tr>
 ({****})
+({if $item.filename && $smarty.const.OPENPNE_USE_FILEUPLOAD})
+<tr>
+<th>ファイル</th>
+<td class="textbody">
+<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('file_download','do')})&amp;filename=({$item.filename})&amp;sessid=({$PHPSESSID})">
+({$item.original_filename})
+</a>
+</td>
+</tr>
+({/if})
+({****})
 <tr>
 <td class="formbutton" colspan="2">
 <form action="./" method="get">
