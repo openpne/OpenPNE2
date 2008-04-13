@@ -2253,6 +2253,7 @@ function monitor_topic_comment_list($keyword, $page_size, $page)
         $list[$key]['count_comments'] = _db_count_c_commu_topic_comments4c_commu_topic_id($value['c_commu_topic_id']);
         $c_member = db_member_c_member4c_member_id_LIGHT($value['c_member_id']);
         $list[$key]['nickname'] = $c_member['nickname'];
+        $list[$key]['original_filename'] = db_file_original_filename4filename($value['filename']);
     }
 
     $sql =
@@ -2290,6 +2291,7 @@ function monitor_topic_comment_list4c_commu_topic_comment_id($c_commu_topic_comm
         $list[$key]['count_comments'] = _db_count_c_commu_topic_comments4c_commu_topic_id($value['c_commu_topic_id']);
         $c_member = db_member_c_member4c_member_id_LIGHT($value['c_member_id']);
         $list[$key]['nickname'] = $c_member['nickname'];
+        $list[$key]['original_filename'] = db_file_original_filename4filename($value['filename']);
     }
 
     $sql =
