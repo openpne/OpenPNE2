@@ -55,6 +55,15 @@
 <input type="file" class="input_file" name="upfile_3" size="40" />
 </td>
 </tr>
+({if $smarty.const.OPENPNE_USE_FILEUPLOAD})
+<tr>
+<th>ファイル</th>
+<td>
+<input type="file" class="input_file" name="uploadfile" size="40" />
+<p class="caution">※ファイルサイズは({$smarty.const.FILE_MAX_FILESIZE})KB以内({if $allowed_extensions})、ファイルの種類は(({$allowed_extensions}))({/if})のファイルがアップロードできます。</p>
+</td>
+</tr>
+({/if})
 </table>
 <div class="operation">
 <ul class="moreInfo button">
