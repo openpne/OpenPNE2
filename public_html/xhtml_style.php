@@ -1542,6 +1542,9 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 .messageDetailBox form ul.moreInfo {
 	display: inline;
 }
+.messageDetailBox div.attachFile {
+	padding: 16px 5px;
+}
 
 /*==============================================================================
  * 20. reviewList（レビューリスト）
