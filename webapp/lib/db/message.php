@@ -666,7 +666,7 @@ function db_message_send_message_event_message($c_member_id_from, $c_member_id_t
     do_common_send_message_mail_send_ktai($c_member_id_to, $c_member_id_from);
 }
 
-function db_message_update_c_message($c_message_id, $subject, $body, $image_filename_1 = '', $image_filename_2 = '', $image_filename_3 = '')
+function db_message_update_c_message($c_message_id, $subject, $body, $image_filename_1 = '', $image_filename_2 = '', $image_filename_3 = '', $filename = '')
 {
     $data = array(
         'subject' => $subject,
@@ -675,6 +675,7 @@ function db_message_update_c_message($c_message_id, $subject, $body, $image_file
     if ($image_filename_1) $data['image_filename_1'] = $image_filename_1;
     if ($image_filename_2) $data['image_filename_2'] = $image_filename_2;
     if ($image_filename_3) $data['image_filename_3'] = $image_filename_3;
+    if ($filename) $data['filename'] = $filename;
 
     $where = array(
         'c_message_id' => intval($c_message_id),
