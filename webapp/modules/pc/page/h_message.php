@@ -29,6 +29,7 @@ class pc_page_h_message extends OpenPNE_Action
         //---- 受信・送信、閲覧権限のチェック ----//
         // メッセージデータ取得
         $c_message = db_message_c_message4c_message_id2($target_c_message_id, $u);
+        $c_message['original_filename'] = db_file_original_filename4filename($c_message['filename']);
 
         if (!$form_val['subject'])
             $form_val['subject'] = "Re:".$c_message['subject'];

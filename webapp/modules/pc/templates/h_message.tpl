@@ -63,6 +63,12 @@
 <p class="text">({$c_message.body|nl2br|t_url2cmd:'message'|t_cmd:'message'})</p>
 </div>
 
+({if $c_message.filename && $smarty.const.OPENPNE_USE_FILEUPLOAD})
+<div class="block attachFile"><ul>
+<li><a href="({t_url m=pc a=do_h_message_file_download})&amp;target_c_message_id=({$c_message.c_message_id})&amp;sessid=({$PHPSESSID})">({$c_message.original_filename})</a></li>
+</ul></div>
+({/if})
+
 <div class="operation">
 ({t_form_block m=pc a=do_h_message_box_delete_message _attr='class="delete"'})
 <input type="hidden" name="c_message_id[]" value="({$c_message.c_message_id})" />
