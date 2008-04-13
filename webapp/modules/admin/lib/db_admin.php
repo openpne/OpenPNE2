@@ -2846,6 +2846,10 @@ function db_admin_delete_c_file_link4filename($filename)
     // c_commu_topic_comment
     $tbl = 'c_commu_topic_comment';
     _db_admin_empty_image_filename($tbl, $filename, 'filename');
+
+    // h_message
+    $tbl = 'c_message';
+    _db_admin_empty_image_filename($tbl, $filename, 'filename');
 }
 
 function db_admin_get_c_member_profile_pnepoint($c_member_id)
