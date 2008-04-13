@@ -44,6 +44,9 @@ class pc_page_f_message_send_confirm extends OpenPNE_Action
             '',
         );
 
+        //添付ファイル
+        $upfile_4 = $_FILES['uploadfile'];
+
         $target_member = db_member_c_member4c_member_id($form_val['target_c_member_id']);
         if (empty($target_member)) {
             handle_kengen_error();
@@ -60,13 +63,29 @@ class pc_page_f_message_send_confirm extends OpenPNE_Action
                 }
             }
         }
+        if (OPENPNE_USE_FILEUPLOAD) {
+            if (!empty($upfile_4) && $upfile_4['error'] !== UPLOAD_ERR_NO_FILE) {
+                // ファイルサイズ制限
+                if ($upfile_4['size'] === 0 || $upfile_4['size'] > FILE_MAX_FILESIZE * 1024) {
+                    $err_msg[] = 'ファイルは' . FILE_MAX_FILESIZE . 'KB以内のファイルにしてください（ただし空のファイルはアップロードできません）';
+                }
+
+                // 拡張子制限
+                if (!util_check_file_extention($upfile_4['name'])) {
+                    $err_msg[] = sprintf('アップロードできるファイルの種類は(%s)です', util_get_file_allowed_extensions('string'));
+                }
+            }
+        }
         $form_val['upfile_1'] = $_FILES['upfile_1'];
         $form_val['upfile_2'] = $_FILES['upfile_2'];
         $form_val['upfile_3'] = $_FILES['upfile_3'];
         $form_val['tmpfile_1'] = $tmpfiles[1];
         $form_val['tmpfile_2'] = $tmpfiles[2];
         $form_val['tmpfile_3'] = $tmpfiles[3];
-
+        if (OPENPNE_USE_FILEUPLOAD) {
+            $form_val['upfile_4'] = $upfile_4;
+            $form_val['tmpfile_4'] = t_file_save2tmp($upfile_4, $sessid, "tc_4");
+        }
 
         $target_c_member_id = $form_val['target_c_member_id'];
 
