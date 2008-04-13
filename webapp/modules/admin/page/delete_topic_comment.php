@@ -27,6 +27,7 @@ class admin_page_delete_topic_comment extends OpenPNE_Action
         $member = db_member_c_member4c_member_id($topic_comment['c_member_id']);
         $topic_comment['nickname'] = $member['nickname'];
         $topic_comment['count_comments'] = _db_count_c_commu_topic_comments4c_commu_topic_id($topic_comment['c_commu_topic_id']);
+        $topic_comment['original_filename'] = db_file_original_filename4filename($topic_comment['filename']);
         $this->set('topic_comment', $topic_comment);
 
         $v['SNS_NAME'] = SNS_NAME;
