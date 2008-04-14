@@ -68,7 +68,7 @@ require_once 'XML/Unserializer.php';
 * @author  John Downey <jdowney@gmail.com>
 * @author  Tatsuya Tsuruoka <ttsuruoka@p4life.jp>
 * @access  public
-* @version Release: 0.6.0
+* @version Release: 0.7.1
 * @uses    PEAR
 * @uses    HTTP_Request
 * @uses    XML_Unserializer
@@ -118,7 +118,7 @@ class Services_Amazon
     * @see    setBaseUrl
     * @see    setLocale
     */
-    function Services_Amazon($token = null, $affid = null, $locale = 'us', $baseurl = 'http://xml.amazon.com/onca/xml2') {
+    function Services_Amazon($token = null, $affid = null, $locale = 'us', $baseurl = 'http://webservices.amazon.com/onca/xml2') {
         if (!is_null($token)) {
             $this->_token = $token;
         }
@@ -127,8 +127,8 @@ class Services_Amazon
             $this->_affid = $affid;
         }
         
-        $this->_locale  = $locale;
         $this->_baseurl = $baseurl;
+        $this->setLocale($locale);
     }
 
     /**
@@ -236,9 +236,9 @@ class Services_Amazon
     }
     
     /**
-    * Sets the locale passed when making a query to Amazon.com.
+    * Sets the locale passed when making a query to Amazon.
     *
-    * Currently only us, uk, and de are supported by Amazon.
+    * Currently only us, uk, de, jp, fr and ca are supported by Amazon.
     *
     * @access public
     * @param  string $locale the new locale to use
@@ -246,7 +246,19 @@ class Services_Amazon
     * @see    getLocale()
     */    
     function setLocale($locale) {
-        $this->_locale = $locale;
+        $urls = array(
+            'us' => 'http://webservices.amazon.com/onca/xml2',
+            'uk' => 'http://webservices.amazon.co.uk/onca/xml2',
+            'de' => 'http://webservices.amazon.de/onca/xml2',
+            'jp' => 'http://webservices.amazon.co.jp/onca/xml2',
+            'fr' => 'http://webservices.amazon.fr/onca/xml2',
+            'ca' => 'http://webservices.amazon.ca/onca/xml2',
+        );
+        $this->_locale = strtolower($locale);
+        if (empty($urls[$locale])) {
+            return;
+        }
+        $this->setBaseUrl($urls[$locale]);
     }
     
     /**
@@ -724,19 +736,19 @@ class Services_Amazon
             if (isset($product->Artists)) {
                 if (is_array($product->Artists->Artist)) {
                     foreach ($product->Artists->Artist as $artist) {
-                        $item['artists'][] = $author;
+                        $item['artists'][] = $artist;
                     }
                 } else {
                     $item['artists'][] = $product->Artists->Artist;
                 }
             }
-            $item['release']      = $product->ReleaseDate;
-            $item['manufacturer'] = $product->Manufacturer;
+            $item['release']      = isset($product->ReleaseDate) ? $product->ReleaseDate : null;
+            $item['manufacturer'] = isset($product->Manufacturer) ? $product->Manufacturer : null;
             $item['imagesmall']   = $product->ImageUrlSmall;
             $item['imagemedium']  = $product->ImageUrlMedium;
             $item['imagelarge']   = $product->ImageUrlLarge;
-            $item['listprice']    = $product->ListPrice;
-            $item['ourprice']     = $product->ListPrice;
+            $item['listprice']    = isset($product->ListPrice) ? $product->ListPrice : null;
+            $item['ourprice']     = isset($product->ListPrice) ? $product->ListPrice : null;
 
             $items[] = $item;
         }

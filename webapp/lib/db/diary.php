@@ -591,7 +591,6 @@ function p_h_diary_comment_list_c_diary_my_comment_list4c_member_id($c_member_id
     $except_ids = implode(',', $blocked);
 
     $friends = db_friend_c_member_id_list($c_member_id);
-    $firends[] = 0;
     $friend_ids = implode(',', $friends);
 
     if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
@@ -611,7 +610,11 @@ function p_h_diary_comment_list_c_diary_my_comment_list4c_member_id($c_member_id
                         ' AND mydc.c_diary_id = d.c_diary_id' .
                         ' AND mydc.c_member_id <> d.c_member_id' .
                         ' AND d.c_member_id NOT IN (' . $except_ids . ')' .
-                        ' AND (d.public_flag = \'public\' OR (d.public_flag = \'friend\' AND d.c_member_id IN (' . $friend_ids . ')))' .
+                        ' AND (d.public_flag = \'public\'';
+        if ($friend_ids) {
+            $sql .= ' OR (d.public_flag = \'friend\' AND d.c_member_id IN (' . $friend_ids . '))';
+        }
+        $sql .= ')' .
                     ' GROUP BY dc.c_diary_id' .
                 ') as sub_diary_tbl' .
             ' WHERE' .
@@ -630,7 +633,11 @@ function p_h_diary_comment_list_c_diary_my_comment_list4c_member_id($c_member_id
                 ' AND mydc.c_diary_id = d.c_diary_id' .
                 ' AND mydc.c_member_id <> d.c_member_id' .
                 ' AND d.c_member_id NOT IN (' . $except_ids . ')' .
-                ' AND (d.public_flag = \'public\' OR (d.public_flag = \'friend\' AND d.c_member_id IN (' . $friend_ids . ')))' .
+                ' AND (d.public_flag = \'public\'';
+        if ($friend_ids) {
+            $sql .= ' OR (d.public_flag = \'friend\' AND d.c_member_id IN (' . $friend_ids . '))';
+        }
+        $sql .= ')' .
             ' GROUP BY dc.c_diary_id' .
             ' ORDER BY r_datetime DESC';
     }
@@ -650,7 +657,12 @@ function p_h_diary_comment_list_c_diary_my_comment_list4c_member_id($c_member_id
             ' AND mydc.c_diary_id = d.c_diary_id' .
             ' AND mydc.c_member_id <> d.c_member_id' .
             ' AND d.c_member_id NOT IN (' . $except_ids . ')' .
-            ' AND (d.public_flag = \'public\' OR (d.public_flag = \'friend\' AND d.c_member_id IN (' . $friend_ids . ')))';
+            ' AND (d.public_flag = \'public\'';
+    if ($friend_ids) {
+        $sql .= ' OR (d.public_flag = \'friend\' AND d.c_member_id IN (' . $friend_ids . '))';
+    }
+    $sql .= ')';
+ 
     $total_num = db_get_one($sql, $params);
 
     $is_prev = false;

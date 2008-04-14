@@ -1592,6 +1592,11 @@ function db_member_delete_c_member_ktai_pre4ktai_address($ktai_address)
 
 function db_member_insert_c_member_ktai_pre($session, $ktai_address, $c_member_id_invite, $is_disabled_regist_easy_access_id = false)
 {
+    $ktai_address = str_replace('"', '', $ktai_address);
+    if (db_member_c_member_ktai_pre4ktai_address($ktai_address)) {  // 二重引用符を除去した結果、DB内メールアドレスと重複する
+        return db_member_update_c_member_ktai_pre($session, $ktai_address, $c_member_id_invite, $is_disabled_regist_easy_access_id);
+    }
+
     $data = array(
         'session' => $session,
         'ktai_address' => $ktai_address,

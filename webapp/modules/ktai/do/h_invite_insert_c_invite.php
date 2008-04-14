@@ -22,6 +22,9 @@ class ktai_do_h_invite_insert_c_invite extends OpenPNE_Action
         $mail = $requests['mail_address'];
         $body = $requests['body'];
         // ----------
+        if (is_ktai_mail_address($mail)) {
+            $mail = str_replace('"', '', $mail);
+        }
 
         if (!$mail) {
             $p = array('msg' => 12);

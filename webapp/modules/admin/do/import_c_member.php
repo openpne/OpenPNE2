@@ -50,6 +50,10 @@ class admin_do_import_c_member extends OpenPNE_Action
             $mail_address = $data[1];
             $password     = $data[2];
 
+            if (is_ktai_mail_address($mail_address)) {
+                $mail_address = str_replace('"', '', $mail_address);
+            }
+
             // --- エラーチェック2 ここから
 
             //入力項目が多い

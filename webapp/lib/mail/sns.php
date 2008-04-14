@@ -453,7 +453,7 @@ class mail_sns
             return false;
         }
 
-        if ($c_commu['c_member_id_admin'] != $this->c_member_id) {
+        if ($c_commu['c_member_id_admin'] != $this->c_member_id && $c_commu['c_member_id_sub_admin'] != $this->c_member_id ) {
             return false;
         }
 

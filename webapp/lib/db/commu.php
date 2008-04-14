@@ -2511,20 +2511,23 @@ function db_commu_update_c_commu_topic($c_commu_topic_id, $topic)
         'r_datetime' => db_now(),
         'r_date' => db_now(),
     );
+
     if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
         $open_date = '0000-01-01';
         $invite_period = '0000-01-01';
-        if (isset($topic['open_date']) && $topic['open_date'] != '') {
-            $open_date = $topic['open_date'];
-        }
-        
-        if (isset($topic['invite_period']) && $topic['invite_period'] != '') {
-            $invite_period = $topic['invite_period'];
-        }
     } else {
+        $open_date = '0000-00-00';
+        $invite_period = '0000-00-00';
+    }
+
+    if (isset($topic['open_date']) && $topic['open_date']) {
         $open_date = $topic['open_date'];
+    }
+    
+    if (isset($topic['invite_period']) && $topic['invite_period']) {
         $invite_period = $topic['invite_period'];
     }
+
     if ($data['event_flag']) {
         $data += array(
             'open_date'         => $open_date,
@@ -2599,20 +2602,23 @@ function db_commu_insert_c_commu_topic($topic)
         'r_datetime'  => db_now(),
         'r_date'      => db_now(),
     );
+
     if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
         $open_date = '0000-01-01';
         $invite_period = '0000-01-01';
-        if (isset($topic['open_date']) && $topic['open_date'] != '') {
-            $open_date = $topic['open_date'];
-        }
-        
-        if (isset($topic['invite_period']) && $topic['invite_period'] != '') {
-            $invite_period = $topic['invite_period'];
-        }
     } else {
+        $open_date = '0000-00-00';
+        $invite_period = '0000-00-00';
+    }
+
+    if (isset($topic['open_date']) && $topic['open_date']) {
         $open_date = $topic['open_date'];
+    }
+    
+    if (isset($topic['invite_period']) && $topic['invite_period']) {
         $invite_period = $topic['invite_period'];
     }
+
     if ($data['event_flag']) {
         $data += array(
             'open_date'         => $open_date,

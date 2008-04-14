@@ -40,7 +40,7 @@ class pc_do_c_topic_edit_update_c_commu_topic extends OpenPNE_Action
         //エラーチェック
         $err_msg = array();
         if (is_null($title) || $title === '') $err_msg[] = "タイトルを入力してください";
-        if (is_null($body) || $body === '') $err_msg[] = "詳細を入力してください";
+        if (is_null($body) || $body === '') $err_msg[] = "本文を入力してください";
 
         if (!empty($upfile_obj1) && $upfile_obj1['error'] !== UPLOAD_ERR_NO_FILE) {
             if (!($image = t_check_image($upfile_obj1))) {

@@ -16,7 +16,7 @@
 <table width="100%" bgcolor="#({$ktai_color_config.bg_04})">
 <tr><td align="center" width="50%" valign="top">
 <img src="({t_img_url filename=$c_commu.image_filename w=120 h=120 noimg=no_logo_small f=jpg})" alt="({$c_commu.name})"><br>
-({if $c_commu.c_member_id_admin==$u})
+({if $c_commu.c_member_id_admin==$u || $c_commu.c_member_id_sub_admin==$u})
 [<a href="({t_url m=ktai a=page_c_edit_image})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">写真を編集</a>]<br>
 ({/if})
 </td>
@@ -61,7 +61,7 @@
 ({if !$relation_c_member_and_c_commu.join && !$relation_c_member_and_c_commu.wait})
 [i:204]<a href="({t_url m=ktai a=do_inc_join_c_commu})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">ｺﾐｭﾆﾃｨに参加</a><br>
 ({/if})
-({if ($c_commu.c_member_id_admin==$u || $c_commu.c_member_id_sub_admin==$u)})
+({if $c_commu.c_member_id_admin==$u || $c_commu.c_member_id_sub_admin==$u})
 [i:190]<a href="({t_url m=ktai a=page_c_edit})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">ｺﾐｭﾆﾃｨ編集</a><br>
 ({/if})
 ({if $relation_c_member_and_c_commu.join})
@@ -171,7 +171,7 @@
 ({/foreach})
 <tr><td align="right">
 <font color="#({$ktai_color_config.font_07})">⇒</font><a href="({t_url m=ktai a=page_c_member_list})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">もっと見る</a><br>
-({if ($c_commu.c_member_id_admin==$u || $c_commu.c_member_id_sub_admin==$u)})
+({if $c_commu.c_member_id_admin==$u || $c_commu.c_member_id_sub_admin==$u})
 <font color="#({$ktai_color_config.font_07})">⇒</font><a href="({t_url m=ktai a=page_c_edit_member})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">ﾒﾝﾊﾞｰ管理</a><br>
 ({/if})
 </td></tr>

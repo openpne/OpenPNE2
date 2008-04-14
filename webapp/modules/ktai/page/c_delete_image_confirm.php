@@ -18,10 +18,7 @@ class ktai_page_c_delete_image_confirm extends OpenPNE_Action
 
         //--- 権限チェック
         $status = db_common_commu_status($u, $target_c_commu_id);
-        if (!$status['is_commu_admin']) {
-            handle_kengen_error();
-        }
-        if ($status['is_commu_sub_admin']) {
+        if (!$status['is_commu_admin'] && !$status['is_commu_sub_admin']) {
             handle_kengen_error();
         }
         //---

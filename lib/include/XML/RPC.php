@@ -32,7 +32,7 @@
  * @author     Martin Jansen <mj@php.net>
  * @author     Daniel Convissor <danielc@php.net>
  * @copyright  1999-2001 Edd Dumbill, 2001-2006 The PHP Group
- * @version    CVS: $Id: RPC.php,v 1.99 2006/06/16 16:00:54 danielc Exp $
+ * @version    CVS: $Id: RPC.php,v 1.101 2006/10/28 16:42:34 danielc Exp $
  * @link       http://pear.php.net/package/XML_RPC
  */
 
@@ -579,7 +579,7 @@ function XML_RPC_cd($parser_resource, $data)
  * @author     Martin Jansen <mj@php.net>
  * @author     Daniel Convissor <danielc@php.net>
  * @copyright  1999-2001 Edd Dumbill, 2001-2006 The PHP Group
- * @version    Release: 1.5.0
+ * @version    Release: 1.5.1
  * @link       http://pear.php.net/package/XML_RPC
  */
 class XML_RPC_Base {
@@ -624,7 +624,7 @@ class XML_RPC_Base {
  * @author     Martin Jansen <mj@php.net>
  * @author     Daniel Convissor <danielc@php.net>
  * @copyright  1999-2001 Edd Dumbill, 2001-2006 The PHP Group
- * @version    Release: 1.5.0
+ * @version    Release: 1.5.1
  * @link       http://pear.php.net/package/XML_RPC
  */
 class XML_RPC_Client extends XML_RPC_Base {
@@ -1066,7 +1066,7 @@ class XML_RPC_Client extends XML_RPC_Base {
  * @author     Martin Jansen <mj@php.net>
  * @author     Daniel Convissor <danielc@php.net>
  * @copyright  1999-2001 Edd Dumbill, 2001-2006 The PHP Group
- * @version    Release: 1.5.0
+ * @version    Release: 1.5.1
  * @link       http://pear.php.net/package/XML_RPC
  */
 class XML_RPC_Response extends XML_RPC_Base
@@ -1157,11 +1157,20 @@ class XML_RPC_Response extends XML_RPC_Base
  * @author     Martin Jansen <mj@php.net>
  * @author     Daniel Convissor <danielc@php.net>
  * @copyright  1999-2001 Edd Dumbill, 2001-2006 The PHP Group
- * @version    Release: 1.5.0
+ * @version    Release: 1.5.1
  * @link       http://pear.php.net/package/XML_RPC
  */
 class XML_RPC_Message extends XML_RPC_Base
 {
+    /**
+     * Should the payload's content be passed through mb_convert_encoding()?
+     *
+     * @see XML_RPC_Message::setConvertPayloadEncoding()
+     * @since Property available since Release 1.5.1
+     * @var boolean
+     */
+    var $convert_payload_encoding = false;
+
     /**
      * The current debug mode (1 = on, 0 = off)
      * @var integer
@@ -1261,15 +1270,17 @@ class XML_RPC_Message extends XML_RPC_Base
      * Part of the process makes sure all line endings are in DOS format
      * (CRLF), which is probably required by specifications.
      *
-     * If PHP's mbstring extension is enabled, the mb_convert_encoding()
-     * function is used to ensure the payload matches the encoding set in the
+     * If XML_RPC_Message::setConvertPayloadEncoding() was set to true,
+     * the payload gets passed through mb_convert_encoding()
+     * to ensure the payload matches the encoding set in the
      * XML declaration.  The encoding type can be manually set via
      * XML_RPC_Message::setSendEncoding().
      *
      * @return void
      *
      * @uses XML_RPC_Message::xml_header(), XML_RPC_Message::xml_footer()
-     * @see XML_RPC_Message::setSendEncoding(), $GLOBALS['XML_RPC_defencoding']
+     * @see XML_RPC_Message::setSendEncoding(), $GLOBALS['XML_RPC_defencoding'],
+     *      XML_RPC_Message::setConvertPayloadEncoding()
      */
     function createPayload()
     {
@@ -1287,7 +1298,7 @@ class XML_RPC_Message extends XML_RPC_Base
         } else {
             $this->payload = $GLOBALS['XML_RPC_func_ereg_replace']("\r\n|\n|\r|\n\r", "\r\n", $this->payload);
         }
-        if (function_exists('mb_convert_encoding')) {
+        if ($this->convert_payload_encoding) {
             $this->payload = mb_convert_encoding($this->payload, $this->send_encoding);
         }
     }
@@ -1353,13 +1364,35 @@ class XML_RPC_Message extends XML_RPC_Base
     }
 
     /**
+     * Sets whether the payload's content gets passed through
+     * mb_convert_encoding()
+     *
+     * Returns PEAR_ERROR object if mb_convert_encoding() isn't available.
+     *
+     * @param int $in  where 1 = on, 0 = off
+     *
+     * @return void
+     *
+     * @see XML_RPC_Message::setSendEncoding()
+     * @since Method available since Release 1.5.1
+     */
+    function setConvertPayloadEncoding($in)
+    {
+        if ($in && !function_exists('mb_convert_encoding')) {
+            return $this->raiseError('mb_convert_encoding() is not available',
+                              XML_RPC_ERROR_PROGRAMMING);
+        }
+        $this->convert_payload_encoding = $in;
+    }
+
+    /**
      * Sets the XML declaration's encoding attribute
      *
      * @param string $type  the encoding type (ISO-8859-1, UTF-8 or US-ASCII)
      *
      * @return void
      *
-     * @see XML_RPC_Message::$send_encoding, XML_RPC_Message::xml_header()
+     * @see XML_RPC_Message::setConvertPayloadEncoding(), XML_RPC_Message::xml_header()
      * @since Method available since Release 1.2.0
      */
     function setSendEncoding($type)
@@ -1513,7 +1546,6 @@ class XML_RPC_Message extends XML_RPC_Base
                                       $XML_RPC_str['invalid_return']);
         } else {
             $v = $XML_RPC_xh[$parser]['value'];
-            $allOK=1;
             if ($XML_RPC_xh[$parser]['isf']) {
                 $f = $v->structmem('faultCode');
                 $fs = $v->structmem('faultString');
@@ -1538,7 +1570,7 @@ class XML_RPC_Message extends XML_RPC_Base
  * @author     Martin Jansen <mj@php.net>
  * @author     Daniel Convissor <danielc@php.net>
  * @copyright  1999-2001 Edd Dumbill, 2001-2006 The PHP Group
- * @version    Release: 1.5.0
+ * @version    Release: 1.5.1
  * @link       http://pear.php.net/package/XML_RPC
  */
 class XML_RPC_Value extends XML_RPC_Base
@@ -1813,12 +1845,17 @@ class XML_RPC_Value extends XML_RPC_Base
     }
 
     /**
-     * @return mixed
+     * @return mixed  the current element's scalar value.  If the value is
+     *                 not scalar, FALSE is returned.
      */
     function scalarval()
     {
         reset($this->me);
-        return current($this->me);
+        $v = current($this->me);
+        if (!is_scalar($v)) {
+            $v = false;
+        }
+        return $v;
     }
 
     /**
