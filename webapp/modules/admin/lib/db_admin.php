@@ -3059,4 +3059,48 @@ function db_admin_album_list4c_album_id($c_album_id, $page_size, $page)
     return array($list , $prev , $next, $total_num, $total_page_num);
 }
 
+function db_admin_c_album_image_list($page, $page_size, &$pager, $c_album_id = null)
+{
+    $db =& db_get_instance('image');
+
+    $params = array();
+    $sql = 'SELECT cai.c_album_image_id, cai.image_filename, cai.r_datetime, cai.image_description, cai.c_album_id, ca.subject'
+         . ' FROM c_album_image AS cai'
+         . ' INNER JOIN c_album AS ca ON cai.c_album_id = ca.c_album_id';
+    if ($c_album_id) {
+        $sql .= ' WHERE ca.c_album_id = ?';
+        $params[] = $c_album_id;
+    }
+    $sql .= ' ORDER BY r_datetime DESC';
+    $c_image_album_list = db_get_all_page($sql, $page, $page_size, $params);
+
+    $sql = 'SELECT COUNT(*) FROM c_album_image';
+    if ($c_album_id) {
+        $sql .=  'WHERE c_album_id = ?';
+    }
+    $total_num = $db->get_one($sql, $params);
+
+    $pager = admin_make_pager($page, $page_size, $total_num);
+    return $c_image_album_list;
+}
+
+function db_admin_c_album_image_list4c_album_image_id($page, $page_size, &$pager, $c_album_image_id)
+{
+    $db =& db_get_instance('image');
+
+    $sql = 'SELECT cai.c_album_image_id, cai.image_filename, cai.r_datetime, cai.image_description, cai.c_album_id, ca.subject'
+         . ' FROM c_album_image AS cai'
+         . ' INNER JOIN c_album AS ca ON cai.c_album_id = ca.c_album_id'
+         . ' WHERE cai.c_album_image_id = ?'
+         . ' ORDER BY r_datetime DESC';
+    $params = array($c_album_image_id);
+    $c_image_album_list = db_get_all_page($sql, $page, $page_size, $params);
+
+    $sql = 'SELECT COUNT(*) FROM c_album_image'
+         . ' WHERE c_album_image_id = ?';
+    $total_num = $db->get_one($sql, $params);
+
+    $pager = admin_make_pager($page, $page_size, $total_num);
+    return $c_image_album_list;
+}
 ?>
