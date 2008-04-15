@@ -2978,4 +2978,85 @@ function db_admin_update_c_config_decoration($c_config_decoration_id, $is_enable
     $where = array('c_config_decoration_id' => $c_config_decoration_id);
     return db_update('c_config_decoration', $data, $where);
 }
+
+function db_admin_album_list($keyword, $page_size, $page)
+{
+    $page = intval($page);
+    $page_size = intval($page_size);
+
+    $wheres = array();
+
+    if ($keyword) {
+        //全角空白を半角に統一
+        $keyword = str_replace('　', ' ', $keyword);
+        $keyword_list = explode(' ', $keyword);
+
+        for ($i = 0; $i < count($keyword_list); $i++) {
+            $keyword = check_search_word($keyword_list[$i]);
+
+            $wheres[] = '(subject LIKE ? OR description LIKE ?)';
+            $params[] = '%' . $keyword . '%';
+            $params[] = '%' . $keyword . '%';
+        }
+    }
+    if ($wheres) {
+        $where = ' WHERE ' . implode(' AND ', $wheres);
+    } else {
+        $where = '';
+    }
+
+    $select = "SELECT *";
+    $from = " FROM c_album";
+    $order = " ORDER BY r_datetime DESC";
+
+    $sql = $select . $from . $where . $order;
+    $list = db_get_all_limit($sql,($page-1)*$page_size,$page_size,$params);
+    foreach ($list as $key => $value) {
+        $list[$key]['c_member'] = db_member_c_member_with_profile($value['c_member_id']);
+    }
+
+    $sql =
+        "SELECT COUNT(*) "
+        . $from
+        . $where ;
+    $total_num = db_get_one($sql, $params);
+
+    $total_page_num =  ceil($total_num / $page_size);
+    $next = ($page < $total_page_num);
+    $prev = ($page > 1);
+
+    return array($list , $prev , $next, $total_num, $total_page_num);
+}
+
+function db_admin_album_list4c_album_id($c_album_id, $page_size, $page)
+{
+    $page = intval($page);
+    $page_size = intval($page_size);
+
+    $where = " WHERE c_album_id = ? ";
+    $params[] = intval($c_album_id);
+
+    $select = "SELECT c_album.*";
+    $from = " FROM c_album";
+    $order = " ORDER BY r_datetime DESC";
+
+    $sql = $select . $from . $where . $order;
+    $list = db_get_all_limit($sql,($page-1)*$page_size,$page_size,$params);
+    foreach ($list as $key => $value) {
+        $list[$key]['c_member'] = db_member_c_member_with_profile($value['c_member_id']);
+    }
+
+    $sql =
+        "SELECT COUNT(*) "
+        . $from
+        . $where ;
+    $total_num = db_get_one($sql, $params);
+
+    $total_page_num =  ceil($total_num / $page_size);
+    $next = ($page < $total_page_num);
+    $prev = ($page > 1);
+
+    return array($list , $prev , $next, $total_num, $total_page_num);
+}
+
 ?>
