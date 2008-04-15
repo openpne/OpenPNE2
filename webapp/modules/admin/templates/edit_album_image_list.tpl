@@ -1,6 +1,6 @@
 ({$inc_header|smarty:nodefaults})
 ({ext_include file="inc_subnavi_adminSNSConfig.tpl"})
-({assign var="page_name" value="アルバム管理"})
+({assign var="page_name" value="アルバム写真管理"})
 ({ext_include file="inc_tree_adminSNSConfig.tpl"})
 </div>
 
@@ -16,35 +16,37 @@
             <h3>({$page_name})</h3>
 
             <div id="searchForm">
-                <h4>検索キーワード</h4>
+                <h4>アルバムID検索</h4>
                 <form action="./" method="get">
                 <input type="hidden" name="m" value="({$module_name})" />
-                <input type="hidden" name="a" value="page_({$hash_tbl->hash('edit_album_list','page')})" />
-                <input class="basic" type="text" name="keyword" value="({$keyword})" />
+                <input type="hidden" name="a" value="page_({$hash_tbl->hash('edit_album_image_list','page')})" />
+                <input class="basic" type="text" name="target_c_album_id" value="({$target_c_album_id})" />
                 <span class="textBtnS"><input type="submit" value="検索" /></span>
                 </form>
 
-                <h4>ID検索</h4>
+                <h4>アルバム写真ID検索</h4>
                 <form action="./" method="get">
                 <input type="hidden" name="m" value="({$module_name})" />
-                <input type="hidden" name="a" value="page_({$hash_tbl->hash('edit_album_list','page')})" />
-                <input class="basic" type="text" name="target_c_album_id" value="({$target_c_album_id})" />
+                <input type="hidden" name="a" value="page_({$hash_tbl->hash('edit_album_image_list','page')})" />
+                <input class="basic" type="text" name="target_c_album_image_id" value="({$target_c_album_image_id})" />
                 <span class="textBtnS"><input type="submit" value="検索" /></span>
                 </form>
             </div>
 
-            ({if !$album_list})
+            ({if !$album_image_list})
             <p id="noAlbum">該当するアルバムが存在しません</p>
             ({else})
             ({capture name="pager"})
             <div class="listControl">
             <p class="display">
-            ({$total_num})件中 ({$start_num})-({$end_num})件目を表示しています
+            ({$pager.total_num}) 件中 ({$pager.start_num}) - ({$pager.end_num})件目を表示しています</p>
             </p>
             <p class="listMove">
-            ({if $page_list})({foreach from=$page_list item=item})({if $page!=$item})<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_album_list','page')})&amp;page=({$item})&amp;keyword=({$keyword_encode})">({$item})</a>({else})<b>({$item})</b>({/if})&nbsp;&nbsp;({/foreach})&nbsp;({/if})
-            ({if $prev})<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_album_list','page')})&amp;page=({$page-1})&amp;keyword=({$keyword_encode})">＜＜前</a>　({/if})
-            ({if $next})<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_album_list','page')})&amp;page=({$page+1})&amp;keyword=({$keyword_encode})">次＞＞</a>({/if})
+            ({foreach from=$pager.disp_pages item=i})
+            ({if $i == $pager.page})<strong>({$i})</strong>({else})<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_album_image_list','page')})&amp;page=({$i})&amp;target_c_album_image_id=({$target_c_album_image_id})&amp;target_c_album_id=({$target_c_album_id})">({$i})</a>({/if})
+            ({/foreach})
+            ({if $pager.prev_page})<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_album_image_list','page')})&amp;page=({$pager.prev_page})&amp;target_c_album_image_id=({$target_c_album_image_id})&amp;target_c_album_id=({$target_c_album_id})">＜＜前</a>({/if})
+            ({if $pager.next_page})<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_album_image_list','page')})&amp;page=({$pager.next_page})&amp;target_c_album_image_id=({$target_c_album_image_id})&amp;target_c_album_id=({$target_c_album_id})">次＞＞</a>({/if})
             </p>
             </div>
             ({/capture})
@@ -53,55 +55,28 @@
             ({$smarty.capture.pager|smarty:nodefaults})
             </div>
 
-            ({foreach from=$album_list item=item})
+            ({foreach from=$album_image_list item=item})
             <table class="basicType2 album">
             <tbody>
             ({****})
             <tr>
             <th>ID</th>
             <td class="type1">
-            ({$item.c_album_id})
+            ({$item.c_album_image_id})
             </td>
             </tr>
             ({****})
             <tr>
-            <th>タイトル</th>
+            <th>写真</th>
             <td>
-            <a href="({t_url _absolute=1 m=pc a=page_fh_album})&amp;target_c_album_id=({$item.c_album_id})" target="_blank">({$item.subject})</a>
+            <img src="({if $item.image_filename})({t_img_album_url filename=$item.image_filename w=120 h=120})({else})({t_img_url_skin filename=no_image w=120 h=120})({/if})">
             </td>
             </tr>
             ({****})
             <tr>
-            <th>作成者</th>
-            <td>
-            <a href="({t_url _absolute=1 m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})" target="_blank">({$item.c_member.nickname})</a>
-            </td>
-            </tr>
-            ({****})
-            <tr>
-            <th>表紙</th>
-            <td>
-            <img src="({if $item.album_cover_image})({t_img_album_url filename=$item.album_cover_image w=120 h=120})({else})({t_img_url_skin filename=no_image w=120 h=120})({/if})">
-            </td>
-            </tr>
-            ({****})
-            <tr>
-            <th>アルバムの説明</th>
+            <th>説明文</th>
             <td class="textbody">
-            ({$item.description|nl2br})
-            </td>
-            </tr>
-            ({****})
-            <tr>
-            <th>公開範囲</th>
-            <td>
-            ({if $item.public_flag == "public"})
-            全員に公開
-            ({elseif $item.public_flag == "friend"})
-            ({$WORD_MY_FRIEND})まで公開
-            ({elseif $item.public_flag == "private"})
-            公開しない
-            ({/if})
+            ({$item.image_description|nl2br})
             </td>
             </tr>
             ({****})
@@ -109,6 +84,13 @@
             <th>作成日</th>
             <td>
             ({$item.r_datetime})
+            </td>
+            </tr>
+            ({****})
+            <tr>
+            <th>アルバム</th>
+            <td>
+            <a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_album_list','page')})&amp;target_c_album_id=({$item.c_album_id})">({$item.subject})</a>
             </td>
             </tr>
             ({****})
