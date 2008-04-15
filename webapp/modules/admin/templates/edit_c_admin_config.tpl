@@ -145,6 +145,16 @@
 <span class="caution">※「使用しない」を選択してもナビゲーション項目は自動的には変更されません。ナビゲーション項目の変更は<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_navi')})">「ナビゲーション変更」</a>からおこなってください</span><br />
 </td>
 </tr>
+<tr>
+<th colspan="2">アルバム機能使用設定</th>
+<td>
+<span class="info">アルバム機能を使用するかどうかを設定します</span><br />
+<select class="basic" name="OPENPNE_USE_ALBUM">
+<option value="1"({if $smarty.const.OPENPNE_USE_ALBUM}) selected="selected"({/if})>使用する</option>
+<option value="0"({if !$smarty.const.OPENPNE_USE_ALBUM}) selected="selected"({/if})>使用しない</option>
+</select>
+</td>
+</tr>
 <tr class="cell14">
 <th colspan="2">Flashリスト表示</th>
 <td><select class="basic" name="OPENPNE_USE_FLASH_LIST">
