@@ -634,28 +634,6 @@ function db_image_insert_c_image_album($filename, $bin, $type = '')
     return $db->insert('c_image_album', $data, 'c_image_id');
 }
 
-//管理画面用に残しておく
-function db_image_c_album_image_list($page, $page_size, &$pager)
-{
-    $db =& db_get_instance('image');
-
-    $sql = 'SELECT c_image_id FROM c_image_album ORDER BY c_image_id DESC';
-    $id_list = db_get_col_page($sql, $page, $page_size);
-
-    $c_image_list = array();
-    foreach ($id_list as $c_image_id) {
-        $sql = 'SELECT c_image_id, filename, r_datetime FROM c_image_album WHERE c_image_id = ?';
-        $params = array(intval($c_image_id));
-        $c_image_list[] = $db->get_row($sql, $params);
-    }
-
-    $sql = 'SELECT COUNT(*) FROM c_image_album';
-    $total_num = $db->get_one($sql);
-
-    $pager = admin_make_pager($page, $page_size, $total_num);
-    return $c_image_list;
-}
-
 function db_album_image_data_delete($image_filename)
 {
     if (!$image_filename) return false;
@@ -665,8 +643,6 @@ function db_album_image_data_delete($image_filename)
     // cacheの削除
     image_cache_delete($image_filename);
 }
-
-
 
 function db_album_image_delete_c_image($filename)
 {
