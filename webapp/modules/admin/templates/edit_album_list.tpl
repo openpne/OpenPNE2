@@ -1,0 +1,140 @@
+({$inc_header|smarty:nodefaults})
+({ext_include file="inc_subnavi_adminSNSConfig.tpl"})
+({assign var="page_name" value="アルバム管理"})
+({ext_include file="inc_tree_adminSNSConfig.tpl"})
+</div>
+
+({*ここまで:navi*})
+
+({if $msg})<p class="actionMsg">({$msg})</p>({/if})
+<h2>アルバム機能</h2>
+
+<table class="contents" cellpadding="0" cellspacing="0" border="0">
+   <tr>
+   ({ext_include file="inc_menu_adminAlbumConfig.tpl"})
+       <td class="detail">
+            <h3>({$page_name})</h3>
+
+            <div id="searchForm">
+                <h4>検索キーワード</h4>
+                <form action="./" method="get">
+                <input type="hidden" name="m" value="({$module_name})" />
+                <input type="hidden" name="a" value="page_({$hash_tbl->hash('edit_album_list','page')})" />
+                <input class="basic" type="text" name="keyword" value="({$keyword})" />
+                <span class="textBtnS"><input type="submit" value="検索" /></span>
+                </form>
+
+                <h4>ID検索</h4>
+                <form action="./" method="get">
+                <input type="hidden" name="m" value="({$module_name})" />
+                <input type="hidden" name="a" value="page_({$hash_tbl->hash('edit_album_list','page')})" />
+                <input class="basic" type="text" name="target_c_album_id" value="({$target_c_album_id})" />
+                <span class="textBtnS"><input type="submit" value="検索" /></span>
+                </form>
+            </div>
+
+            ({if !$album_list})
+            <p id="noAlbum">該当するアルバムが存在しません</p>
+            ({else})
+            ({capture name="pager"})
+            <div class="listControl">
+            <p class="display">
+            ({$total_num})件中 ({$start_num})-({$end_num})件目を表示しています
+            </p>
+            <p class="listMove">
+            ({if $page_list})({foreach from=$page_list item=item})({if $page!=$item})<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_album_list','page')})&amp;page=({$item})&amp;keyword=({$keyword_encode})">({$item})</a>({else})<b>({$item})</b>({/if})&nbsp;&nbsp;({/foreach})&nbsp;({/if})
+            ({if $prev})<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_album_list','page')})&amp;page=({$page-1})&amp;keyword=({$keyword_encode})">＜＜前</a>　({/if})
+            ({if $next})<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_album_list','page')})&amp;page=({$page+1})&amp;keyword=({$keyword_encode})">次＞＞</a>({/if})
+            </p>
+            </div>
+            ({/capture})
+
+            <div class="listControl" id="pager01">
+            ({$smarty.capture.pager|smarty:nodefaults})
+            </div>
+
+            ({foreach from=$album_list item=item})
+            <table class="basicType2 album">
+            <tbody>
+            ({****})
+            <tr>
+            <th>ID</th>
+            <td class="type1">
+            ({$item.c_album_id})
+            </td>
+            </tr>
+            ({****})
+            <tr>
+            <th>タイトル</th>
+            <td>
+            <a href="({t_url _absolute=1 m=pc a=page_fh_album})&amp;target_c_album_id=({$item.c_album_id})" target="_blank">({$item.subject})</a>
+            </td>
+            </tr>
+            ({****})
+            <tr>
+            <th>作成者</th>
+            <td>
+            <a href="({t_url _absolute=1 m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})" target="_blank">({$item.c_member.nickname})</a>
+            </td>
+            </tr>
+            ({****})
+            <tr>
+            <th>表紙</th>
+            <td>
+            <img src="({if $item.album_cover_image})({t_img_album_url filename=$item.album_cover_image w=180 h=180})({else})({t_img_url_skin filename=no_image w=180 h=180})({/if})">
+            </td>
+            </tr>
+            ({****})
+            <tr>
+            <th>アルバムの説明</th>
+            <td class="textbody">
+            ({$item.description|nl2br})
+            </td>
+            </tr>
+            ({****})
+            <tr>
+            <th>公開範囲</th>
+            <td>
+            ({if $item.public_flag == "public"})
+            全員に公開
+            ({elseif $item.public_flag == "friend"})
+            ({$WORD_MY_FRIEND})まで公開
+            ({elseif $item.public_flag == "private"})
+            公開しない
+            ({/if})
+            </td>
+            </tr>
+            ({****})
+            <tr>
+            <th>作成日</th>
+            <td>
+            ({$item.r_datetime})
+            </td>
+            </tr>
+            ({****})
+            <tr>
+            <td class="formbutton" colspan="2">
+            <form action="./" method="get">
+            <input type="hidden" name="m" value="({$module_name})" />
+            <input type="hidden" name="a" value="page_({$hash_tbl->hash('delete_album')})" />
+            <input type="hidden" name="target_c_album_id" value="({$item.c_album_id})" />
+            <span class="textBtnS"><input type="submit" value="削除" /></span>
+            </form>
+            </td>
+            </tr>
+            </tbody>
+            </table>
+            ({/foreach})
+
+            <div class="listControl" id="pager02">
+            ({$smarty.capture.pager|smarty:nodefaults})
+            </div>
+            ({/if})
+       </td>
+   </tr>
+</table>
+
+<div class="contents">
+
+({$inc_footer|smarty:nodefaults})
+

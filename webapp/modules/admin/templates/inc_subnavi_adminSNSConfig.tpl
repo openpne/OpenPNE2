@@ -17,5 +17,8 @@
 ({if $smarty.const.OPENPNE_USE_DECORATION})
 <a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_deco')})">文字装飾設定</a>&nbsp;|&nbsp;
 ({/if})
+({if $smarty.const.OPENPNE_USE_ALBUM})
+<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_album_list')})">アルバム機能設定</a>&nbsp;|&nbsp;
+({/if})
 ({/strip})
 </div>

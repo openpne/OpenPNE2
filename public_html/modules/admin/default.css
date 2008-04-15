@@ -1482,6 +1482,21 @@ div.listControl p.listMove a {
 #admin_page_edit_c_admin_config_word table.basicType2 td span.info { padding-left: 5px; border-left: 4px #7593a5 solid; color: #3b6178;}
 #admin_page_edit_c_admin_config_word h2#ttl02 { margin-top: 35px;}
 
+/** admin_page_edit_album_list **/
+#admin_page_edit_album_list h2 { padding-left: 17px; background: url("../../admin/img/icn_ttl.gif") no-repeat 0 50%; line-height: 22px; font-size: 22px;}
+#admin_page_edit_album_list table { width: 100%;}
+#admin_page_edit_album_list td.menu { padding-right: 10px; vertical-align: top;}
+#admin_page_edit_album_list td.detail { padding-bottom: 10px; width: 100%; border: 1px #A4A4A6 solid; vertical-align: top;}
+#admin_page_edit_album_list td.menu ul { padding: 2px 18px 20px 0;}
+#admin_page_edit_album_list td.menu ul li { padding-top: 2px; list-style-type: none; white-space: pre;}
+#admin_page_edit_album_list td.detail div { padding: 20px;}
+#admin_page_edit_album_list td.detail h3 { padding-left: 20px; border-bottom: 1px #A3A3A6 solid; background-color: #58585C; color:#fff; line-height: 200%; font-size: medium;}
+#admin_page_edit_album_list div#searchForm form {margin-bottom: 10px;}
+#admin_page_edit_album_list p#noAlbum { text-align: center; margin: 15px 0; }
+#admin_page_edit_album_list table.album { margin: 15px; width: 570px; }
+#admin_page_edit_album_list td.textbody { width: 470px; word-break: break-all; }
+#admin_page_edit_album_list td.formbutton { text-align: center; }
+
 /*********** footer ***********/
 .footer { margin-top: 20px; padding: 10px 0; text-align: center;}
 .footer div.declaration a { margin: 0 3px;}
