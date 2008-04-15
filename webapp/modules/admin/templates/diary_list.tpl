@@ -29,7 +29,7 @@
 <span class="textBtnS"><input type="submit" value="検索" /></span>
 </form>
 
-({if !$diary_list})
+({if !$album_list})
 
 <p class="info">該当する({$WORD_DIARY})が存在しません</p>
 
