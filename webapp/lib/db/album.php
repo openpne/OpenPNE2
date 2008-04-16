@@ -501,22 +501,23 @@ function db_album_update_c_album_u_datetime($album_id)
 
 /**
  * c_album_imageの新規登録
+ *
  * @param int $c_album_id
+ * @param int $c_member_id
  * @param string $image_filename
  * @param string $image_description
+ * @param int $filesize
  */
-function db_insert_c_album_image($c_album_id, $image_filename, $image_description,$image_size=0)
+function db_insert_c_album_image($c_album_id, $c_member_id, $image_filename, $image_description, $filesize = 0)
 {
     $data = array(
-        'c_album_id'=>$c_album_id,
-        'image_description'=>$image_description,
+        'c_album_id' => $c_album_id,
+        'c_member_id' => $c_member_id,
+        'image_description' => $image_description,
+        'image_filename' => $image_filename,
+        'filesize' => $filesize,
         'r_datetime' => db_now(),
     );
-
-    if ($image_filename) {
-        $data['image_filename'] = $image_filename;
-        $data['filesize'] = $image_size;
-    }
 
     $insert_id = db_insert('c_album_image', $data);
     if ($insert_id) {
@@ -668,6 +669,46 @@ function db_image_is_c_album_image4filename($filename)
     $sql = 'SELECT c_image_id FROM c_image_album WHERE filename = ?';
     $params = array($filename);
     return (bool)$db->get_one($sql, $params);
+}
+
+/**
+ * メンバーのすべてのアルバム画像のファイルサイズの合計を取得する
+ *
+ * @params int $c_member_id
+ * @return int
+ */
+function db_album_sum_filesize4c_member_id($c_member_id)
+{
+    $sql = 'SELECT filesize FROM c_album_image WHERE c_member_id = ?';
+    $list = db_get_col($sql, array($c_member_id));
+    return array_sum($list);
+}
+
+/**
+ * メンバーが画像を投稿可能かどうか
+ *
+ * メンバーのファイルサイズの合計が OPENPNE_ALBUM_LIMIT を超過していないかどうかを返す
+ * $new_filesize を指定した場合は、メンバーのファイルサイズの合計に $new_filesize を
+ * 加算したものが OPENPNE_ALBUM_LIMIT を超過していないかどうかを返す
+ *
+ * @params int $c_member_id
+ * @params int $new_filesize
+ * @return bool
+ */ 
+function db_album_is_insertable4c_member_id($c_member_id, $new_filesize = 0)
+{
+    if (!OPENPNE_ALBUM_LIMIT) {
+        return true;
+    }
+
+    $size = db_album_sum_filesize4c_member_id($c_member_id) + $new_filesize;
+
+    $mb = 1048576;
+    if (OPENPNE_ALBUM_LIMIT * $mb < $size) {
+        return false;
+    }
+
+    return true;
 }
 
 ?>
