@@ -525,16 +525,17 @@ function db_insert_c_album_image($c_album_id, $image_filename, $image_descriptio
  */
 function db_album_delete_c_album($c_album_id)
 {
-    $c_album_image = db_album_image_get_c_album_image4id($c_album_id);
+    $sql = 'SELECT image_filename FROM c_album_image WHERE c_album_id = ?';
+    $filename_list = db_get_col($sql, array($c_album_id));
 
     //アルバムに登録された画像
-    foreach($c_album_image as $key=>$value){
-        db_album_image_data_delete($c_album_image[$key]['image_filename']);
+    foreach ($filename_list as $filename) {
+        db_album_image_data_delete($filename);
     }
 
     // アルバムの表紙
     $c_album = db_album_get_c_album4c_album_id($c_album_id);
-    if($c_album['album_cover_image']){
+    if ($c_album['album_cover_image']) {
         db_album_image_data_delete($c_album['album_cover_image']);
     }
 
