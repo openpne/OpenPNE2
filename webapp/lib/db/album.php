@@ -525,9 +525,7 @@ function db_insert_c_album_image($c_album_id, $image_filename, $image_descriptio
  */
 function db_album_delete_c_album($c_album_id)
 {
-    //function cacheの削除
-    $c_album_image = db_album_get_c_album4id($c_album_id);
-    pne_cache_drop('db_album_get_c_album_list4c_member_id', $c_album_image['c_member_id'], 5);
+    $c_album_image = db_album_image_get_c_album_image4id($c_album_id);
 
     //アルバムに登録された画像
     foreach($c_album_image as $key=>$value){
