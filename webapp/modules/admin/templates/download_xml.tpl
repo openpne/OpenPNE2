@@ -1,6 +1,6 @@
 ({$inc_header|smarty:nodefaults})
 ({ext_include file="inc_subnavi_adminImageKakikomi.tpl"})
-({assign var="page_name" value="画像アップロード・削除"})
+({assign var="page_name" value="書き込みデータダウンロード"})
 ({ext_include file="inc_tree_adminImageKakikomi.tpl"})
 </div>
 
