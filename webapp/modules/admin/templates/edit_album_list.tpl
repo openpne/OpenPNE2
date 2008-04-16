@@ -68,6 +68,7 @@
             <th>タイトル</th>
             <td>
             <a href="({t_url _absolute=1 m=pc a=page_fh_album})&amp;target_c_album_id=({$item.c_album_id})" target="_blank">({$item.subject})</a>
+            (({if $item.count_images})<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_album_image_list','page')})&amp;target_c_album_id=({$item.c_album_id})">({/if})写真：({$item.count_images})件({if $item.count_images})</a>({/if}))
             </td>
             </tr>
             ({****})
