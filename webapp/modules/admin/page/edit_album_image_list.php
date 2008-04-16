@@ -8,6 +8,10 @@ class admin_page_edit_album_image_list extends OpenPNE_Action
 {
     function execute($requests)
     {
+        if (!OPENPNE_USE_ALBUM) {
+            handle_kengen_error();
+        }
+
         $v = array();
         $pager = array();
 
