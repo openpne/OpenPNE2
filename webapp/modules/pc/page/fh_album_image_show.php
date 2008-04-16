@@ -10,6 +10,10 @@ class pc_page_fh_album_image_show extends OpenPNE_Action
 
     function execute($requests)
     {
+        if (!OPENPNE_USE_ALBUM) {
+            handle_kengen_error();
+        }
+
         $u = $GLOBALS['AUTH']->uid();
         
         // --- リクエスト変数
