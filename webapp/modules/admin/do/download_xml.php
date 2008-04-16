@@ -10,10 +10,10 @@ class admin_do_download_xml extends OpenPNE_Action
 {
     function handleError($errors)
     {
-        openpne_forward('admin', 'page', 'download', $errors);
+        openpne_forward('admin', 'page', 'download_xml', $errors);
         exit;
-        //admin_client_redirect('download', '正しく入力してください');
     }
+
     function execute($requests)
     {
         $arr_start_date['year']  = $requests['PERIOD_FROM_YEAR'];
