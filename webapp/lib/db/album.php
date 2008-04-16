@@ -57,10 +57,11 @@ function db_album_get_c_album4c_album_id($c_album_id)
  * @param int $c_member_id target_member_id
  * @param int $count
  * @param int $u viewer's member_id
+ * @param string $force
  */
-function db_album_get_c_album_subject_list4c_member_id($c_member_id, $count= 10 ,$u = null)
+function db_album_get_c_album_subject_list4c_member_id($c_member_id, $count= 10, $u = null, $force = null)
 {
-    $pf_condition = db_album_public_flag_condition($c_member_id, $u);
+    $pf_condition = db_album_public_flag_condition($c_member_id, $u, $force);
     $sql = 'SELECT * FROM c_album WHERE c_member_id = ? ' 
          . $pf_condition
          . ' ORDER BY u_datetime DESC';
