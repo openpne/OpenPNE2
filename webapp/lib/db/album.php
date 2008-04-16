@@ -360,12 +360,12 @@ function p_h_album_list_friend_h_album_list_friend4c_member_id($c_member_id, $pa
 }
 
 /**
- * フレンド最新アルバムリスト取得[h_home用]
+ * フレンド最新アルバムリスト取得
  * 日記公開範囲を考慮
- * todo:画像追加の順番にしたほうがよい
+ *
  * @param   int $c_member_id
  * @param   int $limit
- * @return  array_of_array  (c_album.*, nickname)
+ * @return  array
  */
 function p_h_home_c_album_friend_list4c_member_id($c_member_id, $limit)
 {
@@ -378,13 +378,13 @@ function p_h_home_c_album_friend_list4c_member_id($c_member_id, $limit)
     $sql = 'SELECT * FROM c_album' .
             ' WHERE c_member_id IN (' . $ids . ')' .
             ' AND public_flag <> \'private\'' .
-            ' ORDER BY r_datetime DESC';
+            ' ORDER BY u_datetime DESC';
 
     $c_album_friend_list = db_get_all_limit($sql, 0, $limit);
 
     foreach ($c_album_friend_list as $key => $value) {
         $c_member = db_common_c_member4c_member_id_LIGHT($value['c_member_id']);
-        $c_diary_friend_list[$key]['nickname'] = $c_member['nickname'];
+        $c_album_friend_list[$key]['nickname'] = $c_member['nickname'];
     }
 
     return $c_album_friend_list;
