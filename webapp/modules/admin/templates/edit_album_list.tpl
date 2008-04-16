@@ -117,7 +117,7 @@
             <td class="formbutton" colspan="2">
             <form action="./" method="get">
             <input type="hidden" name="m" value="({$module_name})" />
-            <input type="hidden" name="a" value="page_({$hash_tbl->hash('delete_album')})" />
+            <input type="hidden" name="a" value="page_({$hash_tbl->hash('delete_album_confirm')})" />
             <input type="hidden" name="target_c_album_id" value="({$item.c_album_id})" />
             <span class="textBtnS"><input type="submit" value="削除" /></span>
             </form>
