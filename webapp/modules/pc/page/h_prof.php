@@ -18,6 +18,11 @@ class pc_page_h_prof extends OpenPNE_Action
         $this->set('is_friend', 0);
         $this->set('c_diary_list', db_diary_get_c_diary_list4c_member_id($target_c_member_id, 5, null, 'friend'));
 
+        if (OPENPNE_USE_ALBUM) {
+            // アルバム
+            $this->set('c_album_list', db_album_get_c_album_subject_list4c_member_id($target_c_member_id, 5, null, 'friend'));
+        }
+
         // --- f_home, h_prof 共通処理
 
         $this->set('target_c_member_id', $target_c_member_id);
