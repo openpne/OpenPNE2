@@ -9,7 +9,7 @@ class admin_page_download_xml extends OpenPNE_Action
     function handleError($errors)
     {
         $msg = array_shift($errors);
-        admin_client_redirect('download', $msg);
+        admin_client_redirect('download_xml', $msg);
     }
 
     function execute($requests)
@@ -24,9 +24,11 @@ class admin_page_download_xml extends OpenPNE_Action
         return 'success';
     }
 }
-function create_option_values($start, $end){
+
+function create_option_values($start, $end)
+{
     $ret = array();
-    for($i = $start; $i <= $end; $i++){
+    for ($i = $start; $i <= $end; $i++) {
         array_push($ret, $i);
     }
     return $ret;
