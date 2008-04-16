@@ -62,6 +62,21 @@ class pc_do_h_album_image_add_insert_c_album_image extends OpenPNE_Action
 
         $sessid = session_id();
         t_image_clear_tmp($sessid);
+
+        $filesize_all = $filesize_1 + $filesize_2 + $filesize_3 + $filesize_4 + $filesize_5; 
+        if (!db_album_is_insertable4c_member_id($u, $filesize_all)) {
+            $msg = 'これ以上画像を投稿することができません。';
+            if (!db_album_is_insertable4c_member_id($u)) {
+                $msg .= '登録済みの画像を削除してからやり直してください。';
+            } else {
+                $msg .= '投稿する画像を減らすか、ファイルサイズを変更してやり直してください。';
+            }
+            $p = array(
+                'msg' => $msg,
+                'target_c_album_id' => $target_c_album_id,
+            );
+            openpne_redirect('pc', 'page_h_album_image_add', $p);
+        }
         
         // 説明がなければ画像の名前を設定
         if(!$image_description1){
@@ -88,8 +103,8 @@ class pc_do_h_album_image_add_insert_c_album_image extends OpenPNE_Action
                             4=>array('image_description'=>$image_description5,'image_filename'=>$filename_5,'image_size'=>$filesize_5),
         );
         
-        foreach($insert_data as $value){
-            db_insert_c_album_image($target_c_album_id,$value[image_filename],$value[image_description],$value[image_size]);
+        foreach ($insert_data as $value) {
+            db_insert_c_album_image($target_c_album_id, $u, $value['image_filename'], $value['image_description'], $value['image_size']);
         }
         
         //c_albumの更新日時UPDATE
