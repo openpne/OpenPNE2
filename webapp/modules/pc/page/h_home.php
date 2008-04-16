@@ -79,6 +79,10 @@ class pc_page_h_home extends OpenPNE_Action
         $this->set('c_commu_topic_comment_list', db_commu_c_commu_topic_comment_list4c_member_id($u, 5));
         // レビュー
         $this->set('c_friend_review_list', db_review_c_friend_review_list4c_member_id($u, 5));
+        if (OPENPNE_USE_ALBUM) {
+            // アルバム
+            $this->set('c_friend_album_list', p_h_home_c_album_friend_list4c_member_id($u, 5));
+        }
 
         /// 自分の情報 ///
 
