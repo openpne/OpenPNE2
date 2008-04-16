@@ -2979,6 +2979,12 @@ function db_admin_update_c_config_decoration($c_config_decoration_id, $is_enable
     return db_update('c_config_decoration', $data, $where);
 }
 
+function db_admin_album_count_c_album_image4c_album_id($c_album_id)
+{
+    $sql = 'SELECT COUNT(*) FROM c_album_image WHERE c_album_id = ?';
+    return db_get_one($sql, array(intval($c_album_id)));
+}
+
 function db_admin_album_list($keyword, $page_size, $page)
 {
     $page = intval($page);
@@ -3013,6 +3019,7 @@ function db_admin_album_list($keyword, $page_size, $page)
     $list = db_get_all_limit($sql,($page-1)*$page_size,$page_size,$params);
     foreach ($list as $key => $value) {
         $list[$key]['c_member'] = db_member_c_member_with_profile($value['c_member_id']);
+        $list[$key]['count_images'] = db_admin_album_count_c_album_image4c_album_id($value['c_album_id']);
     }
 
     $sql =
@@ -3044,6 +3051,7 @@ function db_admin_album_list4c_album_id($c_album_id, $page_size, $page)
     $list = db_get_all_limit($sql,($page-1)*$page_size,$page_size,$params);
     foreach ($list as $key => $value) {
         $list[$key]['c_member'] = db_member_c_member_with_profile($value['c_member_id']);
+        $list[$key]['count_images'] = db_admin_album_count_c_album_image4c_album_id($value['c_album_id']);
     }
 
     $sql =
@@ -3076,7 +3084,7 @@ function db_admin_c_album_image_list($page, $page_size, &$pager, $c_album_id = n
 
     $sql = 'SELECT COUNT(*) FROM c_album_image';
     if ($c_album_id) {
-        $sql .=  'WHERE c_album_id = ?';
+        $sql .=  ' WHERE c_album_id = ?';
     }
     $total_num = $db->get_one($sql, $params);
 
