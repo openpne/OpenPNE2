@@ -8,6 +8,10 @@ class admin_page_delete_album_confirm extends OpenPNE_Action
 {
     function execute($requests)
     {
+        if (!OPENPNE_USE_ALBUM) {
+            handle_kengen_error();
+        }
+
         $v = array();
         $target_c_album_id = $requests['target_c_album_id'];
         $album = db_album_get_c_album4c_album_id($target_c_album_id);

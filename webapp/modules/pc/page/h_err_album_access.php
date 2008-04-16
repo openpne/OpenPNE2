@@ -8,6 +8,10 @@ class pc_page_h_err_album_access extends OpenPNE_Action
 {
     function execute($requests)
     {
+        if (!OPENPNE_USE_ALBUM) {
+            handle_kengen_error();
+        }
+
         $u = $GLOBALS['AUTH']->uid();
 
         $this->set('inc_navi', fetch_inc_navi('h'));
