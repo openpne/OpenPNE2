@@ -506,17 +506,22 @@ function db_album_update_c_album_u_datetime($album_id)
 function db_insert_c_album_image($c_album_id, $image_filename, $image_description,$image_size=0)
 {
     $data = array(
-            'c_album_id'=>$c_album_id,
-            'image_description'=>$image_description,
-            'r_datetime' => db_now(),
+        'c_album_id'=>$c_album_id,
+        'image_description'=>$image_description,
+        'r_datetime' => db_now(),
     );
 
-     if ($image_filename) {
+    if ($image_filename) {
         $data['image_filename'] = $image_filename;
         $data['filesize'] = $image_size;
-     }
-    
-    return db_insert('c_album_image', $data);
+    }
+
+    $insert_id = db_insert('c_album_image', $data);
+    if ($insert_id) {
+        db_album_update_c_album_u_datetime($c_album_id);
+    }
+
+    return $insert_id;
 }
 
 /**
