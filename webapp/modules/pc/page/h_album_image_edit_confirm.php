@@ -15,6 +15,10 @@ class pc_page_h_album_image_edit_confirm extends OpenPNE_Action
 
     function execute($requests)
     {
+        if (!OPENPNE_USE_ALBUM) {
+            handle_kengen_error();
+        }
+
         $u = $GLOBALS['AUTH']->uid();
 
         // --- リクエスト変数
