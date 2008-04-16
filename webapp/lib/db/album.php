@@ -52,7 +52,8 @@ function db_album_get_c_album4c_album_id($c_album_id)
 }
 
 /**
- * あるメンバーのアルバムのサブジェクト一覧を取得
+ * あるメンバーのアルバム一覧を取得
+ * 
  * @param int $c_member_id target_member_id
  * @param int $count
  * @param int $u viewer's member_id
@@ -60,9 +61,9 @@ function db_album_get_c_album4c_album_id($c_album_id)
 function db_album_get_c_album_subject_list4c_member_id($c_member_id, $count= 10 ,$u = null)
 {
     $pf_condition = db_album_public_flag_condition($c_member_id, $u);
-    $sql = 'SELECT subject,c_album_id FROM c_album WHERE c_member_id = ? ' 
-        . $pf_condition
-        . ' ORDER BY r_datetime DESC';
+    $sql = 'SELECT * FROM c_album WHERE c_member_id = ? ' 
+         . $pf_condition
+         . ' ORDER BY u_datetime DESC';
     
     $params = array(intval($c_member_id));        
     return db_get_all_limit($sql, 0, $count, $params);
@@ -222,6 +223,7 @@ function pne_check_album_public_flag($c_album_id, $c_member_id)
 
 /**
  * 特定ユーザーのアルバムリスト取得
+ *
  * @param int $c_member_id target_c_member_id
  * @param int $page_size
  * @param int $page
@@ -389,7 +391,6 @@ function p_h_home_c_album_friend_list4c_member_id($c_member_id, $limit)
 
     return $c_album_friend_list;
 }
-
 
 /**
  * アルバムを追加
