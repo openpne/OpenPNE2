@@ -8,6 +8,10 @@ class pc_do_h_album_edit_delete_image extends OpenPNE_Action
 {
     function execute($requests)
     {
+        if (!OPENPNE_USE_ALBUM) {
+            handle_kengen_error();
+        }
+
         $u = $GLOBALS['AUTH']->uid();
 
         // --- リクエスト変数
