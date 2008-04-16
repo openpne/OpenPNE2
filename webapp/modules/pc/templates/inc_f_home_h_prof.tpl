@@ -330,6 +330,18 @@ show_flash('flash/list.swf', '({$flashvars})');
 </ul></div>
 </td></tr>
 ({/if})
+({if $c_album_list})
+<tr><th>最新アルバム</th><td>
+<dl class="articleList">
+({foreach from=$c_album_list item=item})
+<dt>({$item.u_datetime|date_format:"%m月%d日"})</dt><dd><a href="({t_url m=pc a=page_fh_album})&amp;target_c_album_id=({$item.c_album_id})">({$item.subject|t_truncate:30})</a></dd>
+({/foreach})
+</dl>
+<div class="moreInfo"><ul class="moreInfo">
+<li><a href="({t_url m=pc a=page_fh_album_list})&amp;target_c_member_id=({$target_c_member_id})">もっと読む</a></li>
+</ul></div>
+</td></tr>
+({/if})
 </table>
 </div></div>
 ({* }}} *})
