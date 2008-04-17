@@ -14,7 +14,7 @@
 </div>
 ({* }}} *})
 
-
+({* {{{ searchResultList *})
 <div class="dparts searchResultList"><div class="parts">
 ({if $keyword})
 <div class="partsHeading"><h3>アルバム検索結果一覧</h3><p>*** ({$album_list_count})件が該当しました。</p></div>
@@ -27,7 +27,6 @@
 <p class="number">({$pager.start})件～({$pager.end})件を表示</p>
 ({if $is_next})<p class="next">&nbsp;&nbsp;<a href="({t_url m=pc a=page_h_album_search})&amp;keyword=({$keyword|escape:url|smarty:nodefaults})&amp;page=({$page})&amp;direc=1">次を表示</a></p>({/if})
 </div>
-
 
 <div class="block">
 ({foreach from=$target_album_list item=album})
@@ -42,10 +41,7 @@
 <th>作成日時</th><td class="operation"><span class="text">({$album.r_datetime|date_format:"%Y年%m月%d日 %H:%M"})</span> <span class="moreInfo"><a href="({t_url m=pc a=page_fh_album})&amp;target_c_album_id=({$album.c_album_id})"><img src="({t_img_url_skin filename=button_shosai})" alt="詳細を見る" /></a></span></td>
 </tr></table></div></div>
 ({/foreach})
-</div><!-- block -->
-
-
-
+</div>
 
 <div class="pagerRelative">
 ({if $is_prev})<p class="prev"><a href="({t_url m=pc a=page_h_album_search})&amp;keyword=({$keyword|escape:url|smarty:nodefaults})&amp;page=({$page})&amp;direc=-1">前を表示</a></p>({/if})
@@ -53,9 +49,8 @@
 ({if $is_next})<p class="next">&nbsp;&nbsp;<a href="({t_url m=pc a=page_h_album_search})&amp;keyword=({$keyword|escape:url|smarty:nodefaults})&amp;page=({$page})&amp;direc=1">次を表示</a></p>({/if})
 </div>
 
-</div><!-- parts -->
-</div><!-- dparts searchResultList -->
-
+</div></div>
+({* }}} *})
 
 </div><!-- Center -->
 </div><!-- LayoutC -->
