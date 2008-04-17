@@ -35,9 +35,9 @@
 <li>
 ({t_form_block m=pc a=do_h_album_add_insert_c_album})
 ({foreach from=$form_val key=key item=item})
-<input type="hidden" name="({$key})" value="({$item})">
+<input type="hidden" name="({$key})" value="({$item})" />
 ({/foreach})
-<input type="submit" class="input_submit" value="　作 　成　">
+<input type="submit" class="input_submit" value="　作 　成　" />
 ({*
 <input type="hidden" name="subject" value="({$form_val.subject})" />
 <input type="hidden" name="description" value="({$form_val.description})" />
@@ -49,7 +49,7 @@
 <li>
 ({t_form_block m=pc a=page_h_album_add})
 ({foreach from=$form_val key=key item=item})
-<input type="hidden" name="({$key})" value="({$item})">
+<input type="hidden" name="({$key})" value="({$item})" />
 ({/foreach})
 <input type="submit" class="input_submit" value="　修 　正　" />
 ({*
