@@ -16,8 +16,8 @@
 
 <div id="Left">
 
+({* {{{ sideNav *})
 <div class="parts sideNav">
-({*ここから：最新のアルバム*})
 <div class="item listCategory">
 <div class="partsHeading"><h3>最新のアルバム</h3></div>
 <ul class="list">
@@ -26,8 +26,8 @@
 ({/foreach})
 </ul>
 </div>
-({*ここまで：最新のアルバム*})
 </div> <!--parts sideNav-->
+({* }}} *})
 
 </div><!-- Left -->
 
@@ -82,7 +82,7 @@
 ({* #1948 *})    <tr>
 ({* #1948 *})        <td style="width:190px;padding:2px;" valign="top" rowspan="9" align="center" class="bg_02">
 ({* #1948 *})        <span class="padding_s">
-({* #1948 *})            <a href="({t_url m=pc a=page_fh_album})&amp;target_c_album_id=({$item.c_album_id})"><img src="({if $item.album_cover_image})({t_img_url filename=$item.album_cover_image w=180 h=180})({else})({t_img_url_skin filename=no_image w=180 h=180})({/if})"></a>
+({* #1948 *})            <a href="({t_url m=pc a=page_fh_album})&amp;target_c_album_id=({$item.c_album_id})"><img src="({if $item.album_cover_image})({t_img_album_url filename=$item.album_cover_image w=180 h=180})({else})({t_img_url_skin filename=no_image w=180 h=180})({/if})"></a>
 ({* #1948 *})        </span>
 ({* #1948 *})        </td>
 ({* #1948 *})        <td style="width:1px;" class="bg_01">
