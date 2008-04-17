@@ -1,19 +1,20 @@
 <div id="LayoutC">
 <div id="Center">
 
+({if $c_member_list})
 ({* {{{ manageList *})
 <div class="dparts manageList"><div class="parts">
 <div class="partsHeading"><h3>メンバー管理</h3></div>
 
-({if $c_member_list})
+({capture name=pager})({strip})
+({if $is_prev || $is_next})
 <div class="pagerRelative">
-({if $is_prev})
-<p class="prev"><a href="({t_url m=pc a=page_c_edit_member})&amp;target_c_commu_id=({$requests.target_c_commu_id})&amp;page=({$page})&amp;direc=-1">前を表示</a></p>
-({/if})
-({if $is_next})
-<p class="next"><a href="({t_url m=pc a=page_c_edit_member})&amp;target_c_commu_id=({$requests.target_c_commu_id})&amp;page=({$page})&amp;direc=1">次を表示</a></p>
-({/if})
+({if $is_prev})<p class="prev"><a href="({t_url m=pc a=page_c_edit_member})&amp;target_c_commu_id=({$requests.target_c_commu_id})&amp;page=({$page-1})">前を表示</a></p>({/if})
+({if $is_next})<p class="next"><a href="({t_url m=pc a=page_c_edit_member})&amp;target_c_commu_id=({$requests.target_c_commu_id})&amp;page=({$page+1})">次を表示</a></p>({/if})
 </div>
+({/if})
+({/strip})({/capture})
+({$smarty.capture.pager|smarty:nodefaults})
 
 <table>
 <colgroup>
@@ -59,18 +60,11 @@
 ({/foreach})
 </table>
 
-<div class="pagerRelative">
-({if $is_prev})
-<p class="prev"><a href="({t_url m=pc a=page_c_edit_member})&amp;target_c_commu_id=({$requests.target_c_commu_id})&amp;page=({$page})&amp;direc=-1">前を表示</a></p>
-({/if})
-({if $is_next})
-<p class="next"><a href="({t_url m=pc a=page_c_edit_member})&amp;target_c_commu_id=({$requests.target_c_commu_id})&amp;page=({$page})&amp;direc=1">次を表示</a></p>
-({/if})
-</div>
+({$smarty.capture.pager|smarty:nodefaults})
 
-({/if})
 </div></div>
 ({* }}} *})
+({/if})
 
 </div><!-- Center -->
 </div><!-- LayoutC -->
