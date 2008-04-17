@@ -17,7 +17,7 @@
 ({* unknown *})<table>
 ({* unknown *})<tr>
 ({* unknown *})<td colspan="2">
-({* unknown *})<img src="({t_img_album_url filename=$c_album_image.image_filename w=600 h=600})" alt="photo" vspace="4" />
+({* unknown *})<img src="({t_img_url filename=$c_album_image.image_filename w=600 h=600})" alt="photo" vspace="4" />
 ({* unknown *})</td>
 ({* unknown *})</tr>
 ({* unknown *})<tr>
