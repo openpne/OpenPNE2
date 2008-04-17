@@ -20,13 +20,13 @@
 <tr>
 <th>公開範囲</th>
 <td>
-({* #1931 *})({if $form_val.public_flag == "public"})
-({* #1931 *})全員に公開
-({* #1931 *})({elseif $form_val.public_flag == "friend"})
-({* #1931 *})({$WORD_MY_FRIEND})まで公開
-({* #1931 *})({elseif $form_val.public_flag == "private"})
-({* #1931 *})公開しない
-({* #1931 *})({/if})
+({if $form_val.public_flag == "public"})
+全員に公開
+({elseif $form_val.public_flag == "friend"})
+({$WORD_MY_FRIEND})まで公開
+({elseif $form_val.public_flag == "private"})
+公開しない
+({/if})
 </td>
 </tr>
 </table>
