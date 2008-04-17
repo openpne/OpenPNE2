@@ -58,7 +58,7 @@
 </center>
 </form>
 ({if $smarty.const.OPENPNE_AUTH_MODE == 'slavepne'})
-({if $smarty.const.SLAVEPNE_SYOUTAI_URL_KTAI})
+({if $smarty.const.SLAVEPNE_PASSWORD_QUERY_URL_KTAI})
 <a href="({$smarty.const.SLAVEPNE_PASSWORD_QUERY_URL_KTAI})">&gt;&gt;ﾊﾟｽﾜｰﾄﾞを忘れた方</a><br>
 ({/if})
 ({else})
