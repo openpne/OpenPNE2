@@ -89,7 +89,9 @@
 ({* #1970 *})
 ({* #1970 *})({* 誕生日 *})
 ({* #1970 *})({foreach from=$item.birth item=item_birth})
+({* #1970 *})({if $item_birth.public_flag_birth_month_day != "private" || $c_member.c_member_id == $item_birth.c_member_id})
 ({* #1970 *})<img src="({t_img_url_skin filename=icon_birthday})" class="icon" /><a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item_birth.c_member_id})">({$item_birth.nickname})さん</a><br />
+({* #1970 *})({/if})
 ({* #1970 *})({/foreach})
 ({* #1970 *})
 ({* #1970 *})({* イベント *})

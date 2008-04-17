@@ -14,6 +14,8 @@
 
 ({else})
 
+({if $target_c_member.public_flag_birth_month_day == 'public' || ($target_c_member.public_flag_birth_month_day == 'friend' && $is_friend)})
+
 ({if $days_birthday == 0})({* 誕生日当日 *})
 <div class="parts">
 <a href="({t_url m=pc a=page_f_message_send})&amp;target_c_member_id=({$target_c_member.c_member_id})"><img src="({t_img_url_skin filename=birthday_f})" alt="Happy Birthday!" /></a>
@@ -22,6 +24,8 @@
 <div class="parts">
 <a href="({t_url m=pc a=page_f_message_send})&amp;target_c_member_id=({$target_c_member.c_member_id})"><img src="({t_img_url_skin filename=birthday_f_2})" alt="もうすぐ誕生日です" /></a>
 </div>
+({/if})
+
 ({/if})
 
 ({if !$is_friend})
@@ -226,8 +230,8 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({if $target_c_member.age !== NULL && ($target_c_member.public_flag_birth_year == 'public' || ($target_c_member.public_flag_birth_year == 'friend' && ($is_friend || $is_h_prof)))})
 <tr><th>年齢</th><td>({$target_c_member.age})歳 ({if $is_h_prof && $target_c_member.public_flag_birth_year == 'friend'})<span class="caution">※({$WORD_MY_FRIEND})まで公開</span>({/if})</td></tr>
 ({/if})
-({if $target_c_member.birth_month && $target_c_member.birth_day})
-<tr><th>誕生日</th><td>({$target_c_member.birth_month})月({$target_c_member.birth_day})日</td></tr>
+({if $target_c_member.birth_month && $target_c_member.birth_day && ($target_c_member.public_flag_birth_month_day == 'public' || ($target_c_member.public_flag_birth_month_day == 'friend' && ($is_friend || $is_h_prof)))})
+<tr><th>誕生日</th><td>({$target_c_member.birth_month})月({$target_c_member.birth_day})日 ({if $is_h_prof && $target_c_member.public_flag_birth_month_day == 'friend'})<span class="caution">※({$WORD_MY_FRIEND})まで公開</span>({/if})</td></tr>
 ({/if})
 ({/capture})
 ({foreach from=$target_c_member.profile key=key item=item})
