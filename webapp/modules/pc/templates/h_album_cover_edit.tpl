@@ -23,7 +23,7 @@
 <th>表紙</th>
 <td>
 ({if $album.album_cover_image})
-<a href="({t_img_album_url filename=$album.album_cover_image})" target="_blank"><img src="({t_img_album_url filename=$album.album_cover_image w=180 h=180})" alt="" /></a><br />({else})
+<a href="({t_img_url filename=$album.album_cover_image})" target="_blank"><img src="({t_img_url filename=$album.album_cover_image w=180 h=180})" alt="" /></a><br />({else})
 ({/if})
 <input type="hidden" name="pre_image_filename" value="({$album.album_cover_image})" />
 <input type="file" class="input_file" name="upfile_1" size="40" />
