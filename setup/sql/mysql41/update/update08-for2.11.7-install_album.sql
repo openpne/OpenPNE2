@@ -24,15 +24,3 @@ CREATE TABLE IF NOT EXISTS `c_album_image` (
   `r_datetime` datetime NOT NULL default '0000-00-00 00:00:00',
   PRIMARY KEY  (`c_album_image_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
-
-DROP TABLE IF EXISTS `c_image_album`;
-CREATE TABLE IF NOT EXISTS `c_image_album` (
-  `c_image_album_id` int(11) NOT NULL auto_increment,
-  `filename` text NOT NULL,
-  `bin` longblob NOT NULL,
-  `r_datetime` datetime NOT NULL default '0000-00-00 00:00:00',
-  `type` text,
-  PRIMARY KEY  (`c_image_album_id`),
-  KEY `filename` (`filename`(100))
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
