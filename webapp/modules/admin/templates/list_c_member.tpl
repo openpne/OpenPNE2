@@ -189,10 +189,10 @@
 		<tr>
 			<th class="cell01" rowspan="3">&nbsp;</th>
 			<th class="cell02" colspan="4" rowspan="2">操作パネル</th>
+			<th class="cell03" rowspan="2">ID</th>
 			({if $smarty.const.OPENPNE_AUTH_MODE != 'email'})
 			<th class="cell19" rowspan="2">ログインID</th>
 			({/if})
-			<th class="cell03" rowspan="2">ID</th>
 			<th class="cell04" rowspan="2">({$WORD_NICKNAME})</th>
 			({if $smarty.const.OPENPNE_USE_POINT_RANK})
 			<th class="cell10" rowspan="2">ランク</th>
