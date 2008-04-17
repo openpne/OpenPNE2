@@ -1,6 +1,7 @@
 <div id="LayoutC">
 <div id="Center">
 
+({* {{{ formTable *})
 <div class="dparts formTable"><div class="parts">
 <div class="partsHeading"><h3>編集：({$album.subject})</h3></div>
 ({t_form_block _enctype=file m=pc a=page_h_album_cover_edit_confirm})
@@ -22,7 +23,7 @@
 <th>表紙</th>
 <td>
 ({if $album.album_cover_image})
-<a href="({t_img_url filename=$album.album_cover_image})" target="_blank"><img src="({t_img_url filename=$album.album_cover_image w=180 h=180})"></a><br>({else})
+<a href="({t_img_album_url filename=$album.album_cover_image})" target="_blank"><img src="({t_img_album_url filename=$album.album_cover_image w=180 h=180})" alt="" /></a><br />({else})
 ({/if})
 <input type="hidden" name="pre_image_filename" value="({$album.album_cover_image})" />
 <input type="file" class="input_file" name="upfile_1" size="40" />
@@ -45,9 +46,10 @@
 </ul>
 </div>
 ({/t_form_block})
-</div> <!-- parts -->
-</div> <!-- dparts formTable -->
+</div></div>
+({* }}} *})
 
+({* {{{ formTable *})
 <div class="dparts formTable"><div class="parts">
 <div class="partsHeading"><h3>アルバムを削除する</h3></div>
 <div class="partsInfo">
@@ -65,7 +67,7 @@
 </div>
 ({/t_form_block})
 </div></div>
-
+({* }}} *})
 
 </div><!-- Center -->
 </div><!-- LayoutC -->
