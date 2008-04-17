@@ -1434,6 +1434,27 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 .manageList td.delete {
 	width: 120px;
 }
+.manageList col.date {
+	width: 160px;
+}
+* html .manageList col.date {
+	width: 150px;
+}
+*:first-child+html .manageList col.date {
+	width: 150px;
+}
+.manageList col.name {
+	width: auto;
+}
+.manageList colgroup.operation col {
+	width: 86px;
+}
+* html .manageList colgroup.operation col {
+	width: 76px;
+}
+*:first-child+html .manageList colgroup.operation col {
+	width: 76px;
+}
 
 /*==============================================================================
  * 13. photoUploadFormBox（プロフィール写真アップロードフォームボックス）
