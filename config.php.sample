@@ -307,7 +307,7 @@ if (OPENPNE_IMG_CACHE_PUBLIC) {
 
 // 画像変換時に許可する解像度のリスト (幅x高さ)
 // (空の配列を指定すると無制限になります)
-$GLOBALS['_OPENPNE_IMG_ALLOWED_SIZE'] = array('76x76', '120x120', '180x180', '240x320');
+$GLOBALS['_OPENPNE_IMG_ALLOWED_SIZE'] = array('76x76', '120x120', '180x180', '240x320', '600x600');
 
 // 画像キャッシュのファイル名のprefix
 define('OPENPNE_IMG_CACHE_PREFIX', 'img_cache_');
