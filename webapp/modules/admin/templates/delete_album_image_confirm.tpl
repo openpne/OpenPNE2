@@ -28,7 +28,7 @@
 <tr>
 <th>写真</th>
 <td>
-<img src="({if $album_image.image_filename})({t_img_album_url filename=$album_image.image_filename w=120 h=120})({else})({t_img_url_skin filename=no_image w=120 h=120})({/if})">
+<img src="({if $album_image.image_filename})({t_img_url filename=$album_image.image_filename w=120 h=120})({else})({t_img_url_skin filename=no_image w=120 h=120})({/if})">
 </td>
 </tr>
 ({****})
