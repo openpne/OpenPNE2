@@ -606,7 +606,8 @@ function image_insert_c_image_album4tmp($prefix, $tmpfile)
             'type' => '',
         );
         
-        if (db_insert("c_image", $params)) {
+        $db =& db_get_instance('image');
+        if ($db->insert("c_image", $params)) {
             return $filename;
         }
     }
