@@ -413,8 +413,8 @@ function db_album_insert_c_album($c_member_id, $subject, $description,$public_fl
         'public_flag' => $public_flag,
         'u_datetime' => db_now(),
         'r_datetime' => db_now(),
+        'album_cover_image' => '',
     );
-    
     return db_insert('c_album', $data);
 }
 
