@@ -606,7 +606,7 @@ function image_insert_c_image_album4tmp($prefix, $tmpfile)
             'type' => '',
         );
         
-        if (db_insert("c_image_album", $params)) {
+        if (db_insert("c_image", $params)) {
             return $filename;
         }
     }
@@ -638,7 +638,7 @@ function db_image_insert_c_image_album($filename, $bin, $type = '')
         'type'       => $type,
         'r_datetime' => db_now(),
     );
-    return $db->insert('c_image_album', $data, 'c_image_id');
+    return $db->insert('c_image', $data, 'c_image_id');
 }
 
 function db_album_image_data_delete($image_filename)
@@ -655,7 +655,7 @@ function db_album_image_delete_c_image($filename)
 {
     $db =& db_get_instance('image');
 
-    $sql = 'DELETE FROM c_image_album WHERE filename = ?';
+    $sql = 'DELETE FROM c_image WHERE filename = ?';
     $params = array($filename);
     return $db->query($sql, $params);
 }
@@ -666,7 +666,7 @@ function db_image_is_c_album_image4filename($filename)
 
     $db =& db_get_instance('image');
 
-    $sql = 'SELECT c_image_id FROM c_image_album WHERE filename = ?';
+    $sql = 'SELECT c_image_id FROM c_image WHERE filename = ?';
     $params = array($filename);
     return (bool)$db->get_one($sql, $params);
 }
