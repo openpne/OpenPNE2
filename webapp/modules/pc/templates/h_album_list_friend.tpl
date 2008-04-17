@@ -35,7 +35,7 @@
 ({else})
 ({* {{{ simpleBox *})
 <div class="dparts simpleBox"><div class="parts">
-<div class="partsHeading"><h3>({$WORD_MY_FRIEND})最新日記</h3></div>
+<div class="partsHeading"><h3>({$WORD_MY_FRIEND})最新アルバム</h3></div>
 <div class="block">
 <p>({$WORD_MY_FRIEND})のアルバムがありません。</p>
 </div>
