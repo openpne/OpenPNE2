@@ -130,26 +130,30 @@
 ({* #1952 *})<div class="partsHeading"><h3>写真一覧</h3></div>
 ({* #1952 *})
 ({* #1952 *})({if $target_album_image})
-({* #1952 *})<div class="pagerRelative">
-({* #1952 *})({if $is_prev})
-({* #1952 *})<p class="prev"><a href="({t_url m=pc a=page_fh_album})&amp;direc=-1&amp;page=({$page})({if $target_c_album_id})&amp;target_c_album_id=({$target_album_id})({/if})">前を表示</a></p>
-({* #1952 *})({/if})
-({* #1952 *})<p class="number">
-({* #1952 *})({$total_num})件中
-({* #1952 *})({strip})
-({* #1952 *})({$page*$page_size-$page_size+1})件～
-({* #1952 *})({if $page_size > $diary_list_count})
-({* #1952 *})({$album_list_count+$page*$page_size-$page_size})
-({* #1952 *})({else})
-({* #1952 *})({$page*$page_size})
-({* #1952 *})({/if})
-({* #1952 *})件を表示
-({* #1952 *})({/strip})
-({* #1952 *})</p>
-({* #1952 *})({if $is_next})
-({* #1952 *})<p class="next"><a href="({t_url m=pc a=page_fh_album})&amp;direc=1&amp;page=({$page})({if $target_c_album_id})&amp;target_c_album_id=({$target_album_id})({/if})">次を表示</a></p>
-({* #1952 *})({/if})
-({* #1952 *})</div> <!-- pagerRelative -->
+({capture name=pager})({strip})
+<div class="pagerRelative">
+
+({if $is_prev})
+<p class="prev"><a href="({t_url m=pc a=page_fh_album})&amp;direc=-1&amp;page=({$page})({if $target_c_album_id})&amp;target_c_album_id=({$target_c_album_id})({/if})">前を表示</a></p>
+({/if})
+<p class="number">
+({$total_num})件中
+({strip})
+({$page*$page_size-$page_size+1})件～
+({if $page_size > $diary_list_count})
+({$album_list_count+$page*$page_size-$page_size})
+({else})
+({$page*$page_size})
+({/if})
+件を表示
+({/strip})
+</p>
+({if $is_next})
+<p class="next"><a href="({t_url m=pc a=page_fh_album})&amp;direc=1&amp;page=({$page})({if $target_c_album_id})&amp;target_c_album_id=({$target_c_album_id})({/if})">次を表示</a></p>
+({/if})
+</div> <!-- pagerRelative -->
+({/strip})({/capture})
+({$smarty.capture.pager|smarty:nodefaults})
 ({* #1952 *})
 ({* #1952 *})<table border="0" cellspacing="0" cellpadding="0" style="width:524px;" class="border_01">
 ({* #1952 *})    ({foreach from=$new_album_list key=key item=album_item})
@@ -196,26 +200,7 @@
 ({* #1952 *})    ({/foreach})
 ({* #1952 *})</table>
 ({* #1952 *})
-({* #1952 *})<div class="pagerRelative">
-({* #1952 *})({if $is_prev})
-({* #1952 *})<p class="prev"><a href="({t_url m=pc a=page_fh_album})&amp;direc=-1&amp;page=({$page})({if $target_c_album_id})&amp;target_c_album_id=({$target_album_id})({/if})">前を表示</a></p>
-({* #1952 *})({/if})
-({* #1952 *})<p class="number">
-({* #1952 *})({$total_num})件中
-({* #1952 *})({strip})
-({* #1952 *})({$page*$page_size-$page_size+1})件～
-({* #1952 *})({if $page_size > $diary_list_count})
-({* #1952 *})({$album_list_count+$page*$page_size-$page_size})
-({* #1952 *})({else})
-({* #1952 *})({$page*$page_size})
-({* #1952 *})({/if})
-({* #1952 *})件を表示
-({* #1952 *})({/strip})
-({* #1952 *})</p>
-({* #1952 *})({if $is_next})
-({* #1952 *})<p class="next"><a href="({t_url m=pc a=page_fh_album})&amp;direc=1&amp;page=({$page})({if $target_c_album_id})&amp;target_c_album_id=({$target_album_id})({/if})">次を表示</a></p>
-({* #1952 *})({/if})
-({* #1952 *})</div> <!-- pagerRelative -->
+({$smarty.capture.pager|smarty:nodefaults})
 ({* #1952 *})({else})
 ({* #1952 *})<!-- アルバムに画像なし -->
 ({* #1952 *})<table border="0" cellspacing="0" cellpadding="0" style="width:522px;" class="border_01">
