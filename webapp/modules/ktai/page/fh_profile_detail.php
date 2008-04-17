@@ -32,7 +32,7 @@ class ktai_page_fh_profile_detail extends OpenPNE_Action
         //ターゲットのc_member
 
         $is_friend = db_friend_is_friend($u, $target_c_member_id);
-        if ($is_friend) {
+        if ($is_friend || $target_c_member_id == $u) {
             $target_c_member = db_member_c_member_with_profile($target_c_member_id, 'friend');
         } else {
             $target_c_member = db_member_c_member_with_profile($target_c_member_id, 'public');

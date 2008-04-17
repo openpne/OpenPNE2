@@ -34,6 +34,9 @@ function db_schedule_birth4c_member_id($month, $c_member_id)
 
     $res = array();
     foreach ($list as $item) {
+        if ($item['c_member_id'] != $c_member_id && $item['public_flag_birth_month_day'] == 'private') {
+            continue;
+        }
         $day = intval($item['birth_day']);
         $res[$day][] = $item;
     }
