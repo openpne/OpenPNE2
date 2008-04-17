@@ -1,8 +1,8 @@
 <div id="LayoutC">
 <div id="Center">
 
-<div class="dparts formTable">
-<div class="parts">
+({* {{{ formTable *})
+<div class="dparts formTable"><div class="parts">
 <div class="partsHeading"><h3>以下の内容でよろしいですか？</h3></div>
 
 <table>
@@ -27,15 +27,15 @@
 <li>
 ({t_form_block m=pc a=do_h_album_image_edit_insert_c_album_image})
 ({foreach from=$form_val key=key item=item})
-<input type="hidden" name="({$key})" value="({$item})">
+<input type="hidden" name="({$key})" value="({$item})" />
 ({/foreach})
-<input type="submit" class="input_submit" value="　決　定　">
+<input type="submit" class="input_submit" value="　決　定　" />
 ({/t_form_block})
 </li>
 <li>
 ({t_form_block m=pc a=page_h_album_image_edit})
 ({foreach from=$form_val key=key item=item})
-<input type="hidden" name="({$key})" value="({$item})">
+<input type="hidden" name="({$key})" value="({$item})" />
 ({/foreach})
 <input type="submit" class="input_submit" value="　修 　正　" />
 ({/t_form_block})
@@ -43,9 +43,8 @@
 </ul>
 </div> <!-- operation -->
 
-
-</div> <!-- parts -->
-</div> <!-- dparts formTable -->
+</div></div>
+({* }}} *})
 
 </div><!-- Center -->
 </div><!-- LayoutC -->
