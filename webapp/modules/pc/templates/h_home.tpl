@@ -347,7 +347,9 @@ show_flash('flash/list.swf', '({$flashvars})');
 
 ({* 誕生日 *})
 ({foreach from=$item.birth item=item_birth})
+({if $item_birth.public_flag_birth_month_day != "private" || $c_member.c_member_id == $item_birth.c_member_id})
 <img src="({t_img_url_skin filename=icon_birthday})" alt="誕生日" /><a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item_birth.c_member_id})">({$item_birth.nickname})さん</a><br />
+({/if})
 ({/foreach})
 
 ({* イベント *})
