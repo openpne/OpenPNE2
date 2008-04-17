@@ -1,7 +1,7 @@
-
 <div id="LayoutC">
 <div id="Center">
 
+({* {{{ formTable *})
 <div class="dparts formTable"><div class="parts">
 <div class="partsHeading"><h3>写真を編集する</h3></div>
 ({t_form_block _enctype=file m=pc a=page_h_album_image_edit_confirm})
@@ -13,7 +13,7 @@
 <th>画像</th>
 <td>
 <a href="({t_img_url filename=$c_album_image.image_filename})" target="_blank">
-<img src="({t_img_url filename=$c_album_image.image_filename w=180 h=180})"></a><br>
+<img src="({t_img_url filename=$c_album_image.image_filename w=180 h=180})" alt="" /></a><br />
 <input type="file" class="input_file" name="upfile_1" size="40" />
 </td>
 </tr>
@@ -30,11 +30,10 @@
 </ul>
 </div>
 ({/t_form_block})
-</div> <!-- parts -->
-</div> <!-- dparts formTable -->
+</div></div>
+({* }}} *})
 
-
-
+({* {{{ formTable *})
 <div class="dparts formTable"><div class="parts">
 <div class="partsHeading"><h3>画像を削除する</h3></div>
 ({t_form_block m=pc a=page_h_album_image_delete_confirm})
@@ -47,7 +46,7 @@
 </div>
 ({/t_form_block})
 </div></div>
-
+({* }}} *})
 
 </div><!-- Center -->
 </div><!-- LayoutC -->
