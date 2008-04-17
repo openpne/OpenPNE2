@@ -118,19 +118,6 @@ class ktai_do_o_insert_c_member extends OpenPNE_Action
             'regist_address' => $pre['ktai_address'],
         );
 
-        switch ($prof['public_flag_birth_year']) {
-        case "public":
-        default:
-            $prof['public_flag_birth_year'] = "public";
-            break;
-        case "friend":
-            $prof['public_flag_birth_year'] = "friend";
-            break;
-        case "private":
-            $prof['public_flag_birth_year'] = "private";
-            break;
-        }
-
         if (!$c_member_id = util_regist_c_member($prof, $c_member_secure, $c_member_profile_list)) {
             openpne_redirect('ktai', 'page_o_login', array('msg' => 42));
         }
@@ -186,7 +173,16 @@ class ktai_do_o_insert_c_member extends OpenPNE_Action
                 'max' => '31',
             ),
             'public_flag_birth_year' => array(
-                'type' => 'string',
+                'type' => 'regexp',
+                'regexp' => '/^(public|friend|private)$/',
+                'required' => '1',
+                'caption' => '公開範囲',
+            ),
+            'public_flag_birth_month_day' => array(
+                'type' => 'regexp',
+                'regexp' => '/^(public|friend|private)$/',
+                'required' => '1',
+                'caption' => '公開範囲',
             ),
             'password' => array(
                 'type' => 'regexp',

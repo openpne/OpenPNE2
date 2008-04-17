@@ -33,6 +33,7 @@
 <hr color="#({$ktai_color_config.border_02})">
 </td></tr>
 ({/if})
+({if $target_c_member.public_flag_birth_month_day == 'public' || ($target_c_member.public_flag_birth_month_day == 'friend' && $is_friend)})
 ({if $days_birthday == 0})({* 誕生日当日　*})
 <tr><td colspan="2" align="center">
 <a href="({t_url m=ktai a=page_f_message_send})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">☆Happy Birthday☆<br>
@@ -43,6 +44,7 @@
 <a href="({t_url m=ktai a=page_f_message_send})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">☆もうすぐ誕生日です!☆<br>
 お誕生日にはﾒｯｾｰｼﾞを送りましょう</a><br>
 </td></tr>
+({/if})
 ({/if})
 ({/if})
 
@@ -65,9 +67,10 @@
 ({if $target_c_member.age !== NULL && ($target_c_member.public_flag_birth_year == 'public' || ($target_c_member.public_flag_birth_year == 'friend' && ($is_friend || $is_h_prof)))})<font color="#({$ktai_color_config.font_06})">年齢：</font><br>({$target_c_member.age})歳<br>
 ({if $is_h_prof && $target_c_member.public_flag_birth_year == 'friend'})<font color="#({$ktai_color_config.font_09})">※({$WORD_MY_FRIEND_HALF})まで公開</font><br>({/if})
 ({/if})
-({if $target_c_member.birth_month && $target_c_member.birth_day})
+({if $target_c_member.birth_month && $target_c_member.birth_day && ($target_c_member.public_flag_birth_month_day == 'public' || ($target_c_member.public_flag_birth_month_day == 'friend' && ($is_friend || $is_h_prof)))})
 <font color="#({$ktai_color_config.font_06})">誕生日：</font><br>
 ({$target_c_member.birth_month})月({$target_c_member.birth_day})日<br>
+({if $is_h_prof && $target_c_member.public_flag_birth_month_day == 'friend'})<font color="#({$ktai_color_config.font_09})">※({$WORD_MY_FRIEND_HALF})まで公開</font><br>({/if})
 ({/if})
 ({/capture})
 

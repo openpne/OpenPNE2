@@ -46,16 +46,6 @@ class pc_do_o_regist_prof extends OpenPNE_Action
 
         $prof = $validator->getParams();
 
-        switch ($prof['public_flag_birth_year']) {
-        case 'public':
-        case 'friend':
-        case 'private':
-            break;
-        default:
-            $prof['public_flag_birth_year'] = 'public';
-            break;
-        }
-
         if ($prof['password'] != $requests['password2']) {
             $errors['password2'] = 'パスワードが一致していません';
         }
@@ -172,8 +162,8 @@ class pc_do_o_regist_prof extends OpenPNE_Action
                     'birth_month' => $prof['birth_month'],
                     'birth_day' => $prof['birth_day'],
                     'public_flag_birth_year' => $prof['public_flag_birth_year'],
+                    'public_flag_birth_month_day' => $prof['public_flag_birth_month_day'],
                     'password' => $prof['password'],
-                    'public_flag_birth_year' => $prof['public_flag_birth_year'],
                     'c_password_query_id' => $prof['c_password_query_id'],
                     'password_query_answer' => $prof['c_password_query_answer'],
                     'pc_address' => $pre['pc_address'],
@@ -221,7 +211,16 @@ class pc_do_o_regist_prof extends OpenPNE_Action
                 'max' => '31',
             ),
             'public_flag_birth_year' => array(
-                'type' => 'string',
+                'type' => 'regexp',
+                'regexp' => '/^(public|friend|private)$/',
+                'required' => '1',
+                'caption' => '公開範囲',
+            ),
+            'public_flag_birth_month_day' => array(
+                'type' => 'regexp',
+                'regexp' => '/^(public|friend|private)$/',
+                'required' => '1',
+                'caption' => '公開範囲',
             ),
             'password' => array(
                 'type' => 'regexp',

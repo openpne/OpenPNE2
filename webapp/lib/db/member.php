@@ -42,20 +42,30 @@ function db_member_c_member4c_member_id($c_member_id, $is_secure = false, $with_
 
     if ($with_profile) {
         $c_member['profile'] = db_member_c_member_profile_list4c_member_id($c_member_id, $public_flag);
-
-        // public_flag_birth_year
-        switch ($c_member['public_flag_birth_year']) {
-        case "friend":
-            if ($public_flag == 'public')
-                unset($c_member['birth_year']);
-            break;
-        case "private":
-            if ($public_flag == 'public' || $public_flag == 'friend')
-                unset($c_member['birth_year']);
-            break;
-        }
     }
 
+    // public_flag_birth_year, public_flag_birth_month_day
+    switch ($public_flag) {
+    case 'public':
+        if ($c_member['public_flag_birth_year'] !== 'public') {
+            unset($c_member['birth_year']);
+        }
+        if ($c_member['public_flag_birth_month_day'] !== 'public') {
+            unset($c_member['birth_month']);
+            unset($c_member['birth_day']);
+        }
+        break;
+    case 'friend':
+        if ($c_member['public_flag_birth_year'] === 'private') {
+            unset($c_member['birth_year']);
+        }
+        if ($c_member['public_flag_birth_month_day'] === 'private') {
+            unset($c_member['birth_month']);
+            unset($c_member['birth_day']);
+        }
+        break;
+    }
+ 
     if (OPENPNE_AUTH_MODE != 'email' && $is_secure) {
         $c_member['username'] = db_member_username4c_member_id($c_member_id);
     }
@@ -245,13 +255,15 @@ function db_member_search($cond, $cond_like, $page_size, $page, $c_member_id, $p
 
     foreach ($cond as $key => $value) {
         if ($value) {
-            if ($key == 'image') {
+            if ($key === 'image') {
                 $wheres[] = "image_filename <> '' AND image_filename <> '0'";
             } else {
                 $wheres[] = db_escapeIdentifier($key) . ' = ?';
                 $params[] = $value;
-                if ($key == 'birth_year') {
+                if ($key === 'birth_year') {
                     $wheres[] = "public_flag_birth_year = 'public'";
+                } elseif ($key === 'birth_month' || $key === 'birth_day') {
+                    $wheres[] = "public_flag_birth_month_day = 'public'";
                 }
             }
         }
@@ -331,7 +343,7 @@ function db_member_inviting_member4c_member_id($c_member_id)
 
 function db_member_birthday_flag4c_member_id($c_member_id)
 {
-    $c_member = db_member_c_member4c_member_id($c_member_id);
+    $c_member = db_member_c_member4c_member_id($c_member_id, false, false, 'private');
     $birthday = $c_member['birth_month'] . "-" . $c_member['birth_day'];
 
     return (bool)(date("n-j") == $birthday);
@@ -376,7 +388,7 @@ function db_member_is_access_block($c_member_id, $target_c_member_id)
  */
 function db_member_count_days_birthday4c_member_id($c_member_id)
 {
-    $c_member = db_member_c_member4c_member_id($c_member_id);
+    $c_member = db_member_c_member4c_member_id($c_member_id, false, false, 'private');
     return getCountdownDays($c_member['birth_month'], $c_member['birth_day']);
 }
 
@@ -583,14 +595,14 @@ function db_member_count_c_member_is_receive_daily_news()
 
 function db_member_c_member_list4birthday_mail()
 {
-    // この日が誕生日の人を対称にする
+    // この日が誕生日の人を対象にする
     $target_date = "+1 week";
 
     $timestamp = strtotime($target_date);
     $month = date("n", $timestamp);
     $day   = date("j", $timestamp);
 
-    $sql = 'SELECT * FROM c_member WHERE birth_month = ? AND birth_day = ?';
+    $sql = 'SELECT * FROM c_member WHERE birth_month = ? AND birth_day = ? AND public_flag_birth_month_day <> \'private\'';
     $params = array(intval($month), intval($day));
     return db_get_all($sql, $params);
 }
@@ -937,6 +949,7 @@ function db_member_config_prof_new($c_member_id, $prof_list)
         'birth_month' => intval($prof_list['birth_month']),
         'birth_day'   => intval($prof_list['birth_day']),
         'public_flag_birth_year' => $prof_list['public_flag_birth_year'],
+        'public_flag_birth_month_day' => $prof_list['public_flag_birth_month_day'],
         'u_datetime' => db_now(),
     );
     $where = array('c_member_id' => intval($c_member_id));
@@ -1066,6 +1079,7 @@ function db_member_insert_c_member($c_member, $c_member_secure, $is_password_enc
         'birth_month' => intval($c_member['birth_month']),
         'birth_day'   => intval($c_member['birth_day']),
         'public_flag_birth_year' => $c_member['public_flag_birth_year'],
+        'public_flag_birth_month_day' => $c_member['public_flag_birth_month_day'],
         'c_member_id_invite'  => intval($c_member['c_member_id_invite']),
         'c_password_query_id' => intval($c_member['c_password_query_id']),
         'is_receive_mail' => (bool)$c_member['is_receive_mail'],
@@ -1121,6 +1135,7 @@ function db_member_ktai_insert_c_member($profs)
         'birth_month' => intval($profs['birth_month']),
         'birth_day' => intval($profs['birth_day']),
         'public_flag_birth_year' => $profs['public_flag_birth_year'],
+        'public_flag_birth_month_day' => $profs['public_flag_birth_month_day'],
         'r_date' => db_now(),
         'u_datetime' => db_now(),
         'is_receive_ktai_mail' => 1,
@@ -1161,6 +1176,7 @@ function db_member_update_c_member_pre_secure($c_member_pre_id, $c_member_pre_se
         'birth_month' => intval($c_member_pre_secure['birth_month']),
         'birth_day'   => intval($c_member_pre_secure['birth_day']),
         'public_flag_birth_year' => $c_member_pre_secure['public_flag_birth_year'],
+        'public_flag_birth_month_day' => $c_member_pre_secure['public_flag_birth_month_day'],
         'c_password_query_id' => intval($c_member_pre_secure['c_password_query_id']),
         'password' => md5($c_member_pre_secure['password']),
         'c_password_query_answer' => md5($c_member_pre_secure['password_query_answer']),
@@ -1853,11 +1869,12 @@ function db_member_username4c_member_id($c_member_id, $is_ktai = false)
 function db_member_create_member($username)
 {
     $data = array(
-        'nickname'    => "NO NAME",
+        'nickname'    => 'NO NAME',
         'birth_year'  => 0,
         'birth_month' => 0,
         'birth_day'   => 0,
-        'public_flag_birth_year' => "public",
+        'public_flag_birth_year' => 'public',
+        'public_flag_birth_month_day' => 'public',
         'c_member_id_invite'  => 1,
         'c_password_query_id' => 0,
         'is_receive_mail' => true,
