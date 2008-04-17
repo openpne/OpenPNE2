@@ -59,6 +59,7 @@ class pc_page_fh_album extends OpenPNE_Action
         $this->set('inc_navi', fetch_inc_navi($type, $target_c_member_id));
         
         $this->set('target_c_member_id',$target_c_member_id);
+        $this->set('target_c_album_id',$target_c_album_id);
         $this->set('album_info',$target_c_album);
 
         //メンバー情報
