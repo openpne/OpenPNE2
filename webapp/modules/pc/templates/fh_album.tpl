@@ -25,8 +25,8 @@
 ({* #1952 *})        <tr>
 ({* #1952 *})            <td style="width:190px;padding:2px;" align="center" valign="top" rowspan="9" class="bg_02">
 ({* #1952 *})            <span class="padding_s"><img src="./skin/dummy.gif" class="v_spacer_m">
-({* #1952 *})                <a href="({t_img_album_url filename=$album_info.album_cover_image})" target="_blank">
-({* #1952 *})                <img src="({if $album_info.album_cover_image})({t_img_album_url filename=$album_info.album_cover_image w=180 h=180})({else})({t_img_url_skin filename=no_image w=180 h=180})({/if})">
+({* #1952 *})                <a href="({t_img_url filename=$album_info.album_cover_image})" target="_blank">
+({* #1952 *})                <img src="({if $album_info.album_cover_image})({t_img_url filename=$album_info.album_cover_image w=180 h=180})({else})({t_img_url_skin filename=no_image w=180 h=180})({/if})">
 ({* #1952 *})                </a>
 ({* #1952 *})            </span>
 ({* #1952 *})            </td>
@@ -160,7 +160,7 @@
 ({* #1952 *})            <div>
 ({* #1952 *})            <span class="padding_s">
 ({* #1952 *})                <a href="({t_url m=pc a=page_fh_album_image_show})&amp;target_c_album_image_id=({$album_item.dual.c_album_image_id})&amp;target_c_member_id=({$album_item.dual.c_member_id})&amp;target_c_album_id=({$album_item.dual.c_album_id})" >
-({* #1952 *})                <img src="({t_img_album_url filename=$album_item.dual.image_filename w=180 h=180})">
+({* #1952 *})                <img src="({t_img_url filename=$album_item.dual.image_filename w=180 h=180})">
 ({* #1952 *})                </a>
 ({* #1952 *})            </span>
 ({* #1952 *})            </div>
@@ -178,7 +178,7 @@
 ({* #1952 *})            <div>
 ({* #1952 *})            <span class="padding_s">
 ({* #1952 *})                <a href="({t_url m=pc a=page_fh_album_image_show})&amp;target_c_album_image_id=({$album_item.singular.c_album_image_id})&amp;target_c_member_id=({$album_item.singular.c_member_id})&amp;target_c_album_id=({$album_item.singular.c_album_id})" >
-({* #1952 *})                <img src="({t_img_album_url filename=$album_item.singular.image_filename w=180 h=180})">
+({* #1952 *})                <img src="({t_img_url filename=$album_item.singular.image_filename w=180 h=180})">
 ({* #1952 *})                </a>
 ({* #1952 *})                </span>
 ({* #1952 *})            </div>
