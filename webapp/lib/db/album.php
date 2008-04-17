@@ -108,16 +108,17 @@ function p_common_is_active_c_album_image_id($c_album_image_id)
 
 /**
  * アルバムIDからアルバムに登録された画像を取得
+ *
  * @param   int   $c_album_id
  * @return  array
  */
-function db_album_get_c_album_page4id($c_album_id,$page_size=10,$page=0)
+function db_album_get_c_album_page4id($c_album_id, $page_size = 10, $page = 0)
 {
     $select = 'SELECT ab.*,i.c_album_image_id,i.image_filename,i.image_description';
     $from  = ' FROM c_album AS ab,c_album_image AS i';
     $where = ' WHERE ab.c_album_id = i.c_album_id' .
              ' AND ab.c_album_id = ?';
-    $orderby = ' ORDER BY i.c_album_image_id ASC';
+    $orderby = ' ORDER BY i.r_datetime DESC';
     $sql = $select .$from . $where .$orderby;
     
     $params = array(intval($c_album_id));
