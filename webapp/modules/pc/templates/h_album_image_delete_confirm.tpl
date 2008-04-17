@@ -8,7 +8,7 @@
 <table>
 <tr>
 <td>
-<img SRC="({t_img_album_url filename=$target_c_album_image.image_filename w=180 h=180})" ALT="photo" VSPACE="4">
+<img SRC="({t_img_url filename=$target_c_album_image.image_filename w=180 h=180})" ALT="photo" VSPACE="4">
 <br>
 ({$target_c_album_image.image_description|nl2br|default:"&nbsp;"})<br>
 </td>

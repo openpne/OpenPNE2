@@ -12,8 +12,8 @@
 <tr>
 <th>画像</th>
 <td>
-<a href="({t_img_album_url filename=$c_album_image.image_filename})" target="_blank">
-<img src="({t_img_album_url filename=$c_album_image.image_filename w=180 h=180})"></a><br>
+<a href="({t_img_url filename=$c_album_image.image_filename})" target="_blank">
+<img src="({t_img_url filename=$c_album_image.image_filename w=180 h=180})"></a><br>
 <input type="file" class="input_file" name="upfile_1" size="40" />
 </td>
 </tr>
