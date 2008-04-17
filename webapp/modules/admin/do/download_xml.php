@@ -147,6 +147,7 @@ class admin_do_download_xml extends OpenPNE_Action
                 "rootAttributes" => array("xmlns"   => "http://purl.org/rss/1.0/",
                     "xmlns:rdf" => "http://www.w3.org/1999/02/22-rdf-syntax-ns#" ,
                     "xmlns:dc" => "http://purl.org/dc/elements/1.1/",
+                    "xmlns:taxo" => "http://purl.org/rss/1.0/modules/taxonomy/",
                     "xml:lang"  => "ja"),
                 "defaultTagName" => array('rdf:RDF'=>'item', 'rdf:Seq'=>'rdf:li'),
                 "attributesArray" => "_attributes",
