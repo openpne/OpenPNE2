@@ -57,18 +57,6 @@ class ktai_do_h_regist_prof extends OpenPNE_Action
             ktai_display_error($errors);
         }
 
-        switch ($prof['public_flag_birth_year']) {
-        case "public":
-        default:
-            $prof['public_flag_birth_year'] = "public";
-            break;
-        case "friend":
-            $prof['public_flag_birth_year'] = "friend";
-            break;
-        case "private":
-            $prof['public_flag_birth_year'] = "private";
-            break;
-        }
         db_member_config_prof_new($u, $prof);
         // insert c_member_profile
         db_member_update_c_member_profile($u, $c_member_profile_list);
@@ -113,7 +101,16 @@ class ktai_do_h_regist_prof extends OpenPNE_Action
                 'max' => '31',
             ),
             'public_flag_birth_year' => array(
-                'type' => 'string',
+                'type' => 'regexp',
+                'regexp' => '/^(public|friend|private)$/',
+                'required' => '1',
+                'caption' => '公開範囲',
+            ),
+            'public_flag_birth_month_day' => array(
+                'type' => 'regexp',
+                'regexp' => '/^(public|friend|private)$/',
+                'required' => '1',
+                'caption' => '公開範囲',
             ),
         );
     }

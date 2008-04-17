@@ -30,6 +30,7 @@
 <tr>
 <th>誕生日 <strong>※</strong></th>
 <td>
+<table><tr><td>
 <select name="birth_month">
 <option value="0">--</option>
 ({foreach from=$month_list item=item})
@@ -42,6 +43,11 @@
 <option value="({$item})"({if $profs.birth_day==$item}) selected="selected"({/if})>({$item})</option>
 ({/foreach})
 </select> 日
+</td><td class="publicSelector">
+<select name="public_flag_birth_month_day">
+({html_options options=$public_flags selected=$profs.public_flag_birth_month_day})
+</select>
+</td></tr></table>
 </td>
 </tr>
 ({/capture})
