@@ -557,10 +557,4 @@ define('OPENPNE_SEND_NO_CACHE_HEADER', false);
 // 管理画面でURL・小窓変換機能を使用するかどうか
 define('OPENPNE_ADMIN_CONVERT_URL', true);
 
-// OpenIDのプロバイダとなるかどうか
-define('IS_OPENID_PROVIDER', false);
-
-// OpenIDの乱数用定義
-define('Auth_OpenID_RAND_SOURCE', NULL);
-
 ?>
