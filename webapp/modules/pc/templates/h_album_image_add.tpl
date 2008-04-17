@@ -20,7 +20,7 @@
 <tr>
 <th>写真１説明</th>
 <td>
-<input type="text" class="text" name="image_description1" value="({$form_val.image_description1})" size="40">
+<input type="text" class="text" name="image_description1" value="({$form_val.image_description1})" size="40" />
 </td>
 </tr>
 <tr>
@@ -32,7 +32,7 @@
 <tr>
 <th>写真２説明</th>
 <td>
-<input type="text" class="text" name="image_description2" value="({$form_val.image_description2})" size="40">
+<input type="text" class="text" name="image_description2" value="({$form_val.image_description2})" size="40" />
 </td>
 </tr>
 <tr>
@@ -44,7 +44,7 @@
 <tr>
 <th>写真３説明</th>
 <td>
-<input type="text" class="text" name="image_description3" value="({$form_val.image_description3})" size="40">
+<input type="text" class="text" name="image_description3" value="({$form_val.image_description3})" size="40" />
 </td>
 </tr>
 <tr>
@@ -56,7 +56,7 @@
 <tr>
 <th>写真４説明</th>
 <td>
-<input type="text" class="text" name="image_description4" value="({$form_val.image_description4})" size="40">
+<input type="text" class="text" name="image_description4" value="({$form_val.image_description4})" size="40" />
 </td>
 </tr>
 <tr>
@@ -68,7 +68,7 @@
 <tr>
 <th>写真５説明</th>
 <td>
-<input type="text" class="text" name="image_description5" value="({$form_val.image_description5})" size="40">
+<input type="text" class="text" name="image_description5" value="({$form_val.image_description5})" size="40" />
 </td>
 </tr>
 </table>
@@ -89,9 +89,7 @@
 </li>
 </ul>
 </div>
-</div> <!-- dparts formTable -->
-</div> <!-- partsHeading -->
-
+</div></div>
 
 </div><!-- Center -->
 </div><!-- LayoutC -->
