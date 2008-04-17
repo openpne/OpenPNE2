@@ -46,7 +46,7 @@ if (!empty($GLOBALS['_OPENPNE_DSN_LIST']['image']['dsn'])) {
 }
 
 
-require_once 'OpenPNE/Img_album.php';
+require_once 'OpenPNE/Img.php';
 $options = array(
     'dsn'          => $dsn,
     'cache_dir'    => OPENPNE_IMG_CACHE_DIR,
