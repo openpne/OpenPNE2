@@ -32,7 +32,7 @@
 <div class="block">
 ({foreach from=$target_album_list item=album})
 <div class="ditem"><div class="item"><table><tr>
-<td class="photo" rowspan="4"><a href="({t_url m=pc a=page_fh_album})&amp;target_c_album_id=({$album.c_album_id})"><img src="({t_img_album_url filename=$album.album_cover_image w=180 h=180 noimg=no_image})" alt="" /></a></td>
+<td class="photo" rowspan="4"><a href="({t_url m=pc a=page_fh_album})&amp;target_c_album_id=({$album.c_album_id})"><img src="({t_img_url filename=$album.album_cover_image w=180 h=180 noimg=no_image})" alt="" /></a></td>
 <th>ニックネーム</th><td>({$album.c_member.nickname})</td>
 </tr><tr>
 <th>タイトル</th><td>({$album.subject})</td>
