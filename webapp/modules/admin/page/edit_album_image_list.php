@@ -6,6 +6,12 @@
 
 class admin_page_edit_album_image_list extends OpenPNE_Action
 {
+    function handleError($errors)
+    {
+        admin_client_redirect('edit_album_image_list', array_shift($errors));
+        exit;
+    }
+
     function execute($requests)
     {
         if (!OPENPNE_USE_ALBUM) {
