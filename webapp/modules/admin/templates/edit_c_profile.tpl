@@ -79,7 +79,7 @@
 <td class="cell03">誕生日</td>
 <td class="cell04">&nbsp;</td>
 <td class="cell05">○</td>
-<td class="cell06">×</td>
+<td class="cell06">○</td>
 <td class="cell07">全員に公開</td>
 <td class="cell08">単一選択(プルダウン)</td>
 <td class="cell09">&nbsp;</td>

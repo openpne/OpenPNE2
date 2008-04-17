@@ -42,6 +42,11 @@
     <option value="({$item})"({if $item == $c_member.birth_day}) selected="selected"({/if})>({$item})
     ({/foreach})
 </select><br>
+<select name="public_flag_birth_month_day">
+    ({foreach from=$public_flags key=key item=item})
+    <option value="({$key})"({if $c_member.public_flag_birth_month_day == $key}) selected="selected"({/if})>({$item})
+    ({/foreach})
+</select><br>
 <br>
 ({/capture})
 

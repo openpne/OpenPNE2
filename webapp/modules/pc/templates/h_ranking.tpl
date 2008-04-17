@@ -63,7 +63,7 @@
 ({if $rank > 1})<div class="ditem"><div class="item">({/if})
 ({foreach from=$list item=item})
 <table>
-<tr><td class="photo" rowspan="({if $kind == "ashiato" || $kind == "friend"})3({else})4({/if})">({strip})
+<tr><td class="photo" rowspan="({if $kind == "ashiato" || $kind == "friend"})2({else})4({/if})">({strip})
 ({if $kind == "ashiato" || $kind == "friend"})
 <a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})"><img src="({t_img_url filename=$item.c_member.image_filename w=$size h=$size noimg=no_image})" alt="" /></a>
 ({else})
@@ -89,32 +89,25 @@
 ({/if})
 ({/strip})</td>
 </tr>
-<tr>
-<th>({if $kind == "ashiato" || $kind == "friend"})誕生日({else})カテゴリ({/if})</th>
-<td>({strip})
 ({if $kind == "ashiato" || $kind == "friend"})
-({$item.c_member.birth_month})月({$item.c_member.birth_day})日
-({else})
-({$item.c_commu.c_commu_category.name})
-({/if})
-({/strip})</td>
+<tr>
+<th>自己紹介</th>
+<td>({$item.c_member.profile.self_intro.value|t_truncate:36:"":3})</td>
 </tr>
-({if $kind == "com_member" || $kind == "com_comment"})
+({elseif $kind == "com_member" || $kind == "com_comment"})
+<tr>
+<th>カテゴリ</th>
+<td>({$item.c_commu.c_commu_category.name})</td>
+</tr>
 <tr>
 <th>管理者</th>
 <td>({$item.c_commu.c_member_admin.nickname})</td>
 </tr>
-({/if})
 <tr>
-<th>({if $kind == "ashiato" || $kind == "friend"})自己紹介({else})説明文({/if})</th>
-<td>({strip})
-({if $kind == "ashiato" || $kind == "friend"})
-({$item.c_member.profile.self_intro.value|t_truncate:36:"":3|default:"&nbsp;"})
-({else})
-({$item.c_commu.info|t_truncate:36:"":3|default:"&nbsp;"})
-({/if})
-({/strip})</td>
+<th>説明文</th>
+<td>({$item.c_commu.info|t_truncate:36:"":3})</td>
 </tr>
+({/if})
 </table>
 ({/foreach})
 ({if $rank > 1})</div></div>({/if})
