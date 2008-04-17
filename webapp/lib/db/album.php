@@ -329,9 +329,16 @@ function p_h_album_list_all_search_c_album4c_album($keyword, $page_size, $page, 
  */
 function p_h_album_list_friend_h_album_list_friend4c_member_id($c_member_id, $page_size, $page)
 {
+    $friends = db_friend_c_member_id_list($c_member_id, true);
+    if (!$friends) {
+        return array(array(), false, false, 0);
+    }
+
+    $pf_cond = db_album_public_flag_condition($c_member_id, $u);
     $from = "c_album, c_friend";
     $where = "c_friend.c_member_id_from = ?" .
-            " AND c_album.c_member_id = c_friend.c_member_id_to";
+            " AND c_album.c_member_id = c_friend.c_member_id_to" .
+            ' AND public_flag <> \'private\'';
 
     $sql = "SELECT c_album.* FROM {$from} WHERE {$where}" .
             " ORDER BY c_album.r_datetime DESC";
