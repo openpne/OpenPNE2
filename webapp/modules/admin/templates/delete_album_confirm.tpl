@@ -49,7 +49,7 @@
 <tr>
 <th>表紙</th>
 <td>
-<img src="({if $album.album_cover_image})({t_img_album_url filename=$album.album_cover_image w=120 h=120})({else})({t_img_url_skin filename=no_image w=120 h=120})({/if})">
+<img src="({if $album.album_cover_image})({t_img_url filename=$album.album_cover_image w=120 h=120})({else})({t_img_url_skin filename=no_image w=120 h=120})({/if})">
 </td>
 </tr>
 ({****})

@@ -16,7 +16,7 @@
 <table>
 <tr>
 <td colspan="2">
-<img src="({t_img_album_url filename=$c_album_image.image_filename w=600 h=600})" alt="photo" vspace="4">
+<img src="({t_img_url filename=$c_album_image.image_filename w=600 h=600})" alt="photo" vspace="4">
 </td>
 </tr>
 <tr>
