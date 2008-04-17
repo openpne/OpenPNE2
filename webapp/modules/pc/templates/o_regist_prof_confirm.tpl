@@ -36,6 +36,11 @@
 <th>誕生日 <strong>※</strong></th>
 <td>
 ({$prof.birth_month})月({$prof.birth_day})日
+({if $prof.public_flag_birth_month_day == 'friend'})
+（({$WORD_MY_FRIEND})まで公開）
+({elseif $prof.public_flag_birth_month_day == 'private'})
+（公開しない）
+({/if})
 </td>
 </tr>
 ({/capture})
