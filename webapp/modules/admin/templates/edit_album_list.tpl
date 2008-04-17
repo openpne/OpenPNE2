@@ -24,7 +24,7 @@
                 <span class="textBtnS"><input type="submit" value="検索" /></span>
                 </form>
 
-                <h4>ID検索</h4>
+                <h4>アルバムID検索</h4>
                 <form action="./" method="get">
                 <input type="hidden" name="m" value="({$module_name})" />
                 <input type="hidden" name="a" value="page_({$hash_tbl->hash('edit_album_list','page')})" />
