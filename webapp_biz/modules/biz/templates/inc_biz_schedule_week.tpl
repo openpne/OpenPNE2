@@ -282,7 +282,9 @@
 ({* unknown *})({if $cmd == 'h'})
 ({* unknown *})({* 誕生日 *})
 ({* unknown *})({foreach from=$item.birth item=item_birth})
+({* unknown *})({if $item_birth.public_flag_birth_month_day != "private" || $member_info.c_member_id == $item_birth.c_member_id})
 ({* unknown *})<div class="padding_s"><img src="({t_img_url_skin filename=icon_birthday})" class="icon" /><a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item_birth.c_member_id})">({$item_birth.nickname})さん</a></div>
+({* unknown *})({/if})
 ({* unknown *})({/foreach})
 ({* unknown *})
 ({* unknown *})({* イベント *})

@@ -116,6 +116,7 @@ class admin_do_import_c_member extends OpenPNE_Action
                 'is_receive_ktai_mail' => 1,
                 'is_receive_daily_news' => 1,
                 'public_flag_birth_year' => 'public',
+                'public_flag_birth_month_day' => 'public',
             );
 
             if (OPENPNE_AUTH_MODE == 'pneid') {
