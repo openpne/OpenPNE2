@@ -6,6 +6,12 @@
 
 class admin_do_edit_album_limit extends OpenPNE_Action
 {
+    function handleError($errors)
+    {
+        admin_client_redirect('edit_album_limit', array_shift($errors));
+        exit;
+    }
+
     function execute($requests)
     {
         if (!OPENPNE_USE_ALBUM) {
