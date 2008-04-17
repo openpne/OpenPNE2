@@ -102,7 +102,7 @@ li { list-style-type: none;}
 .navi div.naviMain ul li ul li a ,
 .navi div.naviMain ul li ul li a:hover  { background-image: none;}/*safari対策*/
 
-.navi div.naviMain ul li ul.pull { visibility: hidden; float: none; position: absolute; margin: 0; padding: 1px 2px 2px 0;}
+.navi div.naviMain ul li ul.pull { z-index:100; visibility: hidden; float: none; position: absolute; margin: 0; padding: 1px 2px 2px 0;}
 .navi div.naviMain ul li ul#adminSiteMemberCont             { width: 180px; z-index: 10;}
 .navi div.naviMain ul li ul#adminImageKakikomiCont          { width: 220px; z-index: 20;}
 .navi div.naviMain ul li ul#adminStatisticalInformationCont { width: 220px; z-index: 30;}
@@ -229,11 +229,10 @@ li { list-style-type: none;}
 
 .navi div.subNavi {
 	clear: both;
-	padding-left: 7px;
-	height: 30px;
+	padding: 4px 7px;
 	border-bottom: 1px #c4c4c4 solid;
 	background: #F3F3F3;
-	line-height: 30px;
+	line-height: 1.6;
 }
 .navi div.subNavi a { margin: 0 3px;}
 .navi div.tree {
