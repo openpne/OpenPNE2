@@ -172,7 +172,7 @@ function db_member_c_member4c_member_id_LIGHT($c_member_id)
  */
 function db_member_c_member_id4pc_address($pc_address)
 {
-    return _db_c_member_id4pc_address_encrypted(t_encrypt($pc_address));
+    return db_member_c_member_id4pc_address_encrypted(t_encrypt($pc_address));
 }
 
 function db_member_c_member_id4pc_address_encrypted($pc_address_encoded)
@@ -1048,13 +1048,13 @@ function db_member_update_c_profile_my_news($c_member_id, $prof_my_news, $my_new
             ' WHERE c_member_id = ? AND c_profile_id = ?';
     $params = array(intval($c_member_id), $prof_my_news_id);
     db_query($sql, $params);
-    do_config_prof_insert_c_member_profile($c_member_id, $prof_my_news_id, '', $prof_my_news, 'private');
+    db_member_insert_c_member_profile($c_member_id, $prof_my_news_id, '', $prof_my_news, 'private');
 
     $sql = 'DELETE FROM c_member_profile' .
             ' WHERE c_member_id = ? AND c_profile_id = ?';
     $params = array(intval($c_member_id), $my_news_datetime_id);
     db_query($sql, $params);
-    do_config_prof_insert_c_member_profile($c_member_id, $my_news_datetime_id, '', $my_news_datetime, 'private');
+    db_member_insert_c_member_profile($c_member_id, $my_news_datetime_id, '', $my_news_datetime, 'private');
 }
 
 //--- c_member_secure
@@ -1649,10 +1649,10 @@ function db_member_update_c_member_profile($c_member_id, $c_member_profile_list)
         if (!(is_null($item['value']) || $item['value'] === '')) {
             if (is_array($item['value'])) {
                 foreach ($item['value'] as $key => $value) {
-                    do_config_prof_insert_c_member_profile($c_member_id, $item['c_profile_id'], $key, $value, $item['public_flag']);
+                    db_member_insert_c_member_profile($c_member_id, $item['c_profile_id'], $key, $value, $item['public_flag']);
                 }
             } else {
-                do_config_prof_insert_c_member_profile($c_member_id, $item['c_profile_id'], $item['c_profile_option_id'], $item['value'], $item['public_flag']);
+                db_member_insert_c_member_profile($c_member_id, $item['c_profile_id'], $item['c_profile_option_id'], $item['value'], $item['public_flag']);
             }
         }
     }

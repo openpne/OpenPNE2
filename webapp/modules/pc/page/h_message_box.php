@@ -75,7 +75,7 @@ class pc_page_h_message_box extends OpenPNE_Action
 
                 list($s_list,$is_s_prev,$is_s_next, $total_num) = db_message_c_message_sent_list4c_member_id4range($u, $s_page, $page_size, $year, $month, $day);
             } else {
-                list($s_list,$is_s_prev,$is_s_next, $total_num) = p_h_message_box_c_message_sent_list4c_member_id4range($u, $s_page, $page_size);
+                list($s_list,$is_s_prev,$is_s_next, $total_num) = db_message_c_message_sent_list4c_member_id4range($u, $s_page, $page_size);
             }
 
             $this->set("c_message_s_list", $s_list);

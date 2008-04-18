@@ -45,9 +45,9 @@ class admin_do_send_messages_id_list extends OpenPNE_Action
                 break;
             case 'mail_address':
                 if (!is_ktai_mail_address($each_id)) {
-                    $each_c_member_id = _db_c_member_id4pc_address($each_id);
+                    $each_c_member_id = db_member_c_member_id4pc_address($each_id);
                 } else {
-                    $each_c_member_id = do_common_c_member_id4ktai_address($each_id);
+                    $each_c_member_id = db_member_c_member_id4ktai_address2($each_id);
                 }
                 if (!$each_c_member_id) {
                     $error_msg = '無効なメールアドレスが含まれています: ' . $each_id;
@@ -63,7 +63,7 @@ class admin_do_send_messages_id_list extends OpenPNE_Action
                 $error_msg = 'IDは整数値で指定してください: ' . $each_c_member_id;
                 $this->handleError($error_msg);
             }
-            if (!p_common_is_active_c_member_id($each_c_member_id)) {
+            if (!db_member_is_active_c_member_id($each_c_member_id)) {
                 $error_msg = '無効なIDが含まれています: ' . $each_c_member_id;
                 $this->handleError($error_msg);
             }

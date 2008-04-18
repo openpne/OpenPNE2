@@ -16,7 +16,7 @@ class ktai_page_c_topic_delete_image_confirm extends OpenPNE_Action
         $img_num = $requests['img_num'];
         // ----------
 
-        $c_topic = c_topic_detail_c_topic4c_commu_topic_id($c_commu_topic_id);
+        $c_topic = db_commu_c_topic4c_commu_topic_id($c_commu_topic_id);
         $c_commu_id = $c_topic['c_commu_id'];
 
         //--- 権限チェック

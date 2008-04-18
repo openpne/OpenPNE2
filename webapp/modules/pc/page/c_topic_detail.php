@@ -19,7 +19,7 @@ class pc_page_c_topic_detail extends OpenPNE_Action
         $err_msg = $requests['err_msg'];
         // ----------
 
-        $c_topic = c_topic_detail_c_topic4c_commu_topic_id($c_commu_topic_id);
+        $c_topic = db_commu_c_topic4c_commu_topic_id($c_commu_topic_id);
         $c_commu_id = $c_topic['c_commu_id'];
 
         $c_commu = db_commu_c_commu4c_commu_id($c_commu_id);

@@ -18,9 +18,9 @@ class pc_do_c_bbs_delete_c_commu_topic_comment extends OpenPNE_Action
         //--- 権限チェック
         //コミュニティ管理者 or コミュニティ参加者
 
-        $c_commu_topic_comment = do_c_bbs_c_commu_topic_comment4c_commu_topic_comment_id($target_c_commu_topic_comment_id);
+        $c_commu_topic_comment = db_commu_c_commu_topic_comment4c_commu_topic_comment_id_2($target_c_commu_topic_comment_id);
 
-        $c_commu_topic = _do_c_bbs_c_commu_topic4c_commu_topic_id($c_commu_topic_comment['c_commu_topic_id']);
+        $c_commu_topic = db_commu_c_commu_topic4c_commu_topic_id($c_commu_topic_comment['c_commu_topic_id']);
         $c_commu_id = $c_commu_topic['c_commu_id'];
 
         $status = db_common_commu_status($u, $c_commu_id);

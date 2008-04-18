@@ -19,7 +19,7 @@ class ktai_do_c_topic_delete_image extends OpenPNE_Action
         $img_num = $requests['img_num'];
         // ----------
 
-        $c_topic = c_topic_detail_c_topic4c_commu_topic_id($c_commu_topic_id);
+        $c_topic = db_commu_c_topic4c_commu_topic_id($c_commu_topic_id);
         $c_commu_id = $c_topic['c_commu_id'];
 
         //--- 権限チェック
@@ -49,7 +49,7 @@ class ktai_do_c_topic_delete_image extends OpenPNE_Action
             handle_kengen_error();
         }
 
-        image_data_delete($target_image_filename);
+        db_image_data_delete($target_image_filename);
         db_commu_delete_c_commu_topic_comment_image($c_commu_topic_id, $img_num);
 
         $p = array('target_c_commu_topic_id' => $c_commu_topic_id);
