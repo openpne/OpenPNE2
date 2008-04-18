@@ -21,7 +21,7 @@ function db_commu_c_commu4c_commu_id($c_commu_id)
     $c_commu['c_commu_category'] =
         db_commu_get_c_commu_category4id($c_commu['c_commu_category_id']);
     $c_commu['c_member_admin'] =
-        db_common_c_member4c_member_id($c_commu['c_member_id_admin']);
+        db_member_c_member4c_member_id($c_commu['c_member_id_admin']);
 
     return $c_commu;
 }
@@ -41,8 +41,8 @@ function db_commu_c_commu4c_commu_id2($c_commu_id)
 
     $is_recurred = false;
 
-    if ($c_commu = _db_c_commu4c_commu_id($c_commu_id)) {
-        $c_commu['member_count'] = _db_count_c_commu_member_list4c_commu_id($c_commu_id);
+    if ($c_commu = db_commu_c_commu4c_commu_id($c_commu_id)) {
+        $c_commu['member_count'] = db_commu_count_c_commu_member_list4c_commu_id($c_commu_id);
     }
     return $c_commu;
 }
@@ -62,8 +62,8 @@ function db_commu_c_commu4c_commu_id_k($c_commu_id)
 
     $is_recurred = false;
 
-    if ($c_commu = _db_c_commu4c_commu_id($c_commu_id)) {
-        $c_commu['count_member'] = _db_count_c_commu_member_list4c_commu_id($c_commu_id);
+    if ($c_commu = db_commu_c_commu4c_commu_id($c_commu_id)) {
+        $c_commu['count_member'] = db_commu_count_c_commu_member_list4c_commu_id($c_commu_id);
     }
     return $c_commu;
 }
@@ -206,9 +206,9 @@ function db_commu_is_c_commu_join_wait($c_commu_id, $c_member_id)
 function db_commu_is_c_commu_view4c_commu_idAc_member_id($c_commu_id,$c_member_id)
 {
     $ret = false;
-    $c_commu = _db_c_commu4c_commu_id($c_commu_id);
+    $c_commu = db_commu_c_commu4c_commu_id($c_commu_id);
 
-    $is_c_commu_member = _db_is_c_commu_member($c_commu_id, $c_member_id);
+    $is_c_commu_member = db_commu_is_c_commu_member($c_commu_id, $c_member_id);
 
     switch($c_commu['public_flag']) {
     case "public":
@@ -278,7 +278,7 @@ function db_common_receive_ktai_address_list4c_commu_id($c_commu_id)
 
     $ktai_list = array();
     foreach ($list as $c_member_id) {
-        $sec = db_common_c_member_secure4c_member_id($c_member_id);
+        $sec = db_member_c_member_secure4c_member_id($c_member_id);
         if ($sec['ktai_address']) {
             $ktai_list[$c_member_id] = $sec['ktai_address'];
         }
@@ -352,11 +352,11 @@ function db_commu_c_commu_list4c_member_id($c_member_id, $page, $page_size)
 
     foreach ($c_commu_list as $key => $value) {
         $c_commu_list[$key]['count_members'] =
-            _db_count_c_commu_member_list4c_commu_id($value['c_commu_id']);
+            db_commu_count_c_commu_member_list4c_commu_id($value['c_commu_id']);
     }
 
     $pager = array(
-        "total_num" => p_common_count_c_commu4c_member_id($c_member_id),
+        "total_num" => db_commu_count_c_commu4c_member_id($c_member_id),
         "disp_num"  => count($c_commu_list),
         "start_num" => 0,
         "end_num"   => 0,
@@ -397,7 +397,7 @@ function db_commu_c_commu_id4c_commu_topic_id($c_commu_topic_id)
 // $c_commu_id の community に参加しているメンバーを返す
 function db_commu_c_member_list4c_commu_id($c_commu_id, $page_size, $page)
 {
-    $c_commu = _db_c_commu4c_commu_id($c_commu_id);
+    $c_commu = db_commu_c_commu4c_commu_id($c_commu_id);
 
     $sql =  "SELECT c_member.c_member_id,".
                 "nickname,".
@@ -453,11 +453,11 @@ function db_commu_c_member_list4c_commu_id($c_commu_id, $page_size, $page)
     }
 
     foreach ($list as $key => $c_member) {
-        $list[$key]['is_c_commu_admin'] = _db_is_c_commu_admin($c_commu_id, $list[$key]['c_member_id']);
+        $list[$key]['is_c_commu_admin'] = db_commu_is_c_commu_admin($c_commu_id, $list[$key]['c_member_id']);
         $list[$key]['is_c_commu_sub_admin'] = db_commu_is_c_commu_sub_admin($c_commu_id, $list[$key]['c_member_id']);
     }
 
-    $total_num = _db_count_c_commu_member_list4c_commu_id($c_commu_id);
+    $total_num = db_commu_count_c_commu_member_list4c_commu_id($c_commu_id);
     if ($total_num != 0) {
         $total_page_num = ceil($total_num / $page_size);
         if ($page >= $total_page_num) {
@@ -584,7 +584,7 @@ function db_commu_c_members4c_commu_id($c_commu_id, $page_size, $page)
 
     $list = array();
     foreach ($id_list as $key => $value) {
-        $c_member = db_common_c_member4c_member_id_LIGHT($value['c_member_id']);
+        $c_member = db_member_c_member4c_member_id_LIGHT($value['c_member_id']);
         $c_member['friend_count'] = db_friend_count_friends($value['c_member_id']);
         $list[] = $c_member;
     }
@@ -659,7 +659,7 @@ function db_commu_anatani_c_commu_member_confirm_list4c_member_id($c_member_id)
     $c_commu_member_confirm_list = db_get_all($sql, $params);
 
     foreach ($c_commu_member_confirm_list as $key => $value) {
-        $c_member = db_common_c_member4c_member_id_LIGHT($value['c_member_id']);
+        $c_member = db_member_c_member4c_member_id_LIGHT($value['c_member_id']);
         $c_commu_member_confirm_list[$key]['nickname'] = $c_member['nickname'];
         $c_commu_member_confirm_list[$key]['image_filename'] = $c_member['image_filename'];
     }
@@ -686,7 +686,7 @@ function db_commu_anataga_c_commu_member_confirm_list4c_member_id($c_member_id)
     $c_commu_member_confirm_list = db_get_all($sql, $params);
 
     foreach ($c_commu_member_confirm_list as $key => $value) {
-        $c_member = db_common_c_member4c_member_id_LIGHT($value['c_member_id_admin']);
+        $c_member = db_member_c_member4c_member_id_LIGHT($value['c_member_id_admin']);
         $c_commu_member_confirm_list[$key]['nickname'] = $c_member['nickname'];
         $c_commu_member_confirm_list[$key]['image_filename'] = $c_member['image_filename'];
     }
@@ -714,7 +714,7 @@ function db_commu_anatani_c_commu_admin_confirm_list4c_member_id($c_member_id_to
     $c_commu_admin_confirm_list = db_get_all($sql, $params);
 
     foreach ($c_commu_admin_confirm_list as $key => $value) {
-        $c_member = db_common_c_member4c_member_id_LIGHT($value['c_member_id_admin']);
+        $c_member = db_member_c_member4c_member_id_LIGHT($value['c_member_id_admin']);
         $c_commu_admin_confirm_list[$key]['nickname'] = $c_member['nickname'];
         $c_commu_admin_confirm_list[$key]['image_filename'] = $c_member['image_filename'];
     }
@@ -740,7 +740,7 @@ function db_commu_anataga_c_commu_admin_confirm_list4c_member_id($c_member_id_ad
     $c_commu_admin_confirm_list = db_get_all($sql, $params);
 
     foreach ($c_commu_admin_confirm_list as $key => $value) {
-        $c_member = db_common_c_member4c_member_id_LIGHT($value['c_member_id_to']);
+        $c_member = db_member_c_member4c_member_id_LIGHT($value['c_member_id_to']);
         $c_commu_admin_confirm_list[$key]['nickname'] = $c_member['nickname'];
         $c_commu_admin_confirm_list[$key]['image_filename'] = $c_member['image_filename'];
     }
@@ -769,7 +769,7 @@ function db_commu_anatani_c_commu_sub_admin_confirm_list4c_member_id($c_member_i
     $c_commu_sub_admin_confirm_list = db_get_all($sql, $params);
 
     foreach ($c_commu_sub_admin_confirm_list as $key => $value) {
-        $c_member = db_common_c_member4c_member_id_LIGHT($value['c_member_id_admin']);
+        $c_member = db_member_c_member4c_member_id_LIGHT($value['c_member_id_admin']);
         $c_commu_sub_admin_confirm_list[$key]['nickname'] = $c_member['nickname'];
         $c_commu_sub_admin_confirm_list[$key]['image_filename'] = $c_member['image_filename'];
     }
@@ -795,7 +795,7 @@ function db_commu_anataga_c_commu_sub_admin_confirm_list4c_member_id($c_member_i
     $c_commu_sub_admin_confirm_list = db_get_all($sql, $params);
 
     foreach ($c_commu_sub_admin_confirm_list as $key => $value) {
-        $c_member = db_common_c_member4c_member_id_LIGHT($value['c_member_id_to']);
+        $c_member = db_member_c_member4c_member_id_LIGHT($value['c_member_id_to']);
         $c_commu_sub_admin_confirm_list[$key]['nickname'] = $c_member['nickname'];
         $c_commu_sub_admin_confirm_list[$key]['image_filename'] = $c_member['image_filename'];
     }
@@ -849,7 +849,7 @@ function db_commu_c_commu_topic_comment_list4c_member_id($c_member_id, $limit)
     $c_commu_topic_list = db_get_all_limit($sql, 0, $limit);
 
     foreach ($c_commu_topic_list as $key => $value) {
-        $c_member = db_common_c_member4c_member_id_LIGHT($value['c_member_id']);
+        $c_member = db_member_c_member4c_member_id_LIGHT($value['c_member_id']);
         $c_commu_topic_list[$key]['nickname'] = $c_member['nickname'];
 
         $sql = 'SELECT number, image_filename1, image_filename2, image_filename3' .
@@ -912,7 +912,7 @@ function db_commu_c_commu_topic_comment_list4c_member_id_2($c_member_id, $limit,
     $c_commu_topic_list = db_get_all_limit($sql, ($page-1)*$limit, $limit);
 
     foreach ($c_commu_topic_list as $key => $value) {
-        $c_member = db_common_c_member4c_member_id_LIGHT($value['c_member_id']);
+        $c_member = db_member_c_member4c_member_id_LIGHT($value['c_member_id']);
         $c_commu_topic_list[$key]['nickname'] = $c_member['nickname'];
 
         $sql = 'SELECT number, image_filename1, image_filename2, image_filename3' .
@@ -991,8 +991,8 @@ function db_commu_c_topic_list4target_c_commu_id($c_commu_id, $c_member_id, $pag
     }
 
     foreach ($lst as $key => $value) {
-        $lst[$key]['is_c_event_member'] = _db_is_c_event_member($value['c_commu_topic_id'], $c_member_id);
-        $lst[$key]['is_c_topic_admin'] = _db_is_c_topic_admin($value['c_commu_topic_id'], $c_member_id);
+        $lst[$key]['is_c_event_member'] = db_commu_is_c_event_member($value['c_commu_topic_id'], $c_member_id);
+        $lst[$key]['is_c_topic_admin'] = db_commu_is_c_topic_admin($value['c_commu_topic_id'], $c_member_id);
         $lst[$key]['write_num'] = db_commu_get_max_number4topic($value['c_commu_topic_id']);
     }
 
@@ -1062,7 +1062,7 @@ function db_commu_c_commu_topic_comment4c_commu_topic_comment_id($c_commu_topic_
 function db_common_commu_status($u, $target_c_commu_id)
 {
     $ret = array(
-        'c_commu' => _db_c_commu4c_commu_id($target_c_commu_id),
+        'c_commu' => db_commu_c_commu4c_commu_id($target_c_commu_id),
         'is_bbs_view'     => false,
         'is_commu_member' => false,
         'is_commu_admin'  => false,
@@ -1071,10 +1071,10 @@ function db_common_commu_status($u, $target_c_commu_id)
         'is_commu_member_confirm' => false,
     );
 
-    if (_db_is_c_commu_member($target_c_commu_id, $u)) {
+    if (db_commu_is_c_commu_member($target_c_commu_id, $u)) {
         $ret['is_commu_member'] = true;
 
-        $c_commu_member = _db_c_commu_member4c_member_id($u, $target_c_commu_id);
+        $c_commu_member = db_commu_c_commu_member4c_member_id($u, $target_c_commu_id);
         if ($c_commu_member['is_receive_mail']) {
             $ret['is_receive_mail'] = true;
         }
@@ -1090,7 +1090,7 @@ function db_common_commu_status($u, $target_c_commu_id)
             $ret['is_commu_sub_admin']  = true;
         }
     } else {
-        if (_db_is_c_commu_member_confirm($u, $target_c_commu_id)) {
+        if (db_commu_is_c_commu_member_confirm($u, $target_c_commu_id)) {
             $ret['is_commu_member_confirm'] = true;
         }
     }
@@ -1164,9 +1164,9 @@ define('STATUS_C_JOIN_ALREADY', "4"); //コミュニティ参加(既に参加)
 
 function db_commu_get_c_join_status($c_member_id,$c_commu_id)
 {
-    $is_c_commu_member = _db_is_c_commu_member($c_commu_id, $c_member_id);
-    $is_wait = do_common_is_c_commu_join_wait($c_commu_id, $c_member_id);
-    $c_commu = _db_c_commu4c_commu_id($c_commu_id);
+    $is_c_commu_member = db_commu_is_c_commu_member($c_commu_id, $c_member_id);
+    $is_wait = db_commu_is_c_commu_join_wait($c_commu_id, $c_member_id);
+    $c_commu = db_commu_c_commu4c_commu_id($c_commu_id);
     $is_join_request_free = false;
     if ($c_commu['public_flag'] == "public") {
         $is_join_request_free = true;
@@ -1259,7 +1259,7 @@ function db_commu_c_commu_list_lastupdated($limit = 5)
 
     $c_commu_list = array();
     foreach ($comments as $comment) {
-        $c_commu = _db_c_commu4c_commu_id($comment['c_commu_id']);
+        $c_commu = db_commu_c_commu4c_commu_id($comment['c_commu_id']);
         $c_commu['updatetime'] = $comment['updatetime'];
         $c_commu_list[] = $c_commu;
     }
@@ -1334,7 +1334,7 @@ function db_commu_c_commu4c_commu_topic_id($c_commu_topic_id)
  */
 function db_commu_is_admin4c_member_id_c_commu_topic_id($c_member_id, $c_commu_topic_id)
 {
-    $c_commu = k_p_c_bbs_c_commu4c_commu_topic_id($c_commu_topic_id);
+    $c_commu = db_commu_c_commu4c_commu_topic_id($c_commu_topic_id);
     $c_commu_id = $c_commu['c_commu_id'];
 
     return db_commu_is_c_commu_admin($c_commu['c_commu_id'], $c_member_id);
@@ -1345,7 +1345,7 @@ function db_commu_is_admin4c_member_id_c_commu_topic_id($c_member_id, $c_commu_t
  */
 function db_commu_c_member_admin4c_commu_topic_id($c_commu_topic_id)
 {
-    $c_commu = k_p_c_bbs_c_commu4c_commu_topic_id($c_commu_topic_id);
+    $c_commu = db_commu_c_commu4c_commu_topic_id($c_commu_topic_id);
     $c_commu_id = $c_commu['c_commu_id'];
 
     $sql = "SELECT c_member_id_admin , nickname";
@@ -1376,7 +1376,7 @@ function db_commu_c_commu_list4c_member_id_4($c_member_id, $page_size, $page)
             db_commu_count_c_commu_member_list4c_commu_id($value['c_commu_id']);
     }
 
-    $total_num = p_common_count_c_commu4c_member_id($c_member_id);
+    $total_num = db_commu_count_c_commu4c_member_id($c_member_id);
     if ($total_num != 0) {
         $total_page_num =  ceil($total_num / $page_size);
         if ($page >= $total_page_num) {
@@ -1592,7 +1592,7 @@ function db_commu_anatani_c_commu_member_confirm_list4c_member_id_2($c_member_id
     $c_commu_member_confirm_list = db_get_all($sql, $params);
 
     foreach ($c_commu_member_confirm_list as $key => $value) {
-        $c_member = db_common_c_member4c_member_id_LIGHT($value['c_member_id']);
+        $c_member = db_member_c_member4c_member_id_LIGHT($value['c_member_id']);
         $c_commu_member_confirm_list[$key]['nickname'] = $c_member['nickname'];
     }
     return $c_commu_member_confirm_list;
@@ -1619,7 +1619,7 @@ function db_commu_anataga_c_commu_member_confirm_list4c_member_id_2($c_member_id
     $c_commu_member_confirm_list = db_get_all($sql, $params);
 
     foreach ($c_commu_member_confirm_list as $key => $value) {
-        $c_member = db_common_c_member4c_member_id_LIGHT($value['c_member_id_admin']);
+        $c_member = db_member_c_member4c_member_id_LIGHT($value['c_member_id_admin']);
         $c_commu_member_confirm_list[$key]['nickname'] = $c_member['nickname'];
     }
     return $c_commu_member_confirm_list;
@@ -1656,7 +1656,7 @@ function db_commu_c_commu_category4null()
 
 function db_commu_c_commu_category_list4null()
 {
-    $list = _db_c_commu_category4null();
+    $list = db_commu_c_commu_category4null();
 
     // カテゴリごとのコミュニティ数を取得
     $sql = 'SELECT c_commu_category_id, COUNT(*) as count FROM c_commu' .
@@ -1993,7 +1993,7 @@ function db_commu_c_event_mail_list4c_commu_topic_id($c_commu_topic_id, $excepte
     $result = array();
     foreach ($list as $c_member_id) {
         if ($c_member_id != $excepted_id) {
-            $result[] = db_common_c_member4c_member_id_LIGHT($c_member_id);
+            $result[] = db_member_c_member4c_member_id_LIGHT($c_member_id);
         }
     }
     return $result;
@@ -2044,7 +2044,7 @@ function db_commu_event4c_member_id($year, $month, $day, $c_member_id)
     $list = db_get_all($sql, $params);
 
     foreach ($list as $key => $item) {
-        $list[$key]['is_join'] = p_common_is_c_event_member($item['c_commu_topic_id'], $c_member_id);
+        $list[$key]['is_join'] = db_commu_is_c_event_member_2($item['c_commu_topic_id'], $c_member_id);
     }
     return $list;
 }
@@ -2057,7 +2057,7 @@ function db_commu_c_event_member_list4c_commu_topic_id_2($c_commu_topic_id, $pag
     $params = array(intval($c_commu_topic_id));
     $list[0] = db_get_all_page($sql, $page, $page_size, $params);
 
-    $total_c_event_member = k_p_count_c_event_member_list4c_commu_topic_id($c_commu_topic_id);
+    $total_c_event_member = db_commu_count_c_event_member_list4c_commu_topic_id_2($c_commu_topic_id);
     $start_num = ($page-1) * $page_size + 1;
     $end_num   = $page * $page_size;
     if ($end_num > $total_c_event_member) {
@@ -2268,7 +2268,7 @@ function db_commu_delete_c_commu_member_confirm($c_commu_member_confirm_id)
  */
 function db_commu_insert_c_commu_member($c_commu_member_confirm_id)
 {
-    $confirm = _do_c_commu_member_confirm4c_commu_member_confirm_id($c_commu_member_confirm_id);
+    $confirm = db_commu_c_commu_member_confirm4c_commu_member_confirm_id($c_commu_member_confirm_id);
     $data = array(
         'c_commu_id' => intval($confirm['c_commu_id']),
         'c_member_id' => intval($confirm['c_member_id']),
@@ -2388,9 +2388,9 @@ function db_commu_delete_c_commu_topic($c_commu_topic_id)
 
     $topic_comment_list = db_get_all($sql, $params);
     foreach ($topic_comment_list as $topic_comment) {
-        image_data_delete($topic_comment['image_filename1']);
-        image_data_delete($topic_comment['image_filename2']);
-        image_data_delete($topic_comment['image_filename3']);
+        db_image_data_delete($topic_comment['image_filename1']);
+        db_image_data_delete($topic_comment['image_filename2']);
+        db_image_data_delete($topic_comment['image_filename3']);
         db_file_delete_c_file($topic_comment['filename']);
     }
 
@@ -2419,7 +2419,7 @@ function db_commu_insert_c_commu_topic_comment($c_commu_id, $c_commu_topic_id, $
 {
     cache_drop_c_commu_list4c_member_id($c_member_id);
 
-    $number = _do_c_commu_topic_comment_number4c_commu_topic_id($c_commu_topic_id);
+    $number = db_commu_c_commu_topic_comment_number4c_commu_topic_id($c_commu_topic_id);
 
     $data = array(
         'c_commu_id' => intval($c_commu_id),
@@ -2442,7 +2442,7 @@ function db_commu_insert_c_commu_topic_comment($c_commu_id, $c_commu_topic_id, $
  */
 function db_commu_insert_c_commu_topic_comment_2($c_member_id,$target_c_commu_topic_id,$body)
 {
-    $c_commu_topic = _do_c_bbs_c_commu_topic4c_commu_topic_id($target_c_commu_topic_id);
+    $c_commu_topic = db_commu_c_commu_topic4c_commu_topic_id($target_c_commu_topic_id);
 
     $target_c_commu_topic_id = $c_commu_topic['c_commu_topic_id'];
     $target_c_commu_id  = $c_commu_topic['c_commu_id'];
@@ -2494,9 +2494,9 @@ function db_commu_delete_c_commu_topic_comment($c_commu_topic_comment_id)
         ' WHERE c_commu_topic_comment_id = ?';
     $params = array(intval($c_commu_topic_comment_id));
     $topic_comment = db_get_row($sql, $params);
-    image_data_delete($topic_comment['image_filename1']);
-    image_data_delete($topic_comment['image_filename2']);
-    image_data_delete($topic_comment['image_filename3']);
+    db_image_data_delete($topic_comment['image_filename1']);
+    db_image_data_delete($topic_comment['image_filename2']);
+    db_image_data_delete($topic_comment['image_filename3']);
     db_file_delete_c_file($topic_comment['filename']);
 
     $sql = 'DELETE FROM c_commu_topic_comment WHERE c_commu_topic_comment_id = ?';
