@@ -1646,8 +1646,50 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 }
 
 /*==============================================================================
- * 
+ * 33. monthlyCalendarTable（月間カレンダーテーブル）
  *----------------------------------------------------------------------------*/
+.monthlyCalendarTable div.block {
+	zoom: 1;
+	overflow: hidden;
+	overflow: -moz-scrollbars-none;
+	padding: 2px 5px;
+}
+.monthlyCalendarTable div.block p.moreInfo {
+	float: left;
+	width: 70%;
+	text-align: left;
+}
+.monthlyCalendarTable div.block p.moreInfo a {
+	margin-right: 4px;
+}
+.monthlyCalendarTable div.block p.pager {
+	float: right;
+	width: 30%;
+	margin-top: 2px;
+	text-align: right;
+}
+.monthlyCalendarTable .calendar th {
+	padding: 2px;
+}
+.monthlyCalendarTable .calendar td {
+	height: 65px;
+	padding: 2px;
+	vertical-align: top;
+}
+.monthlyCalendarTable .calendar td.today {
+	background: #<?php echo $colors[7]; ?>;
+	font-weight: bold;
+}
+.monthlyCalendarTable .calendar td p {
+	font-weight: normal;
+}
+.monthlyCalendarTable .partsInfo {
+	padding: 5px;
+	background: #<?php echo $colors[6]; ?>;
+}
+.monthlyCalendarTable .partsInfo img {
+	margin: 0 1px;
+}
 
 /*==============================================================================
  * 
