@@ -128,6 +128,31 @@ CREATE TABLE c_admin_user (
   UNIQUE (username)
 );
 
+CREATE TABLE c_album (
+  c_album_id serial NOT NULL,
+  c_member_id int4 NOT NULL default '0',
+  subject text NOT NULL,
+  description text NOT NULL,
+  album_cover_image text NOT NULL,
+  r_datetime timestamp NOT NULL default '0000-01-01 00:00:00',
+  u_datetime timestamp NOT NULL default '0000-01-01 00:00:00',
+  public_flag varchar(20) NOT NULL default 'public',
+  PRIMARY KEY  (c_album_id)
+);
+
+CREATE INDEX c_album on c_album (c_member_id);
+
+CREATE TABLE c_album_image (
+  c_album_image_id serial NOT NULL,
+  c_album_id int4 NOT NULL default '0',
+  c_member_id int4 NOT NULL default '0',
+  image_filename text NOT NULL,
+  image_description text NOT NULL,
+  filesize int4 NOT NULL default '0',
+  r_datetime timestamp NOT NULL default '0000-01-01 00:00:00',
+  PRIMARY KEY  (c_album_image_id)
+);
+
 CREATE TABLE c_api (
   c_api_id serial NOT NULL,
   name text NOT NULL,
@@ -289,6 +314,7 @@ CREATE TABLE c_commu_member (
 CREATE INDEX c_commu_member_c_commu_id on c_commu_member (c_commu_id);
 CREATE INDEX c_commu_member_c_member_id on c_commu_member (c_member_id);
 CREATE INDEX c_commu_member_c_commu_id_r_datetime on c_commu_member (c_commu_id,r_datetime);
+CREATE INDEX c_commu_member_c_commu_id_c_member_id on c_commu_member (c_commu_id,c_member_id);
 
 CREATE TABLE c_commu_member_confirm (
   c_commu_member_confirm_id serial NOT NULL,
@@ -339,12 +365,13 @@ CREATE TABLE c_commu_topic (
   invite_period date NOT NULL default '0000-01-01',
   event_flag int4 NOT NULL default '0',
   capacity int4 NOT NULL default '0',
+  u_datetime timestamp NOT NULL default '0000-01-01 00:00:00',
   PRIMARY KEY  (c_commu_topic_id)
 );
 
 CREATE INDEX c_commu_topic_c_member_id on c_commu_topic (c_member_id);
 CREATE INDEX c_commu_topic_c_commu_id on c_commu_topic (c_commu_id);
-CREATE INDEX c_commu_topic_r_datetime_c_commu_id on c_commu_topic (r_datetime,c_commu_id);
+CREATE INDEX c_commu_topic_r_datetime_c_commu_id on c_commu_topic (c_commu_id,u_datetime);
 
 CREATE TABLE c_commu_topic_comment (
   c_commu_topic_comment_id serial NOT NULL,
@@ -554,6 +581,19 @@ CREATE INDEX c_diary_comment_c_member_id_c_diary_id on c_diary_comment (c_member
 CREATE INDEX c_diary_comment_c_diary_id_r_datetime on c_diary_comment (c_diary_id,r_datetime);
 CREATE INDEX c_diary_comment_c_member_id_r_datetime_c_diary_id on c_diary_comment (c_member_id,r_datetime,c_diary_id);
 
+CREATE TABLE c_diary_comment_log (
+  c_diary_comment_log_id serial NOT NULL,
+  c_member_id int4 NOT NULL default '0',
+  c_diary_id  int4 NOT NULL default '0',
+  r_datetime  timestamp NOT NULL default '0000-01-01 00:00:00',
+  PRIMARY KEY (c_diary_comment_log_id)
+);
+
+CREATE INDEX c_diary_comment_log_c_member_id_r_datetime on c_diary_comment_log (c_member_id,r_datetime);
+CREATE INDEX c_diary_comment_log_c_diary_id on c_diary_comment_log (c_diary_id);
+CREATE INDEX c_diary_comment_log_c_diary_id_r_datetime on c_diary_comment_log (c_diary_id,r_datetime);
+CREATE INDEX c_diary_comment_log_c_member_id_c_diary_id on c_diary_comment_log (c_member_id,c_diary_id);
+
 CREATE TABLE c_event_member (
   c_event_member_id serial NOT NULL,
   c_commu_topic_id int4 NOT NULL default '0',
@@ -667,6 +707,7 @@ CREATE TABLE c_member (
   birth_month smallint NOT NULL default '0',
   birth_day smallint NOT NULL default '0',
   public_flag_birth_year varchar(20) NOT NULL default 'public',
+  public_flag_birth_month_day varchar(20) NOT NULL default 'public',
   image_filename text NOT NULL,
   image_filename_1 text NOT NULL,
   image_filename_2 text NOT NULL,
@@ -725,6 +766,7 @@ CREATE TABLE c_member_pre (
   birth_month smallint NOT NULL default '0',
   birth_day smallint NOT NULL default '0',
   public_flag_birth_year varchar(20) NOT NULL default 'public',
+  public_flag_birth_month_day varchar(20) NOT NULL default 'public',
   r_date timestamp NOT NULL default '0000-01-01 00:00:00',
   is_receive_mail smallint NOT NULL default '0',
   is_receive_daily_news smallint NOT NULL default '0',
@@ -806,6 +848,7 @@ CREATE TABLE c_message (
   image_filename_1 text NOT NULL,
   image_filename_2 text NOT NULL,
   image_filename_3 text NOT NULL,
+  filename varchar(200) NOT NULL default '',
   PRIMARY KEY  (c_message_id)
 );
 
