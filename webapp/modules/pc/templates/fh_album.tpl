@@ -73,7 +73,7 @@
 ({* unknown *})({if $is_prev})<p class="prev"><a href="({t_url m=pc a=page_fh_album})&amp;page=({$page-1})&amp;target_c_album_id=({$target_c_album_id})">前を表示</a></p>({/if})
 ({* unknown *})<p class="number">
 ({* unknown *})({$total_num})件中 ({$page*$page_size-$page_size+1})件～
-({* unknown *})({if $page_size > $diary_list_count})
+({* unknown *})({if $page_size > $album_list_count})
 ({* unknown *})({$album_list_count+$page*$page_size-$page_size})
 ({* unknown *})({else})
 ({* unknown *})({$page*$page_size})

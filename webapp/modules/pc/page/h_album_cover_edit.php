@@ -69,7 +69,7 @@ class pc_page_h_album_cover_edit extends OpenPNE_Action
         $time = strtotime($album['r_datetime']);
         $year = date('Y', $time);
         $month= date('n', $time);
-        //日記一覧、カレンダー用変数
+        //アルバム一覧、カレンダー用変数
         $date_val = array(
             'year' => $year,
             'month' => $month,
@@ -77,13 +77,13 @@ class pc_page_h_album_cover_edit extends OpenPNE_Action
         );
         $this->set("date_val", $date_val);
 
-        //日記のカレンダー
+        //アルバムのカレンダー
         $calendar = db_common_album_monthly_calendar($year, $month, $u);
 
         $this->set("calendar", $calendar['days']);
         $this->set("ym", $calendar['ym']);
 
-        //各月の日記
+        //各月のアルバム
         $this->set("date_list", p_fh_album_list_date_list4c_member_id($u));
         */
         
