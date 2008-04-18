@@ -49,15 +49,14 @@ class pc_page_h_album_image_add_confirm extends OpenPNE_Action
             '',
         );
         
-        //画像指定判定 1個も画像をしていない場合はワーニグ表示
-        $file_no = false;
-        foreach ($upfiles as $key => $upfile){
+        $is_set_file = false;
+        foreach ($upfiles as $key => $upfile) {
             if($upfile['name']) {
-                $file_no = true;
+                $is_set_file = true;
                 break;
             }
         }
-        if(!$file_no){
+        if(!$is_set_file) {
             $_REQUEST['msg'] = '画像を指定してください';
             openpne_forward('pc', 'page', 'h_album_image_add');
             exit;
