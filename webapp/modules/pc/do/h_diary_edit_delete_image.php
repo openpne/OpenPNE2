@@ -25,7 +25,7 @@ class pc_do_h_diary_edit_delete_image extends OpenPNE_Action
         }
         //---
 
-        image_data_delete($c_diary['image_filename_'. $del_img]);
+        db_image_data_delete($c_diary['image_filename_'. $del_img]);
         db_diary_delete_c_diary_image($c_diary_id, $del_img);
 
         $p = array('target_c_diary_id' => $c_diary_id);
