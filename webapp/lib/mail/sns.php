@@ -427,10 +427,10 @@ class mail_sns
 
         //日記コメント記入履歴追加
         if ($u != $target_c_member_id) {
-            db_diary_insert_c_diary_comment_summary($u,$target_c_diary_id);
+            db_diary_insert_c_diary_comment_log($u,$target_c_diary_id);
         }
         //日記コメント記入履歴更新
-        db_diary_update_c_diary_comment_summary($target_c_diary_id);
+        db_diary_update_c_diary_comment_log($target_c_diary_id);
 
         // 写真登録
         $images = $this->decoder->get_images();
