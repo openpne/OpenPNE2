@@ -57,9 +57,9 @@ class pc_do_fh_diary_insert_c_diary_comment extends OpenPNE_Action
 
         //日記コメント記入履歴更新
         if ($u != $target_c_member_id) {
-            db_diary_insert_c_diary_comment_summary($u,$target_c_diary_id);
+            db_diary_insert_c_diary_comment_log($u,$target_c_diary_id);
         }
-        db_diary_update_c_diary_comment_summary($target_c_diary_id);
+        db_diary_update_c_diary_comment_log($target_c_diary_id);
 
         //日記コメントが書き込まれたので日記自体を未読扱いにする
         db_diary_update_c_diary_is_checked($target_c_diary_id, 0);
