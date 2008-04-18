@@ -15,7 +15,7 @@ class admin_do_delete_c_rank extends OpenPNE_Action
 
         //以前のイメージを削除
         $c_rank = db_admin_get_c_rank_one($requests['c_rank_id']);
-        image_data_delete($c_rank['image_filename']);
+        db_image_data_delete($c_rank['image_filename']);
 
         db_admin_delete_c_rank($requests['c_rank_id']);
 

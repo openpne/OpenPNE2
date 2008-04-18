@@ -31,7 +31,7 @@ class admin_do_update_c_rank extends OpenPNE_Action
             }
 
             //以前のイメージを削除
-            image_data_delete($image_filename);
+            db_image_data_delete($image_filename);
 
             //新しいイメージを作成
             $ext = t_check_image_format($_FILES['image_upfile']);

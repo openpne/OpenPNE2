@@ -14,7 +14,7 @@ class ktai_page_c_event_invite extends OpenPNE_Action
         $target_c_commu_topic_id = $requests['target_c_commu_topic_id'];
         // ----------
 
-        $c_commu = k_p_c_bbs_c_commu4c_commu_topic_id($target_c_commu_topic_id);
+        $c_commu = db_commu_c_commu4c_commu_topic_id($target_c_commu_topic_id);
         $c_commu_id = $c_commu['c_commu_id'];
         if (!db_commu_is_c_commu_view4c_commu_idAc_member_id($c_commu_id, $u)) {
             handle_kengen_error();

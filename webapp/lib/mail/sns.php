@@ -18,12 +18,12 @@ class mail_sns
         $this->from = $decoder->get_from();
         $this->to = $decoder->get_to();
 
-        $this->c_member_id = do_common_c_member_id4ktai_address($this->from);
+        $this->c_member_id = db_member_c_member_id4ktai_address2($this->from);
 
         // メンバーIDが見つからない場合は、ローカルパートに二重引用符を付加してリトライ
         if (!$this->c_member_id) {
             list($local, $domain) = explode('@', $this->from, 2);
-            $this->c_member_id = do_common_c_member_id4ktai_address('"' . $local . '"' . '@' . $domain);
+            $this->c_member_id = db_member_c_member_id4ktai_address2('"' . $local . '"' . '@' . $domain);
         }
     }
 
@@ -270,7 +270,7 @@ class mail_sns
 
         // _pre に追加
         $session = create_hash();
-        mail_insert_c_member_ktai_pre($session, $this->from, $c_member_id_invite);
+        db_member_insert_c_member_ktai_pre($session, $this->from, $c_member_id_invite);
 
         do_common_send_mail_regist_get($session, $this->from, $aff_id);
         return true;
@@ -290,12 +290,12 @@ class mail_sns
      */
     function add_commu_topic_comment($c_commu_topic_id)
     {
-        if (!$topic = mail_c_commu_topic4c_commu_topic_id($c_commu_topic_id)) {
+        if (!$topic = db_commu_c_commu_topic4c_commu_topic_id_3($c_commu_topic_id)) {
             return false;
         }
 
         $c_commu_id = $topic['c_commu_id'];
-        if (!_db_is_c_commu_member($c_commu_id, $this->c_member_id)) {
+        if (!db_commu_is_c_commu_member($c_commu_id, $this->c_member_id)) {
             $this->error_mail(WORD_COMMUNITY . 'に参加していないため投稿できませんでした。');
             m_debug_log('mail_sns::add_commu_topic_comment() not a member');
             return false;
@@ -320,7 +320,7 @@ class mail_sns
             $filename = 'tc_' . $ins_id . '_' . $image_num . '_' . time() . '.' . $image_ext;
 
             db_image_insert_c_image($filename, $image_data);
-            mail_update_c_commu_topic_comment_image($ins_id, $filename, $image_num);
+            db_commu_update_c_commu_topic_comment_image($ins_id, $filename, $image_num);
             $image_num++;
             if ($image_num > 3) {
                 break;
@@ -358,7 +358,7 @@ class mail_sns
             return false;
         }
 
-        $c_member = db_common_c_member4c_member_id($this->c_member_id);
+        $c_member = db_member_c_member4c_member_id($this->c_member_id);
         if (!$ins_id = db_diary_insert_c_diary($this->c_member_id, $subject, $body, $c_member['public_flag_diary'])) {
             return false;
         }
@@ -474,7 +474,7 @@ class mail_sns
      */
     function add_member_image()
     {
-        $c_member = db_common_c_member4c_member_id($this->c_member_id);
+        $c_member = db_member_c_member4c_member_id($this->c_member_id);
 
         // 登録する写真番号(1-3)を決める
         $target_number = 0;
@@ -502,7 +502,7 @@ class mail_sns
             $filename = 'm_' . $this->c_member_id . '_' . time() . '.' . $image_ext;
 
             db_image_insert_c_image($filename, $image_data);
-            mail_update_c_member_image($this->c_member_id, $filename, $target_number);
+            db_member_update_c_member_image($this->c_member_id, $filename, $target_number);
             return true;
         } else {
             $this->error_mail('写真が添付されていないか、ファイルサイズが大きすぎるため、登録できませんでした。');

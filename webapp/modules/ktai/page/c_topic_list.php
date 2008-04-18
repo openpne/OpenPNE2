@@ -28,7 +28,7 @@ class ktai_page_c_topic_list extends OpenPNE_Action
         $this->set('c_commu', db_commu_c_commu4c_commu_id($c_commu_id));
 
         list($result, $is_prev, $is_next, $total_num, $start_num, $end_num)
-            = p_c_topic_list_c_topic_list4target_c_commu_id($c_commu_id, $u, $page, $page_size, 0, 1);
+            = db_commu_c_topic_list4target_c_commu_id($c_commu_id, $u, $page, $page_size, 0, 1);
         $this->set("c_topic_list", $result);
         $this->set("is_prev", $is_prev);
         $this->set("is_next", $is_next);
