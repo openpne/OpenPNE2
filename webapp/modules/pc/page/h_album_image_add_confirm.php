@@ -109,7 +109,7 @@ class pc_page_h_album_image_add_confirm extends OpenPNE_Action
             "tmpfile_5" => $tmpfiles[5],
         );
         
-        //ファイル画像を指定しているものだけコメントを設定
+        //ファイル画像を指定しているものだけ説明文を設定
         foreach ($tmpfiles as $key => $tmpfile) {
             $name = "image_description{$key}";
             if($tmpfile){
