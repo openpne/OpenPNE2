@@ -127,6 +127,30 @@ CREATE TABLE `c_admin_user` (
   UNIQUE KEY `username` (`username`)
 ) TYPE=MyISAM;
 
+CREATE TABLE `c_album` (
+  `c_album_id` int(11) NOT NULL auto_increment,
+  `c_member_id` int(11) NOT NULL default '0',
+  `subject` text NOT NULL,
+  `description` text NOT NULL,
+  `album_cover_image` text NOT NULL,
+  `r_datetime` datetime NOT NULL default '0000-00-00 00:00:00',
+  `u_datetime` datetime NOT NULL default '0000-00-00 00:00:00',
+  `public_flag` enum('public','friend','private') NOT NULL default 'public',
+  PRIMARY KEY  (`c_album_id`),
+  KEY `c_member_id` (`c_member_id`)
+) TYPE=MyISAM;
+
+CREATE TABLE `c_album_image` (
+  `c_album_image_id` int(11) NOT NULL auto_increment,
+  `c_album_id` int(11) NOT NULL default '0',
+  `c_member_id` int(11) NOT NULL default '0',
+  `image_filename` text NOT NULL,
+  `image_description` text NOT NULL,
+  `filesize` int(11) NOT NULL default '0',
+  `r_datetime` datetime NOT NULL default '0000-00-00 00:00:00',
+  PRIMARY KEY  (`c_album_image_id`)
+) TYPE=MyISAM;
+
 CREATE TABLE `c_api` (
   `c_api_id` int(11) NOT NULL auto_increment,
   `name` text NOT NULL,
@@ -277,7 +301,8 @@ CREATE TABLE `c_commu_member` (
   PRIMARY KEY  (`c_commu_member_id`),
   KEY `c_commu_id` (`c_commu_id`),
   KEY `c_member_id` (`c_member_id`),
-  KEY `c_commu_id_r_datetime` (`c_commu_id`,`r_datetime`)
+  KEY `c_commu_id_r_datetime` (`c_commu_id`,`r_datetime`),
+  KEY `c_commu_id_c_member_id` (`c_commu_id`,`c_member_id`)
 ) TYPE=MyISAM;
 
 CREATE TABLE `c_commu_member_confirm` (
@@ -326,10 +351,11 @@ CREATE TABLE `c_commu_topic` (
   `invite_period` date NOT NULL default '0000-00-00',
   `event_flag` int(11) NOT NULL default '0',
   `capacity` int(11) NOT NULL default '0',
+  `u_datetime` datetime NOT NULL default '0000-00-00 00:00:00',
   PRIMARY KEY  (`c_commu_topic_id`),
   KEY `c_member_id` (`c_member_id`),
   KEY `c_commu_id` (`c_commu_id`),
-  KEY `r_datetime_c_commu_id` (`r_datetime`,`c_commu_id`)
+  KEY `r_datetime_c_commu_id` (`c_commu_id`,`u_datetime`)
 ) TYPE=MyISAM;
 
 CREATE TABLE `c_commu_topic_comment` (
@@ -535,6 +561,18 @@ CREATE TABLE `c_diary_comment` (
   KEY `c_member_id_r_datetime_c_diary_id` (`c_member_id`,`r_datetime`,`c_diary_id`)
 ) TYPE=MyISAM;
 
+CREATE TABLE `c_diary_comment_log` (
+  `c_diary_comment_log_id` int(11) NOT NULL auto_increment,
+  `c_member_id` int(11) NOT NULL default '0',
+  `c_diary_id` int(11) NOT NULL default '0',
+  `r_datetime` datetime NOT NULL default '0000-00-00 00:00:00',
+  PRIMARY KEY  (`c_diary_comment_log_id`),
+  KEY `c_member_id_r_datetime` (`c_member_id`,`r_datetime`),
+  KEY `c_diary_id` (`c_diary_id`),
+  KEY `c_diary_id_r_datetime` (`c_diary_id`,`r_datetime`),
+  KEY `c_member_id_c_diary_id` (`c_member_id`,`c_diary_id`)
+) TYPE=MyISAM;
+
 CREATE TABLE `c_event_member` (
   `c_event_member_id` int(11) NOT NULL auto_increment,
   `c_commu_topic_id` int(11) NOT NULL default '0',
@@ -642,6 +680,7 @@ CREATE TABLE `c_member` (
   `birth_month` tinyint(2) NOT NULL default '0',
   `birth_day` tinyint(2) NOT NULL default '0',
   `public_flag_birth_year` enum('public','friend','private') NOT NULL default 'public',
+  `public_flag_birth_month_day` enum('public','friend','private') NOT NULL default 'public',
   `image_filename` text NOT NULL,
   `image_filename_1` text NOT NULL,
   `image_filename_2` text NOT NULL,
@@ -702,6 +741,7 @@ CREATE TABLE `c_member_pre` (
   `birth_month` tinyint(2) NOT NULL default '0',
   `birth_day` tinyint(2) NOT NULL default '0',
   `public_flag_birth_year` enum('public','friend','private') NOT NULL default 'public',
+  `public_flag_birth_month_day` enum('public','friend','private') NOT NULL default 'public',
   `r_date` datetime NOT NULL default '0000-00-00 00:00:00',
   `is_receive_mail` tinyint(1) NOT NULL default '0',
   `is_receive_daily_news` tinyint(1) NOT NULL default '0',
@@ -781,6 +821,7 @@ CREATE TABLE `c_message` (
   `image_filename_1` text NOT NULL,
   `image_filename_2` text NOT NULL,
   `image_filename_3` text NOT NULL,
+  `filename` varchar(200) NOT NULL default '',
   PRIMARY KEY  (`c_message_id`),
   KEY `c_member_id_from` (`c_member_id_from`),
   KEY `c_member_id_to` (`c_member_id_to`),
