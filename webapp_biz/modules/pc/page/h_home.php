@@ -78,6 +78,10 @@ class pc_page_h_home extends OpenPNE_Action
         $this->set('c_commu_topic_comment_list', p_h_home_c_commu_topic_comment_list4c_member_id($u, 5));
         // レビュー
         $this->set('c_friend_review_list', db_review_c_friend_review_list4c_member_id($u, 5));
+        if (OPENPNE_USE_ALBUM) {
+            // アルバム
+            $this->set('c_friend_album_list', p_h_home_c_album_friend_list4c_member_id($u, 5));
+        }
 
         /// 自分の情報 ///
 
@@ -87,6 +91,10 @@ class pc_page_h_home extends OpenPNE_Action
         $this->set('c_blog_list', db_rss_h_blog_list_friend4c_member_id($u, 5, 1));
         // レビュー
         $this->set('c_review_list', db_review_c_review_list4member($u, 5));
+        if (OPENPNE_USE_ALBUM) {
+            // アルバム
+            $this->set('c_album_list', db_album_get_c_album_subject_list4c_member_id($u, 5));
+        }
 
         /// その他 ///
 
