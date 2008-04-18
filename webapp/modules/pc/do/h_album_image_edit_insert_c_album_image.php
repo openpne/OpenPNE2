@@ -5,7 +5,7 @@
  */
 
 /**
- * 日記を修正
+ * アルバムを修正
  */
 class pc_do_h_album_image_edit_insert_c_album_image extends OpenPNE_Action
 {
