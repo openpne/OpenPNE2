@@ -13,8 +13,8 @@ function db_message_c_message4c_message_id($c_message_id)
     $params = array(intval($c_message_id));
     $c_message = db_get_row($sql, $params);
 
-    $c_member_from = db_common_c_member4c_member_id_LIGHT($c_message['c_member_id_from']);
-    $c_member_to = db_common_c_member4c_member_id_LIGHT($c_message['c_member_id_to']);
+    $c_member_from = db_member_c_member4c_member_id_LIGHT($c_message['c_member_id_from']);
+    $c_member_to = db_member_c_member4c_member_id_LIGHT($c_message['c_member_id_to']);
 
     $c_message['c_member_image_filename_from'] = $c_member_from['image_filename'];
     $c_message['c_member_nickname_from'] = $c_member_from['nickname'];
@@ -99,7 +99,7 @@ function db_message_c_message_received_list4c_member_id4range($c_member_id, $pag
     $c_message_list = db_get_all_page($sql, $page, $page_size, $params);
 
     foreach ($c_message_list as $key => $value) {
-        $c_member = db_common_c_member4c_member_id_LIGHT($value['c_member_id_from']);
+        $c_member = db_member_c_member4c_member_id_LIGHT($value['c_member_id_from']);
         $c_message_list[$key]['nickname'] = $c_member['nickname'];
         $c_message_list[$key]['image_filename'] = $c_member['image_filename'];
     }
@@ -155,7 +155,7 @@ function db_message_c_message_sent_list4c_member_id4range($c_member_id, $page, $
     $c_message_list = db_get_all_page($sql, $page, $page_size, $params);
 
     foreach ($c_message_list as $key => $value) {
-        $c_member = db_common_c_member4c_member_id_LIGHT($value['c_member_id_to']);
+        $c_member = db_member_c_member4c_member_id_LIGHT($value['c_member_id_to']);
         $c_message_list[$key]['nickname'] = $c_member['nickname'];
         $c_message_list[$key]['image_filename'] = $c_member['image_filename'];
     }
@@ -195,7 +195,7 @@ function db_message_c_message_save_list4c_member_id4range($c_member_id, $page, $
     $c_message_list = db_get_all_page($sql, $page, $page_size, $params);
 
     foreach ($c_message_list as $key => $value) {
-        $c_member = db_common_c_member4c_member_id_LIGHT($value['c_member_id_to']);
+        $c_member = db_member_c_member4c_member_id_LIGHT($value['c_member_id_to']);
         $c_message_list[$key]['nickname'] = $c_member['nickname'];
         $c_message_list[$key]['image_filename'] = $c_member['image_filename'];
     }
@@ -270,9 +270,9 @@ function db_message_c_message_trash_list4c_member_id4range($c_member_id, $page, 
 
     foreach ($c_message_list as $key => $value) {
         if ($value['c_member_id_to'] == $c_member_id) {
-            $c_member = db_common_c_member4c_member_id_LIGHT($value['c_member_id_from']);
+            $c_member = db_member_c_member4c_member_id_LIGHT($value['c_member_id_from']);
         } else {
-            $c_member = db_common_c_member4c_member_id_LIGHT($value['c_member_id_to']);
+            $c_member = db_member_c_member4c_member_id_LIGHT($value['c_member_id_to']);
         }
         $c_message_list[$key]['nickname'] = $c_member['nickname'];
         $c_message_list[$key]['image_filename'] = $c_member['image_filename'];
@@ -306,7 +306,7 @@ function db_message_c_message_received_list4c_member_id4range2($c_member_id, $pa
     $c_message_list = db_get_all_page($sql, $page, $page_size, $params);
 
     foreach ($c_message_list as $key => $value) {
-        $c_member = db_common_c_member4c_member_id_LIGHT($value['c_member_id_from']);
+        $c_member = db_member_c_member4c_member_id_LIGHT($value['c_member_id_from']);
         $c_message_list[$key]['nickname'] = $c_member['nickname'];
     }
 
@@ -344,7 +344,7 @@ function db_message_c_message_sent_list4c_member_id4range2($c_member_id, $page_s
     $c_message_list = db_get_all_page($sql, $page, $page_size, $params);
 
     foreach ($c_message_list as $key => $value) {
-        $c_member = db_common_c_member4c_member_id_LIGHT($value['c_member_id_to']);
+        $c_member = db_member_c_member4c_member_id_LIGHT($value['c_member_id_to']);
         $c_message_list[$key]['nickname'] = $c_member['nickname'];
     }
 
@@ -773,9 +773,9 @@ function db_message_search_c_message($c_member_id, $page, $page_size, $keyword, 
 
     foreach ($c_message_list as $key => $value) {
         if ($box == 'inbox' || !$box) {
-            $c_member = db_common_c_member4c_member_id_LIGHT($value['c_member_id_from']);
+            $c_member = db_member_c_member4c_member_id_LIGHT($value['c_member_id_from']);
         } else {
-            $c_member = db_common_c_member4c_member_id_LIGHT($value['c_member_id_to']);
+            $c_member = db_member_c_member4c_member_id_LIGHT($value['c_member_id_to']);
         }
         $c_message_list[$key]['nickname'] = $c_member['nickname'];
         $c_message_list[$key]['image_filename'] = $c_member['image_filename'];
@@ -829,7 +829,7 @@ function db_message_c_message_sender_list4c_member_id($c_member_id)
     $c_message_list = db_get_all($sql, $params);
 
     foreach ($c_message_list as $key => $value) {
-        $c_member = db_common_c_member4c_member_id_LIGHT($value['c_member_id_from']);
+        $c_member = db_member_c_member4c_member_id_LIGHT($value['c_member_id_from']);
         $c_message_list[$key]['nickname'] = $c_member['nickname'];
     }
     return $c_message_list;
@@ -864,7 +864,7 @@ function db_message_c_message_receiver_list4c_member_id($c_member_id)
     $c_message_list = db_get_all($sql, $params);
 
     foreach ($c_message_list as $key => $value) {
-        $c_member = db_common_c_member4c_member_id_LIGHT($value['c_member_id_to']);
+        $c_member = db_member_c_member4c_member_id_LIGHT($value['c_member_id_to']);
         $c_message_list[$key]['nickname'] = $c_member['nickname'];
     }
     return $c_message_list;

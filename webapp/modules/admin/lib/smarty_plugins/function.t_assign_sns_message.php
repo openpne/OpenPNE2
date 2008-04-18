@@ -22,7 +22,7 @@ function _getUnreadMessageList()
     $sql = 'SELECT * FROM c_message WHERE c_member_id_to = ? AND is_read = 0 AND is_send = 1 ORDER BY c_message_id DESC';
     $list = db_get_all_limit($sql, 0, 5, array(1));
     foreach ($list as $key => $value) {
-        $list[$key]['c_member'] = db_common_c_member4c_member_id_LIGHT($value['c_member_id_from']);
+        $list[$key]['c_member'] = db_member_c_member4c_member_id_LIGHT($value['c_member_id_from']);
     }
     return $list;
 }

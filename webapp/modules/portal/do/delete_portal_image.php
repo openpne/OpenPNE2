@@ -12,7 +12,7 @@ class portal_do_delete_portal_image extends OpenPNE_Action
             portal_client_redirect('edit_portal_image', '画像を削除できませんでした', $tail);
         }
 
-        image_data_delete($filename);
+        db_image_data_delete($filename);
         db_portal_delete_portal_image($filename);
 
         portal_client_redirect('edit_portal_image', '画像を削除しました', $tail);

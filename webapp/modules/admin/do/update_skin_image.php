@@ -16,7 +16,7 @@ class admin_do_update_skin_image extends OpenPNE_Action
         $prefix = sprintf('skin_%s', $requests['skinname']);
         if ($fn = image_insert_c_image($_FILES['upfile'], $prefix)) {
             if ($old_fn = db_get_c_skin_filename4skinname($requests['skinname'])) {
-                image_data_delete($old_fn);
+                db_image_data_delete($old_fn);
             }
 
             // 携帯版ロゴ画像がアップロードされた場合は、ロゴの非表示設定を解除する

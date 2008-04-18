@@ -26,7 +26,7 @@ function db_review_c_friend_review_list4c_member_id($c_member_id, $limit)
             ' ORDER BY c_review_comment.r_datetime DESC';
     $list = db_get_all_limit($sql, 0, $limit);
     foreach ($list as $key => $value) {
-        $list[$key] += db_common_c_member4c_member_id_LIGHT($value['c_member_id']);
+        $list[$key] += db_member_c_member4c_member_id_LIGHT($value['c_member_id']);
     }
     return $list;
 }
@@ -283,7 +283,7 @@ function db_review_list_product_c_review_list4c_review_id($c_review_id, $page, $
     $params = array(intval($c_review_id));
     $list = db_get_all_page($sql, $page, $page_size, $params);
 
-    $total_num = do_common_count_c_review_comment4c_review_id($c_review_id);
+    $total_num = db_review_count_c_review_comment4c_review_id($c_review_id);
     if ($total_num != 0) {
         $total_page_num =  ceil($total_num / $page_size);
         if ($page >= $total_page_num) {
@@ -316,7 +316,7 @@ function db_review_list_product_c_review_list4c_member_id($c_member_id, $page, $
     $list = db_get_all_page($sql, $page, $page_size, $params);
 
     foreach ($list as $key => $value) {
-        $list[$key]['write_num'] = do_common_count_c_review_comment4c_review_id($value['c_review_id']);
+        $list[$key]['write_num'] = db_review_count_c_review_comment4c_review_id($value['c_review_id']);
     }
 
     $sql = "SELECT COUNT(*) FROM c_review_comment WHERE c_member_id = ?";
@@ -363,11 +363,11 @@ function db_review_clip_list_h_review_clip_list4c_member_id($c_member_id, $page,
     $list = db_get_all_page($sql, $page, $page_size, $params);
 
     //カテゴリの表示名を取得
-    $category_disp = p_h_review_add_category_disp();
+    $category_disp = do_review_review_add_category_disp();
 
     //$lstに書き込み数 + カテゴリ名　を追加
     foreach ($list as $key => $value) {
-        $list[$key]['write_num'] = do_common_count_c_review_comment4c_review_id($value['c_review_id']);
+        $list[$key]['write_num'] = db_review_count_c_review_comment4c_review_id($value['c_review_id']);
         $list[$key]['category_disp'] = $category_disp[$value['c_review_category_id']];
     }
 
