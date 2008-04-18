@@ -8,18 +8,18 @@ CREATE INDEX r_datetime_c_commu_id ON c_commu_topic(c_commu_id,u_datetime);
 CREATE INDEX c_commu_id_c_member_id ON c_commu_member(c_commu_id,c_member_id);
 
 /* 日記コメント記入履歴Table */
-CREATE TABLE `c_diary_comment_summary` (
-  `c_diary_comment_summary_id` int(11) NOT NULL auto_increment,
+CREATE TABLE `c_diary_comment_log` (
+  `c_diary_comment_log_id` int(11) NOT NULL auto_increment,
   `c_member_id` int(11) NOT NULL default '0',
   `c_diary_id`  int(11) NOT NULL default '0',
   `r_datetime`  datetime NOT NULL default '0000-00-00 00:00:00',
-  PRIMARY KEY (`c_diary_comment_summary_id`)
+  PRIMARY KEY (`c_diary_comment_log_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
-CREATE INDEX `c_member_id_r_datetime` ON `c_diary_comment_summary`(c_member_id,r_datetime);
-CREATE INDEX `c_diary_id` ON `c_diary_comment_summary`(c_diary_id);
-CREATE INDEX `c_diary_id_r_datetime` ON `c_diary_comment_summary`(c_diary_id,r_datetime);
-CREATE INDEX `c_member_id_c_diary_id` ON `c_diary_comment_summary`(c_member_id,c_diary_id);
+CREATE INDEX `c_member_id_r_datetime` ON `c_diary_comment_log`(c_member_id,r_datetime);
+CREATE INDEX `c_diary_id` ON `c_diary_comment_log`(c_diary_id);
+CREATE INDEX `c_diary_id_r_datetime` ON `c_diary_comment_log`(c_diary_id,r_datetime);
+CREATE INDEX `c_member_id_c_diary_id` ON `c_diary_comment_log`(c_member_id,c_diary_id);
 
 /* 既存データのコンバート */
 /* コメント記入履歴時間  */
