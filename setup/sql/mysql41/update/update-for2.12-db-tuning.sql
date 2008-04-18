@@ -36,7 +36,7 @@ UPDATE c_commu_topic INNER JOIN tmp_c_commu_topic USING (c_commu_topic_id)
 
 DROP TABLE tmp_c_commu_topic;
 
-INSERT INTO c_diary_comment_log (NULL, c_member_id, c_diary_id, r_datetime)
+INSERT INTO c_diary_comment_log (c_diary_comment_log_id, c_member_id, c_diary_id, r_datetime)
   (SELECT NULL, c_member_id, c_diary_id, MAX(r_datetime) AS r_datetime
     FROM c_diary_comment
     WHERE TO_DAYS(NOW()) - TO_DAYS(r_datetime) <= 15
