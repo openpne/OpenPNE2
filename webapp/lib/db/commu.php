@@ -524,7 +524,7 @@ function db_commu_new_topic_comment4c_commu_id($c_commu_id, $limit, $event_flag 
                 " group by cct.c_commu_topic_id, cct.name, cct.c_commu_id " .
                 " order by r_datetime desc ";
     } else {
-        $sql = "SELECT c_commu_topic_id , name, r_datetime_comment as r_datetime , c_commu_id " .
+        $sql = "SELECT c_commu_topic_id , name, u_datetime as r_datetime , c_commu_id " .
                 " FROM c_commu_topic" .
                 " WHERE event_flag = ? AND c_commu_id = ?".
                 " order by r_datetime desc ";
@@ -842,7 +842,7 @@ function db_commu_c_commu_topic_comment_list4c_member_id($c_member_id, $limit)
             ' ORDER BY r_datetime DESC';
         $params = array();
     } else {
-        $sql = 'SELECT a.c_commu_topic_id, a.c_commu_id, a.r_datetime_comment as r_datetime, a.c_member_id,'.
+        $sql = 'SELECT a.c_commu_topic_id, a.c_commu_id, a.u_datetime as r_datetime, a.c_member_id,'.
             ' a.name as c_commu_topic_name'.
             ' FROM c_commu_topic as a INNER JOIN c_commu_member as b USING(c_commu_id)'.
             ' WHERE b.c_member_id = ?'.
@@ -900,7 +900,7 @@ function db_commu_c_commu_topic_comment_list4c_member_id_2($c_member_id, $limit,
             ' ORDER BY r_datetime DESC';
         $params = array();
     } else {
-        $sql = 'SELECT a.c_commu_topic_id, a.c_commu_id, a.r_datetime_comment as r_datetime, a.c_member_id,'.
+        $sql = 'SELECT a.c_commu_topic_id, a.c_commu_id, a.u_datetime as r_datetime, a.c_member_id,'.
             ' a.name as c_commu_topic_name'.
             ' FROM c_commu_topic as a INNER JOIN c_commu_member as b USING(c_commu_id)'.
             ' WHERE b.c_member_id = ?'.
@@ -2503,7 +2503,7 @@ function db_commu_update_c_commu_topic($c_commu_topic_id, $topic)
         'capacity' => intval($topic['capacity']),
         'r_datetime' => db_now(),
         'r_date' => db_now(),
-        'r_datetime_comment' => db_now(),
+        'u_datetime' => db_now(),
     );
 
     if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
@@ -2595,7 +2595,7 @@ function db_commu_insert_c_commu_topic($topic)
         'capacity'  => intval($topic['capacity']),
         'r_datetime'  => db_now(),
         'r_date'      => db_now(),
-        'r_datetime_comment'  => db_now(),
+        'u_datetime'  => db_now(),
     );
 
     if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
@@ -2630,7 +2630,7 @@ function db_commu_insert_c_commu_topic_comment_3($comment)
 {
     cache_drop_c_commu_list4c_member_id($comment['c_member_id']);
 
-    db_commu_update_c_commu_topic_r_datetime_comment(intval($comment['c_commu_topic_id']));
+    db_commu_update_c_commu_topic_u_datetime(intval($comment['c_commu_topic_id']));
 
     $data = array(
         'c_commu_id'       => intval($comment['c_commu_id']),
@@ -3031,12 +3031,12 @@ function db_commu_search_c_commu_topic(
 }
 
 /*
- * トピック書き込み時間(r_datetime_comment)を更新する
+ * トピック書き込み時間(u_datetime)を更新する
  */
-function db_commu_update_c_commu_topic_r_datetime_comment($c_commu_topic_id)
+function db_commu_update_c_commu_topic_u_datetime($c_commu_topic_id)
 {
     $data = array(
-        'r_datetime_comment' => db_now(),
+        'u_datetime' => db_now(),
     );
     $where = array(
         'c_commu_topic_id' => intval($c_commu_topic_id),
