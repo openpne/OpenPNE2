@@ -1190,16 +1190,17 @@ function db_diary_insert_c_diary_comment_log($c_member_id, $c_diary_id)
 {
     $sql = 'SELECT c_diary_id FROM c_diary_comment_log'
          . ' WHERE c_member_id = ? AND c_diary_id = ?';
-    $params = array(intval($c_member_id),intval($c_diary_id));
-    $summary_id = db_get_one($sql,$params,'main');
-    if(!$summary_id){
+    $params = array(intval($c_member_id), intval($c_diary_id));
+    $log_id = db_get_one($sql, $params, 'main');
+    if (!$log_id) {
         $data = array(
             'c_member_id' => intval($c_member_id),
             'c_diary_id' => intval($c_diary_id),
             'r_datetime' => db_now(),
         );
-        $ins_id = db_insert('c_diary_comment_log', $data);
+        return db_insert('c_diary_comment_log', $data);
     }
+    return false;
 }
 
 /**
@@ -1213,10 +1214,8 @@ function db_diary_update_c_diary_comment_log($c_diary_id)
         'r_datetime' => db_now(),
     );
     $where = array('c_diary_id' => intval($c_diary_id));
-    $rtn = db_update('c_diary_comment_log',$data,$where);
-    return array($ins_id,$rtn);
+    return db_update('c_diary_comment_log', $data, $where);
 }
-
 
 /**
  * 日記コメント記入履歴の削除
@@ -1231,25 +1230,27 @@ function db_diary_delete_c_diary_comment_log($c_member_id, $c_diary_id)
     // 投稿したコメントの有無
     $sql = 'SELECT COUNT(c_diary_comment_id) FROM c_diary_comment'
          . ' WHERE c_member_id = ? AND c_diary_id = ?';
-    $params = array(intval($c_member_id),intval($c_diary_id));
-    $count = db_get_one($sql,$params,'main');
+    $params = array(intval($c_member_id), intval($c_diary_id));
+    $count = db_get_one($sql, $params, 'main');
+
     // コメントが無ければ履歴削除
-    if(!$count){
+    if (!$count) {
         $sql = 'DELETE FROM c_diary_comment_log'
              . ' WHERE c_member_id = ? AND c_diary_id = ?';
-        $params = array(intval($c_member_id),intval($c_diary_id));
+        $params = array(intval($c_member_id), intval($c_diary_id));
         db_query($sql, $params);
     }
     $sql = 'SELECT * FROM c_diary_comment WHERE c_diary_id = ?'
          . ' ORDER BY c_diary_comment_id DESC';
     $params = array(intval($c_diary_id));
-    $comment = db_get_row($sql,$params,'main');
+    $comment = db_get_row($sql, $params, 'main');
+
     // 最新コメントの日付で履歴更新
     $data = array(
         'r_datetime' => $comment['r_datetime'],
     );
     $where = array('c_diary_id' => intval($c_diary_id));
-    $rtn = db_update('c_diary_comment_log',$data,$where);
+    return db_update('c_diary_comment_log', $data, $where);
 }
 
 ?>
