@@ -543,7 +543,7 @@ function p_h_home_c_diary_my_comment_list4c_member_id($c_member_id, $limit)
     $is_recurred = false;
 
     $sql = 'SELECT c_diary_id, r_datetime as maxdate' .
-           ' FROM c_diary_comment_summary' .
+           ' FROM c_diary_comment_log' .
            ' WHERE c_member_id = ?' .
            ' ORDER BY maxdate DESC';
     $list = db_get_assoc_limit($sql, 0, $limit, array(intval($c_member_id)));
@@ -565,7 +565,7 @@ function p_h_home_c_diary_my_comment_list4c_member_id($c_member_id, $limit)
 function p_h_diary_comment_list_c_diary_my_comment_list4c_member_id($c_member_id, $page, $page_size)
 {
     $sql = 'SELECT c_diary_id, c_member_id, r_datetime' .
-           ' FROM c_diary_comment_summary' .
+           ' FROM c_diary_comment_log' .
            ' WHERE c_member_id = ?' .
            ' ORDER BY r_datetime DESC';
     $params = array(intval($c_member_id));
@@ -579,7 +579,7 @@ function p_h_diary_comment_list_c_diary_my_comment_list4c_member_id($c_member_id
     }
 
     $sql = 'SELECT c_diary_id' .
-           ' FROM c_diary_comment_summary' .
+           ' FROM c_diary_comment_log' .
            ' WHERE c_member_id = ?';
     $params = array(intval($c_member_id));
     $total_num = db_get_one($sql, $params);
@@ -1043,7 +1043,7 @@ function db_diary_delete_c_diary($c_diary_id)
         db_image_data_delete($value['image_filename_3']);
     }
 
-    $sql = 'DELETE FROM c_diary_comment_summary WHERE c_diary_id = ?';
+    $sql = 'DELETE FROM c_diary_comment_log WHERE c_diary_id = ?';
     db_query($sql, $params);
 
     $sql = 'DELETE FROM c_diary_comment WHERE c_diary_id = ?';
@@ -1186,9 +1186,9 @@ function db_diary_get_max_number4diary($c_diary_id)
  * @param  int    $c_member_id
  * @param  int    $c_diary_id
  */
-function db_diary_insert_c_diary_comment_summary($c_member_id, $c_diary_id)
+function db_diary_insert_c_diary_comment_log($c_member_id, $c_diary_id)
 {
-    $sql = 'SELECT c_diary_id FROM c_diary_comment_summary'
+    $sql = 'SELECT c_diary_id FROM c_diary_comment_log'
          . ' WHERE c_member_id = ? AND c_diary_id = ?';
     $params = array(intval($c_member_id),intval($c_diary_id));
     $summary_id = db_get_one($sql,$params,'main');
@@ -1198,7 +1198,7 @@ function db_diary_insert_c_diary_comment_summary($c_member_id, $c_diary_id)
             'c_diary_id' => intval($c_diary_id),
             'r_datetime' => db_now(),
         );
-        $ins_id = db_insert('c_diary_comment_summary', $data);
+        $ins_id = db_insert('c_diary_comment_log', $data);
     }
 }
 
@@ -1207,13 +1207,13 @@ function db_diary_insert_c_diary_comment_summary($c_member_id, $c_diary_id)
  *
  * @param  int    $c_diary_id
  */
-function db_diary_update_c_diary_comment_summary($c_diary_id)
+function db_diary_update_c_diary_comment_log($c_diary_id)
 {
     $data = array(
         'r_datetime' => db_now(),
     );
     $where = array('c_diary_id' => intval($c_diary_id));
-    $rtn = db_update('c_diary_comment_summary',$data,$where);
+    $rtn = db_update('c_diary_comment_log',$data,$where);
     return array($ins_id,$rtn);
 }
 
@@ -1226,7 +1226,7 @@ function db_diary_update_c_diary_comment_summary($c_diary_id)
  * 該当c_diary_idへのコメント数が0なら、日記コメント記入履歴も削除する。
  * 
  */
-function db_diary_delete_c_diary_comment_summary($c_member_id, $c_diary_id)
+function db_diary_delete_c_diary_comment_log($c_member_id, $c_diary_id)
 {
     // 投稿したコメントの有無
     $sql = 'SELECT COUNT(c_diary_comment_id) FROM c_diary_comment'
@@ -1235,7 +1235,7 @@ function db_diary_delete_c_diary_comment_summary($c_member_id, $c_diary_id)
     $count = db_get_one($sql,$params,'main');
     // コメントが無ければ履歴削除
     if(!$count){
-        $sql = 'DELETE FROM c_diary_comment_summary'
+        $sql = 'DELETE FROM c_diary_comment_log'
              . ' WHERE c_member_id = ? AND c_diary_id = ?';
         $params = array(intval($c_member_id),intval($c_diary_id));
         db_query($sql, $params);
@@ -1249,7 +1249,7 @@ function db_diary_delete_c_diary_comment_summary($c_member_id, $c_diary_id)
         'r_datetime' => $comment['r_datetime'],
     );
     $where = array('c_diary_id' => intval($c_diary_id));
-    $rtn = db_update('c_diary_comment_summary',$data,$where);
+    $rtn = db_update('c_diary_comment_log',$data,$where);
 }
 
 ?>
