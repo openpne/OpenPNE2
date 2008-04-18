@@ -420,7 +420,7 @@ function p_h_diary_list_friend_h_diary_list_friend4c_member_id($c_member_id, $pa
     }
     $ids = implode(',', array_map('intval', $friends));
 
-    $hint = db_mysql_hint('USE INDEX (r_datetime_c_member_id, r_datetime)');
+    $hint = db_mysql_hint('USE INDEX (c_member_id_r_datetime_public_flag)');
     $sql = 'SELECT * FROM c_diary' . $hint .
             ' WHERE c_member_id IN (' . $ids . ')' .
             ' AND public_flag <> \'private\'' .
@@ -508,12 +508,11 @@ function p_h_home_c_diary_friend_list4c_member_id($c_member_id, $limit)
     }
     $ids = implode(',', array_map('intval', $friends));
 
-    $hint = db_mysql_hint('USE INDEX (r_datetime_c_member_id, r_datetime)');
+    $hint = db_mysql_hint('USE INDEX (c_member_id_r_datetime_public_flag)');
     $sql = 'SELECT * FROM c_diary' . $hint .
             ' WHERE c_member_id IN (' . $ids . ')' .
             ' AND public_flag <> \'private\'' .
             ' ORDER BY c_diary.r_datetime DESC';
-
     $c_diary_friend_list = db_get_all_limit($sql, 0, $limit);
 
     foreach ($c_diary_friend_list as $key => $value) {
@@ -543,32 +542,11 @@ function p_h_home_c_diary_my_comment_list4c_member_id($c_member_id, $limit)
 
     $is_recurred = false;
 
-    $date = date('Y-m-d 00:00:00', strtotime('-15 days'));
-
-    $blocked = db_member_access_block_list4c_member_id_to($c_member_id);
-    $blocked[] = $c_member_id;
-    $except_ids = implode(',', $blocked);
-
-    $sql = 'SELECT c_diary_comment.c_diary_id' .
-            ' FROM c_diary_comment INNER JOIN c_diary USING (c_diary_id)' .
-            ' WHERE c_diary_comment.c_member_id = ?' .
-            ' AND c_diary_comment.r_datetime > ?' .
-            ' AND c_diary.c_member_id NOT IN (' . $except_ids . ')' .
-            ' AND c_diary.public_flag <> \'private\'';
-    $params = array(intval($c_member_id), $date);
-    $c_diary_id_list = db_get_col($sql, $params);
-    $c_diary_id_list = array_unique($c_diary_id_list);
-    if (!$c_diary_id_list) {
-        return array();
-    }
-
-    $ids = implode(',', $c_diary_id_list);
-    $sql = 'SELECT c_diary_id, MAX(r_datetime) as maxdate' .
-           ' FROM c_diary_comment' .
-           ' WHERE c_diary_id IN (' . $ids . ')' .
-           ' GROUP BY c_diary_id' .
+    $sql = 'SELECT c_diary_id, r_datetime as maxdate' .
+           ' FROM c_diary_comment_summary' .
+           ' WHERE c_member_id = ?' .
            ' ORDER BY maxdate DESC';
-    $list = db_get_assoc_limit($sql, 0, $limit);
+    $list = db_get_assoc_limit($sql, 0, $limit, array(intval($c_member_id)));
 
     $result = array();
     foreach ($list as $c_diary_id => $r_datetime) {
@@ -586,83 +564,24 @@ function p_h_home_c_diary_my_comment_list4c_member_id($c_member_id, $limit)
 
 function p_h_diary_comment_list_c_diary_my_comment_list4c_member_id($c_member_id, $page, $page_size)
 {
-    $blocked = db_member_access_block_list4c_member_id_to($c_member_id);
-    $blocked[] = $c_member_id;
-    $except_ids = implode(',', $blocked);
-
-    $friends = db_friend_c_member_id_list($c_member_id);
-    $friend_ids = implode(',', $friends);
-
-    if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
-        $sql = 'SELECT d.c_diary_id' .
-                ', d.subject' .
-                ', d.c_member_id' .
-                ', sub_diary_tbl.r_datetime' .
-                ', sub_diary_tbl.num_comment' .
-            ' FROM c_diary AS d' .
-                ', ( SELECT dc.c_diary_id' .
-                        ', MAX(dc.r_datetime) AS r_datetime' .
-                        ', COUNT(DISTINCT dc.c_diary_comment_id) AS num_comment' .
-                    ' FROM c_diary AS d' .
-                        ' INNER JOIN c_diary_comment AS dc USING (c_diary_id)' .
-                        ', c_diary_comment AS mydc' .
-                    ' WHERE mydc.c_member_id = ?' .
-                        ' AND mydc.c_diary_id = d.c_diary_id' .
-                        ' AND mydc.c_member_id <> d.c_member_id' .
-                        ' AND d.c_member_id NOT IN (' . $except_ids . ')' .
-                        ' AND (d.public_flag = \'public\'';
-        if ($friend_ids) {
-            $sql .= ' OR (d.public_flag = \'friend\' AND d.c_member_id IN (' . $friend_ids . '))';
-        }
-        $sql .= ')' .
-                    ' GROUP BY dc.c_diary_id' .
-                ') as sub_diary_tbl' .
-            ' WHERE' .
-                ' sub_diary_tbl.c_diary_id = d.c_diary_id' .
-            ' ORDER BY r_datetime DESC';
-    } else {
-        $sql = 'SELECT d.c_diary_id' .
-                ', d.subject' .
-                ', d.c_member_id' .
-                ', MAX(dc.r_datetime) AS r_datetime' .
-                ', COUNT(DISTINCT dc.c_diary_comment_id) AS num_comment' .
-            ' FROM c_diary AS d' .
-                ' INNER JOIN c_diary_comment AS dc USING (c_diary_id)' .
-                ', c_diary_comment AS mydc' .
-            ' WHERE mydc.c_member_id = ?' .
-                ' AND mydc.c_diary_id = d.c_diary_id' .
-                ' AND mydc.c_member_id <> d.c_member_id' .
-                ' AND d.c_member_id NOT IN (' . $except_ids . ')' .
-                ' AND (d.public_flag = \'public\'';
-        if ($friend_ids) {
-            $sql .= ' OR (d.public_flag = \'friend\' AND d.c_member_id IN (' . $friend_ids . '))';
-        }
-        $sql .= ')' .
-            ' GROUP BY dc.c_diary_id' .
-            ' ORDER BY r_datetime DESC';
-    }
-
+    $sql = 'SELECT c_diary_id, c_member_id, r_datetime' .
+           ' FROM c_diary_comment_summary' .
+           ' WHERE c_member_id = ?' .
+           ' ORDER BY r_datetime DESC';
     $params = array(intval($c_member_id));
     $list = db_get_all_page($sql, $page, $page_size, $params);
 
     foreach ($list as $key => $value) {
         $list[$key] += db_member_c_member4c_member_id_LIGHT($value['c_member_id']);
+        $diary = db_diary_get_c_diary4id($value['c_diary_id']);
+        $list[$key]['subject'] = $diary['subject'];
+        $list[$key]['num_comment'] = db_diary_count_c_diary_comment4c_diary_id($value['c_diary_id']);
     }
 
-    $sql = 'SELECT COUNT(DISTINCT d.c_diary_id)' .
-        ' FROM c_diary AS d' .
-            ' INNER JOIN c_diary_comment AS dc USING (c_diary_id)' .
-            ', c_diary_comment AS mydc' .
-        ' WHERE mydc.c_member_id = ?' .
-            ' AND mydc.c_diary_id = d.c_diary_id' .
-            ' AND mydc.c_member_id <> d.c_member_id' .
-            ' AND d.c_member_id NOT IN (' . $except_ids . ')' .
-            ' AND (d.public_flag = \'public\'';
-    if ($friend_ids) {
-        $sql .= ' OR (d.public_flag = \'friend\' AND d.c_member_id IN (' . $friend_ids . '))';
-    }
-    $sql .= ')';
-
+    $sql = 'SELECT c_diary_id' .
+           ' FROM c_diary_comment_summary' .
+           ' WHERE c_member_id = ?';
+    $params = array(intval($c_member_id));
     $total_num = db_get_one($sql, $params);
 
     $is_prev = false;
@@ -1124,6 +1043,9 @@ function db_diary_delete_c_diary($c_diary_id)
         db_image_data_delete($value['image_filename_3']);
     }
 
+    $sql = 'DELETE FROM c_diary_comment_summary WHERE c_diary_id = ?';
+    db_query($sql, $params);
+
     $sql = 'DELETE FROM c_diary_comment WHERE c_diary_id = ?';
     db_query($sql, $params);
 
@@ -1256,6 +1178,78 @@ function db_diary_get_max_number4diary($c_diary_id)
     $sql = 'SELECT MAX(number) FROM c_diary_comment WHERE c_diary_id = ?';
     $params = array(intval($c_diary_id));
     return db_get_one($sql, $params);
+}
+
+/**
+ * 日記コメント記入履歴の追加
+ *
+ * @param  int    $c_member_id
+ * @param  int    $c_diary_id
+ */
+function db_diary_insert_c_diary_comment_summary($c_member_id, $c_diary_id)
+{
+    $sql = 'SELECT c_diary_id FROM c_diary_comment_summary'
+         . ' WHERE c_member_id = ? AND c_diary_id = ?';
+    $params = array(intval($c_member_id),intval($c_diary_id));
+    $summary_id = db_get_one($sql,$params,'main');
+    if(!$summary_id){
+        $data = array(
+            'c_member_id' => intval($c_member_id),
+            'c_diary_id' => intval($c_diary_id),
+            'r_datetime' => db_now(),
+        );
+        $ins_id = db_insert('c_diary_comment_summary', $data);
+    }
+}
+
+/**
+ * 日記コメント記入履歴の更新
+ *
+ * @param  int    $c_diary_id
+ */
+function db_diary_update_c_diary_comment_summary($c_diary_id)
+{
+    $data = array(
+        'r_datetime' => db_now(),
+    );
+    $where = array('c_diary_id' => intval($c_diary_id));
+    $rtn = db_update('c_diary_comment_summary',$data,$where);
+    return array($ins_id,$rtn);
+}
+
+
+/**
+ * 日記コメント記入履歴の削除
+ *
+ * @param  int    $c_member_id
+ * @param  int    $c_diary_id
+ * 該当c_diary_idへのコメント数が0なら、日記コメント記入履歴も削除する。
+ * 
+ */
+function db_diary_delete_c_diary_comment_summary($c_member_id, $c_diary_id)
+{
+    // 投稿したコメントの有無
+    $sql = 'SELECT COUNT(c_diary_comment_id) FROM c_diary_comment'
+         . ' WHERE c_member_id = ? AND c_diary_id = ?';
+    $params = array(intval($c_member_id),intval($c_diary_id));
+    $count = db_get_one($sql,$params,'main');
+    // コメントが無ければ履歴削除
+    if(!$count){
+        $sql = 'DELETE FROM c_diary_comment_summary'
+             . ' WHERE c_member_id = ? AND c_diary_id = ?';
+        $params = array(intval($c_member_id),intval($c_diary_id));
+        db_query($sql, $params);
+    }
+    $sql = 'SELECT * FROM c_diary_comment WHERE c_diary_id = ?'
+         . ' ORDER BY c_diary_comment_id DESC';
+    $params = array(intval($c_diary_id));
+    $comment = db_get_row($sql,$params,'main');
+    // 最新コメントの日付で履歴更新
+    $data = array(
+        'r_datetime' => $comment['r_datetime'],
+    );
+    $where = array('c_diary_id' => intval($c_diary_id));
+    $rtn = db_update('c_diary_comment_summary',$data,$where);
 }
 
 ?>
