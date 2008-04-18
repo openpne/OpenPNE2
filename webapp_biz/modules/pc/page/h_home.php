@@ -63,7 +63,7 @@ class pc_page_h_home extends OpenPNE_Action
         $this->set('c_friend_list', db_friend_c_friend_list4c_member_id($u, 9));
         $this->set('c_friend_count', db_friend_count_friends($u));
         // 参加コミュニティ
-        $this->set('c_commu_user_list', p_h_home_c_commu_list4c_member_id($u, 9));
+        $this->set('c_commu_user_list', db_commu_c_commu_list4c_member_id_2($u, 9));
         $this->set('fh_com_count_user',db_commu_count_c_commu4c_member_id($u));
 
         /// 最新情報 ///
@@ -75,7 +75,7 @@ class pc_page_h_home extends OpenPNE_Action
         // 日記コメント記入履歴
         $this->set('c_diary_my_comment_list', p_h_home_c_diary_my_comment_list4c_member_id($u, 5));
         // 参加コミュニティの新着書き込み
-        $this->set('c_commu_topic_comment_list', p_h_home_c_commu_topic_comment_list4c_member_id($u, 5));
+        $this->set('c_commu_topic_comment_list', db_commu_c_commu_topic_comment_list4c_member_id($u, 5));
         // レビュー
         $this->set('c_friend_review_list', db_review_c_friend_review_list4c_member_id($u, 5));
         if (OPENPNE_USE_ALBUM) {

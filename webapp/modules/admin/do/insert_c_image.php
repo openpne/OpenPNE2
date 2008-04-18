@@ -24,7 +24,7 @@ class admin_do_insert_c_image extends OpenPNE_Action
             admin_client_redirect('edit_c_image', '画像は'.IMAGE_MAX_FILESIZE.'KB以内のGIF・JPEG・PNGにしてください');
         }
 
-        image_data_delete($requests['filename']);
+        db_image_data_delete($requests['filename']);
         if (!admin_insert_c_image($_FILES['upfile'], $requests['filename'])) {
             admin_client_redirect('edit_c_image', '画像が登録できませんでした');
         }

@@ -232,7 +232,7 @@ function t_image_clear_tmp($uid)
             }
         }
     } else {
-        t_image_clear_tmp_db($uid);
+        db_image_clear_tmp_db($uid);
     }
 }
 
@@ -255,11 +255,11 @@ function image_insert_c_image4tmp($prefix, $tmpfile)
         $img_tmp_dir_path = OPENPNE_VAR_DIR . '/tmp/';
         $filepath = $img_tmp_dir_path . basename($tmpfile);
 
-        if (_do_insert_c_image($filename, $filepath)) {
+        if (db_image_insert_c_image2($filename, $filepath)) {
             return $filename;
         }
     } else {
-        $c_tmp_image = c_tmp_image4filename($tmpfile);
+        $c_tmp_image = db_image_c_tmp_image4filename($tmpfile);
 
         $params = array(
             'filename' => $filename,
@@ -285,7 +285,7 @@ function image_insert_c_image($upfile_obj, $filename)
     $ext = strtolower($ext);
     $filename = $filename . '_' . time() . '.' . $ext;
 
-    if (!_do_insert_c_image($filename, $filepath)) {
+    if (!db_image_insert_c_image2($filename, $filepath)) {
         return false;
     }
     return $filename;
@@ -299,7 +299,7 @@ function image_insert_c_tmp_image($upfile_obj, $filename)
 
     $filepath = $upfile_obj['tmp_name'];
 
-    $result = _do_insert_c_tmp_image($filename, $filepath);
+    $result = db_image_insert_c_tmp_image($filename, $filepath);
     if (!$result) {
         return false;
     }

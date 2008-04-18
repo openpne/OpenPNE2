@@ -18,7 +18,7 @@ class ktai_page_h_confirm_list extends OpenPNE_Action
 
         // あなたにコミュニティ管理者交代を希望しているメンバー
         $this->set("anatani_c_commu_admin_confirm_list",
-            p_h_confirm_list_anatani_c_commu_admin_confirm_list4c_member_id($u));
+            db_commu_anatani_c_commu_admin_confirm_list4c_member_id($u));
 
         // あなたにコミュニティ副管理者を希望しているメンバー
         $this->set("anatani_c_commu_sub_admin_confirm_list",
@@ -32,7 +32,7 @@ class ktai_page_h_confirm_list extends OpenPNE_Action
 
         // あなたがコミュニティ管理者交代を要請しているメンバー
         $this->set("anataga_c_commu_admin_confirm_list",
-            p_h_confirm_list_anataga_c_commu_admin_confirm_list4c_member_id($u));
+            db_commu_anataga_c_commu_admin_confirm_list4c_member_id($u));
 
         // あなたがコミュニティ副管理者を要請しているメンバー
         $this->set("anataga_c_commu_sub_admin_confirm_list",

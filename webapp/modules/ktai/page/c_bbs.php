@@ -41,13 +41,13 @@ class ktai_page_c_bbs extends OpenPNE_Action
         $this->set("c_commu_topic_comment_list", $c_commu_topic_comment_list);
 
         //トピック名
-        $this->set("c_commu_topic_name", k_p_c_bbs_c_commu_topic_name4c_commu_topic_id($target_c_commu_topic_id));
+        $this->set("c_commu_topic_name", db_commu_c_commu_topic_name4c_commu_topic_id($target_c_commu_topic_id));
         //トピックID,トピック
         $this->set("c_commu_topic_id", $target_c_commu_topic_id);
         $this->set("c_commu_topic", db_commu_c_topic4c_commu_topic_id_2($target_c_commu_topic_id));
 
         //コミュニティ
-        $c_commu = k_p_c_bbs_c_commu4c_commu_topic_id($target_c_commu_topic_id);
+        $c_commu = db_commu_c_commu4c_commu_topic_id($target_c_commu_topic_id);
         $c_commu_id = $c_commu['c_commu_id'];
         $this->set("c_commu", $c_commu);
 
@@ -70,9 +70,9 @@ class ktai_page_c_bbs extends OpenPNE_Action
         $this->set('is_event_join_date', db_commu_is_event_join_date($target_c_commu_topic_id));
 
         //メンバーがコミュニティ管理者かどうか
-        $this->set("is_admin", k_p_c_bbs_is_admin4c_member_id_c_commu_topic_id($u, $target_c_commu_topic_id));
+        $this->set("is_admin", db_commu_is_admin4c_member_id_c_commu_topic_id($u, $target_c_commu_topic_id));
         //コミュニティ管理者
-        $this->set("c_member_admin", k_p_c_bbs_c_member_admin4c_commu_topic_id($target_c_commu_topic_id));
+        $this->set("c_member_admin", db_commu_c_member_admin4c_commu_topic_id($target_c_commu_topic_id));
 
         if (MAIL_ADDRESS_HASHED) {
             $mail_address = "t{$target_c_commu_topic_id}-".t_get_user_hash($u)."@".MAIL_SERVER_DOMAIN;

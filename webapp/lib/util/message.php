@@ -8,7 +8,7 @@ function create_message_friend_invite($u, $body, $target_c_member_id)
 {
     $msg_subject = 'メンバー紹介メッセージ';
 
-    $c_member = db_common_c_member4c_member_id_LIGHT($u);
+    $c_member = db_member_c_member4c_member_id_LIGHT($u);
     $p = array('target_c_member_id' => $target_c_member_id);
     $url = openpne_gen_url('pc', 'page_f_home', $p);
 
@@ -28,8 +28,8 @@ function create_message_commu_invite($u, $body, $c_commu_id)
 {
     $msg_subject = WORD_COMMUNITY . '紹介メッセージ';
 
-    $c_member = db_common_c_member4c_member_id_LIGHT($u);
-    $c_commu = _db_c_commu4c_commu_id($c_commu_id);
+    $c_member = db_member_c_member4c_member_id_LIGHT($u);
+    $c_commu = db_commu_c_commu4c_commu_id($c_commu_id);
     $p = array('target_c_commu_id' => $c_commu_id);
     $url = openpne_gen_url('pc', 'page_c_home', $p);
     $WORD_COMMUNITY = WORD_COMMUNITY;
@@ -53,8 +53,8 @@ function create_message_event_invite($u, $body, $c_commu_topic_id)
 {
     $msg_subject = 'イベント紹介メッセージ';
 
-    $c_member = db_common_c_member4c_member_id_LIGHT($u);
-    $c_commu_topic = _do_c_bbs_c_commu_topic4c_commu_topic_id($c_commu_topic_id);
+    $c_member = db_member_c_member4c_member_id_LIGHT($u);
+    $c_commu_topic = db_commu_c_commu_topic4c_commu_topic_id($c_commu_topic_id);
     $p = array('target_c_commu_topic_id' => $c_commu_topic_id);
     $url = openpne_gen_url('pc', 'page_c_event_detail', $p);
 
@@ -77,7 +77,7 @@ function create_message_event_message($u, $body, $c_commu_topic_id)
 {
     $msg_subject = 'イベントのお知らせ';
 
-    $c_member = db_common_c_member4c_member_id_LIGHT($u);
+    $c_member = db_member_c_member4c_member_id_LIGHT($u);
 
     $p = array('target_c_commu_topic_id' => $c_commu_topic_id);
     $url = openpne_gen_url('pc', 'page_c_event_detail', $p);
@@ -98,7 +98,7 @@ function create_message_commu_admin_request($u, $body, $target_c_commu_id)
 {
     $msg_subject = WORD_COMMUNITY . '管理者交代要請メッセージ';
 
-    $c_member = db_common_c_member4c_member_id_LIGHT($u);
+    $c_member = db_member_c_member4c_member_id_LIGHT($u);
     $c_commu = db_commu_c_commu4c_commu_id($target_c_commu_id);
     $WORD_COMMUNITY = WORD_COMMUNITY;
 
@@ -117,7 +117,7 @@ function create_message_commu_sub_admin_request($u, $body, $target_c_commu_id)
 {
     $msg_subject = WORD_COMMUNITY . '副管理者要請メッセージ';
 
-    $c_member = db_common_c_member4c_member_id_LIGHT($u);
+    $c_member = db_member_c_member4c_member_id_LIGHT($u);
     $c_commu = db_commu_c_commu4c_commu_id($target_c_commu_id);
     $WORD_COMMUNITY = WORD_COMMUNITY;
 
@@ -136,7 +136,7 @@ function create_message_commu_join_request($u, $body, $target_c_commu_id)
 {
     $msg_subject = WORD_COMMUNITY . '参加要請メッセージ';
 
-    $c_member = db_common_c_member4c_member_id_LIGHT($u);
+    $c_member = db_member_c_member4c_member_id_LIGHT($u);
     $c_commu = db_commu_c_commu4c_commu_id($target_c_commu_id);
 
     $msg_body = <<<EOD
@@ -155,7 +155,7 @@ function create_message_friend_link_request($u, $body)
     $msg_subject = WORD_FRIEND . 'リンク要請メッセージ';
 
     $c_member_id_from = $u;
-    $c_member = db_common_c_member4c_member_id_LIGHT($u);
+    $c_member = db_member_c_member4c_member_id_LIGHT($u);
     $WORD_FRIEND = WORD_FRIEND;
 
     $msg_body = <<<EOD

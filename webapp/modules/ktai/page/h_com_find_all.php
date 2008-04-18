@@ -11,7 +11,7 @@ class ktai_page_h_com_find_all extends OpenPNE_Action
         $u  = $GLOBALS['KTAI_C_MEMBER_ID'];
 
         //最新書き込みコミュニティ５件
-        $this->set("c_commu_list_lastupdated", k_p_h_com_find_all_c_commu_list_lastupdated(5));
+        $this->set("c_commu_list_lastupdated", db_commu_c_commu_list_lastupdated(5));
 
         //子カテゴリのリスト
         $this->set("c_commu_category_list", db_commu_c_commu_category4null());
