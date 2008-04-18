@@ -33,6 +33,9 @@ class ktai_do_fh_diary_delete_c_diary_comment extends OpenPNE_Action
 
         db_diary_delete_c_diary_comment($target_c_diary_comment_id, $u);
 
+        //コメント記入履歴削除実行
+        db_diary_delete_c_diary_comment_summary($target_c_member_id,$c_diary_comment['c_diary_id']);
+
         $p = array('target_c_diary_id' => $c_diary['c_diary_id']);
         openpne_redirect('ktai', 'page_fh_diary', $p);
     }
