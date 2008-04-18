@@ -14,7 +14,7 @@ class pc_do_c_topic_edit_delete_c_commu_topic_comment_file extends OpenPNE_Actio
         $c_commu_topic_id = $requests['target_c_commu_topic_id'];
         // ----------
 
-        $c_topic = c_topic_detail_c_topic4c_commu_topic_id($c_commu_topic_id);
+        $c_topic = db_commu_c_topic4c_commu_topic_id($c_commu_topic_id);
 
         //--- 権限チェック
         //トピック作成者 or コミュニティ管理者

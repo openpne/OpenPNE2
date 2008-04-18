@@ -66,7 +66,7 @@ function db_schedule_event4c_member_id($year, $month, $c_member_id)
 
     $res = array();
     foreach ($list as $item) {
-        $item['is_join'] = p_common_is_c_event_member($item['c_commu_topic_id'], $c_member_id);
+        $item['is_join'] = db_commu_is_c_event_member_2($item['c_commu_topic_id'], $c_member_id);
 
         $day = date('j', strtotime($item['open_date']));
         $res[$day][] = $item;
