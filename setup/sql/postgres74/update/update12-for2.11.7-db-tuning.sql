@@ -1,5 +1,10 @@
 ALTER TABLE c_commu_topic ADD COLUMN u_datetime timestamp NOT NULL default '0000-01-01 00:00:00';
 
+DROP INDEX c_commu_topic_r_datetime_c_commu_id;
+CREATE INDEX c_commu_topic_r_datetime_c_commu_id on c_commu_topic (c_commu_id,u_datetime);
+
+CREATE INDEX c_commu_member_c_commu_id_c_member_id on c_commu_member (c_commu_id,c_member_id);
+
 CREATE TABLE c_diary_comment_log (
   c_diary_comment_log_id serial NOT NULL,
   c_member_id int4 NOT NULL default '0',
@@ -7,6 +12,11 @@ CREATE TABLE c_diary_comment_log (
   r_datetime  timestamp NOT NULL default '0000-01-01 00:00:00',
   PRIMARY KEY (c_diary_comment_log_id)
 );
+
+CREATE INDEX c_diary_comment_log_c_member_id_r_datetime on c_diary_comment_log (c_member_id,r_datetime);
+CREATE INDEX c_diary_comment_log_c_diary_id on c_diary_comment_log (c_diary_id);
+CREATE INDEX c_diary_comment_log_c_diary_id_r_datetime on c_diary_comment_log (c_diary_id,r_datetime);
+CREATE INDEX c_diary_comment_log_c_member_id_c_diary_id on c_diary_comment_log (c_member_id,c_diary_id);
 
 CREATE TABLE tmp_c_commu_topic (
   c_commu_topic_id serial NOT NULL,
