@@ -6,7 +6,7 @@
 
 /**
  * db_album_public_flag_condition
- * 
+ *
  * @param int $c_member_id target c_member_id
  * @param int $u viewer's c_member_id
  * @param string $force
@@ -45,7 +45,7 @@ function db_album_get_c_album4c_album_id($c_album_id)
 {
     $sql = 'SELECT * FROM c_album WHERE c_album_id = ?';
     $params = array(intval($c_album_id));
-    
+
     $album = db_get_row($sql, $params);
 
     return $album;
@@ -53,7 +53,7 @@ function db_album_get_c_album4c_album_id($c_album_id)
 
 /**
  * あるメンバーのアルバム一覧を取得
- * 
+ *
  * @param int $c_member_id target_member_id
  * @param int $count
  * @param int $u viewer's member_id
@@ -62,11 +62,11 @@ function db_album_get_c_album4c_album_id($c_album_id)
 function db_album_get_c_album_subject_list4c_member_id($c_member_id, $count= 10, $u = null, $force = null)
 {
     $pf_condition = db_album_public_flag_condition($c_member_id, $u, $force);
-    $sql = 'SELECT * FROM c_album WHERE c_member_id = ? ' 
+    $sql = 'SELECT * FROM c_album WHERE c_member_id = ? '
          . $pf_condition
          . ' ORDER BY u_datetime DESC';
-    
-    $params = array(intval($c_member_id));        
+
+    $params = array(intval($c_member_id));
     return db_get_all_limit($sql, 0, $count, $params);
 }
 
@@ -102,7 +102,7 @@ function p_common_is_active_c_album_image_id($c_album_image_id)
 {
     $sql = 'SELECT c_album_image_id FROM c_album_image WHERE c_album_image_id = ?';
     $params = array(intval($c_album_image_id));
-    
+
     return (bool)db_get_one($sql,$params);
 }
 
@@ -120,10 +120,10 @@ function db_album_get_c_album_page4id($c_album_id, $page_size = 10, $page = 0)
              ' AND ab.c_album_id = ?';
     $orderby = ' ORDER BY i.r_datetime DESC';
     $sql = $select .$from . $where .$orderby;
-    
+
     $params = array(intval($c_album_id));
     $list = db_get_all_limit($sql, $page_size * ($page - 1), $page_size, $params);
-    
+
     $sql = 'SELECT COUNT(c_album_image_id) FROM c_album_image WHERE c_album_id = ?';
     $params = array(intval($c_album_id));
     $total_num = db_get_one($sql, $params);
@@ -155,10 +155,10 @@ function db_album_get_c_album_page4id($c_album_id, $page_size = 10, $page = 0)
 function db_album_image_c_album_image_id_prev4c_album_id($c_member_id, $c_album_id, $c_album_image_id, $u = null)
 {
     $public_flag_condition = db_album_public_flag_condition($c_member_id, $u);
-    
+
     $select  = 'SELECT c_album_image.c_album_image_id ';
     $from    = ' FROM c_album_image, c_album';
-    $where   = ' WHERE c_album.c_album_id = c_album_image.c_album_id' . 
+    $where   = ' WHERE c_album.c_album_id = c_album_image.c_album_id' .
                 ' AND c_album.c_member_id = ?' .
                 ' AND c_album.c_album_id = ?' .
                 ' AND c_album_image.c_album_image_id < ?'
@@ -166,7 +166,7 @@ function db_album_image_c_album_image_id_prev4c_album_id($c_member_id, $c_album_
     $orderby = ' ORDER BY c_album_image.c_album_image_id DESC';
     $sql = $select . $from . $where . $orderby;
     $params = array(intval($c_member_id),intval($c_album_id),intval($c_album_image_id));
-        
+
     return db_get_one($sql, $params);
 }
 
@@ -180,10 +180,10 @@ function db_album_image_c_album_image_id_prev4c_album_id($c_member_id, $c_album_
 function db_album_image_c_album_image_id_next4c_album_id($c_member_id, $c_album_id, $c_album_image_id, $u = null)
 {
     $public_flag_condition = db_album_public_flag_condition($c_member_id, $u);
-    
+
     $select  = 'SELECT c_album_image.c_album_image_id ';
     $from    = ' FROM c_album_image, c_album';
-    $where   = ' WHERE c_album.c_album_id = c_album_image.c_album_id' . 
+    $where   = ' WHERE c_album.c_album_id = c_album_image.c_album_id' .
                 ' AND c_album.c_member_id = ?' .
                 ' AND c_album.c_album_id = ?' .
                 ' AND c_album_image.c_album_image_id > ?'
@@ -191,7 +191,7 @@ function db_album_image_c_album_image_id_next4c_album_id($c_member_id, $c_album_
     $orderby = ' ORDER BY c_album_image.c_album_image_id ASC';
     $sql = $select . $from . $where . $orderby;
     $params = array(intval($c_member_id),intval($c_album_id),intval($c_album_image_id));
-        
+
     return db_get_one($sql, $params);
 }
 
@@ -238,10 +238,10 @@ function p_fh_album_list_fh_my_album_list4c_member_id($c_member_id, $page_size, 
            ' ORDER BY r_datetime DESC';
     $params = array(intval($c_member_id));
     $list = db_get_all_page($sql,$page, $page_size,$params);
-    
+
     $sql = 'SELECT COUNT(c_album_id) FROM c_album WHERE c_member_id = ?' . $pf_cond;
     $total_num = db_get_one($sql, $params);
-    
+
     if ($total_num != 0) {
         $total_page_num =  ceil($total_num / $page_size);
         if ($page >= $total_page_num) {
@@ -256,7 +256,7 @@ function p_fh_album_list_fh_my_album_list4c_member_id($c_member_id, $page_size, 
             $prev = true;
         }
     }
-    
+
     return array($list, $prev, $next, $total_num);
 }
 
@@ -289,7 +289,7 @@ function p_h_album_list_all_search_c_album4c_album($keyword, $page_size, $page, 
         $keyword_list = explode(' ', $keyword);
         foreach ($keyword_list as $word) {
             $word = check_search_word($word);
-            
+
             $where .= ' AND (subject LIKE ? OR description LIKE ?)';
             $params[] = '%'.$word.'%';
             $params[] = '%'.$word.'%';
@@ -298,7 +298,7 @@ function p_h_album_list_all_search_c_album4c_album($keyword, $page_size, $page, 
     $order = " ORDER BY r_datetime DESC";
 
     $sql = $select . $from . $where . $order;
-    
+
     $list = db_get_all_page($sql, $page, $page_size, $params);
     foreach($list as $key => $value) {
         $list[$key]['c_member'] = db_common_c_member_with_profile($value['c_member_id']);
@@ -433,7 +433,7 @@ function db_album_update_c_album($c_album_id,$subject,$description,$public_flag,
         'c_album_id' => intval($c_album_id),
     );
     return db_update('c_album', $data, $where);
-    
+
 }
 
 function db_album_update_c_album_image($c_album_image_id,$image_filename,$image_description,$filesize)
@@ -443,14 +443,14 @@ function db_album_update_c_album_image($c_album_image_id,$image_filename,$image_
     );
 
      if ($image_filename) {
-     	$data['image_filename'] = $image_filename;
+        $data['image_filename'] = $image_filename;
         $data['filesize'] = $filesize;
      }
 
     $where = array(
         'c_album_image_id' => intval($c_album_image_id),
     );
-    
+
     return db_update('c_album_image', $data, $where);
 
 }
@@ -497,10 +497,10 @@ function db_album_update_c_album_album_cover_image($c_album_id,$album_cover_imag
  */
 function db_album_update_c_album_u_datetime($album_id)
 {
-	$data = array(
+    $data = array(
         'u_datetime' => db_now(),
     );
-    
+
     $where =array(
         'c_album_id' => $album_id,
     );
@@ -556,7 +556,7 @@ function db_album_delete_c_album($c_album_id)
     }
 
     $params = array(intval($c_album_id));
-    
+
     //アルバムと画像の関連
     $sql = 'DELETE FROM c_album_image WHERE c_album_id = ?';
     db_query($sql, $params);
@@ -613,7 +613,7 @@ function image_insert_c_image_album4tmp($prefix, $tmpfile)
             'r_datetime' => db_now(),
             'type' => '',
         );
-        
+
         $db =& db_get_instance('image');
         if ($db->insert("c_image", $params)) {
             return $filename;
@@ -703,7 +703,7 @@ function db_album_sum_filesize4c_member_id($c_member_id)
  * @params int $c_member_id
  * @params int $new_filesize
  * @return bool
- */ 
+ */
 function db_album_is_insertable4c_member_id($c_member_id, $new_filesize = 0)
 {
     if (!OPENPNE_ALBUM_LIMIT) {
