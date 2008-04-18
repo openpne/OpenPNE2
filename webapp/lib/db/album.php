@@ -372,7 +372,7 @@ function p_h_album_list_friend_h_album_list_friend4c_member_id($c_member_id, $pa
 
 /**
  * フレンド最新アルバムリスト取得
- * 日記公開範囲を考慮
+ * アルバム公開範囲を考慮
  *
  * @param   int $c_member_id
  * @param   int $limit
