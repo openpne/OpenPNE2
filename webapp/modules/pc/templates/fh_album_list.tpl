@@ -64,7 +64,7 @@
 ({* #1948 *})({$total_num})件中
 ({* #1948 *})({strip})
 ({* #1948 *})({$page*$page_size-$page_size+1})件～
-({* #1948 *})({if $page_size > $diary_list_count})
+({* #1948 *})({if $page_size > $album_list_count})
 ({* #1948 *})({$album_list_count+$page*$page_size-$page_size})
 ({* #1948 *})({else})
 ({* #1948 *})({$page*$page_size})
@@ -164,7 +164,7 @@
 ({$total_num})件中
 ({strip})
 ({$page*$page_size-$page_size+1})件～
-({if $page_size > $diary_list_count})
+({if $page_size > $album_list_count})
 ({$album_list_count+$page*$page_size-$page_size})
 ({else})
 ({$page*$page_size})
