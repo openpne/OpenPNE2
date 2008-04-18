@@ -20,7 +20,7 @@ function _getNewMemberList()
     $sql = 'SELECT * FROM c_member WHERE c_member_id <> 1 ORDER BY c_member_id DESC';
     $list = db_get_all_limit($sql, 0, 5);
     foreach ($list as $key => $value) {
-        $list[$key]['c_member_invite'] = db_common_c_member4c_member_id_LIGHT($value['c_member_id_invite']);
+        $list[$key]['c_member_invite'] = db_member_c_member4c_member_id_LIGHT($value['c_member_id_invite']);
     }
     return $list;
 }

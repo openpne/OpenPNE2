@@ -89,11 +89,6 @@ function k_p_fh_common_get_type($target_c_member_id, $u)
     }
 }
 
-/** 関数
- * k_p_c_bbs_c_member_admin4c_commu_topic_id($c_commu_topic_id)
- *
- *
- */
 function k_p_h_message_ktai_url4url($str, $tail)
 {
     $matches = array();
@@ -172,7 +167,7 @@ function fetch_inc_ktai_footer()
 
 function t_get_user_hash($c_member_id, $length = 12)
 {
-    $hashed_password = k_common_hashed_password4c_member_id($c_member_id);
+    $hashed_password = db_member_hashed_password4c_member_id($c_member_id);
     $seed = strval($c_member_id) . $hashed_password;
 
     return substr(md5($seed), 0, $length);

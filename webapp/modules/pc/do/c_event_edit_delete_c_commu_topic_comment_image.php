@@ -32,7 +32,7 @@ class pc_do_c_event_edit_delete_c_commu_topic_comment_image extends OpenPNE_Acti
         //---
 
 
-        image_data_delete($c_topic['image_filename'.$pic_delete]);
+        db_image_data_delete($c_topic['image_filename'.$pic_delete]);
 
         db_commu_delete_c_commu_topic_comment_image($c_commu_topic_id, $pic_delete);
 

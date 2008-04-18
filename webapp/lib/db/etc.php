@@ -504,18 +504,18 @@ function db_common_delete_c_member($c_member_id)
     $sql = 'SELECT * FROM c_diary WHERE c_member_id = ?';
     $c_diary_list = db_get_all($sql, $single, 'main');
     foreach ($c_diary_list as $c_diary) {
-        image_data_delete($c_diary['image_filename_1']);
-        image_data_delete($c_diary['image_filename_2']);
-        image_data_delete($c_diary['image_filename_3']);
+        db_image_data_delete($c_diary['image_filename_1']);
+        db_image_data_delete($c_diary['image_filename_2']);
+        db_image_data_delete($c_diary['image_filename_3']);
 
         // c_diary_comment
         $sql = 'SELECT * FROM c_diary_comment WHERE c_diary_id = ?';
         $params = array(intval($c_diary['c_diary_id']));
         $c_diary_comment_list = db_get_all($sql, $params, 'main');
         foreach ($c_diary_comment_list as $c_diary_comment) {
-            image_data_delete($c_diary_comment['image_filename_1']);
-            image_data_delete($c_diary_comment['image_filename_2']);
-            image_data_delete($c_diary_comment['image_filename_3']);
+            db_image_data_delete($c_diary_comment['image_filename_1']);
+            db_image_data_delete($c_diary_comment['image_filename_2']);
+            db_image_data_delete($c_diary_comment['image_filename_3']);
         }
 
         $sql = 'DELETE FROM c_diary_comment WHERE c_diary_id = ?';
@@ -550,9 +550,9 @@ function db_common_delete_c_member($c_member_id)
     $sql = 'SELECT image_filename_1, image_filename_2, image_filename_3' .
         ' FROM c_member WHERE c_member_id = ?';
     $c_member = db_get_row($sql, $single, 'main');
-    image_data_delete($c_member['image_filename_1']);
-    image_data_delete($c_member['image_filename_2']);
-    image_data_delete($c_member['image_filename_3']);
+    db_image_data_delete($c_member['image_filename_1']);
+    db_image_data_delete($c_member['image_filename_2']);
+    db_image_data_delete($c_member['image_filename_3']);
 
     $sql = 'DELETE FROM c_member WHERE c_member_id = ?';
     db_query($sql, $single);
@@ -578,7 +578,7 @@ function db_common_delete_c_commu($c_commu_id)
     $c_commu = db_get_row($sql, $single);
 
     // 画像削除
-    image_data_delete($c_commu['image_filename']);
+    db_image_data_delete($c_commu['image_filename']);
 
     // c_commu_admin_confirm
     $sql = 'DELETE FROM c_commu_admin_confirm WHERE c_commu_id = ?';
@@ -607,9 +607,9 @@ function db_common_delete_c_commu($c_commu_id)
         $params = array(intval($topic['c_commu_topic_id']));
         $topic_comment_list = db_get_all($sql, $params);
         foreach ($topic_comment_list as $topic_comment) {
-            image_data_delete($topic_comment['image_filename1']);
-            image_data_delete($topic_comment['image_filename2']);
-            image_data_delete($topic_comment['image_filename3']);
+            db_image_data_delete($topic_comment['image_filename1']);
+            db_image_data_delete($topic_comment['image_filename2']);
+            db_image_data_delete($topic_comment['image_filename3']);
             db_file_delete_c_file($topic_comment['filename']);
         }
 
@@ -714,7 +714,7 @@ function db_delete_c_skin_filename($skinname)
     $sql = 'SELECT * FROM c_skin_filename WHERE skinname = ?';
     $params = array(strval($skinname));
     if ($skin_filename = db_get_row($sql, $params)) {
-        image_data_delete($skin_filename['filename']);
+        db_image_data_delete($skin_filename['filename']);
         $sql = 'DELETE FROM c_skin_filename WHERE skinname = ?';
         return db_query($sql, $params);
     } else {

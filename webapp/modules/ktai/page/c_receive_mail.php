@@ -22,7 +22,7 @@ class ktai_page_c_receive_mail extends OpenPNE_Action
         }
 
         $is_c_commu_member = db_commu_is_c_commu_member($target_c_commu_id, $u);
-        $relation_c_member_and_c_commu = k_p_c_home_relationship_between_member_commu($target_c_commu_id, $u);
+        $relation_c_member_and_c_commu = db_commu_relationship_between_member_commu($target_c_commu_id, $u);
         $is_unused_pc_bbs = util_is_unused_mail('m_pc_bbs_info');
         $is_unused_ktai_bbs = util_is_unused_mail('m_ktai_bbs_info');
 

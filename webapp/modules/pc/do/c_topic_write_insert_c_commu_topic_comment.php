@@ -37,7 +37,7 @@ class pc_do_c_topic_write_insert_c_commu_topic_comment extends OpenPNE_Action
         //--- 権限チェック
         //コミュニティ参加者
 
-        $c_topic = c_topic_detail_c_topic4c_commu_topic_id($c_commu_topic_id);
+        $c_topic = db_commu_c_topic4c_commu_topic_id($c_commu_topic_id);
         $c_commu_id = $c_topic['c_commu_id'];
 
         $status = db_common_commu_status($u, $c_commu_id);

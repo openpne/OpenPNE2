@@ -23,7 +23,7 @@ class portal_do_edit_portal_image extends OpenPNE_Action
         }
 
         $filename = sprintf('module_portal_%d.%s', time(), $file_info['format']);
-        image_data_delete($filename);
+        db_image_data_delete($filename);
         db_portal_delete_portal_image($filename);
         if (!admin_insert_c_image($_FILES['upfile'], $filename)) {
             portal_client_redirect('edit_portal_image', '画像が登録できませんでした', $tail);

@@ -156,7 +156,7 @@ function db_admin_delete_c_image4c_banner_id($c_banner_id)
     $sql = 'SELECT image_filename FROM c_banner WHERE c_banner_id = ?';
     $params = array(intval($c_banner_id));
     $image_filename = db_get_one($sql, $params);
-    image_data_delete($image_filename);
+    db_image_data_delete($image_filename);
 }
 
 function db_admin_insert_c_profile(
@@ -1331,7 +1331,7 @@ function p_access_analysis_target_topic_target_topic4ym_page_name
     $sum = 0;
     foreach ($list as $key => $value) {
         if ($value['target_c_commu_topic_id']) {
-            if ($c_commu_topic = c_topic_detail_c_topic4c_commu_topic_id($value['target_c_commu_topic_id'])) {
+            if ($c_commu_topic = db_commu_c_topic4c_commu_topic_id($value['target_c_commu_topic_id'])) {
                 $c_commu_topic['topic_name'] = $c_commu_topic['name'];
                 $c_commu = db_commu_c_commu4c_commu_id($c_commu_topic['c_commu_id']);
                 $c_commu_topic['commu_name'] = $c_commu['name'];
@@ -2448,7 +2448,7 @@ function monitor_review_list($keyword, $page_size, $page)
 
 
     foreach ($list as $key => $value) {
-        $list[$key]['c_member'] = db_common_c_member4c_member_id_LIGHT($value['c_member_id']);
+        $list[$key]['c_member'] = db_member_c_member4c_member_id_LIGHT($value['c_member_id']);
         $list[$key]['c_review'] = db_review_list_product_c_review4c_review_id($value['c_review_id']);
     }
 
@@ -2481,7 +2481,7 @@ function monitor_review_list4c_review_id($c_review_comment_id, $page_size, $page
     $list = db_get_all_limit($sql,($page-1)*$page_size,$page_size,$params);
 
     foreach ($list as $key => $value) {
-        $list[$key]['c_member'] = db_common_c_member4c_member_id_LIGHT($value['c_member_id']);
+        $list[$key]['c_member'] = db_member_c_member4c_member_id_LIGHT($value['c_member_id']);
         $list[$key]['c_review'] = db_review_list_product_c_review4c_review_id($value['c_review_id']);
     }
 
