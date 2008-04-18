@@ -10,7 +10,7 @@ CREATE TABLE c_album (
   PRIMARY KEY (c_album_id)
 );
 
-CREATE INDEX c_album on c_album (c_member_id);
+CREATE INDEX c_album_c_member_id on c_album (c_member_id);
 
 CREATE TABLE c_album_image (
   c_album_image_id serial NOT NULL,
