@@ -311,9 +311,10 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({if $calendar})
 ({* {{{ weeklyCalendarTable *})
 <div class="dparts weeklyCalendarTable"><div class="parts">
+<div class="block">
 ({t_form_block m=pc a=do_h_home_insert_c_schedule})
 <input type="hidden" name="w" value="({$w})" />
-<p class="scheduleForm">予定 <input type="text" class="input_text" name="title" value="" size="24" />
+<label for="title">予定</label> <input type="text" class="input_text" name="title" id="title" value="" size="24" />
 <select name="start_date">
 ({foreach from=$calendar item=item})
 <option value="({$item.year})-({$item.month})-({$item.day})"({if $item.now}) selected="selected"({/if})>({$item.month})/({$item.day})(({$item.dayofweek}))</option>
@@ -323,54 +324,49 @@ show_flash('flash/list.swf', '({$flashvars})');
 <a href="({t_url m=pc a=page_h_home})&amp;w=({$w-1})" title="前の週">＜</a>
 <a href="({t_url m=pc a=page_h_home})" title="今週">■</a>
 <a href="({t_url m=pc a=page_h_home})&amp;w=({$w+1})" title="次の週">＞</a>
-</p>
 ({/t_form_block})
+</div>
+
 <table class="calendar">
 <tr>
 ({foreach from=$calendar item=item name=calendar})
-<th class="day({if $item.dayofweek == "日" || $item.holiday}) sun({elseif $item.dayofweek == "土"}) sat({/if})({if $item.now}) now({/if})">({strip})
-({capture name=day})
+({strip})
+<td({if $item.now}) class="today"({/if})>
+<p class="day({if $item.dayofweek == "日"}) sun({elseif $item.dayofweek == "土"}) sat({/if})({if $item.holiday}) holiday({/if})">
 ({if $smarty.foreach.calendar.first || $item.day == 1})({$item.month})/({/if})({$item.day})<br />
 (({$item.dayofweek}))
-({/capture})
-({if $item.now})<strong>({$smarty.capture.day|smarty:nodefaults})</strong>({else})({$smarty.capture.day|smarty:nodefaults})({/if})
-({/strip})</th>
-({/foreach})
-</tr><tr>
-({foreach from=$calendar item=item name=calendar})
-<td class="day({if $item.now}) now({/if})">
-({strip})
-({* 祝日 *})
 ({foreach from=$item.holiday item=item_holiday})
-<span class="holiday">({$item_holiday})</span><br />
+<br />({$item_holiday})
 ({/foreach})
-
+</p>
 ({* 誕生日 *})
 ({foreach from=$item.birth item=item_birth})
 ({if $item_birth.public_flag_birth_month_day != "private" || $c_member.c_member_id == $item_birth.c_member_id})
-<img src="({t_img_url_skin filename=icon_birthday})" alt="誕生日" /><a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item_birth.c_member_id})">({$item_birth.nickname})さん</a><br />
+<p><img src="({t_img_url_skin filename=icon_birthday})" alt="誕生日" /><a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item_birth.c_member_id})">({$item_birth.nickname})さん</a></p>
 ({/if})
 ({/foreach})
 
 ({* イベント *})
 ({foreach from=$item.event item=item_event})
-<img src="({if $item_event.is_join})({t_img_url_skin filename=icon_event_R})({else})({t_img_url_skin filename=icon_event_B})({/if})" alt="イベント" /><a href="({t_url m=pc a=page_c_event_detail})&amp;target_c_commu_topic_id=({$item_event.c_commu_topic_id})">({$item_event.name|t_truncate:20:".."})</a><br />
+<p><img src="({if $item_event.is_join})({t_img_url_skin filename=icon_event_R})({else})({t_img_url_skin filename=icon_event_B})({/if})" alt="イベント" /><a href="({t_url m=pc a=page_c_event_detail})&amp;target_c_commu_topic_id=({$item_event.c_commu_topic_id})">({$item_event.name|t_truncate:20:".."})</a></p>
 ({/foreach})
 
 ({* スケジュール *})
 ({foreach from=$item.schedule item=item_schedule})
-<img src="({t_img_url_skin filename=icon_pen})" alt="予定" /><a href="({t_url m=pc a=page_h_schedule})&amp;target_c_schedule_id=({$item_schedule.c_schedule_id})">({$item_schedule.title})</a><br />
+<p><img src="({t_img_url_skin filename=icon_pen})" alt="予定" /><a href="({t_url m=pc a=page_h_schedule})&amp;target_c_schedule_id=({$item_schedule.c_schedule_id})">({$item_schedule.title})</a></p>
 ({/foreach})
-({/strip})
 </td>
+({/strip})
 ({/foreach})
 </tr>
 </table>
+
 <div class="block moreInfo">
 <ul class="moreInfo">
 <li><a href="({t_url m=pc a=page_h_calendar})">月別カレンダー</a></li>
 </ul>
 </div>
+
 </div></div>
 ({* }}} *})
 ({/if})
