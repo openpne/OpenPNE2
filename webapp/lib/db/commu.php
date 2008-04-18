@@ -514,21 +514,10 @@ function db_commu_new_topic_comment4c_commu_id($c_commu_id, $limit, $event_flag 
 
     $is_recurred = false;
 
-    if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
-        $sql = "SELECT cct.c_commu_topic_id , cct.name, MAX(cctc.r_datetime) as r_datetime , cct.c_commu_id" .
-                " , max(cctc.image_filename1) as image_filename1, max(cctc.image_filename2) as image_filename2, max(cctc.image_filename3) as image_filename3 " .
-                " FROM c_commu_topic_comment as cctc , c_commu_topic as cct" .
-                " WHERE cctc.c_commu_topic_id = cct.c_commu_topic_id " .
-                " AND cct.event_flag = ?".
-                " AND cct.c_commu_id = ?".
-                " group by cct.c_commu_topic_id, cct.name, cct.c_commu_id " .
-                " order by r_datetime desc ";
-    } else {
-        $sql = "SELECT c_commu_topic_id , name, u_datetime as r_datetime , c_commu_id " .
-                " FROM c_commu_topic" .
-                " WHERE event_flag = ? AND c_commu_id = ?".
-                " order by r_datetime desc ";
-    }
+    $sql = "SELECT c_commu_topic_id , name, u_datetime as r_datetime , c_commu_id " .
+            " FROM c_commu_topic" .
+            " WHERE event_flag = ? AND c_commu_id = ?".
+            " ORDER BY r_datetime DESC";
     $params = array((bool)$event_flag, intval($c_commu_id));
     $list = db_get_all_limit($sql, 0, $limit, $params);
 
@@ -825,30 +814,12 @@ function db_commu_c_commu_topic_comment_list4c_member_id($c_member_id, $limit)
     $ids = implode(", ", $c_commu_id_list);
 
     $hint = db_mysql_hint('USE INDEX (r_datetime_c_commu_id)');
-    if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
-        $sql = 'SELECT sub_cct_tbl.c_commu_topic_id, cct.c_commu_id, sub_cct_tbl.r_datetime, cct.c_member_id'.
-            ' FROM (' .
-                    ' SELECT cct.c_commu_topic_id, MAX(cctc.r_datetime) as r_datetime' .
-                    ' FROM' .
-                        ' c_commu_topic as cct, c_commu_topic_comment as cctc'. $hint .
-                    ' WHERE ' .
-                        ' cct.c_commu_id IN (' . $ids . ') AND cctc.c_commu_topic_id = cct.c_commu_topic_id'.
-                    ' GROUP BY cct.c_commu_topic_id' .
-                    ') as sub_cct_tbl, c_commu_topic_comment as cctc , c_commu_topic as cct' .
-            ' WHERE' .
-                ' cct.c_commu_topic_id=sub_cct_tbl.c_commu_topic_id' .
-                ' AND cctc.c_commu_topic_id = cct.c_commu_topic_id ' .
-                ' AND cctc.r_datetime=sub_cct_tbl.r_datetime' .
-            ' ORDER BY r_datetime DESC';
-        $params = array();
-    } else {
-        $sql = 'SELECT a.c_commu_topic_id, a.c_commu_id, a.u_datetime as r_datetime, a.c_member_id,'.
-            ' a.name as c_commu_topic_name'.
-            ' FROM c_commu_topic as a INNER JOIN c_commu_member as b USING(c_commu_id)'.
-            ' WHERE b.c_member_id = ?'.
-            ' ORDER BY r_datetime DESC';
-        $params = array(intval($c_member_id));
-    }
+    $sql = 'SELECT a.c_commu_topic_id, a.c_commu_id, a.u_datetime as r_datetime, a.c_member_id,'.
+        ' a.name as c_commu_topic_name'.
+        ' FROM c_commu_topic as a INNER JOIN c_commu_member as b USING(c_commu_id)'.
+        ' WHERE b.c_member_id = ?'.
+        ' ORDER BY r_datetime DESC';
+    $params = array(intval($c_member_id));
     $c_commu_topic_list = db_get_all_limit($sql, 0, $limit, $params);
 
     foreach ($c_commu_topic_list as $key => $value) {
@@ -883,30 +854,12 @@ function db_commu_c_commu_topic_comment_list4c_member_id_2($c_member_id, $limit,
     $ids = implode(", ", $c_commu_id_list);
 
     $hint = db_mysql_hint('USE INDEX (r_datetime_c_commu_id)');
-    if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
-        $sql = 'SELECT sub_cct_tbl.c_commu_topic_id, cct.c_commu_id, sub_cct_tbl.r_datetime, cct.c_member_id'.
-            ' FROM (' .
-                    ' SELECT cct.c_commu_topic_id, MAX(cctc.r_datetime) as r_datetime' .
-                    ' FROM' .
-                        ' c_commu_topic as cct, c_commu_topic_comment as cctc'. $hint .
-                    ' WHERE ' .
-                        ' cct.c_commu_id IN (' . $ids . ') AND cctc.c_commu_topic_id = cct.c_commu_topic_id'.
-                    ' GROUP BY cct.c_commu_topic_id' .
-                    ') as sub_cct_tbl, c_commu_topic_comment as cctc , c_commu_topic as cct' .
-            ' WHERE' .
-                ' cct.c_commu_topic_id=sub_cct_tbl.c_commu_topic_id' .
-                ' AND cctc.c_commu_topic_id = cct.c_commu_topic_id ' .
-                ' AND cctc.r_datetime=sub_cct_tbl.r_datetime' .
-            ' ORDER BY r_datetime DESC';
-        $params = array();
-    } else {
-        $sql = 'SELECT a.c_commu_topic_id, a.c_commu_id, a.u_datetime as r_datetime, a.c_member_id,'.
-            ' a.name as c_commu_topic_name'.
-            ' FROM c_commu_topic as a INNER JOIN c_commu_member as b USING(c_commu_id)'.
-            ' WHERE b.c_member_id = ?'.
-            ' ORDER BY r_datetime DESC';
-        $params = array(intval($c_member_id));
-    }
+    $sql = 'SELECT a.c_commu_topic_id, a.c_commu_id, a.u_datetime as r_datetime, a.c_member_id,'.
+        ' a.name as c_commu_topic_name'.
+        ' FROM c_commu_topic as a INNER JOIN c_commu_member as b USING(c_commu_id)'.
+        ' WHERE b.c_member_id = ?'.
+        ' ORDER BY r_datetime DESC';
+    $params = array(intval($c_member_id));
     $c_commu_topic_list = db_get_all_limit($sql, ($page-1)*$limit, $limit, $params);
 
     foreach ($c_commu_topic_list as $key => $value) {
