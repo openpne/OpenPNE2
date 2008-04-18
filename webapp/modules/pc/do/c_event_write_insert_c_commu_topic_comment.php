@@ -46,7 +46,7 @@ class pc_do_c_event_write_insert_c_commu_topic_comment extends OpenPNE_Action
 
         //イベントのメンバーに追加
         if ($add_event_member == 1) {
-            do_c_event_add_insert_c_event_member($c_commu_topic_id, $u);
+            db_commu_insert_c_event_member($c_commu_topic_id, $u);
         } elseif ($add_event_member == -1) {
             db_commu_delete_c_event_member($c_commu_topic_id, $u);
         }

@@ -133,15 +133,15 @@ class pc_do_c_event_edit_update_c_commu_topic extends OpenPNE_Action
         $c_topic = db_commu_c_topic4c_commu_topic_id_2($c_commu_topic_id);
         if ($filename1) {
             $update_c_commu_topic_comment["image_filename1"] = $filename1;
-            image_data_delete($c_topic['image_filename1']);
+            db_image_data_delete($c_topic['image_filename1']);
         }
         if ($filename2) {
             $update_c_commu_topic_comment["image_filename2"] = $filename2;
-            image_data_delete($c_topic['image_filename2']);
+            db_image_data_delete($c_topic['image_filename2']);
         }
         if ($filename3) {
             $update_c_commu_topic_comment["image_filename3"] = $filename3;
-            image_data_delete($c_topic['image_filename3']);
+            db_image_data_delete($c_topic['image_filename3']);
         }
         db_commu_update_c_commu_topic_comment($c_commu_topic_id, $update_c_commu_topic_comment);
 

@@ -86,7 +86,7 @@ function db_friend_friend_path4c_member_ids($my_id, $target_id)
     $result_key = array_rand($result_list);
     $result_id  = $result_list[$result_key];
 
-    return db_common_c_member4c_member_id($result_id);
+    return db_member_c_member4c_member_id($result_id);
 }
 
 /**
@@ -107,7 +107,7 @@ function db_friend_invite_list4c_member_ids($target_c_member_id, $u)
 
     $list = array();
     foreach ($result as $value) {
-        $list[] = db_common_c_member4c_member_id_LIGHT($value);
+        $list[] = db_member_c_member4c_member_id_LIGHT($value);
     }
     return $list;
 }
@@ -165,14 +165,14 @@ function db_friend_intro_list4c_member_id($c_member_id)
 
     $list = db_get_all($sql, $params);
     foreach ($list as $key => $value) {
-        $list[$key] += db_common_c_member4c_member_id_LIGHT($value['c_member_id']);
+        $list[$key] += db_member_c_member4c_member_id_LIGHT($value['c_member_id']);
     }
     return $list;
 }
 
 function db_friend_intro_list_with_my_intro4c_member_id($c_member_id)
 {
-    $list = p_fh_intro_intro_list4c_member_id($c_member_id);
+    $list = db_friend_intro_list4c_member_id($c_member_id);
 
     $sql = 'SELECT intro FROM c_friend WHERE c_member_id_from = ? AND c_member_id_to = ?';
     foreach ($list as $key => $value) {
@@ -204,7 +204,7 @@ function db_friend_c_friend_comment4c_member_id($c_member_id, $limit = 5)
 
     $list = db_get_all_limit($sql, 0, $limit, $params);
     foreach ($list as $key => $value) {
-        $list[$key] += db_common_c_member4c_member_id_LIGHT($value['c_member_id']);
+        $list[$key] += db_member_c_member4c_member_id_LIGHT($value['c_member_id']);
     }
     return $list;
 }
@@ -235,7 +235,7 @@ function db_friend_c_friend_list4c_member_id($c_member_id, $limit = 0)
     $result = db_friend_c_friend_id_list4c_member_id($c_member_id, $limit);
 
     foreach ($result as $key => $value) {
-        $result[$key] = db_common_c_member4c_member_id_LIGHT($value['c_member_id']);
+        $result[$key] = db_member_c_member4c_member_id_LIGHT($value['c_member_id']);
         $result[$key]['friend_count'] = db_friend_count_friends($value['c_member_id']);
     }
     return $result;
@@ -294,7 +294,7 @@ function db_friend_anatani_c_friend_confirm_list4c_member_id($c_member_id_to)
     $c_friend_confirm_list = db_get_all($sql, $params);
 
     foreach ($c_friend_confirm_list as $key => $value) {
-        $c_member = db_common_c_member4c_member_id_LIGHT($value['c_member_id_from']);
+        $c_member = db_member_c_member4c_member_id_LIGHT($value['c_member_id_from']);
         $c_friend_confirm_list[$key]['nickname'] = $c_member['nickname'];
         $c_friend_confirm_list[$key]['image_filename'] = $c_member['image_filename'];
     }
@@ -319,7 +319,7 @@ function db_friend_anataga_c_friend_confirm_list4c_member_id($c_member_id_from)
     $c_friend_confirm_list = db_get_all($sql, $params);
 
     foreach ($c_friend_confirm_list as $key => $value) {
-        $c_member = db_common_c_member4c_member_id_LIGHT($value['c_member_id_to']);
+        $c_member = db_member_c_member4c_member_id_LIGHT($value['c_member_id_to']);
         $c_friend_confirm_list[$key]['nickname'] = $c_member['nickname'];
         $c_friend_confirm_list[$key]['image_filename'] = $c_member['image_filename'];
     }
@@ -344,7 +344,7 @@ function db_friend_c_friend_intro_list4c_member_id($c_member_id, $limit)
     $list = db_get_all_limit($sql, 0, $limit, $params);
 
     foreach ($list as $key => $value) {
-        $list[$key] += db_common_c_member4c_member_id_LIGHT($value['c_member_id_from']);
+        $list[$key] += db_member_c_member4c_member_id_LIGHT($value['c_member_id_from']);
     }
     return $list;
 }
@@ -366,7 +366,7 @@ function db_friend_c_friend_list_disp4c_member_id($c_member_id, $page = 1, $size
     $c_friend_list = db_get_all_page($sql, $page, $size, $params);
 
     foreach ($c_friend_list as $key => $value) {
-        $c_friend = p_common_c_friend4c_member_id_from4c_member_id_to($value['c_member_id_to'], $value['c_member_id_from']);
+        $c_friend = db_friend_c_friend4c_member_id_from4c_member_id_to($value['c_member_id_to'], $value['c_member_id_from']);
         $c_friend_list[$key]['intro'] = $c_friend['intro'];
 
         $c_friend_list[$key]['friend_count'] = db_friend_count_friends($value['c_member_id_from']);
@@ -392,13 +392,13 @@ function db_friend_c_friend_list_disp4c_member_id($c_member_id, $page = 1, $size
 function db_friend_status($u, $target_c_member_id)
 {
     $ret = array(
-        'c_member'      => db_common_c_member4c_member_id($target_c_member_id),
+        'c_member'      => db_member_c_member4c_member_id($target_c_member_id),
         'is_friend'     => false,
         'is_friend_confirm' => false,
     );
 
     $ret['is_friend'] = db_friend_is_friend($u, $target_c_member_id);
-    $ret['is_friend_confirm'] = do_common_is_friend_link_wait($u, $target_c_member_id);
+    $ret['is_friend_confirm'] = db_friend_is_friend_link_wait($u, $target_c_member_id);
 
     return $ret;
 }
@@ -528,7 +528,7 @@ function db_friend_friend_list4c_member_id($c_member_id,$page_size,$page)
     $c_friend_list = db_get_all_page($sql, $page, $page_size, $params);
 
     foreach ($c_friend_list as $key => $value) {
-        $c_member = db_common_c_member4c_member_id($value['c_member_id_to']);
+        $c_member = db_member_c_member4c_member_id($value['c_member_id_to']);
 
         $c_friend_list[$key]['image_filename'] = $c_member['image_filename'];
         $c_friend_list[$key]['c_member_id'] = $c_member['c_member_id'];
@@ -574,7 +574,7 @@ function db_friend_ktai_anatani_c_friend_confirm_list4c_member_id($c_member_id_t
     $c_friend_confirm_list = db_get_all($sql, $params);
 
     foreach ($c_friend_confirm_list as $key => $value) {
-        $c_member = db_common_c_member4c_member_id_LIGHT($value['c_member_id_from']);
+        $c_member = db_member_c_member4c_member_id_LIGHT($value['c_member_id_from']);
         $c_friend_confirm_list[$key]['nickname'] = $c_member['nickname'];
     }
     return $c_friend_confirm_list;
@@ -597,7 +597,7 @@ function db_friend_ktai_anataga_c_friend_confirm_list4c_member_id($c_member_id_f
     $c_friend_confirm_list = db_get_all($sql, $params);
 
     foreach ($c_friend_confirm_list as $key => $value) {
-        $c_member = db_common_c_member4c_member_id_LIGHT($value['c_member_id_to']);
+        $c_member = db_member_c_member4c_member_id_LIGHT($value['c_member_id_to']);
         $c_friend_confirm_list[$key]['nickname'] = $c_member['nickname'];
     }
     return $c_friend_confirm_list;
@@ -676,7 +676,7 @@ function db_friend_insert_c_friend($c_member_id_from, $c_member_id_to)
  */
 function db_friend_insert_c_friend4confirm($c_friend_confirm_id, $u)
 {
-    $confirm = _do_c_friend_confirm4c_friend_confirm_id($c_friend_confirm_id);
+    $confirm = db_friend_c_friend_confirm4c_friend_confirm_id($c_friend_confirm_id);
     if ($confirm['c_member_id_to'] != $u) {
         return false;
     }
