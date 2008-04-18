@@ -59,7 +59,7 @@ class pc_page_fh_album_list extends OpenPNE_Action
         $this->set('target_member', $target_member);
         $this->set('c_member_id',$u);
         
-        //年月日で一覧表示、日記数に制限なし
+        //年月日で一覧表示、アルバム数に制限なし
         
         //検索する場合
         if ($keyword) {
