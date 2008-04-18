@@ -34,6 +34,9 @@ class pc_do_fh_diary_delete_c_diary_comment extends OpenPNE_Action
 
             //コメント削除実行
             db_diary_delete_c_diary_comment($val, $u);
+
+            //コメント記入履歴削除実行
+            db_diary_delete_c_diary_comment_summary($target_c_diary_comment['c_member_id'],$target_c_diary_id);
         }
 
         $p = array('target_c_diary_id' => $target_c_diary_id);

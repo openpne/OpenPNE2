@@ -35,7 +35,7 @@ function db_rss_list_friend_c_rss_cache_list($c_member_id, $limit)
     }
     $ids = implode(',', array_map('intval', $friends));
 
-    $hint = db_mysql_hint('USE INDEX (r_datetime_c_member_id, r_datetime)');
+    $hint = db_mysql_hint('USE INDEX (c_member_id_r_datetime)');
     $sql = 'SELECT * FROM c_rss_cache' . $hint .
             ' WHERE c_member_id IN (' . $ids . ')' .
             ' ORDER BY r_datetime DESC';
