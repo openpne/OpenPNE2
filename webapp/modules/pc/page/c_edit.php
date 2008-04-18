@@ -65,7 +65,7 @@ class pc_page_c_edit extends OpenPNE_Action
             'admin_only' => WORD_COMMUNITY . '管理者のみ作成可能',
         );
         $this->set('topic_authority_list', $topic_authority_list);
-        $this->set('is_topic', p_c_edit_is_topic4c_commu_id($target_c_commu_id));
+        $this->set('is_topic', db_commu_is_topic4c_commu_id($target_c_commu_id));
         $this->set('err_msg', $err_msg);
 
         $this->set('is_unused_join_commu', util_is_unused_mail('m_pc_join_commu'));

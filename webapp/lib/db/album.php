@@ -301,7 +301,7 @@ function p_h_album_list_all_search_c_album4c_album($keyword, $page_size, $page, 
 
     $list = db_get_all_page($sql, $page, $page_size, $params);
     foreach($list as $key => $value) {
-        $list[$key]['c_member'] = db_common_c_member_with_profile($value['c_member_id']);
+        $list[$key]['c_member'] = db_member_c_member_with_profile($value['c_member_id']);
     }
 
 
@@ -346,7 +346,7 @@ function p_h_album_list_friend_h_album_list_friend4c_member_id($c_member_id, $pa
     $lst = db_get_all_page($sql, $page, $page_size, $params);
 
     foreach ($lst as $key=>$value) {
-        $lst[$key]['c_member'] = db_common_c_member4c_member_id($value['c_member_id']);
+        $lst[$key]['c_member'] = db_member_c_member4c_member_id($value['c_member_id']);
     }
 
     $sql = "SELECT count(*) FROM {$from} WHERE {$where}";
@@ -394,7 +394,7 @@ function p_h_home_c_album_friend_list4c_member_id($c_member_id, $limit)
     $c_album_friend_list = db_get_all_limit($sql, 0, $limit);
 
     foreach ($c_album_friend_list as $key => $value) {
-        $c_member = db_common_c_member4c_member_id_LIGHT($value['c_member_id']);
+        $c_member = db_member_c_member4c_member_id_LIGHT($value['c_member_id']);
         $c_album_friend_list[$key]['nickname'] = $c_member['nickname'];
     }
 
@@ -605,7 +605,7 @@ function image_insert_c_image_album4tmp($prefix, $tmpfile)
             return $filename;
         }
     } else {
-        $c_tmp_image = c_tmp_image4filename($tmpfile);
+        $c_tmp_image = db_image_c_tmp_image4filename($tmpfile);
 
         $params = array(
             'filename' => $filename,

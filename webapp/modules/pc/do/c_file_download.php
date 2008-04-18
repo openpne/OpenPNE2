@@ -32,7 +32,7 @@ class pc_do_c_file_download extends OpenPNE_Action
             $c_commu_id = $c_topic_comment['c_commu_id'];
             $filename = $c_topic_comment['filename'];
         } else {
-            $c_topic = c_topic_detail_c_topic4c_commu_topic_id($c_commu_topic_id);
+            $c_topic = db_commu_c_topic4c_commu_topic_id($c_commu_topic_id);
             $c_commu_id = $c_topic['c_commu_id'];
             $filename = $c_topic['filename'];
         }

@@ -16,7 +16,7 @@ class pc_do_f_link_request extends OpenPNE_Action
         $target_c_member_id = $requests['target_c_member_id'];
 
         $is_friend = db_friend_is_friend($u, $target_c_member_id);
-        $is_link_wait = do_common_is_friend_link_wait($u, $target_c_member_id);
+        $is_link_wait = db_friend_is_friend_link_wait($u, $target_c_member_id);
 
         $p = array('target_c_member_id' => $target_c_member_id);
         if ($is_friend) {
