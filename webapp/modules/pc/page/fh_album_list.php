@@ -38,14 +38,6 @@ class pc_page_fh_album_list extends OpenPNE_Action
                 openpne_redirect('pc', 'page_h_access_block');
             }
             
-            //対象者にアルバムがなくてもアルバム一覧を表示
-            /*
-            if(!db_member_check_album_exist($target_c_member_id)){
-                $param = array('target_c_member_id' => $target_c_member_id);
-                openpne_redirect('pc', 'page_fh_album_list_err',$param);
-            }
-            */
-
             //あしあとをつける
             db_ashiato_insert_c_ashiato($target_c_member_id, $u);
         }
@@ -76,8 +68,6 @@ class pc_page_fh_album_list extends OpenPNE_Action
         
         $this->set('page', $page);
         $this->set('page_size', $page_size);
-
-        //TODO:page化対応おかしい！
         $this->set('is_prev', $list_set[1]);
         $this->set('is_next', $list_set[2]);
         $this->set("total_num", $list_set[3]);
