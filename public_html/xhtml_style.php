@@ -367,16 +367,11 @@ div.operation ul.moreInfo li {
 /*----------------------------------------------
  * カレンダー
  *--------------------------------------------*/
-table.calendar th {
-	text-align: center;
-}
-table.calendar td {
-	text-align: right;
-}
-th.sun {
+.calendar .sun,
+.calendar .holiday {
 	color: #d92c49;
 }
-th.sat {
+.calendar .sat {
 	color: #2c65d9;
 }
 
@@ -725,9 +720,11 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 }
 .sideNav .calendar th {
 	background-color: #<?php echo $colors[7]; ?>;
+	text-align: center;
 }
 .sideNav .calendar td {
 	padding: 1px 2px;
+	text-align: right;
 }
 .sideNav .list {
 	padding: 4px 0;
@@ -1622,6 +1619,33 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 }
 
 /*==============================================================================
+ * 32. weeklyCalendarTable（週間カレンダーテーブル）
+ *----------------------------------------------------------------------------*/
+#Body .weeklyCalendarTable .parts {
+	border-top: none;
+}
+.weeklyCalendarTable div.block {
+	padding: 5px;
+}
+.weeklyCalendarTable .input_submit {
+	margin-right: 8px;
+}
+.weeklyCalendarTable .calendar td {
+	padding: 5px;
+	vertical-align: top;
+}
+.weeklyCalendarTable .calendar .today {
+	background: #<?php echo $colors[7]; ?>;
+}
+.weeklyCalendarTable .calendar .today p.day {
+	font-weight: bold;
+}
+.weeklyCalendarTable ul.moreInfo {
+	margin: 0 2px 0 auto;
+	width: 9em;
+}
+
+/*==============================================================================
  * 
  *----------------------------------------------------------------------------*/
 
@@ -1714,37 +1738,6 @@ div.parts {
 }
 #Body .buttonLine {
 	background-color: transparent;
-}
-
-/*==============================================================
- * 32. weeklyCalendarTable（週間カレンダーテーブル）
- *------------------------------------------------------------*/
-.weeklyCalendarTable p.scheduleForm {
-	margin: 0 auto;
-	padding: 6px 5px;
-}
-.weeklyCalendarTable table td {
-	vertical-align: top;
-}
-.weeklyCalendarTable table.calendar th {
-	padding: 5px;
-	text-align: left;
-}
-.weeklyCalendarTable table.calendar td {
-	padding: 5px;
-	border-top: none;
-	text-align: left;
-}
-.weeklyCalendarTable table.calendar th.now,
-.weeklyCalendarTable table.calendar td.now {
-	background: #<?php echo $colors[7]; ?>;
-}
-.weeklyCalendarTable span.holiday {
-	color: #d92c49;
-}
-.weeklyCalendarTable div.moreInfo ul.moreInfo {
-	width: 11em;
-	margin: 6px 0 6px auto;
 }
 
 /*==============================================================================
