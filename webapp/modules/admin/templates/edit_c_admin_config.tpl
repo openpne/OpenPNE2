@@ -173,6 +173,16 @@
 <span class="caution">※「フォントサイズを指定する」を選択した場合、文字サイズが小さめに設定されます</span><br />
 <span class="caution">※「フォントサイズを指定しない」を選択した場合、携帯端末ごとのデフォルトの文字サイズで表示されるようになります</span></td>
 </tr>
+<tr>
+<th colspan="2">携帯版プライバシーポリシー表示設定</th>
+<td>
+<span class="info">携帯版にプライバシーポリシーへのリンクを表示するかどうかを設定します</span><br />
+<select class="basic" name="OPENPNE_DISP_KTAI_SNS_PRIVACY">
+<option value="1"({if $smarty.const.OPENPNE_DISP_KTAI_SNS_PRIVACY}) selected="selected"({/if})>表示する</option>
+<option value="0"({if !$smarty.const.OPENPNE_DISP_KTAI_SNS_PRIVACY}) selected="selected"({/if})>表示しない</option>
+</select><br />
+<span class="caution">※プライバシーポリシーへのリンクの削除は、<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('insert_html')})">[デザインHTML挿入]</a>にあるログイン後フッタの編集からおこなうことができます</span></td>
+</tr>
 <tr class="cell15">
 <th colspan="2">メニューロールオーバー</th>
 <td><select class="basic" name="OPENPNE_ENABLE_ROLLOVER">
