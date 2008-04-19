@@ -7,12 +7,12 @@
 
 <table>
 <tr>
-<th>画像</th>
+<th>写真</th>
 <td>
 ({if $form_val.tmpfile_1})
 ({$form_val.upfile_1.name})
 ({else})
-画像変更なし
+写真変更なし
 ({/if})
 </td>
 </tr>

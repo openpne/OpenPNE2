@@ -10,7 +10,7 @@
 <input type="hidden" name="pre_image_filename" value="({$c_album_image.image_filename})" />
 <table>
 <tr>
-<th>画像</th>
+<th>写真</th>
 <td>
 <a href="({t_img_url filename=$c_album_image.image_filename})" target="_blank">
 <img src="({t_img_url filename=$c_album_image.image_filename w=180 h=180})" alt="" /></a><br />
@@ -35,7 +35,7 @@
 
 ({* {{{ formTable *})
 <div class="dparts formTable"><div class="parts">
-<div class="partsHeading"><h3>画像を削除する</h3></div>
+<div class="partsHeading"><h3>写真を削除する</h3></div>
 ({t_form_block m=pc a=page_h_album_image_delete_confirm})
 <input type="hidden" name="target_c_album_id" value="({$target_c_album_id})" />
 <input type="hidden" name="target_c_album_image_id" value="({$target_c_album_image_id})" />

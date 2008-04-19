@@ -3,15 +3,16 @@
 
 ({* {{{ formTable *})
 <div class="dparts formTable"><div class="parts">
-<div class="partsHeading"><h3>以下の内容でよろしいですか？</h3></div>
+<div class="partsHeading"><h3>アルバムを編集する</h3></div>
+<div class="partsInfo"><p>以下の内容でよろしいですか？</p></div>
 <table>
 <tr>
 <th>タイトル</th>
 <td>({$form_val.subject})</td>
 </tr>
 <tr>
-<th>アルバム説明</th>
-<td>({$form_val.description|nl2br})</td>
+<th>説明文</th>
+<td>({$form_val.description|nl2br|t_url2a})</td>
 </tr>
 <tr>
 <th>表紙</th>

@@ -29,7 +29,7 @@ class pc_page_h_album_cover_edit_confirm extends OpenPNE_Action
         $c_commu_id = $requests['target_c_commu_id'];
         // ----------
         
-        //画像データ一時ファイル削除
+        //写真データ一時ファイル削除
         $sessid = session_id();
         t_image_clear_tmp($sessid);
 
@@ -43,7 +43,7 @@ class pc_page_h_album_cover_edit_confirm extends OpenPNE_Action
         foreach ($upfiles as $key => $upfile) {
             if ($upfile['error'] !== UPLOAD_ERR_NO_FILE) {
                 if (!($image = t_check_image($upfile))) {
-                    $_REQUEST['msg'] = '画像は'.IMAGE_MAX_FILESIZE.'KB以内のGIF・JPEG・PNGにしてください';
+                    $_REQUEST['msg'] = '写真は'.IMAGE_MAX_FILESIZE.'KB以内のGIF・JPEG・PNGにしてください';
                     openpne_forward('pc', 'page', 'h_album_cover_edit');
                     exit;
                 } else {
