@@ -1304,6 +1304,9 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 	border-left: 1px solid #<?php echo $colors[1]; ?>;
 	background: #<?php echo $colors[8]; ?>;
 }
+.homeInfoBox .caution {
+	color: #ff0000;
+}
 
 /*==============================================================================
  * 2. descriptionBox（説明ボックス）
