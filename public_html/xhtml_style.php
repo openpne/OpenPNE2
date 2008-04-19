@@ -1825,6 +1825,127 @@ div.parts {
 	background: #<?php echo $colors[6]; ?>;
 }
 
+/** page_o_login */
+div#container_login {
+	display: block;
+	margin: 0px auto 0px 0px;
+	width: 720px;
+	height: 563px;
+	padding: 0px;
+}
+
+div#container_login img.bg {
+	display: block;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 720px;
+	height: 563px;
+	z-index: 0;
+}
+
+div#container_login a img {
+	width: 100%;
+	height: 100%;
+}
+
+div#container_login div.banner ,
+div#container_login a.banner {
+	display: block;
+	position: absolute;
+	left: 247px;
+	top: 5px;
+	width: 468px;
+	height: 60px;
+	z-index: 200;
+}
+
+div#container_login div.header a.main_menu {
+	display: block;
+	display: none;
+	position: absolute;
+	height: 22px;
+	top: 0px;
+}
+
+div#container_login input#username {
+	display: block;
+	position: absolute;
+	left: 504px;
+	top: 246px;
+	width: 185px;
+	height: 23px;
+	font-size: 10pt;
+	z-index: 100;
+}
+
+div#container_login input#password {
+	display: block;
+	position: absolute;
+	left: 504px;
+	top: 299px;
+	width: 185px;
+	height: 23px;
+	font-size: 10pt;
+	z-index: 110;
+}
+
+div#container_login input#button_login {
+	display: block;
+	position: absolute;
+	left: 536px;
+	top: 384px;
+	width: 120px;
+	height: 24px;
+	border: none 0px;
+	background-color: transparent;
+	z-index: 120;
+}
+
+div#container_login a#button_new_regist {
+	display: block;
+	position: absolute;
+	left: 536px;
+	top: 414px;
+	width: 120px;
+	height: 24px;
+	border: none 0px;
+	z-index: 130;
+}
+
+div#container_login div.msg {
+	display: block;
+	position: absolute;
+	border: none 0px;
+	padding: 3px 0px;
+	left: 504px;
+	top: 327px;
+	width: 185px;
+	height: 42px;
+	font-size: 9pt;
+	text-align: center;
+	z-index: 140;
+}
+
+div#container_login div.msg * {
+	font-size: 8pt;
+}
+
+div#container_login .footer {
+	display: block;
+	position: absolute;
+	left: 0px;
+	top: 542px;
+	width: 720px;
+	height: 21px;
+	z-index: 300;
+}
+div#container_login .footer p {
+	margin-right: 12px;
+	text-align: right;
+	line-height: 21px;
+}
+
 /*==============================================================================
  * 
  *----------------------------------------------------------------------------*/
