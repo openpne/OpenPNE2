@@ -572,13 +572,13 @@ function p_h_diary_comment_list_c_diary_my_comment_list4c_member_id($c_member_id
     $list = db_get_all_page($sql, $page, $page_size, $params);
 
     foreach ($list as $key => $value) {
-        $list[$key] += db_member_c_member4c_member_id_LIGHT($value['c_member_id']);
         $diary = db_diary_get_c_diary4id($value['c_diary_id']);
+        $list[$key] += db_member_c_member4c_member_id_LIGHT($diary['c_member_id']);
         $list[$key]['subject'] = $diary['subject'];
         $list[$key]['num_comment'] = db_diary_count_c_diary_comment4c_diary_id($value['c_diary_id']);
     }
 
-    $sql = 'SELECT c_diary_id' .
+    $sql = 'SELECT COUNT(c_diary_id)' .
            ' FROM c_diary_comment_log' .
            ' WHERE c_member_id = ?';
     $params = array(intval($c_member_id));
