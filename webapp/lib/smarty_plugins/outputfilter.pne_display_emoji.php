@@ -12,10 +12,11 @@ function smarty_outputfilter_pne_display_emoji($tpl_output, &$smarty)
     $list = array();
 
     if (empty($GLOBALS['__Framework']['carrier'])) {
-        // input, textarea, img を退避
+        // input, textarea, option, img を退避
         $patterns = array(
             '/<input[^>]+>/is',
             '/<textarea.*?<\/textarea>/is',
+            '/<option.*?<\/option>/is',
             '/<img[^>]+>/is',
         );
 
