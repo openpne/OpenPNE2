@@ -32,10 +32,10 @@ class pc_page_h_album_image_edit extends OpenPNE_Action
             handle_kengen_error();
         }
         
-        // アルバムの画像データ取得
+        // アルバムの写真データ取得
         $c_album_iamge = db_album_image_get_c_album_image4id($target_c_album_image_id);
         
-        // target の画像が存在しない
+        // target の写真が存在しない
         if(!$c_album_iamge){
             openpne_redirect('pc', 'page_h_err_fh_album');
         }

@@ -69,11 +69,11 @@ class pc_page_fh_album extends OpenPNE_Action
         $album_subject_list =  db_album_get_c_album_subject_list4c_member_id($target_c_member_id, 10, $u);
         $this->set("target_album_list",$album_subject_list);
 
-        //アルバムに登録された画像
+        //アルバムに登録された写真
         $target_c_album_image = db_album_get_c_album_page4id($target_c_album_id,$page_size,$page);
         $this->set("target_album_image", $target_c_album_image[0]);
 
-        //アルバムの画像表示を2列にするための工夫？
+        //アルバムの写真表示を2列にするための工夫？
         if(count($target_c_album_image[0])<$page_size){
          for($i=0;$i<=count($target_c_album_image[0]);$i++){
             if($i%2==0){
@@ -94,7 +94,7 @@ class pc_page_fh_album extends OpenPNE_Action
            }
          }
     
-        //アルバムの画像表示を2列にするための工夫？
+        //アルバムの写真表示を2列にするための工夫？
         if(count($target_c_album_image[0])<$page_size){
           for($j=0;$j<(intval(ceil(count($target_c_album_image[0])/2)));$j++){
             $list_set1[0][$j][dual]=$temp1[$j+$j];
