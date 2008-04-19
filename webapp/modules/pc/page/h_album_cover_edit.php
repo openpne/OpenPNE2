@@ -44,7 +44,7 @@ class pc_page_h_album_cover_edit extends OpenPNE_Action
         //アルバムデータ
         $this->set('album',$album);
 
-        //画像データ一時ファイル削除
+        //写真データ一時ファイル削除
         $sessid = session_id();
         t_image_clear_tmp($sessid);
 

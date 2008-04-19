@@ -16,7 +16,7 @@ class admin_do_delete_c_album_image extends OpenPNE_Action
         $album_image = db_album_image_get_c_album_image4id($target_c_album_image_id);
 
         if (!$album_image) {
-            admin_client_redirect('edit_album_image_list', '指定された画像は存在しません');
+            admin_client_redirect('edit_album_image_list', '指定された写真は存在しません');
         }
 
         db_album_delete_c_album_image($target_c_album_image_id);

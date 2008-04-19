@@ -1,16 +1,13 @@
-
 <div id="LayoutC">
 <div id="Center">
 
-({* unknown *})({* {{{ formTable *})
-({* unknown *})<div class="dparts formTable">
-({* unknown *})<div class="parts">
-({* unknown *})<div class="partsHeading"><h3>画像の表示</h3></div>
+({* unknown *})<div class="dparts formTable"><div class="parts">
+({* unknown *})<div class="partsHeading"><h3>写真の表示</h3></div>
 ({* unknown *})
 ({* unknown *})({if $c_album_iamge_id_prev || $c_album_iamge_id_next})
 ({* unknown *})<div class="pagerRelative">
-({* unknown *})({if $c_album_iamge_id_prev})<p class="prev"><a href="({t_url m=pc a=page_fh_album_image_show})&amp;target_c_album_id=({$c_album_image.c_album_id})&amp;target_c_album_image_id=({$c_album_iamge_id_prev})">«前の画像</a></p>({/if})
-({* unknown *})({if $c_album_iamge_id_next})<p class="next"><a href="({t_url m=pc a=page_fh_album_image_show})&amp;target_c_album_id=({$c_album_image.c_album_id})&amp;target_c_album_image_id=({$c_album_iamge_id_next})">次の画像»</a></p>({/if})
+({* unknown *})({if $c_album_iamge_id_prev})<p class="prev"><a href="({t_url m=pc a=page_fh_album_image_show})&amp;target_c_album_id=({$c_album_image.c_album_id})&amp;target_c_album_image_id=({$c_album_iamge_id_prev})">«前の写真</a></p>({/if})
+({* unknown *})({if $c_album_iamge_id_next})<p class="next"><a href="({t_url m=pc a=page_fh_album_image_show})&amp;target_c_album_id=({$c_album_image.c_album_id})&amp;target_c_album_image_id=({$c_album_iamge_id_next})">次の写真»</a></p>({/if})
 ({* unknown *})</div>
 ({* unknown *})({/if})
 ({* unknown *})
@@ -29,13 +26,12 @@
 ({* unknown *})
 ({* unknown *})({if $c_album_iamge_id_prev || $c_album_iamge_id_next})
 ({* unknown *})<div class="pagerRelative">
-({* unknown *})({if $c_album_iamge_id_prev})<p class="prev"><a href="({t_url m=pc a=page_fh_album_image_show})&amp;target_c_album_id=({$c_album_image.c_album_id})&amp;target_c_album_image_id=({$c_album_iamge_id_prev})">«前の画像</a></p>({/if})
-({* unknown *})({if $c_album_iamge_id_next})<p class="next"><a href="({t_url m=pc a=page_fh_album_image_show})&amp;target_c_album_id=({$c_album_image.c_album_id})&amp;target_c_album_image_id=({$c_album_iamge_id_next})">次の画像»</a></p>({/if})
+({* unknown *})({if $c_album_iamge_id_prev})<p class="prev"><a href="({t_url m=pc a=page_fh_album_image_show})&amp;target_c_album_id=({$c_album_image.c_album_id})&amp;target_c_album_image_id=({$c_album_iamge_id_prev})">«前の写真</a></p>({/if})
+({* unknown *})({if $c_album_iamge_id_next})<p class="next"><a href="({t_url m=pc a=page_fh_album_image_show})&amp;target_c_album_id=({$c_album_image.c_album_id})&amp;target_c_album_image_id=({$c_album_iamge_id_next})">次の写真»</a></p>({/if})
 ({* unknown *})</div>
 ({* unknown *})({/if})
 ({* unknown *})
 ({* unknown *})</div></div>
-({* unknown *})({* }}} *})
 
 ({* {{{ linkLine *})
 <div class="parts linkLine"><ul class="moreInfo">
