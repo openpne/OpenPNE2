@@ -3,7 +3,7 @@
 
 ({* {{{ formTable *})
 <div class="dparts formTable"><div class="parts">
-<div class="partsHeading"><h3>編集：({$album.subject})</h3></div>
+<div class="partsHeading"><h3>アルバムを編集する</h3></div>
 ({t_form_block _enctype=file m=pc a=page_h_album_cover_edit_confirm})
 <input type="hidden" name="target_c_album_id" value="({$target_c_album_id})" />
 <table>
@@ -14,7 +14,7 @@
 </td>
 </tr>
 <tr>
-<th>アルバム説明</th>
+<th>説明文</th>
 <td>
 <textarea name="description" rows="6" cols="50">({$album.description})</textarea>
 </td>
@@ -53,7 +53,7 @@
 <div class="dparts formTable"><div class="parts">
 <div class="partsHeading"><h3>アルバムを削除する</h3></div>
 <div class="partsInfo">
-<p>アルバムを削除するとこのアルバムに投稿された画像もすべて削除されます。</p>
+<p>アルバムを削除するとこのアルバムに投稿された写真もすべて削除されます。</p>
 </div>
 ({t_form_block m=pc a=page_h_delete_album})
 <input type="hidden" name="target_c_album_id" value="({$target_c_album_id})" />

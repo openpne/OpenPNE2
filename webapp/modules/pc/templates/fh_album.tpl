@@ -33,8 +33,8 @@
 ({* unknown *})<td style="padding: 5px;">({$album_info.subject})</td>
 ({* unknown *})</tr>
 ({* unknown *})<tr>
-({* unknown *})<th style="border-left-width: 1px; padding: 5px;">アルバムの説明</th>
-({* unknown *})<td style="padding: 5px;">({$album_info.description|t_cmd:'album'})</td>
+({* unknown *})<th style="border-left-width: 1px; padding: 5px;">説明文</th>
+({* unknown *})<td style="padding: 5px;">({$album_info.description|nl2br|t_url2a})</td>
 ({* unknown *})</tr>
 ({* unknown *})<tr>
 ({* unknown *})<th style="border-left-width: 1px; padding: 5px;">公開範囲</th>

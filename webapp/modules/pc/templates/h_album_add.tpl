@@ -3,26 +3,20 @@
 
 ({* {{{ formTable *})
 <div class="dparts formTable"><div class="parts">
-<div class="partsHeading"><h3>マイアルバム</h3></div>
+<div class="partsHeading"><h3>アルバムを作成する</h3></div>
 ({t_form_block _enctype=file m=pc a=page_h_album_add_confirm})
 <table>
 <tr>
 <th>タイトル</th>
-<td>
-<input type="text" class="input_text" name="subject" value="({$form_val.subject})" size="50" />
-</td>
+<td><input type="text" class="input_text" name="subject" value="({$form_val.subject})" size="50" /></td>
 </tr>
 <tr>
-<th>アルバム説明</th>
-<td>
-<textarea name="description" rows="6" cols="50">({$form_val.description})</textarea>
-</td>
+<th>説明文</th>
+<td><textarea name="description" rows="6" cols="50">({$form_val.description})</textarea></td>
 </tr>
 <tr>
 <th>表紙</th>
-<td>
-<input type="file" class="input_file" name="image_filename" size="40" />
-</td>
+<td><input type="file" class="input_file" name="image_filename" size="40" /></td>
 </tr>
 <tr>
 <th>公開範囲</th>
@@ -43,7 +37,6 @@
 ({/t_form_block})
 </div></div>
 ({* }}} *})
-
 
 </div><!-- Center -->
 </div><!-- LayoutC -->
