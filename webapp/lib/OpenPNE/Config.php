@@ -57,6 +57,7 @@ class OpenPNE_Config
             'OPENPNE_USE_DECORATION',
             'OPENPNE_USE_ALBUM',
             'OPENPNE_ALBUM_LIMIT',
+            'OPENPNE_DISP_KTAI_SNS_PRIVACY',
         );
     }
 
@@ -161,6 +162,7 @@ class OpenPNE_Config
             'OPENPNE_USE_DECORATION' => 1,
             'OPENPNE_USE_ALBUM' => 1,
             'OPENPNE_ALBUM_LIMIT' => '',
+            'OPENPNE_DISP_KTAI_SNS_PRIVACY' => 1,
         // config.php
             'OPENPNE_RSS_CACHE_DIR' => OPENPNE_VAR_DIR . '/rss_cache',
             'OPENPNE_PUBLIC_HTML_DIR' => OPENPNE_DIR . '/public_html',
