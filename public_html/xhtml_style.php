@@ -1776,10 +1776,50 @@ div.parts {
 	background-color: transparent;
 }
 #Body .searchFormLine {
- 	background-color: transparent;
+	background-color: transparent;
 }
 #Body .buttonLine {
 	background-color: transparent;
+}
+
+/*==============================================================================
+ * 25. messageList（メッセージリスト）
+ *----------------------------------------------------------------------------*/
+#Body .messageList th,
+#Body .messageList td {
+	padding: 5px 0;
+	border-left-width: 0;
+}
+
+.messageList th {
+	background-color: #<?php echo $colors[7]; ?>;
+}
+
+.messageList th.icon,
+.messageList td.icon {
+	width: 35px;
+	text-align: center;
+}
+
+.messageList th.check,
+.messageList td.check {
+	width: 35px;
+	text-align: center;
+}
+
+.messageList th.name,
+.messageList td.name {
+	width: 130px;
+}
+
+.messageList th.subject,
+.messageList td.subject {
+	width: 220px;
+}
+
+.messageList .partsInfo {
+	padding: 5px;
+	background: #<?php echo $colors[6]; ?>;
 }
 
 /*==============================================================================
