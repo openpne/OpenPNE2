@@ -71,7 +71,7 @@ function db_album_get_c_album_subject_list4c_member_id($c_member_id, $count= 10,
 }
 
 /**
- * アルバム画像を取得
+ * アルバム写真を取得
  * @param int $c_album_image_id
  */
 function db_album_image_get_c_album_image4id($c_album_image_id)
@@ -107,7 +107,7 @@ function p_common_is_active_c_album_image_id($c_album_image_id)
 }
 
 /**
- * アルバムIDからアルバムに登録された画像を取得
+ * アルバムIDからアルバムに登録された写真を取得
  *
  * @param   int   $c_album_id
  * @return  array
@@ -146,7 +146,7 @@ function db_album_get_c_album_page4id($c_album_id, $page_size = 10, $page = 0)
 }
 
 /**
- * 指定したアルバム画像の前の画像IDを取得する
+ * 指定したアルバム写真の前の写真IDを取得する
  * @param int $c_member_id
  * @param int $c_album_id
  * @param int $c_album_image_id
@@ -171,7 +171,7 @@ function db_album_image_c_album_image_id_prev4c_album_id($c_member_id, $c_album_
 }
 
 /**
- * 指定したアルバム画像の次の画像IDを取得する
+ * 指定したアルバム写真の次の写真IDを取得する
  * @param int $c_member_id
  * @param int $c_album_id
  * @param int $c_album_image_id
@@ -476,7 +476,7 @@ function db_album_update_c_album_cover($c_album_id,$subject,$description,$album_
 }
 
 /**
- * アルバムの表紙画像の名前を更新
+ * アルバムの表紙写真の名前を更新
  */
 function db_album_update_c_album_album_cover_image($c_album_id,$album_cover_image)
 {
@@ -536,7 +536,7 @@ function db_insert_c_album_image($c_album_id, $c_member_id, $image_filename, $im
 }
 
 /**
- * アルバムの削除、画像も削除
+ * アルバムの削除、写真も削除
  * @param int $c_album_id
  */
 function db_album_delete_c_album($c_album_id)
@@ -544,7 +544,7 @@ function db_album_delete_c_album($c_album_id)
     $sql = 'SELECT image_filename FROM c_album_image WHERE c_album_id = ?';
     $filename_list = db_get_col($sql, array($c_album_id));
 
-    //アルバムに登録された画像
+    //アルバムに登録された写真
     foreach ($filename_list as $filename) {
         db_album_image_data_delete($filename);
     }
@@ -557,7 +557,7 @@ function db_album_delete_c_album($c_album_id)
 
     $params = array(intval($c_album_id));
 
-    //アルバムと画像の関連
+    //アルバムと写真の関連
     $sql = 'DELETE FROM c_album_image WHERE c_album_id = ?';
     db_query($sql, $params);
 
@@ -580,7 +580,7 @@ function db_album_delete_c_album_image($c_album_image_id)
 }
 
 /**
- * アルバム用の画像を登録
+ * アルバム用の写真を登録
  */
 function image_insert_c_image_album4tmp($prefix, $tmpfile)
 {
@@ -630,7 +630,7 @@ function db_image_insert_c_image_album2($filename, $filepath)
     $image_data = fread($fp, filesize($filepath));
     fclose($fp);
 
-    // 画像かどうかのチェック
+    // 写真かどうかのチェック
     if (!@imagecreatefromstring($image_data)) return false;
 
     //TODO:typeフィールドを使う
@@ -681,7 +681,7 @@ function db_image_is_c_album_image4filename($filename)
 }
 
 /**
- * メンバーのすべてのアルバム画像のファイルサイズの合計を取得する
+ * メンバーのすべてのアルバム写真のファイルサイズの合計を取得する
  *
  * @params int $c_member_id
  * @return int
@@ -694,7 +694,7 @@ function db_album_sum_filesize4c_member_id($c_member_id)
 }
 
 /**
- * メンバーが画像を投稿可能かどうか
+ * メンバーが写真を投稿可能かどうか
  *
  * メンバーのファイルサイズの合計が OPENPNE_ALBUM_LIMIT を超過していないかどうかを返す
  * $new_filesize を指定した場合は、メンバーのファイルサイズの合計に $new_filesize を
