@@ -243,7 +243,9 @@
 <hr color="#({$ktai_color_config.border_01})">
 
 ■<a href="({t_url m=ktai a=page_o_sns_kiyaku})">利用規約</a><br>
+({if $smarty.const.OPENPNE_DISP_KTAI_SNS_PRIVACY})
 ■<a href="({t_url m=ktai a=page_o_sns_privacy})">ﾌﾟﾗｲﾊﾞｼｰﾎﾟﾘｼｰ</a><br>
+({/if})
 ({if $u!=1})
 ■<a href="({t_url m=ktai a=page_h_taikai_confirm})&amp;({$tail})">退会手続き</a><br>
 ({/if})
