@@ -28,10 +28,10 @@ class pc_page_h_album_add_confirm extends OpenPNE_Action
         // ----------
         $upfile_obj = $_FILES['image_filename'];
 
-        //表紙の画像
+        //表紙の写真
         if (!empty($upfile_obj) && $upfile_obj['error'] !== UPLOAD_ERR_NO_FILE) {
             if (!($image = t_check_image($upfile_obj))) {
-                $err_msg[] = '画像は'.IMAGE_MAX_FILESIZE.'KB以内のGIF・JPEG・PNGにしてください';
+                $err_msg[] = '写真は'.IMAGE_MAX_FILESIZE.'KB以内のGIF・JPEG・PNGにしてください';
             }
         }
         
@@ -43,7 +43,7 @@ class pc_page_h_album_add_confirm extends OpenPNE_Action
 
         $this->set('inc_navi', fetch_inc_navi('h'));
 
-        //画像をvar/tmpフォルダにコピー
+        //写真をvar/tmpフォルダにコピー
         $sessid = session_id();
         t_image_clear_tmp($sessid);
         if (file_exists($upfile_obj["tmp_name"])) {

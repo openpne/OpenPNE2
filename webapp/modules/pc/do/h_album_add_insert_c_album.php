@@ -40,7 +40,7 @@ class pc_do_h_album_add_insert_c_album extends OpenPNE_Action
             $sessid = session_id();
             t_image_clear_tmp($sessid);
     
-            //アルバムの表紙に画像ファイル名を登録
+            //アルバムの表紙に写真ファイル名を登録
             db_album_update_c_album_album_cover_image($c_album_id,$filename);
         }
         

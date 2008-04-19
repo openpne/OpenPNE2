@@ -40,7 +40,7 @@ class pc_page_h_album_image_edit_confirm extends OpenPNE_Action
         foreach ($upfiles as $key => $upfile) {
             if ($upfile['error'] !== UPLOAD_ERR_NO_FILE) {
                 if (!($image = t_check_image($upfile))) {
-                    $_REQUEST['msg'] = '画像は'.IMAGE_MAX_FILESIZE.'KB以内のGIF・JPEG・PNGにしてください';
+                    $_REQUEST['msg'] = '写真は'.IMAGE_MAX_FILESIZE.'KB以内のGIF・JPEG・PNGにしてください';
                     openpne_forward('pc', 'page', 'h_album_image_edit');
                     exit;
                 } else {

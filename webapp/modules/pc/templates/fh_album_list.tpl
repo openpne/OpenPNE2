@@ -26,29 +26,27 @@
 ({/foreach})
 </ul>
 </div>
-</div> <!--parts sideNav-->
+</div>
 ({* }}} *})
 
 </div><!-- Left -->
 
 <div id="Center">
 
-({*ここから：アルバムを追加*})
 ({if $type == "h"})
 ({* {{{ infoButtonBox *})
 <div class="dparts infoButtonBox"><div class="parts">
-<div class="partsHeading"><h3>マイアルバム</h3></div>
+<div class="partsHeading"><h3>アルバムを作成する</h3></div>
 <div class="block">
 ({t_form_block _method=get m=pc a=page_h_album_add})
 <ul class="moreInfo button">
-<li><input type="submit" class="input_submit" value="アルバムを追加" /></li>
+<li><input type="submit" class="input_submit" value="アルバムを作成する" /></li>
 </ul>
 ({/t_form_block})
 </div>
 </div></div>
 ({* }}} *})
 ({/if})
-({*ここまで：アルバムを追加*})
 
 ({if $target_album_list})
 ({* unknown *})<div class="dparts"><div class="parts">
@@ -85,8 +83,8 @@
 ({* unknown *})<td style="padding: 5px;" colspan="2">({$item.subject})</td>
 ({* unknown *})</tr>
 ({* unknown *})<tr>
-({* unknown *})<th style="border-left-width: 1px; padding: 5px;">アルバムの説明</th>
-({* unknown *})<td style="padding: 5px;" colspan="2">({$item.description|nl2br})</td>
+({* unknown *})<th style="border-left-width: 1px; padding: 5px;">説明文</th>
+({* unknown *})<td style="padding: 5px;" colspan="2">({$item.description|t_truncate:36:"":3})</td>
 ({* unknown *})</tr>
 ({* unknown *})<tr>
 ({* unknown *})<th style="border-left-width: 1px; padding: 5px;">公開範囲</th>

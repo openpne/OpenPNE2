@@ -35,14 +35,14 @@ class pc_do_h_album_image_edit_insert_c_album_image extends OpenPNE_Action
         $c_album_image = db_album_image_get_c_album_image4id($target_c_album_image_id);
         $img_tmp_dir_path = OPENPNE_VAR_DIR . '/tmp/';
 
-        // アルバム画像登録処理
+        // アルバム写真登録処理
         if ($tmpfile_1) {
             db_album_image_data_delete($c_album_image['image_filename']);
             $filename = image_insert_c_image_album4tmp("a_{$target_c_album_id}_1", $tmpfile_1);
             $filesize_1 = filesize($img_tmp_dir_path . basename($tmpfile_1));
         }
         
-        // 画像データ一時ファイル削除
+        // 写真データ一時ファイル削除
         $sessid = session_id();
         t_image_clear_tmp($sessid);
 
