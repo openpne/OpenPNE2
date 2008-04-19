@@ -57,7 +57,7 @@ class pc_page_h_album_image_add_confirm extends OpenPNE_Action
             }
         }
         if(!$is_set_file) {
-            $_REQUEST['msg'] = '画像を指定してください';
+            $_REQUEST['msg'] = '写真を指定してください';
             openpne_forward('pc', 'page', 'h_album_image_add');
             exit;
         }
@@ -66,7 +66,7 @@ class pc_page_h_album_image_add_confirm extends OpenPNE_Action
         foreach ($upfiles as $key => $upfile) {
             if ($upfile['error'] !== UPLOAD_ERR_NO_FILE) {
                 if (!($image = t_check_image($upfile))) {
-                    $_REQUEST['msg'] = '画像は'.IMAGE_MAX_FILESIZE.'KB以内のGIF・JPEG・PNGにしてください';
+                    $_REQUEST['msg'] = '写真は'.IMAGE_MAX_FILESIZE.'KB以内のGIF・JPEG・PNGにしてください';
                     openpne_forward('pc', 'page', 'h_album_image_add');
                     exit;
                 } else {
@@ -78,11 +78,11 @@ class pc_page_h_album_image_add_confirm extends OpenPNE_Action
 
         if (!db_album_is_insertable4c_member_id($u, $filesize_all)) {
             t_image_clear_tmp($sessid);
-            $msg = 'これ以上画像を投稿することができません。';
+            $msg = 'これ以上写真を投稿することができません。';
             if (!db_album_is_insertable4c_member_id($u)) {
-                $msg .= '登録済みの画像を削除してからやり直してください。';
+                $msg .= '登録済みの写真を削除してからやり直してください。';
             } else {
-                $msg .= '投稿する画像を減らすか、ファイルサイズを変更してやり直してください。';
+                $msg .= '投稿する写真を減らすか、ファイルサイズを変更してやり直してください。';
             }
             $p = array(
                 'msg' => $msg,
@@ -108,7 +108,7 @@ class pc_page_h_album_image_add_confirm extends OpenPNE_Action
             "tmpfile_5" => $tmpfiles[5],
         );
         
-        //ファイル画像を指定しているものだけ説明文を設定
+        //ファイル写真を指定しているものだけ説明文を設定
         foreach ($tmpfiles as $key => $tmpfile) {
             $name = "image_description{$key}";
             if($tmpfile){
