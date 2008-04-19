@@ -31,7 +31,7 @@ class pc_page_fh_album_image_show extends OpenPNE_Action
             openpne_redirect('pc', 'page_h_err_fh_album');
         }
         
-        //targetのアルバム画像が存在しない
+        //targetのアルバム写真が存在しない
         if(!p_common_is_active_c_album_image_id($target_c_album_image_id)) {
             openpne_redirect('pc', 'page_h_err_fh_album');
         }
