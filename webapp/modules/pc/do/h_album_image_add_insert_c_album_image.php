@@ -5,7 +5,7 @@
  */
 
 /**
- * アルバムに画像を登録
+ * アルバムに写真を登録
  */
 class pc_do_h_album_image_add_insert_c_album_image extends OpenPNE_Action
 {
@@ -32,7 +32,7 @@ class pc_do_h_album_image_add_insert_c_album_image extends OpenPNE_Action
         $insert_data = array();
         $filesize_all = 0;
 
-        // 画像登録用の連想配列を作成
+        // 写真登録用の連想配列を作成
         for ($i = 1; $i <= 5; $i++) {
             $tmpfile = $requests['tmpfile_' . $i];
 
@@ -60,11 +60,11 @@ class pc_do_h_album_image_add_insert_c_album_image extends OpenPNE_Action
 
         // 容量制限
         if (!db_album_is_insertable4c_member_id($u, $filesize_all)) {
-            $msg = 'これ以上画像を投稿することができません。';
+            $msg = 'これ以上写真を投稿することができません。';
             if (!db_album_is_insertable4c_member_id($u)) {
-                $msg .= '登録済みの画像を削除してからやり直してください。';
+                $msg .= '登録済みの写真を削除してからやり直してください。';
             } else {
-                $msg .= '投稿する画像を減らすか、ファイルサイズを変更してやり直してください。';
+                $msg .= '投稿する写真を減らすか、ファイルサイズを変更してやり直してください。';
             }
             $p = array(
                 'msg' => $msg,
@@ -73,12 +73,12 @@ class pc_do_h_album_image_add_insert_c_album_image extends OpenPNE_Action
             openpne_redirect('pc', 'page_h_album_image_add', $p);
         }
 
-        // 画像を登録する
+        // 写真を登録する
         foreach ($insert_data as $value) {
             db_insert_c_album_image($target_c_album_id, $u, $value['filename'], $value['description'], $value['filesize']);
         }
 
-        // 画像が登録されたので、アルバムの更新日時も更新する
+        // 写真が登録されたので、アルバムの更新日時も更新する
         db_album_update_c_album_u_datetime($target_c_album_id);
 
         $p = array('target_c_album_id' => $target_c_album_id);

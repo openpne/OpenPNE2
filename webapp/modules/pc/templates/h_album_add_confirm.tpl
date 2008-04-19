@@ -3,15 +3,18 @@
 
 ({* {{{ formTable *})
 <div class="dparts formTable"><div class="parts">
-<div class="partsHeading"><h3>以下の内容でよろしいですか？</h3></div>
+<div class="partsHeading"><h3>アルバムを作成する</h3></div>
+<div class="partsInfo">
+<p>以下の内容でよろしいですか？</p>
+</div>
 <table>
 <tr>
 <th>タイトル</th>
 <td>({$form_val.subject})</td>
 </tr>
 <tr>
-<th>アルバム説明</th>
-<td>({$form_val.description|nl2br})</td>
+<th>説明文</th>
+<td>({$form_val.description|nl2br|t_url2a})</td>
 </tr>
 <tr>
 <th>表紙</th>
@@ -38,12 +41,6 @@
 <input type="hidden" name="({$key})" value="({$item})" />
 ({/foreach})
 <input type="submit" class="input_submit" value="　作 　成　" />
-({*
-<input type="hidden" name="subject" value="({$form_val.subject})" />
-<input type="hidden" name="description" value="({$form_val.description})" />
-<input type="hidden" name="public_flag" value="({$form_val.public_flag})" />
-<input type="hidden" name="tmpfile_1" value="({$form_val.tmpfile_1})" />
-*})
 ({/t_form_block})
 </li>
 <li>
@@ -52,12 +49,6 @@
 <input type="hidden" name="({$key})" value="({$item})" />
 ({/foreach})
 <input type="submit" class="input_submit" value="　修 　正　" />
-({*
-<input type="hidden" name="subject" value="({$form_val.subject})" />
-<input type="hidden" name="description" value="({$form_val.description})" />
-<input type="hidden" name="public_flag" value="({$form_val.public_flag})" />
-<input type="hidden" name="tmpfile_1" value="({$form_val.tmpfile_1})" />
-*})
 ({/t_form_block})
 </li>
 </ul>

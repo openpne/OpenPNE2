@@ -36,7 +36,7 @@ class pc_page_h_album_image_add extends OpenPNE_Action
         $this->set('target_c_album_id',$target_c_album_id);
         $this->set("form_val", $form_val);
         
-        //画像データ一時ファイル削除
+        //写真データ一時ファイル削除
         $sessid = session_id();
         t_image_clear_tmp($sessid);
 

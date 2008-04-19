@@ -24,10 +24,12 @@ class pc_page_h_album_image_delete_confirm extends OpenPNE_Action
             openpne_redirect('pc', 'page_h_err_fh_album');
         }
 
-        // target の画像が存在しない
+        // target の写真が存在しない
         if (!p_common_is_active_c_album_image_id($target_c_album_image_id)) { 
             openpne_redirect('pc', 'page_h_err_fh_album');
         }
+
+        $this->set('inc_navi', fetch_inc_navi("h"));
 
         $target_c_album_image = db_album_image_get_c_album_image4id($target_c_album_image_id);
         $this->set('target_c_album_image',$target_c_album_image);
