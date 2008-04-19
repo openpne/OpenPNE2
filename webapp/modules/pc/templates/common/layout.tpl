@@ -7,35 +7,12 @@
 <meta http-equiv="Content-Style-Type" content="text/css" />
 <meta http-equiv="Content-Script-Type" content="text/javascript" />
 <title>({$INC_HEADER_title})</title>
-<link rel="stylesheet" href="./css/default.css" type="text/css" />
-<link rel="stylesheet" href="./xhtml_style.php" type="text/css" />
+<link rel="stylesheet" href="./xhtml_style.php?r=6659" type="text/css" />
 <script type="text/javascript" src="./js/prototype.js"></script>
 <script type="text/javascript" src="./js/Selection.js"></script>
 <script type="text/javascript" src="./js/pne.js"></script>
 <script type="text/javascript" src="./js/tiny_mce/tiny_mce.js"></script>
 <style type="text/css">
-.border_01 { border: #({$INC_HEADER_color_config.border_01}) 1px solid; }
-.border_07 { border: #({$INC_HEADER_color_config.border_07}) 1px solid; }
-.border_10 { border: #({$INC_HEADER_color_config.border_10}) 1px solid; }
-.bg_00 { background-color: #({$INC_HEADER_color_config.bg_00}); }
-.bg_01 { background-color: #({$INC_HEADER_color_config.bg_01}); }
-.bg_02 { background-color: #({$INC_HEADER_color_config.bg_02}); }
-.bg_03 { background-color: #({$INC_HEADER_color_config.bg_03}); }
-.bg_04 { background-color: #({$INC_HEADER_color_config.bg_04}); }
-.bg_05 { background-color: #({$INC_HEADER_color_config.bg_05}); }
-.bg_06 { background-color: #({$INC_HEADER_color_config.bg_06}); }
-.bg_07 { background-color: #({$INC_HEADER_color_config.bg_07}); }
-.bg_08 { background-color: #({$INC_HEADER_color_config.bg_08}); }
-.bg_09 { background-color: #({$INC_HEADER_color_config.bg_09}); }
-.bg_10 { background-color: #({$INC_HEADER_color_config.bg_10}); }
-.bg_11 { background-color: #({$INC_HEADER_color_config.bg_11}); }
-.bg_12 { background-color: #({$INC_HEADER_color_config.bg_12}); }
-.bg_13 { background-color: #({$INC_HEADER_color_config.bg_13}); }
-.bg_14 { background-color: #({$INC_HEADER_color_config.bg_14}); }
-.color_19 { background-color: #({$INC_HEADER_color_config.color_19}); }
-body { background-color: #({$INC_HEADER_color_config.bg_12}); }
-.container { background-color: #({$INC_HEADER_color_config.bg_13}); }
-
 /* 文字装飾 */
 ({if $INC_HEADER_decoration_config.op_b})
 span.op_b {
