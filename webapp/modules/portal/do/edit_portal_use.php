@@ -1,12 +1,11 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2008 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
 class portal_do_edit_portal_use extends OpenPNE_Action
 {
-
     function execute($requests)
     {
         $use_portal = $requests['use_portal'];
