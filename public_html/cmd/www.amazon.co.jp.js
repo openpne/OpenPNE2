@@ -2,8 +2,8 @@
  * Amazon review CMD
  *
  * @license http://www.php.net/license/3_0.txt PHP License ver3.0
- * @copyright 2007-2007 imoto<imoto@tejimaya.com>
- * @copyright 2007-2007 Tejimaya .inc
+ * @copyright 2007-2008 imoto<imoto@tejimaya.com>
+ * @copyright 2007-2008 Tejimaya .inc
  * @author Imoto<imoto@tejimaya.com>
  * @author Mamoru Tejima<tejima@tejimaya.com>
  */
