@@ -1,11 +1,11 @@
 <?php
 /**
- * @copyright 2005-2006 OpenPNE Project
+ * @copyright 2005-2008 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
 /**
- * コミュニティ管理者交代依頼メッセージ送信
+ * My Newsを更新
  */
 class pc_do_h_home_update_my_news extends OpenPNE_Action
 {
