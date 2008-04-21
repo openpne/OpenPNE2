@@ -847,4 +847,41 @@ function util_get_validate_rules_profile($disp = 'config')
     return $rules;
 }
 
+function util_send_header_internal_server_error()
+{
+    header('HTTP/1.0 500 Internal Server Error'); 
+    exit;
+}
+
+function util_output_xml4array($data, $root)
+{
+    require_once 'XML/Serializer.php';
+    $option = array(
+        'rootName' => $root,
+    );
+    $serializer = new XML_Serializer($option);
+
+    $result = $serializer->serialize($data);
+
+    if ($result === true) {
+        $xml = $serializer->getSerializedData();
+        header('Content-Type: application/xml');
+        echo $xml;
+        exit;
+    }
+
+    util_send_header_internal_server_error();
+}
+
+function util_get_img_url($filename, $width, $height)
+{
+    require_once 'smarty_plugins/function.t_img_url.php';
+    $params = array(
+        'filename' => $filename,
+        'w' => $width,
+        'h' => $height,
+    );
+    return smarty_function_t_img_url($params, $dummy);
+}
+
 ?>
