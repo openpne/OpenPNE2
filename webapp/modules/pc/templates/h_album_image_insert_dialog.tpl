@@ -191,6 +191,7 @@ function insertAlbumImageURLToTextarea(album_image_id, album_id) {
 ({* {{{ linkLine *})
 <div class="parts linkLine"><ul class="moreInfo">
 <li><a href="#" onclick="window.close()">ウィンドウを閉じる</a></li>
+<li><a href="({t_url m=pc a=page_h_album_insert_dialog})">アルバム選択に戻る</a></li>
 </ul></div>
 ({* }}} *})
 
