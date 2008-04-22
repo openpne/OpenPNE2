@@ -37,7 +37,7 @@ function pne_mce_editor_init()
         plugins : "openpne",
         theme_advanced_toolbar_location : "top",
         theme_advanced_toolbar_align : "left",
-        theme_advanced_buttons1 : "op_b,op_u,op_s,op_i,op_large,op_small,op_color,op_album,op_emoji_docomo,op_emoji_au,op_emoji_softbank",
+        theme_advanced_buttons1 : "op_b,op_u,op_s,op_i,op_large,op_small,op_color,op_image,op_emoji_docomo,op_emoji_au,op_emoji_softbank",
         theme_advanced_buttons2 : "",
         theme_advanced_buttons3 : "",
         valid_elements : "b/strong,u,s/strike,i,font[color|size],br",

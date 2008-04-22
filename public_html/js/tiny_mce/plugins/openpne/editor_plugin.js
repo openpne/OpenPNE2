@@ -61,6 +61,9 @@
             ed.addCommand('mceOpenPNE_op_small', function() {
                 tinyMCE.execCommand("Fontsize", false, 1);
             });
+            ed.addCommand('mceOpenPNE_op_image', function() {
+                window.open(config.op_image.contentURL, '', 'width=600,height=550,toolbar=no,scrollbars=yes,left=10,top=10');
+            });
 
             // button
             for (var key in config) {
