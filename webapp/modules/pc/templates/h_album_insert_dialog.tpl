@@ -5,8 +5,24 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta http-equiv="Content-Style-Type" content="text/css" />
 <meta http-equiv="Content-Script-Type" content="text/javascript" />
+<script type="text/javascript" src="./js/Selection.js"></script>
 <title>({$INC_HEADER_title})</title>
 <link rel="stylesheet" href="./xhtml_style.php?r=6665" type="text/css" />
+<script type="text/javascript">
+function insertAlbumURLToTextarea(album_id) {
+    var albumURLBase = "({t_url _absolute=1 _html=0 m=pc a=page_fh_album})";
+
+    var elm = window.opener.document.getElementById('mce_editor_textarea');
+    var selection = new Selection(elm);
+
+    var pos = selection.create(); 
+
+    var replace = albumURLBase + "&target_c_album_id=" + album_id;
+    var head = elm.value.substring(0, pos.start);
+    var tail = elm.value.substring(pos.end, elm.value.length);
+    elm.value =  head + replace + tail;
+}
+</script>
 </head>
 <body id="pc_page_({$INC_HEADER_page_name})"><div id="Body">
 <div id="Container" style="width: 600px">
@@ -45,7 +61,7 @@
 ({* unknown *})<tr>
 ({* unknown *})<td rowspan="4" align="center" style="width: 190px; padding: 5px;">
 ({* unknown *})<img src="({if $item.album_cover_image})({t_img_url filename=$item.album_cover_image w=180 h=180})({else})({t_img_url_skin filename=no_image w=180 h=180})({/if})" alt="" />
-({* unknown *})<p style="text-align:center; padding: 2px;"><a href="">アルバムを挿入</a></p>
+({* unknown *})<p style="text-align:center; padding: 2px;"><a href="#" onclick="insertAlbumURLToTextarea(({$item.c_album_id}))">アルバムを挿入</a></p>
 ({* unknown *})</td>
 ({* unknown *})<th style="width:75px; padding: 5px;">タイトル</th>
 ({* unknown *})<td style="padding: 5px;" colspan="2">({$item.subject})</td>
@@ -80,7 +96,7 @@
 
 ({* {{{ linkLine *})
 <div class="parts linkLine"><ul class="moreInfo">
-<li><a href="">ウィンドウを閉じる</a></li>
+<li><a href="#" onclick="window.close()">ウィンドウを閉じる</a></li>
 </ul></div>
 ({* }}} *})
 
