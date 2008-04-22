@@ -557,4 +557,7 @@ define('OPENPNE_SEND_NO_CACHE_HEADER', false);
 // 管理画面でURL・小窓変換機能を使用するかどうか
 define('OPENPNE_ADMIN_CONVERT_URL', true);
 
+// OpenID サーバ（プロバイダ）となるかどうか
+define('OPENPNE_IS_OPENID_SERVER', false);
+
 ?>
