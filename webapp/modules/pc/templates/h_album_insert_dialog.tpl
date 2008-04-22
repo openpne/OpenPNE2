@@ -6,21 +6,27 @@
 <meta http-equiv="Content-Style-Type" content="text/css" />
 <meta http-equiv="Content-Script-Type" content="text/javascript" />
 <script type="text/javascript" src="./js/Selection.js"></script>
+<script type="text/javascript" src="./js/tiny_mce/tiny_mce_popup.js"></script>
 <title>({$INC_HEADER_title})</title>
 <link rel="stylesheet" href="./xhtml_style.php?r=6665" type="text/css" />
 <script type="text/javascript">
 function insertAlbumURLToTextarea(album_id) {
     var albumURLBase = "({t_url _absolute=1 _html=0 m=pc a=page_fh_album})";
+    var replace = " " + albumURLBase + "&target_c_album_id=" + album_id + " ";
 
     var elm = window.opener.document.getElementById('mce_editor_textarea');
-    var selection = new Selection(elm);
 
-    var pos = selection.create(); 
+    if (elm.style.display == "none") {
+        tinyMCEPopup.execCommand('mceInsertContent', false, replace);
+    } else {
+        var selection = new Selection(elm);
 
-    var replace = albumURLBase + "&target_c_album_id=" + album_id;
-    var head = elm.value.substring(0, pos.start);
-    var tail = elm.value.substring(pos.end, elm.value.length);
-    elm.value =  head + replace + tail;
+        var pos = selection.create(); 
+
+        var head = elm.value.substring(0, pos.start);
+        var tail = elm.value.substring(pos.end, elm.value.length);
+        elm.value =  head + replace + tail;
+    }
 }
 </script>
 </head>
