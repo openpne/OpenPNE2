@@ -21,7 +21,7 @@ class pc_page_h_album_image_insert_dialog extends OpenPNE_Action
         // ----------
 
         $page += $direc;
-        $page_size = 50;
+        $page_size = 20;
 
         $target_c_album = db_album_get_c_album4c_album_id($target_c_album_id);
         $target_c_member_id = $u;
