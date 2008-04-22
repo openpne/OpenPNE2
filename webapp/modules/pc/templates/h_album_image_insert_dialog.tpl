@@ -5,8 +5,24 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta http-equiv="Content-Style-Type" content="text/css" />
 <meta http-equiv="Content-Script-Type" content="text/javascript" />
+<script type="text/javascript" src="./js/Selection.js"></script>
 <title>({$INC_HEADER_title})</title>
 <link rel="stylesheet" href="./xhtml_style.php?r=6665" type="text/css" />
+<script type="text/javascript">
+function insertAlbumImageURLToTextarea(album_image_id, album_id) {
+    var albumURLBase = "({t_url _absolute=1 _html=0 m=pc a=page_fh_album_image_show})";
+
+    var elm = window.opener.document.getElementById('mce_editor_textarea');
+    var selection = new Selection(elm);
+
+    var pos = selection.create(); 
+
+    var replace = albumURLBase + "&target_c_album_image_id=" + album_image_id + "&target_c_album_id=" + album_id;
+    var head = elm.value.substring(0, pos.start);
+    var tail = elm.value.substring(pos.end, elm.value.length);
+    elm.value =  head + replace + tail;
+}
+</script>
 </head>
 <body id="pc_page_({$INC_HEADER_page_name})"><div id="Body">
 <div id="Container" style="width: 600px">
@@ -45,7 +61,7 @@
 </tr>
 <tr class="text">
 ({t_loop from=$target_album_image start=0 num=5})
-<td>({if $item})({$item.image_description})<br />画像を挿入({/if})</td>
+<td>({if $item})({$item.image_description})<br /><a href="#" onclick="insertAlbumImageURLToTextarea(({$item.c_album_image_id}), ({$item.c_album_id}))">写真を挿入</a>({/if})</td>
 ({/t_loop})
 </tr>
 
@@ -57,7 +73,7 @@
 </tr>
 <tr class="text">
 ({t_loop from=$target_album_image start=5 num=5})
-<td>({if $item})({$item.image_description})<br />画像を挿入({/if})</td>
+<td>({if $item})({$item.image_description})<br /><a href="#" onclick="insertAlbumImageURLToTextarea(({$item.c_album_image_id}), ({$item.c_album_id}))">写真を挿入</a>({/if})</td>
 ({/t_loop})
 </tr>
 ({/if})
@@ -70,7 +86,7 @@
 </tr>
 <tr class="text">
 ({t_loop from=$target_album_image start=10 num=5})
-<td>({if $item})({$item.image_description})<br />画像を挿入({/if})</td>
+<td>({if $item})({$item.image_description})<br /><a href="#" onclick="insertAlbumImageURLToTextarea(({$item.c_album_image_id}), ({$item.c_album_id}))">写真を挿入</a>({/if})</td>
 ({/t_loop})
 </tr>
 ({/if})
@@ -83,7 +99,7 @@
 </tr>
 <tr class="text">
 ({t_loop from=$target_album_image start=15 num=5})
-<td>({if $item})({$item.image_description})<br />画像を挿入({/if})</td>
+<td>({if $item})({$item.image_description})<br /><a href="#" onclick="insertAlbumImageURLToTextarea(({$item.c_album_image_id}), ({$item.c_album_id}))">写真を挿入</a>({/if})</td>
 ({/t_loop})
 </tr>
 ({/if})
@@ -96,7 +112,7 @@
 </tr>
 <tr class="text">
 ({t_loop from=$target_album_image start=20 num=5})
-<td>({if $item})({$item.image_description})<br />画像を挿入({/if})</td>
+<td>({if $item})({$item.image_description})<br /><a href="#" onclick="insertAlbumImageURLToTextarea(({$item.c_album_image_id}), ({$item.c_album_id}))">写真を挿入</a>({/if})</td>
 ({/t_loop})
 </tr>
 ({/if})
@@ -109,7 +125,7 @@
 </tr>
 <tr class="text">
 ({t_loop from=$target_album_image start=25 num=5})
-<td>({if $item})({$item.image_description})<br />画像を挿入({/if})</td>
+<td>({if $item})({$item.image_description})<br /><a href="#" onclick="insertAlbumImageURLToTextarea(({$item.c_album_image_id}), ({$item.c_album_id}))">写真を挿入</a>({/if})</td>
 ({/t_loop})
 </tr>
 ({/if})
@@ -122,7 +138,7 @@
 </tr>
 <tr class="text">
 ({t_loop from=$target_album_image start=30 num=5})
-<td>({if $item})({$item.image_description})<br />画像を挿入({/if})</td>
+<td>({if $item})({$item.image_description})<br /><a href="#" onclick="insertAlbumImageURLToTextarea(({$item.c_album_image_id}), ({$item.c_album_id}))">写真を挿入</a>({/if})</td>
 ({/t_loop})
 </tr>
 ({/if})
@@ -135,7 +151,7 @@
 </tr>
 <tr class="text">
 ({t_loop from=$target_album_image start=35 num=5})
-<td>({if $item})({$item.image_description})<br />画像を挿入({/if})</td>
+<td>({if $item})({$item.image_description})<br /><a href="#" onclick="insertAlbumImageURLToTextarea(({$item.c_album_image_id}), ({$item.c_album_id}))">写真を挿入</a>({/if})</td>
 ({/t_loop})
 </tr>
 ({/if})
@@ -148,7 +164,7 @@
 </tr>
 <tr class="text">
 ({t_loop from=$target_album_image start=40 num=5})
-<td>({if $item})({$item.image_description})<br />画像を挿入({/if})</td>
+<td>({if $item})({$item.image_description})<br /><a href="#" onclick="insertAlbumImageURLToTextarea(({$item.c_album_image_id}), ({$item.c_album_id}))">写真を挿入</a>({/if})</td>
 ({/t_loop})
 </tr>
 ({/if})
@@ -161,7 +177,7 @@
 </tr>
 <tr class="text">
 ({t_loop from=$target_album_image start=45 num=5})
-<td>({if $item})({$item.image_description})<br />画像を挿入({/if})</td>
+<td>({if $item})({$item.image_description})<br /><a href="#" onclick="insertAlbumImageURLToTextarea(({$item.c_album_image_id}), ({$item.c_album_id}))">写真を挿入</a>({/if})</td>
 ({/t_loop})
 </tr>
 ({/if})
@@ -174,7 +190,7 @@
 
 ({* {{{ linkLine *})
 <div class="parts linkLine"><ul class="moreInfo">
-<li><a href="">ウィンドウを閉じる</a></li>
+<li><a href="#" onclick="window.close()">ウィンドウを閉じる</a></li>
 </ul></div>
 ({* }}} *})
 
