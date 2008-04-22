@@ -9,7 +9,8 @@ tinyMCE.addI18n('ja.openpne', {  // エディタ本体
     op_i : '斜体',
     op_large : '大きめの文字',
     op_small : '小さめの文字',
-    op_color : '文字色変更'
+    op_color : '文字色変更',
+    op_image : 'アルバム画像挿入'
 });
 
 tinyMCE.addI18n('ja.advanced_dlg', {  // カラーピッカー
