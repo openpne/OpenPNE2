@@ -3111,4 +3111,36 @@ function db_admin_c_album_image_list4c_album_image_id($page, $page_size, &$pager
     $pager = admin_make_pager($page, $page_size, $total_num);
     return $c_image_album_list;
 }
+
+function db_admin_get_c_cmd_caster_list()
+{
+    $sql = 'SELECT * FROM c_cmd_caster ORDER BY c_cmd_caster_id ASC';
+    return db_get_all($sql);
+}
+
+function db_admin_insert_c_cmd_caster($url)
+{
+    $data = array(
+        'url' => $url,
+    );
+    return db_insert('c_cmd_caster', $data);
+}
+
+function db_admin_delete_c_cmd_caster($c_cmd_caster_id)
+{
+    $sql = 'DELETE FROM c_cmd_caster WHERE c_cmd_caster_id = ?';
+    return db_query($sql, array($c_cmd_caster_id));
+}
+
+function db_admin_update_c_cmd_caster($c_cmd_caster_id, $url)
+{
+    $data = array(
+        'url' => $url,
+    );
+    $where = array(
+        'c_cmd_caster_id' => $c_cmd_caster_id,
+    );
+    return db_update('c_cmd_caster', $data, $where);
+}
+
 ?>
