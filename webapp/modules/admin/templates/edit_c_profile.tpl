@@ -168,6 +168,7 @@
 
 <table class="basicType2">
 <tr>
+<th>ID</th>
 <th>項目名</th>
 <th>並び順</th>
 <th colspan="2">操作</th>
@@ -175,6 +176,7 @@
 ({foreach from=$item.options item=option})
 <tr>
 <form action="./" method="post">
+<td>({$option.c_profile_option_id})</td>
 <td>
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_c_profile_option','do')})" />
@@ -194,10 +196,10 @@
 </td>
 </form>
 </tr>
-</form>
 ({/foreach})
 <tr>
 <form action="./" method="post">
+<td>-</td>
 <td>
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('insert_c_profile_option','do')})" />
