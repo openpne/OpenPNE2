@@ -859,7 +859,7 @@ function db_member_check_profile($profile_list, $public_flag_list)
                     ' WHERE c_profile_option_id = ? AND c_profile_id = ?';
             $params = array(intval($v), intval($c_profile['c_profile_id']));
             $value = db_get_one($sql, $params);
-            $c_profile_option_id = $v;
+            $c_profile_option_id = intval($v);
             break;
         case 'checkbox':
             $value = array();
