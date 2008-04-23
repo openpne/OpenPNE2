@@ -173,6 +173,7 @@ li { list-style-type: none;}
 #admin_page_manage_c_commu li#adminSNSConfig a.tab ,
 #admin_page_edit_c_holiday li#adminSNSConfig a.tab ,
 #admin_page_list_c_rank li#adminSNSConfig a.tab ,
+#admin_page_list_c_cmd_caster li#adminSNSConfig a.tab ,
 
 #admin_page_list_c_admin_user li#adminAdminConfig a.tab ,
 #admin_page_edit_admin_password li#adminAdminConfig a.tab ,
@@ -220,6 +221,7 @@ li { list-style-type: none;}
 #admin_page_edit_c_holiday li#adminSNSConfig ul.pull ,
 #admin_page_list_c_rank li#adminSNSConfig ul.pull ,
 #admin_page_edit_deco li#adminSNSConfig ul.pull ,
+#admin_page_list_c_cmd_caster li#adminSNSConfig ul.pull ,
 
 #admin_page_list_c_admin_user li#adminAdminConfig ul.pull ,
 #admin_page_edit_admin_password li#adminAdminConfig ul.pull ,
@@ -1526,6 +1528,9 @@ div.listControl p.listMove a {
 #admin_page_edit_album_limit div#limitForm form {margin-bottom: 10px;}
 #admin_page_edit_album_limit div#limitForm label {margin-left:1em;}
 #admin_page_edit_album_limit div#limitForm input {width:5em;}
+
+/** admin_page_edit_album_limit **/
+#admin_page_list_c_cmd_caster input.url {width: 450px;}
 
 /*********** footer ***********/
 .footer { margin-top: 20px; padding: 10px 0; text-align: center;}
