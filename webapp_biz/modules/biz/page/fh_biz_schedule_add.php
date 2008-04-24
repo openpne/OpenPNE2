@@ -81,32 +81,35 @@ class biz_page_fh_biz_schedule_add extends OpenPNE_Action
         for ($i = $nowyear; $i <= $nowyear+10; $i++) {
             if ($i == $nowyear) {
                 //現在年をデフォルトに
-                $years = '<option value="'.$i.'" selected>';
+                $years = '<option value="'.$i.'" selected="selected">';
             } else {
                 $years .= '<option value="'.$i.'">';
             }
             $years .= $i.'年';
+	    $years .= '</option>';
         }
 
         for ($i = 1; $i <= 12; $i++) {
             $i_f = sprintf("%02d",$i);  //月は常に二桁
             if ($i == $nowmonth) {
                 //現在月をデフォルトに
-                $monthes .= '<option value="'.$i_f.'" selected>';
+                $monthes .= '<option value="'.$i_f.'" selected="selected">';
             } else {
                 $monthes .= '<option value="'.$i_f.'">';
             }
             $monthes .= $i.'月';
+	    $monthes .= '</option>';
         }
 
         for ($i = 1; $i <= 31; $i++) {
             $i_f = sprintf("%02d",$i);  //日は常に二桁
             if ($i == $nowday) {
-                $days .= '<option value="'.$i_f.'" selected>';
+                $days .= '<option value="'.$i_f.'" selected="selected">';
             } else {
                 $days .= '<option value="'.$i_f.'">';
             }
             $days .= $i.'日';
+	    $days .= '</option>';
         }
 
         $hours = biz_makeSerialArray(23);  //時
