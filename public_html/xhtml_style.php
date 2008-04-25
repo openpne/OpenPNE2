@@ -41,7 +41,6 @@ iframe, object, embed {
 	margin: 0;
 	padding: 0;
 	border: none;
-	text-align: left;
 }
 ul, ol {
 	list-style-position: outside;
@@ -145,6 +144,10 @@ select {
 }
 p {
 	overflow: hidden;
+}
+a:focus {
+	margin-left: 1px;
+	margin-right: -1px;
 }
 strong {
 	font-weight: bold;
@@ -335,10 +338,12 @@ div.pagerAbsolute {
 div.pagerAbsolute p {
 	display: inline;
 }
-div.pagerRelative,
-div.pagerRelativeMulti {
+div.pagerRelative {
 	padding: 4px;
 	text-align: right;
+}
+div.pagerRelativeMulti {
+	padding: 4px;
 }
 div.pagerRelative p,
 div.pagerRelativeMulti div.pager p {
@@ -1695,12 +1700,95 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 }
 
 /*==============================================================================
- * 
+ * 25. messageList（メッセージリスト）
  *----------------------------------------------------------------------------*/
-
-/*==============================================================================
- * 
- *----------------------------------------------------------------------------*/
+.messageList .partsHeading p.date {
+	font-weight: bold;
+}
+.messageList .pagerRelativeMulti {
+	zoom: 1;
+	overflow: hidden;
+	overflow: -moz-scrollbars-none;
+}
+.messageList .pagerRelativeMulti .pager {
+	position: static;
+	float: right;
+	width: 290px;
+	margin-top: 1px;
+	text-align: right;
+}
+.messageList .pagerRelativeMulti .pager p {
+	margin-left: 0;
+}
+* html .messageList .pagerRelativeMulti .pager p {
+	margin-left: 4px;
+}
+*:first-child+html .messageList .pagerRelativeMulti .pager p {
+	margin-left: 4px;
+}
+.messageList p.icons {
+	float: left;
+	width: 220px;
+}
+.messageList p.icons img {
+	padding-right: 16px;
+	background: url(<?php echo getSkin('articleList_marker'); ?>) no-repeat 96% 6px;
+	vertical-align: text-bottom;
+}
+.messageList tr {
+	height: 20px;
+}
+.messageList tr.unread {
+	background: #<?php echo $colors[7]; ?>;
+}
+#Body .messageList th.delete {
+	font-weight: normal;
+}
+#Body .messageList th {
+	padding: 0 2px;
+	border-width: 1px 0 0;
+	font-weight: bold;
+}
+#Body .messageList td {
+	padding: 0 2px;
+	border-width: 1px 0 0;
+}
+#Body .messageList td .input_checkbox {
+	margin-left: 4px;
+}
+.messageList td:first-child {
+	text-align: center;
+}
+.messageList col.status {
+	width: 35px;
+	text-align: center;
+}
+.messageList col.delete {
+	width: 35px;
+}
+.messageList col.target {
+	width: 130px;
+}
+.messageList col.title {
+	width: auto;
+}
+.messageList col.date {
+	width: 80px;
+}
+.messageList table span {
+	width: 100%;
+	display: block;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.messageList div.operation p {
+	margin-top: 8px;
+	margin-bottom: 5px;
+}
+.messageList div.operation ul.moreInfo {
+	text-align: left;
+}
 
 /**=============================================================================
  * 未確認スタイル
@@ -1783,46 +1871,6 @@ div.parts {
 }
 #Body .buttonLine {
 	background-color: transparent;
-}
-
-/*==============================================================================
- * 25. messageList（メッセージリスト）
- *----------------------------------------------------------------------------*/
-#Body .messageList th,
-#Body .messageList td {
-	padding: 5px 0;
-	border-left-width: 0;
-}
-
-.messageList th {
-	background-color: #<?php echo $colors[7]; ?>;
-}
-
-.messageList th.icon,
-.messageList td.icon {
-	width: 35px;
-	text-align: center;
-}
-
-.messageList th.check,
-.messageList td.check {
-	width: 35px;
-	text-align: center;
-}
-
-.messageList th.name,
-.messageList td.name {
-	width: 130px;
-}
-
-.messageList th.subject,
-.messageList td.subject {
-	width: 220px;
-}
-
-.messageList .partsInfo {
-	padding: 5px;
-	background: #<?php echo $colors[6]; ?>;
 }
 
 /** page_o_login */
