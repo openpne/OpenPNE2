@@ -20,9 +20,9 @@ class OpenPNE_RSS
         $this->charset = $charset;
     }
 
-    function fetch($rss_url, $is_get_feed_title = false)
+    function create_simplepie_object($rss_url)
     {
-        $feed = new SimplePie();
+        $feed =& new SimplePie();
         if (OPENPNE_USE_HTTP_PROXY) {
             $proxy = OPENPNE_HTTP_PROXY_HOST . ":" . OPENPNE_HTTP_PROXY_PORT;
             $feed->set_proxy($proxy);
@@ -30,8 +30,34 @@ class OpenPNE_RSS
 
         $feed->set_feed_url($rss_url);
         $feed->set_cache_location(OPENPNE_RSS_CACHE_DIR);
-
         if (!(@$feed->init())) {
+            return false;
+        }
+
+        return $feed;
+    }
+
+    function get_feed_title($rss_url)
+    {
+        if (!$feed =& $this->create_simplepie_object($rss_url)) {
+            return false;
+        }
+
+        return @$feed->get_title();
+    }
+
+    function get_feed_description($rss_url)
+    {
+        if (!$feed =& $this->create_simplepie_object($rss_url)) {
+            return false;
+        }
+
+        return @$feed->get_description();
+    }
+
+    function fetch($rss_url, $is_get_feed_title = false)
+    {
+        if (!$feed =& $this->create_simplepie_object($rss_url)) {
             return false;
         }
 
