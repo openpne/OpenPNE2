@@ -3120,27 +3120,126 @@ function db_admin_get_c_cmd_caster_list()
 
 function db_admin_insert_c_cmd_caster($url)
 {
+    require_once 'OpenPNE/RSS.php';
+    $rss = new OpenPNE_RSS();
+    $title = $rss->get_feed_title($url);
+    $description = $rss->get_feed_description($url);
+
+    if (!$title && !$description) {
+        return false;
+    }
+
+    if (!$title) {
+        $title = '';
+    }
+
+    if (!$description) {
+        $title = '';
+    }
+
     $data = array(
+        'title' => $title,
+        'description' => $description,
         'url' => $url,
     );
-    return db_insert('c_cmd_caster', $data);
+    $c_cmd_caster_id = db_insert('c_cmd_caster', $data);
+
+    db_admin_update_c_cmd4c_cmd_caster_id($c_cmd_caster_id);
+
+    return $c_cmd_caster_id;
 }
 
 function db_admin_delete_c_cmd_caster($c_cmd_caster_id)
 {
     $sql = 'DELETE FROM c_cmd_caster WHERE c_cmd_caster_id = ?';
-    return db_query($sql, array($c_cmd_caster_id));
+    db_query($sql, array($c_cmd_caster_id));
+
+    $sql = 'DELETE FROM c_cmd WHERE c_cmd_caster_id = ?';
+    db_query($sql, array($c_cmd_caster_id));
 }
 
 function db_admin_update_c_cmd_caster($c_cmd_caster_id, $url)
 {
+    require_once 'OpenPNE/RSS.php';
+    $rss = new OpenPNE_RSS();
+    $title = $rss->get_feed_title($url);
+    $description = $rss->get_feed_description($url);
+
+    if (!$title && !$description) {
+        return false;
+    }
+
+    if (!$title) {
+        $title = '';
+    }
+
+    if (!$description) {
+        $title = '';
+    }
+
     $data = array(
+        'title' => $title,
+        'description' => $description,
         'url' => $url,
     );
-    $where = array(
-        'c_cmd_caster_id' => $c_cmd_caster_id,
-    );
-    return db_update('c_cmd_caster', $data, $where);
+    $where = array('c_cmd_caster_id' => $c_cmd_caster_id);
+    $result = db_update('c_cmd_caster', $data, $where);
+
+    db_admin_update_c_cmd4c_cmd_caster_id($c_cmd_caster_id);
+    return $result;
+}
+
+function db_admin_update_c_cmd4c_cmd_caster_id($c_cmd_caster_id)
+{
+    $sql = 'SELECT url FROM c_cmd_caster WHERE c_cmd_caster_id = ?';
+    $url = db_get_one($sql, array($c_cmd_caster_id));
+
+    require_once 'OpenPNE/RSS.php';
+    $rss = new OpenPNE_RSS();
+    $items = $rss->fetch($url);
+
+    $allowed_type = array('text/javascript', 'application/javascript');
+    foreach ($items as $item)
+    {
+        $enclosure = $item['enclosure'];
+        if (!in_array($enclosure->type, $allowed_type)) {
+            continue;
+        }
+
+        $name = basename($enclosure->link, '.js');
+        if ($c_cmd_id = db_admin_get_c_cmd_id4name_c_cmd_caster_id($name, $c_cmd_caster_id)) {
+            if (!db_admin_is_updated_c_cmd($c_cmd_id, $item['date'])) {
+                continue;
+            }
+
+            $data = array('url' => $enclosure->link, 'u_datetime' => $item['date']);
+            $where = array('c_cmd_id' => $c_cmd_id);
+            db_update('c_cmd', $data, $where);
+        } else {
+            $data = array(
+                'name' => $name,
+                'url' => $enclosure->link,
+                'c_cmd_caster_id' => $c_cmd_caster_id,
+                'r_datetime' => $item['date'],
+                'u_datetime' => $item['date'],
+            );
+            db_insert('c_cmd', $data);
+        }
+    }
+}
+
+function db_admin_is_updated_c_cmd($c_cmd_id, $date)
+{
+    $sql = 'SELECT c_cmd_id FROM c_cmd WHERE c_cmd_id = ? AND u_datetime < ?';
+    $param = array($c_cmd_id, $date);
+    return (bool)db_get_one($sql, $param);
+}
+
+function db_admin_get_c_cmd_id4name_c_cmd_caster_id($name, $c_cmd_caster_id)
+{
+    $sql = 'SELECT c_cmd_id FROM c_cmd WHERE name = ? AND c_cmd_caster_id = ?';
+    $data = array($name, $c_cmd_caster_id);
+    return db_get_one($sql, $data);
 }
 
 ?>
