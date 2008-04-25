@@ -1976,11 +1976,10 @@ function db_member_easy_access_id_is_blacklist($easy_access_id, $c_blacklist_id 
  */
 function db_member_c_member_config4c_member_id($c_member_id)
 {
-    $sql = 'SELECT c_member_config_option.name, c_member_config.value'
-         . ' FROM c_member_config'
-         . ' INNER JOIN c_member_config_option USING(c_member_config_option_id)'
-         . ' WHERE c_member_id = ?';
-    $params = array(intval($c_member_id));
+    $sql = 'SELECT name, value FROM c_member_config WHERE c_member_id = ?';
+    $params = array(
+        intval($c_member_id),
+    );
 
     $member_config = db_get_assoc($sql, $params);
 
@@ -1991,32 +1990,18 @@ function db_member_c_member_config4c_member_id($c_member_id)
  * c_member_config_idに設定値があるかどうか
  *
  * @param int $c_member_id
- * @param int $c_member_config_option_id
+ * @param string $name
  * @return bool
  */
-function db_member_c_member_config4option_id($c_member_id, $c_member_config_option_id)
+function db_member_c_member_config4name($c_member_id, $name)
 {
     $sql = 'SELECT COUNT(c_member_config_id) FROM c_member_config'
-         . ' WHERE c_member_id = ? AND c_member_config_option_id = ?';
+         . ' WHERE c_member_id = ? AND name = ?';
     $params = array(
         intval($c_member_id),
-        intval($c_member_config_option_id),
+        $name,
     );
     return (bool)db_get_one($sql, $params, 'main');
-}
-
-/**
- * c_member_config_option_id取得
- *
- * @param string $name
- * @return int
- */
-function db_member_config_option_id4name($name)
-{
-    $sql = 'SELECT c_member_config_option_id FROM c_member_config_option'
-         . ' WHERE name = ?';
-    $params = array(strval($name));
-    return db_get_one($sql, $params);
 }
 
 /**
@@ -2028,12 +2013,10 @@ function db_member_config_option_id4name($name)
  */
 function db_member_update_c_member_config($c_member_id, $name, $value)
 {
-    $option_id = db_member_config_option_id4name($name);
-
-    if (!db_member_c_member_config4option_id($c_member_id, $option_id)) {
+    if (!db_member_c_member_config4name($c_member_id, $name)) {
         $data = array(
             'c_member_id' => intval($c_member_id),
-            'c_member_config_option_id' => intval($option_id),
+            'name' => $name,
             'value' => $value,
         );
         db_insert('c_member_config', $data);
@@ -2041,7 +2024,7 @@ function db_member_update_c_member_config($c_member_id, $name, $value)
         $data = array('value' => $value);
         $where = array(
             'c_member_id' => intval($c_member_id),
-            'c_member_config_option_id' => intval($option_id),
+            'name' => $name,
         );
         db_update('c_member_config', $data, $where);
     }
