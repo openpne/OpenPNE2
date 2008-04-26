@@ -48,25 +48,13 @@ function emojiPalletPopup(i, career) {
 
 // 絵文字コードを親画面のテキストエリアに入力
 function putEmojiToParent(emoji) {
-    opener.document.getElementsByName("body")[0].focus();
+    var elm = opener.document.getElementsByName("body")[0];
+    elm.focus();
 
-    // selectionStart対応の場合、選択位置に絵文字挿入
-    if (opener.document.getElementsByName("body")[0].selectionStart) {
-        var position = opener.document.getElementsByName("body")[0].selectionStart;
-        var emojiPosition = opener.position + emoji.length;
-        var body = opener.document.getElementsByName("body")[0].value.substring(0, position) + emoji + opener.document.getElementsByName("body")[0].value.substring(position, opener.document.getElementsByName("body")[0].value.length);
-        opener.document.getElementsByName("body")[0].value = body;   
-        opener.document.getElementsByName("body")[0].setSelectionRange(emojiPosition, emojiPosition);
-    } else {
-        // IEの場合(selection対応)
-        if (opener.document.selection) {
-            var sel = opener.document.selection.createRange();
-            sel.text = emoji;
-            sel.move('character', emoji.length+4);
-        // その他の場合は入力済み文章の末尾に絵文字を追加
-        } else {
-            var body = opener.document.getElementsByName("body")[0].value + emoji;
-            opener.document.getElementsByName("body")[0].value = body;
-        }
-    }
+    var selection = new Selection(elm);
+    var pos = selection.create(); 
+
+    var head = elm.value.substring(0, pos.start);
+    var tail = elm.value.substring(pos.end, elm.value.length);
+    elm.value =  head + emoji + tail;
 }
