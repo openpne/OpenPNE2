@@ -120,7 +120,7 @@
 
 <div class="operation">
 <ul class="moreInfo button">
-<li><input type='submit' class="submit" name='entry' value='登録する' /></li>
+<li><input type='submit' class="input_submit" name='entry' value='登録する' /></li>
 </ul>
 </div>
 
