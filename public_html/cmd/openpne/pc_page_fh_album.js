@@ -33,9 +33,9 @@ function url2cmd(url)
             default :
             }
 
-            var str = '<div class="dparts" style="width: 160px;"><div class="parts">'
-                    + '<div class="partsHeading"><h3>' + subject + '</h3></div>'
-                    + '<div style="text-align:center; padding: 10px;"><img src="' + album_cover_image + '" alt="' + subject + '" style=" margin-left: auto; margin-right: auto;" /></div>'
+            var str = '<div class="dparts" style="width: 200px; margin: 4px 0 0"><div class="parts">'
+                    + '<div class="partsHeading" style="border-top-width: 0;"><h3>' + subject + '</h3></div>'
+                    + '<div style="text-align: center; padding: 10px;"><img src="' + album_cover_image + '" alt="' + subject + '" style="margin: 0 auto;" /></div>'
                     + '<div style="text-align: center; padding: 5px;">' + public_flag + '</div>'
                     + '<div style="text-align: center; padding: 5px;"><a href="' + url + '">アルバムを見る</a></div>'
                     + '</div></div>';

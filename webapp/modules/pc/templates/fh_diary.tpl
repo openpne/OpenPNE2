@@ -108,9 +108,7 @@
 ({if $target_diary.image_filename_3})<li><a href="({t_img_url filename=$target_diary.image_filename_3})" target="_blank"><img src="({t_img_url filename=$target_diary.image_filename_3 w=120 h=120})" alt="" /></a></li>({/if})
 </ul>
 ({/if})
-<p class="text">
 ({$target_diary.body|nl2br|t_url2cmd:'diary'|t_cmd:'diary'|t_decoration})
-</p>
 </div>
 </dd>
 </dl>
