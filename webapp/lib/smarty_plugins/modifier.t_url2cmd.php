@@ -38,7 +38,12 @@ function _smarty_modifier_t_cmd_make_url_js($matches)
     $file = $cmd . '.js';
     $path = './cmd/' . $file;
 
-    if (!OPENPNE_USE_CMD_TAG || !db_is_use_cmd($cmd, $GLOBALS['_CMD']['type']) || !is_readable($path)) {
+    // ファイルが読み込めない場合は、小窓キャスターのJavaScriptを読み込む
+    if (!is_readable($path)) {
+        $path = db_etc_c_cmd_url4name($cmd);
+    }
+
+    if (!OPENPNE_USE_CMD_TAG || !db_is_use_cmd($cmd, $GLOBALS['_CMD']['type']) || !$path) {
         if (in_array($GLOBALS['_CMD']['type'], db_get_url2a_denied_list())) {
             // t_url2aが無効: 何もせずに返す
             return $matches[0];
@@ -50,7 +55,7 @@ function _smarty_modifier_t_cmd_make_url_js($matches)
 
     $url_html = str_replace('&', '&amp;', $url);
     $result = <<<EOD
-<script type="text/javascript" src="cmd/{$file}"></script>
+<script type="text/javascript" src="{$path}"></script>
 <script type="text/javascript">
 <!--
 url2cmd('{$url_html}');

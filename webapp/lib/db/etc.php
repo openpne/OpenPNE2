@@ -901,4 +901,11 @@ function db_decoration_is_enabled4tagname($tagname)
     return $is_enabled;
 }
 
+function db_etc_c_cmd_url4name($name)
+{
+    $sql = 'SELECT c_cmd.url FROM c_cmd INNER JOIN c_cmd_caster USING(c_cmd_caster_id)'
+         . ' WHERE name = ? ORDER BY c_cmd_caster.sort_order';
+    return db_get_one($sql, array($name));
+}
+
 ?>
