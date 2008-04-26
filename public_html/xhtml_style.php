@@ -1995,6 +1995,37 @@ div#container_login .footer p {
 	line-height: 21px;
 }
 
+
+/*==============================================================================
+ * bizTodoList
+ *----------------------------------------------------------------------------*/
+#Body .bizTodoList {
+	width: 220px;
+	margin: 10px 5px;
+	border: 1px solid #<?php echo $colors[1]; ?>;
+}
+#Body .bizTodoList td {
+	border-width: 1px 0 0;
+}
+.bizTodoList .block {
+	padding: 5px;
+}
+.bizTodoList textarea {
+	width: 99%;
+}
+.bizTodoList tr.someone {
+	background: #<?php echo $colors[7]; ?>;
+}
+.bizTodoList tr.checked {
+	color: #999999;
+}
+.bizTodoList td.state {
+	width: 35px;
+}
+.bizTodoList td.operation {
+	width: 16px;
+}
+
 /*==============================================================================
  * 
  *----------------------------------------------------------------------------*/
