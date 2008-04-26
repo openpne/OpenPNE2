@@ -10,12 +10,12 @@
 ({t_form_block m=biz a=do_h_biz_schedule_delete})
 <input type="hidden" name="schedule_id" value="({$schedule_id})" />
 <input value="({$is_rep})" type="hidden" name="is_rep" />
-<input type="submit" class="submit" value=" は い " />
+<input type="submit" class="input_submit" value=" は い " />
 ({/t_form_block})
 </li><li>
 ({t_form_block m=biz a=page_fh_biz_schedule_view})
 <input type="hidden" name="id" value="({$schedule_id})" />
-<input type="submit" class="submit" value="いいえ" />
+<input type="submit" class="input_submit" value="いいえ" />
 ({/t_form_block})
 </li>
 </ul>
