@@ -43,7 +43,7 @@ if (useSb) {
 
 // 絵文字出力(外部パレット版）
 function emojiPalletPopup(i, career) {
-    document.write('<img src="../skin/default/img/emoji/'+career+'/'+career+i+'.gif" alt="['+career+':'+i+']" onclick=\'putEmojiToParent("['+career+':'+i+']")\'>');
+    document.write('<img src="../../skin/default/img/emoji/'+career+'/'+career+i+'.gif" alt="['+career+':'+i+']" onclick=\'putEmojiToParent("['+career+':'+i+']")\'>');
 }
 
 // 絵文字コードを親画面のテキストエリアに入力
