@@ -4,7 +4,7 @@
 ({* unknown *})({if $is_form})
 ({* unknown *})<input type="text" class="text" name="nickname" value="({$c_member.nickname})" style="width:112px;text-align:center;" />
 ({* unknown *})<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_s" />
-({* unknown *})<input type="submit" class="submit" value="　名前変更　" style="width:112px;" />
+({* unknown *})<input type="submit" class="input_submit" value="　名前変更　" style="width:112px;" />
 ({* unknown *})({/if})
 ({* unknown *})({/t_form_block})
 ({* unknown *})<!-- ******ここまで：名前変更****** -->

@@ -72,7 +72,7 @@
 <input type="hidden" name="target_id" value="({$target_c_member_id})" />
 <input type="hidden" name="year" value="({$schedule.begin_date|date_format:'%Y'})" />
 <input type="hidden" name="month" value="({$schedule.begin_date|date_format:'%m'})" />
-<input value="月間カレンダーを表示する" type="submit" class="submit" />
+<input value="月間カレンダーを表示する" type="submit" class="input_submit" />
 ({/t_form_block})
 </li>
 <li>
@@ -88,13 +88,13 @@
 <input type="hidden" name="schedule_id" value="({$schedule_id})" />
 <input type="hidden" name="target_id" value="({$target_c_member_id})" />
 <input type="hidden" name="sc_bn" value="({$sc_bn})" />
-<input value="修正する" type="submit" class="submit" />
+<input value="修正する" type="submit" class="input_submit" />
 ({/t_form_block})
 </li>
 <li>
 ({t_form_block m=biz a=page_h_biz_schedule_delete})
 <input type="hidden" name="schedule_id" value="({$schedule_id})" />
-<input value="削除する" type="submit" class="submit" />
+<input value="削除する" type="submit" class="input_submit" />
 ({if $schedule.rep_first})<br />
 <input value="1" type="checkbox" name="is_rep" checked="checked" />ほかの繰り返し予定も一緒に削除する
 ({/if})
