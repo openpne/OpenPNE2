@@ -9,7 +9,7 @@
 
 ({if $cmd == "g"})
 
-<div class="block">
+<div class="block" style="padding-left: 135px">
 ({t_form_block m=biz a=do_g_home_add_biz_schedule})
 <input type="hidden" name="target_id" value="({$target_id})" />
 <a href="({t_url m=biz a=page_fh_biz_schedule_add})&amp;target_biz_group_id=({$target_id})">新規予定登録</a>
@@ -77,7 +77,7 @@
 <table class="calendar">
 <tr>
 
-<td style="width: 120px">
+<td rowspan="2" style="width: 120px">
 ({if $cmd == "s_list"})
 <img src="({t_img_url filename=$list.image_filename w=120 h=120 noimg=no_image})" alt="" /><br />
 ({else})
@@ -110,8 +110,8 @@
 ({/if})
 
 ({t_form_block m=biz a=do_h_home_edit_nickname})
-<input type="text" class="input_text" name="nickname" value="({$member_info.nickname})" style="width:112px;text-align:center;" /><br />
-<input type="submit" class="input_submit" value="　名前変更　" style="width:112px;" /><br />
+<input type="text" class="input_text" name="nickname" value="({$member_info.nickname})" style="width:112px; text-align:center;" /><br />
+<input type="submit" class="input_submit" value="名前変更" style="width:112px;" /><br />
 ({/t_form_block})
 
 <input type="button" class="input_submit" onclick="location.href='({t_url m=pc a=page_h_config_image})'" value="写真を編集" style="width:112px;" /><br />
@@ -176,6 +176,14 @@
 ({/if})
 ({/foreach})
 
+</td>
+({/strip})
+({/foreach})
+</tr><tr>
+({foreach from=$calendar item=item name=calendar})
+({strip})
+<td({if $item.now}) class="today"({/if}) style="border-width: 0 0 0 1px;">
+
 ({if $cmd == 'h'})
 
 ({* 誕生日 *})
@@ -192,23 +200,19 @@
 
 ({/if})
 
-({* unknown *})({* Todo *})
-({* unknown *})({foreach from=$item.todo item=item_todo})
-({* unknown *})<div class="padding_s">
-({* unknown *})<img src="./skin/default/img/biz/todo_icon.gif" alt="todo" />
-({* unknown *})<a href="({t_url m=biz a=page_fh_home_edit_biz_todo})&amp;id=({$item_todo.biz_todo_id})&amp;target_id=({$member_info.c_member_id})">({$item_todo.memo|t_truncate:20:".."})</a></div>
-({* unknown *})({/foreach})
-({* unknown *})
-({* unknown *})({* スケジュール(時間無) *})
-({* unknown *})({if $item.schedule})
-({* unknown *})({foreach from=$item.schedule item=item_schedule name=schedule})
-({* unknown *})({if !$item_schedule.begin_time})  <!-- 時間指定なしの予定 -->
-({* unknown *})<div class="padding_s">
-({* unknown *})<a href="({t_url m=biz a=page_fh_biz_schedule_view})&amp;id=({$item_schedule.biz_schedule_id})({if $cmd=='f'})&amp;target_id=({$member_info.c_member_id})({/if})">({$item_schedule.title})</a>
-({* unknown *})</div>
-({* unknown *})({/if})
-({* unknown *})({/foreach})
-({* unknown *})({/if})
+({* Todo *})
+({foreach from=$item.todo item=item_todo})
+<p><img src="./skin/default/img/biz/todo_icon.gif" alt="Todo" /><a href="({t_url m=biz a=page_fh_home_edit_biz_todo})&amp;id=({$item_todo.biz_todo_id})&amp;target_id=({$member_info.c_member_id})">({$item_todo.memo|t_truncate:20:".."})</a></p>
+({/foreach})
+
+({* スケジュール(時間無) *})
+({if $item.schedule})
+({foreach from=$item.schedule item=item_schedule name=schedule})
+({if !$item_schedule.begin_time})  <!-- 時間指定なしの予定 -->
+<p><img src="({t_img_url_skin filename=icon_pen})" alt="スケジュール" /><a href="({t_url m=biz a=page_fh_biz_schedule_view})&amp;id=({$item_schedule.biz_schedule_id})({if $cmd=='f'})&amp;target_id=({$member_info.c_member_id})({/if})">({$item_schedule.title})</a></p>
+({/if})
+({/foreach})
+({/if})
 
 </td>
 ({/strip})
@@ -219,8 +223,8 @@
 ({/if})  <!-- END VALUE -->
 ({if $foot})  <!-- BEGIN FOOT -->
 
-({if ($cmd == "h") || ($cmd == "f")})
-<div class="block">
+({if $cmd == "h" || $cmd == "f"})
+<div class="block" style="padding-left: 135px;">
 ({t_form_block m=biz a=do_`$cmd`_home_add_biz_schedule})
 
 <a href="({t_url m=biz a=page_fh_biz_schedule_calendar})({if $cmd == 'f'})&amp;target_id=({$member_info.c_member_id})({/if})">月間カレンダー</a>
