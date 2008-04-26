@@ -974,8 +974,11 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 .diaryDetailBox dd div.title {
 	border-top: none;
 }
+.diaryDetailBox dd div.body {
+	padding: 4px 3px;
+}
 .diaryDetailBox dd ul.photo {
-	padding: 5px 5px 0;
+	padding: 4px 5px;
 }
 .diaryDetailBox dd ul.photo li {
 	display: inline;
