@@ -67,8 +67,6 @@ class pc_page_h_prof extends OpenPNE_Action
 
         $todolist = biz_getTodoList($u, $u, "h", $target_c_member['nickname']);
         $this->set("todolist", $todolist);
-        $stateform = biz_getStateForm($u);
-        $this->set("stateform", $stateform);
 
         $group_list = biz_getHomeGroupList($u);
         $this->set('group_list', $group_list);
