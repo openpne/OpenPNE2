@@ -39,7 +39,7 @@ class pc_page_fh_album_image_show_output_xml extends OpenPNE_Action
             }
         }
 
-        $c_album_image['image_filename'] = util_get_img_url($c_album_image['image_filename'], 120, 120);
+        $c_album_image['image_filename'] = util_get_img_url($c_album_image['image_filename'], 180, 180);
 
         //---
 
