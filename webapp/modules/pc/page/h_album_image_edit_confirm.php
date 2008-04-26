@@ -22,13 +22,23 @@ class pc_page_h_album_image_edit_confirm extends OpenPNE_Action
         $u = $GLOBALS['AUTH']->uid();
 
         // --- リクエスト変数
-        $target_c_album_id = $requests['target_c_album_id'];
         $target_c_album_image_id = $requests['target_c_album_image_id'];
         $image_description = $requests['image_description'];
         // ----------
 
         $sessid = session_id();
         t_image_clear_tmp($sessid);
+
+        // アルバムの写真データ取得
+        $c_album_image = db_album_image_get_c_album_image4id($target_c_album_image_id);
+        $target_c_album_id = $c_album_image['c_album_id'];
+
+        //アルバムデータ取得
+        $c_album = db_album_get_c_album4c_album_id($target_c_album_id);
+        //--- 権限チェック
+        if ($u != $c_album['c_member_id']) {
+            handle_kengen_error();
+        }
 
         $upfiles = array(
             1 => $_FILES['upfile_1'],
