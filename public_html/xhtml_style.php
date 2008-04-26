@@ -2027,6 +2027,30 @@ div#container_login .footer p {
 }
 
 /*==============================================================================
+ * bizUnreadScheduleList
+ *----------------------------------------------------------------------------*/
+#Body .bizUnreadScheduleList {
+	width: 220px;
+	margin: 10px 5px;
+	border: 1px solid #<?php echo $colors[1]; ?>;
+}
+.bizUnreadScheduleList dl {
+	border-top: 1px solid #<?php echo $colors[1]; ?>;
+}
+.bizUnreadScheduleList dt {
+	float: left;
+	width: 60px;
+	padding: 5px;
+	text-align: center;
+}
+.bizUnreadScheduleList dd {
+	zoom: 1;
+	margin-left: 70px;
+	padding: 5px;
+	border-left: 1px solid #<?php echo $colors[1]; ?>;
+}
+
+/*==============================================================================
  * 
  *----------------------------------------------------------------------------*/
 
