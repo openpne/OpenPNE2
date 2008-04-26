@@ -131,6 +131,8 @@ $GLOBALS['_OPENPNE_PC2KTAI_LINK_ACTION_LIST'] = array(
     'page_c_topic_detail'   => 'page_c_bbs',
     'page_c_event_detail'   => 'page_c_bbs',
     'page_f_home'           => 'page_f_home',
+    'page_fh_album'         => 'page_fh_album',
+    'page_fh_album_image_show' => 'page_fh_album_image_show',
 );
 
 ?>
