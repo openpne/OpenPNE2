@@ -97,7 +97,6 @@
 <a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$member_info.c_member_id})">({$member_info.nickname})</a><br />
 最終ログインは<br />({$member_info.last_login})<br />
 ({else})
-<div class="border_01 bg_02" style="padding:4px 0;display:block;border-left:none;border-right:none;">
 
 ({if $smarty.const.OPENPNE_IS_POINT_ADMIN || $member_info.c_member_id != 1})
 ({if ($smarty.const.OPENPNE_DISP_RANK && $rank) || ($smarty.const.OPENPNE_DISP_POINT && $point)})
@@ -110,15 +109,15 @@
 ({/if})
 ({/if})
 
-({$stateform|smarty:nodefaults})
-</div>
+({t_form_block m=biz a=do_h_home_edit_nickname})
+<input type="text" class="input_text" name="nickname" value="({$member_info.nickname})" style="width:112px;text-align:center;" /><br />
+<input type="submit" class="input_submit" value="　名前変更　" style="width:112px;" /><br />
+({/t_form_block})
+
+<input type="button" class="input_submit" onclick="location.href='({t_url m=pc a=page_h_config_image})'" value="写真を編集" style="width:112px;" /><br />
+<input type="button" class="input_submit" onclick="location.href='({t_url m=pc a=page_h_config_prof})'" value="プロフィール変更" style="width:112px;" />
 ({/if})
 
-({/if})
-
-({if $cmd == "h"})
-<input type="button" onclick="location.href='({t_url m=pc a=page_h_config_image})'" value="写真を編集" style="width:112px;" class="input_submit" />
-<input type="button" onclick="location.href='({t_url m=pc a=page_h_config_prof})'" value="プロフィール変更" style="width:112px;" class="input_submit" />
 ({/if})
 </td>
 
