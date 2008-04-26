@@ -61,7 +61,7 @@
 ({/section})
 </select>
 まで
-<input type="submit" class="submit" value="追加" />
+<input type="submit" class="input_submit" value="追加" />
 
 <a href="({t_url m=biz a=page_s_list})&amp;w=({$w-1})" title="前の週">＜</a>
 <a href="({t_url m=biz a=page_s_list})" title="今週">■</a>
@@ -87,8 +87,8 @@
 ({if $cmd == "s_list"})
 
 ({if !$is_closed_shisetsu})
-<input type="button" onclick="location.href='({t_url m=biz a=page_s_edit_shisetsu})&id=({$target_id})'" value="編　集" style="width:112px;" class="submit" />
-<input type="button" onclick="location.href='({t_url m=biz a=page_s_delete_shisetsu})&target_id=({$target_id})&sessid=({$PHPSESSID})'" value="削　除" style="width:112px;" class="submit" />
+<input type="button" onclick="location.href='({t_url m=biz a=page_s_edit_shisetsu})&id=({$target_id})'" value="編　集" style="width:112px;" class="input_submit" />
+<input type="button" onclick="location.href='({t_url m=biz a=page_s_delete_shisetsu})&target_id=({$target_id})&sessid=({$PHPSESSID})'" value="削　除" style="width:112px;" class="input_submit" />
 ({/if})
 
 ({else})
@@ -117,8 +117,8 @@
 ({/if})
 
 ({if $cmd == "h"})
-<input type="button" onclick="location.href='({t_url m=pc a=page_h_config_image})'" value="写真を編集" style="width:112px;" class="submit" />
-<input type="button" onclick="location.href='({t_url m=pc a=page_h_config_prof})'" value="プロフィール変更" style="width:112px;" class="submit" />
+<input type="button" onclick="location.href='({t_url m=pc a=page_h_config_image})'" value="写真を編集" style="width:112px;" class="input_submit" />
+<input type="button" onclick="location.href='({t_url m=pc a=page_h_config_prof})'" value="プロフィール変更" style="width:112px;" class="input_submit" />
 ({/if})
 </td>
 
