@@ -15,7 +15,6 @@ class pc_page_h_album_image_edit extends OpenPNE_Action
         $u = $GLOBALS['AUTH']->uid();
 
         // --- リクエスト変数
-        $target_c_album_id = $requests['target_c_album_id'];
         $target_c_album_image_id = $requests['target_c_album_image_id'];
         $image_description = $requests['image_description'];
         // ----------
@@ -25,6 +24,10 @@ class pc_page_h_album_image_edit extends OpenPNE_Action
             openpne_redirect('pc', 'page_h_err_fh_album');
         }
 
+        // アルバムの写真データ取得
+        $c_album_image = db_album_image_get_c_album_image4id($target_c_album_image_id);
+        $target_c_album_id = $c_album_image['c_album_id'];
+
         //アルバムデータ取得
         $c_album = db_album_get_c_album4c_album_id($target_c_album_id);
         //--- 権限チェック
@@ -32,20 +35,17 @@ class pc_page_h_album_image_edit extends OpenPNE_Action
             handle_kengen_error();
         }
         
-        // アルバムの写真データ取得
-        $c_album_iamge = db_album_image_get_c_album_image4id($target_c_album_image_id);
-        
         // target の写真が存在しない
-        if(!$c_album_iamge){
+        if(!$c_album_image){
             openpne_redirect('pc', 'page_h_err_fh_album');
         }
         
         if (!(is_null($image_description))) {
-            $c_album_iamge['image_description'] = $image_description;
+            $c_album_image['image_description'] = $image_description;
         }
         
         $this->set('inc_navi', fetch_inc_navi('h'));
-        $this->set('c_album_image', $c_album_iamge);
+        $this->set('c_album_image', $c_album_image);
         $this->set('target_c_album_id', $target_c_album_id);
         $this->set('target_c_album_image_id', $target_c_album_image_id);
         
