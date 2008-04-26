@@ -112,17 +112,11 @@ function p_common_is_active_c_album_image_id($c_album_image_id)
  * @param   int   $c_album_id
  * @return  array
  */
-function db_album_get_c_album_page4id($c_album_id, $page_size = 10, $page = 0)
+function db_album_c_album_image_list4c_album_id($c_album_id, $page = 1, $page_size = 10)
 {
-    $select = 'SELECT ab.*,i.c_album_image_id,i.image_filename,i.image_description';
-    $from  = ' FROM c_album AS ab,c_album_image AS i';
-    $where = ' WHERE ab.c_album_id = i.c_album_id' .
-             ' AND ab.c_album_id = ?';
-    $orderby = ' ORDER BY i.r_datetime DESC';
-    $sql = $select .$from . $where .$orderby;
-
+    $sql = 'SELECT * FROM c_album_image WHERE c_album_id = ? ORDER BY r_datetime DESC';
     $params = array(intval($c_album_id));
-    $list = db_get_all_limit($sql, $page_size * ($page - 1), $page_size, $params);
+    $list = db_get_all_page($sql, $page, $page_size, $params);
 
     $sql = 'SELECT COUNT(c_album_image_id) FROM c_album_image WHERE c_album_id = ?';
     $params = array(intval($c_album_id));
