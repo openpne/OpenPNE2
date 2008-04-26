@@ -12,7 +12,6 @@ CREATE TABLE `c_cmd_caster` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 ALTER TABLE `c_cmd` ADD COLUMN `url` varchar(128) NOT NULL default '';
-ALTER TABLE `c_cmd` ADD UNIQUE `url` (`url`);
 ALTER TABLE `c_cmd` DROP INDEX `name`;
 ALTER TABLE `c_cmd` DROP INDEX `name_2`;
 ALTER TABLE `c_cmd` ADD COLUMN `c_cmd_caster_id` int(11) NOT NULL default '0';
