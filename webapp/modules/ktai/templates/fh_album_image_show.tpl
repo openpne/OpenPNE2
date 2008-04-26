@@ -7,6 +7,8 @@
 <font color="#({$ktai_color_config.color_24})">({$album_info.subject})</font><br>
 </td></tr></table>
 <img src="({t_img_url filename=$c_album_image.image_filename w=$smarty.const.OPENPNE_IMG_KTAI_MAX_WIDTH h=$smarty.const.OPENPNE_IMG_KTAI_MAX_HEIGHT f=jpg})"><br>
+<font color="#({$ktai_color_config.font_06})">写真説明:</font><br>
+({$c_album_image.image_description|t_url2a_ktai|nl2br})<br>
 ({if $c_album_iamge_id_prev || $c_album_iamge_id_next})
 <center>
 <a name="pager"></a>
