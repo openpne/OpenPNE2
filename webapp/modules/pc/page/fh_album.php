@@ -70,7 +70,7 @@ class pc_page_fh_album extends OpenPNE_Action
         $this->set("target_album_list",$album_subject_list);
 
         //アルバムに登録された写真
-        $target_c_album_image = db_album_get_c_album_page4id($target_c_album_id,$page_size,$page);
+        $target_c_album_image = db_album_c_album_image_list4c_album_id($target_c_album_id, $page, $page_size);
         $this->set("target_album_image", $target_c_album_image[0]);
 
         //アルバムの写真表示を2列にするための工夫？
