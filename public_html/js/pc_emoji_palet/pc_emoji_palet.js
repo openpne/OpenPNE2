@@ -23,7 +23,7 @@ selfPallet = true;
 palletWidth = 300; // 幅
 palletHeight = 160; // 高さ
 // 絵文字パレット画面のURL(通常、変更不要です)
-PalletURL = './pc_emoji_palet/pc_emoji_palet.html';
+PalletURL = './js/pc_emoji_palet/pc_emoji_palet.html';
 
 // 絵文字番号の範囲
 // 本線で絵文字が追加された場合のみ変更。通常は変更の必要ありません
