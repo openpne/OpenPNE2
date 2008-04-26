@@ -34,7 +34,8 @@ class pc_page_h_album_insert_dialog extends OpenPNE_Action
         $this->set("total_num", $list_set[3]);
         $this->set('album_list_count', count($list_set[0]));
 
-        $this->getView()->ext_display('h_album_insert_dialog.tpl');
+        $view =& $this->getView();
+        $view->ext_display('h_album_insert_dialog.tpl');
         exit;
     }
 }
