@@ -21,7 +21,14 @@ function _smarty_modifier_t_cmd_make_js($matches)
     $src  = $matches[2];
     $args = $matches[4];
 
-    if (!db_is_use_cmd($src, $GLOBALS['_CMD']['type'])) {
+    $path = 'cmd/' . $src . '.js';
+
+    // ファイルが読み込めない場合は、小窓キャスターのJavaScriptを読み込む
+    if (!is_readable($path)) {
+        $path = db_etc_c_cmd_url4name($src);
+    }
+
+    if (!db_is_use_cmd($src, $GLOBALS['_CMD']['type']) || !$path) {
         return $matches[0];
     }
 
@@ -29,7 +36,7 @@ function _smarty_modifier_t_cmd_make_js($matches)
     $arg_str = "'" . implode("','", $_args) . "'";
 
     $result = <<<EOD
-<script type="text/javascript" src="cmd/{$src}.js"></script>
+<script type="text/javascript" src="{$path}"></script>
 <script type="text/javascript">
 <!--
 main({$arg_str});
