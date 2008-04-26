@@ -35,6 +35,36 @@ eNumSb = 485;
 ////////
 // 出力
 ////////
+function createEmojiPalletDoCoMo()
+{
+    document.write('<div id="epDocomo" style="display:none;">');
+    for (n=1; n<=eNumDocomo; n++) {
+        emojiPallet(n, "i");
+    }
+    document.write('</div>');
+}
+
+function createEmojiPalletAu()
+{
+    document.write('<div id="epAu" style="display:none">');
+    for (n=1; n<=eNumAu1; n++) {
+        emojiPallet(n, "e");
+    }
+    for (n=700; n<=eNumAu2; n++) {
+        emojiPallet(n, "e");
+    }
+    document.write('</div>');
+}
+
+function createEmojiPalletSoftBank()
+{
+    document.write('<div id="epSb" style="display:none">');
+    for (n=1; n<=eNumSb; n++) {
+        emojiPallet(n, "s");
+    }
+    document.write('</div>');
+}
+
 function output() {
     document.write('<div id="emoji_pallet" class="padding_ss" style="width:439px;">');
 
@@ -45,31 +75,13 @@ function output() {
         if (useAu) document.write('　<a href="#" onclick=\'togglePallet("epAu"); return false;\'>AU</a>');
         if (useSb) document.write('　<a href="#" onclick=\'togglePallet("epSb"); return false;\'>SoftBank</a>');
 
-        // DoCoMo
-        document.write('<div id="epDocomo" style="display:none;">');
-        for (n=1; n<=eNumDocomo; n++) {
-            emojiPallet(n, "i");
-        }
-        document.write('</div>');
+        createEmojiPalletDoCoMo();
 
-        // AU
         if (useAu) {
-            document.write('<div id="epAu" style="display:none">');
-            for (n=1; n<=eNumAu1; n++) {
-                emojiPallet(n, "e");
-            }
-            for (n=700; n<=eNumAu2; n++) {
-                emojiPallet(n, "e");
-            }
-            document.write('</div>');
+            createEmojiPalletAu();
         }
-        // SoftBank
         if (useSb) {
-            document.write('<div id="epSb" style="display:none">');
-            for (n=1; n<=eNumSb; n++) {
-                emojiPallet(n, "s");
-            }
-            document.write('</div>');
+            createEmojiPalletSoftBank();
         }
     // 別ウィンドウ版
     } else {
@@ -90,27 +102,15 @@ function emojiPallet(i, career) {
 
 // 絵文字コードをテキストエリアに入力
 function putEmojiToSelf(emoji) {
-    document.getElementsByName("body")[0].focus();
+    var elm = document.getElementsByName("body")[0];
+    elm.focus();
 
-    // selectionStart対応の場合、選択位置に絵文字挿入
-    if (document.getElementsByName("body")[0].selectionStart) {
-        var position = document.getElementsByName("body")[0].selectionStart;
-        var emojiPosition = position + emoji.length;
-        var body = document.getElementsByName("body")[0].value.substring(0, position) + emoji + document.getElementsByName("body")[0].value.substring(position, document.getElementsByName("body")[0].value.length);
-        document.getElementsByName("body")[0].value = body;   
-        document.getElementsByName("body")[0].setSelectionRange(emojiPosition, emojiPosition);
-    } else {
-        // IEの場合(selection対応)
-        if (document.selection) {
-            var sel = document.selection.createRange();
-            sel.text = emoji;
-            sel.move('character', emoji.length+4);
-        // その他の場合は入力済み文章の末尾に絵文字を追加
-        } else {
-            var body = document.getElementsByName("body")[0].value + emoji;
-            document.getElementsByName("body")[0].value = body;
-        }
-    }
+    var selection = new Selection(elm);
+    var pos = selection.create(); 
+
+    var head = elm.value.substring(0, pos.start);
+    var tail = elm.value.substring(pos.end, elm.value.length);
+    elm.value =  head + emoji + tail;
 }
 
 // パレット表示切り替え
