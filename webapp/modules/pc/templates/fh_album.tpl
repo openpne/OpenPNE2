@@ -90,14 +90,14 @@
 ({* unknown *})<tr>
 ({* unknown *})<td style="width: 50%; padding: 5px; text-align: center;">
 ({* unknown *})({if $album_item.dual.image_filename})
-({* unknown *})<a href="({t_url m=pc a=page_fh_album_image_show})&amp;target_c_album_image_id=({$album_item.dual.c_album_image_id})&amp;target_c_member_id=({$album_item.dual.c_member_id})&amp;target_c_album_id=({$album_item.dual.c_album_id})"><img src="({t_img_url filename=$album_item.dual.image_filename w=180 h=180})" alt="" /></a><br />
+({* unknown *})<a href="({t_url m=pc a=page_fh_album_image_show})&amp;target_c_album_image_id=({$album_item.dual.c_album_image_id})&amp;target_c_member_id=({$album_item.dual.c_member_id})"><img src="({t_img_url filename=$album_item.dual.image_filename w=180 h=180})" alt="" /></a><br />
 ({* unknown *})({if $type == "h"})<a href="({t_url m=pc a=page_h_album_image_edit})&amp;target_c_album_id=({$album_item.dual.c_album_id})&amp;target_c_album_image_id=({$album_item.dual.c_album_image_id})">写真を編集</a>({/if})
 ({* unknown *})<p>({$album_item.dual.image_description})</p>
 ({* unknown *})({/if})
 ({* unknown *})</td>
 ({* unknown *})<td style="width: 50%; padding: 5px; text-align: center;">
 ({* unknown *})({if $album_item.singular.image_filename})
-({* unknown *})<a href="({t_url m=pc a=page_fh_album_image_show})&amp;target_c_album_image_id=({$album_item.singular.c_album_image_id})&amp;target_c_member_id=({$album_item.singular.c_member_id})&amp;target_c_album_id=({$album_item.singular.c_album_id})"><img src="({t_img_url filename=$album_item.singular.image_filename w=180 h=180})" alt="" /></a><br />
+({* unknown *})<a href="({t_url m=pc a=page_fh_album_image_show})&amp;target_c_album_image_id=({$album_item.singular.c_album_image_id})&amp;target_c_member_id=({$album_item.singular.c_member_id})"><img src="({t_img_url filename=$album_item.singular.image_filename w=180 h=180})" alt="" /></a><br />
 ({* unknown *})({if $type == "h"})<a href="({t_url m=pc a=page_h_album_image_edit})&amp;target_c_album_id=({$album_item.singular.c_album_id})&amp;target_c_album_image_id=({$album_item.singular.c_album_image_id})">写真を編集</a>({/if})
 ({* unknown *})<p>({$album_item.singular.image_description})</p>
 ({* unknown *})({/if})
