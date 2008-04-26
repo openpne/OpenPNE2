@@ -39,8 +39,9 @@ function smarty_modifier_t_url2a_ktai_callback($matches)
 
     // 表示上は page_ 以降を最大40文字で縮める
     $urlstr = $converted_action . $param;
+    $urlstr = preg_replace('/^page_/', '', $urlstr);
 
-    $length = 40;
+    $length = 50;
     $etc = '..';
 
     if (strlen($urlstr) > $length) {
