@@ -148,9 +148,6 @@ class pc_page_h_home extends OpenPNE_Action
         $todolist = biz_getTodoList($u, $u, "h", $c_member['nickname']);
         $this->set("todolist", $todolist);
 
-        $stateform = biz_getStateForm($u, true);
-        $this->set("stateform", $stateform);
-
         $newschedule = biz_getNewSchedule($u);
         $this->set("newschedule", $newschedule);
 
