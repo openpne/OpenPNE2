@@ -21,8 +21,6 @@
 <h2>({$page_name})</h2>
 <div class="contents">
 
-<p>※各小窓の使用設定は、<a href="?m=({$module_name})&a=page_({$hash_tbl->hash('list_c_cmd', 'page')})">[CMD設定]</a>からおこなうことができます。</p>
-
 <table class="basicType2">
 <thead>
 <tr>
