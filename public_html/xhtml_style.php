@@ -41,6 +41,7 @@ iframe, object, embed {
 	margin: 0;
 	padding: 0;
 	border: none;
+	text-align: left;
 }
 ul, ol {
 	list-style-position: outside;
