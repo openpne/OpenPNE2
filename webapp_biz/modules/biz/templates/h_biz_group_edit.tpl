@@ -264,7 +264,7 @@
 ({* #1952 *})<tr>
 ({* #1952 *})<td class="padding_s" style="text-align:right;">
 ({* #1952 *})
-({* #1952 *})<input type="submit" class="submit" value="　修　正　" />
+({* #1952 *})<input type="submit" class="input_submit" value="　修　正　" />
 ({* #1952 *})
 ({* #1952 *})({/t_form_block})
 ({* #1952 *})
@@ -273,7 +273,7 @@
 ({* #1952 *})
 ({* #1952 *})({t_form_block _enctype=file m=biz a=page_h_biz_group_delete})
 ({* #1952 *})<input name="target_id" type="hidden" value="({$group.biz_group_id})" />
-({* #1952 *})<input type="submit" class="submit" value="　削　除　" />
+({* #1952 *})<input type="submit" class="input_submit" value="　削　除　" />
 ({* #1952 *})({/t_form_block})
 ({* #1952 *})
 ({* #1952 *})</td>

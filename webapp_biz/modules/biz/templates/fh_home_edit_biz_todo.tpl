@@ -73,7 +73,7 @@
 
 <div class="operation">
 <ul class="moreInfo button">
-<li><input type="submit" class="submit" value="　編　集　" /></li>
+<li><input type="submit" class="input_submit" value="　編　集　" /></li>
 </ul>
 </div>
 ({/t_form_block})
