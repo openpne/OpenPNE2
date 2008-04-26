@@ -43,7 +43,8 @@ class pc_page_h_album_image_insert_dialog extends OpenPNE_Action
         $this->set('page', $page);
         $this->set('page_size', $page_size);
 
-        $this->getView()->ext_display('h_album_image_insert_dialog.tpl');
+        $view =& $this->getView();
+        $view->ext_display('h_album_image_insert_dialog.tpl');
         exit;
     }
 }
