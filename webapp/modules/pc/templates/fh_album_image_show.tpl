@@ -6,8 +6,8 @@
 ({* unknown *})
 ({* unknown *})({if $c_album_iamge_id_prev || $c_album_iamge_id_next})
 ({* unknown *})<div class="pagerRelative">
-({* unknown *})({if $c_album_iamge_id_prev})<p class="prev"><a href="({t_url m=pc a=page_fh_album_image_show})&amp;target_c_album_id=({$c_album_image.c_album_id})&amp;target_c_album_image_id=({$c_album_iamge_id_prev})">«前の写真</a></p>({/if})
-({* unknown *})({if $c_album_iamge_id_next})<p class="next"><a href="({t_url m=pc a=page_fh_album_image_show})&amp;target_c_album_id=({$c_album_image.c_album_id})&amp;target_c_album_image_id=({$c_album_iamge_id_next})">次の写真»</a></p>({/if})
+({* unknown *})({if $c_album_iamge_id_prev})<p class="prev"><a href="({t_url m=pc a=page_fh_album_image_show})&amp;target_c_album_image_id=({$c_album_iamge_id_prev})">«前の写真</a></p>({/if})
+({* unknown *})({if $c_album_iamge_id_next})<p class="next"><a href="({t_url m=pc a=page_fh_album_image_show})&amp;target_c_album_image_id=({$c_album_iamge_id_next})">次の写真»</a></p>({/if})
 ({* unknown *})</div>
 ({* unknown *})({/if})
 ({* unknown *})
@@ -26,8 +26,8 @@
 ({* unknown *})
 ({* unknown *})({if $c_album_iamge_id_prev || $c_album_iamge_id_next})
 ({* unknown *})<div class="pagerRelative">
-({* unknown *})({if $c_album_iamge_id_prev})<p class="prev"><a href="({t_url m=pc a=page_fh_album_image_show})&amp;target_c_album_id=({$c_album_image.c_album_id})&amp;target_c_album_image_id=({$c_album_iamge_id_prev})">«前の写真</a></p>({/if})
-({* unknown *})({if $c_album_iamge_id_next})<p class="next"><a href="({t_url m=pc a=page_fh_album_image_show})&amp;target_c_album_id=({$c_album_image.c_album_id})&amp;target_c_album_image_id=({$c_album_iamge_id_next})">次の写真»</a></p>({/if})
+({* unknown *})({if $c_album_iamge_id_prev})<p class="prev"><a href="({t_url m=pc a=page_fh_album_image_show})&amp;target_c_album_image_id=({$c_album_iamge_id_prev})">«前の写真</a></p>({/if})
+({* unknown *})({if $c_album_iamge_id_next})<p class="next"><a href="({t_url m=pc a=page_fh_album_image_show})&amp;target_c_album_image_id=({$c_album_iamge_id_next})">次の写真»</a></p>({/if})
 ({* unknown *})</div>
 ({* unknown *})({/if})
 ({* unknown *})
