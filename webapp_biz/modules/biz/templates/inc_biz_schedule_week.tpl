@@ -87,8 +87,8 @@
 ({if $cmd == "s_list"})
 
 ({if !$is_closed_shisetsu})
-<input type="button" onclick="location.href='({t_url m=biz a=page_s_edit_shisetsu})&id=({$target_id})'" value="編　集" style="width:112px;" class="input_submit" />
-<input type="button" onclick="location.href='({t_url m=biz a=page_s_delete_shisetsu})&target_id=({$target_id})&sessid=({$PHPSESSID})'" value="削　除" style="width:112px;" class="input_submit" />
+<input type="button" onclick="location.href='({t_url m=biz a=page_s_edit_shisetsu})&amp;id=({$target_id})'" value="編　集" style="width:112px;" class="input_submit" />
+<input type="button" onclick="location.href='({t_url m=biz a=page_s_delete_shisetsu})&amp;target_id=({$target_id})&amp;sessid=({$PHPSESSID})'" value="削　除" style="width:112px;" class="input_submit" />
 ({/if})
 
 ({else})
@@ -197,7 +197,7 @@
 ({* unknown *})({foreach from=$item.todo item=item_todo})
 ({* unknown *})<div class="padding_s">
 ({* unknown *})<img src="./skin/default/img/biz/todo_icon.gif" alt="todo" />
-({* unknown *})<a href="({t_url m=biz a=page_fh_home_edit_biz_todo})&amp;id=({$item_todo.biz_todo_id})&target_id=({$member_info.c_member_id})">({$item_todo.memo|t_truncate:20:".."})</a></div>
+({* unknown *})<a href="({t_url m=biz a=page_fh_home_edit_biz_todo})&amp;id=({$item_todo.biz_todo_id})&amp;target_id=({$member_info.c_member_id})">({$item_todo.memo|t_truncate:20:".."})</a></div>
 ({* unknown *})({/foreach})
 ({* unknown *})
 ({* unknown *})({* スケジュール(時間無) *})
@@ -205,7 +205,7 @@
 ({* unknown *})({foreach from=$item.schedule item=item_schedule name=schedule})
 ({* unknown *})({if !$item_schedule.begin_time})  <!-- 時間指定なしの予定 -->
 ({* unknown *})<div class="padding_s">
-({* unknown *})<a href="({t_url m=biz a=page_fh_biz_schedule_view})&amp;id=({$item_schedule.biz_schedule_id})({if $cmd=='f'})&target_id=({$member_info.c_member_id})({/if})">({$item_schedule.title})</a>
+({* unknown *})<a href="({t_url m=biz a=page_fh_biz_schedule_view})&amp;id=({$item_schedule.biz_schedule_id})({if $cmd=='f'})&amp;target_id=({$member_info.c_member_id})({/if})">({$item_schedule.title})</a>
 ({* unknown *})</div>
 ({* unknown *})({/if})
 ({* unknown *})({/foreach})
