@@ -20,6 +20,10 @@ class admin_page_list_c_cmd extends OpenPNE_Action
                 continue;
             }
 
+            if ($value['url']) {  // 小窓キャスターのJavaScriptは使用範囲設定をおこなえないようにする
+                continue;
+            }
+
             $permit = $value['permit'];
             $c_cmd_id = $value['c_cmd_id'];
 
