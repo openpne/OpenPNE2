@@ -44,18 +44,6 @@
 ({/foreach})
 ({/if})
 
-({* 誕生日 *})
-({foreach from=$item.birth item=item_birth})
-({if $item_birth.public_flag_birth_month_day != "private" || $c_member.c_member_id == $item_birth.c_member_id})
-<p><img src="({t_img_url_skin filename=icon_birthday})" alt="誕生日" /><a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item_birth.c_member_id})">({$item_birth.nickname})さん</a></p>
-({/if})
-({/foreach})
-
-({* イベント *})
-({foreach from=$item.event item=item_event})
-<p><img src="({if $item_event.is_join})({t_img_url_skin filename=icon_event_R})({else})({t_img_url_skin filename=icon_event_B})({/if})" alt="イベント" /><a href="({t_url m=pc a=page_c_event_detail})&amp;target_c_commu_topic_id=({$item_event.c_commu_topic_id})">({$item_event.name})</a></p>
-({/foreach})
-
 ({* スケジュール *})
 ({foreach from=$item.schedule item=item_schedule name=schedule})
 ({* 時間指定変数の初期化 *})
@@ -83,7 +71,7 @@
 	({assign var="finish_time_M" value=$item_schedule.finish_time|date_format:"%M"})
 ({/if})
 ({ext_include file="inc_biz_schedule_week_time.tpl"})
-<p><img src="({t_img_url_skin filename=icon_pen})" alt="スケジュール" /><a href="({t_url m=biz a=page_fh_biz_schedule_view})&amp;id=({$item_schedule.biz_schedule_id})">({$item_schedule.title})</a></p>
+<p><a href="({t_url m=biz a=page_fh_biz_schedule_view})&amp;id=({$item_schedule.biz_schedule_id})">({$item_schedule.title})</a></p>
 	({else})
 ({assign var="begin_time_H" value=$item_schedule.begin_time|date_format:"%H"})
 ({assign var="begin_time_M" value=$item_schedule.begin_time|date_format:"%M"})
@@ -92,23 +80,34 @@
 	({assign var="finish_time_M" value=$item_schedule.finish_time|date_format:"%M"})
 ({/if})
 ({ext_include file="inc_biz_schedule_week_time.tpl"})
-<p><img src="({t_img_url_skin filename=icon_pen})" alt="スケジュール" /><a href="({t_url m=biz a=page_fh_biz_schedule_view})&amp;id=({$item_schedule.biz_schedule_id})">({$item_schedule.title})</a></p>
+<p><a href="({t_url m=biz a=page_fh_biz_schedule_view})&amp;id=({$item_schedule.biz_schedule_id})">({$item_schedule.title})</a></p>
 ({/if})
 ({/foreach})
-
-({* Todo *})
-({foreach from=$item.todo item=item_todo})
-<p><img src="./skin/default/img/biz/todo_icon.gif" alt="" /><a href="({t_url m=biz a=page_fh_home_edit_biz_todo})&amp;id=({$item_todo.biz_todo_id})&amp;target_id=({$c_member.c_member_id})">({$item_todo.memo|t_truncate:20:".."})</a></p>
-({/foreach})
-
 
 ({if $item.schedule})
 ({foreach from=$item.schedule item=item_schedule name=schedule})
 	({if !$item_schedule.begin_time})  <!-- 時間指定なしの予定 -->
-<p><a href="({t_url m=biz a=page_fh_biz_schedule_view})&amp;id=({$item_schedule.biz_schedule_id})({if $is_f})&amp;target_id=({$c_member.c_member_id})({/if})">({$item_schedule.title})</a></p>
+<p><img src="({t_img_url_skin filename=icon_pen})" alt="スケジュール" /><a href="({t_url m=biz a=page_fh_biz_schedule_view})&amp;id=({$item_schedule.biz_schedule_id})({if $is_f})&amp;target_id=({$c_member.c_member_id})({/if})">({$item_schedule.title})</a></p>
 	({/if})
 ({/foreach})
 ({/if})
+
+({* Todo *})
+({foreach from=$item.todo item=item_todo})
+<p><img src="./skin/default/img/biz/todo_icon.gif" alt="Todo" /><a href="({t_url m=biz a=page_fh_home_edit_biz_todo})&amp;id=({$item_todo.biz_todo_id})&amp;target_id=({$c_member.c_member_id})">({$item_todo.memo|t_truncate:20:".."})</a></p>
+({/foreach})
+
+({* 誕生日 *})
+({foreach from=$item.birth item=item_birth})
+({if $item_birth.public_flag_birth_month_day != "private" || $c_member.c_member_id == $item_birth.c_member_id})
+<p><img src="({t_img_url_skin filename=icon_birthday})" alt="誕生日" /><a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item_birth.c_member_id})">({$item_birth.nickname})さん</a></p>
+({/if})
+({/foreach})
+
+({* イベント *})
+({foreach from=$item.event item=item_event})
+<p><img src="({if $item_event.is_join})({t_img_url_skin filename=icon_event_R})({else})({t_img_url_skin filename=icon_event_B})({/if})" alt="イベント" /><a href="({t_url m=pc a=page_c_event_detail})&amp;target_c_commu_topic_id=({$item_event.c_commu_topic_id})">({$item_event.name})</a></p>
+({/foreach})
 
 ({/if})
 ({/strip})</td>
