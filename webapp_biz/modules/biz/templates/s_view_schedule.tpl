@@ -21,26 +21,26 @@
 <li>
 ({t_form_block m=biz a=page_s_delete_schedule})
 <input type="hidden" name="target_id" value="({$schedule.biz_shisetsu_schedule_id})" />
-<input value="削除する" type="submit" class="submit" />
+<input value="削除する" type="submit" class="input_submit" />
 ({/t_form_block})
 </li>
 ({else})
 <li>
 ({t_form_block m=biz a=page_s_list})
 <input type="hidden" name="w" value="({$w})" />
-<input value="続けて新規の施設予定登録をする" type="submit" class="submit" />
+<input value="続けて新規の施設予定登録をする" type="submit" class="input_submit" />
 ({/t_form_block})
 </li>
 ({capture name="続けて予定登録"})
 <li>
 ({t_form_block m=biz a=page_h_biz_schedule_add})
-<input value="続けて予定登録をする" type="submit" class="submit" />
+<input value="続けて予定登録をする" type="submit" class="input_submit" />
 ({/t_form_block})
 </li>
 ({/capture})
 <li>
 ({t_form_block m=biz a=page_s_list})
-<input value="施設一覧に戻る" type="submit" class="submit" />
+<input value="施設一覧に戻る" type="submit" class="input_submit" />
 ({/t_form_block})
 </li>
 ({/if})
