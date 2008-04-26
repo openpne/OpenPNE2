@@ -10,9 +10,9 @@
 <title>({$INC_HEADER_title})</title>
 <link rel="stylesheet" href="./xhtml_style.php?r=6665" type="text/css" />
 <script type="text/javascript">
-function insertAlbumImageURLToTextarea(album_image_id, album_id) {
+function insertAlbumImageURLToTextarea(album_image_id) {
     var albumURLBase = "({t_url _absolute=1 _html=0 m=pc a=page_fh_album_image_show})";
-    var replace = " " + albumURLBase + "&target_c_album_image_id=" + album_image_id + "&target_c_album_id=" + album_id + " ";
+    var replace = " " + albumURLBase + "&target_c_album_image_id=" + album_image_id + " ";
 
     var elm = window.opener.document.getElementById('mce_editor_textarea');
 
@@ -67,7 +67,7 @@ function insertAlbumImageURLToTextarea(album_image_id, album_id) {
 </tr>
 <tr class="text">
 ({t_loop from=$target_album_image start=0 num=5})
-<td>({if $item})({$item.image_description})<br /><a href="#" onclick="insertAlbumImageURLToTextarea(({$item.c_album_image_id}), ({$item.c_album_id}))">写真を挿入</a>({/if})</td>
+<td>({if $item})({$item.image_description})<br /><a href="#" onclick="insertAlbumImageURLToTextarea(({$item.c_album_image_id}))">写真を挿入</a>({/if})</td>
 ({/t_loop})
 </tr>
 
@@ -79,7 +79,7 @@ function insertAlbumImageURLToTextarea(album_image_id, album_id) {
 </tr>
 <tr class="text">
 ({t_loop from=$target_album_image start=5 num=5})
-<td>({if $item})({$item.image_description})<br /><a href="#" onclick="insertAlbumImageURLToTextarea(({$item.c_album_image_id}), ({$item.c_album_id}))">写真を挿入</a>({/if})</td>
+<td>({if $item})({$item.image_description})<br /><a href="#" onclick="insertAlbumImageURLToTextarea(({$item.c_album_image_id}))">写真を挿入</a>({/if})</td>
 ({/t_loop})
 </tr>
 ({/if})
@@ -92,7 +92,7 @@ function insertAlbumImageURLToTextarea(album_image_id, album_id) {
 </tr>
 <tr class="text">
 ({t_loop from=$target_album_image start=10 num=5})
-<td>({if $item})({$item.image_description})<br /><a href="#" onclick="insertAlbumImageURLToTextarea(({$item.c_album_image_id}), ({$item.c_album_id}))">写真を挿入</a>({/if})</td>
+<td>({if $item})({$item.image_description})<br /><a href="#" onclick="insertAlbumImageURLToTextarea(({$item.c_album_image_id}))">写真を挿入</a>({/if})</td>
 ({/t_loop})
 </tr>
 ({/if})
@@ -105,7 +105,7 @@ function insertAlbumImageURLToTextarea(album_image_id, album_id) {
 </tr>
 <tr class="text">
 ({t_loop from=$target_album_image start=15 num=5})
-<td>({if $item})({$item.image_description})<br /><a href="#" onclick="insertAlbumImageURLToTextarea(({$item.c_album_image_id}), ({$item.c_album_id}))">写真を挿入</a>({/if})</td>
+<td>({if $item})({$item.image_description})<br /><a href="#" onclick="insertAlbumImageURLToTextarea(({$item.c_album_image_id}))">写真を挿入</a>({/if})</td>
 ({/t_loop})
 </tr>
 ({/if})
@@ -118,7 +118,7 @@ function insertAlbumImageURLToTextarea(album_image_id, album_id) {
 </tr>
 <tr class="text">
 ({t_loop from=$target_album_image start=20 num=5})
-<td>({if $item})({$item.image_description})<br /><a href="#" onclick="insertAlbumImageURLToTextarea(({$item.c_album_image_id}), ({$item.c_album_id}))">写真を挿入</a>({/if})</td>
+<td>({if $item})({$item.image_description})<br /><a href="#" onclick="insertAlbumImageURLToTextarea(({$item.c_album_image_id}))">写真を挿入</a>({/if})</td>
 ({/t_loop})
 </tr>
 ({/if})
