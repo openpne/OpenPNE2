@@ -22,7 +22,7 @@ class pc_page_fh_album_output_xml extends OpenPNE_Action
         $c_album = db_album_get_c_album4c_album_id($target_c_album_id);
         $target_c_member_id = $c_album['c_member_id'];
         $c_album['c_member'] = db_member_c_member4c_member_id_LIGHT($target_c_member_id);
-        $c_album['album_cover_image'] = util_get_img_url($c_album['album_cover_image'], 120, 120);
+        $c_album['album_cover_image'] = util_get_img_url($c_album['album_cover_image'], 180, 180);
 
         if ($u != $target_c_member_id) {
             // check public_flag
