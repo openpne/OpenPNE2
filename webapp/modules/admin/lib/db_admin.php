@@ -3219,6 +3219,7 @@ function db_admin_update_c_cmd4c_cmd_caster_id($c_cmd_caster_id)
             $data = array(
                 'name' => $name,
                 'url' => $enclosure->link,
+                'permit' => 127,
                 'c_cmd_caster_id' => $c_cmd_caster_id,
                 'r_datetime' => $item['date'],
                 'u_datetime' => $item['date'],
