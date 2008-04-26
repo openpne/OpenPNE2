@@ -15,21 +15,20 @@ class pc_do_h_album_edit_delete_image extends OpenPNE_Action
         $u = $GLOBALS['AUTH']->uid();
 
         // --- リクエスト変数
-        $c_album_id = $requests['target_c_album_id'];
         $c_album_image_id = $requests['target_c_album_image_id'];
         // ----------
 
         //--- 権限チェック
-        $c_album = db_album_get_c_album4c_album_id($c_album_id);
+        $c_album_image = db_album_image_get_c_album_image4id($c_album_image_id);
+        $c_album = db_album_get_c_album4c_album_id($c_album_image['c_album_id']);
         if ($c_album['c_member_id'] != $u) {
             handle_kengen_error();
         }
 
-        $c_album_image = db_album_image_get_c_album_image4id($c_album_image_id);
         db_album_image_data_delete($c_album_image['image_filename']);
         db_album_delete_c_album_image($c_album_image_id);
 
-        $p = array('target_c_album_id' => $c_album_id);
+        $p = array('target_c_album_id' => $c_album_image['c_album_id']);
         openpne_redirect('pc', 'page_fh_album', $p);
     }
 }
