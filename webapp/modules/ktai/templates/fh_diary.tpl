@@ -39,7 +39,7 @@
 <hr color="#({$ktai_color_config.border_01})">
 <center>
 ｺﾒﾝﾄ（全({$total_num})件）<br>
-({$pager.start})～({$pager.end})件目を表示
+({$pager.start})番～({$pager.end})番を表示
 </center>
 
 <table width="100%">
@@ -69,13 +69,20 @@
 ({/foreach})
 </table>
 
-({if $is_prev || $is_next})
+({if $pager.page_prev || $pager.page_next})
 <center>
 <a name="pager"></a>
-({if $is_prev})<a href="({t_url m=ktai a=page_fh_diary})&amp;target_c_diary_id=({$target_c_diary.c_diary_id})&amp;page=({$page-1})&amp;({$tail})" accesskey="4">[i:128]前を表示</a>({/if})
-({if $is_prev && $is_next})&nbsp;({/if})
-({if $is_next})<a href="({t_url m=ktai a=page_fh_diary})&amp;target_c_diary_id=({$target_c_diary.c_diary_id})&amp;page=({$page+1})&amp;({$tail})" accesskey="6">[i:130]次を表示</a>({/if})
+({if $pager.page_prev})<a href="({t_url m=ktai a=page_fh_diary})&amp;target_c_diary_id=({$target_c_diary.c_diary_id})&amp;page=({$pager.page_prev})({if $requests.order == 'asc'})&amp;order=asc({/if})&amp;({$tail})" accesskey="4">[i:128]前を表示</a>({/if})
+({if $pager.page_prev && $pager.page_next})&nbsp;({/if})
+({if $pager.page_next})<a href="({t_url m=ktai a=page_fh_diary})&amp;target_c_diary_id=({$target_c_diary.c_diary_id})&amp;page=({$pager.page_next})({if $requests.order == 'asc'})&amp;order=asc({/if})&amp;({$tail})" accesskey="6">[i:130]次を表示</a>({/if})
 <br>
+({if $total_page_num > 1})
+({if $requests.order == 'asc'})
+<a href="({t_url m=ktai a=page_fh_diary})&amp;target_c_diary_id=({$target_c_diary.c_diary_id})&amp;({$tail})#commentList">最新を表示</a>
+({else})
+<a href="({t_url m=ktai a=page_fh_diary})&amp;target_c_diary_id=({$target_c_diary.c_diary_id})&amp;order=asc&amp;({$tail})#commentList">最初から表示</a>
+({/if})
+({/if})
 </center>
 ({/if})
 ({/if})
