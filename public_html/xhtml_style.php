@@ -1861,19 +1861,16 @@ div.dparts {
 div.parts {
 	background-color: #<?php echo $colors[8]; ?>;
 }
-#Body .sideNav {
-	background-color: transparent;
-}
 .sideNav .item {
 	background-color: #<?php echo $colors[8]; ?>;
 }
-#Body .linkLine {
+#Body .sideNav {
 	background-color: transparent;
 }
-#Body .searchFormLine {
-	background-color: transparent;
-}
-#Body .buttonLine {
+#Body .linkLine,
+#Body .searchFormLine,
+#Body .buttonLine,
+#Body .prevNextLinkLine {
 	background-color: transparent;
 }
 
