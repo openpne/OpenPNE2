@@ -20,8 +20,13 @@ class ktai_page_h_home extends OpenPNE_Action
         $this->set('c_member', $c_member);
         //新着メッセージ数
         $this->set('c_message_unread_count', db_message_c_message_received_unread_all_count4c_member_id($u));
-        //フレンドの最新日記
-        $this->set('c_diary_friend_list', p_h_home_c_diary_friend_list4c_member_id($u, 5));
+        // 最新日記
+        if(DISPLAY_NEWDIARYTOPIC_HOME && !$OPTION['DISPLAY_CHANGE_NEWDIARY_HOME_KTAI']){
+            $this->set('c_diary_list_all', p_h_home_c_diary_all_list(5));
+        } else {
+            //フレンドの最新日記
+            $this->set('c_diary_friend_list', p_h_home_c_diary_friend_list4c_member_id($u, 5));
+        }
         //参加コミュニティリスト
         $this->set('c_commu_list', db_commu_c_commu_list_lastupdate4c_member_id($u, 5));
         //参加コミュニティの数
@@ -31,9 +36,13 @@ class ktai_page_h_home extends OpenPNE_Action
         //フレンドの数
         $this->set('c_friend_count', db_friend_count_friends($u));
 
-        //参加コミュニティの新着書き込み
-        $this->set('c_commu_topic_list', db_commu_c_commu_topic_comment_list4c_member_id($u, 5));
-
+        // 最新ﾄﾋﾟｯｸ
+        if(DISPLAY_NEWDIARYTOPIC_HOME && !$OPTION['DISPLAY_CHANGE_NEWTOPIC_HOME_KTAI']){
+            $this->set('c_topic_list_all', p_h_home_c_topic_all_list(5));
+        } else {
+            //参加コミュニティの新着書き込み
+            $this->set('c_commu_topic_list', db_commu_c_commu_topic_comment_list4c_member_id($u, 5));
+        }
         $this->set('SNS_NAME', SNS_NAME);
 
         //アクセス日時を記録
