@@ -125,6 +125,11 @@ function pne_mce_editor_get_config()
         op_color : {
             isEnabled : ({$INC_HEADER_decoration_config.op_color}),
             imageURL : "({t_img_url_skin filename=deco_op_color})"
+        },
+        op_image : {
+            isEnabled : ({$smarty.const.OPENPNE_USE_ALBUM}),
+            imageURL : "({t_img_url_skin filename=deco_op_image})",
+            contentURL : "({t_url m=pc a=page_h_album_insert_dialog})"
         }
     }
 }
