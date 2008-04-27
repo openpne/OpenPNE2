@@ -12,7 +12,6 @@ class ktai_page_fh_diary_list extends OpenPNE_Action
 
         // --- リクエスト変数
         $target_c_member_id = $requests['target_c_member_id'];
-        $direc = $requests['direc'];
         $page = $requests['page'];
         $keyword = $requests['keyword'];
         // ----------
@@ -39,7 +38,6 @@ class ktai_page_fh_diary_list extends OpenPNE_Action
 
         // 1ページ当たりに表示する日記の数
         $page_size = 10;
-        $page += $direc;
         //ターゲットの詳細な日記リスト
         //検索する場合(自分の日記のみ)
         if ($keyword) {

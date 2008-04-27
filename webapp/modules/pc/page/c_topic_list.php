@@ -12,7 +12,6 @@ class pc_page_c_topic_list extends OpenPNE_Action
 
         // --- リクエスト変数
         $c_commu_id = $requests['target_c_commu_id'];
-        $direc = $requests['direc'];
         $page = $requests['page'];
         // ----------
 
@@ -26,8 +25,6 @@ class pc_page_c_topic_list extends OpenPNE_Action
         }
 
         $this->set('inc_navi', fetch_inc_navi("c", $c_commu_id));
-
-        $page += $direc;
 
         $this->set("c_commu", $c_commu);
         list($result, $is_prev, $is_next, $total_num, $start_num, $end_num)

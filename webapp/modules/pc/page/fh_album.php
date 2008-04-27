@@ -16,10 +16,8 @@ class pc_page_fh_album extends OpenPNE_Action
 
         // --- リクエスト変数
         $target_c_album_id = $requests['target_c_album_id'];
-        $direc = $requests['direc'];
         $page = $requests['page'];
         // ----------
-        $page += $direc;
         $page_size = 10;
 
         // target が指定されていない
