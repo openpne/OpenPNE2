@@ -286,6 +286,15 @@
 <option value="0"({if !$smarty.const.OPENPNE_IS_POINT_ADMIN}) selected="selected"({/if})>加算・表示しない</option>
 </select></td>
 </tr>
+<tr class="cell35">
+<th colspan="2">最新情報表示設定</th>
+<td>
+<span class="info">マイホームにSNS全体の最新情報（({$WORD_DIARY})とトピック）を表示するかどうかを設定します</span><br />
+<select class="basic" name="DISPLAY_NEWDIARYTOPIC_HOME">
+<option value="1"({if $smarty.const.DISPLAY_NEWDIARYTOPIC_HOME}) selected="selected"({/if})>表示する</option>
+<option value="0"({if !$smarty.const.DISPLAY_NEWDIARYTOPIC_HOME}) selected="selected"({/if})>表示しない</option>
+</select></td>
+</tr>
 <tr class="cell21">
 <th colspan="2">ログイン制限</th>
 <td>
