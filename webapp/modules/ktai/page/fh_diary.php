@@ -12,12 +12,10 @@ class ktai_page_fh_diary extends OpenPNE_Action
 
         // --- リクエスト変数
         $target_c_diary_id = $requests['target_c_diary_id'];
-        $direc = $requests['direc'];
         $page = $requests['page'];
         // ----------
 
         $page_size = 5;
-        $page += $direc;
 
         //ページ
         $this->set("page", $page);
