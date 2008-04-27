@@ -12,7 +12,6 @@ class pc_page_c_event_detail extends OpenPNE_Action
 
         // --- リクエスト変数
         $c_commu_topic_id = $requests['target_c_commu_topic_id'];
-        $direc = $requests['direc'];
         $page = $requests['page'];
         $all = $requests['all'];
         $err_msg = $requests['err_msg'];
@@ -45,7 +44,6 @@ class pc_page_c_event_detail extends OpenPNE_Action
         $this->set("c_topic", $c_topic);
 
         //書き込み一覧部分
-        $page += $direc;
         if ($all) {
             $page_size = null;
         } else {

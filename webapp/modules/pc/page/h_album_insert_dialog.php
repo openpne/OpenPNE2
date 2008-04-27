@@ -14,10 +14,8 @@ class pc_page_h_album_insert_dialog extends OpenPNE_Action
 
         $u = $GLOBALS['AUTH']->uid();
 
-        $direc = $requests['direc'];
         $page = $requests['page'];
 
-        $page += $direc;
         $page_size = 10;
 
         $target_member = db_member_c_member4c_member_id($u);
