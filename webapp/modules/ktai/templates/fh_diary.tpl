@@ -78,9 +78,9 @@
 <br>
 ({if $total_page_num > 1})
 ({if $requests.order == 'asc'})
-<a href="({t_url m=ktai a=page_fh_diary})&amp;target_c_diary_id=({$target_c_diary.c_diary_id})&amp;({$tail})#commentList">最新を表示</a>
+<a href="({t_url m=ktai a=page_fh_diary})&amp;target_c_diary_id=({$target_c_diary.c_diary_id})&amp;({$tail})">最新を表示</a>
 ({else})
-<a href="({t_url m=ktai a=page_fh_diary})&amp;target_c_diary_id=({$target_c_diary.c_diary_id})&amp;order=asc&amp;({$tail})#commentList">最初から表示</a>
+<a href="({t_url m=ktai a=page_fh_diary})&amp;target_c_diary_id=({$target_c_diary.c_diary_id})&amp;order=asc&amp;({$tail})">最初から表示</a>
 ({/if})
 ({/if})
 </center>

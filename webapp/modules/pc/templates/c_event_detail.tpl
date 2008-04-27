@@ -84,16 +84,35 @@
 <div class="dparts commentList" id="commentList"><div class="parts">
 <div class="partsHeading"><h3>書き込み</h3></div>
 
+({if $pager.total_num > 20 || $pager.total_page_num > 1})
+({strip})
+<div class="pagerRelative">
+
+({if $pager.total_num > 20})
+({if $requests.page_size == 100})
+<p><a href="({t_url m=pc a=page_c_event_detail})&amp;target_c_commu_topic_id=({$c_topic.c_commu_topic_id})({if $requests.order == 'asc'})&amp;order=asc({/if})#commentList">20件ずつ表示</a></p>
+({else})
+<p><a href="({t_url m=pc a=page_c_event_detail})&amp;target_c_commu_topic_id=({$c_topic.c_commu_topic_id})({if $requests.order == 'asc'})&amp;order=asc({/if})&amp;page_size=100#commentList">100件ずつ表示</a></p>
+({/if})
+({/if})
+
+({if $pager.total_page_num > 1})
+({if $requests.order == 'asc'})
+<p><a href="({t_url m=pc a=page_c_event_detail})&amp;target_c_commu_topic_id=({$c_topic.c_commu_topic_id})({if $requests.page_size == 100})&amp;page_size=100({/if})#commentList">最新を表示</a></p>
+({else})
+<p><a href="({t_url m=pc a=page_c_event_detail})&amp;target_c_commu_topic_id=({$c_topic.c_commu_topic_id})({if $requests.page_size == 100})&amp;page_size=100({/if})&amp;order=asc#commentList">最初から表示</a></p>
+({/if})
+({/if})
+
+</div>
+({/strip})
+({/if})
+
 ({capture name=pager})({strip})
 <div class="pagerRelative">
-({if $all})
-<p><a href="({t_url m=pc a=page_c_event_detail})&amp;target_c_commu_topic_id=({$c_topic.c_commu_topic_id})">最新を表示</a></p>
-({elseif $total_num > $page_size})
-<p><a href="({t_url m=pc a=page_c_event_detail})&amp;target_c_commu_topic_id=({$c_topic.c_commu_topic_id})&amp;all=1">すべて表示</a></p>
-({/if})
-({if $is_next})<p class="prev"><a href="({t_url m=pc a=page_c_event_detail})&amp;target_c_commu_topic_id=({$c_topic.c_commu_topic_id})&amp;page=({$page+1})#commentList">前を表示</a></p>({/if})
-<p class="number">({$start_num})番～({$end_num})番を表示</p>
-({if $is_prev})<p class="next"><a href="({t_url m=pc a=page_c_event_detail})&amp;target_c_commu_topic_id=({$c_topic.c_commu_topic_id})&amp;page=({$page-1})#commentList">次を表示</a></p>({/if})
+({if $pager.page_prev})<p class="prev"><a href="({t_url m=pc a=page_c_event_detail})&amp;target_c_commu_topic_id=({$c_topic.c_commu_topic_id})({if $requests.page_size == 100})&amp;page_size=100({/if})({if $requests.order == 'asc'})&amp;order=asc({/if})&amp;page=({$pager.page_prev})#commentList">前を表示</a></p>({/if})
+<p class="number">({$pager.start_num})番～({$pager.end_num})番を表示</p>
+({if $pager.page_next})<p class="next"><a href="({t_url m=pc a=page_c_event_detail})&amp;target_c_commu_topic_id=({$c_topic.c_commu_topic_id})({if $requests.page_size == 100})&amp;page_size=100({/if})({if $requests.order == 'asc'})&amp;order=asc({/if})&amp;page=({$pager.page_next})#commentList">次を表示</a></p>({/if})
 </div>
 ({/strip})({/capture})
 ({$smarty.capture.pager|smarty:nodefaults})
