@@ -13,7 +13,6 @@ class pc_page_c_event_member_list extends OpenPNE_Action
         // --- リクエスト変数
         $c_commu_topic_id = $requests['target_c_commu_topic_id'];
         $page = $requests['page'];
-        $direc = $requests['direc'];
         // ----------
 
         $c_topic = db_commu_c_topic4c_commu_topic_id_2($c_commu_topic_id);
@@ -29,7 +28,6 @@ class pc_page_c_event_member_list extends OpenPNE_Action
         $this->set('c_topic', $c_topic);
 
         $this->set('inc_navi', fetch_inc_navi('c', $c_commu_id));
-        $page += $direc;
         $this->set('page', $page);
         $page_size = 50;
         $c_event_member_list = db_commu_c_event_member_list4c_commu_topic_id($c_commu_topic_id, $page, $page_size);

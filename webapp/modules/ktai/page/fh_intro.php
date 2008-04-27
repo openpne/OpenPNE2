@@ -14,11 +14,9 @@ class ktai_page_fh_intro extends OpenPNE_Action
         // --- リクエスト変数
         $target_c_member_id = $requests['target_c_member_id'];
         $page = $requests['page'];
-        $direc = $requests['direc'];
         // ----------
 
         $page_size = 5;
-        $page += $direc;
 
         if (is_null($target_c_member_id)) {
             $target_c_member_id = $u;

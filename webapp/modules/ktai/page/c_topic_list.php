@@ -13,7 +13,6 @@ class ktai_page_c_topic_list extends OpenPNE_Action
         // --- リクエスト変数
         $c_commu_id = $requests['target_c_commu_id'];
         $page = $requests['page'];
-        $direc = $requests['direc'];
         // ----------
 
         //--- 権限チェック
@@ -23,7 +22,6 @@ class ktai_page_c_topic_list extends OpenPNE_Action
         }
 
         $page_size = 10;
-        $page += $direc;
 
         $this->set('c_commu', db_commu_c_commu4c_commu_id($c_commu_id));
 

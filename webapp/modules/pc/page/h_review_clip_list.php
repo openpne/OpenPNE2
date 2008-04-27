@@ -12,10 +12,7 @@ class pc_page_h_review_clip_list extends OpenPNE_Action
 
         // --- リクエスト変数
         $page = $requests['page'];
-        $direc = $requests['direc'];
         // ----------
-
-        $page += $direc;
 
         $this->set('inc_navi', fetch_inc_navi("h"));
         list($c_review_clip_list, $is_prev, $is_next, $total_num, $start_num, $end_num)
