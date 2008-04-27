@@ -16,7 +16,6 @@ class pc_page_fh_album_list extends OpenPNE_Action
 
         // --- リクエスト変数
         $target_c_member_id = $requests['target_c_member_id'];
-        $direc = $requests['direc'];
         $page = $requests['page'];
         $keyword = $requests['keyword'];
         // ----------
@@ -44,7 +43,6 @@ class pc_page_fh_album_list extends OpenPNE_Action
         $this->set('inc_navi', fetch_inc_navi($type, $target_c_member_id));
         $this->set('type', $type);
 
-        $page += $direc;
         $page_size = 10;
 
         $target_member = db_member_c_member4c_member_id($target_c_member_id);

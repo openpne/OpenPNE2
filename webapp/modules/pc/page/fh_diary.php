@@ -14,11 +14,8 @@ class pc_page_fh_diary extends OpenPNE_Action
         $target_c_diary_id = $requests['target_c_diary_id'];
         $body = $requests['body'];
         $is_all = $requests['is_all'];
-        $direc = $requests['direc'];
         $page = $requests['page'];
         // ----------
-
-        $page += $direc;
 
         // target が指定されていない
         if (!$target_c_diary_id) {

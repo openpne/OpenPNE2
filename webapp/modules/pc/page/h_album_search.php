@@ -15,13 +15,11 @@ class pc_page_h_album_search extends OpenPNE_Action
         $u = $GLOBALS['AUTH']->uid();
 
         // --- requests変数
-        $direc = $requests['direc'];
         $page = $requests['page'];
         $keyword = $requests['keyword'];
         // ----------
 
         $this->set('inc_navi', fetch_inc_navi('h'));
-        $page += $direc;
         $page_size = 10;
 
         $result = p_h_album_list_all_search_c_album4c_album($keyword, $page_size, $page);

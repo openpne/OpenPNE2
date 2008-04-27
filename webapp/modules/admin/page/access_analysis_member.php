@@ -17,7 +17,6 @@ class admin_page_access_analysis_member extends OpenPNE_Action
         $month_flag = $requests['month_flag'];
         $page_name = $requests['page_name'];
         $page = $requests['page'];
-        $direc = $requests['direc'];
         $orderby = $requests['orderby'];
         $orderby1 = $requests['orderby1'];
         $orderby2 = $requests['orderby2'];
@@ -30,7 +29,6 @@ class admin_page_access_analysis_member extends OpenPNE_Action
         $this->set($v);
 
         $page_size = 10;
-        $page += $direc;
         if ($orderby1) {
             $orderby = $orderby1;
         } elseif ($orderby2) {
