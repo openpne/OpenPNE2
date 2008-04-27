@@ -2960,6 +2960,25 @@ function db_commu_search_c_commu_topic(
 }
 
 /*
+ * 新着トピック
+ */
+function p_h_home_c_topic_all_list($limit)
+{
+    $sql = 'SELECT ct.*,c.name as c_commu_name, c.c_commu_id'
+          . ' FROM c_commu_topic as ct'
+          . ' INNER JOIN c_commu as c USING(c_commu_id)'
+          . ' WHERE c.public_flag IN (\'public\', \'auth_sns\')'
+          . ' ORDER BY r_datetime_comment DESC';
+    $c_topic_all_list = db_get_all_limit($sql,0,$limit);
+    foreach($c_topic_all_list as $key=>$value) {
+        $number = db_commu_get_max_number4topic($value['c_commu_topic_id']);
+        $c_topic_all_list[$key]['number'] = $number;
+    }
+    return $c_topic_all_list;
+}
+
+
+/*
  * トピック書き込み時間(u_datetime)を更新する
  */
 function db_commu_update_c_commu_topic_u_datetime($c_commu_topic_id)
