@@ -63,7 +63,7 @@
 ({* unknown *})</table>
 ({* unknown *})</div></div>
 
-({if $target_album_image})
+({if $album_image_list})
 
 ({* unknown *})<div class="dparts"><div class="parts">
 ({* unknown *})<div class="partsHeading"><h3>写真一覧</h3></div>
@@ -86,29 +86,25 @@
 ({* unknown *})({$smarty.capture.pager|smarty:nodefaults})
 ({* unknown *})
 ({* unknown *})<table>
-({* unknown *})({foreach from=$new_album_list key=key item=album_item})
-({* unknown *})<tr>
+({* unknown *})({foreach from=$album_image_list item=item})
+({* unknown *})({counter assign=_cnt})
+({* unknown *})({if $_cnt % 2 == 1})<tr>({/if})
 ({* unknown *})<td style="width: 50%; padding: 5px; text-align: center;">
-({* unknown *})({if $album_item.dual.image_filename})
-({* unknown *})<a href="({t_url m=pc a=page_fh_album_image_show})&amp;target_c_album_image_id=({$album_item.dual.c_album_image_id})"><img src="({t_img_url filename=$album_item.dual.image_filename w=180 h=180})" alt="" /></a><br />
-({* unknown *})({if $type == "h"})<a href="({t_url m=pc a=page_h_album_image_edit})&amp;target_c_album_id=({$album_item.dual.c_album_id})&amp;target_c_album_image_id=({$album_item.dual.c_album_image_id})">写真を編集</a>({/if})
-({* unknown *})<p>({$album_item.dual.image_description})</p>
+({* unknown *})({if $item.image_filename})
+({* unknown *})<a href="({t_url m=pc a=page_fh_album_image_show})&amp;target_c_album_image_id=({$item.c_album_image_id})"><img src="({t_img_url filename=$item.image_filename w=180 h=180})" alt="" /></a><br />
+({* unknown *})({if $type == "h"})<a href="({t_url m=pc a=page_h_album_image_edit})&amp;target_c_album_id=({$item.c_album_id})&amp;target_c_album_image_id=({$item.c_album_image_id})">写真を編集</a>({/if})
+({* unknown *})<p>({$item.image_description})</p>
 ({* unknown *})({/if})
 ({* unknown *})</td>
-({* unknown *})<td style="width: 50%; padding: 5px; text-align: center;">
-({* unknown *})({if $album_item.singular.image_filename})
-({* unknown *})<a href="({t_url m=pc a=page_fh_album_image_show})&amp;target_c_album_image_id=({$album_item.singular.c_album_image_id})"><img src="({t_img_url filename=$album_item.singular.image_filename w=180 h=180})" alt="" /></a><br />
-({* unknown *})({if $type == "h"})<a href="({t_url m=pc a=page_h_album_image_edit})&amp;target_c_album_id=({$album_item.singular.c_album_id})&amp;target_c_album_image_id=({$album_item.singular.c_album_image_id})">写真を編集</a>({/if})
-({* unknown *})<p>({$album_item.singular.image_description})</p>
-({* unknown *})({/if})
-({* unknown *})</td>
-({* unknown *})</tr>
+({* unknown *})({if $_cnt % 2 == 0})</tr>({/if})
 ({* unknown *})({/foreach})
+({* unknown *})({if $_cnt % 2 == 1})<td></td></tr>({/if})
 ({* unknown *})</table>
 ({* unknown *})
 ({* unknown *})({$smarty.capture.pager|smarty:nodefaults})
 ({* unknown *})
 ({* unknown *})</div></div>
+
 ({/if})
 
 </div><!-- Center -->
