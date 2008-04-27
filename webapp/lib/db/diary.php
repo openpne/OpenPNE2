@@ -873,11 +873,9 @@ function k_p_fh_diary_list_c_diary_list4c_member_id($c_member_id, $page_size, $p
  */
 function k_p_fh_diary_c_diary_comment_list4c_diary_id($c_diary_id, $page_size, $page, $desc = true)
 {
-    $sql = 'SELECT * FROM c_diary_comment WHERE c_diary_id = ? ORDER BY r_datetime ';
+    $sql = 'SELECT * FROM c_diary_comment WHERE c_diary_id = ? ORDER BY r_datetime';
     if ($desc) {
-        $sql .= 'DESC';
-    } else {
-        $sql .= 'ASC';
+        $sql .= ' DESC';
     }
     $params = array(intval($c_diary_id));
     $c_diary_comment_list = db_get_all_page($sql, $page, $page_size, $params);
@@ -887,7 +885,7 @@ function k_p_fh_diary_c_diary_comment_list4c_diary_id($c_diary_id, $page_size, $
         $c_diary_comment_list[$key]['nickname'] = $c_member['nickname'];
     }
 
-    $sql = "SELECT COUNT(*) FROM c_diary_comment WHERE c_diary_id = ?";
+    $sql = 'SELECT COUNT(c_diary_comment_id) FROM c_diary_comment WHERE c_diary_id = ?';
     $params = array(intval($c_diary_id));
     $total_num = db_get_one($sql, $params);
 
@@ -904,7 +902,7 @@ function k_p_fh_diary_c_diary_comment_list4c_diary_id($c_diary_id, $page_size, $
             $prev = true;
         }
     }
-    return array($c_diary_comment_list , $prev , $next, $total_num, $total_page_num);
+    return array($c_diary_comment_list, $prev, $next, $total_num, $total_page_num);
 }
 
 /**
