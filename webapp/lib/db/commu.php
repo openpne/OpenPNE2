@@ -1220,47 +1220,6 @@ function db_commu_c_commu_topic_name4c_commu_topic_id($c_commu_topic_id)
 }
 
 /**
- * トピックのコメントリストを取得
- * 引数のメンバーIDが書き込んだコメントに対しては、
- * is_c_commu_topic_comment_admin=1が返る。
- */
-function db_commu_c_commu_topic_comment_list4c_c_commu_topic_id($c_commu_topic_id, $c_member_id, $page_size, $page)
-{
-    $sql = "SELECT c_commu_topic_comment.*, c_member.nickname" .
-        " FROM c_commu_topic_comment" .
-            " LEFT JOIN c_member USING (c_member_id)" .
-        " WHERE c_commu_topic_id = ? AND c_commu_topic_comment.number > 0" .
-        " ORDER BY number DESC";
-    $params = array(intval($c_commu_topic_id));
-    $list = db_get_all_page($sql, $page, $page_size, $params);
-
-    foreach ($list as $key => $value) {
-        if ($list[$key]['c_member_id'] == $c_member_id) {
-            $list[$key]['is_c_commu_topic_comment_admin'] = true;
-        }
-    }
-
-    $sql = "SELECT COUNT(*)-1 FROM c_commu_topic_comment WHERE c_commu_topic_id = ?";
-    $params = array(intval($c_commu_topic_id));
-    $total_num = db_get_one($sql, $params);
-
-    if ($total_num > 0) {
-        $total_page_num =  ceil($total_num / $page_size);
-        if ($page >= $total_page_num) {
-            $next = false;
-        } else {
-            $next = true;
-        }
-        if ($page <= 1) {
-            $prev = false;
-        } else {
-            $prev = true;
-        }
-    }
-    return array($list , $prev , $next, $total_num);
-}
-
-/**
  * トピックIDからコミュニティIDと名前を取得
  */
 function db_commu_c_commu4c_commu_topic_id($c_commu_topic_id)
@@ -1855,49 +1814,66 @@ function db_commu_c_topic4c_commu_topic_id_2($c_commu_topic_id)
     return $lst;
 }
 
-function db_commu_c_topic_write4c_commu_topic_id($c_commu_topic_id, $page, $page_size = null)
+function db_commu_c_topic_write4c_commu_topic_id($c_commu_topic_id, $page, $page_size, $desc = true)
 {
-    $params = array(intval($c_commu_topic_id));
-
-    $sql = "SELECT count(*) FROM c_commu_topic_comment" .
-        " WHERE c_commu_topic_id = ? AND number > 0";
-    $total_num = db_get_one($sql, $params);
-
-    // 件数指定がない場合は全件取得
-    if (is_null($page_size)) {
-        $page = 1;
-        $page_size = $total_num;
+    $sql = 'SELECT ctc.*, c_member.nickname FROM c_commu_topic_comment AS ctc'
+         . ' LEFT JOIN c_member USING (c_member_id)'
+         . ' WHERE ctc.c_commu_topic_id = ? AND ctc.number <> 0 ORDER BY ctc.r_datetime';
+    if ($desc) {
+        $sql .= ' DESC';
     }
-
-    $sql = "SELECT ctc.*, c_member.nickname " .
-        " FROM c_commu_topic_comment AS ctc" .
-            " LEFT JOIN c_member USING (c_member_id)" .
-        " WHERE ctc.c_commu_topic_id = ? AND ctc.number > 0 " .
-        " ORDER BY ctc.r_datetime DESC";
+    $params = array(intval($c_commu_topic_id));
     $lst = db_get_all_page($sql, $page, $page_size, $params);
+
+    $sql = 'SELECT count(c_commu_topic_comment_id) - 1 FROM c_commu_topic_comment'
+         . ' WHERE c_commu_topic_id = ?';
+    $total_num = db_get_one($sql, $params);
 
     if ($total_num != 0) {
         $total_page_num = ceil($total_num / $page_size);
         if ($page >= $total_page_num) {
-            $next = false;
+            $is_next = false;
         } else {
-            $next = true;
+            $is_next = true;
         }
         if ($page <= 1) {
-            $prev = false;
+            $is_prev = false;
         } else {
-            $prev = true;
+            $is_prev = true;
         }
     }
-    $lst = array_reverse($lst);
 
+    if ($desc) {
+        $lst = array_reverse($lst);
+    }
     $start = reset($lst);
-    $start_num = $start['number'];
-
     $end = end($lst);
-    $end_num = $end['number'];
+    if ($is_prev) {
+        if ($desc) {
+            $page_next = $page - 1;
+        } else {
+            $page_prev = $page - 1;
+        }
+    }
+    if ($is_next) {
+        if ($desc) {
+            $page_prev = $page + 1;
+        } else {
+            $page_next = $page + 1;
+        }
+    }
 
-    return array($lst, $prev, $next, $total_num, $start_num, $end_num);
+    $pager = array(
+        'total_num' => $total_num,
+        'total_page_num' => $total_page_num,
+        'start_num' => $start['number'],
+        'end_num' => $end['number'],
+        'is_prev' => $is_prev,
+        'is_next' => $is_next,
+        'page_prev' => $page_prev,
+        'page_next' => $page_next,
+    );
+    return array($lst, $pager);
 }
 
 function db_commu_c_commu_topic_comment4c_commu_topic_comment_id_3($c_commu_topic_comment_id)
