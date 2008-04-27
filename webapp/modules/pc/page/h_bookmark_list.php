@@ -11,12 +11,10 @@ class pc_page_h_bookmark_list extends OpenPNE_Action
         $u = $GLOBALS['AUTH']->uid();
 
         // --- リクエスト変数
-        $direc = $requests['direc'];
         $page = $requests['page'];
         // ----------
 
         $page_size = 20;
-        $page += $direc;
 
         $this->set('inc_navi', fetch_inc_navi('h'));
         $list = db_bookmark_list($u, $page, $page_size);

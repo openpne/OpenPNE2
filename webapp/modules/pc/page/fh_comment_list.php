@@ -12,10 +12,8 @@ class pc_page_fh_comment_list extends OpenPNE_Action
 
         // --- リクエスト変数
         $target_c_member_id = $requests['target_c_member_id'];
-        $direc = $requests['direc'];
         $page = $requests['page'];
         // ----------
-        $page = $page+$direc;
 
         if (empty($target_c_member_id)) {
             $target_c_member_id = $u;

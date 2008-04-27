@@ -11,13 +11,11 @@ class ktai_page_h_diary_list_all extends OpenPNE_Action
         $u  = $GLOBALS['KTAI_C_MEMBER_ID'];
 
         // --- リクエスト変数
-        $direc = $requests['direc'];
         $page = $requests['page'];
         $keyword = $requests['keyword'];
         // ----------
 
         //日記一覧
-        $page = $page + $direc;
         $page_size = 10;
 
         //検索結果

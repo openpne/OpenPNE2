@@ -11,11 +11,9 @@ class ktai_page_h_com_comment_list extends OpenPNE_Action
         $u  = $GLOBALS['KTAI_C_MEMBER_ID'];
 
         // --- リクエスト変数
-        $direc = $requests['direc'];
         $page = $requests['page'];
         // ----------
 
-        $page = $page + $direc;
         $page_size = 10;
         $this->set("page_size", $page_size);
         $this->set('page', $page);

@@ -11,15 +11,12 @@ class pc_page_h_diary_list_friend extends OpenPNE_Action
         $u = $GLOBALS['AUTH']->uid();
 
         // --- リクエスト変数
-        $direc = $requests['direc'];
         $page = $requests['page'];
         // ----------
 
         $this->set('inc_navi', fetch_inc_navi("h"));
 
-
         //日記一覧
-        $page = $page + $direc;
         $page_size = 50;
         $this->set("page_size", $page_size);
 

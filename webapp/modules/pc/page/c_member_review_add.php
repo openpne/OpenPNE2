@@ -12,11 +12,9 @@ class pc_page_c_member_review_add extends OpenPNE_Action
 
         // --- リクエスト変数
         $c_commu_id = $requests['target_c_commu_id'];
-        $direc = $requests['direc'];
         $page = $requests['page'];
         // ----------
         $page_size = 30;
-        $page = $page + $direc;
         $c_member_id= $u;
 
         //--- 権限チェック
