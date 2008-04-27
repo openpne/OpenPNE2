@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta http-equiv="Content-Style-Type" content="text/css" />
 <title>({if $smarty.const.SNS_TITLE})({$smarty.const.SNS_TITLE})({else})({$smarty.const.SNS_NAME})({/if})</title>
-<link rel="stylesheet" href="./xhtml_style.php?r=6665" type="text/css" />
+<link rel="stylesheet" href="./xhtml_style.php" type="text/css" />
 </head>
 <body><div id="Body">
 <div id="Container">
