@@ -8,7 +8,7 @@
 <script type="text/javascript" src="./js/Selection.js"></script>
 <script type="text/javascript" src="./js/tiny_mce/tiny_mce_popup.js"></script>
 <title>({$INC_HEADER_title})</title>
-<link rel="stylesheet" href="./xhtml_style.php?r=6665" type="text/css" />
+<link rel="stylesheet" href="./xhtml_style.php" type="text/css" />
 <script type="text/javascript">
 function insertAlbumURLToTextarea(album_id) {
     var albumURLBase = "({t_url _absolute=1 _html=0 m=pc a=page_fh_album})";
