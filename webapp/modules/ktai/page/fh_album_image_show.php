@@ -59,8 +59,8 @@ class ktai_page_fh_album_image_show extends OpenPNE_Action
         
         $this->set('type', $type);
         $this->set('c_album_image', $target_c_album_image);
-        $this->set('c_album_iamge_id_prev', db_album_image_c_album_image_id_prev4c_album_id($target_c_member_id, $target_c_album_id, $target_c_album_image_id, $u));
-        $this->set('c_album_iamge_id_next', db_album_image_c_album_image_id_next4c_album_id($target_c_member_id, $target_c_album_id, $target_c_album_image_id, $u));
+        $this->set('c_album_iamge_id_prev', db_album_image_c_album_image_id_prev4c_album_id($target_c_album_id, $target_c_album_image_id));
+        $this->set('c_album_iamge_id_next', db_album_image_c_album_image_id_next4c_album_id($target_c_album_id, $target_c_album_image_id));
 
         $this->set('album_info', $target_c_album);
         $this->set('target_member', db_member_c_member4c_member_id($target_c_member_id));
