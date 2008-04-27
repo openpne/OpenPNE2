@@ -15,14 +15,12 @@ class pc_page_h_album_list_friend extends OpenPNE_Action
         $u = $GLOBALS['AUTH']->uid();
 
         // --- リクエスト変数
-        $direc = $requests['direc'];
         $page = $requests['page'];
         // ----------
 
         $this->set('inc_navi', fetch_inc_navi("h"));
 
         //アルバム一覧
-        $page = $page + $direc;
         $page_size = 20;
         $this->set("page_size", $page_size);
 

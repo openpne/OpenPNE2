@@ -12,12 +12,10 @@ class ktai_page_c_member_list extends OpenPNE_Action
 
         // --- リクエスト変数
         $target_c_commu_id = $requests['target_c_commu_id'];
-        $direc = $requests['direc'];
         $page = $requests['page'];
         // ----------
 
         $page_size = 20;
-        $page += $direc;
 
         //ページ
         $this->set("page", $page);
