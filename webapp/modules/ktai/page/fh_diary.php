@@ -15,18 +15,12 @@ class ktai_page_fh_diary extends OpenPNE_Action
         $page = $requests['page'];
         // ----------
 
-        $page_size = 5;
-
-        //ページ
-        $this->set("page", $page);
-
         $c_diary = db_diary_get_c_diary4id($target_c_diary_id);
 
         $target_c_member = k_p_fh_diary_c_member4c_diary_id($target_c_diary_id);
         $target_c_member_id = $target_c_member['c_member_id'];
 
         if ($u != $target_c_member_id) {
-
             // check public_flag
             if (!pne_check_diary_public_flag($target_c_diary_id, $u)) {
                 ktai_display_error('この' . WORD_DIARY_HALF . 'にはアクセスできません');
@@ -40,45 +34,70 @@ class ktai_page_fh_diary extends OpenPNE_Action
         $this->set('c_siteadmin', p_common_c_siteadmin4target_pagename('k_fh_diary'));
 
         //日記の作者情報
-        $this->set("target_diary_writer", $target_c_member);
+        $this->set('target_diary_writer', $target_c_member);
 
         //日記
-        $this->set("target_c_diary", $c_diary);
+        $this->set('target_c_diary', $c_diary);
         $this->set('c_diary_id_prev', db_diary_c_diary_id_prev4c_diary_id($target_c_member_id, $target_c_diary_id, $u));
         $this->set('c_diary_id_next', db_diary_c_diary_id_next4c_diary_id($target_c_member_id, $target_c_diary_id, $u));
         //自分で日記を見たとき
         if ($c_diary['c_member_id'] == $u) {
             //日記を閲覧済みにする
             db_diary_update_c_diary_is_checked($target_c_diary_id, 1);
-            $this->set("type", 'h');
-
+            $this->set('type', 'h');
         }
-        //コメント
-        list ($c_diary_comment_list, $is_prev, $is_next, $total_num, $total_page_num)
-            = k_p_fh_diary_c_diary_comment_list4c_diary_id($target_c_diary_id, $page_size, $page);
 
-        $this->set("c_diary_comment", array_reverse($c_diary_comment_list));
-        $this->set("is_prev", $is_prev);
-        $this->set("is_next", $is_next);
-        $this->set("total_num", $total_num);
-        $this->set("total_page_num", $total_page_num);
-        $this->set("page_size", $page_size);
+        //コメント
+        $page_size = 5;
+        if ($requests['order'] === 'asc') {
+            $desc = false;
+        } else {
+            $desc = true;
+        }
+        list ($c_diary_comment_list, $is_prev, $is_next, $total_num, $total_page_num)
+            = k_p_fh_diary_c_diary_comment_list4c_diary_id($target_c_diary_id, $page_size, $page, $desc);
+        if ($desc) {
+            $c_diary_comment_list = array_reverse($c_diary_comment_list);
+        }
+
+        $this->set('c_diary_comment', $c_diary_comment_list);
+        $this->set('total_num', $total_num);
+        $this->set('total_page_num', $total_page_num);
+        $this->set('page_size', $page_size);
+        $this->set('page', $page);
+
+        $start_comment = reset($c_diary_comment_list);
+        $end_comment = end($c_diary_comment_list);
 
         $pager = array();
-        $pager['end'] = $total_num - ($page_size * ($page - 1));
-        $pager['start'] = $pager['end'] - count($c_diary_comment_list) + 1;
+        $pager['start'] = (int)$start_comment['number'];
+        $pager['end'] = (int)$end_comment['number'];
+        if ($is_prev) {
+            if ($desc) {
+                $pager['page_next'] = $page - 1;
+            } else {
+                $pager['page_prev'] = $page - 1;
+            }
+        }
+        if ($is_next) {
+            if ($desc) {
+                $pager['page_prev'] = $page + 1;
+            } else {
+                $pager['page_next'] = $page + 1;
+            }
+        }
         $this->set('pager', $pager);
 
         // f or h
-        $this->set("INC_NAVI_type", k_p_fh_common_get_type($target_c_member['c_member_id'], $u));
+        $this->set('INC_NAVI_type', k_p_fh_common_get_type($target_c_member['c_member_id'], $u));
 
         if (MAIL_ADDRESS_HASHED) {
-            $mail_address = "bc{$target_c_diary_id}-".t_get_user_hash($u)."@".MAIL_SERVER_DOMAIN;
+            $mail_address = "bc{$target_c_diary_id}-".t_get_user_hash($u).'@'.MAIL_SERVER_DOMAIN;
         } else {
-            $mail_address = "bc{$target_c_diary_id}"."@".MAIL_SERVER_DOMAIN;
+            $mail_address = "bc{$target_c_diary_id}".'@'.MAIL_SERVER_DOMAIN;
         }
         $mail_address = MAIL_ADDRESS_PREFIX . $mail_address;
-        $this->set("mail_address", $mail_address);
+        $this->set('mail_address', $mail_address);
 
         //あしあとをつける
         db_ashiato_insert_c_ashiato($target_c_member_id, $u);

@@ -141,16 +141,35 @@
 ({t_form_block m=pc a=page_fh_delete_comment})
 <input type="hidden" name="target_c_diary_id" value="({$target_diary.c_diary_id})" />
 
+({if $total_num > 20 || $total_page_num > 1})
+({strip})
+<div class="pagerRelative">
+
+({if $total_num > 20})
+({if $requests.page_size == 100})
+<p><a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$target_diary.c_diary_id})({if $requests.order == 'asc'})&amp;order=asc({/if})#commentList">20件ずつ表示</a></p>
+({else})
+<p><a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$target_diary.c_diary_id})({if $requests.order == 'asc'})&amp;order=asc({/if})&amp;page_size=100#commentList">100件ずつ表示</a></p>
+({/if})
+({/if})
+
+({if $total_page_num > 1})
+({if $requests.order == 'asc'})
+<p><a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$target_diary.c_diary_id})({if $requests.page_size == 100})&amp;page_size=100({/if})#commentList">最新を表示</a></p>
+({else})
+<p><a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$target_diary.c_diary_id})({if $requests.page_size == 100})&amp;page_size=100({/if})&amp;order=asc#commentList">最初から表示</a></p>
+({/if})
+({/if})
+
+</div>
+({/strip})
+({/if})
+
 ({capture name=pager})({strip})
 <div class="pagerRelative">
-({if $is_all})
-<a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$target_diary.c_diary_id})#commentList">最新を表示</a>
-({else})
-({if $total_num > $page_size})<a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$target_diary.c_diary_id})&amp;is_all=1#commentList">すべて表示</a> ({/if})
-({/if})
-({if $is_prev})<p class="prev"><a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$target_diary.c_diary_id})&amp;page=({$page+1})#commentList">前を表示</a></p>({/if})
+({if $pager.page_prev})<p class="prev"><a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$target_diary.c_diary_id})&amp;page=({$pager.page_prev})({if $requests.page_size == 100})&amp;page_size=100({/if})({if $requests.order == 'asc'})&amp;order=asc({/if})#commentList">前を表示</a></p>({/if})
 <p class="number">({$pager.start})番～({$pager.end})番を表示</p>
-({if $is_next})<p class="next"><a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$target_diary.c_diary_id})&amp;page=({$page-1})#commentList">次を表示</a></p>({/if})
+({if $pager.page_next})<p class="next"><a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$target_diary.c_diary_id})&amp;page=({$pager.page_next})({if $requests.page_size == 100})&amp;page_size=100({/if})({if $requests.order == 'asc'})&amp;order=asc({/if})#commentList">次を表示</a></p>({/if})
 </div>
 ({/strip})({/capture}) 
 ({$smarty.capture.pager|smarty:nodefaults})
