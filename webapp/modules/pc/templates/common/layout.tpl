@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Style-Type" content="text/css" />
 <meta http-equiv="Content-Script-Type" content="text/javascript" />
 <title>({$INC_HEADER_title})</title>
-<link rel="stylesheet" href="./xhtml_style.php?r=6665" type="text/css" />
+<link rel="stylesheet" href="./xhtml_style.php" type="text/css" />
 <script type="text/javascript" src="./js/prototype.js"></script>
 <script type="text/javascript" src="./js/Selection.js"></script>
 <script type="text/javascript" src="./js/pne.js"></script>
