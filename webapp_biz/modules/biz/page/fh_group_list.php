@@ -13,7 +13,6 @@ class biz_page_fh_group_list extends OpenPNE_Action
         // --- リクエスト変数
         $target_c_member_id = $requests['target_c_member_id'];
         $page = $requests['page'];
-        $direc = $requests['direc'];
         // ----------
 
         if (is_null($target_c_member_id)) {
@@ -37,7 +36,6 @@ class biz_page_fh_group_list extends OpenPNE_Action
 
         $page_size = 50;
 
-        $page += $direc;
         $this->set("page", $page);
 
         list($c_commu_list, $pager) = biz_getJoinGroupList($target_c_member_id, $page, $page_size);
