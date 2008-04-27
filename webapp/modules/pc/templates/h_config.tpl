@@ -200,6 +200,40 @@
 </div></div>
 ({* }}} *})
 
+({if $smarty.const.DISPLAY_NEWDIARYTOPIC_HOME})
+({* {{{ formTable *})
+<div class="dparts formTable"><div class="parts">
+<div class="partsHeading"><h3>その他オプション設定変更</h3></div>
+({t_form_block m=pc a=do_h_member_config})
+<table>
+<tr>
+<th>マイホームへの最新情報表示</th>
+<td>
+<p>SNS全体の最新({$WORD_DIARY})</p>
+<ul>
+<li><input type="radio" class="input_radio" name="DISPLAY_OFF_NEWDIARY_HOME" id="display_off_newdiary_home_0" value="0"({if $C_MEMBER_CONFIG.DISPLAY_OFF_NEWDIARY_HOME == 0}) checked="checked"({/if}) /><label for="display_off_newdiary_home_0">表示する</label></li>
+<li><input type="radio" class="input_radio" name="DISPLAY_OFF_NEWDIARY_HOME" id="display_off_newdiary_home_1" value="1"({if $C_MEMBER_CONFIG.DISPLAY_OFF_NEWDIARY_HOME == 1}) checked="checked"({/if}) /><label for="display_off_newdiary_home_1">表示しない</label></li>
+</ul>
+<p>SNS全体の最新トピック</p>
+<ul>
+<li><input type="radio" class="input_radio" name="DISPLAY_OFF_NEWTOPIC_HOME" id="display_off_newtopic_home_0" value="0"({if $C_MEMBER_CONFIG.DISPLAY_OFF_NEWTOPIC_HOME == 0}) checked="checked"({/if}) /><label for="display_off_newtopic_home_0">表示する</label></li>
+<li><input type="radio" class="input_radio" name="DISPLAY_OFF_NEWTOPIC_HOME" id="display_off_newtopic_home_1" value="1"({if $C_MEMBER_CONFIG.DISPLAY_OFF_NEWTOPIC_HOME == 1}) checked="checked"({/if}) /><label for="display_off_newtopic_home_1">表示しない</label></li>
+</ul>
+<p>※マイホームに表示する情報を選択出来ます。</p>
+</td>
+</tr>
+</table>
+<div class="operation">
+<ul class="moreInfo button">
+<li><input type="submit" class="input_submit" value="設定変更" /></li>
+</ul>
+</div>
+({/t_form_block})
+</div></div>
+({* }}} *})
+({/if})
+
+
 ({* {{{ formTable *})
 <div class="dparts formTable"><div class="parts">
 <div class="partsHeading"><h3>({$WORD_DIARY})公開範囲の一括変更</h3></div>

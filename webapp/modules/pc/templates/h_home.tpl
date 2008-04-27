@@ -373,11 +373,23 @@ show_flash('flash/list.swf', '({$flashvars})');
 
 ({if $inc_entry_point[9]})({$inc_entry_point[9]|smarty:nodefaults|t_url2cmd:'entry_point'|t_cmd:'entry_point'})({/if})
 
-({if $c_diary_friend_list || $c_rss_cache_list || $c_diary_my_comment_list || $c_commu_topic_comment_list || $c_friend_review_list || $bookmark_diary_list || $bookmark_blog_list})
+({if $c_diary_list_all || $c_topic_list_all || $c_diary_friend_list || $c_rss_cache_list || $c_diary_my_comment_list || $c_commu_topic_comment_list || $c_friend_review_list || $bookmark_diary_list || $bookmark_blog_list})
 ({* {{{ homeMainTable *})
 <div class="dparts homeMainTable"><div class="parts">
 <div class="partsHeading"><h3>最新情報</h3></div>
 <table>
+({if $c_diary_list_all})
+<tr><th>最新({$WORD_DIARY})<br />一覧</th><td>
+<dl class="articleList">
+({foreach from=$c_diary_list_all item=item})
+<dt>({$item.r_datetime|date_format:"%m月%d日"})</dt><dd><a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$item.c_diary_id})&amp;comment_count=({$item.count_comments})">({$item.subject|t_truncate:30}) (({$item.count_comments|default:0}))</a> (({$item.nickname|default:"&nbsp;"})) ({if $item.image_filename_1 || $item.image_filename_2 || $item.image_filename_3})<img src="({t_img_url_skin filename=icon_camera})" alt="写真あり" />({/if})</dd>
+({/foreach})
+</dl>
+<div class="moreInfo"><ul class="moreInfo">
+<li><a href="({t_url m=pc a=page_h_diary_list_all})">もっと読む</a></li>
+</ul></div>
+</td></tr>
+({/if})
 ({if $c_diary_friend_list})
 <tr><th>({$WORD_MY_FRIEND})<br />最新({$WORD_DIARY})</th><td>
 <dl class="articleList">
@@ -411,6 +423,18 @@ show_flash('flash/list.swf', '({$flashvars})');
 </dl>
 <div class="moreInfo"><ul class="moreInfo">
 <li><a href="({t_url m=pc a=page_h_diary_comment_list})">もっと読む</a></li>
+</ul></div>
+</td></tr>
+({/if})
+({if $c_topic_list_all})
+<tr><th>最新トピック<br />一覧</th><td>
+<dl class="articleList">
+({foreach from=$c_topic_list_all item=item})
+<dt>({$item.r_datetime|date_format:"%m月%d日"})</dt><dd><a href="({t_url m=pc a=page_c_topic_detail})&amp;target_c_commu_topic_id=({$item.c_commu_topic_id})&amp;comment_count=({$item.number})">({$item.name|t_truncate:30}) (({$item.number}))</a> (({$item.c_commu_name})) ({if $item.image_filename1 || $item.image_filename2 || $item.image_filename3})<img src="({t_img_url_skin filename=icon_camera})" alt="写真あり" />({/if})</dd>
+({/foreach})
+</dl>
+<div class="moreInfo"><ul class="moreInfo">
+<li><a href="({t_url m=pc a=page_h_com_topic_find_all})">もっと読む</a></li>
 </ul></div>
 </td></tr>
 ({/if})
