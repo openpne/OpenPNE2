@@ -7,33 +7,133 @@
 <meta http-equiv="Content-Style-Type" content="text/css" />
 <meta http-equiv="Content-Script-Type" content="text/javascript" />
 <title>({$INC_HEADER_title})</title>
-<link rel="stylesheet" href="./css/default.css" type="text/css" />
 <link rel="stylesheet" href="./xhtml_style.php" type="text/css" />
 <script type="text/javascript" src="./js/prototype.js"></script>
+<script type="text/javascript" src="./js/Selection.js"></script>
 <script type="text/javascript" src="./js/pne.js"></script>
+<script type="text/javascript" src="./js/tiny_mce/tiny_mce.js"></script>
 <style type="text/css">
-.border_01 { border: #({$INC_HEADER_color_config.border_01}) 1px solid; }
-.border_07 { border: #({$INC_HEADER_color_config.border_07}) 1px solid; }
-.border_10 { border: #({$INC_HEADER_color_config.border_10}) 1px solid; }
-.bg_00 { background-color: #({$INC_HEADER_color_config.bg_00}); }
-.bg_01 { background-color: #({$INC_HEADER_color_config.bg_01}); }
-.bg_02 { background-color: #({$INC_HEADER_color_config.bg_02}); }
-.bg_03 { background-color: #({$INC_HEADER_color_config.bg_03}); }
-.bg_04 { background-color: #({$INC_HEADER_color_config.bg_04}); }
-.bg_05 { background-color: #({$INC_HEADER_color_config.bg_05}); }
-.bg_06 { background-color: #({$INC_HEADER_color_config.bg_06}); }
-.bg_07 { background-color: #({$INC_HEADER_color_config.bg_07}); }
-.bg_08 { background-color: #({$INC_HEADER_color_config.bg_08}); }
-.bg_09 { background-color: #({$INC_HEADER_color_config.bg_09}); }
-.bg_10 { background-color: #({$INC_HEADER_color_config.bg_10}); }
-.bg_11 { background-color: #({$INC_HEADER_color_config.bg_11}); }
-.bg_12 { background-color: #({$INC_HEADER_color_config.bg_12}); }
-.bg_13 { background-color: #({$INC_HEADER_color_config.bg_13}); }
-.bg_14 { background-color: #({$INC_HEADER_color_config.bg_14}); }
-.color_19 { background-color: #({$INC_HEADER_color_config.color_19}); }
-body { background-color: #({$INC_HEADER_color_config.bg_12}); }
-.container { background-color: #({$INC_HEADER_color_config.bg_13}); }
+/* 文字装飾 */
+({if $INC_HEADER_decoration_config.op_b})
+span.op_b {
+    text-decoration : underline;
+    font-style : inherit;
+    font-weight : bold;
+    color : inherit;
+    font-size: inherit;
+}
+({/if})
+
+({if $INC_HEADER_decoration_config.op_u})
+span.op_u {
+    text-decoration : underline;
+    font-style : inherit;
+    font-weight : inherit;
+    color : inherit;
+    font-size: inherit;
+}
+({/if})
+
+({if $INC_HEADER_decoration_config.op_s})
+span.op_s {
+    text-decoration : line-through;
+    font-style : inherit;
+    font-weight : inherit;
+    color : inherit;
+    font-size: inherit;
+}
+({/if})
+
+({if $INC_HEADER_decoration_config.op_i})
+span.op_i {
+    text-decoration : inherit;
+    font-style : italic;
+    font-weight : inherit;
+    color : inherit;
+    font-size: inherit;
+}
+({/if})
+
+({if $INC_HEADER_decoration_config.op_large})
+span.op_large {
+    text-decoration : inherit;
+    font-style : inherit;
+    font-weight : inherit;
+    color : inherit;
+    font-size : 20px;
+}
+({/if})
+
+({if $INC_HEADER_decoration_config.op_small})
+span.op_small {
+    text-decoration : inherit;
+    font-style : inherit;
+    font-weight : inherit;
+    color : inherit;
+    font-size : 8px;
+}
+({/if})
+
+({if !$INC_HEADER_decoration_config.op_color})
+span.op_color {
+    text-decoration : inherit;
+    font-style : inherit;
+    font-weight : inherit;
+    color : #000 !important;
+    font-size: inherit;
+}
+({else})
+span.op_color {
+    text-decoration : inherit;
+    font-style : inherit;
+    font-weight : inherit;
+    color : inherit;
+    font-size: inherit;
+}
+({/if})
+
 </style>
+
+<script type="text/javascript">
+function pne_mce_editor_get_config()
+{
+    return {
+        op_b : {
+            isEnabled : ({$INC_HEADER_decoration_config.op_b}),
+            imageURL : "({t_img_url_skin filename=deco_op_b})"
+        },
+        op_u : {
+            isEnabled : ({$INC_HEADER_decoration_config.op_u}),
+            imageURL : "({t_img_url_skin filename=deco_op_u})"
+        },
+        op_s : {
+            isEnabled : ({$INC_HEADER_decoration_config.op_s}),
+            imageURL : "({t_img_url_skin filename=deco_op_s})"
+        },
+        op_i : {
+            isEnabled : ({$INC_HEADER_decoration_config.op_i}),
+            imageURL : "({t_img_url_skin filename=deco_op_i})"
+        },
+        op_large : {
+            isEnabled : ({$INC_HEADER_decoration_config.op_large}),
+            imageURL : "({t_img_url_skin filename=deco_op_large})"
+        },
+        op_small : {
+            isEnabled : ({$INC_HEADER_decoration_config.op_small}),
+            imageURL : "({t_img_url_skin filename=deco_op_small})"
+        },
+        op_color : {
+            isEnabled : ({$INC_HEADER_decoration_config.op_color}),
+            imageURL : "({t_img_url_skin filename=deco_op_color})"
+        },
+        op_image : {
+            isEnabled : ({$smarty.const.OPENPNE_USE_ALBUM}),
+            imageURL : "({t_img_url_skin filename=deco_op_image})",
+            contentURL : "({t_url m=pc a=page_h_album_insert_dialog})"
+        }
+    }
+}
+</script>
 </head>
 <body id="pc_page_({$INC_HEADER_page_name})"><div id="Body">
 ({if $INC_HEADER_inc_page_top2})({$INC_HEADER_inc_page_top2|smarty:nodefaults})({/if})
