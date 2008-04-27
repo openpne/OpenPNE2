@@ -114,7 +114,7 @@ function p_common_is_active_c_album_image_id($c_album_image_id)
  */
 function db_album_c_album_image_list4c_album_id($c_album_id, $page = 1, $page_size = 10)
 {
-    $sql = 'SELECT * FROM c_album_image WHERE c_album_id = ? ORDER BY r_datetime DESC';
+    $sql = 'SELECT * FROM c_album_image WHERE c_album_id = ? ORDER BY c_album_image_id DESC';
     $params = array(intval($c_album_id));
     $list = db_get_all_page($sql, $page, $page_size, $params);
 
@@ -141,51 +141,27 @@ function db_album_c_album_image_list4c_album_id($c_album_id, $page = 1, $page_si
 
 /**
  * 指定したアルバム写真の前の写真IDを取得する
- * @param int $c_member_id
+ *
  * @param int $c_album_id
  * @param int $c_album_image_id
- * @param int $u
  */
-function db_album_image_c_album_image_id_prev4c_album_id($c_member_id, $c_album_id, $c_album_image_id, $u = null)
+function db_album_image_c_album_image_id_prev4c_album_id($c_album_id, $c_album_image_id)
 {
-    $public_flag_condition = db_album_public_flag_condition($c_member_id, $u);
-
-    $select  = 'SELECT c_album_image.c_album_image_id ';
-    $from    = ' FROM c_album_image, c_album';
-    $where   = ' WHERE c_album.c_album_id = c_album_image.c_album_id' .
-                ' AND c_album.c_member_id = ?' .
-                ' AND c_album.c_album_id = ?' .
-                ' AND c_album_image.c_album_image_id < ?'
-                . $public_flag_condition;
-    $orderby = ' ORDER BY c_album_image.c_album_image_id DESC';
-    $sql = $select . $from . $where . $orderby;
-    $params = array(intval($c_member_id),intval($c_album_id),intval($c_album_image_id));
-
+    $sql = 'SELECT c_album_image_id FROM c_album_image WHERE c_album_id = ? AND c_album_image_id < ? ORDER BY c_album_image_id DESC';
+    $params = array(intval($c_album_id), intval($c_album_image_id));
     return db_get_one($sql, $params);
 }
 
 /**
  * 指定したアルバム写真の次の写真IDを取得する
- * @param int $c_member_id
+ *
  * @param int $c_album_id
  * @param int $c_album_image_id
- * @param int $u
  */
-function db_album_image_c_album_image_id_next4c_album_id($c_member_id, $c_album_id, $c_album_image_id, $u = null)
+function db_album_image_c_album_image_id_next4c_album_id($c_album_id, $c_album_image_id)
 {
-    $public_flag_condition = db_album_public_flag_condition($c_member_id, $u);
-
-    $select  = 'SELECT c_album_image.c_album_image_id ';
-    $from    = ' FROM c_album_image, c_album';
-    $where   = ' WHERE c_album.c_album_id = c_album_image.c_album_id' .
-                ' AND c_album.c_member_id = ?' .
-                ' AND c_album.c_album_id = ?' .
-                ' AND c_album_image.c_album_image_id > ?'
-                . $public_flag_condition;
-    $orderby = ' ORDER BY c_album_image.c_album_image_id ASC';
-    $sql = $select . $from . $where . $orderby;
-    $params = array(intval($c_member_id),intval($c_album_id),intval($c_album_image_id));
-
+    $sql = 'SELECT c_album_image_id FROM c_album_image WHERE c_album_id = ? AND c_album_image_id > ? ORDER BY c_album_image_id';
+    $params = array(intval($c_album_id), intval($c_album_image_id));
     return db_get_one($sql, $params);
 }
 
