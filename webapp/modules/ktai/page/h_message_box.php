@@ -12,11 +12,8 @@ class ktai_page_h_message_box extends OpenPNE_Action
 
         // --- リクエスト変数
         $target_c_member_id = $requests['target_c_member_id'];
-        $direc_r = $requests['direc_r'];
         $page_r = $requests['page_r'];
-        $direc_s = $requests['direc_s'];
         $page_s = $requests['page_s'];
-        $direc_t = $requests['direc_t'];
         $page_t = $requests['page_t'];
         $box = $requests['box'];
         $keyword = $requests['keyword'];
@@ -31,7 +28,6 @@ class ktai_page_h_message_box extends OpenPNE_Action
         $this->set('keyword', $keyword);
 
         if ($box == 'outbox') {
-            $page_s += $direc_s;
             if (!$keyword) {
                 $list_s = db_message_c_message_sent_list4c_member_id4range2($u, $page_size, $page_s);
             } else {
@@ -52,7 +48,6 @@ class ktai_page_h_message_box extends OpenPNE_Action
             }
             $this->set('pager', $pager);
         } elseif ($box == 'trash') {
-            $page_t += $direc_t;
             $list_t = db_message_c_message_trash_list4c_member_id4range($u, $page_t, $page_size);
 
             $this->set('c_message_trash_list', $list_t[0]);
@@ -69,8 +64,6 @@ class ktai_page_h_message_box extends OpenPNE_Action
             }
             $this->set('pager', $pager);
         } else {
-            $page_r += $direc_r;
-
             if (!$keyword) {
                 $list_r = db_message_c_message_received_list4c_member_id4range2($u, $page_size, $page_r);
             } else {
