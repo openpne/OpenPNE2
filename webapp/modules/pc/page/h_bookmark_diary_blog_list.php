@@ -14,7 +14,6 @@ class pc_page_h_bookmark_diary_blog_list extends OpenPNE_Action
         }
 
         // --- リクエスト変数
-        $direc = $requests['direc'];
         $page = $requests['page'];
         // ----------
 
@@ -22,7 +21,6 @@ class pc_page_h_bookmark_diary_blog_list extends OpenPNE_Action
         $this->set('inc_navi', fetch_inc_navi('h'));
 
         //日記一覧
-        $page = $page + $direc;
         $page_size = 50;
         $this->set('page_size', $page_size);
 

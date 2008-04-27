@@ -13,7 +13,6 @@ class pc_page_h_com_find_all extends OpenPNE_Action
         // --- リクエスト変数
         $target_c_commu_category_parent_id = $requests['target_c_commu_category_parent_id'];
         $keyword = $requests['keyword'];
-        $direc = $requests['direc'];
         $page = $requests['page'];
         $val_order = $requests['val_order'];
         $category_id = $requests['category_id'];
@@ -27,7 +26,6 @@ class pc_page_h_com_find_all extends OpenPNE_Action
         $this->set('inc_navi', fetch_inc_navi('h'));
 
         $page_size = 20;
-        $page = $page + $direc;
         $this->set('page', $page);
 
         //検索結果
