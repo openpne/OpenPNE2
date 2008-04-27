@@ -17,14 +17,12 @@ class admin_page_access_analysis_target_topic extends OpenPNE_Action
         $month_flag = $requests['month_flag'];
         $page_name = $requests['page_name'];
         $page = $requests['page'];
-        $direc = $requests['direc'];
         $orderby = $requests['orderby'];
         $orderby1 = $requests['orderby1'];
         $orderby2 = $requests['orderby2'];
         //----------リクエスト変数-------------//
 
         $page_size = 10;
-        $page += $direc;
         if ($orderby1) {
             $orderby = $orderby1;
         } elseif ($orderby2) {

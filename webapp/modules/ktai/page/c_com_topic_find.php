@@ -12,7 +12,6 @@ class ktai_page_c_com_topic_find extends OpenPNE_Action
 
         // --- リクエスト変数
         $keyword = $requests['keyword'];
-        $direc = $requests['direc'];
         $page = $requests['page'];
         $type = $requests['type'];
         $c_commu_id = $requests['c_commu_id'];
@@ -35,7 +34,6 @@ class ktai_page_c_com_topic_find extends OpenPNE_Action
         do_common_insert_search_log($u, $keyword);
 
         $page_size = 20;
-        $page = $page + $direc;
         $this->set('page', $page);
 
         //検索結果

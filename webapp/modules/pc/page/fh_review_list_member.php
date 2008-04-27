@@ -12,7 +12,6 @@ class pc_page_fh_review_list_member extends OpenPNE_Action
 
         // --- リクエスト変数
         $c_member_id = $requests['target_c_member_id'];
-        $direc = $requests['direc'];
         $page = $requests['page'];
         // ----------
 
@@ -21,7 +20,6 @@ class pc_page_fh_review_list_member extends OpenPNE_Action
         }
 
         $page_size = 30;
-        $page = $page + $direc;
 
         if (!$c_member_id) {
             $c_member_id = $u;

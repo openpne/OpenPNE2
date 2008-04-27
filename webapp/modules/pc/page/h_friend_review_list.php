@@ -12,11 +12,9 @@ class pc_page_h_friend_review_list extends OpenPNE_Action
 
         // --- リクエスト変数
         $page = $requests['page'];
-        $direc = $requests['direc'];
         // ----------
 
         $page_size = 30;
-        $page = $page + $direc;
 
         $this->set('inc_navi', fetch_inc_navi('h'));
 
