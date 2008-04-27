@@ -1179,6 +1179,39 @@ function db_diary_get_max_number4diary($c_diary_id)
 }
 
 /**
+ * SNS全体の最新日記リスト取得
+ * 日記公開範囲を考慮
+ * 
+ * @param   int $limit
+ * @return  array_of_array  (c_diary.*, nickname)
+ */
+function p_h_home_c_diary_all_list($limit)
+{
+    static $is_recurred = false;  //再帰処理中かどうかの判定フラグ
+
+    if (!$is_recurred) {  //function cacheのために再帰処理を行う
+        $is_recurred = true;
+        $funcargs = func_get_args();
+        return pne_cache_recursive_call(OPENPNE_FUNCTION_CACHE_LIFETIME_FAST, __FUNCTION__, $funcargs);
+    }
+
+    $is_recurred = false;
+
+    $sql = 'SELECT * FROM c_diary WHERE public_flag = \'public\''
+         . ' ORDER BY c_diary.r_datetime DESC';
+
+    $c_diary_list_all = db_get_all_limit($sql, 0, $limit);
+
+    foreach ($c_diary_list_all as $key => $value) {
+        $c_member = db_common_c_member4c_member_id_LIGHT($value['c_member_id']);
+        $c_diary_list_all[$key]['nickname'] = $c_member['nickname'];
+        $c_diary_list_all[$key]['count_comments'] = db_diary_count_c_diary_comment4c_diary_id($value['c_diary_id']);
+    }
+    return $c_diary_list_all;
+}
+
+
+/**
  * 日記コメント記入履歴の追加
  *
  * @param  int    $c_member_id
