@@ -2054,6 +2054,22 @@ div#container_login .footer p {
 }
 
 /*==============================================================================
+ * albumImageBox
+ *----------------------------------------------------------------------------*/
+.albumImageBox p.photo {
+	padding: 10px;
+	border-top: 1px solid #<?php echo $colors[1]; ?>;
+	text-align: center;
+}
+.albumImageBox th, .albumImageBox td {
+	padding: 5px;
+}
+#Body .albumImageBox th {
+	width: 140px;
+	border-left: none;
+}
+
+/*==============================================================================
  * 
  *----------------------------------------------------------------------------*/
 
