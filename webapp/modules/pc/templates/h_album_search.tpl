@@ -1,4 +1,3 @@
-
 <div id="LayoutC">
 <div id="Center">
 
@@ -22,16 +21,19 @@
 <div class="partsHeading"><h3>最新アルバム一覧</h3></div>
 ({/if})
 
+({capture name=pager})({strip})
 <div class="pagerRelative">
-({if $is_prev})<p class="prev"><a href="({t_url m=pc a=page_h_album_search})&amp;keyword=({$keyword|escape:url|smarty:nodefaults})&amp;page=({$page})&amp;direc=-1">前を表示</a></p>({/if})
+({if $is_prev})<p class="prev"><a href="({t_url m=pc a=page_h_album_search})&amp;keyword=({$keyword|escape:url|smarty:nodefaults})&amp;page=({$page-1})">前を表示</a></p>({/if})
 <p class="number">({$pager.start})件～({$pager.end})件を表示</p>
-({if $is_next})<p class="next">&nbsp;&nbsp;<a href="({t_url m=pc a=page_h_album_search})&amp;keyword=({$keyword|escape:url|smarty:nodefaults})&amp;page=({$page})&amp;direc=1">次を表示</a></p>({/if})
+({if $is_next})<p class="next"><a href="({t_url m=pc a=page_h_album_search})&amp;keyword=({$keyword|escape:url|smarty:nodefaults})&amp;page=({$page+1})">次を表示</a></p>({/if})
 </div>
+({/strip})({/capture})
+({$smarty.capture.pager|smarty:nodefaults})
 
 <div class="block">
 ({foreach from=$target_album_list item=album})
 <div class="ditem"><div class="item"><table><tr>
-<td class="photo" rowspan="4"><a href="({t_url m=pc a=page_fh_album})&amp;target_c_album_id=({$album.c_album_id})"><img src="({t_img_url filename=$album.album_cover_image w=180 h=180 noimg=no_image})" alt="" /></a></td>
+<td class="photo" rowspan="4" style="width: 180px; padding: 5px;"><a href="({t_url m=pc a=page_fh_album})&amp;target_c_album_id=({$album.c_album_id})"><img src="({t_img_url filename=$album.album_cover_image w=180 h=180 noimg=no_image})" alt="" /></a></td>
 <th>ニックネーム</th><td>({$album.c_member.nickname})</td>
 </tr><tr>
 <th>タイトル</th><td>({$album.subject})</td>
@@ -43,11 +45,7 @@
 ({/foreach})
 </div>
 
-<div class="pagerRelative">
-({if $is_prev})<p class="prev"><a href="({t_url m=pc a=page_h_album_search})&amp;keyword=({$keyword|escape:url|smarty:nodefaults})&amp;page=({$page})&amp;direc=-1">前を表示</a></p>({/if})
-<p class="number">({$pager.start})件～({$pager.end})件を表示</p>
-({if $is_next})<p class="next">&nbsp;&nbsp;<a href="({t_url m=pc a=page_h_album_search})&amp;keyword=({$keyword|escape:url|smarty:nodefaults})&amp;page=({$page})&amp;direc=1">次を表示</a></p>({/if})
-</div>
+({$smarty.capture.pager|smarty:nodefaults})
 
 </div></div>
 ({* }}} *})
