@@ -95,7 +95,7 @@
 <br>
 <table width="100%">
 <tr><td bgcolor="#({$ktai_color_config.bg_05})">
-<a accesskey="1" name="a1" href="#a1">[i:125]</a><font color="#({$ktai_color_config.color_25})">({if $C_MEMBER_CONFIG.DISPLAY_CHANGE_NEWDIARY_HOME_KTAI})({$WORD_FRIEND_HALF})最新({$WORD_DIARY_HALF})({else})最新({$WORD_DIARY_HALF})({/if})</font><br>
+<a accesskey="1" name="a1" href="#a1">[i:125]</a><font color="#({$ktai_color_config.color_25})">({if $C_MEMBER_CONFIG.DISPLAY_CHANGE_NEWDIARY_HOME_KTAI})最新({$WORD_DIARY_HALF})({else})({$WORD_FRIEND_HALF})最新({$WORD_DIARY_HALF})({/if})</font><br>
 </td></tr>
 ({if $c_diary_friend_list})
 ({foreach from=$c_diary_friend_list item=item})
@@ -161,7 +161,7 @@
 
 <table width="100%">
 <tr><td bgcolor="#({$ktai_color_config.bg_05})">
-<a accesskey="3" name="a3" href="#a3">[i:127]</a><font color="#({$ktai_color_config.color_25})">({if $C_MEMBER_CONFIG.DISPLAY_CHANGE_NEWTOPIC_HOME_KTAI})({$WORD_COMMUNITY_HALF})最新書き込み({else})最新ﾄﾋﾟｯｸ({/if})</font><br>
+<a accesskey="3" name="a3" href="#a3">[i:127]</a><font color="#({$ktai_color_config.color_25})">({if $C_MEMBER_CONFIG.DISPLAY_CHANGE_NEWTOPIC_HOME_KTAI})最新ﾄﾋﾟｯｸ({else})({$WORD_COMMUNITY_HALF})最新書き込み({/if})</font><br>
 </td></tr>
 ({if $c_commu_topic_list})
 ({foreach from=$c_commu_topic_list item=item})
