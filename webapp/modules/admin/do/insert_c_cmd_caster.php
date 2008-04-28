@@ -16,7 +16,12 @@ class admin_do_insert_c_cmd_caster extends OpenPNE_Action
     {
         $url = $requests['url'];
 
-        $result = db_admin_insert_c_cmd_caster($url);
+        require_once 'OpenPNE/RSS.php';
+        if (!($rss_url = OpenPNE_RSS::auto_discovery($url))) {
+            admin_client_redirect('list_c_cmd_caster', 'CMDキャストURLが無効です');
+        }
+
+        $result = db_admin_insert_c_cmd_caster($rss_url);
         if ($result) {
             admin_client_redirect('list_c_cmd_caster', 'CMDキャストURLを登録しました');
         } else {
