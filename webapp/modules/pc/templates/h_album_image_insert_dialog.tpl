@@ -33,32 +33,31 @@ function insertAlbumImageURLToTextarea(album_image_id) {
 <body id="pc_page_({$INC_HEADER_page_name})"><div id="Body">
 <div id="Container" style="width: 600px">
 
-<div id="Center" style="width : 580px; margin: 10px;">
+<div id="Center" style="width : 580px; margin: 0 auto; padding: 10px 0;">
 
 <h1 style="font-weight: bold; font-size: 1.2em;">アルバム写真の挿入</h1>
 <p>アルバム写真を記事に挿入することができます。</p>
 
-({* unknown *})<div class="dparts photoTable"><div class="parts">
-({* unknown *})<div class="partsHeading"><h3>({$target_member.nickname})({if $type == "f"})さん({/if})のアルバム</h3></div>
-({* unknown *})({capture name=pager})({strip})
-({* unknown *})<div class="pagerRelative">
-({* unknown *})({if $is_prev})
-({* unknown *})<p class="prev"><a href="({t_url m=pc a=page_h_album_image_insert_dialog})&amp;page=({$page-1})({if $target_c_album_id})&amp;target_c_album_id=({$target_c_album_id})({/if})">前を表示</a></p>
-({* unknown *})({/if})
-({* unknown *})<p class="number">
-({* unknown *})({$total_num})件中 ({$page*$page_size-$page_size+1})件～
-({* unknown *})({if $page_size > $album_list_count})
-({* unknown *})({$album_list_count+$page*$page_size-$page_size})
-({* unknown *})({else})
-({* unknown *})({$page*$page_size})
-({* unknown *})({/if})
-({* unknown *})件を表示
-({* unknown *})</p>
-({* unknown *})({if $is_next})
-({* unknown *})<p class="next"><a href="({t_url m=pc a=page_h_album_image_insert_dialog})&amp;page=({$page+1})({if $target_c_album_id})&amp;target_c_album_id=({$target_c_album_id})({/if})">次を表示</a></p>
-({* unknown *})({/if})
+({* {{{ photoTable *})
+<div class="dparts photoTable"><div class="parts">
+<div class="partsHeading"><h3>({$target_member.nickname})({if $type == "f"})さん({/if})のアルバム</h3></div>
+({capture name=pager})({strip})
+<div class="pagerRelative">
+({if $is_prev})<p class="prev"><a href="({t_url m=pc a=page_h_album_image_insert_dialog})&amp;page=({$page-1})({if $target_c_album_id})&amp;target_c_album_id=({$target_c_album_id})({/if})">前を表示</a></p>({/if})
+<p class="number">
+({$total_num})件中 ({$page*$page_size-$page_size+1})件～
+({if $page_size > $album_list_count})
+({$album_list_count+$page*$page_size-$page_size})
+({else})
+({$page*$page_size})
+({/if})
+件を表示
+</p>
+({if $is_next})<p class="next"><a href="({t_url m=pc a=page_h_album_image_insert_dialog})&amp;page=({$page+1})({if $target_c_album_id})&amp;target_c_album_id=({$target_c_album_id})({/if})">次を表示</a></p>({/if})
+</div>
 ({/strip})({/capture})
 ({$smarty.capture.pager|smarty:nodefaults})
+
 <table>
 <tr class="photo">
 ({t_loop from=$target_album_image start=0 num=5})
@@ -123,11 +122,10 @@ function insertAlbumImageURLToTextarea(album_image_id) {
 </tr>
 ({/if})
 </table>
+
 ({$smarty.capture.pager|smarty:nodefaults})
-({* unknown *})
-({* unknown *})
-({* unknown *})</div></div>
-({* unknown *})</div></div>
+</div></div>
+({* }}} *})
 
 ({* {{{ linkLine *})
 <div class="parts linkLine"><ul class="moreInfo">
