@@ -47,7 +47,7 @@
 <div id="Left">
 
 <script type="text/javascript">
-<!--
+//<![CDATA[
 function checkAll() {
     var sm = document.h_message_box_delete_message;
     var len = sm.elements.length;
@@ -64,7 +64,7 @@ function clearAll() {
     }
     return false;
 }
-//-->
+//]]>
 </script>
 
 ({* {{{ sideNav *})

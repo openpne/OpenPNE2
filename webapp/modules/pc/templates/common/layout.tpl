@@ -95,6 +95,7 @@ span.op_color {
 </style>
 
 <script type="text/javascript">
+//<![CDATA[
 function pne_mce_editor_get_config()
 {
     return {
@@ -133,6 +134,7 @@ function pne_mce_editor_get_config()
         }
     }
 }
+//]]>
 </script>
 </head>
 <body id="pc_page_({$INC_HEADER_page_name})"><div id="Body">
