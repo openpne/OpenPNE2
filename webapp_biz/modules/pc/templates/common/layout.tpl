@@ -130,7 +130,7 @@ function pne_mce_editor_get_config()
         op_image : {
             isEnabled : ({$smarty.const.OPENPNE_USE_ALBUM}),
             imageURL : "({t_img_url_skin filename=deco_op_image})",
-            contentURL : "({t_url m=pc a=page_h_album_insert_dialog})"
+            contentURL : "({t_url _html=0 m=pc a=page_h_album_insert_dialog})"
         }
     }
 }
