@@ -228,9 +228,22 @@ CREATE TABLE `c_cmd` (
   `c_cmd_id` int(11) NOT NULL auto_increment,
   `name` text NOT NULL,
   `permit` int(11) NOT NULL default '0',
-  PRIMARY KEY  (`c_cmd_id`),
-  UNIQUE KEY `name_2` (`name`(100)),
-  KEY `name` (`name`(100))
+  `url` varchar(128) NOT NULL default '',
+  `c_cmd_caster_id` int(11) NOT NULL default '0',
+  `r_datetime` datetime NOT NULL default '0000-00-00 00:00:00',
+  `u_datetime` datetime NOT NULL default '0000-00-00 00:00:00',
+  PRIMARY KEY  (`c_cmd_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `c_cmd_caster` (
+  `c_cmd_caster_id` int(11) NOT NULL auto_increment,
+  `url` varchar(128) NOT NULL default '',
+  `title` text NOT NULL,
+  `description` text NOT NULL,
+  `sort_order` int(11) NOT NULL default '0',
+  `is_enabled` tinyint(1) NOT NULL default '0',
+  PRIMARY KEY  (`c_cmd_caster_id`),
+  UNIQUE KEY `url` (`url`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `c_commu` (
@@ -709,19 +722,12 @@ CREATE TABLE `c_member` (
 CREATE TABLE `c_member_config` (
   `c_member_config_id` int(11) NOT NULL auto_increment,
   `c_member_id` int(11) NOT NULL default '0',
-  `c_member_config_option_id` int(11) NOT NULL default '0',
   `value` text NOT NULL,
+  `name` varchar(64) NOT NULL default '',
   PRIMARY KEY  (`c_member_config_id`),
   KEY `c_member_id` (`c_member_id`),
-  KEY `c_member_config_option_id` (`c_member_config_option_id`),
-  KEY `c_member_config_option_id_c_member_id` (`c_member_config_option_id`,`c_member_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
-CREATE TABLE `c_member_config_option` (
-  `c_member_config_option_id` int(11) NOT NULL auto_increment,
-  `name` varchar(64) NOT NULL default '',
-  PRIMARY KEY  (`c_member_config_option_id`),
-  UNIQUE KEY `name` (`name`)
+  KEY `c_member_config_option_id_c_member_id` (`c_member_id`),
+  KEY `name` (`name`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `c_member_ktai_pre` (
