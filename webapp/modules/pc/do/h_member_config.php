@@ -20,8 +20,8 @@ class pc_do_h_member_config extends OpenPNE_Action
     {
         $u = $GLOBALS['AUTH']->uid();
 
-        db_member_update_c_member_config($u, 'DISPLAY_OFF_NEWDIARY_HOME', $requests['DISPLAY_OFF_NEWDIARY_HOME']);
-        db_member_update_c_member_config($u, 'DISPLAY_OFF_NEWTOPIC_HOME', $requests['DISPLAY_OFF_NEWTOPIC_HOME']);
+        db_member_update_c_member_config($u, 'IS_DISPLAY_NEWDIARY_HOME', $requests['IS_DISPLAY_NEWDIARY_HOME']);
+        db_member_update_c_member_config($u, 'IS_DISPLAY_NEWTOPIC_HOME', $requests['IS_DISPLAY_NEWTOPIC_HOME']);
         openpne_redirect('pc', 'page_h_home');
     }
 }
