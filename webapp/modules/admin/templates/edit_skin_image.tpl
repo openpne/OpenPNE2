@@ -72,7 +72,7 @@ if ( c['skinChangerArea'] == 0 ) { toggleDisplay('skin_changer_area'); }
 </script>
 
 <h3 class="item" id="subttl02">カスタマイズ設定</h3>
-<p class="pageNavi"><a href="#skin1">ログインページ</a> | <a href="#skin2">メニュー等、画面上部画像&nbsp;[1]</a> | <a href="#skin3">メニュー等、画面上部画像&nbsp;[2]</a> | <a href="#skin4">画面下部画像</a> | <a href="#skin5">NoImage画像</a> | <a href="#skin6">画像ボタン</a> | <a href="#skin7">レビュー用画像</a> | <a href="#skin8">小物画像&nbsp;[1]</a> | <a href="#skin9">小物画像&nbsp;[2]</a> | <a href="#skin10">小物画像&nbsp;[3]</a> | <a href="#skin11">小物画像&nbsp;[4]</a> | <a href="#skin12">携帯版画像</a> | </p>
+<p class="pageNavi"><a href="#skin1">ログインページ</a> | <a href="#skin2">メニュー等、画面上部画像&nbsp;[1]</a> | <a href="#skin3">メニュー等、画面上部画像&nbsp;[2]</a> | <a href="#skin4">画面下部画像</a> | <a href="#skin5">NoImage画像</a> | <a href="#skin6">画像ボタン</a> | <a href="#skin7">レビュー用画像</a> | <a href="#skin8">小物画像&nbsp;[1]</a> | <a href="#skin9">小物画像&nbsp;[2]</a> | <a href="#skin10">小物画像&nbsp;[3]</a> | <a href="#skin11">小物画像&nbsp;[4]</a> | <a href="#skin12">携帯版画像</a> | <a href="#skin13">文字装飾画像</a> | </p>
 <p class="caution" id="c02">※規定のサイズと異なる画像を設定した場合、レイアウトが崩れてしまう可能性があります。</p>
 
 <table class="basicType2">
@@ -945,6 +945,78 @@ if ( c['skinChangerArea'] == 0 ) { toggleDisplay('skin_changer_area'); }
 </form></dd>
 </dl>
 ({/foreach})
+({if $smarty.const.OPENPNE_USE_ALBUM})
+<dl class="box">
+<dt><strong>アルバム挿入</strong></dt>
+<dd class="image">({assign var=skinname value=deco_op_image})
+<a href="({t_img_url_skin filename=$skinname})" target="_blank"><img src="({t_img_url_skin filename=$skinname w=180 h=180})" /></a>
+</dd>
+<dd class="default">
+({if $skin_list[$skinname]})[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]<br />({/if})
+</dd>
+<dd class="submit">
+<form action="./" method="post" enctype="multipart/form-data" >
+<input type="hidden" name="m" value="({$module_name})" />
+<input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
+<input type="hidden" name="sessid" value="({$PHPSESSID})" />
+<input type="hidden" name="skinname" value="({$skinname})" />
+<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="変更" /></span>
+</form></dd>
+</dl>
+({/if})
+<dl class="box">
+<dt><strong>絵文字挿入（DoCoMo）</strong></dt>
+<dd class="image">({assign var=skinname value=deco_op_emoji_docomo})
+<a href="({t_img_url_skin filename=$skinname})" target="_blank"><img src="({t_img_url_skin filename=$skinname w=180 h=180})" /></a>
+</dd>
+<dd class="default">
+({if $skin_list[$skinname]})[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]<br />({/if})
+</dd>
+<dd class="submit">
+<form action="./" method="post" enctype="multipart/form-data" >
+<input type="hidden" name="m" value="({$module_name})" />
+<input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
+<input type="hidden" name="sessid" value="({$PHPSESSID})" />
+<input type="hidden" name="skinname" value="({$skinname})" />
+<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="変更" /></span>
+</form></dd>
+</dl>
+({if !$smarty.const.OPENPNE_EMOJI_DOCOMO_FOR_PC})
+<dl class="box">
+<dt><strong>絵文字挿入（Au）</strong></dt>
+<dd class="image">({assign var=skinname value=deco_op_emoji_au})
+<a href="({t_img_url_skin filename=$skinname})" target="_blank"><img src="({t_img_url_skin filename=$skinname w=180 h=180})" /></a>
+</dd>
+<dd class="default">
+({if $skin_list[$skinname]})[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]<br />({/if})
+</dd>
+<dd class="submit">
+<form action="./" method="post" enctype="multipart/form-data" >
+<input type="hidden" name="m" value="({$module_name})" />
+<input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
+<input type="hidden" name="sessid" value="({$PHPSESSID})" />
+<input type="hidden" name="skinname" value="({$skinname})" />
+<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="変更" /></span>
+</form></dd>
+</dl>
+<dl class="box">
+<dt><strong>絵文字挿入（SoftBank）</strong></dt>
+<dd class="image">({assign var=skinname value=deco_op_emoji_softbank})
+<a href="({t_img_url_skin filename=$skinname})" target="_blank"><img src="({t_img_url_skin filename=$skinname w=180 h=180})" /></a>
+</dd>
+<dd class="default">
+({if $skin_list[$skinname]})[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]<br />({/if})
+</dd>
+<dd class="submit">
+<form action="./" method="post" enctype="multipart/form-data" >
+<input type="hidden" name="m" value="({$module_name})" />
+<input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
+<input type="hidden" name="sessid" value="({$PHPSESSID})" />
+<input type="hidden" name="skinname" value="({$skinname})" />
+<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="変更" /></span>
+</form></dd>
+</dl>
+({/if})
 <br class="clear" />
 </td>
 </tr>
