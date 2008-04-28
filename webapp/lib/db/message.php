@@ -587,7 +587,7 @@ function db_message_send_message($c_member_id_from, $c_member_id_to, $subject, $
     $c_message_id = db_message_insert_c_message($c_member_id_from, $c_member_id_to, $subject, $body);
 
     do_common_send_message_mail_send($c_member_id_to, $c_member_id_from);
-    do_common_send_message_mail_send_ktai($c_member_id_to, $c_member_id_from);
+    do_common_send_message_mail_send_ktai($c_member_id_to, $c_member_id_from, $subject, $body);
     pne_cache_drop('db_message_count_c_message_not_is_read4c_member_to_id', (int)$c_member_id_to);
     pne_cache_drop('db_message_count_c_message_not_is_read4c_member_to_id', (string)$c_member_id_to);
 

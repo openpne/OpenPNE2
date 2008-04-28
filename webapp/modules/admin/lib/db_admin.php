@@ -943,7 +943,7 @@ function do_admin_send_message($c_member_id_from, $c_member_id_to, $subject, $bo
     } else {
         db_message_insert_c_message($c_member_id_from, $c_member_id_to, $subject, $body);
         do_admin_send_message_mail_send($c_member_id_to, $c_member_id_from);
-        do_admin_send_message_mail_send_ktai($c_member_id_to, $c_member_id_from);
+        do_admin_send_message_mail_send_ktai($c_member_id_to, $c_member_id_from, $subject, $body);
         return true;
     }
 
@@ -965,7 +965,7 @@ function do_admin_send_message_mail_send($c_member_id_to, $c_member_id_from)
 }
 
 //◆メッセージ受信メール(携帯)
-function do_admin_send_message_mail_send_ktai($c_member_id_to, $c_member_id_from)
+function do_admin_send_message_mail_send_ktai($c_member_id_to, $c_member_id_from, $subject, $body)
 {
     $c_member_to = db_member_c_member4c_member_id($c_member_id_to, true);
     $ktai_address = $c_member_to['secure']['ktai_address'];
@@ -977,6 +977,8 @@ function do_admin_send_message_mail_send_ktai($c_member_id_to, $c_member_id_from
         'c_member_to'   => db_member_c_member4c_member_id($c_member_id_to),
         'c_member_from' => db_member_c_member4c_member_id($c_member_id_from),
         'login_url' => $login_url,
+        'subject' => $subject,
+        'body' => $body,
     );
     return admin_fetch_send_mail($ktai_address, 'm_ktai_message_zyushin', $params, $is_receive_ktai_mail);
 }
