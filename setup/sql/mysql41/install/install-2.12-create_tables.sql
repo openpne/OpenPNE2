@@ -150,7 +150,8 @@ CREATE TABLE `c_album_image` (
   `image_description` text NOT NULL,
   `filesize` int(11) NOT NULL default '0',
   `r_datetime` datetime NOT NULL default '0000-00-00 00:00:00',
-  PRIMARY KEY  (`c_album_image_id`)
+  PRIMARY KEY  (`c_album_image_id`),
+  KEY `c_album_id` (`c_album_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `c_api` (
