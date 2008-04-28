@@ -752,8 +752,6 @@ CREATE TABLE c_member_config (
   PRIMARY KEY  (c_member_config_id)
 );
 
-CREATE INDEX c_member_config_name on c_member_config (name);
-
 CREATE TABLE c_member_ktai_pre (
   c_member_ktai_pre_id serial NOT NULL,
   session varchar(32) NOT NULL default '',
