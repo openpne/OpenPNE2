@@ -13,25 +13,14 @@ class admin_page_edit_c_sns_config extends OpenPNE_Action
 
         // 色設定名配列構造
         $v['bgcolor_scheme_names'] = array(
-            'color_1' => '見出し・セル罫線',
-            'color_2' => 'テーブル外枠',
-            'color_3' => 'メッセージメニュー枠線',
-            'color_4' => 'テーブル背景1',
-            'color_5' => 'テーブル内枠',
-            'color_6' => 'セル背景1',
-            'color_7' => 'セル背景2',
-            'color_8' => '紹介文下部罫線',
-            'color_9' => 'テーブル背景2',
-            'color_10' => '見出し背景',
-            'color_11' => '9面パネル罫線',
-            'color_12' => 'テーブル・項目背景1',
-            'color_13' => 'テーブル・項目背景2',
-            'color_14' => WORD_DIARY . 'カレンダー背景',
-            'color_15' => 'お知らせ見出し背景',
-            'color_16' => 'サイドバナー領域背景',
+            'color_5' => '線の色',
+            'color_16' => 'ページ背景',
             'color_17' => 'コンテンツ領域背景',
-            'color_18' => 'カレンダー(日曜)背景',
-            'color_19' => 'Searchフォーム背景',
+            'color_4' => '枠色',
+            'color_10' => 'コンテンツ見出し背景',
+            'color_13' => '説明領域背景',
+            'color_6' => 'ボックスの背景',
+            'color_14' => '左メニュー枠色',
         );
         $v['c_config_color_list'] = db_etc_c_config_color_list();
         $v['c_config_color_list'][0]['caption'] = '現在の設定';
