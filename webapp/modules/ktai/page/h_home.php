@@ -9,6 +9,7 @@ class ktai_page_h_home extends OpenPNE_Action
     function execute($requests)
     {
         $u  = $GLOBALS['KTAI_C_MEMBER_ID'];
+        $OPTION = $this->get('C_MEMBER_CONFIG');
 
         $c_member_secure = db_member_c_member_secure4c_member_id($u);
 
@@ -21,7 +22,7 @@ class ktai_page_h_home extends OpenPNE_Action
         //新着メッセージ数
         $this->set('c_message_unread_count', db_message_c_message_received_unread_all_count4c_member_id($u));
         // 最新日記
-        if(DISPLAY_NEWDIARYTOPIC_HOME && !$OPTION['DISPLAY_CHANGE_NEWDIARY_HOME_KTAI']){
+        if(DISPLAY_NEWDIARYTOPIC_HOME && $OPTION['DISPLAY_CHANGE_NEWDIARY_HOME_KTAI']){
             $this->set('c_diary_list_all', p_h_home_c_diary_all_list(5));
         } else {
             //フレンドの最新日記
@@ -37,7 +38,7 @@ class ktai_page_h_home extends OpenPNE_Action
         $this->set('c_friend_count', db_friend_count_friends($u));
 
         // 最新ﾄﾋﾟｯｸ
-        if(DISPLAY_NEWDIARYTOPIC_HOME && !$OPTION['DISPLAY_CHANGE_NEWTOPIC_HOME_KTAI']){
+        if(DISPLAY_NEWDIARYTOPIC_HOME && $OPTION['DISPLAY_CHANGE_NEWTOPIC_HOME_KTAI']){
             $this->set('c_topic_list_all', p_h_home_c_topic_all_list(5));
         } else {
             //参加コミュニティの新着書き込み
