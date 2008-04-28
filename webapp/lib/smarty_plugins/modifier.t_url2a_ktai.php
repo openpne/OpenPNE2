@@ -37,7 +37,7 @@ function smarty_modifier_t_url2a_ktai_callback($matches)
     // 携帯用URLに置換、ksid 追加
     $ktai_url = $host . '?m=ktai&a=' . $converted_action . $param . '&' . $GLOBALS['KTAI_URL_TAIL'];
 
-    // 表示上は page_ 以降を最大40文字で縮める
+    // page_ より後ろを最大50文字に縮めて表示
     $urlstr = $converted_action . $param;
     $urlstr = preg_replace('/^page_/', '', $urlstr);
 
