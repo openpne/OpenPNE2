@@ -38,6 +38,7 @@ function insertAlbumImageURLToTextarea(album_image_id) {
 <h1 style="font-weight: bold; font-size: 1.2em;">アルバム写真の挿入</h1>
 <p>アルバム写真を記事に挿入することができます。</p>
 
+({if $total_num})
 ({* {{{ photoTable *})
 <div class="dparts photoTable"><div class="parts">
 <div class="partsHeading"><h3>({$target_member.nickname})({if $type == "f"})さん({/if})のアルバム</h3></div>
@@ -126,6 +127,16 @@ function insertAlbumImageURLToTextarea(album_image_id) {
 ({$smarty.capture.pager|smarty:nodefaults})
 </div></div>
 ({* }}} *})
+({else})
+({* {{{ simpleBox *})
+<div class="dparts simpleBox"><div class="parts">
+<div class="partsHeading"><h3>({$target_member.nickname})のアルバム</h3></div>
+<div class="block">
+<p>まだアルバム写真がありません。</p>
+</div>
+</div></div>
+({* }}} *})
+({/if})
 
 ({* {{{ linkLine *})
 <div class="parts linkLine"><ul class="moreInfo">
