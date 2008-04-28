@@ -33,7 +33,7 @@ function insertAlbumURLToTextarea(album_id) {
 <body id="pc_page_({$INC_HEADER_page_name})"><div id="Body">
 <div id="Container" style="width: 600px">
 
-<div id="Center" style="width : 560px; margin: 20px;">
+<div id="Center" style="width: 580px; margin: 0 auto; padding: 10px 0;">
 
 <h1 style="font-weight: bold; font-size: 1.2em;">アルバム・アルバム写真の挿入</h1>
 <p>アルバム・アルバム写真を記事に挿入することができます。</p>
