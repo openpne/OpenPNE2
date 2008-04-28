@@ -9,6 +9,7 @@
 <script src="http://www.google.co.jp/uds/api?file=uds.js&amp;v=1.0&amp;key=({$smarty.const.GOOGLE_AJAX_SEARCH_API_KEY})" type="text/javascript"></script>
 <script src="http://maps.google.co.jp/maps?file=api&amp;v=2.x&amp;key=({$smarty.const.GOOGLE_MAPS_API_KEY})" type="text/javascript"></script>
 <script type="text/javascript">
+//<![CDATA[
 var gls;
 var gMap;
 function OnLocalSearch() {
@@ -50,6 +51,7 @@ function load() {
         }
     }
 }
+//]]>
 </script>
 </head>
 <body onload="load()" onunload="GUnload()">
