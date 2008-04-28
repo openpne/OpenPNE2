@@ -74,7 +74,7 @@ class pc_page_h_home extends OpenPNE_Action
         /// 最新情報 ///
 
         // 最新日記
-        if(DISPLAY_NEWDIARYTOPIC_HOME && !$OPTION['DISPLAY_OFF_NEWDIARY_HOME']){
+        if(DISPLAY_NEWDIARYTOPIC_HOME && $OPTION['IS_DISPLAY_NEWDIARY_HOME']){
             $this->set('c_diary_list_all', p_h_home_c_diary_all_list(5));
         }
         // フレンド最新日記
@@ -86,7 +86,7 @@ class pc_page_h_home extends OpenPNE_Action
         $c_diary_my_comment_list = p_h_home_c_diary_my_comment_list4c_member_id($u, 5);
         $this->set('c_diary_my_comment_list', $c_diary_my_comment_list);
         // コミュニティ全ての新着書き込み
-        if(DISPLAY_NEWDIARYTOPIC_HOME && !$OPTION['DISPLAY_OFF_NEWTOPIC_HOME']){
+        if(DISPLAY_NEWDIARYTOPIC_HOME && $OPTION['IS_DISPLAY_NEWTOPIC_HOME']){
             $this->set('c_topic_list_all', p_h_home_c_topic_all_list(5));
         }
         // 参加コミュニティの新着書き込み
