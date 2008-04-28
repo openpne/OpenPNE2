@@ -211,13 +211,13 @@
 <td>
 <p>SNS全体の最新({$WORD_DIARY})</p>
 <ul>
-<li><input type="radio" class="input_radio" name="IS_DISPLAY_NEWDIARY_HOME" id="display_off_newdiary_home_0" value="0"({if $C_MEMBER_CONFIG.IS_DISPLAY_NEWDIARY_HOME}) checked="checked"({/if}) /><label for="display_off_newdiary_home_0">表示する</label></li>
-<li><input type="radio" class="input_radio" name="IS_DISPLAY_NEWDIARY_HOME" id="display_off_newdiary_home_1" value="1"({if !$C_MEMBER_CONFIG.IS_DISPLAY_NEWDIARY_HOME}) checked="checked"({/if}) /><label for="display_off_newdiary_home_1">表示しない</label></li>
+<li><input type="radio" class="input_radio" name="IS_DISPLAY_NEWDIARY_HOME" id="display_off_newdiary_home_0" value="1"({if $C_MEMBER_CONFIG.IS_DISPLAY_NEWDIARY_HOME}) checked="checked"({/if}) /><label for="display_off_newdiary_home_0">表示する</label></li>
+<li><input type="radio" class="input_radio" name="IS_DISPLAY_NEWDIARY_HOME" id="display_off_newdiary_home_1" value="0"({if !$C_MEMBER_CONFIG.IS_DISPLAY_NEWDIARY_HOME}) checked="checked"({/if}) /><label for="display_off_newdiary_home_1">表示しない</label></li>
 </ul>
 <p>SNS全体の最新トピック</p>
 <ul>
-<li><input type="radio" class="input_radio" name="IS_DISPLAY_NEWTOPIC_HOME" id="display_off_newtopic_home_0" value="0"({if $C_MEMBER_CONFIG.IS_DISPLAY_NEWTOPIC_HOME}) checked="checked"({/if}) /><label for="display_off_newtopic_home_0">表示する</label></li>
-<li><input type="radio" class="input_radio" name="IS_DISPLAY_NEWTOPIC_HOME" id="display_off_newtopic_home_1" value="1"({if !$C_MEMBER_CONFIG.IS_DISPLAY_NEWTOPIC_HOME}) checked="checked"({/if}) /><label for="display_off_newtopic_home_1">表示しない</label></li>
+<li><input type="radio" class="input_radio" name="IS_DISPLAY_NEWTOPIC_HOME" id="display_off_newtopic_home_0" value="1"({if $C_MEMBER_CONFIG.IS_DISPLAY_NEWTOPIC_HOME}) checked="checked"({/if}) /><label for="display_off_newtopic_home_0">表示する</label></li>
+<li><input type="radio" class="input_radio" name="IS_DISPLAY_NEWTOPIC_HOME" id="display_off_newtopic_home_1" value="0"({if !$C_MEMBER_CONFIG.IS_DISPLAY_NEWTOPIC_HOME}) checked="checked"({/if}) /><label for="display_off_newtopic_home_1">表示しない</label></li>
 </ul>
 <p>※マイホームに表示する情報を選択出来ます。</p>
 </td>
