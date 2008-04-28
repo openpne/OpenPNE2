@@ -3120,6 +3120,8 @@ function db_admin_get_c_cmd_caster_list()
 
 function db_admin_insert_c_cmd_caster($url)
 {
+    $result = false;
+
     require_once 'OpenPNE/RSS.php';
     $rss = new OpenPNE_RSS();
     $title = $rss->get_feed_title($url);
@@ -3144,9 +3146,14 @@ function db_admin_insert_c_cmd_caster($url)
     );
     $c_cmd_caster_id = db_insert('c_cmd_caster', $data);
 
-    db_admin_update_c_cmd4c_cmd_caster_id($c_cmd_caster_id);
+    if ($c_cmd_caster_id) {
+        $result = (bool)db_admin_update_c_cmd4c_cmd_caster_id($c_cmd_caster_id);
+        if (!$result) {
+            db_admin_delete_c_cmd_caster($c_cmd_caster_id);
+        }
+    }
 
-    return $c_cmd_caster_id;
+    return $result;
 }
 
 function db_admin_delete_c_cmd_caster($c_cmd_caster_id)
@@ -3160,6 +3167,22 @@ function db_admin_delete_c_cmd_caster($c_cmd_caster_id)
 
 function db_admin_update_c_cmd_caster($c_cmd_caster_id, $url)
 {
+    $sql = 'SELECT url FROM c_cmd_caster WHERE c_cmd_caster_id = ?';
+    $old_url = db_get_one($sql, array($c_cmd_caster_id));
+
+    // URLに変更がある場合は登録しなおす
+    if ($old_url != $url) {
+        db_admin_delete_c_cmd_caster($c_cmd_caster_id);
+        $result = db_admin_insert_c_cmd_caster($url);
+
+        // 正しく登録できなかった場合は、元のURLを登録しなおす
+        if (!$result) {
+            db_admin_insert_c_cmd_caster($old_url);
+        }
+
+        return $result;
+    }
+
     require_once 'OpenPNE/RSS.php';
     $rss = new OpenPNE_RSS();
     $title = $rss->get_feed_title($url);
@@ -3180,7 +3203,6 @@ function db_admin_update_c_cmd_caster($c_cmd_caster_id, $url)
     $data = array(
         'title' => $title,
         'description' => $description,
-        'url' => $url,
     );
     $where = array('c_cmd_caster_id' => $c_cmd_caster_id);
     $result = db_update('c_cmd_caster', $data, $where);
@@ -3198,6 +3220,7 @@ function db_admin_update_c_cmd4c_cmd_caster_id($c_cmd_caster_id)
     $rss = new OpenPNE_RSS();
     $items = $rss->fetch($url);
 
+    $cmd_count = 0;
     $allowed_type = array('text/javascript', 'application/javascript');
     foreach ($items as $item)
     {
@@ -3206,7 +3229,9 @@ function db_admin_update_c_cmd4c_cmd_caster_id($c_cmd_caster_id)
             continue;
         }
 
+        $cmd_count++;
         $name = basename($enclosure->link, '.js');
+
         if ($c_cmd_id = db_admin_get_c_cmd_id4name_c_cmd_caster_id($name, $c_cmd_caster_id)) {
             if (!db_admin_is_updated_c_cmd($c_cmd_id, $item['date'])) {
                 continue;
@@ -3227,6 +3252,8 @@ function db_admin_update_c_cmd4c_cmd_caster_id($c_cmd_caster_id)
             db_insert('c_cmd', $data);
         }
     }
+
+    return $cmd_count;
 }
 
 function db_admin_is_updated_c_cmd($c_cmd_id, $date)
