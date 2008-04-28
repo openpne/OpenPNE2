@@ -6,5 +6,3 @@ UPDATE c_member_config SET name = c_member_config_option.name
 
 DROP TABLE c_member_config_option;
 ALTER TABLE c_member_config DROP COLUMN c_member_config_option_id;
-
-CREATE INDEX c_member_config_name on c_member_config (name);
