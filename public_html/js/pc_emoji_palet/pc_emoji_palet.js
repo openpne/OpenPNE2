@@ -102,8 +102,13 @@ function emojiPallet(i, career) {
 
 // 絵文字コードをテキストエリアに入力
 function putEmojiToSelf(emoji) {
-    var elm = document.getElementsByName("body")[0];
-    elm.focus();
+    var body = document.getElementsByName("body");
+    for (var i = 0; i < body.length; i++) {
+        if (body[i].nodeName.toLowerCase() == 'textarea') {
+            var elm = body[i];
+            break;
+        }
+    }
 
     var selection = new Selection(elm);
     var pos = selection.create(); 
