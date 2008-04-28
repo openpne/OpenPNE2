@@ -17,7 +17,12 @@ class admin_do_update_c_cmd_caster extends OpenPNE_Action
         $c_cmd_caster_id = $requests['c_cmd_caster_id'];
         $url = $requests['url'];
 
-        $result = db_admin_update_c_cmd_caster($c_cmd_caster_id, $url);
+        require_once 'OpenPNE/RSS.php';
+        if (!($rss_url = OpenPNE_RSS::auto_discovery($url))) {
+            admin_client_redirect('list_c_cmd_caster', 'CMDキャストURLが無効です');
+        }
+
+        $result = db_admin_update_c_cmd_caster($c_cmd_caster_id, $rss_url);
         if ($result) {
             admin_client_redirect('list_c_cmd_caster', 'CMDキャストURLを変更しました');
         } else {
