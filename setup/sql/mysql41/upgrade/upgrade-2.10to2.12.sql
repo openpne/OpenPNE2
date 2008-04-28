@@ -151,7 +151,7 @@ INSERT INTO `c_config_decoration` VALUES (NULL,'op:color','文字色指定','<sp
 
 INSERT IGNORE INTO `c_admin_config` VALUES (NULL,'OPENPNE_USE_DECORATION',1);
 
--- update09, update16
+-- update09, update16, update17
 CREATE TABLE `c_member_config` (
   `c_member_config_id` int(11) NOT NULL auto_increment,
   `c_member_id` int(11) NOT NULL default '0',

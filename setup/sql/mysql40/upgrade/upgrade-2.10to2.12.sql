@@ -149,26 +149,15 @@ INSERT INTO `c_config_decoration` VALUES (NULL,'op:color','文字色指定','<sp
 
 INSERT IGNORE INTO `c_admin_config` VALUES (NULL,'OPENPNE_USE_DECORATION',1);
 
--- update09
+-- update09, update16, update17
 CREATE TABLE `c_member_config` (
   `c_member_config_id` int(11) NOT NULL auto_increment,
   `c_member_id` int(11) NOT NULL default '0',
-  `c_member_config_option_id` int(11) NOT NULL default '0',
   `value` text NOT NULL,
-  PRIMARY KEY  (`c_member_config_id`),
-  KEY `c_member_id` (`c_member_id`),
-  KEY `c_member_config_option_id` (`c_member_config_option_id`),
-  KEY `c_member_config_option_id_c_member_id` (`c_member_config_option_id`,`c_member_id`)
-) ENGINE=MyISAM;
-
-CREATE TABLE `c_member_config_option` (
-  `c_member_config_option_id` int(11) NOT NULL auto_increment,
   `name` varchar(64) NOT NULL default '',
-  PRIMARY KEY  (`c_member_config_option_id`),
-  UNIQUE KEY `name` (`name`)
+  PRIMARY KEY  (`c_member_config_id`),
+  KEY `c_member_id` (`c_member_id`)
 ) ENGINE=MyISAM;
-
-INSERT INTO `c_member_config_option` VALUES (NULL,'SEND_DIARY_COMMENT_MAIL_KTAI');
 
 -- update10
 ALTER TABLE c_message ADD COLUMN filename varchar(200) NOT NULL default '';
@@ -202,26 +191,13 @@ CREATE TABLE `c_album_image` (
 ALTER IGNORE TABLE c_member ADD COLUMN public_flag_birth_month_day enum('public','friend','private') NOT NULL default 'public' AFTER public_flag_birth_year;
 ALTER IGNORE TABLE c_member_pre ADD COLUMN public_flag_birth_month_day enum('public','friend','private') NOT NULL default 'public' AFTER public_flag_birth_year;
 
--- update13
+-- update13, update14
 ALTER TABLE c_commu_topic ADD COLUMN u_datetime datetime NOT NULL default '0000-00-00 00:00:00';
 
 DROP INDEX r_datetime_c_commu_id ON c_commu_topic;
 CREATE INDEX r_datetime_c_commu_id ON c_commu_topic(c_commu_id,u_datetime);
 
 CREATE INDEX c_commu_id_c_member_id ON c_commu_member(c_commu_id,c_member_id);
-
-CREATE TABLE `c_diary_comment_log` (
-  `c_diary_comment_log_id` int(11) NOT NULL auto_increment,
-  `c_member_id` int(11) NOT NULL default '0',
-  `c_diary_id`  int(11) NOT NULL default '0',
-  `r_datetime`  datetime NOT NULL default '0000-00-00 00:00:00',
-  PRIMARY KEY (`c_diary_comment_log_id`)
-) ENGINE=MyISAM;
-
-CREATE INDEX `c_member_id_r_datetime` ON `c_diary_comment_log`(c_member_id,r_datetime);
-CREATE INDEX `c_diary_id` ON `c_diary_comment_log`(c_diary_id);
-CREATE INDEX `c_diary_id_r_datetime` ON `c_diary_comment_log`(c_diary_id,r_datetime);
-CREATE INDEX `c_member_id_c_diary_id` ON `c_diary_comment_log`(c_member_id,c_diary_id);
 
 DROP TABLE IF EXISTS `tmp_c_commu_topic`;
 CREATE TABLE `tmp_c_commu_topic` (
@@ -241,16 +217,19 @@ UPDATE c_commu_topic INNER JOIN tmp_c_commu_topic USING (c_commu_topic_id)
 
 DROP TABLE tmp_c_commu_topic;
 
-INSERT INTO c_diary_comment_log (c_diary_comment_log_id, c_member_id, c_diary_id, r_datetime)
-  (SELECT NULL, c_member_id, c_diary_id, MAX(r_datetime) AS r_datetime
-    FROM c_diary_comment
-    WHERE TO_DAYS(NOW()) - TO_DAYS(r_datetime) <= 15
-    GROUP BY c_member_id, c_diary_id
-    ORDER BY r_datetime);
+CREATE TABLE `c_diary_comment_log` (
+  `c_diary_comment_log_id` int(11) NOT NULL auto_increment,
+  `c_member_id` int(11) NOT NULL default '0',
+  `c_diary_id` int(11) NOT NULL default '0',
+  `r_datetime` datetime NOT NULL default '0000-00-00 00:00:00',
+  PRIMARY KEY  (`c_diary_comment_log_id`),
+  KEY `c_member_id_r_datetime` (`c_member_id`,`r_datetime`),
+  KEY `c_diary_id` (`c_diary_id`),
+  KEY `c_diary_id_r_datetime` (`c_diary_id`,`r_datetime`),
+  KEY `c_member_id_c_diary_id` (`c_member_id`,`c_diary_id`)
+) TYPE=MyISAM;
 
--- update14
-TRUNCATE TABLE `c_diary_comment_log`;
-
+DROP TABLE IF EXISTS tmp_c_diary_comment_log;
 CREATE TABLE `tmp_c_diary_comment_log` (
   `c_diary_comment_log_id` int(11) NOT NULL auto_increment,
   `c_member_id` int(11) NOT NULL default '0',
@@ -294,15 +273,3 @@ ALTER TABLE `c_cmd` DROP INDEX `name_2`;
 ALTER TABLE `c_cmd` ADD COLUMN `c_cmd_caster_id` int(11) NOT NULL default '0';
 ALTER TABLE `c_cmd` ADD COLUMN `r_datetime` datetime NOT NULL default '0000-00-00 00:00:00';
 ALTER TABLE `c_cmd` ADD COLUMN `u_datetime` datetime NOT NULL default '0000-00-00 00:00:00';
-
--- update16
-ALTER TABLE `c_member_config` ADD COLUMN `name` varchar(64) NOT NULL default '';
-
-UPDATE c_member_config, c_member_config_option SET c_member_config.name = c_member_config_option.name
-    WHERE c_member_config.c_member_config_option_id = c_member_config_option.c_member_config_option_id;
-
-DROP TABLE `c_member_config_option`;
-ALTER TABLE `c_member_config` DROP COLUMN `c_member_config_option_id`;
-
--- update17
-DROP INDEX c_member_config_option_id_c_member_id ON c_member_config;
