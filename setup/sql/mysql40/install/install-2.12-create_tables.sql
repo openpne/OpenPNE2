@@ -723,8 +723,7 @@ CREATE TABLE `c_member_config` (
   `value` text NOT NULL,
   `name` varchar(64) NOT NULL default '',
   PRIMARY KEY  (`c_member_config_id`),
-  KEY `c_member_id` (`c_member_id`),
-  KEY `c_member_config_option_id_c_member_id` (`c_member_id`)
+  KEY `c_member_id` (`c_member_id`)
 ) TYPE=MyISAM;
 
 CREATE TABLE `c_member_ktai_pre` (
