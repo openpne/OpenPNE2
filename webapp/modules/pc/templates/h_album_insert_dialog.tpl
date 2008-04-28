@@ -10,6 +10,7 @@
 <title>({$INC_HEADER_title})</title>
 <link rel="stylesheet" href="./xhtml_style.php" type="text/css" />
 <script type="text/javascript">
+//<![CDATA[
 function insertAlbumURLToTextarea(album_id) {
     var albumURLBase = "({t_url _absolute=1 _html=0 m=pc a=page_fh_album})";
     var replace = " " + albumURLBase + "&target_c_album_id=" + album_id + " ";
@@ -28,6 +29,7 @@ function insertAlbumURLToTextarea(album_id) {
         elm.value =  head + replace + tail;
     }
 }
+//]]>
 </script>
 </head>
 <body id="pc_page_({$INC_HEADER_page_name})"><div id="Body">
