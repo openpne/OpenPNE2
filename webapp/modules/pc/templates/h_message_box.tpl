@@ -186,7 +186,7 @@ function clearAll() {
 </tr>
 ({foreach from=$c_message_ru_list item=c_message_ru})
 <tr({if !$c_message_ru.is_read}) class="unread"({/if})>
-<td><span>({strip})
+<td class="status"><span>({strip})
 ({if $c_message_ru.is_hensin})
 <img src="({t_img_url_skin filename=icon_mail_4})" alt="返信済み" />
 ({elseif $c_message_ru.is_read})
@@ -273,7 +273,7 @@ function clearAll() {
 </tr>
 ({foreach from=$c_message_s_list item=c_message_s})
 <tr>
-<td><span><img src="({t_img_url_skin filename=icon_mail_3})" alt="" /></span></td>
+<td class="status"><span><img src="({t_img_url_skin filename=icon_mail_3})" alt="" /></span></td>
 <td><span><input type="checkbox" class="input_checkbox" name="c_message_id[]" value="({$c_message_s.c_message_id})" /></span></td>
 <td><span>({$c_message_s.nickname})</span></td>
 <td><span><a href="({t_url m=pc a=page_h_message})&amp;target_c_message_id=({$c_message_s.c_message_id})&amp;box=outbox">({$c_message_s.subject})</a></span></td>
@@ -350,7 +350,7 @@ function clearAll() {
 </tr>
 ({foreach from=$c_message_save_list item=c_message_save})
 <tr>
-<td><span><img src="({t_img_url_skin filename=icon_mail_1})" alt="" /></span></td>
+<td class="status"><span><img src="({t_img_url_skin filename=icon_mail_1})" alt="" /></span></td>
 <td><span><input type="checkbox" class="input_checkbox" name="c_message_id[]" value="({$c_message_save.c_message_id})" /></span></td>
 <td><span>({$c_message_save.nickname})</span></td>
 <td><span><a href="({t_url m=pc a=page_f_message_send})&amp;target_c_message_id=({$c_message_save.c_message_id})&amp;jyusin_c_message_id=({$c_message_save.hensinmoto_c_message_id})&amp;box=savebox">({$c_message_save.subject})</a></span></td>
@@ -430,7 +430,7 @@ function clearAll() {
 </tr>
 ({foreach from=$c_message_trash_list item=c_message_trash})
 <tr>
-<td><span>({strip})
+<td class="status"><span>({strip})
 ({if $c_message_trash.c_member_id_to == $u})({* 受信メッセージ *})
     <img src="({t_img_url_skin filename=icon_mail_2})" alt="受信" />
 ({else})
