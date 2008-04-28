@@ -87,9 +87,9 @@ pne_item({$key+1})_id=({$item.c_member_id})
 ({/strip})({/capture})
 <script type="text/javascript" src="js/show_flash.js"></script>
 <script type="text/javascript">
-<!--
+//<![CDATA[
 show_flash('flash/list.swf', '({$flashvars})');
-//-->
+//]]>
 </script>
 ({else})
 <table>
@@ -164,9 +164,9 @@ pne_item({$key+1})_id=({$item.c_commu_id})
 ({/strip})({/capture})
 <script type="text/javascript" src="js/show_flash.js"></script>
 <script type="text/javascript">
-<!--
+//<![CDATA[
 show_flash('flash/list.swf', '({$flashvars})');
-//-->
+//]]>
 </script>
 ({else})
 <table>
@@ -234,9 +234,9 @@ pne_item({$key+1})_id=({$item.c_member_id})
 ({/strip})({/capture})
 <script type="text/javascript" src="js/show_flash.js"></script>
 <script type="text/javascript">
-<!--
+//<![CDATA[
 show_flash('flash/list.swf', '({$flashvars})');
-//-->
+//]]>
 </script>
 ({else})
 <table>
