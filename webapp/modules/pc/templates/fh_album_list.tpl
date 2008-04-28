@@ -55,7 +55,7 @@
 ({* unknown *})({capture name=pager})({strip})
 ({* unknown *})<div class="pagerRelative">
 ({* unknown *})({if $is_prev})
-({* unknown *})<p class="prev"><a href="({t_url m=pc a=page_fh_album_list})&amp;page=({$page-1})({if $target_c_album_id})&amp;target_c_album_id=({$target_album_id})({/if})({if $url_keyword})&amp;keyword=({$url_keyword})({/if})">前を表示</a></p>
+({* unknown *})<p class="prev"><a href="({t_url m=pc a=page_fh_album_list})&amp;page=({$page-1})({if $url_keyword})&amp;keyword=({$url_keyword})({/if})">前を表示</a></p>
 ({* unknown *})({/if})
 ({* unknown *})<p class="number">
 ({* unknown *})({$total_num})件中 ({$page*$page_size-$page_size+1})件～
@@ -67,7 +67,7 @@
 ({* unknown *})件を表示
 ({* unknown *})</p>
 ({* unknown *})({if $is_next})
-({* unknown *})<p class="next"><a href="({t_url m=pc a=page_fh_album_list})&amp;page=({$page+1})({if $target_c_album_id})&amp;target_c_album_id=({$target_album_id})({/if})({if $url_keyword})&amp;keyword=({$url_keyword})({/if})">次を表示</a></p>
+({* unknown *})<p class="next"><a href="({t_url m=pc a=page_fh_album_list})&amp;page=({$page+1})({if $url_keyword})&amp;keyword=({$url_keyword})({/if})">次を表示</a></p>
 ({* unknown *})({/if})
 ({* unknown *})</div>
 ({* unknown *})({/strip})({/capture})
