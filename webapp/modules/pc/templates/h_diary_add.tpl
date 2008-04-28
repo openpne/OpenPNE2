@@ -104,22 +104,28 @@
 ({if $smarty.const.OPENPNE_EMOJI_DOCOMO_FOR_PC})
 <a id="mce_textmode_button_op_emoji_docomo" href="#" onclick="togglePallet('epDocomo');"><img src="({t_img_url_skin filename=deco_op_emoji_docomo})" alt="" /></a>
 <script type="text/javascript">
+//<![CDATA[
 createEmojiPalletDoCoMo();
+//]]>
 </script>
 ({else})
 <a id="mce_textmode_button_op_emoji_docomo" href="#" onclick="togglePallet('epDocomo');"><img src="({t_img_url_skin filename=deco_op_emoji_docomo})" alt="" /></a>
 <a id="mce_textmode_button_op_emoji_au" href="#" onclick="togglePallet('epAu');"><img src="({t_img_url_skin filename=deco_op_emoji_au})" alt="" /></a>
 <a id="mce_textmode_button_op_emoji_softbank" href="#" onclick="togglePallet('epSb');"><img src="({t_img_url_skin filename=deco_op_emoji_softbank})" alt="" /></a>
 <script type="text/javascript">
+//<![CDATA[
 createEmojiPalletDoCoMo();
 createEmojiPalletAu();
 createEmojiPalletSoftBank();
+//]]>
 </script>
 ({/if})
 </div>
 
 <script type="text/javascript">
+//<![CDATA[
 pne_mce_editor_init();
+//]]>
 </script>
 
 ({/if})
