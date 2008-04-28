@@ -41,6 +41,7 @@ CREATE INDEX c_commu_id_c_memer_id_to ON c_commu_admin_invite(c_commu_id,c_membe
 ALTER TABLE c_member_pre ADD COLUMN login_id varchar(255) NOT NULL default '';
 
 -- update06
+DROP TABLE IF EXISTS `c_module`;
 CREATE TABLE `c_module` (
   `c_module_id` int(11) NOT NULL auto_increment,
   `name` varchar(64) NOT NULL default '',
@@ -132,6 +133,7 @@ INSERT IGNORE INTO `portal_config` VALUES
 INSERT IGNORE INTO `c_module` VALUES(NULL, 'portal', 1);
 
 -- update08
+DROP TABLE IF EXISTS `c_config_decoration`;
 CREATE TABLE `c_config_decoration` (
   `c_config_decoration_id` int(11) NOT NULL auto_increment,
   `tagname` text NOT NULL,
@@ -152,6 +154,7 @@ INSERT INTO `c_config_decoration` VALUES (NULL,'op:color','文字色指定','<sp
 INSERT IGNORE INTO `c_admin_config` VALUES (NULL,'OPENPNE_USE_DECORATION',1);
 
 -- update09, update16, update17
+DROP TABLE IF EXISTS `c_member_config`;
 CREATE TABLE `c_member_config` (
   `c_member_config_id` int(11) NOT NULL auto_increment,
   `c_member_id` int(11) NOT NULL default '0',
@@ -166,7 +169,7 @@ ALTER TABLE c_message ADD COLUMN filename varchar(200) NOT NULL default '';
 
 -- update11
 DROP TABLE IF EXISTS `c_album`;
-CREATE TABLE IF NOT EXISTS `c_album` (
+CREATE TABLE `c_album` (
   `c_album_id` int(11) NOT NULL auto_increment,
   `c_member_id` int(11) NOT NULL default '0',
   `subject` text NOT NULL,
@@ -180,7 +183,7 @@ CREATE TABLE IF NOT EXISTS `c_album` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `c_album_image`;
-CREATE TABLE IF NOT EXISTS `c_album_image` (
+CREATE TABLE `c_album_image` (
   `c_album_image_id` int(11) NOT NULL auto_increment,
   `c_album_id` int(11) NOT NULL default '0',
   `c_member_id` int(11) NOT NULL default '0',
@@ -221,6 +224,7 @@ UPDATE c_commu_topic INNER JOIN tmp_c_commu_topic USING (c_commu_topic_id)
 
 DROP TABLE tmp_c_commu_topic;
 
+DROP TABLE IF EXISTS `c_diary_comment_log`;
 CREATE TABLE `c_diary_comment_log` (
   `c_diary_comment_log_id` int(11) NOT NULL auto_increment,
   `c_member_id` int(11) NOT NULL default '0',
@@ -260,6 +264,7 @@ INSERT INTO c_diary_comment_log (c_diary_comment_log_id, c_member_id, c_diary_id
 DROP TABLE `tmp_c_diary_comment_log`;
 
 -- update15
+DROP TABLE IF EXISTS `c_cmd_caster`;
 CREATE TABLE `c_cmd_caster` (
   `c_cmd_caster_id` int(11) NOT NULL auto_increment,
   `url` varchar(128) NOT NULL default '',
