@@ -1187,16 +1187,6 @@ function db_diary_get_max_number4diary($c_diary_id)
  */
 function p_h_home_c_diary_all_list($limit)
 {
-    static $is_recurred = false;  //再帰処理中かどうかの判定フラグ
-
-    if (!$is_recurred) {  //function cacheのために再帰処理を行う
-        $is_recurred = true;
-        $funcargs = func_get_args();
-        return pne_cache_recursive_call(OPENPNE_FUNCTION_CACHE_LIFETIME_FAST, __FUNCTION__, $funcargs);
-    }
-
-    $is_recurred = false;
-
     $sql = 'SELECT * FROM c_diary WHERE public_flag = \'public\''
          . ' ORDER BY c_diary.r_datetime DESC';
 
