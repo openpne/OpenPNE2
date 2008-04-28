@@ -230,11 +230,23 @@ CREATE TABLE c_cmd (
   c_cmd_id serial NOT NULL,
   name text NOT NULL,
   permit int4 NOT NULL default '0',
-  PRIMARY KEY  (c_cmd_id),
-  UNIQUE (name)
+  url varchar(128) NOT NULL default '',
+  c_cmd_caster_id int4 NOT NULL default '0',
+  r_datetime timestamp NOT NULL default '0000-01-01 00:00:00',
+  u_datetime timestamp NOT NULL default '0000-01-01 00:00:00',
+  PRIMARY KEY  (c_cmd_id)
 );
 
-CREATE INDEX c_cmd_name_2 on c_cmd (name);
+CREATE TABLE c_cmd_caster (
+  c_cmd_caster_id serial NOT NULL,
+  url varchar(128) NOT NULL default '',
+  title text NOT NULL,
+  description text NOT NULL,
+  sort_order int4 NOT NULL default '0',
+  is_enabled smallint NOT NULL default '0',
+  PRIMARY KEY  (c_cmd_caster_id),
+  UNIQUE url (url)
+);
 
 CREATE TABLE c_commu (
   c_commu_id serial NOT NULL,
@@ -735,17 +747,12 @@ CREATE INDEX c_member_birth_year_c_member_id on c_member (birth_year,c_member_id
 CREATE TABLE c_member_config (
   c_member_config_id serial NOT NULL,
   c_member_id int4 NOT NULL default '0',
-  c_member_config_option_id int4 NOT NULL default '0',
+  name varchar(64) NOT NULL default '',
   value text NOT NULL,
   PRIMARY KEY  (c_member_config_id)
 );
 
-CREATE TABLE c_member_config_option (
-  c_member_config_option_id serial NOT NULL,
-  name varchar(64) NOT NULL default '',
-  PRIMARY KEY  (c_member_config_option_id),
-  UNIQUE (name)
-);
+CREATE INDEX c_member_config_name on c_member_config (name);
 
 CREATE TABLE c_member_ktai_pre (
   c_member_ktai_pre_id serial NOT NULL,
