@@ -273,3 +273,6 @@ ALTER TABLE `c_cmd` DROP INDEX `name_2`;
 ALTER TABLE `c_cmd` ADD COLUMN `c_cmd_caster_id` int(11) NOT NULL default '0';
 ALTER TABLE `c_cmd` ADD COLUMN `r_datetime` datetime NOT NULL default '0000-00-00 00:00:00';
 ALTER TABLE `c_cmd` ADD COLUMN `u_datetime` datetime NOT NULL default '0000-00-00 00:00:00';
+
+-- update18
+CREATE INDEX `c_album_id` ON `c_album_image`(`c_album_id`);
