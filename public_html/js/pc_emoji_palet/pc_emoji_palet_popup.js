@@ -48,8 +48,13 @@ function emojiPalletPopup(i, career) {
 
 // 絵文字コードを親画面のテキストエリアに入力
 function putEmojiToParent(emoji) {
-    var elm = opener.document.getElementsByName("body")[0];
-    elm.focus();
+    var body = opener.document.getElementsByName("body");
+    for (var i = 0; i < body.length; i++) {
+        if (body[i].nodeName.toLowerCase() == 'textarea') {
+            var elm = body[i];
+            break;
+        }
+    }
 
     var selection = new Selection(elm);
     var pos = selection.create(); 
