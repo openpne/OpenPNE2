@@ -298,3 +298,6 @@ UPDATE c_member_config SET name = c_member_config_option.name
 
 DROP TABLE c_member_config_option;
 ALTER TABLE c_member_config DROP COLUMN c_member_config_option_id;
+
+-- update16
+CREATE INDEX c_album_image_c_album_id on c_album_image (c_album_id);
