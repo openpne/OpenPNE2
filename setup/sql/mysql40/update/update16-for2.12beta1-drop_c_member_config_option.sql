@@ -5,5 +5,3 @@ UPDATE c_member_config, c_member_config_option SET c_member_config.name = c_memb
 
 DROP TABLE `c_member_config_option`;
 ALTER TABLE `c_member_config` DROP COLUMN `c_member_config_option_id`;
-
-ALTER TABLE c_member_config ADD INDEX name (name); 
