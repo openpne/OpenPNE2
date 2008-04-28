@@ -2968,7 +2968,7 @@ function p_h_home_c_topic_all_list($limit)
           . ' FROM c_commu_topic as ct'
           . ' INNER JOIN c_commu as c USING(c_commu_id)'
           . ' WHERE c.public_flag IN (\'public\', \'auth_sns\')'
-          . ' ORDER BY r_datetime_comment DESC';
+          . ' ORDER BY u_datetime DESC';
     $c_topic_all_list = db_get_all_limit($sql,0,$limit);
     foreach($c_topic_all_list as $key=>$value) {
         $number = db_commu_get_max_number4topic($value['c_commu_topic_id']);
