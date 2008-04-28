@@ -1760,12 +1760,11 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 #Body .messageList td .input_checkbox {
 	margin-left: 4px;
 }
-.messageList td:first-child {
+.messageList td.status {
 	text-align: center;
 }
 .messageList col.status {
 	width: 35px;
-	text-align: center;
 }
 .messageList col.delete {
 	width: 35px;
