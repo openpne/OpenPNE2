@@ -5,10 +5,10 @@
 <div class="partsHeading"><h3>写真の表示</h3></div>
 
 ({capture name=pager})({strip})
-({if $c_album_iamge_id_prev || $c_album_iamge_id_next})
+({if $c_album_image_id_prev || $c_album_image_id_next})
 <div class="pagerRelative">
-({if $c_album_iamge_id_prev})<p class="prev"><a href="({t_url m=pc a=page_fh_album_image_show})&amp;target_c_album_image_id=({$c_album_iamge_id_prev})">«前の写真</a></p>({/if})
-({if $c_album_iamge_id_next})<p class="next"><a href="({t_url m=pc a=page_fh_album_image_show})&amp;target_c_album_image_id=({$c_album_iamge_id_next})">次の写真»</a></p>({/if})
+({if $c_album_image_id_prev})<p class="prev"><a href="({t_url m=pc a=page_fh_album_image_show})&amp;target_c_album_image_id=({$c_album_image_id_prev})">«前の写真</a></p>({/if})
+({if $c_album_image_id_next})<p class="next"><a href="({t_url m=pc a=page_fh_album_image_show})&amp;target_c_album_image_id=({$c_album_image_id_next})">次の写真»</a></p>({/if})
 </div>
 ({/if})
 ({/strip})({/capture})
