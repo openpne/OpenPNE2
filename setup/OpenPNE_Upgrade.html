@@ -85,6 +85,7 @@ em {
     <li><a href="#section2-3-2">2-3-2. OpenPNE2.12で変更された項目</a></li>
     <li><a href="#section2-3-3">2-3-3. OpenPNE2.12で削除された項目</a></li>
     </ul></li>
+  <li><a href="#section2-4">2-4. メールサーバの設定</a></li>
   </ul></li>
 </ul>
 
@@ -205,6 +206,24 @@ $ psql DBNAME -U username -f upgrade-2.10to2.12.sql
 <tr><td><strong>OPENPNE_USE_COMMU_MAP</strong></td><td>コミュニティに地図を表示するかどうか</td><td>この機能は小窓で実現するようになりました。コミュニティに地図を表示したくない場合は、管理画面のCMD設定からGoogleMaps小窓の使用設定を変更してください。</td>
 <tr><td><strong>IS_SLAVEPNE</strong></td><td>外部認証を使用するかどうか</td><td>この設定は新しく追加された <strong>OPENPNE_AUTH_MODE</strong> に統合されました。 <strong>IS_SLAVEPNE</strong> を true にして運用していたSNSは、 <strong>OPENPNE_AUTH_MODE</strong> を slavepne にしてください。</td>
 </table>
+
+
+<h3 id="section2-4">2-4. メールサーバの設定</h3>
+
+<p>携帯版を使用しない場合は以下の設定は不要です。</p>
+<p>MAIL_SERVER_DOMAIN に届くメールで、システムで利用するメールアドレスに以下が追加されます。</p>
+
+<table>
+<tr><th>項目</th><th>新形式</th><th>旧形式</th></tr>
+<tr><td>日記コメントメール投稿</td><td>bc<var>XXX</var>-<var>YYY</var>@MAIL_SERVER_DOMAIN</td><td>bc<var>XXX</var>@MAIL_SERVER_DOMAIN</td></tr>
+</table>
+<ul>
+<li><var>XXX</var> には数字。</li>
+<li><var>YYY</var> には12バイトの英数字([0-9a-f]{12})。</li>
+</ul>
+<p>設定方法は『<a href="./OpenPNE_Setup.html">OpenPNE セットアップガイド</a>』を参考にしてください。</p>
+
+
 
 <hr>
 <p>以上でアップグレード作業は完了です。</p>
