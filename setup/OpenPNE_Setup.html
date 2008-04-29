@@ -98,10 +98,14 @@ em {
 <dt>Webサーバ</dt>
 <dd>Apache を推奨</dd>
 <dt>PHP</dt>
-<dd>PHP 4.3.x / 5.0.x 以降
+<dd>PHP 4.3.3 以降 / 5.0.x / 5.1.x
 	<ul>
 	<li>PHP の mbstring 拡張モジュールを使用可能</li>
-	<li>PHP から GD ライブラリを使用可能 (JPEG/GIF/PNG サポート)</li>
+	<li>PHP の XML 拡張モジュールを使用可能</li>
+	<li>PHP の PCRE 拡張モジュールを使用可能 (UTF-8 サポート)</li>
+	<li>PHP から GD ライブラリを使用可能 (JPEG/GIF/PNG サポート)
+		<ul><li>ImageMagick を使う場合でも必要となります</li></ul>
+	</li>
 	<li>PHP の mcrypt 拡張モジュールの使用を推奨</li>
 	</ul></dd>
 <dt>データベースサーバ</dt>
