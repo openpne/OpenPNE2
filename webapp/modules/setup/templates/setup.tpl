@@ -2,8 +2,8 @@
 
 <p>必ず下記の設定をおこなってからセットアップを実行してください。</p>
 <ul>
-<li>setup/sql/mysql4x/install-2.10-create_tables.sql の実行</li>
-<li>setup/sql/mysql4x/install-2.10-insert_data.sql の実行</li>
+<li>setup/sql/xxx/install/install-2.12-create_tables.sql の実行</li>
+<li>setup/sql/xxx/install/install-2.12-insert_data.sql の実行</li>
 <li>config.php の設定</li>
 </ul>
 <p>一度、セットアップを実行した後でこのページを表示することはできません。<br>
