@@ -61,7 +61,7 @@ em {
 
 <h1>OpenPNE セットアップガイド</h1>
 
-<p>最終更新日: 2007/12/20</p>
+<p>最終更新日: 2008/4/29</p>
 
 <h2>目次</h2>
 <ul>
@@ -92,7 +92,7 @@ em {
 
 <h2 id="section0">0. はじめに</h2>
 
-<p>この文書は、OpenPNE バージョン2.10 を基にして書かれています。</p>
+<p>この文書は、OpenPNE バージョン2.12 を基にして書かれています。</p>
 <p>OpenPNE は以下のようなサーバ環境で動作させることを想定しています。</p>
 <dl>
 <dt>Webサーバ</dt>
@@ -126,7 +126,8 @@ em {
   │ │ │ ├ w76_h76 [777]
   │ │ │ ├ w120_h120 [777]
   │ │ │ ├ w180_h180 [777]
-  │ │ │ └ w240_h320 [777]
+  │ │ │ ├ w240_h320 [777]
+  │ │ │ └ w600_h600 [777]
   │ │ ├ jpg [777]
   │ │ │ ├ w_h [777]  
   │ │ │    ... [777]
@@ -194,7 +195,8 @@ $ chmod -R 0777 var/*
   │ │ ├ w76_h76 [777]
   │ │ ├ w120_h120 [777]
   │ │ ├ w180_h180 [777]
-  │ │ └ w240_h320 [777]
+  │ │ ├ w240_h320 [777]
+  │ │ └ w600_h600 [777]
   │ ├ jpg [777]
   │ │ ├ w_h [777]
   │ │    ... [777]
@@ -247,8 +249,8 @@ CREATE DATABASE `DBNAME` DEFAULT CHARACTER SET utf8;
 
 <p>準備したデータベース(例:DBNAME)上で、以下のSQL文を順番に実行します。</p>
 <ol>
-<li><var>OPENPNE_DIR</var>/setup/sql/mysql41/install/install-2.10-create_tables.sql</li>
-<li><var>OPENPNE_DIR</var>/setup/sql/mysql41/install/install-2.10-insert_data.sql</li>
+<li><var>OPENPNE_DIR</var>/setup/sql/mysql41/install/install-2.12-create_tables.sql</li>
+<li><var>OPENPNE_DIR</var>/setup/sql/mysql41/install/install-2.12-insert_data.sql</li>
 </ol>
 
 <p>PNEBIZを使用する場合は上記に加えて、以下のSQL文を実行してください。</p>
@@ -266,8 +268,8 @@ CREATE DATABASE `DBNAME` DEFAULT CHARACTER SET utf8;
 
 (2) OpenPNEセットアップ用SQL実行
     $ cd setup/sql/mysql41/install/
-    $ mysql -u username -p --default-character-set=utf8 DBNAME &lt; install-2.10-create_tables.sql
-    $ mysql -u username -p --default-character-set=utf8 DBNAME &lt; install-2.10-insert_data.sql
+    $ mysql -u username -p --default-character-set=utf8 DBNAME &lt; install-2.12-create_tables.sql
+    $ mysql -u username -p --default-character-set=utf8 DBNAME &lt; install-2.12-insert_data.sql
 
 (3) PNEBIZ用SQL実行 (オプション)
     $ cd ../option
@@ -285,8 +287,8 @@ CREATE DATABASE `DBNAME`;
 
 <p>準備したデータベース(例:DBNAME)上で、以下のSQL文を順番に実行します。</p>
 <ol>
-<li><var>OPENPNE_DIR</var>/setup/sql/mysql40/install/install-2.10-create_tables.sql</li>
-<li><var>OPENPNE_DIR</var>/setup/sql/mysql40/install/install-2.10-insert_data.sql</li>
+<li><var>OPENPNE_DIR</var>/setup/sql/mysql40/install/install-2.12-create_tables.sql</li>
+<li><var>OPENPNE_DIR</var>/setup/sql/mysql40/install/install-2.12-insert_data.sql</li>
 </ol>
 
 <p>PNEBIZを使用する場合は上記に加えて、以下のSQL文を実行してください。</p>
@@ -305,8 +307,8 @@ CREATE DATABASE `DBNAME`;
 
 (2) OpenPNEセットアップ用SQL実行
     $ cd setup/sql/mysql40/install/
-    $ mysql -u username -p DBNAME &lt; install-2.10-create_tables.sql
-    $ mysql -u username -p DBNAME &lt; install-2.10-insert_data.sql
+    $ mysql -u username -p DBNAME &lt; install-2.12-create_tables.sql
+    $ mysql -u username -p DBNAME &lt; install-2.12-insert_data.sql
 
 (3) PNEBIZ用SQL実行 (オプション)
     $ cd ../option
@@ -356,6 +358,7 @@ CREATE DATABASE `DBNAME`;
 <tr><td>日記写真変更</td><td>bi<var>XXX</var>-<var>YYY</var>@MAIL_SERVER_DOMAIN</td><td>bi<var>XXX</var>@MAIL_SERVER_DOMAIN</td></tr>
 <tr><td>コミュニティ写真変更</td><td>ci<var>XXX</var>-<var>YYY</var>@MAIL_SERVER_DOMAIN</td><td>ci<var>XXX</var>@MAIL_SERVER_DOMAIN</td></tr>
 <tr><td>トピック・イベント写真変更</td><td>ti<var>XXX</var>-<var>YYY</var>@MAIL_SERVER_DOMAIN</td><td>ti<var>XXX</var>@MAIL_SERVER_DOMAIN</td></tr>
+<tr><td>日記コメントメール投稿</td><td>bc<var>XXX</var>-<var>YYY</var>@MAIL_SERVER_DOMAIN</td><td>bc<var>XXX</var>@MAIL_SERVER_DOMAIN</td></tr>
 </table>
 <ul>
 <li><var>XXX</var> には数字。</li>
