@@ -669,7 +669,7 @@ function _db_admin_c_member_id_list($cond_list, $order = null)
         }
         //終了ポイント
         if (!empty($cond_list['e_point'])) {
-            $sql .= ' AND value <= ?';
+            $sql .= ' AND value < ?';
             $params[] = $cond_list['e_point'];
         }
 
