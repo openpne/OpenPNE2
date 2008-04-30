@@ -1,0 +1,2 @@
+DELETE FROM c_siteadmin WHERE target = 'inc_page_top';
+INSERT INTO c_siteadmin VALUES (nextval('c_siteadmin_c_siteadmin_id_seq'), 'inc_page_top', '<table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:0;">\n<tr>\n<td style="padding:3px 9px;" align="right" class="bg_13">\nグループウェア機能はこちら →\n　<a href="?m=biz&a=page_s_list">施設予約</a>\n　<a href="?m=biz&a=page_fh_biz_schedule_add">予定登録</a>\n　<a href="?m=biz&a=page_h_biz_group_find_all">グループ</a></td></tr>\n</table>', NOW());
