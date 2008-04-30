@@ -12,6 +12,8 @@
 ({/if})
 <a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('limit_domain')})">招待メールドメイン制限</a>&nbsp;|&nbsp;
 <a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_cmd')})">CMD設定</a>&nbsp;|&nbsp;
+({if $smarty.const.OPENPNE_USE_API})
 <a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_api')})">API設定</a>&nbsp;|&nbsp;
+({/if})
 ({/strip})
 </div>
