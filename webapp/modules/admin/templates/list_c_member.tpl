@@ -108,7 +108,7 @@
 			<option value="">▼選択</option>
 			({foreach from=$rank_data item=item})
 			({if $pre_name})<option({if $cond_list.e_point == $item.point}) selected({/if}) value="({$item.point})">({$pre_name})</option>({/if})
-			({assign var=pre_name value=$item.name})
+			({assign var=pre_name value=$item.name|smarty:nodefaults})
 			({/foreach})
 			({if $pre_name})<option({if $cond_list.e_point === 0}) selected({/if}) value="0">({$pre_name})</option>({/if})
 			</select>
