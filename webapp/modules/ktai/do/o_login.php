@@ -56,20 +56,31 @@ class ktai_do_o_login extends OpenPNE_Action
         if (IS_SLAVEPNE && !($c_member_id = db_member_c_member_id4username_encrypted($auth->getUsername(), true))) {
             db_member_create_member($_POST['username']);
         }
-        
-        $_SESSION['c_member_id'] = $c_member_id;
+
+        // ログイン後のリダイレクト先を決定する
+        $a = '';
+        $m = 'ktai';
         $p = array();
+
+        if ($GLOBALS['__Framework']['default_page']) {
+            $a = 'page_' . $GLOBALS['__Framework']['default_page'];
+        }
+
         if ($requests['login_params']) {
             parse_str($requests['login_params'], $p);
         }
-        $p['ksid'] = session_id();
+
         if (!empty($p['a']) && $p['a'] != 'page_o_login') {
             $a = $p['a'];
-            unset($p['a']);
-        } else {
-            $a = 'page_h_home';
         }
-        openpne_redirect('ktai', $a, $p);
+        if (!empty($p['m'])) {
+            $m = $p['m'];
+        }
+
+        $_SESSION['c_member_id'] = $c_member_id;
+        $p['ksid'] = session_id();
+
+        openpne_redirect($m, $a, $p);
     }
 }
 
