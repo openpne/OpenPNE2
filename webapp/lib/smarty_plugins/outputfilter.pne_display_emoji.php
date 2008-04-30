@@ -8,10 +8,11 @@ function smarty_outputfilter_pne_display_emoji($tpl_output, &$smarty)
     $list = array();
 
     if (empty($GLOBALS['__Framework']['carrier'])) {
-        // input, textarea を退避
+        // input, textarea, title を退避
         $patterns = array(
             '/<input[^>]+>/is',
             '/<textarea[^>]+>.*?<\/textarea>/is',
+            '/<title.*?<\/title>/is',
         );
 
         list ($list, $tpl_output) = _smarty_outputfilter_pne_display_emoji_replace($patterns, $tpl_output);
@@ -21,7 +22,7 @@ function smarty_outputfilter_pne_display_emoji($tpl_output, &$smarty)
     $tpl_output = emoji_convert($tpl_output);
 
     if (empty($GLOBALS['__Framework']['carrier'])) {
-        // input, textarea を元に戻す
+        // input, textarea, title を元に戻す
         $tpl_output = str_replace(array_keys($list), array_values($list), $tpl_output);
     }
 
