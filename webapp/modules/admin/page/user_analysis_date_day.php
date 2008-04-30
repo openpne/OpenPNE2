@@ -18,7 +18,7 @@ class admin_page_user_analysis_date_day extends OpenPNE_Action
         $this->set("date", get_analysis_date_day_d($date));
         $this->set("analysis_date_day", $analysis_date_day);
         $this->set("analysis_date_day_sum", array_sum($analysis_date_day));
-        
+
         return 'success';
     }
 }

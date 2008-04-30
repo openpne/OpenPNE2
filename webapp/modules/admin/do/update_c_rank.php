@@ -22,9 +22,16 @@ class admin_do_update_c_rank extends OpenPNE_Action
         $c_rank = db_admin_get_c_rank_one($c_rank_id);
         $image_filename = $c_rank['image_filename'];
 
-        if ($_FILES['image_upfile']['name']) {
+        $upfile_obj = $_FILES['image_upfile'];
+
+        if (!empty($upfile_obj) && $upfile_obj['error'] !== UPLOAD_ERR_NO_FILE) {
+            if (!($image = t_check_image($upfile_obj))) {
+                $tail = 'c_rank_id=' . $c_rank_id;
+                admin_client_redirect('update_c_rank', '画像は' . IMAGE_MAX_FILESIZE . 'KB以内のGIF・JPEG・PNGにしてください', $tail);
+            }
+
             //以前のイメージを削除
-            image_data_delete($image_filename);
+            db_image_data_delete($image_filename);
 
             //新しいイメージを作成
             $ext = t_check_image_format($_FILES['image_upfile']);

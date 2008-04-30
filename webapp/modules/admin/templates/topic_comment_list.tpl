@@ -41,7 +41,7 @@
 ({capture name="pager"})
 <div class="listControl">
 <p class="display">
-({$total_num})件中 ({$start_num})-({$end_num})件目を表示しています 
+({$total_num})件中 ({$start_num})-({$end_num})件目を表示しています
 </p>
 <p class="listMove">
 ({if $page_list})({foreach from=$page_list item=item})({if $page!=$item})<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('topic_comment_list','page')})&amp;page=({$item})&amp;keyword=({$keyword_encode})">({$item})</a>({else})<b>({$item})</b>({/if})&nbsp;&nbsp;({/foreach})&nbsp;({/if})
@@ -74,7 +74,7 @@
 </tr>
 ({****})
 <tr>
-<th>コミュニティ名</th>
+<th>({$WORD_COMMUNITY})名</th>
 <td>
 <a href="({t_url _absolute=1 m=pc a=page_c_home})&amp;target_c_commu_id=({$item.c_commu_id})" target="_blank">({$item.commu_name})</a>
 </td>
@@ -111,6 +111,17 @@
 ({/if})
 </td>
 </tr>
+({****})
+({if $item.filename && $smarty.const.OPENPNE_USE_FILEUPLOAD})
+<tr>
+<th>ファイル</th>
+<td class="textbody">
+<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('file_download','do')})&amp;filename=({$item.filename})&amp;sessid=({$PHPSESSID})">
+({$item.original_filename})
+</a>
+</td>
+</tr>
+({/if})
 ({****})
 <tr>
 <td class="formbutton" colspan="2">

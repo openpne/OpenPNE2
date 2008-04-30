@@ -20,6 +20,18 @@
 <span class="textBtnS"><input type="submit" value="検索" /></span>
 </p>
 </form>
+({if $smarty.const.OPENPNE_AUTH_MODE != 'email'})
+<form action="./" method="get">
+<p id="searchUsername">
+<input type="hidden" name="m" value="({$module_name})" />
+<input type="hidden" name="a" value="page_({$hash_tbl->hash('list_c_member')})" />
+<strong>ログインID検索</strong>(完全一致)：
+<input type="text" class="basic" name="username" value="({$requests.username})" size="30" />
+<span class="textBtnS"><input type="submit" value="検索" /></span>
+</p>
+</form>
+({/if})
+
 <div class="userList">
 ({if $pager})
 <form action="./" method="get">
@@ -67,7 +79,10 @@
 			<th class="cell01" rowspan="3">&nbsp;</th>
 			<th class="cell02" colspan="4" rowspan="3">操作パネル</th>
 			<th class="cell03" rowspan="3"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=c_member_id-1({$cond})">▲</a>ID<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=c_member_id-2({$cond})">▼</a></th>
-			<th class="cell04" rowspan="3"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=nickname-1({$cond})">▲</a>ニックネーム<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=nickname-2({$cond})">▼</a></th>
+			({if $smarty.const.OPENPNE_AUTH_MODE != 'email'})
+			<th class="cell19" rowspan="3"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=username-1({$cond})">▲</a>ログインID<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=username-2({$cond})">▼</a></th>
+			({/if})
+			<th class="cell04" rowspan="3"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=nickname-1({$cond})">▲</a>({$WORD_NICKNAME})<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=nickname-2({$cond})">▼</a></th>
 			({if $smarty.const.OPENPNE_USE_POINT_RANK})
 			<th class="cell10" colspan="2" rowspan="2"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=PNE_POINT-1({$cond})">▲</a>ポイント・ランク<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=PNE_POINT-2({$cond})">▼</a></th>
 			({/if})
@@ -175,7 +190,10 @@
 			<th class="cell01" rowspan="3">&nbsp;</th>
 			<th class="cell02" colspan="4" rowspan="2">操作パネル</th>
 			<th class="cell03" rowspan="2">ID</th>
-			<th class="cell04" rowspan="2">ニックネーム</th>
+			({if $smarty.const.OPENPNE_AUTH_MODE != 'email'})
+			<th class="cell19" rowspan="2">ログインID</th>
+			({/if})
+			<th class="cell04" rowspan="2">({$WORD_NICKNAME})</th>
 			({if $smarty.const.OPENPNE_USE_POINT_RANK})
 			<th class="cell10" rowspan="2">ランク</th>
 			<th class="cell11" rowspan="2">ポイント</th>
@@ -214,6 +232,9 @@
 			<td class="cell02C"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('passwd')})&amp;target_c_member_id=({$item.c_member_id})"><img src="modules/admin/img/icn_passwd.gif" alt="パスワード再発行" /></a></td>
 			<td class="cell02D"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('blacklist_add')})&amp;easy_access_id=({$item.secure.easy_access_id})"><img src="modules/admin/img/icn_blacklist.gif" alt="ブラックリストに追加" /></a></td>
 			<td class="cell03">({$item.c_member_id})</td>
+			({if $smarty.const.OPENPNE_AUTH_MODE != 'email'})
+			<td class="cell19">({$item.username})</td>
+			({/if})
 			<td class="cell04"><a href="({t_url _absolute=1 m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})" target="_blank">({$item.nickname})</a></td>
 			({if $smarty.const.OPENPNE_USE_POINT_RANK})
 			<td class="cell10">({if !$smarty.const.OPENPNE_IS_POINT_ADMIN && $item.c_member_id == 1})-({else})({$item.c_rank.name})({/if})</td>

@@ -29,8 +29,11 @@ class OpenPNE_Config
             'DISPLAY_SCHEDULE_HOME', 'DISPLAY_SEARCH_HOME', 'DAILY_NEWS_DAY',
             'USE_BOOKMARK_FEED', 'USE_SHINOBIASHI', 'USE_DIARY_CATEGORY',
             'OPENPNE_USE_CMD_TAG', 'OPENPNE_USE_FLASH_LIST',
-            'WORD_FRIEND','WORD_MY_FRIEND',
-            'WORD_FRIEND_HALF','WORD_MY_FRIEND_HALF',
+            'WORD_FRIEND', 'WORD_FRIEND_HALF',
+            'WORD_MY_FRIEND', 'WORD_MY_FRIEND_HALF',
+            'WORD_DIARY', 'WORD_DIARY_HALF',
+            'WORD_COMMUNITY', 'WORD_COMMUNITY_HALF',
+            'WORD_NICKNAME', 'WORD_NICKNAME_HALF',
             'SORT_ORDER_NICK', 'SORT_ORDER_BIRTH',
             'OPENPNE_ENABLE_ROLLOVER',
             'OPENPNE_DISP_POINT', 'OPENPNE_DISP_RANK',
@@ -51,6 +54,11 @@ class OpenPNE_Config
             'OPENPNE_USE_KTAI_LOGO',
             'OPENPNE_IS_SET_KTAI_FONT_SIZE',
             'OPENPNE_USE_RANKING',
+            'OPENPNE_USE_DECORATION',
+            'OPENPNE_USE_ALBUM',
+            'OPENPNE_ALBUM_LIMIT',
+            'OPENPNE_DISP_KTAI_SNS_PRIVACY',
+            'DISPLAY_NEWDIARYTOPIC_HOME',
         );
     }
 
@@ -86,7 +94,7 @@ class OpenPNE_Config
 
     /**
      * bind_default()
-     * 
+     *
      * @access public
      */
     function bind_default()
@@ -125,6 +133,12 @@ class OpenPNE_Config
             'WORD_FRIEND_HALF' => 'ﾌﾚﾝﾄﾞ',
             'WORD_MY_FRIEND' => 'マイフレンド',
             'WORD_MY_FRIEND_HALF' => 'ﾏｲﾌﾚﾝﾄﾞ',
+            'WORD_DIARY' => '日記',
+            'WORD_DIARY_HALF' => '日記',
+            'WORD_COMMUNITY' => 'コミュニティ',
+            'WORD_COMMUNITY_HALF' => 'ｺﾐｭﾆﾃｨ',
+            'WORD_NICKNAME' => 'ニックネーム',
+            'WORD_NICKNAME_HALF' => 'ﾆｯｸﾈｰﾑ',
             'SORT_ORDER_NICK'  => 0,
             'SORT_ORDER_BIRTH' => 0,
             'OPENPNE_USE_FLASH_LIST' => false,
@@ -146,6 +160,11 @@ class OpenPNE_Config
             'OPENPNE_IS_POINT_ADMIN' => 1,
             'OPENPNE_SKIN_THEME' => '005_openpne_blue',
             'OPENPNE_IS_SET_KTAI_FONT_SIZE' => 1,
+            'OPENPNE_USE_DECORATION' => 1,
+            'OPENPNE_USE_ALBUM' => 1,
+            'OPENPNE_ALBUM_LIMIT' => '',
+            'OPENPNE_DISP_KTAI_SNS_PRIVACY' => 1,
+            'DISPLAY_NEWDIARYTOPIC_HOME' => 0,
         // config.php
             'OPENPNE_RSS_CACHE_DIR' => OPENPNE_VAR_DIR . '/rss_cache',
             'OPENPNE_PUBLIC_HTML_DIR' => OPENPNE_DIR . '/public_html',
@@ -188,6 +207,8 @@ class OpenPNE_Config
             'IS_SLAVEPNE_EMAIL_REGIST' => true,
             'SLAVEPNE_SYOUTAI_URL_PC' => '',
             'SLAVEPNE_SYOUTAI_URL_KTAI' => '',
+            'SLAVEPNE_PASSWORD_QUERY_URL_PC' => '',
+            'SLAVEPNE_PASSWORD_QUERY_URL_KTAI' => '',
             'OPENPNE_IMG_KTAI_MAX_WIDTH' => 240,
             'OPENPNE_IMG_KTAI_MAX_HEIGHT' => 320,
             'OPENPNE_MAINTENANCE_TEXT' => '',
@@ -202,6 +223,8 @@ class OpenPNE_Config
             'OPENPNE_HTTP_PROXY_PORT' => 8080,
             'OPENPNE_SEND_NO_CACHE_HEADER' => false,
             'OPENPNE_ADMIN_CONVERT_URL' => true,
+            'CHECK_IMG_AUTH' => false,
+            'OPENPNE_IS_OPENID_SERVER' => false,
         // 固定値
             'AMAZON_TOKEN'   => '1WZYY1W9YF49AGM0RTG2',
             'AMAZON_LOCALE'  => 'jp',

@@ -1,8 +1,8 @@
 ({$inc_header|smarty:nodefaults})
-({ext_include file="inc_subnavi_adminInfoKiyaku.tpl"})
+({ext_include file="inc_subnavi_adminDesign.tpl"})
 
 ({assign var="page_name" value="お知らせ・規約設定"})
-({ext_include file="inc_tree_adminInfoKiyaku.tpl"})
+({ext_include file="inc_tree_adminDesign.tpl"})
 </div>
 
 ({*ここまで:navi*})
@@ -41,11 +41,11 @@
 ({elseif $requests.target == 'k_h_home'})
 ＜携帯版＞ホームのお知らせ
 ({elseif $requests.target == 'k_fh_diary'})
-＜携帯版＞日記ページのお知らせ
+＜携帯版＞({$WORD_DIARY})ページのお知らせ
 ({elseif $requests.target == 'k_f_home'})
-＜携帯版＞フレンドページのお知らせ
+＜携帯版＞({$WORD_FRIEND})ページのお知らせ
 ({elseif $requests.target == 'k_c_home'})
-＜携帯版＞コミュニティページのお知らせ
+＜携帯版＞({$WORD_COMMUNITY})ページのお知らせ
 ({elseif $requests.target == 'sns_kiyaku'})
 利用規約
 ({elseif $requests.target == 'sns_privacy'})
@@ -79,11 +79,11 @@
 <h4>【携帯】お知らせ挿入場所対応図[ ({if $requests.target == 'k_h_home'})
 ホーム
 ({elseif $requests.target == 'k_f_home'})
-フレンドページ
+({$WORD_FRIEND})ページ
 ({elseif $requests.target == 'k_c_home'})
-コミュニティページ
+({$WORD_COMMUNITY})ページ
 ({elseif $requests.target == 'k_fh_diary'})
-日記ページ
+({$WORD_DIARY})ページ
 ({/if}) ]</h4>
 <p class="image">
 <img src="modules/admin/img/admin_info_({$requests.target}).gif" />

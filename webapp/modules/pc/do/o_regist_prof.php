@@ -46,16 +46,6 @@ class pc_do_o_regist_prof extends OpenPNE_Action
 
         $prof = $validator->getParams();
 
-        switch ($prof['public_flag_birth_year']) {
-        case 'public':
-        case 'friend':
-        case 'private':
-            break;
-        default:
-            $prof['public_flag_birth_year'] = 'public';
-            break;
-        }
-
         if ($prof['password'] != $requests['password2']) {
             $errors['password2'] = 'パスワードが一致していません';
         }
@@ -69,7 +59,7 @@ class pc_do_o_regist_prof extends OpenPNE_Action
             $validator->addRequests($_REQUEST['profile']);
             $public_flag_list = $_REQUEST['public_flag'];
         }
-        $validator->addRules($this->_getValidateRulesProfile());
+        $validator->addRules(util_get_validate_rules_profile('regist'));
         if (!$validator->validate()) {
             $errors = array_merge($errors, $validator->getErrors());
         }
@@ -151,7 +141,7 @@ class pc_do_o_regist_prof extends OpenPNE_Action
 
                 // pre の内容を削除
                 db_member_delete_c_member_pre4sid($sid);
-        
+
                 // 登録完了メール送信
                 do_regist_prof_do_regist2_mail_send($u);
 
@@ -172,8 +162,8 @@ class pc_do_o_regist_prof extends OpenPNE_Action
                     'birth_month' => $prof['birth_month'],
                     'birth_day' => $prof['birth_day'],
                     'public_flag_birth_year' => $prof['public_flag_birth_year'],
+                    'public_flag_birth_month_day' => $prof['public_flag_birth_month_day'],
                     'password' => $prof['password'],
-                    'public_flag_birth_year' => $prof['public_flag_birth_year'],
                     'c_password_query_id' => $prof['c_password_query_id'],
                     'password_query_answer' => $prof['c_password_query_answer'],
                     'pc_address' => $pre['pc_address'],
@@ -197,7 +187,7 @@ class pc_do_o_regist_prof extends OpenPNE_Action
             'nickname' => array(
                 'type' => 'string',
                 'required' => '1',
-                'caption' => 'ニックネーム',
+                'caption' => WORD_NICKNAME,
                 'max' => '40',
             ),
             'birth_year' => array(
@@ -221,7 +211,16 @@ class pc_do_o_regist_prof extends OpenPNE_Action
                 'max' => '31',
             ),
             'public_flag_birth_year' => array(
-                'type' => 'string',
+                'type' => 'regexp',
+                'regexp' => '/^(public|friend|private)$/',
+                'required' => '1',
+                'caption' => '公開範囲',
+            ),
+            'public_flag_birth_month_day' => array(
+                'type' => 'regexp',
+                'regexp' => '/^(public|friend|private)$/',
+                'required' => '1',
+                'caption' => '公開範囲',
             ),
             'password' => array(
                 'type' => 'regexp',
@@ -257,36 +256,6 @@ class pc_do_o_regist_prof extends OpenPNE_Action
             );
         }
 
-        return $rules;
-    }
-
-    function _getValidateRulesProfile()
-    {
-        $rules = array();
-        $profile_list = db_member_c_profile_list4null();
-        foreach ($profile_list as $profile) {
-            if ($profile['disp_regist']) {
-                $rule = array(
-                    'type' => 'int',
-                    'required' => $profile['is_required'],
-                    'caption' => $profile['caption'],
-                );
-                switch ($profile['form_type']) {
-                case 'text':
-                case 'textlong':
-                case 'textarea':
-                    $rule['type'] = $profile['val_type'];
-                    $rule['regexp'] = $profile['val_regexp'];
-                    $rule['min'] = $profile['val_min'];
-                    ($profile['val_max']) and $rule['max'] = $profile['val_max'];
-                    break;
-                case 'checkbox':
-                    $rule['is_array'] = '1';
-                    break;
-                }
-                $rules[$profile['name']] = $rule;
-            }
-        }
         return $rules;
     }
 }

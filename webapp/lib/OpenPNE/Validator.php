@@ -40,7 +40,7 @@ class OpenPNE_Validator
 
     /**
      * バリデータの初期化
-     * 
+     *
      * @param array $rules
      * @param array $requests
      */
@@ -56,7 +56,7 @@ class OpenPNE_Validator
 
     /**
      * ルールの追加
-     * 
+     *
      * @access public
      * @param array $rules
      */
@@ -67,7 +67,7 @@ class OpenPNE_Validator
 
     /**
      * ルールをiniファイルから追加
-     * 
+     *
      * @access public
      * @param string $ini_path
      */
@@ -85,7 +85,7 @@ class OpenPNE_Validator
 
     /**
      * (検証済み)リクエストパラメータを取得
-     * 
+     *
      * @access public
      * @return array
      */
@@ -96,7 +96,7 @@ class OpenPNE_Validator
 
     /**
      * エラー情報を取得
-     * 
+     *
      * @access public
      * @return array
      */
@@ -107,7 +107,7 @@ class OpenPNE_Validator
 
     /**
      * (検証前の)リクエストパラメータを追加
-     * 
+     *
      * @access public
      * @param array $requests
      */
@@ -118,7 +118,7 @@ class OpenPNE_Validator
 
     /**
      * パラメータに検証済みの値をセット
-     * 
+     *
      * @access private
      * @param string $key
      * @param string $value
@@ -130,19 +130,22 @@ class OpenPNE_Validator
 
     /**
      * エラー情報を設定
-     * 
+     *
      * @access private
      * @param string $key
      * @param string $msg エラーメッセージ
      */
     function _setError($key, $msg)
     {
+        // エラーメッセージに名称変更を適用
+        $msg = preg_replace_callback('/WORD_[A-Z_]+/', create_function('$m', 'return defined($m[0]) ? constant($m[0]) : $m[0];'), $msg);
+
         $this->errors[$key] = $msg;
     }
 
     /**
      * validate
-     * 
+     *
      * @access public
      * @return boolean エラーが発生しなかったかどうか
      */
@@ -222,7 +225,7 @@ class OpenPNE_Validator
 
     /**
      * 検証ルールの初期化
-     * 
+     *
      * @access private
      * @param string $key
      * @param array $rule
@@ -251,7 +254,7 @@ class OpenPNE_Validator
 
     /**
      * _filter
-     * 
+     *
      * @access private
      * @param string $value
      * @param string $filter
@@ -266,8 +269,8 @@ class OpenPNE_Validator
                 case 'trim':
                     if (OPENPNE_TRIM_DOUBLEBYTE_SPACE) {
                         // 全角スペースに対応
-                        $value = mb_ereg_replace('^([\s　])+', '', $value);
-                        $value = mb_ereg_replace('([\s　])+$', '', $value);
+                        $value = preg_replace('/^[\s　]+/u', '', $value);
+                        $value = preg_replace('/[\s　]+$/u', '', $value);
                     } else {
                         $value = trim($value);
                     }
@@ -275,7 +278,7 @@ class OpenPNE_Validator
                 case 'ltrim':
                     if (OPENPNE_TRIM_DOUBLEBYTE_SPACE) {
                         // 全角スペースに対応
-                        $value = mb_ereg_replace('^([\s　])+', '', $value);
+                        $value = preg_replace('/^[\s　]+/u', '', $value);
                     } else {
                         $value = ltrim($value);
                     }
@@ -283,7 +286,7 @@ class OpenPNE_Validator
                 case 'rtrim':
                     if (OPENPNE_TRIM_DOUBLEBYTE_SPACE) {
                         // 全角スペースに対応
-                        $value = mb_ereg_replace('([\s　])+$', '', $value);
+                        $value = preg_replace('/[\s　]+$/u', '', $value);
                     } else {
                         $value = rtrim($value);
                     }
@@ -310,7 +313,7 @@ class OpenPNE_Validator
 
     /**
      * _validate
-     * 
+     *
      * @access private
      * @param string $key
      * @param string $reqval

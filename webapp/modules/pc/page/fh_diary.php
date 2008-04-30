@@ -13,12 +13,8 @@ class pc_page_fh_diary extends OpenPNE_Action
         // --- リクエスト変数
         $target_c_diary_id = $requests['target_c_diary_id'];
         $body = $requests['body'];
-        $is_all = $requests['is_all'];
-        $direc = $requests['direc'];
         $page = $requests['page'];
         // ----------
-
-        $page += $direc;
 
         // target が指定されていない
         if (!$target_c_diary_id) {
@@ -56,31 +52,37 @@ class pc_page_fh_diary extends OpenPNE_Action
             // あしあとをつける
             db_ashiato_insert_c_ashiato($target_c_member_id, $u);
         }
-        $this->set("type", $type);
 
+        $this->set('type', $type);
         $this->set('inc_navi', fetch_inc_navi($type, $target_c_member_id));
 
-        $this->set("member", db_member_c_member4c_member_id($u));
+        $this->set('member', db_member_c_member4c_member_id($u));
 
-        $this->set("target_member", db_member_c_member4c_member_id($target_c_member_id));
-        $this->set("target_diary", $target_c_diary);
+        $this->set('target_member', db_member_c_member4c_member_id($target_c_member_id));
+        $this->set('target_diary', $target_c_diary);
 
-        if ($is_all) {
-            $page_size = db_diary_count_c_diary_comment4c_diary_id($target_c_diary_id);
+        // 日記コメント
+        if ($requests['page_size'] == 100) {
+            $page_size = 100;
         } else {
-            $page_size = 50;
+            $page_size = 20;
+        }
+        if ($requests['order'] === 'asc') {
+            $desc = false;
+        } else {
+            $desc = true;
         }
 
-        list ($c_diary_comment_list, $is_next, $is_prev, $total_num, $total_page_num)
-            = k_p_fh_diary_c_diary_comment_list4c_diary_id($target_c_diary_id, $page_size, $page);
-        $c_diary_comment_list = array_reverse($c_diary_comment_list);
+        list ($c_diary_comment_list, $is_prev, $is_next, $total_num, $total_page_num)
+            = k_p_fh_diary_c_diary_comment_list4c_diary_id($target_c_diary_id, $page_size, $page, $desc);
+        if ($desc) {
+            $c_diary_comment_list = array_reverse($c_diary_comment_list);
+        }
+
         $this->set('target_diary_comment_list', $c_diary_comment_list);
-        $this->set("is_prev", $is_prev);
-        $this->set("is_next", $is_next);
-        $this->set("total_num", $total_num);
-        $this->set("total_page_num", $total_page_num);
-        $this->set("page_size", $page_size);
-        $this->set('is_all', $is_all);
+        $this->set('total_num', $total_num);
+        $this->set('total_page_num', $total_page_num);
+        $this->set('page_size', $page_size);
         $this->set('page', $page);
 
         $start_comment = reset($c_diary_comment_list);
@@ -89,13 +91,25 @@ class pc_page_fh_diary extends OpenPNE_Action
         $pager = array();
         $pager['start'] = (int)$start_comment['number'];
         $pager['end'] = (int)$end_comment['number'];
+        if ($is_prev) {
+            if ($desc) {
+                $pager['page_next'] = $page - 1;
+            } else {
+                $pager['page_prev'] = $page - 1;
+            }
+        }
+        if ($is_next) {
+            if ($desc) {
+                $pager['page_prev'] = $page + 1;
+            } else {
+                $pager['page_next'] = $page + 1;
+            }
+        }
         $this->set('pager', $pager);
-
-        $this->set("body", $body);
 
         //最近の日記を取得
         $list_set = p_fh_diary_list_diary_list4c_member_id($target_c_member_id, 7, 1, $u);
-        $this->set("new_diary_list", $list_set[0]);
+        $this->set('new_diary_list', $list_set[0]);
 
         $this->set('c_diary_id_prev', db_diary_c_diary_id_prev4c_diary_id($target_c_member_id, $target_c_diary_id, $u));
         $this->set('c_diary_id_next', db_diary_c_diary_id_next4c_diary_id($target_c_member_id, $target_c_diary_id, $u));
@@ -111,23 +125,23 @@ class pc_page_fh_diary extends OpenPNE_Action
             'month' => $month,
             'day' => null,
         );
-        $this->set("date_val", $date_val);
+        $this->set('date_val', $date_val);
 
         //日記のカレンダー
         $calendar = db_common_diary_monthly_calendar($year, $month, $target_c_member_id, $u);
 
-        $this->set("calendar", $calendar['days']);
-        $this->set("ym", $calendar['ym']);
+        $this->set('calendar', $calendar['days']);
+        $this->set('ym', $calendar['ym']);
 
         //各月の日記
-        $this->set("date_list", p_fh_diary_list_date_list4c_member_id($target_c_member_id));
+        $this->set('date_list', p_fh_diary_list_date_list4c_member_id($target_c_member_id));
 
         if (USE_DIARY_CATEGORY) {
             //カテゴリ一覧
             $this->set('category', db_diary_category_list4c_member_id($target_c_member_id));
-    
+
             //この日記のカテゴリリストを得る
-            $this->set("category_list", db_diary_category_list4c_diary_id($target_c_diary_id));
+            $this->set('category_list', db_diary_category_list4c_diary_id($target_c_diary_id));
         }
 
         return 'success';

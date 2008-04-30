@@ -65,7 +65,7 @@ function t_send_email($address, $subject, $body, $is_receive_mail=true, $from=AD
 
 /**
  * mailテンプレート内容をfetch
- * 
+ *
  * @param string $tpl_name テンプレート名(/templates/mail 直下のファイル)
  * @param array $params Smartyでassignされる連想配列
  * @return string Smartyが出力したHTMLの文字列
@@ -79,17 +79,9 @@ function fetch_mail_m_tpl($tpl_name, $params)
     $params["OPERATION_COMPANY"] = OPERATION_COMPANY;
     $params["COPYRIGHT"] = COPYRIGHT;
 
-    // メールの場合はHTMLエスケープしない
-    $local_configs = $GLOBALS['SMARTY'];
-    $local_configs['default_modifiers'] = array();
-
-    $smarty = new OpenPNE_Smarty($local_configs);
+    $smarty = new OpenPNE_Smarty($GLOBALS['SMARTY'], false);
     $smarty->assign($params);
     $smarty->assign('inc_signature', fetch_inc_signature($smarty));
-    $smarty->assign('WORD_FRIEND', WORD_FRIEND);
-    $smarty->assign('WORD_MY_FRIEND', WORD_MY_FRIEND);
-    $smarty->assign('WORD_FRIEND_HALF', WORD_FRIEND_HALF);
-    $smarty->assign('WORD_MY_FRIEND_HALF', WORD_MY_FRIEND_HALF);
 
     $tpl_name = str_replace('.tpl', '', $tpl_name);
     if (util_is_unused_mail($tpl_name)) {
@@ -182,7 +174,7 @@ function fetch_send_mail($address, $tpl_name, $params = array(), $force = true, 
 //本登録完了メール 登録者へ
 function do_regist_prof_do_regist2_mail_send($c_member_id)
 {
-    $c_member = db_common_c_member4c_member_id($c_member_id, true);
+    $c_member = db_member_c_member4c_member_id($c_member_id, true);
     $pc_address = $c_member['secure']['pc_address'];
     $params = array(
         "c_member" => $c_member,
@@ -194,7 +186,7 @@ function do_regist_prof_do_regist2_mail_send($c_member_id)
 function do_h_invite_insert_c_invite_mail_send($c_member_id_invite, $session, $message, $pc_address)
 {
     $params = array(
-        "c_member" => db_common_c_member4c_member_id($c_member_id_invite),
+        "c_member" => db_member_c_member4c_member_id($c_member_id_invite),
         "sid" => $session,
         "invite_message"=> $message,
     );
@@ -205,7 +197,7 @@ function do_h_invite_insert_c_invite_mail_send($c_member_id_invite, $session, $m
 function do_password_query_mail_send($c_member_id, $pc_address, $new_password)
 {
     $params = array(
-        "c_member"   => db_common_c_member4c_member_id($c_member_id),
+        "c_member"   => db_member_c_member4c_member_id($c_member_id),
         "pc_address" => $pc_address,
         "password"   => $new_password,
     );
@@ -218,7 +210,7 @@ function do_password_query_mail_send($c_member_id, $pc_address, $new_password)
 //パスワード再発行メール(携帯)
 function db_mail_send_m_ktai_password_query($c_member_id, $new_password)
 {
-    $c_member = db_common_c_member4c_member_id($c_member_id, true);
+    $c_member = db_member_c_member4c_member_id($c_member_id, true);
     $ktai_address = $c_member['secure']['ktai_address'];
 
     $p = array('kad' => t_encrypt(db_member_username4c_member_id($c_member_id, true)));
@@ -237,8 +229,8 @@ function db_mail_send_m_ktai_password_query($c_member_id, $new_password)
 //掲示板が更新されたときのお知らせメール送信(携帯メールアドレスへ)
 function send_bbs_info_mail($c_commu_topic_comment_id, $c_member_id)
 {
-    $comment = _db_common_c_commu_topic_comment4c_commu_topic_comment_id($c_commu_topic_comment_id);
-    $c_member = db_common_c_member4c_member_id_LIGHT($c_member_id);
+    $comment = db_commu_c_commu_topic_comment4c_commu_topic_comment_id($c_commu_topic_comment_id);
+    $c_member = db_member_c_member4c_member_id_LIGHT($c_member_id);
 
     $c_commu_id       = $comment['c_commu_id'];
     $c_commu_topic_id = $comment['c_commu_topic_id'];
@@ -284,8 +276,8 @@ function send_bbs_info_mail($c_commu_topic_comment_id, $c_member_id)
 //掲示板が更新されたときのお知らせメール送信(PCメールアドレスへ)
 function send_bbs_info_mail_pc($c_commu_topic_comment_id, $c_member_id)
 {
-    $comment = _db_common_c_commu_topic_comment4c_commu_topic_comment_id($c_commu_topic_comment_id);
-    $c_member = db_common_c_member4c_member_id_LIGHT($c_member_id);
+    $comment = db_commu_c_commu_topic_comment4c_commu_topic_comment_id($c_commu_topic_comment_id);
+    $c_member = db_member_c_member4c_member_id_LIGHT($c_member_id);
 
     $c_commu_id       = $comment['c_commu_id'];
     $c_commu_topic_id = $comment['c_commu_topic_id'];
@@ -339,7 +331,7 @@ function do_common_send_daily_news()
         $sep = $lf;
     }
 
-    $list = do_common_c_member_list4daily_news();
+    $list = db_member_c_member_list4daily_news();
     $count_receive_daily_news = db_member_count_c_member_is_receive_daily_news();
     $count_daily_news_day = count(explode(',', DAILY_NEWS_DAY));
     $str_daily_news_day = str_replace(',', '・', DAILY_NEWS_DAY);
@@ -368,16 +360,16 @@ function do_common_send_daily_news()
             $c_member_id = $value['c_member_id'];
             print $c_member_id."\t" . $i++ ."\t". date("Y-m-d H:i:s") . $sep;
 
-            $c_member_secure = db_common_c_member_secure4c_member_id($c_member_id);
+            $c_member_secure = db_member_c_member_secure4c_member_id($c_member_id);
             $pc_address = $c_member_secure['pc_address'];
 
             $params = array(
-                'c_member' => db_common_c_member4c_member_id($c_member_id),
+                'c_member' => db_member_c_member4c_member_id($c_member_id),
                 'date'     => $date,
-                'ashiato_num' => p_h_ashiato_c_ashiato_num4c_member_id($c_member_id),
+                'ashiato_num' => db_ashiato_c_ashiato_num4c_member_id($c_member_id),
                 'diary_friend_list' => p_h_home_c_diary_friend_list4c_member_id($c_member_id, 5),
                 'c_commu_topic_comment_list'
-                                    => p_h_home_c_commu_topic_comment_list4c_member_id($c_member_id, 5),
+                                    => db_commu_c_commu_topic_comment_list4c_member_id($c_member_id, 5),
                 'daily_news_head' => $daily_news_head,
                 'daily_news_foot' => $daily_news_foot,
             );
@@ -389,15 +381,15 @@ function do_common_send_daily_news()
 //誕生日メール
 function do_common_send_birthday_mail()
 {
-    $birth_list = do_common_c_member_list4birthday_mail();
+    $birth_list = db_member_c_member_list4birthday_mail();
 
     foreach ($birth_list as $birth_member) {
-        $friend_list = do_common_c_friend_list4c_member_id($birth_member['c_member_id']);
+        $friend_list = db_friend_c_friend_list4c_member_id2($birth_member['c_member_id']);
 
         foreach ($friend_list as $friend) {
             if ($friend['is_receive_mail']) {
 
-                $c_member_secure = db_common_c_member_secure4c_member_id($friend['c_member_id']);
+                $c_member_secure = db_member_c_member_secure4c_member_id($friend['c_member_id']);
                 $pc_address = $c_member_secure['pc_address'];
 
                 $params = array(
@@ -422,11 +414,11 @@ function do_common_send_schedule_mail()
     }
 
     foreach ($send_list as $key => $value) {
-        $c_member_secure = db_common_c_member_secure4c_member_id($key);
+        $c_member_secure = db_member_c_member_secure4c_member_id($key);
         $pc_address = $c_member_secure['pc_address'];
 
         $params = array(
-            "c_member" => db_common_c_member4c_member_id_LIGHT($key),
+            "c_member" => db_member_c_member4c_member_id_LIGHT($key),
             "c_schedule_list" => $value,
         );
         fetch_send_mail($pc_address, 'm_pc_schedule_mail', $params);
@@ -436,13 +428,13 @@ function do_common_send_schedule_mail()
 //◆紹介文が編集されました！メール
 function do_f_intro_edit_update_c_friend_send_mail($c_member_id, $target_c_member_id)
 {
-    $c_member_to = db_common_c_member4c_member_id($target_c_member_id, true);
+    $c_member_to = db_member_c_member4c_member_id($target_c_member_id, true);
     $pc_address = $c_member_to['secure']['pc_address'];
     $is_receive_mail = $c_member_to['is_receive_mail'];
 
     $params = array(
-        "c_member_to"   => db_common_c_member4c_member_id_LIGHT($target_c_member_id),
-        "c_member_from" => db_common_c_member4c_member_id_LIGHT($c_member_id),
+        "c_member_to"   => db_member_c_member4c_member_id_LIGHT($target_c_member_id),
+        "c_member_from" => db_member_c_member4c_member_id_LIGHT($c_member_id),
     );
     return fetch_send_mail($pc_address, 'm_pc_friend_intro', $params, $is_receive_mail);
 }
@@ -450,16 +442,16 @@ function do_f_intro_edit_update_c_friend_send_mail($c_member_id, $target_c_membe
 //コミュニティに参加したときのメール
 function do_inc_join_c_commu_send_mail($c_commu_id, $c_member_id_join)
 {
-    $c_commu = _db_c_commu4c_commu_id($c_commu_id);
-    $c_member_admin = db_common_c_member4c_member_id($c_commu['c_member_id_admin'], true);
+    $c_commu = db_commu_c_commu4c_commu_id($c_commu_id);
+    $c_member_admin = db_member_c_member4c_member_id($c_commu['c_member_id_admin'], true);
 
     $pc_address = $c_member_admin['secure']['pc_address'];
     $is_receive_mail = ($c_member_admin['is_receive_mail'] && $c_commu['is_send_join_mail']);
 
     $params = array(
         'c_commu' => $c_commu,
-        'c_member_admin' => db_common_c_member4c_member_id_LIGHT($c_commu['c_member_id_admin']),
-        'c_member_join'  => db_common_c_member4c_member_id_LIGHT($c_member_id_join),
+        'c_member_admin' => db_member_c_member4c_member_id_LIGHT($c_commu['c_member_id_admin']),
+        'c_member_join'  => db_member_c_member4c_member_id_LIGHT($c_member_id_join),
     );
     return fetch_send_mail($pc_address, 'm_pc_join_commu', $params, $is_receive_mail);
 }
@@ -467,13 +459,13 @@ function do_inc_join_c_commu_send_mail($c_commu_id, $c_member_id_join)
 //◆友達リンク承認完了メール
 function do_h_confirm_list_insert_c_friend_mail_send($c_member_id_from, $u)
 {
-    $c_member_from = db_common_c_member4c_member_id($c_member_id_from, true);
+    $c_member_from = db_member_c_member4c_member_id($c_member_id_from, true);
     $pc_address = $c_member_from['secure']['pc_address'];
     $is_receive_mail = $c_member_from['is_receive_mail'];
 
     $params = array(
-        "c_member_to"   => db_common_c_member4c_member_id($c_member_id_from),
-        "c_member_from" => db_common_c_member4c_member_id($u),
+        "c_member_to"   => db_member_c_member4c_member_id($c_member_id_from),
+        "c_member_from" => db_member_c_member4c_member_id($u),
     );
     return fetch_send_mail($pc_address, 'm_pc_syounin_friend', $params, $is_receive_mail);
 }
@@ -482,7 +474,7 @@ function do_h_confirm_list_insert_c_friend_mail_send($c_member_id_from, $u)
 function do_h_config_1_mail_send($target_c_member_id, $session, $pc_address)
 {
     $params = array(
-        "c_member" => db_common_c_member4c_member_id($target_c_member_id),
+        "c_member" => db_member_c_member4c_member_id($target_c_member_id),
         "sid"      => $session,
     );
     return fetch_send_mail($pc_address, 'm_pc_change_mail', $params);
@@ -492,7 +484,7 @@ function do_h_config_1_mail_send($target_c_member_id, $session, $pc_address)
 function do_h_regist_mail_mail_send($target_c_member_id, $session, $pc_address)
 {
     $params = array(
-        "c_member" => db_common_c_member4c_member_id($target_c_member_id),
+        "c_member" => db_member_c_member4c_member_id($target_c_member_id),
         "sid"      => $session,
     );
     return fetch_send_mail($pc_address, 'm_pc_regist_mail', $params);
@@ -501,8 +493,8 @@ function do_h_regist_mail_mail_send($target_c_member_id, $session, $pc_address)
 //あしあとお知らせメール
 function do_common_send_ashiato_mail($c_member_to, $c_member_from)
 {
-    $c_member_to = db_common_c_member4c_member_id($c_member_to, true);
-    $c_member_from = db_common_c_member4c_member_id($c_member_from);
+    $c_member_to = db_member_c_member4c_member_id($c_member_to, true);
+    $c_member_from = db_member_c_member4c_member_id($c_member_from);
 
     $pc_address = $c_member_to['secure']['pc_address'];
     $ktai_address = $c_member_to['secure']['ktai_address'];
@@ -524,13 +516,13 @@ function do_common_send_ashiato_mail($c_member_to, $c_member_from)
 //◆メッセージ受信メール
 function do_common_send_message_mail_send($c_member_id_to, $c_member_id_from)
 {
-    $c_member_to = db_common_c_member4c_member_id($c_member_id_to, true);
+    $c_member_to = db_member_c_member4c_member_id($c_member_id_to, true);
     $pc_address = $c_member_to['secure']['pc_address'];
     $is_receive_mail = $c_member_to['is_receive_mail'];
 
     $params = array(
-        "c_member_to"   => db_common_c_member4c_member_id($c_member_id_to),
-        "c_member_from" => db_common_c_member4c_member_id($c_member_id_from),
+        "c_member_to"   => db_member_c_member4c_member_id($c_member_id_to),
+        "c_member_from" => db_member_c_member4c_member_id($c_member_id_from),
     );
     return fetch_send_mail($pc_address, 'm_pc_message_zyushin', $params, $is_receive_mail);
 }
@@ -538,13 +530,13 @@ function do_common_send_message_mail_send($c_member_id_to, $c_member_id_from)
 //◆承認依頼メッセージ受信メール
 function do_common_send_message_syoudaku_mail_send($c_member_id_to, $c_member_id_from)
 {
-    $c_member_to = db_common_c_member4c_member_id($c_member_id_to, true);
+    $c_member_to = db_member_c_member4c_member_id($c_member_id_to, true);
     $pc_address = $c_member_to['secure']['pc_address'];
     $is_receive_mail = $c_member_to['is_receive_mail'];
 
     $params = array(
-        "c_member_to"   => db_common_c_member4c_member_id($c_member_id_to),
-        "c_member_from" => db_common_c_member4c_member_id($c_member_id_from),
+        "c_member_to"   => db_member_c_member4c_member_id($c_member_id_to),
+        "c_member_from" => db_member_c_member4c_member_id($c_member_id_from),
     );
     return fetch_send_mail($pc_address, 'm_pc_message_syounin', $params, $is_receive_mail);
 }
@@ -552,7 +544,7 @@ function do_common_send_message_syoudaku_mail_send($c_member_id_to, $c_member_id
 // ログインURL通知メール
 function do_insert_c_member_mail_send($c_member_id, $password, $ktai_address)
 {
-    $c_member_secure = db_common_c_member_secure4c_member_id($c_member_id);
+    $c_member_secure = db_member_c_member_secure4c_member_id($c_member_id);
     $p = array('kad' => t_encrypt(db_member_username4c_member_id($c_member_id, true)));
     $params['url'] = openpne_gen_url('ktai', 'page_o_login', $p);
     return fetch_send_mail($ktai_address, 'm_ktai_login_regist_end', $params);
@@ -564,7 +556,7 @@ function h_invite_insert_c_invite_mail_send($session, $c_member_id_invite, $mail
     $params['SNS_NAME'] = SNS_NAME;
     $p = array('ses' => $session);
     $params['url'] = openpne_gen_url('ktai', 'page_o_regist_pre', $p);
-    $params['c_member'] = db_common_c_member4c_member_id($c_member_id_invite);
+    $params['c_member'] = db_member_c_member4c_member_id($c_member_id_invite);
     $params['message'] = $message;
     return fetch_send_mail($mail, 'm_ktai_regist_invite', $params);
 }
@@ -582,7 +574,7 @@ function do_mail_sns_change_ktai_mail_send($c_member_id, $session, $ktai_address
 //ログインURL通知メール
 function do_mail_sns_login_get_mail_send($c_member_id, $sender)
 {
-    $c_member_secure = db_common_c_member_secure4c_member_id($c_member_id);
+    $c_member_secure = db_member_c_member_secure4c_member_id($c_member_id);
     $p = array('kad' => t_encrypt(db_member_username4c_member_id($c_member_id, true)));
     $params['url'] = openpne_gen_url('ktai', 'page_o_login', $p);
     return fetch_send_mail($sender, 'm_ktai_login_get', $params);
@@ -592,13 +584,13 @@ function do_mail_sns_login_get_mail_send($c_member_id, $sender)
 function do_common_send_message_syoukai_commu_mail_send($c_member_id_to, $c_member_id_from)
 {
     //メール
-    $c_member_to = db_common_c_member4c_member_id($c_member_id_to, true);
+    $c_member_to = db_member_c_member4c_member_id($c_member_id_to, true);
     $pc_address = $c_member_to['secure']['pc_address'];
     $is_receive_mail = $c_member_to['is_receive_mail'];
 
     $params = array(
-        "c_member_to"   =>db_common_c_member4c_member_id($c_member_id_to),
-        "c_member_from" =>db_common_c_member4c_member_id($c_member_id_from),
+        "c_member_to"   => db_member_c_member4c_member_id($c_member_id_to),
+        "c_member_from" => db_member_c_member4c_member_id($c_member_id_from),
     );
     return fetch_send_mail($pc_address, 'm_pc_message_syoukai_commu', $params, $is_receive_mail);
 }
@@ -607,14 +599,14 @@ function do_common_send_message_syoukai_commu_mail_send($c_member_id_to, $c_memb
 function do_common_send_message_commu_send_msg($c_member_id_to, $c_member_id_from, $c_commu_id)
 {
     //メール
-    $c_member_to = db_common_c_member4c_member_id($c_member_id_to, true);
+    $c_member_to = db_member_c_member4c_member_id($c_member_id_to, true);
     $c_commu = db_commu_c_commu4c_commu_id($c_commu_id);
     $pc_address = $c_member_to['secure']['pc_address'];
     $is_receive_mail = $c_member_to['is_receive_mail'];
 
     $params = array(
-        'c_member_to'   => db_common_c_member4c_member_id($c_member_id_to),
-        'c_member_from' => db_common_c_member4c_member_id($c_member_id_from),
+        'c_member_to'   => db_member_c_member4c_member_id($c_member_id_to),
+        'c_member_from' => db_member_c_member4c_member_id($c_member_id_from),
         'c_commu'       => $c_commu,
     );
     return fetch_send_mail($pc_address, 'm_pc_message_commu_send_msg', $params, $is_receive_mail);
@@ -624,13 +616,13 @@ function do_common_send_message_commu_send_msg($c_member_id_to, $c_member_id_fro
 function do_common_send_message_syoukai_member_mail_send($c_member_id_to, $c_member_id_from)
 {
     //メール
-    $c_member_to = db_common_c_member4c_member_id($c_member_id_to, true);
+    $c_member_to = db_member_c_member4c_member_id($c_member_id_to, true);
     $pc_address = $c_member_to['secure']['pc_address'];
     $is_receive_mail = $c_member_to['is_receive_mail'];
 
     $params = array(
-        "c_member_to"   => db_common_c_member4c_member_id($c_member_id_to),
-        "c_member_from" => db_common_c_member4c_member_id($c_member_id_from),
+        "c_member_to"   => db_member_c_member4c_member_id($c_member_id_to),
+        "c_member_from" => db_member_c_member4c_member_id($c_member_id_from),
     );
     return fetch_send_mail($pc_address, 'm_pc_message_syoukai_member', $params, $is_receive_mail);
 }
@@ -639,13 +631,13 @@ function do_common_send_message_syoukai_member_mail_send($c_member_id_to, $c_mem
 function do_common_send_message_event_invite_mail_send($c_member_id_to, $c_member_id_from)
 {
     //メール
-    $c_member_to = db_common_c_member4c_member_id($c_member_id_to, true);
+    $c_member_to = db_member_c_member4c_member_id($c_member_id_to, true);
     $pc_address = $c_member_to['secure']['pc_address'];
     $is_receive_mail = $c_member_to['is_receive_mail'];
 
     $params = array(
-        "c_member_to"   => db_common_c_member4c_member_id($c_member_id_to),
-        "c_member_from" => db_common_c_member4c_member_id($c_member_id_from),
+        "c_member_to"   => db_member_c_member4c_member_id($c_member_id_to),
+        "c_member_from" => db_member_c_member4c_member_id($c_member_id_from),
     );
     return fetch_send_mail($pc_address, 'm_pc_message_event_invite', $params, $is_receive_mail);
 }
@@ -654,13 +646,13 @@ function do_common_send_message_event_invite_mail_send($c_member_id_to, $c_membe
 function do_common_send_message_event_message_mail_send($c_member_id_to, $c_member_id_from)
 {
     //メール
-    $c_member_to = db_common_c_member4c_member_id($c_member_id_to, true);
+    $c_member_to = db_member_c_member4c_member_id($c_member_id_to, true);
     $pc_address = $c_member_to['secure']['pc_address'];
     $is_receive_mail = $c_member_to['is_receive_mail'];
 
     $params = array(
-        "c_member_to"   => db_common_c_member4c_member_id($c_member_id_to),
-        "c_member_from" => db_common_c_member4c_member_id($c_member_id_from),
+        "c_member_to"   => db_member_c_member4c_member_id($c_member_id_to),
+        "c_member_from" => db_member_c_member4c_member_id($c_member_id_from),
     );
     return fetch_send_mail($pc_address, 'm_pc_message_event_message', $params, $is_receive_mail);
 }
@@ -679,14 +671,14 @@ function do_common_send_mail_regist_get($session, $sender, $aff_id)
 //退会完了メール(管理者宛)
 function do_common_send_mail_taikai4admin($c_member_id, $reason)
 {
-    $p_list = db_common_c_profile_list4null();
+    $p_list = db_member_c_profile_list4null();
     $c_profile_list = array();
     foreach ($p_list as $key => $value) {
          $c_profile_list[]=$p_list[$key];
     }
 
-    $c_member = db_common_c_member4c_member_id($c_member_id, true, true, 'private');
-    $c_member['c_member_invite'] = db_common_c_member4c_member_id_LIGHT($c_member['c_member_id_invite']);
+    $c_member = db_member_c_member4c_member_id($c_member_id, true, true, 'private');
+    $c_member['c_member_invite'] = db_member_c_member4c_member_id_LIGHT($c_member['c_member_id_invite']);
     if (OPENPNE_USE_POINT_RANK) {
         $c_member['point'] = db_point_get_point($c_member_id);
         $c_member['rank'] = db_point_get_rank4point($c_member['point']);
@@ -703,7 +695,7 @@ function do_common_send_mail_taikai4admin($c_member_id, $reason)
 //退会完了メール(PC)
 function do_common_send_mail_taikai_end_pc($c_member_id)
 {
-    $c_member = db_common_c_member4c_member_id($c_member_id, true);
+    $c_member = db_member_c_member4c_member_id($c_member_id, true);
     $pc_address = $c_member['secure']['pc_address'];
     $params = array(
         "c_member" => $c_member,
@@ -714,7 +706,7 @@ function do_common_send_mail_taikai_end_pc($c_member_id)
 //退会完了メール(携帯)
 function do_common_send_mail_taikai_end_ktai($c_member_id)
 {
-    $c_member = db_common_c_member4c_member_id($c_member_id, true);
+    $c_member = db_member_c_member4c_member_id($c_member_id, true);
     $ktai_address = $c_member['secure']['ktai_address'];
     $params = array(
         "c_member" => $c_member,
@@ -723,18 +715,20 @@ function do_common_send_mail_taikai_end_ktai($c_member_id)
 }
 
 //◆メッセージ受信メール(携帯)
-function do_common_send_message_mail_send_ktai($c_member_id_to, $c_member_id_from)
+function do_common_send_message_mail_send_ktai($c_member_id_to, $c_member_id_from, $subject, $body)
 {
-    $c_member_to = db_common_c_member4c_member_id($c_member_id_to, true);
+    $c_member_to = db_member_c_member4c_member_id($c_member_id_to, true);
     $ktai_address = $c_member_to['secure']['ktai_address'];
     $is_receive_ktai_mail = $c_member_to['is_receive_ktai_mail'];
     $p = array('kad' => t_encrypt(db_member_username4c_member_id($c_member_to['c_member_id'], true)));
     $login_url = openpne_gen_url('ktai', 'page_o_login', $p);
 
     $params = array(
-        'c_member_to'   => db_common_c_member4c_member_id($c_member_id_to),
-        'c_member_from' => db_common_c_member4c_member_id($c_member_id_from),
+        'c_member_to'   => db_member_c_member4c_member_id($c_member_id_to),
+        'c_member_from' => db_member_c_member4c_member_id($c_member_id_from),
         'login_url' => $login_url,
+        'subject' => $subject,
+        'body' => $body,
     );
     return fetch_send_mail($ktai_address, 'm_ktai_message_zyushin', $params, $is_receive_ktai_mail);
 }
@@ -815,7 +809,7 @@ function send_mail_pcktai_rank_up($c_member_id, $before_rank, $after_rank)
     if (!empty($c_member['secure']['pc_address'])) {
         // PCメールアドレスがある場合は、PCのみ送信
         $to = $c_member['secure']['pc_address'];
-        
+
         $params = array(
             'c_member'    => $c_member,
             'before_rank' => $before_rank,
@@ -827,7 +821,7 @@ function send_mail_pcktai_rank_up($c_member_id, $before_rank, $after_rank)
         $to = $c_member['secure']['ktai_address'];
         $p = array('kad' => t_encrypt(db_member_username4c_member_id($c_member['c_member_id'], true)));
         $login_url = openpne_gen_url('ktai', 'page_o_login', $p);
-        
+
         $params = array(
             'c_member'    => $c_member,
             'before_rank' => $before_rank,
@@ -882,4 +876,52 @@ function do_mail_sns_regist_ktai_id_mail_send_pre($session, $ktai_address)
     $params['url'] = openpne_gen_url('ktai', 'page_o_regist_ktai', $p);
     return fetch_send_mail($ktai_address, 'm_ktai_regist_ktai_id', $params);
 }
+
+// 日記コメントが追加されたときのお知らせメール送信(携帯メールアドレスへ)
+function send_diary_comment_info_mail($c_diary_comment_id, $c_member_id)
+{
+    $comment = _do_c_diary_comment4c_diary_comment_id($c_diary_comment_id);
+    $target_c_member_id = $comment['c_member_id_author'];
+
+    // コメントした人=日記オーナーの場合は通知しない
+    if ($target_c_member_id == $c_member_id) {
+        return false;
+    }
+
+    // 日記オーナーの通知設定が無ければ通知しない
+    $target_c_member_config = db_member_c_member_config4c_member_id($target_c_member_id);
+    if (!$target_c_member_config['SEND_DIARY_COMMENT_MAIL_KTAI']) {
+        return false;
+    }
+
+    $c_member = db_member_c_member4c_member_id_LIGHT($c_member_id);
+    $target_c_member = db_member_c_member_secure4c_member_id($target_c_member_id);
+    $c_diary_id = $comment['c_diary_id'];
+    $c_diary = db_diary_get_c_diary4id($c_diary_id);
+
+    $p = array('target_c_diary_id' => $c_diary_id);
+    $url = openpne_gen_url('ktai', 'page_fh_diary', $p);
+
+    $params = array(
+        'subject' => $c_diary['subject'],
+        'nickname' => $c_member['nickname'],
+        'body' => $comment['body'],
+        'url' => $url,
+        'image_filename1' => $comment['image_filename_1'],
+        'image_filename2' => $comment['image_filename_2'],
+        'image_filename3' => $comment['image_filename_3'],
+        'id' => $c_diary_comment_id,
+    );
+
+    $ktai_address = $target_c_member['ktai_address'];
+    if (MAIL_ADDRESS_HASHED) {
+        $from = "bc{$c_diary_id}-" . t_get_user_hash($target_c_member_id) . '@' . MAIL_SERVER_DOMAIN;
+    } else {
+        $from = "bc{$c_diary_id}" . '@' . MAIL_SERVER_DOMAIN;
+    }
+    $from = MAIL_ADDRESS_PREFIX . $from;
+
+    return fetch_send_mail($ktai_address, 'm_ktai_diary_comment_info', $params, true, $from);
+}
+
 ?>

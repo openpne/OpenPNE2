@@ -72,15 +72,15 @@ class pc_do_h_diary_edit_insert_c_diary extends OpenPNE_Action
         $filename_1 = $filename_2 = $filename_3 = '';
 
         if ($tmpfile_1) {
-            image_data_delete($c_diary['image_filename_1']);
+            db_image_data_delete($c_diary['image_filename_1']);
             $filename_1 = image_insert_c_image4tmp("d_{$target_c_diary_id}_1", $tmpfile_1);
         }
         if ($tmpfile_2) {
-            image_data_delete($c_diary['image_filename_2']);
+            db_image_data_delete($c_diary['image_filename_2']);
             $filename_2 = image_insert_c_image4tmp("d_{$target_c_diary_id}_2", $tmpfile_2);
         }
         if ($tmpfile_3) {
-            image_data_delete($c_diary['image_filename_3']);
+            db_image_data_delete($c_diary['image_filename_3']);
             $filename_3 = image_insert_c_image4tmp("d_{$target_c_diary_id}_3", $tmpfile_3);
         }
 

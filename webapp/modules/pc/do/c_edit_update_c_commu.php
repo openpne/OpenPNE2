@@ -35,8 +35,8 @@ class pc_do_c_edit_update_c_commu extends OpenPNE_Action
         //---
 
         $err_msg = array();
-        if (!$name) $err_msg[] = "コミュニティ名を入力してください";
-        if (!$info) $err_msg[] = "コミュニティの説明を入力してください";
+        if (!$name) $err_msg[] = WORD_COMMUNITY . "名を入力してください";
+        if (!$info) $err_msg[] = WORD_COMMUNITY . "の説明を入力してください";
 
         if (!empty($upfile_obj) && $upfile_obj['error'] !== UPLOAD_ERR_NO_FILE) {
             if (!($image = t_check_image($upfile_obj))) {
@@ -67,7 +67,7 @@ class pc_do_c_edit_update_c_commu extends OpenPNE_Action
         if ($image_filename) {
             //画像削除
             $c_commu = db_commu_c_commu4c_commu_id($target_c_commu_id);
-            image_data_delete($c_commu['image_filename']);
+            db_image_data_delete($c_commu['image_filename']);
         }
 
         db_commu_update_c_commu(

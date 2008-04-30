@@ -6,7 +6,7 @@
 
 /**
  * IDからファイルの情報を取得する
- * 
+ *
  * @param int $c_file_id
  */
 function db_file_c_file4c_file_id($c_file_id)
@@ -22,7 +22,7 @@ function db_file_c_file4c_file_id($c_file_id)
 
 /**
  * 登録されているファイルをリストアップする
- * 
+ *
  * @param int $page
  * @param int $page_size
  * @param int &$pager
@@ -50,7 +50,7 @@ function db_file_c_file_list($page, $page_size, &$pager)
 
 /**
  * ファイル情報をDBに挿入する
- * 
+ *
  * @param string $filename
  * @param string $bin
  * @param string $original_filename
@@ -73,7 +73,7 @@ function db_file_insert_c_file($filename, $bin, $original_filename)
 
 /**
  * ファイル名からファイル実体を取得
- * 
+ *
  * @param string $filename
  * @return mixed
  */
@@ -81,7 +81,7 @@ function db_file_c_file4filename($filename)
 {
     $sql = 'SELECT * FROM c_file WHERE filename = ?';
     $params = array($filename);
-    
+
     if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
         $lst = db_get_row($sql, $params);
         $lst['bin'] = base64_decode($lst['bin']);
@@ -93,7 +93,7 @@ function db_file_c_file4filename($filename)
 
 /**
  * ファイル名からオリジナルのファイル名を取得
- * 
+ *
  * @param string $filename
  * @return string
  */
@@ -106,7 +106,7 @@ function db_file_original_filename4filename($filename)
 
 /**
  * アップロードされたファイルを削除する
- * 
+ *
  * @param string $filename  削除したいファイル名
  * @return mixed
  */
@@ -119,7 +119,7 @@ function db_file_delete_c_file($filename)
 
 /**
  * 管理画面用に一時ファイル情報をDBに挿入する
- * 
+ *
  * @param string $filename
  * @param string $filepath
  * @param string $original_filename

@@ -45,6 +45,7 @@
 <div class="contents">
 
 <p>※使用許可が「使用しない」の場合、使用範囲の設定は反映されません。</p>
+<p>※小窓キャスト機能で登録された小窓の使用設定は変更できません。</p>
 
 <table class="basicType2">
 <thead>
@@ -79,8 +80,8 @@
 <table>
 <tr>
 <td>
-<input name="permit[]" type="checkbox" value="1" id="check_permit_({$cmd_name})_community" ({if $c_cmd.permit.community || is_null($c_cmd.permit)}) checked="checked"({/if})({if $c_cmd.disabled}) disabled="disabled"({/if}) /><label for="check_permit_({$c_cmd.c_cmd_id})_community">コミュニティ</label><br />
-<input name="permit[]" type="checkbox" value="2" id="check_permit_({$cmd_name})_diary"({if $c_cmd.permit.diary || is_null($c_cmd.permit)}) checked="checked"({/if})({if $c_cmd.disabled}) disabled="disabled"({/if}) /><label for="check_permit_({$c_cmd.c_cmd_id})_diary">日記</label><br />
+<input name="permit[]" type="checkbox" value="1" id="check_permit_({$cmd_name})_community" ({if $c_cmd.permit.community || is_null($c_cmd.permit)}) checked="checked"({/if})({if $c_cmd.disabled}) disabled="disabled"({/if}) /><label for="check_permit_({$c_cmd.c_cmd_id})_community">({$WORD_COMMUNITY})</label><br />
+<input name="permit[]" type="checkbox" value="2" id="check_permit_({$cmd_name})_diary"({if $c_cmd.permit.diary || is_null($c_cmd.permit)}) checked="checked"({/if})({if $c_cmd.disabled}) disabled="disabled"({/if}) /><label for="check_permit_({$c_cmd.c_cmd_id})_diary">({$WORD_DIARY})</label><br />
 <input name="permit[]" type="checkbox" value="4" id="check_permit_({$cmd_name})_profile"({if $c_cmd.permit.profile || is_null($c_cmd.permit)}) checked="checked"({/if})({if $c_cmd.disabled}) disabled="disabled"({/if}) /><label for="check_permit_({$c_cmd.c_cmd_id})_profile">プロフィール</label><br />
 <input name="permit[]" type="checkbox" value="64" id="check_permit_({$cmd_name})_message"({if $c_cmd.permit.message || is_null($c_cmd.permit)}) checked="checked"({/if})({if $c_cmd.disabled}) disabled="disabled"({/if}) /><label for="check_permit_({$c_cmd.c_cmd_id})_message">メッセージ</label><br />
 </td>

@@ -1,12 +1,12 @@
 ({$inc_header|smarty:nodefaults})
 ({ext_include file="inc_subnavi_adminImageKakikomi.tpl"})
-({assign var="page_name" value="日記管理"})
+({assign var="page_name" value="`$WORD_DIARY`管理"})
 ({ext_include file="inc_tree_adminImageKakikomi.tpl"})
 </div>
 
 ({*ここまで:navi*})
 
-<h2>日記管理</h2>
+<h2>({$WORD_DIARY})管理</h2>
 <div class="contents">
 
 ({if $msg})
@@ -31,7 +31,7 @@
 
 ({if !$diary_list})
 
-<p class="info">該当する日記が存在しません</p>
+<p class="info">該当する({$WORD_DIARY})が存在しません</p>
 
 ({else})
 
@@ -83,7 +83,7 @@
 ({if $item.public_flag == "public"})
 全員に公開
 ({elseif $item.public_flag == "friend"})
-({$smarty.const.WORD_MY_FRIEND})まで公開
+({$WORD_MY_FRIEND})まで公開
 ({elseif $item.public_flag == "private"})
 公開しない
 ({/if})
@@ -98,7 +98,7 @@
 </tr>
 ({****})
 <tr>
-<th>日記本文</th>
+<th>({$WORD_DIARY})本文</th>
 <td class="textbody">
 ({if $item.image_filename_1 || $item.image_filename_2 || $item.image_filename_3})
 <div>
@@ -108,9 +108,9 @@
 </div>
 ({/if})
 ({if $smarty.const.OPENPNE_ADMIN_CONVERT_URL})
-({$item.body|nl2br|t_url2cmd:'diary'|t_cmd:'diary'})
+({$item.body|nl2br|t_url2cmd:'diary'|t_cmd:'diary'|t_decoration:1})
 ({else})
-({$item.body|nl2br})
+({$item.body|nl2br|t_decoration:1})
 ({/if})
 </td>
 </tr>

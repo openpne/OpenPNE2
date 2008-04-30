@@ -1,6 +1,6 @@
 ({$inc_ktai_header|smarty:nodefaults})
 <table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_02})">
-<font color="#({$ktai_color_config.font_05})"><a name="top">日記の編集</a></font><br>
+<font color="#({$ktai_color_config.font_05})"><a name="top">({$WORD_DIARY_HALF})の編集</a></font><br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
 <font color="#({$ktai_color_config.color_24})">({$target_c_diary.subject})</font><br>

@@ -1,399 +1,98 @@
-({ext_include file="inc_header.tpl"})
-({ext_include file="inc_layoutcolumn_top_720px.tpl"})
+<div id="LayoutC">
+<div id="Center">
 
-({***************************})
-({**ここから：メインコンテンツ**})
-({***************************})
-
-<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
-
-<!-- **************************************** -->
-<!-- ******ここから：コミュニティ設定変更****** -->
-({t_form _enctype=file m=pc a=do_c_edit_update_c_commu})
-<input type="hidden" name="sessid" value="({$PHPSESSID})">
-<input type="hidden" name="target_c_commu_id" value="({$target_c_commu_id})">
-
-<table border="0" cellspacing="0" cellpadding="0" style="width:650px;margin:0px auto;" class="border_07">
-<tr>
-<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
-<td style="width:646px;" class="bg_00"><img src="./skin/dummy.gif" alt="dummy" style="width:566px;height:7px;" class="dummy"></td>
-<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
-</tr>
-<tr>
-<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
-<td class="bg_01" align="center">
-<!-- *ここから：コミュニティ設定変更＞内容* -->
-({*ここから：header*})
-<!-- ここから：小タイトル -->
-<div class="border_01">
-<table border="0" cellspacing="0" cellpadding="0" style="width:644px;">
-<tr>
-<td style="width:36px;" class="bg_06"><img src="({t_img_url_skin filename=content_header_1})" style="width:30px;height:20px;" class="dummy"></td>
-<td style="width:168px;padding:2px 0px;" class="bg_06"><span class="b_b c_00">コミュニティ設定変更</span></td>
-<td style="width:440px;" align="right" class="bg_06">&nbsp;</td>
-</tr>
-</table>
-</div>
-<!-- ここまで：小タイトル -->
-({*ここまで：header*})
-({*ここから：body*})
-<!-- ここから：主内容 -->
-<table border="0" cellspacing="0" cellpadding="0" style="width:644px;">
-({*********})
-<tr>
-<td style="width:644px;height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-</tr>
-({*********})
-<tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-<td style="width:150px;" class="bg_05" align="center" valign="middle">
-
-<div class="padding_s">
-
-コミュニティ名
-
-</div>
-
-</td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-<td style="width:491px;" class="bg_02" align="left" valign="middle">
-
-<div class="padding_s">
-
-<input type="text" class="text" name="name" value="({$c_commu.name})" style="width:20em">
-
-</div>
-
-</td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-</tr>
-({*********})
-<tr>
-<td style="width:644px;height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-</tr>
-({*********})
-<tr>
-<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-<td class="bg_05" align="center" valign="middle">
-
-<div class="padding_s">
-
-カテゴリ
-
-</div>
-
-</td>
-<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-<td class="bg_02" align="left" valign="middle">
-
-<div class="padding_s">
-
+({* {{{ formTable *})
+<div class="dparts formTable"><div class="parts">
+<div class="partsHeading"><h3>({$WORD_COMMUNITY})設定変更</h3></div>
+({t_form_block _enctype=file m=pc a=do_c_edit_update_c_commu})
+<input type="hidden" name="target_c_commu_id" value="({$target_c_commu_id})" />
+<table>
+<tr><th>({$WORD_COMMUNITY})名</th><td><input type="text" class="input_text" name="name" value="({$c_commu.name})" size="40" /></td></tr>
+<tr><th>カテゴリ</th><td>
 <select name="c_commu_category_id">
-({foreach from=$c_commu_category_list item=cat})
-<option value="({$cat.c_commu_category_id})"({if $cat.c_commu_category_id==$c_commu.c_commu_category_id}) selected="selected"({/if})>({$cat.name})</option>
+({foreach from=$c_commu_category_list item=item})
+<option value="({$item.c_commu_category_id})"({if $item.c_commu_category_id == $c_commu.c_commu_category_id}) selected="selected"({/if})>({$item.name})</option>
 ({/foreach})
 </select>
-</div>
-
-</td>
-<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-</tr>
-({*********})
-<tr>
-<td class="bg_01" colspan="5"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-</tr>
-({*********})
-<tr>
-<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-<td class="bg_05" align="center" valign="middle">
-
-<div class="padding_s">
-
-参加条件と<br>公開範囲
-
-</div>
-
-</td>
-<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-<td class="bg_02" align="left" valign="middle">
-
-<div class="padding_s">
-
-({html_radios name="public_flag" options=$public_flag_list class="no_bg" selected=$c_commu.public_flag separator="<br>"})
-
-</div>
-
-</td>
-<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-</tr>
-({*********})
-<tr>
-<td class="bg_01" colspan="5"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-</tr>
-({*********})
-<tr>
-<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-<td class="bg_05" align="center" valign="middle">
-
-<div class="padding_s">
-
-トピック作成権限
-
-</div>
-
-</td>
-<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-<td class="bg_02" align="left" valign="middle">
-
-<div class="padding_s">
-
-({html_radios name="topic_authority" options=$topic_authority_list class="no_bg" selected=$c_commu.topic_authority separator="<br>"})
-
-</div>
-
-</td>
-<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-</tr>
-({*********})
-<tr>
-<td class="bg_01" colspan="5"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-</tr>
-({*********})
-<tr>
-<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-<td class="bg_05" align="center" valign="middle">
-
-<div class="padding_s">
-
-コミュニティ説明文
-
-</div>
-
-</td>
-<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-<td class="bg_02" align="left" valign="middle">
-
-<div class="padding_s">
-
-<textarea class="text" name="info" style="width:480px;height:6em;">({$c_commu.info})</textarea>
-
-</div>
-
-</td>
-<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-</tr>
-({*********})
-<tr>
-<td class="bg_01" colspan="5"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-</tr>
-({*********})
-<tr>
-<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-<td class="bg_05" align="center" valign="middle">
-
-<div class="padding_s">
-
-写&nbsp;真
-
-</div>
-
-</td>
-<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-<td class="bg_02" align="left" valign="middle">
-
-<div class="padding_s">
-
+</td></tr>
+<tr><th>参加条件と公開範囲</th><td>
+<ul>
+({foreach from=$public_flag_list key=key item=item})
+<li><input type="radio" class="input_radio" name="public_flag" id="public_flag_({$key})" value="({$key})"({if $key == $c_commu.public_flag}) checked="checked"({/if}) /><label for="public_flag_({$key})">({$item})</label></li>
+({/foreach})
+</ul>
+</td></tr>
+<tr><th>トピック作成権限</th><td>
+<ul>
+({foreach from=$topic_authority_list key=key item=item})
+<li><input type="radio" class="input_radio" name="topic_authority" id="topic_authority_({$key})" value="({$key})"({if $key == $c_commu.topic_authority}) checked="checked"({/if}) /><label for="topic_authority_({$key})">({$item})</label></li>
+({/foreach})
+</ul>
+</td></tr>
+<tr><th>({$WORD_COMMUNITY})説明文</th><td><textarea name="info" rows="6" cols="50">({$c_commu.info})</textarea></td></tr>
+<tr><th>写真</th><td>
 ({if $c_commu.image_filename})
-<img src="({t_img_url filename=$c_commu.image_filename w=76 h=76})"><br>
-<a href="({t_url m=pc a=do_c_edit_image_delete_c_commu_image})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;sessid=({$PHPSESSID})">削除</a><br>
+<p>
+<img src="({t_img_url filename=$c_commu.image_filename w=76 h=76})" alt="" /><br />
+<a href="({t_url m=pc a=do_c_edit_image_delete_c_commu_image})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;sessid=({$PHPSESSID})">削除</a>
+</p>
 ({/if})
-<input type="file" size="40" name="image_filename">
-
-</div>
-
-</td>
-<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-</tr>
-({*********})
-<tr>
-<td class="bg_01" colspan="5"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-</tr>
-({*********})
+<input type="file" size="40" name="image_filename" />
+</td></tr>
 ({if !$is_unused_join_commu})
-<tr>
-<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-<td class="bg_05" align="center" valign="middle">
-
-<div class="padding_s">
-
-参加お知らせ<br>
-メール受信設定
-
-</div>
-
-</td>
-<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-<td class="bg_02" align="left" valign="middle">
-
-<div class="padding_s">
-
-<input type="radio" class="no_bg" name="is_send_join_mail" value="1"({if $c_commu.is_send_join_mail}) checked="checked"({/if})>受信する<br>
-<input type="radio" class="no_bg" name="is_send_join_mail" value="0"({if !$c_commu.is_send_join_mail}) checked="checked"({/if})>受信しない<br>
-※コミュニティに新しく参加者が加わった時に、管理者(あなた)にメールを送ります。
-
-</div>
-
-</td>
-<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-</tr>
-({*********})
-<tr>
-<td class="bg_01" colspan="5"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-</tr>
+<tr><th>参加お知らせメール受信設定</th><td>
+<ul>
+<li><input type="radio" class="input_radio" name="is_send_join_mail" id="is_send_join_mail_1" value="1"({if $c_commu.is_send_join_mail}) checked="checked"({/if}) /><label for="is_send_join_mail_1">受信する</label></li>
+<li><input type="radio" class="input_radio" name="is_send_join_mail" id="is_send_join_mail_0" value="0"({if !$c_commu.is_send_join_mail}) checked="checked"({/if}) /><label for="is_send_join_mail_0">受信しない</label></li>
+</ul>
+<p>※({$WORD_COMMUNITY})に新しく参加者が加わった時に、管理者(あなた)にメールを送ります。</p>
+</td></tr>
 ({/if})
-({*********})
-
-<tr>
-<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-<td class="bg_03" align="center" valign="middle" colspan="3">
-
-<div class="padding_w_m">
-
-<div align="center" style="text-align:center;">
-<input type="submit" class="submit" value="　　変　更　　">
-</div>
-
-</div>
-
-</td>
-<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-</tr>
-({*********})
-<tr>
-<td class="bg_01" colspan="5"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-</tr>
-({*********})
 </table>
-<!-- ここまで：主内容 -->
-({*ここまで：body*})
-({*ここから：footer*})
-<!-- 無し -->
-({*ここまで：footer*})
-<!-- *ここまで：コミュニティ設定変更＞＞内容* -->
-</td>
-<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
-</tr>
-<tr>
-<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
-<td style="width:566px;" class="bg_00"><img src="./skin/dummy.gif" alt="dummy" style="width:566px;height:7px;" class="dummy"></td>
-<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
-</tr>
-</table>
-
-</form>
-<!-- ******ここまで：コミュニティ設定変更****** -->
-<!-- **************************************** -->
-
-({if $c_commu.c_member_id_sub_admin != $u && $c_commu.c_member_id_admin == $u })
-<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
-
-<!-- ****************************************** -->
-<!-- ******ここから：コミュニティを削除する****** -->
-<table border="0" cellspacing="0" cellpadding="0" style="width:650px;margin:0px auto;" class="border_07">
-<tr>
-<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
-<td style="width:646px;" class="bg_00"><img src="./skin/dummy.gif" alt="dummy" style="width:566px;height:7px;" class="dummy"></td>
-<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
-</tr>
-<tr>
-<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
-<td class="bg_01" align="center">
-<!-- *ここから：コミュニティを削除する＞内容* -->
-({*ここから：header*})
-<!-- ここから：小タイトル -->
-<table border="0" cellspacing="0" cellpadding="0" style="width:644px;" class="border_01">
-<tr>
-<td style="width:36px;" class="bg_06"><img src="({t_img_url_skin filename=content_header_1})" style="width:30px;height:20px;" class="dummy"></td>
-<td style="width:168px;padding:2px 0px;" class="bg_06"><span class="b_b c_00">コミュニティを削除する</span></td>
-<td style="width:440px;" align="right" class="bg_06">&nbsp;</td>
-</tr>
-</table>
+<div class="operation">
+<ul class="moreInfo button">
+<li><input type="submit" class="input_submit" value="変更を確定" /></li>
+</ul>
 </div>
-<!-- ここまで：小タイトル -->
-({*ここまで：header*})
-({*ここから：body*})
-<!-- ここから：主内容 -->
-<table border="0" cellspacing="0" cellpadding="0" style="width:644px;">
-({*********})
-<tr>
-<td style="width:644px;height:1px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-</tr>
-({*********})
-<tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-<td style="width:642px;" class="bg_03" align="left" valign="middle">
+({/t_form_block})
+</div></div>
+({* }}} *})
 
-<div class="padding_w_m">
-
+({if $c_commu.c_member_id_sub_admin != $u && $c_commu.c_member_id_admin == $u})
 ({if $is_topic})
 
-コミュニティを削除するには、トピックをすべて削除する必要があります。<br>
-トピックがある場合は、それらを削除した後、このページに再度アクセスしてください。<br>
-(削除ボタンが表示されます)<br>
-<br>
-削除の際はトラブル等を避けるため、あらかじめ参加者へ削除を告知してください。
+({* {{{ descriptionBox *})
+<div class="dparts descriptionBox"><div class="parts">
+<div class="partsHeading"><h3>({$WORD_COMMUNITY})を削除する</h3></div>
+<div class="block">
+<p>({$WORD_COMMUNITY})を削除するには、トピックをすべて削除する必要があります。<br />
+トピックがある場合は、それらを削除した後、このページに再度アクセスしてください。<br />
+(削除ボタンが表示されます)<br />
+<br />
+削除の際はトラブル等を避けるため、あらかじめ参加者へ削除を告知してください。</p>
+</div>
+</div></div>
+({* }}} *})
 
 ({else})
 
-このコミュニティを削除します。削除の際はトラブル等を避けるため、あらかじめ参加者へ削除を告知してください。
-
-<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
-
-({t_form m=pc a=page_c_edit_delete_c_commu_confirm})
-<input type="hidden" name="target_c_commu_id" value="({$c_commu.c_commu_id})">
-<div align="center" style="text-align:center;">
-<input type="submit" class="submit" value="　　削　除　　">
+({* {{{ infoButtonBox *})
+<div class="dparts infoButtonBox"><div class="parts">
+<div class="partsHeading"><h3>({$WORD_COMMUNITY})を削除する</h3></div>
+<div class="block">
+<p>({$WORD_COMMUNITY})を削除します。削除の際はトラブル等を避けるため、あらかじめ参加者へ削除を告知してください。</p>
+({t_form_block m=pc a=page_c_edit_delete_c_commu_confirm})
+<input type="hidden" name="target_c_commu_id" value="({$c_commu.c_commu_id})" />
+<ul class="moreInfo button">
+<li><input type="submit" class="input_submit" value="削除" /></li>
+</ul>
+({/t_form_block})
 </div>
-</form>
-
-<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
+</div></div>
+({* }}} *})
 
 ({/if})
-
-</div>
-</td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-</tr>
-({*********})
-<tr>
-<td style="width:644px;height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-</tr>
-({*********})
-</table>
-<!-- ここまで：主内容 -->
-({*ここまで：body*})
-({*ここから：footer*})
-<!-- 無し -->
-({*ここまで：footer*})
-<!-- *ここまで：コミュニティを削除する＞＞内容* -->
-</td>
-<td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
-</tr>
-<tr>
-<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
-<td style="width:566px;" class="bg_00"><img src="./skin/dummy.gif" alt="dummy" style="width:566px;height:7px;" class="dummy"></td>
-<td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
-</tr>
-</table>
-<!-- ******ここまで：コミュニティを削除する****** -->
-<!-- ****************************************** -->
-
 ({/if})
 
-<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
-
-({***************************})
-({**ここまで：メインコンテンツ**})
-({***************************})
-({ext_include file="inc_layoutcolumn_bottom_270px_165px_175px_720px.tpl"})
-({ext_include file="inc_footer.tpl"})
+</div><!-- Center -->
+</div><!-- LayoutC -->

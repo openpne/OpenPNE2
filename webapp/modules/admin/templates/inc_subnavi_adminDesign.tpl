@@ -7,6 +7,7 @@
 <a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('insert_html')})">HTML挿入</a>&nbsp;|&nbsp;
 <a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_entry_point')})">テンプレート挿入</a>&nbsp;|&nbsp;
 <a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_banner')})">バナー設定</a>&nbsp;|&nbsp;
-<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('make_cmd_tag')})">CMDタグ生成</a>&nbsp;|&nbsp;
+<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_admin_info')})">お知らせ・規約設定</a>&nbsp;|&nbsp;
+<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_free_page')})">フリーページ管理</a>&nbsp;|&nbsp;
 ({/strip})
 </div>

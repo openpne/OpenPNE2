@@ -1,42 +1,31 @@
-<div class="w_screen inc_navi">
-({if $INC_NAVI_type=="h" || $INC_NAVI_type=="self"})
-
-<img src="({t_img_url_skin filename=skin_navi_h})" class="bg">
-<div class="h">
-
+({if $INC_NAVI_type === 'h'})
+<div class="parts localNav" id="hLocalNav">
+<ul>
 ({foreach from=$navi key=key item=item})
 ({if $item.url})
-<a class="navi_h_({$key+1})" href="({$item.url})"><img src="./skin/dummy.gif" alt="({$item.caption})"></a>
+<li id="hLocalNav_({$key+1})"><a href="({$item.url})">({$item.caption})</a></li>
 ({/if})
 ({/foreach})
-
+</ul>
 </div>
-
-({elseif $INC_NAVI_type=="f" || $INC_NAVI_type=="other"})
-
-<img src="({t_img_url_skin filename=skin_navi_f})" class="bg">
-<div class="f">
-
+({elseif $INC_NAVI_type === 'f'})
+<div class="parts localNav" id="fLocalNav">
+<ul>
 ({foreach from=$navi key=key item=item})
 ({if $item.url})
-<a class="navi_f_({$key+1})" href="({$item.url})&amp;target_c_member_id=({$INC_NAVI_c_member_id_friend})"><img src="./skin/dummy.gif" alt="({$item.caption})"></a>
+<li id="fLocalNav_({$key+1})"><a href="({$item.url})&amp;target_c_member_id=({$INC_NAVI_c_member_id_friend})">({$item.caption})</a></li>
 ({/if})
 ({/foreach})
-
+</ul>
 </div>
-
-({elseif $INC_NAVI_type=="c"})
-
-<img src="({t_img_url_skin filename=skin_navi_c})" class="bg">
-<div class="c">
-
+({elseif $INC_NAVI_type === 'c'})
+<div class="parts localNav" id="cLocalNav">
+<ul>
 ({foreach from=$navi key=key item=item})
 ({if $item.url})
-<a class="navi_c_({$key+1})" href="({$item.url})&amp;target_c_commu_id=({$INC_NAVI_c_commu_id})"><img src="./skin/dummy.gif" alt="({$item.caption})"></a>
+<li id="cLocalNav_({$key+1})"><a href="({$item.url})&amp;target_c_commu_id=({$INC_NAVI_c_commu_id})">({$item.caption})</a></li>
 ({/if})
 ({/foreach})
-
+</ul>
 </div>
-
 ({/if})
-</div>

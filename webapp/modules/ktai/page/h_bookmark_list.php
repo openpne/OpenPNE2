@@ -11,12 +11,10 @@ class ktai_page_h_bookmark_list extends OpenPNE_Action
         $u  = $GLOBALS['KTAI_C_MEMBER_ID'];
 
         // --- リクエスト変数
-        $direc = $requests['direc'];
         $page = $requests['page'];
         // ----------
 
         $page_size = 10;
-        $page += $direc;
 
         $list = db_bookmark_list($u, $page, $page_size);
         $this->set('c_members', $list[0]);

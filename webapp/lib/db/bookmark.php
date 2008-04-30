@@ -15,7 +15,7 @@ function db_bookmark_list($c_member_id, $page, $page_size)
     $lst = db_get_all_page($sql, $page, $page_size, $params);
 
     foreach ($lst as $key => $value) {
-        $lst[$key]['profile'] = db_common_c_member_profile_list4c_member_id($value['c_member_id']);
+        $lst[$key]['profile'] = db_member_c_member_profile_list4c_member_id($value['c_member_id']);
         $lst[$key]['last_login'] = p_f_home_last_login4access_date($value['access_date']);
     }
 
@@ -45,7 +45,7 @@ function db_bookmark_is_bookmark($c_member_id_from, $c_member_id_to)
 
 /**
  * お気に入りのメンバーIDリスト取得
- * 
+ *
  * @param  int $c_member_id
  * @param  bool $block  アクセスブロックしているメンバーを除外するかどうか
  * @return array  お気に入りのメンバーID配列
@@ -78,7 +78,7 @@ function db_bookmark_diary_list($c_member_id, $limit)
     $diary_list = db_get_all_limit($sql, 0, intval($limit));
 
     foreach ($diary_list as $key => $value) {
-        $c_member = db_common_c_member4c_member_id_LIGHT($value['c_member_id']);
+        $c_member = db_member_c_member4c_member_id_LIGHT($value['c_member_id']);
         $diary_list[$key]['nickname'] = $c_member['nickname'];
         $diary_list[$key]['count_comments'] = db_diary_count_c_diary_comment4c_diary_id($value['c_diary_id']);
     }
@@ -100,7 +100,7 @@ function db_bookmark_blog_list($c_member_id, $limit)
     $blog_list = db_get_all_limit($sql, 0, intval($limit));
 
     foreach ($blog_list as $key => $value) {
-        $c_member = db_common_c_member4c_member_id_LIGHT($value['c_member_id']);
+        $c_member = db_member_c_member4c_member_id_LIGHT($value['c_member_id']);
         $blog_list[$key]['nickname'] = $c_member['nickname'];
     }
     return $blog_list;
@@ -121,7 +121,7 @@ function db_bookmark_diary_list_with_pager($c_member_id, $page_size, $page)
 
     $diary_list = db_get_all_page($sql, intval($page), intval($page_size));
     foreach ($diary_list as $key => $value) {
-        $diary_list[$key]['c_member'] = db_common_c_member4c_member_id_LIGHT($value['c_member_id']);
+        $diary_list[$key]['c_member'] = db_member_c_member4c_member_id_LIGHT($value['c_member_id']);
         $diary_list[$key]['count_comments'] = db_diary_count_c_diary_comment4c_diary_id($value['c_diary_id']);
     }
 
@@ -170,7 +170,7 @@ function db_bookmark_member_list($c_member_id, $limit = 0)
     }
 
     foreach ($result as $key => $value) {
-        $result[$key] = db_common_c_member4c_member_id_LIGHT($value['c_member_id']);
+        $result[$key] = db_member_c_member4c_member_id_LIGHT($value['c_member_id']);
         $result[$key]['friend_count'] = db_friend_count_friends($value['c_member_id']);
     }
     return $result;

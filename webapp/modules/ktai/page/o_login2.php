@@ -21,9 +21,7 @@ class ktai_page_o_login2 extends OpenPNE_Action
         // セッションが有効かどうか
         if (!$pre = db_member_c_ktai_address_pre4session($ses)) {
             // 無効の場合、login へリダイレクト
-            $c_member_secure = db_member_c_member_secure4c_member_id($c_member_id);
-            $p = array('kad' => t_encrypt($c_member_secure['ktai_address']));
-            openpne_redirect('ktai', 'page_o_login', $p);
+            openpne_redirect('ktai', 'page_o_login');
         }
 
         $this->set('ses', $ses);

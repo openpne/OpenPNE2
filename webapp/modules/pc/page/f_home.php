@@ -52,6 +52,10 @@ class pc_page_f_home extends OpenPNE_Action
         $this->set('c_member', $c_member);
         $c_diary_list = db_diary_get_c_diary_list4c_member_id($target_c_member_id, 5, $u);
         $this->set('c_diary_list', $c_diary_list);
+        if (OPENPNE_USE_ALBUM) {
+            // アルバム
+            $this->set('c_album_list', db_album_get_c_album_subject_list4c_member_id($target_c_member_id, 5, $u));
+        }
 
         // --- f_home, h_prof 共通処理
 
@@ -72,7 +76,7 @@ class pc_page_f_home extends OpenPNE_Action
         $this->set('user_count', db_commu_count_c_commu4c_member_id($target_c_member_id));
 
         $this->set('common_commu_count', count(db_common_commu_common_commu_id4c_member_id($target_c_member_id,$u)));
-        
+
         $c_commu_list = db_commu_c_commu_list4c_member_id_2($target_c_member_id, 9);
         $this->set('c_commu_list', $c_commu_list);
         $this->set('c_review_list', db_review_c_review_list4member($target_c_member_id, 5));

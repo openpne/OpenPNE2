@@ -14,11 +14,11 @@ class ktai_biz_do_fhg_biz_schedule_add extends OpenPNE_Action
         if (!$requests['target_id']) {
             $requests['target_id'] = $u;
         }
-        
+
         $requests['sc_b_year'] = $requests['sc_b_year'] + 2000;
 
         $biz_schedule_member = array();
- 
+
         if ($requests['sc_j_mem'] == 'my') {
             $biz_schedule_member = array($requests['target_id']);
         }
@@ -83,7 +83,7 @@ class ktai_biz_do_fhg_biz_schedule_add extends OpenPNE_Action
             $_REQUEST['msg'] = 'タイトルを入力してください。';
             openpne_forward('ktai_biz', 'page', "fh_biz_schedule_add");
             exit;
-        }   
+        }
         //---------------------
 
         $begin_date = $requests['sc_b_year'].'-'.$requests['sc_b_month'].'-'.$requests['sc_b_date'];

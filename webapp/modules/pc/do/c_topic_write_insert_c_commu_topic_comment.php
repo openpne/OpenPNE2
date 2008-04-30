@@ -18,10 +18,26 @@ class pc_do_c_topic_write_insert_c_commu_topic_comment extends OpenPNE_Action
         $tmpfile3 = $requests['image_filename3_tmpfile'];
         // ----------
 
+        // 添付ファイル
+        if (OPENPNE_USE_FILEUPLOAD) {
+            $filename4_tmpfile = $requests['filename4_tmpfile'];
+            $filename4_original_filename = $requests['filename4_original_filename'];
+            
+            if ($filename4_tmpfile) {
+                // 拡張子制限
+                if (!util_check_file_extention($filename4_original_filename)) {
+                    $_REQUEST['target_c_commu_topic_id'] = $c_commu_topic_id;
+                    $_REQUEST['err_msg'] = sprintf('アップロードできるファイルの種類は(%s)です', util_get_file_allowed_extensions('string'));
+                    openpne_forward('pc', 'page', "c_topic_detail");
+                    exit;
+                }
+            }
+        }
+
         //--- 権限チェック
         //コミュニティ参加者
 
-        $c_topic = c_topic_detail_c_topic4c_commu_topic_id($c_commu_topic_id);
+        $c_topic = db_commu_c_topic4c_commu_topic_id($c_commu_topic_id);
         $c_commu_id = $c_topic['c_commu_id'];
 
         $status = db_common_commu_status($u, $c_commu_id);
@@ -49,10 +65,19 @@ class pc_do_c_topic_write_insert_c_commu_topic_comment extends OpenPNE_Action
         if ($tmpfile3) {
             $filename3 = image_insert_c_image4tmp("tc_{$insert_id}_3", $tmpfile3);
         }
+        if (OPENPNE_USE_FILEUPLOAD) {
+            // 添付ファイルをDBに入れる
+            if ($filename4_tmpfile) {
+                $filename4 = file_insert_c_file4tmp("tc_{$insert_id}_4", $filename4_tmpfile, $filename4_original_filename);
+            }
+        }
+
         t_image_clear_tmp(session_id());
+        t_file_clear_tmp(session_id());
 
         db_commu_update_c_commu_topic_comment_images($insert_id,
                 $filename1, $filename2, $filename3);
+        db_commu_update_c_commu_topic_comment_file($insert_id, $filename4);
 
         //お知らせメール送信(携帯へ)
         send_bbs_info_mail($insert_id, $u);

@@ -69,6 +69,7 @@ $GLOBALS['_OPENPNE_ADMIN_AUTH_ACTIONS'] = array(
 'page_update_c_free_page',
 'page_update_c_profile',
 'page_update_c_rank',
+'page_update_deco',
 'do_delete_c_banner',
 'do_delete_c_cmd',
 'do_delete_c_commu_category_parent',
@@ -121,6 +122,7 @@ $GLOBALS['_OPENPNE_ADMIN_AUTH_ACTIONS'] = array(
 'do_update_skin_image',
 'do_update_skin_theme',
 'do_update_top_banner_html',
+'do_update_c_deco',
 ),
 
 // メンバーリスト以外
@@ -150,6 +152,7 @@ $GLOBALS['_OPENPNE_ADMIN_AUTH_ACTIONS'] = array(
 'page_delete_commu',
 'page_diary_comment_list',
 'page_diary_list',
+'page_download_xml',
 'page_edit_admin_password',
 'page_edit_c_admin_config',
 'page_edit_c_admin_info',
@@ -192,6 +195,7 @@ $GLOBALS['_OPENPNE_ADMIN_AUTH_ACTIONS'] = array(
 'page_user_analysis_date_day',
 'page_user_analysis_date_month',
 'page_user_analysis_generation',
+'page_edit_deco',
 'do_delete_c_banner',
 'do_delete_c_cmd',
 'do_delete_c_commu_category_parent',
@@ -213,6 +217,7 @@ $GLOBALS['_OPENPNE_ADMIN_AUTH_ACTIONS'] = array(
 'do_delete_kakikomi_c_review',
 'do_delete_mail',
 'do_delete_skin_image',
+'do_download_xml',
 'do_edit_c_admin_info',
 'do_file_download',
 'do_import_c_member',
@@ -257,6 +262,7 @@ $GLOBALS['_OPENPNE_ADMIN_AUTH_ACTIONS'] = array(
 'do_update_skin_image',
 'do_update_skin_theme',
 'do_update_top_banner_html',
+'do_update_c_deco',
 ),
 );
 

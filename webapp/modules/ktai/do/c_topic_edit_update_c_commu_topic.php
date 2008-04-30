@@ -25,7 +25,7 @@ class ktai_do_c_topic_edit_update_c_commu_topic extends OpenPNE_Action
         //--- 権限チェック
         //トピック作成者 or コミュニティ管理者
 
-        $c_topic = c_topic_detail_c_topic4c_commu_topic_id($c_commu_topic_id);
+        $c_topic = db_commu_c_topic4c_commu_topic_id($c_commu_topic_id);
         $c_commu_id = $c_topic['c_commu_id'];
 
         if (!db_commu_is_c_topic_admin($c_commu_topic_id, $u) &&

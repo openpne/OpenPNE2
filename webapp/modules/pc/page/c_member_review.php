@@ -13,10 +13,8 @@ class pc_page_c_member_review extends OpenPNE_Action
         // --- リクエスト変数
         $c_commu_id = $requests['target_c_commu_id'];
         $page = $requests['page'];
-        $direc = $requests['direc'];
         // ----------
         $page_size=20;
-        $page += $direc;
 
         $this->set('inc_navi', fetch_inc_navi('c', $c_commu_id));
         list($c_member_review, $is_prev, $is_next, $total_num, $start_num, $end_num)

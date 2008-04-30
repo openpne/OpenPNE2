@@ -7,7 +7,7 @@
 /**
  * 管理用アカウントが存在するかどうか
  * setup が完了しているかどうかの判定に使う
- * 
+ *
  * @return bool 存在するかどうか
  */
 function db_admin_user_exists()
@@ -180,7 +180,7 @@ function do_common_c_pc_address_pre4sid($sid)
 
 /**
  * パスワードが正しいかどうか認証する
- * 
+ *
  * @param int $c_member_id
  * @param string $password 平文のパスワード
  * @return bool パスワードが正しいかどうか
@@ -188,14 +188,14 @@ function do_common_c_pc_address_pre4sid($sid)
 function db_common_authenticate_password($c_member_id, $password, $is_ktai = false)
 {
     $auth_config = get_auth_config($is_ktai);
-    
+
     if (OPENPNE_AUTH_MODE == 'slavepne' || OPENPNE_AUTH_MODE == 'pneid') {
         $username = db_member_username4c_member_id($c_member_id, $is_ktai);
     } else {
         $auth_config['options']['usernamecol'] = 'c_member_id';
         $username = $c_member_id;
     }
-    
+
     $storage = Auth::_factory($auth_config['storage'],$auth_config['options']);
     return $storage->fetchData($username, $password, false);
 }
@@ -379,7 +379,7 @@ function db_get_c_navi($navi_type = 'h')
 
 /**
  * SNSメンバー退会
- * 
+ *
  * @param int $c_member_id
  */
 function db_common_delete_c_member($c_member_id)
@@ -504,18 +504,18 @@ function db_common_delete_c_member($c_member_id)
     $sql = 'SELECT * FROM c_diary WHERE c_member_id = ?';
     $c_diary_list = db_get_all($sql, $single, 'main');
     foreach ($c_diary_list as $c_diary) {
-        image_data_delete($c_diary['image_filename_1']);
-        image_data_delete($c_diary['image_filename_2']);
-        image_data_delete($c_diary['image_filename_3']);
+        db_image_data_delete($c_diary['image_filename_1']);
+        db_image_data_delete($c_diary['image_filename_2']);
+        db_image_data_delete($c_diary['image_filename_3']);
 
         // c_diary_comment
         $sql = 'SELECT * FROM c_diary_comment WHERE c_diary_id = ?';
         $params = array(intval($c_diary['c_diary_id']));
         $c_diary_comment_list = db_get_all($sql, $params, 'main');
         foreach ($c_diary_comment_list as $c_diary_comment) {
-            image_data_delete($c_diary_comment['image_filename_1']);
-            image_data_delete($c_diary_comment['image_filename_2']);
-            image_data_delete($c_diary_comment['image_filename_3']);
+            db_image_data_delete($c_diary_comment['image_filename_1']);
+            db_image_data_delete($c_diary_comment['image_filename_2']);
+            db_image_data_delete($c_diary_comment['image_filename_3']);
         }
 
         $sql = 'DELETE FROM c_diary_comment WHERE c_diary_id = ?';
@@ -550,13 +550,13 @@ function db_common_delete_c_member($c_member_id)
     $sql = 'SELECT image_filename_1, image_filename_2, image_filename_3' .
         ' FROM c_member WHERE c_member_id = ?';
     $c_member = db_get_row($sql, $single, 'main');
-    image_data_delete($c_member['image_filename_1']);
-    image_data_delete($c_member['image_filename_2']);
-    image_data_delete($c_member['image_filename_3']);
+    db_image_data_delete($c_member['image_filename_1']);
+    db_image_data_delete($c_member['image_filename_2']);
+    db_image_data_delete($c_member['image_filename_3']);
 
     $sql = 'DELETE FROM c_member WHERE c_member_id = ?';
     db_query($sql, $single);
-    
+
     $sql = 'DELETE FROM c_username WHERE c_member_id = ?';
     db_query($sql, $single);
 }
@@ -564,7 +564,7 @@ function db_common_delete_c_member($c_member_id)
 /**
  * コミュニティ削除
  * 関連情報を合わせて削除する
- * 
+ *
  * @param int $c_commu_id
  */
 function db_common_delete_c_commu($c_commu_id)
@@ -578,7 +578,7 @@ function db_common_delete_c_commu($c_commu_id)
     $c_commu = db_get_row($sql, $single);
 
     // 画像削除
-    image_data_delete($c_commu['image_filename']);
+    db_image_data_delete($c_commu['image_filename']);
 
     // c_commu_admin_confirm
     $sql = 'DELETE FROM c_commu_admin_confirm WHERE c_commu_id = ?';
@@ -607,9 +607,9 @@ function db_common_delete_c_commu($c_commu_id)
         $params = array(intval($topic['c_commu_topic_id']));
         $topic_comment_list = db_get_all($sql, $params);
         foreach ($topic_comment_list as $topic_comment) {
-            image_data_delete($topic_comment['image_filename1']);
-            image_data_delete($topic_comment['image_filename2']);
-            image_data_delete($topic_comment['image_filename3']);
+            db_image_data_delete($topic_comment['image_filename1']);
+            db_image_data_delete($topic_comment['image_filename2']);
+            db_image_data_delete($topic_comment['image_filename3']);
             db_file_delete_c_file($topic_comment['filename']);
         }
 
@@ -714,7 +714,7 @@ function db_delete_c_skin_filename($skinname)
     $sql = 'SELECT * FROM c_skin_filename WHERE skinname = ?';
     $params = array(strval($skinname));
     if ($skin_filename = db_get_row($sql, $params)) {
-        image_data_delete($skin_filename['filename']);
+        db_image_data_delete($skin_filename['filename']);
         $sql = 'DELETE FROM c_skin_filename WHERE skinname = ?';
         return db_query($sql, $params);
     } else {
@@ -818,8 +818,12 @@ function db_replace_c_navi($navi_type, $sort_order, $url, $caption)
 }
 
 //小窓の使用範囲をチェック
-function db_is_use_cmd($src, $type)
+function db_is_use_cmd($src, $type = '')
 {
+    if (!$type) {  // type の指定がない場合は小窓を有効にする
+        return true;
+    }
+
     $sql = 'SELECT * FROM c_cmd WHERE name = ?';
     $params = array(strval($src));
     $c_cmd = db_get_row($sql, $params);
@@ -875,99 +879,33 @@ function db_c_holiday_list4date($m, $d)
     return db_get_col($sql, $params);
 }
 
-
-// SNSのデータを取得
-function db_get_sns_info($type = '', $order = '', $num = '')
+function db_decoration_enable_list()
 {
-    // デフォルト
-    if (empty($type)) {
-        $type = 'member';
-    }
-    if (empty($order)) {
-        $order = 'new';
-    }
-    if (empty($num)) {
-        $num = 5;
+    $sql = 'SELECT tagname,is_enabled FROM c_config_decoration';
+    $decoration_enable_list = db_get_all($sql);
+
+    $result = array();
+    foreach ($decoration_enable_list as $value) {
+        $tagname = strtr($value['tagname'], ':', '_');
+        $result[$tagname] = $value['is_enabled'];
     }
 
-    switch ($type) {
-        case 'member':
-            $sql = 'SELECT c_member_id, nickname' .
-                   ' FROM c_member';
-            // オーダー
-            switch ($order) {
-                case 'new':
-                    $sql .= ' ORDER BY r_date DESC';
-                break;
-                case 'random':
-                    $sql .= ' ORDER BY RAND()';
-                break;
-            }
-            $list = db_get_all_limit($sql, 0, intval($num));
-        break;
-        case 'diary':
-            $sql = 'SELECT c_diary_id, subject, c_member_id' .
-                   ' FROM c_diary' .
-                   ' WHERE public_flag = \'public\'';
-            // オーダー
-            switch ($order) {
-                case 'new':
-                    $sql .= ' ORDER BY r_datetime DESC';
-                break;
-                case 'random':
-                    $sql .= ' ORDER BY RAND()';
-                break;
-            }
-            $list = db_get_all_limit($sql, 0, intval($num));
-            // 日記のコメント数と日記作成者のニックネーム
-            foreach ($list as $key => $item) {
-                $tmp = db_member_c_member4c_member_id_LIGHT($item['c_member_id']);
-                $list[$key]['nickname'] = $tmp['nickname'];
-                $list[$key]['num_comment'] = db_diary_count_c_diary_comment4c_diary_id($item['c_diary_id']);
-            }
-        break;
-        case 'commu':
-            $sql = 'SELECT c_commu_id, name, public_flag' .
-                   ' FROM c_commu' .
-                   ' WHERE public_flag = \'public\'';
-            // オーダー
-            switch ($order) {
-                case 'new':
-                    $sql .= ' ORDER BY r_datetime DESC';
-                break;
-                case 'random':
-                    $sql .= ' ORDER BY RAND()';
-                break;
-            }
-            $list = db_get_all_limit($sql, 0, intval($num));
-            foreach ($list as $key => $item) {
-                $list[$key]['num_member'] = _db_count_c_commu_member_list4c_commu_id($item['c_commu_id']);
-            }
-        break;
-        case 'topic':
-            $sql = 'SELECT ct.c_commu_topic_id, ct.name, c.name as commu_name' .
-                   ' FROM c_commu_topic as ct, c_commu as c' .
-                   ' WHERE c.public_flag = \'public\'' .
-                   ' AND c.c_commu_id = ct.c_commu_id';
-            // オーダー
-            switch ($order) {
-                case 'new':
-                    $sql .= ' ORDER BY ct.r_datetime DESC';
-                break;
-                case 'random':
-                    $sql .= ' ORDER BY RAND()';
-                break;
-            }
-            $list = db_get_all_limit($sql, 0, intval($num));
-            foreach ($list as $key => $value) {
-                $list[$key]['num_comment'] = db_commu_get_max_number4topic($value['c_commu_topic_id']);
-            }
-        break;
-
-    }
-
-    return $list;
+    return $result;
 }
 
+function db_decoration_is_enabled4tagname($tagname)
+{
+    $sql = 'SELECT is_enabled FROM c_config_decoration WHERE tagname = ?';
+    $is_enabled = db_get_one($sql, array($tagname));
+
+    return $is_enabled;
+}
+
+function db_etc_c_cmd_url4name($name)
+{
+    $sql = 'SELECT c_cmd.url FROM c_cmd INNER JOIN c_cmd_caster USING(c_cmd_caster_id)'
+         . ' WHERE name = ? ORDER BY c_cmd_caster.sort_order';
+    return db_get_one($sql, array($name));
+}
 
 ?>

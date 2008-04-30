@@ -26,7 +26,7 @@ function db_review_c_friend_review_list4c_member_id($c_member_id, $limit)
             ' ORDER BY c_review_comment.r_datetime DESC';
     $list = db_get_all_limit($sql, 0, $limit);
     foreach ($list as $key => $value) {
-        $list[$key] += db_common_c_member4c_member_id_LIGHT($value['c_member_id']);
+        $list[$key] += db_member_c_member4c_member_id_LIGHT($value['c_member_id']);
     }
     return $list;
 }
@@ -94,8 +94,8 @@ function do_review_add_search_result($keyword, $category_id, $page)
         return null;
     }
 
-    include_once 'Services/AmazonECS4.php';
-    $amazon =& new Services_AmazonECS4(AMAZON_TOKEN, AMAZON_AFFID);
+    require_once 'OpenPNE/Amazon.php';
+    $amazon =& new OpenPNE_Amazon(AMAZON_TOKEN, AMAZON_AFFID);
     $amazon->setLocale(AMAZON_LOCALE);
     $amazon->setBaseUrl(AMAZON_BASEURL);
     if (OPENPNE_USE_HTTP_PROXY) {
@@ -121,7 +121,7 @@ function do_review_add_search_result($keyword, $category_id, $page)
             $authors = array_unique($value['ItemAttributes']['Author']);
             $products['Item'][$key]['author'] = implode(', ', $authors);
         }
-        if (is_array($value['ItemAttributes']['Aritst'])) {
+        if (is_array($value['ItemAttributes']['Artist'])) {
             $artists = array_unique($value['ItemAttributes']['Artist']);
             $products['Item'][$key]['artist'] = implode(', ', $artists);
         }
@@ -136,8 +136,8 @@ function do_review_add_search_result($keyword, $category_id, $page)
 
 function db_review_write_product4asin($asin)
 {
-    include_once 'Services/AmazonECS4.php';
-    $amazon =& new Services_AmazonECS4(AMAZON_TOKEN, AMAZON_AFFID);
+    require_once 'OpenPNE/Amazon.php';
+    $amazon =& new OpenPNE_Amazon(AMAZON_TOKEN, AMAZON_AFFID);
     $amazon->setLocale(AMAZON_LOCALE);
     $amazon->setBaseUrl(AMAZON_BASEURL);
     if (OPENPNE_USE_HTTP_PROXY) {
@@ -160,7 +160,7 @@ function db_review_write_product4asin($asin)
         $authors = array_unique($product['ItemAttributes']['Author']);
         $product['author'] = implode(', ', $authors);
     }
-    if (is_array($product['ItemAttributes']['Aritst'])) {
+    if (is_array($product['ItemAttributes']['Artist'])) {
         $artists = array_unique($product['ItemAttributes']['Artist']);
         $product['artist'] = implode(', ', $artists);
     }
@@ -283,7 +283,7 @@ function db_review_list_product_c_review_list4c_review_id($c_review_id, $page, $
     $params = array(intval($c_review_id));
     $list = db_get_all_page($sql, $page, $page_size, $params);
 
-    $total_num = do_common_count_c_review_comment4c_review_id($c_review_id);
+    $total_num = db_review_count_c_review_comment4c_review_id($c_review_id);
     if ($total_num != 0) {
         $total_page_num =  ceil($total_num / $page_size);
         if ($page >= $total_page_num) {
@@ -316,7 +316,7 @@ function db_review_list_product_c_review_list4c_member_id($c_member_id, $page, $
     $list = db_get_all_page($sql, $page, $page_size, $params);
 
     foreach ($list as $key => $value) {
-        $list[$key]['write_num'] = do_common_count_c_review_comment4c_review_id($value['c_review_id']);
+        $list[$key]['write_num'] = db_review_count_c_review_comment4c_review_id($value['c_review_id']);
     }
 
     $sql = "SELECT COUNT(*) FROM c_review_comment WHERE c_member_id = ?";
@@ -363,11 +363,11 @@ function db_review_clip_list_h_review_clip_list4c_member_id($c_member_id, $page,
     $list = db_get_all_page($sql, $page, $page_size, $params);
 
     //カテゴリの表示名を取得
-    $category_disp = p_h_review_add_category_disp();
+    $category_disp = do_review_review_add_category_disp();
 
     //$lstに書き込み数 + カテゴリ名　を追加
     foreach ($list as $key => $value) {
-        $list[$key]['write_num'] = do_common_count_c_review_comment4c_review_id($value['c_review_id']);
+        $list[$key]['write_num'] = db_review_count_c_review_comment4c_review_id($value['c_review_id']);
         $list[$key]['category_disp'] = $category_disp[$value['c_review_category_id']];
     }
 
@@ -529,9 +529,9 @@ function do_c_review_add_insert_c_review($product, $c_review_category_id)
         'manufacturer' => $product['ItemAttributes']['Manufacturer'],
         'author'       => $product['author'],
         'c_review_category_id' => intval($c_review_category_id),
-        'image_small'  => $product['MediumImage']['URL'],
+        'image_small'  => $product['SmallImage']['URL'],
         'image_medium' => $product['MediumImage']['URL'],
-        'image_large'  => $product['MediumImage']['URL'],
+        'image_large'  => $product['LargeImage']['URL'],
         'url'          => $product['DetailPageURL'],
         'asin'         => $product['ASIN'],
         'list_price'   => $product['ListPrice']['FormattedPrice'],

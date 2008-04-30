@@ -61,7 +61,7 @@ em {
 
 <h1>SlavePNEによるマイボックス認証 セットアップガイド</h1>
 
-<p>最終更新日: 2008/01/30</p>
+<p>最終更新日: 2008/04/29</p>
 
 <h2>目次</h2>
 <ul>
@@ -82,7 +82,7 @@ em {
 
 <h2 id="section0">0. はじめに</h2>
 
-<p>この文書は、OpenPNE の SlavePNE 機能により<a href="http://www.docomo.biz/html/product/mybox/">マイボックスサービス</a>を利用したユーザ認証を実現する手順を示したものです。OpenPNE バージョン2.11.4 を基にして書かれています。</p>
+<p>この文書は、OpenPNE の SlavePNE 機能により<a href="http://www.docomo.biz/html/product/mybox/">マイボックスサービス</a>を利用したユーザ認証を実現する手順を示したものです。OpenPNE バージョン2.12 を基にして書かれています。</p>
 <p>OpenPNE でマイボックス認証をおこなうためには、あらかじめマイボックスサービスへの登録が必要です。また、OpenPNE 側の設定には以下の情報が必要となります。</p>
 <ul>
 <li>マイボックスが利用可能なドメイン</li>
@@ -102,12 +102,12 @@ em {
 <p>OpenPNE標準の設定に加えて、config.php の以下の項目を設定します。</p>
 
 <dl>
-<dt>IS_SLAVEPNE</dt>
-    <dd>SlavePNE（外部認証機能）を使用するかどうかの設定です。<br><em>true</em> に設定してください。</dd>
+<dt>OPENPNE_AUTH_MODE</dt>
+    <dd>OpenPNEの認証モードの設定です。<br><em>slavepne</em> に設定してください。</dd>
 <dt>_OPENPNE_AUTH_CONFIG</dt>
     <dd>SlavePNEを使用する場合の認証方式についての設定項目です。<br>
     次のように書き換えてください（ただし、<em>【マイボックスサービス番号】</em>と<em>【認証コード】</em>の部分は、あらかじめ用意しているものに置き換えてください）。
-<pre>// IS_SLAVEPNEがtrueの場合のauthオプション
+<pre>// OPENPNE_AUTH_MODE がslavepneの場合のauthオプション
 $GLOBALS['_OPENPNE_AUTH_CONFIG'] = 
 array(
 'storage' =&gt; "Mybox",
@@ -134,7 +134,7 @@ if (is_null($_POST['username']) &amp;&amp; $_GET['key'] == 'mybox' &amp;&amp; !i
 <p>先に<a href="./OpenPNE_setup.html">MySQL環境用セットアップガイド</a>、<a href="./OpenPNE_setup_pgsql.html">PostgreSQL環境用セットアップガイド</a>の「6. 管理画面へのアクセス」の手順をおこなってください。</p>
 
 <h3 id="section6-1">6-1. マイボックス認証専用のログインページを作成する</h3>
-<p>管理画面上部の「お知らせ・規約設定」メニューから「フリーページ管理」を選択し、フリーページ管理ページを表示します。</p>
+<p>管理画面上部の「デザイン」メニューから「フリーページ管理」を選択し、フリーページ管理ページを表示します。</p>
 <p>ページ下部の「フリーページの新規追加」にある「ページ内容」の欄に、以下の内容を記述してください。</p>
 <pre>以下のﾎﾞﾀﾝをｸﾘｯｸしてﾛｸﾞｲﾝしてください。
 &lt;center&gt;

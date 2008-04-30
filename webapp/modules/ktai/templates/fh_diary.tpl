@@ -1,7 +1,7 @@
 ({$inc_ktai_header|smarty:nodefaults})
 
 <table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_02})">
-<font color="#({$ktai_color_config.font_05})"><a name="top">({$target_diary_writer.nickname})さんの日記</a></font><br>
+<font color="#({$ktai_color_config.font_05})"><a name="top">({$target_diary_writer.nickname})さんの({$WORD_DIARY_HALF})</a></font><br>
 </td></tr>
 ({if $c_siteadmin})
 <tr><td align="left">
@@ -12,7 +12,7 @@
 <font color="#({$ktai_color_config.color_24})">({$target_c_diary.subject})</font><br>
 </td></tr></table>
 <a href="#({if $c_diary_comment})dc1({else})({if $is_prev || $is_next})pager({else})write({/if})({/if})"><font color="#({$ktai_color_config.font_08})">▼</font></a>({$target_c_diary.r_datetime|date_format:"%y/%m/%d %H:%M"})({if $target_diary_writer.c_member_id==$u}) [<a href="({t_url m=ktai a=page_h_diary_edit})&amp;target_c_diary_id=({$target_c_diary.c_diary_id})&amp;({$tail})">編集</a>][<a href="({t_url m=ktai a=page_fh_diary_delete_c_diary_confirm})&amp;target_c_diary_id=({$target_c_diary.c_diary_id})&amp;({$tail})">削除</a>]({/if})<br>
-({$target_c_diary.body|t_url2a_ktai|nl2br})
+({$target_c_diary.body|t_url2a_ktai|nl2br|t_decoration_ktai})
 <br>
 ({if $target_c_diary.image_filename_1})
 写真1を見る:[<a href="({t_img_url filename=$target_c_diary.image_filename_1 w=120 h=120 f=jpg})">小</a>/<a href="({t_img_url filename=$target_c_diary.image_filename_1 w=$smarty.const.OPENPNE_IMG_KTAI_MAX_WIDTH h=$smarty.const.OPENPNE_IMG_KTAI_MAX_HEIGHT f=jpg})">大</a>]<br>
@@ -29,9 +29,9 @@
 ({if $c_diary_id_prev || $c_diary_id_next})
 <hr color="#({$ktai_color_config.border_01})">
 <center>
-({if $c_diary_id_prev})<a href="({t_url m=ktai a=page_fh_diary})&amp;target_c_diary_id=({$c_diary_id_prev})&amp;({$tail})">前の日記</a>({/if})
+({if $c_diary_id_prev})<a href="({t_url m=ktai a=page_fh_diary})&amp;target_c_diary_id=({$c_diary_id_prev})&amp;({$tail})">前の({$WORD_DIARY_HALF})</a>({/if})
 ({if $c_diary_id_prev && $c_diary_id_next})&nbsp;({/if})
-({if $c_diary_id_next})<a href="({t_url m=ktai a=page_fh_diary})&amp;target_c_diary_id=({$c_diary_id_next})&amp;({$tail})">次の日記</a>({/if})
+({if $c_diary_id_next})<a href="({t_url m=ktai a=page_fh_diary})&amp;target_c_diary_id=({$c_diary_id_next})&amp;({$tail})">次の({$WORD_DIARY_HALF})</a>({/if})
 </center>
 ({/if})
 
@@ -39,7 +39,7 @@
 <hr color="#({$ktai_color_config.border_01})">
 <center>
 ｺﾒﾝﾄ（全({$total_num})件）<br>
-({$pager.start})～({$pager.end})件目を表示
+({$pager.start})番～({$pager.end})番を表示
 </center>
 
 <table width="100%">
@@ -69,13 +69,20 @@
 ({/foreach})
 </table>
 
-({if $is_prev || $is_next})
+({if $pager.page_prev || $pager.page_next})
 <center>
 <a name="pager"></a>
-({if $is_prev})<a href="({t_url m=ktai a=page_fh_diary})&amp;target_c_diary_id=({$target_c_diary.c_diary_id})&amp;page=({$page-1})&amp;({$tail})" accesskey="4">[i:128]前を表示</a>({/if})
-({if $is_prev && $is_next})&nbsp;({/if})
-({if $is_next})<a href="({t_url m=ktai a=page_fh_diary})&amp;target_c_diary_id=({$target_c_diary.c_diary_id})&amp;page=({$page+1})&amp;({$tail})" accesskey="6">[i:130]次を表示</a>({/if})
+({if $pager.page_prev})<a href="({t_url m=ktai a=page_fh_diary})&amp;target_c_diary_id=({$target_c_diary.c_diary_id})&amp;page=({$pager.page_prev})({if $requests.order == 'asc'})&amp;order=asc({/if})&amp;({$tail})" accesskey="4">[i:128]前を表示</a>({/if})
+({if $pager.page_prev && $pager.page_next})&nbsp;({/if})
+({if $pager.page_next})<a href="({t_url m=ktai a=page_fh_diary})&amp;target_c_diary_id=({$target_c_diary.c_diary_id})&amp;page=({$pager.page_next})({if $requests.order == 'asc'})&amp;order=asc({/if})&amp;({$tail})" accesskey="6">[i:130]次を表示</a>({/if})
 <br>
+({if $total_page_num > 1})
+({if $requests.order == 'asc'})
+<a href="({t_url m=ktai a=page_fh_diary})&amp;target_c_diary_id=({$target_c_diary.c_diary_id})&amp;({$tail})">最新を表示</a>
+({else})
+<a href="({t_url m=ktai a=page_fh_diary})&amp;target_c_diary_id=({$target_c_diary.c_diary_id})&amp;order=asc&amp;({$tail})">最初から表示</a>
+({/if})
+({/if})
 </center>
 ({/if})
 ({/if})
@@ -89,16 +96,20 @@
 <textarea name="body" rows="3"></textarea><br>
 <input type="submit" value="書き込む">
 </form>
+<br>
+[i:110]<a href="mailto:({$mail_address})">ﾒｰﾙ投稿</a><br>
+写真も添付できます。<br>
+<font color="#({$ktai_color_config.font_09})">※ﾒｰﾙ投稿では絵文字が反映されません</font>
 
 <hr color="#({$ktai_color_config.border_01})">
 <a name="menu"></a>
-[i:190]<a href="({t_url m=ktai a=page_fh_diary_list})&amp;target_c_member_id=({$target_diary_writer.c_member_id})&amp;({$tail})">({$target_diary_writer.nickname})さんの日記ﾘｽﾄ</a><br>
+[i:190]<a href="({t_url m=ktai a=page_fh_diary_list})&amp;target_c_member_id=({$target_diary_writer.c_member_id})&amp;({$tail})">({$target_diary_writer.nickname})さんの({$WORD_DIARY_HALF})ﾘｽﾄ</a><br>
 ({if $INC_NAVI_type=="f"})
 <a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$target_diary_writer.c_member_id})&amp;({$tail})">({$target_diary_writer.nickname})さんのﾄｯﾌﾟ</a><br>
 ({/if})
 ({if $target_diary_writer.c_member_id==$u})
 <table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_02})">
-<font color="#({$ktai_color_config.font_05})">日記検索</font><br>
+<font color="#({$ktai_color_config.font_05})">({$WORD_DIARY_HALF})検索</font><br>
 </td></tr>
 </table>
 ({t_form _method=get m=ktai a=page_fh_diary_list})

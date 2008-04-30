@@ -13,7 +13,6 @@ class ktai_page_h_com_find_result extends OpenPNE_Action
         // --- リクエスト変数
         $search_word = $requests['search_word'];
         $target_c_commu_category_id = $requests['target_c_commu_category_id'];
-        $direc = $requests['direc'];
         $page = $requests['page'];
         // ----------
 
@@ -21,7 +20,6 @@ class ktai_page_h_com_find_result extends OpenPNE_Action
         do_common_insert_search_log($u, $search_word);
 
         $page_size = 10;
-        $page += $direc;
 
         //ページ
         $this->set("page", $page);

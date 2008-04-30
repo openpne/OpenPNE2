@@ -4,7 +4,7 @@ class OpenPNE_KtaiEmoji_Common
 {
     var $carrier_id;
     var $value_list;
-    
+
     /**
      * constructor
      */
@@ -13,7 +13,7 @@ class OpenPNE_KtaiEmoji_Common
         $this->carrier_id = '';
         $this->value_list = array();
     }
-    
+
     function &getInstance()
     {
         static $singleton;
@@ -35,7 +35,7 @@ class OpenPNE_KtaiEmoji_Common
         }
         return $code;
     }
-    
+
     /**
      * 与えられた絵文字からその絵文字の絵文字コードのIDを取得する
      * 絵文字が存在しない場合はfalseを返す
@@ -44,7 +44,7 @@ class OpenPNE_KtaiEmoji_Common
     {
         return array_search($emoji, $this->value_list);
     }
-    
+
     /**
      * 与えられた絵文字コードのIDに対応する絵文字を取得する
      */

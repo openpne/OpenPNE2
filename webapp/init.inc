@@ -60,7 +60,6 @@ $GLOBALS['SMARTY'] = (array)$GLOBALS['SMARTY'] + array(
     'caching'           => false,
     'debugging'         => false,
     'debug_tpl'         => OPENPNE_WEBAPP_DIR . '/templates/debug.tpl',
-    'default_modifiers' => array('@t_escape'),
     'error_reporting'   => E_ALL ^ E_NOTICE,
 );
 $GLOBALS['SMARTY']['plugins_dir'] = array(
@@ -132,6 +131,8 @@ $GLOBALS['_OPENPNE_PC2KTAI_LINK_ACTION_LIST'] = array(
     'page_c_topic_detail'   => 'page_c_bbs',
     'page_c_event_detail'   => 'page_c_bbs',
     'page_f_home'           => 'page_f_home',
+    'page_fh_album'         => 'page_fh_album',
+    'page_fh_album_image_show' => 'page_fh_album_image_show',
 );
 
 ?>

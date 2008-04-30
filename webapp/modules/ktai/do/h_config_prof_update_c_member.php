@@ -24,7 +24,7 @@ class ktai_do_h_config_prof_update_c_member extends OpenPNE_Action
         //--- c_profile の項目をチェック
         $validator = new OpenPNE_Validator();
         $validator->addRequests($_REQUEST['profile']);
-        $validator->addRules($this->_getValidateRulesProfile());
+        $validator->addRules(util_get_validate_rules_profile('config'));
         if (!$validator->validate()) {
             $errors = array_merge($errors, $validator->getErrors());
         }
@@ -67,7 +67,7 @@ class ktai_do_h_config_prof_update_c_member extends OpenPNE_Action
             'nickname' => array(
                 'type' => 'string',
                 'required' => '1',
-                'caption' => 'ニックネーム',
+                'caption' => WORD_NICKNAME,
                 'max' => '40',
             ),
             'birth_year' => array(
@@ -91,39 +91,18 @@ class ktai_do_h_config_prof_update_c_member extends OpenPNE_Action
                 'max' => '31',
             ),
             'public_flag_birth_year' => array(
-                'type' => 'string',
+                'type' => 'regexp',
+                'regexp' => '/^(public|friend|private)$/',
+                'required' => '1',
+                'caption' => '公開範囲',
+            ),
+            'public_flag_birth_month_day' => array(
+                'type' => 'regexp',
+                'regexp' => '/^(public|friend|private)$/',
+                'required' => '1',
+                'caption' => '公開範囲',
             ),
         );
-    }
-
-    function _getValidateRulesProfile()
-    {
-        $rules = array();
-        $profile_list = db_member_c_profile_list4null();
-        foreach ($profile_list as $profile) {
-            if ($profile['disp_config']) {
-                $rule = array(
-                    'type' => 'int',
-                    'required' => $profile['is_required'],
-                    'caption' => $profile['caption'],
-                );
-                switch ($profile['form_type']) {
-                case 'text':
-                case 'textlong':
-                case 'textarea':
-                    $rule['type'] = $profile['val_type'];
-                    $rule['regexp'] = $profile['val_regexp'];
-                    $rule['min'] = $profile['val_min'];
-                    ($profile['val_max']) and $rule['max'] = $profile['val_max'];
-                    break;
-                case 'checkbox':
-                    $rule['is_array'] = '1';
-                    break;
-                }
-                $rules[$profile['name']] = $rule;
-            }
-        }
-        return $rules;
     }
 }
 

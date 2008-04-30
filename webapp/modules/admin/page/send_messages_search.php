@@ -38,7 +38,7 @@ class admin_page_send_messages_search extends OpenPNE_Action
             5 => "未ログイン",
         );
         $v['select_last_login'] = $select_last_login;
-        
+
         $this->set($v);
 
         return 'success';

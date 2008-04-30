@@ -46,7 +46,7 @@ class pc_page_h_ranking extends OpenPNE_Action
             break;
         case "ashiato":
         default:
-            $list = pne_cache_call(3600, 'p_h_ranking_c_ashiato_ranking', $limit);
+            $list = pne_cache_call(3600, 'db_ranking_c_ashiato_ranking', $limit);
             foreach ($list as $key => $value) {
                 $list[$key]['c_member'] = db_member_c_member_with_profile($value['c_member_id']);
                 if (!$list[$key]['c_member']) {

@@ -16,9 +16,9 @@ class admin_page_edit_point extends OpenPNE_Action
         if (!OPENPNE_USE_POINT_RANK || (!OPENPNE_IS_POINT_ADMIN && $requests['target_c_member_id'] == 1)) {
             admin_client_redirect('top', '指定されたページにはアクセスできません');
         }
-        
-        $lite = db_common_c_member4c_member_id_LIGHT($requests['target_c_member_id']);
-        $prof = db_common_c_member_profile_list4c_member_id($requests['target_c_member_id'],"private");
+
+        $lite = db_member_c_member4c_member_id_LIGHT($requests['target_c_member_id']);
+        $prof = db_member_c_member_profile_list4c_member_id($requests['target_c_member_id'],"private");
         $point = intval($prof['PNE_POINT']['value']);
 
         $item = array(

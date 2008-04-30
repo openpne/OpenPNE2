@@ -18,14 +18,12 @@ class admin_page_access_analysis_target_commu extends OpenPNE_Action
         $month_flag = $requests['month_flag'];
         $page_name = $requests['page_name'];
         $page = $requests['page'];
-        $direc = $requests['direc'];
         $orderby = $requests['orderby'];
         $orderby1 = $requests['orderby1'];
         $orderby2 = $requests['orderby2'];
         //----------リクエスト変数-------------//
-        
+
         $page_size = 10;
-        $page += $direc;
         if ($orderby1) {
             $orderby = $orderby1;
         } elseif ($orderby2) {
@@ -60,7 +58,7 @@ class admin_page_access_analysis_target_commu extends OpenPNE_Action
         $this->set("total_num",$total_num);
         $this->set('start_num', $start_num);
         $this->set('end_num', $end_num);
-        
+
         $v = array();
 
         $v['SNS_NAME'] = SNS_NAME;

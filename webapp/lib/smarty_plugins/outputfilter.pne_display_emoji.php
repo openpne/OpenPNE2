@@ -1,20 +1,26 @@
 <?php
+/**
+ * @copyright 2005-2008 OpenPNE Project
+ * @license   http://www.php.net/license/3_01.txt PHP License 3.01
+ */
 
 /**
  * 「[c:NNN]」形式の絵文字コードをHTML表示用に変換するアウトプットフィルタ
  */
 function smarty_outputfilter_pne_display_emoji($tpl_output, &$smarty)
 {
-    global $list;
     $list = array();
 
     if (empty($GLOBALS['__Framework']['carrier'])) {
-        // input, textarea を退避
-        $regexp = '/<input[^>]+>/is';
-        $tpl_output = preg_replace_callback($regexp, '_smarty_outputfilter_pne_display_emoji_callback', $tpl_output);
+        // input, textarea, option, img を退避
+        $patterns = array(
+            '/<input[^>]+>/is',
+            '/<textarea.*?<\/textarea>/is',
+            '/<option.*?<\/option>/is',
+            '/<img[^>]+>/is',
+        );
 
-        $regexp = '/<textarea[^>]+>.*?<\/textarea>/is';
-        $tpl_output = preg_replace_callback($regexp, '_smarty_outputfilter_pne_display_emoji_callback', $tpl_output);
+        list ($list, $tpl_output) = _smarty_outputfilter_pne_display_emoji_replace($patterns, $tpl_output);
     }
 
     // 絵文字変換
@@ -28,16 +34,24 @@ function smarty_outputfilter_pne_display_emoji($tpl_output, &$smarty)
     return $tpl_output;
 }
 
-function _smarty_outputfilter_pne_display_emoji_callback($matches)
+function _smarty_outputfilter_pne_display_emoji_replace($patterns, $subject)
 {
-    global $list;
-    static $i = 0;
+    $i = 0;
+    $list = array();
 
-    $replacement = '<<<NOEMOJI:'.$i.'>>>';
-    $list[$replacement] = $matches[0];
-    $i++;
+    foreach ($patterns as $pattern) {
+        if (preg_match_all($pattern, $subject, $matches)) {
+            foreach ($matches[0] as $match) {
+                $replacement = '<<<NOEMOJI:'.$i.'>>>';
+                $list[$replacement] = $match;
+                $i++;
+            }
+        }
+    }
 
-    return $replacement;
+    $subject = str_replace(array_values($list), array_keys($list), $subject);
+
+    return array($list, $subject);
 }
 
 ?>

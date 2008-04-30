@@ -12,13 +12,13 @@ require_once 'Auth/Container.php';
 
 /**
  * OpenPNE でマイボックス認証をおこなうための storage driver
- * 
+ *
  * このコンテナでは xpid と pswd のふたつのオプションを指定する。
  *    + xpid : マイボックスサービス番号
  *    + pswd : 認証コード
- * 
+ *
  * IP側ユーザ番号については、事前に発行しておく必要がある。
- * 
+ *
  * マイボックス認証をおこなうためのログインフォームは以下のようなHTMLになる。
  * <form action="http://sns.example.com/" method="get">
  *     <input type="hidden" name="m" value="ktai">
@@ -26,14 +26,14 @@ require_once 'Auth/Container.php';
  *     <input type="hidden" name="key" value="mybox">
  *     <input type="submit" value="Login">
  * </form>
- * 
+ *
  * ただし PEAR::Auth が POST リクエスト前提で設計されているため、PEAR::Auth の
  * コンストラクタが呼ばれるより前（たとえば config.php）に以下のようなコードを
  * 記述しておくこと。
  * if (is_null($_POST['username']) && $_GET['key'] == 'mybox' && !is_null($_SERVER['HTTP_X_CUID'])) {
  *     $_POST['username'] = $_SERVER['HTTP_X_CUID'];
  * }
- * 
+ *
  * @package Auth
  * @author Kousuke Ebihara <ebihara@tejimaya.com>
  */
@@ -41,35 +41,35 @@ class Auth_Container_Mybox extends Auth_Container
 {
     /**
      * アプリケーション側から指定されるオプション
-     * 
+     *
      * @var array
      */
     var $options = array();
 
     /**
      * XPID（マイボックスサービス番号）
-     * 
+     *
      * @var string
      */
     var $xpid = '';
 
     /**
      * PSWD（認証コード）
-     * 
+     *
      * @var string
      */
     var $pswd = '';
 
     /**
      * CUID（IP側ユーザ番号）
-     * 
+     *
      * @var string
      */
     var $cuid = '';
 
     /**
      * Constructor for Mybox Container
-     * 
+     *
      * @param array $params
      */
     function Auth_Container_Mybox($params)
@@ -79,9 +79,9 @@ class Auth_Container_Mybox extends Auth_Container
 
     /**
      * マイボックス認証をおこなう
-     * 
+     *
      * $username には $_SERVER['HTTP_X_CUID'] の値が渡るようにする必要がある。
-     * 
+     *
      * @param string $username
      * @param string $password
      * @return bool

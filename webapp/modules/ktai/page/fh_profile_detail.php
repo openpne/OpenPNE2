@@ -32,7 +32,7 @@ class ktai_page_fh_profile_detail extends OpenPNE_Action
         //ターゲットのc_member
 
         $is_friend = db_friend_is_friend($u, $target_c_member_id);
-        if ($is_friend) {
+        if ($is_friend || $target_c_member_id == $u) {
             $target_c_member = db_member_c_member_with_profile($target_c_member_id, 'friend');
         } else {
             $target_c_member = db_member_c_member_with_profile($target_c_member_id, 'public');
@@ -50,7 +50,7 @@ class ktai_page_fh_profile_detail extends OpenPNE_Action
         $this->set("c_friend_list", db_friend_c_friend_list_random4c_member_id($target_c_member_id, 5));
 
         //参加コミュニティ最新書き込み５件
-        $this->set("c_commu_list", k_p_h_home_c_commu_list_lastupdate4c_member_id($target_c_member_id, 5));
+        $this->set("c_commu_list", db_commu_c_commu_list_lastupdate4c_member_id($target_c_member_id, 5));
 
         //共通コミュニティ
         $this->set('common_commu_count', count(db_common_commu_common_commu_id4c_member_id($target_c_member_id,$u)));

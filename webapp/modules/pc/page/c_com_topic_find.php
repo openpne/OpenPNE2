@@ -12,7 +12,6 @@ class pc_page_c_com_topic_find extends OpenPNE_Action
 
         // --- リクエスト変数
         $keyword = $requests['keyword'];
-        $direc = $requests['direc'];
         $page = $requests['page'];
         $type = $requests['type'];
         $c_commu_id = $requests['c_commu_id'];
@@ -28,7 +27,7 @@ class pc_page_c_com_topic_find extends OpenPNE_Action
         if (!db_commu_is_c_commu_view4c_commu_idAc_member_id($c_commu_id, $u)) {
             handle_kengen_error();
         }
-        
+
         //バグ回避のため全角空白を半角空白に統一
         $keyword = str_replace("　", " ", $keyword);
 
@@ -37,7 +36,6 @@ class pc_page_c_com_topic_find extends OpenPNE_Action
         $this->set('inc_navi', fetch_inc_navi('c', $c_commu_id));
 
         $page_size = 20;
-        $page = $page + $direc;
         $this->set('page', $page);
 
         //検索結果

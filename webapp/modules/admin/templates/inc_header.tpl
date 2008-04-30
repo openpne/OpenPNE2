@@ -1,4 +1,4 @@
-({assign var="title" value="`$smarty.const.SNS_NAME`管理画面"}) 
+({assign var="title" value="`$smarty.const.SNS_NAME`管理画面"})
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -9,6 +9,9 @@
 <link href="modules/admin/default.css" rel="stylesheet" type="text/css" media="all" />
 <script type="text/javascript" src="./js/prototype.js"></script>
 <script type="text/javascript" src="./modules/admin/default.js"></script>
+({if $custom_header})
+({$custom_header|smarty:nodefaults})
+({/if})
 <script type="text/javascript" src="./js/pne.js"></script>
 </head>
 <body id="admin_page_({$CURRENT_ACTION})">
@@ -60,12 +63,13 @@
 ({if $smarty.const.OPENPNE_USE_FILEUPLOAD})
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_file')})">アップロードファイルリスト</a></li>
 ({/if})
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('diary_list')})">日記管理</a></li>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('diary_comment_list')})">日記コメント管理</a></li>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('commu_list')})">コミュニティ管理</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('diary_list')})">({$WORD_DIARY})管理</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('diary_comment_list')})">({$WORD_DIARY})コメント管理</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('commu_list')})">({$WORD_COMMUNITY})管理</a></li>
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('topic_list')})">トピック・イベント管理</a></li>
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('topic_comment_list')})">トピック・イベントのコメント管理</a></li>
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('review_list')})">レビュー管理</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('download_xml')})">書き込みデータダウンロード</a></li>
 </ul>
 </li>
 
@@ -103,7 +107,8 @@
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('insert_html')})">HTML挿入</a></li>
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_entry_point')})">テンプレート挿入</a></li>
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_banner')})">バナー設定</a></li>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('make_cmd_tag')})">CMDタグ生成</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_admin_info')})">お知らせ・規約設定</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_free_page')})">フリーページ管理</a></li>
 </ul>
 </li>
 
@@ -117,9 +122,10 @@
 <li id="adminSNSConfig" onmouseover="menu('adminSNSConfig','adminSNSConfigCont')" onmouseout="menu('adminSNSConfig','adminSNSConfigCont')"><a class="tab" href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_admin_config')})">SNS設定</a>
 <ul id="adminSNSConfigCont" class="pull">
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_admin_config')})">SNS設定</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_admin_config_word')})">SNS内名称設定</a></li>
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_profile')})">プロフィール項目設定</a></li>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_category')})">コミュニティカテゴリ設定</a></li>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('manage_c_commu')})">初期コミュニティ設定</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_category')})">({$WORD_COMMUNITY})カテゴリ設定</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('manage_c_commu')})">初期({$WORD_COMMUNITY})設定</a></li>
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_holiday')})">祝日設定</a></li>
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_mail_send')})">メール送信設定</a></li>
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_mail')})">メール文言変更</a></li>
@@ -128,21 +134,35 @@
 ({/if})
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('limit_domain')})">招待メールドメイン制限</a></li>
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_cmd')})">CMD設定</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_cmd_caster')})">CMDキャスター設定</a></li>
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_api')})">API設定</a></li>
+({if $smarty.const.OPENPNE_USE_DECORATION})
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_deco')})">文字装飾設定</a></li>
+({/if})
+({if $smarty.const.OPENPNE_USE_ALBUM})
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_album_list')})">アルバム機能設定</a></li>
+({/if})
 </ul>
 </li>
 
-({****})
+</ul>
 
-<li id="adminInfoKiyaku" onmouseover="menu('adminInfoKiyaku','adminInfoKiyakuCont')" onmouseout="menu('adminInfoKiyaku','adminInfoKiyakuCont')"><a class="tab" href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_admin_info')})">お知らせ・規約設定</a>
-<ul id="adminInfoKiyakuCont" class="pull">
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_admin_info')})">お知らせ・規約設定</a></li>
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_free_page')})">フリーページ管理</a></li>
+({****************})
+({****************})
+<ul class="module">
+
+<li id="adminModule" onmouseover="menu('adminModule','adminModuleCont')" onmouseout="menu('adminModule','adminModuleCont')"><a class="tab" href="#">拡張機能</a>
+<ul id="adminModuleCont" class="pull">
+({foreach from=$enable_module_list item=item})
+<li><a href="?m=({$item.admin_menu.module})&amp;a=({$item.admin_menu.action})">({$item.admin_menu.caption|default:$item.general.name})</a></li>
+({/foreach})
+({if !$enable_module_list})
+<li><a href="#">（なし）</a></li>
+({/if})
 </ul>
 </li>
 
 </ul>
-
 ({****************})
 ({****************})
 

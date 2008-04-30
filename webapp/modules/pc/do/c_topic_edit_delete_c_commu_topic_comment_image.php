@@ -15,7 +15,7 @@ class pc_do_c_topic_edit_delete_c_commu_topic_comment_image extends OpenPNE_Acti
         $pic_delete = $requests['pic_delete'];
         // ----------
 
-        $c_topic = c_topic_detail_c_topic4c_commu_topic_id($c_commu_topic_id);
+        $c_topic = db_commu_c_topic4c_commu_topic_id($c_commu_topic_id);
 
         //--- 権限チェック
         //トピック作成者 or コミュニティ管理者
@@ -31,7 +31,7 @@ class pc_do_c_topic_edit_delete_c_commu_topic_comment_image extends OpenPNE_Acti
         }
         //---
 
-        image_data_delete($c_topic['image_filename'.$pic_delete]);
+        db_image_data_delete($c_topic['image_filename'.$pic_delete]);
 
         db_commu_delete_c_commu_topic_comment_image($c_commu_topic_id, $pic_delete);
 

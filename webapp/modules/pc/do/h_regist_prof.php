@@ -4,9 +4,6 @@
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
-/**
- * メールアドレス変更
- */
 class pc_do_h_regist_prof extends OpenPNE_Action
 {
     function execute($requests)
@@ -35,7 +32,7 @@ class pc_do_h_regist_prof extends OpenPNE_Action
         } else {
             $validator->addRequests($_REQUEST['profile']);
         }
-        $validator->addRules($this->_getValidateRulesProfile());
+        $validator->addRules(util_get_validate_rules_profile('regist'));
         if (!$validator->validate()) {
             $errors = array_merge($errors, $validator->getErrors());
         }
@@ -61,7 +58,7 @@ class pc_do_h_regist_prof extends OpenPNE_Action
         if (t_isFutureDate($prof['birth_day'], $prof['birth_month'], $prof['birth_year'])) {
             $errors[] = '生年月日を未来に設定することはできません';
         }
-        
+
         $prof['profile'] = $c_member_profile_list;
         if ($errors && $mode != "input") {
             $_REQUEST['msg'] = array_shift($errors);
@@ -69,7 +66,7 @@ class pc_do_h_regist_prof extends OpenPNE_Action
             $_SESSION['prof'] = $prof;
             unset($_SESSION['prof_req']);
         }
-        
+
         switch ($mode) {
         case "input":
             openpne_forward('pc', 'page', "h_regist_prof");
@@ -85,27 +82,25 @@ class pc_do_h_regist_prof extends OpenPNE_Action
         case "register":
             db_member_config_prof_new($u, $prof);
             db_member_update_c_member_profile($u, $c_member_profile_list);
-            db_member_update_password_query($u, $prof['c_password_query_id'], $prof['c_password_query_answer']);
             //管理画面で指定したコミュニティに強制参加
             $c_commu_id_list = db_commu_regist_join_list();
             foreach ($c_commu_id_list as $c_commu_id) {
                 db_commu_join_c_commu($c_commu_id, $u);
             }
             unset($_SESSION['prof']);
-            
+
             openpne_redirect('pc', 'page_h_home');
             break;
         }
     }
-    
-    
+
     function _getValidateRules()
     {
         return array(
             'nickname' => array(
                 'type' => 'string',
                 'required' => '1',
-                'caption' => 'ニックネーム',
+                'caption' => WORD_NICKNAME,
                 'max' => '40',
             ),
             'birth_year' => array(
@@ -129,51 +124,18 @@ class pc_do_h_regist_prof extends OpenPNE_Action
                 'max' => '31',
             ),
             'public_flag_birth_year' => array(
-                'type' => 'string',
-            ),
-            'c_password_query_id' => array(
-                'type' => 'int',
+                'type' => 'regexp',
+                'regexp' => '/^(public|friend|private)$/',
                 'required' => '1',
-                'caption' => '秘密の質問',
-                'required_error' => '秘密の質問を選択してください',
-                'min' => '1',
+                'caption' => '公開範囲',
             ),
-            'c_password_query_answer' => array(
-                'type' => 'string',
+            'public_flag_birth_month_day' => array(
+                'type' => 'regexp',
+                'regexp' => '/^(public|friend|private)$/',
                 'required' => '1',
-                'caption' => '秘密の質問の答え',
+                'caption' => '公開範囲',
             ),
         );
-    }
-
-    function _getValidateRulesProfile()
-    {
-        $rules = array();
-        $profile_list = db_member_c_profile_list4null();
-        foreach ($profile_list as $profile) {
-            if ($profile['disp_regist']) {
-                $rule = array(
-                    'type' => 'int',
-                    'required' => $profile['is_required'],
-                    'caption' => $profile['caption'],
-                );
-                switch ($profile['form_type']) {
-                case 'text':
-                case 'textlong':
-                case 'textarea':
-                    $rule['type'] = $profile['val_type'];
-                    $rule['regexp'] = $profile['val_regexp'];
-                    $rule['min'] = $profile['val_min'];
-                    ($profile['val_max']) and $rule['max'] = $profile['val_max'];
-                    break;
-                case 'checkbox':
-                    $rule['is_array'] = '1';
-                    break;
-                }
-                $rules[$profile['name']] = $rule;
-            }
-        }
-        return $rules;
     }
 }
 

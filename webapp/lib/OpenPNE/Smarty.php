@@ -11,7 +11,7 @@ class OpenPNE_Smarty extends Smarty
     var $templates_dir;
     var $output_charset;
 
-    function OpenPNE_Smarty($configs=array())
+    function OpenPNE_Smarty($configs = array(), $is_html = true)
     {
         $this->Smarty();
 
@@ -20,6 +20,25 @@ class OpenPNE_Smarty extends Smarty
             if (isset($this->$key)) {
                 $this->$key = $value;
             }
+        }
+
+        // 名称変更
+        $this->assign('WORD_FRIEND', WORD_FRIEND);
+        $this->assign('WORD_FRIEND_HALF', WORD_FRIEND_HALF);
+        $this->assign('WORD_MY_FRIEND', WORD_MY_FRIEND);
+        $this->assign('WORD_MY_FRIEND_HALF', WORD_MY_FRIEND_HALF);
+        $this->assign('WORD_DIARY', WORD_DIARY);
+        $this->assign('WORD_DIARY_HALF', WORD_DIARY_HALF);
+        $this->assign('WORD_COMMUNITY', WORD_COMMUNITY);
+        $this->assign('WORD_COMMUNITY_HALF', WORD_COMMUNITY_HALF);
+        $this->assign('WORD_NICKNAME', WORD_NICKNAME);
+        $this->assign('WORD_NICKNAME_HALF', WORD_NICKNAME_HALF);
+
+        if ($is_html) {
+            $this->default_modifiers = array('@t_escape');
+            $this->autoload_filters['pre'][] = 'pne_nodefaults';
+        } else {
+            $this->default_modifiers = array();
         }
     }
 

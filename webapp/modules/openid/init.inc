@@ -1,34 +1,24 @@
 <?php
 /**
- * @copyright 2005-2007 OpenPNE Project
+ * @copyright 2005-2008 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
-
-//デフォルトページ
-$GLOBALS['__Framework']['default_page'] = 'h_home';
-
-//<PCKTAI
-if (!OPENPNE_ENABLE_KTAI) {
-    // disable pc module
+if (!OPENPNE_IS_OPENID_SERVER) {
     exit;
 }
-//>
 
-//<OpenID
-if (!(defined('IS_OPENID_PROVIDER') && IS_OPENID_PROVIDER)) {
-    // disable pc module
-//    exit;
+$GLOBALS['__Framework']['default_page'] = 'home';
+
+// 定数定義
+if (!defined('Auth_OpenID_RAND_SOURCE')) {
+    define('Auth_OpenID_RAND_SOURCE', null);
 }
-//>
-
-function init_openid_page(&$smarty)
-{
-    
+if (!defined('OPENPNE_OPENID_URL_HEAD')) {
+    define('OPENPNE_OPENID_URL_HEAD', openpne_gen_url_head('openid', 'page_home') . 'openid/');
 }
 
-function init_openid_do()
-{
-}
+// ライブラリ読み込み
+require_once openpne_ext_search('openid/lib/util.php');
 
 ?>

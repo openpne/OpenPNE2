@@ -1,11 +1,11 @@
 ({$inc_header|smarty:nodefaults})
-({ext_include file="inc_subnavi_adminInfoKiyaku.tpl"})
+({ext_include file="inc_subnavi_adminDesign.tpl"})
 
 ({assign var="parent_page_name" value="フリーページ管理"})
 ({capture name=parent_page_url})?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_free_page')})({/capture})
 
 ({assign var="page_name" value="フリーページ追加"})
-({ext_include file="inc_tree_adminInfoKiyaku.tpl"})
+({ext_include file="inc_tree_adminDesign.tpl"})
 </div>
 
 ({*ここまで:navi*})

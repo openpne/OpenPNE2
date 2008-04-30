@@ -48,7 +48,7 @@ function pne_cache_call()
 function pne_cache_drop()
 {
     $arg_list = func_get_args();
-    
+
     if (OPENPNE_USE_FUNCTION_CACHE) {
         $cache =& get_cache_lite_function();
         return call_user_func_array(array(&$cache, 'drop'), $arg_list);
@@ -132,7 +132,7 @@ function cache_drop_c_commu($c_commu_id)
         cache_drop_c_commu_topic($c_commu_topic_id);
     }
 
-    $c_commu_member_total_num = _db_count_c_commu_member_list4c_commu_id($c_commu_id);
+    $c_commu_member_total_num = db_commu_count_c_commu_member_list4c_commu_id($c_commu_id);
     $c_commu_member_list = db_commu_c_member_list4c_commu_id($c_commu_id, 1, $c_commu_member_total_num);
     foreach ($c_commu_member_list[0] as $c_member) {
         cache_drop_c_commu_list4c_member_id($c_member['c_member_id']);

@@ -61,7 +61,7 @@ em {
 
 <h1>OpenPNE セットアップガイド</h1>
 
-<p>最終更新日: 2007/12/20</p>
+<p>最終更新日: 2008/04/29</p>
 
 <h2>目次</h2>
 <ul>
@@ -91,16 +91,20 @@ em {
 
 <h2 id="section0">0. はじめに</h2>
 
-<p>この文書は、OpenPNE バージョン2.10 を基にして書かれています。</p>
+<p>この文書は、OpenPNE バージョン2.12 を基にして書かれています。</p>
 <p>OpenPNE は以下のようなサーバ環境で動作させることを想定しています。</p>
 <dl>
 <dt>Webサーバ</dt>
 <dd>Apache を推奨</dd>
 <dt>PHP</dt>
-<dd>PHP 4.3.x / 5.0.x 以降
+<dd>PHP 4.3.3 以降 / 5.0.x / 5.1.x
 	<ul>
 	<li>PHP の mbstring 拡張モジュールを使用可能</li>
-	<li>PHP から GD ライブラリを使用可能 (JPEG/GIF/PNG サポート)</li>
+	<li>PHP の XML 拡張モジュールを使用可能</li>
+	<li>PHP の PCRE 拡張モジュールを使用可能 (UTF-8 サポート)</li>
+	<li>PHP から GD ライブラリを使用可能 (JPEG/GIF/PNG サポート)
+		<ul><li>ImageMagick を使う場合でも必要となります</li></ul>
+	</li>
 	<li>PHP の mcrypt 拡張モジュールの使用を推奨</li>
 	</ul></dd>
 <dt>データベースサーバ</dt>
@@ -125,7 +129,8 @@ em {
   │ │ │ ├ w76_h76 [777]
   │ │ │ ├ w120_h120 [777]
   │ │ │ ├ w180_h180 [777]
-  │ │ │ └ w240_h320 [777]
+  │ │ │ ├ w240_h320 [777]
+  │ │ │ └ w600_h600 [777]
   │ │ ├ jpg [777]
   │ │ │ ├ w_h [777]  
   │ │ │    ... [777]
@@ -193,7 +198,8 @@ $ chmod -R 0777 var/*
   │ │ ├ w76_h76 [777]
   │ │ ├ w120_h120 [777]
   │ │ ├ w180_h180 [777]
-  │ │ └ w240_h320 [777]
+  │ │ ├ w240_h320 [777]
+  │ │ └ w600_h600 [777]
   │ ├ jpg [777]
   │ │ ├ w_h [777]
   │ │    ... [777]
@@ -251,8 +257,8 @@ $ createdb -U username DBNAME -E 'UTF-8'
 
 <p>準備したデータベース(例:DBNAME)上で、以下のSQL文を順番に実行します。</p>
 <ol>
-<li><var>OPENPNE_DIR</var>/setup/sql/postgres74/install/install-2.10-create_tables.sql</li>
-<li><var>OPENPNE_DIR</var>/setup/sql/postgres74/install/install-2.10-insert_data.sql</li>
+<li><var>OPENPNE_DIR</var>/setup/sql/postgres74/install/install-2.12-create_tables.sql</li>
+<li><var>OPENPNE_DIR</var>/setup/sql/postgres74/install/install-2.12-insert_data.sql</li>
 </ol>
 
 <p>PNEBIZを使用する場合は上記に加えて、以下のSQL文を実行してください。</p>
@@ -268,8 +274,8 @@ $ createdb -U username DBNAME -E 'UTF-8'
 
 (2) OpenPNEセットアップ用SQL実行
     $ cd setup/sql/postgres74/install/
-    $ psql DBNAME -U username -f install-2.10-create_tables.sql
-    $ psql DBNAME -U username -f install-2.10-insert_data.sql
+    $ psql DBNAME -U username -f install-2.12-create_tables.sql
+    $ psql DBNAME -U username -f install-2.12-insert_data.sql
 
 (3) PNEBIZ用SQL実行 (オプション)
     $ cd ../option
@@ -319,6 +325,7 @@ $ createdb -U username DBNAME -E 'UTF-8'
 <tr><td>日記写真変更</td><td>bi<var>XXX</var>-<var>YYY</var>@MAIL_SERVER_DOMAIN</td><td>bi<var>XXX</var>@MAIL_SERVER_DOMAIN</td></tr>
 <tr><td>コミュニティ写真変更</td><td>ci<var>XXX</var>-<var>YYY</var>@MAIL_SERVER_DOMAIN</td><td>ci<var>XXX</var>@MAIL_SERVER_DOMAIN</td></tr>
 <tr><td>トピック・イベント写真変更</td><td>ti<var>XXX</var>-<var>YYY</var>@MAIL_SERVER_DOMAIN</td><td>ti<var>XXX</var>@MAIL_SERVER_DOMAIN</td></tr>
+<tr><td>日記コメントメール投稿</td><td>bc<var>XXX</var>-<var>YYY</var>@MAIL_SERVER_DOMAIN</td><td>bc<var>XXX</var>@MAIL_SERVER_DOMAIN</td></tr>
 </table>
 <ul>
 <li><var>XXX</var> には数字。</li>

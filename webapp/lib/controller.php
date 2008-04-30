@@ -207,7 +207,12 @@ function openpne_forward($module, $type = '', $action = '', $errors = array())
     $result = $action_obj->execute($requests);
     if ($result == 'success') {
         send_nocache_headers();
-        $smarty->ext_display("{$action}.tpl");
+        if ($smarty->ext_search($smarty->templates_dir . '/common/layout.tpl', $place)) {
+            $smarty->assign('op_content', $smarty->ext_fetch("{$action}.tpl"));
+            $smarty->ext_display('common/layout.tpl');
+        } else {
+            $smarty->ext_display("{$action}.tpl");
+        }
     }
     // ----------------------------------------------
 
@@ -279,10 +284,10 @@ function openpne_ext_search($path)
 /**
  * モジュール名を取得
  * 空の場合はデフォルトモジュールを返す
- * 
+ *
  * 間違ったモジュール名を指定した
  * デフォルトモジュールが存在しない場合は false
- * 
+ *
  * @param string $module module name
  */
 function _check_module($module)
@@ -356,10 +361,10 @@ function send_nocache_headers()
             // no-cache
             // 日付が過去
             header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
-    
+
             // 常に修正されている
             header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
-    
+
             // HTTP/1.1
             header('Cache-Control: no-store, no-cache, must-revalidate');
             header('Cache-Control: post-check=0, pre-check=0', false);

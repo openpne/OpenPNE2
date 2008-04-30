@@ -21,10 +21,7 @@ class ktai_do_c_edit_image_delete_c_commu_image extends OpenPNE_Action
 
         //--- 権限チェック
         $status = db_common_commu_status($u, $target_c_commu_id);
-        if (!$status['is_commu_admin']) {
-            handle_kengen_error();
-        }
-        if ($status['is_commu_sub_admin']) {
+        if (!$status['is_commu_admin'] && !$status['is_commu_sub_admin']) {
             handle_kengen_error();
         }
         //---
@@ -33,7 +30,7 @@ class ktai_do_c_edit_image_delete_c_commu_image extends OpenPNE_Action
             handle_kengen_error();
         }
 
-        image_data_delete($c_commu['image_filename']);
+        db_image_data_delete($c_commu['image_filename']);
 
         db_commu_delete_c_commu_image_filename($target_c_commu_id);
 

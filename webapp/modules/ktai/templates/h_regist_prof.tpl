@@ -7,7 +7,7 @@
 ({t_form m=ktai a=do_h_regist_prof})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
 ({capture name="nick"})
-<font color="#({$ktai_color_config.font_06})">ﾆｯｸﾈｰﾑ：</font><font color="#({$ktai_color_config.font_09})">*</font><br>
+<font color="#({$ktai_color_config.font_06})">({$WORD_NICKNAME_HALF})：</font><font color="#({$ktai_color_config.font_09})">*</font><br>
 <input type="text" name="nickname"><br>
 <br>
 ({/capture})
@@ -34,6 +34,12 @@
     <option value="({$item})">({$item})
     ({/foreach})
 </select>日<br>
+<select name="public_flag_birth_month_day">
+    ({foreach from=$public_flags key=key item=item})
+    <option value="({$key})"({if $c_member.public_flag_birth_month_day == $key}) selected="selected"({/if})>({$item})
+    ({/foreach})
+</select><br>
+<br>
 ({/capture})
 
 ({foreach from=$profile_list item=profile})
@@ -64,7 +70,7 @@
 ({if $profile.disp_regist})
     <font color="#({$ktai_color_config.font_06})">({$profile.caption})：</font>
     ({if $profile.is_required})<font color="#({$ktai_color_config.font_09})">*</font>({/if})<br>
-    
+
     ({if $profile.form_type == 'text'})
         <input type="text" name="profile[({$profile.name})]" value="({$c_member.profile[$profile.name].value})">
     ({elseif $profile.form_type == 'textlong'})
@@ -110,18 +116,6 @@
 ({if !$_cnt_birth})({$smarty.capture.birth|smarty:nodefaults})({/if})
 ({/if})
 
-<br>
-<font color="#({$ktai_color_config.font_06})">秘密の質問：</font><font color="#({$ktai_color_config.font_09})">*</font><br>
-<select name="c_password_query_id">
-    <option value="0">選択してください
-    ({foreach from=$password_query_list key=key item=item})
-    <option value="({$key})">({$item})
-    ({/foreach})
-</select><br>
-<br>
-<font color="#({$ktai_color_config.font_06})">秘密の質問の答え：</font><font color="#({$ktai_color_config.font_09})">*</font><br>
-<input type="text" name="password_query_answer" value=""><br>
-<font color="#({$ktai_color_config.font_09})">※ﾊﾟｽﾜｰﾄﾞを忘れた場合の確認に使用します。</font>
 <hr color="#({$ktai_color_config.border_01})">
 <center>
 <input type="submit" value=" 登録 ">

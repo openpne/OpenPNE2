@@ -12,17 +12,15 @@ class pc_page_h_review_list_product extends OpenPNE_Action
 
         // --- リクエスト変数
         $c_review_id = $requests['c_review_id'];
-        $direc = $requests['direc'];
         $page = $requests['page'];
         // ----------
         $page_size = 30;
-        $page = $page + $direc;
 
         $c_review = db_review_list_product_c_review4c_review_id($c_review_id);
         if (!$c_review) {
             handle_kengen_error();
         }
-        
+
         $this->set('inc_navi', fetch_inc_navi('h'));
         $this->set('c_review', $c_review);
 

@@ -5,7 +5,7 @@
  */
 
 /***
- * 
+ *
  */
 class admin_do_update_c_admin_config_use_ktai_logo extends OpenPNE_Action
 {

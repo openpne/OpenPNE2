@@ -31,7 +31,7 @@ define('MAIL_SERVER_DOMAIN', 'mail.example.com');
 // デバッグモード
 // 0: off ... エラー非表示、エラーログを記録する
 // 1: on  ... エラー表示、エラーログを記録しない
-// 2: on  ... 1 + Smartyデバッグコンソール 
+// 2: on  ... 1 + Smartyデバッグコンソール
 define('OPENPNE_DEBUGGING', 1);
 
 // 無効にするモジュール
@@ -52,11 +52,11 @@ $GLOBALS['_OPENPNE_MAINTENANCE_MODULES'] = array('admin');
 
 // Crypt_Blowfish ライブラリの旧バージョン使用設定
 // 2.2以前からのアップグレードでログインできないなどの
-//暗号化まわりの不具合が起こった場合はtrueに設定してください
+// 暗号化まわりの不具合が起こった場合はtrueに設定してください
 define('OPENPNE_USE_OLD_CRYPT_BLOWFISH', false);
 
 // ファンクションキャッシュ使用設定
-//有効にした場合は、最新情報の表示に遅延が起こることがあります
+// 有効にした場合は、最新情報の表示に遅延が起こることがあります
 define('OPENPNE_USE_FUNCTION_CACHE', false);
 
 // このオプションを有効にするためにはOPENPNE_USE_FUNCTION_CACHEをtrueにする必要があります。
@@ -307,7 +307,7 @@ if (OPENPNE_IMG_CACHE_PUBLIC) {
 
 // 画像変換時に許可する解像度のリスト (幅x高さ)
 // (空の配列を指定すると無制限になります)
-$GLOBALS['_OPENPNE_IMG_ALLOWED_SIZE'] = array('76x76', '120x120', '180x180', '240x320');
+$GLOBALS['_OPENPNE_IMG_ALLOWED_SIZE'] = array('76x76', '120x120', '180x180', '240x320', '600x600');
 
 // 画像キャッシュのファイル名のprefix
 define('OPENPNE_IMG_CACHE_PREFIX', 'img_cache_');
@@ -414,7 +414,7 @@ mb_substitute_character("long");
 mb_substitute_character(0x3013);
 
 // Validatorで全角スペースを削除するかどうか
-// mb_ereg_replace でエラーが出る場合は false にしてください
+// Validatorでエラーが出る場合は false にしてください
 define('OPENPNE_TRIM_DOUBLEBYTE_SPACE', true);
 
 ///
@@ -504,6 +504,7 @@ define('SEND_MESSAGE_QUEUE_NUM', 10);
 define('OPENPNE_USE_CAPTCHA', true);
 
 // 認証モード設定
+// ※運用中のSNSで認証モードを変更すると既存のメンバーがログインできなくなります
 //  email    : メールアドレスとパスワードによるログイン
 //  pneid    : IDとパスワードによるログイン
 //  slavepne : 外部認証(SlavePNE機能)を使ったログイン
@@ -515,6 +516,11 @@ define('IS_SLAVEPNE_EMAIL_REGIST', true);
 // 招待メールに記載するURL
 define('SLAVEPNE_SYOUTAI_URL_PC', '');
 define('SLAVEPNE_SYOUTAI_URL_KTAI', '');
+
+// 外部認証時の「パスワードを忘れた方」のリンク先URL設定
+// URLを空にするとリンクが非表示になります
+define('SLAVEPNE_PASSWORD_QUERY_URL_PC', '');
+define('SLAVEPNE_PASSWORD_QUERY_URL_KTAI', '');
 
 // OPENPNE_AUTH_MODE がslavepneの場合のauthオプション
 $GLOBALS['_OPENPNE_AUTH_CONFIG'] = 
@@ -536,8 +542,8 @@ array(
     ),
 );
 
-//画像へのアクセスをSNS認証する
-//※画像静的化機能を用いている場合は利用できません
+// 画像へのアクセスをSNS認証する
+// ※画像静的化機能を用いている場合は利用できません
 define('CHECK_IMG_AUTH', false);
 
 // PC表示時にau/SoftBankの絵文字をDoCoMo絵文字に変換するかどうか
@@ -551,10 +557,7 @@ define('OPENPNE_SEND_NO_CACHE_HEADER', false);
 // 管理画面でURL・小窓変換機能を使用するかどうか
 define('OPENPNE_ADMIN_CONVERT_URL', true);
 
-//OpenIDのプロバイダとなるかどうか 
-define('IS_OPENID_PROVIDER', false); 
-
-//OpenIDの乱数用定義 
-define('Auth_OpenID_RAND_SOURCE', NULL); 
+// OpenID サーバ（プロバイダ）となるかどうか
+define('OPENPNE_IS_OPENID_SERVER', false);
 
 ?>

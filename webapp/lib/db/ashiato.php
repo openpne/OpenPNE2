@@ -7,7 +7,7 @@
 /**
  * あしあとリスト取得
  * 同一人物・同一日付のアクセスは最新の日時だけ
- * 
+ *
  * @param  int $c_member_id_to 訪問された人
  * @param  int $limit
  * @return array あしあとリスト
@@ -34,7 +34,7 @@ function db_ashiato_c_ashiato_list4c_member_id($c_member_id_to, $count)
     }
 
     foreach ($result as $key => $value) {
-        $c_member = db_common_c_member4c_member_id_LIGHT($value['c_member_id_from']);
+        $c_member = db_member_c_member4c_member_id_LIGHT($value['c_member_id_from']);
         $result[$key]['nickname'] = $c_member['nickname'];
     }
     return $result;
@@ -42,7 +42,7 @@ function db_ashiato_c_ashiato_list4c_member_id($c_member_id_to, $count)
 
 /**
  * 総あしあと数取得
- * 
+ *
  * @param  int $c_member_id 訪問された人
  * @return int あしあと数
  */
@@ -59,7 +59,7 @@ function db_ashiato_c_ashiato_num4c_member_id($c_member_id)
 
 /**
  * ashiato_mail_num取得
- * 
+ *
  * @param  int $c_member_id
  * @return int ashiato_mail_num
  */
@@ -106,9 +106,9 @@ function db_ashiato_insert_c_ashiato($c_member_id_to, $c_member_id_from)
         return false;
     }
 
-    if ($ashiato_mail_num = p_h_ashiato_ashiato_mail_num4c_member_id($c_member_id_to)) {
+    if ($ashiato_mail_num = db_ashiato_ashiato_mail_num4c_member_id($c_member_id_to)) {
         //総足あと数を取得
-        $ashiato_num = p_h_ashiato_c_ashiato_num4c_member_id($c_member_id_to);
+        $ashiato_num = db_ashiato_c_ashiato_num4c_member_id($c_member_id_to);
 
         //あしあとお知らせメールを送る
         if ($ashiato_num == $ashiato_mail_num) {
@@ -130,7 +130,7 @@ function db_ashiato_update_log($limit = 30)
     $c_member_id_list = db_get_col($sql);
 
     foreach ($c_member_id_list as $c_member_id) {
-        $disp = p_h_ashiato_c_ashiato_list4c_member_id($c_member_id, $limit);
+        $disp = db_ashiato_c_ashiato_list4c_member_id($c_member_id, $limit);
         if (!$disp) continue;
         $oldest_row = array_pop($disp);
 

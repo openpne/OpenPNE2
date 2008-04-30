@@ -4,13 +4,15 @@
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
-function admin_fetch_inc_header($display_navi = true)
+function admin_fetch_inc_header($display_navi = true, $custom_header = '')
 {
     $v['display_navi'] = $display_navi;
     $v['PHPSESSID'] = md5(session_id());
     $v['module_name'] = ADMIN_MODULE_NAME;
     $v['auth_type'] = admin_get_auth_type();
     $v['CURRENT_ACTION'] = $GLOBALS['__Framework']['current_action'];
+    $v['custom_header'] = $custom_header;
+    $v['enable_module_list'] = db_admin_enabled_module_config_list();
 
     $inc_smarty = new OpenPNE_Smarty($GLOBALS['SMARTY']);
     $inc_smarty->templates_dir = 'admin/templates';
@@ -84,7 +86,7 @@ function admin_insert_c_image($upfile_obj, $filename)
  * 引数 $tail は文字列と配列の両方を許容する。
  * 文字列を指定した場合、URLに $tail がそのまま付加される。
  * 配列を指定した場合、キーと要素を元にパラメータを生成し、URLに付加する。
- * 
+ *
  * @param string $p    リダイレクト先のページ
  * @param string $msg    エラーメッセージ
  * @param mixied $tail    URLに付加する文字列かパラメータ
@@ -154,7 +156,7 @@ function admin_api_is_ip($ip)
 
 /***
  * CMD（小窓）ディレクトリ内のCMDファイルリストを取得する
- * 
+ *
  * @return array CMDファイルリスト
  */
 function admin_get_cmd_file_list()

@@ -20,14 +20,25 @@ class pc_do_c_file_download extends OpenPNE_Action
 
         // --- リクエスト変数
         $c_commu_topic_id = $requests['target_c_commu_topic_id'];
+        $c_commu_topic_comment_id = $requests['target_c_commu_topic_comment_id'];
         // ----------
+
+        if (!$c_commu_topic_id && !$c_commu_topic_comment_id) {
+            handle_kengen_error();
+        }
+
+        if ($c_commu_topic_comment_id) {
+            $c_topic_comment = db_commu_c_commu_topic_comment4c_commu_topic_comment_id($c_commu_topic_comment_id);
+            $c_commu_id = $c_topic_comment['c_commu_id'];
+            $filename = $c_topic_comment['filename'];
+        } else {
+            $c_topic = db_commu_c_topic4c_commu_topic_id($c_commu_topic_id);
+            $c_commu_id = $c_topic['c_commu_id'];
+            $filename = $c_topic['filename'];
+        }
 
         //--- 権限チェック
         //コミュニティ参加者
-
-        $c_topic = c_topic_detail_c_topic4c_commu_topic_id($c_commu_topic_id);
-        $c_commu_id = $c_topic['c_commu_id'];
-
         $status = db_common_commu_status($u, $c_commu_id);
         if (!$status['is_bbs_view']) {
             handle_kengen_error();
@@ -39,7 +50,7 @@ class pc_do_c_file_download extends OpenPNE_Action
         }
 
         // ファイルが存在しない
-        $file = db_file_c_file4filename($c_topic['filename']);
+        $file = db_file_c_file4filename($filename);
         if (empty($file)) {
             handle_kengen_error();
         }

@@ -20,9 +20,9 @@ class OpenPNE_RSS
         $this->charset = $charset;
     }
 
-    function fetch($rss_url)
+    function create_simplepie_object($rss_url)
     {
-        $feed = new SimplePie();
+        $feed =& new SimplePie();
         if (OPENPNE_USE_HTTP_PROXY) {
             $proxy = OPENPNE_HTTP_PROXY_HOST . ":" . OPENPNE_HTTP_PROXY_PORT;
             $feed->set_proxy($proxy);
@@ -30,13 +30,45 @@ class OpenPNE_RSS
 
         $feed->set_feed_url($rss_url);
         $feed->set_cache_location(OPENPNE_RSS_CACHE_DIR);
-
         if (!(@$feed->init())) {
+            return false;
+        }
+
+        return $feed;
+    }
+
+    function get_feed_title($rss_url)
+    {
+        if (!$feed =& $this->create_simplepie_object($rss_url)) {
+            return false;
+        }
+
+        return @$feed->get_title();
+    }
+
+    function get_feed_description($rss_url)
+    {
+        if (!$feed =& $this->create_simplepie_object($rss_url)) {
+            return false;
+        }
+
+        return @$feed->get_description();
+    }
+
+    function fetch($rss_url, $is_get_feed_title = false)
+    {
+        if (!$feed =& $this->create_simplepie_object($rss_url)) {
             return false;
         }
 
         if (!($items = $feed->get_items())) {
             return false;
+        }
+
+        if ($is_get_feed_title) {
+            $feed_title = @$feed->get_title();
+        } else {
+            $feed_title = '';
         }
 
         $result = array();
@@ -45,6 +77,7 @@ class OpenPNE_RSS
             $links = $item->get_links();
             $description = $item->get_description();
             $date = @$item->get_date('Y-m-d H:i:s');
+            $enclosure = $item->get_enclosure();
 
             if (!$title) {
                 $title = '';
@@ -64,6 +97,10 @@ class OpenPNE_RSS
                 $date = '';
             }
 
+            if (!$enclosure) {
+                $enclosure = '';
+            }
+
             // エスケープされた文字列を元に戻す
             $trans_table = array_flip(get_html_translation_table(HTML_SPECIALCHARS, ENT_QUOTES));
             $trans_table['&#039;'] = "'";
@@ -76,9 +113,15 @@ class OpenPNE_RSS
                 'body'  => $this->convert_encoding($description),
                 'link'  => $link,
                 'date'  => $date,
+                'enclosure' => $enclosure,
             );
             $result[] = $f_item;
         }
+
+        if ($is_get_feed_title && $feed_title) {
+            return array($feed_title, $result);
+        }
+
         return $result;
     }
 

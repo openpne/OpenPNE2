@@ -15,7 +15,7 @@ class setup_do_setup extends OpenPNE_Action
     function execute($requests)
     {
         $errors = array();
-        if (OPENPNE_AUTH_MODE != 'slavepne' && $requests['password'] != $requests['password2']) {
+        if (OPENPNE_AUTH_MODE == 'email' && $requests['password'] != $requests['password2']) {
             $errors[] = 'パスワードが一致していません';
         }
         if ($requests['admin_password'] != $requests['admin_password2']) {
@@ -25,7 +25,18 @@ class setup_do_setup extends OpenPNE_Action
             $auth_config = get_auth_config(false);
             $storage = Auth::_factory($auth_config['storage'],$auth_config['options']);
             if (!$storage->fetchData($requests['username'], $requests['password'], false)){
-                $errors[] = 'ユーザIDまたはパスワードが一致しません';
+                $errors[] = 'ログインIDまたはパスワードが一致しません';
+            }
+        }
+        if (OPENPNE_AUTH_MODE == 'pneid') {
+            if (is_null($requests['username']) || $requests['username'] === '') {
+                $errors[] = 'ログインIDを入力してください';
+            } elseif (!preg_match('/^[a-zA-Z0-9][a-zA-Z0-9\-_]+[a-zA-Z0-9]$/i', $requests['username'])) {
+                $errors[] = 'ログインIDは4～30文字の半角英数字、記号（アンダーバー「_」、ハイフン「-」）で入力してください';
+            } elseif (mb_strwidth($requests['username'], 'UTF-8') < 4) {
+                $errors[] = "ログインIDは半角4文字以上で入力してください";
+            } elseif (mb_strwidth($requests['username'], 'UTF-8') > 30) {
+                $errors[] = "ログインIDは半角30文字以内で入力してください";
             }
         }
         if ($errors) {
@@ -49,11 +60,11 @@ class setup_do_setup extends OpenPNE_Action
             'regist_address' => t_encrypt($requests['pc_address']),
             'easy_access_id' => '',
         );
-        
+
         if (OPENPNE_AUTH_MODE == 'slavepne' && !IS_SLAVEPNE_EMAIL_REGIST) {
             $data['ktai_address'] = t_encrypt('1@ktai.example.com');
         }
-        
+
         db_insert('c_member_secure', $data);
 
         // c_admin_user
@@ -63,8 +74,8 @@ class setup_do_setup extends OpenPNE_Action
             'auth_type' => 'all',
         );
         db_insert('c_admin_user', $data);
-        
-        if (OPENPNE_AUTH_MODE == 'slavepne') {
+
+        if (OPENPNE_AUTH_MODE != 'email') {
             db_member_insert_username(1, $requests['username']);
         }
 

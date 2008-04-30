@@ -52,7 +52,7 @@ function t_check_image_format($file, $type = 0)
 
 /**
  * アップロード画像の正当性チェック
- * 
+ *
  * @param array $file ファイル情報($_FILE['xxx'])
  * @return array ファイル情報 | 失敗時false
  */
@@ -92,11 +92,11 @@ function t_check_image($file)
     if ($width < 1.) {
         $width = 1;
     }
-    
+
     if ($need_resize) {
         resize_image($type, $file['tmp_name'], $file['tmp_name'], $original_width, $original_height,$width, $height );
     }
-    
+
     $image = array(
         'format' => $format,
         'size'   => $file['size'],
@@ -119,7 +119,7 @@ function resize_image( $type, $src_filename, $dst_filename, $original_width, $or
 {
     $src_img = NULL;
     $dst_img = NULL;
-    
+
     switch ($type) {
         case IMAGETYPE_GIF:
             $src_img = imagecreatefromgif ( $src_filename );
@@ -149,7 +149,7 @@ function resize_image( $type, $src_filename, $dst_filename, $original_width, $or
         case IMAGETYPE_PNG:
             $src_img = imagecreatefrompng ( $src_filename );
             //TrueColor PNGの場合
-            if(imageistruecolor($src_img)) { 
+            if(imageistruecolor($src_img)) {
                 $dst_img = imagecreatetruecolor ( $new_width, $new_height );
                 imagealphablending($dst_img, false);
                 imagecopyresampled ($dst_img,$src_img,0,0,0,0,$new_width,$new_height,$original_width,$original_height);
@@ -185,7 +185,7 @@ function resize_image( $type, $src_filename, $dst_filename, $original_width, $or
 
 /**
  * 確認画面用に一時ファイルを保存して、そのファイル名を返す
- * 
+ *
  * 保存先:     var/tmp/
  * ファイル名: ($prefix)_($uid).[(jpe?g)|(gif)|(png)]
  */
@@ -232,7 +232,7 @@ function t_image_clear_tmp($uid)
             }
         }
     } else {
-        t_image_clear_tmp_db($uid);
+        db_image_clear_tmp_db($uid);
     }
 }
 
@@ -255,11 +255,11 @@ function image_insert_c_image4tmp($prefix, $tmpfile)
         $img_tmp_dir_path = OPENPNE_VAR_DIR . '/tmp/';
         $filepath = $img_tmp_dir_path . basename($tmpfile);
 
-        if (_do_insert_c_image($filename, $filepath)) {
+        if (db_image_insert_c_image2($filename, $filepath)) {
             return $filename;
         }
     } else {
-        $c_tmp_image = c_tmp_image4filename($tmpfile);
+        $c_tmp_image = db_image_c_tmp_image4filename($tmpfile);
 
         $params = array(
             'filename' => $filename,
@@ -285,7 +285,7 @@ function image_insert_c_image($upfile_obj, $filename)
     $ext = strtolower($ext);
     $filename = $filename . '_' . time() . '.' . $ext;
 
-    if (!_do_insert_c_image($filename, $filepath)) {
+    if (!db_image_insert_c_image2($filename, $filepath)) {
         return false;
     }
     return $filename;
@@ -299,7 +299,7 @@ function image_insert_c_tmp_image($upfile_obj, $filename)
 
     $filepath = $upfile_obj['tmp_name'];
 
-    $result = _do_insert_c_tmp_image($filename, $filepath);
+    $result = db_image_insert_c_tmp_image($filename, $filepath);
     if (!$result) {
         return false;
     }

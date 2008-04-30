@@ -13,7 +13,7 @@
 <p class="caution" id="c01">本当にこのメンバーを強制退会させてもよろしいですか？</p>
 <ul class="cautionList">
     <li class="caution" ><strong>※強制退会させると、このメンバーに関する情報は削除され元に戻すことはできません。</strong></li>
-    <li class="caution" ><strong>※このメンバーが管理者になっているコミュニティがあれば、副管理者に管理権限が移管されます。また、副管理者がいない場合は参加日時のもっとも早いメンバーに権限が移管されます。</strong></li>
+    <li class="caution" ><strong>※このメンバーが管理者になっている({$WORD_COMMUNITY})があれば、副管理者に管理権限が移管されます。また、副管理者がいない場合は参加日時のもっとも早いメンバーに権限が移管されます。</strong></li>
 </ul>
 
 <form action="./" method="post">
@@ -31,7 +31,7 @@
 		<td>({$c_member.c_member_id})</td>
 	</tr>
 	<tr>
-		<th>ニックネーム</th>
+		<th>({$WORD_NICKNAME})</th>
 		<td><a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$c_member.c_member_id})" target="_blank">({$c_member.nickname})</a></td>
 	</tr>
 	<tr>

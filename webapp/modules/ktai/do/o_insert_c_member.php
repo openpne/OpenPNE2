@@ -55,7 +55,7 @@ class ktai_do_o_insert_c_member extends OpenPNE_Action
         //--- c_profile の項目をチェック
         $validator = new OpenPNE_Validator();
         $validator->addRequests($_REQUEST['profile']);
-        $validator->addRules($this->_getValidateRulesProfile());
+        $validator->addRules(util_get_validate_rules_profile('regist'));
         if (!$validator->validate()) {
             $errors = array_merge($errors, $validator->getErrors());
         }
@@ -112,24 +112,11 @@ class ktai_do_o_insert_c_member extends OpenPNE_Action
 
         $c_member_secure = array(
             'password' => $prof['password'],
-            'password_query_answer' => $prof['c_password_query_answer'],
+            'password_query_answer' => $prof['password_query_answer'],
             'pc_address' => '',
             'ktai_address' => $pre['ktai_address'],
             'regist_address' => $pre['ktai_address'],
         );
-
-        switch ($prof['public_flag_birth_year']) {
-        case "public":
-        default:
-            $prof['public_flag_birth_year'] = "public";
-            break;
-        case "friend":
-            $prof['public_flag_birth_year'] = "friend";
-            break;
-        case "private":
-            $prof['public_flag_birth_year'] = "private";
-            break;
-        }
 
         if (!$c_member_id = util_regist_c_member($prof, $c_member_secure, $c_member_profile_list)) {
             openpne_redirect('ktai', 'page_o_login', array('msg' => 42));
@@ -151,7 +138,7 @@ class ktai_do_o_insert_c_member extends OpenPNE_Action
             $p = array();
         }
         $p['c_member_id'] = $c_member_id;
-        
+
         openpne_redirect('ktai', 'page_o_regist_end',$p);
     }
 
@@ -161,7 +148,7 @@ class ktai_do_o_insert_c_member extends OpenPNE_Action
             'nickname' => array(
                 'type' => 'string',
                 'required' => '1',
-                'caption' => 'ニックネーム',
+                'caption' => WORD_NICKNAME,
                 'max' => '40',
             ),
             'birth_year' => array(
@@ -186,7 +173,16 @@ class ktai_do_o_insert_c_member extends OpenPNE_Action
                 'max' => '31',
             ),
             'public_flag_birth_year' => array(
-                'type' => 'string',
+                'type' => 'regexp',
+                'regexp' => '/^(public|friend|private)$/',
+                'required' => '1',
+                'caption' => '公開範囲',
+            ),
+            'public_flag_birth_month_day' => array(
+                'type' => 'regexp',
+                'regexp' => '/^(public|friend|private)$/',
+                'required' => '1',
+                'caption' => '公開範囲',
             ),
             'password' => array(
                 'type' => 'regexp',
@@ -214,43 +210,13 @@ class ktai_do_o_insert_c_member extends OpenPNE_Action
                 'type' => 'regexp',
                 'regexp' => '/^[a-zA-Z0-9][a-zA-Z0-9\-_]+[a-zA-Z0-9]$/i',
                 'required' => '1',
-                'caption' => 'ログインID',
+                'caption' => 'ﾛｸﾞｲﾝID',
                 'type_error' => 'ﾛｸﾞｲﾝIDは4-30文字の半角英数字、記号(ｱﾝﾀﾞｰﾊﾞｰ「_」、ﾊｲﾌﾝ「-」)で入力してください',
                 'min' => '4',
                 'max' => '30',
             );
         }
 
-        return $rules;
-    }
-
-    function _getValidateRulesProfile()
-    {
-        $rules = array();
-        $profile_list = db_member_c_profile_list4null();
-        foreach ($profile_list as $profile) {
-            if ($profile['disp_regist']) {
-                $rule = array(
-                    'type' => 'int',
-                    'required' => $profile['is_required'],
-                    'caption' => $profile['caption'],
-                );
-                switch ($profile['form_type']) {
-                case 'text':
-                case 'textlong':
-                case 'textarea':
-                    $rule['type'] = $profile['val_type'];
-                    $rule['regexp'] = $profile['val_regexp'];
-                    $rule['min'] = $profile['val_min'];
-                    ($profile['val_max']) and $rule['max'] = $profile['val_max'];
-                    break;
-                case 'checkbox':
-                    $rule['is_array'] = '1';
-                    break;
-                }
-                $rules[$profile['name']] = $rule;
-            }
-        }
         return $rules;
     }
 }

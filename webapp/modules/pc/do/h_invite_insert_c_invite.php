@@ -22,6 +22,9 @@ class pc_do_h_invite_insert_c_invite extends OpenPNE_Action
         $mail = $requests['mail'];
         $message = $requests['message'];
         // ----------
+        if (is_ktai_mail_address($mail)) {
+            $mail = str_replace('"', '', $mail);
+        }
 
         if (OPENPNE_USE_CAPTCHA) {
             if (empty($_SESSION['captcha_confirm']) || $requests['captcha_confirm'] != md5($_SESSION['captcha_confirm'])) {

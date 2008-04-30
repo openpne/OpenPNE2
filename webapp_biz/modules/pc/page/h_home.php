@@ -4,6 +4,10 @@
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
+//bizライブラリを使う
+include_once(OPENPNE_MODULES_BIZ_DIR.'/biz/lib/smarty_functions.php');
+include_once(OPENPNE_MODULES_BIZ_DIR.'/biz/lib/mysql_functions.php');
+
 class pc_page_h_home extends OpenPNE_Action
 {
     function handleError()
@@ -15,11 +19,10 @@ class pc_page_h_home extends OpenPNE_Action
     {
         $u = $GLOBALS['AUTH']->uid();
 
-        //bizライブラリを使う
-        include_once(OPENPNE_MODULES_BIZ_DIR.'/biz/lib/smarty_functions.php');
-        include_once(OPENPNE_MODULES_BIZ_DIR.'/biz/lib/mysql_functions.php');
+        $inc_navi = fetch_inc_navi('h');
+        $this->set('inc_navi', $inc_navi);
 
-        $this->set('inc_navi', fetch_inc_navi('h'));
+        $OPTION = $this->get('C_MEMBER_CONFIG');
 
         /// infomation ///
 
@@ -27,11 +30,11 @@ class pc_page_h_home extends OpenPNE_Action
         $this->set('site_info', p_common_c_siteadmin4target_pagename('h_home'));
 
         //未読メッセージの数をお知らせ
-        $this->set('num_message_not_is_read',db_message_count_c_message_not_is_read4c_member_to_id($u));
+        $this->set('num_message_not_is_read', db_message_count_c_message_not_is_read4c_member_to_id($u));
         //日記コメントの未読の数をお知らせ
-        $this->set('num_diary_not_is_read',p_h_diary_count_c_diary_not_is_read4c_member_id($u));
+        $this->set('num_diary_not_is_read', p_h_diary_count_c_diary_not_is_read4c_member_id($u));
         //日記コメントの未読の中で、読ませるものを送る
-        $this->set('first_diary_read',p_h_diary_c_diary_first_diary_read4c_member_id($u));
+        $this->set('first_diary_read', p_h_diary_c_diary_first_diary_read4c_member_id($u));
 
         //あなたにフレンド承認を求めているメンバーリスト
         $f_confirm_list = db_friend_anatani_c_friend_confirm_list4c_member_id($u);
@@ -40,10 +43,10 @@ class pc_page_h_home extends OpenPNE_Action
         //あなたにコミュニティ参加承認を求めているメンバーリスト
         $h_confirm_list = db_commu_anatani_c_commu_member_confirm_list4c_member_id($u);
         $this->set('h_confirm_list', $h_confirm_list);
-        $this->set('num_h_confirm_list', count($h_confirm_list) );
+        $this->set('num_h_confirm_list', count($h_confirm_list));
         // あなたにコミュニティ管理者交代を希望しているメンバー
         $anatani_c_commu_admin_confirm_list = db_commu_anatani_c_commu_admin_confirm_list4c_member_id($u);
-        $this->set('anatani_c_commu_admin_confirm_list',$anatani_c_commu_admin_confirm_list);
+        $this->set('anatani_c_commu_admin_confirm_list', $anatani_c_commu_admin_confirm_list);
         $this->set('num_anatani_c_commu_admin_confirm_list', count($anatani_c_commu_admin_confirm_list));
 
         // あなたにコミュニティ副管理者を希望しているメンバー
@@ -56,37 +59,58 @@ class pc_page_h_home extends OpenPNE_Action
 
         /// 左側 ///
 
-        $c_member = db_member_c_member_with_profile($u, 'private');
         // メンバー情報
+        $c_member = db_member_c_member_with_profile($u, 'private');
         $this->set('c_member', $c_member);
         // フレンドリスト
-        $this->set('c_friend_list', db_friend_c_friend_list4c_member_id($u, 9));
+        $c_friend_list = db_friend_c_friend_list4c_member_id($u, 9);
+        $this->set('c_friend_list', $c_friend_list);
         $this->set('c_friend_count', db_friend_count_friends($u));
         // 参加コミュニティ
-        $this->set('c_commu_user_list', p_h_home_c_commu_list4c_member_id($u, 9));
-        $this->set('fh_com_count_user',db_commu_count_c_commu4c_member_id($u));
+        $c_commu_user_list = db_commu_c_commu_list4c_member_id_2($u, 9);
+        $this->set('c_commu_user_list', $c_commu_user_list);
+        $this->set('fh_com_count_user', db_commu_count_c_commu4c_member_id($u));
 
         /// 最新情報 ///
 
+        // 最新日記
+        if(DISPLAY_NEWDIARYTOPIC_HOME && $OPTION['IS_DISPLAY_NEWDIARY_HOME']){
+            $this->set('c_diary_list_all', p_h_home_c_diary_all_list(5));
+        }
         // フレンド最新日記
-        $this->set('c_diary_friend_list', p_h_home_c_diary_friend_list4c_member_id($u, 5));
+        $c_diary_friend_list = p_h_home_c_diary_friend_list4c_member_id($u, 5);
+        $this->set('c_diary_friend_list', $c_diary_friend_list);
         // フレンド最新blog
         $this->set('c_rss_cache_list', db_rss_list_friend_c_rss_cache_list($u, 5));
         // 日記コメント記入履歴
-        $this->set('c_diary_my_comment_list', p_h_home_c_diary_my_comment_list4c_member_id($u, 5));
+        $c_diary_my_comment_list = p_h_home_c_diary_my_comment_list4c_member_id($u, 5);
+        $this->set('c_diary_my_comment_list', $c_diary_my_comment_list);
+        // コミュニティ全ての新着書き込み
+        if(DISPLAY_NEWDIARYTOPIC_HOME && $OPTION['IS_DISPLAY_NEWTOPIC_HOME']){
+            $this->set('c_topic_list_all', p_h_home_c_topic_all_list(5));
+        }
         // 参加コミュニティの新着書き込み
-        $this->set('c_commu_topic_comment_list', p_h_home_c_commu_topic_comment_list4c_member_id($u, 5));
+        $this->set('c_commu_topic_comment_list', db_commu_c_commu_topic_comment_list4c_member_id($u, 5));
         // レビュー
         $this->set('c_friend_review_list', db_review_c_friend_review_list4c_member_id($u, 5));
+        if (OPENPNE_USE_ALBUM) {
+            // アルバム
+            $this->set('c_friend_album_list', p_h_home_c_album_friend_list4c_member_id($u, 5));
+        }
 
         /// 自分の情報 ///
 
         // 日記
-        $this->set('c_diary_list', db_diary_get_c_diary_list4c_member_id($u, 5));
+        $c_diary_list = db_diary_get_c_diary_list4c_member_id($u, 5);
+        $this->set('c_diary_list', $c_diary_list);
         // 外部blog
         $this->set('c_blog_list', db_rss_h_blog_list_friend4c_member_id($u, 5, 1));
         // レビュー
         $this->set('c_review_list', db_review_c_review_list4member($u, 5));
+        if (OPENPNE_USE_ALBUM) {
+            // アルバム
+            $this->set('c_album_list', db_album_get_c_album_subject_list4c_member_id($u, 5));
+        }
 
         /// その他 ///
 
@@ -128,7 +152,8 @@ class pc_page_h_home extends OpenPNE_Action
             $this->set('bookmark_blog_list', db_bookmark_blog_list($u, 5));
 
             //お気に入りのメンバー
-            $this->set('bookmark_member_list', db_bookmark_member_list($u, 9));
+            $bookmark_member_list = db_bookmark_member_list($u, 9);
+            $this->set('bookmark_member_list', $bookmark_member_list);
             $this->set('bookmark_count', db_bookmark_count($u));
         }
 
@@ -140,9 +165,6 @@ class pc_page_h_home extends OpenPNE_Action
         $todolist = biz_getTodoList($u, $u, "h", $c_member['nickname']);
         $this->set("todolist", $todolist);
 
-        $stateform = biz_getStateForm($u, true);
-        $this->set("stateform", $stateform);
-
         $newschedule = biz_getNewSchedule($u);
         $this->set("newschedule", $newschedule);
 
@@ -153,11 +175,14 @@ class pc_page_h_home extends OpenPNE_Action
         $this->set('group_list', $group_list);
         //--- biz ここまで
 
-        // inc_entry_point
-        $this->set('inc_entry_point', fetch_inc_entry_point($this->getView(), 'h_home'));
+        // API用セッションID
+        $this->set('api_session_id', get_api_sessionid($u));
 
         // アクセス日時を記録
         db_member_do_access($u);
+
+        // inc_entry_point
+        $this->set('inc_entry_point', fetch_inc_entry_point($this->getView(), 'h_home'));
 
         return 'success';
     }

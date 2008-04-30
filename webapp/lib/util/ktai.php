@@ -18,13 +18,13 @@ function k_p_common_msg4msg_id($msg_id)
         2   => "ﾀｲﾄﾙを入力してください",
         3   => "承認が完了しました",
         4   => "承認依頼を削除しました",
-        5   => "このﾌﾚﾝﾄﾞは、現在ﾘﾝｸ承認待ちです",
-        6   => "このﾌﾚﾝﾄﾞは、すでにﾘﾝｸ済みです",
+        5   => "このﾒﾝﾊﾞｰは、現在ﾘﾝｸ承認待ちです",
+        6   => "このﾒﾝﾊﾞｰは、すでにﾘﾝｸ済みです",
         7   => "教える".WORD_MY_FRIEND_HALF."を選択してださい",
         8   => "ﾒｯｾｰｼﾞを入力してください",
         9   => "このﾒﾝﾊﾞｰは既に登録済みです",
         10  => "管理者なので退会できません",
-        11  => "このｺﾐｭﾆﾃｨのﾒﾝﾊﾞｰではありません",
+        11  => "この".WORD_COMMUNITY_HALF."のﾒﾝﾊﾞｰではありません",
         12  => "ﾒｰﾙｱﾄﾞﾚｽを入力してください",
         13  => "携帯ﾒｰﾙｱﾄﾞﾚｽには送信できません",
         14  => "かんたんﾛｸﾞｲﾝに失敗しました。通常ﾛｸﾞｲﾝ後、設定してください",
@@ -48,12 +48,12 @@ function k_p_common_msg4msg_id($msg_id)
         32  => "ﾒｰﾙ受信設定を変更しました",
         33  => "紹介文を入力してください",
         34  => "あしあとお知らせﾒｰﾙ設定を変更しました",
-        35  => "日記の公開設定を変更しました",
+        35  => WORD_DIARY_HALF."の公開設定を変更しました",
         36  => "ｱｸｾｽﾌﾞﾛｯｸ設定を変更しました",
         37  => "このﾒｰﾙｱﾄﾞﾚｽでは登録できません",
         38  => "退会理由を入力して下さい",
         39  => "この携帯個体識別番号はすでに登録されています",
-        40  => "日記の公開範囲を一括変更しました",
+        40  => WORD_DIARY_HALF."の公開範囲を一括変更しました",
         41  => "無効なﾒﾝﾊﾞｰIDが含まれています",
         42  => "登録できませんでした",
         44  => "この携帯個体識別番号は登録することができません",
@@ -66,7 +66,7 @@ function k_p_common_msg4msg_id($msg_id)
 
 /**
  * 携帯端末からのアクセスかどうかを User-Agent の値から判別する
- * 
+ *
  * @return bool
  */
 function isKtaiUserAgent()
@@ -89,11 +89,6 @@ function k_p_fh_common_get_type($target_c_member_id, $u)
     }
 }
 
-/** 関数
- * k_p_c_bbs_c_member_admin4c_commu_topic_id($c_commu_topic_id)
- * 
- * 
- */
 function k_p_h_message_ktai_url4url($str, $tail)
 {
     $matches = array();
@@ -172,7 +167,7 @@ function fetch_inc_ktai_footer()
 
 function t_get_user_hash($c_member_id, $length = 12)
 {
-    $hashed_password = k_common_hashed_password4c_member_id($c_member_id);
+    $hashed_password = db_member_hashed_password4c_member_id($c_member_id);
     $seed = strval($c_member_id) . $hashed_password;
 
     return substr(md5($seed), 0, $length);
@@ -180,7 +175,7 @@ function t_get_user_hash($c_member_id, $length = 12)
 
 /**
  * 携帯端末からのアクセスかどうかを IPアドレスから判別する
- * 
+ *
  * @return bool
  */
 function is_ktai_ip()

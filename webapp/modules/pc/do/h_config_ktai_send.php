@@ -19,6 +19,7 @@ class pc_do_h_config_ktai_send extends OpenPNE_Action
         // --- リクエスト変数
         $ktai_address = $requests['ktai_address'];
         // ----------
+        $ktai_address = str_replace('"', '', $ktai_address);
 
         if (!is_ktai_mail_address($ktai_address)) {
             $msg = "携帯メールアドレスを記入してください";

@@ -16,14 +16,14 @@ class admin_page_commu_list extends OpenPNE_Action
     function execute($requests)
     {
         $v = array();
-        
+
         $page = $requests['page'];
         $keyword = $requests['keyword'];
         $target_c_commu_id = $requests['target_c_commu_id'];
         $page_size = 20;
-        
+
         $v = array();
-        
+
         if ($target_c_commu_id) {
             list($commu_list, $prev, $next, $total_num, $total_page_num)
                 = monitor_commu_list4c_commu_id($target_c_commu_id, $page_size, $page);
@@ -39,13 +39,13 @@ class admin_page_commu_list extends OpenPNE_Action
         $this->set('keyword', $keyword);
         $this->set('target_c_commu_id', $target_c_commu_id);
         $this->set('total_num', $total_num);
-        
+
         for($i = $page-10<1 ? 1 : $page-10 ;($i<=$total_page_num)&&($i<$page+10);$i++)
             $page_list[]=$i;
         $this->set('page_list', $page_list);
         $this->set('start_num', ($page-1)*$page_size+1);
         $this->set('end_num', ($page-1)*$page_size+count($commu_list));
-        
+
         $v['SNS_NAME'] = SNS_NAME;
         $v['OPENPNE_VERSION'] = OPENPNE_VERSION;
         $this->set($v);

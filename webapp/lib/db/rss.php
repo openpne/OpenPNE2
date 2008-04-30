@@ -22,7 +22,7 @@ function db_rss_list_all_c_rss_cache_list($limit)
     $lst = db_get_all_limit($sql, 0, $limit);
 
     foreach ($lst as $key => $value) {
-        $lst[$key]['c_member'] = db_common_c_member4c_member_id($value['c_member_id']);
+        $lst[$key]['c_member'] = db_member_c_member4c_member_id($value['c_member_id']);
     }
     return $lst;
 }
@@ -35,14 +35,14 @@ function db_rss_list_friend_c_rss_cache_list($c_member_id, $limit)
     }
     $ids = implode(',', array_map('intval', $friends));
 
-    $hint = db_mysql_hint('USE INDEX (r_datetime_c_member_id, r_datetime)');
+    $hint = db_mysql_hint('USE INDEX (c_member_id_r_datetime)');
     $sql = 'SELECT * FROM c_rss_cache' . $hint .
             ' WHERE c_member_id IN (' . $ids . ')' .
             ' ORDER BY r_datetime DESC';
     $list = db_get_all_limit($sql, 0, $limit);
 
     foreach ($list as $key => $value) {
-        $list[$key]['c_member'] = db_common_c_member4c_member_id_LIGHT($value['c_member_id']);
+        $list[$key]['c_member'] = db_member_c_member4c_member_id_LIGHT($value['c_member_id']);
     }
     return $list;
 }
@@ -54,7 +54,7 @@ function db_rss_list_c_rss_cache_list($c_member_id,$page_size, $page)
     $lst = db_get_all_page($sql, $page, $page_size, $params);
 
     foreach ($lst as $key => $value) {
-        $lst[$key]['c_member'] = db_common_c_member4c_member_id($value['c_member_id']);
+        $lst[$key]['c_member'] = db_member_c_member4c_member_id($value['c_member_id']);
     }
     return $lst;
 }
@@ -76,7 +76,7 @@ function db_rss_list_c_rss_cache_list_date($c_member_id, $year, $month, $day=0)
     $lst = db_get_all($sql, $params);
 
     foreach ($lst as $key => $value) {
-        $lst[$key]['c_member'] = db_common_c_member4c_member_id($value['c_member_id']);
+        $lst[$key]['c_member'] = db_member_c_member4c_member_id($value['c_member_id']);
     }
     return $lst;
 }
@@ -163,16 +163,16 @@ function db_rss_insert_rss_cache($rss_url, $c_member_id)
 
     foreach ($items as $item) {
         // 最新のものと比較
-        if (!db_is_duplicated_rss_cache($c_member_id, $item['date'], $item['link']) &&
-            !db_is_future_rss_item($item['date'])) {
+        if (!db_rss_is_duplicated_rss_cache($c_member_id, $item['date'], $item['link']) &&
+            !db_rss_is_future_rss_item($item['date'])) {
 
-            if ($id = db_is_updated_rss_cache($c_member_id, $item['link'])) {
+            if ($id = db_rss_is_updated_rss_cache($c_member_id, $item['link'])) {
                 // update
-                db_update_c_rss_cache($id,
+                db_rss_update_c_rss_cache($id,
                     $item['title'], $item['body'], $item['date'], $item['link']);
             } else {
                 // insert
-                db_insert_c_rss_cache($c_member_id,
+                db_rss_insert_c_rss_cache($c_member_id,
                     $item['title'], $item['body'], $item['date'], $item['link']);
             }
         }

@@ -145,6 +145,16 @@
 <span class="caution">※「使用しない」を選択してもナビゲーション項目は自動的には変更されません。ナビゲーション項目の変更は<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_navi')})">「ナビゲーション変更」</a>からおこなってください</span><br />
 </td>
 </tr>
+<tr>
+<th colspan="2">アルバム機能使用設定</th>
+<td>
+<span class="info">アルバム機能を使用するかどうかを設定します</span><br />
+<select class="basic" name="OPENPNE_USE_ALBUM">
+<option value="1"({if $smarty.const.OPENPNE_USE_ALBUM}) selected="selected"({/if})>使用する</option>
+<option value="0"({if !$smarty.const.OPENPNE_USE_ALBUM}) selected="selected"({/if})>使用しない</option>
+</select>
+</td>
+</tr>
 <tr class="cell14">
 <th colspan="2">Flashリスト表示</th>
 <td><select class="basic" name="OPENPNE_USE_FLASH_LIST">
@@ -162,6 +172,16 @@
 </select><br />
 <span class="caution">※「フォントサイズを指定する」を選択した場合、文字サイズが小さめに設定されます</span><br />
 <span class="caution">※「フォントサイズを指定しない」を選択した場合、携帯端末ごとのデフォルトの文字サイズで表示されるようになります</span></td>
+</tr>
+<tr>
+<th colspan="2">携帯版プライバシーポリシー表示設定</th>
+<td>
+<span class="info">携帯版にプライバシーポリシーへのリンクを表示するかどうかを設定します</span><br />
+<select class="basic" name="OPENPNE_DISP_KTAI_SNS_PRIVACY">
+<option value="1"({if $smarty.const.OPENPNE_DISP_KTAI_SNS_PRIVACY}) selected="selected"({/if})>表示する</option>
+<option value="0"({if !$smarty.const.OPENPNE_DISP_KTAI_SNS_PRIVACY}) selected="selected"({/if})>表示しない</option>
+</select><br />
+<span class="caution">※プライバシーポリシーへのリンクの削除は、<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('insert_html')})">[デザインHTML挿入]</a>にあるログイン後フッタの編集からおこなうことができます</span></td>
 </tr>
 <tr class="cell15">
 <th colspan="2">メニューロールオーバー</th>
@@ -202,15 +222,23 @@
 </select></td>
 </tr>
 <tr class="cell19">
-<th colspan="2">日記カテゴリ機能使用設定</th>
+<th colspan="2">({$WORD_DIARY})カテゴリ機能使用設定</th>
 <td>
-<span class="info">※日記のカテゴリ機能を有効にするかどうかを設定します</span><br />
+<span class="info">※({$WORD_DIARY})のカテゴリ機能を有効にするかどうかを設定します</span><br />
 <select class="basic" name="USE_DIARY_CATEGORY">
 <option value="1"({if $smarty.const.USE_DIARY_CATEGORY}) selected="selected"({/if})>使用する</option>
 <option value="0"({if !$smarty.const.USE_DIARY_CATEGORY}) selected="selected"({/if})>使用しない</option>
 </select></td>
 </tr>
-
+<tr>
+<th colspan="2">文字装飾使用設定</th>
+<td>
+<span class="info">文字装飾機能を有効にするかどうかを設定します</span><br />
+<select class="basic" name="OPENPNE_USE_DECORATION">
+<option value="1"({if $smarty.const.OPENPNE_USE_DECORATION}) selected="selected"({/if})>使用する</option>
+<option value="0"({if !$smarty.const.OPENPNE_USE_DECORATION}) selected="selected"({/if})>使用しない</option>
+</select></td>
+</tr>
 <tr class="cell20">
 <th colspan="2">cmdタグ使用設定</th>
 <td>
@@ -258,6 +286,15 @@
 <option value="0"({if !$smarty.const.OPENPNE_IS_POINT_ADMIN}) selected="selected"({/if})>加算・表示しない</option>
 </select></td>
 </tr>
+<tr class="cell35">
+<th colspan="2">最新情報表示設定</th>
+<td>
+<span class="info">マイホームにSNS全体の最新情報（({$WORD_DIARY})とトピック）を表示するかどうかを設定します</span><br />
+<select class="basic" name="DISPLAY_NEWDIARYTOPIC_HOME">
+<option value="1"({if $smarty.const.DISPLAY_NEWDIARYTOPIC_HOME}) selected="selected"({/if})>表示する</option>
+<option value="0"({if !$smarty.const.DISPLAY_NEWDIARYTOPIC_HOME}) selected="selected"({/if})>表示しない</option>
+</select></td>
+</tr>
 <tr class="cell21">
 <th colspan="2">ログイン制限</th>
 <td>
@@ -287,35 +324,6 @@
 <td>
 <span class="info">SNSメンバーに送られるメールの署名に使用します</span><br />
 <input class="basic" name="COPYRIGHT" type="text" value="({$smarty.const.COPYRIGHT})" size="30" /></td>
-</tr>
-<tr class="cell23A">
-<th rowspan="4">フレンド名称</th>
-<th>フレンド</th>
-<td>
-<span class="info">SNS内「フレンド」を他の名称に設定します</span><br />
-<input class="basic" name="WORD_FRIEND" type="text" value="({$smarty.const.WORD_FRIEND})" size="30" />
-</td>
-</tr>
-<tr class="cell23B">
-<th>マイフレンド</th>
-<td>
-<span class="info">SNS内「フレンド」を他の名称に設定します</span><br />
-<input class="basic" name="WORD_MY_FRIEND" type="text" value="({$smarty.const.WORD_MY_FRIEND})" size="30" />
-</td>
-</tr>
-<tr class="cell23C">
-<th>ﾌﾚﾝﾄﾞ(携帯)</th>
-<td>
-<span class="info">SNS内「フレンド」を他の名称に設定します</span><br />
-<input class="basic" name="WORD_FRIEND_HALF" type="text" value="({$smarty.const.WORD_FRIEND_HALF})" size="30" />
-</td>
-</tr>
-<tr class="cell23D">
-<th>ﾏｲﾌﾚﾝﾄﾞ(携帯)</th>
-<td>
-<span class="info">SNS内「フレンド」を他の名称に設定します</span><br />
-<input class="basic" name="WORD_MY_FRIEND_HALF" type="text" value="({$smarty.const.WORD_MY_FRIEND_HALF})" size="30" />
-</td>
 </tr>
 <tr class="cell24">
 <th rowspan="2">アフィリエイト用タグ</th>

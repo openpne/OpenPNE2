@@ -12,9 +12,7 @@ class pc_page_c_event_detail extends OpenPNE_Action
 
         // --- リクエスト変数
         $c_commu_topic_id = $requests['target_c_commu_topic_id'];
-        $direc = $requests['direc'];
         $page = $requests['page'];
-        $all = $requests['all'];
         $err_msg = $requests['err_msg'];
         $body = $requests['body'];
         // ----------
@@ -40,34 +38,31 @@ class pc_page_c_event_detail extends OpenPNE_Action
         $this->set('inc_navi', fetch_inc_navi('c', $c_commu_id));
 
         //詳細部分
-        $this->set("c_commu", $c_commu);
+        $this->set('c_commu', $c_commu);
         $c_topic = db_commu_c_topic4c_commu_topic_id_2($c_commu_topic_id);
-        $this->set("c_topic", $c_topic);
+        $this->set('c_topic', $c_topic);
 
         //書き込み一覧部分
-        $page += $direc;
-        if ($all) {
-            $page_size = null;
+        if ($requests['page_size'] == 100) {
+            $page_size = 100;
         } else {
             $page_size = 20;
         }
+        if ($requests['order'] === 'asc') {
+            $desc = false;
+        } else {
+            $desc = true;
+        }
 
-        $lst = db_commu_c_topic_write4c_commu_topic_id($c_commu_topic_id, $page, $page_size);
-        $this->set("c_topic_write", $lst[0]);
-        $this->set("is_prev", $lst[1]);
-        $this->set("is_next", $lst[2]);
-        $this->set("total_num", $lst[3]);
-        $this->set("page", $page);
-        $this->set("all", $all);
-        $this->set('page_size', $page_size);
+        list($c_topic_write, $pager) = db_commu_c_topic_write4c_commu_topic_id($c_commu_topic_id, $page, $page_size, $desc);
 
-        $this->set("start_num", $lst[4]);
-        $this->set("end_num", $lst[5]);
+        $this->set('c_topic_write', $c_topic_write);
+        $this->set('pager', $pager);
 
-        $this->set("is_c_commu_admin", db_commu_is_c_commu_admin($c_commu_id, $u));
-        $this->set("is_c_commu_member", db_commu_is_c_commu_member($c_commu_id, $u));
-        $this->set("is_c_event_member", db_commu_is_c_event_member($c_commu_topic_id, $u));
-        $this->set("is_c_event_admin", db_commu_is_c_event_admin($c_commu_topic_id, $u));
+        $this->set('is_c_commu_admin', db_commu_is_c_commu_admin($c_commu_id, $u));
+        $this->set('is_c_commu_member', db_commu_is_c_commu_member($c_commu_id, $u));
+        $this->set('is_c_event_member', db_commu_is_c_event_member($c_commu_topic_id, $u));
+        $this->set('is_c_event_admin', db_commu_is_c_event_admin($c_commu_topic_id, $u));
         $this->set('is_event_join_date', db_commu_is_event_join_date($c_commu_topic_id));
 
         $this->set('err_msg', $err_msg);

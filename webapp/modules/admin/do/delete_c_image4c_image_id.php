@@ -15,7 +15,7 @@ class admin_do_delete_c_image4c_image_id extends OpenPNE_Action
             admin_client_redirect('list_c_image', 'この画像は削除できません');
         }
 
-        image_data_delete($c_image['filename']);
+        db_image_data_delete($c_image['filename']);
         db_admin_delete_c_image_link4image_filename($c_image['filename']);
 
         admin_client_redirect('list_c_image', '画像を削除しました');

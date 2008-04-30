@@ -25,7 +25,7 @@
 ({/if})
 
 ({capture name="nick"})
-<font color="#({$ktai_color_config.font_06})">ﾆｯｸﾈｰﾑ：</font><font color="#({$ktai_color_config.font_09})">*</font><br>
+<font color="#({$ktai_color_config.font_06})">({$WORD_NICKNAME_HALF})：</font><font color="#({$ktai_color_config.font_09})">*</font><br>
 <input type="text" name="nickname"><br>
 <br>
 ({/capture})
@@ -52,6 +52,11 @@
     <option value="({$item})">({$item})
     ({/foreach})
 </select>日<br>
+<select name="public_flag_birth_month_day">
+    ({foreach from=$public_flags key=key item=item})
+    <option value="({$key})"({if $c_member.public_flag_birth_month_day == $key}) selected="selected"({/if})>({$item})
+    ({/foreach})
+</select><br>
 <br>
 ({/capture})
 
@@ -83,7 +88,7 @@
 ({if $profile.disp_regist})
     <font color="#({$ktai_color_config.font_06})">({$profile.caption})：</font>
     ({if $profile.is_required})<font color="#({$ktai_color_config.font_09})">*</font>({/if})<br>
-    
+
     ({if $profile.form_type == 'text'})
         <input type="text" name="profile[({$profile.name})]" value="({$c_member.profile[$profile.name].value})">
     ({elseif $profile.form_type == 'textlong'})

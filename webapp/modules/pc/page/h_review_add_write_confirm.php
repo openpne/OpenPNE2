@@ -27,7 +27,7 @@ class pc_page_h_review_add_write_confirm extends OpenPNE_Action
         if (!$product) {
             handle_kengen_error();
         }
-        
+
         $this->set('inc_navi', fetch_inc_navi('h'));
         $this->set('category_id', $category_id);
         $this->set('asin', $asin);

@@ -39,7 +39,7 @@ class admin_do_csv_member extends OpenPNE_Action
         echo $member_csv_data;
         exit;
     }
-    
+
     /**
      * メンバーリスト取得
      */
@@ -64,12 +64,12 @@ class admin_do_csv_member extends OpenPNE_Action
         $sql .= $where;
         $sql .= ' ORDER BY c_member_id';
         $ids = db_get_col($sql, $params);
-    
+
         $c_member_list = array();
         foreach ($ids as $id) {
             $tmp_c_member = array();
             $_tmp_c_member = db_member_c_member4c_member_id($id, false, false, 'private');
-            
+
             $tmp_c_member['c_member_id'] = $_tmp_c_member['c_member_id'];
             $tmp_c_member['nickname'] = $_tmp_c_member['nickname'];
             if (OPENPNE_USE_POINT_RANK) {
@@ -85,7 +85,7 @@ class admin_do_csv_member extends OpenPNE_Action
             $tmp_c_member['birth_year'] = $_tmp_c_member['birth_year'];
             $tmp_c_member['birth_month'] = $_tmp_c_member['birth_month'];
             $tmp_c_member['birth_day'] = $_tmp_c_member['birth_day'];
-            
+
             $tmp_profile_list = db_member_c_member_profile_list4c_member_id($id, 'private');
             $c_profile_list = db_member_c_profile_list4null();
             foreach ($c_profile_list as $key => $tmp_profile) {
@@ -114,19 +114,19 @@ class admin_do_csv_member extends OpenPNE_Action
             $tmp_c_member['pc_address'] = $tmp_secure['pc_address'];
             $tmp_c_member['ktai_address'] = $tmp_secure['ktai_address'];
             $tmp_c_member['regist_address'] = $tmp_secure['regist_address'];
-            
+
             $c_member_list[]=$tmp_c_member;
         }
-        
+
         return $c_member_list;
     }
-    
+
     function get_key_list()
     {
         $c_profile_list = db_member_c_profile_list4null();
-        
+
         $ley_list[]="メンバーID";
-        $ley_list[]="ニックネーム";
+        $ley_list[]=WORD_NICKNAME;
         if (OPENPNE_USE_POINT_RANK) {
             $ley_list[] = 'ランク';
             $ley_list[] = 'ポイント';
@@ -148,10 +148,10 @@ class admin_do_csv_member extends OpenPNE_Action
         $ley_list[]="PCメールアドレス";
         $ley_list[]="携帯メールアドレス";
         $ley_list[]="登録時メールアドレス";
-        
+
         return $ley_list;
     }
-    
+
     function create_csv_data($key_string, $value_list)
     {
         $csv = "";
@@ -162,7 +162,7 @@ class admin_do_csv_member extends OpenPNE_Action
             $csv .= '"' . mb_convert_encoding($each_key, 'SJIS', 'UTF-8') . '"';
         }
         $csv .= "\n";
-        
+
         foreach ($value_list as $key => $value) {
             $temp = "";
             foreach ($value as $key2 => $value2) {

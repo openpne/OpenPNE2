@@ -8,9 +8,9 @@
 
 /**
  * inc_navi.tpl の出力を返す
- * 
+ *
  * $type が f または c の場合には、$target_id を指定する必要があります。
- * 
+ *
  * @param   enum('h', 'f', 'c')  $type : ナビゲーションのタイプ
  * @param  int  $target_id : 友達のメンバーID もしくは コミュニティID
  * @return html
@@ -48,11 +48,6 @@ function fetch_inc_navi($type, $target_id = null)
     }
     $inc_smarty->assign('INC_NAVI_type', $type);
     $inc_smarty->assign('navi', util_get_c_navi($type));
-
-    $inc_smarty->assign('WORD_FRIEND', WORD_FRIEND);
-    $inc_smarty->assign('WORD_MY_FRIEND', WORD_MY_FRIEND);
-    $inc_smarty->assign('WORD_FRIEND_HALF', WORD_FRIEND_HALF);
-    $inc_smarty->assign('WORD_MY_FRIEND_HALF', WORD_MY_FRIEND_HALF);
 
     return $inc_smarty->ext_fetch('inc_navi.tpl');
 }
@@ -121,7 +116,7 @@ function fetch_inc_entry_point(&$smarty, $target)
         return false;
     }
     list($start, $end, $caption) = $list[$target];
-    
+
     $contents = array();
     for ($i = (int)$start; $i <= (int)$end; $i++) {
         $tpl = sprintf('db:inc_entry_point_%s_%d', $target, $i);
@@ -251,7 +246,7 @@ function p_c_event_add_confirm_event4request($get_errors = false)
 
     $errors = array();
     if (!$validator->validate()) {
-        
+
         $errors = $validator->getErrors();
     }
     $result = $validator->getParams();
@@ -305,7 +300,7 @@ function p_f_home_last_login4access_date($access_date)
 
 /**
  * ある日まであと何日かを計算する
- * 
+ *
  * @param int $month
  * @param int $day
  * @return int 日数

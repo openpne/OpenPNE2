@@ -2,8 +2,8 @@
 
 <p>必ず下記の設定をおこなってからセットアップを実行してください。</p>
 <ul>
-<li>setup/sql/mysql4x/install-2.10-create_tables.sql の実行</li>
-<li>setup/sql/mysql4x/install-2.10-insert_data.sql の実行</li>
+<li>setup/sql/xxx/install/install-2.12-create_tables.sql の実行</li>
+<li>setup/sql/xxx/install/install-2.12-insert_data.sql の実行</li>
 <li>config.php の設定</li>
 </ul>
 <p>一度、セットアップを実行した後でこのページを表示することはできません。<br>
@@ -41,9 +41,11 @@
 <th>PCメールアドレス</th>
 <td><input type="text" name="pc_address" value="({$requests.pc_address})" size="30"></td>
 </tr>
-({if $smarty.const.OPENPNE_AUTH_MODE == 'slavepne'})
+({if $smarty.const.OPENPNE_AUTH_MODE != 'email'})
 <tr>
-<th>ユーザID</th>
+<th>
+ログインID
+</th>
 <td><input type="text" name="username" value="({$requests.username})" size="30"></td>
 </tr>
 ({/if})
@@ -51,7 +53,7 @@
 <th>パスワード</th>
 <td><input type="password" name="password" value="" size="15"></td>
 </tr>
-({if $smarty.const.OPENPNE_AUTH_MODE != 'slavepne'})
+({if $smarty.const.OPENPNE_AUTH_MODE == 'email'})
 <tr>
 <th>パスワード(確認)</th>
 <td><input type="password" name="password2" value="" size="15"></td>
