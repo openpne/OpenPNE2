@@ -6,6 +6,7 @@
 
 ({*ここまで:navi*})
 
+({if $msg})<p class="actionMsg">({$msg})</p>({/if})
 <h2>バナー変更</h2>
 <div class="contents">
 
