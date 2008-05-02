@@ -280,6 +280,10 @@ class mail_sns
 
         // 写真登録
         $images = $this->decoder->get_images();
+        if ($images === false) {
+            $this->error_mail('画像は' . IMAGE_MAX_FILESIZE . 'KB以内のGIF・JPEG・PNGにしてください。');
+            return false;
+        }
         $image_num = 1;
         foreach ($images as $image) {
             $image_ext = $image['ext'];
@@ -332,6 +336,10 @@ class mail_sns
 
         // 写真登録
         $images = $this->decoder->get_images();
+        if ($images === false) {
+            $this->error_mail('画像は' . IMAGE_MAX_FILESIZE . 'KB以内のGIF・JPEG・PNGにしてください。');
+            return false;
+        }
         $image_num = 1;
         foreach ($images as $image) {
             $image_ext = $image['ext'];
