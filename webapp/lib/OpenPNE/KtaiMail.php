@@ -177,7 +177,12 @@ class OpenPNE_KtaiMail
         if (isset($mail->parts) && is_array($mail->parts)) {
             // multipart
             foreach ($mail->parts as $part) {
-                $images = array_merge($images, $this->_get_images($part));
+                $item = $this->_get_images($part);
+                if ($item === false) {
+                    return false;
+                }
+
+                $images = array_merge($images, $item);
             }
         } elseif (strtolower($mail->ctype_primary) === 'image' &&
                   in_array(strtolower($mail->ctype_secondary), $allowed_type)) {
@@ -189,7 +194,7 @@ class OpenPNE_KtaiMail
                 // base64_decodeしてリトライ
                 $image_data = base64_decode($image_data);
                 if (!@imagecreatefromstring($image_data)) {
-                    return array();
+                    return false;
                 }
             }
 
@@ -203,7 +208,7 @@ class OpenPNE_KtaiMail
             // 画像サイズのチェック
             if ($this->img_max_filesize && filesize($tmpfname) > $this->img_max_filesize) {
                 unlink($tmpfname);
-                return array();
+                return false;
             }
 
             // 画像のリサイズ
