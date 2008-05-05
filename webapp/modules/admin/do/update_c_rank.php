@@ -22,6 +22,10 @@ class admin_do_update_c_rank extends OpenPNE_Action
         $c_rank = db_admin_get_c_rank_one($c_rank_id);
         $image_filename = $c_rank['image_filename'];
 
+        if (db_point_is_rank4point($requests['point']) && ($c_rank['point'] != $requests['point'])) {
+            admin_client_redirect('list_c_rank', '同一の到達ポイントのランクが既に存在します');
+        }
+
         $upfile_obj = $_FILES['image_upfile'];
 
         if (!empty($upfile_obj) && $upfile_obj['error'] !== UPLOAD_ERR_NO_FILE) {
