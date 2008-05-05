@@ -301,6 +301,12 @@ class mail_sns
             return false;
         }
 
+        $images = $this->decoder->get_images();
+        if ($images === false) {
+            $this->error_mail('画像は' . IMAGE_MAX_FILESIZE . 'KB以内のGIF・JPEG・PNGにしてください。');
+            return false;
+        }
+
         $body = $this->decoder->get_text_body();
         if ($body === '') {
             $this->error_mail('本文が空のため投稿できませんでした。');
@@ -312,11 +318,6 @@ class mail_sns
         $ins_id = db_commu_insert_c_commu_topic_comment($c_commu_id, $topic['c_commu_topic_id'], $this->c_member_id, $body);
 
         // 写真登録
-        $images = $this->decoder->get_images();
-        if ($images === false) {
-            $this->error_mail('画像は' . IMAGE_MAX_FILESIZE . 'KB以内のGIF・JPEG・PNGにしてください。');
-            return false;
-        }
         $image_num = 1;
         foreach ($images as $image) {
             $image_ext = $image['ext'];
@@ -362,17 +363,18 @@ class mail_sns
             return false;
         }
 
-        $c_member = db_member_c_member4c_member_id($this->c_member_id);
-        if (!$ins_id = db_diary_insert_c_diary($this->c_member_id, $subject, $body, $c_member['public_flag_diary'])) {
-            return false;
-        }
-
-        // 写真登録
         $images = $this->decoder->get_images();
         if ($images === false) {
             $this->error_mail('画像は' . IMAGE_MAX_FILESIZE . 'KB以内のGIF・JPEG・PNGにしてください。');
             return false;
         }
+
+        $c_member = db_common_c_member4c_member_id($this->c_member_id);
+        if (!$ins_id = db_diary_insert_c_diary($this->c_member_id, $subject, $body, $c_member['public_flag_diary'])) {
+            return false;
+        }
+
+        // 写真登録
         $image_num = 1;
         foreach ($images as $image) {
             $image_ext = $image['ext'];
