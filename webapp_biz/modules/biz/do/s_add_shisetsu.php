@@ -21,7 +21,7 @@ class biz_do_s_add_shisetsu extends OpenPNE_Action
             $filename = biz_saveImage($_FILES['image_filename'], "s_".$sessid);
 
             if (!$filename) {
-                $p = array('msg' => '画像は300KB以内のGIF・JPEG・PNGにしてください。');
+                $p = array('msg' => '画像は' . IMAGE_MAX_FILESIZE . 'KB以内のGIF・JPEG・PNGにしてください。');
                 openpne_redirect('biz', 'page_s_add_shisetsu', $p);
             }
         }
