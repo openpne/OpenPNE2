@@ -294,6 +294,7 @@ function db_admin_c_banner_list4null($type = '')
         $sql .= ' WHERE type = ?';
         $params[] = $type;
     }
+    $sql .= ' ORDER BY c_banner_id';
     return db_get_all($sql, $params);
 }
 
