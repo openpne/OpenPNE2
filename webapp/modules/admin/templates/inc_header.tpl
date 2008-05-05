@@ -135,7 +135,9 @@
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('limit_domain')})">招待メールドメイン制限</a></li>
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_cmd')})">CMD設定</a></li>
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_cmd_caster')})">CMDキャスター設定</a></li>
+({if $smarty.const.OPENPNE_USE_API})
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_api')})">API設定</a></li>
+({/if})
 ({if $smarty.const.OPENPNE_USE_DECORATION})
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_deco')})">文字装飾設定</a></li>
 ({/if})
