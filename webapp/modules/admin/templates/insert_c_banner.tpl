@@ -10,6 +10,7 @@
 
 ({*ここまで:navi*})
 
+({if $msg})<p class="actionMsg">({$msg})</p>({/if})
 <h2>バナー追加</h2>
 <div class="contents">
 
