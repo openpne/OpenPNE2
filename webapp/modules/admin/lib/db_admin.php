@@ -682,7 +682,7 @@ function db_admin_c_member_id_list4cond_pne_point($ids, $cond_list)
 
     // 終了ポイント
     if (!empty($cond_list['e_point'])) {
-        $sql .= ' AND value <= ?';
+        $sql .= ' AND value < ?';
         $params[] = $cond_list['e_point'];
     }
 
