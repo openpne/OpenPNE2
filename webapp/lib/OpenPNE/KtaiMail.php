@@ -269,6 +269,8 @@ class OpenPNE_KtaiMail
 
             if ($image_data && $image_ext) {
                 $images = array(array('data' => $image_data, 'ext' => $image_ext));
+            } else {
+                return false;
             }
         }
 
