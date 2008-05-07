@@ -93,7 +93,6 @@ function pne_mce_show_color_table(id, tagname)
     };
 
     var button = document.getElementById("mce_textmode_button_op_color");
-    var x = button.offsetLeft;
 
     var button_container = document.getElementById("mce_editor_buttonmenu");
 
@@ -110,9 +109,10 @@ function pne_mce_show_color_table(id, tagname)
         }
 
         var td = document.createElement("td");
-        td.style.backgroundColor = "#" + settings.colors[i];
-        td.style.height = "10px";
-        td.style.border = "1px solid white";
+        td.style.border = "0 none";
+        td.style.width = "12px";
+        td.style.padding = "2px";
+        td.style.margin = "0";
 
         var a = document.createElement("a");
         a.setAttribute("href", "#");
@@ -120,27 +120,40 @@ function pne_mce_show_color_table(id, tagname)
         a.style.width = "9px";
         a.style.height = "9px";
         a.style.display = "block";
+        a.style.overflow = "hidden";
+        a.style.border = "1px solid #808080";
+        a.style.backgroundColor = "#" + settings.colors[i];
         a.onclick = function() {
             pne_mce_insert_tagname(id, tagname, ' code="' + this.colorCode + '"');
             var table = document.getElementById("mce_editor_color_table")
             table.parentNode.removeChild(table);
         };
 
+        var span = document.createElement("span");
+        span.style.display = "none";
+        span.appendChild(document.createTextNode(code));
+
+        a.appendChild(span);
         td.appendChild(a);
         tr.appendChild(td);
     }
 
     var table = document.createElement("table");
     table.id = "mce_editor_color_table";
-    table.style.width = "150px";
+    table.style.width = "auto";
     table.style.position = "absolute";
-    table.style.left = x + 150 + "px";
     table.style.zIndex = 150;
-    table.style.padding = "5px";
     table.style.border = "1px solid gray";
     table.style.backgroundColor = "#fff";
     table.appendChild(tbody);
 
     button_container.appendChild(table);
+
+    if (Prototype.Browser.IE) {
+        table.style.left = button.parentNode.offsetWidth + button.offsetWidth + "px";
+        table.style.top = table.offsetTop + button.offsetHeight;
+    } else {
+        table.style.left = button.offsetLeft + table.offsetLeft + "px";
+    }
 }
 
