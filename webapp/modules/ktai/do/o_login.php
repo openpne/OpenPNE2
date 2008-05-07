@@ -70,19 +70,20 @@ class ktai_do_o_login extends OpenPNE_Action
         $m = 'ktai';
         $p = array();
 
-        if ($GLOBALS['__Framework']['default_page']) {
-            $a = 'page_' . $GLOBALS['__Framework']['default_page'];
-        }
-
         if ($requests['login_params']) {
             parse_str($requests['login_params'], $p);
         }
 
-        if (!empty($p['a']) && $p['a'] != 'page_o_login') {
+        if (!empty($p['a']) {
             $a = $p['a'];
         }
+
         if (!empty($p['m'])) {
             $m = $p['m'];
+        }
+
+        if ($m == 'ktai' && $a == 'page_o_login') {
+            $a = '';
         }
 
         $_SESSION['c_member_id'] = $c_member_id;
