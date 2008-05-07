@@ -69,7 +69,7 @@ class ktai_do_o_easy_login extends OpenPNE_Action
             parse_str($requests['login_params'], $p);
         }
 
-        if (!empty($p['a']) {
+        if (!empty($p['a'])) {
             $a = $p['a'];
         }
 
