@@ -10,7 +10,7 @@
                         <li>
                             <span><img src="({t_img_url filename=$item.image_filename w=76 h=76 noimg=no_logo_small})" alt="({$item.commu_name})" /></span>
                             <dl>
-                                <dt>({$item.comment_datetime|date_format:"%m/%d"})</dt>
+                                <dt>({$item.u_datetime|date_format:"%m/%d"})</dt>
                                 <dd>({$item.name})&nbsp;(({$item.count_comments|number_format}))&nbsp;(({$item.commu_name}))</dd>
                             </dl>
                         </li>
@@ -31,7 +31,7 @@
                     ({if $data.contents})
                     <dl>
                         ({foreach from=$data.contents item=item})
-                        <dt>({$item.comment_datetime|date_format:"%m/%d"})</dt>
+                        <dt>({$item.u_datetime|date_format:"%m/%d"})</dt>
                         <dd>({$item.name})&nbsp;(({$item.count_comments|number_format}))&nbsp;(({$item.commu_name}))</dd>
                         ({/foreach})
                     </dl>
