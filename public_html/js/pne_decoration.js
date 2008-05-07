@@ -37,7 +37,8 @@ function pne_mce_editor_init()
         force_br_newlines : true,
         inline_styles : false,
         language : "ja",
-        entity_encoding : "raw"
+        entity_encoding : "raw",
+        remove_linebreaks : false
     });
 
     var textmode_checkbox = document.getElementById("mce_editor_mode_changer_1");
