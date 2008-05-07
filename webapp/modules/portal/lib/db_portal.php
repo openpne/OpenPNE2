@@ -273,12 +273,11 @@ function db_portal_public_c_commmu_list($limit = 5)
 
     $is_recurred = false;
 
-    $select = "SELECT ct.*, c.name as commu_name, ctc.r_datetime as comment_datetime, c.image_filename as image_filename";
+    $select = "SELECT ct.*, c.name as commu_name, c.image_filename as image_filename";
     $from = " FROM c_commu_topic as ct"
-          . " LEFT JOIN c_commu as c ON c.c_commu_id = ct.c_commu_id"
-          . " LEFT JOIN c_commu_topic_comment as ctc ON (ctc.c_commu_topic_id = ct.c_commu_topic_id AND ctc.number = (select max(number) FROM c_commu_topic_comment where c_commu_topic_id = ct.c_commu_topic_id))";
+          . " LEFT JOIN c_commu as c ON c.c_commu_id = ct.c_commu_id";
     $where = " WHERE c.public_flag = 'public'";
-    $order = " ORDER BY comment_datetime DESC";
+    $order = " ORDER BY ct.u_datetime DESC";
 
     $sql = $select . $from . $where . $order;
 
