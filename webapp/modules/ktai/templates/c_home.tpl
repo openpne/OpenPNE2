@@ -29,7 +29,7 @@
 <br>
 ({if $relation_c_member_and_c_commu.join && !($is_unused_pc_bbs && $is_unused_ktai_bbs)})
 ◆設定変更<br>
-({if $u == $c_commu.c_member_id_admin})
+({if $u == $c_commu.c_member_id_admin || $u == $c_commu.c_member_id_sub_admin})
 ├<a href="({t_url m=ktai a=page_c_edit})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">ｺﾐｭﾆﾃｨ編集</a><br>
 ├<a href="({t_url m=ktai a=page_c_edit_member})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">ﾒﾝﾊﾞｰ編集</a><br>
 ({/if})
