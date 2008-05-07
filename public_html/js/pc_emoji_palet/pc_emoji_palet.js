@@ -37,32 +37,47 @@ eNumSb = 485;
 ////////
 function createEmojiPalletDoCoMo()
 {
-    document.write('<div id="epDocomo" style="display:none;">');
-    for (n=1; n<=eNumDocomo; n++) {
-        emojiPallet(n, "i");
-    }
-    document.write('</div>');
+    document.write('<div id="epDocomo" style="display:none;"></div>');
 }
 
 function createEmojiPalletAu()
 {
-    document.write('<div id="epAu" style="display:none">');
-    for (n=1; n<=eNumAu1; n++) {
-        emojiPallet(n, "e");
-    }
-    for (n=700; n<=eNumAu2; n++) {
-        emojiPallet(n, "e");
-    }
-    document.write('</div>');
+    document.write('<div id="epAu" style="display:none"></div>');
 }
 
 function createEmojiPalletSoftBank()
 {
-    document.write('<div id="epSb" style="display:none">');
-    for (n=1; n<=eNumSb; n++) {
-        emojiPallet(n, "s");
+    document.write('<div id="epSb" style="display:none"></div>');
+}
+
+function renderEmojiPalletDoCoMo()
+{
+    for (n=1; n<=eNumDocomo; n++) {
+        emojiPallet(n, "i", "epDocomo");
     }
-    document.write('</div>');
+    Element.addClassName("epDocomo", "finishLoadEmojiImage");
+    Element.removeClassName("epDocomo", "processLoadEmojiImage");
+}
+
+function renderEmojiPalletAu()
+{
+    for (n=1; n<=eNumAu1; n++) {
+        emojiPallet(n, "e", "epAu");
+    }
+    for (n=700; n<=eNumAu2; n++) {
+        emojiPallet(n, "e", "epAu");
+    }
+    Element.addClassName("epAu", "finishLoadEmojiImage");
+    Element.removeClassName("epAu", "processLoadEmojiImage");
+}
+
+function renderEmojiPalletSoftBank()
+{
+    for (n=1; n<=eNumSb; n++) {
+        emojiPallet(n, "s", "epSb");
+    }
+    Element.addClassName("epSb", "finishLoadEmojiImage");
+    Element.removeClassName("epSb", "processLoadEmojiImage");
 }
 
 function output() {
@@ -96,8 +111,20 @@ function output() {
 ////////
 
 // 絵文字出力
-function emojiPallet(i, career) {
-    document.write('<img src="./skin/default/img/emoji/'+career+'/'+career+i+'.gif" alt="['+career+':'+i+']" onclick=\'putEmojiToSelf("['+career+':'+i+']")\'>');
+function emojiPallet(i, career, target) {
+    var src = "./skin/default/img/emoji/" + career + "/" + career + i + ".gif";
+    var alt = "[" + career + ":" + i + "]";
+    var onclick = "putEmojiToSelf('[" + career + ":" + i + "]')";
+    if (target) {
+        var div = document.getElementById(target);
+        var img = document.createElement("img");
+        img.setAttribute("src", src);
+        img.setAttribute("alt", alt);
+        img.setAttribute("onclick", onclick);
+        div.appendChild(img);
+    } else {
+        document.write('<img src="' + src + '" alt="' + alt + '" onclick="' + onclick + '">');
+    }
 }
 
 // 絵文字コードをテキストエリアに入力
@@ -121,11 +148,32 @@ function putEmojiToSelf(emoji) {
 // パレット表示切り替え
 function togglePallet(pallet) {
     if ($(pallet).style.display == "none") {
+        if (!Element.hasClassName(pallet, 'finishLoadEmojiImage')) {
+            Element.addClassName(pallet, "processLoadEmojiImage");
+            if (pallet == 'epDocomo') {
+                renderEmojiPalletDoCoMo();
+            }
+            if (pallet == 'epAu') {
+                renderEmojiPalletAu();
+            }
+            if (pallet == 'epSb') {
+                renderEmojiPalletSoftBank();
+            }
+        }
+        if (Element.hasClassName(pallet, 'processLoadEmojiImage')) {
+            return togglePallet(pallet);
+        }
         Element.show(pallet);
     } else {
         Element.hide(pallet);
     }
 }
+
+Event.observe(window, "load", function() {
+    // 確実に表示するDoCoMo絵文字は先読みする
+    renderEmojiPalletDoCoMo();
+});
+
 
 // ポップアップ
 function popupPallet(URL){
