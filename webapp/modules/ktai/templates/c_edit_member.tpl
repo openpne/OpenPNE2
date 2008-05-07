@@ -6,7 +6,7 @@
 ({foreach from=$c_member_list item=item})
 ({$item.nickname})
 ({if $item.is_c_commu_sub_admin && $c_commu.c_member_id_sub_admin != $u })<a href="({t_url m=ktai a=page_c_edit_member_delete_c_sub_admin_confirm})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;target_c_member_id=({$item.c_member_id})&amp;({$tail})">副管理者から降格</a> ({/if})
-({if $item.c_member_id == $u})☆({elseif $c_commu.c_member_id_admin != $item.c_member_id})<a href="({t_url m=ktai a=page_c_edit_member_delete_c_commu_member_confirm})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;target_c_member_id=({$item.c_member_id})&amp;({$tail})">削除</a>({/if})<br>
+({if $item.c_member_id == $u})☆({elseif $c_commu.c_member_id_admin != $item.c_member_id && $c_commu.c_member_id_sub_admin != $item.c_member_id})<a href="({t_url m=ktai a=page_c_edit_member_delete_c_commu_member_confirm})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;target_c_member_id=({$item.c_member_id})&amp;({$tail})">削除</a>({/if})<br>
 ({/foreach})
 
 ({if $is_prev || $is_next})
