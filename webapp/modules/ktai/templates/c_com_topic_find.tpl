@@ -18,7 +18,7 @@
 </td></tr>
 ({foreach from=$c_commu_topic_search_list item=topic})
 <tr><td bgcolor="#({cycle values="`$ktai_color_config.bg_06`,`$ktai_color_config.bg_07`"})">
-({$topic.last_datetime|date_format:"%Y/%m/%d %H:%M"})<br>
+({$topic.max_datetime|date_format:"%Y/%m/%d %H:%M"})<br>
 <a href="({t_url m=ktai a=page_c_bbs})&amp;target_c_commu_topic_id=({$topic.c_commu_topic_id})&amp;({$tail})">({$topic.name|t_truncate:50:""})(({$topic.max_number}))</a><br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_07})">
