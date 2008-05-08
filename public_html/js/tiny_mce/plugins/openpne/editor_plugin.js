@@ -79,7 +79,11 @@
             });
             ed.onPostProcess.add(function(ed, o) {  // To text mode
                 if (o.save) {
-                    o.content = t._previewToText(o.content, ed);
+                    if (ed.isHidden()) {
+                        o.content = ed.getElement().value;
+                    } else {
+                        o.content = t._previewToText(o.content, ed);
+                    }
                 }
             });
             ed.onNodeChange.add(function(ed, cm, n) {
