@@ -15,7 +15,7 @@ class admin_page_send_messages_search extends OpenPNE_Action
         $profile_value_list = array();
 
         $special_keys = array('s_year', 'e_year',
-                              's_point', 'e_point',
+                              's_rank', 'e_rank',
                               'last_login',
                               'is_pc_address', 'is_ktai_address');
         foreach ($cond_list as $key => $each_cond) {
@@ -38,6 +38,14 @@ class admin_page_send_messages_search extends OpenPNE_Action
             5 => "未ログイン",
         );
         $v['select_last_login'] = $select_last_login;
+
+        if ($cond_list['s_rank']) {
+            $v['s_rank'] = db_point_get_rank4rank_id($cond_list['s_rank']);
+        }
+
+        if ($cond_list['e_rank']) {
+            $v['e_rank'] = db_point_get_rank4rank_id($cond_list['e_rank']);
+        }
 
         $this->set($v);
 
