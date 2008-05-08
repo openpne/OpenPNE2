@@ -118,4 +118,31 @@ function db_point_is_rank4point($point)
     return (bool)db_get_one($sql, array(intval($point)));
 }
 
+// ランクから到達ポイントを取得
+function db_point_get_point4rank_id($c_rank_id)
+{
+    $sql = "SELECT point FROM c_rank WHERE c_rank_id = ?";
+    $params = array(intval($c_rank_id));
+    return db_get_one($sql, $params);
+}
+
+// 指定したランクの次のランクの到達ポイントを取得
+function db_point_get_point4pre_rank_id($c_rank_id)
+{
+    $pre_point = db_point_get_point4rank_id($c_rank_id);
+
+    $sql = 'SELECT point FROM c_rank WHERE point > ? ORDER BY point';
+    $params = array(intval($pre_point));
+
+    return db_get_one($sql, $params);
+}
+
+// 指定したランクの情報を取得
+function db_point_get_rank4rank_id($c_rank_id)
+{
+    $sql = "SELECT * FROM c_rank WHERE c_rank_id = ?";
+    $params = array(intval($c_rank_id));
+    return db_get_row($sql, $params);
+}
+
 ?>
