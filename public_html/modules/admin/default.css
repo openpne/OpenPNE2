@@ -1090,11 +1090,11 @@ div.listControl p.listMove a {
 #admin_page_top div.noticeTypeB { float:left; margin-left: 10px; width: 300px;}
 #admin_page_top div.box { margin-bottom:10px; border: 1px #a5a2a5 solid;}
 #admin_page_top div.box h2 { _width:300px; margin-top: 0px; padding: 0 0 0 18px; background: #5a595a; line-height: 150%; font-size: 105%; color: #fff;}
-#admin_page_top div.box div.innerBox { width: 298px; overflow: hidden; line-height:1.1em; padding: 10px;}
+#admin_page_top div.box div.innerBox { width: 280px; overflow: hidden; line-height:1.1em; padding: 8px;}
 
 #admin_page_top div.box dl { width: 280px; padding: 0px; float:left;}
-#admin_page_top div.box dt { padding: 4px 0px; float:left; width: 70px; clear: both; margin-right: 10px;}
-#admin_page_top div.box dd { width: 200px; padding: 4px 0px; float:left;}
+#admin_page_top div.box dt { width: 70px; padding: 4px 0px; float:left; clear: both; margin-right: 10px;}
+#admin_page_top div.box dd { width: 200px; overflow: hidden; padding: 4px 0px; float:left;}
 #admin_page_top div.box dd span.origin { padding-left:8px; font-size: x-small;}
 #admin_page_top div.box dd span.origin a { margin:0 2px;}
 
