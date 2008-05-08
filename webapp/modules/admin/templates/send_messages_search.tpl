@@ -26,8 +26,8 @@
 ({if $cond_list.last_login})
 <li>最終ログイン : ({$select_last_login[$cond_list.last_login]})</li>
 ({/if})
-({if $cond_list.s_point||$cond_list.e_point})
-<li>ポイント : ({$cond_list.s_point})～({$cond_list.e_point})</li>
+({if $cond_list.s_rank||$cond_list.e_rank})
+<li>ランク : ({$s_rank.name}) ～ ({$e_rank.name})</li>
 ({/if})
 ({if $cond_list.is_pc_address})
 <li>PCメールアドレス : ({if $cond_list.is_pc_address == 1})登録している({else})登録していない({/if})</li>
