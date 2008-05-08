@@ -120,7 +120,11 @@ function emojiPallet(i, career, target) {
         var img = document.createElement("img");
         img.setAttribute("src", src);
         img.setAttribute("alt", alt);
-        img.setAttribute("onclick", onclick);
+
+        Event.observe(img, "click", function() {
+            putEmojiToSelf("[" + career + ":" + i + "]");
+        });
+
         div.appendChild(img);
     } else {
         document.write('<img src="' + src + '" alt="' + alt + '" onclick="' + onclick + '">');
