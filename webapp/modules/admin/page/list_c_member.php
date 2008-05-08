@@ -49,6 +49,9 @@ class admin_page_list_c_member extends OpenPNE_Action
         );
         $v['select_last_login'] = $select_last_login;
 
+        $v['rank_data'] = db_point_get_rank_all();
+
+
         //開始年が終了年より大きい
         if ( !empty($cond_list['s_year']) && !empty($cond_list['e_year']) && ($cond_list['s_year'] > $cond_list['e_year']) ) {
             $v['msg'] = '※開始年は終了年より小さくして下さい';
