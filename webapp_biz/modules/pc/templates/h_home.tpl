@@ -356,7 +356,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <tr><th>最新トピック<br />一覧</th><td>
 <dl class="articleList">
 ({foreach from=$c_topic_list_all item=item})
-<dt>({$item.r_datetime|date_format:"%m月%d日"})</dt><dd><a href="({t_url m=pc a=page_c_topic_detail})&amp;target_c_commu_topic_id=({$item.c_commu_topic_id})&amp;comment_count=({$item.number})">({$item.name|t_truncate:30}) (({$item.number}))</a> (({$item.c_commu_name})) ({if $item.image_filename1 || $item.image_filename2 || $item.image_filename3})<img src="({t_img_url_skin filename=icon_camera})" alt="写真あり" />({/if})</dd>
+<dt>({$item.u_datetime|date_format:"%m月%d日"})</dt><dd><a href="({t_url m=pc a=page_c_topic_detail})&amp;target_c_commu_topic_id=({$item.c_commu_topic_id})&amp;comment_count=({$item.number})">({$item.name|t_truncate:30}) (({$item.number}))</a> (({$item.c_commu_name})) ({if $item.image_filename1 || $item.image_filename2 || $item.image_filename3})<img src="({t_img_url_skin filename=icon_camera})" alt="写真あり" />({/if})</dd>
 ({/foreach})
 </dl>
 <div class="moreInfo"><ul class="moreInfo">
