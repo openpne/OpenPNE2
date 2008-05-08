@@ -2338,6 +2338,8 @@ function db_commu_insert_c_commu_topic_comment($c_commu_id, $c_commu_topic_id, $
 {
     cache_drop_c_commu_list4c_member_id($c_member_id);
 
+    db_commu_update_c_commu_topic_u_datetime(intval($c_commu_topic_id));
+
     $number = db_commu_c_commu_topic_comment_number4c_commu_topic_id($c_commu_topic_id);
 
     $data = array(
