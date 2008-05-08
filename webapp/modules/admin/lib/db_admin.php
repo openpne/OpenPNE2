@@ -691,16 +691,18 @@ function db_admin_c_member_id_list4cond_pne_point($ids, $cond_list)
            ' WHERE name = ? ';
     $params = array('PNE_POINT');
 
-    // 開始ポイント
-    if (!empty($cond_list['s_point'])) {
+    if ($cond_list['s_rank']) {
+        $s_point = db_point_get_point4rank_id($cond_list['s_rank']);
         $sql .= ' AND value >= ?';
-        $params[] = $cond_list['s_point'];
+        $params[] = (int)$s_point;
     }
 
-    // 終了ポイント
-    if (!empty($cond_list['e_point'])) {
-        $sql .= ' AND value < ?';
-        $params[] = $cond_list['e_point'];
+    if ($cond_list['e_rank']) {
+        $e_point = db_point_get_point4pre_rank_id($cond_list['e_rank']);
+        if (!is_null($e_point)) {
+            $sql .= ' AND value < ?';
+            $params[] = (int)$e_point;
+        }
     }
 
     $point_ids = db_get_col($sql, $params);
@@ -833,7 +835,7 @@ function _db_admin_c_member_id_list($cond_list, $order = '')
     $ids = db_admin_c_member_id_list4cond_c_member($cond_list, $type);
 
     // ポイントで絞り込み
-    if (isset($cond_list['s_point']) || isset($cond_list['e_point'])) {
+    if ($cond_list['s_rank'] || $cond_list['e_rank']) {
         $ids = db_admin_c_member_id_list4cond_pne_point($ids, $cond_list);
     }
 
@@ -921,11 +923,11 @@ function validate_cond($requests)
     }
 
     //ポイント
-    if (isset($requests['s_point']) && $requests['s_point'] !== '') {
-        $cond_list['s_point'] = intval($requests['s_point']);
+    if (isset($requests['s_rank']) && $requests['s_rank'] !== '') {
+        $cond_list['s_rank'] = intval($requests['s_rank']);
     }
-    if (isset($requests['e_point']) && $requests['e_point'] !== '') {
-        $cond_list['e_point'] = intval($requests['e_point']);
+    if (isset($requests['e_rank']) && $requests['e_rank'] !== '') {
+        $cond_list['e_rank'] = intval($requests['e_rank']);
     }
 
     return $cond_list;
