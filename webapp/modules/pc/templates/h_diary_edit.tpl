@@ -141,7 +141,7 @@ function pne_mce_editor_get_config()
 
 <div id="mce_editor_buttonmenu">
 ({foreach from=$INC_HEADER_decoration_config item=item key=key})
-({if item})
+({if $item})
 <a id="mce_textmode_button_({$key})" href="#" onclick="pne_mce_insert_tagname('mce_editor_textarea', '({$key|replace:"_":":"})');"><img src="({t_img_url_skin filename=deco_`$key`})" alt="" /></a>&nbsp;
 ({/if})
 ({/foreach})
