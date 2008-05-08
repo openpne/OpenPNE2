@@ -19,7 +19,7 @@
 <option value="100"({if $pager.page_size==100}) selected="selected"({/if})>100件</option>
 <option value="500"({if $pager.page_size==500}) selected="selected"({/if})>500件</option>
 </select>
-<span class="textBtnS"><input type="submit" value="変更"></span><span class="btnCaution">※表示件数を多くすると処理が重くなり、サーバーに負荷がかかります。</span>
+<span class="textBtnS"><input type="submit" value="変更" /></span><span class="btnCaution">※表示件数を多くすると処理が重くなり、サーバーに負荷がかかります。</span>
 </p>
 </form>
 
@@ -89,6 +89,5 @@
 ({$smarty.capture.pager|smarty:nodefaults})
 <p class="display">({$pager.total_num}) 件中 ({$pager.start_num}) - ({$pager.end_num})件目を表示しています</p>
 </div>({*/div class="listControlBtm"*})
-</div>({*/div class="contents"*})
 
 ({$inc_footer|smarty:nodefaults})
