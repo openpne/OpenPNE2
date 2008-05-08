@@ -3014,7 +3014,7 @@ function db_commu_new_topic_list(
             $c_commu_id = 0)
 {
     $select = 'SELECT c.name AS commu_name, c.image_filename AS commu_image'
-            . ' ,ct.*, ct.r_datetime AS max_datetime'
+            . ' ,ct.*, ct.u_datetime AS max_datetime'
             . ' FROM c_commu AS c'
             . ' INNER JOIN c_commu_topic AS ct USING(c_commu_id) ';
 
