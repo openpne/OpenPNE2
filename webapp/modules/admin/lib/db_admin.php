@@ -669,34 +669,35 @@ function _db_admin_c_member_id_list($cond_list, $order = null)
 
     $ids = db_get_col($sql, $params);
 
-    // --- ポイントで絞り込み ここから
-    if ( isset($cond_list['s_point']) || isset($cond_list['e_point'])) {
+    // --- ランクで絞り込み ここから
+    if ($cond_list['s_rank'] || $cond_list['e_rank']) {
+        $sql = 'SELECT c_member_id'
+             . ' FROM c_member_profile '
+             . ' INNER JOIN c_profile USING (c_profile_id) '
+             . ' WHERE name = ? ';
+        $params = array('PNE_POINT');
 
-        $sql = 'SELECT c_member_id'.
-               ' FROM c_member_profile '.
-               ' INNER JOIN c_profile USING (c_profile_id) '.
-               ' WHERE name = ? ';
-        $params = array(
-            'PNE_POINT',
-        );
-        //開始ポイント
-        if (!empty($cond_list['s_point'])) {
+        if ($cond_list['s_rank']) {
+            $s_point = db_point_get_point4rank_id($cond_list['s_rank']);
             $sql .= ' AND value >= ?';
-            $params[] = $cond_list['s_point'];
+            $params[] = (int)$s_point;
         }
-        //終了ポイント
-        if (!empty($cond_list['e_point'])) {
-            $sql .= ' AND value < ?';
-            $params[] = $cond_list['e_point'];
+
+        if ($cond_list['e_rank']) {
+            $e_point = db_point_get_point4pre_rank_id($cond_list['e_rank']);
+            if (!is_null($e_point)) {
+                $sql .= ' AND value < ?';
+                $params[] = (int)$e_point;
+            }
         }
 
         $point_ids = db_get_col($sql, $params);
 
-        //ポイントで絞り込み
+        // ポイントで絞り込み
         $ids = array_intersect($ids, $point_ids);
 
     }
-    // --- ポイントで絞り込み ここまで
+    // --- ランクで絞り込み ここまで
 
     // --- メールアドレスで絞り込み ここから
     if (!empty($cond_list['is_pc_address']) || !empty($cond_list['is_ktai_address'])) {
@@ -835,12 +836,12 @@ function validate_cond($requests)
         $cond_list['is_ktai_address'] = intval($requests['is_ktai_address']);
     }
 
-    //ポイント
-    if (isset($requests['s_point']) && $requests['s_point'] !== '') {
-        $cond_list['s_point'] = intval($requests['s_point']);
+    // ランク
+    if (isset($requests['s_rank']) && $requests['s_rank'] !== '') {
+        $cond_list['s_rank'] = intval($requests['s_rank']);
     }
-    if (isset($requests['e_point']) && $requests['e_point'] !== '') {
-        $cond_list['e_point'] = intval($requests['e_point']);
+    if (isset($requests['e_rank']) && $requests['e_rank'] !== '') {
+        $cond_list['e_rank'] = intval($requests['e_rank']);
     }
 
     return $cond_list;

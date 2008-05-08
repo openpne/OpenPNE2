@@ -97,20 +97,18 @@
 		<tr class="min_width">
 			({if $smarty.const.OPENPNE_USE_POINT_RANK})
 			<th class="cell10" colspan="2">
-            <select class="basic" onChange="Link('?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page=({$pager.page})&amp;page_size=({$pager.page_size})&amp;order=({$requests.order})({$cond})&amp;s_point='+this.options[this.selectedIndex].value);">
+            <select class="basic" onChange="Link('?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page=({$pager.page})&amp;page_size=({$pager.page_size})&amp;order=({$requests.order})({$cond})&amp;s_rank='+this.options[this.selectedIndex].value);">
 			<option value="">▼選択</option>
 			({foreach from=$rank_data item=item})
-			<option({if $cond_list.s_point == $item.point}) selected({/if}) value="({$item.point})">({$item.name})</option>
+			<option({if $cond_list.s_rank == $item.c_rank_id}) selected({/if}) value="({$item.c_rank_id})">({$item.name})</option>
 			({/foreach})
 			</select>
 			～
-			<select class="basic" onChange="Link('?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page=({$pager.page})&amp;page_size=({$pager.page_size})&amp;order=({$requests.order})({$cond})&amp;e_point='+this.options[this.selectedIndex].value);">
+			<select class="basic" onChange="Link('?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page=({$pager.page})&amp;page_size=({$pager.page_size})&amp;order=({$requests.order})({$cond})&amp;e_rank='+this.options[this.selectedIndex].value);">
 			<option value="">▼選択</option>
 			({foreach from=$rank_data item=item})
-			({if $pre_name})<option({if $cond_list.e_point == $item.point}) selected({/if}) value="({$item.point})">({$pre_name})</option>({/if})
-			({assign var=pre_name value=$item.name|smarty:nodefaults})
+			<option({if $cond_list.e_rank == $item.c_rank_id}) selected({/if}) value="({$item.c_rank_id})">({$item.name})</option>
 			({/foreach})
-			({if $pre_name})<option({if $cond_list.e_point === 0}) selected({/if}) value="0">({$pre_name})</option>({/if})
 			</select>
 			</th>
 			({/if})
