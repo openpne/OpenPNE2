@@ -59,15 +59,20 @@
 <ul class="moreInfo"><li><a href="({t_url m=pc a=page_c_event_member_list})&amp;target_c_commu_topic_id=({$c_topic.c_commu_topic_id})">参加者一覧を見る</a></li></ul>
 ({/if})
 </td>
-</tr><tr>
+</tr>
+({if $is_c_event_admin || $is_c_commu_admin})
+<tr>
 <th>一括メッセージ</th>
 <td>イベント参加者に一括メッセージを送ります。
 <ul class="moreInfo"><li><a href="({t_url m=pc a=page_c_event_mail})&amp;target_c_commu_topic_id=({$c_topic.c_commu_topic_id})">一括メッセージを送る</a></li></ul>
 </td>
-</tr></table>
+</tr>
+({/if})
+</table>
 </dd>
 </dl>
 
+({if $is_c_event_admin || $is_c_commu_admin})
 <div class="operation">
 ({t_form_block m=pc a=page_c_event_edit})
 <input type="hidden" name="target_c_commu_topic_id" value="({$c_topic.c_commu_topic_id})" />
@@ -76,6 +81,7 @@
 </ul>
 ({/t_form_block})
 </div>
+({/if})
 </div></div>
 ({* }}} *})
 
