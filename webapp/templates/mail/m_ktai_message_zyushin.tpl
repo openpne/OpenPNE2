@@ -5,11 +5,15 @@
 メッセージボックスに({$c_member_from.nickname})さんから
 メッセージが届いています。
 
+({if $subject})
 件名:
 ({$subject|t_truncate:50:"..."})
+({/if})
 
+({if $body})
 本文:
 ({$body|t_truncate:150:"..."})
+({/if})
 
 ({$SNS_NAME})ログインページ
 ({$login_url})
