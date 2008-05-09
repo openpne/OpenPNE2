@@ -181,7 +181,7 @@ span.op_color {
 	({else})
 		({$INC_FOOTER_side_banner_html_after|smarty:nodefaults|t_url2cmd:'side_banner'|t_cmd:'side_banner'})
 	({/if})
-({else})
+({elseif $INC_FOOTER_inc_side_banner})
 	({if $INC_FOOTER_inc_side_banner.a_href})
 		<a href="({t_url m=pc a=do_h_click_banner})&amp;target_c_banner_id=({$INC_FOOTER_inc_side_banner.c_banner_id})({if $PHPSESSID})&amp;sessid=({$PHPSESSID})({/if})" target="_blank"><img src="({t_img_url filename=$INC_FOOTER_inc_side_banner.image_filename})" alt="({$INC_FOOTER_inc_side_banner.nickname})" /></a>
 	({else})
