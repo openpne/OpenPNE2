@@ -72,8 +72,13 @@
 ({/foreach})
 
 <br>
+({if $smarty.const.OPENPNE_AUTH_MODE == 'slavepne'})
+({if $smarty.const.SLAVEPNE_SYOUTAI_URL_KTAI})
 <hr color="#({$ktai_color_config.border_01})">
-({if $IS_CLOSED_SNS})
+■<a href="({$smarty.const.SLAVEPNE_SYOUTAI_URL_KTAI})">新規登録について</a><br>
+({/if})
+({elseif $IS_CLOSED_SNS})
+<hr color="#({$ktai_color_config.border_01})">
 ({$SNS_NAME})は招待制のｿｰｼｬﾙﾈｯﾄﾜｰｷﾝｸﾞｻｰﾋﾞｽです。<br>
 登録には({$SNS_NAME})({if $smarty.const.IS_USER_INVITE})参加者({else})管理者({/if})からの招待が必要です。<br>
 
