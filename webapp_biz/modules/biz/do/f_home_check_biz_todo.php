@@ -21,7 +21,7 @@ class biz_do_f_home_check_biz_todo extends OpenPNE_Action
         }
         biz_checkTodo($chid, $is_check);
 
-        $todo = biz_getTodo($id);
+        $todo = biz_getTodo($chid);
 
         $p = array('target_c_member_id' => $todo['c_member_id']);
         openpne_redirect('pc', 'page_f_home', $p);
