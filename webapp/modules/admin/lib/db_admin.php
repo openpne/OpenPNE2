@@ -454,43 +454,43 @@ function db_admin_delete_c_image_link4image_filename($image_filename)
 
     if ($prefix == 'c') {
         $tbl = 'c_commu';
-        _db_admin_empty_image_filename($tbl, $image_filename);
+        _db_admin_empty_filename($tbl, $image_filename);
     }
 
     if ($prefix == 't' || $prefix == 'tc') {
         $tbl = 'c_commu_topic_comment';
-        _db_admin_empty_image_filename($tbl, $image_filename, 'image_filename1');
-        _db_admin_empty_image_filename($tbl, $image_filename, 'image_filename2');
-        _db_admin_empty_image_filename($tbl, $image_filename, 'image_filename3');
+        _db_admin_empty_filename($tbl, $image_filename, 'image_filename1');
+        _db_admin_empty_filename($tbl, $image_filename, 'image_filename2');
+        _db_admin_empty_filename($tbl, $image_filename, 'image_filename3');
     }
 
     if ($prefix == 'd') {
         $tbl = 'c_diary';
-        _db_admin_empty_image_filename($tbl, $image_filename, 'image_filename_1');
-        _db_admin_empty_image_filename($tbl, $image_filename, 'image_filename_2');
-        _db_admin_empty_image_filename($tbl, $image_filename, 'image_filename_3');
+        _db_admin_empty_filename($tbl, $image_filename, 'image_filename_1');
+        _db_admin_empty_filename($tbl, $image_filename, 'image_filename_2');
+        _db_admin_empty_filename($tbl, $image_filename, 'image_filename_3');
     }
 
     if ($prefix == 'dc') {
         $tbl = 'c_diary_comment';
-        _db_admin_empty_image_filename($tbl, $image_filename, 'image_filename_1');
-        _db_admin_empty_image_filename($tbl, $image_filename, 'image_filename_2');
-        _db_admin_empty_image_filename($tbl, $image_filename, 'image_filename_3');
+        _db_admin_empty_filename($tbl, $image_filename, 'image_filename_1');
+        _db_admin_empty_filename($tbl, $image_filename, 'image_filename_2');
+        _db_admin_empty_filename($tbl, $image_filename, 'image_filename_3');
     }
 
     if ($prefix == 'm') {
         $tbl = 'c_member';
-        _db_admin_empty_image_filename($tbl, $image_filename);
-        _db_admin_empty_image_filename($tbl, $image_filename, 'image_filename_1');
-        _db_admin_empty_image_filename($tbl, $image_filename, 'image_filename_2');
-        _db_admin_empty_image_filename($tbl, $image_filename, 'image_filename_3');
+        _db_admin_empty_filename($tbl, $image_filename);
+        _db_admin_empty_filename($tbl, $image_filename, 'image_filename_1');
+        _db_admin_empty_filename($tbl, $image_filename, 'image_filename_2');
+        _db_admin_empty_filename($tbl, $image_filename, 'image_filename_3');
     }
 
     if ($prefix == 'ms') {
         $tbl = 'c_message';
-        _db_admin_empty_image_filename($tbl, $image_filename, 'image_filename_1');
-        _db_admin_empty_image_filename($tbl, $image_filename, 'image_filename_2');
-        _db_admin_empty_image_filename($tbl, $image_filename, 'image_filename_3');
+        _db_admin_empty_filename($tbl, $image_filename, 'image_filename_1');
+        _db_admin_empty_filename($tbl, $image_filename, 'image_filename_2');
+        _db_admin_empty_filename($tbl, $image_filename, 'image_filename_3');
     }
 }
 
