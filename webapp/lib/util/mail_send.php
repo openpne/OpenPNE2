@@ -715,7 +715,7 @@ function do_common_send_mail_taikai_end_ktai($c_member_id)
 }
 
 //◆メッセージ受信メール(携帯)
-function do_common_send_message_mail_send_ktai($c_member_id_to, $c_member_id_from, $subject, $body)
+function do_common_send_message_mail_send_ktai($c_member_id_to, $c_member_id_from, $subject = '', $body = '')
 {
     $c_member_to = db_member_c_member4c_member_id($c_member_id_to, true);
     $ktai_address = $c_member_to['secure']['ktai_address'];
