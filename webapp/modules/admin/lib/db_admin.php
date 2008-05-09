@@ -707,7 +707,7 @@ function db_admin_c_member_id_list4cond_pne_point($ids, $cond_list)
     }
 
     if ($cond_list['e_rank']) {
-        $e_point = db_point_get_point4pre_rank_id($cond_list['e_rank']);
+        $e_point = db_point_get_next_rank_point4rank_id($cond_list['e_rank']);
         if (!is_null($e_point)) {
             $sql .= ' AND value < ?';
             $params[] = (int)$e_point;
