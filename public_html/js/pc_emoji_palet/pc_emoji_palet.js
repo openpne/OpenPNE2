@@ -52,31 +52,31 @@ function createEmojiPalletSoftBank()
 
 function renderEmojiPalletDoCoMo()
 {
+    Element.addClassName("epDocomo", "isLoadEmojiImage");
     for (n=1; n<=eNumDocomo; n++) {
         emojiPallet(n, "i", "epDocomo");
     }
-    Element.addClassName("epDocomo", "finishLoadEmojiImage");
     Element.removeClassName("epDocomo", "processLoadEmojiImage");
 }
 
 function renderEmojiPalletAu()
 {
+    Element.addClassName("epAu", "isLoadEmojiImage");
     for (n=1; n<=eNumAu1; n++) {
         emojiPallet(n, "e", "epAu");
     }
     for (n=700; n<=eNumAu2; n++) {
         emojiPallet(n, "e", "epAu");
     }
-    Element.addClassName("epAu", "finishLoadEmojiImage");
     Element.removeClassName("epAu", "processLoadEmojiImage");
 }
 
 function renderEmojiPalletSoftBank()
 {
+    Element.addClassName("epSb", "isLoadEmojiImage");
     for (n=1; n<=eNumSb; n++) {
         emojiPallet(n, "s", "epSb");
     }
-    Element.addClassName("epSb", "finishLoadEmojiImage");
     Element.removeClassName("epSb", "processLoadEmojiImage");
 }
 
@@ -152,7 +152,7 @@ function putEmojiToSelf(emoji) {
 // パレット表示切り替え
 function togglePallet(pallet) {
     if ($(pallet).style.display == "none") {
-        if (!Element.hasClassName(pallet, 'finishLoadEmojiImage')) {
+        if (!Element.hasClassName(pallet, 'isLoadEmojiImage')) {
             Element.addClassName(pallet, "processLoadEmojiImage");
             if (pallet == 'epDocomo') {
                 renderEmojiPalletDoCoMo();
