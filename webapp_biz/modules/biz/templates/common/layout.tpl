@@ -16,7 +16,7 @@
 /* 文字装飾 */
 ({if $INC_HEADER_decoration_config.op_b})
 span.op_b {
-    text-decoration : underline;
+    text-decoration : inherit;
     font-style : inherit;
     font-weight : bold;
     color : inherit;
