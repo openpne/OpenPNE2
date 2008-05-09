@@ -1922,7 +1922,7 @@ function db_member_create_member($username)
  */
 function db_member_check_param_inputed($c_member_id, $is_ktai = false)
 {
-    $c_member = db_member_c_member4c_member_id($c_member_id, true);
+    $c_member = db_member_c_member4c_member_id($c_member_id, true, false, 'private');
 
     if (($c_member['nickname'] === '')
      || !$c_member['birth_year']
