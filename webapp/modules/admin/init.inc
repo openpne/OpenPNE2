@@ -35,7 +35,6 @@ $GLOBALS['_OPENPNE_ADMIN_AUTH_ACTIONS'] = array(
 'normal_type' => array(
 
 'page_delete_c_banner_confirm',
-'page_delete_c_cmd_confirm',
 'page_delete_c_free_page_confirm',
 'page_delete_c_profile',
 'page_delete_c_rank_confirm',
@@ -138,7 +137,6 @@ $GLOBALS['_OPENPNE_ADMIN_AUTH_ACTIONS'] = array(
 'page_access_analysis_target_topic',
 'page_commu_list',
 'page_delete_c_banner_confirm',
-'page_delete_c_cmd_confirm',
 'page_delete_c_file_confirm',
 'page_delete_c_free_page_confirm',
 'page_delete_c_image_confirm',
