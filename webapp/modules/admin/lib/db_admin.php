@@ -701,7 +701,7 @@ function db_admin_c_member_id_list4cond_pne_point($ids, $cond_list)
     $params = array('PNE_POINT');
 
     if ($cond_list['s_rank']) {
-        $s_point = db_point_get_point4rank_id($cond_list['s_rank']);
+        $s_point = db_point_get_rank_point4rank_id($cond_list['s_rank']);
         $sql .= ' AND value >= ?';
         $params[] = (int)$s_point;
     }
