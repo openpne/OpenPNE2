@@ -119,7 +119,7 @@ function db_point_is_rank4point($point)
 }
 
 // ランクから到達ポイントを取得
-function db_point_get_point4rank_id($c_rank_id)
+function db_point_get_rank_point4rank_id($c_rank_id)
 {
     $sql = "SELECT point FROM c_rank WHERE c_rank_id = ?";
     $params = array(intval($c_rank_id));
@@ -129,7 +129,7 @@ function db_point_get_point4rank_id($c_rank_id)
 // 指定したランクの次のランクの到達ポイントを取得
 function db_point_get_next_rank_point4rank_id($c_rank_id)
 {
-    $pre_point = db_point_get_point4rank_id($c_rank_id);
+    $pre_point = db_point_get_rank_point4rank_id($c_rank_id);
 
     $sql = 'SELECT point FROM c_rank WHERE point > ? ORDER BY point';
     $params = array(intval($pre_point));
