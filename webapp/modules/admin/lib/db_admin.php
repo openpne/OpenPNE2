@@ -492,6 +492,15 @@ function db_admin_delete_c_image_link4image_filename($image_filename)
         _db_admin_empty_filename($tbl, $image_filename, 'image_filename_2');
         _db_admin_empty_filename($tbl, $image_filename, 'image_filename_3');
     }
+
+    if ($prefix = 'a') {
+        $tbl = 'c_album';
+        _db_admin_empty_filename($tbl, $image_filename, 'album_cover_image');
+
+        $sql = 'DELETE FROM c_album_image WHERE image_filename = ?';
+        $params = array($image_filename);
+        db_query($sql, $params);
+    }
 }
 
 function _db_admin_empty_filename($tbl, $image_filename, $column = 'image_filename')
