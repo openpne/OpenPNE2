@@ -1388,12 +1388,6 @@ div.listControl p.listMove a {
 #admin_page_list_c_cmd div.contents td table { margin: 0px; padding: 0px;}
 #admin_page_list_c_cmd div.contents td table td { padding: 0px 10px 0px 0px; border-style: none; vertical-align: top;}
 
-/** admin_page_delete_c_cmd_confirm **/
-
-#admin_page_delete_c_cmd_confirm div.contents p.caution { padding-bottom: 10px;}
-#admin_page_delete_c_cmd_confirm div.contents td table { margin: 0px; padding: 0px;}
-#admin_page_delete_c_cmd_confirm div.contents td table td { padding: 0px 10px 0px 0px; border-style: none; vertical-align: top;}
-
 /** admin_page_list_c_rank **/
 
 #admin_page_list_c_rank div.contents div.listControl ,
