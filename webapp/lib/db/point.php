@@ -127,7 +127,7 @@ function db_point_get_point4rank_id($c_rank_id)
 }
 
 // 指定したランクの次のランクの到達ポイントを取得
-function db_point_get_point4pre_rank_id($c_rank_id)
+function db_point_get_next_rank_point4rank_id($c_rank_id)
 {
     $pre_point = db_point_get_point4rank_id($c_rank_id);
 
