@@ -3051,8 +3051,8 @@ function db_commu_new_topic_list(
         $list[$key]['max_number'] = $number;
     }
 
-    $sql = 'SELECT COUNT(c_commu_topic_id) FROM c_commu'
-         . ' AS c INNER JOIN c_commu_topic USING(c_commu_id)' . $where;
+    $sql = 'SELECT COUNT(ct.c_commu_topic_id) FROM c_commu'
+         . ' INNER JOIN c_commu_topic AS ct USING(c_commu_id)' . $where;
     $total_num = db_get_one($sql, $params);
 
     if ($total_num != 0) {
