@@ -20,7 +20,7 @@ class biz_do_f_home_delete_biz_todo extends OpenPNE_Action
         }
         biz_deleteTodo($delid);
 
-        $todo = biz_getTodo($id);
+        $todo = biz_getTodo($delid);
 
         $p = array('target_c_member_id' => $todo['c_member_id']);
         openpne_redirect('pc', 'page_f_home', $p);
