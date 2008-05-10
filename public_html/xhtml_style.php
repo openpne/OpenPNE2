@@ -373,8 +373,8 @@ div.operation ul.moreInfo li {
 /*----------------------------------------------
  * カレンダー
  *--------------------------------------------*/
-.calendar .sun,
-.calendar .holiday {
+#Body .calendar .holiday,
+.calendar .sun {
 	color: #d92c49;
 }
 .calendar .sat {
