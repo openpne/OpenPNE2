@@ -9,6 +9,7 @@ require_once OPENPNE_WEBAPP_DIR . '/init.inc';
 require_once 'smarty_plugins/function.t_img_url_skin.php';
 
 $custom_css = p_common_c_siteadmin4target_pagename('inc_custom_css');
+$decoration_config = db_decoration_enable_list();
 $old_colors = util_get_color_config();
 $colors = array(
     1 => $old_colors['bg_01'], // (1)線の色
@@ -21,6 +22,7 @@ $colors = array(
     8 => $old_colors['bg_02'], // (8)ボックスの背景
     9 => $old_colors['bg_10'], // (9)左メニュー枠色
 );
+
 function getSkin($name)
 {
     $params['filename'] = $name;
@@ -2067,6 +2069,87 @@ div#container_login .footer p {
 	width: 140px;
 	border-left: none;
 }
+
+/*==============================================================================
+ * 文字装飾
+ *----------------------------------------------------------------------------*/
+<?php if ($decoration_config['op_b']) : ?>
+span.op_b {
+    text-decoration : inherit;
+    font-style : inherit;
+    font-weight : bold;
+    color : inherit;
+    font-size: inherit;
+}
+<?php endif; ?>
+
+<?php if ($decoration_config['op_u']) : ?>
+span.op_u {
+    text-decoration : underline;
+    font-style : inherit;
+    font-weight : inherit;
+    color : inherit;
+    font-size: inherit;
+}
+<?php endif; ?>
+
+<?php if ($decoration_config['op_s']) : ?>
+span.op_s {
+    text-decoration : line-through;
+    font-style : inherit;
+    font-weight : inherit;
+    color : inherit;
+    font-size: inherit;
+}
+<?php endif; ?>
+
+<?php if ($decoration_config['op_i']) : ?>
+span.op_i {
+    text-decoration : inherit;
+    font-style : italic;
+    font-weight : inherit;
+    color : inherit;
+    font-size: inherit;
+}
+<?php endif; ?>
+
+<?php if ($decoration_config['op_large']) : ?>
+span.op_large {
+    text-decoration : inherit;
+    font-style : inherit;
+    font-weight : inherit;
+    color : inherit;
+    font-size : 20px;
+}
+<?php endif; ?>
+
+<?php if ($decoration_config['op_small']) : ?>
+span.op_small {
+    text-decoration : inherit;
+    font-style : inherit;
+    font-weight : inherit;
+    color : inherit;
+    font-size : 8px;
+}
+<?php endif; ?>
+
+<?php if ($decoration_config['op_color']) : ?>
+span.op_color {
+    text-decoration : inherit;
+    font-style : inherit;
+    font-weight : inherit;
+    color : inherit;
+    font-size: inherit;
+}
+<?php else : ?>
+span.op_color {
+    text-decoration : inherit;
+    font-style : inherit;
+    font-weight : inherit;
+    color : #000 !important;
+    font-size: inherit;
+}
+<?php endif; ?>
 
 /*==============================================================================
  * 
