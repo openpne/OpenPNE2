@@ -41,15 +41,15 @@ function pne_mce_editor_get_config()
         },
         op_emoji_docomo : {
             isEnabled : 1,
-            imageURL : "({t_img_url_skin filename=deco_op_emoji_docomo})",
+            imageURL : "({t_img_url_skin filename=deco_op_emoji_docomo})"
         },
         op_emoji_au : {
             isEnabled : ({if $smarty.const.OPENPNE_EMOJI_DOCOMO_FOR_PC})0,({else})1({/if}),
-            imageURL : "({t_img_url_skin filename=deco_op_emoji_au})",
+            imageURL : "({t_img_url_skin filename=deco_op_emoji_au})"
         },
         op_emoji_softbank : {
             isEnabled : ({if $smarty.const.OPENPNE_EMOJI_DOCOMO_FOR_PC})0,({else})1({/if}),
-            imageURL : "({t_img_url_skin filename=deco_op_emoji_softbank})",
+            imageURL : "({t_img_url_skin filename=deco_op_emoji_softbank})"
         }
     }
 }
