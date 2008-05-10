@@ -7,6 +7,7 @@
 require_once './config.inc.php';
 require_once OPENPNE_WEBAPP_DIR . '/init.inc';
 require_once 'smarty_plugins/function.t_img_url_skin.php';
+require_once 'Etag.php';
 
 $custom_css = p_common_c_siteadmin4target_pagename('inc_custom_css');
 $decoration_config = db_decoration_enable_list();
@@ -22,6 +23,12 @@ $colors = array(
     8 => $old_colors['bg_02'], // (8)ボックスの背景
     9 => $old_colors['bg_10'], // (9)左メニュー枠色
 );
+
+$etag_key = md5(OPENPNE_SKIN_THEME . $custom_css . serialize($decoration_config) . serialize($colors));
+$etag =& new Etag($etag_key, @filemtime(__FILE__));
+if ($etag->etagCheck()) {
+    exit;
+}
 
 function getSkin($name)
 {
