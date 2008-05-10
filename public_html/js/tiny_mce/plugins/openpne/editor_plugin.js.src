@@ -61,7 +61,7 @@
 
                     n = DOM.add(n, 'img', {
                         src : "./skin/default/img/emoji/" + s.carrier +"/" + s.carrier + i + ".gif",
-                        alt : "[" + s.carrier + ":" + i + "]",
+                        alt : "[" + s.carrier + ":" + i + "]"
                     });
 
                     Event.add(n, 'mousedown', function(e) {
