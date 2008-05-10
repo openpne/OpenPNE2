@@ -31,6 +31,68 @@
         }
     });
 
+    tinymce.create('tinymce.ui.OpenPNEEmojiButton:tinymce.ui.ColorSplitButton', {
+        OpenPNEEmojiButton : function(id, s) {
+            var t = this;
+
+            t.parent(id, s);
+
+            t.settings = s;
+        },
+
+        renderMenu : function() {
+            var t = this, m, i = 0, s = t.settings, n, tb, tr, w;
+            var DOM = tinymce.DOM, Event = tinymce.dom.Event, is = tinymce.is, each = tinymce.each;
+            w = DOM.add(s.menu_container, 'div', {id : t.id + '_menu', dir : 'ltr', 'class' : s['menu_class'] + ' ' + s['class'],
+                style : 'position:absolute;left:0;top:-1000px;'});
+            m = DOM.add(w, 'div', {'class' : s['class'] + ' mceSplitButtonMenu'});
+            DOM.add(m, 'span', {'class' : 'mceMenuLine'});
+
+            n = DOM.add(m, 'table', {'class' : 'mceEmojiSplitMenu'});
+            tb = DOM.add(n, 'tbody');
+
+            for (var num in s.emoji) {
+                var emoji = s.emoji[num];
+                for (var i = emoji.start; i <= emoji.end; i++) {
+                    if (i == emoji.start || i % 25 == 0) {
+                        tr = DOM.add(tb, 'tr');
+                    }
+                    n = DOM.add(tr, 'td');
+
+                    n = DOM.add(n, 'img', {
+                        src : "./skin/default/img/emoji/" + s.carrier +"/" + s.carrier + i + ".gif",
+                        alt : "[" + s.carrier + ":" + i + "]",
+                    });
+
+                    Event.add(n, 'mousedown', function(e) {
+                        tinyMCE.execCommand("mceInsertContent", false, e.element().getAttribute("alt"));
+                    });
+                }
+            }
+
+            DOM.addClass(m, 'mceColorSplitMenu');
+
+            return w;
+        },
+
+        renderHTML : function() {
+            var s = this.settings, h = '<a id="' + this.id + '" href="javascript:;" class="mceButton mceButtonEnabled ' + s['class']
+                + '" onmousedown="return false;" onclick="return false;" title="' + tinymce.DOM.encode(s.title) + '">';
+
+            if (s.image) {
+                h += '<img class="mceIcon" src="' + s.image + '" /></a>';
+            } else {
+                h += '<span class="mceIcon ' + s['class'] + '"></span></a>';
+            }
+
+            return h;
+        },
+
+        postRender : function() {
+            tinymce.dom.Event.add(this.id, 'click', this.showMenu, this);
+        }
+    });
+
     tinymce.PluginManager.requireLangPack('openpne');
 
     var config = pne_mce_editor_get_config();
@@ -99,6 +161,31 @@
             if (n == "op_color" && config["op_color"].isEnabled) {
                 c = this._createOpenPNEColorButton("op_color", { title : "{#openpne.op_color}", image: config["op_color"].imageURL, cmd : "ForeColor"}, cm);
             }
+
+            if (n == "op_emoji_docomo" || n == "op_emoji_au" && config["op_emoji_au"].isEnabled || n == "op_emoji_softbank" && config["op_emoji_softbank"].isEnabled) {
+                var emoji_config = {
+                    op_emoji_docomo : {
+                        carrier : "i",
+                        emoji : [ {start : 1, end : 252} ],
+                        title : "{#openpne." + n + "}",
+                        image: config[n].imageURL
+                    },
+                    op_emoji_au : {
+                        carrier : "e",
+                        emoji : [ {start : 1, end : 518}, {start : 700, end : 822} ],
+                        title : "{#openpne." + n + "}",
+                        image: config[n].imageURL
+                    },
+                    op_emoji_softbank : {
+                        carrier : "s",
+                        emoji : [ {start : 1, end : 485} ],
+                        title : "{#openpne." + n + "}",
+                        image: config[n].imageURL
+                    }
+                }
+                c = this._createOpenPNEEmojiButton(n, emoji_config[n], cm);
+            }
+
             return c;
         },
 
@@ -142,6 +229,37 @@
             return t.add(c);
         },
 
+        _createOpenPNEEmojiButton : function(id, s, cm) {
+            var t = cm, ed = t.editor, cmd, c;
+
+            if (t.get(id)) {
+                return null;
+            }
+
+            s.title = ed.translate(s.title);
+            s.scope = s.scope || ed;
+
+            if (!s.onclick) {
+                s.onclick = function(v) { ed.execCommand(s.cmd, s.ui || false, v || s.value); };
+            }
+
+            if (!s.onselect) {
+                s.onselect = function(v) { ed.execCommand(s.cmd, s.ui || false, v || s.value); };
+            }
+
+            id = t.prefix + id;
+
+            s = tinymce.extend({ title : s.title, 'class' : 'mce_' + id, 'menu_class' : ed.getParam('skin') + 'Skin', scope : s.scope}, s);
+
+            c = new tinymce.ui.OpenPNEEmojiButton(id, s);
+            ed.onMouseDown.add(c.hideMenu, c);
+
+            ed.onRemove.add(function() {
+                c.destroy();
+            });
+
+            return t.add(c);
+        },
         _previewToText : function(s, editor) {
             var editorDoc = editor.getBody();
 
