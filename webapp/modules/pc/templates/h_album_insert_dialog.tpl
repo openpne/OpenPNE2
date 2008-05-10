@@ -5,8 +5,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta http-equiv="Content-Style-Type" content="text/css" />
 <meta http-equiv="Content-Script-Type" content="text/javascript" />
-<script type="text/javascript" src="./js/Selection.js"></script>
-<script type="text/javascript" src="./js/tiny_mce/tiny_mce_popup.js"></script>
+<script type="text/javascript" src="./js/Selection.js?r7140"></script>
+<script type="text/javascript" src="./js/tiny_mce/tiny_mce_popup.js?r7140"></script>
 <title>({$INC_HEADER_title})</title>
 <link rel="stylesheet" href="./xhtml_style.php" type="text/css" />
 <script type="text/javascript">
