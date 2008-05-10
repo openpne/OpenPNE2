@@ -11,7 +11,7 @@
 <img src="({t_img_url filename=$c_member.image_filename_1 w=180 h=180})" alt="" /><br />
 [ <a href="({t_url m=pc a=do_h_config_image_delete_c_member_image})&amp;img_num=1&amp;sessid=({$PHPSESSID})">削除</a> |
 ({if $c_member.image_filename_1==$c_member.image_filename})
-メイン写真 ]
+メイン写真
 ({else})
 <a href="({t_url m=pc a=do_h_config_image_change_main_c_member_image})&amp;img_num=1&amp;sessid=({$PHPSESSID})">メイン写真</a>
 ({/if}) ]
@@ -24,7 +24,7 @@
 <img src="({t_img_url filename=$c_member.image_filename_2 w=180 h=180})" alt="" /><br />
 [ <a href="({t_url m=pc a=do_h_config_image_delete_c_member_image})&amp;img_num=2&amp;sessid=({$PHPSESSID})">削除</a> |
 ({if $c_member.image_filename_2==$c_member.image_filename})
-メイン写真 ]
+メイン写真
 ({else})
 <a href="({t_url m=pc a=do_h_config_image_change_main_c_member_image})&amp;img_num=2&amp;sessid=({$PHPSESSID})">メイン写真</a>
 ({/if}) ]
@@ -37,7 +37,7 @@
 <img src="({t_img_url filename=$c_member.image_filename_3 w=180 h=180})" alt="" /><br />
 [ <a href="({t_url m=pc a=do_h_config_image_delete_c_member_image})&amp;img_num=3&amp;sessid=({$PHPSESSID})">削除</a> |
 ({if $c_member.image_filename_3==$c_member.image_filename})
-メイン写真 ]
+メイン写真
 ({else})
 <a href="({t_url m=pc a=do_h_config_image_change_main_c_member_image})&amp;img_num=3&amp;sessid=({$PHPSESSID})">メイン写真</a>
 ({/if}) ]
