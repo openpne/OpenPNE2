@@ -404,27 +404,30 @@ div.operation ul.moreInfo li {
 	width: 720px;
 	height: 29px;
 }
-#globalNav li a:hover, #globalNav li a:active {
-	background-image: url(<?php echo getSkin('skin_after_header_2'); ?>);
-}
 #hLocalNav {
 	background: url(<?php echo getSkin('skin_navi_h'); ?>) 0 0 no-repeat;
-}
-#hLocalNav li a:hover, #hLocalNav li a:active {
-	background-image: url(<?php echo getSkin('skin_navi_h_2'); ?>);
 }
 #fLocalNav {
 	background: url(<?php echo getSkin('skin_navi_f'); ?>) 0 0 no-repeat;
 }
-#fLocalNav li a:hover, #fLocalNav li a:active {
-	background-image: url(<?php echo getSkin('skin_navi_f_2'); ?>);
-}
 #cLocalNav {
 	background: url(<?php echo getSkin('skin_navi_c'); ?>) 0 0 no-repeat;
+}
+<?php if (OPENPNE_ENABLE_ROLLOVER): ?>
+#globalNav li a:hover, #globalNav li a:active {
+	background-image: url(<?php echo getSkin('skin_after_header_2'); ?>);
+}
+#hLocalNav li a:hover, #hLocalNav li a:active {
+	background-image: url(<?php echo getSkin('skin_navi_h_2'); ?>);
+}
+#fLocalNav li a:hover, #fLocalNav li a:active {
+	background-image: url(<?php echo getSkin('skin_navi_f_2'); ?>);
 }
 #cLocalNav li a:hover, #cLocalNav li a:active {
 	background-image: url(<?php echo getSkin('skin_navi_c_2'); ?>);
 }
+<?php endif; ?>
+
 #globalNav h1,
 #globalNavBefore h1 {
 	position: absolute;
