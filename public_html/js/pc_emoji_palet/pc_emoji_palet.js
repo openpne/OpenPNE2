@@ -167,6 +167,7 @@ function togglePallet(pallet) {
         if (Element.hasClassName(pallet, 'processLoadEmojiImage')) {
             return togglePallet(pallet);
         }
+        closeAllEmojiPallet();
         Element.show(pallet);
     } else {
         Element.hide(pallet);
@@ -178,6 +179,18 @@ Event.observe(window, "load", function() {
     renderEmojiPalletDoCoMo();
 });
 
+function closeAllEmojiPallet()
+{
+    if (document.getElementById("epDocomo")) {
+        Element.hide(document.getElementById("epDocomo"));
+    }
+    if (document.getElementById("epAu")) {
+        Element.hide(document.getElementById("epAu"));
+    }
+    if (document.getElementById("epSb")) {
+        Element.hide(document.getElementById("epSb"));
+    }
+}
 
 // ポップアップ
 function popupPallet(URL){
