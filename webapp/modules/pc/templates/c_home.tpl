@@ -44,7 +44,7 @@ pne_item({$key+1})_id=({$item.c_member_id})
 &pne_item({$key+1})_count=({$item.friend_count})
 ({/foreach})
 ({/strip})({/capture})
-<script type="text/javascript" src="js/show_flash.js"></script>
+<script type="text/javascript" src="js/show_flash.js?r7140"></script>
 <script type="text/javascript">
 //<![CDATA[
 show_flash('flash/list.swf', '({$flashvars})');
