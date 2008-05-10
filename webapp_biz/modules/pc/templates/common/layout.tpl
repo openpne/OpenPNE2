@@ -8,9 +8,9 @@
 <meta http-equiv="Content-Script-Type" content="text/javascript" />
 <title>({$INC_HEADER_title})</title>
 <link rel="stylesheet" href="./xhtml_style.php" type="text/css" />
-<script type="text/javascript" src="./js/prototype.js"></script>
-<script type="text/javascript" src="./js/Selection.js"></script>
-<script type="text/javascript" src="./js/pne.js"></script>
+<script type="text/javascript" src="./js/prototype.js?r7140"></script>
+<script type="text/javascript" src="./js/Selection.js?r7140"></script>
+<script type="text/javascript" src="./js/pne.js?r7140"></script>
 </script>
 </head>
 <body id="pc_page_({$INC_HEADER_page_name})"><div id="Body">

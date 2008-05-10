@@ -7,12 +7,12 @@
 <meta content="text/css" http-equiv="content-style-type" />
 <meta http-equiv="Content-Script-Type" content="text/javascript" />
 <link href="modules/admin/default.css" rel="stylesheet" type="text/css" media="all" />
-<script type="text/javascript" src="./js/prototype.js"></script>
+<script type="text/javascript" src="./js/prototype.js?r7140"></script>
 <script type="text/javascript" src="./modules/admin/default.js"></script>
 ({if $custom_header})
 ({$custom_header|smarty:nodefaults})
 ({/if})
-<script type="text/javascript" src="./js/pne.js"></script>
+<script type="text/javascript" src="./js/pne.js?r7140"></script>
 </head>
 <body id="admin_page_({$CURRENT_ACTION})">
 
