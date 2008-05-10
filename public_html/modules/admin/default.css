@@ -79,6 +79,7 @@ li { list-style-type: none;}
 .navi { clear: both;}
 .navi div.naviMain { padding-top: 10px; background-color: #585858; height: 30px;}
 .navi div.naviMain * { display: block;}
+.navi div.naviMain img { display: inline;}
 .navi div.naviMain ul.admin,
 .navi div.naviMain ul.design,
 .navi div.naviMain ul.setup ,
