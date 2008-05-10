@@ -73,9 +73,16 @@ function pne_mce_show_color_table(id, tagname)
 {
     var table = document.getElementById("mce_editor_color_table")
     if (table) {
-        table.parentNode.removeChild(table);
+        if (table.style.display == 'none') {
+            table.style.display = 'block';
+            Event.observe(document, 'mousedown', pne_mce_hide_color_table);
+        } else {
+            pne_mce_hide_color_table();
+        }
         return;
     }
+
+    Event.observe(document, 'mousedown', pne_mce_hide_color_table);
 
     var color = null;
     var settings = {
@@ -89,6 +96,7 @@ function pne_mce_show_color_table(id, tagname)
     var button_container = document.getElementById("mce_editor_buttonmenu");
 
     var tbody = document.createElement("tbody");
+    Element.addClassName(tbody, 'disabledHideColorTable');
 
     var tr;
  
@@ -97,6 +105,7 @@ function pne_mce_show_color_table(id, tagname)
 
         if (i == 0 || i % settings.grid_width == 0) {
             tr = document.createElement("tr");
+            Element.addClassName(tr, 'disabledHideColorTable');
             tbody.appendChild(tr);
         }
 
@@ -105,6 +114,7 @@ function pne_mce_show_color_table(id, tagname)
         td.style.width = "12px";
         td.style.padding = "2px";
         td.style.margin = "0";
+        Element.addClassName(td, 'disabledHideColorTable');
 
         var a = document.createElement("a");
         a.setAttribute("href", "#");
@@ -115,10 +125,10 @@ function pne_mce_show_color_table(id, tagname)
         a.style.overflow = "hidden";
         a.style.border = "1px solid #808080";
         a.style.backgroundColor = "#" + settings.colors[i];
-        a.onclick = function() {
+        Element.addClassName(a, 'disabledHideColorTable');
+        a.onmousedown = function() {
             pne_mce_insert_tagname(id, tagname, ' code="' + this.colorCode + '"');
-            var table = document.getElementById("mce_editor_color_table")
-            table.parentNode.removeChild(table);
+            pne_mce_hide_color_table();
         };
 
         var span = document.createElement("span");
@@ -138,6 +148,7 @@ function pne_mce_show_color_table(id, tagname)
     table.style.border = "1px solid gray";
     table.style.backgroundColor = "#fff";
     table.appendChild(tbody);
+    Element.addClassName(table, 'disabledHideColorTable');
 
     button_container.appendChild(table);
 
@@ -147,5 +158,16 @@ function pne_mce_show_color_table(id, tagname)
     } else {
         table.style.left = button.offsetLeft + table.offsetLeft + "px";
     }
+}
+
+function pne_mce_hide_color_table(e)
+{
+    if (e && Element.hasClassName(e.element(), 'disabledHideColorTable')) {
+        return;
+    }
+
+    var table = document.getElementById("mce_editor_color_table")
+    table.style.display = 'none';
+    Event.stopObserving(document, 'mousedown', pne_mce_hide_color_table);
 }
 
