@@ -1,10 +1,3 @@
-////////
-// emoji-pallet
-// OpenPNE PCモジュール用　絵文字入力パレット ver1.2
-// (c)2008 Cake All rights reserved.
-// SNS  : http://sns.openpne.jp/?m=pc&a=page_f_home&target_c_member_id=1911
-// Home : http://trpgtools-onweb.sourceforge.jp/
-////////
 
 ////////
 // 設定
@@ -52,10 +45,7 @@ function createEmojiPalletDoCoMo()
 }
 
 function createEmojiPalletAu()
-{
-    document.write('<div id="epAu" style="display:none"></div>');
-}
-
+{document.write('<div id="epAu" style="display:none"></div>');}
 function createEmojiPalletSoftBank()
 {
     document.write('<div id="epSb" style="display:none"></div>');
