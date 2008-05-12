@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="./xhtml_style.php" type="text/css" />
 <script type="text/javascript" src="./js/prototype.js?r7140"></script>
 <script type="text/javascript" src="./js/Selection.js?r7140"></script>
-<script type="text/javascript" src="./js/pne.js?r7140"></script>
+<script type="text/javascript" src="./js/pne.js"></script>
 </head>
 <body id="pc_page_({$INC_HEADER_page_name})"><div id="Body">
 ({if $INC_HEADER_inc_page_top2})({$INC_HEADER_inc_page_top2|smarty:nodefaults})({/if})
