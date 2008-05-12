@@ -4,7 +4,7 @@
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
-function smarty_modifier_t_url2cmd($string, $type = '')
+function smarty_modifier_t_url2cmd($string, $type = '', $target_c_member_id = '')
 {
     if (in_array($type, db_get_url2a_denied_list())) {
         // HTMLエスケープされていない場合
@@ -15,6 +15,8 @@ function smarty_modifier_t_url2cmd($string, $type = '')
     }
 
     $GLOBALS['_CMD']['type'] = $type;
+    $GLOBALS['_CMD']['target_c_member_id'] = $target_c_member_id;
+
     return preg_replace_callback($url_pattern, '_smarty_modifier_t_cmd_make_url_js', $string);
 }
 
@@ -58,7 +60,7 @@ function _smarty_modifier_t_cmd_make_url_js($matches)
 <script type="text/javascript" src="{$path}"></script>
 <script type="text/javascript">
 <!--
-url2cmd('{$url_html}');
+url2cmd('{$url_html}', '{$GLOBALS['_CMD']['target_c_member_id']}');
 //-->
 </script>
 EOD;
