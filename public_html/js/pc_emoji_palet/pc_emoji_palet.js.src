@@ -81,7 +81,10 @@ function renderEmojiPallet(carrier)
             var img = doc.createElement("img");
             img.setAttribute("src", src);
             img.setAttribute("alt", alt);
-            img.onclick = function () { putEmojiToSelf(alt) };
+            img.onclick = function () {
+                var emoji_code = this.getAttribute("alt");
+                putEmojiToSelf(emoji_code);
+            };
 
             div.appendChild(img);
         }
