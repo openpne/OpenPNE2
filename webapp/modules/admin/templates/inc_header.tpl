@@ -12,7 +12,7 @@
 ({if $custom_header})
 ({$custom_header|smarty:nodefaults})
 ({/if})
-<script type="text/javascript" src="./js/pne.js?r7140"></script>
+<script type="text/javascript" src="./js/pne.js"></script>
 </head>
 <body id="admin_page_({$CURRENT_ACTION})">
 
