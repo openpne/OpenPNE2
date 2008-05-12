@@ -1,4 +1,4 @@
-function url2cmd(url)
+function url2cmd(url, target_c_member_id)
 {
     if (!url.match(/(https?:\/\/[a-zA-Z0-9_\-\/.,:;~@=+$%#!\()]+)\/?\?(?:[a-zA-Z0-9_\-\/.,:;~?@=+$%#!\()]|&amp;)*&amp;target_c_album_id=([a-zA-Z0-9_\-]+)/)) {
         pne_url2a(url);
@@ -15,6 +15,11 @@ function url2cmd(url)
         onSuccess: function(obj) {
             var c_album = obj.responseXML.firstChild;
             var c_member = c_album.getElementsByTagName('c_member')[0];
+
+            if (target_c_member_id != c_member.getElementsByTagName('c_member_id')[0].firstChild.nodeValue) {
+                pne_url2a(url);
+                return;
+            }
 
             var subject = c_album.getElementsByTagName('subject')[0].firstChild.nodeValue;
             var nickname = c_member.getElementsByTagName('nickname')[0].firstChild.nodeValue;
