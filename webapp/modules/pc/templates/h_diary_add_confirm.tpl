@@ -14,7 +14,7 @@
 </tr>
 <tr>
 <th>本文</th>
-<td>({$form_val.body|nl2br|t_url2cmd:'diary'|t_cmd:'diary'|t_decoration})</td>
+<td>({$form_val.body|nl2br|t_url2cmd:'diary':$member.c_member_id|t_cmd:'diary'|t_decoration})</td>
 </tr>
 ({if $form_val.upfile_1.name})
 <tr>
