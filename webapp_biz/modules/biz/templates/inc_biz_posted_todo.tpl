@@ -12,7 +12,7 @@
 ({strip})
 <img src="./skin/dummy.gif" alt="dummy" style="width:14px;height:14px;" class="icon icon_3">
 ({$item.r_datetime|date_format:"%m月%d日"})…&nbsp;
-<a href="({t_url m=biz a=page_fh_home_edit_biz_todo})&amp;id=({$item.biz_todo_id})">({$item.memo})</a>
+<a href="({t_url m=biz a=page_fh_home_edit_biz_todo})&amp;id=({$item.biz_todo_id})&amp;target_id=({$item.c_member_id})">({$item.memo})</a>
 ({/strip})
  （({if $item.c_member_id == 0})共有Todo({else})({$item.member_name})({/if})）<br>
 ({/foreach})
