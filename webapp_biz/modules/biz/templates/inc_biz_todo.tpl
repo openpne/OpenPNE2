@@ -1,4 +1,4 @@
-<div class="parts bizTodoList">
+<div class="parts bizSideTodoList">
 <div class="partsHeading"><h3>Todo一覧</h3></div>
 
 ({t_form_block m=biz a=do_`$cmd`_home_insert_biz_todo})

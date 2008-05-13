@@ -2010,32 +2010,32 @@ div#container_login .footer p {
 
 
 /*==============================================================================
- * bizTodoList
+ * bizSideTodoList
  *----------------------------------------------------------------------------*/
-#Body .bizTodoList {
+#Body .bizSideTodoList {
 	width: 220px;
 	margin: 10px 5px;
 	border: 1px solid #<?php echo $colors[1]; ?>;
 }
-#Body .bizTodoList td {
+#Body .bizSideTodoList td {
 	border-width: 1px 0 0;
 }
-.bizTodoList .block {
+.bizSideTodoList .block {
 	padding: 5px;
 }
-.bizTodoList textarea {
+.bizSideTodoList textarea {
 	width: 99%;
 }
-.bizTodoList tr.someone {
+.bizSideTodoList tr.someone {
 	background: #<?php echo $colors[7]; ?>;
 }
-.bizTodoList tr.checked {
+.bizSideTodoList tr.checked {
 	color: #999999;
 }
-.bizTodoList td.state {
+.bizSideTodoList td.state {
 	width: 35px;
 }
-.bizTodoList td.operation {
+.bizSideTodoList td.operation {
 	width: 16px;
 }
 
