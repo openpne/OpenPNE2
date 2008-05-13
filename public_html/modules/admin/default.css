@@ -1088,24 +1088,23 @@ div.listControl p.listMove a {
 
 #admin_page_top div.noticeTypeA,
 #admin_page_top div.noticeTypeB { float:left; margin-left: 10px; width: 300px;}
-#admin_page_top div.box { margin-bottom:10px; border: 1px #a5a2a5 solid;}
+#admin_page_top div.box { margin-bottom: 10px; border: 1px #a5a2a5 solid;}
 #admin_page_top div.box h2 { _width:300px; margin-top: 0px; padding: 0 0 0 18px; background: #5a595a; line-height: 150%; font-size: 105%; color: #fff;}
-#admin_page_top div.box div.innerBox { width: 298px; overflow: hidden; line-height:1.1em; padding: 10px;}
+#admin_page_top div.box div.innerBox { width: 278px; padding: 5px 10px; overflow: hidden; line-height: 1.1em;}
 
-#admin_page_top div.box dl { width: 280px; padding: 0px; float:left;}
-#admin_page_top div.box dt { padding: 4px 0px; float:left; width: 70px; clear: both; margin-right: 10px;}
-#admin_page_top div.box dd { width: 200px; padding: 4px 0px; float:left;}
-#admin_page_top div.box dd span.origin { padding-left:8px; font-size: x-small;}
+#admin_page_top div.box dl { overflow: hidden;}
+#admin_page_top div.box dt { width: 80px; float: left; clear: left; padding: 7px 0px 6px; overflow: hidden; white-space: nowrap;}
+#admin_page_top div.box dd { padding: 7px 0px 6px; padding-left: 90px; border-bottom: solid 1px #ccc; margin-bottom: -1px;}
+#admin_page_top div.box dd span.origin { font-size: x-small;}
 #admin_page_top div.box dd span.origin a { margin:0 2px;}
 
 #admin_page_top div.box#counter dt { width: 110px;}
-#admin_page_top div.box#counter dd { width: 160px;}
-
-#admin_page_top div.box#ranking dt { width: 160px;}
-#admin_page_top div.box#ranking dd { width: 110px;}
-
+#admin_page_top div.box#counter dd { padding-left: 120px;}
 #admin_page_top div.box#pneinfo dt { width: 50px;}
-#admin_page_top div.box#pneinfo dd { width: 220px;}
+#admin_page_top div.box#pneinfo dd { padding-left: 60px;}
+
+#admin_page_top div.box#ranking dt { width: auto; float: none; white-space: normal; font-weight: bold;}
+#admin_page_top div.box#ranking dd { padding: 0 0 5px 10px;}
 
 /** admin_page_login **/
 #admin_page_login p.caution#c01 { padding-top: 15px;}

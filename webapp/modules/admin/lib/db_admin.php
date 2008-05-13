@@ -285,6 +285,7 @@ function db_admin_c_banner_list4null($type = '')
         $sql .= ' WHERE type = ?';
         $params[] = $type;
     }
+    $sql .= ' ORDER BY c_banner_id';
     return db_get_all($sql, $params);
 }
 
@@ -433,39 +434,55 @@ function db_admin_c_admin_config_all()
 
 function db_admin_delete_c_image_link4image_filename($image_filename)
 {
-    // c_banner (削除)
-    $sql = 'DELETE FROM c_banner WHERE image_filename = ?';
-    $params = array($image_filename);
-    db_query($sql, $params);
+    $_pos = strpos($image_filename, '_');
+    $prefix = substr($image_filename, 0, $_pos);
 
-    // c_commu
-    $tbl = 'c_commu';
-    _db_admin_empty_image_filename($tbl, $image_filename);
+    if ($prefix == 'b') {
+        $sql = 'DELETE FROM c_banner WHERE image_filename = ?';
+        $params = array($image_filename);
+        db_query($sql, $params);
+    }
 
-    // c_commu_topic_comment
-    $tbl = 'c_commu_topic_comment';
-    _db_admin_empty_image_filename($tbl, $image_filename, 'image_filename1');
-    _db_admin_empty_image_filename($tbl, $image_filename, 'image_filename2');
-    _db_admin_empty_image_filename($tbl, $image_filename, 'image_filename3');
+    if ($prefix == 'c') {
+        $tbl = 'c_commu';
+        _db_admin_empty_image_filename($tbl, $image_filename);
+    }
 
-    // c_diary
-    $tbl = 'c_diary';
-    _db_admin_empty_image_filename($tbl, $image_filename, 'image_filename_1');
-    _db_admin_empty_image_filename($tbl, $image_filename, 'image_filename_2');
-    _db_admin_empty_image_filename($tbl, $image_filename, 'image_filename_3');
+    if ($prefix == 't' || $prefix == 'tc') {
+        $tbl = 'c_commu_topic_comment';
+        _db_admin_empty_image_filename($tbl, $image_filename, 'image_filename1');
+        _db_admin_empty_image_filename($tbl, $image_filename, 'image_filename2');
+        _db_admin_empty_image_filename($tbl, $image_filename, 'image_filename3');
+    }
 
-    // c_diary_comment
-    $tbl = 'c_diary_comment';
-    _db_admin_empty_image_filename($tbl, $image_filename, 'image_filename_1');
-    _db_admin_empty_image_filename($tbl, $image_filename, 'image_filename_2');
-    _db_admin_empty_image_filename($tbl, $image_filename, 'image_filename_3');
+    if ($prefix == 'd') {
+        $tbl = 'c_diary';
+        _db_admin_empty_image_filename($tbl, $image_filename, 'image_filename_1');
+        _db_admin_empty_image_filename($tbl, $image_filename, 'image_filename_2');
+        _db_admin_empty_image_filename($tbl, $image_filename, 'image_filename_3');
+    }
 
-    // c_member
-    $tbl = 'c_member';
-    _db_admin_empty_image_filename($tbl, $image_filename);
-    _db_admin_empty_image_filename($tbl, $image_filename, 'image_filename_1');
-    _db_admin_empty_image_filename($tbl, $image_filename, 'image_filename_2');
-    _db_admin_empty_image_filename($tbl, $image_filename, 'image_filename_3');
+    if ($prefix == 'dc') {
+        $tbl = 'c_diary_comment';
+        _db_admin_empty_image_filename($tbl, $image_filename, 'image_filename_1');
+        _db_admin_empty_image_filename($tbl, $image_filename, 'image_filename_2');
+        _db_admin_empty_image_filename($tbl, $image_filename, 'image_filename_3');
+    }
+
+    if ($prefix == 'm') {
+        $tbl = 'c_member';
+        _db_admin_empty_image_filename($tbl, $image_filename);
+        _db_admin_empty_image_filename($tbl, $image_filename, 'image_filename_1');
+        _db_admin_empty_image_filename($tbl, $image_filename, 'image_filename_2');
+        _db_admin_empty_image_filename($tbl, $image_filename, 'image_filename_3');
+    }
+
+    if ($prefix == 'ms') {
+        $tbl = 'c_message';
+        _db_admin_empty_image_filename($tbl, $image_filename, 'image_filename_1');
+        _db_admin_empty_image_filename($tbl, $image_filename, 'image_filename_2');
+        _db_admin_empty_image_filename($tbl, $image_filename, 'image_filename_3');
+    }
 }
 
 function _db_admin_empty_image_filename($tbl, $image_filename, $column = 'image_filename')
@@ -662,34 +679,35 @@ function _db_admin_c_member_id_list($cond_list, $order = null)
 
     $ids = db_get_col($sql, $params);
 
-    // --- ポイントで絞り込み ここから
-    if ( isset($cond_list['s_point']) || isset($cond_list['e_point'])) {
+    // --- ランクで絞り込み ここから
+    if ($cond_list['s_rank'] || $cond_list['e_rank']) {
+        $sql = 'SELECT c_member_id'
+             . ' FROM c_member_profile '
+             . ' INNER JOIN c_profile USING (c_profile_id) '
+             . ' WHERE name = ? ';
+        $params = array('PNE_POINT');
 
-        $sql = 'SELECT c_member_id'.
-               ' FROM c_member_profile '.
-               ' INNER JOIN c_profile USING (c_profile_id) '.
-               ' WHERE name = ? ';
-        $params = array(
-            'PNE_POINT',
-        );
-        //開始ポイント
-        if (!empty($cond_list['s_point'])) {
+        if ($cond_list['s_rank']) {
+            $s_point = db_point_get_rank_point4rank_id($cond_list['s_rank']);
             $sql .= ' AND value >= ?';
-            $params[] = $cond_list['s_point'];
+            $params[] = (int)$s_point;
         }
-        //終了ポイント
-        if (!empty($cond_list['e_point'])) {
-            $sql .= ' AND value <= ?';
-            $params[] = $cond_list['e_point'];
+
+        if ($cond_list['e_rank']) {
+            $e_point = db_point_get_next_rank_point4rank_id($cond_list['e_rank']);
+            if (!is_null($e_point)) {
+                $sql .= ' AND value < ?';
+                $params[] = (int)$e_point;
+            }
         }
 
         $point_ids = db_get_col($sql, $params);
 
-        //ポイントで絞り込み
+        // ポイントで絞り込み
         $ids = array_intersect($ids, $point_ids);
 
     }
-    // --- ポイントで絞り込み ここまで
+    // --- ランクで絞り込み ここまで
 
     // --- メールアドレスで絞り込み ここから
     if (!empty($cond_list['is_pc_address']) || !empty($cond_list['is_ktai_address'])) {
@@ -840,12 +858,12 @@ function validate_cond($requests)
         $cond_list['is_ktai_address'] = intval($requests['is_ktai_address']);
     }
 
-    //ポイント
-    if (isset($requests['s_point']) && $requests['s_point'] !== '') {
-        $cond_list['s_point'] = intval($requests['s_point']);
+    // ランク
+    if (isset($requests['s_rank']) && $requests['s_rank'] !== '') {
+        $cond_list['s_rank'] = intval($requests['s_rank']);
     }
-    if (isset($requests['e_point']) && $requests['e_point'] !== '') {
-        $cond_list['e_point'] = intval($requests['e_point']);
+    if (isset($requests['e_rank']) && $requests['e_rank'] !== '') {
+        $cond_list['e_rank'] = intval($requests['e_rank']);
     }
 
     return $cond_list;

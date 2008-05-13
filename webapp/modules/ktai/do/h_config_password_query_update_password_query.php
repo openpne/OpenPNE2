@@ -8,6 +8,9 @@ class ktai_do_h_config_password_query_update_password_query extends OpenPNE_Acti
 {
     function execute($requests)
     {
+        //外部認証の場合はリダイレクト
+        check_action4pne_slave(true);
+
         $tail = $GLOBALS['KTAI_URL_TAIL'];
         $u = $GLOBALS['KTAI_C_MEMBER_ID'];
 

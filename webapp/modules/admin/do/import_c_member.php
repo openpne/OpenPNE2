@@ -32,6 +32,10 @@ class admin_do_import_c_member extends OpenPNE_Action
             $this->handleError("データタイプはcsv形式にして下さい");
         }
 
+        if (empty($member_data) || $member_data['error'] == UPLOAD_ERR_NO_FILE) {
+            $this->handleError('ファイルは必ず指定してください');
+        }
+
         if (count($member_data) > $limit) {
             $this->handleError("一度に登録できるのは{$limit}件までです");
         }

@@ -26,7 +26,7 @@ class biz_do_h_biz_group_edit extends OpenPNE_Action
             $filename = biz_saveImage($_FILES['image_filename'], "g_".$sessid);
             if (!$filename) {
                 $filename = $requests['image_filename'];
-                $p = array('msg' => '画像は300KB以内のGIF・JPEG・PNGにしてください。', 'target_id' => $id);
+                $p = array('msg' => '画像は' . IMAGE_MAX_FILESIZE . 'KB以内のGIF・JPEG・PNGにしてください。', 'target_id' => $id);
                 openpne_redirect('biz', 'page_h_biz_group_edit', $p);
                 exit();
             }

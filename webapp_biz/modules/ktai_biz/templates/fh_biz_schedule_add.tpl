@@ -17,7 +17,7 @@
 <input type="text" name="sc_b_year" maxlength="2" size="2" value="({$now.year})" istyle="4" mode="numeric">年
 <input type="text" name="sc_b_month" maxlength="2" size="2" value="({$now.month})" istyle="4" mode="numeric">月
 <input type="text" name="sc_b_date" maxlength="2" size="2" value="({$now.day})" istyle="4" mode="numeric">日<br>
-<br>		
+<br>
 <font color="#({$ktai_color_config.font_06})">時刻：</font><br>
 <input type="text" name="sc_b_hour" maxlength="2" size="2" istyle="4" mode="numeric">時
 <input type="text" name="sc_b_minute" maxlength="2" size="2" istyle="4" mode="numeric">分
@@ -32,7 +32,7 @@
 <input type="hidden" name="public_flag" value="public">
 <font color="#({$ktai_color_config.font_06})">参加者：</font><br>
 <select name="sc_j_mem">
-<option value="my">({if $is_f})ﾌﾚﾝﾄﾞ({else})自分({/if})のみ</option>
+<option value="my">({if $is_f})({$WORD_FRIEND_HALF})({else})自分({/if})のみ</option>
 <option value="">全ﾕｰｻﾞｰ
 ({foreach item=nm from=$jgroup name=join})
 <option value="({$nm.biz_group_id})">({$nm.name})

@@ -18,20 +18,51 @@
 ({/if})
 
 
----<br>
-({$c_free_page.body|smarty:nodefaults|nl2br})<br>
----<br>
+本当に削除してもよろしいですか？
 
-本当に削除してもよろしいですか？<br>
-<br>
+<table class="basicType2">
+<tbody>
+<tr>
+<th>ページタイトル</th>
+<td>
+({$c_free_page.title})
+</td>
+</tr>
+<tr>
+<th>ページ内容</th>
+<td>
+({$c_free_page.body|smarty:nodefaults|nl2br})
+</td>
+</tr>
+<tr>
+<th>SNS認証</th>
+<td>
+({if $auth})
+あり
+({else})
+なし
+({/if})
+</td>
+</tr>
+<tr>
+<th>対象ブラウザ</th>
+<td>
+({if $type == 'pc'})
+PC
+({else if $type == 'ktai'})
+携帯
+({/if})
+</td>
+</tr>
+</tbody>
+</table>
+
 <form action="./" method="post">
 <input type="hidden" name="m" value="({$module_name})">
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('delete_c_free_page','do')})">
 <input type="hidden" name="sessid" value="({$PHPSESSID})">
 <input type="hidden" name="c_free_page_id" value="({$c_free_page.c_free_page_id})">
-<p class="textBtn"><input type="submit" class="submit" value=" は　い "></p>
+<p class="textBtn"><input type="submit" class="submit" value="削除する"></p>
 </form>
-<br>
 
-<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_free_page')})">戻る</a>
 ({$inc_footer|smarty:nodefaults})

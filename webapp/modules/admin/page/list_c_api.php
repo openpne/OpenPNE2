@@ -9,6 +9,10 @@ class admin_page_list_c_api extends OpenPNE_Action
 {
     function execute($requests)
     {
+        if (!OPENPNE_USE_API) {
+            admin_client_redirect('top', '指定されたページにはアクセスできません');
+        }
+
         $pager = array();
         $c_api_list = db_admin_get_c_api_all($requests['page'], $requests['page_size'], $pager);
 

@@ -170,6 +170,9 @@ class OpenPNE_Auth
             default:
                 return;
             }
+        }
+
+        if (!is_null($sess_storage)) {
             session_set_save_handler(array(&$sess_storage, 'open'),
                                  array(&$sess_storage, 'close'),
                                  array(&$sess_storage, 'read'),

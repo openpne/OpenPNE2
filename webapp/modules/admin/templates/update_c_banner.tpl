@@ -1,11 +1,16 @@
 ({$inc_header|smarty:nodefaults})
 ({ext_include file="inc_subnavi_adminDesign.tpl"})
-({assign var="page_name" value="バナー設定 ＞ バナー変更"})
+
+({assign var="parent_page_name" value="バナー設定"})
+({capture name=parent_page_url})?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_banner')})({/capture})
+
+({assign var="page_name" value="バナー変更"})
 ({ext_include file="inc_tree_adminDesign.tpl"})
 </div>
 
 ({*ここまで:navi*})
 
+({if $msg})<p class="actionMsg">({$msg})</p>({/if})
 <h2>バナー変更</h2>
 <div class="contents">
 

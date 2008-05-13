@@ -25,7 +25,7 @@ class ktai_page_f_intro_edit extends OpenPNE_Action
         }
         if (!$is_friend) {
             $p = array('target_c_member_id' => $target_c_member_id);
-            openpne_redirect('ktai', 'page_f_honme', $p);
+            openpne_redirect('ktai', 'page_f_home', $p);
         }
         //---
 

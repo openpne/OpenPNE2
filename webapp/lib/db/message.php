@@ -689,14 +689,13 @@ function db_message_get_c_message_next_id4c_message_id($c_member_id, $c_message_
     if ($box == 'savebox' || $box == 'trash') {
         return null;
     } else if ($box == 'outbox'){   //送信箱
-        $where = " WHERE c_member_id_from = ?";
+        $where = " WHERE c_member_id_from = ? AND is_deleted_from = 0";
     } else {                        //受信箱
-        $where = " WHERE c_member_id_to = ?";
+        $where = " WHERE c_member_id_to = ? AND is_deleted_to = 0";
     }
 
     $sql =  "SELECT c_message_id FROM c_message" .
             $where.
-            " AND is_deleted_to = 0" .
             " AND is_send = 1" .
             " AND c_message_id > ?" .
             " ORDER BY r_datetime";
@@ -714,14 +713,13 @@ function db_message_get_c_message_prev_id4c_message_id($c_member_id, $c_message_
     if ($box == 'savebox' || $box == 'trash') {
         return null;
     } else if ($box == 'outbox'){   //送信箱
-        $where = " WHERE c_member_id_from = ?";
+        $where = " WHERE c_member_id_from = ? AND is_deleted_from = 0";
     } else {                        //受信箱
-        $where = " WHERE c_member_id_to = ?";
+        $where = " WHERE c_member_id_to = ? AND is_deleted_to = 0";
     }
 
     $sql =  "SELECT c_message_id FROM c_message" .
             $where.
-            " AND is_deleted_to = 0" .
             " AND is_send = 1" .
             " AND c_message_id < ?" .
             " ORDER BY r_datetime DESC";

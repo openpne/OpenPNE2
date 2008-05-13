@@ -266,8 +266,8 @@ class OpenPNE_Validator
                 case 'trim':
                     if (OPENPNE_TRIM_DOUBLEBYTE_SPACE) {
                         // 全角スペースに対応
-                        $value = mb_ereg_replace('^([\s　])+', '', $value);
-                        $value = mb_ereg_replace('([\s　])+$', '', $value);
+                        $value = preg_replace('/^[\s　]+/u', '', $value);
+                        $value = preg_replace('/[\s　]+$/u', '', $value);
                     } else {
                         $value = trim($value);
                     }
@@ -275,7 +275,7 @@ class OpenPNE_Validator
                 case 'ltrim':
                     if (OPENPNE_TRIM_DOUBLEBYTE_SPACE) {
                         // 全角スペースに対応
-                        $value = mb_ereg_replace('^([\s　])+', '', $value);
+                        $value = preg_replace('/^[\s　]+/u', '', $value);
                     } else {
                         $value = ltrim($value);
                     }
@@ -283,7 +283,7 @@ class OpenPNE_Validator
                 case 'rtrim':
                     if (OPENPNE_TRIM_DOUBLEBYTE_SPACE) {
                         // 全角スペースに対応
-                        $value = mb_ereg_replace('([\s　])+$', '', $value);
+                        $value = preg_replace('/[\s　]+$/u', '', $value);
                     } else {
                         $value = rtrim($value);
                     }

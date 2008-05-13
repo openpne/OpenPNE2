@@ -43,7 +43,7 @@
 ({elseif $requests.target == 'k_fh_diary'})
 ＜携帯版＞日記ページのお知らせ
 ({elseif $requests.target == 'k_f_home'})
-＜携帯版＞フレンドページのお知らせ
+＜携帯版＞({$WORD_FRIEND})ページのお知らせ
 ({elseif $requests.target == 'k_c_home'})
 ＜携帯版＞コミュニティページのお知らせ
 ({elseif $requests.target == 'sns_kiyaku'})
@@ -79,7 +79,7 @@
 <h4>【携帯】お知らせ挿入場所対応図[ ({if $requests.target == 'k_h_home'})
 ホーム
 ({elseif $requests.target == 'k_f_home'})
-フレンドページ
+({$WORD_FRIEND})ページ
 ({elseif $requests.target == 'k_c_home'})
 コミュニティページ
 ({elseif $requests.target == 'k_fh_diary'})
