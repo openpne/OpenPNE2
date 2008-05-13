@@ -124,7 +124,7 @@ class mail_sns
 
         //---
 
-        //プロフィール画像変更
+        //プロフィール写真変更
         elseif (
             preg_match('/^p(\d+)$/', $to_user, $matches) ||
             preg_match('/^p(\d+)-([0-9a-f]{12})$/', $to_user, $matches)
@@ -188,7 +188,7 @@ class mail_sns
 
         $c_commu_id = $topic['c_commu_id'];
         if (!_db_is_c_commu_member($c_commu_id, $this->c_member_id)) {
-            $this->error_mail('コミュニティに参加していないため投稿できませんでした');
+            $this->error_mail('コミュニティに参加していないため投稿できませんでした。');
             m_debug_log('mail_sns::add_commu_topic_comment() not a member');
             return false;
         }
@@ -201,7 +201,7 @@ class mail_sns
 
         $body = $this->decoder->get_text_body();
         if ($body === '') {
-            $this->error_mail('本文が空のため投稿できませんでした');
+            $this->error_mail('本文が空のため投稿できませんでした。');
             m_debug_log('mail_sns::add_commu_topic_comment() body is empty');
             return false;
         }
@@ -209,7 +209,7 @@ class mail_sns
         // 書き込みをDBに追加
         $ins_id = db_commu_insert_c_commu_topic_comment($c_commu_id, $topic['c_commu_topic_id'], $this->c_member_id, $body);
 
-        // 画像保存
+        // 写真登録
         $image_num = 1;
         foreach ($images as $image) {
             $image_ext = $image['ext'];
@@ -266,7 +266,7 @@ class mail_sns
             return false;
         }
 
-        // 画像登録
+        // 写真登録
         $image_num = 1;
         foreach ($images as $image) {
             $image_ext = $image['ext'];
@@ -291,13 +291,13 @@ class mail_sns
     }
 
     /**
-     * プロフィール画像変更
+     * プロフィール写真変更
      */
     function add_member_image()
     {
         $c_member = db_common_c_member4c_member_id($this->c_member_id);
 
-        // 登録する画像番号(1-3)を決める
+        // 登録する写真番号(1-3)を決める
         $target_number = 0;
         if ($c_member['image_filename']) {
             if (!$c_member['image_filename_1']) {
@@ -307,7 +307,7 @@ class mail_sns
             } elseif (!$c_member['image_filename_3']) {
                 $target_number = 3;
             } else {
-                $this->error_mail('プロフィール画像の登録は最大三枚までです。');
+                $this->error_mail('プロフィール写真の登録は最大3枚までです。');
                 m_debug_log('mail_sns::add_diary() image is full');
                 return false;
             }
@@ -315,7 +315,7 @@ class mail_sns
             $target_number = 1;
         }
 
-        // 画像登録
+        // 写真登録
         if ($images = $this->decoder->get_images()) {
             $image = $images[0];
             $image_ext = $image['ext'];
@@ -326,6 +326,7 @@ class mail_sns
             mail_update_c_member_image($this->c_member_id, $filename, $target_number);
             return true;
         } else {
+            $this->error_mail('写真が添付されていないか、ファイルサイズが大きすぎるため、登録できませんでした。');
             m_debug_log('mail_sns::add_member_image() no images');
             return false;
         }
