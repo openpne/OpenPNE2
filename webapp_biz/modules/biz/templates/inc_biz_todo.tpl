@@ -131,7 +131,7 @@
 <tr>
 <td style="width:16px;height:16px;" valign="bottom" align="right">
 
-<a href="({t_url m=biz a=page_fh_home_edit_biz_todo})&amp;id=({$value.biz_todo_id})"><img src="./skin/biz/edit_2.gif" style="width:14px;height:14px;display:block;"></a>
+<a href="({t_url m=biz a=page_fh_home_edit_biz_todo})&amp;id=({$value.biz_todo_id})&amp;target_id=({$target_id})"><img src="./skin/biz/edit_2.gif" style="width:14px;height:14px;display:block;"></a>
 
 </td>
 </tr>
