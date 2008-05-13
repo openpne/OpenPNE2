@@ -122,6 +122,7 @@ function dummyAlert() { alert('プレビューページからは操作できま�
 <a href="javascript:dummyAlert()">[i:106]ﾒｰﾙで登録!</a><br>
 <br>
 ※かならず利用規約に同意してから登録をおこなってください。<br>
+※ﾄﾞﾒｲﾝ指定受信を設定されている方は、「({$smarty.const.ADMIN_EMAIL})」からのﾒｰﾙを受信できるように指定してください。<br>
 
 <hr class="colored">
 ■<a href="javascript:dummyAlert()">利用規約</a><br>

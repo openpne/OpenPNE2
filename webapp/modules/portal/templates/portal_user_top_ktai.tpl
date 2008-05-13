@@ -93,6 +93,7 @@
 <a href="mailto:({$smarty.const.MAIL_ADDRESS_PREFIX})get@({$smarty.const.MAIL_SERVER_DOMAIN})">[i:106]ﾒｰﾙで登録!</a><br>
 <br>
 ※かならず利用規約に同意してから登録をおこなってください。<br>
+※ﾄﾞﾒｲﾝ指定受信を設定されている方は、「({$smarty.const.ADMIN_EMAIL})」からのﾒｰﾙを受信できるように指定してください。<br>
 
 <hr color="#({$ktai_color_config.border_01})">
 ■<a href="({t_url m=ktai a=page_o_sns_kiyaku})">利用規約</a><br>
