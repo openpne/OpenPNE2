@@ -93,6 +93,15 @@
         }
     });
 
+    tinymce.create('tinymce.ui.OpenPNECmdButton:tinymce.ui.Button', {
+        renderHTML : function() {
+            var s = this.settings;
+            var h = '<a id="' + this.id + '" href="javascript:;" class="mceButton mceButtonEnabled ' + s['class'] + '" style="width:40px;" onmousedown="return false;" onclick="return false;" title="' + tinymce.DOM.encode(s.title) + '"><img class="mceIcon" style="width:40px;" src="' + s.image + '" /></a>';
+
+            return h;
+        },
+    });
+
     tinymce.PluginManager.requireLangPack('openpne');
 
     var config = pne_mce_editor_get_config();
@@ -125,6 +134,9 @@
             });
             ed.addCommand('mceOpenPNE_op_image', function() {
                 window.open(config.op_image.contentURL, '', 'width=600,height=550,toolbar=no,scrollbars=yes,left=10,top=10');
+            });
+            ed.addCommand('mceOpenPNE_op_cmd', function() {
+                window.open('http://www.openpne.jp/cmd/');
             });
 
             // button
@@ -184,6 +196,10 @@
                     }
                 }
                 c = this._createOpenPNEEmojiButton(n, emoji_config[n], cm);
+            }
+
+            if (n == "op_cmd") {
+                c = this._createOpenPNECmdButton(n, {title: "{#openpne.op_cmd}", image: config["op_cmd"].imageURL, cmd: "mceOpenPNE_op_cmd"}, cm);
             }
 
             return c;
@@ -260,6 +276,43 @@
 
             return t.add(c);
         },
+
+        _createOpenPNECmdButton : function(id, s, cm) {
+            var t = cm, ed = t.editor, cmd, c;
+
+            if (t.get(id)) {
+                return null;
+            }
+
+            s.title = ed.translate(s.title);
+            s.scope = s.scope || ed;
+
+            if (!s.onclick) {
+                s.onclick = function(v) { ed.execCommand(s.cmd, s.ui || false, v || s.value); };
+            }
+
+            if (!s.onselect) {
+                s.onselect = function(v) { ed.execCommand(s.cmd, s.ui || false, v || s.value); };
+            }
+
+            id = t.prefix + id;
+
+            s = tinymce.extend({ title : s.title, 'class' : 'mce_' + id, 'menu_class' : ed.getParam('skin') + 'Skin', scope : s.scope}, s);
+
+            c = new tinymce.ui.OpenPNECmdButton(id, s);
+
+            ed.onPostRender.add(function() {
+                var parentContainer = document.getElementById(c.id).parentNode;
+                parentContainer.style.width = "45px";
+            });
+
+            ed.onRemove.add(function() {
+                c.destroy();
+            });
+
+            return t.add(c);
+        },
+
         _previewToText : function(s, editor) {
             var editorDoc = editor.getBody();
 
