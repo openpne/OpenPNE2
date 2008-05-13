@@ -2040,23 +2040,23 @@ div#container_login .footer p {
 }
 
 /*==============================================================================
- * bizUnreadScheduleList
+ * bizSideScheduleList
  *----------------------------------------------------------------------------*/
-#Body .bizUnreadScheduleList {
+#Body .bizSideScheduleList {
 	width: 220px;
 	margin: 10px 5px;
 	border: 1px solid #<?php echo $colors[1]; ?>;
 }
-.bizUnreadScheduleList dl {
+.bizSideScheduleList dl {
 	border-top: 1px solid #<?php echo $colors[1]; ?>;
 }
-.bizUnreadScheduleList dt {
+.bizSideScheduleList dt {
 	float: left;
 	width: 60px;
 	padding: 5px;
 	text-align: center;
 }
-.bizUnreadScheduleList dd {
+.bizSideScheduleList dd {
 	zoom: 1;
 	margin-left: 70px;
 	padding: 5px;
