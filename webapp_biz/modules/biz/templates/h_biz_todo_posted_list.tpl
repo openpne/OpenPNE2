@@ -18,7 +18,7 @@
 ({foreach from=$posted_list item=item})
 <dl>
 <dt>({if $item.r_datetime})({$item.r_datetime|date_format:"%Y年%m月%d日 %H:%M"})({else})投稿日時記録以前のTodo({/if})</dt>
-<dd><a href="({t_url m=biz a=page_fh_home_edit_biz_todo})&amp;id=({$item.biz_todo_id})">({$item.memo})</a>（({if $item.member_name})({$item.member_name})({else})共有Todo({/if})）</dd>
+<dd><a href="({t_url m=biz a=page_fh_home_edit_biz_todo})&amp;id=({$item.biz_todo_id})&amp;target_id=({$item.c_member_id})">({$item.memo})</a>（({if $item.member_name})({$item.member_name})({else})共有Todo({/if})）</dd>
 </dl>
 ({/foreach})
 
