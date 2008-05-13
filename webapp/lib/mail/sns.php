@@ -432,6 +432,12 @@ class mail_sns
             return false;
         }
 
+        $images = $this->decoder->get_images();
+        if ($images === false) {
+            $this->error_mail('画像は' . IMAGE_MAX_FILESIZE . 'KB以内のGIF・JPEG・PNGにしてください。');
+            return false;
+        }
+
         //日記コメント書き込み
         $ins_id = db_diary_insert_c_diary_comment($this->c_member_id, $c_diary_id, $body);
 
@@ -443,7 +449,6 @@ class mail_sns
         db_diary_update_c_diary_comment_log($target_c_diary_id);
 
         // 写真登録
-        $images = $this->decoder->get_images();
         $image_num = 1;
         $filenames = array(1 => '', 2 => '', 3 => '');
         foreach ($images as $image) {
