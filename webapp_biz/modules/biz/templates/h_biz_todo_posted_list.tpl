@@ -75,7 +75,7 @@
 <td style="width:453px;" class="bg_02">
 
 <div class="padding_s">
-<a href="({t_url m=biz a=page_fh_home_edit_biz_todo})&amp;id=({$item.biz_todo_id})">({$item.memo})</a>
+<a href="({t_url m=biz a=page_fh_home_edit_biz_todo})&amp;id=({$item.biz_todo_id})&amp;target_id=({$item.c_member_id})">({$item.memo})</a>
 （({if $item.member_name})
 ({$item.member_name})
 ({else})
