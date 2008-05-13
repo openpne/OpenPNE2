@@ -1,6 +1,6 @@
 ({if $newlist})
 
-<div class="parts bizUnreadScheduleList">
+<div class="parts bizSideScheduleList">
 <div class="partsHeading"><h3>未読スケジュール</h3></div>
 ({foreach key=i item=value from=$newlist})
 <dl>
