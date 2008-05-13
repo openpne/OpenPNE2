@@ -12,7 +12,7 @@
     <dd>({$sns_info.info_member_rate_active|number_format:2})%</dd>
     <dt>平均({$WORD_FRIEND})数</dt>
     <dd>({$sns_info.info_friend_count_avg|number_format:2})人</dd>
-    <dt>今日の({$WORD_DIARY})件数</dt>
+    <dt>今日の({$WORD_DIARY})数</dt>
     <dd>({$sns_info.info_diary_count_today|number_format})件 (前日({$sns_info.info_diary_count_yesterday|number_format})件)</dd>
 </dl>
             </div>
@@ -47,7 +47,7 @@
 <dl>
 ({foreach from=$sns_message.unread_message_list item=item})
     <dt>({$item.r_datetime|date_format:"%m/%d %H:%M"})</dt>
-    <dd><a href="({t_url _absolute=1 m=pc a=page_h_message})&amp;target_c_message_id=({$item.c_message_id})&amp;jyusin_c_message_id=({$item.c_message_id})" target="_blank">({$item.subject})</a><span class="origin">(<a href="({t_url _absolute=1 m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id_from})" target="_blank">({$item.c_member.nickname})</a>)</span></dd>
+    <dd><a href="({t_url _absolute=1 m=pc a=page_h_message})&amp;target_c_message_id=({$item.c_message_id})&amp;jyusin_c_message_id=({$item.c_message_id})" target="_blank">({$item.subject})</a> <span class="origin">(<a href="({t_url _absolute=1 m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id_from})" target="_blank">({$item.c_member.nickname})</a>)</span></dd>
 ({/foreach})
 </dl>
             </div>
@@ -61,7 +61,7 @@
 <dl>
 ({foreach from=$new_diary_list item=item})
     <dt>({$item.r_datetime|date_format:"%m/%d %H:%M"})</dt>
-    <dd><a href="({t_url _absolute=1 m=pc a=page_fh_diary})&amp;target_c_diary_id=({$item.c_diary_id})" target="_blank">({$item.subject}) (({$item.count_comments|number_format}))</a><span class="origin">(<a href="({t_url _absolute=1 m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})" target="_blank">({$item.c_member.nickname})</a>)</span></dd>
+    <dd><a href="({t_url _absolute=1 m=pc a=page_fh_diary})&amp;target_c_diary_id=({$item.c_diary_id})" target="_blank">({$item.subject}) (({$item.count_comments|number_format})) </a> <span class="origin">(<a href="({t_url _absolute=1 m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})" target="_blank">({$item.c_member.nickname})</a>)</span></dd>
 ({/foreach})
 </dl>
             </div>
@@ -75,7 +75,7 @@
 <dl>
 ({foreach from=$new_topic_list item=item})
     <dt>({$item.r_datetime|date_format:"%m/%d %H:%M"})</dt>
-    <dd><a href="({t_url _absolute=1 m=pc a=page_c_topic_detail})&amp;target_c_commu_topic_id=({$item.c_commu_topic_id})" target="_blank">({$item.name}) (({$item.count_comments|number_format}))</a><span class="origin">(<a href="({t_url _absolute=1 m=pc a=page_c_home})&amp;target_c_commu_id=({$item.c_commu_id})" target="_blank">({$item.commu_name})</a>)</span></dd>
+    <dd><a href="({t_url _absolute=1 m=pc a=page_c_topic_detail})&amp;target_c_commu_topic_id=({$item.c_commu_topic_id})" target="_blank">({$item.name}) (({$item.count_comments|number_format}))</a> <span class="origin">(<a href="({t_url _absolute=1 m=pc a=page_c_home})&amp;target_c_commu_id=({$item.c_commu_id})" target="_blank">({$item.commu_name})</a>)</span></dd>
 ({/foreach})
 </dl>
             </div>
@@ -89,7 +89,7 @@
 <dl>
 ({foreach from=$new_review_list item=item})
     <dt>({$item.r_datetime|date_format:"%m/%d %H:%M"})</dt>
-    <dd><a href="({t_url _absolute=1 m=pc a=page_h_review_list_product})&amp;c_review_id=({$item.c_review_id})" target="_blank">({$item.c_review.title}) (({$item.count_comments|number_format}))</a><span class="origin">(<a href="({t_url _absolute=1 m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})" target="_blank">({$item.c_member.nickname})</a>)</span></dd>
+    <dd><a href="({t_url _absolute=1 m=pc a=page_h_review_list_product})&amp;c_review_id=({$item.c_review_id})" target="_blank">({$item.c_review.title}) (({$item.count_comments|number_format}))</a> <span class="origin">(<a href="({t_url _absolute=1 m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})" target="_blank">({$item.c_member.nickname})</a>)</span></dd>
 ({/foreach})
 </dl>
             </div>
@@ -103,7 +103,7 @@
 <dl>
 ({foreach from=$new_member_list item=item})
     <dt>({$item.r_date|date_format:"%m/%d %H:%M"})</dt>
-    <dd><a href="({t_url _absolute=1 m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})" target="_blank">({$item.nickname})</a><span class="origin">(招待者：<a href="({t_url _absolute=1 m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id_invite})" target="_blank">({$item.c_member_invite.nickname})</a>)</span></dd>
+    <dd><a href="({t_url _absolute=1 m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})" target="_blank">({$item.nickname})</a> <span class="origin">(招待者: <a href="({t_url _absolute=1 m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id_invite})" target="_blank">({$item.c_member_invite.nickname})</a>)</span></dd>
 ({/foreach})
 </dl>
             </div>
