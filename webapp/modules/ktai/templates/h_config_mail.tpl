@@ -21,6 +21,7 @@
 ({if $smarty.const.OPENPNE_AUTH_MODE == 'slavepne' && !$smarty.const.IS_SLAVEPNE_EMAIL_REGIST})
 <br>初期設定ではメールアドレスが登録されておりません。新着情報などご希望の際はこちらからご登録ください。
 ({/if})
+<br>※ﾄﾞﾒｲﾝ指定受信を設定されている方は、「({$smarty.const.ADMIN_EMAIL})」からのﾒｰﾙを受信できるように指定してください。
 <hr color="#({$ktai_color_config.border_01})">
 <center>
 <input type="submit" value="ﾒｰﾙ送信">
