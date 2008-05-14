@@ -86,7 +86,7 @@ function init_ktai_page(&$smarty)
 
     if ($is_secure) {
         $u = $GLOBALS['AUTH']->uid();
-        $smarty->assign('C_MEMBER_CONFIG',db_member_c_member_config4c_member_id($u));
+        $smarty->assign('C_MEMBER_CONFIG', util_get_c_member_config($u));
     }
 
     // set SJIS
