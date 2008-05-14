@@ -79,6 +79,7 @@ class pc_page_c_topic_detail extends OpenPNE_Action
         $this->set('is_c_event_member', db_commu_is_c_event_member($c_commu_topic_id, $u));
         $this->set('is_c_topic_admin', db_commu_is_c_topic_admin($c_commu_topic_id, $u));
         $this->set('c_member_id', $u);
+        $this->set('is_writable_comment', db_commu_is_writable_c_commu_topic_comment4c_commu_topic_id($c_commu_topic_id));
 
         // 許可されている拡張子のリスト
         $this->set('allowed_extensions', util_get_file_allowed_extensions('string'));
