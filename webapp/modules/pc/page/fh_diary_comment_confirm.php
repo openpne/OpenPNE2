@@ -46,6 +46,10 @@ class pc_page_fh_diary_comment_confirm extends OpenPNE_Action
             }
         }
 
+        if (!db_diary_is_writable_comment4c_diary_id($target_c_diary_id)) {
+            handle_kengen_error();
+        }
+
         $sessid = session_id();
         t_image_clear_tmp($sessid);
 
