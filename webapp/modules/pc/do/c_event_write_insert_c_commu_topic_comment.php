@@ -29,6 +29,9 @@ class pc_do_c_event_write_insert_c_commu_topic_comment extends OpenPNE_Action
         if (!$status['is_commu_member']) {
             handle_kengen_error();
         }
+        if (!db_commu_is_writable_c_commu_topic_comment4c_commu_topic_id($c_commu_topic_id)) {
+            handle_kengen_error();
+        }
         //---
 
         if ($add_event_member == 1 && $c_topic['capacity'] && $c_topic['capacity'] <= $c_topic['member_num'] ) {
