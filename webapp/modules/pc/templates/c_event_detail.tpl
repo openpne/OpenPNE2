@@ -3,7 +3,7 @@
 
 <div id="Center">
 
-({if !$err_msg})
+({if !$err_msg || !$is_writable_comment})
 
 ({* {{{ infoBox *})
 <div class="dparts infoBox"><div class="parts">
@@ -170,7 +170,7 @@
 ({if $is_event_join_date})
     ({if $is_c_event_member})
         <li><input type="submit" class="input_submit" name="button" value="参加をキャンセルする" /></li>
-    ({elseif !$c_topic.capacity || ($c_topic.capacity > $c_topic.member_num)})
+    ({elseif $is_event_join_capacity})
         <li><input type="submit" class="input_submit" name="button" value="イベントに参加する" /></li>
     ({/if})
 ({/if})
@@ -182,12 +182,50 @@
 </div></div>
 ({* }}} *})
 ({else})
-<div class="dparts simpleBox"><div class="parts">
-<div class="partsHeading"><h3>コメントを書く</h3></div>
+({* {{{ alertLine *})
+<div class="parts alertLine">
+<p>コメントが1000件に達したので、このイベントにはコメントできません。</p>
+</div>
+({* }}} *})
+
+({if $is_event_join_date})
+({if $is_c_event_member})
+({* {{{ infoButtonBox *})
+<div class="dparts infoButtonBox"><div class="parts">
+<div class="partsHeading"><h3>参加をキャンセルする</h3></div>
 <div class="block">
-<p>コメントが1000件に達したので、このトピックにはコメントできません。</p>
+
+<p>イベント「({$c_topic.name})」の参加をキャンセルしますか？</p>
+
+({t_form_block m=pc a=do_c_event_drop_c_commu_event})
+<input type="hidden" name="target_c_commu_topic_id" value="({$c_topic.c_commu_topic_id})" />
+<ul class="moreInfo button">
+<li><input type="submit" class="input_submit" value="参加をキャンセルする" /></li>
+</ul>
+({/t_form_block})
 </div>
 </div></div>
+({* }}} *})
+({elseif $is_event_join_capacity})
+({* {{{ infoButtonBox *})
+<div class="dparts infoButtonBox"><div class="parts">
+<div class="partsHeading"><h3>このイベントに参加</h3></div>
+<div class="block">
+
+<p>イベント「({$c_topic.name})」に参加しますか？</p>
+
+({t_form_block m=pc a=do_c_event_join_c_commu_event})
+<input type="hidden" name="target_c_commu_topic_id" value="({$c_topic.c_commu_topic_id})" />
+<ul class="moreInfo button">
+<li><input type="submit" class="input_submit" value="イベントに参加する" /></li>
+</ul>
+({/t_form_block})
+</div>
+</div></div>
+({* }}} *})
+({/if})
+({/if})
+
 ({/if})
 ({/if})
 
