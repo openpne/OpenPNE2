@@ -119,7 +119,7 @@ function db_commu_count_c_commu4c_member_id($c_member_id)
 /**
  * max
  */
-function db_commu_get_max_number4topic($c_commu_topic_id)
+function db_commu_get_max_c_commu_topic_comment_number4c_topic_id($c_commu_topic_id)
 {
     $sql = 'SELECT MAX(number) FROM c_commu_topic_comment WHERE c_commu_topic_id = ?';
     $params = array(intval($c_commu_topic_id));
@@ -134,7 +134,7 @@ function db_commu_get_max_number4topic($c_commu_topic_id)
  */
 function db_commu_c_commu_topic_comment_number4c_commu_topic_id($c_commu_topic_id)
 {
-    return db_commu_get_max_number4topic($c_commu_topic_id) + 1;
+    return db_commu_get_max_c_commu_topic_comment_number4c_topic_id($c_commu_topic_id) + 1;
 }
 
 //// 判定
@@ -522,7 +522,7 @@ function db_commu_new_topic_comment4c_commu_id($c_commu_id, $limit, $event_flag 
     $list = db_get_all_limit($sql, 0, $limit, $params);
 
     foreach ($list as $key => $value) {
-        $list[$key]['count_comments'] = db_commu_get_max_number4topic($value['c_commu_topic_id']);
+        $list[$key]['count_comments'] = db_commu_get_max_c_commu_topic_comment_number4c_topic_id($value['c_commu_topic_id']);
         $last_comment = db_commu_get_last_c_topic_comment($value['c_commu_topic_id']);
         $list[$key]['image_filename1'] = $last_comment['image_filename1'];
         $list[$key]['image_filename2'] = $last_comment['image_filename2'];
@@ -832,7 +832,7 @@ function db_commu_c_commu_topic_comment_list4c_member_id($c_member_id, $limit)
         $c_commu_name = db_get_one($sql, $value['c_commu_id']);
 
         //最新の書き込み番号
-        $number = db_commu_get_max_number4topic($value['c_commu_topic_id']);
+        $number = db_commu_get_max_c_commu_topic_comment_number4c_topic_id($value['c_commu_topic_id']);
 
         $c_commu_topic_list[$key]['number'] = $number;
         $c_commu_topic_list[$key]['image_filename1'] = $temp['image_filename1'];
@@ -872,7 +872,7 @@ function db_commu_c_commu_topic_comment_list4c_member_id_2($c_member_id, $limit,
         $c_commu_name = db_get_one($sql, $value['c_commu_id']);
 
         //最新の書き込み番号
-        $number = db_commu_get_max_number4topic($value['c_commu_topic_id']);
+        $number = db_commu_get_max_c_commu_topic_comment_number4c_topic_id($value['c_commu_topic_id']);
 
         $c_commu_topic_list[$key]['number'] = $number;
         $c_commu_topic_list[$key]['image_filename1'] = $temp['image_filename1'];
@@ -936,7 +936,7 @@ function db_commu_c_topic_list4target_c_commu_id($c_commu_id, $c_member_id, $pag
     foreach ($lst as $key => $value) {
         $lst[$key]['is_c_event_member'] = db_commu_is_c_event_member($value['c_commu_topic_id'], $c_member_id);
         $lst[$key]['is_c_topic_admin'] = db_commu_is_c_topic_admin($value['c_commu_topic_id'], $c_member_id);
-        $lst[$key]['write_num'] = db_commu_get_max_number4topic($value['c_commu_topic_id']);
+        $lst[$key]['write_num'] = db_commu_get_max_c_commu_topic_comment_number4c_topic_id($value['c_commu_topic_id']);
     }
 
     $sql = 'SELECT COUNT(*) FROM c_commu_topic WHERE c_commu_id = ?';
@@ -1444,7 +1444,7 @@ function db_commu_c_commu_topic_comment_list4c_member_id_3($c_member_id, $page_s
         $sql = 'SELECT name AS c_commu_name FROM c_commu WHERE c_commu_id = ?';
         $c_commu_name = db_get_one($sql, $value['c_commu_id']);
 
-        $c_commu_topic_list[$key]['number'] = db_commu_get_max_number4topic($value['c_commu_topic_id']);
+        $c_commu_topic_list[$key]['number'] = db_commu_get_max_c_commu_topic_comment_number4c_topic_id($value['c_commu_topic_id']);
         $c_commu_topic_list[$key]['c_commu_name'] = $c_commu_name;
     }
 
@@ -2942,7 +2942,7 @@ function db_commu_search_c_commu_topic(
         $p = array((int)$value['c_commu_topic_id']);
         $sql = 'SELECT body FROM c_commu_topic_comment WHERE number = 0 AND c_commu_topic_id = ?';
         $list[$key]['body'] = db_get_one($sql, $p);
-        $number = db_commu_get_max_number4topic($value['c_commu_topic_id']);
+        $number = db_commu_get_max_c_commu_topic_comment_number4c_topic_id($value['c_commu_topic_id']);
         $list[$key]['max_number'] = $number;
     }
 
@@ -2973,7 +2973,7 @@ function p_h_home_c_topic_all_list($limit)
           . ' ORDER BY u_datetime DESC';
     $c_topic_all_list = db_get_all_limit($sql,0,$limit);
     foreach($c_topic_all_list as $key=>$value) {
-        $number = db_commu_get_max_number4topic($value['c_commu_topic_id']);
+        $number = db_commu_get_max_c_commu_topic_comment_number4c_topic_id($value['c_commu_topic_id']);
         $c_topic_all_list[$key]['number'] = $number;
     }
     return $c_topic_all_list;
@@ -3047,7 +3047,7 @@ function db_commu_new_topic_list(
         $p = array((int)$value['c_commu_topic_id']);
         $sql = 'SELECT body FROM c_commu_topic_comment WHERE number = 0 AND c_commu_topic_id = ?';
         $list[$key]['body'] = db_get_one($sql, $p);
-        $number = db_commu_get_max_number4topic($value['c_commu_topic_id']);
+        $number = db_commu_get_max_c_commu_topic_comment_number4c_topic_id($value['c_commu_topic_id']);
         $list[$key]['max_number'] = $number;
     }
 
