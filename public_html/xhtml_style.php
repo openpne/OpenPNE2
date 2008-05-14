@@ -2064,6 +2064,63 @@ div#container_login .footer p {
 }
 
 /*==============================================================================
+ * bizWeeklyCalendarTable（BIZ用週間カレンダーテーブル）
+ *----------------------------------------------------------------------------*/
+#Body .bizWeeklyCalendarTable .parts {
+	border-top: none;
+}
+.bizWeeklyCalendarTable div.block {
+	padding: 5px;
+}
+.bizWeeklyCalendarTable .input_submit {
+	margin-right: 8px;
+}
+.bizWeeklyCalendarTable .calendar td {
+	padding: 5px 0;
+	vertical-align: top;
+}
+.bizWeeklyCalendarTable .calendar td p {
+	padding: 0 5px;
+}
+.bizWeeklyCalendarTable .calendar td .time {
+	padding: 0;
+}
+.bizWeeklyCalendarTable .calendar .today {
+	background: #<?php echo $colors[7]; ?>;
+}
+.bizWeeklyCalendarTable .calendar .today p.day {
+	font-weight: bold;
+}
+.bizWeeklyCalendarTable ul.moreInfo {
+	margin: 0 2px 0 auto;
+	width: 9em;
+}
+.bizWeeklyCalendarTable .calendar th {
+	width: 120px;
+	padding: 5px;
+	text-align: center;
+}
+.bizWeeklyCalendarTable .calendar th * {
+	text-align: center;
+}
+.bizWeeklyCalendarTable .calendar th .input_text {
+	width: 118px;
+}
+.bizWeeklyCalendarTable .calendar th .input_submit {
+	width: 120px;
+	margin-right: 0px;
+}
+.bizWeeklyCalendarTable .calendar th .nickname {
+	margin: 5px 0;
+}
+.bizWeeklyCalendarTable .calendar td.sub {
+	border-width: 0 0 0 1px;
+}
+.bizWeeklyCalendarTable div.moreInfo {
+	padding-left: 135px;
+}
+
+/*==============================================================================
  * albumImageBox
  *----------------------------------------------------------------------------*/
 .albumImageBox p.photo {
