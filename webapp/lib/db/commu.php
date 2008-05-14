@@ -3067,4 +3067,14 @@ function db_commu_new_topic_list(
     return array($list, $prev, $next, $total_num, $start_num, $end_num);
 }
 
+function db_commu_is_writable_c_commu_topic_comment4c_commu_topic_id($c_commu_topic_id)
+{
+    $max_c_commu_topic_comment_number = db_commu_get_max_c_commu_topic_comment_number4c_topic_id($c_commu_topic_id);
+    if ($max_c_commu_topic_comment_number >= 1000) {
+        return false;
+    }
+
+    return true;
+}
+
 ?>
