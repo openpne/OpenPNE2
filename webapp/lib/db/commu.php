@@ -2647,6 +2647,21 @@ function db_commu_is_event_join_date($c_commu_topic_id)
     return (bool)db_get_row($sql, $params);
 }
 
+function db_commu_is_event_join_capacity($c_commu_topic_id)
+{
+    $c_topic = db_commu_c_topic4c_commu_topic_id_2($c_commu_topic_id);
+
+    if (!$c_topic['capacity']) {
+        return true;
+    }
+
+    if ($c_topic['capacity'] >= $c_topic['member_num']) {
+        return true;
+    }
+
+    return false;
+}
+
 //--- commu_member
 
 /**
