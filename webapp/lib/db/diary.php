@@ -1274,4 +1274,14 @@ function db_diary_delete_c_diary_comment_log($c_member_id, $c_diary_id)
     return db_update('c_diary_comment_log', $data, $where);
 }
 
+function db_diary_is_writable_comment4c_diary_id($c_diary_id)
+{
+    $max_c_diary_comment_number = db_diary_get_max_c_diary_comment_number4diary($c_diary_id);
+    if ($max_c_diary_comment_number >= 1000) {
+        return false;
+    }
+
+    return true;
+}
+
 ?>

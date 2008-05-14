@@ -218,6 +218,7 @@
 ({* }}} *})
 ({/if})
 
+({if $is_writable_comment})
 ({* {{{ formTable *})
 <div class="dparts formTable" id="commentForm"><div class="parts">
 <div class="partsHeading"><h3>コメントを書く</h3></div>
@@ -240,6 +241,14 @@
 ({/t_form_block})
 </div></div>
 ({* }}} *})
+({else})
+<div class="dparts simpleBox"><div class="parts">
+<div class="partsHeading"><h3>コメントを書く</h3></div>
+<div class="block">
+<p>コメントが1000件に達したので、この日記にはコメントできません。</p>
+</div>
+</div></div>
+({/if})
 
 </div><!-- Center -->
 </div><!-- LayoutB -->
