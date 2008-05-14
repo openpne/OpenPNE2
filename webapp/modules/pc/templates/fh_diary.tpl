@@ -242,12 +242,14 @@
 </div></div>
 ({* }}} *})
 ({else})
+({* {{{ simpleBox *})
 <div class="dparts simpleBox"><div class="parts">
 <div class="partsHeading"><h3>コメントを書く</h3></div>
 <div class="block">
-<p>コメントが1000件に達したので、この({$WORD_DIARY})にはコメントできません。</p>
+<p>コメントが1000番に達したので、この({$WORD_DIARY})にはコメントできません。</p>
 </div>
 </div></div>
+({* }}} *})
 ({/if})
 
 </div><!-- Center -->
