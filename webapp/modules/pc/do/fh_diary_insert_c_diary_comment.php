@@ -42,6 +42,10 @@ class pc_do_fh_diary_insert_c_diary_comment extends OpenPNE_Action
                 openpne_redirect('pc', 'page_h_access_block');
             }
         }
+
+        if (!db_diary_is_writable_comment4c_diary_id($target_c_diary_id)) {
+            handle_kengen_error();
+        }
         //---
 
         //日記コメント書き込み
