@@ -52,7 +52,7 @@
 </div>
 ({foreach from=$c_topic_list item=item})
 <dl>
-<dt>({$item.r_datetime|date_format:"%m月%d日<br />%H:%M"})</dt>
+<dt>({$item.u_datetime|date_format:"%m月%d日<br />%H:%M"})</dt>
 <dd>
 <div class="title">
 <p class="heading"><a href="({t_url m=pc a=page_c_topic_detail})&amp;target_c_commu_topic_id=({$item.c_commu_topic_id})">({$item.name})</a></p>
