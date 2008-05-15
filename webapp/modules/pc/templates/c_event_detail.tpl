@@ -45,7 +45,7 @@
 <td><a href="({t_url m=pc a=page_c_home})&amp;target_c_commu_id=({$c_commu.c_commu_id})">({$c_commu.name})</a></td>
 </tr><tr>
 <th>詳細</th>
-<td>({$c_topic.body|nl2br|t_url2cmd:'community'|t_cmd:'community'})</td>
+<td>({$c_topic.body|nl2br|t_url2cmd:'community':$c_topic.c_member_id|t_cmd:'community'})</td>
 </tr><tr>
 <th>募集期限</th>
 <td>({if $c_topic.invite_period != "0000-00-00"})({$c_topic.invite_period})({else})指定なし({/if})</td>
@@ -138,7 +138,7 @@
 ({if $item.image_filename3})<li><a href="({t_img_url filename=$item.image_filename3})" target="_blank"><img src="({t_img_url filename=$item.image_filename3 w=120 h=120})" alt="" /></a></li>({/if})
 </ul>
 ({/if})
-<p class="text">({$item.body|nl2br|t_url2cmd:'community'|t_cmd:'community'})</p>
+<p class="text">({$item.body|nl2br|t_url2cmd:'community':$item.c_member_id|t_cmd:'community'})</p>
 </div>
 </dd>
 </dl>

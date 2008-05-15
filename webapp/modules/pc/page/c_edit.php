@@ -69,7 +69,6 @@ class pc_page_c_edit extends OpenPNE_Action
         $this->set('err_msg', $err_msg);
 
         $this->set('is_unused_join_commu', util_is_unused_mail('m_pc_join_commu'));
-        $this->set('u', $u);
 
         return 'success';
     }

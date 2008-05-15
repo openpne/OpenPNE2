@@ -8,7 +8,7 @@
 <p>以下の内容でよろしいですか？</p>
 </div>
 <table>
-<tr><th>本文</th><td>({$topic_write.body|nl2br|t_url2cmd:'community'|t_cmd:'community'})</td></tr>
+<tr><th>本文</th><td>({$topic_write.body|nl2br|t_url2cmd:'community':$u|t_cmd:'community'})</td></tr>
 ({if $topic_write.image_filename1})
 <tr><th>写真1</th><td>({$topic_write.image_filename1})</td></tr>
 ({/if})

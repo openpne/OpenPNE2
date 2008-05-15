@@ -65,7 +65,7 @@
 </div>
 ({/if})
 ({if $smarty.const.OPENPNE_ADMIN_CONVERT_URL})
-({$topic.body|nl2br|t_url2cmd:'community'|t_cmd:'community'})
+({$topic.body|nl2br|t_url2cmd:'community':$topic.c_member_id|t_cmd:'community'})
 ({else})
 ({$topic.body|nl2br})
 ({/if})

@@ -132,7 +132,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 管理者の承認が必要(非公開)
 ({/if})
 </td></tr>
-<tr><th>({$WORD_COMMUNITY})<br />説明文</th><td>({$c_commu.info|nl2br|t_url2cmd:'community'|t_cmd:'community'})</td></tr>
+<tr><th>({$WORD_COMMUNITY})<br />説明文</th><td>({$c_commu.info|nl2br|t_url2cmd:'community':$c_commu.c_member_id_admin|t_cmd:'community'})</td></tr>
 ({if $is_c_commu_member || $c_commu.public_flag != "auth_commu_member"})
 ({if $new_topic_comment})
 <tr><th>({$WORD_COMMUNITY})<br />掲示板</th><td>
