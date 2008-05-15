@@ -40,6 +40,11 @@ class ktai_do_fh_diary_insert_c_diary_comment extends OpenPNE_Action
                 openpne_redirect('ktai', 'page_h_access_block');
             }
         }
+
+        if (!db_diary_is_writable_comment4c_diary_id($target_c_diary_id)) {
+            $p = array('target_c_diary_id' => $target_c_diary_id, 'msg' => 47);
+            openpne_redirect('ktai', 'page_fh_diary', $p);
+        }
         //---
 
         $insert_id = db_diary_insert_c_diary_comment($u, $target_c_diary_id, $body);
