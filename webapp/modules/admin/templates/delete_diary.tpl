@@ -57,7 +57,7 @@
 </div>
 ({/if})
 ({if $smarty.const.OPENPNE_ADMIN_CONVERT_URL})
-({$diary.body|nl2br|t_url2cmd:'diary'|t_cmd:'diary'})
+({$diary.body|nl2br|t_url2cmd:'diary':$diary.c_member_id|t_cmd:'diary'})
 ({else})
 ({$diary.body|nl2br})
 ({/if})

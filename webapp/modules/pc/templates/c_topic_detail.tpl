@@ -26,7 +26,7 @@
 </ul>
 ({/if})
 <p class="text">
-({$c_topic.body|nl2br|t_url2cmd:'community'|t_cmd:'community'})
+({$c_topic.body|nl2br|t_url2cmd:'community':$c_topic.c_member_id|t_cmd:'community'})
 </p>
 </div>
 ({if $c_topic.filename && $smarty.const.OPENPNE_USE_FILEUPLOAD})
@@ -104,7 +104,7 @@
 ({if $item.image_filename3})<li><a href="({t_img_url filename=$item.image_filename3})" target="_blank"><img src="({t_img_url filename=$item.image_filename3 w=120 h=120})" alt="" /></a></li>({/if})
 </ul>
 ({/if})
-<p class="text">({$item.body|nl2br|t_url2cmd:'community'|t_cmd:'community'})</p>
+<p class="text">({$item.body|nl2br|t_url2cmd:'community':$item.c_member_id|t_cmd:'community'})</p>
 </div>
 ({if $item.filename && $smarty.const.OPENPNE_USE_FILEUPLOAD})
 <div class="block attachFile"><ul>
