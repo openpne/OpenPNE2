@@ -134,7 +134,7 @@
 <br>
 ({/if})
 
-
+({if $is_writable_comment})
 ({t_form m=ktai a=do_c_bbs_insert_c_commu_topic_comment})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
 <input type="hidden" name="target_c_commu_topic_id" value="({$c_commu_topic_id})">
@@ -161,6 +161,35 @@
 [i:110]<a href="mailto:({$mail_address})">ﾒｰﾙ投稿</a><br>
 写真も添付できます。<br>
 <font color="#({$ktai_color_config.font_09})">※ﾒｰﾙ投稿では絵文字が反映されません</font>
+({else})
+({if $c_commu_topic.event_flag})
+ｺﾒﾝﾄが1000番に達したので、このｲﾍﾞﾝﾄにはｺﾒﾝﾄできません。
+<hr color="#({$ktai_color_config.border_01})">
+({if !$is_c_event_member})
+({if !$c_commu_topic.capacity || ($c_commu_topic.capacity > $c_commu_topic.member_num)})
+<center>
+このｲﾍﾞﾝﾄに参加しますか？<br>
+({t_form m=ktai a=do_c_event_join_c_commu_event})
+<input type="hidden" name="ksid" value="({$PHPSESSID})">
+<input type="hidden" name="target_c_commu_topic_id" value="({$c_commu_topic_id})">
+<input type="submit" value="ｲﾍﾞﾝﾄに参加する"><br>
+</form>
+</center>
+({/if})
+({else})
+<center>
+このｲﾍﾞﾝﾄの参加をｷｬﾝｾﾙしますか？<br>
+({t_form m=ktai a=do_c_event_drop_c_commu_event})
+<input type="hidden" name="ksid" value="({$PHPSESSID})">
+<input type="hidden" name="target_c_commu_topic_id" value="({$c_commu_topic_id})">
+<input type="submit" value="参加をｷｬﾝｾﾙする"><br>
+</form>
+</center>
+({/if})
+({else})
+ｺﾒﾝﾄが1000番に達したので、このﾄﾋﾟｯｸにはｺﾒﾝﾄできません。
+({/if})
+({/if})
 ({/if})
 ({/if})
 <hr color="#({$ktai_color_config.border_01})">
