@@ -22,7 +22,7 @@ class ktai_do_h_member_config extends OpenPNE_Action
             db_member_update_c_member_config($u, 'DISPLAY_CHANGE_NEWTOPIC_HOME_KTAI', $requests['DISPLAY_CHANGE_NEWTOPIC_HOME_KTAI']);
         }
 
-        $p = array('msg' => 32);
+        $p = array('msg' => 48);
         openpne_redirect('ktai', 'page_h_config', $p);
     }
 }
