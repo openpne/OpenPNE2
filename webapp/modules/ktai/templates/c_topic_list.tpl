@@ -20,7 +20,7 @@
 <hr color="#({$ktai_color_config.border_02})">
 </td></tr>
 <tr><td bgcolor="#({cycle values="`$ktai_color_config.bg_06`,`$ktai_color_config.bg_07`"})">
-({$item.r_datetime|date_format:"%Y/%m/%d %H:%M"})
+({$item.u_datetime|date_format:"%Y/%m/%d %H:%M"})
 ({if $item.is_c_topic_admin ==$u || $c_commu.c_member_id_admin == $u})
 [<a href="({t_url m=ktai a=page_c_event_edit})&amp;target_c_commu_topic_id=({$item.c_commu_topic_id})&amp;({$tail})">編集</a>]
 ({/if})<br>
