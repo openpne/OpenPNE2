@@ -25,8 +25,6 @@ class pc_page_h_message_box extends OpenPNE_Action
 
         $this->set('inc_navi', fetch_inc_navi("h"));
 
-        $this->set('u', $u);
-
         // 1ページ当たりに表示するメッセージ数
         $page_size = 20;
         $this->set("page_size", $page_size);

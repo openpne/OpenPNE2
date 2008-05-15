@@ -6,7 +6,7 @@
 <div class="partsHeading"><h3>下記の書き込みを削除しますか？</h3></div>
 
 <table>
-<tr><th></th><td>({$c_commu_topic_comment.body|nl2br|t_url2cmd:'community'|t_cmd:'community'})</td></tr>
+<tr><th></th><td>({$c_commu_topic_comment.body|nl2br|t_url2cmd:'community':$c_commu_topic_comment.c_member_id|t_cmd:'community'})</td></tr>
 </table>
 
 <div class="operation">
