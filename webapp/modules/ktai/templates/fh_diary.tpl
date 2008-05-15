@@ -86,6 +86,7 @@
 </center>
 ({/if})
 ({/if})
+({if $is_writable_comment})
 <hr color="#({$ktai_color_config.border_01})">
 <a name="write"></a>
 <font color="#({$ktai_color_config.font_06})">ｺﾒﾝﾄを書く：</font>
@@ -100,6 +101,12 @@
 [i:110]<a href="mailto:({$mail_address})">ﾒｰﾙ投稿</a><br>
 写真も添付できます。<br>
 <font color="#({$ktai_color_config.font_09})">※ﾒｰﾙ投稿では絵文字が反映されません</font>
+({else})
+<hr color="#({$ktai_color_config.border_01})">
+({if $msg})<font color="#({$ktai_color_config.font_09})">({$msg})</font><br>
+({else})ｺﾒﾝﾄが1000番に達したので、この({$WORD_DIARY_HALF})にはｺﾒﾝﾄできません。({/if})
+
+({/if})
 
 <hr color="#({$ktai_color_config.border_01})">
 <a name="menu"></a>
