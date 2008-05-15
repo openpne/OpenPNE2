@@ -29,7 +29,11 @@ class ktai_do_c_event_drop_c_commu_event extends OpenPNE_Action
 
         $is_c_event_member = db_commu_is_c_event_member($c_commu_topic_id, $u);
         if (!$is_c_event_member) {
-            ktai_display_error('すでにイベントに参加していません');
+            ktai_display_error('イベントに参加していません');
+        }
+
+        if (!db_commu_is_event_join_date($c_commu_topic_id)) {
+            ktai_display_error('イベントの募集期限が過ぎています');
         }
 
         db_commu_delete_c_event_member($c_commu_topic_id, $u);
