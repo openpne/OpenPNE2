@@ -9,7 +9,7 @@
 </div>
 <table>
 <tr><th>タイトル</th><td>({$c_topic.title})</td></tr>
-<tr><th>本文</th><td>({$c_topic.body|nl2br|t_url2cmd:'community'|t_cmd:'community'})</td></tr>
+<tr><th>本文</th><td>({$c_topic.body|nl2br|t_url2cmd:'community':$u|t_cmd:'community'})</td></tr>
 ({if $c_topic.image_filename1})
 <tr><th>写真1</th><td>({$c_topic.image_filename1})</td></tr>
 ({/if})
