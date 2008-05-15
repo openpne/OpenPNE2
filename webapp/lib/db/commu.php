@@ -123,7 +123,7 @@ function db_commu_get_max_c_commu_topic_comment_number4c_topic_id($c_commu_topic
 {
     $sql = 'SELECT MAX(number) FROM c_commu_topic_comment WHERE c_commu_topic_id = ?';
     $params = array(intval($c_commu_topic_id));
-    return db_get_one($sql, $params);
+    return db_get_one($sql, $params, 'main');
 }
 
 /**
