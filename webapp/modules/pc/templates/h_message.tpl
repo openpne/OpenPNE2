@@ -60,7 +60,7 @@
 <li>({if $c_message.image_filename_3})<a href="({t_img_url filename=$c_message.image_filename_3})" target="_blank"><img src="({t_img_url filename=$c_message.image_filename_3 w=120 h=120})" alt="" /></a>({/if})</li>
 </ul>
 ({/if})
-<p class="text">({$c_message.body|nl2br|t_url2cmd:'message'|t_cmd:'message'})</p>
+<p class="text">({$c_message.body|nl2br|t_url2cmd:'message':$c_message.c_member_id_from|t_cmd:'message'})</p>
 </div>
 
 ({if $c_message.filename && $smarty.const.OPENPNE_USE_FILEUPLOAD})

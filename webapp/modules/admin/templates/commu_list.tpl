@@ -93,7 +93,7 @@
 </div>
 ({/if})
 ({if $smarty.const.OPENPNE_ADMIN_CONVERT_URL})
-({$item.info|nl2br|t_url2cmd:'community'|t_cmd:'community'})
+({$item.info|nl2br|t_url2cmd:'community':$item.c_member_id_admin|t_cmd:'community'})
 ({else})
 ({$item.info|nl2br})
 ({/if})
