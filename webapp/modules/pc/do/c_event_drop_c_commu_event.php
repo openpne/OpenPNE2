@@ -36,6 +36,13 @@ class pc_do_c_event_drop_c_commu_event extends OpenPNE_Action
             exit;
         }
 
+        if (!db_commu_is_event_join_date($c_commu_topic_id)) {
+            $err_msg[] = 'イベントの募集期限が過ぎています';
+            $_REQUEST['err_msg'] = $err_msg;
+            openpne_forward('pc', 'page', "c_event_detail");
+            exit;
+        }
+
         db_commu_delete_c_event_member($c_commu_topic_id, $u);
 
         $p = array('target_c_commu_topic_id' => $c_commu_topic_id);
