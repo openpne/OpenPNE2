@@ -8,7 +8,7 @@
 <p>下記のコメントを書き込みますか？</p>
 </div>
 <table>
-<tr><th>本文</th><td>({$form_val.body|nl2br|t_url2cmd:'diary'|t_cmd:'diary'})</td></tr>
+<tr><th>本文</th><td>({$form_val.body|nl2br|t_url2cmd:'diary':$u|t_cmd:'diary'})</td></tr>
 ({if $form_val.upfile_1.name})
 <tr><th>写真1</th><td>({$form_val.upfile_1.name})</td></tr>
 ({/if})

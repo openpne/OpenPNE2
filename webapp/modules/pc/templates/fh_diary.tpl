@@ -189,7 +189,7 @@
 ({if $item.image_filename_3})<li><a href="({t_img_url filename=$item.image_filename_3})" target="_blank"><img src="({t_img_url filename=$item.image_filename_3 w=120 h=120})" alt="" /></a></li>({/if})
 </ul>
 ({/if})
-<p class="text">({$item.body|nl2br|t_url2cmd:'diary'|t_cmd:'diary'})</p>
+<p class="text">({$item.body|nl2br|t_url2cmd:'diary':$item.c_member_id|t_cmd:'diary'})</p>
 </div>
 </dd>
 </dl>

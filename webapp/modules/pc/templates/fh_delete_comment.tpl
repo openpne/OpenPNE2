@@ -11,7 +11,7 @@
 <dd>
 <div class="title">
 <p class="heading"><strong>({$target_diary_comment.number})</strong>: <a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$target_diary_comment.c_member_id})">({$target_diary_comment.nickname|default:""})</a><br />
-({$target_diary_comment.body|nl2br|default:"&nbsp;"|t_url2cmd:'diary'|t_cmd:'diary'})<br /></p>
+({$target_diary_comment.body|nl2br|default:"&nbsp;"|t_url2cmd:'diary':$target_diary_comment.c_member_id|t_cmd:'diary'})<br /></p>
 </div>
 </dd>
 </dl>
