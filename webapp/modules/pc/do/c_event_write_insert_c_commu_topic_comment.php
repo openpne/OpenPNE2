@@ -29,6 +29,12 @@ class pc_do_c_event_write_insert_c_commu_topic_comment extends OpenPNE_Action
         if (!$status['is_commu_member']) {
             handle_kengen_error();
         }
+        if (!db_commu_is_writable_c_commu_topic_comment4c_commu_topic_id($c_commu_topic_id)) {
+            $err_msg[] = 'コメントが1000番に達したので、このイベントにはコメントできません';
+            $_REQUEST['err_msg'] = $err_msg;
+            openpne_forward('pc', 'page', "c_event_detail");
+            exit;
+        }
         //---
 
         if ($add_event_member == 1 && $c_topic['capacity'] && $c_topic['capacity'] <= $c_topic['member_num'] ) {
