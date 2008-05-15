@@ -26,6 +26,9 @@ class ktai_do_c_event_join_c_commu_event extends OpenPNE_Action
         if (!$c_commu_topic['event_flag']) {
             handle_kengen_error();
         }
+        if (db_commu_is_writable_c_commu_topic_comment4c_commu_topic_id($c_commu_topic_id)) {
+            handle_kengen_error();
+        }
 
         $is_c_event_member = db_commu_is_c_event_member($c_commu_topic_id, $u);
         if ($is_c_event_member) {
