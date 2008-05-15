@@ -1175,7 +1175,7 @@ function db_diary_get_max_c_diary_comment_number4diary($c_diary_id)
 {
     $sql = 'SELECT MAX(number) FROM c_diary_comment WHERE c_diary_id = ?';
     $params = array(intval($c_diary_id));
-    return db_get_one($sql, $params);
+    return db_get_one($sql, $params, 'main');
 }
 
 /**
