@@ -65,7 +65,11 @@
                     });
 
                     Event.add(n, 'mousedown', function(e) {
-                        tinyMCE.execCommand("mceInsertContent", false, e.element().getAttribute("alt"));
+                        if (Prototype.Browser.IE) {
+                            tinyMCE.execCommand("mceInsertContent", false, e.srcElement.getAttribute("alt"));
+                        } else {
+                            tinyMCE.execCommand("mceInsertContent", false, e.element().getAttribute("alt"));
+                        }
                     });
                 }
             }
