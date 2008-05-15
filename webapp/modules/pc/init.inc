@@ -69,6 +69,7 @@ function init_pc_page(&$smarty)
     if ($is_secure) {
         $u = $GLOBALS['AUTH']->uid();
         $smarty->assign('C_MEMBER_CONFIG', util_get_c_member_config($u));
+        $smarty->assign('u', $u);
     }
 
 }
