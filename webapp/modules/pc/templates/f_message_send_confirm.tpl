@@ -22,7 +22,7 @@
 </tr>
 <tr>
 <th>メッセージ</th>
-<td>({$form_val.body|nl2br|t_url2cmd:'message'|t_cmd:'message'})</td>
+<td>({$form_val.body|nl2br|t_url2cmd:'message':$u|t_cmd:'message'})</td>
 </tr>
 ({if $form_val.upfile_1.name})
 <tr>
