@@ -136,11 +136,11 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({if $is_c_commu_member || $c_commu.public_flag != "auth_commu_member"})
 ({if $new_topic_comment})
 <tr><th>({$WORD_COMMUNITY})<br />掲示板</th><td>
-<dl class="articleList">
+<ul class="articleList">
 ({foreach from=$new_topic_comment item=item})
-<dt>({$item.r_datetime|date_format:"%m月%d日"})</dt><dd><a href="({t_url m=pc a=page_c_topic_detail})&amp;target_c_commu_topic_id=({$item.c_commu_topic_id})">({$item.name|t_truncate:30})(({$item.count_comments}))</a>({if $item.image_filename1 || $item.image_filename2 || $item.image_filename3}) <img src="({t_img_url_skin filename=icon_camera})" alt="写真あり" />({/if})</dd>
+<li><span class="date">({$item.r_datetime|date_format:"%m月%d日"})</span><a href="({t_url m=pc a=page_c_topic_detail})&amp;target_c_commu_topic_id=({$item.c_commu_topic_id})">({$item.name|t_truncate:30})(({$item.count_comments}))</a>({if $item.image_filename1 || $item.image_filename2 || $item.image_filename3}) <img src="({t_img_url_skin filename=icon_camera})" alt="写真あり" />({/if})</li>
 ({/foreach})
-</dl>
+</ul>
 <div class="moreInfo"><ul class="moreInfo">
 <li><a href="({t_url m=pc a=page_c_topic_list})&amp;target_c_commu_id=({$c_commu.c_commu_id})">もっと読む</a></li>
 ({if ($c_commu.topic_authority == 'public' && $is_c_commu_member) || ($c_commu.topic_authority == 'admin_only' && $is_c_commu_admin)})
@@ -151,11 +151,11 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({/if})
 ({if $new_topic_comment_event})
 <tr><th>新着の<br />イベント<br />書き込み</th><td>
-<dl class="articleList">
+<ul class="articleList">
 ({foreach from=$new_topic_comment_event item=item})
-<dt>({$item.r_datetime|date_format:"%m月%d日"})</dt><dd><a href="({t_url m=pc a=page_c_event_detail})&amp;target_c_commu_topic_id=({$item.c_commu_topic_id})">({$item.name|t_truncate:30})(({$item.count_comments}))</a>({if $item.image_filename1 || $item.image_filename2 || $item.image_filename3}) <img src="({t_img_url_skin filename=icon_camera})" alt="写真あり" />({/if})</dd>
+<li><span class="date">({$item.r_datetime|date_format:"%m月%d日"})</span><a href="({t_url m=pc a=page_c_event_detail})&amp;target_c_commu_topic_id=({$item.c_commu_topic_id})">({$item.name|t_truncate:30})(({$item.count_comments}))</a>({if $item.image_filename1 || $item.image_filename2 || $item.image_filename3}) <img src="({t_img_url_skin filename=icon_camera})" alt="写真あり" />({/if})</li>
 ({/foreach})
-</dl>
+</ul>
 <div class="moreInfo"><ul class="moreInfo">
 <li><a href="({t_url m=pc a=page_c_event_list})&amp;target_c_commu_id=({$c_commu.c_commu_id})">もっと読む</a></li>
 ({if ($c_commu.topic_authority == 'public' && $is_c_commu_member) || ($c_commu.topic_authority == 'admin_only' && $is_c_commu_admin)})
@@ -166,11 +166,11 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({/if})
 ({if $new_commu_review})
 <tr><th>新着の<br />おすすめ<br />レビュー</th><td>
-<dl class="articleList">
+<ul class="articleList">
 ({foreach from=$new_commu_review item=item})
-<dt>({$item.r_datetime|date_format:"%m月%d日"})</dt><dd><a href="({t_url m=pc a=page_h_review_list_product})&amp;c_review_id=({$item.c_review_id})">({$item.title|t_truncate:30})</a></dd>
+<li><span class="date">({$item.r_datetime|date_format:"%m月%d日"})</span><a href="({t_url m=pc a=page_h_review_list_product})&amp;c_review_id=({$item.c_review_id})">({$item.title|t_truncate:30})</a></li>
 ({/foreach})
-</dl>
+</ul>
 <div class="moreInfo"><ul class="moreInfo">
 <li><a href="({t_url m=pc a=page_c_member_review})&amp;target_c_commu_id=({$c_commu.c_commu_id})">もっと読む</a></li>
 <li><a href="({t_url m=pc a=page_c_member_review_add})&amp;target_c_commu_id=({$c_commu.c_commu_id})">レビューを掲載</a></li>
