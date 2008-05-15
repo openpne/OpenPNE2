@@ -26,7 +26,7 @@ $colors = array(
 
 $skin_filename_list = db_get_c_skin_filename_list();
 
-$etag_key = md5(OPENPNE_SKIN_THEME . $custom_css . serialize($decoration_config) . serialize($colors) . serialize($skin_filename_list));
+$etag_key = md5(OPENPNE_ENABLE_ROLLOVER . OPENPNE_SKIN_THEME . $custom_css . serialize($decoration_config) . serialize($colors) . serialize($skin_filename_list));
 $etag =& new Etag($etag_key, @filemtime(__FILE__));
 if ($etag->etagCheck()) {
     exit;
