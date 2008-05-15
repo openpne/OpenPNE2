@@ -10,7 +10,11 @@ tinyMCE.addI18n('ja.openpne', {  // エディタ本体
     op_large : '大きめの文字',
     op_small : '小さめの文字',
     op_color : '文字色変更',
-    op_image : 'アルバム画像挿入'
+    op_image : 'アルバム画像挿入',
+    op_emoji_docomo : '絵文字挿入（DoCoMo）',
+    op_emoji_au : '絵文字挿入（au）',
+    op_emoji_softbank : '絵文字挿入（SoftBank）',
+    op_cmd : '小窓紹介'
 });
 
 tinyMCE.addI18n('ja.advanced_dlg', {  // カラーピッカー
