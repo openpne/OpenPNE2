@@ -384,6 +384,11 @@ div.operation ul.moreInfo li {
 /*----------------------------------------------
  * カレンダー
  *--------------------------------------------*/
+.calendar td,
+.calendar td * {
+	word-break: normal;
+	letter-spacing: -1px;
+}
 #Body .calendar .holiday,
 .calendar .sun {
 	color: #d92c49;
@@ -685,21 +690,17 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 .homeMainTable th, .homeMainTable td {
 	padding: 5px;
 }
-.homeMainTable dl.articleList {
+.homeMainTable ul.articleList {
 	line-height: 1.3;
 }
-.homeMainTable dl.articleList dt {
-	clear: both;
-	float: left;
-	width: 4.3em;
-	padding-left: 13px;
-	background: url(<?php echo getSkin('icon_1'); ?>) 3px 50% no-repeat scroll;
+.homeMainTable ul.articleList li {
+	padding-left: 85px;
+	background: url(<?php echo getSkin('icon_1'); ?>) 3px 0.4em no-repeat scroll;
+	text-indent: -72px;
 }
-.homeMainTable dl.articleList dd {
-	min-height: 1.3em; /* ddが空のとき領域確保 */
-	margin-left: 5.3em;
-	padding-left: 18px;
-	background: url(<?php echo getSkin('articleList_marker'); ?>) 0 4px no-repeat scroll;
+.homeMainTable ul.articleList li span.date {
+	padding-right: 18px;
+	background: url(<?php echo getSkin('articleList_marker'); ?>) 92% 0.3em no-repeat scroll;
 }
 .homeMainTable div.moreInfo ul.moreInfo {
 	width: 10em;
