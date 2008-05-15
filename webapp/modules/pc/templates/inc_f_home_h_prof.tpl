@@ -273,7 +273,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({/strip})
 <tr><th>({$item.caption})</th><td>
 ({if $item.form_type == 'textarea'})
-    ({$item.value|nl2br|t_url2cmd:'profile'|t_cmd:'profile'})
+    ({$item.value|nl2br|t_url2cmd:'profile':$target_c_member_id|t_cmd:'profile'})
 ({elseif $item.form_type == 'checkbox'})
     ({$item.value|@t_implode:", "})
 ({else})
