@@ -12,7 +12,7 @@
 ({if $c_commu_topic_comment.image_filename2})<img src="({t_img_url filename=$c_commu_topic_comment.image_filename2 w=120 h=120})" alt="" />({/if})
 ({if $c_commu_topic_comment.image_filename3})<img src="({t_img_url filename=$c_commu_topic_comment.image_filename3 w=120 h=120})" alt="" />({/if})
 <br />({/if})<br />
-({$c_commu_topic_comment.body|nl2br|t_url2cmd:'community'|t_cmd:'community'})
+({$c_commu_topic_comment.body|nl2br|t_url2cmd:'community':$c_member.c_member_id|t_cmd:'community'})
 </td></tr>
 ({if $smarty.const.OPENPNE_USE_FILEUPLOAD})
 ({if $c_commu_topic_comment.filename})

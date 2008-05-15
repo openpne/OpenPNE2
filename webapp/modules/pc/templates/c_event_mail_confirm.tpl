@@ -16,7 +16,7 @@
 ({if $_cnt % 3 != 0})</ul>({/if})
 </div>
 </td></tr>
-<tr><th>メッセージ</th><td>({$body|nl2br|t_url2cmd:'message'|t_cmd:'message'})</td></tr>
+<tr><th>メッセージ</th><td>({$body|nl2br|t_url2cmd:'message':$u|t_cmd:'message'})</td></tr>
 </table>
 <div class="operation">
 <ul class="moreInfo button">

@@ -11,7 +11,7 @@
 <tr><th>タイトル</th><td>({$event.title})</td></tr>
 <tr><th>開催日時</th><td>({$event.open_date_year})年({$event.open_date_month})月({$event.open_date_day})日 ({$event.open_date_comment})</td></tr>
 <tr><th>開催場所</th><td>({$event.open_pref_value}) ({$event.open_pref_comment})</td></tr>
-<tr><th>詳細</th><td>({$event.detail|nl2br|t_url2cmd:'community'|t_cmd:'community'})</td></tr>
+<tr><th>詳細</th><td>({$event.detail|nl2br|t_url2cmd:'community':$u|t_cmd:'community'})</td></tr>
 <tr><th>募集期限</th><td>
 ({if $event.invite_period_year&&$event.invite_period_month&&$event.invite_period_day})
 ({$event.invite_period_year})年({$event.invite_period_month})月({$event.invite_period_day})日

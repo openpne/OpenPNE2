@@ -41,8 +41,6 @@ class pc_page_c_edit_member extends OpenPNE_Action
         $this->set("is_next", $list[2]);
         $this->set("page", $page);
 
-        $this->set("u", $u);
-
         return 'success';
     }
 }
