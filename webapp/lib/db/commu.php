@@ -924,7 +924,7 @@ function db_commu_c_topic_list4target_c_commu_id($c_commu_id, $c_member_id, $pag
     $lst = db_get_all_page($sql, $page, $page_size, $params);
 
     foreach ($lst as $key => $value) {
-        $sql = "SELECT cct.c_commu_topic_id, cct.name, cct.r_datetime, cctc.body , cctc.image_filename1, cctc.image_filename2, image_filename3" .
+        $sql = "SELECT cct.c_commu_topic_id, cct.name, cct.u_datetime, cctc.body , cctc.image_filename1, cctc.image_filename2, image_filename3" .
                " FROM c_commu_topic as cct, c_commu_topic_comment as cctc" .
                " WHERE cct.c_commu_topic_id = cctc.c_commu_topic_id" .
                " AND cctc.number = 0" .
