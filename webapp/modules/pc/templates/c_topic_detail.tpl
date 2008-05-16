@@ -3,7 +3,7 @@
 
 <div id="Center">
 
-({if !$err_msg})
+({if !$err_msg || !$is_writable_comment})
 
 ({* {{{ topicDetailBox *})
 <div class="dparts topicDetailBox"><div class="parts">
