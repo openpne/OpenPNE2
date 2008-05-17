@@ -2144,6 +2144,29 @@ div#container_login .footer p {
 }
 
 /*==============================================================================
+ * albumDetailBox
+ *----------------------------------------------------------------------------*/
+.albumDetailBox th,
+.albumDetailBox td {
+	padding: 5px;
+}
+.albumDetailBox th {
+	width: 75px;
+}
+.albumDetailBox td.photo {
+	width: 190px;
+	padding: 5px 0;
+	text-align: center;
+}
+#Body .albumDetailBox th:first-child,
+#Body .albumDetailBox td.operation {
+	border-left-width: 1px;
+}
+.albumDetailBox td.operation {
+	text-align: right;
+}
+
+/*==============================================================================
  * albumImageBox
  *----------------------------------------------------------------------------*/
 .albumImageBox p.photo {
