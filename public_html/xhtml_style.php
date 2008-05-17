@@ -405,12 +405,13 @@ div.operation ul.moreInfo li {
 	zoom: 1;
 	position: relative;
 	width: 720px;
-	height: 96px;
 }
 #globalNav {
+	height: 96px;
 	background: url(<?php echo getSkin('skin_after_header'); ?>) 0 0 no-repeat;
 }
 #globalNavBefore {
+	height: 125px;
 	margin-bottom: 10px;
 	background: url(<?php echo getSkin('skin_before_header'); ?>) 0 0 no-repeat;
 }
