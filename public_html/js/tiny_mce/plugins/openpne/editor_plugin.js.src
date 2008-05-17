@@ -158,7 +158,7 @@
             ed.onPostProcess.add(function(ed, o) {  // To text mode
                 if (o.save) {
                     if (ed.isHidden()) {
-                        o.content = ed.getElement().value;
+                        o.content = ed.getElement().value.replace(/\n\n/g, "\n \n");
                     } else {
                         o.content = t._previewToText(o.content, ed);
                     }
