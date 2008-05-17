@@ -2122,6 +2122,28 @@ div#container_login .footer p {
 }
 
 /*==============================================================================
+ * albumList
+ *----------------------------------------------------------------------------*/
+.albumList th,
+.albumList td {
+	padding: 5px;
+}
+.albumList th {
+	width: 75px;
+}
+.albumList td.photo {
+	width: 190px;
+	padding: 5px 0;
+	text-align: center;
+}
+#Body .albumList th:first-child {
+	border-left-width: 1px;
+}
+.albumList td.operation {
+	text-align: center;
+}
+
+/*==============================================================================
  * albumImageBox
  *----------------------------------------------------------------------------*/
 .albumImageBox p.photo {
