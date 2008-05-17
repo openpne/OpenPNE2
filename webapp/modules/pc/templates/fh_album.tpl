@@ -18,50 +18,52 @@
 
 <div id="Center">
 
-({* unknown *})<div class="dparts"><div class="parts">
-({* unknown *})<div class="partsHeading"><h3>({$target_member.nickname})({if $type == "f"})さん({/if})のアルバム</h3></div>
-({* unknown *})<table>
-({* unknown *})<tr>
-({* unknown *})<td class="photo" rowspan="({if $type == "h"})5({else})4({/if})" style="width: 180px; padding: 5px;">
-({* unknown *})({if $album_info.album_cover_image})
-({* unknown *})<a href="({t_img_url filename=$album_info.album_cover_image})" target="_blank"><img src="({t_img_url filename=$album_info.album_cover_image w=180 h=180})" alt="" /></a>
-({* unknown *})({else})
-({* unknown *})<img src="({t_img_url filename=$album_info.album_cover_image w=180 h=180})" alt="" />
-({* unknown *})({/if})
-({* unknown *})</td>
-({* unknown *})<th style="width: 75px; padding: 5px;">タイトル</th>
-({* unknown *})<td style="padding: 5px;">({$album_info.subject})</td>
-({* unknown *})</tr>
-({* unknown *})<tr>
-({* unknown *})<th style="border-left-width: 1px; padding: 5px;">説明文</th>
-({* unknown *})<td style="padding: 5px;">({$album_info.description|nl2br|t_url2a})</td>
-({* unknown *})</tr>
-({* unknown *})<tr>
-({* unknown *})<th style="border-left-width: 1px; padding: 5px;">公開範囲</th>
-({* unknown *})<td style="padding: 5px;">
-({* unknown *})({if $album_info.public_flag == "public"})
-({* unknown *})全員に公開
-({* unknown *})({elseif $album_info.public_flag == "friend"})
-({* unknown *})({$WORD_MY_FRIEND})まで公開
-({* unknown *})({elseif $album_info.public_flag == "private"})
-({* unknown *})公開しない
-({* unknown *})({/if})
-({* unknown *})</td>
-({* unknown *})</tr>
-({* unknown *})<tr>
-({* unknown *})<th style="border-left-width: 1px; padding: 5px;">作成日時</th>
-({* unknown *})<td style="padding: 5px;">({$album_info.r_datetime|date_format:"%Y年%m月%d日 %H:%M"})</td>
-({* unknown *})</tr>
-({* unknown *})({if $type == "h"})
-({* unknown *})<tr>
-({* unknown *})<td colspan="2" style="border-left-width: 1px; padding: 5px;">
-({* unknown *})<a href="({t_url m=pc a=page_h_album_cover_edit})&amp;target_c_album_id=({$album_info.c_album_id})">アルバムを編集</a>
-({* unknown *}) | <a href="({t_url m=pc a=page_h_album_image_add})&amp;target_c_album_id=({$album_info.c_album_id})">写真を追加</a>
-({* unknown *})</td>
-({* unknown *})</tr>
-({* unknown *})({/if})
-({* unknown *})</table>
-({* unknown *})</div></div>
+({* {{{ albumDetailBox *})
+<div class="dparts albumDetailBox"><div class="parts">
+<div class="partsHeading"><h3>({$target_member.nickname})({if $type == "f"})さん({/if})のアルバム</h3></div>
+<table>
+<tr>
+<td class="photo" rowspan="({if $type == "h"})5({else})4({/if})">
+({if $album_info.album_cover_image})
+<a href="({t_img_url filename=$album_info.album_cover_image})" target="_blank"><img src="({t_img_url filename=$album_info.album_cover_image w=180 h=180})" alt="" /></a>
+({else})
+<img src="({t_img_url filename=$album_info.album_cover_image w=180 h=180})" alt="" />
+({/if})
+</td>
+<th>タイトル</th>
+<td>({$album_info.subject})</td>
+</tr>
+<tr>
+<th>説明文</th>
+<td>({$album_info.description|nl2br|t_url2a})</td>
+</tr>
+<tr>
+<th>公開範囲</th>
+<td>
+({if $album_info.public_flag == "public"})
+全員に公開
+({elseif $album_info.public_flag == "friend"})
+({$WORD_MY_FRIEND})まで公開
+({elseif $album_info.public_flag == "private"})
+公開しない
+({/if})
+</td>
+</tr>
+<tr>
+<th>作成日時</th>
+<td>({$album_info.r_datetime|date_format:"%Y年%m月%d日 %H:%M"})</td>
+</tr>
+({if $type == "h"})
+<tr>
+<td class="operation" colspan="2">
+<a href="({t_url m=pc a=page_h_album_cover_edit})&amp;target_c_album_id=({$album_info.c_album_id})">アルバムを編集</a>
+ | <a href="({t_url m=pc a=page_h_album_image_add})&amp;target_c_album_id=({$album_info.c_album_id})">写真を追加</a>
+</td>
+</tr>
+({/if})
+</table>
+</div></div>
+({* }}} *})
 
 ({if $album_image_list})
 
