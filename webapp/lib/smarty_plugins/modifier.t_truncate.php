@@ -11,9 +11,10 @@
  * @param int    $width
  * @param string $etc
  * @param int    $rows
+ * @param bool   $is_htmlspecialchars
  * @return string
  */
-function smarty_modifier_t_truncate($string, $width = 80, $etc = '', $rows = 1)
+function smarty_modifier_t_truncate($string, $width = 80, $etc = '', $rows = 1, $is_htmlspecialchars = true)
 {
     $rows = (int)$rows;
     if (!($rows > 0)) {
@@ -60,7 +61,11 @@ function smarty_modifier_t_truncate($string, $width = 80, $etc = '', $rows = 1)
     }
     $string = implode("\n", $result);
 
-    return nl2br(htmlspecialchars($string, ENT_QUOTES, 'UTF-8'));
+    if ($is_htmlspecialchars) {
+        $string = htmlspecialchars($string, ENT_QUOTES, 'UTF-8');
+    }
+
+    return nl2br($string);
 }
 
 function smarty_modifier_t_truncate_callback($string, $width, $etc = '')
