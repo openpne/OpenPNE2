@@ -25,7 +25,7 @@
 <thead>
 <tr>
 <th>CMDキャストURL</th>
-<th colspan='2'>操作</th>
+<th colspan='3'>操作</th>
 </tr>
 </thead>
 <tbody>
@@ -52,6 +52,14 @@
 <span class="textBtnS"><input type="submit" class="submit" value="　削　除　" /></span>
 ({/t_form_block})
 </td>
+<td>
+({t_form_block m=$module_name})
+<input type="hidden" name="a" value="do_({$hash_tbl->hash('update_c_cmd_caster_cmd','do')})" />
+<input type="hidden" name="sessid" value="({$PHPSESSID})" />
+<input type="hidden" name="c_cmd_caster_id" value="({$item.c_cmd_caster_id})" />
+<span class="textBtnS"><input type="submit" class="submit" value="　更　新　" /></span>
+({/t_form_block})
+</td>
 
 </tr>
 ({/foreach})
@@ -64,7 +72,7 @@
 <td>
 <input type="text" name="url" class="url" value="" />
 </td>
-<td colspan="2">
+<td colspan="3">
 <span class="textBtnS"><input type="submit" class="submit" value="　追　加　" /></span>
 </td>
 ({/t_form_block})
