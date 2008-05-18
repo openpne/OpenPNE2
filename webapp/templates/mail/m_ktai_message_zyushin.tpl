@@ -7,12 +7,12 @@
 
 ({if $subject})
 件名:
-({$subject|t_truncate:50:"..."})
+({$subject|t_truncate:50:"...":1:0})
 ({/if})
 
 ({if $body})
 本文:
-({$body|t_truncate:150:"..."})
+({$body|t_truncate:150:"...":1:0})
 ({/if})
 
 ({$SNS_NAME})ログインページ
