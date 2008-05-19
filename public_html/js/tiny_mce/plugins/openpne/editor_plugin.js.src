@@ -165,10 +165,23 @@
                 }
             });
             ed.onNodeChange.add(function(ed, cm, n) {
-                cm.setActive('mce_editor_textarea_op_b', n.nodeName.toLowerCase() == 'b');
-                cm.setActive('mce_editor_textarea_op_u', n.nodeName.toLowerCase() == 'u');
-                cm.setActive('mce_editor_textarea_op_s', n.nodeName.toLowerCase() == 's');
-                cm.setActive('mce_editor_textarea_op_i', n.nodeName.toLowerCase() == 'i');
+                cm.setActive('mce_editor_textarea_op_b', false);
+                cm.setActive('mce_editor_textarea_op_u', false);
+                cm.setActive('mce_editor_textarea_op_s', false);
+                cm.setActive('mce_editor_textarea_op_i', false);
+                cm.setActive('mce_editor_textarea_op_large', false);
+                cm.setActive('mce_editor_textarea_op_small', false);
+
+                var elm = n;
+                while (elm.parentNode) {
+                    var tagname = t._getTagName(elm);
+                    if ((tagname == "large" || tagname == "small") && (cm.get('mce_editor_textarea_op_large').isActive() || cm.get('mce_editor_textarea_op_small').isActive())) {
+                        elm = elm.parentNode;
+                        continue;
+                    }
+                    cm.setActive('mce_editor_textarea_op_' + tagname,  true);
+                    elm = elm.parentNode;
+                }
             });
         },
 
@@ -215,6 +228,33 @@
                 author : 'Kousuke Ebihara',
                 version : "1.0"
             }
+        },
+
+        _getTagName : function(elm) {
+            var tagname = elm.nodeName.toLowerCase();
+            if (Prototype.Browser.WebKit && tagname == "span") {
+                if (elm.style.fontWeight == 'bold') { return 'b'; }
+                if (elm.style.textDecoration == 'underline') { return 'u'; }
+                if (elm.style.textDecoration == 'line-through') { return 's'; }
+                if (elm.style.fontStyle == 'italic') { return 'i'; }
+                if (elm.style.fontSize == 'x-large') { return 'large'; }
+                if (elm.style.fontSize == 'x-small') { return 'small'; }
+            } else if (tagname != "span") {
+                var convertList = {strike: "s", strong: "b", em: "i"};
+                if (convertList[tagname]) {
+                    return convertList[tagname];
+                }
+
+                var size = elm.getAttribute("size");
+                if (tagname == "font" && size == "5") {
+                    return "large";
+                }
+                if (tagname == "font" && size == "1") {
+                    return "small";
+                }
+            }
+
+            return tagname;
         },
 
         _createOpenPNEColorButton : function(id, s, cm) {
