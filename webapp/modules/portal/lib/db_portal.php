@@ -256,8 +256,8 @@ function db_portal_insert_portal_rss($data)
 
 function db_portal_c_commu_event($today, $from, $count)
 {
-    $sql = 'select cc.name as community_name, cct.name as event_name, cct.open_date as open_date from c_commu cc, c_commu_topic cct where cc.c_commu_id = cct.c_commu_id and cct.event_flag = ? and cct.open_date > ? order by cct.open_date';
-    $params = array('1', $today);
+    $sql = 'select cc.name as community_name, cct.name as event_name, cct.open_date as open_date from c_commu cc, c_commu_topic cct where cc.c_commu_id = cct.c_commu_id and cct.event_flag = ? and cct.open_date > ? and public_flag = ? order by cct.open_date';
+    $params = array('1', $today, 'public');
     return db_get_all_limit($sql, $from, $count, $params);
 }
 
