@@ -1080,7 +1080,7 @@ function p_access_analysis_day_access_analysis_day($ym, $ktai_flag)
                 " and ktai_flag = ? " .
                 " group by ymd";
     }
-    $params = array(intval(substr($ym,0,7)),intval($ktai_flag));
+    $params = array(substr($ym, 0, 7), intval($ktai_flag));
     $list = db_get_all($sql,$params);
 
     $year = substr($ym, 0, 4);
