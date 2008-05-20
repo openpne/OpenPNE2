@@ -378,6 +378,17 @@
                 var org_tagname = tagname;
                 var args = {};
 
+                if (Prototype.Browser.IE && org_tagname != "font") {
+                    var reg = new RegExp("<" + tagname + ">", "gi");
+                    editorDoc.innerHTML = editorDoc.innerHTML.replace(reg, "<op" + tagname + ">");
+
+                    var reg = new RegExp("</" + tagname + ">", "gi");
+                    editorDoc.innerHTML = editorDoc.innerHTML.replace(reg, "</op" + tagname + ">");
+
+                    s = editorDoc.innerHTML;
+                    return;
+                }
+
                 while (tagList.length) {
                     targetObj = tagList[0];
 
@@ -465,7 +476,7 @@
                 s = editorDoc.innerHTML;
             }
 
-            var convertList = new Array('span', 'b', 'u', 's', 'i', 'font');
+            var convertList = new Array('span', 'font', 'b', 'u', 's', 'i');
             for (var i = 0; i < convertList.length; i++) {
                 convertHtmlTagToDecoTag(editor.getBody(), convertList[i]);
             }
