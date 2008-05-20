@@ -38,7 +38,7 @@ if(tinymce.isIE){tagname=tagname.replace("op:","op");}
 var newObj=editor.dom.create(tagname);editor.dom.setAttribs(newObj,args);if(tinymce.isIE){newObj.innerHTML=targetObj.innerHTML;targetObj.parentNode.replaceChild(newObj,targetObj);}else{editor.dom.replace(newObj,targetObj,true);}
 tagList=doc.getElementsByTagName(org_tagname);}
 s=editorDoc.innerHTML;}
-var convertList=new Array('span','b','u','s','i','font');for(var i=0;i<convertList.length;i++){convertHtmlTagToDecoTag(editor.getBody(),convertList[i]);}
+var convertList=new Array('span','font','b','u','s','i');for(var i=0;i<convertList.length;i++){convertHtmlTagToDecoTag(editor.getBody(),convertList[i]);}
 rep(/<\/?div>/gi,"");if(tinymce.isIE){rep(/<op/gi,"<op:");rep(/<\/op/gi,"</op:");}
 rep(/<br\s?\/?[^>]*>/gi,"\n\n");rep(/&nbsp;/gi," ");rep(/&quot;/gi,"\"");rep(/&lt;/gi,"<");rep(/&gt;/gi,">");rep(/&amp;/gi,"&");return s;},_textToPreview:function(s){s=tinymce.trim(s);var rule=/&lt;op:(b|u|s|i|large|small|color)( code="(#[0-9a-f]{3,6})"|)&gt;(.*?)&lt;\/op:\1&gt;/i;function rep(re,str){s=s.replace(re,str);};function convertDecoTagToHtmlTag(matches)
 {var tagname=matches[1];var color=matches[3];var value=matches[4].gsub(rule,convertDecoTagToHtmlTag);var opt='';if(tagname=='color'&&color){tagname='font';opt=' color="'+color+'"';}

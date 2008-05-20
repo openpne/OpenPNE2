@@ -465,7 +465,7 @@
                 s = editorDoc.innerHTML;
             }
 
-            var convertList = new Array('span', 'b', 'u', 's', 'i', 'font');
+            var convertList = new Array('span', 'font', 'b', 'u', 's', 'i');
             for (var i = 0; i < convertList.length; i++) {
                 convertHtmlTagToDecoTag(editor.getBody(), convertList[i]);
             }
