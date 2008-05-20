@@ -378,6 +378,17 @@
                 var org_tagname = tagname;
                 var args = {};
 
+                if (Prototype.Browser.IE && org_tagname != "font") {
+                    var reg = new RegExp("<" + tagname + ">", "gi");
+                    editorDoc.innerHTML = editorDoc.innerHTML.replace(reg, "<op" + tagname + ">");
+
+                    var reg = new RegExp("</" + tagname + ">", "gi");
+                    editorDoc.innerHTML = editorDoc.innerHTML.replace(reg, "</op" + tagname + ">");
+
+                    s = editorDoc.innerHTML;
+                    return;
+                }
+
                 while (tagList.length) {
                     targetObj = tagList[0];
 
