@@ -542,45 +542,68 @@ function p_h_home_c_diary_my_comment_list4c_member_id($c_member_id, $limit)
 
     $is_recurred = false;
 
-    $sql = 'SELECT c_diary_id, r_datetime as maxdate' .
-           ' FROM c_diary_comment_log' .
-           ' WHERE c_member_id = ?' .
-           ' ORDER BY maxdate DESC';
-    $list = db_get_assoc_limit($sql, 0, $limit, array(intval($c_member_id)));
+    $sql = 'SELECT cdcl.c_diary_id, cdcl.r_datetime AS maxdate, cd.*'
+         . ' FROM c_diary_comment_log AS cdcl INNER JOIN c_diary AS cd USING (c_diary_id) '
+         . ' WHERE cdcl.c_member_id = ?'
+         . ' AND cd.public_flag <> \'private\'';
 
-    $result = array();
-    foreach ($list as $c_diary_id => $r_datetime) {
-        $item = db_diary_get_c_diary4id($c_diary_id);
-        if ($item['public_flag'] == 'friend' && !db_friend_is_friend($c_member_id, $item['c_member_id'])) {
-            continue;
-        }
-        $item += db_member_c_member4c_member_id_LIGHT($item['c_member_id']);
-        $item['r_datetime'] = $r_datetime;
-        $item['num_comment'] = db_diary_count_c_diary_comment4c_diary_id($c_diary_id);
-        $result[] = $item;
+    $blocked = db_member_access_block_list4c_member_id_to($c_member_id);
+    $blocked_ids = implode(',', array_map('intval', $blocked));
+    if ($blocked_ids) {
+        $sql .= ' AND cd.c_member_id NOT IN (' . $blocked_ids . ')';
     }
-    return $result;
+
+    $friends = db_friend_c_member_id_list($c_member_id);
+    $friend_ids = implode(',', array_map('intval', $friends));
+    if ($friend_ids) {
+         $sql .= ' AND (cd.public_flag = \'public\''
+               . ' OR (cd.public_flag = \'friend\' AND cd.c_member_id IN (' . $friend_ids . ')))';
+    }
+
+    $sql .= ' ORDER BY maxdate DESC';
+    $params = array(intval($c_member_id));
+    $list = db_get_all_limit($sql, 0, $limit, $params);
+
+    foreach ($list as $key => $value) {
+        $list[$key] += db_member_c_member4c_member_id_LIGHT($value['c_member_id']);
+        $list[$key]['r_datetime'] = $value['maxdate'];
+        $list[$key]['num_comment'] = db_diary_count_c_diary_comment4c_diary_id($value['c_diary_id']);
+    }
+
+    return $list;
 }
 
 function p_h_diary_comment_list_c_diary_my_comment_list4c_member_id($c_member_id, $page, $page_size)
 {
-    $sql = 'SELECT c_diary_id, c_member_id, r_datetime' .
-           ' FROM c_diary_comment_log' .
-           ' WHERE c_member_id = ?' .
-           ' ORDER BY r_datetime DESC';
+    $select = 'SELECT cdcl.c_diary_id, cdcl.r_datetime AS maxdate, cd.*';
+    $from = ' FROM c_diary_comment_log AS cdcl INNER JOIN c_diary AS cd USING (c_diary_id) ';
+    $where = ' WHERE cdcl.c_member_id = ? AND cd.public_flag <> \'private\'';
+
+
+    $blocked = db_member_access_block_list4c_member_id_to($c_member_id);
+    $blocked_ids = implode(',', array_map('intval', $blocked));
+    if ($blocked_ids) {
+        $where .= ' AND cd.c_member_id NOT IN (' . $blocked_ids . ')';
+    }
+
+    $friends = db_friend_c_member_id_list($c_member_id);
+    $friend_ids = implode(',', array_map('intval', $friends));
+    if ($friend_ids) {
+         $where .= ' AND (cd.public_flag = \'public\''
+               . ' OR (cd.public_flag = \'friend\' AND cd.c_member_id IN (' . $friend_ids . ')))';
+    }
+
+    $sql = $select . $from . $where . ' ORDER BY maxdate DESC';
     $params = array(intval($c_member_id));
     $list = db_get_all_page($sql, $page, $page_size, $params);
 
     foreach ($list as $key => $value) {
-        $diary = db_diary_get_c_diary4id($value['c_diary_id']);
-        $list[$key] += db_member_c_member4c_member_id_LIGHT($diary['c_member_id']);
-        $list[$key]['subject'] = $diary['subject'];
+        $list[$key] += db_member_c_member4c_member_id_LIGHT($value['c_member_id']);
+        $list[$key]['r_datetime'] = $value['maxdate'];
         $list[$key]['num_comment'] = db_diary_count_c_diary_comment4c_diary_id($value['c_diary_id']);
     }
 
-    $sql = 'SELECT COUNT(c_diary_id)' .
-           ' FROM c_diary_comment_log' .
-           ' WHERE c_member_id = ?';
+    $sql = 'SELECT COUNT(cdcl.c_diary_id)' . $from . $where;
     $params = array(intval($c_member_id));
     $total_num = db_get_one($sql, $params);
 
