@@ -270,9 +270,18 @@
 <tr><td bgcolor="#({$ktai_color_config.bg_09})">
 <a href="({t_url m=ktai a=page_h_config_access_block})&amp;({$tail})">ｱｸｾｽﾌﾞﾛｯｸ設定</a><br>
 </td></tr>
+({if $smarty.const.USE_SHINOBIASHI})
+<tr><td bgcolor="#({$ktai_color_config.bg_10})">
+<a href="({t_url m=ktai a=page_h_config_shinobiashi})&amp;({$tail})">忍び足設定</a><br>
+</td></tr>
+<tr><td bgcolor="#({$ktai_color_config.bg_09})">
+<a href="({t_url m=ktai a=page_h_member_config})&amp;({$tail})">その他設定</a><br>
+</td></tr>
+({else})
 <tr><td bgcolor="#({$ktai_color_config.bg_10})">
 <a href="({t_url m=ktai a=page_h_member_config})&amp;({$tail})">その他設定</a><br>
 </td></tr>
+({/if})
 <tr><td bgcolor="#({$ktai_color_config.bg_10})">
 <hr color="#({$ktai_color_config.border_03})">
 </td></tr></table>
