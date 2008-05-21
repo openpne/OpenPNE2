@@ -203,23 +203,27 @@
 ({if $smarty.const.DISPLAY_NEWDIARYTOPIC_HOME})
 ({* {{{ formTable *})
 <div class="dparts formTable"><div class="parts">
-<div class="partsHeading"><h3>その他オプション設定変更</h3></div>
-({t_form_block m=pc a=do_h_member_config})
+<div class="partsHeading"><h3>マイホーム最新情報表示変更</h3></div>
+({t_form_block m=pc a=do_h_member_config_update_display_home})
 <table>
 <tr>
-<th>マイホームへの最新情報表示</th>
+<th>全体の最新({$WORD_DIARY})</th>
 <td>
-<p>SNS全体の最新({$WORD_DIARY})</p>
 <ul>
-<li><input type="radio" class="input_radio" name="IS_DISPLAY_NEWDIARY_HOME" id="display_off_newdiary_home_0" value="1"({if $C_MEMBER_CONFIG.IS_DISPLAY_NEWDIARY_HOME}) checked="checked"({/if}) /><label for="display_off_newdiary_home_0">表示する</label></li>
-<li><input type="radio" class="input_radio" name="IS_DISPLAY_NEWDIARY_HOME" id="display_off_newdiary_home_1" value="0"({if !$C_MEMBER_CONFIG.IS_DISPLAY_NEWDIARY_HOME}) checked="checked"({/if}) /><label for="display_off_newdiary_home_1">表示しない</label></li>
+<li><input type="radio" class="input_radio" name="IS_DISPLAY_NEWDIARY_HOME" id="is_display_newdiary_home_0" value="1"({if $C_MEMBER_CONFIG.IS_DISPLAY_NEWDIARY_HOME}) checked="checked"({/if}) /><label for="is_display_newdiary_home_0">表示する</label></li>
+<li><input type="radio" class="input_radio" name="IS_DISPLAY_NEWDIARY_HOME" id="is_display_newdiary_home_1" value="0"({if !$C_MEMBER_CONFIG.IS_DISPLAY_NEWDIARY_HOME}) checked="checked"({/if}) /><label for="is_display_newdiary_home_1">表示しない</label></li>
 </ul>
-<p>SNS全体の最新トピック</p>
+<p>※マイホームに全体の最新({$WORD_DIARY})を表示します。</p>
+</td>
+</tr>
+<tr>
+<th>全体の最新({$WORD_COMMUNITY})書き込み</th>
+<td>
 <ul>
-<li><input type="radio" class="input_radio" name="IS_DISPLAY_NEWTOPIC_HOME" id="display_off_newtopic_home_0" value="1"({if $C_MEMBER_CONFIG.IS_DISPLAY_NEWTOPIC_HOME}) checked="checked"({/if}) /><label for="display_off_newtopic_home_0">表示する</label></li>
-<li><input type="radio" class="input_radio" name="IS_DISPLAY_NEWTOPIC_HOME" id="display_off_newtopic_home_1" value="0"({if !$C_MEMBER_CONFIG.IS_DISPLAY_NEWTOPIC_HOME}) checked="checked"({/if}) /><label for="display_off_newtopic_home_1">表示しない</label></li>
+<li><input type="radio" class="input_radio" name="IS_DISPLAY_NEWTOPIC_HOME" id="is_display_newtopic_home_0" value="1"({if $C_MEMBER_CONFIG.IS_DISPLAY_NEWTOPIC_HOME}) checked="checked"({/if}) /><label for="is_display_newtopic_home_0">表示する</label></li>
+<li><input type="radio" class="input_radio" name="IS_DISPLAY_NEWTOPIC_HOME" id="is_display_newtopic_home_1" value="0"({if !$C_MEMBER_CONFIG.IS_DISPLAY_NEWTOPIC_HOME}) checked="checked"({/if}) /><label for="is_display_newtopic_home_1">表示しない</label></li>
 </ul>
-<p>※マイホームに表示する情報を選択出来ます。</p>
+<p>※マイホームに全体の最新({$WORD_COMMUNITY})書き込みを表示します。</p>
 </td>
 </tr>
 </table>
