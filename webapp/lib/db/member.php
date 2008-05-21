@@ -1781,6 +1781,16 @@ function db_member_update_public_flag_diary($c_member_id, $public_flag_diary)
     db_update('c_member', $data, $where);
 }
 
+function db_member_update_is_shinobiashi($c_member_id, $is_shinobiashi)
+{
+    // function cacheを削除
+    cache_drop_c_member_profile($c_member_id);
+
+    $data = array('is_shinobiashi' => intval($is_shinobiashi));
+    $where = array('c_member_id' => intval($c_member_id));
+    db_update('c_member', $data, $where);
+}
+
 function db_member_insert_username($c_member_id, $username)
 {
     $data = array(
