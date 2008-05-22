@@ -129,7 +129,7 @@ class pc_page_h_home extends OpenPNE_Action
         $this->set('r_datetime_date', $date[date('w')]);
 
         /// 週間カレンダー
-        if (DISPLAY_SCHEDULE_HOME) {
+        if (DISPLAY_SCHEDULE_HOME && $OPTION['IS_DISPLAY_SCHEDULE_HOME']) {
             //開始曜日の設定
             if ($c_member['schedule_start_day'] == 2) {
                 $start_day = date("w");
