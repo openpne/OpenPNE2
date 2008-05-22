@@ -206,18 +206,6 @@
 <div class="partsHeading"><h3>マイホーム最新情報表示変更</h3></div>
 ({t_form_block m=pc a=do_h_member_config_update_display_home})
 <table>
-({if $smarty.const.DISPLAY_SCHEDULE_HOME})
-<tr>
-<th>週間スケジュール</th>
-<td>
-<ul>
-<li><input type="radio" class="input_radio" name="IS_DISPLAY_SCHEDULE_HOME" id="is_display_schedule_home_0" value="1"({if $C_MEMBER_CONFIG.IS_DISPLAY_SCHEDULE_HOME}) checked="checked"({/if}) /><label for="is_display_schedule_home_0">表示する</label></li>
-<li><input type="radio" class="input_radio" name="IS_DISPLAY_SCHEDULE_HOME" id="is_display_schedule_home_1" value="0"({if !$C_MEMBER_CONFIG.IS_DISPLAY_SCHEDULE_HOME}) checked="checked"({/if}) /><label for="is_display_schedule_home_1">表示しない</label></li>
-</ul>
-<p>※マイホームに週間スケジュールを表示します。</p>
-</td>
-</tr>
-({/if})
 ({if $smarty.const.DISPLAY_NEWDIARYTOPIC_HOME})
 <tr>
 <th>全体の最新({$WORD_DIARY})</th>
