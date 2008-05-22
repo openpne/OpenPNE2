@@ -92,7 +92,7 @@
 <br>
 <table width="100%">
 <tr><td bgcolor="#({$ktai_color_config.bg_05})">
-<a accesskey="1" name="a1" href="#a1">[i:125]</a><font color="#({$ktai_color_config.color_25})">({if $C_MEMBER_CONFIG.IS_DISPLAY_NEWDIARY_HOME_KTAI})最新({$WORD_DIARY_HALF})({else})({$WORD_FRIEND_HALF})最新({$WORD_DIARY_HALF})({/if})</font><br>
+<a accesskey="1" name="a1" href="#a1">[i:125]</a><font color="#({$ktai_color_config.color_25})">({$WORD_FRIEND_HALF})最新({$WORD_DIARY_HALF})</font><br>
 </td></tr>
 ({if $c_diary_friend_list})
 ({foreach from=$c_diary_friend_list item=item})
@@ -108,28 +108,8 @@
 <hr color="#({$ktai_color_config.border_02})">
 </td></tr>
 ({/foreach})
-({elseif $c_diary_list_all})
-({foreach from=$c_diary_list_all item=item})
-<tr><td bgcolor="#({cycle values="`$ktai_color_config.bg_06`,`$ktai_color_config.bg_07`"})">
-<font color="#({$ktai_color_config.font_06})">[({$item.r_date|date_format:"%m/%d"})]</font> ({$item.nickname|t_truncate:22:""})<br>
-<a href="({t_url m=ktai a=page_fh_diary})&amp;target_c_diary_id=({$item.c_diary_id})&amp;({$tail})">({$item.subject|t_truncate:28:""})(({$item.count_comments}))</a>
-({if $item.image_filename_1 || $item.image_filename_2 || $item.image_filename_3})
-[i:68]
-({/if})
-<br>
-</td></tr>
-<tr><td bgcolor="#({$ktai_color_config.bg_07})">
-<hr color="#({$ktai_color_config.border_02})">
-</td></tr>
-({/foreach})
-({/if})
-({if $c_diary_friend_list})
 <tr><td align="right">
 <font color="#({$ktai_color_config.font_07})">⇒</font><a href="({t_url m=ktai a=page_h_diary_list_friend})&amp;({$tail})">もっと見る</a><br>
-</td></tr>
-({elseif $c_diary_list_all})
-<tr><td align="right">
-<font color="#({$ktai_color_config.font_07})">⇒</font><a href="({t_url m=ktai a=page_h_diary_list_all})&amp;({$tail})">もっと見る</a><br>
 </td></tr>
 ({/if})
 </table>
@@ -158,7 +138,7 @@
 
 <table width="100%">
 <tr><td bgcolor="#({$ktai_color_config.bg_05})">
-<a accesskey="3" name="a3" href="#a3">[i:127]</a><font color="#({$ktai_color_config.color_25})">({if $C_MEMBER_CONFIG.IS_DISPLAY_NEWTOPIC_HOME_KTAI})最新ﾄﾋﾟｯｸ({else})({$WORD_COMMUNITY_HALF})最新書き込み({/if})</font><br>
+<a accesskey="3" name="a3" href="#a3">[i:127]</a><font color="#({$ktai_color_config.color_25})">参加({$WORD_COMMUNITY_HALF})最新書き込み</font><br>
 </td></tr>
 ({if $c_commu_topic_list})
 ({foreach from=$c_commu_topic_list item=item})
@@ -174,7 +154,48 @@
 <hr color="#({$ktai_color_config.border_02})">
 </td></tr>
 ({/foreach})
-({elseif $c_topic_list_all})
+<tr><td align="right">
+<font color="#({$ktai_color_config.font_07})">⇒</font><a href="({t_url m=ktai a=page_h_com_comment_list})&amp;({$tail})">もっと見る</a><br>
+</td></tr>
+({/if})
+</table>
+<br>
+
+({if $smarty.const.DISPLAY_NEWDIARYTOPIC_HOME})
+({if $C_MEMBER_CONFIG.IS_DISPLAY_NEWDIARY_HOME_KTAI})
+<table width="100%">
+<tr><td bgcolor="#({$ktai_color_config.bg_08})">
+<a accesskey="4" name="a4" href="#a4">[i:128]</a><font color="#({$ktai_color_config.color_25})">全体の最新({$WORD_DIARY_HALF})</font><br>
+</td></tr>
+({if $c_diary_list_all})
+({foreach from=$c_diary_list_all item=item})
+<tr><td bgcolor="#({cycle values="`$ktai_color_config.bg_09`,`$ktai_color_config.bg_10`"})">
+<font color="#({$ktai_color_config.font_06})">[({$item.r_date|date_format:"%m/%d"})]</font> ({$item.nickname|t_truncate:22:""})<br>
+<a href="({t_url m=ktai a=page_fh_diary})&amp;target_c_diary_id=({$item.c_diary_id})&amp;({$tail})">({$item.subject|t_truncate:28:""})(({$item.count_comments}))</a>
+({if $item.image_filename_1 || $item.image_filename_2 || $item.image_filename_3})
+[i:68]
+({/if})
+<br>
+</td></tr>
+<tr><td bgcolor="#({$ktai_color_config.bg_10})">
+<hr color="#({$ktai_color_config.border_03})">
+</td></tr>
+({/foreach})
+<tr><td align="right">
+<font color="#({$ktai_color_config.font_07})">⇒</font><a href="({t_url m=ktai a=page_h_diary_list_all})&amp;({$tail})">もっと見る</a><br>
+<font color="#({$ktai_color_config.font_07})">⇒</font><a href="({t_url m=ktai a=page_h_member_config_display_home})&amp;({$tail})">表示設定変更</a><br>
+</td></tr>
+({/if})
+</table>
+<br>
+({/if})
+
+({if $C_MEMBER_CONFIG.IS_DISPLAY_NEWDIARY_HOME_KTAI})
+<table width="100%">
+<tr><td bgcolor="#({$ktai_color_config.bg_05})">
+<a accesskey="5" name="a5" href="#a5">[i:129]</a><font color="#({$ktai_color_config.color_25})">全体の({$WORD_COMMUNITY_HALF})最新書き込み</font><br>
+</td></tr>
+({if $c_topic_list_all})
 ({foreach from=$c_topic_list_all item=item})
 <tr><td bgcolor="#({cycle values="`$ktai_color_config.bg_06`,`$ktai_color_config.bg_07`"})">
 <font color="#({$ktai_color_config.font_06})">[({$item.r_datetime|date_format:"%m/%d"})]</font> ({$item.c_commu_name|t_truncate:22:""})<br>
@@ -188,18 +209,15 @@
 <hr color="#({$ktai_color_config.border_02})">
 </td></tr>
 ({/foreach})
-({/if})
-({if $c_commu_topic_list})
-<tr><td align="right">
-<font color="#({$ktai_color_config.font_07})">⇒</font><a href="({t_url m=ktai a=page_h_com_comment_list})&amp;({$tail})">もっと見る</a><br>
-</td></tr>
-({elseif $c_topic_list_all})
 <tr><td align="right">
 <font color="#({$ktai_color_config.font_07})">⇒</font><a href="({t_url m=ktai a=page_h_com_topic_find_all})&amp;({$tail})">もっと見る</a><br>
+<font color="#({$ktai_color_config.font_07})">⇒</font><a href="({t_url m=ktai a=page_h_member_config_display_home})&amp;({$tail})">表示設定変更</a><br>
 </td></tr>
 ({/if})
 </table>
 <br>
+({/if})
+({/if})
 
 <table width="100%">
 <tr><td bgcolor="#({$ktai_color_config.bg_08})">
