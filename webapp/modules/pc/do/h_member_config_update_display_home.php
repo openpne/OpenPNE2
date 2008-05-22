@@ -17,8 +17,12 @@ class pc_do_h_member_config_update_display_home extends OpenPNE_Action
     {
         $u = $GLOBALS['AUTH']->uid();
 
-        db_member_update_c_member_config($u, 'IS_DISPLAY_NEWDIARY_HOME', $requests['IS_DISPLAY_NEWDIARY_HOME']);
-        db_member_update_c_member_config($u, 'IS_DISPLAY_NEWTOPIC_HOME', $requests['IS_DISPLAY_NEWTOPIC_HOME']);
+        $default_config = util_get_c_member_config_default();
+        foreach ($requests as $key => $value) {
+            if (array_key_exists($key, $default_config)) {
+                db_member_update_c_member_config($u, $key, $value);
+            }
+        }
 
         openpne_redirect('pc', 'page_h_home');
     }
