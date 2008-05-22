@@ -888,8 +888,8 @@ function util_get_c_member_config($c_member_id)
 {
     $default_config = array(
         'SEND_DIARY_COMMENT_MAIL_KTAI' => 0,
-        'IS_DISPLAY_NEWDIARY_HOME' => 0,
-        'IS_DISPLAY_NEWTOPIC_HOME' => 0,
+        'IS_DISPLAY_NEWDIARY_HOME' => 1,
+        'IS_DISPLAY_NEWTOPIC_HOME' => 1,
         'IS_DISPLAY_NEWDIARY_HOME_KTAI' => 1,
         'IS_DISPLAY_NEWTOPIC_HOME_KTAI' => 1,
     );
