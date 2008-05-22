@@ -7,18 +7,18 @@
 </td></tr></table>
 ﾏｲﾎｰﾑに表示する情報を選択できます。
 <hr color="#({$ktai_color_config.border_01})">
-<font color="#({$ktai_color_config.font_06})">最新({$WORD_DIARY_HALF})表示：</font><br>
+<font color="#({$ktai_color_config.font_06})">全体の最新({$WORD_DIARY_HALF})：</font><br>
 ({t_form m=ktai a=do_h_member_config_update_display_home})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
-<input type="radio" name="IS_DISPLAY_NEWDIARY_HOME_KTAI" value="0"({if !$C_MEMBER_CONFIG.IS_DISPLAY_NEWDIARY_HOME_KTAI}) checked="checked"({/if})>
-ﾏｲﾌﾚﾝﾄﾞの({$WORD_DIARY_HALF})の新着を表示<br>
 <input type="radio" name="IS_DISPLAY_NEWDIARY_HOME_KTAI" value="1"({if $C_MEMBER_CONFIG.IS_DISPLAY_NEWDIARY_HOME_KTAI}) checked="checked"({/if})>
-全体の({$WORD_DIARY_HALF})の新着を表示<br>
-<font color="#({$ktai_color_config.font_06})">最新ﾄﾋﾟｯｸ表示：</font><br>
-<input type="radio" name="IS_DISPLAY_NEWTOPIC_HOME_KTAI" value="0"({if !$C_MEMBER_CONFIG.IS_DISPLAY_NEWTOPIC_HOME_KTAI}) checked="checked"({/if})>
-参加({$WORD_COMMUNITY_HALF})の新着ﾄﾋﾟｯｸを表示<br>
+表示する<br>
+<input type="radio" name="IS_DISPLAY_NEWDIARY_HOME_KTAI" value="0"({if !$C_MEMBER_CONFIG.IS_DISPLAY_NEWDIARY_HOME_KTAI}) checked="checked"({/if})>
+表示しない<br>
+<font color="#({$ktai_color_config.font_06})">全体の最新({$WORD_COMMUNITY_HALF})書き込み：</font><br>
 <input type="radio" name="IS_DISPLAY_NEWTOPIC_HOME_KTAI" value="1"({if $C_MEMBER_CONFIG.IS_DISPLAY_NEWTOPIC_HOME_KTAI}) checked="checked"({/if})>
-全体の新着ﾄﾋﾟｯｸを表示<br>
+表示する<br>
+<input type="radio" name="IS_DISPLAY_NEWTOPIC_HOME_KTAI" value="0"({if !$C_MEMBER_CONFIG.IS_DISPLAY_NEWTOPIC_HOME_KTAI}) checked="checked"({/if})>
+表示しない<br>
 
 <hr color="#({$ktai_color_config.border_01})">
 <center>
