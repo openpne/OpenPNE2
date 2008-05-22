@@ -364,6 +364,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <div class="block moreInfo">
 <ul class="moreInfo">
 <li><a href="({t_url m=pc a=page_h_calendar})">月別カレンダー</a></li>
+<li><a href="({t_url m=pc a=page_h_config})#is_display_schedule_home_0">表示設定変更</a></li>
 </ul>
 </div>
 
