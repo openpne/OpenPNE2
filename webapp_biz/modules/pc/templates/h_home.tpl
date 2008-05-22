@@ -296,23 +296,11 @@ show_flash('flash/list.swf', '({$flashvars})');
 
 ({if $inc_entry_point[9]})({$inc_entry_point[9]|smarty:nodefaults|t_url2cmd:'entry_point'|t_cmd:'entry_point'})({/if})
 
-({if $c_diary_list_all || $c_topic_list_all || $c_diary_friend_list || $c_rss_cache_list || $c_diary_my_comment_list || $c_commu_topic_comment_list || $c_friend_review_list || $bookmark_diary_list || $bookmark_blog_list})
+({if $c_diary_friend_list || $c_rss_cache_list || $c_diary_my_comment_list || $c_commu_topic_comment_list || $c_friend_review_list})
 ({* {{{ homeMainTable *})
 <div class="dparts homeMainTable"><div class="parts">
 <div class="partsHeading"><h3>最新情報</h3></div>
 <table>
-({if $c_diary_list_all})
-<tr><th>最新({$WORD_DIARY})<br />一覧</th><td>
-<ul class="articleList">
-({foreach from=$c_diary_list_all item=item})
-<li><span class="date">({$item.r_datetime|date_format:"%m月%d日"})</span><a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$item.c_diary_id})&amp;comment_count=({$item.count_comments})">({$item.subject|t_truncate:30}) (({$item.count_comments|default:0}))</a> (({$item.nickname|default:"&nbsp;"})) ({if $item.image_filename_1 || $item.image_filename_2 || $item.image_filename_3})<img src="({t_img_url_skin filename=icon_camera})" alt="写真あり" />({/if})</li>
-({/foreach})
-</ul>
-<div class="moreInfo"><ul class="moreInfo">
-<li><a href="({t_url m=pc a=page_h_diary_list_all})">もっと読む</a></li>
-</ul></div>
-</td></tr>
-({/if})
 ({if $c_diary_friend_list})
 <tr><th>({$WORD_MY_FRIEND})<br />最新({$WORD_DIARY})</th><td>
 <ul class="articleList">
@@ -352,18 +340,6 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({if $posted_list})
 ({$posted_list|smarty:nodefaults})
 ({/if})
-({if $c_topic_list_all})
-<tr><th>最新トピック<br />一覧</th><td>
-<ul class="articleList">
-({foreach from=$c_topic_list_all item=item})
-<li><span class="date">({$item.u_datetime|date_format:"%m月%d日"})</span><a href="({t_url m=pc a=page_c_topic_detail})&amp;target_c_commu_topic_id=({$item.c_commu_topic_id})&amp;comment_count=({$item.number})">({$item.name|t_truncate:30}) (({$item.number}))</a> (({$item.c_commu_name})) ({if $item.image_filename1 || $item.image_filename2 || $item.image_filename3})<img src="({t_img_url_skin filename=icon_camera})" alt="写真あり" />({/if})</li>
-({/foreach})
-</ul>
-<div class="moreInfo"><ul class="moreInfo">
-<li><a href="({t_url m=pc a=page_h_com_topic_find_all})">もっと読む</a></li>
-</ul></div>
-</td></tr>
-({/if})
 ({if $c_commu_topic_comment_list})
 <tr><th>({$WORD_COMMUNITY})<br />最新書き込み</th><td>
 <ul class="articleList">
@@ -388,6 +364,62 @@ show_flash('flash/list.swf', '({$flashvars})');
 </ul></div>
 </td></tr>
 ({/if})
+({if $c_friend_album_list})
+<tr><th>({$WORD_MY_FRIEND})<br />最新アルバム</th><td>
+<ul class="articleList">
+({foreach from=$c_friend_album_list item=item})
+<li><span class="date">({$item.u_datetime|date_format:"%m月%d日"})</span><a href="({t_url m=pc a=page_fh_album})&amp;target_c_album_id=({$item.c_album_id})">({$item.subject|t_truncate:30})</a> (({$item.nickname}))</li>
+({/foreach})
+</ul>
+<div class="moreInfo"><ul class="moreInfo">
+<li><a href="({t_url m=pc a=page_h_album_list_friend})">もっと読む</a></li>
+</ul></div>
+</td></tr>
+({/if})
+</table>
+</div></div>
+({* }}} *})
+({/if})
+
+({if $c_diary_list_all || $c_topic_list_all})
+({* {{{ homeMainTable *})
+<div class="dparts homeMainTable"><div class="parts">
+<div class="partsHeading"><h3>全体の最新情報</h3></div>
+<table>
+({if $c_diary_list_all})
+<tr><th>最新({$WORD_DIARY})</th><td>
+<ul class="articleList">
+({foreach from=$c_diary_list_all item=item})
+<li><span class="date">({$item.r_datetime|date_format:"%m月%d日"})</span><a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$item.c_diary_id})&amp;comment_count=({$item.count_comments})">({$item.subject|t_truncate:30}) (({$item.count_comments|default:0}))</a> (({$item.nickname|default:"&nbsp;"})) ({if $item.image_filename_1 || $item.image_filename_2 || $item.image_filename_3})<img src="({t_img_url_skin filename=icon_camera})" alt="写真あり" />({/if})</li>
+({/foreach})
+</ul>
+<div class="moreInfo"><ul class="moreInfo">
+<li><a href="({t_url m=pc a=page_h_diary_list_all})">もっと読む</a></li>
+</ul></div>
+</td></tr>
+({/if})
+({if $c_topic_list_all})
+<tr><th>({$WORD_COMMUNITY})<br />最新書き込み</th><td>
+<ul class="articleList">
+({foreach from=$c_topic_list_all item=item})
+<li><span class="date">({$item.u_datetime|date_format:"%m月%d日"})</span><a href="({t_url m=pc a=page_c_topic_detail})&amp;target_c_commu_topic_id=({$item.c_commu_topic_id})&amp;comment_count=({$item.number})">({$item.name|t_truncate:30}) (({$item.number}))</a> (({$item.c_commu_name})) ({if $item.image_filename1 || $item.image_filename2 || $item.image_filename3})<img src="({t_img_url_skin filename=icon_camera})" alt="写真あり" />({/if})</li>
+({/foreach})
+</ul>
+<div class="moreInfo"><ul class="moreInfo">
+<li><a href="({t_url m=pc a=page_h_com_topic_find_all})">もっと読む</a></li>
+</ul></div>
+</td></tr>
+({/if})
+</table>
+</div></div>
+({* }}} *})
+({/if})
+
+({if $bookmark_diary_list || $bookmark_blog_list})
+({* {{{ homeMainTable *})
+<div class="dparts homeMainTable"><div class="parts">
+<div class="partsHeading"><h3>お気に入りの最新情報</h3></div>
+<table>
 ({if $bookmark_diary_list})
 <tr><th>お気に入り<br />最新({$WORD_DIARY})</th><td>
 <ul class="articleList">
@@ -412,18 +444,6 @@ show_flash('flash/list.swf', '({$flashvars})');
 </ul></div>
 </td></tr>
 ({/if})
-({if $c_friend_album_list})
-<tr><th>({$WORD_MY_FRIEND})<br />最新アルバム</th><td>
-<ul class="articleList">
-({foreach from=$c_friend_album_list item=item})
-<li><span class="date">({$item.u_datetime|date_format:"%m月%d日"})</span><a href="({t_url m=pc a=page_fh_album})&amp;target_c_album_id=({$item.c_album_id})">({$item.subject|t_truncate:30})</a> (({$item.nickname}))</li>
-({/foreach})
-</ul>
-<div class="moreInfo"><ul class="moreInfo">
-<li><a href="({t_url m=pc a=page_h_album_list_friend})">もっと読む</a></li>
-</ul></div>
-</td></tr>
-({/if})
 </table>
 </div></div>
 ({* }}} *})
@@ -433,7 +453,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 
 ({* {{{ homeMainTable *})
 <div class="dparts homeMainTable"><div class="parts">
-<div class="partsHeading"><h3>最新({$WORD_DIARY})・レビュー({if $smarty.const.OPENPNE_USE_ALBUM})・アルバム({/if})</h3></div>
+<div class="partsHeading"><h3>({$c_member.nickname})さんの最新情報</h3></div>
 <table>
 ({if $c_diary_list})
 <tr><th>最新({$WORD_DIARY})</th><td>
