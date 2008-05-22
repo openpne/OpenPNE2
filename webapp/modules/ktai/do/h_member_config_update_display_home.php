@@ -15,8 +15,8 @@ class ktai_do_h_member_config_update_display_home extends OpenPNE_Action
         $tail = $GLOBALS['KTAI_URL_TAIL'];
         $u = $GLOBALS['KTAI_C_MEMBER_ID'];
 
-        db_member_update_c_member_config($u, 'DISPLAY_CHANGE_NEWDIARY_HOME_KTAI', $requests['DISPLAY_CHANGE_NEWDIARY_HOME_KTAI']);
-        db_member_update_c_member_config($u, 'DISPLAY_CHANGE_NEWTOPIC_HOME_KTAI', $requests['DISPLAY_CHANGE_NEWTOPIC_HOME_KTAI']);
+        db_member_update_c_member_config($u, 'IS_DISPLAY_NEWDIARY_HOME_KTAI', $requests['IS_DISPLAY_NEWDIARY_HOME_KTAI']);
+        db_member_update_c_member_config($u, 'IS_DISPLAY_NEWTOPIC_HOME_KTAI', $requests['IS_DISPLAY_NEWTOPIC_HOME_KTAI']);
 
         $p = array('msg' => 48);
         openpne_redirect('ktai', 'page_h_config', $p);
