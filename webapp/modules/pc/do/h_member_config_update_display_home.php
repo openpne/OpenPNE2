@@ -19,7 +19,7 @@ class pc_do_h_member_config_update_display_home extends OpenPNE_Action
 
         $default_config = util_get_c_member_config_default();
         foreach ($requests as $key => $value) {
-            if (array_key_exists($key, $default_config)) {
+            if (!is_null($value) && array_key_exists($key, $default_config)) {
                 db_member_update_c_member_config($u, $key, $value);
             }
         }
