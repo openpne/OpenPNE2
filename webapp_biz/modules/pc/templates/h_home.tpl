@@ -395,6 +395,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 </ul>
 <div class="moreInfo"><ul class="moreInfo">
 <li><a href="({t_url m=pc a=page_h_diary_list_all})">もっと読む</a></li>
+<li><a href="({t_url m=pc a=page_h_config})#is_display_newdiary_home_0">表示設定変更</a></li>
 </ul></div>
 </td></tr>
 ({/if})
@@ -407,6 +408,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 </ul>
 <div class="moreInfo"><ul class="moreInfo">
 <li><a href="({t_url m=pc a=page_h_com_topic_find_all})">もっと読む</a></li>
+<li><a href="({t_url m=pc a=page_h_config})#is_display_newtopic_home_0">表示設定変更</a></li>
 </ul></div>
 </td></tr>
 ({/if})
@@ -429,6 +431,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 </ul>
 <div class="moreInfo"><ul class="moreInfo">
 <li><a href="({t_url m=pc a=page_h_bookmark_diary_blog_list})">もっと読む</a></li>
+<li><a href="({t_url m=pc a=page_h_config})#is_display_bookmark_diary_home_0">表示設定変更</a></li>
 </ul></div>
 </td></tr>
 ({/if})
@@ -441,6 +444,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 </ul>
 <div class="moreInfo"><ul class="moreInfo">
 <li><a href="({t_url m=pc a=page_h_bookmark_diary_blog_list})#blog">もっと読む</a></li>
+<li><a href="({t_url m=pc a=page_h_config})#is_display_bookmark_blog_home_0">表示設定変更</a></li>
 </ul></div>
 </td></tr>
 ({/if})
