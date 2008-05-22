@@ -265,20 +265,23 @@
 <a href="({t_url m=ktai a=page_h_config_mail_ashiato})&amp;({$tail})">あしあとお知らせﾒｰﾙ設定</a><br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_10})">
-<a href="({t_url m=ktai a=page_h_config_public_flag_diary})&amp;({$tail})">({$WORD_DIARY_HALF})の公開範囲設定</a><br>
+<a href="({t_url m=ktai a=page_h_member_config_diary_comment_mail})&amp;({$tail})">日記ｺﾒﾝﾄﾒｰﾙ設定</a><br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_09})">
+<a href="({t_url m=ktai a=page_h_config_public_flag_diary})&amp;({$tail})">({$WORD_DIARY_HALF})の公開範囲設定</a><br>
+</td></tr>
+<tr><td bgcolor="#({$ktai_color_config.bg_10})">
 <a href="({t_url m=ktai a=page_h_config_access_block})&amp;({$tail})">ｱｸｾｽﾌﾞﾛｯｸ設定</a><br>
 </td></tr>
 ({if $smarty.const.USE_SHINOBIASHI})
-<tr><td bgcolor="#({$ktai_color_config.bg_10})">
+<tr><td bgcolor="#({$ktai_color_config.bg_09})">
 <a href="({t_url m=ktai a=page_h_config_shinobiashi})&amp;({$tail})">忍び足設定</a><br>
 </td></tr>
-<tr><td bgcolor="#({$ktai_color_config.bg_09})">
+<tr><td bgcolor="#({$ktai_color_config.bg_10})">
 <a href="({t_url m=ktai a=page_h_member_config})&amp;({$tail})">その他設定</a><br>
 </td></tr>
 ({else})
-<tr><td bgcolor="#({$ktai_color_config.bg_10})">
+<tr><td bgcolor="#({$ktai_color_config.bg_09})">
 <a href="({t_url m=ktai a=page_h_member_config})&amp;({$tail})">その他設定</a><br>
 </td></tr>
 ({/if})
