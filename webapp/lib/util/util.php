@@ -884,7 +884,7 @@ function util_get_img_url($filename, $width, $height)
     return smarty_function_t_img_url($params, $dummy);
 }
 
-function util_get_c_member_config($c_member_id)
+function util_get_c_member_config_default()
 {
     $default_config = array(
         'SEND_DIARY_COMMENT_MAIL_KTAI' => 0,
@@ -892,8 +892,16 @@ function util_get_c_member_config($c_member_id)
         'IS_DISPLAY_NEWTOPIC_HOME' => 1,
         'IS_DISPLAY_NEWDIARY_HOME_KTAI' => 1,
         'IS_DISPLAY_NEWTOPIC_HOME_KTAI' => 1,
+        'IS_DISPLAY_BOOKMARK_DIARY_HOME' => 1,
+        'IS_DISPLAY_BOOKMARK_BLOG_HOME' => 1,
     );
 
+    return $default_config;
+}
+
+function util_get_c_member_config($c_member_id)
+{
+    $default_config = util_get_c_member_config_default();
     $member_config = array_merge($default_config, db_member_c_member_config4c_member_id($c_member_id));
 
     return $member_config;

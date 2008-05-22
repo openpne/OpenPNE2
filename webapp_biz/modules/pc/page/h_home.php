@@ -143,13 +143,17 @@ class pc_page_h_home extends OpenPNE_Action
             $this->set('calendar_biz', biz_getScheduleWeek($u, $u, $requests['w'], 'h', true, true, true, $c_member,$start_day));
         }
 
-        //お気に入りフィード
+        // お気に入りフィード
         if (USE_BOOKMARK_FEED) {
-            //お気に入りの最新日記
-            $this->set('bookmark_diary_list', db_bookmark_diary_list($u, 5));
+            // お気に入りの最新日記
+            if ($OPTION['IS_DISPLAY_BOOKMARK_DIARY_HOME']) {
+                $this->set('bookmark_diary_list', db_bookmark_diary_list($u, 5));
+            }
 
             //お気に入りの最新ブログ
-            $this->set('bookmark_blog_list', db_bookmark_blog_list($u, 5));
+            if ($OPTION['IS_DISPLAY_BOOKMARK_BLOG_HOME']) {
+                $this->set('bookmark_blog_list', db_bookmark_blog_list($u, 5));
+            }
 
             //お気に入りのメンバー
             $bookmark_member_list = db_bookmark_member_list($u, 9);
