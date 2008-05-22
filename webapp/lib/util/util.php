@@ -894,6 +894,7 @@ function util_get_c_member_config_default()
         'IS_DISPLAY_NEWTOPIC_HOME_KTAI' => 1,
         'IS_DISPLAY_BOOKMARK_DIARY_HOME' => 1,
         'IS_DISPLAY_BOOKMARK_BLOG_HOME' => 1,
+        'IS_DISPLAY_SCHEDULE_HOME' => 1,
     );
 
     return $default_config;
