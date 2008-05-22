@@ -277,12 +277,14 @@
 <tr><td bgcolor="#({$ktai_color_config.bg_09})">
 <a href="({t_url m=ktai a=page_h_config_shinobiashi})&amp;({$tail})">忍び足設定</a><br>
 </td></tr>
+({if $smarty.const.DISPLAY_NEWDIARYTOPIC_HOME})
 <tr><td bgcolor="#({$ktai_color_config.bg_10})">
-<a href="({t_url m=ktai a=page_h_member_config})&amp;({$tail})">その他設定</a><br>
+<a href="({t_url m=ktai a=page_h_member_config_display_home})&amp;({$tail})">ﾏｲﾎｰﾑ最新情報表示設定</a><br>
 </td></tr>
-({else})
+({/if})
+({elseif $smarty.const.DISPLAY_NEWDIARYTOPIC_HOME})
 <tr><td bgcolor="#({$ktai_color_config.bg_09})">
-<a href="({t_url m=ktai a=page_h_member_config})&amp;({$tail})">その他設定</a><br>
+<a href="({t_url m=ktai a=page_h_member_config_display_home})&amp;({$tail})">ﾏｲﾎｰﾑ最新情報表示設定</a><br>
 </td></tr>
 ({/if})
 <tr><td bgcolor="#({$ktai_color_config.bg_10})">
