@@ -890,8 +890,8 @@ function util_get_c_member_config($c_member_id)
         'SEND_DIARY_COMMENT_MAIL_KTAI' => 0,
         'IS_DISPLAY_NEWDIARY_HOME' => 0,
         'IS_DISPLAY_NEWTOPIC_HOME' => 0,
-        'DISPLAY_CHANGE_NEWDIARY_HOME_KTAI' => 0,
-        'DISPLAY_CHANGE_NEWTOPIC_HOME_KTAI' => 0,
+        'IS_DISPLAY_NEWDIARY_HOME_KTAI' => 1,
+        'IS_DISPLAY_NEWTOPIC_HOME_KTAI' => 1,
     );
 
     $member_config = array_merge($default_config, db_member_c_member_config4c_member_id($c_member_id));
