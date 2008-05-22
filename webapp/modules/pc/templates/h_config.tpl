@@ -200,12 +200,13 @@
 </div></div>
 ({* }}} *})
 
-({if $smarty.const.DISPLAY_NEWDIARYTOPIC_HOME})
+({if $smarty.const.DISPLAY_NEWDIARYTOPIC_HOME || $smarty.const.USE_BOOKMARK_FEED})
 ({* {{{ formTable *})
 <div class="dparts formTable"><div class="parts">
 <div class="partsHeading"><h3>マイホーム最新情報表示変更</h3></div>
 ({t_form_block m=pc a=do_h_member_config_update_display_home})
 <table>
+({if $smarty.const.DISPLAY_NEWDIARYTOPIC_HOME})
 <tr>
 <th>全体の最新({$WORD_DIARY})</th>
 <td>
@@ -226,6 +227,29 @@
 <p>※マイホームに全体の最新({$WORD_COMMUNITY})書き込みを表示します。</p>
 </td>
 </tr>
+({/if})
+({if $smarty.const.USE_BOOKMARK_FEED})
+<tr>
+<th>お気に入り最新({$WORD_DIARY})</th>
+<td>
+<ul>
+<li><input type="radio" class="input_radio" name="IS_DISPLAY_BOOKMARK_DIARY_HOME" id="is_display_bookmark_diary_home_0" value="1"({if $C_MEMBER_CONFIG.IS_DISPLAY_BOOKMARK_DIARY_HOME}) checked="checked"({/if}) /><label for="is_display_bookmark_diary_home_0">表示する</label></li>
+<li><input type="radio" class="input_radio" name="IS_DISPLAY_BOOKMARK_DIARY_HOME" id="is_display_bookmark_diary_home_1" value="0"({if !$C_MEMBER_CONFIG.IS_DISPLAY_BOOKMARK_DIARY_HOME}) checked="checked"({/if}) /><label for="is_display_bookmark_diary_home_1">表示しない</label></li>
+</ul>
+<p>※マイホームにお気に入りの最新({$WORD_DIARY})を表示します。</p>
+</td>
+</tr>
+<tr>
+<th>お気に入り最新blog</th>
+<td>
+<ul>
+<li><input type="radio" class="input_radio" name="IS_DISPLAY_BOOKMARK_BLOG_HOME" id="is_display_bookmark_blog_home_0" value="1"({if $C_MEMBER_CONFIG.IS_DISPLAY_BOOKMARK_BLOG_HOME}) checked="checked"({/if}) /><label for="is_display_bookmark_blog_home_0">表示する</label></li>
+<li><input type="radio" class="input_radio" name="IS_DISPLAY_BOOKMARK_BLOG_HOME" id="is_display_bookmark_blog_home_1" value="0"({if !$C_MEMBER_CONFIG.IS_DISPLAY_BOOKMARK_BLOG_HOME}) checked="checked"({/if}) /><label for="is_display_bookmark_blog_home_1">表示しない</label></li>
+</ul>
+<p>※マイホームにお気に入りの最新({$WORD_DIARY})を表示します。</p>
+</td>
+</tr>
+({/if})
 </table>
 <div class="operation">
 <ul class="moreInfo button">
