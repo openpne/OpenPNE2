@@ -36,7 +36,7 @@ class ktai_page_h_home extends OpenPNE_Action
         $this->set('SNS_NAME', SNS_NAME);
 
         if (DISPLAY_NEWDIARYTOPIC_HOME) {
-            if ($OPTION['IS_DISPLAY_NEWTOPIC_HOME_KTAI']) {
+            if ($OPTION['IS_DISPLAY_NEWDIARY_HOME_KTAI']) {
                 $this->set('c_diary_list_all', p_h_home_c_diary_all_list(5));
             }
 
