@@ -193,7 +193,7 @@
 <br>
 ({/if})
 
-({if $C_MEMBER_CONFIG.IS_DISPLAY_NEWDIARY_HOME_KTAI})
+({if $C_MEMBER_CONFIG.IS_DISPLAY_NEWTOPIC_HOME_KTAI})
 <table width="100%">
 <tr><td bgcolor="#({$ktai_color_config.bg_05})">
 <a accesskey="5" name="a5" href="#a5">[i:129]</a><font color="#({$ktai_color_config.color_25})">全体の({$WORD_COMMUNITY_HALF})最新書き込み</font><br>
