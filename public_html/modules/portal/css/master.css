@@ -15,29 +15,31 @@ a:hover   { color:#f00; text-decoration:underline;}
 a:active  { color:#f00;}
 .container { width:980px;}
 /*サイト名などヘッダー部分*/
-#siteTtl{ width:720px; height:125px; float: left;}
+#siteTtl{ width:720px; height:125px;}
 #siteTtl h1{ padding:50px 0 0 50px; font-size:30px; line-height:100%;}
 /*ログイン窓*/
-.snsLogin { float: right; width:250px;}
+.snsLogin { position:absolute; top:10px; left:730px; width:250px;}
 .snsLogin fieldset { border:none;}
 .snsLogin fieldset legend { display:none;}
-.snsLogin div { margin-left:20px;}
-.snsLogin div#usernameArea { margin-top:20px;}
-.snsLogin div#passwordArea { margin-top:10px;}
-.snsLogin div#isSaveArea { width:200px; text-align:center; margin-top: 10px;}
-.snsLogin div#passwordQueryArea { width:200px; text-align:center;}
-.snsLogin div#buttonLoginArea { margin-left:0; text-align:center; margin-top: 15px;}
-.snsLogin div#buttonRegiArea { margin-left:0; text-align:center; margin-top: 10px; }
+.snsLogin div { position:absolute; left:20px;}
+.snsLogin div#usernameArea { top:21px;}
+.snsLogin div#passwordArea { top:74px;}
+.snsLogin div#isSaveArea { top:128px; width:200px; text-align:center;}
+.snsLogin div#passwordQueryArea { top:146px; width:200px; text-align:center;}
+.snsLogin div#loginSecurity { left:0; width:250px; height:9px; background:url("../img/login_sec_black.gif") no-repeat center center; font-size:0; line-height:0; text-indent:-3000px;}
+#invite div.snsLogin div#loginSecurity { top:209px;}
+#free div.snsLogin div#loginSecurity { top:239px;}
+.snsLogin div#buttonLoginArea { top:179px;}
+.snsLogin div#buttonRegiArea { top:209px;}
 .snsLogin div#usernameArea span,
-.snsLogin div#passwordArea span { display:block; font-size:0; line-height:0; text-decoration:none; text-indent:-3000px; margin-bottom: 5px;}
+.snsLogin div#passwordArea span { display:block; font-size:0; line-height:0; text-decoration:none; text-indent:-3000px;}
 .snsLogin div#usernameArea input,
-.snsLogin div#passwordArea input { left:4px; width:199px; height:18px; border:none; background:none; vertical-align:middle;}
+.snsLogin div#passwordArea input { position:absolute; top:24px; left:4px; width:199px; height:18px; border:none; background:none; vertical-align:middle;}
 .snsLogin div#isSaveArea input { margin-right:5px; vertical-align:middle;}
 .snsLogin div#isSaveArea span { font-size:10px; color:#000;}
 .snsLogin div#passwordQueryArea a { font-size:10px; text-decoration:underline;}
-.snsLogin div#buttonLoginArea button { border:0; text-indent:-3000px; cursor:pointer;}
-.snsLogin div#buttonRegiArea button { border:0; text-indent:-3000px; cursor:pointer;}
-
+.snsLogin div#buttonLoginArea button { position:absolute; top:0; left:40px; border:0; text-indent:-3000px; cursor:pointer;}
+.snsLogin div#buttonRegiArea button { position:absolute; top:0; left:40px; border:0; text-indent:-3000px; cursor:pointer;}
 /*コンテンツエリア*/
 .contents { float:left; padding:10px 10px 0 10px; width:710px;}
 .frameTop,
