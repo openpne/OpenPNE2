@@ -1932,14 +1932,14 @@ function db_member_create_member($username)
  */
 function db_member_check_param_inputed($c_member_id, $is_ktai = false)
 {
-    if (!db_member_is_regist_nickname_birth_day($c_member_id)) {
+    if (!db_member_is_registered_nickname_birth_day($c_member_id)) {
         return 1;
     }
 
-    if ($is_ktai && !db_member_is_ktai_id_registed($c_member_id)) {
+    if ($is_ktai && !db_member_is_ktai_address_registered($c_member_id)) {
         return 2;
     }
-    if (!$is_ktai && !db_member_is_pc_address_registed($c_member_id)) {
+    if (!$is_ktai && !db_member_is_pc_address_registered($c_member_id)) {
         return 2;
     }
 
