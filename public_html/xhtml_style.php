@@ -257,7 +257,25 @@ div#LayoutC {
  * ベースレイアウト
  *--------------------------------------------*/
 #Container {
+	position: relative;
 	width: 720px;
+}
+#Header {
+	position: relative;
+}
+#topBanner {
+	position: absolute;
+	top: 5px;
+	left: 247px;
+	width: 468px;
+	height: 60px;
+}
+#Top {
+	padding-left: 5px;
+}
+#Top .infoBox,
+#Top .descriptionBox {
+	margin: 0 20px 10px;
 }
 #LayoutA #Left {
 	float: left;
@@ -279,6 +297,22 @@ div#LayoutC {
 #LayoutC #Center {
 	width: 650px;
 	margin: 0 auto;
+}
+#Footer {
+	position: relative;
+	width: 720px;
+	height: 21px;
+	background: url(<?php echo getSkin('skin_footer'); ?>) 0 0 no-repeat;
+}
+#Footer p {
+	padding-right: 12px;
+	line-height: 21px;
+	text-align: right;
+}
+#sideBanner {
+	position: absolute;
+	top: 0px;
+	left: 720px;
 }
 /*----------------------------------------------
  * パーツ枠
@@ -384,8 +418,8 @@ div.operation ul.moreInfo li {
 /*----------------------------------------------
  * カレンダー
  *--------------------------------------------*/
-.calendar td,
-.calendar td * {
+.sideNav .calendar td,
+.sideNav .calendar td * {
 	word-break: normal;
 	letter-spacing: -1px;
 }
@@ -609,7 +643,8 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 }
 .homeNineTable div.moreInfo ul.moreInfo {
 	width: 11em;
-	margin: 6px 0 6px auto;
+	margin-left: auto;
+	padding: 6px 0;
 }
 
 /*==============================================================================
@@ -1094,6 +1129,9 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 	border-left: none;
 	text-align: center;
 }
+.friendIntroList p.text {
+	margin-bottom: 1em;
+}
 .friendIntroList div.moreInfo ul.moreInfo {
 	width: 10em;
 	margin-left: auto;
@@ -1293,9 +1331,6 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 /*==============================================================================
  * 4. infoBox（案内ボックス）
  *----------------------------------------------------------------------------*/
-#Body .infoBox {
-	margin: 0 20px 10px;
-}
 .infoBox .parts {
 	zoom: 1;
 	overflow: hidden;
@@ -1318,8 +1353,7 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 /*==============================================================================
  * 12. homeInfoBox（ホームインフォメーションボックス）
  *----------------------------------------------------------------------------*/
-#Body .homeInfoBox {
-	margin-left: 5px;
+.homeInfoBox {
 	padding-left: 102px;
 	border: 1px solid #<?php echo $colors[1]; ?>;
 	background: #<?php echo $colors[7]; ?> url(<?php echo getSkin('icon_information'); ?>) no-repeat 5px 50%;
@@ -1337,9 +1371,6 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 /*==============================================================================
  * 2. descriptionBox（説明ボックス）
  *----------------------------------------------------------------------------*/
-#Body .descriptionBox {
-	margin: 0 20px 10px;
-}
 .descriptionBox p {
 	margin: 12px;
 }
@@ -1819,49 +1850,6 @@ ul.moreInfo.button li form {
 }
 ul.moreInfo.button li form .input_submit {
 	margin: 0 5px;
-}
-
-/**200 ヘッダ、Layout直下でなく#Topボックスで包含 */
-#Container {
-	position: relative;
-}
-#Header {
-	position: relative;
-}
-#LayoutA #Top {
-	padding-left: 5px;
-}
-
-/**498 バナー、フッタ */
-#topBanner {
-	display: block;
-	position: absolute;
-	top: 5px;
-	left: 247px;
-	width: 468px;
-	height: 60px;
-}
-#sideBanner {
-	display: block;
-	position: absolute;
-	top: 0px;
-	left: 720px;
-}
-#Footer {
-	position: relative;
-	width: 720px;
-	height: 21px;
-	background: url(<?php echo getSkin('skin_footer'); ?>) 0 0 no-repeat;
-}
-#Footer p {
-	padding-right: 12px;
-	line-height: 21px;
-	text-align: right;
-}
-
-/**1012 フレンド紹介文リスト */
-.friendIntroList p.text {
-	margin-bottom: 1em;
 }
 
 /** 配色設定 */
