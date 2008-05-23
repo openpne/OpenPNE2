@@ -18,9 +18,9 @@ class admin_do_update_c_cmd_caster_cmd extends OpenPNE_Action
 
         $result = db_admin_update_c_cmd4c_cmd_caster_id($c_cmd_caster_id);
         if ($result) {
-            admin_client_redirect('list_c_cmd_caster', 'CMDキャストを更新しました');
+            admin_client_redirect('list_c_cmd_caster', 'CMD情報を更新しました');
         } else {
-            admin_client_redirect('list_c_cmd_caster', 'CMDキャストを更新できませんでした');
+            admin_client_redirect('list_c_cmd_caster', 'CMD情報を更新できませんでした');
         }
     }
 }
