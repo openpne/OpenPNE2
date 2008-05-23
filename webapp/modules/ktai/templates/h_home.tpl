@@ -283,7 +283,7 @@
 <a href="({t_url m=ktai a=page_h_config_mail_ashiato})&amp;({$tail})">あしあとお知らせﾒｰﾙ設定</a><br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_10})">
-<a href="({t_url m=ktai a=page_h_member_config_diary_comment_mail})&amp;({$tail})">日記ｺﾒﾝﾄﾒｰﾙ受信設定</a><br>
+<a href="({t_url m=ktai a=page_h_member_config_diary_comment_mail})&amp;({$tail})">({$WORD_DIARY_HALF})ｺﾒﾝﾄﾒｰﾙ受信設定</a><br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_09})">
 <a href="({t_url m=ktai a=page_h_config_public_flag_diary})&amp;({$tail})">({$WORD_DIARY_HALF})の公開範囲設定</a><br>
