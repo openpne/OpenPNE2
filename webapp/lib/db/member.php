@@ -1932,24 +1932,47 @@ function db_member_create_member($username)
  */
 function db_member_check_param_inputed($c_member_id, $is_ktai = false)
 {
-    $c_member = db_member_c_member4c_member_id($c_member_id, true, false, 'private');
+    if (!db_member_is_regist_nickname_birth_day($c_member_id)) {
+        return 1;
+    }
 
+    if ($is_ktai && !db_member_is_ktai_id_registed($c_member_id)) {
+        return 2;
+    }
+    if (!$is_ktai && !db_member_is_pc_address_registed($c_member_id)) {
+        return 2;
+    }
+
+    return 0;
+}
+
+function db_member_is_registered_nickname_birth_day($c_member_id)
+{
+    $c_member = db_member_c_member4c_member_id($c_member_id, false, false, 'private');
+    
     if (($c_member['nickname'] === '')
      || !$c_member['birth_year']
      || !$c_member['birth_month']
      || !$c_member['birth_day']
     ) {
-        return 1;
+        return false;
     }
 
-    if ($c_member['secure']['pc_address'] === '' && !$is_ktai) {
-        return 2;
-    }
-    if ($c_member['secure']['ktai_address'] === '' && $is_ktai) {
-        return 2;
-    }
+    return true;
+}
 
-    return 0;
+function db_member_is_pc_address_registered($c_member_id)
+{
+    $sql = 'SELECT pc_address FROM c_member_secure WHERE c_member_id = ?';
+    $params = array(intval($c_member_id));
+    return (bool)db_get_one($sql, $params);
+}
+
+function db_member_is_ktai_address_registered($c_member_id)
+{
+    $sql = 'SELECT ktai_address FROM c_member_secure WHERE c_member_id = ?';
+    $params = array(intval($c_member_id));
+    return (bool)db_get_one($sql, $params);
 }
 
 function db_member_is_ktai_id_registed($c_member_id)
