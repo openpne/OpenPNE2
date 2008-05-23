@@ -1016,6 +1016,7 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 	border-top: 1px solid #<?php echo $colors[1]; ?>;
 }
 .recentList dt {
+	clear: both;
 	float: left;
 	width: 170px;
 	padding: 5px;
@@ -1026,9 +1027,6 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 	margin-left: 180px;
 	padding: 5px;
 	border-left: 1px solid #<?php echo $colors[1]; ?>;
-}
-* html .recentList dd img {
-	height: 1em;
 }
 #LayoutB #Center .recentList dt {
 	width: 110px;
