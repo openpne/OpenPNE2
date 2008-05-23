@@ -65,17 +65,17 @@ if (OPENPNE_AUTH_MODE != 'email' && empty($_SESSION['regist_step'])) {
         $_SESSION['regist_step'] = false;
     }
 
-    // プロフィールが未登録
-    if (!$is_registered_profile && !$is_registered_profile_action && OPENPNE_AUTH_MODE == 'slavepne') {
-        openpne_redirect('ktai', 'page_h_regist_pre');
-    }
+    if (!$is_registered_profile_action && !$is_registered_address_action) {
+        // プロフィールが未登録
+        if (!$is_registered_profile && OPENPNE_AUTH_MODE == 'slavepne') {
+            openpne_redirect('ktai', 'page_h_regist_pre');
+        }
 
-    // メールアドレスが未登録
-    if (!$is_registered_address && !$is_registered_address_action) {
-        openpne_redirect('ktai', 'page_h_regist_address');
+        // メールアドレスが未登録
+        if (!$is_registered_address) {
+            openpne_redirect('ktai', 'page_h_regist_address');
+        }
     }
-
-    $_SESSION['regist_step'] = false;
 }
 
 function __logout($msg = 0, $c_member_id = 0)
