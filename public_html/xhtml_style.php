@@ -1353,7 +1353,7 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 /*==============================================================================
  * 12. homeInfoBox（ホームインフォメーションボックス）
  *----------------------------------------------------------------------------*/
-.homeInfoBox {
+#Body .homeInfoBox {
 	padding-left: 102px;
 	border: 1px solid #<?php echo $colors[1]; ?>;
 	background: #<?php echo $colors[7]; ?> url(<?php echo getSkin('icon_information'); ?>) no-repeat 5px 50%;
