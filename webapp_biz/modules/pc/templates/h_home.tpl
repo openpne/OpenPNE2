@@ -384,7 +384,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({if $c_diary_list_all || $c_topic_list_all})
 ({* {{{ homeMainTable *})
 <div class="dparts homeMainTable"><div class="parts">
-<div class="partsHeading"><h3>全体の最新情報</h3></div>
+<div class="partsHeading"><h3>全体の最新情報</h3><p class="link"><a href="({t_url m=pc a=page_h_config})#is_display_newdiary_home_0">表示設定変更</a></p></div>
 <table>
 ({if $c_diary_list_all})
 <tr><th>最新({$WORD_DIARY})</th><td>
@@ -395,7 +395,6 @@ show_flash('flash/list.swf', '({$flashvars})');
 </ul>
 <div class="moreInfo"><ul class="moreInfo">
 <li><a href="({t_url m=pc a=page_h_diary_list_all})">もっと読む</a></li>
-<li><a href="({t_url m=pc a=page_h_config})#is_display_newdiary_home_0">表示設定変更</a></li>
 </ul></div>
 </td></tr>
 ({/if})
@@ -408,7 +407,6 @@ show_flash('flash/list.swf', '({$flashvars})');
 </ul>
 <div class="moreInfo"><ul class="moreInfo">
 <li><a href="({t_url m=pc a=page_h_com_topic_find_all})">もっと読む</a></li>
-<li><a href="({t_url m=pc a=page_h_config})#is_display_newtopic_home_0">表示設定変更</a></li>
 </ul></div>
 </td></tr>
 ({/if})
@@ -420,7 +418,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({if $bookmark_diary_list || $bookmark_blog_list})
 ({* {{{ homeMainTable *})
 <div class="dparts homeMainTable"><div class="parts">
-<div class="partsHeading"><h3>お気に入りの最新情報</h3></div>
+<div class="partsHeading"><h3>お気に入りの最新情報</h3><p class="link"><a href="({t_url m=pc a=page_h_config})#is_display_bookmark_diary_home_0">表示設定変更</a></p></div>
 <table>
 ({if $bookmark_diary_list})
 <tr><th>お気に入り<br />最新({$WORD_DIARY})</th><td>
@@ -431,7 +429,6 @@ show_flash('flash/list.swf', '({$flashvars})');
 </ul>
 <div class="moreInfo"><ul class="moreInfo">
 <li><a href="({t_url m=pc a=page_h_bookmark_diary_blog_list})">もっと読む</a></li>
-<li><a href="({t_url m=pc a=page_h_config})#is_display_bookmark_diary_home_0">表示設定変更</a></li>
 </ul></div>
 </td></tr>
 ({/if})
@@ -444,7 +441,6 @@ show_flash('flash/list.swf', '({$flashvars})');
 </ul>
 <div class="moreInfo"><ul class="moreInfo">
 <li><a href="({t_url m=pc a=page_h_bookmark_diary_blog_list})#blog">もっと読む</a></li>
-<li><a href="({t_url m=pc a=page_h_config})#is_display_bookmark_blog_home_0">表示設定変更</a></li>
 </ul></div>
 </td></tr>
 ({/if})
