@@ -200,7 +200,7 @@
 </div></div>
 ({* }}} *})
 
-({if $smarty.const.DISPLAY_NEWDIARYTOPIC_HOME || $smarty.const.USE_BOOKMARK_FEED})
+({if $smarty.const.DISPLAY_NEWDIARYTOPIC_HOME || $smarty.const.USE_BOOKMARK_FEED || $smarty.const.DISPLAY_SCHEDULE_HOME})
 ({* {{{ formTable *})
 <div class="dparts formTable"><div class="parts">
 <div class="partsHeading"><h3>マイホーム最新情報表示変更</h3></div>
@@ -246,7 +246,7 @@
 <li><input type="radio" class="input_radio" name="IS_DISPLAY_BOOKMARK_BLOG_HOME" id="is_display_bookmark_blog_home_0" value="1"({if $C_MEMBER_CONFIG.IS_DISPLAY_BOOKMARK_BLOG_HOME}) checked="checked"({/if}) /><label for="is_display_bookmark_blog_home_0">表示する</label></li>
 <li><input type="radio" class="input_radio" name="IS_DISPLAY_BOOKMARK_BLOG_HOME" id="is_display_bookmark_blog_home_1" value="0"({if !$C_MEMBER_CONFIG.IS_DISPLAY_BOOKMARK_BLOG_HOME}) checked="checked"({/if}) /><label for="is_display_bookmark_blog_home_1">表示しない</label></li>
 </ul>
-<p>※マイホームにお気に入りの最新({$WORD_DIARY})を表示します。</p>
+<p>※マイホームにお気に入りの最新blogを表示します。</p>
 </td>
 </tr>
 ({/if})
