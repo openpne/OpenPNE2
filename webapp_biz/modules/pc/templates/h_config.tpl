@@ -200,7 +200,7 @@
 </div></div>
 ({* }}} *})
 
-({if $smarty.const.DISPLAY_NEWDIARYTOPIC_HOME || $smarty.const.USE_BOOKMARK_FEED || $smarty.const.DISPLAY_SCHEDULE_HOME})
+({if $smarty.const.DISPLAY_NEWDIARYTOPIC_HOME || $smarty.const.USE_BOOKMARK_FEED})
 ({* {{{ formTable *})
 <div class="dparts formTable"><div class="parts">
 <div class="partsHeading"><h3>マイホーム最新情報表示変更</h3></div>
