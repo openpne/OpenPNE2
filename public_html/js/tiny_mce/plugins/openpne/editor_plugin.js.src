@@ -378,6 +378,10 @@
                 var org_tagname = tagname;
                 var args = {};
 
+                if (Prototype.Browser.IE && org_tagname != "font") {
+                    return;
+                }
+
                 while (tagList.length) {
                     targetObj = tagList[0];
 
@@ -465,16 +469,16 @@
                 s = editorDoc.innerHTML;
             }
 
-            var convertList = new Array('span', 'b', 'u', 's', 'i', 'font');
+            var convertList = new Array('span', 'font', 'b', 'u', 's', 'i');
             for (var i = 0; i < convertList.length; i++) {
                 convertHtmlTagToDecoTag(editor.getBody(), convertList[i]);
             }
 
             rep(/<\/?div>/gi,"");  // for Safari
 
-            if (tinymce.isIE) {
-                rep(/<op/gi, "<op:");
-                rep(/<\/op/gi, "</op:");
+            if (Prototype.Browser.IE) {
+                rep(/<(\/?)(b|u|s|i)>/gi, '<$1op:$2>');
+                rep(/<(\/?)op(large|small|color)/gi, '<$1op:$2');
             }
 
             rep(/<br\s?\/?[^>]*>/gi,"\n\n");
