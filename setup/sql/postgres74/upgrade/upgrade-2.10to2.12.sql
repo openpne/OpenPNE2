@@ -188,7 +188,7 @@ CREATE TABLE c_album_image (
 ALTER TABLE c_member ADD COLUMN public_flag_birth_month_day varchar(20) NOT NULL default 'public';
 ALTER TABLE c_member_pre ADD COLUMN public_flag_birth_month_day varchar(20) NOT NULL default 'public';
 
--- update12
+-- update12, update13, update17
 ALTER TABLE c_commu_topic ADD COLUMN u_datetime timestamp NOT NULL default '0000-01-01 00:00:00';
 
 DROP INDEX c_commu_topic_r_datetime_c_commu_id;
@@ -227,16 +227,6 @@ UPDATE c_commu_topic SET u_datetime = tmp_c_commu_topic.u_datetime
 
 DROP TABLE tmp_c_commu_topic;
 
-INSERT INTO c_diary_comment_log (c_diary_comment_log_id, c_member_id, c_diary_id, r_datetime)
-  (SELECT NULL, c_member_id, c_diary_id, MAX(r_datetime) AS r_datetime
-    FROM c_diary_comment
-    WHERE r_datetime <= current_timestamp + '-15 days'
-    GROUP BY c_member_id, c_diary_id
-    ORDER BY r_datetime);
-
--- update13
-TRUNCATE TABLE c_diary_comment_log;
-
 CREATE TABLE tmp_c_diary_comment_log (
   c_diary_comment_log_id serial NOT NULL,
   c_member_id int4 NOT NULL default '0',
@@ -248,7 +238,6 @@ CREATE TABLE tmp_c_diary_comment_log (
 INSERT INTO c_diary_comment_log (c_diary_comment_log_id, c_member_id, c_diary_id, r_datetime)
   (SELECT NULL, c_member_id, c_diary_id, MAX(r_datetime) AS r_datetime
     FROM c_diary_comment
-    WHERE r_datetime <= current_timestamp + '-15 days'
     GROUP BY c_member_id, c_diary_id
     ORDER BY r_datetime);
 
