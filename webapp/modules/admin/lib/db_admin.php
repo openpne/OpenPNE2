@@ -3109,7 +3109,7 @@ function db_admin_c_album_image_list($page, $page_size, &$pager, $c_album_id = n
         $sql .= ' WHERE ca.c_album_id = ?';
         $params[] = $c_album_id;
     }
-    $sql .= ' ORDER BY r_datetime DESC';
+    $sql .= ' ORDER BY cai.c_album_image_id DESC';
     $c_image_album_list = db_get_all_page($sql, $page, $page_size, $params);
 
     $sql = 'SELECT COUNT(*) FROM c_album_image';
@@ -3130,7 +3130,7 @@ function db_admin_c_album_image_list4c_album_image_id($page, $page_size, &$pager
          . ' FROM c_album_image AS cai'
          . ' INNER JOIN c_album AS ca ON cai.c_album_id = ca.c_album_id'
          . ' WHERE cai.c_album_image_id = ?'
-         . ' ORDER BY r_datetime DESC';
+         . ' ORDER BY cai.c_album_image_id DESC';
     $params = array($c_album_image_id);
     $c_image_album_list = db_get_all_page($sql, $page, $page_size, $params);
 
