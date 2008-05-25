@@ -198,7 +198,7 @@ CREATE TABLE `c_album_image` (
 ALTER IGNORE TABLE c_member ADD COLUMN public_flag_birth_month_day enum('public','friend','private') NOT NULL default 'public' AFTER public_flag_birth_year;
 ALTER IGNORE TABLE c_member_pre ADD COLUMN public_flag_birth_month_day enum('public','friend','private') NOT NULL default 'public' AFTER public_flag_birth_year;
 
--- update13, update14
+-- update13, update14, update19
 ALTER TABLE c_commu_topic ADD COLUMN u_datetime datetime NOT NULL default '0000-00-00 00:00:00';
 
 DROP INDEX r_datetime_c_commu_id ON c_commu_topic;
@@ -249,7 +249,6 @@ CREATE TABLE `tmp_c_diary_comment_log` (
 INSERT INTO tmp_c_diary_comment_log (c_diary_comment_log_id, c_member_id, c_diary_id, r_datetime)
   (SELECT NULL, c_member_id, c_diary_id, MAX(r_datetime) AS r_datetime
     FROM c_diary_comment
-    WHERE TO_DAYS(NOW()) - TO_DAYS(r_datetime) <= 15
     GROUP BY c_member_id, c_diary_id
     ORDER BY r_datetime);
 
