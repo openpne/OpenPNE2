@@ -7,7 +7,6 @@
 require_once './config.inc.php';
 require_once OPENPNE_WEBAPP_DIR . '/init.inc';
 require_once 'smarty_plugins/function.t_img_url_skin.php';
-require_once 'Etag.php';
 
 $custom_css = p_common_c_siteadmin4target_pagename('inc_custom_css');
 $decoration_config = db_decoration_enable_list();
@@ -24,14 +23,6 @@ $colors = array(
     9 => $old_colors['bg_10'], // (9)左メニュー枠色
 );
 
-$skin_filename_list = db_get_c_skin_filename_list();
-
-$etag_key = md5(OPENPNE_ENABLE_ROLLOVER . OPENPNE_SKIN_THEME . $custom_css . serialize($decoration_config) . serialize($colors) . serialize($skin_filename_list));
-$etag =& new Etag($etag_key, @filemtime(__FILE__));
-if ($etag->etagCheck()) {
-    exit;
-}
-
 function getSkin($name)
 {
     $params['filename'] = $name;
@@ -39,6 +30,9 @@ function getSkin($name)
 }
 
 header('Content-Type: text/css');
+
+header('Cache-Control: max-age=315360000');
+header('Expires: ' . gmdate('D, d M Y H:i:s', strtotime('+10 years')) . ' GMT');
 ?>
 @charset "UTF-8";
 
