@@ -215,21 +215,21 @@ function _emoji_convert($matches)
     switch ($GLOBALS['__Framework']['carrier']) {
     case 'i':
     case 'w':
-        $carrior = 'i';
+        $carrier = 'i';
         break;
     case 's':
-        $carrior = 's';
+        $carrier = 's';
         break;
     case 'e':
-        $carrior = 'e';
+        $carrier = 'e';
         break;
     default:
-        $carrior = null;
+        $carrier = null;
         break;
     }
     
     $emoji_code = OpenPNE_KtaiEmoji::getInstance();
-    $c_emoji = $emoji_code->convert_emoji($o_code, $carrior);
+    $c_emoji = $emoji_code->convert_emoji($o_code, $carrier);
     if ($c_emoji) {
         return $c_emoji;
     } else {
