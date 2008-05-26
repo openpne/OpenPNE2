@@ -1,7 +1,7 @@
 ({$inc_header|smarty:nodefaults})
 ({ext_include file="inc_subnavi_adminSNSConfig.tpl"})
 
-({assign var="page_name" value="CMDキャスター設定"})
+({assign var="page_name" value="CMDキャスト設定"})
 ({ext_include file="inc_tree_adminSNSConfig.tpl"})
 </div>
 
