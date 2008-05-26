@@ -61,7 +61,7 @@ function dummyAlert() { alert('プレビューページからは操作できま�
 <br>
 
 ({foreach from=$top item=data})
-({ext_include file="inc_portal_Contents_Layout_ktai.tpl"})<br>
+({ext_include file="inc_portal_Contents_Layout_ktai.tpl"})
 ({/foreach})
 
 <center>
@@ -98,7 +98,7 @@ function dummyAlert() { alert('プレビューページからは操作できま�
 <br>
 
 ({foreach from=$bottom item=data})
-({ext_include file="inc_portal_Contents_Layout_ktai.tpl"})<br>
+({ext_include file="inc_portal_Contents_Layout_ktai.tpl"})
 ({/foreach})
 
 ({if $smarty.const.OPENPNE_AUTH_MODE == 'slavepne'})
