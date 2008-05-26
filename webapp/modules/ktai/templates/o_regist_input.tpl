@@ -143,7 +143,7 @@
 <br>
 <font color="#({$ktai_color_config.font_06})">秘密の質問：</font><font color="#({$ktai_color_config.font_09})">*</font><br>
 <select name="c_password_query_id">
-    <option value="0">選択してください
+    <option value="">選択してください
     ({foreach from=$password_query_list key=key item=item})
     <option value="({$key})">({$item})
     ({/foreach})
