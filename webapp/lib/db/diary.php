@@ -545,7 +545,7 @@ function p_h_home_c_diary_my_comment_list4c_member_id($c_member_id, $limit)
     $sql = 'SELECT cdcl.c_diary_id, cdcl.r_datetime AS maxdate, cd.*'
          . ' FROM c_diary_comment_log AS cdcl INNER JOIN c_diary AS cd USING (c_diary_id) '
          . ' WHERE cdcl.c_member_id = ?'
-         . ' AND cd.public_flag = \'public\'';
+         . ' AND (cd.public_flag = \'public\'';
 
     $friends = db_friend_c_member_id_list($c_member_id, true);
     $friend_ids = implode(',', array_map('intval', $friends));
@@ -553,7 +553,7 @@ function p_h_home_c_diary_my_comment_list4c_member_id($c_member_id, $limit)
          $sql .= ' OR (cd.public_flag = \'friend\' AND cd.c_member_id IN (' . $friend_ids . '))';
     }
 
-    $sql .= ' ORDER BY maxdate DESC';
+    $sql .= ') ORDER BY maxdate DESC';
     $params = array(intval($c_member_id));
     $list = db_get_all_limit($sql, 0, $limit, $params);
 
@@ -570,7 +570,7 @@ function p_h_diary_comment_list_c_diary_my_comment_list4c_member_id($c_member_id
 {
     $select = 'SELECT cdcl.c_diary_id, cdcl.r_datetime AS maxdate, cd.*';
     $from = ' FROM c_diary_comment_log AS cdcl INNER JOIN c_diary AS cd USING (c_diary_id) ';
-    $where = ' WHERE cdcl.c_member_id = ? AND cd.public_flag = \'public\'';
+    $where = ' WHERE cdcl.c_member_id = ? AND (cd.public_flag = \'public\'';
 
 
     $friends = db_friend_c_member_id_list($c_member_id, true);
@@ -578,6 +578,7 @@ function p_h_diary_comment_list_c_diary_my_comment_list4c_member_id($c_member_id
     if ($friend_ids) {
          $where .= ' OR (cd.public_flag = \'friend\' AND cd.c_member_id IN (' . $friend_ids . '))';
     }
+    $where .= ')';
 
     $sql = $select . $from . $where . ' ORDER BY maxdate DESC';
     $params = array(intval($c_member_id));
