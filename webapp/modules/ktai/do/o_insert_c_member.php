@@ -192,6 +192,7 @@ class ktai_do_o_insert_c_member extends OpenPNE_Action
             'c_password_query_id' => array(
                 'type' => 'int',
                 'required' => '1',
+                'min' => '1',
                 'caption' => '秘密の質問',
                 'required_error' => '秘密の質問を選択してください',
             ),
