@@ -100,7 +100,7 @@
     tinymce.create('tinymce.ui.OpenPNECmdButton:tinymce.ui.Button', {
         renderHTML : function() {
             var s = this.settings;
-            var h = '<a id="' + this.id + '" href="javascript:;" class="mceButton mceButtonEnabled ' + s['class'] + '" style="width:40px;" onmousedown="return false;" onclick="return false;" title="' + tinymce.DOM.encode(s.title) + '"><img class="mceIcon" style="width:40px;" src="' + s.image + '" /></a>';
+            var h = '<a id="' + this.id + '" href="javascript:;" class="mceButton mceButtonEnabled ' + s['class'] + '" style="width:40px; margin-left: 25px;" onmousedown="return false;" onclick="return false;" title="' + tinymce.DOM.encode(s.title) + '"><img class="mceIcon" style="width:40px;" src="' + s.image + '" /></a>';
 
             return h;
         }
@@ -140,7 +140,7 @@
                 window.open(config.op_image.contentURL, '', 'width=600,height=550,toolbar=no,scrollbars=yes,left=10,top=10');
             });
             ed.addCommand('mceOpenPNE_op_cmd', function() {
-                window.open('http://www.openpne.jp/cmd/');
+                window.open(config.op_cmd.contentURL);
             });
 
             // button
@@ -215,7 +215,7 @@
                 c = this._createOpenPNEEmojiButton(n, emoji_config[n], cm);
             }
 
-            if (n == "op_cmd") {
+            if (n == "op_cmd" && config["op_cmd"].isEnabled) {
                 c = this._createOpenPNECmdButton(n, {title: "{#openpne.op_cmd}", image: config["op_cmd"].imageURL, cmd: "mceOpenPNE_op_cmd"}, cm);
             }
 
@@ -347,7 +347,7 @@
 
             ed.onPostRender.add(function() {
                 var parentContainer = document.getElementById(c.id).parentNode;
-                parentContainer.style.width = "45px";
+                parentContainer.style.width = "70px";
             });
 
             ed.onRemove.add(function() {
