@@ -236,6 +236,7 @@ class OpenPNE_Config
             'OPENPNE_FUNCTION_CACHE_LIFETIME_FAST' => 300,
             'OPENPNE_FUNCTION_CACHE_LIFETIME_SHORT' => 1200,
             'OPENPNE_FUNCTION_CACHE_LIFETIME_LONG' => 3600,
+            'OPENPNE_DECORATION_CMD_URL' => 'http://www.openpne.jp/cmd/',
         );
 
         foreach ($defaults as $key => $value) {
