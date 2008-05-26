@@ -204,7 +204,7 @@ function emoji_unescape4e($unicode)
 
 function emoji_convert($str)
 {
-    $moji_pattern = '/\[([a-z]:[0-9]+)\]/i';
+    $moji_pattern = '/\[([ies]:[0-9]{1,3})\]/';
     return preg_replace_callback($moji_pattern, '_emoji_convert', $str);
 }
 
