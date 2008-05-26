@@ -480,6 +480,10 @@ define('DISPLAY_VERSION', true);
 // URLを空にするとダッシュボードが非表示になります
 define('OPENPNE_DASHBOARD_URL', 'http://ad.pne.jp/dashboard/');
 
+// 文字装飾機能の小窓ボタンで表示される小窓紹介ページのURL設定
+// URLを空にすると小窓ボタンが非表示になります
+define('OPENPNE_DECORATION_CMD_URL', 'http://www.openpne.jp/cmd/');
+
 // 天気予報ページのURL設定
 define('OPENPNE_WEATHER_URL', 'http://weather.yahoo.co.jp/weather/');
 
