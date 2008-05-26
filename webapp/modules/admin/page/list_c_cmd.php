@@ -20,7 +20,7 @@ class admin_page_list_c_cmd extends OpenPNE_Action
                 continue;
             }
 
-            if ($value['url']) {  // 小窓キャスターのJavaScriptは使用範囲設定をおこなえないようにする
+            if ($value['url']) {  // 小窓キャスト配信者のJavaScriptは使用範囲設定をおこなえないようにする
                 continue;
             }
 
