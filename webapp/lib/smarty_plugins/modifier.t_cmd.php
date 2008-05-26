@@ -23,7 +23,7 @@ function _smarty_modifier_t_cmd_make_js($matches)
 
     $path = 'cmd/' . $src . '.js';
 
-    // ファイルが読み込めない場合は、小窓キャスターのJavaScriptを読み込む
+    // ファイルが読み込めない場合は、小窓キャスト配信者のJavaScriptを読み込む
     if (!is_readable($path)) {
         $path = db_etc_c_cmd_url4name($src);
     }
