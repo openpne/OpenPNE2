@@ -52,8 +52,9 @@ function pne_mce_editor_get_config()
             imageURL : "({t_img_url_skin filename=deco_op_emoji_softbank})"
         },
         op_cmd : {
-            isEnabled : 1,
-            imageURL : "({t_img_url_skin filename=deco_op_cmd})"
+            isEnabled : ({if $smarty.const.OPENPNE_DECORATION_CMD_URL})1({else})0({/if}),
+            imageURL : "({t_img_url_skin filename=deco_op_cmd})",
+            contentURL : "({$smarty.const.OPENPNE_DECORATION_CMD_URL})"
         }
     }
 }
@@ -77,7 +78,9 @@ function pne_mce_editor_get_config()
 <a id="mce_textmode_button_op_emoji_au" href="#" onclick="togglePallet('epAu');"><img src="({t_img_url_skin filename=deco_op_emoji_au})" alt="" /></a>
 <a id="mce_textmode_button_op_emoji_softbank" href="#" onclick="togglePallet('epSb');"><img src="({t_img_url_skin filename=deco_op_emoji_softbank})" alt="" /></a>
 ({/if})
-<a id="mce_textmode_button_op_cmd" href="#" style="margin-left:20px;" onclick="window.open('http://www.openpne.jp/cmd/')"><img src="({t_img_url_skin filename=deco_op_cmd})" alt="" /></a>
+({if $smarty.const.OPENPNE_DECORATION_CMD_URL})
+<a id="mce_textmode_button_op_cmd" href="#" style="margin-left:20px;" onclick="window.open('({$smarty.const.OPENPNE_DECORATION_CMD_URL})')"><img src="({t_img_url_skin filename=deco_op_cmd})" alt="" /></a>
+({/if})
 
 ({if $smarty.const.OPENPNE_EMOJI_DOCOMO_FOR_PC})
 <script type="text/javascript">
