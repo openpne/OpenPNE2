@@ -17,7 +17,7 @@ class admin_page_edit_c_sns_config extends OpenPNE_Action
             'color_16' => 'ページ背景',
             'color_17' => 'コンテンツ領域背景',
             'color_4' => '枠色',
-            'color_10' => 'コンテンツ見出し背景',
+            'color_10' => '見出し背景',
             'color_13' => '説明領域背景',
             'color_6' => 'ボックスの背景',
             'color_14' => '左メニュー枠色',
