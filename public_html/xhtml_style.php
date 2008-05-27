@@ -1874,6 +1874,7 @@ div.parts {
 
 /** page_o_login */
 div#container_login {
+	position: relative;
 	display: block;
 	margin: 0px auto 0px 0px;
 	width: 720px;
