@@ -837,10 +837,10 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 	border: none;
 }
 .formTable textarea {
-	width: 99%;
+	width: 98%;
 }
 .formTable input.input_text_long {
-	width: 99%;
+	width: 98%;
 }
 .formTable table table td.publicSelector {
 	width: 150px;
@@ -2010,7 +2010,7 @@ div#container_login .footer p {
 	padding: 5px;
 }
 .bizSideTodoList textarea {
-	width: 99%;
+	width: 98%;
 }
 .bizSideTodoList tr.someone {
 	background: #<?php echo $colors[7]; ?>;
