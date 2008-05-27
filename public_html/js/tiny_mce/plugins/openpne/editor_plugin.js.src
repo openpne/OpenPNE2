@@ -137,10 +137,10 @@
                 tinyMCE.execCommand("Fontsize", false, 1);
             });
             ed.addCommand('mceOpenPNE_op_image', function() {
-                window.open(config.op_image.contentURL, '', 'width=600,height=550,toolbar=no,scrollbars=yes,left=10,top=10');
+                window.open(config.op_image.contentURL.unescapeHTML(), '', 'width=600,height=550,toolbar=no,scrollbars=yes,left=10,top=10');
             });
             ed.addCommand('mceOpenPNE_op_cmd', function() {
-                window.open(config.op_cmd.contentURL);
+                window.open(config.op_cmd.contentURL.unescapeHTML());
             });
 
             // button
