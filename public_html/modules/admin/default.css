@@ -1341,8 +1341,13 @@ div.listControl p.listMove a {
 	margin-bottom: 5px;
 }
 
+#admin_page_import_c_member th {
+	text-align: left;
+}
 
-
+#admin_page_import_c_member textarea {
+	width: 950px;
+}
 
 /** admin_page_list_c_free_page **/
 
