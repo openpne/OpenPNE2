@@ -40,7 +40,7 @@
 ({elseif $item.auth_type==''})
 <option value="">「メンバーリスト関連部分」以外全て</option>
 ({elseif $item.auth_type=='normal'})
-<option value="normal">「メンバーリスト関連部分」「SNS内データ閲覧部分」以外全て</option>
+<option value="normal">「メンバー管理」「SNS内データ閲覧部分」以外全て</option>
 ({/if})
 </td>
 <td>({if $item.c_admin_user_id != 1})<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_c_admin_user','do')})&amp;target_id=({$item.c_admin_user_id})&amp;sessid=({$PHPSESSID})">削除</a>({else})&nbsp;({/if})</td>
@@ -59,7 +59,7 @@
 <th width="150">全権限</th>
 <th width="150">「メンバーリスト関連部分」<br />
 以外全て</th>
-<th width="150">「メンバーリスト関連部分」<br />
+<th width="150">「メンバー管理」<br />
 「SNS内データ閲覧部分」<br />
 以外全て</th>
 </tr>
