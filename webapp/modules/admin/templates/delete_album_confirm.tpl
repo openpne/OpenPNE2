@@ -1,12 +1,12 @@
 ({$inc_header|smarty:nodefaults})
 ({ext_include file="inc_subnavi_adminImageKakikomi.tpl"})
-({assign var="page_name" value="`$WORD_DIARY`削除"})
+({assign var="page_name" value="アルバム削除"})
 ({ext_include file="inc_tree_adminImageKakikomi.tpl"})
 </div>
 
 ({*ここまで:navi*})
 
-<h2>({$WORD_DIARY})削除の確認</h2>
+<h2>アルバム削除の確認</h2>
 <div class="contents">
 
 ({if $msg})
