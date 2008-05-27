@@ -6,25 +6,25 @@
 
 function smarty_modifier_t_decoration_ktai($string)
 {
-    $regexp = '/(&lt;|<)(op:.+?)(?:\s+code=(&quot;|")(#[0-9a-f]{3,6})\3)?\s*(&gt;|>)(.*?)\1\/\2\5/ims';
-    $converted =  preg_replace_callback($regexp, '_smarty_modifier_t_decoration_convert_ktai', $string);
+    $regexp = '/(&lt;|<)(\/?)(op:.+?)(?:\s+code=(&quot;|")(#[0-9a-f]{3,6})\4)?\s*(&gt;|>)/i';
+    $converted = preg_replace_callback($regexp, '_smarty_modifier_t_decoration_convert_ktai', $string);
 
     return $converted;
 }
 
 function _smarty_modifier_t_decoration_convert_ktai($matches)
 {
-    $tagname = strtolower($matches[2]);
-    $colorcode = strtolower($matches[4]);
+    $is_endtag = $matches[2];
+    $tagname = strtolower($matches[3]);
+    $colorcode = strtolower($matches[5]);
     $classname = strtr($tagname, ':', '_');
-    $value = smarty_modifier_t_decoration_ktai($matches[6]);
 
     $convert_list = array(
         'op:b' => 'b',
         'op:u' => 'u',
         'op:i' => 'i',
-        'op:large' => 'font size="5"',
-        'op:small' => 'font size="1"',
+        'op:large' => 'font',
+        'op:small' => 'font',
         'op:color' => 'font',
     );
 
@@ -34,16 +34,31 @@ function _smarty_modifier_t_decoration_convert_ktai($matches)
     }
 
     // 変換対象かどうか
-    if (!($c_tagname = $convert_list[$tagname])) {
+    if (!array_key_exists($tagname, $convert_list)) {
         return $value;
     }
 
-    $opt = '';
-    if ($tagname == 'op:color' && $colorcode) {
-        $opt = ' color="' . $colorcode . '" ';
+    $c_tagname = $convert_list[$tagname];
+
+    if ($is_endtag) {
+        return '</' . $c_tagname . '>';
     }
 
-    $result = '<' . $c_tagname . $opt . '>' . $value . '</' . $c_tagname . '>';
+    $opt = '';
+
+    if ($tagname == 'op:color' && $colorcode) {
+        $opt = ' color="' . $colorcode . '"';
+    }
+
+    if ($tagname == 'op:large') {
+        $opt = ' size="5"';
+    }
+
+    if ($tagname == 'op:small') {
+        $opt = ' size="1"';
+    }
+
+    $result = '<' . $c_tagname . $opt . '>';
 
     return $result;
 }
