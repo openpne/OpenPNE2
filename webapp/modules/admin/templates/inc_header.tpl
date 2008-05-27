@@ -71,6 +71,10 @@
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('topic_list')})">トピック・イベント管理</a></li>
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('topic_comment_list')})">トピック・イベントのコメント管理</a></li>
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('review_list')})">レビュー管理</a></li>
+({if $smarty.const.OPENPNE_USE_ALBUM})
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_album_list')})">アルバム管理</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_album_image_list')})">アルバム写真管理</a></li>
+({/if})
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('download_xml')})">書き込みデータダウンロード</a></li>
 </ul>
 </li>
@@ -144,7 +148,7 @@
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_deco')})">文字装飾設定</a></li>
 ({/if})
 ({if $smarty.const.OPENPNE_USE_ALBUM})
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_album_list')})">アルバム機能設定</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_album_limit')})">アルバム容量制限設定</a></li>
 ({/if})
 </ul>
 </li>
