@@ -307,6 +307,7 @@ div#LayoutC {
 	position: absolute;
 	top: 0px;
 	left: 720px;
+	width: 230px;
 }
 /*----------------------------------------------
  * パーツ枠
