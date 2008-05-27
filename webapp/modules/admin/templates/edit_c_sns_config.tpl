@@ -92,7 +92,7 @@ function assign_color_({$key})() {
 
 ({foreach from=$bgcolor_scheme_names key=key item=item name=color_scheme})
 <dl class="box">
-	<dt>({$smarty.foreach.color_scheme.iteration}). ({$item})</dt>
+	<dt>({$smarty.foreach.color_scheme.iteration}).({$item})</dt>
 	<dd>#&nbsp;<input type="text" class="basic" name="({$key})" value="({$c_config_color_list[0][$key]})" onchange="reflect_color(this)" size="8" maxlength="6" /></dd>
 	<dd class="pre_color" style="background-color:#({$c_config_color_list[0][$key]});"><div>&nbsp;変更前&nbsp;</div></dd>
 	<dd class="color" style="background-color:#({$c_config_color_list[0][$key]});" id="preview_display_({$key})"><div>&nbsp;変更後&nbsp;</div></dd>
