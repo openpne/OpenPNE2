@@ -384,6 +384,7 @@
 
                 while (tagList.length) {
                     targetObj = tagList[0];
+                    args = {};
 
                     if (org_tagname == "font") {
                         var size = targetObj.getAttribute("size");
@@ -407,7 +408,6 @@
 
                             // initialize
                             tagList = doc.getElementsByTagName(org_tagname);
-                            args = {};
 
                             continue;
                         }
@@ -499,36 +499,35 @@
                 s = s.replace(re, str);
             };
 
-            function convertDecoTagToHtmlTag(matches)
-            {
-                var tagname = matches[1];
-                var color = matches[3];
-                var value = matches[4].gsub(rule, convertDecoTagToHtmlTag);
-                var opt = '';
-
-                if (tagname == 'color' && color) {
-                    tagname = 'font';
-                    opt = ' color="' + color + '"';
-                }
-
-                if (tagname == 'large') {
-                    tagname = 'font';
-                    opt = ' size="5"';
-                }
-            
-                if (tagname == 'small') {
-                    tagname = 'font';
-                    opt = ' size="1"';
-                }
-
-                var converted = "<" + tagname + opt + ">" + value + "</" + tagname + ">";
-                return converted;
-            };
-
             rep(/</gi,"&lt;");
             rep(/>/gi,"&gt;");
             rep(/\n/gi,"<br />");
-            s = s.gsub(rule, convertDecoTagToHtmlTag);
+            rep(/&lt;(\/|)op:(b|u|s|i|large|small|color)( code="(#[0-9a-f]{3,6})"|)&gt;/gi, function (str, isEndTag, org_tagname, isColor, color) {
+                var opt = "";
+                var tagname = org_tagname;
+
+                if (tagname == "color" || tagname == "large" || tagname == "small") {
+                    tagname = "font";
+                }
+
+                if (isEndTag) {
+                    return "</" + tagname + ">";
+                }
+
+                if (org_tagname == "color" && color) {
+                    opt = ' color="' + color + '"';
+                }
+
+                if (org_tagname == "large") {
+                    opt = ' size="5"';
+                }
+
+                if (org_tagname == "small") {
+                    opt = ' size="1"';
+                }
+
+                return "<" + tagname + opt + ">";
+            });
 
             return s; 
         }
