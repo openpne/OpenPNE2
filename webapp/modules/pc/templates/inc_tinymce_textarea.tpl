@@ -82,20 +82,14 @@ function pne_mce_editor_get_config()
 <a id="mce_textmode_button_op_cmd" href="#" style="margin-left:20px;" onclick="window.open('({$smarty.const.OPENPNE_DECORATION_CMD_URL})')"><img src="({t_img_url_skin filename=deco_op_cmd})" alt="" /></a>
 ({/if})
 
-({if $smarty.const.OPENPNE_EMOJI_DOCOMO_FOR_PC})
 <script type="text/javascript">
 //<![CDATA[
 createEmojiPalletDoCoMo();
-//]]>
-</script>
-({else})
-<script type="text/javascript">
-//<![CDATA[
-createEmojiPalletDoCoMo();
+({if !$smarty.const.OPENPNE_EMOJI_DOCOMO_FOR_PC})
 createEmojiPalletAu();
 createEmojiPalletSoftBank();
-//]]>
 ({/if})
+//]]>
 </script>
 </div>
 
