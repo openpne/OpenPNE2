@@ -11,7 +11,7 @@ function smarty_function_t_url_style($params, &$smarty)
     $colors = util_get_color_config();
     $skin_filename_list = db_get_c_skin_filename_list();
 
-    $hash = md5(OPENPNE_ENABLE_ROLLOVER . OPENPNE_SKIN_THEME . $custom_css . serialize($decoration_config) . serialize($colors) . serialize($skin_filename_list));
+    $hash = md5(OPENPNE_VERSION . OPENPNE_ENABLE_ROLLOVER . OPENPNE_SKIN_THEME . $custom_css . serialize($decoration_config) . serialize($colors) . serialize($skin_filename_list));
     return './xhtml_style.php?hash=' . $hash;
 }
 
