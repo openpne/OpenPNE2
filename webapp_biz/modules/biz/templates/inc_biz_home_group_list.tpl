@@ -8,7 +8,7 @@
 ({if $key > 0})&({/if})
 pne_item({$key+1})_id=({$item.biz_group_id})
 &pne_item({$key+1})_name=({$item.name|t_truncate:12:'..'|escape:url|smarty:nodefaults})
-&pne_item({$key+1})_linkurl=({t_url m=pc a=page_g_home _urlencode=true _html=false})%26target_c_commu_id=({$item.biz_group_id})
+&pne_item({$key+1})_linkurl=({t_url m=biz a=page_g_home _urlencode=true _html=false})%26target_c_commu_id=({$item.biz_group_id})
 &pne_item({$key+1})_imageurl=({t_img_url filename=$item.image_filename w=76 h=76 noimg=no_image _urlencode=true _html=false})
 &pne_item({$key+1})_count=({$item.count})
 ({/foreach})
