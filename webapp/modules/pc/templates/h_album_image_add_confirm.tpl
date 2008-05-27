@@ -2,8 +2,7 @@
 <div id="Center">
 
 ({* {{{ formTable *})
-<div class="dparts formTable">
-<div class="parts">
+<div class="dparts formTable"><div class="parts">
 <div class="partsHeading"><h3>以下の内容でよろしいですか？</h3></div>
 
 <table>
@@ -12,43 +11,43 @@
 <td>({$form_val.subject})</td>
 </tr>
 <tr>
-<th>写真１</th>
+<th>写真1</th>
 <td>({$form_val.upfile_1.name})</td>
 </tr>
 <tr>
-<th>写真１説明</th>
+<th>写真1説明</th>
 <td>({$form_val.image_description1})</td>
 </tr>
 <tr>
-<th>写真２</th>
+<th>写真2</th>
 <td>({$form_val.upfile_2.name})</td>
 </tr>
 <tr>
-<th>写真２説明</th>
+<th>写真2説明</th>
 <td>({$form_val.image_description2})</td>
 </tr>
 <tr>
-<th>写真３</th>
+<th>写真3</th>
 <td>({$form_val.upfile_3.name})</td>
 </tr>
 <tr>
-<th>写真３説明</th>
+<th>写真3説明</th>
 <td>({$form_val.image_description3})</td>
 </tr>
 <tr>
-<th>写真４</th>
+<th>写真4</th>
 <td>({$form_val.upfile_4.name})</td>
 </tr>
 <tr>
-<th>写真４説明</th>
+<th>写真4説明</th>
 <td>({$form_val.image_description4})</td>
 </tr>
 <tr>
-<th>写真５</th>
+<th>写真5</th>
 <td>({$form_val.upfile_5.name})</td>
 </tr>
 <tr>
-<th>写真５説明</th>
+<th>写真5説明</th>
 <td>({$form_val.image_description5})</td>
 </tr>
 </table>
