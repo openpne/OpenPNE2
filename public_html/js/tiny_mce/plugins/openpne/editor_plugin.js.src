@@ -44,7 +44,7 @@
             var t = this, m, i = 0, s = t.settings, n, tb, tr, w;
             var DOM = tinymce.DOM, Event = tinymce.dom.Event, is = tinymce.is, each = tinymce.each;
             w = DOM.add(s.menu_container, 'div', {id : t.id + '_menu', dir : 'ltr', 'class' : s['menu_class'] + ' ' + s['class'],
-                style : 'position:absolute;left:0;top:-1000px;'});
+                style : 'position:absolute;left:0;top:-1000px;width:402px;'});
             m = DOM.add(w, 'div', {'class' : s['class'] + ' mceSplitButtonMenu'});
             DOM.add(m, 'span', {'class' : 'mceMenuLine'});
 
@@ -60,7 +60,7 @@
                     n = DOM.add(tr, 'td');
 
                     n = DOM.add(n, 'img', {
-                        src : "./skin/default/img/emoji/" + s.carrier +"/" + s.carrier + i + ".gif",
+                        src : "./skin/default/img/emoji/" + s.carrier + "/" + s.carrier + i + ".gif",
                         alt : "[" + s.carrier + ":" + i + "]"
                     });
 
@@ -90,6 +90,33 @@
             }
 
             return h;
+        },
+
+        showMenu : function() {
+            var t = this, r, p, e;
+            var DOM = tinymce.DOM, Event = tinymce.dom.Event, is = tinymce.is, each = tinymce.each;
+
+            if (t.isDisabled())
+                return;
+
+            if (!t.isMenuRendered) {
+                t.renderMenu();
+                t.isMenuRendered = true;
+            }
+
+            e = DOM.get(t.id);
+            DOM.show(t.id + '_menu');
+            DOM.addClass(e, 'mceSplitButtonSelected');
+            p2 = DOM.getPos(e);
+            DOM.setStyles(t.id + '_menu', {
+                left : 720 - DOM.get(t.id + '_menu').clientWidth,
+                top : p2.y + e.clientHeight,
+                zIndex : 150
+            });
+
+            e = 0;
+
+            Event.add(document, 'mousedown', t.hideMenu, t);
         },
 
         postRender : function() {
