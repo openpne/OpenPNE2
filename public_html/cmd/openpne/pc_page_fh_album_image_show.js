@@ -15,7 +15,12 @@ function url2cmd(url, target_c_member_id)
         onSuccess: function(obj) {
             var c_album_image = obj.responseXML.firstChild;
 
-            var image_filename = c_album_image.getElementsByTagName('image_filename')[0].firstChild.nodeValue;
+            var image_filename = c_album_image.getElementsByTagName('image_filename')[0].firstChild.nodeValue.unescapeHTML();
+            if (!image_filename.match(/^[a-z0-9_\-\/.\/&;=?]+$/)) {
+                pne_url2a(url);
+                return;
+            }
+
             var image_description = c_album_image.getElementsByTagName('image_description')[0].firstChild.nodeValue;
 
             var c_member_id = c_album_image.getElementsByTagName('c_member_id')[0].firstChild.nodeValue;
