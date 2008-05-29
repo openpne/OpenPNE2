@@ -853,13 +853,15 @@ function util_send_header_internal_server_error()
     exit;
 }
 
-function util_output_xml4array($data, $root)
+function util_output_xml4array($data, $root, $ignore_escape_list = array())
 {
     require_once 'XML/Serializer.php';
     $option = array(
         'rootName' => $root,
     );
     $serializer = new XML_Serializer($option);
+
+    $data = util_escape4output_xml($data, $ignore_escape_list);
 
     $result = $serializer->serialize($data);
 
@@ -871,6 +873,25 @@ function util_output_xml4array($data, $root)
     }
 
     util_send_header_internal_server_error();
+}
+
+function util_escape4output_xml($data, $ignore_keys = array())
+{
+    if (is_array($data)) {
+        foreach ($data as $key => $value) {
+            if (in_array($key, $ignore_keys)) {
+                $data[$key] = $value;
+            } else {
+                $data[$key] = util_escape4output_xml($value);
+            }
+        }
+    }
+
+    if (is_string($data)) {
+        return htmlspecialchars($data, ENT_QUOTES, 'UTF-8');
+    }
+
+    return $data;
 }
 
 function util_get_img_url($filename, $width, $height)
