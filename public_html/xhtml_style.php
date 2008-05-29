@@ -1561,6 +1561,9 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 	width: 50%;
 	text-align: right;
 }
+.block.prevNextLinkLine {
+	padding: 4px 10px;
+}
 
 /*==============================================================================
  * 37. messageDetailBox（メッセージ詳細ボックス）
