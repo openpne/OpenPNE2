@@ -28,6 +28,11 @@ class pc_do_h_album_image_add_insert_c_album_image extends OpenPNE_Action
         $target_c_album_id = $requests['target_c_album_id'];
         // ----------
 
+        $c_album = db_album_get_c_album4c_album_id($target_c_album_id);
+        if ($c_album['c_member_id'] != $u) {
+            handle_kengen_error();
+        }
+
         $img_tmp_dir_path = OPENPNE_VAR_DIR . '/tmp/';
         $insert_data = array();
         $filesize_all = 0;
