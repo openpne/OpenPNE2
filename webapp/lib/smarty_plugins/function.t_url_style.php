@@ -14,6 +14,7 @@ function smarty_function_t_url_style($params, &$smarty)
     $hash = md5(OPENPNE_VERSION . OPENPNE_ENABLE_ROLLOVER . OPENPNE_SKIN_THEME . $custom_css . serialize($decoration_config) . serialize($colors) . serialize($skin_filename_list));
 
     $result = <<<EOD
+<!--[if lte IE 6]>
 <script type="text/javascript" src="./js/offspring.js?r7478"></script>
 <script type="text/javascript">
 //<![CDATA[
@@ -22,6 +23,7 @@ var offspringConfiguration = {
 };
 //]]>
 </script>
+<![endif]-->
 <link rel="stylesheet" href="./xhtml_style.php?hash={$hash}" type="text/css" />
 EOD;
 
