@@ -5,9 +5,7 @@
 <div class="dparts formTable"><div class="parts">
 <div class="partsHeading"><h3>写真を編集する</h3></div>
 ({t_form_block _enctype=file m=pc a=page_h_album_image_edit_confirm})
-<input type="hidden" name="target_c_album_id" value="({$target_c_album_id})" />
 <input type="hidden" name="target_c_album_image_id" value="({$target_c_album_image_id})" />
-<input type="hidden" name="pre_image_filename" value="({$c_album_image.image_filename})" />
 <table>
 <tr>
 <th>写真</th>
