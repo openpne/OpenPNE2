@@ -8,7 +8,7 @@
 <script type="text/javascript" src="./js/Selection.js?r7140"></script>
 <script type="text/javascript" src="./js/tiny_mce/tiny_mce_popup.js?r7140"></script>
 <title>({$INC_HEADER_title})</title>
-<link rel="stylesheet" href="({t_url_style})" type="text/css" />
+({t_url_style})
 <script type="text/javascript">
 //<![CDATA[
 function insertAlbumURLToTextarea(album_id) {
