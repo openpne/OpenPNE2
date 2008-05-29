@@ -61,7 +61,7 @@ em {
 
 <h1>OpenPNE セットアップガイド</h1>
 
-<p>最終更新日: 2008/04/29</p>
+<p>最終更新日: 2008/05/29</p>
 
 <h2>目次</h2>
 <ul>
@@ -70,7 +70,7 @@ em {
 <li><a href="#section2">2. 設定ファイルの変更</a></li>
 <li><a href="#section3">3. データベースの設定</a>
   <ul>
-  <li><a href="#section3-1">3-1. PostgreSQL 7.4.x 以降 の場合</a></li>
+  <li><a href="#section3-1">3-1. PostgreSQL 7.4.x (8.0.x, 8.1.x 含む) の場合</a></li>
   </ul></li>
 <li><a href="#section4">4. サーバ設定</a>
   <ul>
@@ -108,7 +108,7 @@ em {
 	<li>PHP の mcrypt 拡張モジュールの使用を推奨</li>
 	</ul></dd>
 <dt>データベースサーバ</dt>
-<dd>PostgreSQL 7.4.x 以降</dd>
+<dd>PostgreSQL 7.4.x / 8.0.x / 8.1.x </dd>
 <dt>メールサーバ (携帯からメール投稿する場合)</dt>
 <dd>Postfix 2.1.x 以降を推奨 (Postfix 以外のメールサーバでも動作報告あり)</dd>
 </dl>
@@ -246,7 +246,7 @@ $ chmod -R 0777 var/*
 
 <h2 id="section3">3. データベースの設定</h2>
 
-<h3 id="section3-1">3-1. PostgreSQL 7.4.x 以降の場合</h3>
+<h3 id="section3-1">3-1. PostgreSQL 7.4.x (8.0.x, 8.1.x 含む) の場合</h3>
 
 <p>新しくデータベースを作成する場合、以下のようなコマンドを実行してデータベースを作成します。
 (※レンタルサーバ等で既にデータベースが用意されている場合は実行する必要はありません)</p>
