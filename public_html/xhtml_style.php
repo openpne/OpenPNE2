@@ -172,8 +172,8 @@ div.parts td {
 	border-style: solid;
 	border-color: #<?php echo $colors[1]; ?>;
 }
-div.parts tr th:first-child,
-div.parts tr td:first-child {
+div.parts tr th.first-child,
+div.parts tr td.first-child {
 	border-left-width: 0;
 }
 /*----------------------------------------------
@@ -667,7 +667,7 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 .searchResultList th {
 	width: 75px;
 }
-#Body .searchResultList th:first-child {
+#Body .searchResultList th.first-child {
 	border-left-width: 1px;
 }
 .searchResultList tr.operation th {
@@ -1099,8 +1099,8 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 .eventDetailBox dd table td {
 	padding: 5px;
 }
-.eventDetailBox dd table tr:first-child th,
-.eventDetailBox dd table tr:first-child td {
+.eventDetailBox dd table tr.first-child th,
+.eventDetailBox dd table tr.first-child td {
 	border-top: none;
 }
 .eventDetailBox dd table ul.moreInfo {
@@ -1376,7 +1376,7 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 .rankingList .partsHeading p {
 	margin: 0;
 }
-#Body .rankingList th:first-child {
+#Body .rankingList th.first-child {
 	border-left-width: 1px;
 }
 .rankingList td.photo {
@@ -1568,7 +1568,7 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 /*==============================================================================
  * 37. messageDetailBox（メッセージ詳細ボックス）
  *----------------------------------------------------------------------------*/
-#Body .messageDetailBox th:first-child {
+#Body .messageDetailBox th.first-child {
 	border-left-width: 1px;
 }
 .messageDetailBox th,
@@ -2124,7 +2124,7 @@ div#container_login .footer p {
 	padding: 5px 0;
 	text-align: center;
 }
-#Body .albumList th:first-child {
+#Body .albumList th.first-child {
 	border-left-width: 1px;
 }
 .albumList td.operation {
@@ -2146,7 +2146,7 @@ div#container_login .footer p {
 	padding: 5px 0;
 	text-align: center;
 }
-#Body .albumDetailBox th:first-child,
+#Body .albumDetailBox th.first-child,
 #Body .albumDetailBox td.operation {
 	border-left-width: 1px;
 }
