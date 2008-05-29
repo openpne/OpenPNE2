@@ -29,6 +29,13 @@ class pc_page_h_album_cover_edit_confirm extends OpenPNE_Action
         $c_commu_id = $requests['target_c_commu_id'];
         // ----------
         
+        //--- 権限チェック
+        $c_album = db_album_get_c_album4c_album_id($target_c_album_id);
+        if ($c_album['c_member_id'] != $u) {
+            handle_kengen_error();
+        }
+        //---
+
         //写真データ一時ファイル削除
         $sessid = session_id();
         t_image_clear_tmp($sessid);
