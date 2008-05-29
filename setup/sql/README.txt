@@ -14,7 +14,7 @@
     MySQL 4.0 用
 
 ・postgres74
-    PostgreSQL 7.4 以降用
+    PostgreSQL 7.4.x（8.0.x, 8.1.x を含む）用
 
 
 ■ 用途
