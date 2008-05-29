@@ -89,7 +89,7 @@
 ({elseif $target_diary.public_flag == "private"})（公開しない）({/if})
 </p></div>
 ({if $c_diary_id_prev || $c_diary_id_next})
-<div class="pagerRelative">
+<div class="block prevNextLinkLine">
 ({if $c_diary_id_prev})<p class="prev"><a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$c_diary_id_prev})">«前の({$WORD_DIARY})</a></p>({/if})
 ({if $c_diary_id_next})<p class="next"><a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$c_diary_id_next})">次の({$WORD_DIARY})»</a></p>({/if})
 </div>
@@ -210,7 +210,7 @@
 ({/if})
 
 ({if $c_diary_id_prev || $c_diary_id_next})
-({* {{{ *})
+({* {{{ prevNextLinkLine *})
 <div class="parts prevNextLinkLine">
 ({if $c_diary_id_prev})<p class="prev"><a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$c_diary_id_prev})">«前の({$WORD_DIARY})</a></p>({/if})
 ({if $c_diary_id_next})<p class="next"><a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$c_diary_id_next})">次の({$WORD_DIARY})»</a></p>({/if})
