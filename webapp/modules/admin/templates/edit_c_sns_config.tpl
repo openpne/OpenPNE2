@@ -89,6 +89,9 @@ function assign_color_({$key})() {
 
 <p class="caution" id="c02">※色の指定は16進数表記で行ってください。</p>
 <p class="caution" id="c03">※色のプレビューが変更されてもそのままでは色設定は反映されません。必ず確定してください。</p>
+({if $smarty.const.OPENPNE_EDIT_COLOR_SAMPLE_URL})
+<p>各配色設定の対応一覧は<a href="({$smarty.const.OPENPNE_EDIT_COLOR_SAMPLE_URL})">こちらのページ</a>をご覧ください。</p>
+({/if})
 
 ({foreach from=$bgcolor_scheme_names key=key item=item name=color_scheme})
 <dl class="box">
