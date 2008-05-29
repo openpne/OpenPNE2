@@ -27,4 +27,9 @@
         ExpiresActive On
         ExpiresDefault "access plus 10 years"
     </Files>
+
+    <Files "offspring.js">
+        ExpiresActive On
+        ExpiresDefault "access plus 10 years"
+    </Files>
 </IfModule>
