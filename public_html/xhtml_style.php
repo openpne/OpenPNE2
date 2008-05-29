@@ -1583,7 +1583,7 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 	padding: 5px;
 }
 .messageDetailBox td.photo {
-	width: 110px;
+	width: 120px;
 	text-align: center;
 }
 .messageDetailBox th {
