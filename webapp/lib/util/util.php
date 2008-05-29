@@ -883,13 +883,12 @@ function util_escape4output_xml($data)
         foreach ($data as $key => $value) {
             $data[$key] = util_escape4output_xml($value);
         }
-    }
-
-    if (is_string($data)) {
+        return $data;
+    } elseif (is_string($data)) {
         return htmlspecialchars($data, ENT_QUOTES, 'UTF-8');
+    } else {
+        return $data;
     }
-
-    return $data;
 }
 
 function util_get_img_url($filename, $width, $height)
