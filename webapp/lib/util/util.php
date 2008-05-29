@@ -853,7 +853,7 @@ function util_send_header_internal_server_error()
     exit;
 }
 
-function util_output_xml4array($data, $root, $ignore_escape_list = array())
+function util_output_xml4array($data, $root, $is_escape = true)
 {
     require_once 'XML/Serializer.php';
     $option = array(
@@ -861,7 +861,9 @@ function util_output_xml4array($data, $root, $ignore_escape_list = array())
     );
     $serializer = new XML_Serializer($option);
 
-    $data = util_escape4output_xml($data, $ignore_escape_list);
+    if ($is_escape) {
+        $data = util_escape4output_xml($data);
+    }
 
     $result = $serializer->serialize($data);
 
@@ -875,15 +877,11 @@ function util_output_xml4array($data, $root, $ignore_escape_list = array())
     util_send_header_internal_server_error();
 }
 
-function util_escape4output_xml($data, $ignore_keys = array())
+function util_escape4output_xml($data)
 {
     if (is_array($data)) {
         foreach ($data as $key => $value) {
-            if (in_array($key, $ignore_keys)) {
-                $data[$key] = $value;
-            } else {
-                $data[$key] = util_escape4output_xml($value);
-            }
+            $data[$key] = util_escape4output_xml($value);
         }
     }
 
