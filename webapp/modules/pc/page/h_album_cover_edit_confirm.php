@@ -26,7 +26,6 @@ class pc_page_h_album_cover_edit_confirm extends OpenPNE_Action
         $subject = $requests['subject'];
         $description = $requests['description'];
         $public_flag = $requests['public_flag'];
-        $c_commu_id = $requests['target_c_commu_id'];
         // ----------
         
         //--- 権限チェック
