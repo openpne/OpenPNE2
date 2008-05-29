@@ -88,6 +88,9 @@ img {
 a img {
 	vertical-align: text-bottom;
 }
+* html a img {
+	vertical-align: baseline;
+}
 br {
 	letter-spacing: 0;
 }
@@ -150,10 +153,6 @@ select {
 }
 p {
 	overflow: hidden;
-}
-a:focus {
-	margin-left: 1px;
-	margin-right: -1px;
 }
 strong {
 	font-weight: bold;
@@ -2044,6 +2043,7 @@ div#container_login .footer p {
 	border: 1px solid #<?php echo $colors[1]; ?>;
 }
 .bizSideScheduleList dl {
+	overflow: hidden;
 	border-top: 1px solid #<?php echo $colors[1]; ?>;
 }
 .bizSideScheduleList dt {
@@ -2068,9 +2068,6 @@ div#container_login .footer p {
 .bizWeeklyCalendarTable div.block {
 	padding: 5px;
 }
-.bizWeeklyCalendarTable .input_submit {
-	margin-right: 8px;
-}
 .bizWeeklyCalendarTable .calendar td {
 	padding: 5px 0;
 	vertical-align: top;
@@ -2087,13 +2084,9 @@ div#container_login .footer p {
 .bizWeeklyCalendarTable .calendar .today p.day {
 	font-weight: bold;
 }
-.bizWeeklyCalendarTable ul.moreInfo {
-	margin: 0 2px 0 auto;
-	width: 9em;
-}
 .bizWeeklyCalendarTable .calendar th {
-	width: 120px;
-	padding: 5px;
+	width: 130px;
+	padding: 5px 0;
 	text-align: center;
 }
 .bizWeeklyCalendarTable .calendar th * {
@@ -2104,7 +2097,6 @@ div#container_login .footer p {
 }
 .bizWeeklyCalendarTable .calendar th .input_submit {
 	width: 120px;
-	margin-right: 0px;
 }
 .bizWeeklyCalendarTable .calendar th .nickname {
 	margin: 5px 0;
@@ -2114,6 +2106,9 @@ div#container_login .footer p {
 }
 .bizWeeklyCalendarTable div.moreInfo {
 	padding-left: 135px;
+}
+.bizWeeklyCalendarTable div.moreInfo .input_submit {
+	margin-right: 8px;
 }
 
 /*==============================================================================
@@ -2167,7 +2162,6 @@ div#container_login .footer p {
  * albumImageList
  *----------------------------------------------------------------------------*/
 .albumImageList td {
-	width: 50%;
 	padding: 5px;
 	text-align: center;
 }
