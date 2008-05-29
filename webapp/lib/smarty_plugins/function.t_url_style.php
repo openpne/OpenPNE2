@@ -12,7 +12,20 @@ function smarty_function_t_url_style($params, &$smarty)
     $skin_filename_list = db_get_c_skin_filename_list();
 
     $hash = md5(OPENPNE_VERSION . OPENPNE_ENABLE_ROLLOVER . OPENPNE_SKIN_THEME . $custom_css . serialize($decoration_config) . serialize($colors) . serialize($skin_filename_list));
-    return './xhtml_style.php?hash=' . $hash;
+
+    $result = <<<EOD
+<script type="text/javascript" src="./js/offspring.js?r7478"></script>
+<script type="text/javascript">
+//<![CDATA[
+var offspringConfiguration = {
+    runningMode: "light" 
+};
+//]]>
+</script>
+<link rel="stylesheet" href="./xhtml_style.php?hash={$hash}" type="text/css" />
+EOD;
+
+    return $result;
 }
 
 ?>
