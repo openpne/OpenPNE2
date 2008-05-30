@@ -588,212 +588,6 @@ li#cLocalNav_5 a:hover, li#cLocalNav_5 a:active { background-position: -480px -2
 li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -29px; }
 
 /*==============================================================================
- * 11. homePhotoBox（ホーム写真ボックス）
- *----------------------------------------------------------------------------*/
-.homePhotoBox * {
-	text-align: center;
-}
-.homePhotoBox p.friendLink {
-	margin-bottom: 3px;
-}
-.homePhotoBox .parts {
-	padding: 7px;
-}
-.homePhotoBox ul.moreInfo {
-	margin: 2px 0 -5px;
-}
-.homePhotoBox ul.moreInfo li {
-	padding: 1px 0;
-	background: none;
-}
-.homePhotoBox ul.moreInfo li img {
-	vertical-align: bottom;
-}
-.homePhotoBox p.rank {
-	margin-top: 6px;
-}
-.homePhotoBox p.point {
-	margin-top: 2px;
-}
-.homePhotoBox p.text {
-	margin-top: 4px;
-}
-.homePhotoBox p.loginTime {
-	margin-top: 0px;
-}
-
-/*==============================================================================
- * 28. homeNineTable（ホーム9面テーブル）
- *----------------------------------------------------------------------------*/
-.homeNineTable tr.photo td {
-	height: 80px;
-	padding: 2px 0;
-	text-align: center;
-}
-.homeNineTable tr.photo td p.crown {
-	text-align: center;
-}
-.homeNineTable tr.text td {
-	padding: 2px;
-	text-align: center;
-}
-.homeNineTable div.moreInfo ul.moreInfo {
-	width: 11em;
-	margin-left: auto;
-	padding: 6px 0;
-}
-
-/*==============================================================================
- * 18. searchResultList（検索結果リスト）
- *----------------------------------------------------------------------------*/
-.searchResultList .partsInfo {
-	background: #<?php echo $colors[6]; ?>;
-}
-.searchResultList .ditem {
-	margin: 8px 34px;
-}
-.searchResultList .item {
-	zoom: 1;
-	position: relative;
-}
-.searchResultList td.photo {
-	width: 90px;
-	padding: 0;
-	border-left: none;
-	text-align: center;
-}
-.searchResultList th, .searchResultList td {
-	padding: 5px;
-}
-.searchResultList th {
-	width: 75px;
-}
-#Body .searchResultList th:first-child,
-#Body .searchResultList th.first-child {
-	border-left-width: 1px;
-}
-.searchResultList tr.operation th {
-	padding-top: 0;
-	padding-bottom: 0;
-}
-.searchResultList tr.operation td {
-	padding: 0;
-}
-.searchResultList tr.operation span.text {
-	float: left;
-	display: block;
-	width: 110px;
-	margin-top: 5px;
-	padding: 0 5px;
-}
-.searchResultList tr.operation span.moreInfo{
-	zoom: 1;
-	display: block;
-	margin-left: 120px;
-	padding: 4px 0 3px;
-	border-left: 1px solid #<?php echo $colors[1]; ?>;
-	text-align: center;
-}
-.searchResultList div.operation {
-	text-align: center;
-}
-.searchResultList tr.operation span.moreInfo img,
-.searchResultList div.operation form,
-.searchResultList div.operation fieldset {
-	display: inline;
-	vertical-align: top;
-}
-
-/*==============================================================================
- * 30. homeMainTable（ホームメインテーブル）
- *----------------------------------------------------------------------------*/
-.homeMainTable .partsHeading {
-	zoom: 1;
-	position: relative;
-}
-.homeMainTable .partsHeading p.link {
-	position: absolute;
-	top: 2px;
-	right: 8px;
-}
-.homeMainTable th {
-	width: 83px;
-	background-color: #<?php echo $colors[7]; ?>;
-}
-.homeMainTable th, .homeMainTable td {
-	padding: 5px;
-}
-.homeMainTable ul.articleList {
-	line-height: 1.3;
-}
-.homeMainTable ul.articleList li {
-	padding-left: 85px;
-	background: url(<?php echo getSkin('icon_1'); ?>) 3px 0.4em no-repeat scroll;
-	text-indent: -72px;
-}
-.homeMainTable ul.articleList li span.date {
-	padding-right: 18px;
-	background: url(<?php echo getSkin('articleList_marker'); ?>) 92% 0.3em no-repeat scroll;
-}
-.homeMainTable div.moreInfo ul.moreInfo {
-	width: 10em;
-	margin: 0 2px 0 auto;
-}
-.homeMainTable td.halfway ul.moreInfo {
-	width: 12em;
-	margin: 0 0 20px auto;
-}
-
-/*==============================================================================
- * 34. sideNav（サイドナビ）
- *----------------------------------------------------------------------------*/
-.sideNav .item {
-	overflow: hidden;
-	width: 150px;
-	margin: 0 auto 10px;
-	border: 8px solid #<?php echo $colors[9]; ?>;
-}
-.sideNav .partsHeading {
-	border-bottom: 1px solid #<?php echo $colors[1]; ?>;
-}
-.sideNav .pageNav ul {
-	margin: 1px;
-}
-.sideNav .pageNav li {
-	padding: 4px 0 4px 18px;
-	background: url(<?php echo getSkin('icon_1'); ?>) 8px 50% no-repeat scroll;
-}
-.sideNav .pageNav li.looking {
-	background-color: #<?php echo $colors[7]; ?>;
-}
-.sideNav .calendar .partsHeading {
-	padding: 4px 0;
-	border: none;
-	background: none;
-	text-align: center;
-}
-.sideNav .calendar th {
-	background-color: #<?php echo $colors[7]; ?>;
-	text-align: center;
-}
-.sideNav .calendar td {
-	padding: 1px 2px;
-	text-align: right;
-}
-.sideNav .list {
-	padding: 4px 0;
-}
-.sideNav .list li {
-	padding-left: 16px;
-	background: no-repeat 6px 4px;
-}
-.sideNav .monthlyMessage li  { background-image: url(<?php echo getSkin('icon_1'); ?>); }
-.sideNav .recentlyDiary li   { background-image: url(<?php echo getSkin('icon_3'); ?>); }
-.sideNav .recentlyComment li { background-image: url(<?php echo getSkin('icon_1'); ?>); }
-.sideNav .monthlyDiary li    { background-image: url(<?php echo getSkin('icon_2'); ?>); }
-.sideNav .listCategory li    { background-image: url(<?php echo getSkin('icon_2'); ?>); }
-
-/*==============================================================================
  * 1. simpleBox（シンプルボックス）
  *----------------------------------------------------------------------------*/
 .simpleBox .block {
@@ -804,103 +598,10 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 }
 
 /*==============================================================================
- * 31. formTable（入力フォームテーブル）
+ * 2. descriptionBox（説明ボックス）
  *----------------------------------------------------------------------------*/
-.formTable .partsHeading {
-	zoom: 1;
-	position: relative;
-}
-.formTable strong {
-	font-weight: normal;
-	color: #ff0000;
-}
-.formTable p.caution {
-	color: #ff0000;
-}
-.formTable .partsHeading p.link {
-	position: absolute;
-	top: 2px;
-	right: 8px;
-}
-.formTable div.partsInfo {
-	background-color: #<?php echo $colors[6]; ?>;
-}
-.formTable th, .formTable td {
-	padding: 5px;
-}
-#Body .formTable th {
-	width: 140px;
-	border-left: none;
-}
-#LayoutB #Center .formTable th {
-	width: 80px;
-}
-.formTable table table td {
-	padding: 0;
-	border: none;
-}
-.formTable textarea {
-	width: 98%;
-}
-.formTable input.input_text_long {
-	width: 98%;
-}
-.formTable table table td.publicSelector {
-	width: 150px;
-	text-align: right;
-}
-.formTable div.checkList ul {
-	zoom: 1;
-	overflow: hidden;
-	overflow: -moz-scrollbars-none;
-}
-.formTable div.checkList li {
-	overflow: hidden;
-	overflow: -moz-scrollbars-none;
-	float: left;
-	width: 27%;
-	padding-left: 18px;
-	text-indent: -18px;
-	line-height: 1.6;
-}
-.formTable div.operation {
-	padding: 10px 0;
-}
-
-/*==============================================================================
- * 29. photoTable（写真テーブル）
- *----------------------------------------------------------------------------*/
-.photoTable {
-	width: 561px;
-}
-.photoTable tr.photo td {
-	height: 90px;
-	padding: 8px 0;
-	text-align: center;
-}
-.photoTable tr.photo td p.crown {
-	text-align: center;
-}
-.photoTable tr.text td {
-	padding: 5px 2px;
-	text-align: center;
-}
-
-/*==============================================================================
- * 6. yesNoButtonBox（はい、いいえボタン付きボックス）
- *----------------------------------------------------------------------------*/
-.yesNoButtonBox .block {
-	padding: 10px 0;
-}
-.yesNoButtonBox .block p,
-.yesNoButtonBox ul.moreInfo.button {
-	text-align: center;
-}
-.yesNoButtonBox ul.moreInfo.button {
-	margin-top: 4px;
-}
-.yesNoButtonBox ul.moreInfo.button li {
-	display: inline;
+.descriptionBox p {
+	margin: 12px;
 }
 
 /*==============================================================================
@@ -922,312 +623,25 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 }
 
 /*==============================================================================
- * 17. commentList（コメントリスト）
+ * 4. infoBox（案内ボックス）
  *----------------------------------------------------------------------------*/
-.commentList dl {
-	border-top: 1px solid #<?php echo $colors[1]; ?>; overflow:hidden;
-}
-.commentList dt {
-	float: left;
-	width: 70px;
-	padding-top: 5px;
-	text-align: center;
-}
-.commentList dd {
+.infoBox .parts {
 	zoom: 1;
-	min-height: 5.5em;
-	margin-left: 70px;
-	border-left: 1px solid #<?php echo $colors[1]; ?>;
-}
-* html .commentList dd {
-	height: 5.5em;
-}
-#LayoutC .commentList dt {
-	width: 110px;
-}
-#LayoutC .commentList dd {
-	margin-left: 110px;
-}
-.commentList dd div {
-	border-top: 1px solid #<?php echo $colors[1]; ?>;
-}
-.commentList dd div p {
-	padding: 4px 3px;
-}
-.commentList dd div.title {
-	zoom: 1;
-	position: relative;
-	border-top: none;
-}
-.commentList dd div.title p.heading {
-	margin-right: 10.5em;
-}
-.commentList dd div.title p.public {
-	position: absolute;
-	top: 0;
-	right: 0;
-}
-.commentList dd ul.photo {
-	padding: 5px 5px 0;
-}
-.commentList dd ul.photo li {
-	display: inline;
-	margin-left: 6px;
-}
-.commentList dd div.footer p {
-	text-align: right;
-}
-.commentList div.operation {
-	padding: 8px 0;
-}
-.commentList dd div.attachFile {
-	padding: 16px 5px;
-}
-
-/*==============================================================================
- * 8. diaryDetailBox（日記詳細ボックス）
- *----------------------------------------------------------------------------*/
-.diaryDetailBox .partsHeading {
-	zoom: 1;
-	position: relative;
-}
-.diaryDetailBox .partsHeading p.public {
-	position: absolute;
-	right: 3px;
-}
-.diaryDetailBox dl {
-	border-top: 1px solid #<?php echo $colors[1]; ?>;
-}
-.diaryDetailBox dt {
-	float: left;
-	width: 70px;
-	padding-top: 5px;
-	text-align: center;
-}
-.diaryDetailBox dd {
-	zoom: 1;
-	min-height: 4.2em;
-	margin-left: 70px;
-	border-left: 1px solid #<?php echo $colors[1]; ?>;
-}
-* html .diaryDetailBox dd {
-	height: 4.2em;
-}
-.diaryDetailBox dd div {
-	border-top: 1px solid #<?php echo $colors[1]; ?>;
-}
-.diaryDetailBox dd div p {
-	padding: 4px 3px;
-}
-.diaryDetailBox dd div.title {
-	border-top: none;
-}
-.diaryDetailBox dd div.body {
-	padding: 4px 3px;
-}
-.diaryDetailBox dd ul.photo {
-	padding: 4px 5px;
-}
-.diaryDetailBox dd ul.photo li {
-	display: inline;
-	margin-left: 6px;
-}
-.diaryDetailBox div.category ul {
-	padding: 4px;
-	text-align: right;
-}
-.diaryDetailBox div.category ul li {
-	display: inline;
-	font-size: 80%;
-}
-
-/*==============================================================================
- * 21. recentList（最新書き込みリスト）
- *----------------------------------------------------------------------------*/
-.recentList dl {
-	border-top: 1px solid #<?php echo $colors[1]; ?>;
-}
-.recentList dt {
-	clear: both;
-	float: left;
-	width: 170px;
-	padding: 5px;
-	text-align: center;
-}
-.recentList dd {
-	zoom: 1;
-	margin-left: 180px;
-	padding: 5px;
-	border-left: 1px solid #<?php echo $colors[1]; ?>;
-}
-#LayoutB #Center .recentList dt {
-	width: 110px;
-}
-#LayoutB #Center .recentList dd {
-	margin-left: 120px;
-}
-
-/*==============================================================================
- * 10. eventDetailBox（イベント詳細ボックス）
- *----------------------------------------------------------------------------*/
-.eventDetailBox dl {
-	border-top: 1px solid #<?php echo $colors[1]; ?>;
-}
-.eventDetailBox dt {
-	float: left;
-	width: 100px;
-	padding: 5px;
-	text-align: center;
-}
-.eventDetailBox dd {
-	zoom: 1;
-	margin-left: 110px;
-	border-left: 1px solid #<?php echo $colors[1]; ?>;
-}
-.eventDetailBox dd ul.photo {
-	padding: 5px;
-	border-bottom: 1px solid #<?php echo $colors[1]; ?>;
-}
-.eventDetailBox dd ul.photo li {
-	display: inline;
-	margin-left: 6px;
-}
-.eventDetailBox dd table th {
-	width: 112px;
-	text-align: center;
-	border-left: none;
-}
-.eventDetailBox dd table th,
-.eventDetailBox dd table td {
-	padding: 5px;
-}
-.eventDetailBox dd table tr:first-child th,
-.eventDetailBox dd table tr:first-child td,
-.eventDetailBox dd table tr.first-child th,
-.eventDetailBox dd table tr.first-child td {
-	border-top: none;
-}
-.eventDetailBox dd table ul.moreInfo {
-	margin-top: -1.2em;
-	text-align: right;
-}
-.eventDetailBox dd table ul.moreInfo li {
-	display: inline;
-	background-position: 0 50%;
-}
-
-/*==============================================================================
- * 22. friendIntroList（フレンド紹介文リスト）
- *----------------------------------------------------------------------------*/
-.friendIntroList th,
-.friendIntroList td {
-	padding: 14px;
-}
-#Body .friendIntroList th {
-	width: 120px;
-	border-left: none;
-	text-align: center;
-}
-.friendIntroList p.text {
-	margin-bottom: 1em;
-}
-.friendIntroList div.moreInfo ul.moreInfo {
-	width: 10em;
-	margin-left: auto;
-	padding: 6px 2px;
-}
-
-/*==============================================================================
- * 9. topicDetailBox（トピック詳細ボックス）
- *----------------------------------------------------------------------------*/
-.topicDetailBox dl {
-	border-top: 1px solid #<?php echo $colors[1]; ?>;
-}
-.topicDetailBox dt {
-	float: left;
-	width: 100px;
-	padding: 5px;
-	text-align: center;
-}
-.topicDetailBox dd {
-	zoom: 1;
-	margin-left: 110px;
-	border-left: 1px solid #<?php echo $colors[1]; ?>;
-}
-.topicDetailBox dd div {
-	border-top: 1px solid #<?php echo $colors[1]; ?>;
-}
-.topicDetailBox dd div p {
-	padding: 5px;
-}
-.topicDetailBox dd div.title {
-	border-top: none;
-}
-.topicDetailBox dd ul.photo {
-	padding: 5px;
-}
-.topicDetailBox dd ul.photo li {
-	display: inline;
-	margin-left: 6px;
-}
-.topicDetailBox dd div.attachFile {
-	padding: 16px 5px;
-}
-.topicDetailBox div.operation {
-	padding: 10px 0;
-}
-
-/*==============================================================================
- * 26. ashiatoList（あしあとリスト）
- *----------------------------------------------------------------------------*/
-.ashiatoList div.partsInfo {
-	border-bottom: 1px solid #<?php echo $colors[1]; ?>;
-}
-.ashiatoList div.item {
-	margin: 8px 40px;
-	padding: 8px 0;
-	border: 1px solid #<?php echo $colors[1]; ?>;
-}
-.ashiatoList div.item p,
-.ashiatoList div.item ul.list {
-	padding-left: 160px;
-}
-.ashiatoList div.item p strong {
-	margin: 0 2px;
-}
-.ashiatoList div.item ul.list {
 	overflow: hidden;
-	margin-top: 16px;
+	position: relative;
 }
-
-/*==============================================================================
- * 15. linkLine（リンクライン）
- *----------------------------------------------------------------------------*/
-.linkLine ul.moreInfo {
-	text-align: center;
+.infoBox p {
+	overflow: hidden;
+	margin-right: 16em;
+	padding: 5px;
+	border-right: 1px solid #<?php echo $colors[1]; ?>;
+	background: #<?php echo $colors[6]; ?>;
 }
-.linkLine ul.moreInfo li {
-	display: inline;
-	background-position: 0 50%;
-}
-
-/*==============================================================================
- * 14. searchFormLine（検索フォームライン）
- *----------------------------------------------------------------------------*/
-.searchFormLine ul {
-	text-align: center;
-	padding: 1px 0;
-}
-.searchFormLine ul li {
-	display: inline;
-}
-.searchFormLine ul li * {
-	vertical-align: middle;
-}
-.searchFormLine ul li label {
-	margin-right: 2px;
-	padding: 1px 13px 0 0;
-	background: url(<?php echo getSkin('icon_arrow_2'); ?>) no-repeat 100% 0;
+.infoBox ul.moreInfo {
+	position: absolute;
+	bottom: 3px;
+	right: 0;
+	width: 15.5em;
 }
 
 /*==============================================================================
@@ -1255,6 +669,23 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 }
 .infoButtonBox ul.moreInfo.button li {
 	text-align: center;
+}
+
+/*==============================================================================
+ * 6. yesNoButtonBox（はい、いいえボタン付きボックス）
+ *----------------------------------------------------------------------------*/
+.yesNoButtonBox .block {
+	padding: 10px 0;
+}
+.yesNoButtonBox .block p,
+.yesNoButtonBox ul.moreInfo.button {
+	text-align: center;
+}
+.yesNoButtonBox ul.moreInfo.button {
+	margin-top: 4px;
+}
+.yesNoButtonBox ul.moreInfo.button li {
+	display: inline;
 }
 
 /*==============================================================================
@@ -1328,25 +759,184 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 }
 
 /*==============================================================================
- * 4. infoBox（案内ボックス）
+ * 8. diaryDetailBox（日記詳細ボックス）
  *----------------------------------------------------------------------------*/
-.infoBox .parts {
+.diaryDetailBox .partsHeading {
 	zoom: 1;
-	overflow: hidden;
 	position: relative;
 }
-.infoBox p {
-	overflow: hidden;
-	margin-right: 16em;
-	padding: 5px;
-	border-right: 1px solid #<?php echo $colors[1]; ?>;
-	background: #<?php echo $colors[6]; ?>;
-}
-.infoBox ul.moreInfo {
+.diaryDetailBox .partsHeading p.public {
 	position: absolute;
-	bottom: 3px;
-	right: 0;
-	width: 15.5em;
+	right: 3px;
+}
+.diaryDetailBox dl {
+	border-top: 1px solid #<?php echo $colors[1]; ?>;
+}
+.diaryDetailBox dt {
+	float: left;
+	width: 70px;
+	padding-top: 5px;
+	text-align: center;
+}
+.diaryDetailBox dd {
+	zoom: 1;
+	min-height: 4.2em;
+	margin-left: 70px;
+	border-left: 1px solid #<?php echo $colors[1]; ?>;
+}
+* html .diaryDetailBox dd {
+	height: 4.2em;
+}
+.diaryDetailBox dd div {
+	border-top: 1px solid #<?php echo $colors[1]; ?>;
+}
+.diaryDetailBox dd div p {
+	padding: 4px 3px;
+}
+.diaryDetailBox dd div.title {
+	border-top: none;
+}
+.diaryDetailBox dd div.body {
+	padding: 4px 3px;
+}
+.diaryDetailBox dd ul.photo {
+	padding: 4px 5px;
+}
+.diaryDetailBox dd ul.photo li {
+	display: inline;
+	margin-left: 6px;
+}
+.diaryDetailBox div.category ul {
+	padding: 4px;
+	text-align: right;
+}
+.diaryDetailBox div.category ul li {
+	display: inline;
+	font-size: 80%;
+}
+
+/*==============================================================================
+ * 9. topicDetailBox（トピック詳細ボックス）
+ *----------------------------------------------------------------------------*/
+.topicDetailBox dl {
+	border-top: 1px solid #<?php echo $colors[1]; ?>;
+}
+.topicDetailBox dt {
+	float: left;
+	width: 100px;
+	padding: 5px;
+	text-align: center;
+}
+.topicDetailBox dd {
+	zoom: 1;
+	margin-left: 110px;
+	border-left: 1px solid #<?php echo $colors[1]; ?>;
+}
+.topicDetailBox dd div {
+	border-top: 1px solid #<?php echo $colors[1]; ?>;
+}
+.topicDetailBox dd div p {
+	padding: 5px;
+}
+.topicDetailBox dd div.title {
+	border-top: none;
+}
+.topicDetailBox dd ul.photo {
+	padding: 5px;
+}
+.topicDetailBox dd ul.photo li {
+	display: inline;
+	margin-left: 6px;
+}
+.topicDetailBox dd div.attachFile {
+	padding: 16px 5px;
+}
+.topicDetailBox div.operation {
+	padding: 10px 0;
+}
+
+/*==============================================================================
+ * 10. eventDetailBox（イベント詳細ボックス）
+ *----------------------------------------------------------------------------*/
+.eventDetailBox dl {
+	border-top: 1px solid #<?php echo $colors[1]; ?>;
+}
+.eventDetailBox dt {
+	float: left;
+	width: 100px;
+	padding: 5px;
+	text-align: center;
+}
+.eventDetailBox dd {
+	zoom: 1;
+	margin-left: 110px;
+	border-left: 1px solid #<?php echo $colors[1]; ?>;
+}
+.eventDetailBox dd ul.photo {
+	padding: 5px;
+	border-bottom: 1px solid #<?php echo $colors[1]; ?>;
+}
+.eventDetailBox dd ul.photo li {
+	display: inline;
+	margin-left: 6px;
+}
+.eventDetailBox dd table th {
+	width: 112px;
+	text-align: center;
+	border-left: none;
+}
+.eventDetailBox dd table th,
+.eventDetailBox dd table td {
+	padding: 5px;
+}
+.eventDetailBox dd table tr:first-child th,
+.eventDetailBox dd table tr:first-child td,
+.eventDetailBox dd table tr.first-child th,
+.eventDetailBox dd table tr.first-child td {
+	border-top: none;
+}
+.eventDetailBox dd table ul.moreInfo {
+	margin-top: -1.2em;
+	text-align: right;
+}
+.eventDetailBox dd table ul.moreInfo li {
+	display: inline;
+	background-position: 0 50%;
+}
+
+/*==============================================================================
+ * 11. homePhotoBox（ホーム写真ボックス）
+ *----------------------------------------------------------------------------*/
+.homePhotoBox * {
+	text-align: center;
+}
+.homePhotoBox p.friendLink {
+	margin-bottom: 3px;
+}
+.homePhotoBox .parts {
+	padding: 7px;
+}
+.homePhotoBox ul.moreInfo {
+	margin: 2px 0 -5px;
+}
+.homePhotoBox ul.moreInfo li {
+	padding: 1px 0;
+	background: none;
+}
+.homePhotoBox ul.moreInfo li img {
+	vertical-align: bottom;
+}
+.homePhotoBox p.rank {
+	margin-top: 6px;
+}
+.homePhotoBox p.point {
+	margin-top: 2px;
+}
+.homePhotoBox p.text {
+	margin-top: 4px;
+}
+.homePhotoBox p.loginTime {
+	margin-top: 0px;
 }
 
 /*==============================================================================
@@ -1365,152 +955,6 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 }
 .homeInfoBox .caution {
 	color: #ff0000;
-}
-
-/*==============================================================================
- * 2. descriptionBox（説明ボックス）
- *----------------------------------------------------------------------------*/
-.descriptionBox p {
-	margin: 12px;
-}
-
-/*==============================================================================
- * 27. rankingList（ランキングリスト）
- *----------------------------------------------------------------------------*/
-.rankingList .partsHeading p {
-	margin: 0;
-}
-#Body .rankingList th:first-child,
-#Body .rankingList th.first-child {
-	border-left-width: 1px;
-}
-.rankingList td.photo {
-	width: 120px;
-	text-align: center;
-}
-.rankingList th {
-	width: 75px;
-	padding: 5px;
-}
-.rankingList td {
-	padding: 5px;
-}
-.rankingList td.name {
-	background: #<?php echo $colors[7]; ?>;
-}
-.rankingList td.name a {
-	font-weight: bold;
-}
-.rankingList .ditem {
-	margin: 8px 15px;
-	background: #<?php echo $colors[7]; ?>;
-}
-.rankingList .item {
-	background: #<?php echo $colors[8]; ?>;
-}
-.rankingList .item td.photo {
-	width: 90px;
-}
-
-/*==============================================================================
- * 35. rankingSideNav（ランキングサイドナビ）
- *----------------------------------------------------------------------------*/
-.rankingSideNav {
-	width: 150px;
-	margin: 0 auto;
-	border: 8px solid #<?php echo $colors[9]; ?>;
-}
-.rankingSideNav .partsHeading {
-	padding: 2px 4px;
-	border-bottom: 1px solid #<?php echo $colors[1]; ?>;
-	background-image: none;
-	text-align: center;
-}
-.rankingSideNav p {
-	margin: 3px;
-}
-.rankingSideNav p.link {
-	padding: 3px;
-	border: 1px solid #<?php echo $colors[1]; ?>;
-	text-align: right;
-}
-
-
-/*==============================================================================
- * 24. searchCategoryList（検索項目リスト）
- *----------------------------------------------------------------------------*/
-.searchCategoryList .partsInfo {
-	padding: 5px;
-	border-bottom: 1px solid #<?php echo $colors[1]; ?>;
-	background: #<?php echo $colors[6]; ?>;
-	text-align: center;
-}
-.searchCategoryList .item {
-	margin: 10px 40px;
-	border: 1px solid #<?php echo $colors[1]; ?>;
-	border-top: none;
-}
-.searchCategoryList span.label {
-	margin: 0 4px 0 8px;
-	padding: 1px 16px 0 0;
-	background: url(<?php echo getSkin('icon_arrow_2'); ?>) no-repeat 100% 0;
-}
-.searchCategoryList dl {
-	border-top: 1px solid #<?php echo $colors[1]; ?>;
-}
-.searchCategoryList dl dt {
-	margin: 8px 0 0;
-}
-.searchCategoryList dl dd {
-	margin: 8px 10px 8px 70px;
-}
-.searchCategoryList dl dd ul {
-	zoom: 1;
-	overflow: hidden;
-	overflow: -moz-scrollbars-none;
-	margin: 4px 0;
-}
-.searchCategoryList dl dd ul li {
-	overflow: hidden;
-	float: left;
-	width: 19%;
-	margin: 0 2px;
-}
-
-/*==============================================================================
- * 23. manageList（管理リスト）
- *----------------------------------------------------------------------------*/
-.manageList td {
-	padding: 5px;
-}
-.manageList td.photo {
-	width: 140px;
-	border-left: none;
-	text-align: center;
-}
-.manageList td.delete {
-	width: 120px;
-}
-.manageList col.date {
-	width: 160px;
-}
-* html .manageList col.date {
-	width: 150px;
-}
-*:first-child+html .manageList col.date {
-	width: 150px;
-}
-.manageList col.name {
-	width: auto;
-}
-.manageList colgroup.operation col {
-	width: 86px;
-}
-* html .manageList colgroup.operation col {
-	width: 76px;
-}
-*:first-child+html .manageList colgroup.operation col {
-	width: 76px;
 }
 
 /*==============================================================================
@@ -1542,10 +986,33 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 }
 
 /*==============================================================================
- * 36. buttonLine（ボタンライン）
+ * 14. searchFormLine（検索フォームライン）
  *----------------------------------------------------------------------------*/
-.buttonLine form {
+.searchFormLine ul {
 	text-align: center;
+	padding: 1px 0;
+}
+.searchFormLine ul li {
+	display: inline;
+}
+.searchFormLine ul li * {
+	vertical-align: middle;
+}
+.searchFormLine ul li label {
+	margin-right: 2px;
+	padding: 1px 13px 0 0;
+	background: url(<?php echo getSkin('icon_arrow_2'); ?>) no-repeat 100% 0;
+}
+
+/*==============================================================================
+ * 15. linkLine（リンクライン）
+ *----------------------------------------------------------------------------*/
+.linkLine ul.moreInfo {
+	text-align: center;
+}
+.linkLine ul.moreInfo li {
+	display: inline;
+	background-position: 0 50%;
 }
 
 /*==============================================================================
@@ -1571,61 +1038,127 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 }
 
 /*==============================================================================
- * 37. messageDetailBox（メッセージ詳細ボックス）
+ * 17. commentList（コメントリスト）
  *----------------------------------------------------------------------------*/
-#Body .messageDetailBox th:first-child,
-#Body .messageDetailBox th.first-child {
-	border-left-width: 1px;
+.commentList dl {
+	border-top: 1px solid #<?php echo $colors[1]; ?>; overflow:hidden;
 }
-.messageDetailBox th,
-.messageDetailBox td {
-	padding: 5px;
-}
-.messageDetailBox td.photo {
-	width: 120px;
+.commentList dt {
+	float: left;
+	width: 70px;
+	padding-top: 5px;
 	text-align: center;
 }
-.messageDetailBox th {
-	width: 54px;
-	padding-left: 0;
-	padding-right: 16px;
-	background: url(<?php echo getSkin('colon'); ?>) no-repeat 96% 50%;
-	text-align: right;
+.commentList dd {
+	zoom: 1;
+	min-height: 5.5em;
+	margin-left: 70px;
+	border-left: 1px solid #<?php echo $colors[1]; ?>;
 }
-#Body .messageDetailBox td {
-	border-left: none;
+* html .commentList dd {
+	height: 5.5em;
 }
-.messageDetailBox ul.photo {
-	margin: 10px;
-	text-align: center;
+#LayoutC .commentList dt {
+	width: 110px;
 }
-.messageDetailBox p.text {
-	margin: 10px 60px;;
+#LayoutC .commentList dd {
+	margin-left: 110px;
 }
-.messageDetailBox ul.photo li {
+.commentList dd div {
+	border-top: 1px solid #<?php echo $colors[1]; ?>;
+}
+.commentList dd div p {
+	padding: 4px 3px;
+}
+.commentList dd div.title {
+	zoom: 1;
+	position: relative;
+	border-top: none;
+}
+.commentList dd div.title p.heading {
+	margin-right: 10.5em;
+}
+.commentList dd div.title p.public {
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+.commentList dd ul.photo {
+	padding: 5px 5px 0;
+}
+.commentList dd ul.photo li {
 	display: inline;
 	margin-left: 6px;
 }
-.messageDetailBox div.operation {
-	zoom: 1;
-	overflow: hidden;
-	overflow: -moz-scrollbars-none;
-}
-.messageDetailBox form.delete {
-	float: left;
-	width: 50%;
-	text-align: left;
-}
-.messageDetailBox form.send {
-	float: right;
-	width: 50%;
+.commentList dd div.footer p {
 	text-align: right;
 }
-.messageDetailBox form ul.moreInfo {
-	display: inline;
+.commentList div.operation {
+	padding: 8px 0;
 }
-.messageDetailBox div.attachFile {
+.commentList dd div.attachFile {
 	padding: 16px 5px;
+}
+
+/*==============================================================================
+ * 18. searchResultList（検索結果リスト）
+ *----------------------------------------------------------------------------*/
+.searchResultList .partsInfo {
+	background: #<?php echo $colors[6]; ?>;
+}
+.searchResultList .ditem {
+	margin: 8px 34px;
+}
+.searchResultList .item {
+	zoom: 1;
+	position: relative;
+}
+.searchResultList td.photo {
+	width: 90px;
+	padding: 0;
+	border-left: none;
+	text-align: center;
+}
+.searchResultList th, .searchResultList td {
+	padding: 5px;
+}
+.searchResultList th {
+	width: 75px;
+}
+#Body .searchResultList th:first-child,
+#Body .searchResultList th.first-child {
+	border-left-width: 1px;
+}
+.searchResultList tr.operation th {
+	padding-top: 0;
+	padding-bottom: 0;
+}
+.searchResultList tr.operation td {
+	padding: 0;
+}
+.searchResultList tr.operation span.text {
+	float: left;
+	display: block;
+	width: 110px;
+	margin-top: 5px;
+	padding: 0 5px;
+}
+.searchResultList tr.operation span.moreInfo{
+	zoom: 1;
+	display: block;
+	margin-left: 120px;
+	padding: 4px 0 3px;
+	border-left: 1px solid #<?php echo $colors[1]; ?>;
+	text-align: center;
+}
+.searchResultList div.operation {
+	text-align: center;
+}
+.searchResultList tr.operation span.moreInfo img,
+.searchResultList div.operation form,
+.searchResultList div.operation fieldset {
+	display: inline;
+	vertical-align: top;
 }
 
 /*==============================================================================
@@ -1683,76 +1216,127 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 }
 
 /*==============================================================================
- * 32. weeklyCalendarTable（週間カレンダーテーブル）
+ * 21. recentList（最新書き込みリスト）
  *----------------------------------------------------------------------------*/
-#Body .weeklyCalendarTable .parts {
-	border-top: none;
+.recentList dl {
+	border-top: 1px solid #<?php echo $colors[1]; ?>;
 }
-.weeklyCalendarTable div.block {
+.recentList dt {
+	clear: both;
+	float: left;
+	width: 170px;
 	padding: 5px;
+	text-align: center;
 }
-.weeklyCalendarTable .input_submit {
-	margin-right: 8px;
-}
-.weeklyCalendarTable .calendar td {
+.recentList dd {
+	zoom: 1;
+	margin-left: 180px;
 	padding: 5px;
-	vertical-align: top;
+	border-left: 1px solid #<?php echo $colors[1]; ?>;
 }
-.weeklyCalendarTable .calendar .today {
-	background: #<?php echo $colors[7]; ?>;
+#LayoutB #Center .recentList dt {
+	width: 110px;
 }
-.weeklyCalendarTable .calendar .today p.day {
-	font-weight: bold;
-}
-.weeklyCalendarTable ul.moreInfo {
-	margin: 0 2px 0 auto;
-	width: 9em;
+#LayoutB #Center .recentList dd {
+	margin-left: 120px;
 }
 
 /*==============================================================================
- * 33. monthlyCalendarTable（月間カレンダーテーブル）
+ * 22. friendIntroList（フレンド紹介文リスト）
  *----------------------------------------------------------------------------*/
-.monthlyCalendarTable div.block {
+.friendIntroList th,
+.friendIntroList td {
+	padding: 14px;
+}
+#Body .friendIntroList th {
+	width: 120px;
+	border-left: none;
+	text-align: center;
+}
+.friendIntroList p.text {
+	margin-bottom: 1em;
+}
+.friendIntroList div.moreInfo ul.moreInfo {
+	width: 10em;
+	margin-left: auto;
+	padding: 6px 2px;
+}
+
+/*==============================================================================
+ * 23. manageList（管理リスト）
+ *----------------------------------------------------------------------------*/
+.manageList td {
+	padding: 5px;
+}
+.manageList td.photo {
+	width: 140px;
+	border-left: none;
+	text-align: center;
+}
+.manageList td.delete {
+	width: 120px;
+}
+.manageList col.date {
+	width: 160px;
+}
+* html .manageList col.date {
+	width: 150px;
+}
+*:first-child+html .manageList col.date {
+	width: 150px;
+}
+.manageList col.name {
+	width: auto;
+}
+.manageList colgroup.operation col {
+	width: 86px;
+}
+* html .manageList colgroup.operation col {
+	width: 76px;
+}
+*:first-child+html .manageList colgroup.operation col {
+	width: 76px;
+}
+
+/*==============================================================================
+ * 24. searchCategoryList（検索項目リスト）
+ *----------------------------------------------------------------------------*/
+.searchCategoryList .partsInfo {
+	padding: 5px;
+	border-bottom: 1px solid #<?php echo $colors[1]; ?>;
+	background: #<?php echo $colors[6]; ?>;
+	text-align: center;
+}
+.searchCategoryList .item {
+	margin: 10px 40px;
+	border: 1px solid #<?php echo $colors[1]; ?>;
+	border-top: none;
+}
+.searchCategoryList span.label {
+	margin: 0 4px 0 8px;
+	padding: 1px 16px 0 0;
+	background: url(<?php echo getSkin('icon_arrow_2'); ?>) no-repeat 100% 0;
+}
+.searchCategoryList dl {
+	border-top: 1px solid #<?php echo $colors[1]; ?>;
+}
+.searchCategoryList dl dt {
+	margin: 8px 0 0;
+}
+.searchCategoryList dl dd {
+	margin: 8px 10px 8px 70px;
+}
+.searchCategoryList dl dd ul {
 	zoom: 1;
 	overflow: hidden;
 	overflow: -moz-scrollbars-none;
-	padding: 2px 5px;
+	margin: 4px 0;
 }
-.monthlyCalendarTable div.block p.moreInfo {
+.searchCategoryList dl dd ul li {
+	overflow: hidden;
 	float: left;
-	width: 70%;
-	text-align: left;
-}
-.monthlyCalendarTable div.block p.moreInfo a {
-	margin-right: 4px;
-}
-.monthlyCalendarTable div.block p.pager {
-	float: right;
-	width: 30%;
-	margin-top: 2px;
-	text-align: right;
-}
-.monthlyCalendarTable .calendar th {
-	padding: 2px;
-}
-.monthlyCalendarTable .calendar td {
-	height: 65px;
-	padding: 2px;
-	vertical-align: top;
-}
-.monthlyCalendarTable .calendar td.today {
-	background: #<?php echo $colors[7]; ?>;
-	font-weight: bold;
-}
-.monthlyCalendarTable .calendar td p {
-	font-weight: normal;
-}
-.monthlyCalendarTable .partsInfo {
-	padding: 5px;
-	background: #<?php echo $colors[6]; ?>;
-}
-.monthlyCalendarTable .partsInfo img {
-	margin: 0 1px;
+	width: 19%;
+	margin: 0 2px;
 }
 
 /*==============================================================================
@@ -1845,163 +1429,419 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 	text-align: left;
 }
 
-/**=============================================================================
- * 未確認スタイル
+/*==============================================================================
+ * 26. ashiatoList（あしあとリスト）
  *----------------------------------------------------------------------------*/
-/**150 o_regist_prof */
-ul.moreInfo.button li form {
+.ashiatoList div.partsInfo {
+	border-bottom: 1px solid #<?php echo $colors[1]; ?>;
+}
+.ashiatoList div.item {
+	margin: 8px 40px;
+	padding: 8px 0;
+	border: 1px solid #<?php echo $colors[1]; ?>;
+}
+.ashiatoList div.item p,
+.ashiatoList div.item ul.list {
+	padding-left: 160px;
+}
+.ashiatoList div.item p strong {
+	margin: 0 2px;
+}
+.ashiatoList div.item ul.list {
+	overflow: hidden;
+	margin-top: 16px;
+}
+
+/*==============================================================================
+ * 27. rankingList（ランキングリスト）
+ *----------------------------------------------------------------------------*/
+.rankingList .partsHeading p {
+	margin: 0;
+}
+#Body .rankingList th:first-child,
+#Body .rankingList th.first-child {
+	border-left-width: 1px;
+}
+.rankingList td.photo {
+	width: 120px;
+	text-align: center;
+}
+.rankingList th {
+	width: 75px;
+	padding: 5px;
+}
+.rankingList td {
+	padding: 5px;
+}
+.rankingList td.name {
+	background: #<?php echo $colors[7]; ?>;
+}
+.rankingList td.name a {
+	font-weight: bold;
+}
+.rankingList .ditem {
+	margin: 8px 15px;
+	background: #<?php echo $colors[7]; ?>;
+}
+.rankingList .item {
+	background: #<?php echo $colors[8]; ?>;
+}
+.rankingList .item td.photo {
+	width: 90px;
+}
+
+/*==============================================================================
+ * 28. homeNineTable（ホーム9面テーブル）
+ *----------------------------------------------------------------------------*/
+.homeNineTable tr.photo td {
+	height: 80px;
+	padding: 2px 0;
+	text-align: center;
+}
+.homeNineTable tr.photo td p.crown {
+	text-align: center;
+}
+.homeNineTable tr.text td {
+	padding: 2px;
+	text-align: center;
+}
+.homeNineTable div.moreInfo ul.moreInfo {
+	width: 11em;
+	margin-left: auto;
+	padding: 6px 0;
+}
+
+/*==============================================================================
+ * 29. photoTable（写真テーブル）
+ *----------------------------------------------------------------------------*/
+.photoTable {
+	width: 561px;
+}
+.photoTable tr.photo td {
+	height: 90px;
+	padding: 8px 0;
+	text-align: center;
+}
+.photoTable tr.photo td p.crown {
+	text-align: center;
+}
+.photoTable tr.text td {
+	padding: 5px 2px;
+	text-align: center;
+}
+
+/*==============================================================================
+ * 30. homeMainTable（ホームメインテーブル）
+ *----------------------------------------------------------------------------*/
+.homeMainTable .partsHeading {
+	zoom: 1;
+	position: relative;
+}
+.homeMainTable .partsHeading p.link {
+	position: absolute;
+	top: 2px;
+	right: 8px;
+}
+.homeMainTable th {
+	width: 83px;
+	background-color: #<?php echo $colors[7]; ?>;
+}
+.homeMainTable th, .homeMainTable td {
+	padding: 5px;
+}
+.homeMainTable ul.articleList {
+	line-height: 1.3;
+}
+.homeMainTable ul.articleList li {
+	padding-left: 85px;
+	background: url(<?php echo getSkin('icon_1'); ?>) 3px 0.4em no-repeat scroll;
+	text-indent: -72px;
+}
+.homeMainTable ul.articleList li span.date {
+	padding-right: 18px;
+	background: url(<?php echo getSkin('articleList_marker'); ?>) 92% 0.3em no-repeat scroll;
+}
+.homeMainTable div.moreInfo ul.moreInfo {
+	width: 10em;
+	margin: 0 2px 0 auto;
+}
+.homeMainTable td.halfway ul.moreInfo {
+	width: 12em;
+	margin: 0 0 20px auto;
+}
+
+/*==============================================================================
+ * 31. formTable（入力フォームテーブル）
+ *----------------------------------------------------------------------------*/
+.formTable .partsHeading {
+	zoom: 1;
+	position: relative;
+}
+.formTable strong {
+	font-weight: normal;
+	color: #ff0000;
+}
+.formTable p.caution {
+	color: #ff0000;
+}
+.formTable .partsHeading p.link {
+	position: absolute;
+	top: 2px;
+	right: 8px;
+}
+.formTable div.partsInfo {
+	background-color: #<?php echo $colors[6]; ?>;
+}
+.formTable th, .formTable td {
+	padding: 5px;
+}
+#Body .formTable th {
+	width: 140px;
+	border-left: none;
+}
+#LayoutB #Center .formTable th {
+	width: 80px;
+}
+.formTable table table td {
+	padding: 0;
+	border: none;
+}
+.formTable textarea {
+	width: 98%;
+}
+.formTable input.input_text_long {
+	width: 98%;
+}
+.formTable table table td.publicSelector {
+	width: 150px;
+	text-align: right;
+}
+.formTable div.checkList ul {
+	zoom: 1;
+	overflow: hidden;
+	overflow: -moz-scrollbars-none;
+}
+.formTable div.checkList li {
+	overflow: hidden;
+	overflow: -moz-scrollbars-none;
+	float: left;
+	width: 27%;
+	padding-left: 18px;
+	text-indent: -18px;
+	line-height: 1.6;
+}
+.formTable div.operation {
+	padding: 10px 0;
+}
+
+/*==============================================================================
+ * 32. weeklyCalendarTable（週間カレンダーテーブル）
+ *----------------------------------------------------------------------------*/
+#Body .weeklyCalendarTable .parts {
+	border-top: none;
+}
+.weeklyCalendarTable div.block {
+	padding: 5px;
+}
+.weeklyCalendarTable .input_submit {
+	margin-right: 8px;
+}
+.weeklyCalendarTable .calendar td {
+	padding: 5px;
+	vertical-align: top;
+}
+.weeklyCalendarTable .calendar .today {
+	background: #<?php echo $colors[7]; ?>;
+}
+.weeklyCalendarTable .calendar .today p.day {
+	font-weight: bold;
+}
+.weeklyCalendarTable ul.moreInfo {
+	margin: 0 2px 0 auto;
+	width: 9em;
+}
+
+/*==============================================================================
+ * 33. monthlyCalendarTable（月間カレンダーテーブル）
+ *----------------------------------------------------------------------------*/
+.monthlyCalendarTable div.block {
+	zoom: 1;
+	overflow: hidden;
+	overflow: -moz-scrollbars-none;
+	padding: 2px 5px;
+}
+.monthlyCalendarTable div.block p.moreInfo {
+	float: left;
+	width: 70%;
+	text-align: left;
+}
+.monthlyCalendarTable div.block p.moreInfo a {
+	margin-right: 4px;
+}
+.monthlyCalendarTable div.block p.pager {
+	float: right;
+	width: 30%;
+	margin-top: 2px;
+	text-align: right;
+}
+.monthlyCalendarTable .calendar th {
+	padding: 2px;
+}
+.monthlyCalendarTable .calendar td {
+	height: 65px;
+	padding: 2px;
+	vertical-align: top;
+}
+.monthlyCalendarTable .calendar td.today {
+	background: #<?php echo $colors[7]; ?>;
+	font-weight: bold;
+}
+.monthlyCalendarTable .calendar td p {
+	font-weight: normal;
+}
+.monthlyCalendarTable .partsInfo {
+	padding: 5px;
+	background: #<?php echo $colors[6]; ?>;
+}
+.monthlyCalendarTable .partsInfo img {
+	margin: 0 1px;
+}
+
+/*==============================================================================
+ * 34. sideNav（サイドナビ）
+ *----------------------------------------------------------------------------*/
+.sideNav .item {
+	overflow: hidden;
+	width: 150px;
+	margin: 0 auto 10px;
+	border: 8px solid #<?php echo $colors[9]; ?>;
+}
+.sideNav .partsHeading {
+	border-bottom: 1px solid #<?php echo $colors[1]; ?>;
+}
+.sideNav .pageNav ul {
+	margin: 1px;
+}
+.sideNav .pageNav li {
+	padding: 4px 0 4px 18px;
+	background: url(<?php echo getSkin('icon_1'); ?>) 8px 50% no-repeat scroll;
+}
+.sideNav .pageNav li.looking {
+	background-color: #<?php echo $colors[7]; ?>;
+}
+.sideNav .calendar .partsHeading {
+	padding: 4px 0;
+	border: none;
+	background: none;
+	text-align: center;
+}
+.sideNav .calendar th {
+	background-color: #<?php echo $colors[7]; ?>;
+	text-align: center;
+}
+.sideNav .calendar td {
+	padding: 1px 2px;
+	text-align: right;
+}
+.sideNav .list {
+	padding: 4px 0;
+}
+.sideNav .list li {
+	padding-left: 16px;
+	background: no-repeat 6px 4px;
+}
+.sideNav .monthlyMessage li  { background-image: url(<?php echo getSkin('icon_1'); ?>); }
+.sideNav .recentlyDiary li   { background-image: url(<?php echo getSkin('icon_3'); ?>); }
+.sideNav .recentlyComment li { background-image: url(<?php echo getSkin('icon_1'); ?>); }
+.sideNav .monthlyDiary li    { background-image: url(<?php echo getSkin('icon_2'); ?>); }
+.sideNav .listCategory li    { background-image: url(<?php echo getSkin('icon_2'); ?>); }
+
+/*==============================================================================
+ * 35. rankingSideNav（ランキングサイドナビ）
+ *----------------------------------------------------------------------------*/
+.rankingSideNav {
+	width: 150px;
+	margin: 0 auto;
+	border: 8px solid #<?php echo $colors[9]; ?>;
+}
+.rankingSideNav .partsHeading {
+	padding: 2px 4px;
+	border-bottom: 1px solid #<?php echo $colors[1]; ?>;
+	background-image: none;
+	text-align: center;
+}
+.rankingSideNav p {
+	margin: 3px;
+}
+.rankingSideNav p.link {
+	padding: 3px;
+	border: 1px solid #<?php echo $colors[1]; ?>;
+	text-align: right;
+}
+
+/*==============================================================================
+ * 36. buttonLine（ボタンライン）
+ *----------------------------------------------------------------------------*/
+.buttonLine form {
+	text-align: center;
+}
+
+/*==============================================================================
+ * 37. messageDetailBox（メッセージ詳細ボックス）
+ *----------------------------------------------------------------------------*/
+#Body .messageDetailBox th:first-child,
+#Body .messageDetailBox th.first-child {
+	border-left-width: 1px;
+}
+.messageDetailBox th,
+.messageDetailBox td {
+	padding: 5px;
+}
+.messageDetailBox td.photo {
+	width: 120px;
+	text-align: center;
+}
+.messageDetailBox th {
+	width: 54px;
+	padding-left: 0;
+	padding-right: 16px;
+	background: url(<?php echo getSkin('colon'); ?>) no-repeat 96% 50%;
+	text-align: right;
+}
+#Body .messageDetailBox td {
+	border-left: none;
+}
+.messageDetailBox ul.photo {
+	margin: 10px;
+	text-align: center;
+}
+.messageDetailBox p.text {
+	margin: 10px 60px;;
+}
+.messageDetailBox ul.photo li {
+	display: inline;
+	margin-left: 6px;
+}
+.messageDetailBox div.operation {
+	zoom: 1;
+	overflow: hidden;
+	overflow: -moz-scrollbars-none;
+}
+.messageDetailBox form.delete {
+	float: left;
+	width: 50%;
+	text-align: left;
+}
+.messageDetailBox form.send {
+	float: right;
+	width: 50%;
+	text-align: right;
+}
+.messageDetailBox form ul.moreInfo {
 	display: inline;
 }
-ul.moreInfo.button li form .input_submit {
-	margin: 0 5px;
-}
-
-/** 配色設定 */
-#Body {
-	background: #<?php echo $colors[2]; ?>;
-}
-#Container {
-	background: #<?php echo $colors[3]; ?>;
-}
-div.dparts {
-	background-color: #<?php echo $colors[4]; ?>;
-}
-div.parts {
-	background-color: #<?php echo $colors[8]; ?>;
-}
-.sideNav .item {
-	background-color: #<?php echo $colors[8]; ?>;
-}
-#Body .sideNav {
-	background-color: transparent;
-}
-#Body .linkLine,
-#Body .searchFormLine,
-#Body .buttonLine,
-#Body .prevNextLinkLine {
-	background-color: transparent;
-}
-
-/** page_o_login */
-div#container_login {
-	position: relative;
-	display: block;
-	margin: 0px auto 0px 0px;
-	width: 720px;
-	height: 563px;
-	padding: 0px;
-}
-
-div#container_login img.bg {
-	display: block;
-	position: absolute;
-	left: 0px;
-	top: 0px;
-	width: 720px;
-	height: 563px;
-	z-index: 0;
-}
-
-div#container_login a img {
-	width: 100%;
-	height: 100%;
-}
-
-div#container_login div.banner ,
-div#container_login a.banner {
-	display: block;
-	position: absolute;
-	left: 247px;
-	top: 5px;
-	width: 468px;
-	height: 60px;
-	z-index: 200;
-}
-
-div#container_login div.header a.main_menu {
-	display: block;
-	display: none;
-	position: absolute;
-	height: 22px;
-	top: 0px;
-}
-
-div#container_login input#username {
-	display: block;
-	position: absolute;
-	left: 504px;
-	top: 246px;
-	width: 185px;
-	height: 23px;
-	font-size: 10pt;
-	z-index: 100;
-}
-
-div#container_login input#password {
-	display: block;
-	position: absolute;
-	left: 504px;
-	top: 299px;
-	width: 185px;
-	height: 23px;
-	font-size: 10pt;
-	z-index: 110;
-}
-
-div#container_login input#button_login {
-	display: block;
-	position: absolute;
-	left: 536px;
-	top: 384px;
-	width: 120px;
-	height: 24px;
-	border: none 0px;
-	background-color: transparent;
-	z-index: 120;
-}
-
-div#container_login a#button_new_regist {
-	display: block;
-	position: absolute;
-	left: 536px;
-	top: 414px;
-	width: 120px;
-	height: 24px;
-	border: none 0px;
-	z-index: 130;
-}
-
-div#container_login div.msg {
-	display: block;
-	position: absolute;
-	border: none 0px;
-	padding: 3px 0px;
-	left: 504px;
-	top: 327px;
-	width: 185px;
-	height: 42px;
-	font-size: 9pt;
-	text-align: center;
-	z-index: 140;
-}
-
-div#container_login div.msg * {
-	font-size: 8pt;
-}
-
-div#container_login .footer {
-	display: block;
-	position: absolute;
-	left: 0px;
-	top: 542px;
-	width: 720px;
-	height: 21px;
-	z-index: 300;
-}
-div#container_login .footer p {
-	margin-right: 12px;
-	text-align: right;
-	line-height: 21px;
+.messageDetailBox div.attachFile {
+	padding: 16px 5px;
 }
 
 /*==============================================================================
@@ -2195,6 +2035,165 @@ div#container_login .footer p {
 .alertLine p {
 	text-align: center;
 	color: #ff0000;
+}
+
+/**=============================================================================
+ * 未確認スタイル
+ *----------------------------------------------------------------------------*/
+/**150 o_regist_prof */
+ul.moreInfo.button li form {
+	display: inline;
+}
+ul.moreInfo.button li form .input_submit {
+	margin: 0 5px;
+}
+
+/** 配色設定 */
+#Body {
+	background: #<?php echo $colors[2]; ?>;
+}
+#Container {
+	background: #<?php echo $colors[3]; ?>;
+}
+div.dparts {
+	background-color: #<?php echo $colors[4]; ?>;
+}
+div.parts {
+	background-color: #<?php echo $colors[8]; ?>;
+}
+.sideNav .item {
+	background-color: #<?php echo $colors[8]; ?>;
+}
+#Body .sideNav {
+	background-color: transparent;
+}
+#Body .linkLine,
+#Body .searchFormLine,
+#Body .buttonLine,
+#Body .prevNextLinkLine {
+	background-color: transparent;
+}
+
+/** page_o_login */
+div#container_login {
+	position: relative;
+	display: block;
+	margin: 0px auto 0px 0px;
+	width: 720px;
+	height: 563px;
+	padding: 0px;
+}
+
+div#container_login img.bg {
+	display: block;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 720px;
+	height: 563px;
+	z-index: 0;
+}
+
+div#container_login a img {
+	width: 100%;
+	height: 100%;
+}
+
+div#container_login div.banner ,
+div#container_login a.banner {
+	display: block;
+	position: absolute;
+	left: 247px;
+	top: 5px;
+	width: 468px;
+	height: 60px;
+	z-index: 200;
+}
+
+div#container_login div.header a.main_menu {
+	display: block;
+	display: none;
+	position: absolute;
+	height: 22px;
+	top: 0px;
+}
+
+div#container_login input#username {
+	display: block;
+	position: absolute;
+	left: 504px;
+	top: 246px;
+	width: 185px;
+	height: 23px;
+	font-size: 10pt;
+	z-index: 100;
+}
+
+div#container_login input#password {
+	display: block;
+	position: absolute;
+	left: 504px;
+	top: 299px;
+	width: 185px;
+	height: 23px;
+	font-size: 10pt;
+	z-index: 110;
+}
+
+div#container_login input#button_login {
+	display: block;
+	position: absolute;
+	left: 536px;
+	top: 384px;
+	width: 120px;
+	height: 24px;
+	border: none 0px;
+	background-color: transparent;
+	z-index: 120;
+}
+
+div#container_login a#button_new_regist {
+	display: block;
+	position: absolute;
+	left: 536px;
+	top: 414px;
+	width: 120px;
+	height: 24px;
+	border: none 0px;
+	z-index: 130;
+}
+
+div#container_login div.msg {
+	display: block;
+	position: absolute;
+	border: none 0px;
+	padding: 3px 0px;
+	left: 504px;
+	top: 327px;
+	width: 185px;
+	height: 42px;
+	font-size: 9pt;
+	text-align: center;
+	z-index: 140;
+}
+
+div#container_login div.msg * {
+	font-size: 8pt;
+}
+
+div#container_login .footer {
+	display: block;
+	position: absolute;
+	left: 0px;
+	top: 542px;
+	width: 720px;
+	height: 21px;
+	z-index: 300;
+}
+div#container_login .footer p {
+	margin-right: 12px;
+	text-align: right;
+	line-height: 21px;
 }
 
 /*==============================================================================
