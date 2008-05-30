@@ -2098,7 +2098,7 @@ div#container_login a img {
 	height: 100%;
 }
 
-div#container_login div.banner ,
+div#container_login div.banner,
 div#container_login a.banner {
 	display: block;
 	position: absolute;
@@ -2198,80 +2198,80 @@ div#container_login .footer p {
 /*==============================================================================
  * 文字装飾
  *----------------------------------------------------------------------------*/
-<?php if ($decoration_config['op_b']) : ?>
+<?php if ($decoration_config['op_b']): ?>
 span.op_b {
-	text-decoration : inherit;
-	font-style : inherit;
-	font-weight : bold;
-	color : inherit;
+	text-decoration: inherit;
+	font-style: inherit;
+	font-weight: bold;
+	color: inherit;
 	font-size: inherit;
 }
 <?php endif; ?>
 
-<?php if ($decoration_config['op_u']) : ?>
+<?php if ($decoration_config['op_u']): ?>
 span.op_u {
-	text-decoration : underline;
-	font-style : inherit;
-	font-weight : inherit;
-	color : inherit;
+	text-decoration: underline;
+	font-style: inherit;
+	font-weight: inherit;
+	color: inherit;
 	font-size: inherit;
 }
 <?php endif; ?>
 
-<?php if ($decoration_config['op_s']) : ?>
+<?php if ($decoration_config['op_s']): ?>
 span.op_s {
-	text-decoration : line-through;
-	font-style : inherit;
-	font-weight : inherit;
-	color : inherit;
+	text-decoration: line-through;
+	font-style: inherit;
+	font-weight: inherit;
+	color: inherit;
 	font-size: inherit;
 }
 <?php endif; ?>
 
-<?php if ($decoration_config['op_i']) : ?>
+<?php if ($decoration_config['op_i']): ?>
 span.op_i {
-	text-decoration : inherit;
-	font-style : italic;
-	font-weight : inherit;
-	color : inherit;
+	text-decoration: inherit;
+	font-style: italic;
+	font-weight: inherit;
+	color: inherit;
 	font-size: inherit;
 }
 <?php endif; ?>
 
-<?php if ($decoration_config['op_large']) : ?>
+<?php if ($decoration_config['op_large']): ?>
 span.op_large {
-	text-decoration : inherit;
-	font-style : inherit;
-	font-weight : inherit;
-	color : inherit;
-	font-size : 20px;
+	text-decoration: inherit;
+	font-style: inherit;
+	font-weight: inherit;
+	color: inherit;
+	font-size: 20px;
 }
 <?php endif; ?>
 
-<?php if ($decoration_config['op_small']) : ?>
+<?php if ($decoration_config['op_small']): ?>
 span.op_small {
-	text-decoration : inherit;
-	font-style : inherit;
-	font-weight : inherit;
-	color : inherit;
-	font-size : 8px;
+	text-decoration: inherit;
+	font-style: inherit;
+	font-weight: inherit;
+	color: inherit;
+	font-size: 8px;
 }
 <?php endif; ?>
 
-<?php if ($decoration_config['op_color']) : ?>
+<?php if ($decoration_config['op_color']): ?>
 span.op_color {
-	text-decoration : inherit;
-	font-style : inherit;
-	font-weight : inherit;
-	color : inherit;
+	text-decoration: inherit;
+	font-style: inherit;
+	font-weight: inherit;
+	color: inherit;
 	font-size: inherit;
 }
-<?php else : ?>
+<?php else: ?>
 span.op_color {
-	text-decoration : inherit;
-	font-style : inherit;
-	font-weight : inherit;
-	color : #000 !important;
+	text-decoration: inherit;
+	font-style: inherit;
+	font-weight: inherit;
+	color: #000 !important;
 	font-size: inherit;
 }
 <?php endif; ?>
