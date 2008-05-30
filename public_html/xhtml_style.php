@@ -434,7 +434,7 @@ div.operation ul.moreInfo li {
 }
 
 /*==============================================================================
- * 0. h系、f系、c系ナビメニュー（localNav）
+ * h系、f系、c系ナビメニュー（localNav）
  *----------------------------------------------------------------------------*/
 #globalNav,
 #globalNavBefore {
@@ -992,7 +992,105 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 }
 
 /*==============================================================================
- * 14. searchFormLine（検索フォームライン）
+ * 14. messageDetailBox（メッセージ詳細ボックス）
+ *----------------------------------------------------------------------------*/
+#Body .messageDetailBox th:first-child,
+#Body .messageDetailBox th.first-child {
+	border-left-width: 1px;
+}
+.messageDetailBox th,
+.messageDetailBox td {
+	padding: 5px;
+}
+.messageDetailBox td.photo {
+	width: 120px;
+	text-align: center;
+}
+.messageDetailBox th {
+	width: 54px;
+	padding-left: 0;
+	padding-right: 16px;
+	background: url(<?php echo getSkin('colon'); ?>) no-repeat 96% 50%;
+	text-align: right;
+}
+#Body .messageDetailBox td {
+	border-left: none;
+}
+.messageDetailBox ul.photo {
+	margin: 10px;
+	text-align: center;
+}
+.messageDetailBox p.text {
+	margin: 10px 60px;;
+}
+.messageDetailBox ul.photo li {
+	display: inline;
+	margin-left: 6px;
+}
+.messageDetailBox div.operation {
+	zoom: 1;
+	overflow: hidden;
+	overflow: -moz-scrollbars-none;
+}
+.messageDetailBox form.delete {
+	float: left;
+	width: 50%;
+	text-align: left;
+}
+.messageDetailBox form.send {
+	float: right;
+	width: 50%;
+	text-align: right;
+}
+.messageDetailBox form ul.moreInfo {
+	display: inline;
+}
+.messageDetailBox div.attachFile {
+	padding: 16px 5px;
+}
+
+/*==============================================================================
+ * 15. albumDetailBox（アルバム詳細ボックス）
+ *----------------------------------------------------------------------------*/
+.albumDetailBox th,
+.albumDetailBox td {
+	padding: 5px;
+}
+.albumDetailBox th {
+	width: 75px;
+}
+.albumDetailBox td.photo {
+	width: 190px;
+	padding: 5px 0;
+	text-align: center;
+}
+#Body .albumDetailBox th:first-child,
+#Body .albumDetailBox th.first-child,
+#Body .albumDetailBox td.operation {
+	border-left-width: 1px;
+}
+.albumDetailBox td.operation {
+	text-align: right;
+}
+
+/*==============================================================================
+ * 16. albumImageBox（アルバム画像ボックス）
+ *----------------------------------------------------------------------------*/
+.albumImageBox p.photo {
+	padding: 10px;
+	border-top: 1px solid #<?php echo $colors[1]; ?>;
+	text-align: center;
+}
+.albumImageBox th, .albumImageBox td {
+	padding: 5px;
+}
+#Body .albumImageBox th {
+	width: 140px;
+	border-left: none;
+}
+
+/*==============================================================================
+ * 17. searchFormLine（検索フォームライン）
  *----------------------------------------------------------------------------*/
 .searchFormLine ul {
 	text-align: center;
@@ -1011,7 +1109,7 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 }
 
 /*==============================================================================
- * 15. linkLine（リンクライン）
+ * 18. linkLine（リンクライン）
  *----------------------------------------------------------------------------*/
 .linkLine ul.moreInfo {
 	text-align: center;
@@ -1022,7 +1120,7 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 }
 
 /*==============================================================================
- * 16. prevNextLinkLine（前次リンクライン）
+ * 19. prevNextLinkLine（前次リンクライン）
  *----------------------------------------------------------------------------*/
 .prevNextLinkLine {
 	zoom: 1;
@@ -1044,7 +1142,22 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 }
 
 /*==============================================================================
- * 17. commentList（コメントリスト）
+ * 20. buttonLine（ボタンライン）
+ *----------------------------------------------------------------------------*/
+.buttonLine form {
+	text-align: center;
+}
+
+/*==============================================================================
+ * 21. alertLine（アラートライン）
+ *----------------------------------------------------------------------------*/
+.alertLine p {
+	text-align: center;
+	color: #ff0000;
+}
+
+/*==============================================================================
+ * 22. commentList（コメントリスト）
  *----------------------------------------------------------------------------*/
 .commentList dl {
 	border-top: 1px solid #<?php echo $colors[1]; ?>; overflow:hidden;
@@ -1107,7 +1220,7 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 }
 
 /*==============================================================================
- * 18. searchResultList（検索結果リスト）
+ * 23. searchResultList（検索結果リスト）
  *----------------------------------------------------------------------------*/
 .searchResultList .partsInfo {
 	background: #<?php echo $colors[6]; ?>;
@@ -1168,7 +1281,7 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 }
 
 /*==============================================================================
- * 20. reviewList（レビューリスト）
+ * 24. reviewList（レビューリスト）
  *----------------------------------------------------------------------------*/
 .reviewList dl {
 	zoom: 1;
@@ -1222,7 +1335,7 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 }
 
 /*==============================================================================
- * 21. recentList（最新書き込みリスト）
+ * 25. recentList（最新書き込みリスト）
  *----------------------------------------------------------------------------*/
 .recentList dl {
 	border-top: 1px solid #<?php echo $colors[1]; ?>;
@@ -1248,7 +1361,7 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 }
 
 /*==============================================================================
- * 22. friendIntroList（フレンド紹介文リスト）
+ * 26. friendIntroList（フレンド紹介文リスト）
  *----------------------------------------------------------------------------*/
 .friendIntroList th,
 .friendIntroList td {
@@ -1269,7 +1382,7 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 }
 
 /*==============================================================================
- * 23. manageList（管理リスト）
+ * 27. manageList（管理リスト）
  *----------------------------------------------------------------------------*/
 .manageList td {
 	padding: 5px;
@@ -1305,7 +1418,7 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 }
 
 /*==============================================================================
- * 24. searchCategoryList（検索項目リスト）
+ * 28. searchCategoryList（検索項目リスト）
  *----------------------------------------------------------------------------*/
 .searchCategoryList .partsInfo {
 	padding: 5px;
@@ -1346,7 +1459,7 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 }
 
 /*==============================================================================
- * 25. messageList（メッセージリスト）
+ * 29. messageList（メッセージリスト）
  *----------------------------------------------------------------------------*/
 .messageList .partsHeading p.date {
 	font-weight: bold;
@@ -1436,7 +1549,7 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 }
 
 /*==============================================================================
- * 26. ashiatoList（あしあとリスト）
+ * 30. ashiatoList（あしあとリスト）
  *----------------------------------------------------------------------------*/
 .ashiatoList div.partsInfo {
 	border-bottom: 1px solid #<?php echo $colors[1]; ?>;
@@ -1459,7 +1572,7 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 }
 
 /*==============================================================================
- * 27. rankingList（ランキングリスト）
+ * 31. rankingList（ランキングリスト）
  *----------------------------------------------------------------------------*/
 .rankingList .partsHeading p {
 	margin: 0;
@@ -1497,7 +1610,100 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 }
 
 /*==============================================================================
- * 28. homeNineTable（ホーム9面テーブル）
+ * 32. bizSideTodoList（BIZ用Todoリスト）
+ *----------------------------------------------------------------------------*/
+#Body .bizSideTodoList {
+	width: 220px;
+	margin: 10px 5px;
+	border: 1px solid #<?php echo $colors[1]; ?>;
+}
+#Body .bizSideTodoList td {
+	border-width: 1px 0 0;
+}
+.bizSideTodoList .block {
+	padding: 5px;
+}
+.bizSideTodoList textarea {
+	width: 98%;
+}
+.bizSideTodoList tr.someone {
+	background: #<?php echo $colors[7]; ?>;
+}
+.bizSideTodoList tr.checked {
+	color: #999999;
+}
+.bizSideTodoList td.state {
+	width: 35px;
+}
+.bizSideTodoList td.operation {
+	width: 16px;
+}
+
+/*==============================================================================
+ * 33. bizSideScheduleList（BIZ用スケジュールリスト） 
+ *----------------------------------------------------------------------------*/
+#Body .bizSideScheduleList {
+	width: 220px;
+	margin: 10px 5px;
+	border: 1px solid #<?php echo $colors[1]; ?>;
+}
+.bizSideScheduleList dl {
+	overflow: hidden;
+	border-top: 1px solid #<?php echo $colors[1]; ?>;
+}
+.bizSideScheduleList dt {
+	float: left;
+	width: 60px;
+	padding: 5px;
+	text-align: center;
+}
+.bizSideScheduleList dd {
+	zoom: 1;
+	margin-left: 70px;
+	padding: 5px;
+	border-left: 1px solid #<?php echo $colors[1]; ?>;
+}
+
+/*==============================================================================
+ * 34. albumList（アルバムリスト）
+ *----------------------------------------------------------------------------*/
+.albumList th,
+.albumList td {
+	padding: 5px;
+}
+.albumList th {
+	width: 75px;
+}
+.albumList td.photo {
+	width: 190px;
+	padding: 5px 0;
+	text-align: center;
+}
+.albumList td.photo p {
+	text-align: center;
+	padding: 5px;
+}
+#Body .albumList th:first-child,
+#Body .albumList th.first-child {
+	border-left-width: 1px;
+}
+.albumList td.operation {
+	text-align: center;
+}
+
+/*==============================================================================
+ * 35. albumImageList（アルバム画像リスト）
+ *----------------------------------------------------------------------------*/
+.albumImageList td {
+	padding: 5px;
+	text-align: center;
+}
+.albumImageList td p {
+	text-align: center;
+}
+
+/*==============================================================================
+ * 36. homeNineTable（ホーム9面テーブル）
  *----------------------------------------------------------------------------*/
 .homeNineTable tr.photo td {
 	height: 80px;
@@ -1518,7 +1724,7 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 }
 
 /*==============================================================================
- * 29. photoTable（写真テーブル）
+ * 37. photoTable（写真テーブル）
  *----------------------------------------------------------------------------*/
 .photoTable {
 	width: 561px;
@@ -1537,7 +1743,7 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 }
 
 /*==============================================================================
- * 30. homeMainTable（ホームメインテーブル）
+ * 38. homeMainTable（ホームメインテーブル）
  *----------------------------------------------------------------------------*/
 .homeMainTable .partsHeading {
 	zoom: 1;
@@ -1577,7 +1783,7 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 }
 
 /*==============================================================================
- * 31. formTable（入力フォームテーブル）
+ * 39. formTable（入力フォームテーブル）
  *----------------------------------------------------------------------------*/
 .formTable .partsHeading {
 	zoom: 1;
@@ -1641,7 +1847,7 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 }
 
 /*==============================================================================
- * 32. weeklyCalendarTable（週間カレンダーテーブル）
+ * 40. weeklyCalendarTable（週間カレンダーテーブル）
  *----------------------------------------------------------------------------*/
 #Body .weeklyCalendarTable .parts {
 	border-top: none;
@@ -1668,7 +1874,7 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 }
 
 /*==============================================================================
- * 33. monthlyCalendarTable（月間カレンダーテーブル）
+ * 41. monthlyCalendarTable（月間カレンダーテーブル）
  *----------------------------------------------------------------------------*/
 .monthlyCalendarTable div.block {
 	zoom: 1;
@@ -1714,199 +1920,7 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 }
 
 /*==============================================================================
- * 34. sideNav（サイドナビ）
- *----------------------------------------------------------------------------*/
-.sideNav .item {
-	overflow: hidden;
-	width: 150px;
-	margin: 0 auto 10px;
-	border: 8px solid #<?php echo $colors[9]; ?>;
-}
-.sideNav .partsHeading {
-	border-bottom: 1px solid #<?php echo $colors[1]; ?>;
-}
-.sideNav .pageNav ul {
-	margin: 1px;
-}
-.sideNav .pageNav li {
-	padding: 4px 0 4px 18px;
-	background: url(<?php echo getSkin('icon_1'); ?>) 8px 50% no-repeat scroll;
-}
-.sideNav .pageNav li.looking {
-	background-color: #<?php echo $colors[7]; ?>;
-}
-.sideNav .calendar .partsHeading {
-	padding: 4px 0;
-	border: none;
-	background: none;
-	text-align: center;
-}
-.sideNav .calendar th {
-	background-color: #<?php echo $colors[7]; ?>;
-	text-align: center;
-}
-.sideNav .calendar td {
-	padding: 1px 2px;
-	text-align: right;
-}
-.sideNav .list {
-	padding: 4px 0;
-}
-.sideNav .list li {
-	padding-left: 16px;
-	background: no-repeat 6px 4px;
-}
-.sideNav .monthlyMessage li  { background-image: url(<?php echo getSkin('icon_1'); ?>); }
-.sideNav .recentlyDiary li   { background-image: url(<?php echo getSkin('icon_3'); ?>); }
-.sideNav .recentlyComment li { background-image: url(<?php echo getSkin('icon_1'); ?>); }
-.sideNav .monthlyDiary li    { background-image: url(<?php echo getSkin('icon_2'); ?>); }
-.sideNav .listCategory li    { background-image: url(<?php echo getSkin('icon_2'); ?>); }
-
-/*==============================================================================
- * 35. rankingSideNav（ランキングサイドナビ）
- *----------------------------------------------------------------------------*/
-.rankingSideNav {
-	width: 150px;
-	margin: 0 auto;
-	border: 8px solid #<?php echo $colors[9]; ?>;
-}
-.rankingSideNav .partsHeading {
-	padding: 2px 4px;
-	border-bottom: 1px solid #<?php echo $colors[1]; ?>;
-	background-image: none;
-	text-align: center;
-}
-.rankingSideNav p {
-	margin: 3px;
-}
-.rankingSideNav p.link {
-	padding: 3px;
-	border: 1px solid #<?php echo $colors[1]; ?>;
-	text-align: right;
-}
-
-/*==============================================================================
- * 36. buttonLine（ボタンライン）
- *----------------------------------------------------------------------------*/
-.buttonLine form {
-	text-align: center;
-}
-
-/*==============================================================================
- * 37. messageDetailBox（メッセージ詳細ボックス）
- *----------------------------------------------------------------------------*/
-#Body .messageDetailBox th:first-child,
-#Body .messageDetailBox th.first-child {
-	border-left-width: 1px;
-}
-.messageDetailBox th,
-.messageDetailBox td {
-	padding: 5px;
-}
-.messageDetailBox td.photo {
-	width: 120px;
-	text-align: center;
-}
-.messageDetailBox th {
-	width: 54px;
-	padding-left: 0;
-	padding-right: 16px;
-	background: url(<?php echo getSkin('colon'); ?>) no-repeat 96% 50%;
-	text-align: right;
-}
-#Body .messageDetailBox td {
-	border-left: none;
-}
-.messageDetailBox ul.photo {
-	margin: 10px;
-	text-align: center;
-}
-.messageDetailBox p.text {
-	margin: 10px 60px;;
-}
-.messageDetailBox ul.photo li {
-	display: inline;
-	margin-left: 6px;
-}
-.messageDetailBox div.operation {
-	zoom: 1;
-	overflow: hidden;
-	overflow: -moz-scrollbars-none;
-}
-.messageDetailBox form.delete {
-	float: left;
-	width: 50%;
-	text-align: left;
-}
-.messageDetailBox form.send {
-	float: right;
-	width: 50%;
-	text-align: right;
-}
-.messageDetailBox form ul.moreInfo {
-	display: inline;
-}
-.messageDetailBox div.attachFile {
-	padding: 16px 5px;
-}
-
-/*==============================================================================
- * 38. bizSideTodoList（BIZ用Todoリスト）
- *----------------------------------------------------------------------------*/
-#Body .bizSideTodoList {
-	width: 220px;
-	margin: 10px 5px;
-	border: 1px solid #<?php echo $colors[1]; ?>;
-}
-#Body .bizSideTodoList td {
-	border-width: 1px 0 0;
-}
-.bizSideTodoList .block {
-	padding: 5px;
-}
-.bizSideTodoList textarea {
-	width: 98%;
-}
-.bizSideTodoList tr.someone {
-	background: #<?php echo $colors[7]; ?>;
-}
-.bizSideTodoList tr.checked {
-	color: #999999;
-}
-.bizSideTodoList td.state {
-	width: 35px;
-}
-.bizSideTodoList td.operation {
-	width: 16px;
-}
-
-/*==============================================================================
- * 39. bizSideScheduleList（BIZ用スケジュールリスト） 
- *----------------------------------------------------------------------------*/
-#Body .bizSideScheduleList {
-	width: 220px;
-	margin: 10px 5px;
-	border: 1px solid #<?php echo $colors[1]; ?>;
-}
-.bizSideScheduleList dl {
-	overflow: hidden;
-	border-top: 1px solid #<?php echo $colors[1]; ?>;
-}
-.bizSideScheduleList dt {
-	float: left;
-	width: 60px;
-	padding: 5px;
-	text-align: center;
-}
-.bizSideScheduleList dd {
-	zoom: 1;
-	margin-left: 70px;
-	padding: 5px;
-	border-left: 1px solid #<?php echo $colors[1]; ?>;
-}
-
-/*==============================================================================
- * 40. bizWeeklyCalendarTable（BIZ用週間カレンダーテーブル）
+ * 42. bizWeeklyCalendarTable（BIZ用週間カレンダーテーブル）
  *----------------------------------------------------------------------------*/
 #Body .bizWeeklyCalendarTable .parts {
 	border-top: none;
@@ -1958,89 +1972,75 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 }
 
 /*==============================================================================
- * 41. albumList（アルバムリスト）
+ * 43. sideNav（サイドナビ）
  *----------------------------------------------------------------------------*/
-.albumList th,
-.albumList td {
-	padding: 5px;
+.sideNav .item {
+	overflow: hidden;
+	width: 150px;
+	margin: 0 auto 10px;
+	border: 8px solid #<?php echo $colors[9]; ?>;
 }
-.albumList th {
-	width: 75px;
+.sideNav .partsHeading {
+	border-bottom: 1px solid #<?php echo $colors[1]; ?>;
 }
-.albumList td.photo {
-	width: 190px;
-	padding: 5px 0;
+.sideNav .pageNav ul {
+	margin: 1px;
+}
+.sideNav .pageNav li {
+	padding: 4px 0 4px 18px;
+	background: url(<?php echo getSkin('icon_1'); ?>) 8px 50% no-repeat scroll;
+}
+.sideNav .pageNav li.looking {
+	background-color: #<?php echo $colors[7]; ?>;
+}
+.sideNav .calendar .partsHeading {
+	padding: 4px 0;
+	border: none;
+	background: none;
 	text-align: center;
 }
-.albumList td.photo p {
-	text-align: center;
-	padding: 5px;
-}
-#Body .albumList th:first-child,
-#Body .albumList th.first-child {
-	border-left-width: 1px;
-}
-.albumList td.operation {
+.sideNav .calendar th {
+	background-color: #<?php echo $colors[7]; ?>;
 	text-align: center;
 }
-
-/*==============================================================================
- * 42. albumDetailBox（アルバム詳細ボックス）
- *----------------------------------------------------------------------------*/
-.albumDetailBox th,
-.albumDetailBox td {
-	padding: 5px;
-}
-.albumDetailBox th {
-	width: 75px;
-}
-.albumDetailBox td.photo {
-	width: 190px;
-	padding: 5px 0;
-	text-align: center;
-}
-#Body .albumDetailBox th:first-child,
-#Body .albumDetailBox th.first-child,
-#Body .albumDetailBox td.operation {
-	border-left-width: 1px;
-}
-.albumDetailBox td.operation {
+.sideNav .calendar td {
+	padding: 1px 2px;
 	text-align: right;
 }
+.sideNav .list {
+	padding: 4px 0;
+}
+.sideNav .list li {
+	padding-left: 16px;
+	background: no-repeat 6px 4px;
+}
+.sideNav .monthlyMessage li  { background-image: url(<?php echo getSkin('icon_1'); ?>); }
+.sideNav .recentlyDiary li   { background-image: url(<?php echo getSkin('icon_3'); ?>); }
+.sideNav .recentlyComment li { background-image: url(<?php echo getSkin('icon_1'); ?>); }
+.sideNav .monthlyDiary li    { background-image: url(<?php echo getSkin('icon_2'); ?>); }
+.sideNav .listCategory li    { background-image: url(<?php echo getSkin('icon_2'); ?>); }
 
 /*==============================================================================
- * 43. albumImageList（アルバム画像リスト）
+ * 44. rankingSideNav（ランキングサイドナビ）
  *----------------------------------------------------------------------------*/
-.albumImageList td {
-	padding: 5px;
+.rankingSideNav {
+	width: 150px;
+	margin: 0 auto;
+	border: 8px solid #<?php echo $colors[9]; ?>;
+}
+.rankingSideNav .partsHeading {
+	padding: 2px 4px;
+	border-bottom: 1px solid #<?php echo $colors[1]; ?>;
+	background-image: none;
 	text-align: center;
 }
-.albumImageList td p {
-	text-align: center;
+.rankingSideNav p {
+	margin: 3px;
 }
-
-/*==============================================================================
- * 44. albumImageBox（アルバム画像ボックス）
- *----------------------------------------------------------------------------*/
-.albumImageBox p.photo {
-	padding: 10px;
-	border-top: 1px solid #<?php echo $colors[1]; ?>;
-	text-align: center;
-}
-.albumImageBox th, .albumImageBox td {
-	padding: 5px;
-}
-#Body .albumImageBox th {
-	width: 140px;
-	border-left: none;
-}
-
-/*==============================================================================
- * 45. alertLine（アラートライン）
- *----------------------------------------------------------------------------*/
-.alertLine p {
-	text-align: center;
-	color: #ff0000;
+.rankingSideNav p.link {
+	padding: 3px;
+	border: 1px solid #<?php echo $colors[1]; ?>;
+	text-align: right;
 }
 
 /**=============================================================================
