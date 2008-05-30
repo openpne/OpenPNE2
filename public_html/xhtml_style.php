@@ -2126,6 +2126,10 @@ div#container_login .footer p {
 	padding: 5px 0;
 	text-align: center;
 }
+.albumList td.photo p {
+	text-align: center;
+	padding: 5px;
+}
 #Body .albumList th:first-child,
 #Body .albumList th.first-child {
 	border-left-width: 1px;
