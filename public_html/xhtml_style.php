@@ -12,15 +12,14 @@ $custom_css = p_common_c_siteadmin4target_pagename('inc_custom_css');
 $decoration_config = db_decoration_enable_list();
 $old_colors = util_get_color_config();
 $colors = array(
-    1 => $old_colors['bg_01'], // (1)線の色
-    2 => $old_colors['bg_12'], // (2)ページ背景
-    3 => $old_colors['bg_13'], // (3)コンテンツ領域背景
-    4 => $old_colors['bg_00'], // (4)枠色
-    5 => $old_colors['bg_06'], // (5)見出し背景
-    6 => $old_colors['bg_09'], // (6)説明領域背景
-    7 => $old_colors['bg_09'], // (7)項目背景
-    8 => $old_colors['bg_02'], // (8)ボックスの背景
-    9 => $old_colors['bg_10'], // (9)左メニュー枠色
+    1 => $old_colors['bg_01'], // 1. 線の色
+    2 => $old_colors['bg_12'], // 2. ページ背景
+    3 => $old_colors['bg_13'], // 3. コンテンツ領域背景
+    4 => $old_colors['bg_00'], // 4. 枠色
+    5 => $old_colors['bg_06'], // 5. 見出し背景
+    6 => $old_colors['bg_09'], // 6. 説明領域背景
+    7 => $old_colors['bg_02'], // 7. ボックスの背景
+    8 => $old_colors['bg_10'], // 8. 左メニュー枠色
 );
 
 function getSkin($name)
@@ -951,13 +950,13 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 #Body .homeInfoBox {
 	padding-left: 102px;
 	border: 1px solid #<?php echo $colors[1]; ?>;
-	background: #<?php echo $colors[7]; ?> url(<?php echo getSkin('icon_information'); ?>) no-repeat 5px 50%;
+	background: #<?php echo $colors[6]; ?> url(<?php echo getSkin('icon_information'); ?>) no-repeat 5px 50%;
 }
 .homeInfoBox div.body {
 	min-height: 1.2em;
 	padding: 5px;
 	border-left: 1px solid #<?php echo $colors[1]; ?>;
-	background: #<?php echo $colors[8]; ?>;
+	background: #<?php echo $colors[7]; ?>;
 }
 .homeInfoBox .caution {
 	color: #ff0000;
@@ -1498,7 +1497,7 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 	height: 20px;
 }
 .messageList tr.unread {
-	background: #<?php echo $colors[7]; ?>;
+	background: #<?php echo $colors[6]; ?>;
 }
 #Body .messageList th.delete {
 	font-weight: normal;
@@ -1593,17 +1592,17 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 	padding: 5px;
 }
 .rankingList td.name {
-	background: #<?php echo $colors[7]; ?>;
+	background: #<?php echo $colors[6]; ?>;
 }
 .rankingList td.name a {
 	font-weight: bold;
 }
 .rankingList .ditem {
 	margin: 8px 15px;
-	background: #<?php echo $colors[7]; ?>;
+	background: #<?php echo $colors[6]; ?>;
 }
 .rankingList .item {
-	background: #<?php echo $colors[8]; ?>;
+	background: #<?php echo $colors[7]; ?>;
 }
 .rankingList .item td.photo {
 	width: 90px;
@@ -1627,7 +1626,7 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 	width: 98%;
 }
 .bizSideTodoList tr.someone {
-	background: #<?php echo $colors[7]; ?>;
+	background: #<?php echo $colors[6]; ?>;
 }
 .bizSideTodoList tr.checked {
 	color: #999999;
@@ -1756,7 +1755,7 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 }
 .homeMainTable th {
 	width: 83px;
-	background-color: #<?php echo $colors[7]; ?>;
+	background-color: #<?php echo $colors[6]; ?>;
 }
 .homeMainTable th, .homeMainTable td {
 	padding: 5px;
@@ -1863,7 +1862,7 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 	vertical-align: top;
 }
 .weeklyCalendarTable .calendar .today {
-	background: #<?php echo $colors[7]; ?>;
+	background: #<?php echo $colors[6]; ?>;
 }
 .weeklyCalendarTable .calendar .today p.day {
 	font-weight: bold;
@@ -1905,7 +1904,7 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 	vertical-align: top;
 }
 .monthlyCalendarTable .calendar td.today {
-	background: #<?php echo $colors[7]; ?>;
+	background: #<?php echo $colors[6]; ?>;
 	font-weight: bold;
 }
 .monthlyCalendarTable .calendar td p {
@@ -1939,7 +1938,7 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 	padding: 0;
 }
 .bizWeeklyCalendarTable .calendar .today {
-	background: #<?php echo $colors[7]; ?>;
+	background: #<?php echo $colors[6]; ?>;
 }
 .bizWeeklyCalendarTable .calendar .today p.day {
 	font-weight: bold;
@@ -1978,7 +1977,7 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 	overflow: hidden;
 	width: 150px;
 	margin: 0 auto 10px;
-	border: 8px solid #<?php echo $colors[9]; ?>;
+	border: 8px solid #<?php echo $colors[8]; ?>;
 }
 .sideNav .partsHeading {
 	border-bottom: 1px solid #<?php echo $colors[1]; ?>;
@@ -1991,7 +1990,7 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 	background: url(<?php echo getSkin('icon_1'); ?>) 8px 50% no-repeat scroll;
 }
 .sideNav .pageNav li.looking {
-	background-color: #<?php echo $colors[7]; ?>;
+	background-color: #<?php echo $colors[6]; ?>;
 }
 .sideNav .calendar .partsHeading {
 	padding: 4px 0;
@@ -2000,7 +1999,7 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 	text-align: center;
 }
 .sideNav .calendar th {
-	background-color: #<?php echo $colors[7]; ?>;
+	background-color: #<?php echo $colors[6]; ?>;
 	text-align: center;
 }
 .sideNav .calendar td {
@@ -2026,7 +2025,7 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 .rankingSideNav {
 	width: 150px;
 	margin: 0 auto;
-	border: 8px solid #<?php echo $colors[9]; ?>;
+	border: 8px solid #<?php echo $colors[8]; ?>;
 }
 .rankingSideNav .partsHeading {
 	padding: 2px 4px;
@@ -2056,10 +2055,10 @@ div.dparts {
 	background-color: #<?php echo $colors[4]; ?>;
 }
 div.parts {
-	background-color: #<?php echo $colors[8]; ?>;
+	background-color: #<?php echo $colors[7]; ?>;
 }
 .sideNav .item {
-	background-color: #<?php echo $colors[8]; ?>;
+	background-color: #<?php echo $colors[7]; ?>;
 }
 #Body .sideNav {
 	background-color: transparent;
