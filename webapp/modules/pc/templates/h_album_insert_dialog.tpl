@@ -41,7 +41,8 @@ function insertAlbumURLToTextarea(album_id) {
 <p>アルバム・アルバム写真を記事に挿入することができます。</p>
 
 ({if $total_num})
-<div class="dparts" style="margin-top: 1em;"><div class="parts">
+({* {{{ albumList *})
+<div class="dparts albumList"><div class="parts">
 <div class="partsHeading"><h3>({$target_member.nickname})のアルバム</h3></div>
 
 ({capture name=pager})({strip})
@@ -68,20 +69,20 @@ function insertAlbumURLToTextarea(album_id) {
 ({foreach from=$target_album_list item=item})
 <table>
 <tr>
-<td rowspan="4" align="center" style="width: 190px; padding: 5px;">
+<td class="photo" rowspan="4">
 <img src="({if $item.album_cover_image})({t_img_url filename=$item.album_cover_image w=180 h=180})({else})({t_img_url_skin filename=no_image w=180 h=180})({/if})" alt="" />
-<p style="text-align:center; padding: 2px;"><a href="#" onclick="insertAlbumURLToTextarea(({$item.c_album_id}))">アルバムを挿入</a></p>
+<p><a href="#" onclick="insertAlbumURLToTextarea(({$item.c_album_id}))">アルバムを挿入</a></p>
 </td>
-<th style="width:75px; padding: 5px;">タイトル</th>
-<td style="padding: 5px;" colspan="2">({$item.subject})</td>
+<th>タイトル</th>
+<td colspan="2">({$item.subject})</td>
 </tr>
 <tr>
-<th style="border-left-width: 1px; padding: 5px;">説明文</th>
-<td style="padding: 5px;" colspan="2">({$item.description|t_truncate:36:"":3})</td>
+<th>説明文</th>
+<td colspan="2">({$item.description|t_truncate:36:"":3})</td>
 </tr>
 <tr>
-<th style="border-left-width: 1px; padding: 5px;">公開範囲</th>
-<td style="padding: 5px;" colspan="2">
+<th>公開範囲</th>
+<td colspan="2">
 ({if $item.public_flag == "public"})
 全員に公開
 ({elseif $item.public_flag == "friend"})
@@ -92,9 +93,9 @@ function insertAlbumURLToTextarea(album_id) {
 </td>
 </tr>
 <tr>
-<th style="border-left-width: 1px; padding: 5px;">作成日時</th>
-<td style="padding: 5px;">({$item.r_datetime|date_format:"%m月%d日 %H:%M"})</td>
-<td style="padding: 5px; text-align: center;"><a href="({t_url m=pc a=page_h_album_image_insert_dialog})&amp;target_c_album_id=({$item.c_album_id})"><img src="({t_img_url_skin filename=button_shosai})" alt="詳細を見る" /></a></td>
+<th>作成日時</th>
+<td>({$item.r_datetime|date_format:"%m月%d日 %H:%M"})</td>
+<td class="operation"><a href="({t_url m=pc a=page_h_album_image_insert_dialog})&amp;target_c_album_id=({$item.c_album_id})"><img src="({t_img_url_skin filename=button_shosai})" alt="詳細を見る" /></a></td>
 </tr>
 </table>
 ({/foreach})
@@ -102,6 +103,7 @@ function insertAlbumURLToTextarea(album_id) {
 ({$smarty.capture.pager|smarty:nodefaults})
 
 </div></div>
+({* }}} *})
 ({else})
 ({* {{{ simpleBox *})
 <div class="dparts simpleBox"><div class="parts">
