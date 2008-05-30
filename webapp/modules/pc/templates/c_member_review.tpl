@@ -20,7 +20,7 @@
 ({/if})
 
 ({if $c_member_review})
-({* {{{ *})
+({* {{{ reviewList *})
 <div class="dparts reviewList"><div class="parts">
 <div class="partsHeading"><h3>メンバーのおすすめレビュー</h3></div>
 
