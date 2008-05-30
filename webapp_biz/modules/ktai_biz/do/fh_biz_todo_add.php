@@ -30,7 +30,7 @@ class ktai_biz_do_fh_biz_todo_add extends OpenPNE_Action
         }
 
         if ($due_datetime_y && $due_datetime_m && $due_datetime_d) {
-            $due_datetime = $due_datetime_y . '-' . $due_datetime_m . '-' . $due_datetime_d . ' 00:00:00';            
+            $due_datetime = $due_datetime_y . '-' . $due_datetime_m . '-' . $due_datetime_d . ' 00:00:00';
         } else {
             $due_datetime = '0000-00-00 00:00:00';
         }

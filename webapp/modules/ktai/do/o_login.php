@@ -1,13 +1,13 @@
 <?php
 /**
- * @copyright 2005-2007 OpenPNE Project
+ * @copyright 2005-2008 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
 class ktai_do_o_login extends OpenPNE_Action
 {
     var $_auth;
-    
+
     function isSecure()
     {
         return false;
@@ -20,18 +20,17 @@ class ktai_do_o_login extends OpenPNE_Action
         $ktai_address = $requests['ktai_address'];
         $password = $requests['password'];
         // ----------
-        
+
         @session_name('OpenPNEktai');
         @session_start();
         @session_regenerate_id();
-        
-        $auth_config = get_auth_config(true);
-        $auth_config['options']['advancedsecurity'] = false;
-        $auth = new OpenPNE_Auth($auth_config['storage'], $auth_config['options'],true);
-        $this->_auth =& $auth;
+
+        $config = get_auth_config(true);
+        $auth = new OpenPNE_Auth($config);
         $auth->setExpire($GLOBALS['OpenPNE']['ktai']['session_lifetime']);
         $auth->setIdle($GLOBALS['OpenPNE']['ktai']['session_idletime']);
-        
+        $this->_auth =& $auth;
+
         if (LOGIN_CHECK_ENABLE) {
             // 不正ログインチェック
             include_once 'OpenPNE/LoginChecker.php';
@@ -41,21 +40,30 @@ class ktai_do_o_login extends OpenPNE_Action
                 'reject_time' => LOGIN_REJECT_TIME,
             );
             $lc = new OpenPNE_LoginChecker($options);
-            if ($lc->is_rejected() || !$auth->login(false, true, true)) {
+            if ($lc->is_rejected() || !$auth->login()) {
                 // 認証エラー
                 $lc->fail_login();
                 $p = array('msg' => '0', 'kad' => t_encrypt($ktai_address), 'login_params' => $requests['login_params']);
                 openpne_redirect('ktai', 'page_o_login', $p);
             }
         } else {
-            if (!$auth->login(false, true, true)) {
+            if (!$auth->login()) {
                 $p = array('msg' => '0', 'kad' => t_encrypt($ktai_address), 'login_params' => $requests['login_params']);
                 openpne_redirect('ktai', 'page_o_login', $p);
             }
         }
-        if (IS_SLAVEPNE && !($c_member_id = db_member_c_member_id4username_encrypted($auth->getUsername(), true))) {
-            db_member_create_member($_POST['username']);
+
+        $c_member_id = db_member_c_member_id4username_encrypted($auth->getUsername(), true);
+        if (!$c_member_id) {
+            if (OPENPNE_AUTH_MODE == 'slavepne') {
+                db_member_create_member($_POST['username']);
+            } else {
+                $p = array('msg' => '0', 'kad' => t_encrypt($ktai_address), 'login_params' => $requests['login_params']);
+                openpne_redirect('ktai', 'page_o_login', $p);
+            }
         }
+
+        db_member_do_access($c_member_id);
 
         // ログイン後のリダイレクト先を決定する
         $a = '';

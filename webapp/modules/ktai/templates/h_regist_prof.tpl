@@ -7,7 +7,7 @@
 ({t_form m=ktai a=do_h_regist_prof})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
 ({capture name="nick"})
-<font color="#({$ktai_color_config.font_06})">ﾆｯｸﾈｰﾑ：</font><font color="#({$ktai_color_config.font_09})">*</font><br>
+<font color="#({$ktai_color_config.font_06})">({$WORD_NICKNAME_HALF})：</font><font color="#({$ktai_color_config.font_09})">*</font><br>
 <input type="text" name="nickname"><br>
 <br>
 ({/capture})
@@ -34,6 +34,12 @@
     <option value="({$item})">({$item})
     ({/foreach})
 </select>日<br>
+<select name="public_flag_birth_month_day">
+    ({foreach from=$public_flags key=key item=item})
+    <option value="({$key})"({if $c_member.public_flag_birth_month_day == $key}) selected="selected"({/if})>({$item})
+    ({/foreach})
+</select><br>
+<br>
 ({/capture})
 
 ({foreach from=$profile_list item=profile})

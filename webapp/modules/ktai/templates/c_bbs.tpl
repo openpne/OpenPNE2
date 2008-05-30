@@ -81,8 +81,8 @@
 ({if $c_commu_topic_comment_list})
 <hr color="#({$ktai_color_config.border_01})">
 <center>
-ｺﾒﾝﾄ(全({$total_num})件)<br>
-({$pager.start})～({$pager.end})番を表示
+ｺﾒﾝﾄ(全({$pager.total_num})件)<br>
+({$pager.start_num})番～({$pager.end_num})番を表示
 </center>
 
 <hr color="#({$ktai_color_config.border_02})">
@@ -108,13 +108,20 @@
 </td></tr>
 ({/foreach})
 </table>
-({if $is_prev || $is_next})
+({if $pager.page_prev || $pager.page_next})
 <center>
 <a name="pager"></a>
-({if $is_prev})<a href="({t_url m=ktai a=page_c_bbs})&amp;target_c_commu_topic_id=({$c_commu_topic_id})&amp;page=({$page-1})&amp;({$tail})" accesskey="4">[i:128]前を表示</a>({/if})
-({if $is_prev && $is_next})&nbsp;({/if})
-({if $is_next})<a href="({t_url m=ktai a=page_c_bbs})&amp;target_c_commu_topic_id=({$c_commu_topic_id})&amp;page=({$page+1})&amp;({$tail})" accesskey="6">[i:130]次を表示</a>({/if})
+({if $pager.page_prev})<a href="({t_url m=ktai a=page_c_bbs})&amp;target_c_commu_topic_id=({$c_commu_topic_id})({if $requests.order == 'asc'})&amp;order=asc({/if})&amp;page=({$pager.page_prev})&amp;({$tail})" accesskey="4">[i:128]前を表示</a>({/if})
+({if $pager.page_prev && $pager.page_next})&nbsp;({/if})
+({if $pager.page_next})<a href="({t_url m=ktai a=page_c_bbs})&amp;target_c_commu_topic_id=({$c_commu_topic_id})({if $requests.order == 'asc'})&amp;order=asc({/if})&amp;page=({$pager.page_next})&amp;({$tail})" accesskey="6">[i:130]次を表示</a>({/if})
 <br>
+({if $pager.total_page_num > 1})
+({if $requests.order == 'asc'})
+<a href="({t_url m=ktai a=page_c_bbs})&amp;target_c_commu_topic_id=({$c_commu_topic_id})&amp;({$tail})">最新を表示</a>
+({else})
+<a href="({t_url m=ktai a=page_c_bbs})&amp;target_c_commu_topic_id=({$c_commu_topic_id})&amp;order=asc&amp;({$tail})">最初から表示</a>
+({/if})
+({/if})
 </center>
 ({/if})
 ({/if})
@@ -127,7 +134,7 @@
 <br>
 ({/if})
 
-
+({if $is_writable_comment})
 ({t_form m=ktai a=do_c_bbs_insert_c_commu_topic_comment})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
 <input type="hidden" name="target_c_commu_topic_id" value="({$c_commu_topic_id})">
@@ -154,6 +161,35 @@
 [i:110]<a href="mailto:({$mail_address})">ﾒｰﾙ投稿</a><br>
 写真も添付できます。<br>
 <font color="#({$ktai_color_config.font_09})">※ﾒｰﾙ投稿では絵文字が反映されません</font>
+({else})
+({if $c_commu_topic.event_flag})
+ｺﾒﾝﾄが1000番に達したので、このｲﾍﾞﾝﾄにはｺﾒﾝﾄできません。
+<hr color="#({$ktai_color_config.border_01})">
+({if !$is_c_event_member})
+({if !$c_commu_topic.capacity || ($c_commu_topic.capacity > $c_commu_topic.member_num)})
+<center>
+このｲﾍﾞﾝﾄに参加しますか？<br>
+({t_form m=ktai a=do_c_event_join_c_commu_event})
+<input type="hidden" name="ksid" value="({$PHPSESSID})">
+<input type="hidden" name="target_c_commu_topic_id" value="({$c_commu_topic_id})">
+<input type="submit" value="ｲﾍﾞﾝﾄに参加する"><br>
+</form>
+</center>
+({/if})
+({else})
+<center>
+このｲﾍﾞﾝﾄの参加をｷｬﾝｾﾙしますか？<br>
+({t_form m=ktai a=do_c_event_drop_c_commu_event})
+<input type="hidden" name="ksid" value="({$PHPSESSID})">
+<input type="hidden" name="target_c_commu_topic_id" value="({$c_commu_topic_id})">
+<input type="submit" value="参加をｷｬﾝｾﾙする"><br>
+</form>
+</center>
+({/if})
+({else})
+ｺﾒﾝﾄが1000番に達したので、このﾄﾋﾟｯｸにはｺﾒﾝﾄできません。
+({/if})
+({/if})
 ({/if})
 ({/if})
 <hr color="#({$ktai_color_config.border_01})">
@@ -162,6 +198,6 @@
 ({else})
 [i:90]<a href="({t_url m=ktai a=page_c_event_list})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">ｲﾍﾞﾝﾄﾘｽﾄ</a><br>
 ({/if})
-[i:90]<a href="({t_url m=ktai a=page_c_home})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">ｺﾐｭﾆﾃｨﾄｯﾌﾟ</a><br>
+[i:90]<a href="({t_url m=ktai a=page_c_home})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">({$WORD_COMMUNITY_HALF})ﾄｯﾌﾟ</a><br>
 
 ({$inc_ktai_footer|smarty:nodefaults})

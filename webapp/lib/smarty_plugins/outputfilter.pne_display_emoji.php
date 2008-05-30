@@ -1,4 +1,8 @@
 <?php
+/**
+ * @copyright 2005-2008 OpenPNE Project
+ * @license   http://www.php.net/license/3_01.txt PHP License 3.01
+ */
 
 /**
  * 「[c:NNN]」形式の絵文字コードをHTML表示用に変換するアウトプットフィルタ
@@ -8,10 +12,12 @@ function smarty_outputfilter_pne_display_emoji($tpl_output, &$smarty)
     $list = array();
 
     if (empty($GLOBALS['__Framework']['carrier'])) {
-        // input, textarea, head を退避
+        // input, textarea, option, img, head を退避
         $patterns = array(
             '/<input[^>]+>/is',
-            '/<textarea[^>]+>.*?<\/textarea>/is',
+            '/<textarea.*?<\/textarea>/is',
+            '/<option.*?<\/option>/is',
+            '/<img[^>]+>/is',
             '/<head.*?<\/head>/is',
         );
 
@@ -22,7 +28,7 @@ function smarty_outputfilter_pne_display_emoji($tpl_output, &$smarty)
     $tpl_output = emoji_convert($tpl_output);
 
     if (empty($GLOBALS['__Framework']['carrier'])) {
-        // input, textarea, head を元に戻す
+        // input, textarea, option, img, head を元に戻す
         $tpl_output = str_replace(array_keys($list), array_values($list), $tpl_output);
     }
 

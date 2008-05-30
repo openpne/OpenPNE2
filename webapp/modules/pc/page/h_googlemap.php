@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2007 OpenPNE Project
+ * @copyright 2005-2008 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -14,7 +14,7 @@ class pc_page_h_googlemap extends OpenPNE_Action
     function execute($requests)
     {
         $u = $GLOBALS['AUTH']->uid();
-        
+
         // --- リクエスト変数
         $x = $requests['x'];
         $y = $requests['y'];
@@ -42,7 +42,10 @@ class pc_page_h_googlemap extends OpenPNE_Action
         $this->set('MapType', $MapType);
         $this->set('OPENPNE_URL', OPENPNE_URL);
         $this->set('SNS_NAME', SNS_NAME);
-        return 'success';
+
+        $view =& $this->getView();
+        $view->ext_display('h_googlemap.tpl');
+        exit;
     }
 }
 

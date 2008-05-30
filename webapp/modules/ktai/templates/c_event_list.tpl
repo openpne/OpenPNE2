@@ -19,7 +19,7 @@
 <table width="100%">
 ({foreach from=$c_topic_list item=item})
 <tr><td bgcolor="#({cycle values="`$ktai_color_config.bg_06`,`$ktai_color_config.bg_07`"})">
-({$item.r_datetime|date_format:"%Y/%m/%d %H:%M"})
+({$item.u_datetime|date_format:"%Y/%m/%d %H:%M"})
 ({if $item.is_c_topic_admin ==$u || $c_commu.c_member_id_admin == $u})
 [<a href="({t_url m=ktai a=page_c_event_edit})&amp;target_c_commu_topic_id=({$item.c_commu_topic_id})&amp;({$tail})">編集</a>]
 ({/if})<br>
@@ -36,9 +36,9 @@
 </table>
 ({if $is_prev || $is_next})
 <center>
-({if $is_prev})<a href="({t_url m=ktai a=page_c_event_list})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;page=({$page})&amp;direc=-1&amp;({$tail})" accesskey="4">[i:128]前を表示</a>({/if})
+({if $is_prev})<a href="({t_url m=ktai a=page_c_event_list})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;page=({$page-1})&amp;({$tail})" accesskey="4">[i:128]前を表示</a>({/if})
 ({if $is_prev && $is_next})&nbsp;({/if})
-({if $is_next})<a href="({t_url m=ktai a=page_c_event_list})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;page=({$page})&amp;direc=1&amp;({$tail})" accesskey="6">[i:130]次を表示</a>({/if})
+({if $is_next})<a href="({t_url m=ktai a=page_c_event_list})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;page=({$page+1})&amp;({$tail})" accesskey="6">[i:130]次を表示</a>({/if})
 <br>
 </center>
 ({/if})
@@ -46,5 +46,5 @@
 ({/if})
 
 <hr color="#({$ktai_color_config.border_01})">
-[i:90]<a href="({t_url m=ktai a=page_c_home})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">ｺﾐｭﾆﾃｨに戻る</a><br>
+[i:90]<a href="({t_url m=ktai a=page_c_home})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">({$WORD_COMMUNITY_HALF})に戻る</a><br>
 ({$inc_ktai_footer|smarty:nodefaults})

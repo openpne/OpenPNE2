@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2007 OpenPNE Project
+ * @copyright 2005-2008 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -76,10 +76,6 @@ function init_ktai_biz_page(&$smarty)
 
     //全ページ共通変数のアサイン
     $smarty->assign('msg', k_p_common_msg4msg_id($_REQUEST['msg']));
-    $smarty->assign('WORD_FRIEND', WORD_FRIEND);
-    $smarty->assign('WORD_MY_FRIEND', WORD_MY_FRIEND);
-    $smarty->assign('WORD_FRIEND_HALF', WORD_FRIEND_HALF);
-    $smarty->assign('WORD_MY_FRIEND_HALF', WORD_MY_FRIEND_HALF);
     $smarty->assign('ktai_color_config', util_get_color_config_ktai());
 
     $is_secure = $GLOBALS['__Framework']['is_secure'];

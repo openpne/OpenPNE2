@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2007 OpenPNE Project
+ * @copyright 2005-2008 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -27,7 +27,7 @@ function xmlrpc_smtp2pne($message)
     }
     if (empty($params['from'])) {
         return xmlrpc_get_response_faultDefault('incorrect_params');
-    }    
+    }
 
     // デコーダオブジェクトを作成
     $options['from_encoding']    = 'UTF-8';

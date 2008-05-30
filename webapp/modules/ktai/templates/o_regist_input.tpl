@@ -13,8 +13,19 @@
 <input type="hidden" name="aff_id" value="({$aff_id})">
 ({/if})
 
+({if $smarty.const.OPENPNE_AUTH_MODE == 'pneid'})
+<font color="#({$ktai_color_config.font_06})">ﾛｸﾞｲﾝID：</font><font color="#({$ktai_color_config.font_09})">*</font><br>
+<input type="text" name="login_id"><br>
+<font color="#({$ktai_color_config.font_09})">
+※4-30文字の半角英数字、記号(ｱﾝﾀﾞｰﾊﾞｰ｢_｣、ﾊｲﾌﾝ｢-｣)で入力してください<br>
+※最初と最後の文字は半角英数字で入力してください<br>
+※ｱﾙﾌｧﾍﾞｯﾄの大文字と小文字は区別されません<br>
+</font>
+<br>
+({/if})
+
 ({capture name="nick"})
-<font color="#({$ktai_color_config.font_06})">ﾆｯｸﾈｰﾑ：</font><font color="#({$ktai_color_config.font_09})">*</font><br>
+<font color="#({$ktai_color_config.font_06})">({$WORD_NICKNAME_HALF})：</font><font color="#({$ktai_color_config.font_09})">*</font><br>
 <input type="text" name="nickname"><br>
 <br>
 ({/capture})
@@ -41,6 +52,11 @@
     <option value="({$item})">({$item})
     ({/foreach})
 </select>日<br>
+<select name="public_flag_birth_month_day">
+    ({foreach from=$public_flags key=key item=item})
+    <option value="({$key})"({if $c_member.public_flag_birth_month_day == $key}) selected="selected"({/if})>({$item})
+    ({/foreach})
+</select><br>
 <br>
 ({/capture})
 
@@ -72,7 +88,7 @@
 ({if $profile.disp_regist})
     <font color="#({$ktai_color_config.font_06})">({$profile.caption})：</font>
     ({if $profile.is_required})<font color="#({$ktai_color_config.font_09})">*</font>({/if})<br>
-    
+
     ({if $profile.form_type == 'text'})
         <input type="text" name="profile[({$profile.name})]" value="({$c_member.profile[$profile.name].value})">
     ({elseif $profile.form_type == 'textlong'})
@@ -127,7 +143,7 @@
 <br>
 <font color="#({$ktai_color_config.font_06})">秘密の質問：</font><font color="#({$ktai_color_config.font_09})">*</font><br>
 <select name="c_password_query_id">
-    <option value="0">選択してください
+    <option value="">選択してください
     ({foreach from=$password_query_list key=key item=item})
     <option value="({$key})">({$item})
     ({/foreach})

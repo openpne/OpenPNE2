@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2007 OpenPNE Project
+ * @copyright 2005-2008 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -12,7 +12,6 @@ class pc_page_fh_friend_list extends OpenPNE_Action
 
         // --- リクエスト変数
         $target_c_member_id = $requests['target_c_member_id'];
-        $direc = $requests['direc'];
         $page = $requests['page'];
         $order = $requests['order'];
         // ----------
@@ -50,7 +49,6 @@ class pc_page_fh_friend_list extends OpenPNE_Action
 
         // 1ページ当たりに表示するフレンドの数
         $page_size = 50;
-        $page += $direc;
 
         //ターゲットの詳細な友達リスト
         $list = db_friend_friend_list4c_member_id2($target_c_member_id, $page_size, $page, $order);

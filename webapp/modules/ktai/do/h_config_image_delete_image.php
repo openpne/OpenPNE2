@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2007 OpenPNE Project
+ * @copyright 2005-2008 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -24,7 +24,7 @@ class ktai_do_h_config_image_delete_image extends OpenPNE_Action
             }
         }
 
-        image_data_delete($c_member['image_filename_'.$img_num]);
+        db_image_data_delete($c_member['image_filename_'.$img_num]);
         db_member_delete_c_member_image_new($u, $img_num);
 
         if ($c_member['image_filename'] == $c_member['image_filename_'.$img_num]) {

@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2007 OpenPNE Project
+ * @copyright 2005-2008 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -10,7 +10,7 @@ class ktai_biz_do_fh_biz_schedule_edit extends OpenPNE_Action
     {
         $u  = $GLOBALS['KTAI_C_MEMBER_ID'];
         $tail = $GLOBALS['KTAI_URL_TAIL'];
-        
+
         if (!biz_isPermissionSchedule($u, $requests['schedule_id'])) {
             handle_kengen_error();
         }
@@ -66,7 +66,7 @@ class ktai_biz_do_fh_biz_schedule_edit extends OpenPNE_Action
             $_REQUEST['msg'] = 'タイトルを入力してください。';
             openpne_forward('ktai_biz', 'page', "fh_biz_schedule_edit");
             exit;
-        }   
+        }
         //---------------------
 
 

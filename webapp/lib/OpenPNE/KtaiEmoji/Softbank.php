@@ -1,7 +1,7 @@
 <?php
 
 class OpenPNE_KtaiEmoji_Softbank extends OpenPNE_KtaiEmoji_Common
-{   
+{
     /**
      * constructor
      */
@@ -499,7 +499,7 @@ class OpenPNE_KtaiEmoji_Softbank extends OpenPNE_KtaiEmoji_Common
             $this->value_list[$key] = pack('c5', 0x1b, 0x24, ord($value[0]), ord($value[1]), 0x0f);
         }
     }
-    
+
     function &getInstance()
     {
         static $singleton;

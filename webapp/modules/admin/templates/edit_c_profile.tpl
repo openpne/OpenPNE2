@@ -42,7 +42,7 @@
 <td class="cell01A">&nbsp;</td>
 <td class="cell01B">&nbsp;</td>
 <td class="cell02">-</td>
-<td class="cell03">ニックネーム</td>
+<td class="cell03">({$WORD_NICKNAME})</td>
 <td class="cell04">&nbsp;</td>
 <td class="cell05">○</td>
 <td class="cell06">×</td>
@@ -79,7 +79,7 @@
 <td class="cell03">誕生日</td>
 <td class="cell04">&nbsp;</td>
 <td class="cell05">○</td>
-<td class="cell06">×</td>
+<td class="cell06">○</td>
 <td class="cell07">全員に公開</td>
 <td class="cell08">単一選択(プルダウン)</td>
 <td class="cell09">&nbsp;</td>
@@ -124,7 +124,7 @@
 <td class="cell04">({$item.name})</td>
 <td class="cell05">({if $item.is_required})○({else})×({/if})</td>
 <td class="cell06">({if $item.public_flag_edit})○({else})×({/if})</td>
-<td class="cell07">({if $item.public_flag_default == 'private'})公開しない({elseif $item.public_flag_default == 'friend'})({$smarty.const.WORD_MY_FRIEND})まで公開({else})全員に公開({/if})</td>
+<td class="cell07">({if $item.public_flag_default == 'private'})公開しない({elseif $item.public_flag_default == 'friend'})({$WORD_MY_FRIEND})まで公開({else})全員に公開({/if})</td>
 <td class="cell08">({if $item.form_type == 'text'})テキスト({elseif $item.form_type == 'textlong'})テキスト(長)({elseif $item.form_type == 'textarea'})テキスト(複数行)({elseif $item.form_type == 'select'})単一選択(プルダウン)({elseif $item.form_type == 'radio'})単一選択(ラジオボタン)({elseif $item.form_type == 'checkbox'})複数選択(チェックボックス)({/if})</td>
 <td class="cell09">({$item.sort_order})</td>
 <td class="cell10">({if $item.form_type == 'select' || $item.form_type == 'checkbox' || $item.form_type == 'radio'})<a href="#opt_({$item.name})">一覧</a>({else})&nbsp;({/if})</td>
@@ -168,6 +168,7 @@
 
 <table class="basicType2">
 <tr>
+<th>ID</th>
 <th>項目名</th>
 <th>並び順</th>
 <th colspan="2">操作</th>
@@ -175,6 +176,7 @@
 ({foreach from=$item.options item=option})
 <tr>
 <form action="./" method="post">
+<td>({$option.c_profile_option_id})</td>
 <td>
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_c_profile_option','do')})" />
@@ -194,10 +196,10 @@
 </td>
 </form>
 </tr>
-</form>
 ({/foreach})
 <tr>
 <form action="./" method="post">
+<td>-</td>
 <td>
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('insert_c_profile_option','do')})" />

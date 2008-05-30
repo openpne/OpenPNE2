@@ -1,12 +1,13 @@
 <?php
 /**
- * @copyright 2005-2007 OpenPNE Project
+ * @copyright 2005-2008 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
 require_once 'OpenPNE/Auth.php';
 
-$auth = new OpenPNE_Auth();
+$config = get_auth_config();
+$auth = new OpenPNE_Auth($config);
 $auth->setExpire($GLOBALS['OpenPNE']['common']['session_lifetime']);
 $auth->setIdle($GLOBALS['OpenPNE']['common']['session_idletime']);
 
@@ -38,32 +39,49 @@ if (db_member_is_blacklist($u)) {
 $auth->uid($u);
 $GLOBALS['AUTH'] = $auth;
 
-if (IS_SLAVEPNE && (empty($_SESSION['regist_step']) || !$_SESSION['regist_step'])) {
-    $check_param = db_member_check_param_inputed($u);
-    $_SESSION['regist_step'] = ($check_param == 0);
-    $current_page = $GLOBALS['__Framework']['current_type']."_".$GLOBALS['__Framework']['current_action'];
-    
-    //プロフィールが未登録の場合はリダイレクト
-    $prof_ext_page=array(
-    'do_h_regist_prof'=>true,
-    'page_h_regist_prof'=>true,
-    'do_inc_page_header_logout'=>true,
+// ログインモードが email でない場合、ログインに必要な情報が入力されているかどうかをチェックする
+if (OPENPNE_AUTH_MODE != 'email' && empty($_SESSION['regist_step'])) {
+    $current_page = $GLOBALS['__Framework']['current_type'] . '_' . $GLOBALS['__Framework']['current_action'];
+
+    // プロフィールが未登録の場合でもアクセスすることのできるアクション
+    $prof_ext_page = array(
+        'do_h_regist_prof',
+        'page_h_regist_prof',
+        'do_inc_page_header_logout',
+        'page_h_regist_intro',
     );
-    
-    if (($check_param==1) && !$prof_ext_page[$current_page]) {
-        openpne_redirect('pc', 'page_h_regist_prof');
+
+    // メールアドレスが未登録の場合でもアクセスすることのできるアクション
+    $mail_ext_page = array(
+        'do_h_regist_address',
+        'page_h_regist_address',
+        'do_inc_page_header_logout',
+    );
+
+    $is_registered_profile = db_member_is_registered_nickname_birth_day($u);
+    $is_registered_profile_action = in_array($current_page, $prof_ext_page);
+
+    $is_registered_address = db_member_is_pc_address_registered($u);
+    $is_registered_address_action = in_array($current_page, $mail_ext_page);
+
+    if ($is_registered_profile && $is_registered_address) {
+        $_SESSION['regist_step'] = true;
+    } elseif ($is_registered_address && OPENPNE_AUTH_MODE == 'pneid') {
+        $_SESSION['regist_step'] = true;
+    } else {
+        $_SESSION['regist_step'] = false;
     }
-    
-    //メールアドレスが未登録の場合はリダイレクト
-    $mail_ext_page=array(
-    'do_h_regist_address'=>true,
-    'page_h_regist_address'=>true,
-    'do_inc_page_header_logout'=>true,
-    );
-    
-    if (($check_param==2) && !$mail_ext_page[$current_page]) {
-        openpne_redirect('pc', 'page_h_regist_address');
+
+    if (!$is_registered_profile_action && !$is_registered_address_action) {
+        // プロフィールが未登録
+        if (!$is_registered_profile && OPENPNE_AUTH_MODE == 'slavepne') {
+            openpne_redirect('pc', 'page_h_regist_intro');
+        }
+
+        // メールアドレスが未登録
+        if (!$is_registered_address) {
+            openpne_redirect('pc', 'page_h_regist_address');
+        }
     }
 }
-
 ?>

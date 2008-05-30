@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2007 OpenPNE Project
+ * @copyright 2005-2008 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -19,7 +19,7 @@ class admin_page_blacklist_edit extends OpenPNE_Action
         if ($requests['info']) {
             $c_black_list['info'] = $requests['info'];
         }
-        
+
         $this->set('blacklist', $c_black_list);
 
         return 'success';

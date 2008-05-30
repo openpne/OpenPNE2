@@ -8,7 +8,7 @@ require_once 'Services/AmazonECS4.php';
 
 /**
  * OpenPNEでAmazonECSを利用するためのクラス
- * 
+ *
  * @package OpenPNE
  * @author Kousuke Ebihara <ebihara@tejimaya.com>
  */
@@ -20,18 +20,18 @@ class OpenPNE_Amazon extends Services_AmazonECS4
      * @var array
      */
     var $_categoryToSearchIndex = array(
-        'books-jp' => 'Books', 
-        'books-us' => 'ForeignBooks', 
-        'music-jp' => 'Music', 
-        'classical-jp' => 'Classical', 
-        'dvd-jp' => 'DVD', 
-        'videogames-jp' => 'VideoGames', 
-        'software-jp' => 'Software', 
-        'electronics-jp' => 'Electronics', 
-        'kitchen-jp' => 'Kitchen', 
-        'toys-jp' => 'Toys', 
-        'sporting-goods-jp' => 'SportingGoods', 
-        'hpc-jp' => 'HealthPersonalCare', 
+        'books-jp' => 'Books',
+        'books-us' => 'ForeignBooks',
+        'music-jp' => 'Music',
+        'classical-jp' => 'Classical',
+        'dvd-jp' => 'DVD',
+        'videogames-jp' => 'VideoGames',
+        'software-jp' => 'Software',
+        'electronics-jp' => 'Electronics',
+        'kitchen-jp' => 'Kitchen',
+        'toys-jp' => 'Toys',
+        'sporting-goods-jp' => 'SportingGoods',
+        'hpc-jp' => 'HealthPersonalCare',
     );
 
     function ItemSearch($search_index, $options = array())

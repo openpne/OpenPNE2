@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2007 OpenPNE Project
+ * @copyright 2005-2008 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -31,7 +31,7 @@ class pc_do_h_config_3 extends OpenPNE_Action
         $schedule_start_day = $requests['schedule_start_day'];
         // ----------
 
-        if (IS_SLAVEPNE) {
+        if (OPENPNE_AUTH_MODE == 'slavepne') {
             $c_password_query_id = 0;
             $c_password_query_answer = '';
         } else {

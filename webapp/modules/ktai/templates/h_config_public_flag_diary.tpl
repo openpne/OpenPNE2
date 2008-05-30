@@ -3,12 +3,12 @@
 <font color="#({$ktai_color_config.font_05})"><a name="top">設定変更</a></font><br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
-<font color="#({$ktai_color_config.color_24})">日記の公開範囲設定</font><br>
+<font color="#({$ktai_color_config.color_24})">({$WORD_DIARY_HALF})の公開範囲設定</font><br>
 </td></tr></table>
-日記作成画面であらかじめ選択されている値となります。<br>
-また、ﾒｰﾙ投稿で書かれた日記はここで設定した公開範囲になります。<br>
+({$WORD_DIARY_HALF})作成画面であらかじめ選択されている値となります。<br>
+また、ﾒｰﾙ投稿で書かれた({$WORD_DIARY_HALF})はここで設定した公開範囲になります。<br>
 <br>
-<font color="#({$ktai_color_config.font_06})">※これまでに書かれた日記の公開範囲は変更されません。</font><br>
+<font color="#({$ktai_color_config.font_06})">※これまでに書かれた({$WORD_DIARY_HALF})の公開範囲は変更されません。</font><br>
 <hr color="#({$ktai_color_config.border_01})">
 ({t_form m=ktai a=do_h_config_public_flag_diary})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
@@ -25,9 +25,9 @@
 <br>
 <table width="100%">
 <tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
-日記公開範囲の一括設定<br>
+({$WORD_DIARY_HALF})公開範囲の一括設定<br>
 </td></tr></table>
-これまでに書かれた日記の公開設定を一括で変更します。
+これまでに書かれた({$WORD_DIARY_HALF})の公開設定を一括で変更します。
 <hr color="#({$ktai_color_config.border_01})">
 ({t_form m=ktai a=page_h_set_public_flag_all_confirm})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">

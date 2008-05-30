@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2007 OpenPNE Project
+ * @copyright 2005-2008 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -204,32 +204,32 @@ function emoji_unescape4e($unicode)
 
 function emoji_convert($str)
 {
-    $moji_pattern = '/\[([a-z]:[0-9]+)\]/i';
+    $moji_pattern = '/\[([ies]:[0-9]{1,3})\]/';
     return preg_replace_callback($moji_pattern, '_emoji_convert', $str);
 }
 
 function _emoji_convert($matches)
 {
     $o_code = $matches[1];
-    
+
     switch ($GLOBALS['__Framework']['carrier']) {
     case 'i':
     case 'w':
-        $carrior = 'i';
+        $carrier = 'i';
         break;
     case 's':
-        $carrior = 's';
+        $carrier = 's';
         break;
     case 'e':
-        $carrior = 'e';
+        $carrier = 'e';
         break;
     default:
-        $carrior = null;
+        $carrier = null;
         break;
     }
-    
+
     $emoji_code = OpenPNE_KtaiEmoji::getInstance();
-    $c_emoji = $emoji_code->convert_emoji($o_code, $carrior);
+    $c_emoji = $emoji_code->convert_emoji($o_code, $carrier);
     if ($c_emoji) {
         return $c_emoji;
     } else {

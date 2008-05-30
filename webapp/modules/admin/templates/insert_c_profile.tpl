@@ -34,7 +34,7 @@
 <th>公開設定<br>デフォルト値</th>
 <td><select class="basic" name="public_flag_default">
 <option value="public">全員に公開</option>
-<option value="friend">({$smarty.const.WORD_MY_FRIEND})まで公開</option>
+<option value="friend">({$WORD_MY_FRIEND})まで公開</option>
 <option value="private">公開しない</option>
 </select></td>
 </tr>

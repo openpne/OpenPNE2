@@ -4,16 +4,16 @@
 <font color="#({$ktai_color_config.font_05})"><a name="top">設定変更</a></font><br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
-<font color="#({$ktai_color_config.color_24})">日記公開範囲の一括変更</font><br>
+<font color="#({$ktai_color_config.color_24})">({$WORD_DIARY_HALF})公開範囲の一括変更</font><br>
 </td></tr></table>
 
-これまでに書かれた日記の公開設定を以下の通りに一括で変更します。よろしいですか?<br>
+これまでに書かれた({$WORD_DIARY_HALF})の公開設定を以下の通りに一括で変更します。よろしいですか?<br>
 <br>
 <font color="#({$ktai_color_config.font_06})">変更内容：</font><br>
 ({if $public_flag_diary_all == 'private'})
 公開しない
 ({elseif $public_flag_diary_all == 'friend'})
-({$smarty.const.WORD_MY_FRIEND_HALF})まで公開
+({$WORD_MY_FRIEND_HALF})まで公開
 ({else})
 全員に公開
 ({/if})<br>

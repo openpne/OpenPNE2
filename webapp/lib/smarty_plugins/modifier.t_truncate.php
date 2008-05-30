@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2007 OpenPNE Project
+ * @copyright 2005-2008 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -11,9 +11,10 @@
  * @param int    $width
  * @param string $etc
  * @param int    $rows
+ * @param bool   $is_html
  * @return string
  */
-function smarty_modifier_t_truncate($string, $width = 80, $etc = '', $rows = 1)
+function smarty_modifier_t_truncate($string, $width = 80, $etc = '', $rows = 1, $is_html = true)
 {
     $rows = (int)$rows;
     if (!($rows > 0)) {
@@ -22,19 +23,25 @@ function smarty_modifier_t_truncate($string, $width = 80, $etc = '', $rows = 1)
 
     // 特殊文字を変換
     $trans = array(
-        // htmlspecialchars
-        '&amp;' => '&',
-        '&lt;' => '<',
-        '&gt;' => '>',
-        '&quot;' => '"',
-        '&#039;' => "'",
-        // 全角スペースの連続によりIEでレイアウトが崩れてしまう不具合への対策
-        '　' => ' ',
         // 改行削除
         "\r\n" => ' ',
         "\r" => ' ',
         "\n" => ' ',
     );
+
+    // HTMLとして表示する際の特殊文字を変換
+    if ($is_html) {
+        $trans += array(
+            // htmlspecialchars
+            '&amp;' => '&',
+            '&lt;' => '<',
+            '&gt;' => '>',
+            '&quot;' => '"',
+            '&#039;' => "'",
+            // 全角スペースの連続によりIEでレイアウトが崩れてしまう不具合への対策
+            '　' => ' ',
+        );
+    }
     $string = strtr($string, $trans);
 
     // 複数行対応
@@ -60,7 +67,11 @@ function smarty_modifier_t_truncate($string, $width = 80, $etc = '', $rows = 1)
     }
     $string = implode("\n", $result);
 
-    return nl2br(htmlspecialchars($string, ENT_QUOTES, 'UTF-8'));
+    if ($is_html) {
+        $string = htmlspecialchars($string, ENT_QUOTES, 'UTF-8');
+    }
+
+    return nl2br($string);
 }
 
 function smarty_modifier_t_truncate_callback($string, $width, $etc = '')
@@ -72,7 +83,7 @@ function smarty_modifier_t_truncate_callback($string, $width, $etc = '')
         // 絵文字対応
         $offset = 0;
         $tmp_string = $string;
-        while (preg_match('/\[[a-z]:[0-9]+\]/i', $tmp_string, $matches, PREG_OFFSET_CAPTURE)) {
+        while (preg_match('/\[[ies]:[0-9]{1,3}\]/', $tmp_string, $matches, PREG_OFFSET_CAPTURE)) {
             $emoji_str = $matches[0][0];
             $emoji_pos = $matches[0][1] + $offset;
             $emoji_len = strlen($emoji_str);

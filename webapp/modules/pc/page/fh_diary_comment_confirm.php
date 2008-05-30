@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2007 OpenPNE Project
+ * @copyright 2005-2008 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -44,6 +44,12 @@ class pc_page_fh_diary_comment_confirm extends OpenPNE_Action
             if (db_member_is_access_block($u, $target_c_member_id)) {
                 openpne_redirect('pc', 'page_h_access_block');
             }
+        }
+
+        if (!db_diary_is_writable_comment4c_diary_id($target_c_diary_id)) {
+            $_REQUEST['msg'] = 'コメントが1000番に達したので、この' . WORD_DIARY . 'にはコメントできません';
+            openpne_forward('pc', 'page', 'fh_diary');
+            exit;
         }
 
         $sessid = session_id();

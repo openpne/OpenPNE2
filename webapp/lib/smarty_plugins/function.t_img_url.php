@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2007 OpenPNE Project
+ * @copyright 2005-2008 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -96,13 +96,13 @@ function _smarty_function_t_img_url($params)
             break;
         }
     }
-    
+
     if ($GLOBALS['__Framework']['current_module'] === 'admin' && ADMIN_MODULE_NAME) {
         $result['m'] = ADMIN_MODULE_NAME;
     } else {
         $result['m'] = $GLOBALS['__Framework']['current_module'];
     }
-    
+
     if ($GLOBALS['KTAI_URL_TAIL']) {
         $result['ksid'] = session_id();
     }

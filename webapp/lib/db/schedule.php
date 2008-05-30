@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2007 OpenPNE Project
+ * @copyright 2005-2008 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -34,6 +34,9 @@ function db_schedule_birth4c_member_id($month, $c_member_id)
 
     $res = array();
     foreach ($list as $item) {
+        if ($item['c_member_id'] != $c_member_id && $item['public_flag_birth_month_day'] == 'private') {
+            continue;
+        }
         $day = intval($item['birth_day']);
         $res[$day][] = $item;
     }
@@ -63,7 +66,7 @@ function db_schedule_event4c_member_id($year, $month, $c_member_id)
 
     $res = array();
     foreach ($list as $item) {
-        $item['is_join'] = p_common_is_c_event_member($item['c_commu_topic_id'], $c_member_id);
+        $item['is_join'] = db_commu_is_c_event_member_2($item['c_commu_topic_id'], $c_member_id);
 
         $day = date('j', strtotime($item['open_date']));
         $res[$day][] = $item;
@@ -81,7 +84,7 @@ function db_schedule_c_member_list4mail()
 ?>
 <?php
 /**
- * @copyright 2005-2007 OpenPNE Project
+ * @copyright 2005-2008 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 

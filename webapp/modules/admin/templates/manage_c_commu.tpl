@@ -1,19 +1,19 @@
 ({$inc_header|smarty:nodefaults})
 ({ext_include file="inc_subnavi_adminSNSConfig.tpl"})
 
-({assign var="page_name" value="初期コミュニティ設定"})
+({assign var="page_name" value="初期`$WORD_COMMUNITY`設定"})
 ({ext_include file="inc_tree_adminSNSConfig.tpl"})
 </div>
 
 ({*ここまで:navi*})
 
 
-<h2>初期コミュニティ設定</h2>
+<h2>初期({$WORD_COMMUNITY})設定</h2>
 <div class="contents">
 
 ({if $msg})<p class="actionMsg">({$msg})</p>({/if})
-<p class="info">メンバー新規登録時に以下で設定したコミュニティに自動的に参加させることができます。</p>
-<p class="caution" id="c01">参加させたいコミュニティのIDを入力して「追加」ボタンを押してください。</p>
+<p class="info">メンバー新規登録時に以下で設定した({$WORD_COMMUNITY})に自動的に参加させることができます。</p>
+<p class="caution" id="c01">参加させたい({$WORD_COMMUNITY})のIDを入力して「追加」ボタンを押してください。</p>
 <form action="./" method="post">
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_c_commu_is_regist_join' ,'do')})" />
@@ -25,7 +25,7 @@
 ({capture name="table_header"})
 <tr>
 <th>ID</th>
-<th>コミュニティ名</th>
+<th>({$WORD_COMMUNITY})名</th>
 <th>管理者名</th>
 <th>操作</th>
 </tr>
@@ -45,7 +45,7 @@
 ({/if})
 ({foreachelse})
 <tr>
-<td colspan="4">コミュニティが登録されていません</td>
+<td colspan="4">({$WORD_COMMUNITY})が登録されていません</td>
 </tr>
 ({/foreach})
 </table>

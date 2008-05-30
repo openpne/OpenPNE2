@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2007 OpenPNE Project
+ * @copyright 2005-2008 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -26,6 +26,8 @@ class pc_page_c_topic_write_delete_confirm extends OpenPNE_Action
             handle_kengen_error();
         }
         //---
+
+        $c_commu_topic_comment['original_filename'] = db_file_original_filename4filename($c_commu_topic_comment['filename']);
 
         $this->set('inc_navi', fetch_inc_navi("c", $c_commu_id));
         $this->set('c_commu_id', $c_commu_id);

@@ -55,10 +55,10 @@
 ({if $ktai_address})
 <input type="hidden" name="username" value="({$ktai_address})">
 ({else})
-({if !$smarty.const.IS_SLAVEPNE})
+({if $smarty.const.OPENPNE_AUTH_MODE == 'email'})
 <font color="#({$ktai_color_config.bg_02})">★</font>携帯ﾒｰﾙｱﾄﾞﾚｽ<br>
 ({else})
-<font color="#({$ktai_color_config.bg_02})">★</font>ﾒﾝﾊﾞｰID<br>
+<font color="#({$ktai_color_config.bg_02})">★</font>ﾛｸﾞｲﾝID<br>
 ({/if})
 <textarea name="username" rows="1" istyle="3" mode="alphabet"></textarea><br>
 ({/if})
@@ -71,12 +71,20 @@
 ({if $ktai_address})
 <a href="({t_url m=ktai a=page_o_login})">&gt;&gt;携帯ﾒｰﾙｱﾄﾞﾚｽを入力</a><br>
 ({/if})
-({if !$smarty.const.IS_SLAVEPNE})
+({if $smarty.const.OPENPNE_AUTH_MODE == 'slavepne'})
+({if $smarty.const.SLAVEPNE_PASSWORD_QUERY_URL_KTAI})
+<a href="({$smarty.const.SLAVEPNE_PASSWORD_QUERY_URL_KTAI})">&gt;&gt;ﾊﾟｽﾜｰﾄﾞを忘れた方</a><br>
+({/if})
+({else})
 <a href="({t_url m=ktai a=page_o_password_query})">&gt;&gt;ﾊﾟｽﾜｰﾄﾞを忘れた方</a><br>
 ({/if})
 </td></tr></table>
 <br>
-({if $smarty.const.IS_SLAVEPNE})
+({if $smarty.const.OPENPNE_AUTH_MODE == 'slavepne'})
+({if $smarty.const.SLAVEPNE_SYOUTAI_URL_KTAI})
+<hr color="#({$ktai_color_config.border_01})">
+■<a href="({$smarty.const.SLAVEPNE_SYOUTAI_URL_KTAI})">新規登録について</a><br>
+({/if})
 ({elseif $IS_CLOSED_SNS})
 <hr color="#({$ktai_color_config.border_01})">
 ({$SNS_NAME})は招待制のｿｰｼｬﾙﾈｯﾄﾜｰｷﾝｸﾞｻｰﾋﾞｽです。<br>
@@ -91,10 +99,13 @@
 <a href="mailto:({$smarty.const.MAIL_ADDRESS_PREFIX})get@({$smarty.const.MAIL_SERVER_DOMAIN})">[i:106]ﾒｰﾙで登録!</a><br>
 <br>
 ※かならず利用規約に同意してから登録をおこなってください。<br>
+※ﾄﾞﾒｲﾝ指定受信を設定されている方は、「({$smarty.const.ADMIN_EMAIL})」からのﾒｰﾙを受信できるように指定してください。<br>
 
 <hr color="#({$ktai_color_config.border_01})">
 ■<a href="({t_url m=ktai a=page_o_sns_kiyaku})">利用規約</a><br>
+({if $smarty.const.OPENPNE_DISP_KTAI_SNS_PRIVACY})
 ■<a href="({t_url m=ktai a=page_o_sns_privacy})">ﾌﾟﾗｲﾊﾞｼｰﾎﾟﾘｼｰ</a><br>
+({/if})
 ({/if})
 
 ({$inc_ktai_footer|smarty:nodefaults})

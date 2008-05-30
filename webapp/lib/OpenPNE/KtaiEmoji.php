@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2007 OpenPNE Project
+ * @copyright 2005-2008 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -15,7 +15,7 @@ class OpenPNE_KtaiEmoji
 {
     //変換テーブル
     var $relation_list;
-    
+
     /**
      * constructor
      */
@@ -2797,7 +2797,7 @@ class OpenPNE_KtaiEmoji
             822 => '[s:369]',
         );
     }
-    
+
     function &getInstance()
     {
         static $singleton;
@@ -2840,7 +2840,7 @@ class OpenPNE_KtaiEmoji
             }
             break;
         }
-        
+
         return $emoji_code;
     }
 

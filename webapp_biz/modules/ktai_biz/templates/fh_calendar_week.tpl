@@ -73,8 +73,8 @@
 </table>
 ({/if})
 <center>
-<a href="({t_url m=ktai_biz a=page_fh_calendar_week})&amp;target_id=({$c_member.c_member_id})&amp;w=({$w-1})&amp;({$tail})" accesskey="4">[i:128]前の週</a> 
-<a href="({t_url m=ktai_biz a=page_fh_calendar_week})&amp;target_id=({$c_member.c_member_id})&amp;({$tail})" accesskey="5">[i:129]今週</a> 
+<a href="({t_url m=ktai_biz a=page_fh_calendar_week})&amp;target_id=({$c_member.c_member_id})&amp;w=({$w-1})&amp;({$tail})" accesskey="4">[i:128]前の週</a>
+<a href="({t_url m=ktai_biz a=page_fh_calendar_week})&amp;target_id=({$c_member.c_member_id})&amp;({$tail})" accesskey="5">[i:129]今週</a>
 <a href="({t_url m=ktai_biz a=page_fh_calendar_week})&amp;target_id=({$c_member.c_member_id})&amp;w=({$w+1})&amp;({$tail})" accesskey="6">[i:130]次の週</a><br>
 </center>
 <br>

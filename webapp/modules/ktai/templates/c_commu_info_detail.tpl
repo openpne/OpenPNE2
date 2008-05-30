@@ -4,16 +4,16 @@
 <font color="#({$ktai_color_config.font_05})"><a name="top">({$c_commu.name})</a></font><br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
-<font color="#({$ktai_color_config.color_24})">ｺﾐｭﾆﾃｨ詳細</font><br>
+<font color="#({$ktai_color_config.color_24})">({$WORD_COMMUNITY_HALF})詳細</font><br>
 </td></tr></table>
 <br>
-<font color="#({$ktai_color_config.font_06})">ｺﾐｭﾆﾃｨ名：</font><br>
+<font color="#({$ktai_color_config.font_06})">({$WORD_COMMUNITY_HALF})名：</font><br>
 ({$c_commu.name})<br>
 <br>
 <font color="#({$ktai_color_config.font_06})">開設日：</font><br>
 ({$c_commu.r_datetime|date_format:"%Y年%m月%d日"})<br>
 <br>
-<font color="#({$ktai_color_config.font_06})">ｺﾐｭﾆﾃｨID：</font><br>
+<font color="#({$ktai_color_config.font_06})">({$WORD_COMMUNITY_HALF})ID：</font><br>
 ({$c_commu.c_commu_id})<br>
 <br>
 <font color="#({$ktai_color_config.font_06})">管理者：</font><br>
@@ -41,17 +41,17 @@
 <br>
 <font color="#({$ktai_color_config.font_06})">ﾄﾋﾟｯｸ作成権限：</font><br>
 ({if $c_commu.topic_authority == 'public'})
-ｺﾐｭﾆﾃｨ参加者全員が作成可能
+({$WORD_COMMUNITY_HALF})参加者全員が作成可能
 ({elseif $c_commu.topic_authority == 'admin_only'})
-ｺﾐｭﾆﾃｨ管理者のみ作成可能
+({$WORD_COMMUNITY_HALF})管理者のみ作成可能
 ({/if})<br>
 <br>
-<font color="#({$ktai_color_config.font_06})">ｺﾐｭﾆﾃｨの説明：</font><br>
+<font color="#({$ktai_color_config.font_06})">({$WORD_COMMUNITY_HALF})の説明：</font><br>
 ({$c_commu.info|t_url2a_ktai|nl2br})<br>
 <br>
 <hr color="#({$ktai_color_config.border_01})">
-[i:90]<a href="({t_url m=ktai a=page_c_home})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">ｺﾐｭﾆﾃｨに戻る</a><br>
+[i:90]<a href="({t_url m=ktai a=page_c_home})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">({$WORD_COMMUNITY_HALF})に戻る</a><br>
 ({if $c_commu.c_member_id_admin == $u})
-[i:75]<a href="({t_url m=ktai a=page_c_edit})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">ｺﾐｭﾆﾃｨ設定を変更する</a><br>
+[i:75]<a href="({t_url m=ktai a=page_c_edit})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">({$WORD_COMMUNITY_HALF})設定を変更する</a><br>
 ({/if})
 ({$inc_ktai_footer|smarty:nodefaults})

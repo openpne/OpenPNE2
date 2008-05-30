@@ -6,7 +6,7 @@
 <font color="#({$ktai_color_config.color_24})">ﾒｰﾙ受信設定</font><br>
 </td></tr></table>
 
-このｺﾐｭﾆﾃｨから送られてくるﾒｰﾙ・ﾒｯｾｰｼﾞの受信設定をします。<br>
+この({$WORD_COMMUNITY_HALF})から送られてくるﾒｰﾙ・ﾒｯｾｰｼﾞの受信設定をします。<br>
 
 <hr color="#({$ktai_color_config.border_01})">
 
@@ -37,6 +37,6 @@
 </form>
 
 <hr color="#({$ktai_color_config.border_01})">
-<a href="({t_url m=ktai a=page_c_home})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">ｺﾐｭﾆﾃｨﾄｯﾌﾟ</a><br>
+<a href="({t_url m=ktai a=page_c_home})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">({$WORD_COMMUNITY_HALF})ﾄｯﾌﾟ</a><br>
 
 ({$inc_ktai_footer|smarty:nodefaults})
