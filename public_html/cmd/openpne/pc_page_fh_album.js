@@ -23,7 +23,12 @@ function url2cmd(url, target_c_member_id)
 
             var subject = c_album.getElementsByTagName('subject')[0].firstChild.nodeValue;
             var nickname = c_member.getElementsByTagName('nickname')[0].firstChild.nodeValue;
-            var album_cover_image = c_album.getElementsByTagName('album_cover_image')[0].firstChild.nodeValue;
+            var album_cover_image = c_album.getElementsByTagName('album_cover_image')[0].firstChild.nodeValue.unescapeHTML();
+            if (!album_cover_image.match(/^[a-z0-9_\-\/.\/&;=?]+$/)) {
+                pne_url2a(url);
+                return;
+            }
+
             var public_flag = '';
             switch (c_album.getElementsByTagName('public_flag')[0].firstChild.nodeValue) {
             case 'public' :
