@@ -37,7 +37,7 @@
 <tr>
 <th>SNS認証</th>
 <td>
-({if $auth})
+({if $c_free_page.auth})
 あり
 ({else})
 なし
@@ -47,9 +47,9 @@
 <tr>
 <th>対象ブラウザ</th>
 <td>
-({if $type == 'pc'})
+({if $c_free_page.type == 'pc'})
 PC
-({else if $type == 'ktai'})
+({elseif $c_free_page.type == 'ktai'})
 携帯
 ({/if})
 </td>
