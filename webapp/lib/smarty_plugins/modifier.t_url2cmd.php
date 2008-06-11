@@ -25,14 +25,23 @@ function _smarty_modifier_t_cmd_make_url_js($matches)
     $url = str_replace('&amp;', '&', $matches[0]);
     $cmd = $matches[1];
 
-    $openpne_url_matches = array();
-    $url_pattern = sprintf('/^(%s|%s)(?:index.php)?\?m=(\w+)&a=(\w+)((?:[a-zA-Z0-9_=]|&)*)$/', preg_quote(OPENPNE_URL, '/'), preg_quote(OPENPNE_SSL_URL, '/'));
-
     // SNS内を指すURLの場合は cmd/openpne ディレクトリ以下の小窓を読み込む
-    if (preg_match($url_pattern, $url, $openpne_url_matches)) {
-        $module = $openpne_url_matches[2];
-        $action = $openpne_url_matches[3];
-        $cmd = 'openpne/' . $module . '_' . $action;
+    $openpne_url = '';
+    if (strpos($url, OPENPNE_URL) === 0) {
+        $openpne_url = OPENPNE_URL;
+    } elseif (OPENPNE_USE_PARTIAL_SSL && strpos($url, OPENPNE_SSL_URL) === 0) {
+        $openpne_url = OPENPNE_SSL_URL;
+    }
+
+    if ($openpne_url) {
+        $url_pattern = sprintf('/^%s(?:index.php)?\?m=(\w+)&a=(\w+)((?:[a-zA-Z0-9_=]|&)*)$/', preg_quote($openpne_url, '/'));
+
+        $openpne_url_matches = array();
+        if (preg_match($url_pattern, $url, $openpne_url_matches)) {
+            $module = $openpne_url_matches[1];
+            $action = $openpne_url_matches[2];
+            $cmd = 'openpne/' . $module . '_' . $action;
+        }
     }
 
     $file = $cmd . '.js';
