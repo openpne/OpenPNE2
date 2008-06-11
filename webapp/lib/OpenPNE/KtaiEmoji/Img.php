@@ -1417,7 +1417,7 @@ class OpenPNE_KtaiEmoji_Img extends OpenPNE_KtaiEmoji_Common
         $carrier_id = $emoji_code_id{0};
         $emoji_code_id = str_replace(':', '', $emoji_code_id);
         $emoji_id = substr($emoji_code_id, 1);
-        $emoji_path = OPENPNE_URL . $this->emoji_image_dir . $carrier_id .'/' . $emoji_code_id . $this->emoji_image_extension;
+        $emoji_path = './' . $this->emoji_image_dir . $carrier_id .'/' . $emoji_code_id . $this->emoji_image_extension;
         $emoji_name = $this->value_list[$carrier_id][$emoji_id];
 
         $str = '<img src="' . $emoji_path . '" alt="' . $emoji_name . '">';
