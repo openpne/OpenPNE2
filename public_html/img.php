@@ -6,6 +6,10 @@
 
 require_once './config.inc.php';
 
+// エラー出力を抑制
+ini_set('display_errors', false);
+ob_start();
+
 // モジュール毎に決められた認証をおこなっているかどうかのチェック
 if (CHECK_IMG_AUTH) {
     require_once OPENPNE_WEBAPP_DIR . '/init.inc';
@@ -57,20 +61,16 @@ if (CHECK_IMG_AUTH) {
     } else {
         require_once $auth;
     }
+} else {
+    // include_path の設定
+    include_once OPENPNE_LIB_DIR . '/include/PHP/Compat/Constant/PATH_SEPARATOR.php';
+    $include_paths = array(
+        OPENPNE_LIB_DIR . '/include',
+        OPENPNE_WEBAPP_DIR . '/lib',
+        ini_get('include_path')
+    );
+    ini_set('include_path', implode(PATH_SEPARATOR, $include_paths));
 }
-
-// エラー出力を抑制
-ini_set('display_errors', false);
-ob_start();
-
-// include_path の設定
-include_once OPENPNE_LIB_DIR . '/include/PHP/Compat/Constant/PATH_SEPARATOR.php';
-$include_paths = array(
-    OPENPNE_LIB_DIR . '/include',
-    OPENPNE_WEBAPP_DIR . '/lib',
-    ini_get('include_path')
-);
-ini_set('include_path', implode(PATH_SEPARATOR, $include_paths));
 
 // 各種設定
 defined('OPENPNE_IMG_JPEG_QUALITY') or define('OPENPNE_IMG_JPEG_QUALITY', 75);
