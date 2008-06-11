@@ -26,9 +26,7 @@ function _smarty_modifier_t_cmd_make_url_js($matches)
     $cmd = $matches[1];
 
     $openpne_url_matches = array();
-    $parts = parse_url(OPENPNE_URL);
-    $openpne_url = $parts['host'] . $parts['path'];
-    $url_pattern = sprintf('/^(https?:\/\/%s)(?:index.php)?\?m=(\w+)&a=(\w+)((?:[a-zA-Z0-9_=]|&)*)$/', preg_quote($openpne_url, '/'));
+    $url_pattern = sprintf('/^(%s|%s)(?:index.php)?\?m=(\w+)&a=(\w+)((?:[a-zA-Z0-9_=]|&)*)$/', preg_quote(OPENPNE_URL, '/'), preg_quote(OPENPNE_SSL_URL, '/'));
 
     // SNS内を指すURLの場合は cmd/openpne ディレクトリ以下の小窓を読み込む
     if (preg_match($url_pattern, $url, $openpne_url_matches)) {
