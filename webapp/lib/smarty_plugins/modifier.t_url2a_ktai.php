@@ -12,10 +12,7 @@
  */
 function smarty_modifier_t_url2a_ktai($string)
 {
-    $parts = parse_url(OPENPNE_URL);
-    $openpne_url = $parts['host'] . $parts['path'];
-
-    $url_pattern = sprintf('/(https?:\/\/%s)(?:index.php)?\?m=pc&amp;a=(\w+)((?:[a-zA-Z0-9_=]|&amp;)*)/', preg_quote($openpne_url, '/'));
+    $url_pattern = sprintf('/(%s|%s)(?:index.php)?\?m=pc&amp;a=(\w+)((?:[a-zA-Z0-9_=]|&amp;)*)/', preg_quote(OPENPNE_URL, '/'), preg_quote(OPENPNE_SSL_URL, '/'));
     return preg_replace_callback($url_pattern, 'smarty_modifier_t_url2a_ktai_callback', $string);
 }
 
