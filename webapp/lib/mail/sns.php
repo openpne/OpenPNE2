@@ -442,11 +442,11 @@ class mail_sns
         $ins_id = db_diary_insert_c_diary_comment($this->c_member_id, $c_diary_id, $body);
 
         //日記コメント記入履歴追加
-        if ($u != $target_c_member_id) {
-            db_diary_insert_c_diary_comment_log($u, $target_c_diary_id);
+        if ($this->c_member_id != $target_c_member_id) {
+            db_diary_insert_c_diary_comment_log($this->c_member_id, $c_diary_id);
         }
         //日記コメント記入履歴更新
-        db_diary_update_c_diary_comment_log($target_c_diary_id);
+        db_diary_update_c_diary_comment_log($c_diary_id);
 
         // 写真登録
         $image_num = 1;
