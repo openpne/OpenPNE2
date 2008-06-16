@@ -38,8 +38,9 @@ class pc_do_c_join_request_insert_c_commu_member_confirm extends OpenPNE_Action
 
         list($subject, $body_disp) = create_message_commu_join_request($c_member_id_from, $body, $target_c_commu_id);
         db_message_send_message_syoudaku($c_member_id_from, $c_commu['c_member_id_admin'], $subject, $body_disp);
-        db_message_send_message_syoudaku($c_member_id_from, $c_commu['c_member_id_sub_admin'], $subject, $body_disp);
-
+        if ($c_commu['c_member_id_sub_admin']) {
+            db_message_send_message_syoudaku($c_member_id_from, $c_commu['c_member_id_sub_admin'], $subject, $body_disp);
+        }
         $p = array('target_c_commu_id' => $target_c_commu_id);
         openpne_redirect('pc', 'page_c_home', $p);
     }
