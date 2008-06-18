@@ -12,30 +12,44 @@
  */
 function smarty_modifier_t_url2a_ktai($string)
 {
-    $parts = parse_url(OPENPNE_URL);
-    $openpne_url = $parts['host'] . $parts['path'];
-
-    $url_pattern = sprintf('/(https?:\/\/%s)(?:index.php)?\?m=pc&amp;a=(\w+)((?:[a-zA-Z0-9_=]|&amp;)*)/', preg_quote($openpne_url, '/'));
+    $url_pattern = '/https?:\/\/(?:[a-zA-Z0-9_\-\/.,:;~?@=+$%#!()]|&amp;)+/';
     return preg_replace_callback($url_pattern, 'smarty_modifier_t_url2a_ktai_callback', $string);
 }
 
 function smarty_modifier_t_url2a_ktai_callback($matches)
 {
-    $raw_url    = $matches[0];
-    $host       = $matches[1];
-    $raw_action = $matches[2];
-    $param      = $matches[3];
+    $raw_url = $matches[0];
 
-    //自動リンクのアクションリストにない場合は変換なし
-    if (empty($GLOBALS['_OPENPNE_PC2KTAI_LINK_ACTION_LIST'][$raw_action])) {
+    $openpne_url = '';
+    if (strpos($raw_url, OPENPNE_URL) === 0) {
+        $openpne_url = OPENPNE_URL;
+    } elseif (OPENPNE_USE_PARTIAL_SSL && strpos($raw_url, OPENPNE_SSL_URL) === 0) {
+        $openpne_url = OPENPNE_SSL_URL;
+    }
+
+    if (!$openpne_url) {
         return $raw_url;
     }
 
-    $converted_action = $GLOBALS['_OPENPNE_PC2KTAI_LINK_ACTION_LIST'][$raw_action];
+    $url_pattern = sprintf('/^%s(?:index.php)?\?m=pc&amp;a=(\w+)((?:[a-zA-Z0-9_=]|&amp;)*)$/', preg_quote($openpne_url, '/'));
+
+    $openpne_url_matches = array();
+    if (!preg_match($url_pattern, $raw_url, $openpne_url_matches)) {
+        return $raw_url;
+    }
+    $action = $openpne_url_matches[1];
+    $param = $openpne_url_matches[2];
+
+    //自動リンクのアクションリストにない場合は変換なし
+    if (empty($GLOBALS['_OPENPNE_PC2KTAI_LINK_ACTION_LIST'][$action])) {
+        return $raw_url;
+    }
+
+    $converted_action = $GLOBALS['_OPENPNE_PC2KTAI_LINK_ACTION_LIST'][$action];
     $param = str_replace('&amp;', '&', $param);
 
     // 携帯用URLに置換、ksid 追加
-    $ktai_url = $host . '?m=ktai&a=' . $converted_action . $param . '&' . $GLOBALS['KTAI_URL_TAIL'];
+    $ktai_url = openpne_gen_url_head('ktai', $converted_action, false) . '?m=ktai&a=' . $converted_action . $param . '&' . $GLOBALS['KTAI_URL_TAIL'];
 
     // page_ より後ろを最大50文字に縮めて表示
     $urlstr = $converted_action . $param;

@@ -5,22 +5,15 @@
  */
 
 require_once './config.inc.php';
-require_once OPENPNE_WEBAPP_DIR . '/init.inc';
 
-$is_auth = CHECK_IMG_AUTH;
-
-// ファイル名のプレフィックスが module_ である場合は、モジュールの設定によって画像の認証をおこなうかどうかを決定する
-list($prefix, $module) = explode('_', $_GET['filename'], 3);
-if ($prefix == 'module' && $module) {
-    $config = util_get_module_config($module);
-    if (isset($config['image']['is_auth'])) {
-        $is_auth = (bool)$config['image']['is_auth'];
-    }
-}
+// エラー出力を抑制
+ini_set('display_errors', false);
+ob_start();
 
 // モジュール毎に決められた認証をおこなっているかどうかのチェック
-// CHECK_IMG_AUTH が false であるか、モジュール側の設定で認証をおこなわない場合はチェックしない
-if ($is_auth) {
+if (defined('CHECK_IMG_AUTH') && CHECK_IMG_AUTH) {
+    require_once OPENPNE_WEBAPP_DIR . '/init.inc';
+
     $module = '';
     if (!($module = get_request_var('m'))) {
         // モジュール名の自動設定
@@ -42,26 +35,42 @@ if ($is_auth) {
     if (in_array($module, (array)$GLOBALS['_OPENPNE_DISABLE_MODULES'])) {
         openpne_display_error('モジュールが無効になっています', true);
     }
-    // maintenace mode
+
     if (OPENPNE_UNDER_MAINTENANCE &&
         !in_array($module, (array)$GLOBALS['_OPENPNE_MAINTENANCE_MODULES'])) {
         openpne_display_error();
     }
-    // init
+
     if ($init = openpne_ext_search("{$module}/init.inc")) {
         require_once $init;
     }
-    //auth
-    if ($auth = openpne_ext_search("{$module}/auth.inc")) {
-        require_once $auth;
-    } else {
-        require_once OPENPNE_WEBAPP_DIR . '/lib/auth.inc';
-    }
-}
 
-// エラー出力を抑制
-ini_set('display_errors', false);
-ob_start();
+    // 読み込む auth.inc を決定
+    $auth = openpne_ext_search("{$module}/auth.inc");
+    if (!$auth) {
+        $auth = OPENPNE_WEBAPP_DIR . '/lib/auth.inc';
+    }
+
+    // ファイル名が module_ ではじまる場合、認証をおこなうかどうかのチェック
+    list($img_prefix, $img_module) = explode('_', $_GET['filename'], 3);
+    if ($img_prefix == 'module' && $img_module) {
+        $module_config = util_get_module_config($img_module);
+        if (!isset($module_config['image']['is_auth']) || $module_config['image']['is_auth']) {
+            require_once $auth;
+        }
+    } else {
+        require_once $auth;
+    }
+} else {
+    // include_path の設定
+    include_once OPENPNE_LIB_DIR . '/include/PHP/Compat/Constant/PATH_SEPARATOR.php';
+    $include_paths = array(
+        OPENPNE_LIB_DIR . '/include',
+        OPENPNE_WEBAPP_DIR . '/lib',
+        ini_get('include_path')
+    );
+    ini_set('include_path', implode(PATH_SEPARATOR, $include_paths));
+}
 
 // 各種設定
 defined('OPENPNE_IMG_JPEG_QUALITY') or define('OPENPNE_IMG_JPEG_QUALITY', 75);
