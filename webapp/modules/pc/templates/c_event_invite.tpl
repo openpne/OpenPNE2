@@ -34,7 +34,7 @@
 ({*ここまで：header*})
 ({*ここから：body*})
 <!-- ここから：主内容 -->
-<table norder="0" cellspacing="0" cellpadding="0" style="width:566px;">
+<table border="0" cellspacing="0" cellpadding="0" style="width:566px;">
 ({*********})
 <tr>
 <td style="width:566px;" class="bg_01" colspan="3"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
