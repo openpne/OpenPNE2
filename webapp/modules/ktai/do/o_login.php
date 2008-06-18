@@ -54,13 +54,12 @@ class ktai_do_o_login extends OpenPNE_Action
         }
 
         $c_member_id = db_member_c_member_id4username_encrypted($auth->getUsername(), true);
+        if (OPENPNE_AUTH_MODE == 'slavepne' && !$c_member_id) {
+            $c_member_id = db_member_create_member($_POST['username']);
+        }
         if (!$c_member_id) {
-            if (OPENPNE_AUTH_MODE == 'slavepne') {
-                db_member_create_member($_POST['username']);
-            } else {
-                $p = array('msg' => '0', 'kad' => t_encrypt($ktai_address), 'login_params' => $requests['login_params']);
-                openpne_redirect('ktai', 'page_o_login', $p);
-            }
+            $p = array('msg' => '0', 'kad' => t_encrypt($ktai_address), 'login_params' => $requests['login_params']);
+            openpne_redirect('ktai', 'page_o_login', $p);
         }
 
         db_member_do_access($c_member_id);
