@@ -1,5 +1,5 @@
 function url2cmd(url) {
-    if (!url.match(/http:\/\/www\.nicovideo\.jp\/.*\/((?:[a-z]{2})\d+)$/)) {
+    if (!url.match(/^http:\/\/www\.nicovideo\.jp\/watch\/([a-z0-9]+)$/)) {
         pne_url2a(url);
         return false;
     }
