@@ -420,7 +420,7 @@ function p_h_diary_list_friend_h_diary_list_friend4c_member_id($c_member_id, $pa
     }
     $ids = implode(',', array_map('intval', $friends));
 
-    $hint = db_mysql_hint('USE INDEX (c_member_id_r_datetime_public_flag)');
+    $hint = db_mysql_hint('USE INDEX (r_datetime_c_member_id, r_datetime)');
     $sql = 'SELECT * FROM c_diary' . $hint .
             ' WHERE c_member_id IN (' . $ids . ')' .
             ' AND public_flag <> \'private\'' .
@@ -508,7 +508,7 @@ function p_h_home_c_diary_friend_list4c_member_id($c_member_id, $limit)
     }
     $ids = implode(',', array_map('intval', $friends));
 
-    $hint = db_mysql_hint('USE INDEX (c_member_id_r_datetime_public_flag)');
+    $hint = db_mysql_hint('USE INDEX (r_datetime_c_member_id, r_datetime)');
     $sql = 'SELECT * FROM c_diary' . $hint .
             ' WHERE c_member_id IN (' . $ids . ')' .
             ' AND public_flag <> \'private\'' .
