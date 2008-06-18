@@ -34,21 +34,21 @@ class pc_do_c_join_request_insert_c_commu_member_confirm extends OpenPNE_Action
         db_commu_insert_c_commu_member_confirm($target_c_commu_id, $c_member_id_from, $body);
 
         //メッセージ
-        {
-            $c_commu = db_commu_c_commu4c_commu_id($target_c_commu_id);
-            $c_member_id_to = $c_commu['c_member_id_admin'];
-            $c_member_from  = db_member_c_member4c_member_id($c_member_id_from);
+        $c_commu = db_commu_c_commu4c_commu_id($target_c_commu_id);
+        $c_member_id_to = $c_commu['c_member_id_admin'];
+        $c_member_from  = db_member_c_member4c_member_id($c_member_id_from);
 
-            $subject ="コミュニティ参加要請メッセージ";
-            $body_disp =
-                $c_member_from['nickname']." さんから ".$c_commu['name']." コミュニティへの参加希望メッセージが届いています。\n".
-                "\n".
-                "メッセージ：\n".
-                $body."\n".
-                "\n".
-                "この要請について、承認待ちリストから承認または拒否を選択してください。\n";
+        $subject ="コミュニティ参加要請メッセージ";
+        $body_disp =
+            $c_member_from['nickname']." さんから ".$c_commu['name']." コミュニティへの参加希望メッセージが届いています。\n".
+            "\n".
+            "メッセージ：\n".
+            $body."\n".
+            "\n".
+            "この要請について、承認待ちリストから承認または拒否を選択してください。\n";
 
-            db_message_send_message_syoudaku($c_member_id_from, $c_commu['c_member_id_admin'], $subject, $body_disp);
+        db_message_send_message_syoudaku($c_member_id_from, $c_commu['c_member_id_admin'], $subject, $body_disp);
+        if ($c_commu['c_member_id_sub_admin']) {
             db_message_send_message_syoudaku($c_member_id_from, $c_commu['c_member_id_sub_admin'], $subject, $body_disp);
         }
 
