@@ -10,13 +10,13 @@
 ({strip})
 ({capture name="birth"})
 ({if $target_c_member.age !== NULL})<font color="#({$ktai_color_config.font_06})">年齢：</font><br>({$target_c_member.age})歳<br>({/if})
+({if $is_h && $target_c_member.public_flag_birth_year == 'friend'})<font color="#({$ktai_color_config.font_09})">※({$WORD_MY_FRIEND_HALF})まで公開</font><br>({/if})
 ({if $target_c_member.birth_month && $target_c_member.birth_day})
 <br><font color="#({$ktai_color_config.font_06})">誕生日：</font><br>({$target_c_member.birth_month})月({$target_c_member.birth_day})日<br>
 ({/if})
 ({/capture})
 
 ({foreach from=$target_c_member.profile key=key item=item})
-
 ({if $item.form_type != 'textarea'})
 
 ({if !$_cnt_nick && $profile_list[$key].sort_order >= $smarty.const.SORT_ORDER_NICK
@@ -42,9 +42,9 @@
 ({$smarty.capture.birth|smarty:nodefaults})
 ({/if})
 
-({if $item.value && $item.form_type != 'textarea'})
-	<br><font color="#({$ktai_color_config.font_06})">({$item.caption})：</font><br>
-({/if})
+({if $item.value})
+<br>
+<font color="#({$ktai_color_config.font_06})">({$item.caption})：</font><br>
 
 ({if $item.form_type == 'checkbox'})
     ({$item.value|@t_implode:", "})
@@ -52,9 +52,11 @@
     ({$item.value})
 ({/if})
 <br>
+({if $is_h && $item.public_flag == 'friend'})<font color="#({$ktai_color_config.font_09})">※({$WORD_MY_FRIEND_HALF})まで公開</font><br>({/if})
+({/if})
+
 ({/if})
 ({/foreach})
-
 
 ({if !$_cnt_nick && !$_cnt_birth})
 ({if $smarty.const.SORT_ORDER_NICK > $smarty.const.SORT_ORDER_BIRTH})
@@ -68,12 +70,14 @@
 ({if !$_cnt_nick})({$smarty.capture.nick|smarty:nodefaults})({/if})
 ({if !$_cnt_birth})({$smarty.capture.birth|smarty:nodefaults})({/if})
 ({/if})
+
 ({/strip})
 <br>
 ({foreach from=$target_c_member.profile key=key item=item})
 ({if $item.form_type == 'textarea'})
 <font color="#({$ktai_color_config.font_06})">({$item.caption})：</font><br>
 ({$item.value|t_url2a_ktai|nl2br})<br>
+({if $is_h && $item.public_flag == 'friend'})<font color="#({$ktai_color_config.font_09})">※({$WORD_MY_FRIEND_HALF})まで公開</font><br>({/if})
 <br>
 ({/if})
 ({/foreach})
