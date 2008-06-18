@@ -1899,6 +1899,9 @@ function db_member_create_member($username)
         'rss' => '',
     );
     $c_member_id = db_insert('c_member', $data);
+    if (!$c_member_id) {
+        return false;
+    }
 
     $data = array(
         'c_member_id' => intval($c_member_id),
@@ -1909,19 +1912,32 @@ function db_member_create_member($username)
         'regist_address' => "",
         'easy_access_id' => '',
     );
-
     if (!IS_SLAVEPNE_EMAIL_REGIST) {
         $data['pc_address'] = t_encrypt($c_member_id.'@pc.example.com');
         $data['ktai_address'] = t_encrypt($c_member_id.'@ktai.example.com');
     }
+    if (!db_insert('c_member_secure', $data)) {
+        $sql = 'DELETE FROM c_member WHERE c_member_id = ?';
+        db_query($sql, array($c_member_id));
 
-    db_insert('c_member_secure', $data);
+        return false;
+    }
 
     $data = array(
         'c_member_id' => intval($c_member_id),
         'username' => $username,
     );
-    db_insert('c_username', $data);
+    if (!db_insert('c_username', $data)) {
+        $sql = 'DELETE FROM c_member WHERE c_member_id = ?';
+        db_query($sql, array($c_member_id));
+
+        $sql = 'DELETE FROM c_member_secure WHERE c_member_id = ?';
+        db_query($sql, array($c_member_id));
+
+        return false;
+    }
+
+    return $c_member_id;
 }
 
 /**
