@@ -203,7 +203,7 @@
                                 ({/if})
                             </span>
                             <dl>
-                                <dt>({$data.contents[1][rss].data|date_format:"%m/%d %H:%M"})</dt>
+                                <dt>({$data.contents[1][rss].date|date_format:"%m/%d %H:%M"})</dt>
                                 <dd><a href="({$data.contents[1][rss].link})" target="_blank">({$data.contents[1][rss].title})</a></dd>
                             </dl>
                         </li>
