@@ -1878,7 +1878,10 @@ function db_member_create_member($username)
         'rss' => '',
     );
     $c_member_id = db_insert('c_member', $data);
-    
+    if (!$c_member_id) {
+        return false;
+    }
+
     $data = array(
         'c_member_id' => intval($c_member_id),
         'hashed_password' => "",
@@ -1888,13 +1891,28 @@ function db_member_create_member($username)
         'regist_address' => "",
         'easy_access_id' => '',
     );
-    db_insert('c_member_secure', $data);
+    if (!db_insert('c_member_secure', $data)) {
+        $sql = 'DELETE FROM c_member WHERE c_member_id = ?';
+        db_query($sql, array($c_member_id));
+
+        return false;
+    }
     
     $data = array(
         'c_member_id' => intval($c_member_id),
         'username' => $username,
     );
-    db_insert('c_username', $data);
+    if (!db_insert('c_username', $data)) {
+        $sql = 'DELETE FROM c_member WHERE c_member_id = ?';
+        db_query($sql, array($c_member_id));
+
+        $sql = 'DELETE FROM c_member_secure WHERE c_member_id = ?';
+        db_query($sql, array($c_member_id));
+
+        return false;
+    }
+
+    return $c_member_id;
 }
 
 /**
