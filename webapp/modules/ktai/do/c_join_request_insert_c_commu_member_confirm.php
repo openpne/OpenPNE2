@@ -48,7 +48,6 @@ class ktai_do_c_join_request_insert_c_commu_member_confirm extends OpenPNE_Actio
 
         //メッセージ
         $c_commu        = db_commu_c_commu4c_commu_id($target_c_commu_id);
-        $c_member_id_to = $c_commu['c_member_id_admin'];
         $c_member_from  = db_member_c_member4c_member_id($c_member_id_from);
 
         $subject ="コミュニティ参加要請メッセージ";
@@ -60,7 +59,11 @@ class ktai_do_c_join_request_insert_c_commu_member_confirm extends OpenPNE_Actio
             "\n".
             "この要請について、承認待ちリストから承認または拒否を選択してください。\n";
 
-        db_message_send_message_syoudaku($c_member_id_from, $c_member_id_to, $subject, $body_disp);
+        db_message_send_message_syoudaku($c_member_id_from, $c_commu['c_member_id_admin'], $subject, $body_disp);
+        if ($c_commu['c_member_id_sub_admin']) {
+            db_message_send_message_syoudaku($c_member_id_from, $c_commu['c_member_id_sub_admin'], $subject, $body_disp);
+        }
+
 
         $p = array('target_c_commu_id' => $target_c_commu_id);
         openpne_redirect('ktai', 'page_c_home', $p);
