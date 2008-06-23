@@ -3,7 +3,7 @@
 ({$inc_ktai_entry_point[1]|smarty:nodefaults})
 ({/if})
 <table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_02})">
-<font color="#({$ktai_color_config.font_05})">({$c_commu.name})</font><br>
+<font color="#({$ktai_color_config.font_05})"><a name="top">({$c_commu.name})</a></font><br>
 </td></tr>
 </table>
 ({if $c_siteadmin})
