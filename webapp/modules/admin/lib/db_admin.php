@@ -1537,6 +1537,9 @@ function p_access_analysis_member_access_member4ym_page_name
             if ($c_member = _db_c_member4c_member_id($value['c_member_id'])) {
                 $return[] = array_merge($value, $c_member);
                 $sum += $value['count'];
+            } else {
+                $return[] = $value;
+                $sum += $value['count'];
             }
         }
     }
