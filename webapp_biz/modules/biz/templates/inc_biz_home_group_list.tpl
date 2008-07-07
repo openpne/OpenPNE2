@@ -147,7 +147,7 @@
 <td style="width:115px;" class="bg_02"><img src="./skin/dummy.gif" alt="dummy" style="width:115px;height:1px;" class="dummy"></td>
 <td align="left" style="width:136px;padding:2px 0px;" class="bg_02 lh_110">
 <img src="./skin/dummy.gif" alt="dummy" class="icon arrow_1">
-<a href="({t_url m=biz a=page_fh_group_list})">全てを見る(({$group_count}))</a><br>
+<a href="({t_url m=biz a=page_fh_group_list})&amp;target_c_member_id=({$c_member_id})">全てを見る(({$group_count}))</a></br>
 <img src="./skin/dummy.gif" alt="dummy" class="icon arrow_1">
 <a href="({t_url m=biz a=page_h_biz_group_add})">グループの追加</a><br>
 <img src="./skin/dummy.gif" alt="dummy" class="icon arrow_1">
