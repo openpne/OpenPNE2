@@ -9,14 +9,14 @@ CREATE TABLE tmp_c_diary_comment_log (
 );
 
 INSERT INTO c_diary_comment_log (c_diary_comment_log_id, c_member_id, c_diary_id, r_datetime)
-  (SELECT NULL, c_member_id, c_diary_id, MAX(r_datetime) AS r_datetime
+  (SELECT nextval('c_diary_comment_log_c_diary_comment_log_id_seq'), c_member_id, c_diary_id, MAX(r_datetime) AS r_datetime
     FROM c_diary_comment
     WHERE r_datetime <= current_timestamp + '-15 days'
     GROUP BY c_member_id, c_diary_id
     ORDER BY r_datetime);
 
 INSERT INTO c_diary_comment_log (c_diary_comment_log_id, c_member_id, c_diary_id, r_datetime)
-  (SELECT NULL, tmp_c_diary_comment_log.c_member_id, tmp_c_diary_comment_log.c_diary_id, 
+  (SELECT nextval('c_diary_comment_log_c_diary_comment_log_id_seq'), tmp_c_diary_comment_log.c_member_id, tmp_c_diary_comment_log.c_diary_id, 
     tmp_c_diary_comment_log.r_datetime as r_datetime
     FROM tmp_c_diary_comment_log
     INNER JOIN c_diary USING (c_diary_id) 
