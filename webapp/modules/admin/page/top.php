@@ -4,8 +4,6 @@
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
-require_once 'OpenPNE/RSS.php';
-
 // 管理画面トップページ 認証済み
 class admin_page_top extends OpenPNE_Action
 {
