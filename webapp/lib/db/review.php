@@ -306,7 +306,7 @@ function db_review_list_product_c_review_list4c_review_id($c_review_id, $page, $
 
 function db_review_list_product_c_review_list4c_member_id($c_member_id, $page, $page_size=30)
 {
-    $sql = "SELECT crc.*, cr.*, crc2.category_disp" .
+    $sql = "SELECT cr.*, crc.*, crc2.category_disp" .
             " FROM c_review_comment AS crc, c_review AS cr, c_review_category AS crc2" .
             " WHERE crc.c_review_id = cr.c_review_id" .
             " AND cr.c_review_category_id = crc2.c_review_category_id" .
