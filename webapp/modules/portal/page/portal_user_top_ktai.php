@@ -9,6 +9,11 @@ class portal_page_portal_user_top_ktai extends OpenPNE_Action
 
     function execute($requests)
     {
+        $use_portal = db_portal_config('USE_PORTAL_KTAI');
+        if (!$use_portal['value']) {
+            openpne_redirect('ktai');
+        }
+
         $this->set('SNS_NAME', SNS_NAME);
         $this->set('IS_CLOSED_SNS', IS_CLOSED_SNS);
 
