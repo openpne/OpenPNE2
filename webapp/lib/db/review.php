@@ -355,7 +355,7 @@ function db_review_add_write_c_review_comment4asin_c_member_id($asin, $c_member_
 
 function db_review_clip_list_h_review_clip_list4c_member_id($c_member_id, $page, $page_size=30)
 {
-    $sql = "SELECT * FROM c_review_clip AS crc, c_review AS cr" .
+    $sql = "SELECT * FROM c_review AS cr, c_review_clip AS crc" .
             " WHERE crc.c_review_id = cr.c_review_id" .
             " AND c_member_id = ?" .
             " ORDER BY crc.r_datetime";
