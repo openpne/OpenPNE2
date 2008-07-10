@@ -33,7 +33,10 @@ CREATE INDEX c_member_id_r_datetime ON c_review_comment(c_member_id,r_datetime);
 CREATE INDEX c_commu_id_c_memer_id_to ON c_commu_admin_invite(c_commu_id,c_member_id_to);
 
 -- update04
-ALTER TABLE c_member_pre ADD COLUMN login_id varchar(255) NOT NULL default '';
+ALTER TABLE c_member_pre ADD COLUMN login_id varchar(255);
+ALTER TABLE c_member_pre ALTER COLUMN login_id SET DEFAULT '';
+UPDATE c_member_pre SET login_id = '';
+ALTER TABLE c_member_pre ALTER COLUMN login_id SET NOT NULL;
 
 -- update05
 CREATE TABLE c_module (
@@ -156,7 +159,10 @@ CREATE TABLE c_member_config_option (
 INSERT INTO c_member_config_option VALUES (nextval('c_member_config_option_c_member_config_option_id_seq'),'SEND_DIARY_COMMENT_MAIL_KTAI');
 
 -- update09
-ALTER TABLE c_message ADD COLUMN filename varchar(200) NOT NULL default '';
+ALTER TABLE c_message ADD COLUMN filename varchar(200);
+ALTER TABLE c_message ALTER COLUMN filename SET DEFAULT '';
+UPDATE c_message SET filename = '';
+ALTER TABLE c_message ALTER COLUMN filename SET NOT NULL;
 
 -- update10
 CREATE TABLE c_album (
@@ -185,11 +191,21 @@ CREATE TABLE c_album_image (
 );
 
 -- update11
-ALTER TABLE c_member ADD COLUMN public_flag_birth_month_day varchar(20) NOT NULL default 'public';
-ALTER TABLE c_member_pre ADD COLUMN public_flag_birth_month_day varchar(20) NOT NULL default 'public';
+ALTER TABLE c_member ADD COLUMN public_flag_birth_month_day varchar(20);
+ALTER TABLE c_member ALTER COLUMN public_flag_birth_month_day SET DEFAULT 'public';
+UPDATE c_member SET public_flag_birth_month_day = 'public';
+ALTER TABLE c_member ALTER COLUMN public_flag_birth_month_day SET NOT NULL;
+
+ALTER TABLE c_member_pre ADD COLUMN public_flag_birth_month_day varchar(20);
+ALTER TABLE c_member_pre ALTER COLUMN public_flag_birth_month_day SET DEFAULT 'public';
+UPDATE c_member_pre SET public_flag_birth_month_day = 'public';
+ALTER TABLE c_member_pre ALTER COLUMN public_flag_birth_month_day SET NOT NULL;
 
 -- update12, update13, update17
-ALTER TABLE c_commu_topic ADD COLUMN u_datetime timestamp NOT NULL default '0000-01-01 00:00:00';
+ALTER TABLE c_commu_topic ADD COLUMN u_datetime timestamp;
+ALTER TABLE c_commu_topic ALTER COLUMN u_datetime SET DEFAULT '0000-01-01 00:00:00';
+UPDATE c_commu_topic SET u_datetime = '0000-01-01 00:00:00';
+ALTER TABLE c_commu_topic ALTER COLUMN u_datetime SET NOT NULL;
 
 DROP INDEX c_commu_topic_r_datetime_c_commu_id;
 CREATE INDEX c_commu_topic_r_datetime_c_commu_id on c_commu_topic (c_commu_id,u_datetime);
@@ -263,17 +279,34 @@ CREATE TABLE c_cmd_caster (
   UNIQUE (url)
 );
 
-ALTER TABLE c_cmd ADD COLUMN url varchar(128) NOT NULL default '';
+ALTER TABLE c_cmd ADD COLUMN url varchar(128);
+ALTER TABLE c_cmd ALTER COLUMN url SET DEFAULT '';
+UPDATE c_cmd SET url = '';
+ALTER TABLE c_cmd ALTER COLUMN url SET NOT NULL;
 
 ALTER TABLE c_cmd DROP CONSTRAINT "c_cmd_name_key";
 DROP INDEX c_cmd_name_2;
 
-ALTER TABLE c_cmd ADD COLUMN c_cmd_caster_id int4 NOT NULL default '0';
-ALTER TABLE c_cmd ADD COLUMN r_datetime timestamp NOT NULL default '0000-01-01 00:00:00';
-ALTER TABLE c_cmd ADD COLUMN u_datetime timestamp NOT NULL default '0000-01-01 00:00:00';
+ALTER TABLE c_cmd ADD COLUMN c_cmd_caster_id int4;
+ALTER TABLE c_cmd ALTER COLUMN c_cmd_caster_id SET DEFAULT '0';
+UPDATE c_cmd SET c_cmd_caster_id = '0';
+ALTER TABLE c_cmd ALTER COLUMN c_cmd_caster_id SET NOT NULL;
+
+ALTER TABLE c_cmd ADD COLUMN r_datetime timestamp;
+ALTER TABLE c_cmd ALTER COLUMN r_datetime SET DEFAULT '0000-01-01 00:00:00';
+UPDATE c_cmd SET r_datetime = '0000-01-01 00:00:00';
+ALTER TABLE c_cmd ALTER COLUMN r_datetime SET NOT NULL;
+
+ALTER TABLE c_cmd ADD COLUMN u_datetime timestamp;
+ALTER TABLE c_cmd ALTER COLUMN u_datetime SET DEFAULT '0000-01-01 00:00:00';
+UPDATE c_cmd SET u_datetime = '0000-01-01 00:00:00';
+ALTER TABLE c_cmd ALTER COLUMN u_datetime SET NOT NULL;
 
 -- update15
-ALTER TABLE c_member_config ADD COLUMN name varchar(64) NOT NULL default '';
+ALTER TABLE c_member_config ADD COLUMN name varchar(64);
+ALTER TABLE c_member_config ALTER COLUMN name SET DEFAULT '';
+UPDATE c_member_config SET name = '';
+ALTER TABLE c_member_config ALTER COLUMN name SET NOT NULL;
 
 UPDATE c_member_config SET name = c_member_config_option.name
     FROM c_member_config_option
