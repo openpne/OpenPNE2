@@ -1,4 +1,7 @@
-ALTER TABLE c_commu_topic ADD COLUMN u_datetime timestamp NOT NULL default '0000-01-01 00:00:00';
+ALTER TABLE c_commu_topic ADD COLUMN u_datetime timestamp;
+ALTER TABLE c_commu_topic ALTER COLUMN u_datetime SET DEFAULT '0000-01-01 00:00:00';
+UPDATE c_commu_topic SET u_datetime = '0000-01-01 00:00:00';
+ALTER TABLE c_commu_topic ALTER COLUMN u_datetime SET NOT NULL;
 
 DROP INDEX c_commu_topic_r_datetime_c_commu_id;
 CREATE INDEX c_commu_topic_r_datetime_c_commu_id on c_commu_topic (c_commu_id,u_datetime);
