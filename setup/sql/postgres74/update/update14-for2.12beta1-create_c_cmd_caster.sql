@@ -6,7 +6,7 @@ CREATE TABLE c_cmd_caster (
   sort_order int4 NOT NULL default '0',
   is_enabled smallint NOT NULL default '0',
   PRIMARY KEY  (c_cmd_caster_id),
-  UNIQUE url (url)
+  UNIQUE (url)
 );
 
 ALTER TABLE c_cmd ADD COLUMN url varchar(128) NOT NULL default '';
