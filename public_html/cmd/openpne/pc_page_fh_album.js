@@ -55,6 +55,8 @@ function url2cmd(url, target_c_member_id)
 
         onFailure: function(obj) {
             pne_url2a(url);
-        }
+        },
+
+        requestHeaders: ['If-Modified-Since', 'Thu, 01 Jun 1970 00:00:00 GMT']
     });
 }
