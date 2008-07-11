@@ -6,7 +6,7 @@ this.configuration.runningMode=this.configuration.runningMode.toLowerCase();}
 switch(this.configuration.runningMode)
 {case'full':this.classNamesArray=[this.firstChildClass,this.lastChildClass,this.oddChildClass,this.evenChildClass,this.onlyChildClass];this.classNameSubstringsArray=[this.nthChildClassPrefix];break;case'light':this.classNamesArray=[this.firstChildClass,this.lastChildClass,this.onlyChildClass];this.classNameSubstringsArray=[];break;}
 this.defineTraverseChildrenFunction();this.defineFillCacheToFunction();this.fillCacheTo();if(this.configuration.autoStart)
-{var _this=this;this.ContentLoaded(window,function(){_this.start();});}},start:function(){var startTime=new Date();this.traverseChildren(document.getElementsByTagName("body")[0]);var endTime=new Date();window.status+="Offspring Exec time: "+(endTime.getTime()-startTime.getTime())+"ms";},defineTraverseChildrenFunction:function(){switch(this.configuration.shouldRemoveOldOffspringClassesFirst)
+{var _this=this;this.ContentLoaded(window,function(){_this.start();});}},start:function(){var startTime=new Date();this.traverseChildren(document.getElementsByTagName("body")[0]);var endTime=new Date();},defineTraverseChildrenFunction:function(){switch(this.configuration.shouldRemoveOldOffspringClassesFirst)
 {case true:switch(this.configuration.runningMode)
 {case'full':this.traverseChildren=function(parent)
 {if(!parent.childNodes.length)return;var childElementNodes=[];var testNode=parent.childNodes[0];while(testNode)
@@ -59,7 +59,9 @@ break;}},traverseChildren:function(parent){if(!parent.childNodes.length)return;v
 testNode=testNode.nextSibling;}
 testNode=null;var childElementNodesLength=childElementNodes.length;if(!childElementNodesLength)return;if(childElementNodesLength>this.cacheLevel)
 {this.fillCacheTo(childElementNodesLength);}
-var lastIndex=childElementNodesLength-1;this._childrenIterator(childElementNodes,childElementNodesLength,lastIndex);lastElement=null;parent=null;},_addOffspringClassNames:function(element,index,isLastElement){index++;if((!element.className)||(!element.className.length))
+var lastIndex=childElementNodesLength-1;this._childrenIterator(childElementNodes,childElementNodesLength,lastIndex);lastElement=null;parent=null;},_addOffspringClassNames:function(element,index,isLastElement){index++;if(this.configuration.targetElement instanceof Array&&this.configuration.targetElement.length){var isTargetElement=false;for(key in this.configuration.targetElement){if(element.nodeName.toLowerCase()==this.configuration.targetElement[key]){isTargetElement=true;break;}}
+if(!isTargetElement){return;}}
+if((!element.className)||(!element.className.length))
 {switch(isLastElement)
 {case false:element.className=this.regularHashTable[index];return;break;case true:element.className=this.lastChildHashTable[index];return;break;}}
 switch(isLastElement)
