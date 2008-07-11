@@ -15,14 +15,15 @@ function smarty_function_t_url_style($params, &$smarty)
 
     $result = <<<EOD
 <!--[if lte IE 6]>
-<script type="text/javascript" src="./js/offspring.js?r7478"></script>
 <script type="text/javascript">
 //<![CDATA[
 var offspringConfiguration = {
-    runningMode: "light" 
+    runningMode: "light",
+    targetElement: ["tr", "th", "td"]
 };
 //]]>
 </script>
+<script type="text/javascript" src="./js/offspring.js?r7689"></script>
 <![endif]-->
 <link rel="stylesheet" href="./xhtml_style.php?hash={$hash}" type="text/css" />
 EOD;
