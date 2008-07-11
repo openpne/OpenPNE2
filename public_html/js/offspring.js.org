@@ -638,22 +638,6 @@ var offspring = {
 
 		index++; // normalize since the arrays are indexed with a "1" starting point
 
-		if (this.configuration.targetElement instanceof Array && this.configuration.targetElement.length) {
-			var isTargetElement = false;
-
-			for (key in this.configuration.targetElement) {
-				if (element.nodeName.toLowerCase() == this.configuration.targetElement[key]) {
-					isTargetElement = true;
-					break;
-				} 
-			}
-
-			if (!isTargetElement) {
-				return;
-			}
-		}
-
-
 		// Steps if the element has no existing classnames...
 
 		if ((!element.className) || (!element.className.length))
