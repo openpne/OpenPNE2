@@ -775,6 +775,9 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 	right: 3px;
 }
 .diaryDetailBox dl {
+	zoom: 1;
+	overflow: hidden;
+	overflow: -moz-scrollbars-none;
 	border-top: 1px solid #<?php echo $colors[1]; ?>;
 }
 .diaryDetailBox dt {
@@ -824,6 +827,9 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
  * 9. topicDetailBox（トピック詳細ボックス）
  *----------------------------------------------------------------------------*/
 .topicDetailBox dl {
+	zoom: 1;
+	overflow: hidden;
+	overflow: -moz-scrollbars-none;
 	border-top: 1px solid #<?php echo $colors[1]; ?>;
 }
 .topicDetailBox dt {
@@ -864,6 +870,9 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
  * 10. eventDetailBox（イベント詳細ボックス）
  *----------------------------------------------------------------------------*/
 .eventDetailBox dl {
+	zoom: 1;
+	overflow: hidden;
+	overflow: -moz-scrollbars-none;
 	border-top: 1px solid #<?php echo $colors[1]; ?>;
 }
 .eventDetailBox dt {
@@ -1159,7 +1168,10 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
  * 22. commentList（コメントリスト）
  *----------------------------------------------------------------------------*/
 .commentList dl {
-	border-top: 1px solid #<?php echo $colors[1]; ?>; overflow:hidden;
+	zoom: 1;
+	overflow: hidden;
+	overflow: -moz-scrollbars-none;
+	border-top: 1px solid #<?php echo $colors[1]; ?>;
 }
 .commentList dt {
 	float: left;
@@ -1337,10 +1349,12 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
  * 25. recentList（最新書き込みリスト）
  *----------------------------------------------------------------------------*/
 .recentList dl {
+	zoom: 1;
+	overflow: hidden;
+	overflow: -moz-scrollbars-none;
 	border-top: 1px solid #<?php echo $colors[1]; ?>;
 }
 .recentList dt {
-	clear: both;
 	float: left;
 	width: 170px;
 	padding: 5px;
@@ -1351,6 +1365,9 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 	margin-left: 180px;
 	padding: 5px;
 	border-left: 1px solid #<?php echo $colors[1]; ?>;
+}
+* html #Body .recentList dd {
+	height: 1.2em;
 }
 #LayoutB #Center .recentList dt {
 	width: 110px;
@@ -1647,7 +1664,9 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 	border: 1px solid #<?php echo $colors[1]; ?>;
 }
 .bizSideScheduleList dl {
+	zoom: 1;
 	overflow: hidden;
+	overflow: -moz-scrollbars-none;
 	border-top: 1px solid #<?php echo $colors[1]; ?>;
 }
 .bizSideScheduleList dt {
