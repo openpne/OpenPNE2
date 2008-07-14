@@ -35,7 +35,7 @@
 ({foreach from=$target_member item=item})
 <tr>
 <td>({$item.target_c_member_id})</td>
-<td>({$item.nickname})</td>
+<td>({if $item.nickname != null})({$item.nickname})({else})(既に退会したメンバーです)({/if})</td>
 <td>({$item.count})</td>
 </tr>
 
