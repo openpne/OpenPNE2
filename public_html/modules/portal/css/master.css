@@ -84,6 +84,6 @@ a:active  { color:#f00;}
 .contents div.PatternF div.innerBox li:after { content: " "; display: block; visibility: hidden; clear: both; height: 0.1px; font-size: 0.1em; line-height: 0;}
 .contents div.PatternF div.innerBox li { display:inline-block; min-height:1%;}
 /* no ie mac \*/
-* html .contents div.PatternF div.innerBox li,
-.contents div.PatternF div.innerBox li,
+* html .contents div.PatternF div.innerBox li { height:1%;}
+.contents div.PatternF div.innerBox li { display:block;}
 /* */
