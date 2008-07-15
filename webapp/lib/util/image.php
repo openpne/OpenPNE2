@@ -106,81 +106,82 @@ function t_check_image($file)
     return $image;
 }
 /**
- *画像をリサイズし、出力する。
- *@param $type 画像タイプ
- *@param $src_filename 変換元画像ファイル名
- *@param $dst_filename 変換先画像ファイル名
- *@param $original_width 変換元画像の画像幅
- *@param $original_height 変換元画像の画像高さ
- *@param $new_width 変換先画像の画像幅
- *@param $new_height 変換先画像の画像高さ
+ * 画像をリサイズし、出力する
+ *
+ * @param $type 画像タイプ
+ * @param $src_filename 変換元画像ファイル名
+ * @param $dst_filename 変換先画像ファイル名
+ * @param $original_width 変換元画像の画像幅
+ * @param $original_height 変換元画像の画像高さ
+ * @param $new_width 変換先画像の画像幅
+ * @param $new_height 変換先画像の画像高さ
  */
-function resize_image( $type, $src_filename, $dst_filename, $original_width, $original_height, $new_width, $new_height)
+function resize_image($type, $src_filename, $dst_filename, $original_width, $original_height, $new_width, $new_height)
 {
     $src_img = NULL;
     $dst_img = NULL;
 
     switch ($type) {
-        case IMAGETYPE_GIF:
-            $src_img = imagecreatefromgif ( $src_filename );
-            $transparentIndex = imagecolortransparent($src_img);
-            //透過GIFの場合
-            if($transparentIndex >= 0){
-                $dst_img = imagecreate ( $new_width, $new_height );
-                $transparentColor=imagecolorsforindex($src_img, $transparentIndex);
-                $transparent=imagecolorallocate($dst_img, $transparentColor['red'], $transparentColor['green'], $transparentColor['blue']);
-                imagecolortransparent($dst_img, $transparent);
-                imagecopyresized ($dst_img,$src_img,0,0,0,0,$new_width,$new_height,$original_width,$original_height);
-            }
-            //透過GIFで無い場合
-            else{
-                $dst_img = imagecreatetruecolor( $new_width, $new_height );
-                imagecopyresampled ($dst_img,$src_img,0,0,0,0,$new_width,$new_height,$original_width,$original_height);
-                imagetruecolortopalette($dst_img, true, 256);
-            }
-            imagegif ( $dst_img, $dst_filename );
-            break;
-        case IMAGETYPE_JPEG:
-               $src_img = imagecreatefromjpeg ( $src_filename );
-            $dst_img = imagecreatetruecolor ( $new_width, $new_height );
-            imagecopyresampled ($dst_img,$src_img,0,0,0,0,$new_width,$new_height,$original_width,$original_height);
-            imagejpeg ( $dst_img, $dst_filename );
-            break;
-        case IMAGETYPE_PNG:
-            $src_img = imagecreatefrompng ( $src_filename );
-            //TrueColor PNGの場合
-            if(imageistruecolor($src_img)) {
-                $dst_img = imagecreatetruecolor ( $new_width, $new_height );
-                imagealphablending($dst_img, false);
-                imagecopyresampled ($dst_img,$src_img,0,0,0,0,$new_width,$new_height,$original_width,$original_height);
-                imagesavealpha($dst_img, true);
-            }
-            //TrueColor PNGで無い場合
-            else{
-                //透過PNGの場合
-                if($transparentIndex >= 0){
-                    $dst_img = imagecreate ( $new_width, $new_height);
-                    $transparentColor=imagecolorsforindex($src_img, $transparentIndex);
-                    $transparent=imagecolorallocate($dst_img, $transparentColor['red'], $transparentColor['green'], $transparentColor['blue']);
-                    imagecolortransparent($dst_img, $transparent);
-                    imagecopyresized ($dst_img,$src_img,0,0,0,0,$new_width,$new_height,$original_width,$original_height);
-                }
-                //透過PNGで無い場合
-                    else{
-                        $dst_img = imagecreatetruecolor( $new_width, $new_height );
-                    imagecopyresampled ($dst_img,$src_img,0,0,0,0,$new_width,$new_height,$original_width,$original_height);
-                    imagetruecolortopalette($dst_img, true, 256);
-                }
-            }
-            imagepng($dst_img, $dst_filename);
-            break;
-        default:
-            break;
-
+    case IMAGETYPE_GIF:
+        $src_img = imagecreatefromgif($src_filename);
+        $dst_img = imagecreate($new_width, $new_height);
+        set_transparent_to_output_image($src_img, $dst_img, $type);
+        imagecopyresampled($dst_img, $src_img, 0, 0, 0, 0, $new_width, $new_height, $original_width, $original_height);
+        imagegif($dst_img, $dst_filename);
+        break;
+    case IMAGETYPE_JPEG:
+        $src_img = imagecreatefromjpeg($src_filename);
+        $dst_img = imagecreatetruecolor($new_width, $new_height);
+        imagecopyresampled($dst_img, $src_img, 0, 0, 0, 0, $new_width, $new_height, $original_width, $original_height);
+        imagejpeg($dst_img, $dst_filename);
+        break;
+    case IMAGETYPE_PNG:
+        $src_img = imagecreatefrompng($src_filename);
+        $dst_img = imagecreate($new_width, $new_height);
+        set_transparent_to_output_image($src_img, $dst_img, $type);
+        imagecopyresampled($dst_img, $src_img, 0, 0, 0, 0, $new_width, $new_height, $original_width, $original_height);
+        imagepng($dst_img, $dst_filename);
+        break;
+    default:
+        break;
     }
+
     //リリースを解放
     imagedestroy($dst_img);
     imagedestroy($src_img);
+}
+
+/**
+ * 入力画像から取得した透過情報を出力画像に適用する
+ *
+ * @params resource $source_gdimg
+ * @params resource $output_gdimg
+ * @params int $type
+ */
+function set_transparent_to_output_image(&$source_gdimg, &$output_gdimg, $type)
+{
+    $trnprt_idx_s = imagecolortransparent($source_gdimg);
+    if ($trnprt_idx_s >= 0) { // 透過色が設定されている
+        // 入力画像から透明色に指定してある色（RGBの配列）を取得する
+        $trnprt_color = imagecolorsforindex($source_gdimg, $trnprt_idx_s);
+
+        // 色の設定
+        $trnprt_idx_s = imagecolorallocate($output_gdimg, $trnprt_color['red'], $trnprt_color['green'], $trnprt_color['blue']);
+
+        // 透明色（にする色）で塗りつぶす
+        imagefill($output_gdimg, 0, 0, $trnprt_idx_s);
+
+        // 透明色設定
+        imagecolortransparent($output_gdimg, $trnprt_idx_s);
+    } elseif ($type == IMAGETYPE_PNG) {  // PNG-24
+        // アルファチャンネル情報を保存するには、アルファブレンディングを解除する必要がある
+        imagealphablending($output_gdimg, false);
+        imagesavealpha($output_gdimg, true);
+
+        // 透過色設定
+        $color = imagecolorallocatealpha($output_gdimg, 0, 0, 0, 127);
+        imagefill($output_gdimg, 0, 0, $color);
+    }
 }
 
 /**
