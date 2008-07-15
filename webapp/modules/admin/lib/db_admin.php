@@ -2370,15 +2370,14 @@ function monitor_topic_list($keyword, $page_size, $page)
         $where = '';
     }
 
-    $select = "SELECT ct.*," .
-            "ct.name AS topic_name, c.name AS commu_name," .
-            "ctc.body, ctc.filename, ctc.image_filename1, ctc.image_filename2, ctc.image_filename3";
+    $select = 'SELECT c.name AS commu_name, c.image_filename AS commu_image'
+            . ' ,ct.*, ct.u_datetime AS max_datetime';
 
-    $from = " FROM c_commu_topic AS ct"
-            ." LEFT JOIN c_commu AS c ON c.c_commu_id = ct.c_commu_id "
-            ." LEFT JOIN c_commu_topic_comment AS ctc ON (ctc.c_commu_topic_id = ct.c_commu_topic_id AND ctc.number = 0)";
+    $from   = ' FROM c_commu AS c'
+            . ' INNER JOIN c_commu_topic AS ct USING(c_commu_id) ';
 
-    $order = " ORDER BY r_datetime desc";
+
+    $order = " ORDER BY max_datetime desc";
 
     $sql = $select . $from . $where . $order;
 
