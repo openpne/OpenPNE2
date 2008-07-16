@@ -42,7 +42,7 @@
 ({if $item.is_c_commu_exists})
 <td>({$item.name})</td>
 ({else})
-<td>(既に削除された({$WORD_COMMUNITY})です)</td>
+<td>(既に削除されたコミュニティです)</td>
 ({/if})
 <td>({$item.count})</td>
 </tr>
