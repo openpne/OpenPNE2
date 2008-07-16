@@ -20,6 +20,7 @@
 
 <p>[({$page_name})]</p>
 
+({if $access_member})
 ({if $is_prev})
 <a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('access_analysis_member')})&ktai_flag=({$ktai_flag})&ymd=({$ymd})&month_flag=({$month_flag})&page_name=({$requests.page_name})&orderby=({$orderby})&direc=-1&page=({$page})">＜前を表示</a> 
 ({/if})
@@ -52,5 +53,8 @@
 </tr>
 
 </table>
+({else})
+<p>アクセスしたメンバーはいません</p>
+({/if})
 
 ({$inc_footer|smarty:nodefaults})
