@@ -2378,16 +2378,17 @@ function monitor_topic_list($keyword, $page_size, $page)
         $where = '';
     }
 
-    $select = 'SELECT c.name AS commu_name, c.image_filename AS commu_image'
-            . ' ,ct.*, ct.u_datetime AS max_datetime';
+    $select = 'SELECT ct.*,'
+            . ' ct.name AS topic_name, c.name AS commu_name,'
+            . ' ctc.body, ctc.filename, ctc.image_filename1, ctc.image_filename2, ctc.image_filename3';
 
-    $from   = ' FROM c_commu AS c'
-            . ' INNER JOIN c_commu_topic AS ct USING(c_commu_id) ';
+    $from   = ' FROM c_commu_topic AS ct'
+            . ' LEFT JOIN c_commu AS c ON c.c_commu_id = ct.c_commu_id'
+            . ' LEFT JOIN c_commu_topic_comment AS ctc ON (ctc.c_commu_topic_id = ct.c_commu_topic_id AND ctc.number = 0)';
 
+    $order  = ' ORDER BY r_datetime desc';
 
-    $order = " ORDER BY max_datetime desc";
-
-    $sql = $select . $from . $where . $order;
+    $sql    = $select . $from . $where . $order;
 
     $list = db_get_all_limit($sql,($page-1)*$page_size,$page_size,$params);
 
@@ -2445,6 +2446,51 @@ function monitor_topic_list4target_c_commu_topic_id($c_commu_topic_id, $page_siz
 
     $sql =
         "SELECT count(*) "
+        . $from
+        . $where ;
+    $total_num = db_get_one($sql, $params);
+
+    $total_page_num =  ceil($total_num / $page_size);
+    $next = ($page < $total_page_num);
+    $prev = ($page > 1);
+
+    return array($list , $prev , $next, $total_num, $total_page_num);
+}
+
+function monitor_new_topic_list($page_size, $page)
+{
+    $page = intval($page);
+    $page_size = intval($page_size);
+    if ($wheres) { 
+        $where = ' WHERE ' . implode(' AND ', $wheres); 
+    } else { 
+        $where = ''; 
+    } 
+
+    $select = 'SELECT c.name AS commu_name, c.image_filename AS commu_image,'
+            . ' ct.*, ct.r_datetime AS max_datetime';
+    $from   = ' FROM c_commu AS c, c_commu_topic AS ct, c_commu_topic_comment AS ctc';
+    $params = array();
+    $where  = ' WHERE ct.c_commu_topic_id = ctc.c_commu_topic_id'
+            . ' AND c.c_commu_id = ct.c_commu_id';
+    $group  = ' GROUP BY ct.c_commu_topic_id';
+    $order  = ' ORDER BY max_datetime DESC';
+
+    $sql = $select . $from . $where . $group . $order;
+
+    $list = db_get_all_limit($sql,($page-1)*$page_size,$page_size,$params);
+
+    foreach ($list as $key => $value) {
+        $list[$key]['count_comments'] = _db_count_c_commu_topic_comments4c_commu_topic_id($value['c_commu_topic_id']);
+        $c_member = db_member_c_member4c_member_id_LIGHT($value['c_member_id']);
+        $list[$key]['nickname'] = $c_member['nickname'];
+        if (!empty($value['filename'])) {
+            $list[$key]['original_filename'] = db_file_original_filename4filename($value['filename']);
+        }
+    }
+
+    $sql =
+        "SELECT COUNT(*) "
         . $from
         . $where ;
     $total_num = db_get_one($sql, $params);
