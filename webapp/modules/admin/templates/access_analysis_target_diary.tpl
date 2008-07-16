@@ -20,7 +20,7 @@
 <h2>({$item_str}) ({$WORD_DIARY})別アクセス数表示 ({if $month_flag})({$ymd|date_format:"%Y年%m月分"})({else})({$ymd|date_format:"%Y年%m月%d日分"})({/if})</h2>
 <div class="contents">
 
-<p>({$page_name})</p>
+<p>[({$page_name})]</p>
 
 ({if $is_prev})<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('access_analysis_target_diary')})&amp;ktai_flag=({$ktai_flag})&amp;ymd=({$ymd})&amp;month_flag=({$month_flag})&amp;page_name=({$requests.page_name})&amp;orderby=({$orderby})&amp;page=({$page-1})">＜前を表示</a> ({/if})
 &nbsp;&nbsp;({$start_num})件～({$end_num})件を表示&nbsp;&nbsp;
