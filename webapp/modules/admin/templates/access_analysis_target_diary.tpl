@@ -42,7 +42,7 @@
 <td>({$item.subject})</td>
 <td>({$item.nickname})</td>
 ({else})
-<td colspan="2">(既に削除された({$WORD_DIARY})です)</td>
+<td colspan="2">(既に削除された日記です)</td>
 ({/if})
 <td>({$item.count})</td>
 </tr>
