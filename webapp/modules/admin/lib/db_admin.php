@@ -1276,6 +1276,7 @@ function p_access_analysis_target_topic_target_topic4ym_page_name
             $where .= " and page_name = ? ";
             array_push($params,$page_name);
     }
+    $where .= ' and target_c_commu_topic_id <> 0 ';
     $sql = "select target_c_commu_topic_id , count(*) as count from c_access_log ";
     $sql .= $where." group by target_c_commu_topic_id " .$orderby_str;
     $list = db_get_all_limit($sql, $start, $page_size, $params);
