@@ -235,7 +235,7 @@
        ({elseif $data.kind eq PORTAL_LAYOUT_FREE1 || $data.kind eq PORTAL_LAYOUT_FREE2 || $data.kind eq PORTAL_LAYOUT_FREE3 || $data.kind eq PORTAL_LAYOUT_FREE4 || $data.kind eq PORTAL_LAYOUT_FREE5})
            <div class="box PatternC">
                ({if $data.contents})
-                   ({$data.contents|smarty:nodefaults|t_url2cmd|t_cmd})
+                   ({$data.contents|smarty:nodefaults|t_url2cmd:"":"":0|t_cmd})
                ({else})
                    <br />
                ({/if})
