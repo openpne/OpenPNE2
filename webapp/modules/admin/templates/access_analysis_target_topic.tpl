@@ -47,8 +47,12 @@
 ({foreach from=$target_topic item=item})
 		<tr>
 			<th>({$item.target_c_commu_topic_id})</th>
+({if $item.is_c_commu_topic_exists})
 			<td>({$item.topic_name})</td>
 			<td>({$item.commu_name})</td>
+({else})
+			<td colspan="2">(既に削除されたトピックです)</td>
+({/if})
 			<td>({$item.count})</td>
 		</tr>
 ({/foreach})
