@@ -1186,12 +1186,14 @@ function p_access_analysis_target_commu_target_commu4ym_page_name
     $return = array();
     $sum = 0;
     foreach($list as $key => $value) {
-        if ($value['target_c_commu_id']) {
-            if ($c_commu = db_commu_c_commu4c_commu_id($value['target_c_commu_id'])) {
-                $return[] = array_merge($value, $c_commu);
-                $sum += $value['count'];
-            }
+        if ($c_commu = db_commu_c_commu4c_commu_id($value['target_c_commu_id'])) {
+            $value['is_c_commu_exists'] = true;
+            $return[] = array_merge($value, $c_commu);
+        } else {
+            $value['is_c_commu_exists'] = false;
+            $return[] = $value;
         }
+        $sum += $value['count'];
     }
 
     $sql =   "select count(*) from c_access_log  where ktai_flag = ? ";
@@ -1290,9 +1292,13 @@ function p_access_analysis_target_topic_target_topic4ym_page_name
                 $c_commu_topic['topic_name'] = $c_commu_topic['name'];
                 $c_commu = db_commu_c_commu4c_commu_id($c_commu_topic['c_commu_id']);
                 $c_commu_topic['commu_name'] = $c_commu['name'];
+                $value['is_c_commu_topic_exists'] = true;
                 $return[] = array_merge($value, $c_commu_topic);
-                $sum += $value['count'];
+            } else {
+                $value['is_c_commu_topic_exists'] = false;
+                $return[] = $value;
             }
+            $sum += $value['count'];
         }
     }
 
@@ -1359,14 +1365,16 @@ function p_access_analysis_target_diary_target_diary4ym_page_name
     $return = array();
     $sum = 0;
     foreach ($list as $key => $value) {
-        if ($value['target_c_diary_id']) {
-            if ($c_diary = db_diary_get_c_diary4id($value['target_c_diary_id'])) {
-                $c_member = db_member_c_member4c_member_id($c_diary['c_member_id']);
-                $c_diary['nickname'] = $c_member['nickname'];
-                $return[] = array_merge($value, $c_diary);
-                $sum += $value['count'];
-            }
+        if ($c_diary = db_diary_get_c_diary4id($value['target_c_diary_id'])) {
+            $c_member = db_member_c_member4c_member_id($c_diary['c_member_id']);
+            $c_diary['nickname'] = $c_member['nickname'];
+            $value['is_c_diary_exists'] = true;
+            $return[] = array_merge($value, $c_diary);
+        } else {
+            $value['is_c_diary_exists'] = false;
+            $return[] = $value;
         }
+        $sum += $value['count'];
     }
 
     $sql =   "select count(*) from c_access_log where ktai_flag = ? ";
@@ -1460,12 +1468,13 @@ function p_access_analysis_member_access_member4ym_page_name
     foreach($list as $key => $value) {
         if ($value['c_member_id']) {
             if ($c_member = _db_c_member4c_member_id($value['c_member_id'])) {
+                $value['is_c_member_exists'] = true;
                 $return[] = array_merge($value, $c_member);
-                $sum += $value['count'];
             } else {
+                $value['is_c_member_exists'] = false;
                 $return[] = $value;
-                $sum += $value['count'];
             }
+            $sum += $value['count'];
         }
     }
 
@@ -1532,16 +1541,15 @@ function p_access_analysis_target_member_access_member4ym_page_name
 
     $return = array();
     $sum = 0;
-    foreach($list as $key => $value) {
-        if ($value['target_c_member_id']) {
-            if ($c_member = db_member_c_member4c_member_id($value['target_c_member_id'])) {
-                $return[] = array_merge($value, $c_member);
-                $sum += $value['count'];
-            } else {
-                $return[] = $value;
-                $sum += $value['count'];
-            }
+    foreach ($list as $key => $value) {
+        if ($c_member = db_member_c_member4c_member_id($value['target_c_member_id'])) {
+            $value['is_c_member_exists'] = true;
+            $return[] = array_merge($value, $c_member);
+        } else {
+            $value['is_c_member_exists'] = false;
+            $return[] = $value;
         }
+        $sum += $value['count'];
     }
 
     $where =" where ktai_flag = ? ";
