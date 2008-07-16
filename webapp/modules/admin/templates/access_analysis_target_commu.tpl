@@ -38,7 +38,11 @@
 ({foreach from=$target_commu item=item})
 <tr>
 <th>({$item.target_c_commu_id})</th>
+({if $item.is_c_commu_exists})
 <td>({$item.name})</td>
+({else})
+<td>(既に削除された({$WORD_COMMUNITY})です)</td>
+({/if})
 <td>({$item.count})</td>
 </tr>
 
