@@ -4,10 +4,10 @@
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
-function smarty_modifier_t_url2cmd($string, $type = '', $target_c_member_id = '')
+function smarty_modifier_t_url2cmd($string, $type = '', $target_c_member_id = '', $is_html = true)
 {
-    if (in_array($type, db_get_url2a_denied_list())) {
-        // HTMLエスケープされていない場合
+    if (!$is_html || in_array($type, db_get_url2a_denied_list())) {
+        // HTMLエスケープされていない場合、 t_url2a の変換対象でない場合
         // ", ', </a> がURLの後に続く場合はマッチさせない
         $url_pattern = '/https?:\/\/([a-zA-Z0-9\-.]+)\/?(?:[a-zA-Z0-9_\-\/.,:;~?@=+$%#!()&])*(?!["\'a-zA-Z0-9_\-\/.,:;~?@=+$%#!()&]|<\/a>)/';
     } else {
