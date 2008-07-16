@@ -4,7 +4,7 @@
 ({capture name=page_name_temp})
 ({$item_str}) ({if $month_flag})({$ymd|date_format:"%Y年%m月"})({else})({$ymd|date_format:"%Y年%m月%d日"})({/if})にアクセスしたメンバー
 ({/capture})
-({* ({assign var="page_name" value=$smarty.capture.page_name_temp}) *})
+({assign var="page_name" value=$smarty.capture.page_name_temp})
 ({ext_include file="inc_tree_adminStatisticalInformation.tpl"})
 </div>
 
@@ -18,9 +18,7 @@
 <p class="actionMsg">({$msg})</p>
 ({/if})
 
-[({$item_str})&nbsp;({if $month_flag})({$ymd|date_format:"%Y年%m月"})({else})({$ymd|date_format:"%Y年%m月%d日"})({/if})にアクセスしたメンバー]
-
-<br>
+<p>[({$page_name})]</p>
 
 ({if $is_prev})
 <a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('access_analysis_member')})&ktai_flag=({$ktai_flag})&ymd=({$ymd})&month_flag=({$month_flag})&page_name=({$requests.page_name})&orderby=({$orderby})&direc=-1&page=({$page})">＜前を表示</a> 
