@@ -22,6 +22,7 @@
 
 <p>[({$page_name})]</p>
 
+({if $target_diary})
 ({if $is_prev})<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('access_analysis_target_diary')})&amp;ktai_flag=({$ktai_flag})&amp;ymd=({$ymd})&amp;month_flag=({$month_flag})&amp;page_name=({$requests.page_name})&amp;orderby=({$orderby})&amp;page=({$page-1})">＜前を表示</a> ({/if})
 &nbsp;&nbsp;({$start_num})件～({$end_num})件を表示&nbsp;&nbsp;
 ({if $is_next})<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('access_analysis_target_diary')})&amp;ktai_flag=({$ktai_flag})&amp;ymd=({$ymd})&amp;month_flag=({$month_flag})&amp;page_name=({$requests.page_name})&amp;orderby=({$orderby})&amp;page=({$page+1})">次を表示＞</a>({/if})
@@ -54,5 +55,8 @@
 </tr>
 
 </table>
+({else})
+<p>アクセスされた({$WORD_DIARY})はありません</p>
+({/if})
 
 ({$inc_footer|smarty:nodefaults})
