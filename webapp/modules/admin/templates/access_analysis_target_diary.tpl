@@ -37,8 +37,12 @@
 ({foreach from=$target_diary item=item})
 <tr>
 <td>({$item.target_c_diary_id})</td>
+({if $item.is_c_diary_exists})
 <td>({$item.subject})</td>
 <td>({$item.nickname})</td>
+({else})
+<td colspan="2">(既に削除された({$WORD_DIARY})です)</td>
+({/if})
 <td>({$item.count})</td>
 </tr>
 
