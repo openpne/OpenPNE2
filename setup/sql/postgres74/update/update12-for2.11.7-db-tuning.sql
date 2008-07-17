@@ -40,7 +40,7 @@ UPDATE c_commu_topic SET u_datetime = tmp_c_commu_topic.u_datetime
 DROP TABLE tmp_c_commu_topic;
 
 INSERT INTO c_diary_comment_log (c_diary_comment_log_id, c_member_id, c_diary_id, r_datetime)
-  (SELECT NULL, c_member_id, c_diary_id, MAX(r_datetime) AS r_datetime
+  (SELECT nextval('c_diary_comment_log_c_diary_comment_log_id_seq'), c_member_id, c_diary_id, MAX(r_datetime) AS r_datetime
     FROM c_diary_comment
     WHERE r_datetime <= current_timestamp + '-15 days'
     GROUP BY c_member_id, c_diary_id
