@@ -2347,7 +2347,7 @@ function monitor_topic_list4target_c_commu_topic_id($c_commu_topic_id, $page_siz
     return array($list , $prev , $next, $total_num, $total_page_num);
 }
 
-function monitor_new_topic_list($limit, $page = 1)
+function monitor_new_topic_list($limit)
 {
     $limit = intval($limit); 
 
