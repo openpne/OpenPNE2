@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2008 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -29,12 +29,6 @@ class pc_do_c_event_write_insert_c_commu_topic_comment extends OpenPNE_Action
         if (!$status['is_commu_member']) {
             handle_kengen_error();
         }
-        if (!db_commu_is_writable_c_commu_topic_comment4c_commu_topic_id($c_commu_topic_id)) {
-            $err_msg[] = 'コメントが1000番に達したので、このイベントにはコメントできません';
-            $_REQUEST['err_msg'] = $err_msg;
-            openpne_forward('pc', 'page', "c_event_detail");
-            exit;
-        }
         //---
 
         if ($add_event_member == 1 && $c_topic['capacity'] && $c_topic['capacity'] <= $c_topic['member_num'] ) {
@@ -52,7 +46,7 @@ class pc_do_c_event_write_insert_c_commu_topic_comment extends OpenPNE_Action
 
         //イベントのメンバーに追加
         if ($add_event_member == 1) {
-            db_commu_insert_c_event_member($c_commu_topic_id, $u);
+            do_c_event_add_insert_c_event_member($c_commu_topic_id, $u);
         } elseif ($add_event_member == -1) {
             db_commu_delete_c_event_member($c_commu_topic_id, $u);
         }

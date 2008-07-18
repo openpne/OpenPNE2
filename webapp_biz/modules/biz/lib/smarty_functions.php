@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2008 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -104,7 +104,7 @@ function biz_getScheduleWeek($u, $member_id, $w, $cmd, $head = true, $value = tr
                 'day' => $d,
                 'month_disp'=>$m_disp,
                 'day_disp' => $d_disp,
-                'dayofweek'=>$dayofweek[$i++],
+                'dayofweek'=>$dayofweek[$i++], 
                 'now' => false,
                 'birth' => db_member_birth4c_member_id($m, $d, $member_id),
                 'event' => db_commu_event4c_member_id($y, $m, $d, $member_id),
@@ -168,6 +168,9 @@ function biz_getScheduleWeek($u, $member_id, $w, $cmd, $head = true, $value = tr
     }
 
     if ($cmd == 'h') {
+        $stateform = biz_getStateForm($member_id, true);
+        $inc_smarty->assign('stateform', $stateform);
+
         if (OPENPNE_USE_POINT_RANK) {
             // ポイント
             $point = db_point_get_point($member_id);
@@ -209,6 +212,29 @@ function biz_getTodoList($u, $member_id, $cmd, $nickname = null)
     $inc_smarty->assign("todolist", $todolist);
     $inc_smarty->assign("checkedlist", $checkedlist);
     $content = $inc_smarty->fetch('file:'.OPENPNE_MODULES_BIZ_DIR.'/biz/templates/inc_biz_todo.tpl');
+    return $content;
+}
+
+//stateを得る
+function biz_getStateForm($member_id, $is_form = false)
+{
+    $inc_smarty = new OpenPNE_Smarty($GLOBALS['SMARTY']);
+    $inc_smarty->assign("PHPSESSID", md5(session_id()));
+    $inc_smarty->templates_dir = 'pc/templates';
+
+    $inc_smarty->assign("target_id", $member_id);
+    $state = biz_getState($member_id);
+
+    $inc_smarty->assign("is_form", $is_form);
+
+    //nickname用-----
+    $c_member=db_member_c_member4c_member_id($member_id);
+    $inc_smarty->assign("c_member", $c_member);
+    //nickname用-----
+
+    $inc_smarty->assign("state", $state);
+    $content = $inc_smarty->fetch('file:'.OPENPNE_MODULES_BIZ_DIR.'/biz/templates/inc_biz_state.tpl');
+
     return $content;
 }
 

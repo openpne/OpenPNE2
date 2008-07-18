@@ -1,9 +1,9 @@
 <?php
 /**
- * $Header: /repository/pear/Log/Log/syslog.php,v 1.25 2007/01/29 05:09:07 jon Exp $
+ * $Header: /repository/pear/Log/Log/syslog.php,v 1.23 2005/02/26 14:48:59 chagenbu Exp $
  * $Horde: horde/lib/Log/syslog.php,v 1.6 2000/06/28 21:36:13 jon Exp $
  *
- * @version $Revision: 1.25 $
+ * @version $Revision: 1.23 $
  * @package Log
  */
 
@@ -13,7 +13,6 @@
  * (PHP emulates this with the Event Log on Windows machines).
  *
  * @author  Chuck Hagenbuch <chuck@horde.org>
- * @author  Jon Parise <jon@php.net>
  * @since   Horde 1.3
  * @since   Log 1.0
  * @package Log
@@ -23,19 +22,11 @@
 class Log_syslog extends Log
 {
     /**
-     * Integer holding the log facility to use.
-     * @var integer
-     * @access private
-     */
+    * Integer holding the log facility to use.
+    * @var string
+    * @access private
+    */
     var $_name = LOG_SYSLOG;
-
-    /**
-     * Should we inherit the current syslog connection for this process, or
-     * should we call openlog() to start a new syslog connection?
-     * @var boolean
-     * @access private
-     */
-    var $_inherit = false;
 
     /**
      * Constructs a new syslog object.
@@ -54,11 +45,6 @@ class Log_syslog extends Log
             $name = LOG_SYSLOG;
         }
 
-        if (isset($conf['inherit'])) {
-            $this->_inherit = $conf['inherit'];
-            $this->_opened = $this->_inherit;
-        }
-
         $this->_id = md5(microtime());
         $this->_name = $name;
         $this->_ident = $ident;
@@ -73,7 +59,8 @@ class Log_syslog extends Log
     function open()
     {
         if (!$this->_opened) {
-            $this->_opened = openlog($this->_ident, LOG_PID, $this->_name);
+            openlog($this->_ident, LOG_PID, $this->_name);
+            $this->_opened = true;
         }
 
         return $this->_opened;
@@ -85,12 +72,12 @@ class Log_syslog extends Log
      */
     function close()
     {
-        if ($this->_opened && !$this->_inherit) {
+        if ($this->_opened) {
             closelog();
             $this->_opened = false;
         }
 
-        return true;
+        return ($this->_opened === false);
     }
 
     /**
@@ -126,13 +113,7 @@ class Log_syslog extends Log
         /* Extract the string representation of the message. */
         $message = $this->_extractMessage($message);
 
-        /* Build a syslog priority value based on our current configuration. */
-        $priority = $this->_toSyslog($priority);
-        if ($this->_inherit) {
-            $priority |= $this->_name;
-        }
-
-        if (!syslog($priority, $message)) {
+        if (!syslog($this->_toSyslog($priority), $message)) {
             return false;
         }
 

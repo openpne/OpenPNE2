@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2008 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -41,7 +41,19 @@ class pc_do_f_link_request_insert_c_friend_confirm extends OpenPNE_Action
 
         db_friend_insert_c_friend_confirm($c_member_id_from, $target_c_member_id, $body);
 
-        list($subject, $body_disp) = create_message_friend_link_request($c_member_id_from, $body);
+        //メッセージ
+        $c_member_to   = db_member_c_member4c_member_id($target_c_member_id);
+        $c_member_from = db_member_c_member4c_member_id($c_member_id_from);
+
+        $subject =WORD_FRIEND."リンク要請メッセージ";
+        $body_disp =
+            $c_member_from['nickname']." さんから".WORD_FRIEND."リンク要請のメッセージが届いています。\n".
+            "\n".
+            "メッセージ：\n".
+            $body."\n".
+            "\n".
+            "この要請について、承認待ちリストから承認または拒否を選択してください。\n";
+
         db_message_send_message_syoudaku($c_member_id_from, $target_c_member_id, $subject, $body_disp);
 
         $p = array('target_c_member_id' => $target_c_member_id);

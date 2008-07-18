@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2008 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -11,13 +11,6 @@ class admin_page_edit_skin_image extends OpenPNE_Action
     {
         $this->set('theme_list', $this->_search_skin_dir());
         $this->set('skin_list', db_get_c_skin_filename_list());
-
-        $c_config_decoration_list = db_admin_c_config_decoration_list();
-        foreach ($c_config_decoration_list as $key => $value) {
-            $c_config_decoration_list[$key]['tagname'] = strtr($value['tagname'], ':', '_');
-        }
-        $this->set('c_config_decoration_list', $c_config_decoration_list);
-
         return 'success';
     }
 

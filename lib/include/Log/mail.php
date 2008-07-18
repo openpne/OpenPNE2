@@ -1,8 +1,8 @@
 <?php
 /**
- * $Header: /repository/pear/Log/Log/mail.php,v 1.26 2006/12/18 00:53:02 jon Exp $
+ * $Header: /repository/pear/Log/Log/mail.php,v 1.24 2006/01/30 05:37:18 jon Exp $
  *
- * @version $Revision: 1.26 $
+ * @version $Revision: 1.24 $
  * @package Log
  */
 
@@ -28,12 +28,11 @@
 class Log_mail extends Log
 {
     /**
-     * String holding the recipients' email addresses.  Multiple addresses
-     * should be separated with commas.
+     * String holding the recipient's email address.
      * @var string
      * @access private
      */
-    var $_recipients = '';
+    var $_recipient = '';
 
     /**
      * String holding the sender's email address.
@@ -79,13 +78,6 @@ class Log_mail extends Log
      */
     var $_message = '';
 
-    /**
-     * Flag used to indicated that log lines have been written to the message
-     * body and the message should be sent on close().
-     * @var boolean
-     * @access private
-     */
-    var $_shouldSend = false;
 
     /**
      * Constructs a new Log_mail object.
@@ -94,7 +86,7 @@ class Log_mail extends Log
      *   $conf['from']    : the mail's "From" header line,
      *   $conf['subject'] : the mail's "Subject" line.
      *
-     * @param string $name      The message's recipients.
+     * @param string $name      The filename of the logfile.
      * @param string $ident     The identity string.
      * @param array  $conf      The configuration array.
      * @param int    $level     Log messages up to and including this level.
@@ -104,7 +96,7 @@ class Log_mail extends Log
                       $level = PEAR_LOG_DEBUG)
     {
         $this->_id = md5(microtime());
-        $this->_recipients = $name;
+        $this->_recipient = $name;
         $this->_ident = $ident;
         $this->_mask = Log::UPTO($level);
 
@@ -159,7 +151,6 @@ class Log_mail extends Log
                 $this->_message = $this->_preamble . "\r\n\r\n";
             }
             $this->_opened = true;
-            $_shouldSend = false;
         }
 
         return $this->_opened;
@@ -174,11 +165,11 @@ class Log_mail extends Log
     function close()
     {
         if ($this->_opened) {
-            if ($this->_shouldSend && !empty($this->_message)) {
+            if (!empty($this->_message)) {
                 $headers = "From: $this->_from\r\n";
                 $headers .= "User-Agent: Log_mail";
 
-                if (mail($this->_recipients, $this->_subject, $this->_message,
+                if (mail($this->_recipient, $this->_subject, $this->_message,
                          $headers) == false) {
                     error_log("Log_mail: Failure executing mail()", 0);
                     return false;
@@ -186,7 +177,6 @@ class Log_mail extends Log
 
                 /* Clear the message string now that the email has been sent. */
                 $this->_message = '';
-                $this->_shouldSend = false;
             }
             $this->_opened = false;
         }
@@ -243,11 +233,10 @@ class Log_mail extends Log
         /* Extract the string representation of the message. */
         $message = $this->_extractMessage($message);
 
-        /* Append the string containing the complete log line. */
+        /* Build the string containing the complete log line. */
         $this->_message .= $this->_format($this->_lineFormat,
                                           strftime($this->_timeFormat),
                                           $priority, $message) . "\r\n";
-        $this->_shouldSend = true;
 
         /* Notify observers about this log message. */
         $this->_announce(array('priority' => $priority, 'message' => $message));

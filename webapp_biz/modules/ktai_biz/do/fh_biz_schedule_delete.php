@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2008 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -11,11 +11,11 @@ class ktai_biz_do_fh_biz_schedule_delete extends OpenPNE_Action
         $u  = $GLOBALS['KTAI_C_MEMBER_ID'];
         $tail = $GLOBALS['KTAI_URL_TAIL'];
         $target_id = $requests['target_id'];
-
+        
         if (!biz_isPermissionSchedule($u, $requests['schedule_id'])) {
             handle_kengen_error();
         }
-
+        
         if ($requests['is_rep']) {
             $rep_schedule = biz_getRepeatScheduleID($requests['schedule_id']);
             foreach ($rep_schedule as $value) {

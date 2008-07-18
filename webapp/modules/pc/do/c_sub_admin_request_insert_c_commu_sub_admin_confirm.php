@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2008 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -72,7 +72,7 @@ class pc_do_c_sub_admin_request_insert_c_commu_sub_admin_confirm extends OpenPNE
             db_commu_insert_c_commu_sub_admin_confirm($target_c_commu_id, $target_c_member_id, $body);
 
         //メッセージ
-        list($msg_subject, $msg_body) = create_message_commu_sub_admin_request($u, $body, $target_c_commu_id);
+        list($msg_subject, $msg_body) = create_message_commu_sub_admin_request($u, $body, $target_c_member_id, $target_c_commu_id);
         db_message_send_message_syoudaku($u, $target_c_member_id, $msg_subject, $msg_body);
 
         $p = array('target_c_commu_id' => $target_c_commu_id);

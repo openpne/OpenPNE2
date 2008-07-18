@@ -33,7 +33,6 @@
 <hr color="#({$ktai_color_config.border_02})">
 </td></tr>
 ({/if})
-({if $target_c_member.public_flag_birth_month_day == 'public' || ($target_c_member.public_flag_birth_month_day == 'friend' && $is_friend)})
 ({if $days_birthday == 0})({* 誕生日当日　*})
 <tr><td colspan="2" align="center">
 <a href="({t_url m=ktai a=page_f_message_send})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">☆Happy Birthday☆<br>
@@ -46,7 +45,6 @@
 お誕生日にはﾒｯｾｰｼﾞを送りましょう</a>
 <hr color="#({$ktai_color_config.border_02})">
 </td></tr>
-({/if})
 ({/if})
 ({/if})
 <tr><td colspan="2" align="center">
@@ -73,10 +71,9 @@
 ({if $target_c_member.age !== NULL && ($target_c_member.public_flag_birth_year == 'public' || ($target_c_member.public_flag_birth_year == 'friend' && ($is_friend || $is_h_prof)))})<font color="#({$ktai_color_config.font_06})">年齢：</font><br>({$target_c_member.age})歳<br>
 ({if $is_h_prof && $target_c_member.public_flag_birth_year == 'friend'})<font color="#({$ktai_color_config.font_09})">※({$WORD_MY_FRIEND_HALF})まで公開</font><br>({/if})
 ({/if})
-({if $target_c_member.birth_month && $target_c_member.birth_day && ($target_c_member.public_flag_birth_month_day == 'public' || ($target_c_member.public_flag_birth_month_day == 'friend' && ($is_friend || $is_h_prof)))})
+({if $target_c_member.birth_month && $target_c_member.birth_day})
 <font color="#({$ktai_color_config.font_06})">誕生日：</font><br>
 ({$target_c_member.birth_month})月({$target_c_member.birth_day})日<br>
-({if $is_h_prof && $target_c_member.public_flag_birth_month_day == 'friend'})<font color="#({$ktai_color_config.font_09})">※({$WORD_MY_FRIEND_HALF})まで公開</font><br>({/if})
 ({/if})
 ({/capture})
 
@@ -142,7 +139,7 @@
 <br>
 <table width="100%">
 <tr><td bgcolor="#({$ktai_color_config.bg_05})">
-<a accesskey="1" name="a1" href="#a1">[i:125]</a><font color="#({$ktai_color_config.color_25})">新着({$WORD_DIARY_HALF})</font><br>
+<a accesskey="1" name="a1" href="#a1">[i:125]</a><font color="#({$ktai_color_config.color_25})">新着日記</font><br>
 </td></tr>
 ({if $c_diary_list})
 ({foreach from=$c_diary_list item=c_diary})
@@ -152,7 +149,7 @@
 [i:68]
 ({/if})
 <br>
-({if $is_h_prof && $item.public_flag == 'friend'})<font color="#({$ktai_color_config.font_09})">※({$WORD_MY_FRIEND_HALF})まで公開</font><br>({/if})
+({if $is_h_prof && $c_diary.public_flag == 'friend'})<font color="#({$ktai_color_config.font_09})">※({$WORD_MY_FRIEND_HALF})まで公開</font><br>({/if})
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_07})">
 <hr color="#({$ktai_color_config.border_02})">
@@ -183,7 +180,7 @@
 <br>
 
 <table width="100%">
-<tr><td bgcolor="#({$ktai_color_config.bg_05})"><a accesskey="3" name="a3" href="#a3">[i:127]</a><font color="#({$ktai_color_config.color_25})">参加({$WORD_COMMUNITY_HALF})</font><br>
+<tr><td bgcolor="#({$ktai_color_config.bg_05})"><a accesskey="3" name="a3" href="#a3">[i:127]</a><font color="#({$ktai_color_config.color_25})">参加ｺﾐｭﾆﾃｨ</font><br>
 </td></tr>
 ({foreach from=$c_commu_list item=c_commu})
 <tr><td bgcolor="#({cycle values="`$ktai_color_config.bg_06`,`$ktai_color_config.bg_07`"})">
@@ -196,7 +193,7 @@
 <tr><td align="right">
 <font color="#({$ktai_color_config.font_07})">⇒</font><a href="({t_url m=ktai a=page_fh_com_list})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">もっと見る</a><br>
 ({if $common_commu_count})
-<font color="#({$ktai_color_config.font_07})">⇒</font><a href="({t_url m=ktai a=page_f_com_list_common})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">共通({$WORD_COMMUNITY_HALF})</a><br>
+<font color="#({$ktai_color_config.font_07})">⇒</font><a href="({t_url m=ktai a=page_f_com_list_common})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">共通ｺﾐｭﾆﾃｨ</a><br>
 ({/if})
 </td></tr></table>
 

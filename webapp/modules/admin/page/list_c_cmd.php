@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2008 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -17,10 +17,6 @@ class admin_page_list_c_cmd extends OpenPNE_Action
 
         foreach ($c_cmd_setting_list as $value) {
             if (!in_array($value['name'], $cmd_file_list)) {
-                continue;
-            }
-
-            if ($value['url']) {  // 小窓キャスト配信者のJavaScriptは使用範囲設定をおこなえないようにする
                 continue;
             }
 

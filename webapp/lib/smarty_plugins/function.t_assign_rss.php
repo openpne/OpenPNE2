@@ -1,10 +1,8 @@
 <?php
 /**
- * @copyright 2005-2008 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
-
-require_once 'OpenPNE/RSS.php';
 
 function smarty_function_t_assign_rss($params, &$smarty)
 {
@@ -15,6 +13,7 @@ function smarty_function_t_assign_rss($params, &$smarty)
         return;
     }
 
+    require_once 'OpenPNE/RSS.php';
     $rss = new OpenPNE_RSS();
     if (!$items = $rss->fetch($params['url'])) {
         $rss_data = array();

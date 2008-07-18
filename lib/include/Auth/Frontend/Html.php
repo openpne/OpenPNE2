@@ -18,26 +18,26 @@
  * @author     Adam Ashley <aashley@php.net>
  * @copyright  2001-2006 The PHP Group
  * @license    http://www.php.net/license/3_01.txt  PHP License 3.01
- * @version    CVS: $Id: Html.php,v 1.11 2007/06/12 03:11:26 aashley Exp $
+ * @version    CVS: $Id: Html.php,v 1.9 2006/03/02 06:53:08 aashley Exp $
  * @link       http://pear.php.net/package/Auth
  * @since      File available since Release 1.3.0
  */
 
 /**
  * Standard Html Login form
- *
+ * 
  * @category   Authentication
  * @package    Auth
  * @author     Yavor Shahpasov <yavo@netsmart.com.cy>
  * @author     Adam Ashley <aashley@php.net>
  * @copyright  2001-2006 The PHP Group
  * @license    http://www.php.net/license/3_01.txt  PHP License 3.01
- * @version    Release: 1.5.4  File: $Revision: 1.11 $
+ * @version    Release: 1.3.0  File: $Revision: 1.9 $
  * @link       http://pear.php.net/package/Auth
  * @since      Class available since Release 1.3.0
  */
 class Auth_Frontend_Html {
-
+    
     // {{{ render()
 
     /**
@@ -49,7 +49,7 @@ class Auth_Frontend_Html {
      */
     function render(&$caller, $username = '') {
         $loginOnClick = 'return true;';
-
+        
         // Try To Use Challene response
         // TODO javascript might need some improvement for work on other browsers
         if($caller->advancedsecurity && $caller->storage->supportsChallengeResponse() ) {
@@ -68,7 +68,7 @@ class Auth_Frontend_Html {
             print '   var secret = document.getElementById(\'authsecret\')'."\n";
             //print '   alert(pass);alert(secret); '."\n";
 
-            // If using md5 for password storage md5 the password before
+            // If using md5 for password storage md5 the password before 
             // we hash it with the secret
             // print '   alert(pass.value);';
             if ($caller->storage->getCryptType() == 'md5' ) {
@@ -101,7 +101,7 @@ class Auth_Frontend_Html {
         } else if (!empty ($caller->status) && $caller->status == AUTH_SECURITY_BREACH) {
             $status = '<i>Security problem detected. </i>'."\n";
         }
-
+        
         print '<form method="post" action="'.$caller->server['PHP_SELF'].'" '
             .'onSubmit="'.$loginOnClick.'">'."\n";
         print '<table border="0" cellpadding="2" cellspacing="0" '
@@ -113,7 +113,7 @@ class Auth_Frontend_Html {
         print '<tr>'."\n";
         print '    <td>Username:</td>'."\n";
         print '    <td><input type="text" id="'.$caller->getPostUsernameField()
-            .'" name="'.$caller->getPostUsernameField().'" value="' . $username
+            .'" name="'.$caller->getPostUsernameField().'" value="' . $username 
             .'" /></td>'."\n";
         print '</tr>'."\n";
         print '<tr>'."\n";
@@ -122,21 +122,20 @@ class Auth_Frontend_Html {
             .'" name="'.$caller->getPostPasswordField().'" /></td>'."\n";
         print '</tr>'."\n";
         print '<tr>'."\n";
-
+        
         //onClick=" '.$loginOnClick.' "
         print '    <td colspan="2" bgcolor="#eeeeee"><input value="Login" '
             .'id="doLogin" name="doLogin" type="submit" /></td>'."\n";
         print '</tr>'."\n";
         print '</table>'."\n";
 
-        // Might be a good idea to make the variable name variable
+        // Might be a good idea to make the variable name variable 
         print '<input type="hidden" id="authsecret" name="authsecret" value="" />';
         print '</form>'."\n";
-        print '</center>'."\n";
     }
 
     // }}}
-
+    
 }
 
 ?>

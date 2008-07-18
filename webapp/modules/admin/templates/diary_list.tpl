@@ -1,12 +1,12 @@
 ({$inc_header|smarty:nodefaults})
 ({ext_include file="inc_subnavi_adminImageKakikomi.tpl"})
-({assign var="page_name" value="`$WORD_DIARY`管理"})
+({assign var="page_name" value="日記管理"})
 ({ext_include file="inc_tree_adminImageKakikomi.tpl"})
 </div>
 
 ({*ここまで:navi*})
 
-<h2>({$WORD_DIARY})管理</h2>
+<h2>日記管理</h2>
 <div class="contents">
 
 ({if $msg})
@@ -31,7 +31,7 @@
 
 ({if !$diary_list})
 
-<p class="info">該当する({$WORD_DIARY})が存在しません</p>
+<p class="info">該当する日記が存在しません</p>
 
 ({else})
 
@@ -66,7 +66,7 @@
 <tr>
 <th>タイトル</th>
 <td>
-<a href="({t_url _absolute=1 m=pc a=page_fh_diary})&amp;target_c_diary_id=({$item.c_diary_id})" target="_blank">({$item.subject})</a> (({if $item.count_comments})<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('diary_comment_list','page')})&amp;target_c_diary_id=({$item.c_diary_id})">({/if})コメント({$item.count_comments})件({if $item.count_comments})</a>({/if}))
+<a href="({t_url _absolute=1 m=pc a=page_fh_diary})&amp;target_c_diary_id=({$item.c_diary_id})" target="_blank">({$item.subject})</a> (コメント({$item.count_comments})件)
 </td>
 </tr>
 ({****})
@@ -78,19 +78,6 @@
 </tr>
 ({****})
 <tr>
-<th>公開範囲</th>
-<td>
-({if $item.public_flag == "public"})
-全員に公開
-({elseif $item.public_flag == "friend"})
-({$WORD_MY_FRIEND})まで公開
-({elseif $item.public_flag == "private"})
-公開しない
-({/if})
-</td>
-</tr>
-({****})
-<tr>
 <th>作成日</th>
 <td>
 ({$item.r_datetime})
@@ -98,7 +85,7 @@
 </tr>
 ({****})
 <tr>
-<th>({$WORD_DIARY})本文</th>
+<th>日記本文</th>
 <td class="textbody">
 ({if $item.image_filename_1 || $item.image_filename_2 || $item.image_filename_3})
 <div>
@@ -107,11 +94,7 @@
 ({if $item.image_filename_3})<span class="padding_s"><a href="({t_img_url filename=$item.image_filename_3})" target="_blank"><img src="({t_img_url filename=$item.image_filename_3 w=120 h=120})"></a></span>({/if})
 </div>
 ({/if})
-({if $smarty.const.OPENPNE_ADMIN_CONVERT_URL})
-({$item.body|nl2br|t_url2cmd:'diary':$item.c_member_id|t_cmd:'diary'|t_decoration:1})
-({else})
-({$item.body|nl2br|t_decoration:1})
-({/if})
+({$item.body|nl2br})
 </td>
 </tr>
 ({****})

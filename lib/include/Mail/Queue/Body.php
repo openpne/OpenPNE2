@@ -14,15 +14,14 @@
 // | license@php.net so we can mail you a copy immediately.               |
 // +----------------------------------------------------------------------+
 // | Authors: Radek Maciaszek <chief@php.net>                             |
-// |          Lorenzo Alberton <l dot alberton at quipo dot it>           |
 // +----------------------------------------------------------------------+
 //
-// $Id: Body.php,v 1.10 2005/12/08 15:43:57 quipo Exp $
+// $Id: Body.php,v 1.9 2004/08/17 14:30:52 quipo Exp $
 
 /**
 * Class contains mail data.
 *
-* @version  $Revision: 1.10 $
+* @version  $Revision: 1.9 $
 * @author   Radek Maciaszek <chief@php.net>
 */
 
@@ -30,7 +29,7 @@
 * Mail_Queue_Body contains mail data
 *
 * @author   Radek Maciaszek <wodzu@pomocprawna.info>
-* @version  $Revision: 1.10 $
+* @version  $Revision: 1.9 $
 * @package  Mail_Queue
 * @access   public
 */
@@ -140,7 +139,7 @@ class Mail_Queue_Body {
      * @return void
      *
      * @access public
-     */
+     **/
     function Mail_Queue_Body($id, $create_time, $time_to_send, $sent_time, $id_user,
                        $ip, $sender, $recipient, $headers, $body,
                        $delete_after_send=true, $try_sent=0)
@@ -164,7 +163,7 @@ class Mail_Queue_Body {
      *
      * @return integer  Sender id
      * @access public
-     */
+     **/
     function getId()
     {
         return $this->id;
@@ -177,7 +176,7 @@ class Mail_Queue_Body {
      *
      * @return string  Mail create time
      * @access public
-     */
+     **/
     function getCreateTime()
     {
         return $this->create_time;
@@ -190,7 +189,7 @@ class Mail_Queue_Body {
      *
      * @return string  Time to send
      * @access public
-     */
+     **/
     function getTimeToSend()
     {
         return $this->time_to_send;
@@ -203,7 +202,7 @@ class Mail_Queue_Body {
      *
      * @return mixed  String sent time or false if mail not was sent yet
      * @access public
-     */
+     **/
     function getSentTime()
     {
         return empty($this->sent_time) ? false : $this->sent_time;
@@ -216,7 +215,7 @@ class Mail_Queue_Body {
      *
      * @return integer  Sender id
      * @access public
-     */
+     **/
     function getIdUser()
     {
         return $this->id_user;
@@ -229,7 +228,7 @@ class Mail_Queue_Body {
      *
      * @return string  IP
      * @access public
-     */
+     **/
     function getIp()
     {
         return stripslashes($this->ip);
@@ -242,7 +241,7 @@ class Mail_Queue_Body {
      *
      * @return string E-mail
      * @access public
-     */
+     **/
     function getSender()
     {
         return stripslashes($this->sender);
@@ -253,18 +252,11 @@ class Mail_Queue_Body {
      *
      * Mail_Queue_Body::getRecipient()
      *
-     * @return string|array E-mail(s)
+     * @return string E-mail
      * @access public
-     */
+     **/
     function getRecipient()
     {
-        if (is_array($this->recipient)) {
-            $tmp_recipients = array();
-            foreach ($this->recipient as $key => $value) {
-                $tmp_recipients[$key] = stripslashes($value);
-            }
-            return $tmp_recipients;
-        }
         return stripslashes($this->recipient);
     }
 
@@ -275,7 +267,7 @@ class Mail_Queue_Body {
      *
      * @return mixed array|string headers
      * @access public
-     */
+     **/
     function getHeaders()
     {
         if (is_array($this->headers)) {
@@ -295,7 +287,7 @@ class Mail_Queue_Body {
      *
      * @return string  Body
      * @access public
-     */
+     **/
     function getBody()
     {
         return stripslashes($this->body);
@@ -308,7 +300,7 @@ class Mail_Queue_Body {
      *
      * @return integer  How many times mail was sent
      * @access public
-     */
+     **/
     function getTrySent()
     {
         return $this->try_sent;
@@ -321,7 +313,7 @@ class Mail_Queue_Body {
      *
      * @return bool  True if must be delete else false.
      * @access public
-     */
+     **/
     function isDeleteAfterSend()
     {
         return $this->delete_after_send;
@@ -334,7 +326,7 @@ class Mail_Queue_Body {
      *
      * @return integer  How many times mail was sent
      * @access public
-     */
+     **/
     function _try()
     {
         return ++$this->try_sent;

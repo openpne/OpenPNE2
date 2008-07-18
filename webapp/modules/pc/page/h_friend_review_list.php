@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2008 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -12,9 +12,11 @@ class pc_page_h_friend_review_list extends OpenPNE_Action
 
         // --- リクエスト変数
         $page = $requests['page'];
+        $direc = $requests['direc'];
         // ----------
 
         $page_size = 30;
+        $page = $page + $direc;
 
         $this->set('inc_navi', fetch_inc_navi('h'));
 

@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2008 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -12,7 +12,10 @@ class pc_page_h_review_clip_list extends OpenPNE_Action
 
         // --- リクエスト変数
         $page = $requests['page'];
+        $direc = $requests['direc'];
         // ----------
+
+        $page += $direc;
 
         $this->set('inc_navi', fetch_inc_navi("h"));
         list($c_review_clip_list, $is_prev, $is_next, $total_num, $start_num, $end_num)

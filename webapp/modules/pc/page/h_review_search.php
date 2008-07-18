@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2008 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -15,8 +15,10 @@ class pc_page_h_review_search extends OpenPNE_Action
         $category = $requests['category'];
         $orderby = $requests['orderby'];
         $page = $requests['page'];
+        $direc = $requests['direc'];
         // ----------
         $page_size=20;
+        $page += $direc;
 
         $this->set('inc_navi', fetch_inc_navi("h"));
         $this->set('category_disp', do_review_review_add_category_disp());

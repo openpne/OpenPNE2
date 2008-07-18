@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2008 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -12,6 +12,7 @@ class pc_page_c_edit_member extends OpenPNE_Action
 
         // --- リクエスト変数
         $target_c_commu_id = $requests['target_c_commu_id'];
+        $direc = $requests['direc'];
         $page = $requests['page'];
         // ----------
 
@@ -34,12 +35,16 @@ class pc_page_c_edit_member extends OpenPNE_Action
         $this->set("c_commu", db_commu_c_commu4c_commu_id($target_c_commu_id));
         $page_size = 20;
 
+        $page += $direc;
+
         //コミュニティメンバーリスト
-        $list = db_commu_c_member_list4c_commu_id($target_c_commu_id, $page_size, $page);
+        $list = p_c_edit_member_c_member_list4c_commu_id($target_c_commu_id, $page_size, $page);
         $this->set("c_member_list", $list[0]);
         $this->set("is_prev", $list[1]);
         $this->set("is_next", $list[2]);
         $this->set("page", $page);
+
+        $this->set("u", $u);
 
         return 'success';
     }

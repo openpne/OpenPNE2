@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2008 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -44,7 +44,7 @@ class ktai_page_c_home extends OpenPNE_Action
 
         //コミュニティメンバーリスト
         $this->set("c_commu_member_list",
-            db_commu_c_commu_member_list_random4c_commu_id($target_c_commu_id, 5));
+            k_p_c_home_c_commu_member_list_random4c_commu_id($target_c_commu_id, 5));
 
         //参加コミュニティの新着トピック書き込み
         $this->set("new_topic_comment", db_commu_new_topic_comment4c_commu_id($target_c_commu_id, 5));
@@ -53,7 +53,7 @@ class ktai_page_c_home extends OpenPNE_Action
 
         //自分($u)とこのコミュとの関係
         $this->set("relation_c_member_and_c_commu",
-            db_commu_relationship_between_member_commu($target_c_commu_id, $u));
+            k_p_c_home_relationship_between_member_commu($target_c_commu_id, $u));
 
         //コミュニティメール(ktai)受信設定
         $this->set("is_receive_mail", db_commu_is_receive_mail_ktai($target_c_commu_id, $u));

@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2008 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -12,6 +12,7 @@ class ktai_page_fh_com_list extends OpenPNE_Action
 
         // --- リクエスト変数
         $target_c_member_id = $requests['target_c_member_id'];
+        $direc = $requests['direc'];
         $page = $requests['page'];
         // ----------
 
@@ -28,6 +29,7 @@ class ktai_page_fh_com_list extends OpenPNE_Action
 
         // 参加コミュニティリスト
         $page_size = 10;
+        $page += $direc;
 
         $list = db_commu_c_commu_list4c_member_id_4($target_c_member_id, $page_size, $page);
 

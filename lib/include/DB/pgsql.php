@@ -19,9 +19,9 @@
  * @author     Rui Hirokawa <hirokawa@php.net>
  * @author     Stig Bakken <ssb@php.net>
  * @author     Daniel Convissor <danielc@php.net>
- * @copyright  1997-2007 The PHP Group
+ * @copyright  1997-2005 The PHP Group
  * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
- * @version    CVS: $Id: pgsql.php,v 1.138 2007/09/21 13:40:41 aharvey Exp $
+ * @version    CVS: $Id: pgsql.php,v 1.126 2005/03/04 23:12:36 danielc Exp $
  * @link       http://pear.php.net/package/DB
  */
 
@@ -41,9 +41,9 @@ require_once 'DB/common.php';
  * @author     Rui Hirokawa <hirokawa@php.net>
  * @author     Stig Bakken <ssb@php.net>
  * @author     Daniel Convissor <danielc@php.net>
- * @copyright  1997-2007 The PHP Group
+ * @copyright  1997-2005 The PHP Group
  * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
- * @version    Release: 1.7.13
+ * @version    Release: 1.7.6
  * @link       http://pear.php.net/package/DB
  */
 class DB_pgsql extends DB_common
@@ -193,7 +193,7 @@ class DB_pgsql extends DB_common
      *     'portability' => DB_PORTABILITY_ALL,
      * );
      * 
-     * $db = DB::connect($dsn, $options);
+     * $db =& DB::connect($dsn, $options);
      * if (PEAR::isError($db)) {
      *     die($db->getMessage());
      * }
@@ -277,10 +277,10 @@ class DB_pgsql extends DB_common
             $this->connection = @call_user_func_array($connect_function,
                                                       $params);
         } else {
-            @ini_set('track_errors', 1);
+            ini_set('track_errors', 1);
             $this->connection = @call_user_func_array($connect_function,
                                                       $params);
-            @ini_set('track_errors', $ini);
+            ini_set('track_errors', $ini);
         }
 
         if (!$this->connection) {
@@ -320,7 +320,7 @@ class DB_pgsql extends DB_common
      */
     function simpleQuery($query)
     {
-        $ismanip = $this->_checkManip($query);
+        $ismanip = DB::isManip($query);
         $this->last_query = $query;
         $query = $this->modifyQuery($query);
         if (!$this->autocommit && $ismanip) {
@@ -336,26 +336,19 @@ class DB_pgsql extends DB_common
         if (!$result) {
             return $this->pgsqlRaiseError();
         }
-
-        /*
-         * Determine whether queries produce affected rows, result or nothing.
-         *
-         * This logic was introduced in version 1.1 of the file by ssb,
-         * though the regex has been modified slightly since then.
-         *
-         * PostgreSQL commands:
-         * ABORT, ALTER, BEGIN, CLOSE, CLUSTER, COMMIT, COPY,
-         * CREATE, DECLARE, DELETE, DROP TABLE, EXPLAIN, FETCH,
-         * GRANT, INSERT, LISTEN, LOAD, LOCK, MOVE, NOTIFY, RESET,
-         * REVOKE, ROLLBACK, SELECT, SELECT INTO, SET, SHOW,
-         * UNLISTEN, UPDATE, VACUUM
-         */
+        // Determine which queries that should return data, and which
+        // should return an error code only.
         if ($ismanip) {
             $this->affected = @pg_affected_rows($result);
             return DB_OK;
-        } elseif (preg_match('/^\s*\(*\s*(SELECT|EXPLAIN|FETCH|SHOW)\s/si',
-                             $query))
-        {
+        } elseif (preg_match('/^\s*\(*\s*(SELECT|EXPLAIN|SHOW)\s/si', $query)) {
+            /* PostgreSQL commands:
+               ABORT, ALTER, BEGIN, CLOSE, CLUSTER, COMMIT, COPY,
+               CREATE, DECLARE, DELETE, DROP TABLE, EXPLAIN, FETCH,
+               GRANT, INSERT, LISTEN, LOAD, LOCK, MOVE, NOTIFY, RESET,
+               REVOKE, ROLLBACK, SELECT, SELECT INTO, SET, SHOW,
+               UNLISTEN, UPDATE, VACUUM
+            */
             $this->row[(int)$result] = 0; // reset the row counter.
             $numrows = $this->numRows($result);
             if (is_object($numrows)) {
@@ -478,22 +471,39 @@ class DB_pgsql extends DB_common
     }
 
     // }}}
-    // {{{ quoteBoolean()
+    // {{{ quoteSmart()
 
     /**
-     * Formats a boolean value for use within a query in a locale-independent
-     * manner.
+     * Formats input so it can be safely used in a query
      *
-     * @param boolean the boolean value to be quoted.
-     * @return string the quoted string.
+     * @param mixed $in  the data to be formatted
+     *
+     * @return mixed  the formatted data.  The format depends on the input's
+     *                 PHP type:
+     *                 + null = the string <samp>NULL</samp>
+     *                 + boolean = string <samp>TRUE</samp> or <samp>FALSE</samp>
+     *                 + integer or double = the unquoted number
+     *                 + other (including strings and numeric strings) =
+     *                   the data escaped according to MySQL's settings
+     *                   then encapsulated between single quotes
+     *
      * @see DB_common::quoteSmart()
-     * @since Method available since release 1.7.8.
+     * @since Method available since Release 1.6.0
      */
-    function quoteBoolean($boolean) {
-//        return $boolean ? 'TRUE' : 'FALSE';
-        return $boolean ? 1 : 0;
+    function quoteSmart($in)
+    {
+        if (is_int($in) || is_double($in)) {
+            return $in;
+        } elseif (is_bool($in)) {
+//            return $in ? 'TRUE' : 'FALSE';
+            return $in ? 1 : 0;
+        } elseif (is_null($in)) {
+            return 'NULL';
+        } else {
+            return "'" . $this->escapeSimple($in) . "'";
+        }
     }
-     
+
     // }}}
     // {{{ escapeSimple()
 
@@ -502,6 +512,9 @@ class DB_pgsql extends DB_common
      *
      * {@internal PostgreSQL treats a backslash as an escape character,
      * so they are escaped as well.
+     *
+     * Not using pg_escape_string() yet because it requires PostgreSQL
+     * to be at version 7.2 or greater.}}
      *
      * @param string $str  the string to be escaped
      *
@@ -512,21 +525,7 @@ class DB_pgsql extends DB_common
      */
     function escapeSimple($str)
     {
-        if (function_exists('pg_escape_string')) {
-            /* This fixes an undocumented BC break in PHP 5.2.0 which changed
-             * the prototype of pg_escape_string. I'm not thrilled about having
-             * to sniff the PHP version, quite frankly, but it's the only way
-             * to deal with the problem. Revision 1.331.2.13.2.10 on
-             * php-src/ext/pgsql/pgsql.c (PHP_5_2 branch) is to blame, for the
-             * record. */
-            if (version_compare(PHP_VERSION, '5.2.0', '>=')) {
-                return pg_escape_string($this->connection, $str);
-            } else {
-                return pg_escape_string($str);
-            }
-        } else {
-            return str_replace("'", "''", str_replace('\\', '\\\\', $str));
-        }
+        return str_replace("'", "''", str_replace('\\', '\\\\', $str));
     }
 
     // }}}
@@ -677,7 +676,7 @@ class DB_pgsql extends DB_common
         $repeat = false;
         do {
             $this->pushErrorHandling(PEAR_ERROR_RETURN);
-            $result = $this->query("SELECT NEXTVAL('${seqname}')");
+            $result =& $this->query("SELECT NEXTVAL('${seqname}')");
             $this->popErrorHandling();
             if ($ondemand && DB::isError($result) &&
                 $result->getCode() == DB_ERROR_NOSUCHTABLE) {
@@ -781,10 +780,6 @@ class DB_pgsql extends DB_common
     function pgsqlRaiseError($errno = null)
     {
         $native = $this->errorNative();
-        if (!$native) {
-            $native = 'Database connection has been lost.';
-            $errno = DB_ERROR_CONNECT_FAILED;
-        }
         if ($errno === null) {
             $errno = $this->errorCode($native);
         }
@@ -821,12 +816,12 @@ class DB_pgsql extends DB_common
         static $error_regexps;
         if (!isset($error_regexps)) {
             $error_regexps = array(
-                '/column .* (of relation .*)?does not exist/i'
-                    => DB_ERROR_NOSUCHFIELD,
                 '/(relation|sequence|table).*does not exist|class .* not found/i'
                     => DB_ERROR_NOSUCHTABLE,
                 '/index .* does not exist/'
                     => DB_ERROR_NOT_FOUND,
+                '/column .* does not exist/i'
+                    => DB_ERROR_NOSUCHFIELD,
                 '/relation .* already exists/i'
                     => DB_ERROR_ALREADY_EXISTS,
                 '/(divide|division) by zero$/i'
@@ -982,33 +977,22 @@ class DB_pgsql extends DB_common
     {
         $field_name = @pg_fieldname($resource, $num_field);
 
-        // Check if there's a schema in $table_name and update things
-        // accordingly.
-        $from = 'pg_attribute f, pg_class tab, pg_type typ';
-        if (strpos($table_name, '.') !== false) {
-            $from .= ', pg_namespace nsp';
-            list($schema, $table) = explode('.', $table_name);
-            $tableWhere = "tab.relname = '$table' AND tab.relnamespace = nsp.oid AND nsp.nspname = '$schema'";
-        } else {
-            $tableWhere = "tab.relname = '$table_name'";
-        }
-
         $result = @pg_exec($this->connection, "SELECT f.attnotnull, f.atthasdef
-                                FROM $from
+                                FROM pg_attribute f, pg_class tab, pg_type typ
                                 WHERE tab.relname = typ.typname
                                 AND typ.typrelid = f.attrelid
                                 AND f.attname = '$field_name'
-                                AND $tableWhere");
+                                AND tab.relname = '$table_name'");
         if (@pg_numrows($result) > 0) {
             $row = @pg_fetch_row($result, 0);
             $flags  = ($row[0] == 't') ? 'not_null ' : '';
 
             if ($row[1] == 't') {
                 $result = @pg_exec($this->connection, "SELECT a.adsrc
-                                    FROM $from, pg_attrdef a
+                                    FROM pg_attribute f, pg_class tab, pg_type typ, pg_attrdef a
                                     WHERE tab.relname = typ.typname AND typ.typrelid = f.attrelid
                                     AND f.attrelid = a.adrelid AND f.attname = '$field_name'
-                                    AND $tableWhere AND f.attnum = a.adnum");
+                                    AND tab.relname = '$table_name' AND f.attnum = a.adnum");
                 $row = @pg_fetch_row($result, 0);
                 $num = preg_replace("/'(.*)'::\w+/", "\\1", $row[0]);
                 $flags .= 'default_' . rawurlencode($num) . ' ';
@@ -1017,12 +1001,12 @@ class DB_pgsql extends DB_common
             $flags = '';
         }
         $result = @pg_exec($this->connection, "SELECT i.indisunique, i.indisprimary, i.indkey
-                                FROM $from, pg_index i
+                                FROM pg_attribute f, pg_class tab, pg_type typ, pg_index i
                                 WHERE tab.relname = typ.typname
                                 AND typ.typrelid = f.attrelid
                                 AND f.attrelid = i.indrelid
                                 AND f.attname = '$field_name'
-                                AND $tableWhere");
+                                AND tab.relname = '$table_name'");
         $count = @pg_numrows($result);
 
         for ($i = 0; $i < $count ; $i++) {
@@ -1083,9 +1067,6 @@ class DB_pgsql extends DB_common
                         . ' FROM pg_catalog.pg_tables'
                         . ' WHERE schemaname NOT IN'
                         . " ('pg_catalog', 'information_schema', 'pg_toast')";
-            case 'schema.views':
-                return "SELECT schemaname || '.' || viewname from pg_views WHERE schemaname"
-                        . " NOT IN ('information_schema', 'pg_catalog')";
             case 'views':
                 // Table cols: viewname | viewowner | definition
                 return 'SELECT viewname from pg_views WHERE schemaname'

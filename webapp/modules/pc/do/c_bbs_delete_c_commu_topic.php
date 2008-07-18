@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2008 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -18,7 +18,7 @@ class pc_do_c_bbs_delete_c_commu_topic extends OpenPNE_Action
         //--- 権限チェック
         //コミュニティ管理者 or トピック作成者
 
-        $c_commu_topic = db_commu_c_commu_topic4c_commu_topic_id($target_c_commu_topic_id);
+        $c_commu_topic = _do_c_bbs_c_commu_topic4c_commu_topic_id($target_c_commu_topic_id);
 
         $c_commu_id = $c_commu_topic['c_commu_id'];
 

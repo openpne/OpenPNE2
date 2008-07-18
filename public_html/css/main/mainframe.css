@@ -1,0 +1,62 @@
+@charset "UTF-8";
+
+/*ページ全体メインのレイアウトテーブル*/
+
+table.mainframe {
+	width: 720px;
+	height: auto ;
+	margin: 0px ;
+	padding: 0px ;
+}
+
+/*ページ全体メインのレイアウトテーブル：コンテンツ段用*/
+
+table.mainframe td.container ,
+table.mainframe td.container table.container {
+	width: 720px ;
+	height: auto ;
+}
+
+/*フルサイズの幅*/
+
+table.container td.full_content {
+	width: 720px ;
+	height: auto ;
+}
+
+/*ページ左段の幅*/
+
+table.container td.left_content {
+	width: 270px ;
+	height: auto ;
+	padding: 5px 0px ;
+}
+
+table.container td.left_content_165 {
+	width: 165px ;
+	height: auto ;
+}
+
+table.container td.left_content_175 {
+	width: 175px ;
+	height: auto ;
+}
+
+/*ページ右段の幅*/
+
+table.container td.right_content {
+	width: 440px ;
+	height: auto ;
+	padding: 5px 0px ;
+}
+
+table.container td.right_content_535 {
+	width: 535px ;
+	height: auto ;
+}
+
+table.container td.right_content_540 {
+	width: 540px ;
+	height: auto ;
+}
+

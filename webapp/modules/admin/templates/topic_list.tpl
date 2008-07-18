@@ -41,7 +41,7 @@
 ({capture name="pager"})
 <div class="listControl">
 <p class="display">
-({$total_num})件中 ({$start_num})-({$end_num})件目を表示しています
+({$total_num})件中 ({$start_num})-({$end_num})件目を表示しています 
 </p>
 <p class="listMove">
 ({if $page_list})({foreach from=$page_list item=item})({if $page!=$item})<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('topic_list','page')})&amp;page=({$item})&amp;keyword=({$keyword_encode})">({$item})</a>({else})<b>({$item})</b>({/if})&nbsp;&nbsp;({/foreach})&nbsp;({/if})
@@ -74,7 +74,7 @@
 </tr>
 ({****})
 <tr>
-<th>({$WORD_COMMUNITY})名</th>
+<th>コミュニティ名</th>
 <td>
 <a href="({t_url _absolute=1 m=pc a=page_c_home})&amp;target_c_commu_id=({$item.c_commu_id})" target="_blank">({$item.commu_name})</a>
 </td>
@@ -104,11 +104,7 @@
 ({if $item.image_filename3})<span class="padding_s"><a href="({t_img_url filename=$item.image_filename3})" target="_blank"><img src="({t_img_url filename=$item.image_filename3 w=120 h=120})"></a></span>({/if})
 </div>
 ({/if})
-({if $smarty.const.OPENPNE_ADMIN_CONVERT_URL})
-({$item.body|nl2br|t_url2cmd:'community':$item.c_member_id|t_cmd:'community'})
-({else})
 ({$item.body|nl2br})
-({/if})
 </td>
 </tr>
 ({****})

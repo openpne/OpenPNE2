@@ -61,7 +61,7 @@ em {
 
 <h1>OpenPNE セットアップガイド</h1>
 
-<p>最終更新日: 2008/05/29</p>
+<p>最終更新日: 2007/12/20</p>
 
 <h2>目次</h2>
 <ul>
@@ -70,7 +70,7 @@ em {
 <li><a href="#section2">2. 設定ファイルの変更</a></li>
 <li><a href="#section3">3. データベースの設定</a>
   <ul>
-  <li><a href="#section3-1">3-1. PostgreSQL 7.4.x (8.0.x, 8.1.x 含む) の場合</a></li>
+  <li><a href="#section3-1">3-1. PostgreSQL 7.4.x 以降 の場合</a></li>
   </ul></li>
 <li><a href="#section4">4. サーバ設定</a>
   <ul>
@@ -91,24 +91,20 @@ em {
 
 <h2 id="section0">0. はじめに</h2>
 
-<p>この文書は、OpenPNE バージョン2.12 を基にして書かれています。</p>
+<p>この文書は、OpenPNE バージョン2.10 を基にして書かれています。</p>
 <p>OpenPNE は以下のようなサーバ環境で動作させることを想定しています。</p>
 <dl>
 <dt>Webサーバ</dt>
 <dd>Apache を推奨</dd>
 <dt>PHP</dt>
-<dd>PHP 4.3.3 以降 / 5.0.x / 5.1.x
+<dd>PHP 4.3.x / 5.0.x 以降
 	<ul>
 	<li>PHP の mbstring 拡張モジュールを使用可能</li>
-	<li>PHP の XML 拡張モジュールを使用可能</li>
-	<li>PHP の PCRE 拡張モジュールを使用可能 (UTF-8 サポート)</li>
-	<li>PHP から GD ライブラリを使用可能 (JPEG/GIF/PNG サポート)
-		<ul><li>ImageMagick を使う場合でも必要となります</li></ul>
-	</li>
+	<li>PHP から GD ライブラリを使用可能 (JPEG/GIF/PNG サポート)</li>
 	<li>PHP の mcrypt 拡張モジュールの使用を推奨</li>
 	</ul></dd>
 <dt>データベースサーバ</dt>
-<dd>PostgreSQL 7.4.x / 8.0.x / 8.1.x  (※8.2.x 以降は未対応です)</dd>
+<dd>PostgreSQL 7.4.x 以降</dd>
 <dt>メールサーバ (携帯からメール投稿する場合)</dt>
 <dd>Postfix 2.1.x 以降を推奨 (Postfix 以外のメールサーバでも動作報告あり)</dd>
 </dl>
@@ -129,8 +125,7 @@ em {
   │ │ │ ├ w76_h76 [777]
   │ │ │ ├ w120_h120 [777]
   │ │ │ ├ w180_h180 [777]
-  │ │ │ ├ w240_h320 [777]
-  │ │ │ └ w600_h600 [777]
+  │ │ │ └ w240_h320 [777]
   │ │ ├ jpg [777]
   │ │ │ ├ w_h [777]  
   │ │ │    ... [777]
@@ -198,8 +193,7 @@ $ chmod -R 0777 var/*
   │ │ ├ w76_h76 [777]
   │ │ ├ w120_h120 [777]
   │ │ ├ w180_h180 [777]
-  │ │ ├ w240_h320 [777]
-  │ │ └ w600_h600 [777]
+  │ │ └ w240_h320 [777]
   │ ├ jpg [777]
   │ │ ├ w_h [777]
   │ │    ... [777]
@@ -246,7 +240,7 @@ $ chmod -R 0777 var/*
 
 <h2 id="section3">3. データベースの設定</h2>
 
-<h3 id="section3-1">3-1. PostgreSQL 7.4.x (8.0.x, 8.1.x 含む) の場合</h3>
+<h3 id="section3-1">3-1. PostgreSQL 7.4.x 以降の場合</h3>
 
 <p>新しくデータベースを作成する場合、以下のようなコマンドを実行してデータベースを作成します。
 (※レンタルサーバ等で既にデータベースが用意されている場合は実行する必要はありません)</p>
@@ -257,8 +251,8 @@ $ createdb -U username DBNAME -E 'UTF-8'
 
 <p>準備したデータベース(例:DBNAME)上で、以下のSQL文を順番に実行します。</p>
 <ol>
-<li><var>OPENPNE_DIR</var>/setup/sql/postgres74/install/install-2.12-create_tables.sql</li>
-<li><var>OPENPNE_DIR</var>/setup/sql/postgres74/install/install-2.12-insert_data.sql</li>
+<li><var>OPENPNE_DIR</var>/setup/sql/postgres74/install/install-2.10-create_tables.sql</li>
+<li><var>OPENPNE_DIR</var>/setup/sql/postgres74/install/install-2.10-insert_data.sql</li>
 </ol>
 
 <p>PNEBIZを使用する場合は上記に加えて、以下のSQL文を実行してください。</p>
@@ -274,8 +268,8 @@ $ createdb -U username DBNAME -E 'UTF-8'
 
 (2) OpenPNEセットアップ用SQL実行
     $ cd setup/sql/postgres74/install/
-    $ psql DBNAME -U username -f install-2.12-create_tables.sql
-    $ psql DBNAME -U username -f install-2.12-insert_data.sql
+    $ psql DBNAME -U username -f install-2.10-create_tables.sql
+    $ psql DBNAME -U username -f install-2.10-insert_data.sql
 
 (3) PNEBIZ用SQL実行 (オプション)
     $ cd ../option
@@ -325,7 +319,6 @@ $ createdb -U username DBNAME -E 'UTF-8'
 <tr><td>日記写真変更</td><td>bi<var>XXX</var>-<var>YYY</var>@MAIL_SERVER_DOMAIN</td><td>bi<var>XXX</var>@MAIL_SERVER_DOMAIN</td></tr>
 <tr><td>コミュニティ写真変更</td><td>ci<var>XXX</var>-<var>YYY</var>@MAIL_SERVER_DOMAIN</td><td>ci<var>XXX</var>@MAIL_SERVER_DOMAIN</td></tr>
 <tr><td>トピック・イベント写真変更</td><td>ti<var>XXX</var>-<var>YYY</var>@MAIL_SERVER_DOMAIN</td><td>ti<var>XXX</var>@MAIL_SERVER_DOMAIN</td></tr>
-<tr><td>日記コメントメール投稿</td><td>bc<var>XXX</var>-<var>YYY</var>@MAIL_SERVER_DOMAIN</td><td>bc<var>XXX</var>@MAIL_SERVER_DOMAIN</td></tr>
 </table>
 <ul>
 <li><var>XXX</var> には数字。</li>
@@ -444,7 +437,7 @@ config.inc.php (<em>強調部分</em>の2項目を追加します)
 <pre>
 &lt;?php
 /**
- * @copyright 2005-2008 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 

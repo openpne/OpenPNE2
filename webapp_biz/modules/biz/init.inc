@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2008 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -30,6 +30,12 @@ function init_biz_page(&$smarty)
             "pc_get_secure",
             "pc_get_trusted")
     );
+
+    //文言系
+    $smarty->assign('WORD_FRIEND', WORD_FRIEND);
+    $smarty->assign('WORD_MY_FRIEND', WORD_MY_FRIEND);
+    $smarty->assign('WORD_FRIEND_HALF', WORD_FRIEND_HALF);
+    $smarty->assign('WORD_MY_FRIEND_HALF', WORD_MY_FRIEND_HALF);
 
     $is_secure = $GLOBALS['__Framework']['is_secure'];
 

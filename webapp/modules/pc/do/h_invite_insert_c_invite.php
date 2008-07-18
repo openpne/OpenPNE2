@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2008 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -66,13 +66,11 @@ class pc_do_h_invite_insert_c_invite extends OpenPNE_Action
             }
             //>
 
-            if (OPENPNE_AUTH_MODE != 'slavepne') {
-                // c_member_ktai_pre に追加
-                if (db_member_c_member_ktai_pre4ktai_address($mail)) {
-                    db_member_update_c_member_ktai_pre($session, $mail, $c_member_id_invite);
-                } else {
-                    db_member_insert_c_member_ktai_pre($session, $mail, $c_member_id_invite);
-                }
+            // c_member_ktai_pre に追加
+            if (db_member_c_member_ktai_pre4ktai_address($mail)) {
+                db_member_update_c_member_ktai_pre($session, $mail, $c_member_id_invite);
+            } else {
+                db_member_insert_c_member_ktai_pre($session, $mail, $c_member_id_invite);
             }
 
             h_invite_insert_c_invite_mail_send($session, $c_member_id_invite, $mail, $message);
@@ -86,13 +84,11 @@ class pc_do_h_invite_insert_c_invite extends OpenPNE_Action
             }
             //>
 
-            if (OPENPNE_AUTH_MODE != 'slavepne') {
-                // c_member_pre に追加
-                if (db_member_c_member_pre4pc_address($mail)) {
-                    db_member_update_c_invite($c_member_id_invite, $mail, $message, $session);
-                } else {
-                    db_member_insert_c_invite($c_member_id_invite, $mail, $message, $session);
-                }
+            // c_member_pre に追加
+            if (db_member_c_member_pre4pc_address($mail)) {
+                db_member_update_c_invite($c_member_id_invite, $mail, $message, $session);
+            } else {
+                db_member_insert_c_invite($c_member_id_invite, $mail, $message, $session);
             }
 
             do_h_invite_insert_c_invite_mail_send($c_member_id_invite, $session, $message, $mail);

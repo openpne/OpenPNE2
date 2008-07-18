@@ -18,15 +18,7 @@
 
 
 ■ ({$SNS_NAME}) に参加する
-({if $smarty.const.OPENPNE_AUTH_MODE == 'slavepne'})
-({if $smarty.const.SLAVEPNE_SYOUTAI_URL_PC})
-({$smarty.const.SLAVEPNE_SYOUTAI_URL_PC})
-({else})
-({$smarty.const.SLAVEPNE_SYOUTAI_URL_KTAI})
-({/if})
-({else})
 ({t_url_mail m=pc a=page_o_ri})&sid=({$sid})
-({/if})
 
 
 ■ ({$SNS_NAME}) って何？

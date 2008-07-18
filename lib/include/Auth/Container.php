@@ -18,7 +18,7 @@
  * @author     Adam Ashley <aashley@php.net>
  * @copyright  2001-2006 The PHP Group
  * @license    http://www.php.net/license/3_01.txt  PHP License 3.01
- * @version    CVS: $Id: Container.php,v 1.28 2007/06/12 03:11:26 aashley Exp $
+ * @version    CVS: $Id: Container.php,v 1.23 2006/03/02 06:53:08 aashley Exp $
  * @link       http://pear.php.net/package/Auth
  */
 
@@ -31,7 +31,7 @@
  * @author     Adam Ashley <aashley@php.net>
  * @copyright  2001-2006 The PHP Group
  * @license    http://www.php.net/license/3_01.txt  PHP License 3.01
- * @version    Release: 1.5.4  File: $Revision: 1.28 $
+ * @version    Release: 1.3.0  File: $Revision: 1.23 $
  * @link       http://pear.php.net/package/Auth
  */
 class Auth_Container
@@ -45,13 +45,6 @@ class Auth_Container
      * @access public
      */
     var $activeUser = "";
-
-    /**
-     * The Auth object this container is attached to.
-     *
-     * @access public
-     */
-    var $_auth_obj = null;
 
     // }}}
     // {{{ Auth_Container() [constructor]
@@ -79,7 +72,6 @@ class Auth_Container
      */
     function fetchData($username, $password, $isChallengeResponse=false)
     {
-        $this->log('Auth_Container::fetchData() called.', AUTH_LOG_DEBUG);
     }
 
     // }}}
@@ -98,23 +90,22 @@ class Auth_Container
      */
     function verifyPassword($password1, $password2, $cryptType = "md5")
     {
-        $this->log('Auth_Container::verifyPassword() called.', AUTH_LOG_DEBUG);
         switch ($cryptType) {
             case "crypt" :
-                return ((string)crypt($password1, $password2) === (string)$password2);
+                return ( crypt($password1, $password2) == $password2 );
                 break;
             case "none" :
             case "" :
-                return ((string)$password1 === (string)$password2);
+                return ($password1 == $password2);
                 break;
             case "md5" :
-                return ((string)md5($password1) === (string)$password2);
+                return (md5($password1) == $password2);
                 break;
             default :
                 if (function_exists($cryptType)) {
-                    return ((string)$cryptType($password1) === (string)$password2);
-                } elseif (method_exists($this,$cryptType)) {
-                    return ((string)$this->$cryptType($password1) === (string)$password2);
+                    return ($cryptType($password1) == $password2);
+                } elseif (method_exists($this,$cryptType)) { 
+                    return ($this->$cryptType($password1) == $password2);
                 } else {
                     return false;
                 }
@@ -124,9 +115,9 @@ class Auth_Container
 
     // }}}
     // {{{ supportsChallengeResponse()
-
+    
     /**
-      * Returns true if the container supports Challenge Response
+      * Returns true if the container supports Challenge Response 
       * password authentication
       */
     function supportsChallengeResponse()
@@ -136,7 +127,7 @@ class Auth_Container
 
     // }}}
     // {{{ getCryptType()
-
+    
     /**
       * Returns the crypt current crypt type of the container
       *
@@ -155,7 +146,6 @@ class Auth_Container
      */
     function listUsers()
     {
-        $this->log('Auth_Container::listUsers() called.', AUTH_LOG_DEBUG);
         return AUTH_METHOD_NOT_SUPPORTED;
     }
 
@@ -171,7 +161,6 @@ class Auth_Container
      */
     function getUser($username)
     {
-        $this->log('Auth_Container::getUser() called.', AUTH_LOG_DEBUG);
         $users = $this->listUsers();
         if ($users === AUTH_METHOD_NOT_SUPPORTED) {
             return AUTH_METHOD_NOT_SUPPORTED;
@@ -198,7 +187,6 @@ class Auth_Container
      */
     function addUser($username, $password, $additional=null)
     {
-        $this->log('Auth_Container::addUser() called.', AUTH_LOG_DEBUG);
         return AUTH_METHOD_NOT_SUPPORTED;
     }
 
@@ -212,7 +200,6 @@ class Auth_Container
      */
     function removeUser($username)
     {
-        $this->log('Auth_Container::removeUser() called.', AUTH_LOG_DEBUG);
         return AUTH_METHOD_NOT_SUPPORTED;
     }
 
@@ -227,32 +214,7 @@ class Auth_Container
      */
     function changePassword($username, $password)
     {
-        $this->log('Auth_Container::changePassword() called.', AUTH_LOG_DEBUG);
         return AUTH_METHOD_NOT_SUPPORTED;
-    }
-
-    // }}}
-    // {{{ log()
-
-    /**
-     * Log a message to the Auth log
-     *
-     * @param string The message
-     * @param int
-     * @return boolean
-     */
-    function log($message, $level = AUTH_LOG_DEBUG) {
-
-        if (is_null($this->_auth_obj)) {
-
-            return false;
-
-        } else {
-
-            return $this->_auth_obj->log($message, $level);
-
-        }
-
     }
 
     // }}}

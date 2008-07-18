@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2008 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -59,13 +59,8 @@ class admin_page_list_c_member extends OpenPNE_Action
 
         $v['SNS_NAME'] = SNS_NAME;
         $v['c_profile_list'] = db_member_c_profile_list4null();
-        $v['c_member_list'] = array();
         if ($requests['mail_address']) {
             $v['c_member_list'] = db_admin_c_member4mail_address($requests['mail_address']);
-        } elseif ($requests['username'] && OPENPNE_AUTH_MODE != 'email') {
-            if ($c_member = db_admin_c_member4username($requests['username'])) {
-                $v['c_member_list'] = array($c_member);
-            }
         } else {
             $v['c_member_list'] = _db_admin_c_member_list($requests['page'], $requests['page_size'], $pager, $cond_list, $order);
         }

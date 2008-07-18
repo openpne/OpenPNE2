@@ -1,12 +1,12 @@
 <?php
 /**
- * @copyright 2005-2008 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
 /**
  * リダイレクト
- *
+ * 
  * @param string $module
  * @param string $action
  * @param array  $params
@@ -24,7 +24,7 @@ function openpne_redirect($module, $action = '', $params = array())
 
 /**
  * クライアントリダイレクト
- *
+ * 
  * @param   string  $dest ジャンプ先URI(絶対パス)
  */
 function client_redirect_absolute($dest)
@@ -45,7 +45,7 @@ function client_redirect_login()
 
 /**
  * ログインページを取得
- *
+ * 
  * @return string ログインページURL
  */
 function get_login_url()
@@ -247,7 +247,7 @@ function &get_crypt_blowfish()
 
 /**
  * 可逆的な暗号化をする
- *
+ * 
  * @param string $str 平文
  * @return string 暗号文
  */
@@ -266,7 +266,7 @@ function t_encrypt($str)
 
 /**
  * 可逆的な暗号を復号化する
- *
+ * 
  * @param string $str 暗号文
  * @return string 平文
  */
@@ -318,11 +318,11 @@ function util_get_c_navi($navi_type = 'h')
         $navi_type = 'global';
         $navi = array(
             array('url' => '?m=pc&a=page_h_search', 'caption' => 'メンバー検索'),
-            array('url' => '?m=pc&a=page_h_com_find_all', 'caption' => WORD_COMMUNITY . '検索'),
+            array('url' => '?m=pc&a=page_h_com_find_all', 'caption' => 'コミュニティ検索'),
             array('url' => '?m=pc&a=page_h_review_search', 'caption' => 'レビュー検索'),
             array('url' => '?m=pc&a=page_h_home', 'caption' => 'マイホーム'),
             array('url' => '?m=pc&a=page_h_invite', 'caption' => '友人を誘う'),
-            array('url' => '?m=pc&a=page_h_diary_list_all', 'caption' => '最新' . WORD_DIARY),
+            array('url' => '?m=pc&a=page_h_diary_list_all', 'caption' => '最新日記'),
             array('url' => '?m=pc&a=page_h_ranking', 'caption' => 'ランキング'),
             array('url' => '?m=pc&a=page_h_config', 'caption' => '設定変更'),
         );
@@ -333,7 +333,7 @@ function util_get_c_navi($navi_type = 'h')
         $navi = array(
             array('url' => '?m=pc&a=page_h_home', 'caption' => 'ホーム'),
             array('url' => '?m=pc&a=page_fh_friend_list', 'caption' => WORD_MY_FRIEND),
-            array('url' => '?m=pc&a=page_fh_diary_list', 'caption' => WORD_DIARY),
+            array('url' => '?m=pc&a=page_fh_diary_list', 'caption' => '日記'),
             array('url' => '?m=pc&a=page_h_message_box', 'caption' => 'メッセージ'),
             array('url' => '?m=pc&a=page_h_ashiato', 'caption' => 'あしあと'),
             array('url' => '?m=pc&a=page_h_bookmark_list', 'caption' => 'お気に入り'),
@@ -346,7 +346,7 @@ function util_get_c_navi($navi_type = 'h')
         $navi = array(
             array('url' => '?m=pc&a=page_f_home', 'caption' => 'ホーム'),
             array('url' => '?m=pc&a=page_fh_friend_list', 'caption' => WORD_FRIEND),
-            array('url' => '?m=pc&a=page_fh_diary_list', 'caption' => WORD_DIARY . 'を読む'),
+            array('url' => '?m=pc&a=page_fh_diary_list', 'caption' => '日記を読む'),
             array('url' => '?m=pc&a=page_f_message_send', 'caption' => 'メッセージを送る'),
             array('url' => '?m=pc&a=page_f_bookmark_add', 'caption' => 'お気に入りに追加'),
             array('url' => '?m=pc&a=page_fh_review_list_member', 'caption' => 'レビュー'),
@@ -357,12 +357,12 @@ function util_get_c_navi($navi_type = 'h')
         break;
     case 'c':
         $navi = array(
-            array('url' => '?m=pc&a=page_c_home', 'caption' => WORD_COMMUNITY . 'トップ'),
+            array('url' => '?m=pc&a=page_c_home', 'caption' => 'コミュニティトップ'),
             array('url' => '?m=pc&a=page_c_topic_list', 'caption' => '掲示板'),
             array('url' => '?m=pc&a=page_c_member_review', 'caption' => 'おすすめレビュー'),
-            array('url' => '?m=pc&a=page_c_join_commu', 'caption' => WORD_COMMUNITY . 'に参加'),
+            array('url' => '?m=pc&a=page_c_join_commu', 'caption' => 'コミュニティに参加'),
             array('url' => '?m=pc&a=page_c_invite', 'caption' => WORD_MY_FRIEND.'に紹介'),
-            array('url' => '?m=pc&a=page_c_leave_commu', 'caption' => WORD_COMMUNITY . 'を退会'),
+            array('url' => '?m=pc&a=page_c_leave_commu', 'caption' => 'コミュニティを退会'),
         );
         break;
     }
@@ -396,7 +396,7 @@ function t_isFutureDate($day, $month, $year)
 
 /**
  * Check c_diary.public_flag
- *
+ * 
  * @param int $c_diary_id
  * @param int $c_member_id
  * @return bool allowed or not
@@ -447,23 +447,10 @@ function pne_url2a($url, $target = '_blank')
 
 function get_auth_config($is_ktai = false)
 {
-    if (OPENPNE_AUTH_MODE == 'slavepne') {
+    if (IS_SLAVEPNE) {
         $config = $GLOBALS['_OPENPNE_AUTH_CONFIG'];
-    } elseif (OPENPNE_AUTH_MODE == 'pneid') {
-        $config['storage'] = 'DB';
-        $config['is_lowercase_username'] = true;
-        $config['options'] = array(
-            'dsn'         => db_get_dsn(),
-            'auto_quote'  => false,
-            'table'       => 'c_member_secure AS cms INNER JOIN c_username AS cu USING (c_member_id)',
-            'db_fields'   => 'cms.hashed_password AS hashed_password, cu.username AS username',
-            'usernamecol' => 'username',
-            'passwordcol' => 'hashed_password',
-            'cryptType'   => 'md5',
-        );
     } else {
         $config['storage'] = 'DB';
-        $config['is_encrypt_username'] = true;
         if ($is_ktai) {
             $config['options'] = array(
                 'dsn'         => db_get_dsn(),
@@ -482,28 +469,27 @@ function get_auth_config($is_ktai = false)
             );
         }
     }
-    $config['is_ktai'] = $is_ktai;
     return $config;
 }
 
 function crypt_func($raw_value,$cryptType)
 {
-    if (   isset($cryptType)
+    if (   isset($cryptType) 
         && $cryptType == 'none') {
         $cryptFunction = 'strval';
-    } elseif (   isset($cryptType)
+    } elseif (   isset($cryptType) 
               && function_exists($cryptType)) {
         $cryptFunction = $cryptType;
     } else {
         $cryptFunction = 'md5';
     }
-
+    
     return $cryptFunction($raw_value);
 }
 
 function check_action4pne_slave($is_ktai = false)
 {
-    if (OPENPNE_AUTH_MODE == 'slavepne') {
+    if (IS_SLAVEPNE) {
         if ($is_ktai) {
             openpne_redirect('ktai');
         } else {
@@ -608,10 +594,10 @@ function util_check_file_extention($filename)
 
 /**
  * 参照可能なメッセージかどうか
- *
+ * 
  * ・指定メンバーが送信者で、完全削除済でない
  * ・指定メンバーが受信者で、送信済であり完全削除済でない
- *
+ * 
  * @param int $c_member_id
  * @param int $c_message_id
  * @return bool
@@ -732,7 +718,7 @@ function util_get_color_config_ktai()
 
 /**
  * メンバー登録を行う
- *
+ * 
  * @param array $c_member
  * @param array $c_member_secure
  * @param array $c_member_profile_list
@@ -774,12 +760,6 @@ function util_regist_c_member($c_member, $c_member_secure, $c_member_profile_lis
         db_commu_join_c_commu($c_commu_id, $u);
     }
 
-    // ログインIDを登録
-    if (OPENPNE_AUTH_MODE == 'pneid') {
-        $login_id = strtolower($c_member['login_id']);
-        db_member_insert_username($u, $login_id);
-    }
-
     return $u;
 }
 
@@ -801,129 +781,4 @@ function util_get_preset_color_list($dir = 'pc')
 
     return array_values($color_list);
 }
-
-function util_get_module_config($module)
-{
-    $config = array();
-
-    if ($file = openpne_ext_search($module . '/config.ini')) {
-        $config = parse_ini_file($file, true);
-    }
-
-    return $config;
-}
-
-function util_get_validate_rules_profile($disp = 'config')
-{
-    $disp_key = 'disp_' . $disp;
-
-    $rules = array();
-    $profile_list = db_member_c_profile_list4null();
-    foreach ($profile_list as $profile) {
-        if ($profile[$disp_key]) {
-            $rule = array(
-                'type' => 'int',
-                'required' => $profile['is_required'],
-                'caption' => $profile['caption'],
-            );
-            switch ($profile['form_type']) {
-            case 'text':
-            case 'textlong':
-            case 'textarea':
-                $rule['type'] = $profile['val_type'];
-                $rule['regexp'] = $profile['val_regexp'];
-                $rule['min'] = $profile['val_min'];
-                if ($profile['val_max']) {
-                    $rule['max'] = $profile['val_max'];
-                }
-                break;
-            case 'checkbox':
-                $rule['is_array'] = '1';
-                break;
-            }
-            $rules[$profile['name']] = $rule;
-        }
-    }
-    return $rules;
-}
-
-function util_send_header_internal_server_error()
-{
-    header('HTTP/1.0 500 Internal Server Error'); 
-    exit;
-}
-
-function util_output_xml4array($data, $root, $is_escape = true)
-{
-    require_once 'XML/Serializer.php';
-    $option = array(
-        'rootName' => $root,
-    );
-    $serializer = new XML_Serializer($option);
-
-    if ($is_escape) {
-        $data = util_escape4output_xml($data);
-    }
-
-    $result = $serializer->serialize($data);
-
-    if ($result === true) {
-        $xml = $serializer->getSerializedData();
-        header('Content-Type: application/xml');
-        echo $xml;
-        exit;
-    }
-
-    util_send_header_internal_server_error();
-}
-
-function util_escape4output_xml($data)
-{
-    if (is_array($data)) {
-        foreach ($data as $key => $value) {
-            $data[$key] = util_escape4output_xml($value);
-        }
-        return $data;
-    } elseif (is_string($data)) {
-        return htmlspecialchars($data, ENT_QUOTES, 'UTF-8');
-    } else {
-        return $data;
-    }
-}
-
-function util_get_img_url($filename, $width, $height)
-{
-    require_once 'smarty_plugins/function.t_img_url.php';
-    $params = array(
-        'filename' => $filename,
-        'w' => $width,
-        'h' => $height,
-    );
-    return smarty_function_t_img_url($params, $dummy);
-}
-
-function util_get_c_member_config_default()
-{
-    $default_config = array(
-        'SEND_DIARY_COMMENT_MAIL_KTAI' => 0,
-        'IS_DISPLAY_NEWDIARY_HOME' => 1,
-        'IS_DISPLAY_NEWTOPIC_HOME' => 1,
-        'IS_DISPLAY_NEWDIARY_HOME_KTAI' => 1,
-        'IS_DISPLAY_NEWTOPIC_HOME_KTAI' => 1,
-        'IS_DISPLAY_BOOKMARK_DIARY_HOME' => 1,
-        'IS_DISPLAY_BOOKMARK_BLOG_HOME' => 1,
-        'IS_DISPLAY_SCHEDULE_HOME' => 1,
-    );
-
-    return $default_config;
-}
-
-function util_get_c_member_config($c_member_id)
-{
-    $default_config = util_get_c_member_config_default();
-    $member_config = array_merge($default_config, db_member_c_member_config4c_member_id($c_member_id));
-
-    return $member_config;
-}
-
 ?>

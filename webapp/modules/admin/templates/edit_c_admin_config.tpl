@@ -96,18 +96,10 @@
 <td><input class="basic" name="AMAZON_AFFID" type="text" value="({$smarty.const.AMAZON_AFFID})" size="30" /><br /><span class="caution">※空にするとレビュー機能が正常に動作しません</span></td>
 </tr>
 <tr class="cell10">
-<th colspan="2">PC版外部ログインページURL</th>
+<th colspan="2">外部ログインページURL</th>
 <td>
-<span class="info">PC版でログアウトした場合やログインに失敗した場合、ここで指定したURLに遷移します</span><br />
+<span class="info">ログアウトした場合やログインに失敗した場合、ここで指定したURLに遷移します</span><br />
 <input class="basic" name="LOGIN_URL_PC" type="text" value="({$smarty.const.LOGIN_URL_PC})" size="50" /><br />
-<span class="caution">※ここで指定するページには<a href="#form">ログインフォーム</a>を置いておく必要があります</span><br />
-<span class="caution">※通常のログインページを使用する場合は空欄にしておきます</span></td>
-</tr>
-<tr>
-<th colspan="2">携帯版外部ログインページURL</th>
-<td>
-<span class="info">携帯版でログアウトした場合やログインに失敗した場合、ここで指定したURLに遷移します</span><br />
-<input class="basic" name="LOGIN_URL_KTAI" type="text" value="({$smarty.const.LOGIN_URL_KTAI})" size="50" /><br />
 <span class="caution">※ここで指定するページには<a href="#form">ログインフォーム</a>を置いておく必要があります</span><br />
 <span class="caution">※通常のログインページを使用する場合は空欄にしておきます</span></td>
 </tr>
@@ -134,27 +126,6 @@
 <option value="0"({if !$smarty.const.DISPLAY_SEARCH_HOME}) selected="selected"({/if})>表示しない</option>
 </select></td>
 </tr>
-<tr class="cell12">
-<th colspan="2">ランキング機能使用設定</th>
-<td>
-<span class="info">ランキング機能を使用するかどうかを設定します</span><br />
-<select class="basic" name="OPENPNE_USE_RANKING">
-<option value="1"({if $smarty.const.OPENPNE_USE_RANKING}) selected="selected"({/if})>使用する</option>
-<option value="0"({if !$smarty.const.OPENPNE_USE_RANKING}) selected="selected"({/if})>使用しない</option>
-</select><br />
-<span class="caution">※「使用しない」を選択してもナビゲーション項目は自動的には変更されません。ナビゲーション項目の変更は<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_c_navi')})">「ナビゲーション変更」</a>からおこなってください</span><br />
-</td>
-</tr>
-<tr>
-<th colspan="2">アルバム機能使用設定</th>
-<td>
-<span class="info">アルバム機能を使用するかどうかを設定します</span><br />
-<select class="basic" name="OPENPNE_USE_ALBUM">
-<option value="1"({if $smarty.const.OPENPNE_USE_ALBUM}) selected="selected"({/if})>使用する</option>
-<option value="0"({if !$smarty.const.OPENPNE_USE_ALBUM}) selected="selected"({/if})>使用しない</option>
-</select>
-</td>
-</tr>
 <tr class="cell14">
 <th colspan="2">Flashリスト表示</th>
 <td><select class="basic" name="OPENPNE_USE_FLASH_LIST">
@@ -172,16 +143,6 @@
 </select><br />
 <span class="caution">※「フォントサイズを指定する」を選択した場合、文字サイズが小さめに設定されます</span><br />
 <span class="caution">※「フォントサイズを指定しない」を選択した場合、携帯端末ごとのデフォルトの文字サイズで表示されるようになります</span></td>
-</tr>
-<tr>
-<th colspan="2">携帯版プライバシーポリシー表示設定</th>
-<td>
-<span class="info">携帯版にプライバシーポリシーへのリンクを表示するかどうかを設定します</span><br />
-<select class="basic" name="OPENPNE_DISP_KTAI_SNS_PRIVACY">
-<option value="1"({if $smarty.const.OPENPNE_DISP_KTAI_SNS_PRIVACY}) selected="selected"({/if})>表示する</option>
-<option value="0"({if !$smarty.const.OPENPNE_DISP_KTAI_SNS_PRIVACY}) selected="selected"({/if})>表示しない</option>
-</select><br />
-<span class="caution">※プライバシーポリシーへのリンクの削除は、<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('insert_html')})">[デザインHTML挿入]</a>にあるログイン後フッタの編集からおこなうことができます</span></td>
 </tr>
 <tr class="cell15">
 <th colspan="2">メニューロールオーバー</th>
@@ -222,23 +183,15 @@
 </select></td>
 </tr>
 <tr class="cell19">
-<th colspan="2">({$WORD_DIARY})カテゴリ機能使用設定</th>
+<th colspan="2">日記カテゴリ機能使用設定</th>
 <td>
-<span class="info">※({$WORD_DIARY})のカテゴリ機能を有効にするかどうかを設定します</span><br />
+<span class="info">※日記のカテゴリ機能を有効にするかどうかを設定します</span><br />
 <select class="basic" name="USE_DIARY_CATEGORY">
 <option value="1"({if $smarty.const.USE_DIARY_CATEGORY}) selected="selected"({/if})>使用する</option>
 <option value="0"({if !$smarty.const.USE_DIARY_CATEGORY}) selected="selected"({/if})>使用しない</option>
 </select></td>
 </tr>
-<tr>
-<th colspan="2">文字装飾使用設定</th>
-<td>
-<span class="info">文字装飾機能を有効にするかどうかを設定します</span><br />
-<select class="basic" name="OPENPNE_USE_DECORATION">
-<option value="1"({if $smarty.const.OPENPNE_USE_DECORATION}) selected="selected"({/if})>使用する</option>
-<option value="0"({if !$smarty.const.OPENPNE_USE_DECORATION}) selected="selected"({/if})>使用しない</option>
-</select></td>
-</tr>
+
 <tr class="cell20">
 <th colspan="2">cmdタグ使用設定</th>
 <td>
@@ -286,15 +239,6 @@
 <option value="0"({if !$smarty.const.OPENPNE_IS_POINT_ADMIN}) selected="selected"({/if})>加算・表示しない</option>
 </select></td>
 </tr>
-<tr class="cell35">
-<th colspan="2">最新情報表示設定</th>
-<td>
-<span class="info">マイホームにSNS全体の最新情報（({$WORD_DIARY})とトピック）を表示するかどうかを設定します</span><br />
-<select class="basic" name="DISPLAY_NEWDIARYTOPIC_HOME">
-<option value="1"({if $smarty.const.DISPLAY_NEWDIARYTOPIC_HOME}) selected="selected"({/if})>表示する</option>
-<option value="0"({if !$smarty.const.DISPLAY_NEWDIARYTOPIC_HOME}) selected="selected"({/if})>表示しない</option>
-</select></td>
-</tr>
 <tr class="cell21">
 <th colspan="2">ログイン制限</th>
 <td>
@@ -324,6 +268,35 @@
 <td>
 <span class="info">SNSメンバーに送られるメールの署名に使用します</span><br />
 <input class="basic" name="COPYRIGHT" type="text" value="({$smarty.const.COPYRIGHT})" size="30" /></td>
+</tr>
+<tr class="cell23A">
+<th rowspan="4">フレンド名称</th>
+<th>フレンド</th>
+<td>
+<span class="info">SNS内「フレンド」を他の名称に設定します</span><br />
+<input class="basic" name="WORD_FRIEND" type="text" value="({$smarty.const.WORD_FRIEND})" size="30" />
+</td>
+</tr>
+<tr class="cell23B">
+<th>マイフレンド</th>
+<td>
+<span class="info">SNS内「フレンド」を他の名称に設定します</span><br />
+<input class="basic" name="WORD_MY_FRIEND" type="text" value="({$smarty.const.WORD_MY_FRIEND})" size="30" />
+</td>
+</tr>
+<tr class="cell23C">
+<th>ﾌﾚﾝﾄﾞ(携帯)</th>
+<td>
+<span class="info">SNS内「フレンド」を他の名称に設定します</span><br />
+<input class="basic" name="WORD_FRIEND_HALF" type="text" value="({$smarty.const.WORD_FRIEND_HALF})" size="30" />
+</td>
+</tr>
+<tr class="cell23D">
+<th>ﾏｲﾌﾚﾝﾄﾞ(携帯)</th>
+<td>
+<span class="info">SNS内「フレンド」を他の名称に設定します</span><br />
+<input class="basic" name="WORD_MY_FRIEND_HALF" type="text" value="({$smarty.const.WORD_MY_FRIEND_HALF})" size="30" />
+</td>
 </tr>
 <tr class="cell24">
 <th rowspan="2">アフィリエイト用タグ</th>
@@ -391,7 +364,7 @@
 <h2 id="ttl02"><a name="form">外部ログインフォーム用HTML</a></h2>
 <div class="contents">
 <p class="info">通常のログインページ以外の外部ログインページを設定する場合は、以下のHTMLを使ってログイン用フォームを作成してください。</p>
-({capture name=pc_html_form})
+({capture name=html_form})
 <form action="({$smarty.const.OPENPNE_URL})" method="post">
 <input type="hidden" name="m" value="pc" />
 <input type="hidden" name="a" value="do_o_login" />
@@ -405,47 +378,18 @@
 </dl>
 </form>
 ({/capture})
-({capture name=ktai_html_form})
-<form action="({$smarty.const.OPENPNE_URL})" method="post" utn>
-<input type="hidden" name="m" value="ktai">
-<input type="hidden" name="a" value="do_o_easy_login">
-<input type="submit" value="かんたんﾛｸﾞｲﾝ"><br>
-</form>
-<br>
-<form action="({$smarty.const.OPENPNE_URL})" method="post">
-<input type="hidden" name="m" value="ktai">
-<input type="hidden" name="a" value="do_o_login">
-携帯ﾒｰﾙｱﾄﾞﾚｽ<br>
-<textarea name="username" rows="1" istyle="3" mode="alphabet"></textarea><br>
-ﾊﾟｽﾜｰﾄﾞ<br>
-<input name="password" type="text" istyle="3" mode="alphabet" value=""><br>
-<input name="submit" value="ﾛｸﾞｲﾝ" type="submit"><br>
-</form>({/capture})
 
-({capture name=pc_html_password})
+<dl class="sampleHtml">
+<dt><strong class="item">ログインフォーム</strong></dt>
+<dd><textarea cols="84" rows="14" readonly="readonly">({$smarty.capture.html_form})</textarea></dd>
+</dl>
+
+({capture name=html_password})
 <a href="({t_url _html=0 _absolute=1 m=pc a=page_o_password_query})">パスワードを忘れた方はこちらへ</a>({/capture})
 
-({capture name=ktai_html_password})
-<a href="({t_url _html=0 _absolute=1 m=ktai a=page_o_password_query})">&gt;&gt;ﾊﾟｽﾜｰﾄﾞを忘れた方</a>({/capture})
-
 <dl class="sampleHtml">
-<dt><strong class="item">PC版ログインフォーム</strong></dt>
-<dd><textarea cols="84" rows="14" readonly="readonly">({$smarty.capture.pc_html_form})</textarea></dd>
-</dl>
-
-<dl class="sampleHtml">
-<dt><strong class="item">PC版パスワード再発行ページへのリンク</strong></dt>
-<dd><textarea cols="84" rows="3" readonly="readonly">({$smarty.capture.pc_html_password})</textarea></dd>
-</dl>
-
-<dl class="sampleHtml">
-<dt><strong class="item">携帯版ログインフォーム</strong></dt>
-<dd><textarea cols="84" rows="14" readonly="readonly">({$smarty.capture.ktai_html_form})</textarea></dd>
-</dl>
-
-<dl class="sampleHtml">
-<dt><strong class="item">携帯版パスワード再発行ページへのリンク</strong></dt>
-<dd><textarea cols="84" rows="3" readonly="readonly">({$smarty.capture.ktai_html_password})</textarea></dd>
+<dt><strong class="item">パスワード再発行ページへのリンク</strong></dt>
+<dd><textarea cols="84" rows="3" readonly="readonly">({$smarty.capture.html_password})</textarea></dd>
 </dl>
 
 ({if !$smarty.const.IS_CLOSED_SNS})

@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2008 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -16,7 +16,7 @@ class admin_do_update_skin_image extends OpenPNE_Action
         $prefix = sprintf('skin_%s', $requests['skinname']);
         if ($fn = image_insert_c_image($_FILES['upfile'], $prefix)) {
             if ($old_fn = db_get_c_skin_filename4skinname($requests['skinname'])) {
-                db_image_data_delete($old_fn);
+                image_data_delete($old_fn);
             }
 
             // 携帯版ロゴ画像がアップロードされた場合は、ロゴの非表示設定を解除する

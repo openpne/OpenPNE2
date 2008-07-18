@@ -7,7 +7,7 @@
 /**
  * Include the {@link shared.make_timestamp.php} plugin
  */
-require_once $smarty->_get_plugin_filepath('shared', 'make_timestamp');
+require_once $smarty->_get_plugin_filepath('shared','make_timestamp');
 /**
  * Smarty date_format modifier plugin
  *
@@ -27,31 +27,20 @@ require_once $smarty->_get_plugin_filepath('shared', 'make_timestamp');
  * @return string|void
  * @uses smarty_make_timestamp()
  */
-function smarty_modifier_date_format($string, $format = '%m/%d', $default_date = '')
+function smarty_modifier_date_format($string, $format = '%m/%d', $default_date = null)
 {
-    if ($string != '') {
-        $timestamp = smarty_make_timestamp($string);
-    } elseif ($default_date != '') {
-        $timestamp = smarty_make_timestamp($default_date);
+    if ($ts = smarty_make_timestamp($string)) {
+        // UTF-8 日本語対応
+        return preg_replace_callback('/\%[a-z\%]/iu',
+                    create_function('$res', 'return strftime($res[0], '.$ts.');'),
+                    $format);
+    } elseif (!empty($default_date) && $ts = smarty_make_timestamp($default_date)) {
+        return preg_replace_callback('/\%[a-z\%]/iu',
+                    create_function('$res', 'return strftime($res[0], '.$ts.');'),
+                    $format);
     } else {
         return;
     }
-    if (DIRECTORY_SEPARATOR == '\\') {
-        $_win_from = array('%D',       '%h', '%n', '%r',          '%R',    '%t', '%T');
-        $_win_to   = array('%m/%d/%y', '%b', "\n", '%I:%M:%S %p', '%H:%M', "\t", '%H:%M:%S');
-        if (strpos($format, '%e') !== false) {
-            $_win_from[] = '%e';
-            $_win_to[]   = sprintf('%\' 2d', date('j', $timestamp));
-        }
-        if (strpos($format, '%l') !== false) {
-            $_win_from[] = '%l';
-            $_win_to[]   = sprintf('%\' 2d', date('h', $timestamp));
-        }
-        $format = str_replace($_win_from, $_win_to, $format);
-    }
-    return preg_replace_callback('/\%[a-z\%]/iu',
-        create_function('$res', 'return strftime($res[0], '.$timestamp.');'),
-        $format);
 }
 
 ?>

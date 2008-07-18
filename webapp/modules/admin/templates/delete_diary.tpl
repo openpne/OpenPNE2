@@ -1,12 +1,12 @@
 ({$inc_header|smarty:nodefaults})
 ({ext_include file="inc_subnavi_adminImageKakikomi.tpl"})
-({assign var="page_name" value="`$WORD_DIARY`削除"})
+({assign var="page_name" value="日記削除"})
 ({ext_include file="inc_tree_adminImageKakikomi.tpl"})
 </div>
 
 ({*ここまで:navi*})
 
-<h2>({$WORD_DIARY})削除の確認</h2>
+<h2>日記削除の確認</h2>
 <div class="contents">
 
 ({if $msg})
@@ -47,7 +47,7 @@
 </tr>
 ({****})
 <tr>
-<th>({$WORD_DIARY})本文</th>
+<th>日記本文</th>
 <td width="500">
 ({if $diary.image_filename_1 || $diary.image_filename_2 || $diary.image_filename_3})
 <div>
@@ -56,11 +56,7 @@
 ({if $diary.image_filename_3})<span class="padding_s"><a href="({t_img_url filename=$diary.image_filename_3})" target="_blank"><img src="({t_img_url filename=$diary.image_filename_3 w=120 h=120})"></a></span>({/if})
 </div>
 ({/if})
-({if $smarty.const.OPENPNE_ADMIN_CONVERT_URL})
-({$diary.body|nl2br|t_url2cmd:'diary':$diary.c_member_id|t_cmd:'diary'})
-({else})
 ({$diary.body|nl2br})
-({/if})
 </td>
 </tr>
 ({****})

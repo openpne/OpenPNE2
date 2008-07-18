@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2008 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -30,7 +30,7 @@ class ktai_do_c_edit_image_delete_c_commu_image extends OpenPNE_Action
             handle_kengen_error();
         }
 
-        db_image_data_delete($c_commu['image_filename']);
+        image_data_delete($c_commu['image_filename']);
 
         db_commu_delete_c_commu_image_filename($target_c_commu_id);
 

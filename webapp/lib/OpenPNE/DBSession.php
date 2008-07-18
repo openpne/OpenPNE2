@@ -1,27 +1,27 @@
 <?php
 /**
- * @copyright 2005-2008 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
-require_once 'OpenPNE/DB.php';
+require_once 'OpenPNE/DB/Writer.php';
 
 
 class OpenPNE_DBSession
 {
     /**
-     * @var OpenPNE_DB
+     * @var OpenPNE_DB_Writer
      */
     var $db;
 
     function OpenPNE_DBSession($dsn)
     {
-        $this->db =& new OpenPNE_DB($dsn);
+        $this->db =& new OpenPNE_DB_Writer($dsn);
     }
 
     /**
      * sess_nameを取得/変更する
-     *
+     * 
      * メンバ変数で値を保持できないようなので
      * 仕方なくstatic変数で値を保持しておく
      */

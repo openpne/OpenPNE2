@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2008 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -20,7 +20,7 @@ class OpenPNE_MemcacheSession
 
     /**
      * sess_nameを取得/変更する
-     *
+     * 
      * メンバ変数で値を保持できないようなので
      * 仕方なくstatic変数で値を保持しておく
      */
@@ -36,7 +36,7 @@ class OpenPNE_MemcacheSession
     function open($save_path, $sess_name)
     {
         $this->sess_name($sess_name);
-
+        
         $this->memcache->addServer($this->dsn['hostspec']);
         $is_connect = @$this->memcache->pconnect($this->dsn['hostspec']);
         if ($is_connect === false) {

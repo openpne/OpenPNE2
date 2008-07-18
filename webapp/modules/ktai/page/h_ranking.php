@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2008 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -9,10 +9,6 @@ class ktai_page_h_ranking extends OpenPNE_Action
     function execute($requests)
     {
         $u  = $GLOBALS['KTAI_C_MEMBER_ID'];
-
-        if (!OPENPNE_USE_RANKING) {
-            ktai_display_error(SNS_NAME . 'では、ランキングの閲覧はおこなえません');
-        }
 
         // --- リクエスト変数
         $kind = $requests['kind'];
@@ -42,7 +38,7 @@ class ktai_page_h_ranking extends OpenPNE_Action
             break;
         case "ashiato":
         default:
-            $list = pne_cache_call(3600, 'db_ranking_c_ashiato_ranking', $limit);
+            $list = pne_cache_call(3600, 'p_h_ranking_c_ashiato_ranking', $limit);
             foreach ($list as $key => $value) {
                 $list[$key]['c_member'] = db_member_c_member_with_profile($value['c_member_id']);
                 if (!$list[$key]['c_member']) {

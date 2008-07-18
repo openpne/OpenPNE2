@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2008 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -60,6 +60,7 @@ $GLOBALS['SMARTY'] = (array)$GLOBALS['SMARTY'] + array(
     'caching'           => false,
     'debugging'         => false,
     'debug_tpl'         => OPENPNE_WEBAPP_DIR . '/templates/debug.tpl',
+    'default_modifiers' => array('@t_escape'),
     'error_reporting'   => E_ALL ^ E_NOTICE,
 );
 $GLOBALS['SMARTY']['plugins_dir'] = array(
@@ -69,12 +70,8 @@ $GLOBALS['SMARTY']['plugins_dir'] = array(
 );
 
 // 外部認証の場合は招待・新規登録はできない
-if (OPENPNE_AUTH_MODE == 'slavepne') {
-    // 招待用URLがPC・携帯どちらも空の場合は招待不可
-    if (!(defined('SLAVEPNE_SYOUTAI_URL_PC') && SLAVEPNE_SYOUTAI_URL_PC) &&
-        !(defined('SLAVEPNE_SYOUTAI_URL_KTAI') && SLAVEPNE_SYOUTAI_URL_KTAI)) {
-        define('IS_USER_INVITE', false);
-    }
+if (defined('IS_SLAVEPNE') && IS_SLAVEPNE) {
+    define('IS_USER_INVITE', false);
     define('IS_CLOSED_SNS', true);
 }
 
@@ -131,8 +128,9 @@ $GLOBALS['_OPENPNE_PC2KTAI_LINK_ACTION_LIST'] = array(
     'page_c_topic_detail'   => 'page_c_bbs',
     'page_c_event_detail'   => 'page_c_bbs',
     'page_f_home'           => 'page_f_home',
-    'page_fh_album'         => 'page_fh_album',
-    'page_fh_album_image_show' => 'page_fh_album_image_show',
 );
+
+mb_substitute_character("long");
+mb_substitute_character(0x3013);
 
 ?>

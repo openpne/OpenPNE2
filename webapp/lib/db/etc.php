@@ -1,13 +1,13 @@
 <?php
 /**
- * @copyright 2005-2008 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
 /**
  * 管理用アカウントが存在するかどうか
  * setup が完了しているかどうかの判定に使う
- *
+ * 
  * @return bool 存在するかどうか
  */
 function db_admin_user_exists()
@@ -180,7 +180,7 @@ function do_common_c_pc_address_pre4sid($sid)
 
 /**
  * パスワードが正しいかどうか認証する
- *
+ * 
  * @param int $c_member_id
  * @param string $password 平文のパスワード
  * @return bool パスワードが正しいかどうか
@@ -188,14 +188,14 @@ function do_common_c_pc_address_pre4sid($sid)
 function db_common_authenticate_password($c_member_id, $password, $is_ktai = false)
 {
     $auth_config = get_auth_config($is_ktai);
-
-    if (OPENPNE_AUTH_MODE == 'slavepne' || OPENPNE_AUTH_MODE == 'pneid') {
+    
+    if (IS_SLAVEPNE) {
         $username = db_member_username4c_member_id($c_member_id, $is_ktai);
     } else {
         $auth_config['options']['usernamecol'] = 'c_member_id';
         $username = $c_member_id;
     }
-
+    
     $storage = Auth::_factory($auth_config['storage'],$auth_config['options']);
     return $storage->fetchData($username, $password, false);
 }
@@ -379,7 +379,7 @@ function db_get_c_navi($navi_type = 'h')
 
 /**
  * SNSメンバー退会
- *
+ * 
  * @param int $c_member_id
  */
 function db_common_delete_c_member($c_member_id)
@@ -504,18 +504,18 @@ function db_common_delete_c_member($c_member_id)
     $sql = 'SELECT * FROM c_diary WHERE c_member_id = ?';
     $c_diary_list = db_get_all($sql, $single, 'main');
     foreach ($c_diary_list as $c_diary) {
-        db_image_data_delete($c_diary['image_filename_1']);
-        db_image_data_delete($c_diary['image_filename_2']);
-        db_image_data_delete($c_diary['image_filename_3']);
+        image_data_delete($c_diary['image_filename_1']);
+        image_data_delete($c_diary['image_filename_2']);
+        image_data_delete($c_diary['image_filename_3']);
 
         // c_diary_comment
         $sql = 'SELECT * FROM c_diary_comment WHERE c_diary_id = ?';
         $params = array(intval($c_diary['c_diary_id']));
         $c_diary_comment_list = db_get_all($sql, $params, 'main');
         foreach ($c_diary_comment_list as $c_diary_comment) {
-            db_image_data_delete($c_diary_comment['image_filename_1']);
-            db_image_data_delete($c_diary_comment['image_filename_2']);
-            db_image_data_delete($c_diary_comment['image_filename_3']);
+            image_data_delete($c_diary_comment['image_filename_1']);
+            image_data_delete($c_diary_comment['image_filename_2']);
+            image_data_delete($c_diary_comment['image_filename_3']);
         }
 
         $sql = 'DELETE FROM c_diary_comment WHERE c_diary_id = ?';
@@ -550,13 +550,13 @@ function db_common_delete_c_member($c_member_id)
     $sql = 'SELECT image_filename_1, image_filename_2, image_filename_3' .
         ' FROM c_member WHERE c_member_id = ?';
     $c_member = db_get_row($sql, $single, 'main');
-    db_image_data_delete($c_member['image_filename_1']);
-    db_image_data_delete($c_member['image_filename_2']);
-    db_image_data_delete($c_member['image_filename_3']);
+    image_data_delete($c_member['image_filename_1']);
+    image_data_delete($c_member['image_filename_2']);
+    image_data_delete($c_member['image_filename_3']);
 
     $sql = 'DELETE FROM c_member WHERE c_member_id = ?';
     db_query($sql, $single);
-
+    
     $sql = 'DELETE FROM c_username WHERE c_member_id = ?';
     db_query($sql, $single);
 }
@@ -564,7 +564,7 @@ function db_common_delete_c_member($c_member_id)
 /**
  * コミュニティ削除
  * 関連情報を合わせて削除する
- *
+ * 
  * @param int $c_commu_id
  */
 function db_common_delete_c_commu($c_commu_id)
@@ -578,7 +578,7 @@ function db_common_delete_c_commu($c_commu_id)
     $c_commu = db_get_row($sql, $single);
 
     // 画像削除
-    db_image_data_delete($c_commu['image_filename']);
+    image_data_delete($c_commu['image_filename']);
 
     // c_commu_admin_confirm
     $sql = 'DELETE FROM c_commu_admin_confirm WHERE c_commu_id = ?';
@@ -607,9 +607,9 @@ function db_common_delete_c_commu($c_commu_id)
         $params = array(intval($topic['c_commu_topic_id']));
         $topic_comment_list = db_get_all($sql, $params);
         foreach ($topic_comment_list as $topic_comment) {
-            db_image_data_delete($topic_comment['image_filename1']);
-            db_image_data_delete($topic_comment['image_filename2']);
-            db_image_data_delete($topic_comment['image_filename3']);
+            image_data_delete($topic_comment['image_filename1']);
+            image_data_delete($topic_comment['image_filename2']);
+            image_data_delete($topic_comment['image_filename3']);
             db_file_delete_c_file($topic_comment['filename']);
         }
 
@@ -714,7 +714,7 @@ function db_delete_c_skin_filename($skinname)
     $sql = 'SELECT * FROM c_skin_filename WHERE skinname = ?';
     $params = array(strval($skinname));
     if ($skin_filename = db_get_row($sql, $params)) {
-        db_image_data_delete($skin_filename['filename']);
+        image_data_delete($skin_filename['filename']);
         $sql = 'DELETE FROM c_skin_filename WHERE skinname = ?';
         return db_query($sql, $params);
     } else {
@@ -818,12 +818,8 @@ function db_replace_c_navi($navi_type, $sort_order, $url, $caption)
 }
 
 //小窓の使用範囲をチェック
-function db_is_use_cmd($src, $type = '')
+function db_is_use_cmd($src, $type)
 {
-    if (!$type) {  // type の指定がない場合は小窓を有効にする
-        return true;
-    }
-
     $sql = 'SELECT * FROM c_cmd WHERE name = ?';
     $params = array(strval($src));
     $c_cmd = db_get_row($sql, $params);
@@ -877,35 +873,6 @@ function db_c_holiday_list4date($m, $d)
     $sql = 'SELECT name FROM c_holiday WHERE month = ? AND day = ?';
     $params = array(intval($m), intval($d));
     return db_get_col($sql, $params);
-}
-
-function db_decoration_enable_list()
-{
-    $sql = 'SELECT tagname,is_enabled FROM c_config_decoration';
-    $decoration_enable_list = db_get_all($sql);
-
-    $result = array();
-    foreach ($decoration_enable_list as $value) {
-        $tagname = strtr($value['tagname'], ':', '_');
-        $result[$tagname] = $value['is_enabled'];
-    }
-
-    return $result;
-}
-
-function db_decoration_is_enabled4tagname($tagname)
-{
-    $sql = 'SELECT is_enabled FROM c_config_decoration WHERE tagname = ?';
-    $is_enabled = db_get_one($sql, array($tagname));
-
-    return $is_enabled;
-}
-
-function db_etc_c_cmd_url4name($name)
-{
-    $sql = 'SELECT c_cmd.url FROM c_cmd INNER JOIN c_cmd_caster USING(c_cmd_caster_id)'
-         . ' WHERE name = ? ORDER BY c_cmd_caster.sort_order';
-    return db_get_one($sql, array($name));
 }
 
 ?>

@@ -17,7 +17,7 @@
 // |          Lorenzo Alberton <l dot alberton at quipo dot it>           |
 // +----------------------------------------------------------------------+
 //
-// $Id: Queue.php,v 1.22 2007/02/15 10:30:09 quipo Exp $
+// $Id: Queue.php,v 1.15 2004/07/27 08:58:03 quipo Exp $
 
 /**
 * Class for handle mail queue managment.
@@ -98,8 +98,8 @@
 * // end usage example
 * -------------------------------------------------------------------------
 *
-* @version $Revision: 1.22 $
-* $Id: Queue.php,v 1.22 2007/02/15 10:30:09 quipo Exp $
+* @version $Revision: 1.15 $
+* $Id: Queue.php,v 1.15 2004/07/27 08:58:03 quipo Exp $
 * @author Radek Maciaszek <chief@php.net>
 */
 
@@ -150,7 +150,7 @@ require_once 'Mail/mime.php';
  * Mail_Queue - base class for mail queue managment.
  *
  * @author   Radek Maciaszek <wodzu@tonet.pl>
- * @version  $Id: Queue.php,v 1.22 2007/02/15 10:30:09 quipo Exp $
+ * @version  $Id: Queue.php,v 1.15 2004/07/27 08:58:03 quipo Exp $
  * @package  Mail_Queue
  * @access   public
  */
@@ -224,13 +224,7 @@ class Mail_Queue extends PEAR
         $container_class = 'Mail_Queue_Container_' . $container_type;
         $container_classfile = $container_type . '.php';
 
-        
-        // Attempt to include a custom version of the named class, but don't treat
-        // a failure as fatal.  The caller may have already included their own
-        // version of the named class.
-        if (!class_exists($container_class)) {
-            include_once 'Mail/Queue/Container/' . $container_classfile;
-        }
+        include_once 'Mail/Queue/Container/' . $container_classfile;
         $this->container = new $container_class($container_options);
         if(PEAR::isError($this->container)) {
             return new Mail_Queue_Error(MAILQUEUE_ERROR_CANNOT_INITIALIZE,
@@ -316,22 +310,15 @@ class Mail_Queue extends PEAR
 
             if (!PEAR::isError($result)) {
                 $this->container->setAsSent($mail);
-                if ($mail->isDeleteAfterSend()) {
+                if($mail->isDeleteAfterSend()) {
                     $this->deleteMail($mail->getId());
                 }
             } else {
-                //remove the problematic mail from the buffer, but don't delete
-                //it from the db: it might be a temporary issue.
-                $this->container->skip();
                 PEAR::raiseError(
                     'Error in sending mail: '.$result->getMessage(),
                     MAILQUEUE_ERROR_CANNOT_SEND_MAIL, PEAR_ERROR_TRIGGER,
-                    E_USER_NOTICE
-                );
+                    E_USER_NOTICE);
             }
-        }
-        if ($this->mail_options['persist'] && is_object($this->send_mail)) {
-            $this->send_mail->disconnect();
         }
         return true;
     }
@@ -366,11 +353,10 @@ class Mail_Queue extends PEAR
      *
      * @param object  MailBody object
      * @return mixed  True on success else pear error class
-     * @param  bool   $set_as_sent
      *
      * @access public
      */
-    function sendMail($mail, $set_as_sent=true)
+    function sendMail($mail)
     {
         $recipient = $mail->getRecipient();
         $hdrs = $mail->getHeaders();
@@ -378,11 +364,7 @@ class Mail_Queue extends PEAR
         if (empty($this->send_mail)) {
             $this->factorySendMail();
         }
-        $sent = $this->send_mail->send($recipient, $hdrs, $body);
-        if ($sent and $set_as_sent) {
-            $this->container->setAsSent($mail);
-        }
-        return $sent;
+        return $this->send_mail->send($recipient, $hdrs, $body);
     }
 
     // }}}
@@ -413,7 +395,7 @@ class Mail_Queue extends PEAR
      * @param integer $id_user  Sender id
      * @param string  $ip    Sender ip
      * @param string  $from  Sender e-mail
-     * @param string|array  $to    Reciepient(s) e-mail
+     * @param string  $to    Reciepient e-mail
      * @param string  $hdrs  Mail headers (in RFC)
      * @param string  $body  Mail body (in RFC)
      * @return mixed  ID of the record where this mail has been put
@@ -424,17 +406,10 @@ class Mail_Queue extends PEAR
     function put($from, $to, $hdrs, $body, $sec_to_send=0, $delete_after_send=true, $id_user=MAILQUEUE_SYSTEM)
     {
         $ip = getenv('REMOTE_ADDR');
-        $time_to_send = date("Y-m-d H:i:s", time() + $sec_to_send);
-        return $this->container->put(
-            $time_to_send,
-            $id_user,
-            $ip,
-            $from,
-            serialize($to),
-            serialize($hdrs),
-            serialize($body),
-            $delete_after_send
-        );
+        $time_to_send = date("Y-m-d G:i:s", time() + $sec_to_send);
+        return $this->container->put( $time_to_send, $id_user,
+                            $ip, $from, $to, serialize($hdrs),
+                            serialize($body), $delete_after_send );
     }
 
     // }}}
@@ -513,7 +488,7 @@ class Mail_Queue extends PEAR
         } else {
             $err = PEAR::raiseError(sprintf("%s", $msg), $code, $mode);
         }
-        return $err;
+return $err;
     }
 */
 }

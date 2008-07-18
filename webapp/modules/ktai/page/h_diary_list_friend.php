@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2008 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -11,10 +11,12 @@ class ktai_page_h_diary_list_friend extends OpenPNE_Action
         $u  = $GLOBALS['KTAI_C_MEMBER_ID'];
 
         // --- リクエスト変数
+        $direc = $requests['direc'];
         $page = $requests['page'];
         // ----------
 
         //日記一覧
+        $page = $page + $direc;
         $page_size = 10;
         $this->set("page_size", $page_size);
         $this->set("page", $page);

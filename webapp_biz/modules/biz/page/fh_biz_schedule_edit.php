@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2008 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -17,7 +17,7 @@ class biz_page_fh_biz_schedule_edit extends OpenPNE_Action
         $form_val['body'] = $requests['body'];
 
         $this->set('banner', $requests['sc_bn']);
-
+        
         if ($requests['sc_title']) {
             $requests['title'] = $requests['sc_title'];
         }
@@ -89,34 +89,31 @@ class biz_page_fh_biz_schedule_edit extends OpenPNE_Action
 
         for ($i = $nowyear; $i <= $nowyear+10; $i++) {
             if ($i == $nowyear) {
-                $years = '<option value="'.$i.'" selected="selected">';
+                $years = '<option value="'.$i.'" selected>';
             } else {
                 $years .= '<option value="'.$i.'">';
             }
             $years .= $i.'年';
-	    $years .= '</option>';
         }
 
         for ($i = 1; $i <= 12; $i++) {
             $i_f = sprintf("%02d",$i);  //月は常に二桁
-            if ($i == $nowmonth) {
-                $monthes .= '<option value="'.$i_f.'" selected="selected">';
+            if ($i == $nowmonth) { 
+                $monthes .= '<option value="'.$i_f.'" selected>';
             } else {
                 $monthes .= '<option value="'.$i_f.'">';
             }
             $monthes .= $i.'月';
-	    $monthes .= '</option>';
         }
 
         for ($i = 1; $i <= 31; $i++) {
             $i_f = sprintf("%02d",$i);  //日は常に二桁
             if ($i == $nowday) {
-                $days .= '<option value="'.$i_f.'" selected="selected">';
+                $days .= '<option value="'.$i_f.'" selected>';
             } else {
                 $days .= '<option value="'.$i_f.'">';
             }
             $days .= $i.'日';
-	    $days .= '</option>';
         }
 
         $hours = biz_makeSerialArray(23);  //時
@@ -136,8 +133,8 @@ class biz_page_fh_biz_schedule_edit extends OpenPNE_Action
 
         $this->set('title', $requests['title']);
         $this->set('value', $requests['value']);
-
-
+        
+        
         if (!is_null($requests['begin_time'])) {
             $this->set('begin_hour', date("G", strtotime($requests['begin_time'])));
         }
@@ -225,7 +222,7 @@ class biz_page_fh_biz_schedule_edit extends OpenPNE_Action
         } else {
             $this->set('public_flag', $schedule['public_flag']);
         }
-
+        
         //追加
         if ($requests['members']) {
             $j_members = array_keys(unserialize($requests['members']));
@@ -251,7 +248,7 @@ class biz_page_fh_biz_schedule_edit extends OpenPNE_Action
                 break;
             }
         }
-
+        
         $this->set('members', $members);
 
         return 'success';

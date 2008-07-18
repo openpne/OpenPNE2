@@ -1,14 +1,11 @@
 <?php
 /**
- * @copyright 2005-2008 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
- * @author Ogawa ogawa@tejimaya.com
- * @author Masaki Miyashita miyasita@zenzy.net
  */
 
 // PEAR::Mail_mimeDecode
 require_once 'Mail/mimeDecode.php';
-require_once 'util.inc.php';
 
 /**
  * OpenPNE_KtaiMail
@@ -19,7 +16,7 @@ class OpenPNE_KtaiMail
     /**
      * デコード結果
      * @var stdClass
-     */
+     */ 
     var $mail;
 
     /** @var string 変換元文字エンコーディング(デフォルト値) */
@@ -42,7 +39,7 @@ class OpenPNE_KtaiMail
 
     /**
      * constructor
-     *
+     * 
      * @access public
      * @param string $options
      *      - from_encoding    : 変換元文字エンコーディング
@@ -80,7 +77,7 @@ class OpenPNE_KtaiMail
 
     /**
      * メールをデコード
-     *
+     * 
      * @access public
      * @param string メールの生データ
      */
@@ -96,7 +93,7 @@ class OpenPNE_KtaiMail
 
     /**
      * ヘッダー(From:)から送信元メールアドレスを取得
-     *
+     * 
      * @access public
      * @return string Fromメールアドレス
      */
@@ -107,7 +104,7 @@ class OpenPNE_KtaiMail
 
     /**
      * ヘッダー(To:)から宛先メールアドレスを取得
-     *
+     * 
      * @access public
      * @return string Toメールアドレス
      */
@@ -118,7 +115,7 @@ class OpenPNE_KtaiMail
 
     /**
      * Subject の内容を抽出(＋文字コード変換)
-     *
+     * 
      * @access public
      * @return string Subject
      */
@@ -130,7 +127,7 @@ class OpenPNE_KtaiMail
 
     /**
      * メール本文からテキストを抽出(＋文字コード変換)
-     *
+     * 
      * @access public
      * @return string メール本文のテキスト
      */
@@ -162,7 +159,7 @@ class OpenPNE_KtaiMail
 
     /**
      * メールから画像データを抽出
-     *
+     * 
      * @access public
      * @return array 画像データ配列
      */
@@ -282,7 +279,7 @@ class OpenPNE_KtaiMail
 
     /**
      * 文字列からメールアドレスを抽出
-     *
+     * 
      * @access private
      * @param string $str 入力文字列
      * @return string メールアドレス
@@ -310,44 +307,9 @@ class OpenPNE_KtaiMail
         return false;
     }
 
-    function convert_text_core($str)
-    {
-        $result = "";
-
-        for ($i = 0; $i < strlen($str); $i++) {
-            $c = 0;
-            $c1 = ord($str[$i]);
-            $c2 = ord($str[$i]);
-
-            // E-mail用絵文字から携帯用絵文字に変換
-            if ($c1 == 0xED || $c1 ==0xEE) {  // [e:358] ～ [e:499]、[e:700]～
-                $c = hexdec(bin2hex(substr($str, $i, 2))) + 1536;
-            } elseif ($c1 == 0xEB || $c1 == 0xEC) {  // [e:1]～[e:357]、[e:500]～[e:518]
-                $c = hexdec(bin2hex(substr($str, $i, 2))) + 2816;
-            }
-
-            if ($c) {
-                $bin = array();
-                $bin[0] = chr($c >> 8);
-                $bin[1] = chr($c - ($bin[0] << 8));
-                $emoji = emoji_escape_e($bin);
-                $result .= $emoji;
-                $i++;
-            } else {
-                $result .= $str[$i];
-                if ((0x81 <= $c1 && $c1 <= 0x9F) || 0xE0 <= $c1) {
-                    $result .= $str[$i+1];
-                    $i++;
-                }
-            }
-        }
-
-        return $result;
-    }
-
     /**
      * 文字エンコーディングの変換、空白文字の削除
-     *
+     * 
      * @access public
      * @param string $str 変換前の文字列
      * @param string $from_encoding
@@ -356,29 +318,10 @@ class OpenPNE_KtaiMail
      */
     function convert_text($str, $from_encoding = '', $to_encoding = '')
     {
-        if (!$from_encoding) {
-            $from_encoding = $this->from_encoding;
-        }
+        if (!$from_encoding) $from_encoding = $this->from_encoding;
+        if (!$to_encoding)   $to_encoding = $this->to_encoding;
 
-        if (!$to_encoding) {
-            $to_encoding = $this->to_encoding;
-        }
-
-        $from_addr = explode('@', $this->get_from());
-        $domain = array_pop($from_addr);
-
-        if ($domain == 'ezweb.ne.jp') {  // auは絵文字変換もおこなう
-            // 絵文字変換をするため、いったんShift_JISに変換
-            $str = mb_convert_encoding($str, 'SJIS-win', $from_encoding);
-
-            // 絵文字変換
-            $str = $this->convert_text_core($str);
-
-            // 文字エンコーディング変換
-            $str = mb_convert_encoding($str, $to_encoding, 'SJIS-win');
-        } else {
-            $str = mb_convert_encoding($str, $to_encoding, $from_encoding);
-        }
+        $str = mb_convert_encoding($str, $to_encoding, $from_encoding);
 
         // 空白文字の削除
         $str = str_replace("\0", '', $str);

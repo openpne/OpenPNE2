@@ -1,10 +1,8 @@
 <?php
 /**
- * @copyright 2005-2008 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
-
-require_once 'OpenPNE/RSS.php';
 
 // 管理画面トップページ 認証済み
 class admin_page_top extends OpenPNE_Action
@@ -15,7 +13,7 @@ class admin_page_top extends OpenPNE_Action
 
         $v['SNS_NAME'] = SNS_NAME;
         $v['OPENPNE_VERSION'] = OPENPNE_VERSION;
-
+        
         $this->set($v);
 
         return 'success';

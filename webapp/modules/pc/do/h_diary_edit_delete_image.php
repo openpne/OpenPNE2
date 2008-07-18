@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2008 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -25,7 +25,7 @@ class pc_do_h_diary_edit_delete_image extends OpenPNE_Action
         }
         //---
 
-        db_image_data_delete($c_diary['image_filename_'. $del_img]);
+        image_data_delete($c_diary['image_filename_'. $del_img]);
         db_diary_delete_c_diary_image($c_diary_id, $del_img);
 
         $p = array('target_c_diary_id' => $c_diary_id);

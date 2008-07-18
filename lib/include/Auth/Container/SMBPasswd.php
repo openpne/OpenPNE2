@@ -14,11 +14,11 @@
  *
  * @category   Authentication
  * @package    Auth
- * @author     Michael Bretterklieber <michael@bretterklieber.com>
+ * @author     Michael Bretterklieber <michael@bretterklieber.com> 
  * @author     Adam Ashley <aashley@php.net>
  * @copyright  2001-2006 The PHP Group
  * @license    http://www.php.net/license/3_01.txt  PHP License 3.01
- * @version    CVS: $Id: SMBPasswd.php,v 1.8 2007/06/12 03:11:26 aashley Exp $
+ * @version    CVS: $Id: SMBPasswd.php,v 1.5 2006/03/02 06:53:08 aashley Exp $
  * @link       http://pear.php.net/package/Auth
  * @since      File available since Release 1.2.3
  */
@@ -56,7 +56,7 @@ require_once "PEAR.php";
  * @package    Auth
  * @copyright  2001-2006 The PHP Group
  * @license    http://www.php.net/license/3_01.txt  PHP License 3.01
- * @version    Release: 1.5.4  File: $Revision: 1.8 $
+ * @version    Release: 1.3.0  File: $Revision: 1.5 $
  * @link       http://pear.php.net/package/Auth
  * @since      Class available since Release 1.2.3
  */
@@ -104,16 +104,14 @@ class Auth_Container_SMBPasswd extends Auth_Container
      */
     function fetchData($username, $password)
     {
-        $this->log('Auth_Container_SMBPasswd::fetchData() called.', AUTH_LOG_DEBUG);
         return $this->pwfile->verifyAccount($username, $password);
     }
 
     // }}}
     // {{{ listUsers()
-
+    
     function listUsers()
     {
-        $this->log('Auth_Container_SMBPasswd::fetchData() called.', AUTH_LOG_DEBUG);
         return $this->pwfile->getAccounts();
     }
 
@@ -131,7 +129,6 @@ class Auth_Container_SMBPasswd extends Auth_Container
      */
     function addUser($username, $password, $additional = '')
     {
-        $this->log('Auth_Container_SMBPasswd::addUser() called.', AUTH_LOG_DEBUG);
         $res = $this->pwfile->addUser($user, $additional['userid'], $pass);
         if ($res === true) {
             return $this->pwfile->save();
@@ -149,7 +146,6 @@ class Auth_Container_SMBPasswd extends Auth_Container
      */
     function removeUser($username)
     {
-        $this->log('Auth_Container_SMBPasswd::removeUser() called.', AUTH_LOG_DEBUG);
         $res = $this->pwfile->delUser($username);
         if ($res === true) {
             return $this->pwfile->save();
@@ -164,16 +160,15 @@ class Auth_Container_SMBPasswd extends Auth_Container
      * Change password for user in the storage container
      *
      * @param string Username
-     * @param string The new password
+     * @param string The new password 
      */
     function changePassword($username, $password)
     {
-        $this->log('Auth_Container_SMBPasswd::changePassword() called.', AUTH_LOG_DEBUG);
-        $res = $this->pwfile->modUser($username, '', $password);
-        if ($res === true) {
-            return $this->pwfile->save();
-        }
-        return $res;
+         $res = $this->pwfile->modUser($username, '', $password);
+         if ($res === true) {
+             return $this->pwfile->save();
+         }
+         return $res;
     }
 
     // }}}

@@ -1,0 +1,167 @@
+@charset "UTF-8";
+
+/*page_header矩形エリアの位置情報*/
+
+td.inc_page_header ,
+div.inc_page_header {
+	width: 720px;
+	height: 96px;
+}
+
+td.inc_page_header div.before_login {
+	height: 125px;
+}
+
+td.inc_page_header div.after_login {
+	height: 96px;
+}
+
+/*********************/
+/*page_header内のaタグをレイヤー状に扱う為の共通設定*/
+
+div.inc_page_header a {
+	display: block ;
+	position: absolute ;
+}
+
+div.inc_page_header a img {
+	width: 100% ;
+}
+
+/*背景画像の位置情報*/
+
+div.inc_page_header img.bg {
+	display: block ;
+	position: absolute ;
+	left: 0px ;
+	top: 0px ;
+	width: 720px ;
+	height: 96px ;
+	z-index: 0 ;
+}
+
+div.inc_page_header img.bg_before {
+	display: block ;
+	position: absolute ;
+	left: 0px ;
+	top: 0px ;
+	width: 720px ;
+	height: 125px ;
+	z-index: 0 ;
+}
+
+/*バナー画像の位置情報*/
+
+div.inc_page_header div.banner ,
+div.inc_page_header a.banner {
+	display: block ;
+	position: absolute ;
+	left: 247px ;
+	top: 5px ;
+	width: 468px ;
+	height: 60px ;
+	z-index: 200 ;
+}
+
+div.inc_page_header div.banner a {
+	display: inline ;
+	position: static ;
+}
+
+div.inc_page_header a.banner img {
+	width: 468px ;
+	height: 60px ;
+}
+
+/*ロゴに貼るアンカーの位置情報*/
+
+div.inc_page_header a.logo_home {
+	left: 0px ;
+	top: 5px ;
+	width: 240px ;
+	height: 60px;
+	z-index: 500 ;
+}
+
+div.inc_page_header a.logo_home img {
+	height: 60px;
+}
+
+/*** メインボタン共通の位置情報 ***/
+
+div.inc_page_header div.navi_global a {
+	height: 20px ;
+	width: 72px ;
+	top: 70px ;
+}
+
+div.inc_page_header div.navi_global a img {
+	height: 20px ;
+}
+
+/*マイホームボタンの位置情報*/
+
+div.inc_page_header div.navi_global a.navi_global_4 {
+	left: 288px ;
+	z-index: 10 ;
+}
+
+/*友人招待の位置情報*/
+
+div.inc_page_header div.navi_global a.navi_global_5 {
+	left: 360px ;
+	z-index: 20 ;
+}
+
+/*新着日記一覧の位置情報*/
+
+div.inc_page_header div.navi_global a.navi_global_6 {
+	left: 432px ;
+	z-index: 30 ;
+}
+
+/*ランキングの位置情報*/
+
+div.inc_page_header div.navi_global a.navi_global_7 {
+	left: 504px ;
+	z-index: 40 ;
+}
+
+/*設定変更ボタンの位置情報*/
+
+div.inc_page_header div.navi_global a.navi_global_8 {
+	left: 576px ;
+	z-index: 50 ;
+}
+
+/*ログアウトボタンの位置情報*/
+
+div.inc_page_header div.navi_global a.navi_global_9 {
+	left: 648px ;
+	z-index: 60 ;
+}
+
+/*フレンド検索の位置情報(検索メニュー)*/
+
+div.inc_page_header div.navi_global a.navi_global_1 {
+	width: 90px ;
+	left: 0 ;
+	z-index: 70 ;
+}
+
+/*コミュニティ検索の位置情報(検索メニュー)*/
+
+div.inc_page_header div.navi_global a.navi_global_2 {
+	width: 90px ;
+	left: 90px ;
+	z-index: 80 ;
+}
+
+/*レビュー検索の位置情報(検索メニュー)*/
+
+div.inc_page_header div.navi_global a.navi_global_3 {
+	width: 90px ;
+	left: 180px ;
+	z-index: 90 ;
+}
+

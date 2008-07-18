@@ -18,7 +18,7 @@
 </td></tr>
 ({foreach from=$c_commu_topic_search_list item=topic})
 <tr><td bgcolor="#({cycle values="`$ktai_color_config.bg_06`,`$ktai_color_config.bg_07`"})">
-({$topic.max_datetime|date_format:"%Y/%m/%d %H:%M"})<br>
+({$topic.last_datetime|date_format:"%Y/%m/%d %H:%M"})<br>
 <a href="({t_url m=ktai a=page_c_bbs})&amp;target_c_commu_topic_id=({$topic.c_commu_topic_id})&amp;({$tail})">({$topic.name|t_truncate:50:""})(({$topic.max_number}))</a><br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_07})">
@@ -44,8 +44,8 @@
 <font color="#({$ktai_color_config.font_06})">ｷｰﾜｰﾄﾞ：</font><br>
 <input type="text" name="keyword" value="({$keyword})"><br>
 <select name="target_commu">
-<option value="in_commu">({$WORD_COMMUNITY_HALF})内
-<option value="all">全ての({$WORD_COMMUNITY_HALF})
+<option value="in_commu">ｺﾐｭﾆﾃｨ内
+<option value="all">全てのｺﾐｭﾆﾃｨ
 </select><br>
 <select name="type">
 <option value="all"({if $requests.type == 'all'}) selected({/if})>すべて
@@ -59,6 +59,6 @@
 </form>
 
 <hr color="#({$ktai_color_config.border_01})">
-[i:90]<a href="({t_url m=ktai a=page_c_home})&amp;target_c_commu_id=({$c_commu_id})&amp;({$tail})">({$WORD_COMMUNITY_HALF})ﾄｯﾌﾟ</a><br>
+[i:90]<a href="({t_url m=ktai a=page_c_home})&amp;target_c_commu_id=({$c_commu_id})&amp;({$tail})">ｺﾐｭﾆﾃｨﾄｯﾌﾟ</a><br>
 
 ({$inc_ktai_footer|smarty:nodefaults})

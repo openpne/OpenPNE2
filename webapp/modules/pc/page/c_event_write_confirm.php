@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2008 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -25,12 +25,6 @@ class pc_page_c_event_write_confirm extends OpenPNE_Action
         //--- 権限チェック
         if (!db_commu_is_c_commu_view4c_commu_idAc_member_id($c_commu_id, $u)) {
             handle_kengen_error();
-        }
-        if (!db_commu_is_writable_c_commu_topic_comment4c_commu_topic_id($c_commu_topic_id)) {
-            $err_msg[] = 'コメントが1000番に達したので、このイベントにはコメントできません';
-            $_REQUEST['err_msg'] = $err_msg;
-            openpne_forward('pc', 'page', "c_event_detail");
-            exit;
         }
         //---
 

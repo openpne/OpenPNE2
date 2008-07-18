@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2008 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -9,7 +9,6 @@ class ktai_page_h_home extends OpenPNE_Action
     function execute($requests)
     {
         $u  = $GLOBALS['KTAI_C_MEMBER_ID'];
-        $OPTION = $this->get('C_MEMBER_CONFIG');
 
         $c_member_secure = db_member_c_member_secure4c_member_id($u);
 
@@ -24,26 +23,18 @@ class ktai_page_h_home extends OpenPNE_Action
         //フレンドの最新日記
         $this->set('c_diary_friend_list', p_h_home_c_diary_friend_list4c_member_id($u, 5));
         //参加コミュニティリスト
-        $this->set('c_commu_list', db_commu_c_commu_list_lastupdate4c_member_id($u, 5));
+        $this->set('c_commu_list', k_p_h_home_c_commu_list_lastupdate4c_member_id($u, 5));
         //参加コミュニティの数
         $this->set('fh_com_count_user',db_commu_count_c_commu4c_member_id($u));
         //フレンドリスト
         $this->set('c_friend_list', db_friend_c_friend_list_random4c_member_id($u, 5));
         //フレンドの数
         $this->set('c_friend_count', db_friend_count_friends($u));
+
         //参加コミュニティの新着書き込み
-        $this->set('c_commu_topic_list', db_commu_c_commu_topic_comment_list4c_member_id($u, 5));
+        $this->set('c_commu_topic_list', p_h_home_c_commu_topic_comment_list4c_member_id($u, 5));
+
         $this->set('SNS_NAME', SNS_NAME);
-
-        if (DISPLAY_NEWDIARYTOPIC_HOME) {
-            if ($OPTION['IS_DISPLAY_NEWDIARY_HOME_KTAI']) {
-                $this->set('c_diary_list_all', p_h_home_c_diary_all_list(5));
-            }
-
-            if ($OPTION['IS_DISPLAY_NEWTOPIC_HOME_KTAI']) {
-                $this->set('c_topic_list_all', p_h_home_c_topic_all_list(5));
-            }
-        }
 
         //アクセス日時を記録
         db_member_do_access($u);
@@ -68,7 +59,7 @@ class ktai_page_h_home extends OpenPNE_Action
         $this->set("num_f_confirm_list", count($f_confirm_list));
 
         // あなたにコミュニティ管理者交代を希望しているメンバー
-        $anatani_c_commu_admin_confirm_list = db_commu_anatani_c_commu_admin_confirm_list4c_member_id($u);
+        $anatani_c_commu_admin_confirm_list = p_h_confirm_list_anatani_c_commu_admin_confirm_list4c_member_id($u);
         $this->set("anatani_c_commu_admin_confirm_list", $anatani_c_commu_admin_confirm_list);
         //そのメンバーの人数
         $this->set("num_anatani_c_commu_admin_confirm_list", count($anatani_c_commu_admin_confirm_list));
@@ -104,7 +95,7 @@ class ktai_page_h_home extends OpenPNE_Action
 
         // inc_entry_point
         $this->set('inc_ktai_entry_point', fetch_inc_entry_point($this->getView(), 'ktai_h_home'));
-
+        
         return 'success';
     }
 }

@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2008 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -21,7 +21,7 @@ class OpenPNE_Validator_Common
 
     /**
      * common_validate
-     *
+     * 
      * <ul>
      * <li>共通のiniファイル(validate/common/*.ini)の読み込み</li>
      * <li>$resultの取得</li>
@@ -40,8 +40,8 @@ class OpenPNE_Validator_Common
         // 全アクション共通のiniファイル
         $v_dir = OPENPNE_WEBAPP_DIR . '/validate/';
         $common_ini_files = array();
-        $common_ini_files[] = $v_dir . 'msg.ini';
-        $common_ini_files[] = $v_dir . 'sessid.ini';
+        $common_ini_files[] = $v_dir . 'msg.ini'; // エラーメッセージ系
+        $common_ini_files[] = $v_dir . 'sessid.ini'; // はまちちゃん対策セッションID
         foreach ($common_ini_files as $ini) {
             $this->validator->addIniSetting($ini);
         }

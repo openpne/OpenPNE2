@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2008 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -18,7 +18,7 @@ function xmlrpc_get_fault_response($code, $string = '')
 
 /**
  * 日時を YYYYMMDDHHMMSS形式 に変換する
- *
+ * 
  * @param string $date_string
  * @return string YYYYMMDDHHSS
  */
@@ -29,7 +29,7 @@ function xmlrpc_get_date($date_string)
 
 /**
  * 画像のURLを取得する
- *
+ * 
  * @param string $image_filename
  * @param string $no_image image_filenameが空の場合にno_image.gifに置換するかどうか
  * @return string 画像のURL

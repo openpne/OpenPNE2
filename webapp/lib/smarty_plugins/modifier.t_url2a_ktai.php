@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2008 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -19,7 +19,7 @@ function smarty_modifier_t_url2a_ktai($string)
 function smarty_modifier_t_url2a_ktai_callback($matches)
 {
     $raw_url = $matches[0];
-
+    
     $openpne_url = '';
     if (strpos($raw_url, OPENPNE_URL) === 0) {
         $openpne_url = OPENPNE_URL;
@@ -51,11 +51,10 @@ function smarty_modifier_t_url2a_ktai_callback($matches)
     // 携帯用URLに置換、ksid 追加
     $ktai_url = openpne_gen_url_head('ktai', $converted_action, false) . '?m=ktai&a=' . $converted_action . $param . '&' . $GLOBALS['KTAI_URL_TAIL'];
 
-    // page_ より後ろを最大50文字に縮めて表示
+    // 表示上は page_ 以降を最大40文字で縮める
     $urlstr = $converted_action . $param;
-    $urlstr = preg_replace('/^page_/', '', $urlstr);
 
-    $length = 50;
+    $length = 40;
     $etc = '..';
 
     if (strlen($urlstr) > $length) {

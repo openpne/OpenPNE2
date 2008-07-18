@@ -21,9 +21,9 @@
  * @package    DB
  * @author     Sterling Hughes <sterling@php.net>
  * @author     Daniel Convissor <danielc@php.net>
- * @copyright  1997-2007 The PHP Group
+ * @copyright  1997-2005 The PHP Group
  * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
- * @version    CVS: $Id: ibase.php,v 1.116 2007/09/21 13:40:41 aharvey Exp $
+ * @version    CVS: $Id: ibase.php,v 1.109 2005/03/04 23:12:36 danielc Exp $
  * @link       http://pear.php.net/package/DB
  */
 
@@ -47,9 +47,9 @@ require_once 'DB/common.php';
  * @package    DB
  * @author     Sterling Hughes <sterling@php.net>
  * @author     Daniel Convissor <danielc@php.net>
- * @copyright  1997-2007 The PHP Group
+ * @copyright  1997-2005 The PHP Group
  * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
- * @version    Release: 1.7.13
+ * @version    Release: 1.7.6
  * @link       http://pear.php.net/package/DB
  * @since      Class became stable in Release 1.7.0
  */
@@ -123,7 +123,6 @@ class DB_ibase extends DB_common
         -625 => DB_ERROR_CONSTRAINT_NOT_NULL,
         -803 => DB_ERROR_CONSTRAINT,
         -804 => DB_ERROR_VALUE_COUNT_ON_ROW,
-        // -902 =>  // Covers too many errors, need to use regex on msg
         -904 => DB_ERROR_CONNECT_FAILED,
         -922 => DB_ERROR_NOSUCHDB,
         -923 => DB_ERROR_CONNECT_FAILED,
@@ -276,7 +275,7 @@ class DB_ibase extends DB_common
      */
     function simpleQuery($query)
     {
-        $ismanip = $this->_checkManip($query);
+        $ismanip = DB::isManip($query);
         $this->last_query = $query;
         $query = $this->modifyQuery($query);
         $result = @ibase_query($this->connection, $query);
@@ -413,7 +412,7 @@ class DB_ibase extends DB_common
      */
     function freeResult($result)
     {
-        return is_resource($result) ? ibase_free_result($result) : false;
+        return @ibase_free_result($result);
     }
 
     // }}}
@@ -421,7 +420,8 @@ class DB_ibase extends DB_common
 
     function freeQuery($query)
     {
-        return is_resource($query) ? ibase_free_query($query) : false;
+        @ibase_free_query($query);
+        return true;
     }
 
     // }}}
@@ -521,14 +521,8 @@ class DB_ibase extends DB_common
         $this->last_query = $query;
         $newquery = $this->modifyQuery($newquery);
         $stmt = @ibase_prepare($this->connection, $newquery);
-
-        if ($stmt === false) {
-            $stmt = $this->ibaseRaiseError();
-        } else {
-            $this->prepare_types[(int)$stmt] = $types;
-            $this->manip_query[(int)$stmt]   = DB::isManip($query);
-        }
-
+        $this->prepare_types[(int)$stmt] = $types;
+        $this->manip_query[(int)$stmt]   = DB::isManip($query);
         return $stmt;
     }
 
@@ -553,9 +547,9 @@ class DB_ibase extends DB_common
         $data = (array)$data;
         $this->last_parameters = $data;
 
-        $types = $this->prepare_types[(int)$stmt];
+        $types =& $this->prepare_types[(int)$stmt];
         if (count($types) != count($data)) {
-            $tmp = $this->raiseError(DB_ERROR_MISMATCH);
+            $tmp =& $this->raiseError(DB_ERROR_MISMATCH);
             return $tmp;
         }
 
@@ -574,7 +568,7 @@ class DB_ibase extends DB_common
             } elseif ($types[$i] == DB_PARAM_OPAQUE) {
                 $fp = @fopen($data[$key], 'rb');
                 if (!$fp) {
-                    $tmp = $this->raiseError(DB_ERROR_ACCESS_VIOLATION);
+                    $tmp =& $this->raiseError(DB_ERROR_ACCESS_VIOLATION);
                     return $tmp;
                 }
                 $data[$key] = fread($fp, filesize($data[$key]));
@@ -587,7 +581,7 @@ class DB_ibase extends DB_common
 
         $res = call_user_func_array('ibase_execute', $data);
         if (!$res) {
-            $tmp = $this->ibaseRaiseError();
+            $tmp =& $this->ibaseRaiseError();
             return $tmp;
         }
         /* XXX need this?
@@ -595,13 +589,10 @@ class DB_ibase extends DB_common
             @ibase_commit($this->connection);
         }*/
         $this->last_stmt = $stmt;
-        if ($this->manip_query[(int)$stmt] || $this->_next_query_manip) {
-            $this->_last_query_manip = true;
-            $this->_next_query_manip = false;
+        if ($this->manip_query[(int)$stmt]) {
             $tmp = DB_OK;
         } else {
-            $this->_last_query_manip = false;
-            $tmp = new DB_result($this, $res);
+            $tmp =& new DB_result($this, $res);
         }
         return $tmp;
     }
@@ -707,7 +698,7 @@ class DB_ibase extends DB_common
         $repeat = 0;
         do {
             $this->pushErrorHandling(PEAR_ERROR_RETURN);
-            $result = $this->query("SELECT GEN_ID(${sqn}, 1) "
+            $result =& $this->query("SELECT GEN_ID(${sqn}, 1) "
                                    . 'FROM RDB$GENERATORS '
                                    . "WHERE RDB\$GENERATOR_NAME='${sqn}'");
             $this->popErrorHandling();
@@ -865,7 +856,7 @@ class DB_ibase extends DB_common
         if ($errno === null) {
             $errno = $this->errorCode($this->errorNative());
         }
-        $tmp = $this->raiseError($errno, null, null, null, @ibase_errmsg());
+        $tmp =& $this->raiseError($errno, null, null, null, @ibase_errmsg());
         return $tmp;
     }
 
@@ -934,8 +925,6 @@ class DB_ibase extends DB_common
                     => DB_ERROR_ACCESS_VIOLATION,
                 '/arithmetic exception, numeric overflow, or string truncation/i'
                     => DB_ERROR_INVALID,
-                '/feature is not supported/i'
-                    => DB_ERROR_NOT_CAPABLE,
             );
         }
 

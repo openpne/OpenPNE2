@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2008 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -50,10 +50,6 @@ class pc_page_f_home extends OpenPNE_Action
         $this->set('is_friend', $is_friend);
         $this->set('c_member', db_member_c_member4c_member_id($u));
         $this->set('c_diary_list', db_diary_get_c_diary_list4c_member_id($target_c_member_id, 5, $u));
-        if (OPENPNE_USE_ALBUM) {
-            // アルバム
-            $this->set('c_album_list', db_album_get_c_album_subject_list4c_member_id($target_c_member_id, 5, $u));
-        }
 
         // --- f_home, h_prof 共通処理
 

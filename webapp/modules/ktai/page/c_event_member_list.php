@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2008 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -13,12 +13,14 @@ class ktai_page_c_event_member_list extends OpenPNE_Action
 
         // --- リクエスト変数
         $target_c_commu_topic_id = $requests['target_c_commu_topic_id'];
+        $direc = $requests['direc'];
         $page = $requests['page'];
         // ----------
 
         $c_topic = db_commu_c_topic4c_commu_topic_id_2($target_c_commu_topic_id);
         $c_commu_id = $c_topic['c_commu_id'];
 
+        $page += $direc;
         $page_size=20;
 
         //ページ

@@ -1,15 +1,11 @@
 <?php
 /**
- * @copyright 2005-2008 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
 require_once './config.inc.php';
 require_once OPENPNE_WEBAPP_DIR . '/init.inc';
-
-if (OPENPNE_UNDER_MAINTENANCE) {
-    exit;
-}
 
 //-------------config-------------//
 // 一度に取得するRSSの件数
@@ -71,14 +67,14 @@ foreach ($c_member_list as $c_member) {
     $insert_rss_list = array();
     foreach ($items as $item) {
         // DBに存在するデータが見つかったら以降は比較、取得は行わない
-        if (db_rss_is_duplicated_rss_cache($c_member_id, $item['date'], $item['link'])) {
+        if (db_is_duplicated_rss_cache($c_member_id, $item['date'], $item['link'])) {
             break;
         }
 
-        if (!db_rss_is_future_rss_item($item['date'])) {
-            if ($id = db_rss_is_updated_rss_cache($c_member_id, $item['link'])) {
+        if (!db_is_future_rss_item($item['date'])) {
+            if ($id = db_is_updated_rss_cache($c_member_id, $item['link'])) {
                 // update
-                db_rss_update_c_rss_cache($id,
+                db_update_c_rss_cache($id,
                     $item['title'], $item['body'], $item['date'], $item['link']);
             } else {
                 // insert

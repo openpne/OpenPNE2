@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2008 OpenPNE Project
+ * @copyright 2005-2007 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -13,6 +13,7 @@ class biz_page_h_biz_group_find_all extends OpenPNE_Action
         // --- リクエスト変数
         $keyword = $requests['keyword'];
         $page = $requests['page'];
+        $direc = $requests['direc'];
         // ----------
 
         //バグ回避のため半角空白を全角に統一
@@ -23,6 +24,7 @@ class biz_page_h_biz_group_find_all extends OpenPNE_Action
         $this->set('inc_navi',fetch_inc_navi("h"));
 
         $page_size = 20;
+        $page = $page + $direc;
         $this->set('page', $page);
         list($result, $is_prev, $is_next, $total_num, $start_num, $end_num)
             = biz_getGroupList($keyword, $page, $page_size);
