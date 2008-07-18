@@ -2349,7 +2349,7 @@ function monitor_topic_list4target_c_commu_topic_id($c_commu_topic_id, $page_siz
 
 function monitor_new_topic_list($limit)
 {
-    $limit = intval($limit); 
+    $limit = intval($limit);
 
     $select = 'SELECT c.name AS commu_name, ct.*, MAX(ctc.r_datetime) AS max_datetime';
     $from = ' FROM c_commu AS c, c_commu_topic AS ct, c_commu_topic_comment AS ctc';
@@ -2357,7 +2357,7 @@ function monitor_new_topic_list($limit)
            . ' AND c.c_commu_id = ct.c_commu_id';
     $group = ' GROUP BY ct.c_commu_topic_id';
     $order = ' ORDER BY max_datetime DESC';
-                             
+
     $sql = $select . $from . $where . $group . $order;
 
     $list = db_get_all_limit($sql, 0, $limit);
