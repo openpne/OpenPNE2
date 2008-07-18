@@ -27,7 +27,7 @@ class ktai_page_h_prof extends OpenPNE_Action
         $this->set("target_c_member", $target_c_member);
 
         //ターゲットの最新日記５件
-        $this->set("c_diary_list", db_diary_get_c_diary_list4c_member_id($target_c_member_id, 5, $u));
+        $this->set('c_diary_list', db_diary_get_c_diary_list4c_member_id($target_c_member_id, 5, null, 'friend'));
 
         //フレンドランダム５人
         $this->set("c_friend_list", db_friend_c_friend_list_random4c_member_id($target_c_member_id, 5));
