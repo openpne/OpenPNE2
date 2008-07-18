@@ -1,9 +1,9 @@
 ({$inc_ktai_header|smarty:nodefaults})
 <table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_02})">
-<font color="#({$ktai_color_config.font_05})"><a name="top">ｺﾐｭﾆﾃｨ最新書き込み</a></font><br>
+<font color="#({$ktai_color_config.font_05})"><a name="top">({$WORD_COMMUNITY_HALF})最新書き込み</a></font><br>
 </td></tr></table>
 ({if !$h_com_comment_list})
-ｺﾐｭﾆﾃｨ最新書き込みはありません。
+({$WORD_COMMUNITY_HALF})最新書き込みはありません。
 ({else})
 <center>
 ({$pager.start})～({$pager.end})件目を表示

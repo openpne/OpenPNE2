@@ -1,13 +1,22 @@
 <?php
 /**
- * @copyright 2005-2007 OpenPNE Project
+ * @copyright 2005-2008 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
-// PEAR::Auth
+/**
+ * PEAR::Auth class
+ */
 require_once 'Auth.php';
 
-
+/**
+ * 認証処理をおこなうクラス
+ *
+ * requires PEAR::Auth
+ *
+ * @package OpenPNE
+ * @author OGAWA Rinpei <ogawa@tejimaya.com>
+ */
 class OpenPNE_Auth
 {
     /**
@@ -15,46 +24,78 @@ class OpenPNE_Auth
      */
     var $auth;
 
-    var $storage;
-    var $options;
-    var $expire = 0;
-    var $idle   = 0;
-    var $uid;
-    var $sess_id;
-    var $cookie_path;
-    var $is_ktai;
+    var $storage = 'DB';
+    var $options = '';
+    var $is_ktai = false;
+    var $is_encrypt_username = false;
+    var $is_lowercase_username = false;
 
-    function OpenPNE_Auth($storageDriver = 'DB', $options = '', $is_ktai = false)
+    var $expire = 0;
+    var $idle = 0;
+    var $uid = 0;
+    var $sess_id = '';
+    var $cookie_path = '/';
+
+    /**
+     * 設定値の初期化をおこなう
+     *
+     * $config に渡せる値
+     * + storage: PEAR::Authのストレージコンテナ名
+     * + options: PEAR::Auth用オプション
+     * + is_ktai: 携帯用認証かどうか
+     * + is_encrypt_username: usernameをt_encryptで暗号化するかどうか
+     * + is_lowercase_username: usernameを強制的に小文字にするかどうか
+     *
+     * @param array $config
+     */
+    function OpenPNE_Auth($config = array())
     {
         ini_set('session.use_cookies', 0);
-        $this->is_ktai = $is_ktai;
+        if (isset($config['is_ktai'])) {
+            $this->is_ktai = (bool)$config['is_ktai'];
+        }
+        if (isset($config['storage'])) {
+            $this->storage = $config['storage'];
+        }
+        if (isset($config['options'])) {
+            $this->options = $config['options'];
+        }
+        if (isset($config['is_encrypt_username'])) {
+            $this->is_encrypt_username = $config['is_encrypt_username'];
+        }
+        if (isset($config['is_lowercase_username'])) {
+            $this->is_lowercase_username = $config['is_lowercase_username'];
+        }
+
         if ($this->is_ktai) {
             if (!empty($_REQUEST['ksid'])) {
                 $this->sess_id = $_REQUEST['ksid'];
                 session_id($this->sess_id);
             }
+            $this->options['advancedsecurity'] = false;
         } else {
             if (!empty($_COOKIE[session_name()])) {
                 $this->sess_id = $_COOKIE[session_name()];
                 session_id($this->sess_id);
             }
+            // cookie_path を OPENPNE_URLから抜き出す
+            $url = parse_url(OPENPNE_URL);
+            if (substr($url['path'], -1) != '/') {
+                $url['path'] .= '/';
+            }
+            $this->cookie_path = $url['path'];
         }
-        $this->storage = $storageDriver;
-        $this->options = $options;
-        $this->set_cookie_params();
     }
 
-    function set_cookie_params()
-    {
-        $url = parse_url(OPENPNE_URL);
-        if (substr($url['path'], -1) != '/') {
-            $url['path'] .= '/';
-        }
-        $this->cookie_path = $url['path'];
-    }
-
+    /**
+     * PEAR::Authのインスタンスを生成する
+     *
+     * @param bool $login ログイン処理に使用するかどうか
+     * @return Auth
+     */
     function &factory($login = false)
     {
+        @session_start();
         if ($login) {
             $auth = new Auth($this->storage, $this->options, '', false);
             $auth->setAllowLogin(true);
@@ -67,14 +108,24 @@ class OpenPNE_Auth
         return $auth;
     }
 
-    function login($is_save_cookie = false, $is_encrypt_username = false, $is_ktai = false)
+    /**
+     * リクエストからログイン処理をおこなう
+     *
+     * @param bool $is_save_cookie クッキーの保存期限を設定するかどうか
+     * @return bool
+     */
+    function login($is_save_cookie = false)
     {
         $this->auth =& $this->factory(true);
-        if (!IS_SLAVEPNE) {
-            if ($is_encrypt_username) {
-                $this->auth->post[$this->auth->_postUsername] =
-                    t_encrypt($this->auth->post[$this->auth->_postUsername]);
-            }
+
+        if ($this->is_lowercase_username) {
+            $this->auth->post[$this->auth->_postUsername] =
+                strtolower($this->auth->post[$this->auth->_postUsername]);
+        }
+
+        if ($this->is_encrypt_username) {
+            $this->auth->post[$this->auth->_postUsername] =
+                t_encrypt($this->auth->post[$this->auth->_postUsername]);
         }
 
         $this->auth->start();
@@ -84,12 +135,12 @@ class OpenPNE_Auth
             }
 
             $this->sess_id = session_id();
-            if ($is_save_cookie) {
-                $expire = time() + 2592000; // 30 days
-            } else {
-                $expire = 0;
-            }
             if (!$this->is_ktai) {
+                if ($is_save_cookie) {
+                    $expire = time() + 2592000; // 30 days
+                } else {
+                    $expire = 0;
+                }
                 setcookie(session_name(), session_id(), $expire, $this->cookie_path);
             }
             return true;
@@ -98,6 +149,11 @@ class OpenPNE_Auth
         }
     }
 
+    /**
+     * 認証処理をおこなう
+     *
+     * @return bool 認証が成功したかどうか
+     */
     function auth()
     {
         if (!$this->sess_id) {
@@ -107,6 +163,11 @@ class OpenPNE_Auth
         return $this->checkAuth();
     }
 
+    /**
+     * ログアウト処理をおこなう
+     *
+     * @return bool
+     */
     function logout()
     {
         if (!$this->auth) {
@@ -126,18 +187,35 @@ class OpenPNE_Auth
         unset($this->auth);
 
         $this->set_session_save_handler();
+        return true;
     }
 
+    /**
+     * セッションの生成時からの有効期限を設定する
+     *
+     * @param int $expiretime
+     */
     function setExpire($expiretime)
     {
         $this->expire = $expiretime;
     }
 
+    /**
+     * セッションの最終アクセス時からの有効期限を設定する
+     *
+     * @param int $idletime
+     */
     function setIdle($idletime)
     {
         $this->idle = $idletime;
     }
 
+    /**
+     * uid getter/setter
+     *
+     * @param string $uid
+     * @return string
+     */
     function uid($uid = '')
     {
         if ($uid) {
@@ -146,13 +224,20 @@ class OpenPNE_Auth
         return $this->uid;
     }
 
+    /**
+     * PEAR::Auth側のusernameを返す
+     *
+     * @return string
+     */
     function getUsername()
     {
         return $this->auth->getUsername();
     }
 
     /**
-     * static set_session_save_handler()
+     * セッションハンドラを設定する
+     *
+     * @static
      */
     function set_session_save_handler()
     {
@@ -182,6 +267,14 @@ class OpenPNE_Auth
         }
     }
 
+    /**
+     * checkAuth
+     *
+     * PEAR::Auth標準の認証処理に加えて、OPENPNE_URLのチェックもおこなう
+     *
+     * @return bool
+     * @see PEAR::Auth::checkAuth
+     */
     function checkAuth()
     {
         if ($this->auth->checkAuth()) {

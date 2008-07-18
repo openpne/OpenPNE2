@@ -46,5 +46,5 @@
 <input type="submit" value="検索">
 </form>
 <hr color="#({$ktai_color_config.border_01})">
-[i:90]<a href="({t_url m=ktai a=page_h_com_find_all})&amp;({$tail})">ｺﾐｭﾆﾃｨ検索に戻る</a><br>
+[i:90]<a href="({t_url m=ktai a=page_h_com_find_all})&amp;({$tail})">({$WORD_COMMUNITY_HALF})検索に戻る</a><br>
 ({$inc_ktai_footer|smarty:nodefaults})

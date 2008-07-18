@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2007 OpenPNE Project
+ * @copyright 2005-2008 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -45,7 +45,7 @@ class ktai_do_h_diary_delete_image extends OpenPNE_Action
             handle_kengen_error();
         }
 
-        image_data_delete($target_image_filename);
+        db_image_data_delete($target_image_filename);
         db_diary_delete_c_diary_image($target_c_diary_id, $img_num);
 
         $p = array('target_c_diary_id' => $target_c_diary_id);

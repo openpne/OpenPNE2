@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2007 OpenPNE Project
+ * @copyright 2005-2008 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -56,31 +56,19 @@ class pc_page_c_edit extends OpenPNE_Action
         array(
             'public' =>'参加：誰でも参加可能、掲示板：全員に公開',
             'auth_sns' =>'参加：管理者の承認が必要、掲示板：全員に公開',
-            'auth_commu_member' =>'参加：管理者の承認が必要、掲示板：コミュニティ参加者にのみ公開',
+            'auth_commu_member' =>'参加：管理者の承認が必要、掲示板：' . WORD_COMMUNITY . '参加者にのみ公開',
         );
         $this->set('public_flag_list', $public_flag_list);
         $topic_authority_list=
         array(
-            'public' =>'コミュニティ参加者全員が作成可能',
-            'admin_only' =>'コミュニティ管理者のみ作成可能',
+            'public' => WORD_COMMUNITY . '参加者全員が作成可能',
+            'admin_only' => WORD_COMMUNITY . '管理者のみ作成可能',
         );
         $this->set('topic_authority_list', $topic_authority_list);
-        $this->set('is_topic', p_c_edit_is_topic4c_commu_id($target_c_commu_id));
+        $this->set('is_topic', db_commu_is_topic4c_commu_id($target_c_commu_id));
         $this->set('err_msg', $err_msg);
 
         $this->set('is_unused_join_commu', util_is_unused_mail('m_pc_join_commu'));
-        $this->set('u', $u);
-
-        //-- Google MAPs
-        if (OPENPNE_USE_COMMU_MAP) {
-            $pref_list = db_etc_c_profile_pref_list();
-
-            // get pref_id selected
-            $pref_id = db_etc_c_profile_pref_id4latlng($c_commu['map_latitude'], $c_commu['map_longitude'], $c_commu['map_zoom']);
-
-            $this->set('pref_list', $pref_list);
-            $this->set('pref_id', $pref_id);
-        }
 
         return 'success';
     }

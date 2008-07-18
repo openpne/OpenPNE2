@@ -1,10 +1,10 @@
-【({$SNS_NAME})】({$c_member_from.nickname})さんからコミュニティ紹介メッセージが届いています
+【({$SNS_NAME})】({$c_member_from.nickname})さんから({$WORD_COMMUNITY})紹介メッセージが届いています
 
 ({$c_member_to.nickname})さん、こんにちは。
 ({$CATCH_COPY})({$SNS_NAME}) からのお知らせです。
 
 メッセージボックスに({$c_member_from.nickname})さんから
-コミュニティ紹介メッセージが届いています。
+({$WORD_COMMUNITY})紹介メッセージが届いています。
 
 メッセージの内容を確認するには
 以下のURLをクリックしてください。

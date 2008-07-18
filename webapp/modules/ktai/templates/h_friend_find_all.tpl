@@ -33,7 +33,7 @@
 ({t_form _method=get m=ktai a=page_h_friend_find_all})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
 ({capture name="nick"})
-<font color="#({$ktai_color_config.font_06})">ﾆｯｸﾈｰﾑ：</font><br>
+<font color="#({$ktai_color_config.font_06})">({$WORD_NICKNAME_HALF})：</font><br>
 <input type="text" name="nickname" value="({$nickname})"><br>
 ({/capture})
 ({capture name="birth"})

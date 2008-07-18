@@ -1,0 +1,89 @@
+@charset "utf-8";
+/* ----------------------------------------------------------
+  Author : Koichi Tsuji [Koichi.Tsuji@so-net.co.jp]
+  URI    : http://www.so-net.ne.jp/sns/
+  Date   : 2008.2.12
+  (c) 2008 So-net Entertainment Corporation
+---------------------------------------------------------- */
+* { margin:0; padding:0;}
+a img { border-width:0;}
+img   { vertical-align:middle;}
+body {font-family:'ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro','メイリオ',Meiryo,'ＭＳ Ｐゴシック',sans-serif; font-size:small; line-height:1.5; color:#5b5a5a;}
+a:link    { color:#026cd1; text-decoration:none;}
+a:visited { color:#026cd1; text-decoration:none;}
+a:hover   { color:#f00; text-decoration:underline;}
+a:active  { color:#f00;}
+.container { width:980px;}
+.container .site {position:relative;}
+/*サイト名などヘッダー部分*/
+#siteTtl{ width:720px; height:125px;}
+#siteTtl h1{ padding:50px 0 0 50px; font-size:30px; line-height:100%;}
+/*ログイン窓*/
+.snsLogin { position:absolute; top:10px; left:730px; width:250px;}
+.snsLogin fieldset { border:none;}
+.snsLogin fieldset legend { display:none;}
+.snsLogin div { position:absolute; left:20px;}
+.snsLogin div#usernameArea { top:21px;}
+.snsLogin div#passwordArea { top:74px;}
+.snsLogin div#isSaveArea { top:128px; width:200px; text-align:center;}
+.snsLogin div#passwordQueryArea { top:146px; width:200px; text-align:center;}
+.snsLogin div#loginSecurity { left:0; width:250px; height:9px; background:url("../img/login_sec_black.gif") no-repeat center center; font-size:0; line-height:0; text-indent:-3000px;}
+#invite div.snsLogin div#loginSecurity { top:209px;}
+#free div.snsLogin div#loginSecurity { top:239px;}
+.snsLogin div#buttonLoginArea { top:179px;}
+.snsLogin div#buttonRegiArea { top:209px;}
+.snsLogin div#usernameArea span,
+.snsLogin div#passwordArea span { display:block; font-size:0; line-height:0; text-decoration:none; text-indent:-3000px;}
+.snsLogin div#usernameArea input,
+.snsLogin div#passwordArea input { position:absolute; top:24px; left:4px; width:199px; height:18px; border:none; background:none; vertical-align:middle;}
+.snsLogin div#isSaveArea input { margin-right:5px; vertical-align:middle;}
+.snsLogin div#isSaveArea span { font-size:10px; color:#000;}
+.snsLogin div#passwordQueryArea a { font-size:10px; text-decoration:underline;}
+.snsLogin div#buttonLoginArea button { position:absolute; top:0; left:40px; border:0; text-indent:-3000px; cursor:pointer;}
+.snsLogin div#buttonRegiArea button { position:absolute; top:0; left:40px; border:0; text-indent:-3000px; cursor:pointer;}
+/*コンテンツエリア*/
+.contents { float:left; padding:10px 10px 0 10px; width:710px;}
+.frameTop,
+.frameMiddle,
+.frameBottom,
+.frameTop div.box,
+.frameBottom div.box { width:710px;}
+.frameBottom { clear:both;}
+.partitionLeft,
+.partitionRight { float:left;}
+.contents div.box { margin-bottom:10px; word-wrap: break-word;}
+.contents div.box div.ttl h2 { padding:5px 10px 0 10px; font-size:100%; line-height:23px;}
+.contents div.box div.innerBox { margin-top:-5px; padding-bottom:10px;}
+.contents div.box div.innerBox dl { padding:0 10px; height:100%; background: url("../img/inrbox_bg.gif") repeat-x;}
+.contents div.box div.innerBox dt { float:left; padding-top:10px; font-weight:bold;}
+.contents div.box div.innerBox dd { padding-top:10px; padding-left:4em;}
+.contents div.box div.innerBox li dl,
+.contents div.box div.innerBox li dt,
+.contents div.box div.innerBox li dd{ float:none; margin:0; padding:0; border:none; background:none;}
+/*コンテンツエリア／パターン別*/
+.contents div.PatternA div.innerBox dd { padding-left:4em;}
+.contents div.PatternB div.innerBox dd { padding-left:2.5em;}
+.contents div.PatternC { overflow: auto; padding-bottom:1px;}
+.contents div.PatternD div.innerBox dd { padding-left:7em;}
+.contents div.PatternE { overflow: auto;}
+.contents div.PatternE div.innerBox div.freeArea { padding:10px 10px 0 10px;}
+.contents div.PatternF ul { padding:0 10px; height:100%; background: url("../img/inrbox_bg.gif") repeat-x;}
+.contents div.PatternF li { padding-top:10px; list-style:none;}
+.contents div.PatternF div.innerBox li span{float:left; overflow:hidden; width:76px; height:76px; font-size:0;}
+.contents div.PatternF div.innerBox li img{vertical-align:top;}
+.contents div.PatternF div.innerBox li dl { margin-left:80px;}
+.contents div.PatternG ul { padding:0 10px 0 22px; height:100%; background: url("../img/inrbox_bg.gif") repeat-x;}
+.contents div.PatternG li { padding-top:5px;}
+/*フッター部分*/
+.publication { clear:both; margin-left: -10px; width:720px; height:21px; text-align: right; font-size: 11px; line-height: 21px;}
+
+/* サイドバナー領域 */
+.sideBanner { float:left; width:250px;}
+
+/* --- clearfix --- */
+.contents div.PatternF div.innerBox li:after { content: " "; display: block; visibility: hidden; clear: both; height: 0.1px; font-size: 0.1em; line-height: 0;}
+.contents div.PatternF div.innerBox li { display:inline-block; min-height:1%;}
+/* no ie mac \*/
+* html .contents div.PatternF div.innerBox li { height:1%;}
+.contents div.PatternF div.innerBox li { display:block;}
+/* */

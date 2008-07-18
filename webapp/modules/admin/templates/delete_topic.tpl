@@ -34,7 +34,7 @@
 </tr>
 ({****})
 <tr>
-<th>コミュニティ名</th>
+<th>({$WORD_COMMUNITY})名</th>
 <td>
 <a href="({t_url _absolute=1 m=pc a=page_c_home})&amp;target_c_commu_id=({$topic.c_commu_id})" target="_blank">({$topic.commu_name})</a>
 </td>
@@ -64,7 +64,11 @@
 ({if $topic.image_filename3})<span class="padding_s"><a href="({t_img_url filename=$topic.image_filename3})" target="_blank"><img src="({t_img_url filename=$topic.image_filename3 w=120 h=120})"></a></span>({/if})
 </div>
 ({/if})
+({if $smarty.const.OPENPNE_ADMIN_CONVERT_URL})
+({$topic.body|nl2br|t_url2cmd:'community':$topic.c_member_id|t_cmd:'community'})
+({else})
 ({$topic.body|nl2br})
+({/if})
 </td>
 </tr>
 ({****})

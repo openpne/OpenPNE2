@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2007 OpenPNE Project
+ * @copyright 2005-2008 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -35,7 +35,7 @@ class ktai_page_h_message extends OpenPNE_Action
         $this->set("c_message", $c_message);
         $this->set("com_url", $com_url);
         $this->set("friend_url", $friend_url);
-        
+
         //送信箱
         if ($c_message['c_member_id_from'] == $u) {
             $box = 'outbox';

@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2007 OpenPNE Project
+ * @copyright 2005-2008 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -42,6 +42,12 @@ class pc_do_fh_diary_insert_c_diary_comment extends OpenPNE_Action
                 openpne_redirect('pc', 'page_h_access_block');
             }
         }
+
+        if (!db_diary_is_writable_comment4c_diary_id($target_c_diary_id)) {
+            $_REQUEST['msg'] = 'コメントが1000番に達したので、この' . WORD_DIARY . 'にはコメントできません';
+            openpne_forward('pc', 'page', 'fh_diary');
+            exit;
+        }
         //---
 
         //日記コメント書き込み
@@ -55,8 +61,19 @@ class pc_do_fh_diary_insert_c_diary_comment extends OpenPNE_Action
 
         db_diary_insert_c_diary_comment_images($c_diary_comment_id, $filename_1, $filename_2, $filename_3);
 
+        //日記コメント記入履歴更新
+        if ($u != $target_c_member_id) {
+            db_diary_insert_c_diary_comment_log($u, $target_c_diary_id);
+        }
+        db_diary_update_c_diary_comment_log($target_c_diary_id);
+
         //日記コメントが書き込まれたので日記自体を未読扱いにする
         db_diary_update_c_diary_is_checked($target_c_diary_id, 0);
+
+        // お知らせメール送信(携帯へ)
+        if ($u != $target_c_member_id) {
+            send_diary_comment_info_mail($c_diary_comment_id, $u);
+        }
 
         if (OPENPNE_USE_POINT_RANK) {
             // コメント者と被コメント者が違う場合にポイント加算

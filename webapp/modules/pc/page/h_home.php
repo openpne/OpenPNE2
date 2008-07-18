@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2007 OpenPNE Project
+ * @copyright 2005-2008 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -17,6 +17,8 @@ class pc_page_h_home extends OpenPNE_Action
 
         $inc_navi = fetch_inc_navi('h');
         $this->set('inc_navi', $inc_navi);
+
+        $OPTION = $this->get('C_MEMBER_CONFIG');
 
         /// infomation ///
 
@@ -67,6 +69,10 @@ class pc_page_h_home extends OpenPNE_Action
 
         /// 最新情報 ///
 
+        // 最新日記
+        if(DISPLAY_NEWDIARYTOPIC_HOME && $OPTION['IS_DISPLAY_NEWDIARY_HOME']){
+            $this->set('c_diary_list_all', p_h_home_c_diary_all_list(5));
+        }
         // フレンド最新日記
         $c_diary_friend_list = p_h_home_c_diary_friend_list4c_member_id($u, 5);
         $this->set('c_diary_friend_list', $c_diary_friend_list);
@@ -75,10 +81,18 @@ class pc_page_h_home extends OpenPNE_Action
         // 日記コメント記入履歴
         $c_diary_my_comment_list = p_h_home_c_diary_my_comment_list4c_member_id($u, 5);
         $this->set('c_diary_my_comment_list', $c_diary_my_comment_list);
+        // コミュニティ全ての新着書き込み
+        if(DISPLAY_NEWDIARYTOPIC_HOME && $OPTION['IS_DISPLAY_NEWTOPIC_HOME']){
+            $this->set('c_topic_list_all', p_h_home_c_topic_all_list(5));
+        }
         // 参加コミュニティの新着書き込み
         $this->set('c_commu_topic_comment_list', db_commu_c_commu_topic_comment_list4c_member_id($u, 5));
         // レビュー
         $this->set('c_friend_review_list', db_review_c_friend_review_list4c_member_id($u, 5));
+        if (OPENPNE_USE_ALBUM) {
+            // アルバム
+            $this->set('c_friend_album_list', p_h_home_c_album_friend_list4c_member_id($u, 5));
+        }
 
         /// 自分の情報 ///
 
@@ -89,6 +103,10 @@ class pc_page_h_home extends OpenPNE_Action
         $this->set('c_blog_list', db_rss_h_blog_list_friend4c_member_id($u, 5, 1));
         // レビュー
         $this->set('c_review_list', db_review_c_review_list4member($u, 5));
+        if (OPENPNE_USE_ALBUM) {
+            // アルバム
+            $this->set('c_album_list', db_album_get_c_album_subject_list4c_member_id($u, 5));
+        }
 
         /// その他 ///
 
@@ -111,7 +129,7 @@ class pc_page_h_home extends OpenPNE_Action
         $this->set('r_datetime_date', $date[date('w')]);
 
         /// 週間カレンダー
-        if (DISPLAY_SCHEDULE_HOME) {
+        if (DISPLAY_SCHEDULE_HOME && $OPTION['IS_DISPLAY_SCHEDULE_HOME']) {
             //開始曜日の設定
             if ($c_member['schedule_start_day'] == 2) {
                 $start_day = date("w");
@@ -121,13 +139,17 @@ class pc_page_h_home extends OpenPNE_Action
             $this->set('calendar', $this->get_calendar($u, $requests['w'], $start_day));
         }
 
-        //お気に入りフィード
+        // お気に入りフィード
         if (USE_BOOKMARK_FEED) {
-            //お気に入りの最新日記
-            $this->set('bookmark_diary_list', db_bookmark_diary_list($u, 5));
+            // お気に入りの最新日記
+            if ($OPTION['IS_DISPLAY_BOOKMARK_DIARY_HOME']) {
+                $this->set('bookmark_diary_list', db_bookmark_diary_list($u, 5));
+            }
 
             //お気に入りの最新ブログ
-            $this->set('bookmark_blog_list', db_bookmark_blog_list($u, 5));
+            if ($OPTION['IS_DISPLAY_BOOKMARK_BLOG_HOME']) {
+                $this->set('bookmark_blog_list', db_bookmark_blog_list($u, 5));
+            }
 
             //お気に入りのメンバー
             $bookmark_member_list = db_bookmark_member_list($u, 9);

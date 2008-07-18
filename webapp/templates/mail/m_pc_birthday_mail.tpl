@@ -5,7 +5,7 @@
 みてはいかがですか。
 
 ◆誕生日　　　：({$birth_member.birth_month})月({$birth_member.birth_day})日
-　ニックネーム：({$birth_member.nickname}) さん
+　({$WORD_NICKNAME})：({$birth_member.nickname}) さん
 　URL         ：({t_url_mail m=pc a=page_f_home})&target_c_member_id=({$birth_member.c_member_id})
 
 

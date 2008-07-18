@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2007 OpenPNE Project
+ * @copyright 2005-2008 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -211,7 +211,7 @@ function emoji_convert($str)
 function _emoji_convert($matches)
 {
     $o_code = $matches[1];
-    
+
     switch ($GLOBALS['__Framework']['carrier']) {
     case 'i':
     case 'w':
@@ -227,7 +227,7 @@ function _emoji_convert($matches)
         $carrier = null;
         break;
     }
-    
+
     $emoji_code = OpenPNE_KtaiEmoji::getInstance();
     $c_emoji = $emoji_code->convert_emoji($o_code, $carrier);
     if ($c_emoji) {

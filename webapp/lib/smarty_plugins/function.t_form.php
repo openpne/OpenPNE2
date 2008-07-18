@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2007 OpenPNE Project
+ * @copyright 2005-2008 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -51,7 +51,7 @@ function smarty_function_t_form($params, &$smarty)
     $html .= '>';
     foreach ($params as $key => $value) {
         $html .= "\n";
-        $html .= sprintf('<input type="hidden" name="%s" value="%s">',
+        $html .= sprintf('<input type="hidden" name="%s" value="%s" />',
                          htmlspecialchars($key, ENT_QUOTES, 'UTF-8'),
                          htmlspecialchars($value, ENT_QUOTES, 'UTF-8'));
     }

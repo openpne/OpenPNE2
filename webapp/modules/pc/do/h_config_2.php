@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2007 OpenPNE Project
+ * @copyright 2005-2008 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -13,7 +13,7 @@ class pc_do_h_config_2 extends OpenPNE_Action
     {
         //外部認証の場合はリダイレクト
         check_action4pne_slave(false);
-        
+
         $u = $GLOBALS['AUTH']->uid();
 
         // --- リクエスト変数

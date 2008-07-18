@@ -10,9 +10,9 @@
 ({elseif $kind == "friend"})
 ({$WORD_MY_FRIEND_HALF})数
 ({elseif $kind == "com_member"})
-ｺﾐｭﾆﾃｨ参加人数
+({$WORD_COMMUNITY_HALF})参加人数
 ({elseif $kind == "com_comment"})
-ｺﾐｭﾆﾃｨ盛り上がり度
+({$WORD_COMMUNITY_HALF})盛り上がり度
 ({/if})
 ﾗﾝｷﾝｸﾞ</font><br>
 </td></tr></table>
@@ -23,9 +23,9 @@
 ({elseif $kind == "friend"})
 登録されている({$WORD_MY_FRIEND_HALF})の数が多いﾒﾝﾊﾞｰのﾗﾝｷﾝｸﾞです。<br>
 ({elseif $kind == "com_member"})
-参加者の多いｺﾐｭﾆﾃｨのﾗﾝｷﾝｸﾞです。<br>
+参加者の多い({$WORD_COMMUNITY_HALF})のﾗﾝｷﾝｸﾞです。<br>
 ({elseif $kind == "com_comment"})
-昨日の掲示板書き込み数が多かったｺﾐｭﾆﾃｨのﾗﾝｷﾝｸﾞです。<br>
+昨日の掲示板書き込み数が多かった({$WORD_COMMUNITY_HALF})のﾗﾝｷﾝｸﾞです。<br>
 ({/if})
 <hr color="#({$ktai_color_config.border_01})">
 
@@ -95,7 +95,7 @@
 
 [i:191]<a href="({t_url m=ktai a=page_h_ranking})&amp;kind=ashiato&amp;({$tail})">ｱｸｾｽ数No1</a><br>
 [i:191]<a href="({t_url m=ktai a=page_h_ranking})&amp;kind=friend&amp;({$tail})">({$WORD_MY_FRIEND_HALF})数No1</a><br>
-[i:191]<a href="({t_url m=ktai a=page_h_ranking})&amp;kind=com_member&amp;({$tail})">参加人数No1ｺﾐｭﾆﾃｨ</a><br>
-[i:191]<a href="({t_url m=ktai a=page_h_ranking})&amp;kind=com_comment&amp;({$tail})">盛り上がり度No1ｺﾐｭﾆﾃｨ</a><br>
+[i:191]<a href="({t_url m=ktai a=page_h_ranking})&amp;kind=com_member&amp;({$tail})">参加人数No1({$WORD_COMMUNITY_HALF})</a><br>
+[i:191]<a href="({t_url m=ktai a=page_h_ranking})&amp;kind=com_comment&amp;({$tail})">盛り上がり度No1({$WORD_COMMUNITY_HALF})</a><br>
 
 ({$inc_ktai_footer|smarty:nodefaults})

@@ -1,10 +1,10 @@
 ({$inc_ktai_header|smarty:nodefaults})
 <table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_02})">
 <font color="#({$ktai_color_config.font_05})"><a name="top">
-({$WORD_FRIEND_HALF})最新日記</a></font><br>
+({$WORD_FRIEND_HALF})最新({$WORD_DIARY_HALF})</a></font><br>
 </td></tr></table>
 ({if !$h_diary_list_friend})
-({$WORD_FRIEND_HALF})最新日記はありません。
+({$WORD_FRIEND_HALF})最新({$WORD_DIARY_HALF})はありません。
 ({else})
 <center>
 ({$pager.start})件～({$pager.end})件を表示<br>

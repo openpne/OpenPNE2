@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2007 OpenPNE Project
+ * @copyright 2005-2008 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -40,11 +40,29 @@ class ktai_do_fh_diary_insert_c_diary_comment extends OpenPNE_Action
                 openpne_redirect('ktai', 'page_h_access_block');
             }
         }
+
+        if (!db_diary_is_writable_comment4c_diary_id($target_c_diary_id)) {
+            $p = array('target_c_diary_id' => $target_c_diary_id, 'msg' => 47);
+            openpne_redirect('ktai', 'page_fh_diary', $p);
+        }
         //---
 
-        db_diary_insert_c_diary_comment($u, $target_c_diary_id, $body);
+        $insert_id = db_diary_insert_c_diary_comment($u, $target_c_diary_id, $body);
+
+        //日記コメント記入履歴追加
+        if ($u != $target_c_member_id) {
+            db_diary_insert_c_diary_comment_log($u, $target_c_diary_id);
+        }
+        //日記コメント記入履歴更新
+        db_diary_update_c_diary_comment_log($target_c_diary_id);
+
         //日記コメントが書き込まれたので日記自体を未読扱いにする
         db_diary_update_c_diary_is_checked($target_c_diary_id, 0);
+
+        // お知らせメール送信(携帯へ)
+        if ($u != $target_c_member_id) {
+            send_diary_comment_info_mail($insert_id, $u);
+        }
 
         if (OPENPNE_USE_POINT_RANK) {
             // コメント者と被コメント者が違う場合にポイント加算

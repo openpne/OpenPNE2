@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2007 OpenPNE Project
+ * @copyright 2005-2008 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -12,7 +12,6 @@ class ktai_page_c_edit_member extends OpenPNE_Action
 
         // --- リクエスト変数
         $target_c_commu_id = $requests['target_c_commu_id'];
-        $direc = $requests['direc'];
         $page = $requests['page'];
         // ----------
 
@@ -25,7 +24,6 @@ class ktai_page_c_edit_member extends OpenPNE_Action
         //---
 
         $page_size = 5;
-        $page += $direc;
 
         //ページ
         $this->set("page", $page);
@@ -37,7 +35,7 @@ class ktai_page_c_edit_member extends OpenPNE_Action
 
         // 管理者交代メッセージ送信先メンバーリスト
         foreach ($c_member_list as $key => $c_member) {
-            if ($c_member['c_member_id'] != $c_commu['c_member_id_admin'] 
+            if ($c_member['c_member_id'] != $c_commu['c_member_id_admin']
                 && $c_member['c_commu_admin_confirm_id'] <= 0
                 && $c_member['c_commu_sub_admin_confirm_id'] <= 0) {
                 $c_member_list[$key]['is_display_admin'] = true;

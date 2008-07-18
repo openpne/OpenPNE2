@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2007 OpenPNE Project
+ * @copyright 2005-2008 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -14,7 +14,7 @@ class pc_do_o_regist_prof extends OpenPNE_Action
     function execute($requests)
     {
         //<PCKTAI
-        if (!(OPENPNE_REGIST_FROM & OPENPNE_REGIST_FROM_PC)) {
+        if (OPENPNE_AUTH_MODE == 'slavepne' || !(OPENPNE_REGIST_FROM & OPENPNE_REGIST_FROM_PC)) {
             client_redirect_login();
         }
         //>
@@ -46,16 +46,6 @@ class pc_do_o_regist_prof extends OpenPNE_Action
 
         $prof = $validator->getParams();
 
-        switch ($prof['public_flag_birth_year']) {
-        case 'public':
-        case 'friend':
-        case 'private':
-            break;
-        default:
-            $prof['public_flag_birth_year'] = 'public';
-            break;
-        }
-
         if ($prof['password'] != $requests['password2']) {
             $errors['password2'] = 'パスワードが一致していません';
         }
@@ -69,7 +59,7 @@ class pc_do_o_regist_prof extends OpenPNE_Action
             $validator->addRequests($_REQUEST['profile']);
             $public_flag_list = $_REQUEST['public_flag'];
         }
-        $validator->addRules($this->_getValidateRulesProfile());
+        $validator->addRules(util_get_validate_rules_profile('regist'));
         if (!$validator->validate()) {
             $errors = array_merge($errors, $validator->getErrors());
         }
@@ -94,6 +84,13 @@ class pc_do_o_regist_prof extends OpenPNE_Action
         }
         if (t_isFutureDate($prof['birth_day'], $prof['birth_month'], $prof['birth_year'])) {
             $errors[] = '生年月日を未来に設定することはできません';
+        }
+
+        if (OPENPNE_AUTH_MODE == 'pneid') {
+            // ログインIDの重複チェック
+            if (db_member_c_member_id4username($prof['login_id'])) {
+                $errors[] = 'このログインIDはすでに登録されています';
+            }
         }
 
         if ($mode != 'input' && $errors) {
@@ -144,7 +141,7 @@ class pc_do_o_regist_prof extends OpenPNE_Action
 
                 // pre の内容を削除
                 db_member_delete_c_member_pre4sid($sid);
-        
+
                 // 登録完了メール送信
                 do_regist_prof_do_regist2_mail_send($u);
 
@@ -165,13 +162,17 @@ class pc_do_o_regist_prof extends OpenPNE_Action
                     'birth_month' => $prof['birth_month'],
                     'birth_day' => $prof['birth_day'],
                     'public_flag_birth_year' => $prof['public_flag_birth_year'],
+                    'public_flag_birth_month_day' => $prof['public_flag_birth_month_day'],
                     'password' => $prof['password'],
-                    'public_flag_birth_year' => $prof['public_flag_birth_year'],
                     'c_password_query_id' => $prof['c_password_query_id'],
                     'password_query_answer' => $prof['c_password_query_answer'],
                     'pc_address' => $pre['pc_address'],
                     'regist_address' => $pre['pc_address'],
                 );
+
+                if (OPENPNE_AUTH_MODE == 'pneid') {
+                    $c_member_pre_secure['login_id'] = $prof['login_id'];
+                }
 
                 db_member_update_c_member_pre_secure($pre['c_member_pre_id'], $c_member_pre_secure);
 
@@ -182,11 +183,11 @@ class pc_do_o_regist_prof extends OpenPNE_Action
 
     function _getValidateRules()
     {
-        return array(
+        $rules = array(
             'nickname' => array(
                 'type' => 'string',
                 'required' => '1',
-                'caption' => 'ニックネーム',
+                'caption' => WORD_NICKNAME,
                 'max' => '40',
             ),
             'birth_year' => array(
@@ -210,7 +211,16 @@ class pc_do_o_regist_prof extends OpenPNE_Action
                 'max' => '31',
             ),
             'public_flag_birth_year' => array(
-                'type' => 'string',
+                'type' => 'regexp',
+                'regexp' => '/^(public|friend|private)$/',
+                'required' => '1',
+                'caption' => '公開範囲',
+            ),
+            'public_flag_birth_month_day' => array(
+                'type' => 'regexp',
+                'regexp' => '/^(public|friend|private)$/',
+                'required' => '1',
+                'caption' => '公開範囲',
             ),
             'password' => array(
                 'type' => 'regexp',
@@ -233,35 +243,19 @@ class pc_do_o_regist_prof extends OpenPNE_Action
                 'caption' => '秘密の質問の答え',
             ),
         );
-    }
 
-    function _getValidateRulesProfile()
-    {
-        $rules = array();
-        $profile_list = db_member_c_profile_list4null();
-        foreach ($profile_list as $profile) {
-            if ($profile['disp_regist']) {
-                $rule = array(
-                    'type' => 'int',
-                    'required' => $profile['is_required'],
-                    'caption' => $profile['caption'],
-                );
-                switch ($profile['form_type']) {
-                case 'text':
-                case 'textlong':
-                case 'textarea':
-                    $rule['type'] = $profile['val_type'];
-                    $rule['regexp'] = $profile['val_regexp'];
-                    $rule['min'] = $profile['val_min'];
-                    ($profile['val_max']) and $rule['max'] = $profile['val_max'];
-                    break;
-                case 'checkbox':
-                    $rule['is_array'] = '1';
-                    break;
-                }
-                $rules[$profile['name']] = $rule;
-            }
+        if (OPENPNE_AUTH_MODE == 'pneid') {
+            $rules['login_id'] = array(
+                'type' => 'regexp',
+                'regexp' => '/^[a-zA-Z0-9][a-zA-Z0-9\-_]+[a-zA-Z0-9]$/i',
+                'required' => '1',
+                'caption' => 'ログインID',
+                'type_error' => 'ログインIDは4～30文字の半角英数字、記号（アンダーバー「_」、ハイフン「-」）で入力してください',
+                'min' => '4',
+                'max' => '30',
+            );
         }
+
         return $rules;
     }
 }

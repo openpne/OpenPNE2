@@ -60,9 +60,9 @@ class OP
         @session_start();
         @session_regenerate_id();
 
-        $auth_config = get_auth_config($is_ktai);
-        $auth_config['options']['advancedsecurity'] = false;
-        $auth = new OpenPNE_Auth($auth_config['storage'], $auth_config['options'], $is_ktai);
+        $config = get_auth_config($is_ktai);
+        $config['options']['advancedsecurity'] = false;
+        $auth = new OpenPNE_Auth($config);
         $auth->setExpire($GLOBALS['OpenPNE'][$ei_name]['session_lifetime']);
         $auth->setIdle($GLOBALS['OpenPNE'][$ei_name]['session_idletime']);
 
@@ -76,12 +76,12 @@ class OP
             'reject_time' => LOGIN_REJECT_TIME,
             );
             $lc =& new OpenPNE_LoginChecker($options);
-            if ($lc->is_rejected() || !$auth->login(false, true, $is_ktai)) {
+            if ($lc->is_rejected() || !$auth->login(false)) {
                 $lc->fail_login();
                 return false;
             }
         } else {
-            if (!$auth->login(false, true, $is_ktai)) {
+            if (!$auth->login(false)) {
                 return false;
             }
         }
@@ -581,7 +581,7 @@ class OP
         //プロフィールを取得
         $list = array();
         foreach ($member_list as $key => $value) {
-            //メンバ情報の取得    
+            //メンバ情報の取得
             $c_member = OP::op_get_member_data_list($value['c_member_id_from']);
 
             //デフォルト項目（メンバId、ニックネーム、登録日）

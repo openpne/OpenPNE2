@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2007 OpenPNE Project
+ * @copyright 2005-2008 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -32,7 +32,7 @@ class OpenPNE_Img
     /**
      * constructor
      * set options
-     * 
+     *
      * @access public
      * @param array $options
      */
@@ -55,7 +55,7 @@ class OpenPNE_Img
 
     /**
      * リクエストパラメータを取得
-     * 
+     *
      * @access public
      * @param array $vars request vars
      */
@@ -94,7 +94,7 @@ class OpenPNE_Img
 
     /**
      * 画像を生成
-     * 
+     *
      * @access public
      */
     function generate_img()
@@ -157,7 +157,7 @@ class OpenPNE_Img
 
     /**
      * 画像を出力
-     * 
+     *
      * @access public
      */
     function output_img()
@@ -177,7 +177,7 @@ class OpenPNE_Img
 
     /**
      * キャッシュが残っているかどうかチェックする
-     * 
+     *
      * @access protected
      * @return boolean
      */
@@ -188,7 +188,7 @@ class OpenPNE_Img
 
     /**
      * 画像データを取得
-     * 
+     *
      * @access protected
      * @return string raw image data
      */
@@ -199,7 +199,7 @@ class OpenPNE_Img
 
     /**
      * DBから画像バイナリを取得
-     * 
+     *
      * @access protected
      */
     function get_raw_img4db()
@@ -222,7 +222,7 @@ class OpenPNE_Img
 
     /**
      * GDイメージのリサイズ＋形式変換
-     * 
+     *
      * @access protected
      * @param resource $gdimg source GD image
      * @param int $w width
@@ -258,7 +258,7 @@ class OpenPNE_Img
             $o_width  = $s_width * $h / $s_height;
             $o_height = $h;
         }
-        
+
         if ($o_height < 1.) {
             $o_height = 1;
         }
@@ -267,6 +267,35 @@ class OpenPNE_Img
         }
 
         $output_gdimg = imagecreatetruecolor($o_width, $o_height);
+
+        if (($this->output_format == 'gif') || ($this->output_format == 'png')) {
+            $trnprt_idx_s = imagecolortransparent($source_gdimg);
+            if ($trnprt_idx_s >= 0) { // 透過色が設定されている
+                // truecolor イメージを (256色)パレットイメージに変換
+                imagetruecolortopalette($output_gdimg, true, 256);
+
+                // 入力画像から透明色に指定してある色（RGBの配列）を取得する
+                $trnprt_color = imagecolorsforindex($source_gdimg, $trnprt_idx_s);
+
+                // 色の設定
+                $trnprt_idx_s = imagecolorallocate($output_gdimg, $trnprt_color['red'], $trnprt_color['green'], $trnprt_color['blue']);
+
+                // 透明色（にする色）で塗りつぶす
+                imagefill($output_gdimg, 0, 0, $trnprt_idx_s);
+
+                // 透明色設定
+                imagecolortransparent($output_gdimg, $trnprt_idx_s);
+            } elseif ($this->output_format == 'png') {  // PNG-24
+                // アルファチャンネル情報を保存するには、アルファブレンディングを解除する必要がある
+                imagealphablending($output_gdimg, false);
+                imagesavealpha($output_gdimg, true);
+
+                // 透過色設定
+                $color = imagecolorallocatealpha($output_gdimg, 0, 0, 0, 127);
+                imagefill($output_gdimg, 0, 0, $color);
+            }
+        }
+
         imagecopyresampled($output_gdimg, $source_gdimg,
                 0, 0, 0, 0, $o_width, $o_height, $s_width, $s_height);
         return $output_gdimg;
@@ -274,7 +303,7 @@ class OpenPNE_Img
 
     /**
      * send "Content-Type" header
-     * 
+     *
      * @access protected
      */
     function send_content_type()
@@ -296,7 +325,7 @@ class OpenPNE_Img
 
     /**
      * キャッシュを作成する
-     * 
+     *
      * @access protected
      */
     function create_cache($output_gdimg)

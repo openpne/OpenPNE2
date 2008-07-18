@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2007 OpenPNE Project
+ * @copyright 2005-2008 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -33,7 +33,7 @@ function db_point_add_point($c_member_id, $point)
     if (!OPENPNE_USE_POINT_RANK) {
         return false;
     }
-    
+
     // 管理者は加算しない
     if (!OPENPNE_IS_POINT_ADMIN && $c_member_id == 1) {
         return false;

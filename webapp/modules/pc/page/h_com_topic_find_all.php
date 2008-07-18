@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2007 OpenPNE Project
+ * @copyright 2005-2008 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -12,7 +12,6 @@ class pc_page_h_com_topic_find_all extends OpenPNE_Action
 
         // --- リクエスト変数
         $keyword = $requests['keyword'];
-        $direc = $requests['direc'];
         $page = $requests['page'];
         $type = $requests['type'];
         // ----------
@@ -25,7 +24,6 @@ class pc_page_h_com_topic_find_all extends OpenPNE_Action
         $this->set('inc_navi', fetch_inc_navi('h'));
 
         $page_size = 20;
-        $page = $page + $direc;
         $this->set('page', $page);
 
         //検索結果

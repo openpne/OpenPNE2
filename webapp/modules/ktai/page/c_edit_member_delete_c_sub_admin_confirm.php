@@ -37,7 +37,7 @@ class ktai_page_c_edit_member_delete_c_sub_admin_confirm extends OpenPNE_Action
             handle_kengen_error();
         }
         //---
-        
+
         $this->set('target_c_member', db_member_c_member4c_member_id($target_c_member_id));
         $this->set("c_commu", db_commu_c_commu4c_commu_id_k($target_c_commu_id));
         $this->set("target_c_commu_id", $target_c_commu_id);

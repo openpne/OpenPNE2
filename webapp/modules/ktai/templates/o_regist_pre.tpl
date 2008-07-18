@@ -6,7 +6,9 @@
 
 ※かならず利用規約に同意してから登録をおこなってください。<br>
 ■<a href="({t_url m=ktai a=page_o_sns_kiyaku})">利用規約</a><br>
+({if $smarty.const.OPENPNE_DISP_KTAI_SNS_PRIVACY})
 ■<a href="({t_url m=ktai a=page_o_sns_privacy})">ﾌﾟﾗｲﾊﾞｼｰﾎﾟﾘｼｰ</a><br>
+({/if})
 
 <hr color="#({$ktai_color_config.border_01})">
 <center>

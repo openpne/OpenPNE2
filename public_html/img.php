@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2007 OpenPNE Project
+ * @copyright 2005-2008 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -10,7 +10,7 @@ require_once './config.inc.php';
 ini_set('display_errors', false);
 ob_start();
 
-//SNSにログインしているかどうか
+// モジュール毎に決められた認証をおこなっているかどうかのチェック
 if (defined('CHECK_IMG_AUTH') && CHECK_IMG_AUTH) {
     require_once OPENPNE_WEBAPP_DIR . '/init.inc';
 
@@ -35,20 +35,31 @@ if (defined('CHECK_IMG_AUTH') && CHECK_IMG_AUTH) {
     if (in_array($module, (array)$GLOBALS['_OPENPNE_DISABLE_MODULES'])) {
         openpne_display_error('モジュールが無効になっています', true);
     }
-    // maintenace mode
+
     if (OPENPNE_UNDER_MAINTENANCE &&
         !in_array($module, (array)$GLOBALS['_OPENPNE_MAINTENANCE_MODULES'])) {
         openpne_display_error();
     }
-    // init
+
     if ($init = openpne_ext_search("{$module}/init.inc")) {
         require_once $init;
     }
-    //auth
-    if ($auth = openpne_ext_search("{$module}/auth.inc")) {
-        require_once $auth;
+
+    // 読み込む auth.inc を決定
+    $auth = openpne_ext_search("{$module}/auth.inc");
+    if (!$auth) {
+        $auth = OPENPNE_WEBAPP_DIR . '/lib/auth.inc';
+    }
+
+    // ファイル名が module_ ではじまる場合、認証をおこなうかどうかのチェック
+    list($img_prefix, $img_module) = explode('_', $_GET['filename'], 3);
+    if ($img_prefix == 'module' && $img_module) {
+        $module_config = util_get_module_config($img_module);
+        if (!isset($module_config['image']['is_auth']) || $module_config['image']['is_auth']) {
+            require_once $auth;
+        }
     } else {
-        require_once OPENPNE_WEBAPP_DIR . '/lib/auth.inc';
+        require_once $auth;
     }
 } else {
     // include_path の設定
@@ -69,7 +80,6 @@ if (!empty($GLOBALS['_OPENPNE_DSN_LIST']['image']['dsn'])) {
     $dsn = $GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn'];
 }
 
-
 require_once 'OpenPNE/Img.php';
 $options = array(
     'dsn'          => $dsn,
@@ -79,18 +89,18 @@ $options = array(
 
 if (defined('USE_IMAGEMAGICK')) {
     switch (USE_IMAGEMAGICK) {
-        case 0:
+    case 0:
         $use_IM = false;
         break;
-        case 1:
+    case 1:
         $pieces = explode('.', $_GET['filename']);
         $source_format = OpenPNE_Img::check_format(array_pop($pieces));
         $use_IM = ($source_format == 'gif');
         break;
-        case 2:
+    case 2:
         $use_IM = true;
         break;
-        default:
+    default:
         exit;
     }
 } else {

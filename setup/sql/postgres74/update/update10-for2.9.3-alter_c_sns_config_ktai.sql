@@ -1,6 +1,0 @@
-ALTER TABLE c_sns_config_ktai ADD COLUMN bg_09 text NOT NULL DEFAULT 'FFFFFF';
-ALTER TABLE c_sns_config_ktai ADD COLUMN font_05 text NOT NULL DEFAULT '000000';
-ALTER TABLE c_sns_config_ktai ADD COLUMN font_06 text NOT NULL DEFAULT '0000FF';
-ALTER TABLE c_sns_config_ktai ADD COLUMN font_07 text NOT NULL DEFAULT '0000FF';
-ALTER TABLE c_sns_config_ktai ADD COLUMN font_08 text NOT NULL DEFAULT '800080';
-

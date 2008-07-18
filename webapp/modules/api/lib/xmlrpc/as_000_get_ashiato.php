@@ -28,7 +28,7 @@ function xmlrpc_as_000_get_ashiato($message)
         return xmlrpc_get_response($re_false);
     }
 
-    //取得数は数値    
+    //取得数は数値
     if (!is_numeric($params['count'])) {
         return xmlrpc_get_response($re_false);
     }
@@ -41,7 +41,7 @@ function xmlrpc_as_000_get_ashiato($message)
     if ($count <= 0) {
         return xmlrpc_get_response($re_false);
     }
-    
+
     //登録済みのメンバか
     if( !OP::op_member_is_active_c_member_id($member_id) ) {
         return xmlrpc_get_response($re_false);

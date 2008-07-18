@@ -14,11 +14,11 @@
  *
  * @category   Authentication
  * @package    Auth
- * @author     Lorenzo Alberton <l.alberton@quipo.it> 
+ * @author     Lorenzo Alberton <l.alberton@quipo.it>
  * @author     Adam Ashley <aashley@php.net>
  * @copyright  2001-2006 The PHP Group
  * @license    http://www.php.net/license/3_01.txt  PHP License 3.01
- * @version    CVS: $Id: MDB2.php,v 1.10 2006/03/02 06:53:08 aashley Exp $
+ * @version    CVS: $Id: MDB2.php,v 1.22 2007/06/12 03:11:26 aashley Exp $
  * @link       http://pear.php.net/package/Auth
  * @since      File available since Release 1.3.0
  */
@@ -44,7 +44,7 @@ require_once 'MDB2.php';
  * @author     Adam Ashley <aashley@php.net>
  * @copyright  2001-2006 The PHP Group
  * @license    http://www.php.net/license/3_01.txt  PHP License 3.01
- * @version    Release: 1.3.0  File: $Revision: 1.10 $
+ * @version    Release: 1.5.4  File: $Revision: 1.22 $
  * @link       http://pear.php.net/package/Auth
  * @since      Class available since Release 1.3.0
  */
@@ -109,6 +109,7 @@ class Auth_Container_MDB2 extends Auth_Container
      */
     function _connect($dsn)
     {
+        $this->log('Auth_Container_MDB2::_connect() called.', AUTH_LOG_DEBUG);
         if (is_string($dsn) || is_array($dsn)) {
             $this->db =& MDB2::connect($dsn, $this->options['db_options']);
         } elseif (is_subclass_of($dsn, 'MDB2_Driver_Common')) {
@@ -128,6 +129,17 @@ class Auth_Container_MDB2 extends Auth_Container
         if (MDB2::isError($this->db) || PEAR::isError($this->db)) {
             return PEAR::raiseError($this->db->getMessage(), $this->db->code);
         }
+
+        if ($this->options['auto_quote']) {
+            $this->options['final_table'] = $this->db->quoteIdentifier($this->options['table'], true);
+            $this->options['final_usernamecol'] = $this->db->quoteIdentifier($this->options['usernamecol'], true);
+            $this->options['final_passwordcol'] = $this->db->quoteIdentifier($this->options['passwordcol'], true);
+        } else {
+            $this->options['final_table'] = $this->options['table'];
+            $this->options['final_usernamecol'] = $this->options['usernamecol'];
+            $this->options['final_passwordcol'] = $this->options['passwordcol'];
+        }
+
         return true;
     }
 
@@ -168,6 +180,7 @@ class Auth_Container_MDB2 extends Auth_Container
      */
     function query($query)
     {
+        $this->log('Auth_Container_MDB2::query() called.', AUTH_LOG_DEBUG);
         $err = $this->_prepare();
         if ($err !== true) {
             return $err;
@@ -193,6 +206,8 @@ class Auth_Container_MDB2 extends Auth_Container
         $this->options['db_fields']   = '';
         $this->options['cryptType']   = 'md5';
         $this->options['db_options']  = array();
+        $this->options['db_where']    = '';
+        $this->options['auto_quote']  = true;
     }
 
     // }}}
@@ -211,14 +226,43 @@ class Auth_Container_MDB2 extends Auth_Container
                 $this->options[$key] = $value;
             }
         }
+    }
 
-        // Include additional fields if they exist
-        if (!empty($this->options['db_fields'])) {
+    // }}}
+    // {{{ _quoteDBFields()
+
+    /**
+     * Quote the db_fields option to avoid the possibility of SQL injection.
+     *
+     * @access private
+     * @return string A properly quoted string that can be concatenated into a
+     * SELECT clause.
+     */
+    function _quoteDBFields()
+    {
+        if (isset($this->options['db_fields'])) {
             if (is_array($this->options['db_fields'])) {
-                $this->options['db_fields'] = join($this->options['db_fields'], ', ');
+                if ($this->options['auto_quote']) {
+                    $fields = array();
+                    foreach ($this->options['db_fields'] as $field) {
+                        $fields[] = $this->db->quoteIdentifier($field, true);
+                    }
+                    return implode(', ', $fields);
+                } else {
+                    return implode(', ', $this->options['db_fields']);
+                }
+            } else {
+                if (strlen($this->options['db_fields']) > 0) {
+                    if ($this->options['auto_quote']) {
+                        return $this->db->quoteIdentifier($this->options['db_fields'], true);
+                    } else {
+                        return $this->options['db_fields'];
+                    }
+                }
             }
-            $this->options['db_fields'] = ', ' . $this->options['db_fields'];
         }
+
+        return '';
     }
 
     // }}}
@@ -242,6 +286,7 @@ class Auth_Container_MDB2 extends Auth_Container
      */
     function fetchData($username, $password, $isChallengeResponse=false)
     {
+        $this->log('Auth_Container_MDB2::fetchData() called.', AUTH_LOG_DEBUG);
         // Prepare for a database query
         $err = $this->_prepare();
         if ($err !== true) {
@@ -249,17 +294,31 @@ class Auth_Container_MDB2 extends Auth_Container
         }
 
         //Check if db_fields contains a *, if so assume all columns are selected
-        if (strstr($this->options['db_fields'], '*')) {
+        if (is_string($this->options['db_fields'])
+            && strstr($this->options['db_fields'], '*')) {
             $sql_from = '*';
         } else {
-            $sql_from = $this->options['usernamecol'] . ', '. $this->options['passwordcol'] . $this->options['db_fields'];
+            $sql_from = $this->options['final_usernamecol'].
+                ", ".$this->options['final_passwordcol'];
+
+            if (strlen($fields = $this->_quoteDBFields()) > 0) {
+                $sql_from .= ', '.$fields;
+            }
         }
         $query = sprintf("SELECT %s FROM %s WHERE %s = %s",
                          $sql_from,
-                         $this->options['table'],
-                         $this->options['usernamecol'],
+                         $this->options['final_table'],
+                         $this->options['final_usernamecol'],
                          $this->db->quote($username, 'text')
                          );
+
+        // check if there is an optional parameter db_where
+        if ($this->options['db_where'] != '') {
+            // there is one, so add it to the query
+            $query .= " AND ".$this->options['db_where'];
+        }
+
+        $this->log('Running SQL against MDB2: '.$query, AUTH_LOG_DEBUG);
 
         $res = $this->db->queryRow($query, null, MDB2_FETCHMODE_ASSOC);
         if (MDB2::isError($res) || PEAR::isError($res)) {
@@ -291,6 +350,9 @@ class Auth_Container_MDB2 extends Auth_Container
                     $key == $this->options['usernamecol']) {
                     continue;
                 }
+
+                $this->log('Storing additional field: '.$key, AUTH_LOG_DEBUG);
+
                 // Use reference to the auth object if exists
                 // This is because the auth session variable can change so a static call to setAuthData does not make sense
                 $this->_auth_obj->setAuthData($key, $value);
@@ -313,6 +375,7 @@ class Auth_Container_MDB2 extends Auth_Container
      */
     function listUsers()
     {
+        $this->log('Auth_Container_MDB2::listUsers() called.', AUTH_LOG_DEBUG);
         $err = $this->_prepare();
         if ($err !== true) {
             return PEAR::raiseError($err->getMessage(), $err->getCode());
@@ -321,16 +384,30 @@ class Auth_Container_MDB2 extends Auth_Container
         $retVal = array();
 
         //Check if db_fields contains a *, if so assume all columns are selected
-        if (strstr($this->options['db_fields'], '*')) {
+        if (   is_string($this->options['db_fields'])
+            && strstr($this->options['db_fields'], '*')) {
             $sql_from = '*';
         } else {
-            $sql_from = $this->options['db_fields'];
+            $sql_from = $this->options['final_usernamecol'].
+                ", ".$this->options['final_passwordcol'];
+
+            if (strlen($fields = $this->_quoteDBFields()) > 0) {
+                $sql_from .= ', '.$fields;
+            }
         }
 
         $query = sprintf('SELECT %s FROM %s',
                          $sql_from,
-                         $this->options['table']
+                         $this->options['final_table']
                          );
+
+        // check if there is an optional parameter db_where
+        if ($this->options['db_where'] != '') {
+            // there is one, so add it to the query
+            $query .= " WHERE ".$this->options['db_where'];
+        }
+
+        $this->log('Running SQL against MDB2: '.$query, AUTH_LOG_DEBUG);
 
         $res = $this->db->queryAll($query, null, MDB2_FETCHMODE_ASSOC);
         if (MDB2::isError($res)) {
@@ -341,6 +418,7 @@ class Auth_Container_MDB2 extends Auth_Container
                 $retVal[] = $user;
             }
         }
+        $this->log('Found '.count($retVal).' users.', AUTH_LOG_DEBUG);
         return $retVal;
     }
 
@@ -359,6 +437,7 @@ class Auth_Container_MDB2 extends Auth_Container
      */
     function addUser($username, $password, $additional = "")
     {
+        $this->log('Auth_Container_MDB2::addUser() called.', AUTH_LOG_DEBUG);
 
         // Prepare for a database query
         $err = $this->_prepare();
@@ -381,20 +460,26 @@ class Auth_Container_MDB2 extends Auth_Container
 
         if (is_array($additional)) {
             foreach ($additional as $key => $value) {
-                $additional_key   .= ', ' . $key;
+                if ($this->options['auto_quote']) {
+                    $additional_key   .= ', ' . $this->db->quoteIdentifier($key, true);
+                } else {
+                    $additional_key   .= ', ' . $key;
+                }
                 $additional_value .= ', ' . $this->db->quote($value, 'text');
             }
         }
 
         $query = sprintf("INSERT INTO %s (%s, %s%s) VALUES (%s, %s%s)",
-                         $this->options['table'],
-                         $this->options['usernamecol'],
-                         $this->options['passwordcol'],
+                         $this->options['final_table'],
+                         $this->options['final_usernamecol'],
+                         $this->options['final_passwordcol'],
                          $additional_key,
                          $this->db->quote($username, 'text'),
                          $this->db->quote($password, 'text'),
                          $additional_value
                          );
+
+        $this->log('Running SQL against MDB2: '.$query, AUTH_LOG_DEBUG);
 
         $res = $this->query($query);
 
@@ -417,6 +502,7 @@ class Auth_Container_MDB2 extends Auth_Container
      */
     function removeUser($username)
     {
+        $this->log('Auth_Container_MDB2::removeUser() called.', AUTH_LOG_DEBUG);
         // Prepare for a database query
         $err = $this->_prepare();
         if ($err !== true) {
@@ -424,10 +510,18 @@ class Auth_Container_MDB2 extends Auth_Container
         }
 
         $query = sprintf("DELETE FROM %s WHERE %s = %s",
-                         $this->options['table'],
-                         $this->options['usernamecol'],
+                         $this->options['final_table'],
+                         $this->options['final_usernamecol'],
                          $this->db->quote($username, 'text')
                          );
+
+        // check if there is an optional parameter db_where
+        if ($this->options['db_where'] != '') {
+            // there is one, so add it to the query
+            $query .= " AND ".$this->options['db_where'];
+        }
+
+        $this->log('Running SQL against MDB2: '.$query, AUTH_LOG_DEBUG);
 
         $res = $this->query($query);
 
@@ -448,6 +542,7 @@ class Auth_Container_MDB2 extends Auth_Container
      */
     function changePassword($username, $password)
     {
+        $this->log('Auth_Container_MDB2::changePassword() called.', AUTH_LOG_DEBUG);
         // Prepare for a database query
         $err = $this->_prepare();
         if ($err !== true) {
@@ -465,12 +560,20 @@ class Auth_Container_MDB2 extends Auth_Container
         $password = $cryptFunction($password);
 
         $query = sprintf("UPDATE %s SET %s = %s WHERE %s = %s",
-                         $this->options['table'],
-                         $this->options['passwordcol'],
+                         $this->options['final_table'],
+                         $this->options['final_passwordcol'],
                          $this->db->quote($password, 'text'),
-                         $this->options['usernamecol'],
+                         $this->options['final_usernamecol'],
                          $this->db->quote($username, 'text')
                          );
+
+        // check if there is an optional parameter db_where
+        if ($this->options['db_where'] != '') {
+            // there is one, so add it to the query
+            $query .= " AND ".$this->options['db_where'];
+        }
+
+        $this->log('Running SQL against MDB2: '.$query, AUTH_LOG_DEBUG);
 
         $res = $this->query($query);
 

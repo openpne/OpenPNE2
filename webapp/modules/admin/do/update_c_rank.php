@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2007 OpenPNE Project
+ * @copyright 2005-2008 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -35,7 +35,7 @@ class admin_do_update_c_rank extends OpenPNE_Action
             }
 
             //以前のイメージを削除
-            image_data_delete($image_filename);
+            db_image_data_delete($image_filename);
 
             //新しいイメージを作成
             $ext = t_check_image_format($_FILES['image_upfile']);

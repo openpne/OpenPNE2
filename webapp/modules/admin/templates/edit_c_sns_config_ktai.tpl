@@ -32,7 +32,7 @@ function set_preset_color(target, color) {
 }
 
 function set_textarea_for_color_config() {
-    var str_1 = "[color]\n" 
+    var str_1 = "[color]\n"
         + "caption = \"バックアップ\"\n"
         + "color_0 = \"FFFFFF\"\n";
     for (key in bgcolors) {

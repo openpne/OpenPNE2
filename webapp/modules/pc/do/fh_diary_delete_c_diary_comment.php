@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2007 OpenPNE Project
+ * @copyright 2005-2008 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -34,6 +34,9 @@ class pc_do_fh_diary_delete_c_diary_comment extends OpenPNE_Action
 
             //コメント削除実行
             db_diary_delete_c_diary_comment($val, $u);
+
+            //コメント記入履歴削除実行
+            db_diary_delete_c_diary_comment_log($target_c_diary_comment['c_member_id'], $target_c_diary_id);
         }
 
         $p = array('target_c_diary_id' => $target_c_diary_id);

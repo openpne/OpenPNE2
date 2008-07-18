@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2007 OpenPNE Project
+ * @copyright 2005-2008 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -40,6 +40,7 @@ class setup_page_setup extends OpenPNE_Action
             OPENPNE_IMG_CACHE_DIR . '/jpg/w180_h180',
             OPENPNE_IMG_CACHE_DIR . '/jpg/w76_h76',
             OPENPNE_IMG_CACHE_DIR . '/jpg/w240_h320',
+            OPENPNE_IMG_CACHE_DIR . '/jpg/w600_h600',
             OPENPNE_IMG_CACHE_DIR . '/jpg/w_h',
             OPENPNE_IMG_CACHE_DIR . '/jpg/w_h_raw',
             OPENPNE_IMG_CACHE_DIR . '/gif',
@@ -47,6 +48,7 @@ class setup_page_setup extends OpenPNE_Action
             OPENPNE_IMG_CACHE_DIR . '/gif/w180_h180',
             OPENPNE_IMG_CACHE_DIR . '/gif/w76_h76',
             OPENPNE_IMG_CACHE_DIR . '/gif/w240_h320',
+            OPENPNE_IMG_CACHE_DIR . '/gif/w600_h600',
             OPENPNE_IMG_CACHE_DIR . '/gif/w_h',
             OPENPNE_IMG_CACHE_DIR . '/gif/w_h_raw',
             OPENPNE_IMG_CACHE_DIR . '/png',
@@ -54,6 +56,7 @@ class setup_page_setup extends OpenPNE_Action
             OPENPNE_IMG_CACHE_DIR . '/png/w180_h180',
             OPENPNE_IMG_CACHE_DIR . '/png/w76_h76',
             OPENPNE_IMG_CACHE_DIR . '/png/w240_h320',
+            OPENPNE_IMG_CACHE_DIR . '/png/w600_h600',
             OPENPNE_IMG_CACHE_DIR . '/png/w_h',
             OPENPNE_IMG_CACHE_DIR . '/png/w_h_raw',
             OPENPNE_VAR_DIR . '/function_cache',

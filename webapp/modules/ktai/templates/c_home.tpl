@@ -47,7 +47,7 @@
 </tr>
 <tr>
 <td colspan="2">
-<font color="#({$ktai_color_config.font_06})">ｺﾐｭﾆﾃｨの説明：</font><br>
+<font color="#({$ktai_color_config.font_06})">({$WORD_COMMUNITY_HALF})の説明：</font><br>
 ({$c_commu.info|t_url2a_ktai|t_truncate:108:""})<br>
 </td></tr>
 <tr><td align="right" colspan="2">
@@ -59,14 +59,14 @@
 <tr><td>
 <hr color="#({$ktai_color_config.border_01})">
 ({if !$relation_c_member_and_c_commu.join && !$relation_c_member_and_c_commu.wait})
-[i:204]<a href="({t_url m=ktai a=do_inc_join_c_commu})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">ｺﾐｭﾆﾃｨに参加</a><br>
+[i:204]<a href="({t_url m=ktai a=do_inc_join_c_commu})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">({$WORD_COMMUNITY_HALF})に参加</a><br>
 ({/if})
 ({if $c_commu.c_member_id_admin==$u || $c_commu.c_member_id_sub_admin==$u})
-[i:190]<a href="({t_url m=ktai a=page_c_edit})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">ｺﾐｭﾆﾃｨ編集</a><br>
+[i:190]<a href="({t_url m=ktai a=page_c_edit})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">({$WORD_COMMUNITY_HALF})編集</a><br>
 ({/if})
 ({if $relation_c_member_and_c_commu.join})
 ({if !($c_commu.c_member_id_admin==$u || $c_commu.c_member_id_sub_admin==$u)})
-[i:138]<a href="({t_url m=ktai a=do_inc_leave_c_commu})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">ｺﾐｭﾆﾃｨから退会</a><br>
+[i:138]<a href="({t_url m=ktai a=do_inc_leave_c_commu})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">({$WORD_COMMUNITY_HALF})から退会</a><br>
 ({/if})
 ({if !($is_unused_pc_bbs && $is_unused_ktai_bbs)})
 [i:105]<a href="({t_url m=ktai a=page_c_receive_mail})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">ﾒｰﾙ受信設定</a><br>
@@ -147,8 +147,8 @@
 <input type="text" name="keyword" value="({$search_word})">
 <br>
 <select name="target_commu">
-<option value="in_commu">ｺﾐｭﾆﾃｨ内
-<option value="all">全てのｺﾐｭﾆﾃｨ
+<option value="in_commu">({$WORD_COMMUNITY_HALF})内
+<option value="all">全ての({$WORD_COMMUNITY_HALF})
 </select>
 <input type="hidden" name="c_commu_id" value="({$c_commu.c_commu_id})">
 <br>
@@ -159,7 +159,7 @@
 
 <table width="100%">
 <tr><td bgcolor="#({$ktai_color_config.bg_05})">
-<a accesskey="3" name="a3" href="#a3">[i:127]</a><font color="#({$ktai_color_config.color_25})">ｺﾐｭﾆﾃｨﾒﾝﾊﾞｰ</font><br>
+<a accesskey="3" name="a3" href="#a3">[i:127]</a><font color="#({$ktai_color_config.color_25})">({$WORD_COMMUNITY_HALF})ﾒﾝﾊﾞｰ</font><br>
 </td></tr>
 ({foreach from=$c_commu_member_list item=c_commu_member})
 <tr><td bgcolor="#({cycle values="`$ktai_color_config.bg_06`,`$ktai_color_config.bg_07`"})">

@@ -15,7 +15,7 @@
 
 ({capture name="nick"})
 <font color="#({$ktai_color_config.font_09})">*</font>
-<font color="#({$ktai_color_config.font_06})">ﾆｯｸﾈｰﾑ：</font><br>
+<font color="#({$ktai_color_config.font_06})">({$WORD_NICKNAME_HALF})：</font><br>
 <input type="text" name="nickname" value="({$c_member.nickname})"><br>
 <br>
 ({/capture})
@@ -40,6 +40,11 @@
     <option>--
     ({foreach from=$day item=item})
     <option value="({$item})"({if $item == $c_member.birth_day}) selected="selected"({/if})>({$item})
+    ({/foreach})
+</select><br>
+<select name="public_flag_birth_month_day">
+    ({foreach from=$public_flags key=key item=item})
+    <option value="({$key})"({if $c_member.public_flag_birth_month_day == $key}) selected="selected"({/if})>({$item})
     ({/foreach})
 </select><br>
 <br>

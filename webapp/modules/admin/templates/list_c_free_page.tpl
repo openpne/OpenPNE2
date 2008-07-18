@@ -1,7 +1,7 @@
 ({$inc_header|smarty:nodefaults})
-({ext_include file="inc_subnavi_adminInfoKiyaku.tpl"})
+({ext_include file="inc_subnavi_adminDesign.tpl"})
 ({assign var="page_name" value="フリーページ管理"})
-({ext_include file="inc_tree_adminInfoKiyaku.tpl"})
+({ext_include file="inc_tree_adminDesign.tpl"})
 </div>
 
 ({*ここまで:navi*})

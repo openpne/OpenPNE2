@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2007 OpenPNE Project
+ * @copyright 2005-2008 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -13,8 +13,8 @@ function db_message_c_message4c_message_id($c_message_id)
     $params = array(intval($c_message_id));
     $c_message = db_get_row($sql, $params);
 
-    $c_member_from = db_common_c_member4c_member_id_LIGHT($c_message['c_member_id_from']);
-    $c_member_to = db_common_c_member4c_member_id_LIGHT($c_message['c_member_id_to']);
+    $c_member_from = db_member_c_member4c_member_id_LIGHT($c_message['c_member_id_from']);
+    $c_member_to = db_member_c_member4c_member_id_LIGHT($c_message['c_member_id_to']);
 
     $c_message['c_member_image_filename_from'] = $c_member_from['image_filename'];
     $c_message['c_member_nickname_from'] = $c_member_from['nickname'];
@@ -26,7 +26,7 @@ function db_message_c_message4c_message_id($c_message_id)
 
 /**
  * 未読メッセージの数を数える
- * 
+ *
  * @return  num_message_not_is_read
  */
 function db_message_count_c_message_not_is_read4c_member_to_id($c_member_id_to)
@@ -99,7 +99,7 @@ function db_message_c_message_received_list4c_member_id4range($c_member_id, $pag
     $c_message_list = db_get_all_page($sql, $page, $page_size, $params);
 
     foreach ($c_message_list as $key => $value) {
-        $c_member = db_common_c_member4c_member_id_LIGHT($value['c_member_id_from']);
+        $c_member = db_member_c_member4c_member_id_LIGHT($value['c_member_id_from']);
         $c_message_list[$key]['nickname'] = $c_member['nickname'];
         $c_message_list[$key]['image_filename'] = $c_member['image_filename'];
     }
@@ -155,7 +155,7 @@ function db_message_c_message_sent_list4c_member_id4range($c_member_id, $page, $
     $c_message_list = db_get_all_page($sql, $page, $page_size, $params);
 
     foreach ($c_message_list as $key => $value) {
-        $c_member = db_common_c_member4c_member_id_LIGHT($value['c_member_id_to']);
+        $c_member = db_member_c_member4c_member_id_LIGHT($value['c_member_id_to']);
         $c_message_list[$key]['nickname'] = $c_member['nickname'];
         $c_message_list[$key]['image_filename'] = $c_member['image_filename'];
     }
@@ -195,7 +195,7 @@ function db_message_c_message_save_list4c_member_id4range($c_member_id, $page, $
     $c_message_list = db_get_all_page($sql, $page, $page_size, $params);
 
     foreach ($c_message_list as $key => $value) {
-        $c_member = db_common_c_member4c_member_id_LIGHT($value['c_member_id_to']);
+        $c_member = db_member_c_member4c_member_id_LIGHT($value['c_member_id_to']);
         $c_message_list[$key]['nickname'] = $c_member['nickname'];
         $c_message_list[$key]['image_filename'] = $c_member['image_filename'];
     }
@@ -270,9 +270,9 @@ function db_message_c_message_trash_list4c_member_id4range($c_member_id, $page, 
 
     foreach ($c_message_list as $key => $value) {
         if ($value['c_member_id_to'] == $c_member_id) {
-            $c_member = db_common_c_member4c_member_id_LIGHT($value['c_member_id_from']);
+            $c_member = db_member_c_member4c_member_id_LIGHT($value['c_member_id_from']);
         } else {
-            $c_member = db_common_c_member4c_member_id_LIGHT($value['c_member_id_to']);
+            $c_member = db_member_c_member4c_member_id_LIGHT($value['c_member_id_to']);
         }
         $c_message_list[$key]['nickname'] = $c_member['nickname'];
         $c_message_list[$key]['image_filename'] = $c_member['image_filename'];
@@ -283,7 +283,7 @@ function db_message_c_message_trash_list4c_member_id4range($c_member_id, $page, 
 
 /**
  * 未読メッセージ数を取得
- * 
+ *
  * @param int $c_member_id
  * @return int 未読メッセージ数
  */
@@ -306,7 +306,7 @@ function db_message_c_message_received_list4c_member_id4range2($c_member_id, $pa
     $c_message_list = db_get_all_page($sql, $page, $page_size, $params);
 
     foreach ($c_message_list as $key => $value) {
-        $c_member = db_common_c_member4c_member_id_LIGHT($value['c_member_id_from']);
+        $c_member = db_member_c_member4c_member_id_LIGHT($value['c_member_id_from']);
         $c_message_list[$key]['nickname'] = $c_member['nickname'];
     }
 
@@ -344,7 +344,7 @@ function db_message_c_message_sent_list4c_member_id4range2($c_member_id, $page_s
     $c_message_list = db_get_all_page($sql, $page, $page_size, $params);
 
     foreach ($c_message_list as $key => $value) {
-        $c_member = db_common_c_member4c_member_id_LIGHT($value['c_member_id_to']);
+        $c_member = db_member_c_member4c_member_id_LIGHT($value['c_member_id_to']);
         $c_message_list[$key]['nickname'] = $c_member['nickname'];
     }
 
@@ -385,7 +385,7 @@ function db_message_hensinmoto_id($hensin_c_message_id)
 
 /**
  * メッセージ作成
- * 
+ *
  * @param   int $c_member_id_from
  * @param   int $c_member_id_to
  * @param   string  $subject
@@ -410,7 +410,7 @@ function db_message_insert_c_message($c_member_id_from, $c_member_id_to, $subjec
 
 /**
  * 承認メッセージ作成
- * 
+ *
  * @param   int $c_member_id_from
  * @param   int $c_member_id_to
  * @param   string  $subject
@@ -458,7 +458,7 @@ function db_message_insert_message_to_is_save($c_member_id_to,$c_member_id_from,
 /**
  * メッセージをゴミ箱へ移動
  * 受信メッセージの場合は既読にする
- * 
+ *
  * @param   int $c_message_id
  * @param   int $c_member_id
  * @return  bool  削除が成功したかどうか
@@ -587,7 +587,7 @@ function db_message_send_message($c_member_id_from, $c_member_id_to, $subject, $
     $c_message_id = db_message_insert_c_message($c_member_id_from, $c_member_id_to, $subject, $body);
 
     do_common_send_message_mail_send($c_member_id_to, $c_member_id_from);
-    do_common_send_message_mail_send_ktai($c_member_id_to, $c_member_id_from);
+    do_common_send_message_mail_send_ktai($c_member_id_to, $c_member_id_from, $subject, $body);
     pne_cache_drop('db_message_count_c_message_not_is_read4c_member_to_id', (int)$c_member_id_to);
     pne_cache_drop('db_message_count_c_message_not_is_read4c_member_to_id', (string)$c_member_id_to);
 
@@ -603,7 +603,7 @@ function db_message_send_message_syoudaku($c_member_id_from, $c_member_id_to, $s
     pne_cache_drop('db_message_count_c_message_not_is_read4c_member_to_id', (string)$c_member_id_to);
 
     do_common_send_message_syoudaku_mail_send($c_member_id_to, $c_member_id_from);
-    do_common_send_message_mail_send_ktai($c_member_id_to, $c_member_id_from);
+    do_common_send_message_mail_send_ktai($c_member_id_to, $c_member_id_from, $subject, $body);
 }
 
 // コミュニティ紹介
@@ -615,7 +615,7 @@ function db_message_send_message_syoukai_commu($c_member_id_from, $c_member_id_t
     pne_cache_drop('db_message_count_c_message_not_is_read4c_member_to_id', (string)$c_member_id_to);
 
     do_common_send_message_syoukai_commu_mail_send($c_member_id_to, $c_member_id_from);
-    do_common_send_message_mail_send_ktai($c_member_id_to, $c_member_id_from);
+    do_common_send_message_mail_send_ktai($c_member_id_to, $c_member_id_from, $subject, $body);
 }
 
 // コミュニティ参加者全員にメール
@@ -627,7 +627,7 @@ function db_message_send_message_commu_send_msg($c_member_id_from, $c_member_id_
     pne_cache_drop('db_message_count_c_message_not_is_read4c_member_to_id', (string)$c_member_id_to);
 
     do_common_send_message_commu_send_msg($c_member_id_to, $c_member_id_from, $c_commu_id);
-    do_common_send_message_mail_send_ktai($c_member_id_to, $c_member_id_from);
+    do_common_send_message_mail_send_ktai($c_member_id_to, $c_member_id_from, $subject, $body);
 }
 
 // メンバー紹介
@@ -639,7 +639,7 @@ function db_message_send_message_syoukai_member($c_member_id_from, $c_member_id_
     pne_cache_drop('db_message_count_c_message_not_is_read4c_member_to_id', (string)$c_member_id_to);
 
     do_common_send_message_syoukai_member_mail_send($c_member_id_to, $c_member_id_from);
-    do_common_send_message_mail_send_ktai($c_member_id_to, $c_member_id_from);
+    do_common_send_message_mail_send_ktai($c_member_id_to, $c_member_id_from, $subject, $body);
 }
 
 //イベント紹介
@@ -651,7 +651,7 @@ function db_message_send_message_event_invite($c_member_id_from, $c_member_id_to
     pne_cache_drop('db_message_count_c_message_not_is_read4c_member_to_id', (string)$c_member_id_to);
 
     do_common_send_message_event_invite_mail_send($c_member_id_to, $c_member_id_from);
-    do_common_send_message_mail_send_ktai($c_member_id_to, $c_member_id_from);
+    do_common_send_message_mail_send_ktai($c_member_id_to, $c_member_id_from, $subject, $body);
 }
 
 //イベントメッセージ
@@ -663,10 +663,10 @@ function db_message_send_message_event_message($c_member_id_from, $c_member_id_t
     pne_cache_drop('db_message_count_c_message_not_is_read4c_member_to_id', (string)$c_member_id_to);
 
     do_common_send_message_event_message_mail_send($c_member_id_to, $c_member_id_from);
-    do_common_send_message_mail_send_ktai($c_member_id_to, $c_member_id_from);
+    do_common_send_message_mail_send_ktai($c_member_id_to, $c_member_id_from, $subject, $body);
 }
 
-function db_message_update_c_message($c_message_id, $subject, $body, $image_filename_1 = '', $image_filename_2 = '', $image_filename_3 = '')
+function db_message_update_c_message($c_message_id, $subject, $body, $image_filename_1 = '', $image_filename_2 = '', $image_filename_3 = '', $filename = '')
 {
     $data = array(
         'subject' => $subject,
@@ -675,6 +675,7 @@ function db_message_update_c_message($c_message_id, $subject, $body, $image_file
     if ($image_filename_1) $data['image_filename_1'] = $image_filename_1;
     if ($image_filename_2) $data['image_filename_2'] = $image_filename_2;
     if ($image_filename_3) $data['image_filename_3'] = $image_filename_3;
+    if ($filename) $data['filename'] = $filename;
 
     $where = array(
         'c_message_id' => intval($c_message_id),
@@ -770,9 +771,9 @@ function db_message_search_c_message($c_member_id, $page, $page_size, $keyword, 
 
     foreach ($c_message_list as $key => $value) {
         if ($box == 'inbox' || !$box) {
-            $c_member = db_common_c_member4c_member_id_LIGHT($value['c_member_id_from']);
+            $c_member = db_member_c_member4c_member_id_LIGHT($value['c_member_id_from']);
         } else {
-            $c_member = db_common_c_member4c_member_id_LIGHT($value['c_member_id_to']);
+            $c_member = db_member_c_member4c_member_id_LIGHT($value['c_member_id_to']);
         }
         $c_message_list[$key]['nickname'] = $c_member['nickname'];
         $c_message_list[$key]['image_filename'] = $c_member['image_filename'];
@@ -826,7 +827,7 @@ function db_message_c_message_sender_list4c_member_id($c_member_id)
     $c_message_list = db_get_all($sql, $params);
 
     foreach ($c_message_list as $key => $value) {
-        $c_member = db_common_c_member4c_member_id_LIGHT($value['c_member_id_from']);
+        $c_member = db_member_c_member4c_member_id_LIGHT($value['c_member_id_from']);
         $c_message_list[$key]['nickname'] = $c_member['nickname'];
     }
     return $c_message_list;
@@ -840,7 +841,7 @@ function db_message_c_message_receiver_list4c_member_id($c_member_id)
     $where = "c_member_id_from = ?".
             " AND is_deleted_from = 0" .
             " AND is_send = 1";
-    
+
     if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
         $sql = "SELECT c_member_id_to" .
                 " FROM" .
@@ -861,7 +862,7 @@ function db_message_c_message_receiver_list4c_member_id($c_member_id)
     $c_message_list = db_get_all($sql, $params);
 
     foreach ($c_message_list as $key => $value) {
-        $c_member = db_common_c_member4c_member_id_LIGHT($value['c_member_id_to']);
+        $c_member = db_member_c_member4c_member_id_LIGHT($value['c_member_id_to']);
         $c_message_list[$key]['nickname'] = $c_member['nickname'];
     }
     return $c_message_list;
@@ -870,7 +871,7 @@ function db_message_c_message_receiver_list4c_member_id($c_member_id)
 
 /**
  * メッセージページの「各月のメッセージ」用
- * 
+ *
  * メッセージを最初に書いた月からスタートしてみる
  */
 function db_message_month_list4c_member_id($c_member_id, $box)

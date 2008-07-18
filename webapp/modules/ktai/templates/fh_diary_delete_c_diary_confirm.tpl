@@ -4,10 +4,10 @@
 <font color="#({$ktai_color_config.font_05})"><a name="top">({$target_c_diary.subject})</a></font><br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
-<font color="#({$ktai_color_config.color_24})">日記の削除</font><br>
+<font color="#({$ktai_color_config.color_24})">({$WORD_DIARY_HALF})の削除</font><br>
 </td></tr></table>
 
-この日記を本当に削除しますか?<br>
+この({$WORD_DIARY_HALF})を本当に削除しますか?<br>
 
 <hr color="#({$ktai_color_config.border_01})">
 <center>

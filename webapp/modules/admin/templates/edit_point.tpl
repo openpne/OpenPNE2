@@ -19,7 +19,7 @@
 <td>({$item.c_member_id})</td>
 </tr>
 <tr>
-<th>ニックネーム</th>
+<th>({$WORD_NICKNAME})</th>
 <td><a href="({t_url _absolute=1 m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})" target="_blank">({$item.nickname})</a></td>
 </tr>
 <tr>

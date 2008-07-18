@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2007 OpenPNE Project
+ * @copyright 2005-2008 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -14,7 +14,7 @@ class admin_page_blacklist_delete_confirm extends OpenPNE_Action
         }
 
         $this->set('blacklist', $c_black_list);
-        
+
         return 'success';
     }
 }

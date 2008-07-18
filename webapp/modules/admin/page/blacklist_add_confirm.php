@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright 2005-2007 OpenPNE Project
+ * @copyright 2005-2008 OpenPNE Project
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
@@ -23,11 +23,11 @@ class admin_page_blacklist_add_confirm extends OpenPNE_Action
         if ($c_member_id) {
             $c_member = db_member_c_member4c_member_id($c_member_id, true);
         }
-        
+
         $this->set('easy_access_id', $requests['easy_access_id']);
         $this->set('info', $requests['info']);
         $this->set('member', $c_member);
-        
+
         return 'success';
     }
 }
