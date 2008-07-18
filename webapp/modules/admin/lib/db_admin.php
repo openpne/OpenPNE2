@@ -2468,14 +2468,13 @@ function monitor_new_topic_list($page_size, $page)
         $where = ''; 
     } 
 
-    $select = 'SELECT c.name AS commu_name, c.image_filename AS commu_image,'
-            . ' ct.*, ct.r_datetime AS max_datetime';
+    $select = 'SELECT c.name AS commu_name, c.image_filename AS commu_image, ct.*';
     $from   = ' FROM c_commu AS c, c_commu_topic AS ct, c_commu_topic_comment AS ctc';
     $params = array();
     $where  = ' WHERE ct.c_commu_topic_id = ctc.c_commu_topic_id'
             . ' AND c.c_commu_id = ct.c_commu_id';
     $group  = ' GROUP BY ct.c_commu_topic_id';
-    $order  = ' ORDER BY max_datetime DESC';
+    $order  = ' ORDER BY ct.u_datetime DESC';
 
     $sql = $select . $from . $where . $group . $order;
 
