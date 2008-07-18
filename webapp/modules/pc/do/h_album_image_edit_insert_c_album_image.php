@@ -46,7 +46,6 @@ class pc_do_h_album_image_edit_insert_c_album_image extends OpenPNE_Action
             if (!list($filename, $filesize_1) = image_insert_c_image_album4tmp("a_{$target_c_album_id}_1", $tmpfile_1)) {
                 $this->handleError(array('写真が登録できませんでした'));
             }
-            $filesize_1 = filesize($img_tmp_dir_path . basename($tmpfile_1));
         }
         
         // 写真データ一時ファイル削除
