@@ -571,40 +571,32 @@ function image_insert_c_image_album4tmp($prefix, $tmpfile)
         $img_tmp_dir_path = OPENPNE_VAR_DIR . '/tmp/';
         $filepath = $img_tmp_dir_path . basename($tmpfile);
 
-        if (db_image_insert_c_image_album2($filename, $filepath)) {
-            return $filename;
+        if (!is_readable($filepath)) {
+            return false;
         }
+
+        $filesize = filesize($filepath);
+        $fp = fopen($filepath, 'rb');
+        $bin = fread($fp, $filesize);
+        fclose($fp);
+
+        // 写真かどうかのチェック
+        if (!@imagecreatefromstring($bin)) {
+            return false;
+        }
+
+        $bin = base64_encode($bin);
     } else {
         $c_tmp_image = db_image_c_tmp_image4filename($tmpfile);
-
-        $params = array(
-            'filename' => $filename,
-            'bin' => $c_tmp_image['bin'],
-            'r_datetime' => db_now(),
-            'type' => '',
-        );
-
-        $db =& db_get_instance('image');
-        if ($db->insert("c_image", $params)) {
-            return $filename;
-        }
+        $bin = $c_tmp_image['bin'];
+        $filesize = strlen($bin);
     }
+
+    if (db_image_insert_c_image_album($filename, $bin)) {
+        return array($filename, $filesize);
+    }
+
     return false;
-}
-
-function db_image_insert_c_image_album2($filename, $filepath)
-{
-    if (!is_readable($filepath)) return false;
-
-    $fp = fopen($filepath, 'rb');
-    $image_data = fread($fp, filesize($filepath));
-    fclose($fp);
-
-    // 写真かどうかのチェック
-    if (!@imagecreatefromstring($image_data)) return false;
-
-    //TODO:typeフィールドを使う
-    return db_image_insert_c_image_album($filename, $image_data,$size);
 }
 
 function db_image_insert_c_image_album($filename, $bin, $type = '')
@@ -613,7 +605,7 @@ function db_image_insert_c_image_album($filename, $bin, $type = '')
 
     $data = array(
         'filename'   => $filename,
-        'bin'        => base64_encode($bin),
+        'bin'        => $bin,
         'type'       => $type,
         'r_datetime' => db_now(),
     );

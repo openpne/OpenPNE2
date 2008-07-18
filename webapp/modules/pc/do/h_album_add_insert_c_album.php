@@ -34,8 +34,8 @@ class pc_do_h_album_add_insert_c_album extends OpenPNE_Action
         $c_member_id = $u;
         $c_album_id = db_album_insert_c_album($c_member_id, $subject, $description, $public_flag);
        
-        if($tmpfile){
-            $filename = image_insert_c_image_album4tmp("a_{$c_album_id}_1", $tmpfile);
+        if ($tmpfile) {
+            $filename = image_insert_c_image4tmp("a_{$c_album_id}_1", $tmpfile);
 
             $sessid = session_id();
             t_image_clear_tmp($sessid);
