@@ -10,7 +10,7 @@ function smarty_function_t_assign_sns_new_topic($params, &$smarty)
         return array();
     }
 
-    $result = array_shift(monitor_new_topic_list(5, 1));
+    $result = monitor_new_topic_list(5);
 
     $smarty->assign($params['var'], $result);
 }
