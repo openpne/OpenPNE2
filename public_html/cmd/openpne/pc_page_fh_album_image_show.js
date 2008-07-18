@@ -7,6 +7,11 @@ function url2cmd(url, target_c_member_id)
     var openpne_url = RegExp.$1;
     var target_c_album_image_id = RegExp.$2;
 
+    var request_headers = [];
+    if (Prototype.Browser.IE) {
+        request_headers.push('If-Modified-Since', 'Thu, 01 Jun 1970 00:00:00 GMT');
+    }
+
     var xml_url = openpne_url + "?m=pc&a=page_fh_album_image_show_output_xml&target_c_album_image_id=" + target_c_album_image_id;
     new Ajax.Request(xml_url, {
         asynchronous : false ,
@@ -39,6 +44,6 @@ function url2cmd(url, target_c_member_id)
             pne_url2a(url);
         },
 
-        requestHeaders: ['If-Modified-Since', 'Thu, 01 Jun 1970 00:00:00 GMT']
+        requestHeaders: request_headers
     });
 }
