@@ -97,7 +97,7 @@
 
 ({strip})
 ({if $profile.form_type == 'text'})
-	<input type="text" class="input_text" name="profile[({$profile.name})]" value="({$profs.profile[$profile.name].value})" size="30" />
+	<input type="text" class="input_text" name="profile[({$profile.name})]" value="({$profs.profile[$profile.name]})" size="30" />
 ({elseif $profile.form_type == 'textlong'})
 	<input type="text" class="input_text input_text_long" name="profile[({$profile.name})]" value="({$profs.profile[$profile.name]})" size="60" />
 ({elseif $profile.form_type == 'textarea'})
