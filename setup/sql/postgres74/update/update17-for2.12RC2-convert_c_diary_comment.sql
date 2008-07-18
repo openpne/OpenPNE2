@@ -8,8 +8,8 @@ CREATE TABLE tmp_c_diary_comment_log (
   PRIMARY KEY (c_diary_comment_log_id)
 );
 
-INSERT INTO c_diary_comment_log (c_diary_comment_log_id, c_member_id, c_diary_id, r_datetime)
-  (SELECT nextval('c_diary_comment_log_c_diary_comment_log_id_seq'), c_member_id, c_diary_id, MAX(r_datetime) AS r_datetime
+INSERT INTO tmp_c_diary_comment_log (c_diary_comment_log_id, c_member_id, c_diary_id, r_datetime)
+  (SELECT nextval('tmp_c_diary_comment_log_c_diary_comment_log_id_seq'), c_member_id, c_diary_id, MAX(r_datetime) AS r_datetime
     FROM c_diary_comment
     GROUP BY c_member_id, c_diary_id
     ORDER BY r_datetime);
