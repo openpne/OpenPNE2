@@ -43,8 +43,9 @@ class pc_do_h_album_image_add_insert_c_album_image extends OpenPNE_Action
 
             if ($tmpfile) {
                 $description = $requests['image_description' . $i];
-                $filename = image_insert_c_image_album4tmp("a_{$target_c_album_id}_{$i}", $tmpfile);
-                $filesize = filesize($img_tmp_dir_path . basename($tmpfile));
+                if (!list($filename, $filesize) = image_insert_c_image_album4tmp("a_{$target_c_album_id}_{$i}", $tmpfile)) {
+                    continue;
+                }
 
                 // 説明文が空の場合はファイル名を挿入する
                 if (!$description) {
