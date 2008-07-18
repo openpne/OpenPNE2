@@ -74,7 +74,7 @@
             <div class="innerBox">
 <dl>
 ({foreach from=$new_topic_list item=item})
-    <dt>({$item.max_datetime|date_format:"%m/%d %H:%M"})</dt>
+    <dt>({$item.u_datetime|date_format:"%m/%d %H:%M"})</dt>
     <dd><a href="({t_url _absolute=1 m=pc a=page_c_topic_detail})&amp;target_c_commu_topic_id=({$item.c_commu_topic_id})" target="_blank">({$item.name}) (({$item.count_comments|number_format}))</a> <span class="origin">(<a href="({t_url _absolute=1 m=pc a=page_c_home})&amp;target_c_commu_id=({$item.c_commu_id})" target="_blank">({$item.commu_name})</a>)</span></dd>
 ({/foreach})
 </dl>
