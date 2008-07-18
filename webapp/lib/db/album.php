@@ -584,11 +584,9 @@ function image_insert_c_image_album4tmp($prefix, $tmpfile)
         if (!@imagecreatefromstring($bin)) {
             return false;
         }
-
-        $bin = base64_encode($bin);
     } else {
         $c_tmp_image = db_image_c_tmp_image4filename($tmpfile);
-        $bin = $c_tmp_image['bin'];
+        $bin = base64_decode($c_tmp_image['bin']);
         $filesize = strlen($bin);
     }
 
@@ -605,7 +603,7 @@ function db_image_insert_c_image_album($filename, $bin, $type = '')
 
     $data = array(
         'filename'   => $filename,
-        'bin'        => $bin,
+        'bin'        => base64_encode($bin),
         'type'       => $type,
         'r_datetime' => db_now(),
     );
