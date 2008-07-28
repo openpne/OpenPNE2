@@ -563,7 +563,6 @@ function do_h_review_edit_update_c_review_comment($c_review_comment_id, $body, $
     $data = array(
         'body' => $body,
         'satisfaction_level' => intval($satisfaction_level),
-        'r_datetime' => db_now(),
     );
     $where = array('c_review_comment_id' => intval($c_review_comment_id));
     return db_update('c_review_comment', $data, $where);
