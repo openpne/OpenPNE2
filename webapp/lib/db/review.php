@@ -15,7 +15,7 @@ function db_review_c_review_list4member($c_member_id, $count = 10)
 
 function db_review_c_friend_review_list4c_member_id($c_member_id, $limit)
 {
-    $friends = db_friend_c_member_id_list($c_member_id);
+    $friends = db_friend_c_member_id_list($c_member_id, true);
     if (!$friends) {
         return array();
     }
