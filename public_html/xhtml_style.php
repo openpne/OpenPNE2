@@ -1651,6 +1651,14 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 .bizSideTodoList td.state {
 	width: 35px;
 }
+#Body .bizSideTodoList td.state1 {
+	border-left: 4px solid #ff0000;
+	width: 35px;
+}
+#Body .bizSideTodoList td.state2 {
+	border-left: 4px solid #ff8080;
+	width: 35px;
+}
 .bizSideTodoList td.operation {
 	width: 16px;
 }
