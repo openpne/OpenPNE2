@@ -21,6 +21,7 @@ function url2cmd(url, target_c_member_id)
         onSuccess: function(obj) {
             var c_album = obj.responseXML.firstChild;
             var c_member = c_album.getElementsByTagName('c_member')[0];
+            var word_my_friend = c_album.getElementsByTagName('word_my_friend')[0].firstChild.nodeValue;
 
             if (target_c_member_id != c_member.getElementsByTagName('c_member_id')[0].firstChild.nodeValue) {
                 pne_url2a(url);
@@ -41,7 +42,7 @@ function url2cmd(url, target_c_member_id)
                 public_flag = "(全員に公開)";
                 break;
             case 'friend' :
-                public_flag += "(マイフレンドに公開)";
+                public_flag += "(" + word_my_friend + "に公開)";
                 break;
             case 'private' :
                 public_flag += "(公開しない)";
