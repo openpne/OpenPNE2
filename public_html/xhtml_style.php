@@ -1270,15 +1270,14 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 	float: left;
 	display: block;
 	width: 110px;
-	margin-top: 5px;
-	padding: 0 5px;
+	padding: 5px;
+	border-right: 1px solid #cccccc;
 }
 .searchResultList tr.operation span.moreInfo{
 	zoom: 1;
 	display: block;
-	margin-left: 120px;
+	margin-left: 121px;
 	padding: 4px 0 3px;
-	border-left: 1px solid #<?php echo $colors[1]; ?>;
 	text-align: center;
 }
 .searchResultList div.operation {
