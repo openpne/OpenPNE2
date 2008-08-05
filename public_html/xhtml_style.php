@@ -1223,11 +1223,6 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
         width: 33%;
         text-align: right;
 }
-.commentList dd div.title p.public {
-	position: absolute;
-	top: 0;
-	right: 0;
-}
 .commentList dd ul.photo {
 	padding: 5px 5px 0;
 }
