@@ -1202,12 +1202,25 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 	padding: 4px 3px;
 }
 .commentList dd div.title {
-	zoom: 1;
-	position: relative;
+    padding: 4px 3px;
 	border-top: none;
 }
-.commentList dd div.title p.heading {
-	margin-right: 10.5em;
+.commentList dd div title p {
+        padding: 0;
+}
+#pc_page_fh_diary_list .commentList dd div.title {
+        zoom: 1;
+        overflow: hidden;
+        overflow: -moz-scrollbars-none;
+}
+#pc_page_fh_diary_list .commentList dd div.title p.heading {
+	    float: left;
+        width: 66%;
+}
+#pc_page_fh_diary_list .commentList dd div.title p.public {
+        float: right;
+        width: 33%;
+        text-align: right;
 }
 .commentList dd div.title p.public {
 	position: absolute;
