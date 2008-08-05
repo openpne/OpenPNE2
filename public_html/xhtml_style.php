@@ -774,6 +774,7 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 .diaryDetailBox .partsHeading p.public {
 	position: absolute;
 	right: 3px;
+    bottom: 2px;
 }
 .diaryDetailBox dl {
 	zoom: 1;
