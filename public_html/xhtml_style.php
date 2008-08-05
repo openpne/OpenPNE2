@@ -247,6 +247,7 @@ div#LayoutC {
 	zoom: 1;
 	overflow: hidden;
 	overflow: -moz-scrollbars-none;
+    margin-bottom: 10px;
 }
 #Left,
 #Center {
