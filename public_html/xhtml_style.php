@@ -247,7 +247,7 @@ div#LayoutC {
 	zoom: 1;
 	overflow: hidden;
 	overflow: -moz-scrollbars-none;
-    margin-bottom: 10px;
+	margin-bottom: 10px;
 }
 #Left,
 #Center {
@@ -774,7 +774,7 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 .diaryDetailBox .partsHeading p.public {
 	position: absolute;
 	right: 3px;
-    bottom: 2px;
+	bottom: 2px;
 }
 .diaryDetailBox dl {
 	zoom: 1;
@@ -1203,25 +1203,25 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 	padding: 4px 3px;
 }
 .commentList dd div.title {
-    padding: 4px 3px;
+	padding: 4px 3px;
 	border-top: none;
 }
 .commentList dd div.title p {
-        padding: 0;
+	padding: 0;
 }
 #pc_page_fh_diary_list .commentList dd div.title {
-        zoom: 1;
-        overflow: hidden;
-        overflow: -moz-scrollbars-none;
+	zoom: 1;
+	overflow: hidden;
+	overflow: -moz-scrollbars-none;
 }
 #pc_page_fh_diary_list .commentList dd div.title p.heading {
-	    float: left;
-        width: 66%;
+	float: left;
+	width: 66%;
 }
 #pc_page_fh_diary_list .commentList dd div.title p.public {
-        float: right;
-        width: 33%;
-        text-align: right;
+	float: right;
+	width: 33%;
+	text-align: right;
 }
 .commentList dd ul.photo {
 	padding: 5px 5px 0;
