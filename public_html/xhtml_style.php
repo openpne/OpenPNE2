@@ -1281,7 +1281,7 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 	display: block;
 	width: 110px;
 	padding: 5px;
-	border-right: 1px solid #cccccc;
+	border-right: 1px solid #<?php echo $colors[1]; ?>;
 }
 .searchResultList tr.operation span.moreInfo{
 	zoom: 1;
