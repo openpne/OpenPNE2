@@ -1657,7 +1657,8 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 .bizSideTodoList tr.checked {
 	color: #999999;
 }
-.bizSideTodoList td.state {
+#Body .bizSideTodoList td.state {
+	border-left: 4px solid transparent;
 	width: 35px;
 }
 #Body .bizSideTodoList td.state1 {
