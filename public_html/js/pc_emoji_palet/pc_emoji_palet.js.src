@@ -153,12 +153,7 @@ function putEmojiToSelf(emoji) {
         }
     }
 
-    var selection = new Selection(elm);
-    var pos = selection.create(); 
-
-    var head = elm.value.substring(0, pos.start);
-    var tail = elm.value.substring(pos.end, elm.value.length);
-    elm.value =  head + emoji + tail;
+    pne_insert_str_to_selection(elm, emoji);
 }
 
 // パレット表示切り替え
