@@ -53,7 +53,9 @@ class pc_do_o_login extends OpenPNE_Action
             $this->_fail_login();
         }
 
-        db_member_do_access($c_member_id);
+        if (!db_member_is_login_rejected($c_member_id)) {
+            db_member_do_access($c_member_id);
+        }
         db_api_update_token($c_member_id);
 
         $url = OPENPNE_URL;
