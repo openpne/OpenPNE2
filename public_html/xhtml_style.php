@@ -1800,9 +1800,17 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 	line-height: 1.3;
 }
 .homeMainTable ul.articleList li {
-	padding-left: 85px;
-	background: url(<?php echo getSkin('icon_1'); ?>) 3px 0.4em no-repeat scroll;
-	text-indent: -72px;
+    padding-left: 85px;
+    text-indent: -72px;
+}
+.homeMainTable ul.articleList li.icon1 {
+    background: url(<?php echo getSkin('icon_1'); ?>) 3px 0.4em no-repeat scroll;
+}
+.homeMainTable ul.articleList li.icon2 {
+    background: url(<?php echo getSkin('icon_2'); ?>) 3px 0.4em no-repeat scroll;
+}
+.homeMainTable ul.articleList li.icon3 {
+    background: url(<?php echo getSkin('icon_3'); ?>) 3px 0.4em no-repeat scroll;
 }
 .homeMainTable ul.articleList li span.date {
 	padding-right: 18px;
