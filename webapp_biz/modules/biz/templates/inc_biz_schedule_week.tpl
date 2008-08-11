@@ -157,7 +157,7 @@
 <img src="./skin/dummy.gif" alt="dummy" style="width:130px;height:10px;" class="dummy">
 
 ({if $cmd == "s_list"})
-<img src="({t_img_url filename=$list.image_filename w=120 h=120 noimg=no_image})" class="pict" alt="写真" style="margin:2px"></a>
+<img src="({t_img_url filename=$list.image_filename w=120 h=120 noimg=no_image})" class="pict" alt="写真" style="margin:2px">
 ({else})
 <a href="({t_url m=pc a=page_f_home})&target_c_member_id=({$member_info.c_member_id})"><img src="({t_img_url filename=$member_info.image_filename w=120 h=120 noimg=no_image})" class="pict" alt="写真" style="margin:2px"></a>
 ({/if})
