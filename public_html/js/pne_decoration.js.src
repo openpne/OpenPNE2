@@ -62,8 +62,16 @@ function pne_mce_insert_tagname(id, tagname, opt)
         return;
     }
 
+
+    var selection = new Selection(elm);
+    var pos = selection.create();
+    elm.focus();
+
     var replace = "<" + tagname + opt + ">" + elm.value.substring(pos.start, pos.end) + "</" + tagname + ">";
-    pne_insert_str_to_selection(elm, replace);
+
+    var head = elm.value.substring(0, pos.start);
+    var tail = elm.value.substring(pos.end, elm.value.length);
+    elm.value =  head + replace + tail;
 }
 
 function pne_mce_show_color_table(id, tagname)
