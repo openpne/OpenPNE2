@@ -62,7 +62,9 @@ class ktai_do_o_login extends OpenPNE_Action
             openpne_redirect('ktai', 'page_o_login', $p);
         }
 
-        db_member_do_access($c_member_id);
+        if (!db_member_is_login_rejected($c_member_id)) {
+            db_member_do_access($c_member_id);
+        }
 
         // ログイン後のリダイレクト先を決定する
         $a = '';
