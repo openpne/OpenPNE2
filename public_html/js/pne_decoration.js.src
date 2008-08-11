@@ -56,9 +56,6 @@ function pne_mce_insert_tagname(id, tagname, opt)
     var opt = opt || "";
 
     var elm = document.getElementById(id);
-    var selection = new Selection(elm);
-
-    var pos = selection.create(); 
 
     if (tagname == "op:color" && !opt) {
         pne_mce_show_color_table(id, tagname);
@@ -66,9 +63,7 @@ function pne_mce_insert_tagname(id, tagname, opt)
     }
 
     var replace = "<" + tagname + opt + ">" + elm.value.substring(pos.start, pos.end) + "</" + tagname + ">";
-    var head = elm.value.substring(0, pos.start);
-    var tail = elm.value.substring(pos.end, elm.value.length);
-    elm.value =  head + replace + tail;
+    pne_insert_str_to_selection(elm, replace);
 }
 
 function pne_mce_show_color_table(id, tagname)
@@ -171,5 +166,16 @@ function pne_mce_hide_color_table(e)
     var table = document.getElementById("mce_editor_color_table")
     table.style.display = 'none';
     Event.stopObserving(document, 'mousedown', pne_mce_hide_color_table);
+}
+
+function pne_insert_str_to_selection(elm, str)
+{
+    var selection = new Selection(elm);
+    var pos = selection.create();
+    elm.focus();
+
+    var head = elm.value.substring(0, pos.start);
+    var tail = elm.value.substring(pos.end, elm.value.length);
+    elm.value =  head + str + tail;
 }
 
