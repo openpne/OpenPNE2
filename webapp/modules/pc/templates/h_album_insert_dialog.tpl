@@ -7,6 +7,7 @@
 <meta http-equiv="Content-Script-Type" content="text/javascript" />
 <script type="text/javascript" src="./js/Selection.js?r7140"></script>
 <script type="text/javascript" src="./js/tiny_mce/tiny_mce_popup.js?r7140"></script>
+<script type="text/javascript" src="./js/pne_decoration.js"></script>
 <title>({$INC_HEADER_title})</title>
 ({t_url_style})
 <script type="text/javascript">
@@ -20,13 +21,7 @@ function insertAlbumURLToTextarea(album_id) {
     if (elm.style.display == "none") {
         tinyMCEPopup.execCommand('mceInsertContent', false, replace);
     } else {
-        var selection = new Selection(elm);
-
-        var pos = selection.create(); 
-
-        var head = elm.value.substring(0, pos.start);
-        var tail = elm.value.substring(pos.end, elm.value.length);
-        elm.value =  head + replace + tail;
+        pne_insert_str_to_selection(elm, replace);
     }
 }
 //]]>
