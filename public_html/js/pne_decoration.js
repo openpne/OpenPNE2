@@ -5,8 +5,8 @@ if(editor.isHidden()&&previewmode_checked){editor.show();document.getElementById
 function pne_mce_editor_init()
 {tinyMCE.init({mode:"textareas",theme:"advanced",editor_selector:"mceEditor_dummy_selector",plugins:"openpne",theme_advanced_toolbar_location:"top",theme_advanced_toolbar_align:"left",theme_advanced_buttons1:"op_b,op_u,op_s,op_i,op_large,op_small,op_color,op_image,op_emoji_docomo,op_emoji_au,op_emoji_softbank,op_cmd",theme_advanced_buttons2:"",theme_advanced_buttons3:"",valid_elements:"b/strong,u,s/strike,i,font[color|size],br",forced_root_block:false,force_p_newlines:false,force_br_newlines:true,inline_styles:false,language:"ja",entity_encoding:"raw",remove_linebreaks:false,custom_undo_redo_levels:0,custom_undo_redo:false});var textmode_checkbox=document.getElementById("mce_editor_mode_changer_1");var previewmode_checkbox=document.getElementById("mce_editor_mode_changer_2");if(previewmode_checkbox.checked){textmode_checkbox.checked=true;previewmode_checkbox.checked=false;}}
 function pne_mce_insert_tagname(id,tagname,opt)
-{var opt=opt||"";var elm=document.getElementById(id);var selection=new Selection(elm);var pos=selection.create();if(tagname=="op:color"&&!opt){pne_mce_show_color_table(id,tagname);return;}
-var replace="<"+tagname+opt+">"+elm.value.substring(pos.start,pos.end)+"</"+tagname+">";var head=elm.value.substring(0,pos.start);var tail=elm.value.substring(pos.end,elm.value.length);elm.value=head+replace+tail;}
+{var opt=opt||"";var elm=document.getElementById(id);if(tagname=="op:color"&&!opt){pne_mce_show_color_table(id,tagname);return;}
+var selection=new Selection(elm);var pos=selection.create();elm.focus();var replace="<"+tagname+opt+">"+elm.value.substring(pos.start,pos.end)+"</"+tagname+">";var head=elm.value.substring(0,pos.start);var tail=elm.value.substring(pos.end,elm.value.length);elm.value=head+replace+tail;}
 function pne_mce_show_color_table(id,tagname)
 {var table=document.getElementById("mce_editor_color_table")
 if(table){if(table.style.display=='none'){table.style.display='block';Event.observe(document,'mousedown',pne_mce_hide_color_table);}else{pne_mce_hide_color_table();}
@@ -18,3 +18,5 @@ function pne_mce_hide_color_table(e)
 {if(e&&Element.hasClassName(e.element(),'disabledHideColorTable')){return;}
 var table=document.getElementById("mce_editor_color_table")
 table.style.display='none';Event.stopObserving(document,'mousedown',pne_mce_hide_color_table);}
+function pne_insert_str_to_selection(elm,str)
+{var selection=new Selection(elm);var pos=selection.create();elm.focus();var head=elm.value.substring(0,pos.start);var tail=elm.value.substring(pos.end,elm.value.length);elm.value=head+str+tail;}

@@ -13,7 +13,7 @@ if(useSb){createEmojiPalletSoftBank();}}else{document.write('<a href="javascript
 document.write('</div>');}
 function emojiPallet(i,career,target){var src="./skin/default/img/emoji/"+career+"/"+career+i+".gif";var alt="["+career+":"+i+"]";if(target){var doc=document;var div=doc.getElementById(target);var img=doc.createElement("img");img.setAttribute("src",src);img.setAttribute("alt",alt);img.onclick=function(){putEmojiToSelf(alt)};div.appendChild(img);}else{var onclick="putEmojiToSelf('["+career+":"+i+"]')";document.write('<img src="'+src+'" alt="'+alt+'" onclick="'+onclick+'">');}}
 function putEmojiToSelf(emoji){var body=document.getElementsByName("body");for(var i=0;i<body.length;i++){if(body[i].nodeName.toLowerCase()=='textarea'){var elm=body[i];break;}}
-var selection=new Selection(elm);var pos=selection.create();var head=elm.value.substring(0,pos.start);var tail=elm.value.substring(pos.end,elm.value.length);elm.value=head+emoji+tail;}
+pne_insert_str_to_selection(elm,emoji);}
 function togglePallet(pallet){if($(pallet).style.display=="none"){if(!Element.hasClassName(pallet,'isLoadEmojiImage')){Element.addClassName(pallet,"processLoadEmojiImage");var carrier='';if(pallet=='epDocomo'){carrier='docomo';}
 if(pallet=='epAu'){carrier='au';}
 if(pallet=='epSb'){carrier='softbank';}
