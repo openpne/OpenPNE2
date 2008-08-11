@@ -47,6 +47,7 @@ class pc_page_h_album_image_edit_confirm extends OpenPNE_Action
             1 => '',
         );
 
+        $filesize_all = 0;
         foreach ($upfiles as $key => $upfile) {
             if ($upfile['error'] !== UPLOAD_ERR_NO_FILE) {
                 if (!($image = t_check_image($upfile))) {
@@ -55,8 +56,25 @@ class pc_page_h_album_image_edit_confirm extends OpenPNE_Action
                     exit;
                 } else {
                     $tmpfiles[$key] = t_image_save2tmp($upfile, $sessid, "a_{$target_c_album_id}_{$key}", $image['format']);
+                    $filesize_all += $upfile['size'];
                 }
             }
+        }
+
+        if (!db_album_is_insertable4c_member_id($u, $filesize_all)) {
+            t_image_clear_tmp($sessid);
+            $msg = 'これ以上写真を投稿することができません。';
+            if (!db_album_is_insertable4c_member_id($u)) {
+                $msg .= '登録済みの写真を削除してからやり直してください。';
+            } else {
+                $msg .= 'ファイルサイズを変更してやり直してください。';
+            }
+            $p = array(
+                'msg' => $msg,
+                'target_c_album_id' => $target_c_album_id,
+                'target_c_album_image_id' => $target_c_album_image_id
+            );
+            openpne_redirect('pc', 'page_h_album_image_edit', $p);
         }
 
         $this->set('inc_navi', fetch_inc_navi("h"));
