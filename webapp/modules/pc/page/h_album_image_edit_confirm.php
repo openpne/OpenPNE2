@@ -47,21 +47,19 @@ class pc_page_h_album_image_edit_confirm extends OpenPNE_Action
             1 => '',
         );
 
-        $filesize_all = 0;
-        foreach ($upfiles as $key => $upfile) {
-            if ($upfile['error'] !== UPLOAD_ERR_NO_FILE) {
-                if (!($image = t_check_image($upfile))) {
-                    $_REQUEST['msg'] = '写真は'.IMAGE_MAX_FILESIZE.'KB以内のGIF・JPEG・PNGにしてください';
-                    openpne_forward('pc', 'page', 'h_album_image_edit');
-                    exit;
-                } else {
-                    $tmpfiles[$key] = t_image_save2tmp($upfile, $sessid, "a_{$target_c_album_id}_{$key}", $image['format']);
-                    $filesize_all += $upfile['size'];
-                }
+        if ($upfiles[1]['error'] !== UPLOAD_ERR_NO_FILE) {
+            if (!($image = t_check_image($upfiles[1]))) {
+                $_REQUEST['msg'] = '写真は'.IMAGE_MAX_FILESIZE.'KB以内のGIF・JPEG・PNGにしてください';
+                openpne_forward('pc', 'page', 'h_album_image_edit');
+                exit;
             }
+            $tmpfiles[1] = t_image_save2tmp($upfiles[1], $sessid, "a_{$target_c_album_id}_1", $image['format']);
+
+            // 置き換えたときのファイルサイズを出すために、追加ファイルサイズから置き換わるファイルサイズを減算
+            $filesize = $upfiles[1]['size'] - $c_album_image['filesize'];
         }
 
-        if (!db_album_is_insertable4c_member_id($u, $filesize_all)) {
+        if (!db_album_is_insertable4c_member_id($u, $filesize)) {
             t_image_clear_tmp($sessid);
             $msg = 'これ以上写真を投稿することができません。';
             if (!db_album_is_insertable4c_member_id($u)) {
