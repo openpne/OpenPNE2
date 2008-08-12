@@ -524,6 +524,12 @@ function db_common_delete_c_member($c_member_id)
     $sql = 'DELETE FROM c_diary WHERE c_member_id = ?';
     db_query($sql, $single);
 
+    ///アルバム関連
+    $sql = 'SELECT c_album_id FROM c_album WHERE c_member_id = ?';
+    $c_album_id_list = db_get_col($sql, $single, 'main');
+    foreach ($c_album_id_list as $c_album_id) {
+        db_album_delete_c_album($c_album_id);
+    }
 
     ///メンバー関連
     // c_member_pre
@@ -554,9 +560,11 @@ function db_common_delete_c_member($c_member_id)
     db_image_data_delete($c_member['image_filename_2']);
     db_image_data_delete($c_member['image_filename_3']);
 
+    // c_member (メンバー情報)
     $sql = 'DELETE FROM c_member WHERE c_member_id = ?';
     db_query($sql, $single);
 
+    // c_username
     $sql = 'DELETE FROM c_username WHERE c_member_id = ?';
     db_query($sql, $single);
 }
