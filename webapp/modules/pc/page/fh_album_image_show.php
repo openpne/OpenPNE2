@@ -35,14 +35,19 @@ class pc_page_fh_album_image_show extends OpenPNE_Action
         if (!p_common_is_active_c_album_id($target_c_album_id)) {
             openpne_redirect('pc', 'page_h_err_fh_album');
         }
-        
+
         $target_c_album = db_album_get_c_album4c_album_id($target_c_album_id);
         $target_c_member_id = $target_c_album['c_member_id']; 
-        
+
         if ($target_c_member_id == $u) {
             $type = 'h';
         } else {
             $type = 'f';
+
+            // メンバーが存在しない
+            if (!db_member_c_member4c_member_id($target_c_member_id)) {
+                openpne_redirect('pc', 'page_h_err_fh_album');
+            }
 
             //check public flag
             if (!pne_check_album_public_flag($target_c_album_id, $u)) {
