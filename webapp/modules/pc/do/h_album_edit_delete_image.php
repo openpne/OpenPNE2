@@ -25,7 +25,6 @@ class pc_do_h_album_edit_delete_image extends OpenPNE_Action
             handle_kengen_error();
         }
 
-        db_album_image_data_delete($c_album_image['image_filename']);
         db_album_delete_c_album_image($c_album_image_id);
 
         $p = array('target_c_album_id' => $c_album_image['c_album_id']);
