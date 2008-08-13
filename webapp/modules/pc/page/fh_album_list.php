@@ -32,6 +32,11 @@ class pc_page_fh_album_list extends OpenPNE_Action
             $is_album_admin = false;
             $target_c_member = db_member_c_member4c_member_id($target_c_member_id);
 
+            // メンバーが存在しない
+            if (!$target_c_member) {
+                handle_kengen_error();
+            }
+
             // アクセスブロック
             if (db_member_is_access_block($u, $target_c_member_id)) {
                 openpne_redirect('pc', 'page_h_access_block');
