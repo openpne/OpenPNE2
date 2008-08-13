@@ -45,7 +45,7 @@ class pc_page_fh_album_image_show extends OpenPNE_Action
             $type = 'f';
 
             // メンバーが存在しない
-            if (!db_member_c_member4c_member_id($target_c_member_id)) {
+            if (!db_member_is_active_c_member_id($target_c_member_id)) {
                 openpne_redirect('pc', 'page_h_err_fh_album');
             }
 
