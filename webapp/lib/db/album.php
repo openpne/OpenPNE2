@@ -545,6 +545,10 @@ function db_album_delete_c_album($c_album_id)
  */
 function db_album_delete_c_album_image($c_album_image_id)
 {
+    $sql = 'SELECT image_filename FROM c_album_image WHERE c_album_image_id = ?';
+    $filename = db_get_one($sql, array($c_album_image_id), 'main');
+    db_album_image_data_delete($filename);
+
     $sql = 'DELETE FROM c_album_image WHERE c_album_image_id = ?';
     $params = array(intval($c_album_image_id));
 
