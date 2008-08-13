@@ -29,7 +29,7 @@ class pc_page_fh_album_image_show_output_xml extends OpenPNE_Action
         $target_c_member_id = $c_album['c_member_id'];
         if ($u != $target_c_member_id) {
             // メンバーが存在しない
-            if (!db_member_c_member4c_member_id_LIGHT($target_c_member_id)) {
+            if (!db_member_is_active_c_member_id($target_c_member_id)) {
                 util_send_header_internal_server_error();
             }
 
