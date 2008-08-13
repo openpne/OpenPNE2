@@ -30,6 +30,12 @@ class ktai_page_fh_album extends OpenPNE_Action
 
         $target_c_album = db_album_get_c_album4c_album_id($target_c_album_id);
         $target_c_member_id = $target_c_album['c_member_id'];
+        $target_c_member = db_member_c_member4c_member_id($target_c_member_id);
+
+        // メンバーが存在しない
+        if (!$target_c_member) {
+            $this->handleError();
+        }
 
         if ($target_c_member_id == $u) {
             $type = 'h';
@@ -54,7 +60,7 @@ class ktai_page_fh_album extends OpenPNE_Action
         $this->set('album_info', $target_c_album);
 
         //メンバー情報
-        $this->set("target_member", db_member_c_member4c_member_id($target_c_member_id));
+        $this->set("target_member", $target_c_member);
 
         return 'success';
     }
