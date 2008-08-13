@@ -26,6 +26,11 @@ class pc_page_fh_album_output_xml extends OpenPNE_Action
         $c_album['word_my_friend'] = WORD_MY_FRIEND;
 
         if ($u != $target_c_member_id) {
+            // メンバーが存在しない
+            if (!$c_album['c_member_id']) {
+                util_send_header_internal_server_error();
+            }
+
             // check public_flag
             if (!pne_check_album_public_flag($target_c_album_id, $u)) {
                 util_send_header_internal_server_error();
