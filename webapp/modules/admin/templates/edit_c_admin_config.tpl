@@ -391,6 +391,7 @@
 <h2 id="ttl02"><a name="form">外部ログインフォーム用HTML</a></h2>
 <div class="contents">
 <p class="info">通常のログインページ以外の外部ログインページを設定する場合は、以下のHTMLを使ってログイン用フォームを作成してください。</p>
+
 ({capture name=pc_html_form})
 <form action="({$smarty.const.OPENPNE_URL})" method="post">
 <input type="hidden" name="m" value="pc" />
@@ -403,8 +404,8 @@
 <dd><input type="checkbox" name="is_save" id="is_save" value="1" tabindex="3"><label for="is_save">次回から自動的にログイン</label></dd>
 <dd><input type="submit" value="ログイン" tabindex="4"></dd>
 </dl>
-</form>
-({/capture})
+</form>({/capture})
+
 ({capture name=ktai_html_form})
 <form action="({$smarty.const.OPENPNE_URL})" method="post" utn>
 <input type="hidden" name="m" value="ktai">
@@ -428,34 +429,53 @@
 ({capture name=ktai_html_password})
 <a href="({t_url _html=0 _absolute=1 m=ktai a=page_o_password_query})">&gt;&gt;ﾊﾟｽﾜｰﾄﾞを忘れた方</a>({/capture})
 
+({capture name=pc_html_regist})
+<a href="({t_url _html=0 _absolute=1 m=pc a=page_o_public_invite})">新規登録</a>({/capture})
+
+({capture name=ktai_html_regist})
+新規登録するには以下のﾘﾝｸから、本文を入力せずにﾒｰﾙを送信してください。<br>
+<br>
+<a href="mailto:({$smarty.const.MAIL_ADDRESS_PREFIX})get@({$smarty.const.MAIL_SERVER_DOMAIN})">[i:106]ﾒｰﾙで登録!</a><br>
+<br>
+※かならず利用規約に同意してから登録をおこなってください。<br>
+※ﾄﾞﾒｲﾝ指定受信を設定されている方は、「({$smarty.const.ADMIN_EMAIL})」からのﾒｰﾙを受信できるように指定してください。({/capture})
+
 <dl class="sampleHtml">
 <dt><strong class="item">PC版ログインフォーム</strong></dt>
 <dd><textarea cols="84" rows="14" readonly="readonly">({$smarty.capture.pc_html_form})</textarea></dd>
 </dl>
 
+({if $smarty.const.OPENPNE_AUTH_MODE !== 'slavepne'})
 <dl class="sampleHtml">
 <dt><strong class="item">PC版パスワード再発行ページへのリンク</strong></dt>
 <dd><textarea cols="84" rows="3" readonly="readonly">({$smarty.capture.pc_html_password})</textarea></dd>
 </dl>
 
+({if !$smarty.const.IS_CLOSED_SNS && (($smarty.const.OPENPNE_REGIST_FROM) & ($smarty.const.OPENPNE_REGIST_FROM_PC))})
+<dl class="sampleHtml">
+<dt><strong class="item">PC版新規登録ページへのリンク</strong></dt>
+<dd><textarea cols="84" rows="3" readonly="readonly">({$smarty.capture.pc_html_regist})</textarea></dd>
+</dl>
+({/if})
+({/if})
+
 <dl class="sampleHtml">
 <dt><strong class="item">携帯版ログインフォーム</strong></dt>
-<dd><textarea cols="84" rows="14" readonly="readonly">({$smarty.capture.ktai_html_form})</textarea></dd>
+<dd><textarea cols="84" rows="16" readonly="readonly">({$smarty.capture.ktai_html_form})</textarea></dd>
 </dl>
 
+({if $smarty.const.OPENPNE_AUTH_MODE !== 'slavepne'})
 <dl class="sampleHtml">
 <dt><strong class="item">携帯版パスワード再発行ページへのリンク</strong></dt>
 <dd><textarea cols="84" rows="3" readonly="readonly">({$smarty.capture.ktai_html_password})</textarea></dd>
 </dl>
 
-({if !$smarty.const.IS_CLOSED_SNS})
-({capture name=html_regist})
-<a href="({t_url _html=0 _absolute=1 m=pc a=page_o_public_invite})">新規登録</a>({/capture})
-
+({if !$smarty.const.IS_CLOSED_SNS && (($smarty.const.OPENPNE_REGIST_FROM) & ($smarty.const.OPENPNE_REGIST_FROM_KTAI))})
 <dl class="sampleHtml">
-<dt><strong class="item">新規登録ページへのリンク</strong></dt>
-<dd><textarea cols="84" rows="3" readonly="readonly">({$smarty.capture.html_regist})</textarea></dd>
+<dt><strong class="item">携帯版新規登録メールアドレスへのリンク</strong></dt>
+<dd><textarea cols="84" rows="7" readonly="readonly">({$smarty.capture.ktai_html_regist})</textarea></dd>
 </dl>
-
 ({/if})
+({/if})
+
 ({$inc_footer|smarty:nodefaults})
