@@ -23,16 +23,20 @@ class ktai_page_fh_album_image_list extends OpenPNE_Action
         // target が指定されていない
         if (!$target_c_album_id) {
             openpne_redirect('ktai', 'page_h_err_fh_album');
-            exit;
         }
         // target のアルバムが存在しない
         if (!p_common_is_active_c_album_id($target_c_album_id)) {
             openpne_redirect('ktai', 'page_h_err_fh_album');
-            exit;
         }
 
         $target_c_album = db_album_get_c_album4c_album_id($target_c_album_id);
         $target_c_member_id = $target_c_album['c_member_id'];
+        $target_c_member = db_member_c_member4c_member_id($target_c_member_id);
+
+        // メンバーが存在しない
+        if (!$target_c_member) {
+            openpne_redirect('ktai', 'page_h_err_fh_album');
+        }
 
         if ($target_c_member_id == $u) {
             $type = 'h';
@@ -57,7 +61,7 @@ class ktai_page_fh_album_image_list extends OpenPNE_Action
         $this->set('album_info', $target_c_album);
 
         // メンバー情報
-        $this->set('target_member', db_member_c_member4c_member_id($target_c_member_id));
+        $this->set('target_member', $target_c_member);
 
         // アルバムに登録された写真
         list($album_image_list, $is_prev, $is_next, $total_num) =
