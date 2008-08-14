@@ -16,9 +16,9 @@ class pc_do_h_review_add extends OpenPNE_Action
         $body = $requests['body'];
         $satisfaction_level = $requests['satisfaction_level'];
         // ----------
-        
+
         $c_review_comment = db_review_add_write_c_review_comment4asin_c_member_id($asin, $u);
-        if($c_review_comment) {
+        if ($c_review_comment) {
             $p = array('c_review_id' => $c_review_comment['c_review_id']);
             openpne_redirect('pc', 'page_h_review_list_product', $p);
         }
