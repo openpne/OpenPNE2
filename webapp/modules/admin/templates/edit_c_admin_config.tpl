@@ -435,7 +435,7 @@
 ({capture name=ktai_html_regist})
 新規登録するには以下のﾘﾝｸから、本文を入力せずにﾒｰﾙを送信してください。<br>
 <br>
-<a href="mailto:({$smarty.const.MAIL_ADDRESS_PREFIX})get@({$smarty.const.MAIL_SERVER_DOMAIN})">[i:106]ﾒｰﾙで登録!</a><br>
+<a href="mailto:({$smarty.const.MAIL_ADDRESS_PREFIX})get@({$smarty.const.MAIL_SERVER_DOMAIN})">ﾒｰﾙで登録!</a><br>
 <br>
 ※かならず利用規約に同意してから登録をおこなってください。<br>
 ※ﾄﾞﾒｲﾝ指定受信を設定されている方は、「({$smarty.const.ADMIN_EMAIL})」からのﾒｰﾙを受信できるように指定してください。({/capture})
