@@ -1658,7 +1658,7 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 	color: #999999;
 }
 #Body .bizSideTodoList td.state {
-	border-left: 4px solid transparent;
+	border-left: 4px solid #<?php echo $colors[7]; ?>;
 	width: 35px;
 }
 #Body .bizSideTodoList td.state1 {
