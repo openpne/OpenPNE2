@@ -1804,14 +1804,14 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
     padding-left: 85px;
     text-indent: -72px;
 }
-.homeMainTable ul.articleList li.icon1 {
-    background: url(<?php echo getSkin('icon_1'); ?>) 3px 0.4em no-repeat scroll;
-}
-.homeMainTable ul.articleList li.icon2 {
-    background: url(<?php echo getSkin('icon_2'); ?>) 3px 0.4em no-repeat scroll;
-}
-.homeMainTable ul.articleList li.icon3 {
+.homeMainTable tr ul.articleList li {
     background: url(<?php echo getSkin('icon_3'); ?>) 3px 0.4em no-repeat scroll;
+}
+.homeMainTable tr.diaryList ul.articleList li {
+    background-image: url(<?php echo getSkin('icon_1'); ?>);
+}
+.homeMainTable tr.commentList ul.articleList li {
+    background-image: url(<?php echo getSkin('icon_2'); ?>);
 }
 .homeMainTable ul.articleList li span.date {
 	padding-right: 18px;
