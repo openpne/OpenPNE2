@@ -42,7 +42,7 @@ function url2cmd(url, target_c_member_id)
                 public_flag = "(全員に公開)";
                 break;
             case 'friend' :
-                public_flag += "(" + word_my_friend + "に公開)";
+                public_flag += "(" + word_my_friend + "まで公開)";
                 break;
             case 'private' :
                 public_flag += "(公開しない)";
