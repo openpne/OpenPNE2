@@ -1657,20 +1657,34 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 .bizSideTodoList tr.checked {
 	color: #999999;
 }
-#Body .bizSideTodoList td.state {
-	border-left: 4px solid #<?php echo $colors[7]; ?>;
-	width: 35px;
+.bizSideTodoList td.state {
+	width: 38px;
+	vertical-align: top;
 }
-#Body .bizSideTodoList td.state1 {
-	border-left: 4px solid #ff0000;
-	width: 35px;
+.bizSideTodoList tr.priLow td.state p {
+	padding-left: 4px;
+	border-left: 0;
 }
-#Body .bizSideTodoList td.state2 {
+.bizSideTodoList tr.priMiddle td.state p {
+	padding-left: 0;
 	border-left: 4px solid #ff8080;
-	width: 35px;
+}
+.bizSideTodoList tr.priHigh td.state p {
+	padding-left: 0;
+	border-left: 4px solid #ff0000;
+}
+.bizSideTodoList tr.checked td.state p {
+	padding-left: 4px;
+	border-left: 0;
 }
 .bizSideTodoList td.operation {
 	width: 16px;
+	vertical-align: top;
+}
+.bizSideTodoList td.operation a {
+	display: block;
+	width: 14px;
+	margin-top: 2px;
 }
 
 /*==============================================================================
