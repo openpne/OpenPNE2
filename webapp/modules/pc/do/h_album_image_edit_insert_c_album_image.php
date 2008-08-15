@@ -29,7 +29,8 @@ class pc_do_h_album_image_edit_insert_c_album_image extends OpenPNE_Action
         $image_description = $requests['image_description'];
         $tmpfile_1 = $requests['tmpfile_1'];
         // ----------
-        
+
+        $sessid = session_id();
         $filename = '';
         $c_album_image = db_album_image_get_c_album_image4id($target_c_album_image_id);
         $target_c_album_id = $c_album_image['c_album_id'];
@@ -65,7 +66,6 @@ class pc_do_h_album_image_edit_insert_c_album_image extends OpenPNE_Action
         }
 
         // 写真データ一時ファイル削除
-        $sessid = session_id();
         t_image_clear_tmp($sessid);
 
         db_album_update_c_album_image($target_c_album_image_id,  $filename, $image_description, $filesize_1);
