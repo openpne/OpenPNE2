@@ -302,7 +302,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <div class="partsHeading"><h3>最新情報</h3></div>
 <table>
 ({if $c_diary_friend_list})
-<tr class="diaryList"><th>({$WORD_MY_FRIEND})<br />最新({$WORD_DIARY})</th><td>
+<tr class="myFriendRecentDiary"><th>({$WORD_MY_FRIEND})<br />最新({$WORD_DIARY})</th><td>
 <ul class="articleList">
 ({foreach from=$c_diary_friend_list item=item})
 <li><span class="date">({$item.r_datetime|date_format:"%m月%d日"})</span><a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$item.c_diary_id})&amp;comment_count=({$item.count_comments})">({$item.subject|t_truncate:30}) (({$item.count_comments|default:0}))</a> (({$item.nickname|default:"&nbsp;"})) ({if $item.image_filename_1 || $item.image_filename_2 || $item.image_filename_3})<img src="({t_img_url_skin filename=icon_camera})" alt="写真あり" />({/if})</li>
@@ -314,7 +314,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 </td></tr>
 ({/if})
 ({if $c_rss_cache_list})
-<tr class="diaryList"><th>({$WORD_MY_FRIEND})<br />最新Blog</th><td>
+<tr class="myFriendRecentBlog"><th>({$WORD_MY_FRIEND})<br />最新Blog</th><td>
 <ul class="articleList">
 ({foreach from=$c_rss_cache_list item=item})
 <li><span class="date">({$item.r_datetime|date_format:"%m月%d日"})</span><a href="({$item.link})" target="_blank">({$item.subject|default:"&nbsp;"|t_truncate:30})</a> (({$item.c_member.nickname}))</li>
@@ -326,7 +326,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 </td></tr>
 ({/if})
 ({if $c_diary_my_comment_list})
-<tr class="commentList"><th>({$WORD_DIARY})コメント<br />記入履歴</th><td>
+<tr class="diaryCommentHistory"><th>({$WORD_DIARY})コメント<br />記入履歴</th><td>
 <ul class="articleList">
 ({foreach from=$c_diary_my_comment_list item=item})
 <li><span class="date">({$item.r_datetime|date_format:"%m月%d日"})</span><a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$item.c_diary_id})&amp;comment_count=({$item.num_comment})">({$item.subject|t_truncate:30}) (({$item.num_comment}))</a> (({$item.nickname}))</li>
@@ -341,7 +341,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({$posted_list|smarty:nodefaults})
 ({/if})
 ({if $c_commu_topic_comment_list})
-<tr class="commentList"><th>({$WORD_COMMUNITY})<br />最新書き込み</th><td>
+<tr class="recentCommunityTopicComment"><th>({$WORD_COMMUNITY})<br />最新書き込み</th><td>
 <ul class="articleList">
 ({foreach from=$c_commu_topic_comment_list item=item})
 <li><span class="date">({$item.r_datetime|date_format:"%m月%d日"})</span><a href="({t_url m=pc a=page_c_topic_detail})&amp;target_c_commu_topic_id=({$item.c_commu_topic_id})&amp;comment_count=({$item.number})">({$item.c_commu_topic_name|t_truncate:30}) (({$item.number}))</a> (({$item.c_commu_name})) ({if $item.image_filename1 || $item.image_filename2 || $item.image_filename3})<img src="({t_img_url_skin filename=icon_camera})" alt="写真あり" />({/if})</li>
@@ -353,7 +353,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 </td></tr>
 ({/if})
 ({if $c_friend_review_list})
-<tr><th>({$WORD_MY_FRIEND})<br />最新レビュー</th><td>
+<tr class="myFriendRecentReview"><th>({$WORD_MY_FRIEND})<br />最新レビュー</th><td>
 <ul class="articleList">
 ({foreach from=$c_friend_review_list item=item})
 <li><span class="date">({$item.r_datetime|date_format:"%m月%d日"})</span><a href="({t_url m=pc a=page_h_review_list_product})&amp;c_review_id=({$item.c_review_id})">({$item.title|t_truncate:30})</a> (({$item.nickname}))</li>
@@ -365,7 +365,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 </td></tr>
 ({/if})
 ({if $c_friend_album_list})
-<tr><th>({$WORD_MY_FRIEND})<br />最新アルバム</th><td>
+<tr class="myFriendRecentAlbum"><th>({$WORD_MY_FRIEND})<br />最新アルバム</th><td>
 <ul class="articleList">
 ({foreach from=$c_friend_album_list item=item})
 <li><span class="date">({$item.u_datetime|date_format:"%m月%d日"})</span><a href="({t_url m=pc a=page_fh_album})&amp;target_c_album_id=({$item.c_album_id})">({$item.subject|t_truncate:30})</a> (({$item.nickname}))</li>
@@ -387,7 +387,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <div class="partsHeading"><h3>全体の最新情報</h3><p class="link"><a href="({t_url m=pc a=page_h_config})#is_display_newdiary_home_0">表示設定変更</a></p></div>
 <table>
 ({if $c_diary_list_all})
-<tr class="diaryList"><th>最新({$WORD_DIARY})</th><td>
+<tr class="allRecentDiary"><th>最新({$WORD_DIARY})</th><td>
 <ul class="articleList">
 ({foreach from=$c_diary_list_all item=item})
 <li><span class="date">({$item.r_datetime|date_format:"%m月%d日"})</span><a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$item.c_diary_id})&amp;comment_count=({$item.count_comments})">({$item.subject|t_truncate:30}) (({$item.count_comments|default:0}))</a> (({$item.nickname|default:"&nbsp;"})) ({if $item.image_filename_1 || $item.image_filename_2 || $item.image_filename_3})<img src="({t_img_url_skin filename=icon_camera})" alt="写真あり" />({/if})</li>
@@ -399,7 +399,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 </td></tr>
 ({/if})
 ({if $c_topic_list_all})
-<tr class="commentList"><th>({$WORD_COMMUNITY})<br />最新書き込み</th><td>
+<tr class="allRecentCommunityTopicComment"><th>({$WORD_COMMUNITY})<br />最新書き込み</th><td>
 <ul class="articleList">
 ({foreach from=$c_topic_list_all item=item})
 <li><span class="date">({$item.u_datetime|date_format:"%m月%d日"})</span><a href="({t_url m=pc a=page_c_topic_detail})&amp;target_c_commu_topic_id=({$item.c_commu_topic_id})&amp;comment_count=({$item.number})">({$item.name|t_truncate:30}) (({$item.number}))</a> (({$item.c_commu_name})) ({if $item.image_filename1 || $item.image_filename2 || $item.image_filename3})<img src="({t_img_url_skin filename=icon_camera})" alt="写真あり" />({/if})</li>
@@ -421,7 +421,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <div class="partsHeading"><h3>お気に入りの最新情報</h3><p class="link"><a href="({t_url m=pc a=page_h_config})#is_display_bookmark_diary_home_0">表示設定変更</a></p></div>
 <table>
 ({if $bookmark_diary_list})
-<tr class="diaryList"><th>お気に入り<br />最新({$WORD_DIARY})</th><td>
+<tr class="bookmarkRecentDiary"><th>お気に入り<br />最新({$WORD_DIARY})</th><td>
 <ul class="articleList">
 ({foreach from=$bookmark_diary_list item=item})
 <li><span class="date">({$item.r_datetime|date_format:"%m月%d日"})</span><a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$item.c_diary_id})&amp;comment_count=({$item.count_comments})">({$item.subject|t_truncate:30}) (({$item.count_comments}))</a> (({$item.nickname})) ({if $item.image_filename_1 || $item.image_filename_2 || $item.image_filename_3})<img src="({t_img_url_skin filename=icon_camera})" alt="写真あり" />({/if})</li>
@@ -433,7 +433,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 </td></tr>
 ({/if})
 ({if $bookmark_blog_list})
-<tr class="diaryList"><th>お気に入り<br />最新Blog</th><td>
+<tr class="bookmarkRecentBlog"><th>お気に入り<br />最新Blog</th><td>
 <ul class="articleList">
 ({foreach from=$bookmark_blog_list item=item})
 <li><span class="date">({$item.r_datetime|date_format:"%m月%d日"})</span><a href="({$item.link})" target="_blank">({$item.subject|default:"&nbsp;"|t_truncate:30})</a> (({$item.nickname}))</li>
@@ -456,7 +456,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <div class="partsHeading"><h3>({$c_member.nickname})さんの最新情報</h3></div>
 <table>
 ({if $c_diary_list})
-<tr class="diaryList"><th>最新({$WORD_DIARY})</th><td>
+<tr class="myRecentDiary"><th>最新({$WORD_DIARY})</th><td>
 <ul class="articleList">
 ({foreach from=$c_diary_list item=item})
 <li><span class="date">({$item.r_datetime|date_format:"%m月%d日"})</span><a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$item.c_diary_id})&amp;comment_count=({$item.comment_count})">({$item.subject|t_truncate:30}) (({$item.comment_count}))</a> ({if $item.image_filename_1 || $item.image_filename_2 || $item.image_filename_3})<img src="({t_img_url_skin filename=icon_camera})" alt="写真あり" />({/if})</li>
@@ -469,7 +469,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 </td></tr>
 ({/if})
 ({if $c_blog_list})
-<tr class="diaryList"><th>最新Blog</th><td>
+<tr class="myRecentBlog"><th>最新Blog</th><td>
 <ul class="articleList">
 ({foreach from=$c_blog_list item=item})
 <li><span class="date">({$item.r_datetime|date_format:"%m月%d日"})</span><a href="({$item.link})" target="_blank">({$item.subject|default:"&nbsp;"|t_truncate:30})</a></li>
@@ -481,7 +481,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 </td></tr>
 ({/if})
 ({if $c_review_list})
-<tr><th>最新レビュー</th><td>
+<tr class="myRecentReview"><th>最新レビュー</th><td>
 <ul class="articleList">
 ({foreach from=$c_review_list item=item})
 <li><span class="date">({$item.r_datetime|date_format:"%m月%d日"})</span><a href="({t_url m=pc a=page_h_review_list_product})&amp;c_review_id=({$item.c_review_id})">({$item.title|t_truncate:30})</a></li>
@@ -494,7 +494,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 </td></tr>
 ({/if})
 ({if $c_album_list})
-<tr><th>最新アルバム</th><td>
+<tr class="myRecentAlbum"><th>最新アルバム</th><td>
 <ul class="articleList">
 ({foreach from=$c_album_list item=item})
 <li><span class="date">({$item.u_datetime|date_format:"%m月%d日"})</span><a href="({t_url m=pc a=page_fh_album})&amp;target_c_album_id=({$item.c_album_id})">({$item.subject|t_truncate:30})</a></li>

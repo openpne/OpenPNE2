@@ -285,7 +285,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({if !$_cnt_birth})({$smarty.capture.birth|smarty:nodefaults})({/if})
 ({/if})
 ({if $c_diary_list})
-<tr class="diaryList"><th>最新({$WORD_DIARY})</th><td>
+<tr class="friendRecentDiary"><th>最新({$WORD_DIARY})</th><td>
 <ul class="articleList">
 ({foreach from=$c_diary_list item=item})
 <li><span class="date">({$item.r_date|date_format:"%m月%d日"})</span><a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$item.c_diary_id})">({$item.subject|t_truncate:30}) (({$item.comment_count}))</a> ({if $item.image_filename_1 || $item.image_filename_2 || $item.image_filename_3})<img src="({t_img_url_skin filename=icon_camera})" alt="写真あり" />({/if}) ({if $is_h_prof && $item.public_flag == "friend"})<span class="caution">※({$WORD_MY_FRIEND})まで公開</span>({/if})</li>
@@ -297,7 +297,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 </td></tr>
 ({/if})
 ({if $c_rss_cache_list})
-<tr class="diaryList"><th>最新Blog</th><td>
+<tr class="friendRecentBlog"><th>最新Blog</th><td>
 <ul class="articleList">
 ({foreach from=$c_rss_cache_list item=item})
 <li><span class="date">({$item.r_datetime|date_format:"%m月%d日"})</span><a href="({$item.link})" target="_blank">({$item.subject|default:"&nbsp;"|t_truncate:30})</a></li>
@@ -309,7 +309,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 </td></tr>
 ({/if})
 ({if $c_review_list})
-<tr><th>最新レビュー</th><td>
+<tr class="friendRecentReview"><th>最新レビュー</th><td>
 <ul class="articleList">
 ({foreach from=$c_review_list item=item})
 <li><span class="date">({$item.r_datetime|date_format:"%m月%d日"})</span><a href="({t_url m=pc a=page_h_review_list_product})&amp;c_review_id=({$item.c_review_id})">({$item.title|t_truncate:30})</a></li>
@@ -321,7 +321,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 </td></tr>
 ({/if})
 ({if $c_album_list})
-<tr><th>最新アルバム</th><td>
+<tr class="friendRecentAlbum"><th>最新アルバム</th><td>
 <ul class="articleList">
 ({foreach from=$c_album_list item=item})
 <li><span class="date">({$item.u_datetime|date_format:"%m月%d日"})</span><a href="({t_url m=pc a=page_fh_album})&amp;target_c_album_id=({$item.c_album_id})">({$item.subject|t_truncate:30})</a></li>
