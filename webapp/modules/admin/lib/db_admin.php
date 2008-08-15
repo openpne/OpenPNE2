@@ -680,7 +680,8 @@ function _db_admin_c_member_id_list($cond_list, $order = null)
     $ids = db_get_col($sql, $params);
 
     // --- ランクで絞り込み ここから
-    $is_contain_empty_point_member = false;
+    $s_point = 0;
+    $e_point = 0;
 
     if ($cond_list['s_rank'] || $cond_list['e_rank']) {
         $sql = 'SELECT c_member_id'
@@ -693,11 +694,6 @@ function _db_admin_c_member_id_list($cond_list, $order = null)
             $s_point = db_point_get_rank_point4rank_id($cond_list['s_rank']);
             $sql .= ' AND value >= ?';
             $params[] = (int)$s_point;
-
-            // s_point が 0 以下の場合は、c_member_profile に PNE_POINT が存在しないメンバーも結果に含める
-            if ($s_point <= 0) {
-                $is_contain_empty_point_member = true;
-            }
         }
 
         if ($cond_list['e_rank']) {
@@ -710,17 +706,17 @@ function _db_admin_c_member_id_list($cond_list, $order = null)
 
         $point_ids = db_get_col($sql, $params);
 
-
-        // c_member_profile に結果が存在しないメンバーを結果に含める
-        if ($is_contain_empty_point_member) {
+        // s_point が 0 以下であり、 e_point が 0 を超過する場合、 c_member_profile に PNE_POINT が存在しないメンバーも結果に含める
+        if ($s_point <= 0 && $e_point > 0) {
             $sql = 'SELECT c_member_id FROM c_member_profile '
                  . ' INNER JOIN c_profile USING (c_profile_id) '
                  . ' WHERE name = ? ';
             $params = array('PNE_POINT');
             $have_point_ids = db_get_col($sql, $params);
 
-            // メンバーIDの配列と、PNE_POINTが存在するすべてのメンバーIDの配列の差分を結果に追加する
+            // この関数に渡されたメンバーIDの配列と、PNE_POINTが存在するすべてのメンバーIDの配列の差分を結果に追加する
             $point_ids = array_merge($point_ids, array_diff($ids, $have_point_ids));
+
         }
 
         // ポイントで絞り込み
