@@ -1821,10 +1821,24 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 .homeMainTable tr ul.articleList li {
     background: url(<?php echo getSkin('icon_3'); ?>) 3px 0.4em no-repeat scroll;
 }
-.homeMainTable tr.diaryList ul.articleList li {
+.homeMainTable tr.myFriendRecentDiary ul.articleList li,
+.homeMainTable tr.myFriendRecentBlog ul.articleList li,
+.homeMainTable tr.allRecentDiary ul.articleList li,
+.homeMainTable tr.bookmarkRecentDiary ul.articleList li,
+.homeMainTable tr.bookmarkRecentBlog ul.articleList li,
+.homeMainTable tr.myRecentDiary ul.articleList li,
+.homeMainTable tr.myRecentBlog ul.articleList li,
+.homeMainTable tr.friendRecentDiary ul.articleList li,
+.homeMainTable tr.friendRecentBlog ul.articleList li
+{
     background-image: url(<?php echo getSkin('icon_1'); ?>);
 }
-.homeMainTable tr.commentList ul.articleList li {
+.homeMainTable tr.diaryCommentHistory ul.articleList li,
+.homeMainTable tr.recentCommunityTopicComment ul.articleList li,
+.homeMainTable tr.allRecentCommunityTopicComment ul.articleList li,
+.homeMainTable tr.communityTopic ul.articleList li,
+.homeMainTable tr.communityEvent ul.articleList li
+{
     background-image: url(<?php echo getSkin('icon_2'); ?>);
 }
 .homeMainTable ul.articleList li span.date {
