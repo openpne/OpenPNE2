@@ -554,6 +554,7 @@ function do_c_review_add_insert_c_review_comment($c_review_id , $c_member_id, $b
         'body' => $body,
         'satisfaction_level' => intval($satisfaction_level),
         'r_datetime' => db_now(),
+        'u_datetime' => db_now(),
     );
     return db_insert('c_review_comment', $data);
 }
