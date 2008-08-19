@@ -694,8 +694,8 @@ function db_admin_c_member_id_list4cond_c_member($cond_list, $type = array())
  */
 function db_admin_c_member_id_list4cond_pne_point($ids, $cond_list)
 {
-    $s_point = 0;
-    $e_point = 0;
+    $s_point = null;
+    $e_point = null;
 
     $sql = 'SELECT c_member_id'
          . ' FROM c_member_profile'
@@ -719,8 +719,8 @@ function db_admin_c_member_id_list4cond_pne_point($ids, $cond_list)
 
     $point_ids = db_get_col($sql, $params);
 
-    // s_point が 0 以下であり、 e_point が 0 を超過する場合、 c_member_profile に PNE_POINT が存在しないメンバーも結果に含める
-    if ($s_point <= 0 && $e_point > 0) {
+    // s_point が 0 以下もしくは未定義であり、 e_point が未定義もしくは 0 を超過する場合、 c_member_profile に PNE_POINT が存在しないメンバーも結果に含める
+    if ((is_null($s_point) || $s_point <= 0) && (is_null($e_point) || $e_point > 0)) {
         $sql = 'SELECT c_member_id FROM c_member_profile'
              . ' INNER JOIN c_profile USING (c_profile_id)'
              . ' WHERE name = ?';
