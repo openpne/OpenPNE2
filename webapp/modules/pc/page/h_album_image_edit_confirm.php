@@ -53,22 +53,22 @@ class pc_page_h_album_image_edit_confirm extends OpenPNE_Action
 
             // 置き換えたときのファイルサイズを出すために、追加ファイルサイズから置き換わるファイルサイズを減算
             $filesize = $upfile['size'] - $c_album_image['filesize'];
-        }
 
-        if (!db_album_is_insertable4c_member_id($u, $filesize)) {
-            t_image_clear_tmp($sessid);
-            $msg = 'これ以上写真を投稿することができません。';
-            if (!db_album_is_insertable4c_member_id($u)) {
-                $msg .= '登録済みの写真を削除してからやり直してください。';
-            } else {
-                $msg .= 'ファイルサイズを変更してやり直してください。';
+            if (!db_album_is_insertable4c_member_id($u, $filesize)) {
+                t_image_clear_tmp($sessid);
+                $msg = 'これ以上写真を投稿することができません。';
+                if (!db_album_is_insertable4c_member_id($u)) {
+                    $msg .= '登録済みの写真を削除してからやり直してください。';
+                } else {
+                    $msg .= 'ファイルサイズを変更してやり直してください。';
+                }
+                $p = array(
+                    'msg' => $msg,
+                    'target_c_album_id' => $target_c_album_id,
+                    'target_c_album_image_id' => $target_c_album_image_id,
+                );
+                openpne_redirect('pc', 'page_h_album_image_edit', $p);
             }
-            $p = array(
-                'msg' => $msg,
-                'target_c_album_id' => $target_c_album_id,
-                'target_c_album_image_id' => $target_c_album_image_id
-            );
-            openpne_redirect('pc', 'page_h_album_image_edit', $p);
         }
 
         $this->set('inc_navi', fetch_inc_navi("h"));
