@@ -59,7 +59,9 @@ class ktai_do_o_easy_login extends OpenPNE_Action
         $auth->auth->setAuth($username);
         $auth->auth->setAuthData('OPENPNE_URL', OPENPNE_URL);
 
-        db_member_do_access($c_member_id);
+        if (!db_member_is_login_rejected($c_member_id)) {
+            db_member_do_access($c_member_id);
+        }
 
         // ログイン後のリダイレクト先を決定する
         $a = '';
