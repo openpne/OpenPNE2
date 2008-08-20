@@ -43,9 +43,15 @@ class pc_do_h_album_image_edit_insert_c_album_image extends OpenPNE_Action
 
         // アルバム写真登録処理
         if ($tmpfile) {
+            if (!list($filename, $filesize) = image_insert_c_image_album4tmp("a_{$target_c_album_id}_1", $tmpfile)) {
+                $this->handleError(array('写真が登録できませんでした'));
+            }
+
+            $sessid = session_id();
+            t_image_clear_tmp($sessid);
+
             if (!db_album_is_insertable4c_member_id($u, $filesize - $c_album_image['filesize'])) {
-                $sessid = session_id();
-                t_image_clear_tmp($sessid);
+                db_album_image_data_delete($filename);
 
                 $msg = 'これ以上写真を投稿することができません。';
                 if (!db_album_is_insertable4c_member_id($u)) {
@@ -62,12 +68,6 @@ class pc_do_h_album_image_edit_insert_c_album_image extends OpenPNE_Action
             }
 
             db_album_image_data_delete($c_album_image['image_filename']);
-            if (!list($filename, $filesize) = image_insert_c_image_album4tmp("a_{$target_c_album_id}_1", $tmpfile)) {
-                $this->handleError(array('写真が登録できませんでした'));
-            }
-
-            $sessid = session_id();
-            t_image_clear_tmp($sessid);
         }
 
         db_album_update_c_album_image($target_c_album_image_id, $filename, $image_description, $filesize);
