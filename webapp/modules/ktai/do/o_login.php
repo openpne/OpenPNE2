@@ -22,8 +22,6 @@ class ktai_do_o_login extends OpenPNE_Action
         // ----------
 
         @session_name('OpenPNEktai');
-        @session_start();
-        @session_regenerate_id();
 
         $config = get_auth_config(true);
         $auth = new OpenPNE_Auth($config);
