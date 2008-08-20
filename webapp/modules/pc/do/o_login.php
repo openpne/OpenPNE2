@@ -52,8 +52,12 @@ class pc_do_o_login extends OpenPNE_Action
         if (!$c_member_id) {
             $this->_fail_login();
         }
+
         if (db_member_is_login_rejected($c_member_id)) {
-            $this->_fail_login();
+            $this->_fail_login('login_rejected');
+        }
+        if (db_member_is_blacklist($c_member_id)) {
+            $this->_fail_login('login_rejected');
         }
 
         db_member_do_access($c_member_id);
@@ -66,13 +70,13 @@ class pc_do_o_login extends OpenPNE_Action
         client_redirect_absolute($url);
     }
 
-    function _fail_login()
+    function _fail_login($msg_code = 'login_failed')
     {
         if (LOGIN_CHECK_ENABLE) {
             $this->_lc->fail_login();
         }
         $this->_auth->logout();
-        $p = array('msg_code' => 'login_failed', 'login_params' => $this->_login_params);
+        $p = array('msg_code' => $msg_code, 'login_params' => $this->_login_params);
         openpne_redirect('pc', 'page_o_tologin', $p);
     }
 }
