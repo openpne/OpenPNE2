@@ -16,16 +16,13 @@ $auth = new OpenPNE_Auth($config);
 $auth->setExpire($GLOBALS['OpenPNE']['ktai']['session_lifetime']);
 $auth->setIdle($GLOBALS['OpenPNE']['ktai']['session_idletime']);
 
-if (   !$auth->auth()
+if (!$auth->auth()
     || !($u = db_member_c_member_id4username_encrypted($auth->getUsername(), true))
-    || db_member_is_login_rejected($u)) {
+    || db_member_is_login_rejected($u)
+    || db_member_is_blacklist($u)) {
     $auth->logout();
 
     __logout();
-}
-
-if (db_member_is_blacklist($u)) {
-    ktai_display_error('ﾛｸﾞｲﾝできませんでした。');
 }
 
 $auth->uid($u);
