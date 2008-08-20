@@ -115,6 +115,7 @@ li { list-style-type: none;}
 
 /* (自ページのタブをアクティブにした上でプルダウンを表示しない:全ページ分指定しなければ機能しない) */
 #admin_page_list_c_member li#adminSiteMember a.tab ,
+#admin_page_edit_point li#adminSiteMember a.tab ,
 #admin_page_send_invites li#adminSiteMember a.tab ,
 #admin_page_csv_download li#adminSiteMember a.tab ,
 #admin_page_import_c_member li#adminSiteMember a.tab ,
@@ -144,6 +145,7 @@ li { list-style-type: none;}
 #admin_page_topic_list li#adminImageKakikomi a.tab ,
 #admin_page_topic_comment_list li#adminImageKakikomi a.tab ,
 #admin_page_review_list li#adminImageKakikomi a.tab ,
+#admin_page_delete_review li#adminImageKakikomi a.tab ,
 #admin_page_delete_kakikomi li#adminImageKakikomi a.tab ,
  #admin_page_delete_c_image_confirm li#adminImageKakikomi a.tab ,
  #admin_page_delete_c_file_confirm li#adminImageKakikomi a.tab ,
