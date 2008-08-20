@@ -26,8 +26,6 @@ class ktai_do_o_easy_login extends OpenPNE_Action
         $c_member = db_member_c_member4c_member_id($c_member_id, true);
 
         @session_name('OpenPNEktai');
-        @session_start();
-        @session_regenerate_id();
 
         $config = get_auth_config(true);
         $auth = new OpenPNE_Auth($config);
