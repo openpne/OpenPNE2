@@ -22,8 +22,6 @@ class ktai_do_o_login extends OpenPNE_Action
         // ----------
 
         @session_name('OpenPNEktai');
-        @session_start();
-        @session_regenerate_id();
 
         $config = get_auth_config(true);
         $auth = new OpenPNE_Auth($config);
@@ -60,6 +58,13 @@ class ktai_do_o_login extends OpenPNE_Action
         if (!$c_member_id) {
             $p = array('msg' => '0', 'kad' => t_encrypt($ktai_address), 'login_params' => $requests['login_params']);
             openpne_redirect('ktai', 'page_o_login', $p);
+        }
+
+        if (db_member_is_login_rejected($c_member_id)) {
+            ktai_display_error('ﾛｸﾞｲﾝできませんでした。');
+        }
+        if (db_member_is_blacklist($c_member_id)) {
+            ktai_display_error('ﾛｸﾞｲﾝできませんでした。');
         }
 
         db_member_do_access($c_member_id);

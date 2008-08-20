@@ -23,8 +23,14 @@ class pc_page_fh_album_output_xml extends OpenPNE_Action
         $target_c_member_id = $c_album['c_member_id'];
         $c_album['c_member'] = db_member_c_member4c_member_id_LIGHT($target_c_member_id);
         $c_album['album_cover_image'] = util_get_img_url($c_album['album_cover_image'], 180, 180);
+        $c_album['word_my_friend'] = WORD_MY_FRIEND;
 
         if ($u != $target_c_member_id) {
+            // メンバーが存在しない
+            if (!$c_album['c_member']) {
+                util_send_header_internal_server_error();
+            }
+
             // check public_flag
             if (!pne_check_album_public_flag($target_c_album_id, $u)) {
                 util_send_header_internal_server_error();

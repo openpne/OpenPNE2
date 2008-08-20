@@ -247,6 +247,7 @@ div#LayoutC {
 	zoom: 1;
 	overflow: hidden;
 	overflow: -moz-scrollbars-none;
+	margin-bottom: 10px;
 }
 #Left,
 #Center {
@@ -773,6 +774,7 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 .diaryDetailBox .partsHeading p.public {
 	position: absolute;
 	right: 3px;
+	bottom: 2px;
 }
 .diaryDetailBox dl {
 	zoom: 1;
@@ -1201,17 +1203,25 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 	padding: 4px 3px;
 }
 .commentList dd div.title {
-	zoom: 1;
-	position: relative;
+	padding: 4px 3px;
 	border-top: none;
 }
-.commentList dd div.title p.heading {
-	margin-right: 10.5em;
+.commentList dd div.title p {
+	padding: 0;
 }
-.commentList dd div.title p.public {
-	position: absolute;
-	top: 0;
-	right: 0;
+#pc_page_fh_diary_list .commentList dd div.title {
+	zoom: 1;
+	overflow: hidden;
+	overflow: -moz-scrollbars-none;
+}
+#pc_page_fh_diary_list .commentList dd div.title p.heading {
+	float: left;
+	width: 66%;
+}
+#pc_page_fh_diary_list .commentList dd div.title p.public {
+	float: right;
+	width: 33%;
+	text-align: right;
 }
 .commentList dd ul.photo {
 	padding: 5px 5px 0;
@@ -1270,15 +1280,14 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 	float: left;
 	display: block;
 	width: 110px;
-	margin-top: 5px;
-	padding: 0 5px;
+	padding: 5px;
+	border-right: 1px solid #<?php echo $colors[1]; ?>;
 }
 .searchResultList tr.operation span.moreInfo{
 	zoom: 1;
 	display: block;
-	margin-left: 120px;
+	margin-left: 121px;
 	padding: 4px 0 3px;
-	border-left: 1px solid #<?php echo $colors[1]; ?>;
 	text-align: center;
 }
 .searchResultList div.operation {
@@ -1649,10 +1658,33 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 	color: #999999;
 }
 .bizSideTodoList td.state {
-	width: 35px;
+	width: 38px;
+	vertical-align: top;
+}
+.bizSideTodoList tr.priLow td.state p {
+	padding-left: 4px;
+	border-left: 0;
+}
+.bizSideTodoList tr.priMiddle td.state p {
+	padding-left: 0;
+	border-left: 4px solid #ff8080;
+}
+.bizSideTodoList tr.priHigh td.state p {
+	padding-left: 0;
+	border-left: 4px solid #ff0000;
+}
+.bizSideTodoList tr.checked td.state p {
+	padding-left: 4px;
+	border-left: 0;
 }
 .bizSideTodoList td.operation {
 	width: 16px;
+	vertical-align: top;
+}
+.bizSideTodoList td.operation a {
+	display: block;
+	width: 14px;
+	margin-top: 2px;
 }
 
 /*==============================================================================
@@ -1783,9 +1815,31 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 	line-height: 1.3;
 }
 .homeMainTable ul.articleList li {
-	padding-left: 85px;
-	background: url(<?php echo getSkin('icon_1'); ?>) 3px 0.4em no-repeat scroll;
-	text-indent: -72px;
+    padding-left: 85px;
+    text-indent: -72px;
+}
+.homeMainTable tr ul.articleList li {
+    background: url(<?php echo getSkin('icon_3'); ?>) 3px 0.4em no-repeat scroll;
+}
+.homeMainTable tr.myFriendRecentDiary ul.articleList li,
+.homeMainTable tr.myFriendRecentBlog ul.articleList li,
+.homeMainTable tr.allRecentDiary ul.articleList li,
+.homeMainTable tr.bookmarkRecentDiary ul.articleList li,
+.homeMainTable tr.bookmarkRecentBlog ul.articleList li,
+.homeMainTable tr.myRecentDiary ul.articleList li,
+.homeMainTable tr.myRecentBlog ul.articleList li,
+.homeMainTable tr.friendRecentDiary ul.articleList li,
+.homeMainTable tr.friendRecentBlog ul.articleList li
+{
+    background-image: url(<?php echo getSkin('icon_1'); ?>);
+}
+.homeMainTable tr.diaryCommentHistory ul.articleList li,
+.homeMainTable tr.recentCommunityTopicComment ul.articleList li,
+.homeMainTable tr.allRecentCommunityTopicComment ul.articleList li,
+.homeMainTable tr.communityTopic ul.articleList li,
+.homeMainTable tr.communityEvent ul.articleList li
+{
+    background-image: url(<?php echo getSkin('icon_2'); ?>);
 }
 .homeMainTable ul.articleList li span.date {
 	padding-right: 18px;

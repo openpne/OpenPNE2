@@ -15,15 +15,15 @@ function db_review_c_review_list4member($c_member_id, $count = 10)
 
 function db_review_c_friend_review_list4c_member_id($c_member_id, $limit)
 {
-    $friends = db_friend_c_member_id_list($c_member_id);
+    $friends = db_friend_c_member_id_list($c_member_id, true);
     if (!$friends) {
         return array();
     }
     $ids = implode(',', array_map('intval', $friends));
 
-    $sql = 'SELECT * FROM c_review INNER JOIN c_review_comment USING (c_review_id)' .
-            ' WHERE c_review_comment.c_member_id IN ('.$ids.')' .
-            ' ORDER BY c_review_comment.r_datetime DESC';
+    $sql = 'SELECT * FROM c_review INNER JOIN c_review_comment USING (c_review_id)'
+         . ' WHERE c_review_comment.c_member_id IN (' . $ids . ')'
+         . ' ORDER BY c_review_comment.r_datetime DESC';
     $list = db_get_all_limit($sql, 0, $limit);
     foreach ($list as $key => $value) {
         $list[$key] += db_member_c_member4c_member_id_LIGHT($value['c_member_id']);
@@ -33,21 +33,22 @@ function db_review_c_friend_review_list4c_member_id($c_member_id, $limit)
 
 function db_review_c_friend_review_list_more4c_member_id($c_member_id, $page, $page_size)
 {
-    $sql =  "SELECT cm.nickname, cr.c_review_id, cr.title, crc.r_datetime" .
-            " FROM  c_member AS cm, c_friend AS cf, c_review AS cr, c_review_comment AS crc" .
-            " WHERE cr.c_review_id = crc.c_review_id " .
-            " AND cf.c_member_id_to = crc.c_member_id " .
-            " AND cf.c_member_id_to = cm.c_member_id " .
-            " AND cf.c_member_id_from = ?".
-            " ORDER BY crc.r_datetime DESC";
-    $params = array(intval($c_member_id));
-    $list = db_get_all_page($sql, $page, $page_size, $params);
+    $friends = db_friend_c_member_id_list($c_member_id, true);
+    if (!$friends) {
+        return array();
+    }
+    $ids = implode(',', array_map('intval', $friends));
 
-    $sql =  "SELECT COUNT(*)" .
-            " FROM  c_friend AS cf, c_review_comment AS crc" .
-            " WHERE cf.c_member_id_to = crc.c_member_id" .
-            " AND cf.c_member_id_from = ?";
-    $total_num = db_get_one($sql, $params);
+    $sql = 'SELECT * FROM c_review INNER JOIN c_review_comment USING (c_review_id)'
+         . ' WHERE c_review_comment.c_member_id IN (' . $ids . ')'
+         . ' ORDER BY c_review_comment.r_datetime DESC';
+    $list = db_get_all_page($sql, $page, $page_size, $params);
+    foreach ($list as $key => $value) {
+        $list[$key] += db_member_c_member4c_member_id_LIGHT($value['c_member_id']);
+    }
+
+    $sql = 'SELECT COUNT(*) FROM c_review_comment WHERE c_member_id IN (' . $ids . ')';
+    $total_num = db_get_one($sql);
 
     if ($total_num != 0) {
         $total_page_num = ceil($total_num / $page_size);
@@ -563,7 +564,6 @@ function do_h_review_edit_update_c_review_comment($c_review_comment_id, $body, $
     $data = array(
         'body' => $body,
         'satisfaction_level' => intval($satisfaction_level),
-        'r_datetime' => db_now(),
     );
     $where = array('c_review_comment_id' => intval($c_review_comment_id));
     return db_update('c_review_comment', $data, $where);

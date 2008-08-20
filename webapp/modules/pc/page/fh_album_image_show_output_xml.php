@@ -28,6 +28,11 @@ class pc_page_fh_album_image_show_output_xml extends OpenPNE_Action
         $c_album = db_album_get_c_album4c_album_id($c_album_id);
         $target_c_member_id = $c_album['c_member_id'];
         if ($u != $target_c_member_id) {
+            // メンバーが存在しない
+            if (!db_member_is_active_c_member_id($target_c_member_id)) {
+                util_send_header_internal_server_error();
+            }
+
             // check public_flag
             if (!pne_check_album_public_flag($c_album_id, $u)) {
                 util_send_header_internal_server_error();

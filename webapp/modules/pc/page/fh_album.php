@@ -23,16 +23,20 @@ class pc_page_fh_album extends OpenPNE_Action
         // target が指定されていない
         if (!$target_c_album_id) {
             openpne_redirect('pc', 'page_h_err_fh_album');
-            exit;
         }
         // target のアルバムが存在しない
         if (!p_common_is_active_c_album_id($target_c_album_id)) {
             openpne_redirect('pc', 'page_h_err_fh_album');
-            exit;
         }
 
         $target_c_album = db_album_get_c_album4c_album_id($target_c_album_id);
         $target_c_member_id = $target_c_album['c_member_id'];
+        $target_c_member = db_member_c_member4c_member_id($target_c_member_id);
+
+        // メンバーが存在しない
+        if (!$target_c_member) {
+            openpne_redirect('pc', 'page_h_err_fh_album');
+        }
 
         if ($target_c_member_id == $u) {
             $type = 'h';
@@ -61,7 +65,7 @@ class pc_page_fh_album extends OpenPNE_Action
         $this->set('album_info', $target_c_album);
 
         //メンバー情報
-        $this->set('target_member', db_member_c_member4c_member_id($target_c_member_id));
+        $this->set('target_member', $target_c_member);
 
         //最新アルバム10件[サイドバー用]
         $album_subject_list =  db_album_get_c_album_subject_list4c_member_id($target_c_member_id, 10, $u);

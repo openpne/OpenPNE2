@@ -27,10 +27,11 @@ class pc_do_h_album_image_edit_insert_c_album_image extends OpenPNE_Action
         // --- リクエスト変数
         $target_c_album_image_id = $requests['target_c_album_image_id'];
         $image_description = $requests['image_description'];
-        $tmpfile_1 = $requests['tmpfile_1'];
+        $tmpfile = $requests['tmpfile_1'];
         // ----------
-        
+
         $filename = '';
+        $filesize = 0;
         $c_album_image = db_album_image_get_c_album_image4id($target_c_album_image_id);
         $target_c_album_id = $c_album_image['c_album_id'];
         $img_tmp_dir_path = OPENPNE_VAR_DIR . '/tmp/';
@@ -41,18 +42,35 @@ class pc_do_h_album_image_edit_insert_c_album_image extends OpenPNE_Action
         }
 
         // アルバム写真登録処理
-        if ($tmpfile_1) {
-            db_album_image_data_delete($c_album_image['image_filename']);
-            if (!list($filename, $filesize_1) = image_insert_c_image_album4tmp("a_{$target_c_album_id}_1", $tmpfile_1)) {
+        if ($tmpfile) {
+            if (!list($filename, $filesize) = image_insert_c_image_album4tmp("a_{$target_c_album_id}_1", $tmpfile)) {
                 $this->handleError(array('写真が登録できませんでした'));
             }
-        }
-        
-        // 写真データ一時ファイル削除
-        $sessid = session_id();
-        t_image_clear_tmp($sessid);
 
-        db_album_update_c_album_image($target_c_album_image_id,  $filename, $image_description, $filesize_1);
+            $sessid = session_id();
+            t_image_clear_tmp($sessid);
+
+            if (!db_album_is_insertable4c_member_id($u, $filesize - $c_album_image['filesize'])) {
+                db_album_image_data_delete($filename);
+
+                $msg = 'これ以上写真を投稿することができません。';
+                if (!db_album_is_insertable4c_member_id($u)) {
+                    $msg .= '登録済みの写真を削除してからやり直してください。';
+                } else {
+                    $msg .= 'ファイルサイズを変更してやり直してください。';
+                }
+                $p = array(
+                    'msg' => $msg,
+                    'target_c_album_id' => $target_c_album_id,
+                    'target_c_album_image_id' => $target_c_album_image_id
+                );
+                openpne_redirect('pc', 'page_h_album_image_edit', $p);
+            }
+
+            db_album_image_data_delete($c_album_image['image_filename']);
+        }
+
+        db_album_update_c_album_image($target_c_album_image_id, $filename, $image_description, $filesize);
 
         // c_albumの更新時間UPDATE
         db_album_update_c_album_u_datetime($target_c_album_id);
