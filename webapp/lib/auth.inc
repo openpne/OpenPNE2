@@ -11,9 +11,10 @@ $auth = new OpenPNE_Auth($config);
 $auth->setExpire($GLOBALS['OpenPNE']['common']['session_lifetime']);
 $auth->setIdle($GLOBALS['OpenPNE']['common']['session_idletime']);
 
-if (   !$auth->auth()
+if (!$auth->auth()
     || !($u = db_member_c_member_id4username_encrypted($auth->getUsername(), false))
-    || db_member_is_login_rejected($u)) {
+    || db_member_is_login_rejected($u)
+    || db_member_is_blacklist($u)) {
     $auth->logout();
 
     if (LOGIN_URL_PC) {
@@ -29,11 +30,6 @@ if (   !$auth->auth()
         openpne_forward('pc', 'page', "o_login");
         exit;
     }
-}
-
-if (db_member_is_blacklist($u)) {
-    $p = array('msg_code' => 'blacklist');
-    openpne_redirect('pc', 'page_o_tologin', $p);
 }
 
 $auth->uid($u);

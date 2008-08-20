@@ -60,8 +60,10 @@ class ktai_do_o_easy_login extends OpenPNE_Action
         $auth->auth->setAuthData('OPENPNE_URL', OPENPNE_URL);
 
         if (db_member_is_login_rejected($c_member_id)) {
-            $p = array('msg' => '0', 'kad' => t_encrypt($ktai_address), 'login_params' => $requests['login_params']);
-            openpne_redirect('ktai', 'page_o_login', $p);
+            ktai_display_error('ﾛｸﾞｲﾝできませんでした。');
+        }
+        if (db_member_is_blacklist($c_member_id)) {
+            ktai_display_error('ﾛｸﾞｲﾝできませんでした。');
         }
         db_member_do_access($c_member_id);
 
