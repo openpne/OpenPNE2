@@ -488,7 +488,7 @@ BlogのURL
 <input type="radio" name="public_flag_diary" value="private"({if $c_member.public_flag_diary == "private"}) checked="checked"({/if}) class="no_bg" id="public_flag_diary_private"><label for="public_flag_diary_private">公開しない</label><br>
 
 ※ここで指定した値が日記作成画面であらかじめ選択されている値となります。<br>
-これまでに書かれた日記の公開範囲は変更されません。
+※これまでに書かれた日記の公開範囲は変更されません。
 </div>
 </td>
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
@@ -519,7 +519,7 @@ ID <input type="text" class="text" name="c_member_id_block[]" value="({$item})">
 ID <input type="text" class="text" name="c_member_id_block[]" value=""><br>
 
 ※特定のメンバーからのアクセスをブロックします。<br>
-相手トップページのURL末尾に表示されている数字がIDになります。<br>
+※相手トップページのURL末尾に表示されている数字がIDになります。<br>
 例：(○の部分がID)<br>
 ({t_url _absolute=1 m=pc a=page_f_home})&amp;target_c_member_id=○
 
