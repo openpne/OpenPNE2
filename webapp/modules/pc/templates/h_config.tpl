@@ -160,7 +160,7 @@
 <li><input type="radio" class="input_radio" name="public_flag_diary" id="public_flag_diary_private" value="private"({if $c_member.public_flag_diary == "private"}) checked="checked"({/if}) /><label for="public_flag_diary_private">公開しない</label></li>
 </ul>
 <p>※ここで指定した値が({$WORD_DIARY})作成画面であらかじめ選択されている値となります。<br />
-これまでに書かれた({$WORD_DIARY})の公開範囲は変更されません。</p>
+※これまでに書かれた({$WORD_DIARY})の公開範囲は変更されません。</p>
 </td>
 </tr>
 <tr>
@@ -173,7 +173,7 @@
 <li>ID: <input type="text" class="input_text" name="c_member_id_block[]" value="" size="12" /></li>
 </ul>
 <p>※特定のメンバーからのアクセスをブロックします。<br />
-相手トップページのURL末尾に表示されている数字がIDになります。<br />
+※相手トップページのURL末尾に表示されている数字がIDになります。<br />
 例：(○の部分がID)<br />
 ({t_url _absolute=1 m=pc a=page_f_home})&amp;target_c_member_id=○</p>
 </td>
