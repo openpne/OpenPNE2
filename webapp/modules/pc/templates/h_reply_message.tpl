@@ -1,4 +1,3 @@
-({assign var=no_use_alert value=true})
 <div id="LayoutC">
 <div id="Center">
 
