@@ -26,7 +26,7 @@
 <table border="0" cellspacing="0" cellpadding="0" style="width:634px;">
 <tr>
 <td style="width:36px;" class="bg_06"><img src="({t_img_url_skin filename=content_header_1})" style="width:30px;height:20px;" class="dummy"></td>
-<td style="width:598px;padding:2px 0px;" class="bg_06"><span class="b_b">[({$c_commu.name})] おすすめレビューを掲載する</span></td>
+<td style="width:598px;padding:2px 0px;" class="bg_06"><span class="b_b c_00">[({$c_commu.name})] おすすめレビューを掲載する</span></td>
 </tr>
 </table>
 </div>
@@ -158,7 +158,7 @@
 <table border="0" cellspacing="0" cellpadding="0" style="width:634px;">
 <tr>
 <td style="width:36px;" class="bg_06"><img src="({t_img_url_skin filename=content_header_1})" style="width:30px;height:20px;" class="dummy"></td>
-<td style="width:598px;padding:2px 0px;" class="bg_06"><span class="b_b">メンバーのおすすめレビュー</span></td>
+<td style="width:598px;padding:2px 0px;" class="bg_06"><span class="b_b c_00">メンバーのおすすめレビュー</span></td>
 </tr>
 </table>
 </div>
