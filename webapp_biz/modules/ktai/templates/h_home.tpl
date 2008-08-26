@@ -50,7 +50,7 @@
 お誕生日おめでとうございます</font>
 <hr color="#({$ktai_color_config.border_01})">
 ({/if})
-[i:69]<a href="({t_url m=ktai_biz a=page_fh_biz_todo_list})&amp;({$tail})">ToDoﾘｽﾄ</a>/[i:176]<a href="({t_url m=ktai_biz a=page_fh_calendar_week})&amp;({$tail})">週間ｶﾚﾝﾀﾞｰ</a><br>
+[i:69]<a href="({t_url m=ktai_biz a=page_fh_biz_todo_list})&amp;({$tail})">Todoﾘｽﾄ</a>/[i:176]<a href="({t_url m=ktai_biz a=page_fh_calendar_week})&amp;({$tail})">週間ｶﾚﾝﾀﾞｰ</a><br>
 <hr color="#({$ktai_color_config.border_01})">
 </td></tr>
 <tr><td align="center" width="50%" valign="top">
