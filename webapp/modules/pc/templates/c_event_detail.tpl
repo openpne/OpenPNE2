@@ -49,7 +49,7 @@
 <table border="0" cellspacing="0" cellpadding="0" style="width:634px;" class="border_01">
 <tr>
 <td style="width:36px;" class="bg_06"><img src="({t_img_url_skin filename=content_header_1})" style="width:30px;height:20px;" class="dummy"></td>
-<td style="width:598px;padding:2px 0px;" class="bg_06"><span class="b_b">[({$c_commu.name})] イベント</span></td>
+<td style="width:598px;padding:2px 0px;" class="bg_06"><span class="b_b c_00">[({$c_commu.name})] イベント</span></td>
 </tr>
 </table>
 <!-- ここまで：小タイトル -->
@@ -543,7 +543,7 @@
 <table border="0" cellspacing="0" cellpadding="0" style="width:636px;" class="border_01">
 <tr>
 <td style="width:36px;" class="bg_06"><img src="({t_img_url_skin filename=content_header_1})" style="width:30px;height:20px;" class="dummy"></td>
-<td style="width:598px;padding:2px 0px;" class="bg_06"><span class="b_b"><a name="comments">書き込み</a></span></td>
+<td style="width:598px;padding:2px 0px;" class="bg_06"><span class="b_b c_00"><a name="comments">書き込み</a></span></td>
 </tr>
 </table>
 <!-- ここまで：小タイトル -->
@@ -711,7 +711,7 @@
 <table border="0" cellspacing="0" cellpadding="0" style="width:636px;">
 <tr>
 <td style="width:36px;" class="bg_06"><img src="({t_img_url_skin filename=content_header_1})" style="width:30px;height:20px;" class="dummy"></td>
-<td style="width:598px;padding:2px 0px;" class="bg_06"><span class="b_b">新しく書き込む</span></td>
+<td style="width:598px;padding:2px 0px;" class="bg_06"><span class="b_b c_00">新しく書き込む</span></td>
 </tr>
 </table>
 </div>
