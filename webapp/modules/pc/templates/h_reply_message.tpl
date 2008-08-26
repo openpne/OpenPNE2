@@ -1,5 +1,3 @@
-({assign var=no_use_alert value=true})
-
 ({ext_include file="inc_header.tpl"})
 ({ext_include file="inc_layoutcolumn_top_720px.tpl"})
 
