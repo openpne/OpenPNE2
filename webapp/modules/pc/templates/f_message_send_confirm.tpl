@@ -62,7 +62,7 @@
 <input type="hidden" name="tmpfile_4_original_filename" value="({$form_val.upfile_4.name})" />
 <input type="hidden" name="target_c_message_id" value="({$form_val.target_c_message_id})" />
 <input type="hidden" name="jyusin_c_message_id" value="({$form_val.jyusin_c_message_id})" />
-<input type="submit" class="input_submit" name="yes" value="送信" />
+<input type="submit" class="input_submit" name="yes" value="　送　信　" />
 ({/t_form_block})
 </li>
 <li>
@@ -73,7 +73,7 @@
 <input type="hidden" name="body" value="({$form_val.body})" />
 <input type="hidden" name="target_c_message_id" value="({$form_val.target_c_message_id})" />
 <input type="hidden" name="jyusin_c_message_id" value="({$form_val.jyusin_c_message_id})" />
-<input type="submit" class="input_submit" name="no" value="修正" />
+<input type="submit" class="input_submit" name="no" value="　修　正　" />
 ({/t_form_block})
 </li>
 </ul>

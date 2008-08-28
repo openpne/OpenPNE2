@@ -126,7 +126,7 @@
 ({t_form_block _method=get m=pc a=page_h_diary_edit})
 <input type="hidden" name="target_c_diary_id" value="({$target_diary.c_diary_id})" />
 <ul class="moreInfo button">
-<li><input type="submit" class="input_submit" value="編 集" /></li>
+<li><input type="submit" class="input_submit" value="　編　集　" /></li>
 </ul>
 ({/t_form_block})
 </div>
@@ -200,7 +200,7 @@
 ({if $type == 'h'})
 <div class="operation">
 <ul class="moreInfo button">
-<li><input type="submit" class="input_submit" value="　削 除　" /></li>
+<li><input type="submit" class="input_submit" value="　削　除　" /></li>
 </ul>
 </div>
 ({/if})

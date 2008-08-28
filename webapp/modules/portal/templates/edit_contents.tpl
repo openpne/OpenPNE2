@@ -322,7 +322,7 @@
            </tbody>
            </table>
 
-           <p class="textBtn"><input type="submit" value="変更" /></p>
+           <p class="textBtn"><input type="submit" value="　変　更　" /></p>
            </td>
            </tr>
            </table>

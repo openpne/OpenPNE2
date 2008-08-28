@@ -17,7 +17,7 @@
 <input type="hidden" name="a" value="page_({$hash_tbl->hash('list_c_member')})" />
 <strong>メールアドレス検索</strong>(完全一致)：
 <input type="text" class="basic" name="mail_address" value="({$requests.mail_address})" size="30" />
-<span class="textBtnS"><input type="submit" value="検索" /></span>
+<span class="textBtnS"><input type="submit" value="　検　索　" /></span>
 </p>
 </form>
 ({if $smarty.const.OPENPNE_AUTH_MODE != 'email'})
@@ -27,7 +27,7 @@
 <input type="hidden" name="a" value="page_({$hash_tbl->hash('list_c_member')})" />
 <strong>ログインID検索</strong>(完全一致)：
 <input type="text" class="basic" name="username" value="({$requests.username})" size="30" />
-<span class="textBtnS"><input type="submit" value="検索" /></span>
+<span class="textBtnS"><input type="submit" value="　検　索　" /></span>
 </p>
 </form>
 ({/if})
@@ -49,7 +49,7 @@
 <option value="50"({if $pager.page_size==50}) selected="selected"({/if})>50件</option>
 <option value="100"({if $pager.page_size==100}) selected="selected"({/if})>100件</option>
 </select>
-<span class="textBtnS"><input type="submit" value="変更" /></span><span class="btnCaution">※表示件数を多くすると処理が重くなり、サーバーに負荷がかかります。</span>
+<span class="textBtnS"><input type="submit" value="　変　更　" /></span><span class="btnCaution">※表示件数を多くすると処理が重くなり、サーバーに負荷がかかります。</span>
 </p>
 </form>
 ({/if})

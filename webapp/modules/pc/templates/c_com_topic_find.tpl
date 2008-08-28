@@ -19,7 +19,7 @@
 </select>
 <input type="hidden" name="c_commu_id" value="({$c_commu_id})" />
 ({/if})
-<input type="submit" class="input_submit" value="　検 索　" />
+<input type="submit" class="input_submit" value="　検　索　" />
 </p>
 
 <p class="form">
