@@ -42,7 +42,7 @@
 
 <p>変更しますか？</p>
 
-<p class="textBtn"><input type="submit" value=" は　い ">　<input type="button" value=" いいえ " onClick="location.href='?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_rank')})'"></p>
+<p class="textBtn"><input type="submit" value="　は　い　">　<input type="button" value="　いいえ　" onClick="location.href='?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_rank')})'"></p>
 </form>
 
 ({$inc_footer|smarty:nodefaults})

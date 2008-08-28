@@ -28,7 +28,7 @@
 ({/foreach})
 ({/foreach})
 </select>
-<input type="submit" class="input_submit" value=" 検 索 " />
+<input type="submit" class="input_submit" value="　検　索　" />
 </p>
 ({/t_form_block})
 

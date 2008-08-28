@@ -58,7 +58,7 @@ function getCookie() {
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_theme','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})"/>
-<span class="textBtnS"><input type="submit" value="変更" /></span>
+<span class="textBtnS"><input type="submit" value="　変　更　" /></span>
 </div>
 
 </td>
@@ -92,7 +92,7 @@ if ( c['skinChangerArea'] == 0 ) { toggleDisplay('skin_changer_area'); }
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})"/>
 <input type="hidden" name="skinname" value="skin_login" />
-<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="変更" /></span>
+<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="　変　更　" /></span>
 </form></dd>
 </dl>
 <br class="clear" />
@@ -115,7 +115,7 @@ if ( c['skinChangerArea'] == 0 ) { toggleDisplay('skin_changer_area'); }
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
 <input type="hidden" name="skinname" value="skin_after_header" />
-<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="変更" /></span>
+<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="　変　更　" /></span>
 </form></dd>
 </dl>
 <br class="clear" />
@@ -129,7 +129,7 @@ if ( c['skinChangerArea'] == 0 ) { toggleDisplay('skin_changer_area'); }
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
 <input type="hidden" name="skinname" value="skin_after_header_2" />
-<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="変更" /></span>
+<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="　変　更　" /></span>
 </form></dd>
 </dl>
 <br class="clear" />
@@ -143,7 +143,7 @@ if ( c['skinChangerArea'] == 0 ) { toggleDisplay('skin_changer_area'); }
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
 <input type="hidden" name="skinname" value="({$skinname})" />
-<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="変更" /></span>
+<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="　変　更　" /></span>
 </form></dd>
 </dl>
 <dl class="box">
@@ -156,7 +156,7 @@ if ( c['skinChangerArea'] == 0 ) { toggleDisplay('skin_changer_area'); }
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
 <input type="hidden" name="skinname" value="({$skinname})" />
-<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="変更" /></span>
+<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="　変　更　" /></span>
 </form></dd>
 </dl>
 <dl class="box">
@@ -169,7 +169,7 @@ if ( c['skinChangerArea'] == 0 ) { toggleDisplay('skin_changer_area'); }
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
 <input type="hidden" name="skinname" value="({$skinname})" />
-<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="変更" /></span>
+<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="　変　更　" /></span>
 </form></dd>
 </dl>
 <br class="clear" />
@@ -183,7 +183,7 @@ if ( c['skinChangerArea'] == 0 ) { toggleDisplay('skin_changer_area'); }
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
 <input type="hidden" name="skinname" value="({$skinname})" />
-<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="変更" /></span>
+<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="　変　更　" /></span>
 </form></dd>
 </dl>
 <dl class="box">
@@ -196,7 +196,7 @@ if ( c['skinChangerArea'] == 0 ) { toggleDisplay('skin_changer_area'); }
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
 <input type="hidden" name="skinname" value="({$skinname})" />
-<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="変更" /></span>
+<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="　変　更　" /></span>
 </form></dd>
 </dl>
 <dl class="box">
@@ -209,7 +209,7 @@ if ( c['skinChangerArea'] == 0 ) { toggleDisplay('skin_changer_area'); }
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
 <input type="hidden" name="skinname" value="({$skinname})" />
-<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="変更" /></span>
+<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="　変　更　" /></span>
 </form></dd>
 </dl>
 <br class="clear" />
@@ -223,7 +223,7 @@ if ( c['skinChangerArea'] == 0 ) { toggleDisplay('skin_changer_area'); }
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
 <input type="hidden" name="skinname" value="icon_search" />
-<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="変更" /></span>
+<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="　変　更　" /></span>
 </form></dd>
 </dl>
 <dl class="box">
@@ -236,7 +236,7 @@ if ( c['skinChangerArea'] == 0 ) { toggleDisplay('skin_changer_area'); }
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
 <input type="hidden" name="skinname" value="button_search_1" />
-<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="変更" /></span>
+<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="　変　更　" /></span>
 </form></dd>
 </dl>
 <dl class="box">
@@ -249,7 +249,7 @@ if ( c['skinChangerArea'] == 0 ) { toggleDisplay('skin_changer_area'); }
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
 <input type="hidden" name="skinname" value="button_search_2" />
-<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="変更" /></span>
+<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="　変　更　" /></span>
 </form></dd>
 </dl>
 <dl class="box">
@@ -262,7 +262,7 @@ if ( c['skinChangerArea'] == 0 ) { toggleDisplay('skin_changer_area'); }
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
 <input type="hidden" name="skinname" value="button_search_3" />
-<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="変更" /></span>
+<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="　変　更　" /></span>
 </form></dd>
 </dl>
 <dl class="box">
@@ -275,7 +275,7 @@ if ( c['skinChangerArea'] == 0 ) { toggleDisplay('skin_changer_area'); }
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
 <input type="hidden" name="skinname" value="button_search_4" />
-<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="変更" /></span>
+<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="　変　更　" /></span>
 </form></dd>
 </dl>
 <br class="clear" />
@@ -298,7 +298,7 @@ if ( c['skinChangerArea'] == 0 ) { toggleDisplay('skin_changer_area'); }
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
 <input type="hidden" name="skinname" value="birthday_f" />
-<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="変更" /></span>
+<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="　変　更　" /></span>
 </form></dd>
 </dl>
 <dl class="box">
@@ -311,7 +311,7 @@ if ( c['skinChangerArea'] == 0 ) { toggleDisplay('skin_changer_area'); }
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
 <input type="hidden" name="skinname" value="birthday_f_2" />
-<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="変更" /></span>
+<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="　変　更　" /></span>
 </form></dd>
 </dl>
 <dl class="box">
@@ -324,7 +324,7 @@ if ( c['skinChangerArea'] == 0 ) { toggleDisplay('skin_changer_area'); }
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
 <input type="hidden" name="skinname" value="birthday_h" />
-<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="変更" /></span>
+<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="　変　更　" /></span>
 </form></dd>
 </dl>
 <br class="clear" />
@@ -338,7 +338,7 @@ if ( c['skinChangerArea'] == 0 ) { toggleDisplay('skin_changer_area'); }
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
 <input type="hidden" name="skinname" value="icon_information" />
-<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="変更" /></span>
+<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="　変　更　" /></span>
 </form></dd>
 </dl>
 <dl class="box">
@@ -351,7 +351,7 @@ if ( c['skinChangerArea'] == 0 ) { toggleDisplay('skin_changer_area'); }
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
 <input type="hidden" name="skinname" value="skin_before_header" />
-<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="変更" /></span>
+<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="　変　更　" /></span>
 </form></dd>
 </dl>
 <br class="clear" />
@@ -374,7 +374,7 @@ if ( c['skinChangerArea'] == 0 ) { toggleDisplay('skin_changer_area'); }
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
 <input type="hidden" name="skinname" value="skin_footer"/>
-<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="変更" /></span>
+<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="　変　更　" /></span>
 </form></dd>
 </dl>
 <br class="clear" />
@@ -397,7 +397,7 @@ if ( c['skinChangerArea'] == 0 ) { toggleDisplay('skin_changer_area'); }
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
 <input type="hidden" name="skinname" value="no_image" />
-<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="変更" /></span>
+<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="　変　更　" /></span>
 </form></dd>
 </dl>
 <dl class="box">
@@ -410,7 +410,7 @@ if ( c['skinChangerArea'] == 0 ) { toggleDisplay('skin_changer_area'); }
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
 <input type="hidden" name="skinname" value="no_logo" />
-<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="変更" /></span>
+<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="　変　更　" /></span>
 </form></dd>
 </dl>
 <dl class="box">
@@ -423,7 +423,7 @@ if ( c['skinChangerArea'] == 0 ) { toggleDisplay('skin_changer_area'); }
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
 <input type="hidden" name="skinname" value="no_logo_small" />
-<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="変更" /></span>
+<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="　変　更　" /></span>
 </form></dd>
 </dl>
 <br class="clear" />
@@ -446,7 +446,7 @@ if ( c['skinChangerArea'] == 0 ) { toggleDisplay('skin_changer_area'); }
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
 <input type="hidden" name="skinname" value="button_edit_photo" />
-<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="変更" /></span>
+<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="　変　更　" /></span>
 </form></dd>
 </dl>
 <dl class="box">
@@ -459,7 +459,7 @@ if ( c['skinChangerArea'] == 0 ) { toggleDisplay('skin_changer_area'); }
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
 <input type="hidden" name="skinname" value="button_prof_conf" />
-<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="変更" /></span>
+<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="　変　更　" /></span>
 </form></dd>
 </dl>
 <dl class="box">
@@ -472,7 +472,7 @@ if ( c['skinChangerArea'] == 0 ) { toggleDisplay('skin_changer_area'); }
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
 <input type="hidden" name="skinname" value="button_show_photo" />
-<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="変更" /></span>
+<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="　変　更　" /></span>
 </form></dd>
 </dl>
 <br class="clear" />
@@ -486,7 +486,7 @@ if ( c['skinChangerArea'] == 0 ) { toggleDisplay('skin_changer_area'); }
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
 <input type="hidden" name="skinname" value="button_kyohi" />
-<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="変更" /></span>
+<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="　変　更　" /></span>
 </form></dd>
 </dl>
 <dl class="box">
@@ -499,7 +499,7 @@ if ( c['skinChangerArea'] == 0 ) { toggleDisplay('skin_changer_area'); }
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
 <input type="hidden" name="skinname" value="button_sakujo" />
-<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="変更" /></span>
+<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="　変　更　" /></span>
 </form></dd>
 </dl>
 <dl class="box">
@@ -512,7 +512,7 @@ if ( c['skinChangerArea'] == 0 ) { toggleDisplay('skin_changer_area'); }
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
 <input type="hidden" name="skinname" value="button_shonin" />
-<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="変更" /></span>
+<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="　変　更　" /></span>
 </form></dd>
 </dl>
 <dl class="box">
@@ -525,7 +525,7 @@ if ( c['skinChangerArea'] == 0 ) { toggleDisplay('skin_changer_area'); }
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
 <input type="hidden" name="skinname" value="button_shosai" />
-<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="変更" /></span>
+<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="　変　更　" /></span>
 </form></dd>
 </dl>
 <dl class="box">
@@ -538,7 +538,7 @@ if ( c['skinChangerArea'] == 0 ) { toggleDisplay('skin_changer_area'); }
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
 <input type="hidden" name="skinname" value="bg_button" />
-<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="変更" /></span>
+<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="　変　更　" /></span>
 </form></dd>
 </dl>
 <br class="clear" />
@@ -561,7 +561,7 @@ if ( c['skinChangerArea'] == 0 ) { toggleDisplay('skin_changer_area'); }
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
 <input type="hidden" name="skinname" value="satisfaction_level_1" />
-<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="変更" /></span>
+<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="　変　更　" /></span>
 </form></dd>
 </dl>
 <dl class="box">
@@ -574,7 +574,7 @@ if ( c['skinChangerArea'] == 0 ) { toggleDisplay('skin_changer_area'); }
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
 <input type="hidden" name="skinname" value="satisfaction_level_2" />
-<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="変更" /></span>
+<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="　変　更　" /></span>
 </form></dd>
 </dl>
 <dl class="box">
@@ -587,7 +587,7 @@ if ( c['skinChangerArea'] == 0 ) { toggleDisplay('skin_changer_area'); }
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
 <input type="hidden" name="skinname" value="satisfaction_level_3" />
-<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="変更" /></span>
+<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="　変　更　" /></span>
 </form></dd>
 </dl>
 <dl class="box">
@@ -600,7 +600,7 @@ if ( c['skinChangerArea'] == 0 ) { toggleDisplay('skin_changer_area'); }
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
 <input type="hidden" name="skinname" value="satisfaction_level_4" />
-<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="変更" /></span>
+<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="　変　更　" /></span>
 </form></dd>
 </dl>
 <dl class="box">
@@ -613,7 +613,7 @@ if ( c['skinChangerArea'] == 0 ) { toggleDisplay('skin_changer_area'); }
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
 <input type="hidden" name="skinname" value="satisfaction_level_5" />
-<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="変更" /></span>
+<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="　変　更　" /></span>
 </form></dd>
 </dl>
 <br class="clear" />
@@ -636,7 +636,7 @@ if ( c['skinChangerArea'] == 0 ) { toggleDisplay('skin_changer_area'); }
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
 <input type="hidden" name="skinname" value="icon_title_1" />
-<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="変更" /></span>
+<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="　変　更　" /></span>
 </form></dd>
 </dl>
 <dl class="box">
@@ -649,7 +649,7 @@ if ( c['skinChangerArea'] == 0 ) { toggleDisplay('skin_changer_area'); }
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
 <input type="hidden" name="skinname" value="content_header_1" />
-<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="変更" /></span>
+<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="　変　更　" /></span>
 </form></dd>
 </dl>
 <dl class="box">
@@ -662,7 +662,7 @@ if ( c['skinChangerArea'] == 0 ) { toggleDisplay('skin_changer_area'); }
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
 <input type="hidden" name="skinname" value="icon_arrow_1" />
-<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="変更" /></span>
+<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="　変　更　" /></span>
 </form></dd>
 </dl>
 <dl class="box">
@@ -675,7 +675,7 @@ if ( c['skinChangerArea'] == 0 ) { toggleDisplay('skin_changer_area'); }
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
 <input type="hidden" name="skinname" value="icon_arrow_2" />
-<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="変更" /></span>
+<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="　変　更　" /></span>
 </form></dd>
 </dl>
 <dl class="box">
@@ -688,7 +688,7 @@ if ( c['skinChangerArea'] == 0 ) { toggleDisplay('skin_changer_area'); }
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
 <input type="hidden" name="skinname" value="icon_1" />
-<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="変更" /></span>
+<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="　変　更　" /></span>
 </form></dd>
 </dl>
 <dl class="box">
@@ -701,7 +701,7 @@ if ( c['skinChangerArea'] == 0 ) { toggleDisplay('skin_changer_area'); }
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
 <input type="hidden" name="skinname" value="icon_2" />
-<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="変更" /></span>
+<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="　変　更　" /></span>
 </form></dd>
 </dl>
 <dl class="box">
@@ -714,7 +714,7 @@ if ( c['skinChangerArea'] == 0 ) { toggleDisplay('skin_changer_area'); }
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
 <input type="hidden" name="skinname" value="icon_3" />
-<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="変更" /></span>
+<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="　変　更　" /></span>
 </form></dd>
 </dl>
 <br class="clear" />
@@ -737,7 +737,7 @@ if ( c['skinChangerArea'] == 0 ) { toggleDisplay('skin_changer_area'); }
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
 <input type="hidden" name="skinname" value="icon_alert_l" />
-<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="変更" /></span>
+<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="　変　更　" /></span>
 </form></dd>
 </dl>
 <dl class="box">
@@ -750,7 +750,7 @@ if ( c['skinChangerArea'] == 0 ) { toggleDisplay('skin_changer_area'); }
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
 <input type="hidden" name="skinname" value="icon_crown" />
-<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="変更" /></span>
+<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="　変　更　" /></span>
 </form></dd>
 </dl>
 <dl class="box">
@@ -763,7 +763,7 @@ if ( c['skinChangerArea'] == 0 ) { toggleDisplay('skin_changer_area'); }
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
 <input type="hidden" name="skinname" value="icon_camera" />
-<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="変更" /></span>
+<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="　変　更　" /></span>
 </form></dd>
 </dl>
 <br class="clear" />
@@ -786,7 +786,7 @@ if ( c['skinChangerArea'] == 0 ) { toggleDisplay('skin_changer_area'); }
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
 <input type="hidden" name="skinname" value="icon_birthday" />
-<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="変更" /></span>
+<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="　変　更　" /></span>
 </form></dd>
 </dl>
 <dl class="box">
@@ -799,7 +799,7 @@ if ( c['skinChangerArea'] == 0 ) { toggleDisplay('skin_changer_area'); }
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
 <input type="hidden" name="skinname" value="icon_event_B" />
-<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="変更" /></span>
+<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="　変　更　" /></span>
 </form></dd>
 </dl>
 <dl class="box">
@@ -812,7 +812,7 @@ if ( c['skinChangerArea'] == 0 ) { toggleDisplay('skin_changer_area'); }
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
 <input type="hidden" name="skinname" value="icon_event_R" />
-<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="変更" /></span>
+<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="　変　更　" /></span>
 </form></dd>
 </dl>
 <dl class="box">
@@ -825,7 +825,7 @@ if ( c['skinChangerArea'] == 0 ) { toggleDisplay('skin_changer_area'); }
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
 <input type="hidden" name="skinname" value="icon_pen" />
-<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="変更" /></span>
+<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="　変　更　" /></span>
 </form></dd>
 </dl>
 <dl class="box">
@@ -838,7 +838,7 @@ if ( c['skinChangerArea'] == 0 ) { toggleDisplay('skin_changer_area'); }
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
 <input type="hidden" name="skinname" value="icon_weather_FC" />
-<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="変更" /></span>
+<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="　変　更　" /></span>
 </form></dd>
 </dl>
 <dl class="box">
@@ -851,7 +851,7 @@ if ( c['skinChangerArea'] == 0 ) { toggleDisplay('skin_changer_area'); }
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
 <input type="hidden" name="skinname" value="icon_schedule" />
-<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="変更" /></span>
+<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="　変　更　" /></span>
 </form></dd>
 </dl>
 <br class="clear" />
@@ -874,7 +874,7 @@ if ( c['skinChangerArea'] == 0 ) { toggleDisplay('skin_changer_area'); }
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
 <input type="hidden" name="skinname" value="icon_mail_1" />
-<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="変更" /></span>
+<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="　変　更　" /></span>
 </form></dd>
 </dl>
 <dl class="box">
@@ -887,7 +887,7 @@ if ( c['skinChangerArea'] == 0 ) { toggleDisplay('skin_changer_area'); }
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
 <input type="hidden" name="skinname" value="icon_mail_2" />
-<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="変更" /></span>
+<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="　変　更　" /></span>
 </form></dd>
 </dl>
 <dl class="box">
@@ -900,7 +900,7 @@ if ( c['skinChangerArea'] == 0 ) { toggleDisplay('skin_changer_area'); }
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
 <input type="hidden" name="skinname" value="icon_mail_3" />
-<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="変更" /></span>
+<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="　変　更　" /></span>
 </form></dd>
 </dl>
 <dl class="box">
@@ -913,7 +913,7 @@ if ( c['skinChangerArea'] == 0 ) { toggleDisplay('skin_changer_area'); }
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
 <input type="hidden" name="skinname" value="icon_mail_4" />
-<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="変更" /></span>
+<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="　変　更　" /></span>
 </form></dd>
 </dl>
 <br class="clear" />
@@ -941,7 +941,7 @@ if ( c['skinChangerArea'] == 0 ) { toggleDisplay('skin_changer_area'); }
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
 <input type="hidden" name="skinname" value="({$skinname})" />
-<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="変更" /></span>
+<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="　変　更　" /></span>
 </form></dd>
 </dl>
 ({/foreach})
@@ -960,7 +960,7 @@ if ( c['skinChangerArea'] == 0 ) { toggleDisplay('skin_changer_area'); }
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
 <input type="hidden" name="skinname" value="({$skinname})" />
-<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="変更" /></span>
+<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="　変　更　" /></span>
 </form></dd>
 </dl>
 ({/if})
@@ -978,7 +978,7 @@ if ( c['skinChangerArea'] == 0 ) { toggleDisplay('skin_changer_area'); }
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
 <input type="hidden" name="skinname" value="({$skinname})" />
-<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="変更" /></span>
+<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="　変　更　" /></span>
 </form></dd>
 </dl>
 ({if !$smarty.const.OPENPNE_EMOJI_DOCOMO_FOR_PC})
@@ -996,7 +996,7 @@ if ( c['skinChangerArea'] == 0 ) { toggleDisplay('skin_changer_area'); }
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
 <input type="hidden" name="skinname" value="({$skinname})" />
-<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="変更" /></span>
+<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="　変　更　" /></span>
 </form></dd>
 </dl>
 <dl class="box">
@@ -1013,7 +1013,7 @@ if ( c['skinChangerArea'] == 0 ) { toggleDisplay('skin_changer_area'); }
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
 <input type="hidden" name="skinname" value="({$skinname})" />
-<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="変更" /></span>
+<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="　変　更　" /></span>
 </form></dd>
 </dl>
 <dl class="box">
@@ -1030,7 +1030,7 @@ if ( c['skinChangerArea'] == 0 ) { toggleDisplay('skin_changer_area'); }
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
 <input type="hidden" name="skinname" value="({$skinname})" />
-<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="変更" /></span>
+<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="　変　更　" /></span>
 </form></dd>
 </dl>
 ({/if})
@@ -1066,7 +1066,7 @@ if ( c['skinChangerArea'] == 0 ) { toggleDisplay('skin_changer_area'); }
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
 <input type="hidden" name="skinname" value="skin_ktai_header" />
-<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="変更" /></span>
+<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="　変　更　" /></span>
 </form></dd>
 </dl>
 <br class="clear" />

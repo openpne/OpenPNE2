@@ -118,7 +118,7 @@
 
 <hr color="#({$ktai_color_config.border_01})">
 <center>
-<input type="submit" value=" 登録 ">
+<input type="submit" value="　登　録　">
 </center>
 </form>
 
