@@ -28,14 +28,14 @@
 <input type="hidden" name="tmpfile_1" value="({$form_val.tmpfile_1})" />
 <input type="hidden" name="tmpfile_2" value="({$form_val.tmpfile_2})" />
 <input type="hidden" name="tmpfile_3" value="({$form_val.tmpfile_3})" />
-<input type="submit" class="input_submit" value="決定" />
+<input type="submit" class="input_submit" value="　決　定　" />
 ({/t_form_block})
 </li>
 <li>
 ({t_form_block _form_action=#commentForm _enctype=file m=pc a=page_fh_diary})
 <input type="hidden" name="target_c_diary_id" value="({$form_val.target_c_diary_id})" />
 <input type="hidden" name="body" value="({$form_val.body})" />
-<input type="submit" class="input_submit" value="修正" />
+<input type="submit" class="input_submit" value="　修　正　" />
 ({/t_form_block})
 </li>
 </ul>

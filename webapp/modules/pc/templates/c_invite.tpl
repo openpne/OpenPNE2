@@ -30,7 +30,7 @@
 
 <div class="operation">
 <ul class="moreInfo button">
-<li><input type="submit" class="input_submit" value="　送　　信　" /></li>
+<li><input type="submit" class="input_submit" value="　送　信　" /></li>
 </ul>
 </div>
 

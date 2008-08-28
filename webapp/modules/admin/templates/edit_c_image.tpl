@@ -22,7 +22,7 @@
 <dt class="upfile"><strong class="item">画像</strong></dt>
 <dd class="upfile"><input type="file" name="upfile" /><span>（GIF・JPG・PNG形式）</span></dd>
 </dl>
-<p class="textBtn"><input type="submit" value="登録" /></p>
+<p class="textBtn"><input type="submit" value="　登　録　" /></p>
 </form>
 
 </div>({*/div class="contents"*})
@@ -40,7 +40,7 @@
 <dt class="filename"><strong class="item">ファイル名</strong></dt>
 <dd class="filename"><input type="text" class="basic" name="filename" value="({$requests.filename})" size="30" /></dd>
 </dl>
-<p class="textBtn"><input type="submit" value="表示" /></p>
+<p class="textBtn"><input type="submit" value="　表　示　" /></p>
 </form>
 ({if $requests.filename})
 ({if $is_image})

@@ -19,7 +19,7 @@
 <input type="hidden" name="target_c_member_id" value="({$target_c_member.c_member_id})" />
 <input type="hidden" name="target_c_commu_id" value="({$target_c_commu_id})" />
 <input type="hidden" name="body" value="({$body})" />
-<input type="submit" class="input_submit" value="送信" />
+<input type="submit" class="input_submit" value="　送　信　" />
 ({/t_form_block})
 </li>
 <li>
@@ -27,7 +27,7 @@
 <input type="hidden" name="target_c_member_id" value="({$target_c_member.c_member_id})" />
 <input type="hidden" name="target_c_commu_id" value="({$target_c_commu_id})" />
 <input type="hidden" name="body" value="({$body})" />
-<input type="submit" class="input_submit" value="修正" />
+<input type="submit" class="input_submit" value="　修　正　" />
 ({/t_form_block})
 </li>
 </ul>
