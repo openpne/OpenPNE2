@@ -77,7 +77,7 @@
 ({if $box == 'trash'})
 <li><input type="submit" class="input_submit" name="move" value="元に戻す" /></li>
 ({/if})
-<li><input type="submit" class="input_submit" name="remove" value="削 除" /></li>
+<li><input type="submit" class="input_submit" name="remove" value="　削　除　" /></li>
 </ul>
 ({/t_form_block})
 ({if ($box == 'inbox' || !$box) && $c_message.c_member_nickname_from})
