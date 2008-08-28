@@ -133,8 +133,8 @@
 <a href="({t_url m=ktai a=page_c_event_add})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">ｲﾍﾞﾝﾄの作成</a><br>
 ({/if})
 </td></tr>
-</table>
 ({/if})
+</table>
 <br>
 <table width="100%">
 <tr><td bgcolor="#({$ktai_color_config.color_27})" align="center">
