@@ -103,7 +103,7 @@ function deletePortalImage(imagefilename)
 <input type="hidden" name="target_area" value="({$target_area})" />
 <dl class="upload">
 <dt class="upfile"><strong class="title">画像の追加</strong></dt>
-<dd class="upfile"><input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="追加" /></span></dd>
+<dd class="upfile"><input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="　追　加　" /></span></dd>
 </dl>
 </form>
 </div>({*/div class="contents"*})

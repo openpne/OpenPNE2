@@ -71,7 +71,7 @@
 <option value="({$dayvalue})">({$dayvalue})
 ({/foreach})
 </select>日</td>
-<td colspan="2"><span class="textBtnS"><input type="submit" value="　項目追加　"></span></td>
+<td colspan="2"><span class="textBtnS"><input type="submit" value="項目追加"></span></td>
 </form>
 </tr>
 </tbody>

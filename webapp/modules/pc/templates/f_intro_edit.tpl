@@ -23,7 +23,7 @@
 </table>
 <div class="operation">
 <ul class="moreInfo button">
-<li><input type="submit" class="input_submit" value="作成" /></li>
+<li><input type="submit" class="input_submit" value="　作　成　" /></li>
 </ul>
 </div>
 ({/t_form_block})
