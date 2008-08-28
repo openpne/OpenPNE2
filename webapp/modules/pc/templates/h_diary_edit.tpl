@@ -182,7 +182,7 @@
 </table>
 <div class="operation">
 <ul class="moreInfo button">
-<li><input type="submit" class="input_submit" value="削除" /></li>
+<li><input type="submit" class="input_submit" value="　削　除　" /></li>
 </ul>
 </div>
 ({/t_form_block})

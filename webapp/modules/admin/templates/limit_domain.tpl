@@ -46,7 +46,7 @@
 </tr>
 <tr>
 <th>&nbsp;</th>
-<td><p class="textBtn"><input type="submit" class="submit" value=" 更　新 " /></p></td>
+<td><p class="textBtn"><input type="submit" class="submit" value="　更　新　" /></p></td>
 </tr>
 </tbody>
 </table>

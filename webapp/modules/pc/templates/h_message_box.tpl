@@ -15,7 +15,7 @@
 <option value="({$item.c_member_id_from})"({if $target_c_member_id == $item.c_member_id_from}) selected="selected"({/if})>({$item.nickname})</option>
 ({/foreach})
 </select></li>
-<li><input type="submit" class="input_submit" value="検索" /></li>
+<li><input type="submit" class="input_submit" value="　検　索　" /></li>
 </ul>
 ({/t_form_block})
 </div>
@@ -36,7 +36,7 @@
 <option value="({$item.c_member_id_to})"({if $target_c_member_id == $item.c_member_id_to}) selected="selected"({/if})>({$item.nickname})</option>
 ({/foreach})
 </select></li>
-<li><input type="submit" class="input_submit" value="検索" /></li>
+<li><input type="submit" class="input_submit" value="　検　索　" /></li>
 </ul>
 ({/t_form_block})
 </div>
@@ -210,7 +210,7 @@ function clearAll() {
 <div class="operation">
 <p><a href="#" onclick="return checkAll();" onkeypress="return checkAll();">全てをチェック</a> / <a href="#" onclick="return clearAll();" onkeypress="return clearAll();">全てのチェックをはずす</a></p>
 <ul class="moreInfo button">
-<li><input type="submit" class="input_submit" value="削 除" /></li>
+<li><input type="submit" class="input_submit" value="　削　除　" /></li>
 </ul>
 </div>
 
@@ -287,7 +287,7 @@ function clearAll() {
 <div class="operation">
 <p><a href="#" onclick="return checkAll();" onkeypress="return checkAll();">全てをチェック</a> / <a href="#" onclick="return clearAll();" onkeypress="return clearAll();">全てのチェックをはずす</a></p>
 <ul class="moreInfo button">
-<li><input type="submit" class="input_submit" value="削 除" /></li>
+<li><input type="submit" class="input_submit" value="　削　除　" /></li>
 </ul>
 </div>
 
@@ -364,7 +364,7 @@ function clearAll() {
 <div class="operation">
 <p><a href="#" onclick="return checkAll();" onkeypress="return checkAll();">全てをチェック</a> / <a href="#" onclick="return clearAll();" onkeypress="return clearAll();">全てのチェックをはずす</a></p>
 <ul class="moreInfo button">
-<li><input type="submit" class="input_submit" value="削 除" /></li>
+<li><input type="submit" class="input_submit" value="　削　除　" /></li>
 </ul>
 </div>
 
@@ -457,7 +457,7 @@ function clearAll() {
 <p><a href="#" onclick="return checkAll();" onkeypress="return checkAll();">全てをチェック</a> / <a href="#" onclick="return clearAll();" onkeypress="return clearAll();">全てのチェックをはずす</a></p>
 <ul class="moreInfo button">
 <li><input type="submit" class="input_submit" name="move" value="元に戻す" /></li>
-<li><input type="submit" class="input_submit" name="remove" value="削除" /></li>
+<li><input type="submit" class="input_submit" name="remove" value="　削　除　" /></li>
 </ul>
 </div>
 

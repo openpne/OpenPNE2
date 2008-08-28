@@ -35,7 +35,7 @@
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
 <input type="hidden" name="c_action_id" value="({$c_action.c_action_id})" />
 <td><input type="text" class="basic" name="point" value="({$c_action.point})" size="10" /></td>
-<td><span class="textBtnS"><input type="submit" class="submit" value="変更"></span></td>
+<td><span class="textBtnS"><input type="submit" class="submit" value="　変　更　"></span></td>
 </form>
 
 </tr>

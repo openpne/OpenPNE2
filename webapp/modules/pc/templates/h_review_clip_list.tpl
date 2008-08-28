@@ -61,7 +61,7 @@
 
 <div class="operation">
 <ul class="moreInfo button">
-<li><input type="submit" class="input_submit" value="　削　　除　" /></li>
+<li><input type="submit" class="input_submit" value="　削　除　" /></li>
 </ul>
 </div>
 
