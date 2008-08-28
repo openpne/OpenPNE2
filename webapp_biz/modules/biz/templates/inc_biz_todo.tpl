@@ -7,7 +7,7 @@
 <div class="block">
 <textarea name="todo" cols="30" rows="2"></textarea>
 <label for="is_all">だれかがTodo</label><input type="checkbox" class="input_checkbox" name="is_all" id="is_all" value="1" />
-<input type="submit" class="input_submit" value="追加" />
+<input type="submit" class="input_submit" value="　追　加　" />
 </div>
 ({/t_form_block})
 

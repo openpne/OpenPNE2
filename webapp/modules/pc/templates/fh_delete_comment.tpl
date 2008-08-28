@@ -29,12 +29,12 @@
 ({foreach from=$target_diary_comment_list item=target_diary_comment})
 <input type="hidden" name="target_c_diary_comment_id[]" value="({$target_diary_comment.c_diary_comment_id})" />
 ({/foreach})
-<input type="submit" class="input_submit" value=" は い " />
+<input type="submit" class="input_submit" value="　は　い　" />
 ({/t_form_block})
 </li><li>
 ({t_form_block _method=get m=pc a=page_fh_diary})
 <input type="hidden" name="target_c_diary_id" value="({$target_diary.c_diary_id})" />
-<input type="submit" class="input_submit" value="いいえ" />
+<input type="submit" class="input_submit" value="　いいえ　" />
 ({/t_form_block})
 </li>
 </ul>
