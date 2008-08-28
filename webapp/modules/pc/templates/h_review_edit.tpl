@@ -39,7 +39,7 @@
 
 <div class="operation">
 <ul class="moreInfo button">
-<li><input type="submit" class="input_submit" value="　登録　" /></li>
+<li><input type="submit" class="input_submit" value="　登　録　" /></li>
 </ul>
 </div>
 
@@ -55,7 +55,7 @@
 <input type="hidden" name="c_review_comment_id" value="({$c_review_comment.c_review_comment_id})" />
 <input type="hidden" name="asin" value="({$c_review_comment.asin})" />
 <ul class="moreInfo button">
-<li><input type="submit" class="input_submit" value="　削除　" /></li>
+<li><input type="submit" class="input_submit" value="　削　除　" /></li>
 </ul>
 ({/t_form_block})
 </div>

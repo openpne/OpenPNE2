@@ -84,7 +84,7 @@
 ({t_form_block m=pc a=page_c_edit_delete_c_commu_confirm})
 <input type="hidden" name="target_c_commu_id" value="({$c_commu.c_commu_id})" />
 <ul class="moreInfo button">
-<li><input type="submit" class="input_submit" value="削除" /></li>
+<li><input type="submit" class="input_submit" value="　削　除　" /></li>
 </ul>
 ({/t_form_block})
 </div>

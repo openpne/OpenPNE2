@@ -64,7 +64,7 @@
 <input type="hidden" name="tmpfile_2" value="({$form_val.tmpfile_2})" />
 <input type="hidden" name="tmpfile_3" value="({$form_val.tmpfile_3})" />
 <input type="hidden" name="category" value="({$form_val.category})" />
-<input type="submit" class="input_submit" value="作成" />
+<input type="submit" class="input_submit" value="　作　成　" />
 ({/t_form_block})
 </li>
 <li>
@@ -73,7 +73,7 @@
 <input type="hidden" name="body" value="({$form_val.body})" />
 <input type="hidden" name="public_flag" value="({$form_val.public_flag})" />
 <input type="hidden" name="category" value="({$form_val.category})" />
-<input type="submit" class="input_submit" value="修正" />
+<input type="submit" class="input_submit" value="　修　正　" />
 ({/t_form_block})
 </li>
 </ul>
