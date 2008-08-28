@@ -14,7 +14,7 @@
 <option value="({$item.year})-({$item.month})-({$item.day})"({if $item.now}) selected="selected"({/if})>({$item.month})/({$item.day})(({$item.dayofweek}))</option>
 ({/foreach})
 </select>
-<input type="submit" class="input_submit" value="追加" />
+<input type="submit" class="input_submit" value="　追　加　" />
 <a href="({t_url m=biz a=page_g_home})&amp;w=({$w-1})&amp;target_c_commu_id=({$target_id})" title="前の週">＜</a>
 <a href="({t_url m=biz a=page_g_home})&amp;target_c_commu_id=({$target_id})" title="今週">■</a>
 <a href="({t_url m=biz a=page_g_home})&amp;w=({$w+1})&amp;target_c_commu_id=({$target_id})" title="次の週">＞</a>
@@ -53,7 +53,7 @@
 ({/section})
 </select>
 まで
-<input type="submit" class="input_submit" value="追加" />
+<input type="submit" class="input_submit" value="　追　加　" />
 <a href="({t_url m=biz a=page_s_list})&amp;w=({$w-1})" title="前の週">＜</a>
 <a href="({t_url m=biz a=page_s_list})" title="今週">■</a>
 <a href="({t_url m=biz a=page_s_list})&amp;w=({$w+1})" title="次の週">＞</a>
@@ -230,7 +230,7 @@
 <option value="({$item.year})-({$item.month})-({$item.day})"({if $item.now}) selected="selected"({/if})>({$item.month})/({$item.day})(({$item.dayofweek}))</option>
 ({/foreach})
 </select>
-<input type="submit" class="input_submit" value="追加" />
+<input type="submit" class="input_submit" value="　追　加　" />
 
 <a href="({t_url m=pc a=page_`$cmd`_home})&amp;w=({$w-1})({if $target_id})&amp;target_c_member_id=({$target_id})({/if})" title="前の週">＜</a>
 <a href="({t_url m=pc a=page_`$cmd`_home})({if $target_id})&amp;target_c_member_id=({$target_id})({/if})" title="今週">■</a>
