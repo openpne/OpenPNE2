@@ -39,7 +39,7 @@
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('delete_c_rank','do')})">
 <input type="hidden" name="sessid" value="({$PHPSESSID})">
 <input type="hidden" name="c_rank_id" value="({$c_rank.c_rank_id})">
-<p class="textBtn"><input type="submit" value=" は　い ">　<input type="button" value=" いいえ " onClick="location.href='?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_rank')})'"></p>
+<p class="textBtn"><input type="submit" value="　は　い　">　<input type="button" value="　いいえ　" onClick="location.href='?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_rank')})'"></p>
 </form>
 
 

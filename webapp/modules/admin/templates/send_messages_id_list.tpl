@@ -28,7 +28,7 @@
 <p>
 <textarea name="c_member_id_list" rows="6" cols="50">({$requests.c_member_id_list})</textarea>
 </p>
-<p class="textBtn"><input type="submit" class="submit" value="決定" /></p>
+<p class="textBtn"><input type="submit" class="submit" value="　決　定　" /></p>
 </form>
 
 ({$inc_footer|smarty:nodefaults})

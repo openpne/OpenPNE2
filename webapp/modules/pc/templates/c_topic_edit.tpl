@@ -63,7 +63,7 @@
 </table>
 <div class="operation">
 <ul class="moreInfo button">
-<li><input type="submit" class="input_submit" value="編集" /></li>
+<li><input type="submit" class="input_submit" value="　編　集　" /></li>
 </ul>
 </div>
 ({/t_form_block})
@@ -76,7 +76,7 @@
 ({t_form_block m=pc a=page_c_topic_delete_confirm})
 <input type="hidden" name="target_c_commu_topic_id" value="({$c_topic.c_commu_topic_id})" />
 <div class="block">
-<p><input type="submit" class="input_submit" value="削除" /></p>
+<p><input type="submit" class="input_submit" value="　削　除　" /></p>
 </div>
 ({/t_form_block})
 </div></div>

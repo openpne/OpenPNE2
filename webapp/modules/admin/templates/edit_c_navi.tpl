@@ -35,7 +35,7 @@
 <td class="cell01">({$key+1})</td>
 <td class="cell02"><input type="text" class="basic" name="url" value="({$item.url})" size="40" /></td>
 <td class="cell03"><input type="text" class="basic" name="caption" value="({$item.caption})" size="20" /></td>
-<td class="cell04"><span class="textBtnS"><input type="submit" value="変更" /></span></td>
+<td class="cell04"><span class="textBtnS"><input type="submit" value="　変　更　" /></span></td>
 </form>
 <form action="./" method="post">
 <input type="hidden" name="m" value="({$module_name})" />
@@ -79,7 +79,7 @@
 <td class="cell01">({$key+1})</td>
 <td class="cell02"><input type="text" class="basic" name="url" value="({$item.url})" size="40" /></td>
 <td class="cell03"><input type="text" class="basic" name="caption" value="({$item.caption})" size="20" /></td>
-<td class="cell04"><span class="textBtnS"><input type="submit" value="変更" /></span></td>
+<td class="cell04"><span class="textBtnS"><input type="submit" value="　変　更　" /></span></td>
 </form>
 <form action="./" method="post">
 <input type="hidden" name="m" value="({$module_name})" />
@@ -117,7 +117,7 @@
 <td class="cell01">({$key+1})</td>
 <td class="cell02"><input type="text" class="basic" name="url" value="({$item.url})" size="40" /></td>
 <td class="cell03"><input type="text" class="basic" name="caption" value="({$item.caption})" size="20" /></td>
-<td class="cell04"><span class="textBtnS"><input type="submit" value="変更" /></span></td>
+<td class="cell04"><span class="textBtnS"><input type="submit" value="　変　更　" /></span></td>
 </form>
 <form action="./" method="post">
 <input type="hidden" name="m" value="({$module_name})" />
@@ -155,7 +155,7 @@
 <td class="cell01">({$key+1})</td>
 <td class="cell02"><input type="text" class="basic" name="url" value="({$item.url})" size="40" /></td>
 <td class="cell03"><input type="text" class="basic" name="caption" value="({$item.caption})" size="20" /></td>
-<td class="cell04"><span class="textBtnS"><input type="submit" value="変更" /></span></td>
+<td class="cell04"><span class="textBtnS"><input type="submit" value="　変　更　" /></span></td>
 </form>
 <form action="./" method="post">
 <input type="hidden" name="m" value="({$module_name})" />

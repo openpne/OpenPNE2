@@ -25,7 +25,7 @@
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('import_c_member','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
 <p><input type="file" name="member_file" /></p>
-<p class="textBtn"><input type="submit" class="submit" value="登録" /></p>
+<p class="textBtn"><input type="submit" class="submit" value="　登　録　" /></p>
 </form>
 
 <h3 class="item">CSVファイル形式</h3>

@@ -12,7 +12,7 @@
 <p class="form">
 <label for="keyword">キーワード</label>
 <input type="text" class="text" name="keyword" id="keyword" size="15" value="({$keyword})" />
-<input type="submit" class="input_submit" value="　検 索　" />
+<input type="submit" class="input_submit" value="　検　索　" />
 </p>
 
 <p class="form">

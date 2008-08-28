@@ -17,7 +17,7 @@
 <option value="" selected="selected">選択</option>
 ({html_options options=$category_disp selected=$category_id})
 </select>
-<input type="submit" class="input_submit" name="button" value="　検 索　" />
+<input type="submit" class="input_submit" name="button" value="　検　索　" />
 </p>
 ({/t_form_block})
 
