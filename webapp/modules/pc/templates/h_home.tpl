@@ -374,7 +374,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 
 ({if $inc_entry_point[9]})({$inc_entry_point[9]|smarty:nodefaults|t_url2cmd:'entry_point'|t_cmd:'entry_point'})({/if})
 
-({if $c_diary_friend_list || $c_rss_cache_list || $c_diary_my_comment_list || $c_commu_topic_comment_list || $c_friend_review_list})
+({if $c_diary_friend_list || $c_rss_cache_list || $c_diary_my_comment_list || $c_commu_topic_comment_list || $c_friend_review_list || $c_album_list})
 ({* {{{ homeMainTable *})
 <div class="dparts homeMainTable"><div class="parts">
 <div class="partsHeading"><h3>最新情報</h3></div>
