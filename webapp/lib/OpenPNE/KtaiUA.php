@@ -70,7 +70,12 @@ class OpenPNE_KtaiUA
             $this->is_willcom = true;
         }
         //emobile
-        elseif (strpos($ua, 'emobile') !== false) {
+        elseif (strpos($ua, 'emobile') !== false
+             || stristr($this->_ua, 'Huawei') != false) {
+            $this->is_emobile = true;
+            $this->is_ktai = true;
+        }
+        elseif (isset($_SERVER['HTTP_X_EM_UID'])) {
             $this->is_emobile = true;
             $this->is_ktai = true;
         }
