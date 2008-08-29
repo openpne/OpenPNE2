@@ -564,4 +564,9 @@ define('OPENPNE_ADMIN_CONVERT_URL', true);
 // OpenID サーバ（プロバイダ）となるかどうか
 define('OPENPNE_IS_OPENID_SERVER', false);
 
+// DBエラーログ出力を出力するかどうか
+//    TRUE:出力する FALSE:出力しない
+define('OPENPNE_DB_ERROR_LOG',true);
+define('db_error_log', OPENPNE_VAR_DIR . '/log/db_errors.log');
+
 ?>
