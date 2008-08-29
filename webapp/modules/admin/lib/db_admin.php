@@ -3351,4 +3351,55 @@ function db_admin_get_c_cmd_id4name_c_cmd_caster_id($name, $c_cmd_caster_id)
     return db_get_one($sql, $data);
 }
 
+/**
+ * 指定したメンバーの以下の設定を無効にする
+ * ・メール/携帯メール/Daily News受信設定
+ * ・コミュニティ管理者からのメッセージ/書込のメッセージ受信設定
+ * 
+ * @param int $c_member_id
+ */
+function db_admin_stop_receive_mail4c_member_id($c_member_id)
+{
+    $where = array('c_member_id' => intval($c_member_id));
+    // プロフィールでの受信設定項目
+    $data = array(
+        'is_receive_mail' => 0,
+        'is_receive_daily_news' => 0,
+        'is_receive_ktai_mail' => 0,
+    );
+    $result = db_update('c_member', $data, $where);
+    // コミュニティでの受信設定項目
+    $data = array(
+        'is_receive_mail' => 0,
+        'is_receive_mail_pc' => 0,
+        'is_receive_message' => 0
+    );
+    $result = db_update('c_commu_member', $data, $where);
+    return $result;
+}
+
+/**
+ * 指定したメンバーの以下のいずれかが有効であればtrueを返す
+ * ・メール/携帯メール/Daily News受信設定
+ * ・コミュニティ管理者からのメッセージ/書込のメッセージ受信設定
+ * 
+ * @param int $c_member_id
+ * @return bool メール配信指定の有無
+ */
+function db_admin_is_receive_any_mail4c_member_id($c_member_id)
+{
+    $params = array(intval($c_member_id));
+    // プロフィールでの受信設定項目
+    $sql = 'SELECT c_member_id FROM c_member WHERE c_member_id = ? AND (is_receive_mail = 1 OR is_receive_daily_news = 1 OR is_receive_ktai_mail = 1)';
+    if ((bool)db_get_one($sql, $params)) {
+        return true;
+    }
+    // コミュニティでの受信設定項目
+    $sql = 'SELECT c_member_id FROM c_commu_member WHERE c_member_id = ? AND (is_receive_mail = 1 OR is_receive_mail_pc = 1 OR is_receive_message = 1)';
+    if ((bool)db_get_one($sql, $params)) {
+        return true;
+    }
+    return false;
+}
+
 ?>
