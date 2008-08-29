@@ -259,6 +259,14 @@ function openpne_display_error($errors = array(), $notfound = false)
     $smarty->assign('notfound', $notfound);
     if (OPENPNE_DEBUGGING) {
         $smarty->assign('errors', (array)$errors);
+
+        $base_dir   = preg_replace('/\/public_html(\/.*)?$/', '', $_SERVER['SCRIPT_FILENAME']);
+        $base_regex = '/^.*?' . preg_quote($base_dir, '/') .'/';
+        $backtrace  = debug_backtrace();
+        foreach ($backtrace as $key => $value) {
+            $backtrace[$key]['file'] = preg_replace($base_regex, '.', $value['file']);
+        }
+        $smarty->assign('debug_backtrace', $backtrace);
     }
     $smarty->ext_display('error.tpl');
     exit;
