@@ -69,6 +69,11 @@ class OpenPNE_KtaiUA
             $this->is_ktai = true;
             $this->is_willcom = true;
         }
+        //emobile
+        elseif (strpos($ua, 'emobile') !== false) {
+            $this->is_emobile = true;
+            $this->is_ktai = true;
+        }
 
         else {
             $this->is_ktai = false;
@@ -80,6 +85,7 @@ class OpenPNE_KtaiUA
     function is_vodafone() { return $this->is_vodafone; }
     function is_au() { return $this->is_au; }
     function is_willcom() { return $this->is_willcom; }
+    function is_emobile() { return $this->is_emobile; }
 }
 
 ?>
