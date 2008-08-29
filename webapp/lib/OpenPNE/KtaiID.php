@@ -62,6 +62,13 @@ class OpenPNE_KtaiID
                 $id = $sn;
             }
         }
+        // SoftBank Vodafone(3G) UID取得
+        elseif (isset($_SERVER["x-jphone-uid"])){
+            $id = $_SERVER["x-jphone-uid"];
+        }
+        elseif (isset($_SERVER['HTTP_X_JPHONE_UID'])){
+            $id = $_SERVER['HTTP_X_JPHONE_UID'];
+        }
         // Vodafone(3G)
         //* Up.Browser を搭載しているものがある(auより先に評価)
         //* MOTは製造番号を取得できない
