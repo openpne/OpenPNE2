@@ -82,6 +82,10 @@ class OpenPNE_KtaiID
 
             if (!strncmp($sn, 'SN', 2)) {
                 $id = $sn;
+            }elseif (isset($_SERVER["x-jphone-uid"])){
+                $id = $_SERVER["x-jphone-uid"];
+            }elseif (isset($_SERVER['HTTP_X_JPHONE_UID'])){
+                $id = $_SERVER['HTTP_X_JPHONE_UID'];
             }
         }
 
