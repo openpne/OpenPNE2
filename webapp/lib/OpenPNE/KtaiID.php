@@ -94,6 +94,13 @@ class OpenPNE_KtaiID
                 $id = $_SERVER['HTTP_X_UP_SUBNO'];
             }
         }
+        // emobile 2008-05-13 KUNIHARU Tsujioka update
+        elseif (strpos($ua, 'emobile') !== false) {
+
+            if ($_SERVER['HTTP_X_EM_UID']) {
+                $id = $_SERVER['HTTP_X_EM_UID'];
+            }
+        }
 
         return $id;
     }
