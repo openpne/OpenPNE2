@@ -17,6 +17,33 @@
 ({*ここまで：header*})
 ({*ここから：body*})
 <!-- ここから：主内容 -->
+({if $smarty.const.OPENPNE_USE_FLASH_LIST})
+<table border="0" cellspacing="0" cellpadding="0" style="width:266px;" class="bg_07">
+<tr>
+<td class="bg_07"><img src="./skin/dummy.gif" alt="dummy" style="width:1px;"></td>
+<td class="bg_03" align="center">
+
+({capture assign=flashvars})({strip})
+({foreach from=$group_list item=item key=key})
+({if $key > 0})&({/if})
+pne_item({$key+1})_id=({$item.biz_group_id})
+&pne_item({$key+1})_name=({$item.name|t_truncate:12:'..'|escape:url|smarty:nodefaults})
+&pne_item({$key+1})_linkurl=({t_url m=biz a=page_g_home _urlencode=true _html=false})%26target_c_commu_id=({$item.biz_group_id})
+&pne_item({$key+1})_imageurl=({t_img_url filename=$item.image_filename w=76 h=76 noimg=no_image _urlencode=true _html=false})
+&pne_item({$key+1})_count=({$item.count})
+({/foreach})
+({/strip})({/capture})
+<script type="text/javascript" src="js/show_flash.js"></script>
+<script type="text/javascript">
+<!--
+show_flash('flash/list.swf', '({$flashvars})');
+//-->
+</script>
+</td>
+<td class="bg_07"><img src="./skin/dummy.gif" alt="dummy" style="width:1px;"></td>
+</tr>
+</table>
+({else})
 <table border="0" cellspacing="1" cellpadding="2" style="width:268px" class="bg_07">
 
 ({if $group_list[0]})
@@ -135,6 +162,7 @@
 ({/if})
 
 </table>
+({/if})
 
 <!-- ここまで：主内容 -->
 ({*ここまで：body*})
