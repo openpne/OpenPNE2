@@ -62,6 +62,7 @@ class pc_page_c_sub_admin_request_confirm extends OpenPNE_Action
         }
         //---
 
+        $this->set('inc_navi', fetch_inc_navi("c", $target_c_commu_id));
         $this->set("target_c_member_id", $target_c_member_id);
         $this->set('target_c_member', db_member_c_member4c_member_id_LIGHT($target_c_member_id));
         $this->set("target_c_commu_id", $target_c_commu_id);
