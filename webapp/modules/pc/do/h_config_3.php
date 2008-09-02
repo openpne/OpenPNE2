@@ -31,6 +31,8 @@ class pc_do_h_config_3 extends OpenPNE_Action
         $schedule_start_day = $requests['schedule_start_day'];
         // ----------
 
+        $c_member = db_member_c_member4c_member_id($u);
+
         if (OPENPNE_AUTH_MODE == 'slavepne') {
             $c_password_query_id = 0;
             $c_password_query_answer = '';
@@ -40,6 +42,13 @@ class pc_do_h_config_3 extends OpenPNE_Action
         }
 
         $error_messages = array();
+
+
+        if ($c_password_query_id != $c_member['c_password_query_id']) {
+            if (!strlen($c_password_query_answer)) {
+                $error_messages[] = '秘密の質問の答えを入力してください。';
+            }
+        }
 
         if ($rss) {
             if (!preg_match('|^https?://|', $rss)) {
@@ -68,7 +77,6 @@ class pc_do_h_config_3 extends OpenPNE_Action
         }
 
         if ($rss_url) {
-            $c_member = db_member_c_member4c_member_id($u);
             if ($rss_url != $c_member['rss']) {
                 //異なるBlogを登録すると過去のrssは全て削除する
                 db_rss_delete_rss_cache($u);
