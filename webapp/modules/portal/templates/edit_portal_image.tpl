@@ -69,8 +69,8 @@ function deletePortalImage(imagefilename)
 <dl>
 <dt class="upImage"><img src="({t_img_url filename=$item.image_filename w=76 h=76})" /></dt>
 <dd class="insert">
-<span class="textBtnS"><button type="button" onclick="insertImageTagToParentWindow('({$item.image_filename})')">挿入</button></span>
-<span class="textBtnS"><button type="button" onclick="deletePortalImage('({$item.image_filename})')">削除</button></span>
+<span class="textBtnS"><button type="button" onclick="insertImageTagToParentWindow('({$item.image_filename})')">　挿　入　</button></span>
+<span class="textBtnS"><button type="button" onclick="deletePortalImage('({$item.image_filename})')">　削　除　</button></span>
 </dd>
 </dl>
 </div>
