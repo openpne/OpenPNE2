@@ -43,7 +43,7 @@ function db_file_c_file_list($page, $page_size, &$pager)
     $sql = 'SELECT COUNT(*) FROM c_file';
     $total_num = db_get_one($sql);
 
-    $pager = admin_make_pager($page, $page_size, $total_num);
+    $pager = util_make_pager($page, $page_size, $total_num);
 
     return $c_file_list;
 }
