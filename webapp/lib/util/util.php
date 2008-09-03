@@ -985,11 +985,13 @@ function util_filter_backtrace($backtrace)
 
     foreach ($backtrace as $key => $value) {
         // 関数・メソッドの引数
-        foreach ($value['args'] as $arg_num => $arg) {
-            if (is_object($arg)) {
-              $result[$key]['args'][$arg_num] = 'object(' . get_class($arg) . ')';
-            } elseif (is_array($arg)) {
-              $result[$key]['args'][$arg_num] = 'Array(' . count($arg) . ')';
+        if (!empty($value['args']) {
+            foreach ($value['args'] as $arg_num => $arg) {
+                if (is_object($arg)) {
+                    $result[$key]['args'][$arg_num] = 'object(' . get_class($arg) . ')';
+                } elseif (is_array($arg)) {
+                    $result[$key]['args'][$arg_num] = 'Array(' . count($arg) . ')';
+                }
             }
         }
 
