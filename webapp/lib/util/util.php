@@ -981,8 +981,7 @@ function util_filter_backtrace($backtrace)
 {
     $result = $backtrace;
 
-    $base_dir   = preg_replace('/\/public_html(\/.*)?$/', '', $_SERVER['SCRIPT_FILENAME']);
-    $base_regex = '/^.*?' . preg_quote($base_dir, '/') .'/';
+    $base_regex = '/^' . preg_quote(OPENPNE_DIR, '/') . '/';
 
     foreach ($backtrace as $key => $value) {
         // 関数・メソッドの引数
