@@ -31,27 +31,32 @@ class OpenPNE_KtaiID
         $ua = $_SERVER['HTTP_USER_AGENT'];
 
         // DoCoMo
+        // emobile 2008-06-30 KUNIHARU Tsujioka update
         if (!strncmp($ua, 'DoCoMo', 6)) {
-            // mova
-            if (substr($ua, 7, 3) === '1.0') {
-                // 『/』区切りで最後のものを取る
-                $pieces = explode('/', $ua);
-                $ser = array_pop($pieces);
+            if (isset($_SERVER['HTTP_X_DCMGUID'])) {
+                $id = $_SERVER['HTTP_X_DCMGUID'];
 
-                if (!strncmp($ser, 'ser', 3)) {
-                    $id = $ser;
+            } else {
+                // mova
+                if (substr($ua, 7, 3) === '1.0') {
+                    // 『/』区切りで最後のものを取る
+                    $pieces = explode('/', $ua);
+                    $ser = array_pop($pieces);
+
+                    if (!strncmp($ser, 'ser', 3)) {
+                        $id = $ser;
+                    }
                 }
-            }
-            // FOMA
-            elseif (substr($ua, 7, 3) === '2.0') {
-                $icc = substr($ua, -24, -1);
+                // FOMA
+                elseif (substr($ua, 7, 3) === '2.0') {
+                    $icc = substr($ua, -24, -1);
 
-                if (!strncmp($icc, 'icc', 3)) {
-                    $id = $icc;
+                    if (!strncmp($icc, 'icc', 3)) {
+                        $id = $icc;
+                    }
                 }
             }
         }
-
         // Vodafone(PDC)
         elseif (!strncmp($ua, 'J-PHONE', 7)) {
             $pieces = explode('/', $ua);
