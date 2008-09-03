@@ -971,4 +971,39 @@ function util_make_pager($page, $page_size, $total_num)
     return $pager;
 }
 
+/**
+ * debug_backtrace() の結果を、出力用にフィルタリングする
+ *
+ * @param  array $backtrace
+ * @return array
+ */
+function util_filter_backtrace($backtrace)
+{
+    $result = $backtrace;
+
+    $base_dir   = preg_replace('/\/public_html(\/.*)?$/', '', $_SERVER['SCRIPT_FILENAME']);
+    $base_regex = '/^.*?' . preg_quote($base_dir, '/') .'/';
+
+    foreach ($backtrace as $key => $value) {
+        // 関数・メソッドの引数
+        foreach ($value['args'] as $arg_num => $arg) {
+            if (is_object($arg)) {
+              $result[$key]['args'][$arg_num] = 'object(' . get_class($arg) . ')';
+            } elseif (is_array($arg)) {
+              $result[$key]['args'][$arg_num] = 'Array(' . count($arg) . ')';
+            }
+        }
+
+        // メソッドが所属しているクラス
+        if (isset($value['object'])) {
+            unset($result[$key]['object']);
+        }
+
+        // 関数・メソッドが定義されているファイル名を相対パスに変更
+        $result[$key]['file'] = preg_replace($base_regex, '.', $value['file']);
+    }
+
+    return $result;
+}
+
 ?>
