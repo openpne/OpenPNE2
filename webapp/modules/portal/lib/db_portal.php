@@ -363,7 +363,7 @@ function db_portal_image_list($page, $page_size, &$pager)
     $sql = 'SELECT COUNT(*) FROM portal_image';
     $total_num = db_get_one($sql);
 
-    $pager = admin_make_pager($page, $page_size, $total_num);
+    $pager = util_make_pager($page, $page_size, $total_num);
     return $portal_image_list;
 }
 

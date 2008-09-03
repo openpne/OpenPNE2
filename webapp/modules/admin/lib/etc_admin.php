@@ -31,43 +31,6 @@ function admin_fetch_inc_footer($is_secure = true)
     return $inc_smarty->ext_fetch('inc_footer.tpl');
 }
 
-function admin_make_pager($page, $page_size, $total_num)
-{
-    if ($total_num == 0) {
-        return;
-    }
-    $pager = array(
-        'page' => $page,
-        'page_size' => $page_size,
-        'total_num' => $total_num,
-        'start_num' => ($page - 1) * $page_size + 1,
-        'end_num' => $page * $page_size,
-        'total_page' => ceil($total_num / $page_size),
-        'prev_page' => 0,
-        'next_page' => 0,
-    );
-
-    // 表示している最後の番号
-    if ($pager['end_num'] > $pager['total_num'])
-        $pager['end_num'] = $pager['total_num'];
-
-    // 前ページ
-    if ($pager['page'] > 1)
-        $pager['prev_page'] = $page - 1;
-
-    // 次ページ
-    if ($pager['end_num'] < $pager['total_num'])
-        $pager['next_page'] = $page + 1;
-
-    $disp_first = max(($page - 10), 1);
-    $disp_last = min(($page + 9), $pager['total_page']);
-    for (; $disp_first <= $disp_last; $disp_first++) {
-        $pager['disp_pages'][] = $disp_first;
-    }
-
-    return $pager;
-}
-
 function admin_insert_c_image($upfile_obj, $filename)
 {
     if ($upfile_obj &&
