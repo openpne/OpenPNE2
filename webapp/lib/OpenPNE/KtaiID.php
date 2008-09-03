@@ -72,6 +72,8 @@ class OpenPNE_KtaiID
 
             if (!strncmp($sn, 'SN', 2)) {
                 $id = $sn;
+            } elseif (isset($_SERVER['HTTP_X_JPHONE_UID'])) { // UID を取得
+                $id = $_SERVER['HTTP_X_JPHONE_UID'];
             }
         }
         // SoftBank
@@ -82,11 +84,9 @@ class OpenPNE_KtaiID
 
             if (!strncmp($sn, 'SN', 2)) {
                 $id = $sn;
+            } elseif (isset($_SERVER['HTTP_X_JPHONE_UID'])) { // UID を取得
+                $id = $_SERVER['HTTP_X_JPHONE_UID'];
             }
-        }
-        // SoftBank, Vodafone(3G) の UID を取得
-        elseif (isset($_SERVER['HTTP_X_JPHONE_UID'])) {
-            $id = $_SERVER['HTTP_X_JPHONE_UID'];
         }
 
         // au
