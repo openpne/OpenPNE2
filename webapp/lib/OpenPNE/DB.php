@@ -393,7 +393,8 @@ class OpenPNE_DB
 
         $msg = sprintf("msg:-> %s\t info:-> %s", $error->getMessage(), $error->getUserInfo());
         if (OPENPNE_DB_ERROR_LOG) {
-            $file =& Log::singleton('file', db_error_log, 'db', null, PEAR_LOG_ERR);
+            $log = OPENPNE_VAR_DIR . '/log/db_errors.log';
+            $file =& Log::singleton('file', $log, 'db', null, PEAR_LOG_ERR);
             $file->log($msg, PEAR_LOG_ERR);
         }
 
