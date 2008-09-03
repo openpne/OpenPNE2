@@ -63,6 +63,8 @@ class OpenPNE_DB
             exit;
         }
 
+        $this->db->setErrorHandling(PEAR_ERROR_CALLBACK, array('OpenPNE_DB', 'errorHandler'));
+
         $this->db->setFetchMode(DB_FETCHMODE_ASSOC);
         $this->db->query('SET NAMES \'utf8\'');
     }
@@ -375,6 +377,27 @@ class OpenPNE_DB
     function affectedRows()
     {
         return $this->db->affectedRows();
+    }
+
+    /**
+     * エラー処理用をおこなう
+     *
+     * PEAR_Error のインスタンス作成時に呼ばれるコールバック関数
+     *
+     * @static
+     * @param PEAR_Error $error
+     */
+    function errorHandler($error)
+    {
+        require_once 'Log.php';
+
+        $msg = sprintf("msg:-> %s\t info:-> %s", $error->getMessage(), $error->getUserInfo());
+        if (OPENPNE_DB_ERROR_LOG) {
+            $file =& Log::singleton('file', db_error_log, 'db', null, PEAR_LOG_ERR);
+            $file->log($msg, PEAR_LOG_ERR);
+        }
+
+        openpne_display_error($msg);
     }
 }
 
