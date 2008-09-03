@@ -94,9 +94,12 @@ require_once 'Log.php';
 PEAR::setErrorHandling(PEAR_ERROR_CALLBACK, 'db_error_handler');
 
 //エラー処理
-function db_error_handler($error){
+function db_error_handler($error)
+{
     //DB_ERRORかどうかの判断
-    if ($error->getType() != 'db_error') return;
+    if (strtolower($error->getType()) != 'db_error') {
+      return;
+    }
 
     //LOG出力処理
     $msg = sprintf("msg:-> %s\t info:-> %s",$error->getMessage(),$error->getUserInfo());
