@@ -88,28 +88,6 @@ require_once 'OpenPNE/Auth.php';
 
 require_once 'OpenPNE/Config.php';
 
-require_once 'Log.php';
-
-//エラーハンドルの指定
-PEAR::setErrorHandling(PEAR_ERROR_CALLBACK, 'db_error_handler');
-
-//エラー処理
-function db_error_handler($error)
-{
-    //DB_ERRORかどうかの判断
-    if (strtolower($error->getType()) != 'db_error') {
-      return;
-    }
-
-    //LOG出力処理
-    $msg = sprintf("msg:-> %s\t info:-> %s",$error->getMessage(),$error->getUserInfo());
-    if (OPENPNE_DB_ERROR_LOG){
-        $file =& Log::singleton('file', db_error_log, 'db', null, PEAR_LOG_ERR);
-        $file->log($msg, PEAR_LOG_ERR);
-    }
-    openpne_display_error($msg);
-}
-
 // DBから設定読み込み
 $config =& OpenPNE_Config::getInstance();
 $config->db_load_config();
