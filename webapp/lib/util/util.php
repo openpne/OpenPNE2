@@ -929,10 +929,10 @@ function util_get_c_member_config($c_member_id)
 /**
  * ページャの作成
  *
- * @param int $page
- * @param int $page_size
- * @param int $totul_num
- * @return mixed ページャ
+ * @param  int   $page
+ * @param  int   $page_size
+ * @param  int   $total_num
+ * @return mixed $total_num が 0 の場合は null、それ以外の場合はページャ用の連想配列
  */
 function util_make_pager($page, $page_size, $total_num)
 {
