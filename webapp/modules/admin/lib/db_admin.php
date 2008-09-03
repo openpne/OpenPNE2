@@ -19,7 +19,7 @@ function db_admin_c_member_list($page, $page_size, &$pager)
 
     $sql = 'SELECT COUNT(*) FROM c_member';
     $total_num = db_get_one($sql);
-    $pager = admin_make_pager($page, $page_size, $total_num);
+    $pager = util_make_pager($page, $page_size, $total_num);
 
     return $c_member_list;
 }
@@ -895,7 +895,7 @@ function _db_admin_c_member_list($page, $page_size, &$pager, $cond_list, $order)
     }
 
     if ($total_num > 0) {
-        $pager = admin_make_pager($page, $page_size, $total_num);
+        $pager = util_make_pager($page, $page_size, $total_num);
     } else {
         $pager = array('page_size' => $page_size);
     }
@@ -2629,7 +2629,7 @@ function db_admin_get_c_free_page_all($page, $page_size, &$pager)
 
     $sql = 'SELECT count(*) FROM c_free_page';
     $total_num = db_get_one($sql, $params);
-    $pager = admin_make_pager($page, $page_size, $total_num);
+    $pager = util_make_pager($page, $page_size, $total_num);
 
     return $list;
 }
@@ -2652,7 +2652,7 @@ function db_admin_get_c_api_all($page, $page_size, &$pager)
 
     $sql = 'SELECT count(*) FROM c_api';
     $total_num = db_get_one($sql, $params);
-    $pager = admin_make_pager($page, $page_size, $total_num);
+    $pager = util_make_pager($page, $page_size, $total_num);
 
     return $list;
 }
@@ -2811,7 +2811,7 @@ function db_admin_get_c_send_messages_history_all($page, $page_size, &$pager)
 
     $sql = 'SELECT count(*) FROM c_send_messages_history';
     $total_num = db_get_one($sql, $params);
-    $pager = admin_make_pager($page, $page_size, $total_num);
+    $pager = util_make_pager($page, $page_size, $total_num);
 
     return $history_list;
 }
@@ -3169,7 +3169,7 @@ function db_admin_c_album_image_list($page, $page_size, &$pager, $c_album_id = n
     }
     $total_num = $db->get_one($sql, $params);
 
-    $pager = admin_make_pager($page, $page_size, $total_num);
+    $pager = util_make_pager($page, $page_size, $total_num);
     return $c_image_album_list;
 }
 
@@ -3189,7 +3189,7 @@ function db_admin_c_album_image_list4c_album_image_id($page, $page_size, &$pager
          . ' WHERE c_album_image_id = ?';
     $total_num = $db->get_one($sql, $params);
 
-    $pager = admin_make_pager($page, $page_size, $total_num);
+    $pager = util_make_pager($page, $page_size, $total_num);
     return $c_image_album_list;
 }
 
