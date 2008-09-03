@@ -41,7 +41,7 @@ function db_image_c_image_list($page, $page_size, &$pager)
     $sql = 'SELECT COUNT(*) FROM c_image';
     $total_num = $db->get_one($sql);
 
-    $pager = admin_make_pager($page, $page_size, $total_num);
+    $pager = util_make_pager($page, $page_size, $total_num);
     return $c_image_list;
 }
 
