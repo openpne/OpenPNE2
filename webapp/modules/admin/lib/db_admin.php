@@ -3352,53 +3352,87 @@ function db_admin_get_c_cmd_id4name_c_cmd_caster_id($name, $c_cmd_caster_id)
 }
 
 /**
- * 指定したメンバーの以下の設定を無効にする
- * ・メール/携帯メール/Daily News受信設定
- * ・コミュニティ管理者からのメッセージ/書込のメッセージ受信設定
+ * 指定したメンバーのメール受信設定を無効にする
+ *
+ * 以下の設定項目を無効にする。
+ *  + メール/携帯メール/デイリーニュース受信設定
+ *  + コミュニティ管理者からのメッセージ/書き込みのメッセージ受信設定
+ *  + スケジュール通知メール受信設定
+ *  + 日記コメントメール受信設定
  * 
  * @param int $c_member_id
  */
 function db_admin_stop_receive_mail4c_member_id($c_member_id)
 {
     $where = array('c_member_id' => intval($c_member_id));
-    // プロフィールでの受信設定項目
+
+    // プロフィールでのメール受信設定項目
     $data = array(
         'is_receive_mail' => 0,
         'is_receive_daily_news' => 0,
         'is_receive_ktai_mail' => 0,
     );
-    $result = db_update('c_member', $data, $where);
-    // コミュニティでの受信設定項目
+    db_update('c_member', $data, $where);
+
+    // コミュニティでのメール受信設定項目
     $data = array(
         'is_receive_mail' => 0,
         'is_receive_mail_pc' => 0,
         'is_receive_message' => 0
     );
-    $result = db_update('c_commu_member', $data, $where);
-    return $result;
+    db_update('c_commu_member', $data, $where);
+
+    // スケジュール通知メール受信設定
+    $data = array(
+        'is_receive_mail' => 0,
+    );
+    db_update('c_schedule', $data, $where);
+
+    // 日記コメントメール受信設定
+    db_member_update_c_member_config($c_member_id, 'SEND_DIARY_COMMENT_MAIL_KTAI', 0);
 }
 
 /**
- * 指定したメンバーの以下のいずれかが有効であればtrueを返す
- * ・メール/携帯メール/Daily News受信設定
- * ・コミュニティ管理者からのメッセージ/書込のメッセージ受信設定
+ * 指定したメンバーのメール受信設定のいずれかが有効であるかどうか
  * 
- * @param int $c_member_id
- * @return bool メール配信指定の有無
+ * 以下のいずれかが有効であればtrueを返す
+ *  + メール/携帯メール/デイリーニュース受信設定
+ *  + コミュニティ管理者からのメッセージ/書き込みのメッセージ受信設定
+ *  + スケジュール通知メール受信設定
+ *  + 日記コメントメール受信設定
+ * 
+ * @param  int  $c_member_id
+ * @return bool メール受信設定がひとつでも有効である場合は true、すべて無効である場合は false
  */
 function db_admin_is_receive_any_mail4c_member_id($c_member_id)
 {
     $params = array(intval($c_member_id));
-    // プロフィールでの受信設定項目
+
+    // プロフィールでのメール受信設定項目
     $sql = 'SELECT c_member_id FROM c_member WHERE c_member_id = ? AND (is_receive_mail = 1 OR is_receive_daily_news = 1 OR is_receive_ktai_mail = 1)';
-    if ((bool)db_get_one($sql, $params)) {
+    if (db_get_one($sql, $params)) {
         return true;
     }
-    // コミュニティでの受信設定項目
+
+    // コミュニティでのメール受信設定項目
     $sql = 'SELECT c_member_id FROM c_commu_member WHERE c_member_id = ? AND (is_receive_mail = 1 OR is_receive_mail_pc = 1 OR is_receive_message = 1)';
-    if ((bool)db_get_one($sql, $params)) {
+    if (db_get_one($sql, $params)) {
         return true;
     }
+
+    // スケジュール通知メール受信設定
+    $sql = 'SELECT c_member_id FROM c_schedule WHERE c_member_id = ? AND is_receive_mail = 1';
+    if (db_get_one($sql, $params)) {
+        return true;
+    }
+
+    // 日記コメントメール受信設定
+    $sql = 'SELECT value FROM c_member_config WHERE c_member_id = ? AND name = ?';
+    $params[] = 'SEND_DIARY_COMMENT_MAIL_KTAI';
+    if (db_get_one($sql, $params)) {
+        return true;
+    }
+
     return false;
 }
 
