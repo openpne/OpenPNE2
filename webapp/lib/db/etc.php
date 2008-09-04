@@ -559,9 +559,32 @@ function db_common_delete_c_member($c_member_id)
     
     $sql = 'DELETE FROM c_username WHERE c_member_id = ?';
     db_query($sql, $single);
+
+    ///グループ関連
+    // biz_group_member
+    $sql = 'DELETE FROM biz_group_member WHERE c_member_id = ?';
+    db_query($sql, $single);
+
+    $sql = 'SELECT * FROM biz_group WHERE admin_id = ?';
+    $biz_group_list = db_get_all($sql, $single, 'main');
+
+    foreach ($biz_group_list as $biz_group) {
+        // 管理者交代
+        // biz_group_member_idが一番早い人に交代
+        $sql = 'SELECT c_member_id FROM biz_group_member WHERE biz_group_id = ?'.
+            ' ORDER BY biz_group_member_id';
+        $params = array(intval($biz_group['biz_group_id']));
+        $new_admin_id = db_get_one($sql, $params, 'main');
+        if (USE_BIZ_DIR) {
+            do_common_send_mail_biz_group_admin_change(intval($new_admin_id), intval($biz_group['biz_group_id']));
+        }
+        $data = array('admin_id' => intval($new_admin_id));
+        $where = array('biz_group_id' => intval($biz_group['biz_group_id']));
+        db_update('biz_group', $data, $where);
+    }
 }
 
-/**
+/**b
  * コミュニティ削除
  * 関連情報を合わせて削除する
  * 
