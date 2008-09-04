@@ -584,7 +584,7 @@ function db_common_delete_c_member($c_member_id)
     }
 }
 
-/**b
+/**
  * コミュニティ削除
  * 関連情報を合わせて削除する
  * 
