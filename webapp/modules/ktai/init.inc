@@ -34,6 +34,8 @@ if ($agent->is_docomo()) {
     $GLOBALS['__Framework']['carrier'] = 's';
 } elseif ($agent->is_willcom()) {
     $GLOBALS['__Framework']['carrier'] = 'w';
+} elseif ($agent->is_emobile()) {
+    $GLOBALS['__Framework']['carrier'] = 'em';
 }
 
 // 文字コード変換
