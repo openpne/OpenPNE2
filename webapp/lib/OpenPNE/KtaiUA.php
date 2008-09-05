@@ -11,7 +11,8 @@ class OpenPNE_KtaiUA
     var $is_docomo   = false;
     var $is_vodafone = false;
     var $is_au       = false;
-    var $is_willcom = false;
+    var $is_willcom  = false;
+    var $is_emobile  = false;
 
     /**
      * constructor
