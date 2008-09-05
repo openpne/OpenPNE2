@@ -874,7 +874,6 @@ function do_common_send_mail_biz_group_admin_change($biz_group_id_to, $biz_group
         
     $biz_group_member_to = db_member_c_member4c_member_id($biz_group_id_to, true);
     $biz_group = biz_getGroupData($biz_group_id);
-    $to_address = ''; 
     $params = array(
         'biz_group_member_to' => $biz_group_member_to,
         'biz_group' => $biz_group,
