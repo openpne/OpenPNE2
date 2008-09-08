@@ -2711,18 +2711,6 @@ function db_commu_delete_c_commu_member($c_commu_id, $c_member_id)
     $sql = 'DELETE FROM c_commu_sub_admin_confirm' .
            ' WHERE c_commu_id = ? AND c_member_id_to = ?';
     db_query($sql, $params);
-    
-    //参加イベント情報削除
-    $sql = "SELECT ct.c_commu_topic_id"
-         . " FROM c_commu_topic ct"
-         . " LEFT JOIN c_event_member cem ON ct.c_commu_topic_id = cem.c_commu_topic_id"
-         . " WHERE ct.c_commu_id = ?"
-         . " AND cem.c_member_id = ?";
-    $params = array(intval($c_commu_id), intval($c_member_id));
-    $c_event_list = db_get_all($sql, $params);
-    foreach ($c_event_list as $c_event) {
-        db_commu_delete_c_event_member($c_event['c_commu_topic_id'], $c_member_id);
-    }
 
     //コミュニティから退会
     $sql = 'DELETE FROM c_commu_member' .
