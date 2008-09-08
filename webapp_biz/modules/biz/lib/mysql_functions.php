@@ -1014,13 +1014,6 @@ function biz_editGroup($biz_group_id, $name, $member_id, $info, $image_name, $me
 //グループの削除
 function biz_deleteGroup($group_id)
 {
-    // 画像削除
-    $sql = 'SELECT image_filename FROM biz_group '
-         . 'WHERE biz_group_id = ? ';
-    $params = array(intval($group_id));
-    $image_filename = db_get_one($sql, $params, 'main');
-    db_image_data_delete($image_filename);
-
     $sql = 'DELETE FROM biz_group_member WHERE biz_group_id = ?';
     $params = array(
         intval($group_id),
