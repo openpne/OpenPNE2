@@ -23,6 +23,7 @@ class admin_do_csv_member extends OpenPNE_Action
         $end_id = $requests['end_id'];
         $allflag = $requests['allflag'];
 
+        $errors = array();
         if (!$allflag && ($start_id < 1 || $end_id < 1)) {
             $errors[] = '範囲指定のメンバーIDは1以上の整数値で入力してください';
         }
