@@ -113,8 +113,8 @@ class OpenPNE_KtaiID
               || stristr($this->_ua, 'Huawei') != false
               || isset($_SERVER['HTTP_X_EM_UID'])
             ) {
-               $id = $_SERVER['HTTP_X_EM_UID'];
-            }
+            $id = $_SERVER['HTTP_X_EM_UID'];
+        }
 
         return $id;
     }
