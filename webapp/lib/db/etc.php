@@ -586,9 +586,8 @@ function db_common_delete_c_member($c_member_id)
             $where = array('biz_group_id' => intval($biz_group['biz_group_id']));
             db_update('biz_group', $data, $where);
         } else {
-            $sql = 'DELETE FROM biz_group '
-                 . 'WHERE biz_group_id = ? ';
-            db_query($sql, $params);
+            require_once OPENPNE_MODULES_BIZ_DIR . '/biz/lib/mysql_functions.php';
+            biz_deleteGroup($biz_group['biz_group_id']);
         }
     }
 }
