@@ -225,6 +225,7 @@ class OpenPNE_Config
             'OPENPNE_ADMIN_CONVERT_URL' => true,
             'CHECK_IMG_AUTH' => false,
             'OPENPNE_IS_OPENID_SERVER' => false,
+            'OPENPNE_DB_ERROR_LOG' => true,
         // 固定値
             'AMAZON_TOKEN'   => '1WZYY1W9YF49AGM0RTG2',
             'AMAZON_LOCALE'  => 'jp',
