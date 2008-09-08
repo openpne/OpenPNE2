@@ -29,27 +29,26 @@ class pc_do_h_config_3 extends OpenPNE_Action
         $public_flag_diary = util_cast_public_flag_diary($requests['public_flag_diary']);
         $is_shinobiashi = $requests['is_shinobiashi'];
         $schedule_start_day = $requests['schedule_start_day'];
+        $c_password_query_id = $requests['c_password_query_id'];
+        $c_password_query_answer = $requests['c_password_query_answer'];
         // ----------
 
         $c_member = db_member_c_member4c_member_id($u);
+
+        $error_messages = array();
 
         if (OPENPNE_AUTH_MODE == 'slavepne') {
             $c_password_query_id = 0;
             $c_password_query_answer = '';
         } else {
-            if (!$c_member['c_password_query_id'] && !strlen($requests['c_password_query_answer'])) { 
-               $c_password_query_id = 0;
-            } else {
-                $c_password_query_id = $requests['c_password_query_id'];
-            }
-            $c_password_query_answer = $requests['c_password_query_answer'];
-        }
-
-        $error_messages = array();
-
-        if ($c_password_query_id && $c_password_query_id != $c_member['c_password_query_id']) {
-            if (!strlen($c_password_query_answer)) {
-                $error_messages[] = '秘密の質問の答えを入力してください。';
+            if (!strlen($requests['c_password_query_answer'])) {
+                if (!$c_member['c_password_query_id']) {
+                    $c_password_query_id = 0;
+                } else {
+                    if ($c_password_query_id != $c_member['c_password_query_id']) {
+                        $error_messages[] = '秘密の質問の答えを入力してください。';
+                    }
+                }
             }
         }
 
