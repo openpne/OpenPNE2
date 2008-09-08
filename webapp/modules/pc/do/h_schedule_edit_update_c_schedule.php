@@ -57,6 +57,12 @@ class pc_do_h_schedule_edit_update_c_schedule extends OpenPNE_Action
             $input[$key] = $requests[$key];
         }
 
+        if (is_null($input['start_hour']) xor is_null($input['start_minute'])) {
+            $this->handleError(array('開始時刻が正しくありません'));
+        }
+        if (is_null($input['end_hour']) xor is_null($input['end_minute'])) {
+            $this->handleError(array('終了時刻が正しくありません'));
+        }
 
         $title = trim($input['title']);
 
