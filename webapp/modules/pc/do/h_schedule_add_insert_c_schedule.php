@@ -47,6 +47,13 @@ class pc_do_h_schedule_add_insert_c_schedule extends OpenPNE_Action
 
         $title = trim($input['title']);
 
+        if (is_null($input['start_hour']) xor is_null($input['start_minute'])) {
+            $this->handleError(array('開始時刻が正しくありません'));
+        }
+        if (is_null($input['end_hour']) xor is_null($input['end_minute'])) {
+            $this->handleError(array('終了時刻が正しくありません'));
+        }
+
         if (is_null($input['end_year'])) {
             $input['end_year'] = $input['start_year'];
         }
