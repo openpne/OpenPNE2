@@ -6,7 +6,12 @@
 
 /**
  * OpenPNE_KtaiID
+ *
  * 個体識別番号を取得する
+ *
+ * @package OpenPNE
+ * @author OGAWA Rinpei <ogawa@tejimaya.com>
+ * @author KUNIHARU Tsujioka
  */
 class OpenPNE_KtaiID
 {
@@ -51,11 +56,11 @@ class OpenPNE_KtaiID
                 }
             }
             // iモードID
-            // 2008-06-30 KUNIHARU Tsujioka update
             elseif (isset($_SERVER['HTTP_X_DCMGUID'])) {
                 $id = $_SERVER['HTTP_X_DCMGUID'];
             }
         }
+
         // Vodafone(PDC)
         elseif (!strncmp($ua, 'J-PHONE', 7)) {
             $pieces = explode('/', $ua);
@@ -102,7 +107,8 @@ class OpenPNE_KtaiID
                 $id = $_SERVER['HTTP_X_UP_SUBNO'];
             }
         }
-        // emobile 2008-05-13 KUNIHARU Tsujioka update
+
+        // emobile
         elseif (strpos($ua, 'emobile') !== false
               || stristr($this->_ua, 'Huawei') != false
               || isset($_SERVER['HTTP_X_EM_UID'])
