@@ -47,7 +47,7 @@ class pc_do_h_config_3 extends OpenPNE_Action
 
         $error_messages = array();
 
-        if ($c_member['c_password_query_id'] && $c_password_query_id != $c_member['c_password_query_id']) {
+        if ($c_password_query_id && $c_password_query_id != $c_member['c_password_query_id']) {
             if (!strlen($c_password_query_answer)) {
                 $error_messages[] = '秘密の質問の答えを入力してください。';
             }
