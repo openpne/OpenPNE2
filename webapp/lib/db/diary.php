@@ -218,7 +218,9 @@ function db_diary_public_flag_condition($c_member_id, $u = null, $force = null)
 function db_diary_get_c_diary4id($c_diary_id)
 {
     $sql = 'SELECT * FROM c_diary WHERE c_diary_id = ?';
-    return db_get_row($sql, array(intval($c_diary_id)));
+    $c_diary_list = db_get_row($sql, array(intval($c_diary_id)));
+    $c_diary_list['count_comments'] = db_diary_count_c_diary_comment4c_diary_id($c_diary_id);
+    return $c_diary_list;
 }
 
 /**
