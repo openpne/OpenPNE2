@@ -111,6 +111,6 @@
         </div>
     </div>
 ({if $smarty.const.OPENPNE_DASHBOARD_URL})
-    ({fetch file=$smarty.const.OPENPNE_DASHBOARD_URL})
+    ({fetch file=$smarty.const.OPENPNE_DASHBOARD_URL timeout=10})
 ({/if})
     <br class="clear" />
