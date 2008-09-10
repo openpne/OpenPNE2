@@ -126,9 +126,15 @@ class OpenPNE_DB
         return $this->get_all_limit($sql, $from, $count, $params);
     }
 
-    function quote($in)
+    function quote($in, $is_escape_placeholder = false)
     {
-        return $this->db->quoteSmart($in);
+        $result = $this->db->quoteSmart($in);
+        if ($is_escape_placeholder) {
+            $search  = array('?', '&', '!');
+            $replace = array('\?', '\&', '\!');
+            $result = str_replace($search, $replace, $result);
+        }
+        return $result;
     }
 
     /**
@@ -153,7 +159,7 @@ class OpenPNE_DB
             } else {
                 $_where .= ' AND ';
             }
-            $_where .= $key . ' = ' . $this->quote($value);
+            $_where .= $key . ' = ' . $this->quote($value, true);
         }
         return $_where;
     }
