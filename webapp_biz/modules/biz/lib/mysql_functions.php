@@ -943,7 +943,7 @@ function biz_insertGroup($name, $member_id, $info, $image_name, $members = array
 {   
     //登録値のセット、チェック
     if (!$image_name) {
-        $image_name = 0;
+        $image_name = '';
     }
     if (!$info) {
         $info = "";
@@ -1054,7 +1054,7 @@ function biz_joinGroup($member_id, $group_id)
 function biz_addShisetsu($name, $image_name, $info = '')
 {
     if (!$image_name) {
-        $image_name = '0';
+        $image_name = '';
     }
 
     $data = array(
