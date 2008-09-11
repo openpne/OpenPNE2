@@ -501,6 +501,16 @@ function db_admin_delete_c_image_link4image_filename($image_filename)
         $params = array($image_filename);
         db_query($sql, $params);
     }
+
+    if ($prefix = 'biz') {
+        $data = array('image_filename' => '');
+        $where = array('image_filename' => $image_filename);
+        db_update('biz_group', $data, $where);
+
+        $data = array('image_filename' => '');
+        $where = array('image_filename' => $image_filename);
+        db_update('biz_shisetsu', $data, $where);
+    }
 }
 
 function _db_admin_empty_filename($tbl, $image_filename, $column = 'image_filename')
