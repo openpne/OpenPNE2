@@ -16,16 +16,6 @@ class admin_do_delete_c_image4c_image_id extends OpenPNE_Action
         }
 
         image_data_delete($c_image['filename']);
-
-        // biz_groupの画像データを削除
-        $data = array('image_filename' => 0);
-        $where = array('image_filename' => addslashes($c_image['filename']));
-        db_update('biz_group', $data, $where);
-
-        $data = array('image_filename' => 0);
-        $where = array('image_filename' => addslashes($c_image['filename']));
-        db_update('biz_shisetsu', $data, $where);
-
         db_admin_delete_c_image_link4image_filename($c_image['filename']);
 
         admin_client_redirect('list_c_image', '画像を削除しました');
