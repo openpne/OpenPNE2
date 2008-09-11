@@ -1495,24 +1495,15 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 	overflow: -moz-scrollbars-none;
 }
 .messageList .pagerRelativeMulti .pager {
-	position: static;
-	float: right;
-	width: 290px;
-	margin-top: 1px;
-	text-align: right;
-}
-.messageList .pagerRelativeMulti .pager p {
-	margin-left: 0;
-}
-* html .messageList .pagerRelativeMulti .pager p {
-	margin-left: 4px;
-}
-*:first-child+html .messageList .pagerRelativeMulti .pager p {
-	margin-left: 4px;
+    position: static;
+    float: right;
+    width: 350px;
+    margin-top: 1px;
+    text-align: right;
 }
 .messageList p.icons {
-	float: left;
-	width: 220px;
+    float: left;
+    width: 160px;
 }
 .messageList p.icons img {
 	padding-right: 16px;
