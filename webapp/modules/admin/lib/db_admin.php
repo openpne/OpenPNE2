@@ -503,13 +503,11 @@ function db_admin_delete_c_image_link4image_filename($image_filename)
     }
 
     if ($prefix = 'biz') {
-        $data = array('image_filename' => '');
-        $where = array('image_filename' => $image_filename);
-        db_update('biz_group', $data, $where);
+        $tbl = 'biz_group';
+        _db_admin_empty_filename($tbl, $image_filename);
 
-        $data = array('image_filename' => '');
-        $where = array('image_filename' => $image_filename);
-        db_update('biz_shisetsu', $data, $where);
+        $tbl = 'biz_shisetsu';
+        _db_admin_empty_filename($tbl, $image_filename);
     }
 }
 
