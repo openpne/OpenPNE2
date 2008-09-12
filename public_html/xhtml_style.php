@@ -768,19 +768,19 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
  * 8. diaryDetailBox（日記詳細ボックス）
  *----------------------------------------------------------------------------*/
 .diaryDetailBox .partsHeading {
-    zoom: 1;
-    overflow: hidden;
-    overflow: -moz-scrollbars-none;
+	zoom: 1;
+	overflow: hidden;
+	overflow: -moz-scrollbars-none;
 }
 .diaryDetailBox h3 {
-    float: left;
-    width: 66%;
+	float: left;
+	width: 66%;
 }
 .diaryDetailBox .partsHeading p.public {
-    float: right;
-    width: 33%;
-    margin: 0;
-    text-align: right;
+	float: right;
+	width: 33%;
+	margin: 0;
+	text-align: right;
 }
 .diaryDetailBox dl {
 	zoom: 1;
