@@ -1501,7 +1501,7 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 	overflow: -moz-scrollbars-none;
 }
 .messageList .pagerRelativeMulti .pager {
-position: static;
+	position: static;
 	float: right;
 	width: 350px;
 	margin-top: 1px;
