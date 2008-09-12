@@ -1275,23 +1275,19 @@ function biz_deleteImage($filename)
 
 function biz_deleteGroupImage($id, $filename)
 {
-    $sql = 'UPDATE biz_group SET image_filename = \'\' WHERE biz_group_id = ?';
-    $params = array(
-        intval($id),
-    );
-    db_query($sql, $params);
+    $data = array('image_filename' => ''); 
+    $where = array('biz_group_id' => intval($id));
+    db_update('biz_group', $data, $where);
+
     biz_deleteImage($filename);
 }
 
 function biz_deleteShisetsuImage($id, $filename)
 {
-    $sql = 'UPDATE biz_shisetsu SET image_filename = \'\' WHERE biz_shisetsu_id = ?';
+    $data = array('image_filename' => ''); 
+    $where = array('biz_shisetsu_id' => intval($id));
+    db_update('biz_shisetsu', $data, $where);
 
-    $params = array(
-        intval($id),
-    );
-
-    db_query($sql, $params);
     biz_deleteImage($filename);
 }
 
