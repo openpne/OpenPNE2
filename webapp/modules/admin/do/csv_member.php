@@ -35,17 +35,7 @@ class admin_do_csv_member extends OpenPNE_Action
         }
 
         $member_key_string = $this->get_key_list();
-        $c_member_list = $this->db_get_c_member_list($start_id,$end_id);
-
-        $errors = array();
-        if (!$c_member_list) {
-            $errors[] = '該当するメンバーの情報がありません。';
-        }
-        if ($errors) {
-            $this->handleError($errors);
-        }
-
-        $c_member_list = $this->db_get_c_member_list($start_id,$end_id); 
+        $c_member_list = $this->db_get_c_member_list($start_id, $end_id); 
         if (!$c_member_list) { 
             $this->handleError(array('該当するメンバーの情報がありません。')); 
         }
