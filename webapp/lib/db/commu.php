@@ -2718,10 +2718,9 @@ function db_commu_delete_c_commu_member($c_commu_id, $c_member_id)
          . ' LEFT JOIN c_event_member cem ON ct.c_commu_topic_id = cem.c_commu_topic_id'
          . ' WHERE ct.c_commu_id = ?'
          . ' AND cem.c_member_id = ?';
-    $params = array(intval($c_commu_id), intval($c_member_id));
-    $c_event_list = db_get_col($sql, $params, 'main');
-    foreach ($c_event_list as $c_event) {
-        db_commu_delete_c_event_member($c_event, $c_member_id);
+    $c_commu_topic_id_list = db_get_col($sql, $params, 'main');
+    foreach ($c_commu_topic_id_list as $c_commu_topic_id) {
+        db_commu_delete_c_event_member($c_commu_topic_id, $c_member_id);
     }
 
     //コミュニティから退会
