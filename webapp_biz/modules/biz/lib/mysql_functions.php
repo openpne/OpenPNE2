@@ -1275,7 +1275,7 @@ function biz_deleteImage($filename)
 
 function biz_deleteGroupImage($id, $filename)
 {
-    $sql = 'UPDATE biz_group SET image_filename = \'0\' WHERE biz_group_id = ?';
+    $sql = 'UPDATE biz_group SET image_filename = \'\' WHERE biz_group_id = ?';
     $params = array(
         intval($id),
     );
@@ -1285,7 +1285,7 @@ function biz_deleteGroupImage($id, $filename)
 
 function biz_deleteShisetsuImage($id, $filename)
 {
-    $sql = 'UPDATE biz_shisetsu SET image_filename = \'0\' WHERE biz_shisetsu_id = ?';
+    $sql = 'UPDATE biz_shisetsu SET image_filename = \'\' WHERE biz_shisetsu_id = ?';
 
     $params = array(
         intval($id),
