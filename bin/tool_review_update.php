@@ -34,6 +34,10 @@ foreach ($c_review_list as $c_review) {
     );
 
     foreach ($data as $key => $value) {
+        if (is_null($value)) {
+            $data[$key] = '';
+        }
+
         if ($c_review[$key] != $value) {
             _db_c_review_update($c_review['c_review_id'], $data); 
             break;
