@@ -13,10 +13,6 @@
 <p class="info">管理用アカウントを設定します。</p>
 <p class="add"><strong class="item"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('insert_c_admin_user')})">アカウントを追加する</a></strong></p>
 
-<form action="./" method="post" name="formSendMessages">
-<input type="hidden" name="m" value="({$module_name})">
-<input type="hidden" name="a" value="page_({$hash_tbl->hash('send_messages')})">
-<input type="hidden" name="sessid" value="({$PHPSESSID})">
 <table class="basicType2">
 ({capture name="table_header"})
 <tr>
