@@ -205,7 +205,6 @@
 <input type="hidden" name="({$key})" value="({$item})">
 ({/foreach})
 <input type="submit" class="submit" value="　修 　正　">
-</form>
 </div>
 </td>
 </tr>

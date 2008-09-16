@@ -23,6 +23,7 @@
 <td class="type1">
 ({$topic_comment.c_commu_topic_comment_id})
 </td>
+</form>
 </tr>
 ({****})
 <tr>

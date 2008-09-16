@@ -52,6 +52,7 @@
 <td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 <td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
+</form>
 </table>
 <!-- ******ここまで：エラーメッセージテーブル****** -->
 <!-- ************************************ -->
