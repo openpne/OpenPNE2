@@ -61,6 +61,7 @@
 <center>
 <input type="submit" value="日記を削除する">
 </center>
+</form>
 ({/if})
 
 <hr color="#({$ktai_color_config.border_01})">
