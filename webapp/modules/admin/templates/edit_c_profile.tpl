@@ -194,7 +194,6 @@
 </td>
 </form>
 </tr>
-</form>
 ({/foreach})
 <tr>
 <form action="./" method="post">
