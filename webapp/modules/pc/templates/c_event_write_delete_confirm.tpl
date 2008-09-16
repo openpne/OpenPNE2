@@ -80,7 +80,6 @@
 <td class="bg_00"><img src="./skin/dummy.gif" alt="dummy" style="width:566px;height:7px;" class="dummy"></td>
 <td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
-</form>
 </table>
 <!-- ******ここまで：書き込み削除確認****** -->
 <!-- ************************************ -->
