@@ -1104,7 +1104,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <table border="0" cellspacing="0" cellpadding="0" style="width:422px;">
 <tr>
 <td style="width:36px;" class="bg_06"><img src="({t_img_url_skin filename=content_header_1})" style="width:30px;height:20px;" class="dummy"></td>
-<td style="width:386px;" class="bg_06"><span class="b_b">({$WORD_FRIEND})からの紹介文</span></td>
+<td style="width:386px;" class="bg_06"><span class="b_b c_00">({$WORD_FRIEND})からの紹介文</span></td>
 </tr>
 </table>
 </div>
