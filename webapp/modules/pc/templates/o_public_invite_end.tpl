@@ -74,7 +74,6 @@
 <td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 </table>
-</form>
 <!-- ******ここまで：新規登録****** -->
 <!-- ********************************** -->
 
