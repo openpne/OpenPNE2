@@ -61,6 +61,7 @@
 <center>
 <input type="submit" value="({$WORD_DIARY_HALF})を削除する">
 </center>
+</form>
 ({/if})
 
 <hr color="#({$ktai_color_config.border_01})">
