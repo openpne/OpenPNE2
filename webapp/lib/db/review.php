@@ -542,7 +542,9 @@ function do_c_review_add_insert_c_review($product, $c_review_category_id)
 
     //TODO:暫定処理
     foreach ($data as $key => $value) {
-        if (is_null($value)) $data[$key] = '';
+        if (is_null($value)) {
+            $data[$key] = '';
+        }
     }
     return db_insert('c_review', $data);
 }
