@@ -4,7 +4,7 @@
 // 'IP Adress/BitMask' の形式で入力してください
 $GLOBALS['_OPENPNE_KTAI_IP_LIST'] = array(
 
-// DoCoMo (2006/10/23更新)
+// DoCoMo (2008/09/17更新)
 // http://www.nttdocomo.co.jp/service/imode/make/content/ip/index.html
 '210.153.84.0/24',
 '210.136.161.0/24',
