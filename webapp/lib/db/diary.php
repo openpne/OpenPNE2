@@ -1192,7 +1192,7 @@ function db_diary_get_max_c_diary_comment_number4diary($c_diary_id)
 /**
  * SNS全体の最新日記リスト取得
  * 日記公開範囲を考慮
- * 
+ *
  * @param   int $limit
  * @return  array_of_array  (c_diary.*, nickname)
  */
@@ -1255,7 +1255,7 @@ function db_diary_update_c_diary_comment_log($c_diary_id)
  * @param  int    $c_member_id
  * @param  int    $c_diary_id
  * 該当c_diary_idへのコメント数が0なら、日記コメント記入履歴も削除する。
- * 
+ *
  */
 function db_diary_delete_c_diary_comment_log($c_member_id, $c_diary_id)
 {

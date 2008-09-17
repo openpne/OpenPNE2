@@ -3367,7 +3367,7 @@ function db_admin_get_c_cmd_id4name_c_cmd_caster_id($name, $c_cmd_caster_id)
  *  + コミュニティ管理者からのメッセージ/書き込みのメッセージ受信設定
  *  + スケジュール通知メール受信設定
  *  + 日記コメントメール受信設定
- * 
+ *
  * @param int $c_member_id
  */
 function db_admin_stop_receive_mail4c_member_id($c_member_id)
@@ -3402,13 +3402,13 @@ function db_admin_stop_receive_mail4c_member_id($c_member_id)
 
 /**
  * 指定したメンバーのメール受信設定のいずれかが有効であるかどうか
- * 
+ *
  * 以下のいずれかが有効であればtrueを返す
  *  + メール/携帯メール/デイリーニュース受信設定
  *  + コミュニティ管理者からのメッセージ/書き込みのメッセージ受信設定
  *  + スケジュール通知メール受信設定
  *  + 日記コメントメール受信設定
- * 
+ *
  * @param  int  $c_member_id
  * @return bool メール受信設定がひとつでも有効である場合は true、すべて無効である場合は false
  */
