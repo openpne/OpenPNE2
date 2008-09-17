@@ -9,7 +9,7 @@
 
 <!-- ************************************ -->
 <!-- ******ここから：マイフレンド削除確認****** -->
-<div class="border_07" style="width:650px;margin:0px auto;">
+<div class="border_07" style="width:660px;margin:0px auto;">
 
 <table border="0" cellspacing="0" cellpadding="0" style="width:650px;">
 <tr>
