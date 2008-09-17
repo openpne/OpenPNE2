@@ -53,7 +53,7 @@ class pc_page_h_album_image_add_confirm extends OpenPNE_Action
             '',
             '',
         );
-        
+
         $is_set_file = false;
         foreach ($upfiles as $key => $upfile) {
             if($upfile['name']) {
@@ -112,12 +112,12 @@ class pc_page_h_album_image_add_confirm extends OpenPNE_Action
             "tmpfile_4" => $tmpfiles[4],
             "tmpfile_5" => $tmpfiles[5],
         );
-        
+
         //ファイル写真を指定しているものだけ説明文を設定
         foreach ($tmpfiles as $key => $tmpfile) {
             $name = "image_description{$key}";
             if($tmpfile){
-                $form_val["$name"] = $$name;    
+                $form_val["$name"] = $$name;
             }
         }
 

@@ -2711,7 +2711,7 @@ function db_commu_delete_c_commu_member($c_commu_id, $c_member_id)
     $sql = 'DELETE FROM c_commu_sub_admin_confirm' .
            ' WHERE c_commu_id = ? AND c_member_id_to = ?';
     db_query($sql, $params);
-    
+
     //参加イベント情報削除
     $sql = 'SELECT ct.c_commu_topic_id'
          . ' FROM c_commu_topic ct'
@@ -3031,7 +3031,7 @@ function db_commu_get_last_c_topic_comment($c_commu_topic_id)
     return db_get_row($sql,$params);
 }
 
-/** 
+/**
  * トピック検索簡易版(ｷｰﾜｰﾄﾞ無し)
  */
 function db_commu_new_topic_list(

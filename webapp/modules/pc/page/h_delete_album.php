@@ -22,10 +22,10 @@ class pc_page_h_delete_album extends OpenPNE_Action
         if ($u != $c_album['c_member_id']) {
             handle_kengen_error();
         }
-        
+
         $this->set('inc_navi', fetch_inc_navi('h'));
         $this->set('target_c_album_id', $target_c_album_id);
-        
+
         return 'success';
     }
 }

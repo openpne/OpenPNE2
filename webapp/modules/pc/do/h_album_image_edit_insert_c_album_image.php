@@ -74,7 +74,7 @@ class pc_do_h_album_image_edit_insert_c_album_image extends OpenPNE_Action
 
         // c_albumの更新時間UPDATE
         db_album_update_c_album_u_datetime($target_c_album_id);
-        
+
         $p = array('target_c_album_id' => $target_c_album_id);
         openpne_redirect('pc', 'page_fh_album', $p);
 
