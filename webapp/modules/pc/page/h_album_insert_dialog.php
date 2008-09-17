@@ -21,10 +21,10 @@ class pc_page_h_album_insert_dialog extends OpenPNE_Action
         $target_member = db_member_c_member4c_member_id($u);
         $this->set('target_member', $target_member);
         $this->set('c_member_id', $u);
-        
+
         $list_set = p_fh_album_list_fh_my_album_list4c_member_id($u, $page_size, $page, $u);
         $this->set('target_album_list', $list_set[0]);
-        
+
         $this->set('page', $page);
         $this->set('page_size', $page_size);
         $this->set('is_prev', $list_set[1]);

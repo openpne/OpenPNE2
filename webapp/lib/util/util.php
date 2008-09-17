@@ -849,7 +849,7 @@ function util_get_validate_rules_profile($disp = 'config')
 
 function util_send_header_internal_server_error()
 {
-    header('HTTP/1.0 500 Internal Server Error'); 
+    header('HTTP/1.0 500 Internal Server Error');
     exit;
 }
 

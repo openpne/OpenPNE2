@@ -869,15 +869,15 @@ function do_common_send_mail_c_commu_admin_change($c_member_id_to, $c_commu_id)
 }
 
 function do_common_send_mail_biz_group_admin_change($biz_group_id_to, $biz_group_id)
-{       
+{
     require_once OPENPNE_MODULES_BIZ_DIR . '/biz/lib/mysql_functions.php';
-        
+
     $biz_group_member_to = db_member_c_member4c_member_id($biz_group_id_to, true);
     $biz_group = biz_getGroupData($biz_group_id);
     $params = array(
         'biz_group_member_to' => $biz_group_member_to,
         'biz_group' => $biz_group,
-    );  
+    );
     $to_address = $biz_group_member_to['secure']['pc_address'];
     return fetch_send_mail($to_address, 'm_pc_group_admin_change', $params);
 }

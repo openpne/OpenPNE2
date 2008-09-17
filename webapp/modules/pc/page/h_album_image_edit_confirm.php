@@ -82,7 +82,7 @@ class pc_page_h_album_image_edit_confirm extends OpenPNE_Action
         );
 
         $this->set("form_val", $form_val);
-        
+
         return 'success';
     }
 }

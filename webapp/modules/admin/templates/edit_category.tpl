@@ -20,7 +20,7 @@
 <th>項目名</th>
 <th>並び順<br />(昇順))</th>
 <th colspan="2">操作</th>
-<th>小カテゴリ</th>	
+<th>小カテゴリ</th>
 </tr>
 </thead>
 <tbody>
@@ -73,7 +73,7 @@
 <tr class="smallCtgTable">
 <th>項目名</th>
 <th>並び順</th>
-<th colspan="2">操作</th>	
+<th colspan="2">操作</th>
 </tr>
 </thead>
 <tbody>

@@ -32,20 +32,20 @@ class pc_page_h_album_image_delete_confirm extends OpenPNE_Action
         }
 
         // target の写真が存在しない
-        if (!p_common_is_active_c_album_image_id($target_c_album_image_id)) { 
+        if (!p_common_is_active_c_album_image_id($target_c_album_image_id)) {
             openpne_redirect('pc', 'page_h_err_fh_album');
         }
 
         $this->set('inc_navi', fetch_inc_navi("h"));
 
         $this->set('target_c_album_image',$target_c_album_image);
-        
+
         $form_val = array(
             "target_c_album_id" => $target_c_album_id,
             "target_c_album_image_id" => $target_c_album_image_id,
         );
         $this->set("form_val",$form_val);
-        
+
         return 'success';
     }
 }
