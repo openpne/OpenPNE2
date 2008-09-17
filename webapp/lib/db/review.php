@@ -656,11 +656,11 @@ function db_review_c_review_id4asin($asin)
 
 function db_review_update_old_c_review($c_review_id)
 {
-    $tmsp = date('Y-m-d H:i:s', strtotime('-1 month'));
+    $timestamp = date('Y-m-d H:i:s', strtotime('-1 month'));
     $sql = 'SELECT * FROM c_review'
          . ' WHERE c_review_id = ?'
          . ' AND r_datetime < ?';
-    $params = array(intval($c_review_id), $tmsp);
+    $params = array(intval($c_review_id), $timestamp);
     $c_review = db_get_row($sql, $params);
 
     if ($c_review) {
