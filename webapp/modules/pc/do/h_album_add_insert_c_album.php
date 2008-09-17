@@ -30,20 +30,20 @@ class pc_do_h_album_add_insert_c_album extends OpenPNE_Action
         $public_flag = $requests['public_flag'];
         $tmpfile = $requests['tmpfile'];
         // ----------
-        
+
         $c_member_id = $u;
         $c_album_id = db_album_insert_c_album($c_member_id, $subject, $description, $public_flag);
-       
+
         if ($tmpfile) {
             $filename = image_insert_c_image4tmp("a_{$c_album_id}_1", $tmpfile);
 
             $sessid = session_id();
             t_image_clear_tmp($sessid);
-    
+
             //アルバムの表紙に写真ファイル名を登録
             db_album_update_c_album_album_cover_image($c_album_id,$filename);
         }
-        
+
         $p = array('target_c_album_id' => $c_album_id);
         openpne_redirect('pc', 'page_h_album_image_add', $p);
     }
