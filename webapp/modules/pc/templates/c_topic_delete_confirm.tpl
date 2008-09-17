@@ -11,7 +11,7 @@
 <!-- ******ここから：トピック削除確認****** -->
 <div id="create_new_topic" class="border_07" style="width:660px;margin:0px auto;">
 
-<table border="0" cellspacing="0" cellpadding="0" style="width:650px;">
+<table border="0" cellspacing="0" cellpadding="0" style="width:660px;">
 <tr>
 <td style="width:7px;" class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 <td style="width:646px;" class="bg_00"><img src="./skin/dummy.gif" alt="dummy" style="width:566px;height:7px;" class="dummy"></td>
