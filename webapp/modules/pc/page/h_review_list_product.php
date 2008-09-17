@@ -18,6 +18,9 @@ class pc_page_h_review_list_product extends OpenPNE_Action
         $page_size = 30;
         $page = $page + $direc;
 
+        // c_reviewをAmazonの最新データに更新
+        db_review_update_old_c_review($c_review_id);
+
         $c_review = db_review_list_product_c_review4c_review_id($c_review_id);
         if (!$c_review) {
             handle_kengen_error();
