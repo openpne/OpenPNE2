@@ -655,12 +655,6 @@ function db_review_get_c_commu_review_one4c_commu_review_id($c_commu_review_id)
     return db_get_row($sql, $params);
 }
 
-function db_review_get_c_review_all()
-{
-    $sql = 'SELECT * FROM c_review';
-    return db_get_all($sql);
-}
-
 function db_review_c_review_id4asin($asin)
 {
     $sql = 'SELECT c_review_id FROM c_review'
