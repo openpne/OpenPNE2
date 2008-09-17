@@ -68,7 +68,7 @@
 ({* }}} *})
 
 ({* {{{ linkLine *})
-<div class="parts linkLine"><ul class="moreInfo"> 
+<div class="parts linkLine"><ul class="moreInfo">
 <li><a href="({t_url m=pc a=page_fh_album})&amp;target_c_album_id=({$target_c_album_id})">アルバムページへ戻る</a></li>
 </ul></div>
 ({* }}} *})

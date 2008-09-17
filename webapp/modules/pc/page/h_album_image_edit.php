@@ -34,21 +34,21 @@ class pc_page_h_album_image_edit extends OpenPNE_Action
         if ($u != $c_album['c_member_id']) {
             handle_kengen_error();
         }
-        
+
         // target の写真が存在しない
         if(!$c_album_image){
             openpne_redirect('pc', 'page_h_err_fh_album');
         }
-        
+
         if (!(is_null($image_description))) {
             $c_album_image['image_description'] = $image_description;
         }
-        
+
         $this->set('inc_navi', fetch_inc_navi('h'));
         $this->set('c_album_image', $c_album_image);
         $this->set('target_c_album_id', $target_c_album_id);
         $this->set('target_c_album_image_id', $target_c_album_image_id);
-        
+
         return 'success';
     }
 }

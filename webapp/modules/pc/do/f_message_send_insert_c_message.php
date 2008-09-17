@@ -27,7 +27,7 @@ class pc_do_f_message_send_insert_c_message extends OpenPNE_Action
         if (OPENPNE_USE_FILEUPLOAD) {
             $tmpfile_4 = $requests['tmpfile_4'];
             $tmpfile_4_original_filename = $requests['tmpfile_4_original_filename'];
-            
+
             if ($tmpfile_4) {
                 // 拡張子制限
                 if (!util_check_file_extention($tmpfile_4_original_filename)) {
