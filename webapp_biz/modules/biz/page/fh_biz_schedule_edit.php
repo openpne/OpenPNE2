@@ -94,7 +94,7 @@ class biz_page_fh_biz_schedule_edit extends OpenPNE_Action
                 $years .= '<option value="'.$i.'">';
             }
             $years .= $i.'年';
-	    $years .= '</option>';
+            $years .= '</option>';
         }
 
         for ($i = 1; $i <= 12; $i++) {
@@ -105,7 +105,7 @@ class biz_page_fh_biz_schedule_edit extends OpenPNE_Action
                 $monthes .= '<option value="'.$i_f.'">';
             }
             $monthes .= $i.'月';
-	    $monthes .= '</option>';
+            $monthes .= '</option>';
         }
 
         for ($i = 1; $i <= 31; $i++) {
@@ -116,7 +116,7 @@ class biz_page_fh_biz_schedule_edit extends OpenPNE_Action
                 $days .= '<option value="'.$i_f.'">';
             }
             $days .= $i.'日';
-	    $days .= '</option>';
+            $days .= '</option>';
         }
 
         $hours = biz_makeSerialArray(23);  //時
