@@ -37,7 +37,7 @@ class ktai_page_fh_album_image_show extends OpenPNE_Action
         }
 
         $target_c_album = db_album_get_c_album4c_album_id($target_c_album_id);
-        $target_c_member_id = $target_c_album['c_member_id']; 
+        $target_c_member_id = $target_c_album['c_member_id'];
         $target_c_member = db_member_c_member4c_member_id($target_c_member_id);
 
         // メンバーが存在しない

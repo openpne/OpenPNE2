@@ -28,13 +28,13 @@
 </colgroup>
 ({foreach from=$c_member_list item=c_member})
 <tr>
-<td>({$c_member.r_datetime|date_format:"%Y年%m月%d日 %H:%M"})</td>  
-<td><a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$c_member.c_member_id})">({$c_member.nickname})</a></td>  
+<td>({$c_member.r_datetime|date_format:"%Y年%m月%d日 %H:%M"})</td>
+<td><a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$c_member.c_member_id})">({$c_member.nickname})</a></td>
 <td>
 ({if !$c_member.is_c_commu_admin})
 <a href="({t_url m=pc a=page_c_edit_member_delete_c_commu_member})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;target_c_member_id=({$c_member.c_member_id})">({$WORD_COMMUNITY})から退会させる</a>
 ({/if})
-</td>  
+</td>
 <td>
 ({if !$c_member.is_c_commu_admin
  &&  !$c_member.is_c_commu_sub_admin
@@ -46,7 +46,7 @@
 ({elseif $c_member.is_c_commu_sub_admin && $c_commu.c_member_id_sub_admin != $u })
 <a href="({t_url m=pc a=page_c_sub_admin_delete})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;target_c_member_id=({$c_member.c_member_id})">副管理者から降格</a>
 ({/if})
-</td>  
+</td>
 <td>
 ({if !($c_member.is_c_commu_admin && !$c_member.is_c_commu_sub_admin)
  &&   $c_member.c_commu_admin_confirm_id <= 0
@@ -55,7 +55,7 @@
 })
 <a href="({t_url m=pc a=page_c_admin_request})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;target_c_member_id=({$c_member.c_member_id})">管理権を渡す</a>
 ({/if})
-</td>  
+</td>
 </tr>
 ({/foreach})
 </table>

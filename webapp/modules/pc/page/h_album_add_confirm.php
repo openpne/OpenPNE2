@@ -34,7 +34,7 @@ class pc_page_h_album_add_confirm extends OpenPNE_Action
                 $err_msg[] = '写真は'.IMAGE_MAX_FILESIZE.'KB以内のGIF・JPEG・PNGにしてください';
             }
         }
-        
+
         if ($err_msg) {
             $_REQUEST['err_msg'] = $err_msg;
             openpne_forward('pc', 'page', "h_album_add");
@@ -58,7 +58,7 @@ class pc_page_h_album_add_confirm extends OpenPNE_Action
             'image_filename' => $upfile_obj['name'],
         );
         $this->set("form_val", $form_val);
-        
+
         return 'success';
     }
 }
