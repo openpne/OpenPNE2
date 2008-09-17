@@ -39,7 +39,7 @@
 </ul>
 </td>
 </tr>
-</table> 
+</table>
 <div class="operation">
 <ul class="moreInfo button">
 <li><input type="submit" class="input_submit" value="確認画面" /></li>
