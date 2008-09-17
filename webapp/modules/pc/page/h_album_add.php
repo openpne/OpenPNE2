@@ -27,7 +27,7 @@ class pc_page_h_album_add extends OpenPNE_Action
         $this->set('inc_navi', fetch_inc_navi("h"));
         $this->set("form_val", $form_val);
         $this->set('err_msg', $err_msg);
-        
+
         return 'success';
     }
 }

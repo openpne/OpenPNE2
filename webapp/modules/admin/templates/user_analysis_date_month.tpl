@@ -32,9 +32,9 @@
 ({foreach from=$analysis_date_month key=key item=item})
 <tr>
 	({if $key == "合計"})
-	<th>({$key})</th>	
+	<th>({$key})</th>
 	({else})
-	<td><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('user_analysis_date_day')})&date=({$key})">({$key})</a></td>	
+	<td><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('user_analysis_date_day')})&date=({$key})">({$key})</a></td>
 	({/if})
 	<td>({$item})人</td>
 </tr>
