@@ -1275,7 +1275,7 @@ function biz_deleteImage($filename)
 
 function biz_deleteGroupImage($id, $filename)
 {
-    $data = array('image_filename' => ''); 
+    $data = array('image_filename' => '');
     $where = array('biz_group_id' => intval($id));
     db_update('biz_group', $data, $where);
 
@@ -1284,7 +1284,7 @@ function biz_deleteGroupImage($id, $filename)
 
 function biz_deleteShisetsuImage($id, $filename)
 {
-    $data = array('image_filename' => ''); 
+    $data = array('image_filename' => '');
     $where = array('biz_shisetsu_id' => intval($id));
     db_update('biz_shisetsu', $data, $where);
 
