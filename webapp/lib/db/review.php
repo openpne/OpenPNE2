@@ -658,4 +658,50 @@ function db_review_get_c_review_all()
     $sql = 'SELECT * FROM c_review';
     return db_get_all($sql);
 }
+
+function db_review_c_review_id4asin($asin)
+{
+    $sql = 'SELECT c_review_id FROM c_review'
+         . ' WHERE asin = ?';
+    return db_get_one($sql, array($asin));
+ }
+
+function db_review_update_old_c_review($c_review_id)
+{
+    $tmsp = date('Y-m-d H:i:s', strtotime('-1 month'));
+    $sql = 'SELECT * FROM c_review'
+         . ' WHERE c_review_id = ?'
+         . ' AND r_datetime < ?';
+    $params = array(intval($c_review_id), $tmsp);
+    $c_review = db_get_row($sql, $params);
+
+    if ($c_review) {
+        $asin = $c_review['asin'];
+        $product = db_review_write_product4asin($asin);
+        if ($product) {
+            $data = array(
+                'title'        => $product['ItemAttributes']['Title'],
+                'release_date' => $product['ItemAttributes']['PublicationDate'],
+                'manufacturer' => $product['ItemAttributes']['Manufacturer'],
+                'author'       => $product['author'],
+                'image_small'  => $product['SmallImage']['URL'],
+                'image_medium' => $product['MediumImage']['URL'],
+                'image_large'  => $product['LargeImage']['URL'],
+                'url'          => $product['DetailPageURL'],
+                'asin'         => $product['ASIN'],
+                'list_price'   => $product['ListPrice']['FormattedPrice'],
+                'retail_price' => $product['OfferSummary']['LowestUsedPrice']['FormattedPrice'],
+                'r_datetime'   => db_now(),
+            );
+
+            foreach ($data as $key => $value) {
+                if (is_null($value)) {
+                    $data[$key] = '';
+                }
+            }
+            $where = array('c_review_id' => intval($c_review_id));
+            db_update('c_review', $data, $where);
+        }
+    }
+}
 ?>
