@@ -320,7 +320,7 @@ function getCountdownDays($month, $day)
         return -1;
     }
 
-	$year = date('Y');
+    $year = date('Y');
 
     // 今日の00:00:00
     $today = mktime(0, 0, 0);
