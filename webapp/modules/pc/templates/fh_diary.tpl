@@ -171,7 +171,7 @@
 <p class="number">({$pager.start})番～({$pager.end})番を表示</p>
 ({if $pager.page_next})<p class="next"><a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$target_diary.c_diary_id})&amp;page=({$pager.page_next})({if $requests.page_size == 100})&amp;page_size=100({/if})({if $requests.order == 'asc'})&amp;order=asc({/if})#commentList">次を表示</a></p>({/if})
 </div>
-({/strip})({/capture}) 
+({/strip})({/capture})
 ({$smarty.capture.pager|smarty:nodefaults})
 
 ({foreach from=$target_diary_comment_list item=item})
