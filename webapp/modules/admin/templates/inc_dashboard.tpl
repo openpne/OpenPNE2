@@ -111,7 +111,7 @@
         </div>
     </div>
 ({if $smarty.const.OPENPNE_DASHBOARD_URL})
-  ({if $smarty.const.OPENPNE_USE_HTTP_PROXY})\
+  ({if $smarty.const.OPENPNE_USE_HTTP_PROXY})
     ({fetch file=$smarty.const.OPENPNE_DASHBOARD_URL proxy_host=$smarty.const.OPENPNE_HTTP_PROXY_HOST proxy_port=$smarty.const.OPENPNE_HTTP_PROXY_PORT timeout=5})
   ({else})
     ({fetch file=$smarty.const.OPENPNE_DASHBOARD_URL timeout=5})
