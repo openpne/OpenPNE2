@@ -22,7 +22,7 @@ class pc_do_c_topic_write_insert_c_commu_topic_comment extends OpenPNE_Action
         if (OPENPNE_USE_FILEUPLOAD) {
             $filename4_tmpfile = $requests['filename4_tmpfile'];
             $filename4_original_filename = $requests['filename4_original_filename'];
-            
+
             if ($filename4_tmpfile) {
                 // 拡張子制限
                 if (!util_check_file_extention($filename4_original_filename)) {

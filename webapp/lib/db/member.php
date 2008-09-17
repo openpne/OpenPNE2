@@ -65,7 +65,7 @@ function db_member_c_member4c_member_id($c_member_id, $is_secure = false, $with_
         }
         break;
     }
- 
+
     if (OPENPNE_AUTH_MODE != 'email' && $is_secure) {
         $c_member['username'] = db_member_username4c_member_id($c_member_id);
     }
@@ -1965,7 +1965,7 @@ function db_member_check_param_inputed($c_member_id, $is_ktai = false)
 function db_member_is_registered_nickname_birth_day($c_member_id)
 {
     $c_member = db_member_c_member4c_member_id($c_member_id, false, false, 'private');
-    
+
     if (($c_member['nickname'] === '')
      || !$c_member['birth_year']
      || !$c_member['birth_month']
