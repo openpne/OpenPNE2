@@ -18,7 +18,11 @@ class pc_page_h_review_add_write extends OpenPNE_Action
         $err_msg = $requests['err_msg'];
         // ----------
 
-        //登録済みならh_review_editへ飛ばす
+        // c_reviewをAmazonの最新データに更新
+        $c_review_id = db_review_c_review_id4asin($asin);
+        db_review_update_old_c_review($c_review_id);
+
+        // 登録済みならh_review_editへ飛ばす
         $c_review_comment = db_review_add_write_c_review_comment4asin_c_member_id($asin, $u);
         if ($c_review_comment) {
             $_REQUEST['c_review_id'] = $c_review_comment['c_review_id'];
