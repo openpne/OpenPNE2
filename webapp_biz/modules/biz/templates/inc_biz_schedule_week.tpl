@@ -85,6 +85,9 @@
 ({else})
 
 ({if $cmd != "h"})
+<ul class="moreInfo button">
+<li><input type="button" class="input_submit" onclick="location.href='({t_url m=pc a=page_f_show_image})&amp;target_c_member_id=({$member_info.c_member_id})'" value="もっと写真を見る" /></li>
+</ul>
 <p class="text"><a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$member_info.c_member_id})">({$member_info.nickname})</a></p>
 <p class="login_time">最終ログインは<br />({$member_info.last_login})</p>
 ({else})
