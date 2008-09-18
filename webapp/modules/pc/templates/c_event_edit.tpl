@@ -32,7 +32,6 @@
 （補足：<input type="text" class="input_text" name="open_pref_comment" value="({$event.open_pref_comment})" size="30" />）
 </td></tr>
 <tr><th>詳細 <strong>※</strong></th><td><textarea name="detail" rows="6" cols="50">({$event.body})</textarea></td></tr>
-<tr><th>募集人数</th><td><input type="text" class="input_text" name="capacity" value="({if $event.capacity})({$event.capacity})({/if})" /></td></tr>
 <tr><th>募集期限</th><td>
 <select name="invite_period_year">
 <option value="">----</option>
@@ -47,6 +46,7 @@
 ({html_options values=$day selected=$event.invite_period_day output=$day})
 </select> 日
 </td></tr>
+<tr><th>募集人数</th><td><input type="text" class="input_text" name="capacity" value="({if $event.capacity})({$event.capacity})({/if})" /></td></tr>
 <tr><th>写真1</th><td>
 ({if $event.image_filename1})
 <p>
