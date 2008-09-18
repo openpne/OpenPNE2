@@ -311,7 +311,6 @@
 
 ({t_form m=pc a=do_c_event_add_insert_c_commu_topic})
 <input type="hidden" name="sessid" value="({$PHPSESSID})">
-<input type="hidden" name="target_c_commu_id" value="({$event.c_commu_id})">
 ({foreach from=$event key=key item=item})
 <input type="hidden" name="({$key})" value="({$item})">
 ({/foreach})
@@ -322,7 +321,6 @@
 <td style="width:50%;text-align:left;">
 
 ({t_form m=pc a=page_c_event_add})
-<input type="hidden" name="target_c_commu_id" value="({$event.c_commu_id})">
 ({foreach from=$event key=key item=item})
 <input type="hidden" name="({$key})" value="({$item})">
 ({/foreach})
