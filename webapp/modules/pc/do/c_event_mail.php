@@ -23,7 +23,8 @@ class pc_do_c_event_mail extends OpenPNE_Action
         //--- 権限チェック
 
         // イベントの管理者でないと送信できない
-        if (!db_commu_is_c_event_admin($c_commu_topic_id, $u)) {
+        if (!(db_commu_is_c_event_admin($c_commu_topic_id, $u) ||
+            db_commu_is_c_commu_admin($c_commu_id, $u))) {
             handle_kengen_error();
         }
 
