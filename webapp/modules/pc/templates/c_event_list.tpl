@@ -39,8 +39,10 @@
 <div class="dparts commentList"><div class="parts">
 <div class="partsHeading"><h3>イベント一覧</h3></div>
 <div class="pagerRelativeMulti">
+<div class="text">
 <p>最近書き込みがあったイベントから順に表示しています。</p>
 <p><a href="({t_url m=pc a=page_c_topic_list})&amp;target_c_commu_id=({$c_commu.c_commu_id})">トピック一覧はこちら</a></p>
+</div>
 <div class="pager">
 ({strip})
 ({if $is_prev})<p class="prev"><a href="({t_url m=pc a=page_c_event_list})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;page=({$page-1})">前を表示</a></p>({/if})
