@@ -101,7 +101,7 @@
 	({foreach item=item from=$profile.options})
 		({counter name=$profile.name assign=_cnt})
 		({if $_cnt % 3 == 1})<ul>({/if})
-			<li><input type="radio" class="input_radio" name="profile[({$profile.name})]" id="profile-({$profile.name})-({$item.c_profile_option_id})" value="({$item.c_profile_option_id})"({if $c_member.profile[$profile.name].value == $item.value}) checked="checked"({/if}) /><label for="profile-({$profile.name})-({$item.c_profile_option_id})">({$item.value|default:"--"})</label></li>
+			<li><div class="item"><input type="radio" class="input_radio" name="profile[({$profile.name})]" id="profile-({$profile.name})-({$item.c_profile_option_id})" value="({$item.c_profile_option_id})"({if $c_member.profile[$profile.name].value == $item.value}) checked="checked"({/if}) /><label for="profile-({$profile.name})-({$item.c_profile_option_id})">({$item.value|default:"--"})</label></div></li>
 		({if $_cnt % 3 == 0})</ul>({/if})
 	({/foreach})
 	({if $_cnt % 3 != 0})</ul>({/if})
@@ -111,7 +111,7 @@
 	({foreach item=item from=$profile.options name=check})
 		({counter name=$profile.name assign=_cnt})
 		({if $_cnt % 3 == 1})<ul>({/if})
-			<li><input type="checkbox" class="input_checkbox" name="profile[({$profile.name})][]" id="profile-({$profile.name})-({$item.c_profile_option_id})" value="({$item.c_profile_option_id})"({if $c_member.profile[$profile.name].value && in_array($item.value|smarty:nodefaults, $c_member.profile[$profile.name].value)}) checked="checked"({/if}) /><label for="profile-({$profile.name})-({$item.c_profile_option_id})">({$item.value|default:"--"})</label></li>
+			<li><div class="item"><input type="checkbox" class="input_checkbox" name="profile[({$profile.name})][]" id="profile-({$profile.name})-({$item.c_profile_option_id})" value="({$item.c_profile_option_id})"({if $c_member.profile[$profile.name].value && in_array($item.value|smarty:nodefaults, $c_member.profile[$profile.name].value)}) checked="checked"({/if}) /><label for="profile-({$profile.name})-({$item.c_profile_option_id})">({$item.value|default:"--"})</label></div></li>
 		({if $_cnt % 3 == 0})</ul>({/if})
 	({/foreach})
 	({if $_cnt % 3 != 0})</ul>({/if})

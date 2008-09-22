@@ -13,7 +13,7 @@
 <th>繰り返し設定</th>
 <td>
 <div class="checkList"><ul>
-<li><input type='radio' name='sc_rp' value='0' ({if !$is_rep}) checked="checked"({/if}) />繰り返さない</li>
+<li><div class="item"><input type='radio' name='sc_rp' value='0' ({if !$is_rep}) checked="checked"({/if}) />繰り返さない</div></li>
 <li><select name='sc_bn'>
 ({section name=i loop=$bn_num})
 <option value="({$bn_num[i]})" ({if $banner == $bn_num[i]}) selected="selected"({/if})>({$bn_num[i]})日間</option>
@@ -21,7 +21,7 @@
 </select></li>
 </ul></div>
 <div class="checkList"><ul>
-<li><input type='radio' name='sc_rp' value='true' ({if $is_rep}) checked="checked"({/if}) />繰り返す</li>
+<li><div class="item"><input type='radio' name='sc_rp' value='true' ({if $is_rep}) checked="checked"({/if}) />繰り返す</div></li>
 <li><select name='sc_rcount'>
 ({section name=i loop=$rp_count})
 <option value='({$rp_count[i]})' ({if $repeat_term == $rp_count[i]}) selected="selected"({/if})>({$rp_count[i]})週間</option>
@@ -99,7 +99,7 @@
 <div class="checkList"><ul>
 ({foreach name=i from=$members item=item})
 ({if $item})
-<li><input name='sc_j_mem[]' value='({$item.c_member_id})' type='checkbox'({if $item.checkflag}) checked="checked"({/if}) />({$item.nickname})</li>
+<li><div class="item"><input name='sc_j_mem[]' value='({$item.c_member_id})' type='checkbox'({if $item.checkflag}) checked="checked"({/if}) />({$item.nickname})</div></li>
 ({/if})
 ({if !$smarty.foreach.i.last && $smarty.foreach.i.iteration%3==0})</ul><ul>({/if})
 ({/foreach})
@@ -109,10 +109,10 @@
 <th>公開範囲</th>
 <td>
 <div class="checkList"><ul>
-<li><input type='radio' name='public_flag' value='public' ({if $public_flag == 'public'})checked="checked"({/if}) />全体に公開</li>
+<li><div class="item"><input type='radio' name='public_flag' value='public' ({if $public_flag == 'public'})checked="checked"({/if}) />全体に公開</div></li>
 </ul></div>
 <div class="checkList"><ul>
-<li><input type='radio' name='public_flag' value='private' ({if $public_flag == 'private'})checked="checked"({/if})/>参加者のみに公開</li>
+<li><div class="item"><input type='radio' name='public_flag' value='private' ({if $public_flag == 'private'})checked="checked"({/if})/>参加者のみに公開</div></li>
 </ul></div>
 </td>
 </tr>

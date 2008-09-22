@@ -22,7 +22,7 @@
 ({foreach from=$c_event_member_list item=item})
 ({counter assign=_cnt})
 ({if $_cnt % 3 == 1})<ul>({/if})
-<li><input type="checkbox" class="input_checkbox" id="m({$item.c_member_id})" name="c_member_id[]" value="({$item.c_member_id})" checked="checked" /><label for="m({$item.c_member_id})">({$item.nickname})</label></li>
+<li><div class="item"><input type="checkbox" class="input_checkbox" id="m({$item.c_member_id})" name="c_member_id[]" value="({$item.c_member_id})" checked="checked" /><label for="m({$item.c_member_id})">({$item.nickname})</label></div></li>
 ({if $_cnt % 3 == 0})</ul>({/if})
 ({/foreach})
 ({if $_cnt % 3 != 0})</ul>({/if})
