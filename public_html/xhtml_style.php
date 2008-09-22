@@ -1906,6 +1906,9 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 	width: 150px;
 	text-align: right;
 }
+.formTable table table td.publicSelector select {
+	width: 150px;
+}
 .formTable div.checkList ul {
 	zoom: 1;
 	overflow: hidden;
