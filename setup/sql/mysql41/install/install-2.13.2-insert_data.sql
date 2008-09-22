@@ -1,3 +1,5 @@
+/*!40101 SET NAMES utf8 */;
+
 INSERT INTO `biz_admin_config` VALUES (NULL,'IS_CLOSED_SHISETSU','0');
 INSERT INTO `c_action` VALUES (NULL,'入会する',0);
 INSERT INTO `c_action` VALUES (NULL,'自分の日記にコメントされる',0);
