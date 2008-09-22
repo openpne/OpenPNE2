@@ -247,10 +247,13 @@ div#LayoutC {
 	zoom: 1;
 	overflow: hidden;
 	overflow: -moz-scrollbars-none;
-	margin-bottom: 10px;
 }
-#Left,
-#Center {
+#Top {
+	overflow: hidden;
+}
+dd div, dt, li, td, th, p,
+h1, h2, h3, h4, h5, h6,
+fieldset, label {
 	overflow: hidden;
 }
 
@@ -276,7 +279,8 @@ div#LayoutC {
 }
 #Top .infoBox,
 #Top .descriptionBox {
-	margin: 0 20px 10px;
+	margin-right: 20px;
+	margin-left: 20px;
 }
 #LayoutA #Left {
 	float: left;
@@ -315,7 +319,12 @@ div#LayoutC {
 	left: 720px;
 	width: 230px;
 }
-
+*:first-child+html #pc_page_h_diary_add #Footer {
+	margin-top: 10px;
+}
+* html #pc_page_h_diary_add #Footer {
+	margin-top: 10px;
+}
 /*----------------------------------------------
  * パーツ枠
  *--------------------------------------------*/
