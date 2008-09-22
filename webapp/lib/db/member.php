@@ -189,6 +189,21 @@ function db_member_c_member_id4ktai_address_encrypted($ktai_address_encoded)
     return db_get_one($sql, $params);
 }
 
+function db_member_is_ktai_address_password_complete($ktai_address, $password)
+{
+    $sql = "SELECT c_member_id"
+         . " FROM c_member_secure"
+         . " WHERE ktai_address = ?"
+         . " AND hashed_password = ?";
+    $params = array(
+        t_encrypt($ktai_address),
+        md5($password),
+    );
+    if ($c_member_id = db_get_one($sql, $params)) {
+        return $c_member_id;
+    }
+}
+
 /**
  * アクティブメンバーか？
  */
