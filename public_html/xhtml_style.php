@@ -150,9 +150,6 @@ select {
 .input_image {
 	border: none;
 }
-p {
-	overflow: hidden;
-}
 strong {
 	font-weight: bold;
 }
@@ -165,7 +162,6 @@ div.parts table {
 }
 div.parts th,
 div.parts td {
-	overflow: hidden;
 	border-width: 1px 0 0 1px;
 	border-style: solid;
 	border-color: #<?php echo $colors[1]; ?>;
@@ -243,17 +239,67 @@ ul.check .input_checkbox {
  *--------------------------------------------*/
 div#LayoutA,
 div#LayoutB,
-div#LayoutC {
+div#LayoutC,
+div.pagerRelativeMulti,
+.diaryDetailBox .partsHeading,
+.diaryDetailBox dl,
+.topicDetailBox dl,
+.eventDetailBox dl,
+.messageDetailBox div.operation,
+.prevNextLinkLine,
+.commentList dl,
+#pc_page_fh_diary_list .commentList dd div.title,
+.reviewList dl,
+.recentList dl,
+.searchCategoryList dl dd ul,
+.bizSideScheduleList dl,
+.homeMainTable .partsHeading,
+.formTable .partsHeading,
+.formTable div.checkList ul,
+.monthlyCalendarTable div.block {
 	zoom: 1;
-	overflow: hidden;
-	overflow: -moz-scrollbars-none;
-	margin-bottom: 10px;
+	overflow: visible;
 }
-#Left,
-#Center {
+div#LayoutA:after,
+div#LayoutB:after,
+div#LayoutC:after,
+div.pagerRelativeMulti:after,
+.diaryDetailBox .partsHeading:after,
+.diaryDetailBox dl:after,
+.topicDetailBox dl:after,
+.eventDetailBox dl:after,
+.messageDetailBox div.operation:after,
+.prevNextLinkLine:after,
+.commentList dl:after,
+#pc_page_fh_diary_list .commentList dd div.title:after,
+.reviewList dl:after,
+.recentList dl:after,
+.searchCategoryList dl dd ul:after,
+.bizSideScheduleList dl:after,
+.homeMainTable .partsHeading:after,
+.formTable .partsHeading:after,
+.formTable div.checkList ul:after,
+.monthlyCalendarTable div.block:after {
+	content: ".";
+	display: block;
+	clear: both;
+	height: 0;
+	visibility: hidden;
+}
+#Top {
 	overflow: hidden;
 }
-
+dd div, dt, ul, ol, td, th, p,
+h1, h2, h3, h4, h5, h6, .partsHeading,
+fieldset, label {
+	overflow: hidden;
+}
+dd div div {
+	overflow: visible;
+}
+pre {
+	overflow: auto;
+}
 /*----------------------------------------------
  * ベースレイアウト
  *--------------------------------------------*/
@@ -276,7 +322,8 @@ div#LayoutC {
 }
 #Top .infoBox,
 #Top .descriptionBox {
-	margin: 0 20px 10px;
+	margin-right: 20px;
+	margin-left: 20px;
 }
 #LayoutA #Left {
 	float: left;
@@ -315,7 +362,12 @@ div#LayoutC {
 	left: 720px;
 	width: 230px;
 }
-
+*:first-child+html #pc_page_h_diary_add #Footer {
+	margin-top: 10px;
+}
+* html #pc_page_h_diary_add #Footer {
+	margin-top: 10px;
+}
 /*----------------------------------------------
  * パーツ枠
  *--------------------------------------------*/
@@ -347,8 +399,7 @@ div.ditem {
  * パーツ見出し
  *--------------------------------------------*/
 .partsHeading {
-	overflow: hidden;
-	padding: 2px 0 2px 36px;
+	padding: 2px 8px 2px 36px;
 	background: #<?php echo $colors[5]; ?> url(<?php echo getSkin('content_header_1'); ?>) no-repeat 0 0;
 	text-align: left;
 	font-size: 100%;
@@ -398,14 +449,21 @@ div.pagerRelativeMulti div.pager p {
 	display: inline;
 	margin-left: 10px;
 }
-div.pagerRelativeMulti {
-	zoom: 1;
-	position: relative;
+div.pagerRelative p:first-child,
+div.pagerRelativeMulti div.pager p:first-child,
+div.pagerRelative p.first-child,
+div.pagerRelativeMulti div.pager p.first-child {
+	margin-left: 0;
+}
+div.pagerRelativeMulti div.text {
+	float: left;
+	width: 55%;
 }
 div.pagerRelativeMulti div.pager {
-	position: absolute;
-	top: 1em;
-	right: 4px;
+	float: right;
+	width: 45%;
+	margin-top: 0.5em;
+	text-align: right;
 }
 div.operation {
 	padding: 4px;
@@ -633,11 +691,9 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
  *----------------------------------------------------------------------------*/
 .infoBox .parts {
 	zoom: 1;
-	overflow: hidden;
 	position: relative;
 }
 .infoBox p {
-	overflow: hidden;
 	margin-right: 16em;
 	padding: 5px;
 	border-right: 1px solid #<?php echo $colors[1]; ?>;
@@ -704,7 +760,6 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 	zoom: 1;
 }
 .searchFormBox .item {
-	overflow: hidden;
 	margin: 10px 40px;
 	padding-top: 8px;
 	border: 1px solid #<?php echo $colors[1]; ?>;
@@ -767,10 +822,9 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 /*==============================================================================
  * 8. diaryDetailBox（日記詳細ボックス）
  *----------------------------------------------------------------------------*/
-.diaryDetailBox .partsHeading {
-	zoom: 1;
-	overflow: hidden;
-	overflow: -moz-scrollbars-none;
+.diaryDetailBox h3 {
+	float: left;
+	width: 66%;
 }
 .diaryDetailBox h3 {
 	float: left;
@@ -783,9 +837,6 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 	text-align: right;
 }
 .diaryDetailBox dl {
-	zoom: 1;
-	overflow: hidden;
-	overflow: -moz-scrollbars-none;
 	border-top: 1px solid #<?php echo $colors[1]; ?>;
 }
 .diaryDetailBox dt {
@@ -796,12 +847,12 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 }
 .diaryDetailBox dd {
 	zoom: 1;
-	min-height: 4.2em;
+	min-height: 4.5em;
 	margin-left: 70px;
 	border-left: 1px solid #<?php echo $colors[1]; ?>;
 }
 * html .diaryDetailBox dd {
-	height: 4.2em;
+	height: 4.5em;
 }
 .diaryDetailBox dd div {
 	border-top: 1px solid #<?php echo $colors[1]; ?>;
@@ -835,9 +886,6 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
  * 9. topicDetailBox（トピック詳細ボックス）
  *----------------------------------------------------------------------------*/
 .topicDetailBox dl {
-	zoom: 1;
-	overflow: hidden;
-	overflow: -moz-scrollbars-none;
 	border-top: 1px solid #<?php echo $colors[1]; ?>;
 }
 .topicDetailBox dt {
@@ -878,9 +926,6 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
  * 10. eventDetailBox（イベント詳細ボックス）
  *----------------------------------------------------------------------------*/
 .eventDetailBox dl {
-	zoom: 1;
-	overflow: hidden;
-	overflow: -moz-scrollbars-none;
 	border-top: 1px solid #<?php echo $colors[1]; ?>;
 }
 .eventDetailBox dt {
@@ -975,6 +1020,9 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 	border-left: 1px solid #<?php echo $colors[1]; ?>;
 	background: #<?php echo $colors[7]; ?>;
 }
+* html .homeInfoBox div.body {
+	height: 1.2em;
+}
 .homeInfoBox .caution {
 	color: #ff0000;
 }
@@ -1042,11 +1090,6 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 .messageDetailBox ul.photo li {
 	display: inline;
 	margin-left: 6px;
-}
-.messageDetailBox div.operation {
-	zoom: 1;
-	overflow: hidden;
-	overflow: -moz-scrollbars-none;
 }
 .messageDetailBox form.delete {
 	float: left;
@@ -1138,11 +1181,6 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 /*==============================================================================
  * 19. prevNextLinkLine（前次リンクライン）
  *----------------------------------------------------------------------------*/
-.prevNextLinkLine {
-	zoom: 1;
-	overflow: hidden;
-	overflow: -moz-scrollbars-none;
-}
 .prevNextLinkLine p.prev {
 	float: left;
 	width: 50%;
@@ -1176,9 +1214,6 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
  * 22. commentList（コメントリスト）
  *----------------------------------------------------------------------------*/
 .commentList dl {
-	zoom: 1;
-	overflow: hidden;
-	overflow: -moz-scrollbars-none;
 	border-top: 1px solid #<?php echo $colors[1]; ?>;
 }
 .commentList dt {
@@ -1215,11 +1250,6 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 .commentList dd div.title p {
 	padding: 0;
 }
-#pc_page_fh_diary_list .commentList dd div.title {
-	zoom: 1;
-	overflow: hidden;
-	overflow: -moz-scrollbars-none;
-}
 #pc_page_fh_diary_list .commentList dd div.title p.heading {
 	float: left;
 	width: 66%;
@@ -1254,10 +1284,6 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 }
 .searchResultList .ditem {
 	margin: 8px 34px;
-}
-.searchResultList .item {
-	zoom: 1;
-	position: relative;
 }
 .searchResultList td.photo {
 	width: 90px;
@@ -1310,9 +1336,6 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
  * 24. reviewList（レビューリスト）
  *----------------------------------------------------------------------------*/
 .reviewList dl {
-	zoom: 1;
-	overflow: hidden;
-	overflow: -moz-scrollbars-none;
 	border-top: 1px solid #<?php echo $colors[1]; ?>;
 }
 .reviewList dl dt {
@@ -1364,9 +1387,6 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
  * 25. recentList（最新書き込みリスト）
  *----------------------------------------------------------------------------*/
 .recentList dl {
-	zoom: 1;
-	overflow: hidden;
-	overflow: -moz-scrollbars-none;
 	border-top: 1px solid #<?php echo $colors[1]; ?>;
 }
 .recentList dt {
@@ -1477,9 +1497,6 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 	margin: 8px 10px 8px 70px;
 }
 .searchCategoryList dl dd ul {
-	zoom: 1;
-	overflow: hidden;
-	overflow: -moz-scrollbars-none;
 	margin: 4px 0;
 }
 .searchCategoryList dl dd ul li {
@@ -1495,21 +1512,12 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 .messageList .partsHeading p.date {
 	font-weight: bold;
 }
-.messageList .pagerRelativeMulti {
-	zoom: 1;
-	overflow: hidden;
-	overflow: -moz-scrollbars-none;
+.messageList .pagerRelativeMulti .text {
+	width: 160px;
 }
 .messageList .pagerRelativeMulti .pager {
-	position: static;
-	float: right;
 	width: 350px;
 	margin-top: 1px;
-	text-align: right;
-}
-.messageList p.icons {
-	float: left;
-	width: 160px;
 }
 .messageList p.icons img {
 	padding-right: 16px;
@@ -1589,7 +1597,6 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 	margin: 0 2px;
 }
 .ashiatoList div.item ul.list {
-	overflow: hidden;
 	margin-top: 16px;
 }
 
@@ -1693,9 +1700,6 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 	border: 1px solid #<?php echo $colors[1]; ?>;
 }
 .bizSideScheduleList dl {
-	zoom: 1;
-	overflow: hidden;
-	overflow: -moz-scrollbars-none;
 	border-top: 1px solid #<?php echo $colors[1]; ?>;
 }
 .bizSideScheduleList dt {
@@ -1792,14 +1796,15 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 /*==============================================================================
  * 38. homeMainTable（ホームメインテーブル）
  *----------------------------------------------------------------------------*/
-.homeMainTable .partsHeading {
-	zoom: 1;
-	position: relative;
+.homeMainTable .partsHeading h3 {
+	float: left;
+	width: 66%;
 }
 .homeMainTable .partsHeading p.link {
-	position: absolute;
-	top: 2px;
-	right: 8px;
+	float: right;
+	width: 33%;
+	margin: 0;
+	text-align: right;
 }
 .homeMainTable th {
 	width: 83px;
@@ -1854,9 +1859,15 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 /*==============================================================================
  * 39. formTable（入力フォームテーブル）
  *----------------------------------------------------------------------------*/
-.formTable .partsHeading {
-	zoom: 1;
-	position: relative;
+.formTable .partsHeading div.text {
+	float: left;
+	width: 66%;
+}
+.formTable .partsHeading p.link {
+	float: right;
+	width: 33%;
+	margin: 0;
+	text-align: right;
 }
 .formTable strong {
 	font-weight: normal;
@@ -1864,11 +1875,6 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 }
 .formTable p.caution {
 	color: #ff0000;
-}
-.formTable .partsHeading p.link {
-	position: absolute;
-	top: 2px;
-	right: 8px;
 }
 .formTable div.partsInfo {
 	background-color: #<?php echo $colors[6]; ?>;
@@ -1897,19 +1903,18 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 	width: 150px;
 	text-align: right;
 }
-.formTable div.checkList ul {
-	zoom: 1;
-	overflow: hidden;
-	overflow: -moz-scrollbars-none;
+.formTable table table td.publicSelector select {
+	width: 150px;
 }
 .formTable div.checkList li {
 	overflow: hidden;
-	overflow: -moz-scrollbars-none;
 	float: left;
-	width: 27%;
+	width: 33%;
+	line-height: 1.6;
+}
+.formTable div.checkList li div.item {
 	padding-left: 18px;
 	text-indent: -18px;
-	line-height: 1.6;
 }
 .formTable div.operation {
 	padding: 10px 0;
@@ -1923,6 +1928,9 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 }
 .weeklyCalendarTable div.block {
 	padding: 5px;
+}
+.weeklyCalendarTable .input_text {
+	width: 120px;
 }
 .weeklyCalendarTable .input_submit {
 	margin-right: 8px;
@@ -1946,9 +1954,6 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
  * 41. monthlyCalendarTable（月間カレンダーテーブル）
  *----------------------------------------------------------------------------*/
 .monthlyCalendarTable div.block {
-	zoom: 1;
-	overflow: hidden;
-	overflow: -moz-scrollbars-none;
 	padding: 2px 5px;
 }
 .monthlyCalendarTable div.block p.moreInfo {
@@ -2044,7 +2049,6 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
  * 43. sideNav（サイドナビ）
  *----------------------------------------------------------------------------*/
 .sideNav .item {
-	overflow: hidden;
 	width: 150px;
 	margin: 0 auto 10px;
 	border: 8px solid #<?php echo $colors[8]; ?>;
