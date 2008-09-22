@@ -38,7 +38,7 @@
 ({foreach from=$f_invite_list item=c_invite})
 ({counter assign=_cnt})
 ({if $_cnt % 3 == 1})<ul>({/if})
-<li><input type="checkbox" class="input_checkbox" id="m({$c_invite.c_member_id})" name="c_member_id_list[]" value="({$c_invite.c_member_id})" /><label for="m({$c_invite.c_member_id})">({$c_invite.nickname})</label></li>
+<li><div class="item"><input type="checkbox" class="input_checkbox" id="m({$c_invite.c_member_id})" name="c_member_id_list[]" value="({$c_invite.c_member_id})" /><label for="m({$c_invite.c_member_id})">({$c_invite.nickname})</label></div></li>
 ({if $_cnt % 3 == 0})</ul>({/if})
 ({/foreach})
 ({if $_cnt % 3 != 0})</ul>({/if})
