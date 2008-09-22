@@ -10,7 +10,7 @@
 ({foreach from=$c_mail_member item=item})
 ({counter assign=_cnt})
 ({if $_cnt % 3 == 1})<ul>({/if})
-<li>({$item.nickname})</li>
+<li><div class="item">({$item.nickname})</div></li>
 ({if $_cnt % 3 == 0})</ul>({/if})
 ({/foreach})
 ({if $_cnt % 3 != 0})</ul>({/if})
