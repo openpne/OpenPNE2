@@ -3,7 +3,7 @@
 
 ({* {{{ formTable *})
 <div class="dparts formTable"><div class="parts">
-<div class="partsHeading"><h3>プロフィール変更</h3><p>(<strong>※</strong>の項目は必須です)</p>({if $SSL_SELECT_URL})<p class="link"><a href="({$SSL_SELECT_URL})">({if $HTTPS})標準(http)({else})SSL(https)({/if})はこちら</a></p>({/if})</div>
+<div class="partsHeading"><div class="text"><h3>プロフィール変更</h3><p>(<strong>※</strong>の項目は必須です)</p></div>({if $SSL_SELECT_URL})<p class="link"><a href="({$SSL_SELECT_URL})">({if $HTTPS})標準(http)({else})SSL(https)({/if})はこちら</a></p>({/if})</div>
 ({t_form_block m=pc a=do_h_config_prof})
 <table>
 ({capture name="nick"})
