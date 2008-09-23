@@ -14,6 +14,7 @@
            ({/if})
            ({else})
            <div id="passwordQueryArea"><a href="({t_url m=pc a=page_o_password_query})">&gt;パスワードを忘れた方はこちらへ</a></div>
+           <div id="pcAddressRegistArea"><a href="({t_url m=pc a=page_o_regist_pc_mail})">&gt;PCメールアドレス登録</a></div>
            ({/if})
            <div id="buttonLoginArea"><button type="submit" tabindex="4" id="buttonLogin">ログイン</button></div>
            </form>
