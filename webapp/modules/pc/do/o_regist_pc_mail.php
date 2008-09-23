@@ -59,6 +59,9 @@ class pc_do_o_regist_pc_mail extends OpenPNE_Action
                 $errors[] = '携帯メールアドレス、またはパスワードに正しい値を入力してください';
             }
         }
+        if (db_member_is_pc_address_registered($c_member_id)) {
+            $errors[] = '既にPCメールアドレスを登録済みです';
+        }
         if (!db_common_is_mailaddress($pc_address)
             || is_ktai_mail_address($pc_address)) {
             $errors[] = 'PCメールアドレスを正しく入力してください';
