@@ -23,16 +23,16 @@ class pc_do_o_regist_pc_mail extends OpenPNE_Action
 
     function execute($requests)
     {
-
-        // 外部認証の場合はリダイレクト
-        check_action4pne_slave(false);
-
         // --- リクエスト変数
         $ktai_address = $requests['ktai_address'];
         $password = $requests['password'];
         $pc_address = $requests['pc_address'];
         $pc_address2 = $requests['pc_address2'];
         // ----------
+
+        if (OPENPNE_AUTH_MODE == 'slavepne' || !(OPENPNE_REGIST_FROM & OPENPNE_REGIST_FROM_PC)) {
+            client_redirect_login();
+        }
 
         $errors = array();
         @session_start();
