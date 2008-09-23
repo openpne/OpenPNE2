@@ -4,6 +4,14 @@
 ({* {{{ formTable *})
 <div class="dparts formTable"><div class="parts">
 <div class="partsHeading"><h3>PCメールアドレス登録</h3></div>
+
+<div class="partsInfo">
+<p>
+既に携帯版を利用している方のみ、PCメールアドレスの登録をおこなうことができます。<br />
+登録済みの({if $smarty.const.OPENPNE_AUTH_MODE == 'pneid'})ログインID({else})携帯メールアドレス({/if})とパスワード、登録したいPCメールアドレスを入力してください。
+</p>
+</div>
+
 ({t_form_block m=pc a=do_o_regist_pc_mail})
 <table>
 ({if $smarty.const.OPENPNE_AUTH_MODE == 'pneid'})
@@ -38,9 +46,6 @@
 <th>PCメールアドレス確認</th>
 <td>
 <input type="text" class="input_text" name="pc_address2" value="" size="40" />
-<p class="caution">
-※メールアドレスは公開されません。
-</p>
 </td>
 </tr>
 <tr>
