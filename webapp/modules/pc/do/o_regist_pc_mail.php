@@ -24,10 +24,16 @@ class pc_do_o_regist_pc_mail extends OpenPNE_Action
     function execute($requests)
     {
         // --- リクエスト変数
-        $ktai_address = $requests['ktai_address'];
         $password = $requests['password'];
         $pc_address = $requests['pc_address'];
         $pc_address2 = $requests['pc_address2'];
+
+        if (OPENPNE_AUTH_MODE == 'pneid') {
+            $username = $requests['pneid'];
+        } else {
+            $username = $requests['ktai_address'];
+        }
+
         // ----------
 
         if (OPENPNE_AUTH_MODE == 'slavepne' || !(OPENPNE_REGIST_FROM & OPENPNE_REGIST_FROM_PC)) {
@@ -45,8 +51,13 @@ class pc_do_o_regist_pc_mail extends OpenPNE_Action
             unset($_SESSION['captcha_keystring']);
         }
 
-        if (!$c_member_id = db_member_is_ktai_address_password_complete($ktai_address, $password)) {
-            $errors[] = '登録済み携帯アドレス、またはパスワードに正しい値を入力してください';
+        $c_member_id = db_member_c_member_id4username($username, true);
+        if (!$c_member_id || db_member_hashed_password4c_member_id($c_member_id) !== md5($password)) {
+            if (OPENPNE_AUTH_MODE == 'pneid') {
+                $errors[] = 'ログインID、またはパスワードに正しい値を入力してください';
+            } else {
+                $errors[] = '携帯メールアドレス、またはパスワードに正しい値を入力してください';
+            }
         }
         if (!db_common_is_mailaddress($pc_address)
             || is_ktai_mail_address($pc_address)) {
