@@ -5,12 +5,23 @@
 <div class="dparts formTable"><div class="parts">
 <div class="partsHeading"><h3>PCメールアドレス登録</h3></div>
 ({t_form_block m=pc a=do_o_regist_pc_mail})
-<table><tr>
-<th>登録済み携帯メールアドレス</th>
+<table>
+({if $smarty.const.OPENPNE_AUTH_MODE == 'pneid'})
+<tr>
+<th>ログインID</th>
+<td>
+<input type="text" class="input_text" name="pneid" value="({$requests.pneid})" size="40" />
+</td>
+</tr>
+({else})
+<tr>
+<th>携帯メールアドレス</th>
 <td>
 <input type="text" class="input_text" name="ktai_address" value="({$requests.ktai_address})" size="40" />
 </td>
-</tr><tr>
+</tr>
+({/if})
+<tr>
 <th>パスワード</th>
 <td>
 <input type="password" class="input_password" name="password" value="" size="20" />
