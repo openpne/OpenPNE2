@@ -27,17 +27,19 @@ a:active  { color:#f00;}
 .snsLogin div#passwordArea { top:74px;}
 .snsLogin div#isSaveArea { top:128px; width:200px; text-align:center;}
 .snsLogin div#passwordQueryArea { top:146px; width:200px; text-align:center;}
-.snsLogin div#loginSecurity { left:0; width:250px; height:9px; background:url("../img/login_sec_black.gif") no-repeat center center; font-size:0; line-height:0; text-indent:-3000px;}
-#invite div.snsLogin div#loginSecurity { top:209px;}
-#free div.snsLogin div#loginSecurity { top:239px;}
-.snsLogin div#buttonLoginArea { top:179px;}
-.snsLogin div#buttonRegiArea { top:209px;}
+.snsLogin div#pcAddressRegistArea { top:164px; width:200px; text-align:center;}
+.snsLogin div#loginSecurity { left:0; width:268px; height:9px; background:url("../img/login_sec_black.gif") no-repeat center center; font-size:0; line-height:0; text-indent:-3000px;}
+#invite div.snsLogin div#loginSecurity { top:227px;}
+#free div.snsLogin div#loginSecurity { top:257px;}
+.snsLogin div#buttonLoginArea { top:187px;}
+.snsLogin div#buttonRegiArea { top:217px;}
 .snsLogin div#usernameArea span,
 .snsLogin div#passwordArea span { display:block; font-size:0; line-height:0; text-decoration:none; text-indent:-3000px;}
 .snsLogin div#usernameArea input,
 .snsLogin div#passwordArea input { position:absolute; top:24px; left:4px; width:199px; height:18px; border:none; background:none; vertical-align:middle;}
 .snsLogin div#isSaveArea input { margin-right:5px; vertical-align:middle;}
 .snsLogin div#isSaveArea span { font-size:10px; color:#000;}
+.snsLogin div#pcAddressRegistArea a,
 .snsLogin div#passwordQueryArea a { font-size:10px; text-decoration:underline;}
 .snsLogin div#buttonLoginArea button { position:absolute; top:0; left:40px; border:0; text-indent:-3000px; cursor:pointer;}
 .snsLogin div#buttonRegiArea button { position:absolute; top:0; left:40px; border:0; text-indent:-3000px; cursor:pointer;}
