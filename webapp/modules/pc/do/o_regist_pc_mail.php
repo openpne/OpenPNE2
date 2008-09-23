@@ -36,29 +36,32 @@ class pc_do_o_regist_pc_mail extends OpenPNE_Action
 
         $errors = array();
         @session_start();
-        if (OPENPNE_USE_CAPTCHA && (empty($_SESSION['captcha_keystring'])
-            || $_SESSION['captcha_keystring'] !=  $requests['captcha'])
-        ) {
+
+        if (OPENPNE_USE_CAPTCHA) {
+            if ($_SESSION['captcha_keystring'] !== $requests['captcha']) {
+                $errors[] = "確認キーワードが誤っています";
+            }
+
             unset($_SESSION['captcha_keystring']);
-            $errors[] = "確認キーワードが誤っています";
-        } else {
-            if (!$c_member_id = db_member_is_ktai_address_password_complete($ktai_address, $password)) {
-                $errors[] = '登録済み携帯アドレス、またはパスワードに正しい値を入力してください';
-            }
-            if (!db_common_is_mailaddress($pc_address)
-                || is_ktai_mail_address($pc_address)) {
-                $errors[] = 'PCメールアドレスを正しく入力してください';
-            }
-            if (db_member_c_member_id4pc_address($pc_address)) {
-                $errors[] = '入力されたメールアドレスは既に登録されています';
-            }
-            if ($pc_address !== $pc_address2) {
-                $errors[] = 'メールアドレスが一致しません';
-            }
-            if (!db_member_is_limit_domain4mail_address($pc_address)) {
-                $errors[] = '入力したメールアドレスでは登録できません';
-            }
         }
+
+        if (!$c_member_id = db_member_is_ktai_address_password_complete($ktai_address, $password)) {
+            $errors[] = '登録済み携帯アドレス、またはパスワードに正しい値を入力してください';
+        }
+        if (!db_common_is_mailaddress($pc_address)
+            || is_ktai_mail_address($pc_address)) {
+            $errors[] = 'PCメールアドレスを正しく入力してください';
+        }
+        if (db_member_c_member_id4pc_address($pc_address)) {
+            $errors[] = '入力されたメールアドレスは既に登録されています';
+        }
+        if ($pc_address !== $pc_address2) {
+            $errors[] = 'メールアドレスが一致しません';
+        }
+        if (!db_member_is_limit_domain4mail_address($pc_address)) {
+            $errors[] = '入力したメールアドレスでは登録できません';
+        }
+
         if ($errors) {
             $this->handleError($errors);
         }
