@@ -4,7 +4,7 @@
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
-require_once 'simplepie.inc';
+require_once 'SimplePie.php';
 
 /**
  * OpenPNE_RSS
