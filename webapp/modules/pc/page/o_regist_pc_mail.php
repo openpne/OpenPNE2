@@ -13,6 +13,10 @@ class pc_page_o_regist_pc_mail extends OpenPNE_Action
 
     function execute($requests)
     {
+        if (OPENPNE_AUTH_MODE == 'slavepne' || !(OPENPNE_REGIST_FROM & OPENPNE_REGIST_FROM_PC)) {
+            client_redirect_login();
+        }
+
         return 'success';
     }
 }
