@@ -570,10 +570,7 @@ define('OPENPNE_IS_OPENID_SERVER', false);
 define('OPENPNE_DB_ERROR_LOG', true);
 
 // 監視モジュールアクセスIP制限
-// m=kanshi へのIP制限
-$GLOBALS['_ALLOWED_IP_LIST_FOR_KANSHI'] = array(
-    '10.255.255.31',    // test.k4.gaiax.com
-    '61.202.247.174',   // police.gaiax.com
-);
+// m=kanshi へのアクセスを許可するIPのリスト
+$GLOBALS['_ALLOWED_IP_LIST_FOR_KANSHI'] = array();
 
 ?>
