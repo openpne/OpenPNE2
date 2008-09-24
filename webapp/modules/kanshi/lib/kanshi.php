@@ -26,10 +26,7 @@ function kanshi_check_access_ip($ip_string)
  */
 function kanshi_allow_ip_log($ip_string)
 {
-    if(!is_dir(OPENPNE_VAR_DIR. '/log/kanshi')){
-        mkdir(OPENPNE_VAR_DIR. '/log/kanshi');
-    }
-    $fp = fopen(OPENPNE_VAR_DIR. '/log/kanshi/allow_ip.log', 'a+t');
+    $fp = fopen(OPENPNE_VAR_DIR. '/log/kanshi_allow_ip.log', 'a+t');
     fwrite($fp, '['.date("Y/m/d H:i:s").'] ' . $ip_string . "\n");
     fclose($fp);
 }
@@ -39,10 +36,7 @@ function kanshi_allow_ip_log($ip_string)
  */
 function kanshi_disallow_ip_log($ip_string)
 {
-    if(!is_dir(OPENPNE_VAR_DIR. '/log/kanshi')){
-        mkdir(OPENPNE_VAR_DIR. '/log/kanshi');
-    }
-    $fp = fopen(OPENPNE_VAR_DIR. '/log/kanshi/disallow_ip.log', 'a+t');
+    $fp = fopen(OPENPNE_VAR_DIR. '/log/kanshi_disallow_ip.log', 'a+t');
     fwrite($fp, '['.date("Y/m/d H:i:s").'] ' . $ip_string . "\n");
     fclose($fp);
 }
