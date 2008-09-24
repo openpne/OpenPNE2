@@ -7,7 +7,7 @@
 
 <div class="partsInfo">
 <p>
-既に携帯版を利用している方のみ、PCメールアドレスの登録をおこなうことができます。<br />
+既に携帯から「({$smarty.const.SNS_NAME})」を利用している方のみ、PCメールアドレスの登録をおこなうことができます。<br />
 登録済みの({if $smarty.const.OPENPNE_AUTH_MODE == 'pneid'})ログインID({else})携帯メールアドレス({/if})とパスワード、登録したいPCメールアドレスを入力してください。
 </p>
 </div>
