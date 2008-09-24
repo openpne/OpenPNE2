@@ -9,7 +9,7 @@ require_once OPENPNE_WEBAPP_DIR . '/modules/kanshi/lib/kanshi.php';
 
 class kanshi_do_change extends OpenPNE_Action
 {
-    function handleError($errors, $code, $requests)
+    function handleError($errors, $code = 0, $requests = array())
     {
         if(strcmp($code, 1) == 0) { //パラメータ不足
             $message = '必須パラメータが不足しています';
