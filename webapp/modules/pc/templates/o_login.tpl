@@ -38,7 +38,7 @@
 ({/if})
 ({else})
 <span class="password_query"><a href="({t_url m=pc a=page_o_password_query})">&gt;パスワードを忘れた方はこちらへ</a></span>
-<br /><a href="({t_url m=pc a=page_o_regist_pc_mail})">PCメールアドレス登録</a>
+<br /><a href="({t_url m=pc a=page_o_regist_pc_address})">PCメールアドレス登録</a>
 ({/if})
 ({if $SSL_SELECT_URL})
 <br /><a href="({$SSL_SELECT_URL})">({if $HTTPS})標準(http)({else})SSL(https)({/if})はこちら</a>
