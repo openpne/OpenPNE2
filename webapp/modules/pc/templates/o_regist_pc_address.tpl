@@ -12,7 +12,7 @@
 </p>
 </div>
 
-({t_form_block m=pc a=do_o_regist_pc_mail})
+({t_form_block m=pc a=do_o_regist_pc_address})
 <table>
 ({if $smarty.const.OPENPNE_AUTH_MODE == 'pneid'})
 <tr>
