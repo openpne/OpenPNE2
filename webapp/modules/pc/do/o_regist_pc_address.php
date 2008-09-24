@@ -4,7 +4,7 @@
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
-class pc_do_o_regist_pc_mail extends OpenPNE_Action
+class pc_do_o_regist_pc_address extends OpenPNE_Action
 {
     function isSecure()
     {
@@ -16,7 +16,7 @@ class pc_do_o_regist_pc_mail extends OpenPNE_Action
         unset($_REQUEST['password']);
 
         $_REQUEST['msg'] = array_shift($errors);
-        openpne_forward('pc', 'page', 'o_regist_pc_mail');
+        openpne_forward('pc', 'page', 'o_regist_pc_address');
 
         exit;
     }
@@ -83,7 +83,7 @@ class pc_do_o_regist_pc_mail extends OpenPNE_Action
         // PCメール登録処理 
         db_member_h_config_1($c_member_id, $pc_address);
 
-        openpne_redirect('pc', 'page_o_regist_pc_mail_end');
+        openpne_redirect('pc', 'page_o_regist_pc_address_end');
     }
 }
 
