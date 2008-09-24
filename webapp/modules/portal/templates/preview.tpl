@@ -43,7 +43,7 @@
            <div id="passwordArea"><label for="password"><span>パスワード</span></label><input type="password" name="password" tabindex="2" id="password" /></div>
            <div id="isSaveArea"><input type="checkbox" name="is_save" value="1" tabindex="3" id="isSave" /><label for="isSave"><span>次回から自動的にログイン</span></label></div>
            <div id="passwordQueryArea"><a href="#">&gt;パスワードを忘れた方はこちらへ</a></div>
-           <div id="pcAddressRegistArea"><a href="({t_url m=pc a=page_o_regist_pc_mail})">&gt;PCメールアドレス登録</a></div>
+           <div id="pcAddressRegistArea"><a href="({t_url m=pc a=page_o_regist_pc_address})">&gt;PCメールアドレス登録</a></div>
            <div id="buttonLoginArea"><button type="submit" tabindex="4" id="buttonLogin" onclick="window.alert('プレビューページからはログインできません。');">ログイン</button></div>
            ({if ! $smarty.const.IS_CLOSED_SNS})
            <div id="buttonRegiArea"><button type="submit" disabled="disabled">新規登録</button></div>

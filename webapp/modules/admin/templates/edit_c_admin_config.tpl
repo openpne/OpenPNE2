@@ -441,7 +441,7 @@
 ※ﾄﾞﾒｲﾝ指定受信を設定されている方は、「({$smarty.const.ADMIN_EMAIL})」からのﾒｰﾙを受信できるように指定してください。({/capture})
 
 ({capture name=pc_html_regist_pc_mail})
-<a href="({t_url _html=0 _absolute=1 m=pc a=page_o_regist_pc_mail})">PCメールアドレス登録</a>({/capture})
+<a href="({t_url _html=0 _absolute=1 m=pc a=page_o_regist_pc_address})">PCメールアドレス登録</a>({/capture})
 
 <dl class="sampleHtml">
 <dt><strong class="item">PC版ログインフォーム</strong></dt>
