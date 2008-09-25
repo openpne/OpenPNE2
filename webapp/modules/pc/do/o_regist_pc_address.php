@@ -36,7 +36,7 @@ class pc_do_o_regist_pc_address extends OpenPNE_Action
 
         // ----------
 
-        if (OPENPNE_AUTH_MODE == 'slavepne' || !(OPENPNE_REGIST_FROM & OPENPNE_REGIST_FROM_PC)) {
+        if (OPENPNE_AUTH_MODE == 'slavepne') {
             client_redirect_login();
         }
 
