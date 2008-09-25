@@ -31,7 +31,8 @@ class ktai_page_c_event_mail_confirm extends OpenPNE_Action
             handle_kengen_error();
         }
 
-        if (!db_commu_is_c_event_admin($c_commu_topic_id, $u)) {
+        if (!db_commu_is_c_event_admin($c_commu_topic_id, $u)
+            && !db_commu_is_c_commu_admin($c_commu_id, $u)) {
             handle_kengen_error();
         }
 
