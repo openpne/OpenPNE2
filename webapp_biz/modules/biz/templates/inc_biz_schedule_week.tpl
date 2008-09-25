@@ -178,7 +178,9 @@
 ({else})
 
 ({if $cmd != "h"})
+({if $member_info.image_filename})
 <input type="button" onClick="location.href='({t_url m=pc a=page_f_show_image})&amp;target_c_member_id=({$member_info.c_member_id})'" value="もっと写真を見る" style="width:112px;" class="submit">
+({/if})
 <a href="({t_url m=pc a=page_f_home})&target_c_member_id=({$member_info.c_member_id})" class="border_01 bg_02" style="padding:4px 0;display:block;border-left:none;border-right:none;">({$member_info.nickname})</a>
 最終ログインは<br>({$member_info.last_login})<br>
 ({else})
