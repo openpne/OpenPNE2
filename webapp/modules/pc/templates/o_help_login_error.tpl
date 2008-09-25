@@ -19,10 +19,11 @@
 
 ({* {{{ infoButtonBox *})
 <div class="dparts infoButtonBox"><div class="parts">
-<div class="partsHeading"><h3>携帯から「({$smarty.const.SNS_NAME})」を利用している方</h3></div>
+<div class="partsHeading"><h3>pc版に初めてログインする方</h3></div>
 <div class="block">
-<p>PC版を利用するには、PCメールアドレスの登録が必要です。<br />
-以下のボタンをクリックし、PCメールアドレスの登録手続きをおこなってください。</p>
+<p>既に携帯版をご利用の方でも、PC版を利用するにはPCメールアドレスの登録が必要です。<br />
+以下のボタンをクリックし、PCメールアドレスの登録手続きをおこなってください。<br>
+（iPhoneからの利用は、PCメールアドレスの登録が必要ですのでご注意ください。）</p>
 
 ({t_form_block m=pc a=page_o_regist_pc_address})
 <ul class="moreInfo button">
