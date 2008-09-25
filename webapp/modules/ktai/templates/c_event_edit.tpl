@@ -46,9 +46,6 @@
 <font color="#({$ktai_color_config.font_06})">詳細：</font><font color="#({$ktai_color_config.font_09})">※</font><br>
 <textarea name="detail" rows="6">({$event.body})</textarea><br>
 <br>
-<font color="#({$ktai_color_config.font_06})">募集人数：</font><br>
-<input type="text" name="capacity" value="({if $event.capacity})({$event.capacity})({/if})"><br>
-<br>
 <font color="#({$ktai_color_config.font_06})">募集期限：</font><br>
 <select name="invite_period_year">
 <option value="">----
@@ -62,6 +59,9 @@
 <option value="">--
 ({html_options values=$day selected=$event.invite_period_day output=$day})
 </select>日<br>
+<br>
+<font color="#({$ktai_color_config.font_06})">募集人数：</font><br>
+<input type="text" name="capacity" value="({if $event.capacity})({$event.capacity})({/if})"><br>
 <br>
 <font color="#({$ktai_color_config.font_06})">写真：</font><br>
 [i:68]<a href="({t_url m=ktai a=page_c_topic_edit_image})&amp;target_c_commu_topic_id=({$event.c_commu_topic_id})&amp;({$tail})">写真を編集する</a><br>
