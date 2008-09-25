@@ -40,7 +40,7 @@
 <div class="dparts commentList"><div class="parts">
 <div class="partsHeading"><h3>トピック一覧</h3></div>
 <div class="pagerRelativeMulti">
-<div class="item">
+<div class="text">
 <p>最近書き込みがあったトピックから順に表示しています。</p>
 <p><a href="({t_url m=pc a=page_c_event_list})&amp;target_c_commu_id=({$c_commu.c_commu_id})">イベント一覧はこちら</a></p>
 </div>
