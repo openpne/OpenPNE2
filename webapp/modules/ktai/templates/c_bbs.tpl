@@ -62,7 +62,7 @@
 ({if $c_commu_topic.image_filename3})[i:68]写真：[<a href="({t_img_url filename=$c_commu_topic.image_filename3 w=120 h=120 f=jpg})">小</a>/<a href="({t_img_url filename=$c_commu_topic.image_filename3 w=$smarty.const.OPENPNE_IMG_KTAI_MAX_WIDTH h=$smarty.const.OPENPNE_IMG_KTAI_MAX_HEIGHT f=jpg})">大</a>]<br>({/if})
 ({$c_commu_topic.r_datetime|date_format:"%m/%d %H:%M"})<br>
 
-({if $is_c_event_admin})
+({if $is_c_event_admin || $is_admin})
 <br>
 一括ﾒｯｾｰｼﾞ：<br>
 参加者に一括でﾒｯｾｰｼﾞを送ります。<br>
