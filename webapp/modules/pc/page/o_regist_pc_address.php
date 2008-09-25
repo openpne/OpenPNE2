@@ -13,7 +13,7 @@ class pc_page_o_regist_pc_address extends OpenPNE_Action
 
     function execute($requests)
     {
-        if (OPENPNE_AUTH_MODE == 'slavepne' || !(OPENPNE_REGIST_FROM & OPENPNE_REGIST_FROM_PC)) {
+        if (OPENPNE_AUTH_MODE == 'slavepne') {
             client_redirect_login();
         }
 
