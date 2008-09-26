@@ -8,7 +8,7 @@
 <p>パスワードを再発行する必要があります。<br />
 以下のボタンをクリックし、パスワード再発行ページにて手続きをおこなってください。</p>
 
-({t_form_block m=pc a=page_o_password_query})
+({t_form_block _method=get m=pc a=page_o_password_query})
 <ul class="moreInfo button">
 <li><input type="submit" class="input_submit" value="パスワード再発行ページへ" /></li>
 </ul>
@@ -26,7 +26,7 @@
 （iPhoneをお使いの方は、「～@i.softbank.ne.jp」のメールアドレスを<br />
 新規に登録する必要がありますのでご注意ください。）</p>
 
-({t_form_block m=pc a=page_o_regist_pc_address})
+({t_form_block _method=get m=pc a=page_o_regist_pc_address})
 <ul class="moreInfo button">
 <li><input type="submit" class="input_submit" value="PCメールアドレス登録ページへ" /></li>
 </ul>
