@@ -48,18 +48,11 @@ function pc_get_trusted($tpl_name, &$smarty_obj)
 //スケジュール用カレンダーを得る
 function biz_getScheduleWeek($u, $member_id, $w, $cmd, $head = true, $value = true, $foot = true, $member_info = false, $start_day = 0 )
 {
-    if ($cmd != 'p') {
-        //プロフィール確認かどうか
-        $cmd_head = $cmd;
-    } else {
-        $cmd_head = 'f';
-    }
-
     $inc_smarty = new OpenPNE_Smarty($GLOBALS['SMARTY']);
     $inc_smarty->assign("PHPSESSID", md5(session_id()));
     $inc_smarty->templates_dir = 'biz/templates';
 
-    $inc_smarty->assign("cmd", $cmd_head);  //操作の対象ページ
+    $inc_smarty->assign("cmd", $cmd);  //操作の対象ページ
     $inc_smarty->assign("target_id", $member_id);  //予定参加者
 
     require_once 'Calendar/Week.php';
