@@ -2035,9 +2035,6 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 .bizWeeklyCalendarTable .calendar th .nickname {
 	margin: 5px 0;
 }
-.bizWeeklyCalendarTable .calendar th .member_image {
-	margin-bottom: 5px;
-}
 .bizWeeklyCalendarTable .calendar td.sub {
 	border-width: 0 0 0 1px;
 }
