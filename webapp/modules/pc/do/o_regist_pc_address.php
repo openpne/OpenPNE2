@@ -41,9 +41,9 @@ class pc_do_o_regist_pc_address extends OpenPNE_Action
         }
 
         $errors = array();
-        @session_start();
 
         if (OPENPNE_USE_CAPTCHA) {
+            @session_start();
             if ($_SESSION['captcha_keystring'] !== $requests['captcha']) {
                 $errors[] = "確認キーワードが誤っています";
             }
