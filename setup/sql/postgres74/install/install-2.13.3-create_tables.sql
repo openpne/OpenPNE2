@@ -224,7 +224,7 @@ CREATE TABLE c_bookmark (
   c_bookmark_id serial NOT NULL,
   c_member_id_from int4 NOT NULL default '0',
   c_member_id_to int4 NOT NULL default '0',
-  r_datetime varchar(100) NOT NULL default '0000-01-01 00:00:00',
+  r_datetime timestamp NOT NULL default '0000-01-01 00:00:00',
   PRIMARY KEY  (c_bookmark_id)
 );
 
