@@ -149,9 +149,11 @@ function clearAll() {
 </div>
 
 <div class="pagerRelativeMulti">
+<div class="text">
 <p class="icons">
 <span><img src="({t_img_url_skin filename=icon_mail_4})" alt="返信済み" />返信済み</span>
 </p>
+</div>
 <div class="pager">
 ({capture name=pager})({strip})
 ({if $ru_data.is_ru_prev})<p class="prev"><a href="({t_url m=pc a=page_h_message_box})&amp;ru_page=({$ru_data.ru_page-1})&amp;box=inbox&amp;keyword=({$url_keyword})&amp;target_c_member_id=({$target_c_member_id})&amp;year=({$requests.year})&amp;month=({$requests.month})&amp;day=({$requests.day})">前を表示</a></p>({/if})
@@ -391,11 +393,13 @@ function clearAll() {
 <div class="partsHeading"><h3>ごみ箱メッセージ</h3></div>
 
 <div class="pagerRelativeMulti">
+<div class="text">
 <p class="icons">
 <span><img src="({t_img_url_skin filename=icon_mail_2})" alt="受信" />受信</span>
 <span><img src="({t_img_url_skin filename=icon_mail_3})" alt="送信済み" />送信済み</span>
 <span><img src="({t_img_url_skin filename=icon_mail_1})" alt="下書き" />下書き</span>
 </p>
+</div>
 <div class="pager">
 ({capture name=pager})({strip})
 ({if $trash_data.is_trash_prev})<p class="prev"><a href="({t_url m=pc a=page_h_message_box})&amp;trash_page=({$trash_data.trash_page-1})&amp;box=trash">前を表示</a></p>({/if})

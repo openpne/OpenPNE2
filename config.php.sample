@@ -172,6 +172,7 @@ $GLOBALS['_OPENPNE_SSL_REQUIRED'] = array(
     'page_o_public_invite','do_o_public_invite',
     'page_h_invite','page_h_invite_confirm','do_h_invite_insert_c_invite',
     'page_o_password_query','do_o_password_query',
+    'page_o_regist_pc_address','do_o_regist_pc_address','page_o_regist_pc_address_end',
 ),
 'ktai' => array(
     'page_o_login', 'do_o_login', 'do_o_easy_login',
@@ -567,5 +568,9 @@ define('OPENPNE_IS_OPENID_SERVER', false);
 // DBエラーログ出力を出力するかどうか
 //    TRUE:出力する FALSE:出力しない
 define('OPENPNE_DB_ERROR_LOG', true);
+
+// 監視モジュールアクセスIP制限
+// m=kanshi へのアクセスを許可するIPのリスト
+$GLOBALS['_ALLOWED_IP_LIST_FOR_KANSHI'] = array();
 
 ?>

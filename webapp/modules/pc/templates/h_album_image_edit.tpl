@@ -21,7 +21,7 @@
 <input type="text" class="input_text" name="image_description" value="({$c_album_image.image_description})" size="50" />
 </td>
 </tr>
-</table> 
+</table>
 <div class="operation">
 <ul class="moreInfo button">
 <li><input type="submit" class="input_submit" value="確認画面" /></li>

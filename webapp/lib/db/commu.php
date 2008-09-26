@@ -2712,6 +2712,17 @@ function db_commu_delete_c_commu_member($c_commu_id, $c_member_id)
            ' WHERE c_commu_id = ? AND c_member_id_to = ?';
     db_query($sql, $params);
 
+    //参加イベント情報削除
+    $sql = 'SELECT ct.c_commu_topic_id'
+         . ' FROM c_commu_topic ct'
+         . ' LEFT JOIN c_event_member cem ON ct.c_commu_topic_id = cem.c_commu_topic_id'
+         . ' WHERE ct.c_commu_id = ?'
+         . ' AND cem.c_member_id = ?';
+    $c_commu_topic_id_list = db_get_col($sql, $params, 'main');
+    foreach ($c_commu_topic_id_list as $c_commu_topic_id) {
+        db_commu_delete_c_event_member($c_commu_topic_id, $c_member_id);
+    }
+
     //コミュニティから退会
     $sql = 'DELETE FROM c_commu_member' .
            ' WHERE c_commu_id = ? AND c_member_id = ?';
@@ -3019,7 +3030,7 @@ function db_commu_get_last_c_topic_comment($c_commu_topic_id)
     return db_get_row($sql,$params);
 }
 
-/** 
+/**
  * トピック検索簡易版(ｷｰﾜｰﾄﾞ無し)
  */
 function db_commu_new_topic_list(

@@ -28,9 +28,9 @@
 ({counter assign=_cnt})
 ({if $_cnt % 3 == 1})<ul>({/if})
 ({if $c_invite.c_member_id == $c_member_id})
-<li><input type="hidden" name="member_list[]" value="({$c_invite.c_member_id})" />({$c_invite.nickname})</li>
+<li><div class="item"><input type="hidden" name="member_list[]" value="({$c_invite.c_member_id})" />({$c_invite.nickname})</div></li>
 ({else})
-<li><input type="checkbox" class="input_checkbox" id="m({$c_invite.c_member_id})" name="member_list[]" value="({$c_invite.c_member_id})"({if $c_invite.joined}) checked="checked"({/if}) /><label for="m({$c_invite.c_member_id})">({$c_invite.nickname})</label></li>
+<li><div class="item"><input type="checkbox" class="input_checkbox" id="m({$c_invite.c_member_id})" name="member_list[]" value="({$c_invite.c_member_id})"({if $c_invite.joined}) checked="checked"({/if}) /><label for="m({$c_invite.c_member_id})">({$c_invite.nickname})</label></div></li>
 ({/if})
 ({if $_cnt % 3 == 0})</ul>({/if})
 ({/foreach})

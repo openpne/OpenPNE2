@@ -28,7 +28,7 @@
 <tr>
 <th>タイトル</th>
 <td>
-<a href="({t_url _absolute=1 m=pc a=page_fh_diary})&amp;target_c_diary_id=({$diary.c_diary_id})" target="_blank">({$diary.subject})</a>
+<a href="({t_url _absolute=1 m=pc a=page_fh_diary})&amp;target_c_diary_id=({$diary.c_diary_id})" target="_blank">({$diary.subject})</a> (({if $diary.count_comments})<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('diary_comment_list')})&amp;target_c_diary_id=({$diary.c_diary_id})">({/if})コメント({$diary.count_comments})件({if $diary.count_comments})</a>({/if}))
 </td>
 </tr>
 ({****})

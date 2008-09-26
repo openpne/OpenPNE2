@@ -218,7 +218,8 @@ function db_diary_public_flag_condition($c_member_id, $u = null, $force = null)
 function db_diary_get_c_diary4id($c_diary_id)
 {
     $sql = 'SELECT * FROM c_diary WHERE c_diary_id = ?';
-    return db_get_row($sql, array(intval($c_diary_id)));
+    $c_diary_list = db_get_row($sql, array(intval($c_diary_id)));
+    return $c_diary_list;
 }
 
 /**
@@ -1191,7 +1192,7 @@ function db_diary_get_max_c_diary_comment_number4diary($c_diary_id)
 /**
  * SNS全体の最新日記リスト取得
  * 日記公開範囲を考慮
- * 
+ *
  * @param   int $limit
  * @return  array_of_array  (c_diary.*, nickname)
  */
@@ -1254,7 +1255,7 @@ function db_diary_update_c_diary_comment_log($c_diary_id)
  * @param  int    $c_member_id
  * @param  int    $c_diary_id
  * 該当c_diary_idへのコメント数が0なら、日記コメント記入履歴も削除する。
- * 
+ *
  */
 function db_diary_delete_c_diary_comment_log($c_member_id, $c_diary_id)
 {

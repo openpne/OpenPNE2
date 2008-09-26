@@ -8,7 +8,7 @@
 
 この写真を本当に削除しますか?<br>
 
-<hr color="#({$ktai_color_config.border_01})">	
+<hr color="#({$ktai_color_config.border_01})">
 <center>
 ({if $img_num == 1})
 <img src="({t_img_url filename=$c_member.image_filename_1 w=120 h=120 f=jpg noimg=no_image f=jpg})" alt="写真1"><br>
