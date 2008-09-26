@@ -221,7 +221,7 @@ CREATE TABLE `c_bookmark` (
   `c_bookmark_id` int(11) NOT NULL auto_increment,
   `c_member_id_from` int(11) NOT NULL default '0',
   `c_member_id_to` int(11) NOT NULL default '0',
-  `r_datetime` varchar(100) NOT NULL default '0000-00-00 00:00:00',
+  `r_datetime` datetime NOT NULL default '0000-00-00 00:00:00',
   PRIMARY KEY  (`c_bookmark_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
