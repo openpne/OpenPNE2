@@ -248,6 +248,8 @@ div#LayoutC {
 	overflow: hidden;
 	overflow: -moz-scrollbars-none;
 }
+#Left,
+#Center,
 #Top {
 	overflow: hidden;
 }
