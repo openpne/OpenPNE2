@@ -179,7 +179,13 @@
 
 ({if $cmd != "h"})
 ({if $member_info.image_filename})
+
+({if $cmd=='p'})
+<input type="button" onClick="location.href='({t_url m=pc a=page_h_config_image})'" value="写真を編集" style="width:112px;" class="submit">
+({else})
 <input type="button" onClick="location.href='({t_url m=pc a=page_f_show_image})&amp;target_c_member_id=({$member_info.c_member_id})'" value="もっと写真を見る" style="width:112px;" class="submit">
+({/if})
+
 ({/if})
 <a href="({t_url m=pc a=page_f_home})&target_c_member_id=({$member_info.c_member_id})" class="border_01 bg_02" style="padding:4px 0;display:block;border-left:none;border-right:none;">({$member_info.nickname})</a>
 最終ログインは<br>({$member_info.last_login})<br>
@@ -252,7 +258,7 @@
 ({/if})
 ({ext_include file="inc_biz_schedule_week_time.tpl"})
 <div class="padding_s" style="padding-top:0;">
-<a href="({t_url m=biz a=page_fh_biz_schedule_view})&amp;id=({$item_schedule.biz_schedule_id})({if $cmd=='f'})&amp;target_id=({$member_info.c_member_id})({/if})">({$item_schedule.title})</a>
+<a href="({t_url m=biz a=page_fh_biz_schedule_view})&amp;id=({$item_schedule.biz_schedule_id})({if $cmd!='p'})&amp;target_id=({$member_info.c_member_id})({/if})">({$item_schedule.title})</a>
  </div>
 	({else})
 ({assign var="begin_time_H" value=$item_schedule.begin_time|date_format:"%H"})
@@ -266,7 +272,7 @@
 ({/if})
 ({ext_include file="inc_biz_schedule_week_time.tpl"})
 <div class="padding_s" style="padding-top:0;">
-<a href="({t_url m=biz a=page_fh_biz_schedule_view})&amp;id=({$item_schedule.biz_schedule_id})({if $cmd=='f'})&amp;target_id=({$member_info.c_member_id})({/if})">({$item_schedule.title})</a>
+<a href="({t_url m=biz a=page_fh_biz_schedule_view})&amp;id=({$item_schedule.biz_schedule_id})({if $cmd!='p'})&amp;target_id=({$member_info.c_member_id})({/if})">({$item_schedule.title})</a>
 </div>
 	({/if})
 ({/foreach})
@@ -310,7 +316,7 @@
 ({foreach from=$item.schedule item=item_schedule name=schedule})
 	({if !$item_schedule.begin_time})  <!-- 時間指定なしの予定 -->
 <div class="padding_s">
-({*<img src="({t_img_url_skin filename=icon_pen})" class="icon">*})<a href="({t_url m=biz a=page_fh_biz_schedule_view})&amp;id=({$item_schedule.biz_schedule_id})({if $cmd=='f'})&target_id=({$member_info.c_member_id})({/if})">({$item_schedule.title})</a>
+({*<img src="({t_img_url_skin filename=icon_pen})" class="icon">*})<a href="({t_url m=biz a=page_fh_biz_schedule_view})&amp;id=({$item_schedule.biz_schedule_id})({if $cmd!='p'})&target_id=({$member_info.c_member_id})({/if})">({$item_schedule.title})</a>
 </div>
 	({else})
 &nbsp;
@@ -335,8 +341,8 @@
 <tr>
 <td class="({if $cmd != "g"})border_01 ({/if})padding_ss" align="left" valign="middle" style="border-left:none;border-top:none;border-bottom:none;border-right:none;">
 
-({if ($cmd == "h") || ($cmd == "f")})
-<a href="({t_url m=biz a=page_fh_biz_schedule_calendar})({if $cmd == 'f'})&amp;target_id=({$member_info.c_member_id})({/if})">月間カレンダー</a>
+({if ($cmd == "h") || ($cmd!='p')})
+<a href="({t_url m=biz a=page_fh_biz_schedule_calendar})({if $cmd!='p'})&amp;target_id=({$member_info.c_member_id})({/if})">月間カレンダー</a>
 ({else})
 &nbsp;
 ({/if})
@@ -344,7 +350,7 @@
 </td>
 <td class="padding_ss" align="right" valign="middle">
 
-({if ($cmd == "h") || ($cmd == "f")})
+({if ($cmd == "h") || ($cmd!='p')})
 ({t_form m=biz a=do_`$cmd`_home_add_biz_schedule})
 <input type="hidden" name="sessid" value="({$PHPSESSID})">
 <input type="hidden" name="target_id" value="({$target_id})">
