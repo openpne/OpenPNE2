@@ -23,8 +23,8 @@
 <div class="block">
 <p>既に携帯でご利用の方でも、PC版を利用するにはPCメールアドレスの登録が必要です。<br />
 以下のボタンをクリックし、PCメールアドレスの登録手続きをおこなってください <br />
-（iPhoneからのご利用は、ドメインが「～@i.softbank.ne.jp」のアドレスを<br />
-PCメールアドレスとして新規に登録する必要がありますのでご注意ください。）</p>
+（iPhoneをお使いの方は、「～@i.softbank.ne.jp」のメールアドレスを<br />
+新規に登録する必要がありますのでご注意ください。）</p>
 
 ({t_form_block m=pc a=page_o_regist_pc_address})
 <ul class="moreInfo button">
