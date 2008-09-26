@@ -36,7 +36,7 @@ class pc_do_o_regist_pc_address extends OpenPNE_Action
 
         // ----------
 
-        if (OPENPNE_AUTH_MODE == 'slavepne') {
+        if (OPENPNE_AUTH_MODE == 'slavepne' || !OPENPNE_ENABLE_KTAI) {
             client_redirect_login();
         }
 

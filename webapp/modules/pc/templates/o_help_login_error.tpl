@@ -17,6 +17,7 @@
 </div></div>
 ({* }}} *})
 
+({if $smarty.const.OPENPNE_ENABLE_KTAI})
 ({* {{{ infoButtonBox *})
 <div class="dparts infoButtonBox"><div class="parts">
 <div class="partsHeading"><h3>PC版に初めてログインする方</h3></div>
@@ -34,6 +35,7 @@
 </div>
 </div></div>
 ({* }}} *})
+({/if})
 
 </div><!-- Center -->
 </div><!-- LayoutC -->
