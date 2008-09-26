@@ -72,7 +72,7 @@
 ({if $cmd == "s_list"})
 <img src="({t_img_url filename=$list.image_filename w=120 h=120 noimg=no_image})" alt="" /><br />
 ({else})
-<a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$member_info.c_member_id})"><img src="({t_img_url filename=$member_info.image_filename w=120 h=120 noimg=no_image})" alt="" class="member_image" /></a><br />
+<a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$member_info.c_member_id})"><img src="({t_img_url filename=$member_info.image_filename w=120 h=120 noimg=no_image})" alt="" /></a><br />
 ({/if})
 
 ({if $cmd == "s_list"})
