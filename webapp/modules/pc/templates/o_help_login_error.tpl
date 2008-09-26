@@ -10,7 +10,7 @@
 
 ({t_form_block m=pc a=page_o_password_query})
 <ul class="moreInfo button">
-<li><input type="submit" value="パスワード再発行ページへ" class="input_submit" /></li>
+<li><input type="submit" class="input_submit" value="パスワード再発行ページへ" /></li>
 </ul>
 ({/t_form_block})
 </div>
@@ -28,7 +28,7 @@
 
 ({t_form_block m=pc a=page_o_regist_pc_address})
 <ul class="moreInfo button">
-<li><input type="submit" value="PCメールアドレス登録ページへ" class="input_submit" /></li>
+<li><input type="submit" class="input_submit" value="PCメールアドレス登録ページへ" /></li>
 </ul>
 ({/t_form_block})
 </div>
