@@ -102,6 +102,20 @@ class pc_do_c_edit_update_c_commu extends OpenPNE_Action
             image_data_delete($c_commu['image_filename']);
         }
 
+        // 承認待ちメンバー登録処理
+        $registered_public_flag = db_commu_public_flg4c_commu_id($target_c_commu_id);
+        if ($public_flag == 'public' && ($registered_public_flag == 'auth_sns' || $registered_public_flag == 'auth_commu_member')) {
+            $sql = 'SELECT c_commu_member_confirm_id, c_member_id FROM c_commu_member_confirm'
+                 . ' WHERE c_commu_id = ?';
+            $params = array(intval($target_c_commu_id));
+            $c_commu_member_confirm_list = db_get_all($sql, $params);
+            foreach ($c_commu_member_confirm_list as $c_commu_member_confirm) {
+                db_commu_join_c_commu($target_c_commu_id, $c_commu_member_confirm['c_member_id']);
+                do_inc_join_c_commu_send_mail($target_c_commu_id, $c_commu_member_confirm['c_member_id']);
+                db_commu_delete_c_commu_member_confirm($c_commu_member_confirm['c_commu_member_confirm_id']);
+            }
+        }
+
         db_commu_update_c_commu(
             $target_c_commu_id,
             $name,
@@ -115,6 +129,7 @@ class pc_do_c_edit_update_c_commu extends OpenPNE_Action
             $map_latitude,
             $map_longitude,
             $map_zoom);
+
 
         $p = array('target_c_commu_id' => $target_c_commu_id);
         openpne_redirect('pc', 'page_c_home', $p);
