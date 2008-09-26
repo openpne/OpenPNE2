@@ -316,10 +316,12 @@ div#LayoutC {
 	left: 720px;
 	width: 230px;
 }
-*:first-child+html #pc_page_h_diary_add #Footer {
+*:first-child+html #pc_page_h_diary_add #Footer,
+*:first-child+html #pc_page_h_diary_edit #Footer {
 	margin-top: 10px;
 }
-* html #pc_page_h_diary_add #Footer {
+* html #pc_page_h_diary_add #Footer,
+* html #pc_page_h_diary_edit #Footer {
 	margin-top: 10px;
 }
 /*----------------------------------------------
