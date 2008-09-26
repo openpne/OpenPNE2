@@ -87,7 +87,13 @@
 ({if $cmd != "h"})
 ({if $member_info.image_filename})
 <ul class="moreInfo button">
+
+({if $cmd=='p' || $cmd=='h'})
+<li><input type="button" class="input_submit" onclick="location.href='({t_url m=pc a=page_h_config_image})'" value="写真を編集" /></li>
+({else})
 <li><input type="button" class="input_submit" onclick="location.href='({t_url m=pc a=page_f_show_image})&amp;target_c_member_id=({$member_info.c_member_id})'" value="もっと写真を見る" /></li>
+({/if})
+
 </ul>
 ({/if})
 <p class="text"><a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$member_info.c_member_id})">({$member_info.nickname})</a></p>
@@ -155,7 +161,7 @@
 ({/if})
 
 <p class="time">({ext_include file="inc_biz_schedule_week_time.tpl"})</p>
-<p><a href="({t_url m=biz a=page_fh_biz_schedule_view})&amp;id=({$item_schedule.biz_schedule_id})({if $cmd=='f'})&amp;target_id=({$member_info.c_member_id})({/if})">({$item_schedule.title})</a></p>
+<p><a href="({t_url m=biz a=page_fh_biz_schedule_view})&amp;id=({$item_schedule.biz_schedule_id})({if $cmd!='p'})&amp;target_id=({$member_info.c_member_id})({/if})">({$item_schedule.title})</a></p>
 
 ({else})
 
@@ -170,7 +176,7 @@
 ({/if})
 
 <p class="time">({ext_include file="inc_biz_schedule_week_time.tpl"})</p>
-<p><a href="({t_url m=biz a=page_fh_biz_schedule_view})&amp;id=({$item_schedule.biz_schedule_id})({if $cmd=='f'})&amp;target_id=({$member_info.c_member_id})({/if})">({$item_schedule.title})</a></p>
+<p><a href="({t_url m=biz a=page_fh_biz_schedule_view})&amp;id=({$item_schedule.biz_schedule_id})({if $cmd!='p'})&amp;target_id=({$member_info.c_member_id})({/if})">({$item_schedule.title})</a></p>
 
 ({/if})
 ({/foreach})
@@ -208,7 +214,7 @@
 ({if $item.schedule})
 ({foreach from=$item.schedule item=item_schedule name=schedule})
 ({if !$item_schedule.begin_time})  <!-- 時間指定なしの予定 -->
-<p><img src="({t_img_url_skin filename=icon_pen})" alt="スケジュール" /><a href="({t_url m=biz a=page_fh_biz_schedule_view})&amp;id=({$item_schedule.biz_schedule_id})({if $cmd=='f'})&amp;target_id=({$member_info.c_member_id})({/if})">({$item_schedule.title})</a></p>
+<p><img src="({t_img_url_skin filename=icon_pen})" alt="スケジュール" /><a href="({t_url m=biz a=page_fh_biz_schedule_view})&amp;id=({$item_schedule.biz_schedule_id})({if $cmd!='p'})&amp;target_id=({$member_info.c_member_id})({/if})">({$item_schedule.title})</a></p>
 ({/if})
 ({/foreach})
 ({/if})
@@ -222,11 +228,11 @@
 ({/if})({* /value *})
 ({if $foot})
 
-({if $cmd == "h" || $cmd == "f"})
+({if $cmd == "h" || $cmd!='p'})
 <div class="block moreInfo">
 ({t_form_block m=biz a=do_`$cmd`_home_add_biz_schedule})
 
-<a href="({t_url m=biz a=page_fh_biz_schedule_calendar})({if $cmd == 'f'})&amp;target_id=({$member_info.c_member_id})({/if})">月間カレンダー</a>
+<a href="({t_url m=biz a=page_fh_biz_schedule_calendar})({if $cmd!='p'})&amp;target_id=({$member_info.c_member_id})({/if})">月間カレンダー</a>
 
 <input type="hidden" name="target_id" value="({$target_id})" />
 <label for="title">予定</label> <input type="text" class="input_text" name="title" id="title" value="" size="30" />
