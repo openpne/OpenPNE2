@@ -67,13 +67,13 @@ class pc_do_o_regist_pc_address extends OpenPNE_Action
             $errors[] = 'PCメールアドレスを正しく入力してください';
         }
         if (db_member_c_member_id4pc_address($pc_address)) {
-            $errors[] = '入力されたメールアドレスは既に登録されています';
+            $errors[] = '入力されたPCメールアドレスは既に登録されています';
         }
         if ($pc_address !== $pc_address2) {
-            $errors[] = 'メールアドレスが一致しません';
+            $errors[] = 'PCメールアドレスが一致しません';
         }
         if (!db_member_is_limit_domain4mail_address($pc_address)) {
-            $errors[] = '入力したメールアドレスでは登録できません';
+            $errors[] = '入力したPCメールアドレスでは登録できません';
         }
 
         if ($errors) {
