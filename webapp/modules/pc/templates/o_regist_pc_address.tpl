@@ -48,6 +48,7 @@
 <input type="text" class="input_text" name="pc_address2" value="" size="40" />
 </td>
 </tr>
+({if $smarty.const.OPENPNE_USE_CAPTCHA})
 <tr>
 <th>確認キーワード</th>
 <td>
@@ -56,6 +57,7 @@
 <input type="text" class="input_text" name="captcha" value="" size="30" />
 </td>
 </tr>
+({/if})
 </table>
 <div class="operation">
 <ul class="moreInfo button">
