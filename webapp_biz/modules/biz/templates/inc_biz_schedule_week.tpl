@@ -258,7 +258,7 @@
 ({/if})
 ({ext_include file="inc_biz_schedule_week_time.tpl"})
 <div class="padding_s" style="padding-top:0;">
-<a href="({t_url m=biz a=page_fh_biz_schedule_view})&amp;id=({$item_schedule.biz_schedule_id})({if $cmd=='p' || $cmd=='f'})&amp;target_id=({$member_info.c_member_id})({/if})">({$item_schedule.title})</a>
+<a href="({t_url m=biz a=page_fh_biz_schedule_view})&amp;id=({$item_schedule.biz_schedule_id})({if $cmd == 'p' || $cmd == 'f'})&amp;target_id=({$member_info.c_member_id})({/if})">({$item_schedule.title})</a>
  </div>
 	({else})
 ({assign var="begin_time_H" value=$item_schedule.begin_time|date_format:"%H"})
@@ -272,7 +272,7 @@
 ({/if})
 ({ext_include file="inc_biz_schedule_week_time.tpl"})
 <div class="padding_s" style="padding-top:0;">
-<a href="({t_url m=biz a=page_fh_biz_schedule_view})&amp;id=({$item_schedule.biz_schedule_id})({if $cmd=='p' || $cmd=='f'})&amp;target_id=({$member_info.c_member_id})({/if})">({$item_schedule.title})</a>
+<a href="({t_url m=biz a=page_fh_biz_schedule_view})&amp;id=({$item_schedule.biz_schedule_id})({if $cmd == 'p' || $cmd == 'f'})&amp;target_id=({$member_info.c_member_id})({/if})">({$item_schedule.title})</a>
 </div>
 	({/if})
 ({/foreach})
@@ -316,7 +316,7 @@
 ({foreach from=$item.schedule item=item_schedule name=schedule})
 	({if !$item_schedule.begin_time})  <!-- 時間指定なしの予定 -->
 <div class="padding_s">
-({*<img src="({t_img_url_skin filename=icon_pen})" class="icon">*})<a href="({t_url m=biz a=page_fh_biz_schedule_view})&amp;id=({$item_schedule.biz_schedule_id})({if $cmd=='p' || $cmd=='f'})&target_id=({$member_info.c_member_id})({/if})">({$item_schedule.title})</a>
+({*<img src="({t_img_url_skin filename=icon_pen})" class="icon">*})<a href="({t_url m=biz a=page_fh_biz_schedule_view})&amp;id=({$item_schedule.biz_schedule_id})({if $cmd == 'p' || $cmd == 'f'})&target_id=({$member_info.c_member_id})({/if})">({$item_schedule.title})</a>
 </div>
 	({else})
 &nbsp;
@@ -341,8 +341,8 @@
 <tr>
 <td class="({if $cmd != "g"})border_01 ({/if})padding_ss" align="left" valign="middle" style="border-left:none;border-top:none;border-bottom:none;border-right:none;">
 
-({if ($cmd == "h") || ($cmd=='p' || $cmd=='f')})
-<a href="({t_url m=biz a=page_fh_biz_schedule_calendar})({if $cmd=='p' || $cmd=='f'})&amp;target_id=({$member_info.c_member_id})({/if})">月間カレンダー</a>
+({if $cmd == 'h' || $cmd == 'p' || $cmd == 'f'})
+<a href="({t_url m=biz a=page_fh_biz_schedule_calendar})({if $cmd == 'p' || $cmd == 'f'})&amp;target_id=({$member_info.c_member_id})({/if})">月間カレンダー</a>
 ({else})
 &nbsp;
 ({/if})
@@ -350,7 +350,7 @@
 </td>
 <td class="padding_ss" align="right" valign="middle">
 
-({if ($cmd == "h") || ($cmd=='p' || $cmd=='f')})
+({if $cmd == 'h' || $cmd=='p' || $cmd=='f'})
 ({t_form m=biz a=do_`$cmd`_home_add_biz_schedule})
 <input type="hidden" name="sessid" value="({$PHPSESSID})">
 <input type="hidden" name="target_id" value="({$target_id})">
