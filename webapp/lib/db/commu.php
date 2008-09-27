@@ -3104,7 +3104,7 @@ function db_commu_is_writable_c_commu_topic_comment4c_commu_topic_id($c_commu_to
 }
 
 /**
- * コミュニティIDからをパブリックフラグを取得
+ * コミュニティIDからパブリックフラグを取得
  */
 function db_commu_public_flg4c_commu_id($c_commu_id)
 {
