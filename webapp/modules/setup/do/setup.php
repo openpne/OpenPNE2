@@ -15,8 +15,19 @@ class setup_do_setup extends OpenPNE_Action
     function execute($requests)
     {
         $errors = array();
+        if (!db_common_is_mailaddress($requests['pc_address'])
+            || is_ktai_mail_address($requests['pc_address'])) {
+            $errors[] = 'PCメールアドレスを正しく入力してください';
+        }
         if ($requests['password'] != $requests['password2']) {
             $errors[] = 'パスワードが一致していません';
+        }
+        if (!preg_match('/^[a-zA-Z0-9][a-zA-Z0-9\-_]+[a-zA-Z0-9]$/i', $requests['admin_username'])) {
+            $errors[] = '管理用アカウント名は4～30文字の半角英数字、記号（アンダーバー「_」、ハイフン「-」）で入力してください';
+        } elseif (mb_strwidth($requests['admin_username'], 'UTF-8') < 4) {
+            $errors[] = "管理用アカウント名は半角4文字以上で入力してください";
+        } elseif (mb_strwidth($requests['admin_username'], 'UTF-8') > 30) {
+            $errors[] = "管理用アカウント名は半角30文字以内で入力してください";
         }
         if ($requests['admin_password'] != $requests['admin_password2']) {
             $errors[] = '管理用パスワードが一致していません';
