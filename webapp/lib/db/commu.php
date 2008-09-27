@@ -3103,4 +3103,14 @@ function db_commu_is_writable_c_commu_topic_comment4c_commu_topic_id($c_commu_to
     return true;
 }
 
+/**
+ * コミュニティIDからをパブリックフラグを取得
+ */
+function db_commu_public_flg4c_commu_id($c_commu_id)
+{
+    $sql = "SELECT public_flag FROM c_commu WHERE c_commu_id = ?";
+    $params = array(intval($c_commu_id));
+    return db_get_one($sql, $params);
+}
+
 ?>
