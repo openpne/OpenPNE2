@@ -3041,13 +3041,19 @@ function db_commu_search_c_commu_topic(
 }
 
 /**
- * コミュニティIDからパブリックフラグを取得
+ * コミュニティ参加要請状況をコミュニティIDから取得
+ *
+ * @param  int $c_commu_id
+ * @return array コミュニティ参加要請状況
  */
-function db_commu_public_flg4c_commu_id($c_commu_id)
+function db_commu_c_commu_member_confirm4c_commu_id($c_commu_id)
 {
-    $sql = "SELECT public_flag FROM c_commu WHERE c_commu_id = ?";
+    $sql = 'SELECT c_commu_member_confirm_id, c_member_id FROM c_commu_member_confirm'
+         . ' WHERE c_commu_id = ?';
     $params = array(intval($c_commu_id));
-    return db_get_one($sql, $params);
+    $c_commu_member_confirm = db_get_all($sql, $params);
+
+    return $c_commu_member_confirm;
 }
 
 ?>
