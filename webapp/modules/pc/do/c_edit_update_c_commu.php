@@ -53,6 +53,8 @@ class pc_do_c_edit_update_c_commu extends OpenPNE_Action
             exit;
         }
 
+        $c_commu = db_commu_c_commu4c_commu_id($target_c_commu_id);
+
         //画像アップデート
         $sessid = session_id();
         t_image_clear_tmp($sessid);
@@ -66,17 +68,12 @@ class pc_do_c_edit_update_c_commu extends OpenPNE_Action
 
         if ($image_filename) {
             //画像削除
-            $c_commu = db_commu_c_commu4c_commu_id($target_c_commu_id);
             db_image_data_delete($c_commu['image_filename']);
         }
 
         // 承認待ちメンバー登録処理
-        $registered_public_flag = db_commu_public_flg4c_commu_id($target_c_commu_id);
-        if ($public_flag == 'public' && ($registered_public_flag == 'auth_sns' || $registered_public_flag == 'auth_commu_member')) {
-            $sql = 'SELECT c_commu_member_confirm_id, c_member_id FROM c_commu_member_confirm'
-                 . ' WHERE c_commu_id = ?';
-            $params = array(intval($target_c_commu_id));
-            $c_commu_member_confirm_list = db_get_all($sql, $params);
+        if ($public_flag == 'public' && ($c_commu['publec_flag'] == 'auth_sns' || $c_commu['publec_flag'] == 'auth_commu_member')) {
+            $c_commu_member_confirm_list = db_commu_c_commu_member_confirm4c_commu_id($target_c_commu_id);
             foreach ($c_commu_member_confirm_list as $c_commu_member_confirm) {
                 db_commu_join_c_commu($target_c_commu_id, $c_commu_member_confirm['c_member_id']);
                 do_inc_join_c_commu_send_mail($target_c_commu_id, $c_commu_member_confirm['c_member_id']);
@@ -93,7 +90,6 @@ class pc_do_c_edit_update_c_commu extends OpenPNE_Action
             $public_flag,
             $image_filename,
             $is_send_join_mail);
-
 
         $p = array('target_c_commu_id' => $target_c_commu_id);
         openpne_redirect('pc', 'page_c_home', $p);
