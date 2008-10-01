@@ -1107,27 +1107,20 @@ define('STATUS_C_JOIN_ALREADY', "4"); //コミュニティ参加(既に参加)
 
 function db_commu_get_c_join_status($c_member_id,$c_commu_id)
 {
-    $is_c_commu_member = db_commu_is_c_commu_member($c_commu_id, $c_member_id);
-    $is_wait = db_commu_is_c_commu_join_wait($c_commu_id, $c_member_id);
+    if (db_commu_is_c_commu_member($c_commu_id, $c_member_id)) {
+        return STATUS_C_JOIN_ALREADY;
+    }
+ 
     $c_commu = db_commu_c_commu4c_commu_id($c_commu_id);
-    $is_join_request_free = false;
     if ($c_commu['public_flag'] == "public") {
-        $is_join_request_free = true;
+        return STATUS_C_JOIN_REQUEST_FREE;
     }
 
-    $ret = STATUS_C_JOIN_ALREADY;
-    if (!$is_c_commu_member) { //メンバーで無い
-        if ($is_wait == true) {
-            $ret = STATUS_C_JOIN_WAIT;
-        } else {
-            if ($is_join_request_free) {
-                $ret = STATUS_C_JOIN_REQUEST_FREE;
-            } else {
-                $ret = STATUS_C_JOIN_REQUEST_NEED;
-            }
-        }
+    if (db_commu_is_c_commu_join_wait($c_commu_id, $c_member_id)) {
+        return STATUS_C_JOIN_WAIT;
     }
-    return $ret;
+
+    return STATUS_C_JOIN_REQUEST_NEED;
 }
 
 /**
