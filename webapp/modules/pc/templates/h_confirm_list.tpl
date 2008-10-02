@@ -680,7 +680,7 @@
 
 <div class="padding_s">
 
-<a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id_sub_admin})">
+<a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id_admin})">
 <img src="({t_img_url filename=$item.image_filename w=76 h=76 noimg=no_image})"></a>
 
 </div>
@@ -701,7 +701,7 @@
 
 <div class="padding_s">
 
-<a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id_sub_admin})">({$item.nickname})</a>
+<a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id_admin})">({$item.nickname})</a>
 
 </div>
 
