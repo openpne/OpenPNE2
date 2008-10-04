@@ -306,4 +306,22 @@ function image_insert_c_tmp_image($upfile_obj, $filename)
     return $filename;
 }
 
+function image_insert_c_image_without_confirm($upfile_obj, $prefix, $uid)
+{
+    if (!file_exists($upfile_obj['tmp_name'])) {
+        return false;
+    }
+    $sessid = session_id();
+    t_image_clear_tmp($sessid);
+    $tmpfile = t_image_save2tmp($upfile_obj, $sessid, $prefix);
+    if (!$tmpfile) {
+        t_image_clear_tmp(session_id());
+        return false;
+    }
+    $image_filename = image_insert_c_image4tmp($prefix . '_' . $uid, $tmpfile);
+    t_image_clear_tmp(session_id());
+
+    return $image_filename;
+}
+
 ?>
