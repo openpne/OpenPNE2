@@ -38,15 +38,7 @@ class pc_do_h_config_image extends OpenPNE_Action
         }
 
         //画像をDBに格納
-        $sessid = session_id();
-        t_image_clear_tmp($sessid);
-        if (file_exists($upfile_obj['tmp_name'])) {
-            $tmpfile = t_image_save2tmp($upfile_obj, $sessid, 'm');
-        }
-        if ($tmpfile) {
-            $image_filename = image_insert_c_image4tmp("m_{$u}", $tmpfile);
-        }
-        t_image_clear_tmp(session_id());
+        $image_filename = image_insert_c_image_without_confirm($upfile_obj, 'm', $u);
 
         if ($image_filename) {
             //c_memberのフィールドに登録

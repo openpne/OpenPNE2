@@ -88,15 +88,7 @@ class pc_do_c_edit_update_c_commu extends OpenPNE_Action
         $c_commu = db_commu_c_commu4c_commu_id($target_c_commu_id);
 
         //画像アップデート
-        $sessid = session_id();
-        t_image_clear_tmp($sessid);
-        if (file_exists($upfile_obj["tmp_name"])) {
-            $tmpfile = t_image_save2tmp($upfile_obj, $sessid, "c");
-        }
-        if ($tmpfile) {
-            $image_filename = image_insert_c_image4tmp("c_{$target_c_commu_id}", $tmpfile);
-        }
-        t_image_clear_tmp(session_id());
+        $image_filename = image_insert_c_image_without_confirm($upfile_obj, 'c', $target_c_commu_id);
 
         if ($image_filename) {
             //画像削除
