@@ -3,7 +3,7 @@
 
 ({$CATCH_COPY})({$SNS_NAME})
 
-本日の最新情報({if $smarty.const.OPENPNE_USE_RANKING})・新着ランキング({/if})　[({$smarty.now|date_format:"%Y. %m. %d/%a"})]
+本日の最新情報・新着ランキング　[({$smarty.now|date_format:"%Y. %m. %d/%a"})]
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -22,10 +22,9 @@
 
 ◆({$WORD_MY_FRIEND})の最新日記
 ◆参加コミュニティの最新書き込み
-◆({$c_member.nickname})さんのページへのアクセス
-({if $smarty.const.OPENPNE_USE_RANKING})
-◆昨日のランキングNo1は？ 
-({/if})
+◆({$c_member.nickname})さんのページへのアクセス数
+◆昨日のランキングNo1は？
+
 
 ―――――――――――――――――――――――――――――
 ◆({$WORD_MY_FRIEND})の最新日記◆
@@ -63,7 +62,6 @@
 ◇({$c_member.nickname})さんのページに訪れた人数：({$ashiato_num})アクセス
 
 
-({if $smarty.const.OPENPNE_USE_RANKING})
 ―――――――――――――――――――――――――――――
 ◆昨日のランキングNo1は？◆
 ―――――――――――――――――――――――――――――
@@ -83,7 +81,6 @@
 ({if $daily_news_foot|smarty:nodefaults})
 ({$daily_news_foot|smarty:nodefaults})
 
-({/if})
 ({/if})
 ―――――――――――――――――――――――――――――
 
