@@ -348,11 +348,11 @@ function _check_action($action)
     return $action;
 }
 
-function send_nocache_headers()
+function send_nocache_headers($is_force = false)
 {
     if (!headers_sent()) {
         if ((!empty($GLOBALS['__Framework']['carrier']) && $GLOBALS['__Framework']['carrier'] === 'e')  // au の場合は常に no-cache ヘッダを送信
-            || OPENPNE_SEND_NO_CACHE_HEADER) {
+            || OPENPNE_SEND_NO_CACHE_HEADER || $is_force) {
             // no-cache
             // 日付が過去
             header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
