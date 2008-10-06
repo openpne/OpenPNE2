@@ -909,7 +909,7 @@ function db_commu_c_commu_topic_comment_list4c_member_id_2($c_member_id, $limit,
 
 function db_commu_c_topic_list4target_c_commu_id($c_commu_id, $c_member_id, $page = 1, $page_size = 10, $event_flag = 0, $topic_with_event = 0)
 {
-    $sql = " SELECT cct.c_commu_topic_id, max(cctc.r_datetime) as newest_write_datetime " .
+    $sql = " SELECT cct.c_commu_topic_id, max(cct.u_datetime) as newest_write_datetime " .
             " FROM c_commu_topic as cct, c_commu_topic_comment as cctc " .
             " WHERE cct.c_commu_topic_id = cctc.c_commu_topic_id ";
 
