@@ -36,7 +36,7 @@ class ktai_do_c_edit_update_c_commu extends OpenPNE_Action
 
         // 承認待ちメンバー登録処理
         $c_commu = db_commu_c_commu4c_commu_id($target_c_commu_id);
-        if ($public_flag == 'public' && ($c_commu['publec_flag'] == 'auth_sns' || $c_commu['publec_flag'] == 'auth_commu_member')) {
+        if ($public_flag == 'public' && $public_flag != $c_commu['public_flag']) {
             $c_commu_member_confirm_list = db_commu_c_commu_member_confirm4c_commu_id($target_c_commu_id);
             foreach ($c_commu_member_confirm_list as $c_commu_member_confirm) {
                 db_commu_join_c_commu($target_c_commu_id, $c_commu_member_confirm['c_member_id']);
