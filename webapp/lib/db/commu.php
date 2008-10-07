@@ -3108,7 +3108,7 @@ function db_commu_c_commu_member_confirm4c_commu_id($c_commu_id)
     $sql = 'SELECT c_commu_member_confirm_id, c_member_id FROM c_commu_member_confirm'
          . ' WHERE c_commu_id = ?';
     $params = array(intval($c_commu_id));
-    $c_commu_member_confirm = db_get_all($sql, $params);
+    $c_commu_member_confirm = db_get_assoc($sql, $params, 'main');
 
     return $c_commu_member_confirm;
 }
