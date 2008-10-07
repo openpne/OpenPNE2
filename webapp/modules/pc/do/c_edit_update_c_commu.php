@@ -97,11 +97,11 @@ class pc_do_c_edit_update_c_commu extends OpenPNE_Action
 
         // 承認待ちメンバー登録処理
         if ($public_flag == 'public' && $public_flag != $c_commu['public_flag']) {
-            $c_commu_member_confirm_list = db_commu_c_commu_member_confirm4c_commu_id($target_c_commu_id);
-            foreach ($c_commu_member_confirm_list as $c_commu_member_confirm) {
-                db_commu_join_c_commu($target_c_commu_id, $c_commu_member_confirm['c_member_id']);
-                do_inc_join_c_commu_send_mail($target_c_commu_id, $c_commu_member_confirm['c_member_id']);
-                db_commu_delete_c_commu_member_confirm($c_commu_member_confirm['c_commu_member_confirm_id']);
+            $member_confirm_list = db_commu_c_commu_member_confirm4c_commu_id($target_c_commu_id);
+            foreach ($member_confirm_list as $confirm_id => $c_member_id) {
+                db_commu_join_c_commu($target_c_commu_id, $c_member_id);
+                do_inc_join_c_commu_send_mail($target_c_commu_id, $c_member_id);
+                db_commu_delete_c_commu_member_confirm($confirm_id);
             }
         }
 
