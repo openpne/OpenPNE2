@@ -25,7 +25,14 @@ if (defined('CHECK_IMG_AUTH') && CHECK_IMG_AUTH) {
             $module = 'pc';
         }
     }
-    $_SERVER['QUERY_STRING'] .= '&a=page_h_toimg';
+
+    $params = '&a=page_h_toimg';
+    if (isKtaiUserAgent()) {
+        $params .= '&m=ktai';
+    } else {
+        $params .= '&m=pc';
+    }
+    $_SERVER['QUERY_STRING'] .= $params;
 
     if (!$module = _check_module($module)) {
         openpne_display_error('モジュールが見つかりません', true);
