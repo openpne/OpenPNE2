@@ -113,7 +113,6 @@ class pc_do_c_event_edit_update_c_commu_topic extends OpenPNE_Action
         }
         t_image_clear_tmp(session_id());
 
-
         $update_c_commu_topic = array(
             'name'              => $event['title'],
             'open_date'         => $event['open_date_year']."-".$event['open_date_month']."-".$event['open_date_day'],
