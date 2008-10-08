@@ -312,10 +312,9 @@ function image_insert_c_tmp_image($upfile_obj, $filename)
  *
  * @params array $upfile_obj
  * @params string $prefix
- * @params int $uid
  * @return string 画像ファイル名 | 失敗時false
  */
-function image_insert_c_image_direct($upfile_obj, $prefix, $uid)
+function image_insert_c_image_direct($upfile_obj, $prefix)
 {
     if (!file_exists($upfile_obj['tmp_name'])) {
         return false;
@@ -328,7 +327,7 @@ function image_insert_c_image_direct($upfile_obj, $prefix, $uid)
         t_image_clear_tmp($sessid);
         return false;
     }
-    $image_filename = image_insert_c_image4tmp($prefix . '_' . $uid, $tmpfile);
+    $image_filename = image_insert_c_image4tmp($prefix, $tmpfile);
     t_image_clear_tmp($sessid);
 
     return $image_filename;
