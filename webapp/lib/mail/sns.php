@@ -63,6 +63,12 @@ class mail_sns
             return false;
         }
 
+        // 送信者がブラックリスト登録済みメンバーの場合
+        if (db_member_is_blacklist($this->c_member_id)) {
+            m_debug_log('mail_sns::main() mail from member on blacklist');
+            return false;
+        }
+
         //---
 
         // ログインURL通知
