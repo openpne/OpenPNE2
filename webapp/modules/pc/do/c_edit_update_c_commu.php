@@ -88,7 +88,7 @@ class pc_do_c_edit_update_c_commu extends OpenPNE_Action
         $c_commu = db_commu_c_commu4c_commu_id($target_c_commu_id);
 
         //画像アップデート
-        $image_filename = image_insert_c_image_direct($upfile_obj, 'c', $target_c_commu_id);
+        $image_filename = image_insert_c_image_direct($upfile_obj, 'c_' . $target_c_commu_id);
 
         if ($image_filename) {
             //画像削除
