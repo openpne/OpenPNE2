@@ -38,7 +38,7 @@ class pc_do_h_config_image extends OpenPNE_Action
         }
 
         //画像をDBに格納
-        $image_filename = image_insert_c_image_without_confirm($upfile_obj, 'm', $u);
+        $image_filename = image_insert_c_image_direct($upfile_obj, 'm', $u);
 
         if ($image_filename) {
             //c_memberのフィールドに登録
