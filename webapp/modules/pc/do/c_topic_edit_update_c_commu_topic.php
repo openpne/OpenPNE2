@@ -81,31 +81,21 @@ class pc_do_c_topic_edit_update_c_commu_topic extends OpenPNE_Action
             exit;
         }
 
-        //画像コピー
+        // 画像アップデート
+        $filename1 = image_insert_c_image_direct($upfile_obj1, "t_{$c_commu_topic_id}_1");
+        $filename2 = image_insert_c_image_direct($upfile_obj2, "t_{$c_commu_topic_id}_2");
+        $filename3 = image_insert_c_image_direct($upfile_obj3, "t_{$c_commu_topic_id}_3");
+
+        //ファイルアップロード
         $sessid = session_id();
         t_image_clear_tmp($sessid);
-        $tmpfile1 = t_image_save2tmp($upfile_obj1, $sessid, "t_1");
-        $tmpfile2 = t_image_save2tmp($upfile_obj2, $sessid, "t_2");
-        $tmpfile3 = t_image_save2tmp($upfile_obj3, $sessid, "t_3");
         if (OPENPNE_USE_FILEUPLOAD) {
             $tmpfile4 = t_file_save2tmp($upfile_obj4, $sessid, "t_4");
-        }
-
-        if ($tmpfile1) {
-            $filename1 = image_insert_c_image4tmp("t_{$c_commu_topic_id}_1", $tmpfile1);
-        }
-        if ($tmpfile2) {
-            $filename2 = image_insert_c_image4tmp("t_{$c_commu_topic_id}_2", $tmpfile2);
-        }
-        if ($tmpfile3) {
-            $filename3 = image_insert_c_image4tmp("t_{$c_commu_topic_id}_3", $tmpfile3);
         }
         if ($tmpfile4) {
             $filename4 = file_insert_c_file4tmp("t_{$c_commu_topic_id}_4", $tmpfile4, $upfile_obj4['name']);
         }
-        t_image_clear_tmp(session_id());
         t_file_clear_tmp(session_id());
-
 
         $update_c_commu_topic = array(
             'name'       => $title,
