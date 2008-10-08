@@ -1007,4 +1007,44 @@ function util_filter_backtrace($backtrace)
     return $result;
 }
 
+/**
+ * マッチングした文字列を一時的に退避する
+ *
+ * $patterns に指定された正規表現のパターンにマッチするものをマーカーに置換し、
+ * 置換後の文字列、マーカーと元の文字列の対応テーブルを返す。
+ *
+ * @param string $subject
+ * @param array  $patterns
+ * @return array
+ */
+function util_replace_patterns_to_marker($subject, $patterns = array())
+{
+    $i = 0;
+    $list = array();
+
+    if (empty($patterns)) {
+        $patterns = array(
+            '/<input[^>]+>/is',
+            '/<textarea.*?<\/textarea>/is',
+            '/<option.*?<\/option>/is',
+            '/<img[^>]+>/is',
+            '/<head.*?<\/head>/is',
+        );
+    }
+
+    foreach ($patterns as $pattern) {
+        if (preg_match_all($pattern, $subject, $matches)) {
+            foreach ($matches[0] as $match) {
+                $replacement = '<<<MARKER:'.$i.'>>>';
+                $list[$replacement] = $match;
+                $i++;
+            }
+        }
+    }
+
+    $subject = str_replace(array_values($list), array_keys($list), $subject);
+
+    return array($list, $subject);
+}
+
 ?>
