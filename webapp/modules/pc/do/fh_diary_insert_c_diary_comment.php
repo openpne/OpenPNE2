@@ -71,6 +71,8 @@ class pc_do_fh_diary_insert_c_diary_comment extends OpenPNE_Action
             }
         }
 
+        cache_drop_c_diary($target_c_member_id, $u);
+
         $p = array(
             'target_c_diary_id' => $target_c_diary_id,
             'comment_count' => db_diary_count_c_diary_comment4c_diary_id($target_c_diary_id)
