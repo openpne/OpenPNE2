@@ -122,7 +122,7 @@ function pne_mce_show_color_table(id, tagname)
         Element.addClassName(td, 'disabledHideColorTable');
 
         var a = document.createElement("a");
-        a.setAttribute("href", "#");
+        a.setAttribute("href", "javascript:;");
         a.colorCode = code;
         a.style.width = "9px";
         a.style.height = "9px";
