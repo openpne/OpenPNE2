@@ -24,6 +24,7 @@ class biz_do_f_home_edit_biz_todo extends OpenPNE_Action
         $priority = $requests['priority'];
         $biz_group_id = $requests['biz_group_id'];
         $public_flag = $requests['public_flag'];
+        $target_id = $requests['target_id'];
         // ----------
 
         if (!biz_isPermissionTodo($u, $id)) {
@@ -48,7 +49,7 @@ class biz_do_f_home_edit_biz_todo extends OpenPNE_Action
         biz_editTodo($todo_info['c_member_id'], $memo, $writer_id, $sort_order, $is_check, $id,
             $is_done, $due_datetime, $priority, $biz_group_id, $public_flag);
 
-        $p = array('target_c_member_id' => $todo_info['c_member_id']);
+        $p = array('target_c_member_id' => $target_id);
         openpne_redirect('pc', 'page_f_home', $p);
 
     }
