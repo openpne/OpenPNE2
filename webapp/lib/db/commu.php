@@ -1549,6 +1549,19 @@ function db_commu_c_commu_category4null()
     return db_get_all($sql);
 }
 
+// 作成可能なコミュニティカテゴリリストを取得
+function db_commu_c_commu_category4createflag()
+{
+    $create_flag = 1;
+    $sql = 'SELECT cat.* FROM c_commu_category AS cat' .
+            ' INNER JOIN c_commu_category_parent AS pcat' .
+            ' USING (c_commu_category_parent_id)' .
+            ' WHERE cat.create_flag = ?' .
+            ' ORDER BY pcat.sort_order, cat.sort_order';
+    $params = array(intval($create_flag));
+    return db_get_all($sql,$params);
+}
+
 function db_commu_c_commu_category_list4null()
 {
     $list = db_commu_c_commu_category4null();

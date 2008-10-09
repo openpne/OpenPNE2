@@ -69,10 +69,11 @@
 ({foreach from=$c_commu_category_parent_list item=item})
 <table class="basicType2">
 <thead>
-<tr class="smallCtgItem"><th colspan="4"><a name="opt_({$item.name})">({$item.name})</a></th></tr>
+<tr class="smallCtgItem"><th colspan="5"><a name="opt_({$item.name})">({$item.name})</a></th></tr>
 <tr class="smallCtgTable">
 <th>項目名</th>
 <th>並び順</th>
+<th>作成</th>
 <th colspan="2">操作</th>
 </tr>
 </thead>
@@ -88,6 +89,10 @@
 <input class="basic" type="text" name="name" value="({$option.name})" size="20" />
 ({/strip})</td>
 <td><input class="basic" type="text" name="sort_order" value="({$option.sort_order})" size="5" /></td>
+<td><select class="basic" name="create_flag">
+<option value="1"({if $option.create_flag}) selected="selected"({/if})>可</option>
+<option value="0"({if !$option.create_flag}) selected="selected"({/if})>不可</option>
+</select></td>
 <td><span class="textBtnS"><input type="submit" value="　変　更　" /></span></td>
 </form>
 <form action="./" method="post">
@@ -110,6 +115,7 @@
 <input type="hidden" name="c_commu_category_parent_id" value="({$item.c_commu_category_parent_id})" />
 <input class="basic" type="text" name="name" value="" size="20" />
 ({/strip})</td>
+<td><input class="basic" type="text" name="sort_order" value="" size="5" /></td>
 <td><input class="basic" type="text" name="sort_order" value="" size="5" /></td>
 <td colspan="2"><span class="textBtnS"><input type="submit" value="項目追加" /></span></td>
 </form>
