@@ -11,6 +11,7 @@ class biz_do_f_home_check_biz_todo extends OpenPNE_Action
         $u = $GLOBALS['AUTH']->uid();
 
         // --- リクエスト変数
+        $target_c_member_id = $requests['target_c_member_id'];
         $chid = $requests['chid'];
         $id = $requests['target_id'];
         $is_check = $requests['is_check'];
@@ -23,7 +24,7 @@ class biz_do_f_home_check_biz_todo extends OpenPNE_Action
 
         $todo = biz_getTodo($chid);
 
-        $p = array('target_c_member_id' => $todo['c_member_id']);
+        $p = array('target_c_member_id' => $target_c_member_id);
         openpne_redirect('pc', 'page_f_home', $p);
     }
 }
