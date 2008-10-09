@@ -141,7 +141,7 @@
 <tr>
 <td style="height:16px;" valign="top" align="right">
 
-<a href="({t_url m=biz a=do_`$cmd`_home_delete_biz_todo})&amp;sessid=({$PHPSESSID})&amp;delid=({$value.biz_todo_id})"><img src="./skin/default/img/biz/delete_2.gif" style="width:14px;height:14px;display:block;"></a>
+<a href="({t_url m=biz a=do_`$cmd`_home_delete_biz_todo})&amp;sessid=({$PHPSESSID})&amp;delid=({$value.biz_todo_id})&amp;target_id=({$target_id})"><img src="./skin/default/img/biz/delete_2.gif" style="width:14px;height:14px;display:block;"></a>
 
 </td>
 </tr>
