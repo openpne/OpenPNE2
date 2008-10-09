@@ -6,6 +6,13 @@
 
 function smarty_modifier_t_url2cmd($string, $type = '')
 {
+    $list = array();
+
+    if ($type === 'entry_point') {
+        // 置換用に文字列を退避
+        list ($list, $string) = util_replace_patterns_to_marker($string);
+    }
+
     if (in_array($type, db_get_url2a_denied_list())) {
         // HTMLエスケープされていない場合
         // ", ', </a> がURLの後に続く場合はマッチさせない
@@ -15,7 +22,14 @@ function smarty_modifier_t_url2cmd($string, $type = '')
     }
     
     $GLOBALS['_CMD']['type'] = $type;
-    return preg_replace_callback($url_pattern, '_smarty_modifier_t_cmd_make_url_js', $string);
+    $string = preg_replace_callback($url_pattern, '_smarty_modifier_t_cmd_make_url_js', $string);
+
+    if ($type === 'entry_point') {
+        // 退避した文字列を元に戻す
+        $string = str_replace(array_keys($list), array_values($list), $string);
+    }
+
+    return $string;
 }
 
 function _smarty_modifier_t_cmd_make_url_js($matches)
