@@ -113,14 +113,14 @@
 		<tr class="min_width">
 			({if $smarty.const.OPENPNE_USE_POINT_RANK})
 			<th class="cell10" colspan="2">
-            <select class="basic" onChange="Link('?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page=({$pager.page})&amp;page_size=({$pager.page_size})&amp;order=({$requests.order})({$cond})&amp;s_rank='+this.options[this.selectedIndex].value);">
+            <select class="basic" onChange="Link('?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=({$requests.order})({$cond})&amp;s_rank='+this.options[this.selectedIndex].value);">
 			<option value="">▼選択</option>
 			({foreach from=$rank_data item=item})
 			<option({if $cond_list.s_rank == $item.c_rank_id}) selected({/if}) value="({$item.c_rank_id})">({$item.name})</option>
 			({/foreach})
 			</select>
 			～
-			<select class="basic" onChange="Link('?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page=({$pager.page})&amp;page_size=({$pager.page_size})&amp;order=({$requests.order})({$cond})&amp;e_rank='+this.options[this.selectedIndex].value);">
+			<select class="basic" onChange="Link('?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=({$requests.order})({$cond})&amp;e_rank='+this.options[this.selectedIndex].value);">
 			<option value="">▼選択</option>
 			({foreach from=$rank_data item=item})
 			<option({if $cond_list.e_rank == $item.c_rank_id}) selected({/if}) value="({$item.c_rank_id})">({$item.name})</option>
@@ -129,7 +129,7 @@
 			</th>
 			({/if})
 			<th class="cell05">
-            <select class="basic" onChange="Link('?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page=({$pager.page})&amp;page_size=({$pager.page_size})&amp;order=({$requests.order})({$cond})&amp;last_login='+this.options[this.selectedIndex].value);">
+            <select class="basic" onChange="Link('?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=({$requests.order})({$cond})&amp;last_login='+this.options[this.selectedIndex].value);">
             <option value="">▼選択</option>
             ({foreach from=$select_last_login item=item key=key})
             <option ({if $cond_list.last_login==$key})selected({/if}) value="({$key})">({$item})</option>
@@ -137,14 +137,14 @@
             </select>
             </th>
 			<th class="cell09A" colspan="3">
-			<select class="basic" onChange="Link('?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page=({$pager.page})&amp;page_size=({$pager.page_size})&amp;order=({$requests.order})({$cond})&amp;s_year='+this.options[this.selectedIndex].value);">
+			<select class="basic" onChange="Link('?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=({$requests.order})({$cond})&amp;s_year='+this.options[this.selectedIndex].value);">
 			<option value="">▼選択</option>
 			({foreach from=$years item=item})
 			<option ({if $cond_list.s_year==$item})selected({/if}) value="({$item})">({$item})</option>
 			({/foreach})
 			</select>
 			～
-			<select class="basic" onChange="Link('?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page=({$pager.page})&amp;page_size=({$pager.page_size})&amp;order=({$requests.order})({$cond})&amp;e_year='+this.options[this.selectedIndex].value);">
+			<select class="basic" onChange="Link('?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=({$requests.order})({$cond})&amp;e_year='+this.options[this.selectedIndex].value);">
 			<option value="">▼選択</option>
 			({foreach from=$years item=item})
 			<option ({if $cond_list.e_year==$item})selected({/if}) value="({$item})">({$item})</option>
@@ -155,7 +155,7 @@
 			({if $prof.name !== 'PNE_POINT'})
 			<th>
 			({if $prof.form_type == 'radio' || $prof.form_type == 'select'})
-			<select class="basic" onChange="Link('?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page=({$pager.page})&amp;page_size=({$pager.page_size})&amp;order=({$requests.order})({$cond})&amp;({$prof.name})='+this.options[this.selectedIndex].value);">
+			<select class="basic" onChange="Link('?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=({$requests.order})({$cond})&amp;({$prof.name})='+this.options[this.selectedIndex].value);">
 			<option value="">▼選択</option>
 			({foreach item=item from=$prof.options})
 			<option ({if $cond_list[$prof.name]==$item.c_profile_option_id})selected({/if}) value="({$item.c_profile_option_id})"({if $c_member.profile[$profile.name].value == $item.value}) selected="selected"({/if})>({$item.value|default:"--"})</option>
@@ -168,14 +168,14 @@
 			({/if})
 			({/foreach})
 			<th class="cell05">
-            <select class="basic" onChange="Link('?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page=({$pager.page})&amp;page_size=({$pager.page_size})&amp;order=({$requests.order})({$cond})&amp;is_pc_address='+this.options[this.selectedIndex].value);">
+            <select class="basic" onChange="Link('?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=({$requests.order})({$cond})&amp;is_pc_address='+this.options[this.selectedIndex].value);">
             <option value="">▼選択</option>
 			<option value="1"({if $cond_list.is_pc_address == 1}) selected="selected"({/if})>登録している</option>
 			<option value="2"({if $cond_list.is_pc_address == 2}) selected="selected"({/if})>登録していない</option>
             </select>
             </th>
 			<th class="cell05">
-            <select class="basic" onChange="Link('?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page=({$pager.page})&amp;page_size=({$pager.page_size})&amp;order=({$requests.order})({$cond})&amp;is_ktai_address='+this.options[this.selectedIndex].value);">
+            <select class="basic" onChange="Link('?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=({$requests.order})({$cond})&amp;is_ktai_address='+this.options[this.selectedIndex].value);">
             <option value="">▼選択</option>
 			<option value="1"({if $cond_list.is_ktai_address == 1}) selected="selected"({/if})>登録している</option>
 			<option value="2"({if $cond_list.is_ktai_address == 2}) selected="selected"({/if})>登録していない</option>
