@@ -409,13 +409,6 @@ function mail_c_commu_topic4c_commu_topic_id($c_commu_topic_id)
     return db_commu_c_commu_topic4c_commu_topic_id_3($c_commu_topic_id);
 }
 
-
-function _db_c_commu_category4null()
-{
-    return db_commu_c_commu_category4null();
-}
-
-
 function p_h_com_find_all_c_commu_category_list4null()
 {
     return db_commu_c_commu_category_list4null();
