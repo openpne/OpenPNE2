@@ -10,7 +10,7 @@ function smarty_modifier_t_url2cmd($string, $type = '', $target_c_member_id = ''
 
     if ($type === 'entry_point') {
         // 置換用に文字列を退避
-        list ($list, $string) = util_replace_patterns_to_marker($string);
+        list($list, $string) = util_replace_patterns_to_marker($string);
     }
 
     if (!$is_html || in_array($type, db_get_url2a_denied_list())) {
