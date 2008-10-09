@@ -73,7 +73,7 @@ class pc_page_fh_diary extends OpenPNE_Action
             $desc = true;
         }
 
-        list ($c_diary_comment_list, $is_prev, $is_next, $total_num, $total_page_num)
+        list($c_diary_comment_list, $is_prev, $is_next, $total_num, $total_page_num)
             = k_p_fh_diary_c_diary_comment_list4c_diary_id($target_c_diary_id, $page_size, $page, $desc);
         if ($desc) {
             $c_diary_comment_list = array_reverse($c_diary_comment_list);
