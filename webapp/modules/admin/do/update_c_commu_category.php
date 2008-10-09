@@ -17,7 +17,8 @@ class admin_do_update_c_commu_category extends OpenPNE_Action
         db_admin_update_c_commu_category(
             $requests['c_commu_category_id'],
             $requests['name'],
-            $requests['sort_order']);
+            $requests['sort_order'],
+            $requests['create_flag']);
 
         admin_client_redirect('edit_category', '小カテゴリを編集しました');
     }

@@ -360,11 +360,12 @@ function db_admin_insert_c_commu_category($c_commu_category_parent_id, $name, $s
     return db_insert('c_commu_category', $data);
 }
 
-function db_admin_update_c_commu_category($c_commu_category_id, $name, $sort_order)
+function db_admin_update_c_commu_category($c_commu_category_id, $name, $sort_order, $create_flag)
 {
     $data = array(
         'name' => $name,
-        'sort_order' => intval($sort_order)
+        'sort_order' => intval($sort_order),
+        'create_flag' => intval($create_flag),
     );
     $where = array('c_commu_category_id' => intval($c_commu_category_id));
     db_update('c_commu_category', $data, $where);
