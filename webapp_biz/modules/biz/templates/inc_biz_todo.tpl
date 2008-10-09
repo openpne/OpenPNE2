@@ -22,7 +22,7 @@
 ({if $value.memo})
 <tr class="({if $value.priority == 1})priHigh({elseif $value.priority == 2})priMiddle({else})priLow({/if})({if $value.writer_id != $target_id}) someone({/if})">
 <td class="state">
-<p><a href="({t_url m=biz a=do_`$cmd`_home_check_biz_todo})&amp;sessid=({$PHPSESSID})&amp;chid=({$value.biz_todo_id})&amp;is_check=({$value.is_check})"><img src="./skin/default/img/biz/checkbox_nochecked_({if $value.c_member_id == 0})share_({/if})2.gif" alt="" /></a></p>
+<p><a href="({t_url m=biz a=do_`$cmd`_home_check_biz_todo})&amp;sessid=({$PHPSESSID})&amp;chid=({$value.biz_todo_id})&amp;is_check=({$value.is_check})&amp;target_c_member_id=({$target_id})"><img src="./skin/default/img/biz/checkbox_nochecked_({if $value.c_member_id == 0})share_({/if})2.gif" alt="" /></a></p>
 </td>
 <td class="text">({strip})
 ({$value.memo|nl2br|t_url2a})
@@ -42,7 +42,7 @@
 ({if $value.memo})
 <tr class="checked ({if $value.priority == 1})priHigh({elseif $value.priority == 2})priMiddle({else})priLow({/if})({if $value.writer_id != $target_id}) someone({/if})">
 <td class="state">
-<p><a href="({t_url m=biz a=do_`$cmd`_home_check_biz_todo})&amp;sessid=({$PHPSESSID})&amp;chid=({$value.biz_todo_id})&amp;is_check=({$value.is_check})"><img src="./skin/default/img/biz/checkbox_checked_({if !$value.member_id == 0})share_({/if})2.gif" alt="" /></a></p>
+<p><a href="({t_url m=biz a=do_`$cmd`_home_check_biz_todo})&amp;sessid=({$PHPSESSID})&amp;chid=({$value.biz_todo_id})&amp;is_check=({$value.is_check})&amp;target_c_member_id=({$target_id})"><img src="./skin/default/img/biz/checkbox_checked_({if !$value.member_id == 0})share_({/if})2.gif" alt="" /></a></p>
 </td>
 <td class="text">({strip})
 ({$value.memo|nl2br|t_url2a})
