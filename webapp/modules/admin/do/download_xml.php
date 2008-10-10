@@ -69,6 +69,7 @@ class admin_do_download_xml extends OpenPNE_Action
         $result = $serializer->serialize($rdf);
         if( $result === true ) {
             $xml = $serializer->getSerializedData();
+            send_nocache_headers(true);
             header("Content-Type: application/octet-stream");
             header("Content-Disposition: attachment; filename=download.rdf");
             echo $xml;
