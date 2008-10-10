@@ -70,6 +70,12 @@ class mail_sns
             return false;
         }
 
+        // 送信者がログイン停止登録されているメンバーの場合
+        if (db_member_is_login_rejected($this->c_member_id)) {
+            m_debug_log('mail_sns::main() mail from rejected member');
+            return false;
+        }
+
         // 送信者がブラックリスト登録済みメンバーの場合
         if (db_member_is_blacklist($this->c_member_id)) {
             m_debug_log('mail_sns::main() mail from member on blacklist');
