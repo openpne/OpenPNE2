@@ -500,9 +500,6 @@ class mail_sns
             }
         }
 
-        // キャッシュの削除
-        cache_drop_c_diary($this->c_member_id, $target_c_member_id);
-
         return true;
     }
 
