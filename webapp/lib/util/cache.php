@@ -238,10 +238,10 @@ function cache_drop_c_bookmark($c_member_id)
 /**
  * 日記のfunction cacheを削除する
  *
- * @param string $target_c_member_id :書き込み先のメンバーID
- * @param string $c_member_id        :ログインしているメンバーID
+ * @param int $c_member_id        ログインしているメンバーID
+ * @param int $target_c_member_id 書き込み先のメンバーID
  */
-function cache_drop_c_diary($target_c_member_id, $c_member_id)
+function cache_drop_c_diary($c_member_id, $target_c_member_id)
 {
     $target_c_member_id = (int)$target_c_member_id;
     $c_member_id = (int)$c_member_id;
