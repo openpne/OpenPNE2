@@ -1183,6 +1183,8 @@ function db_diary_update_c_diary_is_checked($c_diary_id, $value)
 function db_diary_insert_c_diary_comment($c_member_id, $c_diary_id, $body)
 {
     //function cache削除
+    $c_diary =  db_diary_get_c_diary4id($c_diary_id);
+    cache_drop_c_diary($c_member_id, $c_diary['c_member_id']);
     pne_cache_drop('p_h_home_c_diary_my_comment_list4c_member_id', $c_member_id, 5);
 
     $data = array(
