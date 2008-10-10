@@ -42,6 +42,7 @@ class admin_do_csv_member extends OpenPNE_Action
 
         $member_csv_data = $this->create_csv_data($member_key_string, $c_member_list);
 
+        send_nocache_headers(true);
         header("Content-Type: application/octet-stream");
         header("Content-Disposition: attachment; filename=member.csv");
         echo $member_csv_data;
