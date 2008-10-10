@@ -46,7 +46,7 @@ $GLOBALS['_OPENPNE_KTAI_IP_LIST'] = array(
 '121.111.227.0/25',
 '121.111.227.160/27',
 
-// SoftBank (2007/10/9更新)
+// SoftBank (2008/2/29更新)
 // http://creation.mb.softbank.jp/web/web_ip.html
 '123.108.236.0/24',
 '123.108.237.0/27',
