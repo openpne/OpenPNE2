@@ -202,6 +202,7 @@ class OpenPNE_Config
             'OPENPNE_USE_MYSQL_HINT' => false,
             'OPENPNE_USE_OLD_CRYPT_BLOWFISH' => false,
             'OPENPNE_SESSION_CHECK_URL' => false,
+            'OPENPNE_SESSION_USER_AGENT' => false,
             'OPENPNE_DASHBOARD_URL' => 'http://ad.pne.jp/dashboard/',
             'OPENPNE_AUTH_MODE' => 'email',
             'IS_SLAVEPNE_EMAIL_REGIST' => true,
