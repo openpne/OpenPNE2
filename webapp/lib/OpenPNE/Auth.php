@@ -134,6 +134,10 @@ class OpenPNE_Auth
                 $this->auth->setAuthData('OPENPNE_URL', OPENPNE_URL);
             }
 
+            if (OPENPNE_SESSION_CHECK_USER_AGENT) {
+                $this->auth->setAuthData('USER_AGENT',$_SERVER['HTTP_USER_AGENT']);
+            }
+
             $this->sess_id = session_id();
             if (!$this->is_ktai) {
                 if ($is_save_cookie) {
@@ -277,17 +281,22 @@ class OpenPNE_Auth
      */
     function checkAuth()
     {
-        if ($this->auth->checkAuth()) {
-            if (OPENPNE_SESSION_CHECK_URL) {
-                $openpne_url = $this->auth->getAuthData('OPENPNE_URL');
-                if ($openpne_url == OPENPNE_URL) {
-                    return true;
-                }
-            } else {
-                return true;
+        if (!$this->auth->checkAuth()) {
+            return false;
+        }
+        if (OPENPNE_SESSION_CHECK_URL) {
+            $openpne_url = $this->auth->getAuthData('OPENPNE_URL');
+            if ($openpne_url !== OPENPNE_URL) {
+                return false;
             }
         }
-        return false;
+        if (OPENPNE_SESSION_CHECK_USER_AGENT) {
+            $user_agent = $this->auth->getAuthData('USER_AGENT');
+            if ($user_agent !== $_SERVER['HTTP_USER_AGENT']) {
+                return false;
+            }
+        }
+        return true;
     }
 }
 
