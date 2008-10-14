@@ -286,6 +286,11 @@ $GLOBALS['OpenPNE']['admin']['session_idletime'] = 86400; // 1 day
 // それまでのセッションが無効になりログアウトされます
 define('OPENPNE_SESSION_CHECK_URL', true);
 
+// セッションにユーザーエージェント情報($_SERVER['HTTP_USER_AGENT'])を保存しておく
+// 保存されたユーザーエージェントに変更が無いかを随時確認します
+// falseからtrueにした場合、それまでのセッションが無効になりログアウトされます
+define('OPENPNE_SESSION_CHECK_USER_AGENT', false);
+
 ///
 // 画像
 ///
