@@ -69,9 +69,12 @@ function _smarty_function_t_img_url($params)
 {
     $result = array();
 
-    if (!empty($params['filename']) && preg_match('/^\w+(?:\.((?:jpe?g)|(?:gif)|(?:png)))?$/', $params['filename'])) {
-        $filename = $params['filename'];
-    } else {
+    $filename = $params['filename'];
+    if (empty($filename)
+        || strpos($filename, '..') !== false
+        || strpos($filename, '/') !== false
+        || strpos($filename, '\\') !== false
+    ) {
         if (!empty($params['noimg'])) {
             $filename = db_get_c_skin_filename4skinname($params['noimg']);
         } else {
