@@ -70,11 +70,7 @@ function _smarty_function_t_img_url($params)
     $result = array();
 
     $filename = $params['filename'];
-    if (empty($filename)
-        || strpos($filename, '..') !== false
-        || strpos($filename, '/') !== false
-        || strpos($filename, '\\') !== false
-    ) {
+    if (empty($filename) || preg_match('/[^\.\w]/', $filename)) {
         if (!empty($params['noimg'])) {
             $filename = db_get_c_skin_filename4skinname($params['noimg']);
         } else {
