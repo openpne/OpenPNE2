@@ -15,11 +15,11 @@ class setup_do_setup extends OpenPNE_Action
     function execute($requests)
     {
         $errors = array();
+        if (!db_common_is_mailaddress($requests['pc_address'])
+            || is_ktai_mail_address($requests['pc_address'])) {
+            $errors[] = 'PCメールアドレスを正しく入力してください';
+        }
         if (OPENPNE_AUTH_MODE == 'email') {
-            if (!db_common_is_mailaddress($requests['pc_address'])
-                || is_ktai_mail_address($requests['pc_address'])) {
-                $errors[] = 'PCメールアドレスを正しく入力してください';
-            }
             if ($requests['password'] !== $requests['password2']) {
                 $errors[] = 'パスワードが一致していません';
             }
