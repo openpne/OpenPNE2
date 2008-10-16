@@ -74,14 +74,14 @@
 <tr>
 <th>({$WORD_DIARY})タイトル</th>
 <td>
-<a href="({t_url _absolute=1 m=pc a=page_fh_diary})&amp;target_c_diary_id=({$item.c_diary_id})" target="_blank">({$item.subject})</a> (コメント({$item.count_comments})件)
+<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('diary_list','page')})&amp;target_c_diary_id=({$item.c_diary_id})">({$item.subject})</a> (コメント({$item.count_comments})件)
 </td>
 </tr>
 ({****})
 <tr>
 <th>作成者</th>
 <td>
-<a href="({t_url _absolute=1 m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})" target="_blank">({$item.c_member.nickname})</a>
+<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('c_member_detail','page')})&amp;target_c_member_id=({$item.c_member_id})">({$item.c_member.nickname})</a>
 </td>
 </tr>
 ({****})
