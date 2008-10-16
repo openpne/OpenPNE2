@@ -69,21 +69,21 @@
 <tr>
 <th>トピック名</th>
 <td>
-<a href="({t_url _absolute=1 m=pc a=page_c_topic_detail})&amp;target_c_commu_topic_id=({$item.c_commu_topic_id})" target="_blank">({$item.topic_name})</a> (({$item.count_comments}))
+<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('topic_list','page')})&amp;target_c_commu_topic_id=({$item.c_commu_topic_id})">({$item.topic_name})</a> (({$item.count_comments}))
 </td>
 </tr>
 ({****})
 <tr>
 <th>({$WORD_COMMUNITY})名</th>
 <td>
-<a href="({t_url _absolute=1 m=pc a=page_c_home})&amp;target_c_commu_id=({$item.c_commu_id})" target="_blank">({$item.commu_name})</a>
+<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('commu_list','page')})&amp;target_c_commu_id=({$item.c_commu_id})">({$item.commu_name})</a>
 </td>
 </tr>
 ({****})
 <tr>
 <th>投稿者</th>
 <td>
-<a href="({t_url _absolute=1 m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})" target="_blank">({$item.nickname})</a>
+<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('c_member_detail','page')})&amp;target_c_member_id=({$item.c_member_id})">({$item.nickname})</a>
 </td>
 </tr>
 ({****})
