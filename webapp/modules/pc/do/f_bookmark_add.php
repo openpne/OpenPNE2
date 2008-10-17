@@ -14,6 +14,13 @@ class pc_do_f_bookmark_add extends OpenPNE_Action
         $c_member_id_to = $requests['c_member_id'];
         // ----------
 
+        //--- 入力チェック（負数を認めない）
+        if ($c_member_id_to <= 0) {
+            $_REQUEST['msg'] = 'お気に入り追加メンバーのIDが不正です。';
+            openpne_forward('pc', 'page', 'h_bookmark_list');
+            exit;
+        }
+
         //--- 権限チェック
         //自分以外 and ブックマーク登録されていない
 
@@ -22,9 +29,10 @@ class pc_do_f_bookmark_add extends OpenPNE_Action
         }
 
         if (db_bookmark_is_bookmark($u, $c_member_id_to)) {
-            openpne_redirect('pc', 'page_h_bookmark_list');
+            $_REQUEST['msg'] = '既にお気に入りに登録済みです。';
+            openpne_forward('pc', 'page', 'h_bookmark_list');
+            exit;
         }
-        //---
 
         db_bookmark_insert_c_bookmark($u, $c_member_id_to);
         openpne_redirect('pc', 'page_h_bookmark_list');
