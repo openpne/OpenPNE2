@@ -204,6 +204,17 @@ function openpne_forward($module, $type = '', $action = '', $errors = array())
         }
     }
 
+    if (OPENPNE_SESSION_ONE_USER_ONE_SESSION_LOGIN && $GLOBALS['AUTH']) {
+        if ($module == 'pc') {
+            $u = $GLOBALS['AUTH']->uid();
+        } elseif ($module == 'ktai') {
+            $u = $GLOBALS['KTAI_C_MEMBER_ID'];
+        }
+        if (session_id() && !db_member_is_one_user_one_session($u, session_id())) {
+            openpne_redirect($module, 'page_o_login');
+        }
+    }
+
     $result = $action_obj->execute($requests);
     if ($result == 'success') {
         send_nocache_headers();
