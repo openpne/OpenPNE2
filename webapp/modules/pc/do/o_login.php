@@ -60,6 +60,9 @@ class pc_do_o_login extends OpenPNE_Action
             $this->_fail_login('login_rejected');
         }
 
+        if (OPENPNE_SESSION_ONE_USER_ONE_SESSION_LOGIN) {
+            db_member_update_c_member_insert_sess_id($c_member_id, session_id());
+        }
         db_member_do_access($c_member_id);
         db_api_update_token($c_member_id);
 

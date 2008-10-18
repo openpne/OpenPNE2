@@ -2079,4 +2079,53 @@ function db_member_update_c_member_config($c_member_id, $name, $value)
     }
 }
 
+/**
+ * c_memberのsess_idフィールドにセッションIDを新規に追加する
+ *
+ * @param int $c_member_id 更新する行のメンバーID
+ * @param string $sess_id 更新する値
+ * @return  bool
+ */
+function db_member_update_c_member_insert_sess_id($c_member_id, $sess_id) {
+    $data = array('sess_id' => $sess_id);
+    $where = array('c_member_id' => intval($c_member_id));
+    return db_update('c_member', $data, $where);
+}
+
+/**
+ * c_memberのsess_idの値を削除する
+ *
+ * @param string $sess_id 更新する行のsess_idの値
+ * @return  bool
+ */
+function db_member_update_c_member_delete_sess_id($sess_id) {
+    $data = array('sess_id' => '');
+    $where = array('sess_id' => $sess_id);
+    return db_update('c_member', $data, $where);
+}
+
+/**
+ * ログイン時のセッションIDと現在のセッションIDが一致しているかを確認する
+ *
+ * @param int $c_member_id
+ * @param string $now_sess_id 現在のセッションID
+ * @return  bool
+ */
+function db_member_is_one_user_one_session($c_member_id, $now_sess_id)
+{
+    $sql = 'SELECT sess_id FROM c_member'
+         . ' WHERE c_member_id = ?';
+    $param = array($c_member_id);
+    $login_sess_id = db_get_one($sql, $param);
+    if (!$login_sess_id) {
+        db_member_update_c_member_sess_id($c_member_id, $now_sess_id);
+        return true;
+    }
+    if ($login_sess_id === $now_sess_id) {
+        return true;
+    }
+
+    return false;
+}
+
 ?>
