@@ -291,6 +291,11 @@ define('OPENPNE_SESSION_CHECK_URL', true);
 // falseからtrueにした場合、それまでのセッションが無効になりログアウトされます
 define('OPENPNE_SESSION_CHECK_USER_AGENT', false);
 
+// ログイン時のセッションを1ユーザに対して1セッションに制限する
+// ログイン中に他の端末・ブラウザからログインした場合、それまでのセッションが
+// 無効になりログアウトされます
+define('OPENPNE_SESSION_ONE_USER_ONE_SESSION_LOGIN', false);
+
 ///
 // 画像
 ///
