@@ -18,7 +18,6 @@
 ({/capture})
 
 ({foreach from=$target_c_member.profile key=key item=item})
-({if $item.form_type != 'textarea'})
 
 ({if !$_cnt_nick && $profile_list[$key].sort_order >= $smarty.const.SORT_ORDER_NICK
   && !$_cnt_birth && $profile_list[$key].sort_order >= $smarty.const.SORT_ORDER_BIRTH})
@@ -49,6 +48,9 @@
 
 ({if $item.form_type == 'checkbox'})
     ({$item.value|@t_implode:", "})
+({elseif $item.form_type == 'textarea'})
+({$item.value|t_url2a_ktai|nl2br})
+({if $is_h && $item.public_flag == 'friend'})<font color="#({$ktai_color_config.font_09})">※({$WORD_MY_FRIEND_HALF})まで公開</font><br>({/if})
 ({else})
     ({$item.value})
 ({/if})
@@ -56,7 +58,6 @@
 ({if $is_h && $item.public_flag == 'friend'})<font color="#({$ktai_color_config.font_09})">※({$WORD_MY_FRIEND_HALF})まで公開</font><br>({/if})
 ({/if})
 
-({/if})
 ({/foreach})
 
 ({if !$_cnt_nick && !$_cnt_birth})
@@ -74,14 +75,6 @@
 
 ({/strip})
 <br>
-({foreach from=$target_c_member.profile key=key item=item})
-({if $item.form_type == 'textarea'})
-<font color="#({$ktai_color_config.font_06})">({$item.caption})：</font><br>
-({$item.value|t_url2a_ktai|nl2br})<br>
-({if $is_h && $item.public_flag == 'friend'})<font color="#({$ktai_color_config.font_09})">※({$WORD_MY_FRIEND_HALF})まで公開</font><br>({/if})
-<br>
-({/if})
-({/foreach})
 
 ({if $target_c_member.c_member_id != $u})
 <hr color="#({$ktai_color_config.border_01})">
