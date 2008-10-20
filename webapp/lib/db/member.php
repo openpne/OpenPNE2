@@ -393,11 +393,6 @@ function db_member_search_check_profile($profile)
         if (!($c_profile && $c_profile['disp_search'])) continue;
 
         $public_flags = array('public', 'friend', 'private');
-        if ($c_profile['public_flag_edit']
-            && $c_profile['public_flag_default'] != 'public') {
-            // 公開項目以外は除外
-            continue;
-        }
 
         switch ($c_profile['form_type']) {
         case "text":
