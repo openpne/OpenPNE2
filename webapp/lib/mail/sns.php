@@ -107,7 +107,7 @@ class mail_sns
                 if (empty($matches[2])) return false;
 
                 // メンバーハッシュのチェック
-                if ($matches[2] != t_get_user_hash($this->c_member_id)) {
+                if (!t_check_user_hash($this->c_member_id, $matches[2])) {
                     return false;
                 }
             }
@@ -132,7 +132,7 @@ class mail_sns
                     return false;
                 }
                 // メンバーハッシュのチェック
-                if ($matches[2] != t_get_user_hash($this->c_member_id)) {
+                if (!t_check_user_hash($this->c_member_id, $matches[2])) {
                     return false;
                 }
             }
@@ -158,7 +158,7 @@ class mail_sns
                 if (empty($matches[2])) return false;
 
                 // メンバーハッシュのチェック
-                if ($matches[2] != t_get_user_hash($this->c_member_id)) {
+                if (!t_check_user_hash($this->c_member_id, $matches[2])) {
                     return false;
                 }
             }
@@ -184,7 +184,7 @@ class mail_sns
                 if (empty($matches[2])) return false;
 
                 // メンバーハッシュのチェック
-                if ($matches[2] != t_get_user_hash($this->c_member_id)) {
+                if (!t_check_user_hash($this->c_member_id, $matches[2])) {
                     return false;
                 }
             }
@@ -209,7 +209,7 @@ class mail_sns
                 if (empty($matches[2])) return false;
 
                 // メンバーハッシュのチェック
-                if ($matches[2] != t_get_user_hash($this->c_member_id)) {
+                if (!t_check_user_hash($this->c_member_id, $matches[2])) {
                     return false;
                 }
             }
@@ -234,7 +234,7 @@ class mail_sns
                 if (empty($matches[2])) return false;
 
                 // メンバーハッシュのチェック
-                if ($matches[2] != t_get_user_hash($this->c_member_id)) {
+                if (!t_check_user_hash($this->c_member_id, $matches[2])) {
                     return false;
                 }
             }
@@ -259,7 +259,7 @@ class mail_sns
                 if (empty($matches[2])) return false;
 
                 // メンバーハッシュのチェック
-                if ($matches[2] != t_get_user_hash($this->c_member_id)) {
+                if (!t_check_user_hash($this->c_member_id, $matches[2])) {
                     return false;
                 }
             }

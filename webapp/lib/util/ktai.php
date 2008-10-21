@@ -175,6 +175,11 @@ function t_get_user_hash($c_member_id, $length = 12)
     return substr(md5($seed), 0, $length);
 }
 
+function t_check_user_hash($c_member_id, $input_hash)
+{
+    return ($input_hash === t_get_user_hash($c_member_id));
+}
+
 /**
  * 携帯端末からのアクセスかどうかを IPアドレスから判別する
  *
