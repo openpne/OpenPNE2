@@ -2113,7 +2113,7 @@ function db_member_is_one_user_one_session($c_member_id, $now_sess_id)
     $param = array($c_member_id);
     $login_sess_id = db_get_one($sql, $param);
     if (!$login_sess_id) {
-        db_member_update_c_member_sess_id($c_member_id, $now_sess_id);
+        db_member_update_c_member_insert_sess_id($c_member_id, $now_sess_id);
         return true;
     }
     if ($login_sess_id === $now_sess_id) {
