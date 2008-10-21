@@ -210,7 +210,7 @@ function openpne_forward($module, $type = '', $action = '', $errors = array())
         } elseif ($module == 'ktai') {
             $u = $GLOBALS['KTAI_C_MEMBER_ID'];
         }
-        if (session_id() && !db_member_is_one_user_one_session($u, session_id())) {
+        if (!db_member_is_one_user_one_session($u, session_id())) {
             openpne_redirect($module, 'page_o_login');
         }
     }
