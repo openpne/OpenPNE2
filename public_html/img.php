@@ -58,11 +58,15 @@ if (defined('CHECK_IMG_AUTH') && CHECK_IMG_AUTH) {
         $auth = OPENPNE_WEBAPP_DIR . '/lib/auth.inc';
     }
 
-    // ファイル名が module_ ではじまる場合、認証をおこなうかどうかのチェック
+    // ファイル名が module_ または b_ ではじまる場合、認証をおこなうかどうかのチェック
     list($img_prefix, $img_module) = explode('_', $_GET['filename'], 3);
     if ($img_prefix == 'module' && $img_module) {
         $module_config = util_get_module_config($img_module);
         if (!isset($module_config['image']['is_auth']) || $module_config['image']['is_auth']) {
+            require_once $auth;
+        }
+    } elseif ($img_prefix == 'b') {
+        if (db_banner_is_after_auth_banner($img_module)) {
             require_once $auth;
         }
     } else {
