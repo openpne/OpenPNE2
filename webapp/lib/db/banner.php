@@ -53,4 +53,22 @@ function db_banner_get_c_banner4id($c_banner_id)
     return db_get_row($sql, $params);
 }
 
+/**
+ * 認証後のみ表示されるバナーかどうかをバナーIDから確認
+ *
+ * @param   int $c_banner_id
+ * @return  bool
+ */
+function db_banner_is_after_auth_banner($c_banner_id)
+{
+    $sql = 'SELECT is_hidden_before, is_hidden_after FROM c_banner WHERE c_banner_id = ?';
+    $params = array($c_banner_id);
+    $c_banner =  db_get_row($sql, $params);
+    if ($c_banner['is_hidden_before'] && !$c_banner['is_hidden_after']) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 ?>
