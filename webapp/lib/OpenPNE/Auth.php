@@ -134,8 +134,14 @@ class OpenPNE_Auth
                 $this->auth->setAuthData('OPENPNE_URL', OPENPNE_URL);
             }
 
-            if (OPENPNE_SESSION_CHECK_USER_AGENT) {
-                $this->auth->setAuthData('USER_AGENT',$_SERVER['HTTP_USER_AGENT']);
+            if ($this->is_ktai) {
+                if (OPENPNE_SESSION_CHECK_KTAI_USER_AGENT) {
+                    $this->auth->setAuthData('USER_AGENT', $_SERVER['HTTP_USER_AGENT']);
+                }
+            } else {
+                if (OPENPNE_SESSION_CHECK_PC_USER_AGENT) {
+                    $this->auth->setAuthData('USER_AGENT', $_SERVER['HTTP_USER_AGENT']);
+                }
             }
 
             $this->sess_id = session_id();
@@ -275,7 +281,8 @@ class OpenPNE_Auth
     /**
      * checkAuth
      *
-     * PEAR::Auth標準の認証処理に加えて、OPENPNE_URLのチェックもおこなう
+     * PEAR::Auth標準の認証処理に加えて、OPENPNE_URL及び
+     * USER_AGENTのチェックもおこなう
      *
      * @return bool
      * @see PEAR::Auth::checkAuth
@@ -291,10 +298,19 @@ class OpenPNE_Auth
                 return false;
             }
         }
-        if (OPENPNE_SESSION_CHECK_USER_AGENT) {
-            $user_agent = $this->auth->getAuthData('USER_AGENT');
-            if ($user_agent !== $_SERVER['HTTP_USER_AGENT']) {
-                return false;
+        if ($this->is_ktai) {
+            if (OPENPNE_SESSION_CHECK_KTAI_USER_AGENT) {
+                $user_agent = $this->auth->getAuthData('USER_AGENT');
+                if ($user_agent !== $_SERVER['HTTP_USER_AGENT']) {
+                    return false;
+                }
+            }
+        } else {
+            if (OPENPNE_SESSION_CHECK_PC_USER_AGENT) {
+                $user_agent = $this->auth->getAuthData('USER_AGENT');
+                if ($user_agent !== $_SERVER['HTTP_USER_AGENT']) {
+                    return false;
+                }
             }
         }
         return true;
