@@ -29,6 +29,7 @@ class OpenPNE_Auth
     var $is_ktai = false;
     var $is_encrypt_username = false;
     var $is_lowercase_username = false;
+    var $is_check_user_agent = true;
 
     var $expire = 0;
     var $idle = 0;
@@ -65,6 +66,9 @@ class OpenPNE_Auth
         }
         if (isset($config['is_lowercase_username'])) {
             $this->is_lowercase_username = $config['is_lowercase_username'];
+        }
+        if (isset($config['is_check_user_agent'])) {
+            $this->is_check_user_agent = (bool)$config['is_check_user_agent'];
         }
 
         if ($this->is_ktai) {
@@ -134,14 +138,8 @@ class OpenPNE_Auth
                 $this->auth->setAuthData('OPENPNE_URL', OPENPNE_URL);
             }
 
-            if ($this->is_ktai) {
-                if (OPENPNE_SESSION_CHECK_KTAI_USER_AGENT) {
-                    $this->auth->setAuthData('USER_AGENT', $_SERVER['HTTP_USER_AGENT']);
-                }
-            } else {
-                if (OPENPNE_SESSION_CHECK_PC_USER_AGENT) {
-                    $this->auth->setAuthData('USER_AGENT', $_SERVER['HTTP_USER_AGENT']);
-                }
+            if ($this->is_check_user_agent) {
+                $this->auth->setAuthData('USER_AGENT', $_SERVER['HTTP_USER_AGENT']);
             }
 
             $this->sess_id = session_id();
@@ -298,19 +296,10 @@ class OpenPNE_Auth
                 return false;
             }
         }
-        if ($this->is_ktai) {
-            if (OPENPNE_SESSION_CHECK_KTAI_USER_AGENT) {
-                $user_agent = $this->auth->getAuthData('USER_AGENT');
-                if ($user_agent !== $_SERVER['HTTP_USER_AGENT']) {
-                    return false;
-                }
-            }
-        } else {
-            if (OPENPNE_SESSION_CHECK_PC_USER_AGENT) {
-                $user_agent = $this->auth->getAuthData('USER_AGENT');
-                if ($user_agent !== $_SERVER['HTTP_USER_AGENT']) {
-                    return false;
-                }
+        if ($this->is_check_user_agent) {
+            $user_agent = $this->auth->getAuthData('USER_AGENT');
+            if ($user_agent !== $_SERVER['HTTP_USER_AGENT']) {
+                return false;
             }
         }
         return true;
