@@ -404,8 +404,6 @@ function db_member_search_check_profile($profile)
         $c_profile = db_get_row($sql, $params);
         if (!($c_profile && $c_profile['disp_search'])) continue;
 
-        $public_flags = array('public', 'friend', 'private');
-
         switch ($c_profile['form_type']) {
         case "text":
         case "textarea":
