@@ -483,6 +483,17 @@ function get_auth_config($is_ktai = false)
         }
     }
     $config['is_ktai'] = $is_ktai;
+
+    if ($is_ktai) {
+        if (!OPENPNE_SESSION_CHECK_KTAI_USER_AGENT) {
+            $config['is_check_user_agent'] = false;
+        }
+    } else {
+        if (!OPENPNE_SESSION_CHECK_PC_USER_AGENT) {
+            $config['is_check_user_agent'] = false;
+        }
+    }
+
     return $config;
 }
 
