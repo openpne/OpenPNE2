@@ -34,13 +34,10 @@ class admin_do_send_invites extends OpenPNE_Action
                 $mail = str_replace('"', '', $mail);
             }
 
-            // メールアドレスとして正しくない
-            if (!db_common_is_mailaddress($mail)) {
-                continue;
-            }
-
-            if (db_member_is_sns_join4mail_address($mail)) { // 登録済み
+            if (!db_common_is_mailaddress($mail)) { // メールアドレスとして正しくない
                 $errors[] = $mail;
+            } elseif (db_member_is_sns_join4mail_address($mail)) { // 登録済み
+                $registered[] = $mail;
             } elseif (!db_member_is_limit_domain4mail_address($mail)) { // ドメイン制限
                 $limits[] = $mail;
             } elseif (is_ktai_mail_address($mail)) {
@@ -53,6 +50,7 @@ class admin_do_send_invites extends OpenPNE_Action
         if (empty($requests['complete'])) {
             // 確認画面へ
             $_REQUEST['error_mails'] = $errors;
+            $_REQUEST['registered_mails'] = $registered;
             $_REQUEST['pc_mails'] = $pcs;
             $_REQUEST['ktai_mails'] = $ktais;
             $_REQUEST['limit_domain_mails'] = $limits;
