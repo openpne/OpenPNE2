@@ -811,8 +811,8 @@ div.listControl p.listMove a {
 #admin_page_send_invites_confirm p.caution#c02 { padding: 10px 0 0 0;}
 #admin_page_send_invites_confirm dl.invitesAdd dt { padding: 10px 0 0 0;}
 #admin_page_send_invites_confirm dl.invitesAdd dd { padding: 5px 0 10px 15px; color:#333;}
-#admin_page_send_invites_confirm dl.invitesAdd#warning,
-#admin_page_send_invites_confirm dl.invitesAdd#warning dd { color:#ff0000;}
+#admin_page_send_invites_confirm dl.invitesAdd.warning,
+#admin_page_send_invites_confirm dl.invitesAdd.warning dd { color:#ff0000;}
 #admin_page_send_invites_confirm dl.invitesDetail { padding: 5px 0 10px 0;}
 #admin_page_send_invites_confirm dl.invitesDetail dt { margin: 10px 0 5px 0; padding-left: 5px; border-left: 3px #75757A solid;}
 #admin_page_send_invites_confirm dl.invitesDetail dd textarea { width: 600px; height: 190px;}
