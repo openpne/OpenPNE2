@@ -44,9 +44,16 @@ PCからは登録できない設定になっています。<br>
 <div class="caution">※携帯メールアドレスへの招待のみ適用されます。</div>
 ({/if})
 ({/if})
-({if $requests.error_mails})
-<dl class="invitesAdd" id="warning">
+({if $requests.registered_mails})
+<dl class="invitesAdd warning">
 	<dt><strong>以下のメールアドレスは登録済みのため送信されません。</strong></dt>
+	<dd>({foreach from=$requests.registered_mails item=item name=em})<strong>({$item})</strong>({if !$smarty.foreach.em.last})&nbsp;／&nbsp;({/if})({/foreach})</dd>
+</dl>
+({/if})
+
+({if $requests.error_mails})
+<dl class="invitesAdd warning">
+	<dt><strong>不正なメールアドレスです。</strong></dt>
 	<dd>({foreach from=$requests.error_mails item=item name=em})<strong>({$item})</strong>({if !$smarty.foreach.em.last})&nbsp;／&nbsp;({/if})({/foreach})</dd>
 </dl>
 ({/if})
