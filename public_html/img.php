@@ -59,14 +59,14 @@ if (defined('CHECK_IMG_AUTH') && CHECK_IMG_AUTH) {
     }
 
     // ファイル名が module_ または b_ ではじまる場合、認証をおこなうかどうかのチェック
-    list($img_prefix, $img_module) = explode('_', $_GET['filename'], 3);
-    if ($img_prefix == 'module' && $img_module) {
-        $module_config = util_get_module_config($img_module);
+    list($img_prefix, $img_id_number) = explode('_', $_GET['filename'], 3);
+    if ($img_prefix == 'module' && $img_id_number) {
+        $module_config = util_get_module_config($img_id_number);
         if (!isset($module_config['image']['is_auth']) || $module_config['image']['is_auth']) {
             require_once $auth;
         }
     } elseif ($img_prefix == 'b') {
-        if (db_banner_is_after_auth_banner($img_module)) {
+        if (db_banner_is_after_auth_banner($img_id_number)) {
             require_once $auth;
         }
     } else {
