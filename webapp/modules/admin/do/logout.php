@@ -9,6 +9,7 @@ class admin_do_logout extends OpenPNE_Action
 {
     function execute($requests)
     {
+        $GLOBALS['AUTH']->is_admin = true;
         $GLOBALS['AUTH']->logout();
         admin_client_redirect('login');
     }
