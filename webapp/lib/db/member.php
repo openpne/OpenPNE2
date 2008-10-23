@@ -2079,10 +2079,10 @@ function db_member_update_c_member_config($c_member_id, $name, $value)
  * @param string $sess_id 更新する値
  * @return  bool
  */
-function db_member_update_c_member_insert_sess_id($c_member_id, $sess_id) {
+function db_member_update_c_member_secure_insert_sess_id($c_member_id, $sess_id) {
     $data = array('sess_id' => $sess_id);
     $where = array('c_member_id' => intval($c_member_id));
-    return db_update('c_member', $data, $where);
+    return db_update('c_member_secure', $data, $where);
 }
 
 /**
@@ -2091,10 +2091,10 @@ function db_member_update_c_member_insert_sess_id($c_member_id, $sess_id) {
  * @param string $sess_id 更新する行のsess_idの値
  * @return  bool
  */
-function db_member_update_c_member_delete_sess_id($sess_id) {
+function db_member_update_c_member_secure_delete_sess_id($sess_id) {
     $data = array('sess_id' => '');
     $where = array('sess_id' => $sess_id);
-    return db_update('c_member', $data, $where);
+    return db_update('c_member_secure', $data, $where);
 }
 
 /**
@@ -2104,14 +2104,14 @@ function db_member_update_c_member_delete_sess_id($sess_id) {
  * @param string $now_sess_id 現在のセッションID
  * @return  bool
  */
-function db_member_is_one_user_one_session($c_member_id, $now_sess_id)
+function db_member_is_session_per_user($c_member_id, $now_sess_id)
 {
-    $sql = 'SELECT sess_id FROM c_member'
+    $sql = 'SELECT sess_id FROM c_member_secure'
          . ' WHERE c_member_id = ?';
     $param = array($c_member_id);
     $login_sess_id = db_get_one($sql, $param);
     if (!$login_sess_id) {
-        db_member_update_c_member_insert_sess_id($c_member_id, $now_sess_id);
+        db_member_update_c_member_secure_insert_sess_id($c_member_id, $now_sess_id);
         return true;
     }
     if ($login_sess_id === $now_sess_id) {

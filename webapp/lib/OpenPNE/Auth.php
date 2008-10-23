@@ -185,7 +185,7 @@ class OpenPNE_Auth
             $this->auth =& $this->factory();
         }
 
-        db_member_update_c_member_delete_sess_id(session_id());
+        db_member_update_c_member_secure_delete_sess_id(session_id());
         if (isset($_COOKIE[session_name()])) {
             if (!$this->is_ktai) {
                 setcookie(session_name(), '', time() - 3600, $this->cookie_path);
