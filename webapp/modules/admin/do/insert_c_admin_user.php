@@ -18,7 +18,7 @@ class admin_do_insert_c_admin_user extends OpenPNE_Action
         if (db_admin_exists_c_admin_username($requests['username'])) {
             $errors[] = 'そのアカウント名は既に登録されています';
         }
-        if ($requests['password'] != $requests['password2']) {
+        if ($requests['password'] !== $requests['password2']) {
             $errors[] = 'パスワードが一致していません';
         }
         if ($errors) {
