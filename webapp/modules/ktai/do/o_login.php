@@ -92,7 +92,7 @@ class ktai_do_o_login extends OpenPNE_Action
 
         $_SESSION['c_member_id'] = $c_member_id;
         $p['ksid'] = session_id();
-        if (OPENPNE_SESSION_ONE_USER_ONE_SESSION_LOGIN) {
+        if (SESSION_PER_USER) {
             db_member_update_c_member_insert_sess_id($c_member_id, $p['ksid']);
         }
         openpne_redirect($m, $a, $p);
