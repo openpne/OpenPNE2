@@ -204,17 +204,6 @@ function openpne_forward($module, $type = '', $action = '', $errors = array())
         }
     }
 
-    if (SESSION_PER_USER && $GLOBALS['AUTH']) {
-        if ($module == 'pc') {
-            $u = $GLOBALS['AUTH']->uid();
-        } elseif ($module == 'ktai') {
-            $u = $GLOBALS['KTAI_C_MEMBER_ID'];
-        }
-        if (!db_member_is_session_per_user($u, session_id())) {
-            openpne_redirect($module, 'page_o_login');
-        }
-    }
-
     $result = $action_obj->execute($requests);
     if ($result == 'success') {
         send_nocache_headers();

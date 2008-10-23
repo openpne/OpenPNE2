@@ -2098,26 +2098,29 @@ function db_member_update_c_member_secure_delete_sess_id($sess_id) {
 }
 
 /**
- * ログイン時のセッションIDと現在のセッションIDが一致しているかを確認する
+ * ログイン時のセッションIDと現在のセッションIDが一致していないことを確認する
  *
  * @param int $c_member_id
+ * @param bool $is_auth
  * @param string $now_sess_id 現在のセッションID
- * @return  bool
+ * @return bool
  */
-function db_member_is_session_per_user($c_member_id, $now_sess_id)
+function db_member_is_difference_session_per_user($c_member_id, $is_auth, $now_sess_id)
 {
-    $sql = 'SELECT sess_id FROM c_member_secure'
-         . ' WHERE c_member_id = ?';
-    $param = array($c_member_id);
-    $login_sess_id = db_get_one($sql, $param);
-    if (!$login_sess_id) {
-        db_member_update_c_member_secure_insert_sess_id($c_member_id, $now_sess_id);
+    if (SESSION_PER_USER && $is_auth) {
+        $sql = 'SELECT sess_id FROM c_member_secure'
+             . ' WHERE c_member_id = ?';
+        $param = array($c_member_id);
+        $login_sess_id = db_get_one($sql, $param);
+        if (!$login_sess_id) {
+            db_member_update_c_member_secure_insert_sess_id($c_member_id, $now_sess_id);
+            return false;
+        }
+        if ($login_sess_id === $now_sess_id) {
+            return false;
+        }
         return true;
     }
-    if ($login_sess_id === $now_sess_id) {
-        return true;
-    }
-
     return false;
 }
 
