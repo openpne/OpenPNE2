@@ -3445,4 +3445,29 @@ function db_admin_is_receive_any_mail4c_member_id($c_member_id)
     return false;
 }
 
+/**
+ * c_admin_userのsess_idフィールドにセッションIDを新規に追加する
+ *
+ * @param int $c_admin_user_id 更新する行のc_admin_user_id
+ * @param string $sess_id 更新する値
+ * @return bool
+ */
+function db_admin_update_c_admin_user_insert_sess_id($c_admin_user_id, $sess_id) {
+    $data = array('sess_id' => $sess_id);
+    $where = array('c_admin_user_id' => intval($c_admin_user_id));
+    return db_update('c_admin_user', $data, $where);
+}
+
+/**
+ * c_admin_userのsess_idの値を削除する
+ *
+ * @param string $sess_id 更新する行のsess_idの値
+ * @return bool
+ */
+function db_admin_update_c_admin_user_delete_sess_id($sess_id) {
+    $data = array('sess_id' => '');
+    $where = array('sess_id' => $sess_id);
+    return db_update('c_admin_user', $data, $where);
+}
+
 ?>
