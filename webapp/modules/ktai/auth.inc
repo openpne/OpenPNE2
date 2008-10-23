@@ -19,7 +19,8 @@ $auth->setIdle($GLOBALS['OpenPNE']['ktai']['session_idletime']);
 if (!$auth->auth()
     || !($u = db_member_c_member_id4username_encrypted($auth->getUsername(), true))
     || db_member_is_login_rejected($u)
-    || db_member_is_blacklist($u)) {
+    || db_member_is_blacklist($u)
+    || db_member_is_difference_session_per_user($u, $auth, session_id())) {
     $auth->logout();
 
     __logout();
