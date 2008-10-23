@@ -298,7 +298,7 @@ define('OPENPNE_SESSION_CHECK_KTAI_USER_AGENT', true);
 // ログイン時のセッションを1ユーザに対して1セッションに制限する
 // ログイン中に他の端末・ブラウザからログインした場合、それまでのセッションが
 // 無効になりログアウトされます
-define('OPENPNE_SESSION_ONE_USER_ONE_SESSION_LOGIN', false);
+define('SESSION_PER_USER', false);
 
 ///
 // 画像
