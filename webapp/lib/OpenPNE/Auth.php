@@ -27,6 +27,7 @@ class OpenPNE_Auth
     var $storage = 'DB';
     var $options = '';
     var $is_ktai = false;
+    var $is_admin = false;
     var $is_encrypt_username = false;
     var $is_lowercase_username = false;
     var $is_check_user_agent = true;
@@ -185,7 +186,11 @@ class OpenPNE_Auth
             $this->auth =& $this->factory();
         }
 
-        db_member_update_c_member_secure_delete_sess_id(session_id());
+        if ($this->is_admin) {
+            db_admin_update_c_admin_user_delete_sess_id(session_id());
+        } else {
+            db_member_update_c_member_secure_delete_sess_id(session_id());
+        }
         if (isset($_COOKIE[session_name()])) {
             if (!$this->is_ktai) {
                 setcookie(session_name(), '', time() - 3600, $this->cookie_path);
