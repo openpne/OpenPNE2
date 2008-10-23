@@ -168,7 +168,7 @@
 ({if $C_MEMBER_CONFIG.IS_DISPLAY_NEWDIARY_HOME_KTAI})
 <table width="100%">
 <tr><td bgcolor="#({$ktai_color_config.bg_08})">
-<a accesskey="4" name="a4" href="#a4">[i:128]</a><font color="#({$ktai_color_config.color_25})">全体の最新({$WORD_DIARY_HALF})</font><br>
+<a accesskey="4" name="a4" href="#a4">[i:128]</a><font color="#({$ktai_color_config.color_26})">全体の最新({$WORD_DIARY_HALF})</font><br>
 </td></tr>
 ({if $c_diary_list_all})
 ({foreach from=$c_diary_list_all item=item})
