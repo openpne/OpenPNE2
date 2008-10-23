@@ -61,7 +61,7 @@ class pc_do_o_login extends OpenPNE_Action
         }
 
         if (SESSION_PER_USER) {
-            db_member_update_c_member_insert_sess_id($c_member_id, session_id());
+            db_member_update_c_member_secure_insert_sess_id($c_member_id, session_id());
         }
         db_member_do_access($c_member_id);
         db_api_update_token($c_member_id);
