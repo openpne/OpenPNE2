@@ -36,10 +36,8 @@ class pc_page_f_bookmark_add extends OpenPNE_Action
 
         //お気に入り登録済みメンバーか
         if (db_bookmark_is_bookmark($u, $target_c_member_id)) {
-
             $p = array('c_member_id_to' => $target_c_member_id);
             openpne_redirect('pc', 'page_f_bookmark_add_err_already', $p);
-
         }
 
         $this->set('inc_navi', fetch_inc_navi('f', $target_c_member_id));
