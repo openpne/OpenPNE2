@@ -204,7 +204,7 @@ class OpenPNE_Config
             'OPENPNE_SESSION_CHECK_URL' => false,
             'OPENPNE_SESSION_CHECK_PC_USER_AGENT' => false,
             'OPENPNE_SESSION_CHECK_KTAI_USER_AGENT' => true,
-            'OPENPNE_SESSION_ONE_USER_ONE_SESSION_LOGIN' => false,
+            'SESSION_PER_USER' => false,
             'OPENPNE_DASHBOARD_URL' => 'http://ad.pne.jp/dashboard/',
             'OPENPNE_AUTH_MODE' => 'email',
             'IS_SLAVEPNE_EMAIL_REGIST' => true,
