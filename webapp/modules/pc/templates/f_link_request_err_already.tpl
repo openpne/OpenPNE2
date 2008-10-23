@@ -141,3 +141,4 @@
 ({***************************})
 ({ext_include file="inc_layoutcolumn_bottom_270px_165px_175px_720px.tpl"})
 ({ext_include file="inc_footer.tpl"})
+
