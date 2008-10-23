@@ -5,7 +5,7 @@
 <div class="dparts simpleBox"><div class="parts">
 <div class="partsHeading"><h3>お気に入りに追加</h3></div>
 <div class="block">
-<p>({$bookmark_member.nickname}) さんは、既にあなたのお気に入りです。</p>
+<p>({$bookmark_member.nickname}) さんは、お気に入りに追加済みです。</p>
 </div>
 </div></div>
 ({* }}} *})
