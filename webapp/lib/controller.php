@@ -204,7 +204,7 @@ function openpne_forward($module, $type = '', $action = '', $errors = array())
         }
     }
 
-    if (OPENPNE_SESSION_ONE_USER_ONE_SESSION_LOGIN && $GLOBALS['AUTH']) {
+    if (SESSION_PER_USER && $GLOBALS['AUTH']) {
         if ($module == 'pc') {
             $u = $GLOBALS['AUTH']->uid();
         } elseif ($module == 'ktai') {
