@@ -25,7 +25,7 @@ function db_admin_user_exists()
  * @param bool $is_admin 'admin'モジュールかどうか
  * @return bool
  */
-function db_etc_is_difference_session_per_user($user_id, $is_auth, $now_sess_id, $is_admin = false)
+function db_etc_is_check_session_per_user($user_id, $is_auth, $now_sess_id, $is_admin = false)
 {
     $table_name = 'c_member_secure';
     $field_name = 'c_member_id';
@@ -38,20 +38,11 @@ function db_etc_is_difference_session_per_user($user_id, $is_auth, $now_sess_id,
              . ' WHERE ' .$field_name . ' = ?';
         $param = array($user_id);
         $login_sess_id = db_get_one($sql, $param);
-        if (!$login_sess_id) {
-            if ($is_admin) {
-                db_member_update_c_admin_user_insert_sess_id($user_id, $now_sess_id);
-            } else {
-                db_member_update_c_member_secure_insert_sess_id($user_id, $now_sess_id);
-            }
+        if ($login_sess_id !== $now_sess_id) {
             return false;
         }
-        if ($login_sess_id === $now_sess_id) {
-            return false;
-        }
-        return true;
     }
-    return false;
+    return true;
 }
 
 /**
