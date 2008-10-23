@@ -358,9 +358,9 @@
 <div class="padding_s">
 
 ({if $kind == "ashiato" || $kind == "friend"})
-({$item.c_member.profile.self_intro.value|t_truncate:36:"":3|default:"&nbsp;"})
+({$item.c_member.profile.self_intro.value|t_truncate:140:""|default:"&nbsp;"})
 ({else})
-({$item.c_commu.info|t_truncate:36:"":3|default:"&nbsp;"})
+({$item.c_commu.info|t_truncate:140:""|default:"&nbsp;"})
 ({/if})
 
 </div>
