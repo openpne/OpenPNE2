@@ -56,6 +56,7 @@ $GLOBALS['_OPENPNE_MAINTENANCE_MODULES'] = array('admin', 'portal');
 $GLOBALS['_OPENPNE_MAINTENANCE_EXCLUDED_ACTION'] = array(
 'portal' => array(
     'page_user_top',
+    'portal_user_top_ktai',
 ));
 
 // Crypt_Blowfish ライブラリの旧バージョン使用設定
