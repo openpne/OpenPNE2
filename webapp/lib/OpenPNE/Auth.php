@@ -56,6 +56,9 @@ class OpenPNE_Auth
         if (isset($config['is_ktai'])) {
             $this->is_ktai = (bool)$config['is_ktai'];
         }
+        if (isset($config['is_admin'])) {
+            $this->is_admin = (bool)$config['is_admin'];
+        }
         if (isset($config['storage'])) {
             $this->storage = $config['storage'];
         }
