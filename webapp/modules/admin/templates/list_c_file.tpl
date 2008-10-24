@@ -60,7 +60,7 @@
 </td>
 ({****})
 <td>
-<a href="./?m=({$module_name})&amp;a=do_({$hash_tbl->hash('file_download')})&amp;filename=({$item.filename})&amp;sessid=({$PHPSESSID})">
+<a href="./?m=({$module_name})&amp;a=do_({$hash_tbl->hash('file_download','do')})&amp;filename=({$item.filename})&amp;sessid=({$PHPSESSID})">
 ({$item.filename})
 </a>
 </td>
