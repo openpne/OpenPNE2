@@ -20,7 +20,7 @@ if (!$auth->auth()
     || !($u = db_member_c_member_id4username_encrypted($auth->getUsername(), true))
     || db_member_is_login_rejected($u)
     || db_member_is_blacklist($u)
-    || !db_etc_is_check_session_per_user($u, $auth, session_id())) {
+    || !db_member_is_one_session_per_user($u, session_id())) {
     $auth->logout();
 
     __logout();
