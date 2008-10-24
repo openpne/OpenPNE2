@@ -25,7 +25,8 @@
 <input type="image" src="({t_img_url_skin filename=button_search_1})" value="diary" alt="日記" name="diary" class="button" style="width:62px;height:20px;border:none;">
 <input type="image" src="({t_img_url_skin filename=button_search_2})" value="community" alt="コミュニティ" name="community" class="button" style="width:62px;height:20px;border:none;">
 <input type="image" src="({t_img_url_skin filename=button_search_4})" value="message" alt="メッセージ" name="message" class="button" style="width:62px;height:20px;border:none;">
-<input type="image" src="./skin/default/img/biz/button_search_4.gif" value="group" alt="グループ" name="group" class="button" style="width:62px;height:20px;border:none;">
+<input type="image" src="({t_img_url_skin filename=button_search_5})" value="group" alt="グループ" name="group" class="button" style="width:62px;height:20px;border:none;">
+
 ({if $smarty.const.USE_EXTRA_SERVICE})
 <input type="image" src="({t_img_url_skin filename=button_search_3})" value="web" alt="web" name="web" class="button" style="width:62px;height:20px;border:none;">
 ({/if})
