@@ -81,11 +81,6 @@ function openpne_forward($module, $type = '', $action = '', $errors = array())
     if (in_array($module, (array)$GLOBALS['_OPENPNE_DISABLE_MODULES'])) {
         openpne_display_error('モジュールが無効になっています', true);
     }
-    // maintenace mode
-    if (OPENPNE_UNDER_MAINTENANCE &&
-        !in_array($module, (array)$GLOBALS['_OPENPNE_MAINTENANCE_MODULES'])) {
-        openpne_display_error();
-    }
 
     // init
     if ($init = openpne_ext_search("{$module}/init.inc")) {
@@ -116,6 +111,14 @@ function openpne_forward($module, $type = '', $action = '', $errors = array())
     }
     $action_obj = new $class_name();
     $GLOBALS['__Framework']['current_action'] = $action;
+
+    // maintenace mode
+    if (OPENPNE_UNDER_MAINTENANCE) {
+        if (!in_array($module, (array)$GLOBALS['_OPENPNE_MAINTENANCE_MODULES'])
+          || in_array($type . '_' . $action, (array)$GLOBALS['_OPENPNE_MAINTENANCE_EXCLUDED_ACTION'][$module])) {
+            openpne_display_error();
+        }
+    }
 
     // auth
     if ($GLOBALS['__Framework']['is_secure'] = $action_obj->isSecure()) {
