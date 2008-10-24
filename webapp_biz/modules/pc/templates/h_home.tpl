@@ -11,7 +11,7 @@
 <li><input type="image" class="input_image" src="({t_img_url_skin filename=button_search_1})" value="diary" alt="({$WORD_DIARY})" name="diary" /></li>
 <li><input type="image" class="input_image" src="({t_img_url_skin filename=button_search_2})" value="community" alt="({$WORD_COMMUNITY})" name="community" /></li>
 <li><input type="image" class="input_image" src="({t_img_url_skin filename=button_search_4})" value="message" alt="メッセージ" name="message" /></li>
-<li><input type="image" class="input_image" src="./skin/default/img/biz/button_search_4.gif" value="group" alt="グループ" name="group" /></li>
+<li><input type="image" class="input_image" src="({t_img_url_skin filename=button_search_5})" value="group" alt="グループ" name="group" /></li>
 ({if $smarty.const.USE_EXTRA_SERVICE})
 <li><input type="image" class="input_image" src="({t_img_url_skin filename=button_search_3})" value="web" alt="web" name="web" /></li>
 ({/if})
