@@ -75,7 +75,7 @@
 <tr>
 <th>ファイル</th>
 <td class="textbody">
-<a href="./?m=({$module_name})&amp;a=do_({$hash_tbl->hash('file_download','do')})&amp;filename=({$item.filename})&amp;sessid=({$PHPSESSID})">
+<a href="./?m=({$module_name})&amp;a=do_({$hash_tbl->hash('file_download','do')})&amp;filename=({$topic.filename})&amp;sessid=({$PHPSESSID})">
 ({$topic.original_filename})
 </a>
 </td>
