@@ -7,6 +7,14 @@
 // 招待メールドメイン制限設定の更新
 class admin_do_update_limit_domain extends OpenPNE_Action
 {
+
+    function handleError($msg)
+    {
+        $_REQUEST['msg'] = array_shift($msg);
+        openpne_forward(ADMIN_MODULE_NAME, 'page', 'limit_domain');
+        exit;
+    }
+
     function execute($requests)
     {
         $config =& OpenPNE_Config::getInstance();
