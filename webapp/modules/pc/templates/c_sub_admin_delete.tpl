@@ -17,6 +17,8 @@
 </tr><tr>
 <th>最終ログイン</th>
 <td class="operation"><span class="text">({$member.last_login})</span>
+</td>
+</tr></table>
 <div class="operation">
 ({t_form_block m=pc a=do_c_sub_admin_delete})
 <input type="hidden" name="target_c_member_id" value="({$member.c_member_id})" />
@@ -28,10 +30,7 @@
 <input type="submit" class="input_submit" value="キャンセル" />
 ({/t_form_block})
 </div>
-</td>
-</tr></table></div></div>
-</div>
-
+</div></div>
 </div></div>
 ({* }}} *})
 
