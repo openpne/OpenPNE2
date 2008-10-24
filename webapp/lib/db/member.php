@@ -2097,4 +2097,25 @@ function db_member_update_c_member_secure_delete_sess_id($sess_id) {
     return db_update('c_member_secure', $data, $where);
 }
 
+/**
+ * ログイン時のセッションIDと現在のセッションIDが一致していることを確認
+ *
+ * @param int $c_member_id
+ * @param string $now_sess_id 現在のセッションID
+ * @return bool
+ */
+function db_member_is_one_session_per_user($c_member_id, $now_sess_id)
+{
+    if (OPENPNE_ONE_SESSION_PER_USER) {
+        $sql = 'SELECT sess_id FROM c_member_secure'
+             . ' WHERE c_member_id = ?';
+        $param = array($c_member_id);
+        $login_sess_id = db_get_one($sql, $param);
+        if ($login_sess_id !== $now_sess_id) {
+            return false;
+        }
+    }
+    return true;
+}
+
 ?>
