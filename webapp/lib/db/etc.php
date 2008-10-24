@@ -17,35 +17,6 @@ function db_admin_user_exists()
 }
 
 /**
- * ログイン時のセッションIDと現在のセッションIDが一致していないことを確認する
- *
- * @param int $user_id 'admin'モジュールの場合は'c_admin_user_id'、それ以外の場合は'c_member_id'を表す。
- * @param bool $is_auth 認証済みかどうか
- * @param string $now_sess_id 現在のセッションID
- * @param bool $is_admin 'admin'モジュールかどうか
- * @return bool
- */
-function db_etc_is_check_session_per_user($user_id, $is_auth, $now_sess_id, $is_admin = false)
-{
-    $table_name = 'c_member_secure';
-    $field_name = 'c_member_id';
-    if ($is_admin) {
-        $table_name = 'c_admin_user';
-        $field_name = 'c_admin_user_id';
-    }
-    if (SESSION_PER_USER && $is_auth) {
-        $sql = 'SELECT sess_id FROM ' . $table_name
-             . ' WHERE ' .$field_name . ' = ?';
-        $param = array($user_id);
-        $login_sess_id = db_get_one($sql, $param);
-        if ($login_sess_id !== $now_sess_id) {
-            return false;
-        }
-    }
-    return true;
-}
-
-/**
  * 配色設定を取得
  *
  * @param int $c_config_color_id
