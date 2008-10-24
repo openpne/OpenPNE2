@@ -9,6 +9,11 @@ class portal_page_portal_user_top_ktai extends OpenPNE_Action
 
     function execute($requests)
     {
+        // メンテナンスモードの時は常にメンテナンス画面を表示
+        if (OPENPNE_UNDER_MAINTENANCE) {
+            openpne_display_error();
+        }
+
         $use_portal = db_portal_config('USE_PORTAL_KTAI');
         if (!$use_portal['value']) {
             openpne_redirect('ktai');
