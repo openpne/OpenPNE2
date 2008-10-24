@@ -48,7 +48,15 @@ define('OPENPNE_UNDER_MAINTENANCE', false);
 define('OPENPNE_MAINTENANCE_TEXT', '');
 
 // メンテナンス中でも表示するモジュール名
-$GLOBALS['_OPENPNE_MAINTENANCE_MODULES'] = array('admin');
+$GLOBALS['_OPENPNE_MAINTENANCE_MODULES'] = array('admin', 'portal');
+
+// メンテナンス画面を表示するアクションの個別登録
+// 「メンテナンス中でも表示するモジュール名」に登録されているモジュールでも、
+// ここで登録したアクションはメンテナンス画面が表示されます
+$GLOBALS['_OPENPNE_MAINTENANCE_EXCLUDED_ACTION'] = array(
+'portal' => array(
+    'page_user_top',
+));
 
 // Crypt_Blowfish ライブラリの旧バージョン使用設定
 // 2.2以前からのアップグレードでログインできないなどの
