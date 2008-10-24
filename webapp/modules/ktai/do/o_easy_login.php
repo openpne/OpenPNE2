@@ -57,6 +57,10 @@ class ktai_do_o_easy_login extends OpenPNE_Action
         $auth->auth->setAuth($username);
         $auth->auth->setAuthData('OPENPNE_URL', OPENPNE_URL);
 
+        if (OPENPNE_ONE_SESSION_PER_USER) {
+            db_member_update_c_member_secure_insert_sess_id($c_member_id, session_id());
+        }
+
         if (db_member_is_login_rejected($c_member_id)) {
             ktai_display_error('ﾛｸﾞｲﾝできませんでした。');
         }
@@ -88,9 +92,6 @@ class ktai_do_o_easy_login extends OpenPNE_Action
 
         $_SESSION['c_member_id'] = $c_member_id;
         $p['ksid'] = session_id();
-        if (SESSION_PER_USER) {
-            db_member_update_c_member_secure_insert_sess_id($c_member_id, $p['ksid']);
-        }
 
         openpne_redirect($m, $a, $p);
     }

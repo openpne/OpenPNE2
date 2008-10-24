@@ -8,7 +8,7 @@ $auth->setIdle($GLOBALS['OpenPNE']['admin']['session_idletime']);
 
 if (   !$auth->auth()
     || !($uid = db_admin_c_admin_user_id4username($auth->getUsername()))
-    || !db_etc_is_check_session_per_user($uid, $auth->auth(), session_id(), true)){
+    || !db_admin_is_one_session_per_user($uid, session_id())) {
     $auth->logout();
     admin_client_redirect('login');
 }

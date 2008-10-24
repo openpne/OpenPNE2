@@ -34,7 +34,7 @@ class admin_do_login extends OpenPNE_Action
         if (!$auth->login($requests['is_save'])) {
             $this->_fail_login();
         }
-        if (SESSION_PER_USER) {
+        if (OPENPNE_ONE_SESSION_PER_USER) {
             $uid = db_admin_c_admin_user_id4username($auth->getUsername());
             db_admin_update_c_admin_user_insert_sess_id($uid, session_id());
         }
