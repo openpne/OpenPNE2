@@ -56,6 +56,7 @@ class ktai_do_o_easy_login extends OpenPNE_Action
         }
         $auth->auth->setAuth($username);
         $auth->auth->setAuthData('OPENPNE_URL', OPENPNE_URL);
+        $auth->auth->setAuthData('USER_AGENT', $_SERVER['HTTP_USER_AGENT']);
 
         if (OPENPNE_ONE_SESSION_PER_USER) {
             db_member_update_c_member_secure_insert_sess_id($c_member_id, session_id());
