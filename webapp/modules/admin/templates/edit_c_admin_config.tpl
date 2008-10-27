@@ -365,7 +365,7 @@
 <div class="contents">
 <p class="info">通常のログインページ以外の外部ログインページを設定する場合は、以下のHTMLを使ってログイン用フォームを作成してください。</p>
 ({capture name=html_form})
-<form action="({$smarty.const.OPENPNE_URL})" method="post">
+<form action="({t_url _html=0 _absolute=1})" method="post">
 <input type="hidden" name="m" value="pc" />
 <input type="hidden" name="a" value="do_o_login" />
 <dl class="sampleHtml">
