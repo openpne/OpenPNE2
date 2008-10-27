@@ -53,8 +53,15 @@ PCからは登録できない設定になっています。<br>
 
 ({if $requests.error_mails})
 <dl class="invitesAdd warning">
-	<dt><strong>不正なメールアドレスです。</strong></dt>
+	<dt><strong>以下のメールアドレスは形式が正しくありません。</strong></dt>
 	<dd>({foreach from=$requests.error_mails item=item name=em})<strong>({$item})</strong>({if !$smarty.foreach.em.last})&nbsp;／&nbsp;({/if})({/foreach})</dd>
+</dl>
+({/if})
+
+({if $requests.limit_domain_mails})
+<dl class="invitesAdd warning">
+	<dt><strong>以下のメールアドレスは招待メールドメインに設定されていません。</strong></dt>
+	<dd>({foreach from=$requests.limit_domain_mails item=item name=em})<strong>({$item})</strong>({if !$smarty.foreach.em.last})&nbsp;／&nbsp;({/if})({/foreach})</dd>
 </dl>
 ({/if})
 
