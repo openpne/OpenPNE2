@@ -424,7 +424,7 @@
 </form>({/capture})
 
 ({capture name=pc_html_password})
-<a href="({t_url _html=0 _absolute=1 m=pc a=page_o_password_query})">パスワードを忘れた方はこちらへ</a>({/capture})
+<a href="({t_url _html=0 _absolute=1 m=pc a=page_o_help_login_error})">ログインできない方はこちら</a>({/capture})
 
 ({capture name=ktai_html_password})
 <a href="({t_url _html=0 _absolute=1 m=ktai a=page_o_password_query})">&gt;&gt;ﾊﾟｽﾜｰﾄﾞを忘れた方</a>({/capture})
@@ -440,6 +440,9 @@
 ※かならず利用規約に同意してから登録をおこなってください。<br>
 ※ﾄﾞﾒｲﾝ指定受信を設定されている方は、「({$smarty.const.ADMIN_EMAIL})」からのﾒｰﾙを受信できるように指定してください。({/capture})
 
+({capture name=pc_html_regist_pc_mail})
+<a href="({t_url _html=0 _absolute=1 m=pc a=page_o_regist_pc_address})">PCメールアドレス登録</a>({/capture})
+
 <dl class="sampleHtml">
 <dt><strong class="item">PC版ログインフォーム</strong></dt>
 <dd><textarea cols="84" rows="14" readonly="readonly">({$smarty.capture.pc_html_form})</textarea></dd>
@@ -447,7 +450,7 @@
 
 ({if $smarty.const.OPENPNE_AUTH_MODE !== 'slavepne'})
 <dl class="sampleHtml">
-<dt><strong class="item">PC版パスワード再発行ページへのリンク</strong></dt>
+<dt><strong class="item">PC版パスワード再発行ページ・PCメールアドレス登録ページへのリンク</strong></dt>
 <dd><textarea cols="84" rows="3" readonly="readonly">({$smarty.capture.pc_html_password})</textarea></dd>
 </dl>
 
@@ -458,6 +461,11 @@
 </dl>
 ({/if})
 ({/if})
+
+<dl class="sampleHtml">
+<dt><strong class="item">PC版メールアドレス登録ページへのリンク</strong></dt>
+<dd><textarea cols="84" rows="3" readonly="readonly">({$smarty.capture.pc_html_regist_pc_mail})</textarea></dd>
+</dl>
 
 <dl class="sampleHtml">
 <dt><strong class="item">携帯版ログインフォーム</strong></dt>
