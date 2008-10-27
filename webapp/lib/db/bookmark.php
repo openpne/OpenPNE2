@@ -73,7 +73,7 @@ function db_bookmark_diary_list($c_member_id, $limit)
     }
     $ids = implode(',', array_map('intval', $bookmarks));
 
-    $sql = 'SELECT c_diary.* FROM c_diary, c_member WHERE c_diary.c_member_id IN ('.$ids.') AND ((c_diary.public_flag = \'public\') OR (c_diary.public_flag = \'default\' AND c_member.public_flag_diary = \'public\')) AND c_diary.c_member_id=c_member.c_member_id ORDER BY r_datetime DESC';
+    $sql = 'SELECT c_diary.* FROM c_diary,c_member WHERE c_diary.c_member_id IN ('.$ids.') AND c_diary.public_flag = \'public\' AND c_diary.c_member_id=c_member.c_member_id ORDER BY r_datetime DESC';
 
     $diary_list = db_get_all_limit($sql, 0, intval($limit));
 
@@ -117,7 +117,7 @@ function db_bookmark_diary_list_with_pager($c_member_id, $page_size, $page)
     }
     $ids = implode(',', array_map('intval', $bookmarks));
 
-    $sql = 'SELECT c_diary.* FROM c_diary, c_member WHERE c_diary.c_member_id IN ('.$ids.') AND ((c_diary.public_flag = \'public\') OR (c_diary.public_flag = \'default\' AND c_member.public_flag_diary = \'public\')) AND c_diary.c_member_id=c_member.c_member_id ORDER BY r_datetime DESC';
+    $sql = 'SELECT c_diary.* FROM c_diary, c_member WHERE c_diary.c_member_id IN ('.$ids.') AND c_diary.public_flag = \'public\' AND c_diary.c_member_id=c_member.c_member_id ORDER BY r_datetime DESC';
 
     $diary_list = db_get_all_page($sql, intval($page), intval($page_size));
     foreach ($diary_list as $key => $value) {
