@@ -282,7 +282,7 @@
 
 <div class="padding_s">
 
-({$diary.body|t_truncate:156:""})
+({$diary.body|t_truncate:36:"":3})
 
 </div>
 
