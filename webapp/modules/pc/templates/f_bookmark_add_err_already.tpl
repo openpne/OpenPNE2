@@ -86,30 +86,7 @@
 <td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({*********})
-<tr>
-<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-<td class="bg_05" align="left" valign="middle">
 
-<div class="padding_s">
-
-送信先
-
-</div>
-
-</td>
-<td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-<td class="bg_02" align="left" valign="middle">
-
-<div class="padding_s">
-
-<a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$bookmark_member.c_member_id})">({$bookmark_member.nickname})</a>
-
-</div>
-
-</td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-</tr>
-({*********})
 <tr>
 <td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
@@ -120,7 +97,7 @@
 ({*ここから：footer*})
 <!-- 無し -->
 ({*ここまで：footer*})
-<!-- *ここまで：フレンドリストに追加＞＞内容* -->
+<!-- *ここまで：お気に入りに追加＞＞内容* -->
 </td>
 <td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
@@ -130,7 +107,7 @@
 <td class="bg_00"><img src="./skin/dummy.gif" alt="square" class="square"></td>
 </tr>
 </table>
-<!-- ******ここまで：フレンドリストに追加****** -->
+<!-- ******ここまで：お気に入りに追加****** -->
 <!-- ******************************************** -->
 
 <img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
