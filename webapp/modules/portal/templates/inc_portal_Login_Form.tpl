@@ -13,7 +13,8 @@
            <div id="passwordQueryArea"><a href="({$smarty.const.SLAVEPNE_PASSWORD_QUERY_URL_PC})">&gt;パスワードを忘れた方はこちらへ</a></div>
            ({/if})
            ({else})
-           <div id="passwordQueryArea"><a href="({t_url m=pc a=page_o_password_query})">&gt;パスワードを忘れた方はこちらへ</a></div>
+           <div id="passwordQueryArea"><a href="({t_url m=pc a=page_o_help_login_error})">&gt;ログインできない方はこちら</a></div>
+           <div id="pcAddressRegistArea"><a href="({t_url m=pc a=page_o_regist_pc_address})">&gt;PCメールアドレス登録</a></div>
            ({/if})
            <div id="buttonLoginArea"><button type="submit" tabindex="4" id="buttonLogin">ログイン</button></div>
            </form>
