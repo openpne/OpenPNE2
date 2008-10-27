@@ -9,7 +9,7 @@ class admin_page_blacklist_add_confirm extends OpenPNE_Action
     function handleError($errors)
     {
         $tail = array('info' => $this->requests['info'], 'easy_access_id' => $this->requests['easy_access_id']);
-        admin_client_redirect('blacklist_add', array_shift($errors), $tail);
+        admin_client_redirect('blacklist_add', array_shift($errors));
     }
 
     function execute($requests)
