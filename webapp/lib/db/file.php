@@ -83,8 +83,9 @@ function db_file_c_file4filename($filename)
     $params = array($filename);
     
     if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
-        $lst = db_get_row($sql, $params);
-        $lst['bin'] = base64_decode($lst['bin']);
+        if ($lst = db_get_row($sql, $params)) {
+            $lst['bin'] = base64_decode($lst['bin']);
+        }
         return $lst;
     } else {
         return db_get_row($sql, $params);
