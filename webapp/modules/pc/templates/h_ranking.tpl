@@ -92,7 +92,7 @@
 ({if $kind == "ashiato" || $kind == "friend"})
 <tr>
 <th>自己紹介</th>
-<td>({$item.c_member.profile.self_intro.value|t_truncate:140:""})</td>
+<td>({$item.c_member.profile.self_intro.value|t_truncate:36:"":3})</td>
 </tr>
 ({elseif $kind == "com_member" || $kind == "com_comment"})
 <tr>
@@ -105,7 +105,7 @@
 </tr>
 <tr>
 <th>説明文</th>
-<td>({$item.c_commu.info|t_truncate:140:""})</td>
+<td>({$item.c_commu.info|t_truncate:36:"":3})</td>
 </tr>
 ({/if})
 </table>
