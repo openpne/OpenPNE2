@@ -93,7 +93,7 @@
 </tr>
 <tr class="cell09">
 <th colspan="2">AmazonアソシエイトID</th>
-<td><input class="basic" name="AMAZON_AFFID" type="text" value="({$smarty.const.AMAZON_AFFID})" size="30" /><br /><span class="caution">※空にするとレビュー機能が正常に動作しません</span></td>
+<td><input class="basic" name="AMAZON_AFFID" type="text" value="({$smarty.const.AMAZON_AFFID})" size="30" /></td>
 </tr>
 <tr class="cell10">
 <th colspan="2">外部ログインページURL</th>
