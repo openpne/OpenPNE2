@@ -42,7 +42,6 @@ function init_pc_page(&$smarty)
     $smarty->assign('INC_HEADER_color_config', util_get_color_config());
     $smarty->assign('INC_HEADER_top_banner', db_banner_get_top_banner($is_secure));
     $smarty->assign('INC_HEADER_page_name', $GLOBALS['__Framework']['current_action']);
-
     $smarty->assign('INC_HEADER_top_banner_html_before', p_common_c_siteadmin4target_pagename('top_banner_html_before'));
     $smarty->assign('INC_HEADER_top_banner_html_after', p_common_c_siteadmin4target_pagename('top_banner_html_after'));
 
