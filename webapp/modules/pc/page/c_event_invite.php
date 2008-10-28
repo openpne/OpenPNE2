@@ -30,7 +30,7 @@ class pc_page_c_event_invite extends OpenPNE_Action
         $this->set("c_commu_id", $c_commu_id);
         $this->set("c_commu_topic_id", $c_commu_topic_id);
         //フレンドリストをアサインする
-        $this->set("c_friend_list", db_friend_c_friend_list4c_member_id($u));
+        $this->set("c_friend_list", db_friend_c_friend_list4c_member_id2($u));
 
         return 'success';
     }
