@@ -57,40 +57,6 @@
 <td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({*********})
-<tr>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-<td style="width:150px;" class="bg_05" align="left" valign="middle">
-
-<div class="padding_s">
-
-写真
-
-</div>
-
-</td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-<td style="width:413px;" class="bg_02" align="left" valign="middle">
-
-<div class="padding_s">
-
-<a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$bookmark_member.c_member_id})">
-<img src="({t_img_url filename=$bookmark_member.image_filename w=76 h=76 noimg=no_image})" class="pict"></a>
-
-</div>
-
-</td>
-<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-</tr>
-({*********})
-<tr>
-<td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-</tr>
-({*********})
-
-<tr>
-<td style="height:1px;" class="bg_01" colspan="5"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-</tr>
-({*********})
 </table>
 <!-- ここまで：主内容 -->
 ({*ここまで：body*})
