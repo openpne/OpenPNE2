@@ -153,8 +153,6 @@
 <!-- ******ここまで：コミュニティ検索****** -->
 <!-- ************************************ -->
 
-({if $c_commu_search_list})
-
 <img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 <!-- ************************************ -->
@@ -189,6 +187,7 @@
 ({*ここまで：header*})
 ({*ここから：body*})
 <!-- ここから：主内容 -->
+({if $c_commu_search_list})
 ({if $start_num != $end_num})
 <!-- ここから：主内容＞＞コミュニティ一覧件数表示タブ -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:634px;">

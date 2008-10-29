@@ -109,7 +109,6 @@
 
 <img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
-({if $search_result})
 <!-- ************************************ -->
 <!-- ******ここから：検索結果****** -->
 <table border="0" cellspacing="0" cellpadding="0" style="width:650px;margin:0px auto;" class="border_07">
@@ -127,11 +126,18 @@
 <table border="0" cellspacing="0" cellpadding="0" style="width:636px;" class="border_01">
 <tr>
 <td style="width:36px;" class="bg_06"><img src="({t_img_url_skin filename=content_header_1})" style="width:30px;height:20px;" class="dummy"></td>
-<td style="width:598px;padding:2px 0px;" class="bg_06"><span class="c_00"><span class="b_b">({$keyword})の検索結果</span>&nbsp;&nbsp;***&nbsp;<span class="b_b">({$total_num})件</span>&nbsp;が該当しました。</span></td>
+<td style="width:598px;padding:2px 0px;" class="bg_06"><span class="c_00"><span class="b_b">({$keyword})の検索結果</span>&nbsp;&nbsp;***&nbsp;<span class="b_b">
+({if $total_num})
+    ({$total_num})
+({else})
+    0
+({/if})
+件</span>&nbsp;が該当しました。</span></td>
 </tr>
 </table>
 <!-- ここまで：小タイトル -->
 <!-- ここから：次前表示上段 -->
+({ if $search_result })
 <table border="0" cellspacing="0" cellpadding="0" style="width:636px;">
 ({*********})
 <tr>
@@ -321,6 +327,12 @@
 </table>
 <!-- ******ここまで：検索結果****** -->
 <!-- ************************************ -->
+({else})
+
+<img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
+
+</table>
+
 ({/if})
 
 <img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
