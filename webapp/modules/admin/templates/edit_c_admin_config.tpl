@@ -379,27 +379,19 @@
 </form>
 ({/capture})
 
+({capture name=pc_html_password})
+<a href="({t_url _html=0 _absolute=1 m=pc a=page_o_help_login_error})">ログインできない方はこちら</a>({/capture})
+
 <dl class="sampleHtml">
 <dt><strong class="item">ログインフォーム</strong></dt>
 <dd><textarea cols="84" rows="14" readonly="readonly">({$smarty.capture.html_form})</textarea></dd>
 </dl>
 
-({capture name=html_password})
-<a href="({t_url _html=0 _absolute=1 m=pc a=page_o_password_query})">パスワードを忘れた方はこちらへ</a>({/capture})
-
+({if !$smarty.const.IS_SLAVEPNE})
 <dl class="sampleHtml">
-<dt><strong class="item">パスワード再発行ページへのリンク</strong></dt>
-<dd><textarea cols="84" rows="3" readonly="readonly">({$smarty.capture.html_password})</textarea></dd>
+<dt><strong class="item">PC版パスワード再発行ページ・PCメールアドレス登録ページへのリンク</strong></dt>
+<dd><textarea cols="84" rows="3" readonly="readonly">({$smarty.capture.pc_html_password})</textarea></dd>
 </dl>
-
-({if !$smarty.const.IS_CLOSED_SNS})
-({capture name=html_regist})
-<a href="({t_url _html=0 _absolute=1 m=pc a=page_o_public_invite})">新規登録</a>({/capture})
-
-<dl class="sampleHtml">
-<dt><strong class="item">新規登録ページへのリンク</strong></dt>
-<dd><textarea cols="84" rows="3" readonly="readonly">({$smarty.capture.html_regist})</textarea></dd>
-</dl>
-
 ({/if})
+
 ({$inc_footer|smarty:nodefaults})

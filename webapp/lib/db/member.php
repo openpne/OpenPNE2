@@ -1962,4 +1962,11 @@ function db_member_easy_access_id_is_blacklist($easy_access_id, $c_blacklist_id 
     return (bool)db_get_one($sql, $param);
 }
 
+function db_member_is_pc_address_registered($c_member_id)
+{
+    $sql = 'SELECT pc_address FROM c_member_secure WHERE c_member_id = ?';
+    $params = array(intval($c_member_id));
+    return (bool)db_get_one($sql, $params);
+}
+
 ?>
