@@ -372,7 +372,7 @@ function biz_getGroupList($keyword = '', $page = 0, $page_size = 20)
 {
 
     //keywordあり
-    if ($keyword) {
+    if ($keyword !== '') {
         $where = ' WHERE info LIKE ? OR name LIKE ? ORDER BY biz_group_id';
         $sql = 'SELECT * FROM biz_group'. $where;
 
