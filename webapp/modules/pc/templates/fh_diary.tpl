@@ -179,7 +179,7 @@
 <dt>({$item.r_datetime|date_format:"%Y年<br />%m月%d日<br />%H:%M"})({if $type == "h"})<br /><input type="checkbox" class="input_checkbox" name="target_c_diary_comment_id[]" value="({$item.c_diary_comment_id})" />({/if})</dt>
 <dd>
 <div class="title">
-<p class="heading"><strong>({$item.number})</strong>:({if $item.nickname}) <a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})">({$item.nickname})</a>({/if})({if $type == 'f' && $item.c_member_id == $member.c_member_id}) <a href="({t_url m=pc a=page_fh_delete_comment})&amp;target_c_diary_id=({$target_diary.c_diary_id})&amp;target_c_diary_comment_id=({$item.c_diary_comment_id})">削除</a>({/if})</p>
+<p class="heading"><strong>({$item.number})</strong>:({if $item.nickname !== ''}) <a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})">({$item.nickname})</a>({/if})({if $type == 'f' && $item.c_member_id == $member.c_member_id}) <a href="({t_url m=pc a=page_fh_delete_comment})&amp;target_c_diary_id=({$target_diary.c_diary_id})&amp;target_c_diary_comment_id=({$item.c_diary_comment_id})">削除</a>({/if})</p>
 </div>
 <div class="body">
 ({if $item.image_filename_1 || $item.image_filename_2 || $item.image_filename_3})
