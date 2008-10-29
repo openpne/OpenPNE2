@@ -64,7 +64,7 @@ class pc_page_fh_diary_list extends OpenPNE_Action
             $this->set('all', 1);
 
             //検索する場合
-            if ($keyword) {
+            if ($keyword !== '') {
                 $list_set = p_h_diary_list_all_search_c_diary4c_diary($keyword, $page_size, $page, $u);
             } else {
                 $list_set = p_fh_diary_list_diary_list4c_member_id($target_c_member_id, $page_size, $page, $u);
