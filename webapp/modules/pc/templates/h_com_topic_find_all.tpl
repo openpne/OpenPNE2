@@ -62,6 +62,15 @@
 
 </div></div>
 ({* }}} *})
+({else})
+({* {{{ simpleBox *})
+<div class="dparts simpleBox"><div class="parts">
+<div class="partsHeading"><h3>トピック一覧</h3></div>
+<div class="block">
+<p>該当するトピックはありません。</p>
+</div>
+</div></div>
+({* }}} *})
 ({/if})
 
 </div><!-- Center -->
