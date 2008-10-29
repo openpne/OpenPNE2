@@ -174,7 +174,7 @@ function db_review_search_result4keyword_category($keyword, $category_id , $orde
 
     $wheres = array();
     $params = array();
-    if ($keyword) {
+    if ($keyword !== '') {
         $wheres[] = 'c_review.title LIKE ?';
         $params[] = '%'.check_search_word($keyword).'%';
     }
