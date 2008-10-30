@@ -12,6 +12,12 @@ class admin_page_edit_c_admin_config extends OpenPNE_Action
         $v = array();
         $v['DAILY_NEWS_DAY'] = explode(',', DAILY_NEWS_DAY);
         $this->set($v);
+
+	//外部ログインフォーム用HTML内のアドレス生成
+        //PC版ログインフォーム 
+        $absolute = true ;
+        $login_url = openpne_gen_url_head('pc', 'do_o_login', $absolute);
+        $this->set('login_url', $login_url);
         return 'success';
     }
 }
