@@ -10,7 +10,7 @@ class pc_do_f_bookmark_add extends OpenPNE_Action
     function handleError($errors)
     {
         $_REQUEST['msg'] = array_shift($errors);
-        openpne_forward('pc', 'page', 'h_bookmark_list', $errors);
+        openpne_forward('pc', 'page', 'h_bookmark_list');
         exit;
     }
 
