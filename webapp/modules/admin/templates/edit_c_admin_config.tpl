@@ -393,7 +393,7 @@
 <p class="info">通常のログインページ以外の外部ログインページを設定する場合は、以下のHTMLを使ってログイン用フォームを作成してください。</p>
 
 ({capture name=pc_html_form})
-<form action="({t_url _html=0 _absolute=1})" method="post">
+<form action="({$login_url})" method="post">
 <input type="hidden" name="m" value="pc" />
 <input type="hidden" name="a" value="do_o_login" />
 <dl class="sampleHtml">
@@ -407,13 +407,13 @@
 </form>({/capture})
 
 ({capture name=ktai_html_form})
-<form action="({t_url _html=0 _absolute=1})" method="post" utn>
+<form action="({$ktai_easy_login_url})" method="post" utn>
 <input type="hidden" name="m" value="ktai">
 <input type="hidden" name="a" value="do_o_easy_login">
 <input type="submit" value="かんたんﾛｸﾞｲﾝ"><br>
 </form>
 <br>
-<form action="({t_url _html=0 _absolute=1})" method="post">
+<form action="({$ktai_login_url})" method="post">
 <input type="hidden" name="m" value="ktai">
 <input type="hidden" name="a" value="do_o_login">
 携帯ﾒｰﾙｱﾄﾞﾚｽ<br>
