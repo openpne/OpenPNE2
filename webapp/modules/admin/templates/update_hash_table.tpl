@@ -1,3 +1,16 @@
+<SCRIPT TYPE="text/javascript">
+<!--
+//ランダム生成を実行するボタンの2度押し対策
+function disableButton(){
+  document.form1.button1.disabled = true;
+  submitForm();
+}
+function submitForm(){
+  document.form1.submit();
+}
+// -->
+</SCRIPT>
+
 ({$inc_header|smarty:nodefaults})
 ({ext_include file="inc_subnavi_adminAdminConfig.tpl"})
 
@@ -14,12 +27,13 @@
 	<li>ページ名が既にランダム文字列の状態で再度ランダム生成を実行すると、別の文字列で置換されます。</li>
 	<li>ランダム生成したページ名を初期の状態に戻すには「ページ名を初期化する」ボタンを押してください。</li>
 </ul>
-<form action="./" method="post">
+<form action="./" method="post" name="form1">
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('update_hash_table','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
-<p class="textBtn"><input type="submit" value="ランダム生成を実行する"></p>
+<p class="textBtn"><input type="button" value="ランダム生成を実行する" onClick="disableButton()" name="button1"></p>
 </form>
+
 <form action="./" method="post">
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('delete_hash_table','do')})" />
