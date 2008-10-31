@@ -12,7 +12,7 @@
 <font color="#({$ktai_color_config.font_06})">ｺﾒﾝﾄ:</font><br>
 
 ({$c_commu_topic_comment.r_datetime|date_format:"%y/%m/%d %H:%M"})<br>
-({if $c_commu_topic_comment.nickname})<a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$c_commu_topic_comment.c_member_id})&amp;({$tail})">({$c_commu_topic_comment.nickname})</a>({/if})
+({if $c_commu_topic_comment.nickname !== ''})<a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$c_commu_topic_comment.c_member_id})&amp;({$tail})">({$c_commu_topic_comment.nickname})</a>({/if})
 <br>
 ({$c_commu_topic_comment.body|t_url2a_ktai|nl2br})<br>
 ({if $c_commu_topic_comment.image_filename1})写真：[<a href="({t_img_url filename=$c_commu_topic_comment.image_filename1 w=120 h=120 f=jpg})">小</a>/<a href="({t_img_url filename=$c_commu_topic_comment.image_filename1 w=$smarty.const.OPENPNE_IMG_KTAI_MAX_WIDTH h=$smarty.const.OPENPNE_IMG_KTAI_MAX_HEIGHT f=jpg})">大</a>]<br>({/if})
