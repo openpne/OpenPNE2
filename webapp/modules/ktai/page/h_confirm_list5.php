@@ -10,34 +10,36 @@ class ktai_page_h_confirm_list5 extends OpenPNE_Action
     {
         $u  = $GLOBALS['KTAI_C_MEMBER_ID'];
 
-        //リンク承認待ちリスト
-        $this->set("anatani_c_friend_confirm_list", db_friend_ktai_anatani_c_friend_confirm_list4c_member_id($u));
+        // --- リクエスト変数
+        $target_c_member_id = $requests['target_c_member_id'];
+        $direc = $requests['direc'];
+        $page = $requests['page'];
+        // ----------
 
-        //コミュニティ参加承認待ちリスト
-        $this->set("anatani_c_commu_member_confirm_list", db_commu_anatani_c_commu_member_confirm_list4c_member_id($u));
+        if (!$target_c_member_id) $target_c_member_id = $u;
 
-        // あなたにコミュニティ管理者交代を希望しているメンバー
-        $this->set("anatani_c_commu_admin_confirm_list",
-            db_commu_anatani_c_commu_admin_confirm_list4c_member_id($u));
+        if (db_member_is_access_block($u, $target_c_member_id)) {
+            openpne_redirect('ktai', 'page_h_access_block');
+        }
 
-        // あなたにコミュニティ副管理者を希望しているメンバー
-        $this->set("anatani_c_commu_sub_admin_confirm_list",
-            db_commu_anatani_c_commu_sub_admin_confirm_list4c_member_id($u));
+        //ターゲット情報
+        $this->set("target_c_member", db_member_c_member4c_member_id_LIGHT($u));
+        // 1ページ当たりに表示するフレンドの数
+        $page_size = 5;
+        $page += $direc;
+        //ターゲットの詳細な友達リスト
+        $list = db_friend_ktai_anataga_c_friend_confirm_list4c_member_id($u, $page_size, $page);
+        $total_num = db_count_c_anataga_friend_confirm($u);
+        $this->set("c_friend_confirm_list", $list[0]);
+        $this->set("page", $page);
+        $this->set("is_prev", $list[1]);
+        $this->set("is_next", $list[2]);
+        $this->set('total_num', $total_num);
 
-        //リンク申請出した人のリスト
-        $this->set("anataga_c_friend_confirm_list", db_friend_ktai_anataga_c_friend_confirm_list4c_member_id($u));
-
-        //参加申請出したコミュニティに関するリスト
-        $this->set("anataga_c_commu_member_confirm_list", db_commu_anataga_c_commu_member_confirm_list4c_member_id($u));
-
-        // あなたがコミュニティ管理者交代を要請しているメンバー
-        $this->set("anataga_c_commu_admin_confirm_list",
-            db_commu_anataga_c_commu_admin_confirm_list4c_member_id($u));
-
-        // あなたがコミュニティ副管理者を要請しているメンバー
-        $this->set("anataga_c_commu_sub_admin_confirm_list",
-            db_commu_anataga_c_commu_sub_admin_confirm_list4c_member_id($u));
-
+        $pager = array();
+        $pager['start'] = ($page_size * ($page - 1)) + 1;
+        $pager['end'] = $pager['start'] + count($list[0]) - 1;
+        $this->set('pager', $pager);
 
         return 'success';
     }
