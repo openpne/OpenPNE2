@@ -25,10 +25,10 @@ class ktai_page_h_anatani_c_commu_sub_admin_confirm_list extends OpenPNE_Action
         //ターゲット情報
         $this->set("target_c_member", db_member_c_member4c_member_id_LIGHT($u));
 
-        // 1ページ当たりに表示するフレンドの数
+        // 1ページ当たりに表示する数
         $page_size = 5;
         $page += $direc;
-        //ターゲットの詳細な友達リスト
+        //ターゲットの詳細なリスト
         $list = db_ktai_commu_anatani_c_commu_sub_admin_confirm_list4c_member_id($u, $page_size, $page);
         $total_num = db_count_c_anatani_c_commu_sub_admin_confirm($u);
         $this->set("anatani_c_commu_sub_admin_confirm_list", $list[0]);
