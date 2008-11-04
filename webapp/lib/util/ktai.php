@@ -168,17 +168,37 @@ function fetch_inc_ktai_footer()
     return $inc_smarty->ext_fetch('inc_ktai_footer.tpl');
 }
 
-function t_get_user_hash($c_member_id, $length = 12)
+/**
+ * 携帯メール投稿用アドレスに付けるハッシュ文字列を生成する
+ *
+ * @param int $c_member_id
+ * @param int $length
+ * @return string
+ */
+function t_get_user_hash($c_member_id, $length = MAIL_ADDRESS_HASH_LENGTH)
 {
     $hashed_password = db_member_hashed_password4c_member_id($c_member_id);
     $seed = strval($c_member_id) . $hashed_password;
 
+    $length = (int)$length;
+    if ($length <= 0 || $length > 32) {
+        $length = 32;
+    }
+
     return substr(md5($seed), 0, $length);
 }
 
+/**
+ * 携帯メール投稿用アドレスに付けるハッシュ文字列が正しいかどうかを判定する
+ * (前方一致で比較する)
+ *
+ * @param int $c_member_id
+ * @param string $input_hash
+ * @return bool
+ */
 function t_check_user_hash($c_member_id, $input_hash)
 {
-    return ($input_hash === t_get_user_hash($c_member_id));
+    return (strpos($input_hash, t_get_user_hash($c_member_id)) === 0);
 }
 
 /**
