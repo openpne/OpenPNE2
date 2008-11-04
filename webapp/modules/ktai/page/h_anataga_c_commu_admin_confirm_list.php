@@ -4,7 +4,7 @@
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
-class ktai_page_h_confirm_list3 extends OpenPNE_Action
+class ktai_page_h_anataga_c_commu_admin_confirm_list extends OpenPNE_Action
 {
     function execute($requests)
     {
@@ -29,9 +29,9 @@ class ktai_page_h_confirm_list3 extends OpenPNE_Action
         $page_size = 5;
         $page += $direc;
         //ターゲットの詳細な友達リスト
-        $list = db_commu_anatani_c_commu_admin_confirm_list4c_member_id($u, $page_size, $page);
-        $total_num = db_count_c_anatani_c_commu_admin_confirm($u);
-        $this->set("anatani_c_commu_admin_confirm_list", $list[0]);
+        $list = db_ktai_commu_anataga_c_commu_admin_confirm_list4c_member_id($u, $page_size, $page);
+        $total_num = db_count_c_anataga_c_commu_admin_confirm($u);
+        $this->set("anataga_c_commu_admin_confirm_list", $list[0]);
         $this->set("page", $page);
         $this->set("is_prev", $list[1]);
         $this->set("is_next", $list[2]);
