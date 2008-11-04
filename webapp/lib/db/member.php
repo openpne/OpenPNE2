@@ -1633,37 +1633,6 @@ function db_member_insert_c_member_ktai_pre($session, $ktai_address, $c_member_i
     return db_insert('c_member_ktai_pre', $data);
 }
 
-function db_member_h_regist_ktai_mail($c_member_id, $ktai_address)
-{
-    $insert_id = 0;
-    $session = create_hash();
-
-    // 既にpreに存在するメールアドレスかどうか
-    if (do_common_c_ktai_address_pre4ktai_address($ktai_address)) {
-        $data = array(
-            'c_member_id' => intval($c_member_id),
-            'session' => $session,
-            'r_datetime' => db_now(),
-        );
-        $where = array('ktai_address' => $ktai_address);
-        db_update('c_ktai_address_pre', $data, $where);
-    } else {
-        $data = array(
-            'c_member_id' => intval($c_member_id),
-            'ktai_address' => $ktai_address,
-            'session' => $session,
-            'r_datetime' => db_now(),
-        );
-        $insert_id = db_insert('c_ktai_address_pre', $data);
-    }
-
-    //function cache削除
-    cache_drop_c_member_profile($c_member_id);
-
-    do_h_regist_mail_mail_send($c_member_id, $session, $ktai_address);
-    return $insert_id;
-}
-
 //--- profile関連
 
 function db_member_c_profile4name($name)
