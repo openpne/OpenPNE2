@@ -55,8 +55,7 @@ $GLOBALS['_OPENPNE_MAINTENANCE_MODULES'] = array('admin', 'portal');
 // ここで登録したアクションはメンテナンス画面が表示されます
 $GLOBALS['_OPENPNE_MAINTENANCE_EXCLUDED_ACTION'] = array(
 'portal' => array(
-    'page_user_top',
-    'portal_user_top_ktai',
+    'page_user_top', 'page_portal_user_top_ktai',
 ));
 
 // Crypt_Blowfish ライブラリの旧バージョン使用設定
