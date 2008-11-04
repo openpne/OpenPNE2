@@ -67,6 +67,16 @@
 
 </div></div>
 ({* }}} *})
+
+({elseif $keyword == ""})
+({* {{{ simpleBox *})
+<div class="dparts simpleBox"><div class="parts">
+<div class="partsHeading"><h3>検索結果</h3></div>
+<div class="block">
+</div>
+</div></div>
+({* }}} *})
+
 ({else})
 ({* {{{ simpleBox *})
 <div class="dparts simpleBox"><div class="parts">
