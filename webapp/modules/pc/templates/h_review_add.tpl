@@ -126,13 +126,15 @@
 <table border="0" cellspacing="0" cellpadding="0" style="width:636px;" class="border_01">
 <tr>
 <td style="width:36px;" class="bg_06"><img src="({t_img_url_skin filename=content_header_1})" style="width:30px;height:20px;" class="dummy"></td>
-<td style="width:598px;padding:2px 0px;" class="bg_06"><span class="c_00"><span class="b_b">({$keyword})の検索結果</span>&nbsp;&nbsp;***&nbsp;<span class="b_b">
+<td style="width:598px;padding:2px 0px;" class="bg_06"><span class="c_00"><span class="b_b">
 ({if $total_num})
-    ({$total_num})
+    ({$keyword})の検索結果</span>&nbsp;&nbsp;***&nbsp;<span class="b_b">({$total_num})件</span>&nbsp;が該当しました。
+({elseif $keyword == ''})
+    検索結果
 ({else})
-    0
+    ({$keyword})の検索結果</span>&nbsp;&nbsp;***&nbsp;<span class="b_b">該当する結果がありませんでした。
 ({/if})
-件</span>&nbsp;が該当しました。</span></td>
+</span></td>
 </tr>
 </table>
 <!-- ここまで：小タイトル -->

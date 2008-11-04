@@ -175,12 +175,12 @@
 <td style="width:600px;padding:2px 0px;" class="bg_06"><span class="c_00"><span class="b_b">コミュニティ一覧</span>&nbsp;&nbsp;***&nbsp;
 
 ({if $total_num})
-    ({$total_num})
+    ({$total_num})件&nbsp;が該当しました。
 ({else})
-    0
+    該当する結果がありませんでした。 
 ({/if})
 
-件&nbsp;が該当しました。</span></td>
+</span></td>
 </tr>
 </table>
 <!-- ここまで：小タイトル -->
