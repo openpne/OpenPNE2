@@ -45,6 +45,7 @@ class OpenPNE_Auth
      * + storage: PEAR::Authのストレージコンテナ名
      * + options: PEAR::Auth用オプション
      * + is_ktai: 携帯用認証かどうか
+     * + is_admin: 管理画面用認証かどうか
      * + is_encrypt_username: usernameをt_encryptで暗号化するかどうか
      * + is_lowercase_username: usernameを強制的に小文字にするかどうか
      *
