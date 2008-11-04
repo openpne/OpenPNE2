@@ -188,6 +188,7 @@ class OpenPNE_Config
             'FILE_ALLOWED_EXTENTIONS' => '',
             'MAIL_ADDRESS_PREFIX' => '',
             'MAIL_ADDRESS_HASHED' => true,
+            'MAIL_ADDRESS_HASH_LENGTH' => 12,
             'MAIL_HAN2ZEN' => true,
             'MAIL_HEADER_SEP' => 'LF',
             'MAIL_FROM_ENCODING' => 'auto',

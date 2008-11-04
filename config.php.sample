@@ -397,6 +397,9 @@ define('RSS_CACHE_LIMIT', 100);
 // 宛先メールアドレスをハッシュにするか
 define('MAIL_ADDRESS_HASHED', true);
 
+// 宛先メールアドレスに付けるハッシュ文字列の長さ
+define('MAIL_ADDRESS_HASH_LENGTH', 12);
+
 // 受信メールの文字コード(Content-Typeから取得できない場合に使う)
 //define('MAIL_FROM_ENCODING', 'JIS');
 define('MAIL_FROM_ENCODING', 'auto');
