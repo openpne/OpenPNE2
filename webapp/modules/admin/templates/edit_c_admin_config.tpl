@@ -380,7 +380,7 @@
 ({/capture})
 
 ({capture name=pc_html_password})
-<a href="({t_url _html=0 _absolute=1 m=pc a=page_o_help_login_error})">ログインできない方はこちら</a>({/capture})
+<a href="({t_url _html=0 m=pc a=page_o_help_login_error})">ログインできない方はこちら</a>({/capture})
 
 <dl class="sampleHtml">
 <dt><strong class="item">ログインフォーム</strong></dt>
