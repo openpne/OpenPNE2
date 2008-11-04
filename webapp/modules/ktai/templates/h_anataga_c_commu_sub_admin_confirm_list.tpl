@@ -4,10 +4,10 @@
 <font color="#({$ktai_color_config.font_05})"><a name="top">({$target_c_member.nickname})</a></font><br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_03})">
-<font color="#({$ktai_color_config.color_24})">({$WORD_COMMUNITY_HALF})副管理者要請中</font><br>
+<font color="#({$ktai_color_config.color_24})">ｺﾐｭﾆﾃｨ副管理者要請中</font><br>
 </td></tr></table>
 ({if !$anataga_c_commu_sub_admin_confirm_list})
-({$WORD_COMMUNITY_HALF})副管理者交代要請中はありません。
+ｺﾐｭﾆﾃｨ副管理者交代要請中はありません。
 ({else})
 <center>
 ({$pager.start})～({$pager.end})件目を表示<br>
@@ -19,7 +19,7 @@
 <font color="#({$ktai_color_config.font_06})">({$WORD_NICKNAME_HALF})：</font><br>
 <a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$item.c_member_id_to})&amp;({$tail})">({$item.nickname})</a><br>
 <br>
-<font color="#({$ktai_color_config.font_06})">({$WORD_COMMUNITY_HALF})名：</font><br>
+<font color="#({$ktai_color_config.font_06})">ｺﾐｭﾆﾃｨ名：</font><br>
 <a href="({t_url m=ktai a=page_c_home})&amp;target_c_commu_id=({$item.c_commu_id})&amp;({$tail})">({$item.c_commu_name})</a><br>
 <br>
 ({if $item.message})
