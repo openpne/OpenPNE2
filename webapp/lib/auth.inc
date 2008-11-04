@@ -36,8 +36,18 @@ if (!$auth->auth()
 $auth->uid($u);
 $GLOBALS['AUTH'] = $auth;
 
-// ログインモードが email でない場合、ログインに必要な情報が入力されているかどうかをチェックする
-if (OPENPNE_AUTH_MODE != 'email' && empty($_SESSION['regist_step'])) {
+// 実行スクリプトファイル名を取得
+if (!empty($_SERVER['PHP_SELF'])) {
+    $self_script = array_pop(explode('/', $_SERVER['PHP_SELF']));
+} else {
+    $self_script = array_pop(explode('/', $_SERVER['SCRIPT_NAME']));
+}
+
+// ログインモードが email でなく、実行スクリプトが画像表示用でない場合
+// ログインに必要な情報が入力されているかどうかをチェックする
+if (   OPENPNE_AUTH_MODE != 'email'
+    && $self_script != 'img.php'
+    && empty($_SESSION['regist_step'])) {
     $current_page = $GLOBALS['__Framework']['current_type'] . '_' . $GLOBALS['__Framework']['current_action'];
 
     // プロフィールが未登録の場合でもアクセスすることのできるアクション
