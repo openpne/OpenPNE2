@@ -95,7 +95,7 @@ class mail_sns
         // コミュニティ掲示板投稿
         elseif (
             preg_match('/^t(\d+)$/', $to_user, $matches) ||
-            preg_match('/^t(\d+)-([0-9a-f]{12})$/', $to_user, $matches)
+            preg_match('/^t(\d+)-([0-9a-f]+)$/', $to_user, $matches)
         ) {
 
             // トピックIDのチェック
@@ -121,7 +121,7 @@ class mail_sns
         // 日記投稿
         elseif (
             $to_user == 'blog' ||
-            preg_match('/^b(\d+)-([0-9a-f]{12})$/', $to_user, $matches)
+            preg_match('/^b(\d+)-([0-9a-f]+)$/', $to_user, $matches)
         ) {
 
             if (MAIL_ADDRESS_HASHED) {
@@ -146,7 +146,7 @@ class mail_sns
         // 日記コメント投稿
         elseif (
             preg_match('/^bc(\d+)$/', $to_user, $matches) ||
-            preg_match('/^bc(\d+)-([0-9a-f]{12})$/', $to_user, $matches)
+            preg_match('/^bc(\d+)-([0-9a-f]+)$/', $to_user, $matches)
         ) {
 
             // 日記IDのチェック
@@ -172,7 +172,7 @@ class mail_sns
         //プロフィール写真変更
         elseif (
             preg_match('/^p(\d+)$/', $to_user, $matches) ||
-            preg_match('/^p(\d+)-([0-9a-f]{12})$/', $to_user, $matches)
+            preg_match('/^p(\d+)-([0-9a-f]+)$/', $to_user, $matches)
         ) {
 
             // メンバーIDのチェック
@@ -198,7 +198,7 @@ class mail_sns
         // 日記写真変更
         elseif (
             preg_match('/^bi(\d+)$/', $to_user, $matches) ||
-            preg_match('/^bi(\d+)-([0-9a-f]{12})$/', $to_user, $matches)
+            preg_match('/^bi(\d+)-([0-9a-f]+)$/', $to_user, $matches)
         ) {
             // 日記IDのチェック
             if (!$c_diary_id = $matches[1]) {
@@ -223,7 +223,7 @@ class mail_sns
         // コミュニティ写真変更
         elseif (
             preg_match('/^ci(\d+)$/', $to_user, $matches) ||
-            preg_match('/^ci(\d+)-([0-9a-f]{12})$/', $to_user, $matches)
+            preg_match('/^ci(\d+)-([0-9a-f]+)$/', $to_user, $matches)
         ) {
             // コミュニティIDのチェック
             if (!$c_commu_id = $matches[1]) {
@@ -248,7 +248,7 @@ class mail_sns
         // トピック・イベント写真変更
         elseif (
             preg_match('/^ti(\d+)$/', $to_user, $matches) ||
-            preg_match('/^ti(\d+)-([0-9a-f]{12})$/', $to_user, $matches)
+            preg_match('/^ti(\d+)-([0-9a-f]+)$/', $to_user, $matches)
         ) {
             // トピックIDのチェック
             if (!$c_commu_topic_id = $matches[1]) {
