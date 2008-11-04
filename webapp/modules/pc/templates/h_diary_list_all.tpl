@@ -62,7 +62,6 @@
 
 </div></div>
 ({* }}} *})
-({/if})
 
 ({if $c_rss_cache_list})
 ({* {{{ recentList *})
@@ -76,12 +75,14 @@
 ({/foreach})
 </div></div>
 ({* }}} *})
+({/if})
+
 ({else})
 ({* {{{ simpleBox *})
 <div class="dparts simpleBox"><div class="parts">
-<div class="partsHeading"><h3>日記検索結果一覧</h3></div>
+<div class="partsHeading"><h3>({$WORD_DIARY})検索結果一覧</h3></div>
 <div class="block">
-<p>該当する日記はありません。</p>
+<p>該当する({$WORD_DIARY})はありません。</p>
 </div>
 </div></div>
 ({* }}} *})
