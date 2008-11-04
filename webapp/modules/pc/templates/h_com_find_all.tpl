@@ -95,12 +95,13 @@
 
 </div></div>
 ({* }}} *})
+
 ({else})
 ({* {{{ simpleBox *})
 <div class="dparts simpleBox"><div class="parts">
-<div class="partsHeading"><h3>コミュニティ一覧</h3></div>
+<div class="partsHeading"><h3>({$WORD_COMMUNITY})一覧</h3></div>
 <div class="block">
-<p>該当するコミュニティはありません。</p>
+<p>該当する({$WORD_COMMUNITY})はありません。</p>
 </div>
 </div></div>
 ({* }}} *})
