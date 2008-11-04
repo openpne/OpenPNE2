@@ -4,11 +4,11 @@
 <font color="#({$ktai_color_config.font_05})"><a name="top">({$target_c_member.nickname})</a></font><br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_03})">
-<font color="#({$ktai_color_config.color_24})">({$WORD_COMMUNITY_HALF})参加承認待ち</font><br>
+<font color="#({$ktai_color_config.color_24})">ｺﾐｭﾆﾃｨ参加承認待ち</font><br>
 </td></tr></table>
 
 ({if !$anatani_c_commu_member_confirm_list})
-({$WORD_COMMUNITY_HALF})参加承認待ちはありません。
+ｺﾐｭﾆﾃｨ参加承認待ちはありません。
 ({else})
 <center>
 ({$pager.start})～({$pager.end})件目を表示<br>
@@ -20,7 +20,7 @@
 <font color="#({$ktai_color_config.font_06})">({$WORD_NICKNAME_HALF})：</font><br>
 <a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})&amp;({$tail})">({$item.nickname})</a><br>
 <br>
-<font color="#({$ktai_color_config.font_06})">({$WORD_COMMUNITY_HALF})名：</font><br>
+<font color="#({$ktai_color_config.font_06})">ｺﾐｭﾆﾃｨ名：</font><br>
 <a href="({t_url m=ktai a=page_c_home})&amp;target_c_commu_id=({$item.c_commu_id})&amp;({$tail})">({$item.c_commu_name})</a><br>
 <br>
 ({if $item.message})
