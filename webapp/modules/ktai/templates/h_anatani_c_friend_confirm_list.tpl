@@ -29,8 +29,8 @@
 <br>
 ({/if})
 <center>
-[<a href="({t_url m=ktai a=do_h_confirm_list_insert_c_friend})&amp;target_c_friend_confirm_id=({$anatani_c_friend_confirm.c_friend_confirm_id})&amp;({$tail})">承認</a>]
-[<a href="({t_url m=ktai a=do_h_confirm_list_delete_c_friend_confirm})&amp;target_c_friend_confirm_id=({$anatani_c_friend_confirm.c_friend_confirm_id})&amp;({$tail})">拒否</a>]<br>
+[<a href="({t_url m=ktai a=do_h_confirm_list_insert_c_friend})&amp;target_c_friend_confirm_id=({$c_friend_confirm.c_friend_confirm_id})&amp;({$tail})">承認</a>]
+[<a href="({t_url m=ktai a=do_h_confirm_list_delete_c_friend_confirm})&amp;target_c_friend_confirm_id=({$c_friend_confirm.c_friend_confirm_id})&amp;({$tail})">拒否</a>]<br>
 </center>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_07})">
