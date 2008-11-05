@@ -310,12 +310,7 @@ class OpenPNE_Auth
             $now_user_agent = $_SERVER['HTTP_USER_AGENT'];
 
             // ドコモ端末からのアクセスかどうか
-            if (strpos($now_user_agent, 'DoCoMo') >= 0) {
-                $is_docomo = true;
-            } else {
-                $is_docomo = false;
-            }
-            if ($is_docomo) {
+            if ($GLOBALS['__Framework']['carrier'] == 'i') {
                 $login_user_agent = substr($login_user_agent, 0, strpos($login_user_agent, '('));
                 $now_user_agent = substr($now_user_agent, 0, strpos($now_user_agent, '('));
             }
