@@ -34,7 +34,7 @@
 <td colspan="2" class="bg_02" align="center">
 
 <br><br>
-現在、管理者による承認待ちです。
+現在、管理者による承認待ちです。 <a href="({t_url m=pc a=page_h_confirm_to_list})"><strong>申請取り消し</strong>
 <br><br><br>
 
 </td>

@@ -44,7 +44,7 @@
 <div class="padding_s">
 
 <span class="c_01">
-現在、このメンバーからの({$WORD_FRIEND})リンク承認待ちです。
+現在、このメンバーからの({$WORD_FRIEND})リンク承認待ちです。 <a href="({t_url m=pc a=page_h_confirm_to_list})"><strong>申請取り消し</strong>
 </span>
 
 </div>
