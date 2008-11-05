@@ -45,6 +45,9 @@
 <a href="({t_url m=pc a=page_c_sub_admin_request})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;target_c_member_id=({$c_member.c_member_id})">副管理者に指名</a>
 ({elseif $c_member.is_c_commu_sub_admin && $c_commu.c_member_id_sub_admin != $u })
 <a href="({t_url m=pc a=page_c_sub_admin_delete})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;target_c_member_id=({$c_member.c_member_id})">副管理者から降格</a>
+({elseif $c_member.c_commu_sub_admin_confirm_id && $c_member.is_c_commu_admin})
+({elseif $c_member.c_commu_sub_admin_confirm_id})
+<a href="({t_url m=pc a=page_h_confirm_to_list})"><strong>申請を取り消し</strong></a>
 ({/if})
 </td>
 <td>
@@ -54,6 +57,9 @@
  &&   $c_commu.c_member_id_sub_admin != $u
 })
 <a href="({t_url m=pc a=page_c_admin_request})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;target_c_member_id=({$c_member.c_member_id})">管理権を渡す</a>
+({elseif $c_member.c_commu_admin_confirm_id && $c_member.is_c_commu_admin})
+({elseif $c_member.c_commu_admin_confirm_id})
+<a href="({t_url m=pc a=page_h_confirm_to_list})"><strong>申請を取り消し</strong></a>
 ({/if})
 </td>
 </tr>
