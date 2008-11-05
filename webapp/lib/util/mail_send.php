@@ -779,6 +779,11 @@ function put_mail_queue($address, $subject, $body, $is_receive_mail=true, $from=
     $mail_opt = array(
         "driver"=>"mail",
     );
+
+    if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] === 'pgsql') {
+        $db_opt['sequence'] = 'mail_queue_seq_id';
+    }
+
     $mail_mime = new Mail_mime();
     $mail_mime->setTXTBody($body);
     $body = $mail_mime->get(array("text_charset"=>"ISO-2022-JP"));
