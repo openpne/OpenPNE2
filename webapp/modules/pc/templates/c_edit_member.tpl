@@ -79,28 +79,20 @@
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 <td style="width:80px;" class="bg_02 padding_s">
 
-({if !$c_member.is_c_commu_admin})
+({if !$c_member.is_c_commu_admin||$c_member.is_c_commu_sub_adomin})
 <a href="({t_url m=pc a=page_c_edit_member_delete_c_commu_member})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;target_c_member_id=({$c_member.c_member_id})">コミュニティから退会させる</a>
-({else})
-&nbsp;
-({/if})
 
 </td>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 <td style="width:80px;" class="bg_02 padding_s">
 
-({if !$c_member.is_c_commu_admin
- &&  !$c_member.is_c_commu_sub_admin
- &&   $c_member.c_commu_admin_confirm_id <= 0
- &&   $c_member.c_commu_sub_admin_confirm_id <= 0
- &&   $c_commu.c_member_id_sub_admin != $u
-})
-<a href="({t_url m=pc a=page_c_sub_admin_request})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;target_c_member_id=({$c_member.c_member_id})">副管理者に指名</a>
-({elseif $c_member.is_c_commu_sub_admin && $c_commu.c_member_id_sub_admin != $u })
+({if $c_commu.c_member_id_sub_admin != $u})
+({if $c_member.is_c_commu_sub_admin})
 <a href="({t_url m=pc a=page_c_sub_admin_delete})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;target_c_member_id=({$c_member.c_member_id})">副管理者から降格</a>
-({elseif $c_member.c_commu_sub_admin_confirm_id && $c_member.is_c_commu_admin|$c_member.c_commu_admin_confirm_id})
-({elseif $c_member.c_commu_sub_admin_confirm_id})
+({elseif $c_member.c_commu_sub_admin_confirm_id > 0})
 <a href="({t_url m=pc a=page_h_confirm_to_list})"><strong>申請を取り消し</strong></a>
+({elseif !$c_member.c_commu_admin_confirm_id <= 0})
+<a href="({t_url m=pc a=page_c_sub_admin_request})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;target_c_member_id=({$c_member.c_member_id})">副管理者に指名</a>
 ({else})
 &nbsp;
 ({/if})
@@ -109,20 +101,36 @@
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 <td style="width:80px;" class="bg_02 padding_s">
 
-({if !($c_member.is_c_commu_admin && !$c_member.is_c_commu_sub_admin)
- &&   $c_member.c_commu_admin_confirm_id <= 0
- &&   $c_member.c_commu_sub_admin_confirm_id <= 0
- &&   $c_commu.c_member_id_sub_admin != $u
-})
-<a href="({t_url m=pc a=page_c_admin_request})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;target_c_member_id=({$c_member.c_member_id})">管理権を渡す</a>
-({elseif $c_member.c_commu_admin_confirm_id && $c_member.is_c_commu_admin|$c_member.c_commu_sub_admin_confirm_id})
-({elseif $c_member.c_commu_admin_confirm_id})
+({if $c_member.c_commu_admin_confirm_id > 0})
 <a href="({t_url m=pc a=page_h_confirm_to_list})"><strong>申請を取り消し</strong></a>
+({elseif $c_member.c_commu_sub_admin_confirm_id <= 0})
+<a href="({t_url m=pc a=page_c_admin_request})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;target_c_member_id=({$c_member.c_member_id})">管理権を渡す</a>
 ({else})
 &nbsp;
 ({/if})
 
 </td>
+
+({else})
+</td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+<td style="width:80px;" class="bg_02 padding_s">
+&nbsp;
+</td>
+({/if})
+
+({else})
+</td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+<td style="width:80px;" class="bg_02 padding_s">
+&nbsp;
+</td>
+<td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
+<td style="width:80px;" class="bg_02 padding_s">
+&nbsp;
+</td>
+({/if})
+
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
 </tr>
 ({*********})
