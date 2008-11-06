@@ -252,7 +252,7 @@ function p_h_album_list_all_search_c_album4c_album($keyword, $page_size, $page, 
 
     //and検索を実装
     //subject,body を検索
-    if ($keyword !== '') {
+    if ($keyword) {
         //全角空白を半角に統一
         $keyword = str_replace('　', ' ', $keyword);
 
