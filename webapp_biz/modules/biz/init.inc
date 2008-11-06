@@ -63,11 +63,10 @@ function init_biz_page(&$smarty)
     $smarty->assign('INC_HEADER_color_config', util_get_color_config());
     $smarty->assign('INC_HEADER_top_banner', db_banner_get_top_banner($is_secure));
     $smarty->assign('INC_HEADER_page_name', $GLOBALS['__Framework']['current_action']);
+    $smarty->assign('INC_HEADER_top_banner_html_before', p_common_c_siteadmin4target_pagename('top_banner_html_before'));
+    $smarty->assign('INC_HEADER_top_banner_html_after', p_common_c_siteadmin4target_pagename('top_banner_html_after'));
     if ($is_secure) {
-        $smarty->assign('INC_HEADER_top_banner_html_after', p_common_c_siteadmin4target_pagename('top_banner_html_after'));
         $smarty->assign('INC_HEADER_global_navi', util_get_c_navi('global'));
-    } else {
-        $smarty->assign('INC_HEADER_top_banner_html_before', p_common_c_siteadmin4target_pagename('top_banner_html_before'));
     }
     $smarty->assign('INC_HEADER_inc_page_top', p_common_c_siteadmin4target_pagename('inc_page_top'));
     $smarty->assign('INC_HEADER_inc_page_top2', p_common_c_siteadmin4target_pagename('inc_page_top2'));
