@@ -60,16 +60,16 @@
 ({if $inc_navi})({$inc_navi|smarty:nodefaults})({/if})
 ({if $inc_entry_point[2]})({$inc_entry_point[2]|smarty:nodefaults|t_url2cmd:'entry_point'|t_cmd:'entry_point'})({/if})
 
-({if !$no_use_alert && ($msg || $msg1 || $msg2 || $msg3 || $err_msg)})
+({if !$no_use_alert && ($msg !== '' || $msg1 !== '' || $msg2 !== '' || $msg3 !== '' || $err_msg !== '')})
 ({* {{{ alertBox *})
 <div class="dparts alertBox"><div class="parts">
 <table><tr>
 <th><img src="({t_img_url_skin filename=icon_alert_l})" alt="警告" /></th>
 <td>
-({if $msg})({$msg})<br />({/if})
-({if $msg1})({$msg1})<br />({/if})
-({if $msg2})({$msg2})<br />({/if})
-({if $msg3})({$msg3})<br />({/if})
+({if $msg !== ''})({$msg})<br />({/if})
+({if $msg1 !== ''})({$msg1})<br />({/if})
+({if $msg2 !== ''})({$msg2})<br />({/if})
+({if $msg3 !== ''})({$msg3})<br />({/if})
 ({foreach from=$err_msg item=item})
 ({$item})<br />
 ({/foreach})
