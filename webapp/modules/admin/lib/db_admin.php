@@ -2010,7 +2010,7 @@ function monitor_diary_list($keyword, $page_size, $page)
 
     $wheres = array();
 
-    if ($keyword !== '') {
+    if ($keyword) {
         //全角空白を半角に統一
         $keyword = str_replace('　', ' ', $keyword);
         $keyword_list = explode(' ', $keyword);
@@ -2092,7 +2092,7 @@ function monitor_diary_comment_list($keyword, $page_size, $page)
 
     $wheres = array();
 
-    if ($keyword !== '') {
+    if ($keyword) {
         //全角空白を半角に統一
         $keyword = str_replace('　', ' ', $keyword);
         $keyword_list = explode(' ', $keyword);
@@ -2211,7 +2211,7 @@ function monitor_commu_list($keyword, $page_size, $page)
 
     $wheres = array();
 
-    if ($keyword !== '') {
+    if ($keyword) {
         $keyword = str_replace('　', ' ', $keyword);
         $keyword_list = explode(' ', $keyword);
 
@@ -2295,7 +2295,7 @@ function monitor_topic_comment_list($keyword, $page_size, $page)
 
     $where = " WHERE ctc.number <> 0  ";
 
-    if ($keyword !== '') {
+    if ($keyword) {
         $keyword = str_replace("?@", " ", $keyword);
         $keyword_list = explode(" ", $keyword);
 
@@ -2382,7 +2382,7 @@ function monitor_topic_list($keyword, $page_size, $page)
 
     $wheres = array();
 
-    if ($keyword !== '') {
+    if ($keyword) {
         $keyword = str_replace('　', ' ', $keyword);
         $keyword_list = explode(' ', $keyword);
 
@@ -2509,7 +2509,7 @@ function monitor_review_list($keyword, $page_size, $page)
 
     $wheres = array();
 
-    if ($keyword !== '') {
+    if ($keyword) {
         //全角空白を半角に統一
         $keyword = str_replace('　', ' ', $keyword);
         $keyword_list = explode(' ', $keyword);
@@ -3081,7 +3081,7 @@ function db_admin_album_list($keyword, $page_size, $page)
 
     $wheres = array();
 
-    if ($keyword !== '') {
+    if ($keyword) {
         //全角空白を半角に統一
         $keyword = str_replace('　', ' ', $keyword);
         $keyword_list = explode(' ', $keyword);
