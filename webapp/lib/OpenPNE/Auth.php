@@ -309,10 +309,15 @@ class OpenPNE_Auth
             $login_user_agent = $this->auth->getAuthData('USER_AGENT');
             $now_user_agent = $_SERVER['HTTP_USER_AGENT'];
 
-            // ドコモ端末からのアクセスかどうか
+            // ドコモ端末からのアクセスの場合、ユーザエージェント情報から個体識別情報を取り除く
             if ($GLOBALS['__Framework']['carrier'] == 'i') {
-                $login_user_agent = substr($login_user_agent, 0, strpos($login_user_agent, '('));
-                $now_user_agent = substr($now_user_agent, 0, strpos($now_user_agent, '('));
+                if (strncmp($now_user_agent, 'DoCoMo/1.0', 10) && strpos($login_user_agent, '/ser')) {
+                    $login_user_agent = substr($login_user_agent, 0, strpos($login_user_agent, '/ser'));
+                    $now_user_agent = substr($now_user_agent, 0, strpos($now_user_agent, '/ser'));
+                } elseif (strncmp($now_user_agent, 'DoCoMo/2.0', 10) && strpos($login_user_agent, '(')) {
+                    $login_user_agent = substr($login_user_agent, 0, strpos($login_user_agent, '('));
+                    $now_user_agent = substr($now_user_agent, 0, strpos($now_user_agent, '('));
+                }
             }
 
             if ($now_user_agent !== $login_user_agent) {
