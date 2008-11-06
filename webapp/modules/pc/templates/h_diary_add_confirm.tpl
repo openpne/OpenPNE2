@@ -16,25 +16,25 @@
 <th>本文</th>
 <td>({$form_val.body|nl2br|t_url2cmd:'diary':$member.c_member_id|t_cmd:'diary'|t_decoration})</td>
 </tr>
-({if $form_val.upfile_1.name !== ''})
+({if $form_val.upfile_1.name})
 <tr>
 <th>写真1</th>
 <td>({$form_val.upfile_1.name})</td>
 </tr>
 ({/if})
-({if $form_val.upfile_2.name !== ''})
+({if $form_val.upfile_2.name})
 <tr>
 <th>写真2</th>
 <td>({$form_val.upfile_2.name})</td>
 </tr>
 ({/if})
-({if $form_val.upfile_3.name !== ''})
+({if $form_val.upfile_3.name})
 <tr>
 <th>写真3</th>
 <td>({$form_val.upfile_3.name})</td>
 </tr>
 ({/if})
-({if $form_val.category !== ''})
+({if $form_val.category})
 <tr>
 <th>カテゴリ</th>
 <td>({$form_val.category})</td>
