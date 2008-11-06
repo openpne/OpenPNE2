@@ -11,7 +11,7 @@
 
 <hr color="#({$ktai_color_config.border_01})">
 ({$target_c_diary_comment.r_datetime|date_format:"%m/%d %H:%M"})<br>
-({if $target_c_diary_comment.nickname !== ''})<a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$target_c_diary_comment.c_member_id})&amp;({$tail})">({$target_c_diary_comment.nickname})</a>({/if})
+({if $target_c_diary_comment.nickname})<a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$target_c_diary_comment.c_member_id})&amp;({$tail})">({$target_c_diary_comment.nickname})</a>({/if})
 <br>
 ({$target_c_diary_comment.body|t_url2a_ktai|nl2br})
 

@@ -10,17 +10,17 @@
 <table>
 <tr><th>タイトル</th><td>({$c_topic.title})</td></tr>
 <tr><th>本文</th><td>({$c_topic.body|nl2br|t_url2cmd:'community':$u|t_cmd:'community'})</td></tr>
-({if $c_topic.image_filename1 !== ''})
+({if $c_topic.image_filename1})
 <tr><th>写真1</th><td>({$c_topic.image_filename1})</td></tr>
 ({/if})
-({if $c_topic.image_filename2 !== ''})
+({if $c_topic.image_filename2})
 <tr><th>写真2</th><td>({$c_topic.image_filename2})</td></tr>
 ({/if})
-({if $c_topic.image_filename3 !== ''})
+({if $c_topic.image_filename3})
 <tr><th>写真3</th><td>({$c_topic.image_filename3})</td></tr>
 ({/if})
 ({if $smarty.const.OPENPNE_USE_FILEUPLOAD})
-({if $c_topic.filename4_original_filename !== ''})
+({if $c_topic.filename4_original_filename})
 <tr><th>ファイル</th><td>({$c_topic.filename4_original_filename})</td></tr>
 ({/if})
 ({/if})
