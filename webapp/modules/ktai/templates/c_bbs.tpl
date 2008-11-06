@@ -93,7 +93,7 @@
 <font color="#({$ktai_color_config.font_08})">▼</font>
 </a><font color="#({$ktai_color_config.font_06})">[({$item.number|string_format:"%03d"})]</font>({$item.r_datetime|date_format:"%m/%d %H:%M"})
 <br>
-({if $item.nickname !== ''})<a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})&amp;({$tail})">({$item.nickname})</a>({/if})
+({if $item.nickname})<a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})&amp;({$tail})">({$item.nickname})</a>({/if})
 ({if $item.c_member_id == $u || $target_diary_writer==$u || $is_admin})
 [<a href="({t_url m=ktai a=page_c_bbs_delete_c_commu_topic_comment_confirm})&amp;c_commu_topic_comment_id=({$item.c_commu_topic_comment_id})&amp;target_c_commu_topic_id=({$c_commu_topic_id})&amp;({$tail})">削除</a>]
 ({/if})
