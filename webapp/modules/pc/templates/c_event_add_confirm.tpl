@@ -18,13 +18,13 @@
 ({/if})
 </td></tr>
 <tr><th>募集人数</th><td>({if $event.capacity})({$event.capacity})人({else})無制限({/if})</td></tr>
-({if $event.image_filename1})
+({if $event.image_filename1 !== ''})
 <tr><th>写真1</th><td>({$event.image_filename1})</td></tr>
 ({/if})
-({if $event.image_filename2})
+({if $event.image_filename2 !== ''})
 <tr><th>写真2</th><td>({$event.image_filename2})</td></tr>
 ({/if})
-({if $event.image_filename3})
+({if $event.image_filename3 !== ''})
 <tr><th>写真3</th><td>({$event.image_filename3})</td></tr>
 ({/if})
 </table>
