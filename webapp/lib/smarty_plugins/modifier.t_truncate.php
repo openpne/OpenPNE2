@@ -58,7 +58,7 @@ function smarty_modifier_t_truncate($string, $width = 80, $etc = '', $rows = 1, 
         if ($i > 0) {
             // 前行の分を切り取り
             $p_string = substr($p_string, strlen($result[$i - 1]));
-            if (!$p_string) {
+            if ($p_string === '') {
                 break;
             }
         }
