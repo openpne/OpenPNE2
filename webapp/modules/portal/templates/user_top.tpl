@@ -70,6 +70,7 @@
     ({if $INC_FOOTER_side_banner_html_before})
         ({$INC_FOOTER_side_banner_html_before|smarty:nodefaults|t_url2cmd:'side_banner'|t_cmd:'side_banner'})
     ({else})
+        ({if !$INC_FOOTER_side_banner_html_after})
         ({if $INC_FOOTER_inc_side_banner.a_href})
         ({if $PHPSESSID})
         <a href="({t_url m=pc a=do_h_click_banner})&amp;target_c_banner_id=({$INC_FOOTER_inc_side_banner.c_banner_id})&amp;sessid=({$PHPSESSID})" target="_blank">
@@ -80,6 +81,7 @@
         </a>
         ({else})
         <img src="({t_img_url filename=$INC_FOOTER_inc_side_banner.image_filename})">
+        ({/if})
         ({/if})
     ({/if})
     </div>
