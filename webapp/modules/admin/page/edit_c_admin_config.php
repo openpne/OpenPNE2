@@ -15,8 +15,7 @@ class admin_page_edit_c_admin_config extends OpenPNE_Action
 
         //外部ログインフォーム用HTML内のアドレス生成
         //PC版ログインフォーム
-        $absolute = true;
-        $login_url = openpne_gen_url_head('pc', 'do_o_login', $absolute);
+        $login_url = openpne_gen_url_head('pc', 'do_o_login');
         $this->set('login_url', $login_url);
         return 'success';
     }
