@@ -424,13 +424,13 @@
 </form>({/capture})
 
 ({capture name=pc_html_password})
-<a href="({t_url _html=0 m=pc a=page_o_help_login_error})">ログインできない方はこちら</a>({/capture})
+<a href="({t_url _html=0 _absolute=1 m=pc a=page_o_help_login_error})">ログインできない方はこちら</a>({/capture})
 
 ({capture name=ktai_html_password})
-<a href="({t_url _html=0 m=ktai a=page_o_password_query})">&gt;&gt;ﾊﾟｽﾜｰﾄﾞを忘れた方</a>({/capture})
+<a href="({t_url _html=0 _absolute=1 m=ktai a=page_o_password_query})">&gt;&gt;ﾊﾟｽﾜｰﾄﾞを忘れた方</a>({/capture})
 
 ({capture name=pc_html_regist})
-<a href="({t_url _html=0 m=pc a=page_o_public_invite})">新規登録</a>({/capture})
+<a href="({t_url _html=0 _absolute=1 m=pc a=page_o_public_invite})">新規登録</a>({/capture})
 
 ({capture name=ktai_html_regist})
 新規登録するには以下のﾘﾝｸから、本文を入力せずにﾒｰﾙを送信してください。<br>
