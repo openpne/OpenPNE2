@@ -57,7 +57,7 @@ class pc_page_fh_album_list extends OpenPNE_Action
         //年月日で一覧表示、アルバム数に制限なし
 
         //検索する場合
-        if ($keyword !== '') {
+        if ($keyword) {
             $list_set = p_h_album_list_all_search_c_album4c_album($keyword, $page_size, $page, $u);
         } else {
             $list_set = p_fh_album_list_fh_my_album_list4c_member_id($target_c_member_id, $page_size, $page, $u);
