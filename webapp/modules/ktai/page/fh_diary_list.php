@@ -40,7 +40,7 @@ class ktai_page_fh_diary_list extends OpenPNE_Action
         $page_size = 10;
         //ターゲットの詳細な日記リスト
         //検索する場合(自分の日記のみ)
-        if ($keyword !== '') {
+        if ($keyword) {
             $list = p_h_diary_list_all_search_c_diary4c_diary($keyword, $page_size, $page, $u);
         } else {
             $list = p_fh_diary_list_diary_list4c_member_id($target_c_member_id, $page_size, $page, $u);
