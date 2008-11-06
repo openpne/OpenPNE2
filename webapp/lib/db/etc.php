@@ -178,13 +178,6 @@ function do_common_c_pc_address_pre4sid($sid)
     return db_get_row($sql, $params);
 }
 
-function do_common_c_ktai_address_pre4ktai_address($ktai_address)
-{
-    $sql = 'SELECT * FROM c_ktai_address_pre WHERE ktai_address = ?';
-    $params = array($ktai_address);
-    return db_get_row($sql, $params);
-}
-
 /**
  * パスワードが正しいかどうか認証する
  *
