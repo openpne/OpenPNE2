@@ -17,9 +17,9 @@
 </tr><tr>
 <th>説明</th>
 <td>
-({if $c_review.release_date !== ''})({$c_review.release_date})<br />({/if})
-({if $c_review.manufacturer !== ''})({$c_review.manufacturer})<br />({/if})
-({if $c_review.author !== ''})({$c_review.author})({/if})
+({if $c_review.release_date})({$c_review.release_date})<br />({/if})
+({if $c_review.manufacturer})({$c_review.manufacturer})<br />({/if})
+({if $c_review.author})({$c_review.author})({/if})
 </td>
 </tr><tr>
 <th>カテゴリ</th>
