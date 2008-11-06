@@ -18,7 +18,7 @@
 ({foreach from=$new_comment_list item=new_comment })
 <dl>
 <dt>({$new_comment.r_datetime|date_format:"%Y年%m月%d日 %H:%M"})</dt>
-<dd><a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$new_comment.c_diary_id})">({$new_comment.body|t_truncate:"36"})</a> ({if $new_comment.nickname !== ''})(({$new_comment.nickname}))({/if})</dd>
+<dd><a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$new_comment.c_diary_id})">({$new_comment.body|t_truncate:"36"})</a> ({if $new_comment.nickname})(({$new_comment.nickname}))({/if})</dd>
 </dl>
 ({/foreach})
 

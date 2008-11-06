@@ -9,13 +9,13 @@
 </div>
 <table>
 <tr><th>本文</th><td>({$event_write.body|nl2br|t_url2cmd:'community':$u|t_cmd:'community'})</td></tr>
-({if $event_write.image_filename1 !== ''})
+({if $event_write.image_filename1})
 <tr><th>写真1</th><td>({$event_write.image_filename1})</td></tr>
 ({/if})
-({if $event_write.image_filename2 !== ''})
+({if $event_write.image_filename2})
 <tr><th>写真2</th><td>({$event_write.image_filename2})</td></tr>
 ({/if})
-({if $event_write.image_filename3 !== ''})
+({if $event_write.image_filename3})
 <tr><th>写真3</th><td>({$event_write.image_filename3})</td></tr>
 ({/if})
 </table>

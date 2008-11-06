@@ -46,9 +46,9 @@
 </tr><tr>
 <th>説明</th>
 <td>
-({if $review.release_date !== ''})({$review.release_date})<br />({/if})
-({if $review.manufacturer !== ''})({$review.manufacturer})<br />({/if})
-({if $review.author !== ''})({$review.author})({/if})
+({if $review.release_date})({$review.release_date})<br />({/if})
+({if $review.manufacturer})({$review.manufacturer})<br />({/if})
+({if $review.author})({$review.author})({/if})
 </td>
 </tr><tr>
 <th>掲載日時</th>
