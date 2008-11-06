@@ -19,9 +19,9 @@
 </tr><tr>
 <th>説明</th>
 <td>
-({if $c_review_comment.release_date})({$c_review_comment.release_date})<br />({/if})
-({if $c_review_comment.manufacturer})({$c_review_comment.manufacturer})<br />({/if})
-({if $c_review_comment.author})({$c_review_comment.author})({/if})
+({if $c_review_comment.release_date !== ''})({$c_review_comment.release_date})<br />({/if})
+({if $c_review_comment.manufacturer !== ''})({$c_review_comment.manufacturer})<br />({/if})
+({if $c_review_comment.author !== ''})({$c_review_comment.author})({/if})
 </td>
 </tr><tr>
 <th>レビュー</th>
