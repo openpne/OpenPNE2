@@ -46,7 +46,7 @@ class pc_do_o_regist_prof extends OpenPNE_Action
 
         $prof = $validator->getParams();
 
-        if ($prof['password'] != $requests['password2']) {
+        if ($prof['password'] !== $requests['password2']) {
             $errors['password2'] = 'パスワードが一致していません';
         }
 
