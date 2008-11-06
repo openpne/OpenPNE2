@@ -61,6 +61,9 @@ class admin_do_send_invites extends OpenPNE_Action
             // 送信者はとりあえず1番で固定
             $c_member_id_invite = 1;
 
+            // 送信完了メール数確認用
+            $send_complete = array();
+
             //<PCKTAI
             if ((OPENPNE_REGIST_FROM & OPENPNE_REGIST_FROM_KTAI) >> 1) {
                 // 携帯へ招待メール
@@ -75,6 +78,7 @@ class admin_do_send_invites extends OpenPNE_Action
                     }
 
                     h_invite_insert_c_invite_mail_send($session, $c_member_id_invite, $mail, $requests['message']);
+                    $send_complete[] = $mail;
                 }
             }
             //>
@@ -93,9 +97,21 @@ class admin_do_send_invites extends OpenPNE_Action
                     }
 
                     do_h_invite_insert_c_invite_mail_send($c_member_id_invite, $session, $requests['message'], $mail);
+                    $send_complete[] = $mail;
                 }
             }
             //>
+
+            // メール送信完了数が0件のとき、確認画面へ
+            if (!$send_complete) {
+                $_REQUEST['error_mails'] = $errors;
+                $_REQUEST['registered_mails'] = $registered;
+                $_REQUEST['pc_mails'] = $pcs;
+                $_REQUEST['ktai_mails'] = $ktais;
+                $_REQUEST['limit_domain_mails'] = $limits;
+                openpne_forward($module_name, 'page', 'send_invites_confirm');
+                exit;
+            }
 
             admin_client_redirect('top', '招待メールを送信しました');
         }
