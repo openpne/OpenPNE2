@@ -26,7 +26,7 @@ class pc_do_h_config_2 extends OpenPNE_Action
         if (!$new_password) $msg_list[] = "パスワードを入力してください";
         if (!$new_password2) $msg_list[] = "パスワード(確認)を入力してください";
 
-        if ($new_password != $new_password2) $msg_list[] = "パスワードが一致しません";
+        if ($new_password !== $new_password2) $msg_list[] = "パスワードが一致しません";
         if (!ctype_alnum($new_password) ||
             strlen($new_password) < 6 ||
             strlen($new_password) > 12) {
