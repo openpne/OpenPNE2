@@ -1432,19 +1432,6 @@ function db_member_regist_mail($sid, $password)
     return true;
 }
 
-/*
- * セッションIDからメンバーIDを取得
- *
- * @param   string $session
- * @return  int    $c_member_id
- */
-function db_member_c_member_id4session_id($session)
-{
-    $sql = 'SELECT c_member_id FROM c_pc_address_pre WHERE session = ?';
-    $params = array($session);
-    return db_get_one($sql, $params);
-}
-
 //--- c_ktai_address_pre
 
 /**
@@ -1631,37 +1618,6 @@ function db_member_insert_c_member_ktai_pre($session, $ktai_address, $c_member_i
         'is_disabled_regist_easy_access_id' => $is_disabled_regist_easy_access_id,
     );
     return db_insert('c_member_ktai_pre', $data);
-}
-
-function db_member_h_regist_ktai_mail($c_member_id, $ktai_address)
-{
-    $insert_id = 0;
-    $session = create_hash();
-
-    // 既にpreに存在するメールアドレスかどうか
-    if (do_common_c_ktai_address_pre4ktai_address($ktai_address)) {
-        $data = array(
-            'c_member_id' => intval($c_member_id),
-            'session' => $session,
-            'r_datetime' => db_now(),
-        );
-        $where = array('ktai_address' => $ktai_address);
-        db_update('c_ktai_address_pre', $data, $where);
-    } else {
-        $data = array(
-            'c_member_id' => intval($c_member_id),
-            'ktai_address' => $ktai_address,
-            'session' => $session,
-            'r_datetime' => db_now(),
-        );
-        $insert_id = db_insert('c_ktai_address_pre', $data);
-    }
-
-    //function cache削除
-    cache_drop_c_member_profile($c_member_id);
-
-    do_h_regist_mail_mail_send($c_member_id, $session, $ktai_address);
-    return $insert_id;
 }
 
 //--- profile関連
@@ -2026,43 +1982,6 @@ function db_member_is_ktai_address_registered($c_member_id)
     $sql = 'SELECT ktai_address FROM c_member_secure WHERE c_member_id = ?';
     $params = array(intval($c_member_id));
     return (bool)db_get_one($sql, $params);
-}
-
-/**
- * 個体識別番号が登録されているならtrueを返す
- *
- * @param int $c_member_id
- * @return  bool
- */
-function db_member_is_easy_access_id_registered($c_member_id)
-{
-    $sql = 'SELECT easy_access_id FROM c_member_secure WHERE c_member_id = ?';
-    $params = array(intval($c_member_id));
-    return (bool)db_get_one($sql, $params);
-}
-
-/**
- * 個体識別番号の登録が必要ならtrueを返す
- *
- * @param int $c_member_id
- * @param bool $is_ktai
- * @return  bool
- */
-function db_member_is_necessary_to_register_easy_access_id($c_member_id, $is_ktai = false)
-{
-    if (OPENPNE_AUTH_MODE != 'slavepne') {
-        return false;
-    }
-    if (IS_GET_EASY_ACCESS_ID == 0 || IS_GET_EASY_ACCESS_ID == 1) {
-        return false;
-    }
-    if (IS_GET_EASY_ACCESS_ID == 2 && !$is_ktai) {
-        return false;
-    }
-    if (db_member_is_easy_access_id_registered($c_member_id)) {
-        return false;
-    }
-    return true;
 }
 
 function db_member_is_blacklist($c_member_id)
