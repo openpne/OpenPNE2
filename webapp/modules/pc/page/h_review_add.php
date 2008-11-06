@@ -24,8 +24,8 @@ class pc_page_h_review_add extends OpenPNE_Action
         $this->set('keyword', $keyword);
 
         if ($search_flag) {
-            if ((trim($keyword) === '') || empty($category_id)) {
-                if (trim($keyword) === '') $err_msg[] = 'キーワードを入力してください';
+            if (empty($keyword) || empty($category_id)) {
+                if (empty($keyword)) $err_msg[] = 'キーワードを入力してください';
                 if (empty($category_id)) $err_msg[] = 'カテゴリを選択してください';
             } else {
                 list($search_result, $page, $pages, $total_num)
