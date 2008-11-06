@@ -56,7 +56,9 @@
 
 ({if $pager})
 <div class="listControlTop">
+({if $pager.total_num})
 <p class="display">({$pager.total_num}) 人中 ({$pager.start_num}) - ({$pager.end_num})人目を表示しています</p>
+({/if})
 <p id="controlIcon"><img src="./modules/admin/img/icn_withdrawal.gif" alt="強制退会のアイコン" class="withdraw" />：強制退会　<img src="modules/admin/img/icn_rejected.gif" alt="ログイン停止のアイコン" />：ログイン停止　<img src="modules/admin/img/icn_permit.gif" alt="ログイン停止解除" />：ログイン停止解除　<img src="modules/admin/img/icn_passwd.gif" alt="パスワード再発行のアイコン" />：パスワード再発行 <img src="modules/admin/img/icn_blacklist.gif" alt="ブラックリストに追加" />：携帯個体識別番号をブラックリストに追加 <img src="modules/admin/img/icn_stop_receive_mail.gif" alt="メール受信の停止のアイコン" />：メール受信の停止</p>
 <p class="listMove">
 ({if $pager.prev_page})<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page=({$pager.prev_page})&amp;page_size=({$pager.page_size})&amp;order=({$requests.order})({$cond})">前へ</a>({/if})
@@ -324,9 +326,10 @@
 ({if $pager.next_page})&nbsp;|&nbsp;<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page=({$pager.next_page})&amp;page_size=({$pager.page_size})&amp;order=({$requests.order})({$cond})">次へ</a>
 ({/if})
 </p>
+({if $pager.total_num})
 <p class="display">({$pager.total_num}) 人中 ({$pager.start_num}) - ({$pager.end_num})人目を表示しています</p>
 </div>({*/div class="listNaviBtm"*})
-
+({/if})
 ({/if})
 </div>({*/div class="listControlBtm"*})
 
