@@ -5,12 +5,12 @@
 メッセージボックスに({$c_member_from.nickname})さんから
 メッセージが届いています。
 
-({if $subject !== ''})
+({if $subject})
 件名:
 ({$subject|t_truncate:50:"...":1:0})
 ({/if})
 
-({if $body !== ''})
+({if $body})
 本文:
 ({$body|t_truncate:150:"...":1:0})
 ({/if})
