@@ -571,15 +571,6 @@ function do_mail_sns_change_ktai_mail_send($c_member_id, $session, $ktai_address
     return fetch_send_mail($ktai_address, 'm_ktai_change_ktai', $params);
 }
 
-//認証モードが「slavepne」時の携帯メールアドレスの登録時に送られるメール
-function do_mail_sns_regist_ktai_mail_for_slavepne_send($session, $ktai_address)
-{
-    $params['SNS_NAME'] = SNS_NAME;
-    $p = array('ses' => $session);
-    $params['url'] = openpne_gen_url('ktai', 'page_o_login_for_slavepne', $p);
-    return fetch_send_mail($ktai_address, 'm_ktai_change_ktai', $params);
-}
-
 //ログインURL通知メール
 function do_mail_sns_login_get_mail_send($c_member_id, $sender)
 {

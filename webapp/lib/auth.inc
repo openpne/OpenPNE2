@@ -55,21 +55,11 @@ if (OPENPNE_AUTH_MODE != 'email' && empty($_SESSION['regist_step'])) {
         'do_inc_page_header_logout',
     );
 
-    // 個体識別番号が未登録の場合でもアクセスすることのできるアクション
-    $easy_access_id_ext_page = array(
-        'page_h_regist_ktai_address_for_slavepne',
-        'page_h_regist_ktai_address_confirm_for_slavepne',
-        'do_h_regist_ktai_address_for_slavepne',
-    );
-
     $is_registered_profile = db_member_is_registered_nickname_birth_day($u);
     $is_registered_profile_action = in_array($current_page, $prof_ext_page);
 
     $is_registered_address = db_member_is_pc_address_registered($u);
     $is_registered_address_action = in_array($current_page, $mail_ext_page);
-
-    $is_necessary_to_register_easy_access_id = db_member_is_necessary_to_register_easy_access_id($u, false);
-    $is_registered_easy_access_id_action = in_array($current_page, $easy_access_id_ext_page);
 
     if ($is_registered_profile && $is_registered_address) {
         $_SESSION['regist_step'] = true;
@@ -78,13 +68,8 @@ if (OPENPNE_AUTH_MODE != 'email' && empty($_SESSION['regist_step'])) {
     } else {
         $_SESSION['regist_step'] = false;
     }
-    if ($is_necessary_to_register_easy_access_id) {
-        $_SESSION['regist_step'] = false;
-    }
 
-    if (   !$is_registered_profile_action
-        && !$is_registered_address_action
-        && !$is_registered_easy_access_id_action) {
+    if (!$is_registered_profile_action && !$is_registered_address_action) {
         // プロフィールが未登録
         if (!$is_registered_profile && OPENPNE_AUTH_MODE == 'slavepne') {
             openpne_redirect('pc', 'page_h_regist_intro');
@@ -93,11 +78,6 @@ if (OPENPNE_AUTH_MODE != 'email' && empty($_SESSION['regist_step'])) {
         // メールアドレスが未登録
         if (!$is_registered_address) {
             openpne_redirect('pc', 'page_h_regist_address');
-        }
-
-        // 個体識別番号の登録が必要な時
-        if ($is_necessary_to_register_easy_access_id && !$is_registered_easy_access_id_action) {
-            openpne_redirect('pc', 'page_h_regist_ktai_address_for_slavepne');
         }
     }
 }
