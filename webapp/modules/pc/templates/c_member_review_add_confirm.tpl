@@ -15,9 +15,9 @@
 </tr><tr>
 <th>説明</th>
 <td>
-({if $review.release_date})({$review.release_date})<br />({/if})
-({if $review.manufacturer})({$review.manufacturer})<br />({/if})
-({if $review.author})({$review.author})<br />({/if})
+({if $review.release_date !== ''})({$review.release_date})<br />({/if})
+({if $review.manufacturer !== ''})({$review.manufacturer})<br />({/if})
+({if $review.author !== ''})({$review.author})<br />({/if})
 </td>
 </tr><tr>
 <th>レビュー本文</th>
