@@ -1580,6 +1580,20 @@ function db_commu_c_commu_category_list4null()
 }
 
 /**
+ * コミュニティを作成できるカテゴリかどうか
+ *
+ * @param int $c_commu_category_id
+ * @return bool
+ */
+function db_commu_c_commu_category_is_create_flag($c_commu_category_id)
+{
+    $sql = 'SELECT create_flag FROM c_commu_category'
+         . ' WHERE c_commu_category_id = ?';
+    $params = array(intval($c_commu_category_id));
+    return db_get_one($sql, $params);
+}
+
+/**
  * 中カテゴリリストを取得
  *
  * @return  array 中カテゴリリスト
