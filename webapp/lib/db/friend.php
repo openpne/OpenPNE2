@@ -446,7 +446,7 @@ function db_friend_c_friend_list4c_member_id2($c_member_id)
     $sql = "SELECT c_member.* FROM c_friend, c_member" .
         " WHERE c_friend.c_member_id_from = ?".
         " AND c_member.c_member_id=c_friend.c_member_id_to".
-        " ORDER BY r_date ASC";
+        " ORDER BY c_friend.r_datetime DESC";
     $params = array(intval($c_member_id));
     return db_get_all($sql, $params);
 }
