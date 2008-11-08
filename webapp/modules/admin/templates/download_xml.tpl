@@ -5,7 +5,6 @@
 </div>
 
 ({*ここまで:navi*})
-
 ({if $errors})
 <p class="actionMsg">
 ({foreach name=err from=$errors item=i})({$i})<br />({/foreach})
