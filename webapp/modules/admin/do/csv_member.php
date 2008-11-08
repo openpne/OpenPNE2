@@ -45,6 +45,8 @@ class admin_do_csv_member extends OpenPNE_Action
         send_nocache_headers(true);
         header("Content-Type: application/octet-stream");
         header("Content-Disposition: attachment; filename=member.csv");
+        header("Cache-Control: public");
+        header("Pragma: public");
         echo $member_csv_data;
         exit;
     }
