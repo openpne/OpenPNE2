@@ -298,6 +298,7 @@
 </div></div>
 ({* }}} *})
 
+({if $smarty.const.OPENPNE_DISP_RANK})
 ({* {{{ formTable *})
 <div class="dparts formTable"><div class="parts">
 <div class="partsHeading"><h3>ランクアップメール設定</h3></div>
@@ -320,7 +321,7 @@
 ({/t_form_block})
 </div></div>
 ({* }}} *})
-
+({/if})
 
 ({if $c_member.c_member_id == 1})
 ({* {{{ simpleBox *})
