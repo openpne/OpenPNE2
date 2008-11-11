@@ -7,6 +7,11 @@
 <font color="#({$ktai_color_config.color_24})">({$WORD_COMMUNITY_HALF})の編集</font><br>
 </td></tr></table>
 
+({if $msg})
+<font color="#({$ktai_color_config.font_09})">({$msg})</font><br>
+<br>
+({/if})
+
 ({t_form m=ktai a=do_c_edit_update_c_commu})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
 <input type="hidden" name="target_c_commu_id" value="({$c_commu.c_commu_id})">
