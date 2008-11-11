@@ -32,7 +32,7 @@ class ktai_page_c_edit extends OpenPNE_Action
         $this->set('topic_authority_list', $topic_authority_list);
 
         //カテゴリのリスト
-        $this->set('c_commu_category_list', db_commu_c_commu_category4null());
+        $this->set('c_commu_category_list', db_commu_c_commu_category4createflag());
 
         $this->set('is_topic', db_commu_is_topic4c_commu_id($target_c_commu_id));
 
