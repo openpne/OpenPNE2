@@ -38,6 +38,11 @@ class pc_do_c_edit_update_c_commu extends OpenPNE_Action
         if (!$name) $err_msg[] = WORD_COMMUNITY . "名を入力してください";
         if (!$info) $err_msg[] = WORD_COMMUNITY . "の説明を入力してください";
 
+        if (   db_commu_is_changed_c_commu_name($target_c_commu_id, $name)
+            && db_commu_is_commu4c_commu_name($name)) {
+            $err_msg[] = 'その' . WORD_COMMUNITY . 'はすでに存在します';
+        }
+
         if (!empty($upfile_obj) && $upfile_obj['error'] !== UPLOAD_ERR_NO_FILE) {
             if (!($image = t_check_image($upfile_obj))) {
                 $err_msg[] = '画像は'.IMAGE_MAX_FILESIZE.'KB以内のGIF・JPEG・PNGにしてください';
