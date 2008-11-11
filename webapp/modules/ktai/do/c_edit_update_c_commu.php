@@ -23,6 +23,11 @@ class ktai_do_c_edit_update_c_commu extends OpenPNE_Action
         $info = $requests['info'];
         $public_flag = $requests['public_flag'];
         $topic_authority = $requests['topic_authority'];
+
+        if (!db_commu_c_commu_category_is_create_flag($c_commu_category_id)) {
+            $p = array('msg' => 49);
+            openpne_redirect('ktai', 'page_h_com_add', $p);
+        }
         // ----------
 
         //--- 権限チェック
