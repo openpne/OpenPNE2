@@ -124,6 +124,7 @@ CREATE TABLE c_admin_user (
   username varchar(64) NOT NULL default '',
   password varchar(40) NOT NULL default '',
   auth_type varchar(20) NOT NULL default 'all',
+  sess_id varchar(32) NOT NULL default '',
   PRIMARY KEY  (c_admin_user_id),
   UNIQUE (username)
 );
@@ -300,6 +301,7 @@ CREATE TABLE c_commu_category (
   name text NOT NULL,
   sort_order int4 NOT NULL default '0',
   c_commu_category_parent_id int4 NOT NULL default '0',
+  create_flag smallint NOT NULL default '0',
   PRIMARY KEY  (c_commu_category_id)
 );
 
@@ -832,6 +834,7 @@ CREATE TABLE c_member_secure (
   ktai_address bytea NOT NULL,
   regist_address bytea NOT NULL,
   easy_access_id bytea NOT NULL,
+  sess_id varchar(32) NOT NULL default '',
   PRIMARY KEY  (c_member_secure_id),
   UNIQUE (c_member_id)
 );
