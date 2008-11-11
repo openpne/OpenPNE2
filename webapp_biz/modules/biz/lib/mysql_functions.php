@@ -1383,43 +1383,44 @@ function biz_do_common_send_schedule_mail()
         if (!$send_mail_config){
             if (!empty($c_member['secure']['pc_address'])) {
                 $is_pc = true;
+            }
+
+            $target_c_member_config = util_get_c_member_config($c_member_id);
+            if (!$target_c_member_config['SEND_RANK_UP_MAIL_PC']){
+                $is_pc = false;
+            }
+
+            if ($target_c_member_config['SEND_RANK_UP_MAIL_KTAI']){
+                $is_ktai = true;
+            }
+
+            //PCに送信
+            if ($is_pc){
+                $c_member_secure = db_member_c_member_secure4c_member_id($key);
+                $pc_address = $c_member_secure['pc_address'];
+
+                $params = array(
+                    "c_member" => db_member_c_member4c_member_id_LIGHT($key),
+                    "c_schedule_list" => $value,
+                );
+                $result_pc = fetch_send_mail($pc_address, 'm_pc_schedule_mail', $params);
+            }
+
+            // 携帯に送信
+            if ($is_ktai){
+                $to = $c_member['secure']['ktai_address'];
+                $p = array('kad' => t_encrypt(db_member_username4c_member_id($c_member['c_member_id'], true)));
+                $login_url = openpne_gen_url('ktai', 'page_o_login', $p);
+
+                $params = array(
+                    'c_member'    => $c_member,
+                    "c_schedule_list" => $value,
+                    'login_url'   => $login_url,
+                );
+                $result_ktai = fetch_send_mail($to, 'm_ktai_schedule_mail', $params);
+            }
+        return ($result_ktai && $result_pc);
         }
-
-        $target_c_member_config = util_get_c_member_config($c_member_id);
-        if (!$target_c_member_config['SEND_RANK_UP_MAIL_PC']){
-            $is_pc = false;
-        }
-
-        if ($target_c_member_config['SEND_RANK_UP_MAIL_KTAI']){
-            $is_ktai = true;
-        }
-
-        //PCに送信
-        if ($is_pc){
-            $c_member_secure = db_member_c_member_secure4c_member_id($key);
-            $pc_address = $c_member_secure['pc_address'];
-
-            $params = array(
-                "c_member" => db_member_c_member4c_member_id_LIGHT($key),
-                "c_schedule_list" => $value,
-            );
-            $result_pc = fetch_send_mail($pc_address, 'm_pc_schedule_mail', $params);
-        }
-
-        // 携帯に送信
-        if ($is_ktai){
-            $to = $c_member['secure']['ktai_address'];
-            $p = array('kad' => t_encrypt(db_member_username4c_member_id($c_member['c_member_id'], true)));
-            $login_url = openpne_gen_url('ktai', 'page_o_login', $p);
-
-            $params = array(
-                'c_member'    => $c_member,
-                "c_schedule_list" => $value,
-                'login_url'   => $login_url,
-            );
-            $result_ktai = fetch_send_mail($to, 'm_ktai_schedule_mail', $params);
-        }
-    return ($result_ktai && $result_pc);
     }
 }
 ?>
