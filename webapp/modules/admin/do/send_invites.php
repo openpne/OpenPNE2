@@ -47,17 +47,7 @@ class admin_do_send_invites extends OpenPNE_Action
             }
         }
 
-        if (empty($requests['complete'])) {
-            // 確認画面へ
-            $_REQUEST['error_mails'] = $errors;
-            $_REQUEST['registered_mails'] = $registered;
-            $_REQUEST['pc_mails'] = $pcs;
-            $_REQUEST['ktai_mails'] = $ktais;
-            $_REQUEST['limit_domain_mails'] = $limits;
-            openpne_forward($module_name, 'page', 'send_invites_confirm');
-            exit;
-
-        } else {
+        if (isset($requests['complete'])) {
             // 送信者はとりあえず1番で固定
             $c_member_id_invite = 1;
 
@@ -102,19 +92,19 @@ class admin_do_send_invites extends OpenPNE_Action
             }
             //>
 
-            // メール送信完了数が0件のとき、確認画面へ
-            if (!$send_complete) {
-                $_REQUEST['error_mails'] = $errors;
-                $_REQUEST['registered_mails'] = $registered;
-                $_REQUEST['pc_mails'] = $pcs;
-                $_REQUEST['ktai_mails'] = $ktais;
-                $_REQUEST['limit_domain_mails'] = $limits;
-                openpne_forward($module_name, 'page', 'send_invites_confirm');
-                exit;
+            // メール送信完了数が1件以上ある時は、完了画面へ
+            if ($send_complete) {
+                admin_client_redirect('top', '招待メールを送信しました');
             }
-
-            admin_client_redirect('top', '招待メールを送信しました');
         }
+
+        $_REQUEST['error_mails'] = $errors;
+        $_REQUEST['registered_mails'] = $registered;
+        $_REQUEST['pc_mails'] = $pcs;
+        $_REQUEST['ktai_mails'] = $ktais;
+        $_REQUEST['limit_domain_mails'] = $limits;
+        openpne_forward($module_name, 'page', 'send_invites_confirm');
+        exit;
     }
 }
 
