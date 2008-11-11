@@ -125,6 +125,7 @@ CREATE TABLE `c_admin_user` (
   `username` varchar(64) NOT NULL default '',
   `password` varchar(40) NOT NULL default '',
   `auth_type` enum('all','normal') NOT NULL default 'all',
+  `sess_id` varchar(32) NOT NULL default '',
   PRIMARY KEY  (`c_admin_user_id`),
   UNIQUE KEY `username` (`username`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -294,6 +295,7 @@ CREATE TABLE `c_commu_category` (
   `name` text NOT NULL,
   `sort_order` int(11) NOT NULL default '0',
   `c_commu_category_parent_id` int(11) NOT NULL default '0',
+  `create_flag` tinyint(1) NOT NULL default '0',
   PRIMARY KEY  (`c_commu_category_id`),
   KEY `c_commu_category_parent_id` (`c_commu_category_parent_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -805,6 +807,7 @@ CREATE TABLE `c_member_secure` (
   `ktai_address` blob NOT NULL,
   `regist_address` blob NOT NULL,
   `easy_access_id` blob NOT NULL,
+  `sess_id` varchar(32) NOT NULL default '',
   PRIMARY KEY  (`c_member_secure_id`),
   UNIQUE KEY `c_member_id` (`c_member_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
