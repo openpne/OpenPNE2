@@ -51,7 +51,7 @@ class pc_page_c_edit extends OpenPNE_Action
         }
 
         $this->set('c_commu', $c_commu);
-        $this->set('c_commu_category_list', db_commu_c_commu_category4null());
+        $this->set('c_commu_category_list', db_commu_c_commu_category4createflag());
         $public_flag_list=
         array(
             'public' =>'参加：誰でも参加可能、掲示板：全員に公開',
