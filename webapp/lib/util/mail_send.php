@@ -825,7 +825,7 @@ function send_mail_pcktai_rank_up($c_member_id, $before_rank, $after_rank)
         }
     }
     //設定された値を取得
-    $target_c_member_config = util_get_c_member_config($target_c_member_id);
+    $target_c_member_config = util_get_c_member_config($c_member_id);
     if ($target_c_member_config['SEND_RANK_UP_MAIL_PC']){
         $is_pc = true;
     }
@@ -858,7 +858,6 @@ function send_mail_pcktai_rank_up($c_member_id, $before_rank, $after_rank)
         );
         $result_ktai = fetch_send_mail($to, 'm_ktai_rank_up', $params);
     }
-
     return ($result_ktai && $result_pc);
 }
 
