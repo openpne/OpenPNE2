@@ -23,7 +23,7 @@ class pc_do_h_com_add_insert_c_commu extends OpenPNE_Action
 
         $err_msg = array();
         if (db_commu_is_commu4c_commu_name($name)) {
-            $err_msg[] = 'その' . WORD_COMMUNITY . 'はすでに存在します';
+            $err_msg[] = 'そのコミュニティはすでに存在します';
         }
         if ($err_msg) {
             $_REQUEST['err_msg'] = $err_msg;

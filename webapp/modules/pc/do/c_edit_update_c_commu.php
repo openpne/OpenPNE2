@@ -40,7 +40,7 @@ class pc_do_c_edit_update_c_commu extends OpenPNE_Action
 
         if (   db_commu_is_changed_c_commu_name($target_c_commu_id, $name)
             && db_commu_is_commu4c_commu_name($name)) {
-            $err_msg[] = 'その' . WORD_COMMUNITY . 'はすでに存在します';
+            $err_msg[] = 'そのコミュニティはすでに存在します';
         }
 
         if (!empty($upfile_obj) && $upfile_obj['error'] !== UPLOAD_ERR_NO_FILE) {
