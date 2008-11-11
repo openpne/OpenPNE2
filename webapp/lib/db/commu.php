@@ -3460,4 +3460,22 @@ function db_commu_c_commu_member_confirm4c_commu_id($c_commu_id)
     return $c_commu_member_confirm;
 }
 
+/**
+ * コミュニティ名が変更されているかどうか
+ *
+ * @param int $c_commu_id
+ * @param string $name
+ * @return bool
+ */
+function db_commu_is_changed_c_commu_name($c_commu_id, $name)
+{
+    $sql = 'SELECT name FROM c_commu WHERE c_commu_id = ?';
+    $params = array(intval($c_commu_id));
+    $now_name = db_get_one($sql, $params);
+    if ($name === $now_name) {
+        return false;
+    }
+    return true;
+}
+
 ?>
