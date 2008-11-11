@@ -59,6 +59,7 @@ function k_p_common_msg4msg_id($msg_id)
         44  => "この携帯個体識別番号は登録することができません",
         45  => "ｲﾍﾞﾝﾄの参加者数制限を超えています",
         46  => "ﾛｸﾞｱｳﾄしました",
+        49  => "その" . WORD_COMMUNITY . "はすでに存在します",
     );
 
     return $msg[$msg_id];

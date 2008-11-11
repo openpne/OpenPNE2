@@ -4,6 +4,11 @@
 <font color="#({$ktai_color_config.font_05})"><a name="top">ｺﾐｭﾆﾃｨの作成</a></font><br>
 </td></tr></table>
 
+({if $msg})
+<font color="#({$ktai_color_config.font_09})">({$msg})</font><br>
+<br>
+({/if})
+
 ({t_form m=ktai a=do_h_com_add_insert_c_commu})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
 <font color="#({$ktai_color_config.font_06})">ｺﾐｭﾆﾃｨ名：</font><br>
