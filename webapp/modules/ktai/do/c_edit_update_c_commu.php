@@ -26,7 +26,7 @@ class ktai_do_c_edit_update_c_commu extends OpenPNE_Action
 
         if (   db_commu_is_changed_c_commu_name($target_c_commu_id, $name)
             && db_commu_is_commu4c_commu_name($name)) {
-            $p = array('msg' => 47);
+            $p = array('target_c_commu_id' => $target_c_commu_id, 'msg' => 47);
             openpne_redirect('ktai', 'page_c_edit', $p);
         }
         // ----------
