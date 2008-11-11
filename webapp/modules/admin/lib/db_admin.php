@@ -2628,7 +2628,7 @@ function db_admin_get_c_cmd_list4name()
  */
 function db_admin_c_holiday_list()
 {
-    $sql = 'SELECT * FROM c_holiday ORDER BY month';
+    $sql = 'SELECT * FROM c_holiday ORDER BY month, day';
     $holiday_list = db_get_all($sql);
 
     return $holiday_list;
