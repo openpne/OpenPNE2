@@ -21,6 +21,11 @@ class ktai_do_h_com_add_insert_c_commu extends OpenPNE_Action
         $name = $requests['name'];
         $info = $requests['info'];
         $public_flag = $requests['public_flag'];
+
+        if (!db_commu_c_commu_category_is_create_flag($c_commu_category_id)) {
+            $p = array('msg' => 49);
+            openpne_redirect('ktai', 'page_h_com_add', $p);
+        }
         // ----------
 
         $c_member_id = $u;
