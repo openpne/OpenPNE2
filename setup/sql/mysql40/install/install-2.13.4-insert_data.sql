@@ -16,9 +16,9 @@ INSERT INTO `c_api` VALUES (NULL,'001_get_c_member','');
 INSERT INTO `c_api` VALUES (NULL,'002_get_member_point','');
 INSERT INTO `c_api` VALUES (NULL,'101_add_point','');
 INSERT INTO `c_api` VALUES (NULL,'smtp2pne','');
-INSERT INTO `c_commu_category` VALUES (NULL,'地域',100,1);
-INSERT INTO `c_commu_category` VALUES (NULL,'グルメ',200,1);
-INSERT INTO `c_commu_category` VALUES (NULL,'スポーツ',300,1);
+INSERT INTO `c_commu_category` VALUES (NULL,'地域',100,1,1);
+INSERT INTO `c_commu_category` VALUES (NULL,'グルメ',200,1,1);
+INSERT INTO `c_commu_category` VALUES (NULL,'スポーツ',300,1,1);
 INSERT INTO `c_commu_category_parent` VALUES (NULL,'コミュニティカテゴリ',1);
 INSERT INTO `c_config_color` VALUES (NULL,'FFFFFF','CCCCCC','CCCCCC','FFFFFF','FFFFFF','CCCCCC','FFFFFF','FFFFFF','CCCCCC','FFFFFF','36B3D1','CCCCCC','FFFFFF','FFFFFF','CCCCCC','DDDDDD','FFFFFF','FFFFFF','FFFFFF','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','現在の設定');
 INSERT INTO `c_config_color_ktai` VALUES (NULL,'FFFFFF','FFFFFF','0D6DDF','DDDDDD','EEEEFF','7DDADF','E0EAEF','FFFFFF','C49FFF','DCD1EF','FFFFFF','0D6DDF','B3CEEF','BFA4EF','000000','0000FF','0000FF','800080','EEEEEE','999966','0C5F0F','C49FFF','FF0000','','','','','','','','','','','','','','','','','','','','','','','','','','','','','現在の設定');
@@ -232,3 +232,4 @@ INSERT INTO `portal_config` VALUES (NULL,'HEAD_TEXT_TYPE','0');
 INSERT INTO `portal_config` VALUES (NULL,'HEAD_TEXT','');
 INSERT INTO `portal_config` VALUES (NULL,'LAYOUT_TYPE','2');
 INSERT INTO `portal_config` VALUES (NULL,'COLOR_TYPE','005_openpne_blue');
+
