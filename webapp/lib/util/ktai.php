@@ -62,6 +62,7 @@ function k_p_common_msg4msg_id($msg_id)
         47  => "ｺﾒﾝﾄが1000番に達したので、これ以上のｺﾒﾝﾄはできません",
         48  => "設定を変更しました",
         49  => "そのｶﾃｺﾞﾘに新規に" . WORD_COMMUNITY . "を作ることはできません",
+        50  => "その" . WORD_COMMUNITY . "はすでに存在します",
     );
 
     return $msg[$msg_id];
