@@ -24,7 +24,8 @@ class ktai_do_c_edit_update_c_commu extends OpenPNE_Action
         $public_flag = $requests['public_flag'];
         $topic_authority = $requests['topic_authority'];
 
-        if (db_commu_is_commu4c_commu_name($name)) {
+        if (   db_commu_is_changed_c_commu_name($target_c_commu_id, $name)
+            && db_commu_is_commu4c_commu_name($name)) {
             $p = array('msg' => 50);
             openpne_redirect('ktai', 'page_h_com_add', $p);
         }
