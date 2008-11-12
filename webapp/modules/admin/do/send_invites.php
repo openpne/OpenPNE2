@@ -34,11 +34,11 @@ class admin_do_send_invites extends OpenPNE_Action
                 $mail = str_replace('"', '', $mail);
             }
 
-            if (!db_common_is_mailaddress($mail)) { // メールアドレスの形式チェック
+            if (!db_common_is_mailaddress($mail)) { // メールアドレスとして正しくない
                 $errors[] = $mail;
-            } elseif (db_member_is_sns_join4mail_address($mail)) { // 登録済みチェック
+            } elseif (db_member_is_sns_join4mail_address($mail)) { // 登録済み
                 $registered[] = $mail;
-            } elseif (!db_member_is_limit_domain4mail_address($mail)) { // 招待ドメイン制限チェック
+            } elseif (!db_member_is_limit_domain4mail_address($mail)) { // ドメイン制限
                 $limits[] = $mail;
             } elseif (is_ktai_mail_address($mail)) {
                 $ktais[] = $mail;
