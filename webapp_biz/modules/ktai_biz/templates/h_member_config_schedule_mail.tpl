@@ -3,16 +3,16 @@
 <font color="#({$ktai_color_config.font_05})"><a name="top">設定変更</a></font><br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
-<font color="#({$ktai_color_config.color_24})">ｽｹｼﾞｭｰﾙﾒｰﾙ受信設定</font><br>
+<font color="#({$ktai_color_config.color_24})">ｽｹｼﾞｭｰﾙお知らせﾒｰﾙ受信設定</font><br>
 </td></tr></table>
 ｽｹｼﾞｭｰﾙのお知らせを登録されている携帯ﾒｰﾙｱﾄﾞﾚｽにお知らせします。
 <hr color="#({$ktai_color_config.border_01})">
-<font color="#({$ktai_color_config.font_06})">ﾗﾝｸｱｯﾌﾟﾒｰﾙ受信設定：</font><br>
+<font color="#({$ktai_color_config.font_06})">ｽｹｼﾞｭｰﾙお知らせﾒｰﾙ受信設定：</font><br>
 ({t_form m=ktai_biz a=do_h_member_config_update_schedule_mail})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
-<input type="radio" name="SEND_SCHEDULE_MAIL_KTAI" value="1"({if $C_MEMBER_CONFIG.SEND_SCHEDULE_MAIL_KTAI}) checked="checked"({/if})>
+<input type="radio" name="SEND_SCHEDULE_MAIL_KTAI" value="1"({if $SEND_SCHEDULE_MAIL_KTAI}) checked="checked"({/if})>
 受け取る<br>
-<input type="radio" name="SEND_SCHEDULE_MAIL_KTAI" value="0"({if !$C_MEMBER_CONFIG.SEND_SCHEDULE_MAIL_KTAI}) checked="checked"({/if})>
+<input type="radio" name="SEND_SCHEDULE_MAIL_KTAI" value="0"({if !$SEND_SCHEDULE_MAIL_KTAI}) checked="checked"({/if})>
 受け取らない<br>
 
 <hr color="#({$ktai_color_config.border_01})">
