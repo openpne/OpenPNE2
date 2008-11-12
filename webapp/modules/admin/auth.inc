@@ -6,7 +6,7 @@
 
 require_once 'OpenPNE/Auth.php';
 
-$config['is_admin'] = true;
+$config = array('is_admin' => true);
 $auth = new OpenPNE_Auth($config);
 $auth->setExpire($GLOBALS['OpenPNE']['admin']['session_lifetime']);
 $auth->setIdle($GLOBALS['OpenPNE']['admin']['session_idletime']);
