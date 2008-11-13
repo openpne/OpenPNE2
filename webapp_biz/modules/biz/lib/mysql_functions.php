@@ -1343,9 +1343,9 @@ function ktai_biz_openpne_redirect($module, $action = '', $params = array())
 }
 
 //スケジュール通知メールの設定があるかどうかを取得
-function db_schedule_pcktai_config($c_member_id)
+function biz_db_schedule_pcktai_config($c_member_id)
 {
-    $sql = 'SELECT * FROM c_member_config '.
+    $sql = 'SELECT COUNT(*) FROM c_member_config '.
         'WHERE c_member_id = ? AND name = "SEND_SCHEDULE_MAIL_KTAI" '.
         'OR c_member_id = ? AND name = "SEND_SCHEDULE_MAIL_PC"';
     $params = array(intval($c_member_id), intval($data));
@@ -1374,7 +1374,7 @@ function biz_do_common_send_schedule_mail()
         $send_list[$c_member_id][] = $value;
     }
 
-    $send_mail_config = db_schedule_pcktai_config($c_member_id);
+    $send_mail_config = biz_db_schedule_pcktai_config($c_member_id);
 
     //DBにデータがない場合
     if (!$send_mail_config){
@@ -1384,11 +1384,11 @@ function biz_do_common_send_schedule_mail()
     }
 
     $target_c_member_config = util_get_c_member_config($c_member_id);
-    if ($target_c_member_config['SEND_SCHEDULE_MAIL_PC']){
+    if ($target_c_member_config['SEND_SCHEDULE_MAIL_PC']) {
         $is_pc = true;
     }
 
-    if ($target_c_member_config['SEND_SCHEDULE_MAIL_KTAI']){
+    if ($target_c_member_config['SEND_SCHEDULE_MAIL_KTAI']) {
         $is_ktai = true;
     }
 
@@ -1413,13 +1413,13 @@ function biz_do_common_send_schedule_mail()
             $login_url = openpne_gen_url('ktai', 'page_o_login', $p);
 
             $params = array(
-                'c_member'    => db_member_c_member4c_member_id_LIGHT($key),
+                "c_member"    => db_member_c_member4c_member_id_LIGHT($key),
                 "c_schedule_list" => $value,
-                'login_url'   => $login_url,
+                "login_url"   => $login_url,
             );
             $result_ktai = fetch_send_mail($to, 'm_ktai_schedule_mail', $params);
         }
-    return ($result_ktai && $result_pc);
+        return ($result_ktai && $result_pc);
     }
 }
 ?>

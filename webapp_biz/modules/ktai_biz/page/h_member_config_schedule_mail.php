@@ -8,13 +8,13 @@ class ktai_biz_page_h_member_config_schedule_mail extends OpenPNE_Action
 {
     function execute($requests)
     {
-        $u  = $GLOBALS['KTAI_C_MEMBER_ID'];
+        $u = $GLOBALS['KTAI_C_MEMBER_ID'];
 
-        $OPTION =util_get_c_member_config($u);
-        $this->set("OPTION", $OPTION);
+        $option = util_get_c_member_config($u);
+        $this->set("option", $option);
 
-        $SEND_SCHEDULE_MAIL_KTAI =$OPTION['SEND_SCHEDULE_MAIL_KTAI'];
-        $this->set("SEND_SCHEDULE_MAIL_KTAI", $SEND_SCHEDULE_MAIL_KTAI);
+        $send_schedule_mail_ktai = $option['SEND_SCHEDULE_MAIL_KTAI'];
+        $this->set("send_schedule_mail_ktai", $send_schedule_mail_ktai);
 
         return 'success';
     }
