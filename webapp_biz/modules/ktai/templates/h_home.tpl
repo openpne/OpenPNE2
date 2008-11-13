@@ -313,6 +313,9 @@
 <a href="({t_url m=ktai a=page_h_member_config_rank_up_mail})&amp;({$tail})">ﾗﾝｸｱｯﾌﾟﾒｰﾙ受信設定</a><br>
 </td></tr>
 ({/if})
+<tr><td bgcolor="#({$ktai_color_config.bg_09})">
+<a href="({t_url m=ktai_biz a=page_h_member_config_schedule_mail})&amp;({$tail})">ｽｹｼﾞｭｰﾙお知らせﾒｰﾙ受信設定</a><br>
+</td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_10})">
 <hr color="#({$ktai_color_config.border_03})">
 </td></tr></table>
