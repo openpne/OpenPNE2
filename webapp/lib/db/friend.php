@@ -559,6 +559,19 @@ function db_friend_friend_list4c_member_id($c_member_id,$page_size,$page)
 }
 
 /**
+ * あなたにフレンドリンクを要請しているメンバー数を取得(リンク承認待ち)
+ *
+ * @param int $c_member_id
+ * @return int 要請しているメンバー数
+ */
+function db_count_c_anatani_friend_confirm($c_member_id)
+{
+    $sql = 'SELECT COUNT(*) FROM c_friend_confirm WHERE c_member_id_to = ?';
+    $params = array(intval($c_member_id));
+    return db_get_one($sql, $params);
+}
+
+/**
  * あなたにフレンドリンクを要請しているメンバー(リンク承認待ち)
  *
  * @param   int $c_member_id_to : 要請されている方(あなた)
@@ -567,18 +580,48 @@ function db_friend_friend_list4c_member_id($c_member_id,$page_size,$page)
  *              nickname        : 要請している人の名前
  *              message_disp    : 表示用メッセージ
  */
-function db_friend_ktai_anatani_c_friend_confirm_list4c_member_id($c_member_id_to)
+function db_friend_ktai_anatani_c_friend_confirm_list4c_member_id($c_member_id_to, $page_size, $page)
 {
     $sql = "SELECT * FROM c_friend_confirm WHERE c_member_id_to = ?";
     $sql .= " ORDER BY r_datetime DESC";
     $params = array(intval($c_member_id_to));
-    $c_friend_confirm_list = db_get_all($sql, $params);
+    $c_friend_confirm_list = db_get_all_page($sql, $page, $page_size, $params);
 
     foreach ($c_friend_confirm_list as $key => $value) {
         $c_member = db_member_c_member4c_member_id_LIGHT($value['c_member_id_from']);
         $c_friend_confirm_list[$key]['nickname'] = $c_member['nickname'];
     }
-    return $c_friend_confirm_list;
+
+    $total_num = db_count_c_anatani_friend_confirm($c_member_id_to);
+
+    if ($total_num != 0) {
+        $total_page_num = ceil($total_num / $page_size);
+        if ($page >= $total_page_num) {
+            $next = false;
+        } else {
+            $next = true;
+        }
+
+        if ($page <= 1) {
+            $prev = false;
+        } else {
+            $prev = true;
+        }
+    }
+    return array($c_friend_confirm_list, $prev, $next, $total_num);
+}
+
+/**
+ * あなたがフレンドリンクを要請しているメンバー数を取得(リンク承認待ち)
+ *
+ * @param int $c_member_id
+ * @return int 要請しているメンバー数
+ */
+function db_count_c_anataga_friend_confirm($c_member_id)
+{
+    $sql = 'SELECT COUNT(*) FROM c_friend_confirm WHERE c_member_id_from = ?';
+    $params = array(intval($c_member_id));
+    return db_get_one($sql, $params);
 }
 
 /**
@@ -590,18 +633,35 @@ function db_friend_ktai_anatani_c_friend_confirm_list4c_member_id($c_member_id_t
  *              nickname        : 要請されている人の名前
  *              message_disp    : 表示用メッセージ
  */
-function db_friend_ktai_anataga_c_friend_confirm_list4c_member_id($c_member_id_from)
+function db_friend_ktai_anataga_c_friend_confirm_list4c_member_id($c_member_id_from, $page_size, $page)
 {
     $sql = "SELECT * FROM c_friend_confirm WHERE c_member_id_from = ?";
     $sql .= " ORDER BY r_datetime DESC";
     $params = array(intval($c_member_id_from));
-    $c_friend_confirm_list = db_get_all($sql, $params);
+    $c_friend_confirm_list = db_get_all_page($sql, $page, $page_size, $params);
 
     foreach ($c_friend_confirm_list as $key => $value) {
         $c_member = db_member_c_member4c_member_id_LIGHT($value['c_member_id_to']);
         $c_friend_confirm_list[$key]['nickname'] = $c_member['nickname'];
     }
-    return $c_friend_confirm_list;
+
+    $total_num = db_count_c_anataga_friend_confirm($c_member_id_from);
+
+    if ($total_num != 0) {
+        $total_page_num = ceil($total_num / $page_size);
+        if ($page >= $total_page_num) {
+            $next = false;
+        } else {
+            $next = true;
+        }
+
+        if ($page <= 1) {
+            $prev = false;
+        } else {
+            $prev = true;
+        }
+    }
+    return array($c_friend_confirm_list, $prev, $next, $total_num);
 }
 
 /**
