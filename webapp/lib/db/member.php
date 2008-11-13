@@ -1639,14 +1639,15 @@ function db_member_update_c_member_profile($c_member_id, $c_member_profile_list)
         $params = array(intval($c_member_id), intval($item['c_profile_id']));
         db_query($sql, $params);
 
-        if (!(is_null($item['value']) || $item['value'] === '')) {
-            if (is_array($item['value'])) {
-                foreach ($item['value'] as $key => $value) {
-                    db_member_insert_c_member_profile($c_member_id, $item['c_profile_id'], $key, $value, $item['public_flag']);
-                }
-            } else {
-                db_member_insert_c_member_profile($c_member_id, $item['c_profile_id'], $item['c_profile_option_id'], $item['value'], $item['public_flag']);
+        if (is_null($item['value'])) {
+            $item['value'] = "";
+        }
+        if (is_array($item['value'])) {
+            foreach ($item['value'] as $key => $value) {
+                db_member_insert_c_member_profile($c_member_id, $item['c_profile_id'], $key, $value, $item['public_flag']);
             }
+        } else {
+            db_member_insert_c_member_profile($c_member_id, $item['c_profile_id'], $item['c_profile_option_id'], $item['value'], $item['public_flag']);
         }
     }
 }
