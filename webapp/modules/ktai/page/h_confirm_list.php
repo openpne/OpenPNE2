@@ -10,34 +10,37 @@ class ktai_page_h_confirm_list extends OpenPNE_Action
     {
         $u  = $GLOBALS['KTAI_C_MEMBER_ID'];
 
-        //リンク承認待ちリスト
-        $this->set("anatani_c_friend_confirm_list", db_friend_ktai_anatani_c_friend_confirm_list4c_member_id($u));
+        //あなたにフレンド認証を求めいるメンバーリストの数
+        $num_from_f_confirm_list = db_count_c_anatani_friend_confirm($u);
+        $this->set("num_from_f_confirm_list", $num_from_f_confirm_list);
 
-        //コミュニティ参加承認待ちリスト
-        $this->set("anatani_c_commu_member_confirm_list", db_commu_anatani_c_commu_member_confirm_list4c_member_id($u));
+        //コミュニティ承認を求めているメンバーの数
+        $num_from_h_confirm_list = db_count_c_anatani_c_commu_member_confirm($u);
+        $this->set("num_from_h_confirm_list", $num_from_h_confirm_list);
 
-        // あなたにコミュニティ管理者交代を希望しているメンバー
-        $this->set("anatani_c_commu_admin_confirm_list",
-            db_commu_anatani_c_commu_admin_confirm_list4c_member_id($u));
+        //あなたにコミュニティ管理者交代を希望しているメンバーの数
+        $num_from_c_commu_admin_confirm_list = db_count_c_anatani_c_commu_admin_confirm($u);
+        $this->set("num_from_c_commu_admin_confirm_list", $num_from_c_commu_admin_confirm_list);
 
-        // あなたにコミュニティ副管理者を希望しているメンバー
-        $this->set("anatani_c_commu_sub_admin_confirm_list",
-            db_commu_anatani_c_commu_sub_admin_confirm_list4c_member_id($u));
+        //あなたにコミュニティ副管理者を希望しているメンバーの数
+        $num_from_c_commu_sub_admin_confirm_list = db_count_c_anatani_c_commu_sub_admin_confirm($u);
+        $this->set("num_from_c_commu_sub_admin_confirm_list", $num_from_c_commu_sub_admin_confirm_list);
 
-        //リンク申請出した人のリスト
-        $this->set("anataga_c_friend_confirm_list", db_friend_ktai_anataga_c_friend_confirm_list4c_member_id($u));
+        //あなたがリンク要請中の数
+        $num_to_f_confirm_list = db_count_c_anataga_friend_confirm($u);
+        $this->set("num_to_f_confirm_list", $num_to_f_confirm_list);
 
-        //参加申請出したコミュニティに関するリスト
-        $this->set("anataga_c_commu_member_confirm_list", db_commu_anataga_c_commu_member_confirm_list4c_member_id($u));
+        //参加要請中のコミュニティの数
+        $num_to_h_confirm_list = db_count_c_anataga_c_commu_member_confirm($u);
+        $this->set("num_to_h_confirm_list", $num_to_h_confirm_list);
 
-        // あなたがコミュニティ管理者交代を要請しているメンバー
-        $this->set("anataga_c_commu_admin_confirm_list",
-            db_commu_anataga_c_commu_admin_confirm_list4c_member_id($u));
+        //あなたがコミュニティ管理者交代を要請しているメンバーの数
+        $num_to_c_commu_admin_confirm_list = db_count_c_anataga_c_commu_admin_confirm($u);
+        $this->set("num_to_c_commu_admin_confirm_list", $num_to_c_commu_admin_confirm_list);
 
-        // あなたがコミュニティ副管理者を要請しているメンバー
-        $this->set("anataga_c_commu_sub_admin_confirm_list",
-            db_commu_anataga_c_commu_sub_admin_confirm_list4c_member_id($u));
-
+        //あなたがコミュニティ副管理者を要請しているメンバーの数
+        $num_to_c_commu_sub_admin_confirm_list = db_count_c_anataga_c_commu_sub_admin_confirm($u);
+        $this->set("num_to_c_commu_sub_admin_confirm_list", $num_to_c_commu_sub_admin_confirm_list);
 
         return 'success';
     }
