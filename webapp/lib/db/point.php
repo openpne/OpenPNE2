@@ -31,7 +31,7 @@ function db_point_insert_tags($c_point_log_id, $tags)
 //ランクアップメールの設定があるかどうかを取得
 function db_rank_up_pcktai_config($c_member_id)
 {
-    $sql = 'SELECT * FROM c_member_config '.
+    $sql = 'SELECT COUNT(*) FROM c_member_config '.
         'WHERE c_member_id = ? AND name = "SEND_RANK_UP_MAIL_KTAI" '.
         'OR c_member_id = ? AND name = "SEND_RANK_UP_MAIL_PC"';
     $params = array(intval($c_member_id), intval($data));
