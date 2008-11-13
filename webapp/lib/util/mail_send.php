@@ -821,19 +821,19 @@ function send_mail_pcktai_rank_up($c_member_id, $before_rank, $after_rank)
         if (!empty($c_member['secure']['pc_address'])) {
             $is_pc = true;
         } else {
-        $is_ktai = true;
+            $is_ktai = true;
         }
     }
     //設定された値を取得
     $target_c_member_config = util_get_c_member_config($c_member_id);
-    if ($target_c_member_config['SEND_RANK_UP_MAIL_PC']){
+    if ($target_c_member_config['SEND_RANK_UP_MAIL_PC']) {
         $is_pc = true;
     }
-    if ($target_c_member_config['SEND_RANK_UP_MAIL_KTAI']){
+    if ($target_c_member_config['SEND_RANK_UP_MAIL_KTAI']) {
         $is_ktai = true;
     }
     // PCに送信
-    if ($is_pc){
+    if ($is_pc) {
         $to = $c_member['secure']['pc_address'];
 
         $params = array(
@@ -845,7 +845,7 @@ function send_mail_pcktai_rank_up($c_member_id, $before_rank, $after_rank)
     }
 
     // 携帯に送信
-    if ($is_ktai){
+    if ($is_ktai) {
         $to = $c_member['secure']['ktai_address'];
         $p = array('kad' => t_encrypt(db_member_username4c_member_id($c_member['c_member_id'], true)));
         $login_url = openpne_gen_url('ktai', 'page_o_login', $p);
