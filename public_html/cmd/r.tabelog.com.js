@@ -1,5 +1,5 @@
 function url2cmd(url) {
-    if (!url.match(/^http:\/\/r\.tabelog\.com\/[a-z]+\/rstdtl\/([0-9]+)\/?$/)) {
+    if (!url.match(/^http:\/\/r\.tabelog\.com\/[a-z]+\/A[0-9]+\/A[0-9]+\/([0-9]+)\/?$/)) {
         pne_url2a(url);
         return;
     }
