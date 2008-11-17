@@ -10,9 +10,9 @@
 <font color="#({$ktai_color_config.font_06})">ｽｹｼﾞｭｰﾙお知らせﾒｰﾙ受信設定：</font><br>
 ({t_form m=ktai_biz a=do_h_member_config_update_schedule_mail})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
-<input type="radio" name="SEND_SCHEDULE_MAIL_KTAI" value="1"({if $send_schedule_mail_ktai}) checked="checked"({/if})>
+<input type="radio" name="SEND_SCHEDULE_MAIL_KTAI" value="1"({if $SEND_SCHEDULE_MAIL_KTAI}) checked="checked"({/if})>
 受け取る<br>
-<input type="radio" name="SEND_SCHEDULE_MAIL_KTAI" value="0"({if !$send_schedule_mail_ktai}) checked="checked"({/if})>
+<input type="radio" name="SEND_SCHEDULE_MAIL_KTAI" value="0"({if !$SEND_SCHEDULE_MAIL_KTAI}) checked="checked"({/if})>
 受け取らない<br>
 
 <hr color="#({$ktai_color_config.border_01})">
