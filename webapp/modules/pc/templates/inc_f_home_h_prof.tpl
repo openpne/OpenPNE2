@@ -907,6 +907,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 
 ({/strip})
 <!-- ここから：主内容＞({$item.caption}) -->
+({if !$item.value ==""})
 <tr>
 <td class="border_01 bg_09 padding_s" style="width:90px;border-right:none;border-top:none;">
 
@@ -929,6 +930,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 
 </td>
 </tr>
+({/if})
 ({/if})
 <!-- ここまで：主内容＞({$item.caption}) -->
 ({/foreach})
