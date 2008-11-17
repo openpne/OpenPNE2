@@ -271,6 +271,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({$smarty.capture.birth|smarty:nodefaults})
 ({/if})
 ({/strip})
+({if !$item.value ==""})
 <tr><th>({$item.caption})</th><td>
 ({if $item.form_type == 'textarea'})
     ({$item.value|nl2br|t_url2cmd:'profile':$target_c_member_id|t_cmd:'profile'})
@@ -279,11 +280,11 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({else})
     ({$item.value})
 ({/if})
-
 ({if $is_h_prof && $item.public_flag == 'friend'})
 <span class="caution">※({$WORD_MY_FRIEND})まで公開</span>
 ({/if})
 </td></tr>
+({/if})
 ({/if})
 ({/foreach})
 ({if !$_cnt_nick && !$_cnt_birth})
