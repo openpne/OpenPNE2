@@ -1343,13 +1343,13 @@ function ktai_biz_openpne_redirect($module, $action = '', $params = array())
 }
 
 //スケジュール通知メールの設定があるかどうかを取得
-function biz_db_schedule_pcktai_config($c_member_id)
+function biz_db_schedule_pcktai_mail_setting($c_member_id)
 {
     $sql = 'SELECT COUNT(*) FROM c_member_config '.
         'WHERE c_member_id = ? AND name = "SEND_SCHEDULE_MAIL_KTAI" '.
         'OR c_member_id = ? AND name = "SEND_SCHEDULE_MAIL_PC"';
     $params = array(intval($c_member_id), intval($data));
-    return db_get_all($sql, $params);
+    return (bool)db_get_one($sql, $params);
 }
 
 //------------------------------
@@ -1374,7 +1374,7 @@ function biz_do_common_send_schedule_mail()
         $send_list[$c_member_id][] = $value;
     }
 
-    $send_mail_config = biz_db_schedule_pcktai_config($c_member_id);
+    $send_mail_config = biz_db_schedule_pcktai_mail_setting($c_member_id);
 
     //DBにデータがない場合
     if (!$send_mail_config){
