@@ -22,7 +22,7 @@
 ({$inc_ktai_entry_point[2]|smarty:nodefaults})
 ({/if})
 ({if $num_f_confirm_list})
-<a href="({t_url m=ktai a=page_h_confirm_list})&amp;({$tail})"><font color="#({$ktai_color_config.font_09})">★承認待ちのﾒﾝﾊﾞｰ({$num_f_confirm_list})名</font></a><br>
+<a href="({t_url m=ktai a=page_h_anatani_c_friend_confirm_list})&amp;({$tail})"><font color="#({$ktai_color_config.font_09})">★承認待ちのﾒﾝﾊﾞｰ({$num_f_confirm_list})名</font></a><br>
 ({/if})
 ({if $num_message_not_is_read})
 <a href="({t_url m=ktai a=page_h_message_box})&amp;({$tail})"><font color="#({$ktai_color_config.font_09})">★新着ﾒｯｾｰｼﾞ({$num_message_not_is_read})件</font></a><br>
@@ -31,13 +31,13 @@
 <a href="({t_url m=ktai a=page_fh_diary})&amp;target_c_diary_id=({$first_diary_read})&amp;({$tail})"><font color="#({$ktai_color_config.font_09})">★({$num_diary_not_is_read})件日記に新着ｺﾒﾝﾄ</font></a><br>
 ({/if})
 ({if $num_h_confirm_list })
-<a href="({t_url m=ktai a=page_h_confirm_list})&amp;({$tail})"><font color="#({$ktai_color_config.font_09})">★ｺﾐｭﾆﾃｨ参加承認待ち({$num_h_confirm_list})名</font></a><br>
+<a href="({t_url m=ktai a=page_h_anatani_c_commu_member_confirm_list})&amp;({$tail})"><font color="#({$ktai_color_config.font_09})">★ｺﾐｭﾆﾃｨ参加承認待ち({$num_h_confirm_list})名</font></a><br>
 ({/if})
 ({if $anatani_c_commu_admin_confirm_list})
-<a href="({t_url m=ktai a=page_h_confirm_list})&amp;({$tail})"><font color="#({$ktai_color_config.font_09})">★ｺﾐｭﾆﾃｨ管理者交代依頼({$num_anatani_c_commu_admin_confirm_list})件</font></a><br>
+<a href="({t_url m=ktai a=page_h_anatani_c_commu_admin_confirm_list})&amp;({$tail})"><font color="#({$ktai_color_config.font_09})">★ｺﾐｭﾆﾃｨ管理者交代依頼({$num_anatani_c_commu_admin_confirm_list})件</font></a><br>
 ({/if})
 ({if $anatani_c_commu_sub_admin_confirm_list})
-<a href="({t_url m=ktai a=page_h_confirm_list})&amp;({$tail})"><font color="#({$ktai_color_config.font_09})">★ｺﾐｭﾆﾃｨ副管理者依頼({$num_anatani_c_commu_sub_admin_confirm_list})件</font></a><br>
+<a href="({t_url m=ktai a=page_h_anatani_c_commu_sub_admin_confirm_list})&amp;({$tail})"><font color="#({$ktai_color_config.font_09})">★ｺﾐｭﾆﾃｨ副管理者依頼({$num_anatani_c_commu_sub_admin_confirm_list})件</font></a><br>
 ({/if})
 ({if $anatani_c_commu_admin_confirm_list||$num_f_confirm_list||$num_message_not_is_read||$num_diary_not_is_read||$num_h_confirm_list||$anatani_c_commu_admin_confirm_list||$anatani_c_commu_sub_admin_confirm_list})
 <br>
@@ -82,6 +82,7 @@
 [i:140]<a href="({t_url m=ktai a=page_fh_friend_list})&amp;({$tail})">({$WORD_MY_FRIEND_HALF})</a>(({$c_friend_count|default:'0'}))<br>
 [i:155]<a href="({t_url m=ktai a=page_fh_com_list})&amp;({$tail})">参加ｺﾐｭﾆﾃｨ</a>(({$fh_com_count_user|default:'0'}))<br>
 [i:136]<a href="({t_url m=ktai a=page_h_bookmark_list})&amp;({$tail})">お気に入り</a>
+[i:151]<a href="({t_url m=ktai a=page_h_confirm_list})&amp;({$tail})">承認待ちﾘｽﾄ</a>
 <hr color="#({$ktai_color_config.border_01})" size="3"></td></tr>
 
 <tr>
