@@ -31,35 +31,31 @@
 <td>({$c_member.r_datetime|date_format:"%Y年%m月%d日 %H:%M"})</td>
 <td><a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$c_member.c_member_id})">({$c_member.nickname})</a></td>
 <td>
-({if !$c_member.is_c_commu_admin||$c_member.is_c_commu_sub_admin})
+({if !$c_member.is_c_commu_admin})
 <a href="({t_url m=pc a=page_c_edit_member_delete_c_commu_member})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;target_c_member_id=({$c_member.c_member_id})">({$WORD_COMMUNITY})から退会させる</a>
-</td>
-<td>
-({if $c_commu.c_member_id_sub_admin != $u})
-({if $c_member.is_c_commu_sub_admin})
-<a href="({t_url m=pc a=page_c_sub_admin_delete})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;target_c_member_id=({$c_member.c_member_id})">副管理者から降格</a>
-({elseif $c_member.c_commu_sub_admin_confirm_id > 0})
-<a href="({t_url m=pc a=page_h_confirm_to_list})"><strong>申請を取り消し</strong></a>
-({elseif $c_member.c_commu_admin_confirm_id <= 0})
-<a href="({t_url m=pc a=page_c_sub_admin_request})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;target_c_member_id=({$c_member.c_member_id})">副管理者に指名</a>
 ({/if})
 </td>
 <td>
-({if $c_member.c_commu_admin_confirm_id > 0})
-<a href="({t_url m=pc a=page_h_confirm_to_list})"><strong>申請を取り消し</strong></a>
-({elseif $c_member.c_commu_sub_admin_confirm_id <= 0})
+({if !$c_member.is_c_commu_admin
+ &&  !$c_member.is_c_commu_sub_admin
+ &&   $c_member.c_commu_admin_confirm_id <= 0
+ &&   $c_member.c_commu_sub_admin_confirm_id <= 0
+ &&   $c_commu.c_member_id_sub_admin != $u
+})
+<a href="({t_url m=pc a=page_c_sub_admin_request})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;target_c_member_id=({$c_member.c_member_id})">副管理者に指名</a>
+({elseif $c_member.is_c_commu_sub_admin && $c_commu.c_member_id_sub_admin != $u })
+<a href="({t_url m=pc a=page_c_sub_admin_delete})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;target_c_member_id=({$c_member.c_member_id})">副管理者から降格</a>
+({/if})
+</td>
+<td>
+({if !($c_member.is_c_commu_admin && !$c_member.is_c_commu_sub_admin)
+ &&   $c_member.c_commu_admin_confirm_id <= 0
+ &&   $c_member.c_commu_sub_admin_confirm_id <= 0
+ &&   $c_commu.c_member_id_sub_admin != $u
+})
 <a href="({t_url m=pc a=page_c_admin_request})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;target_c_member_id=({$c_member.c_member_id})">管理権を渡す</a>
 ({/if})
 </td>
-
-({else})
-</td><td></td>
-({/if})
-
-({else})
-</td><td></td>
-<td></td>
-({/if})
 </tr>
 ({/foreach})
 </table>
