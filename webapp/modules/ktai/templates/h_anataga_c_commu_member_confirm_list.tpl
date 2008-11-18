@@ -1,13 +1,13 @@
 ({$inc_ktai_header|smarty:nodefaults})
 <table width="100%">
 <tr><td align="center" bgcolor="#({$ktai_color_config.bg_02})">
-<font color="#({$ktai_color_config.font_05})"><a name="top">({$target_c_member.nickname})</a></font><br>
+<font color="#({$ktai_color_config.font_05})"><a name="top">承認待ちﾘｽﾄ</a></font><br>
 </td></tr>
-<tr><td bgcolor="#({$ktai_color_config.bg_03})">
-<font color="#({$ktai_color_config.color_24})">({$WORD_COMMUNITY_HALF})要請中</font><br>
+<tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
+<font color="#({$ktai_color_config.color_24})">({$WORD_COMMUNITY_HALF})参加要請中</font><br>
 </td></tr></table>
 ({if !$anataga_c_commu_member_confirm_list})
-({$WORD_COMMUNITY_HALF})要請中ありません。
+現在あなたは管理者の承認が必要な({$WORD_COMMUNITY_HALF})に参加を要請していません。
 ({else})
 <center>
 ({$pager.start})～({$pager.end})件目を表示<br>
@@ -46,5 +46,7 @@
 </center>
 ({/if})
 <hr color="#({$ktai_color_config.border_01})">
+
+[i:90]<a href="({t_url m=ktai a=page_h_confirm_list})&amp;({$tail})">承認待ちﾘｽﾄ</a><br>
 
 ({$inc_ktai_footer|smarty:nodefaults})
