@@ -72,8 +72,10 @@ class admin_do_download_xml extends OpenPNE_Action
             send_nocache_headers(true);
             header("Content-Type: application/octet-stream");
             header("Content-Disposition: attachment; filename=download.rdf");
-            header("Cache-Control: public");
-            header("Pragma: public");
+            if (strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE') !== false) {
+                header("Cache-Control: public");
+                header("Pragma: public");
+            }
             echo $xml;
             //echo "<pre>".htmlspecialchars($xml)."</pre>";
         }
