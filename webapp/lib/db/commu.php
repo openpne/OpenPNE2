@@ -1173,8 +1173,9 @@ function db_commu_c_commu_topic_comment_list4c_member_id($c_member_id, $limit)
 
     $hint = db_mysql_hint('USE INDEX (r_datetime_c_commu_id)');
     if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
-        $sql = 'SELECT sub_cct_tbl.c_commu_topic_id, cct.c_commu_id, sub_cct_tbl.r_datetime, cct.c_member_id'.
-            ' FROM (' .
+        $sql = 'SELECT sub_cct_tbl.c_commu_topic_id, cct.c_commu_id, sub_cct_tbl.r_datetime, cct.c_member_id' .
+                ' , max(cctc.image_filename1) as image_filename1, max(cctc.image_filename2) as image_filename2, max(cctc.image_filename3) as image_filename3 '.
+                ' FROM (' .
                     ' SELECT cct.c_commu_topic_id, MAX(cctc.r_datetime) as r_datetime' .
                     ' FROM' .
                         ' c_commu_topic as cct, c_commu_topic_comment as cctc'. $hint . 
@@ -1182,16 +1183,17 @@ function db_commu_c_commu_topic_comment_list4c_member_id($c_member_id, $limit)
                         ' cct.c_commu_id IN (' . $ids . ') AND cctc.c_commu_topic_id = cct.c_commu_topic_id'.
                     ' GROUP BY cct.c_commu_topic_id' .
                     ') as sub_cct_tbl, c_commu_topic_comment as cctc , c_commu_topic as cct' .
-            ' WHERE' .
+                ' WHERE' .
                 ' cct.c_commu_topic_id=sub_cct_tbl.c_commu_topic_id' .
                 ' AND cctc.c_commu_topic_id = cct.c_commu_topic_id ' .
                 ' AND cctc.r_datetime=sub_cct_tbl.r_datetime' .
-            ' ORDER BY r_datetime DESC';
+                ' ORDER BY r_datetime DESC';
     } else {
-        $sql = 'SELECT cct.c_commu_topic_id, cct.c_commu_id, MAX(cctc.r_datetime) as r_datetime, cct.c_member_id'.
-            ' FROM c_commu_topic as cct, c_commu_topic_comment as cctc'. $hint . ' WHERE cct.c_commu_id IN (' . $ids . ') AND cctc.c_commu_topic_id = cct.c_commu_topic_id'.
-            ' GROUP BY cctc.c_commu_topic_id'.
-            ' ORDER BY r_datetime DESC';
+        $sql = 'SELECT cct.c_commu_topic_id, cct.c_commu_id, MAX(cctc.r_datetime) as r_datetime, cct.c_member_id' .
+                ' , cctc.image_filename1, cctc.image_filename2, cctc.image_filename3 '.
+                ' FROM c_commu_topic as cct, c_commu_topic_comment as cctc'. $hint . ' WHERE cct.c_commu_id IN (' . $ids . ') AND cctc.c_commu_topic_id = cct.c_commu_topic_id'.
+                ' GROUP BY cctc.c_commu_topic_id'.
+                ' ORDER BY r_datetime DESC';
     }
     $c_commu_topic_list = db_get_all_limit($sql, 0, $limit);
 
@@ -1199,7 +1201,7 @@ function db_commu_c_commu_topic_comment_list4c_member_id($c_member_id, $limit)
         $c_member = db_common_c_member4c_member_id_LIGHT($value['c_member_id']);
         $c_commu_topic_list[$key]['nickname'] = $c_member['nickname'];
 
-        $sql = 'SELECT number, image_filename1, image_filename2, image_filename3' .
+        $sql = 'SELECT number' .
                ' FROM c_commu_topic_comment' .
                ' WHERE c_commu_topic_id = ? AND r_datetime = ?';
         $params = array(intval($value['c_commu_topic_id']), $value['r_datetime']);
@@ -1215,9 +1217,6 @@ function db_commu_c_commu_topic_comment_list4c_member_id($c_member_id, $limit)
         $number = db_commu_get_max_number4topic($value['c_commu_topic_id']);
 
         $c_commu_topic_list[$key]['number'] = $number;
-        $c_commu_topic_list[$key]['image_filename1'] = $temp['image_filename1'];
-        $c_commu_topic_list[$key]['image_filename2'] = $temp['image_filename2'];
-        $c_commu_topic_list[$key]['image_filename3'] = $temp['image_filename3'];
         $c_commu_topic_list[$key]['c_commu_name'] = $c_commu_name;
         $c_commu_topic_list[$key]['c_commu_topic_name'] = $c_commu_topic_name;
     }
@@ -1236,8 +1235,9 @@ function db_commu_c_commu_topic_comment_list4c_member_id_2($c_member_id, $limit,
 
     $hint = db_mysql_hint('USE INDEX (r_datetime_c_commu_id)');
     if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
-        $sql = 'SELECT sub_cct_tbl.c_commu_topic_id, cct.c_commu_id, sub_cct_tbl.r_datetime, cct.c_member_id'.
-            ' FROM (' .
+        $sql = 'SELECT sub_cct_tbl.c_commu_topic_id, cct.c_commu_id, sub_cct_tbl.r_datetime, cct.c_member_id' .
+                ' , max(cctc.image_filename1) as image_filename1, max(cctc.image_filename2) as image_filename2, max(cctc.image_filename3) as image_filename3 '.
+                ' FROM (' .
                     ' SELECT cct.c_commu_topic_id, MAX(cctc.r_datetime) as r_datetime' .
                     ' FROM' .
                         ' c_commu_topic as cct, c_commu_topic_comment as cctc'. $hint . 
@@ -1245,24 +1245,24 @@ function db_commu_c_commu_topic_comment_list4c_member_id_2($c_member_id, $limit,
                         ' cct.c_commu_id IN (' . $ids . ') AND cctc.c_commu_topic_id = cct.c_commu_topic_id'.
                     ' GROUP BY cct.c_commu_topic_id' .
                     ') as sub_cct_tbl, c_commu_topic_comment as cctc , c_commu_topic as cct' .
-            ' WHERE' .
+                ' WHERE' .
                 ' cct.c_commu_topic_id=sub_cct_tbl.c_commu_topic_id' .
                 ' AND cctc.c_commu_topic_id = cct.c_commu_topic_id ' .
                 ' AND cctc.r_datetime=sub_cct_tbl.r_datetime' .
-            ' ORDER BY r_datetime DESC';
+                ' ORDER BY r_datetime DESC';
     } else {
-        $sql = 'SELECT cct.c_commu_topic_id, cct.c_commu_id, MAX(cctc.r_datetime) as r_datetime, cct.c_member_id'.
-            ' FROM c_commu_topic as cct, c_commu_topic_comment as cctc'. $hint . ' WHERE cct.c_commu_id IN (' . $ids . ') AND cctc.c_commu_topic_id = cct.c_commu_topic_id'.
-            ' GROUP BY cctc.c_commu_topic_id'.
-            ' ORDER BY r_datetime DESC';
+        $sql = 'SELECT cct.c_commu_topic_id, cct.c_commu_id, MAX(cctc.r_datetime) as r_datetime, cct.c_member_id' .
+                ' , cctc.image_filename1, cctc.image_filename2, cctc.image_filename3 '.
+                ' FROM c_commu_topic as cct, c_commu_topic_comment as cctc'. $hint . ' WHERE cct.c_commu_id IN (' . $ids . ') AND cctc.c_commu_topic_id = cct.c_commu_topic_id'.
+                ' GROUP BY cctc.c_commu_topic_id'.
+                ' ORDER BY r_datetime DESC';
     }
     $c_commu_topic_list = db_get_all_limit($sql, ($page-1)*$limit, $limit);
-
     foreach ($c_commu_topic_list as $key => $value) {
         $c_member = db_common_c_member4c_member_id_LIGHT($value['c_member_id']);
         $c_commu_topic_list[$key]['nickname'] = $c_member['nickname'];
 
-        $sql = 'SELECT number, image_filename1, image_filename2, image_filename3' .
+        $sql = 'SELECT number' .
                ' FROM c_commu_topic_comment ' .
                ' WHERE c_commu_topic_id = ? AND r_datetime = ?';
         $params = array(intval($value['c_commu_topic_id']), $value['r_datetime']);
@@ -1278,9 +1278,6 @@ function db_commu_c_commu_topic_comment_list4c_member_id_2($c_member_id, $limit,
         $number = db_commu_get_max_number4topic($value['c_commu_topic_id']);
 
         $c_commu_topic_list[$key]['number'] = $number;
-        $c_commu_topic_list[$key]['image_filename1'] = $temp['image_filename1'];
-        $c_commu_topic_list[$key]['image_filename2'] = $temp['image_filename2'];
-        $c_commu_topic_list[$key]['image_filename3'] = $temp['image_filename3'];
         $c_commu_topic_list[$key]['c_commu_name'] = $c_commu_name;
         $c_commu_topic_list[$key]['c_commu_topic_name'] = $c_commu_topic_name;
     }
