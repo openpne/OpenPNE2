@@ -49,6 +49,11 @@ class pc_do_h_message_file_download extends OpenPNE_Action
         header('Content-Disposition: attachment; filename="' . $original_filename . '"');
         header('Content-Length: '. strlen($file['bin']));
         header('Content-Type: application/octet-stream');
+        if (strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE') !== false) {
+            // IE の場合のみ、ヘッダを追加
+        header('Cache-Control: public');
+        header('Pragma: public');
+        }
         echo $file['bin'];
         exit;
     }
