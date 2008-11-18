@@ -523,10 +523,10 @@ function db_commu_new_topic_comment4c_commu_id($c_commu_id, $limit, $event_flag 
 
     foreach ($list as $key => $value) {
         $list[$key]['count_comments'] = db_commu_get_max_c_commu_topic_comment_number4c_topic_id($value['c_commu_topic_id']);
-        $last_comment = db_commu_get_last_c_topic_comment($value['c_commu_topic_id']);
-        $list[$key]['image_filename1'] = $last_comment['image_filename1'];
-        $list[$key]['image_filename2'] = $last_comment['image_filename2'];
-        $list[$key]['image_filename3'] = $last_comment['image_filename3'];
+        $start_comment = db_commu_get_start_c_topic_comment($value['c_commu_topic_id']);
+        $list[$key]['image_filename1'] = $start_comment['image_filename1'];
+        $list[$key]['image_filename2'] = $start_comment['image_filename2'];
+        $list[$key]['image_filename3'] = $start_comment['image_filename3'];
     }
     return $list;
 }
@@ -1173,7 +1173,7 @@ function db_commu_c_commu_topic_comment_list4c_member_id($c_member_id, $limit)
         $c_member = db_member_c_member4c_member_id_LIGHT($value['c_member_id']);
         $c_commu_topic_list[$key]['nickname'] = $c_member['nickname'];
 
-        $temp = db_commu_get_last_c_topic_comment($value['c_commu_topic_id']);
+        $temp = db_commu_get_start_c_topic_comment($value['c_commu_topic_id']);
 
         $sql = 'SELECT name AS c_commu_name FROM c_commu WHERE c_commu_id = ?';
         $c_commu_name = db_get_one($sql, $value['c_commu_id']);
@@ -1213,7 +1213,7 @@ function db_commu_c_commu_topic_comment_list4c_member_id_2($c_member_id, $limit,
         $c_member = db_member_c_member4c_member_id_LIGHT($value['c_member_id']);
         $c_commu_topic_list[$key]['nickname'] = $c_member['nickname'];
 
-        $temp = db_commu_get_last_c_topic_comment($value['c_commu_topic_id']);
+        $temp = db_commu_get_start_c_topic_comment($value['c_commu_topic_id']);
 
         $sql = 'SELECT name AS c_commu_name FROM c_commu WHERE c_commu_id = ?';
         $c_commu_name = db_get_one($sql, $value['c_commu_id']);
@@ -3362,11 +3362,11 @@ function db_commu_update_c_commu_topic_u_datetime($c_commu_topic_id)
 }
 
 /*
- * 最終書き込みコメントの情報取得
+ * 最初の書き込みコメントの情報取得(親トピック)
  */
-function db_commu_get_last_c_topic_comment($c_commu_topic_id)
+function db_commu_get_start_c_topic_comment($c_commu_topic_id)
 {
-    $sql = 'SELECT * FROM c_commu_topic_comment WHERE c_commu_topic_id = ? ORDER BY r_datetime DESC';
+    $sql = 'SELECT * FROM c_commu_topic_comment WHERE c_commu_topic_id = ? ORDER BY r_datetime ASC';
     $params = array(intval($c_commu_topic_id));
     return db_get_row($sql,$params);
 }
