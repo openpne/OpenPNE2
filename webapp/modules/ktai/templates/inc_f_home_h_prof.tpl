@@ -80,6 +80,7 @@
 ({$smarty.capture.birth|smarty:nodefaults})
 ({/if})
 
+({if !$item.value == ''})
 <font color="#({$ktai_color_config.font_06})">({$item.caption})：</font><br>
 ({if $item.form_type == 'checkbox'})
     ({$item.value|@t_implode:", "})
@@ -90,7 +91,7 @@
 ({/if})
 <br>
 ({if $is_h_prof && $item.public_flag == 'friend'})<font color="#({$ktai_color_config.font_09})">※({$WORD_MY_FRIEND_HALF})まで公開</font><br>({/if})
-
+({/if})
 ({/if})
 ({/if})
 ({/foreach})
@@ -101,7 +102,7 @@
 <tr><td colspan="2">
 ({foreach from=$target_c_member.profile key=key item=item})
 ({if $item.public_flag != "private" && ($item.public_flag == "public" || ($item.public_flag == "friend" && ($is_friend || $is_h_prof)))})
-({if !$item.value ==""})
+({if !$item.value == ''})
 ({if $item.form_type == 'textarea'})
 <font color="#({$ktai_color_config.font_06})">({$item.caption})：</font><br>
 ({$item.value|t_truncate:108:""})<br>
