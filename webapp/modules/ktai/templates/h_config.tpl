@@ -14,9 +14,6 @@
 ({if $smarty.const.OPENPNE_DISP_RANK})
 <font color="#({$ktai_color_config.bg_02})">◆</font><a href="({t_url m=ktai a=page_h_member_config_rank_up_mail})&amp;({$tail})">ﾗﾝｸｱｯﾌﾟﾒｰﾙ受信設定</a><br>
 ({/if})
-({if USE_BIZ_DIR})
-<font color="#({$ktai_color_config.bg_02})">◆</font><a href="({t_url m=ktai_biz a=page_h_member_config_schedule_mail})&amp;({$tail})">ｽｹｼﾞｭｰﾙお知らせﾒｰﾙ受信設定</a><br>
-({/if})
 <font color="#({$ktai_color_config.bg_02})">◆</font><a href="({t_url m=ktai a=page_h_config_public_flag_diary})&amp;({$tail})">({$WORD_DIARY_HALF})の公開範囲設定</a><br>
 <font color="#({$ktai_color_config.bg_02})">◆</font><a href="({t_url m=ktai a=page_h_config_access_block})&amp;({$tail})">ｱｸｾｽﾌﾞﾛｯｸ設定</a><br>
 ({if $smarty.const.USE_SHINOBIASHI})
