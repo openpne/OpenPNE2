@@ -14,7 +14,6 @@
            ({/if})
            ({else})
            <div id="passwordQueryArea"><a href="({t_url m=pc a=page_o_help_login_error})">&gt;ログインできない方はこちら</a></div>
-           <div id="pcAddressRegistArea"><a href="({t_url m=pc a=page_o_regist_pc_address})">&gt;PCメールアドレス登録</a></div>
            ({/if})
            <div id="buttonLoginArea"><button type="submit" tabindex="4" id="buttonLogin">ログイン</button></div>
            </form>
