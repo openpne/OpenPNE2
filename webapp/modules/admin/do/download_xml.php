@@ -69,12 +69,12 @@ class admin_do_download_xml extends OpenPNE_Action
         $result = $serializer->serialize($rdf);
         if( $result === true ) {
             $xml = $serializer->getSerializedData();
-            send_nocache_headers(true);
+            //IE以外の場合、キャッシュをさせないヘッダを出力
+            if (strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE') == false) {
+                send_nocache_headers(true);
+            }
             header("Content-Type: application/octet-stream");
             header("Content-Disposition: attachment; filename=download.rdf");
-            if (strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE') !== false) {
-                header("Cache-Control: public");
-                header("Pragma: public");
             }
             echo $xml;
             //echo "<pre>".htmlspecialchars($xml)."</pre>";
