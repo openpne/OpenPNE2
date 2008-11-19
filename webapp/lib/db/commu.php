@@ -3388,11 +3388,11 @@ function db_commu_update_c_commu_topic_u_datetime($c_commu_topic_id)
 }
 
 /*
- * 最初の書き込みコメントの情報取得(親トピック)
+ * トピックの最初の書き込みコメント情報取得
  */
 function db_commu_get_start_c_topic_comment($c_commu_topic_id)
 {
-    $sql = 'SELECT * FROM c_commu_topic_comment WHERE c_commu_topic_id = ? ORDER BY r_datetime ASC';
+    $sql = 'SELECT * FROM c_commu_topic_comment WHERE c_commu_topic_id = ? AND number = 0';
     $params = array(intval($c_commu_topic_id));
     return db_get_row($sql,$params);
 }
