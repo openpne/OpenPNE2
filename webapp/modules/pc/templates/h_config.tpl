@@ -298,31 +298,6 @@
 </div></div>
 ({* }}} *})
 
-({if $smarty.const.OPENPNE_DISP_RANK})
-({* {{{ formTable *})
-<div class="dparts formTable"><div class="parts">
-<div class="partsHeading"><h3>ランクアップメール設定</h3></div>
-({t_form_block m=pc a=do_h_member_config_update_rank_up_mail})
-<table><tr>
-<th>ランクアップメールの設定</th>
-<td>
-<ul>
-<li><input type="radio" class="input_radio" name="SEND_RANK_UP_MAIL_PC" id="send_rank_up_mail_pc" value="1" checked="checked" /><label for="send_rank_up_mail_pc">PCアドレスにランクアップメールを送信</label></li>
-<li><input type="radio" class="input_radio" name="SEND_RANK_UP_MAIL_PC" id="send_rank_up_mail_no_pc" value="0"({if !$C_MEMBER_CONFIG.SEND_RANK_UP_MAIL_PC})checked="checked" ({/if})/><label for="send_rank_up_mail_no_pc">PCアドレスにランクアップメールを送信しない</label></li>
-</ul>
-<p>※携帯アドレスへのランクアップメールの送信は携帯の設定変更より行えます。</p>
-</td>
-</tr></table>
-<div class="operation">
-<ul class="moreInfo button">
-<li><input type="submit" class="input_submit" value="設定変更" /></li>
-</ul>
-</div>
-({/t_form_block})
-</div></div>
-({* }}} *})
-({/if})
-
 ({if $c_member.c_member_id == 1})
 ({* {{{ simpleBox *})
 <div class="dparts simpleBox"><div class="parts">

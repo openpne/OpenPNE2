@@ -811,29 +811,8 @@ function send_mail_pcktai_rank_up($c_member_id, $before_rank, $after_rank)
 {
     $c_member = db_member_c_member4c_member_id($c_member_id, true);
 
-    $is_pc = false;
-    $is_ktai = false;
-
-    $send_mail_config = db_rank_up_pcktai_config($c_member_id);
-
-    //DBにデータがない場合
-    if (!$send_mail_config){
-        if (!empty($c_member['secure']['pc_address'])) {
-            $is_pc = true;
-        } else {
-            $is_ktai = true;
-        }
-    }
-    //設定された値を取得
-    $target_c_member_config = util_get_c_member_config($c_member_id);
-    if ($target_c_member_config['SEND_RANK_UP_MAIL_PC']) {
-        $is_pc = true;
-    }
-    if ($target_c_member_config['SEND_RANK_UP_MAIL_KTAI']) {
-        $is_ktai = true;
-    }
-    // PCに送信
-    if ($is_pc) {
+    if (!empty($c_member['secure']['pc_address'])) {
+        // PCメールアドレスがある場合は、PCのみ送信
         $to = $c_member['secure']['pc_address'];
 
         $params = array(
@@ -841,11 +820,9 @@ function send_mail_pcktai_rank_up($c_member_id, $before_rank, $after_rank)
             'before_rank' => $before_rank,
             'after_rank'  => $after_rank,
         );
-        $result_pc = fetch_send_mail($to, 'm_pc_rank_up', $params);
-    }
-
-    // 携帯に送信
-    if ($is_ktai) {
+        return fetch_send_mail($to, 'm_pc_rank_up', $params);
+    } else {
+        // PCメールアドレスがない場合は、携帯のみ送信
         $to = $c_member['secure']['ktai_address'];
         $p = array('kad' => t_encrypt(db_member_username4c_member_id($c_member['c_member_id'], true)));
         $login_url = openpne_gen_url('ktai', 'page_o_login', $p);
@@ -856,9 +833,8 @@ function send_mail_pcktai_rank_up($c_member_id, $before_rank, $after_rank)
             'after_rank'  => $after_rank,
             'login_url'   => $login_url,
         );
-        $result_ktai = fetch_send_mail($to, 'm_ktai_rank_up', $params);
+        return fetch_send_mail($to, 'm_ktai_rank_up', $params);
     }
-    return ($result_ktai && $result_pc);
 }
 
 // ランクアップしたら管理者にメール送信
