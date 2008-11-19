@@ -18,7 +18,7 @@
 ({foreach from=$h_album_list_friend item=item})
 <dl>
 <dt>({$item.r_datetime|date_format:"%Y年%m月%d日 %H:%M"})</dt>
-<dd><a href="({t_url m=pc a=page_fh_album})&amp;target_c_album_id=({$item.c_album_id})">({$item.subject})</a> (({$item.c_member.nickname}))({if $item.image_filename_1 || $item.image_filename_2 || $item.image_filename_3})<img src="({t_img_url_skin filename=icon_camera})" alt="" />({/if})</dd>
+<dd><a href="({t_url m=pc a=page_fh_album})&amp;target_c_album_id=({$item.c_album_id})">({$item.subject})</a> (({$item.c_member.nickname}))</dd>
 </dl>
 ({/foreach})
 
