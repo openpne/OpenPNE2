@@ -10,7 +10,7 @@ class ktai_page_h_confirm_list extends OpenPNE_Action
     {
         $u  = $GLOBALS['KTAI_C_MEMBER_ID'];
 
-        //あなたにフレンド認証を求めいるメンバーリストの数
+        //あなたにフレンドリンクを求めているメンバーの数
         $num_from_f_confirm_list = db_friend_count_c_anatani_friend_confirm($u);
         $this->set("num_from_f_confirm_list", $num_from_f_confirm_list);
 
@@ -26,7 +26,7 @@ class ktai_page_h_confirm_list extends OpenPNE_Action
         $num_from_c_commu_sub_admin_confirm_list = db_commu_count_c_anatani_c_commu_sub_admin_confirm($u);
         $this->set("num_from_c_commu_sub_admin_confirm_list", $num_from_c_commu_sub_admin_confirm_list);
 
-        //あなたがリンク要請中の数
+        //あなたがフレンドリンクを要請している数
         $num_to_f_confirm_list = db_friend_count_c_anataga_friend_confirm($u);
         $this->set("num_to_f_confirm_list", $num_to_f_confirm_list);
 
