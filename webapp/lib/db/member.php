@@ -91,19 +91,22 @@ function db_member_c_member_profile_list4c_member_id($c_member_id, $public_flag 
         break;
     }
 
-    $sql = 'SELECT cp.name, cp.caption, cp.form_type, cm.value, cm.public_flag' .
-        ' FROM c_member_profile as cm, c_profile as cp' .
-        ' WHERE cm.c_member_id = ?'.
-            " AND cm.public_flag IN ($flags)" .
-            ' AND cm.c_profile_id = cp.c_profile_id' .
-        ' ORDER BY cp.sort_order, cp.c_profile_id, cm.c_member_profile_id';
+    $sql = "SELECT cp.name, cp.caption, cp.form_type, cm.c_profile_option_id, cm.value, cm.public_flag"
+         . " FROM c_member_profile as cm, c_profile as cp"
+         . " WHERE cm.c_member_id = ?"
+         . " AND cm.public_flag IN ($flags)"
+         . " AND cm.c_profile_id = cp.c_profile_id"
+         . " ORDER BY cp.sort_order, cp.c_profile_id, cm.c_member_profile_id";
     $profile = db_get_all($sql, array(intval($c_member_id)));
-
     $member_profile = array();
     foreach ($profile as $value) {
         $member_profile[$value['name']]['form_type'] = $value['form_type'];
         if ($value['form_type'] == 'checkbox') {
-            $member_profile[$value['name']]['value'][] = $value['value'];
+            if ($value['c_profile_option_id'] == 0) {
+                $member_profile[$value['name']]['value'] = '';
+            } else {
+                $member_profile[$value['name']]['value'][] = $value['value'];
+            }
         } else {
             $member_profile[$value['name']]['value'] = $value['value'];
         }
@@ -1632,21 +1635,19 @@ function db_member_update_c_member_profile($c_member_id, $c_member_profile_list)
 {
     //function cache削除
     cache_drop_c_member_profile($c_member_id);
-
     foreach ($c_member_profile_list as $item) {
         $sql = 'DELETE FROM c_member_profile' .
                 ' WHERE c_member_id = ? AND c_profile_id = ?';
         $params = array(intval($c_member_id), intval($item['c_profile_id']));
         db_query($sql, $params);
-
-        if (is_null($item['value'])) {
-            $item['value'] = "";
-        }
-        if (is_array($item['value'])) {
+        if (is_array($item['value']) && !empty($item['value'])) {
             foreach ($item['value'] as $key => $value) {
                 db_member_insert_c_member_profile($c_member_id, $item['c_profile_id'], $key, $value, $item['public_flag']);
             }
         } else {
+            if (empty($item['value'])) {
+                $item['value'] = "";
+            }
             db_member_insert_c_member_profile($c_member_id, $item['c_profile_id'], $item['c_profile_option_id'], $item['value'], $item['public_flag']);
         }
     }
