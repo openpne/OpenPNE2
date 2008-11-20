@@ -564,7 +564,7 @@ function db_friend_friend_list4c_member_id($c_member_id,$page_size,$page)
  * @param int $c_member_id
  * @return int 要請しているメンバー数
  */
-function db_count_c_anatani_friend_confirm($c_member_id)
+function db_friend_count_c_anatani_friend_confirm($c_member_id)
 {
     $sql = 'SELECT COUNT(*) FROM c_friend_confirm WHERE c_member_id_to = ?';
     $params = array(intval($c_member_id));
@@ -592,7 +592,7 @@ function db_friend_ktai_anatani_c_friend_confirm_list4c_member_id($c_member_id_t
         $c_friend_confirm_list[$key]['nickname'] = $c_member['nickname'];
     }
 
-    $total_num = db_count_c_anatani_friend_confirm($c_member_id_to);
+    $total_num = db_friend_count_c_anatani_friend_confirm($c_member_id_to);
 
     if ($total_num != 0) {
         $total_page_num = ceil($total_num / $page_size);
@@ -617,7 +617,7 @@ function db_friend_ktai_anatani_c_friend_confirm_list4c_member_id($c_member_id_t
  * @param int $c_member_id
  * @return int 要請しているメンバー数
  */
-function db_count_c_anataga_friend_confirm($c_member_id)
+function db_friend_count_c_anataga_friend_confirm($c_member_id)
 {
     $sql = 'SELECT COUNT(*) FROM c_friend_confirm WHERE c_member_id_from = ?';
     $params = array(intval($c_member_id));
@@ -645,7 +645,7 @@ function db_friend_ktai_anataga_c_friend_confirm_list4c_member_id($c_member_id_f
         $c_friend_confirm_list[$key]['nickname'] = $c_member['nickname'];
     }
 
-    $total_num = db_count_c_anataga_friend_confirm($c_member_id_from);
+    $total_num = db_friend_count_c_anataga_friend_confirm($c_member_id_from);
 
     if ($total_num != 0) {
         $total_page_num = ceil($total_num / $page_size);
