@@ -29,8 +29,8 @@ class ktai_page_h_anataga_c_commu_member_confirm_list extends OpenPNE_Action
         $page_size = 5;
         $page += $direc;
         //ターゲットの詳細なリスト
-        $list = db_ktai_commu_anataga_c_commu_member_confirm_list4c_member_id($u, $page_size, $page);
-        $total_num = db_count_c_anataga_c_commu_member_confirm($u);
+        $list = db_commu_ktai_anataga_c_commu_member_confirm_list4c_member_id($u, $page_size, $page);
+        $total_num = db_commu_count_c_anataga_c_commu_member_confirm($u);
         $this->set("anataga_c_commu_member_confirm_list", $list[0]);
         $this->set("page", $page);
         $this->set("is_prev", $list[1]);
