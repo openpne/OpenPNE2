@@ -42,7 +42,7 @@ class admin_do_csv_member extends OpenPNE_Action
 
         $member_csv_data = $this->create_csv_data($member_key_string, $c_member_list);
         //IE以外の場合、キャッシュをさせないヘッダを出力
-        if (strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE') == false) {
+        if (strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE') === false) {
             send_nocache_headers(true);
         }
         header("Content-Type: application/octet-stream");
