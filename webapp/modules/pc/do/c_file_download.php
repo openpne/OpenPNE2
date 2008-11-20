@@ -63,11 +63,11 @@ class pc_do_c_file_download extends OpenPNE_Action
         } else {
             send_nocache_headers(true);
         }
-            $original_filename = str_replace(array("\r", "\n"), '', $original_filename);
+        $original_filename = str_replace(array("\r", "\n"), '', $original_filename);
 
-            header('Content-Disposition: attachment; filename="' . $original_filename . '"');
-            header('Content-Length: '. strlen($file['bin']));
-            header('Content-Type: application/octet-stream');
+        header('Content-Disposition: attachment; filename="' . $original_filename . '"');
+        header('Content-Length: '. strlen($file['bin']));
+        header('Content-Type: application/octet-stream');
         echo $file['bin'];
         exit;
     }
