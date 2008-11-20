@@ -808,7 +808,7 @@ function db_commu_anataga_c_commu_sub_admin_confirm_list4c_member_id($c_member_i
  * @param int $c_member_id
  * @return int 希望しているメンバー数
  */
-function db_count_c_anatani_c_commu_member_confirm($c_member_id)
+function db_commu_count_c_anatani_c_commu_member_confirm($c_member_id)
 {
     $sql = "SELECT COUNT(*) FROM c_commu_member_confirm AS cmc, c_commu AS c";
     $sql .= " WHERE (c.c_member_id_admin = ? OR c.c_member_id_sub_admin = ?) AND cmc.c_commu_id=c.c_commu_id";
@@ -827,7 +827,7 @@ function db_count_c_anatani_c_commu_member_confirm($c_member_id)
  *              image_filename  : 要請している人の画像
  * @see     h_confirm_list.php
  */
-function db_ktai_commu_anatani_c_commu_member_confirm_list4c_member_id($c_member_id, $page_size=5, $page)
+function db_commu_ktai_anatani_c_commu_member_confirm_list4c_member_id($c_member_id, $page_size, $page)
 {
     $sql = "SELECT cmc.*, c.name AS c_commu_name";
     $sql .= " FROM c_commu_member_confirm AS cmc, c_commu AS c";
@@ -841,7 +841,7 @@ function db_ktai_commu_anatani_c_commu_member_confirm_list4c_member_id($c_member
         $c_commu_member_confirm_list[$key]['image_filename'] = $c_member['image_filename'];
     }
 
-    $total_num = db_count_c_anatani_c_commu_member_confirm($c_member_id);
+    $total_num = db_commu_count_c_anatani_c_commu_member_confirm($c_member_id);
 
     if ($total_num != 0) {
         $total_page_num = ceil($total_num / $page_size);
@@ -866,7 +866,7 @@ function db_ktai_commu_anatani_c_commu_member_confirm_list4c_member_id($c_member
  * @param int $c_member_id
  * @return int 希望している数
  */
-function db_count_c_anataga_c_commu_member_confirm($c_member_id)
+function db_commu_count_c_anataga_c_commu_member_confirm($c_member_id)
 {
     $sql = "SELECT COUNT(*) FROM c_commu_member_confirm AS cmc, c_commu AS c";
     $sql .= " WHERE cmc.c_member_id = ? AND cmc.c_commu_id=c.c_commu_id";
@@ -886,7 +886,7 @@ function db_count_c_anataga_c_commu_member_confirm($c_member_id)
  *              image_filename      : 管理者の画像
  * @see     h_confirm_list.php
  */
-function db_ktai_commu_anataga_c_commu_member_confirm_list4c_member_id($c_member_id, $page_size=5, $page)
+function db_commu_ktai_anataga_c_commu_member_confirm_list4c_member_id($c_member_id, $page_size, $page)
 {
     $sql = "SELECT cmc.*, c.name AS c_commu_name, c.c_member_id_admin";
     $sql .= " FROM c_commu_member_confirm AS cmc, c_commu AS c";
@@ -900,7 +900,7 @@ function db_ktai_commu_anataga_c_commu_member_confirm_list4c_member_id($c_member
         $c_commu_member_confirm_list[$key]['image_filename'] = $c_member['image_filename'];
     }
 
-    $total_num = db_count_c_anataga_c_commu_member_confirm($c_member_id);
+    $total_num = db_commu_count_c_anataga_c_commu_member_confirm($c_member_id);
 
     if ($total_num != 0) {
         $total_page_num = ceil($total_num / $page_size);
@@ -925,7 +925,7 @@ function db_ktai_commu_anataga_c_commu_member_confirm_list4c_member_id($c_member
  * @param int $c_member_id
  * @return int 希望している数
  */
-function db_count_c_anatani_c_commu_admin_confirm($c_member_id)
+function db_commu_count_c_anatani_c_commu_admin_confirm($c_member_id)
 {
     $sql = "SELECT COUNT(*) FROM c_commu_admin_confirm AS cmc, c_commu AS c";
     $sql .= " WHERE cmc.c_member_id_to = ? AND cmc.c_commu_id=c.c_commu_id";
@@ -945,7 +945,7 @@ function db_count_c_anatani_c_commu_admin_confirm($c_member_id)
  *              image_filename      : 要請している人の画像
  * @see     h_confirm_list.php
  */
-function db_ktai_commu_anatani_c_commu_admin_confirm_list4c_member_id($c_member_id_to, $page_size=5, $page)
+function db_commu_ktai_anatani_c_commu_admin_confirm_list4c_member_id($c_member_id_to, $page_size, $page)
 {
     $sql = "SELECT cac.*, c.name AS c_commu_name, c.c_member_id_admin";
     $sql .= " FROM c_commu_admin_confirm AS cac, c_commu AS c";
@@ -958,7 +958,7 @@ function db_ktai_commu_anatani_c_commu_admin_confirm_list4c_member_id($c_member_
         $c_commu_admin_confirm_list[$key]['nickname'] = $c_member['nickname'];
         $c_commu_admin_confirm_list[$key]['image_filename'] = $c_member['image_filename'];
     }
-    $total_num = db_count_c_anatani_c_commu_admin_confirm($c_member_id_to);
+    $total_num = db_commu_count_c_anatani_c_commu_admin_confirm($c_member_id_to);
 
     if ($total_num != 0) {
         $total_page_num = ceil($total_num / $page_size);
@@ -983,7 +983,7 @@ function db_ktai_commu_anatani_c_commu_admin_confirm_list4c_member_id($c_member_
  * @param int $c_member_id
  * @return int 要請している数
  */
-function db_count_c_anataga_c_commu_admin_confirm($c_member_id)
+function db_commu_count_c_anataga_c_commu_admin_confirm($c_member_id)
 {
     $sql = "SELECT COUNT(*) FROM c_commu_admin_confirm AS cmc, c_commu AS c";
     $sql .= " WHERE cmc.c_member_id_to = ? AND cmc.c_commu_id=c.c_commu_id";
@@ -1001,7 +1001,7 @@ function db_count_c_anataga_c_commu_admin_confirm($c_member_id)
  *              image_filename      : 要請されている人の画像
  * @see     h_confirm_list.php
  */
-function db_ktai_commu_anataga_c_commu_admin_confirm_list4c_member_id($c_member_id_admin, $page_size=5, $page)
+function db_commu_ktai_anataga_c_commu_admin_confirm_list4c_member_id($c_member_id_admin, $page_size, $page)
 {
     $sql = "SELECT cac.*, c.name AS c_commu_name, c.c_member_id_admin";
     $sql .= " FROM c_commu_admin_confirm AS cac, c_commu AS c";
@@ -1015,7 +1015,7 @@ function db_ktai_commu_anataga_c_commu_admin_confirm_list4c_member_id($c_member_
         $c_commu_admin_confirm_list[$key]['image_filename'] = $c_member['image_filename'];
     }
 
-    $total_num = db_count_c_anataga_c_commu_admin_confirm($c_member_id_admin);
+    $total_num = db_commu_count_c_anataga_c_commu_admin_confirm($c_member_id_admin);
 
     if ($total_num != 0) {
         $total_page_num = ceil($total_num / $page_size);
@@ -1040,7 +1040,7 @@ function db_ktai_commu_anataga_c_commu_admin_confirm_list4c_member_id($c_member_
  * @param int $c_member_id
  * @return int 希望している数
  */
-function db_count_c_anatani_c_commu_sub_admin_confirm($c_member_id)
+function db_commu_count_c_anatani_c_commu_sub_admin_confirm($c_member_id)
 {
     $sql = "SELECT COUNT(*) FROM c_commu_sub_admin_confirm AS cmc, c_commu AS c";
     $sql .= " WHERE cmc.c_member_id_to = ? AND cmc.c_commu_id=c.c_commu_id";
@@ -1060,7 +1060,7 @@ function db_count_c_anatani_c_commu_sub_admin_confirm($c_member_id)
  *              image_filename      : 要請している人の画像
  * @see     h_confirm_list.php
  */
-function db_ktai_commu_anatani_c_commu_sub_admin_confirm_list4c_member_id($c_member_id_to, $page_size=5, $page)
+function db_commu_ktai_anatani_c_commu_sub_admin_confirm_list4c_member_id($c_member_id_to, $page_size, $page)
 {
     $sql = "SELECT cac.*, c.name AS c_commu_name, c.c_member_id_admin";
     $sql .= " FROM c_commu_sub_admin_confirm AS cac, c_commu AS c";
@@ -1073,7 +1073,7 @@ function db_ktai_commu_anatani_c_commu_sub_admin_confirm_list4c_member_id($c_mem
         $c_commu_sub_admin_confirm_list[$key]['nickname'] = $c_member['nickname'];
         $c_commu_sub_admin_confirm_list[$key]['image_filename'] = $c_member['image_filename'];
     }
-    $total_num = db_count_c_anatani_c_commu_sub_admin_confirm($c_member_id_to);
+    $total_num = db_commu_count_c_anatani_c_commu_sub_admin_confirm($c_member_id_to);
 
     if ($total_num != 0) {
         $total_page_num = ceil($total_num / $page_size);
@@ -1098,7 +1098,7 @@ function db_ktai_commu_anatani_c_commu_sub_admin_confirm_list4c_member_id($c_mem
  * @param int $c_member_id
  * @return int 要請している数
  */
-function db_count_c_anataga_c_commu_sub_admin_confirm($c_member_id)
+function db_commu_count_c_anataga_c_commu_sub_admin_confirm($c_member_id)
 {
     $sql = "SELECT COUNT(*) FROM c_commu_sub_admin_confirm AS cmc, c_commu AS c";
     $sql .= " WHERE cmc.c_member_id_admin = ? AND cmc.c_commu_id=c.c_commu_id";
@@ -1116,7 +1116,7 @@ function db_count_c_anataga_c_commu_sub_admin_confirm($c_member_id)
  *              image_filename      : 要請されている人の画像
  * @see     h_confirm_list.php
  */
-function db_ktai_commu_anataga_c_commu_sub_admin_confirm_list4c_member_id($c_member_id_admin, $page_size=5, $page)
+function db_commu_ktai_anataga_c_commu_sub_admin_confirm_list4c_member_id($c_member_id_admin, $page_size=5, $page)
 {
     $sql = "SELECT cac.*, c.name AS c_commu_name, c.c_member_id_admin";
     $sql .= " FROM c_commu_sub_admin_confirm AS cac, c_commu AS c";
@@ -1130,7 +1130,7 @@ function db_ktai_commu_anataga_c_commu_sub_admin_confirm_list4c_member_id($c_mem
         $c_commu_sub_admin_confirm_list[$key]['image_filename'] = $c_member['image_filename'];
     }
 
-    $total_num = db_count_c_anataga_c_commu_sub_admin_confirm($c_member_id_admin);
+    $total_num = db_commu_count_c_anataga_c_commu_sub_admin_confirm($c_member_id_admin);
 
     if ($total_num != 0) {
         $total_page_num = ceil($total_num / $page_size);
