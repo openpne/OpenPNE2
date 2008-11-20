@@ -11,16 +11,9 @@ class ktai_page_h_anataga_c_commu_member_confirm_list extends OpenPNE_Action
         $u  = $GLOBALS['KTAI_C_MEMBER_ID'];
 
         // --- リクエスト変数
-        $target_c_member_id = $requests['target_c_member_id'];
         $direc = $requests['direc'];
         $page = $requests['page'];
         // ----------
-
-        if (!$target_c_member_id) $target_c_member_id = $u;
-
-        if (db_member_is_access_block($u, $target_c_member_id)) {
-            openpne_redirect('ktai', 'page_h_access_block');
-        }
 
         //ターゲット情報
         $this->set("target_c_member", db_member_c_member4c_member_id_LIGHT($u));
