@@ -7,7 +7,7 @@
 <font color="#({$ktai_color_config.color_24})">({$WORD_COMMUNITY_HALF})副管理者要請中</font><br>
 </td></tr></table>
 ({if !$anataga_c_commu_sub_admin_confirm_list})
-現在あなたが管理している({$WORD_COMMUNITY_HALF})の副管理者交代を要請しているﾒﾝﾊﾞｰはいません。
+現在あなたが管理している({$WORD_COMMUNITY_HALF})の副管理者を要請しているﾒﾝﾊﾞｰはいません。
 ({else})
 <center>
 ({$pager.start})～({$pager.end})件目を表示<br>
