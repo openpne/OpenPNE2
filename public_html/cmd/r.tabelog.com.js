@@ -1,11 +1,11 @@
 function url2cmd(url) {
     if (url.match(/^http:\/\/r\.tabelog\.com\/[a-z]+\/A[0-9]+\/A[0-9]+\/([0-9]+)\/?$/) || url.match(/^http:\/\/r\.tabelog\.com\/[a-z]+\/rstdtl\/([0-9]+)\/?$/)) {
-    } else {
-        pne_url2a(url);
+        var rcd = RegExp.$1;
+        main(rcd);
         return;
     }
-    var rcd = RegExp.$1;
-    main(rcd);
+    pne_url2a(url);
+    return;
 }
 
 function main(rcd) {
