@@ -522,7 +522,7 @@ function db_commu_new_topic_comment4c_commu_id($c_commu_id, $limit, $event_flag 
              . ' AND cct.event_flag = ?'
              . ' AND cct.c_commu_id = ?'
              . ' group by cct.c_commu_topic_id, cct.name, cct.c_commu_id'
-             . ' order by r_datetime desc ';
+             . ' order by r_datetime desc';
     } else {
         $sql = 'SELECT cct.c_commu_topic_id , cct.name, MAX(cctc.r_datetime) as r_datetime , cct.c_commu_id'
              . ' , cctc.image_filename1, cctc.image_filename2, cctc.image_filename3'
@@ -531,7 +531,7 @@ function db_commu_new_topic_comment4c_commu_id($c_commu_id, $limit, $event_flag 
              . ' AND cct.event_flag = ?'
              . ' AND cct.c_commu_id = ?'
              . ' group by cct.c_commu_topic_id'
-             . ' order by r_datetime desc ';
+             . ' order by r_datetime desc';
     }
     $params = array((bool)$event_flag, intval($c_commu_id));
     $list = db_get_all_limit($sql, 0, $limit, $params);
