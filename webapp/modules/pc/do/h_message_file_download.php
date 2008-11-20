@@ -40,16 +40,16 @@ class pc_do_h_message_file_download extends OpenPNE_Action
         // オリジナルファイル名
         $original_filename = $file['original_filename'];
         if (strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE') !== false) {
-            // IE の場合のみ、ファイル名を SJIS に変換と、キャッシュをさせないヘッダを出力しない
+            // IE の場合のみ、ファイル名を SJIS に変換し、キャッシュをさせないヘッダを出力しない
             $original_filename = mb_convert_encoding($original_filename, 'SJIS', 'UTF-8');
         } else {
             send_nocache_headers(true);
         }
-            $original_filename = str_replace(array("\r", "\n"), '', $original_filename);
+        $original_filename = str_replace(array("\r", "\n"), '', $original_filename);
 
-            header('Content-Disposition: attachment; filename="' . $original_filename . '"');
-            header('Content-Length: '. strlen($file['bin']));
-            header('Content-Type: application/octet-stream');
+        header('Content-Disposition: attachment; filename="' . $original_filename . '"');
+        header('Content-Length: '. strlen($file['bin']));
+        header('Content-Type: application/octet-stream');
         echo $file['bin'];
         exit;
     }
