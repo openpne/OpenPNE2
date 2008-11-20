@@ -1372,5 +1372,15 @@ function biz_do_common_send_schedule_mail()
         );
         fetch_send_mail($pc_address, 'm_pc_schedule_mail', $params);
     }
+    foreach ($send_list as $key => $value) {
+        $c_member_secure = db_member_c_member_secure4c_member_id($key);
+        $ktai_address = $c_member_secure['ktai_address'];
+
+        $params = array(
+            "c_member" => db_member_c_member4c_member_id_LIGHT($key),
+            "c_schedule_list" => $value,
+        );
+        fetch_send_mail($ktai_address, 'm_ktai_schedule_mail', $params);
+    }
 }
 ?>

@@ -39,6 +39,7 @@ class admin_page_edit_mail extends OpenPNE_Action
             'm_ktai_login_regist_end' => '登録完了メール',
             'm_ktai_message_zyushin' => 'メッセージお知らせメール',
             'm_ktai_password_query' => 'パスワード再発行メール',
+            'm_ktai_schedule_mail' => 'スケジュールお知らせメール',
             'm_ktai_regist_get' => '新規登録メール(オープン制)',
             'm_ktai_regist_invite' => '招待メール',
             'm_ktai_taikai_end' => '退会完了メール',
