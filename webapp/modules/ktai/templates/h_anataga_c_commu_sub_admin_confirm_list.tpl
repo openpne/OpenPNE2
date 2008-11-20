@@ -4,7 +4,7 @@
 <font color="#({$ktai_color_config.font_05})"><a name="top">承認待ちﾘｽﾄ</a></font><br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
-<font color="#({$ktai_color_config.color_24})">({$WORD_COMMUNITY_HALF})副管理者交代要請中</font><br>
+<font color="#({$ktai_color_config.color_24})">({$WORD_COMMUNITY_HALF})副管理者要請中</font><br>
 </td></tr></table>
 ({if !$anataga_c_commu_sub_admin_confirm_list})
 現在あなたが管理している({$WORD_COMMUNITY_HALF})の副管理者交代を要請しているﾒﾝﾊﾞｰはいません。
@@ -33,9 +33,9 @@
 <tr><td bgcolor="#({$ktai_color_config.bg_07})">
 <hr color="#({$ktai_color_config.border_02})">
 </td></tr>
+</table>
 ({/foreach})
 ({/if})
-</table>
 
 ({if $is_prev || $is_next})
 <center>
