@@ -580,7 +580,21 @@ function db_friend_count_c_anatani_friend_confirm($c_member_id)
  *              nickname        : 要請している人の名前
  *              message_disp    : 表示用メッセージ
  */
-function db_friend_ktai_anatani_c_friend_confirm_list4c_member_id($c_member_id_to, $page_size, $page)
+function db_friend_ktai_anatani_c_friend_confirm_list4c_member_id($c_member_id_to)
+{
+    $sql = "SELECT * FROM c_friend_confirm WHERE c_member_id_to = ?";
+    $sql .= " ORDER BY r_datetime DESC";
+    $params = array(intval($c_member_id_to));
+    $c_friend_confirm_list = db_get_all($sql, $params);
+
+    foreach ($c_friend_confirm_list as $key => $value) {
+        $c_member = db_member_c_member4c_member_id_LIGHT($value['c_member_id_from']);
+        $c_friend_confirm_list[$key]['nickname'] = $c_member['nickname'];
+    }
+    return $c_friend_confirm_list;
+}
+
+function db_friend_ktai_anatani_c_friend_confirm_list4c_member_id2($c_member_id_to, $page_size, $page)
 {
     $sql = "SELECT * FROM c_friend_confirm WHERE c_member_id_to = ?";
     $sql .= " ORDER BY r_datetime DESC";
@@ -633,7 +647,21 @@ function db_friend_count_c_anataga_friend_confirm($c_member_id)
  *              nickname        : 要請されている人の名前
  *              message_disp    : 表示用メッセージ
  */
-function db_friend_ktai_anataga_c_friend_confirm_list4c_member_id($c_member_id_from, $page_size, $page)
+function db_friend_ktai_anataga_c_friend_confirm_list4c_member_id($c_member_id_from)
+{
+    $sql = "SELECT * FROM c_friend_confirm WHERE c_member_id_from = ?";
+    $sql .= " ORDER BY r_datetime DESC";
+    $params = array(intval($c_member_id_from));
+    $c_friend_confirm_list = db_get_all($sql, $params);
+
+    foreach ($c_friend_confirm_list as $key => $value) {
+        $c_member = db_member_c_member4c_member_id_LIGHT($value['c_member_id_to']);
+        $c_friend_confirm_list[$key]['nickname'] = $c_member['nickname'];
+    }
+    return $c_friend_confirm_list;
+}
+
+function db_friend_ktai_anataga_c_friend_confirm_list4c_member_id2($c_member_id_from, $page_size, $page)
 {
     $sql = "SELECT * FROM c_friend_confirm WHERE c_member_id_from = ?";
     $sql .= " ORDER BY r_datetime DESC";
