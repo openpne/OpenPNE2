@@ -75,7 +75,6 @@ class admin_do_download_xml extends OpenPNE_Action
             }
             header("Content-Type: application/octet-stream");
             header("Content-Disposition: attachment; filename=download.rdf");
-            }
             echo $xml;
             //echo "<pre>".htmlspecialchars($xml)."</pre>";
         }
