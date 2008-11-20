@@ -70,7 +70,7 @@ class admin_do_download_xml extends OpenPNE_Action
         if( $result === true ) {
             $xml = $serializer->getSerializedData();
             //IE以外の場合、キャッシュをさせないヘッダを出力
-            if (strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE') == false) {
+            if (strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE') === false) {
                 send_nocache_headers(true);
             }
             header("Content-Type: application/octet-stream");
