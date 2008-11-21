@@ -38,14 +38,14 @@
 ({*********})
 <tr>
 <td style="width:1px;" class="bg_01"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
-<td style="width:634px;height:110px;" class="bg_05" align="center">
+<td style="width:634px;" class="bg_05" align="center">
 
 <img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
 <div class="padding_s">
 
-<p>入力されたPCメールアドレスにメールを送信しました。</p>
-<p>メール内に記載されたURLをクリックし、登録を完了してください。</p>
+入力されたPCメールアドレスにメールを送信しました。<br>
+メール内に記載されたURLをクリックし、登録を完了してください。
 
 </div>
 
