@@ -271,7 +271,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({$smarty.capture.birth|smarty:nodefaults})
 ({/if})
 ({/strip})
-({if !$item.value == ''})
+({if $item.value !== ''})
 <tr><th>({$item.caption})</th><td>
 ({if $item.form_type == 'textarea'})
     ({$item.value|nl2br|t_url2cmd:'profile':$target_c_member_id|t_cmd:'profile'})
