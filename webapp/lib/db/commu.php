@@ -3368,7 +3368,11 @@ function p_h_home_c_topic_all_list($limit)
     foreach($c_topic_all_list as $key=>$value) {
         $number = db_commu_get_max_c_commu_topic_comment_number4c_topic_id($value['c_commu_topic_id']);
         $c_topic_all_list[$key]['number'] = $number;
-    }
+        $start_comment = db_commu_get_start_c_topic_comment($value['c_commu_topic_id']);
+        $c_topic_all_list[$key]['image_filename1'] = $start_comment['image_filename1'];
+        $c_topic_all_list[$key]['image_filename2'] = $start_comment['image_filename2'];
+        $c_topic_all_list[$key]['image_filename3'] = $start_comment['image_filename3'];
+     }
     return $c_topic_all_list;
 }
 
