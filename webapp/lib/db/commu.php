@@ -3337,6 +3337,10 @@ function db_commu_search_c_commu_topic(
         $list[$key]['body'] = db_get_one($sql, $p);
         $number = db_commu_get_max_c_commu_topic_comment_number4c_topic_id($value['c_commu_topic_id']);
         $list[$key]['max_number'] = $number;
+        $start_comment = db_commu_get_start_c_topic_comment($value['c_commu_topic_id']);
+        $list[$key]['image_filename1'] = $start_comment['image_filename1'];
+        $list[$key]['image_filename2'] = $start_comment['image_filename2'];
+        $list[$key]['image_filename3'] = $start_comment['image_filename3'];
     }
 
     $sql = 'SELECT COUNT(DISTINCT ct.c_commu_topic_id)' . $from . $where;
@@ -3446,7 +3450,11 @@ function db_commu_new_topic_list(
         $list[$key]['body'] = db_get_one($sql, $p);
         $number = db_commu_get_max_c_commu_topic_comment_number4c_topic_id($value['c_commu_topic_id']);
         $list[$key]['max_number'] = $number;
-    }
+        $start_comment = db_commu_get_start_c_topic_comment($value['c_commu_topic_id']);
+        $list[$key]['image_filename1'] = $start_comment['image_filename1'];
+        $list[$key]['image_filename2'] = $start_comment['image_filename2'];
+        $list[$key]['image_filename3'] = $start_comment['image_filename3'];
+     }
 
     $sql = 'SELECT COUNT(ct.c_commu_topic_id) FROM c_commu AS c'
          . ' INNER JOIN c_commu_topic AS ct USING(c_commu_id)' . $where;
