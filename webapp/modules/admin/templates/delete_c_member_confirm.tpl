@@ -47,10 +47,12 @@
 		<td>({if $c_member.birth_year})({$c_member.birth_year})年({else})&nbsp;({/if})({if $c_member.birth_month})({$c_member.birth_month})月({else})&nbsp;({/if})({if $c_member.birth_day})({$c_member.birth_day})日({else})&nbsp;({/if})</td>
 	</tr>
 	({foreach from=$c_profile_list item=prof})
+	({if $item.value !== ''})
 	<tr>
 		<th>({$prof.caption})</th>
 		<td>({if $prof.form_type == checkbox})({$c_member.profile[$prof.name].value|@t_implode:", "})({else})({$c_member.profile[$prof.name].value|t_truncate:60|nl2br})({/if})</td>
 	</tr>
+	({/if})
 	({/foreach})
 	<tr>
 		<th>PCメールアドレス</th>

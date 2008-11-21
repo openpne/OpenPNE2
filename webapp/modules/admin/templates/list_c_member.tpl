@@ -252,7 +252,7 @@
 			({foreach from=$c_profile_list item=prof})
 			({if $prof.name !== 'PNE_POINT'})
 			<td>({strip})
-			({if $prof.form_type == "checkbox"})
+			({if $prof.form_type == "checkbox" && $item.profile[$prof.name].value !== ''})
 				({$item.profile[$prof.name].value|@t_implode:","|t_truncate:30})
 			({else})
 				({$item.profile[$prof.name].value|t_truncate:30})
