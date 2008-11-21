@@ -45,7 +45,7 @@
 <br>
 <font color="#({$ktai_color_config.font_06})">({$item.caption})：</font><br>
 
-({if $item.form_type == 'checkbox' && $item.valu !== ''})
+({if $item.form_type == 'checkbox' && $item.value !== ''})
     ({$item.value|@t_implode:", "})
 ({elseif $item.form_type == 'textarea'})
     ({$item.value|t_url2a_ktai|nl2br})
