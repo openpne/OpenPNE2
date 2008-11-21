@@ -105,7 +105,7 @@
 <tr><td colspan="2">
 ({foreach from=$target_c_member.profile key=key item=item})
 ({if $item.public_flag != "private" && ($item.public_flag == "public" || ($item.public_flag == "friend" && ($is_friend || $is_h_prof)))})
-({if !$item.value})
+({if $item.value !== ''})
 ({if $item.form_type == 'textarea'})
 <font color="#({$ktai_color_config.font_06})">({$item.caption})：</font><br>
 ({$item.value|t_truncate:108:""})<br>
