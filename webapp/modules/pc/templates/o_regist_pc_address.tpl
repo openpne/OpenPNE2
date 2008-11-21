@@ -151,10 +151,9 @@ PCメールアドレス
 <div class="padding_s">
 
 <input type="text" class="input_text" name="pc_address" value="({$requests.pc_address})" size="40" />
-<p class="caution">
-※メールアドレスは公開されません。
-</p>
-
+<br>
+<span class="caution">※メールアドレスは公開されません。</span>
+<br>
 </div>
 </td>
 <td style="width:1px;" class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
