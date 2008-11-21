@@ -29,8 +29,10 @@ class pc_do_h_regist_prof extends OpenPNE_Action
         $validator = new OpenPNE_Validator();
         if ($mode == 'register') {
             $validator->addRequests($_SESSION['prof_req']['profile']);
+            $request_public_flags = $_SESSION['prof_req']['public_flag'];
         } else {
             $validator->addRequests($_REQUEST['profile']);
+            $request_public_flags = $_REQUEST['public_flag'];
         }
         $validator->addRules(util_get_validate_rules_profile('regist'));
         if (!$validator->validate()) {
@@ -38,7 +40,7 @@ class pc_do_h_regist_prof extends OpenPNE_Action
         }
 
         // 値の整合性をチェック(DB)
-        $c_member_profile_list = db_member_check_profile($validator->getParams(), $_REQUEST['public_flag']);
+        $c_member_profile_list = db_member_check_profile($validator->getParams(), $request_public_flags);
 
         // 必須項目チェック
         $profile_list = db_member_c_profile_list4null();
