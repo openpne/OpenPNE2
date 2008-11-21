@@ -1361,26 +1361,36 @@ function biz_do_common_send_schedule_mail()
         $c_member_id = $value['c_member_id'];
         $send_list[$c_member_id][] = $value;
     }
+    $c_member = db_member_c_member4c_member_id($c_member_id, true);
 
-    foreach ($send_list as $key => $value) {
-        $c_member_secure = db_member_c_member_secure4c_member_id($key);
-        $pc_address = $c_member_secure['pc_address'];
+    if (!empty($c_member['secure']['pc_address'])) {
+        // PCメールアドレスがある場合は、PCのみ送信
+        foreach ($send_list as $key => $value) {
+            $c_member_secure = db_member_c_member_secure4c_member_id($key);
+            $pc_address = $c_member_secure['pc_address'];
 
-        $params = array(
-            "c_member" => db_member_c_member4c_member_id_LIGHT($key),
-            "c_schedule_list" => $value,
-        );
+            $params = array(
+                'c_member' => db_member_c_member4c_member_id_LIGHT($key),
+                'c_schedule_list' => $value,
+            );
         fetch_send_mail($pc_address, 'm_pc_schedule_mail', $params);
-    }
-    foreach ($send_list as $key => $value) {
-        $c_member_secure = db_member_c_member_secure4c_member_id($key);
-        $ktai_address = $c_member_secure['ktai_address'];
+        }
+    } else {
+        foreach ($send_list as $key => $value) {
+            $c_member_secure = db_member_c_member_secure4c_member_id($key);
+            $ktai_address = $c_member_secure['ktai_address'];
+            // PCメールアドレスがない場合は、携帯のみ送信
+            $to = $c_member['secure']['ktai_address'];
+            $p = array('kad' => t_encrypt(db_member_username4c_member_id($c_member['c_member_id'], true)));
+            $login_url = openpne_gen_url('ktai', 'page_o_login', $p);
 
-        $params = array(
-            "c_member" => db_member_c_member4c_member_id_LIGHT($key),
-            "c_schedule_list" => $value,
-        );
-        fetch_send_mail($ktai_address, 'm_ktai_schedule_mail', $params);
+            $params = array(
+                'c_member' => db_member_c_member4c_member_id_LIGHT($key),
+                'login_url'   => $login_url,
+                'c_schedule_list' => $value,
+            );
+            fetch_send_mail($ktai_address, 'm_ktai_schedule_mail', $params);
+        }
     }
 }
 ?>
