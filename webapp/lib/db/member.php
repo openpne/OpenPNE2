@@ -102,7 +102,7 @@ function db_member_c_member_profile_list4c_member_id($c_member_id, $public_flag 
     foreach ($profile as $value) {
         $member_profile[$value['name']]['form_type'] = $value['form_type'];
         if ($value['form_type'] == 'checkbox') {
-            if ($value['c_profile_option_id'] == 0) {
+            if (!$value['c_profile_option_id']) {
                 $member_profile[$value['name']]['value'] = '';
             } else {
                 $member_profile[$value['name']]['value'][] = $value['value'];
@@ -1635,6 +1635,7 @@ function db_member_update_c_member_profile($c_member_id, $c_member_profile_list)
 {
     //function cache削除
     cache_drop_c_member_profile($c_member_id);
+
     foreach ($c_member_profile_list as $item) {
         $sql = 'DELETE FROM c_member_profile' .
                 ' WHERE c_member_id = ? AND c_profile_id = ?';
