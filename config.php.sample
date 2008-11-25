@@ -157,7 +157,7 @@ define('OPENPNE_USE_SSL_PARAM', false);
 define('OPENPNE_SSL_URL', 'https://sns.example.com/');
 
 // SSLを使用することが必須であるモジュールリスト
-$GLOBALS['_OPENPNE_SSL_REQUIRED_MODULES'] = array('admin');
+$GLOBALS['_OPENPNE_SSL_REQUIRED_MODULES'] = array('admin', 'portal');
 
 // SSLを使用することが必須であるアクションリスト
 $GLOBALS['_OPENPNE_SSL_REQUIRED'] = array(
