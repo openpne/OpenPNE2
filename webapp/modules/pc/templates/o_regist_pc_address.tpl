@@ -120,7 +120,7 @@
 <td style="width:421px;" class="bg_02" align="left" valign="middle">
 <div class="padding_s">
 
-<input type="password" class="password" name="password" value="" size="20">
+<input type="password" class="text" name="password" value="" size="20">
 
 </div>
 </td>
