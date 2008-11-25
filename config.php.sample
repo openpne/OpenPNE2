@@ -166,7 +166,7 @@ define('OPENPNE_USE_SSL_PARAM', false);
 define('OPENPNE_SSL_URL', 'https://sns.example.com/');
 
 // SSLを使用することが必須であるモジュールリスト
-$GLOBALS['_OPENPNE_SSL_REQUIRED_MODULES'] = array('admin');
+$GLOBALS['_OPENPNE_SSL_REQUIRED_MODULES'] = array('admin', 'portal');
 
 // SSLを使用することが必須であるアクションリスト
 $GLOBALS['_OPENPNE_SSL_REQUIRED'] = array(
@@ -177,10 +177,10 @@ $GLOBALS['_OPENPNE_SSL_REQUIRED'] = array(
     'page_h_config_ktai', 'do_h_config_ktai_send',
     'page_h_config', 'do_h_config_1', 'do_h_config_2', 'do_h_config_3',
     'page_o_login', 'page_o_tologin', 'do_o_login',
-    'page_o_public_invite','do_o_public_invite',
-    'page_h_invite','page_h_invite_confirm','do_h_invite_insert_c_invite',
-    'page_o_password_query','do_o_password_query',
-    'page_o_regist_pc_address','do_o_regist_pc_address','page_o_regist_pc_address_end',
+    'page_o_public_invite', 'do_o_public_invite',
+    'page_h_invite', 'page_h_invite_confirm', 'do_h_invite_insert_c_invite',
+    'page_o_password_query', 'do_o_password_query',
+    'page_o_regist_pc_address', 'do_o_regist_pc_address', 'page_o_regist_pc_address_end',
 ),
 'ktai' => array(
     'page_o_login', 'do_o_login', 'do_o_easy_login',
