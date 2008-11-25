@@ -21,7 +21,7 @@ class ktai_page_h_anatani_c_friend_confirm_list extends OpenPNE_Action
         $page_size = 5;
         $page += $direc;
         //ターゲットの詳細なリスト
-        $list = db_friend_ktai_anatani_c_friend_confirm_list4c_member_id2($u, $page_size, $page);
+        $list = db_friend_ktai_anatani_c_friend_confirm_list4c_member_id_with_pager($u, $page_size, $page);
         $total_num = db_friend_count_c_anatani_friend_confirm($u);
         $this->set("c_friend_confirm_list", $list[0]);
         $this->set("page", $page);
