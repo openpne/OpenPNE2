@@ -832,6 +832,7 @@ function db_commu_ktai_anatani_c_commu_member_confirm_list4c_member_id($c_member
     $sql = "SELECT cmc.*, c.name AS c_commu_name";
     $sql .= " FROM c_commu_member_confirm AS cmc, c_commu AS c";
     $sql .= " WHERE (c.c_member_id_admin = ? OR c.c_member_id_sub_admin = ?) AND cmc.c_commu_id=c.c_commu_id";
+    $sql .= " ORDER BY cmc.r_datetime ASC";
     $params = array(intval($c_member_id), intval($c_member_id));
     $c_commu_member_confirm_list = db_get_all_page($sql, $page, $page_size, $params);
 
@@ -891,6 +892,7 @@ function db_commu_ktai_anataga_c_commu_member_confirm_list4c_member_id($c_member
     $sql = "SELECT cmc.*, c.name AS c_commu_name, c.c_member_id_admin";
     $sql .= " FROM c_commu_member_confirm AS cmc, c_commu AS c";
     $sql .= " WHERE cmc.c_member_id = ? AND cmc.c_commu_id=c.c_commu_id";
+    $sql .= " ORDER BY cmc.r_datetime ASC";
     $params = array(intval($c_member_id));
     $c_commu_member_confirm_list = db_get_all_page($sql, $page, $page_size, $params);
 
@@ -950,6 +952,7 @@ function db_commu_ktai_anatani_c_commu_admin_confirm_list4c_member_id($c_member_
     $sql = "SELECT cac.*, c.name AS c_commu_name, c.c_member_id_admin";
     $sql .= " FROM c_commu_admin_confirm AS cac, c_commu AS c";
     $sql .= " WHERE cac.c_member_id_to = ? AND cac.c_commu_id=c.c_commu_id";
+    $sql .= " ORDER BY cac.r_datetime ASC";
     $params = array(intval($c_member_id_to));
     $c_commu_admin_confirm_list = db_get_all_page($sql, $page, $page_size, $params);
 
@@ -1006,6 +1009,7 @@ function db_commu_ktai_anataga_c_commu_admin_confirm_list4c_member_id($c_member_
     $sql = "SELECT cac.*, c.name AS c_commu_name, c.c_member_id_admin";
     $sql .= " FROM c_commu_admin_confirm AS cac, c_commu AS c";
     $sql .= " WHERE c.c_member_id_admin = ? AND cac.c_commu_id=c.c_commu_id";
+    $sql .= " ORDER BY cac.r_datetime ASC";
     $params = array(intval($c_member_id_admin));
     $c_commu_admin_confirm_list = db_get_all_page($sql, $page, $page_size, $params);
 
@@ -1065,6 +1069,7 @@ function db_commu_ktai_anatani_c_commu_sub_admin_confirm_list4c_member_id($c_mem
     $sql = "SELECT cac.*, c.name AS c_commu_name, c.c_member_id_admin";
     $sql .= " FROM c_commu_sub_admin_confirm AS cac, c_commu AS c";
     $sql .= " WHERE cac.c_member_id_to = ? AND cac.c_commu_id=c.c_commu_id";
+    $sql .= " ORDER BY cac.r_datetime ASC";
     $params = array(intval($c_member_id_to));
     $c_commu_sub_admin_confirm_list = db_get_all_page($sql, $page, $page_size, $params);
 
@@ -1121,6 +1126,7 @@ function db_commu_ktai_anataga_c_commu_sub_admin_confirm_list4c_member_id($c_mem
     $sql = "SELECT cac.*, c.name AS c_commu_name, c.c_member_id_admin";
     $sql .= " FROM c_commu_sub_admin_confirm AS cac, c_commu AS c";
     $sql .= " WHERE c.c_member_id_admin = ? AND cac.c_commu_id=c.c_commu_id";
+    $sql .= " ORDER BY cac.r_datetime ASC";
     $params = array(intval($c_member_id_admin));
     $c_commu_sub_admin_confirm_list = db_get_all_page($sql, $page, $page_size, $params);
 
