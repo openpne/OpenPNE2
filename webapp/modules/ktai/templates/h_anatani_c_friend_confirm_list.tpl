@@ -38,7 +38,7 @@
 </td></tr>
 ({/foreach})
 </table>
-{/if})
+({/if})
 
 ({if $is_prev || $is_next})
 <center>
