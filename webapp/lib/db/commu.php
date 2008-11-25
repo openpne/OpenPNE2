@@ -659,7 +659,7 @@ function db_commu_anatani_c_commu_member_confirm_list4c_member_id($c_member_id)
     $c_commu_member_confirm_list = db_get_all($sql, $params);
 
     foreach ($c_commu_member_confirm_list as $key => $value) {
-        $c_member = db_common_c_member4c_member_id_LIGHT($value['c_member_id']);
+        $c_member = db_member_c_member4c_member_id_LIGHT($value['c_member_id']);
         $c_commu_member_confirm_list[$key]['nickname'] = $c_member['nickname'];
         $c_commu_member_confirm_list[$key]['image_filename'] = $c_member['image_filename'];
     }
@@ -686,7 +686,7 @@ function db_commu_anataga_c_commu_member_confirm_list4c_member_id($c_member_id)
     $c_commu_member_confirm_list = db_get_all($sql, $params);
 
     foreach ($c_commu_member_confirm_list as $key => $value) {
-        $c_member = db_common_c_member4c_member_id_LIGHT($value['c_member_id_admin']);
+        $c_member = db_member_c_member4c_member_id_LIGHT($value['c_member_id_admin']);
         $c_commu_member_confirm_list[$key]['nickname'] = $c_member['nickname'];
         $c_commu_member_confirm_list[$key]['image_filename'] = $c_member['image_filename'];
     }
@@ -714,7 +714,7 @@ function db_commu_anatani_c_commu_admin_confirm_list4c_member_id($c_member_id_to
     $c_commu_admin_confirm_list = db_get_all($sql, $params);
 
     foreach ($c_commu_admin_confirm_list as $key => $value) {
-        $c_member = db_common_c_member4c_member_id_LIGHT($value['c_member_id_admin']);
+        $c_member = db_member_c_member4c_member_id_LIGHT($value['c_member_id_admin']);
         $c_commu_admin_confirm_list[$key]['nickname'] = $c_member['nickname'];
         $c_commu_admin_confirm_list[$key]['image_filename'] = $c_member['image_filename'];
     }
@@ -740,7 +740,7 @@ function db_commu_anataga_c_commu_admin_confirm_list4c_member_id($c_member_id_ad
     $c_commu_admin_confirm_list = db_get_all($sql, $params);
 
     foreach ($c_commu_admin_confirm_list as $key => $value) {
-        $c_member = db_common_c_member4c_member_id_LIGHT($value['c_member_id_to']);
+        $c_member = db_member_c_member4c_member_id_LIGHT($value['c_member_id_to']);
         $c_commu_admin_confirm_list[$key]['nickname'] = $c_member['nickname'];
         $c_commu_admin_confirm_list[$key]['image_filename'] = $c_member['image_filename'];
     }
@@ -769,7 +769,7 @@ function db_commu_anatani_c_commu_sub_admin_confirm_list4c_member_id($c_member_i
     $c_commu_sub_admin_confirm_list = db_get_all($sql, $params);
 
     foreach ($c_commu_sub_admin_confirm_list as $key => $value) {
-        $c_member = db_common_c_member4c_member_id_LIGHT($value['c_member_id_admin']);
+        $c_member = db_member_c_member4c_member_id_LIGHT($value['c_member_id_admin']);
         $c_commu_sub_admin_confirm_list[$key]['nickname'] = $c_member['nickname'];
         $c_commu_sub_admin_confirm_list[$key]['image_filename'] = $c_member['image_filename'];
     }
@@ -795,7 +795,7 @@ function db_commu_anataga_c_commu_sub_admin_confirm_list4c_member_id($c_member_i
     $c_commu_sub_admin_confirm_list = db_get_all($sql, $params);
 
     foreach ($c_commu_sub_admin_confirm_list as $key => $value) {
-        $c_member = db_common_c_member4c_member_id_LIGHT($value['c_member_id_to']);
+        $c_member = db_member_c_member4c_member_id_LIGHT($value['c_member_id_to']);
         $c_commu_sub_admin_confirm_list[$key]['nickname'] = $c_member['nickname'];
         $c_commu_sub_admin_confirm_list[$key]['image_filename'] = $c_member['image_filename'];
     }
@@ -836,7 +836,7 @@ function db_commu_ktai_anatani_c_commu_member_confirm_list4c_member_id($c_member
     $c_commu_member_confirm_list = db_get_all_page($sql, $page, $page_size, $params);
 
     foreach ($c_commu_member_confirm_list as $key => $value) {
-        $c_member = db_common_c_member4c_member_id_LIGHT($value['c_member_id']);
+        $c_member = db_member_c_member4c_member_id_LIGHT($value['c_member_id']);
         $c_commu_member_confirm_list[$key]['nickname'] = $c_member['nickname'];
         $c_commu_member_confirm_list[$key]['image_filename'] = $c_member['image_filename'];
     }
@@ -895,7 +895,7 @@ function db_commu_ktai_anataga_c_commu_member_confirm_list4c_member_id($c_member
     $c_commu_member_confirm_list = db_get_all_page($sql, $page, $page_size, $params);
 
     foreach ($c_commu_member_confirm_list as $key => $value) {
-        $c_member = db_common_c_member4c_member_id_LIGHT($value['c_member_id_admin']);
+        $c_member = db_member_c_member4c_member_id_LIGHT($value['c_member_id_admin']);
         $c_commu_member_confirm_list[$key]['nickname'] = $c_member['nickname'];
         $c_commu_member_confirm_list[$key]['image_filename'] = $c_member['image_filename'];
     }
@@ -954,7 +954,7 @@ function db_commu_ktai_anatani_c_commu_admin_confirm_list4c_member_id($c_member_
     $c_commu_admin_confirm_list = db_get_all_page($sql, $page, $page_size, $params);
 
     foreach ($c_commu_admin_confirm_list as $key => $value) {
-        $c_member = db_common_c_member4c_member_id_LIGHT($value['c_member_id_admin']);
+        $c_member = db_member_c_member4c_member_id_LIGHT($value['c_member_id_admin']);
         $c_commu_admin_confirm_list[$key]['nickname'] = $c_member['nickname'];
         $c_commu_admin_confirm_list[$key]['image_filename'] = $c_member['image_filename'];
     }
@@ -1010,7 +1010,7 @@ function db_commu_ktai_anataga_c_commu_admin_confirm_list4c_member_id($c_member_
     $c_commu_admin_confirm_list = db_get_all_page($sql, $page, $page_size, $params);
 
     foreach ($c_commu_admin_confirm_list as $key => $value) {
-        $c_member = db_common_c_member4c_member_id_LIGHT($value['c_member_id_to']);
+        $c_member = db_member_c_member4c_member_id_LIGHT($value['c_member_id_to']);
         $c_commu_admin_confirm_list[$key]['nickname'] = $c_member['nickname'];
         $c_commu_admin_confirm_list[$key]['image_filename'] = $c_member['image_filename'];
     }
@@ -1069,7 +1069,7 @@ function db_commu_ktai_anatani_c_commu_sub_admin_confirm_list4c_member_id($c_mem
     $c_commu_sub_admin_confirm_list = db_get_all_page($sql, $page, $page_size, $params);
 
     foreach ($c_commu_sub_admin_confirm_list as $key => $value) {
-        $c_member = db_common_c_member4c_member_id_LIGHT($value['c_member_id_admin']);
+        $c_member = db_member_c_member4c_member_id_LIGHT($value['c_member_id_admin']);
         $c_commu_sub_admin_confirm_list[$key]['nickname'] = $c_member['nickname'];
         $c_commu_sub_admin_confirm_list[$key]['image_filename'] = $c_member['image_filename'];
     }
@@ -1116,7 +1116,7 @@ function db_commu_count_c_anataga_c_commu_sub_admin_confirm($c_member_id)
  *              image_filename      : 要請されている人の画像
  * @see     h_confirm_list.php
  */
-function db_commu_ktai_anataga_c_commu_sub_admin_confirm_list4c_member_id($c_member_id_admin, $page_size=5, $page)
+function db_commu_ktai_anataga_c_commu_sub_admin_confirm_list4c_member_id($c_member_id_admin, $page_size, $page)
 {
     $sql = "SELECT cac.*, c.name AS c_commu_name, c.c_member_id_admin";
     $sql .= " FROM c_commu_sub_admin_confirm AS cac, c_commu AS c";
@@ -1125,7 +1125,7 @@ function db_commu_ktai_anataga_c_commu_sub_admin_confirm_list4c_member_id($c_mem
     $c_commu_sub_admin_confirm_list = db_get_all_page($sql, $page, $page_size, $params);
 
     foreach ($c_commu_sub_admin_confirm_list as $key => $value) {
-        $c_member = db_common_c_member4c_member_id_LIGHT($value['c_member_id_to']);
+        $c_member = db_member_c_member4c_member_id_LIGHT($value['c_member_id_to']);
         $c_commu_sub_admin_confirm_list[$key]['nickname'] = $c_member['nickname'];
         $c_commu_sub_admin_confirm_list[$key]['image_filename'] = $c_member['image_filename'];
     }

@@ -594,7 +594,7 @@ function db_friend_ktai_anatani_c_friend_confirm_list4c_member_id($c_member_id_t
     return $c_friend_confirm_list;
 }
 
-function db_friend_ktai_anatani_c_friend_confirm_list4c_member_id2($c_member_id_to, $page_size, $page)
+function db_friend_ktai_anatani_c_friend_confirm_list4c_member_id_with_pager($c_member_id_to, $page_size, $page)
 {
     $sql = "SELECT * FROM c_friend_confirm WHERE c_member_id_to = ?";
     $sql .= " ORDER BY r_datetime DESC";
@@ -661,7 +661,7 @@ function db_friend_ktai_anataga_c_friend_confirm_list4c_member_id($c_member_id_f
     return $c_friend_confirm_list;
 }
 
-function db_friend_ktai_anataga_c_friend_confirm_list4c_member_id2($c_member_id_from, $page_size, $page)
+function db_friend_ktai_anataga_c_friend_confirm_list4c_member_id_with_pager($c_member_id_from, $page_size, $page)
 {
     $sql = "SELECT * FROM c_friend_confirm WHERE c_member_id_from = ?";
     $sql .= " ORDER BY r_datetime DESC";
