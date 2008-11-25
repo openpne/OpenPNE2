@@ -36,8 +36,8 @@
 <hr color="#({$ktai_color_config.border_02})">
 </td></tr>
 ({/foreach})
-({/if})
 </table>
+({/if})
 
 ({if $is_prev || $is_next})
 <center>
