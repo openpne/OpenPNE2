@@ -92,7 +92,7 @@
 <td style="width:421px;" class="bg_02" align="left" valign="middle">
 <div class="padding_s">
 
-<input type="text" class="input_text" name="ktai_address" value="({$requests.ktai_address})" size="40" />
+<input type="text" class="input_text" name="ktai_address" value="({$requests.ktai_address})" size="40">
 
 </div>
 </td>
@@ -120,7 +120,7 @@
 <td style="width:421px;" class="bg_02" align="left" valign="middle">
 <div class="padding_s">
 
-<input type="password" class="input_password" name="password" value="" size="20" />
+<input type="password" class="input_password" name="password" value="" size="20">
 
 </div>
 </td>
@@ -150,7 +150,7 @@ PCメールアドレス
 <td style="width:421px;" class="bg_02" align="left" valign="middle">
 <div class="padding_s">
 
-<input type="text" class="input_text" name="pc_address" value="({$requests.pc_address})" size="40" />
+<input type="text" class="input_text" name="pc_address" value="({$requests.pc_address})" size="40">
 <br>
 <span class="caution">※メールアドレスは公開されません。</span>
 <br>
@@ -181,7 +181,7 @@ PCメールアドレス確認
 <td style="width:421px;" class="bg_02" align="left" valign="middle">
 <div class="padding_s">
 
-<input type="text" class="input_text" name="pc_address2" value="" size="40" />
+<input type="text" class="input_text" name="pc_address2" value="" size="40">
 
 </div>
 </td>
@@ -219,7 +219,7 @@ PCメールアドレス確認
 <br>
 ※上に表示されているキーワードをご記入下さい。
 <br>
-<input type="text" class="input_text" name="captcha" value="" size="30" />
+<input type="text" class="input_text" name="captcha" value="" size="30">
 
 </div>
 
@@ -240,7 +240,7 @@ PCメールアドレス確認
 
 <div align="center" style="text-align:center;padding:6px;">
 
-<input type="submit" class="input_submit" value="　送　信　" />
+<input type="submit" class="input_submit" value="　送　信　">
 
 </div>
 
@@ -264,7 +264,7 @@ PCメールアドレス確認
 </tr>
 </table>
 </form>
-<img class="v_spacer_l" alt="dummy" src="./skin/dummy.gif"/>
+<img class="v_spacer_l" alt="dummy" src="./skin/dummy.gif">
 <!-- ここまで：主内容 -->
 
 ({ext_include file="inc_layoutcolumn_bottom_270px_165px_175px_720px.tpl"})
