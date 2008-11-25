@@ -11,7 +11,6 @@ class ktai_page_h_anataga_c_commu_sub_admin_confirm_list extends OpenPNE_Action
         $u  = $GLOBALS['KTAI_C_MEMBER_ID'];
 
         // --- リクエスト変数
-        $direc = $requests['direc'];
         $page = $requests['page'];
         // ----------
 
@@ -20,7 +19,6 @@ class ktai_page_h_anataga_c_commu_sub_admin_confirm_list extends OpenPNE_Action
 
         // 1ページ当たりに表示する数
         $page_size = 5;
-        $page += $direc;
         //ターゲットの詳細なリスト
         $list = db_commu_ktai_anataga_c_commu_sub_admin_confirm_list4c_member_id($u, $page_size, $page);
         $total_num = db_commu_count_c_anataga_c_commu_sub_admin_confirm($u);
