@@ -602,7 +602,7 @@ function db_friend_ktai_anatani_c_friend_confirm_list4c_member_id_with_pager($c_
     $c_friend_confirm_list = db_get_all_page($sql, $page, $page_size, $params);
 
     foreach ($c_friend_confirm_list as $key => $value) {
-        $c_member = db_common_c_member4c_member_id_LIGHT($value['c_member_id_from']);
+        $c_member = db_member_c_member4c_member_id_LIGHT($value['c_member_id_from']);
         $c_friend_confirm_list[$key]['nickname'] = $c_member['nickname'];
     }
 
