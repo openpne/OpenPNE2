@@ -583,7 +583,7 @@ function db_friend_count_c_anatani_friend_confirm($c_member_id)
 function db_friend_ktai_anatani_c_friend_confirm_list4c_member_id($c_member_id_to)
 {
     $sql = "SELECT * FROM c_friend_confirm WHERE c_member_id_to = ?";
-    $sql .= " ORDER BY r_datetime ASC";
+    $sql .= " ORDER BY r_datetime DESC";
     $params = array(intval($c_member_id_to));
     $c_friend_confirm_list = db_get_all($sql, $params);
 
@@ -597,7 +597,7 @@ function db_friend_ktai_anatani_c_friend_confirm_list4c_member_id($c_member_id_t
 function db_friend_ktai_anatani_c_friend_confirm_list4c_member_id_with_pager($c_member_id_to, $page_size, $page)
 {
     $sql = "SELECT * FROM c_friend_confirm WHERE c_member_id_to = ?";
-    $sql .= " ORDER BY r_datetime DESC";
+    $sql .= " ORDER BY r_datetime ASC";
     $params = array(intval($c_member_id_to));
     $c_friend_confirm_list = db_get_all_page($sql, $page, $page_size, $params);
 
@@ -650,7 +650,7 @@ function db_friend_count_c_anataga_friend_confirm($c_member_id)
 function db_friend_ktai_anataga_c_friend_confirm_list4c_member_id($c_member_id_from)
 {
     $sql = "SELECT * FROM c_friend_confirm WHERE c_member_id_from = ?";
-    $sql .= " ORDER BY r_datetime ASC";
+    $sql .= " ORDER BY r_datetime DESC";
     $params = array(intval($c_member_id_from));
     $c_friend_confirm_list = db_get_all($sql, $params);
 
@@ -664,7 +664,7 @@ function db_friend_ktai_anataga_c_friend_confirm_list4c_member_id($c_member_id_f
 function db_friend_ktai_anataga_c_friend_confirm_list4c_member_id_with_pager($c_member_id_from, $page_size, $page)
 {
     $sql = "SELECT * FROM c_friend_confirm WHERE c_member_id_from = ?";
-    $sql .= " ORDER BY r_datetime DESC";
+    $sql .= " ORDER BY r_datetime ASC";
     $params = array(intval($c_member_id_from));
     $c_friend_confirm_list = db_get_all_page($sql, $page, $page_size, $params);
 
