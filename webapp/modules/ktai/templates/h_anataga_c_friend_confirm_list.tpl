@@ -18,7 +18,7 @@
 <table width="100%">
 ({foreach from=$c_friend_confirm_list item=c_friend_confirm name=c_friend_confirm_list_name})
 <tr><td bgcolor="#({cycle values="`$ktai_color_config.bg_06`,`$ktai_color_config.bg_07`"})">
-<font color="#({$ktai_color_config.font_06})">({$WORD_NICKNAME_HALF})：</font><br>
+<font color="#({$ktai_color_config.font_06})">ﾆｯｸﾈｰﾑ：</font><br>
 <a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$c_friend_confirm.c_member_id_to})&amp;({$tail})">({$c_friend_confirm.nickname})</a><br>
 <br>
 ({if $c_friend_confirm.message})
