@@ -787,7 +787,7 @@
 </tr>
 </table>
 
-<img class="v_spacer_l" alt="dummy" src="./skin/dummy.gif"/>
+<img class="v_spacer_l" alt="dummy" src="./skin/dummy.gif">
 
 ({/if})
 <!-- ******ここまで：前の日記／次の日記****** -->

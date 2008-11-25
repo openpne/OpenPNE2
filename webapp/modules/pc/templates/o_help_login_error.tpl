@@ -41,7 +41,7 @@
 </tr>
 </table>
 
-<img class="v_spacer_l" alt="dummy" src="./skin/dummy.gif"/>
+<img class="v_spacer_l" alt="dummy" src="./skin/dummy.gif">
 
 <table border="0" cellspacing="0" cellpadding="0" style="width:640px;margin:0px auto;" class="border_07">
 <tr>
@@ -65,7 +65,7 @@
 
 <img src="./skin/dummy.gif" alt="dummy" class="v_spacer_l">
 
-<p>携帯から登録された方がPC版を利用するにはPCメールアドレスの登録が必要です。<br />
+<p>携帯から登録された方がPC版を利用するにはPCメールアドレスの登録が必要です。<br>
 （なお、iPhone等の一部の携帯端末はPCとして扱われます）</p>
 <p>以下のボタンをクリックし、PCメールアドレスの登録手続きをおこなってください。</p>
 ({t_form _method=get m=pc a=page_o_regist_pc_address})
@@ -86,6 +86,6 @@
 </tr>
 </table>
 
-<img class="v_spacer_l" alt="dummy" src="./skin/dummy.gif"/>
+<img class="v_spacer_l" alt="dummy" src="./skin/dummy.gif">
 
 ({ext_include file="inc_footer.tpl"})
