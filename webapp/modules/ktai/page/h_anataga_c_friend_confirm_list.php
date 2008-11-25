@@ -11,7 +11,6 @@ class ktai_page_h_anataga_c_friend_confirm_list extends OpenPNE_Action
         $u  = $GLOBALS['KTAI_C_MEMBER_ID'];
 
         // --- リクエスト変数
-        $direc = $requests['direc'];
         $page = $requests['page'];
         // ----------
 
@@ -19,7 +18,6 @@ class ktai_page_h_anataga_c_friend_confirm_list extends OpenPNE_Action
         $this->set("target_c_member", db_member_c_member4c_member_id_LIGHT($u));
         // 1ページ当たりに表示する数
         $page_size = 5;
-        $page += $direc;
         //ターゲットの詳細なリスト
         $list = db_friend_ktai_anataga_c_friend_confirm_list4c_member_id_with_pager($u, $page_size, $page);
         $total_num = db_friend_count_c_anataga_friend_confirm($u);
