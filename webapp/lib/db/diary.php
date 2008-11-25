@@ -1206,7 +1206,7 @@ function p_h_home_c_diary_all_list($limit)
     $c_diary_list_all = db_get_all_limit($sql, 0, $limit);
 
     foreach ($c_diary_list_all as $key => $value) {
-        $c_member = db_common_c_member4c_member_id_LIGHT($value['c_member_id']);
+        $c_member = db_member_c_member4c_member_id_LIGHT($value['c_member_id']);
         $c_diary_list_all[$key]['nickname'] = $c_member['nickname'];
         $c_diary_list_all[$key]['count_comments'] = db_diary_count_c_diary_comment4c_diary_id($value['c_diary_id']);
     }
