@@ -927,8 +927,8 @@ function db_commu_ktai_anataga_c_commu_member_confirm_list4c_member_id($c_member
  */
 function db_commu_count_c_anatani_c_commu_admin_confirm($c_member_id)
 {
-    $sql = "SELECT COUNT(*) FROM c_commu_admin_confirm AS cmc, c_commu AS c";
-    $sql .= " WHERE cmc.c_member_id_to = ? AND cmc.c_commu_id=c.c_commu_id";
+    $sql = "SELECT COUNT(*) FROM c_commu_admin_confirm AS cac, c_commu AS c";
+    $sql .= " WHERE cac.c_member_id_to = ? AND cac.c_commu_id=c.c_commu_id";
     $params = array(intval($c_member_id));
     return db_get_one($sql, $params);
 }
@@ -985,8 +985,8 @@ function db_commu_ktai_anatani_c_commu_admin_confirm_list4c_member_id($c_member_
  */
 function db_commu_count_c_anataga_c_commu_admin_confirm($c_member_id)
 {
-    $sql = "SELECT COUNT(*) FROM c_commu_admin_confirm AS cmc, c_commu AS c";
-    $sql .= " WHERE cmc.c_member_id_to = ? AND cmc.c_commu_id=c.c_commu_id";
+    $sql = "SELECT COUNT(*) FROM c_commu_admin_confirm AS cac, c_commu AS c";
+    $sql .= " WHERE c.c_member_id_admin = ? AND cac.c_commu_id=c.c_commu_id";
     $params = array(intval($c_member_id));
     return db_get_one($sql, $params);
 }
@@ -1042,8 +1042,8 @@ function db_commu_ktai_anataga_c_commu_admin_confirm_list4c_member_id($c_member_
  */
 function db_commu_count_c_anatani_c_commu_sub_admin_confirm($c_member_id)
 {
-    $sql = "SELECT COUNT(*) FROM c_commu_sub_admin_confirm AS cmc, c_commu AS c";
-    $sql .= " WHERE cmc.c_member_id_to = ? AND cmc.c_commu_id=c.c_commu_id";
+    $sql = "SELECT COUNT(*) FROM c_commu_sub_admin_confirm AS cac, c_commu AS c";
+    $sql .= " WHERE cac.c_member_id_to = ? AND cac.c_commu_id=c.c_commu_id";
     $params = array(intval($c_member_id));
     return db_get_one($sql, $params);
 }
@@ -1100,8 +1100,8 @@ function db_commu_ktai_anatani_c_commu_sub_admin_confirm_list4c_member_id($c_mem
  */
 function db_commu_count_c_anataga_c_commu_sub_admin_confirm($c_member_id)
 {
-    $sql = "SELECT COUNT(*) FROM c_commu_sub_admin_confirm AS cmc, c_commu AS c";
-    $sql .= " WHERE cmc.c_member_id_admin = ? AND cmc.c_commu_id=c.c_commu_id";
+    $sql = "SELECT COUNT(*) FROM c_commu_sub_admin_confirm AS cac, c_commu AS c";
+    $sql .= " WHERE c.c_member_id_admin = ? AND cac.c_commu_id=c.c_commu_id";
     $params = array(intval($c_member_id));
     return db_get_one($sql, $params);
 }
