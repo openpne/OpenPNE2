@@ -922,8 +922,6 @@ function util_get_c_member_config_default()
         'IS_DISPLAY_SCHEDULE_HOME' => 1,
         'SEND_RANK_UP_MAIL_PC' => 1,
         'SEND_RANK_UP_MAIL_KTAI' => 1,
-        'SEND_SCHEDULE_MAIL_PC' => 1,
-        'SEND_SCHEDULE_MAIL_KTAI' => 0,
     );
 
     return $default_config;
