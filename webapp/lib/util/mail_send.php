@@ -814,9 +814,9 @@ function send_mail_pcktai_rank_up($c_member_id, $before_rank, $after_rank)
     $is_pc = false;
     $is_ktai = false;
 
-    $send_mail_config = db_rank_up_pcktai_config($c_member_id);
+    $send_mail_config = db_point_rank_up_pcktai_mail_setting($c_member_id);
 
-    //DBにデータがない場合
+    // DBにデータがない場合
     if (!$send_mail_config){
         if (!empty($c_member['secure']['pc_address'])) {
             $is_pc = true;
@@ -824,7 +824,7 @@ function send_mail_pcktai_rank_up($c_member_id, $before_rank, $after_rank)
             $is_ktai = true;
         }
     }
-    //設定された値を取得
+    // 設定された値を取得
     $target_c_member_config = util_get_c_member_config($c_member_id);
     if ($target_c_member_config['SEND_RANK_UP_MAIL_PC']) {
         $is_pc = true;
