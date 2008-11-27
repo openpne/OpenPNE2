@@ -809,24 +809,23 @@ function put_mail_queue($address, $subject, $body, $is_receive_mail=true, $from=
 // ランクアップしたメンバーにメール送信(PC/ktai)
 function send_mail_pcktai_rank_up($c_member_id, $before_rank, $after_rank)
 {
-    $to_rank_up_mail_pc = false;
-    $to_rank_up_mail_ktai = false;
-
     $c_member = db_member_c_member4c_member_id($c_member_id, true);
 
     if (!empty($c_member['secure']['pc_address'])) {
         $to_rank_up_mail_pc = true;
+        $to_rank_up_mail_ktai = false;
     } else {
+        $to_rank_up_mail_pc = false;
         $to_rank_up_mail_ktai = true;
     }
 
     // メンバーの受信設定を取得
-    $c_member_config = util_get_c_member_config($c_member_id);
-    if ($c_member_config['SEND_RANK_UP_MAIL_PC']) {
-        $to_rank_up_mail_pc = true;
+    $c_member_config = db_member_c_member_config4c_member_id($c_member_id);
+    if (isset($c_member_config['SEND_RANK_UP_MAIL_PC'])) {
+        $to_rank_up_mail_pc = (bool)$c_member_config['SEND_RANK_UP_MAIL_PC'];
     }
-    if ($c_member_config['SEND_RANK_UP_MAIL_KTAI']) {
-        $to_rank_up_mail_ktai = true;
+    if (isset($c_member_config['SEND_RANK_UP_MAIL_KTAI'])) {
+        $to_rank_up_mail_ktai = (bool)$c_member_config['SEND_RANK_UP_MAIL_KTAI'];
     }
 
     $result_pc = true;
