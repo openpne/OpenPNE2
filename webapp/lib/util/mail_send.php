@@ -809,22 +809,18 @@ function put_mail_queue($address, $subject, $body, $is_receive_mail=true, $from=
 // ランクアップしたメンバーにメール送信(PC/ktai)
 function send_mail_pcktai_rank_up($c_member_id, $before_rank, $after_rank)
 {
-    $c_member = db_member_c_member4c_member_id($c_member_id, true);
-
     $to_rank_up_mail_pc = false;
     $to_rank_up_mail_ktai = false;
 
-    $send_rank_up_mail_config = db_point_is_set_rank_up_pcktai_mail_config($c_member_id);
+    $c_member = db_member_c_member4c_member_id($c_member_id, true);
 
-    // DBにデータがない場合
-    if (!$send_rank_up_mail_config){
-        if (!empty($c_member['secure']['pc_address'])) {
-            $to_rank_up_mail_pc = true;
-        } else {
-            $to_rank_up_mail_ktai = true;
-        }
+    if (!empty($c_member['secure']['pc_address'])) {
+        $to_rank_up_mail_pc = true;
+    } else {
+        $to_rank_up_mail_ktai = true;
     }
-    // 設定された値を取得
+
+    // メンバーの受信設定を取得
     $c_member_config = util_get_c_member_config($c_member_id);
     if ($c_member_config['SEND_RANK_UP_MAIL_PC']) {
         $to_rank_up_mail_pc = true;
@@ -832,6 +828,10 @@ function send_mail_pcktai_rank_up($c_member_id, $before_rank, $after_rank)
     if ($c_member_config['SEND_RANK_UP_MAIL_KTAI']) {
         $to_rank_up_mail_ktai = true;
     }
+
+    $result_pc = true;
+    $result_ktai = true;
+
     // PCに送信
     if ($to_rank_up_mail_pc) {
         $to = $c_member['secure']['pc_address'];
@@ -842,11 +842,11 @@ function send_mail_pcktai_rank_up($c_member_id, $before_rank, $after_rank)
         );
         $result_pc = fetch_send_mail($to, 'm_pc_rank_up', $params);
     }
-
     // 携帯に送信
     if ($to_rank_up_mail_ktai) {
         $to = $c_member['secure']['ktai_address'];
-        $p = array('kad' => t_encrypt(db_member_username4c_member_id($c_member['c_member_id'], true)));
+
+        $p = array('kad' => t_encrypt(db_member_username4c_member_id($c_member_id, true)));
         $login_url = openpne_gen_url('ktai', 'page_o_login', $p);
 
         $params = array(
@@ -857,7 +857,8 @@ function send_mail_pcktai_rank_up($c_member_id, $before_rank, $after_rank)
         );
         $result_ktai = fetch_send_mail($to, 'm_ktai_rank_up', $params);
     }
-    return ($result_ktai && $result_pc);
+
+    return ($result_pc && $result_ktai);
 }
 
 // ランクアップしたら管理者にメール送信
