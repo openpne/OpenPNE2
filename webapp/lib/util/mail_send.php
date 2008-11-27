@@ -814,7 +814,7 @@ function send_mail_pcktai_rank_up($c_member_id, $before_rank, $after_rank)
     $to_rank_up_mail_pc = false;
     $to_rank_up_mail_ktai = false;
 
-    $send_rank_up_mail_config = db_point_rank_up_pcktai_mail_config($c_member_id);
+    $send_rank_up_mail_config = db_point_is_set_rank_up_pcktai_mail_config($c_member_id);
 
     // DBにデータがない場合
     if (!$send_rank_up_mail_config){
