@@ -290,7 +290,7 @@
 <tr><td bgcolor="#({cycle name="bg" values="`$ktai_color_config.bg_09`,`$ktai_color_config.bg_10`"})">
 <a href="({t_url m=ktai a=page_h_member_config_diary_comment_mail})&amp;({$tail})">({$WORD_DIARY_HALF})ｺﾒﾝﾄﾒｰﾙ受信設定</a><br>
 </td></tr>
-({if $smarty.const.OPENPNE_DISP_RANK})
+({if $smarty.const.OPENPNE_USE_POINT_RANK})
 <tr><td bgcolor="#({cycle name="bg" values="`$ktai_color_config.bg_09`,`$ktai_color_config.bg_10`"})">
 <a href="({t_url m=ktai a=page_h_member_config_rank_up_mail})&amp;({$tail})">ﾗﾝｸｱｯﾌﾟﾒｰﾙ受信設定</a><br>
 </td></tr>

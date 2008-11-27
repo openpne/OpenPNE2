@@ -313,7 +313,7 @@
 <a href="({t_url m=ktai a=page_h_member_config_display_home})&amp;({$tail})">ﾏｲﾎｰﾑ最新情報表示設定</a><br>
 </td></tr>
 ({/if})
-({if $smarty.const.OPENPNE_DISP_RANK})
+({if $smarty.const.OPENPNE_USE_POINT_RANK})
 <tr><td bgcolor="#({$ktai_color_config.bg_10})">
 <a href="({t_url m=ktai a=page_h_member_config_rank_up_mail})&amp;({$tail})">ﾗﾝｸｱｯﾌﾟﾒｰﾙ受信設定</a><br>
 </td></tr>
