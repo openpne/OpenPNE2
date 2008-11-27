@@ -107,10 +107,8 @@ class pc_do_h_config_3 extends OpenPNE_Action
         db_member_insert_c_access_block($u, $c_member_id_block);
 
         // ランクアップメール設定
-        $default_config = util_get_c_member_config_default();
-        if (!is_null($requests['SEND_RANK_UP_MAIL_PC']) && array_key_exists('SEND_RANK_UP_MAIL_PC', $default_config)) {
-            db_member_update_c_member_config($u, 'SEND_RANK_UP_MAIL_PC', $requests['SEND_RANK_UP_MAIL_PC']);
-        }
+        db_member_update_c_member_config($u, 'SEND_RANK_UP_MAIL_PC', $requests['SEND_RANK_UP_MAIL_PC']);
+
         openpne_redirect('pc', 'page_h_home');
     }
 }
