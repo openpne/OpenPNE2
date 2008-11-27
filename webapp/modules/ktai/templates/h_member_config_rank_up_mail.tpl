@@ -14,6 +14,7 @@
 受け取る<br>
 <input type="radio" name="SEND_RANK_UP_MAIL_KTAI" value="0"({if !$C_MEMBER_CONFIG.SEND_RANK_UP_MAIL_KTAI}) checked="checked"({/if})>
 受け取らない<br>
+*PCﾒｰﾙｱﾄﾞﾚｽへのﾗﾝｸｱｯﾌﾟﾒｰﾙの送信はPCの設定変更より行えます。
 
 <hr color="#({$ktai_color_config.border_01})">
 <center>
