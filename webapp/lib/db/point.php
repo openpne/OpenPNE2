@@ -28,16 +28,6 @@ function db_point_insert_tags($c_point_log_id, $tags)
     }
 }
 
-// ランクアップメールの設定があるかどうかを取得
-function db_point_is_set_rank_up_pcktai_mail_config($c_member_id)
-{
-    $sql = 'SELECT COUNT(*) FROM c_member_config'
-         . ' WHERE c_member_id = ?'
-         . ' AND (name = "SEND_RANK_UP_MAIL_KTAI" OR name = "SEND_RANK_UP_MAIL_PC")';
-    $params = array(intval($c_member_id), intval($data));
-    return (bool)db_get_one($sql, $params);
-}
-
 function db_point_add_point($c_member_id, $point)
 {
     if (!OPENPNE_USE_POINT_RANK) {
