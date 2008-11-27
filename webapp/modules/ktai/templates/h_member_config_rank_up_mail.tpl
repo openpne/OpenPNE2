@@ -16,7 +16,7 @@
 受け取らない<br>
 <hr color="#({$ktai_color_config.border_01})">
 <font color="#({$ktai_color_config.font_06})">
-*PCﾒｰﾙｱﾄﾞﾚｽへのﾗﾝｸｱｯﾌﾟﾒｰﾙの送信はPCの設定変更より行えます。
+※PCﾒｰﾙｱﾄﾞﾚｽへのﾒｰﾙ受信設定はPCからﾛｸﾞｲﾝして設定してください。
 </font>
 <hr color="#({$ktai_color_config.border_01})">
 <center>
