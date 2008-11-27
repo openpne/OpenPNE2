@@ -156,7 +156,7 @@
 <th>ランクアップメール受信</th>
 <td>
 <ul>
-<li><input type="radio" class="input_radio" name="SEND_RANK_UP_MAIL_PC" id="send_rank_up_mail_pc" value="1" ({if $C_MEMBER_CONFIG.SEND_RANK_UP_MAIL_PC}) checked="checked"({/if}) /><label for="send_rank_up_mail_pc">受け取る</label></li>
+<li><input type="radio" class="input_radio" name="SEND_RANK_UP_MAIL_PC" id="send_rank_up_mail_pc" value="1"({if $C_MEMBER_CONFIG.SEND_RANK_UP_MAIL_PC}) checked="checked"({/if}) /><label for="send_rank_up_mail_pc">受け取る</label></li>
 <li><input type="radio" class="input_radio" name="SEND_RANK_UP_MAIL_PC" id="send_rank_up_mail_no_pc" value="0"({if !$C_MEMBER_CONFIG.SEND_RANK_UP_MAIL_PC}) checked="checked"({/if}) /><label for="send_rank_up_mail_no_pc">受け取らない</label></li>
 </ul>
 <p>※ランク変更時に登録されているPCメールアドレスにお知らせします。<br />
