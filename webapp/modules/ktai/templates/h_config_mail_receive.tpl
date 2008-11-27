@@ -16,7 +16,7 @@
 受け取らない<br>
 <hr color="#({$ktai_color_config.border_01})">
 <font color="#({$ktai_color_config.font_06})">
-※PCへのﾒｰﾙ受信設定は、PCからﾛｸﾞｲﾝして設定してください。
+※PCﾒｰﾙｱﾄﾞﾚｽへのﾒｰﾙ受信設定はPCからﾛｸﾞｲﾝして設定してください。
 </font>
 <hr color="#({$ktai_color_config.border_01})">
 <center>
