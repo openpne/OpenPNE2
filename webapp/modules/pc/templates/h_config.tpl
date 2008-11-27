@@ -153,7 +153,7 @@
 ({/if})
 ({if $smarty.const.OPENPNE_DISP_RANK})
 <tr>
-<th>ランクアップメールの設定</th>
+<th>ランクアップメール受信設定</th>
 <td>
 <ul>
 <li><input type="radio" class="input_radio" name="SEND_RANK_UP_MAIL_PC" id="send_rank_up_mail_pc" value="1" ({if $C_MEMBER_CONFIG.SEND_RANK_UP_MAIL_PC}) checked="checked"({/if}) /><label for="send_rank_up_mail_pc">PCアドレスにランクアップメールを送信</label></li>
