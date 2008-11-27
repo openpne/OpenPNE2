@@ -3,19 +3,21 @@
 <font color="#({$ktai_color_config.font_05})"><a name="top">設定変更</a></font><br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
-<font color="#({$ktai_color_config.color_24})">ﾗﾝｸｱｯﾌﾟﾒｰﾙの設定</font><br>
+<font color="#({$ktai_color_config.color_24})">ﾗﾝｸｱｯﾌﾟﾒｰﾙ受信設定</font><br>
 </td></tr></table>
 ﾗﾝｸｱｯﾌﾟした時に登録されている携帯ﾒｰﾙｱﾄﾞﾚｽにお知らせします。
 <hr color="#({$ktai_color_config.border_01})">
-<font color="#({$ktai_color_config.font_06})">ﾗﾝｸｱｯﾌﾟﾒｰﾙの設定：</font><br>
+<font color="#({$ktai_color_config.font_06})">ﾗﾝｸｱｯﾌﾟﾒｰﾙ受信設定：</font><br>
 ({t_form m=ktai a=do_h_member_config_update_rank_up_mail})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
 <input type="radio" name="SEND_RANK_UP_MAIL_KTAI" value="1"({if $C_MEMBER_CONFIG.SEND_RANK_UP_MAIL_KTAI}) checked="checked"({/if})>
 受け取る<br>
 <input type="radio" name="SEND_RANK_UP_MAIL_KTAI" value="0"({if !$C_MEMBER_CONFIG.SEND_RANK_UP_MAIL_KTAI}) checked="checked"({/if})>
 受け取らない<br>
+<hr color="#({$ktai_color_config.border_01})">
+<font color="#({$ktai_color_config.font_06})">
 *PCﾒｰﾙｱﾄﾞﾚｽへのﾗﾝｸｱｯﾌﾟﾒｰﾙの送信はPCの設定変更より行えます。
-
+</font>
 <hr color="#({$ktai_color_config.border_01})">
 <center>
 <input type="submit" value="変更">
