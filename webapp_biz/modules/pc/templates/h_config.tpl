@@ -151,15 +151,16 @@
 </td>
 </tr>
 ({/if})
-({if $smarty.const.OPENPNE_DISP_RANK})
+({if $smarty.const.OPENPNE_USE_POINT_RANK})
 <tr>
-<th>ランクアップメール受信設定</th>
+<th>ランクアップメール受信</th>
 <td>
 <ul>
-<li><input type="radio" class="input_radio" name="SEND_RANK_UP_MAIL_PC" id="send_rank_up_mail_pc" value="1" ({if $C_MEMBER_CONFIG.SEND_RANK_UP_MAIL_PC}) checked="checked"({/if}) /><label for="send_rank_up_mail_pc">PCメールアドレスにランクアップメールを送信</label></li>
-<li><input type="radio" class="input_radio" name="SEND_RANK_UP_MAIL_PC" id="send_rank_up_mail_no_pc" value="0"({if !$C_MEMBER_CONFIG.SEND_RANK_UP_MAIL_PC}) checked="checked"({/if}) /><label for="send_rank_up_mail_no_pc">PCメールアドレスにランクアップメールを送信しない</label></li>
+<li><input type="radio" class="input_radio" name="SEND_RANK_UP_MAIL_PC" id="send_rank_up_mail_pc" value="1" ({if $C_MEMBER_CONFIG.SEND_RANK_UP_MAIL_PC}) checked="checked"({/if}) /><label for="send_rank_up_mail_pc">受け取る</label></li>
+<li><input type="radio" class="input_radio" name="SEND_RANK_UP_MAIL_PC" id="send_rank_up_mail_no_pc" value="0"({if !$C_MEMBER_CONFIG.SEND_RANK_UP_MAIL_PC}) checked="checked"({/if}) /><label for="send_rank_up_mail_no_pc">受け取らない</label></li>
 </ul>
-<p>※携帯メールアドレスへのランクアップメールの送信は携帯の設定変更より行えます。</p>
+<p>※ランク変更時に登録されているPCメールアドレスにお知らせします。<br />
+※携帯メールアドレスへのランクアップメールの送信は携帯の設定変更より行えます。</p>
 </td>
 </tr>
 ({/if})
