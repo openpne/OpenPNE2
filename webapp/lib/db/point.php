@@ -29,7 +29,7 @@ function db_point_insert_tags($c_point_log_id, $tags)
 }
 
 // ランクアップメールの設定があるかどうかを取得
-function db_point_rank_up_pcktai_mail_config($c_member_id)
+function db_point_is_set_rank_up_pcktai_mail_config($c_member_id)
 {
     $sql = 'SELECT COUNT(*) FROM c_member_config'
          . ' WHERE c_member_id = ?'
