@@ -60,31 +60,27 @@ class pc_page_fh_comment_list extends OpenPNE_Action
         return 'success';
     }
 
-
-    //c_member_id から自分の日記についてるコメントID(複数)を取得
-    //日記公開範囲を考慮
+    // c_member_id から自分の日記についてるコメントID(複数)を取得
+    // 日記公開範囲を考慮
     function _p_fh_diary_c_diary_comment_id_list4c_member_id($c_member_id, $is_friend, $type)
     {
         if ($type == 'h') {
             return p_fh_diary_c_diary_comment_id_list4c_member_id($c_member_id);
         }
 
-        $sql = "SELECT cdc.c_diary_comment_id FROM c_diary as cd,c_diary_comment as cdc, c_member as cm" .
+        $sql = "SELECT cdc.c_diary_comment_id FROM c_diary as cd,c_diary_comment as cdc" .
             " WHERE cd.c_member_id = ?".
-            " AND cd.c_diary_id = cdc.c_diary_id".
-            " AND cd.c_member_id = cm.c_member_id";
+            " AND cd.c_diary_id = cdc.c_diary_id";
 
         if ($is_friend) {
-            $sql .= ' AND ((cd.public_flag = \'public\') OR (cd.public_flag = \'default\' AND cm.public_flag_diary = \'public\') OR (cd.public_flag = \'friend\') OR (cd.public_flag = \'default\' AND cm.public_flag_diary = \'friend\'))';
+            $sql .= " AND cd.public_flag <> 'private'";
         } else {
-            $sql .= ' AND ((cd.public_flag = \'public\') OR (cd.public_flag = \'default\' AND cm.public_flag_diary = \'public\'))';
+            $sql .= " AND cd.public_flag = 'public'";
         }
 
         $params = array(intval($c_member_id));
         return db_get_col($sql, $params);
     }
-
-
 }
 
 ?>
