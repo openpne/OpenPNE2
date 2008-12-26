@@ -1075,7 +1075,8 @@ function p_access_analysis_month_access_analysis_month($ktai_flag)
         $sql = "SELECT to_char(r_datetime, 'YYYY-MM-01') as ym, count(*) as count" .
                 " FROM c_access_log " .
                 " where ktai_flag = ?" .
-                " group by ym";
+                " group by ym".
+                " order by ym asc";
     } else {
         $sql = "SELECT date_format(r_datetime, '%Y-%m-01') as ym, count(*) as count" .
                 " FROM c_access_log " .
