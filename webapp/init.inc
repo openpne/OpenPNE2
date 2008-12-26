@@ -50,6 +50,7 @@ $GLOBALS['OpenPNE']['KTAI_DOMAINS'] = array(
     'wm.pdx.ne.jp',
     'disney.ne.jp',
     'emnet.ne.jp',
+    'willcom.com',
 );
 
 // Smarty の設定
