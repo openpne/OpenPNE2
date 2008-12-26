@@ -2622,6 +2622,11 @@ function db_commu_delete_c_commu_member_confirm($c_commu_member_confirm_id)
 function db_commu_insert_c_commu_member($c_commu_member_confirm_id)
 {
     $confirm = _do_c_commu_member_confirm4c_commu_member_confirm_id($c_commu_member_confirm_id);
+
+    //function cache削除
+    cache_drop_c_commu($confirm['c_commu_id']);
+    cache_drop_c_commu_list4c_member_id($confirm['c_member_id']);
+
     $data = array(
         'c_commu_id' => intval($confirm['c_commu_id']),
         'c_member_id' => intval($confirm['c_member_id']),
