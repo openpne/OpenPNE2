@@ -5,7 +5,12 @@
            <legend>ログイン</legend>
            ({t_form m=pc a=do_o_login})
            <input type="hidden" name="login_params" value="({$requests.login_params})" />
-           <div id="usernameArea"><label for="username"><span>E-mailアドレス</span></label><input type="text" name="username" tabindex="1" id="username" /></div>
+           ({if $smarty.const.OPENPNE_AUTH_MODE == 'email'})
+               <div id="usernameArea"><label for="username"><span>E-mailアドレス</span></label>
+           ({else})
+               <div id="usernameArea"><label for="username"><span>ログインID</span></label>
+           ({/if})
+           <input type="text" name="username" tabindex="1" id="username" /></div>
            <div id="passwordArea"><label for="password"><span>パスワード</span></label><input type="password" name="password" tabindex="2" id="password" /></div>
            <div id="isSaveArea"><input type="checkbox" name="is_save" value="1" tabindex="3" id="isSave" /><label for="isSave"><span>次回から自動的にログイン</span></label></div>
            ({if $smarty.const.OPENPNE_AUTH_MODE == 'slavepne'})
