@@ -33,8 +33,11 @@ class ktai_do_h_confirm_list_insert_c_friend extends OpenPNE_Action
         }
         do_h_confirm_list_insert_c_friend_mail_send($cfc['c_member_id_from'], $u);
 
-        $p = array('msg' => 3);
-        openpne_redirect('ktai', 'page_h_confirm_list', $p);
+        $p = array(
+            'target_c_member_id' => $cfc['c_member_id_from'],
+            'msg' => 3,
+        );
+        openpne_redirect('ktai', 'page_f_message_send', $p);
     }
 }
 
