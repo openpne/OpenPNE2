@@ -208,7 +208,7 @@ function db_bookmark_insert_c_bookmark($c_member_id_from, $c_member_id_to)
 function db_bookmark_delete_c_bookmark($c_member_id_from, $c_member_id_to)
 {
     //function cacheの削除
-    cache_drop_c_bookmark($c_member_from);
+    cache_drop_c_bookmark($c_member_id_from);
 
     $sql = 'DELETE FROM c_bookmark' .
             ' WHERE c_member_id_from = ? AND c_member_id_to = ?';
