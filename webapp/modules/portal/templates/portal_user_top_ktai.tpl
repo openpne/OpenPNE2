@@ -49,7 +49,11 @@
 <tr><td bgcolor="#({$ktai_color_config.bg_04})">
 ({t_form m=ktai a=do_o_login})
 <input type="hidden" name="login_params" value="({$requests.login_params})">
+({if $smarty.const.OPENPNE_AUTH_MODE == 'email'})
 <font color="#({$ktai_color_config.bg_02})">★</font>携帯ﾒｰﾙｱﾄﾞﾚｽ<br>
+({else})
+<font color="#({$ktai_color_config.bg_02})">★</font>ﾛｸﾞｲﾝID<br>
+({/if})
 <textarea name="username" rows="1" istyle="3" mode="alphabet"></textarea><br>
 <font color="#({$ktai_color_config.bg_02})">★</font>ﾊﾟｽﾜｰﾄﾞ<br>
 <input name="password" type="text" istyle="3" mode="alphabet" value=""><br>
