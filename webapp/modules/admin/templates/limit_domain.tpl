@@ -13,7 +13,7 @@
 <li>PCメールアドレスへの招待メールの送信先メールアドレスのドメインを制限できる機能です。<br />
 ドメインを指定した場合は、そのドメインのメールアドレス以外には招待メールを送信することができなくなります。</li>
 <li>「設定変更」からメールアドレス変更をする場合にもドメイン制限されます。</li>
-<li>携帯メールアドレス ( docomo.ne.jp / ezweb.ne.jp / softbank.ne.jp / *.vodafone.ne.jp / *pdx.ne.jp / disney.ne.jp ) はドメイン制限する事はできません。</li>
+<li>携帯メールアドレス ( docomo.ne.jp / ezweb.ne.jp / softbank.ne.jp / *.vodafone.ne.jp / *pdx.ne.jp / willcom.com / disney.ne.jp ) はドメイン制限する事はできません。</li>
 <li>指定なしの場合は、全てのメールアドレスを許可します。(デフォルト設定)</li>
 <li>「*.example.com」とする事で、ワイルドカードが使用可能です。</li>
 </ul>
