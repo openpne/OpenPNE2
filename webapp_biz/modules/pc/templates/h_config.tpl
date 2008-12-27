@@ -139,7 +139,10 @@
 <li><input type="radio" class="input_radio" name="is_receive_mail" id="is_receive_mail_0"value="0"({if !$c_member.is_receive_mail}) checked="checked"({/if}) /><label for="is_receive_mail_0">受け取らない</label></li>
 </ul>
 <p>※新着メッセージの通知などを登録されているPCメールアドレスにお知らせします。<br />
-※携帯へのメール受信設定は、携帯からログインして設定してください。</p>
+({if $smarty.const.OPENPNE_ENABLE_KTAI })
+※携帯へのメール受信設定は、携帯からログインして設定してください。
+({/if})
+</p>
 </td>
 </tr>
 ({if !$is_unused_ashiato})
