@@ -428,7 +428,9 @@ BlogのURL
 <input type="radio" name="is_receive_mail" value="1"({if $c_member.is_receive_mail}) checked="checked"({/if}) class="no_bg">受け取る
 <input type="radio" name="is_receive_mail" value="0"({if !$c_member.is_receive_mail}) checked="checked"({/if}) class="no_bg">受け取らない<br>
 ※新着メッセージの通知などを登録されているPCメールアドレスにお知らせします。<br>
+({if $smarty.const.OPENPNE_ENABLE_KTAI })
 ※携帯へのメール受信設定は、携帯からログインして設定してください。
+({/if})
 </div>
 </td>
 <td class="bg_01" align="center"><img src="./skin/dummy.gif" alt="dot" class="dot"></td>
