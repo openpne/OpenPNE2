@@ -1017,9 +1017,9 @@ function p_access_analysis_month_access_analysis_month($ktai_flag)
 function p_access_analysis_day_access_analysis_day($ym, $ktai_flag)
 {
     if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
-        $sql = "SELECT substr(r_datetime,1,10) as ymd , count(*) as count" .
+        $sql = "SELECT substr(r_datetime::text,1,10) as ymd , count(*) as count" .
             " FROM c_access_log " .
-            " where substr(r_datetime,1,7) = ?" .
+            " where substr(r_datetime::text,1,7) = ?" .
             " and ktai_flag = ? " .
             " group by ymd";
     } else {
