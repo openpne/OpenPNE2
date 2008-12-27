@@ -14,10 +14,12 @@
 受け取る<br>
 <input type="radio" name="is_receive_ktai_mail" value="0"({if !$c_member.is_receive_ktai_mail}) checked="checked"({/if})>
 受け取らない<br>
+({if $smarty.const.OPENPNE_ENABLE_PC})
 <hr color="#({$ktai_color_config.border_01})">
 <font color="#({$ktai_color_config.font_06})">
 ※PCﾒｰﾙｱﾄﾞﾚｽへのﾒｰﾙ受信設定はPCからﾛｸﾞｲﾝして設定してください。
 </font>
+({/if})
 <hr color="#({$ktai_color_config.border_01})">
 <center>
 <input type="submit" value="変更">
