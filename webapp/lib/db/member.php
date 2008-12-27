@@ -458,7 +458,8 @@ function db_member_birth4c_member_id($month, $day, $c_member_id)
     $sql = "SELECT * FROM c_member" .
         " WHERE c_member_id IN (". $ids . ")" .
         " AND birth_day = ?" .
-        " AND birth_month = ?";
+        " AND birth_month = ?".
+        " order by c_member_id asc";
     $params = array(intval($day), intval($month));
     return db_get_all($sql, $params);
 }
