@@ -96,12 +96,16 @@ function db_schedule_add_insert_c_schedule(
         'title' => $title,
         'body' => $body,
         'start_date' => $start_date,
-        'start_time' => $start_time,
         'end_date' => $end_date,
-        'end_time' => $end_time,
         'u_datetime' => db_now(),
         'is_receive_mail' => (bool)$is_receive_mail,
     );
+    if (!is_null($start_time)) {
+        $data['start_time'] = $start_time;
+    }
+    if (!is_null($end_time)) {
+        $data['end_time'] = $end_time;
+    }
     return db_insert('c_schedule', $data);
 }
 
