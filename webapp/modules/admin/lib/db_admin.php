@@ -1283,14 +1283,14 @@ function p_access_analysis_target_topic_target_topic4ym_page_name
     $params = array(intval($ktai_flag));
     if ($month_flag) {
         if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
-            $where .= " and substr(r_datetime,1, 7) = ? ";
+            $where .= " and substr(r_datetime::text,1, 7) = ? ";
         } else {
             $where .= " and left(r_datetime, 7) = ? ";
         }
         array_push($params,substr($ymd,0,7));
     } else {
         if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
-            $where .= " and substr(r_datetime,1,10) = ? ";
+            $where .= " and substr(r_datetime::text,1,10) = ? ";
         } else {
             $where .= " and left(r_datetime,10) = ? ";
         }
@@ -1462,14 +1462,14 @@ function p_access_analysis_member_access_member4ym_page_name
     $params = array(intval($ktai_flag));
     if ($month_flag) {
         if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
-            $where .= " and substr(r_datetime,1,7) = ? ";
+            $where .= " and substr(r_datetime::text,1,7) = ? ";
         } else {
             $where .= " and left(r_datetime, 7) = ? ";
         }
         array_push($params,substr($ymd,0,7));
     } else {
         if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
-            $where .= " and substr(r_datetime,1,10) = ? ";
+            $where .= " and substr(r_datetime::text,1,10) = ? ";
         } else {
             $where .= " and left(r_datetime,10) = ? ";
         }
@@ -1540,14 +1540,14 @@ function p_access_analysis_target_member_access_member4ym_page_name
     $params = array(intval($ktai_flag));
     if ($month_flag) {
         if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
-            $where .= " and substr(r_datetime,1,7) = ? ";
+            $where .= " and substr(r_datetime::text,1,7) = ? ";
         } else {
             $where .= " and left(r_datetime, 7) = ? ";
         }
         array_push($params,substr($ymd,0,7));
     } else {
         if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
-            $where .= " and substr(r_datetime,1,10) = ? ";
+            $where .= " and substr(r_datetime::text,1,10) = ? ";
         } else {
             $where .= " and left(r_datetime,10) = ? ";
         }
@@ -1581,14 +1581,14 @@ function p_access_analysis_target_member_access_member4ym_page_name
     $params = array(intval($ktai_flag));
     if ($month_flag) {
         if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
-            $where .= " and substr(r_datetime,1,7) = ? ";
+            $where .= " and substr(r_datetime::text,1,7) = ? ";
         } else {
             $where .= " and left(r_datetime, 7) = ? ";
         }
         array_push($params,substr($ymd,0,7));
     } else {
         if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
-            $where .= " and substr(r_datetime,1,10) = ? ";
+            $where .= " and substr(r_datetime::text,1,10) = ? ";
         } else {
             $where .= " and left(r_datetime,10) = ? ";
         }
