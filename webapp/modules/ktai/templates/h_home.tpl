@@ -22,7 +22,7 @@
 ({$inc_ktai_entry_point[2]|smarty:nodefaults})
 ({/if})
 ({if $num_f_confirm_list})
-<a href="({t_url m=ktai a=page_h_confirm_list})&amp;({$tail})"><font color="#({$ktai_color_config.font_09})">★承認待ちのﾒﾝﾊﾞｰ({$num_f_confirm_list})名</font></a><br>
+<a href="({t_url m=ktai a=page_h_anatani_c_friend_confirm_list})&amp;({$tail})"><font color="#({$ktai_color_config.font_09})">★承認待ちのﾒﾝﾊﾞｰ({$num_f_confirm_list})名</font></a><br>
 ({/if})
 ({if $num_message_not_is_read})
 <a href="({t_url m=ktai a=page_h_message_box})&amp;({$tail})"><font color="#({$ktai_color_config.font_09})">★新着ﾒｯｾｰｼﾞ({$num_message_not_is_read})件</font></a><br>
@@ -31,13 +31,13 @@
 <a href="({t_url m=ktai a=page_fh_diary})&amp;target_c_diary_id=({$first_diary_read})&amp;({$tail})"><font color="#({$ktai_color_config.font_09})">★({$num_diary_not_is_read})件({$WORD_DIARY_HALF})に新着ｺﾒﾝﾄ</font></a><br>
 ({/if})
 ({if $num_h_confirm_list })
-<a href="({t_url m=ktai a=page_h_confirm_list})&amp;({$tail})"><font color="#({$ktai_color_config.font_09})">★({$WORD_COMMUNITY_HALF})参加承認待ち({$num_h_confirm_list})名</font></a><br>
+<a href="({t_url m=ktai a=page_h_anatani_c_commu_member_confirm_list})&amp;({$tail})"><font color="#({$ktai_color_config.font_09})">★({$WORD_COMMUNITY_HALF})参加承認待ち({$num_h_confirm_list})名</font></a><br>
 ({/if})
 ({if $anatani_c_commu_admin_confirm_list})
-<a href="({t_url m=ktai a=page_h_confirm_list})&amp;({$tail})"><font color="#({$ktai_color_config.font_09})">★({$WORD_COMMUNITY_HALF})管理者交代依頼({$num_anatani_c_commu_admin_confirm_list})件</font></a><br>
+<a href="({t_url m=ktai a=page_h_anatani_c_commu_admin_confirm_list})&amp;({$tail})"><font color="#({$ktai_color_config.font_09})">★({$WORD_COMMUNITY_HALF})管理者交代依頼({$num_anatani_c_commu_admin_confirm_list})件</font></a><br>
 ({/if})
 ({if $anatani_c_commu_sub_admin_confirm_list})
-<a href="({t_url m=ktai a=page_h_confirm_list})&amp;({$tail})"><font color="#({$ktai_color_config.font_09})">★({$WORD_COMMUNITY_HALF})副管理者依頼({$num_anatani_c_commu_sub_admin_confirm_list})件</font></a><br>
+<a href="({t_url m=ktai a=page_h_anatani_c_commu_sub_admin_confirm_list})&amp;({$tail})"><font color="#({$ktai_color_config.font_09})">★({$WORD_COMMUNITY_HALF})副管理者依頼({$num_anatani_c_commu_sub_admin_confirm_list})件</font></a><br>
 ({/if})
 ({if $anatani_c_commu_admin_confirm_list||$num_f_confirm_list||$num_message_not_is_read||$num_diary_not_is_read||$num_h_confirm_list||$anatani_c_commu_admin_confirm_list||$anatani_c_commu_sub_admin_confirm_list})
 <br>
@@ -78,7 +78,8 @@
 <td colspan="2">
 [i:140]<a href="({t_url m=ktai a=page_fh_friend_list})&amp;({$tail})">({$WORD_MY_FRIEND_HALF})</a>(({$c_friend_count|default:'0'}))<br>
 [i:155]<a href="({t_url m=ktai a=page_fh_com_list})&amp;({$tail})">参加({$WORD_COMMUNITY_HALF})</a>(({$fh_com_count_user|default:'0'}))<br>
-[i:136]<a href="({t_url m=ktai a=page_h_bookmark_list})&amp;({$tail})">お気に入り</a>
+[i:136]<a href="({t_url m=ktai a=page_h_bookmark_list})&amp;({$tail})">お気に入り</a><br>
+[i:151]<a href="({t_url m=ktai a=page_h_confirm_list})&amp;({$tail})">承認待ちﾘｽﾄ</a>
 <hr color="#({$ktai_color_config.border_01})" size="3"></td></tr>
 
 <tr>
@@ -122,7 +123,11 @@
 ({foreach from=$c_diary_my_comment_list item=item})
 <tr><td bgcolor="#({cycle values="`$ktai_color_config.bg_09`,`$ktai_color_config.bg_10`"})">
 <font color="#({$ktai_color_config.font_06})">[({$item.r_datetime|date_format:"%m/%d"})]</font> ({$item.nickname|t_truncate:22:""})<br>
-<a href="({t_url m=ktai a=page_fh_diary})&amp;target_c_diary_id=({$item.c_diary_id})&amp;({$tail})">({$item.subject|t_truncate:28:""})(({$item.num_comment}))</a><br>
+<a href="({t_url m=ktai a=page_fh_diary})&amp;target_c_diary_id=({$item.c_diary_id})&amp;({$tail})">({$item.subject|t_truncate:28:""})(({$item.num_comment}))</a>
+({if $item.image_filename_1 || $item.image_filename_2 || $item.image_filename_3})
+[i:68]
+({/if})
+<br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_10})">
 <hr color="#({$ktai_color_config.border_03})">
@@ -165,7 +170,7 @@
 ({if $C_MEMBER_CONFIG.IS_DISPLAY_NEWDIARY_HOME_KTAI})
 <table width="100%">
 <tr><td bgcolor="#({$ktai_color_config.bg_08})">
-<a accesskey="4" name="a4" href="#a4">[i:128]</a><font color="#({$ktai_color_config.color_25})">全体の最新({$WORD_DIARY_HALF})</font><br>
+<a accesskey="4" name="a4" href="#a4">[i:128]</a><font color="#({$ktai_color_config.color_26})">全体の最新({$WORD_DIARY_HALF})</font><br>
 </td></tr>
 ({if $c_diary_list_all})
 ({foreach from=$c_diary_list_all item=item})

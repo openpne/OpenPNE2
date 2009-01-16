@@ -47,6 +47,13 @@ class pc_do_h_schedule_add_insert_c_schedule extends OpenPNE_Action
 
         $title = trim($input['title']);
 
+        if (is_null($input['start_hour']) xor is_null($input['start_minute'])) {
+            $this->handleError(array('開始時刻が正しくありません'));
+        }
+        if (is_null($input['end_hour']) xor is_null($input['end_minute'])) {
+            $this->handleError(array('終了時刻が正しくありません'));
+        }
+
         if (is_null($input['end_year'])) {
             $input['end_year'] = $input['start_year'];
         }
@@ -60,13 +67,13 @@ class pc_do_h_schedule_add_insert_c_schedule extends OpenPNE_Action
         $start_date = sprintf('%04d-%02d-%02d', $input['start_year'], $input['start_month'], $input['start_day']);
         $end_date = sprintf('%04d-%02d-%02d', $input['end_year'], $input['end_month'], $input['end_day']);
 
-        if (($input['start_hour'] || $input['start_hour'] == 0) && ($input['start_minute'] || $input['start_minute'] == 0)) {
+        if (($input['start_hour'] || $input['start_hour'] == '00') && ($input['start_minute'] || $input['start_minute'] == '00')) {
             $start_time = sprintf('%02d:%02d:00', $input['start_hour'], $input['start_minute']);
         } else {
             $start_time = null;
         }
 
-        if (($input['end_hour'] || $input['end_hour'] == 0) && ($input['end_minute'] || $input['end_minute'] == 0)) {
+        if (($input['end_hour'] || $input['end_hour'] == '00') && ($input['end_minute'] || $input['end_minute'] == '00')) {
             $end_time = sprintf('%02d:%02d:00', $input['end_hour'], $input['end_minute']);
         } else {
             $end_time = null;

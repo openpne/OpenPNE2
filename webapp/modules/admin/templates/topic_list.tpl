@@ -19,7 +19,7 @@
 <input type="hidden" name="a" value="page_({$hash_tbl->hash('topic_list','page')})" />
 <h3 class="item">検索キーワード</h3>
 <input class="basic" type="text" name="keyword" value="({$keyword})" />
-<span class="textBtnS"><input type="submit" value="検索" /></span>
+<span class="textBtnS"><input type="submit" value="　検　索　" /></span>
 </form>
 
 <form action="./" method="get">
@@ -27,7 +27,7 @@
 <input type="hidden" name="a" value="page_({$hash_tbl->hash('topic_list','page')})" />
 <h3 class="item">ID検索</h3>
 <input class="basic" type="text" name="target_c_commu_topic_id" value="({$target_c_commu_topic_id})" />
-<span class="textBtnS"><input type="submit" value="検索" /></span>
+<span class="textBtnS"><input type="submit" value="　検　索　" /></span>
 </form>
 </div>
 
@@ -116,7 +116,7 @@
 <tr>
 <th>ファイル</th>
 <td class="textbody">
-<a href="({t_url m=$module_name a=do_file_download})&amp;filename=({$item.filename})&amp;sessid=({$PHPSESSID})">
+<a href="./?m=({$module_name})&amp;a=do_({$hash_tbl->hash('file_download','do')})&amp;filename=({$item.filename})&amp;sessid=({$PHPSESSID})">
 ({$item.original_filename})
 </a>
 </td>
@@ -129,7 +129,7 @@
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="page_({$hash_tbl->hash('delete_topic')})" />
 <input type="hidden" name="target_c_commu_topic_id" value="({$item.c_commu_topic_id})" />
-<span class="textBtnS"><input type="submit" value="削除" /></span>
+<span class="textBtnS"><input type="submit" value="　削　除　" /></span>
 </form>
 </td>
 </tr>

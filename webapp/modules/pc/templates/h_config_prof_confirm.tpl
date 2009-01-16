@@ -126,7 +126,7 @@
 <input type="hidden" name="public_flag[({$key})]" value="({$item.public_flag})" />
 ({/foreach})
 ({/strip})
-<input type="submit" class="input_submit" value="確定" />
+<input type="submit" class="input_submit" value="　確　定　" />
 ({/t_form_block})
 </li>
 <li>
@@ -154,7 +154,7 @@
 <input type="hidden" name="public_flag[({$key})]" value="({$item.public_flag})" />
 ({/foreach})
 ({/strip})
-<input type="submit" class="input_submit" value="修正" />
+<input type="submit" class="input_submit" value="　修　正　" />
 ({/t_form_block})
 </li>
 </ul>

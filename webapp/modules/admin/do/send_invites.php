@@ -34,13 +34,10 @@ class admin_do_send_invites extends OpenPNE_Action
                 $mail = str_replace('"', '', $mail);
             }
 
-            // メールアドレスとして正しくない
-            if (!db_common_is_mailaddress($mail)) {
-                continue;
-            }
-
-            if (db_member_is_sns_join4mail_address($mail)) { // 登録済み
+            if (!db_common_is_mailaddress($mail)) { // メールアドレスとして正しくない
                 $errors[] = $mail;
+            } elseif (db_member_is_sns_join4mail_address($mail)) { // 登録済み
+                $registered[] = $mail;
             } elseif (!db_member_is_limit_domain4mail_address($mail)) { // ドメイン制限
                 $limits[] = $mail;
             } elseif (is_ktai_mail_address($mail)) {
@@ -50,18 +47,12 @@ class admin_do_send_invites extends OpenPNE_Action
             }
         }
 
-        if (empty($requests['complete'])) {
-            // 確認画面へ
-            $_REQUEST['error_mails'] = $errors;
-            $_REQUEST['pc_mails'] = $pcs;
-            $_REQUEST['ktai_mails'] = $ktais;
-            $_REQUEST['limit_domain_mails'] = $limits;
-            openpne_forward($module_name, 'page', 'send_invites_confirm');
-            exit;
-
-        } else {
+        if (isset($requests['complete'])) {
             // 送信者はとりあえず1番で固定
             $c_member_id_invite = 1;
+
+            // 送信完了メール数確認用
+            $send_complete = array();
 
             //<PCKTAI
             if ((OPENPNE_REGIST_FROM & OPENPNE_REGIST_FROM_KTAI) >> 1) {
@@ -77,6 +68,7 @@ class admin_do_send_invites extends OpenPNE_Action
                     }
 
                     h_invite_insert_c_invite_mail_send($session, $c_member_id_invite, $mail, $requests['message']);
+                    $send_complete[] = $mail;
                 }
             }
             //>
@@ -95,12 +87,24 @@ class admin_do_send_invites extends OpenPNE_Action
                     }
 
                     do_h_invite_insert_c_invite_mail_send($c_member_id_invite, $session, $requests['message'], $mail);
+                    $send_complete[] = $mail;
                 }
             }
             //>
 
-            admin_client_redirect('top', '招待メールを送信しました');
+            // メール送信完了数が1件以上ある時は、完了画面へ
+            if ($send_complete) {
+                admin_client_redirect('top', '招待メールを送信しました');
+            }
         }
+
+        $_REQUEST['error_mails'] = $errors;
+        $_REQUEST['registered_mails'] = $registered;
+        $_REQUEST['pc_mails'] = $pcs;
+        $_REQUEST['ktai_mails'] = $ktais;
+        $_REQUEST['limit_domain_mails'] = $limits;
+        openpne_forward($module_name, 'page', 'send_invites_confirm');
+        exit;
     }
 }
 

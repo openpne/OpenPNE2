@@ -23,17 +23,28 @@ class admin_do_csv_member extends OpenPNE_Action
         $end_id = $requests['end_id'];
         $allflag = $requests['allflag'];
 
-        if (!is_int($start_id) || !is_int($end_id) || !$allflag && ($start_id < 1 || $end_id < 1)) {
+        $errors = array();
+        if (!$allflag && ($start_id < 1 || $end_id < 1)) {
             $errors[] = '範囲指定のメンバーIDは1以上の整数値で入力してください';
+        }
+        if (!$allflag && $start_id > $end_id) {
+            $errors[] = '開始メンバーIDは終了メンバーIDより大きい値で入力してください。';
         }
         if ($errors) {
             $this->handleError($errors);
         }
 
         $member_key_string = $this->get_key_list();
-        $c_member_list = $this->db_get_c_member_list($start_id,$end_id);
-        $member_csv_data = $this->create_csv_data($member_key_string, $c_member_list);
+        $c_member_list = $this->db_get_c_member_list($start_id, $end_id);
+        if (!$c_member_list) {
+            $this->handleError(array('該当するメンバーの情報がありません。'));
+        }
 
+        $member_csv_data = $this->create_csv_data($member_key_string, $c_member_list);
+        //IE以外の場合、キャッシュをさせないヘッダを出力
+        if (strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE') === false) {
+            send_nocache_headers(true);
+        }
         header("Content-Type: application/octet-stream");
         header("Content-Disposition: attachment; filename=member.csv");
         echo $member_csv_data;

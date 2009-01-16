@@ -501,6 +501,14 @@ function db_admin_delete_c_image_link4image_filename($image_filename)
         $params = array($image_filename);
         db_query($sql, $params);
     }
+
+    if ($prefix = 'biz') {
+        $tbl = 'biz_group';
+        _db_admin_empty_filename($tbl, $image_filename);
+
+        $tbl = 'biz_shisetsu';
+        _db_admin_empty_filename($tbl, $image_filename);
+    }
 }
 
 function _db_admin_empty_filename($tbl, $image_filename, $column = 'image_filename')
@@ -1066,7 +1074,8 @@ function p_access_analysis_month_access_analysis_month($ktai_flag)
         $sql = "SELECT to_char(r_datetime, 'YYYY-MM-01') as ym, count(*) as count" .
                 " FROM c_access_log " .
                 " where ktai_flag = ?" .
-                " group by ym";
+                " group by ym".
+                " order by ym asc";
     } else {
         $sql = "SELECT date_format(r_datetime, '%Y-%m-01') as ym, count(*) as count" .
                 " FROM c_access_log " .
@@ -1083,9 +1092,9 @@ function p_access_analysis_month_access_analysis_month($ktai_flag)
 function p_access_analysis_day_access_analysis_day($ym, $ktai_flag)
 {
     if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
-        $sql = "SELECT substr(r_datetime,1,10) as ymd , count(*) as count" .
+        $sql = "SELECT substr(r_datetime::text,1,10) as ymd , count(*) as count" .
             " FROM c_access_log " .
-            " where substr(r_datetime,1,7) = ?" .
+            " where substr(r_datetime::text,1,7) = ?" .
             " and ktai_flag = ? " .
             " group by ymd";
     } else {
@@ -1349,14 +1358,14 @@ function p_access_analysis_target_topic_target_topic4ym_page_name
     $params = array(intval($ktai_flag));
     if ($month_flag) {
         if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
-            $where .= " and substr(r_datetime,1, 7) = ? ";
+            $where .= " and substr(r_datetime::text,1, 7) = ? ";
         } else {
             $where .= " and left(r_datetime, 7) = ? ";
         }
         array_push($params,substr($ymd,0,7));
     } else {
         if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
-            $where .= " and substr(r_datetime,1,10) = ? ";
+            $where .= " and substr(r_datetime::text,1,10) = ? ";
         } else {
             $where .= " and left(r_datetime,10) = ? ";
         }
@@ -1528,14 +1537,14 @@ function p_access_analysis_member_access_member4ym_page_name
     $params = array(intval($ktai_flag));
     if ($month_flag) {
         if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
-            $where .= " and substr(r_datetime,1,7) = ? ";
+            $where .= " and substr(r_datetime::text,1,7) = ? ";
         } else {
             $where .= " and left(r_datetime, 7) = ? ";
         }
         array_push($params,substr($ymd,0,7));
     } else {
         if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
-            $where .= " and substr(r_datetime,1,10) = ? ";
+            $where .= " and substr(r_datetime::text,1,10) = ? ";
         } else {
             $where .= " and left(r_datetime,10) = ? ";
         }
@@ -1606,14 +1615,14 @@ function p_access_analysis_target_member_access_member4ym_page_name
     $params = array(intval($ktai_flag));
     if ($month_flag) {
         if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
-            $where .= " and substr(r_datetime,1,7) = ? ";
+            $where .= " and substr(r_datetime::text,1,7) = ? ";
         } else {
             $where .= " and left(r_datetime, 7) = ? ";
         }
         array_push($params,substr($ymd,0,7));
     } else {
         if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
-            $where .= " and substr(r_datetime,1,10) = ? ";
+            $where .= " and substr(r_datetime::text,1,10) = ? ";
         } else {
             $where .= " and left(r_datetime,10) = ? ";
         }
@@ -1647,14 +1656,14 @@ function p_access_analysis_target_member_access_member4ym_page_name
     $params = array(intval($ktai_flag));
     if ($month_flag) {
         if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
-            $where .= " and substr(r_datetime,1,7) = ? ";
+            $where .= " and substr(r_datetime::text,1,7) = ? ";
         } else {
             $where .= " and left(r_datetime, 7) = ? ";
         }
         array_push($params,substr($ymd,0,7));
     } else {
         if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
-            $where .= " and substr(r_datetime,1,10) = ? ";
+            $where .= " and substr(r_datetime::text,1,10) = ? ";
         } else {
             $where .= " and left(r_datetime,10) = ? ";
         }
@@ -2730,7 +2739,7 @@ function db_admin_get_c_cmd_list4name()
  */
 function db_admin_c_holiday_list()
 {
-    $sql = 'SELECT * FROM c_holiday ORDER BY month';
+    $sql = 'SELECT * FROM c_holiday ORDER BY month, day';
     $holiday_list = db_get_all($sql);
 
     return $holiday_list;

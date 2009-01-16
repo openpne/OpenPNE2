@@ -15,7 +15,7 @@
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="page_({$hash_tbl->hash('edit_album_list','page')})" />
 <input class="basic" type="text" name="keyword" value="({$keyword})" />
-<span class="textBtnS"><input type="submit" value="検索" /></span>
+<span class="textBtnS"><input type="submit" value="　検　索　" /></span>
 </form>
 
 <h4>アルバムID検索</h4>
@@ -23,7 +23,7 @@
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="page_({$hash_tbl->hash('edit_album_list','page')})" />
 <input class="basic" type="text" name="target_c_album_id" value="({$target_c_album_id})" />
-<span class="textBtnS"><input type="submit" value="検索" /></span>
+<span class="textBtnS"><input type="submit" value="　検　索　" /></span>
 </form>
 </div>
 
@@ -113,7 +113,7 @@
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="page_({$hash_tbl->hash('delete_album_confirm')})" />
 <input type="hidden" name="target_c_album_id" value="({$item.c_album_id})" />
-<span class="textBtnS"><input type="submit" value="削除" /></span>
+<span class="textBtnS"><input type="submit" value="　削　除　" /></span>
 </form>
 </td>
 </tr>

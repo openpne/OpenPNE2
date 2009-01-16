@@ -25,7 +25,7 @@
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('edit_album_limit','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
 <input id="input_limit" class="basic" type="text" name="limit" value="({$smarty.const.OPENPNE_ALBUM_LIMIT})" /><label for="input_limit">MB</label>
-<p class="textBtn"><input type="submit" value="変更" /></p>
+<p class="textBtn"><input type="submit" value="　変　更　" /></p>
 </form>
 </div>
 

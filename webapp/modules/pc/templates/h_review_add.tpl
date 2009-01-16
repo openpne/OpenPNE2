@@ -17,7 +17,7 @@
 <option value="" selected="selected">選択</option>
 ({html_options options=$category_disp selected=$category_id})
 </select>
-<input type="submit" class="input_submit" name="button" value="　検 索　" />
+<input type="submit" class="input_submit" name="button" value="　検　索　" />
 </p>
 ({/t_form_block})
 
@@ -65,6 +65,25 @@
 
 ({$smarty.capture.pager|smarty:nodefaults})
 
+</div></div>
+({* }}} *})
+
+({elseif $keyword == ""})
+({* {{{ simpleBox *})
+<div class="dparts simpleBox"><div class="parts">
+<div class="partsHeading"><h3>検索結果</h3></div>
+<div class="block">
+</div>
+</div></div>
+({* }}} *})
+
+({else})
+({* {{{ simpleBox *})
+<div class="dparts simpleBox"><div class="parts">
+<div class="partsHeading"><h3>({$keyword})の検索結果</h3></div>
+<div class="block">
+<p>該当する商品はありません。</p>
+</div>
 </div></div>
 ({* }}} *})
 ({/if})

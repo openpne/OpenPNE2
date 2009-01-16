@@ -32,20 +32,18 @@
 <ul class="moreInfo button">
 <li>
 ({t_form_block m=pc a=do_c_event_add_insert_c_commu_topic})
-<input type="hidden" name="target_c_commu_id" value="({$event.c_commu_id})" />
 ({foreach from=$event key=key item=item})
 <input type="hidden" name="({$key})" value="({$item})" />
 ({/foreach})
-<input type="submit" class="input_submit" value="作成" />
+<input type="submit" class="input_submit" value="　作　成　" />
 ({/t_form_block})
 </li>
 <li>
 ({t_form_block m=pc a=page_c_event_add})
-<input type="hidden" name="target_c_commu_id" value="({$event.c_commu_id})" />
 ({foreach from=$event key=key item=item})
 <input type="hidden" name="({$key})" value="({$item})" />
 ({/foreach})
-<input type="submit" class="input_submit" value="修正" />
+<input type="submit" class="input_submit" value="　修　正　" />
 ({/t_form_block})
 </li>
 </ul>

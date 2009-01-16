@@ -17,7 +17,7 @@
 <input type="hidden" name="a" value="page_({$hash_tbl->hash('list_c_member')})" />
 <strong>メールアドレス検索</strong>(完全一致)：
 <input type="text" class="basic" name="mail_address" value="({$requests.mail_address})" size="30" />
-<span class="textBtnS"><input type="submit" value="検索" /></span>
+<span class="textBtnS"><input type="submit" value="　検　索　" /></span>
 </p>
 </form>
 ({if $smarty.const.OPENPNE_AUTH_MODE != 'email'})
@@ -27,7 +27,7 @@
 <input type="hidden" name="a" value="page_({$hash_tbl->hash('list_c_member')})" />
 <strong>ログインID検索</strong>(完全一致)：
 <input type="text" class="basic" name="username" value="({$requests.username})" size="30" />
-<span class="textBtnS"><input type="submit" value="検索" /></span>
+<span class="textBtnS"><input type="submit" value="　検　索　" /></span>
 </p>
 </form>
 ({/if})
@@ -49,14 +49,16 @@
 <option value="50"({if $pager.page_size==50}) selected="selected"({/if})>50件</option>
 <option value="100"({if $pager.page_size==100}) selected="selected"({/if})>100件</option>
 </select>
-<span class="textBtnS"><input type="submit" value="変更" /></span><span class="btnCaution">※表示件数を多くすると処理が重くなり、サーバーに負荷がかかります。</span>
+<span class="textBtnS"><input type="submit" value="　変　更　" /></span><span class="btnCaution">※表示件数を多くすると処理が重くなり、サーバーに負荷がかかります。</span>
 </p>
 </form>
 ({/if})
 
 ({if $pager})
 <div class="listControlTop">
+({if $pager.total_num})
 <p class="display">({$pager.total_num}) 人中 ({$pager.start_num}) - ({$pager.end_num})人目を表示しています</p>
+({/if})
 <p id="controlIcon"><img src="./modules/admin/img/icn_withdrawal.gif" alt="強制退会のアイコン" class="withdraw" />：強制退会　<img src="modules/admin/img/icn_rejected.gif" alt="ログイン停止のアイコン" />：ログイン停止　<img src="modules/admin/img/icn_permit.gif" alt="ログイン停止解除" />：ログイン停止解除　<img src="modules/admin/img/icn_passwd.gif" alt="パスワード再発行のアイコン" />：パスワード再発行 <img src="modules/admin/img/icn_blacklist.gif" alt="ブラックリストに追加" />：携帯個体識別番号をブラックリストに追加</p>
 <p class="listMove">
 ({if $pager.prev_page})<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page=({$pager.prev_page})&amp;page_size=({$pager.page_size})&amp;order=({$requests.order})({$cond})">前へ</a>({/if})
@@ -113,14 +115,14 @@
 		<tr class="min_width">
 			({if $smarty.const.OPENPNE_USE_POINT_RANK})
 			<th class="cell10" colspan="2">
-            <select class="basic" onChange="Link('?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page=({$pager.page})&amp;page_size=({$pager.page_size})&amp;order=({$requests.order})({$cond})&amp;s_rank='+this.options[this.selectedIndex].value);">
+            <select class="basic" onChange="Link('?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=({$requests.order})({$cond})&amp;s_rank='+this.options[this.selectedIndex].value);">
 			<option value="">▼選択</option>
 			({foreach from=$rank_data item=item})
 			<option({if $cond_list.s_rank == $item.c_rank_id}) selected({/if}) value="({$item.c_rank_id})">({$item.name})</option>
 			({/foreach})
 			</select>
 			～
-			<select class="basic" onChange="Link('?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page=({$pager.page})&amp;page_size=({$pager.page_size})&amp;order=({$requests.order})({$cond})&amp;e_rank='+this.options[this.selectedIndex].value);">
+			<select class="basic" onChange="Link('?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=({$requests.order})({$cond})&amp;e_rank='+this.options[this.selectedIndex].value);">
 			<option value="">▼選択</option>
 			({foreach from=$rank_data item=item})
 			<option({if $cond_list.e_rank == $item.c_rank_id}) selected({/if}) value="({$item.c_rank_id})">({$item.name})</option>
@@ -129,7 +131,7 @@
 			</th>
 			({/if})
 			<th class="cell05">
-            <select class="basic" onChange="Link('?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page=({$pager.page})&amp;page_size=({$pager.page_size})&amp;order=({$requests.order})({$cond})&amp;last_login='+this.options[this.selectedIndex].value);">
+            <select class="basic" onChange="Link('?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=({$requests.order})({$cond})&amp;last_login='+this.options[this.selectedIndex].value);">
             <option value="">▼選択</option>
             ({foreach from=$select_last_login item=item key=key})
             <option ({if $cond_list.last_login==$key})selected({/if}) value="({$key})">({$item})</option>
@@ -137,14 +139,14 @@
             </select>
             </th>
 			<th class="cell09A" colspan="3">
-			<select class="basic" onChange="Link('?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page=({$pager.page})&amp;page_size=({$pager.page_size})&amp;order=({$requests.order})({$cond})&amp;s_year='+this.options[this.selectedIndex].value);">
+			<select class="basic" onChange="Link('?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=({$requests.order})({$cond})&amp;s_year='+this.options[this.selectedIndex].value);">
 			<option value="">▼選択</option>
 			({foreach from=$years item=item})
 			<option ({if $cond_list.s_year==$item})selected({/if}) value="({$item})">({$item})</option>
 			({/foreach})
 			</select>
 			～
-			<select class="basic" onChange="Link('?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page=({$pager.page})&amp;page_size=({$pager.page_size})&amp;order=({$requests.order})({$cond})&amp;e_year='+this.options[this.selectedIndex].value);">
+			<select class="basic" onChange="Link('?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=({$requests.order})({$cond})&amp;e_year='+this.options[this.selectedIndex].value);">
 			<option value="">▼選択</option>
 			({foreach from=$years item=item})
 			<option ({if $cond_list.e_year==$item})selected({/if}) value="({$item})">({$item})</option>
@@ -155,7 +157,7 @@
 			({if $prof.name !== 'PNE_POINT'})
 			<th>
 			({if $prof.form_type == 'radio' || $prof.form_type == 'select'})
-			<select class="basic" onChange="Link('?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page=({$pager.page})&amp;page_size=({$pager.page_size})&amp;order=({$requests.order})({$cond})&amp;({$prof.name})='+this.options[this.selectedIndex].value);">
+			<select class="basic" onChange="Link('?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=({$requests.order})({$cond})&amp;({$prof.name})='+this.options[this.selectedIndex].value);">
 			<option value="">▼選択</option>
 			({foreach item=item from=$prof.options})
 			<option ({if $cond_list[$prof.name]==$item.c_profile_option_id})selected({/if}) value="({$item.c_profile_option_id})"({if $c_member.profile[$profile.name].value == $item.value}) selected="selected"({/if})>({$item.value|default:"--"})</option>
@@ -168,14 +170,14 @@
 			({/if})
 			({/foreach})
 			<th class="cell05">
-            <select class="basic" onChange="Link('?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page=({$pager.page})&amp;page_size=({$pager.page_size})&amp;order=({$requests.order})({$cond})&amp;is_pc_address='+this.options[this.selectedIndex].value);">
+            <select class="basic" onChange="Link('?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=({$requests.order})({$cond})&amp;is_pc_address='+this.options[this.selectedIndex].value);">
             <option value="">▼選択</option>
 			<option value="1"({if $cond_list.is_pc_address == 1}) selected="selected"({/if})>登録している</option>
 			<option value="2"({if $cond_list.is_pc_address == 2}) selected="selected"({/if})>登録していない</option>
             </select>
             </th>
 			<th class="cell05">
-            <select class="basic" onChange="Link('?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page=({$pager.page})&amp;page_size=({$pager.page_size})&amp;order=({$requests.order})({$cond})&amp;is_ktai_address='+this.options[this.selectedIndex].value);">
+            <select class="basic" onChange="Link('?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=({$requests.order})({$cond})&amp;is_ktai_address='+this.options[this.selectedIndex].value);">
             <option value="">▼選択</option>
 			<option value="1"({if $cond_list.is_ktai_address == 1}) selected="selected"({/if})>登録している</option>
 			<option value="2"({if $cond_list.is_ktai_address == 2}) selected="selected"({/if})>登録していない</option>
@@ -250,7 +252,7 @@
 			({foreach from=$c_profile_list item=prof})
 			({if $prof.name !== 'PNE_POINT'})
 			<td>({strip})
-			({if $prof.form_type == "checkbox"})
+			({if $prof.form_type == "checkbox" && $item.profile[$prof.name].value !== ''})
 				({$item.profile[$prof.name].value|@t_implode:","|t_truncate:30})
 			({else})
 				({$item.profile[$prof.name].value|t_truncate:30})
@@ -323,7 +325,9 @@
 ({if $pager.next_page})&nbsp;|&nbsp;<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page=({$pager.next_page})&amp;page_size=({$pager.page_size})&amp;order=({$requests.order})({$cond})">次へ</a>
 ({/if})
 </p>
+({if $pager.total_num})
 <p class="display">({$pager.total_num}) 人中 ({$pager.start_num}) - ({$pager.end_num})人目を表示しています</p>
+({/if})
 </div>({*/div class="listNaviBtm"*})
 
 ({/if})

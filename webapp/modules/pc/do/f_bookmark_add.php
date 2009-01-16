@@ -6,6 +6,14 @@
 
 class pc_do_f_bookmark_add extends OpenPNE_Action
 {
+
+    function handleError($errors)
+    {
+        $_REQUEST['msg'] = array_shift($errors);
+        openpne_forward('pc', 'page', 'h_bookmark_list');
+        exit;
+    }
+
     function execute($requests)
     {
         $u = $GLOBALS['AUTH']->uid();
@@ -21,10 +29,16 @@ class pc_do_f_bookmark_add extends OpenPNE_Action
             handle_kengen_error();
         }
 
-        if (db_bookmark_is_bookmark($u, $c_member_id_to)) {
-            openpne_redirect('pc', 'page_h_bookmark_list');
+        //アクティブメンバーか
+        if (!db_member_is_active_c_member_id($c_member_id_to)) {
+            handle_kengen_error();
         }
-        //---
+
+        //お気に入り登録済みメンバーか
+        if (db_bookmark_is_bookmark($u, $c_member_id_to)) {
+            $p = array('c_member_id_to' => $c_member_id_to);
+            openpne_redirect('pc', 'page_f_bookmark_add_err_already', $p);
+        }
 
         db_bookmark_insert_c_bookmark($u, $c_member_id_to);
         openpne_redirect('pc', 'page_h_bookmark_list');

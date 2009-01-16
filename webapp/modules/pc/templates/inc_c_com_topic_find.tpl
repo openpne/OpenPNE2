@@ -9,7 +9,7 @@
 <option value="in_commu">({$WORD_COMMUNITY})内</option>
 <option value="all">({$WORD_COMMUNITY})全体</option>
 </select></li>
-<li><input type="submit" class="input_submit" value="検索" /></li>
+<li><input type="submit" class="input_submit" value="　検　索　" /></li>
 </ul>
 ({/t_form_block})
 </div>

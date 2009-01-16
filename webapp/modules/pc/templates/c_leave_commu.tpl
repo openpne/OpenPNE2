@@ -11,12 +11,12 @@
 <li>
 ({t_form_block m=pc a=do_inc_leave_c_commu})
 <input type="hidden" name="target_c_commu_id" value="({$c_commu.c_commu_id})" />
-<input type="submit" class="input_submit" value=" は　い " />
+<input type="submit" class="input_submit" value="　は　い　" />
 ({/t_form_block})
 </li><li>
 ({t_form_block _method=get m=pc a=page_c_home})
 <input type="hidden" name="target_c_commu_id" value="({$c_commu.c_commu_id})" />
-<input type="submit" class="input_submit" value=" いいえ " />
+<input type="submit" class="input_submit" value="　いいえ　" />
 ({/t_form_block})
 </li>
 </ul>

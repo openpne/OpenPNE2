@@ -10,7 +10,7 @@
 <li>
 ({t_form_block m=pc a=do_fh_friend_list_delete_c_friend})
 <input type="hidden" name="target_c_member_id" value="({$target_c_member_id})" />
-<input type="submit" class="input_submit" value="　外 す　" />
+<input type="submit" class="input_submit" value="　外　す　" />
 ({/t_form_block})
 </li><li>
 ({t_form_block _method=get m=pc a=page_h_manage_friend})

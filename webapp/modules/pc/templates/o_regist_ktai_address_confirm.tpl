@@ -24,13 +24,13 @@
 ({t_form_block m=pc a=do_o_regist_ktai_address})
 <input type="hidden" name="sid" value="({$sid})" />
 <input type="hidden" name="ktai_address" value="({$ktai_address})" />
-<input type="submit" class="input_submit" value="送信" />
+<input type="submit" class="input_submit" value="　送　信　" />
 ({/t_form_block})
 </li><li>
 ({t_form_block m=pc a=page_o_regist_ktai_address})
 <input type="hidden" name="sid" value="({$sid})" />
 <input type="hidden" name="ktai_address" value="({$ktai_address})" />
-<input type="submit" class="input_submit" value="修正" />
+<input type="submit" class="input_submit" value="　修　正　" />
 ({/t_form_block})
 </li>
 </ul>

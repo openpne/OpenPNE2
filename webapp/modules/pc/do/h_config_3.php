@@ -29,17 +29,28 @@ class pc_do_h_config_3 extends OpenPNE_Action
         $public_flag_diary = util_cast_public_flag_diary($requests['public_flag_diary']);
         $is_shinobiashi = $requests['is_shinobiashi'];
         $schedule_start_day = $requests['schedule_start_day'];
+        $c_password_query_id = $requests['c_password_query_id'];
+        $c_password_query_answer = $requests['c_password_query_answer'];
         // ----------
+
+        $c_member = db_member_c_member4c_member_id($u);
+
+        $error_messages = array();
 
         if (OPENPNE_AUTH_MODE == 'slavepne') {
             $c_password_query_id = 0;
             $c_password_query_answer = '';
         } else {
-            $c_password_query_id = $requests['c_password_query_id'];
-            $c_password_query_answer = $requests['c_password_query_answer'];
+            if (!strlen($requests['c_password_query_answer'])) {
+                if (!$c_member['c_password_query_id']) {
+                    $c_password_query_id = 0;
+                } else {
+                    if ($c_password_query_id != $c_member['c_password_query_id']) {
+                        $error_messages[] = '秘密の質問の答えを入力してください。';
+                    }
+                }
+            }
         }
-
-        $error_messages = array();
 
         if ($rss) {
             if (!preg_match('|^https?://|', $rss)) {
@@ -68,7 +79,6 @@ class pc_do_h_config_3 extends OpenPNE_Action
         }
 
         if ($rss_url) {
-            $c_member = db_member_c_member4c_member_id($u);
             if ($rss_url != $c_member['rss']) {
                 //異なるBlogを登録すると過去のrssは全て削除する
                 db_rss_delete_rss_cache($u);

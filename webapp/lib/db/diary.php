@@ -218,7 +218,8 @@ function db_diary_public_flag_condition($c_member_id, $u = null, $force = null)
 function db_diary_get_c_diary4id($c_diary_id)
 {
     $sql = 'SELECT * FROM c_diary WHERE c_diary_id = ?';
-    return db_get_row($sql, array(intval($c_diary_id)));
+    $c_diary_list = db_get_row($sql, array(intval($c_diary_id)));
+    return $c_diary_list;
 }
 
 /**
@@ -1112,6 +1113,8 @@ function db_diary_update_c_diary_is_checked($c_diary_id, $value)
 function db_diary_insert_c_diary_comment($c_member_id, $c_diary_id, $body)
 {
     //function cache削除
+    $c_diary =  db_diary_get_c_diary4id($c_diary_id);
+    cache_drop_c_diary($c_member_id, $c_diary['c_member_id']);
     pne_cache_drop('p_h_home_c_diary_my_comment_list4c_member_id', $c_member_id, 5);
 
     $data = array(
@@ -1191,7 +1194,7 @@ function db_diary_get_max_c_diary_comment_number4diary($c_diary_id)
 /**
  * SNS全体の最新日記リスト取得
  * 日記公開範囲を考慮
- * 
+ *
  * @param   int $limit
  * @return  array_of_array  (c_diary.*, nickname)
  */
@@ -1203,7 +1206,7 @@ function p_h_home_c_diary_all_list($limit)
     $c_diary_list_all = db_get_all_limit($sql, 0, $limit);
 
     foreach ($c_diary_list_all as $key => $value) {
-        $c_member = db_common_c_member4c_member_id_LIGHT($value['c_member_id']);
+        $c_member = db_member_c_member4c_member_id_LIGHT($value['c_member_id']);
         $c_diary_list_all[$key]['nickname'] = $c_member['nickname'];
         $c_diary_list_all[$key]['count_comments'] = db_diary_count_c_diary_comment4c_diary_id($value['c_diary_id']);
     }
@@ -1254,7 +1257,7 @@ function db_diary_update_c_diary_comment_log($c_diary_id)
  * @param  int    $c_member_id
  * @param  int    $c_diary_id
  * 該当c_diary_idへのコメント数が0なら、日記コメント記入履歴も削除する。
- * 
+ *
  */
 function db_diary_delete_c_diary_comment_log($c_member_id, $c_diary_id)
 {

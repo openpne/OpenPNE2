@@ -68,7 +68,7 @@
 
 <div class="operation">
 <ul class="moreInfo button">
-<li><input type="submit" class="input_submit" value="　掲　　載　" /></li>
+<li><input type="submit" class="input_submit" value="　掲　載　" /></li>
 </ul>
 </div>
 ({/t_form_block})

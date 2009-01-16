@@ -523,10 +523,10 @@ function db_commu_new_topic_comment4c_commu_id($c_commu_id, $limit, $event_flag 
 
     foreach ($list as $key => $value) {
         $list[$key]['count_comments'] = db_commu_get_max_c_commu_topic_comment_number4c_topic_id($value['c_commu_topic_id']);
-        $last_comment = db_commu_get_last_c_topic_comment($value['c_commu_topic_id']);
-        $list[$key]['image_filename1'] = $last_comment['image_filename1'];
-        $list[$key]['image_filename2'] = $last_comment['image_filename2'];
-        $list[$key]['image_filename3'] = $last_comment['image_filename3'];
+        $start_comment = db_commu_get_start_c_topic_comment($value['c_commu_topic_id']);
+        $list[$key]['image_filename1'] = $start_comment['image_filename1'];
+        $list[$key]['image_filename2'] = $start_comment['image_filename2'];
+        $list[$key]['image_filename3'] = $start_comment['image_filename3'];
     }
     return $list;
 }
@@ -630,7 +630,7 @@ function db_commu_c_commu_list4c_member_id_2($c_member_id, $limit = 9)
 
 /**
  * あなたに(の)管理コミュニティに参加を希望しているメンバー
- *
+ * 
  * @param   int $c_member_id    : 要請されている方(あなた＝管理者)
  * @return  array_of_array
  *              c_commu_member_confirm.*
@@ -656,7 +656,7 @@ function db_commu_anatani_c_commu_member_confirm_list4c_member_id($c_member_id)
 }
 /**
  * あなたがコミュニティ参加要請しているコミュニティ
- *
+ * 
  * @param   int $c_member_id    : 要請している方(あなた)
  * @return  array_of_array
  *              c_commu_member_confirm.*,
@@ -684,7 +684,7 @@ function db_commu_anataga_c_commu_member_confirm_list4c_member_id($c_member_id)
 
 /**
  * あなたにコミュニティ管理者交代を希望しているメンバー
- *
+ * 
  * @param   int $c_member_id_to : 要請されている方(あなた)
  * @return  array_of_array
  *              c_commu_admin_confirm.*
@@ -712,7 +712,7 @@ function db_commu_anatani_c_commu_admin_confirm_list4c_member_id($c_member_id_to
 
 /**
  * あなたがコミュニティ管理者交代を要請しているメンバー
- *
+ * 
  * @param   int $c_member_id_admin  : 要請している方(あなた)
  * @return  array_of_array
  *              c_commu_admin_confirm.*
@@ -739,7 +739,7 @@ function db_commu_anataga_c_commu_admin_confirm_list4c_member_id($c_member_id_ad
 
 /**
  * あなたにコミュニティ副管理者を希望しているメンバー
- *
+ * 
  * @param   int $c_member_id_to : 要請されている方(あなた)
  * @return  array_of_array
  *              c_commu_sub_admin_confirm.*
@@ -767,7 +767,7 @@ function db_commu_anatani_c_commu_sub_admin_confirm_list4c_member_id($c_member_i
 
 /**
  * あなたがコミュニティ副管理者を要請しているメンバー
- *
+ * 
  * @param   int $c_member_id_admin  : 要請している方(あなた)
  * @return  array_of_array
  *              c_commu_sub_admin_confirm.*
@@ -789,6 +789,359 @@ function db_commu_anataga_c_commu_sub_admin_confirm_list4c_member_id($c_member_i
         $c_commu_sub_admin_confirm_list[$key]['image_filename'] = $c_member['image_filename'];
     }
     return $c_commu_sub_admin_confirm_list;
+}
+
+/**
+ * あなたに(の)管理コミュニティに参加を希望しているメンバー数を取得
+ *
+ * @param int $c_member_id
+ * @return int 希望しているメンバー数
+ */
+function db_commu_count_c_anatani_c_commu_member_confirm($c_member_id)
+{
+    $sql = "SELECT COUNT(*) FROM c_commu_member_confirm AS cmc, c_commu AS c";
+    $sql .= " WHERE (c.c_member_id_admin = ? OR c.c_member_id_sub_admin = ?) AND cmc.c_commu_id=c.c_commu_id";
+    $params = array(intval($c_member_id), intval($c_member_id));
+    return db_get_one($sql, $params);
+}
+
+/**
+ * あなたに(の)管理コミュニティに参加を希望しているメンバー(携帯用にpagerを追加)
+ * 
+ * @param   int $c_member_id    : 要請されている方(あなた＝管理者)
+ * @return  array_of_array
+ *              c_commu_member_confirm.*
+ *              c_commu_name    : コミュニティの名前
+ *              nickname        : 要請している人の名前
+ *              image_filename  : 要請している人の画像
+ * @see     h_confirm_list.php
+ */
+function db_commu_ktai_anatani_c_commu_member_confirm_list4c_member_id($c_member_id, $page_size, $page)
+{
+    $sql = "SELECT cmc.*, c.name AS c_commu_name";
+    $sql .= " FROM c_commu_member_confirm AS cmc, c_commu AS c";
+    $sql .= " WHERE (c.c_member_id_admin = ? OR c.c_member_id_sub_admin = ?) AND cmc.c_commu_id=c.c_commu_id";
+    $sql .= " ORDER BY cmc.r_datetime ASC";
+    $params = array(intval($c_member_id), intval($c_member_id));
+    $c_commu_member_confirm_list = db_get_all_page($sql, $page, $page_size, $params);
+
+    foreach ($c_commu_member_confirm_list as $key => $value) {
+        $c_member = db_member_c_member4c_member_id_LIGHT($value['c_member_id']);
+        $c_commu_member_confirm_list[$key]['nickname'] = $c_member['nickname'];
+        $c_commu_member_confirm_list[$key]['image_filename'] = $c_member['image_filename'];
+    }
+
+    $total_num = db_commu_count_c_anatani_c_commu_member_confirm($c_member_id);
+
+    if ($total_num != 0) {
+        $total_page_num = ceil($total_num / $page_size);
+        if ($page >= $total_page_num) {
+            $next = false;
+        } else {
+            $next = true;
+        }
+
+        if ($page <= 1) {
+            $prev = false;
+        } else {
+            $prev = true;
+        }
+    }
+    return array($c_commu_member_confirm_list, $prev, $next, $total_num);
+}
+
+/**
+ * あなたが管理コミュニティに参加希望している数を取得
+ *
+ * @param int $c_member_id
+ * @return int 希望している数
+ */
+function db_commu_count_c_anataga_c_commu_member_confirm($c_member_id)
+{
+    $sql = "SELECT COUNT(*) FROM c_commu_member_confirm AS cmc, c_commu AS c";
+    $sql .= " WHERE cmc.c_member_id = ? AND cmc.c_commu_id=c.c_commu_id";
+    $params = array(intval($c_member_id));
+    return db_get_one($sql, $params);
+}
+
+/**
+ * あなたがコミュニティ参加要請しているコミュニティ(携帯用にpagerを追加)
+ * 
+ * @param   int $c_member_id    : 要請している方(あなた)
+ * @return  array_of_array
+ *              c_commu_member_confirm.*,
+ *              c_commu_name        : コミュニティの名前
+ *              c_member_id_admin   : 管理者のメンバーID
+ *              nickname            : 管理者の名前
+ *              image_filename      : 管理者の画像
+ * @see     h_confirm_list.php
+ */
+function db_commu_ktai_anataga_c_commu_member_confirm_list4c_member_id($c_member_id, $page_size, $page)
+{
+    $sql = "SELECT cmc.*, c.name AS c_commu_name, c.c_member_id_admin";
+    $sql .= " FROM c_commu_member_confirm AS cmc, c_commu AS c";
+    $sql .= " WHERE cmc.c_member_id = ? AND cmc.c_commu_id=c.c_commu_id";
+    $sql .= " ORDER BY cmc.r_datetime ASC";
+    $params = array(intval($c_member_id));
+    $c_commu_member_confirm_list = db_get_all_page($sql, $page, $page_size, $params);
+
+    foreach ($c_commu_member_confirm_list as $key => $value) {
+        $c_member = db_member_c_member4c_member_id_LIGHT($value['c_member_id_admin']);
+        $c_commu_member_confirm_list[$key]['nickname'] = $c_member['nickname'];
+        $c_commu_member_confirm_list[$key]['image_filename'] = $c_member['image_filename'];
+    }
+
+    $total_num = db_commu_count_c_anataga_c_commu_member_confirm($c_member_id);
+
+    if ($total_num != 0) {
+        $total_page_num = ceil($total_num / $page_size);
+        if ($page >= $total_page_num) {
+            $next = false;
+        } else {
+            $next = true;
+        }
+
+        if ($page <= 1) {
+            $prev = false;
+        } else {
+            $prev = true;
+        }
+    }
+    return array($c_commu_member_confirm_list, $prev, $next, $total_num);
+}
+
+/**
+ * あなたにコミュニティ管理者交代を希望している数を取得
+ *
+ * @param int $c_member_id
+ * @return int 希望している数
+ */
+function db_commu_count_c_anatani_c_commu_admin_confirm($c_member_id)
+{
+    $sql = "SELECT COUNT(*) FROM c_commu_admin_confirm AS cac, c_commu AS c";
+    $sql .= " WHERE cac.c_member_id_to = ? AND cac.c_commu_id=c.c_commu_id";
+    $params = array(intval($c_member_id));
+    return db_get_one($sql, $params);
+}
+
+/**
+ * あなたにコミュニティ管理者交代を希望しているメンバー(携帯用にpagerを追加)
+ * 
+ * @param   int $c_member_id_to : 要請されている方(あなた)
+ * @return  array_of_array
+ *              c_commu_admin_confirm.*
+ *              c_commu_name        : コミュニティ名
+ *              c_member_id_admin   : 要請している人(＝現管理者)のID
+ *              nickname            : 要請している人の名前
+ *              image_filename      : 要請している人の画像
+ * @see     h_confirm_list.php
+ */
+function db_commu_ktai_anatani_c_commu_admin_confirm_list4c_member_id($c_member_id_to, $page_size, $page)
+{
+    $sql = "SELECT cac.*, c.name AS c_commu_name, c.c_member_id_admin";
+    $sql .= " FROM c_commu_admin_confirm AS cac, c_commu AS c";
+    $sql .= " WHERE cac.c_member_id_to = ? AND cac.c_commu_id=c.c_commu_id";
+    $sql .= " ORDER BY cac.r_datetime ASC";
+    $params = array(intval($c_member_id_to));
+    $c_commu_admin_confirm_list = db_get_all_page($sql, $page, $page_size, $params);
+
+    foreach ($c_commu_admin_confirm_list as $key => $value) {
+        $c_member = db_member_c_member4c_member_id_LIGHT($value['c_member_id_admin']);
+        $c_commu_admin_confirm_list[$key]['nickname'] = $c_member['nickname'];
+        $c_commu_admin_confirm_list[$key]['image_filename'] = $c_member['image_filename'];
+    }
+    $total_num = db_commu_count_c_anatani_c_commu_admin_confirm($c_member_id_to);
+
+    if ($total_num != 0) {
+        $total_page_num = ceil($total_num / $page_size);
+        if ($page >= $total_page_num) {
+            $next = false;
+        } else {
+            $next = true;
+        }
+
+        if ($page <= 1) {
+            $prev = false;
+        } else {
+            $prev = true;
+        }
+    }
+    return array($c_commu_admin_confirm_list, $prev, $next, $total_num);
+}
+
+/**
+ * あなたが管理しているコミュニティ管理者交代を要請している数を取得
+ *
+ * @param int $c_member_id
+ * @return int 要請している数
+ */
+function db_commu_count_c_anataga_c_commu_admin_confirm($c_member_id)
+{
+    $sql = "SELECT COUNT(*) FROM c_commu_admin_confirm AS cac, c_commu AS c";
+    $sql .= " WHERE c.c_member_id_admin = ? AND cac.c_commu_id=c.c_commu_id";
+    $params = array(intval($c_member_id));
+    return db_get_one($sql, $params);
+}
+
+/**
+ * あなたが管理しているコミュニティ管理者交代を要請しているメンバー(携帯用にpagerを追加)
+ * 
+ * @param   int $c_member_id_admin  : 要請している方(あなた)
+ * @return  array_of_array
+ *              c_commu_admin_confirm.*
+ *              nickname            : 要請されている人の名前
+ *              image_filename      : 要請されている人の画像
+ * @see     h_confirm_list.php
+ */
+function db_commu_ktai_anataga_c_commu_admin_confirm_list4c_member_id($c_member_id_admin, $page_size, $page)
+{
+    $sql = "SELECT cac.*, c.name AS c_commu_name, c.c_member_id_admin";
+    $sql .= " FROM c_commu_admin_confirm AS cac, c_commu AS c";
+    $sql .= " WHERE c.c_member_id_admin = ? AND cac.c_commu_id=c.c_commu_id";
+    $sql .= " ORDER BY cac.r_datetime ASC";
+    $params = array(intval($c_member_id_admin));
+    $c_commu_admin_confirm_list = db_get_all_page($sql, $page, $page_size, $params);
+
+    foreach ($c_commu_admin_confirm_list as $key => $value) {
+        $c_member = db_member_c_member4c_member_id_LIGHT($value['c_member_id_to']);
+        $c_commu_admin_confirm_list[$key]['nickname'] = $c_member['nickname'];
+        $c_commu_admin_confirm_list[$key]['image_filename'] = $c_member['image_filename'];
+    }
+
+    $total_num = db_commu_count_c_anataga_c_commu_admin_confirm($c_member_id_admin);
+
+    if ($total_num != 0) {
+        $total_page_num = ceil($total_num / $page_size);
+        if ($page >= $total_page_num) {
+            $next = false;
+        } else {
+            $next = true;
+        }
+
+        if ($page <= 1) {
+            $prev = false;
+        } else {
+            $prev = true;
+        }
+    }
+    return array($c_commu_admin_confirm_list, $prev, $next, $total_num);
+}
+
+/**
+ * あなたに管理コミュニティ副管理者交代を希望している数を取得
+ *
+ * @param int $c_member_id
+ * @return int 希望している数
+ */
+function db_commu_count_c_anatani_c_commu_sub_admin_confirm($c_member_id)
+{
+    $sql = "SELECT COUNT(*) FROM c_commu_sub_admin_confirm AS cac, c_commu AS c";
+    $sql .= " WHERE cac.c_member_id_to = ? AND cac.c_commu_id=c.c_commu_id";
+    $params = array(intval($c_member_id));
+    return db_get_one($sql, $params);
+}
+
+/**
+ * あなたにコミュニティ副管理者を希望しているメンバー(携帯用にpagerを追加)
+ * 
+ * @param   int $c_member_id_to : 要請されている方(あなた)
+ * @return  array_of_array
+ *              c_commu_sub_admin_confirm.*
+ *              c_commu_name        : コミュニティ名
+ *              c_member_id_sub_admin   : 要請している人(＝現管理者)のID
+ *              nickname            : 要請している人の名前
+ *              image_filename      : 要請している人の画像
+ * @see     h_confirm_list.php
+ */
+function db_commu_ktai_anatani_c_commu_sub_admin_confirm_list4c_member_id($c_member_id_to, $page_size, $page)
+{
+    $sql = "SELECT cac.*, c.name AS c_commu_name, c.c_member_id_admin";
+    $sql .= " FROM c_commu_sub_admin_confirm AS cac, c_commu AS c";
+    $sql .= " WHERE cac.c_member_id_to = ? AND cac.c_commu_id=c.c_commu_id";
+    $sql .= " ORDER BY cac.r_datetime ASC";
+    $params = array(intval($c_member_id_to));
+    $c_commu_sub_admin_confirm_list = db_get_all_page($sql, $page, $page_size, $params);
+
+    foreach ($c_commu_sub_admin_confirm_list as $key => $value) {
+        $c_member = db_member_c_member4c_member_id_LIGHT($value['c_member_id_admin']);
+        $c_commu_sub_admin_confirm_list[$key]['nickname'] = $c_member['nickname'];
+        $c_commu_sub_admin_confirm_list[$key]['image_filename'] = $c_member['image_filename'];
+    }
+    $total_num = db_commu_count_c_anatani_c_commu_sub_admin_confirm($c_member_id_to);
+
+    if ($total_num != 0) {
+        $total_page_num = ceil($total_num / $page_size);
+        if ($page >= $total_page_num) {
+            $next = false;
+        } else {
+            $next = true;
+        }
+
+        if ($page <= 1) {
+            $prev = false;
+        } else {
+            $prev = true;
+        }
+    }
+    return array($c_commu_sub_admin_confirm_list, $prev, $next, $total_num);
+}
+
+/**
+ * あなたが管理しているコミュニティ副管理者交代を要請している数を取得
+ *
+ * @param int $c_member_id
+ * @return int 要請している数
+ */
+function db_commu_count_c_anataga_c_commu_sub_admin_confirm($c_member_id)
+{
+    $sql = "SELECT COUNT(*) FROM c_commu_sub_admin_confirm AS cac, c_commu AS c";
+    $sql .= " WHERE c.c_member_id_admin = ? AND cac.c_commu_id=c.c_commu_id";
+    $params = array(intval($c_member_id));
+    return db_get_one($sql, $params);
+}
+
+/**
+ * あなたがコミュニティ副管理者を要請しているメンバー(携帯用にpagerを追加)
+ * 
+ * @param   int $c_member_id_admin  : 要請している方(あなた)
+ * @return  array_of_array
+ *              c_commu_sub_admin_confirm.*
+ *              nickname            : 要請されている人の名前
+ *              image_filename      : 要請されている人の画像
+ * @see     h_confirm_list.php
+ */
+function db_commu_ktai_anataga_c_commu_sub_admin_confirm_list4c_member_id($c_member_id_admin, $page_size, $page)
+{
+    $sql = "SELECT cac.*, c.name AS c_commu_name, c.c_member_id_admin";
+    $sql .= " FROM c_commu_sub_admin_confirm AS cac, c_commu AS c";
+    $sql .= " WHERE c.c_member_id_admin = ? AND cac.c_commu_id=c.c_commu_id";
+    $sql .= " ORDER BY cac.r_datetime ASC";
+    $params = array(intval($c_member_id_admin));
+    $c_commu_sub_admin_confirm_list = db_get_all_page($sql, $page, $page_size, $params);
+
+    foreach ($c_commu_sub_admin_confirm_list as $key => $value) {
+        $c_member = db_member_c_member4c_member_id_LIGHT($value['c_member_id_to']);
+        $c_commu_sub_admin_confirm_list[$key]['nickname'] = $c_member['nickname'];
+        $c_commu_sub_admin_confirm_list[$key]['image_filename'] = $c_member['image_filename'];
+    }
+
+    $total_num = db_commu_count_c_anataga_c_commu_sub_admin_confirm($c_member_id_admin);
+
+    if ($total_num != 0) {
+        $total_page_num = ceil($total_num / $page_size);
+        if ($page >= $total_page_num) {
+            $next = false;
+        } else {
+            $next = true;
+        }
+
+        if ($page <= 1) {
+            $prev = false;
+        } else {
+            $prev = true;
+        }
+    }
+    return array($c_commu_sub_admin_confirm_list, $prev, $next, $total_num);
 }
 
 /**
@@ -826,7 +1179,7 @@ function db_commu_c_commu_topic_comment_list4c_member_id($c_member_id, $limit)
         $c_member = db_member_c_member4c_member_id_LIGHT($value['c_member_id']);
         $c_commu_topic_list[$key]['nickname'] = $c_member['nickname'];
 
-        $temp = db_commu_get_last_c_topic_comment($value['c_commu_topic_id']);
+        $temp = db_commu_get_start_c_topic_comment($value['c_commu_topic_id']);
 
         $sql = 'SELECT name AS c_commu_name FROM c_commu WHERE c_commu_id = ?';
         $c_commu_name = db_get_one($sql, $value['c_commu_id']);
@@ -866,7 +1219,7 @@ function db_commu_c_commu_topic_comment_list4c_member_id_2($c_member_id, $limit,
         $c_member = db_member_c_member4c_member_id_LIGHT($value['c_member_id']);
         $c_commu_topic_list[$key]['nickname'] = $c_member['nickname'];
 
-        $temp = db_commu_get_last_c_topic_comment($value['c_commu_topic_id']);
+        $temp = db_commu_get_start_c_topic_comment($value['c_commu_topic_id']);
 
         $sql = 'SELECT name AS c_commu_name FROM c_commu WHERE c_commu_id = ?';
         $c_commu_name = db_get_one($sql, $value['c_commu_id']);
@@ -909,7 +1262,7 @@ function db_commu_c_commu_topic_comment_list4c_member_id_2($c_member_id, $limit,
 
 function db_commu_c_topic_list4target_c_commu_id($c_commu_id, $c_member_id, $page = 1, $page_size = 10, $event_flag = 0, $topic_with_event = 0)
 {
-    $sql = " SELECT cct.c_commu_topic_id, max(cctc.r_datetime) as newest_write_datetime " .
+    $sql = " SELECT cct.c_commu_topic_id, max(cct.u_datetime) as newest_write_datetime " .
             " FROM c_commu_topic as cct, c_commu_topic_comment as cctc " .
             " WHERE cct.c_commu_topic_id = cctc.c_commu_topic_id ";
 
@@ -1107,27 +1460,20 @@ define('STATUS_C_JOIN_ALREADY', "4"); //コミュニティ参加(既に参加)
 
 function db_commu_get_c_join_status($c_member_id,$c_commu_id)
 {
-    $is_c_commu_member = db_commu_is_c_commu_member($c_commu_id, $c_member_id);
-    $is_wait = db_commu_is_c_commu_join_wait($c_commu_id, $c_member_id);
+    if (db_commu_is_c_commu_member($c_commu_id, $c_member_id)) {
+        return STATUS_C_JOIN_ALREADY;
+    }
+ 
     $c_commu = db_commu_c_commu4c_commu_id($c_commu_id);
-    $is_join_request_free = false;
     if ($c_commu['public_flag'] == "public") {
-        $is_join_request_free = true;
+        return STATUS_C_JOIN_REQUEST_FREE;
     }
 
-    $ret = STATUS_C_JOIN_ALREADY;
-    if (!$is_c_commu_member) { //メンバーで無い
-        if ($is_wait == true) {
-            $ret = STATUS_C_JOIN_WAIT;
-        } else {
-            if ($is_join_request_free) {
-                $ret = STATUS_C_JOIN_REQUEST_FREE;
-            } else {
-                $ret = STATUS_C_JOIN_REQUEST_NEED;
-            }
-        }
+    if (db_commu_is_c_commu_join_wait($c_commu_id, $c_member_id)) {
+        return STATUS_C_JOIN_WAIT;
     }
-    return $ret;
+
+    return STATUS_C_JOIN_REQUEST_NEED;
 }
 
 /**
@@ -2188,6 +2534,11 @@ function db_commu_delete_c_commu_member_confirm($c_commu_member_confirm_id)
 function db_commu_insert_c_commu_member($c_commu_member_confirm_id)
 {
     $confirm = db_commu_c_commu_member_confirm4c_commu_member_confirm_id($c_commu_member_confirm_id);
+
+    //function cache削除
+    cache_drop_c_commu($confirm['c_commu_id']);
+    cache_drop_c_commu_list4c_member_id($confirm['c_member_id']);
+
     $data = array(
         'c_commu_id' => intval($confirm['c_commu_id']),
         'c_member_id' => intval($confirm['c_member_id']),
@@ -2712,6 +3063,18 @@ function db_commu_delete_c_commu_member($c_commu_id, $c_member_id)
            ' WHERE c_commu_id = ? AND c_member_id_to = ?';
     db_query($sql, $params);
 
+    //参加イベント情報削除
+    $sql = 'SELECT ct.c_commu_topic_id'
+         . ' FROM c_commu_topic ct'
+         . ' LEFT JOIN c_event_member cem ON ct.c_commu_topic_id = cem.c_commu_topic_id'
+         . ' WHERE ct.c_commu_id = ?'
+         . ' AND cem.c_member_id = ?';
+    $params = array(intval($c_commu_id), intval($c_member_id));
+    $c_event_list = db_get_col($sql, $params, 'main');
+    foreach ($c_event_list as $c_event) {
+        db_commu_delete_c_event_member($c_event, $c_member_id);
+    }
+
     //コミュニティから退会
     $sql = 'DELETE FROM c_commu_member' .
            ' WHERE c_commu_id = ? AND c_member_id = ?';
@@ -2959,6 +3322,10 @@ function db_commu_search_c_commu_topic(
         $list[$key]['body'] = db_get_one($sql, $p);
         $number = db_commu_get_max_c_commu_topic_comment_number4c_topic_id($value['c_commu_topic_id']);
         $list[$key]['max_number'] = $number;
+        $start_comment = db_commu_get_start_c_topic_comment($value['c_commu_topic_id']);
+        $list[$key]['image_filename1'] = $start_comment['image_filename1'];
+        $list[$key]['image_filename2'] = $start_comment['image_filename2'];
+        $list[$key]['image_filename3'] = $start_comment['image_filename3'];
     }
 
     $sql = 'SELECT COUNT(DISTINCT ct.c_commu_topic_id)' . $from . $where;
@@ -2990,7 +3357,11 @@ function p_h_home_c_topic_all_list($limit)
     foreach($c_topic_all_list as $key=>$value) {
         $number = db_commu_get_max_c_commu_topic_comment_number4c_topic_id($value['c_commu_topic_id']);
         $c_topic_all_list[$key]['number'] = $number;
-    }
+        $start_comment = db_commu_get_start_c_topic_comment($value['c_commu_topic_id']);
+        $c_topic_all_list[$key]['image_filename1'] = $start_comment['image_filename1'];
+        $c_topic_all_list[$key]['image_filename2'] = $start_comment['image_filename2'];
+        $c_topic_all_list[$key]['image_filename3'] = $start_comment['image_filename3'];
+     }
     return $c_topic_all_list;
 }
 
@@ -3010,16 +3381,16 @@ function db_commu_update_c_commu_topic_u_datetime($c_commu_topic_id)
 }
 
 /*
- * 最終書き込みコメントの情報取得
+ * トピックの最初の書き込みコメント情報取得
  */
-function db_commu_get_last_c_topic_comment($c_commu_topic_id)
+function db_commu_get_start_c_topic_comment($c_commu_topic_id)
 {
-    $sql = 'SELECT * FROM c_commu_topic_comment WHERE c_commu_topic_id = ? ORDER BY r_datetime DESC';
+    $sql = 'SELECT * FROM c_commu_topic_comment WHERE c_commu_topic_id = ? AND number = 0';
     $params = array(intval($c_commu_topic_id));
     return db_get_row($sql,$params);
 }
 
-/** 
+/**
  * トピック検索簡易版(ｷｰﾜｰﾄﾞ無し)
  */
 function db_commu_new_topic_list(
@@ -3064,7 +3435,11 @@ function db_commu_new_topic_list(
         $list[$key]['body'] = db_get_one($sql, $p);
         $number = db_commu_get_max_c_commu_topic_comment_number4c_topic_id($value['c_commu_topic_id']);
         $list[$key]['max_number'] = $number;
-    }
+        $start_comment = db_commu_get_start_c_topic_comment($value['c_commu_topic_id']);
+        $list[$key]['image_filename1'] = $start_comment['image_filename1'];
+        $list[$key]['image_filename2'] = $start_comment['image_filename2'];
+        $list[$key]['image_filename3'] = $start_comment['image_filename3'];
+     }
 
     $sql = 'SELECT COUNT(ct.c_commu_topic_id) FROM c_commu AS c'
          . ' INNER JOIN c_commu_topic AS ct USING(c_commu_id)' . $where;
@@ -3089,6 +3464,40 @@ function db_commu_is_writable_c_commu_topic_comment4c_commu_topic_id($c_commu_to
         return false;
     }
 
+    return true;
+}
+
+/**
+ * コミュニティ参加要請状況をコミュニティIDから取得
+ *
+ * @param  int $c_commu_id
+ * @return array コミュニティ参加要請状況
+ */
+function db_commu_c_commu_member_confirm4c_commu_id($c_commu_id)
+{
+    $sql = 'SELECT c_commu_member_confirm_id, c_member_id FROM c_commu_member_confirm'
+         . ' WHERE c_commu_id = ?';
+    $params = array(intval($c_commu_id));
+    $c_commu_member_confirm = db_get_assoc($sql, $params, 'main');
+
+    return $c_commu_member_confirm;
+}
+
+/**
+ * コミュニティ名が変更されているかどうか
+ *
+ * @param int $c_commu_id
+ * @param string $name
+ * @return bool
+ */
+function db_commu_is_changed_c_commu_name($c_commu_id, $name)
+{
+    $sql = 'SELECT name FROM c_commu WHERE c_commu_id = ?';
+    $params = array(intval($c_commu_id));
+    $now_name = db_get_one($sql, $params);
+    if ($name === $now_name) {
+        return false;
+    }
     return true;
 }
 

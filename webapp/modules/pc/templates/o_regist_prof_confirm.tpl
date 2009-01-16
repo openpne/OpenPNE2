@@ -131,14 +131,14 @@
 ({t_form_block m=pc a=do_o_regist_prof})
 <input type="hidden" name="mode" value="register" />
 <input type="hidden" name="sid" value="({$sid})" />
-<input type="submit" class="input_submit" value="登録" />
+<input type="submit" class="input_submit" value="　登　録　" />
 ({/t_form_block})
 </li>
 <li>
 ({t_form_block m=pc a=do_o_regist_prof})
 <input type="hidden" name="mode" value="input" />
 <input type="hidden" name="sid" value="({$sid})" />
-<input type="submit" class="input_submit" value="修正" />
+<input type="submit" class="input_submit" value="　修　正　" />
 ({/t_form_block})
 </li>
 </ul>

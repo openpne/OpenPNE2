@@ -59,7 +59,7 @@
                        <dd>URL&nbsp;<input type="text" class="basic" name="rss_5" value="({$portal_rss.rss_5})" size="100" /></dd></dl>
                        <br class="clear" />
 
-                       <p class="textBtn"><input type="submit" value="変更" /></p>
+                       <p class="textBtn"><input type="submit" value="　変　更　" /></p>
                    </td>
                </tr>
            </table>

@@ -20,7 +20,7 @@
 <th>項目名</th>
 <th>並び順<br />(昇順))</th>
 <th colspan="2">操作</th>
-<th>小カテゴリ</th>	
+<th>小カテゴリ</th>
 </tr>
 </thead>
 <tbody>
@@ -35,7 +35,7 @@
 <input class="basic" type="text" name="name" value="({$item.name})" size="20" />
 ({/strip})</td>
 <td><input class="basic" type="text" name="sort_order" value="({$item.sort_order})" size="5" /></td>
-<td><span class="textBtnS"><input type="submit" value="変更" /></span></td>
+<td><span class="textBtnS"><input type="submit" value="　変　更　" /></span></td>
 </form>
 <form action="./" method="post">
 <td>({strip})
@@ -43,7 +43,7 @@
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('delete_c_commu_category_parent','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
 <input type="hidden" name="c_commu_category_parent_id" value="({$item.c_commu_category_parent_id})" />
-<span class="textBtnS"><input type="submit" value="削除" /></span>
+<span class="textBtnS"><input type="submit" value="　削　除　" /></span>
 ({/strip})</td>
 </form>
 <td><a href="#opt_({$item.name})">一覧</a></td>
@@ -73,7 +73,7 @@
 <tr class="smallCtgTable">
 <th>項目名</th>
 <th>並び順</th>
-<th colspan="2">操作</th>	
+<th colspan="2">操作</th>
 </tr>
 </thead>
 <tbody>
@@ -88,7 +88,7 @@
 <input class="basic" type="text" name="name" value="({$option.name})" size="20" />
 ({/strip})</td>
 <td><input class="basic" type="text" name="sort_order" value="({$option.sort_order})" size="5" /></td>
-<td><span class="textBtnS"><input type="submit" value="変更" /></span></td>
+<td><span class="textBtnS"><input type="submit" value="　変　更　" /></span></td>
 </form>
 <form action="./" method="post">
 <td>({strip})
@@ -96,7 +96,7 @@
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('delete_c_commu_category','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
 <input type="hidden" name="c_commu_category_id" value="({$option.c_commu_category_id})" />
-<span class="textBtnS"><input type="submit" value="削除" /></span>
+<span class="textBtnS"><input type="submit" value="　削　除　" /></span>
 ({/strip})</td>
 </form>
 </tr>

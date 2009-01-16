@@ -66,7 +66,7 @@
 <input type="hidden" name="end_hour" value="({$input.end_hour})" />
 <input type="hidden" name="end_minute" value="({$input.end_minute})" />
 <input type="hidden" name="is_receive_mail" value="({$input.is_receive_mail})" />
-<input type="submit" class="input_submit" value="　 追　　加 　" />
+<input type="submit" class="input_submit" value="　追　加　" />
 ({/t_form_block})
 </li><li>
 ({t_form_block m=pc a=page_h_schedule_add})
@@ -83,7 +83,7 @@
 <input type="hidden" name="end_hour" value="({$input.end_hour})" />
 <input type="hidden" name="end_minute" value="({$input.end_minute})" />
 <input type="hidden" name="is_receive_mail" value="({$input.is_receive_mail})" />
-<input type="submit" class="input_submit" value="　 修　　正 　" /><br />
+<input type="submit" class="input_submit" value="　修　正　" /><br />
 ({/t_form_block})
 </li>
 </ul>

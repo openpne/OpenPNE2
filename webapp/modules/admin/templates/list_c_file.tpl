@@ -19,7 +19,7 @@
 <option value="100"({if $pager.page_size==100}) selected="selected"({/if})>100件</option>
 <option value="500"({if $pager.page_size==500}) selected="selected"({/if})>500件</option>
 </select>
-<span class="textBtnS"><input type="submit" value="変更" /></span><span class="btnCaution">※表示件数を多くすると処理が重くなり、サーバーに負荷がかかります。</span>
+<span class="textBtnS"><input type="submit" value="　変　更　" /></span><span class="btnCaution">※表示件数を多くすると処理が重くなり、サーバーに負荷がかかります。</span>
 </p>
 </form>
 
@@ -60,7 +60,7 @@
 </td>
 ({****})
 <td>
-<a href="({t_url m=$module_name a=do_file_download})&amp;filename=({$item.filename})&amp;sessid=({$PHPSESSID})">
+<a href="./?m=({$module_name})&amp;a=do_({$hash_tbl->hash('file_download','do')})&amp;filename=({$item.filename})&amp;sessid=({$PHPSESSID})">
 ({$item.filename})
 </a>
 </td>

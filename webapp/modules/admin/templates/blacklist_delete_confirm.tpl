@@ -37,13 +37,13 @@
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('delete_c_blacklist','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
 <input type="hidden" name="target_c_blacklist_id" value="({$blacklist.c_blacklist_id})" />
-<p class="textBtn"><input type="submit" class="submit" value="はい" /></p>
+<p class="textBtn"><input type="submit" class="submit" value="　は　い　" /></p>
 </form>
 
 <form action="./" method="post">
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="page_({$hash_tbl->hash('blacklist')})" />
-<p class="textBtn"><input type="submit" class="submit" value="いいえ" /></p>
+<p class="textBtn"><input type="submit" class="submit" value="　いいえ　" /></p>
 </form>
 
 ({$inc_footer|smarty:nodefaults})

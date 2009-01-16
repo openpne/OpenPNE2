@@ -307,4 +307,30 @@ function image_insert_c_tmp_image($upfile_obj, $filename)
     return $filename;
 }
 
+/**
+ * アップロードされた画像をワンアクションでc_imageに登録する時に使用
+ *
+ * @params array $upfile_obj
+ * @params string $prefix
+ * @return string 画像ファイル名 | 失敗時false
+ */
+function image_insert_c_image_direct($upfile_obj, $prefix)
+{
+    if (!file_exists($upfile_obj['tmp_name'])) {
+        return false;
+    }
+
+    $sessid = session_id();
+    t_image_clear_tmp($sessid);
+    $tmpfile = t_image_save2tmp($upfile_obj, $sessid, $prefix);
+    if (!$tmpfile) {
+        t_image_clear_tmp($sessid);
+        return false;
+    }
+    $image_filename = image_insert_c_image4tmp($prefix, $tmpfile);
+    t_image_clear_tmp($sessid);
+
+    return $image_filename;
+}
+
 ?>

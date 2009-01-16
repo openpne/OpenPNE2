@@ -58,8 +58,10 @@ class pc_do_c_file_download extends OpenPNE_Action
         // オリジナルファイル名
         $original_filename = $file['original_filename'];
         if (strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE') !== false) {
-            // IE の場合のみ、ファイル名を SJIS に変換
+            // IE の場合のみ、ファイル名を SJIS に変換し、キャッシュをさせないヘッダを出力しない
             $original_filename = mb_convert_encoding($original_filename, 'SJIS', 'UTF-8');
+        } else {
+            send_nocache_headers(true);
         }
         $original_filename = str_replace(array("\r", "\n"), '', $original_filename);
 

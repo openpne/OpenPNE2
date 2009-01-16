@@ -65,7 +65,7 @@ function db_member_c_member4c_member_id($c_member_id, $is_secure = false, $with_
         }
         break;
     }
- 
+
     if (OPENPNE_AUTH_MODE != 'email' && $is_secure) {
         $c_member['username'] = db_member_username4c_member_id($c_member_id);
     }
@@ -91,19 +91,22 @@ function db_member_c_member_profile_list4c_member_id($c_member_id, $public_flag 
         break;
     }
 
-    $sql = 'SELECT cp.name, cp.caption, cp.form_type, cm.value, cm.public_flag' .
-        ' FROM c_member_profile as cm, c_profile as cp' .
-        ' WHERE cm.c_member_id = ?'.
-            " AND cm.public_flag IN ($flags)" .
-            ' AND cm.c_profile_id = cp.c_profile_id' .
-        ' ORDER BY cp.sort_order, cp.c_profile_id, cm.c_member_profile_id';
+    $sql = "SELECT cp.name, cp.caption, cp.form_type, cm.c_profile_option_id, cm.value, cm.public_flag"
+         . " FROM c_member_profile as cm, c_profile as cp"
+         . " WHERE cm.c_member_id = ?"
+         . " AND cm.public_flag IN ($flags)"
+         . " AND cm.c_profile_id = cp.c_profile_id"
+         . " ORDER BY cp.sort_order, cp.c_profile_id, cm.c_member_profile_id";
     $profile = db_get_all($sql, array(intval($c_member_id)));
-
     $member_profile = array();
     foreach ($profile as $value) {
         $member_profile[$value['name']]['form_type'] = $value['form_type'];
         if ($value['form_type'] == 'checkbox') {
-            $member_profile[$value['name']]['value'][] = $value['value'];
+            if (!$value['c_profile_option_id']) {
+                $member_profile[$value['name']]['value'] = '';
+            } else {
+                $member_profile[$value['name']]['value'][] = $value['value'];
+            }
         } else {
             $member_profile[$value['name']]['value'] = $value['value'];
         }
@@ -404,13 +407,6 @@ function db_member_search_check_profile($profile)
         $c_profile = db_get_row($sql, $params);
         if (!($c_profile && $c_profile['disp_search'])) continue;
 
-        $public_flags = array('public', 'friend', 'private');
-        if (!$c_profile['public_flag_edit']
-            && $c_profile['public_flag_default'] != 'public') {
-            // 公開項目以外は除外
-            continue;
-        }
-
         switch ($c_profile['form_type']) {
         case "text":
         case "textarea":
@@ -474,7 +470,8 @@ function db_member_birth4c_member_id($month, $day, $c_member_id)
     $sql = "SELECT * FROM c_member" .
         " WHERE c_member_id IN (". $ids . ")" .
         " AND birth_day = ?" .
-        " AND birth_month = ?";
+        " AND birth_month = ?".
+        " ORDER BY c_member_id ASC";
     $params = array(intval($day), intval($month));
     return db_get_all($sql, $params);
 }
@@ -1645,15 +1642,15 @@ function db_member_update_c_member_profile($c_member_id, $c_member_profile_list)
                 ' WHERE c_member_id = ? AND c_profile_id = ?';
         $params = array(intval($c_member_id), intval($item['c_profile_id']));
         db_query($sql, $params);
-
-        if (!(is_null($item['value']) || $item['value'] === '')) {
-            if (is_array($item['value'])) {
-                foreach ($item['value'] as $key => $value) {
-                    db_member_insert_c_member_profile($c_member_id, $item['c_profile_id'], $key, $value, $item['public_flag']);
-                }
-            } else {
-                db_member_insert_c_member_profile($c_member_id, $item['c_profile_id'], $item['c_profile_option_id'], $item['value'], $item['public_flag']);
+        if (is_array($item['value']) && !empty($item['value'])) {
+            foreach ($item['value'] as $key => $value) {
+                db_member_insert_c_member_profile($c_member_id, $item['c_profile_id'], $key, $value, $item['public_flag']);
             }
+        } else {
+            if (empty($item['value'])) {
+                $item['value'] = "";
+            }
+            db_member_insert_c_member_profile($c_member_id, $item['c_profile_id'], $item['c_profile_option_id'], $item['value'], $item['public_flag']);
         }
     }
 }
@@ -1965,7 +1962,7 @@ function db_member_check_param_inputed($c_member_id, $is_ktai = false)
 function db_member_is_registered_nickname_birth_day($c_member_id)
 {
     $c_member = db_member_c_member4c_member_id($c_member_id, false, false, 'private');
-    
+
     if (($c_member['nickname'] === '')
      || !$c_member['birth_year']
      || !$c_member['birth_month']

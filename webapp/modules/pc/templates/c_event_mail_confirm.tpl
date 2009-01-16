@@ -29,7 +29,7 @@
 ({foreach from=$c_mail_member item=c_member})
 <input type="hidden" name="c_member_ids[]" value="({$c_member.c_member_id})" />
 ({/foreach})
-<input type="submit" class="input_submit" value="送信" />
+<input type="submit" class="input_submit" value="　送　信　" />
 ({/t_form_block})
 </li>
 <li>

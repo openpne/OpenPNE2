@@ -149,7 +149,7 @@
 
 <tr>
 <td colspan="9">&nbsp;</td>
-<td class="cell09"><span class="textBtnS"><input type="submit" value="変更" /></span></td>
+<td class="cell09"><span class="textBtnS"><input type="submit" value="　変　更　" /></span></td>
 <td colspan="4">&nbsp;</td
 ></tr>
 </table>
@@ -184,7 +184,7 @@
 <input type="hidden" name="c_profile_option_id" value="({$option.c_profile_option_id})" />
 <input type="text" class="basic" name="value" value="({$option.value})" size="20" /></td>
 <td><input type="text" class="basic" name="sort_order" value="({$option.sort_order})" size="5" /></td>
-<td><span class="textBtnS"><input type="submit" value="変更" /></span></td>
+<td><span class="textBtnS"><input type="submit" value="　変　更　" /></span></td>
 </form>
 <form action="./" method="post">
 <td>
@@ -192,7 +192,7 @@
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('delete_c_profile_option','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
 <input type="hidden" name="c_profile_option_id" value="({$option.c_profile_option_id})" />
-<span class="textBtnS"><input type="submit" value="削除" /></span>
+<span class="textBtnS"><input type="submit" value="　削　除　" /></span>
 </td>
 </form>
 </tr>

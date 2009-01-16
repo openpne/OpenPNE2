@@ -943,7 +943,7 @@ function biz_insertGroup($name, $member_id, $info, $image_name, $members = array
 {
     //登録値のセット、チェック
     if (!$image_name) {
-        $image_name = 0;
+        $image_name = '';
     }
     if (!$info) {
         $info = "";
@@ -1014,6 +1014,13 @@ function biz_editGroup($biz_group_id, $name, $member_id, $info, $image_name, $me
 //グループの削除
 function biz_deleteGroup($group_id)
 {
+    // 画像削除
+    $sql = 'SELECT image_filename FROM biz_group '
+         . 'WHERE biz_group_id = ? ';
+    $params = array(intval($group_id));
+    $image_filename = db_get_one($sql, $params, 'main');
+    db_image_data_delete($image_filename);
+
     $sql = 'DELETE FROM biz_group_member WHERE biz_group_id = ?';
     $params = array(
         intval($group_id),
@@ -1047,7 +1054,7 @@ function biz_joinGroup($member_id, $group_id)
 function biz_addShisetsu($name, $image_name, $info = '')
 {
     if (!$image_name) {
-        $image_name = '0';
+        $image_name = '';
     }
 
     $data = array(
@@ -1268,23 +1275,19 @@ function biz_deleteImage($filename)
 
 function biz_deleteGroupImage($id, $filename)
 {
-    $sql = 'UPDATE biz_group SET image_filename = \'0\' WHERE biz_group_id = ?';
-    $params = array(
-        intval($id),
-    );
-    db_query($sql, $params);
+    $data = array('image_filename' => '');
+    $where = array('biz_group_id' => intval($id));
+    db_update('biz_group', $data, $where);
+
     biz_deleteImage($filename);
 }
 
 function biz_deleteShisetsuImage($id, $filename)
 {
-    $sql = 'UPDATE biz_shisetsu SET image_filename = \'0\' WHERE biz_shisetsu_id = ?';
+    $data = array('image_filename' => '');
+    $where = array('biz_shisetsu_id' => intval($id));
+    db_update('biz_shisetsu', $data, $where);
 
-    $params = array(
-        intval($id),
-    );
-
-    db_query($sql, $params);
     biz_deleteImage($filename);
 }
 
@@ -1359,15 +1362,32 @@ function biz_do_common_send_schedule_mail()
         $send_list[$c_member_id][] = $value;
     }
 
-    foreach ($send_list as $key => $value) {
-        $c_member_secure = db_member_c_member_secure4c_member_id($key);
-        $pc_address = $c_member_secure['pc_address'];
+    foreach ($send_list as $c_member_id => $c_schedule_list) {
+        $c_member_secure = db_member_c_member_secure4c_member_id($c_member_id);
+        if (!empty($c_member_secure['pc_address'])) {
+            // PCメールアドレスがある場合は、PCのみ送信
+            $pc_address = $c_member_secure['pc_address'];
 
-        $params = array(
-            "c_member" => db_member_c_member4c_member_id_LIGHT($key),
-            "c_schedule_list" => $value,
-        );
-        fetch_send_mail($pc_address, 'm_pc_schedule_mail', $params);
+            $params = array(
+                'c_member' => db_member_c_member4c_member_id_LIGHT($c_member_id),
+                'c_schedule_list' => $c_schedule_list,
+            );
+            fetch_send_mail($pc_address, 'm_pc_schedule_mail', $params);
+        } else {
+            // PCメールアドレスがない場合は、携帯のみ送信
+            $ktai_address = $c_member_secure['ktai_address'];
+
+            $p = array('kad' => t_encrypt(db_member_username4c_member_id($c_member_id, true)));
+            $login_url = openpne_gen_url('ktai', 'page_o_login', $p);
+
+            $params = array(
+                'c_member' => db_member_c_member4c_member_id_LIGHT($c_member_id),
+                'login_url' => $login_url,
+                'c_schedule_list' => $c_schedule_list,
+            );
+            fetch_send_mail($ktai_address, 'm_ktai_schedule_mail', $params);
+        }
     }
 }
+
 ?>

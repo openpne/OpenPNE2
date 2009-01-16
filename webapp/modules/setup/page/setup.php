@@ -115,7 +115,7 @@ echo <<<EOT
 
 <form action="./" method="get">
 <input type="hidden" name="m" value="setup">
-<input type="submit" class="submit" value=" 再試行 ">
+<input type="submit" class="submit" value="　再試行　">
 </form>
 
 <p style="font-size:10pt">Powered by OpenPNE v{$OPENPNE_VERSION}</p>

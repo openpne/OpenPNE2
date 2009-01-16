@@ -26,7 +26,7 @@
 ({foreach from=$event_write key=key item=item})
 <input type="hidden" name="({$key})" value="({$item})" />
 ({/foreach})
-<input type="submit" class="input_submit" value="決定" />
+<input type="submit" class="input_submit" value="　決　定　" />
 ({/t_form_block})
 </li>
 <li>
@@ -35,7 +35,7 @@
 <input type="hidden" name="({$key})" value="({$item})" />
 ({/foreach})
 <input type="hidden" name="body" value="({$event_write.body})" />
-<input type="submit" class="input_submit" value="修正" />
+<input type="submit" class="input_submit" value="　修　正　" />
 ({/t_form_block})
 </li>
 </ul>

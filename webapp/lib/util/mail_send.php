@@ -779,6 +779,11 @@ function put_mail_queue($address, $subject, $body, $is_receive_mail=true, $from=
     $mail_opt = array(
         "driver"=>"mail",
     );
+
+    if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] === 'pgsql') {
+        $db_opt['sequence'] = 'mail_queue_seq_id';
+    }
+
     $mail_mime = new Mail_mime();
     $mail_mime->setTXTBody($body);
     $body = $mail_mime->get(array("text_charset"=>"ISO-2022-JP"));
@@ -866,6 +871,20 @@ function do_common_send_mail_c_commu_admin_change($c_member_id_to, $c_commu_id)
         $to_address = $c_member_to['secure']['ktai_address'];
         return fetch_send_mail($to_address, 'm_ktai_c_commu_admin_change', $params);
     }
+}
+
+function do_common_send_mail_biz_group_admin_change($biz_group_id_to, $biz_group_id)
+{
+    require_once OPENPNE_MODULES_BIZ_DIR . '/biz/lib/mysql_functions.php';
+
+    $biz_group_member_to = db_member_c_member4c_member_id($biz_group_id_to, true);
+    $biz_group = biz_getGroupData($biz_group_id);
+    $params = array(
+        'biz_group_member_to' => $biz_group_member_to,
+        'biz_group' => $biz_group,
+    );
+    $to_address = $biz_group_member_to['secure']['pc_address'];
+    return fetch_send_mail($to_address, 'm_pc_group_admin_change', $params);
 }
 
 //携帯個体識別番号を登録する必要がある場合に送られるメール（新規登録用）

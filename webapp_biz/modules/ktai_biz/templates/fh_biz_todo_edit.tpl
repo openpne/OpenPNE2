@@ -24,5 +24,5 @@
 </center>
 </form>
 <hr color="#({$ktai_color_config.border_01})">
-[i:90]<a href="({t_url m=ktai_biz a=page_fh_biz_todo_list})&amp;({$tail})">ToDoﾘｽﾄ</a><br>
+[i:90]<a href="({t_url m=ktai_biz a=page_fh_biz_todo_list})&amp;({$tail})">Todoﾘｽﾄ</a><br>
 ({$inc_ktai_footer|smarty:nodefaults})

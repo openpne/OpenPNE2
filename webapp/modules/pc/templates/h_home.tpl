@@ -320,7 +320,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <option value="({$item.year})-({$item.month})-({$item.day})"({if $item.now}) selected="selected"({/if})>({$item.month})/({$item.day})(({$item.dayofweek}))</option>
 ({/foreach})
 </select>
-<input type="submit" class="input_submit" value="追加" />
+<input type="submit" class="input_submit" value="　追　加　" />
 <a href="({t_url m=pc a=page_h_home})&amp;w=({$w-1})" title="前の週">＜</a>
 <a href="({t_url m=pc a=page_h_home})" title="今週">■</a>
 <a href="({t_url m=pc a=page_h_home})&amp;w=({$w+1})" title="次の週">＞</a>
@@ -374,7 +374,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 
 ({if $inc_entry_point[9]})({$inc_entry_point[9]|smarty:nodefaults|t_url2cmd:'entry_point'|t_cmd:'entry_point'})({/if})
 
-({if $c_diary_friend_list || $c_rss_cache_list || $c_diary_my_comment_list || $c_commu_topic_comment_list || $c_friend_review_list})
+({if $c_diary_friend_list || $c_rss_cache_list || $c_diary_my_comment_list || $c_commu_topic_comment_list || $c_friend_review_list || $c_friend_album_list})
 ({* {{{ homeMainTable *})
 <div class="dparts homeMainTable"><div class="parts">
 <div class="partsHeading"><h3>最新情報</h3></div>
@@ -407,7 +407,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <tr class="diaryCommentHistory"><th>({$WORD_DIARY})コメント<br />記入履歴</th><td>
 <ul class="articleList">
 ({foreach from=$c_diary_my_comment_list item=item})
-<li><span class="date">({$item.r_datetime|date_format:"%m月%d日"})</span><a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$item.c_diary_id})&amp;comment_count=({$item.num_comment})">({$item.subject|t_truncate:30}) (({$item.num_comment}))</a> (({$item.nickname}))</li>
+<li><span class="date">({$item.r_datetime|date_format:"%m月%d日"})</span><a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$item.c_diary_id})&amp;comment_count=({$item.num_comment})">({$item.subject|t_truncate:30}) (({$item.num_comment}))</a> (({$item.nickname})) ({if $item.image_filename_1 || $item.image_filename_2 || $item.image_filename_3})<img src="({t_img_url_skin filename=icon_camera})" alt="写真あり" />({/if})</li>
 ({/foreach})
 </ul>
 <div class="moreInfo"><ul class="moreInfo">

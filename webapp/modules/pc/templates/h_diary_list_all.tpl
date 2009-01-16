@@ -11,7 +11,7 @@
 <input type="hidden" name="a" value="page_h_diary_list_all" />
 <p class="form">
 <label for="keyword">キーワード</label> <input type="text" class="input_text" name="keyword" id="keyword" size="15" value="({$keyword})" />
-<input type="submit" class="input_submit" value=" 検 索 " />
+<input type="submit" class="input_submit" value="　検　索　" />
 <a href="({t_url m=pc a=page_h_com_find_all})&amp;keyword=({$keyword|escape:url|smarty:nodefaults})">({$WORD_COMMUNITY})検索</a>
 ({if $smarty.const.USE_EXTRA_SERVICE})
 |
@@ -62,7 +62,6 @@
 
 </div></div>
 ({* }}} *})
-({/if})
 
 ({if $c_rss_cache_list})
 ({* {{{ recentList *})
@@ -74,6 +73,17 @@
 <dd><a href="({$item.link})" target="_blank">({$item.subject})</a> (({$item.c_member.nickname}))</dd>
 </dl>
 ({/foreach})
+</div></div>
+({* }}} *})
+({/if})
+
+({else})
+({* {{{ simpleBox *})
+<div class="dparts simpleBox"><div class="parts">
+<div class="partsHeading"><h3>({$WORD_DIARY})検索結果一覧</h3></div>
+<div class="block">
+<p>該当する({$WORD_DIARY})はありません。</p>
+</div>
 </div></div>
 ({* }}} *})
 ({/if})

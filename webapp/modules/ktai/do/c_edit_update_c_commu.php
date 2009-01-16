@@ -23,6 +23,12 @@ class ktai_do_c_edit_update_c_commu extends OpenPNE_Action
         $info = $requests['info'];
         $public_flag = $requests['public_flag'];
         $topic_authority = $requests['topic_authority'];
+
+        if (   db_commu_is_changed_c_commu_name($target_c_commu_id, $name)
+            && db_commu_is_commu4c_commu_name($name)) {
+            $p = array('target_c_commu_id' => $target_c_commu_id, 'msg' => 49);
+            openpne_redirect('ktai', 'page_c_edit', $p);
+        }
         // ----------
 
         //--- 権限チェック
@@ -33,6 +39,17 @@ class ktai_do_c_edit_update_c_commu extends OpenPNE_Action
             handle_kengen_error();
         }
         //---
+
+        // 承認待ちメンバー登録処理
+        $c_commu = db_commu_c_commu4c_commu_id($target_c_commu_id);
+        if ($public_flag == 'public' && $public_flag != $c_commu['public_flag']) {
+            $c_commu_member_confirm_list = db_commu_c_commu_member_confirm4c_commu_id($target_c_commu_id);
+            foreach ($c_commu_member_confirm_list as $c_commu_member_confirm) {
+                db_commu_join_c_commu($target_c_commu_id, $c_commu_member_confirm['c_member_id']);
+                do_inc_join_c_commu_send_mail($target_c_commu_id, $c_commu_member_confirm['c_member_id']);
+                db_commu_delete_c_commu_member_confirm($c_commu_member_confirm['c_commu_member_confirm_id']);
+            }
+        }
 
         db_commu_update_c_commu($target_c_commu_id, $name, $topic_authority, $c_commu_category_id, $info, $public_flag);
 

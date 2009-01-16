@@ -86,7 +86,11 @@ function dummyAlert() { alert('プレビューページからは操作できま�
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_04})">
 <input type="hidden" name="login_params" value="({$requests.login_params})">
+({if $smarty.const.OPENPNE_AUTH_MODE == 'email'})
 <font color="#({$ktai_color_config.bg_02})">★</font>携帯ﾒｰﾙｱﾄﾞﾚｽ<br>
+({else})
+<font color="#({$ktai_color_config.bg_02})">★</font>ﾛｸﾞｲﾝID<br>
+({/if})
 <input class="input_text" type="text" name="username" value="" disabled><br>
 <font color="#({$ktai_color_config.bg_02})">★</font>ﾊﾟｽﾜｰﾄﾞ<br>
 <input class="input_text" name="password" type="text" value="" disabled><br>

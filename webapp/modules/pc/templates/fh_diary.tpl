@@ -126,7 +126,7 @@
 ({t_form_block _method=get m=pc a=page_h_diary_edit})
 <input type="hidden" name="target_c_diary_id" value="({$target_diary.c_diary_id})" />
 <ul class="moreInfo button">
-<li><input type="submit" class="input_submit" value="編 集" /></li>
+<li><input type="submit" class="input_submit" value="　編　集　" /></li>
 </ul>
 ({/t_form_block})
 </div>
@@ -171,7 +171,7 @@
 <p class="number">({$pager.start})番～({$pager.end})番を表示</p>
 ({if $pager.page_next})<p class="next"><a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$target_diary.c_diary_id})&amp;page=({$pager.page_next})({if $requests.page_size == 100})&amp;page_size=100({/if})({if $requests.order == 'asc'})&amp;order=asc({/if})#commentList">次を表示</a></p>({/if})
 </div>
-({/strip})({/capture}) 
+({/strip})({/capture})
 ({$smarty.capture.pager|smarty:nodefaults})
 
 ({foreach from=$target_diary_comment_list item=item})
@@ -200,7 +200,7 @@
 ({if $type == 'h'})
 <div class="operation">
 <ul class="moreInfo button">
-<li><input type="submit" class="input_submit" value="　削 除　" /></li>
+<li><input type="submit" class="input_submit" value="　削　除　" /></li>
 </ul>
 </div>
 ({/if})

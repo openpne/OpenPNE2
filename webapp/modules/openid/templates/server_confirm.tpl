@@ -28,12 +28,12 @@
 <ul class="moreInfo button">
 <li>
 ({t_form_block m=openid a=do_server_confirm})
-<input type="submit" class="input_submit" value="　許可　" />
+<input type="submit" class="input_submit" value="　許　可　" />
 ({/t_form_block})
 </li>
 <li>
 ({t_form_block _method=get m=pc})
-<input type="submit" class="input_submit" value="　拒否　" />
+<input type="submit" class="input_submit" value="　拒　否　" />
 ({/t_form_block})
 </li>
 </ul>

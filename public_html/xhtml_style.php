@@ -247,10 +247,10 @@ div#LayoutC {
 	zoom: 1;
 	overflow: hidden;
 	overflow: -moz-scrollbars-none;
-	margin-bottom: 10px;
 }
 #Left,
-#Center {
+#Center,
+#Top {
 	overflow: hidden;
 }
 
@@ -276,7 +276,8 @@ div#LayoutC {
 }
 #Top .infoBox,
 #Top .descriptionBox {
-	margin: 0 20px 10px;
+	margin-right: 20px;
+	margin-left: 20px;
 }
 #LayoutA #Left {
 	float: left;
@@ -315,7 +316,14 @@ div#LayoutC {
 	left: 720px;
 	width: 230px;
 }
-
+*:first-child+html #pc_page_h_diary_add #Footer,
+*:first-child+html #pc_page_h_diary_edit #Footer {
+	margin-top: 10px;
+}
+* html #pc_page_h_diary_add #Footer,
+* html #pc_page_h_diary_edit #Footer {
+	margin-top: 10px;
+}
 /*----------------------------------------------
  * パーツ枠
  *--------------------------------------------*/
@@ -769,12 +777,18 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
  *----------------------------------------------------------------------------*/
 .diaryDetailBox .partsHeading {
 	zoom: 1;
-	position: relative;
+	overflow: hidden;
+	overflow: -moz-scrollbars-none;
+}
+.diaryDetailBox h3 {
+	float: left;
+	width: 66%;
 }
 .diaryDetailBox .partsHeading p.public {
-	position: absolute;
-	right: 3px;
-	bottom: 2px;
+	float: right;
+	width: 33%;
+	margin: 0;
+	text-align: right;
 }
 .diaryDetailBox dl {
 	zoom: 1;
@@ -1497,22 +1511,13 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 .messageList .pagerRelativeMulti .pager {
 	position: static;
 	float: right;
-	width: 290px;
+	width: 350px;
 	margin-top: 1px;
 	text-align: right;
 }
-.messageList .pagerRelativeMulti .pager p {
-	margin-left: 0;
-}
-* html .messageList .pagerRelativeMulti .pager p {
-	margin-left: 4px;
-}
-*:first-child+html .messageList .pagerRelativeMulti .pager p {
-	margin-left: 4px;
-}
 .messageList p.icons {
 	float: left;
-	width: 220px;
+	width: 160px;
 }
 .messageList p.icons img {
 	padding-right: 16px;
@@ -1900,6 +1905,9 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 	width: 150px;
 	text-align: right;
 }
+.formTable table table td.publicSelector select {
+	width: 150px;
+}
 .formTable div.checkList ul {
 	zoom: 1;
 	overflow: hidden;
@@ -2032,6 +2040,9 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 }
 .bizWeeklyCalendarTable .calendar th .nickname {
 	margin: 5px 0;
+}
+.bizWeeklyCalendarTable .calendar th .member_image {
+	margin-bottom: 5px;
 }
 .bizWeeklyCalendarTable .calendar td.sub {
 	border-width: 0 0 0 1px;

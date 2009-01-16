@@ -28,7 +28,7 @@
 ({/foreach})
 ({/foreach})
 </select>
-<input type="submit" class="input_submit" value=" 検 索 " />
+<input type="submit" class="input_submit" value="　検　索　" />
 </p>
 ({/t_form_block})
 
@@ -93,6 +93,16 @@
 
 ({$smarty.capture.pager|smarty:nodefaults})
 
+</div></div>
+({* }}} *})
+
+({else})
+({* {{{ simpleBox *})
+<div class="dparts simpleBox"><div class="parts">
+<div class="partsHeading"><h3>({$WORD_COMMUNITY})一覧</h3></div>
+<div class="block">
+<p>該当する({$WORD_COMMUNITY})はありません。</p>
+</div>
 </div></div>
 ({* }}} *})
 ({/if})

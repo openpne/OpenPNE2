@@ -48,12 +48,12 @@
 <li>
 ({t_form_block m=pc a=do_h_schedule_delete_delete_c_schedule})
 <input type="hidden" name="target_c_schedule_id" value="({$c_schedule.c_schedule_id})" />
-<input type="submit" class="input_submit" value="　 削　　除 　" />
+<input type="submit" class="input_submit" value="　削　除　" />
 ({/t_form_block})
 </li><li>
 ({t_form_block _method=get m=pc a=page_h_schedule})
 <input type="hidden" name="target_c_schedule_id" value="({$c_schedule.c_schedule_id})" />
-<input type="submit" class="input_submit" value="　キャンセル　" />
+<input type="submit" class="input_submit" value="キャンセル" />
 ({/t_form_block})
 </li>
 </ul>

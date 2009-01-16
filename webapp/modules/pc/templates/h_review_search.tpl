@@ -22,7 +22,7 @@
 <option value="">指定なし</option>
 ({html_options options=$category_disp selected=$category})
 </select>
-<input type="submit" class="input_submit" value=" 検 索 " />
+<input type="submit" class="input_submit" value="　検　索　" />
 </p>
 ({/t_form_block})
 

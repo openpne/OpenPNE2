@@ -19,7 +19,7 @@
 </select>
 <input type="hidden" name="c_commu_id" value="({$c_commu_id})" />
 ({/if})
-<input type="submit" class="input_submit" value="　検 索　" />
+<input type="submit" class="input_submit" value="　検　索　" />
 </p>
 
 <p class="form">
@@ -52,7 +52,7 @@
 ({foreach from=$c_commu_topic_search_list item=item})
 <div class="ditem"><div class="item"><table><tr>
 <td class="photo" rowspan="4"><a href="({t_url m=pc a=page_c_topic_detail})&amp;target_c_commu_topic_id=({$item.c_commu_topic_id})"><img src="({t_img_url filename=$item.commu_image w=76 h=76 noimg=no_logo_small})" alt="" /></a></td>
-<th>トピック名</th><td>({$item.name}) (({$item.max_number}))</td>
+<th>トピック名</th><td>({$item.name}) (({$item.max_number}))({if $item.image_filename1 || $item.image_filename2 || $item.image_filename3}) <img src="({t_img_url_skin filename=icon_camera})" alt="" />({/if})</td>
 </tr><tr>
 <th>本文</th><td>({$item.body|t_truncate:36:"":3})</td>
 </tr><tr>
@@ -65,6 +65,25 @@
 
 ({$smarty.capture.pager|smarty:nodefaults})
 
+</div></div>
+({* }}} *})
+
+({elseif $keyword == ""})
+({* {{{ simpleBox *})
+<div class="dparts simpleBox"><div class="parts">
+<div class="partsHeading"><h3>検索結果</h3></div>
+<div class="block">
+</div>
+</div></div>
+({* }}} *})
+
+({else})
+({* {{{ simpleBox *})
+<div class="dparts simpleBox"><div class="parts">
+<div class="partsHeading"><h3>トピック一覧</h3></div>
+<div class="block">
+<p>該当するトピックはありません。</p>
+</div>
 </div></div>
 ({* }}} *})
 ({/if})

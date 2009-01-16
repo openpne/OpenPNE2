@@ -23,7 +23,6 @@
 <td class="type1">
 ({$topic.c_commu_topic_id})
 </td>
-</form>
 </tr>
 ({****})
 <tr>
@@ -76,7 +75,7 @@
 <tr>
 <th>ファイル</th>
 <td class="textbody">
-<a href="({t_url m=$module_name a=do_file_download})&amp;filename=({$topic.filename})&amp;sessid=({$PHPSESSID})">
+<a href="./?m=({$module_name})&amp;a=do_({$hash_tbl->hash('file_download','do')})&amp;filename=({$topic.filename})&amp;sessid=({$PHPSESSID})">
 ({$topic.original_filename})
 </a>
 </td>

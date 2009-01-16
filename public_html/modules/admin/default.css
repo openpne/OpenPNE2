@@ -103,7 +103,7 @@ li { list-style-type: none;}
 .navi div.naviMain ul li ul li a ,
 .navi div.naviMain ul li ul li a:hover  { background-image: none;}/*safari対策*/
 
-.navi div.naviMain ul li ul.pull { z-index:100; visibility: hidden; float: none; position: absolute; margin: 0; padding: 1px 2px 2px 0;}
+.navi div.naviMain ul li ul.pull { z-index:100; visibility: hidden; float: none; position: absolute; margin: 0; padding: 0 2px 2px 0;}
 .navi div.naviMain ul li ul#adminSiteMemberCont             { width: 180px; z-index: 10;}
 .navi div.naviMain ul li ul#adminImageKakikomiCont          { width: 220px; z-index: 20;}
 .navi div.naviMain ul li ul#adminStatisticalInformationCont { width: 220px; z-index: 30;}
@@ -802,8 +802,8 @@ div.listControl p.listMove a {
 #admin_page_send_invites_confirm p.caution#c02 { padding: 10px 0 0 0;}
 #admin_page_send_invites_confirm dl.invitesAdd dt { padding: 10px 0 0 0;}
 #admin_page_send_invites_confirm dl.invitesAdd dd { padding: 5px 0 10px 15px; color:#333;}
-#admin_page_send_invites_confirm dl.invitesAdd#warning,
-#admin_page_send_invites_confirm dl.invitesAdd#warning dd { color:#ff0000;}
+#admin_page_send_invites_confirm dl.invitesAdd.warning,
+#admin_page_send_invites_confirm dl.invitesAdd.warning dd { color:#ff0000;}
 #admin_page_send_invites_confirm dl.invitesDetail { padding: 5px 0 10px 0;}
 #admin_page_send_invites_confirm dl.invitesDetail dt { margin: 10px 0 5px 0; padding-left: 5px; border-left: 3px #75757A solid;}
 #admin_page_send_invites_confirm dl.invitesDetail dd textarea { width: 600px; height: 190px;}

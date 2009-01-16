@@ -234,4 +234,28 @@ function cache_drop_c_bookmark($c_member_id)
     $c_member_id = (string)$c_member_id;
     pne_cache_drop('db_bookmark_member_list', $c_member_id, 9);
 }
+
+/**
+ * 日記のfunction cacheを削除する
+ *
+ * @param int $c_member_id        ログインしているメンバーID
+ * @param int $target_c_member_id 書き込み先のメンバーID
+ */
+function cache_drop_c_diary($c_member_id, $target_c_member_id)
+{
+    $target_c_member_id = (int)$target_c_member_id;
+    $c_member_id = (int)$c_member_id;
+    pne_cache_drop('db_diary_get_c_diary_list4c_member_id', $target_c_member_id, 5, $c_member_id);
+    pne_cache_drop('p_h_home_c_diary_friend_list4c_member_id', $c_member_id, 5);  //最新日記フィード
+    $target_c_member_id = (string)$target_c_member_id;
+    $c_member_id = (string)$c_member_id;
+    pne_cache_drop('db_diary_get_c_diary_list4c_member_id', $target_c_member_id, 5, $c_member_id);
+    pne_cache_drop('p_h_home_c_diary_friend_list4c_member_id', $c_member_id, 5);  //最新日記フィード
+    $target_c_member_id = (int)$target_c_member_id;
+    $c_member_id = (string)$c_member_id;
+    pne_cache_drop('db_diary_get_c_diary_list4c_member_id', $target_c_member_id, 5, $c_member_id);
+    $target_c_member_id = (string)$target_c_member_id;
+    $c_member_id = (int)$c_member_id;
+    pne_cache_drop('db_diary_get_c_diary_list4c_member_id', $target_c_member_id, 5, $c_member_id);
+}
 ?>

@@ -93,7 +93,7 @@
 </tr>
 <tr class="cell09">
 <th colspan="2">AmazonアソシエイトID</th>
-<td><input class="basic" name="AMAZON_AFFID" type="text" value="({$smarty.const.AMAZON_AFFID})" size="30" /><br /><span class="caution">※空にするとレビュー機能が正常に動作しません</span></td>
+<td><input class="basic" name="AMAZON_AFFID" type="text" value="({$smarty.const.AMAZON_AFFID})" size="30" /></td>
 </tr>
 <tr class="cell10">
 <th colspan="2">PC版外部ログインページURL</th>
@@ -393,7 +393,7 @@
 <p class="info">通常のログインページ以外の外部ログインページを設定する場合は、以下のHTMLを使ってログイン用フォームを作成してください。</p>
 
 ({capture name=pc_html_form})
-<form action="({$smarty.const.OPENPNE_URL})" method="post">
+<form action="({$login_url})" method="post">
 <input type="hidden" name="m" value="pc" />
 <input type="hidden" name="a" value="do_o_login" />
 <dl class="sampleHtml">
@@ -407,13 +407,13 @@
 </form>({/capture})
 
 ({capture name=ktai_html_form})
-<form action="({$smarty.const.OPENPNE_URL})" method="post" utn>
+<form action="({$ktai_easy_login_url})" method="post" utn>
 <input type="hidden" name="m" value="ktai">
 <input type="hidden" name="a" value="do_o_easy_login">
 <input type="submit" value="かんたんﾛｸﾞｲﾝ"><br>
 </form>
 <br>
-<form action="({$smarty.const.OPENPNE_URL})" method="post">
+<form action="({$ktai_login_url})" method="post">
 <input type="hidden" name="m" value="ktai">
 <input type="hidden" name="a" value="do_o_login">
 携帯ﾒｰﾙｱﾄﾞﾚｽ<br>
@@ -424,7 +424,7 @@
 </form>({/capture})
 
 ({capture name=pc_html_password})
-<a href="({t_url _html=0 _absolute=1 m=pc a=page_o_password_query})">パスワードを忘れた方はこちらへ</a>({/capture})
+<a href="({t_url _html=0 _absolute=1 m=pc a=page_o_help_login_error})">ログインできない方はこちら</a>({/capture})
 
 ({capture name=ktai_html_password})
 <a href="({t_url _html=0 _absolute=1 m=ktai a=page_o_password_query})">&gt;&gt;ﾊﾟｽﾜｰﾄﾞを忘れた方</a>({/capture})
@@ -447,7 +447,7 @@
 
 ({if $smarty.const.OPENPNE_AUTH_MODE !== 'slavepne'})
 <dl class="sampleHtml">
-<dt><strong class="item">PC版パスワード再発行ページへのリンク</strong></dt>
+<dt><strong class="item">PC版パスワード再発行ページ・PCメールアドレス登録ページへのリンク</strong></dt>
 <dd><textarea cols="84" rows="3" readonly="readonly">({$smarty.capture.pc_html_password})</textarea></dd>
 </dl>
 

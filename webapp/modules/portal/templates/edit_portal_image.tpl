@@ -69,8 +69,8 @@ function deletePortalImage(imagefilename)
 <dl>
 <dt class="upImage"><img src="({t_img_url filename=$item.image_filename w=76 h=76})" /></dt>
 <dd class="insert">
-<span class="textBtnS"><button type="button" onclick="insertImageTagToParentWindow('({$item.image_filename})')">挿入</button></span>
-<span class="textBtnS"><button type="button" onclick="deletePortalImage('({$item.image_filename})')">削除</button></span>
+<span class="textBtnS"><button type="button" onclick="insertImageTagToParentWindow('({$item.image_filename})')">　挿　入　</button></span>
+<span class="textBtnS"><button type="button" onclick="deletePortalImage('({$item.image_filename})')">　削　除　</button></span>
 </dd>
 </dl>
 </div>
@@ -103,7 +103,7 @@ function deletePortalImage(imagefilename)
 <input type="hidden" name="target_area" value="({$target_area})" />
 <dl class="upload">
 <dt class="upfile"><strong class="title">画像の追加</strong></dt>
-<dd class="upfile"><input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="追加" /></span></dd>
+<dd class="upfile"><input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="　追　加　" /></span></dd>
 </dl>
 </form>
 </div>({*/div class="contents"*})

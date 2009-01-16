@@ -45,7 +45,7 @@
 </tr>
 ({/foreach})
 <tr>
-<td colspan="5" align="right"><p class="textBtn"><input type="submit" value="変更" /></p></td>
+<td colspan="5" align="right"><p class="textBtn"><input type="submit" value="　変　更　" /></p></td>
 </tr>
 </tbody>
 </table>

@@ -114,7 +114,7 @@
                         <dd class="image"><iframe src="about:blank" id="image_insert_area_5" class="image_insert_area" frameborder="0" scrolling="no"></iframe></dd>
                         </dl>
 
-                        <p class="textBtn"><input type="submit" value="変更" /></p>
+                        <p class="textBtn"><input type="submit" value="　変　更　" /></p>
                     </td>
                 </tr>
             </table>

@@ -9,6 +9,10 @@ class portal_page_user_top extends OpenPNE_Action
 
     function execute($requests)
     {
+        // メンテナンスモードの時は常にメンテナンス画面を表示
+        if (OPENPNE_UNDER_MAINTENANCE) {
+            openpne_display_error();
+        }
 
         $use_portal = $this->_get_portal_config(PORTAL_CONFIG_USE_PORTAL);
         if (!isset($use_portal) || $use_portal['value'] == '0') {

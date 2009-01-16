@@ -31,7 +31,7 @@
 ({foreach from=$topic_write key=key item=item})
 <input type="hidden" name="({$key})" value="({$item})" />
 ({/foreach})
-<input type="submit" class="input_submit" value="決定" />
+<input type="submit" class="input_submit" value="　決　定　" />
 ({/t_form_block})
 </li>
 <li>
@@ -39,7 +39,7 @@
 ({foreach from=$topic_write key=key item=item})
 <input type="hidden" name="({$key})" value="({$item})" />
 ({/foreach})
-<input type="submit" class="input_submit" value="修正" />
+<input type="submit" class="input_submit" value="　修　正　" />
 ({/t_form_block})
 </li>
 </ul>

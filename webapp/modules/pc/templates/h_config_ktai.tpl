@@ -25,7 +25,7 @@
 </table>
 <div class="operation">
 <ul class="moreInfo button">
-<li><input type="submit" class="input_submit" value="送信" /></li>
+<li><input type="submit" class="input_submit" value="　送　信　" /></li>
 </ul>
 </div>
 ({/t_form_block})
@@ -40,7 +40,7 @@
 <p>現在登録されている携帯メールアドレスを削除します</p>
 ({t_form_block m=pc a=page_h_delete_ktai})
 <ul class="moreInfo button">
-<li><input type="submit" class="input_submit" value="削除" /></li>
+<li><input type="submit" class="input_submit" value="　削　除　" /></li>
 </ul>
 ({/t_form_block})
 </div>
