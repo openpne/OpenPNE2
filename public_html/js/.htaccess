@@ -1,0 +1,35 @@
+<Files ~ "\.js$">
+    FileETag None
+</Files>
+
+<IfModule mod_expires.c>
+    <Files "prototype.js">
+        ExpiresActive On
+        ExpiresDefault "access plus 10 years"
+    </Files>
+
+    <Files "tiny_mce.js">
+        ExpiresActive On
+        ExpiresDefault "access plus 10 years"
+    </Files>
+
+    <Files "tiny_mce_popup.js">
+        ExpiresActive On
+        ExpiresDefault "access plus 10 years"
+    </Files>
+
+    <Files "Selection.js">
+        ExpiresActive On
+        ExpiresDefault "access plus 10 years"
+    </Files>
+
+    <Files "editor_template.js">
+        ExpiresActive On
+        ExpiresDefault "access plus 10 years"
+    </Files>
+
+    <Files "offspring.js">
+        ExpiresActive On
+        ExpiresDefault "access plus 10 years"
+    </Files>
+</IfModule>
