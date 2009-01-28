@@ -65,21 +65,21 @@ function pne_mce_editor_get_config()
 <div id="mce_editor_buttonmenu">
 ({foreach from=$INC_HEADER_decoration_config item=item key=key})
 ({if $item})
-<a id="mce_textmode_button_({$key})" href="javascript:;" onclick="pne_mce_insert_tagname('mce_editor_textarea', '({$key|replace:"_":":"})');"><img src="({t_img_url_skin filename=deco_`$key`})" alt="" /></a>
+<a id="mce_textmode_button_({$key})" href="#" onclick="pne_mce_insert_tagname('mce_editor_textarea', '({$key|replace:"_":":"})'); return false;"><img src="({t_img_url_skin filename=deco_`$key`})" alt="" /></a>
 ({/if})
 ({/foreach})
 ({if $smarty.const.OPENPNE_USE_ALBUM})
-<a id="mce_textmode_button_op_image" href="javascript:;" onclick="window.open('({t_url m=pc a=page_h_album_insert_dialog})', '', 'width=600,height=550,toolbar=no,scrollbars=yes,left=10,top=10')"><img src="({t_img_url_skin filename=deco_op_image})" alt="" /></a>
+<a id="mce_textmode_button_op_image" href="#" onclick="window.open('({t_url m=pc a=page_h_album_insert_dialog})', '', 'width=600,height=550,toolbar=no,scrollbars=yes,left=10,top=10'); return false;"><img src="({t_img_url_skin filename=deco_op_image})" alt="" /></a>
 ({/if})
 ({if $smarty.const.OPENPNE_EMOJI_DOCOMO_FOR_PC})
-<a id="mce_textmode_button_op_emoji_docomo" href="javascript:;" onclick="togglePallet('epDocomo');"><img src="({t_img_url_skin filename=deco_op_emoji_docomo})" alt="" /></a>
+<a id="mce_textmode_button_op_emoji_docomo" href="#" onclick="togglePallet('epDocomo'); return false;"><img src="({t_img_url_skin filename=deco_op_emoji_docomo})" alt="" /></a>
 ({else})
-<a id="mce_textmode_button_op_emoji_docomo" href="javascript:;" onclick="togglePallet('epDocomo');"><img src="({t_img_url_skin filename=deco_op_emoji_docomo})" alt="" /></a>
-<a id="mce_textmode_button_op_emoji_au" href="javascript:;" onclick="togglePallet('epAu');"><img src="({t_img_url_skin filename=deco_op_emoji_au})" alt="" /></a>
-<a id="mce_textmode_button_op_emoji_softbank" href="javascript:;" onclick="togglePallet('epSb');"><img src="({t_img_url_skin filename=deco_op_emoji_softbank})" alt="" /></a>
+<a id="mce_textmode_button_op_emoji_docomo" href="#" onclick="togglePallet('epDocomo'); return false;"><img src="({t_img_url_skin filename=deco_op_emoji_docomo})" alt="" /></a>
+<a id="mce_textmode_button_op_emoji_au" href="#" onclick="togglePallet('epAu'); return false;"><img src="({t_img_url_skin filename=deco_op_emoji_au})" alt="" /></a>
+<a id="mce_textmode_button_op_emoji_softbank" href="#" onclick="togglePallet('epSb'); return false;"><img src="({t_img_url_skin filename=deco_op_emoji_softbank})" alt="" /></a>
 ({/if})
 ({if $smarty.const.OPENPNE_DECORATION_CMD_URL})
-<a id="mce_textmode_button_op_cmd" href="javascript:;" style="margin-left:20px;" onclick="window.open('({$smarty.const.OPENPNE_DECORATION_CMD_URL})')"><img src="({t_img_url_skin filename=deco_op_cmd})" alt="" /></a>
+<a id="mce_textmode_button_op_cmd" href="#" style="margin-left:20px;" onclick="window.open('({$smarty.const.OPENPNE_DECORATION_CMD_URL})'); return false;"><img src="({t_img_url_skin filename=deco_op_cmd})" alt="" /></a>
 ({/if})
 
 <script type="text/javascript">
