@@ -122,7 +122,7 @@ function pne_mce_show_color_table(id, tagname)
         Element.addClassName(td, 'disabledHideColorTable');
 
         var a = document.createElement("a");
-        a.setAttribute("href", "javascript:;");
+        a.setAttribute("href", "#");
         a.colorCode = code;
         a.style.width = "9px";
         a.style.height = "9px";
@@ -134,6 +134,7 @@ function pne_mce_show_color_table(id, tagname)
         a.onmousedown = function() {
             pne_mce_insert_tagname(id, tagname, ' code="' + this.colorCode + '"');
             pne_mce_hide_color_table();
+            return false;
         };
 
         var span = document.createElement("span");
