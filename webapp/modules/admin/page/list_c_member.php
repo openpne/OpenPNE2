@@ -11,23 +11,16 @@ class admin_page_list_c_member extends OpenPNE_Action
     {
         $order = $requests['order'];
 
-        $cond = substr($_REQUEST['cond'], 1);
-        $temp_list = explode('&', $cond);
-        foreach ($temp_list as $value) {
-            $temp_list2 = explode('=', $value);
-            $_REQUEST[$temp_list2[0]] = $temp_list2[1];
-        }
-
         $v = array();
         $pager = array();
 
         //絞り込み条件作成
-        $cond_list = validate_cond($_REQUEST);
+        $cond_list = validate_cond((array)$_REQUEST['cond']);
         $v['cond_list'] = $cond_list;
 
         $cond = '';
         foreach ($cond_list as $key => $value) {
-            $cond .= '&'.$key.'='.$value;
+            $cond .= '&cond['.$key.']='.$value;
         }
 
         $v['cond'] = $cond;
