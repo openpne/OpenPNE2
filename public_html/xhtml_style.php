@@ -1613,7 +1613,8 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 	border-left-width: 1px;
 }
 .rankingList td.photo {
-	width: 120px;
+	width: 130px;
+	padding: 5px 0 5px 0;
 	text-align: center;
 }
 .rankingList th {
