@@ -60,7 +60,7 @@
 </td>
 </tr>
 <tr>
-<th rowspan="2">コミュニティ名称変更</th>
+<th rowspan="2">コミュニティ名称</th>
 <th>コミュニティ</th>
 <td>
 <span class="info">SNS内「コミュニティ」を他の名称に設定します</span><br />
