@@ -22,6 +22,7 @@
 </tr>
 ({foreach from=$profile_list item=profile})
 ({if $profile.disp_search})
+({if !(!$profile.public_flag_edit && $profile.public_flag_default != 'public')})
 <tr>
 <th>({$profile.caption})</th>
 <td>
@@ -47,6 +48,7 @@
 ({/strip})
 </td>
 </tr>
+({/if})
 ({/if})
 ({/foreach})
 <tr>
