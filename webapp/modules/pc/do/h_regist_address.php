@@ -41,6 +41,12 @@ class pc_do_h_regist_address extends OpenPNE_Action
             openpne_redirect('pc', 'page_h_regist_address', $p);
         }
 
+        if (!db_member_is_limit_domain4mail_address($pc_address)) {
+            $msg = "そのメールアドレスでは登録できません";
+            $p = array('msg' => $msg);
+            openpne_redirect('pc', 'page_h_regist_address', $p);
+        }
+
         if (is_ktai_mail_address($pc_address)) {
             $p = array('msg' => '携帯メールアドレスは記入できません');
             openpne_redirect('pc', 'page_h_regist_address', $p);
