@@ -1358,8 +1358,10 @@ function biz_do_common_send_schedule_mail()
     $send_list = array();
     foreach ($c_schedule_list as $schedule_id) {
         $value = biz_getScheduleInfo($schedule_id);
-        $c_member_id = $value['c_member_id'];
-        $send_list[$c_member_id][] = $value;
+        $jmembers = biz_getJoinIdSchedule($value['biz_schedule_id']);
+        foreach ($jmembers as $member) {
+            $send_list[$member][] = $value;
+        }
     }
 
     foreach ($send_list as $c_member_id => $c_schedule_list) {
