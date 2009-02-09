@@ -443,66 +443,78 @@ function db_admin_c_admin_config_all()
 
 function db_admin_delete_c_image_link4image_filename($image_filename)
 {
-    $_pos = strpos($image_filename, '_');
-    $prefix = substr($image_filename, 0, $_pos);
+    $parts = explode('_', $image_filename);
+    $prefix = $parts[0];
 
     if ($prefix == 'b') {
-        $sql = 'DELETE FROM c_banner WHERE image_filename = ?';
-        $params = array($image_filename);
+        $pkey = (int)$parts[1];
+
+        $sql = 'DELETE FROM c_banner WHERE c_banner_id = ? AND image_filename = ?';
+        $params = array($pkey, $image_filename);
         db_query($sql, $params);
     }
 
     if ($prefix == 'c') {
         $tbl = 'c_commu';
-        _db_admin_empty_filename($tbl, $image_filename);
+        $pkey = (int)$parts[1];
+
+        _db_admin_empty_filename($tbl, $image_filename, 'image_filename', $pkey);
     }
 
     if ($prefix == 't' || $prefix == 'tc') {
         $tbl = 'c_commu_topic_comment';
-        _db_admin_empty_filename($tbl, $image_filename, 'image_filename1');
-        _db_admin_empty_filename($tbl, $image_filename, 'image_filename2');
-        _db_admin_empty_filename($tbl, $image_filename, 'image_filename3');
+        $pkey = (int)$parts[1];
+        $number = (int)$parts[2];
+
+        _db_admin_empty_filename($tbl, $image_filename, 'image_filename'.$number, $pkey);
     }
 
     if ($prefix == 'd') {
         $tbl = 'c_diary';
-        _db_admin_empty_filename($tbl, $image_filename, 'image_filename_1');
-        _db_admin_empty_filename($tbl, $image_filename, 'image_filename_2');
-        _db_admin_empty_filename($tbl, $image_filename, 'image_filename_3');
+        $pkey = (int)$parts[1];
+        $number = (int)$parts[2];
+
+        _db_admin_empty_filename($tbl, $image_filename, 'image_filename_'.$number, $pkey);
     }
 
     if ($prefix == 'dc') {
         $tbl = 'c_diary_comment';
-        _db_admin_empty_filename($tbl, $image_filename, 'image_filename_1');
-        _db_admin_empty_filename($tbl, $image_filename, 'image_filename_2');
-        _db_admin_empty_filename($tbl, $image_filename, 'image_filename_3');
+        $pkey = (int)$parts[1];
+        $number = (int)$parts[2];
+
+        _db_admin_empty_filename($tbl, $image_filename, 'image_filename_'.$number, $pkey);
     }
 
     if ($prefix == 'm') {
         $tbl = 'c_member';
-        _db_admin_empty_filename($tbl, $image_filename);
-        _db_admin_empty_filename($tbl, $image_filename, 'image_filename_1');
-        _db_admin_empty_filename($tbl, $image_filename, 'image_filename_2');
-        _db_admin_empty_filename($tbl, $image_filename, 'image_filename_3');
+        $pkey = (int)$parts[1];
+
+        _db_admin_empty_filename($tbl, $image_filename, 'image_filename', $pkey);
+        _db_admin_empty_filename($tbl, $image_filename, 'image_filename_1', $pkey);
+        _db_admin_empty_filename($tbl, $image_filename, 'image_filename_2', $pkey);
+        _db_admin_empty_filename($tbl, $image_filename, 'image_filename_3', $pkey);
     }
 
     if ($prefix == 'ms') {
         $tbl = 'c_message';
-        _db_admin_empty_filename($tbl, $image_filename, 'image_filename_1');
-        _db_admin_empty_filename($tbl, $image_filename, 'image_filename_2');
-        _db_admin_empty_filename($tbl, $image_filename, 'image_filename_3');
+        $pkey = (int)$parts[1];
+        $number = (int)$parts[2];
+
+        _db_admin_empty_filename($tbl, $image_filename, 'image_filename_'.$number, $pkey);
     }
 
-    if ($prefix = 'a') {
+    if ($prefix == 'a') {
         $tbl = 'c_album';
-        _db_admin_empty_filename($tbl, $image_filename, 'album_cover_image');
+        $pkey = (int)$parts[1];
 
-        $sql = 'DELETE FROM c_album_image WHERE image_filename = ?';
-        $params = array($image_filename);
+        _db_admin_empty_filename($tbl, $image_filename, 'album_cover_image', $pkey);
+
+        $sql = 'DELETE FROM c_album_image WHERE c_album_id = ? AND image_filename = ?';
+        $params = array($pkey, $image_filename);
         db_query($sql, $params);
     }
 
-    if ($prefix = 'biz') {
+    if ($prefix == 'biz') {
         $tbl = 'biz_group';
         _db_admin_empty_filename($tbl, $image_filename);
 
@@ -511,14 +523,16 @@ function db_admin_delete_c_image_link4image_filename($image_filename)
     }
 }
 
-function _db_admin_empty_filename($tbl, $image_filename, $column = 'image_filename')
+function _db_admin_empty_filename($tbl, $image_filename, $column = 'image_filename', $pkey = null)
 {
     $data = array(
         db_escapeIdentifier($column) => '',
     );
-    $where = array(
-        db_escapeIdentifier($column) => $image_filename,
-    );
+    if ($pkey) {
+        $where[$tbl . '_id'] = (int)$pkey;
+    }
+    $where[db_escapeIdentifier($column)] = $image_filename;
+
     db_update(db_escapeIdentifier($tbl), $data, $where);
 }
 
