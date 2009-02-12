@@ -36,10 +36,10 @@ function db_message_count_c_message_not_is_read4c_member_to_id($c_member_id_to)
     if (!$is_recurred) {  //function cacheのために再帰処理を行う
         $is_recurred = true;
         $funcargs = func_get_args();
-        return pne_cache_recursive_call(OPENPNE_FUNCTION_CACHE_LIFETIME_FAST, __FUNCTION__, $funcargs);
+        $result = pne_cache_recursive_call(OPENPNE_FUNCTION_CACHE_LIFETIME_FAST, __FUNCTION__, $funcargs);
+        $is_recurred = false;  
+        return $result;
     }
-
-    $is_recurred = false;
 
     $sql = 'SELECT COUNT(*) FROM c_message WHERE c_member_id_to = ?' .
             ' AND is_read = 0 AND is_send = 1';
