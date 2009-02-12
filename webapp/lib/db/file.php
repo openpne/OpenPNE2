@@ -39,6 +39,7 @@ function db_file_c_file_list($page, $page_size, &$pager)
         $c_file_list[$i] = db_get_row($sql, $params);
         $c_file_list[$i]['size'] = strlen($c_file_list[$i]['bin']);
     }
+    unset($c_file_list[$i]['bin']);
 
     $sql = 'SELECT COUNT(*) FROM c_file';
     $total_num = db_get_one($sql);
