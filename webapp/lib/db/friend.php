@@ -192,10 +192,10 @@ function db_friend_c_friend_comment4c_member_id($c_member_id, $limit = 5)
     if (!$is_recurred) {  //function cacheのために再帰処理を行う
         $is_recurred = true;
         $funcargs = func_get_args();
-        return pne_cache_recursive_call(OPENPNE_FUNCTION_CACHE_LIFETIME_LONG, __FUNCTION__, $funcargs);
+        $result = pne_cache_recursive_call(OPENPNE_FUNCTION_CACHE_LIFETIME_LONG, __FUNCTION__, $funcargs);
+        $is_recurred = false;  
+        return $result;
     }
-
-    $is_recurred = false;
 
     $sql = "SELECT c_member_id_from AS c_member_id, intro FROM c_friend" .
             " WHERE c_member_id_to = ? AND intro <> ''" .
@@ -251,10 +251,10 @@ function db_friend_c_friend_id_list4c_member_id($c_member_id, $limit)
     if (!$is_recurred) {  //function cacheのために再帰処理を行う
         $is_recurred = true;
         $funcargs = func_get_args();
-        return pne_cache_recursive_call(OPENPNE_FUNCTION_CACHE_LIFETIME_LONG, __FUNCTION__, $funcargs);
+        $result = pne_cache_recursive_call(OPENPNE_FUNCTION_CACHE_LIFETIME_LONG, __FUNCTION__, $funcargs);
+        $is_recurred = false;  
+        return $result;
     }
-
-    $is_recurred = false;
 
     $sql = 'SELECT c_member_id_to AS c_member_id FROM c_friend' .
             ' WHERE c_member_id_from = ?' . db_order_by_rand();
@@ -333,10 +333,10 @@ function db_friend_c_friend_intro_list4c_member_id($c_member_id, $limit)
     if (!$is_recurred) {  //function cacheのために再帰処理を行う
         $is_recurred = true;
         $funcargs = func_get_args();
-        return pne_cache_recursive_call(OPENPNE_FUNCTION_CACHE_LIFETIME_LONG, __FUNCTION__, $funcargs);
+        $result = pne_cache_recursive_call(OPENPNE_FUNCTION_CACHE_LIFETIME_LONG, __FUNCTION__, $funcargs);
+        $is_recurred = false;  
+        return $result;
     }
-
-    $is_recurred = false;
 
     $sql = 'SELECT * FROM c_friend' .
             ' WHERE c_member_id_to = ? AND intro <> \'\'' . db_order_by_rand();
@@ -461,10 +461,10 @@ function db_friend_c_friend_list_random4c_member_id($c_member_id, $limit)
     if (!$is_recurred) {  //function cacheのために再帰処理を行う
         $is_recurred = true;
         $funcargs = func_get_args();
-        return pne_cache_recursive_call(OPENPNE_FUNCTION_CACHE_LIFETIME_LONG, __FUNCTION__, $funcargs);
+        $result = pne_cache_recursive_call(OPENPNE_FUNCTION_CACHE_LIFETIME_LONG, __FUNCTION__, $funcargs);
+        $is_recurred = false;  
+        return $result;
     }
-
-    $is_recurred = false;
 
     $sql = "SELECT cf.* , cm.nickname";
     $sql .= " FROM c_friend AS cf, c_member AS cm";
