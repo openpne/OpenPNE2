@@ -154,10 +154,10 @@ function db_bookmark_member_list($c_member_id, $limit = 0)
     if (!$is_recurred) {  //function cacheのために再帰処理を行う
         $is_recurred = true;
         $funcargs = func_get_args();
-        return pne_cache_recursive_call(OPENPNE_FUNCTION_CACHE_LIFETIME_LONG, __FUNCTION__, $funcargs);
+        $result = pne_cache_recursive_call(OPENPNE_FUNCTION_CACHE_LIFETIME_LONG, __FUNCTION__, $funcargs);
+        $is_recurred = false;  
+        return $result;
     }
-
-    $is_recurred = false;
 
     $sql = 'SELECT c_member_id_to AS c_member_id FROM c_bookmark' .
             ' WHERE c_member_id_from = ?' . db_order_by_rand();
