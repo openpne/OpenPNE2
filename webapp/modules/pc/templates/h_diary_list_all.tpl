@@ -7,8 +7,6 @@
 <div class="item">
 
 ({t_form_block _method=get m=pc a=page_h_diary_list_all})
-<input type="hidden" name="m" value="pc" />
-<input type="hidden" name="a" value="page_h_diary_list_all" />
 <p class="form">
 <label for="keyword">キーワード</label> <input type="text" class="input_text" name="keyword" id="keyword" size="15" value="({$keyword})" />
 <input type="submit" class="input_submit" value="　検　索　" />
