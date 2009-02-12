@@ -102,6 +102,10 @@ class ktai_page_h_home extends OpenPNE_Action
             $this->set("rank", db_point_get_rank4point($point));
         }
 
+        // メール送信設定
+        $this->set('is_unused_ashiato', util_is_unused_mail('m_ktai_ashiato'));
+        $this->set('is_unused_diary_comment', util_is_unused_mail('m_ktai_diary_comment_info'));
+
         // inc_entry_point
         $this->set('inc_ktai_entry_point', fetch_inc_entry_point($this->getView(), 'ktai_h_home'));
 
