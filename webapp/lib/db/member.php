@@ -20,10 +20,10 @@ function db_member_c_member4c_member_id($c_member_id, $is_secure = false, $with_
     if (!$is_recurred) {  //function cacheのために再帰処理を行う
         $is_recurred = true;
         $funcargs = func_get_args();
-        return pne_cache_recursive_call(OPENPNE_FUNCTION_CACHE_LIFETIME_FAST, __FUNCTION__, $funcargs);
+        $result = pne_cache_recursive_call(OPENPNE_FUNCTION_CACHE_LIFETIME_FAST, __FUNCTION__, $funcargs);
+        $is_recurred = false;  
+        return $result;
     }
-
-    $is_recurred = false;
 
     if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
         $sql = "SELECT *,case when access_date = '0001-01-01 00:00:00 BC' THEN '0000-00-00 00:00:00' ELSE to_char(access_date,'YYYY-MM-DD HH24:MI:SS') END as access_date" .
@@ -455,10 +455,10 @@ function db_member_birth4c_member_id($month, $day, $c_member_id)
     if (!$is_recurred) {  //function cacheのために再帰処理を行う
         $is_recurred = true;
         $funcargs = func_get_args();
-        return pne_cache_recursive_call(OPENPNE_FUNCTION_CACHE_LIFETIME_LONG, __FUNCTION__, $funcargs);
+        $result = pne_cache_recursive_call(OPENPNE_FUNCTION_CACHE_LIFETIME_LONG, __FUNCTION__, $funcargs);
+        $is_recurred = false;  
+        return $result;
     }
-
-    $is_recurred = false;
 
 
     $sql = "SELECT c_member_id_to FROM c_friend WHERE c_member_id_from = ?";
@@ -508,10 +508,10 @@ function db_member_c_profile_list()
     if (!$is_recurred) {  //function cacheのために再帰処理を行う
         $is_recurred = true;
         $funcargs = func_get_args();
-        return pne_cache_recursive_call(OPENPNE_FUNCTION_CACHE_LIFETIME_FAST, __FUNCTION__, $funcargs);
+        $result = pne_cache_recursive_call(OPENPNE_FUNCTION_CACHE_LIFETIME_FAST, __FUNCTION__, $funcargs);
+        $is_recurred = false;  
+        return $result;
     }
-
-    $is_recurred = false;
 
     $list = db_member_c_profile_list4null();
 
