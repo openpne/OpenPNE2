@@ -36,10 +36,10 @@ function db_commu_c_commu4c_commu_id2($c_commu_id)
     if (!$is_recurred) {  //function cacheのために再帰処理を行う
         $is_recurred = true;
         $funcargs = func_get_args();
-        return pne_cache_recursive_call(OPENPNE_FUNCTION_CACHE_LIFETIME_LONG, __FUNCTION__, $funcargs);
+        $result = pne_cache_recursive_call(OPENPNE_FUNCTION_CACHE_LIFETIME_LONG, __FUNCTION__, $funcargs);
+        $is_recurred = false;  
+        return $result;
     }
-
-    $is_recurred = false;
 
     if ($c_commu = db_commu_c_commu4c_commu_id($c_commu_id)) {
         $c_commu['member_count'] = db_commu_count_c_commu_member_list4c_commu_id($c_commu_id);
@@ -57,10 +57,10 @@ function db_commu_c_commu4c_commu_id_k($c_commu_id)
     if (!$is_recurred) {  //function cacheのために再帰処理を行う
         $is_recurred = true;
         $funcargs = func_get_args();
-        return pne_cache_recursive_call(OPENPNE_FUNCTION_CACHE_LIFETIME_LONG, __FUNCTION__, $funcargs);
+        $result = pne_cache_recursive_call(OPENPNE_FUNCTION_CACHE_LIFETIME_LONG, __FUNCTION__, $funcargs);
+        $is_recurred = false;  
+        return $result;
     }
-
-    $is_recurred = false;
 
     if ($c_commu = db_commu_c_commu4c_commu_id($c_commu_id)) {
         $c_commu['count_member'] = db_commu_count_c_commu_member_list4c_commu_id($c_commu_id);
@@ -486,10 +486,11 @@ function db_commu_c_commu_member_list4c_commu_id($c_commu_id ,$limit = 9)
     if (!$is_recurred) {  //function cacheのために再帰処理を行う
         $is_recurred = true;
         $funcargs = func_get_args();
-        return pne_cache_recursive_call(OPENPNE_FUNCTION_CACHE_LIFETIME_LONG, __FUNCTION__, $funcargs);
+        $result = pne_cache_recursive_call(OPENPNE_FUNCTION_CACHE_LIFETIME_LONG, __FUNCTION__, $funcargs);
+        $is_recurred = false;  
+        return $result;
     }
 
-    $is_recurred = false;
     $sql = 'SELECT c_member.* FROM c_member, c_commu_member' .
             ' WHERE c_member.c_member_id = c_commu_member.c_member_id' .
             ' AND c_commu_id = ?' . db_order_by_rand();
@@ -509,10 +510,10 @@ function db_commu_new_topic_comment4c_commu_id($c_commu_id, $limit, $event_flag 
     if (!$is_recurred) {  //function cacheのために再帰処理を行う
         $is_recurred = true;
         $funcargs = func_get_args();
-        return pne_cache_recursive_call(OPENPNE_FUNCTION_CACHE_LIFETIME_FAST, __FUNCTION__, $funcargs);
+        $result = pne_cache_recursive_call(OPENPNE_FUNCTION_CACHE_LIFETIME_FAST, __FUNCTION__, $funcargs);
+        $is_recurred = false;  
+        return $result;
     }
-
-    $is_recurred = false;
 
     $sql = "SELECT c_commu_topic_id , name, u_datetime as r_datetime , c_commu_id " .
             " FROM c_commu_topic" .
@@ -609,10 +610,10 @@ function db_commu_c_commu_list4c_member_id_2($c_member_id, $limit = 9)
     if (!$is_recurred) {  //function cacheのために再帰処理を行う
         $is_recurred = true;
         $funcargs = func_get_args();
-        return pne_cache_recursive_call(OPENPNE_FUNCTION_CACHE_LIFETIME_LONG, __FUNCTION__, $funcargs);
+        $result = pne_cache_recursive_call(OPENPNE_FUNCTION_CACHE_LIFETIME_LONG, __FUNCTION__, $funcargs);
+        $is_recurred = false;  
+        return $result;
     }
-
-    $is_recurred = false;
 
     $sql = "SELECT c_commu.c_commu_id, c_commu.image_filename, c_commu.name, c_commu.c_member_id_admin" .
         " FROM c_commu ,c_commu_member " .
@@ -1154,10 +1155,10 @@ function db_commu_c_commu_topic_comment_list4c_member_id($c_member_id, $limit)
     if (!$is_recurred) {  //function cacheのために再帰処理を行う
         $is_recurred = true;
         $funcargs = func_get_args();
-        return pne_cache_recursive_call(OPENPNE_FUNCTION_CACHE_LIFETIME_FAST, __FUNCTION__, $funcargs);
+        $result = pne_cache_recursive_call(OPENPNE_FUNCTION_CACHE_LIFETIME_FAST, __FUNCTION__, $funcargs);
+        $is_recurred = false;  
+        return $result;
     }
-
-    $is_recurred = false;
 
     $sql = 'SELECT c_commu_id FROM c_commu_member WHERE c_member_id = ?';
     $c_commu_id_list = db_get_col($sql, array(intval($c_member_id)));
@@ -1511,10 +1512,10 @@ function db_commu_c_commu_list_lastupdate4c_member_id($c_member_id, $limit)
     if (!$is_recurred) {  //function cacheのために再帰処理を行う
         $is_recurred = true;
         $funcargs = func_get_args();
-        return pne_cache_recursive_call(OPENPNE_FUNCTION_CACHE_LIFETIME_FAST, __FUNCTION__, $funcargs);
+        $result = pne_cache_recursive_call(OPENPNE_FUNCTION_CACHE_LIFETIME_FAST, __FUNCTION__, $funcargs);
+        $is_recurred = false;  
+        return $result;
     }
-
-    $is_recurred = false;
 
     if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
         $sql = 'SELECT DISTINCT c.*, RANDOM() FROM c_commu_member AS cm, c_commu AS c' .
@@ -1685,10 +1686,10 @@ function db_commu_c_commu_member_list_random4c_commu_id($c_commu_id, $limit)
     if (!$is_recurred) {  //function cacheのために再帰処理を行う
         $is_recurred = true;
         $funcargs = func_get_args();
-        return pne_cache_recursive_call(OPENPNE_FUNCTION_CACHE_LIFETIME_LONG, __FUNCTION__, $funcargs);
+        $result = pne_cache_recursive_call(OPENPNE_FUNCTION_CACHE_LIFETIME_LONG, __FUNCTION__, $funcargs);
+        $is_recurred = false;  
+        return $result;
     }
-
-    $is_recurred = false;
 
     $sql = "SELECT cm.c_member_id, cm.nickname ";
     $sql .= "FROM c_member AS cm , c_commu_member AS ccm ";
