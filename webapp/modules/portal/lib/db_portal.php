@@ -268,10 +268,10 @@ function db_portal_public_c_commmu_list($limit = 5)
     if (!$is_recurred) {  //function cacheのために再帰処理を行う
         $is_recurred = true;
         $funcargs = func_get_args();
-        return pne_cache_recursive_call(7200, __FUNCTION__, $funcargs);
+        $result = pne_cache_recursive_call(7200, __FUNCTION__, $funcargs);
+        $is_recurred = false;  
+        return $result;
     }
-
-    $is_recurred = false;
 
     $select = "SELECT ct.*, c.name as commu_name, c.image_filename as image_filename";
     $from = " FROM c_commu_topic as ct"
