@@ -63,8 +63,6 @@
 <div class="partsHeading"><h3>招待中メールアドレス一覧</h3></div>
 
  ({t_form_block m=pc a=do_h_invite_delete_member})
-<input type="hidden" name="m" value="pc" />
-<input type="hidden" name="a" value="do_h_invite_delete_member" />
 <input type="hidden" name="c_member_id[]" value="({$item.c_member_pre_id})" />
 
 ({foreach from=$inviting_member item=item})
