@@ -2969,12 +2969,18 @@ function db_admin_get_c_member_profile_pnepoint($c_member_id)
 
 function db_admin_c_blacklist_list($page, $page_size)
 {
-    $sql = 'SELECT b.c_blacklist_id,ms.c_member_id,b.info,m.nickname,b.easy_access_id ' .
-            ' FROM c_blacklist AS b' .
-            ' LEFT JOIN c_member_secure AS ms ON b.easy_access_id = ms.easy_access_id'.
-            ' LEFT JOIN c_member AS m ON ms.c_member_id = m.c_member_id' .
-            ' ORDER BY b.c_blacklist_id ASC';
+    $sql = 'SELECT * FROM c_blacklist ORDER BY c_blacklist_id';
     $list = db_get_all_page($sql, $page, $page_size);
+
+    $sql = 'SELECT c_member_id FROM c_member_secure WHERE easy_access_id = ?';
+    foreach ($list as $key => $blacklist) {
+        if ($blacklist['easy_access_id'] && $c_member_id = db_get_one($sql, array($blacklist['easy_access_id']))) {
+            $c_member = db_member_c_member4c_member_id_LIGHT($c_member_id);
+
+            $list[$key]['c_member_id'] = $c_member_id;
+            $list[$key]['nickname'] = $c_member['nickname'];
+        }
+    }
 
     $sql = 'SELECT count(*) FROM c_blacklist';
     $total_num = db_get_one($sql);
@@ -3014,14 +3020,17 @@ function db_admin_delete_c_blacklist($c_blacklist_id)
 
 function db_admin_c_blacklist($c_blacklist_id)
 {
-    $sql = 'SELECT b.c_blacklist_id,ms.c_member_id,b.info,m.nickname,b.easy_access_id ' .
-            ' FROM c_blacklist AS b' .
-            ' LEFT JOIN c_member_secure AS ms ON b.easy_access_id = ms.easy_access_id'.
-            ' LEFT JOIN c_member AS m ON ms.c_member_id = m.c_member_id' .
-            ' WHERE b.c_blacklist_id = ? '
-            ;
-    $param = array($c_blacklist_id);
-    $blacklist = db_get_row($sql, $param);
+    $sql = 'SELECT * FROM c_blacklist WHERE c_blacklist_id = ?';
+    $params = array($c_blacklist_id);
+    $blacklist = db_get_row($sql, $params);
+
+    $sql = 'SELECT c_member_id FROM c_member_secure WHERE easy_access_id = ?';
+    if (!empty($blacklist['easy_access_id']) && $c_member_id = db_get_one($sql, array($blacklist['easy_access_id']))) {
+        $c_member = db_member_c_member4c_member_id_LIGHT($c_member_id);
+
+        $blacklist['c_member_id'] = $c_member_id;
+        $blacklist['nickname'] = $c_member['nickname'];
+    }
 
     return $blacklist;
 }
