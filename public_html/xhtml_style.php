@@ -1614,7 +1614,7 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 }
 .rankingList td.photo {
 	width: 130px;
-	padding: 5px 0 5px 0;
+	padding: 5px 0;
 	text-align: center;
 }
 .rankingList th {
