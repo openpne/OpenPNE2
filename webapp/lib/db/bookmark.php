@@ -155,7 +155,7 @@ function db_bookmark_member_list($c_member_id, $limit = 0)
         $is_recurred = true;
         $funcargs = func_get_args();
         $result = pne_cache_recursive_call(OPENPNE_FUNCTION_CACHE_LIFETIME_LONG, __FUNCTION__, $funcargs);
-        $is_recurred = false;  
+        $is_recurred = false;
         return $result;
     }
 
