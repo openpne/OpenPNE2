@@ -193,7 +193,7 @@ function db_friend_c_friend_comment4c_member_id($c_member_id, $limit = 5)
         $is_recurred = true;
         $funcargs = func_get_args();
         $result = pne_cache_recursive_call(OPENPNE_FUNCTION_CACHE_LIFETIME_LONG, __FUNCTION__, $funcargs);
-        $is_recurred = false;  
+        $is_recurred = false;
         return $result;
     }
 
@@ -252,7 +252,7 @@ function db_friend_c_friend_id_list4c_member_id($c_member_id, $limit)
         $is_recurred = true;
         $funcargs = func_get_args();
         $result = pne_cache_recursive_call(OPENPNE_FUNCTION_CACHE_LIFETIME_LONG, __FUNCTION__, $funcargs);
-        $is_recurred = false;  
+        $is_recurred = false;
         return $result;
     }
 
@@ -334,7 +334,7 @@ function db_friend_c_friend_intro_list4c_member_id($c_member_id, $limit)
         $is_recurred = true;
         $funcargs = func_get_args();
         $result = pne_cache_recursive_call(OPENPNE_FUNCTION_CACHE_LIFETIME_LONG, __FUNCTION__, $funcargs);
-        $is_recurred = false;  
+        $is_recurred = false;
         return $result;
     }
 
@@ -462,7 +462,7 @@ function db_friend_c_friend_list_random4c_member_id($c_member_id, $limit)
         $is_recurred = true;
         $funcargs = func_get_args();
         $result = pne_cache_recursive_call(OPENPNE_FUNCTION_CACHE_LIFETIME_LONG, __FUNCTION__, $funcargs);
-        $is_recurred = false;  
+        $is_recurred = false;
         return $result;
     }
 

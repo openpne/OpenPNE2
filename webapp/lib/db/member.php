@@ -21,7 +21,7 @@ function db_member_c_member4c_member_id($c_member_id, $is_secure = false, $with_
         $is_recurred = true;
         $funcargs = func_get_args();
         $result = pne_cache_recursive_call(OPENPNE_FUNCTION_CACHE_LIFETIME_FAST, __FUNCTION__, $funcargs);
-        $is_recurred = false;  
+        $is_recurred = false;
         return $result;
     }
 
@@ -456,7 +456,7 @@ function db_member_birth4c_member_id($month, $day, $c_member_id)
         $is_recurred = true;
         $funcargs = func_get_args();
         $result = pne_cache_recursive_call(OPENPNE_FUNCTION_CACHE_LIFETIME_LONG, __FUNCTION__, $funcargs);
-        $is_recurred = false;  
+        $is_recurred = false;
         return $result;
     }
 
@@ -509,7 +509,7 @@ function db_member_c_profile_list()
         $is_recurred = true;
         $funcargs = func_get_args();
         $result = pne_cache_recursive_call(OPENPNE_FUNCTION_CACHE_LIFETIME_FAST, __FUNCTION__, $funcargs);
-        $is_recurred = false;  
+        $is_recurred = false;
         return $result;
     }
 
