@@ -69,7 +69,7 @@
 ({/if})
 
 ({if $profile.disp_search})
-({if !(!$profile.public_flag_edit && $profile.public_flag_default != 'public')})
+({if $profile.public_flag_edit || $profile.public_flag_default == 'public'})
 <font color="#({$ktai_color_config.font_06})">({$profile.caption})：</font><br>
 ({if $profile.form_type == 'select' || $profile.form_type == 'radio'})
     <select name="profile[({$profile.name})]">
