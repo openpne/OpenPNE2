@@ -25,7 +25,7 @@ function fetch_inc_navi($type, $target_id = null)
             $is_recurred = true;
             $funcargs = func_get_args();
             $result = pne_cache_recursive_call(OPENPNE_FUNCTION_CACHE_LIFETIME_LONG, __FUNCTION__, $funcargs);
-            $is_recurred = false;  
+            $is_recurred = false;
             return $result;
         }
     }
