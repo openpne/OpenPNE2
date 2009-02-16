@@ -37,7 +37,7 @@ function db_message_count_c_message_not_is_read4c_member_to_id($c_member_id_to)
         $is_recurred = true;
         $funcargs = func_get_args();
         $result = pne_cache_recursive_call(OPENPNE_FUNCTION_CACHE_LIFETIME_FAST, __FUNCTION__, $funcargs);
-        $is_recurred = false;  
+        $is_recurred = false;
         return $result;
     }
 
