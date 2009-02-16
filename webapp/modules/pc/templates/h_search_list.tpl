@@ -9,6 +9,7 @@
 
 ({foreach from=$profile_list item=profile})
 ({if $profile.disp_search && ($profile.form_type == 'select' || $profile.form_type == 'checkbox' || $profile.form_type == 'radio')})
+({if $profile.public_flag_edit || $profile.public_flag_default == 'public'})
 <dl>
 <dt><span class="label">({$profile.caption})</span></dt>
 <dd>
@@ -21,6 +22,7 @@
 ({if $cnt % 5 != 0})</ul>({/if})
 </dd>
 </dl>
+({/if})
 ({/if})
 ({/foreach})
 </div>
