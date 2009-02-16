@@ -37,7 +37,7 @@ function db_commu_c_commu4c_commu_id2($c_commu_id)
         $is_recurred = true;
         $funcargs = func_get_args();
         $result = pne_cache_recursive_call(OPENPNE_FUNCTION_CACHE_LIFETIME_LONG, __FUNCTION__, $funcargs);
-        $is_recurred = false;  
+        $is_recurred = false;
         return $result;
     }
 
@@ -58,7 +58,7 @@ function db_commu_c_commu4c_commu_id_k($c_commu_id)
         $is_recurred = true;
         $funcargs = func_get_args();
         $result = pne_cache_recursive_call(OPENPNE_FUNCTION_CACHE_LIFETIME_LONG, __FUNCTION__, $funcargs);
-        $is_recurred = false;  
+        $is_recurred = false;
         return $result;
     }
 
@@ -487,7 +487,7 @@ function db_commu_c_commu_member_list4c_commu_id($c_commu_id ,$limit = 9)
         $is_recurred = true;
         $funcargs = func_get_args();
         $result = pne_cache_recursive_call(OPENPNE_FUNCTION_CACHE_LIFETIME_LONG, __FUNCTION__, $funcargs);
-        $is_recurred = false;  
+        $is_recurred = false;
         return $result;
     }
 
@@ -511,7 +511,7 @@ function db_commu_new_topic_comment4c_commu_id($c_commu_id, $limit, $event_flag 
         $is_recurred = true;
         $funcargs = func_get_args();
         $result = pne_cache_recursive_call(OPENPNE_FUNCTION_CACHE_LIFETIME_FAST, __FUNCTION__, $funcargs);
-        $is_recurred = false;  
+        $is_recurred = false;
         return $result;
     }
 
@@ -611,7 +611,7 @@ function db_commu_c_commu_list4c_member_id_2($c_member_id, $limit = 9)
         $is_recurred = true;
         $funcargs = func_get_args();
         $result = pne_cache_recursive_call(OPENPNE_FUNCTION_CACHE_LIFETIME_LONG, __FUNCTION__, $funcargs);
-        $is_recurred = false;  
+        $is_recurred = false;
         return $result;
     }
 
@@ -1156,7 +1156,7 @@ function db_commu_c_commu_topic_comment_list4c_member_id($c_member_id, $limit)
         $is_recurred = true;
         $funcargs = func_get_args();
         $result = pne_cache_recursive_call(OPENPNE_FUNCTION_CACHE_LIFETIME_FAST, __FUNCTION__, $funcargs);
-        $is_recurred = false;  
+        $is_recurred = false;
         return $result;
     }
 
@@ -1513,7 +1513,7 @@ function db_commu_c_commu_list_lastupdate4c_member_id($c_member_id, $limit)
         $is_recurred = true;
         $funcargs = func_get_args();
         $result = pne_cache_recursive_call(OPENPNE_FUNCTION_CACHE_LIFETIME_FAST, __FUNCTION__, $funcargs);
-        $is_recurred = false;  
+        $is_recurred = false;
         return $result;
     }
 
@@ -1687,7 +1687,7 @@ function db_commu_c_commu_member_list_random4c_commu_id($c_commu_id, $limit)
         $is_recurred = true;
         $funcargs = func_get_args();
         $result = pne_cache_recursive_call(OPENPNE_FUNCTION_CACHE_LIFETIME_LONG, __FUNCTION__, $funcargs);
-        $is_recurred = false;  
+        $is_recurred = false;
         return $result;
     }
 
