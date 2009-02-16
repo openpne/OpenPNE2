@@ -269,7 +269,7 @@ function db_portal_public_c_commmu_list($limit = 5)
         $is_recurred = true;
         $funcargs = func_get_args();
         $result = pne_cache_recursive_call(7200, __FUNCTION__, $funcargs);
-        $is_recurred = false;  
+        $is_recurred = false;
         return $result;
     }
 
