@@ -37,6 +37,10 @@ class pc_page_c_event_edit extends OpenPNE_Action
             openpne_redirect('pc', 'page_c_topic_edit', $p);
         }
 
+        if (!empty($c_topic['filename'])) {
+            $c_topic['original_filename'] = db_file_original_filename4filename($c_topic['filename']);
+        }
+
         $this->set('inc_navi', fetch_inc_navi("c", $c_commu_id));
         $this->set("year", db_commu_year4null());
         $this->set('month', p_regist_prof_c_profile_month_list4null());
@@ -71,6 +75,10 @@ class pc_page_c_event_edit extends OpenPNE_Action
         }
 
         $this->set('event', $c_topic);
+
+        // 許可されている拡張子のリスト
+        $this->set('allowed_extensions', util_get_file_allowed_extensions('string'));
+
         return 'success';
     }
 }

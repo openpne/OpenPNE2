@@ -40,6 +40,10 @@ class pc_page_c_event_add extends OpenPNE_Action
 
         $this->set('event', p_c_event_add_confirm_event4request());
         $this->set('err_msg', $err_msg);
+
+        // 許可されている拡張子のリスト
+        $this->set('allowed_extensions', util_get_file_allowed_extensions('string'));
+
         return 'success';
     }
 }
