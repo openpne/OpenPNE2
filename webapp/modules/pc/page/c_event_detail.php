@@ -40,6 +40,7 @@ class pc_page_c_event_detail extends OpenPNE_Action
         //詳細部分
         $this->set('c_commu', $c_commu);
         $c_topic = db_commu_c_topic4c_commu_topic_id_2($c_commu_topic_id);
+        $c_topic['original_filename'] = db_file_original_filename4filename($c_topic['filename']);
         $this->set('c_topic', $c_topic);
 
         //書き込み一覧部分
@@ -56,6 +57,12 @@ class pc_page_c_event_detail extends OpenPNE_Action
 
         list($c_topic_write, $pager) = db_commu_c_topic_write4c_commu_topic_id($c_commu_topic_id, $page, $page_size, $desc);
 
+        foreach ($c_topic_write as $key => $value) {
+            if ($value['filename']) {
+                $c_topic_write[$key]['original_filename'] = db_file_original_filename4filename($value['filename']);
+            }
+        }
+
         $this->set('c_topic_write', $c_topic_write);
         $this->set('pager', $pager);
 
@@ -71,6 +78,9 @@ class pc_page_c_event_detail extends OpenPNE_Action
         $this->set('body', $body);
 
         $this->set('c_member_id', $u);
+
+        // 許可されている拡張子のリスト
+        $this->set('allowed_extensions', util_get_file_allowed_extensions('string'));
 
         return 'success';
     }

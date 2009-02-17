@@ -47,6 +47,13 @@
 <th>詳細</th>
 <td>({$c_topic.body|nl2br|t_url2cmd:'community':$c_topic.c_member_id|t_cmd:'community'})</td>
 </tr><tr>
+({if $c_topic.filename && $smarty.const.OPENPNE_USE_FILEUPLOAD})
+<th>ファイル</th>
+<div class="block attachFile">
+<td>
+<a href="({t_url m=pc a=do_c_file_download})&amp;target_c_commu_topic_id=({$c_topic.c_commu_topic_id})&amp;sessid=({$PHPSESSID})">({$c_topic.original_filename})</a></td></div>
+</tr><tr>
+({/if})
 <th>募集期限</th>
 <td>({if $c_topic.invite_period != "0000-00-00"})({$c_topic.invite_period})({else})指定なし({/if})</td>
 </tr><tr>
@@ -140,6 +147,11 @@
 ({/if})
 <p class="text">({$item.body|nl2br|t_url2cmd:'community':$item.c_member_id|t_cmd:'community'})</p>
 </div>
+({if $item.filename && $smarty.const.OPENPNE_USE_FILEUPLOAD})
+<div class="block attachFile"><ul>
+<li><a href="({t_url m=pc a=do_c_file_download})&amp;target_c_commu_topic_comment_id=({$item.c_commu_topic_comment_id})&amp;sessid=({$PHPSESSID})">({$item.original_filename})</a></li>
+</ul></div>
+({/if})
 </dd>
 </dl>
 ({/foreach})
@@ -163,6 +175,15 @@
 <tr><th>写真1</th><td><input type="file" class="input_file" name="image_filename1" size="40" /></td></tr>
 <tr><th>写真2</th><td><input type="file" class="input_file" name="image_filename2" size="40" /></td></tr>
 <tr><th>写真3</th><td><input type="file" class="input_file" name="image_filename3" size="40" /></td></tr>
+({if $smarty.const.OPENPNE_USE_FILEUPLOAD})
+<tr>
+<th>ファイル</th>
+<td>
+<input type="file" class="input_file" name="uploadfile" size="40" />
+<p class="caution">※ファイルサイズは({$smarty.const.FILE_MAX_FILESIZE})KB以内({if $allowed_extensions})、ファイルの種類は(({$allowed_extensions}))({/if})のファイルがアップロードできます。</p>
+</td>
+</tr>
+({/if})
 </table>
 <div class="operation">
 <ul class="moreInfo button">
