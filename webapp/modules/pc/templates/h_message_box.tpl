@@ -266,12 +266,14 @@ function clearAll() {
 <col class="target" />
 <col class="title" />
 <col class="date" />
+<col class="open" />
 <tr>
 <th></th>
 <th class="delete">削除</th>
 <th>宛先</th>
 <th>件名</th>
 <th>日付</th>
+<th>開封</th>
 </tr>
 ({foreach from=$c_message_s_list item=c_message_s})
 <tr>
@@ -280,6 +282,7 @@ function clearAll() {
 <td><span>({$c_message_s.nickname})</span></td>
 <td><span><a href="({t_url m=pc a=page_h_message})&amp;target_c_message_id=({$c_message_s.c_message_id})&amp;box=outbox">({$c_message_s.subject})</a></span></td>
 <td><span>({$c_message_s.r_datetime|date_format:"%m月%d日"})</span></td>
+<td class="open"><span>({if $c_message_s.is_read})済({else})未({/if})</span></td>
 </tr>
 ({/foreach})
 </table>
