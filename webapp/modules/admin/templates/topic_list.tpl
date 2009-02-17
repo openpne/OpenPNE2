@@ -94,6 +94,22 @@
 </td>
 </tr>
 ({****})
+({if $item.event_flag})
+<tr>
+<th>開催日時</th>
+<td>
+({$item.open_date})&nbsp;({$item.open_date_comment})
+</td>
+</tr>
+({****})
+<tr>
+<th>開催場所</th>
+<td>
+({$pref[$item.open_pref_id]})({$item.open_pref_comment})
+</td>
+</tr>
+({****})
+({/if})
 <tr>
 <th>トピック本文</th>
 <td class="textbody">
@@ -119,6 +135,29 @@
 <a href="./?m=({$module_name})&amp;a=do_({$hash_tbl->hash('file_download','do')})&amp;filename=({$item.filename})&amp;sessid=({$PHPSESSID})">
 ({$item.original_filename})
 </a>
+</td>
+</tr>
+({****})
+({/if})
+({if $item.event_flag})
+<tr>
+<th>募集期限</th>
+<td>
+({if $item.invite_period != "0000-00-00"})({$item.invite_period})({else})指定なし({/if})
+</td>
+</tr>
+({****})
+<tr>
+<th>募集人数</th>
+<td>
+({if $item.capacity})({$item.capacity})人({else})無制限({/if})
+</td>
+</tr>
+({****})
+<tr>
+<th>参加者</th>
+<td>
+<a href="({t_url _absolute=1 m=pc a=page_c_event_member_list})&amp;target_c_commu_topic_id=({$item.c_commu_topic_id})" target="_blank">({$item.member_num})人</td>
 </td>
 </tr>
 ({****})
