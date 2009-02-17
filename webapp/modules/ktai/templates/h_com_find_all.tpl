@@ -17,7 +17,9 @@
 </center>
 </form>
 <hr color="#({$ktai_color_config.border_02})">
+({if $is_created_commu})
 <font color="#({$ktai_color_config.font_07})">⇒</font><a href="({t_url m=ktai a=page_h_com_add})&amp;({$tail})">({$WORD_COMMUNITY_HALF})作成</a><br>
+({/if})
 <font color="#({$ktai_color_config.font_07})">⇒</font><a href="({t_url m=ktai a=page_h_com_topic_find_all})&amp;({$tail})">ﾄﾋﾟｯｸ検索</a><br>
 <hr color="#({$ktai_color_config.border_01})">
 <br>
