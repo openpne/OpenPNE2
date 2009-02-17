@@ -661,8 +661,9 @@ function db_admin_c_member_id_list4cond_c_member($cond_list, $type = array())
 
     // $orderの例：id_1 , id_2
     // 「-」の前が項目名であとが1なら昇順 2なら降順
+    // プロフィール識別子であれば除外
     $is_order = false;
-    if (!empty($type)) {
+    if (!empty($type) && !(isset($type[2]) && !$type[2] == 'p')) {
         $is_order = true;
 
         switch ($type[0]) {
@@ -823,7 +824,7 @@ function db_admin_c_member_id_list4cond_c_profile($ids, $cond_list, $type)
                 $ids = array_intersect($ids, $temp_ids);
             }
 
-            if($value['name'] == $type[0]) {
+            if($value['name'] == $type[0] && isset($type[2]) && $type[2] == 'p') {
                 $sql = 'SELECT c_member_id FROM c_member_profile WHERE c_profile_id = ?';
 
                 if ($value['form_type'] == 'radio'
@@ -876,7 +877,7 @@ function db_admin_c_member_id_list_sort4username($ids, $type)
 /**
  * メンバーIDリスト取得(絞り込み対応)
  */
-function _db_admin_c_member_id_list($cond_list, $order = '')
+function _db_admin_c_member_id_list($cond_list, $profile_cond_list, $order = '')
 {
     $type = explode('-', $order);
     $ids = db_admin_c_member_id_list4cond_c_member($cond_list, $type);
@@ -892,12 +893,12 @@ function _db_admin_c_member_id_list($cond_list, $order = '')
     }
 
     // ログインIDでソート
-    if ($type[0] == 'username' && OPENPNE_AUTH_MODE != 'email') {
+    if ($type[0] == 'username' && OPENPNE_AUTH_MODE != 'email' && !(isset($type[2]) && $type[2] == 'p')) {
         $ids = db_admin_c_member_id_list_sort4username($ids, $type);
     }
 
     // プロフィール項目で絞り込み
-    $ids = db_admin_c_member_id_list4cond_c_profile($ids, $cond_list, $type);
+    $ids = db_admin_c_member_id_list4cond_c_profile($ids, $profile_cond_list, $type);
 
     return $ids;
 }
@@ -906,9 +907,10 @@ function _db_admin_c_member_id_list($cond_list, $order = '')
  * メンバーリスト取得
  * 誕生年+プロフィール(select,radioのみ)
  */
-function _db_admin_c_member_list($page, $page_size, &$pager, $cond_list, $order)
+function _db_admin_c_member_list($page, $page_size, &$pager, $cond_list, $profile_cond_list, $order)
 {
-    $ids = _db_admin_c_member_id_list($cond_list, $order);
+    $ids = _db_admin_c_member_id_list($cond_list, $profile_cond_list, $order);
+
     $total_num = count($ids);
     $ids = array_slice($ids, ($page - 1) * $page_size, $page_size);
 
@@ -946,14 +948,6 @@ function validate_cond($requests)
     if (!empty($requests['e_year'])) {
         $cond_list['e_year'] = intval($requests['e_year']);
     }
-    //プロフィール
-    $profile_list = db_member_c_profile_list();
-
-    foreach ($profile_list as $key => $value) {
-        if (!empty($requests[$key])) {
-            $cond_list[$key] = intval($requests[$key]);
-        }
-    }
 
     // 最終ログイン時間
     if (!empty($requests['last_login'])) {
@@ -975,6 +969,25 @@ function validate_cond($requests)
     }
     if (isset($requests['e_rank']) && $requests['e_rank'] !== '') {
         $cond_list['e_rank'] = intval($requests['e_rank']);
+    }
+
+    return $cond_list;
+}
+
+/**
+ * メンバー絞り込みパラメータ取得(プロフィール)
+ */
+function validate_profile_cond($requests)
+{
+    $cond_list = array(); 
+
+    //プロフィール
+    $profile_list = db_member_c_profile_list();
+
+    foreach ($profile_list as $key => $value) {
+        if (!empty($requests[$key])) {
+            $cond_list[$key] = intval($requests[$key]);
+        }
     }
 
     return $cond_list;
