@@ -47,6 +47,7 @@ class admin_page_edit_mail_send extends OpenPNE_Action
             'm_ktai_rank_up' => 'ランクアップお知らせメール',
         );
         $admin = array(
+//            'm_admin_regist' => '登録メンバー情報メール',
 // →SNS設定から変更できる
 //            'm_admin_taikai' => '退会メンバー情報メール',
             'm_admin_rank_up' => 'ランクアップお知らせメール',
