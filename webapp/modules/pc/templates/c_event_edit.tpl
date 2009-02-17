@@ -74,6 +74,21 @@
 ({/if})
 <input type="file" class="input_file" name="image_filename3" size="40" />
 </td></tr>
+({if $smarty.const.OPENPNE_USE_FILEUPLOAD})
+<tr>
+<th>ファイル</th>
+<td>
+({if $event.filename})
+<p>
+({$event.original_filename})<br />
+<a href="({t_url m=pc a=do_c_event_edit_delete_c_commu_topic_comment_file})&amp;target_c_commu_topic_id=({$event.c_commu_topic_id})&amp;sessid=({$PHPSESSID})">削除</a>
+</p>
+({/if})
+<input type="file" class="input_file" name="filename4" size="40" />
+<p class="caution">※ファイルサイズは({$smarty.const.FILE_MAX_FILESIZE})KB以内({if $allowed_extensions})、ファイルの種類は(({$allowed_extensions}))({/if})のファイルがアップロードできます。</p>
+</td>
+</tr>
+({/if})
 </table>
 <div class="operation">
 <ul class="moreInfo button">

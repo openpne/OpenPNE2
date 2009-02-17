@@ -31,6 +31,7 @@ class pc_page_c_event_add_confirm extends OpenPNE_Action
         $upfile_obj1 = $_FILES['image_filename1'];
         $upfile_obj2 = $_FILES['image_filename2'];
         $upfile_obj3 = $_FILES['image_filename3'];
+        $upfile_obj4 = $_FILES['uploadfile'];
 
         // エラーチェック
         $err_msg = $errors;
@@ -72,6 +73,20 @@ class pc_page_c_event_add_confirm extends OpenPNE_Action
             }
         }
 
+        if (OPENPNE_USE_FILEUPLOAD) {
+            if (!empty($upfile_obj4) && $upfile_obj4['error'] !== UPLOAD_ERR_NO_FILE) {
+                // ファイルサイズ制限
+                if ($upfile_obj4['size'] === 0 || $upfile_obj4['size'] > FILE_MAX_FILESIZE * 1024) {
+                    $err_msg[] = 'ファイルは' . FILE_MAX_FILESIZE . 'KB以内のファイルにしてください（ただし空のファイルはアップロードできません）';
+                }
+
+                // 拡張子制限
+                if (!util_check_file_extention($upfile_obj4['name'])) {
+                    $err_msg[] = sprintf('アップロードできるファイルの種類は(%s)です', util_get_file_allowed_extensions('string'));
+                }
+            }
+        }
+
         if ($err_msg) {
             $_REQUEST = $event;
             $_REQUEST['target_c_commu_id'] = $event['c_commu_id'];
@@ -86,6 +101,10 @@ class pc_page_c_event_add_confirm extends OpenPNE_Action
         $tmpfile1 = t_image_save2tmp($upfile_obj1, $sessid, "t_1");
         $tmpfile2 = t_image_save2tmp($upfile_obj2, $sessid, "t_2");
         $tmpfile3 = t_image_save2tmp($upfile_obj3, $sessid, "t_3");
+        if (OPENPNE_USE_FILEUPLOAD) {
+            // 一次ファイルをvar/tmpにコピー
+            $tmpfile4 = t_file_save2tmp($upfile_obj4, $sessid, "t_4");
+        }
 
         $this->set('inc_navi', fetch_inc_navi("c", $target_c_commu_id));
 
@@ -95,9 +114,11 @@ class pc_page_c_event_add_confirm extends OpenPNE_Action
         $event['image_filename1_tmpfile'] = $tmpfile1;
         $event['image_filename2_tmpfile'] = $tmpfile2;
         $event['image_filename3_tmpfile'] = $tmpfile3;
+        $event['filename4_tmpfile'] = $tmpfile4;
         $event['image_filename1'] = $upfile_obj1['name'];
         $event['image_filename2'] = $upfile_obj2['name'];
         $event['image_filename3'] = $upfile_obj3['name'];
+        $event['filename4_original_filename'] = $upfile_obj4['name'];
         $this->set('event', $event);
 
         return 'success';
