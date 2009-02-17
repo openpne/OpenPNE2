@@ -23,6 +23,13 @@ class admin_page_list_c_member extends OpenPNE_Action
             $cond .= '&cond['.$key.']='.$value;
         }
 
+        $profile_cond_list = validate_profile_cond((array)$_REQUEST['profile']);
+        $v['profile_cond_list'] = $profile_cond_list;
+
+        foreach ($profile_cond_list as $key => $value) {
+            $cond .= '&profile['.$key.']='.$value;
+        }
+
         $v['cond'] = $cond;
 
         //絞り込みのための年
@@ -60,7 +67,7 @@ class admin_page_list_c_member extends OpenPNE_Action
                 $v['c_member_list'] = array($c_member);
             }
         } else {
-            $v['c_member_list'] = _db_admin_c_member_list($requests['page'], $requests['page_size'], $pager, $cond_list, $order);
+            $v['c_member_list'] = _db_admin_c_member_list($requests['page'], $requests['page_size'], $pager, $cond_list, $profile_cond_list, $order);
         }
         foreach ($v['c_member_list'] as $key => $value) {
             $v['c_member_list'][$key]['c_member_invite'] =
