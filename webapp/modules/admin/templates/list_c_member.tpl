@@ -42,6 +42,9 @@
 ({foreach from=$cond_list key=key item=item})
 <input type="hidden" name="cond[({$key})]" value="({$item})" />
 ({/foreach})
+({foreach from=$profile_cond_list key=key item=item})
+<input type="hidden" name="profile[({$key})]" value="({$item})" />
+({/foreach})
 <strong>表示件数</strong>：
 <select class="basic" name="page_size">
 <option value="10"({if $pager.page_size==10}) selected="selected"({/if})>10件</option>
@@ -95,7 +98,7 @@
 			<th class="cell09" colspan="3"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=birth-1({$cond})">▲</a>生年月日<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=birth-2({$cond})">▼</a></th>
 			({foreach from=$c_profile_list item=prof})
 			({if $prof.name !== 'PNE_POINT'})
-			<th rowspan="2"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=({$prof.name})-1({$cond})">▲</a>({$prof.caption})<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=({$prof.name})-2({$cond})">▼</a></th>
+			<th rowspan="2"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=({$prof.name})-1-p({$cond})">▲</a>({$prof.caption})<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=({$prof.name})-2-p({$cond})">▼</a></th>
 			({/if})
 			({/foreach})
 			<th class="cell16" rowspan="2">PCメールアドレス</th>
@@ -157,10 +160,10 @@
 			({if $prof.name !== 'PNE_POINT'})
 			<th>
 			({if $prof.form_type == 'radio' || $prof.form_type == 'select'})
-			<select class="basic" onChange="Link('?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=({$requests.order})({$cond})&amp;cond[({$prof.name})]='+this.options[this.selectedIndex].value);">
+			<select class="basic" onChange="Link('?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=({$requests.order})({$cond})&amp;profile[({$prof.name})]='+this.options[this.selectedIndex].value);">
 			<option value="">▼選択</option>
 			({foreach item=item from=$prof.options})
-			<option ({if $cond_list[$prof.name]==$item.c_profile_option_id})selected({/if}) value="({$item.c_profile_option_id})"({if $c_member.profile[$profile.name].value == $item.value}) selected="selected"({/if})>({$item.value|default:"--"})</option>
+			<option ({if $profile_cond_list[$prof.name]==$item.c_profile_option_id})selected({/if}) value="({$item.c_profile_option_id})"({if $c_member.profile[$profile.name].value == $item.value}) selected="selected"({/if})>({$item.value|default:"--"})</option>
 			({/foreach})
 			</select>
 			({/if})
