@@ -81,7 +81,7 @@
 <table width="100%">
 ({foreach from=$c_message_sent_list item=c_message_sent})
 <tr><td bgcolor="#({cycle values="`$ktai_color_config.bg_06`,`$ktai_color_config.bg_07`"})">
-({$c_message_sent.r_datetime|date_format:"%Y/%m/%d %H:%M"})<br>
+({$c_message_sent.r_datetime|date_format:"%Y/%m/%d %H:%M"})（({if $c_message_sent.is_read})開封済({else})未開封({/if})）<br>
 <a href="({t_url m=ktai a=page_h_message})&amp;target_c_message_id=({$c_message_sent.c_message_id})&amp;({$tail})">({$c_message_sent.subject|default:"&nbsp;"|t_truncate:50:""})</a>（({$c_message_sent.nickname|t_truncate:17:""|default:"&nbsp;"})さん）<br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_07})">
