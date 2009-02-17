@@ -668,6 +668,29 @@ function do_common_send_mail_regist_get($session, $sender, $aff_id)
     return fetch_send_mail($sender, 'm_ktai_regist_get', $params);
 }
 
+//登録完了メール(管理者宛)
+function do_common_send_mail_regist4admin($c_member_id)
+{
+    $p_list = db_member_c_profile_list4null();
+    $c_profile_list = array();
+    foreach ($p_list as $key => $value) {
+         $c_profile_list[]=$p_list[$key];
+    }
+
+    $c_member = db_member_c_member4c_member_id($c_member_id, true, true, 'private');
+    $c_member['c_member_invite'] = db_member_c_member4c_member_id_LIGHT($c_member['c_member_id_invite']);
+    if (OPENPNE_USE_POINT_RANK) {
+        $c_member['point'] = db_point_get_point($c_member_id);
+        $c_member['rank'] = db_point_get_rank4point($c_member['point']);
+    }
+
+    $params = array(
+        "c_member" => $c_member,
+        "c_profile_list" => $c_profile_list,
+    );
+    return fetch_send_mail(ADMIN_EMAIL, 'm_admin_regist', $params);
+}
+
 //退会完了メール(管理者宛)
 function do_common_send_mail_taikai4admin($c_member_id, $reason)
 {
