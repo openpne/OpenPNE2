@@ -38,6 +38,7 @@ class admin_page_topic_list extends OpenPNE_Action
         $this->set('keyword', $keyword);
         $this->set('target_c_commu_topic_id', $target_c_commu_topic_id);
         $this->set('total_num', $total_num);
+        $this->set('pref', p_regist_prof_c_profile_pref_list4null());
 
         for($i = $page-10<1 ? 1 : $page-10 ;($i<=$total_page_num)&&($i<$page+10);$i++)
             $page_list[]=$i;

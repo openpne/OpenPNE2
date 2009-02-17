@@ -2452,6 +2452,9 @@ function monitor_topic_list($keyword, $page_size, $page)
         if (!empty($value['filename'])) {
             $list[$key]['original_filename'] = db_file_original_filename4filename($value['filename']);
         }
+        if ($value['event_flag']) {
+            $list[$key]['member_num'] = db_commu_count_c_event_member_list4c_commu_topic_id($value['c_commu_topic_id']);
+        }
     }
 
     $sql =
@@ -2495,6 +2498,9 @@ function monitor_topic_list4target_c_commu_topic_id($c_commu_topic_id, $page_siz
 
     foreach ($list as $key => $value) {
         $list[$key]['count_comments'] = _db_count_c_commu_topic_comments4c_commu_topic_id($value['c_commu_topic_id']);
+        if ($value['event_flag']) {
+            $list[$key]['member_num'] = db_commu_count_c_event_member_list4c_commu_topic_id($value['c_commu_topic_id']);
+        }
     }
 
     $sql =
