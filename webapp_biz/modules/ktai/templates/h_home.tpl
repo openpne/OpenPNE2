@@ -287,12 +287,16 @@
 <tr><td bgcolor="#({$ktai_color_config.bg_10})">
 <a href="({t_url m=ktai a=page_h_config_mail_receive})&amp;({$tail})">ﾒｰﾙ受信設定</a><br>
 </td></tr>
+({if !$is_unused_ashiato})
 <tr><td bgcolor="#({$ktai_color_config.bg_09})">
 <a href="({t_url m=ktai a=page_h_config_mail_ashiato})&amp;({$tail})">あしあとお知らせﾒｰﾙ設定</a><br>
 </td></tr>
+({/if})
+({if !$is_unused_diary_comment})
 <tr><td bgcolor="#({$ktai_color_config.bg_10})">
 <a href="({t_url m=ktai a=page_h_member_config_diary_comment_mail})&amp;({$tail})">({$WORD_DIARY_HALF})ｺﾒﾝﾄﾒｰﾙ受信設定</a><br>
 </td></tr>
+({/if})
 <tr><td bgcolor="#({$ktai_color_config.bg_09})">
 <a href="({t_url m=ktai a=page_h_config_public_flag_diary})&amp;({$tail})">({$WORD_DIARY_HALF})の公開範囲設定</a><br>
 </td></tr>
