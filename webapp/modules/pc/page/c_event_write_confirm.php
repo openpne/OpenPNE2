@@ -19,6 +19,9 @@ class pc_page_c_event_write_confirm extends OpenPNE_Action
         $upfile_obj2 = $_FILES['image_filename2'];
         $upfile_obj3 = $_FILES['image_filename3'];
 
+        //添付ファイル
+        $upfile_obj4 = $_FILES['uploadfile'];
+
         $c_topic = db_commu_c_topic4c_commu_topic_id_2($c_commu_topic_id);
         $c_commu_id = $c_topic['c_commu_id'];
 
@@ -61,6 +64,20 @@ class pc_page_c_event_write_confirm extends OpenPNE_Action
             }
         }
 
+        if (OPENPNE_USE_FILEUPLOAD) {
+            if (!empty($upfile_obj4) && $upfile_obj4['error'] !== UPLOAD_ERR_NO_FILE) {
+                // ファイルサイズ制限
+                if ($upfile_obj4['size'] === 0 || $upfile_obj4['size'] > FILE_MAX_FILESIZE * 1024) {
+                    $err_msg[] = 'ファイルは' . FILE_MAX_FILESIZE . 'KB以内のファイルにしてください（ただし空のファイルはアップロードできません）';
+                }
+
+                // 拡張子制限
+                if (!util_check_file_extention($upfile_obj4['name'])) {
+                    $err_msg[] = sprintf('アップロードできるファイルの種類は(%s)です', util_get_file_allowed_extensions('string'));
+                }
+            }
+        }
+
         if ($event_write['add_event_member'] === 1 && $c_topic['capacity'] && $c_topic['capacity'] <= $c_topic['member_num'] ) {
                 $err_msg[] = 'イベントの参加者数制限を超えています';
         }
@@ -80,9 +97,15 @@ class pc_page_c_event_write_confirm extends OpenPNE_Action
 
         $sessid = session_id();
         t_image_clear_tmp($sessid);
+        t_file_clear_tmp($sessid);
         $tmpfile1 = t_image_save2tmp($upfile_obj1, $sessid, "tc_1");
         $tmpfile2 = t_image_save2tmp($upfile_obj2, $sessid, "tc_2");
         $tmpfile3 = t_image_save2tmp($upfile_obj3, $sessid, "tc_3");
+
+        if (OPENPNE_USE_FILEUPLOAD) {
+            // 一時ファイルをvar/tmpにコピー
+            $tmpfile4 = t_file_save2tmp($upfile_obj4, $sessid, "tc_4");
+        }
 
         $this->set('inc_navi', fetch_inc_navi("c", $c_commu_id));
         $event_write['target_c_commu_id'] = $c_commu_id;
@@ -94,6 +117,8 @@ class pc_page_c_event_write_confirm extends OpenPNE_Action
         $event_write['image_filename1'] = $upfile_obj1["name"];
         $event_write['image_filename2'] = $upfile_obj2["name"];
         $event_write['image_filename3'] = $upfile_obj3["name"];
+        $event_write['filename4_tmpfile'] = $tmpfile4;
+        $event_write['filename4_original_filename'] = $upfile_obj4["name"];
 
         $this->set('event_write', $event_write);
         return 'success';
