@@ -447,46 +447,58 @@ function db_admin_delete_c_image_link4image_filename($image_filename)
     $parts = explode('_', $image_filename);
     $prefix = $parts[0];
 
-    if ($prefix == 'b') {
+    switch ($prefix) {
+    case 'b':
         $pkey = (int)$parts[1];
 
         $sql = 'DELETE FROM c_banner WHERE c_banner_id = ? AND image_filename = ?';
         $params = array($pkey, $image_filename);
         db_query($sql, $params);
-    }
+        break;
 
-    if ($prefix == 'c') {
+    case 'c':
         $tbl = 'c_commu';
         $pkey = (int)$parts[1];
 
         _db_admin_empty_filename($tbl, $image_filename, 'image_filename', $pkey);
-    }
+        break;
 
-    if ($prefix == 't' || $prefix == 'tc') {
+    case 't':
+        $tbl = 'c_commu_topic_comment';
+        $pkey = (int)$parts[1];
+        $number = (int)$parts[2];
+
+        $sql = 'SELECT c_commu_topic_comment_id FROM c_commu_topic WHERE c_commu_topic_id = ? AND number = 0';
+        $pkey = (int)db_get_one($sql, array($pkey));
+
+        _db_admin_empty_filename($tbl, $image_filename, 'image_filename'.$number, $pkey);
+        break;
+
+    case 'tc':
         $tbl = 'c_commu_topic_comment';
         $pkey = (int)$parts[1];
         $number = (int)$parts[2];
 
         _db_admin_empty_filename($tbl, $image_filename, 'image_filename'.$number, $pkey);
-    }
+        break;
 
-    if ($prefix == 'd') {
+    case 'd':
         $tbl = 'c_diary';
         $pkey = (int)$parts[1];
         $number = (int)$parts[2];
 
         _db_admin_empty_filename($tbl, $image_filename, 'image_filename_'.$number, $pkey);
-    }
+        break;
 
-    if ($prefix == 'dc') {
+    case 'dc':
         $tbl = 'c_diary_comment';
         $pkey = (int)$parts[1];
         $number = (int)$parts[2];
 
         _db_admin_empty_filename($tbl, $image_filename, 'image_filename_'.$number, $pkey);
-    }
+        break;
 
-    if ($prefix == 'm') {
+    case 'm':
         $tbl = 'c_member';
         $pkey = (int)$parts[1];
 
@@ -494,17 +506,24 @@ function db_admin_delete_c_image_link4image_filename($image_filename)
         _db_admin_empty_filename($tbl, $image_filename, 'image_filename_1', $pkey);
         _db_admin_empty_filename($tbl, $image_filename, 'image_filename_2', $pkey);
         _db_admin_empty_filename($tbl, $image_filename, 'image_filename_3', $pkey);
-    }
+        break;
 
-    if ($prefix == 'ms') {
+    case 'ms':
         $tbl = 'c_message';
         $pkey = (int)$parts[1];
         $number = (int)$parts[2];
 
         _db_admin_empty_filename($tbl, $image_filename, 'image_filename_'.$number, $pkey);
-    }
+        break;
 
-    if ($prefix == 'a') {
+    case 'r':
+        $tbl = 'c_rank';
+        $pkey = (int)$parts[1];
+
+        _db_admin_empty_filename($tbl, $image_filename, 'image_filename', $pkey);
+        break;
+
+    case 'a':
         $tbl = 'c_album';
         $pkey = (int)$parts[1];
 
@@ -513,14 +532,19 @@ function db_admin_delete_c_image_link4image_filename($image_filename)
         $sql = 'DELETE FROM c_album_image WHERE c_album_id = ? AND image_filename = ?';
         $params = array($pkey, $image_filename);
         db_query($sql, $params);
-    }
+        break;
 
-    if ($prefix == 'biz') {
+    case 'g':
         $tbl = 'biz_group';
-        _db_admin_empty_filename($tbl, $image_filename);
 
-        $tbl = 'biz_shisetsu';
         _db_admin_empty_filename($tbl, $image_filename);
+        break;
+
+    case 's':
+        $tbl = 'biz_shisetsu';
+
+        _db_admin_empty_filename($tbl, $image_filename);
+        break;
     }
 }
 
