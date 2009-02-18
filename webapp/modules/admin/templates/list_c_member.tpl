@@ -287,9 +287,11 @@
 ({if $cond})
 <input type="hidden" name="a" value="page_({$hash_tbl->hash('send_messages_search')})" />
 ({foreach from=$cond_list key=key item=item})
-<input type="hidden" name="({$key})" value="({$item})" />
+<input type="hidden" name="cond[({$key})]" value="({$item})" />
 ({/foreach})
-<input type="hidden" name="cond" value="({$cond})" />
+({foreach from=$profile_cond_list key=key item=item})
+<input type="hidden" name="profile[({$key})]" value="({$item})" />
+({/foreach})
 ({else})
 <input type="hidden" name="a" value="page_({$hash_tbl->hash('send_messages_all')})" />
 ({/if})
