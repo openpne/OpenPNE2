@@ -1565,12 +1565,6 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 .messageList col.date {
 	width: 80px;
 }
-.messageList td.open {
-	text-align: center;
-}
-.messageList col.open {
-	width: 35px;
-}
 .messageList table span {
 	width: 100%;
 	display: block;
