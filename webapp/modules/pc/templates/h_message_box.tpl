@@ -242,8 +242,15 @@ function clearAll() {
 ({/if})
 </div>
 
+<div class="pagerRelativeMulti">
+<div class="text">
+<p class="icons">
+<span><img src="({t_img_url_skin filename=icon_mail_2})" alt="受信者開封済み" />受信者開封済み</span><br />
+<span><img src="({t_img_url_skin filename=icon_mail_3})" alt="受信者未開封" />受信者未開封</span>
+</p>
+</div>
+<div class="pager">
 ({capture name=pager})({strip})
-<div class="pagerRelative">
 ({if $s_data.is_s_prev})<p class="prev"><a href="({t_url m=pc a=page_h_message_box})&amp;s_page=({$s_data.s_page-1})&amp;box=outbox&amp;keyword=({$url_keyword})&amp;target_c_member_id=({$target_c_member_id})&amp;year=({$requests.year})&amp;month=({$requests.month})&amp;day=({$requests.day})">前を表示</a></p>({/if})
 <p class="number">({$total_num})件中 ({$s_data.s_page*$page_size-$page_size+1})件～
 ({if $s_data.s_page*$page_size > $count_c_message_s_list})
@@ -253,9 +260,10 @@ function clearAll() {
 ({/if})
 件を表示</p>
 ({if $s_data.is_s_next})<p class="next"><a href="({t_url m=pc a=page_h_message_box})&amp;s_page=({$s_data.s_page+1})&amp;box=outbox&amp;keyword=({$url_keyword})&amp;target_c_member_id=({$target_c_member_id})&amp;year=({$requests.year})&amp;month=({$requests.month})&amp;day=({$requests.day})">次を表示</a></p>({/if})
-</div>
 ({/strip})({/capture})
 ({$smarty.capture.pager|smarty:nodefaults})
+</div>
+</div>
 
 ({t_form_block m=pc a=do_h_message_box_delete_message _attr='name="h_message_box_delete_message"'})
 <input type="hidden" name="box" value="({$box})" />
@@ -266,28 +274,33 @@ function clearAll() {
 <col class="target" />
 <col class="title" />
 <col class="date" />
-<col class="open" />
 <tr>
 <th></th>
 <th class="delete">削除</th>
 <th>宛先</th>
 <th>件名</th>
 <th>日付</th>
-<th>開封</th>
 </tr>
 ({foreach from=$c_message_s_list item=c_message_s})
 <tr>
-<td class="status"><span><img src="({t_img_url_skin filename=icon_mail_3})" alt="" /></span></td>
+<td class="status"><span>
+({if $c_message_s.is_read})
+<img src="({t_img_url_skin filename=icon_mail_2})" alt="受信者開封済み" />
+({else})
+<img src="({t_img_url_skin filename=icon_mail_3})" alt="受信者未開封" />
+({/if})
+</span></td>
 <td><span><input type="checkbox" class="input_checkbox" name="c_message_id[]" value="({$c_message_s.c_message_id})" /></span></td>
 <td><span>({$c_message_s.nickname})</span></td>
 <td><span><a href="({t_url m=pc a=page_h_message})&amp;target_c_message_id=({$c_message_s.c_message_id})&amp;box=outbox">({$c_message_s.subject})</a></span></td>
 <td><span>({$c_message_s.r_datetime|date_format:"%m月%d日"})</span></td>
-<td class="open"><span>({if $c_message_s.is_read})済({else})未({/if})</span></td>
 </tr>
 ({/foreach})
 </table>
 
+<div class="pagerRelative">
 ({$smarty.capture.pager|smarty:nodefaults})
+</div>
 
 <div class="operation">
 <p><a href="#" onclick="return checkAll();" onkeypress="return checkAll();">全てをチェック</a> / <a href="#" onclick="return clearAll();" onkeypress="return clearAll();">全てのチェックをはずす</a></p>
