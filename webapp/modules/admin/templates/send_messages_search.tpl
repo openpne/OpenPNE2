@@ -48,7 +48,10 @@
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('send_messages_search','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
 ({foreach from=$cond_list key=key item=item})
-<input type="hidden" name="({$key})" value="({$item})" />
+<input type="hidden" name="cond[({$key})]" value="({$item})" />
+({/foreach})
+({foreach from=$profile_cond_list key=key item=item})
+<input type="hidden" name="profile[({$key})]" value="({$item})" />
 ({/foreach})
 <dl>
 <dt class="label">送信種別</dt>
