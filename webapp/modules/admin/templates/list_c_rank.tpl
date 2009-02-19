@@ -92,4 +92,27 @@
 </tbody>
 </table>
 
+<h3 class="item">ポイントクリア機能</h3>
+<p>全メンバーのポイントを指定した初期ポイントに設定します。</p>
+
+<table class="basicType2">
+<thead>
+<tr>
+<th>初期ポイント</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody>
+
+<form action="./" method="post">
+<input type="hidden" name="m" value="({$module_name})" />
+<input type="hidden" name="a" value="do_({$hash_tbl->hash('update_c_point_clear','do')})" />
+<input type="hidden" name="sessid" value="({$PHPSESSID})" />
+<td><input type="text" class="basic" name="point" value="0" size="10" /></td>
+<td><span class="textBtnS"><input type="submit" class="submit" value="　変　更　"></span></td>
+</form>
+
+</tbody>
+</table>
+
 ({$inc_footer|smarty:nodefaults})
