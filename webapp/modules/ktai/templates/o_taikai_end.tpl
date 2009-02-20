@@ -1,4 +1,4 @@
-({$inc_html_header|smarty:nodefaults})
+({$inc_ktai_header|smarty:nodefaults})
 <table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_02})">
 <font color="#({$ktai_color_config.font_05})"><a name="top">退会手続き完了</a></font><br>
 </td></tr></table>
