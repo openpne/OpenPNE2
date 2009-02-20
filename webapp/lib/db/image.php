@@ -52,7 +52,7 @@ function db_image_c_tmp_image4filename($filename)
 {
     $sql = 'SELECT * FROM c_tmp_image WHERE filename = ?';
     $params = array($filename);
-    return db_get_row($sql, $params);
+    return db_get_row($sql, $params, 'main');
 }
 
 /*** write ***/
