@@ -33,7 +33,7 @@
 ({/t_form_block})
 
 <ul class="moreInfo">
-({if $is_created_commu})
+({if $c_commu_category_is_create_commu})
 <li><a href="({t_url m=pc a=page_h_com_add})">新規作成</a>(作成の前に、似た({$WORD_COMMUNITY})がないかご確認ください)</li>
 ({/if})
 <li><a href="({t_url m=pc a=page_h_com_topic_find_all})">トピック検索</a></li>

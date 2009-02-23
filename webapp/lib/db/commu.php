@@ -1906,13 +1906,17 @@ function db_commu_c_commu_category4null()
 // 作成可能なコミュニティカテゴリリストを取得
 function db_commu_c_commu_category4createflag()
 {
-    $create_flag = 1;
+    return db_commu_c_commu_category4is_create_commu();
+}
+function db_commu_c_commu_category4is_create_commu()
+{
+    $is_create_commu = 1;
     $sql = 'SELECT cat.* FROM c_commu_category AS cat' .
             ' INNER JOIN c_commu_category_parent AS pcat' .
             ' USING (c_commu_category_parent_id)' .
-            ' WHERE cat.create_flag = ?' .
+            ' WHERE cat.is_create_commu = ?' .
             ' ORDER BY pcat.sort_order, cat.sort_order';
-    $params = array(intval($create_flag));
+    $params = array(intval($is_create_commu));
     return db_get_all($sql,$params);
 }
 
@@ -1941,7 +1945,11 @@ function db_commu_c_commu_category_list4null()
  */
 function db_commu_c_commu_category_is_create_flag($c_commu_category_id)
 {
-    $sql = 'SELECT create_flag FROM c_commu_category'
+    return db_commu_c_commu_category_is_create_commu($c_commu_category_id);
+}
+function db_commu_c_commu_category_is_create_commu($c_commu_category_id)
+{
+    $sql = 'SELECT is_create_commu FROM c_commu_category'
          . ' WHERE c_commu_category_id = ?';
     $params = array(intval($c_commu_category_id));
     return db_get_one($sql, $params);
