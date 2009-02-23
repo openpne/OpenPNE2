@@ -24,6 +24,12 @@ class ktai_page_c_edit extends OpenPNE_Action
 
         //---
 
+        //-- Category Check
+        $c_commu_category_list = db_commu_c_commu_category4is_create_commu();
+        if (!$c_commu_category_list) {
+            ktai_display_error('現在' . WORD_COMMUNITY_HALF . 'の設定を変更することは出来ません');
+        }
+
         $topic_authority_list=
         array(
             'public' => WORD_COMMUNITY_HALF . '参加者全員が作成可能',
@@ -32,7 +38,7 @@ class ktai_page_c_edit extends OpenPNE_Action
         $this->set('topic_authority_list', $topic_authority_list);
 
         //カテゴリのリスト
-        $this->set('c_commu_category_list', db_commu_c_commu_category4createflag());
+        $this->set('c_commu_category_list', $c_commu_category_list);
 
         $this->set('is_topic', db_commu_is_topic4c_commu_id($target_c_commu_id));
 
