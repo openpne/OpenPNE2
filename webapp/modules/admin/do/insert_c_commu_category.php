@@ -17,7 +17,8 @@ class admin_do_insert_c_commu_category extends OpenPNE_Action
         db_admin_insert_c_commu_category(
             $requests['c_commu_category_parent_id'],
             $requests['name'],
-            $requests['sort_order']);
+            $requests['sort_order'],
+            $requests['is_create_commu']);
 
         admin_client_redirect('edit_category', '小カテゴリを追加しました');
     }

@@ -89,9 +89,9 @@
 <input class="basic" type="text" name="name" value="({$option.name})" size="20" />
 ({/strip})</td>
 <td><input class="basic" type="text" name="sort_order" value="({$option.sort_order})" size="5" /></td>
-<td><select class="basic" name="create_flag">
-<option value="1"({if $option.create_flag}) selected="selected"({/if})>可</option>
-<option value="0"({if !$option.create_flag}) selected="selected"({/if})>不可</option>
+<td><select class="basic" name="is_create_commu">
+<option value="1"({if $option.is_create_commu}) selected="selected"({/if})>可</option>
+<option value="0"({if !$option.is_create_commu}) selected="selected"({/if})>不可</option>
 </select></td>
 <td><span class="textBtnS"><input type="submit" value="　変　更　" /></span></td>
 </form>
@@ -116,7 +116,10 @@
 <input class="basic" type="text" name="name" value="" size="20" />
 ({/strip})</td>
 <td><input class="basic" type="text" name="sort_order" value="" size="5" /></td>
-<td><input class="basic" type="text" name="sort_order" value="" size="5" /></td>
+<td><select class="basic" name="is_create_commu">
+<option value="1" selected>可</option>
+<option value="0">不可</option>
+</select></td>
 <td colspan="2"><span class="textBtnS"><input type="submit" value="項目追加" /></span></td>
 </form>
 </tr>

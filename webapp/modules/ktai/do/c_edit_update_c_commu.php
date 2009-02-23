@@ -30,8 +30,8 @@ class ktai_do_c_edit_update_c_commu extends OpenPNE_Action
             openpne_redirect('ktai', 'page_c_edit', $p);
         }
 
-        if (!db_commu_c_commu_category_is_create_flag($c_commu_category_id)) {
-            $p = array('msg' => 50);
+        if (!db_commu_c_commu_category_is_create_commu($c_commu_category_id)) {
+            $p = array('target_c_commu_id' => $target_c_commu_id, 'msg' => 50);
             openpne_redirect('ktai', 'page_c_edit', $p);
         }
         // ----------
