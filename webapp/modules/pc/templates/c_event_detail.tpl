@@ -49,9 +49,8 @@
 </tr><tr>
 ({if $c_topic.filename && $smarty.const.OPENPNE_USE_FILEUPLOAD})
 <th>ファイル</th>
-<div class="block attachFile">
 <td>
-<a href="({t_url m=pc a=do_c_file_download})&amp;target_c_commu_topic_id=({$c_topic.c_commu_topic_id})&amp;sessid=({$PHPSESSID})">({$c_topic.original_filename})</a></td></div>
+<a href="({t_url m=pc a=do_c_file_download})&amp;target_c_commu_topic_id=({$c_topic.c_commu_topic_id})&amp;sessid=({$PHPSESSID})">({$c_topic.original_filename})</a></td>
 </tr><tr>
 ({/if})
 <th>募集期限</th>
