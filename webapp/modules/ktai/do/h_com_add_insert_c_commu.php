@@ -27,7 +27,7 @@ class ktai_do_h_com_add_insert_c_commu extends OpenPNE_Action
             openpne_redirect('ktai', 'page_h_com_add', $p);
         }
 
-        if (!db_commu_c_commu_category_is_create_flag($c_commu_category_id)) {
+        if (!db_commu_c_commu_category_is_create_commu($c_commu_category_id)) {
             $p = array('msg' => 50);
             openpne_redirect('ktai', 'page_h_com_add', $p);
         }

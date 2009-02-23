@@ -350,22 +350,23 @@ function db_admin_delete_c_commu_category_parent($c_commu_category_parent_id)
     db_query($sql, $params);
 }
 
-function db_admin_insert_c_commu_category($c_commu_category_parent_id, $name, $sort_order)
+function db_admin_insert_c_commu_category($c_commu_category_parent_id, $name, $sort_order, $is_create_commu)
 {
     $data = array(
         'c_commu_category_parent_id' => intval($c_commu_category_parent_id),
         'name' => $name,
         'sort_order' => intval($sort_order),
+        'is_create_commu' => intval($is_create_commu),
     );
     return db_insert('c_commu_category', $data);
 }
 
-function db_admin_update_c_commu_category($c_commu_category_id, $name, $sort_order, $create_flag)
+function db_admin_update_c_commu_category($c_commu_category_id, $name, $sort_order, $is_create_commu)
 {
     $data = array(
         'name' => $name,
         'sort_order' => intval($sort_order),
-        'create_flag' => intval($create_flag),
+        'is_create_commu' => intval($is_create_commu),
     );
     $where = array('c_commu_category_id' => intval($c_commu_category_id));
     db_update('c_commu_category', $data, $where);
