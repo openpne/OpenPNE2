@@ -2456,9 +2456,16 @@ function monitor_topic_list($keyword, $page_size, $page)
         $where = '';
     }
 
-    $select = 'SELECT ct.*,'
-            . ' ct.name AS topic_name, c.name AS commu_name,'
-            . ' ctc.body, ctc.filename, ctc.image_filename1, ctc.image_filename2, ctc.image_filename3';
+    if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
+        $select = 'SELECT ct.*,'
+                . ' ct.name AS topic_name, c.name AS commu_name,'
+                . ' ctc.body, ctc.filename, ctc.image_filename1, ctc.image_filename2, ctc.image_filename3,'
+                . ' case when ct.invite_period = \'0001-01-01 BC\' THEN \'0000-00-00\' ELSE to_char(ct.invite_period,\'YYYY-MM-DD\') END as invite_period';
+    } else {
+        $select = 'SELECT ct.*,'
+                . ' ct.name AS topic_name, c.name AS commu_name,'
+                . ' ctc.body, ctc.filename, ctc.image_filename1, ctc.image_filename2, ctc.image_filename3';
+    }
 
     $from   = ' FROM c_commu_topic AS ct'
             . ' LEFT JOIN c_commu AS c ON c.c_commu_id = ct.c_commu_id'
@@ -2503,11 +2510,20 @@ function monitor_topic_list4target_c_commu_topic_id($c_commu_topic_id, $page_siz
     $where = " where ct.c_commu_topic_id = ? ";
     $params[] = intval($c_commu_topic_id);
 
-    $select = "SELECT ct.*," .
-            "ct.name as topic_name,c.name as commu_name," .
-            "m.nickname,ctc.body as body," .
-            "ctc.image_filename1 as image_filename1,ctc.image_filename2 as image_filename2,ctc.image_filename3 as image_filename3," .
-            "ctc.filename as filename,f.original_filename as original_filename";
+    if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
+        $select = "SELECT ct.*," .
+                "ct.name as topic_name,c.name as commu_name," .
+                "m.nickname,ctc.body as body," .
+                "ctc.image_filename1 as image_filename1,ctc.image_filename2 as image_filename2,ctc.image_filename3 as image_filename3," .
+                "ctc.filename as filename,f.original_filename as original_filename," .
+                "case when ct.invite_period = '0001-01-01 BC' THEN '0000-00-00' ELSE to_char(ct.invite_period,'YYYY-MM-DD') END as invite_period";
+    } else {
+        $select = "SELECT ct.*," .
+                "ct.name as topic_name,c.name as commu_name," .
+                "m.nickname,ctc.body as body," .
+                "ctc.image_filename1 as image_filename1,ctc.image_filename2 as image_filename2,ctc.image_filename3 as image_filename3," .
+                "ctc.filename as filename,f.original_filename as original_filename";
+    }
 
     $from = " FROM c_commu_topic as ct"
             ." LEFT JOIN c_member as m ON ct.c_member_id = m.c_member_id "
