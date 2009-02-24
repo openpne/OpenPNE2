@@ -53,6 +53,22 @@
 </td>
 </tr>
 ({****})
+({if $topic.event_flag})
+<tr>
+<th>開催日時</th>
+<td>
+({$topic.open_date})&nbsp;({$topic.open_date_comment})
+</td>
+</tr>
+({****})
+<tr>
+<th>開催場所</th>
+<td>
+({$pref[$topic.open_pref_id]})({$topic.open_pref_comment})
+</td>
+</tr>
+({****})
+({/if})
 <tr>
 <th>トピック本文</th>
 <td width="500">
@@ -82,6 +98,29 @@
 </tr>
 ({/if})
 ({****})
+({if $topic.event_flag})
+<tr>
+<th>募集期限</th>
+<td>
+({if $topic.invite_period != "0000-00-00"})({$topic.invite_period})({else})指定なし({/if})
+</td>
+</tr>
+({****})
+<tr>
+<th>募集人数</th>
+<td>
+({if $topic.capacity})({$topic.capacity})人({else})無制限({/if})
+</td>
+</tr>
+({****})
+<tr>
+<th>参加者</th>
+<td>
+<a href="({t_url _absolute=1 m=pc a=page_c_event_member_list})&amp;target_c_commu_topic_id=({$topic.c_commu_topic_id})" target="_blank">({$topic.member_num})人</td>
+</td>
+</tr>
+({****})
+({/if})
 </tbody>
 </table>
 
