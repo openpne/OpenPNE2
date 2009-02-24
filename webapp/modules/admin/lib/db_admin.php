@@ -1895,7 +1895,7 @@ function get_analysis_generation()
 
     if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
         $sql = "SELECT ((date_part('year', now()) - birth_year)- " .
-            "cast(to_char(CURRENT_DATE,'.....$')<(to_char(birth_month, '00') || '-' || to_char(birth_day, '00')) as int)) " .
+            "cast(to_char(to_char(CURRENT_DATE, 'MMDD')<(to_char(birth_month, '00') || '-' || to_char(birth_day, '00')) as int)) " .
             "AS age FROM c_member WHERE birth_year <> 0;";
     } else {
         $today = getdate();
