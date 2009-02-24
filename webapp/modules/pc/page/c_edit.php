@@ -27,15 +27,11 @@ class pc_page_c_edit extends OpenPNE_Action
         }
         //---
 
-        //- Category Check
-        $c_commu_category_list = db_commu_c_commu_category4is_create_commu();
-        if (!$c_commu_category_list) {
-            openpne_redirect('pc','page_h_err_c_edit');
-        }
 
         $this->set('inc_navi', fetch_inc_navi('c', $target_c_commu_id));
         //コミュニティデータ取得
         $c_commu = db_commu_c_commu4c_commu_id($target_c_commu_id);
+        $c_commu_category_id_now = $c_commu['c_commu_category_id'];
         if ($name) {
             $c_commu['name'] = $name;
         }
@@ -57,7 +53,17 @@ class pc_page_c_edit extends OpenPNE_Action
         }
 
         $this->set('c_commu', $c_commu);
+
+        // カテゴリリスト
+        $c_commu_category_list = db_commu_c_commu_category4is_create_commu();
+
+        // 現在設定されているカテゴリが作成不可ならば、別途取得
+        if (!db_commu_c_commu_category_is_create_commu($c_commu_category_id_now)) {
+            array_push($c_commu_category_list, db_commu_get_c_commu_category4id($c_commu_category_id_now));
+            asort($c_commu_category_list);
+        }
         $this->set('c_commu_category_list', $c_commu_category_list);
+
         $public_flag_list=
         array(
             'public' =>'参加：誰でも参加可能、掲示板：全員に公開',
