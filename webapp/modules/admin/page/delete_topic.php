@@ -15,7 +15,7 @@ class admin_page_delete_topic extends OpenPNE_Action
         $target_c_commu_topic_id = $requests['target_c_commu_topic_id'];
 
         $v = array();
-        $topic = db_commu_c_topic4c_commu_topic_id($target_c_commu_topic_id);
+        $topic = db_commu_c_topic4c_commu_topic_id_2($target_c_commu_topic_id);
 
         if (!$topic) {
             admin_client_redirect('topic_list', '指定されたトピック・イベントは存在しません');
@@ -28,6 +28,7 @@ class admin_page_delete_topic extends OpenPNE_Action
         $topic['c_member'] = $member;
         $topic['original_filename'] = db_file_original_filename4filename($topic['filename']);
         $this->set('topic', $topic);
+        $this->set('pref', p_regist_prof_c_profile_pref_list4null());
 
         $v['SNS_NAME'] = SNS_NAME;
         $v['OPENPNE_VERSION'] = OPENPNE_VERSION;
