@@ -34,11 +34,6 @@ class pc_do_c_edit_update_c_commu extends OpenPNE_Action
         }
         //---
 
-        // Category Check
-        if (!db_commu_c_commu_category4is_create_commu()) {
-            openpne_redirect('pc', 'page_h_err_c_edit');
-        }
-
         $err_msg = array();
         if (!$name) $err_msg[] = WORD_COMMUNITY . "名を入力してください";
         if (!$info) $err_msg[] = WORD_COMMUNITY . "の説明を入力してください";
@@ -48,7 +43,8 @@ class pc_do_c_edit_update_c_commu extends OpenPNE_Action
             $err_msg[] = 'その' . WORD_COMMUNITY . 'はすでに存在します';
         }
 
-        if (!db_commu_c_commu_category_is_create_commu($c_commu_category_id)) {
+        $c_commu = db_commu_c_commu4c_commu_id($target_c_commu_id);
+        if (($c_commu_category_id != $c_commu['c_commu_category_id']) && (!db_commu_c_commu_category_is_create_commu($c_commu_category_id))) {
             $err_msg[] = 'そのカテゴリに新規に' . WORD_COMMUNITY . 'を作ることはできません';
         }
 
