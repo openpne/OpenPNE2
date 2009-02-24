@@ -1209,7 +1209,7 @@ function p_access_analysis_page_access_analysis_page4ym($ymd, $month_flag, $ktai
     $params = array(intval($ktai_flag));
     if ($month_flag) {
         if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
-            $sql .= " and substr(r_datetime,1,7) = ? ";
+            $sql .= " and to_char(r_datetime, 'YYYY-MM') = ? ";
         } else {
             $sql .= " and left(r_datetime, 7) = ? ";
         }
@@ -1217,7 +1217,7 @@ function p_access_analysis_page_access_analysis_page4ym($ymd, $month_flag, $ktai
         array_push($params,substr($ymd,0,7));
     } else {
         if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
-            $sql .= " and substr(r_datetime,1,10) = ? ";
+            $sql .= " and to_char(r_datetime, 'YYYY-MM-DD') = ? ";
         } else {
             $sql .= " and left(r_datetime,10) = ? ";
         }
@@ -1313,14 +1313,14 @@ function p_access_analysis_target_commu_target_commu4ym_page_name
     $params = array(intval($ktai_flag));
     if ($month_flag) {
         if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
-            $sql .= " and substr(r_datetime,1,7) = ? ";
+            $sql .= " and to_char(r_datetime, 'YYYY-MM') = ? ";
         } else {
             $sql .= " and left(r_datetime, 7) = ? ";
         }
         array_push($params,substr($ymd,0,7));
     } else {
         if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
-            $sql .= " and substr(r_datetime,1,10) = ? ";
+            $sql .= " and to_char(r_datetime, 'YYYY-MM-DD') = ? ";
         } else {
             $sql .= " and left(r_datetime,10) = ? ";
         }
@@ -1352,14 +1352,14 @@ function p_access_analysis_target_commu_target_commu4ym_page_name
     $params = array(intval($ktai_flag));
     if ($month_flag) {
         if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
-            $sql .= " and substr(r_datetime,1,7) = ? ";
+            $sql .= " and to_char(r_datetime, 'YYYY-MM') = ? ";
         } else {
             $sql .= " and left(r_datetime, 7) = ? ";
         }
         array_push($params,substr($ymd,0,7));
     } else {
         if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
-            $sql .= " and substr(r_datetime,1,10) = ? ";
+            $sql .= " and to_char(r_datetime, 'YYYY-MM-DD') = ? ";
         } else {
             $sql .= " and left(r_datetime,10) = ? ";
         }
@@ -1494,14 +1494,14 @@ function p_access_analysis_target_diary_target_diary4ym_page_name
     $params = array(intval($ktai_flag));
     if ($month_flag) {
         if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
-            $sql .= " and substr(r_datetime,1,7) = ? ";
+            $sql .= " and to_char(r_datetime, 'YYYY-MM') = ? ";
         } else {
             $sql .= " and left(r_datetime, 7) = ? ";
         }
         array_push($params,substr($ymd,0,7));
     } else {
         if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
-            $sql .= " and substr(r_datetime,1,10) = ? ";
+            $sql .= " and to_char(r_datetime, 'YYYY-MM-DD') = ? ";
         } else {
             $sql .= " and left(r_datetime,10) = ? ";
         }
@@ -1534,14 +1534,14 @@ function p_access_analysis_target_diary_target_diary4ym_page_name
     $params = array(intval($ktai_flag));
     if ($month_flag) {
         if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
-            $sql .= " and substr(r_datetime,1,7) = ? ";
+            $sql .= " and to_char(r_datetime, 'YYYY-MM') = ? ";
         } else {
             $sql .= " and left(r_datetime, 7) = ? ";
         }
         array_push($params,substr($ymd,0,7));
     } else {
         if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
-            $sql .= " and substr(r_datetime,1,10) = ? ";
+            $sql .= " and to_char(r_datetime, 'YYYY-MM-DD') = ? ";
         } else {
             $sql .= " and left(r_datetime,10) = ? ";
         }
@@ -1895,7 +1895,7 @@ function get_analysis_generation()
 
     if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
         $sql = "SELECT ((date_part('year', now()) - birth_year)- " .
-            "cast(substring(CURRENT_DATE,'.....$')<(to_char(birth_month, '00') || '-' || to_char(birth_day, '00')) as int)) " .
+            "cast(to_char(CURRENT_DATE,'.....$')<(to_char(birth_month, '00') || '-' || to_char(birth_day, '00')) as int)) " .
             "AS age FROM c_member WHERE birth_year <> 0;";
     } else {
         $today = getdate();
