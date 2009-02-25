@@ -45,7 +45,7 @@ class pc_do_c_edit_update_c_commu extends OpenPNE_Action
 
         $c_commu = db_commu_c_commu4c_commu_id($target_c_commu_id);
         if (($c_commu_category_id != $c_commu['c_commu_category_id']) && (!db_commu_c_commu_category_is_create_commu($c_commu_category_id))) {
-            $err_msg[] = 'そのカテゴリに新規に' . WORD_COMMUNITY . 'を作ることはできません';
+            $err_msg[] = '指定されたカテゴリは選択できません';
         }
 
         if (!empty($upfile_obj) && $upfile_obj['error'] !== UPLOAD_ERR_NO_FILE) {
