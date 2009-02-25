@@ -14,6 +14,11 @@ class admin_do_update_c_point_clear extends OpenPNE_Action
 
     function execute($requests)
     {
+        // ポイント・ランク機能が無効
+        if (!OPENPNE_USE_POINT_RANK) {
+            admin_client_redirect('top', '指定されたページにはアクセスできません');
+        }
+
         db_admin_update_c_point_clear($requests['point']);
 
         admin_client_redirect('list_c_rank', '初期ポイントに変更しました');
