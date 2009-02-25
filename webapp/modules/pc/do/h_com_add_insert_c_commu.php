@@ -26,7 +26,7 @@ class pc_do_h_com_add_insert_c_commu extends OpenPNE_Action
             $err_msg[] = 'その' . WORD_COMMUNITY . 'はすでに存在します';
 
         if (!db_commu_c_commu_category_is_create_commu($c_commu_category_id)) {
-            $err_msg[] = 'そのカテゴリに新規に' . WORD_COMMUNITY . 'を作ることはできません';
+            $err_msg[] = '指定されたカテゴリは選択できません';
         }
 
         if ($err_msg) {
