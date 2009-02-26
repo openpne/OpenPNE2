@@ -295,7 +295,7 @@ CREATE TABLE `c_commu_category` (
   `name` text NOT NULL,
   `sort_order` int(11) NOT NULL default '0',
   `c_commu_category_parent_id` int(11) NOT NULL default '0',
-  `create_flag` tinyint(1) NOT NULL default '0',
+  `is_create_commu` tinyint(1) NOT NULL default '1',
   PRIMARY KEY  (`c_commu_category_id`),
   KEY `c_commu_category_parent_id` (`c_commu_category_parent_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
