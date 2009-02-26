@@ -1904,10 +1904,6 @@ function db_commu_c_commu_category4null()
 }
 
 // 作成可能なコミュニティカテゴリリストを取得
-function db_commu_c_commu_category4createflag()
-{
-    return db_commu_c_commu_category4is_create_commu();
-}
 function db_commu_c_commu_category4is_create_commu()
 {
     $is_create_commu = 1;
