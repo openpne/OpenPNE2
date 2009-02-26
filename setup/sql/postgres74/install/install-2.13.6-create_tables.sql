@@ -301,7 +301,7 @@ CREATE TABLE c_commu_category (
   name text NOT NULL,
   sort_order int4 NOT NULL default '0',
   c_commu_category_parent_id int4 NOT NULL default '0',
-  create_flag smallint NOT NULL default '0',
+  is_create_commu smallint NOT NULL default '1',
   PRIMARY KEY  (c_commu_category_id)
 );
 
