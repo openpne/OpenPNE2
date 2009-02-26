@@ -57,7 +57,7 @@ class pc_page_h_com_find_all extends OpenPNE_Action
         $this->set('c_commu_category_is_create_commu', db_commu_c_commu_category4is_create_commu());
 
         // 作成可コミュニティの有無
-        $c_commu_category4createflag_num = count(db_commu_c_commu_category4createflag());
+        $c_commu_category4createflag_num = count(db_commu_c_commu_category4is_create_commu());
         $is_created_commu = ( $c_commu_category4createflag_num > 0 ) ? true : false;
         $this->set('is_created_commu', $is_created_commu);
 
