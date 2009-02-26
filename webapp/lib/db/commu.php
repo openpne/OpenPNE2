@@ -1912,7 +1912,7 @@ function db_commu_c_commu_category4is_create_commu()
             ' USING (c_commu_category_parent_id)' .
             ' WHERE cat.is_create_commu = ?' .
             ' ORDER BY pcat.sort_order, cat.sort_order';
-    $params = array(intval($is_create_commu));
+    $params = array($is_create_commu);
     return db_get_all($sql,$params);
 }
 
