@@ -1907,11 +1907,11 @@ function db_commu_c_commu_category4null()
 function db_commu_c_commu_category4is_create_commu()
 {
     $is_create_commu = 1;
-    $sql = 'SELECT cat.* FROM c_commu_category AS cat' .
-            ' INNER JOIN c_commu_category_parent AS pcat' .
-            ' USING (c_commu_category_parent_id)' .
-            ' WHERE cat.is_create_commu = ?' .
-            ' ORDER BY pcat.sort_order, cat.sort_order';
+    $sql = 'SELECT cat.* FROM c_commu_category AS cat'
+         . ' INNER JOIN c_commu_category_parent AS pcat'
+         . ' USING (c_commu_category_parent_id)'
+         . ' WHERE cat.is_create_commu = ?'
+         . ' ORDER BY pcat.sort_order, cat.sort_order';
     $params = array($is_create_commu);
     return db_get_all($sql,$params);
 }
@@ -1921,8 +1921,8 @@ function db_commu_c_commu_category_list4null()
     $list = db_commu_c_commu_category4null();
 
     // カテゴリごとのコミュニティ数を取得
-    $sql = 'SELECT c_commu_category_id, COUNT(*) as count FROM c_commu' .
-        ' GROUP BY c_commu_category_id';
+    $sql = 'SELECT c_commu_category_id, COUNT(*) as count FROM c_commu'
+         . ' GROUP BY c_commu_category_id';
     $counts = db_get_assoc($sql);
 
     $c_commu_category_list = array();
