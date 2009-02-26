@@ -3580,8 +3580,9 @@ function db_admin_is_one_session_per_user($c_admin_user_id, $now_sess_id)
  */
 function db_admin_update_c_point_clear($value)
 {
-    $sql = 'SELECT c_profile_id FROM c_profile where name = \'PNE_POINT\'';
-    $c_profile_id =  db_get_one($sql);
+    $sql = 'SELECT c_profile_id FROM c_profile where name = ?';
+    $params = array('PNE_POINT');
+    $c_profile_id =  db_get_one($sql, $params);
     $data = array('value' => $value);
     $where = array('c_profile_id' => intval($c_profile_id));
     db_update('c_member_profile', $data, $where);
