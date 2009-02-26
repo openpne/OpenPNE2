@@ -2457,21 +2457,21 @@ function monitor_topic_list($keyword, $page_size, $page)
     }
 
     if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
-        $select = 'SELECT ct.*,'
-                . ' ct.name AS topic_name, c.name AS commu_name,'
-                . ' ctc.body, ctc.filename, ctc.image_filename1, ctc.image_filename2, ctc.image_filename3,'
-                . ' case when ct.invite_period = \'0001-01-01 BC\' THEN \'0000-00-00\' ELSE to_char(ct.invite_period,\'YYYY-MM-DD\') END as invite_period';
+        $select = "SELECT ct.*,"
+                . " ct.name AS topic_name, c.name AS commu_name,"
+                . " ctc.body, ctc.filename, ctc.image_filename1, ctc.image_filename2, ctc.image_filename3,"
+                . " CASE WHEN ct.invite_period = '0001-01-01 BC' THEN '0000-00-00' ELSE to_char(ct.invite_period,'YYYY-MM-DD') END AS invite_period";
     } else {
-        $select = 'SELECT ct.*,'
-                . ' ct.name AS topic_name, c.name AS commu_name,'
-                . ' ctc.body, ctc.filename, ctc.image_filename1, ctc.image_filename2, ctc.image_filename3';
+        $select = "SELECT ct.*,"
+                . " ct.name AS topic_name, c.name AS commu_name,"
+                . " ctc.body, ctc.filename, ctc.image_filename1, ctc.image_filename2, ctc.image_filename3";
     }
 
-    $from   = ' FROM c_commu_topic AS ct'
-            . ' LEFT JOIN c_commu AS c ON c.c_commu_id = ct.c_commu_id'
-            . ' LEFT JOIN c_commu_topic_comment AS ctc ON (ctc.c_commu_topic_id = ct.c_commu_topic_id AND ctc.number = 0)';
+    $from   = " FROM c_commu_topic AS ct"
+            . " LEFT JOIN c_commu AS c ON c.c_commu_id = ct.c_commu_id"
+            . " LEFT JOIN c_commu_topic_comment AS ctc ON (ctc.c_commu_topic_id = ct.c_commu_topic_id AND ctc.number = 0)";
 
-    $order  = ' ORDER BY r_datetime desc';
+    $order  = " ORDER BY r_datetime desc";
 
     $sql    = $select . $from . $where . $order;
 
@@ -2511,26 +2511,26 @@ function monitor_topic_list4target_c_commu_topic_id($c_commu_topic_id, $page_siz
     $params[] = intval($c_commu_topic_id);
 
     if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
-        $select = "SELECT ct.*," .
-                "ct.name as topic_name,c.name as commu_name," .
-                "m.nickname,ctc.body as body," .
-                "ctc.image_filename1 as image_filename1,ctc.image_filename2 as image_filename2,ctc.image_filename3 as image_filename3," .
-                "ctc.filename as filename,f.original_filename as original_filename," .
-                "case when ct.invite_period = '0001-01-01 BC' THEN '0000-00-00' ELSE to_char(ct.invite_period,'YYYY-MM-DD') END as invite_period";
+        $select = "SELECT ct.*,"
+                . " ct.name AS topic_name,c.name AS commu_name,"
+                . " m.nickname,ctc.body AS body,"
+                . " ctc.image_filename1 AS image_filename1,ctc.image_filename2 AS image_filename2,ctc.image_filename3 AS image_filename3,"
+                . " ctc.filename AS filename,f.original_filename AS original_filename,"
+                . " CASE WHEN ct.invite_period = '0001-01-01 BC' THEN '0000-00-00' ELSE to_char(ct.invite_period,'YYYY-MM-DD') END AS invite_period";
     } else {
-        $select = "SELECT ct.*," .
-                "ct.name as topic_name,c.name as commu_name," .
-                "m.nickname,ctc.body as body," .
-                "ctc.image_filename1 as image_filename1,ctc.image_filename2 as image_filename2,ctc.image_filename3 as image_filename3," .
-                "ctc.filename as filename,f.original_filename as original_filename";
+        $select = "SELECT ct.*,"
+                . " ct.name AS topic_name,c.name AS commu_name,"
+                . " m.nickname,ctc.body AS body,"
+                . " ctc.image_filename1 AS image_filename1,ctc.image_filename2 AS image_filename2,ctc.image_filename3 AS image_filename3,"
+                . " ctc.filename AS filename,f.original_filename AS original_filename";
     }
 
-    $from = " FROM c_commu_topic as ct"
-            ." LEFT JOIN c_member as m ON ct.c_member_id = m.c_member_id "
-            ." LEFT JOIN c_commu as c ON c.c_commu_id = ct.c_commu_id "
-            ." LEFT JOIN c_commu_topic_comment as ctc ON (ctc.c_commu_topic_id = ct.c_commu_topic_id AND ctc.number = 0)"
-            ." LEFT JOIN c_file as f ON f.filename = ctc.filename "
-            ;
+    $from = " FROM c_commu_topic AS ct"
+          . " LEFT JOIN c_member AS m ON ct.c_member_id = m.c_member_id "
+          . " LEFT JOIN c_commu AS c ON c.c_commu_id = ct.c_commu_id "
+          . " LEFT JOIN c_commu_topic_comment AS ctc ON (ctc.c_commu_topic_id = ct.c_commu_topic_id AND ctc.number = 0)"
+          . " LEFT JOIN c_file AS f ON f.filename = ctc.filename ";
+
     $order = " ORDER BY r_datetime desc";
 
     $sql = $select . $from . $where . $order;
