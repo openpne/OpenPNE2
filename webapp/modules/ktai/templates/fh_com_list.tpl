@@ -40,6 +40,8 @@
 ({if $INC_NAVI_type=="f"})
 <hr color="#({$ktai_color_config.border_01})">
 [i:90]<a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">({$target_c_member.nickname})さんのﾄｯﾌﾟ</a><br>
+({else})
+[i:155]<a href="({t_url m=ktai a=page_h_manage_com})&amp;({$tail})">({$WORD_COMMUNITY_HALF})管理</a><br/>
 ({/if})
 
 ({$inc_ktai_footer|smarty:nodefaults})

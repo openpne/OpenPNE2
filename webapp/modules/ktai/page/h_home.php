@@ -32,7 +32,7 @@ class ktai_page_h_home extends OpenPNE_Action
         //フレンドの数
         $this->set('c_friend_count', db_friend_count_friends($u));
         //参加コミュニティの新着書き込み
-        $this->set('c_commu_topic_list', db_commu_c_commu_topic_comment_list4c_member_id($u, 5));
+        $this->set('c_commu_topic_list', db_commu_c_commu_topic_comment_list4c_member_id($u, 5, true));
         $this->set('SNS_NAME', SNS_NAME);
 
         if (DISPLAY_NEWDIARYTOPIC_HOME) {
