@@ -19,6 +19,7 @@ class ktai_do_h_message_insert_message extends OpenPNE_Action
         $body = $requests['body'];
         $target_c_member_id = $requests['target_c_member_id'];
         $target_c_message_id = $requests['c_message_id'];
+        $save = $requests['save'];
         // ----------
 
         if (is_null($subject) || $subject === '') {
@@ -49,10 +50,17 @@ class ktai_do_h_message_insert_message extends OpenPNE_Action
         }
         //---
 
-        //返信済みにする
-        db_message_update_is_hensin($target_c_message_id);
 
-        db_message_send_message($u, $target_c_member_id, $subject, $body);
+        if (is_null($save)) {
+            //返信済みにする
+            db_message_update_is_hensin($target_c_message_id);
+
+            db_message_send_message($u, $target_c_member_id, $subject, $body);
+        }
+        else {
+            // 下書きメッセージ保存
+            db_message_insert_message_to_is_save($target_c_member_id, $u, $subject, $body, $target_c_message_id);
+        }
 
         openpne_redirect('ktai', 'page_h_message_box');
     }

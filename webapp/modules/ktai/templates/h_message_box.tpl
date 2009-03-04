@@ -2,7 +2,7 @@
 
 <table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_02})">
 <font color="#({$ktai_color_config.font_05})"><a name="top">
-({if $box == 'trash'})ごみ箱({elseif $box != 'outbox'})受信箱({else})送信箱({/if})</a></font><br>
+({if $box == 'trash'})ごみ箱({elseif $box == 'savebox'})下書き({elseif $box != 'outbox'})受信箱({else})送信箱({/if})</a></font><br>
 </td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
 <font color="#({$ktai_color_config.color_24})">ﾒｯｾｰｼﾞﾘｽﾄ</font><br>
@@ -40,6 +40,31 @@
 </table>
 ※送信済ﾒｯｾｰｼﾞ…<font color="#({$ktai_color_config.font_06})">(★)</font>
 <br>
+
+({$smarty.capture.pager|smarty:nodefaults})
+
+({elseif $box == 'savebox'})
+({capture name="pager"})
+({if $is_prev_v || $is_next_v})
+<center>
+({if $is_prev_v})<a href="({t_url m=ktai a=page_h_message_box})&amp;box=savebox&amp;page_v=({$page_v-1})({if $keyword})&amp;keyword=({$keyword})({/if})&amp;({$tail})" accesskey="4">[i:128]前を表示</a> ({/if})
+({if $is_next_v})<a href="({t_url m=ktai a=page_h_message_box})&amp;box=savebox&amp;page_v=({$page_v+1})({if $keyword})&amp;keyword=({$keyword})({/if})&amp;({$tail})" accesskey="6">[i:130]次を表示</a>({/if})
+</center>
+({/if})
+({/capture})
+
+<hr color="#({$ktai_color_config.border_02})">
+<table width="100%">
+({foreach from=$c_message_saved_list item=c_message_saved})
+<tr><td bgcolor="#({cycle values="`$ktai_color_config.bg_06`,`$ktai_color_config.bg_07`"})">
+({$c_message_saved.r_datetime|date_format:"%Y/%m/%d %H:%M"})<br>
+<a href="({t_url m=ktai a=page_h_message_send})&amp;target_c_message_id=({$c_message_saved.c_message_id})&amp;({$tail})">({$c_message_saved.subject|default:"&nbsp;"|t_truncate:50:""})</a>（({$c_message_saved.nickname|t_truncate:17:""|default:"&nbsp;"})さん）
+</td></tr>
+<tr><td bgcolor="#({$ktai_color_config.bg_07})">
+<hr color="#({$ktai_color_config.border_02})">
+</td></tr>
+({/foreach})
+</table>
 
 ({$smarty.capture.pager|smarty:nodefaults})
 
@@ -95,7 +120,7 @@
 
 ({/if})
 
-({if $box != 'trash'})
+({if $box != 'trash' && $box != 'savebox'})
 <table width="100%">
 <tr><td bgcolor="#({$ktai_color_config.color_27})" align="center">
 <font color="#({$ktai_color_config.color_28})">ﾒｯｾｰｼﾞ検索</font><br>
@@ -116,11 +141,18 @@
 ({if $box == 'trash'})
 <a href="({t_url m=ktai a=page_h_message_box})&amp;box=outbox&amp;({$tail})">送信箱</a><br>
 <a href="({t_url m=ktai a=page_h_message_box})&amp;box=inbox&amp;({$tail})">受信箱</a><br>
+<a href="({t_url m=ktai a=page_h_message_box})&amp;box=savebox&amp;({$tail})">下書き</a><br>
+({elseif $box == 'savebox'})
+<a href="({t_url m=ktai a=page_h_message_box})&amp;box=outbox&amp;({$tail})">送信箱</a><br>
+<a href="({t_url m=ktai a=page_h_message_box})&amp;box=inbox&amp;({$tail})">受信箱</a><br>
+<a href="({t_url m=ktai a=page_h_message_box})&amp;box=trash&amp;({$tail})">ごみ箱</a><br>
 ({elseif $box != 'outbox'})
 <a href="({t_url m=ktai a=page_h_message_box})&amp;box=outbox&amp;({$tail})">送信箱</a><br>
+<a href="({t_url m=ktai a=page_h_message_box})&amp;box=savebox&amp;({$tail})">下書き</a><br>
 <a href="({t_url m=ktai a=page_h_message_box})&amp;box=trash&amp;({$tail})">ごみ箱</a><br>
 ({else})
 <a href="({t_url m=ktai a=page_h_message_box})&amp;box=inbox&amp;({$tail})">受信箱</a><br>
+<a href="({t_url m=ktai a=page_h_message_box})&amp;box=savebox&amp;({$tail})">下書き</a><br>
 <a href="({t_url m=ktai a=page_h_message_box})&amp;box=trash&amp;({$tail})">ごみ箱</a><br>
 ({/if})
 <a href="({t_url m=ktai a=page_h_message_send})&amp;({$tail})">ﾒｯｾｰｼﾞを書く</a><br>

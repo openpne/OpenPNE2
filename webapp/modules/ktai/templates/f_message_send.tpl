@@ -19,6 +19,7 @@
 <textarea name="body" rows="6"></textarea>
 <center>
 <input type="submit" value="ﾒｯｾｰｼﾞを送る">
+<input type="submit" name="save" value="下書き保存">
 </center>
 </form>
 
