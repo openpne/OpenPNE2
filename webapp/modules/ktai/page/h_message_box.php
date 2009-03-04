@@ -15,6 +15,7 @@ class ktai_page_h_message_box extends OpenPNE_Action
         $page_r = $requests['page_r'];
         $page_s = $requests['page_s'];
         $page_t = $requests['page_t'];
+        $page_v = $requests['page_v'];
         $box = $requests['box'];
         $keyword = $requests['keyword'];
         // ----------
@@ -61,6 +62,22 @@ class ktai_page_h_message_box extends OpenPNE_Action
             $pager['start'] = $page_size * ($page_t - 1) + 1;
             if (($pager['end'] = $page_size * $page_t) > $list_t[3]) {
                 $pager['end'] = $list_t[3];
+            }
+            $this->set('pager', $pager);
+        } elseif ($box == 'savebox') {
+            $list_v = db_message_c_message_save_list4c_member_id4range($u, $page_v, $page_size);
+
+            $this->set('c_message_saved_list', $list_v[0]);
+            $this->set('page_v', $page_v);
+            $this->set('is_prev_v', $list_v[1]);
+            $this->set('is_next_v', $list_v[2]);
+            $this->set('count_messages_saved', $list_v[3]);
+            $this->set('total_num', $list_v[3]);
+
+            $pager = array();
+            $pager['start'] = $page_size * ($page_v - 1) + 1;
+            if (($pager['end'] = $page_size * $page_v) > $list_v[3]) {
+                $pager['end'] = $list_v[3];
             }
             $this->set('pager', $pager);
         } else {
