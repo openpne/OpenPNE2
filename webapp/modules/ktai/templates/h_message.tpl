@@ -76,6 +76,7 @@
 <textarea rows="6" name="body"></textarea><br>
 <center>
 <input type="submit" value="送信">
+<input type="submit" name="save" value="下書き保存">
 </center>
 </form>
 <hr color="#({$ktai_color_config.border_01})">
