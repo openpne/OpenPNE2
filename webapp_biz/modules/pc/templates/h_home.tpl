@@ -211,6 +211,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 <div class="block moreInfo">
 <ul class="moreInfo">
 <li><a href="({t_url m=pc a=page_fh_com_list})">全てを見る(({$fh_com_count_user}))</a></li>
+<li><a href="({t_url m=pc a=page_h_manage_com})">({$WORD_COMMUNITY})管理</a></li>
 </ul>
 </div>
 </div>
