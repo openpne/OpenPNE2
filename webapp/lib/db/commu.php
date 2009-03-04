@@ -343,6 +343,7 @@ function db_c_commu_sub_admin_confirm4c_commu_sub_admin_confirm_id($c_commu_sub_
 function db_commu_c_commu_list4c_member_id($c_member_id, $page, $page_size)
 {
     $sql = "SELECT c_commu.*" .
+            " ,c_commu_member.is_display_topic_home" .
             " FROM c_commu_member , c_commu";
     $sql .= " WHERE c_commu_member.c_member_id=?";
     $sql .= " AND c_commu.c_commu_id=c_commu_member.c_commu_id";
@@ -1148,7 +1149,7 @@ function db_commu_ktai_anataga_c_commu_sub_admin_confirm_list4c_member_id($c_mem
 /**
  * 参加コミュニティ新着書き込みリスト取得
  */
-function db_commu_c_commu_topic_comment_list4c_member_id($c_member_id, $limit)
+function db_commu_c_commu_topic_comment_list4c_member_id($c_member_id, $limit, $is_display_topic_home = false)
 {
     static $is_recurred = false;  //再帰処理中かどうかの判定フラグ
 
@@ -1171,8 +1172,11 @@ function db_commu_c_commu_topic_comment_list4c_member_id($c_member_id, $limit)
     $sql = 'SELECT a.c_commu_topic_id, a.c_commu_id, a.u_datetime as r_datetime, a.c_member_id,'.
         ' a.name as c_commu_topic_name'.
         ' FROM c_commu_topic as a INNER JOIN c_commu_member as b USING(c_commu_id)'.
-        ' WHERE b.c_member_id = ?'.
-        ' ORDER BY r_datetime DESC';
+        ' WHERE b.c_member_id = ?';
+    if ($is_display_topic_home) {
+        $sql .= ' AND b.is_display_topic_home = 1';
+    }
+    $sql .= ' ORDER BY r_datetime DESC';
     $params = array(intval($c_member_id));
     $c_commu_topic_list = db_get_all_limit($sql, 0, $limit, $params);
 
@@ -3530,6 +3534,22 @@ function db_commu_is_changed_c_commu_name($c_commu_id, $name)
         return false;
     }
     return true;
+}
+
+/**
+ * コミュニティホームの新着表示設定変更
+ */
+function db_commu_update_is_display_topic_home($c_commu_id, $c_member_id, $is_display_topic_home)
+{
+    $data = array(
+        'is_display_topic_home' => (bool)$is_display_topic_home,
+
+    );
+    $where = array(
+        'c_commu_id'  => intval($c_commu_id),
+        'c_member_id' => intval($c_member_id),
+    );
+    return db_update('c_commu_member', $data, $where);
 }
 
 ?>
