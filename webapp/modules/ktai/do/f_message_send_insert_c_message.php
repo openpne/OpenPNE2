@@ -18,6 +18,7 @@ class ktai_do_f_message_send_insert_c_message extends OpenPNE_Action
         $c_member_id_to = $requests['c_member_id_to'];
         $subject = $requests['subject'];
         $body = $requests['body'];
+        $save = $requests['save'];
         // ----------
 
         //--- 権限チェック
@@ -43,7 +44,14 @@ class ktai_do_f_message_send_insert_c_message extends OpenPNE_Action
             openpne_redirect('ktai', 'page_f_message_send', $p);
         }
 
-        db_message_send_message($u, $c_member_id_to, $subject, $body);
+        if (is_null($save)) {
+            // メッセージ送信
+            db_message_send_message($u, $c_member_id_to, $subject, $body);
+        }
+        else {
+            // 下書きメッセージ保存
+            db_message_insert_message_to_is_save($c_member_id_to, $u, $subject, $body, '0');
+        }
 
         $p = array('target_c_member_id' => $c_member_id_to);
         openpne_redirect('ktai', 'page_f_home', $p);
