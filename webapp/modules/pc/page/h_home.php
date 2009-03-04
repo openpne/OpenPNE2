@@ -86,7 +86,7 @@ class pc_page_h_home extends OpenPNE_Action
             $this->set('c_topic_list_all', p_h_home_c_topic_all_list(5));
         }
         // 参加コミュニティの新着書き込み
-        $this->set('c_commu_topic_comment_list', db_commu_c_commu_topic_comment_list4c_member_id($u, 5));
+        $this->set('c_commu_topic_comment_list', db_commu_c_commu_topic_comment_list4c_member_id($u, 5, true));
         // レビュー
         $this->set('c_friend_review_list', db_review_c_friend_review_list4c_member_id($u, 5));
         if (OPENPNE_USE_ALBUM) {
