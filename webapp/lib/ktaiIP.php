@@ -75,7 +75,7 @@ $GLOBALS['_OPENPNE_KTAI_IP_LIST'] = array(
 '210.228.189.0/24',
 '211.8.159.128/25',
 
-// WILLCOM (2008/10/02更新)
+// WILLCOM (2009/2/19更新)
 // http://www.willcom-inc.com/ja/service/contents_service/club_air_edge/for_phone/ip/
 '61.198.142.0/24',  '219.108.14.0/24',
 '61.198.161.0/24',  '219.108.2.0/24',
