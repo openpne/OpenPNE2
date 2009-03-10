@@ -462,6 +462,9 @@ function db_admin_delete_c_image_link4image_filename($image_filename)
         $pkey = (int)$parts[1];
 
         _db_admin_empty_filename($tbl, $image_filename, 'image_filename', $pkey);
+
+        //function cacheの削除
+        cache_drop_c_commu($pkey);
         break;
 
     case 't':
@@ -507,6 +510,9 @@ function db_admin_delete_c_image_link4image_filename($image_filename)
         _db_admin_empty_filename($tbl, $image_filename, 'image_filename_1', $pkey);
         _db_admin_empty_filename($tbl, $image_filename, 'image_filename_2', $pkey);
         _db_admin_empty_filename($tbl, $image_filename, 'image_filename_3', $pkey);
+
+        //function cacheの削除
+        cache_drop_c_member_profile($pkey);
         break;
 
     case 'ms':
