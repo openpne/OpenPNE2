@@ -133,15 +133,13 @@ class pc_page_h_home extends OpenPNE_Action
         $this->set('r_datetime_date', $date[date('w')]);
 
         /// 週間カレンダー
-        if (DISPLAY_SCHEDULE_HOME) {
-            //開始曜日の設定
-            if ($c_member['schedule_start_day'] == 2) {
-                $start_day = date("w");
-            } else {
-                $start_day = $c_member['schedule_start_day'];
-            }
-            $this->set('calendar_biz', biz_getScheduleWeek($u, $u, $requests['w'], 'h', true, true, true, $c_member,$start_day));
+        //開始曜日の設定
+        if ($c_member['schedule_start_day'] == 2) {
+            $start_day = date("w");
+        } else {
+            $start_day = $c_member['schedule_start_day'];
         }
+        $this->set('calendar_biz', biz_getScheduleWeek($u, $u, $requests['w'], 'h', true, true, true, $c_member,$start_day));
 
         // お気に入りフィード
         if (USE_BOOKMARK_FEED) {
