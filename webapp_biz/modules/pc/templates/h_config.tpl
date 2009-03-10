@@ -119,7 +119,6 @@
 </td>
 </tr>
 ({/if})
-({if $smarty.const.DISPLAY_SCHEDULE_HOME})
 <tr>
 <th>週間カレンダー</th>
 <td>
@@ -130,7 +129,6 @@
 </ul>
 </td>
 </tr>
-({/if})
 <tr>
 <th>メール受信設定</th>
 <td>
