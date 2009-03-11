@@ -2115,4 +2115,81 @@ function db_member_is_one_session_per_user($c_member_id, $now_sess_id)
     return true;
 }
 
+/**
+ *
+ * 秘密の質問を利用しない場合の設定変更
+ *
+ */
+function db_member_h_config_3_no_password_query_answer(
+                $c_member_id,
+                $is_receive_mail,
+                $rss,
+                $ashiato_mail_num,
+                $is_receive_daily_news,
+                $public_flag_diary,
+                $is_shinobiashi,
+                $schedule_start_day)
+{
+    //function cacheの削除
+    cache_drop_c_member_profile($c_member_id);
+
+    $data = array(
+        'is_receive_mail' => (bool)$is_receive_mail,
+        'is_receive_daily_news' => intval($is_receive_daily_news),
+        'rss' => $rss,
+        'ashiato_mail_num' => intval($ashiato_mail_num),
+        'public_flag_diary' => util_cast_public_flag_diary($public_flag_diary),
+        'is_shinobiashi' => $is_shinobiashi,
+        'schedule_start_day' => $schedule_start_day,
+        'u_datetime' => db_now(),
+    );
+    $where = array('c_member_id' => intval($c_member_id));
+    db_update('c_member', $data, $where);
+}
+
+/**
+ * 秘密の質問の登録状況チェック
+ * @params $encrypt_addres : encryptされたアドレス
+ * @params $address_type   : 'pc'/'ktai'
+ * @return true  : 設定されている
+ *         false : 設定されていない
+ */
+function db_member_get_is_password_query_answer($encrypt_address, $address_type = 'pc')
+{
+    $null_answer = '';
+
+    switch ($address_type) {
+        case 'pc' :
+            $field_name = 'pc_address';
+            break;
+        case 'ktai' :
+            $field_name = 'ktai_address';
+            break;
+        default :
+            $field_name = '';
+            break;
+    }
+
+    $sql = "SELECT c_member.c_member_id" .
+        " ,c_member.c_password_query_id" .
+        " ,c_member_secure.hashed_password_query_answer " .
+        " FROM c_member, c_member_secure" .
+        " WHERE c_member_secure." . $field_name . "= ?" .
+        " AND c_member.c_member_id = c_member_secure.c_member_id";
+    $params = array(
+        $encrypt_address,
+    );
+    $c_member = db_get_row($sql, $params);
+    if ($c_member['c_password_query_id'] && ($c_member['hashed_password_query_answer'] != md5($null_answer))) {
+        return true;
+    }
+
+    // 1.8以前との互換性を保つため、SJISでのチェックも行う
+    if ($c_member['c_password_query_id'] && ($c_member['hashed_password_query_answer'] !=
+md5(mb_convert_encoding($null_answer, 'SJIS-win', 'UTF-8')))) {
+        return true;
+    }
+
+    return false;
+}
 ?>

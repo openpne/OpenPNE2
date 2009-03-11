@@ -12,6 +12,7 @@
 <font color="#({$ktai_color_config.font_06})">携帯ﾒｰﾙｱﾄﾞﾚｽ：</font><br>
 <textarea name="ktai_address" rows="1" istyle="3" mode="alphabet"></textarea><br>
 <br>
+({if $smarty.const.IS_PASSWORD_QUERY_ANSWER})
 <font color="#({$ktai_color_config.font_06})">秘密の質問：</font><br>
 <select name="c_password_query_id">
 <option value="0">選択してください
@@ -22,6 +23,7 @@
 <br>
 <font color="#({$ktai_color_config.font_06})">秘密の質問の答え：</font><br>
 <input type="text" name="password_query_answer" value=""><br>
+({/if})
 <center>
 <input type="submit" value="ﾊﾟｽﾜｰﾄﾞを再発行する"><br>
 </center>
