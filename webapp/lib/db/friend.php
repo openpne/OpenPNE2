@@ -356,7 +356,8 @@ function db_friend_c_friend_list_disp4c_member_id($c_member_id, $page = 1, $size
                 "nickname,".
                 "intro,".
                 "c_member_id_from,".
-                "c_member_id_to".
+                "c_member_id_to,".
+                "is_display_friend_home".
             " FROM c_member,".
                 "c_friend".
             " WHERE c_member.c_member_id = c_friend.c_member_id_to".
@@ -520,7 +521,8 @@ function db_friend_friend_list4c_member_id($c_member_id,$page_size,$page)
             "c_friend_id,".
             "c_member_id_from,".
             "c_member_id_to,".
-            "r_datetime".
+            "r_datetime,".
+            "is_display_friend_home".
         " FROM ".
             "c_friend".
         " WHERE c_member_id_from = ?".
@@ -850,6 +852,45 @@ function db_friend_delete_c_friend_confirm($c_friend_confirm_id, $u)
             ' AND (c_member_id_from = ? OR c_member_id_to = ?)';
     $params = array(intval($c_friend_confirm_id), intval($u), intval($u));
     db_query($sql, $params);
+}
+
+/**
+ * フレンド最新書き込みのホーム表示設定
+ *
+ * @param int $c_member_id_from (自分)
+ * @param int $c_member_id_to   (対象となるマイフレンド)
+ * @param int $is_display_friend_home (表示するか否か)
+ */
+function db_friend_update_is_display_friend_home($c_member_id_from, $c_member_id_to, $is_display_friend_home)
+{
+   $data = array(
+        'is_display_friend_home' => (bool)$is_display_friend_home,
+
+    );
+    $where = array(
+        'c_member_id_from'  => intval($c_member_id_from),
+        'c_member_id_to'    => intval($c_member_id_to),
+    );
+    return db_update('c_friend', $data, $where);
+}
+/**
+ * 友達のメンバーで、新着表示可否のIDリスト取得
+ *
+ * @param  int $c_member_id
+ * @param  bool $is_display_friend_home = 1:新着表示対象 / 0:新着表示対象外
+ * @return array  友達のメンバーID配列
+ */
+function db_friend_is_display_friend_home_list($c_member_id, $is_display_friend_home = 1)
+{
+    $sql  = 'SELECT c_member_id_to ';
+    $sql .= 'FROM c_friend ';
+    $sql .= 'WHERE c_member_id_from = ? ';
+    $sql .= 'AND is_display_friend_home = ? ';
+    $sql .= 'ORDER BY c_friend_id';
+    $params = array(intval($c_member_id), intval($is_display_friend_home));
+    $friends = db_get_col($sql, $params);
+
+    return $friends;
 }
 
 ?>
