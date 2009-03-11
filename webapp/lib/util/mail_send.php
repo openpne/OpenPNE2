@@ -514,7 +514,7 @@ function do_common_send_ashiato_mail($c_member_to, $c_member_from)
 }
 
 //◆メッセージ受信メール
-function do_common_send_message_mail_send($c_member_id_to, $c_member_id_from)
+function do_common_send_message_mail_send($c_member_id_to, $c_member_id_from, $subject = '', $body = '')
 {
     $c_member_to = db_member_c_member4c_member_id($c_member_id_to, true);
     $pc_address = $c_member_to['secure']['pc_address'];
@@ -523,6 +523,8 @@ function do_common_send_message_mail_send($c_member_id_to, $c_member_id_from)
     $params = array(
         "c_member_to"   => db_member_c_member4c_member_id($c_member_id_to),
         "c_member_from" => db_member_c_member4c_member_id($c_member_id_from),
+        'subject' => $subject,
+        'body' => $body,
     );
     return fetch_send_mail($pc_address, 'm_pc_message_zyushin', $params, $is_receive_mail);
 }
