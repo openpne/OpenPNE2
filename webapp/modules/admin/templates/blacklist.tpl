@@ -55,7 +55,11 @@
 <tr>
 <td class="cell01">({$item.c_blacklist_id})</td>
 <td>({$item.easy_access_id})</td>
-<td><a href="({t_url _absolute=1 m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})" target="_blank">({$item.nickname})</a></td>
+<td>
+({if $item.c_member_id})
+<a href="({t_url _absolute=1 m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})" target="_blank">({$item.nickname})</a>
+({/if})
+</td>
 <td>({$item.info|nl2br})</td>
 <td>
 <ul>
