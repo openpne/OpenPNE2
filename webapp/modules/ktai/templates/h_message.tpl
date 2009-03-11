@@ -31,6 +31,9 @@
 ({if $c_message.image_filename_3})
 写真3を見る:[<a href="({t_img_url filename=$c_message.image_filename_3 w=120 h=120 f=jpg})">小</a>/<a href="({t_img_url filename=$c_message.image_filename_3 w=$smarty.const.OPENPNE_IMG_KTAI_MAX_WIDTH h=$smarty.const.OPENPNE_IMG_KTAI_MAX_HEIGHT f=jpg})">大</a>]<br>
 ({/if})
+({if $c_message.filename && $smarty.const.OPENPNE_USE_FILEUPLOAD})
+ﾌｧｲﾙ名:({$c_message.original_filename})<br>
+({/if})
 
 ({if $com_url})<a href="({$com_url})">({$WORD_COMMUNITY_HALF})ﾍﾟｰｼﾞ</a><br>({/if})
 ({if $friend_url})<a href="({$friend_url})">ﾒﾝﾊﾞｰのﾍﾟｰｼﾞ</a><br>({/if})
