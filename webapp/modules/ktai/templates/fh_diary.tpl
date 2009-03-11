@@ -86,6 +86,7 @@
 </center>
 ({/if})
 ({/if})
+({if $is_comment_input})
 ({if $is_writable_comment})
 <hr color="#({$ktai_color_config.border_01})">
 <a name="write"></a>
@@ -105,7 +106,10 @@
 <hr color="#({$ktai_color_config.border_01})">
 ({if $msg})<font color="#({$ktai_color_config.font_09})">({$msg})</font><br>
 ({else})ｺﾒﾝﾄが1000番に達したので、この({$WORD_DIARY_HALF})にはｺﾒﾝﾄできません。({/if})
-
+({/if})
+({else})
+<hr color="#({$ktai_color_config.border_01})">
+現在、この({$WORD_DIARY_HALF})にはｺﾒﾝﾄできません。
 ({/if})
 
 <hr color="#({$ktai_color_config.border_01})">

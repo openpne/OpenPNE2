@@ -19,6 +19,7 @@ class ktai_do_h_diary_edit_insert_c_diary extends OpenPNE_Action
         $body = $requests['body'];
         $public_flag = util_cast_public_flag_diary($requests['public_flag']);
         $target_c_diary_id = $requests['target_c_diary_id'];
+        $is_comment_input = $requests['is_comment_input'];
         // ----------
 
         if (is_null($subject) || $subject === '') {
@@ -33,7 +34,7 @@ class ktai_do_h_diary_edit_insert_c_diary extends OpenPNE_Action
 
         if (!$target_c_diary_id) {
             // 新規作成
-            $target_c_diary_id = db_diary_insert_c_diary($u, $subject, $body, $public_flag);
+            $target_c_diary_id = db_diary_insert_c_diary($u, $subject, $body, $public_flag, $is_comment_input);
             if (OPENPNE_USE_POINT_RANK) {
                 //日記を書いた人にポイント付与
                 $point = db_action_get_point4c_action_id(4);
@@ -45,7 +46,7 @@ class ktai_do_h_diary_edit_insert_c_diary extends OpenPNE_Action
             if ($c_diary['c_member_id'] != $u) {
                 handle_kengen_error();
             }
-            db_diary_update_c_diary($target_c_diary_id, $subject, $body, $public_flag);
+            db_diary_update_c_diary($target_c_diary_id, $subject, $body, $public_flag, $is_comment_input);
         }
 
         $p = array('target_c_member_id' => $u);
