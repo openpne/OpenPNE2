@@ -28,6 +28,7 @@ class pc_page_h_manage_friend extends OpenPNE_Action
         $this->set('inc_navi', fetch_inc_navi('h'));
         $this->set('c_friend_list', $c_friend_list);
         $this->set('pager', $pager);
+        $this->set('page', $page);
 
         return 'success';
     }
