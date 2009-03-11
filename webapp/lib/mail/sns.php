@@ -514,6 +514,13 @@ class mail_sns
         }
         //---
 
+        // コメント許可設定取得
+        if ($c_diary['is_comment_input'] == "0") {
+            $this->error_mail('現在、この、' . WORD_DIARY . 'にはコメントできません。');
+            m_debug_log('mail_sns::add_diary_comment() comment block');
+            return false;
+        }
+
         $body = $this->decoder->get_text_body();
         if ($body === '') {
             $this->error_mail('本文が空のため投稿できませんでした。');

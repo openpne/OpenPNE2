@@ -23,6 +23,7 @@ class pc_page_h_diary_edit_confirm extends OpenPNE_Action
         $body = $requests['body'];
         $public_flag = util_cast_public_flag_diary($requests['public_flag']);
         $category = $requests['category'];
+        $is_comment_input = $requests['is_comment_input'];
         // ----------
 
         $sessid = session_id();
@@ -83,6 +84,7 @@ class pc_page_h_diary_edit_confirm extends OpenPNE_Action
             "tmpfile_2" => $tmpfiles[2],
             "tmpfile_3" => $tmpfiles[3],
             "category" => join(" ", $category_list),
+            "is_comment_input" => $is_comment_input,
         );
         $this->set("form_val", $form_val);
 

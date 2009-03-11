@@ -68,6 +68,9 @@ class ktai_page_fh_diary extends OpenPNE_Action
 
         $this->set('is_writable_comment', db_diary_is_writable_comment4c_diary_id($target_c_diary_id));
 
+        // コメント許可設定取得
+        $this->set('is_comment_input', $c_diary['is_comment_input']);
+
         $start_comment = reset($c_diary_comment_list);
         $end_comment = end($c_diary_comment_list);
 
