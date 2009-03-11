@@ -79,6 +79,7 @@
 </tr>
 ({/if})
 ({if $smarty.const.OPENPNE_AUTH_MODE != 'slavepne'})
+({if $smarty.const.IS_PASSWORD_QUERY_ANSWER})
 <tr>
 <th>秘密の質問</th>
 <td>
@@ -96,6 +97,7 @@
 <p class="caution">※変更する場合のみ入力してください。</p>
 </td>
 </tr>
+({/if})
 ({/if})
 <tr>
 <th>BlogのURL</th>

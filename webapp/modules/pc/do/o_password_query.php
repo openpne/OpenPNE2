@@ -24,13 +24,20 @@ class pc_do_o_password_query extends OpenPNE_Action
 
         //--- 権限チェック
         //パスワード確認の質問と答えがあっている
-
-        if (!$pc_address || !$q_id || !$q_answer ||
-            !$c_member_id = db_member_is_password_query_complete($pc_address, $q_id, $q_answer)
-           ) {
-            $msg = '正しい値を入力してください';
-            $p = array('msg' => $msg);
-            openpne_redirect('pc', 'page_o_password_query', $p);
+        if (IS_PASSWORD_QUERY_ANSWER) {
+            if (!$pc_address || !$q_id || !$q_answer ||
+                !$c_member_id = db_member_is_password_query_complete($pc_address, $q_id, $q_answer)
+               ) {
+                $msg = '正しい値を入力してください';
+                $p = array('msg' => $msg);
+                openpne_redirect('pc', 'page_o_password_query', $p);
+            }
+        } else {
+            if (!$pc_address || !$c_member_id = db_member_c_member_id4pc_address($pc_address)) {
+                $msg = '登録したメールアドレスを入力してください';
+                $p = array('msg' => $msg);
+                openpne_redirect('pc', 'page_o_password_query', $p);
+            }
         }
         //---
 

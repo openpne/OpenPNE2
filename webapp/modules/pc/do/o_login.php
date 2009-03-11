@@ -70,6 +70,13 @@ class pc_do_o_login extends OpenPNE_Action
         $url = OPENPNE_URL;
         if ($this->_login_params) {
             $url .= '?' . $this->_login_params;
+        } else {
+            if ((IS_PASSWORD_QUERY_ANSWER) && (OPENPNE_AUTH_MODE != 'slavepne')) {
+                if (!db_member_get_is_password_query_answer($_POST['username'], 'pc')) {
+                    $p = array("msg" => "秘密の質問を登録してください");
+                    openpne_redirect('pc', 'page_h_config', $p);
+                }
+            }
         }
         client_redirect_absolute($url);
     }
