@@ -63,6 +63,7 @@ function k_p_common_msg4msg_id($msg_id)
         48  => "設定を変更しました",
         49  => "その" . WORD_COMMUNITY_HALF . "はすでに存在します",
         50  => "指定されたｶﾃｺﾞﾘは選択できません",
+        51  => "説明文を入力してください",
     );
 
     return $msg[$msg_id];

@@ -169,6 +169,57 @@ class mail_sns
 
         //---
 
+        // アルバム追加
+        elseif (
+            $to_user == 'album' ||
+            preg_match('/^a(\d+)-([0-9a-f])$/', $to_user, $matches)
+        ) {
+
+            if (MAIL_ADDRESS_HASHED) {
+                if (empty($matches[1]) || empty($matches[2])) return false;
+
+                // メンバーIDのチェック
+                if ($matches[1] != $this->c_member_id) {
+                    return false;
+                }
+                // メンバーハッシュのチェック
+                if (!t_check_user_hash($this->c_member_id, $matches[2])) {
+                    return false;
+                }
+            }
+
+            m_debug_log('mail_sns::add_album()', PEAR_LOG_INFO);
+            return $this->add_album();
+        }
+
+        //---
+
+        // アルバム写真登録
+        elseif (
+            preg_match('/^ai(\d+)$/', $to_user, $matches) ||
+            preg_match('/^ai(\d+)-([0-9a-f])$/', $to_user, $matches)
+        ) {
+
+            // アルバムIDのチェック
+            if (!$c_album_id = $matches[1]) {
+                return false;
+            }
+
+            if (MAIL_ADDRESS_HASHED) {
+                if (empty($matches[2])) return false;
+
+                // メンバーハッシュのチェック
+                if (!t_check_user_hash($this->c_member_id, $matches[2])) {
+                    return false;
+                }
+            }
+
+            m_debug_log('mail_sns::add_album_image()', PEAR_LOG_INFO);
+            return $this->add_album_image($c_album_id);
+        }
+
+        //---
+
         //プロフィール写真変更
         elseif (
             preg_match('/^p(\d+)$/', $to_user, $matches) ||
@@ -266,6 +317,32 @@ class mail_sns
 
             m_debug_log('mail_sns::add_topic_image()', PEAR_LOG_INFO);
             return $this->add_topic_image($c_commu_topic_id);
+        }
+
+        //---
+
+        // アルバム表紙変更
+        elseif (
+            preg_match('/^ac(\d+)$/', $to_user, $matches) ||
+            preg_match('/^ac(\d+)-([0-9a-f])$/', $to_user, $matches)
+        ) {
+
+            // アルバムIDのチェック
+            if (!$c_album_id = $matches[1]) {
+                return false;
+            }
+
+            if (MAIL_ADDRESS_HASHED) {
+                if (empty($matches[2])) return false;
+
+                // メンバーハッシュのチェック
+                if (!t_check_user_hash($this->c_member_id, $matches[2])) {
+                    return false;
+                }
+            }
+
+            m_debug_log('mail_sns::add_album_cover_image()', PEAR_LOG_INFO);
+            return $this->add_album_cover_image($c_album_id);
         }
 
         m_debug_log('mail_sns::main() action not found(member)');
@@ -504,6 +581,88 @@ class mail_sns
     }
 
     /**
+     * アルバム追加
+     */
+    function add_album()
+    {
+        $subject = $this->decoder->get_subject();
+        $body    = $this->decoder->get_text_body();
+
+        if ($subject === '') {
+            $subject = '無題';
+        }
+
+        $c_member = db_common_c_member4c_member_id($this->c_member_id);
+        if (!$ins_id = db_album_insert_c_album($this->c_member_id, $subject, $body, $c_member['public_flag_diary'])) {
+            return false;
+        }
+
+        // 写真登録
+        if ($images = $this->decoder->get_images()) {
+            $image = $images[0];
+            $image_ext = $image['ext'];
+            $image_data = $image['data'];
+            $filename = 'a_' . $ins_id . '_1_' . time() . '.' . $image_ext;
+
+            db_image_insert_c_image($filename, $image_data);
+            //アルバムの表紙に写真ファイル名を登録
+            db_album_update_c_album_album_cover_image($ins_id,$filename);
+        } else {
+            $this->error_mail('写真が添付されていないか、ファイルサイズが大きすぎるため、アルバム表紙を登録できませんでした。');
+            m_debug_log('mail_sns::add_album() no images');
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * アルバム写真登録
+     */
+    function add_album_image($c_album_id)
+    {
+        if (!$c_album = db_album_get_c_album4c_album_id($c_album_id)) {
+            return false;
+        }
+
+        if ($c_album['c_member_id'] != $this->c_member_id) {
+            return false;
+        }
+
+        $subject = $this->decoder->get_subject();
+        $images = $this->decoder->get_images();
+        if ($images === false) {
+            $this->error_mail('写真が添付されていないか、ファイルサイズが大きすぎるため、登録できませんでした。');
+            m_debug_log('mail_sns::add_album_image() no images');
+            return false;
+        }
+
+        // 写真登録
+        $image = $images[0];
+        $image_ext = $image['ext'];
+        $image_data = $image['data'];
+        $image_size = $image['size'];
+
+        // 容量制限
+        if (!db_album_is_insertable4c_member_id($this->c_member_id, $image_size)) {
+            $this->error_mail('これ以上写真を投稿することができません。登録済みの写真を削除してからやり直してください。');
+            m_debug_log('mail_sns::add_album_image() size over');
+            return false;
+        }
+
+        $filename = 'a_' . $c_album_id . '_1_' . time() . '.' . $image_ext;
+        db_image_insert_c_image($filename, $image_data);
+        if (!$subject) {
+            // 説明文が空の場合はファイル名を挿入する
+            $subject = $filename;
+        }
+        //アルバムデータの変更
+        db_insert_c_album_image($c_album_id, $this->c_member_id, $filename, $subject, $image_size);
+
+        return true;
+    }
+
+    /**
      * プロフィール写真変更
      */
     function add_member_image()
@@ -678,6 +837,39 @@ class mail_sns
             return false;
         }
 
+    }
+
+    /**
+     * アルバム表紙変更
+     */
+    function add_album_cover_image($c_album_id)
+    {
+        if (!$c_album = db_album_get_c_album4c_album_id($c_album_id)) {
+            return false;
+        }
+
+        if ($c_album['c_member_id'] != $this->c_member_id) {
+            return false;
+        }
+
+        // 写真登録
+        if ($images = $this->decoder->get_images()) {
+            $image = $images[0];
+            $image_ext = $image['ext'];
+            $image_data = $image['data'];
+            $filename = 'a_' . $c_album_id . '_1_' . time() . '.' . $image_ext;
+            db_image_insert_c_image($filename, $image_data);
+            //アルバムデータの変更
+            $c_album_cover = $c_album['album_cover_image'];
+            db_album_image_data_delete($c_album_cover);
+            db_album_update_c_album_album_cover_image($c_album_id,$filename);
+        } else {
+            $this->error_mail('写真が添付されていないか、ファイルサイズが大きすぎるため、アルバム表紙を変更できませんでした。');
+            m_debug_log('mail_sns::add_album_cover_image() no images');
+            return false;
+        }
+
+        return true;
     }
 
     /**

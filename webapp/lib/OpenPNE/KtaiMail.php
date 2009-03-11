@@ -209,7 +209,8 @@ class OpenPNE_KtaiMail
             fclose($fp);
 
             // 画像サイズのチェック
-            if ($this->img_max_filesize && filesize($tmpfname) > $this->img_max_filesize) {
+            $image_size = filesize($tmpfname);
+            if ($this->img_max_filesize && $image_size > $this->img_max_filesize) {
                 unlink($tmpfname);
                 return false;
             }
@@ -240,7 +241,8 @@ class OpenPNE_KtaiMail
             if ($need_resize) {
                 resize_image($type, $tmpfname, $tmpfname, $original_width, $original_height, $width, $height);
                 $fp = fopen($tmpfname, 'rb');
-                $image_data = fread($fp, filesize($tmpfname));  // 一時ファイルを再度読み込み
+                $image_size = filesize($tmpfname);
+                $image_data = fread($fp, $image_size);  // 一時ファイルを再度読み込み
                 fclose($fp);
             }
 
@@ -271,7 +273,7 @@ class OpenPNE_KtaiMail
             unlink($tmpfname);
 
             if ($image_data && $image_ext) {
-                $images = array(array('data' => $image_data, 'ext' => $image_ext));
+                $images = array(array('data' => $image_data, 'ext' => $image_ext, 'size' => $image_size));
             } else {
                 return false;
             }
