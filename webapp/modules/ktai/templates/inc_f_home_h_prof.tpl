@@ -130,9 +130,11 @@
 [i:136]<a href="({t_url m=ktai a=do_f_bookmark_add_insert_c_bookmark})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">お気に入りに追加</a><br>
 [i:76]<a href="({t_url m=ktai a=page_fh_intro})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">紹介文を読む</a>
 ({if $relation.friend})
- / <a href="({t_url m=ktai a=page_f_intro_edit})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">書く</a><br>
+ / <a href="({t_url m=ktai a=page_f_intro_edit})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">書く</a>
 ({/if})
 ({/if})
+<br>
+[i:213]<a href="({t_url m=ktai a=page_fh_album_list})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">ｱﾙﾊﾞﾑを見る</a><br>
 ({if $inc_ktai_entry_point[3]})
 ({$inc_ktai_entry_point[3]|smarty:nodefaults})
 ({/if})
