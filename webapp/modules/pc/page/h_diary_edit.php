@@ -16,6 +16,7 @@ class pc_page_h_diary_edit extends OpenPNE_Action
         $body = $requests['body'];
         $public_flag = $requests['public_flag'];
         $category = $requests['category'];
+        $is_comment_input = $requests['is_comment_input'];
         // ----------
 
         $c_diary = db_diary_get_c_diary4id($target_c_diary_id);
@@ -97,6 +98,11 @@ class pc_page_h_diary_edit extends OpenPNE_Action
         if ($public_flag) {
             $c_diary['public_flag'] = util_cast_public_flag_diary($public_flag);
         }
+
+        if (!(is_null($is_comment_input))) {
+            $c_diary['is_comment_input'] = $is_comment_input;
+        }
+
         $this->set("diary", $c_diary);
 
         // inc_entry_point
