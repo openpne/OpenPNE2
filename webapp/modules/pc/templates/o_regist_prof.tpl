@@ -186,6 +186,7 @@
 <input type="password" class="input_password" name="password2" value="" />
 </td>
 </tr>
+({if $smarty.const.IS_PASSWORD_QUERY_ANSWER})
 <tr>
 <th>秘密の質問 <strong>※</strong></th>
 <td>
@@ -203,6 +204,7 @@
 <input type="text" class="input_text" name="c_password_query_answer" value="({$profs.c_password_query_answer})" size="30" />
 </td>
 </tr>
+({/if})
 </table>
 <div class="operation">
 <ul class="moreInfo button">

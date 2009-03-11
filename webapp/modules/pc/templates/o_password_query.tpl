@@ -6,12 +6,17 @@
 <div class="partsHeading"><h3>パスワード再発行</h3></div>
 
 <div class="partsInfo">
+({if $smarty.const.IS_PASSWORD_QUERY_ANSWER})
 <p>登録したメールアドレスと、秘密の質問・答えを入力してください。<br />登録したものと一致すると、パスワードが登録メールアドレス宛に送信されます。</p>
+({else})
+<p>登録したメールアドレスを入力してください。<br />登録したものと一致すると、パスワードが登録メールアドレス宛に送信されます。</p>
+({/if})
 </div>
 
 ({t_form_block m=pc a=do_o_password_query})
 <table>
 <tr><th>メールアドレス</th><td><input type="text" class="text" name="pc_address" value="" /></td></tr>
+({if $smarty.const.IS_PASSWORD_QUERY_ANSWER})
 <tr><th>秘密の質問</th><td>
 <select name="c_password_query_id">
 <option value="" selected="selected">選択してください</option>
@@ -21,6 +26,7 @@
 </select>
 </td></tr>
 <tr><th>秘密の答え</th><td><input type="text" class="text" name="c_password_query_answer" value="" /></td></tr>
+({/if})
 </table>
 
 <div class="operation">
