@@ -42,6 +42,12 @@ class biz_do_h_home_edit_biz_todo extends OpenPNE_Action
             exit;
         }
 
+        if ($is_check && $public_flag == 'private') {
+            $_REQUEST['msg'] = '公開範囲が「公開しない」のTodoは共有できません';
+            openpne_forward('biz', 'page', 'fh_home_edit_biz_todo');
+            exit;
+        }
+
         $member_info = db_member_c_member4c_member_id_LIGHT($writer_id);
 
         $todo_info = biz_getTodo($id);
