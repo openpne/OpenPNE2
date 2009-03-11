@@ -638,6 +638,17 @@ function db_admin_c_member_id_list4cond_c_member($cond_list, $type = array())
 {
     $sql = 'SELECT c_member_id FROM c_member';
     $wheres = array();
+    // ID(完全一致)
+    if (!empty($cond_list['id'])) {
+        $wheres[] = "c_member_id = ?";
+        $params[] = $cond_list['id'];
+    }
+
+    // ニックネーム(あいまい検索)
+    if (!empty($cond_list['nickname'])) {
+        $wheres[] = "nickname LIKE ?";
+        $params[] = '%' . $cond_list['nickname'] . '%';
+    }
 
     // 開始年
     if (!empty($cond_list['s_year'])) {
@@ -694,7 +705,7 @@ function db_admin_c_member_id_list4cond_c_member($cond_list, $type = array())
     // 「-」の前が項目名であとが1なら昇順 2なら降順
     // プロフィール識別子であれば除外
     $is_order = false;
-    if (!empty($type) && !(isset($type[2]) && !$type[2] == 'p')) {
+    if (!empty($type)) {
         $is_order = true;
 
         switch ($type[0]) {
@@ -844,18 +855,27 @@ function db_admin_c_member_id_list4cond_c_profile($ids, $cond_list, $type)
     // 各プロフィールごとに絞り込み
     $sql = 'SELECT name, form_type, c_profile_id FROM c_profile';
     $profile = db_get_all($sql);
+    $profile_cond = $cond_list['profile'];
 
     if ($profile) {
         foreach ($profile as $value) {
-            if(!empty($cond_list[$value['name']])
-               && ($value['form_type'] == 'radio' || $value['form_type'] == 'select')) {
-                $sql = 'SELECT c_member_id FROM c_member_profile WHERE c_profile_option_id = ?';
-                $params = array($cond_list[$value['name']]);
+            if(!empty($profile_cond[$value['name']]) ) {
+               if ($value['form_type'] == 'radio' || $value['form_type'] == 'select') {
+                    $sql = 'SELECT c_member_id FROM c_member_profile WHERE c_profile_option_id = ?';
+                    $params = array($profile_cond[$value['name']]);
+                } else if ($value['form_type'] == 'checkbox') {
+                    $c_profile_option_id_list = implode(", ", $profile_cond[$value['name']]);
+                    $sql = 'SELECT c_member_id FROM c_member_profile WHERE c_profile_option_id IN ( '. $c_profile_option_id_list .' )';
+                    $params = array();
+                } else {
+                    $sql = 'SELECT c_member_id FROM c_member_profile WHERE c_profile_id = ? AND value LIKE ?';
+                    $params = array($value['c_profile_id'],'%' . $profile_cond[$value['name']] . '%');
+                } 
                 $temp_ids = db_get_col($sql, $params);
                 $ids = array_intersect($ids, $temp_ids);
             }
 
-            if($value['name'] == $type[0] && isset($type[2]) && $type[2] == 'p') {
+            if($value['name'] == $type[0]) {
                 $sql = 'SELECT c_member_id FROM c_member_profile WHERE c_profile_id = ?';
 
                 if ($value['form_type'] == 'radio'
@@ -887,6 +907,7 @@ function db_admin_c_member_id_list4cond_c_profile($ids, $cond_list, $type)
     return $ids;
 }
 
+
 /**
  * ログインIDによるメンバーIDリストソート
  *
@@ -906,9 +927,43 @@ function db_admin_c_member_id_list_sort4username($ids, $type)
 }
 
 /**
+ * メールアドレスによるメンバ絞込み
+ *
+ */
+function db_admin_c_member_id_list4cond_str_mail_address($ids, $cond_list)
+{
+    if ( !empty($cond_list['mail_address']) ) {
+        $sql = 'SELECT c_member_id FROM c_member_secure' .
+               ' WHERE pc_address = ? OR ktai_address = ? OR regist_address = ?';
+        $enc_address = t_encrypt($cond_list['mail_address']);
+        $params = array($enc_address, $enc_address, $enc_address);
+
+        $ids = array_intersect($ids, db_get_col($sql, $params));
+    }
+
+    return $ids;
+}
+
+/**
+ * ログインIDによるメンバ絞込み
+ *
+ */
+function db_admin_c_member_id_list4cond_username($ids, $cond_list)
+{
+    if ( !empty($cond_list['username']) ) {
+        $sql = 'SELECT c_member_id FROM c_username WHERE username = ?';
+        $params = array($cond_list['username']);
+
+        $ids = array_intersect($ids, db_get_col($sql, $params));
+    }
+
+    return $ids;
+}
+
+/**
  * メンバーIDリスト取得(絞り込み対応)
  */
-function _db_admin_c_member_id_list($cond_list, $profile_cond_list, $order = '')
+function _db_admin_c_member_id_list($cond_list, $order = '')
 {
     $type = explode('-', $order);
     $ids = db_admin_c_member_id_list4cond_c_member($cond_list, $type);
@@ -924,12 +979,18 @@ function _db_admin_c_member_id_list($cond_list, $profile_cond_list, $order = '')
     }
 
     // ログインIDでソート
-    if ($type[0] == 'username' && OPENPNE_AUTH_MODE != 'email' && !(isset($type[2]) && $type[2] == 'p')) {
+    if ($type[0] == 'username' && OPENPNE_AUTH_MODE != 'email') {
         $ids = db_admin_c_member_id_list_sort4username($ids, $type);
     }
 
     // プロフィール項目で絞り込み
-    $ids = db_admin_c_member_id_list4cond_c_profile($ids, $profile_cond_list, $type);
+    $ids = db_admin_c_member_id_list4cond_c_profile($ids, $cond_list, $type);
+
+    // 登録メールアドレスで絞込み
+    $ids = db_admin_c_member_id_list4cond_str_mail_address($ids, $cond_list); 
+
+    // ログインIDで絞込み
+    $ids = db_admin_c_member_id_list4cond_username($ids, $cond_list);
 
     return $ids;
 }
@@ -938,10 +999,9 @@ function _db_admin_c_member_id_list($cond_list, $profile_cond_list, $order = '')
  * メンバーリスト取得
  * 誕生年+プロフィール(select,radioのみ)
  */
-function _db_admin_c_member_list($page, $page_size, &$pager, $cond_list, $profile_cond_list, $order)
+function _db_admin_c_member_list($page, $page_size, &$pager, $cond_list, $order)
 {
-    $ids = _db_admin_c_member_id_list($cond_list, $profile_cond_list, $order);
-
+    $ids = _db_admin_c_member_id_list($cond_list, $order);
     $total_num = count($ids);
     $ids = array_slice($ids, ($page - 1) * $page_size, $page_size);
 
@@ -972,6 +1032,22 @@ function db_c_profile_option4c_profile_option_id($c_profile_option_id)
 function validate_cond($requests)
 {
     $cond_list = array();
+
+    //ID
+    if ( !empty($requests['id']) ) {
+        $cond_list['id'] = intval($requests['id']);
+    }
+
+    //ログインID
+    if (isset($requests['username']) && $requests['username'] !== '') {
+        $cond_list['username'] = $requests['username'];
+    }
+
+    //ニックネーム
+    if ( !empty($requests['nickname']) ) {
+         $cond_list['nickname'] = $requests['nickname'];
+    }
+
     //誕生年
     if (!empty($requests['s_year'])) {
         $cond_list['s_year'] = intval($requests['s_year']);
@@ -979,12 +1055,34 @@ function validate_cond($requests)
     if (!empty($requests['e_year'])) {
         $cond_list['e_year'] = intval($requests['e_year']);
     }
+    //プロフィール
+    $profile_list = db_member_c_profile_list();
+    $profile_req = $requests['profile'];
+
+    if ( $profile_req ) {
+        $profile_cond = array();
+        foreach ($profile_list as $key => $value) {
+           if ( $profile_req[$key] && array_key_exists( $key, $profile_req ) ) {
+               if ($value['form_type'] == 'select' || $value['form_type'] == 'radio') {
+                   $profile_cond[$key] = intval($profile_req[$key]);
+               } else {
+                   $profile_cond[$key] = $profile_req[$key];
+               }
+           }
+        }
+        $cond_list['profile'] = $profile_cond;
+    }
 
     // 最終ログイン時間
     if (!empty($requests['last_login'])) {
         $cond_list['last_login'] = intval($requests['last_login']);
     }
 
+    // メールアドレス
+    if (!empty($requests['mail_address'])) {
+        $cond_list['mail_address'] = $requests['mail_address'];
+    }
+    
     //PCメールアドレスの有無
     if (!empty($requests['is_pc_address'])) {
         $cond_list['is_pc_address'] = intval($requests['is_pc_address']);
@@ -3594,5 +3692,186 @@ function db_admin_update_c_point_clear($value)
     db_update('c_member_profile', $data, $where);
 }
 
+function db_admin_commu_c_members4c_commu_id($c_commu_id, $page_size, $page)
+{
+    $sql = 'SELECT c_member_id, r_datetime FROM c_commu_member WHERE c_commu_id = ? ORDER BY r_datetime';
+    $params = array(intval($c_commu_id));
+    $id_list = db_get_all_page($sql, $page, $page_size, $params);
+
+    $list = array();
+    foreach ($id_list as $key => $value) {
+        $c_member = db_member_c_member4c_member_id_LIGHT($value['c_member_id']);
+        $c_member['friend_count'] = db_friend_count_friends($value['c_member_id']);
+        $c_member['r_datetime'] = $value['r_datetime'];
+        $list[] = $c_member;
+    }
+
+    $sql = 'SELECT COUNT(*) FROM c_commu_member WHERE c_commu_id = ?';
+    $total_num = db_get_one($sql, $params);
+
+    if ($total_num != 0) {
+        $total_page_num = ceil($total_num / $page_size);
+        if ($page >= $total_page_num) {
+            $next = false;
+        } else {
+            $next = true;
+        }
+
+        if ($page <= 1) {
+            $prev = false;
+        } else {
+            $prev = true;
+        }
+    }
+
+    $start_num = ($page - 1) * $page_size + 1 ;
+    $end_num   = ($page - 1) * $page_size + $page_size > $total_num ? $total_num : ($page - 1) * $page_size + $page_size ;
+
+    return array($list , $prev , $next, $total_num, $start_num, $end_num);
+}
+
+function db_admin_commu_c_members_all_get4c_commu_id($c_commu_id)
+{
+    $sql = 'SELECT c_member_id FROM c_commu_member WHERE c_commu_id = ?';
+    $params = array(intval($c_commu_id));
+
+    $id_list = db_get_all($sql, $params);
+
+    $list = array();
+    foreach ($id_list as $key => $value) {
+        $list[] = db_member_c_member4c_member_id($value['c_member_id'], true);
+    }
+
+    return $list;
+}
+
+function cond_name_list($cond_list, $select_last_login)
+{
+    $cond_name_list = array();
+
+    if (!is_null($cond_list['id'])) {
+        // ID
+        $cond_name_list['id']['name'] = 'ID(完全一致)';
+        $cond_name_list['id']['value'] = $cond_list['id'];
+    }
+
+    if (!is_null($cond_list['username'])) {
+        // ログインID
+        $cond_name_list['username']['name'] = 'ログインID';
+        $cond_name_list['username']['value'] = $cond_list['username'];   
+    }
+
+    if (!is_null($cond_list['nickname'])) {
+        // ニックネーム
+        $cond_name_list['nickname']['name'] = WORD_NICKNAME;
+        $cond_name_list['nickname']['value'] = $cond_list['nickname'];
+    }
+
+    if (!is_null($cond_list['last_login'])){
+        // 最終ログイン
+        $cond_name_list['last_login']['name'] = '最終ログイン';
+        $cond_name_list['last_login']['value'] = $select_last_login[$cond_list['last_login']];
+    }
+
+    if (!is_null($cond_list['s_year']) || !is_null($cond_list['e_year'] )) {
+        // 生年月日
+ 
+        $cond_name_list['year']['name'] = '生年月日';
+        if ( !is_null($cond_list['s_year'] )) {
+            $cond_name_list['year']['value'] = $cond_list['s_year'].'年 ～ ';
+        } else {
+            $cond_name_list['year']['value'] = '開始指定なし ～ ';
+        }
+        if ( !is_null($cond_list['e_year'])) {
+            $cond_name_list['year']['value'] .= $cond_list['e_year'].'年';
+        } else {
+            $cond_name_list['year']['value'] .= '終了指定なし'; 
+        }
+    }
+
+    //プロフィール
+    $profile_list = db_member_c_profile_list();
+    $profile_cond = $cond_list['profile'];
+    $profile_cond_name = array();
+
+    if ( !is_null($profile_cond) ) {
+        foreach ( $profile_list as $key => $profile ) {
+            if ( array_key_exists( $key, $profile_cond ) ) {
+                $profile_cond_name[$key]['name'] = $profile['caption'];
+
+                if ( $profile['form_type'] == 'checkbox' ) {
+                    $profile_cond_name[$key]['value'] = array();
+
+                    $count = 0;
+                    $work_array = array();
+
+                    foreach ( $profile['options'] as $option ) {
+                        if ( in_array( $option['c_profile_option_id'], $profile_cond[$key] ) ) {
+                            $profile_cond_name[$key]['value'][] = $option['value'];
+                        }
+                    }
+                } else {
+                    if ( $profile['form_type'] == 'radio' || $profile['form_type'] == 'select' ) {
+                        foreach ( $profile['options'] as $option ) { 
+                            if ( $option['c_profile_option_id'] == $profile_cond[$key] ) {
+                                $profile_cond_name[$key]['value'] = $option['value'];
+                                break;
+                            }
+                        }
+                    } else {
+                        $profile_cond_name[$key]['value'] = $profile_cond[$key];
+                    }
+                }
+            }
+        }
+        $cond_name_list['profile'] = $profile_cond_name;
+    }
+
+    //メールアドレス
+    if (!is_null($cond_list['mail_address'])){
+       $cond_name_list['mail_address']['name'] = 'メールアドレス(完全一致)';
+       $cond_name_list['mail_address']['value'] = $cond_list['mail_address'];
+    }
+
+    //PCメールアドレスの有無
+    if (!is_null($cond_list['is_pc_address'])){
+       $cond_name_list['is_pc_address']['name'] = 'PCメールアドレス';
+       if ( $cond_list['is_pc_address'] == 1 ) {
+           $cond_name_list['is_pc_address']['value'] = '登録している';
+       } else {
+           $cond_name_list['is_pc_address']['value'] = '登録していない';
+       }
+    }
+    
+    //携帯メールアドレスの有無
+    if (!is_null($cond_list['is_ktai_address'])){
+       $cond_name_list['is_ktai_address']['name'] = '携帯メールアドレス';
+       if ( $cond_list['is_ktai_address'] == 1 ) {
+           $cond_name_list['is_ktai_address']['value'] = '登録している';
+       } else {
+           $cond_name_list['is_ktai_address']['value'] = '登録していない';
+       }
+    }
+
+    //ポイントランク
+    if (!is_null($cond_list['s_rank']) || !is_null($cond_list['e_rank'] )) {
+        $cond_name_list['rank']['name'] = 'ポイントランク';
+        if ( !is_null($cond_list['s_rank'] )) {
+           $rank = db_point_get_rank4rank_id($cond_list['s_rank']);
+           $cond_name_list['rank']['value'] = $rank['name'].' ～ ';
+        } else {
+           $cond_name_list['rank']['value'] = '開始指定なし ～ ';
+        }
+
+        if ( !is_null($cond_list['e_rank'] )) {
+           $rank = db_point_get_rank4rank_id($cond_list['e_rank']);
+           $cond_name_list['rank']['value'] .= $rank['name'];
+        } else {
+           $cond_name_list['rank']['value'] .= '終了指定なし';
+        }
+    }
+
+    return $cond_name_list;
+}
 
 ?>
