@@ -18,6 +18,7 @@
 ({if $c_commu_topic_comment.image_filename1})写真：[<a href="({t_img_url filename=$c_commu_topic_comment.image_filename1 w=120 h=120 f=jpg})">小</a>/<a href="({t_img_url filename=$c_commu_topic_comment.image_filename1 w=$smarty.const.OPENPNE_IMG_KTAI_MAX_WIDTH h=$smarty.const.OPENPNE_IMG_KTAI_MAX_HEIGHT f=jpg})">大</a>]<br>({/if})
 ({if $c_commu_topic_comment.image_filename2})写真：[<a href="({t_img_url filename=$c_commu_topic_comment.image_filename2 w=120 h=120 f=jpg})">小</a>/<a href="({t_img_url filename=$c_commu_topic_comment.image_filename2 w=$smarty.const.OPENPNE_IMG_KTAI_MAX_WIDTH h=$smarty.const.OPENPNE_IMG_KTAI_MAX_HEIGHT f=jpg})">大</a>]<br>({/if})
 ({if $c_commu_topic_comment.image_filename3})写真：[<a href="({t_img_url filename=$c_commu_topic_comment.image_filename3 w=120 h=120 f=jpg})">小</a>/<a href="({t_img_url filename=$c_commu_topic_comment.image_filename3 w=$smarty.const.OPENPNE_IMG_KTAI_MAX_WIDTH h=$smarty.const.OPENPNE_IMG_KTAI_MAX_HEIGHT f=jpg})">大</a>]<br>({/if})
+({if $c_commu_topic_comment.filename && $smarty.const.OPENPNE_USE_FILEUPLOAD})ﾌｧｲﾙ名：({$c_commu_topic_comment.original_filename})<br>({/if})
 <br>
 
 <hr color="#({$ktai_color_config.border_01})">

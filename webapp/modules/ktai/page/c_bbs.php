@@ -25,15 +25,23 @@ class ktai_page_c_bbs extends OpenPNE_Action
         }
 
         list($list, $pager) = db_commu_c_topic_write4c_commu_topic_id($c_commu_topic_id, $page, $page_size, $desc);
+        foreach ($list as $key => $value) {
+            if ($value['filename']) {
+                $list[$key]['original_filename'] = db_file_original_filename4filename($value['filename']);
+            }
+        }
 
         $this->set('c_commu_topic_comment_list', $list);
         $this->set('pager', $pager);
 
         //トピック名
         $this->set('c_commu_topic_name', db_commu_c_commu_topic_name4c_commu_topic_id($c_commu_topic_id));
-        //トピックID,トピック
+        //トピックID
         $this->set('c_commu_topic_id', $c_commu_topic_id);
-        $this->set('c_commu_topic', db_commu_c_topic4c_commu_topic_id_2($c_commu_topic_id));
+        //トピック
+        $c_commu_topic = db_commu_c_topic4c_commu_topic_id_2($c_commu_topic_id);
+        $c_commu_topic['original_filename'] = db_file_original_filename4filename($c_commu_topic['filename']);
+        $this->set('c_commu_topic', $c_commu_topic);
 
         //コミュニティ
         $c_commu = db_commu_c_commu4c_commu_topic_id($c_commu_topic_id);
