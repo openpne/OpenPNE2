@@ -116,6 +116,7 @@
 <th>パスワード <strong>※</strong></th>
 <td>（表示しません）</td>
 </tr>
+({if $smarty.const.IS_PASSWORD_QUERY_ANSWER})
 <tr>
 <th>秘密の質問 <strong>※</strong></th>
 <td>({$password_query_name})</td>
@@ -124,6 +125,7 @@
 <th>質問の答え <strong>※</strong></th>
 <td>({$prof.c_password_query_answer})</td>
 </tr>
+({/if})
 </table>
 <div class="operation">
 <ul class="moreInfo button">
