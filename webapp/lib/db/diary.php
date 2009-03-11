@@ -974,7 +974,8 @@ function k_p_h_diary_list_friend_h_diary_list_friend4c_member_id($c_member_id, $
 /**
  * 日記を追加
  */
-function db_diary_insert_c_diary($c_member_id, $subject, $body, $public_flag)
+function db_diary_insert_c_diary($c_member_id, $subject, $body, $public_flag,
+    $is_comment_input = "1")
 {
     //function cacheの削除
     pne_cache_drop('db_diary_get_c_diary_list4c_member_id', $c_member_id, 5);
@@ -991,6 +992,7 @@ function db_diary_insert_c_diary($c_member_id, $subject, $body, $public_flag)
         'image_filename_1' => '',
         'image_filename_2' => '',
         'image_filename_3' => '',
+        'is_comment_input' => intval($is_comment_input),
     );
     return db_insert('c_diary', $data);
 }
@@ -998,7 +1000,7 @@ function db_diary_insert_c_diary($c_member_id, $subject, $body, $public_flag)
 /**
  * 日記を編集
  */
-function db_diary_update_c_diary($c_diary_id, $subject, $body, $public_flag,
+function db_diary_update_c_diary($c_diary_id, $subject, $body, $public_flag, $is_comment_input,
     $image_filename_1 = '', $image_filename_2 = '', $image_filename_3 = '')
 {
     //function cacheの削除
@@ -1010,6 +1012,7 @@ function db_diary_update_c_diary($c_diary_id, $subject, $body, $public_flag,
         'body' => $body,
         'public_flag' => util_cast_public_flag_diary($public_flag),
         'u_datetime' => db_now(),
+        'is_comment_input' => intval($is_comment_input),
     );
     if ($image_filename_1) $data['image_filename_1'] = $image_filename_1;
     if ($image_filename_2) $data['image_filename_2'] = $image_filename_2;

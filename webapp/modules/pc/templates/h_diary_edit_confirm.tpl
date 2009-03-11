@@ -31,6 +31,18 @@
 公開しない
 ({/if})
 </td></tr>
+({if $smarty.const.USE_DIARY_COMMENT})
+<tr>
+<th>コメント許可</th>
+<td>
+({if $form_val.is_comment_input == "1"})
+コメント許可する
+({else})
+コメント許可しない
+({/if})
+</td>
+</tr>
+({/if})
 </table>
 <div class="operation">
 <ul class="moreInfo button">
@@ -44,6 +56,7 @@
 <input type="hidden" name="tmpfile_2" value="({$form_val.tmpfile_2})" />
 <input type="hidden" name="tmpfile_3" value="({$form_val.tmpfile_3})" />
 <input type="hidden" name="category" value="({$form_val.category})" />
+<input type="hidden" name="is_comment_input" value="({$form_val.is_comment_input})" />
 <input type="submit" class="input_submit" value="　決　定　" />
 ({/t_form_block})
 </li>
@@ -55,6 +68,7 @@
 <input type="hidden" name="body" value="({$form_val.body})" />
 <input type="hidden" name="public_flag" value="({$form_val.public_flag})" />
 <input type="hidden" name="category" value="({$form_val.category})" />
+<input type="hidden" name="is_comment_input" value="({$form_val.is_comment_input})" />
 <input type="submit" class="input_submit" value="　修　正　" />
 ({/t_form_block})
 </li>

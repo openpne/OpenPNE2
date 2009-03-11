@@ -24,6 +24,7 @@ class ktai_page_h_diary_edit extends OpenPNE_Action
             }
             $this->set('target_c_diary', $c_diary);
         } else {
+            $c_diary['is_comment_input'] = "1";
             $c_diary['public_flag'] = $c_member['public_flag_diary'];
             $c_diary['subject'] = $subject;
             $c_diary['body'] = $body;
