@@ -14,6 +14,8 @@
     <dd>({$sns_info.info_friend_count_avg|number_format:2})人</dd>
     <dt>今日の({$WORD_DIARY})数</dt>
     <dd>({$sns_info.info_diary_count_today|number_format})件 (前日({$sns_info.info_diary_count_yesterday|number_format})件)</dd>
+    <dt>今日のメッセージ数</dt>
+    <dd>({$sns_info.info_message_count_today|number_format})件 (前日({$sns_info.info_message_count_yesterday|number_format})件)</dd>
 </dl>
             </div>
         </div>
