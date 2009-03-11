@@ -15,6 +15,7 @@ class pc_page_h_diary_add extends OpenPNE_Action
         $form_val['body'] = $requests['body'];
         $form_val['public_flag'] = $requests['public_flag'];
         $form_val['category'] = $requests['category'];
+        $form_val['is_comment_input'] = $requests['is_comment_input'];
         // ----------
 
         $sessid = session_id();
