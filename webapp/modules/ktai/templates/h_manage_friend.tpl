@@ -36,6 +36,11 @@
 <a href="({t_url m=ktai a=page_f_intro_edit})&amp;target_c_member_id=({$friend.c_member_id})&amp;({$tail})">紹介文を書く</a><br>
 ({/if})
 <a href="({t_url m=ktai a=page_fh_friend_list_delete_c_friend_confilm})&amp;target_c_member_id=({$friend.c_member_id})&amp;({$tail})">({$WORD_MY_FRIEND_HALF})から外す</a><br>
+({if $friend.is_display_friend_home})
+<a href="({t_url m=ktai a=do_h_friend_update_is_display_friend_home page=$page})&amp;target_c_member_id=({$friend.c_member_id})&amp;target_is_display_friend_home=0&amp;({$tail})">({$WORD_MY_FRIEND_HALRF})最新書き込みを表示しない</a><br>
+({else})
+<a href="({t_url m=ktai a=do_h_friend_update_is_display_friend_home page=$page})&amp;target_c_member_id=({$friend.c_member_id})&amp;target_is_display_friend_home=1&amp;({$tail})">({$WORD_MY_FRIEND_HALRF})最新書き込みを表示する</a><br>
+({/if})
 </td></tr>
 ({/foreach})
 </table>

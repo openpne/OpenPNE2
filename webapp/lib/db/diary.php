@@ -489,9 +489,10 @@ function p_h_diary_c_diary_first_diary_read4c_member_id($c_member_id)
  *
  * @param   int $c_member_id
  * @param   int $limit
+ * @param   int $use_is_display_friend_home
  * @return  array_of_array  (c_diary.*, nickname)
  */
-function p_h_home_c_diary_friend_list4c_member_id($c_member_id, $limit)
+function p_h_home_c_diary_friend_list4c_member_id($c_member_id, $limit, $use_is_display_friend_home = false)
 {
     static $is_recurred = false;  //再帰処理中かどうかの判定フラグ
 
@@ -506,6 +507,11 @@ function p_h_home_c_diary_friend_list4c_member_id($c_member_id, $limit)
     $friends = db_friend_c_member_id_list($c_member_id, true);
     if (!$friends) {
         return array();
+    }
+    // 対象の最新書き込みのみを表示する場合
+    if ($use_is_display_friend_home) {
+        // 表示対象一覧を取得し、取得済みフレンド一覧とぶつける
+        $friends = array_intersect($friends, db_friend_is_display_friend_home_list($c_member_id, $is_display_friend_home=1));
     }
     $ids = implode(',', array_map('intval', $friends));
 

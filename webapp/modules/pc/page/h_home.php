@@ -74,7 +74,7 @@ class pc_page_h_home extends OpenPNE_Action
             $this->set('c_diary_list_all', p_h_home_c_diary_all_list(5));
         }
         // フレンド最新日記
-        $c_diary_friend_list = p_h_home_c_diary_friend_list4c_member_id($u, 5);
+        $c_diary_friend_list = p_h_home_c_diary_friend_list4c_member_id($u, 5, true);
         $this->set('c_diary_friend_list', $c_diary_friend_list);
         // フレンド最新blog
         $this->set('c_rss_cache_list', db_rss_list_friend_c_rss_cache_list($u, 5));
