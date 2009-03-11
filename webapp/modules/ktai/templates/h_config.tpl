@@ -34,7 +34,9 @@
 <br>
 ({if $smarty.const.OPENPNE_AUTH_MODE != 'slavepne'})
 <font color="#({$ktai_color_config.bg_02})">◆</font><a href="({t_url m=ktai a=page_h_config_password})&amp;({$tail})">ﾊﾟｽﾜｰﾄﾞ変更</a><br>
+({if $smarty.const.IS_PASSWORD_QUERY_ANSWER})
 <font color="#({$ktai_color_config.bg_02})">◆</font><a href="({t_url m=ktai a=page_h_config_password_query})&amp;({$tail})">秘密の質問答え設定</a><br>
+({/if})
 ({/if})
 <font color="#({$ktai_color_config.bg_02})">◆</font><a href="({t_url m=ktai a=page_h_config_easy_login})&amp;({$tail})">かんたんﾛｸﾞｲﾝ設定</a><br>
 <br>

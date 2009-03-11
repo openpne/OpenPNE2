@@ -244,6 +244,12 @@ class pc_do_o_regist_prof extends OpenPNE_Action
             ),
         );
 
+        //秘密の質問省略モードの場合、秘密の質問に関するルールを削除する
+        if (!IS_PASSWORD_QUERY_ANSWER) {
+            unset($rules['c_password_query_id']);
+            unset($rules['c_password_query_answer']);
+        }
+
         if (OPENPNE_AUTH_MODE == 'pneid') {
             $rules['login_id'] = array(
                 'type' => 'regexp',

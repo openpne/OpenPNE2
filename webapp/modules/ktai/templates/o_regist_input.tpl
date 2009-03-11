@@ -141,6 +141,7 @@
 <input type="text" name="password" maxlength="12" istyle="3" mode="alphabet"><br>
 <font color="#({$ktai_color_config.font_09})">※ﾊﾟｽﾜｰﾄﾞは6-12文字の半角英数で入力してください</font><br>
 <br>
+({if $smarty.const.IS_PASSWORD_QUERY_ANSWER})
 <font color="#({$ktai_color_config.font_06})">秘密の質問：</font><font color="#({$ktai_color_config.font_09})">*</font><br>
 <select name="c_password_query_id">
     <option value="">選択してください
@@ -152,6 +153,7 @@
 <font color="#({$ktai_color_config.font_06})">秘密の質問の答え：</font><font color="#({$ktai_color_config.font_09})">*</font><br>
 <input type="text" name="password_query_answer" value=""><br>
 <font color="#({$ktai_color_config.font_09})">※ﾊﾟｽﾜｰﾄﾞを忘れた場合の確認に使用します。</font>
+({/if})
 <hr color="#({$ktai_color_config.border_01})">
 <center>
 <input type="submit" value="この内容で登録する">

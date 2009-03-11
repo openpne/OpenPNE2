@@ -41,12 +41,14 @@ class pc_do_h_config_3 extends OpenPNE_Action
             $c_password_query_id = 0;
             $c_password_query_answer = '';
         } else {
-            if (!strlen($requests['c_password_query_answer'])) {
-                if (!$c_member['c_password_query_id']) {
-                    $c_password_query_id = 0;
-                } else {
-                    if ($c_password_query_id != $c_member['c_password_query_id']) {
-                        $error_messages[] = '秘密の質問の答えを入力してください。';
+            if (IS_PASSWORD_QUERY_ANSWER) {
+                if (!strlen($requests['c_password_query_answer'])) {
+                    if (!$c_member['c_password_query_id']) {
+                        $c_password_query_id = 0;
+                    } else {
+                        if ($c_password_query_id != $c_member['c_password_query_id']) {
+                            $error_messages[] = '秘密の質問の答えを入力してください。';
+                        }
                     }
                 }
             }
@@ -91,18 +93,35 @@ class pc_do_h_config_3 extends OpenPNE_Action
             db_rss_delete_rss_cache($u);
         }
 
-        db_member_h_config_3(
-            $u,
-            $is_receive_mail,
-            $rss_url,
-            $ashiato_mail_num,
-            $is_receive_daily_news,
-            $c_password_query_id,
-            $c_password_query_answer,
-            $public_flag_diary,
-            $is_shinobiashi,
-            $schedule_start_day
-        );
+        //秘密の質問使用モード = true
+        //または、設定画面表示時はtrueだったけど、設定変更ボタンを押す時にはfalse
+        //になっていた場合、
+        //秘密の質問は登録する 
+        if ((IS_PASSWORD_QUERY_ANSWER) || (!empty($c_password_query_answer))) {
+            db_member_h_config_3(
+                $u,
+                $is_receive_mail,
+                $rss_url,
+                $ashiato_mail_num,
+                $is_receive_daily_news,
+                $c_password_query_id,
+                $c_password_query_answer,
+                $public_flag_diary,
+                $is_shinobiashi,
+                $schedule_start_day
+            );
+        } else {
+            db_member_h_config_3_no_password_query_answer(
+                $u,
+                $is_receive_mail,
+                $rss_url,
+                $ashiato_mail_num,
+                $is_receive_daily_news,
+                $public_flag_diary,
+                $is_shinobiashi,
+                $schedule_start_day
+            );
+        }
 
         db_member_insert_c_access_block($u, $c_member_id_block);
 
