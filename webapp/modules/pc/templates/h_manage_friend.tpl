@@ -27,7 +27,14 @@
 <p><a href="({t_url m=pc a=page_f_intro_edit})&amp;target_c_member_id=({$item.c_member_id})">紹介文を書く</a></p>
 ({/if})
 </td>
-<td class="delete"><a href="({t_url m=pc a=page_fh_friend_list_delete_c_friend_confilm})&amp;target_c_member_id=({$item.c_member_id})">({$WORD_MY_FRIEND})から外す</a></td>
+<td class="delete"><a href="({t_url m=pc a=page_fh_friend_list_delete_c_friend_confilm})&amp;target_c_member_id=({$item.c_member_id})">({$WORD_MY_FRIEND})から外す</a>
+<br/> <br/>
+({if $item.is_display_friend_home})
+<a href="({t_url m=pc a=do_h_friend_update_is_display_friend_home page=$page})&amp;target_c_member_id=({$item.c_member_id})&amp;target_is_display_friend_home=0&amp;sessid=({$PHPSESSID})">({$WORD_MY_FRIEND})最新書き込みを表示しない</a>
+({else})
+<a href="({t_url m=pc a=do_h_friend_update_is_display_friend_home page=$page})&amp;target_c_member_id=({$item.c_member_id})&amp;target_is_display_friend_home=1&amp;sessid=({$PHPSESSID})">({$WORD_MY_FRIEND})最新書き込みを表示する</a>
+({/if})
+</td>
 </tr>
 ({/foreach})
 </table>
