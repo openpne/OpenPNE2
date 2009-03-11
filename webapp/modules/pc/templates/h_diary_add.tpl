@@ -137,6 +137,14 @@
 </ul>
 </td>
 </tr>
+({if $smarty.const.USE_DIARY_COMMENT})
+<tr>
+<th>コメント許可</th>
+<td>
+<input type="checkbox" class="input_checkbox" name="is_comment_input" id="is_comment_input" value="1"({if $form_val.is_comment_input == "1"}) checked="checked"({/if}) /><label for="is_comment_input">許可する</label>
+</td>
+</tr>
+({/if})
 </table>
 <div class="operation">
 <ul class="moreInfo button">

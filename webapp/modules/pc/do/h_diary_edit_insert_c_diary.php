@@ -31,6 +31,7 @@ class pc_do_h_diary_edit_insert_c_diary extends OpenPNE_Action
         $tmpfile_2 = $requests['tmpfile_2'];
         $tmpfile_3 = $requests['tmpfile_3'];
         $category = preg_split('/\s+/', $requests['category']);
+        $is_comment_input = $requests['is_comment_input'];
         // ----------
 
         //--- 権限チェック
@@ -85,7 +86,7 @@ class pc_do_h_diary_edit_insert_c_diary extends OpenPNE_Action
         }
 
         t_image_clear_tmp($sessid);
-        db_diary_update_c_diary($target_c_diary_id, $subject, $body, $public_flag, $filename_1, $filename_2, $filename_3);
+        db_diary_update_c_diary($target_c_diary_id, $subject, $body, $public_flag, $is_comment_input, $filename_1, $filename_2, $filename_3);
 
         $p = array('target_c_diary_id' => $target_c_diary_id);
         openpne_redirect('pc', 'page_fh_diary', $p);

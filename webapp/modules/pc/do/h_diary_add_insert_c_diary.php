@@ -30,6 +30,7 @@ class pc_do_h_diary_add_insert_c_diary extends OpenPNE_Action
         $tmpfile_2 = $requests['tmpfile_2'];
         $tmpfile_3 = $requests['tmpfile_3'];
         $category = preg_split('/\s+/', $requests['category']);
+        $is_comment_input = $requests['is_comment_input'];
         // ----------
 
         $sessid = session_id();
@@ -48,7 +49,7 @@ class pc_do_h_diary_add_insert_c_diary extends OpenPNE_Action
             }
         }
 
-        $c_diary_id = db_diary_insert_c_diary($c_member_id, $subject, $body, $public_flag);
+        $c_diary_id = db_diary_insert_c_diary($c_member_id, $subject, $body, $public_flag, $is_comment_input);
 
         foreach($category as $value) {
             if (empty($value)) {
@@ -67,7 +68,7 @@ class pc_do_h_diary_add_insert_c_diary extends OpenPNE_Action
         $filename_3 = image_insert_c_image4tmp("d_{$c_diary_id}_3", $tmpfile_3);
         t_image_clear_tmp($sessid);
 
-        db_diary_update_c_diary($c_diary_id, $subject, $body, $public_flag, $filename_1, $filename_2, $filename_3);
+        db_diary_update_c_diary($c_diary_id, $subject, $body, $public_flag, $is_comment_input, $filename_1, $filename_2, $filename_3);
 
         if (OPENPNE_USE_POINT_RANK) {
             //日記を書いた人にポイント付与
