@@ -24,6 +24,8 @@ function smarty_function_t_assign_sns_info($params, &$smarty)
         'info_friend_count_avg' => $friend_count_avg,
         'info_diary_count_today' => _getDiaryCountToday(),
         'info_diary_count_yesterday' => _getDiaryCountYesterday(),
+        'info_message_count_today' => _getMessageCountToday(),
+        'info_message_count_yesterday' => _getMessageCountYesterday(),
     );
 
     $smarty->assign($params['var'], $result);
@@ -102,6 +104,31 @@ function _getDiaryCountYesterday()
     $today = date('Y-m-d H:i:s', mktime(0, 0, 0, date('m'), date('d'), date('Y')));
 
     $sql = 'SELECT COUNT(*) FROM c_diary WHERE r_datetime >= ? AND r_datetime < ?';
+    $params = array($yesterday, $today);
+    return db_get_one($sql, $params);
+}
+
+/**
+ * 今日のメッセージ件数
+ */
+function _getMessageCountToday()
+{
+    $today = date('Y-m-d H:i:s', mktime(0, 0, 0, date('m'), date('d'), date('Y')));
+
+    $sql = 'SELECT COUNT(*) FROM c_message WHERE r_datetime >= ?';
+    $params = array($today);
+    return db_get_one($sql, $params);
+}
+
+/**
+ * 前日のメッセージ件数
+ */
+function _getMessageCountYesterday()
+{
+    $yesterday = date('Y-m-d H:i:s', mktime(0, 0, 0, date('m'), date('d') - 1, date('Y')));
+    $today = date('Y-m-d H:i:s', mktime(0, 0, 0, date('m'), date('d'), date('Y')));
+
+    $sql = 'SELECT COUNT(*) FROM c_message WHERE r_datetime >= ? AND r_datetime < ?';
     $params = array($yesterday, $today);
     return db_get_one($sql, $params);
 }
