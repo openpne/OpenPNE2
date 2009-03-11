@@ -359,17 +359,17 @@ function db_friend_c_friend_list_disp4c_member_id($c_member_id, $page = 1, $size
                 "c_member_id_to".
             " FROM c_member,".
                 "c_friend".
-            " WHERE c_member.c_member_id = c_friend.c_member_id_from".
-                " AND c_friend.c_member_id_to = ?".
+            " WHERE c_member.c_member_id = c_friend.c_member_id_to".
+                " AND c_friend.c_member_id_from = ?".
             " ORDER BY c_friend.r_datetime DESC";
     $params = array(intval($c_member_id));
     $c_friend_list = db_get_all_page($sql, $page, $size, $params);
 
     foreach ($c_friend_list as $key => $value) {
-        $c_friend = db_friend_c_friend4c_member_id_from4c_member_id_to($value['c_member_id_to'], $value['c_member_id_from']);
+        $c_friend = db_friend_c_friend4c_member_id_from4c_member_id_to($value['c_member_id_from'], $value['c_member_id_to']);
         $c_friend_list[$key]['intro'] = $c_friend['intro'];
 
-        $c_friend_list[$key]['friend_count'] = db_friend_count_friends($value['c_member_id_from']);
+        $c_friend_list[$key]['friend_count'] = db_friend_count_friends($value['c_member_id_to']);
     }
 
     $total_num = db_friend_count_friends($c_member_id);
