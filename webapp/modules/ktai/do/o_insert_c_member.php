@@ -206,6 +206,13 @@ class ktai_do_o_insert_c_member extends OpenPNE_Action
             ),
         );
 
+
+        //秘密の質問省略モードの場合、秘密の質問に関するルールを削除する
+        if (!IS_PASSWORD_QUERY_ANSWER) {
+            unset($rules['c_password_query_id']);
+            unset($rules['password_query_answer']);
+        }
+
         if (OPENPNE_AUTH_MODE == 'pneid') {
             $rules['login_id'] = array(
                 'type' => 'regexp',
