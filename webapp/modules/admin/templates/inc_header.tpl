@@ -164,12 +164,12 @@
 ({foreach from=$enable_module_list item=item})
 <li><a href="?m=({$item.admin_menu.module})&amp;a=({$item.admin_menu.action})">({$item.admin_menu.caption|default:$item.general.name})</a></li>
 ({/foreach})
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_commu')})">コミュニティリスト</a></li>
 ({if !$enable_module_list})
 <li><a href="#">（なし）</a></li>
 ({/if})
 </ul>
 </li>
-
 </ul>
 ({****************})
 ({****************})
