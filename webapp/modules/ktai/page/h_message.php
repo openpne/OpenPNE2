@@ -31,6 +31,8 @@ class ktai_page_h_message extends OpenPNE_Action
         // メッセージデータ
         //コミュニティおすすめメッセージのURLを置換
         list($c_message['body'], $com_url, $friend_url) = k_p_h_message_ktai_url4url($c_message['body'], $tail);
+        //オリジナルファイル名取得
+        $c_message['original_filename'] = db_file_original_filename4filename($c_message['filename']);
 
         $this->set("c_message", $c_message);
         $this->set("com_url", $com_url);
