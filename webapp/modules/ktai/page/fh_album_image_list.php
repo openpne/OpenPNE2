@@ -17,6 +17,7 @@ class ktai_page_fh_album_image_list extends OpenPNE_Action
         // --- リクエスト変数
         $target_c_album_id = $requests['target_c_album_id'];
         $page = $requests['page'];
+        $is_thumbnail = $requests['is_thumbnail'];
         // ----------
         $page_size = 10;
 
@@ -40,6 +41,13 @@ class ktai_page_fh_album_image_list extends OpenPNE_Action
 
         if ($target_c_member_id == $u) {
             $type = 'h';
+            if (MAIL_ADDRESS_HASHED) {
+                $mail_address = "ai{$target_c_album_id}-".t_get_user_hash($u).'@'.MAIL_SERVER_DOMAIN;
+            } else {
+                $mail_address = "ai{$target_c_album_id}".'@'.MAIL_SERVER_DOMAIN;
+            }
+            $mail_address = MAIL_ADDRESS_PREFIX . $mail_address;
+            $this->set('mail_address', $mail_address);
         } else {
             $type = 'f';
 
@@ -77,6 +85,12 @@ class ktai_page_fh_album_image_list extends OpenPNE_Action
         $end = $start + count($album_image_list) - 1;
         $this->set('start', $start);
         $this->set('end', $end);
+
+        // サムネイルフラグ
+        if (!$is_thumbnail) {
+            $is_thumbnail = false;
+        }
+        $this->set('is_thumbnail', $is_thumbnail);
 
         return 'success';
     }

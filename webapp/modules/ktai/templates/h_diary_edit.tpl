@@ -11,7 +11,7 @@
 ({/if})
 </td></tr></table>
 
-({if !$target_c_diary.c_diary_id})
+({if !$target_c_diary.c_diary_id && !$target_c_diary.body})
 [i:106]<a href="mailto:({$blog_address})">ﾒｰﾙで投稿</a><br>
 写真を添付すると写真付き({$WORD_DIARY_HALF})になります。<br>
 <font color="#({$ktai_color_config.font_09})">※ﾒｰﾙ投稿では絵文字が反映されません</font>
