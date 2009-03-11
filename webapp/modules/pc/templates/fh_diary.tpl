@@ -90,8 +90,8 @@
 </p></div>
 ({if $c_diary_id_prev || $c_diary_id_next})
 <div class="block prevNextLinkLine">
-({if $c_diary_id_prev})<p class="prev"><a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$c_diary_id_prev})">«前の({$WORD_DIARY})</a></p>({/if})
-({if $c_diary_id_next})<p class="next"><a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$c_diary_id_next})">次の({$WORD_DIARY})»</a></p>({/if})
+({if $c_diary_id_prev})<p class="prev"><a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$c_diary_id_prev})">≪前の({$WORD_DIARY})</a></p>({/if})
+({if $c_diary_id_next})<p class="next"><a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$c_diary_id_next})">次の({$WORD_DIARY})≫</a></p>({/if})
 </div>
 ({/if})
 <dl>
@@ -212,11 +212,13 @@
 ({if $c_diary_id_prev || $c_diary_id_next})
 ({* {{{ prevNextLinkLine *})
 <div class="parts prevNextLinkLine">
-({if $c_diary_id_prev})<p class="prev"><a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$c_diary_id_prev})">«前の({$WORD_DIARY})</a></p>({/if})
-({if $c_diary_id_next})<p class="next"><a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$c_diary_id_next})">次の({$WORD_DIARY})»</a></p>({/if})
+({if $c_diary_id_prev})<p class="prev"><a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$c_diary_id_prev})">≪前の({$WORD_DIARY})</a></p>({/if})
+({if $c_diary_id_next})<p class="next"><a href="({t_url m=pc a=page_fh_diary})&amp;target_c_diary_id=({$c_diary_id_next})">次の({$WORD_DIARY})≫</a></p>({/if})
 </div>
 ({* }}} *})
 ({/if})
+
+({if $is_comment_input})
 
 ({if $is_writable_comment})
 ({* {{{ formTable *})
@@ -247,6 +249,17 @@
 <div class="partsHeading"><h3>コメントを書く</h3></div>
 <div class="block">
 <p>コメントが1000番に達したので、この({$WORD_DIARY})にはコメントできません。</p>
+</div>
+</div></div>
+({* }}} *})
+({/if})
+
+({else})
+({* {{{ simpleBox *})
+<div class="dparts simpleBox"><div class="parts">
+<div class="partsHeading"><h3>コメントを書く</h3></div>
+<div class="block">
+<p>現在、この({$WORD_DIARY_HALF})にはコメントできません。</p>
 </div>
 </div></div>
 ({* }}} *})
