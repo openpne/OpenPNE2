@@ -179,6 +179,9 @@ function do_regist_prof_do_regist2_mail_send($c_member_id)
     $params = array(
         "c_member" => $c_member,
     );
+    if (OPENPNE_AUTH_MODE == 'pneid' || OPENPNE_AUTH_MODE == 'slavepne') {
+        $params['login_id'] = db_member_username4c_member_id($c_member_id);
+    }
     return fetch_send_mail($pc_address, 'm_pc_invite_end', $params);
 }
 
@@ -201,7 +204,7 @@ function do_password_query_mail_send($c_member_id, $pc_address, $new_password)
         "pc_address" => $pc_address,
         "password"   => $new_password,
     );
-    if (OPENPNE_AUTH_MODE == 'pneid') {
+    if (OPENPNE_AUTH_MODE == 'pneid' || OPENPNE_AUTH_MODE == 'slavepne') {
         $params['login_id'] = db_member_username4c_member_id($c_member_id);
     }
     return fetch_send_mail($pc_address, 'm_pc_password_query', $params);
@@ -220,7 +223,7 @@ function db_mail_send_m_ktai_password_query($c_member_id, $new_password)
         'password'  => $new_password,
         'login_url' => $login_url,
     );
-    if (OPENPNE_AUTH_MODE == 'pneid') {
+    if (OPENPNE_AUTH_MODE == 'pneid' || OPENPNE_AUTH_MODE == 'slavepne') {
         $params['login_id'] = db_member_username4c_member_id($c_member_id);
     }
     return fetch_send_mail($ktai_address, 'm_ktai_password_query', $params);
@@ -477,6 +480,9 @@ function do_h_config_1_mail_send($target_c_member_id, $session, $pc_address)
         "c_member" => db_member_c_member4c_member_id($target_c_member_id),
         "sid"      => $session,
     );
+    if (OPENPNE_AUTH_MODE == 'pneid' || OPENPNE_AUTH_MODE == 'slavepne') {
+        $params['login_id'] = db_member_username4c_member_id($target_c_member_id);
+    }
     return fetch_send_mail($pc_address, 'm_pc_change_mail', $params);
 }
 
@@ -690,6 +696,9 @@ function do_common_send_mail_regist4admin($c_member_id)
         "c_member" => $c_member,
         "c_profile_list" => $c_profile_list,
     );
+    if (OPENPNE_AUTH_MODE == 'pneid' || OPENPNE_AUTH_MODE == 'slavepne') {
+        $params['login_id'] = db_member_username4c_member_id($c_member_id);
+    }
     return fetch_send_mail(ADMIN_EMAIL, 'm_admin_regist', $params);
 }
 
@@ -714,6 +723,9 @@ function do_common_send_mail_taikai4admin($c_member_id, $reason)
         "c_profile_list" => $c_profile_list,
         "reason" => $reason,
     );
+    if (OPENPNE_AUTH_MODE == 'pneid' || OPENPNE_AUTH_MODE == 'slavepne') {
+        $params['login_id'] = db_member_username4c_member_id($c_member_id);
+    }
     return fetch_send_mail(ADMIN_EMAIL, 'm_admin_taikai', $params);
 }
 
@@ -725,6 +737,9 @@ function do_common_send_mail_taikai_end_pc($c_member_id)
     $params = array(
         "c_member" => $c_member,
     );
+    if (OPENPNE_AUTH_MODE == 'pneid' || OPENPNE_AUTH_MODE == 'slavepne') {
+        $params['login_id'] = db_member_username4c_member_id($c_member_id);
+    }
     return fetch_send_mail($pc_address, 'm_pc_taikai_end', $params);
 }
 
@@ -736,6 +751,9 @@ function do_common_send_mail_taikai_end_ktai($c_member_id)
     $params = array(
         "c_member" => $c_member,
     );
+    if (OPENPNE_AUTH_MODE == 'pneid' || OPENPNE_AUTH_MODE == 'slavepne') {
+        $params['login_id'] = db_member_username4c_member_id($c_member_id);
+    }
     return fetch_send_mail($ktai_address, 'm_ktai_taikai_end', $params);
 }
 
