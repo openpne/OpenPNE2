@@ -145,6 +145,11 @@ class pc_do_o_regist_prof extends OpenPNE_Action
                 // 登録完了メール送信
                 do_regist_prof_do_regist2_mail_send($u);
 
+                // 登録完了メール(管理者宛)
+                if (SEND_USER_DATA) {
+                    do_common_send_mail_regist4admin($u);
+                }
+
                 openpne_redirect('pc', 'page_o_regist_end', array('c_member_id' => $u));
             } else {
                 // メンバー登録時の携帯個体識別番号取得設定が「PC・携帯登録時に個体識別番号を必須にする」である場合、
