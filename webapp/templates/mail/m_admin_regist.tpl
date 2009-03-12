@@ -4,6 +4,8 @@
 
 
 メンバーID : ({$c_member.c_member_id})
+({if $login_id})ログインID：({$login_id})
+({/if})
 ({$WORD_NICKNAME}) : ({$c_member.nickname})
 登録日 : ({$c_member.r_date})
 招待者 : ({$c_member.c_member_id_invite}) (({$c_member.c_member_invite.nickname}))
