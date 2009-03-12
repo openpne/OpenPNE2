@@ -132,6 +132,11 @@ class ktai_do_o_insert_c_member extends OpenPNE_Action
 
         do_insert_c_member_mail_send($c_member_id, $prof['password'], $pre['ktai_address']);
 
+        // 登録完了メール(管理者宛)
+        if (SEND_USER_DATA) {
+            do_common_send_mail_regist4admin($c_member_id);
+        }
+
         if ($aff_id) {
             $p = array('aff_id' => $aff_id);
         } else {
