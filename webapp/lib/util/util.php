@@ -787,11 +787,6 @@ function util_regist_c_member($c_member, $c_member_secure, $c_member_profile_lis
         db_member_insert_username($u, $login_id);
     }
 
-    if (SEND_USER_DATA) {
-        // 登録完了メール(管理者宛)
-        do_common_send_mail_regist4admin($u);
-    }
-
     return $u;
 }
 
