@@ -3,6 +3,8 @@
 退会者データ
 
 メンバーID : ({$c_member.c_member_id})
+({if $login_id})ログインID：({$login_id})
+({/if})
 ({$WORD_NICKNAME}) : ({$c_member.nickname})
 ({if $smarty.const.OPENPNE_USE_POINT_RANK})
 ランク : ({$c_member.rank.name})
