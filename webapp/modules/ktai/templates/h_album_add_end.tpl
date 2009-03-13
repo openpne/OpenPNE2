@@ -16,7 +16,7 @@
 [i:106]<a href="mailto:({$mail_address})">ﾒｰﾙで写真を投稿</a><br>
 写真(1枚目のみ)をｱﾙﾊﾞﾑに登録します。<br>
 ({$image_max})KB以内のGIF･JPEG･PNGが登録可能です。<br>
-ﾒｰﾙ本文に写真の説明を記入してください。<br>
+ﾒｰﾙの件名に写真の説明を記入してください。<br>
 <font color="#({$ktai_color_config.font_09})">※ﾒｰﾙ投稿では絵文字が反映されません</font>
 
 <hr color="#({$ktai_color_config.border_01})">
