@@ -635,6 +635,15 @@ div.listControl p.listMove a {
 #admin_page_delete_c_member_confirm table.userDetailTable td { padding: 5px; border-left: 1px #A3A3A6 solid;}
 #admin_page_delete_c_member_confirm ul.cautionList { padding: 10px 0 0 0;}
 
+/** admin_page_delete_c_member_write_all_confirm **/
+#admin_page_delete_c_member_write_all_confirm p.caution#c01 strong { font-weight: bold; line-height: 170%;}
+#admin_page_delete_c_member_write_all_confirm p#userImg { padding: 20px 0 10px 0;}
+#admin_page_delete_c_member_write_all_confirm p#userImg img { margin: 0 10px;}
+#admin_page_delete_c_member_write_all_confirm table.userDetailTable { clear: both; width: 960px; border: 1px #A3A3A6 solid; border-collapse: collapse; line-height: 100%;}
+#admin_page_delete_c_member_write_all_confirm table.userDetailTable th { padding: 5px; width: 10%; border-left: 1px #A3A3A6 solid; background: #58585C; white-space: pre; text-align: right; font-weight: normal; color: #fff;}
+#admin_page_delete_c_member_write_all_confirm table.userDetailTable td { padding: 5px; border-left: 1px #A3A3A6 solid;}
+#admin_page_delete_c_member_write_all_confirm ul.cautionList { padding: 10px 0 0 0;}
+
 /** admin_page_c_member_detail **/
 #admin_page_c_member_detail p.caution#c01 strong { font-weight: bold; line-height: 170%;}
 #admin_page_c_member_detail p#userImg { padding: 20px 0 10px 0;}
