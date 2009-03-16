@@ -948,4 +948,45 @@ function db_etc_c_cmd_url4name($name)
     return db_get_one($sql, array($name));
 }
 
+/**
+ * DBから前回POST情報を取得する
+ *
+ * @params : $u
+ *
+ * @return array();
+ **/
+function db_etc_get_post_info($u) 
+{
+    $sql = 'SELECT * FROM c_post_info WHERE c_member_id = ?';
+    $params = array($u);
+    $result = db_get_row($sql, $params);
+    return array($result['last_post_time'], $result['last_post_count']);
+}
+
+/**
+ * DBにPOST情報を設定する
+ *
+ * @params : $u
+ * @params : $post_time
+ * @params : $post_count
+ *
+ **/
+function db_etc_set_post_info($u, $post_time, $post_count) 
+{
+    $data = array('last_post_time' => $post_time,
+                  'last_post_count' => $post_count,
+                  'r_datetime' => db_now(),
+                 );
+    
+    // update
+    $where = "c_member_id = $u";
+    if (db_update('c_post_info', $data, $where) && db_affected_rows()) {
+        return true;
+    }
+
+    // insert
+    $data['c_member_id'] = $u;
+    return (bool)db_insert('c_post_info', $data);
+}
+
 ?>
