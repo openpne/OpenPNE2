@@ -90,6 +90,8 @@ class admin_page_list_c_member extends OpenPNE_Action
                 db_member_c_member4c_member_id_LIGHT($value['c_member_id_invite']);
             $v['c_member_list'][$key]['c_rank'] =
                 db_point_get_rank4point($value['profile']['PNE_POINT']['value']);
+            $v['c_member_list'][$key]['is_receive_any_mail'] = 
+                db_admin_is_receive_any_mail4c_member_id($value['c_member_id']);
         }
 
         $v['pager'] = $pager;
