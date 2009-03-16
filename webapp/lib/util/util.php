@@ -1056,4 +1056,92 @@ function util_replace_patterns_to_marker($subject, $patterns = array())
     return array($list, $subject);
 }
 
+/**
+ * 連続投稿チェック用の情報を取得する
+ *
+ * @return array
+ */
+function util_get_post_info($u)
+{
+    $last_post_time = '';
+    $post_count = 0;
+
+    switch (POST_INFO_STORAGE) {
+        case 0 :
+            $last_post_time = $_SESSION['last_post_time'];
+            $post_count = $_SESSION['post_count'];
+            break;
+        case 1 :
+            list($last_post_time, $post_count) = db_etc_get_post_info($u);
+            break;
+    }
+
+    return array($last_post_time, $post_count);
+}
+
+/**
+ * 連続投稿チェック用の情報を設定する
+ *
+ * @return array
+ */
+function util_set_post_info($u, $post_time, $post_count)
+{
+    switch (POST_INFO_STORAGE) {
+        case 0 :
+            $_SESSION['last_post_time'] = $post_time;
+            $_SESSION['post_count'] = $post_count;
+            break;
+        case 1 :
+            db_etc_set_post_info($u, $post_time, $post_count);
+            break;
+    }
+
+    return true;
+}
+
+/**
+ * 連続投稿確認用
+ *
+ * @params  $action : Check Action
+ * @params  $u : operation c_member_id
+ * @return  true  : post OK
+ *          false : post NG
+ **/
+function util_do_post_interval_ok($action, $u = 0)
+{
+    $result = true;
+
+    if (!POST_INTERVAL_UNFAIR_SECOND) {
+        // チェックしない
+    } else if (in_array($action, $GLOBALS['CHECK_POST_ACTIONS']['pc'])) {
+        //保持している情報
+        list($last_post_time, $post_count) = util_get_post_info($u);
+
+        //連続投稿チェック
+        $now_time = time();
+        if ($last_post_time) {
+            if (($now_time - $last_post_time) < POST_INTERVAL_UNFAIR_SECOND) {
+                // 設定時間内の場合カウントアップ
+                $post_count ++;
+            } else if (!POST_INTERVAL_UNFAIR_COUNT_RESET_SECOND) {
+                // リセットしない
+            } else if (($now_time - $last_post_time) > POST_INTERVAL_UNFAIR_COUNT_RESET_SECOND) {
+                //前回投稿から指定時間以上あいていれば、カウントをリセットする
+                $post_count = 1;
+            }
+
+            if ($post_count > POST_INTERVAL_UNFAIR_COUNT) {
+                //連続投稿とみなす
+                $result = false;
+            }
+        } else {
+            $post_count = 1;
+        }
+        //情報更新
+        util_set_post_info($u, $now_time, $post_count);
+    }
+
+    return $result;
+}
+
 ?>

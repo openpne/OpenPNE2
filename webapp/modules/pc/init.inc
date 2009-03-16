@@ -14,7 +14,6 @@ if (!OPENPNE_ENABLE_PC) {
     exit;
 }
 //>
-
 function init_pc_page(&$smarty)
 {
     $is_secure = $GLOBALS['__Framework']['is_secure'];
@@ -84,6 +83,17 @@ function init_pc_do()
             openpne_display_error('前の画面を再読み込みして、操作をやり直してください');
         }
     }
+
+    // 連続投稿確認
+    if ($is_secure) {
+        $u = $GLOBALS['AUTH']->uid();
+        $action = 'do_' . $GLOBALS['__Framework']['current_action'];
+
+        if (!util_do_post_interval_ok($action, $u)) {
+            openpne_display_error();
+        }
+    }
+
 }
 
 ?>
