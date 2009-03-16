@@ -97,7 +97,8 @@
 ({if $pager})
 <div class="listControlTop">
 <p class="display">({$pager.total_num}) 人中 ({$pager.start_num}) - ({$pager.end_num})人目を表示しています</p>
-<p id="controlIcon"><img src="./modules/admin/img/icn_withdrawal.gif" alt="強制退会のアイコン" class="withdraw" />：強制退会　<img src="modules/admin/img/icn_rejected.gif" alt="ログイン停止のアイコン" />：ログイン停止　<img src="modules/admin/img/icn_permit.gif" alt="ログイン停止解除" />：ログイン停止解除　<img src="modules/admin/img/icn_passwd.gif" alt="パスワード再発行のアイコン" />：パスワード再発行 <img src="modules/admin/img/icn_blacklist.gif" alt="ブラックリストに追加" />：携帯個体識別番号をブラックリストに追加</p>
+({/if})
+<p id="controlIcon"><img src="./modules/admin/img/icn_withdrawal.gif" alt="強制退会のアイコン" class="withdraw" />：強制退会　<img src="modules/admin/img/icn_rejected.gif" alt="ログイン停止のアイコン" />：ログイン停止　<img src="modules/admin/img/icn_permit.gif" alt="ログイン停止解除" />：ログイン停止解除　<img src="modules/admin/img/icn_passwd.gif" alt="パスワード再発行のアイコン" />：パスワード再発行 <img src="modules/admin/img/icn_blacklist.gif" alt="ブラックリストに追加" />：携帯個体識別番号をブラックリストに追加 <img src="modules/admin/img/icn_stop_receive_mail.gif" alt="メール受信の停止のアイコン" />：メール受信の停止 <img src="./modules/admin/img/icn_delete_all.gif" alt="書き込み一括削除のアイコン" class="widthraw" />：書き込み一括削除</p>
 <p class="listMove">
 ({if $pager.prev_page})<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page=({$pager.prev_page})&amp;page_size=({$pager.page_size})&amp;order=({$requests.order})({$cond})">前へ</a>({/if})
 ({foreach from=$pager.disp_pages item=i})
@@ -117,7 +118,7 @@
 	<thead>
 		<tr>
 			<th class="cell01" rowspan="3">&nbsp;</th>
-			<th class="cell02" colspan="4" rowspan="3">操作パネル</th>
+			<th class="cell02" colspan="6" rowspan="3">操作パネル</th>
 			<th class="cell03" rowspan="3"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=c_member_id-1({$cond})">▲</a>ID<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=c_member_id-2({$cond})">▼</a></th>
 			({if $smarty.const.OPENPNE_AUTH_MODE != 'email'})
 			<th class="cell19" rowspan="3"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=username-1({$cond})">▲</a>ログインID<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})&amp;page_size=({$pager.page_size})&amp;order=username-2({$cond})">▼</a></th>
@@ -226,7 +227,7 @@
 	<tfoot>
 		<tr>
 			<th class="cell01" rowspan="3">&nbsp;</th>
-			<th class="cell02" colspan="4" rowspan="2">操作パネル</th>
+			<th class="cell02" colspan="6" rowspan="2">操作パネル</th>
 			<th class="cell03" rowspan="2">ID</th>
 			({if $smarty.const.OPENPNE_AUTH_MODE != 'email'})
 			<th class="cell19" rowspan="2">ログインID</th>
@@ -269,6 +270,7 @@
 			<td class="cell02B"><a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('update_is_login_rejected','do')})&amp;target_c_member_id=({$item.c_member_id})&amp;sessid=({$PHPSESSID})">({if $item.is_login_rejected})<img src="modules/admin/img/icn_permit.gif" alt="ログイン停止解除" />({else})<img src="modules/admin/img/icn_rejected.gif" alt="ログイン停止" />({/if})</a></td>
 			<td class="cell02C"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('passwd')})&amp;target_c_member_id=({$item.c_member_id})"><img src="modules/admin/img/icn_passwd.gif" alt="パスワード再発行" /></a></td>
 			<td class="cell02D"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('blacklist_add')})&amp;easy_access_id=({$item.secure.easy_access_id})"><img src="modules/admin/img/icn_blacklist.gif" alt="ブラックリストに追加" /></a></td>
+			<td class="cell02A"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('delete_c_member_write_all_confirm')})&amp;target_c_member_id=({$item.c_member_id})"><img src="modules/admin/img/icn_delete_all.gif" alt="書き込み一括削除" /></a></td>
 			<td class="cell03">({$item.c_member_id})</td>
 			({if $smarty.const.OPENPNE_AUTH_MODE != 'email'})
 			<td class="cell19">({$item.username})</td>
