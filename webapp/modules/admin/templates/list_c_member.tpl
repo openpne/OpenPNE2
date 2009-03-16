@@ -270,19 +270,20 @@
 			<td class="cell02B"><a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('update_is_login_rejected','do')})&amp;target_c_member_id=({$item.c_member_id})&amp;sessid=({$PHPSESSID})">({if $item.is_login_rejected})<img src="modules/admin/img/icn_permit.gif" alt="ログイン停止解除" />({else})<img src="modules/admin/img/icn_rejected.gif" alt="ログイン停止" />({/if})</a></td>
 			<td class="cell02C"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('passwd')})&amp;target_c_member_id=({$item.c_member_id})"><img src="modules/admin/img/icn_passwd.gif" alt="パスワード再発行" /></a></td>
 			<td class="cell02D"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('blacklist_add')})&amp;easy_access_id=({$item.secure.easy_access_id})"><img src="modules/admin/img/icn_blacklist.gif" alt="ブラックリストに追加" /></a></td>
-			<td class="cell02A"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('delete_c_member_write_all_confirm')})&amp;target_c_member_id=({$item.c_member_id})"><img src="modules/admin/img/icn_delete_all.gif" alt="書き込み一括削除" /></a></td>
+			<td class="cell02E">({if $item.is_receive_any_mail})<a href="?m=({$module_name})&amp;a=do_stop_receive_mail&amp;target_c_member_id=({$item.c_member_id})&amp;sessid=({$PHPSESSID})"><img src="modules/admin/img/icn_stop_receive_mail.gif" alt="メール受信停止" /></a>({/if})</td>
+            <td class="cell02A"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('delete_c_member_write_all_confirm')})&amp;target_c_member_id=({$item.c_member_id})"><img src="modules/admin/img/icn_delete_all.gif" alt="書き込み一括削除" /></a></td>
 			<td class="cell03">({$item.c_member_id})</td>
 			({if $smarty.const.OPENPNE_AUTH_MODE != 'email'})
 			<td class="cell19">({$item.username})</td>
 			({/if})
-			<td class="cell04"><a href="({t_url _absolute=1 m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})" target="_blank">({$item.nickname})</a></td>
+			<td class="cell04"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('c_member_detail')})&amp;target_c_member_id=({$item.c_member_id})">({$item.nickname})</a></td>
 			({if $smarty.const.OPENPNE_USE_POINT_RANK})
 			<td class="cell10">({if !$smarty.const.OPENPNE_IS_POINT_ADMIN && $item.c_member_id == 1})-({else})({$item.c_rank.name})({/if})</td>
 			<td class="cell11">({if !$smarty.const.OPENPNE_IS_POINT_ADMIN && $item.c_member_id == 1})-({else})<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_point')})&amp;target_c_member_id=({$item.c_member_id})">({$item.profile.PNE_POINT.value|default:0})</a>({/if})</td>
 			({/if})
 			<td class="cell05">({if $item.access_date != '0000-00-00 00:00:00'})({$item.access_date|date_format:"%y-%m-%d %H:%M"})({else})未ログイン({/if})</td>
 			<td class="cell06">({if $item.r_date != '0000-00-00 00:00:00'})({$item.r_date|date_format:"%y-%m-%d"})({else})&nbsp;({/if})</td>
-			<td class="cell07">({if $item.c_member_id_invite})({$item.c_member_id_invite}):<a href="({t_url _absolute=1 m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id_invite})" target="_blank">({$item.c_member_invite.nickname})</a>({else})&nbsp;({/if})</td>
+			<td class="cell07">({if $item.c_member_id_invite})({$item.c_member_id_invite}):<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('c_member_detail')})&amp;target_c_member_id=({$item.c_member_id_invite})">({$item.c_member_invite.nickname})</a>({else})&nbsp;({/if})</td>
 			<td class="cell08A">({if $item.image_filename_1})<a href="({t_img_url filename=$item.image_filename_1})" target="_blank"><img src="modules/admin/img/icn_image_on.gif" alt="画像有り" /></a>({else})<img src="modules/admin/img/icn_image_off.gif" alt="画像無し" />({/if})</td>
 			<td class="cell08B">({if $item.image_filename_2})<a href="({t_img_url filename=$item.image_filename_2})" target="_blank"><img src="modules/admin/img/icn_image_on.gif" alt="画像有り" /></a>({else})<img src="modules/admin/img/icn_image_off.gif" alt="画像無し" />({/if})</td>
 			<td class="cell08C">({if $item.image_filename_3})<a href="({t_img_url filename=$item.image_filename_3})" target="_blank"><img src="modules/admin/img/icn_image_on.gif" alt="画像有り" /></a>({else})<img src="modules/admin/img/icn_image_off.gif" alt="画像無し" />({/if})</td>
