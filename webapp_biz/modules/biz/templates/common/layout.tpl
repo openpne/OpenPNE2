@@ -47,11 +47,10 @@
 <div id="topBanner">
 ({if $INC_HEADER_top_banner.a_href})
 ({if $before_after == "after"})
-		<a href="({t_url m=pc a=do_h_click_banner})&amp;target_c_banner_id=({$INC_FOOTER_inc_side_banner.c_banner_id})&amp;sessid=({$PHPSESSID})" target="_blank">
+<a href="({t_url m=pc a=do_h_click_banner})&amp;target_c_banner_id=({$INC_HEADER_top_banner.c_banner_id})&amp;sessid=({$PHPSESSID})" target="_blank"><img src="({t_img_url filename=$INC_HEADER_top_banner.image_filename})" alt="({$INC_HEADER_top_banner.nickname})" /></a>
 ({else})
-<a href="({t_url m=pc a=do_o_click_banner})&amp;target_c_banner_id=({$INC_FOOTER_inc_side_banner.c_banner_id})" target="_blank">
+<a href="({t_url m=pc a=do_o_click_banner})&amp;target_c_banner_id=({$INC_HEADER_top_banner.c_banner_id})" target="_blank"><img src="({t_img_url filename=$INC_HEADER_top_banner.image_filename})" alt="({$INC_HEADER_top_banner.nickname})" /></a>
 ({/if})
-<img src="({t_img_url filename=$INC_FOOTER_inc_side_banner.image_filename})" alt="({$INC_FOOTER_inc_side_banner.nickname})" /></a>
 ({else})
 <img src="({t_img_url filename=$INC_HEADER_top_banner.image_filename})" alt="({$INC_HEADER_top_banner.nickname})" />
 ({/if})
@@ -106,13 +105,12 @@
 	({/if})
 ({elseif $INC_FOOTER_inc_side_banner})
 	({if $INC_FOOTER_inc_side_banner.a_href})
-		({if $PHPSESSID})
-			<a href="({t_url m=pc a=do_h_click_banner})&amp;target_c_banner_id=({$INC_FOOTER_inc_side_banner.c_banner_id})&amp;sessid=({$PHPSESSID})" target="_blank">
-		({else})
-			<a href="({t_url m=pc a=do_o_click_banner})&amp;target_c_banner_id=({$INC_FOOTER_inc_side_banner.c_banner_id})" target="_blank">
-		({/if})
-		<img src="({t_img_url filename=$INC_FOOTER_inc_side_banner.image_filename})" alt="({$INC_FOOTER_inc_side_banner.nickname})" /></a>
-	({else})
+    ({if $before_after == "after"})
+		  <a href="({t_url m=pc a=do_h_click_banner})&amp;target_c_banner_id=({$INC_FOOTER_inc_side_banner.c_banner_id})&amp;sessid=({$PHPSESSID})" target="_blank"><img src="({t_img_url filename=$INC_FOOTER_inc_side_banner.image_filename})" alt="({$INC_FOOTER_inc_side_banner.nickname})" /></a>
+    ({else})
+		  <a href="({t_url m=pc a=do_o_click_banner})&amp;target_c_banner_id=({$INC_FOOTER_inc_side_banner.c_banner_id})" target="_blank"><img src="({t_img_url filename=$INC_FOOTER_inc_side_banner.image_filename})" alt="({$INC_FOOTER_inc_side_banner.nickname})" /></a>
+    ({/if})
+  ({else})
 		<img src="({t_img_url filename=$INC_FOOTER_inc_side_banner.image_filename})" alt="({$INC_FOOTER_inc_side_banner.nickname})" />
 	({/if})
 ({/if})
