@@ -15,7 +15,7 @@ class biz_do_f_home_delete_biz_todo extends OpenPNE_Action
         $id = $requests['target_id'];
         // ----------
 
-        if (!biz_isPermissionTodo($u, $delid, $id)) {
+        if (!biz_isPermissionTodo($u, $delid)) {
             handle_kengen_error();
         }
         biz_deleteTodo($delid);

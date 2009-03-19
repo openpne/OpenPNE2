@@ -20,7 +20,7 @@ class ktai_biz_do_fh_biz_todo_add extends OpenPNE_Action
         $is_all = $requests['is_all'];
         // ----------
 
-        if (!biz_isPermissionTodo($u, $id, $target_c_member_id)) {
+        if (!biz_isPermissionTodo($u, $id)) {
             handle_kengen_error();
         }
 

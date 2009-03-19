@@ -584,12 +584,12 @@ function biz_isBannerSchedule($y, $m, $d, $id)
 }
 
 //指定されたTodoに関する権限があるかどうかをチェックする関数
-function biz_isPermissionTodo($u, $biz_todo_id, $target_c_member_id = 0)
+function biz_isPermissionTodo($u, $biz_todo_id)
 {
     $biz_todo = biz_getTodo($biz_todo_id);
     $public_flag = $biz_todo['public_flag'];
     $biz_group_id = $biz_todo['biz_group_id'];
-    $todo_c_member_id = $biz_todo['c_member_id'];
+    $target_c_member_id = $biz_todo['c_member_id'];
     $writer_id = $biz_todo['writer_id'];
 
     switch ($public_flag) {
@@ -604,9 +604,9 @@ function biz_isPermissionTodo($u, $biz_todo_id, $target_c_member_id = 0)
         }
         break;
     case 'private' :  //投稿者にのみ権限が与えられるTodo
-        if ($todo_c_member_id == $u) {
+        if ($target_c_member_id == $u) {
             return true;
-        } elseif ($writer_id == $u && $u == $target_c_member_id) {  //非公開の誰かがTodo
+        } elseif ($writer_id == $u) {  //非公開の共有Todo
             return true;
         } else {
             return false;
@@ -644,7 +644,7 @@ function biz_getMemberTodo($u, $target_c_member_id, $cat = null)
     $list = array();  //各Todoの連結処理
 
     foreach (array_merge($membertodo, $sharetodo) as $key => $value) {
-        if (biz_isPermissionTodo($u, $value['biz_todo_id'], $target_c_member_id)) {
+        if (biz_isPermissionTodo($u, $value['biz_todo_id'])) {
             $sql = 'SELECT nickname FROM c_member WHERE c_member_id = ?';
             $params = array(
                 intval($value['writer_id']),
@@ -690,7 +690,7 @@ function biz_schedule_todo4c_member_id($u, $c_member_id, $year, $month, $day = n
 
         $list = array();
         foreach(db_get_all($sql, $params) as $key => $value) {
-            if(biz_isPermissionTodo($u, $value['biz_todo_id'], intval($c_member_id))) {
+            if(biz_isPermissionTodo($u, $value['biz_todo_id'])) {
                 $list[$key] = $value;
             }
         }
@@ -708,7 +708,7 @@ function biz_schedule_todo4c_member_id($u, $c_member_id, $year, $month, $day = n
 
         $res = array();
         foreach ($list as $item) {
-            if(biz_isPermissionTodo($u, $item['biz_todo_id'], intval($c_member_id))) {
+            if(biz_isPermissionTodo($u, $item['biz_todo_id'])) {
                 $day = date('j', strtotime($item['due_datetime']));
                 $res[$day][] = $item;
             }
@@ -734,7 +734,7 @@ function biz_getPostedTodo($id, $limit = null)
 
     $list = array();
     foreach ($tmp as $key => $value) {
-        if (!biz_isPermissionTodo($id, $value['biz_todo_id'], $id)) {
+        if (!biz_isPermissionTodo($id, $value['biz_todo_id'])) {
             continue;
         }
         $list[$key] = $value;
