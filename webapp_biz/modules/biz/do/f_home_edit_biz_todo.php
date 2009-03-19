@@ -27,7 +27,7 @@ class biz_do_f_home_edit_biz_todo extends OpenPNE_Action
         $target_id = $requests['target_id'];
         // ----------
 
-        if (!biz_isPermissionTodo($u, $id)) {
+        if (!biz_isPermissionTodo($u, $id, $target_id)) {
             handle_kengen_error();
         }
 

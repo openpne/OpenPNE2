@@ -11,7 +11,7 @@ class biz_page_fh_home_edit_biz_todo extends OpenPNE_Action
         $u = $GLOBALS['AUTH']->uid();
         $sessid = session_id();
 
-        if (!biz_isPermissionTodo($u, $requests['id'])) {
+        if (!biz_isPermissionTodo($u, $requests['id'], $requests['target_id'])) {
             handle_kengen_error();
         }
 
