@@ -957,9 +957,7 @@ function db_etc_c_cmd_url4name($name)
  **/
 function db_etc_get_post_info($u) 
 {
-    $sql = 'SELECT * FROM c_post_info WHERE c_member_id = ?';
-    $params = array($u);
-    $result = db_get_row($sql, $params);
+    $result = db_member_c_member_config4c_member_id($u);
     return array($result['last_post_time'], $result['last_post_count']);
 }
 
@@ -973,20 +971,11 @@ function db_etc_get_post_info($u)
  **/
 function db_etc_set_post_info($u, $post_time, $post_count) 
 {
-    $data = array('last_post_time' => $post_time,
-                  'last_post_count' => $post_count,
-                  'r_datetime' => db_now(),
-                 );
-    
-    // update
-    $where = "c_member_id = $u";
-    if (db_update('c_post_info', $data, $where) && db_affected_rows()) {
-        return true;
-    }
-
-    // insert
-    $data['c_member_id'] = $u;
-    return (bool)db_insert('c_post_info', $data);
+    db_member_update_c_member_config($u, 'last_post_time', $post_time);
+    db_member_update_c_member_config($u, 'last_post_count', $post_count);
+    db_member_update_c_member_config($u, 'r_datetime', db_now());
+ 
+    return db_affected_rows();
 }
 
 /**
