@@ -4,6 +4,8 @@
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
+// 連続投稿用設定ファイル
+require_once('post_config.php');
 
 //デフォルトページ
 $GLOBALS['__Framework']['default_page'] = 'h_home';
