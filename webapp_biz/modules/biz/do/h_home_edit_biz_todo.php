@@ -26,7 +26,7 @@ class biz_do_h_home_edit_biz_todo extends OpenPNE_Action
         $public_flag = $requests['public_flag'];
         // ----------
 
-        if (!biz_isPermissionTodo($u, $id)) {
+        if (!biz_isPermissionTodo($u, $id, $u)) {
             handle_kengen_error();
         }
 

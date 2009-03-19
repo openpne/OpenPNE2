@@ -20,7 +20,7 @@ class ktai_biz_do_fh_biz_todo_edit extends OpenPNE_Action
         $due_datetime_d = $requests['due_datetime_d'];
         // ----------
 
-        if (!biz_isPermissionTodo($u, $target_biz_todo_id)) {
+        if (!biz_isPermissionTodo($u, $target_biz_todo_id, $target_c_member_id)) {
             handle_kengen_error();
         }
 
