@@ -686,4 +686,19 @@ function db_album_is_insertable4c_member_id($c_member_id, $new_filesize = 0)
     return true;
 }
 
+/**
+ * メンバーのアルバムを削除する
+ *
+ * @params int $c_member_id
+ */
+function db_album_delete4c_member_id($c_member_id)
+{
+    $sql = 'SELECT c_album_id FROM c_album WHERE c_member_id = ?';
+    $params = array(intval($c_member_id));
+    $c_album_id_list = db_get_col($sql, $params, 'main');
+    foreach ($c_album_id_list as $c_album_id) {
+        db_album_delete_c_album($c_album_id);
+    }
+}
+
 ?>

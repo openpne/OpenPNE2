@@ -1574,3 +1574,12 @@ div.listControl p.listMove a {
 .footer { margin-top: 20px; padding: 10px 0; text-align: center;}
 .footer div.declaration a { margin: 0 3px;}
 
+/** admin_c_member_write_all_confirm **/
+#admin_page_delete_c_member_write_all_confirm ul.cautionList {padding: 0 0 0 0}
+#admin_page_delete_c_member_write_all_confirm ul.cautionList li {
+  color: #FF0000;
+  float: left;
+  list-style-type: circle;
+  margin-left: 20px;
+}
+
