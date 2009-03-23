@@ -22,6 +22,7 @@
 ({$c_album_image.image_description|t_url2a_ktai|nl2br})<br>
 ({if $type == 'h'})
 [<a href="({t_url m=ktai a=page_h_album_image_edit})&amp;target_c_album_image_id=({$c_album_image.c_album_image_id})&amp;({$tail})">編集</a>]<br>
+[<a href="({t_url m=ktai a=do_h_album_cover_image_copy})&amp;target_c_album_image_id=({$c_album_image.c_album_image_id})&amp;({$tail})">この写真をｱﾙﾊﾞﾑの表紙にする</a>]<br>
 ({/if})
 
 ({if $c_album_image_id_prev || $c_album_image_id_next})
