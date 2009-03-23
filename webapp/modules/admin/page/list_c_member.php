@@ -9,6 +9,9 @@ class admin_page_list_c_member extends OpenPNE_Action
 {
     function execute($requests)
     {
+        if ($requests['page_size'] <= 0) {
+            $requests['page_size'] = 20;
+        }
         $order = $requests['order'];
         $cond = substr($_REQUEST['cond'], 1);
         $temp_list = explode('&', $cond);
