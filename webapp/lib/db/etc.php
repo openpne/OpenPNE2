@@ -500,36 +500,10 @@ function db_common_delete_c_member($c_member_id)
 
 
     ///日記関連
-    // c_diary (画像)
-    $sql = 'SELECT * FROM c_diary WHERE c_member_id = ?';
-    $c_diary_list = db_get_all($sql, $single, 'main');
-    foreach ($c_diary_list as $c_diary) {
-        db_image_data_delete($c_diary['image_filename_1']);
-        db_image_data_delete($c_diary['image_filename_2']);
-        db_image_data_delete($c_diary['image_filename_3']);
+    db_diary_delete4c_member_id($c_member_id);
 
-        // c_diary_comment
-        $sql = 'SELECT * FROM c_diary_comment WHERE c_diary_id = ?';
-        $params = array(intval($c_diary['c_diary_id']));
-        $c_diary_comment_list = db_get_all($sql, $params, 'main');
-        foreach ($c_diary_comment_list as $c_diary_comment) {
-            db_image_data_delete($c_diary_comment['image_filename_1']);
-            db_image_data_delete($c_diary_comment['image_filename_2']);
-            db_image_data_delete($c_diary_comment['image_filename_3']);
-        }
-
-        $sql = 'DELETE FROM c_diary_comment WHERE c_diary_id = ?';
-        db_query($sql, $params);
-    }
-    $sql = 'DELETE FROM c_diary WHERE c_member_id = ?';
-    db_query($sql, $single);
-
-    ///アルバム関連
-    $sql = 'SELECT c_album_id FROM c_album WHERE c_member_id = ?';
-    $c_album_id_list = db_get_col($sql, $single, 'main');
-    foreach ($c_album_id_list as $c_album_id) {
-        db_album_delete_c_album($c_album_id);
-    }
+    // アルバム
+    db_album_delete4c_member_id($c_member_id);
 
     ///メンバー関連
     // c_member_pre
@@ -985,7 +959,7 @@ function db_etc_set_post_info($u, $post_time, $post_count)
  * ・送信メッセージ
  * ・アルバム
  *
- * @param int $c_member_id
+ * @params int $c_member_id
  */
 function db_common_delete_c_member_write_all($c_member_id)
 {
@@ -1009,46 +983,10 @@ function db_common_delete_c_member_write_all($c_member_id)
     }
 
     ///日記関連
-    $sql = 'SELECT * FROM c_diary WHERE c_member_id = ?';
-    $c_diary_list = db_get_all($sql, $params, 'main');
-    foreach ($c_diary_list as $c_diary) {
-        db_image_data_delete($c_diary['image_filename_1']);
-        db_image_data_delete($c_diary['image_filename_2']);
-        db_image_data_delete($c_diary['image_filename_3']);
+    db_diary_delete4c_member_id($c_member_id);
 
-        // c_diary_comment
-        $sql = 'SELECT * FROM c_diary_comment WHERE c_diary_id = ?';
-        $dc_params = array(intval($c_diary['c_diary_id']));
-        $c_diary_comment_list = db_get_all($sql, $dc_params, 'main');
-        foreach ($c_diary_comment_list as $c_diary_comment) {
-            db_image_data_delete($c_diary_comment['image_filename_1']);
-            db_image_data_delete($c_diary_comment['image_filename_2']);
-            db_image_data_delete($c_diary_comment['image_filename_3']);
-        }
-
-        $sql = 'DELETE FROM c_diary_comment WHERE c_diary_id = ?';
-        db_query($sql, $params);
-    }
-    $sql = 'DELETE FROM c_diary WHERE c_member_id = ?';
-    db_query($sql, $params);
-
-    // 日記コメント
-    $sql = 'SELECT * FROM c_diary_comment WHERE c_member_id = ?';
-    $c_diary_comment_list = db_get_all($sql, $params, 'main');
-    foreach ($c_diary_comment_list as $c_diary_comment) {
-        db_image_data_delete($c_diary_comment['image_filename_1']);
-        db_image_data_delete($c_diary_comment['image_filename_2']);
-        db_image_data_delete($c_diary_comment['image_filename_3']);
-    }
-    $sql = 'DELETE FROM c_diary_comment WHERE c_member_id = ?';
-    db_query($sql, $params);
-    
-    ///アルバム関連
-    $sql = 'SELECT c_album_id FROM c_album WHERE c_member_id = ?';
-    $c_album_id_list = db_get_col($sql, $params, 'main');
-    foreach ($c_album_id_list as $c_album_id) {
-        db_album_delete_c_album($c_album_id);
-    }
+    // アルバム
+    db_album_delete4c_member_id($c_member_id);
 
     //送信メッセージ関連
     $sql = 'SELECT * FROM c_message WHERE c_member_id_from = ?';

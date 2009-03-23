@@ -11,10 +11,17 @@
 <h2 id="ttl01">書き込み一括削除の確認</h2>
 <div class="contents">
 <p class="caution" id="c01">本当にこのメンバーの書き込みを全て削除してもよろしいですか？</p>
+
+<p class="caution"><strong>※以下の投稿が削除対象になります</strong></p>
 <ul class="cautionList">
-    <li class="caution" ><strong>※以下の投稿が削除対象になります<</strong></li>
-    <li class="caution" >&nbsp;&nbsp;&nbsp;日記、日記コメント、トピック・イベント、トピック・イベントのコメント、送信メッセージ、アルバム</li>
+    <li>日記</li>
+    <li>日記コメント</li>
+    <li>トピック・イベント</li>
+    <li>トピック・イベントのコメント</li>
+    <li>送信メッセージ</li>
+    <li>アルバム</li>
 </ul>
+<div style="clear: both"></div>
 
 <form action="./" method="post">
 <input type="hidden" name="m" value="({$module_name})" />
