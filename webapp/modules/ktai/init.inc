@@ -95,4 +95,21 @@ function init_ktai_page(&$smarty)
     $smarty->setOutputCharset('SJIS');
 }
 
+function init_ktai_do()
+{
+    $is_secure = $GLOBALS['__Framework']['is_secure'];
+
+    // 連続投稿確認
+    if ($is_secure) {
+        $u = $GLOBALS['AUTH']->uid();
+        $module = $GLOBALS['__Framework']['current_module'];
+        $action = 'do_' . $GLOBALS['__Framework']['current_action'];
+
+        if (!util_do_post_interval_ok($module, $action, $u)) {
+            openpne_display_error();
+        }
+    }
+
+}
+
 ?>
