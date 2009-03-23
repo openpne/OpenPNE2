@@ -4,9 +4,6 @@
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
-// 連続投稿用設定ファイル
-require_once('post_config.php');
-
 //デフォルトページ
 $GLOBALS['__Framework']['default_page'] = 'h_home';
 
@@ -84,14 +81,13 @@ function init_pc_do()
         if ($_REQUEST['sessid'] !== md5(session_id())) {
             openpne_display_error('前の画面を再読み込みして、操作をやり直してください');
         }
-    }
 
-    // 連続投稿確認
-    if ($is_secure) {
+        // 連続投稿確認
         $u = $GLOBALS['AUTH']->uid();
+        $module = $GLOBALS['__Framework']['current_module'];
         $action = 'do_' . $GLOBALS['__Framework']['current_action'];
 
-        if (!util_do_post_interval_ok($action, $u)) {
+        if (!util_do_post_interval_ok($module, $action, $u)) {
             openpne_display_error();
         }
     }
