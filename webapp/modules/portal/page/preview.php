@@ -2,6 +2,10 @@
 
 class portal_page_preview extends OpenPNE_Action
 {
+    function isSecure() {
+        return false;
+    }
+
     function execute($requests)
     {
         // ヘッダ表示テキスト取得
