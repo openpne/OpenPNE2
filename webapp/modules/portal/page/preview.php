@@ -86,6 +86,7 @@ class portal_page_preview extends OpenPNE_Action
         $this->set('bottom', $bottom);
 
         $this->set('INC_FOOTER_inc_side_banner', db_banner_get_side_banner());
+        $this->set('INC_FOOTER_inc_page_footer', p_common_c_siteadmin4target_pagename('inc_page_footer_before'));
 
         return 'success';
     }
