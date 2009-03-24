@@ -18,8 +18,8 @@
 <script type="text/javascript" src="js/pne.js"></script>
 <style type="text/css">
 <!--
-#siteTtl { background: url(({t_img_url_skin filename=skin_before_header})) no-repeat; }
-#publication { background: url(({t_img_url_skin filename=skin_footer})) no-repeat; }
+#siteTtl{ background: url(({t_img_url_skin filename=skin_before_header})) no-repeat;}
+#publication{ background: url(({t_img_url_skin filename=skin_footer})) no-repeat;}
 ({if $custom_css})
 ({$custom_css|smarty:nodefaults})
 ({/if})
