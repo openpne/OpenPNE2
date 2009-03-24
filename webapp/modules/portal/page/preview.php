@@ -85,6 +85,8 @@ class portal_page_preview extends OpenPNE_Action
         $this->set('right', $right);
         $this->set('bottom', $bottom);
 
+        $this->set('INC_FOOTER_inc_side_banner', db_banner_get_side_banner());
+
         return 'success';
     }
 
