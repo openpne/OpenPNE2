@@ -94,7 +94,7 @@
 </div>
 ({/if})
 
-({if $INC_FOOTER_side_banner_html_before || $INC_FOOTER_side_banner_html_after || $INC_FOOTER_inc_side_banner || $newschedule || $todolist})
+({if $INC_FOOTER_side_banner_html_before || $INC_FOOTER_side_banner_html_after || $INC_FOOTER_inc_side_banner})
 <div id="sideBanner">
 ({strip})
 ({if $INC_FOOTER_side_banner_html_before || $INC_FOOTER_side_banner_html_after})
@@ -116,9 +116,10 @@
 ({/if})
 ({/strip})
 
-({if $newschedule})({$newschedule|smarty:nodefaults})({/if})
 
-({if $todolist})({$todolist|smarty:nodefaults})({/if})
+
+
+
 
 </div>
 ({/if})
