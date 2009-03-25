@@ -86,7 +86,7 @@
 </center>
 ({/if})
 ({/if})
-({if $is_comment_input})
+({if !$smarty.const.USE_DIARY_COMMENT or $is_comment_input})
 ({if $is_writable_comment})
 <hr color="#({$ktai_color_config.border_01})">
 <a name="write"></a>
