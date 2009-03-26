@@ -985,6 +985,17 @@ function db_common_delete_c_member_write_all($c_member_id)
     ///日記関連
     db_diary_delete4c_member_id($c_member_id);
 
+    // 対象メンバーのコメントをすべて削除
+    $sql = 'SELECT * FROM c_diary_comment WHERE c_member_id = ?';
+    $c_diary_comment_list = db_get_all($sql, $params, 'main');
+    foreach ($c_diary_comment_list as $c_diary_comment) {
+        db_image_data_delete($c_diary_comment['image_filename_1']);
+        db_image_data_delete($c_diary_comment['image_filename_2']);
+        db_image_data_delete($c_diary_comment['image_filename_3']);
+    }
+    $sql = 'DELETE FROM c_diary_comment WHERE c_member_id = ?';
+    db_query($sql, $params); 
+
     // アルバム
     db_album_delete4c_member_id($c_member_id);
 
