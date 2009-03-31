@@ -12,6 +12,9 @@ class ktai_page_h_album_edit extends OpenPNE_Action
 
         // --- リクエスト変数
         $target_c_album_id = $requests['target_c_album_id'];
+		$subject = $requests['subject'];
+		$description = $requests['description'];
+		$public_flag = $requests['public_flag'];
         // ----------
 
         $c_member = db_member_c_member4c_member_id($u);
@@ -20,9 +23,12 @@ class ktai_page_h_album_edit extends OpenPNE_Action
             if ($c_album['c_member_id'] != $u) {
                 handle_kengen_error();
             }
+			$c_album['subject'] = $subject;
+			$c_album['description'] = $description;
+			$c_album['public_flag'] = $public_flag;
             $this->set('target_c_album', $c_album);
         } else {
-            $c_album['public_flag'] = $c_member['public_flag_diary'];
+            $c_album['public_flag'] = $c_member['public_flag_album'];
             $this->set('target_c_album', $c_album);
         }
 
