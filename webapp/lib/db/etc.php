@@ -925,7 +925,7 @@ function db_etc_c_cmd_url4name($name)
 /**
  * DBから前回POST情報を取得する
  *
- * @params $u
+ * @param $u
  *
  * @return array
  */
@@ -938,9 +938,9 @@ function db_etc_get_post_info($u)
 /**
  * DBにPOST情報を設定する
  *
- * @params $u
- * @params $post_time
- * @params $post_count
+ * @param $u
+ * @param $post_time
+ * @param $post_count
  *
  */
 function db_etc_set_post_info($u, $post_time, $post_count) 
@@ -959,7 +959,7 @@ function db_etc_set_post_info($u, $post_time, $post_count)
  * ・送信メッセージ
  * ・アルバム
  *
- * @params int $c_member_id
+ * @param int $c_member_id
  */
 function db_common_delete_c_member_write_all($c_member_id)
 {
@@ -995,6 +995,10 @@ function db_common_delete_c_member_write_all($c_member_id)
     }
     $sql = 'DELETE FROM c_diary_comment WHERE c_member_id = ?';
     db_query($sql, $params); 
+    // コメントが無ければ履歴削除
+    $sql = 'DELETE FROM c_diary_comment_log'
+         . ' WHERE c_member_id = ?';
+    db_query($sql, $params);
 
     // アルバム
     db_album_delete4c_member_id($c_member_id);

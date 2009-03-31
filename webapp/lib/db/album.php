@@ -649,7 +649,7 @@ function db_image_is_c_album_image4filename($filename)
 /**
  * メンバーのすべてのアルバム写真のファイルサイズの合計を取得する
  *
- * @params int $c_member_id
+ * @param int $c_member_id
  * @return int
  */
 function db_album_sum_filesize4c_member_id($c_member_id)
@@ -666,8 +666,8 @@ function db_album_sum_filesize4c_member_id($c_member_id)
  * $new_filesize を指定した場合は、メンバーのファイルサイズの合計に $new_filesize を
  * 加算したものが OPENPNE_ALBUM_LIMIT を超過していないかどうかを返す
  *
- * @params int $c_member_id
- * @params int $new_filesize
+ * @param int $c_member_id
+ * @param int $new_filesize
  * @return bool
  */
 function db_album_is_insertable4c_member_id($c_member_id, $new_filesize = 0)
@@ -689,7 +689,7 @@ function db_album_is_insertable4c_member_id($c_member_id, $new_filesize = 0)
 /**
  * メンバーのアルバムを削除する
  *
- * @params int $c_member_id
+ * @param int $c_member_id
  */
 function db_album_delete4c_member_id($c_member_id)
 {

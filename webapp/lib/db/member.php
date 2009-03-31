@@ -2149,8 +2149,8 @@ function db_member_h_config_3_no_password_query_answer(
 
 /**
  * 秘密の質問の登録状況チェック
- * @params $encrypt_addres : encryptされたアドレス
- * @params $address_type   : 'pc'/'ktai'
+ * @param $encrypt_addres : encryptされたアドレス
+ * @param $address_type   : 'pc'/'ktai'
  * @return true  : 設定されている
  *         false : 設定されていない
  */
