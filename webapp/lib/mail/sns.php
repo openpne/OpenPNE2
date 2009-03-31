@@ -172,7 +172,7 @@ class mail_sns
         // アルバム追加
         elseif (
             $to_user == 'album' ||
-            preg_match('/^a(\d+)-([0-9a-f])$/', $to_user, $matches)
+            preg_match('/^a(\d+)-([0-9a-f]+)$/', $to_user, $matches)
         ) {
 
             if (MAIL_ADDRESS_HASHED) {
@@ -197,7 +197,7 @@ class mail_sns
         // アルバム写真登録
         elseif (
             preg_match('/^ai(\d+)$/', $to_user, $matches) ||
-            preg_match('/^ai(\d+)-([0-9a-f])$/', $to_user, $matches)
+            preg_match('/^ai(\d+)-([0-9a-f]+)$/', $to_user, $matches)
         ) {
 
             // アルバムIDのチェック
