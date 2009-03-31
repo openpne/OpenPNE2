@@ -1334,6 +1334,7 @@ function db_diary_delete4c_member_id($c_member_id)
 
         $sql = 'DELETE FROM c_diary_comment WHERE c_diary_id = ?';
         db_query($sql, $params);
+        db_diary_delete_c_diary_comment_log($c_member_id, $c_diary['c_diary_id']);
     }
     $sql = 'DELETE FROM c_diary WHERE c_member_id = ?';
     db_query($sql, $single);

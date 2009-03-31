@@ -14,8 +14,8 @@
 
 <p class="caution"><strong>※以下の投稿が削除対象になります</strong></p>
 <ul class="cautionList">
-    <li>日記</li>
-    <li>日記コメント</li>
+    <li>({$WORD_DIARY})</li>
+    <li>({$WORD_DIARY})コメント</li>
     <li>トピック・イベント</li>
     <li>トピック・イベントのコメント</li>
     <li>送信メッセージ</li>
@@ -39,7 +39,7 @@
 	</tr>
 	<tr>
 		<th>({$WORD_NICKNAME})</th>
-		<td><a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$c_member.c_member_id})" target="_blank">({$c_member.nickname})</a></td>
+		<td><a href="({t_url m=admin a=page_c_member_detail})&amp;target_c_member_id=({$c_member.c_member_id})" target="_blank">({$c_member.nickname})</a></td>
 	</tr>
 	<tr>
 		<th>最終ログイン</th>
