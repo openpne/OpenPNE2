@@ -39,7 +39,7 @@
 	</tr>
 	<tr>
 		<th>({$WORD_NICKNAME})</th>
-		<td><a href="({t_url m=admin a=page_c_member_detail})&amp;target_c_member_id=({$c_member.c_member_id})" target="_blank">({$c_member.nickname})</a></td>
+		<td><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('c_member_detail')})&amp;target_c_member_id=({$c_member.c_member_id})">({$c_member.nickname})</a></td>
 	</tr>
 	<tr>
 		<th>最終ログイン</th>
