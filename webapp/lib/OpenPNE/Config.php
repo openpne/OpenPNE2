@@ -232,6 +232,10 @@ class OpenPNE_Config
             'CHECK_IMG_AUTH' => false,
             'OPENPNE_IS_OPENID_SERVER' => false,
             'OPENPNE_DB_ERROR_LOG' => true,
+            'OPENPNE_POST_INTERVAL_UNFAIR_SECOND' => 10,
+            'OPENPNE_POST_INTERVAL_UNFAIR_COUNT' => 10,
+            'OPENPNE_POST_INTERVAL_UNFAIR_COUNT_RESET_SECOND' => 60*60,
+            'OPENPNE_POST_USE_DB' => true,
         // 固定値
             'AMAZON_TOKEN'   => '1WZYY1W9YF49AGM0RTG2',
             'AMAZON_LOCALE'  => 'jp',
