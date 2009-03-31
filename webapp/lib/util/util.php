@@ -1110,7 +1110,7 @@ function util_set_post_info($u, $post_time, $post_count)
 function util_do_post_interval_ok($module, $action, $u)
 {
     // チェックしない
-    if (!OPENPNE_POST_INTERVAL_UNFAIR_SECOND) {
+    if (!OPENPNE_POST_INTERVAL_UNFAIR_SECOND || !isset($GLOBALS['CHECK_POST_ACTIONS'])) {
         return true;
     }
 
