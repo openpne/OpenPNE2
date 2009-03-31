@@ -18,6 +18,9 @@ class admin_page_list_c_file extends OpenPNE_Action
 
         $v['SNS_NAME'] = SNS_NAME;
 
+        if ($requests['page_size'] <= 0) {
+            $requests['page_size'] = 20;
+        }
         $v['c_file_list'] = db_file_c_file_list($requests['page'], $requests['page_size'], $pager);
         $v['pager'] = $pager;
 
