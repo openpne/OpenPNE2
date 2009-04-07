@@ -115,7 +115,7 @@ function _getMessageCountToday()
 {
     $today = date('Y-m-d H:i:s', mktime(0, 0, 0, date('m'), date('d'), date('Y')));
 
-    $sql = 'SELECT COUNT(*) FROM c_message WHERE r_datetime >= ?';
+    $sql = 'SELECT COUNT(*) FROM c_message WHERE r_datetime >= ? AND is_send = 1';
     $params = array($today);
     return db_get_one($sql, $params);
 }
@@ -128,7 +128,7 @@ function _getMessageCountYesterday()
     $yesterday = date('Y-m-d H:i:s', mktime(0, 0, 0, date('m'), date('d') - 1, date('Y')));
     $today = date('Y-m-d H:i:s', mktime(0, 0, 0, date('m'), date('d'), date('Y')));
 
-    $sql = 'SELECT COUNT(*) FROM c_message WHERE r_datetime >= ? AND r_datetime < ?';
+    $sql = 'SELECT COUNT(*) FROM c_message WHERE r_datetime >= ? AND r_datetime < ? AND is_send = 1';
     $params = array($yesterday, $today);
     return db_get_one($sql, $params);
 }
