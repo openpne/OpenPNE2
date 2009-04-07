@@ -9,10 +9,6 @@ class admin_page_list_c_member extends OpenPNE_Action
 {
     function execute($requests)
     {
-        $page_size = $requests['page_size'];
-        if ($page_size <= 0) {
-            $page_size = 20;
-        }
         $order = $requests['order'];
 
         $v = array();
@@ -71,7 +67,7 @@ class admin_page_list_c_member extends OpenPNE_Action
                 $v['c_member_list'] = array($c_member);
             }
         } else {
-            $v['c_member_list'] = _db_admin_c_member_list($requests['page'], $page_size, $pager, $cond_list, $profile_cond_list, $order);
+            $v['c_member_list'] = _db_admin_c_member_list($requests['page'], $requests['page_size'], $pager, $cond_list, $profile_cond_list, $order);
         }
         foreach ($v['c_member_list'] as $key => $value) {
             $v['c_member_list'][$key]['c_member_invite'] =
