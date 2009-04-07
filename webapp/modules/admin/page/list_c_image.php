@@ -14,11 +14,7 @@ class admin_page_list_c_image extends OpenPNE_Action
 
         $v['SNS_NAME'] = SNS_NAME;
 
-        $page_size = $requests['page_size'];
-        if ($page_size <= 0) {
-            $page_size = 20;
-        }
-        $c_image_list = db_image_c_image_list($requests['page'], $page_size, $pager);
+        $c_image_list = db_image_c_image_list($requests['page'], $requests['page_size'], $pager);
 
         //ファイル名からリンク先を生成
         foreach ($c_image_list as $key => $c_image) {
