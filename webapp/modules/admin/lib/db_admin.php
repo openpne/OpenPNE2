@@ -3684,35 +3684,39 @@ function db_admin_is_one_session_per_user($c_admin_user_id, $now_sess_id)
 /**
  * 初期ポイント設定
  */
-function db_admin_update_c_point_clear($value)
+function db_admin_update_c_point_clear($c_member_profile_value)
 {
     $sql = 'SELECT c_profile_id, public_flag_default FROM c_profile where name = ?';
     $params = array('PNE_POINT');
     $c_profile = db_get_row($sql, $params);
     $c_profile_id = $c_profile['c_profile_id'];
     $public_flag_default = $c_profile['public_flag_default'];
+
+    $data = array('value' => $c_member_profile_value);
+    $where = array('c_profile_id' => intval($c_profile_id));
+    db_update('c_member_profile', $data, $where);
+
     // プロフィールにポイント情報が存在するメンバーのIDを取得
     $sql = 'SELECT c_member_id FROM c_member_profile where c_profile_id = ?';
     $params = array($c_profile_id);
     $c_member_ids = db_get_col($sql, $params);
+
     // プロフィールにポイント情報が存在しないメンバーのIDを取得
-    $c_member_id_str = implode(',', array_map('intval', $c_member_ids));
+    $c_member_id_str = implode(',', $c_member_ids);
     $sql = 'SELECT c_member_id FROM c_member WHERE c_member_id NOT IN (' . $c_member_id_str . ')';
     $c_member_ids = db_get_col($sql);
-    // プロフィールにポイント情報が存在しない場合はテーブルを追加
+
+    // プロフィールにポイント情報が存在しない場合はレコードを追加
     foreach ($c_member_ids as $c_member_id) {
         $data = array(
             'c_member_id' => intval($c_member_id),
             'c_profile_id' => intval($c_profile_id),
             'c_profile_option_id' => 0,
-            'value' => '0',
+            'value' => $c_member_profile_value,
             'public_flag' => $public_flag_default,
         );
         db_insert('c_member_profile', $data);
     }
-    $data = array('value' => $value);
-    $where = array('c_profile_id' => intval($c_profile_id));
-    db_update('c_member_profile', $data, $where);
 }
 
 function db_admin_commu_c_members4c_commu_id($c_commu_id, $page_size, $page)
