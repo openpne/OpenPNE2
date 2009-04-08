@@ -598,13 +598,13 @@ class mail_sns
         if ($subject === '') {
             $this->error_mail('メールの件名にアルバムのタイトルを入力してください。');
             m_debug_log('mail_sns::add_album() no subject');
-			return false;
+            return false;
         }
 
         if ($body === '') {
             $this->error_mail('メールの本文にアルバムの説明文を入力してください。');
             m_debug_log('mail_sns::add_album() no body');
-			return false;
+            return false;
         }
 
         $c_member = db_common_c_member4c_member_id($this->c_member_id);
