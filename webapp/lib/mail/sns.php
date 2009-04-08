@@ -607,13 +607,15 @@ class mail_sns
             return false;
         }
 
-        $c_member = db_common_c_member4c_member_id($this->c_member_id);
-        if (!$ins_id = db_album_insert_c_album($this->c_member_id, $subject, $body, $c_member['public_flag_diary'])) {
-            return false;
-        }
-
-        // 写真登録
+        // アルバム作成と写真登録
         if ($images = $this->decoder->get_images()) {
+            // アルバムの作成
+            $c_member = db_common_c_member4c_member_id($this->c_member_id);
+            if (!$ins_id = db_album_insert_c_album($this->c_member_id, $subject, $body, $c_member['public_flag_diary'])) {
+                return false;
+            }
+
+            // 写真登録
             $image = $images[0];
             $image_ext = $image['ext'];
             $image_data = $image['data'];
