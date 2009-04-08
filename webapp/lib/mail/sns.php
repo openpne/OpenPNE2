@@ -607,7 +607,6 @@ class mail_sns
             return false;
         }
 
-        // アルバム作成と写真登録
         if ($images = $this->decoder->get_images()) {
             // アルバムの作成
             $c_member = db_common_c_member4c_member_id($this->c_member_id);
