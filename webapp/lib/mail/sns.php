@@ -324,7 +324,7 @@ class mail_sns
         // アルバム表紙変更
         elseif (
             preg_match('/^ac(\d+)$/', $to_user, $matches) ||
-            preg_match('/^ac(\d+)-([0-9a-f])$/', $to_user, $matches)
+            preg_match('/^ac(\d+)-([0-9a-f]+)$/', $to_user, $matches)
         ) {
 
             // アルバムIDのチェック
@@ -596,7 +596,15 @@ class mail_sns
         $body    = $this->decoder->get_text_body();
 
         if ($subject === '') {
-            $subject = '無題';
+            $this->error_mail('メールの件名にアルバムのタイトルを入力してください。');
+            m_debug_log('mail_sns::add_album() no subject');
+			return false;
+        }
+
+        if ($body === '') {
+            $this->error_mail('メールの本文にアルバムの説明文を入力してください。');
+            m_debug_log('mail_sns::add_album() no body');
+			return false;
         }
 
         $c_member = db_common_c_member4c_member_id($this->c_member_id);
@@ -614,10 +622,6 @@ class mail_sns
             db_image_insert_c_image($filename, $image_data);
             //アルバムの表紙に写真ファイル名を登録
             db_album_update_c_album_album_cover_image($ins_id,$filename);
-        } else {
-            $this->error_mail('写真が添付されていないか、ファイルサイズが大きすぎるため、アルバム表紙を登録できませんでした。');
-            m_debug_log('mail_sns::add_album() no images');
-            return false;
         }
 
         return true;
