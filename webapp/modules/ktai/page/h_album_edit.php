@@ -23,9 +23,9 @@ class ktai_page_h_album_edit extends OpenPNE_Action
             if ($c_album['c_member_id'] != $u) {
                 handle_kengen_error();
             }
-            $c_album['subject'] = $subject;
-            $c_album['description'] = $description;
-            $c_album['public_flag'] = $public_flag;
+            if ($subject !== '') $c_album['subject'] = $subject;
+            if ($description !== '') $c_album['description'] = $description;
+            if ($public_flag !== '') $c_album['public_flag'] = $public_flag;
             $this->set('target_c_album', $c_album);
         } else {
             $c_album['public_flag'] = "public";
