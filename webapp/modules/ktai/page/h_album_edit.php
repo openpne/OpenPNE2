@@ -28,7 +28,7 @@ class ktai_page_h_album_edit extends OpenPNE_Action
             $c_album['public_flag'] = $public_flag;
             $this->set('target_c_album', $c_album);
         } else {
-            $c_album['public_flag'] = $c_member['public_flag_album'];
+            $c_album['public_flag'] = "public";
             $this->set('target_c_album', $c_album);
         }
 
