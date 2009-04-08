@@ -17,15 +17,20 @@ class ktai_page_h_album_edit extends OpenPNE_Action
         $public_flag = $requests['public_flag'];
         // ----------
 
-        $c_member = db_member_c_member4c_member_id($u);
         if ($target_c_album_id) {
             $c_album = db_album_get_c_album4c_album_id($target_c_album_id);
             if ($c_album['c_member_id'] != $u) {
                 handle_kengen_error();
             }
-            if ($subject !== '') $c_album['subject'] = $subject;
-            if ($description !== '') $c_album['description'] = $description;
-            if ($public_flag !== '') $c_album['public_flag'] = $public_flag;
+            if (!is_null($subject) and $subject !== '') {
+                $c_album['subject'] = $subject;
+            }
+            if (!is_null($description) and $description !== '') {
+                $c_album['description'] = $description;
+            }
+            if (!is_null($public_flag) and $public_flag !== '') {
+                $c_album['public_flag'] = $public_flag;
+            }
             $this->set('target_c_album', $c_album);
         } else {
             $c_album['public_flag'] = "public";
@@ -39,10 +44,6 @@ class ktai_page_h_album_edit extends OpenPNE_Action
         }
         $mail_address = MAIL_ADDRESS_PREFIX . $mail_address;
         $this->set('album_address', $mail_address);
-
-        //メンバー情報
-        $this->set('member', $c_member);
-
 
         return 'success';
     }
