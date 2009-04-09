@@ -647,7 +647,7 @@ class mail_sns
 
         $subject = $this->decoder->get_subject();
         $images = $this->decoder->get_images();
-        if ($images === false) {
+        if (!$images) {
             $this->error_mail('写真が添付されていないか、ファイルサイズが大きすぎるため、登録できませんでした。');
             m_debug_log('mail_sns::add_album_image() no images');
             return false;
