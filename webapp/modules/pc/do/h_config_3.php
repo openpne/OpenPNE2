@@ -97,7 +97,7 @@ class pc_do_h_config_3 extends OpenPNE_Action
         //または、設定画面表示時はtrueだったけど、設定変更ボタンを押す時にはfalse
         //になっていた場合、
         //秘密の質問は登録する 
-        if ((IS_PASSWORD_QUERY_ANSWER) || (!empty($c_password_query_answer))) {
+        if (IS_PASSWORD_QUERY_ANSWER) {
             db_member_h_config_3(
                 $u,
                 $is_receive_mail,
