@@ -232,6 +232,7 @@ class OpenPNE_Config
             'CHECK_IMG_AUTH' => false,
             'OPENPNE_IS_OPENID_SERVER' => false,
             'OPENPNE_DB_ERROR_LOG' => true,
+            'IS_PASSWORD_QUERY_ANSWER' => true,
             'OPENPNE_POST_INTERVAL_UNFAIR_SECOND' => 10,
             'OPENPNE_POST_INTERVAL_UNFAIR_COUNT' => 10,
             'OPENPNE_POST_INTERVAL_UNFAIR_COUNT_RESET_SECOND' => 60*60,

@@ -79,6 +79,33 @@ if (OPENPNE_AUTH_MODE != 'email' && empty($_SESSION['regist_step'])) {
         if (!$is_registered_address) {
             openpne_redirect('pc', 'page_h_regist_address');
         }
+
+    }
+
+}
+
+// 秘密の質問の設定が有効な状態で、秘密の質問を設定していない場合、秘密の質問の入力をチェックする
+if (IS_PASSWORD_QUERY_ANSWER && OPENPNE_AUTH_MODE != 'slavepne') {
+    $current_page = $GLOBALS['__Framework']['current_type'] . '_' . $GLOBALS['__Framework']['current_action'];
+
+    // 秘密の質問が未登録の場合でもアクセスすることのできるアクション
+    $password_query_answer_ext_page = array(
+        'do_h_regist_prof',
+        'do_h_config_3',
+        'page_h_config',
+        'do_inc_page_header_logout',
+    );
+
+    $is_password_query_answer = db_member_get_is_password_query_answer($u);
+    $is_password_query_answer_action = in_array($current_page, $password_query_answer_ext_page);
+
+    // 秘密の質問が未登録
+    if (!$is_password_query_answer_action) {
+        if (db_member_get_is_password_query_answer($c_member_id)) {
+            $p = array("msg" => "秘密の質問を登録してください");
+            openpne_redirect('pc', 'page_h_config', $p);
+        }
     }
 }
+
 ?>
