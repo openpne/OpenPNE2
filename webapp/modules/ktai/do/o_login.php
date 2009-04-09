@@ -93,7 +93,7 @@ class ktai_do_o_login extends OpenPNE_Action
             $a = '';
         }
 
-        if ((IS_PASSWORD_QUERY_ANSWER) && (OPENPNE_AUTH_MODE != 'slavepne')) {
+        if (IS_PASSWORD_QUERY_ANSWER && OPENPNE_AUTH_MODE != 'slavepne') {
             if (!db_member_get_is_password_query_answer($_POST['username'], 'ktai')) {
                 $m = 'ktai';
                 $a = 'page_h_config_password_query';
