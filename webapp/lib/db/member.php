@@ -2154,7 +2154,35 @@ function db_member_h_config_3_no_password_query_answer(
  * @return true  : 設定されている
  *         false : 設定されていない
  */
-function db_member_get_is_password_query_answer($encrypt_address, $address_type = 'pc')
+
+function db_member_get_is_password_query_answer($c_member_id)
+{
+    $null_answer = '';
+
+    $sql = 'SELECT c_member_secure.hashed_password_query_answer'
+         . ' FROM c_member, c_member_secure'
+         . ' WHERE c_member.c_member_id = ?'
+         . ' AND c_member.c_member_id = c_member_secure.c_member_id';
+
+    $params = array(
+        intval($c_member_id),
+    );
+
+    $c_member = db_get_assoc($sql, $params);
+    if ($c_member['hashed_password_query_answer'] != $null_answer && $c_member['hashed_password_query_answer'] != md5($null_answer)) {
+        return true;
+    }
+
+    // 1.8以前との互換性を保つため、SJISでのチェックも行う
+    if ($c_member['hashed_password_query_answer'] != mb_convert_encoding($null_answer, 'SJIS-win', 'UTF-8') && $c_member['hashed_password_query_answer'] != md5(mb_convert_encoding($null_answer, 'SJIS-win', 'UTF-8'))) {
+        return true;
+    }
+
+    return false;
+
+}
+
+function aadb_member_get_is_password_query_answer_old($encrypt_address, $address_type = 'pc')
 {
     $null_answer = '';
 
@@ -2170,23 +2198,23 @@ function db_member_get_is_password_query_answer($encrypt_address, $address_type 
             break;
     }
 
-    $sql = "SELECT c_member.c_member_id" .
-        " ,c_member.c_password_query_id" .
-        " ,c_member_secure.hashed_password_query_answer " .
-        " FROM c_member, c_member_secure" .
-        " WHERE c_member_secure." . $field_name . "= ?" .
-        " AND c_member.c_member_id = c_member_secure.c_member_id";
+    $sql = 'SELECT c_member.c_member_id'
+         . ' ,c_member.c_password_query_id'
+         . ' ,c_member_secure.hashed_password_query_answer'
+         . ' FROM c_member, c_member_secure'
+         . ' WHERE c_member_secure.' . $field_name . '= ?'
+         . ' AND c_member.c_member_id = c_member_secure.c_member_id';
     $params = array(
         $encrypt_address,
     );
     $c_member = db_get_row($sql, $params);
-    if ($c_member['c_password_query_id'] && ($c_member['hashed_password_query_answer'] != md5($null_answer))) {
+    if ($c_member['c_password_query_id'] && $c_member['hashed_password_query_answer'] != md5($null_answer)) {
         return true;
     }
 
     // 1.8以前との互換性を保つため、SJISでのチェックも行う
-    if ($c_member['c_password_query_id'] && ($c_member['hashed_password_query_answer'] !=
-md5(mb_convert_encoding($null_answer, 'SJIS-win', 'UTF-8')))) {
+    if ($c_member['c_password_query_id'] && $c_member['hashed_password_query_answer'] !=
+md5(mb_convert_encoding($null_answer, 'SJIS-win', 'UTF-8'))) {
         return true;
     }
 
