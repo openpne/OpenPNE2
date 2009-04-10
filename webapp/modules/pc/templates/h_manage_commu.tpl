@@ -1,7 +1,7 @@
 <div id="LayoutC">
 <div id="Center">
 
-({if $c_com_list})
+({if $c_commu_list})
 ({* {{{ manageList *})
 <div class="dparts manageList"><div class="parts">
 <div class="partsHeading"><h3>({$WORD_COMMUNITY})管理</h3></div>
@@ -16,7 +16,7 @@
 ({$smarty.capture.pager|smarty:nodefaults})
 
 <table>
-({foreach from=$c_com_list item=item})
+({foreach from=$c_commu_list item=item})
 <tr>
 <td class="photo"><a href="({t_url m=pc a=page_c_home})&amp;target_c_commu_id=({$item.c_commu_id})"><img src="({t_img_url filename=$item.image_filename w=76 h=76 noimg=no_image})" alt="" /><br />({$item.name})</a></td>
 <td>

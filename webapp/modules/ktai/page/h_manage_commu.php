@@ -17,9 +17,9 @@ class ktai_page_h_manage_com extends OpenPNE_Action
         // 1ページ当たりに表示するコミュニティの数
         $page_size = 5;
         //自分のコミュニティリスト
-        list($c_com_list, $pager) = db_commu_c_commu_list4c_member_id($u, $page, $page_size);
+        list($c_commu_list, $pager) = db_commu_c_commu_list4c_member_id($u, $page, $page_size);
 
-        $this->set("c_com_list", $c_com_list);
+        $this->set("c_commu_list", $c_commu_list);
         $this->set("pager", $pager);
         $this->set("page", $page);
 
