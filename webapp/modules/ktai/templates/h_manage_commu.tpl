@@ -4,7 +4,7 @@
 <font color="#({$ktai_color_config.font_05})"><a name="top">({$WORD_COMMUNITY_HALF})管理</a></font><br>
 </td></tr></table>
 
-({if !$c_com_list})
+({if !$c_commu_list})
 ({$WORD_COMMUNITY_HALF})がありません。
 ({else})
 <center>
@@ -18,7 +18,7 @@
 ({/if})
 
 <table width="100%">
-({foreach from=$c_com_list item=commu})
+({foreach from=$c_commu_list item=commu})
 <tr><td bgcolor="#({$ktai_color_config.bg_07})">
 <hr color="#({$ktai_color_config.border_02})">
 </td></tr>
