@@ -2158,16 +2158,18 @@ function db_member_is_registered_password_query_answer($c_member_id)
 {
     $null_answer = '';
 
-    $sql = 'SELECT c_member_secure.hashed_password_query_answer'
-         . ' FROM c_member_secure'
-         . ' WHERE c_member_secure.c_member_id = ?';
-
+    $sql = 'SELECT c_member.c_password_query_id'
+         . ' ,c_member_secure.hashed_password_query_answer'
+         . ' FROM c_member, c_member_secure'
+         . ' WHERE c_member_secure.c_member_id = ?'
+         . ' AND c_member.c_member_id = c_member_secure.c_member_id';
     $params = array(
         intval($c_member_id),
     );
-    $c_member['hashed_password_query_answer'] = db_get_one($sql, $params);
+    $c_member = db_get_row($sql, $params);
     if (!$c_member['hashed_password_query_answer'] 
-     || md5($c_member['hashed_password_query_answer']) == md5($null_answer)) {
+     || md5($c_member['hashed_password_query_answer']) == md5($null_answer)
+     || !intval($c_member['c_password_query_id'])) {
         return false;
     }
     return true;
