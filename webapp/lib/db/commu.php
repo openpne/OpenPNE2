@@ -3543,7 +3543,6 @@ function db_commu_update_is_display_topic_home($c_commu_id, $c_member_id, $is_di
 {
     $data = array(
         'is_display_topic_home' => (bool)$is_display_topic_home,
-
     );
     $where = array(
         'c_commu_id'  => intval($c_commu_id),
