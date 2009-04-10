@@ -90,18 +90,23 @@ if (IS_PASSWORD_QUERY_ANSWER && OPENPNE_AUTH_MODE != 'slavepne') {
 
     // 秘密の質問が未登録の場合でもアクセスすることのできるアクション
     $password_query_answer_ext_page = array(
-        'do_h_regist_prof',
         'do_h_config_3',
         'page_h_config',
         'do_inc_page_header_logout',
     );
 
-    $is_password_query_answer = db_member_get_is_password_query_answer($u);
-    $is_password_query_answer_action = in_array($current_page, $password_query_answer_ext_page);
+    $is_registered_password_query_answer = db_member_is_registered_password_query_answer($u);
+    $is_registered_password_query_answer_action = in_array($current_page, $password_query_answer_ext_page);
 
-    // 秘密の質問が未登録
-    if (!$is_password_query_answer_action) {
-        if (db_member_get_is_password_query_answer($c_member_id)) {
+    if ($is_registered_password_query_answer) {
+        $_SESSION['regist_step'] = true;
+    } else {
+        $_SESSION['regist_step'] = false;
+    }
+
+    if (!$is_registered_password_query_answer_action) {
+        // 秘密の質問が未登録
+        if (!$is_registered_password_query_answer) {
             $p = array("msg" => "秘密の質問を登録してください");
             openpne_redirect('pc', 'page_h_config', $p);
         }
