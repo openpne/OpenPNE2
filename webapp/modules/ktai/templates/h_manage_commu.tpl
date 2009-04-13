@@ -27,9 +27,9 @@
 <a href="({t_url m=ktai a=page_c_home})&amp;target_c_commu_id=({$commu.c_commu_id})&amp;({$tail})">({$commu.name})</a><br>
 <br>
 ({if $commu.is_display_topic_home})
-<a href="({t_url m=ktai a=do_h_com_update_is_display_topic_home page=$page})&amp;target_c_commu_id=({$commu.c_commu_id})&amp;target_is_display_topic_home=0&amp;({$tail})">({$WORD_COMMUNITY_HALF})最新書き込みを表示しない</a>
+<a href="({t_url m=ktai a=do_h_commu_update_is_display_topic_home page=$page})&amp;target_c_commu_id=({$commu.c_commu_id})&amp;target_is_display_topic_home=0&amp;({$tail})">({$WORD_COMMUNITY_HALF})最新書き込みを表示しない</a>
 ({else})
-<a href="({t_url m=ktai a=do_h_com_update_is_display_topic_home page=$page})&amp;target_c_commu_id=({$commu.c_commu_id})&amp;target_is_display_topic_home=1&amp;({$tail})">({$WORD_COMMUNITY_HALF})最新書き込みを表示する</a>
+<a href="({t_url m=ktai a=do_h_commu_update_is_display_topic_home page=$page})&amp;target_c_commu_id=({$commu.c_commu_id})&amp;target_is_display_topic_home=1&amp;({$tail})">({$WORD_COMMUNITY_HALF})最新書き込みを表示する</a>
 ({/if})
 <br></td></tr>
 ({/foreach})
