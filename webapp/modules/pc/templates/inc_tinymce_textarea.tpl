@@ -65,11 +65,13 @@ function pne_mce_editor_get_config()
 //<![CDATA[
 // IEのときだけカーソル位置を記録
 if (undefined !== window.execScript) {
-    Event.observe("mce_editor_textarea", "blur", function () {
-        var rng = this.createTextRange();
-        var bk = rng.getBookmark();
-        this.focus();
-        rng.moveToBookmark(bk);
+    Event.observe(window, "load", function() {
+        Event.observe("mce_editor_textarea", "blur", function () {
+            var rng = this.createTextRange();
+            var bk = rng.getBookmark();
+            this.focus();
+            rng.moveToBookmark(bk);
+        });
     });
 }
 //]]>
