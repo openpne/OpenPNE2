@@ -61,6 +61,19 @@ function pne_mce_editor_get_config()
 //]]>
 </script>
 <script type="text/javascript" src="./js/pc_emoji_palet/pc_emoji_palet.js"></script>
+<script type="text/javascript">
+//<![CDATA[
+// IEのときだけカーソル位置を記録
+if (undefined !== window.execScript) {
+    Object.observe("mce_editor_textarea", "blur", function () {
+        var rng = this.createTextRange();
+        var bk = rng.getBookmark();
+        this.focus();
+        rng.moveToBookmark(bk);
+    });
+}
+//]]>
+</script>
 <input type="radio" name="mce_editor_mode_changer" id="mce_editor_mode_changer_1" onclick="pne_toggle_mce_editor('mce_editor_textarea')" checked="checked" /><label for="mce_editor_mode_changer_1">テキストモード</label>&nbsp;<input type="radio" name="mce_editor_mode_changer" id="mce_editor_mode_changer_2" onclick="pne_toggle_mce_editor('mce_editor_textarea')" /><label for="mce_editor_mode_changer_2">プレビューモード</label>
 <div id="mce_editor_buttonmenu">
 ({foreach from=$INC_HEADER_decoration_config item=item key=key})
