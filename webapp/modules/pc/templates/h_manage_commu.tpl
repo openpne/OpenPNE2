@@ -8,9 +8,9 @@
 
 ({capture name=pager})({strip})
 <div class="pagerRelative">
-({if $pager.prev_page})<p class="prev"><a href="({t_url m=pc a=page_h_manage_com page=$pager.prev_page})">前を表示</a></p>({/if})
+({if $pager.prev_page})<p class="prev"><a href="({t_url m=pc a=page_h_manage_commu page=$pager.prev_page})">前を表示</a></p>({/if})
 ({if $pager.total_num})<p class="number">({$pager.start_num})件～({$pager.end_num})件を表示</p>({/if})
-({if $pager.next_page})<p class="next"><a href="({t_url m=pc a=page_h_manage_com page=$pager.next_page})">次を表示</a></p>({/if})
+({if $pager.next_page})<p class="next"><a href="({t_url m=pc a=page_h_manage_commu page=$pager.next_page})">次を表示</a></p>({/if})
 </div>
 ({/strip})({/capture})
 ({$smarty.capture.pager|smarty:nodefaults})
