@@ -10,12 +10,12 @@
 
 ({if $subject})
 件名:
-({$subject})
+({$subject|t_truncate:50:"...":1:0})
 ({/if})
 
 ({if $body})
 本文:
-({$body})
+({$body|t_truncate:150:"...":1:0})
 ({/if})
 
 ―――――――――――――――――――――――――――――
