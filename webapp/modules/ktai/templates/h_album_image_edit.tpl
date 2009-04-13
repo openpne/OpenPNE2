@@ -2,7 +2,7 @@
 <table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_02})">
 <font color="#({$ktai_color_config.font_05})"><a name="top">
 写真の編集</a></font><br>
-</td></tr></table>
+</td></tr>
 <tr><td bgcolor="#({$ktai_color_config.bg_03})" align="center">
 <font color="#({$ktai_color_config.color_24})">({$album_info.subject})</font><br>
 </td></tr></table>
