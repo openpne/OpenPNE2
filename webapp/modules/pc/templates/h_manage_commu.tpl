@@ -24,10 +24,10 @@
 </td>
 <td>
 ({if $item.is_display_topic_home})
-<a href="({t_url m=pc a=do_h_com_update_is_display_topic_home page=$page})&amp;target_c_commu_id=({$item.c_commu_id})&amp;target_is_display_topic_home=0&amp;sessid=({$PHPSESSID})">
+<a href="({t_url m=pc a=do_h_commu_update_is_display_topic_home page=$page})&amp;target_c_commu_id=({$item.c_commu_id})&amp;target_is_display_topic_home=0&amp;sessid=({$PHPSESSID})">
 ({$WORD_COMMUNITY})最新書き込みを表示しない
 ({else})
-<a href="({t_url m=pc a=do_h_com_update_is_display_topic_home page=$page})&amp;target_c_commu_id=({$item.c_commu_id})&amp;target_is_display_topic_home=1&amp;sessid=({$PHPSESSID})">
+<a href="({t_url m=pc a=do_h_commu_update_is_display_topic_home page=$page})&amp;target_c_commu_id=({$item.c_commu_id})&amp;target_is_display_topic_home=1&amp;sessid=({$PHPSESSID})">
 ({$WORD_COMMUNITY})最新書き込みを表示する
 ({/if})
 </a></td>
