@@ -4,7 +4,7 @@
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
-class ktai_page_h_manage_com extends OpenPNE_Action
+class ktai_page_h_manage_commu extends OpenPNE_Action
 {
     function execute($requests)
     {
