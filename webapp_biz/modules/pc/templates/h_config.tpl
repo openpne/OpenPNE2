@@ -78,7 +78,7 @@
 </td>
 </tr>
 ({/if})
-({if $smarty.const.OPENPNE_AUTH_MODE != 'slavepne' && $smarty.const.IS_PASSWORD_QUERY_ANSWER})
+({if $smarty.const.IS_PASSWORD_QUERY_ANSWER && $smarty.const.OPENPNE_AUTH_MODE != 'slavepne'})
 <tr>
 <th>秘密の質問</th>
 <td>
