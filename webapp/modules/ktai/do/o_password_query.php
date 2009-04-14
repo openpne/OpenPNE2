@@ -24,21 +24,20 @@ class ktai_do_o_password_query extends OpenPNE_Action
 
         if (!$ktai_address) {
             $p = array('msg' => 25);
-            openpne_redirect('pc', 'page_o_password_query', $p);
+            openpne_redirect('ktai', 'page_o_password_query', $p);
         }
         if (IS_PASSWORD_QUERY_ANSWER) {
             if (!$q_id) {
                 $p = array('msg' => 22);
-                openpne_redirect('pc', 'page_o_password_query', $p);
+                openpne_redirect('ktai', 'page_o_password_query', $p);
             }
             if (!$q_answer) {
                 $p = array('msg' => 23);
-                openpne_redirect('pc', 'page_o_password_query', $p);
+                openpne_redirect('ktai', 'page_o_password_query', $p);
             }
         }
 
         //--- 権限チェック
-        //パスワード確認の質問と答えがあっている
         if (IS_PASSWORD_QUERY_ANSWER) {
             $c_member_id = db_member_is_password_query_complete2($ktai_address, $q_id, $q_answer);
         } else {
