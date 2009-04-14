@@ -274,9 +274,11 @@
 <tr><td bgcolor="#({cycle name="bg" values="`$ktai_color_config.bg_09`,`$ktai_color_config.bg_10`"})">
 <a href="({t_url m=ktai a=page_h_config_password})&amp;({$tail})">ﾊﾟｽﾜｰﾄﾞ変更</a><br>
 </td></tr>
+({if $smarty.const.IS_PASSWORD_QUERY_ANSWER})<
 <tr><td bgcolor="#({cycle name="bg" values="`$ktai_color_config.bg_09`,`$ktai_color_config.bg_10`"})">
 <a href="({t_url m=ktai a=page_h_config_password_query})&amp;({$tail})">秘密の質問・答え設定</a><br>
 </td></tr>
+({/if})
 ({/if})
 <tr><td bgcolor="#({cycle name="bg" values="`$ktai_color_config.bg_09`,`$ktai_color_config.bg_10`"})">
 <a href="({t_url m=ktai a=page_h_config_easy_login})&amp;({$tail})">かんたんﾛｸﾞｲﾝ設定</a><br>

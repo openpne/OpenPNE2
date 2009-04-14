@@ -185,6 +185,11 @@ function db_member_c_member_id4pc_address_encrypted($pc_address_encoded)
     return db_get_one($sql, $params);
 }
 
+function db_member_c_member_id4ktai_address($ktai_address)
+{
+    return db_member_c_member_id4ktai_address_encrypted(t_encrypt($ktai_address));
+}
+
 function db_member_c_member_id4ktai_address_encrypted($ktai_address_encoded)
 {
     $sql = 'SELECT c_member_id FROM c_member_secure WHERE ktai_address = ?';
@@ -1209,22 +1214,24 @@ function db_member_h_config_3(
 {
     //function cacheの削除
     cache_drop_c_member_profile($c_member_id);
-
     $data = array(
         'is_receive_mail' => (bool)$is_receive_mail,
         'is_receive_daily_news' => intval($is_receive_daily_news),
         'rss' => $rss,
         'ashiato_mail_num' => intval($ashiato_mail_num),
-        'c_password_query_id' => intval($c_password_query_id),
         'public_flag_diary' => util_cast_public_flag_diary($public_flag_diary),
         'is_shinobiashi' => $is_shinobiashi,
         'schedule_start_day' => $schedule_start_day,
         'u_datetime' => db_now(),
     );
+
+    if (IS_PASSWORD_QUERY_ANSWER) {
+        $data['c_password_query_id'] = intval($c_password_query_id);
+    }
     $where = array('c_member_id' => intval($c_member_id));
     db_update('c_member', $data, $where);
 
-    if (!empty($c_password_query_answer)) {
+    if (!empty($c_password_query_answer) && IS_PASSWORD_QUERY_ANSWER) {
         $data = array(
             'hashed_password_query_answer' => md5($c_password_query_answer)
         );
@@ -2116,39 +2123,7 @@ function db_member_is_one_session_per_user($c_member_id, $now_sess_id)
 }
 
 /**
- *
- * 秘密の質問を利用しない場合の設定変更
- *
- */
-function db_member_h_config_3_no_password_query_answer(
-                $c_member_id,
-                $is_receive_mail,
-                $rss,
-                $ashiato_mail_num,
-                $is_receive_daily_news,
-                $public_flag_diary,
-                $is_shinobiashi,
-                $schedule_start_day)
-{
-    //function cacheの削除
-    cache_drop_c_member_profile($c_member_id);
-
-    $data = array(
-        'is_receive_mail' => (bool)$is_receive_mail,
-        'is_receive_daily_news' => intval($is_receive_daily_news),
-        'rss' => $rss,
-        'ashiato_mail_num' => intval($ashiato_mail_num),
-        'public_flag_diary' => util_cast_public_flag_diary($public_flag_diary),
-        'is_shinobiashi' => $is_shinobiashi,
-        'schedule_start_day' => $schedule_start_day,
-        'u_datetime' => db_now(),
-    );
-    $where = array('c_member_id' => intval($c_member_id));
-    db_update('c_member', $data, $where);
-}
-
-/**
- * 秘密の質問の登録状況チェック
+password_query_answer,
  * @param $encrypt_addres : encryptされたアドレス
  * @param $address_type   : 'pc'/'ktai'
  * @return true  : 設定されている
@@ -2167,9 +2142,9 @@ function db_member_is_registered_password_query_answer($c_member_id)
         intval($c_member_id),
     );
     $c_member = db_get_row($sql, $params);
-    if (!$c_member['hashed_password_query_answer'] 
+    if (!$c_member['hashed_password_query_answer']
      || md5($c_member['hashed_password_query_answer']) == md5($null_answer)
-     || !intval($c_member['c_password_query_id'])) {
+     || !$c_member['c_password_query_id']) {
         return false;
     }
     return true;
