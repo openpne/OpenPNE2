@@ -1310,7 +1310,6 @@ function db_diary_is_writable_comment4c_diary_id($c_diary_id)
  * メンバーの日記とコメントを削除
  *
  * @param  int    $c_member_id
- *
  */
 function db_diary_delete4c_member_id($c_member_id)
 {
