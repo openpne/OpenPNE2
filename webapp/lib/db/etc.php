@@ -925,8 +925,7 @@ function db_etc_c_cmd_url4name($name)
 /**
  * DBから前回POST情報を取得する
  *
- * @param $u
- *
+ * @param int $u
  * @return array
  */
 function db_etc_get_post_info($u) 
@@ -938,17 +937,15 @@ function db_etc_get_post_info($u)
 /**
  * DBにPOST情報を設定する
  *
- * @param $u
- * @param $post_time
- * @param $post_count
+ * @param int $u
+ * @param int $post_time
+ * @param int $post_count
  *
  */
 function db_etc_set_post_info($u, $post_time, $post_count) 
 {
     db_member_update_c_member_config($u, 'last_post_time', $post_time);
     db_member_update_c_member_config($u, 'last_post_count', $post_count);
- 
-    return db_affected_rows();
 }
 
 /**
