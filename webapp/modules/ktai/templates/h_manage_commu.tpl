@@ -38,9 +38,9 @@
 ({if $pager.prev_page || $pager.next_page})
 <hr color="#({$ktai_color_config.border_02})">
 <center>
-({if $pager.prev_page})<a href="({t_url m=ktai a=page_h_manage_com})&amp;page=({$page-1})&amp;({$tail})" accesskey="4">[i:128]前を表示</a>({/if})
+({if $pager.prev_page})<a href="({t_url m=ktai a=page_h_manage_commu})&amp;page=({$page-1})&amp;({$tail})" accesskey="4">[i:128]前を表示</a>({/if})
 ({if $pager.prev_page && $pager.next_page})&nbsp;({/if})
-({if $pager.next_page})<a href="({t_url m=ktai a=page_h_manage_com})&amp;page=({$page+1})&amp;({$tail})" accesskey="6">[i:130]次を表示</a>({/if})
+({if $pager.next_page})<a href="({t_url m=ktai a=page_h_manage_commu})&amp;page=({$page+1})&amp;({$tail})" accesskey="6">[i:130]次を表示</a>({/if})
 <br>
 </center>
 ({/if})
