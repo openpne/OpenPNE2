@@ -16,11 +16,26 @@ class ktai_do_o_password_query extends OpenPNE_Action
         //外部認証の場合はリダイレクト
         check_action4pne_slave(true);
 
-        // --- リクエスト変数<
+        // --- リクエスト変数
         $ktai_address = $requests['ktai_address'];
         $q_id = $requests['c_password_query_id'];
         $q_answer = $requests['password_query_answer'];
-        // ----------<
+        // ----------
+
+        if (!$ktai_address) {
+            $p = array('msg' => 25);
+            openpne_redirect('pc', 'page_o_password_query', $p);
+        }
+        if (IS_PASSWORD_QUERY_ANSWER) {
+            if (!$q_id) {
+                $p = array('msg' => 22);
+                openpne_redirect('pc', 'page_o_password_query', $p);
+            }
+            if (!$q_answer) {
+                $p = array('msg' => 23);
+                openpne_redirect('pc', 'page_o_password_query', $p);
+            }
+        }
 
         //--- 権限チェック
         //パスワード確認の質問と答えがあっている
