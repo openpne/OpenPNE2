@@ -615,7 +615,8 @@ $GLOBALS['CHECK_POST_ACTIONS'] = array(
     'do_c_event_add_insert_c_commu_topic',
     'do_c_event_write_insert_c_commu_topic_comment',
     'do_f_message_send_insert_c_message',
-    'do_f_link_request_insert_c_friend_confirm'),
+    'do_f_link_request_insert_c_friend_confirm',
+    ),
 'ktai' => array(
     'do_h_diary_edit_insert_c_diary',
     'do_fh_diary_insert_c_diary_comment',
@@ -624,7 +625,8 @@ $GLOBALS['CHECK_POST_ACTIONS'] = array(
     'do_c_bbs_insert_c_commu_topic_comment',
     'do_event_add_insert_c_commu_topic',
     'do_f_message_send_insert_c_message',
-    'do_f_link_request_insert_c_friend_confirm')
+    'do_f_link_request_insert_c_friend_confirm',
+    ),
 );
 
 // 連続投稿と判断する間隔(秒)
