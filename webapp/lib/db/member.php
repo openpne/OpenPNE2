@@ -1232,7 +1232,7 @@ function db_member_h_config_3(
     $where = array('c_member_id' => intval($c_member_id));
     db_update('c_member', $data, $where);
 
-    if (!empty($c_password_query_answer) && IS_PASSWORD_QUERY_ANSWER) {
+    if (IS_PASSWORD_QUERY_ANSWER && !empty($c_password_query_answer)) {
         $data = array(
             'hashed_password_query_answer' => md5($c_password_query_answer)
         );
