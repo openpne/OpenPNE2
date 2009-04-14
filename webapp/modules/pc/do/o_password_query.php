@@ -37,7 +37,6 @@ class pc_do_o_password_query extends OpenPNE_Action
             }
         }
 
-        //---
         //--- 権限チェック
         if (IS_PASSWORD_QUERY_ANSWER) {
             $c_member_id = db_member_is_password_query_complete($pc_address, $q_id, $q_answer);
