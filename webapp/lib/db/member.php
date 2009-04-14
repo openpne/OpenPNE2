@@ -1214,6 +1214,7 @@ function db_member_h_config_3(
 {
     //function cacheの削除
     cache_drop_c_member_profile($c_member_id);
+
     $data = array(
         'is_receive_mail' => (bool)$is_receive_mail,
         'is_receive_daily_news' => intval($is_receive_daily_news),
