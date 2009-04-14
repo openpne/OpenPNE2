@@ -2123,9 +2123,8 @@ function db_member_is_one_session_per_user($c_member_id, $now_sess_id)
 }
 
 /**
-password_query_answer,
- * @param $encrypt_addres : encryptされたアドレス
- * @param $address_type   : 'pc'/'ktai'
+ * 秘密の質問の登録状況チェック
+ * @param  int $c_member_id
  * @return true  : 設定されている
  *         false : 設定されていない
  */
