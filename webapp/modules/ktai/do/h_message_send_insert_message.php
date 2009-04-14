@@ -32,9 +32,33 @@ class ktai_do_h_message_send_insert_message extends OpenPNE_Action
 
         //--- 権限チェック
         //自分以外
-
         if ($target_c_member_id == $u) {
             handle_kengen_error();
+        }
+
+        //存在しないメンバー
+        $target_member = db_member_c_member4c_member_id($target_c_member_id);
+        if (empty($target_member)) {
+            handle_kengen_error();
+        }
+
+        //アクセスブロック設定
+        if (db_member_is_access_block($u, $target_c_member_id)) {
+            openpne_redirect('ktai', 'page_h_access_block');
+        }
+
+        if ($hensinmoto_c_message_id) {
+            $c_message = db_message_c_message4c_message_id($hensinmoto_c_message_id);
+            if ($c_message['c_member_id_to'] != $u || !$c_message['is_send']) {
+                handle_kengen_error();
+            }
+        }
+
+        if ($target_c_message_id != $hensinmoto_c_message_id) {
+            $c_message = db_message_c_message4c_message_id($target_c_message_id);
+            if ($c_message['c_member_id_from'] != $u || $c_message['is_send']) {
+                handle_kengen_error();
+            }
         }
         //---
 
