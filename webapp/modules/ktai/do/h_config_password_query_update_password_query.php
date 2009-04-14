@@ -11,10 +11,9 @@ class ktai_do_h_config_password_query_update_password_query extends OpenPNE_Acti
         // 外部認証の場合はリダイレクト
         check_action4pne_slave(true);
 
-        // 秘密の質問が無効の場合の動作
+        // 秘密の質問が無効の場合はりダイレクト
         if (!IS_PASSWORD_QUERY_ANSWER) {
-            $p = array('msg' => 'アクションが無効になっています');
-            openpne_redirect('ktai', 'page_h_home', $p); 
+            handle_kengen_error();
         }
 
         $tail = $GLOBALS['KTAI_URL_TAIL'];
