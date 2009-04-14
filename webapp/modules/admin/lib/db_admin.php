@@ -1059,10 +1059,10 @@ function validate_cond($requests)
     $profile_list = db_member_c_profile_list();
     $profile_req = $requests['profile'];
 
-    if ( $profile_req ) {
+    if (is_array($profile_req)) {
         $profile_cond = array();
         foreach ($profile_list as $key => $value) {
-           if ( $profile_req[$key] && array_key_exists( $key, $profile_req ) ) {
+           if (isset($profile_req[$key])) {
                if ($value['form_type'] == 'select' || $value['form_type'] == 'radio') {
                    $profile_cond[$key] = intval($profile_req[$key]);
                } else {
