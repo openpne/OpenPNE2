@@ -1059,6 +1059,7 @@ function util_replace_patterns_to_marker($subject, $patterns = array())
 /**
  * 連続投稿チェック用の情報を取得する
  *
+ * @param  int   $u
  * @return array
  */
 function util_get_post_info($u)
@@ -1066,14 +1067,11 @@ function util_get_post_info($u)
     $last_post_time = '';
     $post_count = 0;
 
-    switch (OPENPNE_POST_USE_DB) {
-        case 0 :
-            $last_post_time = $_SESSION['last_post_time'];
-            $post_count = $_SESSION['post_count'];
-            break;
-        case 1 :
-            list($last_post_time, $post_count) = db_etc_get_post_info($u);
-            break;
+    if (OPENPNE_POST_USE_DB) {
+        list($last_post_time, $post_count) = db_etc_get_post_info($u);
+    } else {
+        $last_post_time = $_SESSION['last_post_time'];
+        $post_count = $_SESSION['post_count'];
     }
 
     return array($last_post_time, $post_count);
@@ -1082,35 +1080,33 @@ function util_get_post_info($u)
 /**
  * 連続投稿チェック用の情報を設定する
  *
- * @return bool
+ * @param int $u
+ * @param int $post_time
+ * @param int $post_count
  */
 function util_set_post_info($u, $post_time, $post_count)
 {
-    switch (OPENPNE_POST_USE_DB) {
-        case 0 :
-            $_SESSION['last_post_time'] = $post_time;
-            $_SESSION['post_count'] = $post_count;
-            break;
-        case 1 :
-            db_etc_set_post_info($u, $post_time, $post_count);
-            break;
+    if (OPENPNE_POST_USE_DB) {
+        db_etc_set_post_info($u, $post_time, $post_count);
+    } else {
+        $_SESSION['last_post_time'] = $post_time;
+        $_SESSION['post_count'] = $post_count;
     }
-
-    return true;
 }
 
 /**
  * 連続投稿確認用
  *
- * @params  $action : Check Action
- * @params  $u : operation c_member_id
- * @return  true  : post OK
- *          false : post NG
- **/
+ * @param  string $module
+ * @param  string $action
+ * @param  int    $u
+ * @return bool   true  : post OK
+ *                false : post NG
+ */
 function util_do_post_interval_ok($module, $action, $u)
 {
     // チェックしない
-    if (!OPENPNE_POST_INTERVAL_UNFAIR_SECOND || !isset($GLOBALS['CHECK_POST_ACTIONS'])) {
+    if (!OPENPNE_POST_INTERVAL_UNFAIR_SECOND) {
         return true;
     }
 
