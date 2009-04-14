@@ -84,17 +84,10 @@ if (IS_PASSWORD_QUERY_ANSWER && OPENPNE_AUTH_MODE != 'slavepne') {
     $password_query_answer_ext_page = array(
         'page_h_config_password_query',
         'do_h_config_password_query_update_password_query',
-        'h_logout',
     );
 
     $is_registered_password_query_answer = db_member_is_registered_password_query_answer($u);
     $is_registered_password_query_answer_action = in_array($current_page, $password_query_answer_ext_page);
-
-    if ($is_registered_password_query_answer) {
-        $_SESSION['regist_step'] = true;
-    } else {
-        $_SESSION['regist_step'] = false;
-    }
 
     if (!$is_registered_password_query_answer_action) {
         // 秘密の質問が未登録

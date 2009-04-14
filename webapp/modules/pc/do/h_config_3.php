@@ -97,7 +97,6 @@ class pc_do_h_config_3 extends OpenPNE_Action
         //または、設定画面表示時はtrueだったけど、設定変更ボタンを押す時にはfalse
         //になっていた場合、
         //秘密の質問は登録する 
-        if (IS_PASSWORD_QUERY_ANSWER) {
             db_member_h_config_3(
                 $u,
                 $is_receive_mail,
@@ -110,18 +109,6 @@ class pc_do_h_config_3 extends OpenPNE_Action
                 $is_shinobiashi,
                 $schedule_start_day
             );
-        } else {
-            db_member_h_config_3_no_password_query_answer(
-                $u,
-                $is_receive_mail,
-                $rss_url,
-                $ashiato_mail_num,
-                $is_receive_daily_news,
-                $public_flag_diary,
-                $is_shinobiashi,
-                $schedule_start_day
-            );
-        }
 
         db_member_insert_c_access_block($u, $c_member_id_block);
 
