@@ -5,10 +5,10 @@
 
 パスワードを再発行いたしました。
 
-({if $login_id})ログインID：({$login_id})
+({if $login_id})ログインID : ({$login_id})
 ({/if})
-メールアドレス：({$pc_address})
-パスワード：({$password})
+メールアドレス : ({$pc_address})
+パスワード : ({$password})
 
 なお、パスワードの変更は、「設定変更」画面からおこなってください。
 
