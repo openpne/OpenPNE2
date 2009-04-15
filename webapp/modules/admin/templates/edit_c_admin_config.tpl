@@ -234,9 +234,9 @@
 <th colspan="2">({$WORD_DIARY})コメント禁止機能使用設定</th>
 <td>
 <span class="info">※({$WORD_DIARY})のコメント禁止機能を有効にするかどうかを設定します</span><br />
-<select class="basic" name="USE_DIARY_COMMENT">
-<option value="1"({if $smarty.const.USE_DIARY_COMMENT}) selected="selected"({/if})>使用する</option>
-<option value="0"({if !$smarty.const.USE_DIARY_COMMENT}) selected="selected"({/if})>使用しない</option>
+<select class="basic" name="OPENPNE_USE_DIARY_COMMENT">
+<option value="1"({if $smarty.const.OPENPNE_USE_DIARY_COMMENT}) selected="selected"({/if})>使用する</option>
+<option value="0"({if !$smarty.const.OPENPNE_USE_DIARY_COMMENT}) selected="selected"({/if})>使用しない</option>
 </select></td>
 </tr>
 <tr>
