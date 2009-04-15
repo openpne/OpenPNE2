@@ -4,9 +4,9 @@
 
 パスワードを再発行いたしました。
 
-({if $login_id})ログインID：({$login_id})
+({if $login_id})ログインID : ({$login_id})
 ({/if})
-パスワード：({$password})
+パスワード : ({$password})
 
 ({$SNS_NAME})ログインページ
 ({$login_url})
