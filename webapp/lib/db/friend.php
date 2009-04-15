@@ -360,8 +360,8 @@ function db_friend_c_friend_list_disp4c_member_id($c_member_id, $page = 1, $size
                 "is_display_friend_home".
             " FROM c_member,".
                 "c_friend".
-            " WHERE c_member.c_member_id = c_friend.c_member_id_from".
-                " AND c_friend.c_member_id_to = ?".
+            " WHERE c_member.c_member_id = c_friend.c_member_id_to".
+                " AND c_friend.c_member_id_from = ?".
             " ORDER BY c_friend.r_datetime DESC";
     $params = array(intval($c_member_id));
     $c_friend_list = db_get_all_page($sql, $page, $size, $params);
