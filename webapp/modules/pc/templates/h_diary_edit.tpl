@@ -159,7 +159,7 @@
 </ul>
 </td>
 </tr>
-({if $smarty.const.USE_DIARY_COMMENT})
+({if $smarty.const.OPENPNE_USE_DIARY_COMMENT})
 <tr>
 <th>コメント許可</th>
 <td>
