@@ -61,7 +61,6 @@
 
 
 <div class="userList">
-({/if})
 ({if $pager})
 <form action="./" method="get">
 <p id="numberDisplays">
