@@ -91,10 +91,8 @@ class pc_page_h_diary_edit extends OpenPNE_Action
             $this->set("use_diary_category", true);
         }
 
-        if (!(is_null($subject) || is_null($body))) {
-            $c_diary['subject'] = $subject;
-            $c_diary['body'] = $body;
-        }
+        $c_diary['subject'] = $subject;
+        $c_diary['body'] = $body;
         if ($public_flag) {
             $c_diary['public_flag'] = util_cast_public_flag_diary($public_flag);
         }
