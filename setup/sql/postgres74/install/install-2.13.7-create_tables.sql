@@ -324,6 +324,7 @@ CREATE TABLE c_commu_member (
   is_receive_mail smallint NOT NULL default '0',
   is_receive_mail_pc int4 NOT NULL default '0',
   is_receive_message int4 NOT NULL default '1',
+  is_display_topic_home smallint NOT NULL default '1',
   PRIMARY KEY  (c_commu_member_id)
 );
 
@@ -546,6 +547,7 @@ CREATE TABLE c_diary (
   is_checked smallint NOT NULL default '0',
   public_flag varchar(20) NOT NULL default 'public',
   u_datetime timestamp NOT NULL default '0000-01-01 00:00:00',
+  is_comment_input smallint NOT NULL default '1',
   PRIMARY KEY  (c_diary_id)
 );
 
@@ -649,6 +651,7 @@ CREATE TABLE c_friend (
   r_datetime timestamp NOT NULL default '0000-01-01 00:00:00',
   intro text NOT NULL,
   r_datetime_intro timestamp NOT NULL default '0000-01-01 00:00:00',
+  is_display_friend_home smallint NOT NULL default '1',
   PRIMARY KEY  (c_friend_id)
 );
 
