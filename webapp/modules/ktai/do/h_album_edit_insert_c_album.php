@@ -22,13 +22,15 @@ class ktai_do_h_album_edit_insert_c_album extends OpenPNE_Action
         // ----------
 
         if (is_null($subject) || $subject === '') {
-            $p = array('target_c_album_id' => $target_c_album_id, 'msg' => 2);
-            openpne_redirect('ktai', 'page_h_album_edit', $p);
+            $_REQUEST['msg'] = 2;
+            openpne_forward('ktai', 'page', 'h_album_edit');
+            exit;
         }
 
         if (is_null($description) || $description === '') {
-            $p = array('target_c_album_id' => $target_c_album_id, 'msg' => 51);
-            openpne_redirect('ktai', 'page_h_album_edit', $p);
+            $_REQUEST['msg'] = 51;
+            openpne_forward('ktai', 'page', 'h_album_edit');
+            exit;
         }
 
         if (!$target_c_album_id) {

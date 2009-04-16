@@ -22,18 +22,20 @@ class ktai_page_h_album_edit extends OpenPNE_Action
             if ($c_album['c_member_id'] != $u) {
                 handle_kengen_error();
             }
-            if (!is_null($subject) and $subject !== '') {
+            if (array_key_exists('subject', $requests)) {
                 $c_album['subject'] = $subject;
             }
-            if (!is_null($description) and $description !== '') {
+            if (array_key_exists('description', $requests)) {
                 $c_album['description'] = $description;
             }
-            if (!is_null($public_flag) and $public_flag !== '') {
+            if (array_key_exists('public_flag', $requests)) {
                 $c_album['public_flag'] = $public_flag;
             }
             $this->set('target_c_album', $c_album);
         } else {
-            $c_album['public_flag'] = "public";
+            $c_album['subject'] = $subject;
+            $c_album['description'] = $description;
+            $c_album['public_flag'] = $public_flag ? $public_flag : "public";
             $this->set('target_c_album', $c_album);
         }
 
