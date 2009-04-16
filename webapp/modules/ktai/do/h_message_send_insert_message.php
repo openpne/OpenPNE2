@@ -21,13 +21,15 @@ class ktai_do_h_message_send_insert_message extends OpenPNE_Action
         // ----------
 
         if (is_null($subject) || $subject === '') {
-            $p = array('msg' => 2);
-            openpne_redirect('ktai', 'page_h_message_send', $p);
+            $_REQUEST['msg'] = 2;
+            openpne_forward('ktai', 'page', 'h_message_send');
+            exit;
         }
 
         if (is_null($body) || $body === '') {
-            $p = array('msg' => 1);
-            openpne_redirect('ktai', 'page_h_message_send', $p);
+            $_REQUEST['msg'] = 1;
+            openpne_forward('ktai', 'page', 'h_message_send');
+            exit;
         }
 
         //--- 権限チェック

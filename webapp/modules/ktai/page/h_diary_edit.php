@@ -14,6 +14,7 @@ class ktai_page_h_diary_edit extends OpenPNE_Action
         $target_c_diary_id = $requests['target_c_diary_id'];
         $subject = $requests['subject'];
         $body = $requests['body'];
+        $public_flag = $requests['public_flag'];
         // ----------
 
         $c_member = db_member_c_member4c_member_id($u);
@@ -22,10 +23,19 @@ class ktai_page_h_diary_edit extends OpenPNE_Action
             if ($c_diary['c_member_id'] != $u) {
                 handle_kengen_error();
             }
+            if (array_key_exists('subject', $requests)) {
+                $c_diary['subject'] = $subject;
+            }
+            if (array_key_exists('body', $requests)) {
+                $c_diary['body'] = $body;
+            }
+            if ($public_flag) {
+                $c_diary['pulic_flag'] = $public_flag;
+            }
             $this->set('target_c_diary', $c_diary);
         } else {
             $c_diary['is_comment_input'] = "1";
-            $c_diary['public_flag'] = $c_member['public_flag_diary'];
+            $c_diary['public_flag'] = $public_flag ? $public_flag : $c_member['public_flag_diary'];
             $c_diary['subject'] = $subject;
             $c_diary['body'] = $body;
             $this->set('target_c_diary', $c_diary);
