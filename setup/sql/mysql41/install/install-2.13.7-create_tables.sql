@@ -316,11 +316,13 @@ CREATE TABLE `c_commu_member` (
   `is_receive_mail` tinyint(1) NOT NULL default '0',
   `is_receive_mail_pc` int(11) NOT NULL default '0',
   `is_receive_message` int(11) NOT NULL default '1',
+  `is_display_topic_home` tinyint(1) NOT NULL default '1',
   PRIMARY KEY  (`c_commu_member_id`),
   KEY `c_commu_id` (`c_commu_id`),
   KEY `c_member_id` (`c_member_id`),
   KEY `c_commu_id_r_datetime` (`c_commu_id`,`r_datetime`),
-  KEY `c_commu_id_c_member_id` (`c_commu_id`,`c_member_id`)
+  KEY `c_commu_id_c_member_id` (`c_commu_id`,`c_member_id`),
+  KEY `c_member_id_is_display_topic_home` (`c_member_id`,`is_display_topic_home`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `c_commu_member_confirm` (
@@ -532,6 +534,7 @@ CREATE TABLE `c_diary` (
   `is_checked` tinyint(1) NOT NULL default '0',
   `public_flag` enum('public','friend','private') NOT NULL default 'public',
   `u_datetime` datetime NOT NULL default '0000-00-00 00:00:00',
+  `is_comment_input` tinyint(1) NOT NULL default '1',
   PRIMARY KEY  (`c_diary_id`),
   KEY `c_member_id` (`c_member_id`),
   KEY `r_datetime_c_member_id` (`r_datetime`,`c_member_id`),
@@ -628,12 +631,14 @@ CREATE TABLE `c_friend` (
   `r_datetime` datetime NOT NULL default '0000-00-00 00:00:00',
   `intro` text NOT NULL,
   `r_datetime_intro` datetime NOT NULL default '0000-00-00 00:00:00',
+  `is_display_friend_home` tinyint(1) NOT NULL default '1',
   PRIMARY KEY  (`c_friend_id`),
   KEY `c_member_id_to` (`c_member_id_to`),
   KEY `c_member_id_from` (`c_member_id_from`),
   KEY `c_member_id_from_c_friend_id` (`c_member_id_from`,`c_friend_id`),
   KEY `c_member_id_from_r_datetime` (`c_member_id_from`,`r_datetime`),
-  KEY `c_member_id_to_r_datetime_intro` (`c_member_id_to`,`r_datetime_intro`)
+  KEY `c_member_id_to_r_datetime_intro` (`c_member_id_to`,`r_datetime_intro`),
+  KEY `c_member_id_from_is_display_friend_home` (`c_member_id_from`,`is_display_friend_home`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `c_friend_confirm` (
