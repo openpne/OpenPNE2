@@ -332,7 +332,7 @@ CREATE INDEX c_commu_member_c_commu_id on c_commu_member (c_commu_id);
 CREATE INDEX c_commu_member_c_member_id on c_commu_member (c_member_id);
 CREATE INDEX c_commu_member_c_commu_id_r_datetime on c_commu_member (c_commu_id,r_datetime);
 CREATE INDEX c_commu_member_c_commu_id_c_member_id on c_commu_member (c_commu_id,c_member_id);
-CREATE INDEX c_commu_member_c_member_id_is_display_topic_home ON c_commu_member (c_member_id, is_display_topic_home);
+CREATE INDEX c_commu_member_c_member_id_is_display_topic_home on c_commu_member (c_member_id, is_display_topic_home);
 
 CREATE TABLE c_commu_member_confirm (
   c_commu_member_confirm_id serial NOT NULL,
