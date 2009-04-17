@@ -24,15 +24,24 @@ class pc_page_c_topic_add extends OpenPNE_Action
         }
 
         //--- 権限チェック
-        //コミュニティメンバー
-        if (!db_commu_is_c_commu_member($c_commu_id, $u)) {
-            handle_kengen_error();
-        }
-
         $c_commu = db_commu_c_commu4c_commu_id2($c_commu_id);
-        //トピック作成権限チェック
-        if ($c_commu['topic_authority'] == 'admin_only' && !db_commu_is_c_commu_admin($c_commu_id, $u)) {
-            handle_kengen_error();
+
+        // トピック作成権限
+        switch ($c_commu['is_topic']) {
+            case 'public' :
+                // 誰でも作成可能
+                break;
+            case 'member' :
+                //コミュニティメンバー
+                if (!db_commu_is_c_commu_member($c_commu_id, $u)) {
+                    handle_kengen_error();
+                }
+                break;
+            case 'admin_only' :
+                //管理者のみ
+                if (!db_commu_is_c_commu_admin($c_commu_id, $u)) {
+                handle_kengen_error();
+            }
         }
         // ---
 
