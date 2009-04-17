@@ -24,10 +24,13 @@
 <font color="#({$ktai_color_config.font_06})">説明文：</font><br>
 <textarea name="info" rows="6"></textarea><br>
 <br>
-<font color="#({$ktai_color_config.font_06})">参加条件と公開範囲：</font><br>
-<input name="public_flag" type="radio" value="public" checked="checked">誰でも参加可能、掲示板は全員に公開<br>
-<input name="public_flag" type="radio" value="auth_sns">参加には管理者の承認が必要、掲示板は全員に公開<br>
-<input name="public_flag" type="radio" value="auth_commu_member">参加には管理者の承認が必要、掲示板は({$WORD_COMMUNITY_HALF})ﾒﾝﾊﾞｰにのみ公開<br>
+<font color="#({$ktai_color_config.font_06})">参加条件：</font><br>
+<input name="is_admit" type="radio" value="public" checked="checked">誰でも参加可能<br>
+<input name="is_admit" type="radio" value="auth">管理者の承認が必要<br>
+<br>
+<font color="#({$ktai_color_config.font_06})">公開範囲：</font><br>
+<input name="is_open" type="radio" value="public" checked="checked">全員に公開<br>
+<input name="is_open" type="radio" value="member">({$WORD_COMMUNITY_HALF})ﾒﾝﾊﾞｰにのみ公開<br>
 <br>
 <hr color="#({$ktai_color_config.border_01})">
 <center>
