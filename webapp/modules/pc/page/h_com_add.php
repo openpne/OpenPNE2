@@ -14,7 +14,8 @@ class pc_page_h_com_add extends OpenPNE_Action
         $name = $requests['name'];
         $c_commu_category_id = $requests['c_commu_category_id'];
         $info = $requests['info'];
-        $public_flag = $requests['public_flag'];
+        $is_admit = $requests['is_admit'];
+        $is_open = $requests['is_open'];
         $err_msg = $requests['err_msg'];
         // ----------
 
@@ -22,7 +23,8 @@ class pc_page_h_com_add extends OpenPNE_Action
             'name'=>$name,
             'c_commu_category_id'=>$c_commu_category_id,
             'info'=>$info,
-            'public_flag'=>$public_flag,
+            'is_admit'=>$is_admit,
+            'is_open'=>$is_open,
         );
 
         $this->set('inc_navi', fetch_inc_navi('h'));
@@ -34,15 +36,7 @@ class pc_page_h_com_add extends OpenPNE_Action
 
         $this->set("c_commu_category", $c_commu_category_list);
 
-        $public_flag_list=
-        array(
-            'public' =>'参加：誰でも参加可能、掲示板：全員に公開',
-            'auth_sns' =>'参加：管理者の承認が必要、掲示板：全員に公開',
-            'auth_commu_member' =>'参加：管理者の承認が必要、掲示板：' . WORD_COMMUNITY . '参加者にのみ公開',
-        );
-
         $this->set("c_commu_category_list", $c_commu_category_list);
-        $this->set("public_flag_list", $public_flag_list);
         $this->set("form_val", $form_val);
 
         $this->set('err_msg', $err_msg);

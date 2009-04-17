@@ -24,7 +24,7 @@ class pc_do_c_event_edit_delete_c_commu_topic_comment_file extends OpenPNE_Actio
             handle_kengen_error();
         }
         $c_commu = db_commu_c_commu4c_commu_id2($c_topic['c_commu_id']);
-        if ($c_commu['topic_authority'] == 'admin_only' &&
+        if ($c_commu['is_topic'] == 'admin_only' &&
             !db_commu_is_c_commu_admin($c_topic['c_commu_id'], $u)) {
             handle_kengen_error();
         }
