@@ -54,5 +54,9 @@
 	</tr>
 	</tbody>
 </table>
+({if $from})
+<p class="groupLing"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('sns_entry_list')})" onClick="history.back(); return false;" onKeyPress="history.back(); return false;">承認待ちリストに戻る</a></p>
+({else})
 <p class="groupLing"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_member')})" onClick="history.back(); return false;" onKeyPress="history.back(); return false;">メンバーリストに戻る</a></p>
+({/if})
 ({$inc_footer|smarty:nodefaults})

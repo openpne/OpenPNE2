@@ -50,6 +50,15 @@
 </select>
 </td>
 </tr>
+({if $smarty.const.OPENPNE_AUTH_MODE != "slavepne"})
+<tr class="cell05b">
+<th colspan="2">参加時の管理者承認</th>
+<td>
+<input class="basicRadio" name="IS_SNS_ENTRY_CONFIRM" id="IS_SNS_ENTRY_CONFIRM_0" type="radio" value="0"({if !$smarty.const.IS_SNS_ENTRY_CONFIRM}) checked="checked"({/if}) /><label for="IS_SNS_ENTRY_CONFIRM_0">管理者の承認は不要</label>　<span class="caution">（※管理者の承認がなくても登録できます）</span><br />
+<input class="basicRadio" name="IS_SNS_ENTRY_CONFIRM" id="IS_SNS_ENTRY_CONFIRM_1" type="radio" value="1"({if $smarty.const.IS_SNS_ENTRY_CONFIRM}) checked="checked"({/if}) /><label for="IS_SNS_ENTRY_CONFIRM_1">管理者の承認が必要</label>　<span class="caution">（※管理者の承認を得られないと登録が完了しません）</span><br //>
+</td>
+</tr>
+({/if})
 <tr class="cell06">
 <th colspan="2">PC版使用設定</th>
 <td>
