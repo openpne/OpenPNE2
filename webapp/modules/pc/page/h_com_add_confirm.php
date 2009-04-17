@@ -21,7 +21,8 @@ class pc_page_h_com_add_confirm extends OpenPNE_Action
         $name = $requests['name'];
         $c_commu_category_id = $requests['c_commu_category_id'];
         $info = $requests['info'];
-        $public_flag = $requests['public_flag'];
+        $is_admit = $requests['is_admit'];
+        $is_open = $requests['is_open'];
         // ----------
         $upfile_obj = $_FILES['image_filename'];
 
@@ -57,19 +58,25 @@ class pc_page_h_com_add_confirm extends OpenPNE_Action
         $c_commu_category_list = db_commu_c_commu_category4null();
 
         $public_flag_list=
-        array(
-            'public' =>'参加：誰でも参加可能、掲示板：全員に公開',
-            'auth_sns' =>'参加：管理者の承認が必要、掲示板：全員に公開',
-            'auth_commu_member' =>'参加：管理者の承認が必要、掲示板：' . WORD_COMMUNITY . '参加者にのみ公開',
+        array('is_admit' => array(
+                              'public' => '誰でも参加可能',
+                              'auth' => '管理者の承認が必要',
+                            ),
+              'is_open' => array(
+                              'public' => '全員に公開',
+                              'member' => WORD_COMMUNITY . '参加者にのみ公開',
+                            ),
         );
 
         foreach ($c_commu_category_list as $each_c_commu_categfory) {
             if ($each_c_commu_categfory['c_commu_category_id']==$c_commu_category_id)$c_commu_category_value=$each_c_commu_categfory['name'];
         }
-        $public_flag_value=$public_flag_list[$public_flag];
+        $is_admit_value = $public_flag_list['is_admit'][$is_admit];
+        $is_open_value  = $public_flag_list['is_open'][$is_open];
 
         $this->set("c_commu_category_value", $c_commu_category_value);
-        $this->set("public_flag_value", $public_flag_value);
+        $this->set("is_admit_value", $is_admit_value);
+        $this->set("is_open_value", $is_open_value);
 
         //画像をvar/tmpフォルダにコピー
         $sessid = session_id();
@@ -82,7 +89,8 @@ class pc_page_h_com_add_confirm extends OpenPNE_Action
             'name'=>$name,
             'c_commu_category_id'=>$c_commu_category_id,
             'info'=>$info,
-            'public_flag'=>$public_flag,
+            'is_admit'=>$is_admit,
+            'is_open'=>$is_open,
             'tmpfile'=>$tmpfile,
             'image_filename' => $upfile_obj['name']
         );

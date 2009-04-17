@@ -15,17 +15,24 @@ class ktai_do_c_event_add_insert_c_commu_topic extends OpenPNE_Action
         //コミュニティ参加者
 
         list($event, $errors) = p_c_event_add_confirm_event4request(true);
-
-        $status = db_common_commu_status($u, $event['c_commu_id']);
-        if (!$status['is_commu_member']) {
-            handle_kengen_error();
-        }
-
         $c_commu = db_commu_c_commu4c_commu_id2($event['c_commu_id']);
 
-        //トピック作成権限チェック
-        if ($c_commu['topic_authority'] == 'admin_only' && !db_commu_is_c_commu_admin($event['c_commu_id'], $u)) {
-            ktai_display_error("イベントは管理者だけが作成できます");
+        switch ($c_commu['is_topic']) {
+            case 'public' :
+                //誰でも作成可能
+                break;
+            case 'member' :
+                $status = db_common_commu_status($u, $event['c_commu_id']);
+                if (!$status['is_commu_member']) {
+                    handle_kengen_error();
+                }
+                break;
+            case 'admin_only' :
+                //トピック作成権限チェック
+                if (!db_commu_is_c_commu_admin($event['c_commu_id'], $u)) {
+                    ktai_display_error("イベントは管理者だけが作成できます");
+                }
+                break;
         }
         //---
 
