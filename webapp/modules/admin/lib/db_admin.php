@@ -2094,7 +2094,7 @@ function get_analysis_date_day($date="")
         $date = date("Y-m");
     }
     //一ヶ月の日数
-    $day_num = date("t");
+    $day_num = date("t", strtotime($date));
 
     for($i=1 ; $i<=$day_num; $i++) {
         //一桁の数を二桁にする
