@@ -15,8 +15,10 @@ class pc_page_c_edit extends OpenPNE_Action
         $name = $requests['name'];
         $c_commu_category_id = $requests['c_commu_category_id'];
         $info = $requests['info'];
-        $public_flag = $requests['public_flag'];
-        $topic_authority = $requests['topic_authority'];
+        $is_admit = $requests['is_admit'];
+        $is_open = $requests['is_open'];
+        $is_topic = $requests['is_topic'];
+        $is_comment = $requests['is_comment'];
         $err_msg = $requests['err_msg'];
         // ----------
 
@@ -64,19 +66,6 @@ class pc_page_c_edit extends OpenPNE_Action
         }
         $this->set('c_commu_category_list', $c_commu_category_list);
 
-        $public_flag_list=
-        array(
-            'public' =>'参加：誰でも参加可能、掲示板：全員に公開',
-            'auth_sns' =>'参加：管理者の承認が必要、掲示板：全員に公開',
-            'auth_commu_member' =>'参加：管理者の承認が必要、掲示板：' . WORD_COMMUNITY . '参加者にのみ公開',
-        );
-        $this->set('public_flag_list', $public_flag_list);
-        $topic_authority_list=
-        array(
-            'public' => WORD_COMMUNITY . '参加者全員が作成可能',
-            'admin_only' => WORD_COMMUNITY . '管理者のみ作成可能',
-        );
-        $this->set('topic_authority_list', $topic_authority_list);
         $this->set('is_topic', db_commu_is_topic4c_commu_id($target_c_commu_id));
         $this->set('err_msg', $err_msg);
 

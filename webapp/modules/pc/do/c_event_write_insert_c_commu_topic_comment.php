@@ -40,11 +40,19 @@ class pc_do_c_event_write_insert_c_commu_topic_comment extends OpenPNE_Action
 
         $c_topic = db_commu_c_topic4c_commu_topic_id_2($c_commu_topic_id);
         $c_commu_id = $c_topic['c_commu_id'];
-
-        $status = db_common_commu_status($u, $c_commu_id);
-        if (!$status['is_commu_member']) {
-            handle_kengen_error();
+        $c_commu = db_commu_c_commu4c_commu_id($c_commu_id);
+        switch ($c_commu['is_comment']) {
+            case 'public' :
+                //誰でもコメント可能
+                break;
+            case 'member' :
+                $status = db_common_commu_status($u, $c_commu_id);
+                if (!$status['is_commu_member']) {
+                    handle_kengen_error();
+                }
+                break;
         }
+
         if (!db_commu_is_writable_c_commu_topic_comment4c_commu_topic_id($c_commu_topic_id)) {
             $err_msg[] = 'コメントが1000番に達したので、このイベントにはコメントできません';
             $_REQUEST['err_msg'] = $err_msg;
