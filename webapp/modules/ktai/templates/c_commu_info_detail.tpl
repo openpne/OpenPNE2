@@ -28,22 +28,34 @@
 <font color="#({$ktai_color_config.font_06})">ﾒﾝﾊﾞｰ数：</font><br>
 ({$c_commu.count_member})人<br>
 <br>
-<font color="#({$ktai_color_config.font_06})">参加条件と公開範囲：</font><br>
-({if $c_commu.public_flag == 'public'})
-だれでも参加できる(公開)
-({elseif $c_commu.public_flag == 'auth_public'})
-管理者の承認が必要(公開)
-({elseif $c_commu.public_flag == 'auth_sns'})
-管理者の承認が必要(公開)
-({elseif $c_commu.public_flag == 'auth_commu_member'})
-管理者の承認が必要(非公開)
+<font color="#({$ktai_color_config.font_06})">参加条件：</font><br>
+({if $c_commu.is_admit == 'public'})
+誰でも参加可能
+({elseif $c_commu.is_admit == 'auth'})
+管理者の承認が必要
+({/if})<br>
+<br>
+<font color="#({$ktai_color_config.font_06})">公開範囲：</font><br>
+({if $c_commu.is_open == 'public'})
+全員に公開
+({elseif $c_commu.is_open == 'member'})
+({$WORD_COMMUNITY_HALF})ﾒﾝﾊﾞ-にのみ公開
 ({/if})<br>
 <br>
 <font color="#({$ktai_color_config.font_06})">ﾄﾋﾟｯｸ作成権限：</font><br>
-({if $c_commu.topic_authority == 'public'})
+({if $c_commu.is_topic == 'member'})
 ({$WORD_COMMUNITY_HALF})参加者全員が作成可能
-({elseif $c_commu.topic_authority == 'admin_only'})
+({elseif $c_commu.is_topic == 'admin_only'})
 ({$WORD_COMMUNITY_HALF})管理者のみ作成可能
+({elseif $c_commu.is_topic == 'public'})
+誰でも作成可能
+({/if})<br>
+<br>
+<font color="#({$ktai_color_config.font_06})">ｺﾒﾝﾄ作成権限：</font><br>
+({if $c_commu.is_comment == 'member'})
+({$WORD_COMMUNITY_HALF})参加者のみｺﾒﾝﾄ作成可能
+({elseif $c_commu.is_comment == 'public'})
+誰でもｺﾒﾝﾄ可能
 ({/if})<br>
 <br>
 <font color="#({$ktai_color_config.font_06})">({$WORD_COMMUNITY_HALF})の説明：</font><br>

@@ -36,8 +36,7 @@
 ({/if})
 </dd>
 </dl>
-({if $is_c_topic_admin || $is_c_commu_admin})
-({if ($c_commu.topic_authority == 'public')||($c_commu.topic_authority == 'admin_only' && $is_c_commu_admin)})
+({if ($c_commu.is_topic == 'admin_only' && $is_c_commu_admin) || ($c_commu.is_topic == 'member' && $is_c_topic_admin) || ($c_commu.is_topic == 'public' && $is_c_topic_admin)})
 <div class="operation">
 ({t_form_block _method=get m=pc a=page_c_topic_edit})
 <input type="hidden" name="target_c_commu_topic_id" value="({$c_topic.c_commu_topic_id})" />
@@ -46,7 +45,6 @@
 </ul>
 ({/t_form_block})
 </div>
-({/if})
 ({/if})
 </div></div>
 ({* }}} *})
@@ -123,7 +121,7 @@
 
 ({/if})
 
-({if $is_c_commu_member})
+({if $is_c_commu_member || ($c_commu.is_comment == 'public')})
 ({if $is_writable_comment})
 ({* {{{ formTable *})
 <div class="dparts formTable" id="commentForm"><div class="parts">
