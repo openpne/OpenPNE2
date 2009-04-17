@@ -11,5 +11,10 @@
 ({if $auth_type == 'all'})
 <a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('blacklist')})">ブラックリスト管理</a>&nbsp;|&nbsp;
 ({/if})
+({if $smarty.const.IS_SNS_ENTRY_CONFIRM})
+({if $auth_type == 'all'})
+<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_sns_entry')})">承認待ちリスト</a>&nbsp;|&nbsp;
+({/if})
+({/if})
 ({/strip})
 </div>

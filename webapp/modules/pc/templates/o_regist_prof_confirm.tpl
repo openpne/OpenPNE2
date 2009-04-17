@@ -5,7 +5,11 @@
 <div class="dparts formTable"><div class="parts">
 <div class="partsHeading"><h3>プロフィール確認</h3></div>
 <div class="partsInfo">
+({if $smarty.const.IS_SNS_ENTRY_CONFIRM})
+<p>以下の内容で管理者に申請します。確認のうえ、参加申請ボタンをクリックしてください。</p>
+({else})
 <p>以下の内容で登録します。確認のうえ、登録ボタンをクリックしてください。</p>
+({/if})
 </div>
 <table>
 ({if $smarty.const.OPENPNE_AUTH_MODE == 'pneid'})
@@ -133,7 +137,11 @@
 ({t_form_block m=pc a=do_o_regist_prof})
 <input type="hidden" name="mode" value="register" />
 <input type="hidden" name="sid" value="({$sid})" />
+({if $smarty.const.IS_SNS_ENTRY_CONFIRM })
+<input type="submit" class="input_submit" value="　参加申請　" />
+({else})
 <input type="submit" class="input_submit" value="　登　録　" />
+({/if})
 ({/t_form_block})
 </li>
 <li>
