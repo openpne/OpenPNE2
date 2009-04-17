@@ -56,6 +56,16 @@ class ktai_do_o_regist_ktai extends OpenPNE_Action
             openpne_redirect('ktai', 'page_o_regist_ktai', $p);
         }
 
+        // 参加承認制の場合
+        if (IS_SNS_ENTRY_CONFIRM) {
+            // PCから入力された情報は既にpreに登録されているので、
+            // 携帯個体識別番号のみを登録する
+            $data = array('easy_access_id' => $easy_access_id
+                         ,'is_sns_entry_confirm' => 1);
+            db_member_update_c_member_pre4c_member_pre_id($pre['c_member_pre_id'], $data);
+            openpne_redirect('ktai', 'page_o_regist_wait');
+        }
+
         // PC版で行わなかったメンバー登録処理をここで行う
         $c_member = $pre;
         $c_member_secure = array(

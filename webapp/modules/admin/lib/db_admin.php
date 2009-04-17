@@ -3901,4 +3901,115 @@ function cond_name_list($cond_list, $select_last_login)
     return $cond_name_list;
 }
 
+/**
+ * 申請者リスト取得
+ *
+ * @param  int    $page
+ * @param  int    $page_size
+ * @param  array  $pager
+ * @param  array  $cond_list
+ * @param  string $mail_address
+ * @param  array  $order
+ * @return array  $c_member_pre_list
+ */
+function _db_admin_c_member_pre_list($page, $page_size, &$pager, $cond_list, $mail_address, $order)
+{
+    $c_member_pre_list = _db_admin_c_member_pre_cond_list($cond_list, $mail_address, $order);
+
+    $total_num = count($c_member_pre_list);
+    $c_member_pre_list = array_slice($c_member_pre_list, ($page - 1) * $page_size, $page_size);
+    if ($total_num > 0) {
+        $pager = util_make_pager($page, $page_size, $total_num);
+    } else {
+        $pager = array('page_size' => $page_size);
+    }
+    return $c_member_pre_list;
+}
+
+
+/**
+ * 承認待ちリストを取得する
+ *
+ * @param  array  $cond_list
+ * @param  string $mail_address
+ * @param  string $order
+ * @return array
+ */
+function _db_admin_c_member_pre_cond_list($cond_list, $mail_address, $order)
+{
+    // ソート条件
+    // ソート順
+    $type = explode('-', $order);
+    $orderby = '';
+    if ($type[0] == "birth") {
+        if ($type[1] == "2") {
+            $orderby = ' birth_year DESC, birth_month DESC, birth_day DESC';
+        } else {
+            $orderby = ' birth_year, birth_month, birth_day';
+        }
+    } else {
+        $orderby = $type[0];
+        if ($type[1] == "2") {
+            $orderby .= ' DESC';
+        }
+    }
+
+    // 絞込み
+    $wheres = array();
+    $params = array();
+    // メールアドレス
+    if (!empty($mail_address)) {
+        $wheres[] = 'c_member_pre.regist_address = ?';
+        $params[] = $mail_address;
+    }
+    // PCアドレス
+    if (!empty($cond_list['is_pc_address'])) {
+        if($cond_list['is_pc_address'] == 1) {
+            $wheres[] = "pc_address <> ''";
+        } else {
+            $wheres[] = "pc_address = ''";
+        }
+    }
+    // 携帯アドレス
+    if (!empty($cond_list['is_ktai_address'])) {
+        if($cond_list['is_ktai_address'] == 1) {
+            $wheres[] = "ktai_address <> ''";
+        } else {
+            $wheres[] = "ktai_address = ''";
+        }
+    }
+    // 開始年
+    if (!empty($cond_list['s_year'])) {
+        $wheres[] = 'c_member_pre.birth_year >= ?';
+        $params[] = $cond_list['s_year'];
+    }
+    // 終了年
+    if (!empty($cond_list['e_year'])) {
+        $wheres[] = 'c_member_pre.birth_year <= ?';
+        $params[] = $cond_list['e_year'];
+    }
+    $sql  = 'SELECT ';
+    $sql .= ' c_member_pre.*';
+    $sql .= ',c_member.c_member_id';
+    $sql .= ',c_member.nickname as invite_nickname ';
+    $sql .= 'FROM ';
+    $sql .= ' c_member_pre ';
+    $sql .= 'LEFT JOIN ';
+    $sql .= ' c_member ';
+    $sql .= 'ON ';
+    $sql .= ' c_member_pre.c_member_id_invite = c_member.c_member_id ';
+    $sql .= 'WHERE ';
+    $sql .= ' c_member_pre.is_sns_entry_confirm = 1 ';
+    if ($wheres) {
+        $sql .= ' AND ' . implode(' AND ', $wheres);
+    }
+    $sql .= ' ORDER BY ';
+    if ($orderby) {
+        $sql .= $orderby;
+    } else {
+        $sql .= ' c_member_pre_id';
+    }
+    return db_get_all($sql, $params);
+}
+
 ?>

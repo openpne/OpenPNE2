@@ -1240,14 +1240,18 @@ function db_member_h_config_3(
     }
 }
 
-function db_member_update_easy_access_id($c_member_id, $easy_access_id)
+function db_member_update_easy_access_id($c_member_id, $easy_access_id, $is_encrypted_easy_access_id = false)
 {
     // function cacheを削除
     cache_drop_c_member_profile($c_member_id);
 
     $hashed_easy_access_id = '';
     if ($easy_access_id) {
-        $hashed_easy_access_id = md5($easy_access_id);
+        if ($is_encrypted_easy_access_id) {
+            $hashed_easy_access_id = $easy_access_id;
+        } else {
+            $hashed_easy_access_id = md5($easy_access_id);
+        }
     }
     $data = array('easy_access_id' => $hashed_easy_access_id);
     $where = array('c_member_id' => intval($c_member_id));
@@ -2149,6 +2153,84 @@ function db_member_is_registered_password_query_answer($c_member_id)
     }
     return true;
 
+}
+
+/**
+ * 承認待ちユーザ情報を取得する
+ *
+ * @param  int $c_member_pre_id
+ * @return array
+ */
+function db_member_c_member_pre4c_member_pre_id($c_member_pre_id)
+{
+    $sql = 'SELECT * FROM c_member_pre WHERE c_member_pre_id = ?';
+    $params = array($c_member_pre_id);
+
+    return db_get_row($sql, $params);
+}
+
+/**
+ * 承認待ちユーザを削除する
+ *
+ * @param  int $c_member_pre_id
+ * @return bool
+ */
+function db_member_delete_c_member_pre4c_member_pre_id($c_member_pre_id)
+{
+    $sql = 'DELETE FROM c_member_pre WHERE c_member_pre_id = ?';
+    $params = array($c_member_pre_id);
+    return db_query($sql, $params);
+}
+
+/**
+ * 参加承認制の場合の、携帯情報登録用
+ */
+function db_member_insert_c_member_pre_from_ktai($c_member_id_invite, $ktai_address, $regist_address, $session) 
+{
+    $data = array(
+        'ktai_address' => $ktai_address,
+        'regist_address' => $regist_address,
+        'c_member_id_invite' => intval($c_member_id_invite),
+        'session' => $session,
+        'r_date' => db_now(),
+        'nickname' => '',
+        'password' => '',
+        'ktai_address' => '',
+        'easy_access_id' => '',
+        'c_password_query_answer' => '',
+    );
+    return db_insert('c_member_pre', $data);
+}
+
+/**
+ * c_member_preの各種データを更新する
+ * @param int   $c_member_pre_id
+ * @param array $data_list
+ * @param bool  $is_md5hash
+ * @return bool
+ */
+function db_member_update_c_member_pre4c_member_pre_id($c_member_pre_id, $data_list, $is_md5hash = true)
+{
+    $data = array();
+    foreach ($data_list as $key => $val) {
+        if ($is_md5hash) {
+            switch ($key) {
+                case "easy_access_id" :
+                case "password" :
+                case "c_password_query_answer" :
+                    $set_val = md5($val); 
+                    break;
+                default :
+                    $set_val = $val;
+                    break;
+            }
+        } else {
+            $set_val = $val;
+        }
+        $data[$key] = $set_val;
+    }
+    $where = array('c_member_pre_id' => $c_member_pre_id);
+    return db_update('c_member_pre', $data, $where);
 }
 
 ?>

@@ -125,6 +125,34 @@ class pc_do_o_regist_prof extends OpenPNE_Action
             setcookie(session_name(), '', time() - 3600, ini_get('session.cookie_path'));
 
             if ((IS_GET_EASY_ACCESS_ID != 3) || $pre['is_disabled_regist_easy_access_id']) {
+                // 管理者へ承認申請
+                if (IS_SNS_ENTRY_CONFIRM) {
+                    // c_member_pre にデータ挿入
+                    $c_member_pre_secure = array(
+                        'session' => $pre['session'],
+                        'nickname' => $prof['nickname'],
+                        'birth_year' => $prof['birth_year'],
+                        'birth_month' => $prof['birth_month'],
+                        'birth_day' => $prof['birth_day'],
+                        'public_flag_birth_year' => $prof['public_flag_birth_year'],
+                        'public_flag_birth_month_day' => $prof['public_flag_birth_month_day'],
+                        'password' => $prof['password'],
+                        'c_password_query_id' => $prof['c_password_query_id'],
+                        'c_password_query_answer' => $prof['c_password_query_answer'],
+                        'pc_address' => $pre['pc_address'],
+                        'regist_address' => $pre['pc_address'],
+                        'is_sns_entry_confirm' => 1,
+                    );
+
+                    if (OPENPNE_AUTH_MODE == 'pneid') {
+                        $c_member_pre_secure['login_id'] = $prof['login_id'];
+                    }
+
+                    db_member_update_c_member_pre4c_member_pre_id($pre['c_member_pre_id'], $c_member_pre_secure);
+
+                    openpne_redirect('pc', 'page_o_regist_wait', array('c_member_id' => $u));
+                }
+
                 // メンバー登録時の携帯個体識別番号取得設定が「PC・携帯登録時に個体識別番号を必須にする」でない場合、メンバー登録処理をおこなう
                 $c_member = $prof;
                 $c_member['c_member_id_invite'] = $pre['c_member_id_invite'];
