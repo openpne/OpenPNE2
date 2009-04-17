@@ -110,6 +110,45 @@ class ktai_do_o_insert_c_member extends OpenPNE_Action
         // insert c_member
         $prof['c_member_id_invite'] = $pre['c_member_id_invite'];
 
+        // 参加承認制
+        if (IS_SNS_ENTRY_CONFIRM) {
+            $c_member_secure = array(
+                    'password' => $prof['password'],
+                    'c_password_query_answer' => $prof['password_query_answer'],
+                    'ktai_address' => $pre['ktai_address'],
+                    'regist_address' => $pre['ktai_address'],
+                    'nickname' => $prof['nickname'],
+                    'birth_year' => $prof['birth_year'],
+                    'birth_month' => $prof['birth_month'],
+                    'birth_day' => $prof['birth_day'],
+                    'public_flag_birth_year' => $prof['public_flag_birth_year'],
+                    'public_flag_birth_month_day' => $prof['public_flag_birth_month_day'],
+                    'c_password_query_id' => $prof['c_password_query_id'],
+                    'is_sns_entry_confirm' => 1);
+
+            if ($easy_access_id) {
+                $c_member_secure['easy_access_id'] = $easy_access_id;
+            }
+
+            if (OPENPNE_AUTH_MODE == 'pneid') {
+                $c_member_secure['login_id'] = $prof['login_id'];
+            }
+
+            // いったん追加
+            $c_member_pre_id = db_member_insert_c_member_pre_from_ktai(
+                                                    $prof['c_member_id_invite']
+                                                   ,$pre['ktai_address']
+                                                   ,$pre['ktai_address']
+                                                   ,$pre['session']);
+
+            // 登録
+            db_member_update_c_member_pre4c_member_pre_id($c_member_pre_id, $c_member_secure);
+            // delete c_member_ktai_pre
+            db_member_delete_c_member_ktai_pre4id($pre['c_member_ktai_pre_id']);
+
+            openpne_redirect('ktai', 'page_o_regist_wait');
+        }
+
         $c_member_secure = array(
             'password' => $prof['password'],
             'password_query_answer' => $prof['password_query_answer'],
