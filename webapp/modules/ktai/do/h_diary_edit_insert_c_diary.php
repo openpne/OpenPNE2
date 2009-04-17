@@ -22,13 +22,15 @@ class ktai_do_h_diary_edit_insert_c_diary extends OpenPNE_Action
         // ----------
 
         if (is_null($subject) || $subject === '') {
-            $p = array('target_c_diary_id' => $target_c_diary_id, 'msg' => 2);
-            openpne_redirect('ktai', 'page_h_diary_edit', $p);
+            $_REQUEST['msg'] = 2;
+            openpne_forward('ktai', 'page', 'h_diary_edit');
+            exit;
         }
 
         if (is_null($body) || $body === '') {
-            $p = array('target_c_diary_id' => $target_c_diary_id, 'msg' => 1);
-            openpne_redirect('ktai', 'page_h_diary_edit', $p);
+            $_REQUEST['msg'] = 1;
+            openpne_forward('ktai', 'page', 'h_diary_edit');
+            exit;
         }
 
         if (!$target_c_diary_id) {

@@ -13,6 +13,16 @@ class ktai_page_h_message_send extends OpenPNE_Action
         //ランダム５０人のフレンド
         $this->set("c_friend_list", db_friend_ktai_c_friend_list_random4c_member_id($u));
 
+        // --- リクエスト変数
+        $subject = $requests['subject'];
+        $body = $requests['body'];
+        // ----------
+
+        $form_val = array();
+        $form_val['subject'] = $subject;
+        $form_val['body'] = $body;
+        $this->set("form_val", $form_val);
+
         return 'success';
     }
 }
