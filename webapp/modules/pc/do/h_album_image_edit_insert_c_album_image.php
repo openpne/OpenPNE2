@@ -41,9 +41,32 @@ class pc_do_h_album_image_edit_insert_c_album_image extends OpenPNE_Action
             handle_kengen_error();
         }
 
+        // 画像アップロード可能サイズチェック
+        if ($tmpfile) {
+            $del_file = array();
+            $filesize = util_image_get_c_tmp_filesize4filename("a_{$target_c_album_id}_1", $tmpfile);
+            if ($c_album_image['image_filename']) {
+                $del_file[] = $c_album_image['image_filename'];
+            }
+
+            $result = util_image_check_change_image_upload($filesize, $del_file, $u, 'album');
+            if ($result) {
+                $sessid = session_id();
+                t_image_clear_tmp($sessid);
+
+                $msg = util_image_get_upload_err_msg($result);
+                $p = array(
+                    'msg' => $msg,
+                    'target_c_album_id' => $target_c_album_id,
+                    'target_c_album_image_id' => $target_c_album_image_id
+                );
+                openpne_redirect('pc', 'page_h_album_image_edit', $p);
+            }
+        }
+
         // アルバム写真登録処理
         if ($tmpfile) {
-            if (!list($filename, $filesize) = image_insert_c_image_album4tmp("a_{$target_c_album_id}_1", $tmpfile)) {
+            if (!list($filename, $filesize) = image_insert_c_image_album4tmp("a_{$target_c_album_id}_1", $tmpfile, $u)) {
                 $this->handleError(array('写真が登録できませんでした'));
             }
 

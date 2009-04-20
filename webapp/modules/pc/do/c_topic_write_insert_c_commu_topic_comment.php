@@ -60,6 +60,29 @@ class pc_do_c_topic_write_insert_c_commu_topic_comment extends OpenPNE_Action
         }
         //---
 
+        //---画像アップロードサイズチェック
+        $filesize = 0;
+        if ($tmpfile1) {
+            $filesize += util_image_get_c_tmp_filesize4filename("tc_{$insert_id}_1", $tmpfile1);
+        }
+        if ($tmpfile2) {
+            $filesize += util_image_get_c_tmp_filesize4filename("tc_{$insert_id}_2", $tmpfile2);
+        }
+        if ($tmpfile3) {
+            $filesize += util_image_get_c_tmp_filesize4filename("tc_{$insert_id}_3", $tmpfile3);
+        }
+        if ($filesize) {
+            $result = util_image_check_add_image_upload($filesize, $u, 'commu');
+            if ($result) {
+                if ($result == 2) {
+                    $result = 3;
+                }
+                $_REQUEST['err_msg'] = util_image_get_upload_err_msg($result);
+                openpne_forward('pc', 'page', "c_topic_detail");
+                exit;
+            }
+        }
+
         $number = db_commu_c_commu_topic_comment_number4c_commu_topic_id($c_commu_topic_id);
         $insert_c_commu_topic_comment = array(
             "c_commu_id"        => $c_commu_id,
@@ -71,13 +94,13 @@ class pc_do_c_topic_write_insert_c_commu_topic_comment extends OpenPNE_Action
         $insert_id = db_commu_insert_c_commu_topic_comment_3($insert_c_commu_topic_comment);
 
         if ($tmpfile1) {
-            $filename1 = image_insert_c_image4tmp("tc_{$insert_id}_1", $tmpfile1);
+            $filename1 = image_insert_c_image4tmp("tc_{$insert_id}_1", $tmpfile1, $u);
         }
         if ($tmpfile2) {
-            $filename2 = image_insert_c_image4tmp("tc_{$insert_id}_2", $tmpfile2);
+            $filename2 = image_insert_c_image4tmp("tc_{$insert_id}_2", $tmpfile2, $u);
         }
         if ($tmpfile3) {
-            $filename3 = image_insert_c_image4tmp("tc_{$insert_id}_3", $tmpfile3);
+            $filename3 = image_insert_c_image4tmp("tc_{$insert_id}_3", $tmpfile3, $u);
         }
         if (OPENPNE_USE_FILEUPLOAD) {
             // 添付ファイルをDBに入れる
