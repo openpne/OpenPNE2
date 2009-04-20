@@ -1439,7 +1439,12 @@ function p_access_analysis_target_commu_target_commu4ym_page_name
     $sql .= " and target_c_commu_id <> 0 ";
 
     $sql .= " group by target_c_commu_id " .$orderby_str;
-    $list = db_get_all_limit($sql, $start, $page_size, $params);
+    if ($page_size != -1) {
+        $list = db_get_all_limit($sql, $start, $page_size, $params);
+    }
+    else {
+        $list = db_get_all($sql, $params);
+    }
 
     $return = array();
     $sum = 0;
@@ -1537,7 +1542,12 @@ function p_access_analysis_target_topic_target_topic4ym_page_name
     $where .= ' and target_c_commu_topic_id <> 0 ';
     $sql = "select target_c_commu_topic_id , count(*) as count from c_access_log ";
     $sql .= $where." group by target_c_commu_topic_id " .$orderby_str;
-    $list = db_get_all_limit($sql, $start, $page_size, $params);
+    if ($page_size != -1) {
+        $list = db_get_all_limit($sql, $start, $page_size, $params);
+    }
+    else {
+        $list = db_get_all($sql, $params);
+    }
     $sql = "select count(*) from c_access_log ";
     $sql .= $where ." group by target_c_commu_topic_id ";
     $result = db_get_all($sql,$params);
@@ -1619,7 +1629,12 @@ function p_access_analysis_target_diary_target_diary4ym_page_name
     }
     $sql .= " and target_c_diary_id <> 0 ";
     $sql .= " group by target_c_diary_id " . $orderby_str;
-    $list = db_get_all_limit($sql, $start, $page_size, $params);
+    if ($page_size != -1) {
+        $list = db_get_all_limit($sql, $start, $page_size, $params);
+    }
+    else {
+        $list = db_get_all($sql, $params);
+    }
 
     $return = array();
     $sum = 0;
@@ -1716,7 +1731,12 @@ function p_access_analysis_member_access_member4ym_page_name
 
     $sql = "select c_member_id , count(*) as count from c_access_log";
     $sql .= $where." group by c_member_id $orderby_str";
-    $list = db_get_all_limit($sql, $start, $page_size, $params);
+    if ($page_size != -1) {
+        $list = db_get_all_limit($sql, $start, $page_size, $params);
+    }
+    else {
+        $list = db_get_all($sql, $params);
+    }
     $sql = "select count(*) from c_access_log ";
     $sql .=    $where ." group by c_member_id ";
     $result = db_get_all($sql,$params);
@@ -1796,7 +1816,12 @@ function p_access_analysis_target_member_access_member4ym_page_name
     $sql .= " AND target_c_member_id <> 0 ";
     $sql .= " group by target_c_member_id " . $orderby_str;
 
-    $list = db_get_all_limit($sql, $start, $page_size, $params);
+    if ($page_size != -1) {
+        $list = db_get_all_limit($sql, $start, $page_size, $params);
+    }
+    else {
+        $list = db_get_all($sql, $params);
+    }
 
     $return = array();
     $sum = 0;
