@@ -47,4 +47,14 @@
 </tfoot>
 </table>
 
+<h3 class="item">ダウンロード</h3>
+<p>CSV形式でダウンロードします。</p>
+<form  action="./" method="get">
+<input type="hidden" name="m" value="({$module_name})" />
+<input type="hidden" name="a" value="do_({$hash_tbl->hash('csv_user_analysis_date_day','do')})" />
+<input type="hidden" name="sessid" value="({$PHPSESSID})" />
+<input type="hidden" name="date" value="({$date})" />
+<p class="textBtn"><input type="submit" value="ダウンロード" /></p>
+</form>
+
 ({$inc_footer|smarty:nodefaults})

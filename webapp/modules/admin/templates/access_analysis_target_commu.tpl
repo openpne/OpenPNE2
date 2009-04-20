@@ -55,6 +55,20 @@
 </tr>
 </tbody>
 </table>
+
+<h3 class="item">ダウンロード</h3>
+<p>CSV形式で全件をダウンロードします。</p>
+<form  action="./" method="get">
+<input type="hidden" name="m" value="({$module_name})" />
+<input type="hidden" name="a" value="do_({$hash_tbl->hash('csv_access_analysis_target_commu','do')})" />
+<input type="hidden" name="sessid" value="({$PHPSESSID})" />
+<input type="hidden" name="ktai_flag" value="({$ktai_flag})" />
+<input type="hidden" name="ymd" value="({$ymd})" />
+<input type="hidden" name="month_flag" value="({$month_flag})" />
+<input type="hidden" name="page_name" value="({$requests.page_name})" />
+<input type="hidden" name="orderby" value="({$orderby})" />
+<p class="textBtn"><input type="submit" value="ダウンロード" /></p>
+</form>
 ({else})
 <p>アクセスされた({$WORD_COMMUNITY})はありません</p>
 ({/if})

@@ -50,4 +50,14 @@
 </tbody>
 </table>
 
+<h3 class="item">ダウンロード</h3>
+<p>CSV形式でダウンロードします。</p>
+<form  action="./" method="get">
+<input type="hidden" name="m" value="({$module_name})" />
+<input type="hidden" name="a" value="do_({$hash_tbl->hash('csv_access_analysis_month','do')})" />
+<input type="hidden" name="sessid" value="({$PHPSESSID})" />
+<input type="hidden" name="ktai_flag" value="({$ktai_flag})" />
+<p class="textBtn"><input type="submit" value="ダウンロード" /></p>
+</form>
+
 ({$inc_footer|smarty:nodefaults})
