@@ -32,9 +32,12 @@ class pc_page_h_album_cover_edit extends OpenPNE_Action
             handle_kengen_error();
         }
 
-        $album['subject'] = $subject;
-        $album['description'] = $description;
-        $album['public_flag'] = $public_flag;
+        // 内容の不備によるリダイレクト時は値を上書き
+        if ($requests['msg']) {
+            $album['subject'] = $subject;
+            $album['description'] = $description;
+            $album['public_flag'] = $public_flag;
+        }
 
         $this->set('inc_navi', fetch_inc_navi('h'));
         $this->set('target_c_album_id',$target_c_album_id);
