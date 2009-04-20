@@ -52,6 +52,7 @@ class pc_page_f_message_send_confirm extends OpenPNE_Action
             handle_kengen_error();
         }
 
+        $filesize = 0;
         foreach ($upfiles as $key => $upfile) {
             if (!empty($upfile) && $upfile['error'] !== UPLOAD_ERR_NO_FILE) {
                 if (!($image = t_check_image($upfile))) {
@@ -59,10 +60,25 @@ class pc_page_f_message_send_confirm extends OpenPNE_Action
                     openpne_forward('pc', 'page', 'f_message_send');
                     exit;
                 } else {
+                    $filesize += $image['size'];
                     $tmpfiles[$key] = t_image_save2tmp($upfile, $sessid, "d_{$key}", $image['format']);
                 }
             }
         }
+
+        //---画像アップロードサイズチェック
+        if ($filesize) {
+            $result = util_image_check_add_image_upload($filesize, $u, 'other');
+            if ($result) {
+                if ($result == 2) {
+                    $result = 3;
+                }
+                $_REQUEST['msg'] = util_image_get_upload_err_msg($result);
+                openpne_forward('pc', 'page', 'f_message_send');
+                exit;
+            }
+        }
+
         if (OPENPNE_USE_FILEUPLOAD) {
             if (!empty($upfile_4) && $upfile_4['error'] !== UPLOAD_ERR_NO_FILE) {
                 // ファイルサイズ制限

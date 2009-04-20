@@ -47,6 +47,27 @@ class pc_do_f_message_send_insert_c_message extends OpenPNE_Action
         }
         if (!$msg1 && !$msg2 && $fileupload_error) {
             $msg1 = $fileupload_error;
+        } else if (!$msg1 && !$msg2 && !$fileupload_error) {
+            //---画像アップロードサイズチェック
+            $filesize = 0;
+            if ($tmpfile_1) {
+                $filesize += util_image_get_c_tmp_filesize4filename("ms_{$c_message_id}_1", $tmpfile_1);
+            }
+            if ($tmpfile_2) {
+                $filesize += util_image_get_c_tmp_filesize4filename("ms_{$c_message_id}_2", $tmpfile_2);
+            }
+            if ($tmpfile_3) {
+                $filesize += util_image_get_c_tmp_filesize4filename("ms_{$c_message_id}_3", $tmpfile_3);
+            }
+            if ($filesize) {
+                $result = util_image_check_add_image_upload($filesize, $u, 'other');
+                if ($result) {
+                    if ($result == 2) {
+                        $result = 3;
+                    }
+                    $msg1 = util_image_get_upload_err_msg($result);
+                }
+            }
         }
 
         if ($requests['target_c_message_id'] == $requests['jyusin_c_message_id']) {
@@ -132,9 +153,9 @@ class pc_do_f_message_send_insert_c_message extends OpenPNE_Action
 
         //画像・ファイル挿入
         $sessid = session_id();
-        $filename_1 = image_insert_c_image4tmp("ms_{$c_message_id}_1", $tmpfile_1);
-        $filename_2 = image_insert_c_image4tmp("ms_{$c_message_id}_2", $tmpfile_2);
-        $filename_3 = image_insert_c_image4tmp("ms_{$c_message_id}_3", $tmpfile_3);
+        $filename_1 = image_insert_c_image4tmp("ms_{$c_message_id}_1", $tmpfile_1, $u);
+        $filename_2 = image_insert_c_image4tmp("ms_{$c_message_id}_2", $tmpfile_2, $u);
+        $filename_3 = image_insert_c_image4tmp("ms_{$c_message_id}_3", $tmpfile_3, $u);
         $filename_4 = '';
         if (OPENPNE_USE_FILEUPLOAD) {
             if ($tmpfile_4) {

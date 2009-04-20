@@ -1043,12 +1043,12 @@ function db_diary_delete_c_diary($c_diary_id)
     pne_cache_drop('db_diary_get_c_diary_list4c_member_id', $c_diary['c_member_id'], 5);
 
    // 画像
-    db_image_data_delete($c_diary['image_filename_1']);
-    db_image_data_delete($c_diary['image_filename_2']);
-    db_image_data_delete($c_diary['image_filename_3']);
+    db_image_data_delete($c_diary['image_filename_1'], $c_diary['c_member_id']);
+    db_image_data_delete($c_diary['image_filename_2'], $c_diary['c_member_id']);
+    db_image_data_delete($c_diary['image_filename_3'], $c_diary['c_member_id']);
 
     // コメント
-    $sql = 'SELECT image_filename_1, image_filename_2, image_filename_3 FROM c_diary_comment WHERE c_diary_id =?';
+    $sql = 'SELECT image_filename_1, image_filename_2, image_filename_3, c_member_id FROM c_diary_comment WHERE c_diary_id =?';
     $params = array(intval($c_diary_id));
     $comment_images = db_get_all($sql, $params);
 
@@ -1056,9 +1056,9 @@ function db_diary_delete_c_diary($c_diary_id)
     db_diary_category_delete_c_diary_category_diary($c_diary_id);
 
     foreach ($comment_images as $value) {
-        db_image_data_delete($value['image_filename_1']);
-        db_image_data_delete($value['image_filename_2']);
-        db_image_data_delete($value['image_filename_3']);
+        db_image_data_delete($value['image_filename_1'], $value['c_member_id']);
+        db_image_data_delete($value['image_filename_2'], $value['c_member_id']);
+        db_image_data_delete($value['image_filename_3'], $value['c_member_id']);
     }
 
     $sql = 'DELETE FROM c_diary_comment_log WHERE c_diary_id = ?';
@@ -1168,9 +1168,9 @@ function db_diary_delete_c_diary_comment($c_diary_comment_id, $u)
         return false;
     }
 
-    db_image_data_delete($dc['image_filename_1']);
-    db_image_data_delete($dc['image_filename_2']);
-    db_image_data_delete($dc['image_filename_3']);
+    db_image_data_delete($dc['image_filename_1'], $dc['c_member_id']);
+    db_image_data_delete($dc['image_filename_2'], $dc['c_member_id']);
+    db_image_data_delete($dc['image_filename_3'], $dc['c_member_id']);
 
     $sql = 'DELETE FROM c_diary_comment WHERE c_diary_comment_id = ?';
     $params = array(intval($c_diary_comment_id));

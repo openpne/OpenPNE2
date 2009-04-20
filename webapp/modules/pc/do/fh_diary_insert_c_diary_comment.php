@@ -50,13 +50,36 @@ class pc_do_fh_diary_insert_c_diary_comment extends OpenPNE_Action
         }
         //---
 
+        //---画像アップロードサイズチェック
+        $filesize = 0;
+        if ($tmpfile_1) {
+            $filesize += util_image_get_c_tmp_filesize4filename("dc_{$c_diary_comment_id}_1", $tmpfile_1);
+        }
+        if ($tmpfile_2) {
+            $filesize += util_image_get_c_tmp_filesize4filename("dc_{$c_diary_comment_id}_2", $tmpfile_2);
+        }
+        if ($tmpfile_3) {
+            $filesize += util_image_get_c_tmp_filesize4filename("dc_{$c_diary_comment_id}_3", $tmpfile_3);
+        }
+        if ($filesize) {
+            $result = util_image_check_add_image_upload($filesize, $u, 'diary');
+            if ($result) {
+                if ($result == 2) {
+                    $result = 3;
+                }
+                $_REQUEST['msg'] = util_image_get_upload_err_msg($result);
+                openpne_forward('pc', 'page', 'fh_diary');
+                exit;
+            }
+        }
+
         //日記コメント書き込み
         $c_diary_comment_id = db_diary_insert_c_diary_comment($u, $target_c_diary_id, $body);
 
         $sessid = session_id();
-        $filename_1 = image_insert_c_image4tmp("dc_{$c_diary_comment_id}_1", $tmpfile_1);
-        $filename_2 = image_insert_c_image4tmp("dc_{$c_diary_comment_id}_2", $tmpfile_2);
-        $filename_3 = image_insert_c_image4tmp("dc_{$c_diary_comment_id}_3", $tmpfile_3);
+        $filename_1 = image_insert_c_image4tmp("dc_{$c_diary_comment_id}_1", $tmpfile_1, $u);
+        $filename_2 = image_insert_c_image4tmp("dc_{$c_diary_comment_id}_2", $tmpfile_2, $u);
+        $filename_3 = image_insert_c_image4tmp("dc_{$c_diary_comment_id}_3", $tmpfile_3, $u);
         t_image_clear_tmp($sessid);
 
         db_diary_insert_c_diary_comment_images($c_diary_comment_id, $filename_1, $filename_2, $filename_3);

@@ -32,6 +32,12 @@ class pc_page_h_album_add_confirm extends OpenPNE_Action
         if (!empty($upfile_obj) && $upfile_obj['error'] !== UPLOAD_ERR_NO_FILE) {
             if (!($image = t_check_image($upfile_obj))) {
                 $err_msg[] = '写真は'.IMAGE_MAX_FILESIZE.'KB以内のGIF・JPEG・PNGにしてください';
+            } else {
+                // 画像アップロード可能サイズチェック
+                $result = util_image_check_add_image_upload($image['size'], $u, 'other');
+                if ($result) {
+                    $err_msg[] = util_image_get_upload_err_msg($result);
+                }
             }
         }
 

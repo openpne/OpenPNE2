@@ -57,6 +57,40 @@ class pc_do_h_diary_edit_insert_c_diary extends OpenPNE_Action
                 exit;
             }
         }
+
+        // 画像アップロード可能サイズチェック
+        $filesize = 0;
+        $del_file = array();
+        if ($tmpfile_1) {
+            $filesize += util_image_get_c_tmp_filesize4filename("d_{$target_c_diary_id}_1", $tmpfile_1);
+            if ($c_diary['image_filename_1']) {
+                $del_file[] = $c_diary['image_filename_1'];
+            }
+        }
+        if ($tmpfile_2) {
+            $filesize += util_image_get_c_tmp_filesize4filename("d_{$target_c_diary_id}_2", $tmpfile_2);
+            if ($c_diary['image_filename_2']) {
+                $del_file[] = $c_diary['image_filename_2'];
+            }
+        }
+        if ($tmpfile_3) {
+            $filesize += util_image_get_c_tmp_filesize4filename("d_{$target_c_diary_id}_3", $tmpfile_3);
+            if ($c_diary['image_filename_3']) {
+                $del_file[] = $c_diary['image_filename_3'];
+            }
+        }
+        if ($filesize) {
+            $result = util_image_check_change_image_upload($filesize, $del_file, $u, 'diary');
+            if ($result) {
+                if ($result == 2) {
+                    $result = 3;
+                }
+                $_REQUEST['msg'] = util_image_get_upload_err_msg($result);
+                openpne_forward('pc', 'page', 'h_diary_edit');
+                exit;
+            }
+        }
+
         //カテゴリ登録しなおし
         db_diary_category_delete_c_diary_category_diary($target_c_diary_id);
         foreach($category as $value) {
@@ -73,18 +107,18 @@ class pc_do_h_diary_edit_insert_c_diary extends OpenPNE_Action
         $filename_1 = $filename_2 = $filename_3 = '';
 
         if ($tmpfile_1) {
-            db_image_data_delete($c_diary['image_filename_1']);
-            $filename_1 = image_insert_c_image4tmp("d_{$target_c_diary_id}_1", $tmpfile_1);
+            db_image_data_delete($c_diary['image_filename_1'], $u);
+            $filename_1 = image_insert_c_image4tmp("d_{$target_c_diary_id}_1", $tmpfile_1, $u);
         }
         if ($tmpfile_2) {
-            db_image_data_delete($c_diary['image_filename_2']);
-            $filename_2 = image_insert_c_image4tmp("d_{$target_c_diary_id}_2", $tmpfile_2);
+            db_image_data_delete($c_diary['image_filename_2'], $u);
+            $filename_2 = image_insert_c_image4tmp("d_{$target_c_diary_id}_2", $tmpfile_2, $u);
         }
         if ($tmpfile_3) {
-            db_image_data_delete($c_diary['image_filename_3']);
-            $filename_3 = image_insert_c_image4tmp("d_{$target_c_diary_id}_3", $tmpfile_3);
+            db_image_data_delete($c_diary['image_filename_3'], $u);
+            $filename_3 = image_insert_c_image4tmp("d_{$target_c_diary_id}_3", $tmpfile_3, $u);
         }
-
+        
         t_image_clear_tmp($sessid);
         db_diary_update_c_diary($target_c_diary_id, $subject, $body, $public_flag, $is_comment_input, $filename_1, $filename_2, $filename_3);
 

@@ -1015,14 +1015,14 @@ function biz_editGroup($biz_group_id, $name, $member_id, $info, $image_name, $me
 }
 
 //グループの削除
-function biz_deleteGroup($group_id)
+function biz_deleteGroup($group_id, $c_member_id)
 {
     // 画像削除
     $sql = 'SELECT image_filename FROM biz_group '
          . 'WHERE biz_group_id = ? ';
     $params = array(intval($group_id));
     $image_filename = db_get_one($sql, $params, 'main');
-    db_image_data_delete($image_filename);
+    db_image_data_delete($image_filename, $c_member_id);
 
     $sql = 'DELETE FROM biz_group_member WHERE biz_group_id = ?';
     $params = array(
@@ -1218,17 +1218,29 @@ function biz_checkTodo($chid, $is_check)
 }
 
 //画像をDBに格納する
-function biz_saveImage($upfile, $filename)
+function biz_saveImage($upfile, $filename, $c_member_id = 0, $deletefile = '')
 {
     if (!$upfile) {
-        return false;
+        $image = array(
+            'filename' => false,
+            'up_size_chk_result' => 0,
+        );
+        return $image;
     }
     if (!$filename) {
-        return false;
+        $image = array(
+            'filename' => false,
+            'up_size_chk_result' => 0,
+        );
+        return $image;
     }
 
     if (!t_check_image($upfile)) {
-        return false;
+        $image = array(
+            'filename' => false,
+            'up_size_chk_result' => 0,
+        );
+        return $image;
     }
 
     $image = t_check_image($upfile);
@@ -1244,7 +1256,37 @@ function biz_saveImage($upfile, $filename)
     fclose($fp);
 
     // 画像かどうかのチェック
-    if (!@imagecreatefromstring($image_data)) return false;
+    if (!@imagecreatefromstring($image_data)) {
+        $image = array(
+            'filename' => false,
+            'up_size_chk_result' => 0,
+        );
+        return $image;
+    }
+
+    // アップロード可能サイズかチェック
+    if (!$deletefile) {
+        // 画像追加
+        $result = util_image_check_add_image_upload(filesize($filepath), $c_member_id, 'other');
+        if ($result) {
+            $image = array(
+                'filename' => false,
+                'up_size_chk_result' => $result,
+            );
+            return $image;
+        }
+    } else {
+        // 画像置換
+        $del_files = array($deletefile);
+        $result = util_image_check_change_image_upload(filesize($filepath), $del_files, $c_member_id, 'other');
+        if ($result) {
+            $image = array(
+                'filename' => false,
+                'up_size_chk_result' => $result,
+            );
+            return $image;
+        }
+    }
 
     $image_data = base64_encode($image_data);
     $sql = "INSERT INTO c_image (filename, bin, r_datetime, type)" .
@@ -1257,10 +1299,19 @@ function biz_saveImage($upfile, $filename)
     );
     $result = db_query($sql, $params);;
 
-    return $filename;
+    if ($result) {
+        db_image_insert_c_image_size($filename, $c_member_id, filesize($filepath));
+    }
+
+    $image = array(
+        'filename' => $filename,
+        'up_size_chk_result' => 0,
+    );
+
+    return $image;
 }
 
-function biz_deleteImage($filename)
+function biz_deleteImage($filename, $c_member_id)
 {
     if (!$filename) {
         return false;
@@ -1272,26 +1323,33 @@ function biz_deleteImage($filename)
     );
     db_query($sql, $params);
 
+    $sql = 'DELETE FROM c_image_size WHERE filename = ?';
+    db_query($sql, $params);
+
     // cacheの削除
     image_cache_delete($filename);
+
+    //function cacheの削除
+    $category = util_image_filename2category($filename);
+    pne_cache_drop('db_image_get_image_filesize', $c_member_id, $category);
 }
 
-function biz_deleteGroupImage($id, $filename)
+function biz_deleteGroupImage($id, $filename, $c_member_id)
 {
     $data = array('image_filename' => '');
     $where = array('biz_group_id' => intval($id));
     db_update('biz_group', $data, $where);
 
-    biz_deleteImage($filename);
+    biz_deleteImage($filename, $c_member_id);
 }
 
-function biz_deleteShisetsuImage($id, $filename)
+function biz_deleteShisetsuImage($id, $filename, $c_member_id)
 {
     $data = array('image_filename' => '');
     $where = array('biz_shisetsu_id' => intval($id));
     db_update('biz_shisetsu', $data, $where);
 
-    biz_deleteImage($filename);
+    biz_deleteImage($filename, $c_member_id);
 }
 
 function biz_changeNickname($member_id, $new)
@@ -1308,13 +1366,13 @@ function biz_changeNickname($member_id, $new)
 
 //施設情報削除
 //一緒に施設画像も削除
-function biz_deleteShisetsu($id)
+function biz_deleteShisetsu($id, $c_member_id)
 {
 
     $shisetsu = biz_getShisetsuData($id);
 
     //画像削除
-    biz_deleteShisetsuImage($id, $shisetsu['image_filename']);
+    biz_deleteShisetsuImage($id, $shisetsu['image_filename'], $c_member_id);
 
     $sql = 'DELETE FROM biz_shisetsu WHERE biz_shisetsu_id = ?';
     $params = array(

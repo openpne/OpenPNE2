@@ -327,6 +327,18 @@
 <tr><td bgcolor="#({$ktai_color_config.bg_10})">
 <hr color="#({$ktai_color_config.border_03})">
 </td></tr></table>
+({if $smarty.const.$OPENPNE_IMAGE_USER_LIMIT || $smarty.const.OPENPNE_ALBUM_LIMIT || $smarty.const.OPENPNE_IMAGE_DIARY_LIMIT || $smarty.const.OPENPNE_IMAGE_COMMU_LIMIT})
+<table width="100%">
+<tr><td bgcolor="#({$ktai_color_config.bg_05})">
+[i:140]<font color="#({$ktai_color_config.color_25})">設定確認</font><br>
+</td></tr>
+<tr><td bgcolor="#({$ktai_color_config.bg_06})">
+<a href="({t_url m=ktai a=page_h_show_image_limit})&amp;({$tail})">写真容量</a><br>
+</td></tr>
+<tr><td bgcolor="#({$ktai_color_config.bg_07})">
+<hr color="#({$ktai_color_config.border_02})">
+</td></tr></table>
+({/if})
 <br>
 <hr color="#({$ktai_color_config.border_01})">
 

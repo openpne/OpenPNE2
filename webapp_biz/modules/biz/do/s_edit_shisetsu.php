@@ -24,15 +24,21 @@ class biz_do_s_edit_shisetsu extends OpenPNE_Action
 
 
         if ($_FILES['image_filename']['name']) {
-            $filename = biz_saveImage($_FILES['image_filename'], "s_".$sessid);
-
-            if (!$filename) {
-                $p = array('msg' => '画像は' . IMAGE_MAX_FILESIZE . 'KB以内のGIF・JPEG・PNGにしてください。',
-                       'id'  => $id);
-                openpne_redirect('biz', 'page_s_edit_shisetsu', $p);
+            $image = biz_saveImage($_FILES['image_filename'], "s_".$sessid, $u, $filename);
+            if (!$image['filename']) {
+                if (!$image['up_size_chk_result']) {
+                    $p = array('msg' => '画像は' . IMAGE_MAX_FILESIZE . 'KB以内のGIF・JPEG・PNGにしてください。',
+                           'id'  => $id);
+                    openpne_redirect('biz', 'page_s_edit_shisetsu', $p);
+                } else {
+                    $msg = util_image_get_upload_err_msg($image['up_size_chk_result']);
+                    $p = array('msg' => $msg, 'id' => $id);
+                    openpne_redirect('biz', 'page_s_edit_shisetsu', $p);
+                }
             } else {
-                biz_deleteImage($requests['image_filename']);
+                biz_deleteImage($requests['image_filename'], $u);
             }
+            $filename = $image['filename'];
         }
 
         t_image_clear_tmp(session_id());
