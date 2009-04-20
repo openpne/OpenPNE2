@@ -56,6 +56,30 @@ class pc_do_c_topic_add_insert_c_commu_topic extends OpenPNE_Action
                 }
                 break;
         }
+
+        //---画像アップロードサイズチェック
+        $filesize = 0;
+        if ($image_filename1_tmpfile) {
+            $filesize += util_image_get_c_tmp_filesize4filename("t_{$c_commu_topic_id}_1", $image_filename1_tmpfile);
+        }
+        if ($image_filename2_tmpfile) {
+            $filesize += util_image_get_c_tmp_filesize4filename("t_{$c_commu_topic_id}_2", $image_filename2_tmpfile);
+        }
+        if ($image_filename3_tmpfile) {
+            $filesize += util_image_get_c_tmp_filesize4filename("t_{$c_commu_topic_id}_3", $image_filename3_tmpfile);
+        }
+        if ($filesize) {
+            $result = util_image_check_add_image_upload($filesize, $u, 'commu');
+            if ($result) {
+                if ($result == 2) {
+                    $result = 3;
+                }
+                $_REQUEST['target_c_commu_id'] = $c_commu_id;
+                $_REQUEST['msg'] = util_image_get_upload_err_msg($result);
+                openpne_forward('pc', 'page', "c_topic_add");
+                exit;
+            }
+        }
         //---
 
         $insert_c_commu_topic = array(
@@ -68,13 +92,13 @@ class pc_do_c_topic_add_insert_c_commu_topic extends OpenPNE_Action
         $c_commu_topic_id = db_commu_insert_c_commu_topic($insert_c_commu_topic);
 
         if ($image_filename1_tmpfile) {
-            $filename1 = image_insert_c_image4tmp("t_{$c_commu_topic_id}_1", $image_filename1_tmpfile);
+            $filename1 = image_insert_c_image4tmp("t_{$c_commu_topic_id}_1", $image_filename1_tmpfile, $u);
         }
         if ($image_filename2_tmpfile) {
-            $filename2 = image_insert_c_image4tmp("t_{$c_commu_topic_id}_2", $image_filename2_tmpfile);
+            $filename2 = image_insert_c_image4tmp("t_{$c_commu_topic_id}_2", $image_filename2_tmpfile, $u);
         }
         if ($image_filename3_tmpfile) {
-            $filename3 = image_insert_c_image4tmp("t_{$c_commu_topic_id}_3", $image_filename3_tmpfile);
+            $filename3 = image_insert_c_image4tmp("t_{$c_commu_topic_id}_3", $image_filename3_tmpfile, $u);
         }
 
         if (OPENPNE_USE_FILEUPLOAD) {

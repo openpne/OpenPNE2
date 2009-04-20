@@ -46,6 +46,7 @@ class pc_page_h_album_cover_edit_confirm extends OpenPNE_Action
             1 => '',
         );
 
+        $filesize = 0;
         foreach ($upfiles as $key => $upfile) {
             if ($upfile['error'] !== UPLOAD_ERR_NO_FILE) {
                 if (!($image = t_check_image($upfile))) {
@@ -53,8 +54,26 @@ class pc_page_h_album_cover_edit_confirm extends OpenPNE_Action
                     openpne_forward('pc', 'page', 'h_album_cover_edit');
                     exit;
                 } else {
+                    $filesize += $image['size'];
                     $tmpfiles[$key] = t_image_save2tmp($upfile, $sessid, "a_{$target_c_album_id}_{$key}", $image['format']);
                 }
+            }
+        }
+
+        // 画像アップロード可能サイズチェック
+        if ($filesize) {
+            $del_file = array();
+            if ($c_album['album_cover_image']) {
+                $del_file[] = $c_album['album_cover_image'];
+            }
+            $result = util_image_check_change_image_upload($filesize, $del_file, $u, 'other');
+            if ($result) {
+                $sessid = session_id();
+                t_image_clear_tmp($sessid);
+
+                $_REQUEST['msg'] = util_image_get_upload_err_msg($result);
+                openpne_forward('pc', 'page', 'h_album_cover_edit');
+                exit;
             }
         }
 

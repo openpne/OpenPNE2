@@ -37,6 +37,8 @@ class pc_do_c_edit_update_c_commu extends OpenPNE_Action
         //---
 
         $err_msg = array();
+        $filesize = 0;
+        $del_file = array();
         if (!$name) $err_msg[] = WORD_COMMUNITY . "名を入力してください";
         if (!$info) $err_msg[] = WORD_COMMUNITY . "の説明を入力してください";
 
@@ -63,6 +65,19 @@ class pc_do_c_edit_update_c_commu extends OpenPNE_Action
             if (!($image = t_check_image($upfile_obj))) {
                 $err_msg[] = '画像は'.IMAGE_MAX_FILESIZE.'KB以内のGIF・JPEG・PNGにしてください';
             }
+
+            $filesize = $image['size'];
+            if ($c_commu['image_filename']) {
+                $del_file[] = $c_commu['image_filename'];
+            }
+        }
+
+        //---画像アップロードサイズチェック
+        if (!$err_msg && $filesize) {
+            $result = util_image_check_change_image_upload($filesize, $del_file, $u, 'other');
+            if ($result) {
+                $err_msg[] = util_image_get_upload_err_msg($result);
+            }
         }
 
         if ($err_msg) {
@@ -77,11 +92,11 @@ class pc_do_c_edit_update_c_commu extends OpenPNE_Action
         $c_commu = db_commu_c_commu4c_commu_id($target_c_commu_id);
 
         //画像アップデート
-        $image_filename = image_insert_c_image_direct($upfile_obj, 'c_' . $target_c_commu_id);
+        $image_filename = image_insert_c_image_direct($upfile_obj, 'c_' . $target_c_commu_id, $u);
 
         if ($image_filename) {
             //画像削除
-            db_image_data_delete($c_commu['image_filename']);
+            db_image_data_delete($c_commu['image_filename'], $u);
         }
 
         // 承認待ちメンバー登録処理

@@ -514,11 +514,41 @@ function db_message_move_message($c_message_id, $c_member_id)
 /**
  * メッセージをごみ箱から削除
  */
-function db_message_delete_c_message_from_trash($c_message_id)
+function db_message_delete_c_message_from_trash($c_message_id, $c_member_id)
 {
     $data = array('is_kanzen_sakujo_from' => 1);
     $where = 'c_message_id = '.intval($c_message_id);
     db_update('c_message', $data, $where);
+
+    $sql = 'SELECT * FROM c_message WHERE c_message_id = ?';
+    $params = array(intval($c_message_id));
+    $c_message = db_get_row($sql, $params);
+
+    //c_image_sizeのレコード削除
+    $where = array();
+    $params = array();
+    $sql = 'DELETE FROM c_image_size';
+    if ($c_message['image_filename_1']) {
+        $where[] = "filename = ?";
+        $params[] = $c_message['image_filename_1'];
+    }
+    if ($c_message['image_filename_2']) {
+        $where[] = "filename = ?";
+        $params[] = $c_message['image_filename_2'];
+    }
+    if ($c_message['image_filename_3']) {
+        $where[] = "filename = ?";
+        $params[] = $c_message['image_filename_3'];
+    }
+
+    if ($where) {
+        $sql .= " WHERE " . implode(' OR ', $where);
+        db_query($sql, $params);
+    }
+
+    //function cacheの削除
+    $category = util_image_filename2category($filename);
+    pne_cache_drop('db_image_get_image_filesize', $c_member_id, $category);
 }
 
 function db_message_delete_c_message_to_trash($c_message_id)
