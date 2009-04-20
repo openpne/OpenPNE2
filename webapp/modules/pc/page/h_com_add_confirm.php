@@ -44,7 +44,15 @@ class pc_page_h_com_add_confirm extends OpenPNE_Action
             if (!($image = t_check_image($upfile_obj))) {
                 $err_msg[] = '画像は'.IMAGE_MAX_FILESIZE.'KB以内のGIF・JPEG・PNGにしてください';
             }
+
+            // 画像アップロード可能サイズチェック
+            $filesize = $image['size'];
+            $result = util_image_check_add_image_upload($filesize, $u, 'other');
+            if ($result) {
+                $err_msg[] = util_image_get_upload_err_msg($result);
+            }
         }
+
 
         if ($err_msg) {
             $_REQUEST['err_msg'] = $err_msg;

@@ -62,6 +62,7 @@ class pc_do_c_event_add_insert_c_commu_topic extends OpenPNE_Action
 
         // エラーチェック
         $err_msg = $errors;
+        $filesize = 0;
 
         if (!$event['open_date_month'] || !$event['open_date_day'] || !$event['open_date_year']) {
             $err_msg[] = "開催日時を入力してください";
@@ -81,6 +82,26 @@ class pc_do_c_event_add_insert_c_commu_topic extends OpenPNE_Action
             } elseif (mktime(0, 0, 0, $event['open_date_month'], $event['open_date_day'], $event['open_date_year'])
                     < mktime(0, 0, 0, $event['invite_period_month'], $event['invite_period_day'], $event['invite_period_year'])) {
                 $err_msg[] = "募集期限は開催日時より未来に指定できません";
+            }
+        }
+
+        // 画像アップロード可能サイズチェック
+        if ($tmpfile1) {
+            $filesize += util_image_get_c_tmp_filesize4filename("t_{$c_commu_topic_id}_1", $tmpfile1);
+        }
+        if ($tmpfile2) {
+            $filesize += util_image_get_c_tmp_filesize4filename("t_{$c_commu_topic_id}_2", $tmpfile2);
+        }
+        if ($tmpfile3) {
+            $filesize += util_image_get_c_tmp_filesize4filename("t_{$c_commu_topic_id}_3", $tmpfile3);
+        }
+        if ($filesize) {
+            $result = util_image_check_add_image_upload($filesize, $u, 'commu');
+            if ($result) {
+                if ($result == 2) {
+                    $result = 3;
+                }
+                $err_msg[] = util_image_get_upload_err_msg($result);
             }
         }
 
@@ -111,13 +132,13 @@ class pc_do_c_event_add_insert_c_commu_topic extends OpenPNE_Action
         $c_commu_topic_id = db_commu_insert_c_commu_topic($insert_c_commu_topic);
 
         if ($tmpfile1) {
-            $filename1 = image_insert_c_image4tmp("t_{$c_commu_topic_id}_1", $tmpfile1);
+            $filename1 = image_insert_c_image4tmp("t_{$c_commu_topic_id}_1", $tmpfile1, $u);
         }
         if ($tmpfile2) {
-            $filename2 = image_insert_c_image4tmp("t_{$c_commu_topic_id}_2", $tmpfile2);
+            $filename2 = image_insert_c_image4tmp("t_{$c_commu_topic_id}_2", $tmpfile2, $u);
         }
         if ($tmpfile3) {
-            $filename3 = image_insert_c_image4tmp("t_{$c_commu_topic_id}_3", $tmpfile3);
+            $filename3 = image_insert_c_image4tmp("t_{$c_commu_topic_id}_3", $tmpfile3, $u);
         }
         if (OPENPNE_USE_FILEUPLOAD) {
             // 添付ファイルをDBに入れる

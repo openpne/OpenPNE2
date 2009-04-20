@@ -4037,4 +4037,60 @@ function _db_admin_c_member_pre_cond_list($cond_list, $mail_address, $order)
     return db_get_all($sql, $params);
 }
 
+/**
+ * c_image_sizeのimage_category毎の合計と一人当たりの平均値を取得する
+ */
+function get_analysis_image_category()
+{
+    $mb = 1048576;
+    $image_category = array(
+            'album' => 'アルバム',
+            'diary' => WORD_DIARY,
+            'commu' => WORD_COMMUNITY,
+            'other' => 'その他'
+    );
+
+    $sql = 'SELECT COUNT(*) FROM c_member';
+    $total_member_num = db_get_one($sql);
+
+    $sql = "SELECT SUM(filesize) FROM c_image_size WHERE image_category = ?";
+
+    $i = 0;
+    $get_analysis_image_category = array();
+    foreach($image_category as $key => $value) {
+        $params = array($key);
+        $category_sum = db_get_one($sql, $params);
+        $category_sum = $category_sum / $mb;
+        $category_avg = $category_sum / $total_member_num;
+
+        $get_analysis_image_category[$i]['category'] = $value;
+        $get_analysis_image_category[$i]['sum'] = sprintf("%01.2f", $category_sum);
+        $get_analysis_image_category[$i]['avg'] = sprintf("%01.2f", $category_avg);
+        $i++;
+    }
+
+    return $get_analysis_image_category;
+}
+
+/**
+ * c_image_sizeの合計と一人当たりの平均値を取得する
+ */
+function get_analysis_image_category_sum()
+{
+    $mb = 1048576;
+
+    $sql = 'SELECT COUNT(*) FROM c_member';
+    $total_member_num = db_get_one($sql);
+
+    $sql = "SELECT SUM(filesize) FROM c_image_size";
+    $total_image_size = db_get_one($sql);
+    $total_image_size = $total_image_size / $mb;
+
+    $get_analysis_image_category_sum['category'] = '合計';
+    $get_analysis_image_category_sum['sum'] = sprintf("%01.2f", $total_image_size);
+    $get_analysis_image_category_sum['avg'] = sprintf("%01.2f", $total_image_size / $total_member_num);
+
+    return $get_analysis_image_category_sum;
+}
+
 ?>

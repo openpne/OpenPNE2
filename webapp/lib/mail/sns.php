@@ -396,6 +396,26 @@ class mail_sns
             return false;
         }
 
+        // 画像アップロード可能サイズチェック
+        if ($images) {
+            $filesize = 0;
+            $image_num = 1;
+            foreach ($images as $image) {
+                $filesize += $image['filesize'];
+                $image_num++;
+                if ($image_num > 3) {
+                    break;
+                }
+            }
+            $result = util_image_check_add_image_upload($filesize, $this->c_member_id, 'commu');
+            if ($result) {
+                $msg = util_image_get_upload_err_msg($result);
+                $this->error_mail($msg);
+                m_debug_log('mail_sns::add_commu_topic_comment() imagesize is full');
+                return false;
+            }
+        }
+
         $body = $this->decoder->get_text_body();
         if ($body === '') {
             $this->error_mail('本文が空のため投稿できませんでした。');
@@ -413,7 +433,7 @@ class mail_sns
             $image_data = $image['data'];
             $filename = 'tc_' . $ins_id . '_' . $image_num . '_' . time() . '.' . $image_ext;
 
-            db_image_insert_c_image($filename, $image_data);
+            db_image_insert_c_image($filename, $image_data, $image['filesize'], $this->c_member_id);
             db_commu_update_c_commu_topic_comment_image($ins_id, $filename, $image_num);
             $image_num++;
             if ($image_num > 3) {
@@ -458,6 +478,26 @@ class mail_sns
             return false;
         }
 
+        // 画像アップロード可能サイズチェック
+        if ($images) {
+            $filesize = 0;
+            $image_num = 1;
+            foreach ($images as $image) {
+                $filesize += $image['filesize'];
+                $image_num++;
+                if ($image_num > 3) {
+                    break;
+                }
+            }
+            $result = util_image_check_add_image_upload($filesize, $this->c_member_id, 'diary');
+            if ($result) {
+                $msg = util_image_get_upload_err_msg($result);
+                $this->error_mail($msg);
+                m_debug_log('mail_sns::add_diary() imagesize is full');
+                return false;
+            }
+        }
+
         $c_member = db_common_c_member4c_member_id($this->c_member_id);
         if (!$ins_id = db_diary_insert_c_diary($this->c_member_id, $subject, $body, $c_member['public_flag_diary'])) {
             return false;
@@ -470,7 +510,7 @@ class mail_sns
             $image_data = $image['data'];
             $filename = 'd_' . $ins_id . '_' . $image_num . '_' . time() . '.' . $image_ext;
 
-            db_image_insert_c_image($filename, $image_data);
+            db_image_insert_c_image($filename, $image_data, $image['filesize'], $this->c_member_id);
             db_diary_update_c_diary_image_filename($ins_id, $filename, $image_num);
             $image_num++;
             if ($image_num > 3) {
@@ -534,6 +574,26 @@ class mail_sns
             return false;
         }
 
+        // 画像アップロード可能サイズチェック
+        if ($images) {
+            $filesize = 0;
+            $image_num = 1;
+            foreach ($images as $image) {
+                $filesize += $image['filesize'];
+                $image_num++;
+                if ($image_num > 3) {
+                    break;
+                }
+            }
+            $result = util_image_check_add_image_upload($filesize, $this->c_member_id, 'diary');
+            if ($result) {
+                $msg = util_image_get_upload_err_msg($result);
+                $this->error_mail($msg);
+                m_debug_log('mail_sns::add_diary_comment() imagesize is full');
+                return false;
+            }
+        }
+
         //日記コメント書き込み
         $ins_id = db_diary_insert_c_diary_comment($this->c_member_id, $c_diary_id, $body);
 
@@ -552,7 +612,7 @@ class mail_sns
             $image_data = $image['data'];
             $filename = 'dc_' . $ins_id . '_' . $image_num . '_' . time() . '.' . $image_ext;
 
-            db_image_insert_c_image($filename, $image_data);
+            db_image_insert_c_image($filename, $image_data, $image['filesize'], $this->c_member_id);
             $filenames[$image_num] = $filename;
             $image_num++;
             if ($image_num > 3) {
@@ -710,7 +770,17 @@ class mail_sns
             $image_data = $image['data'];
             $filename = 'm_' . $this->c_member_id . '_' . time() . '.' . $image_ext;
 
-            db_image_insert_c_image($filename, $image_data);
+            // 画像アップロード可能サイズチェック
+            $filesize = $image['filesize'];
+            $result = util_image_check_add_image_upload($filesize, $this->c_member_id, 'other');
+            if ($result) {
+                $msg = util_image_get_upload_err_msg($result);
+                $this->error_mail($msg);
+                m_debug_log('mail_sns::add_member_image() imagesize is full');
+                return false;
+            }
+
+            db_image_insert_c_image($filename, $image_data, $filesize, $this->c_member_id);
             db_member_update_c_member_image($this->c_member_id, $filename, $target_number);
             return true;
         } else {
@@ -757,7 +827,18 @@ class mail_sns
             $image_ext = $image['ext'];
             $image_data = $image['data'];
             $filename = 'd_' . $c_diary_id . '_' . $target_number . '_' . time() . '.' . $image_ext;
-            db_image_insert_c_image($filename, $image_data);
+
+            // 画像アップロード可能サイズチェック
+            $filesize = $image['filesize'];
+            $result = util_image_check_add_image_upload($filesize, $this->c_member_id, 'diary');
+            if ($result) {
+                $msg = util_image_get_upload_err_msg($result);
+                $this->error_mail($msg);
+                m_debug_log('mail_sns::add_diary_image() imagesize is full');
+                return false;
+            }
+
+            db_image_insert_c_image($filename, $image_data, $filesize, $this->c_member_id);
             db_diary_update_c_diary_image_filename($c_diary_id, $filename, $target_number);
             return true;
         } else {
@@ -792,7 +873,18 @@ class mail_sns
             $image_ext = $image['ext'];
             $image_data = $image['data'];
             $filename = 'c_' . $c_commu_id . '_' .  time() . '.' . $image_ext;
-            db_image_insert_c_image($filename, $image_data);
+
+            // 画像アップロード可能サイズチェック
+            $filesize = $image['filesize'];
+            $result = util_image_check_add_image_upload($filesize, $this->c_member_id, 'other');
+            if ($result) {
+                $msg = util_image_get_upload_err_msg($result);
+                $this->error_mail($msg);
+                m_debug_log('mail_sns::add_commu_image() imagesize is full');
+                return false;
+            }
+
+            db_image_insert_c_image($filename, $image_data, $filesize, $this->c_member_id);
             db_commu_update_c_commu_image_filename($c_commu_id, $filename);
             return true;
         } else {
@@ -843,8 +935,18 @@ class mail_sns
             $image_data = $image['data'];
             $filename = 't_' . $c_commu_topic_id . '_' . $target_number . '_' . time() . '.' . $image_ext;
 
+            // 画像アップロード可能サイズチェック
+            $filesize = $image['filesize'];
+            $result = util_image_check_add_image_upload($filesize, $this->c_member_id, 'commu');
+            if ($result) {
+                $msg = util_image_get_upload_err_msg($result);
+                $this->error_mail($msg);
+                m_debug_log('mail_sns::add_topic_image() imagesize is full');
+                return false;
+            }
+
             $c_topic['image_filename' . $target_number] = $filename;
-            db_image_insert_c_image($filename, $image_data);
+            db_image_insert_c_image($filename, $image_data, $filesize, $this->c_member_id);
             db_commu_update_c_commu_topic_comment_images($c_topic['c_commu_topic_comment_id'], $c_topic['image_filename1'], $c_topic['image_filename2'], $c_topic['image_filename3']);
             return true;
         } else {

@@ -514,17 +514,18 @@ function db_album_delete_c_album($c_album_id)
     $sql = 'SELECT image_filename FROM c_album_image WHERE c_album_id = ?';
     $filename_list = db_get_col($sql, array($c_album_id), 'main');
 
-    //アルバムに登録された写真
-    foreach ($filename_list as $filename) {
-        db_album_image_data_delete($filename);
-    }
-
-    // アルバムの表紙
     $sql = 'SELECT * FROM c_album WHERE c_album_id = ?';
     $params = array(intval($c_album_id));
     $c_album = db_get_row($sql, $params, 'main');
+
+    //アルバムに登録された写真
+    foreach ($filename_list as $filename) {
+        db_album_image_data_delete($filename, $c_album['c_member_id']);
+    }
+
+    // アルバムの表紙
     if ($c_album['album_cover_image']) {
-        db_album_image_data_delete($c_album['album_cover_image']);
+        db_album_image_data_delete($c_album['album_cover_image'], $c_album['c_member_id'], 'other');
     }
 
     $params = array(intval($c_album_id));
@@ -543,11 +544,11 @@ function db_album_delete_c_album($c_album_id)
 /**
  * c_album_image_idをキーとしてc_album_imageテーブルからデータを削除
  */
-function db_album_delete_c_album_image($c_album_image_id)
+function db_album_delete_c_album_image($c_album_image_id, $c_member_id)
 {
     $sql = 'SELECT image_filename FROM c_album_image WHERE c_album_image_id = ?';
     $filename = db_get_one($sql, array($c_album_image_id), 'main');
-    db_album_image_data_delete($filename);
+    db_album_image_data_delete($filename, $c_member_id);
 
     $sql = 'DELETE FROM c_album_image WHERE c_album_image_id = ?';
     $params = array(intval($c_album_image_id));
@@ -558,7 +559,7 @@ function db_album_delete_c_album_image($c_album_image_id)
 /**
  * アルバム用の写真を登録
  */
-function image_insert_c_image_album4tmp($prefix, $tmpfile)
+function image_insert_c_image_album4tmp($prefix, $tmpfile, $c_member_id)
 {
     if (!$tmpfile || preg_match('/[^\.\w]/', $tmpfile)) return false;
 
@@ -596,14 +597,14 @@ function image_insert_c_image_album4tmp($prefix, $tmpfile)
         $filesize = strlen($bin);
     }
 
-    if (db_image_insert_c_image_album($filename, $bin)) {
+    if (db_image_insert_c_image_album($filename, $bin,$filesize, $c_member_id)) {
         return array($filename, $filesize);
     }
 
     return false;
 }
 
-function db_image_insert_c_image_album($filename, $bin, $type = '')
+function db_image_insert_c_image_album($filename, $bin, $filesize, $c_member_id, $type = '')
 {
     $db =& db_get_instance('image');
 
@@ -613,26 +614,44 @@ function db_image_insert_c_image_album($filename, $bin, $type = '')
         'type'       => $type,
         'r_datetime' => db_now(),
     );
-    return $db->insert('c_image', $data, 'c_image_id');
+    $result =  $db->insert('c_image', $data, 'c_image_id');
+    if ($result) {
+        db_image_insert_c_image_size($filename, $c_member_id, $filesize);
+    }
+
+    return $result;
 }
 
-function db_album_image_data_delete($image_filename)
+function db_album_image_data_delete($image_filename, $c_member_id, $category = '')
 {
     if (!$image_filename) return false;
 
-    db_album_image_delete_c_image($image_filename);
+    db_album_image_delete_c_image($image_filename, $c_member_id, $category);
 
     // cacheの削除
     image_cache_delete($image_filename);
 }
 
-function db_album_image_delete_c_image($filename)
+function db_album_image_delete_c_image($filename, $c_member_id, $category)
 {
     $db =& db_get_instance('image');
 
     $sql = 'DELETE FROM c_image WHERE filename = ?';
     $params = array($filename);
-    return $db->query($sql, $params);
+    $db->query($sql, $params);
+
+    $sql = 'DELETE FROM c_image_size WHERE filename = ?';
+    $params = array($filename);
+    $db->query($sql, $params);
+
+    //function cacheの削除
+    if (!$category) {
+        $category = util_image_filename2category($filename);
+    }
+    pne_cache_drop('db_image_get_image_filesize', $c_member_id, $category);
+
+    return true;
+
 }
 
 function db_image_is_c_album_image4filename($filename)

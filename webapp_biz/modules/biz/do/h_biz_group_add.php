@@ -22,13 +22,22 @@ class biz_do_h_biz_group_add extends OpenPNE_Action
 
         $filename = '';
         if ($_FILES['image_filename']['name']) {
-            $filename = biz_saveImage($_FILES['image_filename'], "g_".$sessid);
-            if (!$filename) {
+            $image = biz_saveImage($_FILES['image_filename'], "g_".$sessid, $u);
+
+            if (!$image['filename']) {
                 $filename = $requests['image_filename'];
-                $p = array('msg' => '画像は' . IMAGE_MAX_FILESIZE . 'KB以内のGIF・JPEG・PNGにしてください。', 'id' => $id);
-                openpne_redirect('biz', 'page_h_biz_group_add', $p);
-                exit();
+                if (!$image['up_size_chk_result']) {
+                    $p = array('msg' => '画像は' . IMAGE_MAX_FILESIZE . 'KB以内のGIF・JPEG・PNGにしてください。', 'id' => $id);
+                    openpne_redirect('biz', 'page_h_biz_group_add', $p);
+                    exit();
+                } else {
+                    $msg = util_image_get_upload_err_msg($image['up_size_chk_result']);
+                    $p = array('msg' => $msg, 'id' => $id);
+                    openpne_redirect('biz', 'page_h_biz_group_add', $p);
+                    exit();
+                }
             }
+            $filename = $image['filename'];
         }
         t_image_clear_tmp(session_id());
 

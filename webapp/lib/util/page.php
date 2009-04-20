@@ -128,7 +128,7 @@ function fetch_inc_entry_point(&$smarty, $target)
 function get_inc_entry_point_list()
 {
     $list = array(
-        'h_home' => array(1, 12, '【PC版】 h_home'),
+        'h_home' => array(1, 13, '【PC版】 h_home'),
         'f_home' => array(1, 9, '【PC版】 f_home (h_prof)'),
         'c_home' => array(1, 7, '【PC版】 c_home'),
         'h_reply_message' => array(1, 3, '【PC版】 h_reply_message'),

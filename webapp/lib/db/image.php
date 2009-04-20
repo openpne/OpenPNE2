@@ -57,7 +57,7 @@ function db_image_c_tmp_image4filename($filename)
 
 /*** write ***/
 
-function db_image_insert_c_image($filename, $bin, $type = '')
+function db_image_insert_c_image($filename, $bin, $filesize, $c_member_id, $category ='', $type = '')
 {
     $db =& db_get_instance('image');
 
@@ -67,21 +67,35 @@ function db_image_insert_c_image($filename, $bin, $type = '')
         'type'       => $type,
         'r_datetime' => db_now(),
     );
-    return $db->insert('c_image', $data, 'c_image_id');
+    $result = $db->insert('c_image', $data, 'c_image_id');
+    if ($result) {
+        db_image_insert_c_image_size($filename, $c_member_id, $filesize, $category);
+    }
+    return $result;
 }
 
-function db_image_delete_c_image($filename)
+function db_image_delete_c_image($filename, $c_member_id)
 {
     $db =& db_get_instance('image');
 
     $sql = 'DELETE FROM c_image WHERE filename = ?';
     $params = array($filename);
-    return $db->query($sql, $params);
+    $db->query($sql, $params);
+
+    $sql = 'DELETE FROM c_image_size WHERE filename = ?';
+    $params = array($filename);
+    $db->query($sql, $params);
+
+    //function cacheの削除
+    $category = util_image_filename2category($filename);
+    pne_cache_drop('db_image_get_image_filesize', $c_member_id, $category);
+
+    return true;
 }
 
 //---
 
-function db_image_insert_c_image2($filename, $filepath)
+function db_image_insert_c_image2($filename, $filepath, $c_member_id = 0, $category = '')
 {
     if (!is_readable($filepath)) return false;
 
@@ -93,14 +107,14 @@ function db_image_insert_c_image2($filename, $filepath)
     if (!@imagecreatefromstring($image_data)) return false;
 
     //TODO:typeフィールドを使う
-    return db_image_insert_c_image($filename, $image_data);
+    return db_image_insert_c_image($filename, $image_data, filesize($filepath), $c_member_id, $category);
 }
 
-function db_image_data_delete($image_filename)
+function db_image_data_delete($image_filename, $c_member_id = 0)
 {
     if (!$image_filename) return false;
 
-    db_image_delete_c_image($image_filename);
+    db_image_delete_c_image($image_filename, $c_member_id);
 
     // cacheの削除
     image_cache_delete($image_filename);
@@ -132,6 +146,7 @@ function db_image_insert_c_tmp_image($filename, $filepath)
         'filename' => $filename,
         'bin' => $image_data,
         'r_datetime' => db_now(),
+        'filesize' => filesize($filepath),
     );
 
     return db_insert('c_tmp_image', $params);
@@ -159,6 +174,118 @@ function db_image_data_copy($filename, $new_filename)
     $type = $c_image[0]['type'];
 
     return db_image_insert_c_image($new_filename, $bin, $type);
+}
+
+/**
+ * 指定ユーザの登録画像の合計サイズを取得する
+ * パラメータ省略された場合、全体の合計サイズを取得する
+ * 
+ * @param int $u
+ * @param string $category
+ * @return int 登録画像合計サイズ
+ */
+function db_image_get_image_filesize( $u = 0, $category = '')
+{
+    static $is_recurred = false;  //再帰処理中かどうかの判定フラグ
+    
+    if (!$is_recurred) {  //function cacheのために再帰処理を行う
+        $is_recurred = true;
+        $funcargs = func_get_args();
+        $result = pne_cache_recursive_call(OPENPNE_FUNCTION_CACHE_LIFETIME_FAST, __FUNCTION__, $funcargs);
+        
+        $is_recurred = false;
+        return $result;
+    }
+    
+    $sql = "SELECT SUM(filesize) FROM c_image_size ";
+    $where = array();
+    $params = array();
+    if ($u) {
+        $where[] = "(c_member_id = ?)";
+        $params[] = $u;
+    }
+
+    if ($category) {
+        if ($category != 'other') {
+            $where[] = "(image_category = ?)";
+        } else {
+            $where[] = "((image_category = ?)";
+        }
+        $params[] = $category;
+    }
+
+    if ($where) {
+        $sql .= " WHERE " . implode(' AND ', $where);
+    }
+
+    $other = array();
+    if ($category == 'other') {
+        if (!OPENPNE_ALBUM_LIMIT) {
+            $sql .= " OR (image_category = ?)";
+            $params[] = 'album';
+        }
+        if (!OPENPNE_IMAGE_DIARY_LIMIT) {
+            $sql .= " OR (image_category = ?)";
+            $params[] = 'diary';
+        }
+        if (!OPENPNE_IMAGE_COMMU_LIMIT) {
+            $sql .= " OR (image_category = ?)";
+            $params[] = 'commu';
+        }
+        $sql .= ")";
+    }
+
+    return db_get_one($sql, $params);
+}
+
+/**
+ * c_image_sizeテーブルにレコードを登録する
+ * 
+ * @param string $filename
+ * @param int $c_member_id
+ * @param int $filesize
+ * @return bool
+ */
+function db_image_insert_c_image_size($filename, $c_member_id, $filesize, $category = '')
+{
+    $result = true;
+
+    if ($c_member_id) {
+        if (!$category) {
+            $category = util_image_filename2category($filename);
+        }
+        $params = array(
+            'filename'       => $filename,
+            'c_member_id'    => $c_member_id,
+            'filesize'       => $filesize,
+            'image_category' => $category,
+            'r_datetime'     => db_now(),
+        );
+        $result = db_insert('c_image_size', $params);
+
+        //function cacheの削除
+        pne_cache_drop('db_image_get_image_filesize', $c_member_id, $category);
+    }
+    return $result;
+}
+
+/**
+ * c_image_sizeテーブルのレコードを削除する
+ * 
+ * @param int $c_member_id
+ * @return bool
+ */
+function db_image_delete_c_image_size4c_member_id($c_member_id)
+{
+    if ($c_member_id) {
+        $sql = 'DELETE FROM c_image_size WHERE c_member_id = ?';
+        $params = array(
+            $c_member_id,
+        );
+        db_query($sql, $params);
+    }
+
+    return true;
 }
 
 ?>

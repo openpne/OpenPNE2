@@ -55,7 +55,7 @@ class pc_do_h_message_box_delete_message extends OpenPNE_Action
 
                     $c_message = db_message_c_message4c_message_id($val);
                     if ($c_message['c_member_id_from'] == $u) {
-                        db_message_delete_c_message_from_trash($val);
+                        db_message_delete_c_message_from_trash($val, $u);
                     } elseif ($c_message['c_member_id_to'] == $u) {
                         db_message_delete_c_message_to_trash($val);
                     } else {
