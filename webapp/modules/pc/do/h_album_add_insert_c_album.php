@@ -31,11 +31,22 @@ class pc_do_h_album_add_insert_c_album extends OpenPNE_Action
         $tmpfile = $requests['tmpfile'];
         // ----------
 
+        // 画像アップロード可能サイズチェック
+        if ($tmpfile) {
+            $filesize = util_image_get_c_tmp_filesize4filename("a_{$c_album_id}_1", $tmpfile);
+            $result = util_image_check_add_image_upload($filesize, $u, 'other');
+            if ($result) {
+                $_REQUEST['err_msg'] = util_image_get_upload_err_msg($result);
+                openpne_forward('pc', 'page', "h_album_add");
+                exit;
+            }
+        }
+
         $c_member_id = $u;
         $c_album_id = db_album_insert_c_album($c_member_id, $subject, $description, $public_flag);
 
         if ($tmpfile) {
-            $filename = image_insert_c_image4tmp("a_{$c_album_id}_1", $tmpfile);
+            $filename = image_insert_c_image4tmp("a_{$c_album_id}_1", $tmpfile, $u, 'other');
 
             $sessid = session_id();
             t_image_clear_tmp($sessid);

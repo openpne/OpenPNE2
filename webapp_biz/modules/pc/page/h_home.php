@@ -70,6 +70,9 @@ class pc_page_h_home extends OpenPNE_Action
         $c_commu_user_list = db_commu_c_commu_list4c_member_id_2($u, 9);
         $this->set('c_commu_user_list', $c_commu_user_list);
         $this->set('fh_com_count_user', db_commu_count_c_commu4c_member_id($u));
+        // 写真使用量
+        $image_limit_list = db_image_get_image_limit_list($u);
+        $this->set('image_limit_list', $image_limit_list);
 
         /// 最新情報 ///
 

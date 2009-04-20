@@ -39,6 +39,8 @@ class pc_do_c_topic_edit_update_c_commu_topic extends OpenPNE_Action
 
         //エラーチェック
         $err_msg = array();
+        $filesize = 0;
+        $del_file = array();
         if (is_null($title) || $title === '') $err_msg[] = "タイトルを入力してください";
         if (is_null($body) || $body === '') $err_msg[] = "本文を入力してください";
 
@@ -46,15 +48,41 @@ class pc_do_c_topic_edit_update_c_commu_topic extends OpenPNE_Action
             if (!($image = t_check_image($upfile_obj1))) {
                 $err_msg[] = '画像1は'.IMAGE_MAX_FILESIZE.'KB以内のGIF・JPEG・PNGにしてください';
             }
+
+            $filesize += $image['size'];
+            if ($c_topic['image_filename1']) {
+                $del_file[] = $c_topic['image_filename1'];
+            }
         }
         if (!empty($upfile_obj2) && $upfile_obj2['error'] !== UPLOAD_ERR_NO_FILE) {
             if (!($image = t_check_image($upfile_obj2))) {
                 $err_msg[] = '画像2は'.IMAGE_MAX_FILESIZE.'KB以内のGIF・JPEG・PNGにしてください';
             }
+
+            $filesize += $image['size'];
+            if ($c_topic['image_filename2']) {
+                $del_file[] = $c_topic['image_filename2'];
+            }
         }
         if (!empty($upfile_obj3) && $upfile_obj3['error'] !== UPLOAD_ERR_NO_FILE) {
             if (!($image = t_check_image($upfile_obj3))) {
                 $err_msg[] = '画像3は'.IMAGE_MAX_FILESIZE.'KB以内のGIF・JPEG・PNGにしてください';
+            }
+
+            $filesize += $image['size'];
+            if ($c_topic['image_filename3']) {
+                $del_file[] = $c_topic['image_filename3'];
+            }
+        }
+
+        // 画像アップロード可能サイズチェック
+        if (!$err_msg && $filesize) {
+            $result = util_image_check_change_image_upload($filesize, $del_file, $u, 'commu');
+            if ($result) {
+                if ($result == 2) {
+                    $result = 3;
+                }
+                $err_msg[] = util_image_get_upload_err_msg($result);
             }
         }
 
@@ -82,9 +110,9 @@ class pc_do_c_topic_edit_update_c_commu_topic extends OpenPNE_Action
         }
 
         // 画像アップデート
-        $filename1 = image_insert_c_image_direct($upfile_obj1, "t_{$c_commu_topic_id}_1");
-        $filename2 = image_insert_c_image_direct($upfile_obj2, "t_{$c_commu_topic_id}_2");
-        $filename3 = image_insert_c_image_direct($upfile_obj3, "t_{$c_commu_topic_id}_3");
+        $filename1 = image_insert_c_image_direct($upfile_obj1, "t_{$c_commu_topic_id}_1", $u);
+        $filename2 = image_insert_c_image_direct($upfile_obj2, "t_{$c_commu_topic_id}_2", $u);
+        $filename3 = image_insert_c_image_direct($upfile_obj3, "t_{$c_commu_topic_id}_3", $u);
 
         //ファイルアップロード
         $sessid = session_id();
@@ -110,15 +138,15 @@ class pc_do_c_topic_edit_update_c_commu_topic extends OpenPNE_Action
         $c_topic = db_commu_c_topic4c_commu_topic_id($c_commu_topic_id);
         if ($filename1) {
             $update_c_commu_topic_comment["image_filename1"] = $filename1;
-            db_image_data_delete($c_topic['image_filename1']);
+            db_image_data_delete($c_topic['image_filename1'], $u);
         }
         if ($filename2) {
             $update_c_commu_topic_comment["image_filename2"] = $filename2;
-            db_image_data_delete($c_topic['image_filename2']);
+            db_image_data_delete($c_topic['image_filename2'], $u);
         }
         if ($filename3) {
             $update_c_commu_topic_comment["image_filename3"] = $filename3;
-            db_image_data_delete($c_topic['image_filename3']);
+            db_image_data_delete($c_topic['image_filename3'], $u);
         }
         if ($filename4) {
             $update_c_commu_topic_comment['filename4'] = $filename4;

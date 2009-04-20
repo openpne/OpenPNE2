@@ -270,10 +270,11 @@ class OpenPNE_KtaiMail
                 }
                 break;
             }
+            $filesize = filesize($tmpfname);
             unlink($tmpfname);
 
             if ($image_data && $image_ext) {
-                $images = array(array('data' => $image_data, 'ext' => $image_ext, 'size' => $image_size));
+                $images = array(array('data' => $image_data, 'ext' => $image_ext, 'filesize' => $filesize));
             } else {
                 return false;
             }

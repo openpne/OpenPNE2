@@ -304,6 +304,26 @@ show_flash('flash/list.swf', '({$flashvars})');
 
 ({if $inc_entry_point[7]})({$inc_entry_point[7]|smarty:nodefaults|t_url2cmd:'entry_point'|t_cmd:'entry_point'})({/if})
 
+({if $smarty.const.OPENPNE_ALBUM_LIMIT || $smarty.const.OPENPNE_IMAGE_USER_LIMIT || $smarty.const.OPENPNE_IMAGE_DIARY_LIMIT || $smarty.const.OPENPNE_IMAGE_COMMU_LIMIT})
+<div class="partsHeading"><h3>写真容量 使用状況</h3></div>
+<div class="parts">
+<table>
+<tr bgcolor="#cccccc">
+<td>種別</td>
+<td>制限容量(MB)</td>
+<td>使用量(MB)</td>
+</tr>
+({foreach from=$image_limit_list item=item})
+<tr>
+<td>({$item.title})</td>
+<td style="text-align:right;">({$item.limit_size})</td>
+<td style="text-align:right;">({$item.used_size})</td>
+</tr>
+({/foreach})
+</table>
+</div>
+({/if})
+
 </div><!-- Left -->
 <div id="Center">
 

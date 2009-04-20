@@ -66,6 +66,7 @@ class pc_page_fh_diary_comment_confirm extends OpenPNE_Action
             '',
         );
 
+        $filesize = 0;
         foreach ($upfiles as $key => $upfile) {
             if (!empty($upfile) && $upfile['error'] !== UPLOAD_ERR_NO_FILE) {
                 if (!($image = t_check_image($upfile))) {
@@ -73,8 +74,22 @@ class pc_page_fh_diary_comment_confirm extends OpenPNE_Action
                     openpne_forward('pc', 'page', 'fh_diary');
                     exit;
                 } else {
+                    $filesize += $image['size'];
                     $tmpfiles[$key] = t_image_save2tmp($upfile, $sessid, "dc_{$key}", $image['format']);
                 }
+            }
+        }
+
+        //---画像アップロードサイズチェック
+        if ($filesize) {
+            $result = util_image_check_add_image_upload($filesize, $u, 'diary');
+            if ($result) {
+                if ($result == 2) {
+                    $result = 3;
+                }
+                $_REQUEST['msg'] = util_image_get_upload_err_msg($result);
+                openpne_forward('pc', 'page', 'fh_diary');
+                exit;
             }
         }
 
