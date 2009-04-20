@@ -22,15 +22,14 @@ class ktai_page_h_album_edit extends OpenPNE_Action
             if ($c_album['c_member_id'] != $u) {
                 handle_kengen_error();
             }
-            if (array_key_exists('subject', $requests)) {
+
+            // 内容の不備によるリダイレクト時は値を上書き
+            if ($requests['msg']) {
                 $c_album['subject'] = $subject;
-            }
-            if (array_key_exists('description', $requests)) {
                 $c_album['description'] = $description;
-            }
-            if (array_key_exists('public_flag', $requests)) {
                 $c_album['public_flag'] = $public_flag;
             }
+
             $this->set('target_c_album', $c_album);
         } else {
             $c_album['subject'] = $subject;
