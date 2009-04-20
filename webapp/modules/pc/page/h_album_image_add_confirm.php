@@ -75,10 +75,26 @@ class pc_page_h_album_image_add_confirm extends OpenPNE_Action
                     openpne_forward('pc', 'page', 'h_album_image_add');
                     exit;
                 } else {
+                    $filesize_all += $image['size'];
                     $tmpfiles[$key] = t_image_save2tmp($upfile, $sessid, "a_{$target_c_album_id}_{$key}", $image['format']);
-                    $filesize_all += $upfile['size'];
                 }
             }
+        }
+
+        // 画像アップロード可能サイズチェック
+        $result = util_image_check_add_image_upload($filesize_all, $u, 'album');
+        if ($result) {
+            if ($result == 2) {
+                $result = 3;
+            }
+            t_image_clear_tmp($sessid);
+
+            $msg = util_image_get_upload_err_msg($result);
+            $p = array(
+                'msg' => $msg,
+                'target_c_album_id' => $target_c_album_id,
+            );
+            openpne_redirect('pc', 'page_h_album_image_add', $p);
         }
 
         if (!db_album_is_insertable4c_member_id($u, $filesize_all)) {

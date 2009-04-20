@@ -61,6 +61,29 @@ class pc_do_c_event_write_insert_c_commu_topic_comment extends OpenPNE_Action
         }
         //---
 
+        //---画像アップロードサイズチェック
+        $filesize = 0;
+        if ($tmpfile1) {
+            $filesize += util_image_get_c_tmp_filesize4filename("tc_{$tc_id}_1", $tmpfile1);
+        }
+        if ($tmpfile2) {
+            $filesize += util_image_get_c_tmp_filesize4filename("tc_{$tc_id}_2", $tmpfile2);
+        }
+        if ($tmpfile3) {
+            $filesize += util_image_get_c_tmp_filesize4filename("tc_{$tc_id}_3", $tmpfile3);
+        }
+        if ($filesize) {
+            $result = util_image_check_add_image_upload($filesize, $u, 'commu');
+            if ($result) {
+                if ($result == 2) {
+                    $result = 3;
+                }
+                $_REQUEST['err_msg'] = util_image_get_upload_err_msg($result);
+                openpne_forward('pc', 'page', "c_event_detail");
+                exit;
+            }
+        }
+
         if ($add_event_member == 1 && $c_topic['capacity'] && $c_topic['capacity'] <= $c_topic['member_num'] ) {
             $err_msg[] = 'イベントの参加者数制限を超えています';
             $_REQUEST['err_msg'] = $err_msg;
@@ -92,13 +115,13 @@ class pc_do_c_event_write_insert_c_commu_topic_comment extends OpenPNE_Action
         $tc_id = db_commu_insert_c_commu_topic_comment_3($insert_c_commu_topic_comment);
 
         if ($tmpfile1) {
-            $filename1 = image_insert_c_image4tmp("tc_{$tc_id}_1", $tmpfile1);
+            $filename1 = image_insert_c_image4tmp("tc_{$tc_id}_1", $tmpfile1, $u);
         }
         if ($tmpfile2) {
-            $filename2 = image_insert_c_image4tmp("tc_{$tc_id}_2", $tmpfile2);
+            $filename2 = image_insert_c_image4tmp("tc_{$tc_id}_2", $tmpfile2, $u);
         }
         if ($tmpfile3) {
-            $filename3 = image_insert_c_image4tmp("tc_{$tc_id}_3", $tmpfile3);
+            $filename3 = image_insert_c_image4tmp("tc_{$tc_id}_3", $tmpfile3, $u);
         }
 
         db_commu_update_c_commu_topic_comment_images($tc_id,

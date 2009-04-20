@@ -45,6 +45,7 @@ class pc_page_c_event_write_confirm extends OpenPNE_Action
 
         //エラーチェック
         $err_msg = array();
+        $filesize = 0;
 
         if (trim($body) == '')  $err_msg[] = "本文を入力してください";
 
@@ -52,15 +53,29 @@ class pc_page_c_event_write_confirm extends OpenPNE_Action
             if (!($image = t_check_image($upfile_obj1))) {
                 $err_msg[] = '画像1は'.IMAGE_MAX_FILESIZE.'KB以内のGIF・JPEG・PNGにしてください';
             }
+            $filesize += $image['size'];
         }
         if (!empty($upfile_obj2) && $upfile_obj2['error'] !== UPLOAD_ERR_NO_FILE) {
             if (!($image = t_check_image($upfile_obj2))) {
                 $err_msg[] = '画像2は'.IMAGE_MAX_FILESIZE.'KB以内のGIF・JPEG・PNGにしてください';
             }
+            $filesize += $image['size'];
         }
         if (!empty($upfile_obj3) && $upfile_obj3['error'] !== UPLOAD_ERR_NO_FILE) {
             if (!($image = t_check_image($upfile_obj3))) {
                 $err_msg[] = '画像3は'.IMAGE_MAX_FILESIZE.'KB以内のGIF・JPEG・PNGにしてください';
+            }
+            $filesize += $image['size'];
+        }
+
+        //---画像アップロードサイズチェック
+        if ($filesize) {
+            $result = util_image_check_add_image_upload($filesize, $u, 'commu');
+            if ($result) {
+                if ($result == 2) {
+                    $result = 3;
+                }
+                $err_msg[] = util_image_get_upload_err_msg($result);
             }
         }
 

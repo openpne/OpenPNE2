@@ -207,6 +207,7 @@ li { list-style-type: none;}
 #admin_page_list_c_cmd_caster li#adminSNSConfig a.tab ,
 #admin_page_edit_deco li#adminSNSConfig a.tab ,
 #admin_page_edit_album_limit li#adminSNSConfig a.tab ,
+#admin_page_edit_image_limit li#adminSNSConfig a.tab ,
  #admin_page_delete_c_profile li#adminSNSConfig a.tab ,
  #admin_page_insert_c_profile li#adminSNSConfig a.tab ,
  #admin_page_update_c_profile li#adminSNSConfig a.tab ,
@@ -270,6 +271,7 @@ li { list-style-type: none;}
 #admin_page_edit_deco li#adminSNSConfig ul.pull ,
 #admin_page_list_c_cmd_caster li#adminSNSConfig ul.pull ,
 #admin_page_edit_album_limit li#adminSNSConfig ul.pull ,
+#admin_page_edit_image_limit li#adminSNSConfig ul.pull ,
 
 #admin_page_list_c_admin_user li#adminAdminConfig ul.pull ,
 #admin_page_edit_admin_password li#adminAdminConfig ul.pull ,
@@ -1713,6 +1715,44 @@ div.listControl p.listMove a {
 
 /* 検索フォーム */
 #admin_page_list_sns_entry p#searchUsername { margin-left: 2em; }
+
+/** admin_page_edit_image_limit **/
+#admin_page_edit_image_limit div#info ul {margin: 10px 35px;}
+#admin_page_edit_image_limit div#info ul li {list-style-type: disc;}
+#admin_page_edit_image_limit div#info table.basicType2 th.cell01 { text-align: right;}
+#admin_page_edit_image_limit div#limitForm {padding-top:0;}
+#admin_page_edit_image_limit div#limitForm form {margin-bottom: 10px;}
+#admin_page_edit_image_limit div#limitForm label {margin-left:1em;}
+#admin_page_edit_image_limit div#limitForm input {width:5em;}
+
+/** admin_page_image_analysis_category **/
+
+#admin_page_image_analysis_category table thead th {
+	background-color: #58585C;
+	color: #FFFFFF;
+	font-weight: bold;
+}
+
+#admin_page_image_analysis_category table tbody th {
+	background-color: #D5D5D7;
+}
+
+#admin_page_image_analysis_category table tbody td {
+	text-align: center;
+}
+
+#admin_page_image_analysis_category th ,
+#admin_page_image_analysis_category table tfoot td {
+	text-align: center;
+	width: 150px;
+	background-color: #E4EBEF;
+	color: #000000;
+}
+
+#admin_page_image_analysis_category th ,
+#admin_page_image_analysis_category td {
+	border-color: #A3A3A6;
+}
 
 /*********** footer ***********/
 .footer { margin-top: 20px; padding: 10px 0; text-align: center;}
