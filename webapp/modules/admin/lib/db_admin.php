@@ -3721,15 +3721,17 @@ function db_admin_update_c_point_clear($c_member_profile_value)
     $where = array('c_profile_id' => intval($c_profile_id));
     db_update('c_member_profile', $data, $where);
 
-    // プロフィールにポイント情報が存在するメンバーのIDを取得
-    $sql = 'SELECT c_member_id FROM c_member_profile where c_profile_id = ?';
-    $params = array($c_profile_id);
-    $c_member_ids = db_get_col($sql, $params);
+    // すべてのメンバーのIDを取得
+    $sql = 'SELECT c_member_id FROM c_member';
+    $all_member_ids = db_get_col($sql);
 
-    // プロフィールにポイント情報が存在しないメンバーのIDを取得
-    $c_member_id_str = implode(',', $c_member_ids);
-    $sql = 'SELECT c_member_id FROM c_member WHERE c_member_id NOT IN (' . $c_member_id_str . ')';
-    $c_member_ids = db_get_col($sql);
+    // ポイント情報があるメンバーのIDを取得
+    $sql = 'SELECT c_member_id FROM c_member_profile WHERE c_profile_id = ?';
+    $params = array($c_profile_id);
+    $has_point_member_ids = db_get_col($sql, $params);
+
+    // 差分から、ポイント情報がないメンバーのIDを取得
+    $c_member_ids = array_diff($all_member_ids, $has_point_member_ids);
 
     // プロフィールにポイント情報が存在しない場合はレコードを追加
     foreach ($c_member_ids as $c_member_id) {
