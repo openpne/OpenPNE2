@@ -28,16 +28,14 @@ class ktai_page_h_message_send extends OpenPNE_Action
                 handle_kengen_error();
             }
 
-            if (array_key_exists('subject', $requests)) {
+            if ($requests['msg']) { // 内容の不備によるリダイレクト時
                 $form_val['subject'] = $subject;
-            } else {
-                $form_val['body'] = $c_message['body'];
-            }
-            if (array_key_exists('body', $requests)) {
                 $form_val['body'] = $body;
             } else {
                 $form_val['subject'] = $c_message['subject'];
+                $form_val['body'] = $c_message['body'];
             }
+
             $form_val['target_c_message_id'] = $c_message['c_message_id'];
             $form_val['hensinmoto_c_message_id'] = $c_message['hensinmoto_c_message_id'];
             $this->set("form_val", $form_val);
