@@ -2687,15 +2687,15 @@ function db_commu_delete_c_commu_topic($c_commu_topic_id)
     cache_drop_c_commu_topic($c_commu_topic_id);
 
     // c_commu_topic_comment(画像)
-    $sql = 'SELECT image_filename1, image_filename2, image_filename3, filename' .
+    $sql = 'SELECT image_filename1, image_filename2, image_filename3, filename, c_member_id' .
             ' FROM c_commu_topic_comment WHERE c_commu_topic_id = ?';
     $params = array(intval($c_commu_topic_id));
 
     $topic_comment_list = db_get_all($sql, $params);
     foreach ($topic_comment_list as $topic_comment) {
-        db_image_data_delete($topic_comment['image_filename1']);
-        db_image_data_delete($topic_comment['image_filename2']);
-        db_image_data_delete($topic_comment['image_filename3']);
+        db_image_data_delete($topic_comment['image_filename1'], $topic_comment['c_member_id']);
+        db_image_data_delete($topic_comment['image_filename2'], $topic_comment['c_member_id']);
+        db_image_data_delete($topic_comment['image_filename3'], $topic_comment['c_member_id']);
         db_file_delete_c_file($topic_comment['filename']);
     }
 
@@ -2796,14 +2796,14 @@ function db_commu_update_c_commu_topic_comment_image($c_commu_topic_comment_id, 
  */
 function db_commu_delete_c_commu_topic_comment($c_commu_topic_comment_id)
 {
-    $sql = 'SELECT image_filename1, image_filename2, image_filename3, filename' .
+    $sql = 'SELECT image_filename1, image_filename2, image_filename3, filename, c_member_id' .
         ' FROM c_commu_topic_comment' .
         ' WHERE c_commu_topic_comment_id = ?';
     $params = array(intval($c_commu_topic_comment_id));
     $topic_comment = db_get_row($sql, $params);
-    db_image_data_delete($topic_comment['image_filename1']);
-    db_image_data_delete($topic_comment['image_filename2']);
-    db_image_data_delete($topic_comment['image_filename3']);
+    db_image_data_delete($topic_comment['image_filename1'], $topic_comment['c_member_id']);
+    db_image_data_delete($topic_comment['image_filename2'], $topic_comment['c_member_id']);
+    db_image_data_delete($topic_comment['image_filename3'], $topic_comment['c_member_id']);
     db_file_delete_c_file($topic_comment['filename']);
 
     $sql = 'DELETE FROM c_commu_topic_comment WHERE c_commu_topic_comment_id = ?';

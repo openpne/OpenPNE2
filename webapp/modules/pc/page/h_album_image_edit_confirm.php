@@ -51,6 +51,23 @@ class pc_page_h_album_image_edit_confirm extends OpenPNE_Action
             }
             $tmpfile = t_image_save2tmp($upfile, $sessid, "a_{$target_c_album_id}_1", $image['format']);
 
+            // 画像アップロード可能サイズチェック
+            $del_file = array();
+            if ($c_album_image['image_filename']) {
+                $del_file[] = $c_album_image['image_filename'];
+            }
+            $result = util_image_check_change_image_upload($image['size'], $del_file, $u, 'album');
+            if ($result) {
+                t_image_clear_tmp($sessid);
+                $msg = util_image_get_upload_err_msg($result);
+                $p = array(
+                    'msg' => $msg,
+                    'target_c_album_id' => $target_c_album_id,
+                    'target_c_album_image_id' => $target_c_album_image_id,
+                );
+                openpne_redirect('pc', 'page_h_album_image_edit', $p);
+            }
+
             // 置き換えたときのファイルサイズを出すために、追加ファイルサイズから置き換わるファイルサイズを減算
             $filesize = $upfile['size'] - $c_album_image['filesize'];
 

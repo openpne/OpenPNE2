@@ -98,6 +98,7 @@
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('access_analysis_month')})&amp;ktai_flag=0">PCページ月次集計</a></li>
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('access_analysis_month')})&amp;ktai_flag=1">携帯ページ月次集計</a></li>
 ({/if})
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('image_analysis_category')})">カテゴリ別画像容量表示</a></li>
 </ul>
 </li>
 
@@ -152,9 +153,10 @@
 ({if $smarty.const.OPENPNE_USE_DECORATION})
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_deco')})">文字装飾設定</a></li>
 ({/if})
-({if $smarty.const.OPENPNE_USE_ALBUM})
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_album_limit')})">アルバム容量制限設定</a></li>
-({/if})
+({* ({if $smarty.const.OPENPNE_USE_ALBUM}) *})
+({* <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_album_limit')})">アルバム容量制限設定</a></li> *})
+({* ({/if}) *})
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_image_limit')})">画像容量制限設定</a></li>
 </ul>
 </li>
 

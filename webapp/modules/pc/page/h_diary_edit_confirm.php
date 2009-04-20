@@ -40,6 +40,7 @@ class pc_page_h_diary_edit_confirm extends OpenPNE_Action
             '',
         );
 
+        $filesize = 0;
         foreach ($upfiles as $key => $upfile) {
             if (!empty($upfile) && $upfile['error'] !== UPLOAD_ERR_NO_FILE) {
                 if (!($image = t_check_image($upfile))) {
@@ -47,6 +48,7 @@ class pc_page_h_diary_edit_confirm extends OpenPNE_Action
                     openpne_forward('pc', 'page', 'h_diary_edit');
                     exit;
                 } else {
+                    $filesize += $image['size'];
                     $tmpfiles[$key] = t_image_save2tmp($upfile, $sessid, "d_{$key}", $image['format']);
                 }
             }
@@ -61,6 +63,36 @@ class pc_page_h_diary_edit_confirm extends OpenPNE_Action
         foreach ($category_list as $value) {
             if (mb_strwidth($value) > 20) {
                 $_REQUEST['msg'] = 'カテゴリはひとつにつき全角10文字（半角20文字）以内で入力してください';
+                openpne_forward('pc', 'page', 'h_diary_edit');
+                exit;
+            }
+        }
+
+        // 画像アップロード可能サイズチェック
+        $c_diary = db_diary_get_c_diary4id($target_c_diary_id);
+        $del_file = array();
+        if ($_FILES['upfile_1']) {
+            if ($c_diary['image_filename_1']) {
+                $del_file[] = $c_diary['image_filename_1'];
+            }
+        }
+        if ($_FILES['upfile_2']) {
+            if ($c_diary['image_filename_2']) {
+                $del_file[] = $c_diary['image_filename_2'];
+            }
+        }
+        if ($_FILES['upfile_3']) {
+            if ($c_diary['image_filename_3']) {
+                $del_file[] = $c_diary['image_filename_3'];
+            }
+        }
+        if ($filesize) {
+            $result = util_image_check_change_image_upload($filesize, $del_file, $u, 'diary');
+            if ($result) {
+                if ($result == 2) {
+                    $result = 3;
+                }
+                $_REQUEST['msg'] = util_image_get_upload_err_msg($result);
                 openpne_forward('pc', 'page', 'h_diary_edit');
                 exit;
             }
