@@ -253,16 +253,6 @@
 </div></div>
 ({* }}} *})
 ({/if})
-
-({else})
-({* {{{ simpleBox *})
-<div class="dparts simpleBox"><div class="parts">
-<div class="partsHeading"><h3>コメントを書く</h3></div>
-<div class="block">
-<p>現在、この({$WORD_DIARY_HALF})にはコメントできません。</p>
-</div>
-</div></div>
-({* }}} *})
 ({/if})
 
 </div><!-- Center -->
