@@ -35,13 +35,17 @@ class ktai_do_f_message_send_insert_c_message extends OpenPNE_Action
         //---
 
         if (is_null($subject) || $subject === '') {
-            $p = array('target_c_member_id' => $c_member_id_to, 'msg' => 2);
-            openpne_redirect('ktai', 'page_f_message_send', $p);
+            $_REQUEST['target_c_member_id'] = $c_member_id_to;
+            $_REQUEST['msg'] = 2;
+            openpne_forward('ktai', 'page', 'f_message_send');
+            exit;
         }
 
         if (is_null($body) || $body === '') {
-            $p = array('target_c_member_id' => $c_member_id_to, 'msg' => 1);
-            openpne_redirect('ktai', 'page_f_message_send', $p);
+            $_REQUEST['target_c_member_id'] = $c_member_id_to;
+            $_REQUEST['msg'] = 1;
+            openpne_forward('ktai', 'page', 'f_message_send');
+            exit;
         }
 
         if (is_null($save)) {
