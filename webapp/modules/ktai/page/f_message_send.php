@@ -12,6 +12,8 @@ class ktai_page_f_message_send extends OpenPNE_Action
 
         // --- リクエスト変数
         $target_c_member_id = $requests['target_c_member_id'];
+        $subject = $requests['subject'];
+        $body = $requests['body'];
         // ----------
 
         if (db_member_is_access_block($u, $target_c_member_id)) {
@@ -24,6 +26,11 @@ class ktai_page_f_message_send extends OpenPNE_Action
 
         //ターゲットの情報
         $this->set("target_c_member", db_member_c_member4c_member_id_LIGHT($target_c_member_id));
+
+        $form_val = array();
+        $form_val['subject'] = $subject;
+        $form_val['body'] = $body;
+        $this->set("form_val", $form_val);
 
         return 'success';
     }
