@@ -3540,6 +3540,8 @@ function db_commu_is_changed_c_commu_name($c_commu_id, $name)
  */
 function db_commu_update_is_display_topic_home($c_commu_id, $c_member_id, $is_display_topic_home)
 {
+    pne_cache_drop('db_commu_c_commu_topic_comment_list4c_member_id', (int)$c_member_id, 5);
+    pne_cache_drop('db_commu_c_commu_topic_comment_list4c_member_id', (string)$c_member_id, 5);
     $data = array(
         'is_display_topic_home' => (bool)$is_display_topic_home,
     );
