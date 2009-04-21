@@ -863,9 +863,10 @@ function db_friend_delete_c_friend_confirm($c_friend_confirm_id, $u)
  */
 function db_friend_update_is_display_friend_home($c_member_id_from, $c_member_id_to, $is_display_friend_home)
 {
-   $data = array(
+    pne_cache_drop('p_h_home_c_diary_friend_list4c_member_id', (int)$c_member_id_from, 5);
+    pne_cache_drop('p_h_home_c_diary_friend_list4c_member_id', (string)$c_member_id_from, 5);
+    $data = array(
         'is_display_friend_home' => (bool)$is_display_friend_home,
-
     );
     $where = array(
         'c_member_id_from'  => intval($c_member_id_from),
