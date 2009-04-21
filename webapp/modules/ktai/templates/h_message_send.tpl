@@ -19,10 +19,10 @@
 <a href="({t_url m=ktai a=page_h_message_send})&amp;({$tail})">ここ</a>を押して画面を更新してください。</font><br>
 <br>
 <font color="#({$ktai_color_config.font_06})">件名：</font><br>
-<input type="text" name="subject" value="({form_val.subject})"><br>
+<input type="text" name="subject" value="({$form_val.subject})"><br>
 <br>
 <font color="#({$ktai_color_config.font_06})">本文：</font><br>
-<textarea name="body" rows="6">({form_val.body})</textarea><br>
+<textarea name="body" rows="6">({$form_val.body})</textarea><br>
 <center>
 <input type="submit" value="ﾒｯｾｰｼﾞを送る">
 </center>
