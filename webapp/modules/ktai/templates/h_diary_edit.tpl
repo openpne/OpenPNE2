@@ -45,7 +45,7 @@
 
 ({if $smarty.const.OPENPNE_USE_DIARY_COMMENT})
 <font color="#({$ktai_color_config.font_06})">ｺﾒﾝﾄ許可：</font><br>
-<input type="checkbox" name="is_comment_input" value="1"({if $target_c_diary.is_comment_input == "1"}) checked="checked"({/if})>許可する<br>
+<input type="checkbox" name="is_comment_input" value="1"({if $target_c_diary.is_comment_input}) checked="checked"({/if})>許可する<br>
 <br>
 ({/if})
 
