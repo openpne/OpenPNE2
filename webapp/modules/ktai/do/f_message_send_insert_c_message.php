@@ -37,12 +37,14 @@ class ktai_do_f_message_send_insert_c_message extends OpenPNE_Action
             $_REQUEST['target_c_member_id'] = $c_member_id_to;
             $_REQUEST['msg'] = 2;
             openpne_forward('ktai', 'page', 'f_message_send');
+            exit;
         }
 
         if (is_null($body) || $body === '') {
             $_REQUEST['target_c_member_id'] = $c_member_id_to;
             $_REQUEST['msg'] = 1;
             openpne_forward('ktai', 'page', 'f_message_send');
+            exit;
         }
 
         db_message_send_message($u, $c_member_id_to, $subject, $body);
