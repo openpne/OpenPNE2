@@ -88,9 +88,9 @@ function clearAll() {
 ({if $calendar})
 <div class="item calendar">
 <div class="partsHeading"><h3>
-({if $ym.prev_month})<a href="({t_url m=pc a=page_h_message_box})&amp;target_c_member_id=({$target_member.c_member_id})&amp;box=({$box})&amp;year=({$ym.prev_year})&amp;month=({$ym.prev_month})">＜</a>({/if})
+({if $ym.prev_month})<a href="({t_url m=pc a=page_h_message_box})&amp;target_c_member_id=({$target_member.c_member_id})&amp;box=({$box})&amp;year=({$ym.prev_year})&amp;month=({$ym.prev_month})">&lt;&lt;</a>({/if})
 ({$date_val.month})月のカレンダー
-({if $ym.next_month})<a href="({t_url m=pc a=page_h_message_box})&amp;target_c_member_id=({$target_member.c_member_id})&amp;box=({$box})&amp;year=({$ym.next_year})&amp;month=({$ym.next_month})">＞</a>({/if})
+({if $ym.next_month})<a href="({t_url m=pc a=page_h_message_box})&amp;target_c_member_id=({$target_member.c_member_id})&amp;box=({$box})&amp;year=({$ym.next_year})&amp;month=({$ym.next_month})">&gt;&gt;</a>({/if})
 </h3></div>
 <table class="calendar">
 <tr>
