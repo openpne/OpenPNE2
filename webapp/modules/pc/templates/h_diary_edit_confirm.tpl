@@ -35,7 +35,7 @@
 <tr>
 <th>コメント許可</th>
 <td>
-({if $form_val.is_comment_input == "1"})
+({if $form_val.is_comment_input})
 コメント許可する
 ({else})
 コメント許可しない

@@ -342,9 +342,9 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({/foreach})
 </select>
 <input type="submit" class="input_submit" value="　追　加　" />
-<a href="({t_url m=pc a=page_h_home})&amp;w=({$w-1})" title="前の週">＜</a>
+<a href="({t_url m=pc a=page_h_home})&amp;w=({$w-1})" title="前の週">&lt;&lt;</a>
 <a href="({t_url m=pc a=page_h_home})" title="今週">■</a>
-<a href="({t_url m=pc a=page_h_home})&amp;w=({$w+1})" title="次の週">＞</a>
+<a href="({t_url m=pc a=page_h_home})&amp;w=({$w+1})" title="次の週">&gt;&gt;</a>
 ({/t_form_block})
 </div>
 

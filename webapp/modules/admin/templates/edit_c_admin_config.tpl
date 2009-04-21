@@ -246,7 +246,8 @@
 <select class="basic" name="OPENPNE_USE_DIARY_COMMENT">
 <option value="1"({if $smarty.const.OPENPNE_USE_DIARY_COMMENT}) selected="selected"({/if})>使用する</option>
 <option value="0"({if !$smarty.const.OPENPNE_USE_DIARY_COMMENT}) selected="selected"({/if})>使用しない</option>
-</select></td>
+</select><br />
+<span class="caution">※「使用する」にすると({$WORD_DIARY})のコメントを禁止するかしないかが選択できるようになります</span></td>
 </tr>
 <tr>
 <th colspan="2">文字装飾使用設定</th>
