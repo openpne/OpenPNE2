@@ -7,9 +7,9 @@
 
 <div class="item calendar">
 <div class="partsHeading"><h3>
-({if $ym.prev_month})<a href="({t_url m=pc a=page_fh_diary_list})&amp;target_c_member_id=({$target_member.c_member_id})&amp;year=({$ym.prev_year})&amp;month=({$ym.prev_month})">＜</a>({/if})
+({if $ym.prev_month})<a href="({t_url m=pc a=page_fh_diary_list})&amp;target_c_member_id=({$target_member.c_member_id})&amp;year=({$ym.prev_year})&amp;month=({$ym.prev_month})">&lt;&lt;</a>({/if})
 ({$date_val.month})月のカレンダー
-({if $ym.next_month})<a href="({t_url m=pc a=page_fh_diary_list})&amp;target_c_member_id=({$target_member.c_member_id})&amp;year=({$ym.next_year})&amp;month=({$ym.next_month})">＞</a>({/if})
+({if $ym.next_month})<a href="({t_url m=pc a=page_fh_diary_list})&amp;target_c_member_id=({$target_member.c_member_id})&amp;year=({$ym.next_year})&amp;month=({$ym.next_month})">&gt;&gt;</a>({/if})
 </h3></div>
 <table class="calendar">
 <tr>
@@ -163,7 +163,7 @@
 <tr>
 <th>コメント許可</th>
 <td>
-<input type="checkbox" class="input_checkbox" name="is_comment_input" id="is_comment_input" value="1"({if $diary.is_comment_input == "1"}) checked="checked"({/if}) /><label for="is_comment_input">許可する</label>
+<input type="checkbox" class="input_checkbox" name="is_comment_input" id="is_comment_input" value="1"({if $diary.is_comment_input}) checked="checked"({/if}) /><label for="is_comment_input">許可する</label>
 </td>
 </tr>
 ({/if})
