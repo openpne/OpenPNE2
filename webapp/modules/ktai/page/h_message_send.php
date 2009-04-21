@@ -15,6 +15,7 @@ class ktai_page_h_message_send extends OpenPNE_Action
 
         // --- リクエスト変数
         $form_val['target_c_message_id'] = $requests['target_c_message_id'];
+        $target_c_member_id = $requests['target_c_member_id'];
         $subject = $requests['subject'];
         $body = $requests['body'];
         // ----------
@@ -31,18 +32,20 @@ class ktai_page_h_message_send extends OpenPNE_Action
             if ($requests['msg']) { // 内容の不備によるリダイレクト時
                 $form_val['subject'] = $subject;
                 $form_val['body'] = $body;
+                if ($target_c_member_id) {
+                    $this->set("target_c_member", db_member_c_member4c_member_id_LIGHT($target_c_member_id));
+                }
             } else {
                 $form_val['subject'] = $c_message['subject'];
                 $form_val['body'] = $c_message['body'];
+                if (isset($c_message['c_member_id_to'])) {
+                    $this->set("target_c_member", db_member_c_member4c_member_id_LIGHT($c_message['c_member_id_to']));
+                }
             }
 
             $form_val['target_c_message_id'] = $c_message['c_message_id'];
             $form_val['hensinmoto_c_message_id'] = $c_message['hensinmoto_c_message_id'];
             $this->set("form_val", $form_val);
-
-            if (isset($c_message['c_member_id_to'])) {
-                $this->set("target_c_member", db_member_c_member4c_member_id_LIGHT($c_message['c_member_id_to']));
-            }
         } else {
             $form_val['subject'] = $subject;
             $form_val['body'] = $body;
