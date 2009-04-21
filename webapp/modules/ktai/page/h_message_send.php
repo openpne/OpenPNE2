@@ -11,7 +11,7 @@ class ktai_page_h_message_send extends OpenPNE_Action
         $u  = $GLOBALS['KTAI_C_MEMBER_ID'];
 
         //ランダム５０人のフレンド
-        $this->set("c_friend_list", db_friend_ktai_c_friend_list_random4c_member_id($u));
+        $this->set('c_friend_list', db_friend_ktai_c_friend_list_random4c_member_id($u));
 
         // --- リクエスト変数
         $form_val['target_c_message_id'] = $requests['target_c_message_id'];
@@ -29,27 +29,29 @@ class ktai_page_h_message_send extends OpenPNE_Action
                 handle_kengen_error();
             }
 
-            if ($requests['msg']) { // 内容の不備によるリダイレクト時
-                $form_val['subject'] = $subject;
-                $form_val['body'] = $body;
-                if ($target_c_member_id) {
-                    $this->set("target_c_member", db_member_c_member4c_member_id_LIGHT($target_c_member_id));
-                }
-            } else {
-                $form_val['subject'] = $c_message['subject'];
-                $form_val['body'] = $c_message['body'];
-                if (isset($c_message['c_member_id_to'])) {
-                    $this->set("target_c_member", db_member_c_member4c_member_id_LIGHT($c_message['c_member_id_to']));
-                }
+            // 内容の不備によるリダイレクト時は値を上書き
+            if ($requests['msg']) {
+                $c_message['subject'] = $subject;
+                $c_message['body'] = $body;
+                $c_message['c_member_id_to'] = $target_c_member_id;
             }
 
-            $form_val['target_c_message_id'] = $c_message['c_message_id'];
-            $form_val['hensinmoto_c_message_id'] = $c_message['hensinmoto_c_message_id'];
-            $this->set("form_val", $form_val);
+            if (isset($c_message['c_member_id_to'])) {
+                $this->set('target_c_member', db_member_c_member4c_member_id_LIGHT($c_message['c_member_id_to']));
+            }
+
+            $form_val = array(
+                'target_c_message_id' => $c_message['c_message_id'],
+                'hensinmoto_c_message_id' => $c_message['hensinmoto_c_message_id'],
+                'subject' => $c_message['subject'],
+                'body' => $c_message['body'],
+            );
+
+            $this->set('form_val', $form_val);
         } else {
             $form_val['subject'] = $subject;
             $form_val['body'] = $body;
-            $this->set("form_val", $form_val);
+            $this->set('form_val', $form_val);
         }
 
         return 'success';
