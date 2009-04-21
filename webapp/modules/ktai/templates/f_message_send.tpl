@@ -14,9 +14,9 @@
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
 <input type="hidden" name="c_member_id_to" value="({$target_c_member.c_member_id})">
 <font color="#({$ktai_color_config.font_06})">件名：</font><br>
-<input type="text" name="subject"><br>
+<input type="text" name="subject" value="({$form_val.subject})"><br>
 <font color="#({$ktai_color_config.font_06})">ﾒｯｾｰｼﾞ：</font><br>
-<textarea name="body" rows="6"></textarea>
+<textarea name="body" rows="6">({$form_val.body})</textarea>
 <center>
 <input type="submit" value="ﾒｯｾｰｼﾞを送る">
 <input type="submit" name="save" value="下書き保存">
