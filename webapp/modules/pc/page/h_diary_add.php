@@ -10,6 +10,8 @@ class pc_page_h_diary_add extends OpenPNE_Action
     {
         $u = $GLOBALS['AUTH']->uid();
 
+        $form_val = array();
+        $c_member = array();
         // --- リクエスト変数
         $form_val['subject'] = $requests['subject'];
         $form_val['body'] = $requests['body'];
@@ -28,8 +30,6 @@ class pc_page_h_diary_add extends OpenPNE_Action
         if (empty($form_val['public_flag'])) {
             $form_val['public_flag'] = $c_member['public_flag_diary'];
         }
-        $form_val['public_flag'] = util_cast_public_flag_diary($form_val['public_flag']);
-
         $this->set("target_member", $c_member);
         $this->set("form_val", $form_val);
 
@@ -46,6 +46,7 @@ class pc_page_h_diary_add extends OpenPNE_Action
         $this->set("date_val", $date_val);
 
         //日記のカレンダー
+        $calendar = array();
         $calendar = db_common_diary_monthly_calendar($year, $month, $u);
 
         $this->set("calendar", $calendar['days']);
