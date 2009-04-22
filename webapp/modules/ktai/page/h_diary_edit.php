@@ -12,31 +12,18 @@ class ktai_page_h_diary_edit extends OpenPNE_Action
 
         // --- リクエスト変数
         $target_c_diary_id = $requests['target_c_diary_id'];
-        $subject = $requests['subject'];
-        $body = $requests['body'];
-        $public_flag = $requests['public_flag'];
         // ----------
 
         $c_member = db_member_c_member4c_member_id($u);
         if ($target_c_diary_id) {
             $c_diary = db_diary_get_c_diary4id($target_c_diary_id);
+            $this->set('target_c_diary', $c_diary);
 
             if ($c_diary['c_member_id'] != $u) {
                 handle_kengen_error();
             }
-
-            // 内容の不備によるリダイレクト時は値を上書き
-            if ($requests['msg']) {
-                $c_diary['subject'] = $subject;
-                $c_diary['body'] = $body;
-                $c_diary['public_flag'] = $public_flag;
-            }
-
-            $this->set('target_c_diary', $c_diary);
         } else {
-            $c_diary['public_flag'] = $public_flag ? $public_flag : $c_member['public_flag_diary'];
-            $c_diary['subject'] = $subject;
-            $c_diary['body'] = $body;
+            $c_diary['public_flag'] = $c_member['public_flag_diary'];
             $this->set('target_c_diary', $c_diary);
         }
 
