@@ -17,6 +17,8 @@ class ktai_page_h_diary_edit extends OpenPNE_Action
         $public_flag = $requests['public_flag'];
         // ----------
 
+        $c_member = array();
+        $c_diary  = array();
         $c_member = db_member_c_member4c_member_id($u);
         if ($target_c_diary_id) {
             $c_diary = db_diary_get_c_diary4id($target_c_diary_id);
@@ -28,15 +30,17 @@ class ktai_page_h_diary_edit extends OpenPNE_Action
             if ($requests['msg']) {
                 $c_diary['subject'] = $subject;
                 $c_diary['body'] = $body;
+                $c_diary['public_flag'] = $public_flag;
             }
 
+            $this->set('target_c_diary', $c_diary);
         } else {
             $c_diary['is_comment_input'] = 1;
             $c_diary['public_flag'] = $public_flag ? $public_flag : $c_member['public_flag_diary'];
             $c_diary['subject'] = $subject;
             $c_diary['body'] = $body;
+            $this->set('target_c_diary', $c_diary);
         }
-        $this->set('target_c_diary', $c_diary);
 
         if (MAIL_ADDRESS_HASHED) {
             $mail_address = "b{$u}-".t_get_user_hash($u)."@".MAIL_SERVER_DOMAIN;
