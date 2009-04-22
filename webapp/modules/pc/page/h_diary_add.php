@@ -28,6 +28,8 @@ class pc_page_h_diary_add extends OpenPNE_Action
         if (empty($form_val['public_flag'])) {
             $form_val['public_flag'] = $c_member['public_flag_diary'];
         }
+        $form_val['public_flag'] = util_cast_public_flag_diary($form_val['public_flag']);
+
         $this->set("target_member", $c_member);
         $this->set("form_val", $form_val);
 
