@@ -30,13 +30,12 @@ class ktai_page_h_album_edit extends OpenPNE_Action
                 $c_album['public_flag'] = $public_flag;
             }
 
-            $this->set('target_c_album', $c_album);
         } else {
             $c_album['subject'] = $subject;
             $c_album['description'] = $description;
-            $c_album['public_flag'] = $public_flag ? $public_flag : "public";
-            $this->set('target_c_album', $c_album);
+            $c_album['public_flag'] = $public_flag ? $public_flag : 'public';
         }
+        $this->set('target_c_album', $c_album);
 
         if (MAIL_ADDRESS_HASHED) {
             $mail_address = "a{$u}-".t_get_user_hash($u)."@".MAIL_SERVER_DOMAIN;
