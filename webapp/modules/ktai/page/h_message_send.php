@@ -47,12 +47,11 @@ class ktai_page_h_message_send extends OpenPNE_Action
                 'body' => $c_message['body'],
             );
 
-            $this->set('form_val', $form_val);
         } else {
             $form_val['subject'] = $subject;
             $form_val['body'] = $body;
-            $this->set('form_val', $form_val);
         }
+        $this->set('form_val', $form_val);
 
         return 'success';
     }
