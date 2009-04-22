@@ -25,8 +25,8 @@ class pc_page_f_message_send extends OpenPNE_Action
             handle_kengen_error();
         }
 
+        $c_message = db_message_c_message4c_message_id($form_val['target_c_message_id']);
         if ($form_val['target_c_message_id']) {
-            $c_message = db_message_c_message4c_message_id($form_val['target_c_message_id']);
             if ($c_message['c_member_id_from'] != $u) {
                 if ($c_message['c_member_id_to'] != $u || !$c_message['is_send']) {
                     handle_kengen_error();
@@ -43,26 +43,20 @@ class pc_page_f_message_send extends OpenPNE_Action
         }
 
         //メッセージIDから情報を取り出す
-        if ($box == "savebox" && $form_val['target_c_message_id']) {
-            $tmplist = db_message_c_message4c_message_id($form_val['target_c_message_id']);
-            if ($requests['msg1'] || $requests['msg2']) {
-                $form_val['subject'] = $form_val['subject'];
-                $form_val['body'] = $form_val['body'];
-            } else {
-                $form_val['subject'] = $tmplist['subject'];
-                $form_val['body'] = $tmplist['body'];
+        $form_val['target_c_message_id'] = $c_message['c_message_id'];
+        if ($box == 'savebox' && $form_val['target_c_message_id']) {
+            if (!$requests['msg1'] && !$requests['msg2']) {
+                $form_val['subject'] = $c_message['subject'];
+                $form_val['body'] = $c_message['body'];
             }
-            $form_val['target_c_message_id'] = $tmplist['c_message_id'];
-            if ($tmplist['c_member_id_to']) {
-                $target_c_member_id = $tmplist['c_member_id_to'];
+            if ($c_message['c_member_id_to']) {
+                $target_c_member_id = $c_message['c_member_id_to'];
             }
         } elseif (!$syusei && $form_val['target_c_message_id']) {
-            $tmplist = db_message_c_message4c_message_id($form_val['target_c_message_id']);
-            $form_val['body'] = message_body2inyou($tmplist['body']);
-            $form_val['subject'] = "Re:".$tmplist['subject'];
-            $form_val['target_c_message_id'] = $tmplist['c_message_id'];
-            if ($tmplist['c_member_id_from']) {
-                $target_c_member_id = $tmplist['c_member_id_from'];
+            $form_val['body'] = message_body2inyou($c_message['body']);
+            $form_val['subject'] = "Re:".$c_message['subject'];
+            if ($c_message['c_member_id_from']) {
+                $target_c_member_id = $c_message['c_member_id_from'];
             }
         }
 
@@ -71,18 +65,18 @@ class pc_page_f_message_send extends OpenPNE_Action
             handle_kengen_error();
         }
 
-        $this->set('inc_navi', fetch_inc_navi("f", $target_c_member_id));
+        $this->set('inc_navi', fetch_inc_navi('f', $target_c_member_id));
 
         //ターゲット情報
-        $this->set("target_member", $target_member);
+        $this->set('target_member', $target_member);
 
         //ターゲットのid
-        $this->set("target_c_member_id", $target_c_member_id);
+        $this->set('target_c_member_id', $target_c_member_id);
         //ターゲットのid
-        $this->set("target_c_message_id", $form_val['target_c_message_id']);
+        $this->set('target_c_message_id', $form_val['target_c_message_id']);
 
-        $this->set("form_val", $form_val);
-        $this->set("box", $box);
+        $this->set('form_val', $form_val);
+        $this->set('box', $box);
 
         // 許可されている拡張子のリスト
         $this->set('allowed_extensions', util_get_file_allowed_extensions('string'));
