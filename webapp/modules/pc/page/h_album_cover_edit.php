@@ -27,6 +27,7 @@ class pc_page_h_album_cover_edit extends OpenPNE_Action
         }
 
         //--- 権限チェック
+        $album = array();
         $album = db_album_get_c_album4c_album_id($target_c_album_id);
         if($album['c_member_id'] != $u){
             handle_kengen_error();
