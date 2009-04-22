@@ -17,6 +17,7 @@ class ktai_page_h_album_edit extends OpenPNE_Action
         $public_flag = $requests['public_flag'];
         // ----------
 
+        $c_album = array();
         if ($target_c_album_id) {
             $c_album = db_album_get_c_album4c_album_id($target_c_album_id);
             if ($c_album['c_member_id'] != $u) {
@@ -30,12 +31,13 @@ class ktai_page_h_album_edit extends OpenPNE_Action
                 $c_album['public_flag'] = $public_flag;
             }
 
+            $this->set('target_c_album', $c_album);
         } else {
             $c_album['subject'] = $subject;
             $c_album['description'] = $description;
-            $c_album['public_flag'] = $public_flag ? $public_flag : 'public';
+            $c_album['public_flag'] = $public_flag ? $public_flag : "public";
+            $this->set('target_c_album', $c_album);
         }
-        $this->set('target_c_album', $c_album);
 
         if (MAIL_ADDRESS_HASHED) {
             $mail_address = "a{$u}-".t_get_user_hash($u)."@".MAIL_SERVER_DOMAIN;

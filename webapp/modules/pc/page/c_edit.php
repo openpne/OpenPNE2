@@ -32,6 +32,7 @@ class pc_page_c_edit extends OpenPNE_Action
 
         $this->set('inc_navi', fetch_inc_navi('c', $target_c_commu_id));
         //コミュニティデータ取得
+        $c_commu = array();
         $c_commu = db_commu_c_commu4c_commu_id($target_c_commu_id);
         $c_commu_category_id_now = $c_commu['c_commu_category_id'];
         if ($name) {
@@ -57,6 +58,7 @@ class pc_page_c_edit extends OpenPNE_Action
         $this->set('c_commu', $c_commu);
 
         // カテゴリリスト
+        $c_commu_category_list = array();
         $c_commu_category_list = db_commu_c_commu_category4is_create_commu();
 
         // 現在設定されているカテゴリが作成不可ならば、別途取得
