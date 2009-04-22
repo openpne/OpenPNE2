@@ -30,12 +30,10 @@ class pc_page_h_album_image_edit_confirm extends OpenPNE_Action
         t_image_clear_tmp($sessid);
 
         // アルバムの写真データ取得
-        $c_album_image = array();
         $c_album_image = db_album_image_get_c_album_image4id($target_c_album_image_id);
         $target_c_album_id = $c_album_image['c_album_id'];
 
         //アルバムデータ取得
-        $c_album = array();
         $c_album = db_album_get_c_album4c_album_id($target_c_album_id);
         //--- 権限チェック
         if ($u != $c_album['c_member_id']) {

@@ -9,7 +9,6 @@ class pc_page_f_message_send extends OpenPNE_Action
     function execute($requests)
     {
         $u = $GLOBALS['AUTH']->uid();
-        $form_val = array();
 
         // --- リクエスト変数
         $target_c_member_id = $requests['target_c_member_id'];

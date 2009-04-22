@@ -17,7 +17,6 @@ class ktai_page_h_album_edit extends OpenPNE_Action
         $public_flag = $requests['public_flag'];
         // ----------
 
-        $c_album = array();
         if ($target_c_album_id) {
             $c_album = db_album_get_c_album4c_album_id($target_c_album_id);
             if ($c_album['c_member_id'] != $u) {
