@@ -366,7 +366,7 @@ function db_friend_c_friend_list_disp4c_member_id($c_member_id, $page = 1, $size
     $c_friend_list = db_get_all_page($sql, $page, $size, $params);
 
     foreach ($c_friend_list as $key => $value) {
-        $c_friend = db_friend_c_friend4c_member_id_from4c_member_id_to($value['c_member_id_from'], $value['c_member_id_to']);
+        $c_friend = db_friend_c_friend4c_member_id_from4c_member_id_to($value['c_member_id_to'], $value['c_member_id_from']);
         $c_friend_list[$key]['intro'] = $c_friend['intro'];
 
         $c_friend_list[$key]['friend_count'] = db_friend_count_friends($value['c_member_id_from']);
