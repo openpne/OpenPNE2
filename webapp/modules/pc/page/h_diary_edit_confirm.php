@@ -69,7 +69,6 @@ class pc_page_h_diary_edit_confirm extends OpenPNE_Action
         }
 
         // 画像アップロード可能サイズチェック
-        $c_diary = array();
         $c_diary = db_diary_get_c_diary4id($target_c_diary_id);
         $del_file = array();
         if ($_FILES['upfile_1']) {

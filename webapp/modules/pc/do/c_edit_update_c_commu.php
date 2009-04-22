@@ -30,7 +30,6 @@ class pc_do_c_edit_update_c_commu extends OpenPNE_Action
         //--- 権限チェック
         //コミュニティ管理者
 
-        $status = array();
         $status = db_common_commu_status($u, $target_c_commu_id);
         if (!$status['is_commu_admin']) {
             handle_kengen_error();

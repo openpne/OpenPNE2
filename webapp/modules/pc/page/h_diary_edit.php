@@ -19,7 +19,6 @@ class pc_page_h_diary_edit extends OpenPNE_Action
         $is_comment_input = $requests['is_comment_input'];
         // ----------
 
-        $c_diary = array();
         $c_diary = db_diary_get_c_diary4id($target_c_diary_id);
 
         // target が指定されていない
@@ -65,7 +64,6 @@ class pc_page_h_diary_edit extends OpenPNE_Action
         $this->set("date_val", $date_val);
 
         //日記のカレンダー
-        $calendar = array();
         $calendar = db_common_diary_monthly_calendar($year, $month, $u);
 
         $this->set("calendar", $calendar['days']);
