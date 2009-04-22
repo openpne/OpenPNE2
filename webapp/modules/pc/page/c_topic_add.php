@@ -24,7 +24,6 @@ class pc_page_c_topic_add extends OpenPNE_Action
         }
 
         //--- 権限チェック
-        $c_commu = array();
         $c_commu = db_commu_c_commu4c_commu_id2($c_commu_id);
 
         // トピック作成権限
