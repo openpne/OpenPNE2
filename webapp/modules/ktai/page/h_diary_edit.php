@@ -17,8 +17,6 @@ class ktai_page_h_diary_edit extends OpenPNE_Action
         $public_flag = $requests['public_flag'];
         // ----------
 
-        $c_member = array();
-        $c_diary  = array();
         $c_member = db_member_c_member4c_member_id($u);
         if ($target_c_diary_id) {
             $c_diary = db_diary_get_c_diary4id($target_c_diary_id);
