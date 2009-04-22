@@ -31,7 +31,7 @@ class ktai_do_o_password_query extends OpenPNE_Action
                 $p = array('msg' => 22);
                 openpne_redirect('ktai', 'page_o_password_query', $p);
             }
-            if (strlen($q_answer) == 0) {
+            if (is_null($q_answer) || $q_answer === '') {
                 $p = array('msg' => 23);
                 openpne_redirect('ktai', 'page_o_password_query', $p);
             }
