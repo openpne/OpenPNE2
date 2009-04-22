@@ -15,8 +15,6 @@ class pc_page_c_event_edit extends OpenPNE_Action
         $err_msg = $requests['err_msg'];
         // ----------
 
-        $c_topic = array();
-        $c_commu = array();
         $c_topic = db_commu_c_topic4c_commu_topic_id_2($c_commu_topic_id);
         $c_commu_id = $c_topic['c_commu_id'];
 

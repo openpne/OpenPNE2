@@ -13,7 +13,6 @@ class ktai_page_h_message_send extends OpenPNE_Action
         //ランダム５０人のフレンド
         $this->set('c_friend_list', db_friend_ktai_c_friend_list_random4c_member_id($u));
 
-        $form_val = array();
         // --- リクエスト変数
         $form_val['target_c_message_id'] = $requests['target_c_message_id'];
         $target_c_member_id = $requests['target_c_member_id'];
@@ -21,7 +20,6 @@ class ktai_page_h_message_send extends OpenPNE_Action
         $body = $requests['body'];
         // ----------
 
-        $c_message = array();
         //メッセージIDから情報を取り出す
         if (isset($form_val['target_c_message_id'])) {
             $c_message = db_message_c_message4c_message_id($form_val['target_c_message_id']);

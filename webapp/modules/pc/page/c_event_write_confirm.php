@@ -22,7 +22,6 @@ class pc_page_c_event_write_confirm extends OpenPNE_Action
         //添付ファイル
         $upfile_obj4 = $_FILES['uploadfile'];
 
-        $c_topic = array();
         $c_topic = db_commu_c_topic4c_commu_topic_id_2($c_commu_topic_id);
         $c_commu_id = $c_topic['c_commu_id'];
 
