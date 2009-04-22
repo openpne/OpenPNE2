@@ -30,14 +30,13 @@ class ktai_page_h_diary_edit extends OpenPNE_Action
                 $c_diary['body'] = $body;
                 $c_diary['public_flag'] = $public_flag;
             }
-
         } else {
             $c_diary['is_comment_input'] = 1;
             $c_diary['public_flag'] = $public_flag ? $public_flag : $c_member['public_flag_diary'];
             $c_diary['subject'] = $subject;
             $c_diary['body'] = $body;
         }
-            $this->set('target_c_diary', $c_diary);
+        $this->set('target_c_diary', $c_diary);
 
         if (MAIL_ADDRESS_HASHED) {
             $mail_address = "b{$u}-".t_get_user_hash($u)."@".MAIL_SERVER_DOMAIN;
