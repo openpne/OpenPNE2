@@ -1,6 +1,6 @@
 //MASTER:flipclip.net.js SLAVE:www.flipclip.net.js
 function url2cmd(url) {
-    if (!url.match(/^http:\/\/(?:www\.|)flipclip\.net\/clips\/([a-zA-Z0-9_\-]+)$/)) {
+    if (!url.match(/^http:\/\/(?:www\.|)flipclip\.net\/clips\/(?:[a-zA-Z0-9_\-]+\/|)([a-zA-Z0-9_\-]+)\/?$/)) {
         pne_url2a(url);
         return;
     }
