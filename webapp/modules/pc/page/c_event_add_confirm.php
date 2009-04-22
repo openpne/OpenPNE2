@@ -15,7 +15,6 @@ class pc_page_c_event_add_confirm extends OpenPNE_Action
         // ----------
 
         //--- 権限チェック
-        $c_commu = array();
         $c_commu = db_commu_c_commu4c_commu_id2($target_c_commu_id);
 
         switch ($c_commu['is_topic']) {
