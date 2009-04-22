@@ -22,6 +22,7 @@ class pc_page_fh_diary_comment_confirm extends OpenPNE_Action
         $body = $requests['body'];
         // ----------
 
+        $target_diary = array();
         $target_diary = db_diary_get_c_diary4id($target_c_diary_id);
         $target_c_member_id = $target_diary['c_member_id'];
 

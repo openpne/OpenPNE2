@@ -19,6 +19,7 @@ class pc_page_f_message_send_confirm extends OpenPNE_Action
         $u = $GLOBALS['AUTH']->uid();
 
         // --- リクエスト変数
+        $form_val = array();
         $form_val['target_c_member_id'] = $requests['target_c_member_id'];
         $form_val['subject'] = $requests['subject'];
         $form_val['body'] = $requests['body'];

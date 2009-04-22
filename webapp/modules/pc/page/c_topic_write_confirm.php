@@ -86,6 +86,7 @@ class pc_page_c_topic_write_confirm extends OpenPNE_Action
         }
         //-----
 
+        $c_topic = array();
         $c_topic = db_commu_c_topic4c_commu_topic_id($c_commu_topic_id);
         $c_commu_id = $c_topic['c_commu_id'];
 
