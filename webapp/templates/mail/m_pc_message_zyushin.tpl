@@ -6,6 +6,20 @@
 メッセージボックスに({$c_member_from.nickname})さんから
 メッセージが届いています。
 
+―――― < ({$c_member_from.nickname})さん >からあなたへのメッセージ ――― 
+ 
+({if $subject}) 
+件名: 
+({$subject|t_truncate:50:"...":1:0}) 
+({/if}) 
+ 
+({if $body}) 
+本文: 
+({$body|t_truncate:150:"...":1:0}) 
+({/if}) 
+ 
+――――――――――――――――――――――――――――― 
+
 メッセージの内容を確認するには
 以下のURLをクリックしてください。
 ({$OPENPNE_URL})?m=pc&a=page_h_message&target_c_message_id=({$c_message_id})
