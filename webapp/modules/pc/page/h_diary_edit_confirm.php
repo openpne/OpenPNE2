@@ -9,6 +9,9 @@ class pc_page_h_diary_edit_confirm extends OpenPNE_Action
     function handleError($errors)
     {
         $_REQUEST['msg'] = array_shift($errors);
+        if (OPENPNE_USE_DIARY_COMMENT && is_null($_REQUEST['is_comment_input'])) {
+            $_REQUEST['is_comment_input'] = 0;
+        }
         openpne_forward('pc', 'page', 'h_diary_edit', $errors);
         exit;
     }

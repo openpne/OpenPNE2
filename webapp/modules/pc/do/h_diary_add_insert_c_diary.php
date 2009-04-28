@@ -72,6 +72,10 @@ class pc_do_h_diary_add_insert_c_diary extends OpenPNE_Action
             }
         }
 
+        if (!OPENPNE_USE_DIARY_COMMENT) {
+            $is_comment_input = 1;
+        }
+
         $c_diary_id = db_diary_insert_c_diary($c_member_id, $subject, $body, $public_flag, $is_comment_input);
 
         foreach($category as $value) {
