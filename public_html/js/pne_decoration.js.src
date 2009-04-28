@@ -17,6 +17,8 @@ function pne_toggle_mce_editor(id)
         editor.hide();
         document.getElementById('mce_editor_buttonmenu').style.display = "block";
     }
+
+    return false;
 }
 
 function pne_mce_editor_init()
@@ -53,7 +55,7 @@ function pne_mce_editor_init()
 
 function pne_mce_insert_tagname(id, tagname, opt)
 {
-    var opt = opt || "";
+    opt = opt || "";
 
     var elm = document.getElementById(id);
 
@@ -76,7 +78,7 @@ function pne_mce_insert_tagname(id, tagname, opt)
 
 function pne_mce_show_color_table(id, tagname)
 {
-    var table = document.getElementById("mce_editor_color_table")
+    var table = document.getElementById("mce_editor_color_table");
     if (table) {
         if (table.style.display == 'none') {
             table.style.display = 'block';
@@ -108,7 +110,7 @@ function pne_mce_show_color_table(id, tagname)
     for (var i = 0; i < settings.colors.length; i++) {
         var code = "#" + settings.colors[i];
 
-        if (i == 0 || i % settings.grid_width == 0) {
+        if (i === 0 || i % settings.grid_width === 0) {
             tr = document.createElement("tr");
             Element.addClassName(tr, 'disabledHideColorTable');
             tbody.appendChild(tr);
@@ -146,7 +148,7 @@ function pne_mce_show_color_table(id, tagname)
         tr.appendChild(td);
     }
 
-    var table = document.createElement("table");
+    table = document.createElement("table");
     table.id = "mce_editor_color_table";
     table.style.width = "auto";
     table.style.position = "absolute";
@@ -172,7 +174,7 @@ function pne_mce_hide_color_table(e)
         return;
     }
 
-    var table = document.getElementById("mce_editor_color_table")
+    var table = document.getElementById("mce_editor_color_table");
     table.style.display = 'none';
     Event.stopObserving(document, 'mousedown', pne_mce_hide_color_table);
 }
