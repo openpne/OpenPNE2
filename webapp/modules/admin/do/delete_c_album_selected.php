@@ -13,19 +13,19 @@ class admin_do_delete_c_album_selected extends OpenPNE_Action
         }
 
         $target_c_album_ids = $requests['target_c_album_ids'];
-		$id_ary = split(":", $target_c_album_ids);
+        $id_ary = split(":", $target_c_album_ids);
 
-		foreach ($id_ary as $id) {
-        	$album = db_album_get_c_album4c_album_id($id);
+        foreach ($id_ary as $id) {
+            $album = db_album_get_c_album4c_album_id($id);
 
-        	if (!$album) {
-        	    admin_client_redirect('edit_album_list', '指定されたアルバムは存在しません');
-        	}
-		}
+            if (!$album) {
+                admin_client_redirect('edit_album_list', '指定されたアルバムは存在しません');
+            }
+        }
 
-		foreach ($id_ary as $id) {
-        	db_album_delete_c_album($id);
-		}
+        foreach ($id_ary as $id) {
+            db_album_delete_c_album($id);
+        }
 
         admin_client_redirect('edit_album_list', 'アルバムを削除しました');
     }
