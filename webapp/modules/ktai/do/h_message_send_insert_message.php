@@ -86,7 +86,7 @@ class ktai_do_h_message_send_insert_message extends OpenPNE_Action
                 }
             }
 
-	     $p = array('box' => 'outbox');
+            $p = array('box' => 'outbox');
         } else {
             if (!isset($target_c_message_id)) {
                 // 下書きメッセージ新規保存
