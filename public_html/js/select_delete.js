@@ -14,7 +14,7 @@ var add_event = function () {
         // フォームの送信
         $("select-delete-form").submit();
     };
-    
+
     // ボタンにイベントを追加
     Event.observe("select-delete", "click", do_select_delete, false);
 };
