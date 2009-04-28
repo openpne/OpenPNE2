@@ -16,26 +16,26 @@ class admin_page_delete_album_confirm_selected extends OpenPNE_Action
 
         $target_c_album_ids = $requests['target_c_album_ids'];
 
-		// アルバムが選択されていない場合はエラー
-		if (!$target_c_album_ids) {
-        	admin_client_redirect('edit_album_list', "アルバムが選択されていません");
-		}
+        // アルバムが選択されていない場合はエラー
+        if (!$target_c_album_ids) {
+            admin_client_redirect('edit_album_list', "アルバムが選択されていません");
+        }
 
-		$id_ary = split(":", $target_c_album_ids);
+        $id_ary = split(":", $target_c_album_ids);
 
-		$album_list = array();
-		foreach ($id_ary as $id) {
-        	$album = db_album_get_c_album4c_album_id($id);
+        $album_list = array();
+        foreach ($id_ary as $id) {
+            $album = db_album_get_c_album4c_album_id($id);
 
-        	if (!$album) {
-        	    admin_client_redirect('edit_album_list', '指定されたアルバムは存在しません');
-        	}
+            if (!$album) {
+                admin_client_redirect('edit_album_list', '指定されたアルバムは存在しません');
+            }
 
-        	$member = db_member_c_member4c_member_id($album['c_member_id']);
-        	$album['c_member'] = $member;
+            $member = db_member_c_member4c_member_id($album['c_member_id']);
+            $album['c_member'] = $member;
 
-			array_push($album_list, $album);
-		}
+            array_push($album_list, $album);
+        }
         $this->set('album_list', $album_list);
         $this->set('target_c_album_ids', $target_c_album_ids);
 
