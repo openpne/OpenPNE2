@@ -19,4 +19,4 @@ function pne_mce_hide_color_table(e)
 var table=document.getElementById("mce_editor_color_table")
 table.style.display='none';Event.stopObserving(document,'mousedown',pne_mce_hide_color_table);}
 function pne_insert_str_to_selection(elm,str)
-{var selection=new Selection(elm);var pos=selection.create();elm.focus();var head=elm.value.substring(0,pos.start);var tail=elm.value.substring(pos.end,elm.value.length);elm.value=head+str+tail;}
+{var selection;elm.focus();if(undefined!==window.execScript){selection=window.opener.document.selection.createRange();selection.text=str+selection.text;}else{selection=new Selection(elm);var pos=selection.create();var head=elm.value.substring(0,pos.start);var tail=elm.value.substring(pos.end,elm.value.length);elm.value=head+str+tail;}}
