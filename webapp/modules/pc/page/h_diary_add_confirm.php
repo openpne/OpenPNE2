@@ -11,6 +11,9 @@ class pc_page_h_diary_add_confirm extends OpenPNE_Action
         $_REQUEST['msg1'] = $errors['subject'];
         $_REQUEST['msg2'] = $errors['body'];
         $_REQUEST['msg3'] = $errors['public_flag'];
+        if (OPENPNE_USE_DIARY_COMMENT && is_null($_REQUEST['is_comment_input'])) {
+            $_REQUEST['is_comment_input'] = 0;
+        }
         openpne_forward('pc', 'page', 'h_diary_add', $errors);
         exit;
     }
