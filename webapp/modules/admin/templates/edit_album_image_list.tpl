@@ -30,6 +30,9 @@
 ({if !$album_image_list})
 <p id="noAlbum">該当するアルバムが存在しません</p>
 ({else})
+
+<script type="text/javascript" src="./js/select_delete.js"></script>
+
 ({capture name="pager"})
 <div class="listControl">
 <p class="display">
@@ -56,6 +59,7 @@
 <tr>
 <th>ID</th>
 <td class="type1">
+<input type="checkbox" name="del" value="({$item.c_album_image_id})" />
 ({$item.c_album_image_id})
 </td>
 </tr>
@@ -101,6 +105,13 @@
 </tbody>
 </table>
 ({/foreach})
+
+<form id="select-delete-form" action="./" method="get">
+<input type="hidden" name="m" value="({$module_name})" />
+<input type="hidden" name="a" value="page_({$hash_tbl->hash('delete_album_image_confirm_selected')})" />
+<input type="hidden" id="del-ids" name="target_c_album_image_ids" value="" />
+<span class="textBtnS"><input type="button" id="select-delete" value="選択したアルバム写真を削除" /></span>
+</form>
 
 <div class="listControl" id="pager02">
 ({$smarty.capture.pager|smarty:nodefaults})
