@@ -37,6 +37,8 @@
 
 ({else})
 
+<script type="text/javascript" src="./js/select_delete.js"></script>
+
 ({if $page_list})
 ({capture name="pager"})
 <div class="listControl">
@@ -62,6 +64,7 @@
 <tr>
 <th>ID</th>
 <td class="type1">
+<input type="checkbox" name="del" value="({$item.c_commu_topic_id})" />
 ({$item.c_commu_topic_id})
 </td>
 </tr>
@@ -175,6 +178,13 @@
 </tbody>
 </table>
 ({/foreach})
+
+<form id="select-delete-form" action="./" method="get">
+<input type="hidden" name="m" value="({$module_name})" />
+<input type="hidden" name="a" value="page_({$hash_tbl->hash('delete_topic_selected')})" />
+<input type="hidden" id="del-ids" name="target_c_commu_topic_ids" value="" />
+<span class="textBtnS"><input type="button" id="select-delete" value="選択したトピックを削除" /></span>
+</form>
 
 ({if $page_list})
 ({$smarty.capture.pager|smarty:nodefaults})
