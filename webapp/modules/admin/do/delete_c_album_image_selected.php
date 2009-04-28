@@ -13,19 +13,19 @@ class admin_do_delete_c_album_image_selected extends OpenPNE_Action
         }
 
         $target_c_album_image_ids = $requests['target_c_album_image_ids'];
-		$id_ary = split(":", $target_c_album_image_ids);
+        $id_ary = split(":", $target_c_album_image_ids);
 
-		foreach ($id_ary as $id) {
-        	$album_image = db_album_image_get_c_album_image4id($id);
+        foreach ($id_ary as $id) {
+            $album_image = db_album_image_get_c_album_image4id($id);
 
-        	if (!$album_image) {
-        	    admin_client_redirect('edit_album_image_list', '指定された写真は存在しません');
-        	}
-		}
+            if (!$album_image) {
+                admin_client_redirect('edit_album_image_list', '指定された写真は存在しません');
+            }
+        }
 
-		foreach ($id_ary as $id) {
-        	db_album_delete_c_album_image($id);
-		}
+        foreach ($id_ary as $id) {
+            db_album_delete_c_album_image($id);
+        }
 
         admin_client_redirect('edit_album_image_list', 'アルバムを削除しました');
     }
