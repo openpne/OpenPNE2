@@ -51,15 +51,14 @@ class ktai_do_f_message_send_insert_c_message extends OpenPNE_Action
         if (is_null($save)) {
             // メッセージ送信
             db_message_send_message($u, $c_member_id_to, $subject, $body);
-	    $p = array('target_c_member_id' => $c_member_id_to);
-	    openpne_redirect('ktai', 'page_f_home', $p);
+            $p = array('target_c_member_id' => $c_member_id_to);
+            openpne_redirect('ktai', 'page_f_home', $p);
+        } else {
+            // 下書きメッセージ保存
+            db_message_insert_message_to_is_save($c_member_id_to, $u, $subject, $body, '0');
+            $p = array('box' => 'savebox');
+            openpne_redirect('ktai', 'page_h_message_box', $p);
         }
-        else {
-	  // 下書きメッセージ保存
-	  db_message_insert_message_to_is_save($c_member_id_to, $u, $subject, $body, '0');
-	  $p = array('box' => 'savebox');
-	  openpne_redirect('ktai', 'page_h_message_box', $p);
-	}
 
     }
 }
