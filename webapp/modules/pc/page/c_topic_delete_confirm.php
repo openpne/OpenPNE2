@@ -26,7 +26,7 @@ class pc_page_c_topic_delete_confirm extends OpenPNE_Action
             handle_kengen_error();
         }
         $c_commu = db_commu_c_commu4c_commu_id2($c_commu_id);
-        if ($c_commu['is_topic'] == 'admin_only' &&
+        if ($c_commu['topic_authority'] == 'admin_only' &&
             !db_commu_is_c_commu_admin($c_commu_id, $u)) {
             handle_kengen_error();
         }

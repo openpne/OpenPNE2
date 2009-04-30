@@ -16,7 +16,7 @@
 
 ({else})
 
-({if ($c_commu.is_topic == 'member' && $is_c_commu_member) || ($c_commu.is_topic == 'admin_only' && $is_c_commu_admin) || ($c_commu.is_topic == 'public')})
+({if ($c_commu.topic_authority == 'public' && $is_c_commu_member) || ($c_commu.topic_authority == 'admin_only' && $is_c_commu_admin)})
 ({* {{{ infoButtonBox *})
 <div class="dparts infoButtonBox"><div class="parts">
 <div class="partsHeading"><h3>イベントを作成する</h3></div>
@@ -70,8 +70,10 @@
 </div>
 <div class="footer">
 <p>
-({if ($c_commu.is_topic == 'admin_only' && $is_c_commu_admin) || ($c_commu.is_topic == 'member' && $item.is_c_topic_admin) || ($c_commu.is_topic == 'public' && $item.is_c_topic_admin)})
+({if $item.is_c_topic_admin || $is_c_commu_admin})
+({if ($c_commu.topic_authority == 'public')||($c_commu.topic_authority == 'admin_only' && $is_c_commu_admin)})
 <a href="({t_url m=pc a=page_c_topic_edit})&amp;target_c_commu_topic_id=({$item.c_commu_topic_id})">編集</a> |
+({/if})
 ({/if})
 <a href="({t_url m=pc a=page_c_topic_detail})&amp;target_c_commu_topic_id=({$item.c_commu_topic_id})">もっと見る(({$item.write_num}))</a>
 </p>
