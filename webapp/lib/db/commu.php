@@ -210,11 +210,17 @@ function db_commu_is_c_commu_view4c_commu_idAc_member_id($c_commu_id,$c_member_i
 
     $is_c_commu_member = db_commu_is_c_commu_member($c_commu_id, $c_member_id);
 
-    switch($c_commu['is_open']) {
+    switch($c_commu['public_flag']) {
     case "public":
         $ret = true;
         break;
-    case "member":
+    case "auth_public":
+        $ret = true;
+        break;
+    case "auth_sns":
+        $ret = true;
+        break;
+    case "auth_commu_member":
         if ($is_c_commu_member) {
             $ret = true;
         } else {
@@ -1390,11 +1396,13 @@ function db_common_commu_status($u, $target_c_commu_id)
         }
     }
 
-    switch ($ret['c_commu']['is_open']) {
+    switch ($ret['c_commu']['public_flag']) {
     case "public":
+    case "auth_public":
+    case "auth_sns":
         $ret['is_bbs_view'] = true;
         break;
-    case "member":
+    case "auth_commu_member":
         $ret['is_bbs_view'] = $ret['is_commu_member'];
         break;
     }
@@ -1462,7 +1470,7 @@ function db_commu_get_c_join_status($c_member_id,$c_commu_id)
     }
  
     $c_commu = db_commu_c_commu4c_commu_id($c_commu_id);
-    if ($c_commu['is_admit'] == "public") {
+    if ($c_commu['public_flag'] == "public") {
         return STATUS_C_JOIN_REQUEST_FREE;
     }
 
@@ -2418,19 +2426,17 @@ function db_commu_c_commu_member_id_list4c_commu_id($c_commu_id)
  * @param  string  $name  コミュニティ名
  * @param  int     $c_commu_category_id
  * @param  string  $info  説明文
- * @param  enum('public', 'auth')  $is_admit
- * @param  enum('public', 'member')  $is_open
+ * @param  enum('public', 'authpublic', 'authprivate')  $public_flag
  * @return int  insert_id
  */
-function db_commu_insert_c_commu($c_member_id, $name, $c_commu_category_id, $info, $is_admit, $is_open)
+function db_commu_insert_c_commu($c_member_id, $name, $c_commu_category_id, $info, $public_flag)
 {
     $data = array(
         'name' => $name,
         'c_member_id_admin' => intval($c_member_id),
         'info' => $info,
         'c_commu_category_id' => intval($c_commu_category_id),
-        'is_admit' => $is_admit,
-        'is_open' => $is_open,
+        'public_flag' => $public_flag,
         'r_datetime' => db_now(),
         'r_date' => db_now(),
         'u_datetime' => db_now(),
@@ -2444,17 +2450,14 @@ function db_commu_insert_c_commu($c_member_id, $name, $c_commu_category_id, $inf
  *
  * @param   int    $c_commu_id
  * @param   string $name
- * @param   enum('member','admin_only','public') $is_topic
- * @param   enum('member','public') $is_comment
  * @param   int    $c_commu_category_id
  * @param   string $info
- * @param   enum('member','public') $is_admint
- * @param   enum('member','public') $is_open
+ * @param   enum(string or int) $public_flag
+ *                      ('public'(0), 'authpublic'(1), 'authprivate'(2))
  * @return bool
  */
 function db_commu_update_c_commu($c_commu_id,
-    $name, $is_topic, $is_comment, $c_commu_category_id, $info,
-    $is_admit, $is_open,
+    $name, $topic_authority, $c_commu_category_id, $info, $public_flag,
     $image_filename = '', $is_send_join_mail = 1)
 {
     //function cacheの削除
@@ -2462,12 +2465,10 @@ function db_commu_update_c_commu($c_commu_id,
 
     $data = array(
         'name' => $name,
-        'is_topic' => $is_topic,
-        'is_comment' => $is_comment,
+        'topic_authority' => $topic_authority,
         'info' => $info,
         'c_commu_category_id' => intval($c_commu_category_id),
-        'is_admit' => $is_admit,
-        'is_open' => $is_open,
+        'public_flag' => $public_flag,
         'is_send_join_mail' => (bool)$is_send_join_mail,
         'u_datetime' => db_now(),
     );
@@ -3317,7 +3318,7 @@ function db_commu_search_c_commu_topic(
         $where .= ' AND ct.c_commu_id = ?';
         $params[] = $c_commu_id;
     } else {
-        $where .= " AND c.is_open ='public'";
+        $where .= " AND c.public_flag IN ('public', 'auth_sns')";
     }
     if ($search_word) {
         $words = explode(' ', $search_word);
@@ -3385,7 +3386,7 @@ function p_h_home_c_topic_all_list($limit)
     $sql = 'SELECT ct.*,c.name as c_commu_name, c.c_commu_id'
           . ' FROM c_commu_topic as ct'
           . ' INNER JOIN c_commu as c USING(c_commu_id)'
-          . ' WHERE c.is_open = \'public\''
+          . ' WHERE c.public_flag IN (\'public\', \'auth_sns\')'
           . ' ORDER BY u_datetime DESC';
     $c_topic_all_list = db_get_all_limit($sql,0,$limit);
     foreach($c_topic_all_list as $key=>$value) {
@@ -3445,7 +3446,7 @@ function db_commu_new_topic_list(
         $where .= ' AND ct.c_commu_id = ?';
         $params[] = $c_commu_id;
     } else {
-        $where .= " AND c.is_open = 'public'";
+        $where .= " AND c.public_flag IN ('public', 'auth_sns')";
     }
     switch ($type) {
     case 'topic':
