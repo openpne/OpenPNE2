@@ -30,7 +30,7 @@ class ktai_page_h_message_send extends OpenPNE_Action
             }
 
             // 内容の不備によるリダイレクト時は値を上書き
-            if ($requests['msg']) {
+            if ($requests['msg'] && !$c_message) {
                 $c_message['subject'] = $subject;
                 $c_message['body'] = $body;
                 $c_message['c_member_id_to'] = $target_c_member_id;
