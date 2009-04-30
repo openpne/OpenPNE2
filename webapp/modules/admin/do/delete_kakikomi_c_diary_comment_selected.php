@@ -25,6 +25,7 @@ class admin_do_delete_kakikomi_c_diary_comment_selected extends OpenPNE_Action
         foreach ($diary_comment_list as $diary_comment) {
             db_diary_delete_c_diary_comment($diary_comment['c_diary_comment_id'], $diary_comment['c_member_id']);
         }
+
         admin_client_redirect('diary_comment_list', WORD_DIARY . 'コメントを削除しました');
     }
 }
