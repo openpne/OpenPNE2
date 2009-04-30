@@ -12,8 +12,7 @@ class admin_do_delete_c_album_selected extends OpenPNE_Action
             handle_kengen_error();
         }
 
-        $target_c_album_ids = $requests['target_c_album_ids'];
-        $id_ary = split(":", $target_c_album_ids);
+        $id_ary = split(":", $requests['target_c_album_ids']);
 
         foreach ($id_ary as $id) {
             $album = db_album_get_c_album4c_album_id($id);
