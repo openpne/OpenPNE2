@@ -24,19 +24,12 @@
 </td>
 </tr>
 <tr>
-<th>参加条件</th>
+<th>参加条件と公開範囲</th>
 <td>
 <ul>
-<li><input type="radio" class="input_radio" name="is_admit" id="is_admit_public" value="public"({if $form_val.is_admit=="public" || !$form_val.is_admit}) checked="checked"({/if}) /><label for="is_admit_public">誰でも参加可能</label></li>
-<li><input type="radio" class="input_radio" name="is_admit" id="is_admit_auth" value="auth"({if $form_val.is_admit=="auth"}) checked="checked"({/if}) /><label for="is_admit_auth">管理者の承認が必要</label></li>
-</ul>
-</td>
-</tr>
-<th>公開範囲</th>
-<td>
-<ul>
-<li><input type="radio" class="input_radio" name="is_open" id="is_open_public" value="public"({if $form_val.is_open=="public" || !$form_val.is_open}) checked="checked"({/if}) /><label for="is_open_public">全員に公開</label></li>
-<li><input type="radio" class="input_radio" name="is_open" id="is_open_member" value="member"({if $form_val.is_open=="member"}) checked="checked"({/if}) /><label for="is_open_member">({$WORD_COMMUNITY})参加者にのみ公開</label></li>
+({foreach from=$public_flag_list item=item key=key})
+<li><input type="radio" class="input_radio" name="public_flag" id="public_flag_({$key})" value="({$key})"({if $key==$form_val.public_flag||($key=="public"&&!$form_val.public_flag)}) checked="checked"({/if}) /><label for="public_flag_({$key})">({$item})</label></li>
+({/foreach})
 </ul>
 </td>
 </tr>
