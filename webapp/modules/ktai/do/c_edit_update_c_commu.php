@@ -21,10 +21,8 @@ class ktai_do_c_edit_update_c_commu extends OpenPNE_Action
         $name = $requests['name'];
         $c_commu_category_id = $requests['c_commu_category_id'];
         $info = $requests['info'];
-        $is_admit = $requests['is_admit'];
-        $is_open = $requests['is_open'];
-        $is_topic = $requests['is_topic'];
-        $is_comment = $requests['is_comment'];
+        $public_flag = $requests['public_flag'];
+        $topic_authority = $requests['topic_authority'];
 
         if (   db_commu_is_changed_c_commu_name($target_c_commu_id, $name)
             && db_commu_is_commu4c_commu_name($name)) {
@@ -37,18 +35,6 @@ class ktai_do_c_edit_update_c_commu extends OpenPNE_Action
             $p = array('target_c_commu_id' => $target_c_commu_id, 'msg' => 50);
             openpne_redirect('ktai', 'page_c_edit', $p);
         }
- 
-        if ($is_open == 'member') {
-            if ($is_topic == 'public') {
-                $p = array('target_c_commu_id' => $target_c_commu_id, 'msg' => 53);
-                openpne_redirect('ktai', 'page_c_edit', $p);
-            }
-            if ($is_comment == 'public') {
-                $p = array('target_c_commu_id' => $target_c_commu_id, 'msg' => 54);
-                openpne_redirect('ktai', 'page_c_edit', $p);
-            }
-        }
-
         // ----------
 
         //--- 権限チェック
@@ -62,7 +48,7 @@ class ktai_do_c_edit_update_c_commu extends OpenPNE_Action
 
         // 承認待ちメンバー登録処理
         $c_commu = db_commu_c_commu4c_commu_id($target_c_commu_id);
-        if ($is_admit == 'public' && $is_admit != $c_commu['is_admit']) {
+        if ($public_flag == 'public' && $public_flag != $c_commu['public_flag']) {
             $c_commu_member_confirm_list = db_commu_c_commu_member_confirm4c_commu_id($target_c_commu_id);
             foreach ($c_commu_member_confirm_list as $c_commu_member_confirm) {
                 db_commu_join_c_commu($target_c_commu_id, $c_commu_member_confirm['c_member_id']);
@@ -71,7 +57,7 @@ class ktai_do_c_edit_update_c_commu extends OpenPNE_Action
             }
         }
 
-        db_commu_update_c_commu($target_c_commu_id, $name, $is_topic, $is_comment, $c_commu_category_id, $info, $is_admit, $is_open);
+        db_commu_update_c_commu($target_c_commu_id, $name, $topic_authority, $c_commu_category_id, $info, $public_flag);
 
         $p = array('target_c_commu_id' => $target_c_commu_id);
         openpne_redirect('ktai', 'page_c_home', $p);

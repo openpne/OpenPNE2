@@ -121,38 +121,19 @@ show_flash('flash/list.swf', '({$flashvars})');
 ({/if})
 <tr><th>カテゴリ</th><td>({$c_commu.c_commu_category.name})</td></tr>
 <tr><th>メンバー数</th><td>({$c_commu.member_count|default:"0"})人</td></tr>
-<tr><th>参加条件</th><td>
-({if $c_commu.is_admit == 'public'})
-誰でも参加可能
-({elseif $c_commu.is_admit == 'auth'})
-管理者の承認が必要
-({/if})
-</td></tr>
-<tr><th>公開範囲</th><td>
-({if $c_commu.is_open == 'public'})
-全員に公開
-({elseif $c_commu.is_open == 'member'})
-({$WORD_COMMUNITY})参加者にのみ公開
-({/if})
-</td></tr>
-<tr><th>トピック作成</th><td>
-({if $c_commu.is_topic == 'member'})
-参加者のみ作成可能
-({elseif $c_commu.is_topic == 'admin_only'})
-管理者のみ作成可能
-({elseif $c_commu.is_topic == 'public'})
-誰でも作成可能
-({/if})
-</td></tr>
-<tr><th>コメント作成</th><td>
-({if $c_commu.is_comment == 'member'})
-参加者のみ作成可能
-({elseif $c_commu.is_comment == 'public'})
-誰でも作成可能
+<tr><th>参加条件と<br />公開範囲</th><td>
+({if $c_commu.public_flag == 'public'})
+だれでも参加できる(公開)
+({elseif $c_commu.public_flag == 'auth_public'})
+管理者の承認が必要(公開)
+({elseif $c_commu.public_flag == 'auth_sns'})
+管理者の承認が必要(公開)
+({elseif $c_commu.public_flag == 'auth_commu_member'})
+管理者の承認が必要(非公開)
 ({/if})
 </td></tr>
 <tr><th>({$WORD_COMMUNITY})<br />説明文</th><td>({$c_commu.info|nl2br|t_url2cmd:'community':$c_commu.c_member_id_admin|t_cmd:'community'})</td></tr>
-({if $is_c_commu_member || $c_commu.is_open != "member"})
+({if $is_c_commu_member || $c_commu.public_flag != "auth_commu_member"})
 ({if $new_topic_comment})
 <tr class="communityTopic"><th>({$WORD_COMMUNITY})<br />掲示板</th><td>
 <ul class="articleList">
@@ -162,7 +143,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 </ul>
 <div class="moreInfo"><ul class="moreInfo">
 <li><a href="({t_url m=pc a=page_c_topic_list})&amp;target_c_commu_id=({$c_commu.c_commu_id})">もっと読む</a></li>
-({if ($c_commu.is_topic == 'member' && $is_c_commu_member) || ($c_commu.is_topic == 'admin_only' && $is_c_commu_admin) || ($c_commu.is_topic == 'public')})
+({if ($c_commu.topic_authority == 'public' && $is_c_commu_member) || ($c_commu.topic_authority == 'admin_only' && $is_c_commu_admin)})
 <li><a href="({t_url m=pc a=page_c_topic_add})&amp;target_c_commu_id=({$c_commu.c_commu_id})">トピックを作成</a></li>
 ({/if})
 </ul></div>
@@ -177,7 +158,7 @@ show_flash('flash/list.swf', '({$flashvars})');
 </ul>
 <div class="moreInfo"><ul class="moreInfo">
 <li><a href="({t_url m=pc a=page_c_event_list})&amp;target_c_commu_id=({$c_commu.c_commu_id})">もっと読む</a></li>
-({if ($c_commu.is_topic == 'member' && $is_c_commu_member) || ($c_commu.is_topic == 'admin_only' && $is_c_commu_admin) || ($c_commu.is_topic == 'public')})
+({if ($c_commu.topic_authority == 'public' && $is_c_commu_member) || ($c_commu.topic_authority == 'admin_only' && $is_c_commu_admin)})
 <li><a href="({t_url m=pc a=page_c_event_add})&amp;target_c_commu_id=({$c_commu.c_commu_id})">イベントを作成</a></li>
 ({/if})
 </ul></div>
@@ -197,10 +178,10 @@ show_flash('flash/list.swf', '({$flashvars})');
 </td></tr>
 ({/if})
 ({/if})
-({if ($is_c_commu_member && (!$new_topic_comment || !$new_topic_comment_event || $is_c_commu_admin)) || ($c_commu.is_topic == 'public')})
+({if $is_c_commu_member && (!$new_topic_comment || !$new_topic_comment_event || $is_c_commu_admin)})
 <tr><td class="halfway" colspan="2"><ul class="moreInfo">
-({if $is_c_commu_member || $c_commu.is_open != "member"})
-({if ($c_commu.is_topic == 'member' && $is_c_commu_member) || ($c_commu.is_topic == 'admin_only' && $is_c_commu_admin) || ($c_commu.is_topic == 'public')})
+({if $is_c_commu_member || $c_commu.public_flag != "auth_commu_member"})
+({if ($c_commu.topic_authority == 'public' && $is_c_commu_member) || ($c_commu.topic_authority == 'admin_only' && $is_c_commu_admin)})
 ({if !$new_topic_comment})
 <li><a href="({t_url m=pc a=page_c_topic_add})&amp;target_c_commu_id=({$c_commu.c_commu_id})">トピックを作成</a></li>
 ({/if})
