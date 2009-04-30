@@ -20,7 +20,6 @@ class ktai_do_c_bbs_insert_c_commu_topic_comment extends OpenPNE_Action
         // ----------
 
         //--- 権限チェック
-        
         //コミュニティ参加者
 
         $c_commu_topic = db_commu_c_commu_topic4c_commu_topic_id($target_c_commu_topic_id);
@@ -28,18 +27,10 @@ class ktai_do_c_bbs_insert_c_commu_topic_comment extends OpenPNE_Action
             $c_event_member_count = db_commu_count_c_event_member_list4c_commu_topic_id($target_c_commu_topic_id);
         }
         $c_commu_id = $c_commu_topic['c_commu_id'];
-        $c_commu = db_commu_c_commu4c_commu_id($c_commu_topic['c_commu_id']);
-       
-        switch ($c_commu['is_comment']) {
-            case 'public' :
-                //誰でもコメント可能
-                break;
-            case 'member' :
-                $status = db_common_commu_status($u, $c_commu_id);
-                if (!$status['is_commu_member']) {
-                    handle_kengen_error();
-                }
-                break;
+
+        $status = db_common_commu_status($u, $c_commu_id);
+        if (!$status['is_commu_member']) {
+            handle_kengen_error();
         }
         //---
 
