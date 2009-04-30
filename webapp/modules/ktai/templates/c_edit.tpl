@@ -31,23 +31,14 @@
 <font color="#({$ktai_color_config.font_06})">写真：</font><br>
 [i:68]<a href="({t_url m=ktai a=page_c_edit_image})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">写真を編集する</a><br>
 <br>
-<font color="#({$ktai_color_config.font_06})">参加条件：</font><br>
-<input name="is_admit" type="radio" value="public"({if $c_commu.is_admit=='public'}) checked="checked"({/if})>誰でも参加可能<br>
-<input name="is_admit" type="radio" value="auth"({if $c_commu.is_admit=='auth'}) checked="checked"({/if})>管理者の承認が必要<br>
-<br>
-<font color="#({$ktai_color_config.font_06})">公開範囲：</font><br>
-<input name="is_open" type="radio" value="public"({if $c_commu.is_open=='public'}) checked="checked"({/if})>全員に公開<br>
-<input name="is_open" type="radio" value="member"({if $c_commu.is_open=='member'}) checked="checked"({/if})>({$WORD_COMMUNITY_HALF})ﾒﾝﾊﾞｰにのみ公開<br>
+<font color="#({$ktai_color_config.font_06})">参加条件と公開範囲：</font><br>
+<input name="public_flag" type="radio" value="public"({if $c_commu.public_flag=='public'}) checked="checked"({/if})>誰でも参加可能、掲示板は全員に公開<br>
+<input name="public_flag" type="radio" value="auth_sns"({if $c_commu.public_flag=='auth_sns'}) checked="checked"({/if})>参加には管理者の承認が必要、掲示板は全員に公開<br>
+<input name="public_flag" type="radio" value="auth_commu_member"({if $c_commu.public_flag=='auth_commu_member'}) checked="checked"({/if})>参加には管理者の承認が必要、掲示板は({$WORD_COMMUNITY_HALF})ﾒﾝﾊﾞｰにのみ公開<br>
 <br>
 <font color="#({$ktai_color_config.font_06})">ﾄﾋﾟｯｸ作成の権限：</font><br>
-<input name="is_topic" type="radio" value="member"({if $c_commu.is_topic=='member'}) checked="checked"({/if})>({$WORD_COMMUNITY_HALF})参加者が作成可能<br>
-<input name="is_topic" type="radio" value="admin_only"({if $c_commu.is_topic=='admin_only'}) checked="checked"({/if})>管理者のみ作成可能<br>
-<input name="is_topic" type="radio" value="public"({if $c_commu.is_topic=='public'}) checked="checked"({/if})>誰でも作成可能<br>
-<br>
-<font color="#({$ktai_color_config.font_06})">ｺﾒﾝﾄ作成権限：</font><br>
-<input name="is_comment" type="radio" value="member"({if $c_commu.is_comment=='member'}) checked="checked"({/if})>({$WORD_COMMUNITY_HALF})参加者のみ可能<br>
-<input name="is_comment" type="radio" value="public"({if $c_commu.is_comment=='public'}) checked="checked"({/if})>誰でもｺﾒﾝﾄ可能<br>
-<br>
+<input name="topic_authority" type="radio" value="public"({if $c_commu.topic_authority=='public'}) checked="checked"({/if})>({$topic_authority_list.public})<br>
+<input name="topic_authority" type="radio" value="admin_only"({if $c_commu.topic_authority=='admin_only'}) checked="checked"({/if})>({$topic_authority_list.admin_only})<br>
 <hr color="#({$ktai_color_config.border_01})">
 <center>
 <input type="submit" value="({$WORD_COMMUNITY_HALF})を編集する"><br>
