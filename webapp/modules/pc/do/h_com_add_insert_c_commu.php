@@ -18,8 +18,7 @@ class pc_do_h_com_add_insert_c_commu extends OpenPNE_Action
         $name = $requests['name'];
         $c_commu_category_id = $requests['c_commu_category_id'];
         $info = $requests['info'];
-        $is_admit = $requests['is_admit'];
-        $is_open = $requests['is_open'];
+        $public_flag = $requests['public_flag'];
         $tmpfile = $requests['tmpfile'];
         $err_msg = array();
 
@@ -47,7 +46,7 @@ class pc_do_h_com_add_insert_c_commu extends OpenPNE_Action
         // ----------
 
         // コミュニティ作成
-        $c_commu_id = db_commu_insert_c_commu($u, $name, $c_commu_category_id, $info, $is_admit, $is_open);
+        $c_commu_id = db_commu_insert_c_commu($u, $name, $c_commu_category_id, $info, $public_flag);
 
         if ($tmpfile) {
             $filename = image_insert_c_image4tmp("c_{$c_commu_id}", $tmpfile, $u);
