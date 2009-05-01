@@ -48,6 +48,7 @@ class ktai_page_h_message_send extends OpenPNE_Action
             );
 
         } else {
+            $form_val['target_c_member'] = db_member_c_member4c_member_id_LIGHT($target_c_member_id);
             $form_val['target_c_member_id'] = $target_c_member_id;
             $form_val['subject'] = $subject;
             $form_val['body'] = $body;
