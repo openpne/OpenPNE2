@@ -16,8 +16,9 @@
 ({else})
 <br>
 <select name="target_c_member_id">
+({if $form_val.target_c_member_id})<option value="({$form_val.target_c_member_id})" selected="selected">({$form_val.target_c_member.nickname})({/if})
 ({foreach from=$c_friend_list item=c_friend})
-<option value="({$c_friend.c_member_id_to})" ({if $c_friend.c_member_id_to == $form_val.target_c_member_id})selected="selected"({/if})>({$c_friend.nickname})
+({if $c_friend.c_member_id_to != $form_val.target_c_member_id})<option value="({$c_friend.c_member_id_to})">({$c_friend.nickname})({/if})
 ({/foreach})
 </select>
 <br>
