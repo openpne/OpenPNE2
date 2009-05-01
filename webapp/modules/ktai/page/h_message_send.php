@@ -48,6 +48,7 @@ class ktai_page_h_message_send extends OpenPNE_Action
             );
 
         } else {
+            $form_val['target_c_member_id'] = $target_c_member_id;
             $form_val['subject'] = $subject;
             $form_val['body'] = $body;
         }
