@@ -694,6 +694,21 @@ CREATE TABLE c_image (
 
 CREATE INDEX c_image_filename on c_image (filename);
 
+CREATE TABLE c_image_size (
+  c_image_size_id serial NOT NULL,
+  filename text NOT NULL,
+  c_member_id int4 NOT NULL default '0',
+  filesize int4 NOT NULL default '0',
+  image_category varchar(20) NOT NULL default 'other',
+  r_datetime timestamp NOT NULL default '0000-01-01 00:00:00',
+  PRIMARY KEY (c_image_size_id)
+);
+
+CREATE INDEX c_image_size_c_member_id on c_image_size (c_member_id);
+CREATE INDEX c_image_size_c_member_id_image_category on c_image_size (c_member_id,image_category);
+CREATE INDEX c_image_size_filename on c_image_size (filename);
+
+
 CREATE TABLE c_ktai_address_pre (
   c_ktai_address_pre_id serial NOT NULL,
   c_member_id int4 NOT NULL default '0',
@@ -796,6 +811,7 @@ CREATE TABLE c_member_pre (
   ktai_session varchar(255) NOT NULL default '',
   is_disabled_regist_easy_access_id smallint NOT NULL default '0',
   login_id varchar(255) NOT NULL default '',
+  is_sns_entry_confirm smallint NOT NULL default '0',
   PRIMARY KEY  (c_member_pre_id),
   UNIQUE (session)
 );
@@ -1155,6 +1171,7 @@ CREATE TABLE c_tmp_image (
   bin bytea NOT NULL,
   r_datetime timestamp NOT NULL default '0000-01-01 00:00:00',
   type text,
+  filesize int4 NOT NULL default '0',
   PRIMARY KEY  (c_tmp_image_id)
 );
 
