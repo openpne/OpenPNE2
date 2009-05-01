@@ -668,6 +668,19 @@ CREATE TABLE `c_image` (
   KEY `filename` (`filename`(100))
 ) TYPE=MyISAM MAX_ROWS=190000;
 
+CREATE TABLE `c_image_size` (
+  `c_image_size_id` int(11) NOT NULL auto_increment,
+  `filename` text NOT NULL,
+  `c_member_id` int(11) NOT NULL default '0',
+  `filesize` int(11) NOT NULL default '0',
+  `image_category` enum('album','diary','commu','other') NOT NULL default 'other',
+  `r_datetime` datetime NOT NULL default '0000-00-00 00:00:00',
+  PRIMARY KEY  (`c_image_size_id`),
+  KEY `c_member_id` (`c_member_id`),
+  KEY `c_member_id_image_category` (`c_member_id`,`image_category`),
+  KEY `filename` (`filename`(100))
+) TYPE=MyISAM;
+
 CREATE TABLE `c_ktai_address_pre` (
   `c_ktai_address_pre_id` int(11) NOT NULL auto_increment,
   `c_member_id` int(11) NOT NULL default '0',
@@ -769,6 +782,7 @@ CREATE TABLE `c_member_pre` (
   `ktai_session` varchar(255) NOT NULL default '',
   `is_disabled_regist_easy_access_id` tinyint(1) NOT NULL default '0',
   `login_id` varchar(255) NOT NULL default '',
+  `is_sns_entry_confirm` tinyint(1) NOT NULL default '0',
   PRIMARY KEY  (`c_member_pre_id`),
   UNIQUE KEY `session` (`session`)
 ) TYPE=MyISAM;
@@ -1111,6 +1125,7 @@ CREATE TABLE `c_tmp_image` (
   `bin` longblob NOT NULL,
   `r_datetime` datetime NOT NULL default '0000-00-00 00:00:00',
   `type` text,
+  `filesize` int(11) NOT NULL default '0',
   PRIMARY KEY  (`c_tmp_image_id`),
   KEY `filename` (`filename`(100))
 ) TYPE=MyISAM;
