@@ -46,6 +46,7 @@ class ktai_page_c_bbs extends OpenPNE_Action
         //コミュニティ
         $c_commu = db_commu_c_commu4c_commu_topic_id($c_commu_topic_id);
         $c_commu_id = $c_commu['c_commu_id'];
+        $c_commu = db_commu_c_commu4c_commu_id($c_commu_id);
         $this->set('c_commu', $c_commu);
 
         //--- 権限チェック
