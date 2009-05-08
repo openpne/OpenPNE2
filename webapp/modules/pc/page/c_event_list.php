@@ -41,7 +41,7 @@ class pc_page_c_event_list extends OpenPNE_Action
         //--- 権限チェック
         $is_c_commu_member = db_commu_is_c_commu_member($c_commu_id, $u);
 
-        if (!$is_c_commu_member && $c_commu['public_flag'] == "auth_commu_member") {
+        if (!$is_c_commu_member && $c_commu['is_open'] == "member") {
             $is_warning = true;
         } else {
             $is_warning = false;
