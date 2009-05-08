@@ -19,8 +19,10 @@ class pc_do_c_edit_update_c_commu extends OpenPNE_Action
         $name = $requests['name'];
         $c_commu_category_id = $requests['c_commu_category_id'];
         $info = $requests['info'];
-        $public_flag = $requests['public_flag'];
-        $topic_authority = $requests['topic_authority'];
+        $is_admit = $requests['is_admit'];
+        $is_open = $requests['is_open'];
+        $is_topic = $requests['is_topic'];
+        $is_comment = $requests['is_comment'];
         $is_send_join_mail = $requests['is_send_join_mail'];
         // ----------
         $upfile_obj = $_FILES['image_filename'];
@@ -48,6 +50,15 @@ class pc_do_c_edit_update_c_commu extends OpenPNE_Action
         $c_commu = db_commu_c_commu4c_commu_id($target_c_commu_id);
         if (($c_commu_category_id != $c_commu['c_commu_category_id']) && (!db_commu_c_commu_category_is_create_commu($c_commu_category_id))) {
             $err_msg[] = '指定されたカテゴリは選択できません';
+        }
+
+        if ($is_open == 'member') {
+            if ($is_topic == 'public') {
+                $err_msg[] = '公開範囲とトピック作成権限が指定できない組み合わせです';
+            }
+            if ($is_comment == 'public') {
+                $err_msg[] = '公開範囲とコメント作成権限が指定できない組み合わせです';
+            }
         }
 
         if (!empty($upfile_obj) && $upfile_obj['error'] !== UPLOAD_ERR_NO_FILE) {
@@ -89,7 +100,7 @@ class pc_do_c_edit_update_c_commu extends OpenPNE_Action
         }
 
         // 承認待ちメンバー登録処理
-        if ($public_flag == 'public' && $public_flag != $c_commu['public_flag']) {
+        if ($is_admit == 'public' && $is_admit != $c_commu['is_admit']) {
             $member_confirm_list = db_commu_c_commu_member_confirm4c_commu_id($target_c_commu_id);
             foreach ($member_confirm_list as $confirm_id => $c_member_id) {
                 db_commu_join_c_commu($target_c_commu_id, $c_member_id);
@@ -101,10 +112,12 @@ class pc_do_c_edit_update_c_commu extends OpenPNE_Action
         db_commu_update_c_commu(
             $target_c_commu_id,
             $name,
-            $topic_authority,
+            $is_topic,
+            $is_comment,
             $c_commu_category_id,
             $info,
-            $public_flag,
+            $is_admit,
+            $is_open,
             $image_filename,
             $is_send_join_mail);
 
