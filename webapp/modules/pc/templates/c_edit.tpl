@@ -15,18 +15,29 @@
 ({/foreach})
 </select>
 </td></tr>
-<tr><th>参加条件と公開範囲</th><td>
+<tr><th>参加条件</th><td>
 <ul>
-({foreach from=$public_flag_list key=key item=item})
-<li><input type="radio" class="input_radio" name="public_flag" id="public_flag_({$key})" value="({$key})"({if $key == $c_commu.public_flag}) checked="checked"({/if}) /><label for="public_flag_({$key})">({$item})</label></li>
-({/foreach})
+<li><input type="radio" class="input_radio" name="is_admit" id="is_admit_public" value="public"({if $c_commu.is_admit == 'public'}) checked="checked"({/if}) /><label for="is_admit_public">誰でも参加可能</label></li>
+<li><input type="radio" class="input_radio" name="is_admit" id="is_admit_auth" value="auth"({if $c_commu.is_admit == 'auth'}) checked="checked"({/if}) /><label for="is_admit_auth">管理人の承認が必要</label></li>
+</ul>
+</td></tr>
+<tr><th>公開範囲</th><td>
+<ul>
+<li><input type="radio" class="input_radio" name="is_open" id="is_open_public" value="public"({if $c_commu.is_open == 'public'}) checked="checked"({/if}) /><label for="is_open_public">全員に公開</label></li>
+<li><input type="radio" class="input_radio" name="is_open" id="is_open_member" value="member"({if $c_commu.is_open == 'member'}) checked="checked"({/if}) /><label for="is_open_member">({$WORD_COMMUNITY})参加者にのみ公開</label></li>
 </ul>
 </td></tr>
 <tr><th>トピック作成権限</th><td>
 <ul>
-({foreach from=$topic_authority_list key=key item=item})
-<li><input type="radio" class="input_radio" name="topic_authority" id="topic_authority_({$key})" value="({$key})"({if $key == $c_commu.topic_authority}) checked="checked"({/if}) /><label for="topic_authority_({$key})">({$item})</label></li>
-({/foreach})
+<li><input type="radio" class="input_radio" name="is_topic" id="is_topic_member" value="member"({if $c_commu.is_topic == 'member'}) checked="checked"({/if}) /><label for="is_topic_member">({$WORD_COMMUNITY})参加者が作成可能</label></li>
+<li><input type="radio" class="input_radio" name="is_topic" id="is_topic_admin_only" value="admin_only"({if $c_commu.is_topic == 'admin_only'}) checked="checked"({/if}) /><label for="is_topic_admin_only">({$WORD_COMMUNITY})管理者のみが作成可能</label></li>
+<li><input type="radio" class="input_radio" name="is_topic" id="is_topic_public" value="public"({if $c_commu.is_topic == 'public'}) checked="checked"({/if}) /><label for="is_topic_public">誰でも作成可能</label></li>
+</ul>
+</td></tr>
+<tr><th>コメント作成権限</th><td>
+<ul>
+<li><input type="radio" class="input_radio" name="is_comment" id="is_comment_member" value="member"({if $c_commu.is_comment == 'member'}) checked="checked"({/if}) /><label for="is_comment_member">({$WORD_COMMUNITY})参加者のみ可能</label></li>
+<li><input type="radio" class="input_radio" name="is_comment" id="is_comment_public" value="public"({if $c_commu.is_comment == 'public'}) checked="checked"({/if}) /><label for="is_comment_public">誰でもコメント可能</label></li>
 </ul>
 </td></tr>
 <tr><th>({$WORD_COMMUNITY})説明文</th><td><textarea name="info" rows="6" cols="50">({$c_commu.info})</textarea></td></tr>

@@ -129,7 +129,7 @@
 ({/if})
 ({/if})
 
-({if $is_c_commu_member})
+({if $is_c_commu_member || $c_commu.is_comment == 'public'})
 <hr color="#({$ktai_color_config.border_01})">
 <a name="write"></a>
 ({if $msg})
