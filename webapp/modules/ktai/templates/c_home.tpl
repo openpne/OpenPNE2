@@ -33,15 +33,17 @@
 ({/if})
 <font color="#({$ktai_color_config.font_06})">ｶﾃｺﾞﾘ名:</font><br>
 ({$c_commu.c_commu_category.name})<br>
-<font color="#({$ktai_color_config.font_06})">参加条件と公開範囲：</font><br>
-({if $c_commu.public_flag == 'public'})
-だれでも参加できる(公開)
-({elseif $c_commu.public_flag == 'auth_public'})
-管理者の承認が必要(公開)
-({elseif $c_commu.public_flag == 'auth_sns'})
-管理者の承認が必要(公開)
-({elseif $c_commu.public_flag == 'auth_commu_member'})
-管理者の承認が必要(非公開)
+<font color="#({$ktai_color_config.font_06})">参加条件：</font><br>
+({if $c_commu.is_admit == 'public'})
+誰でも参加可能
+({elseif $c_commu.is_admit == 'auth'})
+管理者の承認が必要
+({/if})<br>
+<font color="#({$ktai_color_config.font_06})">公開範囲：</font><br>
+({if $c_commu.is_open == 'public'})
+全員に公開
+({elseif $c_commu.is_open == 'member'})
+({$WORD_COMMUNITY_HALF})ﾒﾝﾊﾞ-にのみ公開
 ({/if})<br>
 </td>
 </tr>
@@ -100,7 +102,7 @@
 ({if $new_topic_comment})
 <font color="#({$ktai_color_config.font_07})">⇒</font><a href="({t_url m=ktai a=page_c_topic_list})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">もっと見る</a><br>
 ({/if})
-({if ($c_commu.topic_authority == 'public' && $is_c_commu_member) || ($c_commu.topic_authority == 'admin_only' && $is_c_commu_admin)})
+({if ($c_commu.is_topic == 'member' && $is_c_commu_member) || ($c_commu.is_topic == 'admin_only' && $is_c_commu_admin) || ($c_commu.is_topic == 'public')})
 <a href="({t_url m=ktai a=page_c_topic_add})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">ﾄﾋﾟｯｸの作成</a><br>
 ({/if})
 </td></tr>
@@ -129,7 +131,7 @@
 ({if $new_topic_comment_event})
 <font color="#({$ktai_color_config.font_07})">⇒</font><a href="({t_url m=ktai a=page_c_event_list})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">もっと見る</a><br>
 ({/if})
-({if ($c_commu.topic_authority == 'public' && $is_c_commu_member) || ($c_commu.topic_authority == 'admin_only' && $is_c_commu_admin)})
+({if ($c_commu.is_topic == 'member' && $is_c_commu_member) || ($c_commu.is_topic == 'admin_only' && $is_c_commu_admin) || ($c_commu.is_topic == 'public')})
 <a href="({t_url m=ktai a=page_c_event_add})&amp;target_c_commu_id=({$c_commu.c_commu_id})&amp;({$tail})">ｲﾍﾞﾝﾄの作成</a><br>
 ({/if})
 </td></tr>
