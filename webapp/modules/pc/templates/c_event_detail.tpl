@@ -162,7 +162,7 @@
 
 ({/if})
 
-({if $is_c_commu_member})
+({if $is_c_commu_member || $c_commu.is_comment == 'public'})
 ({if $is_writable_comment})
 ({* {{{ formTable *})
 <div class="dparts formTable" id="commentForm"><div class="parts">
