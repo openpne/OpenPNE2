@@ -1038,6 +1038,7 @@ function util_replace_patterns_to_marker($subject, $patterns = array())
             '/<option.*?<\/option>/is',
             '/<img[^>]+>/is',
             '/<head.*?<\/head>/is',
+            '/response_comment_format\(\'.*?\'\)/is',
         );
     }
 

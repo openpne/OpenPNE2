@@ -128,13 +128,18 @@
 </div>
 ({/strip})({/capture})
 ({$smarty.capture.pager|smarty:nodefaults})
-
+({if $smarty.const.USE_RESPONSE_COMMENT}) 
+<script type="text/javascript" src="./js/comment.js"></script>
+({/if})
 ({foreach from=$c_topic_write item=item})
 <dl>
 <dt>({$item.r_datetime|date_format:"%Y年<br />%m月%d日<br />%H:%M"})</dt>
 <dd>
 <div class="title">
-<p class="heading"><strong>({$item.number})</strong>: <a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})">({$item.nickname})</a>({if $c_member_id == $item.c_member_id || $c_member_id == $c_commu.c_member_id_admin || $c_member_id == $c_commu.c_member_id_sub_admin}) <a href="({t_url m=pc a=page_c_event_write_delete_confirm})&amp;target_c_commu_topic_comment_id=({$item.c_commu_topic_comment_id})">削除</a>({/if})</p>
+<p class="heading"><strong>({$item.number})</strong>:
+ <a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})">({$item.nickname})</a>
+({if $c_member_id == $item.c_member_id || $c_member_id == $c_commu.c_member_id_admin || $c_member_id == $c_commu.c_member_id_sub_admin}) <a href="({t_url m=pc a=page_c_event_write_delete_confirm})&amp;target_c_commu_topic_comment_id=({$item.c_commu_topic_comment_id})">削除</a>({/if})
+({if $is_c_commu_member && $is_writable_comment && $smarty.const.USE_RESPONSE_COMMENT}) <a href="javascript:void(0);" onclick="response_comment_format('({$item.nickname})', '({$item.number})', 'comment_box');return false;" ><img src="./skin/default/img/button_comment.gif" alt="コメント返信ボタン" /></a>({/if})</p>
 </div>
 <div class="body">
 ({if $item.image_filename1 || $item.image_filename2 || $item.image_filename3})
@@ -170,7 +175,7 @@
 ({t_form_block _enctype=file m=pc a=page_c_event_write_confirm})
 <input type="hidden" name="target_c_commu_topic_id" value="({$c_topic.c_commu_topic_id})" />
 <table>
-<tr><th>本文</th><td><textarea name="body" rows="10" cols="50">({$body})</textarea></td></tr>
+<tr><th>本文</th><td><textarea name="body" id="comment_box" rows="10" cols="50">({$body})</textarea></td></tr>
 <tr><th>写真1</th><td><input type="file" class="input_file" name="image_filename1" size="40" /></td></tr>
 <tr><th>写真2</th><td><input type="file" class="input_file" name="image_filename2" size="40" /></td></tr>
 <tr><th>写真3</th><td><input type="file" class="input_file" name="image_filename3" size="40" /></td></tr>
