@@ -174,12 +174,19 @@
 ({/strip})({/capture})
 ({$smarty.capture.pager|smarty:nodefaults})
 
+({if $smarty.const.USE_RESPONSE_COMMENT}) 
+<script type="text/javascript" src="./js/comment.js"></script>
+({/if})
 ({foreach from=$target_diary_comment_list item=item})
 <dl>
 <dt>({$item.r_datetime|date_format:"%Y年<br />%m月%d日<br />%H:%M"})({if $type == "h"})<br /><input type="checkbox" class="input_checkbox" name="target_c_diary_comment_id[]" value="({$item.c_diary_comment_id})" />({/if})</dt>
 <dd>
 <div class="title">
-<p class="heading"><strong>({$item.number})</strong>:({if $item.nickname}) <a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})">({$item.nickname})</a>({/if})({if $type == 'f' && $item.c_member_id == $member.c_member_id}) <a href="({t_url m=pc a=page_fh_delete_comment})&amp;target_c_diary_id=({$target_diary.c_diary_id})&amp;target_c_diary_comment_id=({$item.c_diary_comment_id})">削除</a>({/if})</p>
+<p class="heading"><strong>({$item.number})</strong>:
+({if $item.nickname}) <a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})">({$item.nickname})</a>({/if})
+({if $type == 'f' && $item.c_member_id == $member.c_member_id}) <a href="({t_url m=pc a=page_fh_delete_comment})&amp;target_c_diary_id=({$target_diary.c_diary_id})&amp;target_c_diary_comment_id=({$item.c_diary_comment_id})">削除</a>({/if})
+({if $is_writable_comment && $smarty.const.USE_RESPONSE_COMMENT}) <a href="javascript:void(0);" onclick="response_comment_format('({$item.nickname})', '({$item.number})', 'comment_box');return false;" ><img src="./skin/default/img/button_comment.gif" alt="コメント返信ボタン" /></a>({/if})
+</p>
 </div>
 <div class="body">
 ({if $item.image_filename_1 || $item.image_filename_2 || $item.image_filename_3})
@@ -227,7 +234,7 @@
 ({t_form_block _enctype=file m=pc a=page_fh_diary_comment_confirm})
 <input type="hidden" name="target_c_diary_id" value="({$target_diary.c_diary_id})" />
 <table><tr>
-<th>本文</th><td><textarea name="body" rows="8" cols="40">({$requests.body})</textarea></td>
+<th>本文</th><td><textarea name="body" id="comment_box" rows="8" cols="40">({$requests.body})</textarea></td>
 </tr><tr>
 <th>写真1</th><td><input type="file" class="input_file" name="upfile_1" size="40" /></td>
 </tr><tr>

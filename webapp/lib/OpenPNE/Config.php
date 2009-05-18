@@ -65,6 +65,7 @@ class OpenPNE_Config
             'OPENPNE_IMAGE_DIARY_LIMIT',
             'OPENPNE_IMAGE_COMMU_LIMIT',
             'OPENPNE_IMAGE_OTHER_LIMIT',
+            'USE_RESPONSE_COMMENT',
         );
     }
 
@@ -177,6 +178,7 @@ class OpenPNE_Config
             'OPENPNE_IMAGE_DIARY_LIMIT' => 0,
             'OPENPNE_IMAGE_COMMU_LIMIT' => 0,
             'OPENPNE_IMAGE_OTHER_LIMIT' => 0,
+            'USE_RESPONSE_COMMENT' => 0,
         // config.php
             'OPENPNE_RSS_CACHE_DIR' => OPENPNE_VAR_DIR . '/rss_cache',
             'OPENPNE_PUBLIC_HTML_DIR' => OPENPNE_DIR . '/public_html',
