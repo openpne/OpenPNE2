@@ -402,6 +402,15 @@
 <option value="0"({if !$smarty.const.SEND_USER_DATA}) selected="selected"({/if})>転送しない</option>
 </select></td>
 </tr>
+<tr class="cell29">
+<th colspan="2">コメント返信補助機能設定</th>
+<td>
+<span class="info">コメント入力欄に返信したいコメント番号とニックネームを挿入できる機能を使用するかどうかを設定します</span><br />
+<select class="basic" name="USE_RESPONSE_COMMENT">
+<option value="1"({if $smarty.const.USE_RESPONSE_COMMENT}) selected="selected"({/if})>使用する</option>
+<option value="0"({if !$smarty.const.USE_RESPONSE_COMMENT}) selected="selected"({/if})>使用しない</option>
+</select></td>
+</tr>
 </table>
 <p class="textBtn"><input type="submit" value="設定変更する" /></p>
 </form>
