@@ -38,6 +38,8 @@ class biz_do_h_biz_group_edit extends OpenPNE_Action
                     openpne_redirect('biz', 'page_h_biz_group_edit', $p);
                     exit();
                 }
+            } else {
+                biz_deleteImage($requests['image_filename'], $u);
             }
             $filename = $image['filename'];
         }
