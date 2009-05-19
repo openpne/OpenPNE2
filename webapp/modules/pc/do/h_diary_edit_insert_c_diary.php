@@ -118,7 +118,7 @@ class pc_do_h_diary_edit_insert_c_diary extends OpenPNE_Action
             db_image_data_delete($c_diary['image_filename_3'], $u);
             $filename_3 = image_insert_c_image4tmp("d_{$target_c_diary_id}_3", $tmpfile_3, $u);
         }
-
+        
         if (!OPENPNE_USE_DIARY_COMMENT) {
             $is_comment_input = $c_diary['is_comment_input'];
         }
