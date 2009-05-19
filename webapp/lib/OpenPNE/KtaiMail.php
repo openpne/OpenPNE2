@@ -274,7 +274,7 @@ class OpenPNE_KtaiMail
             unlink($tmpfname);
 
             if ($image_data && $image_ext) {
-                $images = array(array('data' => $image_data, 'ext' => $image_ext, 'filesize' => $filesize));
+                $images = array(array('data' => $image_data, 'ext' => $image_ext, 'filesize' => $image_size));
             } else {
                 return false;
             }
