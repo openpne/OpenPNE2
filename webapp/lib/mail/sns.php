@@ -493,7 +493,7 @@ class mail_sns
             if ($result) {
                 $msg = util_image_get_upload_err_msg($result);
                 $this->error_mail($msg);
-                m_debug_log('mail_sns::add_diary() imagesize is full');
+                m_debug_log('mail_sns::add_diary() size over');
                 return false;
             }
         }
@@ -589,7 +589,7 @@ class mail_sns
             if ($result) {
                 $msg = util_image_get_upload_err_msg($result);
                 $this->error_mail($msg);
-                m_debug_log('mail_sns::add_diary_comment() imagesize is full');
+                m_debug_log('mail_sns::add_diary_comment() size over');
                 return false;
             }
         }
@@ -680,6 +680,16 @@ class mail_sns
             $image_data = $image['data'];
             $filename = 'a_' . $ins_id . '_1_' . time() . '.' . $image_ext;
 
+            // 画像アップロード可能サイズチェック
+            $filesize = $image['filesize'];
+            $result = util_image_check_add_image_upload($filesize, $this->c_member_id, 'other');
+            if ($result) {
+                $msg = util_image_get_upload_err_msg($result);
+                $this->error_mail($msg);
+                m_debug_log('mail_sns::add_album() size over');
+                return false;
+            }
+
             db_image_insert_c_image($filename, $image_data);
             //アルバムの表紙に写真ファイル名を登録
             db_album_update_c_album_album_cover_image($ins_id,$filename);
@@ -717,11 +727,13 @@ class mail_sns
         $image = $images[0];
         $image_ext = $image['ext'];
         $image_data = $image['data'];
-        $image_size = $image['size'];
+        $image_size = $image['filesize'];
 
         // 容量制限
-        if (!db_album_is_insertable4c_member_id($this->c_member_id, $image_size)) {
-            $this->error_mail('これ以上写真を投稿することができません。登録済みの写真を削除してからやり直してください。');
+        $result = util_image_check_add_image_upload($image_size, $this->c_member_id, 'album');
+        if ($result) {
+            $msg = util_image_get_upload_err_msg($result);
+            $this->error_mail($msg);
             m_debug_log('mail_sns::add_album_image() size over');
             return false;
         }
@@ -776,7 +788,7 @@ class mail_sns
             if ($result) {
                 $msg = util_image_get_upload_err_msg($result);
                 $this->error_mail($msg);
-                m_debug_log('mail_sns::add_member_image() imagesize is full');
+                m_debug_log('mail_sns::add_member_image() size over');
                 return false;
             }
 
@@ -834,7 +846,7 @@ class mail_sns
             if ($result) {
                 $msg = util_image_get_upload_err_msg($result);
                 $this->error_mail($msg);
-                m_debug_log('mail_sns::add_diary_image() imagesize is full');
+                m_debug_log('mail_sns::add_diary_image() size over');
                 return false;
             }
 
@@ -880,7 +892,7 @@ class mail_sns
             if ($result) {
                 $msg = util_image_get_upload_err_msg($result);
                 $this->error_mail($msg);
-                m_debug_log('mail_sns::add_commu_image() imagesize is full');
+                m_debug_log('mail_sns::add_commu_image() size over');
                 return false;
             }
 
@@ -941,7 +953,7 @@ class mail_sns
             if ($result) {
                 $msg = util_image_get_upload_err_msg($result);
                 $this->error_mail($msg);
-                m_debug_log('mail_sns::add_topic_image() imagesize is full');
+                m_debug_log('mail_sns::add_topic_image() size over');
                 return false;
             }
 
@@ -976,6 +988,17 @@ class mail_sns
             $image_ext = $image['ext'];
             $image_data = $image['data'];
             $filename = 'a_' . $c_album_id . '_1_' . time() . '.' . $image_ext;
+
+            // 画像アップロード可能サイズチェック
+            $filesize = $image['filesize'];
+            $result = util_image_check_add_image_upload($filesize, $this->c_member_id, 'other');
+            if ($result) {
+                $msg = util_image_get_upload_err_msg($result);
+                $this->error_mail($msg);
+                m_debug_log('mail_sns::add_album_cover_image() size over');
+                return false;
+            }
+
             db_image_insert_c_image($filename, $image_data);
             //アルバムデータの変更
             $c_album_cover = $c_album['album_cover_image'];
