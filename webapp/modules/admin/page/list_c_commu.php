@@ -20,7 +20,7 @@ class admin_page_list_c_commu extends OpenPNE_Action
         $page = $requests['page'];
         $keyword = $requests['keyword'];
         $target_c_commu_id = $requests['target_c_commu_id'];
-        $page_size = 100;
+        $page_size = 5;
 
         $v = array();
 
@@ -31,6 +31,7 @@ class admin_page_list_c_commu extends OpenPNE_Action
             list($commu_list, $prev, $next, $total_num, $total_page_num)
                 = monitor_commu_list($keyword, $page_size, $page, "c_commu_id ASC");
         }
+
         $this->set('commu_list', $commu_list);
         $this->set('page', $page);
         $this->set('prev', $prev);

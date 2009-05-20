@@ -1,4 +1,7 @@
 ({$inc_header|smarty:nodefaults})
+({ext_include file="inc_subnavi_adminSiteMember.tpl"})
+({assign var="page_name" value="コミュニティリスト"})
+({ext_include file="inc_tree_adminSiteMember.tpl"})
 </div>
 
 ({*ここまで:navi*})
@@ -49,33 +52,47 @@
 ({$smarty.capture.pager|smarty:nodefaults})
 </div>
 
+<form id="select-delete-form" action="./" method="get">
+<input type="hidden" name="m" value="({$module_name})" />
+<input type="hidden" name="a" value="page_({$hash_tbl->hash('delete_commu_selected')})" />
+<input type="hidden" id="del-ids" name="target_c_commu_ids" value="" />
+
 <table class="basicType2">
 <tr>
+    <th></th>
     <th>ID</th>
     <th>コミュニティ名</th>
     <th>コミュニティ管理者</th>
     <th>コミュニティ作成日</th>
-    <th>操作</th>
+    <th colspan="3">操作</th>
 </tr>
 
 ({foreach from=$commu_list item=commu})
 <tr>
+    <td><input type="checkbox" name="del" value="({$commu.c_commu_id})" /></td>
     <td>({$commu.c_commu_id})</td>
     <td><a href="({t_url _absolute=1 m=pc a=page_c_home})&amp;target_c_commu_id=({$commu.c_commu_id})" target="_blank">({$commu.name|truncate:60})</a></td>
     <td><a href="({t_url _absolute=1 m=pc a=page_f_home})&amp;target_c_member_id=({$commu.c_member.c_member_id})" target="_blank">({$commu.c_member.nickname|truncate:60})</a></td>
     <td>({$commu.u_datetime})</td>
     <td><a href="?m=admin&amp;a=page_({$hash_tbl->hash('commu_member_list')})&amp;target_c_commu_id=({$commu.c_commu_id})">メンバーリスト</a></td>
+    <td><a href="?m=admin&amp;a=page_c_commu_detail&amp;target_c_commu_id=({$commu.c_commu_id})">詳細</a></td>
+    <td><a href="?m=admin&amp;a=page_delete_commu&amp;target_c_commu_id=({$commu.c_commu_id})&amp;del=({$commu.c_commu_id})">削除</a></td>
 </tr>
 ({/foreach})
 
 <tr>
+    <th></th>
     <th>ID</th>
     <th>コミュニティ名</th>
     <th>コミュニティ管理者</th>
     <th>コミュニティ作成日</th>
-    <th>操作</th>
+    <th colspan="3">操作</th>
 </tr>
 </table>
+
+<form id="select-delete-form" action="./" method="get">
+<span class="textBtnS"><input type="button" id="select-delete" value="選択した({$WORD_COMMUNITY})を削除" /></span>
+</form>
 
 <div class="listControl" id="pager02">
 ({$smarty.capture.pager|smarty:nodefaults})
