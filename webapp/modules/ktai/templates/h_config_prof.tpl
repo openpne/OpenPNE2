@@ -12,7 +12,13 @@
 
 ({t_form m=ktai a=do_h_config_prof_update_c_member})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
-
+<font color="#({$ktai_color_config.font_09})">*</font>
+<font color="#({$ktai_color_config.font_06})">検索設定：</font><br>
+<select name="is_search_result">
+    <option value="1"({if $c_member.is_search_result == "1"}) selected="selected"({/if})>公開する
+    <option value="0"({if $c_member.is_search_result == "0"}) selected="selected"({/if})>公開しない
+</select><br>
+<br>
 ({capture name="nick"})
 <font color="#({$ktai_color_config.font_09})">*</font>
 <font color="#({$ktai_color_config.font_06})">({$WORD_NICKNAME_HALF})：</font><br>
