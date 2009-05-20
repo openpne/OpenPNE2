@@ -14,7 +14,7 @@ class admin_do_delete_kakikomi_c_commu_selected extends OpenPNE_Action
         foreach ($id_ary as $id) {
             $commu = db_commu_c_commu4c_commu_id($id);
             if (!$commu) {
-                admin_client_redirect('commu_list', '指定された' . WORD_COMMUNITY . 'は存在しません');
+                admin_client_redirect('list_c_commu', '指定された' . WORD_COMMUNITY . 'は存在しません');
             }
         }
 
@@ -22,7 +22,7 @@ class admin_do_delete_kakikomi_c_commu_selected extends OpenPNE_Action
             db_common_delete_c_commu($id);
         }
 
-        admin_client_redirect('commu_list', WORD_COMMUNITY . 'を削除しました');
+        admin_client_redirect('list_c_commu', WORD_COMMUNITY . 'を削除しました');
     }
 }
 
