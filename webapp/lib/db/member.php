@@ -282,10 +282,11 @@ function db_member_search($cond, $cond_like, $page_size, $page, $c_member_id, $p
             $params[] = '%' . $value . '%';
         }
     }
+
+    // 検索設定を公開にしている場合のみ結果を表示
+    $where = ' WHERE is_search_result = 1 ';
     if ($wheres) {
-        $where = ' WHERE ' . implode(' AND ', $wheres);
-    } else {
-        $where = '';
+        $where .= ' AND ' . implode(' AND ', $wheres);
     }
 
     $from = " FROM c_member" . $hint;
@@ -952,6 +953,7 @@ function db_member_config_prof_new($c_member_id, $prof_list)
         'birth_day'   => intval($prof_list['birth_day']),
         'public_flag_birth_year' => $prof_list['public_flag_birth_year'],
         'public_flag_birth_month_day' => $prof_list['public_flag_birth_month_day'],
+        'is_search_result' => $prof_list['is_search_result'],
         'u_datetime' => db_now(),
     );
     $where = array('c_member_id' => intval($c_member_id));
