@@ -52,6 +52,7 @@
 ({if $auth_type == 'all'})
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('blacklist')})">ブラックリスト管理</a></li>
 ({/if})
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_commu')})">コミュニティリスト</a></li>
 ({if $smarty.const.IS_SNS_ENTRY_CONFIRM})
 ({if $auth_type == 'all'})
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_sns_entry')})">承認待ちリスト</a></li>
@@ -159,7 +160,6 @@
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('edit_image_limit')})">画像容量制限設定</a></li>
 </ul>
 </li>
-
 </ul>
 
 ({****************})
