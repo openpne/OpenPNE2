@@ -294,7 +294,7 @@ CREATE TABLE c_commu_admin_invite (
   PRIMARY KEY  (c_commu_admin_invite_id)
 );
 
-CREATE INDEX c_commu_id_c_memer_id_to ON c_commu_admin_invite(c_commu_id,c_member_id_to);
+CREATE INDEX c_commu_id_c_member_id_to ON c_commu_admin_invite(c_commu_id,c_member_id_to);
 
 CREATE TABLE c_commu_category (
   c_commu_category_id serial NOT NULL,
