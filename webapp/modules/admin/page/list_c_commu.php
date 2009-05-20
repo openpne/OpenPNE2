@@ -20,7 +20,7 @@ class admin_page_list_c_commu extends OpenPNE_Action
         $page = $requests['page'];
         $keyword = $requests['keyword'];
         $target_c_commu_id = $requests['target_c_commu_id'];
-        $page_size = 5;
+        $page_size = 100;
 
         $v = array();
 
