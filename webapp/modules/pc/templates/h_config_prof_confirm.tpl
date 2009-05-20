@@ -5,6 +5,12 @@
 <div class="dparts formTable"><div class="parts">
 <div class="partsHeading"><h3>プロフィール変更</h3><p>(<strong>※</strong>の項目は必須です)</p></div>
 <table>
+<tr>
+<th>検索設定 <strong>※</strong></th>
+<td>
+({if $prof.is_search_result == '1'})公開({elseif $prof.is_search_result == '0'})公開しない({/if})
+</td>
+</tr>
 ({capture name="nick"})
 <tr>
 <th>({$WORD_NICKNAME}) <strong>※</strong></th>
@@ -104,6 +110,7 @@
 <li>
 ({t_form_block m=pc a=do_h_config_prof})
 <input type="hidden" name="mode" value="register" />
+<input type="hidden" name="is_search_result" value="({$prof.is_search_result})" />
 <input type="hidden" name="nickname" value="({$prof.nickname})" />
 <input type="hidden" name="birth_year" value="({$prof.birth_year})" />
 <input type="hidden" name="birth_month" value="({$prof.birth_month})" />
@@ -132,6 +139,7 @@
 <li>
 ({t_form_block m=pc a=do_h_config_prof})
 <input type="hidden" name="mode" value="input" />
+<input type="hidden" name="is_search_result" value="({$prof.is_search_result})" />
 <input type="hidden" name="nickname" value="({$prof.nickname})" />
 <input type="hidden" name="birth_year" value="({$prof.birth_year})" />
 <input type="hidden" name="birth_month" value="({$prof.birth_month})" />

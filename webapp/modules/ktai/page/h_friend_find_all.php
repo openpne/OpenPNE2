@@ -25,7 +25,7 @@ class ktai_page_h_friend_find_all extends OpenPNE_Action
         $this->set('profiles', $profiles);
 
         $limit = 10;
-        $this->set("page", $page);
+        $this->set('page', $page);
 
         //検索デフォルト値表示用
         $cond = array(
@@ -36,15 +36,14 @@ class ktai_page_h_friend_find_all extends OpenPNE_Action
         $cond_like = array(
             'nickname' => $nickname,
         );
-        $this->set("cond", array_merge($cond, $cond_like));
-
+        $this->set('cond', array_merge($cond, $cond_like));
 
         $result = db_member_search($cond, $cond_like, $limit, $page, $u, $profiles);
-        $this->set("target_friend_list", $result[0]);
+        $this->set('target_friend_list', $result[0]);
         $pager = array(
-            "page_prev" => $result[1],
-            "page_next" => $result[2],
-            "total_num" => $result[3],
+            'page_prev' => $result[1],
+            'page_next' => $result[2],
+            'total_num' => $result[3],
         );
 
         $pager["disp_start"] = $limit * ($page - 1) + 1;
