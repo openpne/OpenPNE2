@@ -1,7 +1,9 @@
 ({$inc_header|smarty:nodefaults})
-({ext_include file="inc_subnavi_adminImageKakikomi.tpl"})
-({assign var="page_name" value="`$WORD_COMMUNITY`削除の確認"})
-({ext_include file="inc_tree_adminImageKakikomi.tpl"})
+({ext_include file="inc_subnavi_adminSiteMember.tpl"})
+({assign var="page_name" value="コミュニティ削除の確認"})
+({assign var="parent_page_name" value="コミュニティリスト"})
+({capture name=parent_page_url})?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_commu')})({/capture})
+({ext_include file="inc_tree_adminSiteMember.tpl"})
 </div>
 
 ({*ここまで:navi*})
