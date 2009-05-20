@@ -6,6 +6,13 @@
 <div class="partsHeading"><div class="text"><h3>プロフィール変更</h3><p>(<strong>※</strong>の項目は必須です)</p></div>({if $SSL_SELECT_URL})<p class="link"><a href="({$SSL_SELECT_URL})">({if $HTTPS})標準(http)({else})SSL(https)({/if})はこちら</a></p>({/if})</div>
 ({t_form_block m=pc a=do_h_config_prof})
 <table>
+<tr>
+<th>検索設定 <strong>※</strong></th>
+<td>
+<input type="radio" id="is_search_result_1" class="input_radio" name="is_search_result" value="1" ({if $c_member.is_search_result})checked="checked" ({/if})/> <label for="is_search_result_1">公開</label>
+<input type="radio" id="is_search_result_0" class="input_radio" name="is_search_result" value="0" ({if !$c_member.is_search_result})checked="checked" ({/if})/> <label for="is_search_result_0">公開しない</label>
+</td>
+</tr>
 ({capture name="nick"})
 <tr>
 <th>({$WORD_NICKNAME}) <strong>※</strong></th>

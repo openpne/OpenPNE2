@@ -122,6 +122,12 @@ class pc_do_h_config_prof extends OpenPNE_Action
                 'required' => '1',
                 'caption' => '公開範囲',
             ),
+            'is_search_result' => array(
+                'type' => 'int',
+                'regexp' => '/^(0|1)$/',
+                'required' => '1',
+                'caption' => '検索設定',
+            ),
         );
     }
 }
