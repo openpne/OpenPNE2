@@ -60,7 +60,9 @@
 <div class="listControlBtm">
 <div class="msgTransmit">
 <div class="msgTransmitBtn">
+<span class="textBtnS">
 <input type="submit" id="btnAllTransmit" value="すべてのメンバーにメッセージ／Eメールを送る" />
+</span>
 </div>
 </div>
 </div>
