@@ -14,7 +14,6 @@ class admin_page_send_messages extends OpenPNE_Action
         if (empty($requests['c_member_ids'])) {
             admin_client_redirect('list_c_member');
         }
-
         $v['c_member_list'] = array();
         foreach ($requests['c_member_ids'] as $c_member_id) {
             $v['c_member_list'][$c_member_id] = db_member_c_member4c_member_id($c_member_id, true);
