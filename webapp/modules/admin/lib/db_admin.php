@@ -2389,7 +2389,7 @@ function monitor_diary_comment_list4c_diary_id($c_diary_id, $page_size, $page)
     return array($list , $prev , $next, $total_num, $total_page_num);
 }
 
-function monitor_commu_list($keyword, $page_size, $page)
+function monitor_commu_list($keyword, $page_size, $page, $order_type)
 {
     $page = intval($page);
     $page_size = intval($page_size);
@@ -2417,7 +2417,13 @@ function monitor_commu_list($keyword, $page_size, $page)
 
     $select = "SELECT * ";
     $from = " FROM c_commu";
-    $order = " ORDER BY r_datetime DESC";
+    $order = " ORDER BY r_datetime";
+
+        if ($order_type == 'DESC') {
+            $order .= ' DESC';
+        } else {
+            $order .= ' ASC';
+        }
 
     $sql = $select . $from . $where . $order;
 
@@ -2440,24 +2446,30 @@ function monitor_commu_list($keyword, $page_size, $page)
     return array($list, $prev, $next, $total_num, $total_page_num);
 }
 
-function monitor_commu_list4c_commu_id($c_commu_id, $page_size, $page)
+function monitor_commu_list4c_commu_id($c_commu_id, $page_size, $page, $order_type)
 {
     $page = intval($page);
     $page_size = intval($page_size);
 
     $where = " WHERE c_commu_id = ? ";
-    $params[] = intval($c_commu_id);
+    $params = array(intval($c_commu_id), $order_type);
 
     $select = "SELECT * ";
     $from = " FROM c_commu";
-    $order = " ORDER BY r_datetime DESC";
+    $order = " ORDER BY r_datetime";
+
+        if ($order_type == 'DESC') {
+            $order .= ' DESC';
+        } else {
+            $order .= ' ASC';
+        }
 
     $sql = $select . $from . $where . $order;
 
     $list = db_get_all_limit($sql,($page-1)*$page_size,$page_size,$params);
 
     foreach ($list as $key => $value) {
-        $list[$key]['c_member'] = db_member_c_member_with_profile($value['c_member_id_admin']);;
+        $list[$key]['c_member'] = db_member_c_member_with_profile($value['c_member_id_admin']);
     }
 
     $sql =
