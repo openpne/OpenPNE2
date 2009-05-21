@@ -2451,12 +2451,12 @@ function monitor_commu_list4c_commu_id($c_commu_id, $page_size, $page, $order_ty
     $page = intval($page);
     $page_size = intval($page_size);
 
-    $where = " WHERE c_commu_id = ? ";
-    $params = array(intval($c_commu_id), $order_type);
+    $where = ' WHERE c_commu_id = ?';
+    $params[] = intval($c_commu_id);
 
-    $select = "SELECT * ";
-    $from = " FROM c_commu";
-    $order = " ORDER BY r_datetime";
+    $select = 'SELECT * ';
+    $from = ' FROM c_commu';
+    $order = ' ORDER BY r_datetime';
 
         if ($order_type == 'DESC') {
             $order .= ' DESC';
