@@ -90,8 +90,7 @@
 </table>
 <div class="listControlBtm">
 <div class="msgTransmit">
-<p class="msgCheck"><img src="modules/admin/img/icn_msgtransmit.gif" alt="dummy" /><a href="#" onClick="return checkAll('formDeleteCommunitys');" onKeyPress="return checkAll('formDeleteCommunitys');">全てをチェック</a>&nbsp;|&nbsp;<a href="#" onClick="return clearAll('formDeleteCommunitys');" onKeyPress="return clearAll('formDeleteCommunitys');">全て
-のチェックをはずす</a></p>
+<p class="msgCheck"><img src="modules/admin/img/icn_msgtransmit.gif" alt="dummy" /><a href="#" onClick="return checkAll('formDeleteCommunitys');" onKeyPress="return checkAll('formDeleteCommunitys');">全てをチェック</a>&nbsp;|&nbsp;<a href="#" onClick="return clearAll('formDeleteCommunitys');" onKeyPress="return clearAll('formDeleteCommunitys');">全てのチェックをはずす</a></p>
 
 <div class="delTransmitBtn">
 <span class="textBtnS">
