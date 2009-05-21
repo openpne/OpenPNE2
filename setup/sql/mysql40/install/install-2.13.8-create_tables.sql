@@ -285,7 +285,7 @@ CREATE TABLE `c_commu_admin_invite` (
   `c_member_id_to` int(11) NOT NULL default '0',
   `r_datetime` datetime NOT NULL default '0000-00-00 00:00:00',
   PRIMARY KEY  (`c_commu_admin_invite_id`),
-  KEY `c_commu_id_c_member_id_to` (`c_commu_id`,`c_member_id_to`)
+  KEY `c_commu_id_c_memer_id_to` (`c_commu_id`,`c_member_id_to`)
 ) TYPE=MyISAM;
 
 CREATE TABLE `c_commu_category` (
