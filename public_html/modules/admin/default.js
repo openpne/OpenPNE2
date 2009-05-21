@@ -47,8 +47,8 @@ function setSubmitFunction() {
 メンバーリスト
 ----------------------------------------------------*/
 
-function checkAll(){
-    var sm = document.formSendMessages;
+function checkAll(targetForm) {
+    var sm = document.getElementById(targetForm);
     var len = sm.elements.length;
     for (var i = 0; i < len; i++) {
         sm.elements[i].checked = true;
@@ -56,8 +56,8 @@ function checkAll(){
     return false;
 }
 
-function clearAll(){
-    var sm = document.formSendMessages;
+function clearAll(targetForm) {
+    var sm = document.getElementById(targetForm);
     var len = sm.elements.length;
     for (var i = 0; i < len; i++) {
         sm.elements[i].checked = false;
