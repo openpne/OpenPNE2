@@ -253,16 +253,18 @@ CREATE TABLE `c_commu` (
   `name` text NOT NULL,
   `c_member_id_admin` int(11) NOT NULL default '0',
   `c_member_id_sub_admin` int(11) NOT NULL default '0',
-  `topic_authority` enum('public','admin_only') NOT NULL default 'public',
   `info` text NOT NULL,
   `c_commu_category_id` int(11) NOT NULL default '0',
   `r_datetime` datetime NOT NULL default '0000-00-00 00:00:00',
   `r_date` date NOT NULL default '0000-00-00',
   `image_filename` text NOT NULL,
-  `public_flag` enum('public','auth_public','auth_sns','auth_commu_member') NOT NULL default 'public',
   `is_send_join_mail` tinyint(1) NOT NULL default '1',
   `is_regist_join` tinyint(1) NOT NULL default '0',
   `u_datetime` datetime NOT NULL default '0000-00-00 00:00:00',
+  `is_admit` enum('public','auth') NOT NULL default 'public',
+  `is_open` enum('public','member') NOT NULL default 'public',
+  `is_topic` enum('member','admin_only','public') NOT NULL default 'member',
+  `is_comment` enum('member','public') NOT NULL default 'member',
   PRIMARY KEY  (`c_commu_id`),
   KEY `c_commu_category_id` (`c_commu_category_id`),
   KEY `c_member_id_admin` (`c_member_id_admin`),
@@ -287,7 +289,7 @@ CREATE TABLE `c_commu_admin_invite` (
   `c_member_id_to` int(11) NOT NULL default '0',
   `r_datetime` datetime NOT NULL default '0000-00-00 00:00:00',
   PRIMARY KEY  (`c_commu_admin_invite_id`),
-  KEY `c_commu_id_c_memer_id_to` (`c_commu_id`,`c_member_id_to`)
+  KEY `c_commu_id_c_member_id_to` (`c_commu_id`,`c_member_id_to`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `c_commu_category` (
@@ -736,6 +738,7 @@ CREATE TABLE `c_member` (
   `ashiato_count_log` int(11) NOT NULL default '0',
   `schedule_start_day` int(11) NOT NULL default '0',
   `u_datetime` datetime NOT NULL default '0000-00-00 00:00:00',
+  `is_search_result` tinyint(1) NOT NULL default '1',
   PRIMARY KEY  (`c_member_id`),
   KEY `birth_year_c_member_id` (`birth_year`,`c_member_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -1228,4 +1231,3 @@ CREATE TABLE `portal_rss` (
   `name` varchar(64) NOT NULL,
   PRIMARY KEY  (`portal_rss_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
