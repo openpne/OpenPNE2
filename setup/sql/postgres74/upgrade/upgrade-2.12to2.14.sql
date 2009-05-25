@@ -114,3 +114,6 @@ ALTER TABLE c_commu ALTER COLUMN is_comment SET NOT NULL;
 -- update15
 ALTER TABLE c_commu DROP public_flag CASCADE;
 ALTER TABLE c_commu DROP topic_authority CASCADE;
+
+-- update16
+ALTER TABLE c_member ADD COLUMN is_search_result int4 NOT NULL default 1;
