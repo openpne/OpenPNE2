@@ -256,16 +256,18 @@ CREATE TABLE c_commu (
   name text NOT NULL,
   c_member_id_admin int4 NOT NULL default '0',
   c_member_id_sub_admin int4 NOT NULL default '0',
-  topic_authority varchar(20) NOT NULL default 'public',
   info text NOT NULL,
   c_commu_category_id int4 NOT NULL default '0',
   r_datetime timestamp NOT NULL default '0000-01-01 00:00:00',
   r_date date NOT NULL default '0000-01-01',
   image_filename text NOT NULL,
-  public_flag varchar(20) NOT NULL default 'public',
   is_send_join_mail smallint NOT NULL default '1',
   is_regist_join smallint NOT NULL default '0',
   u_datetime timestamp NOT NULL default '0000-01-01 00:00:00',
+  is_admit varchar(20) NOT NULL default 'public',
+  is_open varchar(20) NOT NULL default 'public',
+  is_topic varchar(20) NOT NULL default 'member',
+  is_comment varchar(20) NOT NULL default 'member',
   PRIMARY KEY (c_commu_id)
 );
 
@@ -294,7 +296,7 @@ CREATE TABLE c_commu_admin_invite (
   PRIMARY KEY  (c_commu_admin_invite_id)
 );
 
-CREATE INDEX c_commu_id_c_memer_id_to ON c_commu_admin_invite(c_commu_id,c_member_id_to);
+CREATE INDEX c_commu_id_c_member_id_to ON c_commu_admin_invite(c_commu_id,c_member_id_to);
 
 CREATE TABLE c_commu_category (
   c_commu_category_id serial NOT NULL,
@@ -763,6 +765,7 @@ CREATE TABLE c_member (
   ashiato_count_log int4 NOT NULL default '0',
   schedule_start_day int4 NOT NULL default '0',
   u_datetime timestamp NOT NULL default '0000-01-01 00:00:00',
+  is_search_result int4 NOT NULL default '1',
   PRIMARY KEY  (c_member_id)
 );
 
