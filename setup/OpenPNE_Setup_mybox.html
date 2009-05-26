@@ -1,0 +1,169 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title>SlavePNEによるマイボックス認証 セットアップガイド</title>
+<style type="text/css">
+<!--
+body {
+  background-color: #fff;
+  color: #000;
+  margin: 0px;
+  padding: 1em;
+  padding-right: 2em;
+}
+h2 {
+  margin: 2em 0 1em;
+}
+p.caution {
+  margin: 1em;
+  padding: 0.8em;
+  border: solid 1px #f63;
+}
+pre {
+  margin: 0.5em;
+  padding: 1em 2em;
+  background-color: #eee;
+}
+dl {
+  margin: 1em 2em;
+}
+dt {
+  font-weight: bold;
+}
+dd {
+  margin: 0 0 0.5em 3em;
+}
+table {
+  margin: 1em;
+  border-collapse: collapse;
+}
+th {
+  background-color: #ddd;
+}
+th, td {
+  padding: 5px 10px;
+  border: solid 1px #000;
+}
+var {
+  color: #922;
+}
+em {
+  font-weight: bold;
+  font-style: normal;
+}
+-->
+</style>
+</head>
+
+<body>
+
+<h1>SlavePNEによるマイボックス認証 セットアップガイド</h1>
+
+<p>最終更新日: 2008/04/29</p>
+
+<h2>目次</h2>
+<ul>
+<li><a href="#section0">0. はじめに</a></li>
+<li><a href="#section1">1. ファイルの設置</a></li>
+<li><a href="#section2">2. 設定ファイルの変更</a></li>
+<li><a href="#section3">3. データベースの設定</a>
+<li><a href="#section4">4. サーバ設定</a>
+<li><a href="#section5">5. セットアップモジュールの実行</a></li>
+<li><a href="#section6">6. 管理画面の設定</a>
+  <ul>
+  <li><a href="#section6-1">6-1. マイボックス認証専用のログインページを作成する</a></li>
+  <li><a href="#section6-2">6-2. SNS設定を変更する</a></li>
+  </ul></li>
+</ul>
+
+<hr>
+
+<h2 id="section0">0. はじめに</h2>
+
+<p>この文書は、OpenPNE の SlavePNE 機能により<a href="http://www.docomo.biz/html/product/mybox/">マイボックスサービス</a>を利用したユーザ認証を実現する手順を示したものです。OpenPNE バージョン2.12 を基にして書かれています。</p>
+<p>OpenPNE でマイボックス認証をおこなうためには、あらかじめマイボックスサービスへの登録が必要です。また、OpenPNE 側の設定には以下の情報が必要となります。</p>
+<ul>
+<li>マイボックスが利用可能なドメイン</li>
+<li>マイボックスサービス番号</li>
+<li>認証コード</li>
+</ul>
+<p>なお、OpenPNE にログインする際には、あらかじめオペレーション端末からマイボックスへユーザ登録をおこなっておく必要があります。</p>
+<p>OpenPNE 自体の動作環境については、<a href="./OpenPNE_setup.html">MySQL環境用セットアップガイド</a>、<a href="./OpenPNE_setup_pgsql.html">PostgreSQL環境用セットアップガイド</a>をご覧ください。</p>
+
+<h2 id="section1">1. ファイルの設置</h2>
+<p><a href="./OpenPNE_setup.html">MySQL環境用セットアップガイド</a>、<a href="./OpenPNE_setup_pgsql.html">PostgreSQL環境用セットアップガイド</a>の「1. ファイルの設置」をご覧ください。</p>
+
+<h2 id="section2">2. 設定ファイルの変更</h2>
+
+<p>先に<a href="./OpenPNE_setup.html">MySQL環境用セットアップガイド</a>、<a href="./OpenPNE_setup_pgsql.html">PostgreSQL環境用セットアップガイド</a>の「2. 設定ファイルの変更」の手順をおこなってください。</p>
+
+<p>OpenPNE標準の設定に加えて、config.php の以下の項目を設定します。</p>
+
+<dl>
+<dt>OPENPNE_AUTH_MODE</dt>
+    <dd>OpenPNEの認証モードの設定です。<br><em>slavepne</em> に設定してください。</dd>
+<dt>_OPENPNE_AUTH_CONFIG</dt>
+    <dd>SlavePNEを使用する場合の認証方式についての設定項目です。<br>
+    次のように書き換えてください（ただし、<em>【マイボックスサービス番号】</em>と<em>【認証コード】</em>の部分は、あらかじめ用意しているものに置き換えてください）。
+<pre>// OPENPNE_AUTH_MODE がslavepneの場合のauthオプション
+$GLOBALS['_OPENPNE_AUTH_CONFIG'] = 
+array(
+'storage' =&gt; "Mybox",
+'options' =&gt; array(
+    'xpid' =&gt; '<em>【マイボックスサービス番号】</em>',
+    'pswd' =&gt; '<em>【認証コード】</em>',),
+);
+if (is_null($_POST['username']) &amp;&amp; $_GET['key'] == 'mybox' &amp;&amp; !is_null($_SERVER['HTTP_X_CUID'])) {
+    $_POST['username'] = $_SERVER['HTTP_X_CUID'];
+}</pre>
+</dd>
+</dl>
+
+<h2 id="section3">3. データベースの設定</h2>
+<p><a href="./OpenPNE_setup.html">MySQL環境用セットアップガイド</a>、<a href="./OpenPNE_setup_pgsql.html">PostgreSQL環境用セットアップガイド</a>の「3. データベースの設定」をご覧ください。</p>
+
+<h2 id="section4">4. サーバ設定</h2>
+<p><a href="./OpenPNE_setup.html">MySQL環境用セットアップガイド</a>、<a href="./OpenPNE_setup_pgsql.html">PostgreSQL環境用セットアップガイド</a>の「4. サーバ設定」をご覧ください。</p>
+
+<h2 id="section5">5. セットアップモジュールの実行</h2>
+<p><a href="./OpenPNE_setup.html">MySQL環境用セットアップガイド</a>、<a href="./OpenPNE_setup_pgsql.html">PostgreSQL環境用セットアップガイド</a>の「5. セットアップモジュールの実行」をご覧ください。</p>
+
+<h2 id="section6">6. 管理画面へのアクセス</h2>
+<p>先に<a href="./OpenPNE_setup.html">MySQL環境用セットアップガイド</a>、<a href="./OpenPNE_setup_pgsql.html">PostgreSQL環境用セットアップガイド</a>の「6. 管理画面へのアクセス」の手順をおこなってください。</p>
+
+<h3 id="section6-1">6-1. マイボックス認証専用のログインページを作成する</h3>
+<p>管理画面上部の「デザイン」メニューから「フリーページ管理」を選択し、フリーページ管理ページを表示します。</p>
+<p>ページ下部の「フリーページの新規追加」にある「ページ内容」の欄に、以下の内容を記述してください。</p>
+<pre>以下のﾎﾞﾀﾝをｸﾘｯｸしてﾛｸﾞｲﾝしてください。
+&lt;center&gt;
+    &lt;form action="<var>OPENPNE_URL</var>" method="get"&gt;
+        &lt;input type="hidden" name="m" value="ktai"&gt;
+        &lt;input type="hidden" name="a" value="do_o_login"&gt;
+        &lt;input type="hidden" name="key" value="mybox"&gt;
+        &lt;input type="submit" value="ﾛｸﾞｲﾝ"&gt;
+    &lt;/form&gt;
+&lt;/center&gt;</pre>
+<p>「SNS認証」は「なし」、「対象ブラウザ」は「携帯」を選択し、「追加する」ボタンをクリックしてください。</p>
+<p>クリックした後に表示される「フリーページリスト」ページに追加したフリーページへのリンクが表示されるので、そのURLを控えておきます。</p>
+
+<h3 id="section6-2">6-2. SNS設定を変更する</h3>
+<p>管理画面上部の「SNS設定」メニューをクリックし、SNS設定ページを表示します。</p>
+<p>次の項目の設定をおこないます。</p>
+<dl>
+<dt>PC版使用設定</dt>
+    <dd>「使用不可にする」を選択してください。</dd>
+<dt>携帯版外部ログインページURL</dt>
+    <dd>「6-1. マイボックス認証専用のログインページを作成する」で追加したフリーページのURLを入力してください。</dd>
+<dt>通常ログインページ表示設定</dt>
+    <dd>「外部ログインページにリダイレクトする」を選択してください。</dd>
+</dl>
+<p>内容を確認し、「設定変更する」ボタンを押してください。</p>
+
+<hr>
+
+<p>以上でセットアップは完了です。</p>
+
+</body>
+</html>

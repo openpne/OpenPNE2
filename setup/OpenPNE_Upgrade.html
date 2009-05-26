@@ -1,0 +1,235 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title>OpenPNE アップグレードガイド</title>
+<style type="text/css">
+<!--
+body {
+  background-color: #fff;
+  color: #000;
+  margin: 0px;
+  padding: 1em;
+  padding-right: 2em;
+}
+h2 {
+  margin: 2em 0 1em;
+}
+p.caution {
+  margin: 1em;
+  padding: 0.8em;
+  border: solid 1px #f63;
+}
+pre {
+  margin: 0.5em;
+  padding: 1em 2em;
+  background-color: #eee;
+}
+dl {
+  margin: 1em 2em;
+}
+dt {
+  font-weight: bold;
+}
+dd {
+  margin: 0 0 0.5em 3em;
+}
+table {
+  margin: 1em;
+  border-collapse: collapse;
+}
+th {
+  background-color: #ddd;
+}
+th, td {
+  padding: 5px 10px;
+  border: solid 1px #000;
+}
+td ul {
+  margin: 0;
+}
+var {
+  color: #922;
+}
+em {
+  font-weight: bold;
+  font-style: normal;
+}
+-->
+</style>
+</head>
+
+<body>
+
+<h1>OpenPNE アップグレードガイド</h1>
+
+<p>最終更新日: 2008/05/29</p>
+
+<h2>目次</h2>
+<ul>
+<li><a href="#section0">0. はじめに</a></li>
+<li><a href="#section1">1. 手順</a></li>
+<li><a href="#section2">2. 作業方法</a>
+  <ul>
+  <li><a href="#section2-1">2-1. アップグレードSQLの実行</a>
+    <ul>
+    <li><a href="#section2-1-1">2-1-1. MySQL 4.1 以降 (5.x 含む) の場合</a></li>
+    <li><a href="#section2-1-2">2-1-2. MySQL 4.0 の場合</a></li>
+    <li><a href="#section2-1-3">2-1-3. PostgreSQL 7.4.x (8.0.x, 8.1.x 含む) の場合</a></li> 
+    </ul></li>
+  <li><a href="#section2-2">2-2. ソースコードの設置</a></li>
+  <li><a href="#section2-3">2-3. 設定ファイルの変更</a>
+    <ul>
+    <li><a href="#section2-3-1">2-3-1. OpenPNE2.12で追加された項目</a></li>
+    <li><a href="#section2-3-2">2-3-2. OpenPNE2.12で変更された項目</a></li>
+    <li><a href="#section2-3-3">2-3-3. OpenPNE2.12で削除された項目</a></li>
+    </ul></li>
+  <li><a href="#section2-4">2-4. メールサーバの設定</a></li>
+  </ul></li>
+</ul>
+
+<hr>
+
+<h2 id="section0">0. はじめに</h2>
+
+<p>この文書は、OpenPNE バージョン2.10.x から バージョン2.12.x へのアップグレード手順を書いたものです。</p>
+
+<p class="caution">アップグレード作業を始める前に、データベースのバックアップを保存しておくことを強くおすすめします。</p>
+
+<h2 id="section1">1. 手順</h2>
+
+<p>アップグレードは以下のような手順で進めます。</p>
+
+<ol>
+<li>アップグレードSQLの実行</li>
+<li>ソースコードの設置</li>
+<li>設定ファイルの変更</li>
+<li>メールサーバの設定</li>
+</ol>
+
+
+<h2 id="section2">2. 作業方法</h2>
+
+<h3 id="section2-1">2-1. アップグレードSQLの実行</h3>
+
+<p>使用している RDBMS に合わせて、アップグレードSQLを実行します。</p>
+
+<h4 id="section2-1-1">2-1-1. MySQL 4.1 以降 (5.x 含む) の場合</h4>
+
+<ul>
+<li><var>OPENPNE_DIR</var>/setup/sql/mysql41/upgrade/upgrade-2.10to2.12.sql</li>
+</ul>
+
+<div>
+<em>[実行例]</em>
+<pre>
+$ cd setup/sql/mysql41/upgrade/
+$ mysql -u username -p --default-character-set=utf8 DBNAME &lt; upgrade-2.10to2.12.sql
+</pre>
+</div>
+
+<h4 id="section2-1-2">2-1-2. MySQL 4.0 の場合</h4>
+
+<ul>
+<li><var>OPENPNE_DIR</var>/setup/sql/mysql40/upgrade/upgrade-2.10to2.12.sql</li>
+</ul>
+
+<div>
+<em>[実行例]</em>
+<pre>
+$ cd setup/sql/mysql40/upgrade/
+$ mysql -u username -p DBNAME &lt; upgrade-2.10to2.12.sql
+</pre>
+</div>
+
+<h4 id="section2-1-3">2-1-3. PostgreSQL 7.4.x (8.0.x, 8.1.x 含む) の場合</h4>
+
+<ul>
+<li><var>OPENPNE_DIR</var>/setup/sql/postgres74/upgrade/upgrade-2.10to2.12.sql</li>
+</ul>
+
+<div>
+<em>[実行例]</em>
+<pre>
+$ cd setup/sql/postgres74/upgrade
+$ psql DBNAME -U username -f upgrade-2.10to2.12.sql
+</pre>
+</div>
+
+<h3 id="section2-2">2-2. ソースコードの設置</h3>
+
+<p>Webサーバ上に OpenPNE 2.12 のソースファイルを設置します。</p>
+
+<p class="caution">
+新旧ソースファイル混在によるトラブルを防ぐため、上書きではなくソースコード全てを交換してください。
+交換後は、<var>OPENPNE_DIR</var>/var ディレクトリの書き込み権限を適切なもの(例: 777)に変更してください。
+</p>
+
+<p><var>OPENPNE_DIR</var>/var 以下に新たなディレクトリが追加されたので、書き込み権限の変更には特に注意してください。</p>
+
+
+<p>『<a href="./OpenPNE_Setup.html">OpenPNE セットアップガイド</a>』も参考にしてください。</p>
+
+
+<h3 id="section2-3">2-3. 設定ファイルの変更</h3>
+
+<p>OpenPNE 2.10 の設定ファイルを参考にして 2.12 用の設定ファイル(config.php)を作成します。</p>
+<p>次表に掲げる設定ファイルの変更内容も参考にしてください。</p>
+
+<h4 id="section2-3-1">2-3-1. OpenPNE2.12で追加された項目</h4>
+<table>
+<tr><th>項目名</th><th>説明</th><th>備考</th></tr>
+<tr><td><strong>OPENPNE_USE_HTTP_PROXY</strong></td><td>HTTPプロキシ使用設定</td><td>&nbsp;</td>
+<tr><td><strong>OPENPNE_HTTP_PROXY_HOST</strong></td><td>プロキシのホスト名</td><td>&nbsp;</td>
+<tr><td><strong>OPENPNE_HTTP_PROXY_PORT</strong></td><td>プロキシのポート番号</td><td>&nbsp;</td>
+<tr><td><strong>OPENPNE_DECORATION_CMD_URL</strong></td><td>文字装飾機能の小窓ボタンで表示される小窓紹介ページのURL設定</td><td>URLを空にすると小窓ボタンが非表示になります</td>
+<tr><td><strong>OPENPNE_AUTH_MODE</strong></td><td>認証モード設定</td><td><ul><li>通常の認証モードは email モードです</li><li>外部認証は slavepne モードにすることで使用できます</li><li>pneid モードは今回新しく追加された認証モードです</li></ul></td>
+<tr><td><strong>IS_SLAVEPNE_EMAIL_REGIST</strong></td><td>外部認証時にメールアドレス登録を必須にするかどうか</td><td>&nbsp;</td>
+<tr><td><strong>SLAVEPNE_SYOUTAI_URL_PC</strong></td><td>招待メールに記載するURL（PC版）</td><td>&nbsp;</td>
+<tr><td><strong>SLAVEPNE_SYOUTAI_URL_KTAI</strong></td><td>招待メールに記載するURL（携帯版）</td><td>&nbsp;</td>
+<tr><td><strong>SLAVEPNE_PASSWORD_QUERY_URL_PC</strong></td><td>外部認証時の「パスワードを忘れた方」のリンク先URL設定（PC版）</td><td>&nbsp;</td>
+<tr><td><strong>SLAVEPNE_PASSWORD_QUERY_URL_KTAI</strong></td><td>外部認証時の「パスワードを忘れた方」のリンク先URL設定（携帯版）</td><td>&nbsp;</td>
+<tr><td><strong>OPENPNE_ADMIN_CONVERT_URL</strong></td><td>管理画面でURL・小窓変換機能を使用するかどうか</td><td>従来通りの挙動（管理画面ではURL・小窓変換機能を使用しない）にしたい場合は、falseに設定してください</td>
+<tr><td><strong>OPENPNE_IS_OPENID_SERVER</strong></td><td>OpenID サーバ（プロバイダ）となるかどうか</td><td>&nbsp;</td>
+</table>
+
+<h4 id="section2-3-2">2-3-2. OpenPNE2.12で変更された項目</h4>
+<table>
+<tr><th>項目名</th><th>説明</th><th>変更点</th><th>備考</th></tr>
+<tr><td><strong>_OPENPNE_IMG_ALLOWED_SIZE</strong></td><td>画像変換時に許可する解像度のリスト (幅x高さ)</td><td>'600x600' が追加された</td><td>この項目を変更しないとアルバム機能の画像が表示できなくなります。</td></tr>
+</table>
+<ul>
+    <li>「mbstring設定」に mb_substitute_character() の関数コールが追加されました。携帯で表示することのできない文字は、この設定に従って変換されるようになります</li>
+</ul>
+
+<h4 id="section2-3-3">2-3-3. OpenPNE2.12で削除された項目</h4>
+<table>
+<tr><th>項目名</th><th>説明</th><th>備考</th></tr>
+<tr><td><strong>OPENPNE_USE_COMMU_MAP</strong></td><td>コミュニティに地図を表示するかどうか</td><td>この機能は小窓で実現するようになりました。コミュニティに地図を表示したくない場合は、管理画面のCMD設定からGoogleMaps小窓の使用設定を変更してください。</td>
+<tr><td><strong>IS_SLAVEPNE</strong></td><td>外部認証を使用するかどうか</td><td>この設定は新しく追加された <strong>OPENPNE_AUTH_MODE</strong> に統合されました。 <strong>IS_SLAVEPNE</strong> を true にして運用していたSNSは、 <strong>OPENPNE_AUTH_MODE</strong> を slavepne にしてください。</td>
+</table>
+
+
+<h3 id="section2-4">2-4. メールサーバの設定</h3>
+
+<p>携帯版を使用しない場合は以下の設定は不要です。</p>
+<p>MAIL_SERVER_DOMAIN に届くメールで、システムで利用するメールアドレスに以下が追加されます。</p>
+
+<table>
+<tr><th>項目</th><th>新形式</th><th>旧形式</th></tr>
+<tr><td>日記コメントメール投稿</td><td>bc<var>XXX</var>-<var>YYY</var>@MAIL_SERVER_DOMAIN</td><td>bc<var>XXX</var>@MAIL_SERVER_DOMAIN</td></tr>
+</table>
+<ul>
+<li><var>XXX</var> には数字。</li>
+<li><var>YYY</var> には12バイトの英数字([0-9a-f]{12})。</li>
+</ul>
+<p>設定方法は『<a href="./OpenPNE_Setup.html">OpenPNE セットアップガイド</a>』を参考にしてください。</p>
+
+
+
+<hr>
+<p>以上でアップグレード作業は完了です。</p>
+
+</body>
+</html>
