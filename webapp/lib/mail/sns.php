@@ -555,7 +555,7 @@ class mail_sns
         //---
 
         // コメント許可設定取得
-        if ($c_diary['is_comment_input']) {
+        if (OPENPNE_USE_DIARY_COMMENT && !$c_diary['is_comment_input']) {
             $this->error_mail('現在この' . WORD_DIARY . 'にはコメントできません。');
             m_debug_log('mail_sns::add_diary_comment() comment block');
             return false;
