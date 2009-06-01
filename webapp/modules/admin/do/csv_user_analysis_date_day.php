@@ -30,6 +30,10 @@ class admin_do_csv_user_analysis_date_day extends OpenPNE_Action
         foreach ($analysis_date_day as $key => $value) {
             $csv .= sprintf("\"%d/%d/%d\",%d\n", $year, $month, $key, $value);
         }
+        $csv_analysis_sum = '合計';
+        $csv_analysis_sum = mb_convert_encoding($csv_analysis_sum, 'SJIS', 'UTF-8');
+        $analysis_date_day_sum = array_sum($analysis_date_day);
+        $csv .= sprintf("\"%s\",%d\n", $csv_analysis_sum, $analysis_date_day_sum);
 
         //IE以外の場合、キャッシュをさせないヘッダを出力
         if (strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE') === false) {
