@@ -26,7 +26,7 @@ class admin_do_csv_user_analysis_date_day extends OpenPNE_Action
         $csv = '"年月日","人数"' . "\n";
         $csv = mb_convert_encoding($csv, 'SJIS', 'UTF-8');
 
-        $analysis_date_day = get_analysis_date_day($date);
+        $analysis_date_day = get_analysis_date_day();
         foreach ($analysis_date_day as $key => $value) {
             $csv .= sprintf("\"%d/%d/%d\",%d\n", $year, $month, $key, $value);
         }
