@@ -27,6 +27,10 @@ class admin_do_csv_user_analysis_generation extends OpenPNE_Action
             $generation = mb_convert_encoding($key, 'SJIS', 'UTF-8');
             $csv .= sprintf("\"%s\",%d\n", $generation, $value);
         }
+        $csv_analysis_sum = '合計';
+        $csv_analysis_sum = mb_convert_encoding($csv_analysis_sum, 'SJIS', 'UTF-8');
+        $analysis_generation_sum = array_sum($analysis_generation);
+        $csv .= sprintf("\"%s\",%d\n", $csv_analysis_sum, $analysis_generation_sum);
 
         //IE以外の場合、キャッシュをさせないヘッダを出力
         if (strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE') === false) {
