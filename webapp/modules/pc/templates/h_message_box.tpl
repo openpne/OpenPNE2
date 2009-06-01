@@ -243,12 +243,14 @@ function clearAll() {
 </div>
 
 <div class="pagerRelativeMulti">
+({if $smarty.const.USE_MESSAGE_OPEN_UNOPEN}) 
 <div class="text">
 <p class="icons">
 <span><img src="({t_img_url_skin filename=icon_mail_2})" alt="受信者開封済み" />受信者開封済み</span><br />
 <span><img src="({t_img_url_skin filename=icon_mail_3})" alt="受信者未開封" />受信者未開封</span>
 </p>
 </div>
+({/if})
 <div class="pager">
 ({capture name=pager})({strip})
 ({if $s_data.is_s_prev})<p class="prev"><a href="({t_url m=pc a=page_h_message_box})&amp;s_page=({$s_data.s_page-1})&amp;box=outbox&amp;keyword=({$url_keyword})&amp;target_c_member_id=({$target_c_member_id})&amp;year=({$requests.year})&amp;month=({$requests.month})&amp;day=({$requests.day})">前を表示</a></p>({/if})
@@ -284,7 +286,7 @@ function clearAll() {
 ({foreach from=$c_message_s_list item=c_message_s})
 <tr>
 <td class="status"><span>
-({if $c_message_s.is_read})
+({if $smarty.const.USE_MESSAGE_OPEN_UNOPEN&& $c_message_s.is_read})
 <img src="({t_img_url_skin filename=icon_mail_2})" alt="受信者開封済み" />
 ({else})
 <img src="({t_img_url_skin filename=icon_mail_3})" alt="受信者未開封" />
@@ -298,9 +300,11 @@ function clearAll() {
 ({/foreach})
 </table>
 
+({if $smarty.const.USE_MESSAGE_OPEN_UNOPEN})
 <div class="pagerRelative">
 ({$smarty.capture.pager|smarty:nodefaults})
 </div>
+({/if})
 
 <div class="operation">
 <p><a href="#" onclick="return checkAll();" onkeypress="return checkAll();">全てをチェック</a> / <a href="#" onclick="return clearAll();" onkeypress="return clearAll();">全てのチェックをはずす</a></p>
