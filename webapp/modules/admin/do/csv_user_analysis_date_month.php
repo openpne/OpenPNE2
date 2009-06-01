@@ -26,6 +26,10 @@ class admin_do_csv_user_analysis_date_month extends OpenPNE_Action
         foreach ($analysis_date_month as $key => $value) {
             $csv .= sprintf("\"%s\",%d\n", $key, $value);
         }
+        $csv_analysis_sum = '合計';
+        $csv_analysis_sum = mb_convert_encoding($csv_analysis_sum, 'SJIS', 'UTF-8');
+        $analysis_date_month_sum = array_sum($analysis_date_month);
+        $csv .= sprintf("\"%s\",%d\n", $csv_analysis_sum, $analysis_date_month_sum);
 
         //IE以外の場合、キャッシュをさせないヘッダを出力
         if (strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE') === false) {
