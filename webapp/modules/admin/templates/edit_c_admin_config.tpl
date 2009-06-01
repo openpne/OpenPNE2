@@ -411,6 +411,16 @@
 <option value="0"({if !$smarty.const.USE_RESPONSE_COMMENT}) selected="selected"({/if})>使用しない</option>
 </select></td>
 </tr>
+<tr class="cell30">
+<th colspan="2">送信メッセージ開封状況確認機能</th>
+<td>
+<span class="info">送信メッセージの受信者側での開封状況を送信者側で確認できるかどうか設定します。</span><br />
+<select class="basic" name="USE_MESSAGE_OPEN_UNOPEN">
+<option value="1"({if $smarty.const.USE_MESSAGE_OPEN_UNOPEN}) selected="selected"({/if})>使用する</option>
+<option value="0"({if !$smarty.const.USE_MESSAGE_OPEN_UNOPEN}) selected="selected"({/if})>使用しない</option>
+</select></td>
+</tr>
+
 </table>
 <p class="textBtn"><input type="submit" value="設定変更する" /></p>
 </form>
