@@ -22,11 +22,12 @@ class admin_do_csv_user_analysis_date_day extends OpenPNE_Action
         $date = $requests['date'];
 
         list($year, $month, $day) = explode('-', $date);
+        $date = mb_substr($date,0,7);
 
         $csv = '"年月日","人数"' . "\n";
         $csv = mb_convert_encoding($csv, 'SJIS', 'UTF-8');
 
-        $analysis_date_day = get_analysis_date_day();
+        $analysis_date_day = get_analysis_date_day($date);
         foreach ($analysis_date_day as $key => $value) {
             $csv .= sprintf("\"%d/%d/%d\",%d\n", $year, $month, $key, $value);
         }
