@@ -41,6 +41,12 @@ class ktai_do_fh_diary_insert_c_diary_comment extends OpenPNE_Action
             }
         }
 
+        //日記コメント停止設定
+        if (OPENPNE_USE_DIARY_COMMENT && !$c_diary['is_comment_input']) {
+            $p = array('target_c_diary_id' => $target_c_diary_id);
+            openpne_redirect('ktai', 'page_fh_diary', $p);
+        }
+
         if (!db_diary_is_writable_comment4c_diary_id($target_c_diary_id)) {
             $p = array('target_c_diary_id' => $target_c_diary_id, 'msg' => 47);
             openpne_redirect('ktai', 'page_fh_diary', $p);
