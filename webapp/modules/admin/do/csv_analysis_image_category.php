@@ -19,7 +19,7 @@ class admin_do_csv_analysis_image_category extends OpenPNE_Action
 
     function execute($requests)
     {
-        $csv = '"カテゴリ","画像容量,平均容量(1人当り)"' . "\n";
+        $csv = '"カテゴリ","画像容量","平均容量(1人当り)"' . "\n";
         $csv = mb_convert_encoding($csv, 'SJIS', 'UTF-8');
 
         $analysis_image_category = get_analysis_image_category();
