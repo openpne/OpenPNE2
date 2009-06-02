@@ -334,10 +334,9 @@
     ({/if})
 ({/foreach})
 ({else})
-<input type="hidden" name="({$key})" value="({$item})" />
+<input type="hidden" name="cond[({$key})]" value="({$item})" />
 ({/if})
 ({/foreach})
-<input type="hidden" name="cond" value="({$cond})" />
 ({else})
 <input type="hidden" name="a" value="page_({$hash_tbl->hash('send_messages_all')})" />
 ({/if})
