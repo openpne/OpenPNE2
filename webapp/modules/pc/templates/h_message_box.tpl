@@ -286,7 +286,7 @@ function clearAll() {
 ({foreach from=$c_message_s_list item=c_message_s})
 <tr>
 <td class="status"><span>
-({if $smarty.const.USE_MESSAGE_OPEN_UNOPEN&& $c_message_s.is_read})
+({if $smarty.const.USE_MESSAGE_OPEN_UNOPEN && $c_message_s.is_read})
 <img src="({t_img_url_skin filename=icon_mail_2})" alt="受信者開封済み" />
 ({else})
 <img src="({t_img_url_skin filename=icon_mail_3})" alt="受信者未開封" />
@@ -300,11 +300,9 @@ function clearAll() {
 ({/foreach})
 </table>
 
-({if $smarty.const.USE_MESSAGE_OPEN_UNOPEN})
 <div class="pagerRelative">
 ({$smarty.capture.pager|smarty:nodefaults})
 </div>
-({/if})
 
 <div class="operation">
 <p><a href="#" onclick="return checkAll();" onkeypress="return checkAll();">全てをチェック</a> / <a href="#" onclick="return clearAll();" onkeypress="return clearAll();">全てのチェックをはずす</a></p>
