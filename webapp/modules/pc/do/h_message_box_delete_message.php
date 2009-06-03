@@ -78,6 +78,7 @@ class pc_do_h_message_box_delete_message extends OpenPNE_Action
                         handle_kengen_error();
                     }
                 }
+                db_message_update_c_message_is_read4c_message_id($val, $u);
                 db_message_delete_c_message4c_message_id($val, $u);
             }
         }
