@@ -42,12 +42,6 @@ class admin_do_csv_access_analysis_target_commu extends OpenPNE_Action
         for ($i = 0; $i < sizeof($csv_header); $i++) {
             $csv_header[$i] = mb_convert_encoding($csv_header[$i], 'SJIS', 'UTF-8');
         }
-        var_dump($csv_header);
-        die();
-        $csv_analysis_sum = '合計';
-        $csv_analysis_sum = mb_convert_encoding($csv_analysis_sum, 'SJIS', 'UTF-8');
-        $analysis_generation_sum = array_sum($analysis_generation);
-        $csv .= sprintf("\"%s\",%d\n", $csv_analysis_sum, $analysis_generation_sum);
         fputcsv($out, $csv_header);
 
         $sum = 0;
