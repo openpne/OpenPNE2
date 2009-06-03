@@ -42,8 +42,15 @@ class admin_do_csv_access_analysis_target_commu extends OpenPNE_Action
         for ($i = 0; $i < sizeof($csv_header); $i++) {
             $csv_header[$i] = mb_convert_encoding($csv_header[$i], 'SJIS', 'UTF-8');
         }
+        var_dump($csv_header);
+        die();
+        $csv_analysis_sum = '合計';
+        $csv_analysis_sum = mb_convert_encoding($csv_analysis_sum, 'SJIS', 'UTF-8');
+        $analysis_generation_sum = array_sum($analysis_generation);
+        $csv .= sprintf("\"%s\",%d\n", $csv_analysis_sum, $analysis_generation_sum);
         fputcsv($out, $csv_header);
 
+        $sum = 0;
         $page = 1;
         $page_size = -1;
         list($target_commu) = p_access_analysis_target_commu_target_commu4ym_page_name($ymd, $month_flag, $page_name, $ktai_flag, $page, $page_size, $orderby);
@@ -53,7 +60,9 @@ class admin_do_csv_access_analysis_target_commu extends OpenPNE_Action
 
             $csv_line = array($item['target_c_commu_id'], $name, $item['count']);
             fputcsv($out, $csv_line);
+            $sum = $item['count'];
         }
+        fputcsv($out, array(mb_convert_encoding('合計', 'SJIS', 'UTF-8'), '', $sum));
         exit;
     }
 }
