@@ -7,6 +7,13 @@
 // 一括メッセージ送信
 class admin_page_send_messages_search extends OpenPNE_Action
 {
+    function handleError($errors)
+    {
+        $_REQUEST['msg'] = array_shift($errors);
+        openpne_forward('admin','page','list_c_member');
+        exit;
+     }
+
     function execute($requests)
     {
         $cond_list = validate_cond($_REQUEST['cond']);
