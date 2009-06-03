@@ -44,6 +44,7 @@ class admin_do_csv_access_analysis_target_topic extends OpenPNE_Action
         }
         fputcsv($out, $csv_header);
 
+        $sum = 0;
         $page = 1;
         $page_size = -1;
         list($target_topic) = p_access_analysis_target_topic_target_topic4ym_page_name($ymd, $month_flag, $page_name, $ktai_flag, $page, $page_size, $orderby);
@@ -61,8 +62,9 @@ class admin_do_csv_access_analysis_target_topic extends OpenPNE_Action
 
             $csv_line = array($item['target_c_commu_topic_id'], $topic_name, $commu_name, $item['count']);
             fputcsv($out, $csv_line);
+            $sum = $item['count'];
         }
-
+        fputcsv($out, array(mb_convert_encoding('合計', 'SJIS', 'UTF-8'), '', '', $sum));
         exit;
     }
 }
