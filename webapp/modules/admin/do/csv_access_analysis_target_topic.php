@@ -62,7 +62,7 @@ class admin_do_csv_access_analysis_target_topic extends OpenPNE_Action
 
             $csv_line = array($item['target_c_commu_topic_id'], $topic_name, $commu_name, $item['count']);
             fputcsv($out, $csv_line);
-            $sum = $item['count'];
+            $sum += $item['count'];
         }
         fputcsv($out, array(mb_convert_encoding('合計', 'SJIS', 'UTF-8'), '', '', $sum));
         exit;
