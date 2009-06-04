@@ -54,7 +54,7 @@ class admin_do_csv_access_analysis_member extends OpenPNE_Action
 
             $csv_line = array($item['c_member_id'], $nickname, $item['count']);
             fputcsv($out, $csv_line);
-            $sum = $item['count'];
+            $sum += $item['count'];
         }
         fputcsv($out, array(mb_convert_encoding('合計', 'SJIS', 'UTF-8'), '', $sum));
         exit;
