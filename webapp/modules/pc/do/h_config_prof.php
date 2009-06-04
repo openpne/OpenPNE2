@@ -75,6 +75,7 @@ class pc_do_h_config_prof extends OpenPNE_Action
         case "register":
             db_member_config_prof_new($u, $prof);
             db_member_update_c_member_profile($u, $c_member_profile_list);
+            db_member_update_c_member_config($u, 'IS_SEARCH_RESULT', $prof['is_search_result']);
 
             openpne_redirect('pc', 'page_h_prof');
             break;
