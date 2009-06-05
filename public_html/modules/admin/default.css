@@ -1495,6 +1495,7 @@ div.listControl p.listMove a {
 /** admin_page_send_messages_search **/
 
 #admin_page_send_messages_search div#page_navi { padding: 10px 0; }
+#admin_page_send_messages_search div#page_navi ul { margin-top: 10px; }
 
 /** admin_page_list_c_free_page **/
 
