@@ -1019,11 +1019,29 @@ function _db_admin_c_member_list($page, $page_size, &$pager, $cond_list, $order)
     return $c_member_list;
 }
 
-function db_c_profile_option4c_profile_option_id($c_profile_option_id)
+/**
+ * プロフィール識別名と c_profile_option_id より c_profile.value を返す
+ */
+function db_c_profile_get_profile_value4requested_profile($c_profile_name, $c_profile_option_id)
 {
-    $sql = "SELECT * FROM c_profile_option WHERE c_profile_option_id = ? ";
+    $sql = "SELECT po.value FROM c_profile_option po"
+         . " LEFT JOIN c_profile p ON po.c_profile_id = p.c_profile_id"
+         . " WHERE p.form_type in ('select', 'checkbox', 'radio')"
+         . " AND po.c_profile_option_id = ?";
     $params = array(intval($c_profile_option_id));
-    return db_get_row($sql, $params);
+
+    return db_get_one($sql, $params);
+}
+
+/**
+ * c_profile.name より c_profile.caption を返す
+ */
+function db_c_profile_get_caption4name($name)
+{
+    $sql = "SELECT caption FROM c_profile WHERE name = ?";
+    $params = array($name);
+
+    return db_get_one($sql, $params);
 }
 
 /**
@@ -1115,7 +1133,7 @@ function validate_profile_cond($requests)
 
     foreach ($profile_list as $key => $value) {
         if (!empty($requests[$key])) {
-            $cond_list[$key] = intval($requests[$key]);
+            $cond_list[$key] = $requests[$key];
         }
     }
 
