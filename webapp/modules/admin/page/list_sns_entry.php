@@ -26,7 +26,7 @@ class admin_page_list_sns_entry extends OpenPNE_Action
         $v['profile_cond_list'] = $profile_cond_list;
 
         foreach ($profile_cond_list as $key => $value) {
-            $cond .= '&profile['.$key.']='.$value;
+            $cond .= '&profile['.$key.']=' . (int)$value;
         }
 
         $v['cond'] = $cond;
