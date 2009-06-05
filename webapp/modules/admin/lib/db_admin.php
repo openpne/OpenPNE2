@@ -1027,8 +1027,9 @@ function db_c_profile_get_profile_value4requested_profile($c_profile_name, $c_pr
     $sql = "SELECT po.value FROM c_profile_option po"
          . " LEFT JOIN c_profile p ON po.c_profile_id = p.c_profile_id"
          . " WHERE p.form_type in ('select', 'checkbox', 'radio')"
+         . " AND p.name = ?"
          . " AND po.c_profile_option_id = ?";
-    $params = array(intval($c_profile_option_id));
+    $params = array($c_profile_name, intval($c_profile_option_id));
 
     return db_get_one($sql, $params);
 }
