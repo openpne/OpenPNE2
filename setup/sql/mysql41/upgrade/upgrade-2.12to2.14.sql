@@ -70,8 +70,4 @@ UPDATE c_commu SET is_topic='admin_only' WHERE topic_authority='admin_only';
 ALTER TABLE c_commu DROP public_flag;
 ALTER TABLE c_commu DROP topic_authority;
 
--- update15
-ALTER TABLE c_member ADD COLUMN is_search_result TINYINT(1) NOT NULL default 1;
-
--- update16
-ALTER TABLE c_member DROP is_search_result;
+-- update15,update16
