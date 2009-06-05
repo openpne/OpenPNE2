@@ -10,8 +10,7 @@ class admin_page_send_messages_search extends OpenPNE_Action
     function execute($requests)
     {
         $cond_list = validate_cond($_REQUEST['cond']);
-        $validate_cond_list = validate_cond($_REQUEST);
-        $profile_cond_list = validate_profile_cond($validate_cond_list['profile']);
+        $profile_cond_list = validate_profile_cond($_REQUEST['profile']);
 
         $profile_value_list = array();
         foreach ($profile_cond_list as $key => $each_cond) {
