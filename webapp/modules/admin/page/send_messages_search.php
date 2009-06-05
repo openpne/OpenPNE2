@@ -7,25 +7,37 @@
 // 一括メッセージ送信
 class admin_page_send_messages_search extends OpenPNE_Action
 {
-    function handleError($errors)
-    {
-        $_REQUEST['msg'] = array_shift($errors);
-        openpne_forward('admin','page','list_c_member');
-        exit;
-     }
-
     function execute($requests)
     {
         $cond_list = validate_cond($_REQUEST['cond']);
-        $profile_cond_list = validate_profile_cond($_REQUEST['profile']);
+        $validate_cond_list = validate_cond($_REQUEST);
+        $profile_cond_list = validate_profile_cond($validate_cond_list['profile']);
 
-        $profile_list = db_member_c_profile_list();
         $profile_value_list = array();
-
         foreach ($profile_cond_list as $key => $each_cond) {
-            $c_profile_option = db_c_profile_option4c_profile_option_id($each_cond);
-            $profile_value_list[$key]['value'] = $c_profile_option['value'];
-            $profile_value_list[$key]['caption'] = $profile_list[$key]['caption'];
+
+            // form_type:checkbox
+            if (is_array($each_cond)) {
+                $value = '';
+                foreach ($each_cond as $option_id) {
+                    if ($value) $value .= ', ';
+                    $value .= db_c_profile_get_profile_value4requested_profile($key, $option_id);
+                }
+            } else {
+                $value = db_c_profile_get_profile_value4requested_profile($key, $each_cond);
+
+                // form_type:text,textarea
+                if (is_null($value)) {
+                    $value = '「' . $each_cond . '」を含む';
+                }
+            }
+            $profile_value_list[$key]['caption'] = db_c_profile_get_caption4name($key);
+            $profile_value_list[$key]['value']   = $value;
+        }
+
+        // 絞り込み条件が無い場合はリダイレクト
+        if (!$cond_list && !$profile_value_list) {
+            openpne_redirect('admin', 'page_send_messages_all');
         }
 
         $v['cond_list'] = $cond_list;
