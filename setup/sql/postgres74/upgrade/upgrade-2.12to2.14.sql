@@ -118,3 +118,5 @@ ALTER TABLE c_commu DROP topic_authority CASCADE;
 -- update16
 ALTER TABLE c_member ADD COLUMN is_search_result int4 NOT NULL default 1;
 
+-- update17
+ALTER TABLE c_member ADD COLUMN is_search_result int4 NOT NULL default 1;
