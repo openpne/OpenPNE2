@@ -150,7 +150,9 @@
 
 </table>
 
+<p class="textBtn">
 <input type="submit" class="input_submit" value="検索" style="width: 100px" />
+</p>
 
 ({/t_form_block})
 </div>
