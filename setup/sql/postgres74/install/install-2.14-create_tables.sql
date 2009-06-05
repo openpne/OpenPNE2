@@ -765,7 +765,6 @@ CREATE TABLE c_member (
   ashiato_count_log int4 NOT NULL default '0',
   schedule_start_day int4 NOT NULL default '0',
   u_datetime timestamp NOT NULL default '0000-01-01 00:00:00',
-  is_search_result int4 NOT NULL default '1',
   PRIMARY KEY  (c_member_id)
 );
 
