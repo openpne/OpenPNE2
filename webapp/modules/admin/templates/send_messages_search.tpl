@@ -19,15 +19,28 @@
 
 <div id="page_navi">
 <h3>◆送信先</h3>
+<p>以下の条件に当てはまるメンバー全て</p>
 <ul>
-({if $cond_list.s_year||$cond_list.e_year})
-<li>生年月日 : ({if $cond_list.s_year})({$cond_list.s_year})年({/if})～({if $cond_list.e_year})({$cond_list.e_year})年({/if})</li>
+({if $cond_list.id})
+<li> ID : ({$cond_list.id})</li>
+({/if})
+({if $cond_list.nickname})
+<li>({$WORD_NICKNAME}) : 「({$cond_list.nickname})」を含む</li>
 ({/if})
 ({if $cond_list.last_login})
 <li>最終ログイン : ({$select_last_login[$cond_list.last_login]})</li>
 ({/if})
+({if $cond_list.s_year||$cond_list.e_year})
+<li>生年月日 : ({if $cond_list.s_year})({$cond_list.s_year})年({/if})～({if $cond_list.e_year})({$cond_list.e_year})年({/if})</li>
+({/if})
 ({if $cond_list.s_rank||$cond_list.e_rank})
 <li>ランク : ({$s_rank.name}) ～ ({$e_rank.name})</li>
+({/if})
+({foreach from=$profile_value_list item=item})
+<li>({$item.caption}) : ({$item.value})</li>
+({/foreach})
+({if $cond_list.mail_address})
+<li>メールアドレス : ({$cond_list.mail_address})</li>
 ({/if})
 ({if $cond_list.is_pc_address})
 <li>PCメールアドレス : ({if $cond_list.is_pc_address == 1})登録している({else})登録していない({/if})</li>
@@ -35,11 +48,7 @@
 ({if $cond_list.is_ktai_address})
 <li>携帯メールアドレス : ({if $cond_list.is_ktai_address == 1})登録している({else})登録していない({/if})</li>
 ({/if})
-({foreach from=$profile_value_list key=key item=item})
-<li>({$item.caption}) : ({$item.value})</li>
-({/foreach})
 </ul>
-のメンバー
 </div>({*/div class="page_navi"*})
 
 <div class="edit_message">
@@ -50,8 +59,14 @@
 ({foreach from=$cond_list key=key item=item})
 <input type="hidden" name="cond[({$key})]" value="({$item})" />
 ({/foreach})
-({foreach from=$cond_list key=key item=item})
-<input type="hidden" name="profile[({$key})]" value="({$item})" />
+({foreach from=$profile_cond_list key=key item=item})
+({if is_array($item)})
+  ({foreach from=$item item=check})
+    <input type="hidden" name="profile[({$key})][]" value="({$check})" />
+  ({/foreach})
+({else})
+    <input type="hidden" name="profile[({$key})]" value="({$item})" />
+({/if})
 ({/foreach})
 <dl>
 <dt class="label">送信種別</dt>
