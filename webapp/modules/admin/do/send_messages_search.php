@@ -20,11 +20,11 @@ class admin_do_send_messages_search extends OpenPNE_Action
         $send_type = $requests['send_type'];
 
         $cond_list = validate_cond($_REQUEST['cond']);
-        $profile_list = validate_profile_cond($_REQUEST['profile']);
+        $cond_list['profile'] = validate_profile_cond($_REQUEST['profile']);
 
         // 送信者はとりあえず1番で固定
         $c_member_id_from = 1;
-        $c_member_id_list = _db_admin_c_member_id_list($cond_list, $profile_list);
+        $c_member_id_list = _db_admin_c_member_id_list($cond_list);
 
         $send_num = 0;
         foreach ($c_member_id_list as $key => $c_member_id) {
