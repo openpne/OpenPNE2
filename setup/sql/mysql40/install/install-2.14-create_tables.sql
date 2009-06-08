@@ -1,6 +1,3 @@
-
-/*!40101 SET NAMES utf8 */;
-
 CREATE TABLE `biz_admin_config` (
   `biz_admin_config_id` int(11) NOT NULL auto_increment,
   `name` text NOT NULL,
