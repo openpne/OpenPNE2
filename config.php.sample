@@ -600,7 +600,12 @@ $GLOBALS['_ALLOWED_IP_LIST_FOR_KANSHI'] = array();
 
 // 秘密の質問を使用するかどうか
 //    TRUE:使用する FALSE:使用しない
-define('IS_PASSWORD_QUERY_ANSWER', true);
+// 0: 使用しない
+// 1: 使用する(未登録でも使用可能)
+// 2: 使用する(未登録時に登録を強制する)
+// 運用中に設定を｢0｣から｢1｣に変更した場合、秘密の質問を未登録のユーザーが
+// パスワードを忘れた場合にパスワードの再発行が出来なくなりますのでご注意下さい
+define('IS_PASSWORD_QUERY_ANSWER', 2);
 
 // 連続投稿確認用
 //
