@@ -6,7 +6,7 @@
 
 // 管理画面トップページ 認証済み
 
-class admin_page_commu_member_list extends OpenPNE_Action
+class admin_page_c_commu_member_list extends OpenPNE_Action
 {
     function execute($requests)
     {
