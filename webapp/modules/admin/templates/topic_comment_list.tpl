@@ -79,7 +79,7 @@
 <tr>
 <th>({$WORD_COMMUNITY})名</th>
 <td>
-<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('commu_list','page')})&amp;target_c_commu_id=({$item.c_commu_id})">({$item.commu_name})</a>
+<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('c_commu_detail','page')})&amp;target_c_commu_id=({$item.c_commu_id})">({$item.commu_name})</a>
 </td>
 </tr>
 ({****})
