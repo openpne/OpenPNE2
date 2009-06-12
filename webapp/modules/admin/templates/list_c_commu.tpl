@@ -1,6 +1,6 @@
 ({$inc_header|smarty:nodefaults})
 ({ext_include file="inc_subnavi_adminSiteMember.tpl"})
-({assign var="page_name" value="コミュニティリスト"})
+({assign var="page_name" value="$WORD_COMMUNITYリスト"})
 ({ext_include file="inc_tree_adminSiteMember.tpl"})
 </div>
 
@@ -60,9 +60,9 @@
 <tr>
     <th></th>
     <th>ID</th>
-    <th>コミュニティ名</th>
-    <th>コミュニティ管理者</th>
-    <th>コミュニティ作成日</th>
+    <th>({$WORD_COMMUNITY})名</th>
+    <th>({$WORD_COMMUNITY})管理者</th>
+    <th>({$WORD_COMMUNITY})作成日</th>
     <th colspan="3">操作</th>
 </tr>
 
@@ -73,18 +73,18 @@
     <td><a href="({t_url _absolute=1 m=pc a=page_c_home})&amp;target_c_commu_id=({$commu.c_commu_id})" target="_blank">({$commu.name|truncate:60})</a></td>
     <td><a href="({t_url _absolute=1 m=pc a=page_f_home})&amp;target_c_member_id=({$commu.c_member.c_member_id})" target="_blank">({$commu.c_member.nickname|truncate:60})</a></td>
     <td>({$commu.u_datetime})</td>
-    <td><a href="?m=admin&amp;a=page_({$hash_tbl->hash('commu_member_list')})&amp;target_c_commu_id=({$commu.c_commu_id})">メンバーリスト</a></td>
-    <td><a href="?m=admin&amp;a=page_c_commu_detail&amp;target_c_commu_id=({$commu.c_commu_id})">詳細</a></td>
-    <td><a href="?m=admin&amp;a=page_delete_commu&amp;target_c_commu_id=({$commu.c_commu_id})">削除</a></td>
+    <td><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('c_commu_member_list')})&amp;target_c_commu_id=({$commu.c_commu_id})">メンバーリスト</a></td>
+    <td><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('c_commu_detail')})&amp;target_c_commu_id=({$commu.c_commu_id})">詳細</a></td>
+    <td><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('delete_commu')})&amp;target_c_commu_id=({$commu.c_commu_id})">削除</a></td>
 </tr>
 ({/foreach})
 
 <tr>
     <th></th>
     <th>ID</th>
-    <th>コミュニティ名</th>
-    <th>コミュニティ管理者</th>
-    <th>コミュニティ作成日</th>
+    <th>({$WORD_COMMUNITY})名</th>
+    <th>({$WORD_COMMUNITY})管理者</th>
+    <th>({$WORD_COMMUNITY})作成日</th>
     <th colspan="3">操作</th>
 </tr>
 </table>

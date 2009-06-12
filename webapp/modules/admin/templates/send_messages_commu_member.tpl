@@ -1,7 +1,7 @@
 ({$inc_header|smarty:nodefaults})
 ({ext_include file="inc_subnavi_adminSiteMember.tpl"})
-({assign var="page_name" value="コミュニティメンバー一括送信"})
-({assign var="parent_page_name" value="コミュニティリスト"})
+({assign var="page_name" value="$WORD_COMMUNITYメンバー一括送信"})
+({assign var="parent_page_name" value="$WORD_COMMUNITYリスト"})
 ({capture name=parent_page_url})?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_commu')})({/capture})
 ({ext_include file="inc_tree_adminSiteMember.tpl"})
 </div>
@@ -12,7 +12,7 @@
 
 <h2 id="ttl01">メッセージ・メール送信</h2>
 <div class="contents">
-<p class="info">指定したコミュニティメンバー全員にメッセージもしくはEメールを送信します。</p>
+<p class="info">指定した({$WORD_COMMUNITY})メンバー全員にメッセージもしくはEメールを送信します。</p>
 <p class="caution" id="c01"><strong>※このメッセージは、ID No.1のメンバーから送信されます。</strong></p>
 
 <form action="./" method="post">
@@ -42,6 +42,6 @@
 </dl>
 <p class="textBtn"><input type="submit" value="メッセージ送信" /></p>
 </form>
-<p class="caution" id="c02"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('commu_member_list')})&amp;target_c_commu_id=({$target_c_commu_id})" onClick="history.back(); return false;" onKeyPress="history.back(); return false;">コミュニティメンバーリストに戻る</a></p>
+<p class="caution" id="c02"><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('c_commu_member_list')})&amp;target_c_commu_id=({$target_c_commu_id})" onClick="history.back(); return false;" onKeyPress="history.back(); return false;">({$WORD_COMMUNITY})メンバーリストに戻る</a></p>
 
 ({$inc_footer|smarty:nodefaults})
