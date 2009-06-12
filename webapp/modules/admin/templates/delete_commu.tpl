@@ -1,7 +1,7 @@
 ({$inc_header|smarty:nodefaults})
 ({ext_include file="inc_subnavi_adminSiteMember.tpl"})
-({assign var="page_name" value="コミュニティ削除の確認"})
-({assign var="parent_page_name" value="コミュニティリスト"})
+({assign var="page_name" value="$WORD_COMMUNITY削除の確認"})
+({assign var="parent_page_name" value="$WORD_COMMUNITYリスト"})
 ({capture name=parent_page_url})?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_commu')})({/capture})
 ({ext_include file="inc_tree_adminSiteMember.tpl"})
 </div>

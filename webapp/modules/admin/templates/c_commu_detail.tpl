@@ -33,7 +33,7 @@
 <tr>
 <th>管理者</th>
 <td>
-<a href="({t_url _absolute=1 m=pc a=page_f_home})&amp;target_c_member_id=({$commu.c_member_id_admin})" target="_blank">({$commu.c_member.nickname})</a>
+<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('c_commu_member_list')})&amp;target_c_member_id=({$item.c_member_id})">({$commu.c_member.nickname})</a>
 </td>
 </tr>
 ({****})
@@ -52,7 +52,7 @@
 </tr>
 ({****})
 <tr>
-<th>コミュニティ画像</th>
+<th>({$WORD_COMMUNITY})画像</th>
 <td>
 <p class="photo">
 <img src="({t_img_url filename=$c_commu.image_filename w=180 h=180 noimg=no_logo})" class="pict" alt="({$WORD_COMMUNITY})写真" />
