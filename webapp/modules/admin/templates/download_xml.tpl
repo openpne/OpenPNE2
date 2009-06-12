@@ -75,17 +75,17 @@
 </td>
 </tr>
 <tr class="cell01">
-<th colspan="2">コミュニティ指定</th>
+<th colspan="2">({$WORD_COMMUNITY})指定</th>
 <td colspan = "2">
 <span class="caution">※トピックのダウンロード選択時のみ有効です</span><br />
 <input class="basicRadio" name="IS_COMMU" id="IS_COMMU_0" type="radio" value="0"({if $requests.IS_COMMU == 0}) checked="checked"({/if}) /><label for="IS_COMMU_0">指定なし</label><br />
-<input class="basicRadio" name="IS_COMMU" id="IS_COMMU_1" type="radio" value="1"({if $requests.IS_COMMU == 1}) checked="checked"({/if}) /><label for="IS_COMMU_1">コミュニティ・カテゴリ</label>
+<input class="basicRadio" name="IS_COMMU" id="IS_COMMU_1" type="radio" value="1"({if $requests.IS_COMMU == 1}) checked="checked"({/if}) /><label for="IS_COMMU_1">({$WORD_COMMUNITY})・カテゴリ</label>
 <select name="CATEGORY_ID">
 ({foreach from=$c_commu_category_list item=item})
 <option value="({$item.c_commu_category_id})"({if $requests.CATEGORY_ID == $item.c_commu_category_id}) selected="selected"({/if})>({$item.name})</option>
 ({/foreach})
 </select><br />
-<input class="basicRadio" name="IS_COMMU" id="IS_COMMU_2" type="radio" value="2"({if $requests.IS_COMMU == 2}) checked="checked"({/if}) /><label for="IS_COMMU_2">コミュニティＩＤ</label>
+<input class="basicRadio" name="IS_COMMU" id="IS_COMMU_2" type="radio" value="2"({if $requests.IS_COMMU == 2}) checked="checked"({/if}) /><label for="IS_COMMU_2">({$WORD_COMMUNITY})ＩＤ</label>
 <input class="basic" name="COMMU_ID" type="text" value="({$requests.COMMU_ID})" size="11" />
 </td>
 </tr>

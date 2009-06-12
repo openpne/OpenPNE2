@@ -1,7 +1,7 @@
 ({$inc_header|smarty:nodefaults})
 ({ext_include file="inc_subnavi_adminSiteMember.tpl"})
-({assign var="page_name" value="コミュニティメンバーリスト"})
-({assign var="parent_page_name" value="コミュニティリスト"})
+({assign var="page_name" value="$WORD_COMMUNITYメンバーリスト"})
+({assign var="parent_page_name" value="$WORD_COMMUNITYリスト"})
 ({capture name=parent_page_url})?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_commu')})({/capture})
 ({ext_include file="inc_tree_adminSiteMember.tpl"})
 </div>
@@ -19,11 +19,11 @@
 <div class="listControlTop">
 <p class="display">({$pager.total_num}) 人中 ({$pager.start_num}) - ({$pager.end_num})人目を表示しています</p>
 <p class="listMove">
-({if $pager.prev_page})<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('commu_member_list')})&amp;target_c_commu_id=({$target_c_commu_id})&amp;page=({$pager.prev_page})&amp;page_size=({$page_size})})">前へ</a>({/if})
+({if $pager.prev_page})<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('c_commu_member_list')})&amp;target_c_commu_id=({$target_c_commu_id})&amp;page=({$pager.prev_page})&amp;page_size=({$page_size})})">前へ</a>({/if})
 ({foreach from=$pager.disp_pages item=i})
-({if $i == $pager.page})&nbsp;|&nbsp;<strong>({$i})</strong>({else})&nbsp;|&nbsp;<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('commu_member_list')})&amp;target_c_commu_id=({$target_c_commu_id})&amp;page=({$i})&amp;page_size=({$page_size})">({$i})</a>({/if})
+({if $i == $pager.page})&nbsp;|&nbsp;<strong>({$i})</strong>({else})&nbsp;|&nbsp;<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('c_commu_member_list')})&amp;target_c_commu_id=({$target_c_commu_id})&amp;page=({$i})&amp;page_size=({$page_size})">({$i})</a>({/if})
 ({/foreach})
-({if $pager.next_page})&nbsp;|&nbsp;<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('commu_member_list')})&amp;target_c_commu_id=({$target_c_commu_id})&amp;page=({$pager.next_page})&amp;page_size=({$page_size})">次へ</a>
+({if $pager.next_page})&nbsp;|&nbsp;<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('c_commu_member_list')})&amp;target_c_commu_id=({$target_c_commu_id})&amp;page=({$pager.next_page})&amp;page_size=({$page_size})">次へ</a>
 ({/if})
 </p>
 </div>
@@ -42,19 +42,19 @@
 <tr>
     <th>ID</th>
     <th>({$WORD_NICKNAME})</th>
-    <th>コミュニティ入会日時</th>
+    <th>({$WORD_COMMUNITY})入会日時</th>
 </tr>
 ({foreach from=$c_member_list item=item})
     <tr>
     <td>({$item.c_member_id})</td>
-    <td><a href="({t_url _absolute=1 m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})" target="_blank">({$item.nickname|t_truncate:60})</a></td>
+    <td><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('c_commu_member_list')})&amp;target_c_member_id=({$item.c_member_id})">({$item.nickname|t_truncate:60})</a></td>
     <td>({$item.r_datetime})</td>
     </tr>
 ({/foreach})
 <tr>
     <th>ID</th>
     <th>({$WORD_NICKNAME})</th>
-    <th>コミュニティ入会日時</th>
+    <th>({$WORD_COMMUNITY})入会日時</th>
 </tr>
 </table>
 <div class="listControlBtm">
