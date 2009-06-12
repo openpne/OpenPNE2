@@ -52,7 +52,7 @@
 ({if $auth_type == 'all'})
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('blacklist')})">ブラックリスト管理</a></li>
 ({/if})
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_commu')})">コミュニティリスト</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_commu')})">({$WORD_COMMUNITY})リスト</a></li>
 ({if $smarty.const.IS_SNS_ENTRY_CONFIRM})
 ({if $auth_type == 'all'})
 <li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_sns_entry')})">承認待ちリスト</a></li>
@@ -170,7 +170,7 @@
 ({foreach from=$enable_module_list item=item})
 <li><a href="?m=({$item.admin_menu.module})&amp;a=({$item.admin_menu.action})">({$item.admin_menu.caption|default:$item.general.name})</a></li>
 ({/foreach})
-<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_commu')})">コミュニティリスト</a></li>
+<li><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('list_c_commu')})">({$WORD_COMMUNITY})リスト</a></li>
 ({if !$enable_module_list})
 <li><a href="#">（なし）</a></li>
 ({/if})
