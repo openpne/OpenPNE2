@@ -18,6 +18,9 @@ function openpne_redirect($module, $action = '', $params = array())
             $params['ksid'] = session_id();
         }
     }
+    if ($module == 'admin') {
+        $module = ADMIN_MODULE_NAME;
+    }
     $url = openpne_gen_url($module, $action, $params);
     client_redirect_absolute($url);
 }
