@@ -154,7 +154,7 @@
 </td>
 </tr>
 ({/if})
-({if $smarty.const.OPENPNE_USE_POINT_RANK})
+({if $smarty.const.OPENPNE_USE_POINT_RANK && !$is_unused_rank_up})
 <tr>
 <th>ランクアップメール</th>
 <td>
