@@ -33,6 +33,7 @@ class pc_page_h_config extends OpenPNE_Action
 
         $this->set('is_unused_daily_news', util_is_unused_mail('m_pc_daily_news'));
         $this->set('is_unused_ashiato', util_is_unused_mail('m_pc_ashiato'));
+        $this->set('is_unused_rank_up', util_is_unused_mail('m_pc_rank_up'));
 
         return 'success';
     }
