@@ -11,7 +11,11 @@ class ktai_page_h_member_config_rank_up_mail extends OpenPNE_Action
         $u  = $GLOBALS['KTAI_C_MEMBER_ID'];
         $c_member_secure = db_member_c_member_secure4c_member_id($u);
         $c_member_config = db_member_c_member_config4c_member_id($u);
-        
+
+        if (util_is_unused_mail('m_ktai_rank_up')) {
+            handle_kengen_error();
+        }
+
         if (isset($c_member_config['SEND_RANK_UP_MAIL_KTAI'])) {
             $SEND_RANK_UP_MAIL_KTAI = (bool)$c_member_config['SEND_RANK_UP_MAIL_KTAI'];
         } else {
