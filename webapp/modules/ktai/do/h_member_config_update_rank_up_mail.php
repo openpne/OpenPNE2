@@ -14,6 +14,10 @@ class ktai_do_h_member_config_update_rank_up_mail extends OpenPNE_Action
         $tail = $GLOBALS['KTAI_URL_TAIL'];
         $u = $GLOBALS['KTAI_C_MEMBER_ID'];
 
+        if (util_is_unused_mail('m_ktai_rank_up')) {
+            handle_kengen_error();
+        }
+
         db_member_update_c_member_config($u, 'SEND_RANK_UP_MAIL_KTAI', $requests['SEND_RANK_UP_MAIL_KTAI']);
 
         $p = array('msg' => 48);
