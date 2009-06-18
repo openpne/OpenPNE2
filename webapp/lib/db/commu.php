@@ -3041,7 +3041,7 @@ function db_commu_is_event_join_capacity($c_commu_topic_id)
         return true;
     }
 
-    if ($c_topic['capacity'] >= $c_topic['member_num']) {
+    if ($c_topic['capacity'] > $c_topic['member_num']) {
         return true;
     }
 
