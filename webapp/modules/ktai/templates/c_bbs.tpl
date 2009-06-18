@@ -27,13 +27,9 @@
 
 <hr color="#({$ktai_color_config.border_01})">
 ({if !$is_event_join_date})
-<div class="parts alertLine">
 <font color="#({$ktai_color_config.font_09})">募集期間が終了したので、このｲﾍﾞﾝﾄには参加できません。</font><br>
-</div>
 ({elseif !$is_event_join_capacity})
-<div class="parts alertLine">
 <font color="#({$ktai_color_config.font_09})">募集人数に達したので、このｲﾍﾞﾝﾄには参加できません。</font><br>
-</div>
 ({/if})
 <a href="#({if $c_commu_topic_comment_list})tc1({else})write({/if})"><font color="#({$ktai_color_config.font_08})">▼</font></a><br>
 企画者：<br>
