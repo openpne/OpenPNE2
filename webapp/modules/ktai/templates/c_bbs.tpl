@@ -26,6 +26,13 @@
 <font color="#({$ktai_color_config.font_07})">⇒</font><a href="({t_url m=ktai a=page_c_event_invite})&amp;target_c_commu_topic_id=({$c_commu_topic.c_commu_topic_id})&amp;({$tail})">このｲﾍﾞﾝﾄを友人に教える</a>
 
 <hr color="#({$ktai_color_config.border_01})">
+({if $is_c_commu_member && !$is_c_event_member})
+({if !$is_event_join_date})
+<font color="#({$ktai_color_config.font_09})">募集期限を過ぎたので、このｲﾍﾞﾝﾄには参加できません。</font><br>
+({elseif $c_commu_topic.capacity && !($c_commu_topic.capacity > $c_commu_topic.member_num)})
+<font color="#({$ktai_color_config.font_09})">募集人数に達したので、このｲﾍﾞﾝﾄには参加できません。</font><br>
+({/if})
+({/if})
 <a href="#({if $c_commu_topic_comment_list})tc1({else})write({/if})"><font color="#({$ktai_color_config.font_08})">▼</font></a><br>
 企画者：<br>
 <a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$c_commu_topic.c_member_id})&amp;({$tail})">({$c_commu_topic.nickname|default:"&nbsp;"})</a> <br>
