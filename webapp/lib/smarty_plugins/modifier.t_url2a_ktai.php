@@ -8,7 +8,6 @@
  * Smarty t_url2a_ktai modifier plugin
  *
  * @param  string $string
- nban_mask_dashboard_jp_20090617
  * @return string
  */
 function smarty_modifier_t_url2a_ktai($string)
