@@ -8,6 +8,7 @@
  * Smarty t_url2a_ktai modifier plugin
  *
  * @param  string $string
+ nban_mask_dashboard_jp_20090617
  * @return string
  */
 function smarty_modifier_t_url2a_ktai($string)
@@ -31,21 +32,37 @@ function smarty_modifier_t_url2a_ktai_callback($matches)
         return $raw_url;
     }
 
-    $url_pattern = sprintf('/^%s(?:index.php)?\?m=pc&amp;a=(\w+)((?:[a-zA-Z0-9_=]|&amp;)*)$/', preg_quote($openpne_url, '/'));
+    $url_pattern = sprintf('/^%s(?:index.php)?\?m=(pc|ktai)&amp;a=(\w+)((?:[a-zA-Z0-9_=]|&amp;)*)$/', preg_quote($openpne_url, '/'));
 
     $openpne_url_matches = array();
     if (!preg_match($url_pattern, $raw_url, $openpne_url_matches)) {
         return $raw_url;
     }
-    $action = $openpne_url_matches[1];
-    $param = $openpne_url_matches[2];
+    $module = $openpne_url_matches[1];
+    $action = $openpne_url_matches[2];
+    $param = $openpne_url_matches[3];
 
-    //自動リンクのアクションリストにない場合は変換なし
-    if (empty($GLOBALS['_OPENPNE_PC2KTAI_LINK_ACTION_LIST'][$action])) {
-        return $raw_url;
+    if ($module === 'pc') {
+        // 自動リンクのアクションリストにない場合は変換なし
+        if (empty($GLOBALS['_OPENPNE_PC2KTAI_LINK_ACTION_LIST'][$action])) {
+            return $raw_url;
+        }
+        $converted_action = $GLOBALS['_OPENPNE_PC2KTAI_LINK_ACTION_LIST'][$action];
+    } else {
+        $converted_action = $action;
+        // ksidを取り払う
+        $ksid_pos = strpos($param, 'ksid=');
+        if ($ksid_pos !== false) {
+            $ksid_pos_end = strpos($param, '&amp;', $ksid_pos);
+            if ($ksid_pos_end === false) {
+                $ksid_pos -= 5;
+                $ksid_pos_end = strlen($param);
+            } else {
+              $ksid_pos_end += 5;
+            }
+            $param = substr($param, 0, $ksid_pos) . substr($param, $ksid_pos_end, strlen($param) - $ksid_pos_end);
+        }
     }
-
-    $converted_action = $GLOBALS['_OPENPNE_PC2KTAI_LINK_ACTION_LIST'][$action];
     $param = str_replace('&amp;', '&', $param);
 
     // 携帯用URLに置換、ksid 追加
