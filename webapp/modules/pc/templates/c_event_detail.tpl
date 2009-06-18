@@ -91,6 +91,20 @@
 </div></div>
 ({* }}} *})
 
+({* {{{ alertLine *})
+({if $is_c_commu_member && !$is_c_event_member})
+    ({if !$is_event_join_date})
+        <div class="parts alertLine">
+        <p>募集期限を過ぎたので、このイベントには参加できません。</p>
+        </div>
+    ({elseif !$is_event_join_capacity})
+        <div class="parts alertLine">
+        <p>募集人数に達したので、このイベントには参加できません。</p>
+        </div>
+    ({/if})
+({/if})
+({* }}} *})
+
 ({if $c_topic_write.0})
 ({* {{{ commentList *})
 <div class="dparts commentList" id="commentList"><div class="parts">
