@@ -22,9 +22,13 @@ function get_image_size($category, $params, $handle)
 
         // 取り出し
         $sql  = "SELECT ";
-        $sql .= " $c_member_id as c_member_id";
-        $sql .= ",$filename as image_filename ";
-        if ($table <> "biz_group") {
+        if ($table <> "biz_shisetsu") {
+            $sql .= " $c_member_id as c_member_id, ";
+        }
+        $sql .= "$filename as image_filename ";
+        if ($table == "c_member") {
+            $sql .= ",r_date ";
+        } elseif ($table <> "biz_group" && $table <> "biz_shisetsu") {
             $sql .= ",r_datetime ";
         }
         $sql .= "FROM ";
@@ -59,8 +63,10 @@ function get_image_size($category, $params, $handle)
             $ins_data .= ",'" . $data['c_member_id'] . "'";
             $ins_data .= ",'" . $filesize . "'";
             $ins_data .= ",'" . $category . "'";
-            if ($table == "biz_group") {
+            if ($table == "biz_group" || $table == "biz_shisetsu") {
                 $ins_data .= ",'" . db_now() . "'";
+            } elseif ($table == "c_member") {
+                $ins_data .= ",'" . $data['r_date'] . "'";
             } else {
                 $ins_data .= ",'" . $data['r_datetime'] . "'";
             }
@@ -84,7 +90,6 @@ function open_temp_file($mode, $filename = '')
     } else {
         $w_filename = $filename;
     }
-
     $handle = fopen($w_filename, $mode);
 
     return array($w_filename, $handle);
@@ -97,7 +102,7 @@ function load_data_infile($filename)
     list($r_filename, $r_handle) = open_temp_file("r", $filename);
     while (!feof($r_handle)) {
         $sql = fgets($r_handle);
-        db_query($sql);
+        if ($sql) db_query($sql);
     }
     close_temp_file($filename, $r_handle);
 }
@@ -134,15 +139,15 @@ $category_list = array(
                         ,array('c_diary_comment', 'image_filename_1', 'c_member_id')
                         ,array('c_diary_comment', 'image_filename_2', 'c_member_id')
                         ,array('c_diary_comment', 'image_filename_3', 'c_member_id')
-                        ,array('c_album', 'album_cover_image', 'other', 'c_member_id')
+                        ,array('c_album', 'album_cover_image', 'c_member_id')
                           ),
            'other' => array(
-                         array('c_commu', 'image_filename', 'c_member_id')
+                         array('c_commu', 'image_filename', 'c_member_id_admin')
                         ,array('biz_group', 'image_filename', 'admin_id')
                         ,array('biz_shisetsu', 'image_filename', 'c_member_id')
-                        ,array('c_member', 'image_filename1', 'c_member_id')
-                        ,array('c_member', 'image_filename2', 'c_member_id')
-                        ,array('c_member', 'image_filename3', 'c_member_id')
+                        ,array('c_member', 'image_filename_1', 'c_member_id')
+                        ,array('c_member', 'image_filename_2', 'c_member_id')
+                        ,array('c_member', 'image_filename_3', 'c_member_id')
                         ,array('c_message', 'image_filename_1', 'c_member_id_from')
                         ,array('c_message', 'image_filename_2', 'c_member_id_from')
                         ,array('c_message', 'image_filename_3', 'c_member_id_from')
