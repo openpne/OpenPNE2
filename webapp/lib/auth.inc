@@ -85,7 +85,7 @@ if (OPENPNE_AUTH_MODE != 'email' && empty($_SESSION['regist_step'])) {
 }
 
 // 秘密の質問の設定が有効な状態で、秘密の質問を設定していない場合、秘密の質問の入力をチェックする
-if (IS_PASSWORD_QUERY_ANSWER && OPENPNE_AUTH_MODE != 'slavepne' && empty($_SESSION['is_password_query_answer'])) {
+if (IS_PASSWORD_QUERY_ANSWER == 2 && OPENPNE_AUTH_MODE != 'slavepne' && empty($_SESSION['is_password_query_answer'])) {
     $current_page = $GLOBALS['__Framework']['current_type'] . '_' . $GLOBALS['__Framework']['current_action'];
 
     // 秘密の質問が未登録の場合でもアクセスすることのできるアクション
