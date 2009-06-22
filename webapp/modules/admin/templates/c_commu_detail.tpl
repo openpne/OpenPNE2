@@ -33,7 +33,7 @@
 <tr>
 <th>管理者</th>
 <td>
-<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('c_commu_member_list')})&amp;target_c_member_id=({$item.c_member_id})">({$commu.c_member.nickname})</a>
+<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('c_member_detail')})&amp;target_c_member_id=({$commu.c_member_id_admin})">({$commu.c_member.nickname})</a>
 </td>
 </tr>
 ({****})
