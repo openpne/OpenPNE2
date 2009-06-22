@@ -47,7 +47,7 @@
 ({foreach from=$c_member_list item=item})
     <tr>
     <td>({$item.c_member_id})</td>
-    <td><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('c_commu_member_list')})&amp;target_c_member_id=({$item.c_member_id})">({$item.nickname|t_truncate:60})</a></td>
+    <td><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('c_member_detail')})&amp;target_c_member_id=({$item.c_member_id})">({$item.nickname|t_truncate:60})</a></td>
     <td>({$item.r_datetime})</td>
     </tr>
 ({/foreach})
