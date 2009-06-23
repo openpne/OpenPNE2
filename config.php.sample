@@ -599,7 +599,6 @@ define('OPENPNE_DB_ERROR_LOG', false);
 $GLOBALS['_ALLOWED_IP_LIST_FOR_KANSHI'] = array();
 
 // 秘密の質問を使用するかどうか
-//    TRUE:使用する FALSE:使用しない
 // 0: 使用しない
 // 1: 使用する(未登録でも使用可能)
 // 2: 使用する(未登録時に登録を強制する)
