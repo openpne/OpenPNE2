@@ -24,7 +24,7 @@ class pc_do_o_password_query extends OpenPNE_Action
 
         if (OPENPNE_USE_CAPTCHA) {
             @session_start();
-            if ($_SESSION['captcha_keystring'] !== $requests['captcha']) {
+            if (empty($requests['captcha']) || $_SESSION['captcha_keystring'] !== $requests['captcha']) {
                 unset($_SESSION['captcha']);
                 $p = array('msg' => "確認キーワードが誤っています");
                 openpne_redirect('pc', 'page_o_password_query', $p);
