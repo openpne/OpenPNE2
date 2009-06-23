@@ -27,6 +27,16 @@
 </td></tr>
 <tr><th>秘密の答え</th><td><input type="text" class="text" name="c_password_query_answer" value="" /></td></tr>
 ({/if})
+({if $smarty.const.OPENPNE_USE_CAPTCHA})
+<tr>
+<th>確認キーワード</th>
+<td>
+<p><img src="./cap.php?rand=({math equation="rand(0,99999999)"})" alt="確認キーワード" /></p>
+<p>※上に表示されているキーワードをご記入下さい。</p>
+<input type="text" class="input_text" name="captcha" value="" size="30" />
+</td>
+</tr>
+({/if})
 </table>
 
 <div class="operation">
