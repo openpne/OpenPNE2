@@ -29,7 +29,7 @@ class admin_page_delete_diary_selected extends OpenPNE_Action
             if (!$diary) {
                 admin_client_redirect('diary_list', '指定された' . WORD_DIARY . "は存在しません");
             }
-            $diary['count_comments'] = db_diary_count_c_diary_comment4c_diary_id($target_c_diary_ids);
+            $diary['count_comments'] = db_diary_count_c_diary_comment4c_diary_id($id);
 
             $member = db_member_c_member4c_member_id($diary['c_member_id']);
             $diary['c_member'] = $member;
