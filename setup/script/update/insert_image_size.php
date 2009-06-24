@@ -58,7 +58,11 @@ function get_image_size($category, $params, $handle)
                 $ins_data .= ",";
             }
             $ins_data .= "(";
-            $ins_data .= " null";
+            if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
+                $ins_data .= " nextval('c_image_size_c_image_size_id_seq')";
+            } else {
+                $ins_data .= " null";
+            }
             $ins_data .= ",'" . $data['image_filename'] . "'";
             $ins_data .= ",'" . $data['c_member_id'] . "'";
             $ins_data .= ",'" . $filesize . "'";
