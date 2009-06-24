@@ -12,6 +12,7 @@ class ktai_page_c_bbs extends OpenPNE_Action
 
         // --- リクエスト変数
         $c_commu_topic_id = $requests['target_c_commu_topic_id'];
+        $target_response_comment_id = $requests['target_response_comment_id'];
         $page = $requests['page'];
         // ----------
 
@@ -58,6 +59,15 @@ class ktai_page_c_bbs extends OpenPNE_Action
         //コミュニティ掲示板閲覧権限
         if (!db_commu_is_c_commu_view4c_commu_idAc_member_id($c_commu_id, $u)) {
             handle_kengen_error();
+        }
+
+        if ($target_response_comment_id) {
+            $target_comment = db_commu_c_commu_topic_comment4c_commu_topic_comment_id($target_response_comment_id);
+            $response_set = db_member_c_member4c_member_id_LIGHT($target_comment['c_member_id']);
+            $this->set(
+                'response_comment_format',
+                '>>' . $target_comment['number'] . ' ' . $response_set['nickname'] . "さん\n"
+            );
         }
 
         //掲示板の閲覧権限 tplでやっている
