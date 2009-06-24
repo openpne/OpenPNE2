@@ -40,7 +40,7 @@
 <tr>
 <th>管理者</th>
 <td>
-<a href="({t_url _absolute=1 m=pc a=page_f_home})&amp;target_c_member_id=({$c_commu.c_member_id_admin})" target="_blank">({$c_commu.c_member.nickname})</a>
+<a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('c_member_detail')})&amp;target_c_member_id=({$c_commu.c_member_id_admin})">({$c_commu.c_member.nickname})</a>
 </td>
 </tr>
 ({****})
