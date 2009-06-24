@@ -71,7 +71,7 @@
     <td><input type="checkbox" name="target_c_commu_ids[]" value="({$commu.c_commu_id})" /></td>
     <td>({$commu.c_commu_id})</td>
     <td><a href="({t_url _absolute=1 m=pc a=page_c_home})&amp;target_c_commu_id=({$commu.c_commu_id})" target="_blank">({$commu.name|truncate:60})</a></td>
-    <td><a href="({t_url _absolute=1 m=pc a=page_f_home})&amp;target_c_member_id=({$commu.c_member.c_member_id})" target="_blank">({$commu.c_member.nickname|truncate:60})</a></td>
+    <td><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('c_member_detail')})&amp;target_c_member_id=({$commu.c_member.c_member_id})">({$commu.c_member.nickname|truncate:60})</a></td>
     <td>({$commu.u_datetime})</td>
     <td><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('c_commu_member_list')})&amp;target_c_commu_id=({$commu.c_commu_id})">メンバーリスト</a></td>
     <td><a href="?m=({$module_name})&amp;a=page_({$hash_tbl->hash('c_commu_detail')})&amp;target_c_commu_id=({$commu.c_commu_id})">詳細</a></td>
