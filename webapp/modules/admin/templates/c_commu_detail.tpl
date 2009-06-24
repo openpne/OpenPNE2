@@ -55,7 +55,7 @@
 <th>({$WORD_COMMUNITY})画像</th>
 <td>
 <p class="photo">
-<img src="({t_img_url filename=$c_commu.image_filename w=180 h=180 noimg=no_logo})" class="pict" alt="({$WORD_COMMUNITY})写真" />
+<img src="({t_img_url filename=$commu.image_filename w=180 h=180 noimg=no_logo})" class="pict" alt="({$WORD_COMMUNITY})写真" />
 </p>
 </td>
 </tr>
@@ -63,11 +63,6 @@
 <tr>
 <th>({$WORD_COMMUNITY})説明文</th>
 <td width="500">
-({if $commu.image_filename})
-<div>
-({if $commu.image_filename})<span class="padding_s"><a href="({t_img_url filename=$commu.image_filename})" target="_blank"><img src="({t_img_url filename=$commu.image_filename w=120 h=120})"></a></span>({/if})
-</div>
-({/if})
 ({if $smarty.const.OPENPNE_ADMIN_CONVERT_URL})
 ({$commu.info|nl2br|t_url2cmd:'community':$commu.c_member_id_admin|t_cmd:'community'})
 ({else})
