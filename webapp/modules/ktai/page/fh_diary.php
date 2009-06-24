@@ -12,6 +12,7 @@ class ktai_page_fh_diary extends OpenPNE_Action
 
         // --- リクエスト変数
         $target_c_diary_id = $requests['target_c_diary_id'];
+        $target_response_comment_id = $requests['target_response_comment_id'];
         $page = $requests['page'];
         // ----------
 
@@ -58,6 +59,15 @@ class ktai_page_fh_diary extends OpenPNE_Action
             = k_p_fh_diary_c_diary_comment_list4c_diary_id($target_c_diary_id, $page_size, $page, $desc);
         if ($desc) {
             $c_diary_comment_list = array_reverse($c_diary_comment_list);
+        }
+
+        if ($target_response_comment_id) {
+            $target_comment = _do_c_diary_comment4c_diary_comment_id($target_response_comment_id);
+            $response_set = db_member_c_member4c_member_id_LIGHT($target_comment['c_member_id']);
+            $this->set(
+                'response_comment_format',
+                '>>' . $target_response_comment_id . ' ' . $response_set['nickname'] . "さん\n"
+            );
         }
 
         $this->set('c_diary_comment', $c_diary_comment_list);
