@@ -33,7 +33,7 @@
 <tr>
 <th>({$WORD_COMMUNITY})名</th>
 <td>
-<a href="({t_url _absolute=1 m=pc a=page_fh_diary})&amp;target_c_commu_id=({$c_commu.c_commu_id})" target="_blank">({$c_commu.name})</a>
+<a href="({t_url _absolute=1 m=pc a=page_c_home})&amp;target_c_commu_id=({$c_commu.c_commu_id})" target="_blank">({$c_commu.name})</a>
 </td>
 </tr>
 ({****})
