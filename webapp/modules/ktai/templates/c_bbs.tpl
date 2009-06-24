@@ -101,9 +101,8 @@
 </a><font color="#({$ktai_color_config.font_06})">[({$item.number|string_format:"%03d"})]</font>({$item.r_datetime|date_format:"%m/%d %H:%M"})
 <br>
 ({if $item.nickname})<a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})&amp;({$tail})">({$item.nickname})</a>({/if})
-({if $item.c_member_id == $u || $target_diary_writer==$u || $is_admin})
-[<a href="({t_url m=ktai a=page_c_bbs_delete_c_commu_topic_comment_confirm})&amp;c_commu_topic_comment_id=({$item.c_commu_topic_comment_id})&amp;target_c_commu_topic_id=({$c_commu_topic_id})&amp;({$tail})">削除</a>]
-({/if})
+({if $item.c_member_id == $u || $target_diary_writer==$u || $is_admin})[<a href="({t_url m=ktai a=page_c_bbs_delete_c_commu_topic_comment_confirm})&amp;c_commu_topic_comment_id=({$item.c_commu_topic_comment_id})&amp;target_c_commu_topic_id=({$c_commu_topic_id})&amp;({$tail})">削除</a>]({/if})
+({if $smarty.const.USE_RESPONSE_COMMENT && $is_writable_comment})[<a href="({t_url m=ktai a=page_c_bbs})&amp;target_c_commu_topic_id=({$c_commu_topic_id})&amp;target_response_comment_id=({$item.c_commu_topic_comment_id})&amp;({$tail})">返信</a>]({/if})
 <br>
 ({$item.body|t_url2a_ktai|nl2br})<br>
 ({if $item.image_filename1})[i:68]写真：[<a href="({t_img_url filename=$item.image_filename1 w=120 h=120 f=jpg})">小</a>/<a href="({t_img_url filename=$item.image_filename1 w=$smarty.const.OPENPNE_IMG_KTAI_MAX_WIDTH h=$smarty.const.OPENPNE_IMG_KTAI_MAX_HEIGHT f=jpg})">大</a>]<br>({/if})
@@ -147,7 +146,7 @@
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
 <input type="hidden" name="target_c_commu_topic_id" value="({$c_commu_topic_id})">
 <a name="menu"><font color="#({$ktai_color_config.font_06})">ｺﾒﾝﾄ：</font></a><br>
-<textarea name="body" rows="3"></textarea><br>
+<textarea name="body" rows="3">({$response_comment_format})</textarea><br>
 ({if $c_commu_topic.event_flag})
 ({if $is_event_join_date})
 ({if !$is_c_event_member})
