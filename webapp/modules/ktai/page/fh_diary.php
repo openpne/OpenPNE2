@@ -66,7 +66,7 @@ class ktai_page_fh_diary extends OpenPNE_Action
             $response_set = db_member_c_member4c_member_id_LIGHT($target_comment['c_member_id']);
             $this->set(
                 'response_comment_format',
-                '>>' . $target_response_comment_id . ' ' . $response_set['nickname'] . "さん\n"
+                '>>' . $target_comment['number'] . ' ' . $response_set['nickname'] . "さん\n"
             );
         }
 
