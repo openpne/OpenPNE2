@@ -1,7 +1,7 @@
 ({$inc_ktai_header|smarty:nodefaults})
 
 <table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_02})">
-<font color="#({$ktai_color_config.font_05})"><a name="top">ﾊﾟｽﾜｰﾄﾞ再発行</a></font><br>
+<font color="#({$ktai_color_config.font_05})"><a name="top">ﾊﾟｽﾜｰﾄﾞ再設定用URLの送信</a></font><br>
 </td></tr></table>
 
 ({if $msg})
@@ -25,7 +25,7 @@
 <input type="text" name="password_query_answer" value=""><br>
 ({/if})
 <center>
-<input type="submit" value="ﾊﾟｽﾜｰﾄﾞを再発行する"><br>
+<input type="submit" value="送信"><br>
 </center>
 </form>
 
