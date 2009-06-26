@@ -51,27 +51,24 @@ class pc_do_o_password_query extends OpenPNE_Action
         if (IS_PASSWORD_QUERY_ANSWER) {
             $c_member_id = db_member_is_password_query_complete($pc_address, $q_id, $q_answer);
             $msg = '正しい値を入力してください';
-            if (!$c_member_id) {
-                $p = array('msg' => $msg);
-                openpne_redirect('pc', 'page_o_password_query', $p);
-            }
         } else {
             $c_member_id = db_member_c_member_id4pc_address($pc_address);
-            if (!$c_member_id) {
-                $p = array('msg_code' => 'password_query');
-                openpne_redirect('pc', 'page_o_tologin', $p);
-            }
+            $msg = '登録したメールアドレスを入力してください';
+        }
+
+        if (!$c_member_id) {
+            $p = array('msg' => $msg);
+            openpne_redirect('pc', 'page_o_password_query', $p);
         }
         //---
 
-        // パスワード再発行用のハッシュをDBに登録し再設定用のメールを送信
-        $session = create_hash();
-        db_member_update_c_member_config($c_member_id, 'update_password_ssid', $session);
-        db_member_update_c_member_config($c_member_id, 'password_ssid_query_time', time());
-        do_password_query_mail_send($c_member_id, $pc_address, $session);
+        // パスワード再発行
+        $new_password = do_common_create_password();
+        db_member_update_password($c_member_id, $new_password);
+        do_password_query_mail_send($c_member_id, $pc_address, $new_password);
 
-        $p = array('is_send' => true);
-        openpne_redirect('pc', 'page_o_password_query', $p);
+        $p = array('msg_code' => 'password_query');
+        openpne_redirect('pc', 'page_o_tologin', $p);
     }
 }
 

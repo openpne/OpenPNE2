@@ -196,15 +196,13 @@ function do_h_invite_insert_c_invite_mail_send($c_member_id_invite, $session, $m
     return fetch_send_mail($pc_address, 'm_pc_syoutai_mail', $params);
 }
 
-//パスワード再発行用のハッシュメール
-function do_password_query_mail_send($c_member_id, $pc_address, $session)
+//パスワード再発行メール
+function do_password_query_mail_send($c_member_id, $pc_address, $new_password)
 {
-    $p = array('id' => t_encrypt($c_member_id), 'session' => $session);
-    $update_password_url = openpne_gen_url('pc', 'page_o_update_password', $p);
     $params = array(
-        'c_member'   => db_member_c_member4c_member_id($c_member_id),
-        'pc_address' => $pc_address,
-        'update_password_url' => $update_password_url,
+        "c_member"   => db_member_c_member4c_member_id($c_member_id),
+        "pc_address" => $pc_address,
+        "password"   => $new_password,
     );
     if (OPENPNE_AUTH_MODE == 'pneid' || OPENPNE_AUTH_MODE == 'slavepne') {
         $params['login_id'] = db_member_username4c_member_id($c_member_id);
@@ -213,21 +211,17 @@ function do_password_query_mail_send($c_member_id, $pc_address, $session)
 }
 
 //パスワード再発行メール(携帯)
-function db_mail_send_m_ktai_password_query($c_member_id, $session)
+function db_mail_send_m_ktai_password_query($c_member_id, $new_password)
 {
     $c_member = db_member_c_member4c_member_id($c_member_id, true);
     $ktai_address = $c_member['secure']['ktai_address'];
 
-    $p = array('id' => t_encrypt($c_member_id), 'session' => $session);
-    $update_password_url = openpne_gen_url('ktai', 'page_o_update_password', $p);
     $p = array('kad' => t_encrypt(db_member_username4c_member_id($c_member_id, true)));
     $login_url = openpne_gen_url('ktai', 'page_o_login', $p);
     $params = array(
         'c_member'  => $c_member,
-        'session'  => $new_password,
-        'id'   => $id,
+        'password'  => $new_password,
         'login_url' => $login_url,
-        'update_password_url' => $update_password_url,
     );
     if (OPENPNE_AUTH_MODE == 'pneid' || OPENPNE_AUTH_MODE == 'slavepne') {
         $params['login_id'] = db_member_username4c_member_id($c_member_id);
