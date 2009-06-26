@@ -40,25 +40,20 @@ class ktai_do_o_password_query extends OpenPNE_Action
         //--- 権限チェック
         if (IS_PASSWORD_QUERY_ANSWER) {
             $c_member_id = db_member_is_password_query_complete2($ktai_address, $q_id, $q_answer);
-            if (!$c_member_id) {
-                $p = array('msg' => 25);
-                openpne_redirect('ktai', 'page_o_password_query', $p);
-            }
         } else {
             $c_member_id = db_member_c_member_id4ktai_address($ktai_address);
-            if (!$c_member_id) {
-                $p = array('msg' => 26);
-                openpne_redirect('ktai', 'page_o_login', $p);
-            }
+        }
+        if (!$c_member_id) {
+            $p = array('msg' => 25);
+            openpne_redirect('ktai', 'page_o_password_query', $p);
         }
         //---
 
         // パスワード再発行
-        $session = create_hash();
-        db_member_update_c_member_config($c_member_id, 'update_password_ssid', $session);
-        db_member_update_c_member_config($c_member_id, 'password_ssid_query_time', time());
+        $new_password = do_common_create_password();
+        db_member_update_password($c_member_id, $new_password);
 
-        db_mail_send_m_ktai_password_query($c_member_id, $session);
+        db_mail_send_m_ktai_password_query($c_member_id, $new_password);
 
         $p = array('msg' => 26);
         openpne_redirect('ktai', 'page_o_login', $p);
