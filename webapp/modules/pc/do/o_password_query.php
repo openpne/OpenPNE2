@@ -24,12 +24,12 @@ class pc_do_o_password_query extends OpenPNE_Action
 
         if (OPENPNE_USE_CAPTCHA) {
             @session_start();
-            if (empty($_SESSION['captcha']) || $_SESSION['captcha_keystring'] !== $requests['captcha']) {
-                unset($_SESSION['captcha']);
+            if (empty($_SESSION['captcha_keystring']) || $_SESSION['captcha_keystring'] !== $requests['captcha']) {
+                unset($_SESSION['captcha_keystring']);
                 $p = array('msg' => "確認キーワードが誤っています");
                 openpne_redirect('pc', 'page_o_password_query', $p);
             }
-            unset($_SESSION['captcha']);
+            unset($_SESSION['captcha_keystring']);
         }
 
         if (!$pc_address) {
