@@ -5,11 +5,11 @@
 <div class="dparts infoButtonBox"><div class="parts">
 <div class="partsHeading"><h3>パスワードを忘れた方</h3></div>
 <div class="block">
-<p>以下のボタンをクリックし、パスワードの再発行ページをおこなってください。</p>
+<p>以下のボタンをクリックし、パスワードの再設定手続きをおこなってください。</p>
 
 ({t_form_block _method=get m=pc a=page_o_password_query})
 <ul class="moreInfo button">
-<li><input type="submit" class="input_submit" value="パスワード再発行ページへ" /></li>
+<li><input type="submit" class="input_submit" value="パスワード再設定ページへ" /></li>
 </ul>
 ({/t_form_block})
 </div>
