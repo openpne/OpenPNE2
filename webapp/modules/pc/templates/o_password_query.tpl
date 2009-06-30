@@ -5,11 +5,25 @@
 <div class="dparts formTable"><div class="parts">
 <div class="partsHeading"><h3>パスワード再発行</h3></div>
 
+({if $is_send})
+<div class="dparts alertBox"><div class="parts">
+<table><tr>
+<th><img src="({t_img_url_skin filename=icon_alert_l})" alt="警告" /></th>
+<td>
+パスワード再設定用URLをメールで送信しました。<br />
+<br />
+しばらくしてもメールが来ない場合、<br />
+メールアドレスの入力に誤りがある可能性が考えられますので<br />
+再度確認の上、フォームからやり直してください。
+</td>
+</tr></table>
+</div></div>
+({else})
 <div class="partsInfo">
 ({if $smarty.const.IS_PASSWORD_QUERY_ANSWER})
-<p>登録したメールアドレスと、秘密の質問・答えを入力してください。<br />登録したものと一致すると、パスワードが登録メールアドレス宛に送信されます。</p>
+<p>登録したメールアドレスと、秘密の質問・答えを入力してください。<br />パスワードを再設定するためのURLが登録メールアドレス宛に送信されます。</p>
 ({else})
-<p>登録したメールアドレスを入力してください。<br />登録したものと一致すると、パスワードが登録メールアドレス宛に送信されます。</p>
+<p>登録したメールアドレスを入力してください。<br />パスワードを再設定するためのURLが登録メールアドレス宛に送信されます。</p>
 ({/if})
 </div>
 
@@ -48,6 +62,7 @@
 
 </div></div>
 ({* }}} *})
+({/if})
 
 </div><!-- Center -->
 </div><!-- LayoutC -->

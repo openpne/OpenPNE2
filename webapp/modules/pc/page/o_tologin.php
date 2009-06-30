@@ -37,8 +37,8 @@ class pc_page_o_tologin extends OpenPNE_Action
         case 'logout':
             $msg = 'ログアウトしました。';
             break;
-        case 'password_query':
-            $msg = '新しいパスワードをメールで送信しました。';
+        case 'update_password_timeout':
+            $msg = 'パスワード再設定の有効期限が過ぎています。';
             break;
         case 'change_mailaddress':
             $msg = 'メールアドレスが変更されました。';
