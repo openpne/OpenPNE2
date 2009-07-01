@@ -151,7 +151,7 @@
 <p class="heading"><strong>({$item.number})</strong>:
  <a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})">({$item.nickname})</a>
 ({if $c_member_id == $item.c_member_id || $c_member_id == $c_commu.c_member_id_admin || $c_member_id == $c_commu.c_member_id_sub_admin}) <a href="({t_url m=pc a=page_c_event_write_delete_confirm})&amp;target_c_commu_topic_comment_id=({$item.c_commu_topic_comment_id})">削除</a>({/if})
-({if $is_c_commu_member && $is_writable_comment && $smarty.const.USE_RESPONSE_COMMENT}) <a href="javascript:void(0);" onclick="response_comment_format('({$item.nickname})', '({$item.number})', 'comment_box');return false;" ><img src="./skin/default/img/button_comment.gif" alt="コメント返信ボタン" /></a>({/if})</p>
+({if $is_c_commu_member && $is_writable_comment && $smarty.const.USE_RESPONSE_COMMENT}) <a href="javascript:void(0);" onclick="response_comment_format('({$item.nickname})', '({$item.number})', 'comment_box');return false;" ><img src="({t_img_url_skin filename=button_comment})" alt="コメント返信ボタン" /></a>({/if})</p>
 </div>
 <div class="body">
 ({if $item.image_filename1 || $item.image_filename2 || $item.image_filename3})
