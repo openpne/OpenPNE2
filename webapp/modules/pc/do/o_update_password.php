@@ -30,32 +30,27 @@ class pc_do_o_update_password extends OpenPNE_Action
         $c_member_id = t_decrypt($id);
 
         // 権限チェック
-        if (!db_member_c_member_config4name($c_member_id, 'update_password_ssid'))
-        {
+        if (!db_member_c_member_config4name($c_member_id, 'update_password_sid')) {
             handle_kengen_error();
         }
-        if (!db_member_c_member_config4name($c_member_id, 'password_ssid_query_time'))
-        {
+        if (!db_member_c_member_config4name($c_member_id, 'password_sid_query_time')) {
             handle_kengen_error();
         }
 
         $c_member_config = db_member_c_member_config4c_member_id($c_member_id);
 
         // 権限チェック
-        if (!$c_member_config['update_password_ssid'] && !$c_member_config['password_ssid_query_time'])
-        {
-            handle_kengen_error();
-        }
-        if ($c_member_config['update_password_ssid'] != $session) {
+        if ($c_member_config['update_password_sid'] != $session) {
             handle_kengen_error();
         }
 
+        // 有効期限は24時間
         $one_day_time = 86400;
-        $limit_password_ssid_query_time
-            = $c_member_config['password_ssid_query_time'] + ($one_day_time * 3);
+        $limit_password_sid_query_time
+            = $c_member_config['password_sid_query_time'] + $one_day_time;
 
         // 権限チェック
-        if (time() > $limit_password_ssid_query_time) {
+        if (time() > $limit_password_sid_query_time) {
             $p = array('msg_code' => 'update_password_timeout');
             openpne_redirect('pc', 'page_o_tologin', $p);
         }
@@ -79,8 +74,8 @@ class pc_do_o_update_password extends OpenPNE_Action
         }
 
         db_member_update_password($c_member_id, $new_password);
-        db_member_update_c_member_config($c_member_id, 'password_ssid_query_time', 0);
-        db_member_update_c_member_config($c_member_id, 'update_password_ssid', 0);
+        db_member_delete_c_member_config($c_member_id, 'password_sid_query_time');
+        db_member_delete_c_member_config($c_member_id, 'update_password_sid');
 
         $p = array('msg_code' => 'change_password');
         openpne_redirect('pc', 'page_o_tologin', $p);

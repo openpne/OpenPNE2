@@ -26,11 +26,11 @@ class ktai_do_o_update_password extends OpenPNE_Action
         $c_member_id = t_decrypt($id);
 
         // 権限チェック
-        if (!db_member_c_member_config4name($c_member_id, 'update_password_ssid'))
+        if (!db_member_c_member_config4name($c_member_id, 'update_password_sid'))
         {
             handle_kengen_error();
         }
-        if (!db_member_c_member_config4name($c_member_id, 'password_ssid_query_time'))
+        if (!db_member_c_member_config4name($c_member_id, 'password_sid_query_time'))
         {
             handle_kengen_error();
         }
@@ -38,20 +38,17 @@ class ktai_do_o_update_password extends OpenPNE_Action
         $c_member_config = db_member_c_member_config4c_member_id($c_member_id);
 
         // 権限チェック
-        if (!$c_member_config['update_password_ssid'] && !$c_member_config['password_ssid_query_time'])
-        {
-            handle_kengen_error();
-        }
-        if ($c_member_config['update_password_ssid'] != $session) {
+        if ($c_member_config['update_password_sid'] != $session) {
             handle_kengen_error();
         }
 
+        // 有効期限は24時間
         $one_day_time = 86400;
-        $limit_password_ssid_query_time
-            = $c_member_config['password_ssid_query_time'] + ($one_day_time * 3);
+        $limit_password_sid_query_time
+            = $c_member_config['password_sid_query_time'] + $one_day_time;
 
         // 権限チェック
-        if (time() > $limit_password_ssid_query_time) {
+        if (time() > $limit_password_sid_query_time) {
             $p = array('msg' => 55);
             openpne_redirect('ktai', 'page_o_login', $p);
         }
@@ -61,12 +58,12 @@ class ktai_do_o_update_password extends OpenPNE_Action
             || (strlen($new_password) < 6)
             || (strlen($new_password) > 12)) {
             $p = array('msg' => 20, 'session' => $session, 'id' => $id);
-            openpne_redirect('ktai', 'page_update_password', $p);
+            openpne_redirect('ktai', 'page_o_update_password', $p);
         }
 
         db_member_update_password($c_member_id, $new_password);
-        db_member_update_c_member_config($c_member_id, 'password_ssid_query_time', 0);
-        db_member_update_c_member_config($c_member_id, 'update_password_ssid', 0);
+        db_member_delete_c_member_config($c_member_id, 'password_sid_query_time');
+        db_member_delete_c_member_config($c_member_id, 'update_password_sid');
 
         $p = array('msg' => 21);
         openpne_redirect('ktai', 'page_o_login', $p);
