@@ -543,6 +543,19 @@ if ( c['skinChangerArea'] == 0 ) { toggleDisplay('skin_changer_area'); }
 </form></dd>
 </dl>
 <dl class="box">
+<dt><strong>「コメントする」</strong></dt>
+<dd class="image">({assign var=skinname value=button_comment})<img src="({t_img_url_skin filename=$skinname})"></dd>
+<dd class="default">({if $skin_list[$skinname]})[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})</dd>
+<dd class="submit">
+<form action="./" method="post" enctype="multipart/form-data" >
+<input type="hidden" name="m" value="({$module_name})" />
+<input type="hidden" name="a" value="do_({$hash_tbl->hash('update_skin_image','do')})" />
+<input type="hidden" name="sessid" value="({$PHPSESSID})" />
+<input type="hidden" name="skinname" value="button_comment" />
+<input type="file" name="upfile" /><span class="textBtnS"><input type="submit" value="　変　更　" /></span>
+</form></dd>
+</dl>
+<dl class="box">
 <dt><strong>それ以外のボタン背景画像</strong></dt>
 <dd class="image">({assign var=skinname value=bg_button})<img src="({t_img_url_skin filename=$skinname})"></dd>
 <dd class="default">({if $skin_list[$skinname]})[<a href="?m=({$module_name})&amp;a=do_({$hash_tbl->hash('delete_skin_image','do')})&amp;skinname=({$skinname})&amp;sessid=({$PHPSESSID})">デフォルトに戻す</a>]({/if})</dd>
