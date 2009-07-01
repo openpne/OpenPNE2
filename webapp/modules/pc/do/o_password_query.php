@@ -66,12 +66,11 @@ class pc_do_o_password_query extends OpenPNE_Action
 
         // パスワード再発行用のハッシュをDBに登録し再設定用のメールを送信
         $session = create_hash();
-        db_member_update_c_member_config($c_member_id, 'update_password_ssid', $session);
-        db_member_update_c_member_config($c_member_id, 'password_ssid_query_time', time());
-        do_password_query_mail_send($c_member_id, $pc_address, $session);
+        db_member_update_c_member_config($c_member_id, 'update_password_sid', $session);
+        db_member_update_c_member_config($c_member_id, 'password_sid_query_time', time());
+        do_password_url_query_mail_send($c_member_id, $pc_address, $session);
 
-        $p = array('is_send' => true);
-        openpne_redirect('pc', 'page_o_password_query', $p);
+        openpne_redirect('pc', 'page_o_password_query_end');
     }
 }
 
