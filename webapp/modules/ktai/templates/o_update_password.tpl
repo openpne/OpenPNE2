@@ -4,8 +4,8 @@
 </td></tr></table>
 新しいﾊﾟｽﾜｰﾄﾞを入力してください。
 ({if $msg})
-<font color="#({$ktai_color_config.font_09})">({$msg})</font><br>
 <br>
+<font color="#({$ktai_color_config.font_09})">({$msg})</font>
 ({/if})
 ({t_form m=ktai a=do_o_update_password})
 <input type="hidden" name="id" value="({$id})">
