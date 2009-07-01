@@ -55,10 +55,10 @@ class ktai_do_o_password_query extends OpenPNE_Action
 
         // パスワード再発行
         $session = create_hash();
-        db_member_update_c_member_config($c_member_id, 'update_password_ssid', $session);
-        db_member_update_c_member_config($c_member_id, 'password_ssid_query_time', time());
+        db_member_update_c_member_config($c_member_id, 'update_password_sid', $session);
+        db_member_update_c_member_config($c_member_id, 'password_sid_query_time', time());
 
-        db_mail_send_m_ktai_password_query($c_member_id, $session);
+        db_mail_send_m_ktai_password_url_query($c_member_id, $session);
 
         $p = array('msg' => 26);
         openpne_redirect('ktai', 'page_o_login', $p);
