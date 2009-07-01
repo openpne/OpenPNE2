@@ -2090,6 +2090,23 @@ function db_member_update_c_member_config($c_member_id, $name, $value)
 }
 
 /**
+ * c_member_configの削除
+ *
+ * @param int $c_member_id
+ * @param string $name
+ * @return bool
+ */
+function db_member_delete_c_member_config($c_member_id, $name)
+{
+    $sql = 'DELETE FROM c_member_config WHERE c_member_id = ? AND name = ?';
+    $params = array(
+        intval($c_member_id),
+        $name,
+    );
+    return db_query($sql, $params);
+}
+
+/**
  * c_member_secureのsess_idフィールドにセッションIDを新規に追加する
  *
  * @param int $c_member_id 更新する行のメンバーID
