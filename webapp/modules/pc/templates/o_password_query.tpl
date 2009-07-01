@@ -3,7 +3,7 @@
 
 ({* {{{ formTable *})
 <div class="dparts formTable"><div class="parts">
-<div class="partsHeading"><h3>パスワード再発行</h3></div>
+<div class="partsHeading"><h3>パスワード再設定</h3></div>
 
 ({if $is_send})
 <div class="dparts alertBox"><div class="parts">
@@ -12,9 +12,9 @@
 <td>
 パスワード再設定用URLをメールで送信しました。<br />
 <br />
-しばらくしてもメールが来ない場合、<br />
-メールアドレスの入力に誤りがある可能性が考えられますので<br />
-再度確認の上、フォームからやり直してください。
+しばらく経ってもメールが届かない場合、<br />
+メールアドレスの入力に誤りがあり送信されていない可能性が考えられます。<br />
+メールアドレスに誤りがないか確認の上、再度送信しなおしてください。
 </td>
 </tr></table>
 </div></div>
