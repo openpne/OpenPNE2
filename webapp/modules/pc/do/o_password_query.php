@@ -48,6 +48,11 @@ class pc_do_o_password_query extends OpenPNE_Action
         }
 
         //--- 権限チェック
+        if (!db_common_is_mailaddress($pc_address)) {
+                $msg = 'メールアドレスの形式が正しくありません';
+                $p = array('msg' => $msg);
+                openpne_redirect('pc', 'page_o_password_query', $p);
+        }
         if (IS_PASSWORD_QUERY_ANSWER) {
             $c_member_id = db_member_is_password_query_complete($pc_address, $q_id, $q_answer);
             $msg = '正しい値を入力してください';
@@ -58,8 +63,7 @@ class pc_do_o_password_query extends OpenPNE_Action
         } else {
             $c_member_id = db_member_c_member_id4pc_address($pc_address);
             if (!$c_member_id) {
-                $p = array('msg_code' => 'password_query');
-                openpne_redirect('pc', 'page_o_tologin', $p);
+                openpne_redirect('pc', 'page_o_password_query_end');
             }
         }
         //---

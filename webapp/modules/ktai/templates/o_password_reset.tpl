@@ -1,6 +1,6 @@
 ({$inc_ktai_header|smarty:nodefaults})
 <table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_02})">
-<font color="#({$ktai_color_config.font_05})"><a name="top">パスワード再設定</a></font><br>
+<font color="#({$ktai_color_config.font_05})"><a name="top">ﾊﾟｽﾜｰﾄﾞ再設定</a></font><br>
 </td></tr></table>
 新しいﾊﾟｽﾜｰﾄﾞを入力してください。
 ({if $msg})
