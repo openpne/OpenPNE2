@@ -180,6 +180,7 @@ $GLOBALS['_OPENPNE_SSL_REQUIRED'] = array(
     'page_o_public_invite', 'do_o_public_invite',
     'page_h_invite', 'page_h_invite_confirm', 'do_h_invite_insert_c_invite',
     'page_o_password_query', 'do_o_password_query',
+    'page_o_password_reset', 'do_o_password_reset',
     'page_o_regist_pc_address', 'do_o_regist_pc_address', 'page_o_regist_pc_address_end',
 ),
 'ktai' => array(
@@ -188,6 +189,7 @@ $GLOBALS['_OPENPNE_SSL_REQUIRED'] = array(
     'page_o_regist_pre', 'page_o_regist_input', 'do_o_insert_c_member',
     'page_o_regist_end',
     'page_o_password_query', 'do_o_password_query',
+    'page_o_password_reset', 'do_o_password_reset',
     'page_h_config_prof', 'do_h_config_prof_update_c_member',
     'page_h_config_easy_login', 'do_h_config_easy_login',
     'page_h_config_mail', 'do_h_config_mail_insert_c_ktai_address_pre',
