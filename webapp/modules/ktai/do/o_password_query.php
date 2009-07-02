@@ -27,8 +27,8 @@ class ktai_do_o_password_query extends OpenPNE_Action
             openpne_redirect('ktai', 'page_o_password_query', $p);
         }
         if (!is_ktai_mail_address($ktai_address)) {
-                $p = array('msg' => 31);
-                openpne_redirect('ktai', 'page_o_password_query', $p);
+            $p = array('msg' => 31);
+            openpne_redirect('ktai', 'page_o_password_query', $p);
         }
         if (IS_PASSWORD_QUERY_ANSWER) {
             if (!$q_id) {
