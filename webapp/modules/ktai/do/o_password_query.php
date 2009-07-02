@@ -46,6 +46,7 @@ class ktai_do_o_password_query extends OpenPNE_Action
             }
         } else {
             $c_member_id = db_member_c_member_id4ktai_address($ktai_address);
+            // メールアドレスが一致しない場合でも正常に完了した時と同じ画面にする
             if (!$c_member_id) {
                 $p = array('msg' => 26);
                 openpne_redirect('ktai', 'page_o_login', $p);
@@ -56,7 +57,7 @@ class ktai_do_o_password_query extends OpenPNE_Action
         // パスワード再発行
         $session = create_hash();
         db_member_update_c_member_config($c_member_id, 'password_reset_sid', $session);
-        db_member_update_c_member_config($c_member_id, 'password_sid_query_time', time());
+        db_member_update_c_member_config($c_member_id, 'password_reset_sid_time', time());
 
         db_mail_send_m_ktai_password_reset_query($c_member_id, $session);
 
