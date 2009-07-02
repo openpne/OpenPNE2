@@ -4,7 +4,7 @@
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
-class ktai_do_o_update_password extends OpenPNE_Action
+class ktai_do_o_password_reset extends OpenPNE_Action
 {
     function isSecure()
     {
@@ -26,7 +26,7 @@ class ktai_do_o_update_password extends OpenPNE_Action
         $c_member_id = t_decrypt($id);
 
         // 権限チェック
-        if (!db_member_c_member_config4name($c_member_id, 'update_password_sid'))
+        if (!db_member_c_member_config4name($c_member_id, 'password_reset_sid'))
         {
             handle_kengen_error();
         }
@@ -38,7 +38,7 @@ class ktai_do_o_update_password extends OpenPNE_Action
         $c_member_config = db_member_c_member_config4c_member_id($c_member_id);
 
         // 権限チェック
-        if ($c_member_config['update_password_sid'] != $session) {
+        if ($c_member_config['password_reset_sid'] != $session) {
             handle_kengen_error();
         }
 
@@ -58,12 +58,12 @@ class ktai_do_o_update_password extends OpenPNE_Action
             || (strlen($new_password) < 6)
             || (strlen($new_password) > 12)) {
             $p = array('msg' => 20, 'session' => $session, 'id' => $id);
-            openpne_redirect('ktai', 'page_o_update_password', $p);
+            openpne_redirect('ktai', 'page_o_password_reset', $p);
         }
 
         db_member_update_password($c_member_id, $new_password);
         db_member_delete_c_member_config($c_member_id, 'password_sid_query_time');
-        db_member_delete_c_member_config($c_member_id, 'update_password_sid');
+        db_member_delete_c_member_config($c_member_id, 'password_reset_sid');
 
         $p = array('msg' => 21);
         openpne_redirect('ktai', 'page_o_login', $p);
