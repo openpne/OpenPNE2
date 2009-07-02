@@ -56,7 +56,7 @@ class ktai_do_o_password_query extends OpenPNE_Action
         // パスワード再発行
         $session = create_hash();
         db_member_update_c_member_config($c_member_id, 'password_reset_sid', $session);
-        db_member_update_c_member_config($c_member_id, 'password_sid_query_time', time());
+        db_member_update_c_member_config($c_member_id, 'password_reset_sid_time', time());
 
         db_mail_send_m_ktai_password_reset_query($c_member_id, $session);
 
