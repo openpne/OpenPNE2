@@ -9,7 +9,7 @@
 
 下記の URL にアクセスし、パスワードの再設定をおこなってください。
 
-({$update_password_url})
+({$password_reset_url})
 
 ({$SNS_NAME})ログインページ
 ({$login_url})
