@@ -9,7 +9,7 @@
 <p>新しいパスワードを入力してください</p>
 </div>
 
-({t_form_block m=pc a=do_o_update_password})
+({t_form_block m=pc a=do_o_password_reset})
 <table>
 <th>パスワード</th>
 <td>
