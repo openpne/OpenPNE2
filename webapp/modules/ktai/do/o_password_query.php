@@ -38,6 +38,10 @@ class ktai_do_o_password_query extends OpenPNE_Action
         }
 
         //--- 権限チェック
+        if (!db_common_is_mailaddress($ktai_address)) {
+                $p = array('msg' => 31);
+                openpne_redirect('ktai', 'page_o_password_query', $p);
+        }
         if (IS_PASSWORD_QUERY_ANSWER) {
             $c_member_id = db_member_is_password_query_complete2($ktai_address, $q_id, $q_answer);
             if (!$c_member_id) {
