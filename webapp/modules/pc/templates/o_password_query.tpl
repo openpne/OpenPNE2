@@ -3,7 +3,7 @@
 
 ({* {{{ formTable *})
 <div class="dparts formTable"><div class="parts">
-<div class="partsHeading"><h3>パスワード再設定</h3></div>
+<div class="partsHeading"><h3>パスワード再設定のリクエスト</h3></div>
 
 <div class="partsInfo">
 ({if $smarty.const.IS_PASSWORD_QUERY_ANSWER})
