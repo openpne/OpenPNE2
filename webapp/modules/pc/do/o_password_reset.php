@@ -33,7 +33,7 @@ class pc_do_o_password_reset extends OpenPNE_Action
         if (!db_member_c_member_config4name($c_member_id, 'password_reset_sid')) {
             handle_kengen_error();
         }
-        if (!db_member_c_member_config4name($c_member_id, 'password_sid_query_time')) {
+        if (!db_member_c_member_config4name($c_member_id, 'password_reset_sid_time')) {
             handle_kengen_error();
         }
 
@@ -46,11 +46,11 @@ class pc_do_o_password_reset extends OpenPNE_Action
 
         // 有効期限は24時間
         $one_day_time = 86400;
-        $limit_password_sid_query_time
-            = $c_member_config['password_sid_query_time'] + $one_day_time;
+        $limit_password_reset_sid_time
+            = $c_member_config['password_reset_sid_time'] + $one_day_time;
 
         // 権限チェック
-        if (time() > $limit_password_sid_query_time) {
+        if (time() > $limit_password_reset_sid_time) {
             $p = array('msg_code' => 'password_reset_timeout');
             openpne_redirect('pc', 'page_o_tologin', $p);
         }
@@ -74,7 +74,7 @@ class pc_do_o_password_reset extends OpenPNE_Action
         }
 
         db_member_update_password($c_member_id, $new_password);
-        db_member_delete_c_member_config($c_member_id, 'password_sid_query_time');
+        db_member_delete_c_member_config($c_member_id, 'password_reset_sid_time');
         db_member_delete_c_member_config($c_member_id, 'password_reset_sid');
 
         $p = array('msg_code' => 'change_password');
