@@ -211,19 +211,19 @@ function do_password_query_mail_send($c_member_id, $pc_address, $new_password)
 }
 
 //パスワード再設定メール
-function do_password_url_query_mail_send($c_member_id, $pc_address, $session)
+function do_password_reset_query_mail_send($c_member_id, $pc_address, $session)
 {
     $p = array('id' => t_encrypt($c_member_id), 'session' => $session);
-    $update_password_url = openpne_gen_url('pc', 'page_o_update_password', $p);
+    $password_reset_url = openpne_gen_url('pc', 'page_o_password_reset', $p);
     $params = array(
         'c_member'   => db_member_c_member4c_member_id($c_member_id),
         'pc_address' => $pc_address,
-        'update_password_url' => $update_password_url,
+        'password_reset_url' => $password_reset_url,
     );
     if (OPENPNE_AUTH_MODE == 'pneid' || OPENPNE_AUTH_MODE == 'slavepne') {
         $params['login_id'] = db_member_username4c_member_id($c_member_id);
     }
-    return fetch_send_mail($pc_address, 'm_pc_password_url_query', $params);
+    return fetch_send_mail($pc_address, 'm_pc_password_reset_query', $params);
 }
 
 //パスワード再発行メール(携帯)
@@ -246,26 +246,26 @@ function db_mail_send_m_ktai_password_query($c_member_id, $new_password)
 }
 
 //パスワード再設定メール(携帯)
-function db_mail_send_m_ktai_password_url_query($c_member_id, $session)
+function db_mail_send_m_ktai_password_reset_query($c_member_id, $session)
 {
     $c_member = db_member_c_member4c_member_id($c_member_id, true);
     $ktai_address = $c_member['secure']['ktai_address'];
 
     $p = array('id' => t_encrypt($c_member_id), 'session' => $session);
-    $update_password_url = openpne_gen_url('ktai', 'page_o_update_password', $p);
+    $password_reset_url = openpne_gen_url('ktai', 'page_o_password_reset', $p);
     $p = array('kad' => t_encrypt(db_member_username4c_member_id($c_member_id, true)));
     $login_url = openpne_gen_url('ktai', 'page_o_login', $p);
     $params = array(
         'c_member'  => $c_member,
-        'session'  => $new_password,
-        'id'   => $id,
+        'session'   => $new_password,
+        'id'        => $id,
         'login_url' => $login_url,
-        'update_password_url' => $update_password_url,
+        'password_reset_url' => $password_reset_url,
     );
     if (OPENPNE_AUTH_MODE == 'pneid' || OPENPNE_AUTH_MODE == 'slavepne') {
         $params['login_id'] = db_member_username4c_member_id($c_member_id);
     }
-    return fetch_send_mail($ktai_address, 'm_ktai_password_url_query', $params);
+    return fetch_send_mail($ktai_address, 'm_ktai_password_reset_query', $params);
 }
 
 //掲示板が更新されたときのお知らせメール送信(携帯メールアドレスへ)

@@ -7,7 +7,7 @@
 <br>
 <font color="#({$ktai_color_config.font_09})">({$msg})</font>
 ({/if})
-({t_form m=ktai a=do_o_update_password})
+({t_form m=ktai a=do_o_password_reset})
 <input type="hidden" name="id" value="({$id})">
 <input type="hidden" name="session" value="({$session})">
 <font color="#({$ktai_color_config.font_06})">ﾊﾟｽﾜｰﾄﾞ：</font><br>
