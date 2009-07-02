@@ -1,13 +1,13 @@
 ({$inc_ktai_header|smarty:nodefaults})
-
 <table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_02})">
-<font color="#({$ktai_color_config.font_05})"><a name="top">ﾊﾟｽﾜｰﾄﾞ再設定用URLの送信</a></font><br>
+<font color="#({$ktai_color_config.font_05})"><a name="top">ﾊﾟｽﾜｰﾄﾞ再設定</a></font><br>
 </td></tr></table>
+パスワード再設定用URLを携帯ﾒｰﾙｱﾄﾞﾚｽに送信します。<br>
 
 ({if $msg})
 <font color="#({$ktai_color_config.font_09})">({$msg})</font><br>
 ({/if})
-<br>
+
 ({t_form m=ktai a=do_o_password_query})
 <font color="#({$ktai_color_config.font_06})">携帯ﾒｰﾙｱﾄﾞﾚｽ：</font><br>
 <textarea name="ktai_address" rows="1" istyle="3" mode="alphabet"></textarea><br>
