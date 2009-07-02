@@ -1,22 +1,21 @@
 <div id="LayoutC">
 <div id="Center">
 
-({* {{{ formTable *})
-<div class="dparts formTable"><div class="parts">
-<div class="partsHeading"><h3>パスワード再設定</h3></div>
-
-<div class="dparts alertBox"><div class="parts">
-<table><tr>
-<th><img src="({t_img_url_skin filename=icon_alert_l})" alt="警告" /></th>
-<td>
-パスワード再設定用URLをメールで送信しました。<br />
+({* {{{ simpleBox *})
+<div class="dparts simpleBox"><div class="parts">
+<div class="partsHeading"><h3>パスワード再設定のリクエスト</h3></div>
+<div class="block">
+<p>
+パスワード再設定用URLをメールで送信しました。
 <br />
-しばらくしてもメールが来ない場合、<br />
-メールアドレスの入力に誤りがある可能性が考えられますので<br />
-再度確認の上、フォームからやり直してください。
-</td>
-</tr></table>
+<br />
+24時間お待ちいただいても再設定用メールが受信しない場合、メールアドレスの入力に<br />
+誤りがある可能性、迷惑メールフォルダに受信している可能性が考えられますので<br />
+再度確認の上、最初から操作をやり直してください。
+</p>
+</div>
 </div></div>
+({* }}} *})
 
 </div><!-- Center -->
 </div><!-- LayoutC -->
