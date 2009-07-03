@@ -2,7 +2,7 @@
 <table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_02})">
 <font color="#({$ktai_color_config.font_05})"><a name="top">ﾊﾟｽﾜｰﾄﾞ再設定</a></font><br>
 </td></tr></table>
-パスワード再設定用URLを携帯ﾒｰﾙｱﾄﾞﾚｽに送信します。<br>
+ﾊﾟｽﾜｰﾄﾞ再設定用URLを携帯ﾒｰﾙｱﾄﾞﾚｽに送信します。<br>
 
 ({if $msg})
 <font color="#({$ktai_color_config.font_09})">({$msg})</font><br>
