@@ -8,8 +8,4 @@
 <li><a href="({t_url m=$smarty.const.ADMIN_MODULE_NAME})">管理画面へ</a></li>
 </ul>
 
-<ul>
-<li><a href="http://owners.pne.jp/?m=pc&amp;a=page_o_public_invite" target="_blank">PNEオーナーズSNSに登録</a></li>
-</ul>
-
 ({ext_include file="inc_footer.tpl"})
