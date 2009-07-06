@@ -64,7 +64,7 @@ em {
 
 <h1>OpenPNE アップグレードガイド</h1>
 
-<p>最終更新日: 2008/05/29</p>
+<p>最終更新日: 2009/07/06</p>
 
 <h2>目次</h2>
 <ul>
@@ -81,9 +81,8 @@ em {
   <li><a href="#section2-2">2-2. ソースコードの設置</a></li>
   <li><a href="#section2-3">2-3. 設定ファイルの変更</a>
     <ul>
-    <li><a href="#section2-3-1">2-3-1. OpenPNE2.12で追加された項目</a></li>
-    <li><a href="#section2-3-2">2-3-2. OpenPNE2.12で変更された項目</a></li>
-    <li><a href="#section2-3-3">2-3-3. OpenPNE2.12で削除された項目</a></li>
+    <li><a href="#section2-3-1">2-3-1. OpenPNE2.14で追加された項目</a></li>
+    <li><a href="#section2-3-2">2-3-2. OpenPNE2.14で変更された項目</a></li>
     </ul></li>
   <li><a href="#section2-4">2-4. メールサーバの設定</a></li>
   </ul></li>
@@ -93,7 +92,7 @@ em {
 
 <h2 id="section0">0. はじめに</h2>
 
-<p>この文書は、OpenPNE バージョン2.10.x から バージョン2.12.x へのアップグレード手順を書いたものです。</p>
+<p>この文書は、OpenPNE バージョン2.12.x から バージョン2.14.x へのアップグレード手順を書いたものです。</p>
 
 <p class="caution">アップグレード作業を始める前に、データベースのバックアップを保存しておくことを強くおすすめします。</p>
 
@@ -118,48 +117,48 @@ em {
 <h4 id="section2-1-1">2-1-1. MySQL 4.1 以降 (5.x 含む) の場合</h4>
 
 <ul>
-<li><var>OPENPNE_DIR</var>/setup/sql/mysql41/upgrade/upgrade-2.10to2.12.sql</li>
+<li><var>OPENPNE_DIR</var>/setup/sql/mysql41/upgrade/upgrade-2.12to2.14.sql</li>
 </ul>
 
 <div>
 <em>[実行例]</em>
 <pre>
 $ cd setup/sql/mysql41/upgrade/
-$ mysql -u username -p --default-character-set=utf8 DBNAME &lt; upgrade-2.10to2.12.sql
+$ mysql -u username -p --default-character-set=utf8 DBNAME &lt; upgrade-2.12to2.14.sql
 </pre>
 </div>
 
 <h4 id="section2-1-2">2-1-2. MySQL 4.0 の場合</h4>
 
 <ul>
-<li><var>OPENPNE_DIR</var>/setup/sql/mysql40/upgrade/upgrade-2.10to2.12.sql</li>
+<li><var>OPENPNE_DIR</var>/setup/sql/mysql40/upgrade/upgrade-2.12to2.14.sql</li>
 </ul>
 
 <div>
 <em>[実行例]</em>
 <pre>
 $ cd setup/sql/mysql40/upgrade/
-$ mysql -u username -p DBNAME &lt; upgrade-2.10to2.12.sql
+$ mysql -u username -p DBNAME &lt; upgrade-2.12to2.14.sql
 </pre>
 </div>
 
 <h4 id="section2-1-3">2-1-3. PostgreSQL 7.4.x (8.0.x, 8.1.x 含む) の場合</h4>
 
 <ul>
-<li><var>OPENPNE_DIR</var>/setup/sql/postgres74/upgrade/upgrade-2.10to2.12.sql</li>
+<li><var>OPENPNE_DIR</var>/setup/sql/postgres74/upgrade/upgrade-2.12to2.14.sql</li>
 </ul>
 
 <div>
 <em>[実行例]</em>
 <pre>
 $ cd setup/sql/postgres74/upgrade
-$ psql DBNAME -U username -f upgrade-2.10to2.12.sql
+$ psql DBNAME -U username -f upgrade-2.12to2.14.sql
 </pre>
 </div>
 
 <h3 id="section2-2">2-2. ソースコードの設置</h3>
 
-<p>Webサーバ上に OpenPNE 2.12 のソースファイルを設置します。</p>
+<p>Webサーバ上に OpenPNE 2.14 のソースファイルを設置します。</p>
 
 <p class="caution">
 新旧ソースファイル混在によるトラブルを防ぐため、上書きではなくソースコード全てを交換してください。
@@ -174,40 +173,31 @@ $ psql DBNAME -U username -f upgrade-2.10to2.12.sql
 
 <h3 id="section2-3">2-3. 設定ファイルの変更</h3>
 
-<p>OpenPNE 2.10 の設定ファイルを参考にして 2.12 用の設定ファイル(config.php)を作成します。</p>
+<p>OpenPNE 2.12 の設定ファイルを参考にして 2.14 用の設定ファイル(config.php)を作成します。</p>
 <p>次表に掲げる設定ファイルの変更内容も参考にしてください。</p>
 
-<h4 id="section2-3-1">2-3-1. OpenPNE2.12で追加された項目</h4>
+<h4 id="section2-3-1">2-3-1. OpenPNE2.14で追加された項目</h4>
 <table>
 <tr><th>項目名</th><th>説明</th><th>備考</th></tr>
-<tr><td><strong>OPENPNE_USE_HTTP_PROXY</strong></td><td>HTTPプロキシ使用設定</td><td>&nbsp;</td>
-<tr><td><strong>OPENPNE_HTTP_PROXY_HOST</strong></td><td>プロキシのホスト名</td><td>&nbsp;</td>
-<tr><td><strong>OPENPNE_HTTP_PROXY_PORT</strong></td><td>プロキシのポート番号</td><td>&nbsp;</td>
-<tr><td><strong>OPENPNE_DECORATION_CMD_URL</strong></td><td>文字装飾機能の小窓ボタンで表示される小窓紹介ページのURL設定</td><td>URLを空にすると小窓ボタンが非表示になります</td>
-<tr><td><strong>OPENPNE_AUTH_MODE</strong></td><td>認証モード設定</td><td><ul><li>通常の認証モードは email モードです</li><li>外部認証は slavepne モードにすることで使用できます</li><li>pneid モードは今回新しく追加された認証モードです</li></ul></td>
-<tr><td><strong>IS_SLAVEPNE_EMAIL_REGIST</strong></td><td>外部認証時にメールアドレス登録を必須にするかどうか</td><td>&nbsp;</td>
-<tr><td><strong>SLAVEPNE_SYOUTAI_URL_PC</strong></td><td>招待メールに記載するURL（PC版）</td><td>&nbsp;</td>
-<tr><td><strong>SLAVEPNE_SYOUTAI_URL_KTAI</strong></td><td>招待メールに記載するURL（携帯版）</td><td>&nbsp;</td>
-<tr><td><strong>SLAVEPNE_PASSWORD_QUERY_URL_PC</strong></td><td>外部認証時の「パスワードを忘れた方」のリンク先URL設定（PC版）</td><td>&nbsp;</td>
-<tr><td><strong>SLAVEPNE_PASSWORD_QUERY_URL_KTAI</strong></td><td>外部認証時の「パスワードを忘れた方」のリンク先URL設定（携帯版）</td><td>&nbsp;</td>
-<tr><td><strong>OPENPNE_ADMIN_CONVERT_URL</strong></td><td>管理画面でURL・小窓変換機能を使用するかどうか</td><td>従来通りの挙動（管理画面ではURL・小窓変換機能を使用しない）にしたい場合は、falseに設定してください</td>
-<tr><td><strong>OPENPNE_IS_OPENID_SERVER</strong></td><td>OpenID サーバ（プロバイダ）となるかどうか</td><td>&nbsp;</td>
+<tr><td><strong>_OPENPNE_MAINTENANCE_EXCLUDED_ACTION</strong></td><td>メンテナンス画面を表示するアクションのリスト</td><td>&nbsp;</td></tr>
+<tr><td><strong>OPENPNE_SESSION_CHECK_PC_USER_AGENT</strong></td><td>PC版のユーザーエージェントセッションチェックをするかどうか</td><td>&nbsp;</td></tr>
+<tr><td><strong>OPENPNE_SESSION_CHECK_KTAI_USER_AGENT</strong></td><td>携帯版のユーザーエージェントセッションチェックをするかどうか</td><td>&nbsp;</td></tr>
+<tr><td><strong>OPENPNE_ONE_SESSION_PER_USER</strong></td><td>ログイン時のセッションを1ユーザに対して1セッションに制限するかどうか</td><td>&nbsp;</td></tr>
+<tr><td><strong>MAIL_ADDRESS_HASH_LENGTH</strong></td><td>宛先メールアドレスに付けるハッシュ文字列の長さ</td><td>デフォルト値は 12 です。</td></tr>
+<tr><td><strong>OPENPNE_DB_ERROR_LOG</strong></td><td>DBエラーログ出力を出力するかどうか</td><td>true なら出力します。</td></tr>
+<tr><td><strong>_ALLOWED_IP_LIST_FOR_KANSHI</strong></td><td>監視モジュールアクセスIP制限 (m=kanshi へのアクセスを許可するIPのリスト)</td><td>&nbsp;</td></tr>
+<tr><td><strong>IS_PASSWORD_QUERY_ANSWER</strong></td><td>秘密の質問を使用するかどうか (0 ～ 2 の値)</td><td><ul><li>0: 使用しない</li><li>1: 使用する(未登録でも使用可能)</li><li>2: 使用する(未登録時に登録を強制する)</li></ul></td></tr>
+<tr><td><strong>CHECK_POST_ACTIONS</strong></td><td>投稿制限のチェック対象とするアクションのリスト</td><td>&nbsp;</td></tr>
+<tr><td><strong>OPENPNE_POST_INTERVAL_UNFAIR_SECOND</strong></td><td>不正な連続投稿と判断する間隔 (秒単位)</td><td>0 が指定された場合は不正な連続投稿のチェックをしません。</td></tr>
+<tr><td><strong>OPENPNE_POST_INTERVAL_UNFAIR_COUNT</strong></td><td>不正な連続投稿が連続何回行われたら投稿制限するか</td><td>&nbsp;</td></tr>
+<tr><td><strong>OPENPNE_POST_INTERVAL_UNFAIR_COUNT_RESET_SECOND</strong></td><td>前回投稿から何秒以上空いたら不正な連続投稿回数をリセットするか</td><td>0 が指定された場合はリセットしません。</td></tr>
+<tr><td><strong>OPENPNE_POST_USE_DB</strong></td><td>前回投稿時刻と投稿回数の保存先にデータベースを使用するかどうか</td><td><ul><li>false: セッションを使用</li><li>true: データベースを使用</li></ul></td></tr>
 </table>
 
-<h4 id="section2-3-2">2-3-2. OpenPNE2.12で変更された項目</h4>
+<h4 id="section2-3-2">2-3-2. OpenPNE2.14で変更された項目</h4>
 <table>
 <tr><th>項目名</th><th>説明</th><th>変更点</th><th>備考</th></tr>
-<tr><td><strong>_OPENPNE_IMG_ALLOWED_SIZE</strong></td><td>画像変換時に許可する解像度のリスト (幅x高さ)</td><td>'600x600' が追加された</td><td>この項目を変更しないとアルバム機能の画像が表示できなくなります。</td></tr>
-</table>
-<ul>
-    <li>「mbstring設定」に mb_substitute_character() の関数コールが追加されました。携帯で表示することのできない文字は、この設定に従って変換されるようになります</li>
-</ul>
-
-<h4 id="section2-3-3">2-3-3. OpenPNE2.12で削除された項目</h4>
-<table>
-<tr><th>項目名</th><th>説明</th><th>備考</th></tr>
-<tr><td><strong>OPENPNE_USE_COMMU_MAP</strong></td><td>コミュニティに地図を表示するかどうか</td><td>この機能は小窓で実現するようになりました。コミュニティに地図を表示したくない場合は、管理画面のCMD設定からGoogleMaps小窓の使用設定を変更してください。</td>
-<tr><td><strong>IS_SLAVEPNE</strong></td><td>外部認証を使用するかどうか</td><td>この設定は新しく追加された <strong>OPENPNE_AUTH_MODE</strong> に統合されました。 <strong>IS_SLAVEPNE</strong> を true にして運用していたSNSは、 <strong>OPENPNE_AUTH_MODE</strong> を slavepne にしてください。</td>
+<tr><td><strong>_OPENPNE_SSL_REQUIRED</strong></td><td>SSLを使用することが必須であるアクションのリスト</td><td>'page_o_password_reset' と 'do_o_password_reset' が追加された</td><td>'pc' と 'ktai' の両方に追加されています。</td></tr>
 </table>
 
 
@@ -218,7 +208,7 @@ $ psql DBNAME -U username -f upgrade-2.10to2.12.sql
 
 <table>
 <tr><th>項目</th><th>新形式</th><th>旧形式</th></tr>
-<tr><td>日記コメントメール投稿</td><td>bc<var>XXX</var>-<var>YYY</var>@MAIL_SERVER_DOMAIN</td><td>bc<var>XXX</var>@MAIL_SERVER_DOMAIN</td></tr>
+<tr><td>アルバム画像投稿</td><td>ai<var>XXX</var>-<var>YYY</var>@MAIL_SERVER_DOMAIN</td><td>ai<var>XXX</var>@MAIL_SERVER_DOMAIN</td></tr>
 </table>
 <ul>
 <li><var>XXX</var> には数字。</li>
