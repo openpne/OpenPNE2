@@ -22,7 +22,7 @@
 
 メッセージの内容を確認するには
 以下のURLをクリックしてください。
-({$OPENPNE_URL})?m=pc&a=page_h_message&target_c_message_id=({$c_message_id})
+({$OPENPNE_URL})?m=pc&a=page_h_message&target_c_message_id=({$c_message_id})&jyusin_c_message_id=({$c_message_id})
 
 なお、登録メールアドレスの変更などは
 「設定変更」画面からおこなってください。
