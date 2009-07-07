@@ -283,7 +283,6 @@ function db_member_search($cond, $cond_like, $page_size, $page, $c_member_id, $p
         }
     }
 
-    // 検索設定を公開にしている場合のみ結果を表示
     if ($wheres) {
         $where = ' WHERE ' . implode(' AND ', $wheres);
     } else {
@@ -294,6 +293,7 @@ function db_member_search($cond, $cond_like, $page_size, $page, $c_member_id, $p
     $order = " ORDER BY c_member_id DESC";
     $sql = "SELECT c_member_id" . $from . $where . $order;
 
+    // 検索設定を公開にしていないメンバーを除外
     $result_ids = db_get_col($sql, $params);
     foreach ($result_ids as $key => $result_id) {
         $c_member_config = db_member_c_member_config4c_member_id($result_id);
@@ -301,6 +301,7 @@ function db_member_search($cond, $cond_like, $page_size, $page, $c_member_id, $p
             unset($result_ids[$key]);
         }
     }
+    $result_ids = array_merge($result_ids);
 
     foreach ($profiles as $key => $value) {
         $sql = "SELECT c_member_id FROM c_member_profile";
