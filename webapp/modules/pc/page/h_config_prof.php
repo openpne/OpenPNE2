@@ -18,8 +18,6 @@ class pc_page_h_config_prof extends OpenPNE_Action
 
         if (!$prof) {
             $prof = db_member_c_member_with_profile($u, 'private');
-            $c_member_config = db_member_c_member_config4c_member_id($u);
-            $prof['is_search_result'] = $c_member_config['IS_SEARCH_RESULT'];
         }
         $this->set('c_member', $prof);
 
