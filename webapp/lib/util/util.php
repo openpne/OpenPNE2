@@ -18,9 +18,6 @@ function openpne_redirect($module, $action = '', $params = array())
             $params['ksid'] = session_id();
         }
     }
-    if ($module == 'admin') {
-        $module = ADMIN_MODULE_NAME;
-    }
     $url = openpne_gen_url($module, $action, $params);
     client_redirect_absolute($url);
 }
@@ -84,6 +81,9 @@ function openpne_gen_url($module, $action = '', $params = array(), $absolute = t
         $p['ssl_param'] = 1;
     } else {
         unset($p['ssl_param']);
+    }
+    if ($p['m'] == 'admin') {
+        $p['m'] = ADMIN_MODULE_NAME;
     }
     if ($q = http_build_query($p)) {
         $url .= '?' . $q;
