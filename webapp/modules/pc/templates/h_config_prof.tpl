@@ -9,8 +9,13 @@
 <tr>
 <th>検索設定 <strong>※</strong></th>
 <td>
+({if $c_member.is_search_result != null})
+<input type="radio" id="is_search_result_1" class="input_radio" name="is_search_result" value="1"({if $c_member.is_search_result == '1'}) checked="checked" ({/if})/> <label for="is_search_result_1">公開</label>
+<input type="radio" id="is_search_result_0" class="input_radio" name="is_search_result" value="0"({if $c_member.is_search_result == '0'}) checked="checked" ({/if})/> <label for="is_search_result_0">公開しない</label>
+({else})
 <input type="radio" id="is_search_result_1" class="input_radio" name="is_search_result" value="1"({if $C_MEMBER_CONFIG.IS_SEARCH_RESULT == '1'}) checked="checked" ({/if})/> <label for="is_search_result_1">公開</label>
 <input type="radio" id="is_search_result_0" class="input_radio" name="is_search_result" value="0"({if $C_MEMBER_CONFIG.IS_SEARCH_RESULT == '0'}) checked="checked" ({/if})/> <label for="is_search_result_0">公開しない</label>
+({/if})
 </td>
 </tr>
 ({capture name="nick"})

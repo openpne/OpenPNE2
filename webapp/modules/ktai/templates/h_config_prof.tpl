@@ -15,8 +15,13 @@
 <font color="#({$ktai_color_config.font_09})">*</font>
 <font color="#({$ktai_color_config.font_06})">検索設定：</font><br>
 <select name="is_search_result">
+({if $c_member.is_search_result != null})
+    <option value="1"({if $c_member.is_search_result == '1'}) selected="selected"({/if})>公開する
+    <option value="0"({if $c_member.is_search_result == '0'}) selected="selected"({/if})/>公開しない
+({else})
     <option value="1"({if $C_MEMBER_CONFIG.IS_SEARCH_RESULT == "1"}) selected="selected"({/if})>公開する
     <option value="0"({if $C_MEMBER_CONFIG.IS_SEARCH_RESULT == "0"}) selected="selected"({/if})>公開しない
+({/if})
 </select><br>
 <br>
 ({capture name="nick"})
