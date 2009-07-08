@@ -13,7 +13,6 @@ class ktai_page_h_config_prof extends OpenPNE_Action
         $this->set("c_member", db_member_c_member4c_member_id($u));
 
         $prof = db_member_c_member_with_profile($u, 'private');
-
         $this->set('c_member', $prof);
 
         $public_flags = array(
