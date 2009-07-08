@@ -6,7 +6,7 @@
 </table>
 
 ({if $type == 'h'})
-[i:213]<a href="({t_url m=ktai a=page_h_album_edit})&amp;({$tail})">ｱﾙﾊﾞﾑを追加</a>
+[i:68]<a href="({t_url m=ktai a=page_h_album_edit})&amp;({$tail})">ｱﾙﾊﾞﾑを追加</a>
 <hr color="#({$ktai_color_config.border_01})">
 ({/if})
 
