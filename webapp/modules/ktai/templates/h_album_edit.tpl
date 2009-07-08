@@ -66,7 +66,7 @@
 
 <hr color="#({$ktai_color_config.border_01})">
 ({if $target_c_album.c_album_id})
-[i:213]<a href="({t_url m=ktai a=page_fh_album})&amp;target_c_album_id=({$target_c_album.c_album_id})&amp;({$tail})">このｱﾙﾊﾞﾑを見る</a><br>
+[i:68]<a href="({t_url m=ktai a=page_fh_album})&amp;target_c_album_id=({$target_c_album.c_album_id})&amp;({$tail})">このｱﾙﾊﾞﾑを見る</a><br>
 ({/if})
 [i:90]<a href="({t_url m=ktai a=page_fh_album_list})&amp;({$tail})">ｱﾙﾊﾞﾑﾘｽﾄ</a><br>
 
