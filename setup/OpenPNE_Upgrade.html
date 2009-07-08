@@ -180,25 +180,25 @@ $ psql DBNAME -U username -f upgrade-2.12to2.14.sql
 <h4 id="section2-3-1">2-3-1. OpenPNE2.14で追加された項目</h4>
 <table>
 <tr><th>項目名</th><th>説明</th><th>備考</th></tr>
-<tr><td><strong>_OPENPNE_MAINTENANCE_EXCLUDED_ACTION</strong></td><td>メンテナンス中でも表示するモジュールの設定「OPENPNE_MAINTENANCE_MODULES」に指定されたモジュールの中で、例外的にメンテナンス画面を表示するアクションのリスト</td><td>&nbsp;</td></tr>
-<tr><td><strong>OPENPNE_SESSION_CHECK_PC_USER_AGENT</strong></td><td>ログイン時のセッションにユーザーエージェント情報($_SERVER['HTTP_USER_AGENT'])を保存し、随時ユーザーエージェントをチェックをするかどうか(PC版)</td><td>&nbsp;</td></tr>
-<tr><td><strong>OPENPNE_SESSION_CHECK_KTAI_USER_AGENT</strong></td><td>ログイン時のセッションにユーザーエージェント情報($_SERVER['HTTP_USER_AGENT'])を保存し、随時ユーザーエージェントをチェックをするかどうか(携帯版)</td><td>&nbsp;</td></tr>
-<tr><td><strong>OPENPNE_ONE_SESSION_PER_USER</strong></td><td>ログイン時のセッションを1ユーザに対して1セッションに制限するかどうか</td><td>&nbsp;</td></tr>
-<tr><td><strong>MAIL_ADDRESS_HASH_LENGTH</strong></td><td>宛先メールアドレスに付けるハッシュ文字列の長さ</td><td>デフォルト値は 12 です。</td></tr>
-<tr><td><strong>OPENPNE_DB_ERROR_LOG</strong></td><td>DBエラーログ出力を出力するかどうか</td><td>true なら出力します。</td></tr>
-<tr><td><strong>_ALLOWED_IP_LIST_FOR_KANSHI</strong></td><td>監視モジュールアクセスIP制限 (m=kanshi へのアクセスを許可するIPのリスト)</td><td>&nbsp;</td></tr>
-<tr><td><strong>IS_PASSWORD_QUERY_ANSWER</strong></td><td>秘密の質問を使用するかどうか (0 ～ 2 の値)</td><td><ul><li>0: 使用しない</li><li>1: 使用する(未登録でも使用可能)</li><li>2: 使用する(未登録時に登録を強制する)</li></ul></td></tr>
-<tr><td><strong>CHECK_POST_ACTIONS</strong></td><td>投稿制限のチェック対象とするアクションのリスト</td><td>&nbsp;</td></tr>
-<tr><td><strong>OPENPNE_POST_INTERVAL_UNFAIR_SECOND</strong></td><td>不正な連続投稿と判断する間隔 (秒単位)</td><td>0 が指定された場合は不正な連続投稿のチェックをしません。</td></tr>
-<tr><td><strong>OPENPNE_POST_INTERVAL_UNFAIR_COUNT</strong></td><td>不正な連続投稿が連続何回行われたら投稿制限するか</td><td>&nbsp;</td></tr>
-<tr><td><strong>OPENPNE_POST_INTERVAL_UNFAIR_COUNT_RESET_SECOND</strong></td><td>前回投稿から何秒以上空いたら不正な連続投稿回数をリセットするか</td><td>0 が指定された場合はリセットしません。</td></tr>
-<tr><td><strong>OPENPNE_POST_USE_DB</strong></td><td>前回投稿時刻と投稿回数の保存先にデータベースを使用するかどうか</td><td><ul><li>false: セッションを使用</li><li>true: データベースを使用</li></ul></td></tr>
+<tr><td><strong>_OPENPNE_MAINTENANCE_EXCLUDED_ACTION</strong></td><td>メンテナンス中でも表示するモジュールの設定「OPENPNE_MAINTENANCE_MODULES」に指定されたモジュールの中で、例外的にメンテナンス画面を表示するアクションのリスト</td><td>デフォルト値: <br>(portal)page_user_top<br>(portal)page_portal_user_top_ktai</td></tr>
+<tr><td><strong>OPENPNE_SESSION_CHECK_PC_USER_AGENT</strong></td><td>ログイン時のセッションにユーザーエージェント情報($_SERVER['HTTP_USER_AGENT'])を保存し、随時ユーザーエージェントをチェックをするかどうか(PC版)</td><td><ul><li>true: セッションチェックする</li><li>false: セッションチェックしない</li></ul>デフォルト値: false</td></tr>
+<tr><td><strong>OPENPNE_SESSION_CHECK_KTAI_USER_AGENT</strong></td><td>ログイン時のセッションにユーザーエージェント情報($_SERVER['HTTP_USER_AGENT'])を保存し、随時ユーザーエージェントをチェックをするかどうか(携帯版)</td><td><ul><li>true: セッションチェックする</li><li>false: セッションチェックしない</li></ul>デフォルト値: false</td></tr>
+<tr><td><strong>OPENPNE_ONE_SESSION_PER_USER</strong></td><td>ログイン時のセッションを1ユーザに対して1セッションに制限するかどうか</td><td><ul><li>true: 制限する</li><li>false: 制限しない</li></ul>デフォルト値: false</td></tr>
+<tr><td><strong>MAIL_ADDRESS_HASH_LENGTH</strong></td><td>宛先メールアドレスに付けるハッシュ文字列の長さ</td><td>デフォルト値: 12</td></tr>
+<tr><td><strong>OPENPNE_DB_ERROR_LOG</strong></td><td>DBエラーログ出力を出力するかどうか</td><td><ul><li>true: 出力する</li><li>false: 出力しない</li></ul></td></tr>
+<tr><td><strong>_ALLOWED_IP_LIST_FOR_KANSHI</strong></td><td>監視モジュールアクセスIP制限 (m=kanshi へのアクセスを許可するIPのリスト)</td><td>デフォルト値: 指定なし</td></tr>
+<tr><td><strong>IS_PASSWORD_QUERY_ANSWER</strong></td><td>秘密の質問を使用するかどうか (0 ～ 2 の値)</td><td><ul><li>0: 使用しない</li><li>1: 使用する(未登録でも使用可能)</li><li>2: 使用する(未登録時に登録を強制する)</li></ul>デフォルト値: 2</td></tr>
+<tr><td><strong>CHECK_POST_ACTIONS</strong></td><td>投稿制限のチェック対象とするアクションのリスト</td><td>デフォルト値:<br>日記・トピック・イベントの投稿、メッセージの送信、フレンド申請のアクション</td></tr>
+<tr><td><strong>OPENPNE_POST_INTERVAL_UNFAIR_SECOND</strong></td><td>不正な連続投稿と判断する間隔 (秒単位)</td><td>0 が指定された場合は不正な連続投稿をチェックしない<br>デフォルト値: 10</td></tr>
+<tr><td><strong>OPENPNE_POST_INTERVAL_UNFAIR_COUNT</strong></td><td>不正な連続投稿が連続何回行われたら投稿制限するか</td><td>デフォルト値: 10</td></tr>
+<tr><td><strong>OPENPNE_POST_INTERVAL_UNFAIR_COUNT_RESET_SECOND</strong></td><td>前回投稿から何秒以上空いたら不正な連続投稿回数をリセットするか</td><td>0 が指定された場合はリセットしない<br>デフォルト値: 60*60</td></tr>
+<tr><td><strong>OPENPNE_POST_USE_DB</strong></td><td>前回投稿時刻と投稿回数の保存先にデータベースを使用するかどうか</td><td><ul><li>false: セッションを使用</li><li>true: データベースを使用</li></ul>デフォルト値: true</td></tr>
 </table>
 
 <h4 id="section2-3-2">2-3-2. OpenPNE2.14で変更された項目</h4>
 <table>
 <tr><th>項目名</th><th>説明</th><th>変更点</th><th>備考</th></tr>
-<tr><td><strong>_OPENPNE_SSL_REQUIRED</strong></td><td>SSLを使用することが必須であるアクションのリスト</td><td>'page_o_password_reset' と 'do_o_password_reset' が追加された</td><td>'pc' と 'ktai' の両方に追加されています。</td></tr>
+<tr><td><strong>_OPENPNE_SSL_REQUIRED</strong></td><td>SSLを使用することが必須であるアクションのリスト</td><td>'page_o_password_reset' と 'do_o_password_reset' が追加された</td><td>'pc' と 'ktai' の両方に追加されている</td></tr>
 </table>
 
 
