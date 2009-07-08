@@ -85,6 +85,7 @@ em {
     <li><a href="#section2-3-2">2-3-2. OpenPNE2.14で変更された項目</a></li>
     </ul></li>
   <li><a href="#section2-4">2-4. メールサーバの設定</a></li>
+  <li><a href="section2-5">2-5. アップグレードスクリプトの実行</a></li>
   </ul></li>
 </ul>
 
@@ -179,9 +180,9 @@ $ psql DBNAME -U username -f upgrade-2.12to2.14.sql
 <h4 id="section2-3-1">2-3-1. OpenPNE2.14で追加された項目</h4>
 <table>
 <tr><th>項目名</th><th>説明</th><th>備考</th></tr>
-<tr><td><strong>_OPENPNE_MAINTENANCE_EXCLUDED_ACTION</strong></td><td>メンテナンス画面を表示するアクションのリスト</td><td>&nbsp;</td></tr>
-<tr><td><strong>OPENPNE_SESSION_CHECK_PC_USER_AGENT</strong></td><td>PC版のユーザーエージェントセッションチェックをするかどうか</td><td>&nbsp;</td></tr>
-<tr><td><strong>OPENPNE_SESSION_CHECK_KTAI_USER_AGENT</strong></td><td>携帯版のユーザーエージェントセッションチェックをするかどうか</td><td>&nbsp;</td></tr>
+<tr><td><strong>_OPENPNE_MAINTENANCE_EXCLUDED_ACTION</strong></td><td>メンテナンス中でも表示するモジュールの設定「OPENPNE_MAINTENANCE_MODULES」に指定されたモジュールの中で、例外的にメンテナンス画面を表示するアクションのリスト</td><td>&nbsp;</td></tr>
+<tr><td><strong>OPENPNE_SESSION_CHECK_PC_USER_AGENT</strong></td><td>セッションにユーザーエージェント情報($_SERVER['HTTP_USER_AGENT'])を保存し、随時ユーザーエージェントをチェックをするかどうか(PC版)</td><td>&nbsp;</td></tr>
+<tr><td><strong>OPENPNE_SESSION_CHECK_KTAI_USER_AGENT</strong></td><td>セッションにユーザーエージェント情報($_SERVER['HTTP_USER_AGENT'])を保存し、随時ユーザーエージェントをチェックをするかどうか(携帯版)</td><td>&nbsp;</td></tr>
 <tr><td><strong>OPENPNE_ONE_SESSION_PER_USER</strong></td><td>ログイン時のセッションを1ユーザに対して1セッションに制限するかどうか</td><td>&nbsp;</td></tr>
 <tr><td><strong>MAIL_ADDRESS_HASH_LENGTH</strong></td><td>宛先メールアドレスに付けるハッシュ文字列の長さ</td><td>デフォルト値は 12 です。</td></tr>
 <tr><td><strong>OPENPNE_DB_ERROR_LOG</strong></td><td>DBエラーログ出力を出力するかどうか</td><td>true なら出力します。</td></tr>
@@ -216,7 +217,25 @@ $ psql DBNAME -U username -f upgrade-2.12to2.14.sql
 </ul>
 <p>設定方法は『<a href="./OpenPNE_Setup.html">OpenPNE セットアップガイド</a>』を参考にしてください。</p>
 
+<h3 id="section2-5">2-5. アップグレードスクリプトの実行</h3>
 
+<p>アップグレード用のPHPスクリプトを実行します。</p>
+<p class="caution">
+スクリプト実行前に、必ず 2-3. 設定ファイルの変更 で config.php の設定を済ませてください。
+</p>
+
+<h4 id="section2-5-1">2-5-1. 実行するスクリプト</h4>
+<ul>
+<li><var>OPENPNE_DIR</var>/setup/script/upgrade/upgrade01.php</li>
+</ul>
+
+<div>
+<em>[実行例]</em>
+<pre>
+$ cd setup/script/upgrade/
+$ php upgrade01.php
+</pre>
+</div>
 
 <hr>
 <p>以上でアップグレード作業は完了です。</p>
