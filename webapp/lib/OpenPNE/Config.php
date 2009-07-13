@@ -59,6 +59,8 @@ class OpenPNE_Config
             'OPENPNE_ALBUM_LIMIT',
             'OPENPNE_DISP_KTAI_SNS_PRIVACY',
             'DISPLAY_NEWDIARYTOPIC_HOME',
+            'AMAZON_ACCESS_KEY_ID',
+            'AMAZON_SECRET_ACCESS_KEY',
         );
     }
 
@@ -225,10 +227,11 @@ class OpenPNE_Config
             'OPENPNE_ADMIN_CONVERT_URL' => true,
             'CHECK_IMG_AUTH' => false,
             'OPENPNE_IS_OPENID_SERVER' => false,
+            'AMAZON_ACCESS_KEY_ID'   => '',
+            'AMAZON_SECRET_ACCESS_KEY'   => '',
         // 固定値
-            'AMAZON_TOKEN'   => '1WZYY1W9YF49AGM0RTG2',
             'AMAZON_LOCALE'  => 'jp',
-            'AMAZON_BASEURL' => 'http://webservices.amazon.co.jp/onca/xml?Service=AWSECommerceService',
+            'AMAZON_BASEURL' => 'http://ecs.amazonaws.jp/onca/xml',
             'OPENPNE_REGIST_FROM_NONE'   => 0,
             'OPENPNE_REGIST_FROM_PC'     => 1,
             'OPENPNE_REGIST_FROM_KTAI'   => 2,
