@@ -67,6 +67,8 @@ class OpenPNE_Config
             'OPENPNE_IMAGE_OTHER_LIMIT',
             'USE_RESPONSE_COMMENT',
             'USE_MESSAGE_OPEN_UNOPEN',
+            'AMAZON_ACCESS_KEY_ID',
+            'AMAZON_SECRET_ACCESS_KEY',
         );
     }
 
@@ -251,10 +253,11 @@ class OpenPNE_Config
             'OPENPNE_POST_INTERVAL_UNFAIR_COUNT' => 10,
             'OPENPNE_POST_INTERVAL_UNFAIR_COUNT_RESET_SECOND' => 60*60,
             'OPENPNE_POST_USE_DB' => true,
+            'AMAZON_ACCESS_KEY_ID'   => '',
+            'AMAZON_SECRET_ACCESS_KEY'   => '',
         // 固定値
-            'AMAZON_TOKEN'   => '1WZYY1W9YF49AGM0RTG2',
             'AMAZON_LOCALE'  => 'jp',
-            'AMAZON_BASEURL' => 'http://webservices.amazon.co.jp/onca/xml?Service=AWSECommerceService',
+            'AMAZON_BASEURL' => 'http://ecs.amazonaws.jp/onca/xml',
             'OPENPNE_REGIST_FROM_NONE'   => 0,
             'OPENPNE_REGIST_FROM_PC'     => 1,
             'OPENPNE_REGIST_FROM_KTAI'   => 2,
