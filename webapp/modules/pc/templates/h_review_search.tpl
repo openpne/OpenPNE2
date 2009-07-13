@@ -1,6 +1,8 @@
 <div id="LayoutC">
 <div id="Center">
 
+({capture name="keyword_url"})({$keyword|escape:url|smarty:nodefaults})({/capture})
+
 ({* {{{ searchFormBox *})
 <div class="dparts searchFormBox"><div class="parts">
 <div class="partsHeading"><h3>レビュー検索・並び替え</h3></div>
@@ -9,9 +11,9 @@
 ({t_form_block m=pc a=page_h_review_search})
 <p class="form">
 <span class="label">並び替え</span>
-<a href="({t_url m=pc a=page_h_review_search})&amp;keyword=({$keyword|escape:url|smarty:nodefaults})&amp;category=({$category})&amp;orderby=r_num">登録数順</a>
+<a href="({t_url m=pc a=page_h_review_search})&amp;keyword=({$smarty.capture.keyword_url|smarty:nodefaults})&amp;category=({$category})&amp;orderby=r_num">登録数順</a>
 |
-<a href="({t_url m=pc a=page_h_review_search})&amp;keyword=({$keyword|escape:url|smarty:nodefaults})&amp;category=({$category})&amp;orderby=r_datetime">作成日順</a>
+<a href="({t_url m=pc a=page_h_review_search})&amp;keyword=({$smarty.capture.keyword_url|smarty:nodefaults})&amp;category=({$category})&amp;orderby=r_datetime">作成日順</a>
 </p>
 
 <p class="form">
@@ -53,9 +55,9 @@
 
 ({capture name=pager})({strip})
 <div class="pagerRelative">
-({if $is_prev})<p class="prev"><a href="({t_url m=pc a=page_h_review_search})&amp;keyword=({$keyword})&amp;category=({$category})&amp;orderby=({$orderby})&amp;page=({$page-1})">前を表示</a></p>({/if})
+({if $is_prev})<p class="prev"><a href="({t_url m=pc a=page_h_review_search})&amp;keyword=({$smarty.capture.keyword_url|smarty:nodefaults})&amp;category=({$category})&amp;orderby=({$orderby})&amp;page=({$page-1})">前を表示</a></p>({/if})
 <p class="number">({$start_num})件～({$end_num})件を表示</p>
-({if $is_next})<p class="next"><a href="({t_url m=pc a=page_h_review_search})&amp;keyword=({$keyword})&amp;category=({$category})&amp;orderby=({$orderby})&amp;page=({$page+1})">次を表示</a></p>({/if})
+({if $is_next})<p class="next"><a href="({t_url m=pc a=page_h_review_search})&amp;keyword=({$smarty.capture.keyword_url|smarty:nodefaults})&amp;category=({$category})&amp;orderby=({$orderby})&amp;page=({$page+1})">次を表示</a></p>({/if})
 </div>
 ({/strip})({/capture})
 ({$smarty.capture.pager|smarty:nodefaults})
