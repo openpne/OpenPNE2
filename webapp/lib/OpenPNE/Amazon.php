@@ -4,7 +4,7 @@
  * @license   http://www.php.net/license/3_01.txt PHP License 3.01
  */
 
-require_once 'Services/AmazonECS4.php';
+require_once 'Services/Amazon.php';
 
 /**
  * OpenPNEでAmazonECSを利用するためのクラス
@@ -12,7 +12,7 @@ require_once 'Services/AmazonECS4.php';
  * @package OpenPNE
  * @author Kousuke Ebihara <ebihara@tejimaya.com>
  */
-class OpenPNE_Amazon extends Services_AmazonECS4
+class OpenPNE_Amazon extends Services_Amazon
 {
     /**
      * Category(AmazonECS3)とSearchIndexの変換テーブル
