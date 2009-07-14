@@ -59,8 +59,6 @@ class OpenPNE_Config
             'OPENPNE_ALBUM_LIMIT',
             'OPENPNE_DISP_KTAI_SNS_PRIVACY',
             'DISPLAY_NEWDIARYTOPIC_HOME',
-            'AMAZON_ACCESS_KEY_ID',
-            'AMAZON_SECRET_ACCESS_KEY',
         );
     }
 
