@@ -185,6 +185,8 @@ $ psql DBNAME -U username -f upgrade-2.12to2.14.sql
 <tr><td><strong>OPENPNE_SESSION_CHECK_KTAI_USER_AGENT</strong></td><td>ログイン時のセッションにユーザーエージェント情報($_SERVER['HTTP_USER_AGENT'])を保存し、随時ユーザーエージェントをチェックをするかどうか(携帯版)</td><td><ul><li>true: セッションチェックする</li><li>false: セッションチェックしない</li></ul>デフォルト値: false</td></tr>
 <tr><td><strong>OPENPNE_ONE_SESSION_PER_USER</strong></td><td>ログイン時のセッションを1ユーザに対して1セッションに制限するかどうか</td><td><ul><li>true: 制限する</li><li>false: 制限しない</li></ul>デフォルト値: false</td></tr>
 <tr><td><strong>MAIL_ADDRESS_HASH_LENGTH</strong></td><td>宛先メールアドレスに付けるハッシュ文字列の長さ</td><td>デフォルト値: 12</td></tr>
+<tr><td><strong>AMAZON_ACCESS_KEY_ID</strong></td><td>Amazon Web Service 公開アクセスキー</td><td>詳細はこちらをご覧下さい。<br>Amazon Product Advertising API <a href="https://affiliate.amazon.co.jp/gp/advertising/api/detail/main.html" target="_blank">https://affiliate.amazon.co.jp/gp/advertising/api/detail/main.html</a></td></tr>
+<tr><td><strong>AMAZON_SECRET_ACCESS_KEY</strong></td><td>Amazon Web Service 秘密キー</td><td>詳細はこちらをご覧下さい。<br>Amazon Product Advertising API <a href="https://affiliate.amazon.co.jp/gp/advertising/api/detail/main.html" target="_blank">https://affiliate.amazon.co.jp/gp/advertising/api/detail/main.html</a></td></tr>
 <tr><td><strong>OPENPNE_DB_ERROR_LOG</strong></td><td>DBエラーログ出力を出力するかどうか</td><td><ul><li>true: 出力する</li><li>false: 出力しない</li></ul></td></tr>
 <tr><td><strong>_ALLOWED_IP_LIST_FOR_KANSHI</strong></td><td>監視モジュールアクセスIP制限 (m=kanshi へのアクセスを許可するIPのリスト)</td><td>デフォルト値: 指定なし</td></tr>
 <tr><td><strong>IS_PASSWORD_QUERY_ANSWER</strong></td><td>秘密の質問を使用するかどうか (0 ～ 2 の値)</td><td><ul><li>0: 使用しない</li><li>1: 使用する(未登録でも使用可能)</li><li>2: 使用する(未登録時に登録を強制する)</li></ul>デフォルト値: 2</td></tr>
