@@ -67,8 +67,6 @@ class OpenPNE_Config
             'OPENPNE_IMAGE_OTHER_LIMIT',
             'USE_RESPONSE_COMMENT',
             'USE_MESSAGE_OPEN_UNOPEN',
-            'AMAZON_ACCESS_KEY_ID',
-            'AMAZON_SECRET_ACCESS_KEY',
         );
     }
 
