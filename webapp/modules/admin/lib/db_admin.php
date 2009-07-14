@@ -654,6 +654,11 @@ function db_admin_c_member_id_list4cond_c_member($cond_list, $type = array())
     }
 
     //最終ログイン時間で絞り込み
+    if ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'mysql') {
+        $no_login_param = '0000-00-00 00:00:00';
+    } elseif ($GLOBALS['_OPENPNE_DSN_LIST']['main']['dsn']['phptype'] == 'pgsql') {
+        $no_login_param = '0000-01-01 00:00:00';
+    }
     if (isset($cond_list['last_login'])) {
         switch($cond_list['last_login']) {
         case 1 : // 3日以内
@@ -672,12 +677,12 @@ function db_admin_c_member_id_list4cond_c_member($cond_list, $type = array())
             break;
         case 4 : // 30日以上
             $wheres[] = 'access_date > ? AND access_date < ?';
-            $params[] = '0000-00-00 00:00:00';
+            $params[] = $no_login_param;
             $params[] = date('Y-m-d', strtotime('-30 day'));
             break;
         case 5 : // 未ログイン
             $wheres[] = 'access_date = ?';
-            $params[] = '0000-00-00 00:00:00';
+            $params[] = $no_login_param;
             break;
         }
     }
