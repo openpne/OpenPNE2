@@ -468,6 +468,18 @@ define('GOOGLE_MAPS_API_KEY', '');
 ///
 define('GOOGLE_AJAX_SEARCH_API_KEY', '');
 
+///
+// Amazon Product Advertising API
+// 2009年8月15日以降、Amazon の仕様変更の影響により
+// AMAZON_ACCESS_KEY_ID と AMAZON_SECRET_ACCESS_KEY を設定しないと、
+// レビュー機能がご利用いただけなくなりますのでご注意ください。
+// https://affiliate-program.amazon.com/gp/flex/advertising/api/sign-in-jp.html  から取得
+///
+define('AMAZON_ACCESS_KEY_ID', '');
+
+// Amazon Secret Access Key
+define('AMAZON_SECRET_ACCESS_KEY', '');
+
 //// SNSアプリケーション設定 ////
 
 // 管理画面のURL設定
@@ -564,14 +576,5 @@ define('OPENPNE_ADMIN_CONVERT_URL', true);
 
 // OpenID サーバ（プロバイダ）となるかどうか
 define('OPENPNE_IS_OPENID_SERVER', false);
-
-// Amazon Access Key ID
-// 2009年8月15日以降、Amazon の仕様変更の影響により
-// AMAZON_ACCESS_KEY_ID と AMAZON_SECRET_ACCESS_KEY を設定しないと、
-// レビュー機能がご利用いただけなくなりますのでご注意ください。
-define('AMAZON_ACCESS_KEY_ID', '');
-
-// Amazon Secret Access Key
-define('AMAZON_SECRET_ACCESS_KEY', '');
 
 ?>
