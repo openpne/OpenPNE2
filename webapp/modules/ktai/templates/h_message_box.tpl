@@ -47,8 +47,8 @@
 ({capture name="pager"})
 ({if $is_prev_r || $is_next_r})
 <center>
-({if $is_prev_r})<a href="({t_url m=ktai a=page_h_message_box})&amp;box=inbox&amp;page_r=({$page_r-1})({if $keyword})&amp;keyword=({$keyword})({/if})&amp;({$tail})" accesskey="4">[i:128]前を表示</a> ({/if})
-({if $is_next_r})<a href="({t_url m=ktai a=page_h_message_box})&amp;box=inbox&amp;page_r=({$page_r+1})({if $keyword})&amp;keyword=({$keyword})({/if})&amp;({$tail})" accesskey="6">[i:130]次を表示</a>({/if})
+({if $is_prev_r})<a href="({t_url m=ktai a=page_h_message_box})&amp;box=inbox&amp;page_r=({$page_r-1})({if $keyword})&amp;keyword=({$keyword|to_sjis|escape:url|smarty:nodefaults})({/if})&amp;({$tail})" accesskey="4">[i:128]前を表示</a> ({/if})
+({if $is_next_r})<a href="({t_url m=ktai a=page_h_message_box})&amp;box=inbox&amp;page_r=({$page_r+1})({if $keyword})&amp;keyword=({$keyword|to_sjis|escape:url|smarty:nodefaults})({/if})&amp;({$tail})" accesskey="6">[i:130]次を表示</a>({/if})
 </center>
 ({/if})
 ({/capture})
@@ -72,8 +72,8 @@
 ({capture name="pager"})
 ({if $is_prev_s || $is_next_s})
 <center>
-({if $is_prev_s})<a href="({t_url m=ktai a=page_h_message_box})&amp;box=outbox&amp;page_s=({$page_s-1})({if $keyword})&amp;keyword=({$keyword})({/if})&amp;({$tail})" accesskey="4">[i:128]前を表示</a> ({/if})
-({if $is_next_s})<a href="({t_url m=ktai a=page_h_message_box})&amp;box=outbox&amp;page_s=({$page_s+1})({if $keyword})&amp;keyword=({$keyword})({/if})&amp;({$tail})" accesskey="6">[i:130]次を表示</a>({/if})
+({if $is_prev_s})<a href="({t_url m=ktai a=page_h_message_box})&amp;box=outbox&amp;page_s=({$page_s-1})({if $keyword})&amp;keyword=({$keyword|to_sjis|escape:url|smarty:nodefaults})({/if})&amp;({$tail})" accesskey="4">[i:128]前を表示</a> ({/if})
+({if $is_next_s})<a href="({t_url m=ktai a=page_h_message_box})&amp;box=outbox&amp;page_s=({$page_s+1})({if $keyword})&amp;keyword=({$keyword|to_sjis|escape:url|smarty:nodefaults})({/if})&amp;({$tail})" accesskey="6">[i:130]次を表示</a>({/if})
 </center>
 ({/if})
 ({/capture})
