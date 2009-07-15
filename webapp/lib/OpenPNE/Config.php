@@ -225,8 +225,8 @@ class OpenPNE_Config
             'OPENPNE_ADMIN_CONVERT_URL' => true,
             'CHECK_IMG_AUTH' => false,
             'OPENPNE_IS_OPENID_SERVER' => false,
-            'AMAZON_ACCESS_KEY_ID'   => '',
-            'AMAZON_SECRET_ACCESS_KEY'   => '',
+            'AMAZON_ACCESS_KEY_ID' => '',
+            'AMAZON_SECRET_ACCESS_KEY' => '',
         // 固定値
             'AMAZON_LOCALE'  => 'jp',
             'AMAZON_BASEURL' => 'http://ecs.amazonaws.jp/onca/xml',
