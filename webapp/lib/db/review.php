@@ -138,7 +138,7 @@ function do_review_add_search_result($keyword, $category_id, $page)
 function db_review_write_product4asin($asin)
 {
     require_once 'OpenPNE/Amazon.php';
-    $amazon =& new OpenPNE_Amazon(AMAZON_TOKEN, AMAZON_AFFID);
+    $amazon =& new OpenPNE_Amazon(AMAZON_ACCESS_KEY_ID, AMAZON_SECRET_ACCESS_KEY, AMAZON_AFFID);
     $amazon->setLocale(AMAZON_LOCALE);
     $amazon->setBaseUrl(AMAZON_BASEURL);
     if (OPENPNE_USE_HTTP_PROXY) {
