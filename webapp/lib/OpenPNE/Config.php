@@ -251,8 +251,8 @@ class OpenPNE_Config
             'OPENPNE_POST_INTERVAL_UNFAIR_COUNT' => 10,
             'OPENPNE_POST_INTERVAL_UNFAIR_COUNT_RESET_SECOND' => 60*60,
             'OPENPNE_POST_USE_DB' => true,
-            'AMAZON_ACCESS_KEY_ID'   => '',
-            'AMAZON_SECRET_ACCESS_KEY'   => '',
+            'AMAZON_ACCESS_KEY_ID' => '',
+            'AMAZON_SECRET_ACCESS_KEY' => '',
         // 固定値
             'AMAZON_LOCALE'  => 'jp',
             'AMAZON_BASEURL' => 'http://ecs.amazonaws.jp/onca/xml',
