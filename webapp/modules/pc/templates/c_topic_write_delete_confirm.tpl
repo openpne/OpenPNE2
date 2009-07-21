@@ -16,7 +16,7 @@
 </td></tr>
 ({if $smarty.const.OPENPNE_USE_FILEUPLOAD})
 ({if $c_commu_topic_comment.filename})
-<tr><th>ファイル</th><td><a href="({t_url m=pc a=do_c_file_download})&amp;target_c_commu_topic_comment_id=({$c_commu_topic_comment.c_commu_topic_comment_id})&amp;sessid=({$PHPSESSID})">({$c_commu_topic_comment.original_filename})</a></td></tr>
+<tr><th>ファイル</th><td><a href="({t_url m=pc a=do_c_file_download})&amp;target_c_commu_topic_comment_id=({$c_commu_topic_comment.c_commu_topic_comment_id})&amp;sessid=({$PHPSESSID})&amp;({$smarty.now})">({$c_commu_topic_comment.original_filename})</a></td></tr>
 ({/if})
 ({/if})
 </table>
