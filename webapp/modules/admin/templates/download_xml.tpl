@@ -25,6 +25,7 @@
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('download_xml','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
+<input type="hidden" name="timestamp" value="({$smarty.now})" />
 
 <table class="basicType2">
 <tr class="cell01">
