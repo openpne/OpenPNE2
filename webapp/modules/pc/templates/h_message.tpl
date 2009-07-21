@@ -65,7 +65,7 @@
 
 ({if $c_message.filename && $smarty.const.OPENPNE_USE_FILEUPLOAD})
 <div class="block attachFile"><ul>
-<li><a href="({t_url m=pc a=do_h_message_file_download})&amp;target_c_message_id=({$c_message.c_message_id})&amp;sessid=({$PHPSESSID})">({$c_message.original_filename})</a></li>
+<li><a href="({t_url m=pc a=do_h_message_file_download})&amp;target_c_message_id=({$c_message.c_message_id})&amp;sessid=({$PHPSESSID})&amp;({$smarty.now})">({$c_message.original_filename})</a></li>
 </ul></div>
 ({/if})
 
