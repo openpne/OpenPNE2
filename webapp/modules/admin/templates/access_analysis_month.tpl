@@ -57,6 +57,7 @@
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('csv_access_analysis_month','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
 <input type="hidden" name="ktai_flag" value="({$ktai_flag})" />
+<input type="hidden" name="timestamp" value="({$smarty.now})" />
 <p class="textBtn"><input type="submit" value="ダウンロード" /></p>
 </form>
 

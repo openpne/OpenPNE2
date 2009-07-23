@@ -57,6 +57,7 @@
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="do_({$hash_tbl->hash('csv_user_analysis_date_month','do')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
+<input type="hidden" name="timestamp" value="({$smarty.now})" />
 <p class="textBtn"><input type="submit" value="ダウンロード" /></p>
 </form>
 
