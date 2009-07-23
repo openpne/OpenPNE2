@@ -64,6 +64,7 @@
 <input type="hidden" name="month_flag" value="({$month_flag})" />
 <input type="hidden" name="page_name" value="({$requests.page_name})" />
 <input type="hidden" name="orderby" value="({$orderby})" />
+<input type="hidden" name="timestamp" value="({$smarty.now})" />
 <p class="textBtn"><input type="submit" value="ダウンロード" /></p>
 </form>
 ({else})
