@@ -47,6 +47,7 @@
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
 <input type="hidden" name="ktai_flag" value="({$ktai_flag})" />
 <input type="hidden" name="ymd" value="({$access_analysis_day[0].ymd})" />
+<input type="hidden" name="timestamp" value="({$smarty.now})" />
 <p class="textBtn"><input type="submit" value="ダウンロード" /></p>
 </form>
 ({$inc_footer|smarty:nodefaults})
