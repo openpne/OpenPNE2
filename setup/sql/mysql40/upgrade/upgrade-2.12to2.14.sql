@@ -29,7 +29,7 @@ CREATE INDEX c_member_id_from_is_display_friend_home ON c_friend(c_member_id_fro
 ALTER TABLE c_diary ADD COLUMN is_comment_input tinyint(1) NOT NULL default 1;
 
 -- update09
-ALTER TABLE c_member_pre ADD COLUMN is_sns_entry_confirm` tinyint(1) NOT NULL default '0';
+ALTER TABLE c_member_pre ADD COLUMN is_sns_entry_confirm tinyint(1) NOT NULL default '0';
 
 -- update10
 CREATE TABLE `c_image_size` (
