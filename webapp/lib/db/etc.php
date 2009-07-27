@@ -197,11 +197,10 @@ function db_common_authenticate_password($c_member_id, $password, $is_ktai = fal
     }
 
     $storage = Auth::_factory($auth_config['storage'],$auth_config['options']);
-    $result = $storage->fetchData($username, $password, false);
-    if (PEAR::isError($result)) {
-        return false;
+    if ($storage->fetchData($username, $password, false) === true) {
+        return true;
     }
-    return $result;
+    return false;
 }
 
 /**
