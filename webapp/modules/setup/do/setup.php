@@ -30,7 +30,8 @@ class setup_do_setup extends OpenPNE_Action
         if (OPENPNE_AUTH_MODE == 'slavepne') {
             $auth_config = get_auth_config(false);
             $storage = Auth::_factory($auth_config['storage'],$auth_config['options']);
-            if (!$storage->fetchData($requests['username'], $requests['password'], false)){
+            $result = $storage->fetchData($requests['username'], $requests['password'], false);
+            if (!$result || PEAR::isError($result)){
                 $errors[] = 'ログインIDまたはパスワードが一致しません';
             }
         }
