@@ -31,7 +31,7 @@ class setup_do_setup extends OpenPNE_Action
             $auth_config = get_auth_config(false);
             $storage = Auth::_factory($auth_config['storage'],$auth_config['options']);
             $result = $storage->fetchData($requests['username'], $requests['password'], false);
-            if ($result !== true){
+            if ($result !== true) {
                 $errors[] = 'ログインIDまたはパスワードが一致しません';
             }
         }
