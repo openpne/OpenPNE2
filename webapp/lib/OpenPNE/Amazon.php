@@ -5,6 +5,7 @@
  */
 
 require_once 'Services/Amazon.php';
+require_once 'PHP/Compat/Function/mhash.php';
 
 /**
  * OpenPNEでAmazonECSを利用するためのクラス
@@ -33,20 +34,6 @@ class OpenPNE_Amazon extends Services_Amazon
         'sporting-goods-jp' => 'SportingGoods',
         'hpc-jp' => 'HealthPersonalCare',
     );
-
-    /**
-     * Services_Amazonを利用するための関数の確認
-     * 定義されていない関数はPHP_Compatから呼び出す
-     *
-     * @access public
-     */
-    function checkFunction()
-    {
-        if (!function_exists('mhash')) {
-            require_once 'PHP/Compat.php';
-            PHP_Compat::loadFunction('mhash');
-        }
-    }
 
     function ItemSearch($search_index, $options = array())
     {
