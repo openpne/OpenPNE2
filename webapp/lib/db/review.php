@@ -99,6 +99,7 @@ function do_review_add_search_result($keyword, $category_id, $page)
     $amazon =& new OpenPNE_Amazon(AMAZON_ACCESS_KEY_ID, AMAZON_SECRET_ACCESS_KEY, AMAZON_AFFID);
     $amazon->setLocale(AMAZON_LOCALE);
     $amazon->setBaseUrl(AMAZON_BASEURL);
+    $amazon->checkFunction();
     if (OPENPNE_USE_HTTP_PROXY) {
         $amazon->setProxy(OPENPNE_HTTP_PROXY_HOST, OPENPNE_HTTP_PROXY_PORT);
     }
@@ -141,6 +142,7 @@ function db_review_write_product4asin($asin)
     $amazon =& new OpenPNE_Amazon(AMAZON_ACCESS_KEY_ID, AMAZON_SECRET_ACCESS_KEY, AMAZON_AFFID);
     $amazon->setLocale(AMAZON_LOCALE);
     $amazon->setBaseUrl(AMAZON_BASEURL);
+    $amazon->checkFunction();
     if (OPENPNE_USE_HTTP_PROXY) {
         $amazon->setProxy(OPENPNE_HTTP_PROXY_HOST, OPENPNE_HTTP_PROXY_PORT);
     }
