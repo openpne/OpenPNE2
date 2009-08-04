@@ -165,7 +165,7 @@
 </div>
 ({if $item.filename && $smarty.const.OPENPNE_USE_FILEUPLOAD})
 <div class="block attachFile"><ul>
-<li><a href="({t_url m=pc a=do_c_file_download})&amp;target_c_commu_topic_comment_id=({$item.c_commu_topic_comment_id})&amp;sessid=({$PHPSESSID})">({$item.original_filename})</a></li>
+<li><a href="({t_url m=pc a=do_c_file_download})&amp;target_c_commu_topic_comment_id=({$item.c_commu_topic_comment_id})&amp;sessid=({$PHPSESSID})&amp;({$smarty.now})">({$item.original_filename})</a></li>
 </ul></div>
 ({/if})
 </dd>
