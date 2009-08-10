@@ -44,7 +44,7 @@ class ktai_do_h_album_edit_insert_c_album extends OpenPNE_Action
             if ($c_album['c_member_id'] != $u) {
                 handle_kengen_error();
             }
-            db_album_update_c_album($target_c_album_id, $subject, $description, $public_flag);
+            db_album_update_c_album($target_c_album_id, $subject, $description, $public_flag, $image_filename);
             $p = array('target_c_album_id' => $target_c_album_id  );
             openpne_redirect('ktai', 'page_fh_album', $p);
         }
