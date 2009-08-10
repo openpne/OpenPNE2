@@ -114,7 +114,7 @@ class pc_do_o_regist_prof extends OpenPNE_Action
 
             session_name('OpenPNEpcregist');
             @session_start();
-            $_SESSION['prof'] = $_REQUEST;
+            $_SESSION['prof'] = $prof;
             foreach ($_POST as $key => $value) {
                 if ($key != 'sid') unset($_POST[$key]);
             }
