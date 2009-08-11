@@ -1,6 +1,6 @@
 <?php
-chdir("../../../public_html");
-require_once("./config.inc.php");
+require_once './config.inc.php';
+chdir(OPENPNE_PUBLIC_HTML_DIR);
 require_once(OPENPNE_WEBAPP_DIR . "/init.inc");
 
 //----------
@@ -179,6 +179,8 @@ load_data_infile($filename);
 
 // テンポラリファイル削除
 //unlink($filename);
+
+echo 'Complete!';
 ?>
 
 
