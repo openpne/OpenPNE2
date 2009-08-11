@@ -61,7 +61,7 @@ class pc_do_h_album_cover_edit_insert_c_album extends OpenPNE_Action
         $c_album_cover = $c_album['album_cover_image'];
 
         if ($tmpfile_1) {
-            db_album_image_data_delete($c_album_cover);
+            db_album_image_data_delete($c_album_cover, $u);
             $filename_1 = image_insert_c_image4tmp("a_{$target_c_album_id}_1", $tmpfile_1, $u, 'other');
         }
 
