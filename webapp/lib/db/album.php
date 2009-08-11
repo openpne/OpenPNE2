@@ -389,7 +389,7 @@ function db_album_insert_c_album($c_member_id, $subject, $description,$public_fl
 }
 
 
-function db_album_update_c_album($c_album_id,$subject,$description,$public_flag,$image_filename)
+function db_album_update_c_album($c_album_id,$subject,$description,$public_flag,$image_filename = null)
 {
     $data = array(
         'subject' => $subject,
