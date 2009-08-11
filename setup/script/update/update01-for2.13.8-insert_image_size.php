@@ -179,6 +179,8 @@ load_data_infile($filename);
 
 // テンポラリファイル削除
 //unlink($filename);
+
+echo 'Complete!';
 ?>
 
 
