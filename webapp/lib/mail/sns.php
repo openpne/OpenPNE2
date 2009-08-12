@@ -690,13 +690,13 @@ class mail_sns
                 return false;
             }
 
-            db_image_insert_c_image($filename, $image_data);
+            db_image_insert_c_image($filename, $image_data, $filesize, $this->c_member_id);
             //アルバムの表紙に写真ファイル名を登録
             db_album_update_c_album_album_cover_image($ins_id,$filename);
         } else {
-    		$this->error_mail('写真が添付されていないか、ファイルサイズが大きすぎるため、ファイル表紙を登録できませんでした。');
-    		m_debug_log('mail_sns::add_album() no images');
-    		return false;
+            $this->error_mail('写真が添付されていないか、ファイルサイズが大きすぎるため、ファイル表紙を登録できませんでした。');
+            m_debug_log('mail_sns::add_album() no images');
+            return false;
         }
 
         return true;
@@ -739,7 +739,7 @@ class mail_sns
         }
 
         $filename = 'a_' . $c_album_id . '_1_' . time() . '.' . $image_ext;
-        db_image_insert_c_image($filename, $image_data);
+        db_image_insert_c_image($filename, $image_data, $image_size, $this->c_member_id);
         if (!$subject) {
             // 説明文が空の場合はファイル名を挿入する
             $subject = $filename;
@@ -999,7 +999,7 @@ class mail_sns
                 return false;
             }
 
-            db_image_insert_c_image($filename, $image_data);
+            db_image_insert_c_image($filename, $image_data, $filesize, $this->c_member_id);
             //アルバムデータの変更
             $c_album_cover = $c_album['album_cover_image'];
             db_album_image_data_delete($c_album_cover, $c_album['c_member_id']);
