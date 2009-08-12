@@ -159,7 +159,7 @@ function db_image_clear_tmp_db($uid)
     db_query($sql, $params);
 }
 
-function db_image_data_copy($filename, $new_filename)
+function db_image_data_copy($filename, $new_filename, $c_member_id, $filesize)
 {
     if (!$filename) return false;
 
@@ -173,7 +173,7 @@ function db_image_data_copy($filename, $new_filename)
     $bin = base64_decode($c_image[0]['bin']);
     $type = $c_image[0]['type'];
 
-    return db_image_insert_c_image($new_filename, $bin, $type);
+    return db_image_insert_c_image($new_filename, $bin, $filesize, $c_member_id, null, $type);
 }
 
 /**

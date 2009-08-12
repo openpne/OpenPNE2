@@ -39,13 +39,14 @@ class ktai_do_h_album_cover_image_copy extends OpenPNE_Action
         $path_parts = pathinfo($image_filename);
         $ext = $path_parts['extension'];
         $new_filename = 'a_' . $target_c_album_id . '_1_' . time() . '.' . $ext;
-        $c_image_id = db_image_data_copy($image_filename, $new_filename);
+        $c_image_id = db_image_data_copy($image_filename, $new_filename, $u, $target_c_album_image['filesize']);
+
         if (!$c_image_id) {
             openpne_redirect('ktai', 'page_h_err_fh_album');
         }
 
         $c_album_cover = $c_album['album_cover_image'];
-        db_album_image_data_delete($c_album_cover);
+        db_album_image_data_delete($c_album_cover, $u);
         db_album_update_c_album_album_cover_image($target_c_album_id, $new_filename);
 
         $p = array('target_c_member_id' => $u, 'target_c_album_id' => $target_c_album_id);
