@@ -1002,8 +1002,7 @@ class mail_sns
             db_image_insert_c_image($filename, $image_data);
             //アルバムデータの変更
             $c_album_cover = $c_album['album_cover_image'];
-            $c_member_id = $c_album['c_member_id'];
-            db_album_image_data_delete($c_album_cover, $c_member_id);
+            db_album_image_data_delete($c_album_cover, $c_album['c_member_id']);
             db_album_update_c_album_album_cover_image($c_album_id,$filename);
         } else {
             $this->error_mail('写真が添付されていないか、ファイルサイズが大きすぎるため、アルバム表紙を変更できませんでした。');
