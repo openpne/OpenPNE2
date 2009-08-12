@@ -74,7 +74,7 @@ class pc_do_h_album_image_edit_insert_c_album_image extends OpenPNE_Action
             t_image_clear_tmp($sessid);
 
             if (!db_album_is_insertable4c_member_id($u, $filesize - $c_album_image['filesize'])) {
-                db_album_image_data_delete($filename);
+                db_album_image_data_delete($filename, $u);
 
                 $msg = 'これ以上写真を投稿することができません。';
                 if (!db_album_is_insertable4c_member_id($u)) {
@@ -90,7 +90,7 @@ class pc_do_h_album_image_edit_insert_c_album_image extends OpenPNE_Action
                 openpne_redirect('pc', 'page_h_album_image_edit', $p);
             }
 
-            db_album_image_data_delete($c_album_image['image_filename']);
+            db_album_image_data_delete($c_album_image['image_filename'], $u);
         }
 
         db_album_update_c_album_image($target_c_album_image_id, $filename, $image_description, $filesize);

@@ -35,7 +35,7 @@ class ktai_do_h_album_image_delete extends OpenPNE_Action
         }
         //---
 
-        db_album_delete_c_album_image($target_c_album_image_id);
+        db_album_delete_c_album_image($target_c_album_image_id, $u);
 
         $p = array('target_c_album_id' => $target_c_album_id);
         openpne_redirect('ktai', 'page_fh_album_image_list', $p);
