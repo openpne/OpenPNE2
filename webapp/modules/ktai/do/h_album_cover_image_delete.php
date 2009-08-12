@@ -26,7 +26,7 @@ class ktai_do_h_album_cover_image_delete extends OpenPNE_Action
         //---
 
         $c_album_cover = $c_album['album_cover_image'];
-        db_album_image_data_delete($c_album_cover);
+        db_album_image_data_delete($c_album_cover, $u);
         db_album_update_c_album_album_cover_image($target_c_album_id,'');
 
         $p = array('target_c_member_id' => $u, 'target_c_album_id' => $target_c_album_id);
