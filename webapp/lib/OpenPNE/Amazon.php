@@ -5,7 +5,7 @@
  */
 
 require_once 'Services/Amazon.php';
-require_once 'PHP/Compat/Function/mhash.php';
+require_once 'PHP/Compat/Function/hash_hmac.php';
 
 /**
  * OpenPNEでAmazonECSを利用するためのクラス
