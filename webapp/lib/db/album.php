@@ -121,7 +121,7 @@ function db_album_c_album_image_list4c_album_id($c_album_id, $page = 1, $page_si
     }
 
     $params = array(intval($c_album_id));
-    $list = db_get_all_page($sql, $page, $page_size, $params);    
+    $list = db_get_all_page($sql, $page, $page_size, $params);
 
     $sql = 'SELECT COUNT(c_album_image_id) FROM c_album_image WHERE c_album_id = ?';
     $params = array(intval($c_album_id));
