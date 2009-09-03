@@ -18,6 +18,7 @@ class ktai_page_fh_album_image_list extends OpenPNE_Action
         $target_c_album_id = $requests['target_c_album_id'];
         $page = $requests['page'];
         $is_thumbnail = $requests['is_thumbnail'];
+        $desc = $_GET['desc'];
         // ----------
         $page_size = 10;
 
@@ -70,10 +71,16 @@ class ktai_page_fh_album_image_list extends OpenPNE_Action
 
         // メンバー情報
         $this->set('target_member', $target_c_member);
+        
+        // 写真の順番を入れ替える
+        if (empty($desc)){
+           $desc = 0;
+        }
+        $this->set('desc', $desc);
 
         // アルバムに登録された写真
         list($album_image_list, $is_prev, $is_next, $total_num) =
-            db_album_c_album_image_list4c_album_id($target_c_album_id, $page, $page_size);
+            db_album_c_album_image_list4c_album_id($target_c_album_id, $page, $page_size, $desc);
         $this->set('album_image_list', $album_image_list);
         $this->set('page', $page);
         $this->set('page_size', $page_size);

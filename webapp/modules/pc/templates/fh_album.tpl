@@ -68,11 +68,17 @@
 ({if $album_image_list})
 ({* {{{ albumImageList *})
 <div class="dparts albumImageList"><div class="parts">
-<div class="partsHeading"><h3>写真一覧</h3></div>
+<div class="partsHeading"><h3>写真一覧</h3>
+({if $desc == 0})
+<p class="link"><a href="({t_url m=pc a=page_fh_album})&amp;page=({$page})&amp;target_c_album_id=({$target_c_album_id})&amp;desc=({$desc+1})">表示を降順に変更</a></p>
+({elseif $desc == 1})
+<p class="link"><a href="({t_url m=pc a=page_fh_album})&amp;page=({$page})&amp;target_c_album_id=({$target_c_album_id})&amp;desc=({$desc-1})">元に戻す</a></p>
+({/if})
+</div>
 
 ({capture name=pager})({strip})
 <div class="pagerRelative">
-({if $is_prev})<p class="prev"><a href="({t_url m=pc a=page_fh_album})&amp;page=({$page-1})&amp;target_c_album_id=({$target_c_album_id})">前を表示</a></p>({/if})
+({if $is_prev})<p class="prev"><a href="({t_url m=pc a=page_fh_album})&amp;page=({$page-1})&amp;target_c_album_id=({$target_c_album_id})&amp;desc=({$desc})">前を表示</a></p>({/if})
 <p class="number">
 ({$total_num})件中 ({$page*$page_size-$page_size+1})件～
 ({if $page_size > $album_list_count})
@@ -82,7 +88,7 @@
 ({/if})
 件を表示
 </p>
-({if $is_next})<p class="next"><a href="({t_url m=pc a=page_fh_album})&amp;page=({$page+1})&amp;target_c_album_id=({$target_c_album_id})">次を表示</a></p>({/if})
+({if $is_next})<p class="next"><a href="({t_url m=pc a=page_fh_album})&amp;page=({$page+1})&amp;target_c_album_id=({$target_c_album_id})&amp;desc=({$desc})">次を表示</a></p>({/if})
 </div>
 ({/strip})({/capture})
 ({$smarty.capture.pager|smarty:nodefaults})

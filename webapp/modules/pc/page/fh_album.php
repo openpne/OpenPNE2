@@ -17,6 +17,7 @@ class pc_page_fh_album extends OpenPNE_Action
         // --- リクエスト変数
         $target_c_album_id = $requests['target_c_album_id'];
         $page = $requests['page'];
+        $desc = $_GET['desc'];
         // ----------
         $page_size = 10;
 
@@ -71,9 +72,15 @@ class pc_page_fh_album extends OpenPNE_Action
         $album_subject_list =  db_album_get_c_album_subject_list4c_member_id($target_c_member_id, 10, $u);
         $this->set('target_album_list', $album_subject_list);
 
+        //アルバムに登録された写真の順番を切り替える変数
+        if (empty($desc)){
+            $desc = 0;
+        }
+        $this->set('desc', $desc);
+         
         //アルバムに登録された写真
         list($list, $is_prev, $is_next, $total_num) =
-            db_album_c_album_image_list4c_album_id($target_c_album_id, $page, $page_size);
+            db_album_c_album_image_list4c_album_id($target_c_album_id, $page, $page_size, $desc);
         $this->set('album_image_list', $list);
 
         $this->set('page', $page);
@@ -82,7 +89,7 @@ class pc_page_fh_album extends OpenPNE_Action
         $this->set('is_next', $is_next);
         $this->set('total_num', $total_num);
         $this->set('album_list_count', count($list));
-
+        
         return 'success';
     }
 }
