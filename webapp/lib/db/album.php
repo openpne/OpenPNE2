@@ -112,9 +112,14 @@ function p_common_is_active_c_album_image_id($c_album_image_id)
  * @param   int   $c_album_id
  * @return  array
  */
-function db_album_c_album_image_list4c_album_id($c_album_id, $page = 1, $page_size = 10)
+function db_album_c_album_image_list4c_album_id($c_album_id, $page = 1, $page_size = 10, $desc = 0)
 {
-    $sql = 'SELECT * FROM c_album_image WHERE c_album_id = ? ORDER BY c_album_image_id';
+    if ($desc == 0) {
+        $sql = 'SELECT * FROM c_album_image WHERE c_album_id = ? ORDER BY c_album_image_id DESC';
+    } else if ($desc == 1) { 
+        $sql = 'SELECT * FROM c_album_image WHERE c_album_id = ? ORDER BY c_album_image_id';
+    }
+
     $params = array(intval($c_album_id));
     $list = db_get_all_page($sql, $page, $page_size, $params);
 
@@ -136,7 +141,7 @@ function db_album_c_album_image_list4c_album_id($c_album_id, $page = 1, $page_si
             $prev = true;
         }
     }
-    return array($list, $prev, $next, $total_num);
+    return array($list, $prev, $next, $total_num, $desc);
 }
 
 /**
