@@ -1803,6 +1803,7 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 	float: left;
 	width: 66%;
 }
+.albumImageList .partsHeading p.link, 
 .homeMainTable .partsHeading p.link {
 	float: right;
 	width: 33%;
