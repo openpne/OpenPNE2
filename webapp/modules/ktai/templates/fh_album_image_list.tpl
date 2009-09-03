@@ -20,10 +20,18 @@
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
 <input type="hidden" name="target_c_album_id" value="({$album_info.c_album_id})">
 <input type="hidden" name="page" value="({$page})">
+<input type="hidden" name="desc" value="({$desc})">
 <input type="radio" value="1" name="is_thumbnail"({if $is_thumbnail}) checked="checked"({/if})>する　
 <input type="radio" value="0" name="is_thumbnail"({if !$is_thumbnail}) checked="checked"({/if})>しない<br>
 <input type="submit" value="表示を変更">
 </form>
+
+({if $desc == 0})
+<a href="({t_url m=ktai a=page_fh_album_image_list})&amp;target_c_album_id=({$album_info.c_album_id})&amp;page=({$page})&amp;is_thumbnail=({$is_thumbnail})&amp;desc=({$desc+1})&amp;({$tail})">表示を降順に変更</a>
+({elseif $desc == 1})
+<a href="({t_url m=ktai a=page_fh_album_image_list})&amp;target_c_album_id=({$album_info.c_album_id})&amp;page=({$page})&amp;is_thumbnail=({$is_thumbnail})&amp;desc=({$desc-1})&amp;({$tail})">元に戻す</a>
+({/if})
+
 <hr color="#({$ktai_color_config.border_01})">
 
 <center>
@@ -50,9 +58,9 @@
 ({if $is_prev || $is_next})
 <center>
 <a name="pager"></a>
-({if $is_prev})<a href="({t_url m=ktai a=page_fh_album_image_list})&amp;target_c_album_id=({$album_info.c_album_id})&amp;page=({$page-1})&amp;is_thumbnail=({$is_thumbnail})&amp;({$tail})" accesskey="4">[i:128]前を表示</a>({/if})
+({if $is_prev})<a href="({t_url m=ktai a=page_fh_album_image_list})&amp;target_c_album_id=({$album_info.c_album_id})&amp;page=({$page-1})&amp;is_thumbnail=({$is_thumbnail})&amp;desc=({$desc})&amp;({$tail})" accesskey="4">[i:128]前を表示</a>({/if})
 ({if $is_prev && $is_next})&nbsp;({/if})
-({if $is_next})<a href="({t_url m=ktai a=page_fh_album_image_list})&amp;target_c_album_id=({$album_info.c_album_id})&amp;page=({$page+1})&amp;is_thumbnail=({$is_thumbnail})&amp;({$tail})" accesskey="6">[i:130]次を表示</a>({/if})
+({if $is_next})<a href="({t_url m=ktai a=page_fh_album_image_list})&amp;target_c_album_id=({$album_info.c_album_id})&amp;page=({$page+1})&amp;is_thumbnail=({$is_thumbnail})&amp;desc=({$desc})&amp;({$tail})" accesskey="6">[i:130]次を表示</a>({/if})
 <br>
 </center>
 ({/if})
