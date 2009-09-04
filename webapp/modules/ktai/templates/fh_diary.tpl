@@ -53,7 +53,7 @@
 ({if $c_diary_comment_.c_member_id == $u || $target_diary_writer.c_member_id==$u})
 [<a href="({t_url m=ktai a=page_fh_diary_delete_c_diary_comment_confirm})&amp;target_c_diary_comment_id=({$c_diary_comment_.c_diary_comment_id})&amp;({$tail})&amp;target_c_diary_id=({$target_c_diary.c_diary_id})">削除</a>]
 ({/if})
-({if $smarty.const.USE_RESPONSE_COMMENT && $is_writable_comment})
+({if $smarty.const.USE_RESPONSE_COMMENT && $is_writable_comment && $is_comment_input})
 [<a href="({t_url m=ktai a=page_fh_diary})&amp;target_c_diary_comment_id=({$c_diary_comment_.c_diary_comment_id})&amp;({$tail})&amp;target_c_diary_id=({$target_c_diary.c_diary_id})&amp;target_response_comment_id=({$c_diary_comment_.c_diary_comment_id})">返信</a>]
 ({/if})<br>
 ({if $c_diary_comment_.nickname})<a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$c_diary_comment_.c_member_id})&amp;({$tail})">({$c_diary_comment_.nickname})</a>({/if})
