@@ -89,7 +89,7 @@ class pc_page_fh_album extends OpenPNE_Action
         $this->set('is_next', $is_next);
         $this->set('total_num', $total_num);
         $this->set('album_list_count', count($list));
-        
+
         return 'success';
     }
 }
