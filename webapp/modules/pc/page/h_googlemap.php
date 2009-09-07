@@ -28,13 +28,13 @@ class pc_page_h_googlemap extends OpenPNE_Action
         $this->set('q', $q);
         //表示モード
         {
-            $MapType = 'G_MAP_TYPE';
+            $MapType = 'G_NORMAL_MAP';
             switch($t){
                 case 'k':
-                    $MapType = 'G_SATELLITE_TYPE';
+                    $MapType = 'G_SATELLITE_MAP';
                     break;
                 case 'h':
-                    $MapType = 'G_HYBRID_TYPE';
+                    $MapType = 'G_HYBRID_MAP';
                     break;
             }
         }
