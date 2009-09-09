@@ -79,9 +79,12 @@ class admin_do_csv_member extends OpenPNE_Action
         $c_member_list = array();
         foreach ($ids as $id) {
             $tmp_c_member = array();
-            $_tmp_c_member = db_member_c_member4c_member_id($id, false, false, 'private');
+            $_tmp_c_member = db_member_c_member4c_member_id($id, true, false, 'private');
 
             $tmp_c_member['c_member_id'] = $_tmp_c_member['c_member_id'];
+            if(OPENPNE_AUTH_MODE == 'pneid') {
+                $tmp_c_member['username'] = $_tmp_c_member['username'];
+            }
             $tmp_c_member['nickname'] = $_tmp_c_member['nickname'];
             if (OPENPNE_USE_POINT_RANK) {
                 $tmp_c_member['rank'] = '';
@@ -121,10 +124,9 @@ class admin_do_csv_member extends OpenPNE_Action
                 unset($tmp_c_member['PNE_POINT']);
             }
 
-            $tmp_secure = db_member_c_member_secure4c_member_id($id);
-            $tmp_c_member['pc_address'] = $tmp_secure['pc_address'];
-            $tmp_c_member['ktai_address'] = $tmp_secure['ktai_address'];
-            $tmp_c_member['regist_address'] = $tmp_secure['regist_address'];
+            $tmp_c_member['pc_address'] = $_tmp_c_member['secure']['pc_address'];
+            $tmp_c_member['ktai_address'] = $_tmp_c_member['secure']['ktai_address'];
+            $tmp_c_member['regist_address'] = $_tmp_c_member['secure']['regist_address'];
 
             $c_member_list[]=$tmp_c_member;
         }
@@ -137,6 +139,9 @@ class admin_do_csv_member extends OpenPNE_Action
         $c_profile_list = db_member_c_profile_list4null();
 
         $ley_list[]="メンバーID";
+        if (OPENPNE_AUTH_MODE == 'pneid') {
+            $ley_list[] = "ログインID";
+        }
         $ley_list[]=WORD_NICKNAME;
         if (OPENPNE_USE_POINT_RANK) {
             $ley_list[] = 'ランク';
