@@ -14,7 +14,7 @@
 [i:68]<a href="({t_url m=ktai a=page_fh_album_image_list})&amp;target_c_album_id=({$album_info.c_album_id})&amp;({$tail})">写真一覧</a>
 ({if $type == 'h'})
 <br>
-[i:169]<a href="({t_url m=ktai a=page_h_album_edit})&amp;target_c_album_id=({$album_info.c_album_id})&amp;({$tail})">ｱﾙﾊﾞﾑを編集</a><br>
+[i:70]<a href="({t_url m=ktai a=page_h_album_edit})&amp;target_c_album_id=({$album_info.c_album_id})&amp;({$tail})">ｱﾙﾊﾞﾑを編集</a><br>
 ({t_form m=ktai a=page_h_diary_edit})
 <input type="hidden" name="ksid" value="({$PHPSESSID})">
 <input type="hidden" name="subject" value="ｱﾙﾊﾞﾑ:({$album_info.subject})">
