@@ -21,7 +21,7 @@
 ({/if})
 
 ({if $birthday_flag})
-<div class="parts">
+<div class="parts homeBirthdayBox">
 <img src="({t_img_url_skin filename=birthday_h})" alt="Happy Birthday!" />
 </div>
 ({/if})
