@@ -17,11 +17,11 @@
 ({if $target_c_member.public_flag_birth_month_day == 'public' || ($target_c_member.public_flag_birth_month_day == 'friend' && $is_friend)})
 
 ({if $days_birthday == 0})({* 誕生日当日 *})
-<div class="parts">
+<div class="parts homeBirthdayBox">
 <a href="({t_url m=pc a=page_f_message_send})&amp;target_c_member_id=({$target_c_member.c_member_id})"><img src="({t_img_url_skin filename=birthday_f})" alt="Happy Birthday!" /></a>
 </div>
 ({elseif $days_birthday > 0 && $days_birthday <= 3})({* 誕生日3日以内 *})
-<div class="parts">
+<div class="parts homeBirthdayBox">
 <a href="({t_url m=pc a=page_f_message_send})&amp;target_c_member_id=({$target_c_member.c_member_id})"><img src="({t_img_url_skin filename=birthday_f_2})" alt="もうすぐ誕生日です" /></a>
 </div>
 ({/if})
