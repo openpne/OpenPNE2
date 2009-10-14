@@ -82,7 +82,7 @@ class admin_do_csv_member extends OpenPNE_Action
             $_tmp_c_member = db_member_c_member4c_member_id($id, true, false, 'private');
 
             $tmp_c_member['c_member_id'] = $_tmp_c_member['c_member_id'];
-            if(OPENPNE_AUTH_MODE == 'pneid') {
+            if(OPENPNE_AUTH_MODE == 'pneid' || OPENPNE_AUTH_MODE == 'slavepne') {
                 $tmp_c_member['username'] = $_tmp_c_member['username'];
             }
             $tmp_c_member['nickname'] = $_tmp_c_member['nickname'];
@@ -139,7 +139,7 @@ class admin_do_csv_member extends OpenPNE_Action
         $c_profile_list = db_member_c_profile_list4null();
 
         $ley_list[]="メンバーID";
-        if (OPENPNE_AUTH_MODE == 'pneid') {
+        if (OPENPNE_AUTH_MODE == 'pneid'  || OPENPNE_AUTH_MODE == 'slavepne') {
             $ley_list[] = "ログインID";
         }
         $ley_list[]=WORD_NICKNAME;
