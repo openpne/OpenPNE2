@@ -15,6 +15,7 @@ class ktai_page_h_diary_edit extends OpenPNE_Action
         $subject = $requests['subject'];
         $body = $requests['body'];
         $public_flag = $requests['public_flag'];
+        $is_comment_input = $requests['is_comment_input'];
         // ----------
 
         $c_member = db_member_c_member4c_member_id($u);
@@ -29,6 +30,7 @@ class ktai_page_h_diary_edit extends OpenPNE_Action
                 $c_diary['subject'] = $subject;
                 $c_diary['body'] = $body;
                 $c_diary['public_flag'] = $public_flag;
+                $c_diary['is_comment_input'] = $is_comment_input;
             }
         } else {
             $c_diary['is_comment_input'] = 1;
