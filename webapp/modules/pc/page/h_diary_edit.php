@@ -16,6 +16,7 @@ class pc_page_h_diary_edit extends OpenPNE_Action
         $body = $requests['body'];
         $public_flag = $requests['public_flag'];
         $category = $requests['category'];
+        $is_comment_input = $requests['is_comment_input'];
         // ----------
 
         $c_diary = db_diary_get_c_diary4id($target_c_diary_id);
@@ -90,11 +91,12 @@ class pc_page_h_diary_edit extends OpenPNE_Action
             $this->set("use_diary_category", true);
         }
 
-        // 内容の不備によるリダイレクト時は値を上書き
-        if ($requests['msg']) {
+        // 内容の不備によるリダイレクト時・編集修正時は値を上書き
+        if ($requests['msg'] || !(is_null($subject) || is_null($body))) {
             $c_diary['subject'] = $subject;
             $c_diary['body'] = $body;
             $c_diary['public_flag'] = util_cast_public_flag_diary($public_flag);
+            $c_diary['is_comment_input'] = $is_comment_input;
         }
 
         $this->set("diary", $c_diary);
