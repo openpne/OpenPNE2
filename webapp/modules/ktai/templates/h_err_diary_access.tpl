@@ -4,6 +4,6 @@
 <font color="#({$ktai_color_config.font_05})"><a name="top">ｱｸｾｽできません</a></font><br>
 </td></tr></table>
 <center>
-この({$WORD_DIARY})にはｱｸｾｽできません。<br>
+この({$WORD_DIARY_HALF})にはｱｸｾｽできません。<br>
 </center>
 ({$inc_ktai_footer|smarty:nodefaults})
