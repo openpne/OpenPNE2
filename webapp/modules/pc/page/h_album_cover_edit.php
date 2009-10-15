@@ -32,8 +32,8 @@ class pc_page_h_album_cover_edit extends OpenPNE_Action
             handle_kengen_error();
         }
 
-        // 内容の不備によるリダイレクト時は値を上書き
-        if ($requests['msg']) {
+        // 内容の不備によるリダイレクト時・編集修正時は値を上書き
+        if ($requests['msg'] || !(is_null($subject) || is_null($description))) {
             $album['subject'] = $subject;
             $album['description'] = $description;
             $album['public_flag'] = $public_flag;
