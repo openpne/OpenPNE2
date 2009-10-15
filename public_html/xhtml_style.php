@@ -2147,7 +2147,7 @@ div.parts {
 #Body .linkLine,
 #Body .searchFormLine,
 #Body .buttonLine,
-#Body .prevNextLinkLine, 
+#Body .prevNextLinkLine,
 #Body .homeBirthdayBox {
 	background-color: transparent;
 }
