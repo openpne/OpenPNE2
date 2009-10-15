@@ -2123,13 +2123,6 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 	text-align: right;
 }
 
-/*==============================================================================
- * 45. .homeBirthdayBox（誕生日お知らせボックス）
- *----------------------------------------------------------------------------*/
-.homeBirthdayBox {
-        width: 710px;
-}
-
 /**=============================================================================
  * 配色設定
  *----------------------------------------------------------------------------*/
@@ -2154,7 +2147,8 @@ div.parts {
 #Body .linkLine,
 #Body .searchFormLine,
 #Body .buttonLine,
-#Body .prevNextLinkLine {
+#Body .prevNextLinkLine,
+#Body .homeBirthdayBox {
 	background-color: transparent;
 }
 
