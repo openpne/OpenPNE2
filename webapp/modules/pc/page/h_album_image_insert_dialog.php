@@ -17,6 +17,7 @@ class pc_page_h_album_image_insert_dialog extends OpenPNE_Action
         // --- リクエスト変数
         $target_c_album_id = $requests['target_c_album_id'];
         $page = $requests['page'];
+        $desc = $requests['desc'];
         // ----------
 
         $page_size = 20;
@@ -32,7 +33,7 @@ class pc_page_h_album_image_insert_dialog extends OpenPNE_Action
         $this->set('album_info',$target_c_album);
         $this->set("target_member", db_member_c_member4c_member_id($target_c_member_id));
 
-        $target_c_album_image = db_album_c_album_image_list4c_album_id($target_c_album_id, $page, $page_size);
+        $target_c_album_image = db_album_c_album_image_list4c_album_id($target_c_album_id, $page, $page_size, $desc);
         $this->set("target_album_image", $target_c_album_image[0]);
         $this->set('is_prev', $target_c_album_image[1]);
         $this->set('is_next', $target_c_album_image[2]);
