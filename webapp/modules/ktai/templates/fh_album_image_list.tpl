@@ -27,9 +27,9 @@
 </form>
 
 ({if $desc == 0})
-<a href="({t_url m=ktai a=page_fh_album_image_list})&amp;target_c_album_id=({$album_info.c_album_id})&amp;page=({$page})&amp;is_thumbnail=({$is_thumbnail})&amp;desc=({$desc+1})&amp;({$tail})">写真を新しい順に並べ替える</a>
-({elseif $desc == 1})
-<a href="({t_url m=ktai a=page_fh_album_image_list})&amp;target_c_album_id=({$album_info.c_album_id})&amp;page=({$page})&amp;is_thumbnail=({$is_thumbnail})&amp;desc=({$desc-1})&amp;({$tail})">写真を古い順に並べ替える</a>
+<a href="({t_url m=ktai a=page_fh_album_image_list})&amp;target_c_album_id=({$album_info.c_album_id})&amp;page=1&amp;is_thumbnail=({$is_thumbnail})&amp;desc=1&amp;({$tail})">写真を新しい順に並べ替える</a>
+({else $desc == 1})
+<a href="({t_url m=ktai a=page_fh_album_image_list})&amp;target_c_album_id=({$album_info.c_album_id})&amp;page=1&amp;is_thumbnail=({$is_thumbnail})&amp;desc=0&amp;({$tail})">写真を古い順に並べ替える</a>
 ({/if})
 
 <hr color="#({$ktai_color_config.border_01})">
