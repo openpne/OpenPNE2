@@ -74,7 +74,7 @@ class pc_page_fh_album extends OpenPNE_Action
 
         //アルバムに登録された写真の順番を切り替える変数
         $this->set('desc', $desc);
-         
+
         //アルバムに登録された写真
         list($list, $is_prev, $is_next, $total_num) =
             db_album_c_album_image_list4c_album_id($target_c_album_id, $page, $page_size, $desc);
