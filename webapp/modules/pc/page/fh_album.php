@@ -17,7 +17,7 @@ class pc_page_fh_album extends OpenPNE_Action
         // --- リクエスト変数
         $target_c_album_id = $requests['target_c_album_id'];
         $page = $requests['page'];
-        $desc = $_GET['desc'];
+        $desc = $requests['desc'];
         // ----------
         $page_size = 10;
 
@@ -73,9 +73,6 @@ class pc_page_fh_album extends OpenPNE_Action
         $this->set('target_album_list', $album_subject_list);
 
         //アルバムに登録された写真の順番を切り替える変数
-        if (empty($desc)){
-            $desc = 0;
-        }
         $this->set('desc', $desc);
          
         //アルバムに登録された写真
