@@ -17,10 +17,10 @@ class pc_page_h_album_image_insert_dialog extends OpenPNE_Action
         // --- リクエスト変数
         $target_c_album_id = $requests['target_c_album_id'];
         $page = $requests['page'];
-        $desc = $requests['desc'];
         // ----------
 
         $page_size = 20;
+        $desc = 1;
 
         $target_c_album = db_album_get_c_album4c_album_id($target_c_album_id);
         $target_c_member_id = $u;
