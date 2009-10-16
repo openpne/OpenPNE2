@@ -110,13 +110,15 @@ function p_common_is_active_c_album_image_id($c_album_image_id)
  * アルバムIDからアルバムに登録された写真を取得
  *
  * @param   int   $c_album_id
- * @param   bool  $desc 
+ * @param   int   $page
+ * @param   int   $page_size
+ * @param   bool  $desc 並び順を投稿日時の降順にするかどうか(0 or 1) 
  * @return  array
  */
 function db_album_c_album_image_list4c_album_id($c_album_id, $page = 1, $page_size = 10, $desc = 0)
 {
     $sql = 'SELECT * FROM c_album_image WHERE c_album_id = ? ORDER BY c_album_image_id';
-    if ($desc == 1 ) {
+    if ($desc) {
         $sql .= ' DESC';
     }
 

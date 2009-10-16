@@ -71,7 +71,7 @@ class ktai_page_fh_album_image_list extends OpenPNE_Action
 
         // メンバー情報
         $this->set('target_member', $target_c_member);
-        
+
         // 写真の順番を入れ替える
         $this->set('desc', $desc);
 
