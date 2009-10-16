@@ -70,9 +70,9 @@
 <div class="dparts albumImageList"><div class="parts">
 <div class="partsHeading"><h3>写真一覧</h3>
 ({if $desc == 0})
-<p class="link"><a href="({t_url m=pc a=page_fh_album})&amp;page=({$page})&amp;target_c_album_id=({$target_c_album_id})&amp;desc=({$desc+1})">新しい順に並べ替える</a></p>
-({elseif $desc == 1})
-<p class="link"><a href="({t_url m=pc a=page_fh_album})&amp;page=({$page})&amp;target_c_album_id=({$target_c_album_id})&amp;desc=({$desc-1})">古い順に並べ替える</a></p>
+<p class="link"><a href="({t_url m=pc a=page_fh_album})&amp;page=1&amp;target_c_album_id=({$target_c_album_id})&amp;desc=1">新しい順に並べ替える</a></p>
+({else $desc == 1})
+<p class="link"><a href="({t_url m=pc a=page_fh_album})&amp;page=1&amp;target_c_album_id=({$target_c_album_id})&amp;desc=0">古い順に並べ替える</a></p>
 ({/if})
 </div>
 
