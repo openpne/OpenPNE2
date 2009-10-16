@@ -33,7 +33,7 @@ class pc_page_h_album_cover_edit extends OpenPNE_Action
         }
 
         // 内容の不備によるリダイレクト時・編集修正時は値を上書き
-        if ($requests['msg'] || !(is_null($subject) || is_null($description))) {
+        if ($requests['msg'] || !(is_null($subject) || is_null($description)||is_null($public_flag))) {
             $album['subject'] = $subject;
             $album['description'] = $description;
             $album['public_flag'] = $public_flag;
