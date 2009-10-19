@@ -186,7 +186,7 @@
 ({if $item.nickname}) <a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})">({$item.nickname})</a>({/if})
 ({if $type == 'f' && $item.c_member_id == $member.c_member_id}) <a href="({t_url m=pc a=page_fh_delete_comment})&amp;target_c_diary_id=({$target_diary.c_diary_id})&amp;target_c_diary_comment_id=({$item.c_diary_comment_id})">削除</a>({/if})
 ({if $smarty.const.USE_RESPONSE_COMMENT && $is_writable_comment})
-({if !$smarty.const.OPENPNE_USE_DIARY_COMMENT or $is_comment_input})
+({if !$smarty.const.OPENPNE_USE_DIARY_COMMENT || $is_comment_input})
 <a href="javascript:void(0);" onclick="response_comment_format('({$item.nickname})', '({$item.number})', 'comment_box');return false;" ><img src="({t_img_url_skin filename=button_comment})" alt="コメント返信ボタン" /></a>
 ({/if})
 ({/if})
