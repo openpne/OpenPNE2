@@ -262,13 +262,7 @@ function image_insert_c_image4tmp($prefix, $tmpfile)
     } else {
         $c_tmp_image = db_image_c_tmp_image4filename($tmpfile);
 
-        $params = array(
-            'filename' => $filename,
-            'bin' => $c_tmp_image['bin'],
-            'r_datetime' => db_now(),
-            'type' => '',
-        );
-        if (db_insert("c_image", $params)) {
+        if (db_image_insert_c_image($filename, $c_tmp_image['bin'])) {
             return $filename;
         }
     }
