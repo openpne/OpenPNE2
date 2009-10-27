@@ -78,13 +78,21 @@ class pc_do_h_diary_add_insert_c_diary extends OpenPNE_Action
 
         $c_diary_id = db_diary_insert_c_diary($c_member_id, $subject, $body, $public_flag, $is_comment_input);
 
+        $c_diary_category_list = db_diary_category_list4c_member_id($c_member_id);
         foreach($category as $value) {
             if (empty($value)) {
                 break;
             }
-
-            $c_category_id = db_diary_get_category_id4category_name($c_member_id, $value);
-            if (is_null($c_category_id)) {
+            // 同一のカテゴリ名が登録済みかどうかを確認
+            $c_category_id = 0;
+            foreach ($c_diary_category_list as $c_diary_category) {
+                if ($c_diary_category['category_name'] == $value) {
+                    $c_category_id = $c_diary_category['c_diary_category_id'];
+                    break;
+                }
+            }
+            // 未登録の場合は新規に登録する
+            if (!$c_category_id) {
                 $c_category_id = db_diary_category_insert_category($c_member_id, $value);
             }
             db_diary_category_insert_c_diary_category_diary($c_diary_id, $c_category_id);
