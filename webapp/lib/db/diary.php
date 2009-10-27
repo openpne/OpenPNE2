@@ -20,20 +20,6 @@ function db_diary_category_list4c_member_id($c_member_id)
 }
 
 /**
- * カテゴリ名からカテゴリIDを得る
- *
- * @param int $c_member_id
- * @param string $category_name
- * @return bool
- */
-function db_diary_get_category_id4category_name($c_member_id, $category_name)
-{
-    $sql = 'SELECT c_diary_category_id FROM c_diary_category ' .
-        'WHERE category_name = ? AND c_member_id = ?';
-    return db_get_one($sql, array($category_name, intval($c_member_id)));
-}
-
-/**
  * カテゴリIDからカテゴリ名を得る
  */
 function db_diary_get_category_name4category_id($category_id)
