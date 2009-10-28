@@ -30,7 +30,7 @@ class pc_do_h_diary_edit_insert_c_diary extends OpenPNE_Action
         $tmpfile_1 = $requests['tmpfile_1'];
         $tmpfile_2 = $requests['tmpfile_2'];
         $tmpfile_3 = $requests['tmpfile_3'];
-        $category = preg_split('/\s+/', $requests['category']);
+        $category = array_unique(preg_split('/\s+/', $requests['category']));
         // ----------
 
         //--- 権限チェック
