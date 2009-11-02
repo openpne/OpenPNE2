@@ -78,7 +78,7 @@
 </dd>
 </dl>
 
-({if $is_c_event_admin || $is_c_commu_admin})
+({if $is_c_commu_admin || ($is_c_event_admin && $c_commu.is_topic !== 'admin_only')})
 <div class="operation">
 ({t_form_block m=pc a=page_c_event_edit})
 <input type="hidden" name="target_c_commu_topic_id" value="({$c_topic.c_commu_topic_id})" />
