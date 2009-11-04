@@ -49,6 +49,7 @@ class admin_do_admit_sns_entry extends OpenPNE_Action
 
             // pre の内容を削除
             db_member_delete_c_member_pre4c_member_pre_id($c_member_pre_id);
+            db_member_delete_c_member_pre_profile4c_member_pre_id($c_member_pre_id);
 
             // 登録完了メール送信
             if (empty($prof['pc_address'])) {
