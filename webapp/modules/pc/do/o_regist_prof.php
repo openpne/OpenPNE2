@@ -143,6 +143,8 @@ class pc_do_o_regist_prof extends OpenPNE_Action
                         'regist_address' => $pre['pc_address'],
                         'is_sns_entry_confirm' => 1,
                     );
+                    // c_member_pre_profile にデータ挿入
+                    db_member_update_c_member_pre_profile($pre['c_member_pre_id'], $c_member_profile_list);
 
                     if (OPENPNE_AUTH_MODE == 'pneid') {
                         $c_member_pre_secure['login_id'] = $prof['login_id'];
