@@ -70,8 +70,10 @@
 </div>
 <div class="footer">
 <p>
-({if ($c_commu.is_topic == 'admin_only' && $is_c_commu_admin) || ($c_commu.is_topic == 'member' && $item.is_c_topic_admin) || ($c_commu.is_topic == 'public' && $item.is_c_topic_admin)})
+({if $is_c_commu_admin || ($item.is_c_topic_admin && $c_commu.is_topic !== 'admin_only')})
+({if $is_c_commu_member || $c_commu.is_topic == 'public'})
 <a href="({t_url m=pc a=page_c_topic_edit})&amp;target_c_commu_topic_id=({$item.c_commu_topic_id})">編集</a> |
+({/if})
 ({/if})
 <a href="({t_url m=pc a=page_c_topic_detail})&amp;target_c_commu_topic_id=({$item.c_commu_topic_id})">もっと見る(({$item.write_num}))</a>
 </p>
