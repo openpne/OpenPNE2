@@ -1799,6 +1799,7 @@ li#cLocalNav_6 a:hover, li#cLocalNav_6 a:active { background-position: -600px -2
 /*==============================================================================
  * 38. homeMainTable（ホームメインテーブル）
  *----------------------------------------------------------------------------*/
+.albumImageList .partsHeading h3,
 .homeMainTable .partsHeading h3 {
 	float: left;
 	width: 66%;
