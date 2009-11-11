@@ -348,17 +348,8 @@ function db_portal_insert_portal_image($image_filename)
  */
 function db_portal_image_list($page, $page_size, &$pager)
 {
-    $sql = 'SELECT portal_image_id FROM portal_image ORDER BY portal_image_id DESC';
-    $id_list = db_get_col_page($sql, $page, $page_size);
-
-    $portal_image_list = array();
-    foreach ($id_list as $portal_image_id) {
-        $sql = 'SELECT pi.portal_image_id AS portal_image_id, pi.image_filename AS image_filename, ci.r_datetime AS r_datetime'
-            . ' FROM portal_image AS pi LEFT JOIN c_image AS ci ON pi.image_filename = ci.filename'
-            . ' WHERE pi.portal_image_id = ?';
-        $params = array(intval($portal_image_id));
-        $portal_image_list[] = db_get_row($sql, $params);
-    }
+    $sql = 'SELECT * FROM portal_image ORDER BY portal_image_id DESC';
+    $portal_image_list = db_get_all_page($sql, $page, $page_size);
 
     $sql = 'SELECT COUNT(*) FROM portal_image';
     $total_num = db_get_one($sql);
