@@ -29,6 +29,16 @@ function db_rss_list_all_c_rss_cache_list($limit)
 
 function db_rss_list_friend_c_rss_cache_list($c_member_id, $limit)
 {
+    static $is_recurred = false;  //再帰処理中かどうかの判定フラグ
+
+    if (!$is_recurred) {  //function cacheのために再帰処理を行う
+        $is_recurred = true;
+        $funcargs = func_get_args();
+        $result = pne_cache_recursive_call(OPENPNE_FUNCTION_CACHE_LIFETIME_FAST, __FUNCTION__, $funcargs);
+        $is_recurred = false;
+        return $result;
+    }
+
     $friends = db_friend_c_member_id_list($c_member_id, true);
     if (!$friends) {
         return array();
