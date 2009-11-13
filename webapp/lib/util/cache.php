@@ -83,10 +83,14 @@ function cache_drop_c_member($c_member_id)
     pne_cache_drop('db_friend_c_friend_id_list4c_member_id', $c_member_id, 9);  //フレンドリスト
     pne_cache_drop('db_friend_c_friend_list_random4c_member_id', $c_member_id, 5);
     pne_cache_drop('p_h_home_c_diary_friend_list4c_member_id', $c_member_id, 5);  //最新日記フィード
+    pne_cache_drop('db_rss_list_friend_c_rss_cache_list', $c_member_id, 5);
+    pne_cache_drop('db_rss_list_friend_c_rss_cache_list', $c_member_id, 20);
     $c_member_id = (string)$c_member_id;
     pne_cache_drop('db_friend_c_friend_id_list4c_member_id', $c_member_id, 9);  //フレンドリスト
     pne_cache_drop('db_friend_c_friend_list_random4c_member_id', $c_member_id, 5);
     pne_cache_drop('p_h_home_c_diary_friend_list4c_member_id', $c_member_id, 5);  //最新日記フィード
+    pne_cache_drop('db_rss_list_friend_c_rss_cache_list', $c_member_id, 5);
+    pne_cache_drop('db_rss_list_friend_c_rss_cache_list', $c_member_id, 20);
 
     //誕生日フィード
     include_once 'Calendar/Week.php';
@@ -231,8 +235,12 @@ function cache_drop_c_bookmark($c_member_id)
 {
     $c_member_id = (int)$c_member_id;
     pne_cache_drop('db_bookmark_member_list', $c_member_id, 9);
+    pne_cache_drop('db_bookmark_blog_list', $c_member_id, 5);
+    pne_cache_drop('db_bookmark_blog_list', $c_member_id, 10);
     $c_member_id = (string)$c_member_id;
     pne_cache_drop('db_bookmark_member_list', $c_member_id, 9);
+    pne_cache_drop('db_bookmark_blog_list', $c_member_id, 5);
+    pne_cache_drop('db_bookmark_blog_list', $c_member_id, 10);
 }
 
 /**
