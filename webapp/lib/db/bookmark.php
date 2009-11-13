@@ -90,6 +90,16 @@ function db_bookmark_diary_list($c_member_id, $limit)
  */
 function db_bookmark_blog_list($c_member_id, $limit)
 {
+    static $is_recurred = false;  //再帰処理中かどうかの判定フラグ
+
+    if (!$is_recurred) {  //function cacheのために再帰処理を行う
+        $is_recurred = true;
+        $funcargs = func_get_args();
+        $result = pne_cache_recursive_call(OPENPNE_FUNCTION_CACHE_LIFETIME_FAST, __FUNCTION__, $funcargs);
+        $is_recurred = false;
+        return $result;
+    }
+
     $bookmarks = db_bookmark_c_member_id_list($c_member_id, true);
     if (!$bookmarks) {
         return array();
