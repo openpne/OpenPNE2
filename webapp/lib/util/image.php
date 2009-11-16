@@ -263,7 +263,7 @@ function image_insert_c_image4tmp($prefix, $tmpfile, $c_member_id, $category = '
         $c_tmp_image = db_image_c_tmp_image4filename($tmpfile);
         $filesize = $c_tmp_image['filesize'];
 
-        if (db_image_insert_c_image($filename, $c_tmp_image['bin'], $filesize, $category)) {
+        if (db_image_insert_c_image($filename, $c_tmp_image['bin'], $filesize, $category, '', true)) {
             return $filename;
         }
     }
