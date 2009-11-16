@@ -32,6 +32,10 @@ class pc_do_c_bbs_delete_c_commu_topic extends OpenPNE_Action
             !db_commu_is_c_commu_admin($c_commu_id, $u)) {
             handle_kengen_error();
         }
+        if ($c_commu['is_topic'] == 'member' &&
+            !db_commu_is_c_commu_member($c_commu_id, $u)) {
+            handle_kengen_error();
+        }
         //---
 
         db_commu_delete_c_commu_topic($target_c_commu_topic_id);
