@@ -57,13 +57,17 @@ function db_image_c_tmp_image4filename($filename)
 
 /*** write ***/
 
-function db_image_insert_c_image($filename, $bin, $filesize, $c_member_id, $category ='', $type = '')
+function db_image_insert_c_image($filename, $bin, $filesize, $c_member_id, $category ='', $type = '', $is_encoded = false)
 {
     $db =& db_get_instance('image');
 
+    if (!$is_encoded) {
+        $bin = base64_encode($bin);
+    }
+
     $data = array(
         'filename'   => $filename,
-        'bin'        => base64_encode($bin),
+        'bin'        => $bin,
         'type'       => $type,
         'r_datetime' => db_now(),
     );
