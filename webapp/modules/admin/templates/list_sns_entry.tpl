@@ -63,7 +63,7 @@
 </div>({*/div class="listControlTop"*})
 ({/if})
 
-<form action="./" method="post" id="formSendMessages" name="formSendMessages">
+<form action="./" method="post" id="formAdmitMembers" name="formAdmitMembers">
 <input type="hidden" name="m" value="({$module_name})" />
 <input type="hidden" name="a" value="page_({$hash_tbl->hash('admit_sns_entry')})" />
 <input type="hidden" name="sessid" value="({$PHPSESSID})" />
@@ -167,12 +167,12 @@
 </table>
 <div class="listControlBtm">
 <div class="entryTransmit">
-<p class="entryCheck"><img src="modules/admin/img/icn_msgtransmit.gif" alt="dummy" /><a href="#" onClick="return checkAll('formSendMessages');" onKeyPress="return checkAll('formSendMessages');">全てをチェック</a>&nbsp;|&nbsp;<a href="#" onClick="return clearAll('formSendMessages');" onKeyPress="return clearAll('formSendMessages');">全てのチェックをはずす</a></p>
+<p class="entryCheck"><img src="modules/admin/img/icn_msgtransmit.gif" alt="dummy" /><a href="#" onClick="return checkAll('formAdmitMembers');" onKeyPress="return checkAll('formAdmitMembers');">全てをチェック</a>&nbsp;|&nbsp;<a href="#" onClick="return clearAll('formAdmitMembers');" onKeyPress="return clearAll('formAdmitMembers');">全てのチェックをはずす</a></p>
 <input type=hidden name="EntryType" id="EntryType" value="">
 <div class="entryTransmitBtn">
-<input type="submit" id="btnEntryOK" value="承 認 す る" onClick="document.formSendMessages.EntryType.value=1;"/>
+<input type="submit" id="btnEntryOK" value="承 認 す る" onClick="document.formAdmitMembers.EntryType.value=1;"/>
 <br />
-<input type="submit" id="btnEntryNG" value="否 認 す る" onClick="document.formSendMessages.EntryType.value=2;"/>
+<input type="submit" id="btnEntryNG" value="否 認 す る" onClick="document.formAdmitMembers.EntryType.value=2;"/>
 </form>
 
 </div>({*/div class="entryTransmitBtn"*})
