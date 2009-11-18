@@ -29,6 +29,10 @@ class pc_do_c_topic_edit_delete_c_commu_topic_comment_image extends OpenPNE_Acti
             !db_commu_is_c_commu_admin($c_topic['c_commu_id'], $u)) {
             handle_kengen_error();
         }
+        if ($c_commu['is_topic'] == 'member' &&
+            !db_commu_is_c_commu_member($c_topic['c_commu_id'], $u)) {
+            handle_kengen_error();
+        }
         //---
 
         db_image_data_delete($c_topic['image_filename'.$pic_delete]);
