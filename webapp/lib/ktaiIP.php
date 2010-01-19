@@ -35,7 +35,7 @@ $GLOBALS['_OPENPNE_KTAI_IP_LIST'] = array(
 '118.159.131.0/25',
 '118.159.133.0/25',
 '118.159.132.160/27',
-'118.159.133.192/26'
+'118.159.133.192/26',
 
 // SoftBank (2009/8/10更新)
 // http://creation.mb.softbank.jp/web/web_ip.html
