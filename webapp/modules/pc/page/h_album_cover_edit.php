@@ -32,7 +32,7 @@ class pc_page_h_album_cover_edit extends OpenPNE_Action
             handle_kengen_error();
         }
 
-        if (!(is_null($subject) || is_null($description)||is_null($public_flag))) {
+        if (!(is_null($subject) || is_null($description)|| is_null($public_flag))) {
             $album['subject'] = $subject;
             $album['description'] = $description;
             $album['public_flag'] = $public_flag;
