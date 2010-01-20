@@ -31,8 +31,6 @@ class ktai_page_h_album_add_end extends OpenPNE_Action
             $this->set('limit_size', $limit_size);
         }
 
-        $this->set('image_max', IMAGE_MAX_FILESIZE);
-
         if (MAIL_ADDRESS_HASHED) {
             $mail_address = "ai{$target_c_album_id}-".t_get_user_hash($u).'@'.MAIL_SERVER_DOMAIN;
         } else {
