@@ -12,7 +12,7 @@
 </td></tr></table>
 
 ({if !$target_c_album.c_album_id})
-[i:106]<a href="mailto:({$album_address})?subject=ここにﾀｲﾄﾙを書いてね&body=ここにｱﾙﾊﾞﾑの説明文を書いてね">ﾒｰﾙで投稿</a><br>
+[i:106]<a href="mailto:({$album_address})">ﾒｰﾙで投稿</a><br>
 写真を添付すると表紙付きｱﾙﾊﾞﾑになります。<br>
 <font color="#({$ktai_color_config.font_09})">※ﾒｰﾙ投稿では絵文字が反映されません</font>
 <hr color="#({$ktai_color_config.border_01})">
