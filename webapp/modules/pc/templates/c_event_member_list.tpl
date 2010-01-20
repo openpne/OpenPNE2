@@ -142,7 +142,7 @@
 ({/t_loop})
 </tr>
 <tr class="text">
-({t_loop from=$c_event_member_list start=40 num=5})
+({t_loop from=$c_event_member_list start=45 num=5})
 <td>({if $item})<a href="({t_url m=pc a=page_f_home})&amp;target_c_member_id=({$item.c_member_id})">({$item.nickname|default:"&nbsp;"})</a>({/if})</td>
 ({/t_loop})
 </tr>
