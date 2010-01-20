@@ -9,7 +9,7 @@
 <table width="100%"><tr><td align="center" bgcolor="#({$ktai_color_config.bg_02})">
 <font color="#({$ktai_color_config.font_05})">表紙画像の置換え</font><br>
 </td></tr></table>
-[i:106]<a href="mailto:({$mail_address})?subject=アルバム表紙を添付してね">ﾒｰﾙで表紙画像を投稿</a><br>
+[i:106]<a href="mailto:({$mail_address})">ﾒｰﾙで表紙画像を投稿</a><br>
 ｱﾙﾊﾞﾑ表紙を添付画像と置き換えます。<br>
 <font color="#({$ktai_color_config.font_09})">※件名と本文は反映されません</font>
 
