@@ -33,7 +33,7 @@ class ktai_do_h_message_delete_c_message extends OpenPNE_Action
             if (empty($c_message['is_deleted_from'])) {
                 handle_kengen_error();  // メッセージがごみ箱にない場合は権限エラー
             }
-            db_message_delete_c_message_from_trash($c_message_id);
+            db_message_delete_c_message_from_trash($c_message_id, $u);
         }
 
         openpne_redirect('ktai', 'page_h_message_box', array('box' => 'trash'));
