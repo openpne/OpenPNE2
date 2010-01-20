@@ -11,7 +11,7 @@
 [i:106]<a href="mailto:({$mail_address})">写真を追加</a><br>
 写真をｱﾙﾊﾞﾑに登録します。<br>
 ﾒｰﾙの件名は写真の説明になります。<br>
-<font color="#({$ktai_color_config.font_09})">※一度に登録できる写真は1枚のみです</font<br>
+<font color="#({$ktai_color_config.font_09})">※一度に登録できる写真は1枚のみです</font><br>
 <font color="#({$ktai_color_config.font_09})">※ﾒｰﾙ投稿では絵文字が反映されません</font>
 <hr color="#({$ktai_color_config.border_01})">
 ({/if})
