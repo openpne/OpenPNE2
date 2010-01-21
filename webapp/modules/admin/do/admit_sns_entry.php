@@ -9,6 +9,10 @@ class admin_do_admit_sns_entry extends OpenPNE_Action
 {
     function execute($requests)
     {
+        if (!IS_SNS_ENTRY_CONFIRM) {
+            admin_client_redirect('top', '指定されたページにはアクセスできません');
+        }
+
         // メンバー一覧
         $ids = $requests['c_member_pre_ids'];
         switch ($requests['EntryType']) {
