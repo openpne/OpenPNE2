@@ -9,6 +9,10 @@ class admin_page_admit_sns_entry extends OpenPNE_Action
 {
     function execute($requests)
     {
+        if (!IS_SNS_ENTRY_CONFIRM) {
+            admin_client_redirect('top', '指定されたページにはアクセスできません');
+        }
+
         $v = array();
 
         $entrytype = $requests['EntryType'];
