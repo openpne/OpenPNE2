@@ -9,6 +9,11 @@ class admin_page_list_sns_entry extends OpenPNE_Action
 {
     function execute($requests)
     {
+
+        if (!IS_SNS_ENTRY_CONFIRM) {
+            admin_client_redirect('top', '指定されたページにはアクセスできません');
+        }
+
         $order = $requests['order'];
         $mail_address = $requests['mail_address'];
 
