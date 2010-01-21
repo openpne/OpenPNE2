@@ -23,6 +23,11 @@
 </form>
 
 <div class="userList">
+
+({if !$pager.total_num})
+該当するメンバーが存在しません
+({else})
+
 ({if $pager})
 <form action="./" method="get">
 <p id="numberDisplays">
@@ -196,6 +201,7 @@
 ({/if})
 </div>({*/div class="listControlBtm"*})
 
+({/if})
 </div>({*/div class="userList"*})
 
 <p class="newline"></p>
