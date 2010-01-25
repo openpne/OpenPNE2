@@ -94,6 +94,11 @@ function db_schedule_add_insert_c_schedule(
     $end_date, $end_time,
     $is_receive_mail)
 {
+
+    // タイトルと本文中に書いてあるURLがSNS内でありセッションパラメータを含んでいた場合は削除
+    $title = db_ktai_delete_url_session_parameter($title);
+    $body = db_ktai_delete_url_session_parameter($body);
+
     $data = array(
         'c_member_id' => intval($c_member_id),
         'title' => $title,
@@ -119,6 +124,11 @@ function db_schedule_edit_update_c_schedule(
     $is_receive_mail,
     $c_schedule_id)
 {
+
+    // タイトルと本文中に書いてあるURLがSNS内でありセッションパラメータを含んでいた場合は削除
+    $title = db_ktai_delete_url_session_parameter($title);
+    $body = db_ktai_delete_url_session_parameter($body);
+
     $data = array(
         'c_member_id' => intval($c_member_id),
         'title' => $title,
