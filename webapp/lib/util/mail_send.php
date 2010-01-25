@@ -565,6 +565,9 @@ function do_common_send_message_mail_send($c_member_id_to, $c_member_id_from, $s
     $pc_address = $c_member_to['secure']['pc_address'];
     $is_receive_mail = $c_member_to['is_receive_mail'];
 
+    // メッセージ中に書いてあるURLがSNS内でありセッションパラメータを含んでいた場合は削除
+    $body = db_ktai_delete_url_session_parameter($body);
+
     $params = array(
         'c_member_to' => db_member_c_member4c_member_id($c_member_id_to),
         'c_member_from' => db_member_c_member4c_member_id($c_member_id_from),
@@ -805,6 +808,9 @@ function do_common_send_message_mail_send_ktai($c_member_id_to, $c_member_id_fro
     $is_receive_ktai_mail = $c_member_to['is_receive_ktai_mail'];
     $p = array('kad' => t_encrypt(db_member_username4c_member_id($c_member_to['c_member_id'], true)));
     $login_url = openpne_gen_url('ktai', 'page_o_login', $p);
+
+    // メッセージ中に書いてあるURLがSNS内でありセッションパラメータを含んでいた場合は削除
+    $body = db_ktai_delete_url_session_parameter($body);
 
     $params = array(
         'c_member_to'   => db_member_c_member4c_member_id($c_member_id_to),
