@@ -1681,6 +1681,9 @@ function db_member_insert_c_member_profile($c_member_id, $c_profile_id, $c_profi
     //function cache削除
     cache_drop_c_member_profile($c_member_id);
 
+    // プロフィール中に書いてあるURLがSNS内でありセッションパラメータを含んでいた場合は削除
+    $value = db_ktai_delete_url_session_parameter($value);
+
     $data = array(
         'c_member_id' => intval($c_member_id),
         'c_profile_id' => intval($c_profile_id),
@@ -1705,6 +1708,9 @@ function db_member_insert_c_member_profile($c_member_id, $c_profile_id, $c_profi
  */
 function db_member_insert_c_member_pre_profile($c_member_pre_id, $c_profile_id, $c_profile_option_id, $value, $public_flag)
 {
+    // プロフィール中に書いてあるURLがSNS内でありセッションパラメータを含んでいた場合は削除
+    $value = db_ktai_delete_url_session_parameter($value);
+
     $data = array(
         'c_member_pre_id' => intval($c_member_pre_id),
         'c_profile_id' => intval($c_profile_id),
