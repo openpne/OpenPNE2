@@ -12,6 +12,9 @@ function create_message_friend_invite($u, $body, $target_c_member_id)
     $p = array('target_c_member_id' => $target_c_member_id);
     $url = openpne_gen_url('pc', 'page_f_home', $p);
 
+    // メッセージ中に書いてあるURLがSNS内でありセッションパラメータを含んでいた場合は削除
+    $body = db_ktai_delete_url_session_parameter($body);
+
     $msg_body = <<<EOD
 {$c_member['nickname']}さんからメンバー紹介メッセージが届いています。
 
@@ -33,6 +36,9 @@ function create_message_commu_invite($u, $body, $c_commu_id)
     $p = array('target_c_commu_id' => $c_commu_id);
     $url = openpne_gen_url('pc', 'page_c_home', $p);
     $WORD_COMMUNITY = WORD_COMMUNITY;
+
+    // メッセージ中に書いてあるURLがSNS内でありセッションパラメータを含んでいた場合は削除
+    $body = db_ktai_delete_url_session_parameter($body);
 
     $msg_body = <<<EOD
 {$c_member['nickname']}さんから{$WORD_COMMUNITY}紹介メッセージが届いています。
@@ -58,6 +64,9 @@ function create_message_event_invite($u, $body, $c_commu_topic_id)
     $p = array('target_c_commu_topic_id' => $c_commu_topic_id);
     $url = openpne_gen_url('pc', 'page_c_event_detail', $p);
 
+    // メッセージ中に書いてあるURLがSNS内でありセッションパラメータを含んでいた場合は削除
+    $body = db_ktai_delete_url_session_parameter($body);
+
     $msg_body = <<<EOD
 {$c_member['nickname']}さんからイベント紹介メッセージが届いています。
 
@@ -82,6 +91,9 @@ function create_message_event_message($u, $body, $c_commu_topic_id)
     $p = array('target_c_commu_topic_id' => $c_commu_topic_id);
     $url = openpne_gen_url('pc', 'page_c_event_detail', $p);
 
+    // メッセージ中に書いてあるURLがSNS内でありセッションパラメータを含んでいた場合は削除
+    $body = db_ktai_delete_url_session_parameter($body);
+
     $msg_body = <<<EOD
 イベントの企画者{$c_member['nickname']}さんからイベントに関してのお知らせが届いています。
 
@@ -102,6 +114,9 @@ function create_message_commu_admin_request($u, $body, $target_c_commu_id)
     $c_commu = db_commu_c_commu4c_commu_id($target_c_commu_id);
     $WORD_COMMUNITY = WORD_COMMUNITY;
 
+    // メッセージ中に書いてあるURLがSNS内でありセッションパラメータを含んでいた場合は削除
+    $body = db_ktai_delete_url_session_parameter($body);
+
     $msg_body = <<<EOD
 {$c_member['nickname']} さんから{$c_commu['name']} {$WORD_COMMUNITY}の管理者交代希望メッセージが届いています。
 
@@ -121,6 +136,9 @@ function create_message_commu_sub_admin_request($u, $body, $target_c_commu_id)
     $c_commu = db_commu_c_commu4c_commu_id($target_c_commu_id);
     $WORD_COMMUNITY = WORD_COMMUNITY;
 
+    // メッセージ中に書いてあるURLがSNS内でありセッションパラメータを含んでいた場合は削除
+    $body = db_ktai_delete_url_session_parameter($body);
+
     $msg_body = <<<EOD
 {$c_member['nickname']} さんから{$c_commu['name']} {$WORD_COMMUNITY}の副管理者要請メッセージが届いています。
 
@@ -138,6 +156,9 @@ function create_message_commu_join_request($u, $body, $target_c_commu_id)
 
     $c_member = db_member_c_member4c_member_id_LIGHT($u);
     $c_commu = db_commu_c_commu4c_commu_id($target_c_commu_id);
+
+    // メッセージ中に書いてあるURLがSNS内でありセッションパラメータを含んでいた場合は削除
+    $body = db_ktai_delete_url_session_parameter($body);
 
     $msg_body = <<<EOD
 {$c_member['nickname']} さんから{$c_commu['name']} {$WORD_COMMUNITY}への参加希望メッセージが届いています。
@@ -157,6 +178,9 @@ function create_message_friend_link_request($u, $body)
     $c_member_id_from = $u;
     $c_member = db_member_c_member4c_member_id_LIGHT($u);
     $WORD_FRIEND = WORD_FRIEND;
+
+    // メッセージ中に書いてあるURLがSNS内でありセッションパラメータを含んでいた場合は削除
+    $body = db_ktai_delete_url_session_parameter($body);
 
     $msg_body = <<<EOD
 {$c_member['nickname']} さんから{$WORD_FRIEND}リンク要請のメッセージが届いています。
