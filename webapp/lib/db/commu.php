@@ -3439,7 +3439,7 @@ function db_commu_new_topic_list(
             . ' INNER JOIN c_commu_topic AS ct USING(c_commu_id) ';
 
     $params = array();
-    $where = ' WHERE true';
+    $where = ' WHERE 0 = 0';
 
     if ($c_commu_id) {
         $where .= ' AND ct.c_commu_id = ?';
