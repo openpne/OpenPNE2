@@ -46,9 +46,9 @@ class ktai_page_c_event_edit extends OpenPNE_Action
             $c_topic_temp = p_c_event_add_confirm_event4request();
             $c_topic['name'] = $c_topic_temp['title'];
             $c_topic['body'] = $c_topic_temp['detail'];
-            $c_topic['open_date_comment'] = db_ktai_delete_url_session_parameter($c_topic_temp['open_date_comment']);
+            $c_topic['open_date_comment'] = $c_topic_temp['open_date_comment'];
             $c_topic['open_pref_id'] = $c_topic_temp['open_pref_id'];
-            $c_topic['open_pref_comment'] = db_ktai_delete_url_session_parameter($c_topic_temp['open_pref_comment']);
+            $c_topic['open_pref_comment'] = $c_topic_temp['open_pref_comment'];
             $c_topic['open_date_year'] = $c_topic_temp['open_date_year'];
             $c_topic['open_date_month'] = $c_topic_temp['open_date_month'];
             $c_topic['open_date_day'] = $c_topic_temp['open_date_day'];
