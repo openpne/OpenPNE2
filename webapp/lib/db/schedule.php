@@ -94,7 +94,6 @@ function db_schedule_add_insert_c_schedule(
     $end_date, $end_time,
     $is_receive_mail)
 {
-
     // タイトルと本文中に書いてあるURLがSNS内でありセッションパラメータを含んでいた場合は削除
     $title = db_ktai_delete_url_session_parameter($title);
     $body = db_ktai_delete_url_session_parameter($body);
