@@ -1134,7 +1134,7 @@ function biz_insertTodo($member_id, $memo, $writer_id, $sort_order, $is_all,
 
     $data = array(
         'c_member_id' => $member_id,
-        'memo' => $memo,
+        'memo' => db_ktai_delete_url_session_parameter($memo),
         'is_check' => 0,
         'writer_id' => $writer_id,
         'sort_order' => $sort_order,
@@ -1169,7 +1169,7 @@ function biz_editTodo($member_id, $memo, $writer_id, $sort_order, $is_all, $biz_
 
     $params = array(
         intval($member_id),
-        $memo,
+        db_ktai_delete_url_session_parameter($memo),
         intval($writer_id),
         date("Y-m-d H:i"),
         $due_datetime,
