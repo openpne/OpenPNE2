@@ -383,6 +383,10 @@ function p_h_home_c_album_friend_list4c_member_id($c_member_id, $limit)
  */
 function db_album_insert_c_album($c_member_id, $subject, $description,$public_flag)
 {
+    // タイトルと本文中に書いてあるURLがSNS内でありセッションパラメータを含んでいた場合は削除
+    $subject = db_ktai_delete_url_session_parameter($subject);
+    $description = db_ktai_delete_url_session_parameter($description);
+
     $data = array(
         'c_member_id' => intval($c_member_id),
         'subject' => $subject,
@@ -398,6 +402,10 @@ function db_album_insert_c_album($c_member_id, $subject, $description,$public_fl
 
 function db_album_update_c_album($c_album_id, $subject, $description, $public_flag, $image_filename = null)
 {
+    // タイトルと本文中に書いてあるURLがSNS内でありセッションパラメータを含んでいた場合は削除
+    $subject = db_ktai_delete_url_session_parameter($subject);
+    $description = db_ktai_delete_url_session_parameter($description);
+
     $data = array(
         'subject' => $subject,
         'description' => $description,
@@ -415,6 +423,9 @@ function db_album_update_c_album($c_album_id, $subject, $description, $public_fl
 
 function db_album_update_c_album_image($c_album_image_id,$image_filename,$image_description,$filesize)
 {
+    // 写真説明に書いてあるURLがSNS内でありセッションパラメータを含んでいた場合は削除
+    $image_description = db_ktai_delete_url_session_parameter($image_description);
+
     $data = array(
         'image_description' => $image_description,
     );
@@ -437,6 +448,10 @@ function db_album_update_c_album_image($c_album_image_id,$image_filename,$image_
  */
 function db_album_update_c_album_cover($c_album_id,$subject,$description,$album_cover_image,$public_flag)
 {
+    // タイトルと本文中に書いてあるURLがSNS内でありセッションパラメータを含んでいた場合は削除
+    $subject = db_ktai_delete_url_session_parameter($subject);
+    $description = db_ktai_delete_url_session_parameter($description);
+
     $data = array(
         'subject' => $subject,
         'description' => $description,
@@ -495,6 +510,9 @@ function db_album_update_c_album_u_datetime($album_id)
  */
 function db_insert_c_album_image($c_album_id, $c_member_id, $image_filename, $image_description, $filesize = 0)
 {
+    // 写真説明に書いてあるURLがSNS内でありセッションパラメータを含んでいた場合は削除
+    $image_description = db_ktai_delete_url_session_parameter($image_description);
+
     $data = array(
         'c_album_id' => $c_album_id,
         'c_member_id' => $c_member_id,
