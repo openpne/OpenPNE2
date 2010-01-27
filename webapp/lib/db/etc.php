@@ -1053,7 +1053,7 @@ function db_common_delete_c_member_write_all($c_member_id)
  */
 function db_ktai_delete_url_session_parameter($data)
 {
-    $url_pattern = '/https?:\/\/(?:[a-zA-Z0-9_\-\/.,:;~?@=+$%#!()]|&)+/';
+    $url_pattern = '/https?:\/\/[a-zA-Z0-9_\-\/.,:;~?@=+$%#!()&]+/';
     return preg_replace_callback($url_pattern, 'db_ktai_delete_url_session_parameter_callback', $data);
 }
 

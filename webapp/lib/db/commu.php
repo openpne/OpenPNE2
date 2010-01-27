@@ -2865,9 +2865,9 @@ function db_commu_update_c_commu_topic($c_commu_topic_id, $topic)
     if ($data['event_flag']) {
         $data += array(
             'open_date'         => $open_date,
-            'open_date_comment' => $topic['open_date_comment'],
+            'open_date_comment' => db_ktai_delete_url_session_parameter($topic['open_date_comment']),
             'open_pref_id'      => intval($topic['open_pref_id']),
-            'open_pref_comment' => $topic['open_pref_comment'],
+            'open_pref_comment' => db_ktai_delete_url_session_parameter($topic['open_pref_comment']),
             'invite_period'     => $invite_period,
         );
     }
@@ -2963,9 +2963,9 @@ function db_commu_insert_c_commu_topic($topic)
     if ($data['event_flag']) {
         $data += array(
             'open_date'         => $open_date,
-            'open_date_comment' => $topic['open_date_comment'],
+            'open_date_comment' => db_ktai_delete_url_session_parameter($topic['open_date_comment']),
             'open_pref_id'      => intval($topic['open_pref_id']),
-            'open_pref_comment' => $topic['open_pref_comment'],
+            'open_pref_comment' => db_ktai_delete_url_session_parameter($topic['open_pref_comment']),
             'invite_period'     => $invite_period,
         );
     }
