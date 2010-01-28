@@ -974,7 +974,7 @@ function db_diary_insert_c_diary($c_member_id, $subject, $body, $public_flag, $i
     // タイトルと本文中に書いてあるURLがSNS内でありセッションパラメータを含んでいた場合は削除
     $subject = db_ktai_delete_url_session_parameter($subject);
     $body = db_ktai_delete_url_session_parameter($body);
-    
+
     $data = array(
         'c_member_id' => intval($c_member_id),
         'subject' => $subject,
