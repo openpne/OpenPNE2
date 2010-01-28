@@ -1186,9 +1186,6 @@ function biz_editTodo($member_id, $memo, $writer_id, $sort_order, $is_all, $biz_
         biz_checkTodo($biz_todo_id, $todo['is_check']);
     }
 
-    // 書き込み内に書いてあるURLがSNS内でありセッションパラメータを含んでいた場合は削除
-    $memo = db_ktai_delete_url_session_parameter($memo);
-
     $sql = 'UPDATE biz_todo SET c_member_id = ?, memo = ?, writer_id = ?,'
         .'r_datetime = ?, due_datetime = ?, priority = ?, biz_group_id = ?,'
         .'public_flag = ? WHERE biz_todo_id = ?';
