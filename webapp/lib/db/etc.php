@@ -951,4 +951,36 @@ function db_etc_c_cmd_url4name($name)
     return db_get_one($sql, array($name));
 }
 
+/**
+ * 携帯からの書き込み時にセッションパラメータを含んだSNS内のURLを書いていた場合に削除する
+ * @param string $data
+ * @return string
+ */
+function db_ktai_delete_url_session_parameter($data)
+{
+    $url_pattern = '/https?:\/\/[a-zA-Z0-9_\-\/.,:;~?@=+$%#!()&]+/';
+    return preg_replace_callback($url_pattern, 'db_ktai_delete_url_session_parameter_callback', $data);
+}
+
+function db_ktai_delete_url_session_parameter_callback($matches)
+{
+    $raw_url = $matches[0];
+
+    $openpne_url = '';
+    if (strpos($raw_url, OPENPNE_URL) === 0) {
+        $openpne_url = OPENPNE_URL;
+    } elseif (OPENPNE_USE_PARTIAL_SSL && strpos($raw_url, OPENPNE_SSL_URL) === 0) {
+        $openpne_url = OPENPNE_SSL_URL;
+    }
+
+    if (!$openpne_url) {
+    	// サイト外であった場合は削除しない
+        return $raw_url;
+    }
+
+    $raw_url = preg_replace('/&ksid=[a-zA-Z0-9]*/', '', $raw_url);
+    return $raw_url;
+
+}
+
 ?>

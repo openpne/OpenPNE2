@@ -394,6 +394,10 @@ function db_message_hensinmoto_id($hensin_c_message_id)
  */
 function db_message_insert_c_message($c_member_id_from, $c_member_id_to, $subject, $body)
 {
+    // タイトルと本文中に書いてあるURLがSNS内でありセッションパラメータを含んでいた場合は削除
+    $subject = db_ktai_delete_url_session_parameter($subject);
+    $body = db_ktai_delete_url_session_parameter($body);
+
     $data = array(
         'c_member_id_from' => intval($c_member_id_from),
         'c_member_id_to'   => intval($c_member_id_to),
@@ -419,6 +423,10 @@ function db_message_insert_c_message($c_member_id_from, $c_member_id_to, $subjec
  */
 function db_message_insert_c_message_syoudaku($c_member_id_from, $c_member_id_to, $subject, $body)
 {
+    // タイトルと本文中に書いてあるURLがSNS内でありセッションパラメータを含んでいた場合は削除
+    $subject = db_ktai_delete_url_session_parameter($subject);
+    $body = db_ktai_delete_url_session_parameter($body);
+
     $data = array(
         'c_member_id_from' => intval($c_member_id_from),
         'c_member_id_to'   => intval($c_member_id_to),
@@ -440,6 +448,10 @@ function db_message_insert_c_message_syoudaku($c_member_id_from, $c_member_id_to
  */
 function db_message_insert_message_to_is_save($c_member_id_to,$c_member_id_from,$subject,$body,$jyusin_message_id)
 {
+    // タイトルと本文中に書いてあるURLがSNS内でありセッションパラメータを含んでいた場合は削除
+    $subject = db_ktai_delete_url_session_parameter($subject);
+    $body = db_ktai_delete_url_session_parameter($body);
+
     $data = array(
         'c_member_id_from' => intval($c_member_id_from),
         'c_member_id_to'   => intval($c_member_id_to),
@@ -568,6 +580,10 @@ function db_message_update_c_message_is_read4c_message_id($c_message_id, $c_memb
  */
 function db_message_update_message_to_is_save($c_message_id, $subject, $body, $is_send = 0)
 {
+    // タイトルと本文中に書いてあるURLがSNS内でありセッションパラメータを含んでいた場合は削除
+    $subject = db_ktai_delete_url_session_parameter($subject);
+    $body = db_ktai_delete_url_session_parameter($body);
+
     $data = array(
         'subject'    => $subject,
         'body'       => $body,
@@ -583,6 +599,10 @@ function db_message_update_message_to_is_save($c_message_id, $subject, $body, $i
 //◆メッセージ受信メール
 function db_message_send_message($c_member_id_from, $c_member_id_to, $subject, $body)
 {
+    // タイトルと本文中に書いてあるURLがSNS内でありセッションパラメータを含んでいた場合は削除
+    $subject = db_ktai_delete_url_session_parameter($subject);
+    $body = db_ktai_delete_url_session_parameter($body);
+
     //メッセージ
     $c_message_id = db_message_insert_c_message($c_member_id_from, $c_member_id_to, $subject, $body);
 
@@ -597,6 +617,10 @@ function db_message_send_message($c_member_id_from, $c_member_id_to, $subject, $
 //◆承認依頼メッセージ受信メール
 function db_message_send_message_syoudaku($c_member_id_from, $c_member_id_to, $subject, $body)
 {
+    // タイトルと本文中に書いてあるURLがSNS内でありセッションパラメータを含んでいた場合は削除
+    $subject = db_ktai_delete_url_session_parameter($subject);
+    $body = db_ktai_delete_url_session_parameter($body);
+
     //メッセージ
     db_message_insert_c_message_syoudaku($c_member_id_from, $c_member_id_to, $subject, $body);
     pne_cache_drop('db_message_count_c_message_not_is_read4c_member_to_id', (int)$c_member_id_to);
@@ -609,6 +633,10 @@ function db_message_send_message_syoudaku($c_member_id_from, $c_member_id_to, $s
 // コミュニティ紹介
 function db_message_send_message_syoukai_commu($c_member_id_from, $c_member_id_to, $subject, $body)
 {
+    // タイトルと本文中に書いてあるURLがSNS内でありセッションパラメータを含んでいた場合は削除
+    $subject = db_ktai_delete_url_session_parameter($subject);
+    $body = db_ktai_delete_url_session_parameter($body);
+
     //メッセージ
     db_message_insert_c_message($c_member_id_from, $c_member_id_to, $subject, $body);
     pne_cache_drop('db_message_count_c_message_not_is_read4c_member_to_id', (int)$c_member_id_to);
@@ -621,6 +649,10 @@ function db_message_send_message_syoukai_commu($c_member_id_from, $c_member_id_t
 // コミュニティ参加者全員にメール
 function db_message_send_message_commu_send_msg($c_member_id_from, $c_member_id_to, $subject, $body, $c_commu_id)
 {
+    // タイトルと本文中に書いてあるURLがSNS内でありセッションパラメータを含んでいた場合は削除
+    $subject = db_ktai_delete_url_session_parameter($subject);
+    $body = db_ktai_delete_url_session_parameter($body);
+
     //メッセージ
     db_message_insert_c_message($c_member_id_from, $c_member_id_to, $subject, $body);
     pne_cache_drop('db_message_count_c_message_not_is_read4c_member_to_id', (int)$c_member_id_to);
@@ -633,6 +665,10 @@ function db_message_send_message_commu_send_msg($c_member_id_from, $c_member_id_
 // メンバー紹介
 function db_message_send_message_syoukai_member($c_member_id_from, $c_member_id_to, $subject, $body)
 {
+    // タイトルと本文中に書いてあるURLがSNS内でありセッションパラメータを含んでいた場合は削除
+    $subject = db_ktai_delete_url_session_parameter($subject);
+    $body = db_ktai_delete_url_session_parameter($body);
+
     //メッセージ
     db_message_insert_c_message($c_member_id_from, $c_member_id_to, $subject, $body);
     pne_cache_drop('db_message_count_c_message_not_is_read4c_member_to_id', (int)$c_member_id_to);
@@ -645,6 +681,10 @@ function db_message_send_message_syoukai_member($c_member_id_from, $c_member_id_
 //イベント紹介
 function db_message_send_message_event_invite($c_member_id_from, $c_member_id_to, $subject, $body)
 {
+    // タイトルと本文中に書いてあるURLがSNS内でありセッションパラメータを含んでいた場合は削除
+    $subject = db_ktai_delete_url_session_parameter($subject);
+    $body = db_ktai_delete_url_session_parameter($body);
+
     //メッセージ
     db_message_insert_c_message($c_member_id_from, $c_member_id_to, $subject, $body);
     pne_cache_drop('db_message_count_c_message_not_is_read4c_member_to_id', (int)$c_member_id_to);
@@ -657,6 +697,10 @@ function db_message_send_message_event_invite($c_member_id_from, $c_member_id_to
 //イベントメッセージ
 function db_message_send_message_event_message($c_member_id_from, $c_member_id_to, $subject, $body)
 {
+    // タイトルと本文中に書いてあるURLがSNS内でありセッションパラメータを含んでいた場合は削除
+    $subject = db_ktai_delete_url_session_parameter($subject);
+    $body = db_ktai_delete_url_session_parameter($body);
+
     //メッセージ
     db_message_insert_c_message($c_member_id_from, $c_member_id_to, $subject, $body);
     pne_cache_drop('db_message_count_c_message_not_is_read4c_member_to_id', (int)$c_member_id_to);
@@ -668,6 +712,10 @@ function db_message_send_message_event_message($c_member_id_from, $c_member_id_t
 
 function db_message_update_c_message($c_message_id, $subject, $body, $image_filename_1 = '', $image_filename_2 = '', $image_filename_3 = '', $filename = '')
 {
+    // タイトルと本文中に書いてあるURLがSNS内でありセッションパラメータを含んでいた場合は削除
+    $subject = db_ktai_delete_url_session_parameter($subject);
+    $body = db_ktai_delete_url_session_parameter($body);
+
     $data = array(
         'subject' => $subject,
         'body' => $body,

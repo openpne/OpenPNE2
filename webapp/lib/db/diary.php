@@ -965,6 +965,10 @@ function db_diary_insert_c_diary($c_member_id, $subject, $body, $public_flag)
     //function cacheの削除
     pne_cache_drop('db_diary_get_c_diary_list4c_member_id', $c_member_id, 5);
 
+    // タイトルと本文中に書いてあるURLがSNS内でありセッションパラメータを含んでいた場合は削除
+    $subject = db_ktai_delete_url_session_parameter($subject);
+    $body = db_ktai_delete_url_session_parameter($body);
+
     $data = array(
         'c_member_id' => intval($c_member_id),
         'subject' => $subject,
@@ -990,6 +994,10 @@ function db_diary_update_c_diary($c_diary_id, $subject, $body, $public_flag,
     //function cacheの削除
     $c_diary = db_diary_get_c_diary4id($c_diary_id);
     pne_cache_drop('db_diary_get_c_diary_list4c_member_id', $c_diary['c_member_id'], 5);
+
+    // タイトルと本文中に書いてあるURLがSNS内でありセッションパラメータを含んでいた場合は削除
+    $subject = db_ktai_delete_url_session_parameter($subject);
+    $body = db_ktai_delete_url_session_parameter($body);
 
     $data = array(
         'subject' => $subject,
@@ -1102,6 +1110,9 @@ function db_diary_insert_c_diary_comment($c_member_id, $c_diary_id, $body)
     $c_diary =  db_diary_get_c_diary4id($c_diary_id);
     cache_drop_c_diary($c_member_id, $c_diary['c_member_id']);
     pne_cache_drop('p_h_home_c_diary_my_comment_list4c_member_id', $c_member_id, 5);
+
+    // 本文中に書いてあるURLがSNS内でありセッションパラメータを含んでいた場合は削除
+    $body = db_ktai_delete_url_session_parameter($body);
 
     $data = array(
         'c_member_id' => intval($c_member_id),

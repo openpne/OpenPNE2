@@ -2396,6 +2396,10 @@ function db_commu_c_commu_member_id_list4c_commu_id($c_commu_id)
  */
 function db_commu_insert_c_commu($c_member_id, $name, $c_commu_category_id, $info, $public_flag)
 {
+    // コミュニティ名と説明文に書いてあるURLがSNS内でありセッションパラメータを含んでいた場合は削除
+    $name = db_ktai_delete_url_session_parameter($name);
+    $info = db_ktai_delete_url_session_parameter($info);
+
     $data = array(
         'name' => $name,
         'c_member_id_admin' => intval($c_member_id),
@@ -2427,6 +2431,10 @@ function db_commu_update_c_commu($c_commu_id,
 {
     //function cacheの削除
     cache_drop_c_commu($c_commu_id);
+
+    // コミュニティ名と説明文に書いてあるURLがSNS内でありセッションパラメータを含んでいた場合は削除
+    $name = db_ktai_delete_url_session_parameter($name);
+    $info = db_ktai_delete_url_session_parameter($info);
 
     $data = array(
         'name' => $name,
@@ -2561,6 +2569,9 @@ function db_commu_insert_c_commu_member($c_commu_member_confirm_id)
  */
 function db_commu_insert_c_commu_member_confirm($c_commu_id, $c_member_id, $message = '')
 {
+    // メッセージ中に書いてあるURLがSNS内でありセッションパラメータを含んでいた場合は削除
+    $message = db_ktai_delete_url_session_parameter($message);
+
     $data = array(
         'c_commu_id' => intval($c_commu_id),
         'c_member_id' => intval($c_member_id),
@@ -2575,6 +2586,9 @@ function db_commu_insert_c_commu_member_confirm($c_commu_id, $c_member_id, $mess
  */
 function db_commu_insert_c_commu_admin_confirm($c_commu_id, $c_member_id, $message = '')
 {
+    // メッセージ中に書いてあるURLがSNS内でありセッションパラメータを含んでいた場合は削除
+    $message = db_ktai_delete_url_session_parameter($message);
+
     $data = array(
         'c_commu_id' => intval($c_commu_id),
         'c_member_id_to' => intval($c_member_id),
@@ -2589,6 +2603,9 @@ function db_commu_insert_c_commu_admin_confirm($c_commu_id, $c_member_id, $messa
  */
 function db_commu_insert_c_commu_sub_admin_confirm($c_commu_id, $c_member_id, $message = '')
 {
+    // メッセージ中に書いてあるURLがSNS内でありセッションパラメータを含んでいた場合は削除
+    $message = db_ktai_delete_url_session_parameter($message);
+
     $data = array(
         'c_commu_id' => intval($c_commu_id),
         'c_member_id_to' => intval($c_member_id),
@@ -2694,6 +2711,9 @@ function db_commu_insert_c_commu_topic_comment($c_commu_id, $c_commu_topic_id, $
 
     $number = db_commu_c_commu_topic_comment_number4c_commu_topic_id($c_commu_topic_id);
 
+    // コメント中に書いてあるURLがSNS内でありセッションパラメータを含んでいた場合は削除
+    $body = db_ktai_delete_url_session_parameter($body);
+
     $data = array(
         'c_commu_id' => intval($c_commu_id),
         'c_member_id' => intval($c_member_id),
@@ -2780,6 +2800,9 @@ function db_commu_delete_c_commu_topic_comment($c_commu_topic_comment_id)
 
 function db_commu_update_c_commu_topic($c_commu_topic_id, $topic)
 {
+    // タイトルに書いてあるURLがSNS内でありセッションパラメータを含んでいた場合は削除
+    $topic['name'] = db_ktai_delete_url_session_parameter($topic['name']);
+
     $data = array(
         'name'       => $topic['name'],
         'event_flag' => (bool)$topic['event_flag'],
@@ -2808,9 +2831,9 @@ function db_commu_update_c_commu_topic($c_commu_topic_id, $topic)
     if ($data['event_flag']) {
         $data += array(
             'open_date'         => $open_date,
-            'open_date_comment' => $topic['open_date_comment'],
+            'open_date_comment' => db_ktai_delete_url_session_parameter($topic['open_date_comment']),
             'open_pref_id'      => intval($topic['open_pref_id']),
-            'open_pref_comment' => $topic['open_pref_comment'],
+            'open_pref_comment' => db_ktai_delete_url_session_parameter($topic['open_pref_comment']),
             'invite_period'     => $invite_period,
         );
     }
@@ -2820,6 +2843,9 @@ function db_commu_update_c_commu_topic($c_commu_topic_id, $topic)
 
 function db_commu_update_c_commu_topic_comment($c_commu_topic_id, $topic_comment)
 {
+    // コメントに書いてあるURLがSNS内でありセッションパラメータを含んでいた場合は削除
+    $topic_comment['body'] = db_ktai_delete_url_session_parameter($topic_comment['body']);
+
     $data = array(
         'body' => $topic_comment['body'],
         'r_datetime' => db_now(),
@@ -2870,6 +2896,9 @@ function db_commu_insert_c_commu_topic($topic)
     cache_drop_c_commu_topic($topic['c_commu_id']);
     cache_drop_c_commu_list4c_member_id($topic['c_member_id']);
 
+    // タイトルと本文中に書いてあるURLがSNS内でありセッションパラメータを含んでいた場合は削除
+    $topic['name'] = db_ktai_delete_url_session_parameter($topic['name']);
+
     $data = array(
         'c_commu_id'  => intval($topic['c_commu_id']),
         'c_member_id' => intval($topic['c_member_id']),
@@ -2900,9 +2929,9 @@ function db_commu_insert_c_commu_topic($topic)
     if ($data['event_flag']) {
         $data += array(
             'open_date'         => $open_date,
-            'open_date_comment' => $topic['open_date_comment'],
+            'open_date_comment' => db_ktai_delete_url_session_parameter($topic['open_date_comment']),
             'open_pref_id'      => intval($topic['open_pref_id']),
-            'open_pref_comment' => $topic['open_pref_comment'],
+            'open_pref_comment' => db_ktai_delete_url_session_parameter($topic['open_pref_comment']),
             'invite_period'     => $invite_period,
         );
     }
@@ -2914,6 +2943,9 @@ function db_commu_insert_c_commu_topic_comment_3($comment)
     cache_drop_c_commu_list4c_member_id($comment['c_member_id']);
 
     db_commu_update_c_commu_topic_u_datetime(intval($comment['c_commu_topic_id']));
+
+    // タイトルと本文中に書いてあるURLがSNS内でありセッションパラメータを含んでいた場合は削除
+    $comment['body'] = db_ktai_delete_url_session_parameter($comment['body']);
 
     $data = array(
         'c_commu_id'       => intval($comment['c_commu_id']),
