@@ -806,6 +806,9 @@ function db_friend_update_c_friend_intro($c_member_id_from, $c_member_id_to, $in
     //function cacheを削除
     cache_drop_c_friend_intro($c_member_id_to);
 
+    // 紹介文中に書いてあるURLがSNS内でありセッションパラメータを含んでいた場合は削除
+    $intro = db_ktai_delete_url_session_parameter($intro);
+
     $data = array(
         'intro' => $intro,
         'r_datetime_intro' => db_now(),
@@ -829,6 +832,9 @@ function db_friend_update_c_friend_intro($c_member_id_from, $c_member_id_to, $in
  */
 function db_friend_insert_c_friend_confirm($c_member_id_from, $c_member_id_to, $message)
 {
+    // タイトルと本文中に書いてあるURLがSNS内でありセッションパラメータを含んでいた場合は削除
+    $message = db_ktai_delete_url_session_parameter($message);
+
     $data = array(
         'c_member_id_from' => intval($c_member_id_from),
         'c_member_id_to'   => intval($c_member_id_to),
