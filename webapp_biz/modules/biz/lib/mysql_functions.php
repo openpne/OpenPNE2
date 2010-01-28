@@ -202,7 +202,7 @@ function biz_getDateMemberSchedule($y, $m, $d, $target_c_member_id, $u)
             //そのidの予定を得る
             $sql = 'SELECT * FROM biz_schedule WHERE biz_schedule_id = ?';
             $params = array(
-                $value,
+                (int)$value,
             );
             $schedule += array($key => db_get_row($sql, $params));
         }
@@ -237,7 +237,7 @@ function biz_getJoinIdNewSchedule($id)
 
     foreach ($ids as $value) {
         $sql = 'SELECT * FROM biz_schedule WHERE biz_schedule_id = ?';
-        $params = array($value);
+        $params = array((int)$value);
         $schedule[] = db_get_row($sql, $params);
     }
 
@@ -258,7 +258,7 @@ function biz_getJoinMemberSchedule($id)
     foreach ($tmp as $value) {
         $sql = 'SELECT nickname FROM c_member WHERE c_member_id = ?';
         $params = array(
-            $value,
+            (int)$value,
         );
 
         $members[$value] = db_get_one($sql, $params);
@@ -302,7 +302,7 @@ function biz_getGroupMember($id, $limit=null, $start=null)
 
     if ($start) {
         $sql .= 'AND c_member_id <= ? ';
-        $params[] = $start;
+        $params[] = (int)$start;
     }
 
     $sql .= 'ORDER BY c_member_id';
@@ -893,17 +893,17 @@ function biz_editSchedule($title, $member_id, $begin_date, $finish_date, $begin_
 
     $params = array(
         $title,
-        $member_id,
+        (int)$member_id,
         $begin_date,
         $finish_date,
         $begin_time,
         $finish_time,
         $value,
-        $rep_type,
-        $first_id,
-        $biz_group_id,
+        (int)$rep_type,
+        (int)$first_id,
+        (int)$biz_group_id,
         $public_flag,
-        $id,
+        (int)$id,
     );
     db_query($sql, $params);
 
