@@ -2836,7 +2836,7 @@ function db_commu_update_c_commu_topic($c_commu_topic_id, $topic)
 {
     // タイトルに書いてあるURLがSNS内でありセッションパラメータを含んでいた場合は削除
     $topic['name'] = db_ktai_delete_url_session_parameter($topic['name']);
- 
+
     $data = array(
         'name'       => $topic['name'],
         'event_flag' => (bool)$topic['event_flag'],

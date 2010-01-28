@@ -386,7 +386,7 @@ function db_album_insert_c_album($c_member_id, $subject, $description,$public_fl
     // タイトルと本文中に書いてあるURLがSNS内でありセッションパラメータを含んでいた場合は削除
     $subject = db_ktai_delete_url_session_parameter($subject);
     $description = db_ktai_delete_url_session_parameter($description);
- 
+
     $data = array(
         'c_member_id' => intval($c_member_id),
         'subject' => $subject,
