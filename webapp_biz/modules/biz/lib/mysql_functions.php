@@ -828,6 +828,10 @@ function biz_insertSchedule($title, $c_member_id, $begin_date, $finish_date, $be
         $rep_type = 0;
     }
 
+    // 書き込み内に書いてあるURLがSNS内でありセッションパラメータを含んでいた場合は削除
+    $title = db_ktai_delete_url_session_parameter($title);
+    $value = db_ktai_delete_url_session_parameter($value);
+
     //biz_scheduleにデータを追加する
     $data = array(
         'title' => $title,
@@ -890,6 +894,10 @@ function biz_editSchedule($title, $member_id, $begin_date, $finish_date, $begin_
     if (!$rep_type) {
         $rep_type = 0;
     }
+
+    // 書き込み内に書いてあるURLがSNS内でありセッションパラメータを含んでいた場合は削除
+    $title = db_ktai_delete_url_session_parameter($title);
+    $value = db_ktai_delete_url_session_parameter($value);
 
     $params = array(
         $title,
@@ -955,6 +963,10 @@ function biz_insertGroup($name, $member_id, $info, $image_name, $members = array
         $members = array($member_id);
     }
 
+    // 書き込み内に書いてあるURLがSNS内でありセッションパラメータを含んでいた場合は削除
+    $name = db_ktai_delete_url_session_parameter($name);
+    $info = db_ktai_delete_url_session_parameter($info);
+
     //biz_groupにデータを追加する
     $data = array(
         'name' => $name,
@@ -988,8 +1000,11 @@ function biz_editGroup($biz_group_id, $name, $member_id, $info, $image_name, $me
         $members = array($member_id);
     }
 
-    //biz_groupにデータを追加する
+    // 書き込み内に書いてあるURLがSNS内でありセッションパラメータを含んでいた場合は削除
+    $name = db_ktai_delete_url_session_parameter($name);
+    $info = db_ktai_delete_url_session_parameter($info);
 
+    //biz_groupにデータを追加する
     $sql = 'UPDATE biz_group SET name = ?,info = ?,image_filename = ? WHERE biz_group_id = ?';
     $params = array(
         $name,
@@ -1060,6 +1075,10 @@ function biz_addShisetsu($name, $image_name, $info = '')
         $image_name = '';
     }
 
+    // 書き込み内に書いてあるURLがSNS内でありセッションパラメータを含んでいた場合は削除
+    $name = db_ktai_delete_url_session_parameter($name);
+    $info = db_ktai_delete_url_session_parameter($info);
+
     $data = array(
         'name' => $name,
         'image_filename' => $image_name,
@@ -1074,6 +1093,10 @@ function biz_editShisetsu($id, $name, $image_name, $info = '')
     if (!$image_name) {
         $image_name = 0;
     }
+
+    // 書き込み内に書いてあるURLがSNS内でありセッションパラメータを含んでいた場合は削除
+    $name = db_ktai_delete_url_session_parameter($name);
+    $info = db_ktai_delete_url_session_parameter($info);
 
     $sql = 'UPDATE biz_shisetsu SET name = ?,image_filename = ?, info = ? WHERE biz_shisetsu_id = ?';
     $params = array(
@@ -1134,7 +1157,7 @@ function biz_insertTodo($member_id, $memo, $writer_id, $sort_order, $is_all,
 
     $data = array(
         'c_member_id' => $member_id,
-        'memo' => $memo,
+        'memo' => db_ktai_delete_url_session_parameter($memo),
         'is_check' => 0,
         'writer_id' => $writer_id,
         'sort_order' => $sort_order,
@@ -1169,7 +1192,7 @@ function biz_editTodo($member_id, $memo, $writer_id, $sort_order, $is_all, $biz_
 
     $params = array(
         intval($member_id),
-        $memo,
+        db_ktai_delete_url_session_parameter($memo),
         intval($writer_id),
         date("Y-m-d H:i"),
         $due_datetime,
