@@ -1,16 +1,10 @@
-function main(id, sv) {
+function main(id) {
     if (!id.match(/^[a-zA-Z0-9]+$/)) {
         pne_url2a(url);
         return;
     }
-    if (!sv.match(/^[0-9]+$/)) {
-        pne_url2a(url);
-        return;
-    }
-    var html = '<script language="JavaScript" src="http://www.livly.com/b.php?uid='
+    var html = '<script language="JavaScript" src="http://www.livly.com/room/myroom_b/'
         + id
-        + '&s='
-        + sv
-        + '"></script>';
+        + '/"></script>';
     document.write(html);
 }
