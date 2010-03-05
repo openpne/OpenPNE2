@@ -216,8 +216,20 @@ function is_ktai_ip()
 {
     require_once 'Net/IPv4.php';
     require_once 'ktaiIP.php';
+
+    if (empty($GLOBALS['__Framework']['carrier'])) {
+        return false;
+    }
+
+    $carrier = $GLOBALS['__Framework']['carrier'];
     $is_valid_ip = false;
-    foreach ($GLOBALS['_OPENPNE_KTAI_IP_LIST'] as $ktai_ip) {
+
+    $list = array();
+    if (isset($GLOBALS['_OPENPNE_KTAI_IP_LIST'][$carrier])) {
+        $list = $GLOBALS['_OPENPNE_KTAI_IP_LIST'][$carrier];
+    }
+
+    foreach ($list as $ktai_ip) {
         if (Net_IPv4::ipInNetwork($_SERVER[SERVER_IP_KEY], $ktai_ip)) {
             $is_valid_ip = true;
             break;
