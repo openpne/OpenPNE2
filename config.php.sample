@@ -505,7 +505,7 @@ define('CHECK_KTAI_UA', true);
 
 // 携帯版でIP制限機能を使用するかどうか
 // IPリストは webapp/lib/ktaiIP.php
-define('CHECK_KTAI_IP', false);
+define('CHECK_KTAI_IP', true);
 
 // メール一斉送信のメールキューの使用
 define('OPENPNE_MAIL_QUEUE', false);
