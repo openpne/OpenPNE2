@@ -8,7 +8,7 @@ class admin_do_update_c_cmd_caster_cmd extends OpenPNE_Action
 {
     function handleError($errors)
     {
-        openpne_forward('admin', 'page', 'list_c_cmd_caster', $errors);
+        openpne_forward(ADMIN_MODULE_NAME, 'page', 'list_c_cmd_caster', $errors);
         exit;
     }
 
