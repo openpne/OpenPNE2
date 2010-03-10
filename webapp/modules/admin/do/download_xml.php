@@ -10,7 +10,7 @@ class admin_do_download_xml extends OpenPNE_Action
 {
     function handleError($errors)
     {
-        openpne_forward('admin', 'page', 'download_xml', $errors);
+        openpne_forward(ADMIN_MODULE_NAME, 'page', 'download_xml', $errors);
         exit;
     }
 
