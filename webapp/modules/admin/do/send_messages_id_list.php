@@ -75,7 +75,7 @@ class admin_do_send_messages_id_list extends OpenPNE_Action
         }
 
         $_REQUEST['c_member_ids'] = $c_member_id_list;
-        openpne_forward('admin', 'page', 'send_messages');
+        openpne_forward(ADMIN_MODULE_NAME, 'page', 'send_messages');
         exit;
     }
 }
