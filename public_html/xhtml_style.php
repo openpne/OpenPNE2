@@ -291,7 +291,7 @@ div.pagerRelativeMulti:after,
 #Top {
 	overflow: hidden;
 }
-dd div, dt, ul, ol, td, th,
+dd div, dt, ul, ol, td, th, p,
 h1, h2, h3, h4, h5, h6, .partsHeading,
 fieldset, label {
 	overflow: hidden;
