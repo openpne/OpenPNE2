@@ -64,6 +64,9 @@ table {
 *:first-child+html table {
 	border-collapse: collapse;
 }
+*:first-child+html p {
+	overflow: visible;
+}
 * html table {
 	border-collapse: collapse;
 }
