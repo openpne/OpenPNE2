@@ -125,6 +125,8 @@ class ktai_do_o_insert_c_member extends OpenPNE_Action
                     'public_flag_birth_month_day' => $prof['public_flag_birth_month_day'],
                     'c_password_query_id' => $prof['c_password_query_id'],
                     'is_sns_entry_confirm' => 1);
+                    // c_member_pre_profile にデータ挿入
+                    db_member_update_c_member_pre_profile($pre['c_member_pre_id'], $c_member_profile_list);
 
             if ($easy_access_id) {
                 $c_member_secure['easy_access_id'] = $easy_access_id;
