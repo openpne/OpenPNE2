@@ -232,7 +232,7 @@ class OpenPNE_Config
             'OPENPNE_IMG_KTAI_MAX_WIDTH' => 240,
             'OPENPNE_IMG_KTAI_MAX_HEIGHT' => 320,
             'OPENPNE_MAINTENANCE_TEXT' => '',
-            'CHECK_KTAI_IP' => false,
+            'CHECK_KTAI_IP' => true,
             'OPENPNE_WEATHER_URL' => 'http://weather.yahoo.co.jp/weather/',
             'OPENPNE_USE_KTAI_LOGO' => true,
             'OPENPNE_USE_FUNCTION_CACHE_MEMCACHE' => false,
