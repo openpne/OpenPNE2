@@ -20,11 +20,6 @@ if (CHECK_KTAI_UA && !isKtaiUserAgent()) {
     openpne_redirect('pc');
 }
 
-// IPアドレスチェック
-if (CHECK_KTAI_IP && !is_ktai_ip()) {
-    openpne_redirect('pc');
-}
-
 $agent = new OpenPNE_KtaiUA();
 if ($agent->is_docomo()) {
     $GLOBALS['__Framework']['carrier'] = 'i';
@@ -36,6 +31,11 @@ if ($agent->is_docomo()) {
     $GLOBALS['__Framework']['carrier'] = 'w';
 } elseif ($agent->is_emobile()) {
     $GLOBALS['__Framework']['carrier'] = 'em';
+}
+
+// IPアドレスチェック
+if (CHECK_KTAI_IP && !is_ktai_ip()) {
+    openpne_redirect('pc');
 }
 
 // 文字コード変換
