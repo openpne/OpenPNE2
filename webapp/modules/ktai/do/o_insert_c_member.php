@@ -110,13 +110,6 @@ class ktai_do_o_insert_c_member extends OpenPNE_Action
         // insert c_member
         $prof['c_member_id_invite'] = $pre['c_member_id_invite'];
 
-        // 仮登録IDを割り出す
-        $c_member_pre_id = db_member_insert_c_member_pre_from_ktai(
-                                                $prof['c_member_id_invite']
-                                               ,$pre['ktai_address']
-                                               ,$pre['ktai_address']
-                                               ,$pre['session']);
-
         // 参加承認制
         if (IS_SNS_ENTRY_CONFIRM) {
             $c_member_secure = array(
@@ -132,8 +125,16 @@ class ktai_do_o_insert_c_member extends OpenPNE_Action
                     'public_flag_birth_month_day' => $prof['public_flag_birth_month_day'],
                     'c_password_query_id' => $prof['c_password_query_id'],
                     'is_sns_entry_confirm' => 1);
-                    // c_member_pre_profile にデータ挿入
-                    db_member_update_c_member_pre_profile($c_member_pre_id, $c_member_profile_list);
+
+            // 仮登録IDを割り出す
+            $c_member_pre_id = db_member_insert_c_member_pre_from_ktai(
+                                                    $prof['c_member_id_invite']
+                                                   ,$pre['ktai_address']
+                                                   ,$pre['ktai_address']
+                                                   ,$pre['session']);
+
+            // c_member_pre_profile にデータ挿入
+            db_member_update_c_member_pre_profile($c_member_pre_id, $c_member_profile_list);
 
             if ($easy_access_id) {
                 $c_member_secure['easy_access_id'] = $easy_access_id;
