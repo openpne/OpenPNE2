@@ -293,15 +293,12 @@ function db_member_search($cond, $cond_like, $page_size, $page, $c_member_id, $p
     $order = " ORDER BY c_member_id DESC";
     $sql = "SELECT c_member_id" . $from . $where . $order;
 
-    // 検索設定を公開にしていないメンバーを除外
     $result_ids = db_get_col($sql, $params);
-    foreach ($result_ids as $key => $result_id) {
-        $c_member_config = db_member_c_member_config4c_member_id($result_id);
-        if ($c_member_config['IS_SEARCH_RESULT'] === '0') {
-            unset($result_ids[$key]);
-        }
-    }
-    $result_ids = array_merge($result_ids);
+
+    // 検索設定を公開にしていないメンバーを除外
+    $sql = "SELECT c_member_id FROM c_member_config WHERE name = 'IS_SEARCH_RESULT' AND value = '0'";
+    $ids = db_get_col($sql);
+    $result_ids = array_diff($result_ids, $ids);
 
     foreach ($profiles as $key => $value) {
         $sql = "SELECT c_member_id FROM c_member_profile";
@@ -318,11 +315,12 @@ function db_member_search($cond, $cond_like, $page_size, $page, $c_member_id, $p
             $sql .= " AND c_profile_option_id = ?";
             $params[] = intval($value['c_profile_option_id']);
         }
-        $sql .= " ORDER BY c_member_id DESC";
 
         $ids = db_get_col($sql, $params);
-        $result_ids = array_values(array_intersect($result_ids, $ids));
+        $result_ids = array_intersect($result_ids, $ids);
     }
+
+    $result_ids = array_values($result_ids);
 
     $start = ($page - 1) * $page_size;
 
