@@ -40,17 +40,12 @@ $GLOBALS['_OPENPNE_KTAI_IP_LIST'] = array(
 '111.86.141.128/26',
 '111.86.141.192/26',
 
-// SoftBank (2009/8/10更新)
+// SoftBank (2010/4/23更新)
 // http://creation.mb.softbank.jp/web/web_ip.html
-'123.108.236.0/24',
 '123.108.237.0/27',
-'202.179.204.0/24',
 '202.253.96.224/27',
 '210.146.7.192/26',
-'210.146.60.192/26',
-'210.151.9.128/26',
 '210.175.1.128/25',
-'211.8.159.128/25',
 
 // WILLCOM (2009/4/2更新)
 // http://www.willcom-inc.com/ja/service/contents_service/club_air_edge/for_phone/ip/
