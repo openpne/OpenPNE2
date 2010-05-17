@@ -87,7 +87,6 @@
 ({/if})
 ({/if})
 
-
 ({if $is_c_commu_view})
 ({if $c_commu_topic_comment_list})
 <hr color="#({$ktai_color_config.border_01})">
