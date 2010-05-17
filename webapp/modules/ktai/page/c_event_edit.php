@@ -35,7 +35,7 @@ class ktai_page_c_event_edit extends OpenPNE_Action
             !db_commu_is_c_commu_member($c_commu_id, $u)) {
             handle_kengen_error();
         }
-       //---
+        //---
 
         if (!$c_topic['event_flag']) {
             openpne_redirect('ktai', 'page_c_topic_edit',
