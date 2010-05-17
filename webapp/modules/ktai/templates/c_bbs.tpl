@@ -11,8 +11,10 @@
 
 <a href="#({if $c_commu_topic_comment_list})tc1({else})write({/if})"><font color="#({$ktai_color_config.font_08})">▼</font></a>({$c_commu_topic.r_datetime|date_format:"%m/%d %H:%M"})<br>
 <a href="({t_url m=ktai a=page_f_home})&amp;target_c_member_id=({$c_commu_topic.c_member_id})&amp;({$tail})">({$c_commu_topic.nickname|default:"&nbsp;"})</a>
-({if $c_commu_topic.c_member_id==$u || $is_admin})
+({if $c_commu.c_member_id_admin==$u || ( $c_commu_topic.c_member_id==$u && $c_commu.is_topic !== 'admin_only')})
+({if $is_c_commu_member || $c_commu.is_topic == 'public'})
 [<a href="({t_url m=ktai a=page_c_topic_edit})&amp;target_c_commu_topic_id=({$c_commu_topic_id})&amp;({$tail})">編集</a>]
+({/if})
 ({/if})
 <br>
 ({$c_commu_topic.body|t_url2a_ktai|nl2br})<br>
@@ -76,10 +78,12 @@
 <a href="({t_url m=ktai a=page_c_event_mail})&amp;target_c_commu_topic_id=({$c_commu_topic.c_commu_topic_id})&amp;({$tail})">一括ﾒｯｾｰｼﾞを送る</a><br>
 ({/if})
 
-({if $is_c_event_admin || $is_admin})
+({if $c_commu.c_member_id_admin==$u || ( $is_c_event_admin && $c_commu.is_topic !== 'admin_only')})
+({if $is_c_commu_member || $c_commu.is_topic == 'public'})
 <br>
 ｲﾍﾞﾝﾄ編集：<br>
 <a href="({t_url m=ktai a=page_c_event_edit})&amp;target_c_commu_topic_id=({$c_commu_topic_id})&amp;({$tail})">ｲﾍﾞﾝﾄ編集画面を見る</a><br>
+({/if})
 ({/if})
 ({/if})
 
