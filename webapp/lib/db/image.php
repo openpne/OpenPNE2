@@ -81,15 +81,13 @@ function db_image_insert_c_image($filename, $bin, $filesize, $c_member_id, $cate
 function db_image_delete_c_image($filename, $c_member_id)
 {
     $db =& db_get_instance('image');
-    $db2 =& db_get_instance();
 
     $sql = 'DELETE FROM c_image WHERE filename = ?';
     $params = array($filename);
     $db->query($sql, $params);
 
     $sql = 'DELETE FROM c_image_size WHERE filename = ?';
-    $params = array($filename);
-    $db2->query($sql, $params);
+    db_query($sql, $params);
 
     //function cacheの削除
     $category = util_image_filename2category($filename);
