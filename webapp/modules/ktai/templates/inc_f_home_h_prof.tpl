@@ -134,7 +134,7 @@
 ({/if})
 ({/if})
 <br>
-({if !$c_album_list && $smarty.const.OPENPNE_USE_ALBUM})[i:68]<a href="({t_url m=ktai a=page_fh_album_list})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">ｱﾙﾊﾞﾑを見る</a><br>({/if})
+({if $smarty.const.OPENPNE_USE_ALBUM})[i:68]<a href="({t_url m=ktai a=page_fh_album_list})&amp;target_c_member_id=({$target_c_member.c_member_id})&amp;({$tail})">ｱﾙﾊﾞﾑを見る</a><br>({/if})
 ({if $inc_ktai_entry_point[3]})
 ({$inc_ktai_entry_point[3]|smarty:nodefaults})
 ({/if})
