@@ -1,1 +1,1 @@
-<?php define('OPENPNE_VERSION', '2.12.18'); ?>
+<?php define('OPENPNE_VERSION', '2.12.19'); ?>
