@@ -292,7 +292,7 @@
 <input type="hidden" name="profile[({$key})]" value="({$item})" />
 ({/foreach})
 ({elseif $requests.mail_address})
-<input type="hidden" name="a" value="do_({$hash_tbl->hash('send_messages_id_list')})" />
+<input type="hidden" name="a" value="do_({$hash_tbl->hash('send_messages_id_list','do')})" />
 <input type="hidden" name="c_member_id_list" value="({$requests.mail_address})" />
 <input type="hidden" name="specify_type" value="mail_address" />
 ({else})
