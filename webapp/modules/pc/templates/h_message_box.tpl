@@ -286,10 +286,14 @@ function clearAll() {
 ({foreach from=$c_message_s_list item=c_message_s})
 <tr>
 <td class="status"><span>
-({if $smarty.const.USE_MESSAGE_OPEN_UNOPEN && $c_message_s.is_read})
+({if $smarty.const.USE_MESSAGE_OPEN_UNOPEN})
+({if $c_message_s.is_read})
 <img src="({t_img_url_skin filename=icon_mail_2})" alt="受信者開封済み" />
 ({else})
 <img src="({t_img_url_skin filename=icon_mail_3})" alt="受信者未開封" />
+({/if})
+({else})
+<img src="({t_img_url_skin filename=icon_mail_3})" alt="" />
 ({/if})
 </span></td>
 <td><span><input type="checkbox" class="input_checkbox" name="c_message_id[]" value="({$c_message_s.c_message_id})" /></span></td>
