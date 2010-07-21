@@ -73,10 +73,16 @@ class OpenPNE_Validator
      */
     function addIniSetting($ini_path)
     {
-        if (!is_readable($ini_path) ||
-            !$rules = parse_ini_file($ini_path, true)) {
-
-            return false;
+        if(version_compare(PHP_VERSION, '5.3.0', '>=')){
+            if (!is_readable($ini_path) ||
+                !$rules = parse_ini_file($ini_path, true, INI_SCANNER_RAW)) {
+                return false;
+            }
+        } else {
+            if (!is_readable($ini_path) ||
+                !$rules = parse_ini_file($ini_path, true)) {
+                return false;
+            }
         }
 
         $this->addRules($rules);
