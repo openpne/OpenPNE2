@@ -62,7 +62,7 @@ $GLOBALS['SMARTY'] = (array)$GLOBALS['SMARTY'] + array(
     'caching'           => false,
     'debugging'         => false,
     'debug_tpl'         => OPENPNE_WEBAPP_DIR . '/templates/debug.tpl',
-    'error_reporting'   => E_ALL ^ E_NOTICE,
+    'error_reporting'   => E_ALL ^ E_NOTICE ^ E_DEPRECATED,
 );
 $GLOBALS['SMARTY']['plugins_dir'] = array(
     OPENPNE_WEBAPP_DIR . '/lib/smarty_plugins/',
