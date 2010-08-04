@@ -237,6 +237,10 @@ define('OPENPNE_MODULES_BIZ_DIR', OPENPNE_WEBAPP_BIZ_DIR . '/modules');
 // デバッグ、エラーハンドリング、ログ設定
 ///
 
+if (!defined('E_DEPRECATED')) {
+    define('E_DEPRECATED', 8192);
+}
+
 error_reporting(E_ALL ^ E_NOTICE ^ E_DEPRECATED);
 
 switch(OPENPNE_DEBUGGING) {
