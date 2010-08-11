@@ -16,16 +16,9 @@ class pc_page_h_googlemap extends OpenPNE_Action
         $u = $GLOBALS['AUTH']->uid();
 
         // --- リクエスト変数
-        $x = $requests['x'];
-        $y = $requests['y'];
-        $z = $requests['z'];
         $t = $requests['t'];
-        $q = $requests['q'];
         // ----------
-        $this->set('x', $x);
-        $this->set('y', $y);
-        $this->set('z', $z);
-        $this->set('q', $q);
+
         //表示モード
         {
             $MapType = 'G_NORMAL_MAP';
