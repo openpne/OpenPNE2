@@ -10,16 +10,35 @@
 <script src="http://maps.google.co.jp/maps?file=api&amp;v=2.x&amp;key=({$smarty.const.GOOGLE_MAPS_API_KEY})" type="text/javascript"></script>
 <script type="text/javascript">
 //<![CDATA[
+
+// parse request parameters
+var request = {
+  x: "", y: "", z: "", q: ""
+};
+var params = window.location.search.substr(1).split('&');
+for (var i = 0; i < params.length; i++) {
+  var parts = params[i].split('=');
+
+  var n = parts[0];
+  var v = decodeURIComponent(parts[1]);
+  if ("z" == n)
+  {
+    v = parseInt(v);
+  }
+  request[n] = v;
+}
+var MapType = ({$MapType});  // It is not user-inputed values
+
 var gls;
 var gMap;
 function OnLocalSearch() {
     if (!gls.results) return;
     var first = gls.results[0];
     var point = new GLatLng(parseFloat(first.lat), parseFloat(first.lng));
-    var zoom = ({$z});
+    var zoom = request.z;
     gMap.addControl(new GSmallMapControl());
     gMap.addControl(new GMapTypeControl());
-    gMap.setMapType(({$MapType}));
+    gMap.setMapType(MapType);
     gMap.setCenter(point, zoom);
     var marker = new GMarker(point);
     gMap.addOverlay(marker);
@@ -27,7 +46,7 @@ function OnLocalSearch() {
 }
 function load() {
     if (GBrowserIsCompatible()) {
-        if ((({$x}) == 0) && (({$y}) == 0)){
+        if ((request.x == 0) && (request.y == 0)){
             gMap = new GMap2(document.getElementById("map"));
             gMap.addControl(new GSmallMapControl());
             gMap.addControl(new GMapTypeControl());
@@ -35,16 +54,16 @@ function load() {
             gls = new GlocalSearch();
             gls.setCenterPoint(gMap);
             gls.setSearchCompleteCallback(null, OnLocalSearch);
-            var q = "({$q})";
+            var q = request.q;
             gls.execute(q);
         } else {
-            var point = new GLatLng(({$x}), ({$y}));
-            var zoom = ({$z});
+            var point = new GLatLng(request.x, request.y);
+            var zoom = request.z;
             gMap = new GMap2(document.getElementById("map"));
             gMap.addControl(new GSmallMapControl());
             gMap.addControl(new GMapTypeControl());
             gMap.setCenter(point, zoom);
-            gMap.setMapType(({$MapType}));
+            gMap.setMapType(MapType);
             var marker = new GMarker(point);
             gMap.addOverlay(marker);
             geocoder = new GClientGeocoder();
