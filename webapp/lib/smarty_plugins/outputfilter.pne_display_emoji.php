@@ -15,7 +15,9 @@ function smarty_outputfilter_pne_display_emoji($tpl_output, &$smarty)
         // 置換用に文字列を退避
         $patterns = array(
           '/<textarea.*?<\/textarea>/is',
-          '/<+.[^>]+>/is',
+          '/<option.*?<\/option>/is',
+          '/<head.*?<\/head>/is',
+          '/<[^>]+>/is',
         );
         list($list, $tpl_output) = util_replace_patterns_to_marker($tpl_output, $patterns);
     }
