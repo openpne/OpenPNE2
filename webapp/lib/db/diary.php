@@ -153,7 +153,7 @@ function db_diary_category_delete_c_diary_category_diary($c_diary_id)
         $sql = 'SELECT COUNT(*) FROM c_diary_category_diary'.
             ' WHERE c_diary_category_id = ?';
         $c_diary_category_id = $value['c_diary_category_id'];
-        $is_diary = (bool)db_get_one($sql, array(intval($c_diary_category_id)));
+        $is_diary = (bool)db_get_one($sql, array(intval($c_diary_category_id)), 'main');
         if (!$is_diary) {  //カテゴリに関連付いた日記が存在しない
             db_diary_category_delete_category($c_diary_category_id);
         }
