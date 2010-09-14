@@ -14,7 +14,7 @@ function db_diary_category_list4c_member_id($c_member_id)
 {
     $sql = 'SELECT c_diary_category_id, category_name FROM c_diary_category '
          . 'WHERE c_member_id = ? ORDER BY c_diary_category_id';
-    $result = db_get_all($sql, array(intval($c_member_id)));
+    $result = db_get_all($sql, array(intval($c_member_id)), 'main');
 
     return $result;
 }
