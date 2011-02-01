@@ -84,6 +84,8 @@ class OpenPNE_Img_ImageMagick extends OpenPNE_Img
         if ($this->output_format == 'png') {
             touch($raw_fullpath);
             $output_gdimg = imagecreatefromstring($rawimage);
+            imagealphablending($output_gdimg, false);
+            imagesavealpha($output_gdimg, true);
             imagepng($output_gdimg, $raw_fullpath);
         } else {
             $handle = fopen($raw_fullpath, 'wb');
