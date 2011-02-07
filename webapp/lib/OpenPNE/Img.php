@@ -358,6 +358,8 @@ class OpenPNE_Img
         if ($this->output_format == 'png') {
             touch($this->cache_fullpath);
             $output_gdimg = imagecreatefromstring($this->raw_img);
+            imagealphablending($output_gdimg, false);
+            imagesavealpha($output_gdimg, true);
             imagepng($output_gdimg, $this->cache_fullpath);
         } else {
             $handle = fopen($this->cache_fullpath, 'wb');
