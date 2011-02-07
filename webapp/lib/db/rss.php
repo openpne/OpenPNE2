@@ -103,7 +103,7 @@ function db_rss_is_duplicated_rss_cache($c_member_id, $date, $link)
     $sql = 'SELECT c_rss_cache_id FROM c_rss_cache' .
             ' WHERE c_member_id = ? AND r_datetime = ? AND link = ?';
     $params = array(intval($c_member_id), $date, $link);
-    return (bool)db_get_one($sql, $params);
+    return (bool)db_get_one($sql, $params, 'main');
 }
 
 function db_rss_is_updated_rss_cache($c_member_id, $link)
