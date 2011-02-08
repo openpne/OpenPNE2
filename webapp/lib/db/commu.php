@@ -151,7 +151,7 @@ function db_commu_is_c_commu_member($c_commu_id, $c_member_id)
     $sql = 'SELECT c_commu_member_id FROM c_commu_member' .
             ' WHERE c_commu_id = ? AND c_member_id = ?';
     $params = array(intval($c_commu_id), intval($c_member_id));
-    return (bool)db_get_one($sql, $params);
+    return (bool)db_get_one($sql, $params, 'main');
 }
 
 /**
