@@ -29,7 +29,7 @@ function db_friend_is_friend($c_member_id1, $c_member_id2)
     $sql = 'SELECT c_friend_id FROM c_friend' .
             ' WHERE c_member_id_from = ? AND c_member_id_to = ?';
     $params = array(intval($c_member_id1), intval($c_member_id2));
-    return (bool)db_get_one($sql, $params);
+    return (bool)db_get_one($sql, $params, 'main');
 }
 
 /**
