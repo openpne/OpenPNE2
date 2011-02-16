@@ -200,7 +200,7 @@ function db_commu_is_c_commu_join_wait($c_commu_id, $c_member_id)
     $sql = 'SELECT c_commu_member_confirm_id FROM c_commu_member_confirm' .
             ' WHERE c_commu_id = ? AND c_member_id = ?';
     $params = array(intval($c_commu_id), intval($c_member_id));
-    return (bool)db_get_one($sql, $params);
+    return (bool)db_get_one($sql, $params, 'main');
 }
 
 function db_commu_is_c_commu_view4c_commu_idAc_member_id($c_commu_id,$c_member_id)
@@ -1407,7 +1407,7 @@ function db_commu_is_c_commu_member_confirm($c_member_id, $c_commu_id)
     $sql = "SELECT COUNT(*) FROM c_commu_member_confirm" .
         " WHERE c_member_id = ? AND c_commu_id = ?";
     $params = array(intval($c_member_id), intval($c_commu_id));
-    return db_get_one($sql, $params);
+    return db_get_one($sql, $params, 'main');
 }
 
 function db_commu_c_commu_member4c_member_id($c_member_id, $c_commu_id)
